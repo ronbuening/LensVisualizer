@@ -1,41 +1,37 @@
 /**
- * Sigma 70mm F2.8 DG Macro Art A018 — related patent Example1, NOT unique factory identity.
- * Original JP2019144441A pp17–18, Figure1 p31; Numerical Example5 remains viable.
- * Source correction: physical S18–S19 airgap=d18+d19 (1.9577/24.6561/47.7614mm).
- * Two independent source evidence kinds: source-summary and claim15 / EX1 condition13.
- * Original orphan d19 row and failed literal-d18 interpretation preserved in audit/evidence.
- * This does NOT establish a missing dummy plane or permit changing S19 glass0.9000mm.
- * Native planes retain +0.01028/+0.01805/+0.02860mm paraxial residuals; no refocus retune.
- * G3 annotation follows complete L11–L13 per prose; printed start20 is inconsistent.
- * 13 lens elements/10 components; source LPF remains physical rearPlates, not folded air.
- * Source nd/vd/PgF/PdC algebra supplies nC/nF/ng; supplier/melt identities Unmatched.
- * All K0 and A4..A14 are explicitly printed, not assumed. Source scale unchanged.
- * Clear rims inferred from source schematic and default90%-sag geometry caps; no override.
- * 65 illustrative controls reparameterize original native-gap paths; NOT a recovered cam.
- * Only infinity / -0.5x / -1x are source-published; intermediate finite MTF not certified.
- * Fixed derived iris from infinityF2.90 gives finite workingF3.8428/4.8023, not printed3.86/4.99;
- * aperture convention unresolved, no user waiver, no varying-iris workaround or quality pass.
- * Partial-pupil/weak CDF tangential edge MTF retained. Full project/viewer gates NOT_RUN.
+ * SIGMA 70mm f/2.8 DG MACRO | Art (A018) — JP 2019-144441 A, Numerical Example 1 (pp. 17–18, Figure 1 on p. 31).
+ * A related patent design, not a confirmed factory prescription. Numerical Example 5 is a close alternative.
+ *
+ * Source correction: the physical S18–S19 air gap is d18 + d19 (1.9577 / 24.6561 / 47.7614 mm). The table prints a
+ * variable d18 after L10 and a separate d19 row, although S19 is 0.9000 mm of L11 glass. Evidence: the printed summary
+ * values and claim 15 with the Example 1 condition (13) value. Literal d18 fails both; both printed rows are kept in
+ * the audit log. This does not establish a missing dummy plane, and the S19 glass thickness stays as printed.
+ *
+ * The printed planes keep paraxial residuals of +0.01028 / +0.01805 / +0.02860 mm; the image plane is not refocused.
+ * G3 is the complete L11–L13 per the prose and Figure 1; the printed group start of surface 20 would cut L11 in half.
+ * 13 lens elements in 10 groups. The printed LPF stays a physical rear plate, not folded into the air gap.
+ * nC, nF and ng are computed from the printed nd, νd, PgF and PdC. Eleven elements carry HOYA coordinate equivalents,
+ * which are not supplier or melt claims; L9 and L13 match no catalog row.
+ * K = 0 and A4–A14 are all printed, not assumed. Source scale unchanged.
+ * Clear rims are inferred from Figure 1 and capped by the default 90% sag rule, with no override.
+ * The 65 focus controls reparameterize the printed gap paths and are not a recovered cam.
+ * Only infinity, −0.5× and −1× are published; intermediate finite MTF is not certified.
+ * Stop: radius 10.616 mm from paraxial EPD 23.43 mm at F/2.90, fixed through focus. Working f/# traces
+ * 2.91 / 3.86 / 4.82 against the printed 2.90 / 3.86 / 4.99; a fixed iris cannot reach the printed 4.99 at 1:1.
+ * Tangential edge MTF is weak and the edge pupil is partly vignetted.
  */
-// Corrected physical airgap: sum both printed rows; claims + source-summary, not optimization.
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
   key: "sigma-70mm-f28-dg-macro-art",
   maker: "Sigma",
-  name: "SIGMA 70mm F2.8 DG MACRO | Art",
-  subtitle:
-    "A018-related JP2019-144441A Example1; production identity not exclusive (Example5 viable). Source gap-label erratum corrected; native macro states retained.",
+  name: "SIGMA 70mm f/2.8 DG MACRO | Art",
+  subtitle: "JP 2019-144441 A, Numerical Example 1 — related design, not a confirmed factory prescription",
   catalog: {
     lensMounts: ["sigma-sa", "canon-ef", "sony-fe", "l-mount"],
     imageFormat: "135-full-frame",
-    specs: [
-      "13 ELEMENTS / 10 GROUPS",
-      "70mm F2.8 (marketing)",
-      "67.95mm F2.90 (patent infinity)",
-      "Native infinity / -0.5x / -1x; source-internal gap correction",
-    ],
+    specs: ["13 ELEMENTS / 10 GROUPS", "DESIGN f = 67.95 mm", "DESIGN F/2.90", "3 ASPHERICAL SURFACES / 2 ELEMENTS"],
     elementCount: 13,
     groupCount: 10,
     focalLengthMm: {
@@ -64,11 +60,11 @@ const LENS_DATA = {
         printed: 0,
         applied: 1.9577,
         evidence: ["source-summary", "claims"],
-        note: "Printed surface table has variable d18 after L10 and orphan variable d19 despite S19 being L11 glass0.9mm. Apply d18+d19 to the S18\u2013S19 air gap at all three source states:1.9577/24.6561/47.7614mm. Literal d18 gives G2 motion ratio0.4533, violating claim15 (.55-.90) and EX1 condition13=.67; combined gap gives.6741. Source EFL/native-conjugate and total-length summaries independently support it. Not proof of a missing dummy plane; literal rows and failed interpretation preserved.",
+        note: "The surface table prints a variable d18 after L10 and the spacing table adds a d19 row, although S19 is 0.9 mm of L11 glass. This file applies d18 + d19 to the S18\u2013S19 air gap at all three printed states: 1.9577 / 24.6561 / 47.7614 mm. Literal d18 gives a condition (13) value of 0.4533, outside claim 15 (0.55\u20130.90) and the printed 0.67; the sum gives 0.6741. The sum also reproduces the stated focal lengths, field angles and total lengths, and literal d18 does not. This is not proof of a missing dummy plane; the printed rows are kept in the audit log.",
       },
       {
         status: "unresolved",
-        note: "Printed G3 group-start20 conflicts with prose L11\u2013L13 and negative group focal length: actual S19\u201324 yields-372.2939mm vs printed-372.27, while air-initialized, nonphysical S20 half-glass diagnostic gives+97.3585. Diagram group annotation follows physical L11\u2013L13 without changing surfaces. Native total track126.8312/150.9810/175.6310mm differs from printed126.83/150.95/175.57; native residual defocus remains and image plane is not retuned.",
+        note: "The printed G3 start of surface 20 conflicts with the prose, Figure 1 and the negative group focal length: S19\u201324 gives \u2212372.29 mm against the printed \u2212372.27 mm, while a start at S20 cuts L11 in half and gives +97.36 mm. The group annotation follows L11\u2013L13 and no surface changes. The physical track of 126.8312 / 150.9810 / 175.6310 mm differs from the printed 126.83 / 150.95 / 175.57 mm; the patent's other examples show the same kind of shortfall. The small residual defocus remains and the image plane is not moved.",
       },
     ],
   },
@@ -76,7 +72,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       type: "Biconcave Negative",
       focalLengthMm: -73.16861545823267,
       nd: 1.4875,
@@ -85,13 +81,13 @@ const LENS_DATA = {
       nC: 1.4853607857751279,
       nF: 1.4922815694207838,
       ng: 1.4959530451448042,
-      glass:
-        "Unmatched (patent nd=1.48750, vd=70.44; source PgF/PdC line indices retained; supplier not identified)",
+      glass: "FC5 (HOYA, coordinate equivalent)",
+      role: "Front negative element of G1A; its rear surface and L2's front bound the biconvex air lens of claim 2.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       type: "Negative Meniscus",
       focalLengthMm: -49.5890034703261,
       nd: 1.8052,
@@ -100,14 +96,14 @@ const LENS_DATA = {
       nC: 1.7961296402199527,
       nF: 1.82775572034564,
       ng: 1.8472247352710132,
-      glass:
-        "Unmatched (patent nd=1.80520, vd=25.46; source PgF/PdC line indices retained; supplier not identified)",
-      cemented: "D1",
+      glass: "FD60 (HOYA, coordinate equivalent)",
+      role: "Negative dense-flint member of cemented doublet C1 in G1A, concave to the object.",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Positive Meniscus",
       focalLengthMm: 59.60440789075496,
       nd: 1.8707,
@@ -116,14 +112,14 @@ const LENS_DATA = {
       nC: 1.8643509231524675,
       nF: 1.8857282862754727,
       ng: 1.897872766265652,
-      glass:
-        "Unmatched (patent nd=1.87070, vd=40.73; source PgF/PdC line indices retained; supplier not identified)",
-      cemented: "D1",
+      glass: "TAFD32 (HOYA, coordinate equivalent)",
+      role: "High-index positive member of cemented doublet C1, convex to the image.",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Biconvex Positive",
       focalLengthMm: 70.49293584977475,
       nd: 1.9229,
@@ -132,13 +128,13 @@ const LENS_DATA = {
       nC: 1.910413445881226,
       nF: 1.9546136374521073,
       ng: 1.9828487198275861,
-      glass:
-        "Unmatched (patent nd=1.92290, vd=20.88; source PgF/PdC line indices retained; supplier not identified)",
+      glass: "E-FDS1 (HOYA, coordinate equivalent)",
+      role: "Last element of G1A; highest index and lowest Abbe number in the design.",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
+      label: "Element 5",
       type: "Biconvex Positive",
       focalLengthMm: 89.3530975841299,
       nd: 1.437,
@@ -147,13 +143,16 @@ const LENS_DATA = {
       nC: 1.4355892849631966,
       nF: 1.4401844479495267,
       ng: 1.4426359674027338,
-      glass:
-        "Unmatched (patent nd=1.43700, vd=95.10; source PgF/PdC line indices retained; supplier not identified)",
+      glass: "FCD100 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote:
+        "Inferred FLD position: the FCD100-class glass (nd 1.43700, νd 95.10, printed PgF 0.5335) fits one of Sigma's two FLD elements; the patent names no element.",
+      role: "First element of G1B; very-high-Abbe positive lens for axial colour.",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
+      label: "Element 6",
       type: "Biconvex Positive",
       focalLengthMm: 38.16939185158739,
       nd: 1.5928,
@@ -162,14 +161,17 @@ const LENS_DATA = {
       nC: 1.590181555231711,
       nF: 1.5988204360244826,
       ng: 1.6035199871757504,
-      glass:
-        "Unmatched (patent nd=1.59280, vd=68.62; source PgF/PdC line indices retained; supplier not identified)",
-      cemented: "D2",
+      glass: "FCD515 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote:
+        "Inferred SLD position: the FCD515-class glass (nd 1.59280, νd 68.62, printed PgF 0.5440) fits one of Sigma's two SLD elements; the patent names no element.",
+      role: "Positive member of cemented doublet C2 in G1B.",
+      cemented: "C2",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
+      label: "Element 7",
       type: "Biconcave Negative",
       focalLengthMm: -25.951386261781607,
       nd: 1.6727,
@@ -178,14 +180,14 @@ const LENS_DATA = {
       nC: 1.6666128700652783,
       nF: 1.6875236565122786,
       ng: 1.6999906673919802,
-      glass:
-        "Unmatched (patent nd=1.67270, vd=32.17; source PgF/PdC line indices retained; supplier not identified)",
-      cemented: "D2",
+      glass: "E-FD5 (HOYA, coordinate equivalent)",
+      role: "Negative member of cemented doublet C2; last element of G1, directly ahead of the stop.",
+      cemented: "C2",
     },
     {
       id: 8,
       name: "L8",
-      label: "L8",
+      label: "Element 8",
       type: "Biconcave Negative",
       focalLengthMm: -42.09717706586117,
       nd: 1.4875,
@@ -194,14 +196,14 @@ const LENS_DATA = {
       nC: 1.4853607857751279,
       nF: 1.4922815694207838,
       ng: 1.4959530451448042,
-      glass:
-        "Unmatched (patent nd=1.48750, vd=70.44; source PgF/PdC line indices retained; supplier not identified)",
-      cemented: "D3",
+      glass: "FC5 (HOYA, coordinate equivalent)",
+      role: "Negative member of cemented doublet C3; first lens behind the stop in G2.",
+      cemented: "C3",
     },
     {
       id: 9,
       name: "L9",
-      label: "L9",
+      label: "Element 9",
       type: "Biconvex Positive (Asph)",
       focalLengthMm: 42.26275242813568,
       nd: 1.5523,
@@ -210,14 +212,17 @@ const LENS_DATA = {
       nC: 1.5499499843444227,
       nF: 1.5576701409001956,
       ng: 1.5618305332681017,
-      glass:
-        "Unmatched (patent nd=1.55230, vd=71.54; source PgF/PdC line indices retained; supplier not identified)",
-      cemented: "D3",
+      glass: "Unmatched (printed nd 1.55230, νd 71.54; line indices from printed PgF and PdC)",
+      apd: "inferred",
+      apdNote:
+        "Inferred SLD position: the low-dispersion glass (nd 1.55230, νd 71.54, printed PgF 0.5389) fits one of Sigma's two SLD elements; the patent names no element.",
+      role: "Positive member of cemented doublet C3, with the aspherical rear surface S16.",
+      cemented: "C3",
     },
     {
       id: 10,
       name: "L10",
-      label: "L10",
+      label: "Element 10",
       type: "Biconvex Positive",
       focalLengthMm: 100.84296109077151,
       nd: 1.437,
@@ -226,13 +231,16 @@ const LENS_DATA = {
       nC: 1.4355892849631966,
       nF: 1.4401844479495267,
       ng: 1.4426359674027338,
-      glass:
-        "Unmatched (patent nd=1.43700, vd=95.10; source PgF/PdC line indices retained; supplier not identified)",
+      glass: "FCD100 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote:
+        "Inferred FLD position: the FCD100-class glass (nd 1.43700, νd 95.10, printed PgF 0.5335) fits one of Sigma's two FLD elements; the patent names no element.",
+      role: "Very-high-Abbe positive lens closing G2, ahead of the widening air gap to G3.",
     },
     {
       id: 11,
       name: "L11",
-      label: "L11",
+      label: "Element 11",
       type: "Negative Meniscus",
       focalLengthMm: -72.73482515881881,
       nd: 1.834,
@@ -241,13 +249,13 @@ const LENS_DATA = {
       nC: 1.8274200214247456,
       nF: 1.8497553186930906,
       ng: 1.8626852222817356,
-      glass:
-        "Unmatched (patent nd=1.83400, vd=37.34; source PgF/PdC line indices retained; supplier not identified)",
+      glass: "NBFD10 (HOYA, coordinate equivalent)",
+      role: "Negative meniscus opening G3, which stays fixed to the image, convex to the object.",
     },
     {
       id: 12,
       name: "L12",
-      label: "L12",
+      label: "Element 12",
       type: "Biconcave Negative",
       focalLengthMm: -94.095383024805,
       nd: 1.6204,
@@ -256,13 +264,13 @@ const LENS_DATA = {
       nC: 1.6172599575737487,
       nF: 1.627541694398409,
       ng: 1.6330866350679483,
-      glass:
-        "Unmatched (patent nd=1.62040, vd=60.34; source PgF/PdC line indices retained; supplier not identified)",
+      glass: "BACD16 (HOYA, coordinate equivalent)",
+      role: "Second negative element of fixed G3, ahead of the aspherical L13.",
     },
     {
       id: 13,
       name: "L13",
-      label: "L13",
+      label: "Element 13",
       type: "Biconvex Positive (Asph)",
       focalLengthMm: 48.465835637649796,
       nd: 1.8028,
@@ -271,8 +279,8 @@ const LENS_DATA = {
       nC: 1.7969200591861898,
       nF: 1.8167178397040689,
       ng: 1.8279768374845868,
-      glass:
-        "Unmatched (patent nd=1.80280, vd=40.55; source PgF/PdC line indices retained; supplier not identified)",
+      glass: "Unmatched (printed nd 1.80280, νd 40.55; line indices from printed PgF and PdC)",
+      role: "Last element of fixed G3, aspherical on both faces.",
     },
   ],
   surfaces: [
@@ -470,7 +478,7 @@ const LENS_DATA = {
       nF: 1.529214586106844,
       ng: 1.5340786021505375,
       source:
-        "JP2019144441A E1 p18 S25\u201326, source nd/vd/PgF/PdC retained algebraically as C/F/g indices; rim unpublished.",
+        "JP 2019-144441 A, Numerical Example 1, p. 18, surfaces 25\u201326; C, F and g indices computed from the printed nd, \u03bdd, PgF and PdC. Rim not published.",
     },
   ],
   focus: {
@@ -506,7 +514,7 @@ const LENS_DATA = {
         objectDistanceMm: 151.0718,
         distanceReference: "first-surface",
         source:
-          "JP2019144441A E1 p18 native -0.5x state d0=151.0718mm, gap correction via source-summary+claims; physical track150.9810mm, not manufacturer MFD.",
+          "JP 2019-144441 A, Numerical Example 1, p. 18: −0.5× state, d0 = 151.0718 mm, S18–S19 air gap d18 + d19, physical track 150.9810 mm. Not the manufacturer's minimum focus distance.",
       },
       {
         zoomStation: 0,
@@ -514,11 +522,11 @@ const LENS_DATA = {
         objectDistanceMm: 82.2506,
         distanceReference: "first-surface",
         source:
-          "JP2019144441A E1 p18 native -1x state d0=82.2506mm, gap correction via source-summary+claims; physical track175.6310mm, not manufacturer MFD.",
+          "JP 2019-144441 A, Numerical Example 1, p. 18: −1× state, d0 = 82.2506 mm, S18–S19 air gap d18 + d19, physical track 175.6310 mm, 257.88 mm object to image. Sigma markets 25.8 cm.",
       },
     ],
     description:
-      "Floating G1(L1\u2013L7) and G2(stop+L8\u2013L10) move objectward, G3(L11\u2013L13) fixed relative to image. Native -0.5x and -1x spacings retained, source d18+d19 collapsed-air-gap correction explicitly disclosed. Intermediate two-gap path is reparameterized with inferred controls to preserve interpolated native residual defocus, not factory-calibrated; source-native spacings and image planes are unchanged. Near-infinity conjugate pole remains from retained source residual: continuous distance labels are qualified, not source-certified. Physical iris is engine-derived from infinity F2.90 and fixed; source finite F3.86/F4.99 convention requires independent check. Image plane and original residual mismatch retained.",
+      "PUBLISHED infinity, \u22120.5\u00d7 and \u22121\u00d7 states. Floating focus: G1 (L1\u2013L7) and G2 (stop, L8\u2013L10) extend toward the object along different paths, by 48.80 mm and 45.80 mm at 1:1, while G3 (L11\u2013L13) stays fixed to the image. The S18\u2013S19 air gap is the sum of the printed d18 and d19 rows. Positions between the published states are inferred along the printed gap paths and are not a factory cam, so distance labels there, above all near infinity, are approximate. The \u22121\u00d7 state is the patent's own conjugate, 257.88 mm object to image; Sigma markets 25.8 cm. The iris stays at its infinity size: working f/# traces 2.91 / 3.86 / 4.82 against the printed 2.90 / 3.86 / 4.99.",
   },
   gaps: {
     "12": {
@@ -550,7 +558,7 @@ const LENS_DATA = {
       ],
     },
     "18": {
-      label: "d18+d19 (source erratum)",
+      label: "d18 + d19",
       values: [
         [
           1.9577, 2.278812065757911, 2.60986058507373, 2.951390570883554,
@@ -603,17 +611,17 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "10",
       toSurface: "12",
     },
     {
-      text: "D3",
+      text: "C3",
       fromSurface: "14",
       toSurface: "16A",
     },

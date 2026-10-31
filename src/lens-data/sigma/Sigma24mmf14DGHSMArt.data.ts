@@ -1,25 +1,29 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * JP 2016-012034 A, Numerical Example 1 (Sigma / Ryo Shioda).
- * Related patent reconstruction, not uniquely identified production prescription;
- * Numerical Example 6 remains a viable architectural alternative.
- * 15 elements / 11 components; aspheres S3/S26/S27 retain printed A12 terms.
- * No source dimensions, indices, coefficients or native image planes corrected.
- * Semi-diameters are inferred Figure 1 clear-rim adaptations, not measured factory
- * apertures; rejected square-rim geometry and finite clipping remain in evidence.
- * Fixed iris is derived by the pinned ordinary-prime nominal F1.47 contract.
- * Finite source F1.60 convention is unresolved: unvignetted exact working NA gives
- * F1.567254, distinct from collimated EFL/EP F1.476760 and hard-rim throughput.
- * G1 fixed; independently moving G2A/G2B share an assumed scalar path only between
- * the two source endpoints. The 65-control interpolation is illustrative, not a
- * factory cam or calibrated object-distance law. A near-infinity conjugate pole
- * remains at focus ~0.000473904 (label ~522.46 m); no continuous error bound.
- * Native finite object-to-image distance247.5954 mm = d0 115 + track132.5954 mm.
- * Source planes retained (+1.172/+1.329 um paraxial residual); best-focus MTF is
- * diagnostic only. Converged MTF is not a quality pass: near-edge40lp/mm tangential
- * ~0.069 at the native plane. Mixed spectra unavailable; glass suppliers unresolved.
- * Staged candidate only. Whole-project/viewer/integration gates NOT_RUN.
+ * JP 2016-012034 A, Numerical Example 1 (Sigma Corporation; inventor Ryo Shioda).
+ * This is a related patent design, not a confirmed factory prescription. Example 1 is the
+ * closest fit to Sigma's construction drawing; Numerical Example 6 has the same architecture
+ * and remains viable.
+ * 15 elements in 11 groups. Aspheres S3, S26 and S27 keep the printed coefficients, including
+ * the S3 A12 term. No printed dimension, index, coefficient or image plane is corrected.
+ * Semi-diameters are inferred from Figure 1 and are not measured factory apertures. The
+ * Figure 1 outlines cannot serve as square rims: L10's edge thickness goes negative, the S2
+ * rim passes that surface's radius, and several air gaps overlap. L12 to L15 are set to the
+ * on-axis marginal ray at the printed near state, so that beam clears them.
+ * The iris is derived from the design F1.47 as a paraxial entrance pupil at infinity: radius
+ * 12.3155 mm, fixed through focus. Its real marginal ray gives working f/1.4995 at infinity
+ * and f/1.5987 at the near state, where the patent prints F1.60 without defining that value.
+ * G1 is fixed. G2A and G2B with the stop move independently toward the object. Only infinity
+ * and the near state are printed. The 63 positions between them are inferred, with both groups
+ * on one shared path, and are not a factory cam. The printed infinity state sits just off its
+ * paraxial focus, so the distance law has a pole at focus 0.000474 (label 522.46 m) and
+ * distance labels near infinity are unreliable.
+ * The near state is 247.5954 mm object to image: d0 115 mm plus track 132.5954 mm.
+ * Printed image planes are kept, with paraxial residuals of +1.172 and +1.329 um; best-focus
+ * MTF is a diagnostic only. Simulated MTF stays weak at the near-state edge: about 0.066
+ * tangential at 40 lp/mm at the reference wavelength.
+ * Glass labels are catalog coordinate equivalents, not confirmed suppliers or melts.
  */
 
 const LENS_DATA = {
@@ -27,16 +31,15 @@ const LENS_DATA = {
   key: "sigma-24mm-f14-dg-hsm-art",
   maker: "Sigma",
   name: "SIGMA 24mm f/1.4 DG HSM | Art",
-  subtitle:
-    "JP 2016-012034 A Numerical Example 1 \u2014 related patent variant; Example 6 remains viable, exact factory identity unproved",
+  subtitle: "JP 2016-012034 A, Example 1 \u2014 related patent design",
   catalog: {
-    lensMounts: ["sigma-sa", "canon-ef", "nikon-f"],
+    lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "sony-fe", "l-mount"],
     imageFormat: "135-full-frame",
     specs: [
       "15 ELEMENTS / 11 GROUPS",
-      "24mm f/1.4 (marketing)",
-      "24.65mm f/1.47 (patent infinity)",
-      "247.5954mm native finite conjugate / INFERRED INTERMEDIATE MOTION",
+      "DESIGN f = 24.65 mm",
+      "DESIGN F/1.47",
+      "3 ASPHERICAL SURFACES / 2 ELEMENTS",
     ],
     elementCount: 15,
     groupCount: 11,
@@ -63,189 +66,225 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       diagramLabel: "L1",
       type: "Negative Meniscus",
       nd: 1.92119,
       vd: 23.96,
       indexReference: "d",
       focalLengthMm: -55.30260160404325,
-      glass: "Unmatched (patent nd=1.92119, vd=23.96; supplier and partial dispersion not identified)",
+      glass: "FDS24 (HOYA, coordinate equivalent)",
+      role: "High-index front meniscus of fixed G1; starts the retrofocus divergence.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       diagramLabel: "L2",
       type: "Negative Meniscus (Asph)",
       nd: 1.58913,
       vd: 61.25,
       indexReference: "d",
       focalLengthMm: -143.35037948084147,
-      glass: "Unmatched (patent nd=1.58913, vd=61.25; supplier and partial dispersion not identified)",
+      glass: "M-BACD5N (HOYA, coordinate equivalent)",
+      role: "Second front meniscus; its aspheric face S3 acts on the wide-field bundles.",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       diagramLabel: "L3",
       type: "Negative Meniscus",
       nd: 1.437,
       vd: 95.1,
       indexReference: "d",
       focalLengthMm: -112.38706022226863,
-      glass: "Unmatched (patent nd=1.43700, vd=95.10; supplier and partial dispersion not identified)",
+      glass: "FCD100 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote: "Sigma marks this position FLD; the patent prints only nd and νd, so dPgF is the catalog FCD100 value.",
+      dPgF: 0.049777,
+      role: "Third front meniscus, in FLD glass; completes the negative front section.",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       diagramLabel: "L4",
       type: "Biconvex Positive",
       nd: 1.90366,
       vd: 31.32,
       indexReference: "d",
       focalLengthMm: 72.70129176313365,
-      glass: "Unmatched (patent nd=1.90366, vd=31.32; supplier and partial dispersion not identified)",
+      glass: "TAFD25 (HOYA, coordinate equivalent)",
+      role: "High-index positive that starts to restore convergence in G1.",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
+      label: "Element 5",
       diagramLabel: "L5",
       type: "Biconcave Negative",
       nd: 1.437,
       vd: 95.1,
       indexReference: "d",
       focalLengthMm: -55.50526393067005,
-      glass: "Unmatched (patent nd=1.43700, vd=95.10; supplier and partial dispersion not identified)",
-      cemented: "D1",
+      glass: "FCD100 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote: "Sigma marks this position FLD; the patent prints only nd and νd, so dPgF is the catalog FCD100 value.",
+      dPgF: 0.049777,
+      role: "Negative member of doublet C1, in FLD glass.",
+      cemented: "C1",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
+      label: "Element 6",
       diagramLabel: "L6",
       type: "Biconvex Positive",
       nd: 2.001,
       vd: 29.13,
       indexReference: "d",
       focalLengthMm: 45.34526147455019,
-      glass: "Unmatched (patent nd=2.00100, vd=29.13; supplier and partial dispersion not identified)",
-      cemented: "D1",
+      glass: "TAFD55 (HOYA, coordinate equivalent)",
+      role: "Very-high-index positive member of doublet C1; last element of fixed G1.",
+      cemented: "C1",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
+      label: "Element 7",
       diagramLabel: "L7",
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.63,
       indexReference: "d",
       focalLengthMm: 48.32112342990436,
-      glass: "Unmatched (patent nd=1.59282, vd=68.63; supplier and partial dispersion not identified)",
+      glass: "FCD515 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so dPgF is the catalog FCD515 value.",
+      dPgF: 0.015751,
+      role: "Biconvex positive opening moving group G2A, in SLD glass.",
     },
     {
       id: 8,
       name: "L8",
-      label: "L8",
+      label: "Element 8",
       diagramLabel: "L8",
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.63,
       indexReference: "d",
       focalLengthMm: 50.975516108358995,
-      glass: "Unmatched (patent nd=1.59282, vd=68.63; supplier and partial dispersion not identified)",
-      cemented: "D2",
+      glass: "FCD515 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so dPgF is the catalog FCD515 value.",
+      dPgF: 0.015751,
+      role: "Positive member of doublet C2 in G2A, in SLD glass.",
+      cemented: "C2",
     },
     {
       id: 9,
       name: "L9",
-      label: "L9",
+      label: "Element 9",
       diagramLabel: "L9",
       type: "Biconcave Negative",
       nd: 1.64769,
       vd: 33.84,
       indexReference: "d",
       focalLengthMm: -31.690212398913978,
-      glass: "Unmatched (patent nd=1.64769, vd=33.84; supplier and partial dispersion not identified)",
-      cemented: "D2",
+      glass: "E-FD2 (HOYA, coordinate equivalent)",
+      role: "Flint negative member of doublet C2; last element of G2A, ahead of the stop.",
+      cemented: "C2",
     },
     {
       id: 10,
       name: "L10",
-      label: "L10",
+      label: "Element 10",
       diagramLabel: "L10",
       type: "Positive Meniscus",
       nd: 1.437,
       vd: 95.1,
       indexReference: "d",
       focalLengthMm: 73.23319868300683,
-      glass: "Unmatched (patent nd=1.43700, vd=95.10; supplier and partial dispersion not identified)",
+      glass: "FCD100 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote: "Sigma marks this position FLD; the patent prints only nd and νd, so dPgF is the catalog FCD100 value.",
+      dPgF: 0.049777,
+      role: "Positive meniscus opening triplet T1 just behind the stop, in FLD glass.",
       cemented: "T1",
     },
     {
       id: 11,
       name: "L11",
-      label: "L11",
+      label: "Element 11",
       diagramLabel: "L11",
       type: "Biconcave Negative",
       nd: 1.8061,
       vd: 33.27,
       indexReference: "d",
       focalLengthMm: -19.038192869408906,
-      glass: "Unmatched (patent nd=1.80610, vd=33.27; supplier and partial dispersion not identified)",
+      glass: "NBFD15 (HOYA, coordinate equivalent)",
+      role: "Strong negative centre of triplet T1, between two high-Abbe positives.",
       cemented: "T1",
     },
     {
       id: 12,
       name: "L12",
-      label: "L12",
+      label: "Element 12",
       diagramLabel: "L12",
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.63,
       indexReference: "d",
       focalLengthMm: 90.11512988698966,
-      glass: "Unmatched (patent nd=1.59282, vd=68.63; supplier and partial dispersion not identified)",
+      glass: "FCD515 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so dPgF is the catalog FCD515 value.",
+      dPgF: 0.015751,
+      role: "Positive rear member of triplet T1, in SLD glass.",
       cemented: "T1",
     },
     {
       id: 13,
       name: "L13",
-      label: "L13",
+      label: "Element 13",
       diagramLabel: "L13",
       type: "Biconvex Positive",
       nd: 1.59282,
       vd: 68.63,
       indexReference: "d",
       focalLengthMm: 38.74512044320456,
-      glass: "Unmatched (patent nd=1.59282, vd=68.63; supplier and partial dispersion not identified)",
+      glass: "FCD515 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote: "Sigma marks this position SLD; the patent prints only nd and νd, so dPgF is the catalog FCD515 value.",
+      dPgF: 0.015751,
+      role: "Strongest of the four SLD positives, in rear group G2B.",
     },
     {
       id: 14,
       name: "L14",
-      label: "L14",
+      label: "Element 14",
       diagramLabel: "L14",
       type: "Biconcave Negative",
       nd: 1.60342,
       vd: 38.01,
       indexReference: "d",
       focalLengthMm: -87.7177468566994,
-      glass: "Unmatched (patent nd=1.60342, vd=38.01; supplier and partial dispersion not identified)",
+      glass: "E-F5 (HOYA, coordinate equivalent)",
+      role: "Weak negative between positive L13 and L15 in rear G2B.",
     },
     {
       id: 15,
       name: "L15",
-      label: "L15",
+      label: "Element 15",
       diagramLabel: "L15",
       type: "Biconvex Positive (Asph)",
       nd: 1.7725,
       vd: 49.47,
       indexReference: "d",
       focalLengthMm: 36.84365017614123,
-      glass: "Unmatched (patent nd=1.77250, vd=49.47; supplier and partial dispersion not identified)",
+      glass: "M-TAF1 (HOYA, coordinate equivalent)",
+      role: "Last element, aspheric on both faces (S26, S27); corrects the rear field bundles.",
     },
   ],
   surfaces: [
@@ -382,46 +421,46 @@ const LENS_DATA = {
     {
       label: "20",
       R: 189.9985,
-      sd: 14.38,
+      sd: 14.39,
       medium: 12,
       d: 3.3257,
     },
     {
       label: "21",
       R: -73.834,
-      sd: 14.38,
+      sd: 14.39,
       d: 0.15,
     },
     {
       label: "22",
       R: 67.3617,
-      sd: 15.66,
+      sd: 15.81,
       medium: 13,
       d: 7.8492,
     },
     {
       label: "23",
       R: -33.3415,
-      sd: 15.66,
+      sd: 15.81,
       d: 0.15,
     },
     {
       label: "24",
       R: -169.3198,
-      sd: 15.1,
+      sd: 15.33,
       medium: 14,
       d: 0.9,
     },
     {
       label: "25",
       R: 77.1561,
-      sd: 15.1,
+      sd: 15.33,
       d: 0.4138,
     },
     {
       label: "26A",
       R: 81.0787,
-      sd: 15.1,
+      sd: 15.17,
       medium: 15,
       d: 5.8071,
       asphere: {
@@ -436,7 +475,7 @@ const LENS_DATA = {
     {
       label: "27A",
       R: -42.4883,
-      sd: 15.1,
+      sd: 15.17,
       asphere: {
         K: 0.0,
         A4: 4.4107e-6,
@@ -465,11 +504,11 @@ const LENS_DATA = {
         objectDistanceMm: 247.5954,
         distanceReference: "image-plane",
         source:
-          "JP2016012034A Numerical Example 1 pp14-15, d0=115mm plus literal track132.5954mm; caption248mm is rounded, no altered source gaps.",
+          "JP 2016-012034 A, Numerical Example 1, pp. 14-15: d0 = 115 mm plus the 132.5954 mm track of the printed spacings. The table caption rounds this to 248 mm.",
       },
     ],
     description:
-      "G1 fixed relative to image; G2A and G2B/stop move independently objectward. Only infinity and native247.5954mm configurations are published. Intermediate group-motion path is inferred, not factory cam; fixed derived iris is separately qualified against source F1.60 at near. Native BF residual retained. Intermediate controls are illustrative, not distance-calibrated: near-infinity algebraic conjugate pole at focus0.000473904 (label522.46m), no finite continuous distance-error bound. Source-native endpoint comparison only; partial-pupil/weak MTF and unresolved finite F-number convention remain.",
+      "G1 stays fixed. G2A moves 4.2435 mm and G2B with the stop moves 4.9011 mm toward the object, each on its own path, so the overall length does not change. The patent prints only infinity and a near state 247.5954 mm from object to image; its table rounds that to 248 mm and Sigma quotes 25 cm. Positions between them are inferred with both groups on one shared path, which is not a factory cam, and MTF is computed only at the two printed states. Distance labels near infinity are unreliable, and the printed image plane is kept with its small focus residual. The iris stays fixed, and the working f-number rises from f/1.50 at infinity to f/1.60 at the near state.",
   },
   gaps: {
     "11": {
@@ -558,12 +597,12 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "9",
       toSurface: "11",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "14",
       toSurface: "16",
     },

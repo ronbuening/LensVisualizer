@@ -1,33 +1,33 @@
-# Sigma 70mm F2.8 DG Macro Art — dated audit, 2026-10-27
+# SIGMA 70mm f/2.8 DG MACRO | Art — audit log
 
-State: BUILT_AWAITING_VALIDATION_EXECUTION (recommended parking state, not completion).
-Pinned runtime77ad7af3543833602509a6ab164fbf6870e12ad2, immutable.
+## 2026-10-27 — Source correction and construction
 
-## Source authority and narrow correction
+Source: the 42-page JP 2019-144441 A PDF and Sigma's A018 page. Example 1 was chosen as a related design, not a proven factory prescription; Example 5 stayed a close alternative. The older MACRO 70mm f/2.8 EX DG source is a different design and was not reused.
 
-Original42-page JP2019144441A PDF232785B SHA2564f3adc141caca328247b2d11562fba11ea79b951bae27e39a0ec4ac819c06782; manufacturer A018 original HTML/construction image retained.
-Independent source review164cells; initial model parity278assertions. Exact factory identity nonunique; Example5 remains viable. Old70EX source/waiver not adopted.
+Correction at surface 18, field d: printed 0 → 1.9577 mm, then 24.6561 mm at −0.5× and 47.7614 mm at −1×. These are d18 + d19, from the printed d18 of 0 / 7.6984 / 30.8037 and d19 of 1.9577 / 16.9577 / 16.9577. S19 glass stays 0.9000 mm. Evidence kinds: `source-summary` and `claims`. Claim 15 condition (13) with the printed Example 1 value 0.67 separates literal 0.453329 from summed 0.674079. No missing dummy plane is claimed and no source plane was optimized.
 
-Applied correction at surface18 fieldd: first printed0→1.9577mm, then native−0.5×24.6561 and−1×47.7614mm. These are d18+d19, preserving printed d18[0,7.6984,30.8037] and d19[1.9577,16.9577,16.9577]. S19glass0.9000 unchanged. Source-summary plus claims are the two permitted independent evidence kinds. Claim15 condition13 and explicit EX1.67 distinguish literal.453329 versus combined.674079. Full reasoning and primary page pixels are in independent_source_review/frozen_v001/REVIEW_v001.md. Source correction recorded in header, inline gap comment, source.errata and this dated audit. No missing-dummy-plane claim or source-plane optimization.
+Unresolved: the printed G3 start of surface 20 conflicts with complete L11–L13, and the group annotation follows S19–24. Physical tracks of 126.8312 / 150.9810 / 175.6310 mm differ from the printed 126.83 / 150.95 / 175.57 mm; image planes unchanged. Indexed grant text repeats the error; the grant PDF was not obtained, so there is no family-publication evidence.
 
-Unresolved: printed G3-start20 conflicts with complete L11–L13; adopted annotation follows prose S19–24. Nonphysical half-glass diagnostic is not a valid alternate group. Native tracks126.8312/150.9810/175.6310 differ from printed126.83/150.95/175.57; source image planes remain unchanged. Exact grant indexed text repeats the error but original grant PDF NOT_RECOVERED; no independent family-publication correction evidence.
+Geometry: rims inferred from Figure 1, with S2/S3 capped at 13.49 mm and S20/S21 at 12.09 mm below the default 90% sag limit. No gap-sag or rim-slope override and no prescription change. The LPF is a physical rear plate, 1.45 mm thick, 1 mm gap after, 51.0113 mm of air before. K = 0, A4–A14 and the printed PgF/PdC line derivations retained.
 
-## Geometry and focus
+Focus: 65 inferred controls keep the printed two-gap paths and exact printed states, with published indices 32 and 64 (infinity implicit). Residual ranges −0.0193446431 to +0.0285968628 mm along the monotone path; not a recovered factory cam. d0 of 151.0718 and 82.2506 mm is referenced to the first surface. closeFocusM 0.2578816 is the physical source sum, not the rounded retail 0.258.
 
-Figure1 inferred rims, with S2/S3 capped13.49mm and S20/S21 capped12.09mm to remain below default90%-sag intrusion. No gap-sag/rim-slope override, no prescription adjustment. Initial failed broad-rim candidate retained. LPF is physical rearPlates1.45mm, gapAfter1mm, precedingair51.0113mm. Source K0/A4..A14 and source spectral PgF/PdC derivations retained.
+Limits at that date: design-plane C/d/F edge tangential MTF at 40 lp/mm of 0.3841 / 0.2884 / 0.3293 with blocked pupil samples, measured with an older stop radius. The chief-ray check targets Y = 21.63 mm, separate from the 21.65 mm MTF corner; finite MTF angles are referenced to the first surface. Source planes were not shifted to best MTF.
 
-65 inferred motion controls preserve original two-gap paths and exact native states. Published indices32/64 (infinity implicit). Native residual interpolation is enforced at65control nodes only. Between-node residual diagnostic257samples ranges−0.0193446431 to+0.0285968628mm, monotone path; not a recovered factory cam or continuous distance label certification. Near-infinity pole retained. Native finite d0=151.0718/82.2506mm first-surface referenced; closeFocusM0.2578816 is physical source sum, not rounded retail0.258 substituted.
+## 2026-10-31 — Deployment validation and fix pass
 
-## Bounded execution and limits
+Source re-read against pp. 17–18: 95 fields (24 R, 22 fixed d, 13 nd/νd pairs, 21 asphere terms, rear plate) plus PgF, PdC, all gap rows and d0; no mismatches. Page images agree with the text layer. Front page, inventor (仲本純平) and applicant agree. The asphere form is (1 + K), with K = 0 throughout.
 
-All heavy bounded native runs serialized under control/heavy-validation.lock. Runtime unchanged. Seven initial and257 final geometry states zero hidden trim. Native reference/CDF MTF, diagnostic best-axial/F8, shared source-height chief checks completed; no full quality pass. Design-plane CDF edge40lp/mm tangential.3841/.2884/.3293; blocked pupil samples retained. Early custom angular pilot is not full finite field; unlaunched aims are distinct from clips. Shared source-height projected chief test atY21.63 separate from generic21.65mm MTF. Finite MTF angle convention is first-surface reference.
+First-order, patent against model at infinity / −0.5× / −1×: EFL 67.95 / 63.74 / 60.05 against 67.958 / 63.746 / 60.055; 2ω 35.40 / 26.59 / 21.07 against 35.395 / 26.583 / 21.058; TL 126.83 / 150.95 / 175.57 against 126.831 / 150.981 / 175.631; β −0.50008 and −1.00022. Paraxial residuals +0.01028 / +0.01805 / +0.02860 mm are family-wide (Example 5 +0.0099 / +0.0181 / +0.0289). The printed TL shortfall is also family-wide, up to 0.063 mm in Example 6.
 
-Fixed derived stop10.66580236mm, source finite F3.86/F4.99 unresolved against exact working3.84283593/4.80232740; no authored radius, varying-iris workaround or user waiver. Glasses Unmatched with source-derived line indices, not vendor Sellmeier/melt claims. Source planes not shifted to best MTF.
+The d18 + d19 correction was reproduced independently. Literal d18 fails EFL, 2ω, TL, β (−0.5295 / −1.0591), condition (13) and condition (10) (1.2292 against 1.2214 summed, printed 1.22). d19 alone and d19 as L11 thickness also fail. Example 5 supports it as `sibling-example` evidence; the errata evidence array was left at its two kinds. G3 start: S19 per Figure 1 and ¶0114, −372.294 mm; Examples 1 and 5 both print 20.
 
-## Remaining gates
+Maker's drawing: compared by the coordinating review, not by this pass. L1 is drawn as ordinary glass and L5's width overlays Example 1, so Example 1 stands over Example 5. Sigma's text gives 2 FLD, 2 SLD, 1 high-index anomalous, 2 aspherical; L6 and L9 as the SLD positions come from the glass census, because no drawing was available locally.
 
-Isolated type/format receipts are lane-local only. Whole-project typecheck, format, lint, main tests, tooling tests, build and actual viewer gates NOT_RUN. Do not restart previously killed whole-project tooling experiments. No engine/config edits, gitpush, PR, merge, deployment or public preview. Final upload/readback/archive verification belongs to coordinator; local freeze is not a Drive receipt.
+Stop: engine radius 10.616 mm, EPD 23.43 mm, replacing the earlier 10.6658 mm figure. Working f/# from the real marginal ray is 2.914 / 3.860 / 4.823 against the printed 2.90 / 3.86 / 4.99, replacing 2.90089 / 3.84284 / 4.80233. No stop override. A fixed iris reproduces all printed F-numbers in Examples 2, 4 and 6 and misses at −1× in Examples 1, 3 and 5; the 11.87 mm S16 limit is an interpretation and is not modeled. The MTF table was removed from the analysis because it came from the older stop radius.
 
-## Reproducibility
+Glass: Unmatched 13 → 2. Eleven elements resolved as HOYA coordinate equivalents (FC5 twice, FD60, TAFD32, E-FDS1, FCD100 twice, FCD515, E-FD5, NBFD10, BACD16), recurring across examples, with printed PgF within 0.0002 of the catalog row. L9 and L13 stay Unmatched: their indices sit 0.0010 and 0.0033 below M-FCD500 and M-NBFD130. The printed nC/nF/ng derivations were kept, since they are source values rather than catalog copies, so chromatic results do not change. `apd: "inferred"` on L5, L10 (FLD) and L6, L9 (SLD). L4 stays untagged as a high-index element.
 
-See reconstruction_20261027/REPLAY_AND_LIMITS_v004.md. Literal source, failed interpretation, initial geometry failure, all candidate generations, source correction pages, independent reviews, numerical receipts and exact native parity retained. Do not delete original sources or earlier checkpoints.
+Fields changed: `name`, `subtitle`, `specs`, element `label`, `role`, `glass`, `apd`, `apdNote`, `cemented` and doublet text (D → C), gap label, `focus.description`, conjugate and rear-plate `source`, errata notes, header. Analysis: L1, L4 and L10 shapes corrected; Example 5 stated. No R, d, nd, νd, asphere, rim or gap number changed.
+
+Open: the production prescription stays unconfirmed; the printed 4.99 at 1:1 stays unreproduced; the cause of the TL shortfall is not established.

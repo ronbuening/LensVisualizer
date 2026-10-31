@@ -1,13 +1,26 @@
 /**
- * SIGMA C017 DSLR 100-400mm: related JP 2017-223778 A Example 1, not proven factory prescription.
- * Literal Table1 radii/thicknesses/d-line nd/vd/native BF retained. Design103.16–387.95mm F5.15–6.50.
- * 129 zoom controls: source d5/d15/BF and fixed-G2 coordinate interpolated; only G4 compensation solved.
- * 19 inferred focus controls move G4 objectward toward maker1.6m; no source-certified finite conjugates.
- * Rims are measured approximately from same-example JP6690425B2 grant Fig1 (verified identical table),
- * with only L7/L12 reduced by source-geometry constraints; default0.90 gap-sag, no override or trim.
- * No named factory glass/partial dispersion assigned: CDF/photopic and finite MTF remain unavailable.
- * Centered OS only. Raw failed/unlaunched pupil requests remain explicit in the companion audit.
- * Full-project checks and actual viewer NOT_RUN: BUILT_AWAITING_VALIDATION_EXECUTION, not completed.
+ * SIGMA 100-400mm f/5-6.3 DG OS HSM | Contemporary (C017, the DSLR lens, not the later DG DN) — JP 2017-223778 A
+ * (Noriyuki Ogasawara, Sigma Corporation), Example 1 (数値実施例１), pp. 13–14, Fig. 1. R, d, nd, νd and the three printed
+ * zoom states are the printed values, in mm, unscaled; every surface is spherical. The grant JP 6690425 B2 prints
+ * identical tables. This is a related patent design, not a confirmed factory prescription.
+ * Printed f = 103.16 / 200.12 / 387.95 mm, F 5.15 / 5.92 / 6.50, 2ω 23.36 / 12.01 / 6.21°, image height 21.63 mm,
+ * BF 52.6388 / 79.0754 / 95.3018 mm; calculated EFL 103.165 / 200.119 / 387.949 mm. Marketed as 100-400 mm f/5-6.3.
+ * Zoom: G2 stays fixed (claim 2, ¶0072–0073). The 62 stations between the printed ones are derived, not Sigma's factory
+ * cam: D5, D15, BF and the sum D25 + D32 are linear between printed stations, which holds G2 at its printed position,
+ * and only the G4 split between D25 and D32 is solved for paraxial infinity focus. D25 turns once, at the printed middle
+ * station, and no other gap reverses. Interpolated focus error stays within 0.022 mm against ±0.050 mm depth at F/6.5.
+ * Focus: the patent prints infinity states only; G4 alone moves toward the object (claim 3, ¶0076). The 19 focus keys
+ * move G4 that way, D25 shorter and D32 longer by the same amount, to Sigma's 1.6 m minimum focus distance measured
+ * from the image plane. The travel is derived, not printed. Finite MTF stays unavailable without a printed conjugate.
+ * Semi-diameters are not printed. They are estimated from the grant's Fig. 1 at the wide position. L7 and L12 are
+ * reduced to their air-gap limits (11.8 and 12.1 mm). S1–S5 and L19 follow Sigma's construction drawing at its fitted
+ * scale (32.5, 31 and 14 mm), which keeps the on-axis beam clear at every printed station. The stop radius follows the
+ * printed F-numbers.
+ * Stabilization: G2b (L7–L9) is the patent's shifting group (¶0073); the model is centred only.
+ * Production correlation is inferred, not proven: Sigma lists 21 elements / 15 groups with four SLD elements, and its
+ * construction drawing fits Example 1 at the wide position to 0.14 mm RMS over 32 surface positions, with SLD at L2, L3,
+ * L18 and L20. Examples 2, 3 and 5 fit to 0.57, 1.20 and 0.74 mm, and Example 4 has 20 elements.
+ * Glass names are catalog equivalents of the printed nd/νd; the patent gives no partial dispersion or supplier.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
@@ -15,9 +28,8 @@ const LENS_DATA = {
   schema: 2,
   key: "sigma-100-400-f5-63-dg-os-hsm-contemporary",
   maker: "Sigma",
-  name: "SIGMA 100-400mm f/5-6.3 DG OS HSM Contemporary",
-  subtitle:
-    "JP 2017-223778 A Example 1; related DSLR design, source103.16–387.95mm F5.15–6.50, inferred continuous zoom/finite G4 travel",
+  name: "SIGMA 100-400mm f/5-6.3 DG OS HSM | Contemporary",
+  subtitle: "JP 2017-223778 A, Example 1 — related patent design",
   catalog: {
     lensMounts: ["sigma-sa", "canon-ef", "nikon-f"],
     imageFormat: "135-full-frame",
@@ -32,11 +44,11 @@ const LENS_DATA = {
       design: 5.15,
     },
     specs: [
-      "C017 DSLR / centered OS state only",
-      "21 elements in15 groups; four manufacturer SLD positions",
-      "Source design F5.15–6.50, not retail F5–6.3",
-      "Inferred129-control cam and G4 focus to marketed1.6m; finite MTF not certified",
-      "Graphic-estimated rims; not measured factory apertures",
+      "21 ELEMENTS / 15 GROUPS",
+      "DESIGN f = 103.16–387.95 mm",
+      "DESIGN F/5.15–6.50",
+      "ALL SPHERICAL",
+      "4 SLD ELEMENTS",
     ],
   },
   source: {
@@ -53,279 +65,312 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.72,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.83481, vd=42.72; factory glass not identified)",
+      glass: "TAFD5F (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative element of the front cemented doublet in G1",
       focalLengthMm: -150.66750753645778,
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.497, vd=81.61; factory glass not identified)",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Low-dispersion positive element of the front cemented doublet in G1",
+      apd: "inferred",
+      apdNote:
+        "Sigma's construction diagram marks this position SLD; the patent prints nd/νd only, so partial dispersion comes from the catalog glass.",
       focalLengthMm: 149.27894332249974,
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.497, vd=81.61; factory glass not identified)",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Low-dispersion positive singlet closing the front group G1",
+      apd: "inferred",
+      apdNote:
+        "Sigma's construction diagram marks this position SLD; the patent prints nd/νd only, so partial dispersion comes from the catalog glass.",
       focalLengthMm: 163.11595065767168,
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.69895,
       vd: 30.05,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.69895, vd=30.05; factory glass not identified)",
+      glass: "E-FD15 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive component G2a1 at the front of the fixed second group",
       focalLengthMm: 187.61582925707015,
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
+      label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.54814,
       vd: 45.82,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.54814, vd=45.82; factory glass not identified)",
+      glass: "E-FEL1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive element of the negative cemented component G2a2",
       focalLengthMm: 161.10524381721513,
-      cemented: "D5",
+      cemented: "C2",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
+      label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.83481,
       vd: 42.72,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.83481, vd=42.72; factory glass not identified)",
+      glass: "TAFD5F (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative element of the cemented component G2a2",
       focalLengthMm: -56.71433354109177,
-      cemented: "D5",
+      cemented: "C2",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
+      label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.72916,
       vd: 54.67,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.72916, vd=54.67; factory glass not identified)",
+      glass: "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Front negative element of the stabilizing subgroup G2b",
       focalLengthMm: -99.79893055503484,
     },
     {
       id: 8,
       name: "L8",
-      label: "L8",
+      label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.72916,
       vd: 54.67,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.72916, vd=54.67; factory glass not identified)",
+      glass: "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative element of the cemented doublet in G2b",
       focalLengthMm: -35.44490291318478,
-      cemented: "D8",
+      cemented: "C3",
     },
     {
       id: 9,
       name: "L9",
-      label: "L9",
+      label: "Element 9",
       type: "Positive Meniscus",
       nd: 1.85478,
       vd: 24.8,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.85478, vd=24.8; factory glass not identified)",
+      glass: "S-NBH56 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "High-dispersion positive element of the cemented doublet in G2b",
       focalLengthMm: 69.28985528151078,
-      cemented: "D8",
+      cemented: "C3",
     },
     {
       id: 10,
       name: "L10",
-      label: "L10",
+      label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.59349,
       vd: 67.0,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.59349, vd=67.0; factory glass not identified)",
+      glass: "PCD51 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Biconvex front element of G3, which collects the diverging beam from G2",
       focalLengthMm: 65.57374653009896,
     },
     {
       id: 11,
       name: "L11",
-      label: "L11",
+      label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.59349,
       vd: 67.0,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.59349, vd=67.0; factory glass not identified)",
+      glass: "PCD51 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Second biconvex element of G3, sharing the group's positive power",
       focalLengthMm: 91.75219522215892,
     },
     {
       id: 12,
       name: "L12",
-      label: "L12",
+      label: "Element 12",
       type: "Negative Meniscus",
       nd: 2.001,
       vd: 29.13,
       indexReference: "d",
-      glass: "Unmatched (source nd=2.001, vd=29.13; factory glass not identified)",
+      glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative meniscus in G3, offsetting the spherical aberration of the positive elements",
       focalLengthMm: -92.72736787550338,
     },
     {
       id: 13,
       name: "L13",
-      label: "L13",
+      label: "Element 13",
       type: "Positive Meniscus",
       nd: 1.69895,
       vd: 30.05,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.69895, vd=30.05; factory glass not identified)",
+      glass: "E-FD15 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive element of the cemented doublet at the rear of G3",
       focalLengthMm: 85.8399201669258,
-      cemented: "D13",
+      cemented: "C4",
     },
     {
       id: 14,
       name: "L14",
-      label: "L14",
+      label: "Element 14",
       type: "Negative Meniscus",
       nd: 2.001,
       vd: 29.13,
       indexReference: "d",
-      glass: "Unmatched (source nd=2.001, vd=29.13; factory glass not identified)",
+      glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative element of the rear G3 doublet, carrying the strong negative surface ahead of the stop",
       focalLengthMm: -67.23637008497924,
-      cemented: "D13",
+      cemented: "C4",
     },
     {
       id: 15,
       name: "L15",
-      label: "L15",
+      label: "Element 15",
       type: "Positive Meniscus",
       nd: 1.71736,
       vd: 29.5,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.71736, vd=29.5; factory glass not identified)",
+      glass: "E-FD1L (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive meniscus at the front of the focusing group G4",
       focalLengthMm: 109.75041998645747,
     },
     {
       id: 16,
       name: "L16",
-      label: "L16",
+      label: "Element 16",
       type: "Biconvex Positive",
       nd: 1.65844,
       vd: 50.85,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.65844, vd=50.85; factory glass not identified)",
+      glass: "BACED5 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive element of the cemented doublet in the focusing group G4",
       focalLengthMm: 40.63848915562546,
-      cemented: "D16",
+      cemented: "C5",
     },
     {
       id: 17,
       name: "L17",
-      label: "L17",
+      label: "Element 17",
       type: "Biconcave Negative",
       nd: 1.95375,
       vd: 32.32,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.95375, vd=32.32; factory glass not identified)",
+      glass: "TAFD45 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative element of G4, limiting spherical and axial chromatic change during focusing",
       focalLengthMm: -37.49241075533875,
-      cemented: "D16",
+      cemented: "C5",
     },
     {
       id: 18,
       name: "L18",
-      label: "L18",
+      label: "Element 18",
       type: "Biconvex Positive",
       nd: 1.55032,
       vd: 75.5,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.55032, vd=75.5; factory glass not identified)",
+      glass: "FCD705 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Low-dispersion positive element at the rear of the focusing group G4",
+      apd: "inferred",
+      apdNote:
+        "Sigma's construction diagram marks this position SLD; the patent prints nd/νd only, so partial dispersion comes from the catalog glass.",
       focalLengthMm: 87.82672043855513,
     },
     {
       id: 19,
       name: "L19",
-      label: "L19",
+      label: "Element 19",
       type: "Negative Meniscus",
       nd: 1.95375,
       vd: 32.32,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.95375, vd=32.32; factory glass not identified)",
+      glass: "TAFD45 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative meniscus at the front of the rear group G5",
       focalLengthMm: -45.13820196150438,
     },
     {
       id: 20,
       name: "L20",
-      label: "L20",
+      label: "Element 20",
       type: "Biconcave Negative",
       nd: 1.497,
       vd: 81.61,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.497, vd=81.61; factory glass not identified)",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Low-dispersion negative element of the rear cemented doublet in G5",
+      apd: "inferred",
+      apdNote:
+        "Sigma's construction diagram marks this position SLD; the patent prints nd/νd only, so partial dispersion comes from the catalog glass.",
       focalLengthMm: -43.38014851405355,
-      cemented: "D20",
+      cemented: "C6",
     },
     {
       id: 21,
       name: "L21",
-      label: "L21",
+      label: "Element 21",
       type: "Biconvex Positive",
       nd: 1.738,
       vd: 32.26,
       indexReference: "d",
-      glass: "Unmatched (source nd=1.738, vd=32.26; factory glass not identified)",
+      glass: "S-NBH53 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "High-dispersion positive element of the rear cemented doublet in G5",
       focalLengthMm: 37.05198903361657,
-      cemented: "D20",
+      cemented: "C6",
     },
   ],
   surfaces: [
     {
       label: "1",
       R: 316.5,
-      sd: 34.0,
+      sd: 32.5,
       medium: 1,
       d: 2.0,
     },
     {
       label: "2",
       R: 89.75,
-      sd: 34.0,
+      sd: 32.5,
       medium: 2,
       d: 8.2,
     },
     {
       label: "3",
       R: -415.0,
-      sd: 34.0,
+      sd: 32.5,
       d: 0.15,
     },
     {
       label: "4",
       R: 88.0,
-      sd: 33.0,
+      sd: 31.0,
       medium: 3,
       d: 7.53,
     },
     {
       label: "5",
       R: -1000.0,
-      sd: 33.0,
+      sd: 31.0,
     },
     {
       label: "6",
@@ -503,14 +548,14 @@ const LENS_DATA = {
     {
       label: "33",
       R: 77.95,
-      sd: 12.0,
+      sd: 14.0,
       medium: 19,
       d: 1.0,
     },
     {
       label: "34",
       R: 27.56,
-      sd: 12.0,
+      sd: 14.0,
       d: 6.9,
     },
     {
@@ -541,18 +586,8 @@ const LENS_DATA = {
         published: true,
       },
       {
-        focalLengthMm: 104.17587738880161,
-        nominalFNumber: 5.162031250000001,
-        published: false,
-      },
-      {
         focalLengthMm: 105.19786738187999,
         nominalFNumber: 5.1740625,
-        published: false,
-      },
-      {
-        focalLengthMm: 106.23162163498112,
-        nominalFNumber: 5.18609375,
         published: false,
       },
       {
@@ -561,18 +596,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 108.33509215208285,
-        nominalFNumber: 5.210156250000001,
-        published: false,
-      },
-      {
         focalLengthMm: 109.40514951148013,
         nominalFNumber: 5.2221875,
-        published: false,
-      },
-      {
-        focalLengthMm: 110.48765341194337,
-        nominalFNumber: 5.23421875,
         published: false,
       },
       {
@@ -581,18 +606,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 112.69071252577365,
-        nominalFNumber: 5.25828125,
-        published: false,
-      },
-      {
         focalLengthMm: 113.81163053082633,
         nominalFNumber: 5.2703125,
-        published: false,
-      },
-      {
-        focalLengthMm: 114.94572075979168,
-        nominalFNumber: 5.282343750000001,
         published: false,
       },
       {
@@ -601,18 +616,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 117.25417512775321,
-        nominalFNumber: 5.30640625,
-        published: false,
-      },
-      {
         focalLengthMm: 118.42892534863444,
         nominalFNumber: 5.3184375,
-        published: false,
-      },
-      {
-        focalLengthMm: 119.61762006770957,
-        nominalFNumber: 5.3304687500000005,
         published: false,
       },
       {
@@ -621,18 +626,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 122.03764921137723,
-        nominalFNumber: 5.35453125,
-        published: false,
-      },
-      {
         focalLengthMm: 123.26939477921212,
         nominalFNumber: 5.366562500000001,
-        published: false,
-      },
-      {
-        focalLengthMm: 124.51590725566511,
-        nominalFNumber: 5.37859375,
         published: false,
       },
       {
@@ -641,18 +636,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 127.0540919472498,
-        nominalFNumber: 5.40265625,
-        published: false,
-      },
-      {
         focalLengthMm: 128.34620235388286,
         nominalFNumber: 5.4146875,
-        published: false,
-      },
-      {
-        focalLengthMm: 129.65395619261665,
-        nominalFNumber: 5.42671875,
         published: false,
       },
       {
@@ -661,18 +646,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 132.3173103077522,
-        nominalFNumber: 5.45078125,
-        published: false,
-      },
-      {
         focalLengthMm: 133.67337807664268,
         nominalFNumber: 5.4628125,
-        published: false,
-      },
-      {
-        focalLengthMm: 135.0460244236909,
-        nominalFNumber: 5.47484375,
         published: false,
       },
       {
@@ -681,18 +656,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 137.84203106644122,
-        nominalFNumber: 5.49890625,
-        published: false,
-      },
-      {
         focalLengthMm: 139.26589073951476,
         nominalFNumber: 5.510937500000001,
-        published: false,
-      },
-      {
-        focalLengthMm: 140.7073279324807,
-        nominalFNumber: 5.52296875,
         published: false,
       },
       {
@@ -701,18 +666,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 143.6439808840739,
-        nominalFNumber: 5.54703125,
-        published: false,
-      },
-      {
         focalLengthMm: 145.13973090547708,
         nominalFNumber: 5.5590625,
-        published: false,
-      },
-      {
-        focalLengthMm: 146.65412719218577,
-        nominalFNumber: 5.57109375,
         published: false,
       },
       {
@@ -721,18 +676,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 149.73997905881092,
-        nominalFNumber: 5.5951562500000005,
-        published: false,
-      },
-      {
         focalLengthMm: 151.31200731607328,
         nominalFNumber: 5.6071875,
-        published: false,
-      },
-      {
-        focalLengthMm: 152.9038274552077,
-        nominalFNumber: 5.61921875,
         published: false,
       },
       {
@@ -741,18 +686,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 156.1480463178917,
-        nominalFNumber: 5.64328125,
-        published: false,
-      },
-      {
         focalLengthMm: 157.80106033835332,
         nominalFNumber: 5.6553125,
-        published: false,
-      },
-      {
-        focalLengthMm: 159.47509715044436,
-        nominalFNumber: 5.667343750000001,
         published: false,
       },
       {
@@ -761,18 +696,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 162.88753408635102,
-        nominalFNumber: 5.69140625,
-        published: false,
-      },
-      {
         focalLengthMm: 164.6265972013776,
         nominalFNumber: 5.7034375,
-        published: false,
-      },
-      {
-        focalLengthMm: 166.38800947635946,
-        nominalFNumber: 5.71546875,
         published: false,
       },
       {
@@ -781,18 +706,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 169.97928007343754,
-        nominalFNumber: 5.73953125,
-        published: false,
-      },
-      {
         focalLengthMm: 171.8098552817769,
         nominalFNumber: 5.7515625,
-        published: false,
-      },
-      {
-        focalLengthMm: 173.66421389954132,
-        nominalFNumber: 5.76359375,
         published: false,
       },
       {
@@ -801,18 +716,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 177.445797891335,
-        nominalFNumber: 5.7876562499999995,
-        published: false,
-      },
-      {
         focalLengthMm: 179.37380171337995,
         nominalFNumber: 5.7996875,
-        published: false,
-      },
-      {
-        focalLengthMm: 181.3271464370787,
-        nominalFNumber: 5.811718750000001,
         published: false,
       },
       {
@@ -821,18 +726,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 185.3115109345049,
-        nominalFNumber: 5.83578125,
-        published: false,
-      },
-      {
         focalLengthMm: 187.34338030407324,
         nominalFNumber: 5.8478125,
-        published: false,
-      },
-      {
-        focalLengthMm: 189.4022905201043,
-        nominalFNumber: 5.85984375,
         published: false,
       },
       {
@@ -841,18 +736,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 193.60304414444863,
-        nominalFNumber: 5.88390625,
-        published: false,
-      },
-      {
         focalLengthMm: 195.74582040979485,
         nominalFNumber: 5.8959375000000005,
-        published: false,
-      },
-      {
-        focalLengthMm: 197.91750419666823,
-        nominalFNumber: 5.907968749999999,
         published: false,
       },
       {
@@ -861,18 +746,8 @@ const LENS_DATA = {
         published: true,
       },
       {
-        focalLengthMm: 202.17391434794888,
-        nominalFNumber: 5.9290625,
-        published: false,
-      },
-      {
         focalLengthMm: 204.25229696420675,
         nominalFNumber: 5.938125,
-        published: false,
-      },
-      {
-        focalLengthMm: 206.35396619451296,
-        nominalFNumber: 5.9471875,
         published: false,
       },
       {
@@ -881,18 +756,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 210.62807178060547,
-        nominalFNumber: 5.9653125,
-        published: false,
-      },
-      {
         focalLengthMm: 212.80096191594885,
         nominalFNumber: 5.974375,
-        published: false,
-      },
-      {
-        focalLengthMm: 214.9980461133953,
-        nominalFNumber: 5.9834375,
         published: false,
       },
       {
@@ -901,18 +766,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 219.46570369217383,
-        nominalFNumber: 6.0015625,
-        published: false,
-      },
-      {
         focalLengthMm: 221.73673019719172,
         nominalFNumber: 6.010625,
-        published: false,
-      },
-      {
-        focalLengthMm: 224.0328569287851,
-        nominalFNumber: 6.0196875,
         published: false,
       },
       {
@@ -921,18 +776,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 228.70131483172506,
-        nominalFNumber: 6.0378125,
-        published: false,
-      },
-      {
         focalLengthMm: 231.0740971718349,
         nominalFNumber: 6.046875,
-        published: false,
-      },
-      {
-        focalLengthMm: 233.4728820427802,
-        nominalFNumber: 6.0559375,
         published: false,
       },
       {
@@ -941,18 +786,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 238.34935832439976,
-        nominalFNumber: 6.0740625,
-        published: false,
-      },
-      {
         focalLengthMm: 240.82749845896853,
         nominalFNumber: 6.083125,
-        published: false,
-      },
-      {
-        focalLengthMm: 243.33253861867433,
-        nominalFNumber: 6.0921875,
         published: false,
       },
       {
@@ -961,18 +796,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 248.42421381073223,
-        nominalFNumber: 6.1103125,
-        published: false,
-      },
-      {
         focalLengthMm: 251.01129591481333,
         nominalFNumber: 6.119375,
-        published: false,
-      },
-      {
-        focalLengthMm: 253.62617235218576,
-        nominalFNumber: 6.1284375,
         published: false,
       },
       {
@@ -981,18 +806,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 258.9402029213874,
-        nominalFNumber: 6.1465625,
-        published: false,
-      },
-      {
         focalLengthMm: 261.63980517077465,
         nominalFNumber: 6.155625000000001,
-        published: false,
-      },
-      {
-        focalLengthMm: 264.3680983218826,
-        nominalFNumber: 6.164687499999999,
         published: false,
       },
       {
@@ -1001,18 +816,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 269.91166084775773,
-        nominalFNumber: 6.1828125,
-        published: false,
-      },
-      {
         focalLengthMm: 272.72738479982627,
         nominalFNumber: 6.191875,
-        published: false,
-      },
-      {
-        focalLengthMm: 275.57270937505496,
-        nominalFNumber: 6.2009375,
         published: false,
       },
       {
@@ -1021,18 +826,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 281.35308847249956,
-        nominalFNumber: 6.2190625,
-        published: false,
-      },
-      {
         focalLengthMm: 284.28861320461004,
         nominalFNumber: 6.228125,
-        published: false,
-      },
-      {
-        focalLengthMm: 287.2546798630619,
-        nominalFNumber: 6.2371875,
         published: false,
       },
       {
@@ -1041,18 +836,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 293.2794166110391,
-        nominalFNumber: 6.2553125000000005,
-        published: false,
-      },
-      {
         focalLengthMm: 296.33858680952756,
         nominalFNumber: 6.264374999999999,
-        published: false,
-      },
-      {
-        focalLengthMm: 299.42930045837187,
-        nominalFNumber: 6.2734375,
         published: false,
       },
       {
@@ -1061,18 +846,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 305.7064227899513,
-        nominalFNumber: 6.2915624999999995,
-        published: false,
-      },
-      {
         focalLengthMm: 308.8933825480223,
         nominalFNumber: 6.300625,
-        published: false,
-      },
-      {
-        focalLengthMm: 312.1129897723477,
-        nominalFNumber: 6.3096875,
         published: false,
       },
       {
@@ -1081,18 +856,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 318.65135228563565,
-        nominalFNumber: 6.3278125,
-        published: false,
-      },
-      {
         focalLengthMm: 321.97073968078934,
         nominalFNumber: 6.336875,
-        published: false,
-      },
-      {
-        focalLengthMm: 325.32404135650603,
-        nominalFNumber: 6.3459375,
         published: false,
       },
       {
@@ -1101,18 +866,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 332.1338099060028,
-        nominalFNumber: 6.3640625,
-        published: false,
-      },
-      {
         focalLengthMm: 335.5910318405285,
         nominalFNumber: 6.373125,
-        published: false,
-      },
-      {
-        focalLengthMm: 339.08368175146757,
-        nominalFNumber: 6.3821875,
         published: false,
       },
       {
@@ -1121,18 +876,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 346.17700895545494,
-        nominalFNumber: 6.4003125,
-        published: false,
-      },
-      {
         focalLengthMm: 349.77862185246016,
         nominalFNumber: 6.409375,
-        published: false,
-      },
-      {
-        focalLengthMm: 353.417538802079,
-        nominalFNumber: 6.4184375,
         published: false,
       },
       {
@@ -1141,18 +886,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 360.80949191350317,
-        nominalFNumber: 6.4365625,
-        published: false,
-      },
-      {
         focalLengthMm: 364.5637226765158,
         nominalFNumber: 6.445625,
-        published: false,
-      },
-      {
-        focalLengthMm: 368.3576533092906,
-        nominalFNumber: 6.4546875,
         published: false,
       },
       {
@@ -1161,18 +896,8 @@ const LENS_DATA = {
         published: false,
       },
       {
-        focalLengthMm: 376.06747857617637,
-        nominalFNumber: 6.4728125,
-        published: false,
-      },
-      {
         focalLengthMm: 379.9849334707879,
         nominalFNumber: 6.481875,
-        published: false,
-      },
-      {
-        focalLengthMm: 383.9452177805353,
-        nominalFNumber: 6.4909375,
         published: false,
       },
       {
@@ -1189,7 +914,7 @@ const LENS_DATA = {
       0.875, 0.9375, 1.0,
     ],
     description:
-      "Inferred G4-only focus, not a published finite configuration: S26–S32 moves objectward via paired D25/D32 changes, solved to maker1.6m object-to-image endpoint. Labels are approximate; no finite MTF certification. Infinity source planes remain literal, with retained residuals. OS stays centered.",
+      "Inner focus. The patent prints infinity spacings only and states that G4 alone moves toward the object (claim 3, ¶0076). Here G4 moves that way, D25 shorter and D32 longer by the same amount, with G2 and the image plane fixed, to Sigma's 1.6 m minimum focus distance measured from the image plane. The travel is derived, not printed: 1.63 mm at the wide position, 4.05 mm at the middle position and 12.45 mm at the tele position. Finite MTF is unavailable because the patent publishes no finite conjugate. The stabilizer stays centred.",
   },
   gaps: {
     "5": {
@@ -1197,19 +922,9 @@ const LENS_DATA = {
       values: [
         [4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0],
         [
-          4.5889640625, 4.5889640625, 4.5889640625, 4.5889640625, 4.5889640625, 4.5889640625, 4.5889640625,
-          4.5889640625, 4.5889640625, 4.5889640625, 4.5889640625, 4.5889640625, 4.5889640625, 4.5889640625,
-          4.5889640625, 4.5889640625, 4.5889640625, 4.5889640625, 4.5889640625,
-        ],
-        [
           5.177928125, 5.177928125, 5.177928125, 5.177928125, 5.177928125, 5.177928125, 5.177928125, 5.177928125,
           5.177928125, 5.177928125, 5.177928125, 5.177928125, 5.177928125, 5.177928125, 5.177928125, 5.177928125,
           5.177928125, 5.177928125, 5.177928125,
-        ],
-        [
-          5.7668921875, 5.7668921875, 5.7668921875, 5.7668921875, 5.7668921875, 5.7668921875, 5.7668921875,
-          5.7668921875, 5.7668921875, 5.7668921875, 5.7668921875, 5.7668921875, 5.7668921875, 5.7668921875,
-          5.7668921875, 5.7668921875, 5.7668921875, 5.7668921875, 5.7668921875,
         ],
         [
           6.35585625, 6.35585625, 6.35585625, 6.35585625, 6.35585625, 6.35585625, 6.35585625, 6.35585625, 6.35585625,
@@ -1217,28 +932,13 @@ const LENS_DATA = {
           6.35585625,
         ],
         [
-          6.9448203125, 6.9448203125, 6.9448203125, 6.9448203125, 6.9448203125, 6.9448203125, 6.9448203125,
-          6.9448203125, 6.9448203125, 6.9448203125, 6.9448203125, 6.9448203125, 6.9448203125, 6.9448203125,
-          6.9448203125, 6.9448203125, 6.9448203125, 6.9448203125, 6.9448203125,
-        ],
-        [
           7.533784375, 7.533784375, 7.533784375, 7.533784375, 7.533784375, 7.533784375, 7.533784375, 7.533784375,
           7.533784375, 7.533784375, 7.533784375, 7.533784375, 7.533784375, 7.533784375, 7.533784375, 7.533784375,
           7.533784375, 7.533784375, 7.533784375,
         ],
         [
-          8.1227484375, 8.1227484375, 8.1227484375, 8.1227484375, 8.1227484375, 8.1227484375, 8.1227484375,
-          8.1227484375, 8.1227484375, 8.1227484375, 8.1227484375, 8.1227484375, 8.1227484375, 8.1227484375,
-          8.1227484375, 8.1227484375, 8.1227484375, 8.1227484375, 8.1227484375,
-        ],
-        [
           8.7117125, 8.7117125, 8.7117125, 8.7117125, 8.7117125, 8.7117125, 8.7117125, 8.7117125, 8.7117125, 8.7117125,
           8.7117125, 8.7117125, 8.7117125, 8.7117125, 8.7117125, 8.7117125, 8.7117125, 8.7117125, 8.7117125,
-        ],
-        [
-          9.3006765625, 9.3006765625, 9.3006765625, 9.3006765625, 9.3006765625, 9.3006765625, 9.3006765625,
-          9.3006765625, 9.3006765625, 9.3006765625, 9.3006765625, 9.3006765625, 9.3006765625, 9.3006765625,
-          9.3006765625, 9.3006765625, 9.3006765625, 9.3006765625, 9.3006765625,
         ],
         [
           9.889640625, 9.889640625, 9.889640625, 9.889640625, 9.889640625, 9.889640625, 9.889640625, 9.889640625,
@@ -1246,20 +946,9 @@ const LENS_DATA = {
           9.889640625, 9.889640625, 9.889640625,
         ],
         [
-          10.478604687499999, 10.478604687499999, 10.478604687499999, 10.478604687499999, 10.478604687499999,
-          10.478604687499999, 10.478604687499999, 10.478604687499999, 10.478604687499999, 10.478604687499999,
-          10.478604687499999, 10.478604687499999, 10.478604687499999, 10.478604687499999, 10.478604687499999,
-          10.478604687499999, 10.478604687499999, 10.478604687499999, 10.478604687499999,
-        ],
-        [
           11.06756875, 11.06756875, 11.06756875, 11.06756875, 11.06756875, 11.06756875, 11.06756875, 11.06756875,
           11.06756875, 11.06756875, 11.06756875, 11.06756875, 11.06756875, 11.06756875, 11.06756875, 11.06756875,
           11.06756875, 11.06756875, 11.06756875,
-        ],
-        [
-          11.6565328125, 11.6565328125, 11.6565328125, 11.6565328125, 11.6565328125, 11.6565328125, 11.6565328125,
-          11.6565328125, 11.6565328125, 11.6565328125, 11.6565328125, 11.6565328125, 11.6565328125, 11.6565328125,
-          11.6565328125, 11.6565328125, 11.6565328125, 11.6565328125, 11.6565328125,
         ],
         [
           12.245496875, 12.245496875, 12.245496875, 12.245496875, 12.245496875, 12.245496875, 12.245496875,
@@ -1267,18 +956,8 @@ const LENS_DATA = {
           12.245496875, 12.245496875, 12.245496875, 12.245496875, 12.245496875,
         ],
         [
-          12.8344609375, 12.8344609375, 12.8344609375, 12.8344609375, 12.8344609375, 12.8344609375, 12.8344609375,
-          12.8344609375, 12.8344609375, 12.8344609375, 12.8344609375, 12.8344609375, 12.8344609375, 12.8344609375,
-          12.8344609375, 12.8344609375, 12.8344609375, 12.8344609375, 12.8344609375,
-        ],
-        [
           13.423425, 13.423425, 13.423425, 13.423425, 13.423425, 13.423425, 13.423425, 13.423425, 13.423425, 13.423425,
           13.423425, 13.423425, 13.423425, 13.423425, 13.423425, 13.423425, 13.423425, 13.423425, 13.423425,
-        ],
-        [
-          14.0123890625, 14.0123890625, 14.0123890625, 14.0123890625, 14.0123890625, 14.0123890625, 14.0123890625,
-          14.0123890625, 14.0123890625, 14.0123890625, 14.0123890625, 14.0123890625, 14.0123890625, 14.0123890625,
-          14.0123890625, 14.0123890625, 14.0123890625, 14.0123890625, 14.0123890625,
         ],
         [
           14.601353125, 14.601353125, 14.601353125, 14.601353125, 14.601353125, 14.601353125, 14.601353125,
@@ -1286,19 +965,9 @@ const LENS_DATA = {
           14.601353125, 14.601353125, 14.601353125, 14.601353125, 14.601353125,
         ],
         [
-          15.1903171875, 15.1903171875, 15.1903171875, 15.1903171875, 15.1903171875, 15.1903171875, 15.1903171875,
-          15.1903171875, 15.1903171875, 15.1903171875, 15.1903171875, 15.1903171875, 15.1903171875, 15.1903171875,
-          15.1903171875, 15.1903171875, 15.1903171875, 15.1903171875, 15.1903171875,
-        ],
-        [
           15.77928125, 15.77928125, 15.77928125, 15.77928125, 15.77928125, 15.77928125, 15.77928125, 15.77928125,
           15.77928125, 15.77928125, 15.77928125, 15.77928125, 15.77928125, 15.77928125, 15.77928125, 15.77928125,
           15.77928125, 15.77928125, 15.77928125,
-        ],
-        [
-          16.3682453125, 16.3682453125, 16.3682453125, 16.3682453125, 16.3682453125, 16.3682453125, 16.3682453125,
-          16.3682453125, 16.3682453125, 16.3682453125, 16.3682453125, 16.3682453125, 16.3682453125, 16.3682453125,
-          16.3682453125, 16.3682453125, 16.3682453125, 16.3682453125, 16.3682453125,
         ],
         [
           16.957209374999998, 16.957209374999998, 16.957209374999998, 16.957209374999998, 16.957209374999998,
@@ -1307,20 +976,9 @@ const LENS_DATA = {
           16.957209374999998, 16.957209374999998, 16.957209374999998, 16.957209374999998,
         ],
         [
-          17.546173437500002, 17.546173437500002, 17.546173437500002, 17.546173437500002, 17.546173437500002,
-          17.546173437500002, 17.546173437500002, 17.546173437500002, 17.546173437500002, 17.546173437500002,
-          17.546173437500002, 17.546173437500002, 17.546173437500002, 17.546173437500002, 17.546173437500002,
-          17.546173437500002, 17.546173437500002, 17.546173437500002, 17.546173437500002,
-        ],
-        [
           18.1351375, 18.1351375, 18.1351375, 18.1351375, 18.1351375, 18.1351375, 18.1351375, 18.1351375, 18.1351375,
           18.1351375, 18.1351375, 18.1351375, 18.1351375, 18.1351375, 18.1351375, 18.1351375, 18.1351375, 18.1351375,
           18.1351375,
-        ],
-        [
-          18.7241015625, 18.7241015625, 18.7241015625, 18.7241015625, 18.7241015625, 18.7241015625, 18.7241015625,
-          18.7241015625, 18.7241015625, 18.7241015625, 18.7241015625, 18.7241015625, 18.7241015625, 18.7241015625,
-          18.7241015625, 18.7241015625, 18.7241015625, 18.7241015625, 18.7241015625,
         ],
         [
           19.313065625, 19.313065625, 19.313065625, 19.313065625, 19.313065625, 19.313065625, 19.313065625,
@@ -1328,19 +986,9 @@ const LENS_DATA = {
           19.313065625, 19.313065625, 19.313065625, 19.313065625, 19.313065625,
         ],
         [
-          19.9020296875, 19.9020296875, 19.9020296875, 19.9020296875, 19.9020296875, 19.9020296875, 19.9020296875,
-          19.9020296875, 19.9020296875, 19.9020296875, 19.9020296875, 19.9020296875, 19.9020296875, 19.9020296875,
-          19.9020296875, 19.9020296875, 19.9020296875, 19.9020296875, 19.9020296875,
-        ],
-        [
           20.49099375, 20.49099375, 20.49099375, 20.49099375, 20.49099375, 20.49099375, 20.49099375, 20.49099375,
           20.49099375, 20.49099375, 20.49099375, 20.49099375, 20.49099375, 20.49099375, 20.49099375, 20.49099375,
           20.49099375, 20.49099375, 20.49099375,
-        ],
-        [
-          21.0799578125, 21.0799578125, 21.0799578125, 21.0799578125, 21.0799578125, 21.0799578125, 21.0799578125,
-          21.0799578125, 21.0799578125, 21.0799578125, 21.0799578125, 21.0799578125, 21.0799578125, 21.0799578125,
-          21.0799578125, 21.0799578125, 21.0799578125, 21.0799578125, 21.0799578125,
         ],
         [
           21.668921875, 21.668921875, 21.668921875, 21.668921875, 21.668921875, 21.668921875, 21.668921875,
@@ -1348,18 +996,8 @@ const LENS_DATA = {
           21.668921875, 21.668921875, 21.668921875, 21.668921875, 21.668921875,
         ],
         [
-          22.2578859375, 22.2578859375, 22.2578859375, 22.2578859375, 22.2578859375, 22.2578859375, 22.2578859375,
-          22.2578859375, 22.2578859375, 22.2578859375, 22.2578859375, 22.2578859375, 22.2578859375, 22.2578859375,
-          22.2578859375, 22.2578859375, 22.2578859375, 22.2578859375, 22.2578859375,
-        ],
-        [
           22.84685, 22.84685, 22.84685, 22.84685, 22.84685, 22.84685, 22.84685, 22.84685, 22.84685, 22.84685, 22.84685,
           22.84685, 22.84685, 22.84685, 22.84685, 22.84685, 22.84685, 22.84685, 22.84685,
-        ],
-        [
-          23.4358140625, 23.4358140625, 23.4358140625, 23.4358140625, 23.4358140625, 23.4358140625, 23.4358140625,
-          23.4358140625, 23.4358140625, 23.4358140625, 23.4358140625, 23.4358140625, 23.4358140625, 23.4358140625,
-          23.4358140625, 23.4358140625, 23.4358140625, 23.4358140625, 23.4358140625,
         ],
         [
           24.024778125, 24.024778125, 24.024778125, 24.024778125, 24.024778125, 24.024778125, 24.024778125,
@@ -1367,19 +1005,9 @@ const LENS_DATA = {
           24.024778125, 24.024778125, 24.024778125, 24.024778125, 24.024778125,
         ],
         [
-          24.6137421875, 24.6137421875, 24.6137421875, 24.6137421875, 24.6137421875, 24.6137421875, 24.6137421875,
-          24.6137421875, 24.6137421875, 24.6137421875, 24.6137421875, 24.6137421875, 24.6137421875, 24.6137421875,
-          24.6137421875, 24.6137421875, 24.6137421875, 24.6137421875, 24.6137421875,
-        ],
-        [
           25.20270625, 25.20270625, 25.20270625, 25.20270625, 25.20270625, 25.20270625, 25.20270625, 25.20270625,
           25.20270625, 25.20270625, 25.20270625, 25.20270625, 25.20270625, 25.20270625, 25.20270625, 25.20270625,
           25.20270625, 25.20270625, 25.20270625,
-        ],
-        [
-          25.7916703125, 25.7916703125, 25.7916703125, 25.7916703125, 25.7916703125, 25.7916703125, 25.7916703125,
-          25.7916703125, 25.7916703125, 25.7916703125, 25.7916703125, 25.7916703125, 25.7916703125, 25.7916703125,
-          25.7916703125, 25.7916703125, 25.7916703125, 25.7916703125, 25.7916703125,
         ],
         [
           26.380634375, 26.380634375, 26.380634375, 26.380634375, 26.380634375, 26.380634375, 26.380634375,
@@ -1387,19 +1015,9 @@ const LENS_DATA = {
           26.380634375, 26.380634375, 26.380634375, 26.380634375, 26.380634375,
         ],
         [
-          26.9695984375, 26.9695984375, 26.9695984375, 26.9695984375, 26.9695984375, 26.9695984375, 26.9695984375,
-          26.9695984375, 26.9695984375, 26.9695984375, 26.9695984375, 26.9695984375, 26.9695984375, 26.9695984375,
-          26.9695984375, 26.9695984375, 26.9695984375, 26.9695984375, 26.9695984375,
-        ],
-        [
           27.5585625, 27.5585625, 27.5585625, 27.5585625, 27.5585625, 27.5585625, 27.5585625, 27.5585625, 27.5585625,
           27.5585625, 27.5585625, 27.5585625, 27.5585625, 27.5585625, 27.5585625, 27.5585625, 27.5585625, 27.5585625,
           27.5585625,
-        ],
-        [
-          28.1475265625, 28.1475265625, 28.1475265625, 28.1475265625, 28.1475265625, 28.1475265625, 28.1475265625,
-          28.1475265625, 28.1475265625, 28.1475265625, 28.1475265625, 28.1475265625, 28.1475265625, 28.1475265625,
-          28.1475265625, 28.1475265625, 28.1475265625, 28.1475265625, 28.1475265625,
         ],
         [
           28.736490625, 28.736490625, 28.736490625, 28.736490625, 28.736490625, 28.736490625, 28.736490625,
@@ -1407,19 +1025,9 @@ const LENS_DATA = {
           28.736490625, 28.736490625, 28.736490625, 28.736490625, 28.736490625,
         ],
         [
-          29.3254546875, 29.3254546875, 29.3254546875, 29.3254546875, 29.3254546875, 29.3254546875, 29.3254546875,
-          29.3254546875, 29.3254546875, 29.3254546875, 29.3254546875, 29.3254546875, 29.3254546875, 29.3254546875,
-          29.3254546875, 29.3254546875, 29.3254546875, 29.3254546875, 29.3254546875,
-        ],
-        [
           29.91441875, 29.91441875, 29.91441875, 29.91441875, 29.91441875, 29.91441875, 29.91441875, 29.91441875,
           29.91441875, 29.91441875, 29.91441875, 29.91441875, 29.91441875, 29.91441875, 29.91441875, 29.91441875,
           29.91441875, 29.91441875, 29.91441875,
-        ],
-        [
-          30.5033828125, 30.5033828125, 30.5033828125, 30.5033828125, 30.5033828125, 30.5033828125, 30.5033828125,
-          30.5033828125, 30.5033828125, 30.5033828125, 30.5033828125, 30.5033828125, 30.5033828125, 30.5033828125,
-          30.5033828125, 30.5033828125, 30.5033828125, 30.5033828125, 30.5033828125,
         ],
         [
           31.092346875, 31.092346875, 31.092346875, 31.092346875, 31.092346875, 31.092346875, 31.092346875,
@@ -1427,19 +1035,8 @@ const LENS_DATA = {
           31.092346875, 31.092346875, 31.092346875, 31.092346875, 31.092346875,
         ],
         [
-          31.6813109375, 31.6813109375, 31.6813109375, 31.6813109375, 31.6813109375, 31.6813109375, 31.6813109375,
-          31.6813109375, 31.6813109375, 31.6813109375, 31.6813109375, 31.6813109375, 31.6813109375, 31.6813109375,
-          31.6813109375, 31.6813109375, 31.6813109375, 31.6813109375, 31.6813109375,
-        ],
-        [
           32.270275, 32.270275, 32.270275, 32.270275, 32.270275, 32.270275, 32.270275, 32.270275, 32.270275, 32.270275,
           32.270275, 32.270275, 32.270275, 32.270275, 32.270275, 32.270275, 32.270275, 32.270275, 32.270275,
-        ],
-        [
-          32.859239062499995, 32.859239062499995, 32.859239062499995, 32.859239062499995, 32.859239062499995,
-          32.859239062499995, 32.859239062499995, 32.859239062499995, 32.859239062499995, 32.859239062499995,
-          32.859239062499995, 32.859239062499995, 32.859239062499995, 32.859239062499995, 32.859239062499995,
-          32.859239062499995, 32.859239062499995, 32.859239062499995, 32.859239062499995,
         ],
         [
           33.448203125, 33.448203125, 33.448203125, 33.448203125, 33.448203125, 33.448203125, 33.448203125,
@@ -1447,19 +1044,9 @@ const LENS_DATA = {
           33.448203125, 33.448203125, 33.448203125, 33.448203125, 33.448203125,
         ],
         [
-          34.0371671875, 34.0371671875, 34.0371671875, 34.0371671875, 34.0371671875, 34.0371671875, 34.0371671875,
-          34.0371671875, 34.0371671875, 34.0371671875, 34.0371671875, 34.0371671875, 34.0371671875, 34.0371671875,
-          34.0371671875, 34.0371671875, 34.0371671875, 34.0371671875, 34.0371671875,
-        ],
-        [
           34.62613125, 34.62613125, 34.62613125, 34.62613125, 34.62613125, 34.62613125, 34.62613125, 34.62613125,
           34.62613125, 34.62613125, 34.62613125, 34.62613125, 34.62613125, 34.62613125, 34.62613125, 34.62613125,
           34.62613125, 34.62613125, 34.62613125,
-        ],
-        [
-          35.2150953125, 35.2150953125, 35.2150953125, 35.2150953125, 35.2150953125, 35.2150953125, 35.2150953125,
-          35.2150953125, 35.2150953125, 35.2150953125, 35.2150953125, 35.2150953125, 35.2150953125, 35.2150953125,
-          35.2150953125, 35.2150953125, 35.2150953125, 35.2150953125, 35.2150953125,
         ],
         [
           35.804059375, 35.804059375, 35.804059375, 35.804059375, 35.804059375, 35.804059375, 35.804059375,
@@ -1467,19 +1054,9 @@ const LENS_DATA = {
           35.804059375, 35.804059375, 35.804059375, 35.804059375, 35.804059375,
         ],
         [
-          36.3930234375, 36.3930234375, 36.3930234375, 36.3930234375, 36.3930234375, 36.3930234375, 36.3930234375,
-          36.3930234375, 36.3930234375, 36.3930234375, 36.3930234375, 36.3930234375, 36.3930234375, 36.3930234375,
-          36.3930234375, 36.3930234375, 36.3930234375, 36.3930234375, 36.3930234375,
-        ],
-        [
           36.9819875, 36.9819875, 36.9819875, 36.9819875, 36.9819875, 36.9819875, 36.9819875, 36.9819875, 36.9819875,
           36.9819875, 36.9819875, 36.9819875, 36.9819875, 36.9819875, 36.9819875, 36.9819875, 36.9819875, 36.9819875,
           36.9819875,
-        ],
-        [
-          37.5709515625, 37.5709515625, 37.5709515625, 37.5709515625, 37.5709515625, 37.5709515625, 37.5709515625,
-          37.5709515625, 37.5709515625, 37.5709515625, 37.5709515625, 37.5709515625, 37.5709515625, 37.5709515625,
-          37.5709515625, 37.5709515625, 37.5709515625, 37.5709515625, 37.5709515625,
         ],
         [
           38.159915625, 38.159915625, 38.159915625, 38.159915625, 38.159915625, 38.159915625, 38.159915625,
@@ -1487,19 +1064,9 @@ const LENS_DATA = {
           38.159915625, 38.159915625, 38.159915625, 38.159915625, 38.159915625,
         ],
         [
-          38.7488796875, 38.7488796875, 38.7488796875, 38.7488796875, 38.7488796875, 38.7488796875, 38.7488796875,
-          38.7488796875, 38.7488796875, 38.7488796875, 38.7488796875, 38.7488796875, 38.7488796875, 38.7488796875,
-          38.7488796875, 38.7488796875, 38.7488796875, 38.7488796875, 38.7488796875,
-        ],
-        [
           39.33784375, 39.33784375, 39.33784375, 39.33784375, 39.33784375, 39.33784375, 39.33784375, 39.33784375,
           39.33784375, 39.33784375, 39.33784375, 39.33784375, 39.33784375, 39.33784375, 39.33784375, 39.33784375,
           39.33784375, 39.33784375, 39.33784375,
-        ],
-        [
-          39.9268078125, 39.9268078125, 39.9268078125, 39.9268078125, 39.9268078125, 39.9268078125, 39.9268078125,
-          39.9268078125, 39.9268078125, 39.9268078125, 39.9268078125, 39.9268078125, 39.9268078125, 39.9268078125,
-          39.9268078125, 39.9268078125, 39.9268078125, 39.9268078125, 39.9268078125,
         ],
         [
           40.515771875, 40.515771875, 40.515771875, 40.515771875, 40.515771875, 40.515771875, 40.515771875,
@@ -1507,29 +1074,13 @@ const LENS_DATA = {
           40.515771875, 40.515771875, 40.515771875, 40.515771875, 40.515771875,
         ],
         [
-          41.1047359375, 41.1047359375, 41.1047359375, 41.1047359375, 41.1047359375, 41.1047359375, 41.1047359375,
-          41.1047359375, 41.1047359375, 41.1047359375, 41.1047359375, 41.1047359375, 41.1047359375, 41.1047359375,
-          41.1047359375, 41.1047359375, 41.1047359375, 41.1047359375, 41.1047359375,
-        ],
-        [
           41.6937, 41.6937, 41.6937, 41.6937, 41.6937, 41.6937, 41.6937, 41.6937, 41.6937, 41.6937, 41.6937, 41.6937,
           41.6937, 41.6937, 41.6937, 41.6937, 41.6937, 41.6937, 41.6937,
-        ],
-        [
-          42.040673437500004, 42.040673437500004, 42.040673437500004, 42.040673437500004, 42.040673437500004,
-          42.040673437500004, 42.040673437500004, 42.040673437500004, 42.040673437500004, 42.040673437500004,
-          42.040673437500004, 42.040673437500004, 42.040673437500004, 42.040673437500004, 42.040673437500004,
-          42.040673437500004, 42.040673437500004, 42.040673437500004, 42.040673437500004,
         ],
         [
           42.387646875, 42.387646875, 42.387646875, 42.387646875, 42.387646875, 42.387646875, 42.387646875,
           42.387646875, 42.387646875, 42.387646875, 42.387646875, 42.387646875, 42.387646875, 42.387646875,
           42.387646875, 42.387646875, 42.387646875, 42.387646875, 42.387646875,
-        ],
-        [
-          42.7346203125, 42.7346203125, 42.7346203125, 42.7346203125, 42.7346203125, 42.7346203125, 42.7346203125,
-          42.7346203125, 42.7346203125, 42.7346203125, 42.7346203125, 42.7346203125, 42.7346203125, 42.7346203125,
-          42.7346203125, 42.7346203125, 42.7346203125, 42.7346203125, 42.7346203125,
         ],
         [
           43.081593749999996, 43.081593749999996, 43.081593749999996, 43.081593749999996, 43.081593749999996,
@@ -1538,19 +1089,9 @@ const LENS_DATA = {
           43.081593749999996, 43.081593749999996, 43.081593749999996, 43.081593749999996,
         ],
         [
-          43.4285671875, 43.4285671875, 43.4285671875, 43.4285671875, 43.4285671875, 43.4285671875, 43.4285671875,
-          43.4285671875, 43.4285671875, 43.4285671875, 43.4285671875, 43.4285671875, 43.4285671875, 43.4285671875,
-          43.4285671875, 43.4285671875, 43.4285671875, 43.4285671875, 43.4285671875,
-        ],
-        [
           43.775540625, 43.775540625, 43.775540625, 43.775540625, 43.775540625, 43.775540625, 43.775540625,
           43.775540625, 43.775540625, 43.775540625, 43.775540625, 43.775540625, 43.775540625, 43.775540625,
           43.775540625, 43.775540625, 43.775540625, 43.775540625, 43.775540625,
-        ],
-        [
-          44.1225140625, 44.1225140625, 44.1225140625, 44.1225140625, 44.1225140625, 44.1225140625, 44.1225140625,
-          44.1225140625, 44.1225140625, 44.1225140625, 44.1225140625, 44.1225140625, 44.1225140625, 44.1225140625,
-          44.1225140625, 44.1225140625, 44.1225140625, 44.1225140625, 44.1225140625,
         ],
         [
           44.4694875, 44.4694875, 44.4694875, 44.4694875, 44.4694875, 44.4694875, 44.4694875, 44.4694875, 44.4694875,
@@ -1558,19 +1099,9 @@ const LENS_DATA = {
           44.4694875,
         ],
         [
-          44.8164609375, 44.8164609375, 44.8164609375, 44.8164609375, 44.8164609375, 44.8164609375, 44.8164609375,
-          44.8164609375, 44.8164609375, 44.8164609375, 44.8164609375, 44.8164609375, 44.8164609375, 44.8164609375,
-          44.8164609375, 44.8164609375, 44.8164609375, 44.8164609375, 44.8164609375,
-        ],
-        [
           45.163434375, 45.163434375, 45.163434375, 45.163434375, 45.163434375, 45.163434375, 45.163434375,
           45.163434375, 45.163434375, 45.163434375, 45.163434375, 45.163434375, 45.163434375, 45.163434375,
           45.163434375, 45.163434375, 45.163434375, 45.163434375, 45.163434375,
-        ],
-        [
-          45.5104078125, 45.5104078125, 45.5104078125, 45.5104078125, 45.5104078125, 45.5104078125, 45.5104078125,
-          45.5104078125, 45.5104078125, 45.5104078125, 45.5104078125, 45.5104078125, 45.5104078125, 45.5104078125,
-          45.5104078125, 45.5104078125, 45.5104078125, 45.5104078125, 45.5104078125,
         ],
         [
           45.85738125, 45.85738125, 45.85738125, 45.85738125, 45.85738125, 45.85738125, 45.85738125, 45.85738125,
@@ -1578,40 +1109,18 @@ const LENS_DATA = {
           45.85738125, 45.85738125, 45.85738125,
         ],
         [
-          46.2043546875, 46.2043546875, 46.2043546875, 46.2043546875, 46.2043546875, 46.2043546875, 46.2043546875,
-          46.2043546875, 46.2043546875, 46.2043546875, 46.2043546875, 46.2043546875, 46.2043546875, 46.2043546875,
-          46.2043546875, 46.2043546875, 46.2043546875, 46.2043546875, 46.2043546875,
-        ],
-        [
           46.551328125, 46.551328125, 46.551328125, 46.551328125, 46.551328125, 46.551328125, 46.551328125,
           46.551328125, 46.551328125, 46.551328125, 46.551328125, 46.551328125, 46.551328125, 46.551328125,
           46.551328125, 46.551328125, 46.551328125, 46.551328125, 46.551328125,
-        ],
-        [
-          46.898301562499995, 46.898301562499995, 46.898301562499995, 46.898301562499995, 46.898301562499995,
-          46.898301562499995, 46.898301562499995, 46.898301562499995, 46.898301562499995, 46.898301562499995,
-          46.898301562499995, 46.898301562499995, 46.898301562499995, 46.898301562499995, 46.898301562499995,
-          46.898301562499995, 46.898301562499995, 46.898301562499995, 46.898301562499995,
         ],
         [
           47.245275, 47.245275, 47.245275, 47.245275, 47.245275, 47.245275, 47.245275, 47.245275, 47.245275, 47.245275,
           47.245275, 47.245275, 47.245275, 47.245275, 47.245275, 47.245275, 47.245275, 47.245275, 47.245275,
         ],
         [
-          47.592248437500004, 47.592248437500004, 47.592248437500004, 47.592248437500004, 47.592248437500004,
-          47.592248437500004, 47.592248437500004, 47.592248437500004, 47.592248437500004, 47.592248437500004,
-          47.592248437500004, 47.592248437500004, 47.592248437500004, 47.592248437500004, 47.592248437500004,
-          47.592248437500004, 47.592248437500004, 47.592248437500004, 47.592248437500004,
-        ],
-        [
           47.939221875, 47.939221875, 47.939221875, 47.939221875, 47.939221875, 47.939221875, 47.939221875,
           47.939221875, 47.939221875, 47.939221875, 47.939221875, 47.939221875, 47.939221875, 47.939221875,
           47.939221875, 47.939221875, 47.939221875, 47.939221875, 47.939221875,
-        ],
-        [
-          48.2861953125, 48.2861953125, 48.2861953125, 48.2861953125, 48.2861953125, 48.2861953125, 48.2861953125,
-          48.2861953125, 48.2861953125, 48.2861953125, 48.2861953125, 48.2861953125, 48.2861953125, 48.2861953125,
-          48.2861953125, 48.2861953125, 48.2861953125, 48.2861953125, 48.2861953125,
         ],
         [
           48.633168749999996, 48.633168749999996, 48.633168749999996, 48.633168749999996, 48.633168749999996,
@@ -1620,30 +1129,14 @@ const LENS_DATA = {
           48.633168749999996, 48.633168749999996, 48.633168749999996, 48.633168749999996,
         ],
         [
-          48.98014218749999, 48.98014218749999, 48.98014218749999, 48.98014218749999, 48.98014218749999,
-          48.98014218749999, 48.98014218749999, 48.98014218749999, 48.98014218749999, 48.98014218749999,
-          48.98014218749999, 48.98014218749999, 48.98014218749999, 48.98014218749999, 48.98014218749999,
-          48.98014218749999, 48.98014218749999, 48.98014218749999, 48.98014218749999,
-        ],
-        [
           49.327115625, 49.327115625, 49.327115625, 49.327115625, 49.327115625, 49.327115625, 49.327115625,
           49.327115625, 49.327115625, 49.327115625, 49.327115625, 49.327115625, 49.327115625, 49.327115625,
           49.327115625, 49.327115625, 49.327115625, 49.327115625, 49.327115625,
         ],
         [
-          49.6740890625, 49.6740890625, 49.6740890625, 49.6740890625, 49.6740890625, 49.6740890625, 49.6740890625,
-          49.6740890625, 49.6740890625, 49.6740890625, 49.6740890625, 49.6740890625, 49.6740890625, 49.6740890625,
-          49.6740890625, 49.6740890625, 49.6740890625, 49.6740890625, 49.6740890625,
-        ],
-        [
           50.0210625, 50.0210625, 50.0210625, 50.0210625, 50.0210625, 50.0210625, 50.0210625, 50.0210625, 50.0210625,
           50.0210625, 50.0210625, 50.0210625, 50.0210625, 50.0210625, 50.0210625, 50.0210625, 50.0210625, 50.0210625,
           50.0210625,
-        ],
-        [
-          50.3680359375, 50.3680359375, 50.3680359375, 50.3680359375, 50.3680359375, 50.3680359375, 50.3680359375,
-          50.3680359375, 50.3680359375, 50.3680359375, 50.3680359375, 50.3680359375, 50.3680359375, 50.3680359375,
-          50.3680359375, 50.3680359375, 50.3680359375, 50.3680359375, 50.3680359375,
         ],
         [
           50.715009374999994, 50.715009374999994, 50.715009374999994, 50.715009374999994, 50.715009374999994,
@@ -1652,19 +1145,9 @@ const LENS_DATA = {
           50.715009374999994, 50.715009374999994, 50.715009374999994, 50.715009374999994,
         ],
         [
-          51.0619828125, 51.0619828125, 51.0619828125, 51.0619828125, 51.0619828125, 51.0619828125, 51.0619828125,
-          51.0619828125, 51.0619828125, 51.0619828125, 51.0619828125, 51.0619828125, 51.0619828125, 51.0619828125,
-          51.0619828125, 51.0619828125, 51.0619828125, 51.0619828125, 51.0619828125,
-        ],
-        [
           51.40895625, 51.40895625, 51.40895625, 51.40895625, 51.40895625, 51.40895625, 51.40895625, 51.40895625,
           51.40895625, 51.40895625, 51.40895625, 51.40895625, 51.40895625, 51.40895625, 51.40895625, 51.40895625,
           51.40895625, 51.40895625, 51.40895625,
-        ],
-        [
-          51.7559296875, 51.7559296875, 51.7559296875, 51.7559296875, 51.7559296875, 51.7559296875, 51.7559296875,
-          51.7559296875, 51.7559296875, 51.7559296875, 51.7559296875, 51.7559296875, 51.7559296875, 51.7559296875,
-          51.7559296875, 51.7559296875, 51.7559296875, 51.7559296875, 51.7559296875,
         ],
         [
           52.102903125, 52.102903125, 52.102903125, 52.102903125, 52.102903125, 52.102903125, 52.102903125,
@@ -1672,19 +1155,8 @@ const LENS_DATA = {
           52.102903125, 52.102903125, 52.102903125, 52.102903125, 52.102903125,
         ],
         [
-          52.449876562499995, 52.449876562499995, 52.449876562499995, 52.449876562499995, 52.449876562499995,
-          52.449876562499995, 52.449876562499995, 52.449876562499995, 52.449876562499995, 52.449876562499995,
-          52.449876562499995, 52.449876562499995, 52.449876562499995, 52.449876562499995, 52.449876562499995,
-          52.449876562499995, 52.449876562499995, 52.449876562499995, 52.449876562499995,
-        ],
-        [
           52.79685, 52.79685, 52.79685, 52.79685, 52.79685, 52.79685, 52.79685, 52.79685, 52.79685, 52.79685, 52.79685,
           52.79685, 52.79685, 52.79685, 52.79685, 52.79685, 52.79685, 52.79685, 52.79685,
-        ],
-        [
-          53.1438234375, 53.1438234375, 53.1438234375, 53.1438234375, 53.1438234375, 53.1438234375, 53.1438234375,
-          53.1438234375, 53.1438234375, 53.1438234375, 53.1438234375, 53.1438234375, 53.1438234375, 53.1438234375,
-          53.1438234375, 53.1438234375, 53.1438234375, 53.1438234375, 53.1438234375,
         ],
         [
           53.490796875, 53.490796875, 53.490796875, 53.490796875, 53.490796875, 53.490796875, 53.490796875,
@@ -1692,20 +1164,9 @@ const LENS_DATA = {
           53.490796875, 53.490796875, 53.490796875, 53.490796875, 53.490796875,
         ],
         [
-          53.8377703125, 53.8377703125, 53.8377703125, 53.8377703125, 53.8377703125, 53.8377703125, 53.8377703125,
-          53.8377703125, 53.8377703125, 53.8377703125, 53.8377703125, 53.8377703125, 53.8377703125, 53.8377703125,
-          53.8377703125, 53.8377703125, 53.8377703125, 53.8377703125, 53.8377703125,
-        ],
-        [
           54.18474375, 54.18474375, 54.18474375, 54.18474375, 54.18474375, 54.18474375, 54.18474375, 54.18474375,
           54.18474375, 54.18474375, 54.18474375, 54.18474375, 54.18474375, 54.18474375, 54.18474375, 54.18474375,
           54.18474375, 54.18474375, 54.18474375,
-        ],
-        [
-          54.53171718749999, 54.53171718749999, 54.53171718749999, 54.53171718749999, 54.53171718749999,
-          54.53171718749999, 54.53171718749999, 54.53171718749999, 54.53171718749999, 54.53171718749999,
-          54.53171718749999, 54.53171718749999, 54.53171718749999, 54.53171718749999, 54.53171718749999,
-          54.53171718749999, 54.53171718749999, 54.53171718749999, 54.53171718749999,
         ],
         [
           54.878690625, 54.878690625, 54.878690625, 54.878690625, 54.878690625, 54.878690625, 54.878690625,
@@ -1713,19 +1174,9 @@ const LENS_DATA = {
           54.878690625, 54.878690625, 54.878690625, 54.878690625, 54.878690625,
         ],
         [
-          55.2256640625, 55.2256640625, 55.2256640625, 55.2256640625, 55.2256640625, 55.2256640625, 55.2256640625,
-          55.2256640625, 55.2256640625, 55.2256640625, 55.2256640625, 55.2256640625, 55.2256640625, 55.2256640625,
-          55.2256640625, 55.2256640625, 55.2256640625, 55.2256640625, 55.2256640625,
-        ],
-        [
           55.5726375, 55.5726375, 55.5726375, 55.5726375, 55.5726375, 55.5726375, 55.5726375, 55.5726375, 55.5726375,
           55.5726375, 55.5726375, 55.5726375, 55.5726375, 55.5726375, 55.5726375, 55.5726375, 55.5726375, 55.5726375,
           55.5726375,
-        ],
-        [
-          55.9196109375, 55.9196109375, 55.9196109375, 55.9196109375, 55.9196109375, 55.9196109375, 55.9196109375,
-          55.9196109375, 55.9196109375, 55.9196109375, 55.9196109375, 55.9196109375, 55.9196109375, 55.9196109375,
-          55.9196109375, 55.9196109375, 55.9196109375, 55.9196109375, 55.9196109375,
         ],
         [
           56.266584374999994, 56.266584374999994, 56.266584374999994, 56.266584374999994, 56.266584374999994,
@@ -1734,19 +1185,9 @@ const LENS_DATA = {
           56.266584374999994, 56.266584374999994, 56.266584374999994, 56.266584374999994,
         ],
         [
-          56.6135578125, 56.6135578125, 56.6135578125, 56.6135578125, 56.6135578125, 56.6135578125, 56.6135578125,
-          56.6135578125, 56.6135578125, 56.6135578125, 56.6135578125, 56.6135578125, 56.6135578125, 56.6135578125,
-          56.6135578125, 56.6135578125, 56.6135578125, 56.6135578125, 56.6135578125,
-        ],
-        [
           56.96053125, 56.96053125, 56.96053125, 56.96053125, 56.96053125, 56.96053125, 56.96053125, 56.96053125,
           56.96053125, 56.96053125, 56.96053125, 56.96053125, 56.96053125, 56.96053125, 56.96053125, 56.96053125,
           56.96053125, 56.96053125, 56.96053125,
-        ],
-        [
-          57.3075046875, 57.3075046875, 57.3075046875, 57.3075046875, 57.3075046875, 57.3075046875, 57.3075046875,
-          57.3075046875, 57.3075046875, 57.3075046875, 57.3075046875, 57.3075046875, 57.3075046875, 57.3075046875,
-          57.3075046875, 57.3075046875, 57.3075046875, 57.3075046875, 57.3075046875,
         ],
         [
           57.654478125, 57.654478125, 57.654478125, 57.654478125, 57.654478125, 57.654478125, 57.654478125,
@@ -1754,30 +1195,13 @@ const LENS_DATA = {
           57.654478125, 57.654478125, 57.654478125, 57.654478125, 57.654478125,
         ],
         [
-          58.001451562499994, 58.001451562499994, 58.001451562499994, 58.001451562499994, 58.001451562499994,
-          58.001451562499994, 58.001451562499994, 58.001451562499994, 58.001451562499994, 58.001451562499994,
-          58.001451562499994, 58.001451562499994, 58.001451562499994, 58.001451562499994, 58.001451562499994,
-          58.001451562499994, 58.001451562499994, 58.001451562499994, 58.001451562499994,
-        ],
-        [
           58.348425, 58.348425, 58.348425, 58.348425, 58.348425, 58.348425, 58.348425, 58.348425, 58.348425, 58.348425,
           58.348425, 58.348425, 58.348425, 58.348425, 58.348425, 58.348425, 58.348425, 58.348425, 58.348425,
-        ],
-        [
-          58.695398437499996, 58.695398437499996, 58.695398437499996, 58.695398437499996, 58.695398437499996,
-          58.695398437499996, 58.695398437499996, 58.695398437499996, 58.695398437499996, 58.695398437499996,
-          58.695398437499996, 58.695398437499996, 58.695398437499996, 58.695398437499996, 58.695398437499996,
-          58.695398437499996, 58.695398437499996, 58.695398437499996, 58.695398437499996,
         ],
         [
           59.042371875, 59.042371875, 59.042371875, 59.042371875, 59.042371875, 59.042371875, 59.042371875,
           59.042371875, 59.042371875, 59.042371875, 59.042371875, 59.042371875, 59.042371875, 59.042371875,
           59.042371875, 59.042371875, 59.042371875, 59.042371875, 59.042371875,
-        ],
-        [
-          59.3893453125, 59.3893453125, 59.3893453125, 59.3893453125, 59.3893453125, 59.3893453125, 59.3893453125,
-          59.3893453125, 59.3893453125, 59.3893453125, 59.3893453125, 59.3893453125, 59.3893453125, 59.3893453125,
-          59.3893453125, 59.3893453125, 59.3893453125, 59.3893453125, 59.3893453125,
         ],
         [
           59.736318749999995, 59.736318749999995, 59.736318749999995, 59.736318749999995, 59.736318749999995,
@@ -1786,30 +1210,14 @@ const LENS_DATA = {
           59.736318749999995, 59.736318749999995, 59.736318749999995, 59.736318749999995,
         ],
         [
-          60.0832921875, 60.0832921875, 60.0832921875, 60.0832921875, 60.0832921875, 60.0832921875, 60.0832921875,
-          60.0832921875, 60.0832921875, 60.0832921875, 60.0832921875, 60.0832921875, 60.0832921875, 60.0832921875,
-          60.0832921875, 60.0832921875, 60.0832921875, 60.0832921875, 60.0832921875,
-        ],
-        [
           60.430265625, 60.430265625, 60.430265625, 60.430265625, 60.430265625, 60.430265625, 60.430265625,
           60.430265625, 60.430265625, 60.430265625, 60.430265625, 60.430265625, 60.430265625, 60.430265625,
           60.430265625, 60.430265625, 60.430265625, 60.430265625, 60.430265625,
         ],
         [
-          60.7772390625, 60.7772390625, 60.7772390625, 60.7772390625, 60.7772390625, 60.7772390625, 60.7772390625,
-          60.7772390625, 60.7772390625, 60.7772390625, 60.7772390625, 60.7772390625, 60.7772390625, 60.7772390625,
-          60.7772390625, 60.7772390625, 60.7772390625, 60.7772390625, 60.7772390625,
-        ],
-        [
           61.1242125, 61.1242125, 61.1242125, 61.1242125, 61.1242125, 61.1242125, 61.1242125, 61.1242125, 61.1242125,
           61.1242125, 61.1242125, 61.1242125, 61.1242125, 61.1242125, 61.1242125, 61.1242125, 61.1242125, 61.1242125,
           61.1242125,
-        ],
-        [
-          61.471185937499996, 61.471185937499996, 61.471185937499996, 61.471185937499996, 61.471185937499996,
-          61.471185937499996, 61.471185937499996, 61.471185937499996, 61.471185937499996, 61.471185937499996,
-          61.471185937499996, 61.471185937499996, 61.471185937499996, 61.471185937499996, 61.471185937499996,
-          61.471185937499996, 61.471185937499996, 61.471185937499996, 61.471185937499996,
         ],
         [
           61.81815937499999, 61.81815937499999, 61.81815937499999, 61.81815937499999, 61.81815937499999,
@@ -1818,30 +1226,14 @@ const LENS_DATA = {
           61.81815937499999, 61.81815937499999, 61.81815937499999, 61.81815937499999,
         ],
         [
-          62.1651328125, 62.1651328125, 62.1651328125, 62.1651328125, 62.1651328125, 62.1651328125, 62.1651328125,
-          62.1651328125, 62.1651328125, 62.1651328125, 62.1651328125, 62.1651328125, 62.1651328125, 62.1651328125,
-          62.1651328125, 62.1651328125, 62.1651328125, 62.1651328125, 62.1651328125,
-        ],
-        [
           62.51210625, 62.51210625, 62.51210625, 62.51210625, 62.51210625, 62.51210625, 62.51210625, 62.51210625,
           62.51210625, 62.51210625, 62.51210625, 62.51210625, 62.51210625, 62.51210625, 62.51210625, 62.51210625,
           62.51210625, 62.51210625, 62.51210625,
         ],
         [
-          62.8590796875, 62.8590796875, 62.8590796875, 62.8590796875, 62.8590796875, 62.8590796875, 62.8590796875,
-          62.8590796875, 62.8590796875, 62.8590796875, 62.8590796875, 62.8590796875, 62.8590796875, 62.8590796875,
-          62.8590796875, 62.8590796875, 62.8590796875, 62.8590796875, 62.8590796875,
-        ],
-        [
           63.206053125, 63.206053125, 63.206053125, 63.206053125, 63.206053125, 63.206053125, 63.206053125,
           63.206053125, 63.206053125, 63.206053125, 63.206053125, 63.206053125, 63.206053125, 63.206053125,
           63.206053125, 63.206053125, 63.206053125, 63.206053125, 63.206053125,
-        ],
-        [
-          63.553026562499994, 63.553026562499994, 63.553026562499994, 63.553026562499994, 63.553026562499994,
-          63.553026562499994, 63.553026562499994, 63.553026562499994, 63.553026562499994, 63.553026562499994,
-          63.553026562499994, 63.553026562499994, 63.553026562499994, 63.553026562499994, 63.553026562499994,
-          63.553026562499994, 63.553026562499994, 63.553026562499994, 63.553026562499994,
         ],
         [
           63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9, 63.9,
@@ -1857,21 +1249,10 @@ const LENS_DATA = {
           27.7,
         ],
         [
-          27.598159374999998, 27.598159374999998, 27.598159374999998, 27.598159374999998, 27.598159374999998,
-          27.598159374999998, 27.598159374999998, 27.598159374999998, 27.598159374999998, 27.598159374999998,
-          27.598159374999998, 27.598159374999998, 27.598159374999998, 27.598159374999998, 27.598159374999998,
-          27.598159374999998, 27.598159374999998, 27.598159374999998, 27.598159374999998,
-        ],
-        [
           27.496318749999997, 27.496318749999997, 27.496318749999997, 27.496318749999997, 27.496318749999997,
           27.496318749999997, 27.496318749999997, 27.496318749999997, 27.496318749999997, 27.496318749999997,
           27.496318749999997, 27.496318749999997, 27.496318749999997, 27.496318749999997, 27.496318749999997,
           27.496318749999997, 27.496318749999997, 27.496318749999997, 27.496318749999997,
-        ],
-        [
-          27.394478125, 27.394478125, 27.394478125, 27.394478125, 27.394478125, 27.394478125, 27.394478125,
-          27.394478125, 27.394478125, 27.394478125, 27.394478125, 27.394478125, 27.394478125, 27.394478125,
-          27.394478125, 27.394478125, 27.394478125, 27.394478125, 27.394478125,
         ],
         [
           27.2926375, 27.2926375, 27.2926375, 27.2926375, 27.2926375, 27.2926375, 27.2926375, 27.2926375, 27.2926375,
@@ -1879,29 +1260,13 @@ const LENS_DATA = {
           27.2926375,
         ],
         [
-          27.190796875, 27.190796875, 27.190796875, 27.190796875, 27.190796875, 27.190796875, 27.190796875,
-          27.190796875, 27.190796875, 27.190796875, 27.190796875, 27.190796875, 27.190796875, 27.190796875,
-          27.190796875, 27.190796875, 27.190796875, 27.190796875, 27.190796875,
-        ],
-        [
           27.08895625, 27.08895625, 27.08895625, 27.08895625, 27.08895625, 27.08895625, 27.08895625, 27.08895625,
           27.08895625, 27.08895625, 27.08895625, 27.08895625, 27.08895625, 27.08895625, 27.08895625, 27.08895625,
           27.08895625, 27.08895625, 27.08895625,
         ],
         [
-          26.987115624999998, 26.987115624999998, 26.987115624999998, 26.987115624999998, 26.987115624999998,
-          26.987115624999998, 26.987115624999998, 26.987115624999998, 26.987115624999998, 26.987115624999998,
-          26.987115624999998, 26.987115624999998, 26.987115624999998, 26.987115624999998, 26.987115624999998,
-          26.987115624999998, 26.987115624999998, 26.987115624999998, 26.987115624999998,
-        ],
-        [
           26.885275, 26.885275, 26.885275, 26.885275, 26.885275, 26.885275, 26.885275, 26.885275, 26.885275, 26.885275,
           26.885275, 26.885275, 26.885275, 26.885275, 26.885275, 26.885275, 26.885275, 26.885275, 26.885275,
-        ],
-        [
-          26.783434375, 26.783434375, 26.783434375, 26.783434375, 26.783434375, 26.783434375, 26.783434375,
-          26.783434375, 26.783434375, 26.783434375, 26.783434375, 26.783434375, 26.783434375, 26.783434375,
-          26.783434375, 26.783434375, 26.783434375, 26.783434375, 26.783434375,
         ],
         [
           26.681593749999998, 26.681593749999998, 26.681593749999998, 26.681593749999998, 26.681593749999998,
@@ -1910,29 +1275,14 @@ const LENS_DATA = {
           26.681593749999998, 26.681593749999998, 26.681593749999998, 26.681593749999998,
         ],
         [
-          26.579753125, 26.579753125, 26.579753125, 26.579753125, 26.579753125, 26.579753125, 26.579753125,
-          26.579753125, 26.579753125, 26.579753125, 26.579753125, 26.579753125, 26.579753125, 26.579753125,
-          26.579753125, 26.579753125, 26.579753125, 26.579753125, 26.579753125,
-        ],
-        [
           26.4779125, 26.4779125, 26.4779125, 26.4779125, 26.4779125, 26.4779125, 26.4779125, 26.4779125, 26.4779125,
           26.4779125, 26.4779125, 26.4779125, 26.4779125, 26.4779125, 26.4779125, 26.4779125, 26.4779125, 26.4779125,
           26.4779125,
         ],
         [
-          26.376071875, 26.376071875, 26.376071875, 26.376071875, 26.376071875, 26.376071875, 26.376071875,
-          26.376071875, 26.376071875, 26.376071875, 26.376071875, 26.376071875, 26.376071875, 26.376071875,
-          26.376071875, 26.376071875, 26.376071875, 26.376071875, 26.376071875,
-        ],
-        [
           26.27423125, 26.27423125, 26.27423125, 26.27423125, 26.27423125, 26.27423125, 26.27423125, 26.27423125,
           26.27423125, 26.27423125, 26.27423125, 26.27423125, 26.27423125, 26.27423125, 26.27423125, 26.27423125,
           26.27423125, 26.27423125, 26.27423125,
-        ],
-        [
-          26.172390625, 26.172390625, 26.172390625, 26.172390625, 26.172390625, 26.172390625, 26.172390625,
-          26.172390625, 26.172390625, 26.172390625, 26.172390625, 26.172390625, 26.172390625, 26.172390625,
-          26.172390625, 26.172390625, 26.172390625, 26.172390625, 26.172390625,
         ],
         [
           26.070549999999997, 26.070549999999997, 26.070549999999997, 26.070549999999997, 26.070549999999997,
@@ -1941,31 +1291,15 @@ const LENS_DATA = {
           26.070549999999997, 26.070549999999997, 26.070549999999997, 26.070549999999997,
         ],
         [
-          25.968709375, 25.968709375, 25.968709375, 25.968709375, 25.968709375, 25.968709375, 25.968709375,
-          25.968709375, 25.968709375, 25.968709375, 25.968709375, 25.968709375, 25.968709375, 25.968709375,
-          25.968709375, 25.968709375, 25.968709375, 25.968709375, 25.968709375,
-        ],
-        [
           25.866868750000002, 25.866868750000002, 25.866868750000002, 25.866868750000002, 25.866868750000002,
           25.866868750000002, 25.866868750000002, 25.866868750000002, 25.866868750000002, 25.866868750000002,
           25.866868750000002, 25.866868750000002, 25.866868750000002, 25.866868750000002, 25.866868750000002,
           25.866868750000002, 25.866868750000002, 25.866868750000002, 25.866868750000002,
         ],
         [
-          25.765028125, 25.765028125, 25.765028125, 25.765028125, 25.765028125, 25.765028125, 25.765028125,
-          25.765028125, 25.765028125, 25.765028125, 25.765028125, 25.765028125, 25.765028125, 25.765028125,
-          25.765028125, 25.765028125, 25.765028125, 25.765028125, 25.765028125,
-        ],
-        [
           25.6631875, 25.6631875, 25.6631875, 25.6631875, 25.6631875, 25.6631875, 25.6631875, 25.6631875, 25.6631875,
           25.6631875, 25.6631875, 25.6631875, 25.6631875, 25.6631875, 25.6631875, 25.6631875, 25.6631875, 25.6631875,
           25.6631875,
-        ],
-        [
-          25.561346874999998, 25.561346874999998, 25.561346874999998, 25.561346874999998, 25.561346874999998,
-          25.561346874999998, 25.561346874999998, 25.561346874999998, 25.561346874999998, 25.561346874999998,
-          25.561346874999998, 25.561346874999998, 25.561346874999998, 25.561346874999998, 25.561346874999998,
-          25.561346874999998, 25.561346874999998, 25.561346874999998, 25.561346874999998,
         ],
         [
           25.459506249999997, 25.459506249999997, 25.459506249999997, 25.459506249999997, 25.459506249999997,
@@ -1974,19 +1308,8 @@ const LENS_DATA = {
           25.459506249999997, 25.459506249999997, 25.459506249999997, 25.459506249999997,
         ],
         [
-          25.357665625000003, 25.357665625000003, 25.357665625000003, 25.357665625000003, 25.357665625000003,
-          25.357665625000003, 25.357665625000003, 25.357665625000003, 25.357665625000003, 25.357665625000003,
-          25.357665625000003, 25.357665625000003, 25.357665625000003, 25.357665625000003, 25.357665625000003,
-          25.357665625000003, 25.357665625000003, 25.357665625000003, 25.357665625000003,
-        ],
-        [
           25.255825, 25.255825, 25.255825, 25.255825, 25.255825, 25.255825, 25.255825, 25.255825, 25.255825, 25.255825,
           25.255825, 25.255825, 25.255825, 25.255825, 25.255825, 25.255825, 25.255825, 25.255825, 25.255825,
-        ],
-        [
-          25.153984375, 25.153984375, 25.153984375, 25.153984375, 25.153984375, 25.153984375, 25.153984375,
-          25.153984375, 25.153984375, 25.153984375, 25.153984375, 25.153984375, 25.153984375, 25.153984375,
-          25.153984375, 25.153984375, 25.153984375, 25.153984375, 25.153984375,
         ],
         [
           25.05214375, 25.05214375, 25.05214375, 25.05214375, 25.05214375, 25.05214375, 25.05214375, 25.05214375,
@@ -1994,21 +1317,9 @@ const LENS_DATA = {
           25.05214375, 25.05214375, 25.05214375,
         ],
         [
-          24.950303124999998, 24.950303124999998, 24.950303124999998, 24.950303124999998, 24.950303124999998,
-          24.950303124999998, 24.950303124999998, 24.950303124999998, 24.950303124999998, 24.950303124999998,
-          24.950303124999998, 24.950303124999998, 24.950303124999998, 24.950303124999998, 24.950303124999998,
-          24.950303124999998, 24.950303124999998, 24.950303124999998, 24.950303124999998,
-        ],
-        [
           24.8484625, 24.8484625, 24.8484625, 24.8484625, 24.8484625, 24.8484625, 24.8484625, 24.8484625, 24.8484625,
           24.8484625, 24.8484625, 24.8484625, 24.8484625, 24.8484625, 24.8484625, 24.8484625, 24.8484625, 24.8484625,
           24.8484625,
-        ],
-        [
-          24.746621875000002, 24.746621875000002, 24.746621875000002, 24.746621875000002, 24.746621875000002,
-          24.746621875000002, 24.746621875000002, 24.746621875000002, 24.746621875000002, 24.746621875000002,
-          24.746621875000002, 24.746621875000002, 24.746621875000002, 24.746621875000002, 24.746621875000002,
-          24.746621875000002, 24.746621875000002, 24.746621875000002, 24.746621875000002,
         ],
         [
           24.64478125, 24.64478125, 24.64478125, 24.64478125, 24.64478125, 24.64478125, 24.64478125, 24.64478125,
@@ -2016,19 +1327,8 @@ const LENS_DATA = {
           24.64478125, 24.64478125, 24.64478125,
         ],
         [
-          24.542940625, 24.542940625, 24.542940625, 24.542940625, 24.542940625, 24.542940625, 24.542940625,
-          24.542940625, 24.542940625, 24.542940625, 24.542940625, 24.542940625, 24.542940625, 24.542940625,
-          24.542940625, 24.542940625, 24.542940625, 24.542940625, 24.542940625,
-        ],
-        [
           24.4411, 24.4411, 24.4411, 24.4411, 24.4411, 24.4411, 24.4411, 24.4411, 24.4411, 24.4411, 24.4411, 24.4411,
           24.4411, 24.4411, 24.4411, 24.4411, 24.4411, 24.4411, 24.4411,
-        ],
-        [
-          24.339259374999997, 24.339259374999997, 24.339259374999997, 24.339259374999997, 24.339259374999997,
-          24.339259374999997, 24.339259374999997, 24.339259374999997, 24.339259374999997, 24.339259374999997,
-          24.339259374999997, 24.339259374999997, 24.339259374999997, 24.339259374999997, 24.339259374999997,
-          24.339259374999997, 24.339259374999997, 24.339259374999997, 24.339259374999997,
         ],
         [
           24.237418750000003, 24.237418750000003, 24.237418750000003, 24.237418750000003, 24.237418750000003,
@@ -2037,20 +1337,9 @@ const LENS_DATA = {
           24.237418750000003, 24.237418750000003, 24.237418750000003, 24.237418750000003,
         ],
         [
-          24.135578125000002, 24.135578125000002, 24.135578125000002, 24.135578125000002, 24.135578125000002,
-          24.135578125000002, 24.135578125000002, 24.135578125000002, 24.135578125000002, 24.135578125000002,
-          24.135578125000002, 24.135578125000002, 24.135578125000002, 24.135578125000002, 24.135578125000002,
-          24.135578125000002, 24.135578125000002, 24.135578125000002, 24.135578125000002,
-        ],
-        [
           24.0337375, 24.0337375, 24.0337375, 24.0337375, 24.0337375, 24.0337375, 24.0337375, 24.0337375, 24.0337375,
           24.0337375, 24.0337375, 24.0337375, 24.0337375, 24.0337375, 24.0337375, 24.0337375, 24.0337375, 24.0337375,
           24.0337375,
-        ],
-        [
-          23.931896875, 23.931896875, 23.931896875, 23.931896875, 23.931896875, 23.931896875, 23.931896875,
-          23.931896875, 23.931896875, 23.931896875, 23.931896875, 23.931896875, 23.931896875, 23.931896875,
-          23.931896875, 23.931896875, 23.931896875, 23.931896875, 23.931896875,
         ],
         [
           23.83005625, 23.83005625, 23.83005625, 23.83005625, 23.83005625, 23.83005625, 23.83005625, 23.83005625,
@@ -2058,18 +1347,8 @@ const LENS_DATA = {
           23.83005625, 23.83005625, 23.83005625,
         ],
         [
-          23.728215625, 23.728215625, 23.728215625, 23.728215625, 23.728215625, 23.728215625, 23.728215625,
-          23.728215625, 23.728215625, 23.728215625, 23.728215625, 23.728215625, 23.728215625, 23.728215625,
-          23.728215625, 23.728215625, 23.728215625, 23.728215625, 23.728215625,
-        ],
-        [
           23.626375, 23.626375, 23.626375, 23.626375, 23.626375, 23.626375, 23.626375, 23.626375, 23.626375, 23.626375,
           23.626375, 23.626375, 23.626375, 23.626375, 23.626375, 23.626375, 23.626375, 23.626375, 23.626375,
-        ],
-        [
-          23.524534375, 23.524534375, 23.524534375, 23.524534375, 23.524534375, 23.524534375, 23.524534375,
-          23.524534375, 23.524534375, 23.524534375, 23.524534375, 23.524534375, 23.524534375, 23.524534375,
-          23.524534375, 23.524534375, 23.524534375, 23.524534375, 23.524534375,
         ],
         [
           23.42269375, 23.42269375, 23.42269375, 23.42269375, 23.42269375, 23.42269375, 23.42269375, 23.42269375,
@@ -2077,19 +1356,9 @@ const LENS_DATA = {
           23.42269375, 23.42269375, 23.42269375,
         ],
         [
-          23.320853125, 23.320853125, 23.320853125, 23.320853125, 23.320853125, 23.320853125, 23.320853125,
-          23.320853125, 23.320853125, 23.320853125, 23.320853125, 23.320853125, 23.320853125, 23.320853125,
-          23.320853125, 23.320853125, 23.320853125, 23.320853125, 23.320853125,
-        ],
-        [
           23.2190125, 23.2190125, 23.2190125, 23.2190125, 23.2190125, 23.2190125, 23.2190125, 23.2190125, 23.2190125,
           23.2190125, 23.2190125, 23.2190125, 23.2190125, 23.2190125, 23.2190125, 23.2190125, 23.2190125, 23.2190125,
           23.2190125,
-        ],
-        [
-          23.117171875, 23.117171875, 23.117171875, 23.117171875, 23.117171875, 23.117171875, 23.117171875,
-          23.117171875, 23.117171875, 23.117171875, 23.117171875, 23.117171875, 23.117171875, 23.117171875,
-          23.117171875, 23.117171875, 23.117171875, 23.117171875, 23.117171875,
         ],
         [
           23.01533125, 23.01533125, 23.01533125, 23.01533125, 23.01533125, 23.01533125, 23.01533125, 23.01533125,
@@ -2097,29 +1366,13 @@ const LENS_DATA = {
           23.01533125, 23.01533125, 23.01533125,
         ],
         [
-          22.913490625, 22.913490625, 22.913490625, 22.913490625, 22.913490625, 22.913490625, 22.913490625,
-          22.913490625, 22.913490625, 22.913490625, 22.913490625, 22.913490625, 22.913490625, 22.913490625,
-          22.913490625, 22.913490625, 22.913490625, 22.913490625, 22.913490625,
-        ],
-        [
           22.81165, 22.81165, 22.81165, 22.81165, 22.81165, 22.81165, 22.81165, 22.81165, 22.81165, 22.81165, 22.81165,
           22.81165, 22.81165, 22.81165, 22.81165, 22.81165, 22.81165, 22.81165, 22.81165,
-        ],
-        [
-          22.709809375000003, 22.709809375000003, 22.709809375000003, 22.709809375000003, 22.709809375000003,
-          22.709809375000003, 22.709809375000003, 22.709809375000003, 22.709809375000003, 22.709809375000003,
-          22.709809375000003, 22.709809375000003, 22.709809375000003, 22.709809375000003, 22.709809375000003,
-          22.709809375000003, 22.709809375000003, 22.709809375000003, 22.709809375000003,
         ],
         [
           22.60796875, 22.60796875, 22.60796875, 22.60796875, 22.60796875, 22.60796875, 22.60796875, 22.60796875,
           22.60796875, 22.60796875, 22.60796875, 22.60796875, 22.60796875, 22.60796875, 22.60796875, 22.60796875,
           22.60796875, 22.60796875, 22.60796875,
-        ],
-        [
-          22.506128125, 22.506128125, 22.506128125, 22.506128125, 22.506128125, 22.506128125, 22.506128125,
-          22.506128125, 22.506128125, 22.506128125, 22.506128125, 22.506128125, 22.506128125, 22.506128125,
-          22.506128125, 22.506128125, 22.506128125, 22.506128125, 22.506128125,
         ],
         [
           22.404287500000002, 22.404287500000002, 22.404287500000002, 22.404287500000002, 22.404287500000002,
@@ -2128,30 +1381,13 @@ const LENS_DATA = {
           22.404287500000002, 22.404287500000002, 22.404287500000002, 22.404287500000002,
         ],
         [
-          22.302446875, 22.302446875, 22.302446875, 22.302446875, 22.302446875, 22.302446875, 22.302446875,
-          22.302446875, 22.302446875, 22.302446875, 22.302446875, 22.302446875, 22.302446875, 22.302446875,
-          22.302446875, 22.302446875, 22.302446875, 22.302446875, 22.302446875,
-        ],
-        [
           22.20060625, 22.20060625, 22.20060625, 22.20060625, 22.20060625, 22.20060625, 22.20060625, 22.20060625,
           22.20060625, 22.20060625, 22.20060625, 22.20060625, 22.20060625, 22.20060625, 22.20060625, 22.20060625,
           22.20060625, 22.20060625, 22.20060625,
         ],
         [
-          22.098765625000002, 22.098765625000002, 22.098765625000002, 22.098765625000002, 22.098765625000002,
-          22.098765625000002, 22.098765625000002, 22.098765625000002, 22.098765625000002, 22.098765625000002,
-          22.098765625000002, 22.098765625000002, 22.098765625000002, 22.098765625000002, 22.098765625000002,
-          22.098765625000002, 22.098765625000002, 22.098765625000002, 22.098765625000002,
-        ],
-        [
           21.996925, 21.996925, 21.996925, 21.996925, 21.996925, 21.996925, 21.996925, 21.996925, 21.996925, 21.996925,
           21.996925, 21.996925, 21.996925, 21.996925, 21.996925, 21.996925, 21.996925, 21.996925, 21.996925,
-        ],
-        [
-          21.895084375000003, 21.895084375000003, 21.895084375000003, 21.895084375000003, 21.895084375000003,
-          21.895084375000003, 21.895084375000003, 21.895084375000003, 21.895084375000003, 21.895084375000003,
-          21.895084375000003, 21.895084375000003, 21.895084375000003, 21.895084375000003, 21.895084375000003,
-          21.895084375000003, 21.895084375000003, 21.895084375000003, 21.895084375000003,
         ],
         [
           21.793243750000002, 21.793243750000002, 21.793243750000002, 21.793243750000002, 21.793243750000002,
@@ -2160,20 +1396,9 @@ const LENS_DATA = {
           21.793243750000002, 21.793243750000002, 21.793243750000002, 21.793243750000002,
         ],
         [
-          21.691403125, 21.691403125, 21.691403125, 21.691403125, 21.691403125, 21.691403125, 21.691403125,
-          21.691403125, 21.691403125, 21.691403125, 21.691403125, 21.691403125, 21.691403125, 21.691403125,
-          21.691403125, 21.691403125, 21.691403125, 21.691403125, 21.691403125,
-        ],
-        [
           21.5895625, 21.5895625, 21.5895625, 21.5895625, 21.5895625, 21.5895625, 21.5895625, 21.5895625, 21.5895625,
           21.5895625, 21.5895625, 21.5895625, 21.5895625, 21.5895625, 21.5895625, 21.5895625, 21.5895625, 21.5895625,
           21.5895625,
-        ],
-        [
-          21.487721875000002, 21.487721875000002, 21.487721875000002, 21.487721875000002, 21.487721875000002,
-          21.487721875000002, 21.487721875000002, 21.487721875000002, 21.487721875000002, 21.487721875000002,
-          21.487721875000002, 21.487721875000002, 21.487721875000002, 21.487721875000002, 21.487721875000002,
-          21.487721875000002, 21.487721875000002, 21.487721875000002, 21.487721875000002,
         ],
         [
           21.385881250000004, 21.385881250000004, 21.385881250000004, 21.385881250000004, 21.385881250000004,
@@ -2182,20 +1407,8 @@ const LENS_DATA = {
           21.385881250000004, 21.385881250000004, 21.385881250000004, 21.385881250000004,
         ],
         [
-          21.284040625000003, 21.284040625000003, 21.284040625000003, 21.284040625000003, 21.284040625000003,
-          21.284040625000003, 21.284040625000003, 21.284040625000003, 21.284040625000003, 21.284040625000003,
-          21.284040625000003, 21.284040625000003, 21.284040625000003, 21.284040625000003, 21.284040625000003,
-          21.284040625000003, 21.284040625000003, 21.284040625000003, 21.284040625000003,
-        ],
-        [
           21.1822, 21.1822, 21.1822, 21.1822, 21.1822, 21.1822, 21.1822, 21.1822, 21.1822, 21.1822, 21.1822, 21.1822,
           21.1822, 21.1822, 21.1822, 21.1822, 21.1822, 21.1822, 21.1822,
-        ],
-        [
-          20.905915625000002, 20.905915625000002, 20.905915625000002, 20.905915625000002, 20.905915625000002,
-          20.905915625000002, 20.905915625000002, 20.905915625000002, 20.905915625000002, 20.905915625000002,
-          20.905915625000002, 20.905915625000002, 20.905915625000002, 20.905915625000002, 20.905915625000002,
-          20.905915625000002, 20.905915625000002, 20.905915625000002, 20.905915625000002,
         ],
         [
           20.629631250000003, 20.629631250000003, 20.629631250000003, 20.629631250000003, 20.629631250000003,
@@ -2204,31 +1417,14 @@ const LENS_DATA = {
           20.629631250000003, 20.629631250000003, 20.629631250000003, 20.629631250000003,
         ],
         [
-          20.353346875000003, 20.353346875000003, 20.353346875000003, 20.353346875000003, 20.353346875000003,
-          20.353346875000003, 20.353346875000003, 20.353346875000003, 20.353346875000003, 20.353346875000003,
-          20.353346875000003, 20.353346875000003, 20.353346875000003, 20.353346875000003, 20.353346875000003,
-          20.353346875000003, 20.353346875000003, 20.353346875000003, 20.353346875000003,
-        ],
-        [
           20.0770625, 20.0770625, 20.0770625, 20.0770625, 20.0770625, 20.0770625, 20.0770625, 20.0770625, 20.0770625,
           20.0770625, 20.0770625, 20.0770625, 20.0770625, 20.0770625, 20.0770625, 20.0770625, 20.0770625, 20.0770625,
           20.0770625,
         ],
         [
-          19.800778125, 19.800778125, 19.800778125, 19.800778125, 19.800778125, 19.800778125, 19.800778125,
-          19.800778125, 19.800778125, 19.800778125, 19.800778125, 19.800778125, 19.800778125, 19.800778125,
-          19.800778125, 19.800778125, 19.800778125, 19.800778125, 19.800778125,
-        ],
-        [
           19.52449375, 19.52449375, 19.52449375, 19.52449375, 19.52449375, 19.52449375, 19.52449375, 19.52449375,
           19.52449375, 19.52449375, 19.52449375, 19.52449375, 19.52449375, 19.52449375, 19.52449375, 19.52449375,
           19.52449375, 19.52449375, 19.52449375,
-        ],
-        [
-          19.248209375000002, 19.248209375000002, 19.248209375000002, 19.248209375000002, 19.248209375000002,
-          19.248209375000002, 19.248209375000002, 19.248209375000002, 19.248209375000002, 19.248209375000002,
-          19.248209375000002, 19.248209375000002, 19.248209375000002, 19.248209375000002, 19.248209375000002,
-          19.248209375000002, 19.248209375000002, 19.248209375000002, 19.248209375000002,
         ],
         [
           18.971925000000002, 18.971925000000002, 18.971925000000002, 18.971925000000002, 18.971925000000002,
@@ -2237,30 +1433,14 @@ const LENS_DATA = {
           18.971925000000002, 18.971925000000002, 18.971925000000002, 18.971925000000002,
         ],
         [
-          18.695640625000003, 18.695640625000003, 18.695640625000003, 18.695640625000003, 18.695640625000003,
-          18.695640625000003, 18.695640625000003, 18.695640625000003, 18.695640625000003, 18.695640625000003,
-          18.695640625000003, 18.695640625000003, 18.695640625000003, 18.695640625000003, 18.695640625000003,
-          18.695640625000003, 18.695640625000003, 18.695640625000003, 18.695640625000003,
-        ],
-        [
           18.41935625, 18.41935625, 18.41935625, 18.41935625, 18.41935625, 18.41935625, 18.41935625, 18.41935625,
           18.41935625, 18.41935625, 18.41935625, 18.41935625, 18.41935625, 18.41935625, 18.41935625, 18.41935625,
           18.41935625, 18.41935625, 18.41935625,
         ],
         [
-          18.143071875, 18.143071875, 18.143071875, 18.143071875, 18.143071875, 18.143071875, 18.143071875,
-          18.143071875, 18.143071875, 18.143071875, 18.143071875, 18.143071875, 18.143071875, 18.143071875,
-          18.143071875, 18.143071875, 18.143071875, 18.143071875, 18.143071875,
-        ],
-        [
           17.8667875, 17.8667875, 17.8667875, 17.8667875, 17.8667875, 17.8667875, 17.8667875, 17.8667875, 17.8667875,
           17.8667875, 17.8667875, 17.8667875, 17.8667875, 17.8667875, 17.8667875, 17.8667875, 17.8667875, 17.8667875,
           17.8667875,
-        ],
-        [
-          17.590503125, 17.590503125, 17.590503125, 17.590503125, 17.590503125, 17.590503125, 17.590503125,
-          17.590503125, 17.590503125, 17.590503125, 17.590503125, 17.590503125, 17.590503125, 17.590503125,
-          17.590503125, 17.590503125, 17.590503125, 17.590503125, 17.590503125,
         ],
         [
           17.314218750000002, 17.314218750000002, 17.314218750000002, 17.314218750000002, 17.314218750000002,
@@ -2269,32 +1449,15 @@ const LENS_DATA = {
           17.314218750000002, 17.314218750000002, 17.314218750000002, 17.314218750000002,
         ],
         [
-          17.037934375000003, 17.037934375000003, 17.037934375000003, 17.037934375000003, 17.037934375000003,
-          17.037934375000003, 17.037934375000003, 17.037934375000003, 17.037934375000003, 17.037934375000003,
-          17.037934375000003, 17.037934375000003, 17.037934375000003, 17.037934375000003, 17.037934375000003,
-          17.037934375000003, 17.037934375000003, 17.037934375000003, 17.037934375000003,
-        ],
-        [
           16.761650000000003, 16.761650000000003, 16.761650000000003, 16.761650000000003, 16.761650000000003,
           16.761650000000003, 16.761650000000003, 16.761650000000003, 16.761650000000003, 16.761650000000003,
           16.761650000000003, 16.761650000000003, 16.761650000000003, 16.761650000000003, 16.761650000000003,
           16.761650000000003, 16.761650000000003, 16.761650000000003, 16.761650000000003,
         ],
         [
-          16.485365625, 16.485365625, 16.485365625, 16.485365625, 16.485365625, 16.485365625, 16.485365625,
-          16.485365625, 16.485365625, 16.485365625, 16.485365625, 16.485365625, 16.485365625, 16.485365625,
-          16.485365625, 16.485365625, 16.485365625, 16.485365625, 16.485365625,
-        ],
-        [
           16.20908125, 16.20908125, 16.20908125, 16.20908125, 16.20908125, 16.20908125, 16.20908125, 16.20908125,
           16.20908125, 16.20908125, 16.20908125, 16.20908125, 16.20908125, 16.20908125, 16.20908125, 16.20908125,
           16.20908125, 16.20908125, 16.20908125,
-        ],
-        [
-          15.932796875000001, 15.932796875000001, 15.932796875000001, 15.932796875000001, 15.932796875000001,
-          15.932796875000001, 15.932796875000001, 15.932796875000001, 15.932796875000001, 15.932796875000001,
-          15.932796875000001, 15.932796875000001, 15.932796875000001, 15.932796875000001, 15.932796875000001,
-          15.932796875000001, 15.932796875000001, 15.932796875000001, 15.932796875000001,
         ],
         [
           15.656512500000002, 15.656512500000002, 15.656512500000002, 15.656512500000002, 15.656512500000002,
@@ -2303,30 +1466,14 @@ const LENS_DATA = {
           15.656512500000002, 15.656512500000002, 15.656512500000002, 15.656512500000002,
         ],
         [
-          15.380228125, 15.380228125, 15.380228125, 15.380228125, 15.380228125, 15.380228125, 15.380228125,
-          15.380228125, 15.380228125, 15.380228125, 15.380228125, 15.380228125, 15.380228125, 15.380228125,
-          15.380228125, 15.380228125, 15.380228125, 15.380228125, 15.380228125,
-        ],
-        [
           15.103943750000001, 15.103943750000001, 15.103943750000001, 15.103943750000001, 15.103943750000001,
           15.103943750000001, 15.103943750000001, 15.103943750000001, 15.103943750000001, 15.103943750000001,
           15.103943750000001, 15.103943750000001, 15.103943750000001, 15.103943750000001, 15.103943750000001,
           15.103943750000001, 15.103943750000001, 15.103943750000001, 15.103943750000001,
         ],
         [
-          14.827659375000001, 14.827659375000001, 14.827659375000001, 14.827659375000001, 14.827659375000001,
-          14.827659375000001, 14.827659375000001, 14.827659375000001, 14.827659375000001, 14.827659375000001,
-          14.827659375000001, 14.827659375000001, 14.827659375000001, 14.827659375000001, 14.827659375000001,
-          14.827659375000001, 14.827659375000001, 14.827659375000001, 14.827659375000001,
-        ],
-        [
           14.551375, 14.551375, 14.551375, 14.551375, 14.551375, 14.551375, 14.551375, 14.551375, 14.551375, 14.551375,
           14.551375, 14.551375, 14.551375, 14.551375, 14.551375, 14.551375, 14.551375, 14.551375, 14.551375,
-        ],
-        [
-          14.275090625, 14.275090625, 14.275090625, 14.275090625, 14.275090625, 14.275090625, 14.275090625,
-          14.275090625, 14.275090625, 14.275090625, 14.275090625, 14.275090625, 14.275090625, 14.275090625,
-          14.275090625, 14.275090625, 14.275090625, 14.275090625, 14.275090625,
         ],
         [
           13.998806250000001, 13.998806250000001, 13.998806250000001, 13.998806250000001, 13.998806250000001,
@@ -2335,21 +1482,9 @@ const LENS_DATA = {
           13.998806250000001, 13.998806250000001, 13.998806250000001, 13.998806250000001,
         ],
         [
-          13.722521875000002, 13.722521875000002, 13.722521875000002, 13.722521875000002, 13.722521875000002,
-          13.722521875000002, 13.722521875000002, 13.722521875000002, 13.722521875000002, 13.722521875000002,
-          13.722521875000002, 13.722521875000002, 13.722521875000002, 13.722521875000002, 13.722521875000002,
-          13.722521875000002, 13.722521875000002, 13.722521875000002, 13.722521875000002,
-        ],
-        [
           13.4462375, 13.4462375, 13.4462375, 13.4462375, 13.4462375, 13.4462375, 13.4462375, 13.4462375, 13.4462375,
           13.4462375, 13.4462375, 13.4462375, 13.4462375, 13.4462375, 13.4462375, 13.4462375, 13.4462375, 13.4462375,
           13.4462375,
-        ],
-        [
-          13.169953125000001, 13.169953125000001, 13.169953125000001, 13.169953125000001, 13.169953125000001,
-          13.169953125000001, 13.169953125000001, 13.169953125000001, 13.169953125000001, 13.169953125000001,
-          13.169953125000001, 13.169953125000001, 13.169953125000001, 13.169953125000001, 13.169953125000001,
-          13.169953125000001, 13.169953125000001, 13.169953125000001, 13.169953125000001,
         ],
         [
           12.893668750000002, 12.893668750000002, 12.893668750000002, 12.893668750000002, 12.893668750000002,
@@ -2358,29 +1493,13 @@ const LENS_DATA = {
           12.893668750000002, 12.893668750000002, 12.893668750000002, 12.893668750000002,
         ],
         [
-          12.617384375, 12.617384375, 12.617384375, 12.617384375, 12.617384375, 12.617384375, 12.617384375,
-          12.617384375, 12.617384375, 12.617384375, 12.617384375, 12.617384375, 12.617384375, 12.617384375,
-          12.617384375, 12.617384375, 12.617384375, 12.617384375, 12.617384375,
-        ],
-        [
           12.3411, 12.3411, 12.3411, 12.3411, 12.3411, 12.3411, 12.3411, 12.3411, 12.3411, 12.3411, 12.3411, 12.3411,
           12.3411, 12.3411, 12.3411, 12.3411, 12.3411, 12.3411, 12.3411,
-        ],
-        [
-          12.064815625000001, 12.064815625000001, 12.064815625000001, 12.064815625000001, 12.064815625000001,
-          12.064815625000001, 12.064815625000001, 12.064815625000001, 12.064815625000001, 12.064815625000001,
-          12.064815625000001, 12.064815625000001, 12.064815625000001, 12.064815625000001, 12.064815625000001,
-          12.064815625000001, 12.064815625000001, 12.064815625000001, 12.064815625000001,
         ],
         [
           11.78853125, 11.78853125, 11.78853125, 11.78853125, 11.78853125, 11.78853125, 11.78853125, 11.78853125,
           11.78853125, 11.78853125, 11.78853125, 11.78853125, 11.78853125, 11.78853125, 11.78853125, 11.78853125,
           11.78853125, 11.78853125, 11.78853125,
-        ],
-        [
-          11.512246875, 11.512246875, 11.512246875, 11.512246875, 11.512246875, 11.512246875, 11.512246875,
-          11.512246875, 11.512246875, 11.512246875, 11.512246875, 11.512246875, 11.512246875, 11.512246875,
-          11.512246875, 11.512246875, 11.512246875, 11.512246875, 11.512246875,
         ],
         [
           11.235962500000001, 11.235962500000001, 11.235962500000001, 11.235962500000001, 11.235962500000001,
@@ -2389,20 +1508,9 @@ const LENS_DATA = {
           11.235962500000001, 11.235962500000001, 11.235962500000001, 11.235962500000001,
         ],
         [
-          10.959678125, 10.959678125, 10.959678125, 10.959678125, 10.959678125, 10.959678125, 10.959678125,
-          10.959678125, 10.959678125, 10.959678125, 10.959678125, 10.959678125, 10.959678125, 10.959678125,
-          10.959678125, 10.959678125, 10.959678125, 10.959678125, 10.959678125,
-        ],
-        [
           10.68339375, 10.68339375, 10.68339375, 10.68339375, 10.68339375, 10.68339375, 10.68339375, 10.68339375,
           10.68339375, 10.68339375, 10.68339375, 10.68339375, 10.68339375, 10.68339375, 10.68339375, 10.68339375,
           10.68339375, 10.68339375, 10.68339375,
-        ],
-        [
-          10.407109375000001, 10.407109375000001, 10.407109375000001, 10.407109375000001, 10.407109375000001,
-          10.407109375000001, 10.407109375000001, 10.407109375000001, 10.407109375000001, 10.407109375000001,
-          10.407109375000001, 10.407109375000001, 10.407109375000001, 10.407109375000001, 10.407109375000001,
-          10.407109375000001, 10.407109375000001, 10.407109375000001, 10.407109375000001,
         ],
         [
           10.130825000000002, 10.130825000000002, 10.130825000000002, 10.130825000000002, 10.130825000000002,
@@ -2411,28 +1519,13 @@ const LENS_DATA = {
           10.130825000000002, 10.130825000000002, 10.130825000000002, 10.130825000000002,
         ],
         [
-          9.854540625, 9.854540625, 9.854540625, 9.854540625, 9.854540625, 9.854540625, 9.854540625, 9.854540625,
-          9.854540625, 9.854540625, 9.854540625, 9.854540625, 9.854540625, 9.854540625, 9.854540625, 9.854540625,
-          9.854540625, 9.854540625, 9.854540625,
-        ],
-        [
           9.57825625, 9.57825625, 9.57825625, 9.57825625, 9.57825625, 9.57825625, 9.57825625, 9.57825625, 9.57825625,
           9.57825625, 9.57825625, 9.57825625, 9.57825625, 9.57825625, 9.57825625, 9.57825625, 9.57825625, 9.57825625,
           9.57825625,
         ],
         [
-          9.301971875, 9.301971875, 9.301971875, 9.301971875, 9.301971875, 9.301971875, 9.301971875, 9.301971875,
-          9.301971875, 9.301971875, 9.301971875, 9.301971875, 9.301971875, 9.301971875, 9.301971875, 9.301971875,
-          9.301971875, 9.301971875, 9.301971875,
-        ],
-        [
           9.0256875, 9.0256875, 9.0256875, 9.0256875, 9.0256875, 9.0256875, 9.0256875, 9.0256875, 9.0256875, 9.0256875,
           9.0256875, 9.0256875, 9.0256875, 9.0256875, 9.0256875, 9.0256875, 9.0256875, 9.0256875, 9.0256875,
-        ],
-        [
-          8.749403125, 8.749403125, 8.749403125, 8.749403125, 8.749403125, 8.749403125, 8.749403125, 8.749403125,
-          8.749403125, 8.749403125, 8.749403125, 8.749403125, 8.749403125, 8.749403125, 8.749403125, 8.749403125,
-          8.749403125, 8.749403125, 8.749403125,
         ],
         [
           8.473118750000001, 8.473118750000001, 8.473118750000001, 8.473118750000001, 8.473118750000001,
@@ -2441,19 +1534,8 @@ const LENS_DATA = {
           8.473118750000001, 8.473118750000001, 8.473118750000001, 8.473118750000001,
         ],
         [
-          8.196834375000002, 8.196834375000002, 8.196834375000002, 8.196834375000002, 8.196834375000002,
-          8.196834375000002, 8.196834375000002, 8.196834375000002, 8.196834375000002, 8.196834375000002,
-          8.196834375000002, 8.196834375000002, 8.196834375000002, 8.196834375000002, 8.196834375000002,
-          8.196834375000002, 8.196834375000002, 8.196834375000002, 8.196834375000002,
-        ],
-        [
           7.92055, 7.92055, 7.92055, 7.92055, 7.92055, 7.92055, 7.92055, 7.92055, 7.92055, 7.92055, 7.92055, 7.92055,
           7.92055, 7.92055, 7.92055, 7.92055, 7.92055, 7.92055, 7.92055,
-        ],
-        [
-          7.644265625, 7.644265625, 7.644265625, 7.644265625, 7.644265625, 7.644265625, 7.644265625, 7.644265625,
-          7.644265625, 7.644265625, 7.644265625, 7.644265625, 7.644265625, 7.644265625, 7.644265625, 7.644265625,
-          7.644265625, 7.644265625, 7.644265625,
         ],
         [
           7.367981250000001, 7.367981250000001, 7.367981250000001, 7.367981250000001, 7.367981250000001,
@@ -2462,20 +1544,10 @@ const LENS_DATA = {
           7.367981250000001, 7.367981250000001, 7.367981250000001, 7.367981250000001,
         ],
         [
-          7.091696875, 7.091696875, 7.091696875, 7.091696875, 7.091696875, 7.091696875, 7.091696875, 7.091696875,
-          7.091696875, 7.091696875, 7.091696875, 7.091696875, 7.091696875, 7.091696875, 7.091696875, 7.091696875,
-          7.091696875, 7.091696875, 7.091696875,
-        ],
-        [
           6.815412500000001, 6.815412500000001, 6.815412500000001, 6.815412500000001, 6.815412500000001,
           6.815412500000001, 6.815412500000001, 6.815412500000001, 6.815412500000001, 6.815412500000001,
           6.815412500000001, 6.815412500000001, 6.815412500000001, 6.815412500000001, 6.815412500000001,
           6.815412500000001, 6.815412500000001, 6.815412500000001, 6.815412500000001,
-        ],
-        [
-          6.539128125, 6.539128125, 6.539128125, 6.539128125, 6.539128125, 6.539128125, 6.539128125, 6.539128125,
-          6.539128125, 6.539128125, 6.539128125, 6.539128125, 6.539128125, 6.539128125, 6.539128125, 6.539128125,
-          6.539128125, 6.539128125, 6.539128125,
         ],
         [
           6.26284375, 6.26284375, 6.26284375, 6.26284375, 6.26284375, 6.26284375, 6.26284375, 6.26284375, 6.26284375,
@@ -2483,19 +1555,8 @@ const LENS_DATA = {
           6.26284375,
         ],
         [
-          5.986559375000001, 5.986559375000001, 5.986559375000001, 5.986559375000001, 5.986559375000001,
-          5.986559375000001, 5.986559375000001, 5.986559375000001, 5.986559375000001, 5.986559375000001,
-          5.986559375000001, 5.986559375000001, 5.986559375000001, 5.986559375000001, 5.986559375000001,
-          5.986559375000001, 5.986559375000001, 5.986559375000001, 5.986559375000001,
-        ],
-        [
           5.710275, 5.710275, 5.710275, 5.710275, 5.710275, 5.710275, 5.710275, 5.710275, 5.710275, 5.710275, 5.710275,
           5.710275, 5.710275, 5.710275, 5.710275, 5.710275, 5.710275, 5.710275, 5.710275,
-        ],
-        [
-          5.433990625, 5.433990625, 5.433990625, 5.433990625, 5.433990625, 5.433990625, 5.433990625, 5.433990625,
-          5.433990625, 5.433990625, 5.433990625, 5.433990625, 5.433990625, 5.433990625, 5.433990625, 5.433990625,
-          5.433990625, 5.433990625, 5.433990625,
         ],
         [
           5.15770625, 5.15770625, 5.15770625, 5.15770625, 5.15770625, 5.15770625, 5.15770625, 5.15770625, 5.15770625,
@@ -2503,28 +1564,13 @@ const LENS_DATA = {
           5.15770625,
         ],
         [
-          4.881421875, 4.881421875, 4.881421875, 4.881421875, 4.881421875, 4.881421875, 4.881421875, 4.881421875,
-          4.881421875, 4.881421875, 4.881421875, 4.881421875, 4.881421875, 4.881421875, 4.881421875, 4.881421875,
-          4.881421875, 4.881421875, 4.881421875,
-        ],
-        [
           4.6051375, 4.6051375, 4.6051375, 4.6051375, 4.6051375, 4.6051375, 4.6051375, 4.6051375, 4.6051375, 4.6051375,
           4.6051375, 4.6051375, 4.6051375, 4.6051375, 4.6051375, 4.6051375, 4.6051375, 4.6051375, 4.6051375,
-        ],
-        [
-          4.328853125, 4.328853125, 4.328853125, 4.328853125, 4.328853125, 4.328853125, 4.328853125, 4.328853125,
-          4.328853125, 4.328853125, 4.328853125, 4.328853125, 4.328853125, 4.328853125, 4.328853125, 4.328853125,
-          4.328853125, 4.328853125, 4.328853125,
         ],
         [
           4.05256875, 4.05256875, 4.05256875, 4.05256875, 4.05256875, 4.05256875, 4.05256875, 4.05256875, 4.05256875,
           4.05256875, 4.05256875, 4.05256875, 4.05256875, 4.05256875, 4.05256875, 4.05256875, 4.05256875, 4.05256875,
           4.05256875,
-        ],
-        [
-          3.776284375, 3.776284375, 3.776284375, 3.776284375, 3.776284375, 3.776284375, 3.776284375, 3.776284375,
-          3.776284375, 3.776284375, 3.776284375, 3.776284375, 3.776284375, 3.776284375, 3.776284375, 3.776284375,
-          3.776284375, 3.776284375, 3.776284375,
         ],
         [3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5],
       ],
@@ -2539,22 +1585,10 @@ const LENS_DATA = {
           28.79263333528158, 28.683624316605243, 28.573365429256548,
         ],
         [
-          29.979648683304685, 29.973391778686008, 29.955222181698712, 29.884478278277832, 29.78853968047438,
-          29.691607566249893, 29.5936644262087, 29.494692301471247, 29.39467276830386, 29.29358692208614,
-          29.19141536058207, 29.088138166478153, 28.98373488914972, 28.87818452561379, 28.771465500624902,
-          28.663555645866744, 28.55443217819, 28.444071676843244, 28.332450059640472,
-        ],
-        [
           29.759456294346116, 29.753123053881836, 29.73471678238651, 29.663052750856686, 29.56586978973735,
           29.46768442234326, 29.36847898468544, 29.268235358648056, 29.166934956425802, 29.064558704289077,
           28.961087025642207, 28.856499823337515, 28.7507764612056, 28.643895744759647, 28.535835901029074,
           28.426574557474673, 28.316088719934687, 28.20435474954771, 28.091348338594706,
-        ],
-        [
-          29.53944273777719, 29.5330317509002, 29.514384658035183, 29.441784414906913, 29.34333543586636,
-          29.243875116656266, 29.143385636868008, 29.04184871723222, 28.93924560385913, 28.83555705179627,
-          28.730763307868614, 28.624844092762814, 28.51777858231553, 28.409545387962737, 28.300122536304315,
-          28.189487447735594, 28.07761691409397, 27.964487075265527, 27.850073394693005,
         ],
         [
           29.31962813774057, 29.313137965515036, 29.29424581814979, 29.22069294651162, 29.120955848940174,
@@ -2563,22 +1597,10 @@ const LENS_DATA = {
           27.95230878196864, 27.839030803338105, 27.7244822753034, 27.608638429035086,
         ],
         [
-          29.100032845773626, 29.09346202019349, 29.0743204968782, 28.99979823851666, 28.898750465369996,
-          28.796673361915897, 28.69354878914986, 28.58935813945103, 28.48408232041334, 28.377701737972558,
-          28.27019627879303, 28.161545291874614, 28.051727569337793, 27.940721326342658, 27.82850418009421,
-          27.715053127883564, 27.600344524111364, 27.48435405623609, 27.36705671958618,
-        ],
-        [
           28.88067744877844, 28.87402447205656, 28.854629160914612, 28.779120408217086, 28.676738935303568,
           28.57331908118927, 28.468842544542166, 28.363290550384377, 28.256643833710577, 28.14888262239141,
           28.039986619324605, 27.929934983793675, 27.818706311991487, 27.70627861666334, 27.59262930582128,
           27.47773516047809, 27.361572311346233, 27.24411621444333, 27.125341625541825,
-        ],
-        [
-          28.661582777127503, 28.654846120964926, 28.63519251752662, 28.558679805159798, 28.454941130136014,
-          28.350154989697547, 28.244302918055514, 28.137365970638765, 28.029324707494254, 27.92015917596072,
-          27.80984889257796, 27.698372824190642, 27.585709368203243, 27.47183633193972, 27.356730911058847,
-          27.24036966697246, 27.122728503210944, 27.003782640676317, 26.88350659171907,
         ],
         [
           28.44276991289998, 28.43594801773517, 28.41603152271029, 28.338497019066597, 28.233377150131314,
@@ -2587,22 +1609,10 @@ const LENS_DATA = {
           27.00297155178266, 26.88382754589175, 26.763367324655267, 26.641565152975016,
         ],
         [
-          28.22426019825385, 28.217351472490698, 28.197167389478114, 28.1185928878821, 28.012067332158466,
-          27.90447605559927, 27.79580025674898, 27.686020644759108, 27.575117422334618, 27.46307026792961,
-          27.34985831715287, 27.235460143340987, 27.119853737253436, 27.00301648584189, 26.88492515004207,
-          26.76555584153381, 26.644883998410947, 26.52288435969898, 26.399530938654088,
-        ],
-        [
           28.006075243938692, 27.999078063152886, 27.97862159628472, 27.89898850595093, 27.791032257546412,
           27.68200112416044, 27.571876132929084, 27.46063781611184, 27.348266193801734, 27.23474075587209,
           27.120040443119816, 27.00414362756198, 26.88702809183921, 26.768671007677202, 26.649048913353596,
           26.52813769011464, 26.405912537482195, 26.282347947387656, 26.157417677064842,
-        ],
-        [
-          27.78823693795442, 27.781149644077217, 27.760415895595383, 27.679705232329066, 27.57029276006181,
-          27.45979621949535, 27.34819646382975, 27.2354738457795, 27.12160820004077, 27.006578824982387,
-          26.890364463519436, 26.77294328312543, 26.654292854935818, 26.534390131892806, 26.413211425877794,
-          26.29073238377482, 26.166927962403932, 26.04177240226002, 25.915239199987546,
         ],
         [
           27.57076745436142, 27.563588354839965, 27.542572322602634, 27.460764699234023, 27.349869934014222,
@@ -2611,22 +1621,10 @@ const LENS_DATA = {
           26.053355346266052, 25.927945199992358, 25.801172156545785, 25.673009447213293,
         ],
         [
-          27.35368926224761, 27.34641662918116, 27.32511320409645, 27.242188820640038, 27.129785142492995,
-          27.01627898885161, 26.90165085698044, 26.785880732044628, 26.668948069070016, 26.550831774100253,
-          26.431510184507907, 26.3109610484131, 26.189161503160783, 26.06608805280423, 25.94171654453907,
-          25.81602214402829, 25.688979309554902, 25.560561764934565, 25.43074247111575,
-        ],
-        [
           27.137025134858355, 27.12965720410925, 27.108061167493616, 27.023999801017446, 26.91006002574065,
           26.795008560289123, 26.678825719667323, 26.561491300763926, 26.442984564047613, 26.32328421444587,
           26.202368381362426, 26.0802145977861, 25.956799778441106, 25.832100196925083, 25.706091461778225,
           25.578748491422353, 25.450045487905463, 25.319955909382205, 25.188452441256537,
-        ],
-        [
-          26.920798158895362, 26.913333129173868, 26.89143915003232, 26.80622014423642, 26.690716509667517,
-          26.5740919695006, 26.456326653428338, 26.337400166864153, 26.217291572366264, 26.095979370229866,
-          25.9734414782023, 25.849655210272946, 25.724597254486714, 25.598243649726363, 25.470569761405496,
-          25.341550256010105, 25.211159074422305, 25.079369403955457, 24.94615364902498,
         ],
         [
           26.705031743990713, 26.697467775912823, 26.67527040813802, 26.58887266262128, 26.471776814512566,
@@ -2635,22 +1633,10 @@ const LENS_DATA = {
           25.10444346388328, 24.972335556149815, 24.8388171997161, 24.703860512313163,
         ],
         [
-          26.4897496323628, 26.48208484747989, 26.4595785269669, 26.37198048617563, 26.253263463655763,
-          26.13340712439805, 26.012391217684144, 25.89019495572507, 25.76679699451731, 25.64217541383603,
-          25.51630769631841, 25.389170705586373, 25.26074066335566, 25.130993125473672, 24.99990295682539,
-          24.867444305042323, 24.733590572945076, 24.598314389645168, 24.461587580227096,
-        ],
-        [
           26.274975908661006, 26.26720838846023, 26.244387430133933, 26.155567071978787, 26.035199292587116,
           25.913683012609404, 25.790997785883413, 25.667122622536013, 25.542035969542415, 25.415715690406405,
           25.288139043913162, 25.159282661903248, 25.029122526012944, 24.897633943322642, 24.764791520850654,
           24.630569138826164, 24.49493992267018, 24.357876213608396, 24.219349537834805,
-        ],
-        [
-          26.06073501000647, 26.052862794880753, 26.029721389632197, 25.939656213760774, 25.817607458038392,
-          25.694401040917388, 25.57001631704887, 25.44443209056114, 25.317626595313175, 25.18957747425215,
-          25.060261757825778, 24.92965584139655, 24.797735461602073, 24.664475671601522, 24.52985081514451,
-          24.393834499394114, 24.25639956643141, 24.117518063363534, 23.97716121095208,
         ],
         [
           25.84705173623632, 25.839072824422708, 25.81560503595101, 25.724272051662627, 25.60051144728292,
@@ -2659,22 +1645,10 @@ const LENS_DATA = {
           24.157257101261056, 24.017985633866065, 23.87725548761053, 23.73503757096646,
         ],
         [
-          25.633951260359506, 25.625863606844696, 25.602063368400596, 25.509439082188894, 25.383935087610006,
-          25.257255207279684, 25.129378385413133, 25.00028300153744, 24.869946850104927, 24.738347119175195,
-          24.605460368114063, 24.471262504254316, 24.335728758459453, 24.198833659527715, 24.06055100736956,
-          23.92085384488691, 23.77971442847792, 23.637104197085208, 23.492993739700516,
-        ],
-        [
           25.4214591392324, 25.413260654623937, 25.389121765650984, 25.29518216835972, 25.167902555980127,
           25.03943800951953, 24.909767261488795, 24.778868472343444, 24.646719209761933, 24.513296426974005,
           24.378576440085936, 24.242534904346446, 24.10514678929292, 23.9663863527138, 23.82622711335846,
           23.684641822321375, 23.541602433022085, 23.397080069697154, 23.251044994314462,
-        ],
-        [
-          25.209601324463193, 25.201289873825033, 25.176805996494323, 25.081526550070297, 24.95243838886768,
-          24.822156298764323, 24.690658795911457, 24.557923816838592, 24.423928697386206, 24.28865015066903,
-          24.152064244015776, 24.014146374827398, 23.87487124529237, 23.73421283589282, 23.59214437763166,
-          23.448638322905076, 23.303666314940344, 23.15719915571266, 23.0092067722492,
         ],
         [
           24.998404173553862, 24.989977575204836, 24.965142230838683, 24.868497854665495, 24.73756749229831,
@@ -2683,22 +1657,10 @@ const LENS_DATA = {
           23.21286083902811, 23.065922931847414, 22.917477682983165, 22.76749467621004,
         ],
         [
-          24.787894461290126, 24.779350485563555, 24.75415705094358, 24.656122107738586, 24.523315152088372,
-          24.38929647440066, 24.254044143038648, 24.11753563098451, 23.979747794047142, 23.84065684805997,
-          23.700238345011563, 23.558467148048408, 23.415317405285165, 23.270762522352893, 23.12477513361146,
-          22.97732707194696, 22.828389337069417, 22.6779320622202, 22.525924479191858,
-        ],
-        [
           24.57809939138882, 24.569435759351805, 24.543877462906366, 24.44442574416243, 24.309707044293887,
           24.173767843472998, 24.036585978032633, 23.898138680716624, 23.758402558507562, 23.617353569422907,
           23.474966998221078, 23.331217430955277, 23.186078728308345, 23.039523997638018, 22.891525563656064,
           22.74205493766068, 22.591082785234708, 22.43857889231681, 22.284512129545746,
-        ],
-        [
-          24.36904660841427, 24.36026099054479, 24.33433090841066, 24.23343561936331, 24.09676924587768,
-          23.958873684906177, 23.819726534888932, 23.679304782240212, 23.53758477878359, 23.394542218133264,
-          23.250152110961473, 23.10438875908828, 22.957225728325305, 22.808635820000546, 22.65859104108642,
-          22.507062572847435, 22.354020737918304, 22.199434965716662, 22.043273756087988,
         ],
         [
           24.16076420997468, 24.151854224794626, 24.125545276747278, 24.0231790208466, 23.88452824560296,
@@ -2707,22 +1669,10 @@ const LENS_DATA = {
           22.27236834086225, 22.11722086934044, 21.960517273830945, 21.80222567325142,
         ],
         [
-          23.95328075921078, 23.944243971873053, 23.917548917119834, 23.813683679985477, 23.673010955162557,
-          23.531091992711392, 23.38790389623884, 23.243423139734674, 23.097625544182186, 22.9504862530678,
-          22.80197970672653, 22.65207961545589, 22.50075893132654, 22.347989818612433, 22.193743622758408,
-          22.037990837796926, 21.88070107211979, 21.72184301250351, 21.56138438627969,
-        ],
-        [
           23.746625297589638, 23.73745921841716, 23.710370651247036, 23.604977784083303, 23.462244720553503,
           23.31825708045831, 23.172991709666086, 23.02642481525841, 22.878531941707514, 22.729287945927844,
           22.578666971136773, 22.426642419455572, 22.27318692317648, 22.11827231461682, 21.961869594475786,
           21.803948898603043, 21.6444794630822, 21.483429587525027, 21.320766596464576,
-        ],
-        [
-          23.540827358017197, 23.531529440991594, 23.504039786275158, 23.39708998872186, 23.252257333706993,
-          23.106161904999723, 22.958780283267583, 22.810088400962062, 22.660061518048092, 22.508674196581964,
-          22.355900274070617, 22.201712835541738, 22.046084184248347, 21.888985810926755, 21.73038836152074,
-          21.570261603278944, 21.408574389125402, 21.245294620196102, 21.080389206426545,
         ],
         [
           23.335916978283997, 23.32648461948175, 23.29858612801432, 23.190049430407758, 23.04307704438462,
@@ -2731,22 +1681,10 @@ const LENS_DATA = {
           21.336948283121654, 21.173004433140488, 21.007455952940177, 20.840269325438932,
         ],
         [
-          23.13192471485953, 23.12235525083292, 23.094039994513622, 22.983885739530326, 22.834732572352202,
-          22.68430072079301, 22.53256621079238, 22.37950440040658, 22.225089954595678, 22.069296818803878,
-          21.912098191263308, 21.753466493945577, 21.59337334208123, 21.431789512160623, 21.268684908324346,
-          21.104028527044484, 20.93778841999045, 20.76993165496606, 20.6004242747955,
-        ],
-        [
           22.92888165705146, 22.919172363151944, 22.89043222999082, 22.77862905364517, 22.627253119843417,
           22.474590819414797, 22.32061788771165, 22.165309381950525, 22.008639655503227, 21.85058233095221,
           21.691110271838216, 21.530195553022736, 21.36780942958279, 21.20392230414913, 21.03850369259327,
           20.871522187961496, 20.7029454225467, 20.532740027980807, 20.36087159322198,
-        ],
-        [
-          22.72681944154717, 22.716967530188168, 22.687794219133234, 22.574310031098413, 22.420668384326014,
-          22.265732893232375, 22.109478992994223, 21.951881430111705, 21.792914236185705, 21.632550700429586,
-          21.47076334084092, 21.307523873953485, 21.142803183084766, 20.976571284987298, 20.808797294806432,
-          20.63944938923944, 20.468494767783714, 20.29589961195283, 20.12162904233103,
         ],
         [
           22.525770267356144, 22.515772886212467, 22.486157901787752, 22.37095986500743, 22.21500857158448,
@@ -2755,22 +1693,10 @@ const LENS_DATA = {
           20.4078305312183, 20.234456042932678, 20.059429190925837, 19.882714612121053,
         ],
         [
-          22.325766911173044, 22.315621141313613, 22.285555788059167, 22.168610297615356, 22.01030440913332,
-          21.850690408343482, 21.6897430987249, 21.527436573107767, 21.363744186367686, 21.19863852679033,
-          21.032091386027854, 20.86407372756252, 20.6945556535872, 20.523506370205876, 20.350894150850298,
-          20.176686297801183, 20.00084910169441, 19.82334779888327, 19.644146526518586,
-        ],
-        [
           22.12684274318241, 22.116545597133147, 22.086020973836806, 21.967293635037386, 21.806587159977127,
           21.64456582203915, 21.4812040917677, 21.316475717615436, 21.150353698066414, 20.982810252395613,
           20.81381678998382, 20.643343878101135, 20.471361208065527, 20.297837559676793, 20.12274076381882,
           19.94603766311482, 19.7676940705122, 19.58767472566407, 19.405943248964203,
-        ],
-        [
-          21.92903174332751, 21.91858016306075, 21.887587156771406, 21.76704276241805, 21.60388863673323,
-          21.43941318173785, 21.273590522619884, 21.106394050722304, 20.937796395073565, 20.767769392519384,
-          20.596284056372387, 20.423310543489603, 20.248818119681953, 20.07277512335258, 19.895148927253402,
-          19.715905898241115, 19.53501135490498, 19.35242952292917, 19.168123488041694,
         ],
         [
           21.732368518067624, 21.72175937291422, 21.69028865272528, 21.56789115952059, 21.40224121613525,
@@ -2779,22 +1705,10 @@ const LENS_DATA = {
           19.48631257802146, 19.302821645861393, 19.117632010179438, 18.930706203150528,
         ],
         [
-          21.536888317649176, 21.526118402129473, 21.494160412720575, 21.369872916770134, 21.201677853935923,
-          21.032149474891206, 20.861261173399157, 20.688985584924737, 20.515294556912497, 20.340159117590996,
-          20.16354944321472, 19.98543482364819, 19.805783626189704, 19.624563257524905, 19.441740123692355,
-          19.257279587934136, 19.071145926295205, 18.883302280824697, 18.693710610221057,
-        ],
-        [
           21.342627053918577, 21.331693085487657, 21.299238040412035, 21.173022751774376, 21.002232100229634,
           20.830102662407604, 20.656607444113842, 20.481718680151722, 20.305407803937772, 20.12764541560373,
           19.94840124849364, 19.767644133957397, 19.58534196433497, 19.40146165401777, 19.2159690984654,
           19.02882913104648, 18.840005477562705, 18.649460708304193, 18.457156187472325,
-        ],
-        [
-          21.14962131870595, 21.13851993540887, 21.105557810112842, 20.97737602634728, 20.80393811521613,
-          20.6291563328616, 20.453003280921475, 20.27545077700881, 20.096469823638614, 19.91603057560013,
-          19.73410230567982, 19.55065336863298, 19.365651163295322, 19.179062092716393, 18.990851522189576,
-          18.80098373504255, 18.60942188604241, 18.416127952258375, 18.221062681212306,
         ],
         [
           20.957908402811654, 20.946636160843667, 20.91315668540364, 20.782968764062687, 20.606830685428438,
@@ -2803,22 +1717,10 @@ const LENS_DATA = {
           18.57376625932779, 18.37941704977784, 18.18332496475208, 17.98545011167982,
         ],
         [
-          20.767526315629237, 20.75607968679581, 20.722072338357645, 20.589837668366826, 20.410945240449706,
-          20.230700045568693, 20.049073823772357, 19.866037504091633, 19.681561172005832, 19.495614035266346,
-          19.308164387976678, 19.119179572820126, 18.928625941318188, 18.736468811994232, 18.54267242630743,
-          18.34719990221186, 18.15001318518382, 17.951072996549136, 17.750338778928082,
-        ],
-        [
           20.578513805441432, 20.566889174512504, 20.53234316941666, 20.398020141281076, 20.216317870145527,
           20.033259085276473, 19.848815066764654, 19.662956269722358, 19.47565229097388, 19.286871834057152,
           19.096582672431413, 18.90475161077871, 18.711344444278158, 18.516325915723215, 18.31965967034212,
           18.12130820817095, 17.92123283381713, 17.71939360343853, 17.51574926874924,
-        ],
-        [
-          20.39091038042797, 20.37910404238054, 20.34400832795543, 20.20755430272822, 20.022985342439974,
-          19.837056635058005, 19.64973897941754, 19.461002335115428, 19.270815788392532, 19.079147516278613,
-          18.885964748891137, 18.69123372977156, 18.494919674134337, 18.296986724893472, 18.097397906322477,
-          17.896115075191222, 17.693098869211823, 17.488308652611934, 17.28170245863961,
         ],
         [
           20.204756330427525, 20.19276448757022, 20.157107733574936, 20.018479010518, 19.830985121666096,
@@ -2827,22 +1729,10 @@ const LENS_DATA = {
           17.671644762194926, 17.46563450378039, 17.257840329092883, 17.04821952380493,
         ],
         [
-          20.020092749498442, 20.007911508471192, 19.9716820981677, 19.830833881030767, 19.640355387523268,
-          19.44851237152773, 19.255274599247585, 19.060610968279914, 18.864489471775425, 18.666877160757537,
-          18.467740104484303, 18.267043348728357, 18.064750871840744, 17.86082553845365, 17.655229050667067,
-          17.447921896550767, 17.238863295781254, 17.028011142217643, 16.81532194320529,
-        ],
-        [
           19.836961559327182, 19.824586927968923, 19.78777294880192, 19.644659310640357, 19.4511350546767,
           19.2562448156882, 19.059957805080007, 18.8622423505766, 18.66306585946266, 18.46239477992796,
           18.26019456039638, 18.056429606709077, 17.85106323702302, 17.644057634274766, 17.435373796047998,
           17.22497148167067, 17.012809156353647, 16.798843932167678, 16.583031505639212,
-        ],
-        [
-          19.65540553353645, 19.642833417612792, 19.60542265147442, 19.45999649792089, 19.263363793036977,
-          19.06536432130965, 18.86596671118344, 18.665138692117267, 18.462847056863872, 18.259057621796266,
-          18.053735185156448, 17.84684348309243, 17.638345143338846, 17.42820163638584, 17.216373223968315,
-          17.002818904694898, 16.787496356620853, 16.570361876554202, 16.35137031586629,
         ],
         [
           19.475468322949226, 19.462694522731965, 19.424674435786503, 19.27688746668539, 19.07708204876006,
@@ -2851,22 +1741,10 @@ const LENS_DATA = {
           16.781489944267502, 16.562949534862824, 16.34258849705459, 16.120360800767997,
         ],
         [
-          19.297194481869358, 19.284214688558784, 19.245572420600933, 19.095375089907932, 18.89233106601174,
-          18.687920930480487, 18.48211205291625, 18.27487087275375, 18.066162859476925, 17.855952470761704,
-          17.64420310841014, 17.430877071932013, 17.215935509617676, 16.999338366934893, 16.781044332068078,
-          16.56101077840508, 16.339193703759637, 16.115547666101435, 15.890025715545994,
-        ],
-        [
           19.120629495443968, 19.10743928742429, 19.068161640742545, 18.91550311458477, 18.709152909543214,
           18.50143813592607, 18.29232548281093, 18.08178069330633, 17.869768523659854, 17.656252700227995,
           17.44119587416839, 17.22455957370432, 17.00630415379976, 16.786388743070628, 16.56477118774383,
           16.341407992461022, 16.116254257706835, 15.889263613624113, 15.660388149957733,
-        ],
-        [
-          18.945819808178026, 18.93241464709581, 18.892488074810394, 18.73731618759445, 18.527590488129093,
-          18.316502648347743, 18.104018639326327, 17.890103470291653, 17.674721146563883, 17.457834625293962,
-          17.239405768851544, 17.019395295707067, 16.7977627286402, 16.574466340093025, 16.3494630944722,
-          16.12270858718848, 15.894156980204606, 15.663760933843534, 15.431471534588553,
         ],
         [
           18.772812853677376, 18.759188080331537, 18.718598674174032, 18.56085988262162, 18.34768757892187,
@@ -2875,22 +1753,10 @@ const LENS_DATA = {
           15.904939986905259, 15.672928051322156, 15.439064592120728, 15.20329964716034,
         ],
         [
-          18.601657085701802, 18.587807915733567, 18.54654139323309, 18.38618072821423, 18.16948885278231,
-          17.95144259572149, 17.73200636818058, 17.511143587702357, 17.288816633642853, 17.064986800245126,
-          16.839614247210896, 16.612657947601107, 16.384075632883587, 16.15382373493118, 15.921857324757996,
-          15.688130047764044, 15.452594055239592, 15.215199931859587, 14.975896618875838,
-        ],
-        [
           18.43240201061739, 18.418323529987173, 18.37636522102487, 18.213326237049394, 17.993039900649023,
           17.771404646331813, 17.548384036981744, 17.323940626144406, 17.098035912077282, 16.870630289380564,
           16.64168299804492, 16.41115206974126, 16.178994271162153, 15.945165044210826, 15.709618442815787,
           15.47230706613206, 15.233181987869205, 14.992192681464859, 14.74928694079882,
-        ],
-        [
-          18.265098221343617, 18.25078538158097, 18.208120214272252, 18.042344936489275, 17.818387261016046,
-          17.59308728366512, 17.366407668857338, 17.1383100561564, 16.90875501286972, 16.67770198415268,
-          16.445109240447042, 16.210933822070196, 15.975131480757817, 15.73765661794638, 15.498462219564662,
-          15.257499787084306, 15.014719264558751, 14.770068961356444, 14.523495470269749,
         ],
         [
           18.099797432899113, 18.08524504611105, 18.041857531971086, 17.873286400514964, 17.645578448592428,
@@ -2899,22 +1765,10 @@ const LENS_DATA = {
           15.043737413015236, 14.797233727879608, 14.548855291040745, 14.298547437356678,
         ],
         [
-          17.936552519658246, 17.92175525327955, 17.87762947162492, 17.70620128313341, 17.474661984224173,
-          17.241797389339887, 17.00756819961015, 16.771934061345583, 16.53485351546398, 16.296283944260214,
-          16.056181515335123, 15.81450112248455, 15.57119632333305, 15.326219273480213, 15.079520656907599,
-          14.831049612373898, 14.580753655502564, 14.32857859624088, 14.074468451341708,
-        ],
-        [
           17.775417554440242, 17.760369925708556, 17.71548950724351, 17.54114135336011, 17.305687426164706,
           17.06891876438787, 16.830794995611154, 16.59127467841291, 16.350315250050592, 16.107872971403385,
           15.863902868982764, 15.61835867380281, 15.371192756885689, 15.122356061159506, 14.871798029485305,
           14.619466528528465, 14.365307768165021, 14.109266216087216, 13.851284507242914,
-        ],
-        [
-          17.616447849562302, 17.601144219699332, 17.55549232923124, 17.37815953188919, 17.138705402788002,
-          16.897948596640592, 16.6558475997805, 16.41235981609053, 16.16744151282145, 15.921047763586397,
-          15.673132388329133, 15.423647890049299, 15.17254538804942, 14.919774547449986, 14.665283504697323,
-          14.409018788766181, 14.150925237733222, 13.890945910369924, 13.62902199237221,
         ],
         [
           17.4597, 17.444134568078308, 17.39769388630269, 17.21730992957126, 16.97376764684551, 16.728936341374062,
@@ -2923,22 +1777,10 @@ const LENS_DATA = {
           13.937635695363898, 13.673645866856113, 13.407707692929598,
         ],
         [
-          17.488183204999125, 17.472363272805147, 17.425130755949287, 17.24167458900622, 16.993992427531172,
-          16.74500760150363, 16.494675675588464, 16.242951076029062, 15.989787030979867, 15.735135507729122,
-          15.478947146583087, 15.22117119116458, 14.961755414858528, 14.700646043115132, 14.437787671296919,
-          14.173123177729071, 13.906593631582965, 13.638138195190187, 13.367694020348441,
-        ],
-        [
           17.517684123937467, 17.50160461844213, 17.453565244358906, 17.266978647643683, 17.01507828479352,
           16.76186145456996, 16.50728192496038, 16.251292280047515, 15.993843856585947, 15.734886677254591,
           15.474369380336304, 15.212239145555802, 14.948441615784636, 14.682920814298082, 14.41561905724153,
           14.146476860934518, 13.875432843608053, 13.602423621134694, 13.327383696270736,
-        ],
-        [
-          17.548239471448444, 17.53189522395942, 17.483033681760524, 17.293257320434243, 17.037058940891527,
-          16.779530133036758, 16.52062277403456, 16.26028750952634, 15.998473686162756, 15.735129280580976,
-          15.470200824556, 15.203633326032973, 14.935370185723517, 14.665353108921687, 14.393522012165988,
-          14.119814924341174, 13.844167881777082, 13.566514816862304, 13.286787439645773,
         ],
         [
           17.579886781223816, 17.563272525711117, 17.513573210785182, 17.320546615851907, 17.059968887147637,
@@ -2947,22 +1789,10 @@ const LENS_DATA = {
           14.093154220927017, 13.812813754034647, 13.530424874967984, 13.245916349086247,
         ],
         [
-          17.61266442081188, 17.595774792205923, 17.54522180115702, 17.34888335031386, 17.083843398092665,
-          16.81744463704528, 16.549634859517752, 16.280360524294554, 16.009566680080415, 15.737196884908498,
-          15.463193121152957, 15.187495705797616, 14.91004319558251, 14.630772286617724, 14.349617708017439,
-          14.06651210906742, 13.781385939394657, 13.49416732155857, 13.204781915428692,
-        ],
-        [
           17.646611606507943, 17.629441138968758, 17.57801826447039, 17.37830516267253, 17.108718545672183,
           16.837758710470233, 16.565371244334596, 16.291500346345618, 16.016088745816717, 15.739077616350748,
           15.460406485180826, 15.180013137414852, 14.897833514770765, 14.61380160835262, 14.327849344978581,
           14.03990646652654, 13.749900401714683, 13.457756129679177, 13.163396034650216,
-        ],
-        [
-          17.68176841833352, 17.664311543489063, 17.61200226904881, 17.40885052877405, 17.134631213505944,
-          16.85902413314603, 16.581972553542876, 16.303418295183835, 16.023301646156845, 15.741561270433944,
-          15.458134111093178, 15.172955288062335, 14.885957989932699, 14.597073359350102, 14.306230371447144,
-          14.013355704730532, 13.718373603783304, 13.421205733080386, 13.121771021148406,
         ],
         [
           17.71817581510122, 17.700426860253103, 17.647214354882287, 17.440558776076884, 17.161619111192117,
@@ -2971,22 +1801,10 @@ const LENS_DATA = {
           13.986878783321458, 13.686822521721924, 13.384531040330014, 13.079919621390307,
         ],
         [
-          17.75587564956301, 17.737828835857382, 17.68369594863939, 17.473470098324952, 17.18972078864764,
-          16.90455424054737, 16.617908702357575, 16.32972085461205, 16.03992571075737, 15.748456512482777,
-          15.455244619207704, 15.160219391228237, 14.863308065979414, 14.564435626821254, 14.263524663701713,
-          13.96049522498954, 13.655264659701388, 13.347747449272767, 13.037855027937077,
-        ],
-        [
           17.79491068364003, 17.776560124201026, 17.721489378751524, 17.50762557026966, 17.218975650476604,
           16.92889358580031, 16.637314914769444, 16.344173542616247, 16.049401635122475, 15.752929506687167,
           15.454685502113005, 15.15459587156417, 14.852584638099682, 14.54857345713215, 14.24248146710086,
           13.934225130580753, 13.623718064973323, 13.310870861840678, 12.995590893849958,
-        ],
-        [
-          17.835324603733348, 17.81666430175655, 17.760637890567324, 17.543067162436255, 17.249423970358414,
-          16.9543336296644, 16.657728825279793, 16.359540540326492, 16.05969794255077, 15.758128264545794,
-          15.45475667721696, 15.1495061558897, 14.842297338405103, 14.533048374488779, 14.221674765610363,
-          13.908089194476602, 13.592201343215695, 13.273917699216948, 12.953141347483264,
         ],
         [
           17.877162036094642, 17.858185882918455, 17.801185661576316, 17.579837755929947, 17.281106905447878,
@@ -2995,22 +1813,10 @@ const LENS_DATA = {
           13.88210872024088, 13.56073367419101, 13.236904917354755, 12.910521007669715,
         ],
         [
-          17.92046856236838, 17.901170335430795, 17.843177816701623, 17.617981157278244, 17.314066510779554,
-          17.008674474835328, 16.701731564035185, 16.39316244463039, 16.082889804278388, 15.770834214621754,
-          15.456913986035529, 15.141045013818646, 14.823140615037573, 14.50311135515624, 14.180864863502661,
-          13.856305636528829, 13.52933482771517, 13.199850022852736, 12.867744999302642,
-        ],
-        [
           17.965290735064, 17.94566409589628, 17.88666044366324, 17.65754211330703, 17.348345753669516,
           17.037656801774894, 16.725398438519676, 16.41149191818634, 16.095856428815406, 15.778408944872359,
           15.459064071478021, 15.137733879404538, 14.814327729965935, 14.488752088848145, 14.16091032783131,
           13.830702513251865, 13.498025179933947, 13.162771089187455, 12.824828969320027,
-        ],
-        [
-          18.01167609325504, 17.9917145853704, 17.93168060841429, 17.698566326048404, 17.383988528107576,
-          17.06790290677933, 16.750229131499744, 16.43088486330985, 16.109785605088398, 15.786844543496596,
-          15.461972381829892, 15.13507716289876, 14.806064080978002, 14.474835281771515, 14.141289649236278,
-          13.805322577990871, 13.466825729903327, 13.125686773303038, 12.781789103093761,
         ],
         [
           18.05967317831203, 18.039370225046575, 17.97828637065461, 17.74110046768013, 17.421039669134665,
@@ -3019,22 +1825,10 @@ const LENS_DATA = {
           13.780189732649541, 13.435758116468875, 13.088616332557118, 12.73864214122768,
         ],
         [
-          18.109331549749946, 18.08868045203958, 18.02652679942778, 17.785192195497412, 17.459544967200266,
-          17.132359463446207, 16.803547758179512, 16.473019742375367, 16.140682951422296, 15.806442382906017,
-          15.470200303817219, 15.131856046116418, 14.79130578948647, 14.448442329989014, 14.103154833210624,
-          13.75532857033848, 13.4048446354385, 13.051579642021306, 12.695405396767391,
-        ],
-        [
           18.160701801189614, 18.13969573527721, 18.07645198880989, 17.830890166919698, 17.499551182495907,
           17.166658756452996, 16.83212085771408, 16.495843179196466, 16.157728952332878, 15.817678751257748,
           15.475590285581221, 15.13135818057284, 14.784873743463466, 14.436024714445981, 14.084695000809727,
           13.730764392479237, 13.374108257041526, 13.014597212133818, 12.652096772823354,
-        ],
-        [
-          18.213835576445778, 18.192467591512276, 18.128113073700355, 17.878244054536886, 17.541106059262454,
-          17.202399537962773, 16.86202813473166, 16.51989312063101, 16.175893194281123, 15.82992427132124,
-          15.481879261550054, 15.131647832446047, 14.779116157639447, 14.42416664876546, 14.066677668965156,
-          13.706523226116326, 13.343572643666324, 12.977690206700657, 12.608734780609115,
         ],
         [
           18.26878558575755, 18.24704860147022, 18.18156224572818, 17.92730456120143, 17.584258340069713,
@@ -3043,22 +1837,10 @@ const LENS_DATA = {
           13.682631841424048, 13.313262167867064, 12.940880461240557, 12.56533855789484,
         ],
         [
-          18.32560562217997, 18.303492426150203, 18.23685276928965, 17.978123435174997, 17.629057780068877,
-          17.27839382249574, 16.92602584884461, 16.57184556601511, 16.21574187055804, 15.857600604898003,
-          15.497304299185451, 15.134731897187827, 14.769758464471611, 14.402254876948437, 14.032087487653676,
-          13.659117769393308, 13.283201930629104, 12.90419050166822, 12.521927887875716,
-        ],
-        [
           18.38435057815936, 18.361853823301725, 18.29403899773701, 18.03075348534164, 17.67555516122041,
           17.318743926250583, 16.960209007947846, 16.59983694470973, 16.237511337225296, 15.873112585963794,
           15.506517613135692, 15.137599567365594, 14.766227509140936, 14.392266074899737, 14.015575117391297,
           13.636009319682376, 13.25341777988116, 12.867643563308768, 12.478523218453972,
-        ],
-        [
-          18.445076462318443, 18.42218866410179, 18.353176389741005, 18.085248596501398, 17.723802306501646,
-          17.360728747036084, 16.995911814866115, 16.629232603626313, 16.260569136008684, 15.889796080942833,
-          15.516784453993663, 15.141401299026953, 14.763509348996296, 14.382966663481323, 13.99962624034877,
-          13.613335598613727, 13.223936329240571, 12.831263610234904, 12.435145681931802,
         ],
         [
           18.507840416482097, 18.484553950062605, 18.414321525854632, 18.1416637447624, 17.77385209410129,
@@ -3067,22 +1849,10 @@ const LENS_DATA = {
           13.591126527297629, 13.194784976976885, 12.795075354917273, 12.391817115111683,
         ],
         [
-          18.572700732978948, 18.5490078302044, 18.477532125309587, 18.20005501305312, 17.825758471610413,
-          17.449806912384737, 17.072072694706282, 16.69242513337053, 16.31073018735269, 15.926850131086859,
-          15.540643206127196, 15.151963250794417, 14.760659305166595, 14.366575188490033, 13.96954904576188,
-          13.569412859861501, 13.16599192517712, 12.759104278176817, 12.348560079798965,
-        ],
-        [
           18.639716872259843, 18.61560961853269, 18.542867063082134, 18.260479606780045, 17.87957647022298,
           17.49700504998741, 17.11263146647689, 16.726318668084808, 16.337926095366058, 15.947309326412395,
           15.55431970101093, 15.158803920926239, 14.760603623373603, 14.359554924433187, 13.955487928789946,
           13.548226201762098, 13.137586199094056, 12.723376649426083, 12.305397883700579,
-        ],
-        [
-          18.70894948087924, 18.684419811865727, 18.610386387270186, 18.322995869661, 17.93536221896202,
-          17.54604751699796, 17.15491130876565, 16.76180983525181, 16.366595670968607, 15.969117341225873,
-          15.56921891645335, 15.166739580620874, 14.761513170498059, 14.353367682139135, 13.942124740567046,
-          13.52759902815572, 13.109597666657598, 12.687919547185007, 12.262354601711813,
         ],
         [
           18.780460409892836, 18.755500108063394, 18.68015133683002, 18.387663299769443, 17.99317295895178,
@@ -3091,22 +1861,10 @@ const LENS_DATA = {
           13.507564702300067, 13.082057058126782, 12.652760879854743, 12.219455097581884,
         ],
         [
-          18.854312733731096, 18.82891342471655, 18.752224359726995, 18.454542565830153, 18.053067057760323,
-          17.649886777856537, 17.244847035963197, 16.837789560496695, 16.428552075674183, 16.016967855195297,
-          15.602865249063026, 15.186067179899753, 14.766390604729565, 14.343645937749356, 13.917636429089676,
-          13.48815749395896, 13.054995985858504, 12.617929406731292, 12.17672504594711,
-        ],
-        [
           18.930570769616295, 18.904723918362684, 18.826669131562372, 18.52369552381337, 18.115104023841315,
           17.704796978073293, 17.292611996498636, 16.878382962436667, 16.46193957567348, 16.04310687021993,
           15.62170470300735, 15.19754720946913, 14.770442221525107, 14.340190642981714, 13.90658577677275,
           13.469412597779272, 13.02844696416636, 12.583454759238347, 12.134190954718594,
-        ],
-        [
-          19.009300097599034, 18.982997004302256, 18.903550574745903, 18.595185233880436, 18.179344521110306,
-          17.761778346177152, 17.342316202385316, 16.920783706967406, 16.49700210719104, 16.070787759117227,
-          15.641951574914287, 15.210298434219549, 14.775626554558318, 14.337726815262945, 13.896382028671113,
-          13.451366151607154, 13.002443429241193, 12.549367462357, 12.091880187809526,
         ],
         [
           19.0905675812994, 19.06379937709936, 18.982934878292753, 18.669075977742164, 18.24585038369475,
@@ -3115,22 +1873,10 @@ const LENS_DATA = {
           13.434055254708944, 12.977019759102681, 12.515698956227203, 12.04982098818494,
         ],
         [
-          19.174441389447868, 19.147199031859905, 19.064889518332986, 18.74543327649836, 18.314684630904836,
-          17.88219371961215, 17.447772458667156, 17.01122857770065, 16.572365042091104, 16.130979443394587,
-          15.6868633529681, 15.23980163320029, 14.789571700156932, 14.335942730731494, 13.878674806546714,
-          13.41751798585911, 12.952211293548316, 12.482481617893988, 12.008042501214497,
-        ],
-        [
           19.26099101833221, 19.233265286391653, 19.149483279431415, 18.824323909036174, 18.385911482478623,
           17.945750157341728, 17.503642339010085, 17.05938608615812, 16.6127744854047, 16.163594991801578,
           15.711628729505929, 15.256649746415334, 14.798424215862266, 14.336709577659434, 13.871253609833005,
           13.401793421256054, 12.928054354064635, 12.449748783168385, 11.966574798306755,
-        ],
-        [
-          19.350287315268236, 19.322068804361646, 19.23678627682787, 18.905815931074528, 18.459596374162206,
-          18.01162265361805, 17.56168714697755, 17.109577721931405, 16.65507705933615, 16.197961939455308,
-          15.738002485136226, 15.27496135498984, 14.808592878876555, 14.338642127094394, 13.864843903588138,
-          13.386921652223855, 12.904586263661855, 12.417534768570986, 11.925448900800564,
         ],
         [
           19.44240250322545, 19.41368161958002, 19.32686997971964, 18.989978694951816, 18.53580597369475,
@@ -3139,22 +1885,10 @@ const LENS_DATA = {
           13.372943802655875, 12.88184536659147, 12.385874893322278, 11.884696804084399,
         ],
         [
-          19.537410206752977, 19.50817716155291, 19.419807235721233, 19.07688287026636, 18.61460819727678,
-          18.150573575940914, 17.684549659435408, 17.216302258646063, 16.74559154796794, 16.272171228585556,
-          15.79578764141009, 15.31617882105511, 14.833073481272862, 14.3461899211222, 13.855234839765597,
-          13.359902046153689, 12.859871047902978, 12.354805501342529, 11.844351501921295,
-        ],
-        [
           19.63538547936633, 19.605630282462194, 19.515672296651715, 19.1666004654904, 18.696072226610198,
           18.22378387592841, 17.749494307174054, 17.272957403959587, 16.793921179166293, 16.31212686864895,
           15.827307970533587, 15.339189220494315, 14.847485492319546, 14.351900611781907, 13.852126070273933,
           13.34783962281242, 12.83870375279338, 12.324363983219262, 11.804447010933458,
-        ],
-        [
-          19.736404832572102, 19.706117285746494, 19.614540845814766, 19.259204850692825, 18.780268526609145,
-          18.299574009711232, 17.816867790971195, 17.33189118358693, 16.844379390113637, 16.3540605205569,
-          15.860654551689002, 15.363872216861031, 14.863413814376568, 14.358967921034772, 13.850209995694168,
-          13.336800855601396, 12.818385005700165, 12.294588798098822, 11.765018395223661,
         ],
         [
           19.840546266726978, 19.80971595647616, 19.716490026955263, 19.354770781519942, 18.867268863893226,
@@ -3163,22 +1897,10 @@ const LENS_DATA = {
           13.326831166286382, 12.798957429086077, 12.265519495443005, 11.72610179108607,
         ],
         [
-          19.947889303945907, 19.91650559373423, 19.821598475093577, 19.45337442459987, 18.957146326186464,
-          18.45917101249816, 17.95916809109603, 17.456851661727416, 16.95192921926286, 16.44410050027269,
-          15.93305626110337, 15.418476974085001, 14.90003142698583, 14.377375208979911, 13.850149064150536,
-          13.317977090837683, 12.7804647618599, 12.237196736689345, 11.687734431766058,
-        ],
-        [
           20.05851502329745, 20.026567045236654, 19.929946349460373, 19.555093384553246, 19.049975342760014,
           18.543119637831786, 18.034231316904076, 17.52300975983526, 17.009147488985434, 16.492328918670857,
           15.972229030731818, 15.448511961284627, 14.920829482029486, 14.388819357404284, 13.852103556336392,
           13.310286294265662, 12.76295187737627, 12.20966231644654, 11.649954672222428,
-        ],
-        [
-          20.172506098546652, 20.139982744449025, 20.041615368776206, 19.660006732812043, 19.1458317060715,
-          18.629931640896167, 18.111996220792776, 17.591709308590765, 17.068747654779695, 16.542779541360275,
-          16.013463346053395, 15.480446010190235, 14.943361391703696, 14.401828482297763, 13.855449465002113,
-          13.303807584823751, 12.746464800952817, 12.182959183801405, 11.612802013841304,
         ],
         [
           20.289946838732607, 20.256836750481636, 20.156688849145144, 19.76819503846852, 19.244792594770168,
@@ -3187,22 +1909,10 @@ const LENS_DATA = {
           13.298590927516022, 12.731050726841314, 12.157131462876368, 11.57631712904747,
         ],
         [
-          20.41092323189515, 20.377214791072753, 20.27525174485752, 19.879740401398898, 19.34693659825513,
-          18.812443452854925, 18.27591732284132, 17.7370084654282, 17.19535951486644, 16.65060388654571,
-          16.102364088787027, 15.55024992150101, 14.993856538503996, 14.432762347315279, 13.86652671659106,
-          13.29468745684552, 12.716758034586137, 12.132224473218084, 11.540541885754655,
-        ],
-        [
           20.535522992296347, 20.50120430900016, 20.397390692426217, 19.994726487930574, 19.452343742992927,
           18.908295405667733, 18.362219769061404, 17.81374890481341, 17.262507009366917, 16.708108672193262,
           16.15015704477736, 15.588241887085374, 15.021937465572062, 14.450800273443463, 13.874366539745697,
           13.292149488736383, 12.703636304700147, 12.108284749623172, 11.505519371592142,
-        ],
-        [
-          20.663835611515562, 20.6288945122943, 20.523194058212226, 20.11323856934791, 19.561095520821997,
-          19.00731506308485, 18.451516416383765, 17.89331247524757, 17.3323080117304, 16.768097795798617,
-          16.20026460914673, 15.628377126415515, 15.051987634808047, 14.470629559342008, 13.883814756291049,
-          13.291030531562594, 12.691736333586064, 12.085360061422456, 11.471293917840374,
         ],
         [
           20.79595241383364, 20.76037642866135, 20.65275199002932, 20.235363563560334, 19.673274919493906,
@@ -3211,22 +1921,10 @@ const LENS_DATA = {
           13.291385296213326, 12.681110147627965, 12.063499431135766, 11.4379111230041,
         ],
         [
-          20.931966616361954, 20.895742964565404, 20.786156473155955, 20.36119008028855, 19.788966455726772,
-          19.215176770545167, 18.63939882948152, 18.06120396903466, 17.48015493455906, 16.895803664659237,
-          16.3076889531579, 15.715333956084951, 15.118243507422726, 14.515901202596993, 13.907766202721264,
-          13.293269705124743, 12.671811016376568, 12.042753152417971, 11.405417875946807,
-        ],
-        [
           21.071973394415696, 21.035088969461206, 20.923501391222942, 20.490808470157578, 19.908256211071915,
           19.324181983951263, 18.7381411176772, 18.149682443889365, 17.55834598835723, 16.96366056472864,
           16.365141237357076, 15.762286616790112, 15.154575947364254, 14.541465941020887, 13.922387304702855,
           13.296740900206249, 12.663893464744998, 12.023172807212527, 11.373862378505343,
-        ],
-        [
-          21.216069952679305, 21.178511305716466, 21.064882592491163, 20.624310878123975, 20.031231870925307,
-          19.43668128133894, 18.840190686878408, 18.241285174286574, 17.6394808281209, 17.034282116892108,
-          16.4251791394422, 15.811644690813797, 15.19313110225458, 14.569066804018036, 13.938852551995549,
-          13.301857249589307, 12.657413284138459, 12.00481128202577, 11.34329416749935,
         ],
         [
           21.364355602764466, 21.32610892481526, 21.210397962082315, 20.761791301704335, 20.157982767046093,
@@ -3235,22 +1933,10 @@ const LENS_DATA = {
           13.308678353125822, 12.652427542428114, 11.987722783231217, 11.31376413604453,
         ],
         [
-          21.51693184782041, 21.477982950490713, 21.36014750078152, 20.903345654517743, 20.28859992397975,
-          19.6725045554078, 19.05453947424102, 18.434178261237363, 17.810885177427128, 17.184112077691307,
-          16.553295166051647, 15.917851541626433, 15.277175478510934, 14.630634375320867, 13.977564300431014,
-          13.31726504656369, 12.648994592686865, 11.971962851310513, 11.28532455407489,
-        ],
-        [
           21.67390247491907, 21.63423676949903, 21.51423341108868, 21.049071835702968, 20.42317610982066,
           19.796003568021398, 19.167006058294138, 18.535629239309912, 17.901309340617786, 17.26346980763512,
           16.621517778796083, 15.974840337707219, 15.322800476841358, 14.664732700879231, 13.999938186866718,
           13.32767940432728, 12.647174080598283, 11.957588373933218, 11.258029087973238,
-        ],
-        [
-          21.835373656010468, 21.79497613081641, 21.672760191263198, 21.199069805825584, 20.56180589179027,
-          19.923346811364624, 19.2831147048886, 18.64052574596491, 17.994986611960094, 17.345890836127634,
-          16.692614982269507, 16.03451457793493, 15.370919735158768, 14.70113037832059, 14.02441098637745,
-          13.339984740831529, 12.64702695045109, 11.944657597776194, 11.231932819205449,
         ],
         [
           22.001454058320753, 21.96030925411759, 21.83583473817914, 21.353441669949333, 20.704585697152126,
@@ -3259,22 +1945,10 @@ const LENS_DATA = {
           13.354245610259694, 12.648615449629606, 11.933230138979086, 11.20709226184833,
         ],
         [
-          22.172254965153957, 22.13034694848042, 22.003566459888248, 21.512291768610428, 20.851613880033995,
-          20.189933730791473, 19.52660872056082, 18.86099097400334, 18.192423146554454, 17.520234108424454,
-          16.843734432248567, 16.162211604065128, 15.474924868769747, 14.78109960943765, 14.07992114429314,
-          13.370527804737089, 12.65200313151147, 11.923366992131022, 11.183565378897113,
-        ],
-        [
           22.347890408161945, 22.305202742356226, 22.176067398879272, 21.675726777506807, 21.00299079478135,
           20.329365528955897, 19.654173106889136, 18.97673087592445, 18.296346828628444, 17.61231490610769,
           16.923910096073207, 16.23038323563606, 15.530955419425329, 14.824811900517098, 14.11109535410863,
           13.38889835083469, 12.657254856683158, 11.915130537681016, 11.161411597233732,
-        ],
-        [
-          22.528477312199463, 22.484993025951173, 22.353452367120877, 21.843855816792555, 21.158818876526162,
-          20.473017911563808, 19.785737664240145, 19.096258713237223, 18.40385248017159, 17.707776117023066,
-          17.00726718009481, 16.30153798958868, 15.589769563571867, 14.871105000522052, 14.144642164923077,
-          13.409425504341208, 12.664436792385608, 11.908584547662777, 11.140691821132664,
         ],
         [
           22.714135654188425, 22.66983720728343, 22.53583909408669, 22.01679057095669, 21.31920272971956,
@@ -3283,22 +1957,10 @@ const LENS_DATA = {
           13.432178743244224, 12.67361641010244, 11.90379418962394, 11.121468444177816,
         ],
         [
-          22.904988637200344, 22.859857883310617, 22.723348389086212, 22.194645420363695, 21.48424922544959,
-          20.773380629503126, 20.061242670615936, 19.347035890836608, 18.629952378609214, 17.90916970429984,
-          17.183844629194432, 16.453106461001514, 15.716049916587622, 14.971727334679741, 14.219140056471948,
-          13.45722875886717, 12.684862481206693, 11.900826028648261, 11.103805359459434,
-        ],
-        [
           23.10116288151842, 23.055181027673154, 22.9161043193634, 22.37753758564156, 21.654067608444365,
           20.930293947990148, 20.20537498891661, 19.47846771542658, 18.748721198124485, 18.01526998520245,
           17.277227263103953, 16.533677644163795, 15.783669425352528, 15.026206142324451, 14.26023721520682,
           13.484647445113104, 12.69824507058341, 11.899748027359491, 11.087767967917557,
-        ],
-        [
-          23.302788634329264, 23.255936196763866, 23.114234405581655, 22.565587286225792, 21.828769614749362,
-          21.091833979245955, 20.353891328669732, 19.61405251594455, 18.871421172730216, 18.12508650429196,
-          17.37411585226785, 16.61754686532058, 15.854379103198912, 15.083564877708724, 14.303999103050698,
-          13.514507885770088, 12.713835528149515, 11.900629543796343, 11.073423184694903,
         ],
         [
           23.51, 23.46225675602315, 23.31786983648935, 22.758917914503517, 22.008469601164993, 21.258107477580047,
@@ -3318,22 +1980,10 @@ const LENS_DATA = {
           15.157366664718422, 15.266375683394756, 15.376634570743452,
         ],
         [
-          13.659115379195317, 13.665372283813994, 13.683541880801288, 13.75428578422217, 13.850224382025623,
-          13.947156496250107, 14.045099636291301, 14.144071761028755, 14.244091294196142, 14.345177140413865,
-          14.447348701917933, 14.550625896021849, 14.65502917335028, 14.760579536886212, 14.8672985618751,
-          14.975208416633258, 15.084331884310002, 15.194692385656758, 15.306314002859532,
-        ],
-        [
           13.568071830653885, 13.574405071118164, 13.592811342613489, 13.664475374143315, 13.761658335262654,
           13.85984370265674, 13.959049140314562, 14.059292766351946, 14.160593168574197, 14.262969420710922,
           14.366441099357793, 14.471028301662486, 14.576751663794399, 14.683632380240356, 14.791692223970928,
           14.900953567525328, 15.011439405065314, 15.12317337545229, 15.236179786405296,
-        ],
-        [
-          13.47684944972281, 13.483260436599801, 13.501907529464818, 13.574507772593087, 13.67295675163364,
-          13.772417070843733, 13.872906550631992, 13.974443470267781, 14.07704658364087, 14.18073513570373,
-          14.285528879631386, 14.391448094737186, 14.49851360518447, 14.60674679953726, 14.716169651195687,
-          14.826804739764404, 14.93867527340603, 15.05180511223447, 15.166218792806994,
         ],
         [
           13.38542811225943, 13.39191828448496, 13.410810431850207, 13.48436330348838, 13.584100401059823,
@@ -3342,22 +1992,10 @@ const LENS_DATA = {
           14.752747468031359, 14.866025446661894, 14.980573974696597, 15.096417820964913,
         ],
         [
-          13.293787466726371, 13.300358292306507, 13.319499815621796, 13.394022073983338, 13.49506984713,
-          13.597146950584102, 13.700271523350136, 13.804462173048966, 13.909737992086658, 14.016118574527441,
-          14.12362403370697, 14.232275020625384, 14.342092743162205, 14.45309898615734, 14.565316132405787,
-          14.678767184616435, 14.793475788388633, 14.909466256263906, 15.026763592913817,
-        ],
-        [
           13.201906926221557, 13.208559902943435, 13.227955214085386, 13.30346396678291, 13.405845439696428,
           13.509265293810728, 13.61374183045783, 13.719293824615619, 13.82594054128942, 13.933701752608584,
           14.04259775567539, 14.15264939120632, 14.263878063008509, 14.376305758336654, 14.489955069178714,
           14.604849214521906, 14.721012063653763, 14.838468160556667, 14.957242749458171,
-        ],
-        [
-          13.109765660372492, 13.116502316535069, 13.136155919973376, 13.212668632340197, 13.316407307363981,
-          13.421193447802448, 13.52704551944448, 13.63398246686123, 13.742023730005739, 13.851189261539275,
-          13.961499544922036, 14.072975613309351, 14.18563906929675, 14.299512105560275, 14.414617526441148,
-          14.530978770527536, 14.648619934289052, 14.76756579682368, 14.887841845780928,
         ],
         [
           13.017342587100021, 13.02416448226483, 13.044080977289711, 13.121615480933402, 13.226735349868688,
@@ -3366,22 +2004,10 @@ const LENS_DATA = {
           14.45714094821734, 14.576284954108248, 14.696745175344736, 14.818547347024987,
         ],
         [
-          12.924616364246148, 12.931525090009304, 12.951709173021886, 13.0302836746179, 13.136809230341532,
-          13.244400506900728, 13.353076305751019, 13.462855917740892, 13.573759140165382, 13.685806294570389,
-          13.799018245347131, 13.913416419159015, 14.029022825246564, 14.14586007665811, 14.263951412457931,
-          14.38332072096619, 14.503992564089053, 14.625992202801019, 14.749345623845914,
-        ],
-        [
           12.831565381061306, 12.83856256184711, 12.859019028715275, 12.938652119049069, 13.046608367453587,
           13.155639500839559, 13.265764492070915, 13.377002808888157, 13.489374431198264, 13.602899869127912,
           13.717600181880181, 13.83349699743802, 13.95061253316079, 14.068969617322796, 14.188591711646401,
           14.309502934885357, 14.431728087517804, 14.555292677612343, 14.680222947935157,
-        ],
-        [
-          12.738167749545578, 12.745255043422782, 12.765988791904617, 12.846699455170933, 12.956111927438187,
-          13.066608468004649, 13.178208223670245, 13.2909308417205, 13.404796487459228, 13.51982586251761,
-          13.636040223980562, 13.753461404374569, 13.872111832564181, 13.992014555607193, 14.113193261622204,
-          14.235672303725176, 14.359476725096064, 14.48463228523998, 14.611165487512451,
         ],
         [
           12.644401295638577, 12.65158039516003, 12.672596427397364, 12.754404050765975, 12.865298815985774,
@@ -3390,22 +2016,10 @@ const LENS_DATA = {
           14.161813403733943, 14.28722355000764, 14.413996593454213, 14.542159302786704,
         ],
         [
-          12.550243550252393, 12.55751618331884, 12.578819608403553, 12.661743991859963, 12.774147670007007,
-          12.887653823648392, 13.002281955519566, 13.118052080455376, 13.234984743429987, 13.353101038399748,
-          13.472422627992094, 13.592971764086903, 13.71477130933922, 13.837844759695772, 13.962216267960933,
-          14.08791066847171, 14.2149535029451, 14.343371047565439, 14.473190341384253,
-        ],
-        [
           12.455671740141646, 12.46303967089075, 12.484635707506387, 12.568697073982555, 12.682636849259351,
           12.79768831471088, 12.913871155332677, 13.031205574236076, 13.149712310952387, 13.269412660554133,
           13.390328493637577, 13.512482277213902, 13.635897096558896, 13.760596678074918, 13.886605413221774,
           14.013948383577647, 14.142651387094539, 14.272740965617798, 14.404244433743463,
-        ],
-        [
-          12.360662778604638, 12.368127808326133, 12.39002178746768, 12.475240793263579, 12.590744427832485,
-          12.7073689679994, 12.825134284071664, 12.944060770635845, 13.064169365133736, 13.185481567270134,
-          13.3080194592977, 13.431805727227054, 13.556863683013288, 13.683217287773637, 13.810891176094504,
-          13.939910681489897, 14.070301863077695, 14.202091533544543, 14.335307288475022,
         ],
         [
           12.265193256009287, 12.272757224087176, 12.29495459186198, 12.38135233737872, 12.498448185487431,
@@ -3414,22 +2028,10 @@ const LENS_DATA = {
           13.86578153611672, 13.997889443850182, 14.131407800283897, 14.266364487686836,
         ],
         [
-          12.1692394301372, 12.176904215020109, 12.199410535533097, 12.287008576324368, 12.405725598844237,
-          12.525581938101947, 12.646597844815854, 12.768794106774928, 12.892192067982688, 13.01681364866397,
-          13.14268136618159, 13.269818356913625, 13.39824839914434, 13.527995937026326, 13.659086105674607,
-          13.791544757457675, 13.925398489554922, 14.06067467285483, 14.1974014822729,
-        ],
-        [
           12.072777216338991, 12.08054473653977, 12.103365694866064, 12.192186053021212, 12.312553832412881,
           12.434070112390595, 12.556755339116584, 12.680630502463984, 12.805717155457582, 12.932037434593592,
           13.059614081086837, 13.188470463096749, 13.318630598987053, 13.450119181677353, 13.582961604149343,
           13.717183986173833, 13.852813202329816, 13.989876911391603, 14.128403587165192,
-        ],
-        [
-          11.975782177493532, 11.983654392619252, 12.006795797867806, 12.09686097373923, 12.218909729461611,
-          12.342116146582615, 12.466500870451133, 12.592085096938865, 12.718890592186828, 12.846939713247853,
-          12.976255429674225, 13.106861346103456, 13.23878172589793, 13.37204151589848, 13.506666372355493,
-          13.642682688105888, 13.780117621068596, 13.91899912413647, 14.059355976547923,
         ],
         [
           11.878229513763674, 11.886208425577287, 11.909676214048986, 12.001009198337368, 12.124769802717076,
@@ -3438,22 +2040,10 @@ const LENS_DATA = {
           13.568024148738939, 13.70729561613393, 13.848025762389467, 13.990243679033536,
         ],
         [
-          11.780094052140495, 11.788181705655306, 11.811981944099404, 11.904606230311108, 12.030110224889995,
-          12.156790105220317, 12.284666927086867, 12.413762310962563, 12.544098462395072, 12.675698193324806,
-          12.808584944385936, 12.942782808245685, 13.078316554040548, 13.215211652972284, 13.353494305130441,
-          13.49319146761309, 13.634330884022082, 13.776941115414793, 13.921051572799486,
-        ],
-        [
           11.6813502357676, 11.689548720376061, 11.713687609349014, 11.807627206640282, 11.934906819019872,
           12.06337136548047, 12.193042113511206, 12.323940902656554, 12.456090165238066, 12.589512948025993,
           12.724232934914063, 12.860274470653556, 12.99766258570708, 13.1364230222862, 13.27658226164154,
           13.418167552678625, 13.561206941977913, 13.705729305302846, 13.85176438068554,
-        ],
-        [
-          11.581972113036812, 11.590283563674975, 11.614767441005682, 11.710046887429709, 11.839135048632325,
-          11.969417138735682, 12.10091464158855, 12.233649620661415, 12.367644740113802, 12.502923286830974,
-          12.63950919348423, 12.777427062672606, 12.916702192207635, 13.057360601607186, 13.199429059868347,
-          13.342935114594928, 13.487907122559664, 13.634374281787345, 13.782366665250803,
         ],
         [
           11.481933326446136, 11.490359924795161, 11.515195269161312, 11.611839645334502, 11.742770007701687,
@@ -3462,22 +2052,10 @@ const LENS_DATA = {
           13.267476660971887, 13.414414568152583, 13.562859817016832, 13.71284282378996,
         ],
         [
-          11.381207101209878, 11.389751076936449, 11.414944511556422, 11.51297945476142, 11.645786410411633,
-          11.779805088099344, 11.915057419461355, 12.051565931515494, 12.189353768452863, 12.32844471444003,
-          12.46886321748844, 12.610634414451596, 12.75378415721484, 12.89833904014711, 13.044326428888542,
-          13.191774490553042, 13.340712225430588, 13.4911695002798, 13.643177083308146,
-        ],
-        [
           11.27976623361118, 11.288429865648197, 11.313988162093635, 11.41343988083757, 11.548158580706117,
           11.684097781527004, 11.821279646967367, 11.959726944283378, 12.09946306649244, 12.240512055577096,
           12.382898626778923, 12.526648194044725, 12.671786896691655, 12.818341627361987, 12.96634006134394,
           13.115810687339323, 13.266782839765295, 13.419286732683195, 13.573353495454255,
-        ],
-        [
-          11.177583079085732, 11.186368696955212, 11.212298779089343, 11.313194068136692, 11.449860441622318,
-          11.587756002593826, 11.726903152611067, 11.867324905259789, 12.009044908716414, 12.152087469366736,
-          12.29647757653853, 12.442240928411719, 12.589403959174696, 12.737993867499455, 12.88803864641358,
-          13.039567114652566, 13.192608949581697, 13.347194721783337, 13.503355931412013,
         ],
         [
           11.07462954002532, 11.083539525205376, 11.10984847325272, 11.212214729153398, 11.350865504397037,
@@ -3486,22 +2064,10 @@ const LENS_DATA = {
           12.96302540913775, 13.11817288065956, 13.274876476169055, 13.433168076748581,
         ],
         [
-          10.970877053289218, 10.979913840626947, 11.006608895380163, 11.110474132514522, 11.251146857337442,
-          11.393065819788607, 11.536253916261161, 11.680734672765325, 11.826532268317811, 11.973671559432196,
-          12.12217810577347, 12.27207819704411, 12.423398881173457, 12.576167993887564, 12.730414189741593,
-          12.886166974703075, 13.043456740380206, 13.20231479999649, 13.362773426220306,
-        ],
-        [
           10.86629657741036, 10.875462656582837, 10.902551223752964, 11.007944090916695, 11.150677154446496,
           11.294664794541688, 11.43993016533391, 11.586497059741589, 11.734389933292483, 11.883633929072156,
           12.034254903863225, 12.186279455544426, 12.33973495182352, 12.494649560383177, 12.651052280524214,
           12.808972976396955, 12.968442411917797, 13.12949228747497, 13.29215527853542,
-        ],
-        [
-          10.7608585794828, 10.770156496508402, 10.797646151224841, 10.90459594877814, 11.049428603793004,
-          11.195524032500275, 11.342905654232412, 11.491597536537935, 11.641624419451905, 11.793011740918034,
-          11.94578566342938, 12.099973101958257, 12.255601753251648, 12.412700126573242, 12.571297575979258,
-          12.731424334221051, 12.893111548374595, 13.056391317303895, 13.221296731073451,
         ],
         [
           10.654533021716006, 10.663965380518253, 10.691863871985683, 10.800400569592247, 10.94737295561538,
@@ -3510,22 +2076,10 @@ const LENS_DATA = {
           12.653501716878349, 12.817445566859515, 12.982994047059824, 13.15018067456107,
         ],
         [
-          10.547289347640472, 10.55685881166708, 10.585174067986381, 10.695328322969678, 10.844481490147798,
-          10.99491334170699, 11.146647851707622, 11.29970966209342, 11.454124107904322, 11.609917243696126,
-          11.767115871236692, 11.925747568554424, 12.085840720418771, 12.247424550339378, 12.410529154175654,
-          12.575185535455516, 12.74142564250955, 12.909282407533942, 13.078789787704503,
-        ],
-        [
           10.439096467948541, 10.448805761848055, 10.477545895009179, 10.589349071354832, 10.740725005156586,
           10.893387305585206, 11.047360237288352, 11.202668743049474, 11.359338469496773, 11.51739579404779,
           11.676867853161786, 11.837782571977264, 12.000168695417212, 12.16405582085087, 12.329474432406728,
           12.496455937038506, 12.665032702453297, 12.835238097019195, 13.00710653177802,
-        ],
-        [
-          10.329922745952828, 10.339774657311832, 10.368947968366767, 10.482432156401586, 10.636073803173986,
-          10.791009294267626, 10.947263194505775, 11.104860757388293, 11.263827951314294, 11.424191487070411,
-          11.585978846659078, 11.749218313546514, 11.913939004415234, 12.080170902512702, 12.247944892693567,
-          12.417292798260558, 12.588247419716287, 12.76084257554717, 12.93511314516897,
         ],
         [
           10.219735982643861, 10.22973336378754, 10.259348348212253, 10.374546384992577, 10.530497678415525,
@@ -3534,22 +2088,10 @@ const LENS_DATA = {
           12.337675718781709, 12.511050207067328, 12.686077059074169, 12.862791637878953,
         ],
         [
-          10.108503401326953, 10.118649171186384, 10.148714524440829, 10.265660014884642, 10.42396590336668,
-          10.583579904156515, 10.744527213775097, 10.906833739392228, 11.070526126132311, 11.235631785709668,
-          11.402178926472143, 11.570196584937477, 11.739714658912794, 11.910763942294123, 12.0833761616497,
-          12.257584014698816, 12.433421210805587, 12.610922513616726, 12.790123785981413,
-        ],
-        [
           9.996191631817592, 10.006488777866858, 10.037013401163199, 10.155740739962617, 10.316447215022876,
           10.478468552960852, 10.641830283232302, 10.806558657384567, 10.97268067693359, 11.14022412260439,
           11.309217585016182, 11.47969049689887, 11.651673166934476, 11.825196815323208, 12.000293611181183,
           12.176996711885186, 12.355340304487802, 12.535359649335932, 12.7170911260358,
-        ],
-        [
-          9.882766694172492, 9.893218274439253, 9.924211280728596, 10.044755675081952, 10.20790980076677,
-          10.372385255762149, 10.538207914880118, 10.705404386777698, 10.874002042426437, 11.04402904498062,
-          11.215514381127615, 11.388487894010398, 11.56298031781805, 11.739023314147419, 11.9166495102466,
-          12.095892539258887, 12.276787082595021, 12.45936891457083, 12.64367494945831,
         ],
         [
           9.768193981932377, 9.778803127085782, 9.81027384727472, 9.93267134047941, 10.09832128386475,
@@ -3558,22 +2100,10 @@ const LENS_DATA = {
           12.014249921978541, 12.197740854138608, 12.382930489820563, 12.569856296849473,
         ],
         [
-          9.652438244850828, 9.66320816037053, 9.695166149779428, 9.819453645729869, 9.98764870856408,
-          10.157177087608797, 10.328065389100846, 10.500340977575265, 10.674032005587506, 10.849167444909005,
-          11.025777119285285, 11.20389173885181, 11.383542936310297, 11.5647633049751, 11.74758643880765,
-          11.932046974565868, 12.118180636204796, 12.306024281675306, 12.495615952278948,
-        ],
-        [
           9.535463571081422, 9.54639753951234, 9.578852584587962, 9.705067873225623, 9.875858524770365,
           10.047987962592396, 10.221483180886155, 10.396371944848276, 10.572682821062227, 10.750445209396268,
           10.929689376506358, 11.1104464910426, 11.292748660665032, 11.476628970982228, 11.662121526534598,
           11.84926149395352, 12.038085147437293, 12.228629916695805, 12.420934437527675,
-        ],
-        [
-          9.417233368794047, 9.42833475209113, 9.461296877387158, 9.58947866115272, 9.762916572283867,
-          9.937698354638394, 10.113851406578524, 10.291403910491189, 10.470384863861383, 10.650824111899867,
-          10.83275238182018, 11.016201318867019, 11.201203524204677, 11.387792594783607, 11.576003165310421,
-          11.76587095245745, 11.957432801457589, 12.150726735241623, 12.345792006287692,
         ],
         [
           9.297710347188346, 9.308982589156331, 9.342462064596361, 9.472649985937311, 9.64878806457156,
@@ -3582,22 +2112,10 @@ const LENS_DATA = {
           11.68185249067221, 11.876201700222161, 12.072293785247917, 12.270168638320179,
         ],
         [
-          9.176856496870762, 9.18830312570419, 9.222310474142354, 9.354545144133173, 9.533437572050293,
-          9.713682766931305, 9.89530898872764, 10.078345308408366, 10.262821640494169, 10.448768777233653,
-          10.636218424523323, 10.825203239679873, 11.01575687118181, 11.207914000505767, 11.401710386192569,
-          11.59718291028814, 11.794369627316177, 11.993309815950864, 12.194044033571918,
-        ],
-        [
           9.05463306955857, 9.0662577004875, 9.100803705583344, 9.235126733718925, 9.416829004854474, 9.599887789723526,
           9.784331808235345, 9.970190605277644, 10.157494584026121, 10.346275040942848, 10.536564202568586,
           10.728395264221293, 10.921802430721842, 11.116820959276788, 11.313487204657882, 11.51183866682905,
           11.711914041182872, 11.913753271561474, 12.117397606250762,
-        ],
-        [
-          8.931000557072029, 8.942806895119459, 8.977902609544573, 9.114356634771779, 9.298925595060027,
-          9.484854302441995, 9.672171958082462, 9.860908602384571, 10.051095149107468, 10.242763421221385,
-          10.435946188608863, 10.630677207728437, 10.826991263365661, 11.024924212606527, 11.224513031177521,
-          11.42579586230878, 11.628812068288177, 11.833602284888066, 12.04020847886039,
         ],
         [
           8.805918669572478, 8.817910512429783, 8.853567266425065, 8.992195989482003, 9.179689878333905,
@@ -3606,22 +2124,10 @@ const LENS_DATA = {
           11.339030237805076, 11.545040496219613, 11.75283467090712, 11.962455476195071,
         ],
         [
-          8.679346313001563, 8.691527554028813, 8.727756964332306, 8.868605181469238, 9.059083674976737,
-          9.250926690972275, 9.44416446325242, 9.638828094220091, 9.834949590724579, 10.032561901742469,
-          10.231698958015702, 10.432395713771646, 10.634688190659263, 10.838613524046355, 11.044210011832938,
-          11.25151716594924, 11.460575766718751, 11.67142792028236, 11.884117119294714,
-        ],
-        [
           8.551241565672818, 8.563616197031077, 8.600430176198081, 8.743543814359644, 8.937068070323297,
           9.131958309311802, 9.328245319919994, 9.525960774423398, 9.725137265537342, 9.925808345072042,
           10.128008564603622, 10.331773518290923, 10.53713988797698, 10.744145490725236, 10.952829328952001,
           11.163231643329329, 11.375393968646355, 11.58935919283232, 11.80517161936079,
-        ],
-        [
-          8.421561653963554, 8.434133769887211, 8.471544536025583, 8.616970689579112, 8.813603394463026,
-          9.011602866190353, 9.211000476316563, 9.411828495382737, 9.614120130636131, 9.817909565703735,
-          10.023232002343555, 10.230123704407571, 10.438622044161157, 10.648765551114163, 10.860593963531688,
-          11.074148282805105, 11.28947083087915, 11.506605310945801, 11.725596871633712,
         ],
         [
           8.290262927050776, 8.303036727268038, 8.341056814213497, 8.488843783314612, 8.68864920123994,
@@ -3630,22 +2136,10 @@ const LENS_DATA = {
           10.9842413057325, 11.202781715137178, 11.423142752945411, 11.645370449232006,
         ],
         [
-          8.157300830630643, 8.170280623941217, 8.208922891899068, 8.359120222592066, 8.56216424648826,
-          8.766574382019515, 8.97238325958375, 9.179624439746252, 9.388332453023075, 9.598542841738295,
-          9.81029220408986, 10.023618240567986, 10.238559802882325, 10.45515694556511, 10.673450980431923,
-          10.89348453409492, 11.115301608740362, 11.338947646398566, 11.564469596954007,
-        ],
-        [
           8.022629879556035, 8.035820087575711, 8.075097734257458, 8.227756260415234, 8.434106465456791,
           8.641821239073934, 8.850933892189072, 9.06147868169367, 9.27349085134015, 9.487006674772006,
           9.702063500831613, 9.918699801295684, 10.136955221200243, 10.356870631929375, 10.578488187256173,
           10.801851382538981, 11.02700511729317, 11.25399576137589, 11.48287122504227,
-        ],
-        [
-          7.886203629321976, 7.899608790404189, 7.939535362689609, 8.094707249905552, 8.30443294937091,
-          8.51552078915226, 8.728004798173677, 8.941919967208351, 9.157302290936121, 9.37418881220604,
-          9.592617668648456, 9.812628141792935, 10.034260708859799, 10.257557097406977, 10.482560343027801,
-          10.709314850311522, 10.937866457295396, 11.168262503656468, 11.400551902911449,
         ],
         [
           7.747974646322625, 7.761599419668463, 7.80218882582597, 7.95992761737838, 8.17309992107813, 8.387630990965492,
@@ -3654,22 +2148,10 @@ const LENS_DATA = {
           11.081722907879273, 11.31748785283966,
         ],
         [
-          7.607894476798201, 7.621743646766437, 7.663010169266916, 7.823370834285773, 8.040062709717692,
-          8.258108966778517, 8.47754519431942, 8.698407974797647, 8.92073492885715, 9.144564762254877,
-          9.369937315289107, 9.596893614898898, 9.825475929616418, 10.055727827568823, 10.287694237742008,
-          10.521421514735959, 10.756957507260411, 10.994351630640416, 11.233654943624165,
-        ],
-        [
           7.465913614382611, 7.479992095012831, 7.521950403975132, 7.684989387950609, 7.905275724350978,
           8.126910978668189, 8.34993158801826, 8.574374998855596, 8.80027971292272, 9.027685335619438, 9.25663262695508,
           9.487163555258745, 9.71932135383785, 9.953150580789176, 10.188697182184216, 10.426008558867942,
           10.665133637130797, 10.906122943535143, 11.149028684201182,
-        ],
-        [
-          7.321981466156384, 7.3362943059190275, 7.3789594732277495, 7.544734751010727, 7.7686924264839545,
-          7.993992403834881, 8.220672018642665, 8.448769631343604, 8.678324674630282, 8.90937770334732,
-          9.14197044705296, 9.376145865429807, 9.611948206742184, 9.849423069553621, 10.08861746793534,
-          10.329579900415695, 10.57236042294125, 10.817010726143558, 11.063584217230252,
         ],
         [
           7.176046317100887, 7.190598703888949, 7.233986218028915, 7.4025573494850345, 7.6302653014075705,
@@ -3678,22 +2160,10 @@ const LENS_DATA = {
           10.232106336984764, 10.478610022120392, 10.726988458959255, 10.977296312643322,
         ],
         [
-          7.028055292841753, 7.0428525592204485, 7.086978340875077, 7.258406529366588, 7.489945828275825,
-          7.722810423160113, 7.957039612889847, 8.192673751154416, 8.429754297036018, 8.668323868239785,
-          8.908426297164878, 9.150106690015448, 9.39341148916695, 9.638388539019786, 9.8850871555924,
-          10.133558200126101, 10.383854156997435, 10.63602921625912, 10.89013936115829,
-        ],
-        [
           6.877954320559763, 6.893001949291447, 6.937882367756495, 7.112230521639893, 7.347684448835301,
           7.584453110612133, 7.822576879388853, 8.062097196587095, 8.303056624949411, 8.54549890359662,
           8.78946900601724, 9.035013201197195, 9.282179118114316, 9.531015813840499, 9.7815738455147, 10.03390534647154,
           10.288064106834984, 10.54410565891279, 10.80208736775709,
-        ],
-        [
-          6.725688087937698, 6.740991717800669, 6.78664360826876, 6.963976405610811, 7.2034305347119965,
-          7.444187340859407, 7.6862883377195015, 7.929776121409473, 8.174694424678549, 8.421088173913603,
-          8.669003549170867, 8.918488047450701, 9.16959054945058, 9.422361390050014, 9.676852432802677,
-          9.93311714873382, 10.191210699766778, 10.451190027130076, 10.713113945127791,
         ],
         [
           6.5712, 6.586765431921694, 6.633206113697313, 6.81359007042874, 7.057132353154493, 7.30196365862594,
@@ -3702,22 +2172,10 @@ const LENS_DATA = {
           10.093264304636103, 10.35725413314389, 10.623192307070402,
         ],
         [
-          6.565473045000875, 6.581292977194854, 6.628525494050714, 6.811981660993779, 7.059663822468829,
-          7.308648648496368, 7.558980574411535, 7.810705173970938, 8.063869219020132, 8.318520742270877,
-          8.574709103416913, 8.83248505883542, 9.091900835141471, 9.353010206884868, 9.61586857870308,
-          9.880533072270929, 10.147062618417035, 10.415518054809812, 10.685962229651558,
-        ],
-        [
           6.558728376062536, 6.574807881557874, 6.622847255641099, 6.809433852356319, 7.061334215206483,
           7.3145510454300435, 7.569130575039622, 7.82512021995249, 8.082568643414056, 8.341525822745412,
           8.6020431196637, 8.864173354444201, 9.127970884215367, 9.393491685701921, 9.660793442758473,
           9.929935639065485, 10.20097965639195, 10.47398887886531, 10.749028803729267,
-        ],
-        [
-          6.550929278551557, 6.567273526040579, 6.616135068239475, 6.805911429565758, 7.062109809108474,
-          7.3196386169632435, 7.578545975965441, 7.838881240473663, 8.100695063837245, 8.364039469419025,
-          8.628967925444, 8.895535423967027, 9.163798564276483, 9.433815641078313, 9.705646737834012, 9.979353825658826,
-          10.255000868222918, 10.532653933137697, 10.812381310354228,
         ],
         [
           6.5420382187761845, 6.558652474288883, 6.608351789214817, 6.8013783841480935, 7.061956112852365,
@@ -3726,22 +2184,10 @@ const LENS_DATA = {
           10.028770779072984, 10.309111245965354, 10.591500125032017, 10.876008650913754,
         ],
         [
-          6.5320168291881195, 6.548906457794076, 6.5994594488429765, 6.7957978996861375, 7.060837851907333,
-          7.327236612954717, 7.595046390482245, 7.864320725705444, 8.135114569919583, 8.4074843650915,
-          8.681488128847041, 8.957185544202382, 9.234638054417488, 9.513908963382274, 9.79506354198256,
-          10.078169140932578, 10.363295310605341, 10.650513928441429, 10.939899334571306,
-        ],
-        [
           6.520825893492059, 6.537996361031243, 6.589419235529613, 6.789132337327473, 7.058718954327819,
           7.329678789529771, 7.602066255665404, 7.875937153654385, 8.151348754183285, 8.428359883649254,
           8.707031014819176, 8.98742436258515, 9.269603985229237, 9.553635891647382, 9.83958815502142,
           10.127531033473462, 10.417537098285319, 10.709681370320824, 11.004041465349786,
-        ],
-        [
-          6.5084253316664835, 6.525882206510938, 6.578191480951192, 6.781343221225953, 7.055562536494059,
-          7.331169616853973, 7.608221196457126, 7.886775454816167, 8.166892103843159, 8.448632479566058,
-          8.732059638906824, 9.017238461937668, 9.304235760067304, 9.5931203906499, 9.883963378552858,
-          10.17683804526947, 10.471820146216698, 10.768988016919616, 11.068422728851596,
         ],
         [
           6.49477418489878, 6.512523139746896, 6.565735645117712, 6.772391223923115, 7.051330888807881,
@@ -3750,22 +2196,10 @@ const LENS_DATA = {
           10.226071216678541, 10.526127478278076, 10.828418959669985, 11.133030378609693,
         ],
         [
-          6.479830600436994, 6.497877414142621, 6.552010301360614, 6.762236151675052, 7.045985461352362,
-          7.3311520094526355, 7.6177975476424304, 7.905985395387956, 8.195780539242632, 8.487249737517226,
-          8.7804616307923, 9.075486858771766, 9.37239818402059, 9.67127062317875, 9.97218158629829, 10.275211025010464,
-          10.580441590298616, 10.887958800727237, 11.197851222062926,
-        ],
-        [
           6.463551816359971, 6.481902375798972, 6.536973121248475, 6.75083692973034, 7.039486849523396,
           7.329568914199689, 7.621147585230558, 7.914288957383752, 8.209060864877523, 8.505532993312833,
           8.803776997886995, 9.10386662843583, 9.405877861900318, 9.70988904286785, 10.01598103289914,
           10.324237369419247, 10.634744435026677, 10.947591638159322, 11.262871606150043,
-        ],
-        [
-          6.445894146266653, 6.46455444824345, 6.520580859432677, 6.7381515875637445, 7.031794779641586,
-          7.326885120335601, 7.623489924720207, 7.9216782096735106, 8.22152080744923, 8.523090485454206,
-          8.826462072783041, 9.1317125941103, 9.438921411594897, 9.748170375511222, 10.059543984389638,
-          10.373129555523398, 10.689017406784306, 11.007301050783052, 11.328077402516737,
         ],
         [
           6.426812963905363, 6.44578911708155, 6.502789338423688, 6.724137244070058, 7.022868094552125,
@@ -3774,22 +2208,10 @@ const LENS_DATA = {
           10.421866279759124, 10.743241325808995, 11.06707008264525, 11.39345399233029,
         ],
         [
-          6.406262687631621, 6.425560914569206, 6.483553433298378, 6.708750092721756, 7.012664739220449,
-          7.318056775164675, 7.624999685964816, 7.933568805369612, 8.243841445721614, 8.555897035378248,
-          8.869817263964473, 9.185686236181356, 9.503590634962428, 9.823619894843763, 10.14586638649734,
-          10.470425613471173, 10.797396422284832, 11.126881227147265, 11.45898625069736,
-        ],
-        [
           6.384196764936004, 6.403823404103721, 6.462827056336762, 6.691945386692971, 7.001141746330485,
           7.311830698225109, 7.624089061480325, 7.937995581813665, 8.253631071184596, 8.571078555127643,
           8.89042342852198, 9.211753620595465, 9.535159770034067, 9.860735411151857, 10.188577172168692,
           10.518784986748138, 10.851462320066055, 11.186716410812547, 11.524658530679975,
-        ],
-        [
-          6.360567656744962, 6.380529164629605, 6.440563141585712, 6.673677423951601, 6.988255221892425,
-          7.304340843220672, 7.62201461850026, 7.941358886690152, 8.262458144911603, 8.585399206503407,
-          8.910271368170111, 9.237166587101242, 9.566179669022, 9.897408468228488, 10.230954100763725,
-          10.566921172009131, 10.905418020096675, 11.246556976696965, 11.590454646906242,
         ],
         [
           6.335326821687975, 6.355629774953429, 6.416713629345393, 6.6538995323198735, 6.973960330865337,
@@ -3798,22 +2220,10 @@ const LENS_DATA = {
           10.614810267350462, 10.959241883531128, 11.306383667442885, 11.656357858772322,
         ],
         [
-          6.3084247002500575, 6.3290757979604235, 6.3912294505722205, 6.632564054502592, 6.958211282799736,
-          7.285396786553796, 7.614208491820493, 7.944736507624638, 8.277073298577708, 8.611313867093987,
-          8.947555946182785, 9.285900203883585, 9.626450460513533, 9.96931392001099, 10.31460141678938,
-          10.662427679661523, 11.012911614561503, 11.366176607978698, 11.722350853232612,
-        ],
-        [
           6.279810698810387, 6.300816764722789, 6.364060511190109, 6.609622333080305, 6.940961317504096,
           7.273853743547004, 7.60839164228592, 7.944669320803535, 8.282783547667123, 8.622833748742252,
           8.96492221441878, 9.30915431942716, 9.655638756536534, 10.00448778555402, 10.355817499190273,
           10.709748107520763, 11.066404242958475, 11.425915287866182, 11.788415727176647,
-        ],
-        [
-          6.249433173554223, 6.270801158487725, 6.335155676299647, 6.585024695463116, 6.922162690737547,
-          7.260869212037228, 7.601240615268342, 7.9433756293689886, 8.28737555571888, 8.633344478678762,
-          8.981389488449947, 9.331620917553954, 9.684152592360554, 10.03910210123454, 10.396591081034845,
-          10.756745523883675, 11.119696106333677, 11.485578543299344, 11.854533969390886,
         ],
         [
           6.2172394142424565, 6.238976398529787, 6.304462754271825, 6.558720438798574, 6.901766659930294,
@@ -3822,22 +2232,10 @@ const LENS_DATA = {
           10.803393158575958, 11.17276283213294, 11.545144538759448, 11.920686442105165,
         ],
         [
-          6.183175627820031, 6.205288823849799, 6.271928480710351, 6.530657814825005, 6.879723469931125,
-          7.230387427504262, 7.582755401155392, 7.936935683984892, 8.29303937944196, 8.651180645101999,
-          9.01147695081455, 9.374049352812175, 9.739022785528391, 10.106526373051565, 10.476693762346326,
-          10.849663480606694, 11.225579319370897, 11.604590748331782, 11.986853362124286,
-        ],
-        [
           6.147186921840639, 6.1696836766982734, 6.237498502262988, 6.500784014658357, 6.855982338779592,
           7.2127935737494155, 7.571328492052154, 7.931700555290268, 8.294026162774701, 8.658424914036205,
           9.025019886864307, 9.393937932634405, 9.765309990859063, 10.139271425100262, 10.515962382608702,
           10.895528180317623, 11.27811972011884, 11.663893936691231, 12.053014281546027,
-        ],
-        [
-          6.109217287681556, 6.1321050858982105, 6.201117360258993, 6.4690451534986, 6.830491443498351,
-          7.193565002963915, 7.558381935133882, 7.925061146373686, 8.293724613991316, 8.664497669057166,
-          9.037509296006336, 9.412892450973047, 9.790784401003704, 10.171327086518676, 10.55466750965123,
-          10.940958151386273, 11.330357420759428, 11.723030139765095, 12.119148068068197,
         ],
         [
           6.069209583517907, 6.092496049937397, 6.1627284741453705, 6.435386255237602, 6.803197905898715,
@@ -3846,22 +2244,10 @@ const LENS_DATA = {
           10.985923472702375, 11.382265023023118, 11.78197464508273, 12.18523288488832,
         ],
         [
-          6.027105517021052, 6.050798419795602, 6.1222741246904135, 6.399751236946879, 6.774047778389588,
-          7.149999337615261, 7.527733555293717, 7.90738111662947, 8.289076062647313, 8.672956118913142,
-          9.059163043872804, 9.447842999205584, 9.839146944833406, 10.233231061509967, 10.63025720423812,
-          11.0303933901385, 11.43381432482288, 11.840701971823183, 12.251246170201036,
-        ],
-        [
           5.982845627740158, 6.006952881467309, 6.079695436917866, 6.362082893219955, 6.742986029777022,
           7.125557450012591, 7.50993103352311, 7.896243831915192, 8.284636404633941, 8.675253173587606,
           9.06824279898907, 9.463758579073762, 9.861958876626398, 10.263007575566814, 10.667074571210055,
           11.074336298237903, 11.484976300905945, 11.899185850573918, 12.317164616299422,
-        ],
-        [
-          5.936369269120764, 5.960898938134279, 6.03493236272982, 6.322322880339006, 6.709956531037986,
-          7.099271233002044, 7.4904074412343515, 7.883508914748196, 8.278723079031398, 8.676201408774132,
-          9.076099833546655, 9.478579169379131, 9.883805579501946, 10.29195106786087, 10.70319400943296,
-          11.117719721844285, 11.535721083342407, 11.957399202814997, 12.382964148288192,
         ],
         [
           5.887614590107166, 5.912574891936606, 5.987923663169985, 6.280411700230559, 6.6749020410482185,
@@ -3870,22 +2256,10 @@ const LENS_DATA = {
           11.58601794187322, 12.01531412014526, 12.448619902418118,
         ],
         [
-          5.836518516268907, 5.861917825283453, 5.938606890273006, 6.236288684169851, 6.637764192239677,
-          7.0409444721434635, 7.445984214036807, 7.853041689503307, 8.262279174325819, 8.673863394804703,
-          9.087966000936976, 9.504764070100249, 9.924440645270437, 10.347185312250646, 10.773194820910327,
-          11.202673756041042, 11.635835264141498, 12.07290184326871, 12.514106204052892,
-        ],
-        [
           5.783016730383707, 5.8088635816373175, 5.8869183684376285, 6.189891976186632, 6.598483476158687,
           7.008790521926709, 7.420975503501367, 7.835204537563337, 8.251647924326521, 8.670480629780073,
           9.091882796992653, 9.516040290530873, 9.943145278474896, 10.373396857018289, 10.807001723227252,
           11.244174902220731, 11.685140535833643, 12.130132740761656, 12.579396545281408,
-        ],
-        [
-          5.727043652400969, 5.7533467456977485, 5.832793175254098, 6.141158516119568, 6.556999228889696,
-          6.974565403822851, 7.394027547614687, 7.815560043032599, 8.239341642808963, 8.665555990882776,
-          9.094392175085716, 9.526045315780454, 9.960717195441685, 10.398616934737058, 10.83996172132889,
-          11.28497759839285, 11.73390032075881, 12.186976287643002, 12.644463562190477,
         ],
         [
           5.668532418700604, 5.695300622900641, 5.776165121707252, 6.09002402225784, 6.513249616305252,
@@ -3894,22 +2268,10 @@ const LENS_DATA = {
           11.32504474529106, 11.782080240897322, 12.243401043772801, 12.709279011815063,
         ],
         [
-          5.607414860552133, 5.634657218140096, 5.716966731667013, 6.036422973501642, 6.467171619095164,
-          6.89966253038785, 7.334083791332844, 7.7706276722993515, 8.209491207908895, 8.650876806605416,
-          9.0949928970319, 9.54205461679971, 9.992284549843069, 10.445913519268506, 10.903181443453287,
-          11.36433826414089, 11.829644956451684, 12.299374632106012, 12.773813748785503,
-        ],
-        [
           5.543621481667792, 5.57134721360835, 5.655129220568585, 5.980288590963828, 6.418701017521379,
           6.858862342658275, 7.300970160989918, 7.745226413841879, 8.1918380145953, 8.641017508198424,
           9.092983770494072, 9.547962753584667, 10.006188284137735, 10.467902922340567, 10.933358890166996,
           11.402819078743947, 11.876558145935366, 12.354863716831616, 12.838037701693246,
-        ],
-        [
-          5.477081434731769, 5.505299945638359, 5.590582473172133, 5.921552818925477, 6.367772375837799,
-          6.815746096381954, 7.265681603022455, 7.717791028068602, 8.172291690663853, 8.629406810544696,
-          9.089366264863779, 9.552407395010166, 10.01877587112345, 10.488726622905611, 10.962524846411867,
-          11.44044709777615, 11.92278248633815, 12.409833981429019, 12.901919849199441,
         ],
         [
           5.407722496774554, 5.436443380419982, 5.523255020280363, 5.860146305048187, 6.3143190263052515,
@@ -3918,22 +2280,10 @@ const LENS_DATA = {
           11.477181197344127, 11.968279633408532, 12.464250106677724, 12.965428195915603,
         ],
         [
-          5.335471043247022, 5.364704088447086, 5.453074014278767, 5.795998379733638, 6.258273052723219,
-          6.722307674059085, 7.188331590564591, 7.656578991353936, 8.127289702032058, 8.600710021414441,
-          9.077093608589909, 9.556702428944888, 10.039807768727137, 10.5266913288778, 11.017646410234402,
-          11.51297920384631, 12.013010202097021, 12.51807574865747, 13.028529748078704,
-        ],
-        [
           5.260252020633676, 5.290007217537812, 5.3799652033482905, 5.729037034509607, 6.199565273389808,
           6.671853624071594, 7.146143192825951, 7.62268009604042, 8.101716320833713, 8.583510631351057,
           9.06832952946642, 9.556448279505691, 10.04815200768046, 10.543736888218099, 11.043511429726074,
           11.547797877187586, 12.056933747206626, 12.571273516780744, 13.091190489066548,
-        ],
-        [
-          5.181988917427901, 5.212276464253508, 5.303852904185236, 5.6591888993071775, 6.138125223390859,
-          6.618819740288771, 7.101525959028809, 7.586502566413076, 8.074014359886364, 8.564333229443104,
-          9.057739198311001, 9.554521533138972, 10.054979935623436, 10.559425828965232, 11.068183754305835,
-          11.581592894398607, 12.100008744299839, 12.623804951901182, 13.153375354776342,
         ],
         [
           5.100603733273022, 5.131434043523839, 5.224659973044739, 5.58637921848006, 6.073881136106776,
@@ -3942,22 +2292,10 @@ const LENS_DATA = {
           11.614318833713618, 12.142192570913924, 12.675630504556995, 13.215048208913931,
         ],
         [
-          5.016016946054094, 5.047400656265774, 5.142307774906423, 5.510531825400132, 6.006759923813537,
-          6.504735237501841, 7.004738158903972, 7.5070545882725845, 8.011977030737143, 8.519805749727313,
-          9.03084998889663, 9.545429275915, 10.06387482301417, 10.58653104102009, 11.113757185849465,
-          11.645929159162318, 12.183441488140101, 12.726709513310656, 13.276171818233943,
-        ],
-        [
           4.928147476702552, 4.960095454763348, 5.056716150539629, 5.431569115446755, 5.936687157239986,
           6.443542862168215, 6.952431183095924, 7.46365274016474, 7.977515011014566, 8.494333581329144,
           9.014433469268184, 9.538150538715374, 10.065833017970515, 10.597843142595718, 11.13455894366361,
           11.67637620573434, 12.22371062262373, 12.777000183553461, 13.336707827777573,
-        ],
-        [
-          4.83691265145335, 4.869436005550975, 4.9678033812237965, 5.349412017187959, 5.8635870439285,
-          6.3794871091038345, 6.897422529207226, 7.417709441409235, 7.9406710952203055, 8.466639208639727,
-          8.995955403946606, 9.528972739809767, 10.066057358296305, 10.60759026770224, 11.153969284997888,
-          11.70561116517625, 12.262953949047185, 12.826459566198597, 13.396616736158698,
         ],
         [
           4.742228161267395, 4.775338249518366, 4.875486150854859, 5.263979961531482, 5.787382405229836,
@@ -3966,22 +2304,10 @@ const LENS_DATA = {
           11.73358407248398, 12.301124273158688, 12.875043537123634, 13.455857870952533,
         ],
         [
-          4.644008018104852, 4.677716458927249, 4.7796795051424805, 5.175190848601105, 5.707994651744873,
-          6.2424877971450785, 6.779013927158683, 7.3179227845718025, 7.859571735133564, 8.404327363454295,
-          8.952567161212976, 9.504681328498993, 10.061074711496007, 10.622168902684724, 11.188404533408942,
-          11.760243793154483, 12.338173215413866, 12.922706776781919, 13.514389364245348,
-        ],
-        [
           4.542164507703653, 4.5764831909998405, 4.680296807573783, 5.082961012069426, 5.625343757007073,
           6.169392094332267, 6.7154677309385935, 7.263938595186593, 7.815180490633082, 8.369578827806736,
           8.92753045522264, 9.489445612914626, 10.055750034427938, 10.626887226556537, 11.203320960254302,
           11.785538011263617, 12.374051195299852, 12.969402750376828, 13.572168128407858,
-        ],
-        [
-          4.436608138484441, 4.4715492377057044, 4.577249691787777, 4.987205180652094, 5.539348229178008,
-          6.093128686915154, 6.648927333616239, 7.2071312747524345, 7.768135738269603, 8.332345954201385,
-          8.900179140853274, 9.472066623584489, 10.048456115191957, 10.629814190657996, 11.216628993708955,
-          11.80941321843741, 12.40870741641394, 13.015083688577548, 13.62914983215963,
         ],
         [
           4.3272475861663615, 4.362823571338652, 4.470448009970681, 4.887836436439668, 5.449925080506095,
@@ -3990,22 +2316,10 @@ const LENS_DATA = {
           11.831814703786675, 12.442089852372035, 13.059700568864235, 13.6852888769959,
         ],
         [
-          4.213989633638047, 4.2502132854345955, 4.359799776844046, 4.784766169711449, 5.356989794273229,
-          5.930779479454834, 6.506557420518478, 7.08475228096534, 7.665801315440941, 8.250152585340764,
-          8.838267296842101, 9.43062229391505, 10.027712742577275, 10.630055047403008, 11.238190047278737,
-          11.852686544875258, 12.474145233623434, 13.10320309758203, 13.740538374053195,
-        ],
-        [
           4.096739105584302, 4.133623530538793, 4.245211108777056, 4.677904029842422, 5.260456288928083,
           5.844530516048735, 6.430571382322801, 7.019030056110633, 7.610366511642766, 8.205051935271356,
           8.803571262642922, 9.406425883209886, 10.014136552635744, 10.627246558979111, 11.246325195297143,
           11.87197159979375, 12.504819035255, 13.145539692787471, 13.794850121494655,
-        ],
-        [
-          3.975398797320697, 4.012957444283537, 4.126586157508841, 4.567157871876029, 5.160236879074695,
-          5.75478746866106, 6.351278063121594, 6.950183575713429, 7.551987921879103, 8.157186633107896,
-          8.766289610557802, 9.379824059186205, 9.998337647745423, 10.622401945981967, 11.252616198004453,
-          11.889611500410695, 12.534055465861544, 13.186657467974232, 13.848174582500652,
         ],
         [
           3.8498693972355333, 3.888116075184739, 4.003827037917684, 4.452433698295664, 5.056242232953904,
@@ -4014,22 +2328,10 @@ const LENS_DATA = {
           11.905546646874177, 12.561797457571885, 13.226502216768782, 13.90046086395547,
         ],
         [
-          3.7200494021795905, 3.758998299509287, 3.8768337492184797, 4.3336355954822565, 4.948381326020249,
-          5.564476694592198, 6.18244177575898, 6.802802988762638, 7.426096072572872, 8.052869172308693,
-          8.683686083948354, 9.319129708373566, 9.959805771489066, 10.606346874679133, 11.259416949568985,
-          11.919716203436309, 12.587986657313134, 13.265018398689486, 13.95165669592511,
-        ],
-        [
           3.5858350250809323, 3.625500730500976, 3.7455040889113245, 4.210665664297037, 4.8365613901793445,
           5.463733931978606, 6.092731441705865, 6.724108260690091, 7.3584281593822185, 7.996267692364886,
           8.638219721203921, 9.284897162292785, 9.936937023158645, 10.595004799120773, 11.259799313133286,
           11.932058095672723, 12.61256341940172, 13.302149126066785, 14.001708412026765,
-        ],
-        [
-          3.447120093989536, 3.487517619183595, 3.6097335587368065, 4.0834239441744185, 4.720687858209733,
-          5.359146938635379, 5.999379045111404, 6.641968004035094, 7.28750713803991, 7.93660291387237,
-          8.589878767730497, 9.247979172065072, 9.911574014841236, 10.581363371679414, 11.258082763622554,
-          11.942509009168475, 12.635466799548913, 13.33783615222381, 14.050560930794555,
         ],
         [
           3.3037959416792475, 3.344940745882412, 3.4694152618208607, 3.9518083300506666, 4.600664302847875,
@@ -4038,22 +2340,10 @@ const LENS_DATA = {
           12.656634550370395, 13.372019861020915, 14.09815773815167,
         ],
         [
-          3.1557512848460476, 3.1976593015195864, 3.324439790111757, 3.815714481389578, 4.476392369966012,
-          5.138072519208533, 5.8013975294391855, 6.467015275996665, 7.135583103445551, 7.807772141575551,
-          8.484271817751438, 9.165794645934879, 9.853081381230258, 10.546906640562355, 11.248085105706865,
-          11.957478445262916, 12.676003118488534, 13.404639257868983, 14.144440871102892,
-        ],
-        [
           3.002872091838057, 3.0455597576437774, 3.1746951011207307, 3.675035722493195, 4.347771705218651,
           5.021396971044107, 5.696589393110867, 6.374031624075554, 7.054415671371557, 7.738447593892312,
           8.426852403926794, 9.120379264363939, 9.819807080574673, 10.525950599482904, 11.239667145891373,
           11.961864149165311, 12.693507643316844, 13.435631962318986, 14.18935090276627,
-        ],
-        [
-          2.845041437800539, 2.888525724048829, 3.0200663828791243, 3.529662933207449, 4.2146998734738395,
-          4.900500838436194, 5.5877810857598575, 6.277260036762781, 6.969666269828412, 7.665742632976935,
-          8.366251569905192, 9.071980760411321, 9.783749186428135, 10.50241374947795, 11.228876585076925,
-          11.964093245658795, 12.709081957614394, 13.464934202337226, 14.232826928867338,
         ],
         [
           2.682139345811578, 2.726437792716575, 2.8604359059133126, 3.379484429043312, 4.077072270280441,
@@ -4062,22 +2352,10 @@ const LENS_DATA = {
           11.964096256755779, 12.722658589897563, 13.492480810376064, 14.274806555822186,
         ],
         [
-          2.51404261279966, 2.5591733666893846, 2.6956828609137924, 3.224385829636308, 3.9347820245504126,
-          4.645650620496878, 5.357788579384067, 6.071995359163395, 6.789078871390789, 7.509861545700164,
-          8.235186620805573, 8.965924788998489, 9.702981333412382, 10.447303915320262, 11.199891193528055,
-          11.961802491132833, 12.73416876879331, 13.518205221351742, 14.31522589054057,
-        ],
-        [
           2.340624618481584, 2.386606472326852, 2.5256831806366065, 3.0642499143584443, 3.787719891555639,
           4.511493552009856, 5.236412511083392, 5.963319784573427, 6.693066301875517, 7.426517514797554,
           8.164560236896051, 8.908109855836209, 9.658118074647476, 10.415581357675553, 11.181550284793184,
           11.9571400548869, 12.743542429416594, 13.542039472640512, 14.354019532082447,
-        ],
-        [
-          2.16175511567074, 2.2086075532361367, 2.3503093444183505, 2.898956463774211, 3.6357741352506423,
-          4.372709770754049, 5.110652421330273, 5.850491234055452, 6.593122577269789, 7.3394572457080445,
-          8.090427897732155, 8.846996884679424, 9.610164646801092, 10.38097887229128, 11.160544646949306,
-          11.950035864229916, 12.75070822185049, 13.56391420620366, 14.391120565305101,
         ],
         [
           1.9773, 2.0250432439768518, 2.169430163510651, 2.7283820854964835, 3.4788303988350098, 4.229192522419954,
@@ -4095,19 +2373,9 @@ const LENS_DATA = {
           52.6388, 52.6388, 52.6388, 52.6388, 52.6388, 52.6388, 52.6388,
         ],
         [
-          53.051871875, 53.051871875, 53.051871875, 53.051871875, 53.051871875, 53.051871875, 53.051871875,
-          53.051871875, 53.051871875, 53.051871875, 53.051871875, 53.051871875, 53.051871875, 53.051871875,
-          53.051871875, 53.051871875, 53.051871875, 53.051871875, 53.051871875,
-        ],
-        [
           53.46494375, 53.46494375, 53.46494375, 53.46494375, 53.46494375, 53.46494375, 53.46494375, 53.46494375,
           53.46494375, 53.46494375, 53.46494375, 53.46494375, 53.46494375, 53.46494375, 53.46494375, 53.46494375,
           53.46494375, 53.46494375, 53.46494375,
-        ],
-        [
-          53.878015625, 53.878015625, 53.878015625, 53.878015625, 53.878015625, 53.878015625, 53.878015625,
-          53.878015625, 53.878015625, 53.878015625, 53.878015625, 53.878015625, 53.878015625, 53.878015625,
-          53.878015625, 53.878015625, 53.878015625, 53.878015625, 53.878015625,
         ],
         [
           54.2910875, 54.2910875, 54.2910875, 54.2910875, 54.2910875, 54.2910875, 54.2910875, 54.2910875, 54.2910875,
@@ -4115,28 +2383,13 @@ const LENS_DATA = {
           54.2910875,
         ],
         [
-          54.704159375, 54.704159375, 54.704159375, 54.704159375, 54.704159375, 54.704159375, 54.704159375,
-          54.704159375, 54.704159375, 54.704159375, 54.704159375, 54.704159375, 54.704159375, 54.704159375,
-          54.704159375, 54.704159375, 54.704159375, 54.704159375, 54.704159375,
-        ],
-        [
           55.11723125, 55.11723125, 55.11723125, 55.11723125, 55.11723125, 55.11723125, 55.11723125, 55.11723125,
           55.11723125, 55.11723125, 55.11723125, 55.11723125, 55.11723125, 55.11723125, 55.11723125, 55.11723125,
           55.11723125, 55.11723125, 55.11723125,
         ],
         [
-          55.530303125, 55.530303125, 55.530303125, 55.530303125, 55.530303125, 55.530303125, 55.530303125,
-          55.530303125, 55.530303125, 55.530303125, 55.530303125, 55.530303125, 55.530303125, 55.530303125,
-          55.530303125, 55.530303125, 55.530303125, 55.530303125, 55.530303125,
-        ],
-        [
           55.943375, 55.943375, 55.943375, 55.943375, 55.943375, 55.943375, 55.943375, 55.943375, 55.943375, 55.943375,
           55.943375, 55.943375, 55.943375, 55.943375, 55.943375, 55.943375, 55.943375, 55.943375, 55.943375,
-        ],
-        [
-          56.356446875, 56.356446875, 56.356446875, 56.356446875, 56.356446875, 56.356446875, 56.356446875,
-          56.356446875, 56.356446875, 56.356446875, 56.356446875, 56.356446875, 56.356446875, 56.356446875,
-          56.356446875, 56.356446875, 56.356446875, 56.356446875, 56.356446875,
         ],
         [
           56.76951875, 56.76951875, 56.76951875, 56.76951875, 56.76951875, 56.76951875, 56.76951875, 56.76951875,
@@ -4144,19 +2397,9 @@ const LENS_DATA = {
           56.76951875, 56.76951875, 56.76951875,
         ],
         [
-          57.182590625, 57.182590625, 57.182590625, 57.182590625, 57.182590625, 57.182590625, 57.182590625,
-          57.182590625, 57.182590625, 57.182590625, 57.182590625, 57.182590625, 57.182590625, 57.182590625,
-          57.182590625, 57.182590625, 57.182590625, 57.182590625, 57.182590625,
-        ],
-        [
           57.5956625, 57.5956625, 57.5956625, 57.5956625, 57.5956625, 57.5956625, 57.5956625, 57.5956625, 57.5956625,
           57.5956625, 57.5956625, 57.5956625, 57.5956625, 57.5956625, 57.5956625, 57.5956625, 57.5956625, 57.5956625,
           57.5956625,
-        ],
-        [
-          58.008734375, 58.008734375, 58.008734375, 58.008734375, 58.008734375, 58.008734375, 58.008734375,
-          58.008734375, 58.008734375, 58.008734375, 58.008734375, 58.008734375, 58.008734375, 58.008734375,
-          58.008734375, 58.008734375, 58.008734375, 58.008734375, 58.008734375,
         ],
         [
           58.42180625, 58.42180625, 58.42180625, 58.42180625, 58.42180625, 58.42180625, 58.42180625, 58.42180625,
@@ -4164,18 +2407,8 @@ const LENS_DATA = {
           58.42180625, 58.42180625, 58.42180625,
         ],
         [
-          58.834878125, 58.834878125, 58.834878125, 58.834878125, 58.834878125, 58.834878125, 58.834878125,
-          58.834878125, 58.834878125, 58.834878125, 58.834878125, 58.834878125, 58.834878125, 58.834878125,
-          58.834878125, 58.834878125, 58.834878125, 58.834878125, 58.834878125,
-        ],
-        [
           59.24795, 59.24795, 59.24795, 59.24795, 59.24795, 59.24795, 59.24795, 59.24795, 59.24795, 59.24795, 59.24795,
           59.24795, 59.24795, 59.24795, 59.24795, 59.24795, 59.24795, 59.24795, 59.24795,
-        ],
-        [
-          59.661021875, 59.661021875, 59.661021875, 59.661021875, 59.661021875, 59.661021875, 59.661021875,
-          59.661021875, 59.661021875, 59.661021875, 59.661021875, 59.661021875, 59.661021875, 59.661021875,
-          59.661021875, 59.661021875, 59.661021875, 59.661021875, 59.661021875,
         ],
         [
           60.07409375, 60.07409375, 60.07409375, 60.07409375, 60.07409375, 60.07409375, 60.07409375, 60.07409375,
@@ -4183,19 +2416,9 @@ const LENS_DATA = {
           60.07409375, 60.07409375, 60.07409375,
         ],
         [
-          60.487165625, 60.487165625, 60.487165625, 60.487165625, 60.487165625, 60.487165625, 60.487165625,
-          60.487165625, 60.487165625, 60.487165625, 60.487165625, 60.487165625, 60.487165625, 60.487165625,
-          60.487165625, 60.487165625, 60.487165625, 60.487165625, 60.487165625,
-        ],
-        [
           60.9002375, 60.9002375, 60.9002375, 60.9002375, 60.9002375, 60.9002375, 60.9002375, 60.9002375, 60.9002375,
           60.9002375, 60.9002375, 60.9002375, 60.9002375, 60.9002375, 60.9002375, 60.9002375, 60.9002375, 60.9002375,
           60.9002375,
-        ],
-        [
-          61.313309375, 61.313309375, 61.313309375, 61.313309375, 61.313309375, 61.313309375, 61.313309375,
-          61.313309375, 61.313309375, 61.313309375, 61.313309375, 61.313309375, 61.313309375, 61.313309375,
-          61.313309375, 61.313309375, 61.313309375, 61.313309375, 61.313309375,
         ],
         [
           61.72638125, 61.72638125, 61.72638125, 61.72638125, 61.72638125, 61.72638125, 61.72638125, 61.72638125,
@@ -4203,18 +2426,8 @@ const LENS_DATA = {
           61.72638125, 61.72638125, 61.72638125,
         ],
         [
-          62.139453125, 62.139453125, 62.139453125, 62.139453125, 62.139453125, 62.139453125, 62.139453125,
-          62.139453125, 62.139453125, 62.139453125, 62.139453125, 62.139453125, 62.139453125, 62.139453125,
-          62.139453125, 62.139453125, 62.139453125, 62.139453125, 62.139453125,
-        ],
-        [
           62.552525, 62.552525, 62.552525, 62.552525, 62.552525, 62.552525, 62.552525, 62.552525, 62.552525, 62.552525,
           62.552525, 62.552525, 62.552525, 62.552525, 62.552525, 62.552525, 62.552525, 62.552525, 62.552525,
-        ],
-        [
-          62.965596875, 62.965596875, 62.965596875, 62.965596875, 62.965596875, 62.965596875, 62.965596875,
-          62.965596875, 62.965596875, 62.965596875, 62.965596875, 62.965596875, 62.965596875, 62.965596875,
-          62.965596875, 62.965596875, 62.965596875, 62.965596875, 62.965596875,
         ],
         [
           63.37866875, 63.37866875, 63.37866875, 63.37866875, 63.37866875, 63.37866875, 63.37866875, 63.37866875,
@@ -4222,19 +2435,9 @@ const LENS_DATA = {
           63.37866875, 63.37866875, 63.37866875,
         ],
         [
-          63.791740625, 63.791740625, 63.791740625, 63.791740625, 63.791740625, 63.791740625, 63.791740625,
-          63.791740625, 63.791740625, 63.791740625, 63.791740625, 63.791740625, 63.791740625, 63.791740625,
-          63.791740625, 63.791740625, 63.791740625, 63.791740625, 63.791740625,
-        ],
-        [
           64.2048125, 64.2048125, 64.2048125, 64.2048125, 64.2048125, 64.2048125, 64.2048125, 64.2048125, 64.2048125,
           64.2048125, 64.2048125, 64.2048125, 64.2048125, 64.2048125, 64.2048125, 64.2048125, 64.2048125, 64.2048125,
           64.2048125,
-        ],
-        [
-          64.617884375, 64.617884375, 64.617884375, 64.617884375, 64.617884375, 64.617884375, 64.617884375,
-          64.617884375, 64.617884375, 64.617884375, 64.617884375, 64.617884375, 64.617884375, 64.617884375,
-          64.617884375, 64.617884375, 64.617884375, 64.617884375, 64.617884375,
         ],
         [
           65.03095625, 65.03095625, 65.03095625, 65.03095625, 65.03095625, 65.03095625, 65.03095625, 65.03095625,
@@ -4242,18 +2445,8 @@ const LENS_DATA = {
           65.03095625, 65.03095625, 65.03095625,
         ],
         [
-          65.444028125, 65.444028125, 65.444028125, 65.444028125, 65.444028125, 65.444028125, 65.444028125,
-          65.444028125, 65.444028125, 65.444028125, 65.444028125, 65.444028125, 65.444028125, 65.444028125,
-          65.444028125, 65.444028125, 65.444028125, 65.444028125, 65.444028125,
-        ],
-        [
           65.8571, 65.8571, 65.8571, 65.8571, 65.8571, 65.8571, 65.8571, 65.8571, 65.8571, 65.8571, 65.8571, 65.8571,
           65.8571, 65.8571, 65.8571, 65.8571, 65.8571, 65.8571, 65.8571,
-        ],
-        [
-          66.270171875, 66.270171875, 66.270171875, 66.270171875, 66.270171875, 66.270171875, 66.270171875,
-          66.270171875, 66.270171875, 66.270171875, 66.270171875, 66.270171875, 66.270171875, 66.270171875,
-          66.270171875, 66.270171875, 66.270171875, 66.270171875, 66.270171875,
         ],
         [
           66.68324375, 66.68324375, 66.68324375, 66.68324375, 66.68324375, 66.68324375, 66.68324375, 66.68324375,
@@ -4261,19 +2454,9 @@ const LENS_DATA = {
           66.68324375, 66.68324375, 66.68324375,
         ],
         [
-          67.096315625, 67.096315625, 67.096315625, 67.096315625, 67.096315625, 67.096315625, 67.096315625,
-          67.096315625, 67.096315625, 67.096315625, 67.096315625, 67.096315625, 67.096315625, 67.096315625,
-          67.096315625, 67.096315625, 67.096315625, 67.096315625, 67.096315625,
-        ],
-        [
           67.5093875, 67.5093875, 67.5093875, 67.5093875, 67.5093875, 67.5093875, 67.5093875, 67.5093875, 67.5093875,
           67.5093875, 67.5093875, 67.5093875, 67.5093875, 67.5093875, 67.5093875, 67.5093875, 67.5093875, 67.5093875,
           67.5093875,
-        ],
-        [
-          67.922459375, 67.922459375, 67.922459375, 67.922459375, 67.922459375, 67.922459375, 67.922459375,
-          67.922459375, 67.922459375, 67.922459375, 67.922459375, 67.922459375, 67.922459375, 67.922459375,
-          67.922459375, 67.922459375, 67.922459375, 67.922459375, 67.922459375,
         ],
         [
           68.33553125, 68.33553125, 68.33553125, 68.33553125, 68.33553125, 68.33553125, 68.33553125, 68.33553125,
@@ -4281,18 +2464,8 @@ const LENS_DATA = {
           68.33553125, 68.33553125, 68.33553125,
         ],
         [
-          68.748603125, 68.748603125, 68.748603125, 68.748603125, 68.748603125, 68.748603125, 68.748603125,
-          68.748603125, 68.748603125, 68.748603125, 68.748603125, 68.748603125, 68.748603125, 68.748603125,
-          68.748603125, 68.748603125, 68.748603125, 68.748603125, 68.748603125,
-        ],
-        [
           69.161675, 69.161675, 69.161675, 69.161675, 69.161675, 69.161675, 69.161675, 69.161675, 69.161675, 69.161675,
           69.161675, 69.161675, 69.161675, 69.161675, 69.161675, 69.161675, 69.161675, 69.161675, 69.161675,
-        ],
-        [
-          69.574746875, 69.574746875, 69.574746875, 69.574746875, 69.574746875, 69.574746875, 69.574746875,
-          69.574746875, 69.574746875, 69.574746875, 69.574746875, 69.574746875, 69.574746875, 69.574746875,
-          69.574746875, 69.574746875, 69.574746875, 69.574746875, 69.574746875,
         ],
         [
           69.98781875, 69.98781875, 69.98781875, 69.98781875, 69.98781875, 69.98781875, 69.98781875, 69.98781875,
@@ -4300,19 +2473,9 @@ const LENS_DATA = {
           69.98781875, 69.98781875, 69.98781875,
         ],
         [
-          70.400890625, 70.400890625, 70.400890625, 70.400890625, 70.400890625, 70.400890625, 70.400890625,
-          70.400890625, 70.400890625, 70.400890625, 70.400890625, 70.400890625, 70.400890625, 70.400890625,
-          70.400890625, 70.400890625, 70.400890625, 70.400890625, 70.400890625,
-        ],
-        [
           70.8139625, 70.8139625, 70.8139625, 70.8139625, 70.8139625, 70.8139625, 70.8139625, 70.8139625, 70.8139625,
           70.8139625, 70.8139625, 70.8139625, 70.8139625, 70.8139625, 70.8139625, 70.8139625, 70.8139625, 70.8139625,
           70.8139625,
-        ],
-        [
-          71.227034375, 71.227034375, 71.227034375, 71.227034375, 71.227034375, 71.227034375, 71.227034375,
-          71.227034375, 71.227034375, 71.227034375, 71.227034375, 71.227034375, 71.227034375, 71.227034375,
-          71.227034375, 71.227034375, 71.227034375, 71.227034375, 71.227034375,
         ],
         [
           71.64010625, 71.64010625, 71.64010625, 71.64010625, 71.64010625, 71.64010625, 71.64010625, 71.64010625,
@@ -4320,18 +2483,8 @@ const LENS_DATA = {
           71.64010625, 71.64010625, 71.64010625,
         ],
         [
-          72.053178125, 72.053178125, 72.053178125, 72.053178125, 72.053178125, 72.053178125, 72.053178125,
-          72.053178125, 72.053178125, 72.053178125, 72.053178125, 72.053178125, 72.053178125, 72.053178125,
-          72.053178125, 72.053178125, 72.053178125, 72.053178125, 72.053178125,
-        ],
-        [
           72.46625, 72.46625, 72.46625, 72.46625, 72.46625, 72.46625, 72.46625, 72.46625, 72.46625, 72.46625, 72.46625,
           72.46625, 72.46625, 72.46625, 72.46625, 72.46625, 72.46625, 72.46625, 72.46625,
-        ],
-        [
-          72.879321875, 72.879321875, 72.879321875, 72.879321875, 72.879321875, 72.879321875, 72.879321875,
-          72.879321875, 72.879321875, 72.879321875, 72.879321875, 72.879321875, 72.879321875, 72.879321875,
-          72.879321875, 72.879321875, 72.879321875, 72.879321875, 72.879321875,
         ],
         [
           73.29239375, 73.29239375, 73.29239375, 73.29239375, 73.29239375, 73.29239375, 73.29239375, 73.29239375,
@@ -4339,20 +2492,9 @@ const LENS_DATA = {
           73.29239375, 73.29239375, 73.29239375,
         ],
         [
-          73.705465625, 73.705465625, 73.705465625, 73.705465625, 73.705465625, 73.705465625, 73.705465625,
-          73.705465625, 73.705465625, 73.705465625, 73.705465625, 73.705465625, 73.705465625, 73.705465625,
-          73.705465625, 73.705465625, 73.705465625, 73.705465625, 73.705465625,
-        ],
-        [
           74.1185375, 74.1185375, 74.1185375, 74.1185375, 74.1185375, 74.1185375, 74.1185375, 74.1185375, 74.1185375,
           74.1185375, 74.1185375, 74.1185375, 74.1185375, 74.1185375, 74.1185375, 74.1185375, 74.1185375, 74.1185375,
           74.1185375,
-        ],
-        [
-          74.53160937500002, 74.53160937500002, 74.53160937500002, 74.53160937500002, 74.53160937500002,
-          74.53160937500002, 74.53160937500002, 74.53160937500002, 74.53160937500002, 74.53160937500002,
-          74.53160937500002, 74.53160937500002, 74.53160937500002, 74.53160937500002, 74.53160937500002,
-          74.53160937500002, 74.53160937500002, 74.53160937500002, 74.53160937500002,
         ],
         [
           74.94468125, 74.94468125, 74.94468125, 74.94468125, 74.94468125, 74.94468125, 74.94468125, 74.94468125,
@@ -4360,18 +2502,8 @@ const LENS_DATA = {
           74.94468125, 74.94468125, 74.94468125,
         ],
         [
-          75.357753125, 75.357753125, 75.357753125, 75.357753125, 75.357753125, 75.357753125, 75.357753125,
-          75.357753125, 75.357753125, 75.357753125, 75.357753125, 75.357753125, 75.357753125, 75.357753125,
-          75.357753125, 75.357753125, 75.357753125, 75.357753125, 75.357753125,
-        ],
-        [
           75.770825, 75.770825, 75.770825, 75.770825, 75.770825, 75.770825, 75.770825, 75.770825, 75.770825, 75.770825,
           75.770825, 75.770825, 75.770825, 75.770825, 75.770825, 75.770825, 75.770825, 75.770825, 75.770825,
-        ],
-        [
-          76.183896875, 76.183896875, 76.183896875, 76.183896875, 76.183896875, 76.183896875, 76.183896875,
-          76.183896875, 76.183896875, 76.183896875, 76.183896875, 76.183896875, 76.183896875, 76.183896875,
-          76.183896875, 76.183896875, 76.183896875, 76.183896875, 76.183896875,
         ],
         [
           76.59696875, 76.59696875, 76.59696875, 76.59696875, 76.59696875, 76.59696875, 76.59696875, 76.59696875,
@@ -4379,19 +2511,9 @@ const LENS_DATA = {
           76.59696875, 76.59696875, 76.59696875,
         ],
         [
-          77.010040625, 77.010040625, 77.010040625, 77.010040625, 77.010040625, 77.010040625, 77.010040625,
-          77.010040625, 77.010040625, 77.010040625, 77.010040625, 77.010040625, 77.010040625, 77.010040625,
-          77.010040625, 77.010040625, 77.010040625, 77.010040625, 77.010040625,
-        ],
-        [
           77.4231125, 77.4231125, 77.4231125, 77.4231125, 77.4231125, 77.4231125, 77.4231125, 77.4231125, 77.4231125,
           77.4231125, 77.4231125, 77.4231125, 77.4231125, 77.4231125, 77.4231125, 77.4231125, 77.4231125, 77.4231125,
           77.4231125,
-        ],
-        [
-          77.836184375, 77.836184375, 77.836184375, 77.836184375, 77.836184375, 77.836184375, 77.836184375,
-          77.836184375, 77.836184375, 77.836184375, 77.836184375, 77.836184375, 77.836184375, 77.836184375,
-          77.836184375, 77.836184375, 77.836184375, 77.836184375, 77.836184375,
         ],
         [
           78.24925625, 78.24925625, 78.24925625, 78.24925625, 78.24925625, 78.24925625, 78.24925625, 78.24925625,
@@ -4399,112 +2521,48 @@ const LENS_DATA = {
           78.24925625, 78.24925625, 78.24925625,
         ],
         [
-          78.662328125, 78.662328125, 78.662328125, 78.662328125, 78.662328125, 78.662328125, 78.662328125,
-          78.662328125, 78.662328125, 78.662328125, 78.662328125, 78.662328125, 78.662328125, 78.662328125,
-          78.662328125, 78.662328125, 78.662328125, 78.662328125, 78.662328125,
-        ],
-        [
           79.0754, 79.0754, 79.0754, 79.0754, 79.0754, 79.0754, 79.0754, 79.0754, 79.0754, 79.0754, 79.0754, 79.0754,
           79.0754, 79.0754, 79.0754, 79.0754, 79.0754, 79.0754, 79.0754,
-        ],
-        [
-          79.32893750000001, 79.32893750000001, 79.32893750000001, 79.32893750000001, 79.32893750000001,
-          79.32893750000001, 79.32893750000001, 79.32893750000001, 79.32893750000001, 79.32893750000001,
-          79.32893750000001, 79.32893750000001, 79.32893750000001, 79.32893750000001, 79.32893750000001,
-          79.32893750000001, 79.32893750000001, 79.32893750000001, 79.32893750000001,
         ],
         [
           79.582475, 79.582475, 79.582475, 79.582475, 79.582475, 79.582475, 79.582475, 79.582475, 79.582475, 79.582475,
           79.582475, 79.582475, 79.582475, 79.582475, 79.582475, 79.582475, 79.582475, 79.582475, 79.582475,
         ],
         [
-          79.8360125, 79.8360125, 79.8360125, 79.8360125, 79.8360125, 79.8360125, 79.8360125, 79.8360125, 79.8360125,
-          79.8360125, 79.8360125, 79.8360125, 79.8360125, 79.8360125, 79.8360125, 79.8360125, 79.8360125, 79.8360125,
-          79.8360125,
-        ],
-        [
           80.08955, 80.08955, 80.08955, 80.08955, 80.08955, 80.08955, 80.08955, 80.08955, 80.08955, 80.08955, 80.08955,
           80.08955, 80.08955, 80.08955, 80.08955, 80.08955, 80.08955, 80.08955, 80.08955,
-        ],
-        [
-          80.3430875, 80.3430875, 80.3430875, 80.3430875, 80.3430875, 80.3430875, 80.3430875, 80.3430875, 80.3430875,
-          80.3430875, 80.3430875, 80.3430875, 80.3430875, 80.3430875, 80.3430875, 80.3430875, 80.3430875, 80.3430875,
-          80.3430875,
         ],
         [
           80.596625, 80.596625, 80.596625, 80.596625, 80.596625, 80.596625, 80.596625, 80.596625, 80.596625, 80.596625,
           80.596625, 80.596625, 80.596625, 80.596625, 80.596625, 80.596625, 80.596625, 80.596625, 80.596625,
         ],
         [
-          80.85016250000001, 80.85016250000001, 80.85016250000001, 80.85016250000001, 80.85016250000001,
-          80.85016250000001, 80.85016250000001, 80.85016250000001, 80.85016250000001, 80.85016250000001,
-          80.85016250000001, 80.85016250000001, 80.85016250000001, 80.85016250000001, 80.85016250000001,
-          80.85016250000001, 80.85016250000001, 80.85016250000001, 80.85016250000001,
-        ],
-        [
           81.1037, 81.1037, 81.1037, 81.1037, 81.1037, 81.1037, 81.1037, 81.1037, 81.1037, 81.1037, 81.1037, 81.1037,
           81.1037, 81.1037, 81.1037, 81.1037, 81.1037, 81.1037, 81.1037,
-        ],
-        [
-          81.3572375, 81.3572375, 81.3572375, 81.3572375, 81.3572375, 81.3572375, 81.3572375, 81.3572375, 81.3572375,
-          81.3572375, 81.3572375, 81.3572375, 81.3572375, 81.3572375, 81.3572375, 81.3572375, 81.3572375, 81.3572375,
-          81.3572375,
         ],
         [
           81.610775, 81.610775, 81.610775, 81.610775, 81.610775, 81.610775, 81.610775, 81.610775, 81.610775, 81.610775,
           81.610775, 81.610775, 81.610775, 81.610775, 81.610775, 81.610775, 81.610775, 81.610775, 81.610775,
         ],
         [
-          81.86431250000001, 81.86431250000001, 81.86431250000001, 81.86431250000001, 81.86431250000001,
-          81.86431250000001, 81.86431250000001, 81.86431250000001, 81.86431250000001, 81.86431250000001,
-          81.86431250000001, 81.86431250000001, 81.86431250000001, 81.86431250000001, 81.86431250000001,
-          81.86431250000001, 81.86431250000001, 81.86431250000001, 81.86431250000001,
-        ],
-        [
           82.11785, 82.11785, 82.11785, 82.11785, 82.11785, 82.11785, 82.11785, 82.11785, 82.11785, 82.11785, 82.11785,
           82.11785, 82.11785, 82.11785, 82.11785, 82.11785, 82.11785, 82.11785, 82.11785,
-        ],
-        [
-          82.3713875, 82.3713875, 82.3713875, 82.3713875, 82.3713875, 82.3713875, 82.3713875, 82.3713875, 82.3713875,
-          82.3713875, 82.3713875, 82.3713875, 82.3713875, 82.3713875, 82.3713875, 82.3713875, 82.3713875, 82.3713875,
-          82.3713875,
         ],
         [
           82.624925, 82.624925, 82.624925, 82.624925, 82.624925, 82.624925, 82.624925, 82.624925, 82.624925, 82.624925,
           82.624925, 82.624925, 82.624925, 82.624925, 82.624925, 82.624925, 82.624925, 82.624925, 82.624925,
         ],
         [
-          82.87846250000001, 82.87846250000001, 82.87846250000001, 82.87846250000001, 82.87846250000001,
-          82.87846250000001, 82.87846250000001, 82.87846250000001, 82.87846250000001, 82.87846250000001,
-          82.87846250000001, 82.87846250000001, 82.87846250000001, 82.87846250000001, 82.87846250000001,
-          82.87846250000001, 82.87846250000001, 82.87846250000001, 82.87846250000001,
-        ],
-        [
           83.132, 83.132, 83.132, 83.132, 83.132, 83.132, 83.132, 83.132, 83.132, 83.132, 83.132, 83.132, 83.132,
           83.132, 83.132, 83.132, 83.132, 83.132, 83.132,
-        ],
-        [
-          83.3855375, 83.3855375, 83.3855375, 83.3855375, 83.3855375, 83.3855375, 83.3855375, 83.3855375, 83.3855375,
-          83.3855375, 83.3855375, 83.3855375, 83.3855375, 83.3855375, 83.3855375, 83.3855375, 83.3855375, 83.3855375,
-          83.3855375,
         ],
         [
           83.639075, 83.639075, 83.639075, 83.639075, 83.639075, 83.639075, 83.639075, 83.639075, 83.639075, 83.639075,
           83.639075, 83.639075, 83.639075, 83.639075, 83.639075, 83.639075, 83.639075, 83.639075, 83.639075,
         ],
         [
-          83.8926125, 83.8926125, 83.8926125, 83.8926125, 83.8926125, 83.8926125, 83.8926125, 83.8926125, 83.8926125,
-          83.8926125, 83.8926125, 83.8926125, 83.8926125, 83.8926125, 83.8926125, 83.8926125, 83.8926125, 83.8926125,
-          83.8926125,
-        ],
-        [
           84.14615, 84.14615, 84.14615, 84.14615, 84.14615, 84.14615, 84.14615, 84.14615, 84.14615, 84.14615, 84.14615,
           84.14615, 84.14615, 84.14615, 84.14615, 84.14615, 84.14615, 84.14615, 84.14615,
-        ],
-        [
-          84.3996875, 84.3996875, 84.3996875, 84.3996875, 84.3996875, 84.3996875, 84.3996875, 84.3996875, 84.3996875,
-          84.3996875, 84.3996875, 84.3996875, 84.3996875, 84.3996875, 84.3996875, 84.3996875, 84.3996875, 84.3996875,
-          84.3996875,
         ],
         [
           84.65322499999999, 84.65322499999999, 84.65322499999999, 84.65322499999999, 84.65322499999999,
@@ -4513,19 +2571,8 @@ const LENS_DATA = {
           84.65322499999999, 84.65322499999999, 84.65322499999999, 84.65322499999999,
         ],
         [
-          84.90676250000001, 84.90676250000001, 84.90676250000001, 84.90676250000001, 84.90676250000001,
-          84.90676250000001, 84.90676250000001, 84.90676250000001, 84.90676250000001, 84.90676250000001,
-          84.90676250000001, 84.90676250000001, 84.90676250000001, 84.90676250000001, 84.90676250000001,
-          84.90676250000001, 84.90676250000001, 84.90676250000001, 84.90676250000001,
-        ],
-        [
           85.1603, 85.1603, 85.1603, 85.1603, 85.1603, 85.1603, 85.1603, 85.1603, 85.1603, 85.1603, 85.1603, 85.1603,
           85.1603, 85.1603, 85.1603, 85.1603, 85.1603, 85.1603, 85.1603,
-        ],
-        [
-          85.4138375, 85.4138375, 85.4138375, 85.4138375, 85.4138375, 85.4138375, 85.4138375, 85.4138375, 85.4138375,
-          85.4138375, 85.4138375, 85.4138375, 85.4138375, 85.4138375, 85.4138375, 85.4138375, 85.4138375, 85.4138375,
-          85.4138375,
         ],
         [
           85.66737499999999, 85.66737499999999, 85.66737499999999, 85.66737499999999, 85.66737499999999,
@@ -4534,29 +2581,14 @@ const LENS_DATA = {
           85.66737499999999, 85.66737499999999, 85.66737499999999, 85.66737499999999,
         ],
         [
-          85.9209125, 85.9209125, 85.9209125, 85.9209125, 85.9209125, 85.9209125, 85.9209125, 85.9209125, 85.9209125,
-          85.9209125, 85.9209125, 85.9209125, 85.9209125, 85.9209125, 85.9209125, 85.9209125, 85.9209125, 85.9209125,
-          85.9209125,
-        ],
-        [
           86.17445000000001, 86.17445000000001, 86.17445000000001, 86.17445000000001, 86.17445000000001,
           86.17445000000001, 86.17445000000001, 86.17445000000001, 86.17445000000001, 86.17445000000001,
           86.17445000000001, 86.17445000000001, 86.17445000000001, 86.17445000000001, 86.17445000000001,
           86.17445000000001, 86.17445000000001, 86.17445000000001, 86.17445000000001,
         ],
         [
-          86.4279875, 86.4279875, 86.4279875, 86.4279875, 86.4279875, 86.4279875, 86.4279875, 86.4279875, 86.4279875,
-          86.4279875, 86.4279875, 86.4279875, 86.4279875, 86.4279875, 86.4279875, 86.4279875, 86.4279875, 86.4279875,
-          86.4279875,
-        ],
-        [
           86.681525, 86.681525, 86.681525, 86.681525, 86.681525, 86.681525, 86.681525, 86.681525, 86.681525, 86.681525,
           86.681525, 86.681525, 86.681525, 86.681525, 86.681525, 86.681525, 86.681525, 86.681525, 86.681525,
-        ],
-        [
-          86.9350625, 86.9350625, 86.9350625, 86.9350625, 86.9350625, 86.9350625, 86.9350625, 86.9350625, 86.9350625,
-          86.9350625, 86.9350625, 86.9350625, 86.9350625, 86.9350625, 86.9350625, 86.9350625, 86.9350625, 86.9350625,
-          86.9350625,
         ],
         [
           87.18860000000001, 87.18860000000001, 87.18860000000001, 87.18860000000001, 87.18860000000001,
@@ -4565,18 +2597,8 @@ const LENS_DATA = {
           87.18860000000001, 87.18860000000001, 87.18860000000001, 87.18860000000001,
         ],
         [
-          87.4421375, 87.4421375, 87.4421375, 87.4421375, 87.4421375, 87.4421375, 87.4421375, 87.4421375, 87.4421375,
-          87.4421375, 87.4421375, 87.4421375, 87.4421375, 87.4421375, 87.4421375, 87.4421375, 87.4421375, 87.4421375,
-          87.4421375,
-        ],
-        [
           87.695675, 87.695675, 87.695675, 87.695675, 87.695675, 87.695675, 87.695675, 87.695675, 87.695675, 87.695675,
           87.695675, 87.695675, 87.695675, 87.695675, 87.695675, 87.695675, 87.695675, 87.695675, 87.695675,
-        ],
-        [
-          87.9492125, 87.9492125, 87.9492125, 87.9492125, 87.9492125, 87.9492125, 87.9492125, 87.9492125, 87.9492125,
-          87.9492125, 87.9492125, 87.9492125, 87.9492125, 87.9492125, 87.9492125, 87.9492125, 87.9492125, 87.9492125,
-          87.9492125,
         ],
         [
           88.20275000000001, 88.20275000000001, 88.20275000000001, 88.20275000000001, 88.20275000000001,
@@ -4585,18 +2607,8 @@ const LENS_DATA = {
           88.20275000000001, 88.20275000000001, 88.20275000000001, 88.20275000000001,
         ],
         [
-          88.4562875, 88.4562875, 88.4562875, 88.4562875, 88.4562875, 88.4562875, 88.4562875, 88.4562875, 88.4562875,
-          88.4562875, 88.4562875, 88.4562875, 88.4562875, 88.4562875, 88.4562875, 88.4562875, 88.4562875, 88.4562875,
-          88.4562875,
-        ],
-        [
           88.709825, 88.709825, 88.709825, 88.709825, 88.709825, 88.709825, 88.709825, 88.709825, 88.709825, 88.709825,
           88.709825, 88.709825, 88.709825, 88.709825, 88.709825, 88.709825, 88.709825, 88.709825, 88.709825,
-        ],
-        [
-          88.9633625, 88.9633625, 88.9633625, 88.9633625, 88.9633625, 88.9633625, 88.9633625, 88.9633625, 88.9633625,
-          88.9633625, 88.9633625, 88.9633625, 88.9633625, 88.9633625, 88.9633625, 88.9633625, 88.9633625, 88.9633625,
-          88.9633625,
         ],
         [
           89.21690000000001, 89.21690000000001, 89.21690000000001, 89.21690000000001, 89.21690000000001,
@@ -4605,74 +2617,32 @@ const LENS_DATA = {
           89.21690000000001, 89.21690000000001, 89.21690000000001, 89.21690000000001,
         ],
         [
-          89.4704375, 89.4704375, 89.4704375, 89.4704375, 89.4704375, 89.4704375, 89.4704375, 89.4704375, 89.4704375,
-          89.4704375, 89.4704375, 89.4704375, 89.4704375, 89.4704375, 89.4704375, 89.4704375, 89.4704375, 89.4704375,
-          89.4704375,
-        ],
-        [
           89.723975, 89.723975, 89.723975, 89.723975, 89.723975, 89.723975, 89.723975, 89.723975, 89.723975, 89.723975,
           89.723975, 89.723975, 89.723975, 89.723975, 89.723975, 89.723975, 89.723975, 89.723975, 89.723975,
-        ],
-        [
-          89.97751249999999, 89.97751249999999, 89.97751249999999, 89.97751249999999, 89.97751249999999,
-          89.97751249999999, 89.97751249999999, 89.97751249999999, 89.97751249999999, 89.97751249999999,
-          89.97751249999999, 89.97751249999999, 89.97751249999999, 89.97751249999999, 89.97751249999999,
-          89.97751249999999, 89.97751249999999, 89.97751249999999, 89.97751249999999,
         ],
         [
           90.23105, 90.23105, 90.23105, 90.23105, 90.23105, 90.23105, 90.23105, 90.23105, 90.23105, 90.23105, 90.23105,
           90.23105, 90.23105, 90.23105, 90.23105, 90.23105, 90.23105, 90.23105, 90.23105,
         ],
         [
-          90.4845875, 90.4845875, 90.4845875, 90.4845875, 90.4845875, 90.4845875, 90.4845875, 90.4845875, 90.4845875,
-          90.4845875, 90.4845875, 90.4845875, 90.4845875, 90.4845875, 90.4845875, 90.4845875, 90.4845875, 90.4845875,
-          90.4845875,
-        ],
-        [
           90.738125, 90.738125, 90.738125, 90.738125, 90.738125, 90.738125, 90.738125, 90.738125, 90.738125, 90.738125,
           90.738125, 90.738125, 90.738125, 90.738125, 90.738125, 90.738125, 90.738125, 90.738125, 90.738125,
-        ],
-        [
-          90.99166249999999, 90.99166249999999, 90.99166249999999, 90.99166249999999, 90.99166249999999,
-          90.99166249999999, 90.99166249999999, 90.99166249999999, 90.99166249999999, 90.99166249999999,
-          90.99166249999999, 90.99166249999999, 90.99166249999999, 90.99166249999999, 90.99166249999999,
-          90.99166249999999, 90.99166249999999, 90.99166249999999, 90.99166249999999,
         ],
         [
           91.2452, 91.2452, 91.2452, 91.2452, 91.2452, 91.2452, 91.2452, 91.2452, 91.2452, 91.2452, 91.2452, 91.2452,
           91.2452, 91.2452, 91.2452, 91.2452, 91.2452, 91.2452, 91.2452,
         ],
         [
-          91.4987375, 91.4987375, 91.4987375, 91.4987375, 91.4987375, 91.4987375, 91.4987375, 91.4987375, 91.4987375,
-          91.4987375, 91.4987375, 91.4987375, 91.4987375, 91.4987375, 91.4987375, 91.4987375, 91.4987375, 91.4987375,
-          91.4987375,
-        ],
-        [
           91.752275, 91.752275, 91.752275, 91.752275, 91.752275, 91.752275, 91.752275, 91.752275, 91.752275, 91.752275,
           91.752275, 91.752275, 91.752275, 91.752275, 91.752275, 91.752275, 91.752275, 91.752275, 91.752275,
-        ],
-        [
-          92.0058125, 92.0058125, 92.0058125, 92.0058125, 92.0058125, 92.0058125, 92.0058125, 92.0058125, 92.0058125,
-          92.0058125, 92.0058125, 92.0058125, 92.0058125, 92.0058125, 92.0058125, 92.0058125, 92.0058125, 92.0058125,
-          92.0058125,
         ],
         [
           92.25935, 92.25935, 92.25935, 92.25935, 92.25935, 92.25935, 92.25935, 92.25935, 92.25935, 92.25935, 92.25935,
           92.25935, 92.25935, 92.25935, 92.25935, 92.25935, 92.25935, 92.25935, 92.25935,
         ],
         [
-          92.5128875, 92.5128875, 92.5128875, 92.5128875, 92.5128875, 92.5128875, 92.5128875, 92.5128875, 92.5128875,
-          92.5128875, 92.5128875, 92.5128875, 92.5128875, 92.5128875, 92.5128875, 92.5128875, 92.5128875, 92.5128875,
-          92.5128875,
-        ],
-        [
           92.766425, 92.766425, 92.766425, 92.766425, 92.766425, 92.766425, 92.766425, 92.766425, 92.766425, 92.766425,
           92.766425, 92.766425, 92.766425, 92.766425, 92.766425, 92.766425, 92.766425, 92.766425, 92.766425,
-        ],
-        [
-          93.0199625, 93.0199625, 93.0199625, 93.0199625, 93.0199625, 93.0199625, 93.0199625, 93.0199625, 93.0199625,
-          93.0199625, 93.0199625, 93.0199625, 93.0199625, 93.0199625, 93.0199625, 93.0199625, 93.0199625, 93.0199625,
-          93.0199625,
         ],
         [
           93.27350000000001, 93.27350000000001, 93.27350000000001, 93.27350000000001, 93.27350000000001,
@@ -4681,38 +2651,16 @@ const LENS_DATA = {
           93.27350000000001, 93.27350000000001, 93.27350000000001, 93.27350000000001,
         ],
         [
-          93.52703749999999, 93.52703749999999, 93.52703749999999, 93.52703749999999, 93.52703749999999,
-          93.52703749999999, 93.52703749999999, 93.52703749999999, 93.52703749999999, 93.52703749999999,
-          93.52703749999999, 93.52703749999999, 93.52703749999999, 93.52703749999999, 93.52703749999999,
-          93.52703749999999, 93.52703749999999, 93.52703749999999, 93.52703749999999,
-        ],
-        [
           93.780575, 93.780575, 93.780575, 93.780575, 93.780575, 93.780575, 93.780575, 93.780575, 93.780575, 93.780575,
           93.780575, 93.780575, 93.780575, 93.780575, 93.780575, 93.780575, 93.780575, 93.780575, 93.780575,
-        ],
-        [
-          94.0341125, 94.0341125, 94.0341125, 94.0341125, 94.0341125, 94.0341125, 94.0341125, 94.0341125, 94.0341125,
-          94.0341125, 94.0341125, 94.0341125, 94.0341125, 94.0341125, 94.0341125, 94.0341125, 94.0341125, 94.0341125,
-          94.0341125,
         ],
         [
           94.28765, 94.28765, 94.28765, 94.28765, 94.28765, 94.28765, 94.28765, 94.28765, 94.28765, 94.28765, 94.28765,
           94.28765, 94.28765, 94.28765, 94.28765, 94.28765, 94.28765, 94.28765, 94.28765,
         ],
         [
-          94.5411875, 94.5411875, 94.5411875, 94.5411875, 94.5411875, 94.5411875, 94.5411875, 94.5411875, 94.5411875,
-          94.5411875, 94.5411875, 94.5411875, 94.5411875, 94.5411875, 94.5411875, 94.5411875, 94.5411875, 94.5411875,
-          94.5411875,
-        ],
-        [
           94.794725, 94.794725, 94.794725, 94.794725, 94.794725, 94.794725, 94.794725, 94.794725, 94.794725, 94.794725,
           94.794725, 94.794725, 94.794725, 94.794725, 94.794725, 94.794725, 94.794725, 94.794725, 94.794725,
-        ],
-        [
-          95.04826249999999, 95.04826249999999, 95.04826249999999, 95.04826249999999, 95.04826249999999,
-          95.04826249999999, 95.04826249999999, 95.04826249999999, 95.04826249999999, 95.04826249999999,
-          95.04826249999999, 95.04826249999999, 95.04826249999999, 95.04826249999999, 95.04826249999999,
-          95.04826249999999, 95.04826249999999, 95.04826249999999, 95.04826249999999,
         ],
         [
           95.3018, 95.3018, 95.3018, 95.3018, 95.3018, 95.3018, 95.3018, 95.3018, 95.3018, 95.3018, 95.3018, 95.3018,

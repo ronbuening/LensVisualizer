@@ -1,189 +1,213 @@
 ## Patent Reference and Design Identification
 
-**Patent:** US 8837056 B2
+**Patent:** US 8,837,056 B2
 **Application Number:** US 13/552,332
 **Filed:** 2012-07-18
 **Granted:** 2014-09-16
 **Inventor:** Masaki Maruyama
 **Assignee:** Sony Corporation
 **Title:** Zoom lens and imaging device
-**Example details:** Numerical Working Example 1, Tables 1–3 and 10, Figure 1; declared uniform 55× scale.
+**Example details:** Numerical Working Example 1, Tables 1–3 and 10, Figure 1; uniform 55× scale inferred.
 
-This is a **qualified related-design reconstruction**, not a uniquely proved
-factory prescription for Sony E 55–210mm f/4.5–6.3 OSS (SEL55210). The original
-29-page USPTO grant controls the transcription. The original 30-page published
-application US20130033621A1 independently agrees on the tables. Source fields,
-including symbolic variable spacings and explicit zero conic constants, were
-independently compared in 220 assertions covering 121 distinct numerical cells.
-Those counts are source checks, not optical quality tests.
+Numerical Working Example 1 (E1) is a **related Sony design**, not a confirmed
+factory prescription for the Sony E 55–210mm f/4.5–6.3 OSS (SEL55210). The grant
+and the published application US 2013/0033621 A1 print identical tables. The
+Japanese priority filing is dated 5 August 2011, and the lens was announced later
+that month. The correlation rests on these points:
 
-1. The source's thirteen elements in nine air-separated components and five
-   moving groups agree with the official Sony construction and count.
-2. Manufacturer green ED elements occupy L2/L8; purple aspherical elements
-   occupy L10/L11. E1 has the same relevant positions and two aspheric elements.
-3. E1 also has a very-high-Abbe L10. Purple aspheric coloring may overlap an ED
-   classification; the drawing does not demonstrate an exclusive material count.
-4. The source's single positive G4 focus element and transverse G5-front
-   stabilizer are compatible with the maker's internal focus and OSS.
-5. E2 has fourteen elements and a doublet G4, unlike the drawing. E3 retains
-   thirteen/nine topology and two aspherical elements and remains a related
-   alternative. E1's material-position correspondence is stronger but not proof.
+1. The example's thirteen elements in nine air-separated groups match Sony's
+   published construction, and its five moving groups fit a compact telephoto zoom.
+2. Sony's diagram marks ED elements at L2 and L8 and aspherical elements at L10
+   and L11. E1 has its 1.4970/81.61 glass at L2 and L8, and aspheric surfaces on
+   both faces of L10 and L11. Sony's text counts two of each.
+3. E1's L10 also has a very high Abbe number. Sony's count treats it as aspherical
+   rather than ED; the drawing does not settle the material.
+4. The single positive G4 focus element and the transverse stabilizer at the front
+   of G5 fit Sony's internal focus and OSS. F/4.64–6.49 sits close to the marketed
+   f/4.5–6.3.
+5. Example 2 has fourteen elements, a doublet G4 and F/7.30 at tele, unlike the
+   production lens. Example 3 keeps thirteen elements in nine groups and two
+   aspherical elements, but adds a third 1.4970/81.61 element at L3 and reaches
+   only 3.46×. E1 is the closest of the three, which is not proof of identity.
 
-The patent gives radii and distances in millimetres with f = 1.00/1.91/3.62;
-Table 10 gives the less rounded tele ratio 3.624. **No production scale is
-published.** This candidate explicitly chooses a 55× uniform scale to make the
-first stated station 55 mm. The other stated stations become 105.05 and
-199.10 mm, not 210 mm. A single scale cannot make both retail endpoints exact.
-The source ratio, apertures and all relative dimensions are preserved instead
-of stretching the telephoto spacing or silently changing coefficients.
-This inference also affects the physical lp/mm meaning of MTF. Alternate
-scales are not claimed equivalent at the same physical spatial frequency.
+The patent gives radii and distances with f = 1.00/1.91/3.62; Table 10 gives the
+less rounded tele ratio 3.624. **No production scale is published.** The model
+multiplies every length by an inferred 55× so the first station reads 55 mm. The
+other stations become 105.05 and 199.10 mm, not 210 mm: the example zooms 3.62×
+against the marketed 3.82×, and no single scale fits both ends. The printed
+half-fields land on one image height, 13.9 mm at 55×, so a 14.1 mm APS-C
+semi-diagonal implies about 55.75× and a 202 mm tele. Reaching 210 mm would take
+58× and a 14.65 mm image height. The example's ratio, apertures and relative
+dimensions are kept rather than stretching the telephoto spacing. The inferred
+scale also sets the physical lp/mm meaning of any MTF figure.
+
+The patent disagrees with itself in two places. Table 3 gives the intermediate
+half-field as 7.43°, while Figs. 6B and 6C print 7.34°. Tracing favors the figure:
+7.34° lands at 13.90 mm at 55×, matching 13.91 mm at wide and 13.92 mm at tele,
+while 7.43° lands at 14.08 mm. Table 3 gives the wide-end F-number as 4.64, while
+Fig. 5A prints 4.84. The patent prints no stop diameter, so this cannot be settled
+directly, but 4.64 gives a tele-to-wide stop ratio of 1.109, close to Example 3's
+1.105, while 4.84 gives 1.157. The model keeps Table 3's 4.64.
 
 ## Optical Architecture
 
-The five motion groups have powers positive–negative–positive–positive–negative.
+The five moving groups have powers positive–negative–positive–positive–negative.
 G1 comprises L1–L3, G2 L4–L6, G3 L7–L9, G4 L10 and G5 L11–L13. Four cemented
-pairs are L1/L2, L4/L5, L8/L9 and L12/L13. These five kinematic groups are not
-the nine catalog components. The aperture stop lies between G2 and G3 and moves
-with G3. No camera-side plate is tabulated in this example; one is not invented.
+pairs are L1/L2, L4/L5, L8/L9 and L12/L13. These five moving groups are not the
+nine air-separated groups in the catalog count. The aperture stop lies between G2
+and G3 and moves with G3. No camera-side plate is tabulated in this example, and
+none is modeled.
 
-All groups change their image-referenced position with zoom. The patent states
-that G1/G3/G5 move objectward and G3/G5 move together. Their printed d16+d18 sum
-is 0.315/0.314/0.315 source mm; the 0.001 rounding difference is retained rather
-than redistributed. The back gap and native image planes remain literal.
-OSS is centered in this sequential model: no decentered stabilization performance
-or transverse actuator range is simulated.
+All groups change position with zoom. The patent states that G1, G3 and G5 move
+objectward and that G3 and G5 move together. Their printed d16 + d18 sum is
+0.315/0.314/0.315; the 0.001 rounding difference is kept rather than redistributed.
+The back gaps stay as printed. OSS is modeled centered: decentered stabilization
+performance and actuator range are not simulated.
 
 ## Element-by-Element Analysis
 
-The following isolated thick-element focal lengths use source d-line constants
-at the explicit 55× scale. They are not additive powers of cemented assemblies.
-Optical roles are positional interpretations, not measured correction budgets.
+The focal lengths below are isolated thick-element values at d-line, using the
+patent's constants at the inferred 55× scale. They are not additive powers of
+cemented assemblies. Optical roles are positional interpretations.
 
 ### L1 — Negative Meniscus
 
-nd = 1.9108, νd = 35.25. Glass: Unmatched (source constants only). f = -131.457 mm.
+nd = 1.9108, νd = 35.25. Glass: TAFD35 (HOYA, coordinate equivalent). f = -131.457 mm.
 
-Negative meniscus forming the front of cemented D1, with high-index low-Abbe material.
+Negative meniscus forming the front of cemented C1, with high-index material.
 
 ### L2 — Biconvex Positive
 
-nd = 1.4970, νd = 81.61. Glass: Unmatched (source constants only). f = +70.113 mm.
+nd = 1.4970, νd = 81.61. Glass: FCD1 (HOYA, coordinate equivalent) — ED class, inferred. f = +70.113 mm.
 
-Positive biconvex rear of D1 with very high Abbe number; corresponds to the first green maker element.
+Positive biconvex rear of C1 with a very high Abbe number; it sits at the first ED position on Sony's diagram.
 
 ### L3 — Positive Meniscus
 
-nd = 1.4875, νd = 70.44. Glass: Unmatched (source constants only). f = +280.670 mm.
+nd = 1.4875, νd = 70.44. Glass: FC5 (HOYA, coordinate equivalent). f = +280.670 mm.
 
-Positive meniscus singleton completes the positive front group.
+Weak positive meniscus singlet that completes the positive front group.
 
 ### L4 — Biconcave Negative
 
-nd = 1.8061, νd = 40.73. Glass: Unmatched (source constants only). f = -14.124 mm.
+nd = 1.8061, νd = 40.73. Glass: NBFD13 (HOYA, coordinate equivalent). f = -14.124 mm.
 
-Negative biconcave front member of D2 provides the negative variator contribution.
+Negative biconcave front member of C2, supplying most of the negative group's power.
 
 ### L5 — Positive Meniscus
 
-nd = 1.8467, νd = 23.78. Glass: Unmatched (source constants only). f = +17.852 mm.
+nd = 1.8467, νd = 23.78. Glass: FDS90 (HOYA, coordinate equivalent). f = +17.852 mm.
 
-Positive meniscus rear of D2 has low Abbe number and opposes the negative partner.
+Positive meniscus rear of C2, with a low Abbe number that opposes its negative partner.
 
 ### L6 — Biconcave Negative
 
-nd = 1.9108, νd = 35.25. Glass: Unmatched (source constants only). f = -34.508 mm.
+nd = 1.9108, νd = 35.25. Glass: TAFD35 (HOYA, coordinate equivalent). f = -34.508 mm.
 
-Negative biconcave singleton completes G2. The adjacent narrow air space constrains inferred rims.
+Negative biconcave singlet that completes G2. The narrow air space in front of it limits the inferred rims.
 
 ### L7 — Biconvex Positive
 
-nd = 1.9108, νd = 35.25. Glass: Unmatched (source constants only). f = +32.981 mm.
+nd = 1.9108, νd = 35.25. Glass: TAFD35 (HOYA, coordinate equivalent). f = +32.981 mm.
 
-Positive biconvex singleton begins G3 immediately behind the stop.
+Positive biconvex singlet that begins G3 immediately behind the stop.
 
 ### L8 — Biconvex Positive
 
-nd = 1.4970, νd = 81.61. Glass: Unmatched (source constants only). f = +30.861 mm.
+nd = 1.4970, νd = 81.61. Glass: FCD1 (HOYA, coordinate equivalent) — ED class, inferred. f = +30.861 mm.
 
-Positive biconvex front of D3 has very high Abbe number; corresponds to the second green maker element.
+Positive biconvex front of C3 with a very high Abbe number; it sits at the second ED position on Sony's diagram.
 
 ### L9 — Biconcave Negative
 
-nd = 1.8467, νd = 23.78. Glass: Unmatched (source constants only). f = -32.247 mm.
+nd = 1.8467, νd = 23.78. Glass: FDS90 (HOYA, coordinate equivalent). f = -32.247 mm.
 
-Negative biconcave rear of D3 supplies opposing power within the positive third group.
+Negative biconcave rear of C3, supplying opposing power within the positive third group.
 
 ### L10 — Biconvex Positive (Asph)
 
-nd = 1.4971, νd = 81.56. Glass: Unmatched (source constants only). f = +46.904 mm.
+nd = 1.4971, νd = 81.56. Glass: M-FCD1 (HOYA, coordinate equivalent). f = +46.904 mm.
 
-Double-aspheric positive biconvex singleton is the entire focus group. Its very-high-Abbe constants are retained without assigning a manufacturer glass identity.
+Double-aspheric positive biconvex singlet that is the entire focus group (patent L4). Its index and Abbe number sit on the coordinates of a moulding glass in the FCD1 family.
 
 ### L11 — Biconcave Negative (Asph)
 
-nd = 1.5920, νd = 67.02. Glass: Unmatched (source constants only). f = -30.468 mm.
+nd = 1.5920, νd = 67.02. Glass: M-PCD51 (HOYA, coordinate equivalent). f = -30.468 mm.
 
-Double-aspheric negative biconcave singleton is the front subgroup of G5 and the source stabilizer.
+Double-aspheric negative biconcave singlet that forms the front of G5 and is the patent's stabilizing element (patent L51).
 
 ### L12 — Biconvex Positive
 
-nd = 1.6034, νd = 38.01. Glass: Unmatched (source constants only). f = +22.943 mm.
+nd = 1.6034, νd = 38.01. Glass: E-F5 (HOYA, coordinate equivalent). f = +22.943 mm.
 
-Positive biconvex front of D4 forms the rear relay component.
+Positive biconvex front of C4, the rear part of G5 (patent L52).
 
 ### L13 — Biconcave Negative
 
-nd = 1.8348, νd = 42.72. Glass: Unmatched (source constants only). f = -24.456 mm.
+nd = 1.8348, νd = 42.72. Glass: TAFD5F (HOYA, coordinate equivalent). f = -24.456 mm.
 
-Negative biconcave rear of D4 terminates the lens before the printed variable back gap.
+Negative biconcave rear of C4, the last element before the variable back gap.
 
 ## Glass Identification and Selection
 
-All thirteen glass identities remain unmatched. The source gives nd/νd but no
-supplier, melt name, line indices or partial-dispersion data. Rounded pairs are
-not sufficient to assign commercial identities. In particular L2/L8/L10 carry
-νd near 81.6; the pinned runtime refuses C/d/F and photopic MTF without their
-partial-dispersion evidence. This is **spectral-data-unavailable**, not failed
-convergence and not permission to substitute catalog glass or fabricate zeros.
-Reference d-line simulation remains available. No measured color or APO claim
-is made.
+All nine printed nd/νd pairs sit on HOYA catalog coordinates. Four of them recur
+across the patent's examples, and the other examples' glasses also sit on catalog
+rows, so the data file names HOYA glasses as coordinate equivalents. The patent
+names no supplier or melt and prints four-decimal indices, no line indices and no
+partial-dispersion data. The names are therefore catalog-derived equivalents, not
+a stated production bill of materials, and the model's color behavior comes from
+those catalog rows.
+
+| Glass (HOYA equivalent) | nd | νd | θgF (catalog) | Elements | Role |
+| ------- | ---: | ---: | ---: | ---- | ---- |
+| TAFD35 | 1.9108 | 35.25 | 0.5822 | L1, L6, L7 | High-index meniscus, negative and positive singlets |
+| FCD1 | 1.4970 | 81.61 | 0.5389 | L2, L8 | ED positive members of C1 and C3 (inferred) |
+| FC5 | 1.4875 | 70.44 | 0.5306 | L3 | Low-dispersion crown |
+| NBFD13 | 1.8061 | 40.73 | 0.5672 | L4 | Strong negative member of C2 |
+| FDS90 | 1.8467 | 23.78 | 0.6192 | L5, L9 | Dense flint partners in C2 and C3 |
+| M-FCD1 | 1.4971 | 81.56 | 0.5385 | L10 | Aspheric focus element |
+| M-PCD51 | 1.5920 | 67.02 | 0.5359 | L11 | Aspheric stabilizing element |
+| E-F5 | 1.6034 | 38.01 | 0.5828 | L12 | Positive member of C4 |
+| TAFD5F | 1.8348 | 42.72 | 0.5651 | L13 | Negative member of C4 |
+
+L2 and L8 are tagged as inferred ED from Sony's diagram. L10 has a similar Abbe
+number but is left untagged because Sony's count of two ED elements is already met.
+No measured color or APO claim is made.
 
 ## Focus Mechanism
 
-Only G4 translates for focusing, objectward from infinity. The original provides
-no finite spacing table, object conjugate or manufacturer cam. The retail 1 m
-minimum focus is a product specification, not a patent-certified optical state.
-This model uses 65 zoom and 33 focus controls derived with a scalar paraxial
-calculation. Only the three original infinity stations are marked published;
-there are **no finite conjugate declarations** and no finite MTF certification.
+Only G4 moves for focusing, objectward from infinity (¶0087). The patent provides
+no finite spacing table, object distance or cam. The marketed 1 m minimum focus is
+a product specification, not a patent-stated optical state. The model uses 65 zoom
+and 33 focus positions from a paraxial calculation. Only the three infinity
+stations in Table 3 are marked published, and no finite conjugate is declared, so
+**finite-distance MTF stays unavailable**.
 
-At intermediate zooms, other group positions are linearly interpolated and G4
-alone compensates, with maximum infinity correction 0.139419 mm. At near focus,
-G4 moves by up to 6.016152 mm in this inference. Adjacent d16/d18 changes have
-equal opposite signs, preserving rigid translation and total track. The inferred
-focus target residual interpolates the original infinity residual toward zero
-at the inferred 1 m endpoint; this does not rewrite the three published rows.
+Between printed stations G1, G2, G3 and G5 are interpolated linearly and G4 alone
+keeps the image in place, departing from a straight line by at most 0.14 mm. Near
+focus moves G4 by 1.03 mm at wide, 2.69 mm at mid and 6.02 mm at tele; d16 and d18
+change by equal and opposite amounts, so total track holds. The inferred endpoint
+is 1000 mm object to image at every zoom. Tele magnification there is 0.219, close
+to Sony's 0.225×, and focal length breathes from 199 mm to about 138 mm.
 
-The native infinity source-plane offsets from paraxial infinity focus are
-+0.036796, +0.028515 and −0.393875 mm at the 55× scale. They are retained. This
-means an infinity label does not prove exact source closure. Actual candidate
-ABCD conjugates have poles near focus coordinates 0.0120154 at wide and
-0.00258655 at middle. At focus 0.004, the illustrative 250 m label corresponds
-to algebraic −122.950 m, +704.788 m and +72.003 m at the three zoom knots.
-Negative algebraic distance denotes a virtual conjugate, not a real scene.
-There is **no uniform focus-distance accuracy bound**, and the inference is not
-manufacturer firmware or measured focus calibration. At the inferred near
-endpoint the paraxial equation reproduces 1 m, still not a published state.
+The printed back gaps do not close exactly at paraxial infinity focus. Paraxial
+focus minus the printed plane is +0.037, +0.029 and −0.394 mm at 55×. The tele
+figure means the printed plane sits 0.394 mm behind paraxial focus, which is within
+print rounding: three-decimal values on a normalized table carry about 0.38 mm of
+one-sigma uncertainty at that station, so no misprint is implied. The values are
+kept. As a result the infinity position focuses about 100 m in front of the lens at
+tele, and on virtual objects about 82 m and 385 m behind it at wide and mid. The
+focus scale close to infinity is therefore approximate, and the cam is not
+manufacturer firmware or a measured calibration.
 
 ## Aspherical Surfaces
 
-Surfaces S17/S18 form L10; S19/S20 form L11. The source uses the standard
-(1+K) conic equation and prints K=0 on all four faces. A4, A6, A8 and A10 are
-all retained. Missing orders are not invented. Uniform scaling by s=55 leaves
-K unchanged and transforms each coefficient An to An/s^(n−1), while every
-radius, thickness and spacing is multiplied by s. The following values are
-**original source coefficients**, not the scaled candidate coefficients.
+Surfaces S17 and S18 form L10; S19 and S20 form L11. The patent uses the standard
+(1+K) conic equation and prints K = 0 on all four faces, with A4, A6, A8 and A10.
+Uniform scaling by s = 55 leaves K unchanged and transforms each coefficient An to
+An/s^(n−1), while every radius, thickness and spacing is multiplied by s. The
+values below are the patent's normalized coefficients, not the scaled ones in the
+data file.
 
 | Surface |     K |           A4 |           A6 |          A8 |          A10 |
 | ------- | ----: | -----------: | -----------: | ----------: | -----------: |
@@ -192,69 +216,50 @@ radius, thickness and spacing is multiplied by s. The following values are
 | 19      | 0.000 |  4.32488E+01 | -2.60480E+03 | 5.69705E+04 |  2.78726E+05 |
 | 20      | 0.000 |  4.43360E+01 | -2.77038E+03 | 7.06497E+04 | -2.78726E+05 |
 
-No resin layer, molding method or manufacturer surface metrology is inferred.
-The aspheric terms provide correction freedom on the focus/stabilizer elements;
-their contributions are not separately measured here.
+The aspheric terms give correction freedom on the focus and stabilizing elements;
+their separate contributions are not measured here. The patent does not state how
+the surfaces are made, but the moulding-glass coordinates of L10 and L11 point to
+glass-moulded aspheres.
 
 ## Image Stabilization
 
-The source shifts L11, the negative front subgroup of G5, perpendicular to the
-axis for blur correction. Sony confirms OSS in SEL55210. This candidate retains
-centered surfaces only; no stabilizer stroke, dynamic correction or off-center
-image quality is validated.
+The patent shifts L11 (its L51), the negative front of G5, perpendicular to the
+axis for blur correction. Sony confirms OSS on the SEL55210. The model keeps all
+surfaces centered, so stabilizer stroke and off-center image quality are not
+simulated.
 
-## Verification Summary and Limitations
+## Model Scope and Limitations
 
-The original dimensions build at an inferred 55× scale with EFLs
-54.968918 / 104.816823 / 198.667176 mm versus scaled printed
-55.00 / 105.05 / 199.10 mm. Differences are retained, not fitted away.
-Reference source half-fields are 13.95° / 7.43° / 3.92°. The separate catalog
-14.1 mm semi-diagonal requires traced chief angles about
-14.12574° / 7.43853° / 3.97020° at native infinity; it is not silently identified
-with the exact printed angular domain.
+At 55× the printed dimensions give focal lengths of 54.97 / 104.82 / 198.67 mm
+against 55.00 / 105.05 / 199.10 mm from the rounded printed f values. The
+differences are kept, not fitted away. The 14.1 mm APS-C semi-diagonal needs half
+fields of 14.13° / 7.44° / 3.97° at 55×, slightly wider than the printed angles.
 
-Rims are inferred from Figure 1, not factory clear apertures. An initial
-whole-G2 cap of 7.75 mm passed geometry but clipped 24/61 on-axis telephoto
-wide-open probes at S6. Independent exact tracing required 7.770308882 mm.
-The smallest 0.01 mm-resolution correction is 7.78 mm across G2. This retains
-square inferred rims and default 90% gap-sag allowance; **no override** was
-used. Original failed geometry, clipping and intermediate candidate files remain
-in the evidence package.
+Rims are inferred from Figure 1, not factory clear apertures. The G2 rim is 7.78 mm,
+just above the 7.77 mm on-axis telephoto marginal ray. Figure 1 draws G2 nearer
+8.7 mm, but S8 and S9 would meet at 8.23 mm. Wide open, geometric transmission at
+the 14.1 mm corner is about 63 % / 71 % / 77 % at the three stations. These are
+modeled clips, not measured factory vignetting.
 
-The final candidate has zero hidden render trim at 4,257 sampled zoom/focus
-states. Six native/inferred-endpoint configurations, five fields and two iris
-settings request 3,660 pupil traces: 3,332 pass, 287 hit modeled rims and 41
-fail to launch. No post-aim trace failure occurs, and all 30 chief roots trace.
-All sampled on-axis endpoint pupil rings now pass. An independent wider sweep of
-129 zooms, nine focus settings and six pupil radii passes all 6,966 nominal
-on-axis rays without clips or trace failures. This is bounded sampling, not
-proof of every continuous state. Independent model review also checks 25,880
-scale, source-parity and inferred-cam assertions. Modeled clips are not
-measured factory vignetting; unlaunched requests are not physical clipping.
+The iris radius is 6.97 / 7.10 / 7.73 mm at the three stations, set so the paraxial
+entrance pupil equals focal length over F-number at infinity (11.85 / 19.41 /
+30.61 mm). Working f/# from the real marginal ray is 4.65 / 5.42 / 6.56 at infinity
+and 4.68 / 5.58 / 7.14 at the inferred 1 m states. These are model values, not a
+reproduction of the marketed f/4.5–6.3.
 
-All 27 reference-spectrum native cases (three zooms × design/best-axial/F8 ×
-three fields) converge. **Convergence is not quality acceptance.** Native design
-MTF40 at middle edge is approximately S/T=0.28265/0.07406; telephoto on-axis
-is about 0.05915 and edge S/T=0.06266/0.03176. The telephoto best-axial diagnostic
-is much stronger, but its image-plane shift is not applied to the candidate.
-The source plane and weak result are retained. F8 is nominal iris scaling,
-not certification of finite working F8. Independent marginal-ray image-space
-working F values are 4.628199/5.389243/6.502658 at native infinity and
-4.660219/5.547801/7.110975 at the inferred 1 m states. These are not the
-source nominal F values or a reproduction of retail f/4.5–6.3. No iris was
-forced to erase the distinction. Mixed spectra remain unavailable;
-no finite MTF is computed from the invented cam.
-
-Isolated candidate type/format and rebuild receipts are separate bounded checks.
-Whole-project typecheck, full format/lint, main/tooling suites, build and actual
-viewer are **NOT_RUN**. This is a private unfinished candidate awaiting required
-validation execution, not finished stock, publication, or a quality-approved
-production lens. No prior lens's provisional waiver applies.
+**Tele MTF is weak on the printed image plane.** Photopic on-axis diffraction MTF
+at 40 lp/mm, wide open, is about 0.69 / 0.64 / 0.06 on the printed planes. The tele
+loss is defocus from the 0.394 mm plane offset: at best axial focus, a shift of
+−0.39 mm, the same figure is 0.73 (0.81 / 0.78 at wide and mid after −0.06 and
+−0.08 mm). The printed plane is kept in the data. The best-axial values describe
+the rounded table refocused, not a measured lens, and their lp/mm scale depends on
+the inferred 55×. No finite-distance MTF is computed from the inferred cam.
 
 ## Sources
 
-- [Original US8837056B2 grant, USPTO](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8837056).
-- [US20130033621A1 publication record](https://patents.google.com/patent/US20130033621A1/en), original PDF retained unchanged.
+- [US 8,837,056 B2, USPTO](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8837056).
+- [US 2013/0033621 A1 publication record](https://patents.google.com/patent/US20130033621A1/en).
 - [Sony SEL55210 official product](https://electronics.sony.com/imaging/lenses/all-e-mount/p/sel55210).
-- [Sony official specifications](https://www.sony.co.uk/electronics/camera-lenses/sel55210/specifications); indexed primary text inspected, direct download returned403 and was not retried.
-- [Sony Japanese feature page and construction](https://www.sony.jp/ichigan/products/SEL55210/feature_1.html), original Shift-JIS HTML and linked construction image preserved.
+- [Sony official specifications](https://www.sony.co.uk/electronics/camera-lenses/sel55210/specifications).
+- [Sony Japanese feature page and construction](https://www.sony.jp/ichigan/products/SEL55210/feature_1.html).
+- [Sony E 55-210mm F4.5-6.3 OSS, Wikipedia](https://en.wikipedia.org/wiki/Sony_E_55-210mm_F4.5-6.3_OSS), announcement date.

@@ -1,4 +1,4 @@
-# Olympus M.Zuiko Digital ED 40-150mm f/4.0-5.6 R — Related Patent Model
+# Olympus M.Zuiko Digital ED 40-150mm f/4.0-5.6 R — Patent Optical Analysis
 
 ## Patent Reference and Design Identification
 
@@ -9,26 +9,28 @@
 **Priority:** July 23, 2010, JP 2010-166160  
 **Inventors:** Yasuji Ogata, Yasuharu Yamada, Toshio Takahashi, Toyoki Kon  
 **Assignee:** Olympus Imaging Corporation  
-**Example details:** Printed columns 19–20 (PDF page 36); optical section Fig. 3, infinity aberrations Fig. 6 and 0.9 m aberrations Fig. 7. The queue's non-native Example02P designation is interpreted as the second example of the first aspect, not any second-aspect 2-x design.
+**Example details:** Numeral Example 1-2, printed columns 19–20 (PDF page 36); optical section Fig. 3, infinity aberrations Fig. 6 and 0.9 m aberrations Fig. 7.
 
-This is a **related patent design**, not a certified factory prescription. Four independent correspondences support the association: the manufacturer section's 13 elements in 10 components, its front and G2 cemented pairs, the ED first G3 singlet and HR member of the G3 doublet, and the approximately 40–150 mm range with rear focusing. The sibling first example has 13 elements but 11 components and a different G2 topology. Matching the second example is therefore more specific than matching focal range alone, but it still does not establish production identity.
+This is a **related patent design**, not a confirmed factory prescription. Olympus names no patent for this lens, but several correspondences support the association. The maker's section shows 13 elements in 10 groups with the same front and G2 cemented pairs, and it marks the first G3 singlet as ED and the rear of the G3 doublet as HR. Scaled to the printed wide-angle lens length, its drawn surfaces sit within about 0.5 mm RMS of this example, although the front G3 subgroup is drawn about 1 mm further rearward. The calculated 0.16× magnification at 0.9 m and full telephoto matches the marketed figure. Example 1-1 in the same patent has 13 elements but 11 groups and a different G2 layout, and Examples 2-1 to 2-4 are roughly 14–41 mm aspherical zooms. Matching Example 1-2 is therefore more specific than matching the focal range alone, but it does not establish production identity.
 
-The manufacturer's joint manual covers the original Micro Four Thirds 40–150 and R versions. Manufacturer FAQ 004734 says R retains the earlier model's performance with a refined exterior design; R means Refine. This does not associate either product with a numbered patent. The older **Four Thirds** 40–150 f/4–5.6 and its unresolved US 7,450,319 B2 Example 1/3 association are different work: this candidate neither replaces nor clears that hold. The f/2.8 PRO model is also different.
+Olympus's joint manual covers the original Micro Four Thirds 40–150 and the R version. Olympus FAQ 004734 says the R keeps the earlier model's performance with a new exterior design; R stands for Refine. Neither document links a product to a numbered patent.
 
-**Keep the aperture distinction:** the source is 40.800 / 77.523 / 147.004 mm at **f/4.08 / 4.56 / 5.91**, whereas retail naming is 40–150 mm f/4–5.6. The numerical controls retain the source values, without scaling to the retail endpoints. Source image height is 10.82 mm, also used as the canonical Four Thirds half-diagonal for tests; it is not a published circular image-circle diameter.
+**This is the Micro Four Thirds lens.** It is not the older Four Thirds ZUIKO DIGITAL ED 40-150mm f/4.0-5.6, a different 12-element, 9-group design for SLR bodies with its own catalog entry. The printed wide-angle back focus of 22.951 mm is far too short for the 38.67 mm Four Thirds flange distance. The f/2.8 PRO model is also a different lens.
+
+**Design and marketed values differ:** the patent prints 40.800 / 77.523 / 147.004 mm at **f/4.08 / 4.56 / 5.91**, whereas the lens is sold as 40–150 mm f/4–5.6. The model keeps the printed values and does not scale them to the marketed endpoints, so its telephoto end is about 0.16 stop slower than a true f/5.6. The printed image height of 10.82 mm is half the 21.64 mm diagonal of the Four Thirds format, which Micro Four Thirds shares; it is not a published image-circle diameter.
 
 ## Optical Architecture
 
-The all-spherical design has four powered units in positive–negative–positive–negative order. Three cemented interfaces reduce 13 glass elements to 10 air-separated components. The 4 mm camera-side cover plate is traced separately, not counted as a fourteenth lens element.
+The all-spherical design has four groups of positive, negative, positive and negative power, and Olympus's published construction lists ED and HR elements but no aspherical element. Three cemented interfaces reduce 13 glass elements to 10 air-separated groups. The 4 mm camera-side cover plate is traced but not drawn, and it is not counted as a fourteenth lens element.
 
-| Unit | Elements / source surfaces   | Source group focal length | Function and motion                                                                                                                                                                      |
-| ---- | ---------------------------- | ------------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| G1   | L1–L2 / 1–3                  |                +127.83 mm | Front positive cemented collector; moves objectward during zoom.                                                                                                                         |
-| G2   | L3–L5 / 4–8                  |                 −28.11 mm | Negative variator: a cemented pair followed by a negative singlet. Native positions move slightly imageward before turning objectward; the overall trajectory is concave, not monotonic. |
-| G3   | L6–L11 / 9–20 including iris |                 +28.72 mm | Positive relay split into front and rear subgroups. The iris is source surface 9, 1 mm before surface 10.                                                                                |
-| G4   | L12–L13 / 21–24              |                 −38.15 mm | Two-element rear negative unit; objectward zoom travel and imageward near-focus travel.                                                                                                  |
+| Group | Elements / surfaces          | Printed group focal length | Function and motion                                                                                                                                                                                                       |
+| ----- | ---------------------------- | -------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| G1    | L1–L2 / 1–3                  |                 +127.83 mm | Front positive cemented collector; moves objectward during zoom.                                                                                                                                                          |
+| G2    | L3–L5 / 4–8                  |                  −28.11 mm | Negative variator: a cemented pair followed by a negative singlet. The printed positions move about 3.6 mm imageward by the middle position before turning objectward; the overall trajectory is concave, not monotonic. |
+| G3    | L6–L11 / 9–20 including iris |                  +28.72 mm | Positive relay that the patent splits into front and rear subgroups, G3f and G3b. The iris is surface 9, 1 mm before surface 10; its radius is 6.760 / 6.761 / 6.765 mm at WE / ST / TE for pupil diameters of 10.00 / 17.00 / 24.87 mm. |
+| G4    | L12–L13 / 21–24              |                  −38.15 mm | Two-element rear negative group; moves objectward for zoom and imageward for near focus.                                                                                                                                  |
 
-All four groups move for zooming. The native G3–G4 gap first grows and then shrinks. The model retains the three literal infinity stations; intermediate controls preserve the native interpolated image-plane residual while adjusting only the source's G4 compensator. This is a reproducible source-constrained interpolation, **not a recovered factory zoom cam**.
+All four groups move for zooming. The printed G3–G4 gap first grows and then shrinks. The model keeps the three printed infinity positions exactly. Between them G1 to G3 move linearly and G4 is solved to hold the image plane, which puts the widest G3–G4 gap, 9.57 mm, near 63 mm rather than at the printed 77.5 mm position. This is an interpolation constrained by the printed positions, **not a recovered factory zoom cam**.
 
 ## Element-by-Element Analysis
 
@@ -36,85 +38,85 @@ The following element focal lengths are isolated thick-lens values in air at the
 
 ### L1 — Biconvex Positive
 
-nd = 1.51633, νd = 64.14. Glass: S-BSL7 (catalog equivalent; supplier unconfirmed). f = +76.487 mm.
+nd = 1.51633, νd = 64.14. Glass: S-BSL7 (OHARA catalog equivalent; production supplier unspecified). f = +76.487 mm.
 
-Positive crown member of the front cemented pair. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+Positive crown member of the front cemented pair.
 
 ### L2 — Negative Meniscus
 
-nd = 1.80518, νd = 25.42. Glass: S-TIH6 (catalog equivalent; supplier unconfirmed). f = -190.080 mm.
+nd = 1.80518, νd = 25.42. Glass: S-TIH6 (OHARA catalog equivalent; production supplier unspecified). f = -190.080 mm.
 
-High-dispersion negative member of G1; cemented at source surface 2. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+High-dispersion negative member of G1, cemented at surface 2.
 
 ### L3 — Negative Meniscus
 
-nd = 1.72916, νd = 54.68. Glass: S-LAL18 (catalog equivalent; supplier unconfirmed). f = -25.862 mm.
+nd = 1.72916, νd = 54.68. Glass: S-LAL18 (OHARA catalog equivalent; production supplier unspecified). f = -25.862 mm.
 
-Negative member of the G2 cemented pair. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+Negative member of the G2 cemented pair and the strongest negative element in that group.
 
 ### L4 — Positive Meniscus
 
-nd = 1.80810, νd = 22.76. Glass: S-NPH1 (catalog equivalent; supplier unconfirmed). f = +35.988 mm.
+nd = 1.80810, νd = 22.76. Glass: S-NPH1 (OHARA catalog equivalent; production supplier unspecified). f = +35.988 mm.
 
-Positive meniscus partner in G2; cemented at source surface 5. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+Positive meniscus partner in G2, cemented at surface 5.
 
 ### L5 — Negative Meniscus
 
-nd = 1.77250, νd = 49.60. Glass: S-LAH66 (catalog equivalent; supplier unconfirmed). f = -43.366 mm.
+nd = 1.77250, νd = 49.60. Glass: S-LAH66 (OHARA catalog equivalent; production supplier unspecified). f = -43.366 mm.
 
-Negative singlet completing the variator. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+Negative singlet completing the variator.
 
 ### L6 — Biconvex Positive
 
-nd = 1.49700, νd = 81.54. Glass: S-FPL51 (catalog equivalent; supplier unconfirmed). f = +49.807 mm.
+nd = 1.49700, νd = 81.54. Glass: S-FPL51 (OHARA catalog equivalent; production supplier unspecified). f = +49.807 mm.
 
-Low-dispersion positive singlet immediately behind the stop; its location matches the manufacturer ED marking. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+Low-dispersion positive singlet immediately behind the stop. The maker's diagram marks this position as ED, and the model tags the element as inferred anomalous-dispersion glass on that basis.
 
 ### L7 — Biconvex Positive
 
-nd = 1.48749, νd = 70.23. Glass: S-FSL5 (catalog equivalent; supplier unconfirmed). f = +30.359 mm.
+nd = 1.48749, νd = 70.23. Glass: S-FSL5 (OHARA catalog equivalent; production supplier unspecified). f = +30.359 mm.
 
-Positive low-dispersion member of the G3 front cemented pair. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+Positive crown member of the G3 front cemented pair.
 
 ### L8 — Biconcave Negative
 
-nd = 1.90366, νd = 31.32. Glass: TAFD25 (catalog equivalent; supplier unconfirmed). f = -35.383 mm.
+nd = 1.90366, νd = 31.32. Glass: TAFD25 (HOYA, coordinate equivalent). f = -35.383 mm.
 
-High-index negative partner at source surface 13; the manufacturer section places its HR marking here. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+High-index negative partner cemented at surface 13; the maker's diagram marks this position as HR.
 
 ### L9 — Biconcave Negative
 
-nd = 1.72342, νd = 37.95. Glass: S-BAH28 (catalog equivalent; supplier unconfirmed). f = -26.662 mm.
+nd = 1.72342, νd = 37.95. Glass: S-BAH28 (OHARA catalog equivalent; production supplier unspecified). f = -26.662 mm.
 
-Negative singlet starting the rear G3 subgroup. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+Negative singlet starting the rear G3 subgroup.
 
 ### L10 — Biconvex Positive
 
-nd = 1.60311, νd = 60.64. Glass: S-BSM14 (catalog equivalent; supplier unconfirmed). f = +40.285 mm.
+nd = 1.60311, νd = 60.64. Glass: S-BSM14 (OHARA catalog equivalent; production supplier unspecified). f = +40.285 mm.
 
-Positive crown singlet in the rear relay. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+Positive crown singlet in the rear relay.
 
 ### L11 — Biconvex Positive
 
-nd = 1.77250, νd = 49.60. Glass: S-LAH66 (catalog equivalent; supplier unconfirmed). f = +31.169 mm.
+nd = 1.77250, νd = 49.60. Glass: S-LAH66 (OHARA catalog equivalent; production supplier unspecified). f = +31.169 mm.
 
-Positive high-index singlet completing G3. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+Positive high-index singlet completing G3.
 
 ### L12 — Positive Meniscus
 
-nd = 1.67270, νd = 32.10. Glass: S-TIM25 (catalog equivalent; supplier unconfirmed). f = +92.331 mm.
+nd = 1.67270, νd = 32.10. Glass: S-TIM25 (OHARA catalog equivalent; production supplier unspecified). f = +92.331 mm.
 
-Positive meniscus in the moving rear focus unit. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+Positive meniscus in the rear focusing group.
 
 ### L13 — Biconcave Negative
 
-nd = 1.74100, νd = 52.64. Glass: S-LAL61 (catalog equivalent; supplier unconfirmed). f = -25.962 mm.
+nd = 1.74100, νd = 52.64. Glass: S-LAL61 (OHARA catalog equivalent; production supplier unspecified). f = -25.962 mm.
 
-Negative singlet completing the negative-power G4 assembly. These role descriptions follow group position and signed power; they do not isolate a measured aberration contribution for this element.
+Negative singlet that carries the power of G4.
 
 ## Glass Identification and Spectral Limits
 
-| Element | Representative catalog glass | Source nd / νd  |
+| Element | Representative catalog glass | Printed nd / νd |
 | ------- | ---------------------------- | --------------- |
 | L1      | S-BSL7                       | 1.51633 / 64.14 |
 | L2      | S-TIH6                       | 1.80518 / 25.42 |
@@ -130,27 +132,23 @@ Negative singlet completing the negative-power G4 assembly. These role descripti
 | L12     | S-TIM25                      | 1.67270 / 32.10 |
 | L13     | S-LAL61                      | 1.74100 / 52.64 |
 
-No supplier, coating, or anomalous-dispersion coefficient is identified by the source nd/νd pairs alone. Compatible catalog Sellmeier data supports approximate C-d-F and photopic comparisons; it does not turn those into factory spectral measurements. The patent's aberration plots use **d, g and C** (587.6, 435.8 and 656.3 nm), not the simulator's ordinary C-d-F triplet. No F/g source conflict is claimed, and the different spectral modes are not exact reproductions of those plots.
+The printed nd/νd pairs alone identify no supplier, coating or anomalous-dispersion coefficient. Each pair equals its listed catalog row to within the last printed digit; the names are OHARA rows except TAFD25 (HOYA). L6 is the only element tagged for anomalous dispersion: its S-FPL51 row has a catalog P_g,F of 0.5375, about +0.031 above the normal line. L8's HR mark describes refractive index, so it carries no such tag. Compatible catalog Sellmeier data supports approximate C-d-F and photopic comparisons; it does not turn those into factory spectral measurements. The patent's aberration plots use **d, g and C** (587.6, 435.8 and 656.3 nm), not the simulator's ordinary C-d-F triplet, so the simulator's spectral modes do not reproduce those plots exactly.
 
 ## Focus Mechanism and Distance-Label Limits
 
-The source describes imageward G4 focusing and shows aberration curves at 0.9 m, but gives **no finite spacing table**. The manufacturer also specifies 0.9 m. Finite travel here is independently inferred for a 0.9 m object-to-image distance, with 17 inverse-distance focus controls; it is never marked as source-published. The three native endpoint shifts are 1.395443 / 3.798493 / 6.380460 mm toward the image. Only d20 and d24 change for focus, by equal and opposite amounts. The source plate and image plane remain fixed. Finite MTF therefore remains unavailable under the existing source-certification guard.
+The patent describes imageward G4 focusing and shows aberration curves at 0.9 m, but gives **no finite spacing table**. Olympus also specifies 0.9 m as the closest focus. Finite travel here is calculated for a 0.9 m object-to-image distance, with 17 focus positions spaced in inverse distance, and none of it is printed. The calculated shifts toward the image are 1.395 / 3.798 / 6.380 mm at WE / ST / TE. Only d20 and d24 change for focus, by equal and opposite amounts; the cover plate and image plane stay fixed. Finite MTF is unavailable because the patent publishes no finite configuration.
 
-A source-self distance-reference check supports the object-to-image interpretation: the inferred native near configurations give nominal f-numbers 3.857487 / 3.891269 / 4.282973 versus Fig. 7 values 3.857 / 3.892 / 4.282. Interpreting 0.9 m from the first surface instead gives 3.881314 / 3.973243 / 4.487352. This correspondence is supporting evidence for the distance convention, not a published finite-gap table or finite-MTF certification.
+Fig. 7 supports the object-to-image reading. With the iris held at its infinity size, the calculated near positions give f-numbers of 3.857 / 3.891 / 4.283, against the printed 3.857 / 3.892 / 4.282. Measuring 0.9 m from the first surface instead gives 3.881 / 3.973 / 4.487. The calculated telephoto magnification of 0.164× also agrees with Olympus's 0.16×. This agreement supports the distance convention; it is not a published finite-gap table.
 
-A bounded density study retained native anchors and rejected coarse controls. The initial 3 zoom × 2 focus model produced substantial interpolation defects and virtual displayed conjugates. At 33 zoom × 17 focus controls, image defocus was small but a nominal 300 m far label could correspond to approximately 405 m. Doubling focus density to 33 did not improve that limit: the dominant error was added zoom interpolation, not a source-native floor. A single bounded 65 zoom × 17 focus comparison materially reduced the label error, so that density is retained. No MTF optimization was used.
+Between the control positions, image defocus stays under 0.002 mm at infinity and under 0.003 mm at finite distances. **Distance labels are still approximate:** the worst relative error is about +6.5%, where a 300 m label near 77 mm corresponds to a calculated distance of about 320 m. Small image defocus and distance-label error are different quantities, and one does not excuse the other.
 
-The final independent scalar grid contains 33,924 states, including the actual .003 infinity cutoff and .004 UI focus step. Maximum added infinity defocus is 0.001681 mm; maximum sampled finite image residual is 0.002566 mm. Both are below the conservative source-wide reference 2λN² = 0.019563 mm; that reference is a diagnostic scale, not a factory focus tolerance. There are no virtual conjugates at the sampled displayed-finite settings. **Distance labels are still approximate:** the worst sampled relative error is +6.509% at zoom .4921875 / focus .003 (300 m label versus 319.528 m scalar conjugate). Small image defocus and percentage distance-label error are different quantities and neither is hidden by the other.
+## Model Scope and Limitations
 
-## Source Plane, Rims and Bounded Numerical Checks
+The printed image plane is retained. The model's infinity focal lengths are 40.800 / 77.523 / 147.005 mm, and the paraxial image falls within 0.0002 mm of the image plane at all three printed positions. The printed BF is the air-equivalent expression d24 + 4/1.51633 + 0.8, not the physical gap from the last lens to the image. The 4 mm glass and 0.8 mm trailing air are traced as a separate plate, so the plate is not counted twice.
 
-The literal source image plane is retained. Independent native EFLs are 40.800131 / 77.523239 / 147.004906 mm. Native residual refocus is −0.00020335 / +0.00000832 / +0.00015782 mm, below the resolution of the source's coarse spherical-aberration graph; its cause is not asserted. Source BF is the air-equivalent expression d24 + 4/1.51633 + 0.8, not the physical last-lens-to-image gap. Explicit rearPlates retain the 4 mm glass and 0.8 mm trailing air.
+Clear semi-diameters are inferred from Fig. 3; none is published. The figure is scaled from the 77.434 mm printed span from first to last lens surface at the wide end and from the 4 mm cover-plate width. The G2 rear singlet is drawn at about 7.6 ± 0.3 mm. The model uses 7.3 mm because the facing surfaces of L4 and L5 limit that rim to about 7.36 mm. Other rims follow the drawn relative sizes.
 
-Clear semi-diameters are inferred from Fig. 3, not numerically published. Independent figure calibration uses the 77.434 mm wide first-to-last-lens span and the 4 mm cover-plate width. The G2 rear singlet is approximately 7.6 ± 0.3 mm. An initial 7.8 mm estimate physically overlapped the preceding face; that failed estimate is preserved, not silently trimmed. At the author's 0.1 mm rim precision, 7.3 mm is within the drawing uncertainty and below the independently calculated default-allowance limit of 7.363815 mm. It passes the stated axial aperture and retains transmitted full-field bundles. Other rims follow the drawn relative sizes. No published numerical rim was changed, no gap-sag override is used, and no hidden renderer trim is accepted.
-
-The bounded final numerical checks cover 4,257 geometry states with 65 radial samples per adjacent pair: minimum glass 0.980 mm, minimum air 0.200 mm, maximum gap-sag fraction 0.884235, and zero hidden trim. Exact requested-stop-pupil checks at nine zooms and five focus settings record 9,350 transmitted rays, 1,389 physical clips, 61 unlaunched aiming failures and 0 launched trace failures. All 144 sampled chiefs converge; every tested bundle has surviving rays. Unresolved requested pupil points remain failures, not proof of global root nonexistence or full-pupil certification.
-
-Infinity diffraction MTF was sampled at nine zooms, wide open and f/8, at fields 0 / .5 / .7 / 1 of 10.82 mm, with reference, C-d-F and photopic spectra: all 216 field results converged through 40 lp/mm under the recorded settings. This certifies only those sampled computations, not uniform image quality or exact production behavior. The finite guard was checked at 396 settings and remains unavailable. Source-angle ray checks at native stations are separate from linearly interpolated diagnostic angle stress checks. Actual interactive viewer QA is still owed; these numerical and static-geometry checks do not substitute for it.
+Vignetting is therefore an estimate: relative illumination at the 10.82 mm image corner is about 70 / 66 / 64% at WE / ST / TE, wide open. Infinity MTF describes the printed prescription with inferred rims, not measured production performance.
 
 ## Sources
 

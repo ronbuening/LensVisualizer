@@ -7,17 +7,25 @@
 **Inventor:** Noriyuki Ogasawara (original 小笠原典行)  
 **Assignee:** Sigma Corporation  
 **Title:** 防振機能を備えた変倍結像光学系 (original Japanese; translation: Variable-magnification imaging optical system with image stabilization)  
-**Example details:** Numerical Table 1, original pages 13–14; Figure 1 and infinity aberration Figures 2, 5 and 8. Grant JP6690425B2 Figure 1 supplies the clearer supplemental construction drawing; its numerical table was independently checked against the application.
+**Example details:** Example 1 (数値実施例１), pp. 13–14; Figure 1 and infinity aberration Figures 2, 5 and 8. The grant [JP 6690425 B2](https://patents.google.com/patent/JP6690425B2/en) prints identical numerical tables for all five examples and a clearer Figure 1.
 
-**This is a qualified related-patent reconstruction of the 2017 C017 DSLR product, not a proven factory prescription.** It is not the later DG DN mirrorless 100–400. The [primary Sigma page](https://www.sigma-global.com/en/lenses/c017_100_400_5_63/?tab=specification) identifies Sigma SA, Canon EF and Nikon F variants, 21 elements in 15 groups, four SLD elements, 1.6 m minimum focus, 1:3.8 maximum magnification, a 67 mm filter, 86.4 × 182.3 mm dimensions and 1160 g (SA figures).
+**This is a related patent design for the 2017 C017 DSLR lens, not a confirmed factory prescription.** It is not the later mirrorless DG DN 100–400, which has 22 elements in 16 groups and comes from JP 2021-92636 A. The [Sigma specification page](https://www.sigma-global.com/en/lenses/c017_100_400_5_63/?tab=specification) lists Sigma SA, Canon EF and Nikon F mounts, 21 elements in 15 groups, 1.6 m minimum focus, 1:3.8 maximum magnification, a 67 mm filter, 86.4 × 182.3 mm dimensions and 1160 g (SA figures). Its [construction diagram](https://www.sigma-global.com/lenses/c017_100_400_5_63_specification_01_2.jpg) marks four SLD elements.
 
-The association is supported by: (1) exact 21/15 topology and six cemented pairs; (2) four marked manufacturer SLD positions corresponding to source L2/L3/L18/L20; (3) the five-unit +/−/+/+/− architecture, internal G4 focusing and transverse G2b stabilization; (4) near-100–400 focal range and contemporaneous filing. These convergent features do not establish numerical factory identity. Source apertures **F5.15/5.92/6.50** differ from retail F5–6.3 and remain the actual modeled apertures. Source image height is **21.63 mm**.
+Example 1 is the best fit among the patent's five examples:
+
+1. **Construction.** Sigma's 21 elements in 15 groups and six cemented pairs match Example 1. Example 4 has 20 elements.
+2. **Special glass.** Sigma's SLD positions are L2, L3, L18 and L20, where Example 1 prints νd = 81.61, 81.61, 75.50 and 81.61. Examples 2 and 3 print νd = 68.62 at L18.
+3. **Layout.** Sigma's diagram, measured at the wide position, fits Example 1 to 0.14 mm RMS over 32 surface positions. Examples 2, 5 and 3 fit to 0.57, 0.74 and 1.20 mm.
+4. **Close focus.** Moving G4 to reach 1.6 m gives 1:3.81 at the tele position against Sigma's 1:3.8. This does not separate the examples, which give 1:3.78 to 1:3.84.
+5. **Architecture and timing.** The +/−/+/+/− five-group layout, G4 focusing and G2b stabilization suit the C017, and the June 2016 filing precedes its 2017 release.
+
+These features do not establish numerical factory identity. The printed design is 103.16–387.95 mm at **F5.15/5.92/6.50** against the marketed 100–400 mm f/5–6.3, and the model keeps the design values. The printed image height is **21.63 mm**.
 
 ## Optical Architecture
 
-There are 21 spherical glass pieces in 15 air-separated components. No asphere, resin layer or rear sensor plate is tabulated. The powers independently calculated from the literal d-line table are:
+There are 21 spherical elements in 15 air-separated groups. The patent tabulates no asphere, resin layer or rear plate. Group focal lengths calculated from the d-line table, which reproduce the printed values, are:
 
-| Unit | Source surfaces | Calculated EFL, mm | Axial role                                      |
+| Unit | Surfaces        | Calculated EFL, mm | Axial role                                      |
 | ---- | --------------- | -----------------: | ----------------------------------------------- |
 | G1   | S1–S5           |        +160.355020 | Positive front zoom unit                        |
 | G2   | S6–S15          |         -36.021304 | Fixed negative unit; G2b decentered for OS only |
@@ -25,213 +33,211 @@ There are 21 spherical glass pieces in 15 air-separated components. No asphere, 
 | G4   | S26–S32         |         +53.204238 | Positive zoom and internal-focus unit           |
 | G5   | S33–S37         |         -58.909508 | Negative rear zoom unit                         |
 
-The iris is numbered surface 25: **S24→stop is 4.1000 mm**, followed by variable d25 to S26. Its radius is traced from each station's source F-number, not an independently invented fixed diameter. G2a S6–S10 and G2b S11–S15 are fixed axially during zoom/focus; only G2b has the patent's lateral stabilization motion, which is not simulated here. The native G2 coordinate relative to the image spans 0.0006 mm; that residual is retained without attributing it to rounding.
+The iris is surface 25, 4.10 mm behind S24, with the variable gap d25 after it. Its radius follows the printed F-number at each zoom position: the paraxial entrance pupil is 20.03 / 33.80 / 59.68 mm across at wide / middle / tele, and the stop radius is 10.53 / 10.50 / 10.51 mm. G2a (S6–S10) and G2b (S11–S15) stay fixed axially during zoom and focus (claim 2, ¶0072–0073); only G2b moves laterally for stabilization, which the model does not simulate. The printed spacings hold G2 within 0.0006 mm of one position relative to the image.
 
-### Native planes and inferred continuous motion
+### Printed states and the derived zoom cam
 
-| Station | Printed f, mm | Computed EFL, mm | Literal BF, mm | Paraxial BFD minus literal BF, mm |
-| ------- | ------------: | ---------------: | -------------: | --------------------------------: |
-| Wide    |        103.16 |     103.16548752 |        52.6388 |                      +0.000939466 |
-| Middle  |        200.12 |     200.11859168 |        79.0754 |                      +0.000615706 |
-| Tele    |        387.95 |     387.94926066 |        95.3018 |                      -0.003135711 |
+| Position | Printed f, mm | Computed EFL, mm | Printed BF, mm | Paraxial BFD minus printed BF, mm |
+| -------- | ------------: | ---------------: | -------------: | --------------------------------: |
+| Wide     |        103.16 |     103.16548752 |        52.6388 |                      +0.000939466 |
+| Middle   |        200.12 |     200.11859168 |        79.0754 |                      +0.000615706 |
+| Tele     |        387.95 |     387.94926066 |        95.3018 |                      -0.003135711 |
 
-Every native radius, thickness, material coordinate, gap and image plane stays literal. Best axial focus is a separate diagnostic, not a silent source-plane correction. The raw three-station interpolation adds approximately 11.092 mm intermediate defocus and is rejected, with its failures preserved.
+The model keeps every printed radius, thickness, index and gap, and the printed image plane. The patent prints only these three states, and interpolating straight between them would leave about 11 mm of defocus at intermediate focal lengths, so the model needs a derived cam.
 
-The inferred cam keeps d5, d15 and BF piecewise linear through the three source stations, and keeps d25+d32 piecewise linear to preserve the source fixed-G2 coordinate. Only the G4 split between d25 and d32 is solved to interpolate the native scalar residual; intermediate EFL labels are calculated, not forced to an arbitrary focal schedule. This is not a recovered production cam. Only stations 0/64/128 are marked published; all inferred focus positions remain unpublished.
+The derived cam keeps d5, d15 and BF linear between the printed positions, and keeps d25 + d32 linear so G2 holds its printed position. Only the split between d25 and d32 is solved, which moves G4 to hold paraxial infinity focus. The focal lengths between printed positions are calculated results, not a chosen schedule. This is an inferred cam, not Sigma's factory cam. The gap d25 turns once, at the printed middle position, and no other gap reverses.
 
-A bounded 3/9/17/33/65/129-control study selects 129 zoom controls. At 65, worst additional residual +0.0217857 mm at z=0.9921875 combines with native-interpolated −0.0030771 mm to give +0.0187086 mm absolute. At 129, +0.00551784 mm at z=0.99609375 combines with −0.00310640 mm to give +0.00241144 mm; global absolute maximum is the retained native tele −0.00313571 mm. The different signs explain why the maximum added error exceeds the maximum absolute error.
-
-65→129 controls changes sampled reference-plane MTF40 by up to 0.07528, and reduces worst sampled far-focus label error from 7.857% to 1.863%. Denser motion sometimes lowers MTF because source spherical-aberration best focus differs; this is not MTF optimization. The existing infinity inconsistency gate is 10×2λN² at the d line, **not an optical-quality certificate or a finite-focus tolerance**. No new 0.005 mm acceptance threshold is introduced.
+The model carries 65 zoom stations, of which three are printed. Gaps interpolate linearly between stations, so the focus error peaks just short of the tele position, where G4 moves fastest: 0.019 mm at infinity and 0.022 mm in the worst focus state, against a depth of focus of ±2λN² = ±0.050 mm at F/6.5. At the stations themselves the error stays within the printed tele residual of 0.003 mm.
 
 ## Element-by-Element Analysis
 
-Isolated-air thick-lens focal lengths below describe shape and sign only; cemented members' complete-system contributions are coupled. Roles are interpretation from group/location, not unsupported claims that an individual element uniquely controls one aberration. No factory material identity is assigned.
+The focal lengths below are in-air thick-element values calculated from each element's radii, thickness and index. They describe shape and sign, not the power of an element inside a cemented group. Roles follow the patent's text where it gives one and the element's position otherwise. Glass names denote catalog equivalents; production suppliers are not identified.
 
 ### L1 — Negative Meniscus
 
-nd = 1.83481, νd = 42.72. Glass: unassigned source medium, not factory identification. f = -150.668 mm (isolated-air estimate).
+nd = 1.83481, νd = 42.72. Glass: TAFD5F (HOYA equivalent). f = -150.668 mm.
 
-Negative Meniscus member of G1, beginning at S1. Shares cemented pair D1; the source interface and separate glass are retained.
+Front negative meniscus of G1, convex to the object (¶0070), cemented to L2 as C1. Its lower Abbe number provides the dispersion contrast against L2.
 
 ### L2 — Biconvex Positive
 
-nd = 1.49700, νd = 81.61. Glass: unassigned source medium, not factory identification. f = +149.279 mm (isolated-air estimate).
+nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA equivalent). f = +149.279 mm.
 
-Biconvex Positive member of G1, beginning at S2. Shares cemented pair D1; the source interface and separate glass are retained. Its position matches a blue SLD element in the manufacturer construction drawing; the patent supplies nd/νd, not a named melt or partial dispersion.
+Biconvex positive element of the C1 doublet. Sigma's diagram marks this position SLD; the patent prints nd/νd only.
 
 ### L3 — Biconvex Positive
 
-nd = 1.49700, νd = 81.61. Glass: unassigned source medium, not factory identification. f = +163.116 mm (isolated-air estimate).
+nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA equivalent). f = +163.116 mm.
 
-Biconvex Positive member of G1, beginning at S4. Its position matches a blue SLD element in the manufacturer construction drawing; the patent supplies nd/νd, not a named melt or partial dispersion.
+Biconvex singlet closing G1. Sigma's diagram marks this position SLD; the patent prints nd/νd only.
 
 ### L4 — Positive Meniscus
 
-nd = 1.69895, νd = 30.05. Glass: unassigned source medium, not factory identification. f = +187.616 mm (isolated-air estimate).
+nd = 1.69895, νd = 30.05. Glass: E-FD15 (HOYA equivalent). f = +187.616 mm.
 
-Positive Meniscus member of G2, beginning at S6.
+Positive meniscus forming component G2a1 at the front of the fixed second group. With the negative G2a2 behind it, it gives G2a its telephoto power arrangement, which narrows the beam reaching the stabilizing group (¶0029).
 
 ### L5 — Biconvex Positive
 
-nd = 1.54814, νd = 45.82. Glass: unassigned source medium, not factory identification. f = +161.105 mm (isolated-air estimate).
+nd = 1.54814, νd = 45.82. Glass: E-FEL1 (HOYA equivalent). f = +161.105 mm.
 
-Biconvex Positive member of G2, beginning at S8. Shares cemented pair D5; the source interface and separate glass are retained.
+Biconvex positive element of the cemented component G2a2 (C2).
 
 ### L6 — Biconcave Negative
 
-nd = 1.83481, νd = 42.72. Glass: unassigned source medium, not factory identification. f = -56.714 mm (isolated-air estimate).
+nd = 1.83481, νd = 42.72. Glass: TAFD5F (HOYA equivalent). f = -56.714 mm.
 
-Biconcave Negative member of G2, beginning at S9. Shares cemented pair D5; the source interface and separate glass are retained.
+Biconcave negative element of C2, giving G2a2 its negative power.
 
 ### L7 — Biconcave Negative
 
-nd = 1.72916, νd = 54.67. Glass: unassigned source medium, not factory identification. f = -99.799 mm (isolated-air estimate).
+nd = 1.72916, νd = 54.67. Glass: TAC8 (HOYA equivalent). f = -99.799 mm.
 
-Biconcave Negative member of G2, beginning at S11.
+Front biconcave element of the stabilizing subgroup G2b (¶0073).
 
 ### L8 — Biconcave Negative
 
-nd = 1.72916, νd = 54.67. Glass: unassigned source medium, not factory identification. f = -35.445 mm (isolated-air estimate).
+nd = 1.72916, νd = 54.67. Glass: TAC8 (HOYA equivalent). f = -35.445 mm.
 
-Biconcave Negative member of G2, beginning at S13. Shares cemented pair D8; the source interface and separate glass are retained.
+Biconcave negative element of the G2b doublet C3.
 
 ### L9 — Positive Meniscus
 
-nd = 1.85478, νd = 24.80. Glass: unassigned source medium, not factory identification. f = +69.290 mm (isolated-air estimate).
+nd = 1.85478, νd = 24.80. Glass: S-NBH56 (OHARA equivalent). f = +69.290 mm.
 
-Positive Meniscus member of G2, beginning at S14. Shares cemented pair D8; the source interface and separate glass are retained.
+High-dispersion positive meniscus of C3, convex to the object, paired with the higher-Abbe L8.
 
 ### L10 — Biconvex Positive
 
-nd = 1.59349, νd = 67.00. Glass: unassigned source medium, not factory identification. f = +65.574 mm (isolated-air estimate).
+nd = 1.59349, νd = 67.00. Glass: PCD51 (HOYA equivalent). f = +65.574 mm.
 
-Biconvex Positive member of G3, beginning at S16.
+Biconvex front element of G3. The patent places strong positive power here to turn the diverging beam from G2 toward parallel (¶0058).
 
 ### L11 — Biconvex Positive
 
-nd = 1.59349, νd = 67.00. Glass: unassigned source medium, not factory identification. f = +91.752 mm (isolated-air estimate).
+nd = 1.59349, νd = 67.00. Glass: PCD51 (HOYA equivalent). f = +91.752 mm.
 
-Biconvex Positive member of G3, beginning at S18.
+Second biconvex element of G3. Splitting the positive power across three lenses holds down negative spherical aberration (¶0058).
 
 ### L12 — Negative Meniscus
 
-nd = 2.00100, νd = 29.13. Glass: unassigned source medium, not factory identification. f = -92.727 mm (isolated-air estimate).
+nd = 2.00100, νd = 29.13. Glass: TAFD55 (HOYA equivalent). f = -92.727 mm.
 
-Negative Meniscus member of G3, beginning at S20.
+Negative meniscus, convex to the image, supplying positive spherical aberration against the positive lenses of G3 (¶0057–0058).
 
 ### L13 — Positive Meniscus
 
-nd = 1.69895, νd = 30.05. Glass: unassigned source medium, not factory identification. f = +85.840 mm (isolated-air estimate).
+nd = 1.69895, νd = 30.05. Glass: E-FD15 (HOYA equivalent). f = +85.840 mm.
 
-Positive Meniscus member of G3, beginning at S22. Shares cemented pair D13; the source interface and separate glass are retained.
+Positive meniscus of the cemented doublet C4 at the rear of G3.
 
 ### L14 — Negative Meniscus
 
-nd = 2.00100, νd = 29.13. Glass: unassigned source medium, not factory identification. f = -67.236 mm (isolated-air estimate).
+nd = 2.00100, νd = 29.13. Glass: TAFD55 (HOYA equivalent). f = -67.236 mm.
 
-Negative Meniscus member of G3, beginning at S23. Shares cemented pair D13; the source interface and separate glass are retained.
+Negative meniscus of C4, carrying the strong negative surface ahead of the stop. The patent cements it to L13 to improve assembly accuracy around that surface (¶0058).
 
 ### L15 — Positive Meniscus
 
-nd = 1.71736, νd = 29.50. Glass: unassigned source medium, not factory identification. f = +109.750 mm (isolated-air estimate).
+nd = 1.71736, νd = 29.50. Glass: E-FD1L (HOYA equivalent). f = +109.750 mm.
 
-Positive Meniscus member of G4, beginning at S26. Moves with G4 for the disclosed inferred finite focus.
+Positive meniscus, convex to the image, at the front of the focusing group G4.
 
 ### L16 — Biconvex Positive
 
-nd = 1.65844, νd = 50.85. Glass: unassigned source medium, not factory identification. f = +40.638 mm (isolated-air estimate).
+nd = 1.65844, νd = 50.85. Glass: BACED5 (HOYA equivalent). f = +40.638 mm.
 
-Biconvex Positive member of G4, beginning at S28. Shares cemented pair D16; the source interface and separate glass are retained. Moves with G4 for the disclosed inferred finite focus.
+Biconvex positive element of the G4 doublet C5.
 
 ### L17 — Biconcave Negative
 
-nd = 1.95375, νd = 32.32. Glass: unassigned source medium, not factory identification. f = -37.492 mm (isolated-air estimate).
+nd = 1.95375, νd = 32.32. Glass: TAFD45 (HOYA equivalent). f = -37.492 mm.
 
-Biconcave Negative member of G4, beginning at S29. Shares cemented pair D16; the source interface and separate glass are retained. Moves with G4 for the disclosed inferred finite focus.
+The single negative lens of G4, with positive lenses on both sides. The patent uses it to limit the change of spherical and axial chromatic aberration during focusing (¶0125–0127).
 
 ### L18 — Biconvex Positive
 
-nd = 1.55032, νd = 75.50. Glass: unassigned source medium, not factory identification. f = +87.827 mm (isolated-air estimate).
+nd = 1.55032, νd = 75.50. Glass: FCD705 (HOYA equivalent). f = +87.827 mm.
 
-Biconvex Positive member of G4, beginning at S31. Its position matches a blue SLD element in the manufacturer construction drawing; the patent supplies nd/νd, not a named melt or partial dispersion. Moves with G4 for the disclosed inferred finite focus.
+Biconvex rear element of G4. Sigma's diagram marks this position SLD; the patent prints nd/νd only.
 
 ### L19 — Negative Meniscus
 
-nd = 1.95375, νd = 32.32. Glass: unassigned source medium, not factory identification. f = -45.138 mm (isolated-air estimate).
+nd = 1.95375, νd = 32.32. Glass: TAFD45 (HOYA equivalent). f = -45.138 mm.
 
-Negative Meniscus member of G5, beginning at S33.
+Negative meniscus, convex to the object, at the front of the rear group G5.
 
 ### L20 — Biconcave Negative
 
-nd = 1.49700, νd = 81.61. Glass: unassigned source medium, not factory identification. f = -43.380 mm (isolated-air estimate).
+nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA equivalent). f = -43.380 mm.
 
-Biconcave Negative member of G5, beginning at S35. Shares cemented pair D20; the source interface and separate glass are retained. Its position matches a blue SLD element in the manufacturer construction drawing; the patent supplies nd/νd, not a named melt or partial dispersion.
+Biconcave negative element of the rear doublet C6. Sigma's diagram marks this position SLD; the patent prints nd/νd only.
 
 ### L21 — Biconvex Positive
 
-nd = 1.73800, νd = 32.26. Glass: unassigned source medium, not factory identification. f = +37.052 mm (isolated-air estimate).
+nd = 1.73800, νd = 32.26. Glass: S-NBH53 (OHARA equivalent). f = +37.052 mm.
 
-Biconvex Positive member of G5, beginning at S36. Shares cemented pair D20; the source interface and separate glass are retained.
+High-dispersion biconvex element closing C6 and the lens.
 
 ## Glass Identification and Selection
 
-| Elements    |      nd |    νd | Assignment              |
-| ----------- | ------: | ----: | ----------------------- |
-| L1, L6      | 1.83481 | 42.72 | Source coordinates only |
-| L2, L3, L20 | 1.49700 | 81.61 | Source coordinates only |
-| L4, L13     | 1.69895 | 30.05 | Source coordinates only |
-| L5          | 1.54814 | 45.82 | Source coordinates only |
-| L7, L8      | 1.72916 | 54.67 | Source coordinates only |
-| L9          | 1.85478 | 24.80 | Source coordinates only |
-| L10, L11    | 1.59349 | 67.00 | Source coordinates only |
-| L12, L14    | 2.00100 | 29.13 | Source coordinates only |
-| L15         | 1.71736 | 29.50 | Source coordinates only |
-| L16         | 1.65844 | 50.85 | Source coordinates only |
-| L17, L19    | 1.95375 | 32.32 | Source coordinates only |
-| L18         | 1.55032 | 75.50 | Source coordinates only |
-| L21         | 1.73800 | 32.26 | Source coordinates only |
+| Element |      nd |    νd | Catalog equivalent | Sigma diagram |
+| ------- | ------: | ----: | ------------------ | ------------- |
+| L1      | 1.83481 | 42.72 | TAFD5F (HOYA)      |               |
+| L2      | 1.49700 | 81.61 | FCD1 (HOYA)        | SLD           |
+| L3      | 1.49700 | 81.61 | FCD1 (HOYA)        | SLD           |
+| L4      | 1.69895 | 30.05 | E-FD15 (HOYA)      |               |
+| L5      | 1.54814 | 45.82 | E-FEL1 (HOYA)      |               |
+| L6      | 1.83481 | 42.72 | TAFD5F (HOYA)      |               |
+| L7      | 1.72916 | 54.67 | TAC8 (HOYA)        |               |
+| L8      | 1.72916 | 54.67 | TAC8 (HOYA)        |               |
+| L9      | 1.85478 | 24.80 | S-NBH56 (OHARA)    |               |
+| L10     | 1.59349 | 67.00 | PCD51 (HOYA)       |               |
+| L11     | 1.59349 | 67.00 | PCD51 (HOYA)       |               |
+| L12     | 2.00100 | 29.13 | TAFD55 (HOYA)      |               |
+| L13     | 1.69895 | 30.05 | E-FD15 (HOYA)      |               |
+| L14     | 2.00100 | 29.13 | TAFD55 (HOYA)      |               |
+| L15     | 1.71736 | 29.50 | E-FD1L (HOYA)      |               |
+| L16     | 1.65844 | 50.85 | BACED5 (HOYA)      |               |
+| L17     | 1.95375 | 32.32 | TAFD45 (HOYA)      |               |
+| L18     | 1.55032 | 75.50 | FCD705 (HOYA)      | SLD           |
+| L19     | 1.95375 | 32.32 | TAFD45 (HOYA)      |               |
+| L20     | 1.49700 | 81.61 | FCD1 (HOYA)        | SLD           |
+| L21     | 1.73800 | 32.26 | S-NBH53 (OHARA)    |               |
 
-Indices and Abbe values use the d-line reference, 587.56 nm. The source does not give named melts or partial-dispersion/line-index data. A read-only scan of the pinned vendor catalog finds coordinate-compatible families, including several alternatives at nd=1.49700/νd=81.61 and FCD705 at 1.55032/75.50. This does not recover the actual factory melt or secondary spectrum, and no name is assigned merely to unlock spectral MTF. The unmatched labels denote unassigned source media, not proof that no compatible catalog family exists.
+Indices and Abbe values use the d line, 587.56 nm (¶0060). The patent gives no glass names, suppliers or partial-dispersion data. Every printed nd/νd pair equals a public catalog glass to the printed precision (|Δνd| ≤ 0.01), and the pairs recur across the patent's five examples or sit beside other catalog values at the same position, so they read as catalog glass and not as optimizer-floated values. The named equivalents supply the modeled dispersion. They do not identify the production melts.
 
-Reference-d-line MTF remains available. C/d/F and photopic requests correctly report **spectral-data-unavailable** for missing low-dispersion data; they are not zero MTF or optical failures. L10/L11 also have νd=67, above the engine's normal-dispersion confidence threshold. No chromatic-performance equivalence to Sigma's product plots is claimed.
+The four SLD positions on Sigma's diagram are tagged as inferred anomalous dispersion, with catalog θgF = 0.5389 for FCD1 and 0.5400 for FCD705. L10 and L11 (PCD51, θgF = 0.5366) have a high Abbe number but carry no SLD mark on Sigma's diagram. All 21 glasses resolve to catalog dispersion, so no position stays on an Abbe-number estimate, and C/d/F and photopic MTF are available at infinity focus. These results rest on the catalog equivalents, and no chromatic equivalence to Sigma's product plots is claimed.
 
 ## Focus Mechanism
 
-Source paragraph 0076 and claim 3 identify **G4 alone (S26–S32), moving toward the object** for near focus. No numerical finite-focus station is published. The model reduces d25 and increases d32 by equal amounts, leaving all other group coordinates and the image plane fixed. The manufacturer supplies 1.6 m as minimum focus distance; this reconstruction interprets it under the catalog object-to-image convention, not a patent-published finite plane definition. Travel is calculated, not factory measured or patent certified:
+Claim 3 and ¶0043 and ¶0076 state that **G4 alone (S26–S32) moves toward the object** for near focus, and Figure 1 draws the same arrow. The patent favors G4 because the beam entering it is nearly afocal, so focusing barely changes the magnification and the group's travel stays short (¶0046). The patent prints no finite-focus state. The model shortens d25 and lengthens d32 by equal amounts, leaving every other group and the image plane fixed. Sigma gives 1.6 m as the minimum focus distance, which the model reads as object to image plane. The travel below is calculated, not printed or measured:
 
-| Native zoom | Inferred G4 travel, mm | Scalar magnification at1.6 m |
-| ----------- | ---------------------: | ---------------------------: |
-| Wide        |               1.626635 |                    −0.070487 |
-| Middle      |               4.051992 |                    −0.132508 |
-| Tele        |              12.449161 |                    −0.262167 |
+| Zoom position | Derived G4 travel, mm | Magnification at 1.6 m |
+| ------------- | --------------------: | ---------------------: |
+| Wide          |              1.626635 |              −0.070487 |
+| Middle        |              4.051992 |              −0.132508 |
+| Tele          |             12.449161 |              −0.262167 |
 
-Tele magnification is near the maker's 1:3.8, which is corroboration, not source certification. Nineteen focus controls are the smaller tested adequate set: [0, .004, .016] plus 1/16 increments. The 35-key alternative reduces a scalar residual but changes the checked valid d-line pupil intercept by less than 0.000791 mm; its extra density is not retained. A failed marginal-aim projection in that diagnostic is explicitly invalidated, not counted as an image result.
-
-Across the sampled near-infinity-to-close domain t≥0.004, the final scalar label error peaks at **1.863%** (nominal400 m, actual407.45 m) and plane residual at **0.015519 mm** (tele t=.96875). These are disclosed approximations, not passes under a finite-MTF gate. Raw sub-step values0<t<.004 are not certified; native residuals dominate sufficiently near infinity. Coarser 17/33-control models' very large and virtual far-distance results are preserved as rejected diagnostics. **All finite MTF remains unavailable** because there is no published finite conjugate, even where inferred rays and scalar focus agree.
+The tele magnification of 1:3.81 is close to Sigma's 1:3.8, which supports this reading without proving it. The 19 focus keys sit at 0, 0.004, 0.016 and steps of 1/16, and each key focuses paraxially on its nominal object distance at every zoom station. Between stations the focus error stays within the ±0.050 mm depth given above. **Finite MTF is unavailable** because the patent publishes no finite conjugate.
 
 ## Image Stabilization
 
-G2b, S11–S15, moves transversely for shake correction. This candidate is centered only; no stabilization angle or moving decenter is represented. Figures4/7/10 show stabilized0.4° transverse cases and are not ordinary centered or finite-focus validation plots. Centered transverse plots are Figures3/6/9; infinity longitudinal plots are Figures2/5/8.
+G2b (S11–S15) moves transversely for shake correction (¶0073). The model is centred only and represents no stabilization shift. The patent's Figures 4, 7 and 10 show transverse aberrations with the axis tilted 0.4° under stabilization. Figures 3, 6 and 9 show the centred state, and Figures 2, 5 and 8 show longitudinal aberrations at infinity.
 
-## Clear Apertures and Verification Limits
+## Semi-Diameters and Modeling Limits
 
-The application Fig1 render is faint. The independently cross-checked grant JP6690425B2 has a clearer same-example Fig1; six measured vertices fit its wide Table1 axial layout at7.428136 pixels/mm, maximum0.718px residual. Graphic outer-rim measurements are approximate, rounded to0.5mm, **not published numerical clear apertures**. The manufacturer sketch corroborates topology qualitatively, not a separate numerical aperture measurement. The front graphic estimate is34mm, not an assertion that the67mm filter opening provides34mm clear radius.
+The patent prints no clear apertures, so every semi-diameter is inferred, and none is a measured factory aperture. Most are measured from the grant's Figure 1 at the wide position, scaled from the printed axial layout and rounded to 0.5 mm. The L1/L2 doublet (32.5 mm), L3 (31 mm) and L19 (14 mm) follow Sigma's construction diagram at the scale set by its fit to Example 1, because Sigma draws the front group about 2 mm smaller and L19 about 2 mm larger than the patent figure. The on-axis beam stays clear of all of them at every printed position; it reaches 29.84 mm at S1 at the tele position.
 
-The original rounded estimates fail the default air-gap guard at S12→S13 and S19→S20. Source-geometry bounds justify reducing only inferred L7/L12 radii to11.8/12.1mm; their exact90%-sag maxima are11.80465/12.17819mm. All source R/d/nd/νd remain unchanged; no gap-sag override is used. The baseline failure is retained.
+L7 and L12 are reduced to 11.8 and 12.1 mm to stay within the default 90 % air-gap sag limit at S12–S13 and S19–S20.
 
-The final physical states are independently rebound to the sampled checks: 297 geometry states have zero render trim, minimum glass0.115479mm, minimum air0.095973mm and maximum gap-sag0.899284. All264 finite support assertions explicitly check `support.available=false` and `reason=finite-conjugate-unavailable`; an earlier empty-field/vacuous harness assertion is superseded and retained, not counted as proof.
+Wide open at infinity, geometric transmission at the frame corner is 56 % at the wide position, 64 % at the middle position and 58 % at the tele position. The inferred front rims matter here: the patent figure's larger 34 and 33 mm rims would give 71 % at the middle position and 63 % at the tele position, with the wide position unchanged.
 
-Source-field pupil sampling covers16,470 requested rays: **13,723 passed, 631 physically clipped, 2,116 unlaunched, zero post-launch trace failures**. The separate full135format corner21.633308mm stress has3,294 requests: **2,311 passed, 317 clipped, 666 unlaunched, zero post-launch failures**. All sampled chief rays pass. These nonuniform polar counts are not area-weighted throughput and do not certify every pupil ray. Unlaunched requests are mostly noBracket with some aim-residual failures; trial paths often exceed an earlier physical rim, but this is not proof that no correctly aimed ray exists. Those requests remain unlaunched, not silently reclassified as ordinary vignetting.
-
-The trace-coordinate contract is explicitly checked using actual terminal position/direction and the independent returned-vertex projection; maximum disagreement is7.11×10⁻¹⁵mm, maximum physical hit residual2.84×10⁻¹⁴mm. No failed/clipped terminal point is accepted as an image-plane result.
-
-Sixty reference-wavelength field cases converged over native/intermediate/sensitivity/aperture/best-axial checks (including eight65-control comparison fields, not sixty final-candidate fields). Six spectral requests were guarded unavailable. Native and intermediate curves and best-axial shifts remain separate; convergence is not a quality claim. The native source plane is not changed to maximize MTF. The original comparison harnesses depended on a live candidate and became unreproducible after focus density changed; versioned v003 harnesses now bind explicit immutable19/35 and65/129 variant inputs and assert key/grid dimensions. Corrected bounded replays preserve all18 valid finite intercepts and all16 compared infinity MTF field results; two failed marginal aims remain unlaunched with no image result. Original harnesses/receipts and their mistakes are preserved, not rewritten as historical proof.
-
-**Status: BUILT_AWAITING_VALIDATION_EXECUTION.** Independent source review passed for the qualified related-design basis. Final model review, full type/format/lint/main/tooling/build integration gates and actual viewer QA are not established by these bounded checks. No public production deployment or full completed-package claim is made.
+The model keeps the printed image plane at every printed position, and it does not refit best focus. The stabilizer stays centred, and the intermediate zoom and all finite-focus positions are derived.
 
 ## Sources
 
-- [Sigma C017 product specifications and primary construction/MTF images](https://www.sigma-global.com/en/lenses/c017_100_400_5_63/?tab=specification).
-- [JP2017-223778A original publication](https://patents.google.com/patent/JP2017223778A/en), original PDF Table1 pp13–14, definitions p12, motion paragraphs0072–0077.
-- [JP6690425B2 grant](https://patents.google.com/patent/JP6690425B2/en), supplementary clearer Fig1 only after independent numerical-table comparison.
-- Reproducible source, failed alternatives, raw diagnostics and immutable independent source review are preserved in the accompanying research archive.
+- [Sigma C017 specifications](https://www.sigma-global.com/en/lenses/c017_100_400_5_63/?tab=specification) and [construction diagram](https://www.sigma-global.com/lenses/c017_100_400_5_63_specification_01_2.jpg).
+- [Photography Blog, availability and pricing, 31 March 2017](https://www.photographyblog.com/news/sigma_100_400mm_f5_6.3_dg_os_hsm_availability_and_pricing_announced), for the count of four SLD elements and the April 2017 availability.
+- [JP 2017-223778 A](https://patents.google.com/patent/JP2017223778A/en), Example 1 pp. 13–14, definitions p. 12, group motion ¶0070–0077.
+- [JP 6690425 B2](https://patents.google.com/patent/JP6690425B2/en), identical numerical tables and a clearer Figure 1.

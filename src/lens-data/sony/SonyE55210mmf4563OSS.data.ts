@@ -1,10 +1,16 @@
 /**
- * US8837056B2 Numerical Working Example1 related design; not exact factory proof.
- * Explicit inferred uniform55x scale: source design55/105.05/199.1mm, not retail55/210 fit.
- * Native infinity surfaces/gaps/imageplanes retained; explicit K0 and A4-A10 scaled exactly.
- * G4-only65x33 cam, physical rims and1m focus are inferred, not source-certified finite states.
- * Original teleplane residual and weakMTF retained. Mixed spectra unavailable without partialdispersion.
- * Full-project/viewer gates NOT_RUN; private candidate, no publication or quality acceptance.
+ * US 8,837,056 B2, Numerical Working Example 1: a related Sony design, not a confirmed factory prescription.
+ * The patent is normalized to f = 1.00 and prints no production scale. Every length is multiplied by an inferred 55,
+ * giving 55 / 105.05 / 199.1 mm rather than the marketed 210 mm (zoom ratio 3.62x against 3.82x).
+ * K = 0 on all four aspheric surfaces; A4 to A10 are scaled as An / 55^(n-1).
+ * The printed infinity surfaces and spacings are kept as printed, including d16 + d18 = 0.315 / 0.314 / 0.315.
+ * The printed tele image plane sits 0.394 mm behind paraxial focus, which is within the print rounding (about 0.38 mm
+ * one sigma), and it weakens tele MTF on that plane.
+ * Source inconsistencies: Fig. 6 prints half-field 7.34 deg against Table 3's 7.43; Fig. 5A prints Fno 4.84 against
+ * Table 3's 4.64. Table 3's f-numbers are kept.
+ * The 62 intermediate zoom stations, the G4 focus cam, the 1 m close focus and all rims are inferred. The stop follows
+ * the paraxial entrance pupil at each station's f-number. Finite-distance MTF stays unavailable.
+ * OSS (patent L51, L11 here) is modeled centered. Glass names are catalog coordinate equivalents.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
@@ -12,11 +18,11 @@ const LENS_DATA = {
   schema: 2,
   key: "sony-e-55-210mm-f45-63-oss",
   maker: "Sony",
-  name: "Sony E 55-210mm f/4.5-6.3 OSS",
+  name: "SONY E 55-210mm f/4.5-6.3 OSS",
   subtitle:
-    "US8837056B2 Working Example1 \u2014 related design, inferred55x scale; not factory prescription",
+    "US 8,837,056 B2, Numerical Working Example 1 \u2014 related design, not a confirmed factory prescription",
   source: {
-    patentNumber: "US 8837056 B2",
+    patentNumber: "US 8,837,056 B2",
     patentYear: 2014,
     example: {
       label: "Numerical Working Example 1",
@@ -40,189 +46,196 @@ const LENS_DATA = {
       design: 4.64,
     },
     specs: [
-      "13 ELEMENTS / 9 COMPONENTS",
-      "55-210mm f/4.5-6.3 (marketing)",
-      "55-199.1mm f/4.64-6.49 (55x source)",
-      "RELATED E1 / INFERRED SCALE / CENTERED OSS",
+      "13 ELEMENTS / 9 GROUPS",
+      "DESIGN f = 1.00–3.62 (NORMALIZED; SCALED 55× TO 55–199.1 mm)",
+      "DESIGN F/4.64–6.49",
+      "4 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "2 ED ELEMENTS (MAKER)",
     ],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.9108,
       vd: 35.25,
       indexReference: "d",
       focalLengthMm: -131.4570612209773,
-      glass:
-        "Unmatched (source nd=1.9108, vd=35.25; glass name and partial dispersion unpublished)",
+      glass: "TAFD35 (HOYA, coordinate equivalent)",
+      role: "Negative front member of the first-group cemented doublet.",
       diagramLabel: "L1",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
       indexReference: "d",
       focalLengthMm: 70.11310996578231,
-      glass:
-        "Unmatched (source nd=1.4970, vd=81.61; glass name and partial dispersion unpublished)",
+      glass: "FCD1 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote:
+        "One of the two ED positions Sony marks on the construction diagram; the patent nd/vd fits ED-class FCD1 but prints no partial dispersion, so the catalog glass's value is used.",
+      role: "ED positive rear member of the first-group cemented doublet.",
       diagramLabel: "L2",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.4875,
       vd: 70.44,
       indexReference: "d",
       focalLengthMm: 280.6699959223813,
-      glass:
-        "Unmatched (source nd=1.4875, vd=70.44; glass name and partial dispersion unpublished)",
+      glass: "FC5 (HOYA, coordinate equivalent)",
+      role: "Weak positive meniscus completing the first group.",
       diagramLabel: "L3",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.8061,
       vd: 40.73,
       indexReference: "d",
       focalLengthMm: -14.124424076123814,
-      glass:
-        "Unmatched (source nd=1.8061, vd=40.73; glass name and partial dispersion unpublished)",
+      glass: "NBFD13 (HOYA, coordinate equivalent)",
+      role: "Strong negative front member of the second-group cemented doublet.",
       diagramLabel: "L4",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
+      label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.8467,
       vd: 23.78,
       indexReference: "d",
       focalLengthMm: 17.851685708173363,
-      glass:
-        "Unmatched (source nd=1.8467, vd=23.78; glass name and partial dispersion unpublished)",
+      glass: "FDS90 (HOYA, coordinate equivalent)",
+      role: "High-dispersion positive rear member of the second-group cemented doublet.",
       diagramLabel: "L5",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
+      label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.9108,
       vd: 35.25,
       indexReference: "d",
       focalLengthMm: -34.50830071101502,
-      glass:
-        "Unmatched (source nd=1.9108, vd=35.25; glass name and partial dispersion unpublished)",
+      glass: "TAFD35 (HOYA, coordinate equivalent)",
+      role: "Negative singlet completing the second group.",
       diagramLabel: "L6",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
+      label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.9108,
       vd: 35.25,
       indexReference: "d",
       focalLengthMm: 32.98144616418539,
-      glass:
-        "Unmatched (source nd=1.9108, vd=35.25; glass name and partial dispersion unpublished)",
+      glass: "TAFD35 (HOYA, coordinate equivalent)",
+      role: "Positive singlet just behind the stop; front of the third group.",
       diagramLabel: "L7",
     },
     {
       id: 8,
       name: "L8",
-      label: "L8",
+      label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
       indexReference: "d",
       focalLengthMm: 30.860938496547607,
-      glass:
-        "Unmatched (source nd=1.4970, vd=81.61; glass name and partial dispersion unpublished)",
+      glass: "FCD1 (HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote:
+        "The second ED position Sony marks on the construction diagram; the patent nd/vd fits ED-class FCD1 but prints no partial dispersion, so the catalog glass's value is used.",
+      role: "ED positive front member of the third-group cemented doublet.",
       diagramLabel: "L8",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 9,
       name: "L9",
-      label: "L9",
+      label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.8467,
       vd: 23.78,
       indexReference: "d",
       focalLengthMm: -32.247354410590795,
-      glass:
-        "Unmatched (source nd=1.8467, vd=23.78; glass name and partial dispersion unpublished)",
+      glass: "FDS90 (HOYA, coordinate equivalent)",
+      role: "High-dispersion negative rear member of the third-group cemented doublet.",
       diagramLabel: "L9",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 10,
       name: "L10",
-      label: "L10",
+      label: "Element 10",
       type: "Biconvex Positive (Asph)",
       nd: 1.4971,
       vd: 81.56,
       indexReference: "d",
       focalLengthMm: 46.90370085112796,
-      glass:
-        "Unmatched (source nd=1.4971, vd=81.56; glass name and partial dispersion unpublished)",
+      glass: "M-FCD1 (HOYA, coordinate equivalent)",
+      role: "Double-aspheric focus element; the whole of the fourth group.",
       diagramLabel: "L10",
     },
     {
       id: 11,
       name: "L11",
-      label: "L11",
+      label: "Element 11",
       type: "Biconcave Negative (Asph)",
       nd: 1.592,
       vd: 67.02,
       indexReference: "d",
       focalLengthMm: -30.46757821836867,
-      glass:
-        "Unmatched (source nd=1.5920, vd=67.02; glass name and partial dispersion unpublished)",
+      glass: "M-PCD51 (HOYA, coordinate equivalent)",
+      role: "Double-aspheric OSS element at the front of the fifth group; shifts across the axis, modeled centered.",
       diagramLabel: "L11",
     },
     {
       id: 12,
       name: "L12",
-      label: "L12",
+      label: "Element 12",
       type: "Biconvex Positive",
       nd: 1.6034,
       vd: 38.01,
       indexReference: "d",
       focalLengthMm: 22.942812764212103,
-      glass:
-        "Unmatched (source nd=1.6034, vd=38.01; glass name and partial dispersion unpublished)",
+      glass: "E-F5 (HOYA, coordinate equivalent)",
+      role: "Positive front member of the rear cemented doublet in the fifth group.",
       diagramLabel: "L12",
-      cemented: "D4",
+      cemented: "C4",
     },
     {
       id: 13,
       name: "L13",
-      label: "L13",
+      label: "Element 13",
       type: "Biconcave Negative",
       nd: 1.8348,
       vd: 42.72,
       indexReference: "d",
       focalLengthMm: -24.45601967724616,
-      glass:
-        "Unmatched (source nd=1.8348, vd=42.72; glass name and partial dispersion unpublished)",
+      glass: "TAFD5F (HOYA, coordinate equivalent)",
+      role: "Negative rear member of the rear cemented doublet; last element before the image.",
       diagramLabel: "L13",
-      cemented: "D4",
+      cemented: "C4",
     },
   ],
   surfaces: [
@@ -738,7 +751,7 @@ const LENS_DATA = {
       0.84375, 0.875, 0.90625, 0.9375, 0.96875, 1.0,
     ],
     description:
-      "G4 singleton moves objectward. Patent publishes only infinity states; physical55x scale, intermediate zoom and finite1m mechanics are explicitly inferred, not source-certified conjugates. No image-plane optimization; centered OSS only.",
+      "The single-element fourth group moves objectward to focus while every other group stays still. The patent prints infinity spacings only and gives the direction of travel, so the intermediate zoom positions, the focus cam and the travel to the marketed 1 m (1.03 mm at wide, 2.69 mm at mid, 6.02 mm at tele) are inferred.",
   },
   gaps: {
     "5": {
@@ -4380,22 +4393,22 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "6",
       toSurface: "8",
     },
     {
-      text: "D3",
+      text: "C3",
       fromSurface: "14",
       toSurface: "16",
     },
     {
-      text: "D4",
+      text: "C4",
       fromSurface: "21",
       toSurface: "23",
     },

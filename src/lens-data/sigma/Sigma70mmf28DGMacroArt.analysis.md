@@ -7,198 +7,210 @@
 **Inventor:** Jumpei Nakamoto  
 **Applicant:** Sigma Corporation  
 **Title:** Macro lens (マクロレンズ)  
-**Example details:** 数値実施例1, original pp17–18; Figure1 p31; source conventions p16; claim15 p4 and EX1 conditions p30.
+**Example details:** 数値実施例1, pp. 17–18; Figure 1, p. 31; conventions, p. 16; claim 15, p. 4; Example 1 condition values, p. 30.
 
-The queue-selected Numerical Example1 is reconstructed at source scale as a
-**related patent variant**, not a uniquely established factory prescription for
-SIGMA 70mm F2.8 DG MACRO | Art A018. Numerical Example5 remains a viable alternative;
-E2 also shares the same topology but has a longer73.62mm source focal length.
+Numerical Example 1 is modeled at source scale as a **related patent design**, not
+a confirmed factory prescription for the SIGMA 70mm f/2.8 DG MACRO | Art (A018).
 No example is blended with another to improve calculated performance.
 
-Manufacturer-to-source evidence is convergent but nonexclusive:
+The link to the production lens rests on converging evidence:
 
-1. The A018 manufacturer specifies13elements/10groups, matching E1's three cemented doublets.
-2. Two aspherical elements correspond qualitatively to source L9 and L13; three aspheric surfaces are not three elements.
-3. The maker's two FLD/two SLD and high-anomalous-dispersion element classes align with the source's material-position pattern, not proven melt identities.
-4. The maker's extending floating two-group focus agrees with source G1/G2 motion and fixed G3.
-5. Source67.95mm/F2.90 and source-native257.8816mm object-to-image at−1× are near the marketed70mm/F2.8 and258mm MFD, but those retail figures never replace source values.
+1. Sigma specifies 13 elements in 10 groups, matching Example 1's three cemented doublets.
+2. Sigma's two aspherical elements correspond to L9 and L13; three aspherical surfaces are not three elements.
+3. Sigma's two FLD elements, two SLD elements and one high-index, high-anomalous-dispersion element fit the glass of L5 and L10, of L6 and L9, and of L4. These positions are inferred from glass class, not printed in the patent.
+4. Sigma's extending, floating two-group focus agrees with moving G1 and G2 and fixed G3.
+5. The patent's 67.95 mm, F/2.90 and 257.88 mm object to image at −1× sit close to the marketed 70mm, f/2.8 and 25.8 cm. The retail figures never replace source values.
 
-The earlier MACRO70mm F2.8 EX DG is a different10/9 design associated with
-JP2008020656A; its source, model and finite-iris waiver are not reused. The
-manufacturer lists CanonEF, SigmaSA, SonyE and L-mount variants for A018, and
-states that the SonyE version retains the optical system. Mount-specific
-mechanical barrels and sensor stacks are not independently reconstructed.
+**Numerical Example 5 is the close alternative.** It has the same 13-element,
+10-group layout and the same aspherical surfaces, with f = 68.00 mm, F/2.90 and
+258.15 mm object to image at −1×, so the first-order figures alone do not separate
+it from Example 1. Sigma's construction drawing does: it shows L1 as ordinary glass,
+where Example 5 uses SLD-class 1.49700/81.61, and L5's drawn width overlays Example
+1's 4.45 mm thickness rather than Example 5's 6.50 mm. Example 1 is selected on that
+comparison, which does not prove it is the production prescription. Examples 2, 3
+and 4 share the layout at 73.62, 98.32 and 63.69 mm, Example 6 has 12 elements in 9
+groups, and Example 7 has 14 elements in 10 groups.
+
+The earlier MACRO 70mm f/2.8 EX DG is a different 10-element, 9-group design
+(JP 2008-020656 A). Sigma lists Canon EF, Sigma SA, Sony E and L-Mount versions of
+the A018 and states that the Sony E version retains the optical system.
+Mount-specific barrels and sensor stacks are not modeled.
 
 ## Optical Architecture
 
-E1 is a three-motion-group macro design with positive G1, positive G2 and weak
-negative G3. G1 comprises L1–L7/S1–12, G2 includes the stop S13 and L8–L10/S14–18,
-and G3 comprises L11–L13/S19–24. G1 and G2 move objectward by different amounts;
-G3 stays fixed relative to the image. Group focal lengths printed127.90/73.03/−372.27mm
-are consistent with the prose boundaries. The source's G3-start20 index is
-inconsistent because it cuts L11 in half; the complete-lens boundary19 is used.
+Example 1 is a three-group macro design with positive G1, positive G2 and weak
+negative G3. G1 comprises L1–L7 (S1–12), G2 includes the stop S13 and L8–L10
+(S14–18), and G3 comprises L11–L13 (S19–24). G1 and G2 move toward the object by
+different amounts; G3 stays fixed relative to the image. The printed group focal
+lengths of 127.90, 73.03 and −372.27 mm match these boundaries, at 127.92, 73.03 and
+−372.29 mm. The table's G3 start of surface 20 is inconsistent, because it cuts L11
+in half; ¶0114 and Figure 1 place all of L11 in G3, so the boundary here is S19.
+Example 5 prints the same 20 although its L11 also begins at S19.
 
-There are13lens elements in10air-separated components. Cemented contacts are
-S4(L2/L3), S11(L6/L7) and S15(L8/L9). The physical1.45mm LPF at S25–26 is a
-camera-side rear plate, not a14th displayed lens element. The51.0113mm air gap
-before it and1.0000mm after it remain physical. No manual t/n folding or
-invented protective filter is applied.
+There are 13 lens elements in 10 air-separated groups. Cemented contacts are S4
+(L2/L3), S11 (L6/L7) and S15 (L8/L9). The physical 1.45 mm LPF at S25–26 is a
+camera-side rear plate, not a 14th displayed lens element. The 51.0113 mm air gap
+before it and the 1.0000 mm gap after it remain physical.
 
 ## Element-by-Element Analysis
 
 The focal lengths below are isolated thick-element d-line powers in air, not
-in-system cemented-group powers. Roles are structural optical interpretations,
-not experimentally separated aberration budgets or fabrication claims.
+in-system powers of the cemented groups. Roles are interpretations of the structure,
+not separated aberration budgets or fabrication claims.
 
 ### L1 — Biconcave Negative
 
-nd = 1.48750, νd = 70.44. Glass: Unmatched (source line ratios retained). f = -73.17 mm.
+nd = 1.48750, νd = 70.44. Glass: FC5 (HOYA, coordinate equivalent). f = -73.17 mm.
 
-Front negative meniscus with low-index/high-Abbe glass. Its negative power precedes the positive front-group components; the figure-derived front rim is larger than its geometry-limited rear clear rim.
+Front biconcave negative element (R −1000.0 / +37.0) in low-index, high-Abbe glass. Its negative power precedes the positive front-group components, and its rear surface with L2's front bounds the biconvex air lens of claim 2. The inferred front rim is larger than the rear clear rim, which L2's facing surface limits.
 
 ### L2 — Negative Meniscus
 
-nd = 1.80520, νd = 25.46. Glass: Unmatched (source line ratios retained). f = -49.59 mm.
+nd = 1.80520, νd = 25.46. Glass: FD60 (HOYA, coordinate equivalent). f = -49.59 mm.
 
-Negative member of cemented doublet D1, sharing S4 with L3. Its lower Abbe number contrasts with the higher-index positive partner; supplier identity is unresolved.
+Negative member of cemented doublet C1, sharing S4 with L3. Its low Abbe number contrasts with the higher-index positive partner.
 
 ### L3 — Positive Meniscus
 
-nd = 1.87070, νd = 40.73. Glass: Unmatched (source line ratios retained). f = +59.60 mm.
+nd = 1.87070, νd = 40.73. Glass: TAFD32 (HOYA, coordinate equivalent). f = +59.60 mm.
 
-Positive partner of D1. The source high index and contrasting dispersion provide power and chromatic-design freedom at a cemented interface, not proof of apochromatism.
+Positive partner of C1. The high index and contrasting dispersion provide power and chromatic freedom at the cemented interface.
 
 ### L4 — Biconvex Positive
 
-nd = 1.92290, νd = 20.88. Glass: Unmatched (source line ratios retained). f = +70.49 mm.
+nd = 1.92290, νd = 20.88. Glass: E-FDS1 (HOYA, coordinate equivalent). f = +70.49 mm.
 
-Positive meniscus with the highest printed index and lowest Abbe number in this prescription. It follows D1 and supplies strong material-dispersion contrast within moving G1.
+Biconvex positive element (R +88.80 / −238.88) with the highest index and lowest Abbe number in this prescription. It follows C1 and supplies strong dispersion contrast within moving G1. Its ΔPgF of +0.028 on the patent's line equals the printed condition (3) value, and its class fits Sigma's high-index, high-anomalous-dispersion element.
 
 ### L5 — Biconvex Positive
 
-nd = 1.43700, νd = 95.10. Glass: Unmatched (source line ratios retained). f = +89.35 mm.
+nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA, coordinate equivalent). f = +89.35 mm.
 
-Positive low-index, very-high-Abbe element. Its position correlates with an FLD-marked manufacturer element, without establishing fluorite composition or a vendor catalog equivalent.
+Positive low-index, very-high-Abbe element and one of two inferred FLD positions. Its ΔPdC of −0.015 equals the printed condition (4) value. FLD names a fluorite-class glass, not a fluorite composition.
 
 ### L6 — Biconvex Positive
 
-nd = 1.59280, νd = 68.62. Glass: Unmatched (source line ratios retained). f = +38.17 mm.
+nd = 1.59280, νd = 68.62. Glass: FCD515 (HOYA, coordinate equivalent). f = +38.17 mm.
 
-Positive member of doublet D2 with high-Abbe glass, followed by lower-Abbe negative L7. The two complete G1 behind the front air-spaced elements.
+Positive member of doublet C2 in high-Abbe glass, followed by lower-Abbe negative L7, and one of two inferred SLD positions. The pair completes G1 behind the air-spaced front elements.
 
 ### L7 — Biconcave Negative
 
-nd = 1.67270, νd = 32.17. Glass: Unmatched (source line ratios retained). f = -25.95 mm.
+nd = 1.67270, νd = 32.17. Glass: E-FD5 (HOYA, coordinate equivalent). f = -25.95 mm.
 
-Negative member of D2, ending at S12 before the first variable gap. The source stop lies after this group rather than inside its glass.
+Negative member of C2, ending at S12 before the first variable gap. The stop lies behind this group and ahead of G2's lenses; ¶0009 faults prior designs that place it between the lenses of the second group.
 
 ### L8 — Biconcave Negative
 
-nd = 1.48750, νd = 70.44. Glass: Unmatched (source line ratios retained). f = -42.10 mm.
+nd = 1.48750, νd = 70.44. Glass: FC5 (HOYA, coordinate equivalent). f = -42.10 mm.
 
-Negative member of doublet D3 immediately behind the moving stop. Its contrast with positive L9 contributes chromatic and bending freedom within G2.
+Negative member of doublet C3 immediately behind the moving stop. Its contrast with positive L9 contributes chromatic and bending freedom within G2.
 
 ### L9 — Biconvex Positive (Asph)
 
-nd = 1.55230, νd = 71.54. Glass: Unmatched (source line ratios retained). f = +42.26 mm.
+nd = 1.55230, νd = 71.54. Glass: Unmatched (printed nd 1.55230, νd 71.54; line indices from printed PgF and PdC). f = +42.26 mm.
 
-Positive high-Abbe member of D3. Its rear S16 carries the first explicitly printed asphere, with all terms through A14 retained, including zeros.
+Positive high-Abbe member of C3 and the second inferred SLD position. Its rear S16 carries the first printed asphere, with all terms through A14 retained, including zeros.
 
 ### L10 — Biconvex Positive
 
-nd = 1.43700, νd = 95.10. Glass: Unmatched (source line ratios retained). f = +100.84 mm.
+nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA, coordinate equivalent). f = +100.84 mm.
 
-Positive low-index/very-high-Abbe meniscus completing G2. It ends at S18, before the corrected physical intergroup air interval. The orphan d19 row is never treated as this element or L11 becoming variable-thickness glass.
+Biconvex positive element (R +222.13 / −54.70) in low-index, very-high-Abbe glass, completing G2 and the second inferred FLD position. It ends at S18, before the corrected air gap to G3. The printed d19 row is treated as air, never as added thickness in this element or in L11.
 
 ### L11 — Negative Meniscus
 
-nd = 1.83400, νd = 37.34. Glass: Unmatched (source line ratios retained). f = -72.73 mm.
+nd = 1.83400, νd = 37.34. Glass: NBFD10 (HOYA, coordinate equivalent). f = -72.73 mm.
 
-Negative meniscus beginning fixed G3 at S19. Its rear rim is conservatively geometry-limited; the printed G3-start20 would omit its front refraction and is not physically adopted.
+Negative meniscus beginning fixed G3 at S19. Its rear rim is limited by the facing surface of L12.
 
 ### L12 — Biconcave Negative
 
-nd = 1.62040, νd = 60.34. Glass: Unmatched (source line ratios retained). f = -94.10 mm.
+nd = 1.62040, νd = 60.34. Glass: BACD16 (HOYA, coordinate equivalent). f = -94.10 mm.
 
-Negative biconcave element within G3. Its first clear rim is geometry-limited against L11; no unsupported radius or thickness adjustment is used to remove overlap.
+Negative biconcave element within G3. Its front clear rim is limited by L11; no radius or thickness is changed to remove the overlap.
 
 ### L13 — Biconvex Positive (Asph)
 
-nd = 1.80280, νd = 40.55. Glass: Unmatched (source line ratios retained). f = +48.47 mm.
+nd = 1.80280, νd = 40.55. Glass: Unmatched (printed nd 1.80280, νd 40.55; line indices from printed PgF and PdC). f = +48.47 mm.
 
-Positive final element with aspheres on both S23 and S24. Its rear-zone degrees of freedom can affect image-side aberrations, but the source does not quantify an isolated correction allocation or identify a molding process.
+Positive final element with aspheres on both S23 and S24. These surfaces can act on off-axis aberrations near the image side, but the patent does not quantify their share of the correction or identify a molding process.
 
 ## Glass Identification and Selection
 
-The patent prints nd, νd, PgF=(ng−nF)/(nF−nC) and PdC=(nd−nC)/(nF−nC),
-with d-line587.56nm convention. For every lens and LPF, the candidate retains
-algebraically derived nC/nF/ng: Δ=(nd−1)/νd, nC=nd−PdC·Δ, nF=nC+Δ,
-ng=nF+PgF·Δ. These are source-derived line values, not independently printed
-indices, a full vendor Sellmeier curve, a melt certificate, or proof of broadband
-camera response. Independent roundtrip checks agree below1e−9.
+The patent prints nd, νd, PgF = (ng−nF)/(nF−nC) and PdC = (nd−nC)/(nF−nC), with the
+d-line at 587.56 nm. For every lens and the LPF, the file computes line indices from
+those printed values: Δ = (nd−1)/νd, nC = nd − PdC·Δ, nF = nC + Δ, ng = nF + PgF·Δ.
+These are derived line values, not independently printed indices, a vendor Sellmeier
+curve or a melt certificate, and the chromatic trace uses them directly.
 
-| Element | nd | νd | PgF | PdC |
-|---|---:|---:|---:|---:|
-| L1 | 1.48750 | 70.44 | 0.5305 | 0.3091 |
-| L2 | 1.80520 | 25.46 | 0.6156 | 0.2868 |
-| L3 | 1.87070 | 40.73 | 0.5681 | 0.2970 |
-| L4 | 1.92290 | 20.88 | 0.6388 | 0.2825 |
-| L5 | 1.43700 | 95.10 | 0.5335 | 0.3070 |
-| L6 | 1.59280 | 68.62 | 0.5440 | 0.3031 |
-| L7 | 1.67270 | 32.17 | 0.5962 | 0.2911 |
-| L8 | 1.48750 | 70.44 | 0.5305 | 0.3091 |
-| L9 | 1.55230 | 71.54 | 0.5389 | 0.3044 |
-| L10 | 1.43700 | 95.10 | 0.5335 | 0.3070 |
-| L11 | 1.83400 | 37.34 | 0.5789 | 0.2946 |
-| L12 | 1.62040 | 60.34 | 0.5393 | 0.3054 |
-| L13 | 1.80280 | 40.55 | 0.5687 | 0.2970 |
+| Element | Glass | nd | νd | PgF | PdC |
+|---|---|---:|---:|---:|---:|
+| L1 | FC5 | 1.48750 | 70.44 | 0.5305 | 0.3091 |
+| L2 | FD60 | 1.80520 | 25.46 | 0.6156 | 0.2868 |
+| L3 | TAFD32 | 1.87070 | 40.73 | 0.5681 | 0.2970 |
+| L4 | E-FDS1 | 1.92290 | 20.88 | 0.6388 | 0.2825 |
+| L5 | FCD100 | 1.43700 | 95.10 | 0.5335 | 0.3070 |
+| L6 | FCD515 | 1.59280 | 68.62 | 0.5440 | 0.3031 |
+| L7 | E-FD5 | 1.67270 | 32.17 | 0.5962 | 0.2911 |
+| L8 | FC5 | 1.48750 | 70.44 | 0.5305 | 0.3091 |
+| L9 | Unmatched | 1.55230 | 71.54 | 0.5389 | 0.3044 |
+| L10 | FCD100 | 1.43700 | 95.10 | 0.5335 | 0.3070 |
+| L11 | NBFD10 | 1.83400 | 37.34 | 0.5789 | 0.2946 |
+| L12 | BACD16 | 1.62040 | 60.34 | 0.5393 | 0.3054 |
+| L13 | Unmatched | 1.80280 | 40.55 | 0.5687 | 0.2970 |
 
-The contrasting dispersions across the three doublets and two very-high-Abbe
-positive elements provide chromatic design freedom. All commercial glass names
-remain Unmatched. Equal-weight C/d/F MTF is available because source partial
-ratios are retained; that calculation is not measured production performance or
-an apochromatic certification. Photopic support was checked separately and is
-not substituted for a broadband validation result.
+Eleven of the 13 elements are HOYA coordinate equivalents: the printed four-decimal
+nd and νd reproduce the catalog rows, and each printed PgF agrees with its row within
+0.0002. The names describe glass type and do not establish the production supplier.
+L9 and L13 are the two aspherical elements. Their indices sit below the nearest
+catalog glasses, by 0.0010 against M-FCD500 and 0.0033 against M-NBFD130, as moulded
+glass probably would, so both stay Unmatched.
+
+L5 and L10 are tagged as inferred FLD positions and L6 and L9 as inferred SLD
+positions, from their glass; the patent identifies neither class by element. L1 is
+ordinary crown here, in keeping with Sigma's drawing. The contrasting dispersions
+across the three doublets and the two very-high-Abbe positive elements provide the
+chromatic freedom. Colour results calculated from these indices are model values, not
+measured production performance or an apochromatic rating.
 
 ## Focus Mechanism
 
-The source floating mechanism moves G1 and G2 objectward, with fixed G3. The
-stop follows G2. The manufacturer describes focus-by-wire actuation, but no
-factory actuator-to-displacement cam is recovered.
+The floating mechanism moves G1 and G2 toward the object, with G3 fixed. The stop
+follows G2. Sigma describes focus-by-wire actuation, but no factory cam is available.
 
 | Quantity | Infinity | −0.5× | −1× |
 |---|---:|---:|---:|
-| Source d0, object to first vertex(mm) | ∞ |151.0718|82.2506|
-| Source d12(mm) |6.0582|7.5096|9.0543|
-| Printed d18(mm) |0.0000|7.6984|30.8037|
-| Orphan printed d19(mm) |1.9577|16.9577|16.9577|
-| Applied d18+d19 airgap(mm) |1.9577|24.6561|47.7614|
-| G1 objectward travel(mm) |0|24.1498|48.7998|
-| G2 objectward travel(mm) |0|22.6984|45.8037|
-| Physical first-vertex-to-image(mm) |126.8312|150.9810|175.6310|
-| Native object-to-image(mm) |∞|302.0528|257.8816|
+| Object to first vertex, d0 (mm) | ∞ | 151.0718 | 82.2506 |
+| d12 (mm) | 6.0582 | 7.5096 | 9.0543 |
+| Printed d18 (mm) | 0.0000 | 7.6984 | 30.8037 |
+| Printed d19 (mm) | 1.9577 | 16.9577 | 16.9577 |
+| Applied S18–S19 air gap, d18 + d19 (mm) | 1.9577 | 24.6561 | 47.7614 |
+| G1 travel toward the object (mm) | 0 | 24.1498 | 48.7998 |
+| G2 travel toward the object (mm) | 0 | 22.6984 | 45.8037 |
+| First vertex to image (mm) | 126.8312 | 150.9810 | 175.6310 |
+| Object to image (mm) | ∞ | 302.0528 | 257.8816 |
 
-Both finite states are certified from source d0 referenced to the first surface,
-not from the manufacturer's MFD. Source printed tracks126.83/150.95/175.57mm
-differ from the physical sums by0.0012/0.0310/0.0610mm; these discrepancies
-remain unresolved, not silently called rounding or repaired by refocusing.
+Both finite states use the printed d0, measured from the first surface. They are the
+patent's conjugates, not Sigma's minimum focus distance, although 257.88 mm rounds to
+the marketed 25.8 cm. The printed total lengths of 126.83, 150.95 and 175.57 mm fall
+short of the physical sums by 0.0012, 0.0310 and 0.0610 mm. All seven examples show a
+shortfall of this kind, up to 0.063 mm in Example 6, so it does not bear on the gap
+correction. Its cause is not established and nothing is refocused to remove it.
 
-Only the three source states are published. The first three-point linear-gap
-path produced about−7.007mm intermediate paraxial defocus and inaccurate slider
-distance labels. A separate65-control inferred reparameterization now retains
-the same original two-gap segment paths and all native states, preserving the
-linearly interpolated native residual at the65control nodes rather than forcing zero defocus. Between-node residual may change sign: sampled range−0.0193446431 to+0.0285968628mm. Across
-257 diagnostic samples the maximum absolute residual is0.02859686mm. This is
-not a factory cam or a continuous object-distance accuracy bound. A near-infinity
-conjugate pole remains from the nonzero source infinity residual, so continuous
-distance labels are qualified; only native states support finite-conjugate MTF.
+Only the three states above are published. Between them the focus path is inferred:
+65 controls follow the printed gaps, with d12 linear in the S18–S19 gap on each
+segment, and keep the small residual defocus of the printed states. That residual
+stays between −0.019 and +0.029 mm along the path. This is not a factory cam or a
+calibrated distance scale, and because the infinity state itself carries a residual
+of +0.010 mm, distance labels near infinity are only approximate. Finite-conjugate MTF
+is available only at the printed states.
 
 ## Aspherical Surfaces
 
-The original p16 equation uses the standard(1+K) conic convention with even
-powers through A14. K=0 is explicitly printed for all three surfaces, never
-assumed. S16 is L9 rear; S23/S24 are L13 front/rear. Coefficients retain source
-units and scale. No uniform scaling or sign optimization is applied.
+The equation on p. 16 uses the standard (1 + K) conic convention with even powers
+through A14. K = 0 is printed for all three surfaces. S16 is the rear of L9; S23 and
+S24 are the front and rear of L13. Coefficients keep the patent's units and scale.
 
 | Surface | K | A4 | A6 | A8 | A10 | A12 | A14 |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -206,83 +218,63 @@ units and scale. No uniform scaling or sign optimization is applied.
 | S23 | 0.00000 | -2.02450E-06 | 1.95572E-08 | -2.86844E-10 | 2.38288E-12 | -9.48425E-15 | 1.33598E-17 |
 | S24 | 0.00000 | -1.14510E-06 | 2.38551E-08 | -3.59230E-10 | 2.78398E-12 | -1.01964E-14 | 1.32924E-17 |
 
-S16 starts with positive quartic departure; S23 and S24 start negative. Higher
-orders substantially change peripheral departure, so quartic sign alone is not
-an aberration budget. No unsupported composite layer or molding method is added.
+S16 starts with positive quartic departure; S23 and S24 start negative. Higher orders
+substantially change the peripheral departure, so the quartic sign alone does not
+describe the correction. The patent names no composite layer or molding method.
 
-## Source Erratum and Evidence Standard
+## Source Erratum: the S18–S19 Air Gap
 
-Original p17–18 lists variable d18 after L10 but separately tabulates d19 even
-though S19 is0.9000mm glass. The candidate collapses the two printed air rows
-into one S18–S19 physical airgap, preserving both original rows in evidence.
-Two independent permitted evidence kinds support this narrow correction:
+Pages 17–18 list a variable d18 after L10 and separately tabulate d19, although S19
+is 0.9000 mm of glass. The model adds the two printed rows into one physical S18–S19
+air gap; both rows stay visible in the focus table. Two kinds of evidence inside the
+patent support this correction:
 
-- **Source-summary:** literal d18 gives EFL68.39699/67.22318/63.10146mm and source-plane residuals2.94946/26.80494/26.81677mm. Combined air gives67.95771/63.74556/60.05463mm, close to printed67.95/63.74/60.05, while retaining residuals0.01028/0.01805/0.02860mm.
-- **Claims:** claim15 condition13 requires0.55≤X2/(−f·βmod)≤0.90; original p30 explicitly gives EX1=0.67. Literal d18 gives0.453329, violating both. Combined air gives0.674079, agreeing with EX1 at source precision.
+- **Printed summary:** literal d18 gives focal lengths of 68.397 / 67.223 / 63.101 mm, image-plane residuals of 2.949 / 26.805 / 26.817 mm, 2ω of 36.37° / 32.37° / 24.61° and total lengths of 124.87 / 134.02 / 158.67 mm. The sum gives 67.958 / 63.746 / 60.055 mm, 0.01028 / 0.01805 / 0.02860 mm, 35.40° / 26.58° / 21.06° and 126.83 / 150.98 / 175.63 mm, against the printed 67.95 / 63.74 / 60.05 mm, 35.40° / 26.59° / 21.07° and 126.83 / 150.95 / 175.57 mm.
+- **Claims:** claim 15 condition (13) requires 0.55 ≤ X2/(−f·βmod) ≤ 0.90, and p. 30 gives 0.67 for Example 1. Literal d18 gives 0.4533, violating both. The sum gives 0.6741.
 
-This does not prove a missing dummy plane, change L11 glass thickness, identify
-the factory lens, or authorize further optical corrections. The failed literal
-and variable-glass hypotheses are retained. EFL and better ray results alone
-were not treated as sufficient evidence. Exact grant JP7039010B2 indexed text
-repeats the inconsistency; original grant PDF was not recovered, so no
-family-publication correction evidence or full original A/B parity is claimed.
-The G3-start20 typo is separately qualified: the positive97.3585mm diagnostic
-is air-initialized half-glass and nonphysical; the prose-defined complete G3
-S19–24 gives−372.2939mm versus printed−372.27mm.
+Example 5 agrees: it prints the same gap as a single row of 1.8790 / 24.5948 / 47.6787
+mm, and its residuals match those of the summed gap here. The correction does not
+prove a missing dummy plane, change L11's glass thickness or identify the factory
+lens. The indexed text of grant JP 7039010 B2 repeats the inconsistency, so the family
+offers no printed correction. The printed G3 start of surface 20 is a separate slip: a
+start at S20 gives a meaningless +97.36 mm, while the complete G3, S19–24, gives
+−372.29 mm against the printed −372.27 mm.
 
-## Aperture, Rims and Verification Limits
+## Aperture, Rims and Model Limits
 
-Source Figure1 supplies schematic inferred rim seeds, not published apertures.
-The initial broad rims failed default90%-sag cross-gap clearance. The adjacent
-S2/S3 rims were conservatively limited to13.49mm and S20/S21 to12.09mm; all
-other source optics remain unchanged. No gap allowance, rim-slope or hidden-trim
-override is used. A257-state geometry sample has zero hidden trim. Engine
-polygon images were visually inspected; they are not browser/viewer QA.
+Figure 1 is schematic and the patent prints no clear apertures, so all rims are
+inferred. The facing S2/S3 rims are limited to 13.49 mm and S20/S21 to 12.09 mm, under
+the default 90% sag limit across those air gaps. No gap allowance or rim-slope
+override is used.
 
-The ordinary-prime contract derives a fixed physical iris radius10.66580236mm
-from source infinityF2.90. The exact on-axis native-object rays give working
-1/(2NA)=2.90088773/3.84283593/4.80232740, whereas the source prints2.90/3.86/4.99.
-The finite differences−0.4447%/−3.7610% are unresolved convention or aperture
-questions, not a source error established here. No source F-number is edited,
-no varying-iris workaround is authored and no unrelated user waiver is adopted.
+The stop follows the rule used across the catalog: a paraxial entrance pupil of f/N at
+infinity, here 23.43 mm at F/2.90, which fixes the stop radius at 10.616 mm through
+focus. The real marginal ray then gives a working f/# of 2.91 at infinity, 3.86 at
+−0.5× and 4.82 at −1×, against the printed 2.90, 3.86 and 4.99. The model is therefore
+about 3% faster than the printed figure at 1:1, and a fixed iris cannot reach the
+printed 4.99: no single radius fits all three printed values, which would need 10.67,
+10.62 and 10.25 mm. The gap correction is not the cause. A fixed iris reproduces all
+three printed F-numbers in Examples 2, 4 and 6 but misses at −1× in Examples 1, 3 and
+5, and Example 5 has no gap problem. A second fixed limit of about 11.87 mm at S16
+would reproduce the printed values of Examples 1 and 5, which suggests an aperture the
+patent does not print. That is an interpretation: Figure 1 draws S16 near 14.4 mm, and
+the model carries no such limit.
 
-The early manual angular pilot aimed from the first-vertex reference; its finite
-edge probes reached only17.951/15.403mm image height, so it is not full finite
-field evidence. Its failed aims are **unlaunched**, not physical clips. Subsequent
-shared source-height chief inversion targets21.63mm and gives absolute projected
-heights21.62996/21.62997/21.62997mm at17.6973/13.2917/10.5288degrees, with the
-shared signed-image convention retained. Projection from the last physical
-surface is distinguished from a trace explicitly terminating at IMG.
+A chief ray traced to the patent's 21.63 mm image height leaves the object side at
+17.70°, 13.29° and 10.53°, giving 2ω of 35.40°, 26.58° and 21.06° against the printed
+35.40°, 26.59° and 21.07°. With the inferred rims, geometric transmission at the 17.7°
+corner is 45% at infinity.
 
-MTF uses the shared native-conjugate request at generic format-corner21.65mm,
-not source21.63mm. Its finite reported angles are measured from the first vertex;
-they are not directly comparable to the shared source-field angular convention.
-Reference and equal-weight C/d/F calculations retain design versus diagnostic
-best-axial planes, and F8 is a separately reduced iris. No diagnostic best focus
-is applied to source geometry.
-
-| State | C/d/F design-plane edge MTF40 S/T | Edge valid/blocked/failed rays |
-|---|---|---|
-| Infinity |0.5212 /0.3841|18068 /16492 /0|
-| −0.5× |0.6303 /0.2884|18676 /22904 /0|
-| −1× |0.4839 /0.3293|4926 /9006 /0|
-
-These calculations converged numerically but include substantial blocked pupil
-samples and weak tangential edge response. Counts are sampling diagnostics,
-not calibrated optical throughput or measured production vignetting. Zero
-failed rays and zero unknown flux in these MTF results do not erase blocked
-rays or failures in separate probes. **Converged MTF is not a quality pass.**
-
-Source parity, bounded native checks and isolated candidate type/format checks
-are distinct from missing full-project gates. Whole-project typecheck, format,
-lint, main tests, tooling tests, build, and actual viewer review remain NOT_RUN.
-The proper disposition is BUILT_AWAITING_VALIDATION_EXECUTION, with source/iris,
-production-identity, inferred-rim/cam and partial-pupil qualifications retained;
-not completed, deployed, published or waived.
+MTF is evaluated at the 21.65 mm format corner, not the patent's 21.63 mm, and its
+finite-state field angles are measured from the first vertex, so they are not directly
+comparable to the printed angles. The edge pupil is partly vignetted and tangential
+edge response is weak at all three printed states. These are calculated properties of
+a model with inferred rims, not measured production performance.
 
 ## Sources
 
-- [Sigma A018 manufacturer evidence](https://www.sigma-global.com/en/lenses/a018_70_28/).
-- [Original JP2019144441A PDF](https://patentimages.storage.googleapis.com/46/a1/f1/160bea35e965e8/JP2019144441A.pdf), SHA2564f3adc141caca328247b2d11562fba11ea79b951bae27e39a0ec4ac819c06782.
-- [Application index and family](https://patents.google.com/patent/JP2019144441A/en).
-- [Exact grant indexed text](https://patents.google.com/patent/JP7039010B2/en), not a recovered original grant PDF.
+- [Sigma A018 product page](https://www.sigma-global.com/en/lenses/a018_70_28/).
+- [Sigma A018 construction drawing](https://www.sigma-global.com/lenses/a018_70_28_specification_01_01.jpg).
+- [JP 2019-144441 A](https://patentimages.storage.googleapis.com/46/a1/f1/160bea35e965e8/JP2019144441A.pdf).
+- [Application record and family](https://patents.google.com/patent/JP2019144441A/en).
+- [Grant JP 7039010 B2, indexed text](https://patents.google.com/patent/JP7039010B2/en).
