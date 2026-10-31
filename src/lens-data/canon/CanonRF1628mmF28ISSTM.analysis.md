@@ -73,7 +73,7 @@ E3 is the only νd ≥ 75 element in L1 and so the natural counterpart of the fr
 
 ### E4 — Biconvex Positive, high index
 
-nd = 1.91082, νd = 35.25, θgF = 0.5824. Glass: 911352 coordinates (HOYA TAFD35, CDGM H-ZLaF4LA); supplier unconfirmed. f = +36.29 mm.
+nd = 1.91082, νd = 35.25, θgF = 0.5824. Glass: TAFD35 (HOYA qualified spectral proxy; historical supplier and melt unconfirmed). f = +36.29 mm.
 
 E4 is the single positive lens of L1 and the highest-index material in the group, so it supplies the values of conditions (3)–(5): nd1m = 1.91082, νd1m = 35.25, θgF1m = 0.5824 (¶0057–¶0061). ¶0075 prefers a positive singlet in L1 with index at least 1.7, and ¶0058 explains the trade-off: a high-index positive lens in the negative front group aids primary achromatization and compactness but makes the secondary spectrum of lateral color harder to correct. In the third-order budget at the wide end, E4's lateral-color term (−0.0217) offsets the combined +0.0277 of E1–E3, leaving L1 with a net +0.0060.
 
@@ -98,13 +98,13 @@ E7 is the first of four positive νd ≥ 75 lenses behind the stop. ¶0081 asks 
 ### E8 + E9 — Cemented Doublet D1 (net f = +158.27 mm)
 
 - **E8:** nd = 1.49700, νd = 81.61, θgF = 0.5386 (ΔPgF = +0.0321). Glass: 497816 fluorophosphate class (HOYA FCD1, Schott N-PK52A); supplier unconfirmed. f = +26.69 mm. Biconvex positive.
-- **E9:** nd = 1.80440, νd = 39.59, θgF = 0.5729. Glass: 804396 coordinates (OHARA S-LAH63Q, HIKARI J-LASF013); supplier unconfirmed. f = −29.64 mm. Negative meniscus.
+- **E9:** nd = 1.80440, νd = 39.59, θgF = 0.5729. Glass: S-LAH63 (OHARA qualified spectral proxy; historical supplier and melt unconfirmed). f = −29.64 mm. Negative meniscus.
 
 D1 pairs a low-dispersion crown with a lanthanum flint, leaving a weakly positive net power. At the wide end D1 contributes −0.0383 to the axial-color sum, offsetting E7 (+0.0511), and −16.86 to the spherical-aberration sum, the largest negative term of any unit in the lens.
 
 ### E10 + E11 — Cemented Doublet D2, image stabilization (net f = −83.44 mm)
 
-- **E10:** nd = 1.84666, νd = 23.79, θgF = 0.6191 (ΔPgF = +0.0153). Glass: 847238 coordinates (HOYA FDS90, OHARA S-TIH53, Schott N-SF57); supplier unconfirmed. f = +50.78 mm. Positive meniscus, concave to object.
+- **E10:** nd = 1.84666, νd = 23.79, θgF = 0.6191 (ΔPgF = +0.0153). Glass: FDS90 (HOYA qualified spectral proxy; historical supplier and melt unconfirmed). f = +50.78 mm. Positive meniscus, concave to object.
 - **E11:** nd = 1.60562, νd = 43.70, θgF = 0.5721. Glass: 606437 coordinates (OHARA S-BAM4, Schott N-BAF4); supplier unconfirmed. f = −32.17 mm. Biconcave negative.
 
 Counting lenses from the object side, E10 and E11 are the 10th and 11th lenses, the cemented pair that ¶0088 decentres for image stabilization. The net power is negative, as ¶0088 prefers for the stabilizing group. Pairing a dense-flint positive lens with a lower-dispersion negative lens leaves the doublet's own first-order axial-color term small (+0.0070 at the wide end, against +0.0511 for E7 and −0.0383 for D1). Section 9 gives its decentring sensitivity.
@@ -130,7 +130,7 @@ E15 is a weak negative meniscus closing L4 with both surfaces aspherical; despit
 
 ### E16 — Positive Meniscus, convex to image (L5)
 
-nd = 1.48749, νd = 70.44, θgF = 0.5303. Glass: 487704 coordinates (HOYA FC5, Schott N-FK5); supplier unconfirmed. f = +68.99 mm.
+nd = 1.48749, νd = 70.44, θgF = 0.5303. Glass: FC5 (HOYA qualified spectral proxy; historical supplier and melt unconfirmed). f = +68.99 mm.
 
 E16 is L5 by itself and does not move during zoom or focus. ¶0082 gives the dust-sealing rationale for a fixed last group in an interchangeable lens, and ¶0083 prefers that the last lens be convex toward the image to secure back focus and suppress ghosts from sensor reflections. Its focal length defines condition (11), fw/fR = 0.224.
 
@@ -138,22 +138,22 @@ E16 is L5 by itself and does not move during zoom or focus. ¶0082 gives the dus
 
 The patent publishes d-line nd, νd and absolute θgF (¶0054, PDF p. 9; ¶0094, p. 14), with d = 587.6, F = 486.1, C = 656.3 and g = 435.8 nm explicitly defined. It prints no individual spectral indices. Glass names are therefore coordinate matches against six vendor catalogs (OHARA, HOYA, Schott, HIKARI, CDGM, Sumita) using the distance $\sqrt{\Delta n_d^2 + (\Delta\nu_d/50)^2}$. Every coordinate in Example 1 has at least one exact-class match (distance < 0.001), and most are shared by several vendors, so the listed names identify compatible catalog coordinate classes. All 16 current curves are qualified spectral proxies, without proof of historical supplier, melt, chemistry, molding process or production material. Catalog family terms such as fluorophosphate, lanthanum flint and dense flint below describe these proxies, not a chemical analysis of the patent media. ΔPgF is the patent θgF minus the normal line $0.6438 - 0.001682\,\nu_d$.
 
-| Code   | nd / νd         | θgF    | ΔPgF    | Coordinate-compatible glasses                          | Used in  | Role                                             |
-| ------ | --------------- | ------ | ------- | ------------------------------------------------------ | -------- | ------------------------------------------------ |
-| 882372 | 1.88202 / 37.22 | 0.5770 | −0.0042 | HOYA M-TAFD307; CDGM D-ZLaF67-25                       | E1       | Aspheric front negative (moldable families only) |
-| 804465 | 1.80420 / 46.50 | 0.5572 | −0.0084 | Schott N-LASF44; HOYA TAF3/TAF3D; OHARA S-LAH65VS      | E2       | L1 negative                                      |
-| 497816 | 1.49700 / 81.61 | 0.5386 | +0.0321 | HOYA FCD1; Schott N-PK52A; CDGM H-FK61; HIKARI J-FK01A | E3, E8   | Low-dispersion negative (L1) and crown of D1     |
-| 911352 | 1.91082 / 35.25 | 0.5824 | −0.0021 | HOYA TAFD35; CDGM H-ZLaF4LA                            | E4       | High-index positive in L1 (nd1m)                 |
-| 652585 | 1.65160 / 58.54 | 0.5390 | −0.0063 | OHARA S-LAL7Q; Schott N-LAK7                           | E5       | L2 positive                                      |
-| 772496 | 1.77250 / 49.63 | 0.5508 | −0.0095 | HOYA TAF1; Schott N-LAF34; OHARA S-LAH66               | E6       | Focus lens                                       |
-| 550755 | 1.55032 / 75.50 | 0.5405 | +0.0237 | HOYA FCD705                                            | E7       | Low-dispersion positive behind stop              |
-| 804396 | 1.80440 / 39.59 | 0.5729 | −0.0043 | OHARA S-LAH63Q; HIKARI J-LASF013                       | E9       | Flint of D1                                      |
-| 847238 | 1.84666 / 23.79 | 0.6191 | +0.0153 | HOYA FDS90; OHARA S-TIH53; CDGM H-ZF52A                | E10      | Dense-flint positive of IS doublet               |
-| 606437 | 1.60562 / 43.70 | 0.5721 | +0.0018 | OHARA S-BAM4; Schott N-BAF4                            | E11      | Negative of IS doublet                           |
-| 437951 | 1.43700 / 95.10 | 0.5326 | +0.0488 | HOYA FCD100                                            | E12, E13 | Lowest-dispersion positives in L4                |
-| 835427 | 1.83481 / 42.72 | 0.5650 | −0.0069 | HOYA TAFD5G; OHARA S-LAH55V                            | E14      | Strong negative of D3                            |
-| 583595 | 1.58313 / 59.46 | 0.5418 | −0.0020 | HOYA M-BACD12; CDGM H-ZK2                              | E15      | Double-aspheric corrector                        |
-| 487704 | 1.48749 / 70.44 | 0.5303 | +0.0050 | HOYA FC5; Schott N-FK5                                 | E16      | Fixed rear positive                              |
+| Code   | nd / νd         | θgF    | ΔPgF    | Coordinate-compatible glasses                                       | Used in  | Role                                             |
+| ------ | --------------- | ------ | ------- | ------------------------------------------------------------------- | -------- | ------------------------------------------------ |
+| 882372 | 1.88202 / 37.22 | 0.5770 | −0.0042 | HOYA M-TAFD307; CDGM D-ZLaF67-25                                    | E1       | Aspheric front negative (moldable families only) |
+| 804465 | 1.80420 / 46.50 | 0.5572 | −0.0084 | Schott N-LASF44; HOYA TAF3/TAF3D; OHARA S-LAH65VS                   | E2       | L1 negative                                      |
+| 497816 | 1.49700 / 81.61 | 0.5386 | +0.0321 | HOYA FCD1; Schott N-PK52A; CDGM H-FK61; HIKARI J-FK01A              | E3, E8   | Low-dispersion negative (L1) and crown of D1     |
+| 911352 | 1.91082 / 35.25 | 0.5824 | −0.0021 | HOYA TAFD35; CDGM H-ZLaF4LA                                         | E4       | High-index positive in L1 (nd1m)                 |
+| 652585 | 1.65160 / 58.54 | 0.5390 | −0.0063 | OHARA S-LAL7Q; Schott N-LAK7                                        | E5       | L2 positive                                      |
+| 772496 | 1.77250 / 49.63 | 0.5508 | −0.0095 | HOYA TAF1; Schott N-LAF34; OHARA S-LAH66                            | E6       | Focus lens                                       |
+| 550755 | 1.55032 / 75.50 | 0.5405 | +0.0237 | HOYA FCD705                                                         | E7       | Low-dispersion positive behind stop              |
+| 804396 | 1.80440 / 39.59 | 0.5729 | −0.0043 | OHARA S-LAH63 (selected); HIKARI J-LASF013 (coordinate alternative) | E9       | Flint of D1                                      |
+| 847238 | 1.84666 / 23.79 | 0.6191 | +0.0153 | HOYA FDS90; OHARA S-TIH53; CDGM H-ZF52A                             | E10      | Dense-flint positive of IS doublet               |
+| 606437 | 1.60562 / 43.70 | 0.5721 | +0.0018 | OHARA S-BAM4; Schott N-BAF4                                         | E11      | Negative of IS doublet                           |
+| 437951 | 1.43700 / 95.10 | 0.5326 | +0.0488 | HOYA FCD100                                                         | E12, E13 | Lowest-dispersion positives in L4                |
+| 835427 | 1.83481 / 42.72 | 0.5650 | −0.0069 | HOYA TAFD5G; OHARA S-LAH55V                                         | E14      | Strong negative of D3                            |
+| 583595 | 1.58313 / 59.46 | 0.5418 | −0.0020 | HOYA M-BACD12; CDGM H-ZK2                                           | E15      | Double-aspheric corrector                        |
+| 487704 | 1.48749 / 70.44 | 0.5303 | +0.0050 | HOYA FC5; Schott N-FK5                                              | E16      | Fixed rear positive                              |
 
 Five elements have νd ≥ 75: E3 in L1 and the four positive lenses E7, E8, E12, and E13 behind the stop. Four such positive lenses in LR exceed the two-to-three that ¶0081 recommends. Canon's published count is four UD elements; which four Canon designates, and whether FCD100-class glass is marketed under a different name, is not established from the sources.
 
@@ -326,3 +326,25 @@ A stronger inverse finite-image-height supplement first solves unclipped chief g
 The three printed source-height boundaries at infinity and reconstructed close focus were also sampled separately: 1,746 rays, all axial and converged chief rays clear, 236 ordinary clips and three bounded S2A cap misses. A bounding-sphere vector-launch check over 65 zoom positions and three focus positions gives 56,745 source-range angular rays with clear axial/chief rays, 6,322 ordinary clips and 19 bounded S2A cap misses. Angular launch at nonzero focus is still collimated, distinct from the actual finite-object grids. Of 585 separate 80° / 89° / 90° extreme-angle attempts, 560 chief seeds are unbracketed; no extreme-field coverage is claimed.
 
 **Rendered result and production limits.** All 1,365 zoom/focus contour states contain 16 connected, closed, finite element paths with zero hidden renderer trimming. Actual final SVGs were inspected at all three published zoom states and at infinity/middle/close focus. Surface and image-circle checks pass; there are no inferred cuts requiring a cut exemption. The missing shoulder is resolved, while the specified cap/gap, interpolation, marginal-pupil and generic-corner limits remain. Family-level production correlation, the absent replica layer and the five numerical low-dispersion media versus Canon's four UD designation remain unchanged. The source review, sampled runtime conclusions and production correlation are separate findings.
+
+## October 31, 2026 — Scoped Source-Partial Catalog Followup
+
+Preserve the completed October 1 whole shape/glass review, October 8 partial check and October 30 shoulder/runtime followup. Rechecked the exact local `JP2024101615A.pdf`, Numerical Example 1: surface/material table PDF p. 15, d/F/C/g and absolute θ definition paragraph 0054 p. 9, source-reference definition paragraph 0094 p. 14, and corresponding Fig. 1 p. 24. The source prints **absolute θgF**, not a deviation on any normal line. All sixteen genuine rounded dPgF fields remain the previous engine-normal conversion; none is re-rounded or replaced by a vendor ED value. The source image heights and reconstructed finite/zoom states remain separate.
+
+| Element | Current curve → candidate | F−C error before → trial (%) | Native PgF residual before → trial | Disposition           |
+| ------- | ------------------------- | ---------------------------: | ---------------------------------: | --------------------- |
+| E4      | H-ZLaF4LA → TAFD35        |        -0.000959 → +0.000243 |        +0.000827679 → -0.000180148 | Adopt qualified curve |
+| E9      | J-LASF013 → S-LAH63       |        -0.043728 → +0.009454 |        -0.000904729 → +0.000048640 | Adopt qualified curve |
+| E10     | S-TIH53 → FDS90           |        +0.050683 → +0.022166 |        +0.001410951 → +0.000102915 | Adopt qualified curve |
+| E15     | M-BACD12 → K-SKLD200-M    |        -0.001519 → +1.141769 |        -0.001267136 → -0.000103760 | Retain current curve  |
+| E16     | N-FK5 → FC5               |        +0.048617 → -0.001757 |        -0.001330373 → +0.000293543 | Adopt qualified curve |
+
+The comparison uses the source-implied F−C span `(nd−1)/νd` and the genuine absolute source partial, rather than ranking the catalog’s native g value alone. All authored partial fields remain authoritative at g. Consequently, a closer unused native catalog PgF does not justify worsening the known C/F constraint. This is a source-fidelity tradeoff, not a new compatibility tolerance or a claim of measured production performance. The curve’s C/F values remain estimates anchored to the source d index; source-relative g is preserved, while absolute chromatic indices may change with a qualified curve selection. No source numerical field is refitted.
+
+The adopted OHARA coefficients exactly match their literal rows in the [official July 1, 2026 all-products AGF archive](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip). The HOYA rows were checked against the previously retrieved [official July 7, 2026 all-products AGF](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf); a new network download had timed out, so this is a current reinspection of retained official bytes. The native OHARA formula 2 uses standard Sellmeier B/C constants; HOYA formula 1 uses the six-term n² polynomial. Wavelength is in µm, with Sellmeier denominator constants in µm². All published coefficients remain unmodified. Names identify qualified spectral proxies, not Canon’s supplier, melt, chemistry or molding/annealing process.
+
+Adopt E4 TAFD35, E9 S-LAH63 (not the materially different S-LAH63Q curve), E10 FDS90 and E16 FC5. These improve both the source-implied primary dispersion span and native partial agreement, while source dPgF still overrides g. FC5 is preferred to S-FSL5 at E16: its C/F span error is −.001757% versus +.290076%, even though the two candidates’ native PgF residuals are similarly small.
+
+Retain E15 M-BACD12. New K-SKLD200-M moves native PgF nearer source .5418 but changes the known F−C span by +1.141769% versus the current −.001519%. Its source/molding-state provenance is valid; it is simply a worse C/F proxy at this particular source coordinate. L-BAL43 also offers a closer native partial but does not improve current primary-span fidelity. No supplier, melt or molding process is identified by either grade. This rejects a lens assignment rather than invalidating the catalog row.
+
+Coverage stays 16/16 and all source pairs/partials/APD fields, R/d, three aspheres, cap/shoulder geometry, stops and zoom/focus controls remain unchanged. The source contains no separate replica layer in this example; no interface material is invented. Earlier wide-field limits, finite-object reach, interpolated defocus, production correlation and connected-element constraints remain applicable. No new catalog row or fresh whole-shape review is counted.

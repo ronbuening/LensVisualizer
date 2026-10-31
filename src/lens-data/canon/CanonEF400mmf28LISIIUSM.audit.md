@@ -136,3 +136,18 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            0 |                  0 |                  2.699999110 |           2.700000 | 169 / 166 / 140                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 19.008837% at zoom 0, focus 0.05, aberration control 0: Gaussian 43.735227986 m versus label 54.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-10-31 — Scoped source-partial/catalog followup
+
+Reuse August 19 active-15 and October 4/October 30 G/current-configuration dates; no new shape review. Rechecked original US20110090576A1 Second Numerical Embodiment, PDF p. 10 paragraph 0059: all sixteen source Nd/νd/θ/X rows including G, literal normal-line footnote and explicit d/F/C/g definitions paragraphs 0022/0057. All authored X cells remain unchanged. Printed candidate θ are .6161/.5766/.6205/.5701/.5939/.5737; their independent rounding from X is not fitted away.
+
+| Element | Current curve → candidate | F−C error before → trial (%) | Native PgF residual before → trial | Disposition           |
+| ------- | ------------------------- | ---------------------------: | ---------------------------------: | --------------------- |
+| E6      | N-SF6 → S-TIH6            |        +0.158821 → -0.099666 |        -0.000342505 → +0.000030868 | Adopt qualified curve |
+| E9      | BAFD7 → S-BAH27           |        +0.124417 → -0.096228 |        +0.000410933 → +0.000011139 | Adopt qualified curve |
+| E10     | J-SF03 → S-TIH53          |        +0.014435 → +0.092739 |        +0.001024031 → +0.000010951 | Retain current curve  |
+| E11     | P-LASF47 → S-LAH53        |        +0.000172 → -0.063791 |        -0.003017331 → +0.000068526 | Retain current curve  |
+| E13     | E-FD2 → S-TIM22           |        -0.119899 → +0.021117 |        -0.001493235 → -0.000000104 | Adopt qualified curve |
+| E14     | N-KZFS5 → S-NBH5          |        -0.000091 → +0.042624 |        -0.002713005 → +0.000056679 | Retain current curve  |
+
+S-TIH6, S-BAH27 and S-TIM22 improve both source-implied F−C and native partial agreement. E10/E11/E14 candidates are retained as rejected trials: native PgF alone is not a reason to worsen C/F while authored X already controls g. Primary OHARA July 2026 B/C coefficients match exactly; no new row or source spectral value is invented. Coverage remains 16/16. Parsed numeric/spectral/APD/shape/control equality and d-line runtime equality support this limited change; source-relative partials remain identical. Existing Figure 3/G shape and finite/runtime limits remain applicable.

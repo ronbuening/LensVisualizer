@@ -45,6 +45,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * prescription/outline inspection or source R/d/controls change is claimed.
  */
 
+/** 2026-10-31 scoped catalog followup retains PBH21: E-FDS1 improves unused native PgF
+ * proximity but slightly worsens the source-implied F-C span. Both genuine converted source partials,
+ * source d-reference, geometry and controls remain unchanged; no new whole-shape review.
+ */
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,

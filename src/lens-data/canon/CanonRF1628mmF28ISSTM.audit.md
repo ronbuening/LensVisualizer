@@ -86,3 +86,17 @@ Inverse finite image-edge roots at five zooms and focus 0.25 / 0.5 / 1 target th
 Bounding-sphere vector launch over 65 zooms × three focus positions gives 56,745 source-range angular rays with clear axial/chief rays, 6,322 ordinary clips and 19 bounded S2A cap misses. This is angular collimated evidence even at nonzero focus. A separate 585 extreme 80°/89°/90° attempts leaves 560 chief seeds unbracketed. No extreme-field coverage is claimed.
 
 Actual final SVGs at all source zooms and infinity/middle/close focus were compared with native Fig. 1. All 1,365 contour states contain 16 connected, closed, finite paths with zero renderer trim. Source fidelity, these sampled runtime restrictions and family-level production correlation remain separate; replica/UD-count differences remain unresolved production limits. See the [analysis follow-up](CanonRF1628mmF28ISSTM.analysis.md#14-original-source-shoulder-follow-up-and-runtime-scope--2026-10-30).
+
+## 2026-10-31 — Scoped source-partial/catalog followup
+
+Preserve October 1 whole review, October 8 partial check and October 30 shoulder/runtime dates. Rechecked original JP2024101615A Numerical Example 1, table p. 15, definitions paragraph 0054 p. 9/0094 p. 14 and Fig. 1 p. 24. All sixteen source θ cells are absolute ratios; no source normal line is printed. All sixteen genuine rounded engine dPgF conversions, explicit d-reference and inferred APD tags remain unchanged. No vendor ED deviation is copied into a lens field.
+
+| Element | Current curve → candidate | F−C error before → trial (%) | Native PgF residual before → trial | Disposition           |
+| ------- | ------------------------- | ---------------------------: | ---------------------------------: | --------------------- |
+| E4      | H-ZLaF4LA → TAFD35        |        -0.000959 → +0.000243 |        +0.000827679 → -0.000180148 | Adopt qualified curve |
+| E9      | J-LASF013 → S-LAH63       |        -0.043728 → +0.009454 |        -0.000904729 → +0.000048640 | Adopt qualified curve |
+| E10     | S-TIH53 → FDS90           |        +0.050683 → +0.022166 |        +0.001410951 → +0.000102915 | Adopt qualified curve |
+| E15     | M-BACD12 → K-SKLD200-M    |        -0.001519 → +1.141769 |        -0.001267136 → -0.000103760 | Retain current curve  |
+| E16     | N-FK5 → FC5               |        +0.048617 → -0.001757 |        -0.001330373 → +0.000293543 | Adopt qualified curve |
+
+E4/E9/E10/E16 adopt TAFD35/S-LAH63/FDS90/FC5, with exact primary HOYA/OHARA coefficient parity. E15 K-SKLD200-M trial is rejected: better unused native PgF does not justify +1.141769% C/F span error versus current −.001519%. FC5, rather than S-FSL5, best preserves E16 C/F among the closer-partial leads. All choices remain qualified spectral proxies, without historical supplier/melt/process identification. Coverage 16/16 unchanged; no new catalog row or source numerical/geometry/control change. Published absolute source ratios remain authoritative at g and all prior finite/field/source constraints remain applicable.

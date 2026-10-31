@@ -144,3 +144,13 @@ Runtime: both 65-state collimated-geometry and Gaussian actual finite-object d-l
 Actual 65-state Gaussian axial C/d/F ray hashes remain byte-identical before/after; all 3,185 rays per channel pass. g rays change as intended, maximum terminal-coordinate difference .018175287 mm, with 3,185/3,185 axial passes. Full g field grid 195/195 chiefs, 0 seed failures, 6,950→6,944 total survivors of 9,555; endpoint bundles 49/34/15, 49/38/22, 49/43/24. This is disclosed off-axis spectral impact, not a fitted cap/cam or an all-field transmission claim.
 
 Narrow source/surface/image-circle/aperture/field checks and full inferred-cut probe run on the result; no geometry or tolerances change. Existing S20 cap constraint, source/production element-count difference, calculated close-focus gaps and unidentified media remain limitations. No source.errata correction is invented because the patent's formula/figures were not erroneous: this repairs the authored convention.
+
+## 2026-10-31 — Scoped Lp1 catalog trial; current curve retained
+
+Preserve September 23 whole review and the October 30 source-normal correction. Rechecked exact original US20200012073A1: First Numerical Embodiment rows 4–5 p. 28, Table 1 p. 36, paragraph 0038 equation (c) p. 22 and Figure 1 p. 2. Source Lp1 .008 at ν20.90 is a deviation on the cubic, giving θ .6388404720215; the active .0301942720215 engine correction is retained. Lp2’s separate .092/cubic conversion is unchanged. No source wavelengths or numeric partial fields are replaced.
+
+| Element | Current curve → candidate | F−C error before → trial (%) | Native PgF residual before → trial | Disposition          |
+| ------- | ------------------------- | ---------------------------: | ---------------------------------: | -------------------- |
+| E3      | PBH21 → E-FDS1            |        +0.075934 → +0.093912 |        -0.008216112 → +0.000129610 | Retain current curve |
+
+E-FDS1 is a coherent primary HOYA row and fits native PgF far better, but slightly worsens the known C/F span while authored dPgF already enforces source θ at g. Both span errors are inside source Abbe rounding; retain PBH21 without claiming its native g is the source value. No production supplier/melt identity is inferred. Coverage stays 13/14, no new row or whole-shape review; all numeric/source/spectral/APD/geometry/control fields are unchanged.

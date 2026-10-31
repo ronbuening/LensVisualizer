@@ -132,7 +132,7 @@ rather than dominant focal power.
 
 ### L16 positive — Biconvex Positive
 
-**nd = 1.80518, νd = 25.4. Glass: 805254 class (vendor unresolved; multiple catalog equivalents). f = +235.806 mm.**
+**nd = 1.80518, νd = 25.4. Glass: S-TIH6 (qualified spectral proxy; historical supplier and melt unspecified). f = +235.806 mm.**
 
 This is the positive member of the cemented L16 inner-focus group. It is strongly dispersive compared with the front
 Gp1 lenses and is paired directly with L16 negative. Its standalone positive focal length should not be read as the
@@ -155,7 +155,7 @@ but it is followed immediately by a stronger positive partner.
 
 ### L21 positive — Biconvex Positive
 
-**nd = 1.70154, νd = 41.2. Glass: 702412 class (vendor unresolved; multiple catalog equivalents). f = +44.723 mm.**
+**nd = 1.70154, νd = 41.2. Glass: S-BAH27 (qualified spectral proxy; historical supplier and melt unspecified). f = +44.723 mm.**
 
 The positive member reverses the sign of the L21 pair's net isolated power: the cemented doublet is +138.534 mm even
 though its first element is strongly negative. This is a useful example of why standalone element focal length and
@@ -186,7 +186,7 @@ transverse movement; it does not publish a stabilization decenter magnitude in t
 
 ### L24 — Biconvex Positive
 
-**nd = 1.64769, νd = 33.8. Glass: 648338 class (vendor unresolved; multiple catalog equivalents). f = +71.989 mm.**
+**nd = 1.64769, νd = 33.8. Glass: S-TIM22 (qualified spectral proxy; historical supplier and melt unspecified). f = +71.989 mm.**
 
 L24 restores positive power ahead of the terminal chromatic-correction pair. Its position places it between the
 transverse IS unit and L25, helping transfer the converging beam into the final pair without making the terminal pair
@@ -235,13 +235,13 @@ line indices rather than synthesizing them from an unproven catalog identity.
 | L11, L15           | 1.48749 |  70.2 | +0.0043 | 487702 class (vendor unresolved; multiple catalog equivalents)                           |
 | L12, L14           | 1.43387 |  95.1 | +0.0534 | CaF2 fluorite — Canon production-correlation inference                                   |
 | L13, L23           | 1.83481 |  42.7 | -0.0083 | 835427 class (vendor unresolved; multiple catalog equivalents)                           |
-| L16 positive       | 1.80518 |  25.4 | +0.0150 | 805254 class (vendor unresolved; multiple catalog equivalents)                           |
+| L16 positive       | 1.80518 |  25.4 | +0.0150 | S-TIH6 (qualified spectral proxy; historical supplier and melt unspecified)              |
 | L16 negative       | 1.80400 |  46.6 | -0.0083 | 804466 class (vendor unresolved; multiple catalog equivalents)                           |
 | L21 negative       | 1.72825 |  28.5 | +0.0117 | 728285 class (vendor unresolved; multiple catalog equivalents)                           |
-| L21 positive       | 1.70154 |  41.2 | +0.0021 | 702412 class (vendor unresolved; multiple catalog equivalents)                           |
+| L21 positive       | 1.70154 |  41.2 | +0.0021 | S-BAH27 (qualified spectral proxy; historical supplier and melt unspecified)             |
 | L22 positive       | 1.84666 |  23.8 | +0.0167 | 847238 class (vendor unresolved; multiple catalog equivalents)                           |
 | L22 negative       | 1.80610 |  40.9 | -0.0048 | 806409 class (vendor unresolved; multiple catalog equivalents)                           |
-| L24                | 1.64769 |  33.8 | +0.0069 | 648338 class (vendor unresolved; multiple catalog equivalents)                           |
+| L24                | 1.64769 |  33.8 | +0.0069 | S-TIM22 (qualified spectral proxy; historical supplier and melt unspecified)             |
 | L25 positive / Gp2 | 1.65412 |  39.7 | -0.0033 | 654397 anomalous-dispersion class (vendor unresolved; multiple catalog equivalents)      |
 | L25 negative / Gn1 | 1.80810 |  22.8 | +0.0251 | 808228 anomalous high-dispersion class (vendor unresolved; multiple catalog equivalents) |
 | G                  | 1.51633 | 64.14 | −0.0007 | 516641 class (vendor unresolved; qualified catalog proxy)                                |
@@ -254,11 +254,10 @@ existing patent APD designations remain: L12/L14 Gp1, L25 positive Gp2 and L25 n
 partials do not establish APD or ordinary production chemistry.
 
 The current resolver still supplies 16 compatible curves: S-FSL5 (L11/L15), CaF2 (L12/L14), J-LASF05 (L13/L23),
-N-SF6 (L16 positive), H-ZLaF50D (L16 negative), S-TIH10 (L21 negative), BAFD7 (L21 positive), J-SF03 (L22 positive),
-P-LASF47 (L22 negative), E-FD2 (L24), N-KZFS5 (Gp2), S-NPH1 (Gn1), and S-BSL7 (G). These are qualified spectral
+S-TIH6 (L16 positive), H-ZLaF50D (L16 negative), S-TIH10 (L21 negative), S-BAH27 (L21 positive), J-SF03 (L22 positive),
+P-LASF47 (L22 negative), S-TIM22 (L24), N-KZFS5 (Gp2), S-NPH1 (Gn1), and S-BSL7 (G). These are qualified spectral
 proxies. Coordinate compatibility does not identify Canon's historical supplier, melt, chemistry or manufacturing
-process; every such historical identity remains unresolved. The neutral class labels and production-correlation
-qualification are retained.
+process; every such historical identity remains unresolved. The remaining neutral classes, qualified named curves and production-correlation qualification are retained.
 L12 and L14 are the one deliberate exception to the otherwise vendor-neutral treatment. Their `nd/νd` coordinates are
 consistent with fluorite, and Canon independently documents two fluorite elements in the production lens at the
 corresponding front-group positions. The CaF2 identification is therefore explicitly labeled as production-correlation
@@ -423,3 +422,24 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            0 |                  0 |                  2.699999110 |           2.700000 | 169 / 166 / 140                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 19.008837% at zoom 0, focus 0.05, aberration control 0: Gaussian 43.735227986 m versus label 54.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## October 31, 2026 — Scoped Source-Partial Catalog Followup
+
+Preserve the completed August 19 active-lens review and October 4/October 30 G/current-configuration coverage with their actual dates. This is a catalog/source-partial followup, without another shape inspection. The same local `patents/US20110090576A1.pdf`, Second Numerical Embodiment, paragraph 0059 on PDF p. 10 (printed p. 5), prints all sixteen Nd/νd/θgF/X rows including physical G. Paragraphs 0022 and 0057 explicitly identify d/F/C/g and the d-reference. The rendered table footnote defines `X = θgF − (0.6438 − 0.001682 νd)`, exactly the engine normal-line convention. Every authored X remains genuine and unchanged. Independently rounded θ and X cells are retained rather than made numerically equal by changing a source field.
+
+For the six reviewed candidate positions, the printed θ values are E6 .6161, E9 .5766, E10 .6205, E11 .5701, E13 .5939 and E14 .5737. Source νd is rounded to one decimal; X/θ are printed to four decimals. The table below compares catalog values with these literal source cells and spans.
+
+| Element | Current curve → candidate | F−C error before → trial (%) | Native PgF residual before → trial | Disposition           |
+| ------- | ------------------------- | ---------------------------: | ---------------------------------: | --------------------- |
+| E6      | N-SF6 → S-TIH6            |        +0.158821 → -0.099666 |        -0.000342505 → +0.000030868 | Adopt qualified curve |
+| E9      | BAFD7 → S-BAH27           |        +0.124417 → -0.096228 |        +0.000410933 → +0.000011139 | Adopt qualified curve |
+| E10     | J-SF03 → S-TIH53          |        +0.014435 → +0.092739 |        +0.001024031 → +0.000010951 | Retain current curve  |
+| E11     | P-LASF47 → S-LAH53        |        +0.000172 → -0.063791 |        -0.003017331 → +0.000068526 | Retain current curve  |
+| E13     | E-FD2 → S-TIM22           |        -0.119899 → +0.021117 |        -0.001493235 → -0.000000104 | Adopt qualified curve |
+| E14     | N-KZFS5 → S-NBH5          |        -0.000091 → +0.042624 |        -0.002713005 → +0.000056679 | Retain current curve  |
+
+The comparison uses the source-implied F−C span `(nd−1)/νd` and the genuine absolute source partial, rather than ranking the catalog’s native g value alone. All authored partial fields remain authoritative at g. Consequently, a closer unused native catalog PgF does not justify worsening the known C/F constraint. This is a source-fidelity tradeoff, not a new compatibility tolerance or a claim of measured production performance. The curve’s C/F values remain estimates anchored to the source d index; source-relative g is preserved, while absolute chromatic indices may change with a qualified curve selection. No source numerical field is refitted.
+
+The adopted OHARA coefficients exactly match their literal rows in the [official July 1, 2026 all-products AGF archive](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip). The HOYA rows were checked against the previously retrieved [official July 7, 2026 all-products AGF](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf); a new network download had timed out, so this is a current reinspection of retained official bytes. The native OHARA formula 2 uses standard Sellmeier B/C constants; HOYA formula 1 uses the six-term n² polynomial. Wavelength is in µm, with Sellmeier denominator constants in µm². All published coefficients remain unmodified. Names identify qualified spectral proxies, not Canon’s supplier, melt, chemistry or molding/annealing process.
+
+E6, E9 and E13 adopt the named existing curves. The other three trials are rejected despite much closer native PgF because their C/F span error increases; authored X already supplies their g ratio. Coverage remains 16/16, with no new row or per-lens numerical override. Figure 3 on PDF p. 3 still locates the bonded focus/stabilization/rear pairs and separate G; the source geometry and all prior connected-interface/G-cap constraints are reused. All sixteen source pairs, X/APD designations, R/d, caps, iris and controls remain unchanged. Prior source rounding, physical G, finite-conjugate, cam and aperture restrictions remain applicable.

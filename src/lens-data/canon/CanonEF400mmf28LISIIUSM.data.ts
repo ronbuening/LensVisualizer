@@ -52,6 +52,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * https://global.canon/en/news/2019/20191107.html
  */
 
+/** 2026-10-31 scoped catalog followup: E6/E9/E13 use source-compatible S-TIH6/S-BAH27/S-TIM22
+ * proxies that improve both source-implied F-C and native partial agreement. Retain all genuine X values
+ * and all optics/controls; PgF-only alternatives at E10/E11/E14 are rejected. No new shape review.
+ */
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -160,7 +164,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       focalLengthMm: 235.80586262670528,
-      glass: "805254 class (vendor unresolved; multiple catalog equivalents)",
+      glass: "S-TIH6 (OHARA compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Positive member of the translating L16 inner-focus cemented group.",
       cemented: "L16",
       dPgF: 0.015,
@@ -199,7 +203,7 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.2,
       focalLengthMm: 44.723174784377214,
-      glass: "702412 class (vendor unresolved; multiple catalog equivalents)",
+      glass: "S-BAH27 (OHARA compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Positive partner of L21; the cemented pair is net positive in isolation.",
       cemented: "L21",
       dPgF: 0.0021,
@@ -250,7 +254,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.8,
       focalLengthMm: 71.98879921263543,
-      glass: "648338 class (vendor unresolved; multiple catalog equivalents)",
+      glass: "S-TIM22 (OHARA compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       role: "Rear positive relay element ahead of the terminal chromatic-correction cemented pair.",
       dPgF: 0.0069,
     },

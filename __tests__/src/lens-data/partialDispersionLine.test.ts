@@ -32,7 +32,6 @@ const LINE_NM = { C: 656.2725, F: 486.1327, g: 435.8343 };
  */
 const SOURCE_LINE_FIT_BY_COINCIDENCE: readonly string[] = [
   "canon-ef-600f4l-is-ii-usm",
-  "canon-rf-16-28mm-f28-is-stm",
   "fujifilm-fujinon-gf-500mm-f56-r-lm-ois-wr",
   "fujifilm-fujinon-xf-18-120mm-f4-lm-pz-wr",
   "fujifilm-x10-7-1-28-4-f2-2-8",

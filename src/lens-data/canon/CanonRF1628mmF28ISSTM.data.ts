@@ -75,6 +75,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+/** 2026-10-31 source-partial followup selects TAFD35/S-LAH63/FDS90/FC5 proxies for E4/E9/E10/E16.
+ * E15 retains M-BACD12 because the proposed molding-state row worsens known C-F dispersion.
+ * All source pairs, rounded genuine dPgF fields, APD tags, geometry and controls remain unchanged.
+ */
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -167,7 +171,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 36.29,
       glass:
-        "TAFD35 (HOYA) / H-ZLaF4LA (CDGM) — 911352 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
+        "TAFD35 (HOYA compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "High-index biconvex positive element closing L1.",
       dPgF: -0.0021,
@@ -246,7 +250,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -29.64,
       glass:
-        "S-LAH63Q (OHARA) / J-LASF013 (HIKARI) — 804396 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
+        "S-LAH63 (OHARA compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Negative meniscus rear element of the first L4 cemented doublet.",
       cemented: "D1",
@@ -262,7 +266,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 50.78,
       glass:
-        "FDS90 (HOYA) / S-TIH53 (OHARA) / N-SF57 (Schott) — 847238 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
+        "FDS90 (HOYA compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Positive meniscus front element of the cemented image-stabilization doublet (patent ¶0088: 10th and 11th lenses).",
       cemented: "D2",
@@ -358,7 +362,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 68.99,
       glass:
-        "FC5 (HOYA) / N-FK5 (Schott) — 487704 coordinates; compatible spectral proxy; historical supplier, melt and chemistry unspecified",
+        "FC5 (HOYA compatible spectral proxy; historical supplier, melt and chemistry unspecified)",
       apd: false,
       role: "Single positive meniscus forming L5, fixed relative to the image plane during zoom and focus.",
       dPgF: 0.005,
