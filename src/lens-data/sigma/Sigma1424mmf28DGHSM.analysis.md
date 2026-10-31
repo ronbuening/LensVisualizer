@@ -29,11 +29,11 @@ Example 1 is a negative-lead retrofocus ultra-wide zoom. The patent divides it i
 
 The verified paraxial group powers are:
 
-| Group | Patent surfaces | Elements | Computed f (mm) | Patent f (mm) | Role |
-|---|---:|---:|---:|---:|---|
-| G1 | 1-11 | L1-L6 | -25.291 | -25.2907 | Negative front group; field angle, distortion, and long-BF generation |
-| G2 | 12-17 | L7-L10 | +72.536 | +72.5361 | Inner-focus relay group |
-| G3 | 18-29 | L11-L17 | +55.073 | +55.0724 | Stop-bearing positive relay and field-finishing group |
+| Group | Patent surfaces | Elements | Computed f (mm) | Patent f (mm) | Role                                                                  |
+| ----- | --------------: | -------: | --------------: | ------------: | --------------------------------------------------------------------- |
+| G1    |            1-11 |    L1-L6 |         -25.291 |      -25.2907 | Negative front group; field angle, distortion, and long-BF generation |
+| G2    |           12-17 |   L7-L10 |         +72.536 |      +72.5361 | Inner-focus relay group                                               |
+| G3    |           18-29 |  L11-L17 |         +55.073 |      +55.0724 | Stop-bearing positive relay and field-finishing group                 |
 
 From wide to tele, d11 decreases from 29.2621 mm to 2.3000 mm, while d17 increases from 8.4844 mm to 9.7754 mm (¶0059). The total track shortens from 169.4000 mm to 157.9000 mm, so the optical prescription is a collapsing zoom rather than an extending zoom.
 
@@ -159,25 +159,25 @@ L17 is the final element and carries aspherical surfaces 28 and 29. The patent f
 
 The patent tabulates nd, νd, and θgF but does not name vendors. The table below compares catalog coordinates and class-level spectral proxies. Its confidence labels describe modeling compatibility, not a production vendor, melt or manufacturing identity. All printed nd/νd/θgF values remain independent source constraints; no C/F/g index set is supplied.
 
-| Element | nd | νd | θgF | Δθ | Identification | Confidence | Sigma grade |
-|---|---:|---:|---:|---:|---|---|---|
-| L1 | 1.69350 | 53.18 | 0.5482 | -0.0043 | OHARA L-LAL13, low-Tg molded asphere glass | Confident | asphere |
-| L2 | 2.00100 | 29.13 | 0.5994 | +0.0036 | HOYA TAFD55/TAFD55-W, 001/291 | Confident | - |
-| L3 | 1.58913 | 61.25 | 0.5373 | -0.0007 | HOYA M-BACD5N, 589/613 | Confident | asphere |
-| L4 | 1.55032 | 75.50 | 0.5400 | +0.0277 | HOYA FCD705, 550/755 | Confident | SLD inferred |
-| L5 | 1.43700 | 95.10 | 0.5334 | +0.0564 | HOYA FCD100 / S-FPL53 class | Confident | FLD |
-| L6 | 1.90043 | 37.37 | 0.5772 | -0.0038 | HOYA TAFD37A class, 900/374 | Confident/class | - |
-| L7 | 1.92286 | 20.88 | 0.6388 | +0.0281 | SCHOTT N-SF66 / HOYA E-FDS1-W class, 923/209 | Confident | - |
-| L8 | 1.72047 | 34.71 | 0.5834 | -0.0024 | SCHOTT N-KZFS8, 720/347 | Confident | - |
-| L9 | 1.85478 | 24.80 | 0.6122 | +0.0086 | OHARA S-NBH56, 855/248 | Confident | - |
-| L10 | 1.87071 | 40.73 | 0.5682 | -0.0067 | HOYA TAFD32 class, 871/407 | Class | - |
-| L11 | 1.83481 | 42.72 | 0.5648 | -0.0065 | HOYA TAFD5G / S-LAH55V class | Confident | - |
-| L12 | 1.43700 | 95.10 | 0.5334 | +0.0564 | HOYA FCD100 / S-FPL53 class | Confident | FLD |
-| L13 | 1.88300 | 40.80 | 0.5654 | -0.0094 | HOYA TAFD30 / S-LAH58 class | Confident | - |
-| L14 | 1.43700 | 95.10 | 0.5334 | +0.0564 | HOYA FCD100 / S-FPL53 class | Confident | FLD |
-| L15 | 1.88300 | 40.80 | 0.5654 | -0.0094 | HOYA TAFD30 / S-LAH58 class | Confident | - |
-| L16 | 1.49700 | 81.61 | 0.5388 | +0.0375 | HOYA FCD1 / SCHOTT N-PK52A / S-FPL51-equivalent | Confident | SLD inferred |
-| L17 | 1.55332 | 71.68 | 0.5402 | +0.0210 | HOYA M-FCD500, 553/717 | Confident | SLD inferred / asphere |
+| Element |      nd |    νd |    θgF |      Δθ | Identification                                  | Confidence      | Sigma grade            |
+| ------- | ------: | ----: | -----: | ------: | ----------------------------------------------- | --------------- | ---------------------- |
+| L1      | 1.69350 | 53.18 | 0.5482 | -0.0043 | OHARA L-LAL13, low-Tg molded asphere glass      | Confident       | asphere                |
+| L2      | 2.00100 | 29.13 | 0.5994 | +0.0036 | HOYA TAFD55/TAFD55-W, 001/291                   | Confident       | -                      |
+| L3      | 1.58913 | 61.25 | 0.5373 | -0.0007 | HOYA M-BACD5N, 589/613                          | Confident       | asphere                |
+| L4      | 1.55032 | 75.50 | 0.5400 | +0.0277 | HOYA FCD705, 550/755                            | Confident       | SLD inferred           |
+| L5      | 1.43700 | 95.10 | 0.5334 | +0.0564 | HOYA FCD100 / S-FPL53 class                     | Confident       | FLD                    |
+| L6      | 1.90043 | 37.37 | 0.5772 | -0.0038 | HOYA TAFD37A class, 900/374                     | Confident/class | -                      |
+| L7      | 1.92286 | 20.88 | 0.6388 | +0.0281 | SCHOTT N-SF66 / HOYA E-FDS1-W class, 923/209    | Confident       | -                      |
+| L8      | 1.72047 | 34.71 | 0.5834 | -0.0024 | SCHOTT N-KZFS8, 720/347                         | Confident       | -                      |
+| L9      | 1.85478 | 24.80 | 0.6122 | +0.0086 | OHARA S-NBH56, 855/248                          | Confident       | -                      |
+| L10     | 1.87071 | 40.73 | 0.5682 | -0.0067 | HOYA TAFD32 class, 871/407                      | Class           | -                      |
+| L11     | 1.83481 | 42.72 | 0.5648 | -0.0065 | HOYA TAFD5G / S-LAH55V class                    | Confident       | -                      |
+| L12     | 1.43700 | 95.10 | 0.5334 | +0.0564 | HOYA FCD100 / S-FPL53 class                     | Confident       | FLD                    |
+| L13     | 1.88300 | 40.80 | 0.5654 | -0.0094 | HOYA TAFD30 / S-LAH58 class                     | Confident       | -                      |
+| L14     | 1.43700 | 95.10 | 0.5334 | +0.0564 | HOYA FCD100 / S-FPL53 class                     | Confident       | FLD                    |
+| L15     | 1.88300 | 40.80 | 0.5654 | -0.0094 | HOYA TAFD30 / S-LAH58 class                     | Confident       | -                      |
+| L16     | 1.49700 | 81.61 | 0.5388 | +0.0375 | HOYA FCD1 / SCHOTT N-PK52A / S-FPL51-equivalent | Confident       | SLD inferred           |
+| L17     | 1.55332 | 71.68 | 0.5402 | +0.0210 | HOYA M-FCD500, 553/717                          | Confident       | SLD inferred / asphere |
 
 Δθ follows the patent's definition: Δθ = θgF - (0.648285 - 0.00180123 × νd) (¶0012). The companion data file stores `dPgF` in the project engine's Schott-normal-line convention, so those structured values differ slightly from the patent-condition Δθ figures in this table.
 
@@ -191,12 +191,12 @@ The patent specifies inner focusing by moving the whole G2 block, L7-L10, toward
 
 The numerical table for Example 1 gives only infinity-focus spacings at the three zoom positions. It does not provide close-focus d11/d17/BF values for the zoom example. The `.data.ts` file therefore records zoom-only variable spacings. The production lens's official minimum focusing distance is 0.26 m at the 24 mm end with 1:5.4 maximum magnification; those manufacturer specifications are retained as catalog metadata, not used to invent an undocumented focus trace.
 
-| Spacing | Wide infinity | Mid infinity | Tele infinity |
-|---|---:|---:|---:|
-| d11, G1-G2 | 29.2621 | 15.3732 | 2.3000 |
-| d17, G2-G3 | 8.4844 | 9.0291 | 9.7754 |
-| BF | 38.8500 | 44.5092 | 53.0211 |
-| Total length | 169.4000 | 161.7150 | 157.9000 |
+| Spacing      | Wide infinity | Mid infinity | Tele infinity |
+| ------------ | ------------: | -----------: | ------------: |
+| d11, G1-G2   |       29.2621 |      15.3732 |        2.3000 |
+| d17, G2-G3   |        8.4844 |       9.0291 |        9.7754 |
+| BF           |       38.8500 |      44.5092 |       53.0211 |
+| Total length |      169.4000 |     161.7150 |      157.9000 |
 
 ## Aspherical Surfaces
 
@@ -206,32 +206,32 @@ $$z = \frac{(1/r)y^2}{1 + \sqrt{1 - (1+K)(y/r)^2}} + \sum_{i=3}^{16} A_i y^i$$
 
 Here K is the standard conic constant: K = 0 is a spherical base conic. All Example 1 aspheres have K = 0. Surfaces 5 and 6 include odd polynomial terms; surfaces 1, 28, and 29 are even-only.
 
-| Surface | Element face | Patent role | Polynomial content | Data-file treatment |
-|---|---|---|---|---|
-| 1 | L1 object face | SA1 | even A4-A12 | patent coefficients retained |
-| 5 | L3 object face | SA2 | odd + even A3-A16 | exact patent coefficients retained |
-| 6 | L3 image face | companion to SA2 | odd + even A3-A16 | exact patent coefficients retained |
-| 28 | L17 object face | rear field correction | even A4-A16 | patent coefficients retained |
-| 29 | L17 image face | rear field correction | even A4-A16 | patent coefficients retained |
+| Surface | Element face    | Patent role           | Polynomial content | Data-file treatment                |
+| ------- | --------------- | --------------------- | ------------------ | ---------------------------------- |
+| 1       | L1 object face  | SA1                   | even A4-A12        | patent coefficients retained       |
+| 5       | L3 object face  | SA2                   | odd + even A3-A16  | exact patent coefficients retained |
+| 6       | L3 image face   | companion to SA2      | odd + even A3-A16  | exact patent coefficients retained |
+| 28      | L17 object face | rear field correction | even A4-A16        | patent coefficients retained       |
+| 29      | L17 image face  | rear field correction | even A4-A16        | patent coefficients retained       |
 
 The companion data file transcribes Numerical Example 1's odd/even values directly:
 
-| Term | S5A | S6A |
-|---|---:|---:|
-| A3 | 1.93222E-04 | 1.94996E-04 |
-| A4 | -3.68159E-05 | -2.79917E-05 |
-| A5 | 5.25855E-06 | 3.65169E-06 |
-| A6 | -6.73333E-07 | -2.89294E-07 |
-| A7 | 9.17837E-08 | 5.54599E-08 |
-| A8 | -6.28671E-09 | -4.95413E-09 |
-| A9 | 3.30188E-11 | 4.32334E-12 |
-| A10 | 1.65903E-11 | 1.90161E-11 |
-| A11 | -7.27135E-13 | -8.89540E-13 |
-| A12 | 8.86930E-15 | 1.29484E-14 |
-| A13 | -2.15003E-17 | 5.98468E-17 |
-| A14 | -9.32433E-19 | -2.64408E-18 |
-| A15 | 2.26985E-19 | -2.71372E-19 |
-| A16 | -5.26081E-21 | 1.09024E-20 |
+| Term |          S5A |          S6A |
+| ---- | -----------: | -----------: |
+| A3   |  1.93222E-04 |  1.94996E-04 |
+| A4   | -3.68159E-05 | -2.79917E-05 |
+| A5   |  5.25855E-06 |  3.65169E-06 |
+| A6   | -6.73333E-07 | -2.89294E-07 |
+| A7   |  9.17837E-08 |  5.54599E-08 |
+| A8   | -6.28671E-09 | -4.95413E-09 |
+| A9   |  3.30188E-11 |  4.32334E-12 |
+| A10  |  1.65903E-11 |  1.90161E-11 |
+| A11  | -7.27135E-13 | -8.89540E-13 |
+| A12  |  8.86930E-15 |  1.29484E-14 |
+| A13  | -2.15003E-17 |  5.98468E-17 |
+| A14  | -9.32433E-19 | -2.64408E-18 |
+| A15  |  2.26985E-19 | -2.71372E-19 |
+| A16  | -5.26081E-21 |  1.09024E-20 |
 
 At the data-file semi-diameters (21.0 mm on S5A, 18.7 mm on S6A), the exact profiles depart from their spherical bases by +969.216 µm (S5A) and +987.466 µm (S6A).
 
@@ -239,14 +239,14 @@ At the data-file semi-diameters (21.0 mm on S5A, 18.7 mm on S6A), the exact prof
 
 The six patent conditions were independently recomputed from the transcribed Example 1 prescription. They reproduce the patent's correspondence table.
 
-| # | Condition | Computed value | Patent value | Result |
-|---|---|---:|---:|---|
-| (1) | ndLS1 > 1.91 | 2.0010 | 2.0010 | satisfied |
-| (2) | DSA2/DG1 < 0.525 | 0.4850 | 0.4850 | satisfied |
-| (3) | ndLS2 > 1.73 | 1.9004 | 1.9004 | satisfied |
-| (4) | μΔθ1 > 0.010 | 0.0165 | 0.0165 | satisfied |
-| (5) | μΔθ2 > 0.010 | 0.0429 | 0.0429 | satisfied |
-| (6) | -1.00 < √(fw × ft)/f1 < -0.50 | -0.7244 | -0.7244 | satisfied |
+| #   | Condition                     | Computed value | Patent value | Result    |
+| --- | ----------------------------- | -------------: | -----------: | --------- |
+| (1) | ndLS1 > 1.91                  |         2.0010 |       2.0010 | satisfied |
+| (2) | DSA2/DG1 < 0.525              |         0.4850 |       0.4850 | satisfied |
+| (3) | ndLS2 > 1.73                  |         1.9004 |       1.9004 | satisfied |
+| (4) | μΔθ1 > 0.010                  |         0.0165 |       0.0165 | satisfied |
+| (5) | μΔθ2 > 0.010                  |         0.0429 |       0.0429 | satisfied |
+| (6) | -1.00 < √(fw × ft)/f1 < -0.50 |        -0.7244 |      -0.7244 | satisfied |
 
 For condition (2), DSA2 is the axial vertex distance from surface 1 to SA2 at surface 5: d1+d2+d3+d4 = 23.9311 mm. DG1 is the G1 construction length from surface 1 to surface 11: Σd1...d10 = 49.3446 mm. The ratio is 0.4850.
 
@@ -254,18 +254,18 @@ For condition (2), DSA2 is the axial vertex distance from surface 1 to SA2 at su
 
 The prescription was rechecked with an independent paraxial y-ν ray trace. The trace used the patent surface table directly and did not reuse prior analysis values.
 
-| Quantity | Computed | Patent/source | Difference |
-|---|---:|---:|---:|
-| EFL, wide | 14.50005 mm | 14.50 mm | +0.00005 mm |
-| EFL, mid | 17.98257 mm | 17.98 mm | +0.00257 mm |
-| EFL, tele | 23.15006 mm | 23.15 mm | +0.00006 mm |
-| BFL, wide | 38.85022 mm | 38.8500 mm | +0.00022 mm |
-| BFL, mid | 44.50943 mm | 44.5092 mm | +0.00023 mm |
-| BFL, tele | 53.02134 mm | 53.0211 mm | +0.00024 mm |
-| f(G1) | -25.29071 mm | -25.2907 mm | +0.00001 mm |
-| f(G2) | +72.53628 mm | +72.5361 mm | +0.00018 mm |
-| f(G3) | +55.07248 mm | +55.0724 mm | +0.00008 mm |
-| Petzval sum | +0.004586 mm^-1 | not tabulated | - |
+| Quantity    |        Computed | Patent/source |  Difference |
+| ----------- | --------------: | ------------: | ----------: |
+| EFL, wide   |     14.50005 mm |      14.50 mm | +0.00005 mm |
+| EFL, mid    |     17.98257 mm |      17.98 mm | +0.00257 mm |
+| EFL, tele   |     23.15006 mm |      23.15 mm | +0.00006 mm |
+| BFL, wide   |     38.85022 mm |    38.8500 mm | +0.00022 mm |
+| BFL, mid    |     44.50943 mm |    44.5092 mm | +0.00023 mm |
+| BFL, tele   |     53.02134 mm |    53.0211 mm | +0.00024 mm |
+| f(G1)       |    -25.29071 mm |   -25.2907 mm | +0.00001 mm |
+| f(G2)       |    +72.53628 mm |   +72.5361 mm | +0.00018 mm |
+| f(G3)       |    +55.07248 mm |   +55.0724 mm | +0.00008 mm |
+| Petzval sum | +0.004586 mm^-1 | not tabulated |           - |
 
 The Petzval value is a surface-by-surface sum, Σφ/(n n′), not an element-level thin-lens approximation. The positive sum corresponds to a Petzval radius of about 218 mm in magnitude.
 
@@ -280,3 +280,11 @@ Semi-diameters were also checked for element edge thickness, front/rear SD ratio
 - OHARA optical glass data sheets and product pages for L-LAL13 and S-LAH/S-FPL equivalence checks.
 - HOYA optical glass catalog and cross-reference data for FCD100, FCD705, FCD1, TAFD55, TAFD37A, TAFD32, TAFD5G, and TAFD30.
 - SCHOTT data sheets for N-SF66 and N-PK52A.
+
+## Scoped source-partial candidate review — 2026-10-31
+
+Preserve the complete **2026-10-30** original shape/glass review and earlier May31/Sept24 dates. Narrow direct check: `patents/JP2018189733A.pdf`, Numerical Example1 PDFp17, L7/S12 **nd1.92286/νd20.88/θgF0.6388**, printed four decimals (±0.00005). ¶0117 p16 defines nd at587.56nm and the g435.84/F486.13nm partial ratio. The anomaly normal in ¶0032 p7 is0.648285−0.00180123νd, not the engine’s0.6438−0.001682νd. Stored dPgF+0.030120 reconstructs actualθ0.63879984 (−0.00000016 from print); no source formula, partial or APD status is changed. The existing inferred E7 APD qualification remains because its published positive partial alone is not an individual source anomaly designation.
+
+Retain **N-SF66** rather than swapping to existing E-FDS1. E-FDS1’s rawPgF0.638970082 is closer to source than N-SF66’s0.639418159, but both already trace sourceθ0.63879984 through dPgF. The alternative also worsens nd residual+0.000000088→−0.000000396 and effective d-anchoredν error−0.00025478→+0.00039082. Source C–F span0.04419827586 is closer to current0.04419881518 than alternate0.04419744859. These tiny coefficient/rounding tradeoffs do not justify changing an already compatible curve solely to improve its unused native g ratio. HOYA’s retained official20260707 AGF row2586 confirms E-FDS1 as an existing distinct curve; no duplicate or speculative melt is added.
+
+Figure1/PDF31 was checked at native1187×777px (402×403ppi): E7 is the front member of the G2 cemented pair, meeting E8 at source S13, with no separate modeled cement/resin. The prescription table is vector text, rendered220dpi for reading. Source caps, bonded interfaces, prior inferred concave cuts and all zoom/focus/aperture controls remain fixed. All17 source media/partials and actual runtime channel identities are unchanged; data is byte-identical. The existing N-SF66/E-FDS1 class wording denotes qualified proxies, without supplier, chemistry, melt or process identity. Prior source-field, finite-launch and runtime limitations remain; this scoped negative decision adds no complete source-shape review count.

@@ -76,7 +76,7 @@ nd = 1.92286, νd = 20.88. Glass: E-FDS1-W (HOYA) — extra-dense flint, ultra-h
 
 L6 is the most optically distinctive element in the design. With nd = 1.923 it is among the highest-index optical glasses in commercial use, and its Abbe number of 20.88 places it firmly in the ultra-high-dispersion category. This element is the one Sigma describes as having "a high rate of anomalous partial dispersion and a high index of refraction."
 
-L6 is identified as Lp2 — the positive element in G1 with the *smallest* Abbe number. Its role is counterintuitive: a high-dispersion positive element ordinarily worsens chromatic aberration. However, its large positive anomalous partial dispersion (ΔPgF = +0.028) means that for a given F–C correction, it contributes disproportionately to g-line correction — in the opposite direction from a conventional crown. This allows L6 to share positive power with L2 and L7 while simultaneously enabling the secondary-spectrum correction that none of those elements could achieve alone.
+L6 is identified as Lp2 — the positive element in G1 with the _smallest_ Abbe number. Its role is counterintuitive: a high-dispersion positive element ordinarily worsens chromatic aberration. However, its large positive anomalous partial dispersion (ΔPgF = +0.028) means that for a given F–C correction, it contributes disproportionately to g-line correction — in the opposite direction from a conventional crown. This allows L6 to share positive power with L2 and L7 while simultaneously enabling the secondary-spectrum correction that none of those elements could achieve alone.
 
 The symmetric biconvex shape (R = ±304.29 mm) with gentle curvatures minimizes the spherical aberration that would otherwise accompany a high-index positive element. The patent's condition (3) governs L6's focal length relative to G1: (fLp2/νdLp2)/f1 = (165.5/20.88)/277.8 = 0.029, comfortably within the 0.010–0.070 range.
 
@@ -122,7 +122,7 @@ The doublet is weakly negative overall (f = −207.8 mm), allowing it to functio
 
 ### L13 — Biconcave Negative (Field Flattener, Sm2)
 
-nd = 1.67270, νd = 32.17. Glass: S-TIM25 (OHARA) — titanium flint. f = −66.7 mm. ΔPgF = +0.0058.
+nd = 1.67270, νd = 32.17. Glass: E-FD5 (HOYA), a qualified spectral proxy; source chemistry and supplier unspecified. f = −66.7 mm. ΔPgF = +0.0058.
 
 L13 is an air-spaced negative biconcave element serving as the field flattener described in ¶0065. Its front surface (R = −73.54 mm) is the refracting surface Sm2 in the patent's conditional-expression framework. The patent's condition (7) governs the curvature balance between Sm1 and Sm2:
 
@@ -130,7 +130,7 @@ $$\frac{1/R_{Sm2}}{\phi_{Sm1} + \phi_{Sm2}} = \frac{1/(-73.54)}{(-0.01284) + (-0
 
 This value falls within the prescribed range of 0.50–0.90, confirming that the negative power is appropriately distributed between the two concave-to-object surfaces to balance coma correction against field flattening (¶0065–0067).
 
-L3 and L13 use OHARA coefficient rows (S-NBM51 and S-TIM25); the other resolved elements use HOYA or Hikari proxies. S-TIM25 is compatible rather than source-precision-identical: its coefficient-derived Abbe number is about 32.10 against the source's 32.17, and the actual source PgF override is retained. The patent coordinates support the optical model but do not prove Sigma's production supplier.
+L3 uses the OHARA S-NBM51 coefficient row; L13 uses HOYA E-FD5, and the other resolved elements use HOYA or Hikari proxies. E-FD5 reproduces the source 1.67270 / 32.17 coordinate more closely in C–F dispersion than the former S-TIM25 proxy. The genuine source PgF remains authoritative. These are spectral assignments, without proof of Sigma’s production supplier, melt or chemistry.
 
 ### L14 — Biconvex Positive, Double Aspherical
 
@@ -146,18 +146,18 @@ The aspherical profiles are discussed in detail in the Aspherical Surfaces secti
 
 The design uses 10 distinct glass types across 14 elements. The catalogue interpretation uses compatible coefficient models, predominantly HOYA with OHARA and Hikari entries; these are spectral proxies, without a production-sourcing or exact-melt claim. All fourteen source pairs and the LPF pair were freshly checked on PDF19 on 2026-10-30.
 
-| Element | nd | νd | PgF | ΔPgF | Glass | Vendor | Family |
-|---------|--------|-------|--------|---------|------|--------|--------|
-| L1 | 1.72916 | 54.67 | 0.5452 | −0.0047 | TAC8 | HOYA | Lanthanum crown |
-| L2, L7 | 1.55032 | 75.50 | 0.5399 | +0.0275 | FCD705 | HOYA | SLD fluoro­phosphate crown |
-| L3 | 1.61340 | 44.27 | 0.5633 | −0.0053 | S-NBM51 | OHARA | Short flint |
-| L4, L5, L11 | 1.73800 | 32.26 | 0.5898 | −0.0005 | J-KZFH9 | Hikari | KZFS-class short flint |
-| L6 | 1.92286 | 20.88 | 0.6388 | +0.0281 | E-FDS1-W | HOYA | Extra-dense flint |
-| L8, L12 | 1.88300 | 40.80 | 0.5654 | −0.0095 | TAFD30 | HOYA | Dense lanthanum flint |
-| L9 | 1.80420 | 46.50 | 0.5571 | −0.0075 | TAF3D catalog equivalent | HOYA | Lanthanum flint |
-| L10 | 1.69895 | 30.05 | 0.6028 | +0.0086 | E-FD15 | HOYA | Dense flint |
-| L13 | 1.67270 | 32.17 | 0.5962 | +0.0058 | S-TIM25 | OHARA | Titanium flint |
-| L14 | 1.85135 | 40.10 | 0.5694 | −0.0067 | M-TAFD305 | HOYA | Dense La-flint (PGM) |
+| Element     | nd      | νd    | PgF    | ΔPgF    | Glass                    | Vendor | Family                                              |
+| ----------- | ------- | ----- | ------ | ------- | ------------------------ | ------ | --------------------------------------------------- |
+| L1          | 1.72916 | 54.67 | 0.5452 | −0.0047 | TAC8                     | HOYA   | Lanthanum crown                                     |
+| L2, L7      | 1.55032 | 75.50 | 0.5399 | +0.0275 | FCD705                   | HOYA   | SLD fluoro­phosphate crown                          |
+| L3          | 1.61340 | 44.27 | 0.5633 | −0.0053 | S-NBM51                  | OHARA  | Short flint                                         |
+| L4, L5, L11 | 1.73800 | 32.26 | 0.5898 | −0.0005 | J-KZFH9                  | Hikari | KZFS-class short flint                              |
+| L6          | 1.92286 | 20.88 | 0.6388 | +0.0281 | E-FDS1-W                 | HOYA   | Extra-dense flint                                   |
+| L8, L12     | 1.88300 | 40.80 | 0.5654 | −0.0095 | TAFD30                   | HOYA   | Dense lanthanum flint                               |
+| L9          | 1.80420 | 46.50 | 0.5571 | −0.0075 | TAF3D catalog equivalent | HOYA   | Lanthanum flint                                     |
+| L10         | 1.69895 | 30.05 | 0.6028 | +0.0086 | E-FD15                   | HOYA   | Dense flint                                         |
+| L13         | 1.67270 | 32.17 | 0.5962 | +0.0058 | E-FD5                    | HOYA   | Qualified flint proxy; source chemistry unspecified |
+| L14         | 1.85135 | 40.10 | 0.5694 | −0.0067 | M-TAFD305                | HOYA   | Dense La-flint (PGM)                                |
 
 ΔPgF in this table and throughout this note is the patent's own deviation, ΔPgF = PgF − 0.64833 + 0.00180·νd (¶0023); it is the quantity conditions (4) and (6) use. The data file's `dPgF` field holds the same patent PgF measured from the ray-trace engine's normal line, 0.6438 − 0.001682·νd, so the stored numbers differ from the ΔPgF quoted here: L1 −0.006645, L2/L7 +0.023091, L3 −0.006038, L4/L5/L11 +0.000261, L6 +0.030120, L9 −0.008487, L10 +0.009544, L13 +0.006510. L8/L12 now store −0.009774 and L14 −0.006952, directly recovering the printed PgF values within their ±0.00005 precision. The historical loose 0.0003 retention is superseded; it could not justify reconstructing the published ratios several rounding units away.
 
@@ -177,11 +177,11 @@ The lens employs a floating rear-focus design with the front group G1 fixed and 
 
 This creates three variable air gaps:
 
-| Gap | Location | Infinity | Close (848 mm) | Change |
-|-----|----------|----------|----------------|--------|
-| d14 | G1 → G2A | 16.676 mm | 6.066 mm | −10.610 mm |
-| d19 | G2A → Stop/G2B | 11.115 mm | 11.381 mm | +0.266 mm |
-| d27 | L14 rear → LPF (BFD) | 37.080 mm | 47.464 mm | +10.384 mm |
+| Gap | Location             | Infinity  | Close (848 mm) | Change     |
+| --- | -------------------- | --------- | -------------- | ---------- |
+| d14 | G1 → G2A             | 16.676 mm | 6.066 mm       | −10.610 mm |
+| d19 | G2A → Stop/G2B       | 11.115 mm | 11.381 mm      | +0.266 mm  |
+| d27 | L14 rear → LPF (BFD) | 37.080 mm | 47.464 mm      | +10.384 mm |
 
 The dominant motion is the 10.6 mm forward travel of G2 as a whole (d14 decreasing), which is typical of a rear-focus design. The differential motion between G2A and G2B is small — only 0.27 mm of additional separation at close focus — but this floating element arrangement is critical for maintaining coma correction at close distances. Without it, the strongly curved concave-to-object surfaces near the stop (Sm1 and Sm2) would generate excessive coma flare as the off-axis marginal ray heights shift during focusing (¶0063).
 
@@ -197,23 +197,23 @@ The conic constant K = 0 for both surfaces (spherical base), and only the A4 and
 
 ### Surface 26 (L14 front, R = +74.3249 mm)
 
-| Coefficient | Value |
-|-------------|-------|
-| K | 0.000000 |
-| A4 | −2.314554 × 10⁻⁶ |
-| A6 | −6.999263 × 10⁻¹⁰ |
-| A8–A12 | 0 |
+| Coefficient | Value             |
+| ----------- | ----------------- |
+| K           | 0.000000          |
+| A4          | −2.314554 × 10⁻⁶  |
+| A6          | −6.999263 × 10⁻¹⁰ |
+| A8–A12      | 0                 |
 
 The negative A4 on a convex surface (R > 0) causes the surface to sag less than the base sphere at the rim — the surface flattens peripherally. At a semi-diameter of 16 mm the aspherical departure is −0.163 mm, growing to −0.267 mm at 18 mm. This progressive flattening weakens the positive power at the rim, directly reducing over-corrected spherical aberration from the strong converging element.
 
 ### Surface 27 (L14 rear, R = −55.4665 mm)
 
-| Coefficient | Value |
-|-------------|-------|
-| K | 0.000000 |
-| A4 | +1.341936 × 10⁻⁶ |
-| A6 | −1.267249 × 10⁻⁹ |
-| A8–A12 | 0 |
+| Coefficient | Value            |
+| ----------- | ---------------- |
+| K           | 0.000000         |
+| A4          | +1.341936 × 10⁻⁶ |
+| A6          | −1.267249 × 10⁻⁹ |
+| A8–A12      | 0                |
 
 The positive A4 on the rear concave surface (R < 0) reduces the absolute sag compared to the base sphere — the concave surface becomes shallower peripherally. At 16 mm the departure is +0.067 mm, reaching +0.098 mm at 18 mm. This supplements the front surface's correction by further weakening the peripheral convergence of the element as a whole.
 
@@ -227,19 +227,19 @@ The mild aspherical departures — only A4 and A6 terms, with maximum departure 
 
 The patent defines seven conditional expressions governing the glass selection and surface configuration. All are satisfied by Example 4:
 
-| Condition | Expression | Value | Range | Status |
-|-----------|-----------|-------|-------|--------|
-| (1) | PgFLp1/νdLp1 | 0.0072 | < 0.0085 | Pass |
-| (2) | PgFLp2/νdLp2 | 0.0306 | > 0.0250 | Pass |
-| (3) | (fLp2/νdLp2)/f1 | 0.029 | 0.010–0.070 | Pass |
-| (4) | ΔPgFLm1 | −0.0053 | < 0.0000 | Pass |
-| (4) | ΔPgFLm2 | −0.0005 | < 0.0000 | Pass |
-| (4) | ΔPgFLm3 | −0.0005 | < 0.0000 | Pass |
-| (5) | νdLp1/νdLm1 | 1.71 | 1.40–3.20 | Pass |
-| (5) | νdLp1/νdLm2 | 2.34 | 1.40–3.20 | Pass |
-| (5) | νdLp1/νdLm3 | 2.34 | 1.40–3.20 | Pass |
-| (6) | ΔPgFG1av/νdG1av | 0.00035 | 0.00010–0.00070 | Pass |
-| (7) | (1/RSm2)/(φSm1+φSm2) | 0.62 | 0.50–0.90 | Pass |
+| Condition | Expression           | Value   | Range           | Status |
+| --------- | -------------------- | ------- | --------------- | ------ |
+| (1)       | PgFLp1/νdLp1         | 0.0072  | < 0.0085        | Pass   |
+| (2)       | PgFLp2/νdLp2         | 0.0306  | > 0.0250        | Pass   |
+| (3)       | (fLp2/νdLp2)/f1      | 0.029   | 0.010–0.070     | Pass   |
+| (4)       | ΔPgFLm1              | −0.0053 | < 0.0000        | Pass   |
+| (4)       | ΔPgFLm2              | −0.0005 | < 0.0000        | Pass   |
+| (4)       | ΔPgFLm3              | −0.0005 | < 0.0000        | Pass   |
+| (5)       | νdLp1/νdLm1          | 1.71    | 1.40–3.20       | Pass   |
+| (5)       | νdLp1/νdLm2          | 2.34    | 1.40–3.20       | Pass   |
+| (5)       | νdLp1/νdLm3          | 2.34    | 1.40–3.20       | Pass   |
+| (6)       | ΔPgFG1av/νdG1av      | 0.00035 | 0.00010–0.00070 | Pass   |
+| (7)       | (1/RSm2)/(φSm1+φSm2) | 0.62    | 0.50–0.90       | Pass   |
 
 All values agree with the patent's published condition-table for Example 4 (¶0131).
 
@@ -269,7 +269,7 @@ The lens was later succeeded by the Sigma 85mm F1.4 DG DN | Art (A020, 2020), an
 - Sigma Corporation product page: 85mm F1.4 DG HSM | Art (A016), https://www.sigma-global.com/en/lenses/a016_85_14/
 - HOYA Corporation, Optical Glass Catalog (glass codes referenced: TAC8, FCD705, E-FDS1-W, TAFD30, TAF3D, E-FD15, M-TAFD305).
 - Hikari Optical Glass Catalog (J-KZFH9).
-- OHARA Corporation, Optical Glass Catalog (S-NBM51, S-TIM25).
+- OHARA Corporation, Optical Glass Catalog (S-NBM51; historical S-TIM25 comparison).
 
 ## Original-Figure Rim Reinspection — 2026-10-30
 
@@ -278,3 +278,13 @@ Fig. 16 on original JP 2018-005099 A PDF27 was inspected at native resolution an
 S19 uses the source's approximately18.8mm clear cap with an outer24.9mm extension, completing the full-height cemented body. Its source cap/edge ratio≈0.755 is applied to the measured common outer radius. The sphere's R23.792mm domain prevents encoding the whole24.9mm outer as a numeric cut; a separate equivalent depth9.21mm cut on the old21.4mm untrimmed cap provides the full stepped-field/focus beam proof. Its slightly smaller cap18.799589mm already clears reach17.815319 plus0.056399mm margin, including the source finite-point check. The actual extension cap18.8 is therefore conservative to that proof, without a source flag or tolerance change. The plane at sag(18.8)≈9.21054mm is before both source iris positions. A front S7 land to31.5mm is also rejected by the unchanged6–7 gap allowance. Weak few-pixel ends elsewhere are retained without invented flat lands.
 
 At the final17.1mm clear caps, the asphere polynomial departures are−0.215402mm (S26A) and+0.083056mm (S27A). Coefficients are unchanged. Canonical/surface, image-circle, field, aperture and full-cut checks pass, including a separate source d0=681.5mm finite-point diagnostic. Identical48,135sampled collimated launches retain33,379, lose59 and gain3,876 (10,821blocked inboth); these are sampled counts, not flux or production vignetting measurements. No source radius, spacing, index/Abbe pair, stop, focus/aperture control or tolerance changes were made.
+
+## Scoped source-partial and catalog follow-up — 2026-10-31
+
+The complete original shape/glass review remains dated **2026-10-30**, with all earlier May19/June23/July29/July30/Sept23/Oct8 records preserved. This narrow direct check of `patents/JP2018005099A.pdf`, Numerical Example4, PDF page19, confirms L13/source S24 **nd1.67270/νd32.17/PgF0.5962**. PgF is an absolute ratio, printed to four decimals (±0.00005); ¶0080/page12 explicitly defines d587.56nm, while ¶0022–23/page6 defines g435.8/F486.1/d587.6/C656.3nm and PgF=(Ng−NF)/(NF−NC). The source deviation uses0.64833−0.00180νd. Existing engine dPgF+0.006510 instead refers to0.6438−0.001682νd, reconstructing0.59620006, only+0.00000006 from the printed ratio. Both conventions and all15 genuine lens/LPF partial fields remain unchanged.
+
+Replace only L13’s catalog annotation S-TIM25 with existing **E-FD5**, a qualified HOYA spectral proxy. The retained primary HOYA20260707 AGF row1928 gives nd1.67270/ν32.17 and formula1 coefficients, λ inµm:2.7135839,−0.011419719,0.026133708,0.0017576479,−0.00013307737,0.000015203351 for n²=a0+a1λ²+a2λ⁻²+a3λ⁻⁴+a4λ⁻⁶+a5λ⁻⁸. They exactly equal the existing catalog row; no new row is added. Evaluated nd/ν/PgF is1.672699797/32.17054165/0.596299737, versus S-TIM25’s1.672699810/32.09920577/0.598882789. Raw partial error improves+0.002682789→+0.000099737 and source-implied C–F span0.02091078645 is approached by0.02091042808 rather than0.02095689891. Effective d-anchored runtimeν improves32.09921481→32.17055134. Runtime PgF remains0.59620006 through the source override: the gain is a closer borrowed C/F curve, not discovery of new historical line indices.
+
+Figure16/PDF27 was rechecked as its unresampled973×705px bitmap (399×398ppi). L13/Sm2 is the air-spaced negative biconcave element ahead of the rear asphere; the upstream cemented L11/L12 interface and separate LPF remain as drawn. The table is vector text, viewed at220dpi without treating that display resolution as native raster detail. No source cement or resin layer is inferred. All source numbers, partial/APD fields, filter placement, R/d, clear caps/shoulders, aspheres, stop and focus/aperture controls are protected. Only E13 C/F/g interpolation changes; all d channels and source ratios stay fixed. Prior shape/clearance and production-correlation limits remain; this adds no complete source-shape review count.
+
+The retained primary AGF is cited at [HOYA’s official catalog URL](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf); the local retained original, rather than a newly successful download, supplies this coefficient check. A compatible catalog row does not establish supplier, melt, chemistry or fabrication process.

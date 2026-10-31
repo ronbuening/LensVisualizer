@@ -115,3 +115,11 @@ Patent: JP 2020-012952 A, Example 1
 - Focused surface/image-circle/field/aperture checks pass for all3 records; source-format field coverage ≥99%, design-aperture errors within3%. Full shared cut guards report no errors; no new inward cap or numeric inferred cut exists.
 - Actual buildLens/computeElementShapes nine-state SVG for each lens was rasterized and inspected: connected compounds, no renderer trim. Exact d-line before/after collimated sampling uses144405 rays/lens across focus0/.5/1 and fields0/.25/.5/.75/1; counts are samples, not flux or source-certified finite-object performance. No old transmitted ray is lost. Published finite focus geometry is retained and checked in the nine-state layouts.
 - Existing dispersion/glass-resolution/partial-line suites:3files/94tests pass. No new catalog row, tolerance waiver, hidden clipping or production-supplier assertion.
+
+## 2026-10-31 — Scoped two-decimal PgF comparison; E-F1 retained
+
+Reuse Oct30 complete source-shape/glass review; preserve May20/July29/Oct6/Oct8 dates. Direct exact `patents/JP2020012952A.pdf`, Example1 PDFpp11–12 S24/L14, prints1.62588/35.74/absolutePgF0.59, **two decimals±0.005**. ¶0059 p10 d587.56nm; ¶0017 p6 absolute ratio and g/F/d/C, source anomaly normal0.64833−0.00180ν. Existing dPgF+0.00631468 is the engine-normal conversion and reconstructs0.59000000. No printed or condition-derived source spectral/APD field changes.
+
+Reject H-F6 despite its closer rawpartial0.589748136 versus E-F1’s0.587771428: both fit the coarse source bin; rawnd moves1.625879838→1.624950059 and rawν35.74058970→35.58517293. Effective runtimeν35.74059897→35.63812454 is worse relative to source35.74, while sourceθ0.59 already controls both variants. Retained official HOYA20260707 AGF row6009 confirms E-F1; CDGM’s officialSeptember2026 H-F6 is an existing distinct alternative, not a necessary addition.
+
+Figure1 p19 native1145×693px/398×400ppi confirms the ordinary air-spaced L14 and adjacent bonded pair/rear-asphere context; vector source tables rendered220dpi, no upsampling precision claim. No extra resin/cement/plate is invented. Data is byte-identical, all16 media/partial fields and curves/channels/control geometry unchanged. Only scoped documentary evidence is appended; no new row, whole source-shape count or stronger finite/production claim is made.

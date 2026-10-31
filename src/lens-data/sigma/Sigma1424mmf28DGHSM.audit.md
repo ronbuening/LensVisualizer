@@ -12,12 +12,12 @@ Patent: JP 2018-189733 A, Numerical Example 1
 
 ### Glass corrections
 
-| Element / surface | Field | Before | After | Justification |
-|---|---|---|---|---|
-| L3 / S5A | `glass` | `M-BACD5N / BACD5 class (HOYA, 589/613 moldable crown)` | `M-BACD5N (HOYA, 589613 moldable barium crown)` | Added coefficient-backed HOYA `M-BACD5N`; removed `BACD5`, which aliases to a different 620/603 catalog row. |
-| L8 / S13 | `glass` | `Dense flint class, 720/347` | `N-KZFS8 (Schott, 720347)` | Existing Schott catalog row exactly matches patent nd/vd. |
-| L9 / S15 | `glass` | `High-index high-dispersion glass, 855/248` | `S-NBH56 (OHARA, 855248)` | Existing OHARA catalog row exactly matches patent nd/vd. |
-| L17 / S28A | `glass` | `Moldable low-dispersion glass, 553/717` | `M-FCD500 (HOYA, 553717)` | Existing HOYA catalog row exactly matches patent nd/vd. |
+| Element / surface | Field   | Before                                                  | After                                           | Justification                                                                                                |
+| ----------------- | ------- | ------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| L3 / S5A          | `glass` | `M-BACD5N / BACD5 class (HOYA, 589/613 moldable crown)` | `M-BACD5N (HOYA, 589613 moldable barium crown)` | Added coefficient-backed HOYA `M-BACD5N`; removed `BACD5`, which aliases to a different 620/603 catalog row. |
+| L8 / S13          | `glass` | `Dense flint class, 720/347`                            | `N-KZFS8 (Schott, 720347)`                      | Existing Schott catalog row exactly matches patent nd/vd.                                                    |
+| L9 / S15          | `glass` | `High-index high-dispersion glass, 855/248`             | `S-NBH56 (OHARA, 855248)`                       | Existing OHARA catalog row exactly matches patent nd/vd.                                                     |
+| L17 / S28A        | `glass` | `Moldable low-dispersion glass, 553/717`                | `M-FCD500 (HOYA, 553717)`                       | Existing HOYA catalog row exactly matches patent nd/vd.                                                      |
 
 ### Spectral corrections
 
@@ -65,19 +65,19 @@ above the chief ray, and neither could be scaled with its front surface. L3 is a
 floor rather than following 5A to 21.0 mm (its polynomial also steepens sharply past ~21.4 mm); the rears of L4 (8) and
 L6 (11) are scaled with their front surfaces. No figure measurement was used.
 
-| Surface | Before | After | Justification |
-|---|---|---|---|
-| 1A | 33.8 | 37.3 | wide corner chief ray 36.78 mm + clearance; no aspheric turnover to 44.8 mm |
-| 2 | 27.1 | 27.8 | wide corner chief ray 27.62 mm; capped by the rim-slope limit (27.82 mm), so not scaled with 1A |
-| 3 | 24.0 | 27.2 | wide corner chief ray 26.61 mm + clearance |
-| 4 | 19.5 | 21.3 | wide corner chief ray 21.05 mm; capped by the rim-slope limit (21.35 mm), so not scaled with 3 |
-| 5A | 17.5 | 21.0 | wide corner chief ray 20.49 mm + clearance; no aspheric turnover to 25.2 mm |
-| 6A | 17.5 | 18.7 | wide corner chief ray 18.19 mm + clearance; strong meniscus, not scaled with 5A; no turnover to 25.2 mm |
-| 7 | 16.5 | 18.4 | wide corner chief ray 17.89 mm + clearance |
-| 8 | 16.5 | 18.4 | scaled with surface 7 (×1.12); corner chief ray 17.18 mm |
-| 9 | 16.0 | 17.3 | wide corner chief ray 16.79 mm + clearance |
-| 10 | 16.0 | 17.0 | cemented junction, own floor: wide corner chief ray 16.47 mm + clearance |
-| 11 | 16.0 | 17.0 | scaled with surface 10 (×1.06); corner chief ray 16.16 mm |
+| Surface | Before | After | Justification                                                                                           |
+| ------- | ------ | ----- | ------------------------------------------------------------------------------------------------------- |
+| 1A      | 33.8   | 37.3  | wide corner chief ray 36.78 mm + clearance; no aspheric turnover to 44.8 mm                             |
+| 2       | 27.1   | 27.8  | wide corner chief ray 27.62 mm; capped by the rim-slope limit (27.82 mm), so not scaled with 1A         |
+| 3       | 24.0   | 27.2  | wide corner chief ray 26.61 mm + clearance                                                              |
+| 4       | 19.5   | 21.3  | wide corner chief ray 21.05 mm; capped by the rim-slope limit (21.35 mm), so not scaled with 3          |
+| 5A      | 17.5   | 21.0  | wide corner chief ray 20.49 mm + clearance; no aspheric turnover to 25.2 mm                             |
+| 6A      | 17.5   | 18.7  | wide corner chief ray 18.19 mm + clearance; strong meniscus, not scaled with 5A; no turnover to 25.2 mm |
+| 7       | 16.5   | 18.4  | wide corner chief ray 17.89 mm + clearance                                                              |
+| 8       | 16.5   | 18.4  | scaled with surface 7 (×1.12); corner chief ray 17.18 mm                                                |
+| 9       | 16.0   | 17.3  | wide corner chief ray 16.79 mm + clearance                                                              |
+| 10      | 16.0   | 17.0  | cemented junction, own floor: wide corner chief ray 16.47 mm + clearance                                |
+| 11      | 16.0   | 17.0  | scaled with surface 10 (×1.06); corner chief ray 16.16 mm                                               |
 
 The validator accepts the new values, all three stations now reach 100% of the corner with every rim clear, the
 image-circle floor still reports nothing undersized, and no render trim or gap overlap appears at any zoom station.
@@ -93,3 +93,11 @@ notes the surface 2/4 rim-slope margins. The quoted L8 edge (0.53 mm) and 27-28A
 - All **17 physical lens media** retain printed nd/νd andθgF. Four-decimalθgF precision (±.00005) is preserved through conversion to `.6438−.001682νd`; all 17 stored deltas reproduce the source ratios at printed precision. All 17 retain compatible catalog curves, which do not establish suppliers or melts. No source C/F/g indices or rear plate is supplied. L7's `apd` flag changes `patent`→`inferred`: itsθgF=.6388 stays measured, but the material is outside the source anomaly-condition groups (G1 negatives and post-stop positives). The source condition-backed flags stay; public prose now distinguishes catalog compatibility from production identity.
 - With identical fixed launch coordinates across three source zoom stations and five source-field fractions, a65×65 pupil-disk sample retains46,563 successful rays, loses0, gains0, and blocks1,572 in both models. This finite sampling is not flux or a continuum guarantee; it explicitly checks the possible vignetting effect of S26's opened interface. Full cut guards are checked separately with all final edits. The27–28A intrusion is now2.634740 mm against2.714940 allowed, synchronized in public prose; quoted asphere departures stay at their unchanged optical caps.
 - Canonical/surface/full-cut, image-circle, direct field and aperture checks pass; no unlaunched cut fields, undersized surface or hidden renderer trim. Nine actual SVG states were rasterized and visually inspected, including the common C5 rim. All source R/d/aspheres, media/partials, stop/zoom/aperture/focus controls and tolerances are unchanged. Shared catalog/resolver and focused glass tests supplement the source review; full integration gates remain separate.
+
+## 2026-10-31 — Scoped printed-partial comparison; N-SF66 retained
+
+Actual complete source review remains Oct30; preserve May31/Sept24 history. Direct exact selected original `patents/JP2018189733A.pdf`, Numerical Example1 PDFp17 L7/S12, gives1.92286/20.88/θgF0.6388±0.00005. ¶0117 p16 defines d587.56/g435.84/F486.13nm; ¶0032 p7 uses anomaly normal0.648285−0.00180123ν, distinct from the engine baseline. Existing dPgF+0.030120 reconstructs0.63879984, inside the source print bin. All17 genuine partial fields and the earlier inferred E7 APD distinction remain.
+
+Reject E-FDS1 swap: rawθ error improves+0.000618159→+0.000170082, but rawnd residual worsens+0.000000088→−0.000000396 and effective runtimeν moves20.87974522→20.88039082 against source20.88. Source C–F span0.04419827586 is closer to current0.04419881518 than alternate0.04419744859; source override already controls runtimeθ identically. Tiny rounding-only alternatives do not establish an accuracy gain. Retained HOYA20260707 AGF row2586 confirms E-FDS1, without a need for a new row.
+
+Native Figure1 p31 bitmap1187×777 at402×403ppi confirms L7/L8 bonded source S13 and no separate cement/resin. Vector table read at220dpi; display enlargement is not source detail. All source R/d, shapes/cuts/shoulders, spectral/APD fields and controls stay exact; all curves/channels unchanged and data byte-identical. Only dated audit/analysis evidence is added, with no fresh whole-review count or new finite-field/production claim.
