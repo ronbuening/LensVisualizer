@@ -79,3 +79,13 @@ Prior2026-05-20 glass relabel and 2026-09-24 field/rim entries retain actual dat
 
 A 2,001-radius sampling of each unchanged layer profile confirms positive signed thickness throughout its supported cap: Resin1 minimum 0.033589 mm at 14 mm and Resin2 minimum 0.061511 mm near 7.8975 mm. The internal profiles are rigid through every zoom/focus state; these sampled geometric minima are separate from the printed center thicknesses and are not production tolerances.
 The Figure 2 plot prints fno 2.89, consistent with the numerical heading rounded to 2.9; the authored 2.9 target is preserved.
+
+## 2026-10-31 — Published-line catalog comparison
+
+The original JP2007108398A Numerical Example1 remains the source. Paragraphs0077–0078/PDF10 define d and the individual material line-index list; PDF15 prints the same C/F/g triplet 1.836554/1.871929/1.893856 for modeled E1/E12/E13/E15. Figure1/PDF19 was checked at its retained native-resolution scope; bonded layers, concave ends and clear boundaries stay unchanged. All63 genuine C/F/g values, the literal prescription pairs and the eight source-rounding reference notes remain unchanged.
+
+Existing OHARA PBH53 is a closer qualified proxy to those three actual spectral points than S-TIH53: its C/F/g residuals are −.000024995/+.000046456/−.000041264, versus −.000066061/+.000165880/+.000333377 for S-TIH53. SUMITA SFLDN3 improves the old C/F fit but has a larger g residual +.000143890; it is not chosen. Only the four catalog annotations improve. Published line indices continue to control all traced channels, so this is a provenance/assignment improvement with no runtime spectral change, no added source coverage and no historical supplier or melt identification. Nineteen compatible curves and complete published-line coverage of all21 media remain.
+
+The two source1.51640/52.2 resin layers remain chemically unresolved. A nearby ordinary-glass coordinate does not establish a resin formulation, and its published source C/F/g points are already retained; no unused or fitted material row is added. Original review dates, all source R/d, aspheres, caps, stop and focus/zoom/IS limits remain as previously documented.
+
+Catalog source reinspection: [OHARA official downloads](https://www.ohara-gmbh.com/dialog-downloads/downloads.html), retained `OHARA_260529.AGF`, discontinued `NM PBH53`/`CD` row. The six literal polynomial coefficients exactly match the registered row. No historical production identity is inferred.

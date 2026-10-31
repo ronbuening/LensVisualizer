@@ -27,6 +27,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source endpoints pass aperture/field checks. Geometry-identical 65-state interpolation has
  * 25 stations above the 3% aperture criterion (S15, maximum +9.072%) and +12.290 mm defocus.
  * No continuous cam or finite-focus prescription is available; interpolated states are illustrative.
+ *
+ * Scoped catalog follow-up2026-10-31: L2 uses existing S-NBM51 as a closer
+ * coordinate/partial proxy; the genuine source dPgF−.00599 stays authoritative.
+ * JP2013140404A ¶0058 p11, numerical row3 p13, condition(8) p20.
+ * See audit for source-partial residuals and rejected CDGM/NHG trials.
+ * All source numbers, geometry and controls remain unchanged.
  */
 
 const LENS_DATA = {
@@ -85,11 +91,10 @@ const LENS_DATA = {
       nd: 1.6134,
       vd: 44.3,
       focalLengthMm: -131.0,
-      glass:
-        "KZFS-class short flint (Schott N-KZFS4 equivalent) — qualified spectral proxy; historical identity unresolved",
+      glass: "S-NBM51 (OHARA) — qualified spectral proxy; historical identity unresolved",
       apd: "patent",
       apdNote:
-        "Patent condition (8): θgF - 0.6438 + 0.001682×νdN = -0.00599; closest public catalog match is Schott N-KZFS4.",
+        "Patent condition (8): θgF - 0.6438 + 0.001682×νdN = -0.00599; S-NBM51 is a closer published coordinate/partial-dispersion proxy; historical material identity remains unestablished.",
       role: "Front-unit negative anomalous-dispersion element cemented to the UD positive meniscus.",
       cemented: "D1",
       dPgF: -0.00599,
@@ -331,7 +336,14 @@ const LENS_DATA = {
     { label: "28", R: 30.346, d: 4.69, sd: 11.97 },
     { label: "29", R: -141.521, d: 2.99, sd: 12.23, medium: 17 },
     { label: "30", R: -35.789, d: 3.64, sd: 12.395 },
-    { label: "31", R: -31.158, d: 1.2, sd: 12.15, rimExtensionSd: 12.8, medium: 18 },
+    {
+      label: "31",
+      R: -31.158,
+      d: 1.2,
+      sd: 12.15,
+      rimExtensionSd: 12.8,
+      medium: 18,
+    },
     { label: "32", R: 177.055, d: 2.14, sd: 12.8 },
     { label: "33", R: 62.632, d: 3.42, sd: 14.145, medium: 19 },
     { label: "34", R: -205.77, sd: 14.315 },

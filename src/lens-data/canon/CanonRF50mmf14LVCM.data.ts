@@ -31,6 +31,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * collimated geometry sweeps and Gaussian interval supplements remain distinct.
  * Finite fields are paraxial object-field probes, not inverse-solved sensor corners.
  * Source overall117.49 versus literal sum117.51 remains unresolved in source.errata.
+ *
+ * Scoped catalog follow-up2026-10-31: repeated positive d-reference citations
+ * are moved out of the uncertainty-only field; explicit d references remain.
+ * US20250251576A1 ¶0061–0063 PDF15 defines d587.6/F486.1/C656.3nm;
+ * Numerical Example1 PDF16 gives source nd/vd only. The audit records the
+ * rejected KF4 resin trial. All source numbers/geometry/controls remain fixed.
  */
 
 const LENS_DATA = {
@@ -80,8 +86,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.92286,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 20.9,
       focalLengthMm: 144.31,
       glass: "E-FDS1 (HOYA catalog equivalent; production supplier unspecified)",
@@ -94,8 +98,6 @@ const LENS_DATA = {
       type: "Aspherical Resin Layer",
       nd: 1.53352,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 52.8,
       focalLengthMm: 2076.28,
       glass: "Optical resin (source-listed nd/vd; chemistry and curing process unspecified)",
@@ -109,8 +111,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.65412,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 39.7,
       focalLengthMm: -73.87,
       glass: "S-NBH5 (OHARA catalog equivalent; production supplier unspecified)",
@@ -124,8 +124,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.77047,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 29.7,
       focalLengthMm: -26.94,
       glass: "NBFD29 (HOYA catalog equivalent; production supplier unspecified)",
@@ -139,8 +137,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.76385,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 48.5,
       focalLengthMm: 32.89,
       glass: "S-LAH96 (OHARA catalog equivalent; production supplier unspecified)",
@@ -154,8 +150,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.91082,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 35.2,
       focalLengthMm: 43.09,
       glass: "TAFD35 (HOYA catalog equivalent; production supplier unspecified)",
@@ -168,8 +162,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.90043,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 37.4,
       focalLengthMm: 124.71,
       glass: "TAFD37A (HOYA catalog equivalent; production supplier unspecified)",
@@ -182,8 +174,6 @@ const LENS_DATA = {
       type: "Plano-Concave Negative",
       nd: 1.77047,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 29.7,
       focalLengthMm: -49.73,
       glass: "NBFD29 (HOYA catalog equivalent; production supplier unspecified)",
@@ -196,8 +186,6 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59522,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 67.7,
       focalLengthMm: 99.43,
       glass: "S-FPM2 (OHARA catalog equivalent; production supplier unspecified)",
@@ -211,8 +199,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.73037,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 32.2,
       focalLengthMm: -32.65,
       glass: "NBFD32 (HOYA catalog equivalent; production supplier unspecified)",
@@ -226,8 +212,6 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 81.7,
       focalLengthMm: 44.33,
       glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
@@ -240,8 +224,6 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.804,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 46.5,
       focalLengthMm: 52.09,
       glass: "S-LAH65VS (OHARA catalog equivalent; production supplier unspecified)",
@@ -254,8 +236,6 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 2.001,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 29.1,
       focalLengthMm: 46.55,
       glass: "S-LAH99 (OHARA catalog equivalent; production supplier unspecified)",
@@ -269,8 +249,6 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.58144,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 40.8,
       focalLengthMm: -39.88,
       glass: "S-TIL25 (OHARA catalog equivalent; production supplier unspecified)",
@@ -284,8 +262,6 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.72825,
       indexReference: "d",
-      indexReferenceNote:
-        "US20250251576A1 paragraphs 0061–0063 PDF p15 define nd/vd at d 587.6 nm, F 486.1 nm and C 656.3 nm. Numerical Example 1 PDF p16 publishes only nd/vd; no numerical line indices or partial dispersion.",
       vd: 28.5,
       focalLengthMm: -146.02,
       glass: "S-TIH10 (OHARA catalog equivalent; production supplier unspecified)",
@@ -303,11 +279,25 @@ const LENS_DATA = {
       d: 0.11,
       sd: 21.7,
       medium: 2,
-      asphere: { K: 0, A4: -3.43375e-7, A6: -2.73639e-9, A8: 6.57484e-12, A10: -1.50535e-14, A12: 9.835e-18 },
+      asphere: {
+        K: 0,
+        A4: -3.43375e-7,
+        A6: -2.73639e-9,
+        A8: 6.57484e-12,
+        A10: -1.50535e-14,
+        A12: 9.835e-18,
+      },
     },
     { label: "4", R: 207.351, d: 1.35, sd: 21.7, medium: 3 },
     { label: "5", R: 39.088, d: 9.65, sd: 18.2, rimExtensionSd: 21.7 },
-    { label: "6", R: -41.799, d: 1.35, sd: 18.2, rimExtensionSd: 20.2, medium: 4 },
+    {
+      label: "6",
+      R: -41.799,
+      d: 1.35,
+      sd: 18.2,
+      rimExtensionSd: 20.2,
+      medium: 4,
+    },
     { label: "7", R: 41.799, d: 10.34, sd: 20.2, medium: 5 },
     { label: "8", R: -56.227, d: 0.15, sd: 20.2 },
     { label: "9", R: 55.362, d: 7.44, sd: 21.2, medium: 6 },
@@ -328,13 +318,27 @@ const LENS_DATA = {
       d: 6.1,
       sd: 18.4,
       medium: 12,
-      asphere: { K: 0, A4: -3.27084e-6, A6: 6.2245e-10, A8: 1.62557e-11, A10: -9.43111e-14, A12: 1.12652e-16 },
+      asphere: {
+        K: 0,
+        A4: -3.27084e-6,
+        A6: 6.2245e-10,
+        A8: 1.62557e-11,
+        A10: -9.43111e-14,
+        A12: 1.12652e-16,
+      },
     },
     {
       label: "22A",
       R: -52.537,
       sd: 18.4,
-      asphere: { K: 0, A4: 6.07848e-6, A6: -7.76772e-9, A8: 6.38476e-11, A10: -1.90658e-13, A12: 1.91577e-16 },
+      asphere: {
+        K: 0,
+        A4: 6.07848e-6,
+        A6: -7.76772e-9,
+        A8: 6.38476e-11,
+        A10: -1.90658e-13,
+        A12: 1.91577e-16,
+      },
     },
     { label: "23", R: "flat", d: 5.16, sd: 18.7, medium: 13 },
     { label: "24", R: -46.593, d: 1.2, sd: 18.7, medium: 14 },
@@ -357,7 +361,11 @@ const LENS_DATA = {
     "22A": { label: "D22 L4-L5", values: [[2.68, 7.08]] },
   },
 
-  aperture: { nominalFNumber: 1.46, fStops: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16], maxFNumber: 16 },
+  aperture: {
+    nominalFNumber: 1.46,
+    fStops: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16],
+    maxFNumber: 16,
+  },
 
   groups: [
     { text: "L1", fromSurface: "1", toSurface: "10" },

@@ -57,9 +57,9 @@ L1 is the front collector of the positive first zoom unit. The rear radius, $R_2
 
 ### L2 — Negative Meniscus, Convex to Object
 
-$n_d = 1.61340$, $\nu_d = 44.3$. Glass: KZFS-class short flint, closest public match Schott N-KZFS4. $f = -131.0$ mm. Patent $\Delta P_{g,F}$ expression value: -0.00599.
+$n_d = 1.61340$, $\nu_d = 44.3$. Glass: OHARA S-NBM51, a qualified spectral proxy with historical material identity unresolved. $f = -131.0$ mm. Patent $\Delta P_{g,F}$ expression value: -0.00599.
 
-L2 is cemented to L3 and is the negative member of the first-unit achromat. Its role is not merely ordinary C-F color balancing. The patent explicitly constrains the first-unit negative glass by index, Abbe number, and anomalous partial-dispersion expression. The stored $n_d$ and $\nu_d$ closely match Schott N-KZFS4, while the patent's condition (8) gives the anomalous-dispersion correction term as -0.00599.
+L2 is cemented to L3 and is the negative member of the first-unit achromat. Its role is not merely ordinary C-F color balancing. The patent explicitly constrains the first-unit negative glass by index, Abbe number, and anomalous partial-dispersion expression. The source $n_d$ and $\nu_d$ are preserved. OHARA S-NBM51 is a closer coordinate and published-partial proxy than the earlier N-KZFS4 label; condition (8) remains the literal source correction -0.00599.
 
 The patent explains that excessive curvature of the object-side convex surface of this negative element can create inefficient lateral-color correction for off-axis rays. Lowering the index as far as the Petzval balance permits weakens that curvature and lets off-axis rays encounter the surface closer to normal incidence.
 
@@ -171,22 +171,22 @@ L19 is the final glass element before the image plane. Its positive power partia
 
 The prescription uses 14 distinct catalog proxy/class labels across 19 elements. The existing coordinate comparisons remain: L5 matches S-BSM18, L8/L13 match S-BSM14, L9 matches S-LAH71, and L10 matches S-BAH27.
 
-| Glass / class                              |   $n_d$ | $\nu_d$ | Elements | Role                                           |
-| ------------------------------------------ | ------: | ------: | -------- | ---------------------------------------------- |
-| S-FSL5 (OHARA)                             | 1.48749 |    70.2 | L1       | Low-index front collector crown                |
-| KZFS-class short flint, N-KZFS4 equivalent | 1.61340 |    44.3 | L2       | Negative anomalous-dispersion first-unit glass |
-| S-FPL51 (OHARA)                            | 1.49700 |    81.5 | L3, L7   | UD positive elements                           |
-| S-LAH55V (OHARA)                           | 1.83481 |    42.7 | L4       | High-index negative variator glass             |
-| S-BSM18 (OHARA)                            | 1.63854 |    55.4 | L5       | Crown-like negative member in L2 doublet       |
-| S-TIH53 (OHARA)                            | 1.84666 |    23.8 | L6, L14  | High-dispersion partners                       |
-| S-BSM14 (OHARA)                            | 1.60311 |    60.6 | L8, L13  | Moderate-index positive doublet partners       |
-| S-LAH71 (OHARA)                            | 1.85026 |    32.3 | L9       | High-index negative achromat partner           |
-| S-BAH27 (OHARA)                            | 1.70154 |    41.2 | L10      | Negative member of compact fourth-unit doublet |
-| S-TIH6 (OHARA)                             | 1.80518 |    25.4 | L11, L17 | High-dispersion positive partners              |
-| S-LAL14 (OHARA)                            | 1.69680 |    55.5 | L12      | Positive meniscus in fifth unit                |
-| S-LAH66 (OHARA)                            | 1.77250 |    49.6 | L15      | Rear positive fifth-unit corrector             |
-| S-LAH58 (OHARA)                            | 1.88300 |    40.8 | L16, L18 | Very high-index negative rear-unit glasses     |
-| S-TIM35 (OHARA)                            | 1.69895 |    30.1 | L19      | Final positive rear corrector                  |
+| Glass / class                    |   $n_d$ | $\nu_d$ | Elements | Role                                           |
+| -------------------------------- | ------: | ------: | -------- | ---------------------------------------------- |
+| S-FSL5 (OHARA)                   | 1.48749 |    70.2 | L1       | Low-index front collector crown                |
+| S-NBM51 qualified spectral proxy | 1.61340 |    44.3 | L2       | Negative anomalous-dispersion first-unit glass |
+| S-FPL51 (OHARA)                  | 1.49700 |    81.5 | L3, L7   | UD positive elements                           |
+| S-LAH55V (OHARA)                 | 1.83481 |    42.7 | L4       | High-index negative variator glass             |
+| S-BSM18 (OHARA)                  | 1.63854 |    55.4 | L5       | Crown-like negative member in L2 doublet       |
+| S-TIH53 (OHARA)                  | 1.84666 |    23.8 | L6, L14  | High-dispersion partners                       |
+| S-BSM14 (OHARA)                  | 1.60311 |    60.6 | L8, L13  | Moderate-index positive doublet partners       |
+| S-LAH71 (OHARA)                  | 1.85026 |    32.3 | L9       | High-index negative achromat partner           |
+| S-BAH27 (OHARA)                  | 1.70154 |    41.2 | L10      | Negative member of compact fourth-unit doublet |
+| S-TIH6 (OHARA)                   | 1.80518 |    25.4 | L11, L17 | High-dispersion positive partners              |
+| S-LAL14 (OHARA)                  | 1.69680 |    55.5 | L12      | Positive meniscus in fifth unit                |
+| S-LAH66 (OHARA)                  | 1.77250 |    49.6 | L15      | Rear positive fifth-unit corrector             |
+| S-LAH58 (OHARA)                  | 1.88300 |    40.8 | L16, L18 | Very high-index negative rear-unit glasses     |
+| S-TIM35 (OHARA)                  | 1.69895 |    30.1 | L19      | Final positive rear corrector                  |
 
 The chromatic strategy uses both ordinary achromatization and anomalous partial dispersion. S-FPL51 UD elements supply low-dispersion positive power in L1 and L3, while lower-Abbe and high-index media appear in the cemented doublets. These optical coordinates do not identify chemical families. L2's medium is specifically governed by conditions (6)–(8). Table 1 on PDF page 20 genuinely prints the condition (8) expression value −0.00599, retained as `dPgF`. Paragraph 0051 (PDF page 9) defines the expression θgF − 0.6438 + 0.001682νdN; with printed νdN = 44.3 it implies θgF = 0.5632974 algebraically. That derived partial is not a separate printed measurement. No individual C/F/g indices or catalog-derived per-lens overrides are authored. Paragraph 0055 names d = 587.6 nm and g = 435.8 nm for the aberration plots; paragraph 0058 defines the material d reference. All 19 compatible curves remain qualified proxies, and the L3/L7 inferred UD/APD tags do not imply published partial measurements or fluorophosphate chemistry.
 
@@ -282,3 +282,9 @@ Surface validation passes and image-circle audit reports zero undersized lenses.
 - Canon Camera Museum, "EF70-300mm f/4-5.6L IS USM." https://global.canon/en/c-museum/product/ef407.html
 - OHARA optical-glass catalog pages for S-FSL5, S-FPL51, S-LAH55V, S-BSM18, S-TIH53, S-BSM14, S-LAH71, S-BAH27, S-TIH6, S-LAL14, S-LAH66, S-LAH58, and S-TIM35.
 - SCHOTT Advanced Optics, N-KZFS4 optical glass datasheet and product page.
+
+## 2026-10-31 — Source-partial catalog follow-up
+
+Original JP2013140404A Numerical Example1 is retained: the d-line definition is paragraph0058/PDF11, L2 surface3 prints 1.61340/44.3 on PDF13, and Table1/condition(8) on PDF20 prints −0.00599. Direct rendered Figure1/PDF21 confirms the same front cemented member; no geometry is remeasured or changed. Paragraph0051/PDF9 prints the normal expression, giving θgF=.5632974. Existing OHARA S-NBM51 evaluates nd1.613397229/ν44.267706 and θgF=.563371814 (partial residual+.000074414), versus N-KZFS4 θgF=.558995176 (−.004302224). The current official OHARA May2026 AGF publishes the S-NBM51 coefficients verbatim. The originally authored nd/ν and genuine dPgF remain authoritative.
+
+New CDGM H-TF3L is rejected despite its exact nominal index: θgF=.565641306 differs by+.002343906. NHG2601 H-TF3L gives θgF=.563491987, but its printed/fit partial discrepancy and weaker residual do not improve on the existing OHARA row; no duplicate catalog row is added. All19 source pairs, surfaces, clear diameters/shoulders, gaps, stop and control trajectories are unchanged. The original October30 whole-lens review and its sparse-cam, focus and source-length limitations retain their dates. This is a qualified spectral-proxy improvement, with no historical supplier, melt or chemistry identification and no repeated whole-shape claim.

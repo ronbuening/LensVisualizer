@@ -100,3 +100,11 @@ All 15 material SVG paths are finite, closed and connected at 65 focus states an
 
 - Local original US20250251576A1, front p1; Figure 1 p2; Figures 2A/B p3; paragraphs 0019/0024–0026/0031 pp11–12; definitions 0061–0070 p15; Numerical Example 1 p16; Table 1 p20.
 - Existing product correlation and catalog-proxy history are preserved as qualified context; no family publication or external prescription substitutes for the selected original.
+
+## 2026-10-31 — Bounded resin-catalog follow-up
+
+Direct source reinspection retains US20250251576A1 Numerical Example1: PDF15/paragraphs0061–0063 explicitly define d587.6nm and F486.1/C656.3nm, PDF16 surface3 prints the bonded .11mm layer 1.53352/52.8, and Figure1/PDF2 confirms its place on the front positive substrate. Reference/table pages were rendered at300dpi (native image density approximately300/301ppi); the figure was read as an interface check without a new rim measurement. These are positive source-reference citations, so their repeated use in the uncertainty-only indexReferenceNote field is removed; the explicit d fields and citations here remain. No genuine reference uncertainty is suppressed.
+
+A complete previously downloaded ordinary-glass search finds SUMITA KF4 only as a broad coordinate lead: evaluated nd1.533576107, nominal ν51.6. Its F−C span is over2% above the source-implied span, and no source C/F/g or partial evidence supports that substitution or identifies a glass formulation for the source resin. The retained MISC/ZEON datasets and NHG2601 have no closer supported published row. KF4 is rejected and no unused catalog row, synthetic fit or resin grade is invented. The source layer remains unresolved with Abbe fallback; all14 other qualified curves are retained.
+
+All15 source pairs, spectra/APD fields, R/d, aspheres, connected hybrid caps, stop and control trajectories remain unchanged. The October30 source/shape review is reused, preserving its source-length discrepancy, focus limitations and production qualifications; no new whole-lens review is claimed.

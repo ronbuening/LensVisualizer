@@ -19,6 +19,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Wide/middle finite focus is an inferred approximation; tele endpoints remain
  * infinity-identical. Only centered IS and no dimensioned flare-stop aperture
  * are authored. Source fidelity and sampled runtime clearance remain separate.
+ *
+ * Scoped catalog follow-up2026-10-31: E1/E12/E13/E15 use existing PBH53,
+ * a closer proxy to the published C/F/g triplets on original PDF15.
+ * All63 source line indices and source-rounding notes remain authoritative;
+ * all traced channels and source geometry/controls remain unchanged.
+ * This does not identify supplier/melt or either source resin formulation.
  */
 
 const LENS_DATA = {
@@ -64,7 +70,7 @@ const LENS_DATA = {
       vd: 23.9,
       focalLengthMm: -135.2,
       indexReference: "d",
-      glass: "S-TIH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      glass: "PBH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       role: "Front cemented doublet — high-dispersion achromatizing member",
       cemented: "D1",
       nC: 1.836554,
@@ -246,7 +252,7 @@ const LENS_DATA = {
       vd: 23.9,
       focalLengthMm: -58.9,
       indexReference: "d",
-      glass: "S-TIH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      glass: "PBH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       role: "Relay group achromatizing flint — cemented to L10",
       cemented: "D3",
       nC: 1.836554,
@@ -262,7 +268,7 @@ const LENS_DATA = {
       vd: 23.9,
       focalLengthMm: 33.9,
       indexReference: "d",
-      glass: "S-TIH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      glass: "PBH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       role: "IS group L4a — reversed achromat positive member",
       cemented: "D4",
       nC: 1.836554,
@@ -296,7 +302,7 @@ const LENS_DATA = {
       vd: 23.9,
       focalLengthMm: -50.3,
       indexReference: "d",
-      glass: "S-TIH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
+      glass: "PBH53 (compatible catalog spectral proxy; source supplier, melt and chemistry unresolved)",
       role: "IS group L4b — primary negative power",
       cemented: "D5",
       nC: 1.836554,
@@ -428,7 +434,13 @@ const LENS_DATA = {
       d: 0.05,
       sd: 14.0,
       medium: 4,
-      asphere: { K: 0, A4: 1.457415e-5, A6: -3.790177e-8, A8: 6.739559e-11, A10: -1.117466e-13 },
+      asphere: {
+        K: 0,
+        A4: 1.457415e-5,
+        A6: -3.790177e-8,
+        A8: 6.739559e-11,
+        A10: -1.117466e-13,
+      },
     }, // Resin1 front (asph)
     { label: "7", R: 59.996, d: 1.2, sd: 14.0, medium: 5 }, // Resin1→L4g junction
     { label: "8", R: 12.277, d: 6.81, sd: 11.0, rimExtensionSd: 14.0 }, // L4g rear → air
@@ -451,7 +463,13 @@ const LENS_DATA = {
       d: 8.54,
       sd: 13.0,
       medium: 11,
-      asphere: { K: 0, A4: -8.402971e-6, A6: -1.432432e-8, A8: 9.77336e-11, A10: -2.555962e-13 },
+      asphere: {
+        K: 0,
+        A4: -8.402971e-6,
+        A6: -1.432432e-8,
+        A8: 9.77336e-11,
+        A10: -2.555962e-13,
+      },
     }, // L10 front (asph)
     { label: "21", R: -16.418, d: 2.5, sd: 12.5, medium: 12 }, // L10→L11 junction
     { label: "22", R: -26.192, sd: 12.5 }, // L11 rear → air (var)
@@ -474,7 +492,13 @@ const LENS_DATA = {
       d: 0.08,
       sd: 13.5,
       medium: 17,
-      asphere: { K: 0, A4: -6.201996e-6, A6: 1.518167e-8, A8: -5.562855e-11, A10: 1.910063e-13 },
+      asphere: {
+        K: 0,
+        A4: -6.201996e-6,
+        A6: 1.518167e-8,
+        A8: -5.562855e-11,
+        A10: 1.910063e-13,
+      },
     }, // Resin2 front (asph)
     { label: "30", R: 154.426, d: 1.32, sd: 13.5, medium: 18 }, // Resin2→L16a junction
     { label: "31", R: 36.157, d: 6.47, sd: 13.5, medium: 19 }, // L16a→L17 junction
@@ -555,7 +579,10 @@ const LENS_DATA = {
   },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 2.9, fStops: [2.9, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22] },
+  aperture: {
+    nominalFNumber: 2.9,
+    fStops: [2.9, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
+  },
 
   /* ── Group and doublet annotations ── */
   groups: [
