@@ -17,9 +17,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * clear caps: no opaque land is added at 4.
  * No inferred cuts, rear plates, bonded resin layers or spectral overrides.
  *
- * JP paragraph 0045 defines d-line indices and Abbe numbers. Five compatible
- * catalog curves remain qualified spectral proxies, with supplier, melt and
- * chemistry unspecified; L22 resin remains Unmatched. No printed line indices,
+ * JP paragraph 0045 defines d-line indices and Abbe numbers. Six compatible
+ * catalog curves are qualified spectral proxies after the 2026-10-31 E48R
+ * archival-source follow-up; source resin grade, supplier and chemistry remain
+ * unspecified. No printed line indices,
  * partial dispersion or APD identity is supplied. Catalog data is not source data.
  *
  * Source controls: restore the printed 49.57 mm / F1.85 design targets and
@@ -132,7 +133,7 @@ const LENS_DATA = {
       vd: 55.9,
       indexReference: "d",
       focalLengthMm: 113.04891926638967,
-      glass: "Unmatched (resin material; patent nd=1.53110, vd=55.9)",
+      glass: "E48R (qualified spectral proxy for source resin; historical grade and supplier not established)",
       role: "Weak positive resin meniscus; both faces are aspherical for coma/field-curvature balancing.",
     },
     {

@@ -67,13 +67,13 @@ The 673321 coordinate class has an exact OHARA S-TIM25 coordinate match and clos
 
 ### L22 — Positive Resin Meniscus, Two Aspherical Faces
 
-**nd = 1.53110, νd = 55.9. Glass: `Unmatched (resin material; patent nd=1.53110, vd=55.9)`. f = +113.0489 mm.**
+**nd = 1.53110, νd = 55.9. Glass: `E48R (qualified spectral proxy; source resin grade not established)`. f = +113.0489 mm.**
 
 L22 is a weak positive meniscus convex toward the image side and is the only aspherical physical element in the prescription. The patent explicitly identifies it as resin and explains that placing a weak aspherical positive element in this rear position facilitates balancing field curvature and spherical aberration while suppressing intermediate-angle coma (¶0022). Because both of L22's optical faces are aspherical, the data file contains two aspherical surfaces but only one aspherical element.
 
 Canon's production specification of one PMo aspherical element is consistent with this architecture, but that consistency does not establish that the patent's L22 is literally the production PMo component. The patent-to-product connection remains the fixed correlation inference described above.
 
-No public optical-glass catalog identity is assigned to L22. The source says resin, and the coordinate audit did not establish a specific polymer or supplier whose dispersion data can be used defensibly. The `Unmatched` annotation therefore preserves the patent's published `nd` and `νd` without inventing a glass name or Sellmeier model.
+L22 uses the archival E48R curve as a qualified spectral proxy after the 2026-10-31 catalog-source follow-up below. The patent’s resin identification is retained; the E48R curve does not identify its historical grade, chemistry, supplier or manufacturing process. Published `nd` and `νd` remain unchanged.
 
 ### L23 — Biconvex Positive
 
@@ -87,18 +87,18 @@ The 734515 coordinate class lies essentially on several catalog materials, inclu
 
 The patent publishes `nd` and `νd` but no glass trade names. Paragraph 0045 explicitly defines Fraunhofer d-line coordinates, with `νd = (Nd − 1)/(NF − NC)` and d/F/C wavelengths 587.6/486.1/656.3 nm. The aberration-figure legend in ¶0014 also identifies d/f/C/g lines at 587.56/486.13/656.27/435.83 nm; those wavelength labels are not per-element measured indices. The data therefore retains d-line coordinates throughout.
 
-| Element | Stored material annotation                               |      nd |   νd | Catalog-audit interpretation                                                                                 |
-| ------- | -------------------------------------------------------- | ------: | ---: | ------------------------------------------------------------------------------------------------------------ |
-| L11     | `835427 class (vendor unresolved)`                       | 1.83481 | 42.7 | OHARA, HOYA, HIKARI, and CDGM entries reproduce the 835427 coordinate at source precision; vendor unresolved |
-| L12     | `800422 class (vendor unresolved)`                       | 1.79952 | 42.2 | OHARA S-LAH52/S-LAH52Q reproduce the 800422 coordinate at source precision; vendor unresolved                |
-| L13     | `805254 class (vendor unresolved)`                       | 1.80518 | 25.4 | SUMITA K-SFLD6 exact; OHARA S-TIH 6 essentially exact; vendor unresolved                                     |
-| L21     | `673321 class (vendor unresolved)`                       | 1.67270 | 32.1 | Exact OHARA S-TIM25 coordinates; vendor unresolved                                                           |
-| L22     | `Unmatched (resin material; patent nd=1.53110, vd=55.9)` | 1.53110 | 55.9 | Patent explicitly says resin; no defensible public catalog identity assigned                                 |
-| L23     | `734515 class (vendor unresolved)`                       | 1.73400 | 51.5 | Near-exact OHARA, HIKARI, and CDGM coordinates; vendor unresolved                                            |
+| Element | Stored material annotation                                            |      nd |   νd | Catalog-audit interpretation                                                                                 |
+| ------- | --------------------------------------------------------------------- | ------: | ---: | ------------------------------------------------------------------------------------------------------------ |
+| L11     | `835427 class (vendor unresolved)`                                    | 1.83481 | 42.7 | OHARA, HOYA, HIKARI, and CDGM entries reproduce the 835427 coordinate at source precision; vendor unresolved |
+| L12     | `800422 class (vendor unresolved)`                                    | 1.79952 | 42.2 | OHARA S-LAH52/S-LAH52Q reproduce the 800422 coordinate at source precision; vendor unresolved                |
+| L13     | `805254 class (vendor unresolved)`                                    | 1.80518 | 25.4 | SUMITA K-SFLD6 exact; OHARA S-TIH 6 essentially exact; vendor unresolved                                     |
+| L21     | `673321 class (vendor unresolved)`                                    | 1.67270 | 32.1 | Exact OHARA S-TIM25 coordinates; vendor unresolved                                                           |
+| L22     | `E48R (qualified spectral proxy; source resin grade not established)` | 1.53110 | 55.9 | Patent explicitly says resin; qualified E48R curve, without a historical grade identification                |
+| L23     | `734515 class (vendor unresolved)`                                    | 1.73400 | 51.5 | Near-exact OHARA, HIKARI, and CDGM coordinates; vendor unresolved                                            |
 
 The coordinate matches are used only to test whether the stored indices represent plausible public material classes. They are not used to overwrite the patent prescription or to assert a supplier. This distinction matters because multiple vendors publish materials at nearly the same `nd`/`νd` coordinates.
 
-The patent does not provide per-element `nC`, `nF`, `ng`, `PgF`, or `dPgF`, and the neutral class labels are insufficient to establish a unique Sellmeier model. The data file consequently omits those per-element spectral overrides. The engine currently resolves five compatible catalog curves: J-LASF05, S-LAH52Q, N-SF6, S-TIM25 and S-LAL59 for L11/L12/L13/L21/L23 respectively. They are qualified spectral proxies, not uniquely identified source materials, historical suppliers, melts or chemistry. L22 remains unresolved resin, with no catalog curve. No apochromatic or anomalous-partial-dispersion behavior is claimed from the Abbe coordinates alone.
+The patent does not provide per-element `nC`, `nF`, `ng`, `PgF`, or `dPgF`, and the neutral class labels are insufficient to establish a unique Sellmeier model. The data file consequently omits those per-element spectral overrides. The engine resolves six compatible catalog curves: J-LASF05, S-LAH52Q, N-SF6, S-TIM25 and S-LAL59 for L11/L12/L13/L21/L23 respectively, plus the qualified archival E48R curve for L22. They are qualified spectral proxies, not uniquely identified source materials, historical suppliers, melts or chemistry. L22’s historical resin identity remains unresolved despite the qualified curve. No apochromatic or anomalous-partial-dispersion behavior is claimed from the Abbe coordinates alone.
 
 ## Focus Mechanism
 
@@ -200,3 +200,11 @@ The inferred near endpoint remains 0.30 m object-to-image distance with β = −
 9. SUMITA Optical Glass, **Catalog Data**. Coordinate comparison for candidate glass classes. https://www.sumita-opt.co.jp/en/download/
 10. SCHOTT Advanced Optics, **Optical Glass Catalog**. Coordinate comparison for candidate glass classes. https://www.us.schott.com/shop/advanced-optics/en/search/
 11. CDGM, **Colourless Optical Glass Database**. Coordinate comparison for candidate glass classes. https://www.cdgmgd.com/go.htm?k=Colourless_Optical_Glass&url=goods
+
+## Scoped catalog-source follow-up — 2026-10-31
+
+The original shape-and-glass review remains dated 2026-10-30; this follow-up changes only the spectral-proxy disposition for L22. JP 2021-131499 A, Numerical Example 1: PDF/printed page 9, paragraph 0049, surface 9; d-line definition paragraph 0045, pages 8–9; paragraph 0013, page 4, explicitly calls L22 resin.
+
+The [archival ZEON manufacturer AGF](https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/zeon.agf) carries permission to reproduce RadiantZemax data; it is an archival copy, not a direct vendor fetch. [Ansys support](https://community.zemax.com/got-a-question-7/lens-material-in-terahertz-spectral-range-780) identifies ZEON as the catalog provider. Its E48R row uses the six-term polynomial n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸, with λ in micrometres, at the archived 25°C reference and within 0.400–1.600 µm. C/d/F/g indices evaluate to 1.528351752 / 1.531160165 / 1.537829337 / 1.543170270, giving νd = 56.043828 and PgF = 0.563533. Against the row’s own nd = 1.531170 and νd = 56.0, residuals −0.000009835 / +0.043828 pass the stricter 0.00003 / 0.11 consistency checks. PgF belongs to the curve and is not copied into per-lens source evidence.
+
+The source pair 1.53110/55.9 differs from the curve by +0.000060165 in nd and +0.143828 in evaluated νd (+0.100000 against the archived nominal νd). The original identifies resin, without a polymer grade. Qualified-curve coverage changes 5/6 → 6/6. No catalog code alias, source partial-dispersion claim or APD badge is added. Every source index/Abbe pair, reference wavelength, R/d, asphere, cap/shoulder/cut, stop, plate and focus/zoom control is unchanged. Prior runtime and shape results retain their original dates and scope; this is not a fresh shape review.
