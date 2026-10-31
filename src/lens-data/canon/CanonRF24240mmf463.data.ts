@@ -45,6 +45,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+// 2026-10-31 catalog follow-up: L14 uses the published E48R polynomial only as a
+// spectral proxy. Original Numerical Data1 p.6 row25 / paragraph0051 retain the
+// source 1.53110/55.9 d-line pair; neither a resin identity nor manufacturing
+// process is established. Source R/d, aspheres, clear rims and controls are unchanged.
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -253,7 +257,7 @@ const LENS_DATA = {
       nd: 1.5311,
       vd: 55.9,
       focalLengthMm: 105.0,
-      glass: "Unmatched (source medium 1.53110/55.9; chemistry and process unidentified)",
+      glass: "E48R (qualified spectral proxy; source medium chemistry, supplier and process unspecified)",
       apd: false,
       role: "Aspherical relay element — corrects SA, coma, and field curvature across zoom",
     },

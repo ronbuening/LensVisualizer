@@ -32,7 +32,7 @@ The source explicitly includes both the aperture plane (S13) and flare-stop plan
 
 ### G2 — Aspherical negative meniscus
 
-**nd = 1.53110, νd = 55.9; Unmatched medium; isolated f ≈ −112.73 mm.** Its front S3A carries the positive even-polynomial departure on a weak base radius. Paragraph 0062 permits resin for G2 to reduce weight; it does not identify the selected numerical material, COP, a trade name or a molding method. S3A clear 14.0 mm remains gap limited; S4's rear cap increases to the native 15.0 mm endpoint. A full front 15 mm trial fails the existing adjacent-gap constraint, as recorded below.
+**nd = 1.53110, νd = 55.9; qualified archival E48R spectral proxy; isolated f ≈ −112.73 mm.** Its front S3A carries the positive even-polynomial departure on a weak base radius. Paragraph 0062 permits resin for G2 to reduce weight; it does not identify the selected numerical material, COP, a trade name or a molding method. S3A clear 14.0 mm remains gap limited; S4's rear cap increases to the native 15.0 mm endpoint. A full front 15 mm trial fails the existing adjacent-gap constraint, as recorded below.
 
 ### L1P — Positive member in L1
 
@@ -56,24 +56,24 @@ The source explicitly includes both the aperture plane (S13) and flare-stop plan
 
 ### L4 — Final negative asphere
 
-**nd = 1.53110, νd = 55.9; Unmatched medium; f ≈ −185.51 mm.** Both faces are aspherical. The native front short vertical stroke is attached to the optical blank, followed by the curved cap, with no mechanical bracket or detached flange. Clear S17A remains 11.8 mm and gains outer 13.5; the rear S18A clear cap becomes 13.5 mm. Equal coordinates to G2 establish neither equal chemistry nor one molding resin.
+**nd = 1.53110, νd = 55.9; qualified archival E48R spectral proxy; f ≈ −185.51 mm.** Both faces are aspherical. The native front short vertical stroke is attached to the optical blank, followed by the curved cap, with no mechanical bracket or detached flange. Clear S17A remains 11.8 mm and gains outer 13.5; the rear S18A clear cap becomes 13.5 mm. Equal coordinates to G2 establish neither equal chemistry nor one molding resin.
 
 ## Glass Identification and Source Qualification
 
-Paragraph 0076, PDF page 20 / printed 6, explicitly defines d 587.6 nm, F 486.1 nm and C 656.3 nm with νd=(Nd−1)/(NF−NC). All eight printed pairs are retained. The six resolved curves below are compatible spectral proxies; no historical supplier, melt, composition or manufacturing process is established. G2 and L4 stay unresolved. The earlier COP/trade-name, barium/lanthanum/fluor chemistry, density and cost assertions are removed as selected-medium claims. A conditional catalog class comparison cannot establish those properties of the source material.
+Paragraph 0076, PDF page 20 / printed 6, explicitly defines d 587.6 nm, F 486.1 nm and C 656.3 nm with νd=(Nd−1)/(NF−NC). All eight printed pairs are retained. The eight resolved curves below are compatible spectral proxies after the October 31 archival E48R follow-up; no historical supplier, melt, composition or manufacturing process is established. G2 and L4 retain unspecified source composition; their E48R curves do not identify a polymer grade. The earlier COP/trade-name, barium/lanthanum/fluor chemistry, density and cost assertions are removed as selected-medium claims. A conditional catalog class comparison cannot establish those properties of the source material.
 
 | Element | Source nd / νd | Qualified curve | Source identity                             |
 | ------- | -------------- | --------------- | ------------------------------------------- |
 | G1      | 1.63854 / 55.4 | S-BSM18         | Unidentified                                |
-| G2      | 1.53110 / 55.9 | Unmatched       | Resin allowed conditionally, not identified |
+| G2      | 1.53110 / 55.9 | E48R            | Resin allowed conditionally, not identified |
 | L1P     | 1.69895 / 30.1 | S-TIM35         | Unidentified                                |
 | L2a     | 1.90366 / 31.3 | S-LAH95         | Unidentified                                |
 | L2b     | 1.84666 / 23.9 | S-NPH53         | Unidentified                                |
 | L2c     | 1.77250 / 49.6 | S-LAH66         | Unidentified                                |
 | LP      | 1.48749 / 70.2 | S-FSL5          | Unidentified                                |
-| L4      | 1.53110 / 55.9 | Unmatched       | Unidentified                                |
+| L4      | 1.53110 / 55.9 | E48R            | Unidentified                                |
 
-No element-specific C/F/g index values, partial-dispersion measurements or APD designation is printed. The source's d/g aberration curves are context, not numerical spectral indices. Zero per-lens spectral overrides exist; six curves remain enabled and two media remain Unmatched, exactly as before the label qualification. There are no new glass values or curve fits.
+No element-specific C/F/g index values, partial-dispersion measurements or APD designation is printed. The source's d/g aberration curves are context, not numerical spectral indices. Zero per-lens spectral overrides exist; eight compatible curves are enabled after the October 31 archival E48R follow-up. There are no new source glass values or per-lens curve fits.
 
 ## Focus Mechanism
 
@@ -183,3 +183,11 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 83.999241% at zoom 0.25, focus 0.05, aberration control 0: Gaussian 0.992047087 m versus label 6.200000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
 
 The unresolved format-edge roots concern the widest zoom region; their failure is an inverse-solver/model limitation and is not proof that no chief exists. Published source stations, reconstructed close gaps and source-shaped caps retain their existing authority.
+
+## Scoped catalog-source follow-up — 2026-10-31
+
+The original shape-and-glass review remains dated 2026-10-30; this follow-up changes only the spectral-proxy disposition for G2 and L4. US 2023/0213739 A1, Numerical Example 1: PDF page 20 / printed 6, paragraph 0080, surfaces 3 and 17; d/F/C definition paragraph 0076 on that page. Paragraph 0062, PDF page 19 / printed 5, permits resin for G2; it does not identify a selected polymer, and it supplies no L4 chemistry.
+
+The [archival ZEON manufacturer AGF](https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/zeon.agf) carries permission to reproduce RadiantZemax data; it is an archival copy, not a direct vendor fetch. [Ansys support](https://community.zemax.com/got-a-question-7/lens-material-in-terahertz-spectral-range-780) identifies ZEON as the catalog provider. Its E48R row uses the six-term polynomial n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸, with λ in micrometres, at the archived 25°C reference and within 0.400–1.600 µm. C/d/F/g indices evaluate to 1.528351752 / 1.531160165 / 1.537829337 / 1.543170270, giving νd = 56.043828 and PgF = 0.563533. Against the row’s own nd = 1.531170 and νd = 56.0, residuals −0.000009835 / +0.043828 pass the stricter 0.00003 / 0.11 consistency checks. PgF belongs to the curve and is not copied into per-lens source evidence.
+
+Both retained source pairs 1.53110/55.9 differ from the curve by +0.000060165 in nd and +0.143828 in evaluated νd (+0.100000 against archived nominal νd). Equal coordinates do not prove equal chemistry or a common production resin. Qualified-curve coverage changes 6/8 → 8/8. No catalog code alias, source partial-dispersion claim or APD badge is added. Every source index/Abbe pair, reference wavelength, R/d, asphere, cap/shoulder/cut, stop, plate and focus/zoom control is unchanged. Prior runtime and shape results retain their original dates and scope; this is not a fresh shape review.

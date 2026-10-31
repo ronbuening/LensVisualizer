@@ -183,3 +183,13 @@ which example is stored) and p. 32 (Table 1). Every Numerical Data 1 row was rea
 Label-only proof: baseline data SHA256 `f396674a15ef26ba8fb7355654dc3b559f8e8bcf2cdf4864ac8c9f19226559cb`; candidate SHA256 `1b71b155dbc9efa0f0840d21479c625819fef07d5cadbd98721fe4b032c553f8`.
 Parsed equality excludes exactly all21 `elements.*.glass` strings and L2/L17 `apdNote` strings; every other parsed
 field is identical. All20 identified curves and the one unresolved medium retain the same resolver outcome.
+
+## 2026-10-31 — Positive catalog-source follow-up for L14
+
+This scoped pass preserves the completed September23 source review and October30 runtime qualifications. Direct rendered inspection of the selected US20200142167A1, Numerical Data1 row25, PDF23 / printed6, reconfirms nd1.53110/νd55.9; paragraph0051 on PDF20 / printed3 explicitly defines d/F/C/g and νd. No L14 per-element line indices or partial are supplied. No shape inspection is repeated or added to the fresh-review count.
+
+| Medium          | Before                              | After                         | Evidence and limits                                                                                                                                                                                                                                                                                                                             |
+| --------------- | ----------------------------------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| L14 / surface25 | Unmatched1.53110/55.9 source medium | E48R qualified spectral proxy | Published ZEON.AGF formula1, licensed RadiantZemax archival copy pinned36f3cd24da467375821b0a66698274fd84e19f6d; source link in analysis. Evaluated1.531160165/56.043827969; source residual+.000060165/+.143827969. Published range0.400–1.600µm,25°C. Chemistry, supplier, melt, resin identity and manufacturing process remain unspecified. |
+
+Compatible curves improve20/21→21/21. All source numeric fields, APD flags, geometric fields and controls are unchanged; no per-lens spectral override, source wavelength claim or additional optical medium is invented. This curve is a qualified approximation, not a newly identified production material.

@@ -43,8 +43,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                            ║
  * ║  GLASS: d-line nd/νd are patent data. Vendor identity is unresolved.      ║
  * ║    Coordinate-compatible curves are qualified proxies; 1.53110/55.9 aspheric  ║
- * ║    material remains Unmatched. nC/nF/ng/dPgF are omitted because the     ║
- * ║    patent does not publish them; catalog curves do not identify a melt.  ║
+ * ║    material uses a qualified E48R proxy after the 2026-10-31 follow-up.  ║
+ * ║    nC/nF/ng/dPgF are omitted: the patent does not publish them, and       ║
+ * ║    catalog curves do not identify a source melt or composition.           ║
  * ║                                                                            ║
  * ║  SOURCE CONFLICT: Table 1 condition (3) prints 0.975073 although the     ║
  * ║    stated f3A/|f2| evaluates to about 2.33746. The prescription is not   ║
@@ -250,7 +251,7 @@ const LENS_DATA = {
       vd: 55.9,
       indexReference: "d",
       focalLengthMm: -103.73225,
-      glass: "Unmatched (1.53110/55.9; no exact public catalog match)",
+      glass: "E48R (qualified spectral proxy; source composition and supplier unspecified)",
       apd: false,
       role: "Double-sided aspherical negative element forming the fifth zoom unit B5.",
     },

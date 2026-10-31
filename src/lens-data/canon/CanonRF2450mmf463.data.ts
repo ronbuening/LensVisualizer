@@ -57,7 +57,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 // 2026-10-30: native connected optical shoulders at S2/S17A; six clear-cap
 // refinements. All source R/d/aspheres/cams/stops preserved. Unknown G2/L4
-// composition stays Unmatched; catalog curves qualify six other media only.
+// composition stays unspecified; archival E48R curves qualify G2/L4 after the
+// 2026-10-31 catalog follow-up, giving eight qualified spectral proxies.
 const LENS_DATA = {
   /* ── Identity ── */
   schema: 2,
@@ -115,7 +116,7 @@ const LENS_DATA = {
       indexReference: "d",
       vd: 55.9,
       focalLengthMm: -112.73,
-      glass: "Unmatched (source d-line 1.53110/55.9; composition not identified)",
+      glass: "E48R (qualified spectral proxy; source composition and supplier unspecified)",
       apd: false,
       role: "Aspherical correction plate — nearly flat base curve (R₁ ≈ 995 mm) with aspherical departure correcting wide-angle coma and field curvature (¶0061). The patent allows resin for G2 to save weight (¶0062).",
     },
@@ -193,7 +194,7 @@ const LENS_DATA = {
       indexReference: "d",
       vd: 55.9,
       focalLengthMm: -185.51,
-      glass: "Unmatched (source d-line 1.53110/55.9; composition not identified)",
+      glass: "E48R (qualified spectral proxy; source composition and supplier unspecified)",
       apd: false,
       role: "Rear field corrector — dual aspherical surfaces (departures about −1.84 mm front and −2.37 mm rear at current clear caps) provide higher-order aberration correction for astigmatism and field curvature. Weak negative power (f ≈ −186 mm) slightly extends BFD.",
     },

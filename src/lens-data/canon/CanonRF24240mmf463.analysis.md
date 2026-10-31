@@ -14,8 +14,9 @@
 
 The completed original shape-and-glass review dated **2026-09-23** is reused. Earlier glass coverage dated 2026-05-04,
 May 19/20, July 29 and August 7 remains historical. The **2026-10-30** work adds current runtime/label qualifications,
-with no fresh original-PDF inspection or additional source-review count. Current canonical optical data exactly equal
-the Sept23 prescription after only later source.example metadata is excluded.
+with no fresh original-PDF inspection or additional source-review count. Current canonical prescription coordinates and controls equal
+the Sept23 prescription; source metadata and qualified catalog labels are tracked separately. The scoped
+October31 catalog update below deliberately changes the L14 spectral proxy, with its source medium still unnamed.
 
 All named catalog glasses below are qualified current spectral proxies, not historical supplier, melt, chemistry or
 annealing identities. Chemical-family descriptions refer to those current candidates. The unidentified 1.53110/55.9
@@ -270,7 +271,7 @@ At the patent effective semi-diameters (10.79 mm and 11.285 mm), the departures 
 
 The dominant effect of surface 25's aspherical profile is to flatten the surface progressively toward the rim compared to a sphere, which primarily corrects **spherical aberration** and **coma** in the converging beam. Surface 26's profile adds a compensating steepening that helps control **astigmatism** and **field curvature**. Because both surfaces are on the same element, the designer can independently tune on-axis and off-axis correction on one modeled homogeneous body; its fabrication process remains unidentified.
 
-The L14 material (nd = 1.531, νd = 55.9) is not named in the patent. Neither resin chemistry nor manufacturing cost/process is established by the source pair.
+The L14 material (nd = 1.531, νd = 55.9) is not named in the patent. Neither resin chemistry nor manufacturing cost/process is established by the source pair. The published E48R curve is now used only as a qualified spectral proxy; it does not establish a ZEONEX grade, polymer formulation or supplier in this lens.
 
 ### Why only one aspherical element?
 
@@ -302,29 +303,29 @@ These nd ≈ 2.0 glasses are expensive specialty materials, but their use is jus
 
 ### Glass Summary Table
 
-| Element | nd      | νd   | Glass Type                         | Category                               |
-| ------- | ------- | ---- | ---------------------------------- | -------------------------------------- |
-| L1      | 1.90366 | 31.3 | S-LAH95 type                       | Lanthanum dense flint                  |
-| L2      | 1.49700 | 81.5 | S-FPL51 type                       | Fluorophosphate crown **(UD)**         |
-| L3      | 1.61800 | 63.4 | S-PHM52 type                       | Phosphate crown                        |
-| L4      | 1.85150 | 40.8 | S-LAH89 type                       | Lanthanum dense flint                  |
-| L5      | 1.85150 | 40.8 | S-LAH89 type                       | Lanthanum dense flint                  |
-| L6      | 1.92286 | 20.9 | E-FDS1 (HOYA)                      | Ultra-high index dense flint           |
-| L7      | 1.77250 | 49.6 | S-LAH66 type                       | Lanthanum crown                        |
-| L8      | 1.76182 | 26.5 | S-TIH14 type                       | Heavy flint                            |
-| L9      | 1.58144 | 40.8 | PBL25 (OHARA equivalent; 581408)   | Barium crown                           |
-| L10     | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint           |
-| L11     | 2.00069 | 25.5 | TAFD40 (HOYA equivalent; 001255)   | Ultra-high index dense flint           |
-| L12     | 1.72000 | 43.7 | S-LAM52                            | Lanthanum glass                        |
-| L13     | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint           |
-| L14     | 1.53110 | 55.9 | Unmatched (531559)                 | Unidentified medium/process **(ASPH)** |
-| L15     | 1.85478 | 24.8 | S-NBH56 (OHARA)                    | Dense flint                            |
-| L16     | 1.59282 | 68.6 | FCD515 (HOYA catalog equivalent)   | Low-dispersion phosphate crown         |
-| L17     | 1.49700 | 81.5 | S-FPL51 type                       | Fluorophosphate crown **(UD)**         |
-| L18     | 1.80518 | 25.4 | S-TIH6 (OHARA)                     | Heavy flint                            |
-| L19     | 1.63854 | 55.4 | S-BSM18 type                       | Barium crown                           |
-| L20     | 1.83481 | 42.7 | S-LAH55 (835427 coordinate match)  | Lanthanum dense flint                  |
-| L21     | 1.84666 | 23.8 | S-TIH53 type                       | Heavy flint                            |
+| Element | nd      | νd   | Glass Type                         | Category                                     |
+| ------- | ------- | ---- | ---------------------------------- | -------------------------------------------- |
+| L1      | 1.90366 | 31.3 | S-LAH95 type                       | Lanthanum dense flint                        |
+| L2      | 1.49700 | 81.5 | S-FPL51 type                       | Fluorophosphate crown **(UD)**               |
+| L3      | 1.61800 | 63.4 | S-PHM52 type                       | Phosphate crown                              |
+| L4      | 1.85150 | 40.8 | S-LAH89 type                       | Lanthanum dense flint                        |
+| L5      | 1.85150 | 40.8 | S-LAH89 type                       | Lanthanum dense flint                        |
+| L6      | 1.92286 | 20.9 | E-FDS1 (HOYA)                      | Ultra-high index dense flint                 |
+| L7      | 1.77250 | 49.6 | S-LAH66 type                       | Lanthanum crown                              |
+| L8      | 1.76182 | 26.5 | S-TIH14 type                       | Heavy flint                                  |
+| L9      | 1.58144 | 40.8 | PBL25 (OHARA equivalent; 581408)   | Barium crown                                 |
+| L10     | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint                 |
+| L11     | 2.00069 | 25.5 | TAFD40 (HOYA equivalent; 001255)   | Ultra-high index dense flint                 |
+| L12     | 1.72000 | 43.7 | S-LAM52                            | Lanthanum glass                              |
+| L13     | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint                 |
+| L14     | 1.53110 | 55.9 | E48R (qualified spectral proxy)    | Source medium/process unspecified **(ASPH)** |
+| L15     | 1.85478 | 24.8 | S-NBH56 (OHARA)                    | Dense flint                                  |
+| L16     | 1.59282 | 68.6 | FCD515 (HOYA catalog equivalent)   | Low-dispersion phosphate crown               |
+| L17     | 1.49700 | 81.5 | S-FPL51 type                       | Fluorophosphate crown **(UD)**               |
+| L18     | 1.80518 | 25.4 | S-TIH6 (OHARA)                     | Heavy flint                                  |
+| L19     | 1.63854 | 55.4 | S-BSM18 type                       | Barium crown                                 |
+| L20     | 1.83481 | 42.7 | S-LAH55 (835427 coordinate match)  | Lanthanum dense flint                        |
+| L21     | 1.84666 | 23.8 | S-TIH53 type                       | Heavy flint                                  |
 
 _Note: Glass identifications are based on 6-digit nd/νd code matching against major catalogs. Canon may use proprietary melt equivalents; the catalog names here indicate the glass type and optical properties._
 
@@ -436,3 +437,9 @@ These limits belong to existing interval interpolation and source ED constraints
 guard was fitted to remove them. Source three stations retain their original numerical values. All 21 actual SVG
 paths remain finite, closed and connected across 65 geometries, zero hidden trim. No new original-figure comparison
 is claimed; inherited source fidelity, sampled current runtime and production correlation remain separate.
+
+## 2026-10-31 — Scoped catalog-source follow-up
+
+The September23 completed source/shape review and October30 qualification dates are preserved. This follow-up directly rechecked the rendered selected original US20200142167A1 Numerical Data1 row25 (PDF23 / printed6) and its paragraph0051 reference definition (PDF20 / printed3): d587.6/F486.1/C656.3/g435.8 nm, with no per-element spectral indices or partial for L14. The source1.53110/55.9 remains literal.
+
+The public E48R polynomial is sourced from ZEON.AGF in a permission-bearing, pinned RadiantZemax archival copy, not a new direct vendor download: https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/zeon.agf . Its native formula1 uses wavelength in micrometres,25°C and the published0.400–1.600µm range. It evaluates nd1.531160165 / νd56.043827969, differing from the source by+.000060165 /+.143827969. It is a compatible numerical spectral proxy, not identification of the unknown source medium or proof of resin chemistry, supplier, melt or process. All21 modeled media now have compatible curves; the source's unassigned material identity remains unresolved. No source index, Abbe, partial, asphere, R/d, clear cap, focus/zoom/iris control or physical plate is altered. The retained finite-focus, field, IS and interpolation qualifications above remain applicable.

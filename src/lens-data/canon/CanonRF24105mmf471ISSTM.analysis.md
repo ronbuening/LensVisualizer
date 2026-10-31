@@ -122,11 +122,11 @@ The data file preserves this mechanism identification but does not reconstruct a
 
 ### L12 — Negative Meniscus with Two Aspherical Surfaces, B5
 
-**nd = 1.53110, νd = 55.9. Qualified coordinate comparison: Unmatched (1.53110/55.9; no exact public catalog match). f = −103.732250 mm.**
+**nd = 1.53110, νd = 55.9. Qualified coordinate comparison: E48R (qualified spectral proxy; source composition unspecified). f = −103.732250 mm.**
 
 L12 is the single negative fifth unit B5 and carries both modeled aspherical surfaces, `22A` and `23A`. It is the second lens counted from the image side, matching the patent's discussion of placing an aspherical lens in this location to correct field curvature (¶0054–¶0055).
 
-No public catalog glass was adopted for the 1.53110/55.9 coordinate. Consequently the data file does not attach vendor Sellmeier data or inferred line indices to L12.
+The 2026-10-31 catalog-source follow-up adopts the archival E48R polynomial as a qualified spectral proxy for L12’s unchanged 1.53110/55.9 pair. It supplies a compatible dispersion curve without identifying the source medium’s chemistry, grade or supplier; no per-lens line indices are authored.
 
 ### L13 — Biconvex Positive, B6
 
@@ -138,15 +138,15 @@ B6 precedes the rear image-space interval that holds the patent's `GB` plate, mo
 
 ## Glass Identification and Selection
 
-The patent provides d-line refractive index and Abbe number but no glass-maker names. The data file therefore uses coordinate-class labels where public catalogs contain multiple plausible equivalents and an explicit `Unmatched` label where no exact public catalog identity is defensible.
+The patent provides d-line refractive index and Abbe number but no glass-maker names. The data file therefore uses coordinate-class labels where public catalogs contain multiple plausible equivalents and a qualified E48R spectral-proxy label for L12; no source-material identity is asserted.
 
-| Data-file glass label                                   |      nd |   νd | Elements            | Identification status                                                                   |
-| ------------------------------------------------------- | ------: | ---: | ------------------- | --------------------------------------------------------------------------------------- |
-| 603606 SK14-class (vendor unresolved)                   | 1.60311 | 60.6 | L1, L3, L6, L9, L10 | Cross-vendor SK14-class coordinate; production vendor not established                   |
-| 904313 class (vendor unresolved)                        | 1.90366 | 31.3 | L2, L5, L7          | Multiple close/exact high-index catalog equivalents; vendor unresolved                  |
-| 847239 class (vendor unresolved)                        | 1.84666 | 23.9 | L4, L13             | Dense-flint coordinate with several cross-vendor equivalents; vendor unresolved         |
-| 911353 class (vendor unresolved)                        | 1.91082 | 35.3 | L8, L11             | Exact/near public equivalents exist, but the patent does not identify the melt supplier |
-| Unmatched (1.53110/55.9; no exact public catalog match) | 1.53110 | 55.9 | L12                 | No exact public-catalog identity adopted                                                |
+| Data-file glass label                                           |      nd |   νd | Elements            | Identification status                                                                   |
+| --------------------------------------------------------------- | ------: | ---: | ------------------- | --------------------------------------------------------------------------------------- |
+| 603606 SK14-class (vendor unresolved)                           | 1.60311 | 60.6 | L1, L3, L6, L9, L10 | Cross-vendor SK14-class coordinate; production vendor not established                   |
+| 904313 class (vendor unresolved)                                | 1.90366 | 31.3 | L2, L5, L7          | Multiple close/exact high-index catalog equivalents; vendor unresolved                  |
+| 847239 class (vendor unresolved)                                | 1.84666 | 23.9 | L4, L13             | Dense-flint coordinate with several cross-vendor equivalents; vendor unresolved         |
+| 911353 class (vendor unresolved)                                | 1.91082 | 35.3 | L8, L11             | Exact/near public equivalents exist, but the patent does not identify the melt supplier |
+| E48R (qualified spectral proxy; source composition unspecified) | 1.53110 | 55.9 | L12                 | Qualified E48R curve; historical composition and supplier unspecified                   |
 
 The patent coordinates were compared against current OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalog data. For example, the 1.60311/60.6 coordinate is reproduced by several SK14-family glasses, while the 1.90366/31.3 and 1.84666/23.9 coordinates likewise have multiple plausible cross-vendor equivalents. These equivalences support coordinate-compatible spectral proxies; they do not establish historical chemistry, supplier or melt.
 
@@ -268,16 +268,16 @@ The native Figure 1 bitmap is 2560×3300, one bit at 300 ppi. A 600 ppi renderin
 
 The two shoulders use `rimExtensionSd` and preserve `sd` as clear aperture. The retained 12.6/11.9 caps agree with the native curve endpoints within uncertainty. Increasing S4 clear sd to 16.2 fails the unchanged 64.2° slope guard (90.0°); increasing S22A clear to 12.8 passes geometry but extends its asphere into the resolved straight outer stroke, so that trial is rejected on source shape. Retaining the old S1/S2 caps misses the native curve height by 2.6/3.2 mm, beyond measurement uncertainty. Other caps remain within that uncertainty or their retained gap/edge constraints; unequal bonded caps are not replaced by equal-height blocks. No cut, bonded-interface land, resin wing or new hybrid layer is added. Every source R/d, both full aspheres, source zoom row, GB thickness/gap, stop model and control is unchanged.
 
-All **14 modeled media** agree with the original printed nd/νd pairs. Twelve active media and GB retain thirteen compatible catalog curves; L12's 1.53110/55.9 medium remains **Unmatched**. The source discusses resin and glass conditionally in paragraph 0054; it does not identify this selected medium's chemistry or manufacturing process. There are no per-lens spectral overrides, printed line-index numbers, partial-dispersion measurements or source APD designations to add or remove. The data labels now explicitly qualify compatible curves as proxies, with supplier, melt and chemistry unresolved. GB's S-BSL7 curve is a compatible proxy for source 1.51633/64.1, not a named source glass.
+All **14 modeled media** agree with the original printed nd/νd pairs. The October 30 source pass retained thirteen compatible curves; the October 31 archival E48R follow-up enables L12 as the fourteenth qualified curve. L12’s 1.53110/55.9 pair is unchanged and its material identity remains unspecified. The source discusses resin and glass conditionally in paragraph 0054; it does not identify this selected medium's chemistry or manufacturing process. There are no per-lens spectral overrides, printed line-index numbers, partial-dispersion measurements or source APD designations to add or remove. The data labels now explicitly qualify compatible curves as proxies, with supplier, melt and chemistry unresolved. GB's S-BSL7 curve is a compatible proxy for source 1.51633/64.1, not a named source glass.
 
-| Modeled medium      | Source nd / νd | Qualified curve                           |
-| ------------------- | -------------- | ----------------------------------------- |
-| L1, L3, L6, L9, L10 | 1.60311 / 60.6 | N-SK14                                    |
-| L2, L5, L7          | 1.90366 / 31.3 | J-LASFH13                                 |
-| L4, L13             | 1.84666 / 23.9 | S-NPH53                                   |
-| L8, L11             | 1.91082 / 35.3 | H-ZLaF4LA                                 |
-| L12                 | 1.53110 / 55.9 | Unmatched; no inferred catalog dispersion |
-| GB rear plate       | 1.51633 / 64.1 | S-BSL7                                    |
+| Modeled medium      | Source nd / νd | Qualified curve                                              |
+| ------------------- | -------------- | ------------------------------------------------------------ |
+| L1, L3, L6, L9, L10 | 1.60311 / 60.6 | N-SK14                                                       |
+| L2, L5, L7          | 1.90366 / 31.3 | J-LASFH13                                                    |
+| L4, L13             | 1.84666 / 23.9 | S-NPH53                                                      |
+| L8, L11             | 1.91082 / 35.3 | H-ZLaF4LA                                                    |
+| L12                 | 1.53110 / 55.9 | E48R qualified spectral proxy; material identity unspecified |
+| GB rear plate       | 1.51633 / 64.1 | S-BSL7                                                       |
 
 Catalog design endpoints now quote the printed **24.72/101.85 mm**, with computed EFLs retained separately above. The example label is normalized to Numerical Example 1. The existing condition-(3) conflict now has a structured unresolved source note: Table 1 on PDF page 23 / printed 7 gives 0.975073 for f3A/|f2|, while its unit values and retained prescription give 2.337462. Claim 3 on PDF page 24 / printed 8 repeats that expression and its range. No unique correction is established; no optical value is fitted to the conditional row.
 
@@ -288,3 +288,11 @@ Format-corner chiefs reach ≥99% at **63/65** positions. The two widest reach 9
 At each current iris, 193-point pupil bundles cover 65 zooms and four field states. Every sampled axial bundle passes 193/193. At fixed baseline field angles, source-station edge counts change from 24/131/80 to **34/136/110**. Across all fixed-angle field samples, 65 counts improve, 166 are unchanged and 29 decrease by at most five rays as the resolved physical shoulders intercept peripheral paths. The runtime's adaptive edge field also expands at wide: its separately sampled current edge count is 9/193, so it is not an equal-angle before/after comparison. These are sampled geometric transmission results, not production illumination.
 
 Source-station image-plane residuals after the physical GB are +0.001973/+0.045788/+0.041019 mm. Sparse linear zoom interpolation is illustrative: at zoom 0.296875 the calculated EFL is **41.284103 mm** versus displayed 49.627813 mm, with image residual **−4.885587 mm**. Preserve source gaps; no continuous source cam or finite-focus prescription is supplied. Across 65 available states, all **845** SVG element paths are finite, closed and connected, with zero hidden renderer trimming. The rear plate remains traced and hidden from the optical section. Source fidelity, sampled runtime clearance and product correlation remain separate.
+
+## Scoped catalog-source follow-up — 2026-10-31
+
+The original shape-and-glass review remains dated 2026-10-30; this follow-up changes only the spectral-proxy disposition for L12. US 2021/0003831 A1, Numerical Example 1: PDF page 22 / printed 6, paragraph 0084, surface 22; d/F/C definition paragraph 0079, PDF page 21 / printed 5. Paragraph 0054 discusses resin/glass alternatives conditionally and does not name the selected material.
+
+The [archival ZEON manufacturer AGF](https://github.com/uasal/zmx2yaml/blob/36f3cd24da467375821b0a66698274fd84e19f6d/AGF_files/zeon.agf) carries permission to reproduce RadiantZemax data; it is an archival copy, not a direct vendor fetch. [Ansys support](https://community.zemax.com/got-a-question-7/lens-material-in-terahertz-spectral-range-780) identifies ZEON as the catalog provider. Its E48R row uses the six-term polynomial n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸, with λ in micrometres, at the archived 25°C reference and within 0.400–1.600 µm. C/d/F/g indices evaluate to 1.528351752 / 1.531160165 / 1.537829337 / 1.543170270, giving νd = 56.043828 and PgF = 0.563533. Against the row’s own nd = 1.531170 and νd = 56.0, residuals −0.000009835 / +0.043828 pass the stricter 0.00003 / 0.11 consistency checks. PgF belongs to the curve and is not copied into per-lens source evidence.
+
+The retained source pair 1.53110/55.9 differs from the curve by +0.000060165 in nd and +0.143828 in evaluated νd (+0.100000 against archived nominal νd). Selected-example composition remains unspecified. Qualified-curve coverage changes 13/14 → 14/14. No catalog code alias, source partial-dispersion claim or APD badge is added. Every source index/Abbe pair, reference wavelength, R/d, asphere, cap/shoulder/cut, stop, plate and focus/zoom control is unchanged. Prior runtime and shape results retain their original dates and scope; this is not a fresh shape review.
