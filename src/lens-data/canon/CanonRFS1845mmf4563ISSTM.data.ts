@@ -1,35 +1,30 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — CANON RF-S 18-45mm f/4.5-6.3 IS STM                                  ║
- * ╠══════════════════════════════════════════════════════════════════════════════════════╣
- * ║  Data source: JP 2021-86024 A, Numerical Example 2 (Canon Inc.; Yuichi Gyoda).     ║
- * ║  Strong production correlation; the patent does not identify the production lens.  ║
- * ║  Prescription is unscaled: 7 elements / 7 air-spaced physical groups.               ║
- * ║  Functional motion groups: B1 negative, B2 positive, B3 negative, B4 positive.      ║
- * ║  Four aspherical surfaces on two physical elements (L2 and L7).                     ║
- * ║                                                                                      ║
- * ║  ZOOM: Published infinity-focus states only, at 18.53 / 30.00 / 43.65 mm.           ║
- * ║    Variable gaps: D6, D11, D13, and BF (D15).                                       ║
- * ║    B2 and B4 share the same trajectory. B1 has a small published mid→tele reversal. ║
- * ║                                                                                      ║
- * ║  FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION:                                         ║
- * ║    The patent states that B3 moves image-side toward close focus but gives no        ║
- * ║    finite-conjugate spacing table. All close members of `var` therefore equal the   ║
- * ║    corresponding infinity values; no internal close-focus motion is invented.       ║
- * ║    `closeFocusM` retains Canon's marketed 0.20 m AF MFD at 18 mm as metadata only.  ║
- * ║                                                                                      ║
- * ║  APERTURE: `nominalFno` uses the patent design F/# values. The Numerical Example 2   ║
- * ║    patent surface table prints a 9.16 mm effective-diameter envelope (4.58 mm        ║
- * ║    radius), not an asserted hard-iris radius.                                        ║
- * ║                                                                                      ║
- * ║  SEMI-DIAMETERS: refracting surfaces use patent effective diameters divided by two;  ║
- * ║    no inferred SDs; the stop radius is derived from the design f-number at each      ║
- * ║    zoom station.                                                                     ║
- * ║  SPECTRAL DATA: patent publishes nd/νd only. Vendor identity is unresolved, so      ║
- * ║    nC, nF, ng, and dPgF are intentionally not fabricated.                           ║
- * ╚══════════════════════════════════════════════════════════════════════════════════════╝
+ * Canon RF-S 18–45mm f/4.5–6.3 IS STM — JP2021086024A, Numerical Example 2.
+ * Original shape/glass review: 2026-10-30. Production correlation is unconfirmed.
+ * Source surface/asphere tables: paragraph0086, PDFpp13–14; Figures3/4 PDFp24.
+ * All source R/d, four K0/asphere sets, clearPhi/2 caps and zoom gaps remain.
+ * Resolved S2 outer shoulder12.395 is separate from clear10.12; the outer height
+ * follows the existing opposite cap, not a precision measurement of the diagram.
+ * Extending the optical sphere to12.395 instead fails the current slope guard.
+ * No cemented interfaces, hybrid layers, extra plates or inferred rim cuts.
+ *
+ * Paragraph0080 PDFp11 defines d587.56/F486.1/C656.3/g435.835nm. All seven media
+ * carry d provenance; no numerical C/F/g/partial data is published or invented.
+ * Five existing compatible curves remain unchanged, qualified as spectral proxies;
+ * the two1.53110/55.9 media stay unidentified. A general resin preference does
+ * not identify these particular elements. Vendor, melt and chemistry are unknown.
+ *
+ * Printed design endpoints18.53/43.65 replace computed-EFL catalog metadata;
+ * menu4.5/6.3 marketing presets become source4.56/6.5. Source station F numbers,
+ * primary stop position and inferred per-zoom iris are unchanged. Source stopPhi
+ *9.16 is recorded separately from inferred mechanical iris diameters.
+ *
+ * Focus and IS remain unreconstructed: source directions are given, numerical
+ * finite-focus/IS displacements are absent. All focus inputs duplicate infinity.
+ * Source camera plate is not listed.65-position collimated zoom checks retain
+ * interval defocus and finite field limitations; source/plot residuals are not fit.
  */
 
 const LENS_DATA = {
@@ -52,7 +47,7 @@ const LENS_DATA = {
     ],
     elementCount: 7,
     groupCount: 7,
-    focalLengthMm: { marketing: [18, 45], design: [18.529406, 43.62675] },
+    focalLengthMm: { marketing: [18, 45], design: [18.53, 43.65] },
     // Scalar metadata fields retain the wide-end maximum aperture; `nominalFno` carries all design stations.
     fNumber: { marketing: 4.5, design: 4.56 },
   },
@@ -63,6 +58,16 @@ const LENS_DATA = {
     patentYear: 2021,
     authors: ["Yuichi Gyoda"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Example2 paragraph0086 PDFpp13–14: literal model tele EFL43.626749900mm vs printed43.65; literal total lengths89.12/81.23/81.41mm vs89.11/81.23/81.40. Printed-value rounding may contribute, but no unique correction is proved; preserve all R/d/nd/aspheres/gaps.",
+      },
+      {
+        status: "unresolved",
+        note: "Native Figure4 PDFp24 wide distortion reads approximately−10.6±.2% at labeled33.8degrees; literal model at source33.78degrees gives−8.9269%. The standard equation and all source coefficient signs/exponents are retained. No unique source-supported replacement is established; do not fit the prescription to the plot.",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -73,9 +78,12 @@ const LENS_DATA = {
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.63854,
+      indexReference: "d",
+      indexReferenceNote:
+        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 55.4,
       focalLengthMm: -35.03,
-      glass: "639554/639555 crown class (vendor unresolved)",
+      glass: "S-BSM18 (OHARA catalog equivalent; source vendor/chemistry unspecified)",
       role: "Front negative element of functional group B1.",
     },
     {
@@ -84,6 +92,9 @@ const LENS_DATA = {
       label: "Element 2",
       type: "Biconcave Negative (2× Asph)",
       nd: 1.5311,
+      indexReference: "d",
+      indexReferenceNote:
+        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 55.9,
       focalLengthMm: -60.57,
       glass: "Unmatched (nd=1.53110, νd=55.9; vendor unresolved)",
@@ -95,9 +106,12 @@ const LENS_DATA = {
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.84666,
+      indexReference: "d",
+      indexReferenceNote:
+        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 23.8,
       focalLengthMm: 74.25,
-      glass: "847238 high-index flint class (vendor unresolved)",
+      glass: "J-SF03 (HIKARI catalog equivalent; source vendor/chemistry unspecified)",
       role: "Positive rear element of functional group B1.",
     },
     {
@@ -106,9 +120,12 @@ const LENS_DATA = {
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.6968,
+      indexReference: "d",
+      indexReferenceNote:
+        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 55.5,
       focalLengthMm: 48.63,
-      glass: "697555 lanthanum-crown class (vendor unresolved)",
+      glass: "J-LAK14 (HIKARI catalog equivalent; source vendor/chemistry unspecified)",
       role: "Front positive element of B2 and the patent-designated image-stabilization subgroup B2A.",
     },
     {
@@ -117,9 +134,12 @@ const LENS_DATA = {
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.7725,
+      indexReference: "d",
+      indexReferenceNote:
+        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 49.6,
       focalLengthMm: 23.39,
-      glass: "773496 lanthanum optical-glass class (vendor unresolved)",
+      glass: "J-LASF016 (HIKARI catalog equivalent; source vendor/chemistry unspecified)",
       role: "Rear positive element of functional group B2.",
     },
     {
@@ -128,9 +148,12 @@ const LENS_DATA = {
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.84666,
+      indexReference: "d",
+      indexReferenceNote:
+        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 23.8,
       focalLengthMm: -23.06,
-      glass: "847238 high-index flint class (vendor unresolved)",
+      glass: "J-SF03 (HIKARI catalog equivalent; source vendor/chemistry unspecified)",
       role: "Single-element negative focus group B3; finite-focus travel is not reconstructed.",
     },
     {
@@ -139,6 +162,9 @@ const LENS_DATA = {
       label: "Element 7",
       type: "Positive Meniscus (2× Asph)",
       nd: 1.5311,
+      indexReference: "d",
+      indexReferenceNote:
+        "JP2021086024A paragraph 0080 (PDF p11) defines d 587.56 nm, F 486.1 nm, C 656.3 nm and g 435.835 nm. Example 2 (pp13–14) publishes nd/vd only, not numerical line indices or partial dispersion; material chemistry is unidentified.",
       vd: 55.9,
       focalLengthMm: 59.61,
       glass: "Unmatched (nd=1.53110, νd=55.9; vendor unresolved)",
@@ -150,7 +176,7 @@ const LENS_DATA = {
   /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     { label: "1", R: 26.941, d: 1.0, sd: 12.395, medium: 1 },
-    { label: "2", R: 12.045, d: 7.49, sd: 10.12 },
+    { label: "2", R: 12.045, d: 7.49, sd: 10.12, rimExtensionSd: 12.395 },
     {
       label: "3A",
       R: -1000.0,
@@ -240,7 +266,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [4.5, 5.6, 6.3, 8, 11, 16], blades: 7 },
+  aperture: { fStops: [4.56, 5.6, 6.5, 8, 11, 16], blades: 7 },
 
   groups: [
     { text: "B1", fromSurface: "1", toSurface: "6" },

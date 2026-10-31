@@ -1,19 +1,29 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** US20190278068A1 Numerical Example 5, PDF page 23 and Figure 9.
- * All three source infinity-focus zoom stations retained; no finite-focus table.
- * Published effective diameters define SDs subject to explicit rendering limits.
- * No filter or cover-glass rows occur in this selected prescription.
+/** US 2019/0278068 A1, Numerical Example 5, PDF p. 23 / printed p. 11; Fig. 9 p. 10.
+ * Completed original source/shape/glass coverage dated 2026-09-09 is reused.
+ * Scoped native follow-up 2026-10-30 adds only resolved S7/S34A outer shoulders,
+ * two source-named Abbe precisions and explicit spectral/source qualifications.
+ * Source clear caps remain ED/2: S7 14.595 (outer 19.265), S34A 14.925 (outer 16.485).
+ * All R/d, five aspheres, stop rule, three source zoom schedules and inactive
+ * focus controls remain unchanged. All 21 same compatible curves are proxies;
+ * supplier, melt, chemistry and molding process remain unspecified. No spectral
+ * line indices, partials, hybrid layer, filter or rear plate are source-listed.
+ * Native Fig. 9 is 2560×3300 at 300 ppi, active glass scale about 9.93 px/mm, ±0.7 mm.
+ * The former 600-dpi figure rendering was upsampling, not extra native detail.
+ * Printed stop ED 25.91 is an envelope, not proof of a physical iris schedule.
+ * Current radii 9.011390/11.039213/12.606889 give paraxial F2.91; real collimated
+ * EFL/input-diameter ratios 2.939369/2.965203/2.988002 remain separate.
+ * Source focus motion is described but no finite gaps exist; focus is disabled.
+ * Interpolated infinity BF residual reaches −1.046683 mm; centered IS only.
  */
 
 const LENS_DATA = {
-  /* ── Identity ── */
   schema: 2,
   key: "canon-rf-24-70-f28",
   maker: "Canon",
   name: "CANON RF 24-70mm f/2.8 L IS USM",
   subtitle: "US 2019/0278068 A1 EXAMPLE 5 — CANON / HATADA",
-
   catalog: {
     lensMounts: ["canon-rf"],
     imageFormat: "135-full-frame",
@@ -27,33 +37,44 @@ const LENS_DATA = {
     ],
     elementCount: 21,
     groupCount: 15,
-    /* ── Explicit metadata ── */
-    focalLengthMm: { marketing: [24, 70], design: [24.72, 67.89] },
-    fNumber: { marketing: 2.8, design: 2.91 },
+    focalLengthMm: {
+      marketing: [24, 70],
+      design: [24.72, 67.89],
+    },
+    fNumber: {
+      marketing: 2.8,
+      design: 2.91,
+    },
   },
-
   source: {
     patentNumber: "US 2019/0278068 A1",
-    example: { label: "Example 5", id: "5" },
+    example: {
+      label: "Numerical Example 5",
+      id: "5",
+    },
     patentYear: 2019,
     authors: ["Takahiro Hatada"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Paragraph 0086 (PDF p. 19) and native Figure 9 arrows describe all groups moving objectward, while literal selected source station gaps give unit L2 +0.36 mm net imageward in camera coordinates. Source tables, radii and existing controls remain unchanged; no source motion correction asserted.",
+      },
+    ],
   },
-
-  /* ── Elements ── */
   elements: [
-    // ── Unit 1: Front positive group (f = +113.48 mm) ──
     {
       id: 1,
       name: "G1n",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.80809,
-      vd: 22.8,
+      vd: 22.76,
       focalLengthMm: -184.26,
-      glass: "S-NPH1 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-NPH1 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Negative Meniscus element of cemented doublet D1",
       cemented: "D1",
+      indexReference: "d",
     },
     {
       id: 2,
@@ -63,9 +84,10 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       focalLengthMm: 160.58,
-      glass: "S-LAH66 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-LAH66 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Positive Meniscus element of cemented doublet D1",
       cemented: "D1",
+      indexReference: "d",
     },
     {
       id: 3,
@@ -75,10 +97,10 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       focalLengthMm: 122.21,
-      glass: "S-LAL18 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-LAL18 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Positive Meniscus singlet",
+      indexReference: "d",
     },
-    // ── Unit 2: Variator / zoom diverging group (f = −18.58 mm) ──
     {
       id: 4,
       name: "L4",
@@ -87,8 +109,9 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       focalLengthMm: -29.56,
-      glass: "S-LAH58 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-LAH58 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Negative Meniscus singlet",
+      indexReference: "d",
     },
     {
       id: 5,
@@ -98,10 +121,11 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: -36.22,
-      glass: "S-FPL51 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-FPL51 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       apd: false,
       role: "Biconcave Negative element of cemented doublet D2",
       cemented: "D2",
+      indexReference: "d",
     },
     {
       id: 6,
@@ -111,9 +135,10 @@ const LENS_DATA = {
       nd: 1.85478,
       vd: 24.8,
       focalLengthMm: 42.59,
-      glass: "S-NBH56 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-NBH56 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Positive Meniscus element of cemented doublet D2",
       cemented: "D2",
+      indexReference: "d",
     },
     {
       id: 7,
@@ -123,8 +148,9 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       focalLengthMm: -59.15,
-      glass: "S-LAL18 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-LAL18 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Biconcave Negative singlet",
+      indexReference: "d",
     },
     {
       id: 8,
@@ -134,9 +160,10 @@ const LENS_DATA = {
       nd: 1.5927,
       vd: 35.3,
       focalLengthMm: 33.41,
-      glass: "S-FTM16 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-FTM16 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Biconvex Positive element of cemented doublet D3",
       cemented: "D3",
+      indexReference: "d",
     },
     {
       id: 9,
@@ -146,11 +173,11 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       focalLengthMm: -45,
-      glass: "S-LAH55V — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-LAH55V — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Negative Meniscus element of cemented doublet D3",
       cemented: "D3",
+      indexReference: "d",
     },
-    // ── Unit 3: Aperture stop + relay group (f = +35.84 mm) ──
     {
       id: 10,
       name: "L10",
@@ -159,8 +186,9 @@ const LENS_DATA = {
       nd: 1.76385,
       vd: 48.5,
       focalLengthMm: 44.79,
-      glass: "S-LAH96 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-LAH96 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Biconvex Positive singlet",
+      indexReference: "d",
     },
     {
       id: 11,
@@ -170,10 +198,11 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.5,
       focalLengthMm: 38.2,
-      glass: "S-FPL51 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-FPL51 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       apd: false,
       role: "Biconvex Positive element of cemented doublet D4",
       cemented: "D4",
+      indexReference: "d",
     },
     {
       id: 12,
@@ -183,22 +212,23 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.5,
       focalLengthMm: -44.38,
-      glass: "TAFD40 — compatible catalog counterpart; patent identity unspecified",
+      glass: "TAFD40 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Negative Meniscus element of cemented doublet D4",
       cemented: "D4",
+      indexReference: "d",
     },
-    // ── Unit 4: Image stabilization group (f = −69.07 mm) ──
     {
       id: 13,
       name: "L13",
       label: "Element 13",
-      type: "Biconcave Neg. (1× Asph)",
+      type: "Biconcave Negative (1× Asph)",
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: -45.29,
-      glass: "S-BAL42 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-BAL42 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Biconcave Negative (1× Asph) element of cemented doublet D5; centered IS group",
       cemented: "D5",
+      indexReference: "d",
     },
     {
       id: 14,
@@ -208,22 +238,23 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.5,
       focalLengthMm: 129.1,
-      glass: "S-TIH14 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-TIH14 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Positive Meniscus element of cemented doublet D5; centered IS group",
       cemented: "D5",
+      indexReference: "d",
     },
-    // ── Unit 5: Main converging group (f = +28.29 mm) ──
     {
       id: 15,
       name: "Gfp",
       label: "Element 15",
       type: "Biconvex Positive",
       nd: 1.497,
-      vd: 81.5,
+      vd: 81.54,
       focalLengthMm: 39.6,
-      glass: "S-FPL51 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-FPL51 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       apd: false,
       role: "Biconvex Positive singlet",
+      indexReference: "d",
     },
     {
       id: 16,
@@ -233,9 +264,10 @@ const LENS_DATA = {
       nd: 1.738,
       vd: 32.3,
       focalLengthMm: -120,
-      glass: "J-KZFH9 — compatible catalog counterpart; patent identity unspecified",
+      glass: "J-KZFH9 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Negative Meniscus element of cemented doublet D6",
       cemented: "D6",
+      indexReference: "d",
     },
     {
       id: 17,
@@ -245,22 +277,23 @@ const LENS_DATA = {
       nd: 1.53775,
       vd: 74.7,
       focalLengthMm: 37.59,
-      glass: "S-FPM3 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-FPM3 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Biconvex Positive element of cemented doublet D6",
       cemented: "D6",
+      indexReference: "d",
     },
     {
       id: 18,
       name: "L18",
       label: "Element 18",
-      type: "Biconcave Neg. (2× Asph)",
+      type: "Biconcave Negative (2× Asph)",
       nd: 1.854,
       vd: 40.4,
       focalLengthMm: -126.62,
-      glass: "L-LAH85V — compatible catalog counterpart; patent identity unspecified",
+      glass: "L-LAH85V — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Biconcave Negative (2× Asph) singlet",
+      indexReference: "d",
     },
-    // ── Unit 6: Focus group (f = −49.77 mm) ──
     {
       id: 19,
       name: "L19",
@@ -269,20 +302,21 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       focalLengthMm: -49.77,
-      glass: "S-LAH65 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-LAH65 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Negative Meniscus singlet; source focus group, finite motion unavailable",
+      indexReference: "d",
     },
-    // ── Unit 7: Rear field-flattening group (f = +785.94 mm) ──
     {
       id: 20,
       name: "L20",
       label: "Element 20",
-      type: "Neg. Meniscus (2× Asph)",
+      type: "Negative Meniscus (2× Asph)",
       nd: 1.58313,
       vd: 59.4,
       focalLengthMm: -91.93,
-      glass: "S-BAL42 — compatible catalog counterpart; patent identity unspecified",
+      glass: "S-BAL42 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Negative Meniscus (2× Asph) singlet",
+      indexReference: "d",
     },
     {
       id: 21,
@@ -292,125 +326,311 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.1,
       focalLengthMm: 84.48,
-      glass: "TAFD55 — compatible catalog counterpart; patent identity unspecified",
+      glass: "TAFD55 — compatible spectral proxy; historical supplier, melt, chemistry and process unspecified",
       role: "Biconvex Positive singlet",
+      indexReference: "d",
     },
   ],
-
-  /* ── Surface prescription ── */
-  /* (moved from asph) ── Aspherical coefficients ──
-   *  All 5 aspherical surfaces have K = 0 (spherical base + polynomial).
-   *  Patent uses A4–A12 coefficients; A14 not used (set to 0).
-   */
   surfaces: [
-    // ── Unit 1 (L1): E1–E3, front positive group ──
-    { label: "1", R: 232.357, d: 2.1, sd: 34.345, medium: 1 }, // G1n front
-    { label: "2", R: 90.381, d: 5.78, sd: 32.975, medium: 2 }, // G1n→G2p junction
-    { label: "3", R: 323.713, d: 0.15, sd: 32.69 }, // G2p rear → air
-    { label: "4", R: 59.139, d: 7.05, sd: 30.335, medium: 3 }, // G3p front
-    { label: "5", R: 166.984, sd: 29.73 }, // G3p rear → air (variable: L1→L2)
-
-    // ── Unit 2 (L2): E4–E9, variator ──
-    { label: "6", R: 67.802, d: 1.4, sd: 19.265, medium: 4 }, // E4 front
-    { label: "7", R: 18.663, d: 8.67, sd: 14.595 }, // E4 rear → air
-    { label: "8", R: -115.164, d: 1.2, sd: 14.17, medium: 5 }, // E5 front (UD 1)
-    { label: "9", R: 21.412, d: 3.87, sd: 12.435, medium: 6 }, // E5→E6 junction
-    { label: "10", R: 47.653, d: 4.17, sd: 11.93 }, // E6 rear → air
-    { label: "11", R: -48.039, d: 1.0, sd: 11.34, medium: 7 }, // E7 front
-    { label: "12", R: 425.782, d: 0.29, sd: 11.02 }, // E7 rear → air
-    { label: "13", R: 93.568, d: 6.03, sd: 10.865, medium: 8 }, // E8 front
-    { label: "14", R: -24.518, d: 1.05, sd: 11.25, medium: 9 }, // E8→E9 junction
-    { label: "15", R: -71.957, sd: 11.925 }, // E9 rear → air (variable: L2→L3)
-
-    // ── Unit 3 (L3): Stop + E10–E12, relay group ──
-    // US 2019/0278068 A1, Numerical Example 5 surface table [0100], surface 16 prints a 25.91 mm effective
-    // diameter at the stop.
-    { label: "STO", R: "flat", d: 0.4 }, // Aperture stop
-    { label: "17", R: 78.059, d: 4.31, sd: 13.43, medium: 10 }, // E10 front
-    { label: "18", R: -59.447, d: 0.15, sd: 13.565 }, // E10 rear → air
-    { label: "19", R: 40.155, d: 7.4, sd: 13.46, medium: 11 }, // E11 front (UD 2)
-    { label: "20", R: -33.807, d: 1.1, sd: 13.135, medium: 12 }, // E11→E12 junction
-    { label: "21", R: -143.919, sd: 13.165 }, // E12 rear → air (variable: L3→L4)
-
-    // ── Unit 4 (L4): E13–E14, IS group ──
+    {
+      label: "1",
+      R: 232.357,
+      d: 2.1,
+      sd: 34.345,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 90.381,
+      d: 5.78,
+      sd: 32.975,
+      medium: 2,
+    },
+    {
+      label: "3",
+      R: 323.713,
+      d: 0.15,
+      sd: 32.69,
+    },
+    {
+      label: "4",
+      R: 59.139,
+      d: 7.05,
+      sd: 30.335,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: 166.984,
+      sd: 29.73,
+    },
+    {
+      label: "6",
+      R: 67.802,
+      d: 1.4,
+      sd: 19.265,
+      medium: 4,
+    },
+    {
+      label: "7",
+      R: 18.663,
+      d: 8.67,
+      sd: 14.595,
+      rimExtensionSd: 19.265,
+    },
+    {
+      label: "8",
+      R: -115.164,
+      d: 1.2,
+      sd: 14.17,
+      medium: 5,
+    },
+    {
+      label: "9",
+      R: 21.412,
+      d: 3.87,
+      sd: 12.435,
+      medium: 6,
+    },
+    {
+      label: "10",
+      R: 47.653,
+      d: 4.17,
+      sd: 11.93,
+    },
+    {
+      label: "11",
+      R: -48.039,
+      d: 1,
+      sd: 11.34,
+      medium: 7,
+    },
+    {
+      label: "12",
+      R: 425.782,
+      d: 0.29,
+      sd: 11.02,
+    },
+    {
+      label: "13",
+      R: 93.568,
+      d: 6.03,
+      sd: 10.865,
+      medium: 8,
+    },
+    {
+      label: "14",
+      R: -24.518,
+      d: 1.05,
+      sd: 11.25,
+      medium: 9,
+    },
+    {
+      label: "15",
+      R: -71.957,
+      sd: 11.925,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 0.4,
+    },
+    {
+      label: "17",
+      R: 78.059,
+      d: 4.31,
+      sd: 13.43,
+      medium: 10,
+    },
+    {
+      label: "18",
+      R: -59.447,
+      d: 0.15,
+      sd: 13.565,
+    },
+    {
+      label: "19",
+      R: 40.155,
+      d: 7.4,
+      sd: 13.46,
+      medium: 11,
+    },
+    {
+      label: "20",
+      R: -33.807,
+      d: 1.1,
+      sd: 13.135,
+      medium: 12,
+    },
+    {
+      label: "21",
+      R: -143.919,
+      sd: 13.165,
+    },
     {
       label: "22A",
       R: -63.149,
       d: 1.65,
       sd: 13.03,
       medium: 13,
-      asphere: { K: 0, A4: 3.0128e-6, A6: -9.03767e-10, A8: 5.61555e-11, A10: -4.27609e-13, A12: 9.23668e-16 },
-    }, // E13 front (asph)
-    { label: "23", R: 45.825, d: 1.92, sd: 13.135, medium: 14 }, // E13→E14 junction
-    { label: "24", R: 84.251, sd: 13.12 }, // E14 rear → air (variable: L4→L5)
-
-    // ── Unit 5 (L5): E15–E18, main converging group ──
-    { label: "25", R: 26.393, d: 8.28, sd: 13.705, medium: 15 }, // E15 front (Gfp, UD 3)
-    { label: "26", R: -69.36, d: 0.35, sd: 13.625 }, // E15 rear → air
-    { label: "27", R: 39.335, d: 1.15, sd: 13.45, medium: 16 }, // E16 front
-    { label: "28", R: 26.899, d: 7.03, sd: 13.07, medium: 17 }, // E16→E17 junction
-    { label: "29", R: -73.879, d: 0.15, sd: 12.75 }, // E17 rear → air
+      asphere: {
+        K: 0,
+        A4: 0.0000030128,
+        A6: -9.03767e-10,
+        A8: 5.61555e-11,
+        A10: -4.27609e-13,
+        A12: 9.23668e-16,
+      },
+    },
+    {
+      label: "23",
+      R: 45.825,
+      d: 1.92,
+      sd: 13.135,
+      medium: 14,
+    },
+    {
+      label: "24",
+      R: 84.251,
+      sd: 13.12,
+    },
+    {
+      label: "25",
+      R: 26.393,
+      d: 8.28,
+      sd: 13.705,
+      medium: 15,
+    },
+    {
+      label: "26",
+      R: -69.36,
+      d: 0.35,
+      sd: 13.625,
+    },
+    {
+      label: "27",
+      R: 39.335,
+      d: 1.15,
+      sd: 13.45,
+      medium: 16,
+    },
+    {
+      label: "28",
+      R: 26.899,
+      d: 7.03,
+      sd: 13.07,
+      medium: 17,
+    },
+    {
+      label: "29",
+      R: -73.879,
+      d: 0.15,
+      sd: 12.75,
+    },
     {
       label: "30A",
       R: -602.944,
       d: 1.7,
       sd: 12.64,
       medium: 18,
-      asphere: { K: 0, A4: -5.55314e-5, A6: 2.1406e-7, A8: -4.57909e-11, A10: -2.74784e-12, A12: 6.52571e-15 },
-    }, // E18 front (asph)
+      asphere: {
+        K: 0,
+        A4: -0.0000555314,
+        A6: 2.1406e-7,
+        A8: -4.57909e-11,
+        A10: -2.74784e-12,
+        A12: 6.52571e-15,
+      },
+    },
     {
       label: "31A",
       R: 131.941,
       sd: 12.45,
-      asphere: { K: 0, A4: -3.4544e-5, A6: 2.65378e-7, A8: -1.27555e-10, A10: -2.4098e-12, A12: 7.25838e-15 },
-    }, // E18 rear → air (asph, variable: L5→L6)
-
-    // ── Unit 6 (L6): E19, focus group ──
-    { label: "32", R: 60.209, d: 0.9, sd: 12.755, medium: 19 }, // E19 front
-    { label: "33", R: 23.878, sd: 12.53 }, // E19 rear → air (variable: L6→L7)
-
-    // ── Unit 7 (L7): E20–E21, rear field-flattening group ──
+      asphere: {
+        K: 0,
+        A4: -0.000034544,
+        A6: 2.65378e-7,
+        A8: -1.27555e-10,
+        A10: -2.4098e-12,
+        A12: 7.25838e-15,
+      },
+    },
+    {
+      label: "32",
+      R: 60.209,
+      d: 0.9,
+      sd: 12.755,
+      medium: 19,
+    },
+    {
+      label: "33",
+      R: 23.878,
+      sd: 12.53,
+    },
     {
       label: "34A",
       R: -52.714,
       d: 1.7,
       sd: 14.925,
       medium: 20,
-      asphere: { K: 0, A4: -3.28022e-5, A6: 1.26827e-7, A8: -2.01507e-10, A10: -1.636e-12, A12: 4.86504e-15 },
-    }, // E20 front (asph)
+      asphere: {
+        K: 0,
+        A4: -0.0000328022,
+        A6: 1.26827e-7,
+        A8: -2.01507e-10,
+        A10: -1.636e-12,
+        A12: 4.86504e-15,
+      },
+      rimExtensionSd: 16.485,
+    },
     {
       label: "35A",
       R: -3211.285,
       d: 0.15,
       sd: 16.485,
-      asphere: { K: 0, A4: -3.30256e-5, A6: 1.44829e-7, A8: -5.66682e-10, A10: 8.17897e-13, A12: -2.19929e-16 },
-    }, // E20 rear → air (asph)
-    { label: "36", R: 317.277, d: 3.23, sd: 17.635, medium: 21 }, // E21 front (Grp)
-    { label: "37", R: -114.7, sd: 17.91 }, // E21 rear → BFD (variable)
+      asphere: {
+        K: 0,
+        A4: -0.0000330256,
+        A6: 1.44829e-7,
+        A8: -5.66682e-10,
+        A10: 8.17897e-13,
+        A12: -2.19929e-16,
+      },
+    },
+    {
+      label: "36",
+      R: 317.277,
+      d: 3.23,
+      sd: 17.635,
+      medium: 21,
+    },
+    {
+      label: "37",
+      R: -114.7,
+      sd: 17.91,
+    },
   ],
-
   zoom: {
-    /* (moved from zoomPositions) ── Zoom lens fields ── */
     stations: [
-      { focalLengthMm: 24.72, label: "24.72 mm" },
-      { focalLengthMm: 44.86 },
-      { focalLengthMm: 67.89, label: "67.89 mm" },
+      {
+        focalLengthMm: 24.72,
+        label: "24.72 mm",
+      },
+      {
+        focalLengthMm: 44.86,
+      },
+      {
+        focalLengthMm: 67.89,
+        label: "67.89 mm",
+      },
     ],
     step: 0.004,
   },
-
-  /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.21, // Canon-specified MFD (wide end); tele MFD is 0.38 m
+    closeFocusM: 0.21,
     description:
       "Infinity-focus model: the patent describes rearward focus motion of L6 (E19) but publishes no finite-focus gaps. Focus is disabled; the 0.21 m label is retained retail metadata, not a modeled conjugate. IS is centered. Numerical zoom gaps take precedence over the contradictory all-groups-objectward narrative. Only D31 and D33 change for isolated L6 focus motion; BF belongs to zoom.",
   },
-
-  /* (moved from var) ── Variable air spacings (zoom only — no close-focus data available) ──
-   *  Zoom format: each value is [[d_inf, d_close], ...] per zoom position.
-   *  Since the patent provides only infinity-focus data, d_inf === d_close for all gaps.
-   *  Focus group is L6 (E19); in production, gaps D31 and D33 would vary during focus.
-   */
   gaps: {
     "5": {
       label: "D5",
@@ -419,7 +639,7 @@ const LENS_DATA = {
         [17.98, 17.98],
         [29.93, 29.93],
       ],
-    }, // L1→L2 (zoom only)
+    },
     "15": {
       label: "D15",
       values: [
@@ -427,7 +647,7 @@ const LENS_DATA = {
         [7.07, 7.07],
         [2.4, 2.4],
       ],
-    }, // L2→L3 (zoom only)
+    },
     "21": {
       label: "D21",
       values: [
@@ -435,7 +655,7 @@ const LENS_DATA = {
         [2.23, 2.23],
         [2.54, 2.54],
       ],
-    }, // L3→L4 (zoom only, NON-MONOTONIC)
+    },
     "24": {
       label: "D24",
       values: [
@@ -443,15 +663,7 @@ const LENS_DATA = {
         [4.97, 4.97],
         [2.87, 2.87],
       ],
-    }, // L4→L5 (zoom only)
-    "31A": {
-      label: "D31",
-      values: [
-        [2.16, 2.16],
-        [1.42, 1.42],
-        [1.33, 1.33],
-      ],
-    }, // L5→L6 (zoom only; focus would vary this gap)
+    },
     "33": {
       label: "D33",
       values: [
@@ -459,7 +671,7 @@ const LENS_DATA = {
         [13.7, 13.7],
         [13.79, 13.79],
       ],
-    }, // L6→L7 (zoom only; focus would vary this gap)
+    },
     "37": {
       label: "BF",
       values: [
@@ -467,32 +679,92 @@ const LENS_DATA = {
         [26.78, 26.78],
         [35.69, 35.69],
       ],
-    }, // BF (zoom only; L6 focus does not move L7)
+    },
+    "31A": {
+      label: "D31",
+      values: [
+        [2.16, 2.16],
+        [1.42, 1.42],
+        [1.33, 1.33],
+      ],
+    },
   },
-
-  aperture: { nominalFNumber: 2.91, fStops: [2.91, 4, 5.6, 8, 11, 16, 22] },
-
-  /* ── Group and doublet annotations ── */
+  aperture: {
+    nominalFNumber: 2.91,
+    fStops: [2.91, 4, 5.6, 8, 11, 16, 22],
+  },
   groups: [
-    { text: "L1 (+)", fromSurface: "1", toSurface: "5" },
-    { text: "L2 (−)", fromSurface: "6", toSurface: "15" },
-    { text: "L3 (+)", fromSurface: "STO", toSurface: "21" },
-    { text: "L4 (−) IS", fromSurface: "22A", toSurface: "24" },
-    { text: "L5 (+)", fromSurface: "25", toSurface: "31A" },
-    { text: "L6 (−) AF", fromSurface: "32", toSurface: "33" },
-    { text: "L7 (+)", fromSurface: "34A", toSurface: "37" },
+    {
+      text: "L1 (+)",
+      fromSurface: "1",
+      toSurface: "5",
+    },
+    {
+      text: "L2 (−)",
+      fromSurface: "6",
+      toSurface: "15",
+    },
+    {
+      text: "L3 (+)",
+      fromSurface: "STO",
+      toSurface: "21",
+    },
+    {
+      text: "L4 (−) IS",
+      fromSurface: "22A",
+      toSurface: "24",
+    },
+    {
+      text: "L5 (+)",
+      fromSurface: "25",
+      toSurface: "31A",
+    },
+    {
+      text: "L6 (−) AF",
+      fromSurface: "32",
+      toSurface: "33",
+    },
+    {
+      text: "L7 (+)",
+      fromSurface: "34A",
+      toSurface: "37",
+    },
   ],
   doublets: [
-    { text: "D1", fromSurface: "1", toSurface: "3" }, // E1+E2
-    { text: "D2", fromSurface: "8", toSurface: "10" }, // E5+E6
-    { text: "D3", fromSurface: "13", toSurface: "15" }, // E8+E9
-    { text: "D4", fromSurface: "19", toSurface: "21" }, // E11+E12
-    { text: "D5", fromSurface: "22A", toSurface: "24" }, // E13+E14
-    { text: "D6", fromSurface: "27", toSurface: "29" }, // E16+E17
+    {
+      text: "D1",
+      fromSurface: "1",
+      toSurface: "3",
+    },
+    {
+      text: "D2",
+      fromSurface: "8",
+      toSurface: "10",
+    },
+    {
+      text: "D3",
+      fromSurface: "13",
+      toSurface: "15",
+    },
+    {
+      text: "D4",
+      fromSurface: "19",
+      toSurface: "21",
+    },
+    {
+      text: "D5",
+      fromSurface: "22A",
+      toSurface: "24",
+    },
+    {
+      text: "D6",
+      fromSurface: "27",
+      toSurface: "29",
+    },
   ],
-
-  /* ── Layout tuning ── */
-  layout: { scFill: 0.42, yScFill: 0.22 },
+  layout: {
+    scFill: 0.42,
+    yScFill: 0.22,
+  },
 } satisfies LensDataV2Input;
-
 export default LENS_DATA;

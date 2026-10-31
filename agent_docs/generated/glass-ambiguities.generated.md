@@ -14,16 +14,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1032** lenses scanned
 - **11841** glass elements examined
-- **2715** elements have multiple coordinate-compatible candidates
-- **493** lens files are affected
+- **2708** elements have multiple coordinate-compatible candidates
+- **491** lens files are affected
 - **285** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **119** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1585 |
+| Smallest reference-index residual | 1580 |
 | Evidence-source priority | 837 |
-| Vendor context | 279 |
+| Vendor context | 277 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -126,7 +126,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `583594 crown class (vendor unresolved)` | 1.58313 / 59.40 (d) | J-SK12 — smallest d-line \|Δn\| (1.0e-8 vs 4.1e-6) | S-BAL42 (Ohara, code, preferred code row)<br>L-BAL42 (Ohara, code, alternate code row) | 1 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) L1 |
 | `773496 lanthanum-flint class (vendor unresolved)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 2.9e-8) | TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) L2 |
 | `911353 high-index lanthanum-flint class (vendor unresolved)` | 1.91082 / 35.30 (d) | H-ZLaF4LA — smallest d-line \|Δn\| (4.2e-8 vs 2.4e-6) | TAFD35 (Hoya, code, preferred code row) | 1 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) L3 |
-| `697555 lanthanum-crown class (vendor unresolved)` | 1.69680 / 55.50 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 2 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) L4 +1 files |
+| `697555 lanthanum-crown class (vendor unresolved)` | 1.69680 / 55.50 (d) | J-LAK14 — smallest d-line \|Δn\| (1.3e-8 vs 2.3e-6) | LAC14 (Hoya, code, alternate code row)<br>S-LAL14 (Ohara, code, preferred code row) | 1 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) L4 |
 | `883408 lanthanum-dense-flint class (vendor unresolved)` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 1 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) L6 |
 | `497815 high-Abbe ED/UD class (vendor unresolved)` | 1.49700 / 81.50 (d) | K-PFK80 — smallest d-line \|Δn\| (1.4e-6 vs 1.0e-4) | MC-FCD1-M20 (Hoya, code, preferred code row) | 1 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) L8 |
 | `834372 lanthanum-flint class (vendor unresolved)` | 1.83400 / 37.20 (d) | J-LASF010 — smallest d-line \|Δn\| (2.3e-8 vs 2.1e-7) | S-LAH60 (Ohara, code, preferred code row) | 1 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) L10 |
@@ -271,9 +271,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `S-LAH66 / TAF1 class (772496 lanthanum flint; vendor unresolved)` | 1.77250 / 49.60 (d) | TAF1 — smallest d-line \|Δn\| (2.9e-8 vs 1.1e-6) | S-LAH66 (Ohara, name)<br>E-LASF016 (Hikari, code, preferred code row) | 1 | [CANON RF-S 14-30mm f/4-6.3 IS STM PZ](../../src/lens-data/canon/CanonRFS1430mmF463ISSTMPZ.data.ts) G11 |
 | `S-LAH98 / TAFD45 class (954323 dense lanthanum flint; vendor unresolved)` | 1.95375 / 32.30 (d) | S-LAH98 — smallest d-line \|Δn\| (5.9e-7 vs 2.6e-6) | TAFD45 (Hoya, name)<br>J-LASFH21 (Hikari, code, alternate code row)<br>TAFD45L (Hoya, code, alternate code row) | 1 | [CANON RF-S 14-30mm f/4-6.3 IS STM PZ](../../src/lens-data/canon/CanonRFS1430mmF463ISSTMPZ.data.ts) G23 |
 | `S-FPL51 / FCD1 class (497816 fluorophosphate ED crown; inferred UD assignment; supplier unconfirmed)` | 1.49700 / 81.70 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name)<br>H-FK61 (CDGM, code, alternate code row)<br>M-FCD1 (Hoya, code, alternate code row) | 1 | [CANON RF-S 14-30mm f/4-6.3 IS STM PZ](../../src/lens-data/canon/CanonRFS1430mmF463ISSTMPZ.data.ts) G24 |
-| `639554/639555 crown class (vendor unresolved)` | 1.63854 / 55.40 (d) | S-BSM18 — smallest d-line \|Δn\| (7.9e-7 vs 1.9e-6) | K-SK18 (Sumita, code, preferred code row) | 1 | [CANON RF-S 18-45mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRFS1845mmf4563ISSTM.data.ts) L1 |
-| `847238 high-index flint class (vendor unresolved)` | 1.84666 / 23.80 (d) | J-SF03 — smallest d-line \|Δn\| (3.7e-8 vs 5.0e-8) | H-ZF52 (CDGM, code, alternate code row)<br>S-TIH53W (Ohara, code, alternate code row)<br>S-TIH53 (Ohara, code, preferred code row)<br>FDS90 (Hoya, code, alternate code row) | 2 | [CANON RF-S 18-45mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRFS1845mmf4563ISSTM.data.ts) L3 |
-| `773496 lanthanum optical-glass class (vendor unresolved)` | 1.77250 / 49.60 (d) | J-LASF016 — smallest d-line \|Δn\| (1.7e-8 vs 2.9e-8) | TAF1 (Hoya, code, alternate code row)<br>N-LAF34 (Schott, code, alternate code row)<br>S-LAH66 (Ohara, code, preferred code row)<br>S-LAH66N (Ohara, code, alternate code row) | 1 | [CANON RF-S 18-45mm f/4.5-6.3 IS STM](../../src/lens-data/canon/CanonRFS1845mmf4563ISSTM.data.ts) L5 |
 | `SK10 / S-BSM10 / E-BACD10 class (623/569)` | 1.62280 / 56.90 (d) | S-BSM10 — direct name evidence outranks alias evidence. | N-SK10 (Schott, alias) | 1 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) L11 |
 | `F2 / S-TIM2 class (620/363)` | 1.62000 / 36.30 (d) | F2 — smallest d-line \|Δn\| (4.0e-5 vs 4.1e-5) | S-TIM2 (Ohara, name)<br>E-F2 (Hoya, code, alternate code row) | 1 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) L12 |
 | `SK14 / S-BSM14 / BACD14 class (603/607)` | 1.60310 / 60.70 (d) | BACD14 — smallest d-line \|Δn\| (1.1e-5 vs 1.2e-5) | S-BSM14 (Ohara, name)<br>N-SK14 (Schott, alias)<br>J-SK14 (Hikari, code, alternate code row) | 1 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) L2 |
@@ -283,8 +280,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `883408 — vendor-unresolved coordinate class` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 3 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) L2 |
 | `497815 — K-PFK80 compatible low-dispersion spectral proxy; patent vendor unspecified` | 1.49700 / 81.50 (d) | K-PFK80 — direct name evidence outranks six-digit code evidence. | MC-FCD1-M20 (Hoya, code, preferred code row) | 3 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) L3 |
 | `699301 — vendor-unresolved coordinate class` | 1.69895 / 30.10 (d) | E-FD15 — smallest d-line \|Δn\| (2.0e-7 vs 3.2e-6) | S-TIM35 (Ohara, code, preferred code row) | 1 | [CANON TS-E 24mm f/3.5 L II](../../src/lens-data/canon/CanonTSE24mmf35LII.data.ts) L16 |
-| `N-KZFS5 (Schott) / S-NBH5 class` | 1.65412 / 39.70 (d) | N-KZFS5 — Annotation vendor context matches Schott. | S-NBH5 (Ohara, name, vendor ✗) | 1 | [CANON TS-E 90mm f/2.8 L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) L3 |
-| `S-FPL51 (OHARA) / FCD1 class UD fluorophosphate` | 1.49700 / 81.50 (d) | S-FPL51 — Annotation vendor context matches Ohara. | FCD1 (Hoya, name, vendor ✗) | 1 | [CANON TS-E 90mm f/2.8 L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) L5 |
 | `BAFD8 / S-BAH28 class (723/380; patent vendor not named)` | 1.72339 / 38.00 (d) | BAFD8 — smallest d-line \|Δn\| (2.7e-5 vs 3.0e-5) | S-BAH28 (Ohara, name) | 1 | [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) LV |
 | `BAFN11 / BAF11 / S-BAH11 class (667/484; patent vendor not named)` | 1.66672 / 48.40 (d) | BAF11 — smallest d-line \|Δn\| (7.7e-7 vs 2.1e-6) | S-BAH11 (Ohara, name) | 1 | [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) LVI |
 | `FK5 fluor crown class (487/703; catalog equivalent, production supplier unspecified)` | 1.48697 / 70.30 (d) | FK5 — direct name evidence outranks six-digit code evidence. | J-FK5 (Hikari, code, preferred code row) | 1 | [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) L2 |
