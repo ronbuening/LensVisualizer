@@ -16,7 +16,7 @@
 
 The October 30, 2026 scoped reopening directly checks the exact local `patents/JP2025050505A.pdf`, all selected rows and aspheric coefficients, source definitions and native Figures 9–10. The actual October 1 shape/glass review remains dated in the audit; its unchanged source transcription, constrained clear caps, motion and qualified production correlation are retained. New connected shoulder evidence, unsupported public chemistry implications and expanded control-state checks are the scope of this reopening.
 
-Numerical Example 5 has ten elements in nine groups, four aspheric surfaces on two monolithic source-unidentified media, and one cemented doublet. The four groups have negative/positive/negative/positive power. Canon is the applicant; the source does not name a retail product, historical supplier, material chemistry or production melt. Similarity to the RF-S14–30 construction remains a plausible production correlation, not manufacturer confirmation. Prior comparisons with production PMo/UD terminology do not identify the selected example's two unmatched media or chemical composition.
+Numerical Example 5 has ten elements in nine groups, four aspheric surfaces on two monolithic source-unidentified media, and one cemented doublet. The four groups have negative/positive/negative/positive power. Canon is the applicant; the source does not name a retail product, historical supplier, material chemistry or production melt. Similarity to the RF-S14–30 construction remains a plausible production correlation, not manufacturer confirmation. Prior comparisons with production PMo/UD terminology do not identify the selected example's two aspheric media or chemical composition.
 
 ## Prescription, Stops and Source Limits
 
@@ -70,17 +70,17 @@ Every one of the ten modeled media was checked against the selected table. Parag
 | Medium / source row |      nd |   νd | Retained current spectral resolution                 |
 | ------------------- | ------: | ---: | ---------------------------------------------------- |
 | G11 /2              | 1.77250 | 49.6 | TAF1 qualified proxy                                 |
-| G12 /4              | 1.53504 | 55.7 | Unmatched; material identity and spectrum unresolved |
+| G12 /4              | 1.53504 | 55.7 | K26R-25 qualified proxy; source identity unspecified |
 | G13 /6              | 1.84666 | 23.9 | S-TIH53WN qualified proxy                            |
 | G21 /8              | 1.48749 | 70.2 | S-FSL5 qualified proxy                               |
 | G22 /12             | 1.80400 | 46.5 | S-LAH65VS qualified proxy                            |
 | G23 /14             | 1.95375 | 32.3 | S-LAH98 qualified proxy                              |
 | G24 /15             | 1.49700 | 81.7 | FCD1 qualified proxy                                 |
 | G31 /17             | 1.63980 | 34.5 | S-TIM27 qualified proxy                              |
-| G32 /19             | 1.53504 | 55.7 | Unmatched; material identity and spectrum unresolved |
+| G32 /19             | 1.53504 | 55.7 | K26R-25 qualified proxy; source identity unspecified |
 | G41 /21             | 1.90043 | 37.4 | TAFD37A qualified proxy                              |
 
-All eight existing resolved curves retain exactly their prior identities; none is enabled, disabled or substituted by this label qualification. The old slash labels resolved to TAF1 and FCD1, which the current labels state explicitly. All ten source numeric pairs are protected. G24's existing inferred APD flag is retained only as conditional behavior under the compatible FCD1 proxy, not a source or production material identification. Its original gives no partial. No source APD badge is invented. The two unmatched media retain the engine's ordinary nd/νd dispersion approximation; no polymer grade, chemistry or artificial coefficient fit is supplied.
+At the October 30 review, all eight existing resolved curves retained their prior identities; the October 31 published K26R-25 follow-up below enables the two remaining media without replacing those eight curves. The old slash labels resolved to TAF1 and FCD1, which the current labels state explicitly. All ten source numeric pairs are protected. G24's existing inferred APD flag is retained only as conditional behavior under the compatible FCD1 proxy, not a source or production material identification. Its original gives no partial. No source APD badge is invented. G12 and G32 now use the published K26R-25 spectral proxy, giving ten compatible curves; their historical source chemistry and grade remain unspecified, with no artificial coefficient fit.
 
 A low index around 1.535 does not identify a COP or molding process. The former COP-like/polymer, lanthanum/titanium/fluorophosphate chemistry implications are withdrawn from current public labels and analysis. All supplier/melt/composition identities remain unknown; compatible curves supply qualified spectral behavior. Source d/g plots are contextual evidence, not historical catalog identification or proof of production chromatic performance.
 
@@ -112,3 +112,11 @@ Source stabilization alternatives (G21 alone or all L2 under paragraphs 0034/003
 
 - Exact local JP2025050505A.pdf, first page for identity; paragraphs 0034–0041 on pages8–9 for motion, materials, wavelengths and asphere convention; Numerical Example 5 pages13–15 for all selected rows/coefficient sets and summaries; native Figures 9–10 page 20.
 - [Audit](CanonRFS1430mmF463ISSTMPZ.audit.md): actual October 1, 2026 source/glass/rim review and October 30 scoped reopening. Unchanged earlier conclusions are reused with their actual date; current material qualifications and three resolved shoulders are new.
+
+## Scoped published K26R-25 catalog-source follow-up — 2026-10-31
+
+The actual October 1 and October 30 original-patent/shape review dates are preserved. This follow-up changes the spectral-proxy disposition of G12/G32 only. Numerical Example 5, PDF/printed page 14, surfaces 4 and 19, retains nd = 1.53504 and νd = 55.7; paragraphs 0037–0038 explicitly define the d/F/C reference, and no material-specific line indices, partial dispersion or chemistry is printed. Production PMo/UD correlation remains separate from those source media.
+
+[Hyperion Optics’ Designer Download Center](https://www.hypoptics.com/about-us/download-center/designer/) publicly distributes [ZEON_UV.AGF](https://www.hypoptics.com/uploads/file/ZEON_UV.AGF). This is a named independent optical manufacturer’s publication of replayable coefficients, not a direct ZEON fetch or proof of the original manufacturer’s provenance. The native published row is **K26R_25**, exposed as canonical **K26R-25**, at 25°C, with valid range 0.404656–1.083030 µm; it is distinct from the unverified 2017 combined-name row. Its six coefficients are used as published in n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸, λ in micrometres, without a nominal-material fit.
+
+C/d/F/g indices evaluate to 1.532176007 / 1.535011329 / 1.541792616 / 1.547204198, giving νd = 55.634094 and curve PgF = 0.562733. Its own printed nd = 1.535011 / νd = 55.634094 round trips with residuals +0.000000329 / −0.000000490, passing the stricter 0.00003 / 0.11 guards. Relative to each retained patent pair, residuals are −0.000028671 / −0.065906. Both media therefore use **K26R-25 qualified spectral proxies**; this identifies neither Canon’s historical formulation/grade nor its supplier or process. No source partial/APD claim, per-lens spectral override, code alias or source numeric field is added. Earlier E48R rejection remains valid. Every shape, R/d, full asphere, stop and focus/zoom control is unchanged; current qualified coverage becomes 10/10.

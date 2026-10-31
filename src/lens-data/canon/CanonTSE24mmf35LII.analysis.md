@@ -127,7 +127,7 @@ one of its physical elements is negative.
 ### C2 — Cemented L6 + L7
 
 **L6: nd = 1.79600, νd = 38.1. Glass: 796381 — S-LAM73 compatible spectral proxy. f = +19.323522 mm.**\
-**L7: nd = 1.77236, νd = 36.1. Glass: Unmatched 772361. f = -32.958173 mm.**
+**L7: nd = 1.77236, νd = 36.1. Glass: 772361 — source coordinate; no compatible sourced curve. f = -32.958173 mm.**
 
 L6 is biconvex and positive; L7 is a negative meniscus cemented at surface 11. The pair is the second positive cemented
 component of L1b and has a computed air-bounded focal length of +46.641601 mm. Together C1 and C2 form the patent's
@@ -136,7 +136,7 @@ positive rear subunit of L1, substantially cancelling the divergence generated b
 ### C3 — Cemented L8 + L9
 
 **L8: nd = 1.78571, νd = 48.6. Glass: 786486 — N-LAF21 compatible spectral proxy. f = -69.308816 mm.**\
-**L9: nd = 1.67769, νd = 31.4. Glass: Unmatched 678314. f = +27.070108 mm.**
+**L9: nd = 1.67769, νd = 31.4. Glass: 678314 — source coordinate; no compatible sourced curve. f = +27.070108 mm.**
 
 C3 begins the nine-element rear unit immediately behind the stop. L8 is a negative meniscus and L9 a positive meniscus;
 the cemented pair is nevertheless net positive, with a computed air-bounded focal length of +46.858828 mm. The sign of
@@ -145,8 +145,8 @@ the cemented component therefore differs from L8's standalone sign.
 ### C4 — Cemented L10 + L11 + L12 triplet
 
 **L10: nd = 1.88300, νd = 40.8. Glass: 883408 — vendor-unresolved coordinate class. f = -20.705976 mm.**\
-**L11: nd = 1.55400, νd = 52.2. Glass: Unmatched 554522. f = +15.767917 mm.**\
-**L12: nd = 1.84175, νd = 37.2. Glass: Unmatched 842372. f = -15.039490 mm.**
+**L11: nd = 1.55400, νd = 52.2. Glass: 554522 — source coordinate; no compatible sourced curve. f = +15.767917 mm.**\
+**L12: nd = 1.84175, νd = 37.2. Glass: 842372 — source coordinate; no compatible sourced curve. f = -15.039490 mm.**
 
 The rear unit's central cemented triplet is negative as a component, with an independently computed air-bounded focal
 length of -21.272346 mm. This is an example of why the individual focal lengths must not be conflated with the power of
@@ -196,11 +196,11 @@ therefore preserves six-digit coordinate codes and qualifies compatible catalog 
 | 616587 — K-PSK200 compatible spectral proxy                            | 1.61601 | 58.7 | L4           | Vendor unresolved                    |
 | 884408 — S-LAH58 compatible spectral proxy                             | 1.88397 | 40.8 | L5           | Vendor unresolved                    |
 | 796381 — S-LAM73 compatible spectral proxy                             | 1.79600 | 38.1 | L6           | High-index coordinate class          |
-| Unmatched 772361                                                       | 1.77236 | 36.1 | L7           | High-index coordinate class          |
+| 772361 — source coordinate; no compatible sourced curve                | 1.77236 | 36.1 | L7           | High-index coordinate class          |
 | 786486 — N-LAF21 compatible spectral proxy                             | 1.78571 | 48.6 | L8           | High-index coordinate class          |
-| Unmatched 678314                                                       | 1.67769 | 31.4 | L9           | High-dispersion coordinate class     |
-| Unmatched 554522                                                       | 1.55400 | 52.2 | L11          | Moderate-index coordinate class      |
-| Unmatched 842372                                                       | 1.84175 | 37.2 | L12          | High-index coordinate class          |
+| 678314 — source coordinate; no compatible sourced curve                | 1.67769 | 31.4 | L9           | High-dispersion coordinate class     |
+| 554522 — source coordinate; no compatible sourced curve                | 1.55400 | 52.2 | L11          | Moderate-index coordinate class      |
+| 842372 — source coordinate; no compatible sourced curve                | 1.84175 | 37.2 | L12          | High-index coordinate class          |
 | 699301 — vendor-unresolved coordinate class                            | 1.69895 | 30.1 | L16          | High-dispersion coordinate class     |
 
 Canon states that the production lens uses three UD elements. The patent model contains the 497815 low-dispersion
@@ -363,3 +363,15 @@ All 455 focus/aperture combinations (65×7 presets) return a traced real working
 Movement sampling covers3 focus×5 shift×5 tilt poses at the authored ±12 mm/±8.5° limits, five actual sensor targets and193 current-iris pupil samples per prepared field. Of 375 fields 351 are usable and24 outside the declared projection domain. No unresolved chiefs or unaimed pupil samples occur. Physical ray outcomes are51,697 clear/15,962 clipped/84failed intersections; sensor outcomes separately21,097usable/15,962 clipped/30,684 missed-sensor. These launch collimated scene directions through moved focus-adjusted geometry, not actual finite moved-object illumination. The existing unmeasured rear-vertex fallback hinge and production group-count discrepancy remain limitations; no source shape, caps, iris, spectral value or control is tuned to these samples.
 
 Surface, image-circle, aperture and centered full-frame field checks pass. No cuts are authored. Sampled runtime checks do not certify production or extreme finite tilt/shift illumination.
+
+## October 31, 2026 — Scoped Catalog Search for Four Source Coordinates
+
+The completed September 11 original shape/glass coverage and October 30 reuse/metadata followup retain their actual dates. This followup checks material tables, reference notation, published partial evidence and manufacturer catalogs only; no new shape inspection is claimed. Direct original US20100208366A1 Numerical Example 1, PDF p. 15/printed p. 5, confirms L7 1.77236/36.1, L9 1.67769/31.4, L11 1.55400/52.2 and L12 1.84175/37.2. Paragraph 0083 identifies d-line coordinates. Table 1, PDF p. 18, assigns the published +0.032 normal-line deviation to G3/L3 only; none is transferred to these four media. All source numeric fields and the existing L3 partial remain unchanged.
+
+The source search covers complete downloaded official SUMITA August 26, 2026 all-glass AGF (header August 21; 433 records), OHARA July 1, 2026 all-products AGF (433 records), Nikon/Hikari official archive updated October 2023 (392 records), CDGM September 2026 AGF (352 records), and 184 optical coordinate headers in NHG version 2601, revised February 2026. These are 1,794 records, including variants and duplicate formula records, not 1,794 distinct physical materials. No checked row falls within the unchanged ±0.003 nd / ±2 νd compatibility limits for any of the four targets. HOYA’s current all-glass download timed out; no exhaustive claim about every manufacturer or unpublished/custom material is made.
+
+Closest failures illustrate why matching is refused: L7 versus OHARA S-NBH59 1.766342/35.82343 has Δnd −0.006018, outside the index guard; L9 versus S-TIM25 1.67270/32.099206 has Δnd −0.00499; L11 versus Hikari J-KZFH4 1.552981/55.071703 has Δν +2.871703; L12 versus CDGM D-ZLAF85LN-25 1.84443/40.067973 has Δν +2.867973. NHG's closest relevant ZLaF53 coordinate 1.83441/37.28 remains Δnd −0.00734 from L12. No reference-line mixing, nearby-code alias, curve fitting, coefficient adjustment or guard relaxation resolves these failures.
+
+These four glass labels now retain their source six-digit coordinate strings without the resolver-excluding Unmatched marker. This permits a future sourced row to be considered if it actually satisfies compatibility; it does not claim an optical curve, identified chemistry or historical supplier now. The current resolver still supplies no catalog curve for L7/L9/L11/L12, and total coverage remains 12/16. No source material pair, partial, shape, stop, focus or tilt/shift control is changed.
+
+Primary sources accessed October 31, 2026: [SUMITA all-glass AGF](https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf), [OHARA all-products archive](https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip), [Nikon/Hikari archive](https://www.nikon.com/business/components/lineup/materials/optical-glass/assets/pdf/nikon-hikari20220701.zip), [CDGM September 2026 AGF](https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c), and [NHG 2601 complete catalog](https://hbnhg.com/uploadfiles/2026/02/20260213172542451.pdf). The bounded negative search remains open to better future evidence; no new catalog row is manufactured for these four coordinates.
