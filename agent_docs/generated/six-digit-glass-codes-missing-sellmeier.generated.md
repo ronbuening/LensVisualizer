@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1032** lenses scanned
-- **1734** total code-only elements found
-- **359** elements in this report
-- **127** distinct lens files affected
+- **1661** total code-only elements found
+- **286** elements in this report
+- **120** distinct lens files affected
 - **27** active unreviewed elements have no review-record hit or explicit disposition
-- **226** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **153** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -56,36 +56,22 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |
 |---|---:|---:|---|---|
 | 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US_4786152_A.pdf | All rows have review records |
-| 847238 | 9 | 5 | patents/JP_2000047107_A.pdf<br>patents/US6115188.pdf<br>patents/CN211826699U.pdf<br>patents/CN211955966U.pdf | All rows explicitly disposed |
-| 805254 | 8 | 7 | patents/JP_2000047107_A.pdf<br>patents/JPA 1991141313-000000.pdf<br>patents/US4826301.pdf<br>patents/JPA 1997211319-000000.pdf | All rows explicitly disposed |
-| 487702 | 7 | 3 | patents/JP_2000047107_A.pdf<br>patents/US4826301.pdf<br>patents/JPA 1997211319-000000.pdf | All rows explicitly disposed |
-| 835427 | 7 | 4 | patents/JP_2000047107_A.pdf<br>patents/JP_H11211978_A.pdf<br>patents/US6115188.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
-| 497816 | 6 | 3 | patents/JPA 1997211319-000000.pdf<br>patents/US6115188.pdf<br>patents/CN211955963U.pdf | All rows explicitly disposed |
-| 804466 | 5 | 2 | patents/US20020015231A1.pdf<br>patents/US6115188.pdf | All rows explicitly disposed |
+| 847238 | 5 | 3 | patents/CN211826699U.pdf<br>patents/CN211955966U.pdf<br>patents/CN114755806A.pdf | All rows explicitly disposed |
 | 486815 | 4 | 3 | patents/US3774991.pdf | All rows have review records |
-| 516641 | 4 | 4 | patents/JP_2000047107_A.pdf<br>patents/JPA 1991141313-000000.pdf<br>patents/JP_H11211978_A.pdf<br>patents/US6115188.pdf | All rows explicitly disposed |
 | 545560 | 4 | 1 | patents/US20180364457A1.pdf | All rows explicitly disposed |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
-| 773496 | 4 | 3 | patents/JP_2000047107_A.pdf<br>patents/JP_H11211978_A.pdf | All rows explicitly disposed |
-| 804465 | 4 | 1 | patents/US20020015231A1.pdf | All rows explicitly disposed |
-| 847239 | 4 | 2 | patents/JPA 1997211319-000000.pdf<br>patents/US6115188.pdf | All rows explicitly disposed |
 | 544561 | 3 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
-| 583594 | 3 | 2 | patents/US4826301.pdf<br>patents/JP_H11211978_A.pdf | All rows explicitly disposed |
 | 684313 | 3 | 2 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 720521 | 3 | 3 | patents/US_4786152_A.pdf<br>patents/US4444473.pdf<br>patents/US4124276.pdf | All rows have review records |
-| 786442 | 3 | 1 | patents/JPA 1991141313-000000.pdf | All rows explicitly disposed |
 | 841433 | 3 | 2 | patents/JP_S4871634_A.pdf<br>patents/US3771853.pdf | All rows explicitly disposed |
 | 460658 | 2 | 2 | patents/DE3907928C2.pdf<br>patents/DE_3907928_A1.pdf | All rows explicitly disposed |
-| 497815 | 2 | 1 | patents/US6115188.pdf | All rows explicitly disposed |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 520642 | 2 | 2 | patents/DE3907928C2.pdf<br>patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 531557 | 2 | 2 | patents/WO2022071249A1.pdf<br>patents/US8994842.pdf | All rows explicitly disposed |
-| 539540 | 2 | 1 | patents/JP_H11211978_A.pdf | All rows explicitly disposed |
 | 540473 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
 | 600644 | 2 | 1 | patents/US_4147410_A.pdf | All rows explicitly disposed |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 621569 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
-| 623582 | 2 | 2 | patents/JP_2000047107_A.pdf<br>patents/US4826301.pdf | All rows explicitly disposed |
 | 627376 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 633315 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 650396 | 2 | 2 | patents/DE3907928C2.pdf<br>patents/DE_3907928_A1.pdf | All rows explicitly disposed |
@@ -99,14 +85,11 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 683548 | 2 | 2 | patents/JP2021036283A.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
 | 690570 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 691530 | 2 | 1 | patents/US20150177500A1.pdf | All rows have review records |
-| 713538 | 2 | 1 | patents/JP_H11211978_A.pdf | All rows explicitly disposed |
 | 726548 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 733282 | 2 | 1 | patents/US3589798.pdf | All rows explicitly disposed |
 | 750251 | 2 | 2 | patents/US_4560253_A.pdf<br>patents/US_4493536_A.pdf | All rows have review records |
-| 750350 | 2 | 2 | patents/JP_2000047107_A.pdf<br>patents/US6115188.pdf | All rows explicitly disposed |
 | 750501 | 2 | 2 | patents/US4277149.pdf<br>patents/JPA 1981150717-000000.pdf | All rows have review records |
 | 755516 | 2 | 1 | patents/JP2004109559A.pdf | All rows have review records |
-| 762401 | 2 | 2 | patents/JPA 1991141313-000000.pdf<br>patents/JPA 1997211319-000000.pdf | All rows explicitly disposed |
 | 774492 | 2 | 1 | patents/US3748022.pdf | All rows have review records |
 | 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
 | 781446 | 2 | 2 | patents/JPA 1987244010-000000.pdf<br>patents/JP2004109559A.pdf | All rows have review records |
@@ -117,14 +100,15 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 815233 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 819287 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 830427 | 2 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
+| 835427 | 2 | 1 | patents/CN114755806A.pdf | All rows explicitly disposed |
 | 840433 | 2 | 2 | patents/JPA 1994235857-000000.pdf<br>patents/US5528428.pdf | All rows have review records |
 | 840434 | 2 | 1 | patents/US5734508.pdf | All rows explicitly disposed |
-| 439950 | 1 | 1 | patents/JP_2000047107_A.pdf | All rows explicitly disposed |
 | 446672 | 1 | 1 | patents/US3771853.pdf | All rows explicitly disposed |
 | 448672 | 1 | 1 | patents/JP_S4871634_A.pdf | All rows explicitly disposed |
 | 449670 | 1 | 1 | patents/GB_1050055_A.pdf | All rows explicitly disposed |
 | 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
 | 489701 | 1 | 1 | patents/US2186621.pdf | All rows have review records |
+| 497816 | 1 | 1 | patents/CN211955963U.pdf | All rows explicitly disposed |
 | 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 510619 | 1 | 1 | patents/DE_1980417_U.pdf | All rows explicitly disposed |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
@@ -146,7 +130,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 534559 | 1 | 1 | patents/JP2021015312A.pdf | All rows explicitly disposed |
 | 536412 | 1 | 1 | patents/US8169718.pdf | All rows explicitly disposed |
 | 540509 | 1 | 1 | patents/GB_775944_A.pdf | All rows explicitly disposed |
-| 541472 | 1 | 1 | patents/US4826301.pdf | All rows explicitly disposed |
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
 | 554381 | 1 | 1 | patents/US7359125.pdf | All rows have review records |
 | 554522 | 1 | 1 | patents/US20100208366A1.pdf | No review-record hit |
@@ -160,12 +143,9 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 580595 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 581592 | 1 | 1 | patents/US20150131163A1.pdf | All rows explicitly disposed |
 | 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
-| 593353 | 1 | 1 | patents/JPA 1997211319-000000.pdf | All rows explicitly disposed |
 | 595355 | 1 | 1 | patents/US5579169.pdf | All rows explicitly disposed |
 | 602352 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 603564 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
-| 603606 | 1 | 1 | patents/JP_2000047107_A.pdf | All rows explicitly disposed |
-| 603607 | 1 | 1 | patents/JPA 1991141313-000000.pdf | All rows explicitly disposed |
 | 604208 | 1 | 1 | patents/US20200012073A1.pdf | All rows explicitly disposed |
 | 605382 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 611572 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
@@ -189,7 +169,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 662577 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
 | 666552 | 1 | 1 | patents/US9651761.pdf | All rows explicitly disposed |
 | 667311 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
-| 667483 | 1 | 1 | patents/JP_2000047107_A.pdf | All rows explicitly disposed |
 | 668358 | 1 | 1 | patents/JPB 1963011590-000000.pdf | No review-record hit |
 | 670266 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 672323 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
@@ -213,18 +192,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 693495 | 1 | 1 | patents/US3552833.pdf | All rows explicitly disposed |
 | 693562 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 697555 | 1 | 1 | Missing from untracked local patents/ references (JP1978066222A, JP1978066222, 1978066222, JPA1978066222000000) | All rows explicitly disposed |
-| 699301 | 1 | 1 | patents/JPA 1991141313-000000.pdf | All rows explicitly disposed |
 | 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
-| 702412 | 1 | 1 | patents/JP_2000047107_A.pdf | All rows explicitly disposed |
 | 704408 | 1 | 1 | patents/JPB 1963011590-000000.pdf | No review-record hit |
 | 712525 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
-| 713539 | 1 | 1 | patents/JP_2000047107_A.pdf | All rows explicitly disposed |
 | 717295 | 1 | 1 | patents/CN211826699U.pdf | All rows explicitly disposed |
-| 720437 | 1 | 1 | patents/US6115188.pdf | All rows explicitly disposed |
 | 721234 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 721334 | 1 | 1 | patents/US_4786152_A.pdf | All rows have review records |
 | 728261 | 1 | 1 | patents/US4523816.pdf | All rows explicitly disposed |
-| 728285 | 1 | 1 | patents/JP_2000047107_A.pdf | All rows explicitly disposed |
 | 728380 | 1 | 1 | patents/GB_978797_A.pdf | All rows explicitly disposed |
 | 728403 | 1 | 1 | patents/US6560042.pdf | All rows explicitly disposed |
 | 729364 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
@@ -249,18 +223,17 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 749547 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
 | 750504 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 754260 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
-| 755275 | 1 | 1 | patents/US4826301.pdf | All rows explicitly disposed |
 | 755501 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 757297 | 1 | 1 | patents/US_4147410_A.pdf | All rows explicitly disposed |
 | 758316 | 1 | 1 | patents/US3388956A.pdf | All rows explicitly disposed |
 | 760492 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
-| 762265 | 1 | 1 | patents/US20020015231A1.pdf | All rows explicitly disposed |
 | 765249 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 767462 | 1 | 1 | patents/US3507558.pdf | All rows have review records |
 | 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 770493 | 1 | 1 | patents/WO_2021246545_A1.pdf | All rows explicitly disposed |
 | 772361 | 1 | 1 | patents/US20100208366A1.pdf | No review-record hit |
 | 772493 | 1 | 1 | patents/US20230341664A1.pdf | All rows have review records |
+| 773496 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
 | 773501 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 780509 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
@@ -271,17 +244,14 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 794255 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 798453 | 1 | 1 | patents/US9651761.pdf | All rows explicitly disposed |
 | 800255 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
-| 801350 | 1 | 1 | patents/JPA 1997211319-000000.pdf | All rows explicitly disposed |
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
 | 803456 | 1 | 1 | patents/US20140354857A1.pdf | All rows have review records |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
 | 805445 | 1 | 1 | patents/US_4493536_A.pdf | All rows explicitly disposed |
 | 806333 | 1 | 1 | patents/CN211826699U.pdf | All rows explicitly disposed |
-| 806409 | 1 | 1 | patents/JPA 1991141313-000000.pdf | All rows explicitly disposed |
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 827336 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 831265 | 1 | 1 | patents/US3615126.pdf | All rows explicitly disposed |
-| 834372 | 1 | 1 | patents/JPA 1997211319-000000.pdf | All rows explicitly disposed |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
 | 837333 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
 | 839196 | 1 | 1 | patents/WO2024154461A1.pdf | No review-record hit |
@@ -296,7 +266,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 876363 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 877370 | 1 | 1 | patents/US20160266350A1.pdf | All rows have review records |
 | 882408 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
-| 883408 | 1 | 1 | patents/JPA 1997211319-000000.pdf | All rows explicitly disposed |
 | 904293 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
 | 907303 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 908334 | 1 | 1 | patents/US20140347522A1.pdf | All rows have review records |
@@ -323,114 +292,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L5 (Element 5) | 10A | `Unmatched (671195 patent material coordinate)` | 1.67100 / 19.50 | No catalog entry | abbe | patents/US20180364457A1.pdf | Explicit disposition in data |
 | L6 (Element 6) | 12A | `Unmatched (545560 patent material coordinate)` | 1.54500 / 56.00 | No catalog entry | abbe | patents/US20180364457A1.pdf | Explicit disposition in data |
 | L7 (Element 7) | 14A | `Unmatched (545560 patent material coordinate)` | 1.54500 / 56.00 | No catalog entry | abbe | patents/US20180364457A1.pdf | Explicit disposition in data |
-
-### [CANON EF 100-400mm f/4.5-5.6 L IS USM](../../src/lens-data/canon/CanonEF100400mmf4556LISUSM.data.ts) - JP 2000-47107 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| E1 (Element 1) | 1 | `Unmatched (source spectral line unspecified; former 487702 coordinate class)` | 1.48749 / 70.20 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E2 (Element 2) | 3 | `Unmatched (source spectral line unspecified; former 750350 coordinate class)` | 1.74950 / 35.00 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E4 (Element 4) | 8 | `Unmatched (source spectral line unspecified; former 713539 coordinate class)` | 1.71300 / 53.90 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E5 (Element 5) | 10 | `Unmatched (source spectral line unspecified; former 623582 coordinate class)` | 1.62299 / 58.20 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E6 (Element 6) | 11 | `Unmatched (source spectral line unspecified; former 847238 coordinate class)` | 1.84666 / 23.80 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E7 (Element 7) | 13 | `Unmatched (source spectral line unspecified; former 439950 coordinate class)` | 1.43875 / 95.00 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E8 (Element 8) | 15 | `Unmatched (source spectral line unspecified; former 702412 coordinate class)` | 1.70154 / 41.20 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E10 (Element 10) | 20 | `Unmatched (source spectral line unspecified; former 603606 coordinate class)` | 1.60311 / 60.60 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E11 (Element 11) | 22 | `Unmatched (source spectral line unspecified; former 487702 coordinate class)` | 1.48749 / 70.20 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E12 (Element 12) | 24 | `Unmatched (source spectral line unspecified; former 805254 coordinate class)` | 1.80518 / 25.40 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E13 (Element 13) | 26 | `Unmatched (source spectral line unspecified; former 516641 coordinate class)` | 1.51633 / 64.10 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E14 (Element 14) | 28 | `Unmatched (source spectral line unspecified; former 667483 coordinate class)` | 1.66672 / 48.30 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E15 (Element 15) | 30 | `Unmatched (source spectral line unspecified; former 835427 coordinate class)` | 1.83481 / 42.70 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E16 (Element 16) | 31 | `Unmatched (source spectral line unspecified; former 728285 coordinate class)` | 1.72825 / 28.50 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-| E17 (Element 17) | 32 | `Unmatched (source spectral line unspecified; former 773496 coordinate class)` | 1.77250 / 49.60 | No catalog entry | abbe | patents/JP_2000047107_A.pdf | Explicit disposition in data |
-
-### [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) - JP 1991-141313 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (source spectral line unspecified; former 603607 coordinate class)` | 1.60311 / 60.70 | No catalog entry | abbe | patents/JPA 1991141313-000000.pdf | Explicit disposition in data |
-| L2 (Element 2) | 3 | `Unmatched (source spectral line unspecified; former 786442 coordinate class)` | 1.78590 / 44.20 | No catalog entry | abbe | patents/JPA 1991141313-000000.pdf | Explicit disposition in data |
-| L3 (Element 3) | 5 | `Unmatched (source spectral line unspecified; former 786442 coordinate class)` | 1.78590 / 44.20 | No catalog entry | abbe | patents/JPA 1991141313-000000.pdf | Explicit disposition in data |
-| L4 (Element 4) | 7 | `Unmatched (source spectral line unspecified; former 805254 coordinate class)` | 1.80518 / 25.40 | No catalog entry | abbe | patents/JPA 1991141313-000000.pdf | Explicit disposition in data |
-| L5 (Element 5) | 10 | `Unmatched (source spectral line unspecified; former 699301 coordinate class)` | 1.69895 / 30.10 | No catalog entry | abbe | patents/JPA 1991141313-000000.pdf | Explicit disposition in data |
-| L6 (Element 6) | 11 | `Unmatched (source spectral line unspecified; former 806409 coordinate class)` | 1.80610 / 40.90 | No catalog entry | abbe | patents/JPA 1991141313-000000.pdf | Explicit disposition in data |
-| L7 (Element 7) | 13 | `Unmatched (source spectral line unspecified; former 786442 coordinate class)` | 1.78590 / 44.20 | No catalog entry | abbe | patents/JPA 1991141313-000000.pdf | Explicit disposition in data |
-| L8 (Element 8) | 15 | `Unmatched (source spectral line unspecified; former 805254 coordinate class)` | 1.80518 / 25.40 | No catalog entry | abbe | patents/JPA 1991141313-000000.pdf | Explicit disposition in data |
-| L9 (Element 9) | 17 | `Unmatched (source spectral line unspecified; former 762401 coordinate class)` | 1.76200 / 40.10 | No catalog entry | abbe | patents/JPA 1991141313-000000.pdf | Explicit disposition in data |
-| L10 (Element 10) | 19 | `Unmatched (source spectral line unspecified; former 516641 coordinate class)` | 1.51633 / 64.10 | No catalog entry | abbe | patents/JPA 1991141313-000000.pdf | Explicit disposition in data |
-
-### [CANON EF 135mm f/2.8 Soft Focus](../../src/lens-data/canon/CanonEF135mmf28SoftFocus.data.ts) - US 4,826,301
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (623582 class (catalog vendor unresolved); source spectral reference unspecified)` | 1.62299 / 58.20 | No catalog entry | abbe | patents/US4826301.pdf | Explicit disposition in data |
-| L3 (Element 3) | 5 | `Unmatched (805254 class (catalog vendor unresolved); source spectral reference unspecified)` | 1.80518 / 25.40 | No catalog entry | abbe | patents/US4826301.pdf | Explicit disposition in data |
-| L4 (Element 4) | 7A | `Unmatched (583594 class (catalog vendor unresolved); source spectral reference unspecified)` | 1.58313 / 59.40 | No catalog entry | abbe | patents/US4826301.pdf | Explicit disposition in data |
-| L5 (Element 5) | 10 | `Unmatched (755275 class (catalog vendor unresolved); source spectral reference unspecified)` | 1.75520 / 27.50 | No catalog entry | abbe | patents/US4826301.pdf | Explicit disposition in data |
-| L6 (Element 6) | 11 | `Unmatched (541472 class (catalog vendor unresolved); source spectral reference unspecified)` | 1.54072 / 47.20 | No catalog entry | abbe | patents/US4826301.pdf | Explicit disposition in data |
-| L7 (Element 7) | 13 | `Unmatched (487702 class (catalog vendor unresolved); source spectral reference unspecified)` | 1.48749 / 70.20 | No catalog entry | abbe | patents/US4826301.pdf | Explicit disposition in data |
-
-### [CANON EF 180mm f/3.5 L Macro USM](../../src/lens-data/canon/CanonEF180mmf35LMacroUSM.data.ts) - JP 1997-211319 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (source index/Abbe reference unspecified; 487702 — crown class)` | 1.48749 / 70.20 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L2 (Element 2) | 3 | `Unmatched (source index/Abbe reference unspecified; 497816 — low-dispersion / UD crown class)` | 1.49700 / 81.60 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L3 (Element 3) | 5 | `Unmatched (source index/Abbe reference unspecified; 801350 — high-index class)` | 1.80100 / 35.00 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L4 (Element 4) | 7 | `Unmatched (source index/Abbe reference unspecified; 497816 — low-dispersion / UD crown class)` | 1.49700 / 81.60 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L5 (Element 5) | 9 | `Unmatched (source index/Abbe reference unspecified; 805254 — dense-flint class)` | 1.80518 / 25.40 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L6 (Element 6) | 11 | `Unmatched (source index/Abbe reference unspecified; 487702 — crown class)` | 1.48749 / 70.20 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L7 (Element 7) | 13 | `Unmatched (source index/Abbe reference unspecified; 883408 — high-index lanthanum class)` | 1.88300 / 40.80 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L8 (Element 8) | 15 | `Unmatched (source index/Abbe reference unspecified; 487702 — crown class)` | 1.48749 / 70.20 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L9 (Element 9) | 16 | `Unmatched (source index/Abbe reference unspecified; 847239 — dense-flint class)` | 1.84666 / 23.90 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L10 (Element 10) | 19 | `Unmatched (source index/Abbe reference unspecified; 762401 — lanthanum class)` | 1.76200 / 40.10 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L11 (Element 11) | 21 | `Unmatched (source index/Abbe reference unspecified; 497816 — low-dispersion / UD crown class)` | 1.49700 / 81.60 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L12 (Element 12) | 22 | `Unmatched (source index/Abbe reference unspecified; 593353 — flint class)` | 1.59270 / 35.30 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L13 (Element 13) | 24 | `Unmatched (source index/Abbe reference unspecified; 834372 — high-index lanthanum class)` | 1.83400 / 37.20 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-| L14 (Element 14) | 26 | `Unmatched (source index/Abbe reference unspecified; 487702 — crown class)` | 1.48749 / 70.20 | No catalog entry | abbe | patents/JPA 1997211319-000000.pdf | Explicit disposition in data |
-
-### [CANON EF 35mm f/1.4 L USM](../../src/lens-data/canon/CanonEF35mmf14LUSM.data.ts) - JP H11-211978 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| E1 (Element 1) | 1 | `Unmatched (583594/595 class (vendor unresolved); source spectral reference unspecified)` | 1.58313 / 59.40 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
-| E2 (Element 2) | 3 | `Unmatched (583594/595 class (vendor unresolved); source spectral reference unspecified)` | 1.58313 / 59.40 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
-| E3 (Element 3) | 5 | `Unmatched (713538/539/540 class (vendor unresolved); source spectral reference unspecified)` | 1.71300 / 53.80 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
-| E4 (Element 4) | 7 | `Unmatched (713538/539/540 class (vendor unresolved); source spectral reference unspecified)` | 1.71300 / 53.80 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
-| E5 (Element 5) | 9 | `Unmatched (516641/642 class (vendor unresolved); source spectral reference unspecified)` | 1.51633 / 64.20 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
-| E6 (Element 6) | 11 | `Unmatched (835427 class (vendor unresolved); source spectral reference unspecified)` | 1.83481 / 42.70 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
-| E8 (Element 8) | 15 | `Unmatched (805254/255 class (vendor unresolved); source spectral reference unspecified)` | 1.80518 / 25.40 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
-| E9 (Element 9) | 16 | `Unmatched (835427 class (vendor unresolved); source spectral reference unspecified)` | 1.83481 / 42.70 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
-| E10 (Element 10) | 18 | `Unmatched (773496 class (vendor unresolved); source spectral reference unspecified)` | 1.77250 / 49.60 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
-| E11 (Element 11) | 20 | `Unmatched (773496 class (vendor unresolved); source spectral reference unspecified)` | 1.77250 / 49.60 | No catalog entry | abbe | patents/JP_H11211978_A.pdf | Explicit disposition in data |
-
-### [CANON EF 400mm f/4 DO IS USM](../../src/lens-data/canon/CanonEF400mmf4DOISUSM.data.ts) - US 2002/0015231 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L8 (Element 8) | 15 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 805254 coordinate class)` | 1.80518 / 25.40 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
-| L9 (Element 9) | 16 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 762265 coordinate class)` | 1.48749 / 70.20 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
-| L10 (Element 10) | 18 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)` | 1.76182 / 26.50 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
-| L11 (Element 11) | 19 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)` | 1.80400 / 46.60 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
-| L12 (Element 12) | 21 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)` | 1.80400 / 46.60 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
-| L14 (Element 14) | 24 | `Unmatched (source N/ν reference unspecified; qualified d-line coordinate candidate 804465/804466 coordinate class)` | 1.80400 / 46.60 | No catalog entry | abbe | patents/US20020015231A1.pdf | Explicit disposition in data |
-
-### [CANON EF 600mm f/4 L IS USM](../../src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts) - US 6,115,188 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1a-1 (L1a front positive) | 3 | `Unmatched (source reference unspecified; prior 497815/497816 low-dispersion crown comparison is conditional only)` | 1.49700 / 81.50 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
-| L1b-1 (L1b positive) | 5 | `Unmatched (source reference unspecified; prior 497815/497816 low-dispersion crown comparison is conditional only)` | 1.49700 / 81.50 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
-| L1b-2 (L1b negative) | 7 | `Unmatched (source reference unspecified; prior 835427 high-index lanthanum comparison is conditional only)` | 1.83481 / 42.70 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
-| L1c-2 (L1c negative meniscus) | 11 | `Unmatched (source reference unspecified; prior 516641 crown comparison is conditional only)` | 1.51633 / 64.10 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
-| L2-1 (L2 positive) | 13 | `Unmatched (source reference unspecified; prior 805254 dense-flint comparison is conditional only)` | 1.80518 / 25.40 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
-| L2-2 (L2 negative) | 14 | `Unmatched (source reference unspecified; prior 835427 high-index lanthanum comparison is conditional only)` | 1.83481 / 42.70 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
-| L3a-1 (L3a negative) | 17 | `Unmatched (source reference unspecified; prior 847238/847239 dense-flint comparison is conditional only)` | 1.84666 / 23.90 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
-| L3b-1 (L3b positive) | 20 | `Unmatched (source reference unspecified; prior 847238/847239 dense-flint comparison is conditional only)` | 1.84666 / 23.90 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
-| L3b-3 (L3b negative singlet) | 23 | `Unmatched (source reference unspecified; prior 804466 lanthanum comparison is conditional only)` | 1.80400 / 46.60 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
-| L3c-1 (L3c positive singlet) | 25 | `Unmatched (source reference unspecified; prior 720437 lanthanum-flint comparison is conditional only)` | 1.72000 / 43.70 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
-| L3c-2 (L3c cemented positive) | 27 | `Unmatched (source reference unspecified; prior 750350 lanthanum-flint comparison is conditional only)` | 1.74950 / 35.00 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
-| L3c-3 (L3c cemented negative) | 28 | `Unmatched (source reference unspecified; prior 847238/847239 dense-flint comparison is conditional only)` | 1.84666 / 23.90 | No catalog entry | abbe | patents/US6115188.pdf | Explicit disposition in data |
 
 ### [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) - US 2013/0335830 A1
 
