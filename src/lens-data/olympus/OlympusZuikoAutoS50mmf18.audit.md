@@ -98,3 +98,76 @@ Open: the changeover date stays "probably" 1982. The OM-10 FC manual's table (pr
 lists the Zuiko MC 50mm F1.8 at 6-4, f/1.8–16, 0.45 m, 165 g, 32 mm, 49 mm filter, so the maker prints 6/4 for the MC
 lens; other listings' 6/5 for it stands against that. The package's leaflet coded 0486 was not checked and is not cited.
 Open: read US 4,291,952 from page images if the patent is added to `patents/`.
+
+## 2026-11-01 — Semi-diameter pass against the patent figure
+
+### Source and scale
+
+`patents/US4728179.pdf`, PDF page 2 (sheet 1), a 300 dpi 1-bit raster. Figure 3 is the master alone; Figures 1 and 2 draw the
+same master ahead of Embodiments 1 and 2 at the same size, so they serve as two repeat readings. All values below are native
+300 dpi; the 600 dpi readings in the validation section are these doubled. The drawn axis is tilted 0.90° on the page and each
+lens sits about 0.2° off its own axis line, so heights are half the top-to-bottom distance between stroke centres.
+
+| Figure | Along the axis, vertices on prescription z | Along the axis, R1 to R10 span | Across the axis, along-axis scale held | One scale for both |
+|---|---:|---:|---:|---:|
+| 3 | 18.52 | 18.55 | 18.98 | 19.34 |
+| 1 | 18.55 | 18.44 | 19.13 | 19.62 |
+| 2 | 18.49 | 18.37 | 18.96 | 19.37 |
+
+Scales are px/mm. The across-axis column fits each drawn arc with the printed radius, vertex free, about 1,200 points per
+figure at 1.0 to 1.5 px rms. Single arcs scatter from 17.8 to 19.9 px/mm, R1 high and R3 low in all three figures. The drawings are
+anamorphic, about 2.7 % taller than long, which also explains the last column: a drawn arc fixes the along-axis scale over the
+square of the across-axis scale, so a one-scale fit returns about across²/along. The 19.2 px/mm of the validation section was
+that one-scale figure, not the height scale. The rims are read at 18.98, 19.13 and 18.96 px/mm. Fig. 3 draws D2 at 0.53 mm
+against 0.15 printed, moving R3's vertex 5.7 px; Figures 1 and 2 do not, so that is a drawing slip with no effect on the rims.
+
+### Rims
+
+| Surface | Before | Drawn half-height, px (Fig. 3 / 1 / 2) | Drawn, mm, mean | Drawn / before | After | Evidence |
+|---|---:|---:|---:|---:|---:|---|
+| S1, S2 | 15.329 | 296.8 / 302.3 / 296.0 | 15.68 | 1.023 | 15.329 | kept, noise |
+| S3, S4 | 12.922 | 249.9 / 252.6 / 246.3 | 13.12 | 1.015 | 12.922 | kept, noise |
+| S5 | 9.887 | 191.0 / 194.2 / 189.8 | 10.08 | 1.019 | 9.887 | kept, noise |
+| S6 | 10.332 | 199.8 / 201.8 / 199.8 | 10.54 | 1.020 | 10.332 | kept, noise |
+| S7 | 11.849 | R7's end 238.0 / 238.5 / 237.8; L4 flat 228.1 / 231.4 / 227.5 | 12.52; 12.04 | 1.057; 1.016 | 12.34 | square-cut L5 |
+| S8 | 12.34 | 238.0 / 238.5 / 237.8 | 12.52 | 1.014 | 12.34 | kept, noise |
+| S9, S10 | 12.784 | 247.4 / 248.0 / 245.5 | 12.98 | 1.015 | 12.784 | kept, noise |
+
+The package rims equal the Figure 3 heights at 19.33 px/mm within 0.4 %, so the ratios and the step order hold, and at the
+proven scale every height is 1.4 to 2.3 % under the drawing. At the along-axis scale the three-figure gap is 4.2 to 5.1 %, not
+the 5-6 % recorded earlier, which read the outer edge of the stroke on one side. Figure-to-figure scatter is about 1 %. Nothing
+was raised for height.
+
+S7 is the one change. All three figures draw L5 with a flat parallel to the axis, and the R7 line runs up to that flat, while
+L4's flat stops about 0.5 mm lower. S7 is one surface and cannot carry that step. At 11.849 mm it took L4's height, so L5's rim
+rose 0.49 mm across its 1.6 mm edge, which the overlay shows as a clear ramp against a flat. At 12.34 mm L5 is square-cut as
+drawn, and the L4 chord from the S6 tip moves nearer the drawn flat and chamfer; the corner stands 0.3 mm above L4's flat at the
+proven scale. This +4.1 % stays inside the noise band and is made for the square-cut shape alone. Step order after the change
+matches the drawing: S5 < S6 < S7 = S8 < S9 = S10 < S3 = S4 < S1 = S2. The drawn outlines of L1, L2 and L6 are square-cut and the file's pairs are equal.
+
+### Clearance and light
+
+Corner illumination is unchanged. Geometric transmission wide open at infinity is 82.0 % at 11.5°, 46.9 % at 20.1° and 33.0 % at
+23.0° before and after, identical at every sampled field, because S8 stops the rays S7 releases; restoring S7 wins back 0.0
+points. No face is below its package value and no land was added. The engine half-field stays 27.51°, F/1.86, stop radius
+9.542 mm, and the traced field reaches 21.65 mm at 23.0°. The surface validator passes at default limits, so no `gapSagFrac` or
+`maxRimAngleDeg` is needed, and the image-circle and on-axis f-number checks are unchanged.
+
+Marginal heights at f/1.86, against the rims: at infinity S5 is the tightest, 9.66 mm at the entrance-pupil radius and 9.74 mm
+at the engine's stop radius, against 9.887 mm. At 0.45 m, traced from the finite object 368.23 mm ahead of S1 at the engine's
+stop radius: S5 9.58, S6 9.50, S7 11.02, S8 11.63, S9 11.65, S10 11.62 mm, all inside their rims. No axial or chief-ray clip at
+either focus.
+
+### Maker drawing
+
+The public section labelled the MC version is low resolution and was used only as a check. It shows singlet, cemented doublet,
+stop gap, cemented doublet, singlet, so 6/4, with a chamfered rim on L3, a pointed rim on L4 and L1 the tallest element. It marks no aspherical
+or special-glass element, in line with the all-spherical table. The L4/L5 step is too small to resolve, and L6 reads somewhat
+smaller against C1 than the patent draws it. No value was taken from it.
+
+### Limits
+
+The chamfers on L3 and L4 stay chords from the S4 and S7 rims to the S5 and S6 tips, which leaves about 1.4 mm and 0.9 mm of
+drawn corner glass undrawn at the widest point. Figure 3 draws a slanted stroke of about 50° there, not a stroke square to the
+axis, so neither `rimExtensionSd` nor `rimCutDepthMm` matches it, and a vertical land would blunt the drawn tip. The live page
+shows L5 square-cut at infinity and at 0.45 m.

@@ -33,7 +33,7 @@ The patent's aim is a telephoto ratio of 0.75 from common glass. It notes that C
 
 **Stop.** The stop position is inferred; the patent draws the diaphragm D but prints no position. The mark in Fig. 1 sits at 0.683 of d6, and the model places the stop at 0.68, splitting the space into 96.83 and 45.57 mm. Fig. 4c confirms this separately: the traced field curves fit the plot only for a stop between 0.67 and 0.69 of d6. The stop radius, 13.84 mm, follows from a paraxial entrance pupil of F/6.3. The real marginal ray at that radius gives a working f-number of 6.35.
 
-**Rims.** The semi-diameters are inferred from the Fig. 1 outline and are not factory clear apertures: L1 34.29 mm, which is 8 % above the 31.75 mm entrance-pupil radius; L2 and L3 30.00 mm; L4 and L5 18.21 mm. Both faces of L5 share one height because the figure draws its edge square. The full axial beam clears every rim, with the smallest margin 1.78 mm at S3. Off axis, L1's rim sets the vignetting, leaving 90.7 % of the light at 1.5° and 74.8 % at the 3.1° corner.
+**Rims.** The semi-diameters are inferred from the Fig. 1 outline and are not factory clear apertures: L1 34.29 mm, which is 8 % above the 31.75 mm entrance-pupil radius; L2 and L3 30.00 mm; L4 and L5 18.21 mm. Both faces of L5 share one height because the figure draws its edge square. The full axial beam clears every rim, with the smallest margin 1.78 mm at S3. Off axis, the rims of L1 and L2 set the vignetting together, leaving 90.7 % of the light at 1.5° and 74.8 % at the 3.1° corner.
 
 ## Element-by-Element Analysis
 

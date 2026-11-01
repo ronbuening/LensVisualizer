@@ -9,9 +9,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Not printed: back focus, stop position, clear apertures. The last gap is the computed paraxial back focus, 81.019 mm.
  * The stop sits 60 % of the way through l2 (z 47.99 mm); Fig. 3 draws it at 60.2 % (z 48.07 mm). The Zeiss sheet pupils
  * imply 51–55 %, and the figure is kept.
- * Semi-diameters are read from Fig. 3 at its own axial scale, 11.05 px/mm: S1/S2 22.6, S3/S4 19.2, S6 15.1, S7 16.5,
- * S8 19.7. S5 is 12.771 mm, at the top of the figure's 12.1–12.7 mm band; the f/4 axial ray reaches 12.59 mm there, the
- * tightest margin in the lens.
+ * Semi-diameters are estimated from Fig. 3 at 11.05 px/mm along the axis and floor-checked by real-ray trace: S1/S2 22.6,
+ * S3/S4 19.2, S6 15.1, S7 16.5, S8 19.7. Arc fits of S1, S3, S5 and S7 give 10.65 px/mm across the axis, which leaves
+ * S1/S2, S3/S4, S7 and S8 up to 3.3 % under the figure, inside the reading noise. S5 is 12.771 mm, inside the figure's
+ * 12.1–12.9 mm band; the f/4 axial ray reaches 12.59 mm there, the tightest margin in the lens. The figure's flat lands are
+ * drawn with rimExtensionSd, which leaves the clear apertures unchanged: S5 out to the 19.2 mm rim, S6 out to 16.5 mm, where
+ * L4 is cut square. The figure's chamfers are not drawn: L3 keeps a square corner, and a cemented face takes no land, so one
+ * straight edge joins the S7 and S8 rims.
  * closeFocusM is the retail 1.4 m. The patent prints no focus data, so the geometry stays at infinity.
  */
 const LENS_DATA = {
@@ -117,7 +121,7 @@ const LENS_DATA = {
       "nd": 1.6014,
       "vd": 38.3,
       "indexReference": "d",
-      "glass": "Unmatched (patent 1.60140/38.3; no catalog row at this coordinate)",
+      "glass": "F5 coordinate proxy (source nd=1.60140, νd=38.3; production glass unspecified)",
       "focalLengthMm": -46.9440448270829,
       "cemented": "C2",
       "role": "Larger negative meniscus closing the rear component"
@@ -155,7 +159,8 @@ const LENS_DATA = {
       "label": "5",
       "R": 24.3506088,
       "d": 18.5576832,
-      "sd": 12.771
+      "sd": 12.771,
+      "rimExtensionSd": 19.2
     },
     {
       "label": "STO",
@@ -167,6 +172,7 @@ const LENS_DATA = {
       "R": 529.674768,
       "d": 10.975608,
       "sd": 15.1,
+      "rimExtensionSd": 16.5,
       "medium": 4
     },
     {

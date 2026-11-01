@@ -30,7 +30,7 @@ The patent's aim is a shorter lens with better low-frequency contrast than JP 53
 
 The patent neither tabulates nor draws a stop; the mark in d6 on Fig. 1 is a dimension leader. The maker's section draws the diaphragm just behind L4, and the model places it 2.128 mm behind surface 8, 67.81 mm behind S1, which splits the scaled d8 of 21.28 mm into 2.128 + 19.152 mm. The exact distance is inferred. A trace of Example 1 supports it: the meridional field curve of Fig. 2 places the stop about 56 to 70 mm behind S1 at this scale, and a stop at mid-d8 falls outside that range.
 
-The patent prints no clear apertures. The semi-diameters take their ratios from the element heights in Fig. 1 and their scale from 27 mm at S1, the f/4 entrance-pupil radius of 25 mm plus 8 %. They are inferred, not factory apertures. Fig. 1's own axial scale puts L1 near 25.9 mm, and outline widths in the maker's section give about 26.4 mm at L1, 14.9 mm at L4, 10.1 mm at L5 and 13.2 mm at L6, against 27, 15.93, 12.15 and 13.5 mm in the model. The larger model rims are kept because scaling them to Fig. 1 would lower corner illumination from about 78 % to about 71 %.
+The patent prints no clear apertures. The semi-diameters are estimated from Fig. 1 at its own scale, with one height per element as drawn, and they are inferred, not factory apertures. From L1 to L6, Fig. 1 reads about 25.9, 25.8, 25.5, 15.4, 11.7 and 12.9 mm, outline widths in the maker's section read about 26.0, 25.7, 25.7, 14.7, 11.6 and 12.9 mm, and the model uses 26.5, 26.0, 25.5, 15.4, 11.9 and 13.3 mm. L1, L2, L5 and L6 stay above the figure because taking them down to it would lower corner illumination from about 75 % to about 71 %.
 
 ## Element-by-Element Analysis
 
@@ -88,7 +88,7 @@ The printed fB of 32.50 gives a final gap of 65.00 mm and an image plane 160.46 
 
 The stop follows the paraxial f-number rule: at f/4 the iris radius is 12.97 mm for an entrance-pupil radius of 25 mm. No lens surface clips the axial beam. The real marginal ray through that iris enters at 24.4 mm, a working aperture of about f/4.1.
 
-The patent's field edge is 6.3°, where the chief ray lands 22.30 mm from the axis, beyond the 21.63 mm corner of the 24 × 36 mm frame. The model reaches that corner at 6.1°, with relative illumination of about 78 %. That figure follows from the inferred rims and is not a factory value.
+The patent's field edge is 6.3°, where the chief ray lands 22.30 mm from the axis, beyond the 21.63 mm corner of the 24 × 36 mm frame. The model reaches that corner at 6.1°, with relative illumination of about 75 %. That figure follows from the inferred rims and is not a factory value.
 
 Close focus, coatings, transmission and any production revision are not modeled.
 

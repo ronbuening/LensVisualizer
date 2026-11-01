@@ -20,6 +20,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Semi-diameters: not printed, so all are inferred. L1 is 27 mm, the 25 mm entrance-pupil radius plus 8%. The others
  * follow outline ratios measured from Fig. 1 (1, 0.845, 0.819, 0.503, 0.535), one value for both faces of each element.
+ * Fig. 1 draws the same ratios about 8% smaller (25.2, 21.2, 20.5, 12.5, 13.3 mm at a scale fitted to its arcs), and the
+ * Fig. 2 coma curves end at a front rim near 25.2 mm. These values stay: they clear the F/4 beam and the corner chief ray
+ * by real-ray trace, and the drawn rims would take geometric transmission at 6 degrees from 77% to 61.5%.
  *
  * Focus: the patent prints the infinity state only. closeFocusM is the retail 2.5 m; the geometry is static.
  */

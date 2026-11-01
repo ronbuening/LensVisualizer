@@ -18,10 +18,35 @@ Patent: US 4,550,987, Example 1 / claim 3
 
 **Fields changed.** Header comment added; `subtitle`; `catalog.specs` added; `focus.description`; `role` added to all six elements; `groups` FRONT and REAR added for the patent's front and rear telephoto groups. The analysis was rewritten to the skeleton, and its process text left. `key`, `name`, `glass` and `closeFocusM` changed in earlier commits on this branch. `R`, `d`, `nd`, `vd`, `sd`, `aperture`, `projection` and `source` are unchanged.
 
-Open: rims are above figure scale. Fig. 1, at 20.85 px per unit of the f = 100 scale, gives L1 25.9, L2 25.8, L3 25.5, L4 15.4, L5 11.65 and L6 12.9 mm. A uniform ×0.96 costs 7.2 corner points at 6.1° (78.4 → 71.3 %), above the 3-point limit for cuts, so it is not applied.
-
-Open: the section's L5 outline (about 10.1 mm against 12.15 mm) is the largest rim difference. Applying the section outlines at L1, L4, L5 and L6 costs 16.0 corner points, so they are not applied.
-
 Open: production may be a variant of Example 1. A maker dimension for S1 or a measured front-element position would settle Example 1 against Example 2.
 
 Open: the 12.5° full field that the package cited from the manual's product table (printed p. 33) was not re-read and is not used in the analysis.
+
+## 2026-11-01 — Semi-diameter pass against the patent figure
+
+**Source and scale.** Fig. 1, PDF p. 2, read at the scan's native 2320 × 3408 px. Along the axis, stroke-centre vertices give S1–S12 994.5 px / 95.46 mm = 10.42 px/mm, S1–S7 654 px / 62.76 mm = 10.42 and S7–S12 340.5 px / 32.70 mm = 10.41. Across the axis, the mean of the upper and lower branch of an arc against its known R gives 10.45 to 10.60 px/mm on S1 at 147, 197 and 247 px from the axis, and 10.45 to 10.56 on S5 at 154, 204 and 244 px. The figure is not anamorphic: the two scales agree within 1 %. One branch alone misleads, because the drawing is skewed: upper rims sit 5 to 12 px to the right of lower rims, so S1's upper branch fits 10.2 and its lower branch about 10.9. An overlay of the model at 10.42 px/mm lies on the drawn arcs.
+
+**Readings.** Fig. 1's outline is about 5 px wide (0.5 mm). Half the top-to-bottom distance between stroke centres gives the table's figure column; half the distance between the stroke's outer edges gives L1 26.15, L2 26.05, L3 25.72, L4 15.69, L5 11.95 and L6 13.2 mm.
+
+| Surfaces | Before | Fig. 1 | After | Basis |
+|---|---|---|---|---|
+| 1, 2 (L1) | 27 / 27 | 25.93 | 26.5 / 26.5 | Lowest 0.1 mm value that holds the 3-point limit; 0.35 mm past the drawn line |
+| 3, 4 (L2) | 26.73 / 26.73 | 25.77 | 26.0 / 26.0 | Square-cut as drawn; inside the drawn line; lower values fail the limit |
+| 5, 6 (L3) | 26.46 / 26.19 | 25.5 | 25.5 / 25.5 | Figure value; the figure draws one height, so the 0.27 mm step goes |
+| 7, 8 (L4) | 15.93 / 15.93 | 15.45 | 15.4 / 15.4 | Figure value; costs no light |
+| 9, 10 (L5) | 12.15 / 12.15 | 11.66 | 11.9 / 11.9 | Square-cut as drawn; inside the drawn line |
+| 11, 12 (L6) | 13.5 / 13.5 | 12.93 | 13.3 / 13.3 | Lowest 0.1 mm value that holds the limit; 0.1 mm past the drawn line |
+
+STO is unchanged. The moves are 1.5 to 3.6 % of each rim, inside the usual reading noise. They were made because the earlier rims were Fig. 1 scaled up as a whole so that S1 reached 27 mm, a known offset rather than a misreading.
+
+**Choice of set.** Taking one surface to the figure costs, at the corner, S1 4.2, S2 3.2, S3 2.5, S4 0.25, S5 0.13, S6 to S9 nothing, S10 2.4, S11 2.2 and S12 3.2 points. S4 and S5 cost most at 2° (1.05 and 0.68). Taking whole elements to the figure, all six cost 7.43 points, and the largest sets inside 3 points are L3 + L4 + L5 (2.35) and L2 + L3 + L4 (2.48). L1 alone costs 4.21. L3 + L4 + L5 + L6 costs 3.35; with L6 at 13.0 mm it passes at 2.79, but it leaves L1 and L2 at 27 and 26.73 mm above a 25.5 mm L3, a 1.23 mm step where the figure draws 0.3 mm. The overlay rejected that set. L2 + L3 + L4 with L1 at 26.3 mm passes at 2.60 and leaves both rear elements 0.5 to 0.6 mm high. A greedy raise from the all-figure state gives 26.55, 25.95, 11.9 and 13.3 mm at 2.85 points. Rounding to 0.1 mm and taking the lowest L1 that passes gives the set above, at 2.97 points. L1 at 26.4 mm fails at 3.28, and L6 at 13.2 mm fails at 3.35 with any L1. Each element keeps one height, four of the six lie within the drawn line, and the worst remaining excess is 2.9 % at L6.
+
+**Relative illumination** (package rims / these rims, full-pupil lattice at f/4, infinity): 2.0° 98.9 / 97.4 %; 3.1° 94.7 / 92.9 %; 4.1° 90.1 / 88.4 %; 5.1° 85.1 / 83.5 %; 6.1° 78.4 / 75.5 %. The largest drop is 2.97 points at 6.1°. With all six at the figure the corner would be 71.0 %.
+
+**Clearance.** Axial marginal ray at f/4 against the rim: S1 25.00 / 26.5 mm, S3 24.56 / 26.0, S5 24.03 / 25.5, S7 14.13 / 15.4, S9 8.39 / 11.9 and S11 8.34 / 13.3. No surface clips the axial beam or the chief ray. The trace reaches 21.65 mm at 6.12°, and the image-circle check reports nothing undersized. The surface validator passes, the aperture audit stays within 3 % of f/4 with no rim limit, and no `gapSagFrac` or `maxRimAngleDeg` is needed. Engine half-field 6.3° and F-number 4.000 are unchanged, and the stop stays 12.97 mm. The estimated tracing limit moves from 12.96° to 12.78°, still S1. Drawn step order holds: L1 > L2 > L3 by 0.5 and 0.5 mm (Fig. 1: 0.16 and 0.27 mm), and L4 > L6 > L5.
+
+**Maker section, re-read.** Stroke-centre widths on the supplied crop of the manual's section, at the same 4.36 px/mm as the axial table above, give L1 25.97, L2 25.67, L3 25.73, L4 14.68, L5 11.56 and L6 12.88 mm. These replace the 26.4, 14.9, 10.1 and 13.2 mm in the validation section. L5's parallel sides are about 101 px apart, not 88, so the section does not draw L5 smaller than Fig. 1. The section shows six air-spaced elements in the patent's order, the diaphragm ticks behind L4, and chamfered corners on L5. Apart from L4 it agrees with Fig. 1 within 0.25 mm, which supports the figure scale. It was used as a check only.
+
+**Live check.** The local page serves these rims and draws six elements with the front three nearly level, as in Fig. 1. There is no zoom and focus is not modeled, so infinity is the only state.
+
+Open: L1 sits 0.6 mm and L6 0.4 mm above their Fig. 1 readings. Finishing the cut would take the corner from 75.5 % to 71.0 %, past the 3-point limit, so these rims follow the light rule rather than the figure.

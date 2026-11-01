@@ -21,12 +21,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * last gap runs from 36.883734 to 44.533734 mm. That gives 450.2 mm object to image at 1:6.73.
  *
  * STOP: no position or diameter is printed. The iris marks in Figure 2 sit at about z = 18.34 mm from S1 with a radius
- * of 9.6–11.4 mm. STO is placed at z = 18.4 mm, splitting d6 = 11.62 mm into 6.09 + 5.53 mm. The stop radius (10.36 mm)
+ * of 9.9–11.3 mm. STO is placed at z = 18.4 mm, splitting d6 = 11.62 mm into 6.09 + 5.53 mm. The stop radius (10.36 mm)
  * follows from the design f-number; there is no override.
  *
- * SEMI-DIAMETERS: none are printed. Each is the paraxial marginal height at f/1.73 × 1.10, rounded up to 0.1 mm, except
- * three set against Figure 2: S3 = 14.2 and S6 = 11.0 mm follow the drawn rims and cost no light, and S8 = 11.4 mm
- * clears the axial beam, which needs 11.33 mm there. These are modeled clear radii, not production values.
+ * SEMI-DIAMETERS: none are printed. They are estimated from Figure 2 and floor-checked by real-ray trace. The figure is
+ * anamorphic: 14.3 px/mm along the axis and 13.6–14.0 px/mm across it, from arc fits and the 1.026 aspect of the printed
+ * circles on the front page, so rims are read as ranges. L1 is square-cut at 16.4 mm and L2 at 14.0 mm, as drawn. S5 =
+ * 12.7 mm and S7 = 10.8 mm keep the paraxial marginal height at f/1.73 × 1.10, rounded up to 0.1 mm, and S6 = 11.0 mm
+ * follows the drawn rim. The rear rims clear the axial beam at closest focus, where the fixed iris sends it wider than at
+ * infinity: 11.69 mm at S8, 12.18 mm at S9, 12.21 mm at S10 and 12.20 mm at S11, giving S8 = 11.7 mm and S9–S11 = 12.3 mm.
+ * The figure's flat tops on L3 and L4 are drawn with rimExtensionSd, which leaves the clear apertures unchanged: S6 out to
+ * 12.7 mm and S7 out to 11.7 mm. The figure's chamfers are not drawn, and a cemented face takes no land, so one straight
+ * edge joins the S8 and S9 rims where the figure steps L5 about 0.4 mm past L4. These are modeled clear radii, not
+ * production values.
  *
  * INDEX REFERENCE: the table labels N and ν without a spectral line; the d line is assumed.
  *
@@ -62,7 +69,6 @@ const LENS_DATA = {
       "design": 51.4982911495985
     },
     "fNumber": {
-      "marketing": 1.7,
       "design": 1.73
     }
   },
@@ -149,7 +155,7 @@ const LENS_DATA = {
       "vd": 44.55,
       "indexReference": "d",
       "focalLengthMm": 49.8412305367006,
-      "glass": "Unmatched (patent 1.7810/44.55; no catalog row at this coordinate)",
+      "glass": "Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)",
     }
   ],
   "surfaces": [
@@ -164,20 +170,20 @@ const LENS_DATA = {
       "label": "2",
       "R": 286.604,
       "d": 0.16,
-      "sd": 15.6
+      "sd": 16.4
     },
     {
       "label": "3",
       "R": 21.179,
       "d": 3.81,
-      "sd": 14.2,
+      "sd": 14.0,
       "medium": 2
     },
     {
       "label": "4",
       "R": 36.272,
       "d": 2.22,
-      "sd": 13.8
+      "sd": 14.0
     },
     {
       "label": "5",
@@ -190,7 +196,8 @@ const LENS_DATA = {
       "label": "6",
       "R": 15.531,
       "d": 6.09,
-      "sd": 11.0
+      "sd": 11.0,
+      "rimExtensionSd": 12.7
     },
     {
       "label": "STO",
@@ -202,32 +209,33 @@ const LENS_DATA = {
       "R": -17.213,
       "d": 0.88,
       "sd": 10.8,
+      "rimExtensionSd": 11.7,
       "medium": 4
     },
     {
       "label": "8",
       "R": 66.165,
       "d": 6.41,
-      "sd": 11.4,
+      "sd": 11.7,
       "medium": 5
     },
     {
       "label": "9",
       "R": -23.831,
       "d": 0.16,
-      "sd": 12.0
+      "sd": 12.3
     },
     {
       "label": "10",
       "R": 374.955,
       "d": 2.8,
-      "sd": 11.9,
+      "sd": 12.3,
       "medium": 6
     },
     {
       "label": "11",
       "R": -43.293,
-      "sd": 11.8
+      "sd": 12.3
     }
   ],
   "focus": {

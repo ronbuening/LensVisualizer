@@ -12,9 +12,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * F/3.1, half-field 14.2 to 14.5 degrees) imply an image height near 21.55 mm, so the design is 135 format.
  *
  * Stop: neither printed nor drawn, placed at the midpoint of the 13.0 mm D5 air space, z = 19.04 mm from S1.
- * sd: inferred. S1 is 1.10 times the paraxial entrance-pupil radius; the other faces follow the Figure 3 ratios.
- * S5 and S6 stay smaller than their element bodies, as the chamfers in Figure 3 show. No rim was enlarged to pass
- * off-axis light, so the vignetting stays.
+ * sd: inferred. S1 is 1.10 times the paraxial entrance-pupil radius; the other faces follow the Figure 3 ratios. At
+ * the figures' scale across the axis, 19.0 px/mm at 300 dpi against 18.5 along it, the rims sit about 2 % under the
+ * drawn heights. S5 and S6 stay smaller than their element bodies, as the chamfers in Figure 3 show. S7 takes S8's
+ * height because Figure 3 draws L5 square-cut with R7 reaching its flat; L4's flat sits about 0.5 mm lower, a step one
+ * cemented surface cannot show. No rim was enlarged to pass off-axis light, so the vignetting stays.
  * Focus: unit focus. The near gap, 45.60 mm, is solved paraxially for 0.45 m object to image; it is not printed.
  * Iris: f/1.86 is the patent's value; slower stops follow the paraxial stop rule.
  *
@@ -46,7 +48,6 @@ const LENS_DATA = {
       "design": 51.84
     },
     "fNumber": {
-      "marketing": 1.8,
       "design": 1.86
     }
   },
@@ -189,7 +190,7 @@ const LENS_DATA = {
       "label": "7",
       "R": -490.538,
       "d": 5.6,
-      "sd": 11.849,
+      "sd": 12.34,
       "medium": 5
     },
     {

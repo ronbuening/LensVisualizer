@@ -19,9 +19,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the way into the scaled d8 of 21.28 mm (2.128 + 19.152). The exact distance is inferred. The meridional field curve
  * in Fig. 2 places the stop about 56 to 70 mm behind surface 1, and the model's 67.81 mm is inside that range.
  *
- * sd: the patent prints none. Ratios come from the element heights in Fig. 1, scaled to 27 mm at surface 1 (the f/4
- * entrance-pupil radius of 25 mm plus 8 %). They are inferred, not factory apertures, and sit slightly outside the
- * figure's own scale (L1 about 25.9 mm).
+ * sd: the patent prints none. Estimated from Fig. 1 at 10.42 px/mm and floor-checked by real-ray trace, with one height
+ * per element as drawn. Fig. 1 reads L1 25.9, L2 25.8, L3 25.5, L4 15.4, L5 11.65 and L6 12.9 mm. L3 and L4 sit at those
+ * readings. L1, L2, L5 and L6 sit 0.2 to 0.6 mm above them, because taking them to the figure would lower corner
+ * illumination from 75 % to 71 %. They are inferred, not factory apertures.
  *
  * Focus: the patent prints no focus mechanism or close-focus data. Geometry is static at infinity; closeFocusM is the
  * maker's 1.9 m minimum focus.
@@ -153,53 +154,53 @@ const LENS_DATA = {
       "label": "1",
       "R": 71.812,
       "d": 6.32,
-      "sd": 27.0,
+      "sd": 26.5,
       "medium": 1
     },
     {
       "label": "2",
       "R": 1486.004,
       "d": 2.02,
-      "sd": 27.0
+      "sd": 26.5
     },
     {
       "label": "3",
       "R": -391.918,
       "d": 2.26,
-      "sd": 26.73,
+      "sd": 26.0,
       "medium": 2
     },
     {
       "label": "4",
       "R": 230.806,
       "d": 0.1,
-      "sd": 26.73
+      "sd": 26.0
     },
     {
       "label": "5",
       "R": 56.59,
       "d": 5.82,
-      "sd": 26.46,
+      "sd": 25.5,
       "medium": 3
     },
     {
       "label": "6",
       "R": 155.138,
       "d": 46.24,
-      "sd": 26.19
+      "sd": 25.5
     },
     {
       "label": "7",
       "R": 66.83,
       "d": 2.92,
-      "sd": 15.93,
+      "sd": 15.4,
       "medium": 4
     },
     {
       "label": "8",
       "R": 141.706,
       "d": 2.128,
-      "sd": 15.93
+      "sd": 15.4
     },
     {
       "label": "STO",
@@ -210,27 +211,27 @@ const LENS_DATA = {
       "label": "9",
       "R": -35.892,
       "d": 1.84,
-      "sd": 12.15,
+      "sd": 11.9,
       "medium": 5
     },
     {
       "label": "10",
       "R": 59.198,
       "d": 3.02,
-      "sd": 12.15
+      "sd": 11.9
     },
     {
       "label": "11",
       "R": 70.032,
       "d": 3.64,
-      "sd": 13.5,
+      "sd": 13.3,
       "medium": 6
     },
     {
       "label": "12",
       "R": -70.032,
       "d": 65.0,
-      "sd": 13.5
+      "sd": 13.3
     }
   ],
   "focus": {

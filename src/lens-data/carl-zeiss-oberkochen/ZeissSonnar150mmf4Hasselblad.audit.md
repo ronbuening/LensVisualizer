@@ -50,3 +50,60 @@ state reads infinity in `probe.mjs`.
 
 Open: hasselbladhistorical.eu fails its TLS check for some clients; its links are kept as the sheets' citations, as in
 `ZeissTeleTessar500mmf8C.audit.md`.
+
+## 2026-11-01 — Semi-diameter pass against the patent figure
+
+Source: `patents/US2720140.pdf`, page 1, Fig. 3, the figure of Example III. The page is a 1-bit scan, 2320 × 3408 native
+pixels. One native pixel is 2 px on the render behind the 11.05 px/mm figure in the validation section. The readings below
+are in native pixels.
+
+Scale along the axis: the S1 and S8 vertex centres lie 451.9 px apart over 81.816 mm, 5.523 px/mm (11.05 on the 2× render).
+Local spans run 5.37–5.65 px/mm, and the S2–S3 air gap is drawn 1.2 mm against 0.25 mm, which shifts the middle component
+about 7 px to the right of the model.
+
+Scale across the axis: with the axial scale held and each printed R fitted to its drawn arc, S1 gives 5.44 (band
+5.26–5.61), S3 5.37 (5.29–5.51), S5 5.26 (5.13–5.49) and S7 5.26 (5.14–5.37). The weighted mean is 5.33 ± 0.07 px/mm (10.65
+on the 2× render), 3.6 % under the axial scale. S2 and S8 are too shallow to constrain it. As a separate check, the stop
+ticks end 63 px from the axis, which gives 5.29 px/mm against the 11.915 mm f/4 stop. The figure is mildly anamorphic, or
+its arcs are drawn slightly tight, so rims taken at 11.05 px/mm read about 3.6 % low.
+
+| Surface | Stored sd | Figure, px | At 5.52 px/mm | At 5.33 px/mm | Result |
+| --- | ---: | --- | ---: | ---: | --- |
+| S1/S2 | 22.6 | 124.5 | 22.5 | 23.4 | Kept: 3.3 % under at 5.33 |
+| S3/S4 | 19.2 | 105.1 | 19.0 | 19.7 | Kept: drawn S3 rim sag gives 19.6 |
+| S5 cap end | 12.771 | 64.5–67 | 11.7–12.1 | 12.1–12.6 | Kept: band below |
+| S5 land | none | 96 to the chamfer, 105 at the rim | 17.4 / 19.0 | 18.0 / 19.7 | `rimExtensionSd` 19.2 |
+| S6 | 15.1 | 80 straight, 89 at the rim | 14.5 / 16.1 | 15.0 / 16.7 | Kept; `rimExtensionSd` 16.5 |
+| S7 | 16.5 | 89 | 16.1 | 16.7 | Kept: drawn sag at the end gives 16.5 |
+| S8 | 19.7 | 108.25 | 19.6 | 20.3 | Kept: 3.0 % under at 5.33 |
+
+S5: the land stands 19.3 ± 1 px behind the S5 vertex, a sag of 3.50 mm and so a cap end of 12.6 mm (12.2–12.9). With the
+height readings the band is 12.1–12.9 mm, and 12.771 mm lies inside it. The figure rounds the corner, so no finer reading is
+available. The value stays the package's. The stop-limited f/4 ray reaches 12.59 mm there (12.62 mm for a ray launched at the
+full entrance pupil), so the 0.18 mm margin is real and the cap cannot go lower.
+
+Steps: the package and earlier passes joined the S4 rim to the S5 rim with one slanted edge, where Fig. 3 draws a flat rim
+running 4.5 mm past the S4 junction, a chamfer of about 2 × 1.7 mm, and a flat land down to the cap. The extension to 19.2 mm
+restores the flat rim and land. Ending the land at the chamfer, 17.4 mm, was tried: the connecting edge then tapers along the
+whole rim, and the overlay fits worse. L4 was slanted from S6 to S7 where the figure cuts it square with a rounded front
+corner; the 16.5 mm extension on S6 squares it.
+
+Fig. 3 joins the S7 end to the L5 rim with a 45° chamfer and then a flat rim of 14 mm. An element is drawn with one straight
+edge between its two face rims, and a cemented face cannot take a land, so the model keeps the slanted edge, up to 2.7 mm under
+the figure at the top of the chamfer. `sd` cannot repair this: raising S7 toward 19.7 mm runs its arc forward over L4, where the
+figure has the L4 rim at 16.5 mm.
+
+Light: the extensions pass no ray and stop none. Beam at f/4 over 0 / 2.3 / 4.7 / 7 / 9.3 / 11.7 / 14° is 100.0 / 96.3 / 91.3 /
+86.5 / 80.0 / 70.3 / 57.3 %, identical before and after, against 100.0 / 93.1 / 86.0 / 78.6 / 68.3 / 55.1 / 40.0 % on the
+package rims. No face sits below its package value. Taking the arc scale would lift the 14° beam to 62.5 %, but those rises
+sit inside the noise band with no shape wrong, so they were not made. Engine half field 14°, f/4 and stop radius 11.915 mm are
+unchanged. `audit:surface` prints OK with no `gapSagFrac`, `audit:aperture` reports the lens within 3 %, the image-circle audit
+reports nothing undersized, field coverage stays 96 % at the declared 14°, and the trace shows no axial clip or blocked chief ray.
+
+Maker drawing, as a check only: the Sonnar T* 150 section shows the same order and counts, and marks no aspherical surface or
+special glass. It shows the S5 curve ending at a short land and L5 rising from the L4 rim by a chamfer to a flat rim, the same
+shapes as Fig. 3. It differs in giving L2 a taller rim than L3, with a step at their junction that Fig. 3 does not draw. No value
+was fitted to it. The live page shows the flat S5 land, the square L4 and the slanted L5 edge.
+
+Open: the L5 chamfer and flat rim need a land on a cemented face, which the validator refuses. The model draws them only if the
+engine gains that.
