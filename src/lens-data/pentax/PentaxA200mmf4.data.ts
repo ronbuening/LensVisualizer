@@ -193,7 +193,7 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1e15,
+    "closeFocusM": 1.9,
     "description": "Hypothetical patent reconstruction; exact retail prescription pairing is unproven. Infinity-only model, using inferred infinity and reference-index wavelength conventions. Clear apertures and stop position/opening are modeling hypotheses. The retail 1.9m minimum focus is descriptive metadata: finite focus motion and performance are not modeled. The printed back-focus gap and source-derived image plane are retained. Scalar MTF is an estimate, not factory performance."
   },
   "aperture": {
