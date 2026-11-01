@@ -67,3 +67,24 @@ Unrun integration-wide metadata/corpus/build/publication gates remain NOT_RUN at
 The independently extracted Stage3 v003 archive is 1,873,472 bytes, SHA256 3571b3b8d642ba81a849d311279d844c5feceb841975c7d4b4676c69a00733c1. All13 flat members, CRC, member hashes and189 manifest reference hashes pass. The complete freshly regenerated portable result equals the packaged result; all seven light independent replay steps pass. The expected exit1 is solely the final approval NOT_RUN being resolved here. All three disclosed FAIL groups remain. Analysis SHA256 d4c09116bbfdb0bd14e3d7c787deebecaea0f868f529cdd367e7f3416ef9c265. Clean replay receipt SHA256 637561865c3bbaf98248c899d4c8f47c79e0aa33c9efacfa5ccf09897fc7298f.
 
 Qualified READY_FOR_BATCH promotion is approved for the exact pair and scientific evidence. Only audit/readiness/approval embedding changes may be made in the successor, with an external final-byte binding and unchanged integration status. Unknown factory facts, literal point discrepancies, ordinary physical clipping, unavailable photopic/finite scope and finite sampling limits remain.
+
+## 2026-11-01 — Deployment validation and fix pass
+
+Source errata, index correction. Numerical Example 4 prints nd to three decimals, and that table misses its own stated f and Bf at all three printed stations. Numerical Example 1 of the same patent prints five of the same glasses to more digits, at νd values that round to Example 4's: 1.5184 / 52.0948, 1.84666 / 23.7844, 1.4586 / 90.2791, 2.00069 / 25.4579, 1.48749 / 70.4402. Those five were applied to the seven media that carry them, surfaces 5A, 24A, 17, 19, 22, 21 and 25, as `corrected` entries in `source.errata` with `source-summary` and `sibling-example` evidence. Example 1 isolates each value. Its own full-precision table traces to its stated f within 0.0004 mm and Bf within 0.0013 mm, so the trace method is sound. The stated f and Bf reject the printed set and accept the corrected set as one unit.
+
+| Station | f printed | f before | f after | Bf printed | Paraxial BF before | Paraxial BF after | Image plane behind focus, before | After |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Wide | 10.355 | 10.3417 | 10.3544 | 38.240 | 38.1587 | 38.2290 | 0.0813 | 0.0110 |
+| Middle | 14.992 | 14.9695 | 14.9904 | 43.030 | 42.9286 | 43.0130 | 0.1014 | 0.0170 |
+| Tele | 19.299 | 19.2649 | 19.2959 | 48.881 | 48.7528 | 48.8568 | 0.1282 | 0.0242 |
+
+Stated condition values, printed table then corrected against the stated value: (1) −0.670, −0.671 against −0.671; (2) 4.530, 4.512 against 4.508; (4) 41.513, 41.506 against 41.506; (6) traced 3.690, 3.692 against 3.693. Condition (5) rounds to the stated 0.729 either way; (3) does not depend on nd.
+
+L13 is the one entry the stated Bf does not favour on its own. Left at 1.487 with the other four glasses corrected, f misses by +0.0032/+0.0046/+0.0061 mm and Bf by +0.0026/+0.0004/−0.0016 mm, against −0.0006/−0.0016/−0.0031 and −0.0110/−0.0170/−0.0242 with it corrected. That closer Bf is an offset against the rounded indices still in the table, and the entry stands on Example 1. It was not used to choose the set.
+
+Printed gaps and stations are byte-identical. The 126 unprinted `focalLengthMm` values were refreshed to the corrected paraxial EFL, which moved by +0.0127 mm at wide, +0.0209 at middle and +0.0310 at tele; they stay strictly increasing. Residual defocus across all 129 nodes is 0.0110 to 0.0247 mm, 0.0005 mm above the tele printed station, so the cam was not re-solved.
+
+Not corrected: L1 and L2 stay at the printed 1.691 and 1.769, and the rounded 1.804, 1.699, 1.904 and 1.673 stay as printed because only a catalog supports fuller values, and a catalog is not source evidence.
+
+Open: Bf still misses by −0.011/−0.017/−0.024 mm, beyond the printed precision. Catalog values for the four uncorrected glasses (TAF3, E-FD15, TAFD25, E-FD5, matched on printed νd) close f within 0.001 mm and Bf within 0.0003 mm, but that is not source evidence.
+Open: the granted JP 5395495 B2 has not been read. Its tables may print fuller indices, which would count as `family-publication` evidence for those four glasses.
