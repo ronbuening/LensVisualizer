@@ -78,7 +78,7 @@ const LENS_DATA = {
       "nd": 1.5927,
       "vd": 35.6,
       "indexReference": "d",
-      "glass": "S-FTM16 (OHARA catalog equivalent; production supplier unspecified)",
+      "glass": "FF5 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -1163.502615151004
     },
     {
@@ -172,13 +172,23 @@ const LENS_DATA = {
     {
       "label": "10",
       "R": -96.528,
-      "d": 96.272,
-      "sd": 16.594285714285714
+      "sd": 18.205714285714286
     }
   ],
   "focus": {
-    "closeFocusM": 1e15,
-    "description": "Infinity-only reconstruction of the patent’s five singlets, with inferred apertures and stop. The retail 5 m minimum focus is descriptive; no finite prescription or motion is modeled. The nominal 300 mm image plane derives from rounded B/f = 0.75, not a separately printed BFL or best focus. Conflicting 0173 catalog counts/weights and the later MC listing do not establish a production-version identity, chronology, or redesign. Table full field 6°10′ differs from abstract 6°11′; 587.5618 nm is an assumed reference convention. The viewer’s 21.65 mm format corner maps to about 3.0941°, beyond the patent half-field 3°05′ (about 21.5739 mm). Native MTF is a simulation; the separate corrected 2D scalar research remains conditional, without factory or continuum validation."
+    "closeFocusM": 5,
+    "description": "Unit focus: the whole lens moves and only the back focus changes, about 40 mm at the 5 m minimum focus. The patent prints no focus travel; this motion is reconstructed from its Fig. 5 curves at 1/10×, which whole-lens extension of Example 1 reproduces (NA, image height, astigmatism, distortion). At the 400 mm scale 1/10× falls at 5.0 m object to image, the retail minimum focus. Apertures and stop are inferred. The image plane sits at paraxial focus, the origin of the patent’s Fig. 4 curves; the patent prints no BFL, and its rounded B/f = 0.75 agrees at that precision. Conflicting 0173 catalog counts/weights and the later MC listing do not establish a production-version identity, chronology, or redesign. Table full field 6°10′ differs from abstract 6°11′; 587.5618 nm is an assumed reference convention. The viewer’s 21.65 mm format corner maps to about 3.0875°, beyond the patent half-field 3°05′ (about 21.62 mm). Native MTF is a simulation; the separate corrected 2D scalar research remains conditional, without factory or continuum validation."
+  },
+  "gaps": {
+    "10": {
+      "label": "BF",
+      "values": [
+        [
+          96.6325,
+          136.619
+        ]
+      ]
+    }
   },
   "aperture": {
     "nominalFNumber": 6.3,
