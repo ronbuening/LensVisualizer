@@ -85,9 +85,9 @@ const NOMINAL_FASTER_THAN_DESIGN: readonly string[] = [
  * sweep below compares for equality, so a lens that gains its example must leave this list and no lens may join it.
  */
 const MISSING_PATENT_EXAMPLE: readonly string[] = [
-  "minolta-md-50f17-jps60111215a-private",
+  "minolta-md-50f17",
   "nikon-nikkor-15mm-f56",
-  "olympus-zuiko-auto-s-50f18-us4728179-private-row1183",
+  "olympus-zuiko-auto-s-50f18",
 ];
 
 const ORDINALS = [

@@ -4,9 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // visible:true enables local integration/viewer QA; no publication is authorized.
 const LENS_DATA = {
   "schema": 2,
-  "key": "pentax-a-200f4-us4550987-private-row1004",
+  "key": "pentax-a-200mm-f4",
   "maker": "Pentax",
-  "name": "SMC PENTAX-A 200mm f/4 — hypothetical patent reconstruction (inferred apertures and stop; infinity only; private)",
+  "name": "PENTAX SMC A 200mm f/4",
   "subtitle": "US4550987 Example1; inferred uniform2xscale and figure-based apertures; factory pairing unproven",
   "visible": true,
   "catalog": {
@@ -48,8 +48,7 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "indexReference": "d",
-      "indexReferenceNote": "Table prints n/nu without explicit d subscript; d-line assignment is conventional and contextually supported by Fig2 d/g labels, not an explicit table declaration. Literal indices retained; vendor/full dispersion unresolved.",
-      "glass": "Unmatched (1.51633/64.1; literal source coordinate, d convention inferred)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 145.92203627488792
     },
     {
@@ -60,8 +59,7 @@ const LENS_DATA = {
       "nd": 1.76182,
       "vd": 26.6,
       "indexReference": "d",
-      "indexReferenceNote": "Table prints n/nu without explicit d subscript; d-line assignment is conventional and contextually supported by Fig2 d/g labels, not an explicit table declaration. Literal indices retained; vendor/full dispersion unresolved.",
-      "glass": "Unmatched (1.76182/26.6; literal source coordinate, d convention inferred)",
+      "glass": "FD140 (HOYA, coordinate equivalent)",
       "focalLengthMm": -190.37649653114062
     },
     {
@@ -72,8 +70,7 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "indexReference": "d",
-      "indexReferenceNote": "Table prints n/nu without explicit d subscript; d-line assignment is conventional and contextually supported by Fig2 d/g labels, not an explicit table declaration. Literal indices retained; vendor/full dispersion unresolved.",
-      "glass": "Unmatched (1.51633/64.1; literal source coordinate, d convention inferred)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 169.1358878956531
     },
     {
@@ -84,8 +81,7 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "indexReference": "d",
-      "indexReferenceNote": "Table prints n/nu without explicit d subscript; d-line assignment is conventional and contextually supported by Fig2 d/g labels, not an explicit table declaration. Literal indices retained; vendor/full dispersion unresolved.",
-      "glass": "Unmatched (1.51633/64.1; literal source coordinate, d convention inferred)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 241.74669877532375
     },
     {
@@ -96,8 +92,7 @@ const LENS_DATA = {
       "nd": 1.744,
       "vd": 44.7,
       "indexReference": "d",
-      "indexReferenceNote": "Table prints n/nu without explicit d subscript; d-line assignment is conventional and contextually supported by Fig2 d/g labels, not an explicit table declaration. Literal indices retained; vendor/full dispersion unresolved.",
-      "glass": "Unmatched (1.744/44.7; literal source coordinate, d convention inferred)",
+      "glass": "S-LAM2 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -29.786987881614447
     },
     {
@@ -108,8 +103,7 @@ const LENS_DATA = {
       "nd": 1.64769,
       "vd": 33.8,
       "indexReference": "d",
-      "indexReferenceNote": "Table prints n/nu without explicit d subscript; d-line assignment is conventional and contextually supported by Fig2 d/g labels, not an explicit table declaration. Literal indices retained; vendor/full dispersion unresolved.",
-      "glass": "Unmatched (1.64769/33.8; literal source coordinate, d convention inferred)",
+      "glass": "S-TIM22 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 54.62088903995451
     }
   ],

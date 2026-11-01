@@ -4,9 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * OthersevenSDs unchanged; separate new0/7/14native/conditional2D convergence required. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "zeiss-sonnar-150f4-us2720140-private-row1119",
+  "key": "zeiss-sonnar-150f4-hasselblad",
   "maker": "Carl Zeiss Oberkochen",
-  "name": "Zeiss Sonnar 150mm f/4 — alternative patent reconstruction, S5 clear face (inferred apertures/stop; infinity only; factory identity unproven; private)",
+  "name": "CARL ZEISS SONNAR 150mm f/4 (Hasselblad)",
   "subtitle": "US2720140 ExampleIII; uniform151.2scale; five spherical elements/three groups, factory identity unproven",
   "visible": true,
   "catalog": {
@@ -48,8 +48,7 @@ const LENS_DATA = {
       "nd": 1.66672,
       "vd": 48.4,
       "indexReference": "d",
-      "indexReferenceNote": "Patent explicitly defines nd at d-line. Literal nd/V retained; no modern supplier/full dispersion identification.",
-      "glass": "Unmatched literal (1.66672/48.4); vendor/full dispersion unresolved",
+      "glass": "BAF11 (SUMITA, coordinate equivalent)",
       "focalLengthMm": 160.7683381134462
     },
     {
@@ -60,8 +59,7 @@ const LENS_DATA = {
       "nd": 1.62041,
       "vd": 60.3,
       "indexReference": "d",
-      "indexReferenceNote": "Patent explicitly defines nd at d-line. Literal nd/V retained; no modern supplier/full dispersion identification.",
-      "glass": "Unmatched literal (1.62041/60.3); vendor/full dispersion unresolved",
+      "glass": "SK16 (SCHOTT, coordinate equivalent)",
       "focalLengthMm": 52.04265732894149,
       "cemented": "D1"
     },
@@ -73,8 +71,7 @@ const LENS_DATA = {
       "nd": 1.72342,
       "vd": 38.0,
       "indexReference": "d",
-      "indexReferenceNote": "Patent explicitly defines nd at d-line. Literal nd/V retained; no modern supplier/full dispersion identification.",
-      "glass": "Unmatched literal (1.72342/38.0); vendor/full dispersion unresolved",
+      "glass": "S-BAH28 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -31.802792588468563,
       "cemented": "D1"
     },
@@ -86,8 +83,7 @@ const LENS_DATA = {
       "nd": 1.70154,
       "vd": 41.1,
       "indexReference": "d",
-      "indexReferenceNote": "Patent explicitly defines nd at d-line. Literal nd/V retained; no modern supplier/full dispersion identification.",
-      "glass": "Unmatched literal (1.70154/41.1); vendor/full dispersion unresolved",
+      "glass": "BASF7 (SUMITA, coordinate equivalent)",
       "focalLengthMm": 35.591093796342406,
       "cemented": "D2"
     },
@@ -99,8 +95,7 @@ const LENS_DATA = {
       "nd": 1.6014,
       "vd": 38.3,
       "indexReference": "d",
-      "indexReferenceNote": "Patent explicitly defines nd at d-line. Literal nd/V retained; no modern supplier/full dispersion identification.",
-      "glass": "Unmatched literal (1.6014/38.3); vendor/full dispersion unresolved",
+      "glass": "Unmatched (patent 1.60140/38.3; no catalog row at this coordinate)",
       "focalLengthMm": -46.9440448270829,
       "cemented": "D2"
     }

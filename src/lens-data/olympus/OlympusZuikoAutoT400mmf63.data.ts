@@ -12,9 +12,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "olympus-400f63-us3864027-private-row1150",
+  "key": "olympus-zuiko-auto-t-400f63",
   "maker": "Olympus",
-  "name": "Olympus 400mm f/6.3 — patent’s five-element reconstruction (inferred apertures/stop; infinity only; production version unproven; private)",
+  "name": "OLYMPUS ZUIKO AUTO-T 400mm f/6.3",
   "subtitle": "US3864027 Example1; five air-spaced singlets; contradictory manufacturer5/5 and6/5 counts unresolved",
   "visible": true,
   "catalog": {
@@ -56,8 +56,7 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.1,
       "indexReference": "d",
-      "indexReferenceNote": "Source table prints n/nu without explicit d reference.587.5618nm/d assignment is a labeled model convention supported only contextually by C,d,F,g curves. Historical glass suggestions are not substituted as modern dispersion.",
-      "glass": "Unmatched literal (1.48749/70.1); source historical suggestion FK5 unverified",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 120.1030150490764
     },
     {
@@ -68,8 +67,7 @@ const LENS_DATA = {
       "nd": 1.7495,
       "vd": 35.2,
       "indexReference": "d",
-      "indexReferenceNote": "Source table prints n/nu without explicit d reference.587.5618nm/d assignment is a labeled model convention supported only contextually by C,d,F,g curves. Historical glass suggestions are not substituted as modern dispersion.",
-      "glass": "Unmatched literal (1.7495/35.2); source historical suggestion LaF7 unverified",
+      "glass": "J-LAF7 (HIKARI, coordinate equivalent)",
       "focalLengthMm": -243.2357245579875
     },
     {
@@ -80,8 +78,7 @@ const LENS_DATA = {
       "nd": 1.5927,
       "vd": 35.6,
       "indexReference": "d",
-      "indexReferenceNote": "Source table prints n/nu without explicit d reference.587.5618nm/d assignment is a labeled model convention supported only contextually by C,d,F,g curves. Historical glass suggestions are not substituted as modern dispersion.",
-      "glass": "Unmatched literal (1.5927/35.6); source historical suggestion F16 unverified",
+      "glass": "S-FTM16 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -1163.502615151004
     },
     {
@@ -92,8 +89,7 @@ const LENS_DATA = {
       "nd": 1.651,
       "vd": 56.2,
       "indexReference": "d",
-      "indexReferenceNote": "Source table prints n/nu without explicit d reference.587.5618nm/d assignment is a labeled model convention supported only contextually by C,d,F,g curves. Historical glass suggestions are not substituted as modern dispersion.",
-      "glass": "Unmatched literal (1.651/56.2); source historical suggestion LAK04 unverified",
+      "glass": "S-LAL54Q (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -77.55105582604429
     },
     {
@@ -104,8 +100,7 @@ const LENS_DATA = {
       "nd": 1.60342,
       "vd": 38.0,
       "indexReference": "d",
-      "indexReferenceNote": "Source table prints n/nu without explicit d reference.587.5618nm/d assignment is a labeled model convention supported only contextually by C,d,F,g curves. Historical glass suggestions are not substituted as modern dispersion.",
-      "glass": "Unmatched literal (1.60342/38.0); source historical suggestion F5 unverified",
+      "glass": "F5 (SCHOTT, coordinate equivalent)",
       "focalLengthMm": 134.82261689482894
     }
   ],

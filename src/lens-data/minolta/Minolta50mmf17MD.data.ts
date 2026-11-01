@@ -22,9 +22,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "minolta-md-50f17-jps60111215a-private",
+  "key": "minolta-md-50f17",
   "maker": "Minolta",
-  "name": "Minolta MD 50mm f/1.7 — unnumbered patent master reconstruction (inferred apertures/stop; infinity only; factory identity unproven; private)",
+  "name": "MINOLTA MD 50mm f/1.7",
   "subtitle": "JP S60-111215 A photographic master; exact production revision unproven",
   "visible": true,
   "catalog": {
@@ -62,9 +62,8 @@ const LENS_DATA = {
       "nd": 1.72,
       "vd": 50.31,
       "indexReference": "d",
-      "indexReferenceNote": "N/v master-table reference is unprinted; d-line convention is inferred, not an explicit source wavelength.",
       "focalLengthMm": 62.18436393613314,
-      "glass": "Unmatched (1.72/50.31; literal patent coordinate, supplier unresolved)"
+      "glass": "LAC10 (HOYA, coordinate equivalent)",
     },
     {
       "id": 2,
@@ -74,9 +73,8 @@ const LENS_DATA = {
       "nd": 1.6935,
       "vd": 53.39,
       "indexReference": "d",
-      "indexReferenceNote": "N/v master-table reference is unprinted; d-line convention is inferred, not an explicit source wavelength.",
       "focalLengthMm": 66.51693523397756,
-      "glass": "Unmatched (1.6935/53.39; literal patent coordinate, supplier unresolved)"
+      "glass": "LAC13 (HOYA, coordinate equivalent)",
     },
     {
       "id": 3,
@@ -86,9 +84,8 @@ const LENS_DATA = {
       "nd": 1.6727,
       "vd": 32.22,
       "indexReference": "d",
-      "indexReferenceNote": "N/v master-table reference is unprinted; d-line convention is inferred, not an explicit source wavelength.",
       "focalLengthMm": -30.703655437865933,
-      "glass": "Unmatched (1.6727/32.22; literal patent coordinate, supplier unresolved)"
+      "glass": "SF5 (SCHOTT, coordinate equivalent)",
     },
     {
       "id": 4,
@@ -98,9 +95,8 @@ const LENS_DATA = {
       "nd": 1.6259,
       "vd": 35.7,
       "indexReference": "d",
-      "indexReferenceNote": "N/v master-table reference is unprinted; d-line convention is inferred, not an explicit source wavelength.",
       "focalLengthMm": -21.735393910898168,
-      "glass": "Unmatched (1.6259/35.7; literal patent coordinate, supplier unresolved)",
+      "glass": "S-TIM1 (OHARA catalog equivalent; production supplier unspecified)",
       "cemented": "D1"
     },
     {
@@ -111,9 +107,8 @@ const LENS_DATA = {
       "nd": 1.6935,
       "vd": 53.39,
       "indexReference": "d",
-      "indexReferenceNote": "N/v master-table reference is unprinted; d-line convention is inferred, not an explicit source wavelength.",
       "focalLengthMm": 26.022949012319334,
-      "glass": "Unmatched (1.6935/53.39; literal patent coordinate, supplier unresolved)",
+      "glass": "LAC13 (HOYA, coordinate equivalent)",
       "cemented": "D1"
     },
     {
@@ -124,9 +119,8 @@ const LENS_DATA = {
       "nd": 1.781,
       "vd": 44.55,
       "indexReference": "d",
-      "indexReferenceNote": "N/v master-table reference is unprinted; d-line convention is inferred, not an explicit source wavelength.",
       "focalLengthMm": 49.8412305367006,
-      "glass": "Unmatched (1.781/44.55; literal patent coordinate, supplier unresolved)"
+      "glass": "Unmatched (patent 1.7810/44.55; no catalog row at this coordinate)",
     }
   ],
   "surfaces": [

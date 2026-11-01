@@ -11,9 +11,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "olympus-zuiko-auto-s-50f18-us4728179-private-row1183",
+  "key": "olympus-zuiko-auto-s-50f18",
   "maker": "Olympus",
-  "name": "Olympus Zuiko Auto-S 50mm f/1.8 — unnumbered patent master (inferred apertures/stop; infinity only; f/1.86 only; factory identity unproven; private)",
+  "name": "OLYMPUS ZUIKO AUTO-S 50mm f/1.8",
   "subtitle": "US4728179 unnumbered Fig.3 master; literal51.84mm F1.86; inferred stop/apertures; converter excluded",
   "visible": true,
   "catalog": {
@@ -52,8 +52,7 @@ const LENS_DATA = {
       "nd": 1.78472,
       "vd": 25.68,
       "indexReference": "d",
-      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
-      "glass": "Unmatched literal N/V (1.78472/25.68); source line/vendor unresolved",
+      "glass": "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 56.970527856977164
     },
     {
@@ -64,8 +63,7 @@ const LENS_DATA = {
       "nd": 1.60311,
       "vd": 60.7,
       "indexReference": "d",
-      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
-      "glass": "Unmatched literal N/V (1.60311/60.7); source line/vendor unresolved",
+      "glass": "BACD14 (HOYA, coordinate equivalent)",
       "focalLengthMm": 37.62308190132548,
       "cemented": "D1"
     },
@@ -77,8 +75,7 @@ const LENS_DATA = {
       "nd": 1.78472,
       "vd": 25.71,
       "indexReference": "d",
-      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
-      "glass": "Unmatched literal N/V (1.78472/25.71); source line/vendor unresolved",
+      "glass": "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -19.991652207454127,
       "cemented": "D1"
     },
@@ -90,8 +87,7 @@ const LENS_DATA = {
       "nd": 1.72825,
       "vd": 28.46,
       "indexReference": "d",
-      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
-      "glass": "Unmatched literal N/V (1.72825/28.46); source line/vendor unresolved",
+      "glass": "S-TIH10 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -21.474283398551474,
       "cemented": "D2"
     },
@@ -103,8 +99,7 @@ const LENS_DATA = {
       "nd": 1.8061,
       "vd": 40.95,
       "indexReference": "d",
-      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
-      "glass": "Unmatched literal N/V (1.8061/40.95); source line/vendor unresolved",
+      "glass": "LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 26.15270885931558,
       "cemented": "D2"
     },
@@ -116,8 +111,7 @@ const LENS_DATA = {
       "nd": 1.8061,
       "vd": 40.95,
       "indexReference": "d",
-      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
-      "glass": "Unmatched literal N/V (1.8061/40.95); source line/vendor unresolved",
+      "glass": "LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 50.68470182100526
     }
   ],

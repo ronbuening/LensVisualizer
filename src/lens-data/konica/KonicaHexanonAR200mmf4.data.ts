@@ -4,9 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // visible:true enables local integration/viewer QA; no publication is authorized.
 const LENS_DATA = {
   "schema": 2,
-  "key": "konica-hexanon-200f4-jps5455424a-private-row1081",
+  "key": "konica-hexanon-ar-200mm-f4",
   "maker": "Konica",
-  "name": "Konica Hexanon 200mm f/4 — hypothetical patent reconstruction (inferred apertures and iris opening; sourced stop plane; infinity only; private)",
+  "name": "KONICA HEXANON AR 200mm f/4",
   "subtitle": "JPS5455424A Example 1; nominal200x scale; frozen figure-ratio aperture hypothesis",
   "visible": true,
   "catalog": {
@@ -48,8 +48,7 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "indexReference": "d",
-      "indexReferenceNote": "Handoff transcribes nd/Vd. Literal d-line coordinate retained; no catalog glass or full dispersion identity established.",
-      "glass": "Unmatched (1.51633/64.1; literal source nd/Vd)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 116.01039307706606
     },
     {
@@ -60,8 +59,7 @@ const LENS_DATA = {
       "nd": 1.7552,
       "vd": 27.5,
       "indexReference": "d",
-      "indexReferenceNote": "Handoff transcribes nd/Vd. Literal d-line coordinate retained; no catalog glass or full dispersion identity established.",
-      "glass": "Unmatched (1.7552/27.5; literal source nd/Vd)",
+      "glass": "S-TIH4 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -135.20815500989173
     },
     {
@@ -72,8 +70,7 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "indexReference": "d",
-      "indexReferenceNote": "Handoff transcribes nd/Vd. Literal d-line coordinate retained; no catalog glass or full dispersion identity established.",
-      "glass": "Unmatched (1.51633/64.1; literal source nd/Vd)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 170.82047086561317
     },
     {
@@ -84,8 +81,7 @@ const LENS_DATA = {
       "nd": 1.7725,
       "vd": 49.6,
       "indexReference": "d",
-      "indexReferenceNote": "Handoff transcribes nd/Vd. Literal d-line coordinate retained; no catalog glass or full dispersion identity established.",
-      "glass": "Unmatched (1.7725/49.6; literal source nd/Vd)",
+      "glass": "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -56.092163749199194
     },
     {
@@ -96,8 +92,7 @@ const LENS_DATA = {
       "nd": 1.80518,
       "vd": 25.4,
       "indexReference": "d",
-      "indexReferenceNote": "Handoff transcribes nd/Vd. Literal d-line coordinate retained; no catalog glass or full dispersion identity established.",
-      "glass": "Unmatched (1.80518/25.4; literal source nd/Vd)",
+      "glass": "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 104.74473250107187
     }
   ],
