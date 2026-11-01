@@ -27,6 +27,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
+  publishedAt: "2026-10-31T00:00:00Z", // Requested catalog publication date, independent of commit timezone.
   key: "olympus-mzuiko-40-150-f4-56-r",
   maker: "Olympus",
   name: "OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/4.0-5.6 R",

@@ -32,6 +32,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
+  publishedAt: "2026-10-31T00:00:00Z", // Requested catalog publication date, independent of commit timezone.
   key: "sigma-100-400-f5-63-dg-os-hsm-contemporary",
   maker: "Sigma",
   name: "SIGMA 100-400mm f/5-6.3 DG OS HSM | Contemporary",

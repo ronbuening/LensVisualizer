@@ -29,6 +29,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
+  publishedAt: "2026-10-31T00:00:00Z", // Requested catalog publication date, independent of commit timezone.
   key: "sigma-70mm-f28-dg-macro-art",
   maker: "Sigma",
   name: "SIGMA 70mm f/2.8 DG MACRO | Art",

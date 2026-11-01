@@ -19,6 +19,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
+  publishedAt: "2026-10-31T00:00:00Z", // Requested catalog publication date, independent of commit timezone.
   key: "sigma-56mm-f14-dc-dn-contemporary",
   maker: "Sigma",
   name: "SIGMA 56mm f/1.4 DC DN | Contemporary",

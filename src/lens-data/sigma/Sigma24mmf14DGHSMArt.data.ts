@@ -39,6 +39,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
+  publishedAt: "2026-10-31T00:00:00Z", // Requested catalog publication date, independent of commit timezone.
   key: "sigma-24mm-f14-dg-hsm-art",
   maker: "Sigma",
   name: "SIGMA 24mm f/1.4 DG HSM | Art",

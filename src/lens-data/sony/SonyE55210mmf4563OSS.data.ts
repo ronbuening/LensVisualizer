@@ -23,6 +23,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
+  publishedAt: "2026-10-31T00:00:00Z", // Requested catalog publication date, independent of commit timezone.
   key: "sony-e-55-210mm-f45-63-oss",
   maker: "Sony",
   name: "SONY E 55-210mm f/4.5-6.3 OSS",
