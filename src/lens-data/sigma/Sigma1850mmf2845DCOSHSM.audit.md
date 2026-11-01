@@ -87,6 +87,55 @@ Maker diagram: Sigma's page lists 16 elements in 12 groups. As read by the batch
 
 Fields changed: `subtitle`, `catalog.specs` (added), header comment (added), element labels, roles and glass strings, `apd: "inferred"` with `apdNote` on L9 and L13, `focus.description`, the two end station labels, the two rims and `checks.gapSagFrac`. Glass resolves 15 of 18 before and after, to the same rows; L6 and both resin layers stay Unmatched. Printed stations and all other optics are unchanged. The analysis was rewritten in plain terms, and test counts were dropped from this log.
 
-Open: rims against Figure 1, read at 6.19 px/mm to about ±0.5 mm, for the later figure pass, drawn vs modeled: S1–S3 25 vs 21.55; S8–S10 15.4 vs 13.82; S11–S12 10.0 vs 12.10; S14–S16 9.4 vs 11.37; S17–S18 9.3 vs 11.48; S22–S24 7.4 vs 8.90; S25–S26 9.4 vs 11.16; S27–S29 10.0 vs 13.09; S30–S32 10.5 vs 15.385; L10 7.0 vs 6.05.
-Open: Figure 1 draws FC2's opening near 8.6 mm; S33 sd is 15.385 mm, so the plane does not limit the beam in the model.
+Closed 2026-11-01: rims against Figure 1, read at 6.19 px/mm to about ±0.5 mm, drawn vs modeled: S1–S3 25 vs 21.55; S8–S10 15.4 vs 13.82; S11–S12 10.0 vs 12.10; S14–S16 9.4 vs 11.37; S17–S18 9.3 vs 11.48; S22–S24 7.4 vs 8.90; S25–S26 9.4 vs 11.16; S27–S29 10.0 vs 13.09; S30–S32 10.5 vs 15.385; L10 7.0 vs 6.05. All held on re-measurement except that S2, S3, S10 and S21 end short of the outer edge: see the section at the end of this log.
+Closed 2026-11-01: Figure 1 draws FC2's opening near 8.6 mm; S33 sd was 15.385 mm, so the plane did not limit the beam. It re-measures 9.1 mm from both ticks, and the printed fans end on it at 9.7 mm. S33 is now 9.7 mm: see the section at the end of this log.
 Open: the diagram numbers elements by `id` (1–18, resin layers included) while labels follow the 16 counted elements.
+
+## 2026-11-01 — Semi-diameter pass against the patent figure
+
+Source: JP 2010-211056 A, PDF p16, Figure 1, the wide end of Example 1, read from the native 901 × 669 1-bit raster. JP 2010-211102 A, PDF p15, reprints the same drawing at the same scale on a larger canvas; the first sheet was used because it is uncluttered at FC1. Bibliographic data on the front page: inventor Fujita Kenta, applicant Sigma Corp, application 2009-058408 filed 11.03.2009, published 24.09.2010. They agree with the file.
+
+Scale: along the axis, S1 sits at column 75, S32 at 648 and the image at 887, so 573 px over 92.56 mm and 812 px over 131.09 mm both give 6.19 px/mm. All vertices fall within 1 px of the prescription, the first check that the figure is drawn to scale at d5, d10, d18, d24 and d32 of the wide end. Across the axis, fitting the model's own curves to the ink gives 6.24 px/mm, so the figure is about 1 % anamorphic, and rim heights use 6.24. The elements centre on row 325.7, 1.7 px below the dash-dot line, so every reading below is half the distance between the top and bottom edges. With all surfaces extended past their rims, the curves lie on the ink to within a pixel, including the deep S2 and S3.
+
+Second reading: the lateral-aberration Figures 4 (wide) and 5 (tele), PDF p17, stop short of the full pupil, and their ends were traced. The fan axis was normalised on the 0 % row, ±148 px about column 313. Patent end rays then land on one height per surface across rows: S13 8.66, 8.67, 8.67, 8.65 mm at wide 100–50 %, and 8.63, 8.63, 8.59 mm at tele 100–70 %; S33 9.70 and 9.57 mm at wide 100–90 %, and 9.75 and 9.73 mm at tele 100–90 %; S25 8.08, 8.25, 8.25, 8.24, 8.23 mm at wide 100–30 %; S24 6.61, 6.60, 6.59 mm at tele 70–30 %. The same ends need S1 ≥ 23.56 and S7 ≥ 14.11 mm at wide 100 %. A trial with exactly those limits reproduces all 20 off-axis ends within 0.021 of the pupil radius, against a stop of 6.55 mm.
+
+| Surface | Before | After | Figure reading, mm | Evidence |
+|---|---:|---:|---:|---|
+| S1 | 21.551 | 25 | 25.1 | Figure; fan needs 23.56 |
+| S6 | 16.29 | 15.9 | 15.9 | Square top with S7's land |
+| S7 | 16.29 | 14.2, land 15.9 | curve end 13.9 ± 0.5, edge 15.9 | Figure draws the land; fan needs 14.11 |
+| S8 | 13.821 | 14.2, land 15.2 | runs into L3's land, edge 15.2 | S7 and S8 cross at 14.6 mm if both run on |
+| S9 | 13.821 | 15.2 | 15.2 | Figure |
+| S10 | 13.821 | 13.821, land 15.2 | curve end 13.3–13.7, edge 15.2 | Land from the figure; curve end in noise |
+| S11, S12 | 12.101 | 10 | 9.9 | Square rim |
+| S13 | 12.099 | 8.65 | tick 8.4 | Fan on the plane the figure marks FC1 |
+| S14–S16 | 11.374 | 9.4 | 9.4 | Square rim |
+| S17, S18 | 11.483 | 9.2 | 9.2 | Square rim; the old order against L7/L8 was reversed |
+| S20 | 6.05 | 6.9 | 6.9 | Figure; curve reaches the top edge |
+| S21 | 6.05 | 6.05, land 6.9 | merges with S22 at 5.5–6.2, edge 6.9 | Axial floor keeps 6.05 |
+| S22 | 8.9 | 6.05, land 7.4 | merges with S21, edge 7.4 | Same height as S21, so the gap check stays at 0.95 |
+| S23, S24 | 8.9 | 7.4 | 7.4 | Square rim |
+| S25, S26 | 11.158 | 9.4 | 9.4 | Square rim |
+| S27–S29 | 13.095 | 9.9 | 9.9 | Square rim |
+| S30–S32 | 15.385 | 10.4 | 10.4 | Square rim |
+| S33 | 15.385 | 9.7 | tick 9.1 | Fan on the plane the figure marks FC2 |
+
+Flare planes: Figure 1's ticks and the fans agree on the surfaces and differ by 0.25 and 0.6 mm. The ticks are marks, not glass outlines, the stop tick reads 6.65 mm against 6.55 mm, and the tick values would drop the corner to 37.6, 43.4 and 47.6 %. The fan values are the ones that reproduce the printed rays, so they stand. S13 stays above the axial beam: 8.21 mm at the engine's tele stop, 8.39 mm through a 6.55 mm stop. Paragraph 0043 gives S33 its purpose, cutting off-axis rays at the long end.
+
+Retained: S2 and S3 at 21.55 mm. The figure's curve ends at 22.0 mm, where the land starts, but the resin layer reaches zero thickness at 21.85 mm, so the cap cannot run further and 2 % is noise. S4 and S5 at 20.98 mm against 21.2 mm, S10's curve end, and S21 for its axial floor. S20 rose from 6.05 mm because the figure draws it to the top edge; the assigned S21 stays. No asphere reaches a turnover: S3, S12 and S30 scan clean to 22.5, 10.5 and 11 mm. At S12's 10 mm rim, S3-sized A8 and A10 terms would add 1.1 µm, not the 4.6 µm quoted earlier in this log.
+
+Cross-gap: S7/S8 and S21/S22 land 0.104 and 0.073 mm apart, and neither pair crosses. `checks.gapSagFrac` stays 0.95, which admits both at 0.949; 0.94 refuses both.
+
+Clearance: the aperture audit gives 201 of 201 stations within 3 % of the stated f-number, limited by the stop, with no surface below the stated ray. Through the engine's stop of 6.43, 6.41 and 6.40 mm, the axial ray reaches 6.03 mm at S20 and 5.93 mm at S21 and S22. The meridional probe still marks S21 and S22 because it opens the stop to 6.55 mm, where the ray reaches 6.065 and 6.068 mm, 0.02 mm past the rim. Passing that ray would take `gapSagFrac` 0.96 for a rim the figure does not support, so it was not done. The image-circle check reports nothing undersized, the corner chief ray clears at all 201 stations, and the surface validator reports no errors. No rim cut was used. Engine half-field goes 38.06, 35.93, 28.88° to 39.22, 30.69, 20.32° at the printed stations, against printed ω of 38.39, 26.46, 16.13°: the wide end now reaches its printed field, and the other two still exceed theirs. F-number stays 2.92, 3.40, 4.49.
+
+Corner illumination, geometric, wide open at infinity, at the 14.20 mm corner: 52.3, 93.4, 94.1 % before and 47.1, 53.7, 58.8 % after, at 18.60, 27.99 and 48.32 mm. The drop exceeds 5 points at all three stations, and it stays: the two flare planes and the G5 rims carry most of it, the fans and the figure agree on the planes, and the G5 outlines are square rims read to 0.1 mm. Printed meridional fan widths at the corner are 1.635 at the wide end and 1.338 at the long end, and the final model gives 1.633 and 1.326. Restoring S33 to 15.385 mm gives 54.2, 66.8, 71.9 %; restoring S13 to 12.099 mm gives 52.0, 62.5, 66.7 %; restoring both gives 59.1, 75.7, 79.8 %; restoring also the old G5 rims gives 77.6, 82.2, 79.8 %. The rest of the tele change is the G3 and G4 rims. The mid station has no printed fan, so its value rests on the same rims untested.
+
+Maker's drawing, read at 5.05 px/mm from the S1 to S32 span: 16 elements in 12 groups, aspherical pink on elements 1, 6 and 16, and SLD blue on elements 9 and 13, front to rear, matching S3, S12, S30, L9 and L13. Rims read 25.2 mm (L1), 20.5, 15.7, 15.25, 9.7, 9.7, 9.3, 8.0 (L10), 7.8 (L11–L12), 9.3, 9.7–10.1 and 12.0 mm (L16). They match the patent figure within 0.3 mm except in four places, where the patent figure was kept: L2 is 0.7 mm smaller; L10 to L12 are larger, in the order L10 over L11 where the figure has the reverse; L16 is 1.5 mm larger; and L1's flange steps down to 22.5 mm about 7.5 mm behind the vertex, where the figure runs flat to the land. The maker also steps L5 and L8 at their rear edges to 14.1 and 8.8 mm.
+
+Live check: the page at 18.60, 27.99 and 48.32 mm and at `focus=1` renders every element, with lands, cemented steps and spacing matching the figure. Focus is not modeled, so `focus=1` looks the same as infinity. An overlay of the model outline on the figure agrees within about a pixel on every element except L1's top edge.
+
+Limitations: L1's rear land cannot be authored. S2 is a cemented junction, and a land on S3 would hang a hairline off the zero-thickness resin edge, so the outline runs straight from the S1 rim to the S2 rim and misses a triangle up to 3.4 mm high behind the flange. The ray paths are unaffected. The fan limits at S24 (6.6 mm) and S25 (8.2 mm) lie inside the drawn glass and are logged here, not applied: the figure governs both rims. As a result the wide upper fan ends at 90–30 % read 0.552, 0.814, 0.932, 0.978 against printed 0.520, 0.682, 0.797, 0.899, and the tele upper ends at 70–30 % read 0.948, 0.952, 0.964 against 0.899, 0.919, 0.946. Applying both limits costs 2.7, 0.9 and 0.7 points at the corner.
+
+## 2026-11-01 — Glass labels and brackets
+
+L6 (1.5876/61.0842) now carries L-BAL35. Its print sits 0.0015 below the catalog index with the Abbe number within 0.06, and Examples 2 to 4 print the unmoulded 1.5891/61.25 at the same position, which supports the reading. The trace anchors the d line on the printed index, so the row supplies dispersion only. Glass resolves 16 of 18; the two resin layers stay `Unmatched`. `cemented` tags and `doublets` H1, C1–C4, H2 were added for the six printed junctions.

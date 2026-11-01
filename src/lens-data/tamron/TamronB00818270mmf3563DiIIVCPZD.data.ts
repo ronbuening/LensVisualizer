@@ -33,8 +33,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Aperture: the stop diameter is not published. The iris is sized to the patent's F/3.44 / 6.03 / 6.50 at the three
  * printed f-number states, radii 8.112 / 7.876 / 8.121 mm, and follows a smooth curve between them.
  *
- * Semi-diameters are inferred from ray clearance, not published. Stabilization (claim 3: lateral shift of the negative
- * rear subgroup of G3, here the L12/L13 doublet) is not simulated.
+ * Semi-diameters are estimated from Figure 1 (7.03 px/mm along the axis, 7.12 px/mm across it, corrected) and
+ * floor-checked by real-ray trace; none is published. Four faces end short of the rim on a flat land: S8 (cap 9.9, edge
+ * 13.5), S10 (9.7, 10.8), S13 (9.6, 10.0) and S29 (8.4, 9.9). checks.gapSagFrac 0.98 admits the L4 land against L5's
+ * front rim (S8/S9) and the L7 land against L6's rear face (S12/S13); neither pair crosses. Figure 1 also ends the S2
+ * cemented zone at 23.6 mm with a land behind L1. A cemented junction takes no land, so S2 runs to the L2 edge.
+ *
+ * Stabilization (claim 3: lateral shift of the negative rear subgroup of G3, here the L12/L13 doublet) is not simulated.
  */
 
 const LENS_DATA = {
@@ -326,21 +331,21 @@ const LENS_DATA = {
       "label": "1",
       "R": 141.1468,
       "d": 1.5,
-      "sd": 27.5,
+      "sd": 26.2,
       "medium": 1
     },
     {
       "label": "2",
       "R": 69.3714,
       "d": 7.1,
-      "sd": 27.5,
+      "sd": 26.5,
       "medium": 2
     },
     {
       "label": "3",
       "R": -332.6134,
       "d": 0.15,
-      "sd": 27.5
+      "sd": 26.5
     },
     {
       "label": "4",
@@ -379,45 +384,48 @@ const LENS_DATA = {
       "label": "8",
       "R": 15.1238,
       "d": 5.3047,
-      "sd": 13.5
+      "sd": 9.9,
+      "rimExtensionSd": 13.5
     },
     {
       "label": "9",
       "R": -39.8665,
       "d": 0.8,
-      "sd": 9.7,
+      "sd": 10.8,
       "medium": 6
     },
     {
       "label": "10",
       "R": 39.8665,
       "d": 0.15,
-      "sd": 9.7
+      "sd": 9.7,
+      "rimExtensionSd": 10.8
     },
     {
       "label": "11",
       "R": 27.9302,
       "d": 4.6,
-      "sd": 10,
+      "sd": 10.3,
       "medium": 7
     },
     {
       "label": "12",
       "R": -32.1001,
       "d": 0.6619,
-      "sd": 10
+      "sd": 10.3
     },
     {
       "label": "13",
       "R": -22.8444,
       "d": 0.8,
-      "sd": 9.2,
+      "sd": 9.6,
+      "rimExtensionSd": 10,
       "medium": 8
     },
     {
       "label": "14",
       "R": -314.1081,
-      "sd": 9.2
+      "sd": 10
     },
     {
       "label": "STO",
@@ -525,26 +533,27 @@ const LENS_DATA = {
       "label": "28",
       "R": -487.7854,
       "d": 0.8,
-      "sd": 8.4,
+      "sd": 9.9,
       "medium": 16
     },
     {
       "label": "29",
       "R": 20.0365,
       "d": 1.5195,
-      "sd": 8.4
+      "sd": 8.4,
+      "rimExtensionSd": 9.9
     },
     {
       "label": "30",
       "R": 71.1245,
       "d": 2.5,
-      "sd": 8.4,
+      "sd": 9.9,
       "medium": 17
     },
     {
       "label": "31",
       "R": -71.1245,
-      "sd": 8.4
+      "sd": 9.9
     }
   ],
   "zoom": {
@@ -1258,7 +1267,6 @@ const LENS_DATA = {
         "published": true
       }
     ],
-    "apertureModel": "from-nominal-fno",
     "step": 0.005
   },
   "focus": {
@@ -1821,6 +1829,9 @@ const LENS_DATA = {
   "layout": {
     "scFill": 0.6,
     "yScFill": 0.6
+  },
+  "checks": {
+    "gapSagFrac": 0.98
   }
 } satisfies LensDataV2Input;
 export default LENS_DATA;

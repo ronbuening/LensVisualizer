@@ -64,7 +64,7 @@ This 0.20 mm layer sits on the object side of L4. Its outer surface r6 is aspher
 
 ### L4: Negative Meniscus
 nd = 1.80400, νd = 46.58. Glass: S-LAH65V (OHARA catalog equivalent). f = -21.0989 mm.
-This strong negative meniscus carries the r6 resin layer, and Tamron marks the position hybrid aspherical. Its rear surface r8 is strongly curved and faces the 5.40 mm air gap, which constrains the modelled semi-diameter and outer-field passage.
+This strong negative meniscus carries the r6 resin layer, and Tamron marks the position hybrid aspherical. Its rear surface r8 is strongly curved and faces the 5.40 mm air gap, which constrains the modelled semi-diameter and outer-field passage. Figure 5 ends that curve at L5's rim and carries the element out to its edge on a flat land, and Tamron's section shows the same shoulder.
 
 ### L5: Biconcave Negative
 nd = 1.83481, νd = 42.72. Glass: TAFD5G (HOYA catalog equivalent). f = -25.0969 mm.
@@ -96,7 +96,7 @@ This positive high-Abbe lens is the patent's lens 234 and meets condition (4), �
 
 ### L12: Biconcave Negative
 nd = 1.83400, νd = 37.17. Glass: S-LAH60 (OHARA catalog equivalent). f = -29.2111 mm.
-The biconcave negative rear member is the patent's lens 235. Its r23 entry and the preceding thin air gap limit the modelled full-field bundle. The final variable gap separates G3 and G4.
+The biconcave negative rear member is the patent's lens 235. The final variable gap separates G3 and G4.
 
 ### L13f: Hybrid Aspheric Resin Layer (1× Asph)
 nd = 1.51460, νd = 49.96. Glass: Unmatched (hybrid optical resin; spectrum unpublished). f = +67340.6619 mm.
@@ -170,7 +170,7 @@ The patent's A = 1 is K = A - 1 = 0 in the standard form, so both surfaces have 
 | 6A | L4f front resin surface | 0 | 6.08226e-06 | 3.27658e-09 | -8.68205e-11 | 4.65488e-13 |
 | 25A | L13f front resin surface | 0 | -4.66282e-05 | 6.30079e-09 | -1.16447e-11 | -4.36431e-14 |
 
-At the inferred semi-diameters, r6A at 13.5 mm departs +0.219667 mm from its spherical base and r25A at 10.5 mm departs -0.560756 mm. These are evaluations at modelled rims, not published apertures. Positive departure at r6 increases sag relative to its base; negative departure at r25 reduces it. Neither sign alone proves which aberration is corrected.
+At the inferred semi-diameters, r6A at 13.5 mm departs +0.219667 mm from its spherical base and r25A at 9.5 mm departs -0.376192 mm. These are evaluations at modelled rims, not published apertures. Positive departure at r6 increases sag relative to its base; negative departure at r25 reduces it. Neither sign alone proves which aberration is corrected.
 
 Both aspheres are hybrid: the patent prints each as a 0.20 mm row, and Tamron calls them hybrid aspherical elements. Both layers keep positive thickness across their modelled apertures.
 
@@ -198,7 +198,9 @@ Computed focal lengths and back focus match the printed values within 0.01 mm at
 
 The physical iris diameter is not printed. The stop is sized for a paraxial entrance-pupil diameter of F/N at each zoom position, which gives radii of 7.5635/7.5245/7.5489 mm at the printed stations. Between them the f-number follows a smooth iris curve through those radii, so it rises steadily with focal length. This is an inferred iris law, not a published mechanism.
 
-All clear semi-diameters are inferred from ray clearance at the 14.5 mm plot height, the Figure 5 section and positive edge and gap geometry. S1's 28 mm matches the bonded S2/S3 boundary. The rims keep full-field vignetting rather than being enlarged past a valid shape, and no production vignetting pattern is implied.
+All clear semi-diameters are estimated from Figure 5, then checked against real rays at the 14.5 mm plot height and against positive edge and gap geometry. The figure draws the wide end only, to one scale in both directions, so its rims can be read directly; its image plane is not to scale. L4's rear curve stops at 9.5 mm, just short of where r8 would meet L5's front surface, and a flat land carries it out to 13 mm. That near-contact sets the gap-sag allowance for this lens to 0.99.
+
+No rim clips the axial beam at any zoom station. The rims keep full-field vignetting rather than being enlarged past the figure: wide open, geometric transmission at the 14.5 mm corner is 53.0/61.5/60.8% at the printed wide, intermediate and tele stations. In the meridional plane the corner bundle is bounded on one side by r8 at wide, r1 at the intermediate station and r4 at tele, and on the other side by r29 at all three. No production vignetting pattern is implied.
 
 The printed half-fields 38.2/14.1/3.45° match atan(14.5/f). Exact chief rays at those angles land at 13.57/15.06/14.90 mm, while chief rays reach the 14.5 mm plot height at 40.00/13.63/3.36° without clipping, so the printed angles are not exact chief-ray angles at that height. The model's analysis field reaches the 14.5 mm corner at every zoom station. The patent's aberration curves are not claimed reproduced.
 

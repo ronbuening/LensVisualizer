@@ -145,6 +145,58 @@ Open: the cemented-pair agreement with Tamron's diagrams is carried over from th
 
 Open: the Japanese brochure link (w5.fuji.com.tw) did not resolve from this machine on 2026-11-01; recheck it before the citation is relied on.
 
-Open: at the 14.5 mm corner, the lower-rim ray of the full-field bundle is not found at two wide stations. Rims were outside this pass; take it up in the later figure pass.
+Closed 2026-11-01: at the 14.5 mm corner, the lower-rim ray of the full-field bundle was reported missing at two wide stations. The ray exists; the scratch clearance tool skipped it, and no rim needs to change for it. See the semi-diameter pass below.
 
-Open: `zoom.apertureModel` is declared explicitly although `from-nominal-fno` is the default, which `agent_docs/decisions.md` (2026-10-20) says not to restore. It was outside this pass and is harmless to the optics.
+Closed: the explicit default `zoom.apertureModel` was removed, per `agent_docs/decisions.md` (2026-10-20).
+
+## 2026-11-01 — Semi-diameter pass against the patent figure
+
+Source: `patents/JP2008003195A.pdf`, PDF page 18 (printed 17), Figure 5, read from its embedded 300 dpi 1-bit raster. Paragraph 0099 calls Figure 5 the Example 2 section at the wide end, and it is the only section printed for that example: there are no intermediate or tele panels, and Figure 1 is Example 1. Figures 6 to 8 are spherical, lateral colour, astigmatism and distortion plots only, so this patent has no lateral-aberration fans to give a second rim reading.
+
+Scale: first to last vertex (r1 to r32, 89.245 mm) spans 733.3 px, or 0.1217 mm/px. G3 (r16 to r24, 13.65 mm over 112.2 px) gives 0.1217, G1 (r1 to r5, 13.2 mm over 109 px) gives 0.1211. Prescription arcs fitted to the ink give a vertical-to-axial ratio of 0.99 to 1.02 on r2, r4 and r5, so the figure is not anamorphic within 2%. Heights use 0.1223 mm/px and are half the top-to-bottom distance between line centres, which also cancels the sheet's skew of about 3 px across the lens. Reading error is about 1 px, or 0.15 mm. The arcs lie on the ink at the printed radii and spacings, apart from three drawing conventions: the image plane sits 79.5 px behind r32 where D32 would be 325 px; both resin layers are drawn as bands about 10 px thick, reaching 6 to 7 px ahead of the true r6 and r25 positions with a rounded tip 3.5 px past the element edge; and the r8 to r9 air gap draws about 0.25 mm wider than the printed 5.40 mm.
+
+| Surface | Element | Before | Figure (px → mm) | After | Evidence |
+|---|---|---:|---:|---:|---|
+| 1, 2 | L1 | 28 / 28 | 210 → 25.7 | 25.7 / 25.7 | Square flat from r1 to r2 |
+| 3 | L2 rear | 28 | 203.5 → 24.9 | 24.9 | Flat, one step below L1 |
+| 4, 5 | L3 | 27 / 27 | 195.5 → 23.9 | 23.9 / 23.9 | Square flat |
+| 6A, 7 | L4f, L4 | 13.5 / 13 | 104.5 → 12.8 at the edge; band tip 13.2 | unchanged | Within 2 to 5% |
+| 8 | L4 rear curve | 9.15 | 79 → 9.66 | 9.5 | Curve ends at L5's rim; land added |
+| 9, 10 | L5 | 10.5 / 10.5 | 79.75 → 9.75 | 9.8 / 9.8 | Square flat, level with L6 |
+| 11, 12 | L6 | 9.5 / 9 | 79.75 → 9.75 | 9.8 / 9.8 | Square flat, level with L5 |
+| 13, 14 | L7 | 9 / 9 | 71.5 → 8.74 | unchanged | Within 3%, one step below L6 |
+| 16, 17 | L8 | 10 / 10 | 75 → 9.17 | 9.2 / 9.2 | Square flat |
+| 18 | L9 rear | 10 | 72.75 → 8.90 | 8.9 | Flat, one step below L8 |
+| 19, 20 | L10 | 10.5 / 10.5 | 80.5 → 9.85 | 9.9 / 9.9 | Square flat |
+| 21, 22 | L11 | 10.5 / 10.5 | 77.5 → 9.48 | 9.5 / 9.5 | Square flat |
+| 23, 24 | L12 | 9 / 9.5 | 74 → 9.05 | 9 / 9 | Square flat, so one height |
+| 25A, 26, 27 | L13f, L13 | 10.5 / 10.5 / 10.5 | 77.5 → 9.48 | 9.5 / 9.5 / 9.5 | Square flat; band tip discounted |
+| 28, 29 | L14 | 10.5 / 10.5 | 77.5 → 9.48 | 9.5 / 9.5 | Square flat |
+| 30 | L15 front | 10.5 | 77.5 → 9.48 | 9.5 | Square flat |
+| 31, 32 | L16 | 10.5 / 10.5 | 81.75 → 10.0 | 10 / 10 | r31 curve and L16 flat end one step above L15 |
+
+Twenty-six surfaces changed, and S8 also gained `rimExtensionSd: 13`. The largest moves are G1's 3.1 mm cut and L6's rear 0.8 mm rise. L5, L10 and L16 move 5 to 7%, inside the playbook's noise band but well past this figure's 0.15 mm reading: L5 stood above L6 where the figure has them level, and L10 and L16 stood too far proud of their neighbours once those moved. The stop is untouched.
+
+r8 and r9 meet near 9.6 mm in the prescription, so r8 cannot take the full 9.66 mm reading. It stops at 9.5 mm with `checks.gapSagFrac` at 0.99, the smallest two-decimal value that admits the land there: the land intrudes 5.303 mm into the 5.40 mm gap. 9.6 mm fails even at 1.00 with L5 at 9.8. The surfaces do not cross at 9.5 mm. The rise is supported by the rays too: r8 was the wide-corner limiter, and the rim at 9.15 mm held the corner to 38.4% with every other final rim in place. The land sits 0.8 mm ahead of the figure's, because the figure's r8 to r9 gap is drawn wider than printed. A cemented step is not representable, so L2, L9 and L15 draw a short sloped edge where the figure has a flat and a step; the largest is L15's 0.5 mm rise over its 3.6 mm top edge.
+
+The earlier open item on the lower-rim ray is resolved. The scratch clearance tool scans launch heights in 0.28 mm steps, and at the wide end the lower-rim ray lies in a band narrower than one step, next to rays that fail at r12 and r13. The stations it reported moved from 0 and 2 to 0 and 1 when r1's rim, and so the launch plane, changed, which marks a sampling miss. A 0.001 mm scan finds the ray at station 0 with stop height past the iris: it crosses r1 at 26.15 mm, r6 at 13.63 mm, r7 at 13.27 mm and r8 at 9.97 mm, all beyond their rims. It was already blocked by the earlier rims, so it is ordinary vignetting and is not a defect.
+
+Clearance: no axial clip and no blocked chief ray at any of the 129 stations. Smallest axial margins are 0.66 mm at r18 (8.24 mm ray) and 0.96 mm at r23 (8.04 mm); smallest chief margin is 0.58 mm at r8 (8.92 mm ray), then 0.75 mm at r1 (24.95 mm). Field coverage reaches 14.50 mm at all 129 stations, the image-circle floor reports nothing, the surface validator and aperture audit pass, and `built.mjs` raises no error. Design f-numbers (3.47/5.01/6.35) and stop radii (7.5635/7.5245/7.5489 mm) are unchanged. No `--scan` turnover applies: r25A's slope stays one sign to 9.5 mm. Its departure at the rim is now -0.376192 mm, replacing the earlier -0.560756 mm at 10.5 mm, and the resin stays positive at about 0.58 mm there.
+
+Vignetting, wide open at the 14.5 mm corner, from the engine curve:
+
+| Station | Field | Before | After | Change |
+|---|---:|---:|---:|---:|
+| 18.43 mm | 40.0° | 49.0% | 53.0% | +4.0 |
+| 57.80 mm | 13.6° | 85.9% | 61.5% | -24.4 |
+| 241.83 mm | 3.4° | 71.1% | 60.8% | -10.3 |
+
+The intermediate and tele losses pass the 5-point limit and stay, because the reading behind them is solid: top and bottom flats agree, the arcs lie on the ink, the scale is proved both ways, and Tamron's section has the same front-element proportion (front-element diameter over vertex span 0.57, against 0.573 for Figure 5, 0.576 now and 0.628 before). G1 drives them. G1 at the earlier 28/28/28/27/27 gives 53.0/82.5/70.8%, and adding G4 at the earlier 10.5 gives 63.7/85.9/71.1%. Engine half-field moved from 33.57/16.91/5.08° to 34.57/15.59/4.52° at the printed stations, a gain at wide and a drop at the other two that stays above the 13.63° and 3.36° corner angles.
+
+Maker comparison, from the supplied brochure crop, which is blurred and used for order and rough proportion only: 16 elements in 13 groups with the same order, LD on L2 and L11, AD on L3, hybrid aspherical on L4 and L13. It shows the same L4 shoulder as Figure 5. It draws L4 relatively taller, 0.56 of the front element against 0.50, and G2's and G4's rear elements nearer one height. Those differences are within what the blur allows, and no rim was fitted to it.
+
+Open limitations: L6 to L7 and the L4 land carry small axial offsets to the figure, about 3 px and 7 px, from the drawing's own spacing. No near-focus state exists, so closest focus draws the same section as infinity.
+
+## 2026-11-01 — Brackets
+
+`doublets` C1, C6, C16, C25 and C30 were added to draw the five junctions the file already tagged in `cemented`, in the form the B003 file uses. Glass stays 16 of 18; the two resin layers have no published dispersion.

@@ -79,7 +79,7 @@ The 0.012 mm rounding in the printed back focus is carried through the range, so
 
 The patent sets the stop between groups III and IV and prints no offset. Fig. 1 draws it inside d7, and the FX-1 section drawing shows it in the same gap. The model places it at the middle of d7 = 19.12, split 9.56 + 9.56 at f = 100, or 3.346 + 3.346 mm. This is a modeling choice, not a recovered iris position.
 
-At f/2.8 the paraxial entrance pupil diameter is 12.50 mm at infinity focus, which gives a stop radius of 6.815 mm. The aperture scale runs from f/2.8 to f/16, as in the manual and on the barrel. Clear semi-diameters are inferred from axial and field ray envelopes, with a common rim on each element and the axial f/2.8 beam kept clear. They are not dimensions measured from the patent figure.
+At f/2.8 the paraxial entrance pupil diameter is 12.50 mm at infinity focus, which gives a stop radius of 6.815 mm. The aperture scale runs from f/2.8 to f/16, as in the manual and on the barrel. Clear semi-diameters are estimated from Fig. 1, which is drawn about 8 % shorter across the axis than along it, and the axial f/2.8 beam clears them at infinity and at 0.3 m. Both faces of each element share one rim except L1: its rear curve ends at 10.4 mm, and a flat land carries the element out to 13 mm, as Fig. 1 and the FX-1 section draw it. These are readings from drawings, not printed dimensions.
 
 The printed back focus of 108.7 scales to 38.045 mm and sets the infinity image plane. The printed radii and spacings give a paraxial 108.666 (38.033 mm), so the back focus reproduces at the patent's printed precision.
 

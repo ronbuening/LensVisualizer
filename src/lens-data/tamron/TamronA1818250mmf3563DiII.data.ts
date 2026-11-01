@@ -20,7 +20,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * interpolated. No gap or group reverses. Unprinted f-numbers follow a smooth iris curve through the printed stations.
  *
  * Focus: G2 moves toward the object (paragraph 0083), but no travel is printed, so both focus columns are identical.
- * Semi-diameters are inferred from ray clearance at the 14.5 mm plot height and the Figure 5 section.
+ *
+ * Semi-diameters: estimated from Figure 5 (wide end only), which is isotropic at about 0.122 mm per native pixel by
+ * vertex spans and arc fits, then floor-checked by real-ray trace at the 14.5 mm plot height. L4's rear curve r8 ends
+ * at sd 9.5 mm, just short of where it would meet r9 near 9.6 mm; rimExtensionSd 13 draws the figure's land out to the
+ * element edge. That r8/r9 pair sets checks.gapSagFrac to 0.99, the smallest value admitting the land.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -328,33 +332,33 @@ const LENS_DATA = {
       "label": "1",
       "R": 100,
       "d": 1.5,
-      "sd": 28,
+      "sd": 25.7,
       "medium": 1
     },
     {
       "label": "2",
       "R": 63.5173,
       "d": 7,
-      "sd": 28,
+      "sd": 25.7,
       "medium": 2
     },
     {
       "label": "3",
       "R": -1072.5164,
       "d": 0.2,
-      "sd": 28
+      "sd": 24.9
     },
     {
       "label": "4",
       "R": 63.0346,
       "d": 4.5,
-      "sd": 27,
+      "sd": 23.9,
       "medium": 3
     },
     {
       "label": "5",
       "R": 221.587,
-      "sd": 27
+      "sd": 23.9
     },
     {
       "label": "6A",
@@ -380,33 +384,34 @@ const LENS_DATA = {
       "label": "8",
       "R": 13.5502,
       "d": 5.4,
-      "sd": 9.15
+      "sd": 9.5,
+      "rimExtensionSd": 13
     },
     {
       "label": "9",
       "R": -34.645,
       "d": 1,
-      "sd": 10.5,
+      "sd": 9.8,
       "medium": 6
     },
     {
       "label": "10",
       "R": 53.702,
       "d": 0.8,
-      "sd": 10.5
+      "sd": 9.8
     },
     {
       "label": "11",
       "R": 29.1029,
       "d": 4.5,
-      "sd": 9.5,
+      "sd": 9.8,
       "medium": 7
     },
     {
       "label": "12",
       "R": -25.6353,
       "d": 0.42,
-      "sd": 9
+      "sd": 9.8
     },
     {
       "label": "13",
@@ -429,47 +434,47 @@ const LENS_DATA = {
       "label": "16",
       "R": 38.3469,
       "d": 1,
-      "sd": 10,
+      "sd": 9.2,
       "medium": 9
     },
     {
       "label": "17",
       "R": 25.0994,
       "d": 3,
-      "sd": 10,
+      "sd": 9.2,
       "medium": 10
     },
     {
       "label": "18",
       "R": -210,
       "d": 1,
-      "sd": 10
+      "sd": 8.9
     },
     {
       "label": "19",
       "R": 24.5206,
       "d": 3,
-      "sd": 10.5,
+      "sd": 9.9,
       "medium": 11
     },
     {
       "label": "20",
       "R": 95,
       "d": 0.5,
-      "sd": 10.5
+      "sd": 9.9
     },
     {
       "label": "21",
       "R": 23.9504,
       "d": 3.5,
-      "sd": 10.5,
+      "sd": 9.5,
       "medium": 12
     },
     {
       "label": "22",
       "R": 746.013,
       "d": 0.65,
-      "sd": 10.5
+      "sd": 9.5
     },
     {
       "label": "23",
@@ -481,13 +486,13 @@ const LENS_DATA = {
     {
       "label": "24",
       "R": 35.3648,
-      "sd": 9.5
+      "sd": 9
     },
     {
       "label": "25A",
       "R": 48.526,
       "d": 0.2,
-      "sd": 10.5,
+      "sd": 9.5,
       "medium": 14,
       "asphere": {
         "A4": -0.0000466282,
@@ -500,46 +505,46 @@ const LENS_DATA = {
       "label": "26",
       "R": 48.526,
       "d": 3.5,
-      "sd": 10.5,
+      "sd": 9.5,
       "medium": 15
     },
     {
       "label": "27",
       "R": -35.9079,
       "d": 0.2,
-      "sd": 10.5
+      "sd": 9.5
     },
     {
       "label": "28",
       "R": 8369.5957,
       "d": 3.5,
-      "sd": 10.5,
+      "sd": 9.5,
       "medium": 16
     },
     {
       "label": "29",
       "R": -26.5082,
       "d": 0.2,
-      "sd": 10.5
+      "sd": 9.5
     },
     {
       "label": "30",
       "R": -533.718,
       "d": 1,
-      "sd": 10.5,
+      "sd": 9.5,
       "medium": 17
     },
     {
       "label": "31",
       "R": 18.7073,
       "d": 3.5,
-      "sd": 10.5,
+      "sd": 10,
       "medium": 18
     },
     {
       "label": "32",
       "R": 95,
-      "sd": 10.5
+      "sd": 10
     }
   ],
   "zoom": {
@@ -1189,7 +1194,6 @@ const LENS_DATA = {
         "label": "241.83 mm"
       }
     ],
-    "apertureModel": "from-nominal-fno",
     "step": 0.005
   },
   "focus": {
@@ -3319,6 +3323,36 @@ const LENS_DATA = {
       "toSurface": "32"
     }
   ],
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "1",
+      "toSurface": "3"
+    },
+    {
+      "text": "C6",
+      "fromSurface": "6A",
+      "toSurface": "8"
+    },
+    {
+      "text": "C16",
+      "fromSurface": "16",
+      "toSurface": "18"
+    },
+    {
+      "text": "C25",
+      "fromSurface": "25A",
+      "toSurface": "27"
+    },
+    {
+      "text": "C30",
+      "fromSurface": "30",
+      "toSurface": "32"
+    }
+  ],
+  "checks": {
+    "gapSagFrac": 0.99
+  },
   "layout": {
     "yScFill": 0.3
   }

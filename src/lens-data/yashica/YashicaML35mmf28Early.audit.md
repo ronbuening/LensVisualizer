@@ -97,4 +97,94 @@ Open: stop position. Fig. 1 draws it about 41 % into d7 from r7, the manual sect
 about 37 %. An option is 2.74 + 3.95 mm in place of 3.346 + 3.346 mm. These are hand-drawn readings, and the stop stays at
 mid-d7 for now.
 
-Open: L4 rim 9.09 mm is larger than Fig. 1 (about 7.7 mm) and the manual section (about 8.3 mm). Left for the figure pass.
+Closed: L4 rim. 9.09 mm was larger than Fig. 1 (about 7.7 mm at the axial scale) and the manual section (about 8.3 mm). The
+figure pass below sets 8.3 mm on both faces.
+
+## 2026-11-01 — Semi-diameter pass against the patent figure
+
+### Source and scale
+
+Figure: `patents/JPS50132921A.pdf`, publication page (4), Fig. 1, the sole example, 300 dpi native raster. The drawing is hand
+made with clean lines. Its axis tilts 0.56° on the page, and all readings are in the tilted frame.
+
+| Direction | Evidence | Scale |
+|---|---|---|
+| Along the axis | Fit to 12 vertex positions, largest residual 5.5 px (0.33 mm); spans r1–r7 16.37, r7–r13 16.99 | 16.585 px/mm |
+| Across the axis | Exact sag fits with that axial scale: r1 15.28, r2 15.58, r4 15.74, r11 14.98, r6 14.74; sag-weighted median 15.28 of 12 arcs, scatter 0.9 | 15.3 ± 0.4 px/mm |
+
+So the figure is about 8 % short across the axis, or its sags are about 17 % deep. Heights use 15.3 px/mm. Three checks support
+it. L1's corner is at x = 125 and the model at 13.0 mm puts it at 124.1, while 12.06 mm (the axial scale) puts it at 116.5. L1's
+rear land sits 4.10 ± 0.12 mm behind the r2 vertex, which is r2's sag at 10.3 mm, while the axial scale reads that cap at 9.7 mm.
+L4's 127 px is 7.66 mm at the axial scale, below the on-axis ray at r6 (7.72 mm at the iris rim). The stop ticks open to
+±126.5 px, about L4's height and well outside the 6.815 mm stop, so they are not a scale reference.
+
+### Rims
+
+| Surfaces | Before | Fig. 1 half height | Fig. 1 at 15.3 px/mm | Manual section | After | Evidence |
+|---|---|---|---|---|---|---|
+| r1 | 11.82 | 200 px | 13.07 | 14.3 | 13.0 | Height, corner position and the 32° fan end |
+| r2 | 11.82 | 160.5 px cap, 200 px land | 10.49 cap, 13.07 land | 10.6 cap | 10.4, `rimExtensionSd` 13 | Cap height and land depth; the land is drawn in both sources |
+| r3–r5 | 10.10 | 158 px | 10.33 | 10.5 | 10.10 retained | 2 % difference, noise |
+| r6, r7 | 9.09 | 127 px | 8.30 | 8.35 | 8.3 | Square-cut, one height |
+| r8, r9 | 7.57 | 110 px | 7.19 | 7.36 | 7.2 | Keeps the L4 to L5 step, 1.1 mm as drawn |
+| r10, r11 | 8.60 | 122.5 px | 8.01 | 7.86 | 8.0 | Square-cut, one height |
+| r12, r13 | 9.39 | 146 px | 9.54 | 9.08 | 9.39 retained | 2 % difference, noise |
+
+Readings are good to about 2 px (0.13 mm) before the scale uncertainty. L1 is the one stepped element: r2's curve ends on a flat
+rear land, as `rimExtensionSd` draws it. The land clears r3's rim by 0.89 mm against about 0.7 mm drawn. L5 moved 5 %, inside the
+noise band, because with L4 at 8.3 mm the stored 7.57 mm left the L4 to L5 step at two thirds of its drawn size.
+
+The manual section's column uses its overall vertex scale of 6.11 px/mm. That scale is not uniform: it runs 8.1 px/mm across L1
+and 6.1 px/mm over the whole lens, so the section checks order and proportion only. It has the same step order as Fig. 1 and the
+final rims, L1 > L2/L3 > L7 > L4 > L6 > L5. Against the L2/L3 rim the two sources read L4 0.80 and 0.80, L5 0.70 and 0.70, L6 0.78
+and 0.75, the r2 cap 1.02 and 1.02. They disagree at L1 (1.27 in Fig. 1, 1.37 in the section) and L7 (0.92, 0.87). Fig. 1 governs
+both.
+
+### Lateral fans
+
+Fig. 2's upper plot ends its fans short of the full pupil: 26° at −0.61 and +0.66, 32° at −0.61 and +0.56. The model's aberration
+sign puts the plot's positive side on the rays that are high at L1. Measured from the chief ray at the entrance pupil, the end at
+32° needs r1 12.8 mm and r2 10.55 mm, in line with the figure on both surfaces and well above the old 11.82 mm on r1. The model
+now ends that side at 0.51, set by r2, against 0.35 before. On the other side the plot's −0.61 falls inside r13's limit of 0.69,
+and at 26° both ends fall inside the traced range (−0.77 to +0.82). Those are not rim limits, so nothing moved for them. The two
+−0.61 ends match closely enough that the plot may stop at a chosen pupil height.
+
+### Clearance
+
+Heights in mm, wide open. No surface is clipped on axis at infinity or at 0.3 m. The aperture audit reports the stated f-number
+within 3 %, and the corner chief ray is clear at infinity (32°) and at 0.3 m (29.39°).
+
+| Surface | Rim | Axial, EP 6.25 mm | Axial, iris rim, infinity | Axial, iris rim, 0.3 m | Chief, infinity | Chief, 0.3 m |
+|---|---|---|---|---|---|---|
+| r1 | 13.0 | 6.25 | 6.08 | 5.61 | 10.09 | 9.29 |
+| r2 | 10.4 | 5.99 | 5.83 | 5.43 | 8.34 | 7.75 |
+| r5 | 10.10 | 7.67 | 7.47 | 7.29 | 4.21 | 3.79 |
+| r6 | 8.3 | 7.95 | 7.72 | 7.60 | 3.43 | 3.10 |
+| r9 | 7.2 | 6.68 | 6.48 | 6.56 | 2.31 | 2.07 |
+| r11 | 8.0 | 7.18 | 6.97 | 7.11 | 4.98 | 4.47 |
+| r13 | 9.39 | 7.03 | 6.82 | 7.02 | 6.15 | 5.48 |
+
+Engine transmission wide open at infinity, in percent:
+
+| Field | 8.7° | 14.5° | 17.5° | 20.4° | 23.3° | 26.2° | 29.1° | 32.0° |
+|---|---|---|---|---|---|---|---|---|
+| Before | 100.0 | 100.0 | 99.3 | 96.1 | 86.2 | 73.3 | 58.6 | 42.4 |
+| After | 99.2 | 94.3 | 89.4 | 84.6 | 78.8 | 70.4 | 60.3 | 48.1 |
+
+The corner gains 5.7 points. r1 alone is worth +8.0, and the rear cuts give part of it back. Mid-field loses up to 11.5 points, at
+20.4°. Restoring one rim at a time in the final set returns 6.7 points there for L4 (9.09 mm), 3.2 for L6 (8.60 mm) and none for
+L5 (7.57 mm); restoring all three gives 96.7 at 20.4° and 50.2 at the corner. The cuts stay because L4 and L6 rest on the figure,
+the section and their sags together. Side vignetting at 32° is now 6–38 % at r8–r13. It stays as real vignetting. This curve is
+an infinity result; at 0.3 m only the meridional side figures were read (5–29 % at r8–r13).
+
+Engine values: EFL 35.001 mm, F/2.8, half-field 32°, stop radius 6.815 mm, all as before. The traced field limit rose from 32.74°
+to 32.88°, set by r2. Surface audit OK, image circle OK, field coverage 100 % (21.65 mm). No rim cuts. `checks.gapSagFrac` stays
+at its default.
+
+The overlay of the model on Fig. 1 at 16.585 and 15.3 px/mm matches every element outline to about the line width, apart from
+the vertex residuals above. The local page was read at infinity and at closest focus, and its section shows the same outline.
+
+### Limits
+
+The vertical scale rests on hand-drawn arcs, so absolute heights carry about ±3 %. The ratios between elements are firmer, and
+the two retained elements sit within that band. The stop position is unchanged and stays open above.

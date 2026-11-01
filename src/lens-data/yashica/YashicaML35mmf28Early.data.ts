@@ -14,7 +14,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Back focus: printed 108.7 (38.045 mm) is used; the paraxial 108.666 rounds to it.
  * Focus: unit focus to 0.3 m is reconstructed by Gaussian extension at 41 keyframes. The patent
  * and the FX-1 manual do not state the mechanism. Finite-conjugate MTF is unavailable.
- * Rims are inferred from ray envelopes, not measured from the patent figure. No sag override.
+ * Rims: estimated from Fig. 1 and floor-checked by real-ray trace at infinity and 0.3 m. Vertices
+ * give 16.59 px/mm along the axis and the arcs 15.3 px/mm across it, so heights use the arc scale.
+ * L1's rear curve ends at 10.4 mm and the figure's land carries it to 13 mm. No sag override.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -156,14 +158,15 @@ const LENS_DATA = {
       "label": "1",
       "R": 28.708049999999997,
       "d": 2.639,
-      "sd": 11.81569,
+      "sd": 13,
       "medium": 1
     },
     {
       "label": "2",
       "R": 15.028999999999998,
       "d": 5.914999999999999,
-      "sd": 11.81569
+      "sd": 10.4,
+      "rimExtensionSd": 13
     },
     {
       "label": "3",
@@ -189,14 +192,14 @@ const LENS_DATA = {
       "label": "6",
       "R": 26.664399999999997,
       "d": 4.850999999999999,
-      "sd": 9.0919,
+      "sd": 8.3,
       "medium": 4
     },
     {
       "label": "7",
       "R": -88.4093,
       "d": 3.346,
-      "sd": 9.0919
+      "sd": 8.3
     },
     {
       "label": "STO",
@@ -207,27 +210,27 @@ const LENS_DATA = {
       "label": "8",
       "R": -20.428449999999998,
       "d": 0.847,
-      "sd": 7.57464,
+      "sd": 7.2,
       "medium": 5
     },
     {
       "label": "9",
       "R": 44.84865,
       "d": 2.359,
-      "sd": 7.57464
+      "sd": 7.2
     },
     {
       "label": "10",
       "R": -58.969049999999996,
       "d": 2.681,
-      "sd": 8.5978,
+      "sd": 8,
       "medium": 6
     },
     {
       "label": "11",
       "R": -17.5,
       "d": 0.098,
-      "sd": 8.5978
+      "sd": 8
     },
     {
       "label": "12",

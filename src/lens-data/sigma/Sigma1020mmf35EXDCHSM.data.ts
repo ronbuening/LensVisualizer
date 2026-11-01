@@ -13,7 +13,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * plane sits 0.011/0.017/0.024 mm behind paraxial focus at the printed stations.
  * The stop is printed row 10, with 1.400 mm following it. The stop rule sets its radius from the printed f-number at
  * each zoom position: 5.227/6.004/6.824 mm at the printed stations. The patent prints no stop diameter.
- * Clear radii are inferred to fit the patent figure, not published dimensions.
+ * Clear radii are measured from Figure 22, the wide state of this example, at 6.62 native px per mm in both directions,
+ * and checked by real-ray trace; the patent prints none. Surfaces 2, 4 and 7 keep the drawn curve end in `sd`, and
+ * `rimExtensionSd` carries the flat land the figure draws from there to the element's edge.
  * Infinity focus only: the patent prints no close-focus state, and Sigma's 0.24 m minimum focus is not modeled.
  */
 const LENS_DATA = {
@@ -129,7 +131,7 @@ const LENS_DATA = {
       vd: 53.052,
       indexReference: "d",
       focalLengthMm: -29.11,
-      glass: "Unmatched (aspherical glass element; patent gives nd 1.691, νd 53.052, no catalog glass assigned)",
+      glass: "L-LAL13 (OHARA moulding glass, coordinate proxy; patent nd=1.691, νd=53.052; production supplier unspecified)",
       role: "First negative meniscus of the first group; aspherical front surface 1A controls distortion and coma.",
       diagramLabel: "L1",
     },
@@ -142,7 +144,7 @@ const LENS_DATA = {
       vd: 49.428,
       indexReference: "d",
       focalLengthMm: -89.7,
-      glass: "Unmatched (aspherical glass element; patent gives nd 1.769, νd 49.428, no catalog glass assigned)",
+      glass: "MC-TAF101-100 (HOYA moulding glass, coordinate equivalent; patent nd=1.769, νd=49.428; production supplier unspecified)",
       role: "Second negative meniscus of the first group, with aspherical front surface 3A.",
       diagramLabel: "L2",
     },
@@ -335,11 +337,24 @@ const LENS_DATA = {
       cemented: "H2",
     },
   ],
+  groups: [
+    { text: "G1", fromSurface: "1A", toSurface: "9" },
+    { text: "G2", fromSurface: "STO", toSurface: "15" },
+    { text: "G3", fromSurface: "16", toSurface: "18" },
+    { text: "G4", fromSurface: "19", toSurface: "26" },
+  ],
+  doublets: [
+    { text: "H1", fromSurface: "5A", toSurface: "7" },
+    { text: "C1", fromSurface: "11", toSurface: "13" },
+    { text: "C2", fromSurface: "16", toSurface: "18" },
+    { text: "C3", fromSurface: "21", toSurface: "23" },
+    { text: "H2", fromSurface: "24A", toSurface: "26" },
+  ],
   surfaces: [
     {
       label: "1A",
       R: 1000.0,
-      sd: 28,
+      sd: 26.4,
       medium: 1,
       d: 3.2,
       asphere: {
@@ -355,12 +370,13 @@ const LENS_DATA = {
       label: "2",
       R: 19.695,
       sd: 17,
+      rimExtensionSd: 26.4,
       d: 7.082,
     },
     {
       label: "3A",
       R: 36.208,
-      sd: 18,
+      sd: 17.3,
       medium: 2,
       d: 2.0,
       asphere: {
@@ -375,13 +391,14 @@ const LENS_DATA = {
     {
       label: "4",
       R: 23.174,
-      sd: 18,
+      sd: 14.2,
+      rimExtensionSd: 17.3,
       d: 13.713,
     },
     {
       label: "5A",
       R: 159.625,
-      sd: 12.8,
+      sd: 12.3,
       medium: 3,
       d: 0.2,
       asphere: {
@@ -396,27 +413,28 @@ const LENS_DATA = {
     {
       label: "6",
       R: 119.912,
-      sd: 12.8,
+      sd: 12.3,
       medium: 4,
       d: 1.0,
     },
     {
       label: "7",
       R: 24.341,
-      sd: 12.8,
+      sd: 10.7,
+      rimExtensionSd: 12.3,
       d: 1.085,
     },
     {
       label: "8",
       R: 25.0,
-      sd: 12.5,
+      sd: 11.6,
       medium: 5,
       d: 4.383,
     },
     {
       label: "9",
       R: 78.802,
-      sd: 12.5,
+      sd: 11.6,
     },
     {
       label: "STO",
@@ -426,91 +444,91 @@ const LENS_DATA = {
     {
       label: "11",
       R: 216.852,
-      sd: 9.7,
+      sd: 8.4,
       medium: 6,
       d: 0.8,
     },
     {
       label: "12",
       R: 18.108,
-      sd: 9.7,
+      sd: 8.4,
       medium: 7,
       d: 4.064,
     },
     {
       label: "13",
       R: -57.736,
-      sd: 9.7,
+      sd: 8.4,
       d: 0.15,
     },
     {
       label: "14",
       R: 24.193,
-      sd: 10.5,
+      sd: 8.8,
       medium: 8,
       d: 3.993,
     },
     {
       label: "15",
       R: -54.246,
-      sd: 10.5,
+      sd: 8.8,
     },
     {
       label: "16",
       R: -31.871,
-      sd: 9.8,
+      sd: 7.9,
       medium: 9,
       d: 0.8,
     },
     {
       label: "17",
       R: 20.734,
-      sd: 9.8,
+      sd: 7.9,
       medium: 10,
       d: 2.49,
     },
     {
       label: "18",
       R: 118.181,
-      sd: 9.8,
+      sd: 7.9,
     },
     {
       label: "19",
       R: 28.881,
-      sd: 13,
+      sd: 11.3,
       medium: 11,
       d: 5.198,
     },
     {
       label: "20",
       R: -45.877,
-      sd: 13,
+      sd: 11.3,
       d: 0.15,
     },
     {
       label: "21",
       R: 693.975,
-      sd: 12.8,
+      sd: 11.9,
       medium: 12,
       d: 0.85,
     },
     {
       label: "22",
       R: 22.5,
-      sd: 12.8,
+      sd: 11.9,
       medium: 13,
       d: 7.15,
     },
     {
       label: "23",
       R: -30.0,
-      sd: 12.8,
+      sd: 11.9,
       d: 0.15,
     },
     {
       label: "24A",
       R: -633.057,
-      sd: 13.5,
+      sd: 12.5,
       medium: 14,
       d: 0.15,
       asphere: {
@@ -525,14 +543,14 @@ const LENS_DATA = {
     {
       label: "25",
       R: -179.447,
-      sd: 13.5,
+      sd: 12.5,
       medium: 15,
       d: 3.189,
     },
     {
       label: "26",
       R: -39.737,
-      sd: 13.5,
+      sd: 12.5,
     },
   ],
   gaps: {
@@ -1722,7 +1740,6 @@ const LENS_DATA = {
       },
     ],
     step: 0.002,
-    apertureModel: "from-nominal-fno",
   },
   aperture: {
     fStops: [3.611, 4, 5.6, 8, 11, 16, 22],

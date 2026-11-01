@@ -1,4 +1,12 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/*
+ * Semi-diameters: the patent prints none. Rims are estimated from JP 5649252 B2 Figure 1, panels (a) to (c), at 6.61
+ * px/mm along the axis and 6.40 px/mm across it (the figure is 3.2 % compressed in height), rounded up to 0.1 mm and
+ * floor-checked by real-ray trace. The figure draws L2, L4 and L8 proud of their cemented partners, with the junction
+ * curve ending at the partner's height, so S4, S7 and S15 stop there and the larger element's edge runs straight down to
+ * them. L5, L7, L13 and L14 are inferred values within 7 % of the figure.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "panasonic-lumix-g-x-vario-pz-45-175mm-f4-56-asph-power-ois",
@@ -70,6 +78,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -74.85691871808652,
       "glass": "S-LAM66 (OHARA catalog equivalent; production supplier unspecified)",
+      "cemented": "C1",
       "role": "Flint half of the first-group doublet, cemented to L3"
     },
     {
@@ -82,6 +91,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 54.77294971031757,
       "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "cemented": "C1",
       "apd": "inferred",
       "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Panasonic's construction diagram marks this position as one of its two ED elements, and the patent itself does not call the glass anomalous.",
       "role": "ED crown half of the first-group doublet and the strongest positive element in G1"
@@ -96,6 +106,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -15.575824506539641,
       "glass": "NBFD3 (HOYA catalog equivalent; production supplier unspecified)",
+      "cemented": "C2",
       "role": "Strongest negative element of the moving second group, cemented to L5"
     },
     {
@@ -108,6 +119,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 23.432346841731288,
       "glass": "N-SF66 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "cemented": "C2",
       "role": "Very high-dispersion positive half of the second-group doublet, cemented to L4"
     },
     {
@@ -144,6 +156,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -15.602061248112525,
       "glass": "TAFD25 (HOYA catalog equivalent; production supplier unspecified)",
+      "cemented": "C3",
       "role": "High-index flint half of the doublet behind the stop, cemented to L9"
     },
     {
@@ -156,6 +169,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 29.520653133321204,
       "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "cemented": "C3",
       "apd": "inferred",
       "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Panasonic's construction diagram marks this position as one of its two ED elements, and the patent itself does not call the glass anomalous.",
       "role": "ED crown half of the doublet behind the stop, cemented to L8"
@@ -169,7 +183,8 @@ const LENS_DATA = {
       "vd": 59.4,
       "indexReference": "d",
       "focalLengthMm": 18.915687581369546,
-      "glass": "Unmatched (printed nd/νd; no catalog row at these coordinates)",
+      "glass": "L-BAL42 (OHARA moulding glass, coordinate equivalent; patent nd=1.58250, νd=59.4; production supplier unspecified)",
+      "cemented": "C4",
       "role": "Crown half of the rear third-group doublet, aspherical on its front surface, cemented to L11"
     },
     {
@@ -182,6 +197,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -74.8631384488648,
       "glass": "S-TIH4 (OHARA catalog equivalent; production supplier unspecified)",
+      "cemented": "C4",
       "role": "Flint half of the rear third-group doublet, closing the fixed third group"
     },
     {
@@ -225,39 +241,39 @@ const LENS_DATA = {
     {
       "label": "1",
       "R": 44.277,
-      "sd": 18.67393879207889,
+      "sd": 15.9,
       "medium": 1,
       "d": 4.2
     },
     {
       "label": "2",
       "R": "flat",
-      "sd": 18.67393879207889,
+      "sd": 15.9,
       "d": 0.2
     },
     {
       "label": "3",
       "R": 38.426,
-      "sd": 16.5129308585494,
+      "sd": 14.7,
       "medium": 2,
       "d": 1.2
     },
     {
       "label": "4",
       "R": 23.093,
-      "sd": 16.5129308585494,
+      "sd": 13.8,
       "medium": 3,
       "d": 6
     },
     {
       "label": "5",
       "R": 139.112,
-      "sd": 16.5129308585494
+      "sd": 13.8
     },
     {
       "label": "6",
       "R": 400,
-      "sd": 8.5,
+      "sd": 7.6,
       "medium": 4,
       "d": 0.6
     },
@@ -277,14 +293,14 @@ const LENS_DATA = {
     {
       "label": "9",
       "R": -43.775,
-      "sd": 9.12,
+      "sd": 6.6,
       "medium": 6,
       "d": 0.6
     },
     {
       "label": "10",
       "R": 67.773,
-      "sd": 9.12
+      "sd": 6.6
     },
     {
       "label": "11A",
@@ -321,27 +337,27 @@ const LENS_DATA = {
     {
       "label": "14",
       "R": 75.477,
-      "sd": 7.678,
+      "sd": 7.9,
       "medium": 8,
       "d": 0.6
     },
     {
       "label": "15",
       "R": 11.835,
-      "sd": 7.678,
+      "sd": 7.4,
       "medium": 9,
       "d": 3.2
     },
     {
       "label": "16",
       "R": 55.716,
-      "sd": 7.678,
+      "sd": 7.4,
       "d": 0.76
     },
     {
       "label": "17A",
       "R": 21.353,
-      "sd": 7.801,
+      "sd": 7.3,
       "asphere": {
         "K": 0,
         "A4": -0.00001875,
@@ -355,26 +371,26 @@ const LENS_DATA = {
     {
       "label": "18",
       "R": -21.353,
-      "sd": 7.801,
+      "sd": 7.3,
       "medium": 11,
       "d": 0.6
     },
     {
       "label": "19",
       "R": -34.727,
-      "sd": 7.801
+      "sd": 7.1
     },
     {
       "label": "20",
       "R": 44.246,
-      "sd": 7.225,
+      "sd": 5.8,
       "medium": 12,
       "d": 0.5
     },
     {
       "label": "21",
       "R": 15.083,
-      "sd": 7.225
+      "sd": 5.8
     },
     {
       "label": "22",
@@ -6315,6 +6331,28 @@ const LENS_DATA = {
       "text": "G6",
       "fromSurface": "24",
       "toSurface": "25"
+    }
+  ],
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "3",
+      "toSurface": "5"
+    },
+    {
+      "text": "C2",
+      "fromSurface": "6",
+      "toSurface": "8"
+    },
+    {
+      "text": "C3",
+      "fromSurface": "14",
+      "toSurface": "16"
+    },
+    {
+      "text": "C4",
+      "fromSurface": "17A",
+      "toSurface": "19"
     }
   ],
   "layout": {

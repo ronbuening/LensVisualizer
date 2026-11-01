@@ -14,8 +14,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * plane fixed to the image should. No total length is printed.
  * Inferred: the zoom stations between the printed ones (a numerical path, not a published cam) and every semi-diameter.
  * The patent prints infinity focus only, so the focus pairs repeat. The stabilizing shift is not modeled.
- * S20/S21 sd 6.05 mm passes the stated axial beam at every station. S21 and S22 then come within 0.07 mm at the rim
- * without crossing; checks.gapSagFrac 0.95 is the smallest two-decimal value that admits it.
+ * Semi-diameters are estimated from Figure 1 of JP 2010-211056 A (wide end, 6.19 px/mm along the axis, 6.24 across) and
+ * floor-checked by real-ray trace. rimExtensionSd draws the figure's lands on L3, L4, L5, L10 and L11. S7 and S8 end at
+ * 14.2 mm, which the end rays of the lateral-aberration Figure 4 need. Flare-cut planes S13 and S33 take 8.65 and 9.7 mm
+ * from the end rays of Figures 4 and 5; Figure 1's ticks read 8.4 and 9.1 mm. L1's rear flange has no land: S2 is a
+ * cemented junction, so the outline runs straight from the S1 rim to the S2 rim.
+ * S21 and S22 end at 6.05 mm, which passes the stated axial beam at every station, and come within 0.07 mm at the rim
+ * without crossing; S7 and S8 come within 0.10 mm. checks.gapSagFrac 0.95 is the smallest two-decimal value that admits
+ * both pairs.
  * The stop radius comes from the design f-number at each station under the stop rule (paraxial EPD = F/N): 6.43, 6.41
  * and 6.40 mm at the printed stations. It is not a measured diaphragm. S29 is a plane glass surface, not a stop.
  * Glass: nd and vd stay as printed; catalog equivalents supply the spectral curves. L6 (moulded) and the two resin
@@ -84,6 +90,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -63.45254623085152,
       "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "cemented": "H1",
       "role": "Front negative meniscus of fixed G1; its rear face carries the thin resin layer."
     },
     {
@@ -96,6 +103,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -516.7821979029443,
       "glass": "Unmatched (hybrid optical resin; spectrum unpublished)",
+      "cemented": "H1",
       "role": "Thin resin layer bonded to Element 1; its air-side surface 3A is the front asphere, for wide-angle distortion."
     },
     {
@@ -132,6 +140,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -36.35071980045285,
       "glass": "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
+      "cemented": "C1",
       "role": "Biconcave crown of the G2 cemented doublet, carrying most of that group's negative power."
     },
     {
@@ -144,6 +153,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 69.64411743426885,
       "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "cemented": "C1",
       "role": "High-dispersion positive meniscus cemented to Element 4, the colour partner in G2."
     },
     {
@@ -155,7 +165,7 @@ const LENS_DATA = {
       "vd": 61.0842,
       "indexReference": "d",
       "focalLengthMm": 79.38040340300878,
-      "glass": "Unmatched (moulded glass; patent class 588611)",
+      "glass": "L-BAL35 (OHARA moulding glass, coordinate equivalent; patent nd=1.5876, νd=61.08; production supplier unspecified)",
       "role": "Aspheric first element of G3 (rear surface 12A); JP 2010-211102 A shifts it across the axis as the stabilizing element."
     },
     {
@@ -168,6 +178,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -40.464485034138164,
       "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "cemented": "C2",
       "role": "Negative high-dispersion meniscus leading the G3 cemented doublet."
     },
     {
@@ -180,6 +191,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 25.915080937172952,
       "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "cemented": "C2",
       "role": "Strong high-index positive cemented to Element 7; the main power of G3."
     },
     {
@@ -218,6 +230,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -15.771456082622795,
       "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "cemented": "C3",
       "role": "Strong biconcave negative of the G4 cemented doublet."
     },
     {
@@ -230,6 +243,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 23.544851474152374,
       "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "cemented": "C3",
       "role": "High-dispersion biconvex cemented to Element 11, the colour partner in G4."
     },
     {
@@ -256,6 +270,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 69.3301865808726,
       "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "cemented": "C4",
       "role": "Positive meniscus leading the G5 cemented doublet."
     },
     {
@@ -268,6 +283,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -45.67682494684621,
       "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "cemented": "C4",
       "role": "High-dispersion negative cemented to Element 14, with a flat rear face; the colour partner in G5."
     },
     {
@@ -280,6 +296,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 302.07356219467147,
       "glass": "Unmatched (hybrid optical resin; spectrum unpublished)",
+      "cemented": "H2",
       "role": "Thin resin layer bonded to the front of Element 16; its air-side surface 30A is the rear asphere, for coma and astigmatism."
     },
     {
@@ -292,6 +309,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 96.2595695147173,
       "glass": "H-QK3L (CDGM catalog equivalent; production supplier unspecified)",
+      "cemented": "H2",
       "role": "Last positive meniscus of G5, carrying the resin layer on its front face."
     }
   ],
@@ -299,7 +317,7 @@ const LENS_DATA = {
     {
       "label": "1",
       "R": 89.7,
-      "sd": 21.55111076893464,
+      "sd": 25,
       "medium": 1,
       "d": 1.6
     },
@@ -338,46 +356,49 @@ const LENS_DATA = {
     {
       "label": "6",
       "R": -319.6,
-      "sd": 16.29,
+      "sd": 15.9,
       "medium": 4,
       "d": 1
     },
     {
       "label": "7",
       "R": 99.14,
-      "sd": 16.29,
+      "sd": 14.2,
+      "rimExtensionSd": 15.9,
       "d": 2.04
     },
     {
       "label": "8",
       "R": -110.75,
-      "sd": 13.820638917635607,
+      "sd": 14.2,
+      "rimExtensionSd": 15.2,
       "medium": 5,
       "d": 1
     },
     {
       "label": "9",
       "R": 34.98,
-      "sd": 13.820638917635607,
+      "sd": 15.2,
       "medium": 6,
       "d": 3.1
     },
     {
       "label": "10",
       "R": 82.51,
-      "sd": 13.820638917635607
+      "sd": 13.820638917635607,
+      "rimExtensionSd": 15.2
     },
     {
       "label": "11",
       "R": -433.69,
-      "sd": 12.101,
+      "sd": 10,
       "medium": 7,
       "d": 2.38
     },
     {
       "label": "12A",
       "R": -42.2,
-      "sd": 12.101,
+      "sd": 10,
       "asphere": {
         "K": -1.1922,
         "A4": -0.0000028679,
@@ -390,40 +411,40 @@ const LENS_DATA = {
     {
       "label": "13",
       "R": "flat",
-      "sd": 12.099,
+      "sd": 8.65,
       "d": 0.45
     },
     {
       "label": "14",
       "R": 46.5,
-      "sd": 11.373861884718746,
+      "sd": 9.4,
       "medium": 8,
       "d": 0.85
     },
     {
       "label": "15",
       "R": 19.56,
-      "sd": 11.373861884718746,
+      "sd": 9.4,
       "medium": 9,
       "d": 3.6
     },
     {
       "label": "16",
       "R": 784,
-      "sd": 11.373861884718746,
+      "sd": 9.4,
       "d": 0.15
     },
     {
       "label": "17",
       "R": 21,
-      "sd": 11.483,
+      "sd": 9.2,
       "medium": 10,
       "d": 3.18
     },
     {
       "label": "18",
       "R": 131.9,
-      "sd": 11.483
+      "sd": 9.2
     },
     {
       "label": "STO",
@@ -433,7 +454,7 @@ const LENS_DATA = {
     {
       "label": "20",
       "R": -61.33,
-      "sd": 6.05,
+      "sd": 6.9,
       "medium": 11,
       "d": 0.8
     },
@@ -441,64 +462,66 @@ const LENS_DATA = {
       "label": "21",
       "R": 31.31,
       "sd": 6.05,
+      "rimExtensionSd": 6.9,
       "d": 1.42
     },
     {
       "label": "22",
       "R": -24.54,
-      "sd": 8.9,
+      "sd": 6.05,
+      "rimExtensionSd": 7.4,
       "medium": 12,
       "d": 0.8
     },
     {
       "label": "23",
       "R": 24.54,
-      "sd": 8.9,
+      "sd": 7.4,
       "medium": 13,
       "d": 2.53
     },
     {
       "label": "24",
       "R": -101.16,
-      "sd": 8.9
+      "sd": 7.4
     },
     {
       "label": "25",
       "R": 32.7,
-      "sd": 11.15785768563377,
+      "sd": 9.4,
       "medium": 14,
       "d": 4.69
     },
     {
       "label": "26",
       "R": -24.71,
-      "sd": 11.15785768563377,
+      "sd": 9.4,
       "d": 0.15
     },
     {
       "label": "27",
       "R": -135.9,
-      "sd": 13.094847574690169,
+      "sd": 9.9,
       "medium": 15,
       "d": 2.05
     },
     {
       "label": "28",
       "R": -38.67,
-      "sd": 13.094847574690169,
+      "sd": 9.9,
       "medium": 16,
       "d": 0.85
     },
     {
       "label": "29",
       "R": "flat",
-      "sd": 13.094847574690169,
+      "sd": 9.9,
       "d": 1.57
     },
     {
       "label": "30A",
       "R": -1000,
-      "sd": 15.385,
+      "sd": 10.4,
       "asphere": {
         "K": 0,
         "A4": -0.000032971,
@@ -512,19 +535,19 @@ const LENS_DATA = {
     {
       "label": "31",
       "R": -135.4,
-      "sd": 15.385,
+      "sd": 10.4,
       "medium": 18,
       "d": 2.86
     },
     {
       "label": "32",
       "R": -35.09,
-      "sd": 15.385
+      "sd": 10.4
     },
     {
       "label": "33",
       "R": "flat",
-      "sd": 15.385
+      "sd": 9.7
     }
   ],
   "zoom": {
@@ -6435,6 +6458,38 @@ const LENS_DATA = {
     {
       "text": "G5",
       "fromSurface": "25",
+      "toSurface": "32"
+    }
+  ],
+  "doublets": [
+    {
+      "text": "H1",
+      "fromSurface": "1",
+      "toSurface": "3A"
+    },
+    {
+      "text": "C1",
+      "fromSurface": "8",
+      "toSurface": "10"
+    },
+    {
+      "text": "C2",
+      "fromSurface": "14",
+      "toSurface": "16"
+    },
+    {
+      "text": "C3",
+      "fromSurface": "22",
+      "toSurface": "24"
+    },
+    {
+      "text": "C4",
+      "fromSurface": "27",
+      "toSurface": "29"
+    },
+    {
+      "text": "H2",
+      "fromSurface": "30A",
       "toSurface": "32"
     }
   ],

@@ -71,7 +71,7 @@ The thin resin layer begins at S6 and is bonded to L4 at S7. Its 0.2 mm thicknes
 
 nd = 1.88300, νd = 40.80. Glass: TAFD30 (HOYA, coordinate equivalent). f = -20.201 mm.
 
-The high-index glass completes the hybrid first element of G2. Its strongly curved rear surface faces the following air space. The resin and glass use matched inferred 13.5 mm semi-diameters.
+The high-index glass completes the hybrid first element of G2. Its strongly curved rear surface faces the following air space and ends at an inferred 9.9 mm on a flat land, which runs out to the 13.5 mm edge it shares with the resin, as Figure 1 draws it.
 
 ### L5 — Biconcave Negative
 
@@ -89,7 +89,7 @@ This positive dense-flint singlet lies between the negative elements of G2 and m
 
 nd = 1.83481, νd = 42.72. Glass: TAFD5G (HOYA, coordinate equivalent). f = -29.548 mm.
 
-The final negative G2 meniscus precedes the variable gap to the stop. The preceding 0.6619 mm air gap and neighboring curvature constrain its inferred semi-diameter.
+The final negative G2 meniscus precedes the variable gap to the stop. The preceding 0.6619 mm air gap nearly closes toward the rim, so its front surface ends at an inferred 9.6 mm, with a flat land out to the 10.0 mm edge.
 
 ### L8 — Positive Meniscus
 
@@ -137,7 +137,7 @@ The first G4 element is biconvex and aspheric on both sides, S26 and S27. The ne
 
 nd = 1.90366, νd = 31.31. Glass: TAFD25L (HOYA, coordinate equivalent). f = -21.282 mm.
 
-The negative rear singlet has a nearly flat object-side surface and a strongly curved rear surface. Its inferred semi-diameters are an equal 8.4 mm, kept small by the following 1.5195 mm air gap.
+The negative rear singlet has a nearly flat object-side surface and a strongly curved rear surface. The rear surface ends at an inferred 8.4 mm, kept small by the following 1.5195 mm air gap, with a flat land out to the 9.9 mm edge.
 
 ### L16 — Biconvex Positive
 
@@ -230,7 +230,7 @@ The small residuals exceed the patent's last printed digit but fit the rounding 
 
 ## Model Scope and Limitations
 
-The prescription is unscaled and the patent lists no cover plate. Semi-diameters are inferred from ray clearance, not published. At the patent's 14.5 mm image height the chief ray clears every surface at every zoom station, and the axial beam at the stated f-number is unclipped; off-axis bundles vignette on the outer rims.
+The prescription is unscaled and the patent lists no cover plate. Semi-diameters are estimated from Figure 1 and checked by real-ray trace, not published. At the patent's 14.5 mm image height the chief ray clears every surface at every zoom station, and the axial beam at the stated f-number is unclipped; off-axis bundles vignette on the outer rims.
 
 The model is centered and at infinity focus. It does not simulate VC decentering, a focus movement, the Sony-mount variant or coatings. Dispersion away from the d line comes from catalog equivalents, so chromatic results are class-level, and no MTF, transmission or manufacturing-tolerance performance is claimed for the production lens.
 

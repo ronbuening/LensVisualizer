@@ -36,7 +36,8 @@ G1 stays fixed to the image. G2 moves forward and back (d5 = 7.59, 13.80, 7.92 m
 - S13 and S33 are kept as printed planes. S29 is a plane glass surface, not a stop.
 - Only three zoom positions are printed, out of 201 stations. Between them d18 and d32 run linearly and G2 is solved to hold focus, which leaves a slope break in G2's motion at 27.99 mm. This path is inferred, not a published cam.
 - The stop radius follows from the design f-number at each station (paraxial EPD = F/N): 6.43, 6.41 and 6.40 mm at the printed positions. It is not a measured diaphragm. One fixed stop of about 6.55 mm radius gives the printed F-numbers by real marginal ray (2.919, 3.403, 4.487), which suggests the patent's stop does not change with zoom.
-- Semi-diameters are inferred; none is printed. L10 is set to 6.05 mm so the stated axial beam passes at every station, and at that height L10 and L11 come within 0.07 mm.
+- Semi-diameters are inferred; none is printed. They follow Figure 1, which is drawn to scale, with the end rays of the lateral-aberration Figures 4 and 5 as a second reading. L10's rear curve ends at 6.05 mm so the stated axial beam passes at every station, and at that height L10 and L11 come within 0.07 mm. L1's rear flange is drawn as a straight edge, because the resin layer sits on the junction where a land would go.
+- The fans show the two flare-cut planes limiting the off-axis beam, and S13 and S33 are set from them to 8.65 and 9.7 mm. Geometric transmission at the 14.20 mm corner is about 47, 54 and 59 % at the three printed positions. The fans also end at about 6.6 mm on S24 and 8.2 mm on S25, inside the glass the figure draws. The model keeps the drawn 7.4 and 9.4 mm there, so it passes a little more light at mid-field than the patent's plots show.
 
 ## Element-by-Element Analysis
 
@@ -80,7 +81,7 @@ High-dispersion positive cemented to L4, the chromatic partner in that doublet.
 
 ### L6 — Positive Meniscus
 
-nd = 1.58760, νd = 61.0842. Glass: Unmatched (moulded glass; patent class 588611). f = +79.380 mm.
+nd = 1.58760, νd = 61.0842. Glass: L-BAL35 (OHARA moulding glass, coordinate equivalent). f = +79.380 mm.
 
 First element of G3, with aspheric rear surface S12, and the stabilizing element L3a of JP 2010-211102 A. That patent credits the asphere with limiting decentring coma and astigmatism during stabilization (¶0022) and prints fw/f3a = 0.23. Flare-cut plane S13 follows it.
 
@@ -160,9 +161,10 @@ Printed nd and νd are kept. The catalog names supply spectral curves and are eq
 | H-ZF52 (CDGM) | 1.8466 | 23.7848 | L2, L5, L7, L12, L15 | +6.0e-05 | -0.0003 |
 | TAC8 (HOYA) | 1.7292 | 54.6735 | L4 | -4.0e-05 | +0.00001 |
 | FCD1 (HOYA) | 1.4970 | 81.6084 | L9, L13 | -1.6e-07 | +0.0006 |
+| L-BAL35 (OHARA, S-BAL35 curve) | 1.5876 | 61.0842 | L6 | +1.5e-03 | +0.0508 |
 | H-QK3L (CDGM) | 1.4875 | 70.4412 | L16 | -1.0e-05 | -0.0007 |
 
-L9 and L13 are tagged as inferred low-dispersion glass from Sigma's SLD marks and their FCD1 coordinates; the patent states no dispersion class. L6 and both resin layers stay Unmatched. L6's 1.5876/61.08 appears in Examples 1, 5 and 6 and 1.5891/61.25 in Examples 2 to 4, and the lower index fits a moulded asphere, though the patent does not say so.
+L9 and L13 are tagged as inferred low-dispersion glass from Sigma's SLD marks and their FCD1 coordinates; the patent states no dispersion class. Both resin layers stay Unmatched. L6's 1.5876/61.08 appears in Examples 1, 5 and 6 and 1.5891/61.25 in Examples 2 to 4, and the lower index fits a moulded asphere, though the patent does not say so. L6 keeps its printed index and takes its dispersion from L-BAL35.
 
 The viewer's colour channels use the catalog indices, offset from the printed nd as listed. Rounded printed values cannot establish secondary spectrum, and no apochromatic correction is claimed.
 
@@ -180,7 +182,7 @@ The patent's equation is x = (h²/r)/[1 + {1 − (1 + k)(h/r)²}^½] + Ah⁴ + B
 | S12 | -1.1922000e+00 | -2.8679000e-06 | -2.0403000e-09 | 0.0000000e+00 | 0.0000000e+00 |
 | S30 | 0.0000000e+00 | -3.2971000e-05 | -4.1422000e-08 | -2.3153000e-10 | 3.6395000e-13 |
 
-Polynomial coefficients have units mm^(1−order). The patent leaves C and D blank at S12, as it does for that surface in all six examples, so those terms are unused and are zero here. Coefficients as large as those on S3 would add less than 5 µm of sag at the rim.
+Polynomial coefficients have units mm^(1−order). The patent leaves C and D blank at S12, as it does for that surface in all six examples, so those terms are unused and are zero here. Coefficients as large as those on S3 would add about 1 µm of sag at the rim.
 
 ## Model Scope and Limitations
 

@@ -54,7 +54,7 @@ INTEGRATION_PENDING. No repository write or publication. Whole-corpus validation
 
 ## Stage 2 construction checkpoint
 
-The final candidate retains every native source row/coefficient and all three station gaps. The first candidate's oversized estimated rims failed edge/slope/gap geometry. These failures were corrected by changing inferred radii only; the numerical prescription was never modified. Square rims were retained where practical, notably the hybrid body at 13.5 mm radius and the rear negative/positive pair at 8.4 mm. The resin's minimum thickness is positive. Default gapSagFrac 0.90 is sufficient; no override was used.
+The final candidate retains every native source row/coefficient and all three station gaps. The first candidate's oversized estimated rims failed edge/slope/gap geometry. These failures were corrected by changing inferred radii only; the numerical prescription was never modified. Square rims were retained where practical, notably the hybrid body at 13.5 mm radius and the rear negative/positive pair at 8.4 mm. The resin's minimum thickness is positive. Default gapSagFrac 0.90 is sufficient; no override was used. (Superseded 2026-11-01: rims and gapSagFrac follow the last section.)
 
 The standalone portable verifier passes 59 checks. Its asphere derivative/critical-point geometry sampling is complemented by the actual current-project validator and production shape diagnostics. All three stations pass validateLensData/buildLens, strict real LensDataInput TypeScript compilation, AST/literal value agreement and malformed-parser fixtures. Actual rendering reports zero hidden trim. Maximum computed air-gap intrusion is 0.889485; minimum sampled shared-band separation is 0.074086 mm.
 
@@ -119,4 +119,64 @@ Drawing comparison. As read from Tamron's SVG by the reviewer coordinating this 
 
 Fields changed in this pass: `source.example`; `source.errata` removed; `subtitle`; `catalog.specs`; element labels, roles and glass strings; `apd` and `apdNote` on three elements; `cemented` and doublet text (D1, H1, D3, D4 to C1–C4); `focus.description`; the BF gap label; spacing in six station labels; a new header comment. The analysis lost its opening block, stale iris radii and process text, and the S-LAH66 alias note was stale because TAF1 resolves directly. Prescription, rims and station values are unchanged. Glass resolved stays at 16 of 17, with the resin Unmatched.
 
-Open: the rims have not had a figure-land pass against Figure 1.
+Closed 2026-11-01: the rims had their figure-land pass against Figure 1; see the section below.
+
+## 2026-11-01 — Semi-diameter pass against the patent figure
+
+Source and scale. JP 2011-248219 A, page 11, Figure 1, wide state at infinity, read from the native 839 × 1206 px, 1-bit, 300 ppi raster. The sheet is tilted 0.14°, corrected from a line fit to the dash-dot axis. Eighteen vertex crossings against the prescription give 7.034 px/mm along the axis, rms 0.40 px, and predict the image plane 0.9 px from where it is drawn. Arc fits on the seven best-conditioned surfaces (S4, S8, S11, S13, S24, S26, S29) give 7.00–7.16 px/mm across the axis, mean 7.12, so the sheet is stretched about 1.2 % across the axis, and every rim below is divided by 7.12. Rim heights are line centres, the mean of both sides. One native pixel is 0.14 mm; a reading is good to about 0.1 mm.
+
+Second reading. Figures 2, 4 and 6 are the coma plots at 18.5, 71 and 291.2 mm. Their fans stop short of the full pupil, which gives the design's own limits as pupil fractions. Tracing the model at the fan ends gives the height on each surface there.
+
+| Surface | Before | Figure 1 | After | Evidence |
+| ------- | -----: | ---------: | -----: | -------- |
+| S1 | 27.5 | 26.16 | 26.2 | L1 flat rim |
+| S2 | 27.5 | 26.51 | 26.5 | L2 tip |
+| S3 | 27.5 | 26.51 | 26.5 | L2 tip; edge 0.83 mm, drawn 0.85 mm |
+| S8 | 13.5 | cap 9.9–10.1, land to 13.59 | 9.9, land to 13.5 | Cap end by sag and by height; lower fan ends at 18.5 mm sit at 9.95 and 9.83 mm here |
+| S9 | 9.7 | 10.81 | 10.8 | L5 flat rim |
+| S10 | 9.7 | cap 8.7–9.4, land to 10.81 | 9.7, land to 10.8 | Land drawn; cap retained, see below |
+| S11, S12 | 10 | 10.29 | 10.3 | L6 tip; step over L7 |
+| S13 | 9.2 | curve merges with S12 by 9.7, edge 10.01 | 9.6, land to 10.0 | Faces would meet at 9.7 mm |
+| S14 | 9.2 | 10.01 | 10 | L7 square rim |
+| S28 | 8.4 | 9.87 | 9.9 | L15 square rim |
+| S29 | 8.4 | cap 8.38, land to 9.87 | 8.4, land to 9.9 | Cap as stored; land drawn |
+| S30, S31 | 8.4 | 9.90 | 9.9 | L16 flat rim |
+
+Retained. S4 and S5 at 25.5 (figure 25.39), S6A and S7 at 13.5 (13.59), S16 and S17 at 10 (9.59), S18 and S19 at 10 (9.66), S20 and S21 at 9.8 (9.45), S22 at 9.8 (9.23), S23A, S24 and S25 at 9.5 (8.81), S26A and S27A at 10.5 (9.97). G3 and L14 run 3–8 % over the figure, inside the noise band, with their step order right, and moving them would repaint the group. L12/L13 is the nearest to the bar at 7.8 %. Setting G3 and L14 to the figure changes no corner value below; fields inside the corner were not compared. L1 and L2 sit under the bar at 4–5 %; they moved because L2's tip stands above L1 in the figure and stood level with it, and because 27.5 mm left L2 a 0.28 mm edge against the 0.85 mm drawn. The move also takes L1 and L2 toward the fan limit below.
+
+Lands. S8 sat on a 13.5 mm cap, which carried its rim back to z = 25.06 mm, around L5 and past L6's front vertex; the figure ends the cap at about z = 20.5 mm on a land square to the axis. `rimExtensionSd` keeps the cap at its figure end. A cut would have to clear the 10.87 mm beam on S8, which puts its land at about z = 21.4 mm, behind L5's 20.56 mm front rim, so no cut was used. S10's cap is unresolved between 8.7 and 9.4 mm because the curve leaves the land at a shallow angle, and the lower fan ends read 9.40 and 9.39 mm there. Stored 9.7 mm is retained: its land sits 1.2 px from the drawn one, and 9.4 mm would take the 21.477 mm corner from 77.2 % to 74.0 %. The S12 and S13 curves meet at 9.7 mm and are under one pixel apart from about 8.7 mm, so the S13 cap end is not readable; 9.6 mm is the largest cap that the gap limit admits, with 0.016 mm of air at its edge.
+
+Gap limit. `checks.gapSagFrac` 0.98 is the smallest two-decimal value that admits the set: 0.97 refuses S8/S9 at 5.18 mm of the 5.305 mm gap, and S12/S13 needs 0.976. Neither pair crosses. The figure draws L5's front corner touching L4's land, and the model leaves 0.12 mm.
+
+Clearance. The largest heights over all 118 stations, against the final rims: S1 axial 22.40, chief 23.29; S2 22.15, 21.85; S3 22.13, 20.98; S8 6.38, 9.45; S9 6.80, 8.98; S10 7.10, 8.61; S11 7.32, 8.57; S12 7.56, 8.17; S13 7.54, 7.95; S14 7.81, 7.69; S28 7.37, 5.35; S29 7.07, 5.40; S30 7.10, 5.76; S31 7.10, 6.08 mm. There is no axial clip and no chief block at Y = 14.5 mm, the traced corner chief ray reaches the format at all 118 stations, and all 118 stations stay within 3 % of the stated f-number. No clip needed raising, so no rim rose for rays. The asphere rims did not move, so the departures in the analysis stand.
+
+| State (mm) | Corner field | Before | After | Engine half-field before | After |
+| ---------: | -----------: | -----: | ----: | -----------------------: | ----: |
+| 18.5 | 39.1° | 44.1 % | 48.3 % | 39.21° | 34.25° |
+| 21.477 | 34.5° | 70.5 % | 77.2 % | 37.20° | 34.59° |
+| 36.181 | 20.9° | 88.4 % | 91.2 % | 23.43° | 23.76° |
+| 71 | 11.0° | 94.8 % | 97.0 % | 17.04° | 16.95° |
+| 140.001 | 5.6° | 73.6 % | 70.9 % | 7.27° | 7.21° |
+| 291.2 | 2.7° | 61.0 % | 62.2 % | 4.21° | 4.21° |
+
+Corner values are the engine's full-pupil curve, wide open at infinity. Five states gain because the G2 and G4 rims rose to the figure. The 140 mm state nets −2.7 points: L1 and L2 cost it 5.0, and 27.5 mm on S1, S2 and S3 would give 75.9 %. The f-numbers and stop radii are unchanged.
+
+Engine half-field. This is the paraxial chief-ray estimate, which the engine never raises above its paraxial value. It falls by up to 5.03° across the eight stations from 18.5 to 22.9 mm, where S8 now limits it. The estimate puts the chief ray at 12.1 mm on S8 at 39.7°, where the real chief ray crosses at 9.45 mm, inside the 9.9 mm cap, so the traced field does not shrink. It drops below the corner field only from 18.5 to about 22 mm, and it sets the display field for off-axis rays and the aberration tabs there. No rim inside the figure restores it: 39.2° needs S8 at 11.9 mm, and that face would then cross L5's 10.8 mm rim. A `maxTraceFieldDeg` is one number for the whole zoom, so it does not fit either. The lower S1 also takes up to 0.64° off the 55 stations from 71 to 205 mm, where the estimate stays above the corner field. Thirty-three stations gain, by up to 0.46°.
+
+Fan limits left in this log. The figure does not back these, or the model cannot carry them. Patent ends are read against each plot's full span, to about 0.01; model ends are stop heights over the stop radius, traced to the final rims.
+
+| State (mm) | Side | Patent fan ends, Y = 14.5 / 13.05 / 10.15 / 7.25 | Model ends |
+| ---------: | ---- | ------------------------------------------------ | ---------- |
+| 18.5 | + | 0.62 / 0.69 / 0.83 / 0.93 | 0.565 / 0.650 / 0.825 / 1.00 |
+| 18.5 | − | 0.29 / 0.55 / 1.00 / 1.00 | 0.260 / 0.585 / 1.00 / 1.00 |
+| 71 | + | 0.85 / 0.88 / 0.91 / 0.96 | 0.895 / 0.925 / 0.990 / 1.00 |
+| 291.2 | + | 0.83 / 0.86 / 0.90 / 0.93 | 0.915 / 0.940 / 0.995 / 1.00 |
+| 291.2 | − | 0.29 / 0.37 / 0.51 / 0.66 | 0.370 / 0.445 / 0.600 / 0.760 |
+
+- The lower rays at 291.2 mm end at 23.84 / 23.97 / 23.74 / 23.57 mm on S2. Figure 1 ends the cemented zone at 23.6 mm, where L1's flat rear land meets S2, on both sides. The fans alone do not separate S2 from S4 or S5, which spread as little, but the figure draws a land only at S2. S2 at 23.7 mm would give corners of 86.3 % at 36.181 mm, 59.4 % at 140 mm and 55.0 % at 291.2 mm. It is not applied: a cemented junction takes neither a cut nor an extension, and the app draws a straight edge between rim points, so it would turn L1's square rim into a long chamfer. The drawn land stays unmodeled and the lower tele fan stays about 0.09 wider than the patent's.
+- The upper rays at 71 and 291.2 mm, and at Y = 7.25 mm at 18.5 mm, end at 7.90–8.02 mm on S25. The figure cannot show a land there, since S25's sag changes 0.11 mm between 7.95 and 8.8 mm, under one pixel, and it draws L12/L13 to 8.81 mm.
+- The upper rays at 18.5 mm end at 9.12 / 9.13 / 9.13 mm on S26A. The figure runs S26A to the 9.97 mm edge with no land.
+
+Maker drawing. Tamron's construction drawing, viewed locally, shows the same 16 elements in the same order, with LD on L2 and L9, AD on L3, the hybrid on L4 and molded aspheres on L12 and L14. It agrees with Figure 1 on every land above: L1's rear step, L4's rear land with L5 seated on it, L5's square rim, L6's tip with L7 against it, and L15's rear land. It draws L14, L15 and L16 level and G3 lower, as Figure 1 does. Two differences: it chamfers L7's rear corners, and it draws L13 about 8 % lower than L12, where Figure 1 gives them one flat rim. The patent figure governs, and no rim was set from the drawing.
+
+Limitations. L14 stands 0.6 mm above L15 and L16, against 0.1 mm in the figure, a result of keeping it inside the noise band. Focus is infinity only, so `focus=1` draws the same section. Figure 1 is the wide state; the other five printed states were checked against the rendered section only.

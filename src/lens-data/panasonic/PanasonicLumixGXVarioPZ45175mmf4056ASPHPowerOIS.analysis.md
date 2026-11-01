@@ -20,7 +20,7 @@ The patent prints spacings at three zoom positions, and the model's 201 zoom sta
 
 ### Model assumptions
 
-- All semi-diameters and iris radii are inferred. The printed f-number sets the entrance pupil; the stop diameter is not printed.
+- All semi-diameters and iris radii are inferred. Rims are estimated from Figure 1, which is compressed 3.2 % in height, and checked by real-ray trace. The printed f-number sets the entrance pupil; the stop diameter is not printed.
 - Between the printed positions, G2, G5 and the back focus change linearly with the zoom control, and G4 is placed to hold paraxial focus. G4 then reverses once, near 100 mm, with d19 peaking at 6.39 mm against the printed 6.23 mm at 87.71 mm. The printed spacings require that one reversal, and the patent describes a path convex toward the image (¶0028). G2 moves steadily imageward and G5 steadily objectward, as the patent states.
 - Close focus, decentering, O.I.S. stroke and performance at the marketed 0.9 m are not modeled.
 
@@ -82,7 +82,7 @@ Image-side half of that doublet. Panasonic's diagram marks this position as ED, 
 
 ### L10 — Biconvex Positive
 
-nd = 1.58250, νd = 59.4. Glass: Unmatched (printed nd/νd; no catalog row at these coordinates). f = +18.916 mm (thick lens in air).
+nd = 1.58250, νd = 59.4. Glass: L-BAL42 (OHARA moulding glass, coordinate equivalent). f = +18.916 mm (thick lens in air).
 
 Object-side half of the rear G3 doublet, with an aspherical front surface (S17). The printed index sits 0.0006 below the nd 1.58313, νd 59.4 class (L-BAL42, M-BACD12), a gap of the size molded glass can show. That reading is an inference; the patent does not say how the surface is made.
 
@@ -112,7 +112,7 @@ The whole of G6, a fixed positive meniscus convex toward the image and the last 
 
 ## Glass Identification and Selection
 
-The printed nd and νd are used unchanged for all 14 elements. The patent names no glass; the catalog names below are coordinate equivalents that supply dispersion curves, not identified suppliers or melts. L10 has no catalog row and uses its printed nd and νd. L3 and L9 hold the maker's two ED positions and match FCD1 (PgF 0.5389, ΔPgF +0.0323 on the engine's normal line); their anomalous dispersion is inferred, because the patent does not describe the glass that way. No apochromatic correction is claimed.
+The printed nd and νd are used unchanged for all 14 elements. The patent names no glass; the catalog names below are coordinate equivalents that supply dispersion curves, not identified suppliers or melts. L10 prints 0.0006 below the L-BAL42 index, which suits a moulded asphere; it keeps the printed nd and takes its dispersion from that row. L3 and L9 hold the maker's two ED positions and match FCD1 (PgF 0.5389, ΔPgF +0.0323 on the engine's normal line); their anomalous dispersion is inferred, because the patent does not describe the glass that way. No apochromatic correction is claimed.
 
 | Element | nd | νd | Catalog equivalent | Δnd | Δνd |
 |---|---:|---:|---|---:|---:|
@@ -125,6 +125,7 @@ The printed nd and νd are used unchanged for all 14 elements. The patent names 
 | L7 | 1.80755 | 40.9 | D-ZLaF81-25 (CDGM) | +2.005223e-05 | +0.07333964 |
 | L8 | 1.90366 | 31.3 | TAFD25 (Hoya) | -2.049854e-06 | +0.01501334 |
 | L9 | 1.497 | 81.6 | FCD1 (Hoya) | -1.619089e-07 | +0.008950038 |
+| L10 | 1.5825 | 59.4 | L-BAL42 (Ohara) | +6.2569e-04 | -0.01430648 |
 | L11 | 1.7552 | 27.5 | S-TIH4 (Ohara) | -1.246386e-06 | +0.01208867 |
 | L12 | 1.72916 | 54.7 | TAC8 (Hoya) | +6.041778e-08 | -0.02648744 |
 | L13 | 1.72916 | 54.7 | TAC8 (Hoya) | +6.041778e-08 | -0.02648744 |
@@ -166,7 +167,7 @@ First-order values do not depend on the aspheric terms. Computed values differ f
 
 Half-field at the printed 10.815 mm image height is 13.54°, 6.90° and 3.63°, matching the printed 13.5369°, 6.8993° and 3.6302°. Longitudinal spherical aberration stays within about 0.10 mm at every zoom station, the scale of the patent's Figure 2.
 
-Semi-diameters are inferred, so vignetting, including the cut on corner bundles at the long end, reflects the model's rims and not measured data. Polychromatic MTF and chromatic results depend on the catalog equivalents, with L10 on its printed values, and are not predictions of the production lens. MTF is available at infinity focus only. The patent's aberration plots have not been digitized for comparison, and no comparison with measured MTF has been made.
+Semi-diameters are inferred, so vignetting reflects the model's rims and not measured data. Wide open, the corner keeps 66.5 %, 94.8 % and 71.3 % of its beam at the three printed positions, with the cut at the long end coming from G1 and the cut at the short end mainly from L12, L6 and L4. Polychromatic MTF and chromatic results depend on the catalog equivalents, with L10 on its printed values, and are not predictions of the production lens. MTF is available at infinity focus only. The patent's aberration plots have not been digitized for comparison, and no comparison with measured MTF has been made.
 
 ## Sources
 

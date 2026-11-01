@@ -76,6 +76,55 @@ Fields changed: `subtitle`, new `catalog.specs`, `focus.description`, zoom label
 
 Before and after: `built.mjs` and `probe.mjs` output is byte-identical to the baseline, `zoomiris.mjs` differs only in the two zoom labels, `protcmp.mjs` reports no protected field changed, and the surface audit prints OK. Glass resolves 13 of 14 before and after, to the same rows; L10 stays Unmatched.
 
-Open: rims for the figure pass. Scaled from Figure 1 panel (c), the file has S1-2 at 18.67 mm against about 15.6 mm, S3-5 at 16.51 mm against about 14.3 mm, and L12 (S20-21) at 7.225 mm against about 5.7 mm; the others are within about 12 %. No rim was changed in this pass. Clearance shows no axial clip or blocked chief ray; `clearap.mjs` reports `LOWER no-ray-found` for the corner bundle at stations 196-200.
+Closed 2026-11-01: rims for the figure pass. Scaled from Figure 1 panel (c) at the axial scale, this pass had S1-2 at 18.67 mm against about 15.6 mm, S3-5 at 16.51 mm against about 14.3 mm, and L12 (S20-21) at 7.225 mm against about 5.7 mm, and called the others within about 12 %. The figure pass below re-measured all three panels at the figure's own height scale: S1-2 15.8 mm, S3 14.65 mm, S4-5 13.75 mm and L12 5.74 mm, with L6 at 6.54 mm against 9.12 mm stored. No rim was changed in this pass. Clearance showed no axial clip or blocked chief ray; `clearap.mjs` reported `LOWER no-ray-found` for the corner bundle at stations 196-200. That is the bundle's lower rim ray, not its chief ray: `audit:field-coverage` reaches the corner at all 201 stations.
 
 Open: L7 keeps D-ZLaF81-25 at Δνd +0.073, just over the 0.06 residual flag. It was left because the resolved set had to stay unchanged in this pass.
+
+## 2026-11-01 — Semi-diameter pass against the patent figure
+
+Source: `patents/JP5649252B2.pdf`, PDF page 21, Figure 1, the native 1212 × 1202 px, 400 ppi bitmap. Panels (a), (b) and (c) are the printed 45.17, 87.71 and 167.24 mm states of Example 1. Panel (a) carries leader lines on its upper side and aspheric markers below, so its rims count only where the ink is clean; (b) and (c) are clean on both sides. The bitmap is skewed by about 0.5° (axis slope −0.0081 to −0.0095), so heights are taken from each panel's fitted axis and averaged over the upper and lower sides. The patent prints no effective diameters. Figures 2, 4 and 6 show SA, AST and DIS only, so there are no lateral fans to read end rays from.
+
+Scale: the figure is anamorphic, 3.2 % compressed in height. Along the axis, vertex crossings of 17 to 23 surfaces per panel against the printed spacings fit 6.601, 6.613 and 6.620 px/mm with rms 0.34, 0.55 and 0.54 px, about 0.08 mm at worst. Across the axis, arc fits of S1, S4, S7, S11A, S15, S17A, S18, S21, S22 and S25 (2616 line-centre samples, each surface with its own offset and tilt) give 6.40 px/mm in every panel, rms 0.30 px, with the rms within 2 % of its minimum over 6.36 to 6.42. The stop ticks are a third check that needs no arc: their inner ends sit 51, 38.75 and 33.75 px from the axis, which at 6.40 px/mm is 7.97, 6.05 and 5.27 mm, against 8.00, 6.10 and 5.40 mm for the exact axial ray at the printed f-numbers. Rims below use 6.40 px/mm and line centres. One native pixel is 0.156 mm of height, and repeat readings across panels agree within about 0.1 mm. The model outline laid over all three panels at these scales follows the drawn arcs within a line width.
+
+| Surfaces | Element | Before mm | Figure mm | After mm | Axial floor mm | Basis |
+|---|---|---:|---:|---:|---:|---|
+| S1, S2 | L1 | 18.67 | 15.82 | 15.9 | 14.33, 14.13 | Square rim; edge now 1.25 mm as drawn, 0.07 mm before |
+| S3 | L2 front | 16.51 | 14.65 | 14.7 | 13.68 | Curve end at the flat top of L2 |
+| S4 | L2/L3 junction | 16.51 | 13.75 | 13.8 | 12.98 | Junction curve ends at the height of L3's top |
+| S5 | L3 rear | 16.51 | 13.75 | 13.8 | 12.51 | Flat top of L3 |
+| S6 | L4 front | 8.5 | 7.54 | 7.6 | 6.46 | Flat top of L4 |
+| S7, S8 | L4/L5 junction, L5 rear | 7.17 | 6.95 | 7.17 | 6.16, 6.00 | Retained, 3 % |
+| S9, S10 | L6 | 9.12 | 6.54 | 6.6 | 5.94, 5.96 | Square rim, the largest departure at 39 % over |
+| S11A, S12A | L7 | 9.49 | 9.30 | 9.49 | 8.84, 8.58 | Retained, 2 % |
+| S14 | L8 front | 7.678 | 7.87 | 7.9 | 7.42 | Step order |
+| S15 | L8/L9 junction | 7.678 | 7.40 | 7.4 | 6.94 | Step order; junction curve ends at L9's top |
+| S16 | L9 rear | 7.678 | 7.40 | 7.4 | 6.85 | Step order |
+| S17A, S18 | L10 | 7.801 | 7.27 | 7.3 | 6.81, 6.62 | Step order |
+| S19 | L11 rear | 7.801 | 7.09 | 7.1 | 6.54 | Step order |
+| S20, S21 | L12 | 7.225 | 5.74 | 5.8 | 5.31, 5.07 | Square rim, 26 % over |
+| S22, S23 | L13 | 8.959 | 8.42 | 8.959 | 1.99, 1.97 | Retained, 6 % |
+| S24, S25 | L14 | 10.518 | 10.14 | 10.518 | 1.86, 1.77 | Retained, 4 % |
+
+Figure readings are means over the clean panels. Each new value is the reading rounded up to 0.1 mm, the least cut the reading allows. S14 to S19 moved inside the noise band because the order was wrong: the file had L10 and L11 standing 0.12 mm proud of L8 and L9, where the figure steps down L8, L9, L10, L11 by readings good to 0.1 mm. S17A at 7.3 mm is clear of any turnover: its `--scan` shows none inside 9 mm. Retained values sit at or under the 5 to 8 % noise band. L13 is the closest call: its S22 corner stays visibly proud of the figure, and 8.5 mm would cost nothing at the image corner in this rim set, but 6 % is under the bar for a change.
+
+Rim shape: L2, L4 and L8 are each drawn with a flat top and a short step down to the cemented partner, and each junction curve ends at the partner's height. S4, S7 and S15 are set to that curve end. The renderer joins two rims with one straight edge and a cemented junction cannot carry a land, so L2's edge falls 0.9 mm across its 2.9 mm rim where the figure has flat then step. L4 and L8 fall 0.4 and 0.5 mm. The alternative, S4 at the height of S3, overshoots the drawn corner with a pointed wedge. No free face is drawn with a land, so no `rimCutDepthMm` or `rimExtensionSd` is used, and `checks.gapSagFrac` stays at its default.
+
+Clearance on the final rims: `clearap.mjs` at Y = 10.815 mm shows no `CLIPS-AXIAL` or `BLOCKS-CHIEF`. Every axial maximum across the 201 stations clears its rim; the tightest margins are 0.46 mm at S15, 0.48 mm at S14 and 0.49 mm at S17A and S20, and S1 keeps 1.57 mm. The aperture audit has 201 of 201 stations within 3 % of the printed f-number, with no rim limiting. The image-circle check reports 0 undersized, field coverage is at least 99 % at all 201 stations, and the surface validator prints OK. Engine half-field is 17.04, 8.64 and 4.30° and f-number 4.157, 5.447 and 5.836 at the three printed stations, unchanged. `clearap.mjs` flags `LOWER no-ray-found` at stations 194-200 on its default search, 196-200 as before when the launch search is widened with `--scan 140`, so the two extra stations come from the smaller S1 shortening that search.
+
+Corner vignetting, from the engine's full-pupil lattice wide open at infinity, geometric transmission at the last sampled field:
+
+| Station | Field | Before | After | Change |
+|---|---:|---:|---:|---:|
+| 45.17 mm | 13.5° | 80.6 % | 66.5 % | −14.1 |
+| 87.71 mm | 6.9° | 99.2 % | 94.8 % | −4.4 |
+| 167.24 mm | 3.6° | 82.3 % | 71.3 % | −11.0 |
+
+The losses at 45.17 and 167.24 mm exceed 5 points and stay, because the figure reading behind them is solid: every rim agrees across panels within about 0.1 mm, at a height scale proved three ways. The cut at 45.17 mm comes from L12, L6 and L4; putting back S6 at 8.5, S9-10 at 9.12 and S20-21 at 7.225 mm returns 80.0 %, and S20-21 alone returns 74.8 %. The cut at 167.24 mm comes from G1; putting back S1-2 at 18.67 and S3-5 at 16.51 mm returns 82.3 %, and S1-2 at 17.3, S3 at 15.6 and S4-5 at 15.3 mm return 76.9 %. Neither set is what the figure draws, and at 18.67 mm L1 has a 0.07 mm edge.
+
+Maker drawing, read from the supplied local image: 14 elements in 10 groups with the same cemented pairs, blue ED on L3 and L9, pink ASPH on L7 and L10, so count, grouping and special-glass positions agree with the file. It is drawn at the wide state at about 3.42 px/mm. Its half-heights are L1 17.1, L2 15.4, L3 14.0, L4 9.4, L5 and L6 7.5, L7 10.5, L8 9.1, L9 7.5, L10 8.0, L11 8.5, L12 6.2, L13 9.1 and L14 10.7 mm, median 8 % above the figure, and it shows the same L2-over-L3 and L8-over-L9 steps. L1/L14 is 1.60 there, 1.56 in the figure and was 1.78 in the file. The two disagree on L4, 25 % over the figure against a typical 8 %, and on the rear of G3, where the maker draws L9 smaller than L10 and L11 and the figure draws L9 the larger. No rim follows the maker's drawing; the patent figure of the modeled example governs.
+
+Open limitations: infinity focus only, as the patent prints no close-focus spacings. The live page was checked at 45.17, 87.71 and 167.24 mm, at both ends of the focus control, which changes nothing here.
+
+## 2026-11-01 — Glass labels and brackets
+
+L10 (1.58250/59.4) now carries L-BAL42, following the Panasonic G 14mm f/2.5 II precedent for the same coordinates. The trace anchors the d line on the printed index and uses the catalog row for dispersion, so a moulded index drop does not move the reference ray. Glass resolves 14 of 14. `cemented` tags and `doublets` C1–C4 were added for the four printed junctions (S3–5, S6–8, S14–16, S17A–19), which the file carried only as contiguous surfaces.

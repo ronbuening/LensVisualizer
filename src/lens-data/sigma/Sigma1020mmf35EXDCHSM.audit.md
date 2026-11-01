@@ -42,7 +42,7 @@ Focus is NO_INTERNAL_RECONSTRUCTION. Maker 0.24 m is inactive metadata; all focu
 
 Actual strict TypeScript check passes. Real build/trace/render interfaces are used; zero hidden render trims occur. Independent adaptive floating interval envelope checks cover 122 radial bands, 548 interval cells and all 129 nodes plus affine interpolation, with no overlap/unresolved certificate. This is outward-guarded numerical enclosure, not arbitrary-precision formal proof. Ordinary cemented contact and taper closure are allowed. No gap-sag override is used; maximum shared-band fraction 0.893535713 is below 0.9.
 
-H1 minimum thickness is 0.0687278662 mm at its 12.8 mm rim. H2's interior minimum is 0.0892171289563 mm at height 7.6033990916 mm, refining the author's explicitly approximate dense-grid value. The actual first-element rim-join angle 64.2092282° is distinct from the maximum surface edge angle 59.673628° and first-asphere edge slope 49.1525873°. The surface-slope policy is not an invented sidewall-taper rule. All four asphere departures and derivatives are checked at actual stored apertures, with positive conic radicands.
+H1 minimum thickness is 0.0687278662 mm at its 12.8 mm rim. H2's interior minimum is 0.0892171289563 mm at height 7.6033990916 mm, refining the author's explicitly approximate dense-grid value. The actual first-element rim-join angle 64.2092282° is distinct from the maximum surface edge angle 59.673628° and first-asphere edge slope 49.1525873°. The surface-slope policy is not an invented sidewall-taper rule. All four asphere departures and derivatives are checked at actual stored apertures, with positive conic radicands. (Superseded 2026-11-01: rims were reset from Figure 22, so H1 is 0.118 mm at a 12.3 mm rim, the first element has a square rim and land, and the first-asphere edge slope is 40.9°; see the last section. The ray counts in this section describe the earlier rims.)
 
 Independent actual-viewer grid: 99,648 rays, 98,041 survivors and 1,607 ordinary clips (288 iris, 1,319 second surface). Zero raw native failures, noBracket, TIR, wrong-material or unexplained paths. All 2,647,107 surviving launch/glass/air/image intervals are checked against all 15 complete solids. No native-failed prefixes exist in this grid; clipped tails are not called transmitted paths. Fifteen polynomial/physical-branch self-tests pass. An initial audit-only repeated-root self-test failure stopped before tracing; its script/log and corrective endpoint normalization are preserved. No model/runtime change occurred. Finite-grid root isolation does not prove continuum pupil acceptance.
 
@@ -98,4 +98,66 @@ Fields changed in this pass: header comment, `subtitle`, `catalog.specs`, `focus
 
 Open: Bf still misses by −0.011/−0.017/−0.024 mm, beyond the printed precision, and the image plane sits that far behind paraxial focus. Catalog values for the four uncorrected glasses (TAF3, E-FD15, TAFD25, E-FD5, matched on printed νd) close f within 0.001 mm and Bf within 0.0003 mm, but that is not source evidence.
 Closed: the granted JP 5395495 B2 was read at ¶0044. It prints the same three-decimal indices for Numerical Example 4, so it gives no `family-publication` evidence for those four glasses.
-Open: rims for the figure pass. The printed wide chief ray clears surface 2 at 96% of its 17 mm radius, and `clearap` at Y = 14.2 mm finds no lower-rim ray at 53 stations near the wide end.
+Closed: rims for the figure pass. Surface 2 stays at 17 mm: Figure 22 ends its curve at 16.8 mm, and the wide chief ray at Y = 14.2 mm crosses at 16.38 mm, 96%, so that clearance is real. The missing lower-rim ray is not a rim fault. At the wide corner the stop height reached by a ray turns over at −4.87 mm, short of the −5.23 mm stop edge, so no ray reaches it, and `clearap`'s Newton step also fails on steep hits on surface 2. The lower side of that bundle ends at surface 4 instead. See the last section.
+
+## 2026-11-01 — Semi-diameter pass against the patent figure
+
+Source: `patents/JP2010243737A.pdf`, PDF page 18, Figure 22, the wide state of Numerical Example 4, read from the native 933 × 567 px 1-bit raster. Second reading: lateral aberration Figures 26–28 on PDF pages 19–20. Check: Sigma's construction drawing, viewed for this pass.
+
+Scale. Along the axis, the first vertex at x = 16 and the image plane at x = 906 give 890 px over 134.257 mm, 6.629 px/mm, and the ink crossings at the axis land within 1 px of the wide prescription for every vertex that prints. Across the axis, a sag fit of the printed arcs gives 6.62 px/mm jointly, with 6.60 on surface 2, 6.62 on surfaces 4 and 1A and 6.66 on 3A; the stop ticks sit ±35 px from the axis, 5.29 mm against the engine's 5.227 mm. The figure is not anamorphic, within 0.2%. One pixel is 0.15 mm. The axis is at y = 188.5, from the symmetric L1 and image-plane extents. The figure also draws every rim square, so heights come from the flat top and bottom strokes, averaged where both print.
+
+| Surface | Before | After | Figure reading | Basis |
+| --- | --- | --- | --- | --- |
+| 1A | 28 | 26.4 | 26.36 | Top stroke; square with the rear land |
+| 2 | 17 | 17, land to 26.4 | Curve end 16.8, edge 26.36 | `sd` kept, 1.2% and it sets the wide half-field; land added |
+| 3A | 18 | 17.3 | 17.30 | Top stroke; square with the rear land |
+| 4 | 18 | 14.2, land to 17.3 | Curve end 14.05–14.2, edge 17.30 | Stroke at x = 130 equals sag(14.2); the Figure 26 lower fan end gives 14.2 too |
+| 5A, 6 | 12.8 | 12.3 | 12.31 | Top stroke |
+| 7 | 12.8 | 10.7, land to 12.3 | Curve end 10.6–10.7, edge 12.31 | Stroke at x = 213 equals sag(10.7); the Figure 26 fan needs 10.66 |
+| 8, 9 | 12.5 | 11.6 | 11.56 | Square |
+| 11, 12, 13 | 9.7 | 8.4 | 8.38 | Square |
+| 14, 15 | 10.5 | 8.8 | 8.84 | Square |
+| 16, 17, 18 | 9.8 | 7.9 | 7.93 | Square |
+| 19, 20 | 13 | 11.3 | 11.25 | Square |
+| 21, 22, 23 | 12.8 | 11.9 | 11.86 | Square |
+| 24A, 25, 26 | 13.5 | 12.5 | 12.46 | Square |
+
+Why the values inside the usual noise band moved. Reading noise here is about 1%, not 5–8%, and the stored set had the steps wrong: L10 sat above C3 where the figure has it below. L1, L2 and L3 needed a measured edge height for their lands, and a square rim takes one height on both faces. With the model outline over the figure at this set, every arc and rim sits within 1–2 px. The one visible offset is the L1 land, 2.2 px behind the drawn stroke because surface 2 stays at 17 mm. Moving it to 16.8 mm would close that and drop the engine's wide half-field from 46.83° to 46.49°.
+
+Not modeled: L11's rear in the figure stops at 10.6 mm with a short land to its 11.86 mm edge, while L12's front runs on to 11.86 mm. Surface 22 is cemented, so it cannot carry a land, and it stays at 11.9 mm with its partners.
+
+Fan ends. The plots stop short of the full pupil, with 99 px equal to one entrance-pupil radius at each station. Tracing those end rays through the prescription gives these limits at the 14.2 mm image height:
+
+| Field | Wide lower / upper (px) | Middle lower / upper (px) | Tele lower / upper (px) |
+| --- | --- | --- | --- |
+| 100% | −129.5 / +211.5 | −204.5 / +81.5 | −162.5 / +47.5 |
+| 90% | −282.5 / +205.5 | −186.5 / +84.5 | −152.5 / +53.5 |
+| 70% | −228.5 / +169.5 | −156.5 / +89.5 | −134.5 / +61.5 |
+| 50% | −166.5 / +142.5 | −130.5 / +90.5 | −119.5 / +69.5 |
+| 30% | −124.5 / +113.5 | −111.5 / +94.5 | −108.5 / +78.5 |
+
+The lower ends match the stop at every field and zoom, except wide 90% and 100%, where the rays reach 14.25 and 14.22 mm on surface 4. That agrees with the figure on the same surface, so surface 4 took 14.2 mm. The upper ends at middle and tele all reach r18 at 6.98–7.09 mm, the height of the tele axial marginal ray, 7.06 mm. Wide 90% and 100% reach about 10.3 mm on r20–r22. The figure draws those rims at 7.93 and 11.25–11.86 mm and is read to 0.15 mm, so these two limits stay here in the log and not in the file. They look like a plotting aperture rather than the glass edge, and the model's upper fans are the wider for it.
+
+Clearance at the final set. The axial marginal ray has its smallest margin at surface 13, tele: 0.75 mm at the printed f/3.597 and 0.54 mm at f/3.5. In an exact trace at Y = 14.2 mm across the zoom range, the chief ray's smallest margins are 0.62 mm at surface 2 and 0.63 mm at surface 4, both wide, then 1.84 mm at surface 7, 1.86 mm at 3A and 2.38 mm at 1A. `clearap` shows no `CLIPS-AXIAL` or `BLOCKS-CHIEF`, with its usual caveat at the wide end: its Newton step fails on steep hits on surface 2, so its field search stops near 49° on the wide stations whatever the rims, and it was run with its launch plane held at the earlier 1A rim. The chief margins above come from a separate tracer that converges there. The repo validator passes with `gapSagFrac` untouched, the image-circle floor is clean, 129 of 129 stations are at 100% corner coverage, and all 129 stay within 3% of the stated f-number with no rim limit. No asphere reaches a turnover: 1A's edge slope is 40.9° at 26.4 mm. H1 is 0.118 mm at its rim, and H2's minimum stays 0.089 mm at 7.6 mm.
+
+Engine before and after: stop radii 5.227/6.004/6.824 mm, f-numbers 3.611/3.631/3.597 and half-field at wide and middle, 46.83/48.81°, are unchanged. The tele half-field falls from 47.03° to 44.83°. That figure is the engine's paraxial display estimate, set by the rim of surface 26; the tele corner is at 36.09° and stays clear.
+
+Corner illumination, engine geometric transmission wide open at infinity, at the printed stations:
+
+| Station | Corner field | Before | After | Change |
+| --- | --- | --- | --- | --- |
+| Wide | 54.9° | 78.4% | 61.8% | −16.6 |
+| Middle | 43.5° | 97.3% | 78.4% | −18.9 |
+| Tele | 36.0° | 88.7% | 68.3% | −20.4 |
+
+All three exceed the 5-point line, and the cuts stay because the figure reading is solid: isotropic scale, most arcs fitting to about 0.4 px rms, rims on clean strokes, and fans that end tighter still. Taken one at a time against the earlier rims, wide/middle/tele: G3 costs 7.2/18.9/20.4 points, L10 8.3/7.0/0, surface 4 8.0/0/0, C3 4.1/2.4/0 and L13 2.4/0.6/0. To bring all three stations within 5 points would take surface 4 at 15.0 mm, G3 at 9.4 mm and L10 at 12.3 mm, giving 74.3/94.2/84.9%. None of those fits the figure.
+
+Live check: the local page was viewed at wide, middle, tele and focus = 1, which is the same optics. L1 and L2 show their flanges, and the order of rim heights front to rear matches Figure 22 at each station.
+
+Maker drawing: 13 elements in 10 groups, as modeled. Colours, front to rear: pink aspherical on elements 1, 2, 3 and 13, blue SLD on 7, green ELD on 10 and 12. It draws the flanges on L1 and L2, as Figure 22 does. Scaled to L1, its rims run 1–7% above the model, with L13 at 8% and L3 at 13%, and the order of rim heights matches the model element for element. It is a drawing of the product, not of Example 4, so nothing was fitted to it.
+
+Open: the fan limits above, 7.05 mm at r18 and about 10.3 mm at r20–r22, against the figure's larger rims. Resolving them would need the patent's own aperture data, which it does not print.
+
+## 2026-11-01 — Glass labels and brackets
+
+L1 and L2 moved off `Unmatched`. L2 (1.769/49.428) is within 2e-5 in index and 0.14 in Abbe number of MC-TAF101-100. L1 (1.691/53.052) has no coordinate match; L-LAL13 is a proxy at +0.0025 and +0.13, chosen as a moulding glass of that class, and the label says so. The trace anchors the d line on the printed index, so these rows supply dispersion only. Glass resolves 13 of 15; the two thin layers stay `Unmatched`. `groups` G1–G4 and `doublets` H1, C1–C3, H2 were added: the file had `cemented` tags but drew no brackets, and the group-movement analysis was falling back to contiguous runs.

@@ -33,13 +33,13 @@ Sigma's 13 elements are named L1–L13, and the diagram uses the same numbering.
 
 ### L1 — Aspheric Negative Meniscus
 
-nd = 1.691, νd = 53.052. Glass: unmatched, no catalog glass assigned. Isolated f = −29.11 mm.
+nd = 1.691, νd = 53.052. Glass: L-LAL13 (OHARA moulding glass) as a dispersion proxy; no catalog glass has these coordinates. Isolated f = −29.11 mm.
 
-The large negative front asphere establishes the retrofocus entrance, and the patent credits this surface with controlling distortion and coma. Its inferred front 28 mm and rear 17 mm clear radii form a straight rim join approximating the patent section, not published mechanical dimensions.
+The large negative front asphere establishes the retrofocus entrance, and the patent credits this surface with controlling distortion and coma. Its front face runs to a 26.4 mm rim and its rear curve ends at 17 mm, with a flat land from there to the rim, as Figure 22 draws it. These heights are read from the figure, not published mechanical dimensions.
 
 ### L2 — Aspheric Negative Meniscus
 
-nd = 1.769, νd = 49.428. Glass: unmatched, no catalog glass assigned. Isolated f = −89.70 mm.
+nd = 1.769, νd = 49.428. Glass: MC-TAF101-100 (HOYA moulding glass, coordinate equivalent). Isolated f = −89.70 mm.
 
 The second negative meniscus continues the negative lead. Its own aspheric polynomial runs through A12 and differs from the first surface's. The element is air-spaced.
 
@@ -47,7 +47,7 @@ The second negative meniscus continues the negative lead. Its own aspheric polyn
 
 nd = 1.5184 (printed 1.518), νd = 52.095. Glass: unmatched, taken as resin because the patent states no material. Isolated f = −931.35 mm.
 
-This 0.200 mm layer carries surface 5A and is bonded to L3 at r6. At the inferred 12.8 mm rim its thickness falls to 0.069 mm, a limit of the inferred clear aperture, not a patent tolerance.
+This 0.200 mm layer carries surface 5A and is bonded to L3 at r6. At the inferred 12.3 mm rim its thickness falls to 0.118 mm, a limit of the inferred clear aperture, not a patent tolerance.
 
 ### L3 — Negative Meniscus
 
@@ -123,7 +123,7 @@ The final positive meniscus completes G4. H2 and L13 are two optical media in on
 
 ## Glass Identification
 
-The patent names no glasses. Ten catalog equivalents, on eleven elements, are assigned from the printed coordinates: the Abbe numbers match HOYA data to about 0.01, except FCD10A at 90.19 against the printed 90.279. These labels give the chromatic trace catalog dispersion. They do not establish the supplier or the production melt. For TAF3, TAFD25, E-FD5 and E-FD15 the d-line trace keeps the printed three-decimal index while the color channels follow the catalog curves. L1 and L2 stay unmatched: L1's pair recurs in Examples 5 and 6, L2's is printed once, and neither is assigned a catalog glass. The patent prints no partial-dispersion data, so the SLD and ELD tags on L7, L10 and L12 rest on Sigma's drawing and on catalog values.
+The patent names no glasses. Twelve catalog labels, on thirteen elements, are assigned from the printed coordinates. On ten of them, on eleven elements, the Abbe numbers match HOYA data to about 0.01, except FCD10A at 90.19 against the printed 90.279. These labels give the chromatic trace catalog dispersion. They do not establish the supplier or the production melt. For TAF3, TAFD25, E-FD5 and E-FD15 the d-line trace keeps the printed three-decimal index while the color channels follow the catalog curves. L1 and L2 are aspherical and carry moulding-glass rows: MC-TAF101-100 sits on L2's printed index, and L-LAL13 stands in for L1 as a proxy, 0.0025 above its print with the Abbe number 0.13 higher. Both keep their printed indices. The patent prints no partial-dispersion data, so the SLD and ELD tags on L7, L10 and L12 rest on Sigma's drawing and on catalog values.
 
 ## Zoom, Aperture and Focus
 
@@ -133,7 +133,9 @@ G1 moves imageward from wide to middle and objectward from middle to long; G2–
 
 The stop is row 10, 1.400 mm before r11, and the patent prints no stop diameter. The iris is inferred from the printed f-numbers, 3.611/3.631/3.597, which agree with the patent's stated aim of about f/3.6 (paragraph 0018); the marketed f/3.5 is a rounded figure. The stop rule gives stop radii of 5.227/6.004/6.824 mm and entrance-pupil radii of 1.434/2.064/2.682 mm at the printed stations. The rule is paraxial, so with pupil aberration a real marginal ray at those radii gives a working f-number near 3.62/3.65/3.64, within 1.2% of the printed value. The axial beam clears every inferred rim, even at f/3.5.
 
-Clear apertures are inferred to fit the patent figure and are limited by the printed geometry. The first element's front and rear radii are 28 and 17 mm; every other lens uses one radius on both faces, including the thin layers. The first element's straight rim join makes 64.2° with the axis, distinct from its aspherical surface's 49.2° edge slope and the system's largest surface slope of 59.7°.
+Clear apertures are read from Figure 22, the wide state of this example, whose scale is the same along and across the axis; the patent prints none. L1, L2 and L3 are drawn with square rims at 26.4, 17.3 and 12.3 mm, but their rear curves stop short, at 17, 14.2 and 10.7 mm, and flat lands run from there to the rim. Light ends at the curve, not the rim. Every other lens uses one radius on both faces, including the thin layers. The largest surface slope in the system is 59.7°, at the edge of surface 2; the aspherical front surface reaches 40.9° at its rim.
+
+Rim vignetting is part of the design. Geometric corner transmission wide open is about 62/78/68% at the three printed stations. At the wide end surface 4 cuts the lower side of the corner bundle. Through the range the rim of G3 cuts the upper side, joined by L10's near the wide end. The meridional fans in Figures 26–28 end tighter than the drawn rims on that upper side, equivalent to a radius near 7.05 mm at r18 against the 7.9 mm drawn, so the plotted design is more vignetted than the model.
 
 Focus is not modeled. The patent prints infinity states only and does not say which group focuses, so the focus control leaves the optics unchanged. Sigma's 24 cm minimum focus distance is listed for reference, and no movement is invented from a single distance specification.
 
@@ -155,9 +157,9 @@ Back focus remains 0.011/0.017/0.024 mm short of the printed Bf at the three sta
 
 The patent prints no image height. Its half-fields of 54.919/43.521/36.084° reach 14.204/14.205/14.198 mm on the printed image planes, so they imply about 14.2 mm, just beyond the 14.175 mm APS-C corner the model uses. Distortion at those angles is −3.67/−0.23/+0.95%, and full-aperture spherical aberration is −0.099/−0.065/−0.019 mm; both agree with Figures 23–25.
 
-Chromatic curves estimate the dispersion of L1, L2 and the two thin layers from nd and νd, so secondary spectrum is approximate. Finite-distance MTF is unavailable because focusing is not modeled. Factory illumination and the complete patent aberration plots are not reproduced.
+Chromatic curves estimate the dispersion of the two thin layers from nd and νd, so secondary spectrum is approximate. Finite-distance MTF is unavailable because focusing is not modeled. Factory illumination and the complete patent aberration plots are not reproduced.
 
 ## Sources
 
-1. JP 2010-243737 A, 24 PDF pages including the English PAJ cover. Example 4 table, coefficients and conditions: PDF page 11 (printed page 10). Example 1 table: PDF page 9. Figures 22 and 23: PDF page 18 (printed page 17). Later Example 4 plots: PDF pages 19–20. d-line definition: paragraph 0037, PDF page 8. Asphere equation: PDF page 9.
+1. JP 2010-243737 A, 24 PDF pages including the English PAJ cover. Example 4 table, coefficients and conditions: PDF page 11 (printed page 10). Example 1 table: PDF page 9. Figures 22 and 23: PDF page 18 (printed page 17). Later Example 4 plots, including lateral aberration Figures 26–28: PDF pages 19–20. d-line definition: paragraph 0037, PDF page 8. Asphere equation: PDF page 9.
 2. Sigma's discontinued product page, https://www.sigma-global.com/en/lenses/10_20_35/, and its construction drawing, https://www.sigma-global.com/lenses/10_20_35_specification_01.jpg. Current product facts are not a dated launch specification.
