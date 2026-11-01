@@ -80,6 +80,7 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.011186203, -0.0246748575, 167.717958],
     nd: 1.583126,
     vd: 59.385694,
+    PgF: 0.5423,
     code6: "583594",
     source:
       "OHARA_260701.AGF, L-BAL42 row, formula 2; https://oharacorp.com/wp-content/uploads/catalogs/OHARA_260701_CATALOG.zip (accessed 2026-09-11).",
@@ -944,6 +945,7 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.0122052137, 0.0597775329, 214.869618],
     nd: 1.755199,
     vd: 27.51,
+    PgF: 0.6103,
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
   },
   {
@@ -1034,6 +1036,7 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.0106442437, 0.0456735302, 110.28141],
     nd: 1.834,
     vd: 37.16,
+    PgF: 0.5776,
     code6: "834372",
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
   },
@@ -1638,6 +1641,7 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00869507801, 0.0465611429, 137.953301],
     nd: 1.54072,
     vd: 47.227127,
+    PgF: 0.5651,
     code6: "541472",
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIL2 page.",
   },

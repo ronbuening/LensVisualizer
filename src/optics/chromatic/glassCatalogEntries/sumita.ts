@@ -199,6 +199,7 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [2.188968, -0.009646703, 0.00885039, 0.0001871679, -0.00001078591, 0.0000006156421],
     nd: 1.48749,
     vd: 70.4,
+    PgF: 0.529,
     code6: "487704",
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for FK5.",

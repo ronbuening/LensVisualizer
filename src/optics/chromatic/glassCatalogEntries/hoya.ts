@@ -55,6 +55,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [3.0736378, -0.015501284, 0.023627699, 0.00066300852, -2.8353438e-5, 2.2090799e-6],
     nd: 1.7725,
     vd: 49.63,
+    PgF: 0.5504,
     code6: "773496",
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, TAF1 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-10-15).",
@@ -216,6 +217,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [2.6475841, -0.012231817, 0.015713584, 0.00051271652, -0.0000403019, 0.0000027476766],
     nd: 1.640851,
     vd: 56.835319,
+    PgF: 0.5432,
     code6: "641568",
     source:
       "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for discontinued LACL1.",
@@ -228,6 +230,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [3.1743707, -0.014110466, 0.028862637, 0.00003355949, 0.000080422109, -0.0000028956744],
     nd: 1.8042,
     vd: 46.5,
+    PgF: 0.558,
     code6: "804465",
     source:
       "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for discontinued TAF3.",
@@ -585,6 +588,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [2.1085888, -0.0046553722, 0.006954748, 0.000032184141, 0.0000052670946, -0.00000027164844],
     nd: 1.4586,
     vd: 90.19,
+    PgF: 0.5351,
     code6: "459902",
     source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for FCD10A.",
   },
@@ -1498,6 +1502,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [2.8778537, -0.013832906, 0.020301185, 0.00027759871, 0.000005905983, 0.00000017747647],
     nd: 1.713,
     vd: 53.94,
+    PgF: 0.5442,
     code6: "713539",
     source: "Hoya Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published catalog row.",
   },
@@ -1738,6 +1743,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [2.5807045, -0.010957538, 0.01268943, 0.00066387812, -0.000064849664, 0.0000034787863],
     nd: 1.618,
     vd: 63.4,
+    PgF: 0.5401,
     code6: "618634",
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published recommended-glass formula-3 row.",
@@ -1758,6 +1764,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [3.2756799, -0.014485625, 0.030780102, 0.00078915515, -0.0000040810229, 0.0000022273965],
     nd: 1.83481,
     vd: 42.72,
+    PgF: 0.5647,
     code6: "835427",
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published recommended-glass formula-3 row.",
@@ -1853,6 +1860,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [2.4929249, -0.0089994312, 0.014629345, 0.00017721311, 0.0000076755876, -0.00000012358463],
     nd: 1.59181,
     vd: 58.308789,
+    PgF: 0.546,
     code6: "592583",
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete BACD13 formula-1 row.",
@@ -1914,6 +1922,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [3.4892744, -0.015818546, 0.042076777, 0.0024534904, -0.00015625006, 0.00002046371],
     nd: 1.90366,
     vd: 31.32,
+    PgF: 0.5959,
     code6: "904313",
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published TAFD25L formula-1 row.",

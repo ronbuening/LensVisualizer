@@ -430,6 +430,7 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.0102182926, 0.0421328894, 97.0733228],
     nd: 1.80757,
     vd: 40.97334,
+    PgF: 0.5698,
     code6: "808410",
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; D-ZLAF81-25 page.",
   },
