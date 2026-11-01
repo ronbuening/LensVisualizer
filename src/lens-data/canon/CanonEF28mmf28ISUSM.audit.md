@@ -61,3 +61,8 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            0 |                  0 |                  0.230000000 |           0.230000 | 193 / 154 / 113                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 40.175193% at zoom 0, focus 0.05, aberration control 0: Gaussian 2.751941102 m versus label 4.600000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-11-01 — Lands against corner light
+
+The S14 land stays and S14 stays at 6.41 mm. Opening it would pass 4.6 more points of light, but that radius is half the patent's
+printed effective diameter. The printed aperture sets the loss, and the land outside it adds none. The S3 and S7 lands cost nothing.

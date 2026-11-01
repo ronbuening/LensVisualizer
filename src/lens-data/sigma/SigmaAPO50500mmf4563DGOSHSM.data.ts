@@ -21,14 +21,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Iris size is derived from the printed design f-numbers (F/4.57, 5.73, 6.47); no stop diameter is published.
  * All clear radii are inferred: measured on Figure 8 (Example 2, wide end) at 0.2108 mm/px, the scale set by the
  * 39 vertex crossings and confirmed by the drawn stop and by the rim sags. Where the figure draws a flange outside
- * a concave face (S2, S6, S8, S11/S12, S22, S25, S27, S36, S37), sd is where the curve ends, not the flange. S22
- * and S27 sit on the real-ray axial floor at the design f-numbers; S34/S35 keep their earlier value.
+ * a concave face (S2, S6, S8, S11/S12, S22, S25, S27, S36, S37), sd starts where the curve ends, not the flange.
+ * S2, S6, S8, S11/S12, S25, S27 and S36 then rise past that point so the lands cost at most 3 points of light at
+ * any field and zoom node (2026-11-01, see audit). S22 sits on the real-ray axial floor at the design f-numbers;
+ * S34/S35 keep their earlier value.
  * apd "inferred" on E2, E3, E9 and E14 follows the four SLD positions Sigma's diagram marks; the patent names no
  * special glass. Glass names are qualified spectral proxies; production suppliers are unconfirmed.
  * Fresh2026-10-30 original PDF9 Example2 media, PDF7 d-line/Obj definitions and PDF13 Fig8 review:
- * all22 nd/vd pairs and compatible curves retained, no source C/F/g/theta. Ten cap-preserving extensions
- * make the independently drawn concave lands explicit (S2/6/8/11/12/22/25/27/36/37); no optical caps,
- * source R/d, stop, source/calculated zoom/focus states, controls or tolerances change.
+ * all22 nd/vd pairs and compatible curves retained, no source C/F/g/theta. Nine extensions
+ * make the independently drawn concave lands explicit (S2/6/8/12/22/25/27/36/37); source R/d, stop,
+ * source/calculated zoom/focus states, controls and tolerances are unchanged.
  */
 const LENS_DATA = {
   schema: 2,
@@ -357,7 +359,7 @@ const LENS_DATA = {
       label: "2",
       R: 119.2835,
       d: 1.4195,
-      sd: 40.6, rimExtensionSd: 43.5,
+      sd: 42, rimExtensionSd: 43.5,
     },
     {
       label: "3",
@@ -382,7 +384,7 @@ const LENS_DATA = {
     {
       label: "6",
       R: 429.3566,
-      sd: 36.8, rimExtensionSd: 41.2,
+      sd: 39.75, rimExtensionSd: 41.2,
     },
     {
       label: "7",
@@ -394,7 +396,7 @@ const LENS_DATA = {
     {
       label: "8",
       R: 49.3463,
-      sd: 22.2, rimExtensionSd: 26.2,
+      sd: 23.15, rimExtensionSd: 26.2,
     },
     {
       label: "9",
@@ -414,13 +416,13 @@ const LENS_DATA = {
       R: -125.4315,
       d: 1.5,
       medium: 6,
-      sd: 13.2, rimExtensionSd: 14.3,
+      sd: 14.3,
     },
     {
       label: "12",
       R: 96.4858,
       d: 3.2281,
-      sd: 12.1, rimExtensionSd: 14.3,
+      sd: 13.4, rimExtensionSd: 14.3,
     },
     {
       label: "13",
@@ -502,7 +504,7 @@ const LENS_DATA = {
       R: -81.9823,
       d: 3.9904,
       medium: 14,
-      sd: 11.9, rimExtensionSd: 13.2,
+      sd: 12, rimExtensionSd: 13.2,
     },
     {
       label: "26",
@@ -515,7 +517,7 @@ const LENS_DATA = {
       R: -264.6891,
       d: 3.9709,
       medium: 15,
-      sd: 12.2, rimExtensionSd: 13.3,
+      sd: 12.85, rimExtensionSd: 13.3,
     },
     {
       label: "28",
@@ -573,7 +575,7 @@ const LENS_DATA = {
       label: "36",
       R: 32.4946,
       d: 4.4207,
-      sd: 9.6, rimExtensionSd: 11.7841,
+      sd: 10.8, rimExtensionSd: 11.7841,
     },
     {
       label: "37",

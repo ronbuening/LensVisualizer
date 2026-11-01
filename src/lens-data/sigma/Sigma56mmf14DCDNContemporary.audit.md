@@ -122,3 +122,9 @@ Aberrations, model against the plots. Infinity, Figure 2: ΔS/ΔM at full field 
 Labels found correct. Element designations are the patent's L11–L35, and `name` equals `diagramLabel` on all ten. `type` agrees with the signs of R and with ¶0073–¶0075. `focalLengthMm` is present on all ten. The inspector shows Element 2 as APD (inferred) and ASPH ×2, Element 10 as doublet C3 and ASPH, Element 8 as triplet C2, and Element 5 as the focusing element. `A` suffixes sit on S3, S4 and S17 only, matching the printed asterisks. The stop sits between L14 and L21 at surface 8. Group brackets G1 S1–S7, G2 S9–S10 and G3 S11–S17 match the p. 16 group table. C1, C2 and C3 cover the three cemented components and do not collide with d8 or d10. No cement layer is tagged. ¶0052 treats anomalous dispersion only as an average over G1's positive elements, so no element earns `apd: "patent"`. Sigma's drawing has one blue SLD fill, on element 2, and two red aspherical outlines, on elements 2 and 10, which matches the single `"inferred"` tag on L12 and the specs line. Sigma's element and group counts match: 10 in 6.
 
 Open limitations: L31 repeats L13's step at cemented S12, a stroke about 0.9 mm tall where L32 runs on to its rim, and neither can be modelled. Figure 1 draws nothing at S1's and S11's fan radii, so the corner stays about 3 points brighter than those radii give, on the engine's lattice. The stop stays at 12.14 mm under the one-stop rule, so the fan comparison above is a statement about the patent's apertures, not the model's working f-number.
+
+## 2026-11-01 — Lands against corner light
+
+The S2 and S14 lands stay at 18.4 and 8.9 mm. Opening them would pass 12.6 more points at the corner, but the loss is the patent's
+own: the fan ends in Figures 4 and 5 trace back to 8.90 mm on S14, and the model's 38.8 % corner is already brighter than the 36.0 %
+the patent's three clear radii give.
