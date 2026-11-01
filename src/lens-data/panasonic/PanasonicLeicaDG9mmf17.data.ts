@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "panasonic-leica-dg-9f17",
   maker: "Panasonic",
   name: "PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH.",
-  subtitle: "US 2023/0367186 A1, Example 1 — Panasonic IP Management",
+  subtitle: "US 2023/0367186 A1, Example 1 — Panasonic Intellectual Property Management",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],

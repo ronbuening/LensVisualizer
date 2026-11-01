@@ -86,6 +86,8 @@ const LENS_DATA = {
     example: { label: "Numerical Example 1", id: "1" },
     patentYear: 2002,
     authors: ["Hideki Ogawa"],
+    // A1 front page omits an organization; same-application assignment listed 2001-07-17.
+    // The source is documented in the companion analysis.
     assignees: ["Canon Inc."],
     errata: [
       {

@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1032** lenses scanned
-- **1017** visible lenses scanned
-- **703** lenses fully covered by trusted chromatic data
-- **700** visible lenses fully covered by trusted chromatic data
-- **696** lenses fully covered by strict Sellmeier data
-- **693** visible lenses fully covered by strict Sellmeier data
-- **7** lenses fully covered only after measured line-index data
-- **7** visible lenses fully covered only after measured line-index data
-- **11029 / 11847** non-air surfaces use strict catalog Sellmeier data
+- **1038** lenses scanned
+- **1023** visible lenses scanned
+- **709** lenses fully covered by trusted chromatic data
+- **706** visible lenses fully covered by trusted chromatic data
+- **701** lenses fully covered by strict Sellmeier data
+- **698** visible lenses fully covered by strict Sellmeier data
+- **8** lenses fully covered only after measured line-index data
+- **8** visible lenses fully covered only after measured line-index data
+- **11112 / 11932** non-air surfaces use strict catalog Sellmeier data
 - **93.1%** strict Sellmeier surface coverage overall
-- **11041 / 11847** non-air surfaces use trusted chromatic data
+- **11126 / 11932** non-air surfaces use trusted chromatic data
 - **93.2%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -341,6 +341,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFSVRZoomNikkor70200mmf28GIFED.data.ts) | 21/21 | 21 | 21/21 |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | 21/21 | 21 | 21/21 |
 | [OLYMPUS M.ZUIKO DIGITAL ED 150-400mm f/4.5 TC1.25× IS PRO](../../src/lens-data/olympus/OlympusMZuiko150400mmf45TC125ISPRO.data.ts) | 21/21 | 21 | 21/21 |
+| [SIGMA 100-400mm f/5-6.3 DG OS HSM | Contemporary](../../src/lens-data/sigma/Sigma100400mmf563DGOSHSMContemporary.data.ts) | 21/21 | 21 | 21/21 |
 | [SIGMA 15mm f/1.4 DG DN DIAGONAL FISHEYE | Art](../../src/lens-data/sigma/Sigma15mmf14DGDNDiagonalFisheyeArt.data.ts) | 21/21 | 21 | 21/21 |
 | [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) | 21/21 | 21 | 21/21 |
 | [TAMRON 35-150mm f/2-2.8 Di III VXD (A058)](../../src/lens-data/tamron/TamronA05835150mmf228.data.ts) | 21/21 | 21 | 21/21 |
@@ -508,6 +509,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SAMYANG 100mm f/2.8 ED UMC MACRO](../../src/lens-data/samyang/Samyang100mmf28EDUMCMacro.data.ts) | 15/15 | 15 | 15/15 |
 | [SAMYANG AF 14mm f/2.8 EF](../../src/lens-data/samyang/SamyangAF14mmf28EF.data.ts) | 15/15 | 15 | 15/15 |
 | [SIGMA 20mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) | 15/15 | 15 | 15/15 |
+| [SIGMA 24mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma24mmf14DGHSMArt.data.ts) | 15/15 | 15 | 15/15 |
 | [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) | 15/15 | 15 | 15/15 |
 | [SIGMA 85mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) | 15/15 | 15 | 15/15 |
 | [SONY FE 16-35mm f/2.8 GM II](../../src/lens-data/sony/SonyFE1635mmf28GMII.data.ts) | 15/15 | 15 | 15/15 |
@@ -574,6 +576,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED](../../src/lens-data/nikon/NikonAFSNikkor300mmf28DIFED.data.ts) | 13/13 | 13 | 13/13 |
 | [NIKON AI AF-S NIKKOR 400mm f/2.8 D IF-ED II](../../src/lens-data/nikon/NikonAFSNikkor400mmf28DIFEDII.data.ts) | 13/13 | 13 | 13/13 |
 | [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) | 13/13 | 13 | 13/13 |
+| [OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/4.0-5.6 R](../../src/lens-data/olympus/OlympusMZuiko40150mmf456R.data.ts) | 13/13 | 13 | 13/13 |
 | [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) | 13/13 | 13 | 13/13 |
 | [PENTAX SMC FA 28-105mm f/4-5.6 POWER ZOOM](../../src/lens-data/pentax/PentaxFA28105mmF456PowerZoom.data.ts) | 13/13 | 13 | 13/13 |
 | [SCHNEIDER-KREUZNACH VARIOGON 10-40mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderVariogon281040.data.ts) | 13/13 | 13 | 13/13 |
@@ -584,6 +587,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SIGMA 35mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) | 13/13 | 13 | 13/13 |
 | [SIGMA 4.5mm f/2.8 EX DC CIRCULAR FISHEYE HSM](../../src/lens-data/sigma/Sigma4_5F2_8EXDCCircularFisheyeHSM.data.ts) | 13/13 | 13 | 13/13 |
 | [SIGMA 50mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) | 13/13 | 13 | 13/13 |
+| [SONY E 55-210mm f/4.5-6.3 OSS](../../src/lens-data/sony/SonyE55210mmf4563OSS.data.ts) | 13/13 | 13 | 13/13 |
 | [SONY FE 135mm f/1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) | 13/13 | 13 | 13/13 |
 | [SONY FE PZ 16-35mm f/4 G](../../src/lens-data/sony/SonyFEPZ1635mmf4G.data.ts) | 13/13 | 13 | 13/13 |
 | [TAMRON SP AF 200-500mm f/5-6.3 Di LD [IF]](../../src/lens-data/tamron/TamronA08200500mmf563.data.ts) | 13/13 | 13 | 13/13 |
@@ -707,6 +711,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PENTAX SMC A* 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) | 10/10 | 10 | 10/10 |
 | [SIGMA 24mm f/3.5 DG DN | Contemporary](../../src/lens-data/sigma/Sigma24mmf35DGDN.data.ts) | 10/10 | 10 | 10/10 |
 | [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) | 10/10 | 10 | 10/10 |
+| [SIGMA 56mm f/1.4 DC DN | Contemporary](../../src/lens-data/sigma/Sigma56mmf14DCDNContemporary.data.ts) | 10/10 | 10 | 10/10 |
 | [VILTROX AF 56mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF56mmf14E.data.ts) | 10/10 | 10 | 10/10 |
 | [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) | 10/10 | 10 | 10/10 |
 | [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) | 10/10 | 10 | 10/10 |
@@ -1014,6 +1019,7 @@ These lenses are complete for chromatic tracing but not strict catalog-Sellmeier
 | [CANON EF-S 17-55mm f/2.8 IS USM](../../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) | 21/21 | 19/21 | 21 | 19/21 | 2 | Line indices |
 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) | 16/16 | 14/16 | 16 | 14/16 | 2 | Line indices |
 | [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) | 12/12 | 11/12 | 12 | 11/12 | 1 | Line indices |
+| [SIGMA 70mm f/2.8 DG MACRO | Art](../../src/lens-data/sigma/Sigma70mmf28DGMacroArt.data.ts) | 13/13 | 11/13 | 13 | 11/13 | 2 | Line indices |
 | [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) | 12/12 | 11/12 | 12 | 11/12 | 1 | Line indices |
 | [FUJIFILM FUJINON GF 110mm f/5.6 T/S Macro](../../src/lens-data/fujifilm/FujifilmGF110mmf56TSMacro.data.ts) | 11/11 | 10/11 | 11 | 10/11 | 1 | Line indices |
 | [PANASONIC LUMIX G VARIO 12-60mm f/3.5-5.6 ASPH. POWER O.I.S.](../../src/lens-data/panasonic/PanasonicLumixG1260mmF3556.data.ts) | 11/11 | 9/11 | 11 | 9/11 | 2 | Line indices |

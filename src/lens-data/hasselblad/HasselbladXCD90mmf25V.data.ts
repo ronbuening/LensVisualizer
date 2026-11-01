@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "hasselblad-xcd-90-f25-v",
   maker: "Hasselblad",
   name: "HASSELBLAD XCD 90mm f/2.5 V",
-  subtitle: "JP 2022-99402 A Example 1 — Panasonic IP Management / Nishioka",
+  subtitle: "JP 2022-99402 A Example 1 — Panasonic Intellectual Property Management / Nishioka",
 
   catalog: {
     lensMounts: ["hasselblad-xcd"],

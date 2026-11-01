@@ -3,7 +3,7 @@
 ## Patent Reference and Production Identification
 
 **Patent:** JP 2016-139125 A (Japan), "ズームレンズ系、交換レンズ装置及びカメラシステム" (Zoom lens system, interchangeable lens device and camera system).
-**Applicant:** Panasonic IP Management Co., Ltd.
+**Applicant:** Panasonic Intellectual Property Management Co., Ltd.
 **Inventor:** Imaoka Takuya (今岡 卓也).
 **Filed:** 2015-12-22 (priority: 2015-01-21, JP 2015-9845).
 **Published:** 2016-08-04.

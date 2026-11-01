@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-10-31",
+    type: "lens",
+    summary: "Added four Sigma lenses, the Sony E 55-210mm and the Olympus M.Zuiko 40-150mm R",
+  },
+  {
+    date: "2026-10-31",
     type: "improvement",
     summary: "Refined EF- and RF-mount lens rims and expanded sourced glass coverage",
   },
