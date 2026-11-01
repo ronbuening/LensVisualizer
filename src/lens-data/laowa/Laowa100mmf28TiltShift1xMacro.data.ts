@@ -9,8 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters are estimated from Figure 1 (0.121 mm/px at 300 dpi) and floor-checked by real-ray trace at
  * all three keyframes. Figure 1 draws L1 and L10 square-cut, so both faces of each carry the drawn outer
  * height (35 / 16 mm); L10's flat mounting annulus begins at about 12.2 mm, so its modeled rim is thicker than
- * drawn. L12's concave front stops at 18.9 mm, where the figure's flat annulus begins, which keeps its rim near the
- * drawn thickness and renders the step as a chamfer. L13 is 24 mm (drawn about 1.2 mm taller than L12).
+ * drawn. L12's concave front stops at 19.1 mm, 0.2 mm past where the figure's flat annulus begins, so the land costs
+ * under 3 points of corner light. That keeps its rim near the drawn thickness and renders the step as a chamfer. L13
+ * is 24 mm (drawn about 1.2 mm taller than L12).
  * Surface 3 stays at 30.197 mm although the figure draws L2 square-cut at about 34.5 mm: prescription faces 2 and 3
  * meet at 32.2 mm and the default cross-gap policy admits 30.5 mm.
  * 67 mm is published coverage; exact edge transmission is not certified.
@@ -245,7 +246,7 @@ const LENS_DATA = {
     { label: "18", R: -38.7618, d: 1.0, sd: 16, rimCutDepthMm: 2.43, medium: 10 },
     { label: "19", R: 70.3932, d: 9.0476, sd: 16, medium: 11 },
     { label: "20", R: -44.8924, d: 16.6161, sd: 16 },
-    { label: "21", R: -32.7269, d: 1.0, sd: 18.9, rimExtensionSd: 23, medium: 12 },
+    { label: "21", R: -32.7269, d: 1.0, sd: 19.1, rimExtensionSd: 23, medium: 12 },
     { label: "22", R: "flat", d: 0.15, sd: 23 },
     { label: "23", R: 218.2766, d: 5.9427, sd: 24, medium: 13 },
     { label: "24", R: -80.7375, sd: 24 },

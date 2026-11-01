@@ -19,3 +19,23 @@ Patent: JP 2011-039260 A, Numerical Example 2/¶0034, Figure 8. Family JP5417083
 - Other faces retain their source-compatible continuous rims; weak few-pixel curves do not independently establish another flat land. Every optical clear cap, R/d, stop, source/calculated zoom/focus row and tolerance remains invariant, so all optical traces/acceptance remain identical. Only opaque outer drawing geometry changes.
 - Fresh glass: all22 source nd/νd pairs exact, d-line throughout. All22 retain compatible current coefficient models. No C/F/g indices, θgF/ΔPgF or individual anomalous-material designation is printed. No override or new APD badge; the four badges stay qualified inferences. Source spectral absence does not measure zero anomaly or production chromatic correction. Supplier/melt uncertainty is explicit in data/public text.
 - Validation: canonical/surface/full-cut checks pass (no inferred numeric cuts); image-circle0undersized, fullfield≥99% and aperture within3% at all65stations, with no rim/trace/iris failures. Catalog consistency and3existing shared glass suites/94tests pass. Actual9state zoom/focus SVGs viewed: max automatic trim0 and all compounds connected. Source/control/cap invariant proof passes; public shape/glass notes synchronized. Exact local source renders, current resolver reports and logs live untracked in `/tmp/ftb4/`; no patents or scratch assets staged.
+
+## 2026-11-01 — Lands against corner light
+
+Owner's rule: a land stays only if vignetting improves, drops slightly, or spacing needs it. Slightly means at most 3 points against the same lens with its lands opened, at every field of every zoom node, wide open at infinity, compared by field angle, with a field the chief ray no longer reaches counted as no light. Raises stop at the smallest value that meets it, so the figure still governs what costs no light. Drawn outer rims do not change.
+
+| Surface | Figure curve end (mm) | Final `sd` (mm) | Outer rim (mm) | Verdict |
+| --- | ---: | ---: | ---: | --- |
+| S2 | 40.6 | 42 | 43.5 | partly raised |
+| S6 | 36.8 | 39.75 | 41.2 | partly raised |
+| S8 | 22.2 | 23.15 | 26.2 | partly raised |
+| S11 | 13.2 | 14.3 | 14.3 | land removed |
+| S12 | 12.1 | 13.4 | 14.3 | partly raised |
+| S22 | 10.4 | 10.4 | 12 | kept: within budget |
+| S25 | 11.9 | 12 | 13.2 | partly raised |
+| S27 | 12.2 | 12.85 | 13.3 | partly raised |
+| S36 | 9.6 | 10.8 | 11.7841 | partly raised |
+| S37 | 11 | 11 | 13 | kept: within budget |
+
+Worst loss against lands open: 25.5 points before, 2.9 at 8.2° and 54.1 mm now. Corners wide open at infinity: 30.0 → 52.8 % at
+51.5 mm, 39.3 → 56.0 % at 159.6 mm, 31.5 → 46.3 % at 485 mm. Engine half-field 23.20° → 24.08°. Nine extensions remain.

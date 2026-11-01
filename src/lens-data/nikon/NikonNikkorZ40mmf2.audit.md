@@ -197,3 +197,14 @@ Coverage: 6 physical lens elements, 8 authored media, 6 modeled media resolving 
 All six glass-body and two resin-layer nd/νd pairs are retained, as is the separate FL plate. L21's six-digit label already selected Schott SF4; the label and analysis now explicitly call it a compatible spectral proxy (Δnd about +0.000001, Δνd about +0.01), without asserting a production identity. Both 1.56093/36.64 resin layers stay unresolved and use Abbe approximation. Unsupported UV-curing, Nikon chemistry/supplier, cost and durability claims were removed; the source confirms resin layers, not those details. No source partial-dispersion values or per-lens spectral overrides were found. All APD flags remain false.
 
 Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.
+
+## 2026-11-01 — Lands against corner light
+
+Owner's rule: a land stays only if vignetting improves, drops slightly, or spacing needs it. Slightly means at most 3 points against the same lens with its lands opened, at every field of every zoom node, wide open at infinity, compared by field angle, with a field the chief ray no longer reaches counted as no light. Raises stop at the smallest value that meets it, so the figure still governs what costs no light. Drawn outer rims do not change.
+
+| Surface | Figure curve end (mm) | Final `sd` (mm) | Outer rim (mm) | Verdict |
+| --- | ---: | ---: | ---: | --- |
+| S5 | 8.4 | 8.7 | 11 | partly raised |
+
+Worst loss against lands open: 5.8 points before, 2.6 at 13.9° now. The 27.7° corner stays at 52.7 %. The S3 cut is unchanged and
+passes the beam rule.

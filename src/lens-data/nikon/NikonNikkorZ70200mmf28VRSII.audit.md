@@ -957,3 +957,16 @@ Coverage: 18 physical lens elements, 18 authored media, 18 modeled media resolvi
 All eighteen lens-media pairs, the two-decimal source θgF values and the separate plate were re-read. Every selected lens curve reproduces the corresponding two-decimal source θgF within ±0.005; L41's J-SFH8 gives 0.624789 against the more precise condition-table 0.625 (±0.0005). The stored L41 dPgF 0.0328 is the rounded engine-baseline conversion of that source value (0.03277012); retain it. No override was fabricated from the remaining coarse θgF entries. L45 J-PSKH4 and L71 M-BACD12 stay explicitly non-identical proxies (Δnd about +0.000430 and −0.000220). APD / fluorite / SR designations remain production-correlated inferences, not source manufacturer identities. All eighteen lens media and the rear plate retain coefficient-backed dispersion.
 
 Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.
+
+## 2026-11-01 — Lands against corner light
+
+Owner's rule: a land stays only if vignetting improves, drops slightly, or spacing needs it. Slightly means at most 3 points against the same lens with its lands opened, at every field of every zoom node, wide open at infinity, compared by field angle, with a field the chief ray no longer reaches counted as no light. Raises stop at the smallest value that meets it, so the figure still governs what costs no light. Drawn outer rims do not change.
+
+| Surface | Figure curve end (mm) | Final `sd` (mm) | Outer rim (mm) | Verdict |
+| --- | ---: | ---: | ---: | --- |
+| S31 | 11.6 | 11.85 | 12.4 | partly raised |
+| S34A | 17.5 | 17.6 | 18.7 | partly raised |
+
+Worst loss against lands open: 4.4 points before, 2.8 at 6.2° and 196 mm now. Corners wide open at infinity: 48.0 → 49.7 % at
+71.4 mm, 36.4 → 38.5 % at 135 mm, 29.4 → 30.9 % at 196 mm. S34A's departure at its rim is now +563.0 µm. The S4 and S8 cuts are
+unchanged and pass the beam rule.

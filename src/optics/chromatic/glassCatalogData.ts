@@ -627,6 +627,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "LACL1",
   "L-BAL43",
   "K-CSK120-M",
+  "K-VC78-M",
   "K-VC80-M",
   "E-LAKH1",
   "J-PSK03",

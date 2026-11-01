@@ -65,23 +65,23 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    167 px), cross-checked with a real-ray trace at f/2.8 and       ║
  * ║    Y = 21.6 mm. L3, L4, L7, L8, L9 and L11 are drawn at their     ║
  * ║    knife edges and are stored 0.1–0.4 mm inside the zero-edge     ║
- * ║    height. L5 rear / L6 front are capped (9.2 / 8.5) because the  ║
- * ║    two facing concave bowls would touch at h ≈ 8.9 mm at the      ║
- * ║    tele station's 5.01 mm gap (Fig. 1 shows the L5 rear clear     ║
- * ║    aperture at ≈9 mm with a flat annulus outside it). The 72 mm   ║
- * ║    filter thread of the production lens bounds L1 at ~33 mm.       ║
+ * ║    height. L6 front is capped at 8.5 because the two facing       ║
+ * ║    concave bowls would touch at h ≈ 8.9 mm at the tele station's  ║
+ * ║    5.01 mm gap. Fig. 1 ends the L5 rear curve at ≈9 mm with a     ║
+ * ║    flat annulus outside it; the model runs it to 11.35 mm because ║
+ * ║    the drawn end stopped the wide-end chief ray at 23.6°.         ║
+ * ║    The 72 mm filter thread of the production lens bounds L1 at    ║
+ * ║    ~33 mm.                                                        ║
  * ║    Consequences at the computed 89 mm tele EFL: the f/2.8 axial    ║
  * ║    beam is clipped ~5 % in radius by L6/L7/L8 (effective ≈ f/3);  ║
  * ║    at the patent's nominal 83 mm it fits. At the wide end the     ║
- * ║    full-frame corner chief ray (Y = 21.6) is intercepted by the   ║
- * ║    L4 knife edge and the L5 rear rim; the chief ray clears every   ║
- * ║    surface only to Y ≈ 15–16 mm, so the extreme corners are lit    ║
- * ║    by the lower part of the bundle (heavy mechanical vignetting,  ║
- * ║    a property of the design rather than of these estimates).      ║
+ * ║    chief ray clears every surface to about 29.5°, close to the    ║
+ * ║    full-frame corner (Y = 21.6), where about 39 % of the beam     ║
+ * ║    passes wide open.                                              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
-// 2026-10-30 Fig1/PDF2: S2 inferredcut9.62,outer32.5; S9cap9.2+landto15.8.
+// 2026-11-01: S2 inferred cut 9.93, outer 32.5; S9 cap 11.35 + land to 15.8 (Fig. 1 curve end ≈9). See audit.
 // Source media/TableI4–5 exact at printed precision. Existing focal/field limitations remain.
 const LENS_DATA = {
   /* ── Identity ── */
@@ -290,7 +290,7 @@ const LENS_DATA = {
   surfaces: [
     // ── Group I (L1, L2, L3) — moves during zoom ──
     { label: "1", R: 135.72, d: 2.6, sd: 32.5, medium: 1 }, // L1 front
-    { label: "2", R: 46.71, d: 2.84, sd: 32.5, rimCutDepthMm: 9.62 }, // L1 rear → air
+    { label: "2", R: 46.71, d: 2.84, sd: 32.5, rimCutDepthMm: 9.93 }, // L1 rear → air
     { label: "3", R: 46.5, d: 13.8, sd: 28.5, medium: 2 }, // L2 front
     { label: "4", R: -152.15, d: 0.1, sd: 28.5 }, // L2 rear → air
     { label: "5", R: 41.84, d: 6.6, sd: 25.8, medium: 3 }, // L3 front
@@ -299,7 +299,7 @@ const LENS_DATA = {
     // ── Group II (L4–L5 cemented) — moves during zoom ──
     { label: "7", R: 140.19, d: 3.1, sd: 15.8, medium: 4 }, // L4 front
     { label: "8", R: -60.45, d: 1.1, sd: 15.8, medium: 5 }, // L4→L5 junction
-    { label: "9", R: 17.98, sd: 9.2, rimExtensionSd: 15.8 }, // L5 rear → air — var gap (2)
+    { label: "9", R: 17.98, sd: 11.35, rimExtensionSd: 15.8 }, // L5 rear → air — var gap (2)
 
     // ── Group III (L6–L7 cemented) — moves during zoom ──
     { label: "10", R: -16.56, d: 1.0, sd: 8.5, medium: 6 }, // L6 front

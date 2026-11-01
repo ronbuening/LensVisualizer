@@ -23,7 +23,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * axial bundle, the full-field (Y = 21.7) chief ray and the 0.6-field ±0.5-pupil rays over 15 zoom/focus states,
  * rounded up to 0.05 mm, cemented doublets equalized. Six rims then follow the wide-end panel of patent Fig. 1
  * (0.0782 mm/px at 600 dpi, scale from 34 vertex spacings), where the drawing is 12–22% taller than the ray model: L21
- * (7: 22.6, 8: 20.7), L61 (32/33: 18.3) and L71 (34A: 17.5, 35: 18.7). All other rims agree with the figure within
+ * (7: 22.6, 8: 20.7), L61 (32/33: 18.3) and L71 (34A: figure 17.5, now 17.6; 35: 18.7). All other rims agree with the figure within
  * about 7% and are kept. Surfaces 12/13 are held at 18.72 mm, just above the tele axial marginal height (18.69 mm);
  * their rims would touch at 19.16 mm (the figure draws L32/L33 in edge contact). That band needs gapSagFrac = 0.96
  * (intrusion ≈ 95.4%). The stop radius is derived from the design f-number, f/2.891 at wide, and held at every zoom
@@ -31,7 +31,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Rim cuts (2026-10-27): Fig. 1 draws flat lands at the rims of the concave faces 4 (L12), 8 (L21), 31 (L52) and 34A
  * (L71). Faces 4 and 8 take their element edge as sd (the partner face: 34.2 / 22.6) and rimCutDepthMm ends the cap
  * just outside the old 33.15 / 20.7 mm rims, at cut radii 33.1581 / 20.7130 mm (so the 8 value above is now a cut
- * radius); the traced beams reach 32.9081 / 20.3918 mm there. 31 and 34A keep their 11.6 / 17.5 mm clear radii:
+ * radius); the traced beams reach 32.9081 / 20.3918 mm there. 31 and 34A carry no cut:
  * an inferred cut there would stop rays those rims stop.
  *
  * FOCAL LENGTHS — catalog.focalLengthMm.design and the zoom station focal lengths are the patent's printed
@@ -43,8 +43,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Glass names are coordinate-compatible catalog counterparts; they do not establish supplier or melt.
  * Rim extensions (2026-10-29): Fig. 1, p. 83, 6.80 native px/mm, draws the
- * L52 rear and L71 front caps inside square outer edges. 31 and 34A keep their
- * 11.6 and 17.5 mm clear radii; rimExtensionSd adds lands to 12.4 and 18.7 mm.
+ * L52 rear and L71 front caps inside square outer edges. 31 and 34A stop at
+ * 11.85 and 17.6 mm, 0.25 and 0.1 mm past the drawn curve ends, so the lands cost under 3 points of light
+ * (2026-11-01); rimExtensionSd adds lands to 12.4 and 18.7 mm.
  */
 
 const LENS_DATA = {
@@ -395,14 +396,14 @@ const LENS_DATA = {
     { label: "28", R: 286.532, d: 2.6, sd: 13.45, medium: 15 }, // G5: L51 front
     { label: "29", R: -166.6633, d: 1.1, sd: 13.05 }, // L51 rear → air
     { label: "30", R: -303.2044, d: 1.2, sd: 12.4, medium: 16 }, // L52 front
-    { label: "31", R: 33.0069, sd: 11.6, rimExtensionSd: 12.4 }, // L52 rear → air [VAR zoom+focus D31]
+    { label: "31", R: 33.0069, sd: 11.85, rimExtensionSd: 12.4 }, // L52 rear → air [VAR zoom+focus D31]
     { label: "32", R: 133.0887, d: 5.4, sd: 18.3, medium: 17 }, // G6: L61 front
     { label: "33", R: -65.3298, sd: 18.3 }, // L61 rear → air [VAR zoom+focus D33]
     {
       label: "34A",
       R: -34.6941,
       d: 1.4,
-      sd: 17.5,
+      sd: 17.6,
       rimExtensionSd: 18.7,
       medium: 18,
       asphere: {

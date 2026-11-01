@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-11-01",
+    type: "lens",
+    summary:
+      "Added the Panasonic 45-175mm PZ, Sigma 10-20mm f/3.5 and 18-50mm OS, Tamron A18 and B008, and Yashica ML 35mm",
+  },
+  {
     date: "2026-10-31",
     type: "lens",
     summary: "Added four Sigma lenses, the Sony E 55-210mm and the Olympus M.Zuiko 40-150mm R",

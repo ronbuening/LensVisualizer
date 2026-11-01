@@ -17,3 +17,24 @@ Patent: US3,975,089 TableI/Fig1, sole prescription.
 - S9keeps9.2cap with landto15.8commonD1rim; sourcebody supports height, exactshortcapretainedfor teleclearance. FullS10frontlandto10.4 rejects4.880mm intrusion>4.509allowed in5.01tele gap, bothfocusstates. No arbitrarypartialland or interfacecut. Otherknifeedges/weakendpointmarks retained.
   -144405samecollimated samples:104556retained,0lost/0gained,39849bothblocked (latest9.62case independentlyrerun). Countsnotflux; currentwidefieldlimitation remains S9/knifeedgecap, no forcedfix.
 - Focused surface and image-circle checks pass (0 errors/undersized). Aperture audit:5/5 stored-design stations within3%, no rim/iris/trace failures. Field audit:4/5stations≥99%;35–85wide retains75% (16.28/21.65mm, S9limit), explicitly unresolved.27actualSVG zoom/focusstates viewed,0renderertrim and connected compounds.94shared dispersion/resolver/partial-line tests pass. Source R/d/nd/vd/stop/focus/zoom/tolerances and existing normalizations/errata invariant. No live/shared engine/catalog/test/report edits.
+
+## 2026-11-01 — Lands against corner light
+
+Owner's rule: a land stays only if vignetting improves, drops slightly, or spacing needs it. Slightly means at most 3 points against the same lens with its lands opened, at every field of every zoom node, wide open at infinity, compared by field angle, with a field the chief ray no longer reaches counted as no light. Raises stop at the smallest value that meets it, so the figure still governs what costs no light. Drawn outer rims do not change.
+
+| Surface | Figure curve end (mm) | Final `sd` (mm) | Outer rim (mm) | Verdict |
+| --- | ---: | ---: | ---: | --- |
+| S9 | ≈9 (stored 9.2) | 11.35 | 15.8 | partly raised |
+
+S9's 9.2 mm cap stopped the wide-end chief ray at 23.6°, against 29.8° with the land open, so it cost the outer fields entirely, not
+only 21 points at 23.6°. The validator accepts every rim from 9.2 up, and L6 stays clear at the tele gap: its 8.5 mm rim leaves
+about 0.5 mm, and its slanted edge runs away from the L5 curve. The earlier note that the short cap was needed for tele clearance
+applied to a full S10 land, not to this rim.
+
+The wider beams then reach S2's inferred cut, so the depth moves from 9.62 to 9.93 mm (cut radius 28.393 → 28.793 mm). The beams
+reach 28.695 mm there at zoom 0.25 and 25.11°, and the rule needs 0.086 mm of margin. That puts the cap end at q = 0.886, past the
+figure's 0.870 ± 0.004; the beam rule outranks the figure reading.
+
+Worst loss against lands open: full loss of the outer fields before, 1.1 points at 26.8° and 36 mm now. At 36 mm the light at
+23.6° goes from 41.3 to 63.1 % and the chief ray reaches 29.5°, where 39.2 % passes. 83 mm is unchanged at 47.8 %. Engine half-field
+21.73° → 26.19°, still set by S9 at the wide end.

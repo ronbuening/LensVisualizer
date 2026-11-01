@@ -185,3 +185,14 @@ Coordinator follow-up, same day: surface 21 (L12 front) is returned to the first
 - L12 front / S21 keeps its 18.9 mm clear cap and gains `rimExtensionSd: 23`, restoring the drawn flat annulus without changing its optical aperture. L2 front stays 30.197 mm: raising its drawn land to the 35 mm opposite rim intrudes into the facing L1 rear sphere; the nearly flat low-resolution source faces do not justify inventing a compensating cut. Other faces and cemented boundaries retain their caps; no additional resolved, beam-safe land was established.
 - Fresh glass check: all 13 element nd/νd pairs agree with the source table; ¶0052 explicitly defines d-line Nd. No additional line indices or partial-dispersion values are supplied. Five elements retain compatible catalog curves (E-FDS1, FCD1 twice, TAFD33, E-FD8); eight native coordinate pairs remain explicitly unmatched. Loose nearby catalog rows are not identities. The two ED/APD annotations remain qualified class inferences, and all supplier/melt claims remain unconfirmed.
 - Verification: focused `audit:surface` passes, including the full inferred-cut beam sweep; `audit:image-circle` reports zero undersized surfaces; `audit:aperture` is within 3% with no rim limiter. Actual production SVG geometry has zero hidden trim at focus/zoom 0, 0.5, 1 and its rasterized section was visually inspected. Catalog consistency and resolver compatibility were checked separately; numerical clearance does not certify manufactured dimensions or complete field localization.
+
+## 2026-11-01 — Lands against corner light
+
+Owner's rule: a land stays only if vignetting improves, drops slightly, or spacing needs it. Slightly means at most 3 points against the same lens with its lands opened, at every field of every zoom node, wide open at infinity, compared by field angle, with a field the chief ray no longer reaches counted as no light. Raises stop at the smallest value that meets it, so the figure still governs what costs no light. Drawn outer rims do not change.
+
+| Surface | Figure curve end (mm) | Final `sd` (mm) | Outer rim (mm) | Verdict |
+| --- | ---: | ---: | ---: | --- |
+| S21 | 18.9 | 19.1 | 23 | partly raised |
+
+Worst loss against lands open: 4.6 points before, 2.8 at 18.1° now. The 18.1° corner goes from 29.4 to 31.2 %. The S18 cut is
+unchanged and passes the beam rule.

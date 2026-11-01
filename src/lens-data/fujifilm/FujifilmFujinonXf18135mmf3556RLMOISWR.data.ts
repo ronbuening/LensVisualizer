@@ -255,7 +255,7 @@ const LENS_DATA = {
       nd: 1.6663,
       vd: 55.16,
       focalLengthMm: 21.602615843,
-      glass: "Unmatched (666552; nd=1.66630, νd=55.16)",
+      glass: "K-VC78-M (SUMITA moulding-state catalog equivalent; production supplier unspecified)",
       role: "G5A biconvex positive element; both faces aspherical.",
       diagramLabel: "L51",
     },
