@@ -1,0 +1,212 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+/** PRIVATE row1183: US4728179 unnumbered master Fig.3/PDF9, NOT converter embodiments.
+ * Literal mm51.84/F1.86,6elements4groups; no retail50/1.8retuning.
+ * Source masterfield unknown;135format and evaluated imageheights are explicit model assumptions.
+ * No markediris: one neutral midpointd5stopz19.04mm; EPplus10%globalSDanchor and audited10face ratios.
+ * BeveledS5/S6clearfaces remain smaller than body envelopes; no transparentrims/cuts/extensions invented.
+ * N/Vreference line unspecified: Unmatchedliteralindices use qualified approximate d-line convention.
+ * Computed paraxial infinityplane fixed, no printedBFL/conjugate, refocus or finite-state proof.
+ * source.example deliberately omitted: unnumberedreference beside converterexamples per current spec;
+ * local authoring disposition records later integration queue, no production queue/catalog edit.
+ */
+const LENS_DATA = {
+  "schema": 2,
+  "key": "olympus-zuiko-auto-s-50f18-us4728179-private-row1183",
+  "maker": "Olympus",
+  "name": "Olympus Zuiko Auto-S 50mm f/1.8 — unnumbered patent master (inferred apertures/stop; infinity only; f/1.86 only; factory identity unproven; private)",
+  "subtitle": "US4728179 unnumbered Fig.3 master; literal51.84mm F1.86; inferred stop/apertures; converter excluded",
+  "visible": true,
+  "catalog": {
+    "lensMounts": [
+      "olympus-om"
+    ],
+    "imageFormat": "135-full-frame",
+    "elementCount": 6,
+    "groupCount": 4,
+    "focalLengthMm": {
+      "marketing": 50,
+      "design": 51.84
+    },
+    "fNumber": {
+      "marketing": 1.8,
+      "design": 1.86
+    }
+  },
+  "source": {
+    "patentNumber": "US 4,728,179",
+    "patentYear": 1988,
+    "authors": [
+      "Hikaru Hayashi",
+      "Hiroshi Takase"
+    ],
+    "assignees": [
+      "Olympus Optical Co., Ltd."
+    ]
+  },
+  "elements": [
+    {
+      "id": 1,
+      "name": "L1",
+      "label": "Element 1",
+      "type": "Positive Meniscus",
+      "nd": 1.78472,
+      "vd": 25.68,
+      "indexReference": "d",
+      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
+      "glass": "Unmatched literal N/V (1.78472/25.68); source line/vendor unresolved",
+      "focalLengthMm": 56.970527856977164
+    },
+    {
+      "id": 2,
+      "name": "L2",
+      "label": "Element 2",
+      "type": "Positive Meniscus",
+      "nd": 1.60311,
+      "vd": 60.7,
+      "indexReference": "d",
+      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
+      "glass": "Unmatched literal N/V (1.60311/60.7); source line/vendor unresolved",
+      "focalLengthMm": 37.62308190132548,
+      "cemented": "D1"
+    },
+    {
+      "id": 3,
+      "name": "L3",
+      "label": "Element 3",
+      "type": "Negative Meniscus",
+      "nd": 1.78472,
+      "vd": 25.71,
+      "indexReference": "d",
+      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
+      "glass": "Unmatched literal N/V (1.78472/25.71); source line/vendor unresolved",
+      "focalLengthMm": -19.991652207454127,
+      "cemented": "D1"
+    },
+    {
+      "id": 4,
+      "name": "L4",
+      "label": "Element 4",
+      "type": "Negative Meniscus",
+      "nd": 1.72825,
+      "vd": 28.46,
+      "indexReference": "d",
+      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
+      "glass": "Unmatched literal N/V (1.72825/28.46); source line/vendor unresolved",
+      "focalLengthMm": -21.474283398551474,
+      "cemented": "D2"
+    },
+    {
+      "id": 5,
+      "name": "L5",
+      "label": "Element 5",
+      "type": "Positive Meniscus",
+      "nd": 1.8061,
+      "vd": 40.95,
+      "indexReference": "d",
+      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
+      "glass": "Unmatched literal N/V (1.8061/40.95); source line/vendor unresolved",
+      "focalLengthMm": 26.15270885931558,
+      "cemented": "D2"
+    },
+    {
+      "id": 6,
+      "name": "L6",
+      "label": "Element 6",
+      "type": "Biconvex Positive",
+      "nd": 1.8061,
+      "vd": 40.95,
+      "indexReference": "d",
+      "indexReferenceNote": "Master table/prose specify N/V without a d/e line declaration. Literal indices retained; approximate d/587.5618nm tracing convention, not source wavelength proof. Vendor/full dispersion unresolved.",
+      "glass": "Unmatched literal N/V (1.8061/40.95); source line/vendor unresolved",
+      "focalLengthMm": 50.68470182100526
+    }
+  ],
+  "surfaces": [
+    {
+      "label": "1",
+      "R": 33.79,
+      "d": 4.5,
+      "sd": 15.329,
+      "medium": 1
+    },
+    {
+      "label": "2",
+      "R": 130.283,
+      "d": 0.15,
+      "sd": 15.329
+    },
+    {
+      "label": "3",
+      "R": 21.458,
+      "d": 6.59,
+      "sd": 12.922,
+      "medium": 2
+    },
+    {
+      "label": "4",
+      "R": 349.306,
+      "d": 1.3,
+      "sd": 12.922,
+      "medium": 3
+    },
+    {
+      "label": "5",
+      "R": 14.989,
+      "d": 6.5,
+      "sd": 9.887
+    },
+    {
+      "label": "STO",
+      "R": "flat",
+      "d": 6.5
+    },
+    {
+      "label": "6",
+      "R": -15.134,
+      "d": 1.65,
+      "sd": 10.332,
+      "medium": 4
+    },
+    {
+      "label": "7",
+      "R": -490.538,
+      "d": 5.6,
+      "sd": 11.849,
+      "medium": 5
+    },
+    {
+      "label": "8",
+      "R": -20.316,
+      "d": 0.15,
+      "sd": 12.34
+    },
+    {
+      "label": "9",
+      "R": 246.577,
+      "d": 3.23,
+      "sd": 12.784,
+      "medium": 6
+    },
+    {
+      "label": "10",
+      "R": -48.685,
+      "d": 37.856139940514495,
+      "sd": 12.784
+    }
+  ],
+  "focus": {
+    "closeFocusM": 1e15,
+    "description": "Infinity-only reconstruction of the unnumbered US4728179 photographic master, separate from the converter embodiments. Only source f/1.86 is authored in this qualified model. Stop position and clear apertures are inferred; clipping remains. The standalone patent field is unknown: 135-format image heights and their field angles are model assumptions, not source coverage. The fixed image plane is computed at an assumed infinity conjugate; 587.5618 nm is an approximate reference convention because the source does not specify the index line. Exact factory pairing and full dispersion are unproven. Retail minimum focus 0.45 m is descriptive only; no finite focus law or performance is modeled. Conditional scalar research is not factory or continuum validation."
+  },
+  "aperture": {
+    "nominalFNumber": 1.86,
+    "fStops": [
+      1.86
+    ],
+    "maxFNumber": 1.86
+  },
+  "layout": {
+    "yScFill": 0.38
+  }
+} satisfies LensDataV2Input;
+export default LENS_DATA;
