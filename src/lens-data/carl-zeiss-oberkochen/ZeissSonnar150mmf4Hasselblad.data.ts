@@ -1,13 +1,25 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** PRIVATE Zeissrow1119 S5fullvalidationv4: more of curvedopticalface SD12.771 at audited43/70endpoint, no transparentrims.
- * Literal151.2scale optics, stop,computedpara162.8352658865plane remainfixed; dline reference, infinity/factory/clearaperture qualifications retained.
- * OthersevenSDs unchanged; separate new0/7/14native/conditional2D convergence required. */
+/**
+ * Carl Zeiss Sonnar 150mm f/4 for Hasselblad, from US 2,720,140 (Günther Lange, Carl Zeiss, Heidenheim; filed 14 July
+ * 1954, granted 11 October 1955), Example III, Fig. 3, repeated in claim 4. The design is associated with the production
+ * lens; it is not a confirmed factory prescription.
+ *
+ * Printed: radii, thicknesses and air spaces normalized to f = 1, nd at the d-line, V, f/4, image angle ±14°. All lengths
+ * are scaled ×151.2, the focal length Zeiss prints for the lens; the model gives EFL 151.199 mm.
+ * Not printed: back focus, stop position, clear apertures. The last gap is the computed paraxial back focus, 81.019 mm.
+ * The stop sits 60 % of the way through l2 (z 47.99 mm); Fig. 3 draws it at 60.2 % (z 48.07 mm). The Zeiss sheet pupils
+ * imply 51–55 %, and the figure is kept.
+ * Semi-diameters are read from Fig. 3 at its own axial scale, 11.05 px/mm: S1/S2 22.6, S3/S4 19.2, S6 15.1, S7 16.5,
+ * S8 19.7. S5 is 12.771 mm, at the top of the figure's 12.1–12.7 mm band; the f/4 axial ray reaches 12.59 mm there, the
+ * tightest margin in the lens.
+ * closeFocusM is the retail 1.4 m. The patent prints no focus data, so the geometry stays at infinity.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "zeiss-sonnar-150f4-hasselblad",
   "maker": "Carl Zeiss Oberkochen",
   "name": "CARL ZEISS SONNAR 150mm f/4 (Hasselblad)",
-  "subtitle": "US2720140 ExampleIII; uniform151.2scale; five spherical elements/three groups, factory identity unproven",
+  "subtitle": "US 2,720,140, Example III — close relative of the Hasselblad production lens, not proven identical",
   "visible": true,
   "catalog": {
     "lensMounts": [
@@ -23,7 +35,13 @@ const LENS_DATA = {
     "fNumber": {
       "marketing": 4,
       "design": 4
-    }
+    },
+    "specs": [
+      "5 ELEMENTS / 3 GROUPS",
+      "DESIGN f = 151.2 mm",
+      "DESIGN F/4",
+      "ALL SPHERICAL"
+    ]
   },
   "source": {
     "patentNumber": "US 2,720,140",
@@ -49,7 +67,8 @@ const LENS_DATA = {
       "vd": 48.4,
       "indexReference": "d",
       "glass": "BAF11 (SUMITA, coordinate equivalent)",
-      "focalLengthMm": 160.7683381134462
+      "focalLengthMm": 160.7683381134462,
+      "role": "Uncemented positive meniscus forming the front component"
     },
     {
       "id": 2,
@@ -61,7 +80,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "SK16 (SCHOTT, coordinate equivalent)",
       "focalLengthMm": 52.04265732894149,
-      "cemented": "D1"
+      "cemented": "C1",
+      "role": "Positive member of the cemented middle component"
     },
     {
       "id": 3,
@@ -73,7 +93,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-BAH28 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -31.802792588468563,
-      "cemented": "D1"
+      "cemented": "C1",
+      "role": "Negative member of the middle component, concave toward the stop"
     },
     {
       "id": 4,
@@ -85,7 +106,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "BASF7 (SUMITA, coordinate equivalent)",
       "focalLengthMm": 35.591093796342406,
-      "cemented": "D2"
+      "cemented": "C2",
+      "role": "Positive member of the cemented rear component"
     },
     {
       "id": 5,
@@ -97,7 +119,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "Unmatched (patent 1.60140/38.3; no catalog row at this coordinate)",
       "focalLengthMm": -46.9440448270829,
-      "cemented": "D2"
+      "cemented": "C2",
+      "role": "Larger negative meniscus closing the rear component"
     }
   ],
   "surfaces": [
@@ -162,7 +185,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1.4,
-    "description": "Alternative patent-based infinity-only reconstruction with inferred apertures and stop. S5 curved clear-face semi-diameter is 12.771 mm instead of the original 11.0187 mm; this does not transmit through rim lands. All other optics and the computed 162.8352658865 mm paraxial image plane remain fixed. Factory identity is unproven, including correlation to the later C150 T* sheet. The retail 1.4 m minimum focus is descriptive; no finite prescription or focus motion is modeled. Patent fields 0°, 7°, 14° map to native image-height fractions 0, 0.469576, 0.957240. The native 39.6 mm format corner maps to 14.5945°, beyond the validated source edge; that extension is a simulation, not source-field validation. The manufacturer 29° full diagonal remains separate. Literal source d-line indices are retained at reference 587.5618 nm, without full dispersion validation. S7 edge clipping remains. Accepting more S5 rays lowered the saved conditional axial T30 from 0.33008 to 0.20705; neither aperture hypothesis is selected by contrast. Native MTF is a simulation; corrected 2D scalar research remains conditional, without factory or continuum validation."
+    "description": "The model stays at infinity. The patent prints no focus data, so no focus motion is modeled, and 1.4 m is the retail minimum focus distance, not a modeled state. The image plane is the computed paraxial focus, 81.02 mm behind the last surface; the patent prints no back focus. The patent's 14° half field reaches 37.91 mm on the image plane. The 39.6 mm corner of the 6x6 format lies at 14.59°, just beyond the printed field."
   },
   "aperture": {
     "nominalFNumber": 4,
@@ -182,6 +205,35 @@ const LENS_DATA = {
     "fullFieldDeg": 28,
     "maxTraceFieldDeg": 14
   },
+  "groups": [
+    {
+      "text": "FRONT",
+      "fromSurface": "1",
+      "toSurface": "2"
+    },
+    {
+      "text": "MIDDLE",
+      "fromSurface": "3",
+      "toSurface": "5"
+    },
+    {
+      "text": "REAR",
+      "fromSurface": "6",
+      "toSurface": "8"
+    }
+  ],
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "3",
+      "toSurface": "5"
+    },
+    {
+      "text": "C2",
+      "fromSurface": "6",
+      "toSurface": "8"
+    }
+  ],
   "layout": {
     "yScFill": 0.38
   }

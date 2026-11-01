@@ -1,26 +1,44 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** PRIVATE row1183: US4728179 unnumbered master Fig.3/PDF9, NOT converter embodiments.
- * Literal mm51.84/F1.86,6elements4groups; no retail50/1.8retuning.
- * Source masterfield unknown;135format and evaluated imageheights are explicit model assumptions.
- * No markediris: one neutral midpointd5stopz19.04mm; EPplus10%globalSDanchor and audited10face ratios.
- * BeveledS5/S6clearfaces remain smaller than body envelopes; no transparentrims/cuts/extensions invented.
- * N/Vreference line unspecified: Unmatchedliteralindices use qualified approximate d-line convention.
- * Computed paraxial infinityplane fixed, no printedBFL/conjugate, refocus or finite-state proof.
- * source.example deliberately omitted: unnumberedreference beside converterexamples per current spec;
- * local authoring disposition records later integration queue, no production queue/catalog edit.
+/**
+ * Olympus Zuiko Auto-S 50mm f/1.8, later six-element, four-group generation, from the master lens of US 4,728,179
+ * (Figure 3, table in column 6). The patent covers rear converters; the numbered embodiments are the converters. The
+ * master has no example designation, so source.example stays absent and the file is on the patent-example queue.
+ * Used at the printed scale, f = 51.84 mm, F/1.86, with no retuning to 50mm f/1.8. All surfaces are spherical.
+ *
+ * Printed: R, D, N, V, f and F. Not printed: field, back focus, conjugate, stop, clear apertures, focus travel.
+ * Every N/V pair is a d-line catalog coordinate, so N and V are nd and vd. The last gap, 37.856 mm, is the paraxial
+ * back focus at infinity; with it the master and the printed d0 reproduce the printed converter magnifications of
+ * Embodiments 1 to 4 to the fourth decimal, about +/-0.002 mm in that gap. The plots of Figures 4 to 7 (F/3.0 to
+ * F/3.1, half-field 14.2 to 14.5 degrees) imply an image height near 21.55 mm, so the design is 135 format.
+ *
+ * Stop: neither printed nor drawn, placed at the midpoint of the 13.0 mm D5 air space, z = 19.04 mm from S1.
+ * sd: inferred. S1 is 1.10 times the paraxial entrance-pupil radius; the other faces follow the Figure 3 ratios.
+ * S5 and S6 stay smaller than their element bodies, as the chamfers in Figure 3 show. No rim was enlarged to pass
+ * off-axis light, so the vignetting stays.
+ * Focus: unit focus. The near gap, 45.60 mm, is solved paraxially for 0.45 m object to image; it is not printed.
+ * Iris: f/1.86 is the patent's value; slower stops follow the paraxial stop rule.
+ *
+ * US 4,291,952 Embodiment 2 (f = 100) is the same design: same six glasses, x0.5184 spacings within 0.010 mm, radii
+ * within 0.07 % except R1, R2 and R7 at 0.3 to 0.4 %.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "olympus-zuiko-auto-s-50f18",
   "maker": "Olympus",
   "name": "OLYMPUS ZUIKO AUTO-S 50mm f/1.8",
-  "subtitle": "US4728179 unnumbered Fig.3 master; literal51.84mm F1.86; inferred stop/apertures; converter excluded",
+  "subtitle": "US 4,728,179, master lens — later 6/4 generation",
   "visible": true,
   "catalog": {
     "lensMounts": [
       "olympus-om"
     ],
     "imageFormat": "135-full-frame",
+    "specs": [
+      "6 ELEMENTS / 4 GROUPS",
+      "DESIGN f = 51.84 mm",
+      "DESIGN F/1.86",
+      "ALL SPHERICAL"
+    ],
     "elementCount": 6,
     "groupCount": 4,
     "focalLengthMm": {
@@ -53,7 +71,8 @@ const LENS_DATA = {
       "vd": 25.68,
       "indexReference": "d",
       "glass": "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
-      "focalLengthMm": 56.970527856977164
+      "focalLengthMm": 56.970527856977164,
+      "role": "Positive front meniscus in dense flint, starting the convergence of the beam."
     },
     {
       "id": 2,
@@ -65,7 +84,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "BACD14 (HOYA, coordinate equivalent)",
       "focalLengthMm": 37.62308190132548,
-      "cemented": "D1"
+      "role": "Positive crown of the front cemented doublet, the only low-dispersion element.",
+      "cemented": "C1"
     },
     {
       "id": 3,
@@ -77,7 +97,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -19.991652207454127,
-      "cemented": "D1"
+      "role": "Negative flint of the front doublet; its strong rear face borders the central air space.",
+      "cemented": "C1"
     },
     {
       "id": 4,
@@ -89,7 +110,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-TIH10 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -21.474283398551474,
-      "cemented": "D2"
+      "role": "Negative flint of the rear doublet; its strong front curve mirrors S5 across the central air space.",
+      "cemented": "C2"
     },
     {
       "id": 5,
@@ -101,7 +123,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 26.15270885931558,
-      "cemented": "D2"
+      "role": "Positive high-index element of the rear doublet, leaving that pair almost afocal in air.",
+      "cemented": "C2"
     },
     {
       "id": 6,
@@ -112,7 +135,8 @@ const LENS_DATA = {
       "vd": 40.95,
       "indexReference": "d",
       "glass": "LAH53 (OHARA catalog equivalent; production supplier unspecified)",
-      "focalLengthMm": 50.68470182100526
+      "focalLengthMm": 50.68470182100526,
+      "role": "Rear biconvex positive restoring power behind the nearly afocal doublet."
     }
   ],
   "surfaces": [
@@ -189,7 +213,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 0.45,
-    "description": "Unit focus: the entire optical assembly translates forward as a rigid unit, the back focus growing from 37.856 mm at infinity to 45.60 mm at the marketed 0.45 m minimum, object to image. The unnumbered US4728179 photographic master, separate from the converter embodiments, prints no close-focus state: the near gap is solved paraxially, and its 0.149× magnification matches the published 16 × 24 cm minimum field. Stop position and clear apertures are inferred; clipping remains. The standalone patent field is unknown: 135-format image heights and their field angles are model assumptions, not source coverage. The fixed image plane is computed at an assumed infinity conjugate; 587.5618 nm is an approximate reference convention because the source does not specify the index line. Exact factory pairing and full dispersion are unproven. Conditional scalar research is not factory or continuum validation."
+    "description": "Unit focus: the whole lens moves forward 7.74 mm, the back focus growing from 37.856 mm at infinity to 45.60 mm at the marketed 0.45 m minimum, object to image. The patent prints no focus travel; the near gap is solved paraxially, and its 0.149× magnification matches the published 16 × 24 cm minimum field."
   },
   "gaps": {
     "10": {
@@ -201,6 +225,18 @@ const LENS_DATA = {
     "nominalFNumber": 1.86,
     "fStops": [1.86, 2.8, 4, 5.6, 8, 11, 16]
   },
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "3",
+      "toSurface": "5"
+    },
+    {
+      "text": "C2",
+      "fromSurface": "6",
+      "toSurface": "8"
+    }
+  ],
   "layout": {
     "yScFill": 0.38
   }

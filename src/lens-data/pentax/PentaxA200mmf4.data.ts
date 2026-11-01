@@ -1,19 +1,54 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-// Private staging-only descendant. Optical fields are identical to the verified research input.
-// visible:true enables local integration/viewer QA; no publication is authorized.
+/**
+ * PENTAX SMC A 200mm f/4, from US 4,550,987 (Satoru Tachihara, Asahi Optical), Example 1: printed column 4, repeated
+ * in claim 3. Six air-spaced spherical singlets.
+ *
+ * Scale: the patent states f = 100, FNO 1:4.0 and fB = 32.50. Every R and d is multiplied by 2, which gives a paraxial
+ * EFL of 200.03 mm.
+ *
+ * Printed: R, d, n, nu, f, FNO and fB, with 6.3 degrees as the field edge of the Fig. 2 plots. The table names no
+ * spectral line for n. A trace of these indices reproduces the Fig. 2 d-line curves at infinity, so they are stored
+ * as d-line values and the prescription is treated as the infinity state.
+ *
+ * Derived: the surface 12 gap is the printed back focus times 2 (65.00 mm), which puts the image plane 160.46 mm behind
+ * surface 1. The computed paraxial back focus is 65.03 mm; the printed value is kept.
+ *
+ * Stop: neither tabulated nor drawn in the patent (the mark in d6 on Fig. 1 is a dimension leader). The section in the
+ * maker's SMC PENTAX-A lens manual draws the diaphragm just behind L4, so STO sits 2.128 mm behind surface 8, 10 % of
+ * the way into the scaled d8 of 21.28 mm (2.128 + 19.152). The exact distance is inferred. The meridional field curve
+ * in Fig. 2 places the stop about 56 to 70 mm behind surface 1, and the model's 67.81 mm is inside that range.
+ *
+ * sd: the patent prints none. Ratios come from the element heights in Fig. 1, scaled to 27 mm at surface 1 (the f/4
+ * entrance-pupil radius of 25 mm plus 8 %). They are inferred, not factory apertures, and sit slightly outside the
+ * figure's own scale (L1 about 25.9 mm).
+ *
+ * Focus: the patent prints no focus mechanism or close-focus data. Geometry is static at infinity; closeFocusM is the
+ * maker's 1.9 m minimum focus.
+ *
+ * The patent names no product. The association with this lens rests on construction, speed, field, date and the
+ * maker's section. S1 sits 115.0 mm from the K flange against a listed 111 mm barrel, so production may be a variant
+ * of Example 1.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "pentax-a-200mm-f4",
   "maker": "Pentax",
   "name": "PENTAX SMC A 200mm f/4",
-  "subtitle": "US4550987 Example1; inferred uniform2xscale and figure-based apertures; factory pairing unproven",
+  "subtitle": "US 4,550,987, Example 1 — patent design associated with the SMC PENTAX-A 200mm f/4",
   "visible": true,
   "catalog": {
     "lensMounts": [
       "pentax-k"
     ],
     "imageFormat": "135-full-frame",
+    "specs": [
+      "6 ELEMENTS / 6 GROUPS",
+      "DESIGN f = 200 mm",
+      "DESIGN F/4.0",
+      "ALL SPHERICAL",
+      "PATENT f = 100 SCALED × 2"
+    ],
     "elementCount": 6,
     "groupCount": 6,
     "focalLengthMm": {
@@ -49,7 +84,8 @@ const LENS_DATA = {
       "vd": 64.1,
       "indexReference": "d",
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
-      "focalLengthMm": 145.92203627488792
+      "focalLengthMm": 145.92203627488792,
+      "role": "Weak positive front element; the patent keeps its power low to limit aberrations at the start of the system."
     },
     {
       "id": 2,
@@ -60,7 +96,8 @@ const LENS_DATA = {
       "vd": 26.6,
       "indexReference": "d",
       "glass": "FD140 (HOYA, coordinate equivalent)",
-      "focalLengthMm": -190.37649653114062
+      "focalLengthMm": -190.37649653114062,
+      "role": "Dense flint negative set close behind L1, placed to correct L1's aberrations immediately."
     },
     {
       "id": 3,
@@ -71,7 +108,8 @@ const LENS_DATA = {
       "vd": 64.1,
       "indexReference": "d",
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
-      "focalLengthMm": 169.1358878956531
+      "focalLengthMm": 169.1358878956531,
+      "role": "Positive meniscus, convex to the object, closing the front three-element block before the long air space."
     },
     {
       "id": 4,
@@ -82,7 +120,8 @@ const LENS_DATA = {
       "vd": 64.1,
       "indexReference": "d",
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
-      "focalLengthMm": 241.74669877532375
+      "focalLengthMm": 241.74669877532375,
+      "role": "Weak positive meniscus just ahead of the diaphragm, completing the positive front group."
     },
     {
       "id": 5,
@@ -93,7 +132,8 @@ const LENS_DATA = {
       "vd": 44.7,
       "indexReference": "d",
       "glass": "S-LAM2 (OHARA catalog equivalent; production supplier unspecified)",
-      "focalLengthMm": -29.786987881614447
+      "focalLengthMm": -29.786987881614447,
+      "role": "Strong high-index negative of the rear group; its higher index than L6 holds up the Petzval sum."
     },
     {
       "id": 6,
@@ -104,7 +144,8 @@ const LENS_DATA = {
       "vd": 33.8,
       "indexReference": "d",
       "glass": "S-TIM22 (OHARA catalog equivalent; production supplier unspecified)",
-      "focalLengthMm": 54.62088903995451
+      "focalLengthMm": 54.62088903995451,
+      "role": "Equi-convex positive of the rear group, left uncemented from L5 in a lower-index glass."
     }
   ],
   "surfaces": [
@@ -194,7 +235,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1.9,
-    "description": "Hypothetical patent reconstruction; exact retail prescription pairing is unproven. Infinity-only model, using inferred infinity and reference-index wavelength conventions. Clear apertures and stop position/opening are modeling hypotheses. The retail 1.9m minimum focus is descriptive metadata: finite focus motion and performance are not modeled. The printed back-focus gap and source-derived image plane are retained. Scalar MTF is an estimate, not factory performance."
+    "description": "The patent prints no focus mechanism or close-focus data, so the model stays at its infinity state and no element moves. The 1.9 m minimum focus is the maker's figure. The image plane is set by the printed back focus, 65.00 mm at this scale."
   },
   "aperture": {
     "nominalFNumber": 4,
@@ -214,6 +255,18 @@ const LENS_DATA = {
     "fullFieldDeg": 12.6,
     "maxTraceFieldDeg": 6.3
   },
+  "groups": [
+    {
+      "text": "FRONT",
+      "fromSurface": "1",
+      "toSurface": "8"
+    },
+    {
+      "text": "REAR",
+      "fromSurface": "9",
+      "toSurface": "12"
+    }
+  ],
   "layout": {
     "yScFill": 0.38
   }

@@ -1,37 +1,60 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * PRIVATE RESEARCH ONLY — kept outside auto-discovered src/lens-data.
- * Literal mm photographic MASTER table, JPS60111215A PDF4, Figure2 PDF6.
- * Six elements/five groups; NOT any numbered converter example or combined Fig4.
- * Correct original R11=-43.293; the old -143.293 transcription is invalid.
- * Scale 1.0; design f/1.73, full field45.6 degrees, computed EFL51.498291 mm.
- * Last gap36.883733655908784 mm is independently derived infinity BFL, not printed.
- * Figure-informed STO z18.4 mm: split d6=6.09+5.53=11.62 mm; no source gap changed.
- * No numeric iris position, diameter or clear apertures printed. SDs are frozen
- * per-surface paraxial native axial height*1.10 rounded up to0.1 mm. No ray-based
- * inflation. Stop radius uses current engine design-f-number rule.
- * Source N/v reference line unprinted; d-line is a qualified convention.
- * No full-dispersion, exact glass, factory revision or production-performance claim.
- * Manufacturer MFD0.45m metadata only. Source dM7.65mm is whole-master extension in
- * converter context; no finite conjugate or internal spacing law is authored.
- * Source-worker visual table/figure audit inherited; local PDF transfer was denied.
- * The unnumbered master is identified here and in the subtitle/analysis. Current
- * source.example validation accepts numbered labels or Sole example only; neither
- * describes the unnumbered master amid four converter examples, so it is omitted.
+ * Minolta MD 50mm f/1.7, from JP S60-111215 A (rear conversion lens system, Minolta Camera).
+ *
+ * SOURCE: the unnumbered taking-lens table (撮影レンズ例) on PDF p. 4, drawn in Figure 2 on PDF p. 6. Six elements in
+ * five groups, all spherical. The numbered Examples 1–4 are rear converters for this lens and Figure 4 onward show the
+ * combined systems, so none of them is modeled here. The table carries no example number, so `source.example` is left
+ * out.
+ *
+ * SCALE: 1.0. The table is printed in millimetres; nothing is rescaled to the marketed 50 mm.
+ *
+ * PRINTED: eleven radii, ten axial spacings, six N/ν pairs, φM = 0.0194, FNo = 1.73, 2ω = 45.6° and dM = 7.65 mm.
+ * R11 = -43.293 mm is confirmed by the sag of r11 in Figure 2 and by the converter data.
+ *
+ * COMPUTED: EFL 51.498291 mm and infinity back focus 36.883734 mm; the patent prints neither in millimetres. The
+ * computed power 0.019418 rounds to the printed φM, and the e1, B1 and β values of Examples 1–4 imply f = 51.47–51.50 mm
+ * and back focus 36.85–36.90 mm.
+ *
+ * FOCUS: unit focus. The patent calls this lens a whole-extension type and dM its extension to closest focus, so the
+ * last gap runs from 36.883734 to 44.533734 mm. That gives 450.2 mm object to image at 1:6.73.
+ *
+ * STOP: no position or diameter is printed. The iris marks in Figure 2 sit at about z = 18.34 mm from S1 with a radius
+ * of 9.6–11.4 mm. STO is placed at z = 18.4 mm, splitting d6 = 11.62 mm into 6.09 + 5.53 mm. The stop radius (10.36 mm)
+ * follows from the design f-number; there is no override.
+ *
+ * SEMI-DIAMETERS: none are printed. Each is the paraxial marginal height at f/1.73 × 1.10, rounded up to 0.1 mm, except
+ * three set against Figure 2: S3 = 14.2 and S6 = 11.0 mm follow the drawn rims and cost no light, and S8 = 11.4 mm
+ * clears the axial beam, which needs 11.33 mm there. These are modeled clear radii, not production values.
+ *
+ * INDEX REFERENCE: the table labels N and ν without a spectral line; the d line is assumed.
+ *
+ * GLASS: catalog labels are coordinate equivalents and do not establish a supplier. L6 (1.7810/44.55) has no catalog
+ * row and stays unmatched.
+ *
+ * PRODUCT: the link to the MD 50mm f/1.7 is a correlation, not a confirmed factory prescription. The patent names no
+ * product and cannot separate the 1981 New MD from the 1985 AF 50mm f/1.7.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "minolta-md-50f17",
   "maker": "Minolta",
   "name": "MINOLTA MD 50mm f/1.7",
-  "subtitle": "JP S60-111215 A photographic master; exact production revision unproven",
+  "subtitle": "JP S60-111215 A, master lens — production correlation, exact version unresolved",
   "visible": true,
   "catalog": {
     "lensMounts": [
       "minolta-sr"
     ],
     "imageFormat": "135-full-frame",
+    "specs": [
+      "6 ELEMENTS / 5 GROUPS",
+      "DESIGN f = 51.50 mm",
+      "DESIGN F/1.73",
+      "ALL SPHERICAL",
+      "PATENT 2ω = 45.6°"
+    ],
     "elementCount": 6,
     "groupCount": 5,
     "focalLengthMm": {
@@ -59,6 +82,7 @@ const LENS_DATA = {
       "name": "L1",
       "label": "Element 1",
       "type": "Positive Meniscus",
+      "role": "Front positive meniscus of the modified Gauss system.",
       "nd": 1.72,
       "vd": 50.31,
       "indexReference": "d",
@@ -70,6 +94,7 @@ const LENS_DATA = {
       "name": "L2",
       "label": "Element 2",
       "type": "Positive Meniscus",
+      "role": "Second positive meniscus, ahead of the negative element.",
       "nd": 1.6935,
       "vd": 53.39,
       "indexReference": "d",
@@ -81,6 +106,7 @@ const LENS_DATA = {
       "name": "L3",
       "label": "Element 3",
       "type": "Negative Meniscus",
+      "role": "Negative meniscus ahead of the stop, concave toward the central air space.",
       "nd": 1.6727,
       "vd": 32.22,
       "indexReference": "d",
@@ -92,30 +118,33 @@ const LENS_DATA = {
       "name": "L4",
       "label": "Element 4",
       "type": "Biconcave Negative",
+      "role": "Negative front member of cemented pair C1, just behind the stop.",
       "nd": 1.6259,
       "vd": 35.7,
       "indexReference": "d",
       "focalLengthMm": -21.735393910898168,
       "glass": "S-TIM1 (OHARA catalog equivalent; production supplier unspecified)",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
       "type": "Biconvex Positive",
+      "role": "Positive rear member of cemented pair C1.",
       "nd": 1.6935,
       "vd": 53.39,
       "indexReference": "d",
       "focalLengthMm": 26.022949012319334,
       "glass": "LAC13 (HOYA, coordinate equivalent)",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
       "type": "Biconvex Positive",
+      "role": "Rear positive element with a nearly flat front face.",
       "nd": 1.781,
       "vd": 44.55,
       "indexReference": "d",
@@ -205,7 +234,7 @@ const LENS_DATA = {
     "closeFocusM": 0.45,
     "description": "Unit focus: the whole lens moves forward as one piece. JP S60-111215 A describes this taking lens as a whole-extension type and prints its extension to closest focus as dM = 7.65 mm. Added to the computed infinity back focus of 36.884 mm, that gives 44.534 mm and an object-to-image distance of about 450 mm, in line with the 0.45 m minimum focus of the production lens."
   },
-  "gaps": { "11": { "label": "BF", "values": [[36.883733655908784, 44.533733655908784]] } },
+  "gaps": { "11": { "label": "BF", "values": [[36.883733655908784, 44.53373365590878]] } },
   "aperture": {
     "nominalFNumber": 1.73,
     "fStops": [
@@ -227,7 +256,7 @@ const LENS_DATA = {
   },
   "doublets": [
     {
-      "text": "D1",
+      "text": "C1",
       "fromSurface": "7",
       "toSurface": "9"
     }

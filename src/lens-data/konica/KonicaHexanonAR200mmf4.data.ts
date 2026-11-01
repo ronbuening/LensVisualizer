@@ -1,19 +1,47 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-// Private staging-only descendant. Optical fields are identical to the verified research input.
-// visible:true enables local integration/viewer QA; no publication is authorized.
+/**
+ * KONICA HEXANON AR 200mm f/4, from JP S54-55424 A, Example 1 (Konishiroku Photo Industry; inventor Toshiko Shimokura;
+ * filed 1977-10-12, published 1979-05-02). Five air-spaced spherical singlets.
+ *
+ * Association: the patent names no production lens. The link rests on the Konica/Berkey 1980 product sheet, cat. no.
+ * 703-193: five elements in five groups, 12 degrees, and a section that agrees shape by shape. Examples 2 and 3 of the
+ * patent fit that section equally well, so Example 1 is the best-documented choice, not a confirmed factory prescription.
+ *
+ * Scale: the patent is normalized to f = 1. Every printed R and d is multiplied by 200 with no renormalization. The
+ * four-decimal radii trace to EFL = 200.178 mm. Radii fitted to the patent's Seidel table stay within about 0.00005 of
+ * print and return the printed f, fB, T and Petzval sum, so the residuals are radius rounding, not a transcription slip.
+ *
+ * Image plane: the last gap is the printed fB = 0.261, 52.2 mm at this scale. The paraxial back focus of the rounded
+ * radii is 52.304 mm; the 0.104 mm difference is left in place.
+ *
+ * Stop: the Seidel table's caption prints the stop 0.15 behind surface 6, so the printed d6 = 0.335 (67 mm) is split into
+ * 30 + 37 mm. Its radius is not printed and follows from the design F/4.
+ *
+ * Semi-diameters: not printed, so all are inferred. L1 is 27 mm, the 25 mm entrance-pupil radius plus 8%. The others
+ * follow outline ratios measured from Fig. 1 (1, 0.845, 0.819, 0.503, 0.535), one value for both faces of each element.
+ *
+ * Focus: the patent prints the infinity state only. closeFocusM is the retail 2.5 m; the geometry is static.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "konica-hexanon-ar-200mm-f4",
   "maker": "Konica",
   "name": "KONICA HEXANON AR 200mm f/4",
-  "subtitle": "JPS5455424A Example 1; nominal200x scale; frozen figure-ratio aperture hypothesis",
+  "subtitle": "JP S54-55424 A, Example 1 — patent design associated with the production lens",
   "visible": true,
   "catalog": {
     "lensMounts": [
       "konica-ar"
     ],
     "imageFormat": "135-full-frame",
+    "specs": [
+      "5 ELEMENTS / 5 GROUPS",
+      "DESIGN f = 200 mm",
+      "DESIGN F/4",
+      "ALL SPHERICAL",
+      "TELEPHOTO RATIO 0.809"
+    ],
     "elementCount": 5,
     "groupCount": 5,
     "focalLengthMm": {
@@ -44,6 +72,7 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
+      "role": "Strong low-index positive that leads the front section.",
       "type": "Biconvex Positive",
       "nd": 1.51633,
       "vd": 64.1,
@@ -55,6 +84,7 @@ const LENS_DATA = {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
+      "role": "High-index flint negative; its strong front concave face corrects front-section spherical aberration.",
       "type": "Biconcave Negative",
       "nd": 1.7552,
       "vd": 27.5,
@@ -66,6 +96,7 @@ const LENS_DATA = {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
+      "role": "Low-index positive meniscus that closes the front section and helps shorten the telephoto ratio.",
       "type": "Positive Meniscus",
       "nd": 1.51633,
       "vd": 64.1,
@@ -77,6 +108,7 @@ const LENS_DATA = {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
+      "role": "High-index negative meniscus, concave to the object, that opens the rear section.",
       "type": "Negative Meniscus",
       "nd": 1.7725,
       "vd": 49.6,
@@ -88,6 +120,7 @@ const LENS_DATA = {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
+      "role": "Last positive, stronger than L1, held to limit positive distortion.",
       "type": "Biconvex Positive",
       "nd": 1.80518,
       "vd": 25.4,
@@ -170,7 +203,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 2.5,
-    "description": "Hypothetical patent reconstruction; exact retail prescription pairing is unproven. Infinity-only model. Clear apertures are inferred from a schematic figure; the stop plane is patent-sourced and the iris opening follows the native f-number assumption. The retail 2.5m minimum focus is descriptive metadata: finite focus motion and performance are not modeled. The printed back-focus gap and source-derived image plane are retained. Scalar MTF is an estimate, not factory performance."
+    "description": "The patent prints the infinity state only, so the geometry is static and no focus motion is modeled. The 2.5 m close-focus distance is the production lens's published figure, not a patent state. The image plane is the printed back focus, 52.2 mm behind the last surface. Semi-diameters are inferred from the patent figure; the stop position is printed and its radius follows from F/4."
   },
   "aperture": {
     "nominalFNumber": 4,

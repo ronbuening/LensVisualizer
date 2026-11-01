@@ -1,95 +1,101 @@
+# PENTAX SMC A 200mm f/4 — Optical Analysis
+
 ## Patent Reference and Design Identification
 
-**Patent:** US4,550,987  
+**Patent:** US 4,550,987  
 **Title:** Small Size Telephoto Lens  
 **Filed:** 1983-05-06  
 **Granted:** 1985-11-05  
-**Priority:** 1982-05-13, Japanese application57-80799  
+**Priority:** 1982-05-13, Japanese application 57-80799  
 **Inventor:** Satoru Tachihara  
 **Assignee:** Asahi Optical Co., Ltd.  
-**Example details:** Example1, printedcolumn4/PDF7, repeated numerical claim3/PDF8–9; Fig1/2 onPDF2. Source f100/F4 is uniformly scaled2× as a nominal200mm correlation hypothesis.
+**Example details:** Printed column 4 (PDF p. 7), repeated in claim 3 (PDF pp. 8–9); Fig. 1 and Fig. 2 on PDF p. 2. The patent's f = 100 is scaled ×2.
 
-This is a private hypothetical reconstruction, not a proven production prescription. The manufacturer-authored SMC PENTAX-A LENSES manual supports the ordinary200mmf4 product's six elements/six groups, corresponding section, fullfield12.5°, nearest focus1.9m,52mm filter and automatic diaphragm. It does not identify this patent/example, radii, glass suppliers, exact stop coordinate or manufacturing revision. The edition date of the inspected scan was not established; its digitization date is not a publication date. This product is distinct from the A*200mmf4MacroED and M200mmf4.
+The prescription is Example 1 of US 4,550,987, associated here with the **PENTAX SMC A 200mm f/4**. The patent names no product and the maker has not published a prescription, so this is a patent design linked to the lens by correlation, not a confirmed factory prescription. The evidence converges as follows:
 
-The readable handoff supplies a visually audited literal table and complete figure ratios. OriginalPDF pixels were inspected by the source reviewer, not this numerical worker. The verified source ZIP remains privately preserved by reference; this environment cannot materialize its signed-host binary. No new correction-history completeness claim is made.
+1. **Construction.** All four patent examples are six air-spaced singlets, and the lens is listed as 6 elements in 6 groups.
+2. **Speed and field.** The patent addresses an F-number of the order of 1:4 and an image angle of the order of 12° (col. 1). Example 1 is FNO 1:4.0 with aberrations plotted to 6.3°, and a uniform ×2 scale gives a paraxial focal length of 200.03 mm.
+3. **Date and lineage.** Priority is May 1982, and reference listings date the lens to 1983 or 1984. The patent improves on JP 53-27422, an earlier Asahi telephoto in which L5 and L6 are cemented (cols. 1 and 3). Leaving them uncemented is consistent with the step from the 6-element, 5-group M 200mm f/4 to the 6-element, 6-group A version.
+4. **Maker's section.** The section in the SMC PENTAX-A lens manual (printed p. 38) agrees with Example 1 at ×2: L1 front through L6 rear, and the diaphragm, all fall within about 0.7 mm of their scaled positions.
+
+The listings give the lens a smallest aperture of f/32, a 1.9 m minimum focus, a 52 mm filter, a 111 mm length and a weight of 405 g. It is distinct from the A* 200mm f/4 Macro ED (US 4,666,260).
+
+One discrepancy remains. At ×2, S1 sits 115.0 mm from the K flange, but the listed barrel is 111 mm long, so production may be a variant of Example 1. Example 2 at ×2 puts S1 at 109.9 mm, but it is F/4.1. The section's proportions do not separate the two: its ratio of d8 to d6 reads about 0.44, against 0.46 for Example 1 and 0.42 for Example 2. Examples 3 and 4 sit near 0.2 and use a 1.49700/81.6 crown.
 
 ## Optical Architecture
 
-Six separate spherical singlets form a positive-negative-positive-positive-negative-positive telephoto arrangement. The first four elements have positive combined power; a compact negative-positive rear section follows the longer central spaces. Element roles below are paraxial interpretation of the literal prescription, rather than a claim that the patent assigns each aberration to that element. There are no cemented interfaces, aspheric terms, modeled cover plates or historical coating/transmission calibration.
+Six separate spherical singlets form a telephoto with a positive–negative–positive–positive front group and a negative–positive rear group. The front group's combined focal length is 0.506f (101.2 mm at this scale) and the rear group's is −0.406f (−81.2 mm), which brings the track to 160.46 mm, 0.80 of the focal length. There are no cemented interfaces or aspherical surfaces, and no cover plate is modeled.
 
-The patent's central Fig1mark in d6 is a dimension leader, not an iris. The manufacturer section places its diaphragm after the fourth element, in d8. A single stop hypothesis is frozen10% into that gap: z67.808mm at the2× scale, splitting d8=21.28mm into2.128+19.152mm. The schematic broader0.05–0.15fraction context is not an executed stop family or manufacturing tolerance. No stop is selected for favorable contrast.
+The patent's aim is a shorter lens with better low-frequency contrast than JP 53-27422. It keeps L1 weak and L2 close behind it so that aberrations are corrected as early as possible (col. 2). Example 1 meets all six conditions: $f_{1,2,3}$ = 0.667f, $f_{1,2,3,4}$ = 0.506f, $f_1$ = 0.730f, $d_2$ = 0.0101f, $|f_{5,6}|$ = 0.406f and $n_5 - n_6$ = 0.096. Element roles below follow the patent where cited and are otherwise a paraxial reading of the prescription.
 
-A single absolute aperture anchor is also frozen before tracing: nominal entrance-pupil radius25mm plus8% initial clearance gives27mm. The audited all-face ratios[1,1,.99,.99,.98,.97,.59,.59,.45,.45,.50,.50] give clear SDs[27,27,26.73,26.73,26.46,26.19,15.93,15.93,12.15,12.15,13.5,13.5]mm. These are schematic aperture hypotheses, not factory clear apertures. Endpoint uncertainty and unknown drawing distortion remain;52mm filter metadata does not calibrate a glass clear radius.
+The patent neither tabulates nor draws a stop; the mark in d6 on Fig. 1 is a dimension leader. The maker's section draws the diaphragm just behind L4, and the model places it 2.128 mm behind surface 8, 67.81 mm behind S1, which splits the scaled d8 of 21.28 mm into 2.128 + 19.152 mm. The exact distance is inferred. A trace of Example 1 supports it: the meridional field curve of Fig. 2 places the stop about 56 to 70 mm behind S1 at this scale, and a stop at mid-d8 falls outside that range.
+
+The patent prints no clear apertures. The semi-diameters take their ratios from the element heights in Fig. 1 and their scale from 27 mm at S1, the f/4 entrance-pupil radius of 25 mm plus 8 %. They are inferred, not factory apertures. Fig. 1's own axial scale puts L1 near 25.9 mm, and outline widths in the maker's section give about 26.4 mm at L1, 14.9 mm at L4, 10.1 mm at L5 and 13.2 mm at L6, against 27, 15.93, 12.15 and 13.5 mm in the model. The larger model rims are kept because scaling them to Fig. 1 would lower corner illumination from about 78 % to about 71 %.
 
 ## Element-by-Element Analysis
 
 ### L1 — Positive Meniscus
 
-nd=1.51633, νd=64.1. Glass: unmatched literal coordinate, crown-class interpretation. f=+145.9220363mm (isolated thick-element calculation). The first positive element begins converging the beam. Its rear surface is relatively weak, and its radius is the global modeled outline anchor.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA catalog equivalent; production supplier unspecified). f = +145.9 mm.
+
+The first positive element begins converging the beam, and its rear surface is nearly flat. The patent keeps its power relatively small to suppress aberrations (col. 2; condition 3).
 
 ### L2 — Biconcave Negative
 
-nd=1.76182, νd=26.6. Glass: unmatched high-index, higher-dispersion coordinate. f=−190.3764965mm. This negative element interrupts front-section convergence; chromatic compensation with neighboring positive crown-class elements is a design interpretation, not a measured broadband result.
+nd = 1.76182, νd = 26.6. Glass: FD140 (HOYA, coordinate equivalent). f = −190.4 mm.
+
+This element lies only 2.02 mm behind L1. The patent keeps that space small so that the marginal ray stays high and L2 can correct L1's aberrations at once (cols. 2–3; condition 4). As the only flint in the front group it also pairs chromatically with the neighboring crowns, which is an interpretation of the glass choice rather than a statement in the patent.
 
 ### L3 — Positive Meniscus
 
-nd=1.51633, νd=64.1. Glass: same literal coordinate asL1, supplier identity unknown. f=+169.1358879mm. This positive element completes the first three-element block before the long d6 air space. The front/rear figure SDs are slightly unequal; exact native rim checks accept the frozen pair without render trim.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA catalog equivalent; production supplier unspecified). f = +169.1 mm.
+
+This positive element completes the first three-element block before the long d6 air space. The patent notes that weakening L1 past condition 3 would place a heavier burden on this element (col. 2).
 
 ### L4 — Positive Meniscus
 
-nd=1.51633, νd=64.1. Glass: unmatched crown-class coordinate. f=+241.7466988mm. The fourth singlet lies before the manufacturer-linked stop region. The chosen stop clears its rear cap over the native operating disk; this is geometric disk clearance, not proof of blade mechanics.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA catalog equivalent; production supplier unspecified). f = +241.7 mm.
+
+This weak meniscus sits 46.24 mm behind L3 and just ahead of the diaphragm, and it completes the front group. At f/4 the modeled stop clears its rear surface by 1.53 mm; that is geometric clearance, not evidence of the blade mechanism.
 
 ### L5 — Biconcave Negative
 
-nd=1.74400, νd=44.7. Glass: unmatched high-index coordinate. f=−29.7869879mm. Its strong negative power is part of the compact rear block. The comparatively small frozen aperture contributes to the retained off-axis clipping; that modeled clipping is not attributed to factory performance.
+nd = 1.74400, νd = 44.7. Glass: S-LAM2 (OHARA catalog equivalent; production supplier unspecified). f = −29.8 mm.
+
+This is the strongest element in the system and the negative half of the telephoto's rear group. The patent gives it a higher index than L6 to keep the Petzval sum from falling (cols. 3–4; condition 6). Its inferred rim contributes to the modeled corner vignetting, which is not a factory figure.
 
 ### L6 — Biconvex Positive
 
-nd=1.64769, νd=33.8. Glass: unmatched literal coordinate. f=+54.6208890mm. The last positive element followsL5 and precedes the printed back-focus air space. Both radii and all gaps remain literal under the same2×scale.
+nd = 1.64769, νd = 33.8. Glass: S-TIM22 (OHARA catalog equivalent; production supplier unspecified). f = +54.6 mm.
+
+The last element is equi-convex, with the patent's r11 and r12 equal and opposite, and it stays air-spaced 3.02 mm from L5. The patent credits that separation with more design freedom, a stronger negative rear group and a shorter lens (col. 3).
 
 ## Glass Identification and Selection
 
-The table prints n and ν without an explicit reference suffix. Figure2's d/g chromatic labels contextually support a conventional d-line assignment, but do not turn it into an explicit nd declaration. The schema stores the literal coordinates under its nd/vd fields with this qualification. Monochromatic calculations use587.5618nm and the literal reference indices. No supplier, melt, full anomalous dispersion or historical spectral weighting is established; no broadband factory-performance claim follows.
+The table prints n and ν without naming a spectral line. Fig. 2 is labeled d-line and g-line, and a trace of the printed indices at the d-line reproduces its solid curves, so the values are treated as d-line data.
+
+The labels are catalog equivalents chosen by coordinate: S-BSL7 for L1, L3 and L4, FD140 for L2, S-LAM2 for L5 and S-TIM22 for L6. The patent names no glass, and the production supplier is not established. With these labels the paraxial g-line focus falls 0.12 behind the d-line focus on the patent's f = 100 scale (0.23 mm at this scale), where Fig. 2 reads about 0.13.
 
 ## Focus Mechanism
 
-Infinity is the conventional interpretation of the focal-length/back-focus prescription and ordinary telephoto diagrams. The source reviewer found no explicit infinity sentence or finite-focus table. Only this conventional infinity hypothesis is built. The manufacturer's1.9m minimum focus remains metadata; no finite conjugate or motion law is fabricated.
+The patent describes no focus mechanism and prints no moving group, close-focus spacing or object distance. The model stays at the prescription's infinity state and no element moves. The 1.9 m minimum focus is the maker's figure and carries no modeled optics.
 
-Printed fB32.50 is separate from the table's absent d12 value. Uniform2×scaling gives a65.00mm final gap,95.46mm powered track and authored source image plane160.46mm. Independent reduced-angle and physical-slope first-order calculations give EFL200.0323050560mm and diagnostic BFL65.0304106928mm, with computed focus at160.4904106928mm. That diagnostic does not replace the printed-gap plane. Applied refocus remains0mm; rounded source invariants are reported as diagnostics without tuning.
+The patent text does not say that the table is for infinity, but Fig. 2 supports it. An exact trace of the printed data at infinity and the d-line reproduces the plotted curves on the patent's f = 100 scale. Spherical aberration is −0.066 at about 70 % of the aperture, where Fig. 2 reads −0.069, and it crosses zero near 93 % as plotted. The sine-condition curve is −0.146 at the same zone against a reading of −0.149, the sagittal field at 6.3° is −0.033 in both, and distortion at 6.3° is +1.00 % against +1.02 %.
 
-## Bounded Numerical Checkpoint
+The printed fB of 32.50 gives a final gap of 65.00 mm and an image plane 160.46 mm behind S1. The computed paraxial values are EFL 200.03 mm and back focus 65.03 mm. The 0.03 mm difference is within the rounding of the printed data, and the printed value is kept.
 
-Native geometry, rim and full operating-disk checks pass without trim. The F4 native iris radius is12.9694530783mm, with cap clearances1.5332459120mm toS8 and17.0329649868mm toS9. These checks validate the frozen model's geometry, not factory aperture dimensions.
+## Model Scope and Limitations
 
-Exact source fields are0°,3.15°,6.3°. The last chief height is22.2978862186mm, beyond the native21.65mm rounded format reference; the geometric36×24mm corner is21.6333076528mm. Full-source-angle diffraction therefore uses native exact-angle launch/bundle/shearedOtf functions directly, preserving catalog metadata and avoiding fabricated image-height fractions. The source6.3°edge, manufacturer6.25°half-angle and format corner remain distinct.
+The stop follows the paraxial f-number rule: at f/4 the iris radius is 12.97 mm for an entrance-pupil radius of 25 mm. No lens surface clips the axial beam. The real marginal ray through that iris enters at 24.4 mm, a working aperture of about f/4.1.
 
-The native normal monochromatic estimates pass the adjacent-grid0.01practical gate through their evaluated0–50lp/mm frequencies at the fixed source plane. Their64→128 maximum changes are0.0022940847,0.0020954689,0.0017789777;128-cell valid/blocked counts are12892/0,12168/724,9898/2994. Normal bundles have zero failed/unaimed/unresolved flux, with certified blocks retained separately from direct clipping.
+The patent's field edge is 6.3°, where the chief ray lands 22.30 mm from the axis, beyond the 21.63 mm corner of the 24 × 36 mm frame. The model reaches that corner at 6.1°, with relative illumination of about 78 %. That figure follows from the inferred rims and is not a factory value.
 
-The separate215-point pupil precheck deliberately retains raw full attempts even on certified pre-stop-blocked launches:1raw noBracket failure at3.15°and27at6.3°, all already certified blocked atS1. Those are not silently dropped or relabeled as successful traces. The independent sphere/vector-Snell check has617matching raw statuses and28disagreements confined to those pre-certified blocks; matching image intercepts differ by at most9.60e−14mm. It reuses native aiming and does not independently validate the aim solver or physical source.
+Close focus, coatings, transmission and any production revision are not modeled.
 
-The corrected2D comparison uses actual launch-area power under a conditional uniform object-side plane irradiance and scalar electric-field intensity detector: |H(q)|²=T*K/(Jq*cosθimage), not automatic unit power per stopcell. It uses genuine2D endpoint shears, the same coordinate measure, sampled adjacent-triangle support and no extrapolation. Source64/128 and angular512/1024 refinements are separate; all selected phase and practical contrast/complex gates pass. Full-source MTF changes are0.0032550695,0.0037393884,0.0024376036; angular changes are0.0010847989,0.0003884558,0.0006534510 across retained cases. No256source extension or optical variant is needed. Complete raw outcomes, failures, controls and support distinctions remain in the evidence.
+## Sources
 
-L2 energy_common_units retains a mesh-dependent median-J normalization, so do NOT compare those values as absolute throughput across meshes. Normalized OTF/MTF is unaffected; conditional source-E² formula cancels it correctly. Sampling gates cover the six sampled frequencies only, not a continuous-frequency error bound.
-
-The prior fixed-row/column OPL-reference interpretation remains withdrawn and is never used. Same-bundle comparisons do not establish independent ray-tracer or factory accuracy. Unknown physical fringe, factory iris/apertures, source/product revision, illumination, coatings, vector/polarization response and dispersion remain limitations. No catalog integration, commit, PR, deployment or publication occurs.
-
-## Sources and Reproducibility
-
-1. US4550987 Example1 original: [USPTO grantPDF](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4550987). Source audit and primary images are privately preserved in Drive10gx3rHFmFFRhuEbFod3CHDP24-a7mAts,7023041bytes,SHA256edd120eec5145b3aa5f7a83de2d0a5884f09715b3cfbad5f4618d2f657295ef5. Readable source1kT-wqimremIgIOaYWQ4Zk90l9L3_erV_ is included verbatim.
-2. Manufacturer-authored [SMC PENTAX-A LENSES manual](https://www.cameramanuals.org/lenses/pentax_smc_a_lenses.pdf), printed33/PDF36 product table and printed38/PDF41 sections; edition date unestablished. Correlation and pixel-inspection qualifications are in the source handoff.
-3. Private readiness report10bGFCgKQjqrVuYS7-YaLxrl-fPx6h0GN, included for preserved context; current parent authorization supersedes its source-only numerical hold for this one bounded construction.
-4. Paired data, freeze, literal/first-order records, native/2D scripts, raw matrices/statuses, analysis figures, manifests and save/readback receipts. Engine commit8d3e53faf45d5ee139fbcdfba76d0c8185ac777b is pinned; no production files are changed.
-
-## Additive Metadata Correction and Private Integration
-
-The independent metadata erratum confirms that all12native per-grid surface-outcome records are preserved. The inherited NOT_RECORDED labels in prepare_maps.py and six audit-field JSON files are stale; the verified addendum supplies corrected labels and evidence pointers. No optical input, numerical result, raw failure or source qualification changes. Native normal bundle zero failures does not erase the separate28raw noBracket attempts already certified S1blocked. The live viewer uses the native sheared scalar estimate; corrected two-dimensional comparisons remain separate conditional scalar research, with the withdrawn one-dimensional reference unused. Retail1.9m metadata supplies no finite configuration.
-
-
-### Private integration presentation descendant — 2026-11-01
-
-The current-main metadata descendant uses the display name and focus description to expose the hypothetical patent pairing, inferred aperture/stop assumptions and infinity-only scope with the full analysis viewer disabled, including comparison headers. The retail minimum-focus distance remains descriptive prose; closeFocusM now uses the existing finite 1e15 infinity-only convention with no focus motion. All optical prescription fields, frozen apertures, stop, source plane, field and wavelength conventions are unchanged. The earlier shared static-focus UI patch is optional and is not a lens dependency on current main. It supplies no finite optics or factory validation. Prior source/numerical evidence and metadata errata remain intact.
-
-
-## Current-main infinity metadata descendant
-
-The prescription, stop, clear apertures, fixed image plane, native and qualified conditional scalar research evidence are unchanged. Current main e1414bf uses a finite closeFocusM sentinel of 1e15 for static infinity-only models; the retail minimum-focus distance above is descriptive and does not supply finite performance. Default focus and published-position mode remain infinity. The existing raw focus=1 SUMMARY huge-distance label and BREATHING sentinel chart are shared main UI quirks also reproduced on the deployed canonical infinity-only control; they are recorded separately and do not establish finite optical support. The original paired-patch release candidates remain archived unchanged. No UI or optical engine changes are included in this descendant.
+1. Satoru Tachihara, Asahi Optical Co., Ltd., **US 4,550,987**, *Small Size Telephoto Lens*, granted 1985-11-05. Example 1: col. 4 and claim 3; Fig. 1 and Fig. 2: sheet 1. USPTO grant PDF: https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4550987
+2. Yasuo Takahashi, Asahi Kogaku Kogyo Co., Ltd., **JP 53-27422**, *Small telephotographic lens*, published 1978-03-14. Google Patents: https://patents.google.com/patent/JPS5327422A/en
+3. Asahi Optical Co., Ltd., **SMC PENTAX-A Lenses** manual, optical sections on printed p. 38 (PDF p. 41); edition date not established. Scan: https://www.cameramanuals.org/lenses/pentax_smc_a_lenses.pdf
+4. Lens-DB, smc Pentax-A 200mm F/4: https://lens-db.com/smc-pentax-a-200mm-f4-1983 and smc Pentax-M 200mm F/4: https://lens-db.com/smc-pentax-m-200mm-f4-1977
+5. Cine Lens Wiki, Pentax-A SMC 200mm f/4: https://cinelenswiki.com/lens:pen-asmc200mmf4

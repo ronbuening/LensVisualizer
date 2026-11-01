@@ -1,128 +1,114 @@
-# Minolta MD 50mm f/1.7 correlated photographic master — private row1090
+# Minolta MD 50mm f/1.7
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP S60-111215 A (JPS60111215A), *Rear conversion lens system*.
-**Filed:** 21 November 1983.
-**Published:** 17 June 1985.
-**Inventor:** Sho Fukushima (福島 省).
-**Applicant:** Minolta Camera Kabushiki Kaisha; normalized in the model as Minolta Camera Co., Ltd.
-**Example details:** The unnumbered photographic master lens (撮影レンズ例), PDF page4; Figure2 on PDF page6. The numbered Examples1–4 describe converters. Figure4 shows combined-system aberrations and provides no independent standalone-master validation.
-**Status:** PRIVATE_QUALIFIED_NATIVE_BUILD; no catalog publication, PR, merge or deployment.
+**Patent:** JP S60-111215 A\
+**Application Number:** JP S58-219768\
+**Filed:** November 21, 1983\
+**Published:** June 17, 1985\
+**Inventor:** Sho Fukushima (福島 省)\
+**Assignee:** Minolta Camera Co., Ltd.\
+**Title:** *Rear Conversion Lens System* (リア・コンバージョンレンズ系)\
+**Example details:** The unnumbered taking-lens table (撮影レンズ例), PDF p. 4, drawn in Figure 2, PDF p. 6. Examples 1–4 are converters for this lens. Figure 4 onward show the combined systems, so the patent has no aberration plot for this lens alone.
 
-The production correlation rests on a manufacturer-authored system guide listing the Minolta 50mm f/1.7 MD as six elements in five groups, plus the photographic-master prescription's approximate focal length and aperture. Exact factory revision and prescription pairing remain unproven. The guide lists a47° full field,0.45m minimum focus distance,49mm filter and f/1.7–16 range. The prescription instead prints f/1.73 and45.6° full field; these source-design values control the native runs. A filter thread does not establish any optical clear aperture.
+The prescription is the taking lens the patent prints ahead of its four numbered converter examples. The patent states that it shows the taking lens first and then Examples 1–4, and that the converter values apply to the combination with this lens (PDF p. 4). It is a master lens with no example number of its own, so the data file records no `source.example`. All eleven radii, ten axial spacings and six N/ν pairs are kept at the printed millimetre scale, and nothing is rescaled to the marketed 50 mm.
 
-This builder received the source worker's completed visual table and Figure2 audit through an exact readable handoff. Its8085 bytes and SHA256 were verified locally. The returned raw-source ZIP host denied transfer with CONNECT403. Neither the patent PDF pixels nor the manufacturer's PDF pixels were inspected locally by this builder. The preserved originals and source audit remain linked in Sources. Their inherited inspection must not be represented as a new local visual audit.
+The link to the Minolta MD 50mm f/1.7 is a correlation, not a confirmed factory prescription. The patent names no product. The evidence converges as follows:
 
-All11 radii,10 published gaps and6 glass coordinates are retained in literal millimetres. R11 is−43.293mm. The old−143.293mm value was a transcription error and is not an alternate prescription. Nothing is scaled to the marketed50mm focal length. The final image gap is independently derived; it is not printed in the master table.
+1. **Construction.** Minolta's system guide lists the MD 50mm f/1.7 with six elements in five groups ([2], printed p. 19), the count in Figure 2.
+2. **Focal length and aperture.** The patent's background addresses standard lenses of about 50 mm (PDF p. 2). The printed power and FNo = 1.73 give a computed 51.50 mm at f/1.73, consistent with a marketed 50mm f/1.7.
+3. **Close focus.** The printed extension dM = 7.65 mm gives 450.2 mm object to image at 1:6.73 as a unit-focus lens. The guide lists 0.45 m.
+4. **Timing.** The November 1983 filing comes two years after the 1981 New MD lens ([3]).
+5. **Section shape.** A third-party section by Lens QA Works ([3]) shows the same element order, with the cemented pair behind the stop. It is not a Minolta drawing and cites no source, so it supports the shape only.
+
+The guide also gives a 47° angle of view, a 49 mm filter and f/1.7–f/16. The patent's 45.6° and F1.73 are its own design values and stay distinct from those figures. A filter thread does not establish an optical clear aperture.
+
+The patent cannot separate the 1981 New MD from the 1985 AF 50mm f/1.7, which has the same six-element, five-group count and 49 mm filter ([4]). Earlier Minolta 50mm f/1.7 lenses are listed with the same count ([5]). Which production version this table matches, if any matches exactly, stays unresolved.
 
 ## Optical Architecture
 
-The master is a modified double-Gauss arrangement: three separate front elements, a cemented negative/positive rear pair, and one final positive element. It contains six glass elements, five groups and eleven refracting surfaces. All surfaces are spherical; no plate or asphere is published. The source powered track is34.18mm. The central stop lies in d6 between S6 at z12.31mm and S7 at z23.93mm.
+The lens is a modified double-Gauss: two positive menisci and a negative meniscus ahead of the stop, then a cemented negative/positive pair and a final positive element. It has six glass elements, five groups and eleven refracting surfaces. All surfaces are spherical, and the table lists no plate or asphere. The track from S1 to S11 is 34.18 mm. US 4,444,473, the F/2.0 patent behind the MD 50mm f/2 in this catalog, has the same arrangement ([6]).
 
-The Figure2 audit places opposed iris glyphs approximately52.1% across that gap. The private baseline uses z18.4mm, bracketed by17.9 and18.9mm;18.12mm is a separately labeled exact-midpoint control. The source d6 stays11.62mm in every case. No broad stop optimization was performed.
+The central air space d6 = 11.62 mm runs from S6 at z = 12.31 mm to S7 at z = 23.93 mm. The table prints no stop. The iris marks in Figure 2 put it at about z = 18.34 mm with a radius of 9.6–11.4 mm; the range reflects the figure's differing axial and radial scales. The model uses z = 18.4 mm, splitting d6 into 6.09 + 5.53 mm, and a stop radius of 10.36 mm derived from the design f-number. At full aperture S6 and S7 clear the iris by about 2.1 mm each.
 
 ## Element-by-Element Analysis
 
 ### L1 — Positive Meniscus
 
-`nd=1.72000, νd=50.31. Glass: Unmatched literal patent coordinate. f=+62.184mm` (standalone in air).
+`nd = 1.72000, νd = 50.31. Glass: LAC10 (HOYA, coordinate equivalent). f = +62.18 mm` (standalone in air).
 
-S1–S2 form the first positive collector. Its inferred front/rear clear radii are16.4/15.6mm. The strong object-side curvature and weak rear curvature give its positive paraxial power. This is a structural interpretation, not an independent aberration decomposition.
+S1–S2 form the first positive collector, with a strong object-side curvature and a weak rear curvature. The modeled clear radii are 16.4/15.6 mm.
 
 ### L2 — Positive Meniscus
 
-`nd=1.69350, νd=53.39. Glass: Unmatched literal patent coordinate. f=+66.517mm` (standalone in air).
+`nd = 1.69350, νd = 53.39. Glass: LAC13 (HOYA, coordinate equivalent). f = +66.52 mm` (standalone in air).
 
-S3–S4 form the second positive meniscus. Its inferred clear radii are15.6/13.8mm. The0.16mm S2–S3 axial spacing is preserved exactly. No glass supplier or historical melt is inferred from a modern coordinate match.
+S3–S4 form the second positive meniscus, 0.16 mm behind L1. The modeled clear radii are 14.2/13.8 mm; the front value follows the rim drawn in Figure 2.
 
 ### L3 — Negative Meniscus
 
-`nd=1.67270, νd=32.22. Glass: Unmatched literal patent coordinate. f=−30.704mm` (standalone in air).
+`nd = 1.67270, νd = 32.22. Glass: SF5 (SCHOTT, coordinate equivalent). f = −30.70 mm` (standalone in air).
 
-S5–S6 form the front negative member bordering the iris cavity. Its inferred clear radii are12.7/12.1mm. The concave rear cap reaches toward the stop, so vertex clearance alone would be insufficient to qualify the iris location.
+S5–S6 form the negative element ahead of the stop. The modeled clear radii are 12.7/11.0 mm; the rear value follows the rim drawn in Figure 2. The concave rear face reaches back toward the stop.
 
-### L4 — Biconcave Negative
+### L4 — Biconcave Negative, Front Member of Cemented Pair C1
 
-`nd=1.62590, νd=35.70. Glass: Unmatched literal patent coordinate. f=−21.735mm` (standalone in air).
+`nd = 1.62590, νd = 35.70. Glass: S-TIM1 (OHARA catalog equivalent; production supplier unspecified). f = −21.74 mm` (standalone in air).
 
-S7–S8 form the negative front member of the cemented pair. The center thickness is0.88mm; inferred clear radii are10.8/11.0mm. S7 reaches forward toward the stop. Its full operating-disk clearance is checked along with S6.
+S7–S8 form the negative front member of the cemented pair, with a center thickness of 0.88 mm. The modeled clear radii are 10.8/11.4 mm. S7 reaches forward toward the stop.
 
-### L5 — Biconvex Positive
+### L5 — Biconvex Positive, Rear Member of Cemented Pair C1
 
-`nd=1.69350, νd=53.39. Glass: Unmatched literal patent coordinate. f=+26.023mm` (standalone in air).
+`nd = 1.69350, νd = 53.39. Glass: LAC13 (HOYA, coordinate equivalent). f = +26.02 mm` (standalone in air).
 
-S8–S9 form the positive rear member, sharing S8 directly with L4. Inferred clear radii are11.0/12.0mm. Standalone powers describe each element in air and do not give the net cemented-unit power. Native aperture analysis identifies S8 as limiting the axial marginal ray; that clipping remains in the results.
+S8–S9 form the positive rear member, sharing S8 with L4. The modeled clear radii are 11.4/12.0 mm. S8 is the tightest surface for the axial beam, which needs 11.33 mm there, and the rim drawn in Figure 2 supports the 11.4 mm used. Together L4 and L5 have f = −569.4 mm in air, so the pair adds little net power.
 
 ### L6 — Biconvex Positive
 
-`nd=1.78100, νd=44.55. Glass: Unmatched literal patent coordinate. f=+49.841mm` (standalone in air).
+`nd = 1.78100, νd = 44.55. Glass: Unmatched (patent 1.7810/44.55; no catalog row at this coordinate). f = +49.84 mm` (standalone in air).
 
-S10–S11 form the final positive element, with inferred clear radii11.9/11.8mm. S10 has the weak positive radius374.955mm; S11 uses the verified−43.293mm radius. The source's final glass thickness is2.8mm.
+S10–S11 form the final positive element, with modeled clear radii of 11.9/11.8 mm and a center thickness of 2.80 mm. S10 is nearly flat at R = 374.955 mm, so S11 carries most of the power. The printed R11 = −43.293 mm is confirmed by the sag of r11 in Figure 2 and by the converter data.
 
 ## Glass Identification and Selection
 
-The master table labels N and v without an explicit reference-wavelength subscript. The private data retain the literal values and explicitly qualify the d-line convention. Thus the monochromatic numerical runs use587.5618nm as the engine's reference convention; the patent does not explicitly certify this wavelength for the master table.
+The table labels N and ν without a spectral line. The data file treats them as d-line values, which is an assumption.
 
-No vendor glass, nC/nF/ng values, anomalous partial dispersion or full dispersion model is asserted. Any engine Abbe initialization is a proxy and was not used to claim polychromatic performance. The six standalone focal lengths above were independently computed from each pair of spherical faces and its physical thickness.
+| Element | Patent N / ν | Catalog equivalent | Catalog nd / νd |
+|---|---|---|---|
+| L1 | 1.7200 / 50.31 | LAC10 (HOYA) | 1.72000 / 50.35 |
+| L2, L5 | 1.6935 / 53.39 | LAC13 (HOYA) | 1.69350 / 53.34 |
+| L3 | 1.6727 / 32.22 | SF5 (SCHOTT) | 1.67270 / 32.21 |
+| L4 | 1.6259 / 35.70 | S-TIM1 (OHARA) | 1.62588 / 35.70 |
+| L6 | 1.7810 / 44.55 | Unmatched | No catalog row |
 
-## Focusing Mechanism
+The labels are catalog equivalents at the patent's coordinates and do not establish which supplier Minolta used. L6 stays unmatched: no catalog row lies at 1.7810/44.55, and no glass is guessed for it. Its dispersion in the model comes from the patent's N and ν alone. L3 and L4 have the lowest ν of the six, and the positive elements run from ν = 44.55 to 53.39.
 
-The patent's dM=7.65mm is real source context for translating the entire photographic master from infinity to a close position in a combined converter experiment. It is not an image gap, and it does not establish a standalone0.45m calibration.
+## Focus Mechanism
 
-This model authors only static infinity geometry. The manufacturer's0.45m value is metadata. No internal motion law or finite source conjugate is invented; no finite MTF or catalog minimum-focus proof was run. Future finite analysis must derive consistent conjugates and translate the whole master relative to the image and object references.
+Unit focus: the whole lens moves forward as one piece, and only the back focus changes. The patent describes the taking lens as a whole-extension type, shows it extended to its closest focusing position in Figure 1(b), and defines dM as that extension (PDF pp. 2 and 5). The table prints dM = 7.65 mm.
 
-## Geometry, Stop and Aperture Qualification
+| State | Back focus | Object to image | Magnification |
+|---|---|---|---|
+| Infinity | 36.884 mm (computed) | Infinite | 0 |
+| Closest focus | 44.534 mm (computed + printed dM) | 450.2 mm | 1:6.73 |
 
-Independent reduced-angle matrix and physical-slope propagation agree on EFL51.4982911496mm and BFL36.8837336559mm, with BFL disagreement2.84×10⁻¹⁴mm. The resulting image plane is z71.0637336559mm. Computed power0.0194181201mm⁻¹ differs from the printed0.0194 by0.0000181201mm⁻¹, within a nominal half-unit rounding interval0.00005. This supports transcription consistency; it does not prove commercial identity.
+The 450.2 mm result agrees with the 0.45 m the guide lists ([2]). The patent prints no aberration data for this lens alone at closest focus.
 
-Every unprinted clear radius was frozen before exact native pupil traces: absolute paraxial native axial marginal height×1.10, rounded upward to0.1mm. The complete per-surface ledger is in first-order.json. This applies the current spec's entrance-pupil clearance guidance without treating the patent outline or49mm filter as dimensional aperture data. No radius was enlarged to pass a ray.
+## Model Scope and Limitations
 
-The derived native stop radii at z17.9,18.4,18.9mm are10.407343,10.355053,10.302763mm. Analytic monotonic spherical-cap bounds over the complete iris disk give respective S6/S7 clearances of1.587/2.527,2.134/2.067,2.681/1.606mm. The midpoint control has1.828/2.325mm. All remain in air throughout the native iris disk and the smaller stopped-down disks. This is optical disk clearance, not proof of a physical blade assembly.
+The patent prints the power and not a focal length or back focus. The model computes EFL = 51.498 mm and a back focus of 36.884 mm, which places the infinity image plane at z = 71.064 mm. The computed power 0.019418 mm⁻¹ rounds to the printed φM = 0.0194.
 
-All four native models build successfully. Native SVG geometry produces six shapes with zero hidden trim. Strict standalone TypeScript checking passes. The candidate is outside the auto-discovered catalog and has visible:false; no catalog integration or browser validation is claimed.
+The converter data give an independent check. The printed e1, B1, β1 and β2 of Examples 1–4, taken with each converter's own prescription, imply f = 51.47–51.50 mm and a back focus of 36.85–36.90 mm. The model reproduces e1 to within 0.02 mm and β1 and β2 to within 0.002.
 
-## Bounded Native Pupil and Monochromatic MTF
+The patent prints no clear apertures. Each semi-diameter is the paraxial marginal height at f/1.73 × 1.10, rounded up to 0.1 mm, except S3, S6 and S8, which are set against Figure 2. All are modeled values rather than production data, and the stop position is likewise inferred from the figure. The full f/1.73 beam passes on axis. Off axis the modeled rims transmit 75.3 % of the stop's beam at 11.4° and 32.2 % at 22.8°, limited mainly at S1, S8 and S10.
 
-Pupil checks sample0°,11.4°,22.8° object angles at f/1.73, with208 stop-lattice cells plus7 cardinal controls per field. At z18.4mm,195/157/67 of215 full raw traces are transmitted. The center field has20 clipped samples; the middle has58; the edge has109 clipped and39 pre-stop blocked samples. Those39 blocked inputs retain their native raw failed intersection records. They are already certified blocked by the native aiming solver, so they are not silently counted as numerical unknowns.
-
-An independent analytic sphere/vector-Snell tracer checked2580 archived input rays across the four stop positions. For matching raw statuses, maximum image-intercept difference is8.21×10⁻¹⁴mm. There are161 raw status differences: every one was already marked pre-stop blocked by native aiming, native raw failed, and independently clipped at S1. All differences are retained. This validates intersections and refraction for the reused aimed inputs; it does not independently validate the aiming solver or diffraction kernel.
-
-The final result is the full native monochromatic diffraction calculation through `computeMtfSteps` with `method:"diffraction"`, `spectrum:"reference"` and `focus:"design"`, using the engine's complex sheared-pupil OTF workflow. It is not geometric-only MTF. It uses evenly sampled physical-stop pupils and the unchanged derived infinity image plane. Fields are mapped by image height: chief heights at11.4° and22.8° are approximately10.3641 and21.4556mm for the baseline. MTF fractions are these chief heights divided by the patent-edge chief height; they are not angle fractions or the marketing47° field. Returned angles were explicitly checked against0°,11.4°,22.8°.
-
-The 36×24mm format corner radius is21.63330765mm, distinct from the simulated patent-edge chief height21.45561584mm. The latter is about99.18% of the format-corner radius. The chart's100% field is explicitly the patent22.8° chief height, not the format corner. No result beyond the patent field is asserted.
-
-The initial refinement ladder was16→32→64→128 cells across the pupil, frequencies0–50lp/mm in2lp/mm steps. All three figure-bounded edge cases missed the≤0.01 convergence criterion through50lp/mm at128. One bounded edge-only extension to256 converged all three. The midpoint control converged at128. All final fields have zero failed/unaimed MTF samples and zero unknown in-beam flux. Raw coarse-grid and unconverged results are retained.
-
-At z18.4mm and the derived infinity plane:
-
-| Object angle | Image height mm | Final grid | Valid / blocked | MTF30 S / T |
-|---|---:|---:|---:|---:|
-|0°|0.0000|64|3072 /156|0.1028 /0.1028|
-|11.4°|10.3641|64|2424 /804|0.0669 /0.3035|
-|22.8°|21.4556|256|16594 /34874|0.2566 /0.1643|
-
-The edge MTF30 values over z17.9–18.9mm span S0.2561–0.2570 and T0.1641–0.1643. This small bounded stop sensitivity does not remove uncertainty in the inferred clear radii or schematic stop localization.
-
-The separate best-axial diagnostic moves only the analyzed plane by−0.124945835mm. It yields MTF30 S/T0.7106/0.7106 centrally,0.4671/0.3237 at11.4°, and0.1394/0.1644 at22.8°. The central gain accompanies worse sagittal edge contrast. The source prescription and derived infinity BFL were not changed. These are simulated qualified-master curves, not measured production-lens performance.
-
-## Reproducibility and Remaining Limits
-
-All numerical scripts, call counters, source handoff, raw pupil records, refinement histories, independent checks and four scientific figures accompany this pair. The ledger includes806765 actual native exact-trace calls:227151 valid main-run calls,316470 edge-refinement calls,276 build/render/archive-bootstrap calls and262868 rejected exploratory calls. The independent analytic tracer made2580 calls. Per-phase finite limits and all counts are archived; no call limit was exhausted. An isolated extraction successfully built the candidate and loaded native diffraction support/render diagnostics from the archived engine snapshot without node_modules or the parent checkout.
-
-One exploratory harness run incorrectly used last-surface chief height for its MTF field axis. It was rejected in full, retained only under invalid-field-axis, and rerun with true line/image-plane interception. None of its MTF values enters the final figures or tables. The former source-radius transcription error is unrelated and was never reintroduced.
-
-Current release qualifications are exact commercial revision pairing, inferred stop/aperture mechanics, unprinted reference wavelength and full dispersion, and absent calibrated standalone finite conjugates. Original source archives remain on private Drive because local raw materialization was denied. No permission or original-file changes were made.
+The printed half-field of 22.8° reaches an image height of 21.46 mm, slightly short of the 21.63 mm corner of a 36 × 24 mm frame.
 
 ## Sources
 
-1. [JPS60111215A official record](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S60-111215/11/ja); [readable patent record](https://patents.google.com/patent/JPS60111215A/en). Master table PDF4; Figure2 PDF6. Source worker visually verified all prescription entries and the iris marks; inherited audit only here.
-2. [A Guide to the Minolta SLR System](https://minolta.suaudeau.eu/ressources_iconographiques/system_SLR_MD1.pdf), manufacturer-authored scan, third-party mirror, printed19/PDF21. Source-worker visual verification inherited; exact prescription pairing remains qualified.
-3. [Readable source handoff](https://drive.google.com/file/d/1b7Ud8UZs87RvUqyDJbMJWSkUV90Guei1/view),8085 bytes, SHA2567b6488a663153d3f2d16a768ba89f83504f2918350c13726afe5c7888ac8d2f4. Full readable content and hash verified locally.
-4. [Source handoff ZIP](https://drive.google.com/file/d/1ohmq22IFG4XXvbzfX_83M1ATP9POO1P6/view),2053838 bytes, inherited SHA256184b5dbf7982c3c80a51395ccb4d5a2de6eabb91da1d21d3fbe8f4968183af83. Metadata read this run; raw host transfer denied, so this builder does not claim a new ZIP hash check.
-5. [Original full source archive](https://drive.google.com/file/d/1CqDvnJ1TelJFnJUO2FbNmhDcJ0iI4LZ0/view),8541454 bytes, inherited SHA256713545f4935099eaa3c73c894a04de5efcbcadb6dc720f61cf28a79d7ec12df3. Source worker reports CRC and22 payload hashes passed; original patent SHA2561c6a740b75ac405360c38e9c43b1fb2dc2241f7335d243aba3217872ded18623. Not re-downloaded here.
-
-
-## Integration metadata and existing infinity-only convention
-
-The fixed infinity prescription uses the established finite closeFocusM=1e15 sentinel with no varying focus gaps. Retail 0.45 m remains descriptive context only. No optical values or the computed image plane change. This unnumbered photographic master is not converter Example 1 and not the sole numerical example in the publication. Following LENS_DATA_SPEC.md, source.example is omitted and the file is recorded in the existing patent-example queue and corpus exception list. No schema or runtime code is changed. Native MTF is a qualified authored-prescription simulation; heavy aperture clipping and all prior failed diagnostics remain. Shared current-main SUMMARY deep-focus URL and BREATHING behavior is reported separately; the sentinel is not claimed to fix those consumers.
+1. JP S60-111215 A, Minolta Camera, 1985: [J-PlatPat record](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S60-111215/11/ja); [Google Patents](https://patents.google.com/patent/JPS60111215A/en). Taking-lens table PDF p. 4; Figure 2 PDF p. 6.
+2. Minolta, [A Guide to the Minolta SLR System](https://minolta.suaudeau.eu/ressources_iconographiques/system_SLR_MD1.pdf), printed p. 19 (scan on a third-party site).
+3. [Minolta MD 50mm 1:1.7 review](https://minolta.su/minolta-md-50mm-f1-7/) on minolta.su, with the [Lens QA Works section](https://minolta.su/wp-content/uploads/2018/06/md5017_tony_optical_design2.png). Third-party drawing with no cited source.
+4. [Minolta AF 50mm f/1.7](https://en.wikipedia.org/wiki/Minolta_AF_50mm_f/1.7), Wikipedia.
+5. [Minolta Rokkor-PF 50mm f/1.7](https://www.cinelenswiki.com/lens:minoltarokkorpf-50mmf1.7), Cinelens Wiki.
+6. US 4,444,473, Minolta Camera, 1984: [Google Patents](https://patents.google.com/patent/US4444473).

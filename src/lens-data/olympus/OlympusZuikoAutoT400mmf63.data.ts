@@ -1,27 +1,54 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** PRIVATE row1150, US3864027 Example1: explicit infinity, five air-spaced spherical singlets.
- * R6flat. Literal normalized dimensions uniformly400x, a retail-correlation hypothesis.
- * Rounded source B/f=.75 gives nominalimagez300mm/lastgap96.272mm, not refocus or printedBFL.
- * Tablefull6deg10min/half3deg5min distinct from abstractfull6deg11min and makerfull6deg.
- * One schematic stop.68throughd6, uncertainty±2percentagepoints; no alternate positions run.
- * Full audited face ratios, EP-based global anchor plus8%; not factory clear apertures.
- * n/nu reference unspecified; d/587.5618 convention explicit, historicalglass suggestions not substituted.
- * Both0173catalogs conflict5/5vs6/5, laterMC5/5; no dated redesign/serial/factory identity claim.
- * Source finite1/10x curves and product5m metadata do not define a finite prescription/motion law.
- * No applied refocus, optical tuning, catalog integration or production publication.
+/**
+ * Olympus Zuiko Auto-T 400mm f/6.3, from US 3,864,027 (Kenichi Harada, Olympus Optical), Example 1:
+ * Table 1, repeated in claim 2; section in Fig. 1. Five air-spaced spherical singlets; surface 6 is flat.
+ *
+ * Scale: every length is the patent's f = 1 value times 400. The patent prints no length in millimetres
+ * and names no production lens; the 400 mm scale is inferred (see the analysis). This is a patent design
+ * associated with the product, not a confirmed factory prescription.
+ *
+ * Field: Table 1 prints 2ω = 6°10′ (half-field 3°05′); the abstract says 6°11′. Table 1 is kept.
+ *
+ * Image plane: computed. The patent prints t = B/f = 0.75 and no back focus. The last gap is the paraxial
+ * back focus, 96.6325 mm (front vertex to image 300.36 mm), the origin of the curves in Figs. 4a-4d.
+ *
+ * Stop: inferred. The patent prints no position. Fig. 1 marks it at 0.683 of d6 and the traced field
+ * curves match Fig. 4c for 0.67 to 0.69; it sits at 0.68, splitting 142.404 mm into 96.83472 + 45.56928 mm.
+ * Its radius follows from paraxial entrance-pupil diameter = F/N at infinity.
+ *
+ * Semi-diameters: inferred from the Fig. 1 outline, not factory clear apertures. L1 is 1.08 times the
+ * F/6.3 entrance-pupil radius; the others take the drawn height ratios 0.875 and 0.531. L5 is square-edged
+ * as drawn, so both of its faces share one height.
+ *
+ * Glass: the patent prints n and ν without a line and names FK5, LaF7, F16, LAK04 and F5. The values are
+ * read as d-line; the labels are catalog equivalents, supplier not established.
+ *
+ * Focus: unit focus, inferred. The patent prints no focus travel. Its Fig. 5 curves at 1/10× are reproduced
+ * by extending the whole lens; the near gap is solved for 5.0 m object to image, the catalogue minimum focus.
+ *
+ * Construction: one 1973 catalogue page prints 6 elements in 5 groups but draws five separate elements,
+ * which this model matches; other listings say 5 elements in 5 groups. The model has five. No redesign
+ * is claimed.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "olympus-zuiko-auto-t-400f63",
   "maker": "Olympus",
   "name": "OLYMPUS ZUIKO AUTO-T 400mm f/6.3",
-  "subtitle": "US3864027 Example1; five air-spaced singlets; contradictory manufacturer5/5 and6/5 counts unresolved",
+  "subtitle": "US 3,864,027, Example 1 — telephoto design matched to the 1973 catalogue section",
   "visible": true,
   "catalog": {
     "lensMounts": [
       "olympus-om"
     ],
     "imageFormat": "135-full-frame",
+    "specs": [
+      "5 ELEMENTS / 5 GROUPS",
+      "DESIGN f = 400 mm",
+      "DESIGN F/6.3",
+      "ALL SPHERICAL",
+      "TELEPHOTO RATIO 0.75"
+    ],
     "elementCount": 5,
     "groupCount": 5,
     "focalLengthMm": {
@@ -57,7 +84,8 @@ const LENS_DATA = {
       "vd": 70.1,
       "indexReference": "d",
       "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
-      "focalLengthMm": 120.1030150490764
+      "focalLengthMm": 120.1030150490764,
+      "role": "Positive crown of the front group; carries most of its power"
     },
     {
       "id": 2,
@@ -68,7 +96,8 @@ const LENS_DATA = {
       "vd": 35.2,
       "indexReference": "d",
       "glass": "J-LAF7 (HIKARI, coordinate equivalent)",
-      "focalLengthMm": -243.2357245579875
+      "focalLengthMm": -243.2357245579875,
+      "role": "High-index negative meniscus; the patent's spherical-aberration corrector"
     },
     {
       "id": 3,
@@ -79,7 +108,8 @@ const LENS_DATA = {
       "vd": 35.6,
       "indexReference": "d",
       "glass": "FF5 (HOYA catalog equivalent; production supplier unspecified)",
-      "focalLengthMm": -1163.502615151004
+      "focalLengthMm": -1163.502615151004,
+      "role": "Weak negative with a flat rear face; governs close-range field curvature"
     },
     {
       "id": 4,
@@ -90,7 +120,8 @@ const LENS_DATA = {
       "vd": 56.2,
       "indexReference": "d",
       "glass": "S-LAL54Q (OHARA catalog equivalent; production supplier unspecified)",
-      "focalLengthMm": -77.55105582604429
+      "focalLengthMm": -77.55105582604429,
+      "role": "Strong negative behind the stop; supplies the rear group's telephoto power"
     },
     {
       "id": 5,
@@ -101,7 +132,8 @@ const LENS_DATA = {
       "vd": 38.0,
       "indexReference": "d",
       "glass": "F5 (SCHOTT, coordinate equivalent)",
-      "focalLengthMm": 134.82261689482894
+      "focalLengthMm": 134.82261689482894,
+      "role": "Positive flint paired with L4; leaves the rear group net negative"
     }
   ],
   "surfaces": [
@@ -177,7 +209,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 5,
-    "description": "Unit focus: the whole lens moves and only the back focus changes, about 40 mm at the 5 m minimum focus. The patent prints no focus travel; this motion is reconstructed from its Fig. 5 curves at 1/10×, which whole-lens extension of Example 1 reproduces (NA, image height, astigmatism, distortion). At the 400 mm scale 1/10× falls at 5.0 m object to image, the retail minimum focus. Apertures and stop are inferred. The image plane sits at paraxial focus, the origin of the patent’s Fig. 4 curves; the patent prints no BFL, and its rounded B/f = 0.75 agrees at that precision. Conflicting 0173 catalog counts/weights and the later MC listing do not establish a production-version identity, chronology, or redesign. Table full field 6°10′ differs from abstract 6°11′; 587.5618 nm is an assumed reference convention. The viewer’s 21.65 mm format corner maps to about 3.0875°, beyond the patent half-field 3°05′ (about 21.62 mm). Native MTF is a simulation; the separate corrected 2D scalar research remains conditional, without factory or continuum validation."
+    "description": "Unit focus: the whole lens moves forward and only the back focus changes, by 39.99 mm at the 5 m minimum focus. The patent prints no focus travel; the motion is inferred from its Fig. 5 curves at 1/10× magnification, which extending Example 1 as a unit reproduces. At the 400 mm scale that magnification falls at 5.0 m object to image, the catalogue minimum focus. The infinity back focus is the computed paraxial value; the patent prints none."
   },
   "gaps": {
     "10": {
@@ -202,6 +234,18 @@ const LENS_DATA = {
     ],
     "maxFNumber": 32
   },
+  "groups": [
+    {
+      "text": "FRONT",
+      "fromSurface": "1",
+      "toSurface": "6"
+    },
+    {
+      "text": "REAR",
+      "fromSurface": "7",
+      "toSurface": "10"
+    }
+  ],
   "projection": {
     "kind": "rectilinear",
     "fullFieldDeg": 6.166666666666667,

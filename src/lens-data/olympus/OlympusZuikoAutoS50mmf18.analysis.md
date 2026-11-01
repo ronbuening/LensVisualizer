@@ -1,3 +1,5 @@
+# Olympus Zuiko Auto-S 50mm f/1.8 — Patent Analysis
+
 ## Patent Reference and Design Identification
 
 **Patent:** US 4,728,179  
@@ -6,86 +8,100 @@
 **Inventors:** Hikaru Hayashi; Hiroshi Takase  
 **Assignee:** Olympus Optical Co., Ltd.  
 **Title:** Rear Conversion Lens System  
-**Example details:** Unnumbered photographic master shown in Figure 3, with uppercase R/D/N/V prescription on PDF page 9, column 6. The numbered embodiments describe converters. The private data omits source.example under the repository rule for an unnumbered reference beside other examples; the future integration queue disposition is retained locally.
+**Example details:** Unnumbered master lens of Figure 3, with its table in column 6. The numbered embodiments are the rear converters.
 
-This is a private hypothetical reconstruction of the printed 51.84 mm, F/1.86 master. It is correlated with the later Olympus ZUIKO AUTO-S 50 mm f/1.8 through the six-element/four-group topology and manufacturer documentation audited by the source reviewer. The leaflet bearing code 0486 and an OM10FC manual support six/four construction. A 1973 catalog describes six/five. No exact transition date, serial range, production radii or factory aperture identity follows from that evidence. The original source ZIP and manufacturer documents were verified by the parent/source reviewer; this worker locally decoded and verified the exact patent PDF, table and Figure 3 images. It does not claim to have locally inspected the manufacturer's PDF pixels in this stage.
+US 4,728,179 covers rear converters of more than 1.6×. It prints this lens because the converters are used behind a master lens "as shown in FIG. 3", and the printed magnifications and aberration curves of Embodiments 1 to 4 are those of the combination. The master's table gives f = 51.84, F/1.86 and the radii, spacings, indices and Abbe numbers, which the model uses at the printed millimetre scale. It gives no field angle, back focus, conjugate, stop position, clear apertures or focus data.
 
-The literal millimetre prescription is preserved at scale 1. Retail 50 mm/f1.8 and the maker's 47-degree full angle are separate metadata. The patent's standalone master field is unknown. Converter aberration plots and their approximately 14-degree fields are excluded from standalone validation. No converter spacing d0, converter image gap or f_M front-converter-group focal length is used as a master input.
+The embodiments settle the first-order values the table leaves out. The last gap, 37.856 mm, is computed as the paraxial back focus at infinity and is not printed. With that gap, the master and each printed d0 reproduce all four printed magnifications (1.6182, 1.6446, 1.6075, 1.6437) to the fourth decimal, which confirms the infinity conjugate and fixes the gap to about ±0.002 mm. Figures 4 to 7 are labelled F/3.0 to F/3.1 and ω = 14.2° to 14.5°; at the combined focal lengths of 83.3 to 85.3 mm those angles give an image height near 21.55 mm, so the design is 135 format. The table names no reference line, but every N/V pair is a d-line catalog coordinate, so N and V are nd and νd.
+
+The same design appears in [US 4,291,952](https://patents.google.com/patent/US4291952) (Hiroshi Takase and Toru Fujii, Olympus Optical; Japanese priority January 26, 1979; granted September 29, 1981), a low-cost Gauss lens of aperture ratio 1.8, field angle of 46° or more and back focus of 0.72f or more. Its Embodiment 2, printed at f = 100, has the same six glasses. Scaled by 0.5184, its nine spacings agree with the master within 0.010 mm and its radii within 0.07 %, except R1, R2 and R7 at 0.3–0.4 %. The master also meets all seven conditions of that patent. It looks like the production-rounded version of Embodiment 2, and Takase is named on both patents. The figures for US 4,291,952 come from the Google Patents text, not the patent's page images; d1 is garbled there and is taken from the printed Σd.
+
+Neither patent names a production lens, so this is a patent design associated with the product, not a confirmed factory prescription. The 50mm f/1.8 ran from 1972 to 2002 in six versions. The F.Zuiko Auto-S versions (M-System, then silver-nose and black-nose OM-System) have six elements in five groups, as the [OM-1 manual](https://www.manualslib.com/manual/301378/Olympus-1.html?page=6) prints. The [Zuiko MC Auto-S and later Zuiko Auto-S](https://phillipreeve.net/blog/review-olympus-f-zuiko-auto-s-1-8-50/) have six elements in four groups. The [OM-10 FC manual](https://www.cameramanuals.org/olympus_pdf/olympus_om10fc.pdf) prints that count for the Zuiko MC 50mm F1.8, though some listings give the MC version five groups. [MIR](https://www.mir.com.my/rb/photography/hardwares/classics/olympusom1n2/shared/zuiko/htmls/50mm1a.htm) says the redesign "probably" came in 1982; no exact changeover date or serial range is established. The model describes the 6/4 generation only, not the F.Zuiko. The association rests on:
+
+1. **Construction.** Six elements in four groups, with both inner pairs cemented. Olympus's table of interchangeable lenses lists the Zuiko MC 50mm F1.8 at 6-4, f/1.8–16, 0.45 m, 165 g, 32 mm long, 49 mm filter.
+2. **Section drawing.** A [published section](https://allphotolenses.com/public/files/optical/728a84e050a2dc281d617384dabf2736.jpg) labelled as the MC version shows singlet, cemented doublet, stop gap, cemented doublet, singlet. Scaled to that drawing, the model's S4 to S9 fall within about 0.7 mm of the drawn positions. The [section of the earlier 6/5 version](https://allphotolenses.com/public/files/optical/3b1d6f5aaf67b7c8f1a16a1d07d30882.jpg) has L2 and L3 air-spaced, so it does not match this master.
+3. **Aperture.** 51.84/1.86 gives an entrance pupil of 27.87 mm, against 27.78 mm for a nominal 50mm f/1.8.
+4. **Close focus.** Unit focus to the marketed 0.45 m gives 0.149×, matching the published 16 × 24 cm minimum field.
+5. **Timing.** The 1979 priority of US 4,291,952 and the 1984 priority of this patent bracket the reported redesign.
 
 ## Optical Architecture
 
-The master has six spherical elements in four air-spaced groups, with cemented interfaces at surfaces 4 and 7. It has a broadly Gaussian arrangement: positive front singlet, negative front doublet, weakly negative rear doublet and positive rear singlet. Isolated paraxial group diagnostics give approximately +56.97, -60.07, -1183.82 and +50.68 mm; these are computed group-in-air quantities, not source-specified in-assembly contributions. The central airspace is 13.0 mm. All ten literal radii and all nine internal spacings remain unchanged.
-
-The source supplies no numeric stop or clear apertures. One neutral midpoint stop hypothesis at z=19.04 mm splits the central gap into 6.5+6.5 mm. The initial front clear semi-diameter is printed entrance-pupil radius 51.84/(2×1.86) plus 10 percent. The independently audited schematic face ratios are then applied and frozen, giving [15.329,15.329,12.922,12.922,9.887,10.332,11.849,12.340,12.784,12.784] mm. Approximate figure-reading uncertainty is not a factory tolerance. The S5/S6 beveled optical faces remain smaller than their mechanical body envelopes. No transparent rim, rim cut or rim extension is authored, and apertures are not enlarged after clipping appears.
+The master has six spherical elements in four air-spaced groups, with cemented interfaces at surfaces 4 and 7. It is a Gauss arrangement: positive front singlet, negative front doublet, weakly negative rear doublet and positive rear singlet. Thick-lens group focal lengths in air are about +56.97, -60.07, -1183.82 and +50.68 mm; these are computed values, not patent data, and powers in the assembly differ. The central air space is 13.0 mm. Longitudinal spherical aberration stays within about 0.1 mm of the paraxial focus at F/1.86, at +0.07 mm at the rim and -0.10 mm at the 0.7 zone.
 
 ## Element-by-Element Analysis
 
-The following nd/νd notation follows the model schema. The primary master table prints N/V without declaring d/e reference lines. An approximate d-line interpretation at 587.5618 nm is explicitly a modeling convention. Isolated element focal lengths are thick-lens calculations in air; cemented in-assembly powers differ. Optical roles below describe geometry, not a source claim of measured aberration correction.
+Element focal lengths are thick-lens calculations in air; powers in the cemented assembly differ. The roles below follow from the geometry, since neither patent discusses the master's individual elements.
 
 ### L1 — Positive Meniscus
 
-nd = 1.78472, νd = 25.68. Glass: Unmatched literal N/V; vendor and spectral reference unresolved. Isolated f = +56.971 mm.
+nd = 1.78472, νd = 25.68. Glass: S-TIH11 (OHARA) catalog equivalent. f = +56.971 mm.
 
 S1–S2; radii +33.790/+130.283 mm and thickness 4.50 mm. This positive front singlet precedes the first doublet and provides converging power.
 
-### L2 — Positive Meniscus, front of D1
+### L2 — Positive Meniscus, front of C1
 
-nd = 1.60311, νd = 60.7. Glass: Unmatched literal N/V; vendor and spectral reference unresolved. Isolated f = +37.623 mm.
+nd = 1.60311, νd = 60.7. Glass: BACD14 (HOYA) catalog equivalent. f = +37.623 mm.
 
 S3–S4; +21.458/+349.306 mm, thickness 6.59 mm. Its relatively high Abbe number contrasts with the following negative element. Surface 4 is their shared cemented interface.
 
-### L3 — Negative Meniscus, rear of D1
+### L3 — Negative Meniscus, rear of C1
 
-nd = 1.78472, νd = 25.71. Glass: Unmatched literal N/V; vendor and spectral reference unresolved. Isolated f = -19.992 mm.
+nd = 1.78472, νd = 25.71. Glass: S-TIH11 (OHARA) catalog equivalent. f = -19.992 mm.
 
-S4–S5; +349.306/+14.989 mm, thickness 1.30 mm. The strong rear curvature supplies negative power in the front doublet. Its N equals L1, but its printed V=25.71 is distinct from L1 V=25.68 and is retained.
+S4–S5; +349.306/+14.989 mm, thickness 1.30 mm. The strong rear curvature supplies the negative power of the front doublet. Its nd equals L1's; its printed νd of 25.71 differs from L1's 25.68 and is kept as printed.
 
-### L4 — Negative Meniscus, front of D2
+### L4 — Negative Meniscus, front of C2
 
-nd = 1.72825, νd = 28.46. Glass: Unmatched literal N/V; vendor and spectral reference unresolved. Isolated f = -21.474 mm.
+nd = 1.72825, νd = 28.46. Glass: S-TIH10 (OHARA) catalog equivalent. f = -21.474 mm.
 
-S6–S7; -15.134/-490.538 mm, thickness 1.65 mm. This negative member faces the central airspace. Its clear optical face is separately bounded by the source figure.
+S6–S7; -15.134/-490.538 mm, thickness 1.65 mm. Its strong front curve nearly mirrors S5 across the central air space.
 
-### L5 — Positive Meniscus, rear of D2
+### L5 — Positive Meniscus, rear of C2
 
-nd = 1.80610, νd = 40.95. Glass: Unmatched literal N/V; vendor and spectral reference unresolved. Isolated f = +26.153 mm.
+nd = 1.80610, νd = 40.95. Glass: LAH53 (OHARA) catalog equivalent. f = +26.153 mm.
 
-S7–S8; -490.538/-20.316 mm, thickness 5.60 mm. This positive element shares surface 7 with L4. The doublet has very small net negative paraxial power when isolated in air.
+S7–S8; -490.538/-20.316 mm, thickness 5.60 mm. This positive element shares surface 7 with L4. The doublet has very small net negative power when isolated in air.
 
 ### L6 — Biconvex Positive
 
-nd = 1.80610, νd = 40.95. Glass: Unmatched literal N/V; vendor and spectral reference unresolved. Isolated f = +50.685 mm.
+nd = 1.80610, νd = 40.95. Glass: LAH53 (OHARA) catalog equivalent. f = +50.685 mm.
 
-S9–S10; +246.577/-48.685 mm, thickness 3.23 mm. The rear singlet restores positive power after the nearly afocal rear doublet. Its N/V repeats L5; a particular vendor glass is not proved.
+S9–S10; +246.577/-48.685 mm, thickness 3.23 mm. The rear singlet restores positive power after the nearly afocal rear doublet. Its nd and νd repeat L5.
 
 ## Glass Identification and Selection
 
-Every literal index and Abbe number is retained. No modern catalog glass is substituted or used to resolve the numerical disagreement between L1/L3 Abbe values. Unmatched labels deliberately prevent accidental vendor resolution. At the chosen monochromatic model reference, the tracing indices equal the table values. Abbe initialization does not establish anomalous partial dispersion, a measured spectral model or the actual reference wavelength used for the historical design. No polychromatic performance is claimed.
+L1 and L3 match S-TIH11 (OHARA), L2 BACD14 (HOYA), L4 S-TIH10 (OHARA), and L5 and L6 LAH53 (OHARA). These are catalog equivalents of the printed nd/νd pairs; the production supplier is not established. L3's printed νd sits 0.03 above the S-TIH11 value.
+
+L2 is the only low-dispersion element. The two dense-flint glasses in L1 and L3, the flint in L4 and the high-index lanthanum glass in L5 and L6 fit the aim of US 4,291,952, which uses high-index, high-dispersion glass in many of its elements to hold down cost. Chromatic behavior in the model comes from the catalog equivalents, not from patent data, and no partial-dispersion claim is made.
 
 ## Focus Mechanism
 
-The patent supplies no standalone master conjugate label, image gap or finite-focus prescription. This branch assumes infinity, independently computes EFL=51.84046782239988 mm and BFL=37.856139940514495 mm from the literal table, and freezes image z=74.0261399405145 mm before tracing. Two first-order coordinate conventions agree. The computed plane is not printed source data and is never replaced by best focus. Applied refocus is zero. The correlated maker's 0.45 m minimum focus and straight helicoid do not supply a calibrated extension law; the data remains a static assumed-infinity construction.
+Focusing is by unit focus: the whole lens moves forward on a straight helicoid and only the back focus changes. The patent prints no focus travel, so the close state is modeled, not printed. The near back focus is solved paraxially for the marketed 0.45 m, object to image, and no floating correction is included.
 
-## Geometry, Pupil and Diffraction Checkpoint
+| State | Object to image | Back focus | Magnification |
+|:--|--:|--:|--:|
+| Infinity | ∞ | 37.856 mm | 0 |
+| Close | 0.45 m | 45.60 mm | 0.149× |
 
-Exact native geometry produces six untrimmed positive-thickness element shapes. The circular operating iris radius is 9.542275969788681 mm. Full-disk clearance to the declared S5/S6 caps is respectively 3.070199380423951/3.112613355192785 mm. These checks establish modeled disk clearance, not blade or barrel mechanics. Native working F-number is approximately 1.84965 at the model reference.
+The travel is 7.74 mm. A magnification of 0.149× covers about 16.1 × 24.1 cm on the 24 × 36 mm frame, matching the published 16 × 24 cm minimum field.
 
-Evaluation fields are explicitly assumed native 135-format image-height fractions 0, 0.5 and 1.0: heights 0/10.825/21.65 mm resolve to angles 0/11.833635942177661/22.975721060077525 degrees. The API's 21.65 mm reference differs from the exact 36×24 corner radius 21.633307652783937 mm. These are not standalone source field limits and not a substitute for the maker's 47-degree full angle.
+## Stop, Aperture and Clear Apertures
 
-Native sheared-pupil estimates and axial corrected2D results are inherited unchanged from v1. That initial checkpoint stopped offaxis at512 because sourcephase remained above0.25waves. This additive v2 extends only those two cases: half-format source1024/1536 and corner1536/2048 both qualify, and independent angular1024/2048 comparisons pass. All optical inputs, image plane, hypotheses and qualifications are unchanged; no passed native or axial job was rerun. Detailed source, angular, clipping and execution receipts are in BuildReport.md and review-summary.json. Numerical convergence remains conditional scalar-model evidence, not factory accuracy or independent physical phase validation.
+The patent neither prints nor draws a stop. The model places it at the midpoint of the 13.0 mm central air space, z = 19.04 mm from S1, which leaves about 3.1 mm of air on each side of the open iris. S5 and S6 are nearly equal and opposite, so the midpoint is the natural position, and moving the stop ±1.5 mm changes corner transmission by less than one percentage point.
 
-Clipping is retained. All 215 axial diagnostic pupil samples transmit; 167/215 half-format and 67/215 corner samples transmit. Of the off-axis diagnostic samples, 52 raw failed returns correspond exactly to aim-certified S1 preblocks and are independently classified as S1-clipped. These failure records are preserved. Dense-grid failed and unaimed counts are zero. Apertures, stop, image plane and prescription were never tuned to improve transmission or contrast.
+The iris list runs from f/1.86 to f/16, following the marketed f/1.8 to f/16 range. F/1.86 is the patent's value. The slower stops follow the model's paraxial stop rule, entrance-pupil diameter = f/N; the patent gives no stopped-down data.
 
-The corrected 2D calculation uses conditional uniform irradiance per actual launch-plane area and a scalar electric-field-squared image detector. Angular amplitude squared is T*K/(Jq*cos(theta_image)); only adjacent transmitted source-grid triangles contribute, with genuine 2D shifted endpoints, no extrapolation and separate full/matched support normalizations. This is not measured historical illumination. L2 median-J-normalized energy is not absolute cross-mesh throughput. Six-frequency gates are not a continuous-frequency error bound, independent physical phase validation or factory accuracy.
+The patent prints no clear apertures, so every semi-diameter is inferred. S1 and S2 are set at 1.10 times the paraxial entrance-pupil radius of 13.936 mm, and the other faces follow the ratios drawn in Figure 3, giving 15.329, 15.329, 12.922, 12.922, 9.887, 10.332, 11.849, 12.340, 12.784 and 12.784 mm. Read at the drawing's axial scale, the outlines are 5–6 % larger (S1 about 16.2 mm); at the scale fitted to the drawn arcs they are about 2 % larger. S5 and S6 stay smaller than their element bodies, as the chamfers in Figure 3 show.
+
+The full axial beam at f/1.86 clears every rim; S5 is the tightest, at a marginal height of 9.66 mm against 9.887 mm. Off axis the rims vignette, and no rim was enlarged to pass that light. Geometric transmission wide open at infinity is about 82 % at 11.5° and 33 % at 23.0°, close to the 135 corner. These figures follow from the inferred rims and are not measurements of the production lens.
 
 ## Sources
 
-- Exact US4728179 PDF retained in manifest-linked v1 archive, SHA256 36f10c90ca4b23c48ddec783b6d0d6658988aef9a31ee9a196e94bc25cc43e1c; locally decoded and hashed. Source table PDF9 and Figure 3 PDF2 inspected.
-- Verified source packet retained in v1, eight locally decoded and hashed payloads; source audit retained in v1.
-- Parent-verified original source ZIP Drive16ple0jCh89vJWjIu-gYJItro-JKaJCOv, SHA256 58e3aec4390adf1e3485971981ef49f1bae504ecd63caf8fa1c6755e7cb9ed04, 18 payload hashes/CRC verified by parent. Its complete manufacturer PDFs remain in that source archive, not falsely represented as locally decoded here.
-- [Version2 validation summary](review-summary.json), [offaxis checkpoint](BuildReport.md), [frozen inputs](freeze.json) and [authoring disposition](authoring-disposition.json).
-
-
-## Supported infinity-only integration
-
-This metadata descendant uses the established finite closeFocusM=1e15 infinity-only convention with fixed gaps and the unchanged computed image plane74.0261399405145mm. Retail0.45m remains descriptive context. Only F1.86 is authored; this package adds no stopped-down state. The source gives no standalone master field or explicit conjugate/index wavelength; native-format image heights, assumed infinity, approximate reference wavelength, inferred stop/SDs and conditional scalar research remain qualified. Per current spec, this unnumbered master beside converter examples omits source.example and uses the existing patent-example queue. No schema/runtime/UI code is changed or required by this lens. The optional earlier shared UI patch is not a lens dependency; current-main deep-focus/breathing quirks are recorded separately. Full original v2bulk backup is partial; verified paired files/results suffice for integration and no completebulkbackup is claimed.
+- [US 4,728,179](https://patents.google.com/patent/US4728179), Rear Conversion Lens System: master lens in Figure 3 and column 6.
+- [US 4,291,952](https://patents.google.com/patent/US4291952), Gauss Type Lens System: Embodiment 2, read from the Google Patents text.
+- [Olympus OM-1 manual, specifications](https://www.manualslib.com/manual/301378/Olympus-1.html?page=6): F.Zuiko Auto-S, six elements in five groups.
+- [Olympus OM-10 FC manual](https://www.cameramanuals.org/olympus_pdf/olympus_om10fc.pdf), table of interchangeable lenses, printed p. 41: Zuiko MC 50mm F1.8, six elements in four groups.
+- [Phillip Reeve, review of the F.Zuiko Auto-S 1.8/50](https://phillipreeve.net/blog/review-olympus-f-zuiko-auto-s-1-8-50/): version list and production years.
+- [MIR, Zuiko 50mm f/1.8](https://www.mir.com.my/rb/photography/hardwares/classics/olympusom1n2/shared/zuiko/htmls/50mm1a.htm): redesign, straight helicoid, f/1.8 to f/16, 16 × 24 cm minimum field.
+- [Imaging Resource, 50mm f/1.8 OM Zuiko specifications](https://old.imaging-resource.com/lenses/olympus/50mm-f1.8-om-f.zuiko/specifications): six elements in four groups.
+- [AllPhotoLenses, Olympus 50mm f/1.8](https://allphotolenses.com/lenses/item/c_41.html): versions and section drawings.
