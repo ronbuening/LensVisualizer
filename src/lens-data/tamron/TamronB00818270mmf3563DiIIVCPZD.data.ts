@@ -3,7 +3,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "tamron-18-270mm-f35-63-di-ii-vc-pzd-b008",
   "maker": "Tamron",
-  "name": "TAMRON 18-270mm f/3.5-6.3 DI II VC PZD (B008)",
+  "name": "TAMRON 18-270mm f/3.5-6.3 Di II VC PZD (B008)",
   "subtitle": "JP 2011-248219 A; INFERRED continuous zoom path; native source knots preserved",
   "catalog": {
     "lensMounts": [

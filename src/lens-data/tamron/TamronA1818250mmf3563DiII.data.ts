@@ -3,7 +3,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "tamron-a18-18-250mm-f35-63-di-ii",
   "maker": "Tamron",
-  "name": "TAMRON AF 18-250mm f/3.5-6.3 Di II LD Aspherical [IF] MACRO",
+  "name": "TAMRON AF 18-250mm f/3.5-6.3 Di II LD Aspherical [IF] MACRO (A18)",
   "subtitle": "JP 2008-003195 A; INFERRED continuous zoom path; native source knots preserved",
   "catalog": {
     "lensMounts": [

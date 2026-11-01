@@ -12,7 +12,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "sigma-10-20-f35-ex-dc-hsm-jp2010243737-example4",
+  key: "sigma-10-20-f35-ex-dc-hsm",
   maker: "Sigma",
   name: "SIGMA 10-20mm f/3.5 EX DC HSM",
   subtitle: "JP2010243737A Example4;13 bulk lenses plus two thin aspheric media; reconstructed continuous zoom",
