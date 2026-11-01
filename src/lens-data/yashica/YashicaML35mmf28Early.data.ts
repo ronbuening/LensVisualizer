@@ -16,7 +16,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and the FX-1 manual do not state the mechanism. Finite-conjugate MTF is unavailable.
  * Rims: estimated from Fig. 1 and floor-checked by real-ray trace at infinity and 0.3 m. Vertices
  * give 16.59 px/mm along the axis and the arcs 15.3 px/mm across it, so heights use the arc scale.
- * L1's rear curve ends at 10.4 mm and the figure's land carries it to 13 mm. No sag override.
+ * L1's rear curve ends at 10.4 mm and the figure's land carries it to 13 mm. L4 (8.86 mm) and
+ * L6 (8.30 mm) stay above the figure's 8.3 and 8.0 mm to hold the mid-field light. No sag override.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -192,14 +193,14 @@ const LENS_DATA = {
       "label": "6",
       "R": 26.664399999999997,
       "d": 4.850999999999999,
-      "sd": 8.3,
+      "sd": 8.86,
       "medium": 4
     },
     {
       "label": "7",
       "R": -88.4093,
       "d": 3.346,
-      "sd": 8.3
+      "sd": 8.86
     },
     {
       "label": "STO",
@@ -223,14 +224,14 @@ const LENS_DATA = {
       "label": "10",
       "R": -58.969049999999996,
       "d": 2.681,
-      "sd": 8,
+      "sd": 8.3,
       "medium": 6
     },
     {
       "label": "11",
       "R": -17.5,
       "d": 0.098,
-      "sd": 8
+      "sd": 8.3
     },
     {
       "label": "12",

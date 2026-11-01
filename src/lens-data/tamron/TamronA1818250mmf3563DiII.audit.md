@@ -141,7 +141,7 @@ Fields changed in this pass: stations and gaps (in the separate cam change), the
 
 Open: L3 sits at the position Tamron marks AD but carries ordinary printed coordinates, so the production glass there may differ from Example 2.
 
-Open: the cemented-pair agreement with Tamron's diagrams is carried over from the earlier analysis; the coordinator's brochure reading above covers the coloured marks only.
+Closed 2026-11-01: the cemented-pair agreement with Tamron's diagrams was carried over from the earlier analysis and has now been read directly. The supplied brochure crop draws shared outlines at L1-L2, L8-L9 and L15-L16, and its count of 16 elements in 13 groups leaves room for exactly three joins. Figure 5 and the printed table place the same three at r2, r17 and r31.
 
 Open: the Japanese brochure link (w5.fuji.com.tw) did not resolve from this machine on 2026-11-01; recheck it before the citation is relied on.
 
@@ -200,3 +200,66 @@ Open limitations: L6 to L7 and the L4 land carry small axial offsets to the figu
 ## 2026-11-01 — Brackets
 
 `doublets` C1, C6, C16, C25 and C30 were added to draw the five junctions the file already tagged in `cemented`, in the form the B003 file uses. Glass stays 16 of 18; the two resin layers have no published dispersion.
+
+## 2026-11-01 — Second review: diagram, labels and movement
+
+Compared the local page at 18.43, 57.80 and 241.83 mm, the element inspectors for L2, L3, L4f, L4, L11, L13f and L13, and both movement overlays against Figure 5 (embedded 300 dpi raster, PDF page 18), paragraphs 0081-0095, and the supplied crop of Tamron's English brochure section.
+
+Flats were re-read from the raster independently of the first pass, as half the top-to-bottom distance at 0.1223 mm/px: L1 25.68, L2 rear 24.89, L3 23.91, L4 12.75, L5 and L6 9.75, L7 8.74, L8 9.20, L9 rear 8.87, L10 9.88, L11 9.51, L12 9.05, L13 to L15 9.48, L16 10.03 mm. Every value agrees with the first pass within 0.03 mm, so the figure reading stands and the changes below come from the light budget alone.
+
+Every cut and land, with the points of light restoring it to baseline still wins back from the final state at any of the 129 zoom nodes:
+
+| Surface | Element | Figure | Baseline | First pass | Final | Cost (points) | Verdict |
+|---|---|---:|---:|---:|---:|---|---|
+| 1, 2 | L1 | 25.68 | 28 | 25.7 | 28 | None | Removed |
+| 3 | L2 rear | 24.89 | 28 | 24.9 | 26.92 | 1.7 at 7.9°, 101.43 mm | Partly raised |
+| 4, 5 | L3 | 23.91 | 27 | 23.9 | 25.76 | 1.3 at 2.8°, 241.83 mm | Partly raised |
+| 8 | L4 rear, land | 9.66, land to 12.75 | 9.15, none | 9.5, land 13 | Unchanged | None | Keep: improved |
+| 9, 10 | L5 | 9.75 | 10.5 | 9.8 | Unchanged | 0.0 at printed stations; restore refused, so not measured at the other nodes | Keep: slight, and spacing |
+| 16, 17 | L8 | 9.20 | 10 | 9.2 | Unchanged | 0.0 | Keep: slight |
+| 18 | L9 rear | 8.87 | 10 | 8.9 | Unchanged | 0.0 | Keep: slight |
+| 19, 20 | L10 | 9.88 | 10.5 | 9.9 | Unchanged | 0.0 | Keep: slight |
+| 21, 22 | L11 | 9.51 | 10.5 | 9.5 | Unchanged | 0.0 | Keep: slight |
+| 24 | L12 rear | 9.05 | 9.5 | 9 | Unchanged | 0.0 | Keep: slight |
+| 25A, 26, 27 | L13f, L13 | 9.48 | 10.5 | 9.5 | 10.19 | 0.6 at 34.3°, 18.43 mm | Partly raised |
+| 28, 29 | L14 | 9.48 | 10.5 | 9.5 | 10.19 | 0.1 at 31.0°, 23.90 mm | Partly raised |
+| 30 | L15 front | 9.48 | 10.5 | 9.5 | 10.19 | 0.6 at 36.0°, 20.45 mm, with r31, r32 | Partly raised |
+| 31, 32 | L16 | 10.03 | 10.5 | 10 | 10.25 | Shared with r30 | Partly raised |
+
+Thirteen surfaces changed from the first pass. The worst loss over all 129 nodes is 3.0 points, at 31.0° and 23.90 mm, and the corners are 60.5/85.8/68.4%. This review first met the budget at the printed stations alone, with 27.71/26.62/25.71 mm in G1 and 9.84 mm through L15 for a 2.97-point loss there. The slider passes through every zoom node, and between stations that set lost up to 9 points near 25 mm, so the coordinator reapplied the budget at all 129 nodes. The table holds those final rims. They are the coordinator's result, checked here and not re-derived. L1's cut is gone, and the loss at the wide end still peaks short of the corner, near 31°.
+
+Figure 5 draws L13, L14 and L15 at one height and L16 taller. The node search left 10.04, 10.19, 9.89 and 10.05 mm, which stood L14 tallest, so L13 and L15's front rose to 10.19 and L16 to 10.25 mm. Those raises cost no light. L15's slanted top edge follows from the 10.19 and 10.25 mm rims.
+
+The land stays because r8 itself earns its place: at the baseline 9.15 with no land the wide corner falls from 60.5 to 45.6%, a 3.4-point loss against baseline. Removing only the land costs nothing, so it remains as the figure's drawn shoulder. L5's cut costs no light and also cannot go back: the validator refuses 10.5 with "combined surface sag (5.52 mm) exceeds allowed gap intrusion (5.346 mm of 5.400 mm)" on the r8 to r9 gap. L6 sits above its baseline 9.5/9 at 9.8/9.8, which the figure's 9.75 supports. `checks.gapSagFrac` stays 0.99: 0.98 is refused with 5.30 mm of sag against 5.292 mm allowed at sd 9.8.
+
+`rimcost.mjs --every 1` on the edited file gives a worst loss over all 129 zoom nodes of 3.0 points, at 31.0° at 23.90 mm, within the 3-point budget. At the printed stations the worst is 2.8 points, at 2.8° at 241.83 mm. Wide-open transmission at the 14.5 mm corner:
+
+| Station | Field | Baseline | First pass | Final |
+|---|---:|---:|---:|---:|
+| 18.43 mm | 40.0° | 49.0% | 53.0% | 60.5% |
+| 57.80 mm | 13.6° | 85.9% | 61.5% | 85.8% |
+| 241.83 mm | 3.4° | 71.1% | 60.8% | 68.4% |
+
+The budget leaves rims above the figure, as expected. G1 stands 2.32/2.03/1.85 mm above the drawn L1, L2 rear and L3, about 8 to 9%, and L13, L14, L15's front and L16 stand 0.71/0.71/0.71/0.22 mm above. The front-element diameter over vertex span is 0.628, against 0.573 for Figure 5 and about 0.57 on the brochure crop. G1 keeps the drawn step order: L1, L2 rear and L3 step down by 1.08 and 1.16 mm where the figure steps 0.79 and 0.98 mm. G4 does not: the figure draws L16 tallest, 0.55 mm above a level L13 to L15, and the final rims put L14 tallest, 0.14 mm above L16.
+
+After the edits the surface validator reports no errors, `clearap.mjs` shows no axial clip and no blocked chief ray at any of the 129 stations, the image-circle floor reports nothing undersized, field coverage reaches at least 99% at all 129 stations, and `built.mjs` raises no error. Engine half-field at the printed stations went from 34.57/15.59/4.52° to 34.57/16.91/4.87°, still above the 13.63° and 3.36° corner angles. Design f-numbers 3.47/5.01/6.35 and stop radii 7.5635/7.5245/7.5489 mm are unchanged, and the stop `sd` was not touched. r25A now departs -0.468990 mm at its 10.04 mm rim, with the slope keeping one sign and the resin about 0.67 mm thick there. The meridional corner bundle is bounded by r8 and r30 at wide, r1 and r23 at the intermediate station, and r4 and r23 at tele.
+
+Checked and found correct, with no change:
+
+- Groups: G1 r1-r5, G2 r6A-r14, G3 r16-r24 and G4 r25A-r32 match the braces 210 to 240 in Figure 5 and the patent's first to fourth lens groups. No parent and subgroup pair exists.
+- Elements: every `type` agrees with the signs of R, and the aspheric count sits on the two resin layers. `name` and `diagramLabel` match. All 18 `focalLengthMm` values are present and agree with the thick-lens values `probe.mjs` computes. The patent numbers only G3's lenses, 231 to 235, so the sequential L1 to L16 stay and the roles cite those numbers.
+- Brackets: C1 to C5, renamed from C1, C6, C16, C25 and C30 so they read in order, each span the right surfaces and collide with no gap label. C2 and C4 bracket a resin layer and its element, and the inspector shows them as doublets, the same treatment B008 uses.
+- Aspheres and stop: only 6A and 25A carry the `A` suffix and asphere terms, matching the two rows the table marks aspherical. The stop sits between r14 and r16, 1.00 mm ahead of r16, as Figure 5's 250 and the d15 row show.
+- Tags: L2 and L11 sit on the two green LD positions of the brochure crop, which agrees with the coordinator's earlier reading. L4 and L13 sit on its two pink hybrid positions. The crop's legend shows LD and hybrid only; the third colour, on L3, is not explained in the crop, and the AD name comes from the earlier reading.
+- Order and proportion: the crop shows 16 elements in 13 groups in the same order. Its height ratios to L1 are roughly 0.97 at L2's rear and 0.93 at L3, which match the figure's 0.97 and 0.93 and the final 0.96 and 0.92. No rim was fitted to it.
+- Labels: D5, D14, D24 and D32 are the patent's d5, d14, d24 and d32. The station labels on the first and last stations are the form the spec allows, and the slider ends read 18.43 and 241.83 mm.
+
+Movement, from paragraphs 0085 and 0089: stations ascend 18.43/57.80/241.83 mm and every gap column is in that order, with D5 1.766/30.152/59.613, D14 25.227/11.984/1.411, D24 7.782/3.768/1.982 and D32 39.583/67.213/89.384 mm exact at stations 0, 44 and 128. D5 widens and D14 and D24 narrow, as paragraph 0083 requires. Against the image, G1/G2/G3/G4 move objectward by 38.761/10.373/23.616/27.630 mm to the intermediate station and 78.032/20.185/44.001/49.801 mm to tele. `turns.mjs` finds no turning point in any gap or group across the 129 stations, and the zoom overlay shows all four groups moving toward the object with 78.03 mm maximum travel. The stop stays with G3 at the fixed 1.00 mm. Figure 5 has no movement arrows; its axis arrows are the d14, d24 and d32 dimension marks.
+
+Paragraph 0083 names only G2, G3 and G4 as moving, as do paragraph 0045 and the claims. The printed track still grows from 128.828 to 206.860 mm, and paragraph 0049 discusses G1's travel and its cam, so G1 does move and the model follows the table. The analysis now says so.
+
+Focus is confirmed. Paragraph 0083 moves G2 along the axis toward the object, and paragraphs 0045 and 0050 say the same, the latter calling it inner focus. `focus.description` says this, prints no travel, and the slider reads "Not modeled". Closest focus draws the same section as infinity. No focus table was added.
+
+L3 stays untagged because the patent's glass there has ordinary dispersion: the printed 1.62299/58.15 fits a catalog equivalent with ΔPgF -0.0001, although the brochure marks the position AD. The L3 `Open:` line stays, because Figure 5 draws shape only and the table prints nd and νd only, so neither can say what glass production L3 uses. The brochure-link `Open:` line also stays. The patent's text never uses a word for anomalous dispersion, partial dispersion or resin, and it gives the two 1.51460/49.96 rows no glass name or further line index. L4f and L13f therefore stay `Unmatched`.
+
+Open limitations: G1 and G4 render taller than Figure 5, by the amounts above. A cemented step is still not representable, so L2 and L15 draw a short sloped edge where the figure has a flat and a step. The L4 land keeps its 0.8 mm axial offset to the figure.

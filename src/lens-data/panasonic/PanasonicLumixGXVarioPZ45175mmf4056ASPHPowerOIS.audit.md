@@ -128,3 +128,59 @@ Open limitations: infinity focus only, as the patent prints no close-focus spaci
 ## 2026-11-01 — Glass labels and brackets
 
 L10 (1.58250/59.4) now carries L-BAL42, following the Panasonic G 14mm f/2.5 II precedent for the same coordinates. The trace anchors the d line on the printed index and uses the catalog row for dispersion, so a moulded index drop does not move the reference ray. Glass resolves 14 of 14. `cemented` tags and `doublets` C1–C4 were added for the four printed junctions (S3–5, S6–8, S14–16, S17A–19), which the file carried only as contiguous surfaces.
+
+## 2026-11-01 — Second review: diagram, labels and movement
+
+Compared: the local page at 45.17, 87.71 and 167.24 mm, at both ends of the focus control and with the movement overlay, against Figure 1 panels (a), (b) and (c) (PDF page 21, the native 1212 × 1202 bitmap) and ¶0015 to ¶0029. The maker drawing was read from the supplied local image as a check on order and special glass; no rim was fitted to it.
+
+Re-measurement: axis fits on all three panels and vertex matches at 6.60 to 6.62 px/mm reproduce the first pass's scale. Line-centre readings at 6.40 px/mm, taken separately, give L1 15.86, L2 14.65, L3 13.72, L4 7.54, L5 6.95, L6 6.55, L7 9.30, L8 7.85, L9 7.38, L10 7.2, L12 5.75, L13 8.42 and L14 10.13 mm, within 0.1 mm of the first pass. Fitting the height scale to one arc at a time is too noisy to improve on the joint arc fit and the stop ticks (it scatters from 6.2 to 6.65 px/mm), so 6.40 px/mm stands.
+
+Cuts under the owner's lands-and-cuts rule. No land exists or was added, and `checks.gapSagFrac` stays at its default. Costs are the worst points of light over all 201 zoom nodes with only that rim cut and every other rim at baseline.
+
+| Surfaces | Element | Figure mm | Baseline mm | First pass mm | Final mm | Costs, points | Verdict |
+|---|---|---:|---:|---:|---:|---:|---|
+| S1, S2 | L1 | 15.82 | 18.67 | 15.9 | 17.26 | 2.85 at 5.0°, 120.9 mm | partly raised |
+| S3 | L2 front | 14.65 | 16.51 | 14.7 | 16.10 | 2.66 with S4-5 at 4.4°, 136.1 mm | partly raised |
+| S4, S5 | L3 | 13.75 | 16.51 | 13.8 | 15.01 | with S3 | partly raised |
+| S6 | L4 front | 7.54 | 8.5 | 7.6 | 7.79 | 1.24 at 13.0°, 47.1 mm | partly raised |
+| S9, S10 | L6 | 6.54 | 9.12 | 6.6 | 6.86 | 1.43 at 11.3°, 45.17 mm | partly raised |
+| S15, S16 | L9 | 7.40 | 7.678 | 7.4 | 7.4 | 0.00 | keep: slight |
+| S17A, S18 | L10 | 7.27 | 7.801 | 7.3 | 7.3 | 0.62 with S19 at 13.5°, 45.17 mm | keep: slight |
+| S19 | L11 rear | 7.09 | 7.801 | 7.1 | 7.1 | with S17A-18 | keep: slight |
+| S20, S21 | L12 | 5.74 | 7.225 | 5.8 | 6.40 | 1.30 at 13.5°, 45.17 mm | partly raised |
+| S22, S23 | L13 | 8.42 | 8.959 | 8.959 | 8.65 | 0.00 | new cut, keep: slight |
+
+Whole lens: the final `rimcost.mjs --every 1` worst loss over all 201 zoom nodes is 2.85 points, at 5.0°, 120.9 mm. At the printed stations alone it is 2.5 points, at 13.5°, 45.17 mm. The budget runs over every node because the slider passes through them: rims set against the printed stations alone lost 3.7 points at 116.9 mm, and the coordinator raised S1-2 by 0.15 mm, S3 and S4-5 by 0.10 mm and S20-21 by 0.05 mm to the final values. No element's `--loo` restore is refused by the validator, so no cut stands on spacing.
+
+| Station | Corner field | Baseline rims | First pass | Final |
+|---|---:|---:|---:|---:|
+| 45.17 mm | 13.5° | 80.6 % | 66.5 % | 78.1 % |
+| 87.71 mm | 6.9° | 99.2 % | 94.8 % | 98.5 % |
+| 167.24 mm | 3.6° | 82.3 % | 71.3 % | 80.0 % |
+
+Against the printed stations alone, the tightest set to two decimals was S1-2 17.11, S3 16.00, S4-5 14.91, S6 7.79, S9-10 6.86 and S20-21 6.35 mm, with S6, S9-10 and S20-21 trading against each other; that set had the least total raise in that trio, 1.0 mm. The final values hold the budget at every node but are not the smallest that do: one hundredth less on S1-2 gives 2.91 points, and one hundredth less on S3, S4-5, S6, S9-10 or S20-21 leaves the worst at 2.85 points. At 45.17 mm L12 stops gaining above about 6.6 mm.
+
+The figure gap is expected under the budget and stands as follows: L1 +9.1 %, S3 +9.9 %, S4-5 +9.2 %, S6 +3.3 %, L6 +4.9 %, L12 +11.5 %. G1 keeps the figure's proportions and step order: L1, L2 and L3 step down 1.16 and 1.09 mm against the figure's 1.17 and 0.90 mm, near the scale the maker's drawing shows (median 8 % above the figure, L1 17.1 mm there). L4 stays above L5 and L5 above L6, and L8, L9, L10 and L11 step down as drawn. S14 stays at 7.9 mm, above the 7.678 mm baseline, because the figure reads 7.87 mm and needs L8 proud of L9. S7-8 stay at the 7.17 mm baseline, 3 % over the figure and inside the noise band.
+
+L13 is the one change that costs nothing. Its S22 corner stood visibly proud of all three panels. S22-23 at 8.65 mm sits 2.7 % over the figure and costs 0.00 points at every zoom node; the engine half-field at 45.17 mm drops from 17.04° to 16.99° at 8.60 mm, where S23 joins S25 as the limit. L14 stays at 10.518 mm because S25 sets that half-field, and it and L7 are inside the noise band.
+
+Clearance on the final rims: `clearap.mjs` at Y = 10.815 mm shows no `CLIPS-AXIAL` or `BLOCKS-CHIEF`, and every rim clears its axial floor. The closest are S15 at 0.46 mm, S14 at 0.48 mm and S17A at 0.49 mm. The surface validator prints OK, the image-circle check reports 0 undersized, and field coverage is at least 99 % at all 201 stations. Engine half-field stays 17.04, 8.64 and 4.30° and f-number 4.157, 5.447 and 5.836 at the printed stations. `LOWER no-ray-found` remains at stations 195-200, which is the search stopping on the bundle's lower rim ray and not a clip.
+
+Labels and tags, read on the page and against the patent: groups G1 to G6 bracket S1-5, S6-10, S11A-19, S20-21, S22-23 and S24-25, as ¶0022 to ¶0027 and the figure's brackets do. C1 to C4 bracket the four printed junctions and do not collide with d5, d10, d19, d21, d23 or BF. L1 to L14 are the patent's own designations. All 14 `type` strings agree with the signs of R, and with ¶0022 to ¶0027. All 14 elements show a focal length in the inspector. `A` sits on S11, S12 and S17 only, the three asterisks of Table 2 and the figure. The stop is S13 between L7 and L8, as ¶0024 states. The patent text has no term for anomalous dispersion, ED glass or stabilization. The `apd: "inferred"` tags on L3 and L9 match the blue ED elements of the maker's drawing, and its pink ASPH elements are L7 and L10. Element and group counts agree with it. No label, tag or bracket needed a change. The page sets the two aspheric markers of L7 tight against the STO label; no field in this review's list moves them.
+
+Movement: stations ascend wide to tele and every gap column runs in that order, with the printed values at stations 0, 100 and 200. ¶0016 assigns panels (a), (b) and (c) to fW, fM and fT.
+
+| Group | Patent ¶0028 and figure arrows | Model, wide to tele | Verdict |
+|---|---|---|---|
+| G1 | fixed | 0.0000 mm | agrees |
+| G2 | monotonic imageward | +25.0243 mm, no turn | agrees |
+| G3 | fixed | 0.0000 mm | agrees |
+| G4 | path convex toward the image | +3.2504 mm to the printed middle, peak +3.4158 mm at station 121, −0.8350 mm at tele | agrees |
+| G5 | monotonic objectward | −4.0148 mm, no turn | agrees |
+| G6 | fixed | 0.0001 mm of print rounding | agrees |
+
+The G4 turn at station 121 and the matching d21 turn at station 139 are the one turn each that the printed sequences require; the cam adds none. Overall length holds at 107.5266 to 107.5269 mm.
+
+Focus: ¶0017 and ¶0029 name G4 and G5 as the focusing groups and say both move imageward from infinity to a near object, and the Figure 1 arrows on G4(−) and G5(−) point imageward. `focus.description` says the same, and the patent prints infinity spacings only, so the focus control stays inert and shows "Not modeled". The focus choice in the movement overlay is disabled, so that overlay falls back to zoom.
+
+Open limitation: the exact axial ray at the printed f-numbers reaches the stop at 8.00, 6.10 and 5.40 mm, close to the figure's stop ticks at 7.97, 6.05 and 5.27 mm. The engine's paraxial iris radius is 7.43, 5.86 and 5.23 mm. The stop is outside this review's edit list, so this is logged and unchanged.

@@ -150,7 +150,7 @@ Corner illumination, engine geometric transmission wide open at infinity, at the
 | Middle | 43.5° | 97.3% | 78.4% | −18.9 |
 | Tele | 36.0° | 88.7% | 68.3% | −20.4 |
 
-All three exceed the 5-point line, and the cuts stay because the figure reading is solid: isotropic scale, most arcs fitting to about 0.4 px rms, rims on clean strokes, and fans that end tighter still. Taken one at a time against the earlier rims, wide/middle/tele: G3 costs 7.2/18.9/20.4 points, L10 8.3/7.0/0, surface 4 8.0/0/0, C3 4.1/2.4/0 and L13 2.4/0.6/0. To bring all three stations within 5 points would take surface 4 at 15.0 mm, G3 at 9.4 mm and L10 at 12.3 mm, giving 74.3/94.2/84.9%. None of those fits the figure.
+(Superseded the same day: the second review below applies a 3-point budget, and these corners are now 77.4/95.5/86.4%.) All three exceed the 5-point line, and the cuts stay because the figure reading is solid: isotropic scale, most arcs fitting to about 0.4 px rms, rims on clean strokes, and fans that end tighter still. Taken one at a time against the earlier rims, wide/middle/tele: G3 costs 7.2/18.9/20.4 points, L10 8.3/7.0/0, surface 4 8.0/0/0, C3 4.1/2.4/0 and L13 2.4/0.6/0. To bring all three stations within 5 points would take surface 4 at 15.0 mm, G3 at 9.4 mm and L10 at 12.3 mm, giving 74.3/94.2/84.9%. None of those fits the figure.
 
 Live check: the local page was viewed at wide, middle, tele and focus = 1, which is the same optics. L1 and L2 show their flanges, and the order of rim heights front to rear matches Figure 22 at each station.
 
@@ -161,3 +161,63 @@ Open: the fan limits above, 7.05 mm at r18 and about 10.3 mm at r20–r22, again
 ## 2026-11-01 — Glass labels and brackets
 
 L1 and L2 moved off `Unmatched`. L2 (1.769/49.428) is within 2e-5 in index and 0.14 in Abbe number of MC-TAF101-100. L1 (1.691/53.052) has no coordinate match; L-LAL13 is a proxy at +0.0025 and +0.13, chosen as a moulding glass of that class, and the label says so. The trace anchors the d line on the printed index, so these rows supply dispersion only. Glass resolves 13 of 15; the two thin layers stay `Unmatched`. `groups` G1–G4 and `doublets` H1, C1–C3, H2 were added: the file had `cemented` tags but drew no brackets, and the group-movement analysis was falling back to contiguous runs.
+
+## 2026-11-01 — Second review: diagram, labels and movement
+
+Compared: the local page at 10.355, 14.992 and 19.299 mm, `focus=1`, both `mv` overlays and the inspector for L1, H1 and L7, against Figure 22 (PDF page 18, native 933 × 567 px bitmap), the Example 4 tables (PDF page 11) and the patent's full text layer, with Sigma's construction drawing as a check on order and special glass only.
+
+Figure re-measured from the native bitmap's horizontal strokes. Top and bottom stroke pairs give the axis at y = 188.5 and half-heights of 174.5 px on L1, 81.5 on H1/L3, 76.5 on L4, 52.5 on G3, 74.5 on L10, 78.5 on C3 and 82.5 on L13; L2 (y = 74), C1 (y = 133) and L7 (y = 247) print one clean stroke each. At 6.62 px/mm these are the readings in the table, and they agree with the first pass to the last digit.
+
+Budget. "Before" is the file as this review found it. Cost is that element's final rims alone, with every other rim at baseline: worst points lost at any field sample of any printed station. An element's cost is measured this way because L10, C3 and L13 mask each other in `rimcost.mjs --loo`.
+
+| Surface | Figure | Baseline | Before | Final | Cost | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1A | 26.36 | 28 | 26.4 | 26.4 | 0.00 | Keep: slight |
+| 2, land | Curve end 16.8, edge 26.36 | 17, no land | 17, land 26.4 | 17, land 26.4 | 0.00 | Keep: slight |
+| 3A | 17.30 | 18 | 17.3 | 17.35 | 0.00 | Partly raised |
+| 4, land | Curve end 14.05–14.2, edge 17.30 | 18, no land | 14.2, land 17.3 | 14.53, land 17.35 | 0.00 | Partly raised; land stays |
+| 5A, 6 | 12.31 | 12.8 | 12.3 | 12.4 | 0.00 | Partly raised |
+| 7, land | Curve end 10.6–10.7, edge 12.31 | 12.8, no land | 10.7, land 12.3 | 10.8, land 12.4 | 1.92 at 52.0° wide | Partly raised; land stays |
+| 8, 9 | 11.56 | 12.5 | 11.6 | 11.6 | 0.00 | Keep: slight |
+| 11, 12, 13 | 8.38 | 9.7 | 8.4 | 9.7 | 0.00 | Removed, for step order |
+| 14, 15 | 8.84 | 10.5 | 8.8 | 10.2 | 0.00 | Partly raised, for step order |
+| 16, 17, 18 | 7.93 | 9.8 | 7.9 | 9.54 | 2.42 at 33.3° tele | Partly raised |
+| 19, 20 | 11.25 | 13 | 11.3 | 12.3 | 0.93 at 54.9° wide | Partly raised |
+| 21, 22, 23 | 11.86 | 12.8 | 11.9 | 12.31 | 1.12 at 54.9° wide | Partly raised; 12.21 met the budget, 12.31 keeps C3 above L10 as drawn |
+| 24A, 25, 26 | 12.46 | 13.5 | 12.5 | 12.65 | 1.05 at 54.9° wide | Partly raised |
+
+Worst loss in the final file, whole lens: 2.42 points at the printed stations, at 33.3° tele, and 3.1 points over all 129 zoom nodes, at 52.8° and 11.06 mm, from `rimcost.mjs --every 1`. That is 0.1 over the 3-point line. No cut is kept for spacing: every full restore in `--loo` validates. `checks.gapSagFrac` was not needed, no land was removed, and no rim rose above baseline.
+
+| Corner, wide open | Baseline | Before | Final |
+| --- | --- | --- | --- |
+| Wide, 54.9° | 78.4% | 61.8% | 77.4% |
+| Middle, 43.5° | 97.3% | 78.4% | 95.5% |
+| Tele, 36.0° | 88.7% | 68.3% | 86.4% |
+
+How the partial values were reached. The search first met the budget at the printed stations alone, with the values in this paragraph, for corners of 75.5/95.1/85.7%. The slider also passes through the solved nodes, where that set lost up to 5.8 points, so the coordinator applied the same budget at every node, and the table's Final column is the result. With everything else restored, the single-element limits at 3.00 points are about 14.37 mm on surface 4, 9.5 on G3, 11.96 on L10 and 12.01 on C3, and L13 and surface 7 pass at their figure values. The rear rims stack up on one ray level, so joint two-decimal bisection then settled on two equal solutions, 14.46/11.96/12.02 and 14.48/11.95/12.01 for surface 4/L10/C3, with G3 at 9.49 in both; the second is one hundredth lower on five faces. The first pass's suggested 15.0/9.4/12.3 mm misses the budget at 74.3/94.2/84.9%, because G3 is 0.09 mm short and C3 stayed at 11.9 mm. Figure gaps left by the final rims: 3A, 0.05 mm; surface 4, 0.33–0.48; 5A and 6, 0.09; surface 7, 0.10–0.20; G3, 1.61; L10, 1.05; C3, 0.35; L13, 0.19. The lands on surfaces 4 and 7 still end at the figure's 17.3 and 12.3 mm, so 3A and 5A/6 now run 0.05 and 0.10 mm past them, and those two rims show a slant of that size instead of a square edge. Surface 2 stays 0.2 mm above its curve end: at 16.8 mm the wide corner loses 9.1 points, and it is what caps that corner at 78.4% at baseline.
+
+Step order. Raising G3 alone would stand it above L7 and C1, where the figure and Sigma's drawing both have it lowest. C1 goes back to baseline and L7 to 10.2 mm, which keeps the drawn C1→L7 step (+0.46 drawn, +0.5 here) and L7→G3 step (−0.91 drawn, −0.66 here). Neither costs or wins light, and leaving them at 8.4/8.8 mm changes no optical result, so this is a picture decision only. C3 stays below L13 as drawn. L10 does not hold its place: it now stands 0.09 mm above C3, where the figure has it 0.61 mm below, so that step is reversed.
+
+Not modeled, as before: L11's rear in the figure ends near 10.6 mm with a short land, and a cemented surface cannot carry one.
+
+Clearance and engine, after the edits. Half-field is 46.83/48.81/45.17° at the printed stations, the tele figure up from 44.83° because the rim of surface 26 rose. F-number 3.611/3.631/3.597 and stop radii 5.227/6.004/6.824 mm are unchanged. No rim fell, so every first-pass floor stands: `clearap` shows no `CLIPS-AXIAL` or `BLOCKS-CHIEF`, with its known field search limit on the wide stations. The validator passes, the image-circle floor is clean, and all 129 stations pass corner coverage.
+
+Labels and tags, checked and left alone. The patent's own labels are L1–L4 for groups, Lc for the cemented lens, SP and IP (¶0047, Figure 22); it names no elements. G1–G4 avoid the clash with element names L1–L13, and each bracket covers the right surfaces. Figure 22's L2 bracket runs from surface 11 to 15 and leaves SP outside, but the 1.400 mm gap after the stop is fixed, so the stop moves with the group and G2 keeps `fromSurface: "STO"` as the mechanical group. Bracket text C1–C3 does not collide with D9, D15 or D18. H1 and H2 follow the hybrid convention in `LENS_DATA_SPEC.md`, and the inspector reads "DOUBLET H1". Every `type` agrees with the signs of R. Asterisks on [1], [3], [5] and [24] match 1A, 3A, 5A and 24A, and no other surface carries an `A`. All 15 `focalLengthMm` match a thick-lens calculation in air. The role claims for L1 and Lc match ¶0025. The stop sits between surfaces 9 and 11 as printed. Tags: the patent has no anomalous-dispersion text, so `apd: "inferred"` is right. Sigma's drawing shows blue on element 7, green on 10 and 12, and pink on 1, 2, 3 and 13, in the modeled order.
+
+Movement, from the printed table. Stations ascend at 10.355/14.992/19.299 mm, under the headings wide, middle and tele. Image-relative travel, wide to middle then middle to tele, with positive objectward: G1 −3.710, +1.030, net −2.680 mm, from the total lengths 134.257/130.547/131.577; G2 and the stop +7.665, +6.656; G3 +1.281, +2.657; G4 +4.790, +5.851. Figure 22's arrows agree in direction: L1 bows imageward and returns, the other three run objectward. The L2 arrow is drawn much longer than 14.3 mm at figure scale, so the arrows are schematic. `turns.mjs` finds one turn, G1 at the printed middle station, which the printed lengths require. All four gap columns are monotone and in station order. The overlay shows the same directions and a largest travel of 14.32 mm.
+
+Focus. Confirmed not modeled, and `focus.description` is right. A search of the patent's text layer finds no 合焦, フォーカシング, 繰り出し, 至近 or 近距離. Infinity appears only in the definitions of the condition variables, as "広角端かつ無限遠結像状態", and in the title of the variable-gap table on PDF page 11. No paragraph names a focusing group or a direction, so none can be quoted. The slider reads "Not modeled" at its far end.
+
+Glass, for the record. The patent prints nd and νd only. For the two `Unmatched` thin layers it adds nothing beyond Example 1's 1.5184/52.0948 (PDF page 9), already used, and no material or partial dispersion.
+
+Live check after the edits, on the final rims: the height order front to rear matches Figure 22, with L10 and C3 about level. The lands on surfaces 4 and 7 rose to 17.35 and 12.4 mm with their partner faces, so L2 and L3 stay square. The flanges on L1, L2 and L3 read as square, and C1, L7, G3 and L10 are the outlines most visibly off the figure's heights, by the amounts above.
+
+The back-focus and fan-limit `Open:` lines above stay open; this review resolves neither.
+
+## 2026-11-01 — Glass proxy and resin partial
+
+L1 moved from L-LAL13 to M-LAC130. Both sit 0.0025 above the printed 1.691, and neither reproduces it. Eleven of this lens's elements match HOYA rows to about 0.01 in νd, and Sigma's JP 2010-211056 A Example 1 reproduces HOYA curves to four decimals, so the HOYA moulding row is the better proxy. νd is 0.15 high on M-LAC130, against 0.13 on L-LAL13. The trace stays anchored on the printed index.
+
+L2 stays on MC-TAF101-100, whose nd rounds to the printed 1.769. Its νd of 49.29 misses the printed 49.428 by more than this lens's other rows miss theirs, so the row is a coordinate choice rather than a pin. MC-TAF115 sits closer in νd, 49.46, but 0.0015 off in index, and neither is decisive.
+
+H1 and H2 stay Unmatched. JP 2019-211703 A Example 2, a Sigma filing, prints PgF 0.5538 for a 1.51840/52.10 aspherical resin, which gives `dPgF` −0.002376 against the engine line. Matching coordinates do not prove the same resin, so `apdNote` calls it a proxy. JP 2010-243737 A prints no partial.

@@ -15,17 +15,22 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Inferred: the zoom stations between the printed ones (a numerical path, not a published cam) and every semi-diameter.
  * The patent prints infinity focus only, so the focus pairs repeat. The stabilizing shift is not modeled.
  * Semi-diameters are estimated from Figure 1 of JP 2010-211056 A (wide end, 6.19 px/mm along the axis, 6.24 across) and
- * floor-checked by real-ray trace. rimExtensionSd draws the figure's lands on L3, L4, L5, L10 and L11. S7 and S8 end at
- * 14.2 mm, which the end rays of the lateral-aberration Figure 4 need. Flare-cut planes S13 and S33 take 8.65 and 9.7 mm
- * from the end rays of Figures 4 and 5; Figure 1's ticks read 8.4 and 9.1 mm. L1's rear flange has no land: S2 is a
- * cemented junction, so the outline runs straight from the S1 rim to the S2 rim.
+ * floor-checked by real-ray trace. L1 to L5 and L10 to L12 follow the figure. rimExtensionSd draws the figure's lands on
+ * L3, L4, L5, L10 and L11. S7 and S8 end at 14.2 mm, which the end rays of the lateral-aberration Figure 4 need. The rims
+ * of L6 to L9 and L13 to L16 and flare-cut planes S13 and S33 stand above Figure 1 (L6 9.9, L7/L8 9.4, L9 9.2, L13 9.4,
+ * L14/L15 9.9, L16 10.4 mm; tick openings 8.4 and 9.1 mm, tick ends 10.8 and 11.5 mm): the drawn sizes cut the corner to
+ * about half, so each is the smallest two-decimal rim that keeps the zoom nodes within 3 points of the ray-estimated
+ * clear apertures. 29 of 2063 field samples stay above that, worst 3.7 points at 29.8 degrees at 24.47 mm, which raising
+ * any one of these rims barely moves. L1's rear flange has no land: S2 is a cemented junction, so the outline runs
+ * straight from the S1 rim to the S2 rim.
  * S21 and S22 end at 6.05 mm, which passes the stated axial beam at every station, and come within 0.07 mm at the rim
  * without crossing; S7 and S8 come within 0.10 mm. checks.gapSagFrac 0.95 is the smallest two-decimal value that admits
  * both pairs.
  * The stop radius comes from the design f-number at each station under the stop rule (paraxial EPD = F/N): 6.43, 6.41
  * and 6.40 mm at the printed stations. It is not a measured diaphragm. S29 is a plane glass surface, not a stop.
- * Glass: nd and vd stay as printed; catalog equivalents supply the spectral curves. L6 (moulded) and the two resin
- * layers stay Unmatched. Surface labels follow the patent's numbering.
+ * Glass: nd and vd stay as printed; catalog equivalents supply the spectral curves. HOYA curves reproduce the printed
+ * four-decimal vd of TAF1, FDS90, FC5 and TAC8 to 0.0001. L6 (moulded) takes M-BACD5N as a proxy, and the two resin
+ * layers stay Unmatched with a g-line partial from JP 2019-211703 A. Surface labels follow the patent's numbering.
  */
 
 const LENS_DATA = {
@@ -84,12 +89,13 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
+      "diagramLabel": "L1",
       "type": "Negative Meniscus",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": -63.45254623085152,
-      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "glass": "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       "cemented": "H1",
       "role": "Front negative meniscus of fixed G1; its rear face carries the thin resin layer."
     },
@@ -97,43 +103,49 @@ const LENS_DATA = {
       "id": 2,
       "name": "R1",
       "label": "Element 1 resin layer",
-      "type": "Negative Meniscus",
+      "diagramLabel": "R1",
+      "type": "Hybrid Aspheric Resin Layer (1× Asph)",
       "nd": 1.5184,
       "vd": 52.0743,
       "indexReference": "d",
       "focalLengthMm": -516.7821979029443,
-      "glass": "Unmatched (hybrid optical resin; spectrum unpublished)",
+      "glass": "Unmatched (hybrid optical resin; catalog identity unpublished)",
+      "dPgF": -0.002411,
+      "apdNote": "Later-patent spectral proxy: JP 2019-211703 A Example 2, also a Sigma filing, prints PgF 0.5538 for its 1.51840/52.10 aspherical resin (four-decimal rounding ±0.00005). JP 2010-211056 A prints nd and νd only, and matching coordinates do not establish the same resin or cure. dPgF −0.002411 is derived against 0.6438 − 0.001682νd; its last digits are arithmetic, not source precision. No anomalous-material classification is claimed.",
       "cemented": "H1",
-      "role": "Thin resin layer bonded to Element 1; its air-side surface 3A is the front asphere, for wide-angle distortion."
+      "role": "Thin layer bonded to Element 1, taken as resin, as the patent states no material; its air-side surface 3A is the front asphere, for wide-angle distortion."
     },
     {
       "id": 3,
       "name": "L2",
       "label": "Element 2",
+      "diagramLabel": "L2",
       "type": "Biconvex Positive",
       "nd": 1.8466,
       "vd": 23.7848,
       "indexReference": "d",
       "focalLengthMm": 129.20134464842747,
-      "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "glass": "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Biconvex positive closing fixed G1; the negative-positive order helps distortion without enlarging the front element."
     },
     {
       "id": 4,
       "name": "L3",
       "label": "Element 3",
+      "diagramLabel": "L3",
       "type": "Biconcave Negative",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": -97.8500313733255,
-      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "glass": "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Biconcave first element of G2, the negative group that moves for focus."
     },
     {
       "id": 5,
       "name": "L4",
       "label": "Element 4",
+      "diagramLabel": "L4",
       "type": "Biconcave Negative",
       "nd": 1.7292,
       "vd": 54.6735,
@@ -147,12 +159,13 @@ const LENS_DATA = {
       "id": 6,
       "name": "L5",
       "label": "Element 5",
+      "diagramLabel": "L5",
       "type": "Positive Meniscus",
       "nd": 1.8466,
       "vd": 23.7848,
       "indexReference": "d",
       "focalLengthMm": 69.64411743426885,
-      "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "glass": "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       "cemented": "C1",
       "role": "High-dispersion positive meniscus cemented to Element 4, the colour partner in G2."
     },
@@ -160,24 +173,26 @@ const LENS_DATA = {
       "id": 7,
       "name": "L6",
       "label": "Element 6",
-      "type": "Positive Meniscus",
+      "diagramLabel": "L6",
+      "type": "Positive Meniscus (1× Asph)",
       "nd": 1.5876,
       "vd": 61.0842,
       "indexReference": "d",
       "focalLengthMm": 79.38040340300878,
-      "glass": "L-BAL35 (OHARA moulding glass, coordinate equivalent; patent nd=1.5876, νd=61.08; production supplier unspecified)",
+      "glass": "M-BACD5N (HOYA moulding glass, coordinate proxy; patent nd=1.5876, νd=61.08; production supplier unspecified)",
       "role": "Aspheric first element of G3 (rear surface 12A); JP 2010-211102 A shifts it across the axis as the stabilizing element."
     },
     {
       "id": 8,
       "name": "L7",
       "label": "Element 7",
+      "diagramLabel": "L7",
       "type": "Negative Meniscus",
       "nd": 1.8466,
       "vd": 23.7848,
       "indexReference": "d",
       "focalLengthMm": -40.464485034138164,
-      "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "glass": "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       "cemented": "C2",
       "role": "Negative high-dispersion meniscus leading the G3 cemented doublet."
     },
@@ -185,12 +200,13 @@ const LENS_DATA = {
       "id": 9,
       "name": "L8",
       "label": "Element 8",
+      "diagramLabel": "L8",
       "type": "Positive Meniscus",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": 25.915080937172952,
-      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "glass": "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       "cemented": "C2",
       "role": "Strong high-index positive cemented to Element 7; the main power of G3."
     },
@@ -198,6 +214,7 @@ const LENS_DATA = {
       "id": 10,
       "name": "L9",
       "label": "Element 9",
+      "diagramLabel": "L9",
       "type": "Positive Meniscus",
       "nd": 1.497,
       "vd": 81.6084,
@@ -212,24 +229,26 @@ const LENS_DATA = {
       "id": 11,
       "name": "L10",
       "label": "Element 10",
+      "diagramLabel": "L10",
       "type": "Biconcave Negative",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": -26.731760065147775,
-      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "glass": "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Biconcave first element of negative G4, just behind the stop."
     },
     {
       "id": 12,
       "name": "L11",
       "label": "Element 11",
+      "diagramLabel": "L11",
       "type": "Biconcave Negative",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": -15.771456082622795,
-      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "glass": "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       "cemented": "C3",
       "role": "Strong biconcave negative of the G4 cemented doublet."
     },
@@ -237,12 +256,13 @@ const LENS_DATA = {
       "id": 13,
       "name": "L12",
       "label": "Element 12",
+      "diagramLabel": "L12",
       "type": "Biconvex Positive",
       "nd": 1.8466,
       "vd": 23.7848,
       "indexReference": "d",
       "focalLengthMm": 23.544851474152374,
-      "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "glass": "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       "cemented": "C3",
       "role": "High-dispersion biconvex cemented to Element 11, the colour partner in G4."
     },
@@ -250,6 +270,7 @@ const LENS_DATA = {
       "id": 14,
       "name": "L13",
       "label": "Element 13",
+      "diagramLabel": "L13",
       "type": "Biconvex Positive",
       "nd": 1.497,
       "vd": 81.6084,
@@ -264,12 +285,13 @@ const LENS_DATA = {
       "id": 15,
       "name": "L14",
       "label": "Element 14",
+      "diagramLabel": "L14",
       "type": "Positive Meniscus",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": 69.3301865808726,
-      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "glass": "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       "cemented": "C4",
       "role": "Positive meniscus leading the G5 cemented doublet."
     },
@@ -277,12 +299,13 @@ const LENS_DATA = {
       "id": 16,
       "name": "L15",
       "label": "Element 15",
+      "diagramLabel": "L15",
       "type": "Plano-Concave Negative",
       "nd": 1.8466,
       "vd": 23.7848,
       "indexReference": "d",
       "focalLengthMm": -45.67682494684621,
-      "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "glass": "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       "cemented": "C4",
       "role": "High-dispersion negative cemented to Element 14, with a flat rear face; the colour partner in G5."
     },
@@ -290,25 +313,29 @@ const LENS_DATA = {
       "id": 17,
       "name": "R2",
       "label": "Element 16 resin layer",
-      "type": "Positive Meniscus",
+      "diagramLabel": "R2",
+      "type": "Hybrid Aspheric Resin Layer (1× Asph)",
       "nd": 1.5184,
       "vd": 52.0743,
       "indexReference": "d",
       "focalLengthMm": 302.07356219467147,
-      "glass": "Unmatched (hybrid optical resin; spectrum unpublished)",
+      "glass": "Unmatched (hybrid optical resin; catalog identity unpublished)",
+      "dPgF": -0.002411,
+      "apdNote": "Later-patent spectral proxy: JP 2019-211703 A Example 2, also a Sigma filing, prints PgF 0.5538 for its 1.51840/52.10 aspherical resin (four-decimal rounding ±0.00005). JP 2010-211056 A prints nd and νd only, and matching coordinates do not establish the same resin or cure. dPgF −0.002411 is derived against 0.6438 − 0.001682νd; its last digits are arithmetic, not source precision. No anomalous-material classification is claimed.",
       "cemented": "H2",
-      "role": "Thin resin layer bonded to the front of Element 16; its air-side surface 30A is the rear asphere, for coma and astigmatism."
+      "role": "Thin layer bonded to the front of Element 16, taken as resin, as the patent states no material; its air-side surface 30A is the rear asphere, for coma and astigmatism."
     },
     {
       "id": 18,
       "name": "L16",
       "label": "Element 16",
+      "diagramLabel": "L16",
       "type": "Positive Meniscus",
       "nd": 1.4875,
       "vd": 70.4412,
       "indexReference": "d",
       "focalLengthMm": 96.2595695147173,
-      "glass": "H-QK3L (CDGM catalog equivalent; production supplier unspecified)",
+      "glass": "FC5 (HOYA catalog equivalent; production supplier unspecified)",
       "cemented": "H2",
       "role": "Last positive meniscus of G5, carrying the resin layer on its front face."
     }
@@ -391,14 +418,14 @@ const LENS_DATA = {
     {
       "label": "11",
       "R": -433.69,
-      "sd": 10,
+      "sd": 11.3,
       "medium": 7,
       "d": 2.38
     },
     {
       "label": "12A",
       "R": -42.2,
-      "sd": 10,
+      "sd": 11.3,
       "asphere": {
         "K": -1.1922,
         "A4": -0.0000028679,
@@ -411,40 +438,40 @@ const LENS_DATA = {
     {
       "label": "13",
       "R": "flat",
-      "sd": 8.65,
+      "sd": 10.93,
       "d": 0.45
     },
     {
       "label": "14",
       "R": 46.5,
-      "sd": 9.4,
+      "sd": 10.78,
       "medium": 8,
       "d": 0.85
     },
     {
       "label": "15",
       "R": 19.56,
-      "sd": 9.4,
+      "sd": 10.78,
       "medium": 9,
       "d": 3.6
     },
     {
       "label": "16",
       "R": 784,
-      "sd": 9.4,
+      "sd": 10.78,
       "d": 0.15
     },
     {
       "label": "17",
       "R": 21,
-      "sd": 9.2,
+      "sd": 9.94,
       "medium": 10,
       "d": 3.18
     },
     {
       "label": "18",
       "R": 131.9,
-      "sd": 9.2
+      "sd": 9.94
     },
     {
       "label": "STO",
@@ -488,40 +515,40 @@ const LENS_DATA = {
     {
       "label": "25",
       "R": 32.7,
-      "sd": 9.4,
+      "sd": 10.7,
       "medium": 14,
       "d": 4.69
     },
     {
       "label": "26",
       "R": -24.71,
-      "sd": 9.4,
+      "sd": 10.7,
       "d": 0.15
     },
     {
       "label": "27",
       "R": -135.9,
-      "sd": 9.9,
+      "sd": 10.75,
       "medium": 15,
       "d": 2.05
     },
     {
       "label": "28",
       "R": -38.67,
-      "sd": 9.9,
+      "sd": 10.75,
       "medium": 16,
       "d": 0.85
     },
     {
       "label": "29",
       "R": "flat",
-      "sd": 9.9,
+      "sd": 10.75,
       "d": 1.57
     },
     {
       "label": "30A",
       "R": -1000,
-      "sd": 10.4,
+      "sd": 11.1,
       "asphere": {
         "K": 0,
         "A4": -0.000032971,
@@ -535,19 +562,19 @@ const LENS_DATA = {
     {
       "label": "31",
       "R": -135.4,
-      "sd": 10.4,
+      "sd": 11.1,
       "medium": 18,
       "d": 2.86
     },
     {
       "label": "32",
       "R": -35.09,
-      "sd": 10.4
+      "sd": 11.1
     },
     {
       "label": "33",
       "R": "flat",
-      "sd": 9.7
+      "sd": 11.5
     }
   ],
   "zoom": {

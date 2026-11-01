@@ -20,7 +20,7 @@ The patent prints spacings at three zoom positions, and the model's 201 zoom sta
 
 ### Model assumptions
 
-- All semi-diameters and iris radii are inferred. Rims are estimated from Figure 1, which is compressed 3.2 % in height, and checked by real-ray trace. The printed f-number sets the entrance pupil; the stop diameter is not printed.
+- All semi-diameters and iris radii are inferred. Rims are estimated from Figure 1, which is compressed 3.2 % in height, and checked by real-ray trace. G1, the front of L4, L6 and L12 stand 3 to 12 % above the drawn heights to keep the corner beam. The printed f-number sets the entrance pupil; the stop diameter is not printed.
 - Between the printed positions, G2, G5 and the back focus change linearly with the zoom control, and G4 is placed to hold paraxial focus. G4 then reverses once, near 100 mm, with d19 peaking at 6.39 mm against the printed 6.23 mm at 87.71 mm. The printed spacings require that one reversal, and the patent describes a path convex toward the image (¶0028). G2 moves steadily imageward and G5 steadily objectward, as the patent states.
 - Close focus, decentering, O.I.S. stroke and performance at the marketed 0.9 m are not modeled.
 
@@ -167,7 +167,7 @@ First-order values do not depend on the aspheric terms. Computed values differ f
 
 Half-field at the printed 10.815 mm image height is 13.54°, 6.90° and 3.63°, matching the printed 13.5369°, 6.8993° and 3.6302°. Longitudinal spherical aberration stays within about 0.10 mm at every zoom station, the scale of the patent's Figure 2.
 
-Semi-diameters are inferred, so vignetting reflects the model's rims and not measured data. Wide open, the corner keeps 66.5 %, 94.8 % and 71.3 % of its beam at the three printed positions, with the cut at the long end coming from G1 and the cut at the short end mainly from L12, L6 and L4. Polychromatic MTF and chromatic results depend on the catalog equivalents, with L10 on its printed values, and are not predictions of the production lens. MTF is available at infinity focus only. The patent's aberration plots have not been digitized for comparison, and no comparison with measured MTF has been made.
+Semi-diameters are inferred, so vignetting reflects the model's rims and not measured data. Wide open, the corner keeps 78.1 %, 98.5 % and 80.0 % of its beam at the three printed positions, with the cut at the long end coming from G1 and the cut at the short end from G2 and L12. Polychromatic MTF and chromatic results depend on the catalog equivalents, with L10 on its printed values, and are not predictions of the production lens. MTF is available at infinity focus only. The patent's aberration plots have not been digitized for comparison, and no comparison with measured MTF has been made.
 
 ## Sources
 

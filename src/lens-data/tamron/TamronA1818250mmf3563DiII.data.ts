@@ -22,9 +22,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Focus: G2 moves toward the object (paragraph 0083), but no travel is printed, so both focus columns are identical.
  *
  * Semi-diameters: estimated from Figure 5 (wide end only), which is isotropic at about 0.122 mm per native pixel by
- * vertex spans and arc fits, then floor-checked by real-ray trace at the 14.5 mm plot height. L4's rear curve r8 ends
- * at sd 9.5 mm, just short of where it would meet r9 near 9.6 mm; rimExtensionSd 13 draws the figure's land out to the
- * element edge. That r8/r9 pair sets checks.gapSagFrac to 0.99, the smallest value admitting the land.
+ * vertex spans and arc fits, then floor-checked by real-ray trace at the 14.5 mm plot height. G1 (28/26.92/25.76 mm)
+ * and G4 (10.19 mm at L13, L14 and L15's front, 10.25 at L16) stand above the drawn 25.7/24.9/23.9 and
+ * 9.5 and 10 mm: the drawn heights cost 24 points at the 57.80 mm corner, and these rims hold the loss to about 3
+ * points at every zoom station against 28/28/27 and 10.5 mm. L4's rear curve r8 ends at sd 9.5 mm, just short of where
+ * it would meet r9 near 9.6 mm; rimExtensionSd 13 draws the figure's land out to the element edge. That r8/r9 pair sets
+ * checks.gapSagFrac to 0.99, the smallest value admitting the land.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -133,7 +136,7 @@ const LENS_DATA = {
       "glass": "Unmatched (hybrid optical resin; spectrum unpublished)",
       "role": "Thin resin layer bonded to Element 4; its front surface carries the G2 asphere.",
       "diagramLabel": "L4f",
-      "cemented": "C6"
+      "cemented": "C2"
     },
     {
       "id": 5,
@@ -147,7 +150,7 @@ const LENS_DATA = {
       "glass": "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Front negative meniscus of G2, carrying the bonded resin asphere; Tamron marks this position hybrid aspherical.",
       "diagramLabel": "L4",
-      "cemented": "C6"
+      "cemented": "C2"
     },
     {
       "id": 6,
@@ -200,7 +203,7 @@ const LENS_DATA = {
       "glass": "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Negative front of the cemented doublet that opens G3 (lens 231, paragraph 0082).",
       "diagramLabel": "L8",
-      "cemented": "C16"
+      "cemented": "C3"
     },
     {
       "id": 10,
@@ -214,7 +217,7 @@ const LENS_DATA = {
       "glass": "S-BAL35 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Positive rear of the cemented doublet that opens G3 (lens 232).",
       "diagramLabel": "L9",
-      "cemented": "C16"
+      "cemented": "C3"
     },
     {
       "id": 11,
@@ -269,7 +272,7 @@ const LENS_DATA = {
       "glass": "Unmatched (hybrid optical resin; spectrum unpublished)",
       "role": "Thin resin layer bonded to Element 13; its front surface carries the G4 asphere.",
       "diagramLabel": "L13f",
-      "cemented": "C25"
+      "cemented": "C4"
     },
     {
       "id": 15,
@@ -283,7 +286,7 @@ const LENS_DATA = {
       "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Front positive lens of G4, carrying the bonded resin asphere; Tamron marks this position hybrid aspherical.",
       "diagramLabel": "L13",
-      "cemented": "C25"
+      "cemented": "C4"
     },
     {
       "id": 16,
@@ -310,7 +313,7 @@ const LENS_DATA = {
       "glass": "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Negative front of the cemented doublet that closes G4.",
       "diagramLabel": "L15",
-      "cemented": "C30"
+      "cemented": "C5"
     },
     {
       "id": 18,
@@ -324,7 +327,7 @@ const LENS_DATA = {
       "glass": "S-TIL2 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Positive meniscus rear of the cemented doublet that closes G4; the last element.",
       "diagramLabel": "L16",
-      "cemented": "C30"
+      "cemented": "C5"
     }
   ],
   "surfaces": [
@@ -332,33 +335,33 @@ const LENS_DATA = {
       "label": "1",
       "R": 100,
       "d": 1.5,
-      "sd": 25.7,
+      "sd": 28,
       "medium": 1
     },
     {
       "label": "2",
       "R": 63.5173,
       "d": 7,
-      "sd": 25.7,
+      "sd": 28,
       "medium": 2
     },
     {
       "label": "3",
       "R": -1072.5164,
       "d": 0.2,
-      "sd": 24.9
+      "sd": 26.92
     },
     {
       "label": "4",
       "R": 63.0346,
       "d": 4.5,
-      "sd": 23.9,
+      "sd": 25.76,
       "medium": 3
     },
     {
       "label": "5",
       "R": 221.587,
-      "sd": 23.9
+      "sd": 25.76
     },
     {
       "label": "6A",
@@ -492,7 +495,7 @@ const LENS_DATA = {
       "label": "25A",
       "R": 48.526,
       "d": 0.2,
-      "sd": 9.5,
+      "sd": 10.19,
       "medium": 14,
       "asphere": {
         "A4": -0.0000466282,
@@ -505,46 +508,46 @@ const LENS_DATA = {
       "label": "26",
       "R": 48.526,
       "d": 3.5,
-      "sd": 9.5,
+      "sd": 10.19,
       "medium": 15
     },
     {
       "label": "27",
       "R": -35.9079,
       "d": 0.2,
-      "sd": 9.5
+      "sd": 10.19
     },
     {
       "label": "28",
       "R": 8369.5957,
       "d": 3.5,
-      "sd": 9.5,
+      "sd": 10.19,
       "medium": 16
     },
     {
       "label": "29",
       "R": -26.5082,
       "d": 0.2,
-      "sd": 9.5
+      "sd": 10.19
     },
     {
       "label": "30",
       "R": -533.718,
       "d": 1,
-      "sd": 9.5,
+      "sd": 10.19,
       "medium": 17
     },
     {
       "label": "31",
       "R": 18.7073,
       "d": 3.5,
-      "sd": 10,
+      "sd": 10.25,
       "medium": 18
     },
     {
       "label": "32",
       "R": 95,
-      "sd": 10
+      "sd": 10.25
     }
   ],
   "zoom": {
@@ -3330,22 +3333,22 @@ const LENS_DATA = {
       "toSurface": "3"
     },
     {
-      "text": "C6",
+      "text": "C2",
       "fromSurface": "6A",
       "toSurface": "8"
     },
     {
-      "text": "C16",
+      "text": "C3",
       "fromSurface": "16",
       "toSurface": "18"
     },
     {
-      "text": "C25",
+      "text": "C4",
       "fromSurface": "25A",
       "toSurface": "27"
     },
     {
-      "text": "C30",
+      "text": "C5",
       "fromSurface": "30",
       "toSurface": "32"
     }

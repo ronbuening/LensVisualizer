@@ -119,7 +119,7 @@ The negative dense-flint partner completes that pair. Its isolated power and the
 
 nd = 1.85135, νd = 40.10. Glass: M-TAFD305 (HOYA, coordinate equivalent). f = -14.449 mm.
 
-The front surface of this negative element is the aspheric S23, and it shares S24 with the following positive partner. Tamron's drawing shows two molded aspherical elements in the rear group; L12 and L14 are the two that carry aspheric surfaces. This doublet is the negative rear subgroup of G3 that claim 3 shifts for stabilization.
+The front surface of this negative element is the aspheric S23, and it shares S24 with the following positive partner. Tamron's drawing shows two molded aspherical elements in the rear group; L12 and L14 are the two that carry aspheric surfaces. This doublet is read as the negative rear subgroup of G3 that claim 3 shifts for stabilization; the patent names no elements for that subgroup, and this split falls at G3's largest air gap.
 
 ### L13 — Positive Meniscus
 
@@ -208,9 +208,9 @@ At the inferred modeled radii, the signed sag departures from the same-vertex sp
 | Surface | Modeled radius (mm) | Departure (mm) |
 | ------- | ------------------: | -------------: |
 | 6A      |               13.50 |   +0.225902382 |
-| 23A     |                9.50 |   +0.094485381 |
-| 26A     |               10.50 |   -0.145321147 |
-| 27A     |               10.50 |   +0.409556210 |
+| 23A     |                8.80 |   +0.070296049 |
+| 26A     |               10.00 |   -0.137001000 |
+| 27A     |               10.00 |   +0.321883812 |
 
 These are computed departures at the inferred apertures, not manufacturing dimensions. S6 adds positive departure to the hybrid's outer surface; S23 makes the negative sag less negative; S26 reduces positive sag; S27's conic-plus-polynomial profile makes its negative sag less negative. These geometric signs do not alone establish each surface's net aberration contribution.
 

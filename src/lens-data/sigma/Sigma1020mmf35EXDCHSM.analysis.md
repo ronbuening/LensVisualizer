@@ -29,11 +29,11 @@ The isolated group focal lengths are −15.436, +30.324, −43.011 and +35.467 m
 
 ## Element-by-Element Analysis
 
-Sigma's 13 elements are named L1–L13, and the diagram uses the same numbering. H1 and H2 are the thin aspherical layers, which Sigma does not count as elements. Each isolated focal length is the element's thick-lens value in air; an asphere's higher-order terms do not alter paraxial vertex power.
+Sigma's 13 elements are named L1–L13, and the diagram uses the same numbering. The patent names no elements; its own L1–L4 are the four groups, written G1–G4 here so the two sets of labels do not clash. H1 and H2 are the thin aspherical layers, which Sigma does not count as elements. Each isolated focal length is the element's thick-lens value in air; an asphere's higher-order terms do not alter paraxial vertex power.
 
 ### L1 — Aspheric Negative Meniscus
 
-nd = 1.691, νd = 53.052. Glass: L-LAL13 (OHARA moulding glass) as a dispersion proxy; no catalog glass has these coordinates. Isolated f = −29.11 mm.
+nd = 1.691, νd = 53.052. Glass: M-LAC130 (HOYA moulding glass) as a dispersion proxy; no catalog glass has these coordinates. Isolated f = −29.11 mm.
 
 The large negative front asphere establishes the retrofocus entrance, and the patent credits this surface with controlling distortion and coma. Its front face runs to a 26.4 mm rim and its rear curve ends at 17 mm, with a flat land from there to the rim, as Figure 22 draws it. These heights are read from the figure, not published mechanical dimensions.
 
@@ -45,9 +45,9 @@ The second negative meniscus continues the negative lead. Its own aspheric polyn
 
 ### H1 — Thin Aspherical Layer
 
-nd = 1.5184 (printed 1.518), νd = 52.095. Glass: unmatched, taken as resin because the patent states no material. Isolated f = −931.35 mm.
+nd = 1.5184 (printed 1.518), νd = 52.095. Glass: unmatched, taken as resin because the patent states no material; its g-line partial comes from a later Sigma patent. Isolated f = −931.35 mm.
 
-This 0.200 mm layer carries surface 5A and is bonded to L3 at r6. At the inferred 12.3 mm rim its thickness falls to 0.118 mm, a limit of the inferred clear aperture, not a patent tolerance.
+This 0.200 mm layer carries surface 5A and is bonded to L3 at r6. At the inferred 12.4 mm rim its thickness falls to 0.109 mm, a limit of the inferred clear aperture, not a patent tolerance.
 
 ### L3 — Negative Meniscus
 
@@ -111,7 +111,7 @@ The positive partner at the second position Sigma marks ELD is cemented to L11 a
 
 ### H2 — Thin Aspherical Layer
 
-nd = 1.5184 (printed 1.518), νd = 52.095. Glass: unmatched, taken as resin because the patent states no material. Isolated f = +483.04 mm.
+nd = 1.5184 (printed 1.518), νd = 52.095. Glass: unmatched, taken as resin because the patent states no material; its g-line partial comes from a later Sigma patent. Isolated f = +483.04 mm.
 
 This 0.150 mm layer is bonded to L13 at r25 and carries surface 24A. Its minimum thickness, 0.089 mm, falls at a height of 7.6 mm inside the radial band, not at its rim.
 
@@ -123,7 +123,7 @@ The final positive meniscus completes G4. H2 and L13 are two optical media in on
 
 ## Glass Identification
 
-The patent names no glasses. Twelve catalog labels, on thirteen elements, are assigned from the printed coordinates. On ten of them, on eleven elements, the Abbe numbers match HOYA data to about 0.01, except FCD10A at 90.19 against the printed 90.279. These labels give the chromatic trace catalog dispersion. They do not establish the supplier or the production melt. For TAF3, TAFD25, E-FD5 and E-FD15 the d-line trace keeps the printed three-decimal index while the color channels follow the catalog curves. L1 and L2 are aspherical and carry moulding-glass rows: MC-TAF101-100 sits on L2's printed index, and L-LAL13 stands in for L1 as a proxy, 0.0025 above its print with the Abbe number 0.13 higher. Both keep their printed indices. The patent prints no partial-dispersion data, so the SLD and ELD tags on L7, L10 and L12 rest on Sigma's drawing and on catalog values.
+The patent names no glasses. Twelve catalog labels, on thirteen elements, are assigned from the printed coordinates. On ten of them, on eleven elements, the Abbe numbers match HOYA data to about 0.01, except FCD10A at 90.19 against the printed 90.279. These labels give the chromatic trace catalog dispersion. They do not establish the supplier or the production melt. For TAF3, TAFD25, E-FD5 and E-FD15 the d-line trace keeps the printed three-decimal index while the color channels follow the catalog curves. L1 and L2 are aspherical and carry moulding-glass rows: MC-TAF101-100 sits on L2's printed index, and M-LAC130 stands in for L1 as a proxy, 0.0025 above its print with the Abbe number 0.15 higher. Both keep their printed indices. The patent prints no partial-dispersion data, so the SLD and ELD tags on L7, L10 and L12 rest on Sigma's drawing and on catalog values. H1 and H2 stay unmatched and take a g-line partial of 0.5538 from JP 2019-211703 A Example 2, a later Sigma patent that prints it for a 1.51840/52.10 aspherical resin. That is a proxy: the coordinates match, but nothing shows the same resin.
 
 ## Zoom, Aperture and Focus
 
@@ -133,9 +133,9 @@ G1 moves imageward from wide to middle and objectward from middle to long; G2–
 
 The stop is row 10, 1.400 mm before r11, and the patent prints no stop diameter. The iris is inferred from the printed f-numbers, 3.611/3.631/3.597, which agree with the patent's stated aim of about f/3.6 (paragraph 0018); the marketed f/3.5 is a rounded figure. The stop rule gives stop radii of 5.227/6.004/6.824 mm and entrance-pupil radii of 1.434/2.064/2.682 mm at the printed stations. The rule is paraxial, so with pupil aberration a real marginal ray at those radii gives a working f-number near 3.62/3.65/3.64, within 1.2% of the printed value. The axial beam clears every inferred rim, even at f/3.5.
 
-Clear apertures are read from Figure 22, the wide state of this example, whose scale is the same along and across the axis; the patent prints none. L1, L2 and L3 are drawn with square rims at 26.4, 17.3 and 12.3 mm, but their rear curves stop short, at 17, 14.2 and 10.7 mm, and flat lands run from there to the rim. Light ends at the curve, not the rim. Every other lens uses one radius on both faces, including the thin layers. The largest surface slope in the system is 59.7°, at the edge of surface 2; the aspherical front surface reaches 40.9° at its rim.
+Clear apertures are inferred; the patent prints none. They start from Figure 22, the wide state of this example, whose scale is the same along and across the axis. L1 and L4 keep the drawn heights. L1, L2 and L3 are drawn with square rims at 26.4, 17.3 and 12.3 mm. Here they stand at 26.4, 17.35 and 12.4 mm, and their rear curves stop short, at 17, 14.53 and 10.8 mm, with flat lands from there to those heights. Light ends at the curve, not the rim. The figure ends the rear curves of L2 and L3 near 14.2 and 10.7 mm. G3, L10, C3 and L13 stand above the figure, at 9.54, 12.3, 12.31 and 12.65 mm against its 7.93, 11.25, 11.86 and 12.46 mm, which keeps C3 just above L10 as drawn. At the drawn heights of all these rims, corner transmission would fall to about 62/78/68%. C1 and L7 rise with G3, to 9.7 and 10.2 mm against the drawn 8.38 and 8.84 mm, so the heights keep the figure's order, L7 above C1 above G3. Every lens other than L1–L3 uses one radius on both faces, including the thin layers. The largest surface slope in the system is 59.7°, at the edge of surface 2; the aspherical front surface reaches 40.9° at its rim.
 
-Rim vignetting is part of the design. Geometric corner transmission wide open is about 62/78/68% at the three printed stations. At the wide end surface 4 cuts the lower side of the corner bundle. Through the range the rim of G3 cuts the upper side, joined by L10's near the wide end. The meridional fans in Figures 26–28 end tighter than the drawn rims on that upper side, equivalent to a radius near 7.05 mm at r18 against the 7.9 mm drawn, so the plotted design is more vignetted than the model.
+Rim vignetting is part of the design. Geometric corner transmission wide open is about 77/95/86% at the three printed stations. At the wide corner, the 17 mm curve end of surface 2 cuts one side of the bundle and the rims of L10, C3 and L13 cut the other, and L3's rear curve end takes about 2 points just inside that corner, at 52°. At the middle and long ends the rim of G3 sets the corner. The meridional fans in Figures 26–28 end tighter than these rims on the side G3 cuts, equivalent to a radius near 7.05 mm at r18, so the plotted design is more vignetted than the model.
 
 Focus is not modeled. The patent prints infinity states only and does not say which group focuses, so the focus control leaves the optics unchanged. Sigma's 24 cm minimum focus distance is listed for reference, and no movement is invented from a single distance specification.
 

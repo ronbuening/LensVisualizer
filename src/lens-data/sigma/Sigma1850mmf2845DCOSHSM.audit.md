@@ -89,7 +89,7 @@ Fields changed: `subtitle`, `catalog.specs` (added), header comment (added), ele
 
 Closed 2026-11-01: rims against Figure 1, read at 6.19 px/mm to about ±0.5 mm, drawn vs modeled: S1–S3 25 vs 21.55; S8–S10 15.4 vs 13.82; S11–S12 10.0 vs 12.10; S14–S16 9.4 vs 11.37; S17–S18 9.3 vs 11.48; S22–S24 7.4 vs 8.90; S25–S26 9.4 vs 11.16; S27–S29 10.0 vs 13.09; S30–S32 10.5 vs 15.385; L10 7.0 vs 6.05. All held on re-measurement except that S2, S3, S10 and S21 end short of the outer edge: see the section at the end of this log.
 Closed 2026-11-01: Figure 1 draws FC2's opening near 8.6 mm; S33 sd was 15.385 mm, so the plane did not limit the beam. It re-measures 9.1 mm from both ticks, and the printed fans end on it at 9.7 mm. S33 is now 9.7 mm: see the section at the end of this log.
-Open: the diagram numbers elements by `id` (1–18, resin layers included) while labels follow the 16 counted elements.
+Closed 2026-11-01: the diagram numbered elements by `id` (1–18, resin layers included) while labels followed the 16 counted elements. Every element now carries a `diagramLabel` equal to its `name`: see the section at the end of this log.
 
 ## 2026-11-01 — Semi-diameter pass against the patent figure
 
@@ -139,3 +139,65 @@ Limitations: L1's rear land cannot be authored. S2 is a cemented junction, and a
 ## 2026-11-01 — Glass labels and brackets
 
 L6 (1.5876/61.0842) now carries L-BAL35. Its print sits 0.0015 below the catalog index with the Abbe number within 0.06, and Examples 2 to 4 print the unmoulded 1.5891/61.25 at the same position, which supports the reading. The trace anchors the d line on the printed index, so the row supplies dispersion only. Glass resolves 16 of 18; the two resin layers stay `Unmatched`. `cemented` tags and `doublets` H1, C1–C4, H2 were added for the six printed junctions.
+
+## 2026-11-01 — Second review: diagram, labels and movement
+
+Compared: the local page at 18.60, 27.99 and 48.32 mm, at `focus=1`, both `mv` overlays and the inspectors of elements 2, 7, 10, 14 and 17, against Figure 1 of JP 2010-211056 A (PDF p16, native 901 × 669 raster), Table 1 (PDF p10) and the paragraphs of both patents. This pass opened Sigma's construction drawing.
+
+Figure readings, taken again from the raster at 6.24 px/mm: L4/L5 15.22, L6 9.94, L7/L8 9.38, L9 9.21, L10 6.94, L11/L12 7.37, L13 9.38, L14/L15 9.86, L16 10.42 mm. They agree with the first pass. The first pass read only the inner ends of the stop symbols. Each is a pair of ticks with an opening and an outer end: FC1, column 414, rows 259–274 and 379–394, 8.41 to 10.82 mm; S, column 476, 6.65 to 7.85 mm; FC2, column 654, rows 258–273 and 387–402, 9.13 to 11.54 mm.
+
+Rims: the owner's rule for this pass allows 3 points of transmitted light against baseline rims at every field of every printed station, and the coordinator then held the same budget at all 201 zoom nodes, because the slider passes through them. The first-pass rims lost 39.7 points. Rims were tried on a table of the app's 64-cell lattice over the 31 printed-station fields, with the height of every ray at every surface. That table reproduces the engine's curves to the printed digit for the baseline and first-pass rims. Eight groups had to rise, and they were lowered from their zero-cost heights to minimize their summed excess over the figure, keeping L6 ≥ L7/L8 ≥ L9 and L13 ≤ L14/L15 ≤ L16 as drawn. Repeated starts agreed at the printed stations on 11.05, 10.88, 10.78, 9.94, 10.7, 10.7, 10.95 and 11.5 mm in surface order. For the nodes between them the coordinator then raised S11 and S12 to 11.3, S13 to 10.93, S27–S29 to 10.75 and S30–S32 to 11.1 mm. `rimcost.mjs` on the final file gives a worst loss of 2.97 points at the printed stations, at 16.1° at 48.32 mm, and 3.66 points over all nodes, at 29.8° at 24.47 mm.
+
+The all-node table has 2063 field samples. 29 stay above 3 points, in the bands 20.4–21.6, 23.9–25.2 and 46.6–48.1 mm, so the budget holds everywhere else and this residual stays. Restoring any one of the eight raised groups to baseline wins at most 0.06 points at the worst sample. Lowering any of them by 0.01 mm sends another sample over 3 points or deepens one already over, so each stands at its smallest two-decimal value. No land was removed, because none costs light.
+
+| Surface | Verdict | Figure, mm | Baseline | Final | Points it costs |
+|---|---|---:|---:|---:|---:|
+| S6 | keep: slight | 15.9 | 16.29 | 15.9 | 0.2 with S7 |
+| S7 | keep: slight | curve 13.9 ± 0.5, edge 15.9 | 16.29 | 14.2, land 15.9 | 0.2 with S6 |
+| S8 land | keep: slight | edge 15.2 | 13.82 | 14.2, land 15.2 | 0 |
+| S10 land | keep: slight | edge 15.2 | 13.82 | 13.82, land 15.2 | 0 |
+| S11, S12 | partly raised | 9.9 | 12.10 | 11.3 | 0 |
+| S13 | partly raised | opening 8.4, fan 8.65, tick end 10.8 | 12.10 | 10.93 | 0.4 |
+| S14–S16 | partly raised | 9.4 | 11.37 | 10.78 | 0.2 |
+| S17, S18 | partly raised | 9.2 | 11.48 | 9.94 | 0.1 |
+| S21 land | keep: slight | edge 6.9 | 6.05 | 6.05, land 6.9 | 0 |
+| S22 | keep: slight, spacing | merges with S21, edge 7.4 | 8.9 | 6.05, land 7.4 | 0.4 |
+| S23, S24 | keep: slight | 7.4 | 8.9 | 7.4 | 0 |
+| S25, S26 | partly raised | 9.4 | 11.16 | 10.7 | 0.9 |
+| S27–S29 | partly raised | 9.9 | 13.09 | 10.75 | 0.3 |
+| S30–S32 | partly raised | 10.4 | 15.385 | 11.1 | 0.2 |
+| S33 | partly raised | opening 9.1, fan 9.7, tick end 11.5 | 15.385 | 11.5 | 0.1 |
+
+The last column is what restoring that entry alone wins back from the final lens at the printed stations. Neighbours clip the same rays, so a zero means another rim sets that ray, not that the rim could go lower. Restoring S22 to 8.9 mm is refused while L10 keeps its land: combined sag 1.58 mm against 1.349 mm of the 1.420 mm gap at sd = 6.9. S1 stays 25 mm, above baseline, on the figure's 25.1 mm and the fan's 23.56 mm; it gives back up to 19.8 points at 38.4° at 18.60 mm, and at the 35.4° and 38.4° wide fields the G5 rims rely on that gain. It adds nothing below 35.4°. `checks.gapSagFrac` stays 0.95: both lands stay, and 0.94 refuses S7/S8 (1.94 mm of sag against 1.918 mm) as well as S21/S22.
+
+Transmission, geometric, wide open at infinity, at the corner: baseline 52.3, 93.4, 94.1 %; first pass 47.1, 53.7, 58.8 %; final 72.1, 91.1, 91.1 % at 18.60, 27.99 and 48.32 mm. Engine half-field goes 39.22, 30.69, 20.32° to 39.22, 34.46, 23.33° against printed ω of 38.39, 26.46, 16.13°. F-number stays 2.92, 3.40, 4.49, and the aperture audit keeps 201 of 201 stations within 3 %, limited by the stop. The surface validator reports no errors, the image-circle check nothing undersized, and the corner chief ray clears at all 201 stations. S12 and S30 scan clean to 11.5 mm. `clearap.mjs` still marks S21 and S22 for the 0.02 mm recorded above, through its 6.55 mm stop.
+
+What the budget leaves against the drawings: the G3 and G5 rims stand 0.7 to 1.4 mm above Figure 1, and the drawn height order holds, though the step from L13 to L14/L15 is 0.05 mm where the figure has 0.5 mm. S13 and S33 end close to the outer ends of their ticks, 2.5 and 2.4 mm above the openings. S33 stands above L16, where the figure's opening lies inside L16's rim; S33 alone at 3 points still needs 11.41 mm, so that order cannot be kept. Neither plane is drawn on the page. L13's edge is 0.45 mm thick where the figure's is 1.45 mm. The model no longer stops at the printed fan ends, which the first-pass section records. The maker's rims, read there, are also smaller than the final rims in G3 and G5, except L16, which it draws at 12.0 mm against 11.1 mm.
+
+Labels: every element now carries a `diagramLabel` equal to its `name`, so the diagram reads L1, R1, L2 … L15, R2, L16 instead of 1–18, which closes the `Open:` line above. `type` of R1 and R2 becomes Hybrid Aspheric Resin Layer (1× Asph) and of L6 Positive Meniscus (1× Asph), as the aspheres at S3, S30 and S12 require; the other 15 agree with the signs of R. The roles of R1 and R2 now say the layers are taken as resin, because neither patent names a material. The patent's L1 to L5 stay G1 to G5, so they do not clash with L1 to L16, and the analysis states this. Group brackets G1 1–5, G2 6–10, G3 11–18, G4 STO–24, G5 25–32 match the figure's, which start L4 at the stop. Cemented brackets H1, C1–C4, H2 bracket the printed junctions and collide with no gap label. The `A` marks sit on S3, S12 and S30 only. The stop sits between L9 and L10. Inspectors show a focal length for every element checked, and resin layers read DOUBLET. `focus.description`, the gap labels and the station labels are correct.
+
+Tags: Sigma's drawing shows 16 elements with blue at the 9th and 13th from the front and pink at the 1st, 6th and 16th, which are L9, L13, L1/R1, L6 and L16/R2. L9 and L13 keep `apd: "inferred"`. Neither patent mentions anomalous dispersion, low dispersion, resin or any glass name.
+
+Movement, from Table 1: stations ascend 18.60, 27.99, 48.32 mm and all five gap columns are in that order at stations 0, 100 and 200 (d5 7.59, 13.8003, 7.92; d10 24.80, 12.0848, 4.3815; d18 1.70, 4.9104, 8.82; d24 7.62, 4.4096, 0.50; d32 0, 6.5048, 20.0884). Distance from S1: G1 fixed; G2 20.47, 26.68, 20.80 mm, rearward then forward, the one reversal the print needs, at station 101; G3 52.41, 45.91, 32.32 mm, toward the object; stop and G4 64.77, 61.48, 51.80 mm, toward the object, with d18 widening; G5 80.24, 73.74, 60.15 mm, toward the object, with d24 closing. G3 and G5 both travel 20.09 mm (¶0041). S33 stays at 92.56 mm. All of this matches ¶0010 and ¶0023. Focus is not modeled. ¶0010 says "該第２レンズ群Ｌ２が物体側へ移動し" for focus from infinity to near, and Figure 1's arrow over L2 points from ∞ toward the object, as `focus.description` states.
+
+Live check: all three stations and `focus=1` render every element, the new labels stack clear in up to three rows, and the `mv=zoom` overlay shows five groups with 20.09 mm of maximum travel. `mv=focus` opens the same panel on Zoom with its Focus option disabled, as a lens with no focus table should.
+
+Limitations: those of the first-pass section on L1's rear land stand. No `Open:` line remains in this log.
+
+## 2026-11-01 — Glass relabels and resin partial
+
+Example 1 prints νd to four decimals, which separates same-coordinate rows. Each row's own curve was evaluated at C, d and F and compared with the print.
+
+| Elements | Printed νd | Before | Curve νd | After | Curve νd |
+|---|---:|---|---:|---|---:|
+| L1, L3, L8, L10, L11, L14 | 49.6243 | N-LAF34 | 49.6202 | TAF1 | 49.6243 |
+| L2, L5, L7, L12, L15 | 23.7848 | H-ZF52 | 23.7845 | FDS90 | 23.7848 |
+| L16 | 70.4412 | H-QK3L | 70.440 | FC5 | 70.4412 |
+
+TAC8 on L4 already matched, 54.6735. HOYA's curves therefore reproduce every four-decimal νd they can reach, which favours HOYA over the other makers' rows. It does not establish a supplier or a melt, so the labels stay "catalog equivalent".
+
+L6 moved from L-BAL35 to M-BACD5N. L-BAL35 has no catalog row and resolved to S-BAL35 through an alias. M-BACD5N is a HOYA moulding row with the 1.58913/61.25 coordinates that Examples 2 to 4 print at this position, and JP 2019-211703 A Example 2 prints 1.58913/61.25 with PgF 0.5373 on an asphere, against the row's 0.53739. It is a proxy, 0.0015 above L6's printed index with νd 0.17 higher, and the label says so.
+
+R1 and R2 stay Unmatched. JP 2019-211703 A Example 2 prints PgF 0.5538 for a 1.51840/52.10 aspherical resin in the same column as the glasses above. That gives `dPgF` −0.002411 against the engine line. Matching coordinates do not prove the same resin, so `apdNote` calls it a proxy. Neither patent for this lens prints a partial.
+
+A corpus resolution diff before and after moved only these elements and Sigma 10-20 L1.

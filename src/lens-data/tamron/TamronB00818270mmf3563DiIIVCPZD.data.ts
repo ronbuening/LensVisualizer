@@ -37,9 +37,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * floor-checked by real-ray trace; none is published. Four faces end short of the rim on a flat land: S8 (cap 9.9, edge
  * 13.5), S10 (9.7, 10.8), S13 (9.6, 10.0) and S29 (8.4, 9.9). checks.gapSagFrac 0.98 admits the L4 land against L5's
  * front rim (S8/S9) and the L7 land against L6's rear face (S12/S13); neither pair crosses. Figure 1 also ends the S2
- * cemented zone at 23.6 mm with a land behind L1. A cemented junction takes no land, so S2 runs to the L2 edge.
+ * cemented zone at 23.6 mm with a land behind L1. A cemented junction takes no land, so S2 runs to the L2 edge. S1 (26.55)
+ * and S2-S3 (26.85) stand 0.35-0.39 mm above Figure 1's 26.16 and 26.50 mm to keep off-axis light from 100 to 140 mm.
  *
- * Stabilization (claim 3: lateral shift of the negative rear subgroup of G3, here the L12/L13 doublet) is not simulated.
+ * Stabilization (claim 3: lateral shift of the negative rear subgroup of G3, read here as the L12/L13 doublet, which the
+ * patent does not name) is not simulated.
  */
 
 const LENS_DATA = {
@@ -268,7 +270,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -14.44910412241646,
       "glass": "M-TAFD305 (HOYA, coordinate equivalent)",
-      "role": "Molded aspherical negative element of the rear doublet of the third group, the subgroup claim 3 shifts for stabilization",
+      "role": "Molded aspherical negative element of the rear doublet of the third group, read as the negative subgroup claim 3 shifts for stabilization",
       "diagramLabel": "12",
       "cemented": "C4"
     },
@@ -331,21 +333,21 @@ const LENS_DATA = {
       "label": "1",
       "R": 141.1468,
       "d": 1.5,
-      "sd": 26.2,
+      "sd": 26.55,
       "medium": 1
     },
     {
       "label": "2",
       "R": 69.3714,
       "d": 7.1,
-      "sd": 26.5,
+      "sd": 26.85,
       "medium": 2
     },
     {
       "label": "3",
       "R": -332.6134,
       "d": 0.15,
-      "sd": 26.5
+      "sd": 26.85
     },
     {
       "label": "4",
@@ -436,53 +438,53 @@ const LENS_DATA = {
       "label": "16",
       "R": 43.5895,
       "d": 2.1,
-      "sd": 10,
+      "sd": 9.6,
       "medium": 9
     },
     {
       "label": "17",
       "R": 198.3247,
       "d": 0.15,
-      "sd": 10
+      "sd": 9.6
     },
     {
       "label": "18",
       "R": 31.5974,
       "d": 3.3,
-      "sd": 10,
+      "sd": 9.7,
       "medium": 10
     },
     {
       "label": "19",
       "R": -85.9757,
       "d": 0.15,
-      "sd": 10
+      "sd": 9.7
     },
     {
       "label": "20",
       "R": 32.4055,
       "d": 3.6,
-      "sd": 9.8,
+      "sd": 9.4,
       "medium": 11
     },
     {
       "label": "21",
       "R": -32.4055,
       "d": 0.8,
-      "sd": 9.8,
+      "sd": 9.4,
       "medium": 12
     },
     {
       "label": "22",
       "R": -79.7693,
       "d": 1.5829,
-      "sd": 9.8
+      "sd": 9.3
     },
     {
       "label": "23A",
       "R": -45.2054,
       "d": 0.9,
-      "sd": 9.5,
+      "sd": 8.8,
       "medium": 13,
       "asphere": {
         "A4": 0.0000120221,
@@ -495,19 +497,19 @@ const LENS_DATA = {
       "label": "24",
       "R": 17.0548,
       "d": 2.8885,
-      "sd": 9.5,
+      "sd": 8.8,
       "medium": 14
     },
     {
       "label": "25",
       "R": 63.8056,
-      "sd": 9.5
+      "sd": 8.8
     },
     {
       "label": "26A",
       "R": 19.156,
       "d": 5.2913,
-      "sd": 10.5,
+      "sd": 10,
       "medium": 15,
       "asphere": {
         "A4": -0.000021329,
@@ -520,7 +522,7 @@ const LENS_DATA = {
       "label": "27A",
       "R": -38.5354,
       "d": 0.15,
-      "sd": 10.5,
+      "sd": 10,
       "asphere": {
         "K": -8.6353,
         "A4": 0.00000938555,

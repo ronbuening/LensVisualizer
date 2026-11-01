@@ -2,10 +2,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /*
  * Semi-diameters: the patent prints none. Rims are estimated from JP 5649252 B2 Figure 1, panels (a) to (c), at 6.61
- * px/mm along the axis and 6.40 px/mm across it (the figure is 3.2 % compressed in height), rounded up to 0.1 mm and
- * floor-checked by real-ray trace. The figure draws L2, L4 and L8 proud of their cemented partners, with the junction
- * curve ending at the partner's height, so S4, S7 and S15 stop there and the larger element's edge runs straight down to
- * them. L5, L7, L13 and L14 are inferred values within 7 % of the figure.
+ * px/mm along the axis and 6.40 px/mm across it (the figure is 3.2 % compressed in height), and floor-checked by real-ray
+ * trace. S1-S6, S9-S10 and S20-S21 stand 3 to 12 % above the figure, at values that hold every field of every zoom node
+ * within 3 points of the package rims' corner light. The figure draws L2, L4 and L8 proud of their cemented partners,
+ * with the junction curve ending at the partner's height, so S4, S7 and S15 stop there and the larger element's edge
+ * runs straight down to them. L5, L7, L13 and L14 are inferred values within 4 % of the figure.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -241,39 +242,39 @@ const LENS_DATA = {
     {
       "label": "1",
       "R": 44.277,
-      "sd": 15.9,
+      "sd": 17.26,
       "medium": 1,
       "d": 4.2
     },
     {
       "label": "2",
       "R": "flat",
-      "sd": 15.9,
+      "sd": 17.26,
       "d": 0.2
     },
     {
       "label": "3",
       "R": 38.426,
-      "sd": 14.7,
+      "sd": 16.1,
       "medium": 2,
       "d": 1.2
     },
     {
       "label": "4",
       "R": 23.093,
-      "sd": 13.8,
+      "sd": 15.01,
       "medium": 3,
       "d": 6
     },
     {
       "label": "5",
       "R": 139.112,
-      "sd": 13.8
+      "sd": 15.01
     },
     {
       "label": "6",
       "R": 400,
-      "sd": 7.6,
+      "sd": 7.79,
       "medium": 4,
       "d": 0.6
     },
@@ -293,14 +294,14 @@ const LENS_DATA = {
     {
       "label": "9",
       "R": -43.775,
-      "sd": 6.6,
+      "sd": 6.86,
       "medium": 6,
       "d": 0.6
     },
     {
       "label": "10",
       "R": 67.773,
-      "sd": 6.6
+      "sd": 6.86
     },
     {
       "label": "11A",
@@ -383,26 +384,26 @@ const LENS_DATA = {
     {
       "label": "20",
       "R": 44.246,
-      "sd": 5.8,
+      "sd": 6.4,
       "medium": 12,
       "d": 0.5
     },
     {
       "label": "21",
       "R": 15.083,
-      "sd": 5.8
+      "sd": 6.4
     },
     {
       "label": "22",
       "R": -16.274,
-      "sd": 8.959,
+      "sd": 8.65,
       "medium": 13,
       "d": 0.7
     },
     {
       "label": "23",
       "R": -74.534,
-      "sd": 8.959
+      "sd": 8.65
     },
     {
       "label": "24",

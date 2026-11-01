@@ -188,3 +188,74 @@ the vertex residuals above. The local page was read at infinity and at closest f
 
 The vertical scale rests on hand-drawn arcs, so absolute heights carry about ±3 %. The ratios between elements are firmer, and
 the two retained elements sit within that band. The stop position is unchanged and stays open above.
+
+## 2026-11-01 — Second review: diagram, labels and movement
+
+### Compared
+
+The local page at infinity, 60 cm and 30 cm against Fig. 1 of `patents/JPS50132921A.pdf`, publication page (4), with the FX-1
+manual section on page 91 as a check on order and proportion. The flat rim runs on the 300 dpi figure were re-measured from scratch:
+half heights L1 200, L2/L3 158, L4 127, L5 110, L6 123 and L7 147 px, and r2's curve meets its land at 158 to 160 px. At 15.3 px/mm
+those are 13.07, 10.33, 8.30, 7.21, 8.05 and 9.59 mm, and the cap 10.3 to 10.5 mm, which agrees with the first pass.
+
+The final page differs visibly from Fig. 1 only at L4 and L6, which stand above it as the light budget requires. The outlines of
+L1, L2/L3, L5 and L7 and the L1 land match the figure.
+
+### Cuts, lands and raises
+
+Cost is the light won back by restoring that item alone from the final set, in points. Baseline is the package file.
+
+| Faces | Kind | Fig. 1 | Baseline | First pass | Final | Cost | Verdict |
+|---|---|---|---|---|---|---|---|
+| r1 | Raise | 13.07 | 11.82 | 13.0 | 13.0 | Gains 7.9 at 32° | Keep: improved |
+| r2 cap | Cut | 10.3–10.5 | 11.82 | 10.4 | 10.4 | 0.2 at 32° | Keep: slight |
+| r2 land | Land | 13.07 | None | 13 | 13 | 0.0 | Keep: redraws the outer rim |
+| r6, r7 | Cut | 8.30 | 9.09 | 8.3 | 8.86 | 1.4 at 17.5° | Partly raised |
+| r8, r9 | Cut | 7.21 | 7.57 | 7.2 | 7.2 | 0.8 at 17.5° | Keep: slight |
+| r10, r11 | Cut | 8.05 | 8.60 | 8.0 | 8.30 | 0.7 at 23.3° | Partly raised |
+
+The first-pass set lost 11.5 points at 20.4°. L4 fully restored with L6 left at 8.0 mm still lost 4.8, and L6 fully restored with
+L4 left at 8.3 mm lost 8.3, so both had to rise. The two-decimal pairs that meet the budget run 9.09/8.15, 8.98/8.20, 8.92/8.24,
+8.89/8.27 and 8.86/8.30 for L4/L6. The last ties for the least total raise, 0.86 mm, and is nearest the drawn L4 to L6 step. One
+hundredth less on either rim gives 3.1. Raising L5 to its baseline helps this pair by only 0.01 mm of L4, so L5 stays at the figure.
+L4 stands 0.56 mm (6.7 %) and L6 0.25 mm (3 %) above their readings. That gap is the budget's doing and is expected. The rims stay
+below baseline, and the first section's closed L4 entry is superseded by these values.
+
+Final `rimcost.mjs` worst loss: 3.0 points (2.97) at 20.4°. Wide-open transmission at infinity in percent:
+
+| Field | 8.7° | 11.6° | 14.5° | 17.5° | 20.4° | 23.3° | 26.2° | 29.1° | 32.0° |
+|---|---|---|---|---|---|---|---|---|---|
+| Baseline rims | 100.0 | 100.0 | 100.0 | 99.3 | 96.1 | 86.2 | 73.3 | 58.6 | 42.4 |
+| First pass | 99.2 | 97.5 | 94.3 | 89.4 | 84.6 | 78.8 | 70.4 | 60.3 | 48.1 |
+| Final | 100.0 | 100.0 | 98.9 | 96.5 | 93.1 | 86.1 | 76.8 | 64.4 | 50.2 |
+
+The step order holds: L1 13.0 > L2/L3 10.10 > L7 9.39 > L4 8.86 > L6 8.30 > L5 7.2, the same as Fig. 1 and the manual section.
+Against the L2/L3 rim the final file reads L4 0.88, L6 0.82, L5 0.71, where the drawings give 0.80, 0.75 to 0.78 and 0.70. L4 and
+L6 each keep one height on both faces. `checks.gapSagFrac` is not set and the default passes.
+
+Surface audit OK, image circle 100 %, field coverage 100 % at 21.65 mm. No axial clip or blocked chief ray at infinity or at 0.3 m.
+r6 sits at 8.86 mm against an axial 7.95 mm, r11 at 8.30 mm against 7.18 mm. Side vignetting stays 6–38 % at r8–r13 at 32°, and
+5–29 % at 29.39° at 0.3 m. EFL 35.001 mm, F/2.8, half-field 32°, stop radius 6.815 mm and the traced limit of 32.88°, set by r2, are
+all unchanged.
+
+### Labels and tags
+
+No change was needed. The groups I to IV span r1–r2, r3–r5, r6–r7 and r8–r13 as the patent claims and Fig. 1 brackets them, with no
+parent and subgroup pair. C1 spans r3–r5, the only cemented component, and the inspector reads DOUBLET C1. Names L1 to L7 are the
+patent's, with the amendment's L7 in place of L8. Every `type` agrees with the signs of R, and the seven `focalLengthMm` values
+reproduce from a thick-lens calculation in air, with L1 at the patent's f_I. Page 4 calls all thirteen surfaces spherical and the
+file has no `asph`. The patent names no special glass and the manual marks none, so `apd: false` throughout is right. The stop sits
+inside d7 between L4 and L5, as both drawings show. The patent's front diameter limit of 0.8f, 28 mm, sits above L1's 26 mm.
+
+### Focus
+
+The patent says nothing about focusing, so this rests on the reconstruction. The 41 keyframes run 0 to 1 in equal steps, keyframe 0
+being infinity (BF 38.045 mm) and the last 0.3 m (BF 43.920 mm). BF rises at every step, and the steps grow from 0.103 to 0.215 mm
+as expected. An independent paraxial trace puts the last keyframe at object to image 299.6 mm as stored and 300.0 mm with the 0.012 mm
+infinity offset held off, at m = −0.168. The travel of 5.875 mm equals f × |m|, so the amount is right for unit focus to that
+distance. The focus overlay shows all four groups moving together toward the object by 5.88 mm, and only BF changes. The page reads
+30 cm at the slider's far end with BF 43.92 and 60 cm at mid travel with BF 40.44, which matches `closeFocusM` 0.3.
+
+### Open
+
+The stop position stays open, as recorded in the first section: moving it means changing `d`, which this pass does not do.

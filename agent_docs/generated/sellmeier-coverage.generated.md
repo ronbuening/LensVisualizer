@@ -2067,8 +2067,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 2 | Element 1 resin layer | abbe | `Unmatched (hybrid optical resin; spectrum unpublished)` | Explicit unmatched/proprietary annotation |
-| 30A | Element 16 resin layer | abbe | `Unmatched (hybrid optical resin; spectrum unpublished)` | Explicit unmatched/proprietary annotation |
+| 2 | Element 1 resin layer | abbe | `Unmatched (hybrid optical resin; catalog identity unpublished)` | Explicit unmatched/proprietary annotation |
+| 30A | Element 16 resin layer | abbe | `Unmatched (hybrid optical resin; catalog identity unpublished)` | Explicit unmatched/proprietary annotation |
 
 ### [SONY DT 16-50mm f/2.8 SSM](../../src/lens-data/sony/SonyDT1650mmf28SSM.data.ts) - 88.9% trusted (16/18); 88.9% Sellmeier (16/18) - US 2012/0307129 A1
 

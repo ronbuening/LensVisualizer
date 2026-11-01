@@ -36,8 +36,8 @@ G1 stays fixed to the image. G2 moves forward and back (d5 = 7.59, 13.80, 7.92 m
 - S13 and S33 are kept as printed planes. S29 is a plane glass surface, not a stop.
 - Only three zoom positions are printed, out of 201 stations. Between them d18 and d32 run linearly and G2 is solved to hold focus, which leaves a slope break in G2's motion at 27.99 mm. This path is inferred, not a published cam.
 - The stop radius follows from the design f-number at each station (paraxial EPD = F/N): 6.43, 6.41 and 6.40 mm at the printed positions. It is not a measured diaphragm. One fixed stop of about 6.55 mm radius gives the printed F-numbers by real marginal ray (2.919, 3.403, 4.487), which suggests the patent's stop does not change with zoom.
-- Semi-diameters are inferred; none is printed. They follow Figure 1, which is drawn to scale, with the end rays of the lateral-aberration Figures 4 and 5 as a second reading. L10's rear curve ends at 6.05 mm so the stated axial beam passes at every station, and at that height L10 and L11 come within 0.07 mm. L1's rear flange is drawn as a straight edge, because the resin layer sits on the junction where a land would go.
-- The fans show the two flare-cut planes limiting the off-axis beam, and S13 and S33 are set from them to 8.65 and 9.7 mm. Geometric transmission at the 14.20 mm corner is about 47, 54 and 59 % at the three printed positions. The fans also end at about 6.6 mm on S24 and 8.2 mm on S25, inside the glass the figure draws. The model keeps the drawn 7.4 and 9.4 mm there, so it passes a little more light at mid-field than the patent's plots show.
+- Semi-diameters are inferred; none is printed. L1 to L5 and L10 to L12 follow Figure 1, which is drawn to scale. L10's rear curve ends at 6.05 mm so the stated axial beam passes at every station, and at that height L10 and L11 come within 0.07 mm. L1's rear flange is drawn as a straight edge, because the resin layer sits on the junction where a land would go.
+- The rims of G3 and G5 stand above the figure, which draws L6 at 9.9, L7 and L8 at 9.4, L9 at 9.2, L13 at 9.4, L14 and L15 at 9.9 and L16 at 10.4 mm. The model uses 11.3, 10.78, 9.94, 10.7, 10.75 and 11.1 mm. Flare-cut planes S13 and S33 are 10.93 and 11.5 mm, near the outer ends of the figure's ticks (10.8 and 11.5 mm). The ticks' openings read 8.4 and 9.1 mm, and the end rays of the lateral-aberration Figures 4 and 5 stop near 8.65 mm on S13 and 9.7 mm on S33. Rims at those drawn sizes leave about half the light at the corner, so the model keeps the larger ones, each the smallest that holds the zoom range within about 3 points of the estimated clear apertures, 3.7 points at worst. Geometric transmission at the 14.20 mm corner is about 72, 91 and 91 % at the three printed positions. The fans also end at about 6.6 mm on S24 and 8.2 mm on S25, where the model has 7.4 and 10.7 mm, so it passes more off-axis light than the patent's plots show.
 
 ## Element-by-Element Analysis
 
@@ -45,25 +45,25 @@ Focal lengths are in-air thick-lens values.
 
 ### L1 — Negative Meniscus
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = -63.453 mm.
+nd = 1.77250, νd = 49.6243. Glass: TAF1 (HOYA catalog equivalent; production supplier unspecified). f = -63.453 mm.
 
 Front element of fixed G1. With L2 behind it, the negative-positive order eases wide-angle distortion correction without raising the front diameter (¶0028). Its rear face carries resin layer R1.
 
-### R1 — Negative Meniscus
+### R1 — Hybrid Aspheric Resin Layer (1× Asph)
 
-nd = 1.51840, νd = 52.0743. Glass: Unmatched (hybrid optical resin; spectrum unpublished). f = -516.782 mm.
+nd = 1.51840, νd = 52.0743. Glass: Unmatched (hybrid optical resin; catalog identity unpublished), with its g-line partial from a later Sigma patent. f = -516.782 mm.
 
-Thin resin layer, 0.15 mm on the axis, bonded to L1 to form a hybrid element. Its air-side surface S3 is the asphere G1 uses to correct wide-angle negative distortion with few elements (¶0028).
+Thin layer, 0.15 mm on the axis, bonded to L1 to form a hybrid element. It is taken as resin; the patent states no material. Its air-side surface S3 is the asphere G1 uses to correct wide-angle negative distortion with few elements (¶0028).
 
 ### L2 — Biconvex Positive
 
-nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM catalog equivalent; production supplier unspecified). f = +129.201 mm.
+nd = 1.84660, νd = 23.7848. Glass: FDS90 (HOYA catalog equivalent; production supplier unspecified). f = +129.201 mm.
 
 Equal-radius biconvex positive closing G1.
 
 ### L3 — Biconcave Negative
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = -97.850 mm.
+nd = 1.77250, νd = 49.6243. Glass: TAF1 (HOYA catalog equivalent; production supplier unspecified). f = -97.850 mm.
 
 First element of G2, the negative group that travels toward the object for near focus (¶0010).
 
@@ -75,25 +75,25 @@ The stronger negative element of G2, cemented to L5. The patent sets G2's power 
 
 ### L5 — Positive Meniscus
 
-nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM catalog equivalent; production supplier unspecified). f = +69.644 mm.
+nd = 1.84660, νd = 23.7848. Glass: FDS90 (HOYA catalog equivalent; production supplier unspecified). f = +69.644 mm.
 
 High-dispersion positive cemented to L4, the chromatic partner in that doublet.
 
-### L6 — Positive Meniscus
+### L6 — Positive Meniscus (1× Asph)
 
-nd = 1.58760, νd = 61.0842. Glass: L-BAL35 (OHARA moulding glass, coordinate equivalent). f = +79.380 mm.
+nd = 1.58760, νd = 61.0842. Glass: M-BACD5N (HOYA moulding glass, coordinate proxy). f = +79.380 mm.
 
 First element of G3, with aspheric rear surface S12, and the stabilizing element L3a of JP 2010-211102 A. That patent credits the asphere with limiting decentring coma and astigmatism during stabilization (¶0022) and prints fw/f3a = 0.23. Flare-cut plane S13 follows it.
 
 ### L7 — Negative Meniscus
 
-nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM catalog equivalent; production supplier unspecified). f = -40.464 mm.
+nd = 1.84660, νd = 23.7848. Glass: FDS90 (HOYA catalog equivalent; production supplier unspecified). f = -40.464 mm.
 
 High-dispersion negative leading the G3 doublet. The patent gives the cemented lenses in G3, G4 and G5 the job of holding axial and lateral colour through zoom (¶0045).
 
 ### L8 — Positive Meniscus
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = +25.915 mm.
+nd = 1.77250, νd = 49.6243. Glass: TAF1 (HOYA catalog equivalent; production supplier unspecified). f = +25.915 mm.
 
 The strongest positive element in G3, cemented to L7. G3 takes a wide beam from G1 and G2, so telephoto spherical aberration limits its power (¶0030–¶0031).
 
@@ -105,19 +105,19 @@ Low-dispersion positive closing G3 just ahead of the stop, and one of the two po
 
 ### L10 — Biconcave Negative
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = -26.732 mm.
+nd = 1.77250, νd = 49.6243. Glass: TAF1 (HOYA catalog equivalent; production supplier unspecified). f = -26.732 mm.
 
 First element of G4, just behind the stop.
 
 ### L11 — Biconcave Negative
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = -15.771 mm.
+nd = 1.77250, νd = 49.6243. Glass: TAF1 (HOYA catalog equivalent; production supplier unspecified). f = -15.771 mm.
 
 The strongest negative element in the lens, cemented to L12. G4 supplies the negative rear power of the telephoto layout at the long end (¶0034–¶0035).
 
 ### L12 — Biconvex Positive
 
-nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM catalog equivalent; production supplier unspecified). f = +23.545 mm.
+nd = 1.84660, νd = 23.7848. Glass: FDS90 (HOYA catalog equivalent; production supplier unspecified). f = +23.545 mm.
 
 High-dispersion biconvex cemented to L11, the chromatic partner in that doublet.
 
@@ -129,42 +129,42 @@ First element of G5 and the second position Sigma marks SLD.
 
 ### L14 — Positive Meniscus
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = +69.330 mm.
+nd = 1.77250, νd = 49.6243. Glass: TAF1 (HOYA catalog equivalent; production supplier unspecified). f = +69.330 mm.
 
 Positive meniscus leading the G5 doublet.
 
 ### L15 — Plano-Concave Negative
 
-nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM catalog equivalent; production supplier unspecified). f = -45.677 mm.
+nd = 1.84660, νd = 23.7848. Glass: FDS90 (HOYA catalog equivalent; production supplier unspecified). f = -45.677 mm.
 
 High-dispersion negative cemented to L14, the chromatic partner in that doublet, with a flat rear face.
 
-### R2 — Positive Meniscus
+### R2 — Hybrid Aspheric Resin Layer (1× Asph)
 
-nd = 1.51840, νd = 52.0743. Glass: Unmatched (hybrid optical resin; spectrum unpublished). f = +302.074 mm.
+nd = 1.51840, νd = 52.0743. Glass: Unmatched (hybrid optical resin; catalog identity unpublished), with its g-line partial from a later Sigma patent. f = +302.074 mm.
 
-Thin resin layer, 0.15 mm on the axis, bonded to the front of L16 to form a hybrid element. Its air-side surface S30 is the G5 asphere the patent uses for coma and astigmatism, because the off-axis beam runs far out in this group (¶0044).
+Thin layer, 0.15 mm on the axis, bonded to the front of L16 to form a hybrid element. It is taken as resin; the patent states no material. Its air-side surface S30 is the G5 asphere the patent uses for coma and astigmatism, because the off-axis beam runs far out in this group (¶0044).
 
 ### L16 — Positive Meniscus
 
-nd = 1.48750, νd = 70.4412. Glass: H-QK3L (CDGM catalog equivalent; production supplier unspecified). f = +96.260 mm.
+nd = 1.48750, νd = 70.4412. Glass: FC5 (HOYA catalog equivalent; production supplier unspecified). f = +96.260 mm.
 
 Last element, carrying R2 on its front face. Flare-cut plane S33 lies behind it, level with its vertex at the wide end and 20.09 mm behind it at the long end.
 
 ## Glass Identification and Selection
 
-Printed nd and νd are kept. The catalog names supply spectral curves and are equivalents, not identified suppliers or melts. The table gives catalog minus printed values.
+Printed nd and νd are kept. The catalog names supply spectral curves and are equivalents, not identified suppliers or melts. The patent prints νd to four decimals, and the HOYA curves for TAF1, FDS90, FC5 and TAC8 reproduce those values to 0.0001, closer than the same-coordinate rows of other makers. The table gives catalog minus printed values.
 
 | Catalog equivalent | Printed nd | Printed νd | Elements | Δnd | Δνd |
 |---|---:|---:|---|---:|---:|
-| N-LAF34 (SCHOTT) | 1.7725 | 49.6243 | L1, L3, L8, L10, L11, L14 | +6.4e-08 | -0.0041 |
-| H-ZF52 (CDGM) | 1.8466 | 23.7848 | L2, L5, L7, L12, L15 | +6.0e-05 | -0.0003 |
+| TAF1 (HOYA) | 1.7725 | 49.6243 | L1, L3, L8, L10, L11, L14 | +2.9e-08 | 0.0000 |
+| FDS90 (HOYA) | 1.8466 | 23.7848 | L2, L5, L7, L12, L15 | +6.3e-05 | 0.0000 |
 | TAC8 (HOYA) | 1.7292 | 54.6735 | L4 | -4.0e-05 | +0.00001 |
 | FCD1 (HOYA) | 1.4970 | 81.6084 | L9, L13 | -1.6e-07 | +0.0006 |
-| L-BAL35 (OHARA, S-BAL35 curve) | 1.5876 | 61.0842 | L6 | +1.5e-03 | +0.0508 |
-| H-QK3L (CDGM) | 1.4875 | 70.4412 | L16 | -1.0e-05 | -0.0007 |
+| M-BACD5N (HOYA, moulding proxy) | 1.5876 | 61.0842 | L6 | +1.5e-03 | +0.1667 |
+| FC5 (HOYA) | 1.4875 | 70.4412 | L16 | -1.1e-05 | 0.0000 |
 
-L9 and L13 are tagged as inferred low-dispersion glass from Sigma's SLD marks and their FCD1 coordinates; the patent states no dispersion class. Both resin layers stay Unmatched. L6's 1.5876/61.08 appears in Examples 1, 5 and 6 and 1.5891/61.25 in Examples 2 to 4, and the lower index fits a moulded asphere, though the patent does not say so. L6 keeps its printed index and takes its dispersion from L-BAL35.
+L9 and L13 are tagged as inferred low-dispersion glass from Sigma's SLD marks and their FCD1 coordinates; the patent states no dispersion class. Both resin layers stay Unmatched and take a g-line partial of 0.5538 from JP 2019-211703 A Example 2, a later Sigma patent that prints it for a 1.51840/52.10 aspherical resin. That is a proxy: the coordinates match, but nothing shows the same resin. L6's 1.5876/61.08 appears in Examples 1, 5 and 6 and 1.5891/61.25 in Examples 2 to 4, and the lower index fits a moulded asphere, though the patent does not say so. L6 keeps its printed index and takes its dispersion from M-BACD5N, the moulding row with the Examples 2 to 4 coordinates. The same later patent prints 1.58913/61.25/0.5373 on an asphere, which is this row. L6 sits 0.0015 below it in index and 0.17 below it in νd.
 
 The viewer's colour channels use the catalog indices, offset from the printed nd as listed. Rounded printed values cannot establish secondary spectrum, and no apochromatic correction is claimed.
 
@@ -182,7 +182,7 @@ The patent's equation is x = (h²/r)/[1 + {1 − (1 + k)(h/r)²}^½] + Ah⁴ + B
 | S12 | -1.1922000e+00 | -2.8679000e-06 | -2.0403000e-09 | 0.0000000e+00 | 0.0000000e+00 |
 | S30 | 0.0000000e+00 | -3.2971000e-05 | -4.1422000e-08 | -2.3153000e-10 | 3.6395000e-13 |
 
-Polynomial coefficients have units mm^(1−order). The patent leaves C and D blank at S12, as it does for that surface in all six examples, so those terms are unused and are zero here. Coefficients as large as those on S3 would add about 1 µm of sag at the rim.
+Polynomial coefficients have units mm^(1−order). The patent leaves C and D blank at S12, as it does for that surface in all six examples, so those terms are unused and are zero here. Coefficients as large as those on S3 would add about 3 µm of sag at the rim.
 
 ## Model Scope and Limitations
 

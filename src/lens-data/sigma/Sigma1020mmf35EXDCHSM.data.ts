@@ -13,9 +13,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * plane sits 0.011/0.017/0.024 mm behind paraxial focus at the printed stations.
  * The stop is printed row 10, with 1.400 mm following it. The stop rule sets its radius from the printed f-number at
  * each zoom position: 5.227/6.004/6.824 mm at the printed stations. The patent prints no stop diameter.
- * Clear radii are measured from Figure 22, the wide state of this example, at 6.62 native px per mm in both directions,
- * and checked by real-ray trace; the patent prints none. Surfaces 2, 4 and 7 keep the drawn curve end in `sd`, and
- * `rimExtensionSd` carries the flat land the figure draws from there to the element's edge.
+ * Clear radii are inferred and checked by real-ray trace; the patent prints none. They start from Figure 22, the wide
+ * state of this example, read at 6.62 native px per mm in both directions; L1 and L4 keep the drawn heights. Surfaces
+ * 2, 4 and 7 keep a curve end in `sd`, and `rimExtensionSd` carries the flat land the figure draws from there to the
+ * element's edge, 26.4, 17.35 and 12.4 mm. Eight rims stand above the figure so that no zoom node loses more than about
+ * 3 points of corner light against the authored rims (worst 3.1): 3A 17.35, surface 4 14.53, 5A/6 12.4, surface 7 10.8,
+ * G3 9.54, L10 12.3, C3 12.31, L13 12.65 mm, against 17.30, 14.2, 12.31, 10.7, 7.93, 11.25, 11.86 and 12.46. The lands
+ * of surfaces 4 and 7 rise with their partner faces, so L2 and L3 stay square, and C3 stays just above L10, as drawn. C1
+ * and L7 rise with G3 (9.7 and 10.2 mm against 8.38 and 8.84) to keep the drawn height order, L7 above C1 above G3.
  * Infinity focus only: the patent prints no close-focus state, and Sigma's 0.24 m minimum focus is not modeled.
  */
 const LENS_DATA = {
@@ -131,7 +136,7 @@ const LENS_DATA = {
       vd: 53.052,
       indexReference: "d",
       focalLengthMm: -29.11,
-      glass: "L-LAL13 (OHARA moulding glass, coordinate proxy; patent nd=1.691, νd=53.052; production supplier unspecified)",
+      glass: "M-LAC130 (HOYA moulding glass, coordinate proxy; patent nd=1.691, νd=53.052; production supplier unspecified)",
       role: "First negative meniscus of the first group; aspherical front surface 1A controls distortion and coma.",
       diagramLabel: "L1",
     },
@@ -158,6 +163,9 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -931.35,
       glass: "Unmatched (thin aspherical resin layer; chemistry and supplier unspecified)",
+      dPgF: -0.002376,
+      apdNote:
+        "Later-patent spectral proxy: JP 2019-211703 A Example 2, also a Sigma filing, prints PgF 0.5538 for its 1.51840/52.10 aspherical resin (four-decimal rounding ±0.00005). JP 2010-243737 A prints nd and νd only, and matching coordinates do not establish the same resin or cure. dPgF −0.002376 is derived against 0.6438 − 0.001682νd; its last digits are arithmetic, not source precision. No anomalous-material classification is claimed.",
       role: "Thin layer bonded to the front of Element 3, carrying aspherical surface 5A; taken as resin, as the patent states no material.",
       diagramLabel: "H1",
       cemented: "H1",
@@ -318,6 +326,9 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 483.04,
       glass: "Unmatched (thin aspherical resin layer; chemistry and supplier unspecified)",
+      dPgF: -0.002376,
+      apdNote:
+        "Later-patent spectral proxy: JP 2019-211703 A Example 2, also a Sigma filing, prints PgF 0.5538 for its 1.51840/52.10 aspherical resin (four-decimal rounding ±0.00005). JP 2010-243737 A prints nd and νd only, and matching coordinates do not establish the same resin or cure. dPgF −0.002376 is derived against 0.6438 − 0.001682νd; its last digits are arithmetic, not source precision. No anomalous-material classification is claimed.",
       role: "Thin layer bonded to the front of Element 13, carrying aspherical surface 24A; taken as resin, as the patent states no material.",
       diagramLabel: "H2",
       cemented: "H2",
@@ -376,7 +387,7 @@ const LENS_DATA = {
     {
       label: "3A",
       R: 36.208,
-      sd: 17.3,
+      sd: 17.35,
       medium: 2,
       d: 2.0,
       asphere: {
@@ -391,14 +402,14 @@ const LENS_DATA = {
     {
       label: "4",
       R: 23.174,
-      sd: 14.2,
-      rimExtensionSd: 17.3,
+      sd: 14.53,
+      rimExtensionSd: 17.35,
       d: 13.713,
     },
     {
       label: "5A",
       R: 159.625,
-      sd: 12.3,
+      sd: 12.4,
       medium: 3,
       d: 0.2,
       asphere: {
@@ -413,15 +424,15 @@ const LENS_DATA = {
     {
       label: "6",
       R: 119.912,
-      sd: 12.3,
+      sd: 12.4,
       medium: 4,
       d: 1.0,
     },
     {
       label: "7",
       R: 24.341,
-      sd: 10.7,
-      rimExtensionSd: 12.3,
+      sd: 10.8,
+      rimExtensionSd: 12.4,
       d: 1.085,
     },
     {
@@ -444,91 +455,91 @@ const LENS_DATA = {
     {
       label: "11",
       R: 216.852,
-      sd: 8.4,
+      sd: 9.7,
       medium: 6,
       d: 0.8,
     },
     {
       label: "12",
       R: 18.108,
-      sd: 8.4,
+      sd: 9.7,
       medium: 7,
       d: 4.064,
     },
     {
       label: "13",
       R: -57.736,
-      sd: 8.4,
+      sd: 9.7,
       d: 0.15,
     },
     {
       label: "14",
       R: 24.193,
-      sd: 8.8,
+      sd: 10.2,
       medium: 8,
       d: 3.993,
     },
     {
       label: "15",
       R: -54.246,
-      sd: 8.8,
+      sd: 10.2,
     },
     {
       label: "16",
       R: -31.871,
-      sd: 7.9,
+      sd: 9.54,
       medium: 9,
       d: 0.8,
     },
     {
       label: "17",
       R: 20.734,
-      sd: 7.9,
+      sd: 9.54,
       medium: 10,
       d: 2.49,
     },
     {
       label: "18",
       R: 118.181,
-      sd: 7.9,
+      sd: 9.54,
     },
     {
       label: "19",
       R: 28.881,
-      sd: 11.3,
+      sd: 12.3,
       medium: 11,
       d: 5.198,
     },
     {
       label: "20",
       R: -45.877,
-      sd: 11.3,
+      sd: 12.3,
       d: 0.15,
     },
     {
       label: "21",
       R: 693.975,
-      sd: 11.9,
+      sd: 12.31,
       medium: 12,
       d: 0.85,
     },
     {
       label: "22",
       R: 22.5,
-      sd: 11.9,
+      sd: 12.31,
       medium: 13,
       d: 7.15,
     },
     {
       label: "23",
       R: -30.0,
-      sd: 11.9,
+      sd: 12.31,
       d: 0.15,
     },
     {
       label: "24A",
       R: -633.057,
-      sd: 12.5,
+      sd: 12.65,
       medium: 14,
       d: 0.15,
       asphere: {
@@ -543,14 +554,14 @@ const LENS_DATA = {
     {
       label: "25",
       R: -179.447,
-      sd: 12.5,
+      sd: 12.65,
       medium: 15,
       d: 3.189,
     },
     {
       label: "26",
       R: -39.737,
-      sd: 12.5,
+      sd: 12.65,
     },
   ],
   gaps: {
