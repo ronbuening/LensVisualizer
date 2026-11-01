@@ -105,27 +105,27 @@ const LENS_DATA = {
       "label": "1",
       "R": 74.8187496,
       "d": 10.975608,
-      "sd": 20.79,
+      "sd": 22.6,
       "medium": 1
     },
     {
       "label": "2",
       "R": 233.219952,
       "d": 0.24948,
-      "sd": 20.79
+      "sd": 22.6
     },
     {
       "label": "3",
       "R": 34.3967904,
       "d": 15.963696,
-      "sd": 17.4636,
+      "sd": 19.2,
       "medium": 2
     },
     {
       "label": "4",
       "R": -433.024704,
       "d": 2.24532,
-      "sd": 17.4636,
+      "sd": 19.2,
       "medium": 3
     },
     {
@@ -143,25 +143,25 @@ const LENS_DATA = {
       "label": "6",
       "R": 529.674768,
       "d": 10.975608,
-      "sd": 13.9293,
+      "sd": 15.1,
       "medium": 4
     },
     {
       "label": "7",
       "R": -25.97994,
       "d": 10.476648,
-      "sd": 14.553,
+      "sd": 16.5,
       "medium": 5
     },
     {
       "label": "8",
       "R": -374.986584,
       "d": 81.01943388646856,
-      "sd": 17.8794
+      "sd": 19.7
     }
   ],
   "focus": {
-    "closeFocusM": 1e15,
+    "closeFocusM": 1.4,
     "description": "Alternative patent-based infinity-only reconstruction with inferred apertures and stop. S5 curved clear-face semi-diameter is 12.771 mm instead of the original 11.0187 mm; this does not transmit through rim lands. All other optics and the computed 162.8352658865 mm paraxial image plane remain fixed. Factory identity is unproven, including correlation to the later C150 T* sheet. The retail 1.4 m minimum focus is descriptive; no finite prescription or focus motion is modeled. Patent fields 0°, 7°, 14° map to native image-height fractions 0, 0.469576, 0.957240. The native 39.6 mm format corner maps to 14.5945°, beyond the validated source edge; that extension is a simulation, not source-field validation. The manufacturer 29° full diagonal remains separate. Literal source d-line indices are retained at reference 587.5618 nm, without full dispersion validation. S7 edge clipping remains. Accepting more S5 rays lowered the saved conditional axial T30 from 0.33008 to 0.20705; neither aperture hypothesis is selected by contrast. Native MTF is a simulation; corrected 2D scalar research remains conditional, without factory or continuum validation."
   },
   "aperture": {

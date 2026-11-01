@@ -184,20 +184,22 @@ const LENS_DATA = {
     {
       "label": "10",
       "R": -48.685,
-      "d": 37.856139940514495,
       "sd": 12.784
     }
   ],
   "focus": {
-    "closeFocusM": 1e15,
-    "description": "Infinity-only reconstruction of the unnumbered US4728179 photographic master, separate from the converter embodiments. Only source f/1.86 is authored in this qualified model. Stop position and clear apertures are inferred; clipping remains. The standalone patent field is unknown: 135-format image heights and their field angles are model assumptions, not source coverage. The fixed image plane is computed at an assumed infinity conjugate; 587.5618 nm is an approximate reference convention because the source does not specify the index line. Exact factory pairing and full dispersion are unproven. Retail minimum focus 0.45 m is descriptive only; no finite focus law or performance is modeled. Conditional scalar research is not factory or continuum validation."
+    "closeFocusM": 0.45,
+    "description": "Unit focus: the entire optical assembly translates forward as a rigid unit, the back focus growing from 37.856 mm at infinity to 45.60 mm at the marketed 0.45 m minimum, object to image. The unnumbered US4728179 photographic master, separate from the converter embodiments, prints no close-focus state: the near gap is solved paraxially, and its 0.149× magnification matches the published 16 × 24 cm minimum field. Stop position and clear apertures are inferred; clipping remains. The standalone patent field is unknown: 135-format image heights and their field angles are model assumptions, not source coverage. The fixed image plane is computed at an assumed infinity conjugate; 587.5618 nm is an approximate reference convention because the source does not specify the index line. Exact factory pairing and full dispersion are unproven. Conditional scalar research is not factory or continuum validation."
+  },
+  "gaps": {
+    "10": {
+      "label": "BF",
+      "values": [[37.856139940514495, 45.6]]
+    }
   },
   "aperture": {
     "nominalFNumber": 1.86,
-    "fStops": [
-      1.86
-    ],
-    "maxFNumber": 1.86
+    "fStops": [1.86, 2.8, 4, 5.6, 8, 11, 16]
   },
   "layout": {
     "yScFill": 0.38
