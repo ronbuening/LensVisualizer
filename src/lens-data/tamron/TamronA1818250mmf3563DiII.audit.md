@@ -1,6 +1,6 @@
 # Continuous-zoom review, 2026-10-23
 
-Status: candidate awaiting independent repository integration and verified cloud delivery. Not deployed or manufacturer-validated.
+Status: closed 2026-11-01, integrated into the repository. Not manufacturer-validated. The zoom path described in this section was replaced that day; see the 2026-11-01 section at the end.
 
 JP2008003195A Example2 ¶0083 requires increasing G1–G2 separation, decreasing G2–G3 and G3–G4 separations. These remain monotonic throughout the inferred path; it does not require monotonic absolute G2 position. Keep G1/G3/G4 piecewise-linear and solve paired D5/D14 G2 translation. Infinity is the original explicitly inferred conjugate convention, not a newly discovered source label. Separate conservative aperture correction: source rim was inferred; S1 semi-diameter reduced30→28mm to agree with bonded S2/S3 common28mm boundary. No radius, thickness, index, glass or source gap changes. This eliminates an unphysical first clip inside the cemented pair without widening any surface.
 
@@ -112,13 +112,39 @@ Every changed analysis byte was rebound, manually reviewed, and replayed with th
 
 The final archive contains 14 root-level files, including unchanged originals, the canonical nine-file dossier, four exact frozen independent scientific artifacts, and actual native execution JSON. No routine SVG/raster/cache artifacts are bundled. The canonical verifier contains the complete original native runner and the new independent audit path. Portable replay needs only Python standard library; optional --runtime-root additionally requires Node 24 and the exact hash-identified shared main snapshot. Clean portable and native runs write all regenerated output outside the extracted package. File membership, byte counts/hashes, frozen baseline identity and stable result equality are checked after extraction.
 
-Repository-wide typecheck, formatter, lint, corpus tests, full build and mounted-browser behavior remain NOT_RUN, requiredAt integration. Targeted module execution does not substitute for them. READY_FOR_BATCH; INTEGRATION_PENDING.
+Repository-wide typecheck, formatter, lint, corpus tests, full build and mounted-browser behavior remain NOT_RUN, requiredAt integration. Targeted module execution does not substitute for them. READY_FOR_BATCH; INTEGRATION_PENDING. (Closed 2026-11-01: the lens is now in the repository, and those checks belong to the change that added it.)
 
 
 ## V2 conversion — 2026-10-18
 
 Converted by Spot, without a Codex worker, using the repository's deterministic converter and schema at main c810aa6139e35ad5ee87675731ac2d1b933476cc. The included equivalence receipt states the exact checks and any metadata normalization. All source optical values and pre-existing optical limitations are retained. Dropped derived stop radii and zero aspheric terms are listed in the conversion report; these do not change the canonical optical prescription. The original package is preserved intact. Historical verifier hashes apply to that original package, not the converted file. The converter performs output type checking; 147 shared converter tests passed. The earlier full-catalog test attempt on a prior revision was resource-killed and is not a pass; no full-catalog pass is claimed here. This format conversion is not deployment or complete optical acceptance.
 
-Retained package status: READY_FOR_BATCH / INTEGRATION_PENDING; limited source-faithful reconstruction, illustrative interpolation and all source/focus/field limitations retained.
+Retained package status: READY_FOR_BATCH / INTEGRATION_PENDING; limited source-faithful reconstruction, illustrative interpolation and all source/focus/field limitations retained. (Closed 2026-11-01.)
 
 Current frozen-candidate results: 2005 dense geometry states, zero geometry failures or image-plane inconsistency flags. 5555 default UI rays, 25 clips, all remaining clips on exterior surfaces; sphere-root proofs distinguish out-of-rim misses from in-aperture intersection failures. Maximum engine image-plane offset 0.05433827550615433mm (source/runtime spectral conventions retained). Full/reference and off-node outcomes are in VALIDATION_SUMMARY.json; only returned bands are trustworthy.
+
+## 2026-11-01 — Deployment validation and fix pass
+
+The patent was re-read independently from page renders of JP 2008-003195 A: 32 surfaces, 108 row values (R, d, nd, νd and 12 variable-gap values) and 8 asphere coefficients, with A = 1.0 read as K = 0 from the printed equation. There were no mismatches, and the bibliographic data agree with the file.
+
+Patent against model at wide/intermediate/tele: EFL 18.43/57.80/241.83 mm against 18.432/57.804/241.840 mm; back focus 39.583/67.213/89.384 mm against 39.583/67.215/89.389 mm; f1/f2/f3 95.47/-12.71/43.77 mm against 95.469/-12.713/43.768 mm. The 241.83 mm tele end is the patent's printed value against the marketed 250 mm. Paragraph 0092 states the d line, and all 16 glass rows meet catalog coordinates at d with none at e.
+
+Example 2 is the right example. Example 1 has 15 elements in 13 groups and three hybrid aspheres, and it does not close at tele as printed: computed EFL 246.15 mm against the stated 241.85 mm, with D32 1.40 mm short of computed back focus. Its f1 to f3 agree with print, and a single-slip search found no one-value fix.
+
+Maker comparison, from the English brochure page 2 as viewed by the coordinator (16 elements, 13 groups): LD on the large G1 biconvex element and on one rear element, AD on the G1 meniscus behind it, hybrid aspherical on the first G2 element and the first rear-group element. L2 and L4 and L13 fit directly, and L11 is the only rear element that fits the rear LD mark. L3 does not fit: 1.62299/58.15 is ordinary S-BSM15 (ΔPgF -0.0001). L2 and L11 are tagged `apd: "inferred"`; L3 stays untagged.
+
+The zoom cam was rebuilt because the earlier path reversed G2 inside the printed intermediate-to-tele segment, with a 0.865 mm overshoot past the printed tele position turning near 186 mm. The new path has 129 stations (was 201), with G3 travel as the path parameter, D24 and G1 on C1 monotone curves through the printed values, and G2 solved for focus with the printed residual interpolated. A G1-solved path failed on the wide-to-intermediate segment. No gap or group reverses. Maximum defocus is 0.005 mm at stations and 0.0097 mm between them. The f-number rises steadily, and the iris runs 7.5635/7.5245/7.5489 mm with its one turn at the printed intermediate station, forced by the printed f-numbers. The earlier G1, G3 and G4 piecewise-linear description in this log is superseded.
+
+The earlier finding that the wide 14.5 mm corner could not be reached no longer applies: analysis-field coverage reaches the corner at all 129 stations. A paraxial G2-only solve at 0.45 m object to image gives 1:3.53 at tele with 8.96 mm of travel and 0.80 mm of travel at wide, against 1.766 mm of D5; this is a consistency note only, and the model stays at infinity focus.
+
+Fields changed in this pass: stations and gaps (in the separate cam change), then the header comment, subtitle, `catalog.specs`, `focus.description`, group text (LG1-LG4 to G1-G4), element labels, roles and hybrid types, `glass`, and `apd`/`apdNote` on L2 and L11. Glass labels resolved went from 0 of 16 to 16 of 16; the two resin layers stay unmatched with a plain label. No R, d, nd, vd, asphere, rim, mount or format value changed.
+
+Open: L3 sits at the position Tamron marks AD but carries ordinary printed coordinates, so the production glass there may differ from Example 2.
+
+Open: the cemented-pair agreement with Tamron's diagrams is carried over from the earlier analysis; the coordinator's brochure reading above covers the coloured marks only.
+
+Open: the Japanese brochure link (w5.fuji.com.tw) did not resolve from this machine on 2026-11-01; recheck it before the citation is relied on.
+
+Open: at the 14.5 mm corner, the lower-rim ray of the full-field bundle is not found at two wide stations. Rims were outside this pass; take it up in the later figure pass.
+
+Open: `zoom.apertureModel` is declared explicitly although `from-nominal-fno` is the default, which `agent_docs/decisions.md` (2026-10-20) says not to restore. It was outside this pass and is harmless to the optics.

@@ -3,172 +3,176 @@
 ## Patent Reference and Design Identification
 
 **Patent:** JP 2010-211056 A
+**Title:** Inner Zoom Type and Inner Focus Type Zoom Lens
 **Applicant:** Sigma Corporation
-**Inventors:** Kenta Fujita
+**Inventor:** Kenta Fujita
 **Filed:** 2009-03-11
 **Published:** 2010-09-24
+**Example details:** Example 1, Table 1, Figure 1
+**Related patent:** JP 2010-211102 A, filed 2009-03-12, published 2010-09-24
 
-Sixteen bulk elements in twelve components plus two explicit resin media form five powered units. The biconvex isolated G1 positive, biconcave first G2 element, SLD positions and rear cemented arrangement discriminate Example1. G1 is image-fixed to the few-micrometre precision of the derived plane; G3/G5 move together. Internal zoom is not proof of an available finite-focus trajectory.
+JP 2010-211056 A is the print transcribed here. JP 2010-211102 A, filed a day later by the same inventor, prints the same Example 1 number for number and adds the stabilizer: it names element L3a, surfaces 11–12, as the stabilizing element, shifted ±0.5 mm across the axis in its figures (¶0046). L3a is element L6 in this file.
 
-The correlation is probable and discriminated by geometry, not proof of the manufactured prescription. Marketed endpoints are not substituted for native patent values.
+The link to the SIGMA 18-50mm f/2.8-4.5 DC OS HSM rests on:
+
+1. Construction: Sigma lists 16 elements in 12 groups, and Example 1 has 16 elements in 12 groups. Its two thin resin layers belong to hybrid elements and are not counted separately.
+2. Special elements: Sigma's construction diagram marks two SLD elements, the element ahead of the stop in G3 and the first G5 element, and three aspherical positions, the front resin element, the first G3 element and the last element. Example 1 has nd 1.4970 at L9 and L13 and aspheres at S3, S12 and S30.
+3. Range: the patent prints 18.60–48.32 mm, F2.92–4.49 and 2ω 76.78°–32.26°; Sigma lists 18–50 mm, f/2.8–4.5 and 76.5°–31.7°.
+4. Kinematics: G1 is fixed and G2 focuses, which fits a lens with internal zoom and internal focus.
+5. Selection: of the eight designs printed across the two patents, only Example 1 pairs a biconvex G1 positive with a biconcave first G2 element. The other two stabilized designs, Examples 2 and 3 of JP 2010-211102 A, open at F3.15 and F3.33.
+
+The correlation is probable, not a confirmed factory prescription. Marketed endpoints are not substituted for the patent's values. The Sony A version omits the stabilizer.
 
 ## Optical Architecture
 
-The model retains 33 numbered surfaces and 18 material entries. The numbered aperture stop is S19; its adjacent source distances are retained. Source physical count is 16 elements in 12 components. Resin replication layers are distinct media, not extra marketed lens elements.
+Example 1 is a negative-negative-positive-negative-positive inner-zoom design, retrofocus at the wide end and telephoto at the long end (¶0034). The patent's groups L1 to L5 are G1 to G5 here, and L1 to L16 number the elements. The file has 33 surfaces and 18 entries, the 16 elements plus resin layers R1 and R2.
 
-The continuous zoom is a constrained reconstruction through 201 stations. Only stations 0, 100 and 200 are published. Native radii, glass coordinates and distances are unchanged; intermediate movement is numerical, not a recovered factory cam. The aperture is calibrated to the source f-number at each zoom station; this is not independent evidence for physical stop diameter.
+G1 stays fixed to the image. G2 moves forward and back (d5 = 7.59, 13.80, 7.92 mm) and also moves toward the object to focus. G3 and G5 move together toward the object (¶0041), so d18 + d24 stays 9.32 mm. G4 moves forward less far, carrying stop S19 with it. Surface S13, a flare-cut plane behind L6, travels with G3; S33, a second flare-cut plane, stays fixed behind G5 (¶0043).
 
-### Explicit reconstruction assumptions
+### Model assumptions
 
-- Two S12 higher-order cells A8/A10 are BLANK in both primary and companion. Applied 0/0 is the approved proposed completion, NOT printed zeros. Paraxial agreement does not validate them.
-- Terminal Fb after rear flare plane S33 is absent. Native values 38.52922540243389/38.53065503967003/38.5355895924848 mm are computed, not printed.
-- S13/S33 flare planes and d12=.05,d13=.45,variable d32 are retained; S29 R0 is a plane glass surface, not a stop.
-- Continuous cam uses linear native driver/image distances and G2 focus compensation; G1 near-fixed and G3/G5 coupled to source precision. No finite focus or OS displacement reconstructed.
-- Display is f/2.8–4.5, despite historical stem missing the final 5.
+- S12 prints no C or D coefficient, as in all six examples of the patent. Those terms are unused and are zero here.
+- The patent labels the gap behind S33 as Fb but prints no value, and it prints no total length. The model uses the computed back focus, 38.529, 38.531 and 38.536 mm, which agree within 6.4 µm as a plane fixed to the image should.
+- S13 and S33 are kept as printed planes. S29 is a plane glass surface, not a stop.
+- Only three zoom positions are printed, out of 201 stations. Between them d18 and d32 run linearly and G2 is solved to hold focus, which leaves a slope break in G2's motion at 27.99 mm. This path is inferred, not a published cam.
+- The stop radius follows from the design f-number at each station (paraxial EPD = F/N): 6.43, 6.41 and 6.40 mm at the printed positions. It is not a measured diaphragm. One fixed stop of about 6.55 mm radius gives the printed F-numbers by real marginal ray (2.919, 3.403, 4.487), which suggests the patent's stop does not change with zoom.
+- Semi-diameters are inferred; none is printed. L10 is set to 6.05 mm so the stated axial beam passes at every station, and at that height L10 and L11 come within 0.07 mm.
 
 ## Element-by-Element Analysis
 
+Focal lengths are in-air thick-lens values.
+
 ### L1 — Negative Meniscus
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven). f = -63.453 mm (isolated in-air thick-lens calculation).
+nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = -63.453 mm.
 
-This medium follows surface S1 in G1. Its negative isolated power contributes divergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+Front element of fixed G1. With L2 behind it, the negative-positive order eases wide-angle distortion correction without raising the front diameter (¶0028). Its rear face carries resin layer R1.
 
 ### R1 — Negative Meniscus
 
-nd = 1.51840, νd = 52.0743. Glass: Unmatched (hybrid resin; source nd/Vd only). f = -516.782 mm (isolated in-air thick-lens calculation).
+nd = 1.51840, νd = 52.0743. Glass: Unmatched (hybrid optical resin; spectrum unpublished). f = -516.782 mm.
 
-This medium follows surface S2 in G1. It is retained as an explicit thin replication medium; no air substitution or measured polymer dispersion is implied. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+Thin resin layer, 0.15 mm on the axis, bonded to L1 to form a hybrid element. Its air-side surface S3 is the asphere G1 uses to correct wide-angle negative distortion with few elements (¶0028).
 
 ### L2 — Biconvex Positive
 
-nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM coordinate-equivalent spectral proxy; supplier unproven). f = +129.201 mm (isolated in-air thick-lens calculation).
+nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM catalog equivalent; production supplier unspecified). f = +129.201 mm.
 
-This medium follows surface S4 in G1. Its positive isolated power contributes convergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+Equal-radius biconvex positive closing G1.
 
 ### L3 — Biconcave Negative
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven). f = -97.850 mm (isolated in-air thick-lens calculation).
+nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = -97.850 mm.
 
-This medium follows surface S6 in G2. Its negative isolated power contributes divergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+First element of G2, the negative group that travels toward the object for near focus (¶0010).
 
 ### L4 — Biconcave Negative
 
-nd = 1.72920, νd = 54.6735. Glass: TAC8 (Hoya coordinate-equivalent spectral proxy; supplier unproven). f = -36.351 mm (isolated in-air thick-lens calculation).
+nd = 1.72920, νd = 54.6735. Glass: TAC8 (HOYA catalog equivalent; production supplier unspecified). f = -36.351 mm.
 
-This medium follows surface S8 in G2. Its negative isolated power contributes divergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+The stronger negative element of G2, cemented to L5. The patent sets G2's power as a balance between spherical-aberration change in focus and focus travel (¶0026–¶0027).
 
 ### L5 — Positive Meniscus
 
-nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM coordinate-equivalent spectral proxy; supplier unproven). f = +69.644 mm (isolated in-air thick-lens calculation).
+nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM catalog equivalent; production supplier unspecified). f = +69.644 mm.
 
-This medium follows surface S9 in G2. Its positive isolated power contributes convergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+High-dispersion positive cemented to L4, the chromatic partner in that doublet.
 
 ### L6 — Positive Meniscus
 
-nd = 1.58760, νd = 61.0842. Glass: Unmatched (source nd/Vd; supplier and exact dispersion unproven). f = +79.380 mm (isolated in-air thick-lens calculation).
+nd = 1.58760, νd = 61.0842. Glass: Unmatched (moulded glass; patent class 588611). f = +79.380 mm.
 
-This medium follows surface S11 in G3. Its positive isolated power contributes convergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+First element of G3, with aspheric rear surface S12, and the stabilizing element L3a of JP 2010-211102 A. That patent credits the asphere with limiting decentring coma and astigmatism during stabilization (¶0022) and prints fw/f3a = 0.23. Flare-cut plane S13 follows it.
 
 ### L7 — Negative Meniscus
 
-nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM coordinate-equivalent spectral proxy; supplier unproven). f = -40.464 mm (isolated in-air thick-lens calculation).
+nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM catalog equivalent; production supplier unspecified). f = -40.464 mm.
 
-This medium follows surface S14 in G3. Its negative isolated power contributes divergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+High-dispersion negative leading the G3 doublet. The patent gives the cemented lenses in G3, G4 and G5 the job of holding axial and lateral colour through zoom (¶0045).
 
 ### L8 — Positive Meniscus
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven). f = +25.915 mm (isolated in-air thick-lens calculation).
+nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = +25.915 mm.
 
-This medium follows surface S15 in G3. Its positive isolated power contributes convergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+The strongest positive element in G3, cemented to L7. G3 takes a wide beam from G1 and G2, so telephoto spherical aberration limits its power (¶0030–¶0031).
 
 ### L9 — Positive Meniscus
 
-nd = 1.49700, νd = 81.6084. Glass: FCD1 (Hoya coordinate-equivalent spectral proxy; supplier unproven). f = +49.781 mm (isolated in-air thick-lens calculation).
+nd = 1.49700, νd = 81.6084. Glass: FCD1 (HOYA catalog equivalent; production supplier unspecified), inferred SLD. f = +49.781 mm.
 
-This medium follows surface S17 in G3. Its positive isolated power contributes convergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+Low-dispersion positive closing G3 just ahead of the stop, and one of the two positions Sigma marks SLD.
 
 ### L10 — Biconcave Negative
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven). f = -26.732 mm (isolated in-air thick-lens calculation).
+nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = -26.732 mm.
 
-This medium follows surface S20 in G4. Its negative isolated power contributes divergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+First element of G4, just behind the stop.
 
 ### L11 — Biconcave Negative
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven). f = -15.771 mm (isolated in-air thick-lens calculation).
+nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = -15.771 mm.
 
-This medium follows surface S22 in G4. Its negative isolated power contributes divergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+The strongest negative element in the lens, cemented to L12. G4 supplies the negative rear power of the telephoto layout at the long end (¶0034–¶0035).
 
 ### L12 — Biconvex Positive
 
-nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM coordinate-equivalent spectral proxy; supplier unproven). f = +23.545 mm (isolated in-air thick-lens calculation).
+nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM catalog equivalent; production supplier unspecified). f = +23.545 mm.
 
-This medium follows surface S23 in G4. Its positive isolated power contributes convergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+High-dispersion biconvex cemented to L11, the chromatic partner in that doublet.
 
 ### L13 — Biconvex Positive
 
-nd = 1.49700, νd = 81.6084. Glass: FCD1 (Hoya coordinate-equivalent spectral proxy; supplier unproven). f = +29.108 mm (isolated in-air thick-lens calculation).
+nd = 1.49700, νd = 81.6084. Glass: FCD1 (HOYA catalog equivalent; production supplier unspecified), inferred SLD. f = +29.108 mm.
 
-This medium follows surface S25 in G5. Its positive isolated power contributes convergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+First element of G5 and the second position Sigma marks SLD.
 
 ### L14 — Positive Meniscus
 
-nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven). f = +69.330 mm (isolated in-air thick-lens calculation).
+nd = 1.77250, νd = 49.6243. Glass: N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified). f = +69.330 mm.
 
-This medium follows surface S27 in G5. Its positive isolated power contributes convergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+Positive meniscus leading the G5 doublet.
 
 ### L15 — Plano-Concave Negative
 
-nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM coordinate-equivalent spectral proxy; supplier unproven). f = -45.677 mm (isolated in-air thick-lens calculation).
+nd = 1.84660, νd = 23.7848. Glass: H-ZF52 (CDGM catalog equivalent; production supplier unspecified). f = -45.677 mm.
 
-This medium follows surface S28 in G5. Its negative isolated power contributes divergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+High-dispersion negative cemented to L14, the chromatic partner in that doublet, with a flat rear face.
 
 ### R2 — Positive Meniscus
 
-nd = 1.51840, νd = 52.0743. Glass: Unmatched (hybrid resin; source nd/Vd only). f = +302.074 mm (isolated in-air thick-lens calculation).
+nd = 1.51840, νd = 52.0743. Glass: Unmatched (hybrid optical resin; spectrum unpublished). f = +302.074 mm.
 
-This medium follows surface S30 in G5. It is retained as an explicit thin replication medium; no air substitution or measured polymer dispersion is implied. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+Thin resin layer, 0.15 mm on the axis, bonded to the front of L16 to form a hybrid element. Its air-side surface S30 is the G5 asphere the patent uses for coma and astigmatism, because the off-axis beam runs far out in this group (¶0044).
 
 ### L16 — Positive Meniscus
 
-nd = 1.48750, νd = 70.4412. Glass: H-QK3L (CDGM coordinate-equivalent spectral proxy; supplier unproven). f = +96.260 mm (isolated in-air thick-lens calculation).
+nd = 1.48750, νd = 70.4412. Glass: H-QK3L (CDGM catalog equivalent; production supplier unspecified). f = +96.260 mm.
 
-This medium follows surface S31 in G5. Its positive isolated power contributes convergence. The isolated focal length does not assign an in-system aberration budget; cemented neighbors and stop position alter its working contribution.
+Last element, carrying R2 on its front face. Flare-cut plane S33 lies behind it, level with its vertex at the wide end and 20.09 mm behind it at the long end.
 
 ## Glass Identification and Selection
 
-Source nd/νd coordinates remain literal. Coordinate-equivalent catalog entries are spectral surrogates, not identified suppliers or melts. The ledger includes evaluated d-line index, Abbe residuals, coefficients, alternatives and catalog provenance. Polymer entries remain unmatched. No unsupported extraordinary partial dispersion or apochromatic correction is asserted.
+Printed nd and νd are kept. The catalog names supply spectral curves and are equivalents, not identified suppliers or melts. The table gives catalog minus printed values.
 
-| Medium | Source nd | Source νd | Catalog surrogate | evaluated Δnd | evaluated Δνd |
+| Catalog equivalent | Printed nd | Printed νd | Elements | Δnd | Δνd |
 |---|---:|---:|---|---:|---:|
-| 1 | 1.7725 | 49.6243 | N-LAF34 (Schott) | +6.432423e-08 | -0.004073163 |
-| 3 | 1.8466 | 23.7848 | H-ZF52 (CDGM) | +6.004968e-05 | -0.0003034563 |
-| 4 | 1.7725 | 49.6243 | N-LAF34 (Schott) | +6.432423e-08 | -0.004073163 |
-| 5 | 1.7292 | 54.6735 | TAC8 (Hoya) | -3.993958e-05 | +1.25582e-05 |
-| 6 | 1.8466 | 23.7848 | H-ZF52 (CDGM) | +6.004968e-05 | -0.0003034563 |
-| 8 | 1.8466 | 23.7848 | H-ZF52 (CDGM) | +6.004968e-05 | -0.0003034563 |
-| 9 | 1.7725 | 49.6243 | N-LAF34 (Schott) | +6.432423e-08 | -0.004073163 |
-| 10 | 1.497 | 81.6084 | FCD1 (Hoya) | -1.619089e-07 | +0.0005500376 |
-| 11 | 1.7725 | 49.6243 | N-LAF34 (Schott) | +6.432423e-08 | -0.004073163 |
-| 12 | 1.7725 | 49.6243 | N-LAF34 (Schott) | +6.432423e-08 | -0.004073163 |
-| 13 | 1.8466 | 23.7848 | H-ZF52 (CDGM) | +6.004968e-05 | -0.0003034563 |
-| 14 | 1.497 | 81.6084 | FCD1 (Hoya) | -1.619089e-07 | +0.0005500376 |
-| 15 | 1.7725 | 49.6243 | N-LAF34 (Schott) | +6.432423e-08 | -0.004073163 |
-| 16 | 1.8466 | 23.7848 | H-ZF52 (CDGM) | +6.004968e-05 | -0.0003034563 |
-| 18 | 1.4875 | 70.4412 | H-QK3L (CDGM) | -9.958511e-06 | -0.000712747 |
+| N-LAF34 (SCHOTT) | 1.7725 | 49.6243 | L1, L3, L8, L10, L11, L14 | +6.4e-08 | -0.0041 |
+| H-ZF52 (CDGM) | 1.8466 | 23.7848 | L2, L5, L7, L12, L15 | +6.0e-05 | -0.0003 |
+| TAC8 (HOYA) | 1.7292 | 54.6735 | L4 | -4.0e-05 | +0.00001 |
+| FCD1 (HOYA) | 1.4970 | 81.6084 | L9, L13 | -1.6e-07 | +0.0006 |
+| H-QK3L (CDGM) | 1.4875 | 70.4412 | L16 | -1.0e-05 | -0.0007 |
 
-The arbitrary-wavelength MTF path anchors catalog dispersion to the authored reference index. The catalog-resolved UI chromatic channels use evaluated catalog indices, with the small reference residuals listed above. Reference-channel and catalog-dependent photopic results are kept separate. Rounded source coordinates alone cannot establish secondary spectrum.
+L9 and L13 are tagged as inferred low-dispersion glass from Sigma's SLD marks and their FCD1 coordinates; the patent states no dispersion class. L6 and both resin layers stay Unmatched. L6's 1.5876/61.08 appears in Examples 1, 5 and 6 and 1.5891/61.25 in Examples 2 to 4, and the lower index fits a moulded asphere, though the patent does not say so.
+
+The viewer's colour channels use the catalog indices, offset from the printed nd as listed. Rounded printed values cannot establish secondary spectrum, and no apochromatic correction is claimed.
 
 ## Focus Mechanism
 
-INFERRED CONTINUOUS ZOOM; source native states preserved. NO_INTERNAL_RECONSTRUCTION: infinity only; no finite focus or stabilization motion is supported. Assumptions: S12 A8/A10 cells blank in both publications: approved zero completion is inference, not printed zeros. Final Fb derived; no source value claimed.
-
-The catalog minimum-focus label is not a validated optical conjugate. Only centered infinity operation is supported; no close-focus performance is claimed.
+Inner focus by G2, which moves toward the object for near focus (¶0010). The patent prints no near-focus spacings, object distance or travel, so the model stays at infinity and the focus control does not change the optics. Sigma's 30 cm and 1:4.1 are specifications, not modeled states, and no close-focus performance is given.
 
 ## Aspherical Surfaces
 
-The standard conic-plus-even-polynomial equation uses K in the radicand 1−(1+K)c²h². The listed conic convention is direct.
+The patent's equation is x = (h²/r)/[1 + {1 − (1 + k)(h/r)²}^½] + Ah⁴ + Bh⁶ + Ch⁸ + Dh¹⁰ (¶0049). Its k is K here, and A, B, C and D are A4, A6, A8 and A10.
 
 | Surface | K | A4 | A6 | A8 | A10 |
 |---|---:|---:|---:|---:|---:|
@@ -176,32 +180,23 @@ The standard conic-plus-even-polynomial equation uses K in the radicand 1−(1+K
 | S12 | -1.1922000e+00 | -2.8679000e-06 | -2.0403000e-09 | 0.0000000e+00 | 0.0000000e+00 |
 | S30 | 0.0000000e+00 | -3.2971000e-05 | -4.1422000e-08 | -2.3153000e-10 | 3.6395000e-13 |
 
-Polynomial coefficients have units mm^(1−order). Sag, slopes and edge clearances were tested on the final apertures, not just paraxial power. S12 A8/A10 are proposed zero completions of blank source cells, not printed zeros; their uncertainty remains part of the model.
+Polynomial coefficients have units mm^(1−order). The patent leaves C and D blank at S12, as it does for that surface in all six examples, so those terms are unused and are zero here. Coefficients as large as those on S3 would add less than 5 µm of sag at the rim.
 
-## Verification Summary
+## Model Scope and Limitations
 
-Native first-order results are independent of the aspheric higher-order terms. The source comparison deliberately retains rounding discrepancies.
+| Printed f | Printed F | Printed 2ω | Computed EFL | Computed 2ω at Y = 14.20 mm | Computed back focus |
+|---:|---:|---:|---:|---:|---:|
+| 18.60 | 2.92 | 76.78° | 18.600 | 76.78° | 38.529 |
+| 27.99 | 3.40 | 52.93° | 27.989 | 52.93° | 38.531 |
+| 48.32 | 4.49 | 32.26° | 48.325 | 32.26° | 38.536 |
 
-| Native state | Source EFL mm | Computed EFL mm | Computed rear intercept mm |
-|---|---:|---:|---:|
-| 0 | 18.6 | 18.599507845 | 38.529225402 |
-| 1 | 27.99 | 27.988891255 | 38.530655040 |
-| 2 | 48.32 | 48.325119834 | 38.535589640 |
+The patent prints no image height; 14.20 mm reproduces all three printed angles. The design values stay in the model: the marketed 18 mm, 50 mm and f/2.8 are not substituted.
 
-Real buildLens validation passes; dense engine geometry covers 401 states with 0 error states, no hidden render trimming above 0.25 mm and no non-finite layouts. These are sampled checks, not a continuum proof.
+The model covers centred infinity focus only. It has no finite-focus state and so no finite-conjugate MTF, and it does not model the stabilizing shift of L6. The zoom path between printed positions, the semi-diameters and the fixed-stop reading are inferred. Colour and photopic MTF results rest on the catalog equivalents and are not production predictions. No comparison with digitized patent plots or measured MTF is claimed.
 
-Full adaptive diffraction MTF is evaluated at 21 zoom positions and five image-height fractions with max grid 256. Reference-channel status totals: {'converged': 105}. Catalog-surrogate photopic status totals: {'converged': 105}. Surrogate photopic results are not source-proven production predictions.
+## Sources
 
-The UI ray sweep records 1111 rays and 0 clips. No failed ray is relabelled as a successful arrival.
-
-The separate wavelength/conjugate ray-band sweep records each ray, blocked surface and longitudinal intercept when meaningful. Its sparse field-angle inversion can return unavailable at corners even when the full MTF solver succeeds; the two methods are not interchangeable. Aberration sign/scale checks are qualitative; no digitized source-plot residual or measured MTF comparison is claimed.
-
-An independent replay removes every catalog glass name while preserving source nd/νd. All five full-format fields at native wide converge in the source-only reference channel. This separate result establishes reference availability without named proxies; it does not turn photopic predictions into source-proven dispersion.
-
-## Sources and Reproducibility
-
-1. [Original Japanese publication JP2010211056A](https://patents.google.com/patent/JP2010211056A/en), PDF p10/printed9 Table1; Figure1; companion PDF pp11–12. Original PDF bytes are packaged.
-2. [Manufacturer construction evidence](https://www.sigma-global.com/en/lenses/18_50_28_45/), inspected 2026-10-23; image bytes packaged.
-3. LensVisualizer specifications and engine at edd47fdcd377025144ade179c8bed7188c0bc4eb. Portable source/data verifier and full engine-validation harness accompany this dossier.
-
-No deployment, PR or catalogue insertion is authorized by this private package. Final integration is pending.
+1. [JP 2010-211056 A](https://patents.google.com/patent/JP2010211056A/en), Table 1 (printed p. 9) and Figure 1.
+2. [JP 2010-211102 A](https://patents.google.com/patent/JP2010211102A/en), Table 1 (printed pp. 10–11), Figure 1 and ¶0046.
+3. [Sigma product page](https://www.sigma-global.com/en/lenses/18_50_28_45/) and [construction diagram](https://www.sigma-global.com/lenses/18_50_28_45_specification_01.jpg).
+4. [Wikipedia, Sigma 18-50mm f/2.8-4.5 DC OS HSM lens](https://en.wikipedia.org/wiki/Sigma_18-50mm_f/2.8-4.5_DC_OS_HSM_lens), for the internal zoom and focus.

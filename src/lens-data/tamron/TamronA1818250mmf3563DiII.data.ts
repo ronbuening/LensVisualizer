@@ -1,10 +1,33 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * TAMRON AF 18-250mm f/3.5-6.3 Di II LD Aspherical [IF] MACRO (Model A18).
+ *
+ * Source: JP 2008-003195 A (Tamron Co., Ltd.), Example 2, Figure 5, paragraphs 0081-0095. A patent design associated
+ * with the A18 by its 16-element, 13-group construction and two hybrid aspheres, not a confirmed factory prescription.
+ * Example 1 of the same patent has 15 elements, three hybrid aspheres, and does not close at tele as printed.
+ *
+ * Printed: every radius, thickness and d-line nd/vd (paragraph 0092), the two aspheres, and three zoom stations at
+ * 18.43/57.80/241.83 mm, F3.47/5.01/6.35. The tele end is the patent's 241.83 mm against the marketed 250 mm; nothing
+ * is rescaled. Not printed: the object conjugate (infinity is inferred from computed back focus matching D32 within
+ * 0.005 mm), semi-diameters, iris diameter, and any close-focus state.
+ *
+ * Aspheres: the patent's conic A = 1.0 is K = A - 1 = 0. Both sit on 0.20 mm resin rows (r6-r7, r25-r26), which are
+ * kept as the extra entries L4f and L13f; catalog.elementCount stays at the published 16.
+ *
+ * Zoom: the 126 unprinted stations are inferred. G3 travel is the path parameter, D24 and the G1 position follow
+ * smooth monotone curves through the printed values, and G2 is solved for focus with the printed image-plane residual
+ * interpolated. No gap or group reverses. Unprinted f-numbers follow a smooth iris curve through the printed stations.
+ *
+ * Focus: G2 moves toward the object (paragraph 0083), but no travel is printed, so both focus columns are identical.
+ * Semi-diameters are inferred from ray clearance at the 14.5 mm plot height and the Figure 5 section.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "tamron-a18-18-250mm-f35-63-di-ii",
   "maker": "Tamron",
   "name": "TAMRON AF 18-250mm f/3.5-6.3 Di II LD Aspherical [IF] MACRO (A18)",
-  "subtitle": "JP 2008-003195 A; INFERRED continuous zoom path; native source knots preserved",
+  "subtitle": "JP 2008-003195 A, Example 2 — matches the Tamron A18 construction; zoom cam inferred",
   "catalog": {
     "lensMounts": [
       "canon-ef",
@@ -14,6 +37,13 @@ const LENS_DATA = {
     ],
     "imageFormat": "aps-c",
     "imageCircleMm": 29,
+    "specs": [
+      "16 ELEMENTS / 13 GROUPS",
+      "DESIGN f = 18.43–241.83 mm",
+      "DESIGN F/3.47–6.35",
+      "2 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "2 HYBRID RESIN ASPHERES"
+    ],
     "elementCount": 16,
     "groupCount": 13,
     "focalLengthMm": {
@@ -47,244 +77,248 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
-      "label": "Glass substrate L1",
+      "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.84666,
       "vd": 23.78,
       "indexReference": "d",
       "focalLengthMm": -209.58533695242033,
-      "glass": "Unmatched (source nd=1.84666, vd=23.78; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Negative flint front of the cemented G1 doublet, paired with Element 2 for colour correction.",
       "diagramLabel": "L1",
       "cemented": "C1"
     },
     {
       "id": 2,
       "name": "L2",
-      "label": "Glass substrate L2",
+      "label": "Element 2",
       "type": "Biconvex Positive",
       "nd": 1.497,
       "vd": 81.61,
       "indexReference": "d",
       "focalLengthMm": 120.9031767524762,
-      "glass": "Unmatched (source nd=1.49700, vd=81.61; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Tamron's construction diagram marks this position LD.",
+      "role": "Low-dispersion positive crown of the cemented G1 doublet; Tamron marks this position LD.",
       "diagramLabel": "L2",
       "cemented": "C1"
     },
     {
       "id": 3,
       "name": "L3",
-      "label": "Glass substrate L3",
+      "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.62299,
       "vd": 58.15,
       "indexReference": "d",
       "focalLengthMm": 139.88256106720715,
-      "glass": "Unmatched (source nd=1.62299, vd=58.15; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-BSM15 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Positive meniscus closing G1; Tamron marks this position AD, but the printed coordinates are ordinary glass.",
       "diagramLabel": "L3"
     },
     {
       "id": 4,
       "name": "L4f",
-      "label": "Hybrid film bonded to L4",
-      "type": "Hybrid aspheric film (material unconfirmed)",
+      "label": "Hybrid resin layer on Element 4",
+      "type": "Hybrid Aspheric Resin Layer (1× Asph)",
       "nd": 1.5146,
       "vd": 49.96,
       "indexReference": "d",
       "focalLengthMm": -374.713515680066,
-      "glass": "Unmatched (source nd=1.51460, vd=49.96; supplier and melt unverified)",
-      "role": "Explicit source thin optical medium; inferred hybrid film, chemistry unconfirmed.",
+      "glass": "Unmatched (hybrid optical resin; spectrum unpublished)",
+      "role": "Thin resin layer bonded to Element 4; its front surface carries the G2 asphere.",
       "diagramLabel": "L4f",
       "cemented": "C6"
     },
     {
       "id": 5,
       "name": "L4",
-      "label": "Glass substrate L4",
+      "label": "Element 4",
       "type": "Negative Meniscus",
       "nd": 1.804,
       "vd": 46.58,
       "indexReference": "d",
       "focalLengthMm": -21.09888266767846,
-      "glass": "Unmatched (source nd=1.80400, vd=46.58; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Front negative meniscus of G2, carrying the bonded resin asphere; Tamron marks this position hybrid aspherical.",
       "diagramLabel": "L4",
       "cemented": "C6"
     },
     {
       "id": 6,
       "name": "L5",
-      "label": "Glass substrate L5",
+      "label": "Element 5",
       "type": "Biconcave Negative",
       "nd": 1.83481,
       "vd": 42.72,
       "indexReference": "d",
       "focalLengthMm": -25.096936521149065,
-      "glass": "Unmatched (source nd=1.83481, vd=42.72; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "TAFD5G (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Biconcave negative lens supplying G2 power.",
       "diagramLabel": "L5"
     },
     {
       "id": 7,
       "name": "L6",
-      "label": "Glass substrate L6",
+      "label": "Element 6",
       "type": "Biconvex Positive",
       "nd": 1.84666,
       "vd": 23.78,
       "indexReference": "d",
       "focalLengthMm": 16.728647180665277,
-      "glass": "Unmatched (source nd=1.84666, vd=23.78; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "High-dispersion positive lens balancing colour against the G2 negatives.",
       "diagramLabel": "L6"
     },
     {
       "id": 8,
       "name": "L7",
-      "label": "Glass substrate L7",
+      "label": "Element 7",
       "type": "Biconcave Negative",
       "nd": 1.883,
       "vd": 40.78,
       "indexReference": "d",
       "focalLengthMm": -22.37366417469386,
-      "glass": "Unmatched (source nd=1.88300, vd=40.78; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-LAH58 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Rear biconcave negative lens of G2, ahead of the stop.",
       "diagramLabel": "L7"
     },
     {
       "id": 9,
       "name": "L8",
-      "label": "Glass substrate L8",
+      "label": "Element 8",
       "type": "Negative Meniscus",
       "nd": 1.804,
       "vd": 46.58,
       "indexReference": "d",
       "focalLengthMm": -93.5116476284648,
-      "glass": "Unmatched (source nd=1.80400, vd=46.58; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Negative front of the cemented doublet that opens G3 (lens 231, paragraph 0082).",
       "diagramLabel": "L8",
       "cemented": "C16"
     },
     {
       "id": 10,
       "name": "L9",
-      "label": "Glass substrate L9",
+      "label": "Element 9",
       "type": "Biconvex Positive",
       "nd": 1.58913,
       "vd": 61.18,
       "indexReference": "d",
       "focalLengthMm": 38.23660707692615,
-      "glass": "Unmatched (source nd=1.58913, vd=61.18; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-BAL35 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Positive rear of the cemented doublet that opens G3 (lens 232).",
       "diagramLabel": "L9",
       "cemented": "C16"
     },
     {
       "id": 11,
       "name": "L10",
-      "label": "Glass substrate L10",
+      "label": "Element 10",
       "type": "Positive Meniscus",
       "nd": 1.48749,
       "vd": 70.21,
       "indexReference": "d",
       "focalLengthMm": 66.8667626057969,
-      "glass": "Unmatched (source nd=1.48749, vd=70.21; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Positive meniscus of G3 with its larger radius to the image side (lens 233).",
       "diagramLabel": "L10"
     },
     {
       "id": 12,
       "name": "L11",
-      "label": "Glass substrate L11",
+      "label": "Element 11",
       "type": "Positive Meniscus",
       "nd": 1.497,
       "vd": 81.61,
       "indexReference": "d",
       "focalLengthMm": 49.70837814962158,
-      "glass": "Unmatched (source nd=1.49700, vd=81.61; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.61); the only rear element that fits the rear position Tamron's construction diagram marks LD.",
+      "role": "Low-dispersion positive lens of G3 meeting condition (4) (lens 234); fits Tamron's rear LD position.",
       "diagramLabel": "L11"
     },
     {
       "id": 13,
       "name": "L12",
-      "label": "Glass substrate L12",
+      "label": "Element 12",
       "type": "Biconcave Negative",
       "nd": 1.834,
       "vd": 37.17,
       "indexReference": "d",
       "focalLengthMm": -29.211084767748407,
-      "glass": "Unmatched (source nd=1.83400, vd=37.17; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Biconcave negative lens closing G3 (lens 235).",
       "diagramLabel": "L12"
     },
     {
       "id": 14,
       "name": "L13f",
-      "label": "Hybrid film bonded to L13",
-      "type": "Hybrid aspheric film (material unconfirmed)",
+      "label": "Hybrid resin layer on Element 13",
+      "type": "Hybrid Aspheric Resin Layer (1× Asph)",
       "nd": 1.5146,
       "vd": 49.96,
       "indexReference": "d",
       "focalLengthMm": 67340.66190421439,
-      "glass": "Unmatched (source nd=1.51460, vd=49.96; supplier and melt unverified)",
-      "role": "Explicit source thin optical medium; inferred hybrid film, chemistry unconfirmed.",
+      "glass": "Unmatched (hybrid optical resin; spectrum unpublished)",
+      "role": "Thin resin layer bonded to Element 13; its front surface carries the G4 asphere.",
       "diagramLabel": "L13f",
       "cemented": "C25"
     },
     {
       "id": 15,
       "name": "L13",
-      "label": "Glass substrate L13",
+      "label": "Element 13",
       "type": "Biconvex Positive",
       "nd": 1.48749,
       "vd": 70.21,
       "indexReference": "d",
       "focalLengthMm": 42.91630431948858,
-      "glass": "Unmatched (source nd=1.48749, vd=70.21; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Front positive lens of G4, carrying the bonded resin asphere; Tamron marks this position hybrid aspherical.",
       "diagramLabel": "L13",
       "cemented": "C25"
     },
     {
       "id": 16,
       "name": "L14",
-      "label": "Glass substrate L14",
+      "label": "Element 14",
       "type": "Biconvex Positive",
       "nd": 1.48749,
       "vd": 70.21,
       "indexReference": "d",
       "focalLengthMm": 54.21263769927596,
-      "glass": "Unmatched (source nd=1.48749, vd=70.21; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Positive lens of G4, nearly flat in front with its strong curve to the image.",
       "diagramLabel": "L14"
     },
     {
       "id": 17,
       "name": "L15",
-      "label": "Glass substrate L15",
+      "label": "Element 15",
       "type": "Biconcave Negative",
       "nd": 1.804,
       "vd": 46.58,
       "indexReference": "d",
       "focalLengthMm": -22.461725752351047,
-      "glass": "Unmatched (source nd=1.80400, vd=46.58; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Negative front of the cemented doublet that closes G4.",
       "diagramLabel": "L15",
       "cemented": "C30"
     },
     {
       "id": 18,
       "name": "L16",
-      "label": "Glass substrate L16",
+      "label": "Element 16",
       "type": "Positive Meniscus",
       "nd": 1.54072,
       "vd": 47.23,
       "indexReference": "d",
       "focalLengthMm": 42.3977413783992,
-      "glass": "Unmatched (source nd=1.54072, vd=47.23; supplier and melt unverified)",
-      "role": "Source substrate; stated power is standalone in air, not in-system contribution.",
+      "glass": "S-TIL2 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Positive meniscus rear of the cemented doublet that closes G4; the last element.",
       "diagramLabel": "L16",
       "cemented": "C30"
     }
@@ -1160,7 +1194,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 0.45,
-    "description": "INFERRED CONTINUOUS ZOOM CANDIDATE, NOT FACTORY CAM. Source knots and fixed optics unchanged. Non-compensating gaps are piecewise-linear drivers; {\"5\":1,\"14\":-1} gives the source-group compensator gap signs, solved for the interpolated native image-plane residual. Near-focus deltas, when present, retained at native knots and interpolated; finite conjugates not newly certified. This candidate remains subject to full validation."
+    "description": "Inner focus: the second group (G2) moves toward the object (paragraph 0083). The patent prints no travel, object distance or near-focus spacing, so the model stays at infinity focus and the focus slider changes nothing. 0.45 m is Tamron's stated minimum focus distance, not a modelled state."
   },
   "gaps": {
     "5": {
@@ -3265,22 +3299,22 @@ const LENS_DATA = {
   },
   "groups": [
     {
-      "text": "LG1",
+      "text": "G1",
       "fromSurface": "1",
       "toSurface": "5"
     },
     {
-      "text": "LG2",
+      "text": "G2",
       "fromSurface": "6A",
       "toSurface": "14"
     },
     {
-      "text": "LG3",
+      "text": "G3",
       "fromSurface": "16",
       "toSurface": "24"
     },
     {
-      "text": "LG4",
+      "text": "G4",
       "fromSurface": "25A",
       "toSurface": "32"
     }

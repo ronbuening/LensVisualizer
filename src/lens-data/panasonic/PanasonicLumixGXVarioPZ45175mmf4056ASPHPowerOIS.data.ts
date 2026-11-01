@@ -4,13 +4,20 @@ const LENS_DATA = {
   "key": "panasonic-lumix-g-x-vario-pz-45-175mm-f4-56-asph-power-ois",
   "maker": "Panasonic",
   "name": "PANASONIC LUMIX G X VARIO PZ 45-175mm f/4-5.6 ASPH. POWER O.I.S.",
-  "subtitle": "JP 5649252 B2 Example 1; probable product correlation, approved bounded reconstruction",
+  "subtitle": "JP 5649252 B2, Example 1 — strong production correlation, not manufacturer-confirmed",
   "catalog": {
     "lensMounts": [
       "micro-four-thirds"
     ],
     "imageFormat": "four-thirds",
     "imageCircleMm": 21.63,
+    "specs": [
+      "14 ELEMENTS / 10 GROUPS",
+      "DESIGN f = 45.17–167.24 mm",
+      "DESIGN F/4.16–5.84",
+      "3 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "INTERNAL ZOOM: G1, G3, G6 FIXED"
+    ],
     "elementCount": 14,
     "groupCount": 10,
     "focalLengthMm": {
@@ -44,170 +51,174 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
-      "label": "Source glass body",
+      "label": "Element 1",
       "type": "Plano-Convex Positive",
       "nd": 1.48749,
       "vd": 70.4,
       "indexReference": "d",
       "focalLengthMm": 90.82647849186651,
-      "glass": "FK5 (Sumita coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "FK5 (SUMITA catalog equivalent; production supplier unspecified)",
+      "role": "Plano-convex front element of the fixed first group"
     },
     {
       "id": 2,
       "name": "L2",
-      "label": "Source glass body",
+      "label": "Element 2",
       "type": "Negative Meniscus",
       "nd": 1.801,
       "vd": 35,
       "indexReference": "d",
       "focalLengthMm": -74.85691871808652,
-      "glass": "S-LAM66 (Ohara coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "S-LAM66 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Flint half of the first-group doublet, cemented to L3"
     },
     {
       "id": 3,
       "name": "L3",
-      "label": "Source glass body",
+      "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.497,
       "vd": 81.6,
       "indexReference": "d",
       "focalLengthMm": 54.77294971031757,
-      "glass": "FCD1 (Hoya coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Panasonic's construction diagram marks this position as one of its two ED elements, and the patent itself does not call the glass anomalous.",
+      "role": "ED crown half of the first-group doublet and the strongest positive element in G1"
     },
     {
       "id": 4,
       "name": "L4",
-      "label": "Source glass body",
+      "label": "Element 4",
       "type": "Negative Meniscus",
       "nd": 1.8045,
       "vd": 39.6,
       "indexReference": "d",
       "focalLengthMm": -15.575824506539641,
-      "glass": "NBFD3 (Hoya coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "NBFD3 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Strongest negative element of the moving second group, cemented to L5"
     },
     {
       "id": 5,
       "name": "L5",
-      "label": "Source glass body",
+      "label": "Element 5",
       "type": "Positive Meniscus",
       "nd": 1.92286,
       "vd": 20.9,
       "indexReference": "d",
       "focalLengthMm": 23.432346841731288,
-      "glass": "N-SF66 (Schott coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "N-SF66 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Very high-dispersion positive half of the second-group doublet, cemented to L4"
     },
     {
       "id": 6,
       "name": "L6",
-      "label": "Source glass body",
+      "label": "Element 6",
       "type": "Biconcave Negative",
       "nd": 1.8042,
       "vd": 46.5,
       "indexReference": "d",
       "focalLengthMm": -32.992635494787585,
-      "glass": "N-LASF44 (Schott coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "N-LASF44 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Biconcave singlet closing the moving second group"
     },
     {
       "id": 7,
       "name": "L7",
-      "label": "Source glass body",
+      "label": "Element 7",
       "type": "Biconvex Positive",
       "nd": 1.80755,
       "vd": 40.9,
       "indexReference": "d",
       "focalLengthMm": 21.116425019309023,
-      "glass": "D-ZLaF81-25 (CDGM coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "D-ZLaF81-25 (CDGM catalog equivalent; production supplier unspecified)",
+      "role": "First element of the fixed third group, aspherical on both surfaces, just ahead of the stop"
     },
     {
       "id": 8,
       "name": "L8",
-      "label": "Source glass body",
+      "label": "Element 8",
       "type": "Negative Meniscus",
       "nd": 1.90366,
       "vd": 31.3,
       "indexReference": "d",
       "focalLengthMm": -15.602061248112525,
-      "glass": "TAFD25 (Hoya coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "TAFD25 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "High-index flint half of the doublet behind the stop, cemented to L9"
     },
     {
       "id": 9,
       "name": "L9",
-      "label": "Source glass body",
+      "label": "Element 9",
       "type": "Positive Meniscus",
       "nd": 1.497,
       "vd": 81.6,
       "indexReference": "d",
       "focalLengthMm": 29.520653133321204,
-      "glass": "FCD1 (Hoya coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.61); Panasonic's construction diagram marks this position as one of its two ED elements, and the patent itself does not call the glass anomalous.",
+      "role": "ED crown half of the doublet behind the stop, cemented to L8"
     },
     {
       "id": 10,
       "name": "L10",
-      "label": "Source glass body",
+      "label": "Element 10",
       "type": "Biconvex Positive",
       "nd": 1.5825,
       "vd": 59.4,
       "indexReference": "d",
       "focalLengthMm": 18.915687581369546,
-      "glass": "Unmatched (source nd/Vd; supplier and exact dispersion unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "Unmatched (printed nd/νd; no catalog row at these coordinates)",
+      "role": "Crown half of the rear third-group doublet, aspherical on its front surface, cemented to L11"
     },
     {
       "id": 11,
       "name": "L11",
-      "label": "Source glass body",
+      "label": "Element 11",
       "type": "Negative Meniscus",
       "nd": 1.7552,
       "vd": 27.5,
       "indexReference": "d",
       "focalLengthMm": -74.8631384488648,
-      "glass": "S-TIH4 (Ohara coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "S-TIH4 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Flint half of the rear third-group doublet, closing the fixed third group"
     },
     {
       "id": 12,
       "name": "L12",
-      "label": "Source glass body",
+      "label": "Element 12",
       "type": "Negative Meniscus",
       "nd": 1.72916,
       "vd": 54.7,
       "indexReference": "d",
       "focalLengthMm": -31.612436755286545,
-      "glass": "TAC8 (Hoya coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Thin negative meniscus forming G4; moves during zoom and, per the patent, imageward for close focus"
     },
     {
       "id": 13,
       "name": "L13",
-      "label": "Source glass body",
+      "label": "Element 13",
       "type": "Negative Meniscus",
       "nd": 1.72916,
       "vd": 54.7,
       "indexReference": "d",
       "focalLengthMm": -28.69864595712889,
-      "glass": "TAC8 (Hoya coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Thin negative meniscus forming G5; moves objectward during zoom and, per the patent, imageward for close focus"
     },
     {
       "id": 14,
       "name": "L14",
-      "label": "Source glass body",
+      "label": "Element 14",
       "type": "Positive Meniscus",
       "nd": 1.84666,
       "vd": 23.8,
       "indexReference": "d",
       "focalLengthMm": 32.51228295841617,
-      "glass": "J-SF03 (Hikari coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "J-SF03 (HIKARI catalog equivalent; production supplier unspecified)",
+      "role": "Positive meniscus forming the fixed rear group G6"
     }
   ],
   "surfaces": [
@@ -396,7 +407,7 @@ const LENS_DATA = {
         "focalLengthMm": 45.1684,
         "nominalFNumber": 4.15704,
         "published": true,
-        "label": "Wide native"
+        "label": "Wide"
       },
       {
         "focalLengthMm": 45.44142804832053,
@@ -1397,14 +1408,14 @@ const LENS_DATA = {
         "focalLengthMm": 167.2377,
         "nominalFNumber": 5.83639,
         "published": true,
-        "label": "Tele native"
+        "label": "Tele"
       }
     ],
     "step": 0.005
   },
   "focus": {
     "closeFocusM": 0.9,
-    "description": "INFERRED CONTINUOUS ZOOM; source native states preserved. NO_INTERNAL_RECONSTRUCTION: infinity only; no finite focus or stabilization motion is supported.",
+    "description": "Not modeled: the patent moves G4 and G5 imageward for close focus but prints infinity spacings only, so the focus control changes nothing and 0.9 m is the marketed minimum, not a modeled state. G1, G3 and G6 stay fixed while zooming; spacings are printed at 45.17, 87.71 and 167.24 mm and inferred between them. The patent names no O.I.S. group, so no stabilizer shift is modeled.",
     "step": 1
   },
   "gaps": {

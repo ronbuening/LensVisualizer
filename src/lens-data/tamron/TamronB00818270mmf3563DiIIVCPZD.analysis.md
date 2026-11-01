@@ -1,15 +1,3 @@
-# Continuous-zoom review, 2026-10-23
-
-Status: candidate awaiting independent repository integration and verified cloud delivery. Not deployed or manufacturer-validated.
-
-JP2011248219A Example1, claim5 and ¶0014–0017 explicitly describe two turning points in G2 motion (the patent defines its term by changing trajectory tangent direction). Keep G1/G3/G4 piecewise-linear in the fixed-image frame and solve the paired D5/D14 G2 translation. Result has the required imageward/objectward/imageward phases. The independent six-station movement table discrepancy remains unresolved and is not substituted for direct-gap source data. Infinity only.
-
-All added zoom nodes are explicitly unpublished. Native source stations, fixed radii, thicknesses, glass/media and asphere coefficients are retained, as are native image-plane residuals. Interpolating those residuals does not erase source rounding or claim perfect manufacture. Piecewise path slopes may have corners; this is a continuous visualization reconstruction, not a mechanically C1 factory cam. Intermediate EFL labels use the computed prescription EFL.
-
-Full diffraction MTF uses the unmodified engine with maxGridSize256, five fields and requested0–100lp/mm at21 zoom states, plus five off-node zoom states. Returned per-field trustworthy bandwidths govern; no blanket100lp/mm claim. Photopic and finite-conjugate unavailability is retained where the source cannot support them. Exterior aperture clipping is not a failed cemented interface. Raw diagnostics accompany this review.
-
-The original analysis/audit below records the historical source-station-only model. Its linear-interpolation limitations are superseded ONLY by this explicitly inferred variant and the current test outputs; source identity and uncertainty statements remain applicable.
-
 ## Patent Reference and Design Identification
 
 **Patent:** JP 2011-248219 A  
@@ -19,191 +7,194 @@ The original analysis/audit below records the historical source-station-only mod
 **Inventor:** Dayong Li (李大勇)  
 **Applicant:** Tamron Co., Ltd.  
 **Title:** High variable power zoom lens  
-**Example details:** Numerical Example 1, Figure 1
+**Example details:** 第１実施形態 (¶0020–0027), Figure 1
 
-This is a source-prescription research model associated with the original Tamron B008, not a manufacturer-confirmed production prescription. The unchanged Japanese publication controls the numerical data. The same-priority US20110292521A1 cover confirms the inventor's English name; the PAJ wrapper's different romanization is retained as a discrepancy.
+The model is a patent design associated with the Tamron 18-270mm F/3.5-6.3 Di II VC PZD (Model B008), not a manufacturer-confirmed production prescription; Tamron does not cite the patent. The same-priority US 2011/0292521 A1 gives the inventor's English name, which the PAJ front page romanizes differently.
 
-The architectural association rests on several independent features:
+The association rests on these points:
 
-1. The source and original B008 brochure have 16 physical lens bodies in 13 air-separated components. The model represents the explicitly tabulated hybrid resin as a seventeenth material interval, not a seventeenth product lens.
-2. The first G2 body is hybrid aspheric, with the resin at S6 and the substrate beginning at S7. Manufacturer molded-asphere bodies align with S23 and S26–S27.
-3. The official drawing locates LD bodies at physical L2 and L9, and an AD body at L3. Their ordered positions agree with Example 1.
-4. The first G3 body is a positive meniscus, matching Example 1's S16–S17. Example 2 instead has a biconvex body there; its closer telephoto number is not grounds to substitute it.
+1. The table contains 16 glass elements in 13 air-separated groups, matching Tamron's specification. The 0.2 mm resin layer at S6 is modeled as its own medium on L4, not as a seventeenth element.
+2. Tamron's construction drawing shows 16 elements, with LD on the large biconvex element of G1 and on one element behind the stop, AD on the G1 meniscus behind it, a hybrid aspherical element at the front of G2 and two molded aspherical elements in the rear group. In Embodiment 1 those read as L2 and L9 (the two νd = 81.61 elements), L3 (nd 1.61800, νd 63.39), L4 with its resin layer, and L12 and L14. This is a drawing correlation: the patent names no glass and marks no element as LD or AD.
+3. Embodiment 2 has the same 16/13 construction and a tele end of 272.113 mm, closer to the marketed 270 mm, but its L9 is nd 1.48749, νd 70.44, an ordinary crown, so it carries one LD-class element where Tamron's drawing shows two. Its L8 is biconvex where Embodiment 1's is a positive meniscus. Embodiment 1 is modeled for its glass positions, at the cost of the focal-length difference below.
+4. The patent aims at a compact APS-format zoom of at least 15× and at least 75° at the wide end (¶0008); the product is a 15× lens of 75°33′. The application was filed on May 28, 2010, and Tamron announced the B008 on December 9, 2010. Claim 3 shifts a negative rear subgroup of the third group for image stabilization, which fits VC. The patent does not mention PZD.
 
-Native focal stations are 18.5000 / 71.000 / 291.2015, with f/3.44 / 6.03 / 6.50 and full fields 79.46° / 22.47° / 5.57°. The marketed B008 is 18–270mm f/3.5–6.3. The native tele endpoint is 7.85% above the marketed value. No rescaling or supposed rounding convention reconciles that difference. Prescription lengths are retained at native scale and interpreted contextually as millimetres; the governing table does not explicitly declare the length unit.
+The patent's focal lengths are 18.5000 / 71.000 / 291.2015 mm at f/3.44 / 6.03 / 6.50, with full fields of 79.46° / 22.47° / 5.57°. The product is marketed as 18–270mm f/3.5–6.3. The 291.2 mm tele end is the patent's own value, 7.85% above the marketed 270 mm: ¶0021, ¶0024 and ¶0026 print it, and the prescription computes to 291.217 mm. No rescaling is applied. Lengths are read as millimetres; the table declares no unit.
 
-The older B003 is a distinct 18-element/13-component architecture, confirmed by Tamron’s original B003 specification and manual. The original B008 brochure distinguishes Canon/Nikon VC PZD variants from Sony PZD without lens VC. This centered optical model does not simulate stabilization, mechanical mount differences or later coating revisions. The specific brochure contains 2011 awards and issue code 1108; its exact issue date should not be inferred from a website's December 2010 label.
+The older B003 is a distinct 18-element, 13-group design from an earlier patent. Tamron's Sony-mount B008 omits VC. This centered model does not simulate stabilization, mount differences or coatings.
 
 ## Optical Architecture
 
 The four functional groups have a positive–negative–positive–positive power sequence. Their computed standalone d-line focal lengths are:
 
-| Group | Native surfaces | Focal length (mm) |
-| ----- | --------------- | ----------------: |
-| G1    | S1–S5           |       +101.614766 |
-| G2    | S6–S14          |        -14.002025 |
-| G3    | S16–S25         |        +44.213513 |
-| G4    | S26–S31         |        +48.659423 |
+| Group | Surfaces | Focal length (mm) |
+| ----- | -------- | ----------------: |
+| G1    | S1–S5    |       +101.614766 |
+| G2    | S6–S14   |        -14.002025 |
+| G3    | S16–S25  |        +44.213513 |
+| G4    | S26–S31  |        +48.659423 |
 
-G1 combines a negative front member and a low-dispersion positive partner with a separate positive AD-class body. The compact negative G2 is the variator. G3 supplies positive power behind the stop and includes a positive/negative cemented pair plus an aspheric negative/positive pair. G4 starts with the double-sided molded asphere and finishes with two singlets.
+G1 combines a negative front member and a low-dispersion positive partner with a separate positive AD-class element. The compact negative G2 is the variator. G3 supplies positive power behind the stop and includes a positive/negative cemented pair plus an aspheric negative/positive pair. G4 starts with the double-sided molded asphere and finishes with two singlets.
 
-The stop is printed S15, exactly 1.0000 before G3's first vertex. Its shared G3 axial motion is inferred from this fixed separation. It is not a source statement about the production iris mechanism.
+The stop is surface 15, 1.0000 mm before G3's first vertex, so it moves with G3 in the model. That is inferred from the fixed gap, not a patent statement about the iris mechanism.
 
-The native first-surface-to-image tracks are 133.0049 / 181.1375 / 214.9387 mm. At wide angle the paraxial BFD exceeds EFL, a retrofocus characteristic. At telephoto the track/EFL ratio is below one, a telephoto characteristic. These descriptions refer to their specified stations; neither is asserted as a constant property across an unmodeled zoom continuum.
+The first-surface-to-image tracks at the three ¶0024 states are 133.0049 / 181.1375 / 214.9387 mm. At wide angle the paraxial back focus exceeds the EFL, a retrofocus characteristic. At telephoto the track/EFL ratio is below one, a telephoto characteristic.
 
 ## Element-by-Element Analysis
 
-The labels below follow physical bodies L1–L16, with L4r reserved for the resin. Focal lengths are computed for each isolated material interval bounded by its own surfaces in air. A cemented member's isolated power is not its in-situ system contribution. Optical roles beyond the source's geometry are identified as interpretation rather than optimized aberration attribution.
+Labels L1–L16 follow the 16 glass elements, with L4r for the resin layer on L4. Focal lengths are for each element alone in air, so a cemented element's value is not its contribution in place. Roles beyond the patent's geometry are interpretation; the patent gives no per-element aberration budget.
 
 ### L1 — Negative Meniscus
 
-nd = 1.90366, νd = 31.31. Glass: TAFD25L (HOYA coordinate-compatible class; supplier unproven). f = -152.476 mm.
+nd = 1.90366, νd = 31.31. Glass: TAFD25L (HOYA, coordinate equivalent). f = -152.476 mm.
 
 This negative meniscus is the front partner of the G1 doublet. Its higher index and lower Abbe number contrast with the adjacent LD crown; the pair combines signed power and dispersion rather than acting as two air-separated singlets.
 
 ### L2 — Biconvex Positive
 
-nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA coordinate-compatible class; supplier unproven). f = +116.174 mm.
+nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA, coordinate equivalent) — LD by drawing correlation. f = +116.174 mm.
 
-The biconvex LD partner shares S2 with L1. The manufacturer highlights this body as LD. Its low dispersion relative to L1 supports an achromatizing pairing, but the model does not establish production secondary-spectrum correction.
+The biconvex partner shares S2 with L1. Tamron's drawing marks this position LD, and the coordinates fit a fluor crown. Its low dispersion relative to L1 supports an achromatizing pairing, but the model does not establish production secondary-spectrum correction.
 
 ### L3 — Positive Meniscus
 
-nd = 1.61800, νd = 63.39. Glass: PCD4 (HOYA coordinate-compatible class; supplier unproven). f = +127.557 mm.
+nd = 1.61800, νd = 63.39. Glass: PCD4 (HOYA, coordinate equivalent) — AD by drawing correlation. f = +127.557 mm.
 
-The positive meniscus completes G1. The manufacturer marks this physical body AD. That marking is a product fact; the inferred coordinate-class prescription does not establish the production melt or an APO performance claim.
+The positive meniscus completes G1. Tamron's drawing marks this position AD, and the coordinates fit a phosphate crown. That does not establish the production melt or an apochromatic claim.
 
 ### L4r — Hybrid Aspheric Resin
 
-nd = 1.51460, νd = 49.96. Glass: Unmatched (hybrid optical resin; nd 1.51460 / vd 49.96). f = -1362.974 mm.
+nd = 1.51460, νd = 49.96. Glass: Unmatched (hybrid asphere layer; chemistry unestablished). f = -1362.974 mm.
 
-The thin resin layer begins at S6 and is bonded to the substrate at S7. Its nonzero thickness and independently specified refractive index are essential. Collapsing it into the glass surface would change both the geometry and optical power.
+The thin resin layer begins at S6 and is bonded to L4 at S7. Its 0.2 mm thickness and its own index are printed, so it stays a separate medium; collapsing it into the glass surface would change both geometry and power.
 
 ### L4 — Negative Meniscus
 
-nd = 1.88300, νd = 40.80. Glass: TAFD30 (HOYA coordinate-compatible class; supplier unproven). f = -20.201 mm.
+nd = 1.88300, νd = 40.80. Glass: TAFD30 (HOYA, coordinate equivalent). f = -20.201 mm.
 
-The high-index substrate completes the hybrid first G2 body. Its strongly curved rear surface faces the following air space. The resin and substrate use matched 13.5-mm semi-diameters; their shared interface remains unclipped in the sampled bundles.
+The high-index glass completes the hybrid first element of G2. Its strongly curved rear surface faces the following air space. The resin and glass use matched inferred 13.5 mm semi-diameters.
 
 ### L5 — Biconcave Negative
 
-nd = 1.77250, νd = 49.62. Glass: TAF1 (HOYA coordinate-compatible class; supplier unproven). f = -25.691 mm.
+nd = 1.77250, νd = 49.62. Glass: TAF1 (HOYA, coordinate equivalent). f = -25.691 mm.
 
-This biconcave interval is a second negative member of G2. Its air-facing front boundary is a field-vignetting location in the inferred-aperture model; blocked peripheral rays are retained as vignetting rather than numerical successes.
+This biconcave element is the second negative member of G2.
 
 ### L6 — Biconvex Positive
 
-nd = 1.84666, νd = 23.78. Glass: FDS90 (HOYA coordinate-compatible class; supplier unproven). f = +18.282 mm.
+nd = 1.84666, νd = 23.78. Glass: FDS90 (HOYA, coordinate equivalent). f = +18.282 mm.
 
-This positive dense-flint singlet lies between negative G2 bodies. The positive isolated power moderates the net negative variator. No individual coma or spherical-aberration budget is assigned without an explicit perturbation analysis.
+This positive dense-flint singlet lies between the negative elements of G2 and moderates the net negative power of the variator.
 
 ### L7 — Negative Meniscus
 
-nd = 1.83481, νd = 42.72. Glass: TAFD5G (HOYA coordinate-compatible class; supplier unproven). f = -29.548 mm.
+nd = 1.83481, νd = 42.72. Glass: TAFD5G (HOYA, coordinate equivalent). f = -29.548 mm.
 
-The final negative G2 meniscus precedes the variable gap to the stop. The preceding 0.6619-mm air gap and neighboring curvature constrain its inferred semi-diameter; source thicknesses and radii remain unchanged.
+The final negative G2 meniscus precedes the variable gap to the stop. The preceding 0.6619 mm air gap and neighboring curvature constrain its inferred semi-diameter.
 
 ### L8 — Positive Meniscus
 
-nd = 1.72916, νd = 54.67. Glass: TAC8 (HOYA coordinate-compatible class; supplier unproven). f = +76.185 mm.
+nd = 1.72916, νd = 54.67. Glass: TAC8 (HOYA, coordinate equivalent). f = +76.185 mm.
 
-The positive meniscus is the first G3 body, immediately after the fixed stop gap. Its shape is an important Example 1 identification feature. The body is distinct from Example 2's biconvex alternative.
+The positive meniscus is the first element of G3, 1.0000 mm behind the stop. Embodiment 2 has a biconvex element here.
 
 ### L9 — Biconvex Positive
 
-nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA coordinate-compatible class; supplier unproven). f = +46.928 mm.
+nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA, coordinate equivalent) — LD by drawing correlation. f = +46.928 mm.
 
-The second LD body is a biconvex positive singlet in G3. The low-index/high-Abbe coordinate matches the front LD class, but shared coordinates do not prove that the same supplier or melt was used.
+Tamron's drawing marks one element behind the stop LD, and this biconvex singlet is the only one there with fluor-crown coordinates. Embodiment 2 has nd 1.48749, νd 70.44 at this position. Matching L2's coordinates does not show that the same supplier or melt was used.
 
 ### L10 — Biconvex Positive
 
-nd = 1.48749, νd = 70.44. Glass: FC5 (HOYA coordinate-compatible class; supplier unproven). f = +33.853 mm.
+nd = 1.48749, νd = 70.44. Glass: FC5 (HOYA, coordinate equivalent). f = +33.853 mm.
 
-The positive crown forms the front member of a cemented pair. Its relatively high Abbe number contrasts with the strongly dispersive negative partner. The common interface is retained explicitly.
+The positive crown forms the front member of a cemented pair. Its relatively high Abbe number contrasts with the strongly dispersive negative partner.
 
 ### L11 — Negative Meniscus
 
-nd = 1.92286, νd = 20.88. Glass: E-FDS1 (HOYA coordinate-compatible class; supplier unproven). f = -59.622 mm.
+nd = 1.92286, νd = 20.88. Glass: E-FDS1 (HOYA, coordinate equivalent). f = -59.622 mm.
 
 The negative dense-flint partner completes that pair. Its isolated power and the net cemented-pair power differ because the interface is refracting between two glasses rather than glass and air.
 
 ### L12 — Biconcave Negative (Aspheric)
 
-nd = 1.85135, νd = 40.10. Glass: M-TAFD305 (HOYA coordinate-compatible class; supplier unproven). f = -14.449 mm.
+nd = 1.85135, νd = 40.10. Glass: M-TAFD305 (HOYA, coordinate equivalent). f = -14.449 mm.
 
-The front surface of this negative body is molded aspheric S23. It shares S24 with the following positive partner. The manufacturer's molded-asphere marker supports the body-level manufacturing interpretation.
+The front surface of this negative element is the aspheric S23, and it shares S24 with the following positive partner. Tamron's drawing shows two molded aspherical elements in the rear group; L12 and L14 are the two that carry aspheric surfaces. This doublet is the negative rear subgroup of G3 that claim 3 shifts for stabilization.
 
 ### L13 — Positive Meniscus
 
-nd = 1.80809, νd = 22.76. Glass: FD225 (HOYA coordinate-compatible class; supplier unproven). f = +28.030 mm.
+nd = 1.80809, νd = 22.76. Glass: FD225 (HOYA, coordinate equivalent). f = +28.030 mm.
 
-This positive meniscus is the rear partner of the S23–S25 cemented component. Its catalog class is strongly dispersive. The pair remains distinct from the following G4 group across D25.
+This strongly dispersive positive meniscus is the rear partner of the S23–S25 cemented doublet. D25 separates the doublet from G4.
 
 ### L14 — Biconvex Positive (Aspheric)
 
-nd = 1.59201, νd = 67.02. Glass: M-PCD51 (HOYA coordinate-compatible class; supplier unproven). f = +22.377 mm.
+nd = 1.59201, νd = 67.02. Glass: M-PCD51 (HOYA, coordinate equivalent). f = +22.377 mm.
 
-The first G4 body is biconvex and aspheric on both sides, S26 and S27. The negative conic at S27 and the retained polynomial terms affect its peripheral sag without changing the paraxial curvature.
+The first G4 element is biconvex and aspheric on both sides, S26 and S27. The negative conic at S27 and the polynomial terms affect its peripheral sag without changing the paraxial curvature.
 
 ### L15 — Biconcave Negative
 
-nd = 1.90366, νd = 31.31. Glass: TAFD25L (HOYA coordinate-compatible class; supplier unproven). f = -21.282 mm.
+nd = 1.90366, νd = 31.31. Glass: TAFD25L (HOYA, coordinate equivalent). f = -21.282 mm.
 
-The negative rear singlet has a nearly flat object-side surface and a strongly curved rear surface. Equal inferred 8.4-mm front/rear semi-diameters place peripheral clipping on its external boundary rather than inventing a large clear aperture that violates the following air gap.
+The negative rear singlet has a nearly flat object-side surface and a strongly curved rear surface. Its inferred semi-diameters are an equal 8.4 mm, kept small by the following 1.5195 mm air gap.
 
 ### L16 — Biconvex Positive
 
-nd = 1.69895, νd = 30.05. Glass: E-FD15L (HOYA coordinate-compatible class; supplier unproven). f = +51.250 mm.
+nd = 1.69895, νd = 30.05. Glass: E-FD15L (HOYA, coordinate equivalent). f = +51.250 mm.
 
-The final positive biconvex singlet completes G4. Its rear-to-image distance is the printed D31 at each station. No cover plate or compensating refocus is inserted after it.
+The final positive biconvex singlet completes G4. D31 runs from its rear surface to the image plane; the patent lists no cover plate and none is added.
 
 ## Glass Identification and Spectral Limits
 
-Fifteen unique native coordinates were compared against retained complete catalogs from OHARA, HOYA, Schott, HIKARI, CDGM and Sumita. The comparison was newly executed; the archived catalog bytes were not misrepresented as a fresh network retrieval. The data retains the original Nd/Abbe values and uses compatible catalog-class names where supported. No manufacturer supplier attribution is made.
+The patent tabulates nd and νd at the d line only; it names no supplier and gives no nC, nF, ng or partial-dispersion data. Every glass element matches a d-line catalog coordinate and none fits an e-line reading. The glass strings name a HOYA coordinate equivalent, used for dispersion away from the d line; the production supplier is unestablished. The resin layer has only nd and νd and stays Unmatched, on an Abbe approximation.
 
-| Source nd | Source νd | Authored class                                                  | Runtime disposition                 |
-| --------: | --------: | --------------------------------------------------------------- | ----------------------------------- |
-|   1.90366 |     31.31 | TAFD25L (HOYA coordinate-compatible class; supplier unproven)   | TAFD25L                             |
-|   1.49700 |     81.61 | FCD1 (HOYA coordinate-compatible class; supplier unproven)      | FCD1                                |
-|   1.61800 |     63.39 | PCD4 (HOYA coordinate-compatible class; supplier unproven)      | PCD4                                |
-|   1.51460 |     49.96 | Unmatched (hybrid optical resin; nd 1.51460 / vd 49.96)         | Abbe approximation; resin unmatched |
-|   1.88300 |     40.80 | TAFD30 (HOYA coordinate-compatible class; supplier unproven)    | TAFD30                              |
-|   1.77250 |     49.62 | TAF1 (HOYA coordinate-compatible class; supplier unproven)      | S-LAH66                             |
-|   1.84666 |     23.78 | FDS90 (HOYA coordinate-compatible class; supplier unproven)     | FDS90                               |
-|   1.83481 |     42.72 | TAFD5G (HOYA coordinate-compatible class; supplier unproven)    | TAFD5G                              |
-|   1.72916 |     54.67 | TAC8 (HOYA coordinate-compatible class; supplier unproven)      | TAC8                                |
-|   1.48749 |     70.44 | FC5 (HOYA coordinate-compatible class; supplier unproven)       | FC5                                 |
-|   1.92286 |     20.88 | E-FDS1 (HOYA coordinate-compatible class; supplier unproven)    | E-FDS1                              |
-|   1.85135 |     40.10 | M-TAFD305 (HOYA coordinate-compatible class; supplier unproven) | M-TAFD305                           |
-|   1.80809 |     22.76 | FD225 (HOYA coordinate-compatible class; supplier unproven)     | FD225                               |
-|   1.59201 |     67.02 | M-PCD51 (HOYA coordinate-compatible class; supplier unproven)   | M-PCD51                             |
-|   1.69895 |     30.05 | E-FD15L (HOYA coordinate-compatible class; supplier unproven)   | E-FD15L                             |
+| Elements | nd / νd         | Catalog equivalent used for dispersion |
+| -------- | --------------- | -------------------------------------- |
+| L1, L15  | 1.90366 / 31.31 | TAFD25L                                |
+| L2, L9   | 1.49700 / 81.61 | FCD1                                   |
+| L3       | 1.61800 / 63.39 | PCD4                                   |
+| L4r      | 1.51460 / 49.96 | none (hybrid layer)                    |
+| L4       | 1.88300 / 40.80 | TAFD30                                 |
+| L5       | 1.77250 / 49.62 | TAF1                                   |
+| L6       | 1.84666 / 23.78 | FDS90                                  |
+| L7       | 1.83481 / 42.72 | TAFD5G                                 |
+| L8       | 1.72916 / 54.67 | TAC8                                   |
+| L10      | 1.48749 / 70.44 | FC5                                    |
+| L11      | 1.92286 / 20.88 | E-FDS1                                 |
+| L12      | 1.85135 / 40.10 | M-TAFD305                              |
+| L13      | 1.80809 / 22.76 | FD225                                  |
+| L14      | 1.59201 / 67.02 | M-PCD51                                |
+| L16      | 1.69895 / 30.05 | E-FD15L                                |
 
-The TAF1 label resolves through the current S-LAH66 alias, an OHARA class. This is an explicit runtime substitution, not confirmation of HOYA glass in the production lens. Resolved catalog dispersion can introduce tiny green-index differences from the printed Nd used by the independent first-order source calculation. The resin has only Nd and Abbe support and remains on an approximate dispersion model. No source nC/nF/ng, melt data, coatings, diffraction efficiency or measured chromatic performance is supplied.
+Tamron's LD and AD markings fit the coordinates: the 497816 fluor-crown equivalent of L2 and L9 has ΔPgF ≈ +0.032, and the 618634 phosphate-crown equivalent of L3 has ΔPgF ≈ +0.003. Both values come from the catalog equivalents, not from the patent. The material distribution is consistent with combining low-dispersion positive elements and higher-dispersion partners; no apochromatic or secondary-spectrum claim follows from it.
 
-The material distribution is consistent with combining low-dispersion positive bodies and higher-dispersion signed partners. This qualitative statement is not an APO, secondary-spectrum or MTF certification.
+## Focus Mechanism
 
-## Focus and Zoom Scope
+The patent does not say which group focuses, prints no near-focus spacings or object distances, and does not mention PZD. The model therefore stays at infinity focus at every zoom position. Its 0.49 m focus-scale end is Tamron's minimum focus distance, not a modeled near-focus state, and finite-conjugate MTF is unavailable.
 
-NO_INTERNAL_RECONSTRUCTION. The patent supplies three infinity configurations, not quantitative near-focus conjugates. The brochure's 0.49 m minimum focus distance is metadata only. Repeated focus entries leave the prescription at infinity; they do not reconstruct a focus mechanism or demonstrate that close-focus performance.
+### Zoom states
 
-The three direct-gap stations are the only quantitative zoom states. The authored half-step zoom control selects them; arbitrary intermediate values accepted by the generic runtime are illustrative linear interpolation, not a verified cam law or refocused prescription. The separate six-station movement table is preserved as evidence but does not supply complete intermediate prescriptions.
+The patent prints six infinity states. ¶0024 gives D5, D14, D25 and D31 at three focal lengths, and ¶0026 gives the movement of all four groups at those three and at 21.477, 36.181 and 140.001 mm. Applied to the wide-end gaps, ¶0026 reproduces ¶0024's D5, D14 and D25 to 0.001 mm, and at the three further states the resulting gaps trace to 21.477, 36.183 and 140.016 mm, so all six are modeled as published stations.
 
-Using the direct gaps and a fixed image reference gives the following objectward movements:
+| f (mm)   | Source | F-number | D5      | D14     | D25    | D31     |
+| -------: | ------ | -------: | ------: | ------: | -----: | ------: |
+| 18.5000  | ¶0024  |     3.44 |  1.6998 | 30.7371 | 7.4142 | 39.0550 |
+| 21.477   | ¶0026  |     3.68 |  3.000  | 27.000  | 6.300  | 43.5066 |
+| 36.181   | ¶0026  |     4.52 | 15.789  | 19.292  | 4.150  | 57.5057 |
+| 71.000   | ¶0024  |     6.03 | 30.1741 | 12.6774 | 2.1598 | 82.0274 |
+| 140.001  | ¶0026  |     6.29 | 53.367  |  8.792  | 1.581  | 86.5248 |
+| 291.2015 | ¶0024  |     6.50 | 66.5707 |  1.5000 | 0.9000 | 91.8692 |
 
-| Station |      G1 |      G2 |      G3 |      G4 |
-| ------- | ------: | ------: | ------: | ------: |
-| Wide    |  0.0000 |  0.0000 |  0.0000 |  0.0000 |
-| Middle  | 48.1326 | 19.6583 | 37.7180 | 42.9724 |
-| Tele    | 81.9338 | 17.0629 | 46.3000 | 52.8142 |
+At the three ¶0026 states D5, D14 and D25 come from the movement table, D31 is computed for focus, and the f-numbers are interpolated because ¶0026 prints none. The movement table's own image distance sits 0.03–0.10 mm behind paraxial focus, so the model's groups differ from ¶0026 by a rigid offset, the same for all four groups at each state: 0.034, 0.100 and 0.054 mm imageward at these three, and 0.027 and 0.060 mm at 71 and 291.2 mm, where D31 is as printed.
 
-The separate movement table differs in G4 by 0.0266 at middle and 0.0598 at tele, with similar common offsets in other groups. The source does not explain this discrepancy. Direct gaps control; the difference is not silently labeled image-plane drift or reconciled by changing D31.
+Between the six states G3 and G4 follow monotone curves in log focal length, and G1 and G2 are solved for focal length and focus. G2 shows the two turning points of claim 5 and Figure 1, near 21 mm and near 93 mm; ¶0026 places the second only between 71 and 291.2 mm, so its position is inferred. Interpolated defocus stays under 0.01 mm. The path is a calculated cam, not factory data.
 
-The source FNO values calibrate the runtime iris independently at each station. Exact stop radii are 8.17668879 / 7.97180855 / 8.17226144 mm. This is an inferred calibration schedule, not evidence of a measured variable iris in the product. Stopping down is an illustrative optical control. The modeled maximum f/22 is conservative relative to the brochure's f/22–40 minimum-aperture range; the full mechanical iris schedule is not reconstructed.
+The patent prints no stop diameter. The iris is sized to the patent's f-numbers at the three states that print one, giving radii of 8.112 / 7.876 / 8.121 mm, and follows a smooth curve between them with its one minimum at 71 mm, while the f-number rises monotonically. This is an inferred schedule, not a measured iris. The modeled maximum f/22 is conservative against Tamron's f/22–40 range.
 
 ## Aspherical Surfaces
 
-The native equation contains an unsquared height under its radical and a trailing squared parenthesis. The owner-approved interpretation is the standard conic plus the published even polynomial. The original equation facsimile remains preserved; the interpretation is not claimed verbatim. K is used directly. Every source A2 is zero, all terms through A12 are retained, and the schema-required A14 is zero. No scaling is applied.
+Surface 6 is the resin of the hybrid element; surfaces 23, 26 and 27 lie on L12 and L14. ¶0019 prints y without its exponent under the radical and a squared parenthesis after the denominator. The equation is read as the standard conic plus an even polynomial with K used directly, so K = 0 is a sphere; only that reading gives the paraxial radius R and the spherical aberration of Figures 3, 5 and 7. Every A2 is zero, terms run through A12, and no scaling is applied.
 
 | Surface |       K |           A4 |           A6 |           A8 |          A10 |         A12 |
 | ------- | ------: | -----------: | -----------: | -----------: | -----------: | ----------: |
@@ -221,13 +212,13 @@ At the inferred modeled radii, the signed sag departures from the same-vertex sp
 | 26A     |               10.50 |   -0.145321147 |
 | 27A     |               10.50 |   +0.409556210 |
 
-These are computed departures at author-estimated apertures, not manufacturing dimensions. S6 adds positive departure to the hybrid's outer surface; S23 makes the negative sag less negative; S26 reduces positive sag; S27's conic-plus-polynomial profile makes its negative sag less negative. These geometric signs do not alone establish each surface's net aberration contribution.
+These are computed departures at the inferred apertures, not manufacturing dimensions. S6 adds positive departure to the hybrid's outer surface; S23 makes the negative sag less negative; S26 reduces positive sag; S27's conic-plus-polynomial profile makes its negative sag less negative. These geometric signs do not alone establish each surface's net aberration contribution.
 
-## Conditional Expressions and First-Order Verification
+## Conditional Expressions and First-Order Values
 
-The patent's compactness ratio Lw/(Ft/Fw) is 8.449787 using the printed focal values and literal wide track, reproducing 8.45 to two decimals. The combined G2–G4 EFL ratio is −0.164206, reproducing −0.16. It is a rear-assembly EFL ratio, not a BFD ratio. The native inequality's arrow-like '<−' glyph is retained as an ambiguity rather than silently typeset as an unqualified bound.
+Condition (1), 6 < Lw/(Ft/Fw) < 10, evaluates to 8.449787 with the printed focal lengths and the wide-end track, matching the patent's 8.45. Condition (2), the ratio F_Bw/F_Bt of the combined G2–G4 focal lengths at the two ends, evaluates to −0.164206, matching the patent's −0.16. It is a rear-assembly EFL ratio, not a back-focus ratio. The patent prints its upper bound as `←０．１２`, which reads as < −0.12.
 
-The computed surface-by-surface Petzval sum is +0.001943172832 mm⁻¹, constant across the three gap-only states. It is a first-order curvature sum; it is not the sagittal/tangential best-focus surface or an image-quality measurement.
+The computed surface-by-surface Petzval sum is +0.001943172832 mm⁻¹, constant across the zoom because only gaps change. It is a first-order curvature sum, not a best-focus surface or an image-quality measurement.
 
 | Station  | Printed EFL |  Computed EFL | Printed D31 | Computed BFD |
 | -------- | ----------: | ------------: | ----------: | -----------: |
@@ -235,26 +226,20 @@ The computed surface-by-surface Petzval sum is +0.001943172832 mm⁻¹, constant
 | 71.0000  |     71.0000 |  71.004635708 |     82.0274 | 82.032520509 |
 | 291.2015 |    291.2015 | 291.216960594 |     91.8692 | 91.871809466 |
 
-The small residuals exceed the printed output least digit. They fit within conservative input half-last-digit sensitivity budgets, so source precision is a plausible explanation, not a proven one. Source radii, media and image gaps remain literal. Sequential ray recursion and independent ABCD checks agree; the data is not optimized to the printed headline values.
+The small residuals exceed the patent's last printed digit but fit the rounding of its inputs. Radii, media and gaps at these states stay as printed, and the data is not fitted to the headline values.
 
-## Exact-Ray and Geometry Verification
+## Model Scope and Limitations
 
-The actual current project passes schema validation, buildLens, strict LensDataInput type checking and production element-shape diagnostics. Hidden render trim is zero at the three stations. The default 0.90 shared-gap allowance is retained; no override was needed. The largest computed gap-intrusion fraction is 0.8894842, with positive material edge thickness and acceptable actual aspheric rim slopes.
+The prescription is unscaled and the patent lists no cover plate. Semi-diameters are inferred from ray clearance, not published. At the patent's 14.5 mm image height the chief ray clears every surface at every zoom station, and the axial beam at the stated f-number is unclipped; off-axis bundles vignette on the outer rims.
 
-A 27,756-ray finite sample covers all three native stations, six field fractions, three pupil scales, both the native field limits and a 23.6 × 15.7 mm APS-C frame. Every sampled full-open axial pupil ray transmits; all sampled chief rays reach the image. This is sampled verification, not a proof over every possible ray or intermediate control value.
-
-Off-axis vignetting remains explicit. There are 106 raw noBracket events in the sample: 96 front-cap misses at telephoto and 10 misses of the S9 optical cap at wide full native field. Separate analytic line/sphere checks confirm they do not hit the bounded optical cap. They are blocked rays, not successful transmission and not silently ignored solver failures. No sampled cemented/hybrid interior junction clips. At full native field, 194/257 pupil samples transmit at wide and 177/257 at tele; these sampling fractions are not integrated irradiance, T-stop or measured production vignetting.
-
-The intended outcome is a source-station research model with inferred clear apertures and class-level dispersion. It is not a production-exact, continuously focused, finite-focus, stabilization or image-quality certification. Repository integration and whole-corpus/build gates remain pending.
+The model is centered and at infinity focus. It does not simulate VC decentering, a focus movement, the Sony-mount variant or coatings. Dispersion away from the d line comes from catalog equivalents, so chromatic results are class-level, and no MTF, transmission or manufacturing-tolerance performance is claimed for the production lens.
 
 ## Sources
 
-1. [JP2011248219A, complete Japanese publication](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=JP002011248219A): equation ¶0019; Example 1 prescription ¶0021–0023; gaps ¶0024; conditions ¶0025; movement ¶0026; Figure 1 and aberration plots. The unchanged 15-page original includes its PAJ wrapper.
-2. [Tamron original B008 brochure](https://s3-ap-northeast-1.amazonaws.com/tamron-docs/consumer/support/download/catalog/b008_en.pdf): 16/13 construction, special-element key, original mounts and Sony VC exception, filter/barrel bounds, PZD, MFD and iris metadata. Complete four-page original preserved.
-3. [Tamron official B008 construction drawing](https://www.tamron.com/product/pc_file/file/b008_lens-construction_en.svg): ordered shape sequence and manufacturer LD/AD/hybrid/molded-asphere positions.
-4. [US20110292521A1 original](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/20110292521): same Japanese priority and inventor romanization control only; not substituted for the controlling Japanese prescription.
-5. Six-vendor optical catalog originals and provenance retained in the supporting evidence archive. Equivalent-class calculations are distinct from source material values and production supplier identity.
-
-6. [Tamron official B003 specification](https://www.tamron.com/jp/consumer/lenses/data/af-lens/b003/) and [complete B003 manual](https://s3-ap-northeast-1.amazonaws.com/tamron-docs/consumer/support/download/inst/b003/b003inst_1010_en.pdf): direct variant-control evidence for the separate 18-element/13-component model introduced in 2008.
-
-Current frozen-candidate results: 2005 dense geometry states, zero geometry failures or image-plane inconsistency flags. 5555 default UI rays, 30 clips, all remaining clips on exterior surfaces; sphere-root proofs distinguish out-of-rim misses from in-aperture intersection failures. Maximum engine image-plane offset 0.44306619720865115mm (source/runtime spectral conventions retained). Full/reference and off-node outcomes are in VALIDATION_SUMMARY.json; only returned bands are trustworthy.
+1. [JP 2011-248219 A](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=JP002011248219A): equation ¶0019; Embodiment 1 prescription ¶0021–0023; gaps ¶0024; conditions ¶0025; group movements ¶0026; Figure 1 and aberration plots; Embodiment 2 ¶0029–0034.
+2. [Tamron B008 brochure](https://s3-ap-northeast-1.amazonaws.com/tamron-docs/consumer/support/download/catalog/b008_en.pdf): 16/13 construction, mounts and the Sony VC exception, barrel dimensions, PZD, minimum focus distance and iris range.
+3. [Tamron B008 construction drawing](https://www.tamron.com/product/pc_file/file/b008_lens-construction_en.svg): positions of the LD, AD, hybrid aspherical and molded aspherical elements.
+4. [Tamron B008 specifications (Japanese)](https://www.tamron.com/jp/consumer/lenses/data/af-lens/b008/) and [the December 9, 2010 press release](https://m.jpubb.com/en/press/27183): marketed specifications, announcement and Japanese release date.
+5. [US 2011/0292521 A1](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/20110292521): same priority; used for the inventor's name, not for the prescription.
+6. [HOYA optical glass data](https://www.hoya-opticalworld.com/english/datadownload/index.html): catalog equivalents for dispersion.
+7. [Tamron B003 specification](https://www.tamron.com/jp/consumer/lenses/data/af-lens/b003/) and [B003 manual](https://s3-ap-northeast-1.amazonaws.com/tamron-docs/consumer/support/download/inst/b003/b003inst_1010_en.pdf): the earlier 18-element, 13-group model.

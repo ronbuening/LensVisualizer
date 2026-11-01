@@ -1,8 +1,8 @@
 # Continuous-zoom review, 2026-10-23
 
-Status: candidate awaiting independent repository integration and verified cloud delivery. Not deployed or manufacturer-validated.
+Status: closed 2026-11-01, integrated after the deployment validation in the last section. Not manufacturer-validated.
 
-JP2011248219A Example1, claim5 and ¶0014–0017 explicitly describe two turning points in G2 motion (the patent defines its term by changing trajectory tangent direction). Keep G1/G3/G4 piecewise-linear in the fixed-image frame and solve the paired D5/D14 G2 translation. Result has the required imageward/objectward/imageward phases. The independent six-station movement table discrepancy remains unresolved and is not substituted for direct-gap source data. Infinity only.
+JP2011248219A Example1, claim5 and ¶0014–0017 explicitly describe two turning points in G2 motion (the patent defines its term by changing trajectory tangent direction). Keep G1/G3/G4 piecewise-linear in the fixed-image frame and solve the paired D5/D14 G2 translation. Result has the required imageward/objectward/imageward phases. The independent six-station movement table discrepancy remains unresolved and is not substituted for direct-gap source data (closed 2026-11-01: the table is now used; see the last section). Infinity only.
 
 All added zoom nodes are explicitly unpublished. Native source stations, fixed radii, thicknesses, glass/media and asphere coefficients are retained, as are native image-plane residuals. Interpolating those residuals does not erase source rounding or claim perfect manufacture. Piecewise path slopes may have corners; this is a continuous visualization reconstruction, not a mechanically C1 factory cam. Intermediate EFL labels use the computed prescription EFL.
 
@@ -39,7 +39,7 @@ Direct image-plane tracks are 133.0049 / 181.1375 / 214.9387. Native condition 1
 ## Correction and discrepancy register
 
 - Approved equation interpretation: unsquared y and trailing squared parenthesis in the facsimile are not silently reproduced as valid sag.
-- Direct-gap versus movement-table axial offsets are retained: 0.0266 at middle and 0.0598 at tele in G4. No image-plane-drift explanation is asserted.
+- Direct-gap versus movement-table axial offsets are retained: 0.0266 at middle and 0.0598 at tele in G4. No image-plane-drift explanation is asserted. (Closed 2026-11-01: a rigid offset of all four groups, D31 only; see the last section.)
 - Native tele 291.2015 exceeds marketed 270 by 7.85%. This research-correlated prescription is not production-exact.
 - Brochure publication date is not established; the 2010 page label and 2011 award/issue clues conflict.
 - Independent source review has begun separately, but no Stage 4 approval is claimed here.
@@ -50,7 +50,7 @@ Stage 1: READY_FOR_DATA. Complete source extraction and mandatory first-order ch
 
 ## Pending integration
 
-INTEGRATION_PENDING. No repository write or publication. Whole-corpus validation and production build remain integration checks.
+INTEGRATION_PENDING. No repository write or publication. Whole-corpus validation and production build remain integration checks. (Closed 2026-11-01: integrated.)
 
 ## Stage 2 construction checkpoint
 
@@ -90,7 +90,7 @@ The reviewer then checked the actual final pair, all source mappings, material p
 
 Exact technical pair approval is preserved as pair_approval.json, hash 5993f8593597d958c01abcecb79149ac0bd1d387230328d7a9eb004c40a3f4f1, including the exact data and final analysis hashes. Changes required by review were prose/evidence clarifications only: the S9 subset of raw aperture misses; preceding D12 rather than a small rear gap for L7; unambiguous semi-diameter wording; and direct primary B003 variant support. No source prescription, coefficient, gap or catalog coordinate was corrected. Final analysis punctuation/copyedit does not alter the approved data.
 
-The canonical dossier contains nine root files, with unchanged original patent and card. Finalization includes exact membership and SHA-256 checking, clean extraction and external-output replay without overwriting packaged results. A post-seal independent acceptance receipt binds the exact archive hash separately, avoiding a circular archive/self hash. Final technical disposition: READY_FOR_BATCH within the three-native-infinity-station, approved-equation scope, subject to that exact sealed-archive acceptance. Integration remains INTEGRATION_PENDING; no CSV/index, engine, repository or published site was modified.
+The canonical dossier contains nine root files, with unchanged original patent and card. Finalization includes exact membership and SHA-256 checking, clean extraction and external-output replay without overwriting packaged results. A post-seal independent acceptance receipt binds the exact archive hash separately, avoiding a circular archive/self hash. Final technical disposition: READY_FOR_BATCH within the three-native-infinity-station, approved-equation scope, subject to that exact sealed-archive acceptance. Integration remains INTEGRATION_PENDING (closed 2026-11-01: integrated); no CSV/index, engine, repository or published site was modified.
 
 
 ## V2 conversion — 2026-10-17
@@ -100,3 +100,23 @@ Converted by Spot, without a Codex worker, using the repository's deterministic 
 Retained package status: QUALIFIED_SOURCE_STATIONS: JP2011248219A Example 1; approved asphere interpretation; native291.2015mm tele state retained, distinct deployedB003.
 
 Current frozen-candidate results: 2005 dense geometry states, zero geometry failures or image-plane inconsistency flags. 5555 default UI rays, 30 clips, all remaining clips on exterior surfaces; sphere-root proofs distinguish out-of-rim misses from in-aperture intersection failures. Maximum engine image-plane offset 0.44306619720865115mm (source/runtime spectral conventions retained). Full/reference and off-node outcomes are in VALIDATION_SUMMARY.json; only returned bands are trustworthy.
+
+## 2026-11-01 — Deployment validation and fix pass
+
+Source re-read. The 15-page JP 2011-248219 A was read from page images and its text layer: 31 surface rows (92 R, d, nd and νd values), 28 asphere values and 12 gap values at the ¶0024 states, no mismatches. The front page gives filing on 2010-05-28, publication on 2011-12-08 and Tamron as applicant; the inventor is 李大勇, "Dayong Li" on the US family and "Yi Tae-Yong" on the PAJ page. The patent heads this design 第１実施形態, so `source.example` now reads Embodiment 1.
+
+First-order values, patent against model. EFL 18.5 / 71.0 / 291.2015 against 18.5005 / 71.0046 / 291.2170 mm. Back focus 39.0550 / 82.0274 / 91.8692 against 39.0562 / 82.0325 / 91.8718 mm. Full field 79.46° / 22.47° / 5.57° against 79.48° / 22.47° / 5.57° at Y = 14.5 mm. Condition (1) 8.45 against 8.4498, condition (2) −0.16 against −0.1642. Track, not printed, 133.0049 / 181.1375 / 214.9387 mm. Full-pupil LSA −0.05 / +0.12 / −0.03 mm, consistent with Figures 3, 5 and 7.
+
+Focal length and embodiment choice. 291.2 mm is a printed design state, not an artefact: ¶0021, ¶0024, ¶0026, the US family, the 5.57° field and condition (1) all agree. It is 7.85% above the marketed 270 mm. Embodiment 2 traces to 272.120 mm (printed 272.113) with the same 16/13 construction, but its L9 is 1.48749/70.44, one LD-class element against the two on Tamron's drawing, its 14.7× misses the patent's 15× aim, and its printed 2ω and conditions (22.13°, 5.55°, 8.79, −0.18) disagree with its own prescription (22.41°, 5.94°, 8.755, −0.148).
+
+Asphere equation. ¶0019 prints y without its exponent under the radical and a squared parenthesis after the denominator. K (−8.6353, S27 only) is legible, so this is typesetting, not a sign or digit question. LSA at wide/middle/tele: standard conic −0.05/+0.12/−0.03 mm; unsquared y +0.9/+6.8/+9.3; K read as κ +5/+35/+51; sign of K flipped −8/−33/−42. A trailing square on the denominator gives EFL 41.9/−327/−626 mm. Only the standard reading fits, and the first erratum is closed because no printed number contradicts another.
+
+Reference line and B003. The header prints Nd; all 16 glass elements hit d-line catalog coordinates and none hits an e-line one. The model shares no radius with the B003, has 31 surfaces against 35, and comes from a different patent.
+
+Zoom cam. The package cam used only the three ¶0024 states and missed ¶0026 by up to 2.79 mm in G1 and 2.57 mm in G4, with G2 peaking 2.2 mm above any printed value. ¶0026 is an ordinary state table: on the wide gaps it reproduces ¶0024's D5, D14 and D25 to 0.001 mm and traces to the printed focal lengths. The 0.0266/0.0598 offset is common to all four groups, so it lies in D31 alone, and the second erratum is closed. The cam now has 118 stations with all six printed states published. At the three ¶0026 states D5, D14 and D25 come from the table; D31 is computed BFD plus the interpolated ¶0024 residual, because the table value corrected for the offset still leaves 0.03 / 0.08 / 0.01 mm of defocus; and the f-numbers are interpolated because ¶0026 prints none. Model minus ¶0026 is rigid across the four groups: 0 / −0.034 / −0.100 / −0.027 / −0.054 / −0.060 mm from wide to tele. G3 and G4 are monotone curves in log f with G1 and G2 solved for EFL and focus, because interpolating the gaps directly reversed G3 and G4 near 100 mm. G2 turns only at 20.85 and 93.16 mm. Defocus peaks at 0.0051 mm at stations and 0.0092 mm between them. The iris runs 8.112 / 7.876 / 8.121 mm with one turn, at 71 mm. The computed EFL at the 140.001 mm state is 140.016 mm, from the table's 0.001 mm rounding.
+
+Drawing comparison. As read from Tamron's SVG by the reviewer coordinating this pass: 16 elements; LD on the large G1 biconvex and on one element behind the stop; AD on the G1 meniscus behind it; hybrid aspherical on the first G2 element; two molded aspherical elements in the rear group. These read as L2, L9, L3, L4 with L4r, and L12 and L14. `apd: "inferred"` is set on L2, L9 and L3; the catalog equivalents give ΔPgF ≈ +0.032 (FCD1) and +0.003 (PCD4).
+
+Fields changed in this pass: `source.example`; `source.errata` removed; `subtitle`; `catalog.specs`; element labels, roles and glass strings; `apd` and `apdNote` on three elements; `cemented` and doublet text (D1, H1, D3, D4 to C1–C4); `focus.description`; the BF gap label; spacing in six station labels; a new header comment. The analysis lost its opening block, stale iris radii and process text, and the S-LAH66 alias note was stale because TAF1 resolves directly. Prescription, rims and station values are unchanged. Glass resolved stays at 16 of 17, with the resin Unmatched.
+
+Open: the rims have not had a figure-land pass against Figure 1.

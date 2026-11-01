@@ -1,10 +1,33 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * JP 2010-211056 A, Example 1 (Table 1, Figure 1), filed 2009-03-11. JP 2010-211102 A, filed 2009-03-12 by the same
+ * inventor, prints the same Example 1 and names element L3a (surfaces 11-12, element L6 here) as the stabilizing
+ * element, shifted +/-0.5 mm across the axis. Probable production correlation with the SIGMA 18-50mm f/2.8-4.5 DC OS
+ * HSM, not a confirmed factory prescription.
+ *
+ * Printed: R, d, nd, vd; the aspheres on surfaces 3, 12 and 30 (patent k is K here; A, B, C, D are A4, A6, A8, A10);
+ * d5, d10, d18, d24 and d32 at f = 18.60, 27.99 and 48.32 mm, the three published zoom stations. Surface 12 prints no
+ * C or D, as in all six examples of the patent; those terms are unused and are zero here.
+ * Derived: the gap from flare-cut plane S33 to the image. The patent labels it Fb and prints no value. It is the
+ * computed back focus, 38.529, 38.531 and 38.536 mm at the three stations, which agree within 6.4 micrometres as a
+ * plane fixed to the image should. No total length is printed.
+ * Inferred: the zoom stations between the printed ones (a numerical path, not a published cam) and every semi-diameter.
+ * The patent prints infinity focus only, so the focus pairs repeat. The stabilizing shift is not modeled.
+ * S20/S21 sd 6.05 mm passes the stated axial beam at every station. S21 and S22 then come within 0.07 mm at the rim
+ * without crossing; checks.gapSagFrac 0.95 is the smallest two-decimal value that admits it.
+ * The stop radius comes from the design f-number at each station under the stop rule (paraxial EPD = F/N): 6.43, 6.41
+ * and 6.40 mm at the printed stations. It is not a measured diaphragm. S29 is a plane glass surface, not a stop.
+ * Glass: nd and vd stay as printed; catalog equivalents supply the spectral curves. L6 (moulded) and the two resin
+ * layers stay Unmatched. Surface labels follow the patent's numbering.
+ */
+
 const LENS_DATA = {
   "schema": 2,
   "key": "sigma-18-50mm-f28-45-dc-os-hsm",
   "maker": "Sigma",
   "name": "SIGMA 18-50mm f/2.8-4.5 DC OS HSM",
-  "subtitle": "JP 2010-211056 A Example 1; probable product correlation, approved bounded reconstruction",
+  "subtitle": "JP 2010-211056 A, Example 1 — probable production correlation",
   "catalog": {
     "lensMounts": [
       "sigma-sa",
@@ -15,6 +38,13 @@ const LENS_DATA = {
     ],
     "imageFormat": "aps-c",
     "imageCircleMm": 28.4,
+    "specs": [
+      "16 ELEMENTS / 12 GROUPS",
+      "DESIGN f = 18.60–48.32 mm",
+      "DESIGN F/2.92–4.49",
+      "3 ASPHERICAL SURFACES / 3 ELEMENTS",
+      "INNER ZOOM / INNER FOCUS"
+    ],
     "elementCount": 16,
     "groupCount": 12,
     "focalLengthMm": {
@@ -47,218 +77,222 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
-      "label": "Source glass body",
+      "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": -63.45254623085152,
-      "glass": "N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Front negative meniscus of fixed G1; its rear face carries the thin resin layer."
     },
     {
       "id": 2,
       "name": "R1",
-      "label": "Hybrid replication layer",
+      "label": "Element 1 resin layer",
       "type": "Negative Meniscus",
       "nd": 1.5184,
       "vd": 52.0743,
       "indexReference": "d",
       "focalLengthMm": -516.7821979029443,
-      "glass": "Unmatched (hybrid resin; source nd/Vd only)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "Unmatched (hybrid optical resin; spectrum unpublished)",
+      "role": "Thin resin layer bonded to Element 1; its air-side surface 3A is the front asphere, for wide-angle distortion."
     },
     {
       "id": 3,
       "name": "L2",
-      "label": "Source glass body",
+      "label": "Element 2",
       "type": "Biconvex Positive",
       "nd": 1.8466,
       "vd": 23.7848,
       "indexReference": "d",
       "focalLengthMm": 129.20134464842747,
-      "glass": "H-ZF52 (CDGM coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "role": "Biconvex positive closing fixed G1; the negative-positive order helps distortion without enlarging the front element."
     },
     {
       "id": 4,
       "name": "L3",
-      "label": "Source glass body",
+      "label": "Element 3",
       "type": "Biconcave Negative",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": -97.8500313733255,
-      "glass": "N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Biconcave first element of G2, the negative group that moves for focus."
     },
     {
       "id": 5,
       "name": "L4",
-      "label": "Source glass body",
+      "label": "Element 4",
       "type": "Biconcave Negative",
       "nd": 1.7292,
       "vd": 54.6735,
       "indexReference": "d",
       "focalLengthMm": -36.35071980045285,
-      "glass": "TAC8 (Hoya coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Biconcave crown of the G2 cemented doublet, carrying most of that group's negative power."
     },
     {
       "id": 6,
       "name": "L5",
-      "label": "Source glass body",
+      "label": "Element 5",
       "type": "Positive Meniscus",
       "nd": 1.8466,
       "vd": 23.7848,
       "indexReference": "d",
       "focalLengthMm": 69.64411743426885,
-      "glass": "H-ZF52 (CDGM coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "role": "High-dispersion positive meniscus cemented to Element 4, the colour partner in G2."
     },
     {
       "id": 7,
       "name": "L6",
-      "label": "Source glass body",
+      "label": "Element 6",
       "type": "Positive Meniscus",
       "nd": 1.5876,
       "vd": 61.0842,
       "indexReference": "d",
       "focalLengthMm": 79.38040340300878,
-      "glass": "Unmatched (source nd/Vd; supplier and exact dispersion unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "Unmatched (moulded glass; patent class 588611)",
+      "role": "Aspheric first element of G3 (rear surface 12A); JP 2010-211102 A shifts it across the axis as the stabilizing element."
     },
     {
       "id": 8,
       "name": "L7",
-      "label": "Source glass body",
+      "label": "Element 7",
       "type": "Negative Meniscus",
       "nd": 1.8466,
       "vd": 23.7848,
       "indexReference": "d",
       "focalLengthMm": -40.464485034138164,
-      "glass": "H-ZF52 (CDGM coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "role": "Negative high-dispersion meniscus leading the G3 cemented doublet."
     },
     {
       "id": 9,
       "name": "L8",
-      "label": "Source glass body",
+      "label": "Element 8",
       "type": "Positive Meniscus",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": 25.915080937172952,
-      "glass": "N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Strong high-index positive cemented to Element 7; the main power of G3."
     },
     {
       "id": 10,
       "name": "L9",
-      "label": "Source glass body",
+      "label": "Element 9",
       "type": "Positive Meniscus",
       "nd": 1.497,
       "vd": 81.6084,
       "indexReference": "d",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.6); Sigma's construction diagram marks this position SLD. The patent states no dispersion class.",
       "focalLengthMm": 49.780733564814454,
-      "glass": "FCD1 (Hoya coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Low-dispersion positive closing G3 just ahead of the stop; one of the two SLD positions."
     },
     {
       "id": 11,
       "name": "L10",
-      "label": "Source glass body",
+      "label": "Element 10",
       "type": "Biconcave Negative",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": -26.731760065147775,
-      "glass": "N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Biconcave first element of negative G4, just behind the stop."
     },
     {
       "id": 12,
       "name": "L11",
-      "label": "Source glass body",
+      "label": "Element 11",
       "type": "Biconcave Negative",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": -15.771456082622795,
-      "glass": "N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Strong biconcave negative of the G4 cemented doublet."
     },
     {
       "id": 13,
       "name": "L12",
-      "label": "Source glass body",
+      "label": "Element 12",
       "type": "Biconvex Positive",
       "nd": 1.8466,
       "vd": 23.7848,
       "indexReference": "d",
       "focalLengthMm": 23.544851474152374,
-      "glass": "H-ZF52 (CDGM coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "role": "High-dispersion biconvex cemented to Element 11, the colour partner in G4."
     },
     {
       "id": 14,
       "name": "L13",
-      "label": "Source glass body",
+      "label": "Element 13",
       "type": "Biconvex Positive",
       "nd": 1.497,
       "vd": 81.6084,
       "indexReference": "d",
+      "apd": "inferred",
+      "apdNote": "HOYA FCD1 coordinate match (νd 81.6); Sigma's construction diagram marks this position SLD. The patent states no dispersion class.",
       "focalLengthMm": 29.108386233269897,
-      "glass": "FCD1 (Hoya coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Low-dispersion biconvex first element of G5; the second SLD position."
     },
     {
       "id": 15,
       "name": "L14",
-      "label": "Source glass body",
+      "label": "Element 14",
       "type": "Positive Meniscus",
       "nd": 1.7725,
       "vd": 49.6243,
       "indexReference": "d",
       "focalLengthMm": 69.3301865808726,
-      "glass": "N-LAF34 (Schott coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "N-LAF34 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Positive meniscus leading the G5 cemented doublet."
     },
     {
       "id": 16,
       "name": "L15",
-      "label": "Source glass body",
+      "label": "Element 15",
       "type": "Plano-Concave Negative",
       "nd": 1.8466,
       "vd": 23.7848,
       "indexReference": "d",
       "focalLengthMm": -45.67682494684621,
-      "glass": "H-ZF52 (CDGM coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "H-ZF52 (CDGM catalog equivalent; production supplier unspecified)",
+      "role": "High-dispersion negative cemented to Element 14, with a flat rear face; the colour partner in G5."
     },
     {
       "id": 17,
       "name": "R2",
-      "label": "Hybrid replication layer",
+      "label": "Element 16 resin layer",
       "type": "Positive Meniscus",
       "nd": 1.5184,
       "vd": 52.0743,
       "indexReference": "d",
       "focalLengthMm": 302.07356219467147,
-      "glass": "Unmatched (hybrid resin; source nd/Vd only)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "Unmatched (hybrid optical resin; spectrum unpublished)",
+      "role": "Thin resin layer bonded to the front of Element 16; its air-side surface 30A is the rear asphere, for coma and astigmatism."
     },
     {
       "id": 18,
       "name": "L16",
-      "label": "Source glass body",
+      "label": "Element 16",
       "type": "Positive Meniscus",
       "nd": 1.4875,
       "vd": 70.4412,
       "indexReference": "d",
       "focalLengthMm": 96.2595695147173,
-      "glass": "H-QK3L (CDGM coordinate-equivalent spectral proxy; supplier unproven)",
-      "role": "Native patent medium; standalone in-air power is not isolated in-system aberration contribution."
+      "glass": "H-QK3L (CDGM catalog equivalent; production supplier unspecified)",
+      "role": "Last positive meniscus of G5, carrying the resin layer on its front face."
     }
   ],
   "surfaces": [
@@ -399,14 +433,14 @@ const LENS_DATA = {
     {
       "label": "20",
       "R": -61.33,
-      "sd": 5.875224787484323,
+      "sd": 6.05,
       "medium": 11,
       "d": 0.8
     },
     {
       "label": "21",
       "R": 31.31,
-      "sd": 5.875224787484323,
+      "sd": 6.05,
       "d": 1.42
     },
     {
@@ -499,7 +533,7 @@ const LENS_DATA = {
         "focalLengthMm": 18.6,
         "nominalFNumber": 2.92,
         "published": true,
-        "label": "Wide native"
+        "label": "Wide"
       },
       {
         "focalLengthMm": 18.68385136256631,
@@ -1500,14 +1534,14 @@ const LENS_DATA = {
         "focalLengthMm": 48.32,
         "nominalFNumber": 4.49,
         "published": true,
-        "label": "Tele native"
+        "label": "Tele"
       }
     ],
     "step": 0.005
   },
   "focus": {
     "closeFocusM": 0.3,
-    "description": "INFERRED CONTINUOUS ZOOM; source native states preserved. NO_INTERNAL_RECONSTRUCTION: infinity only; no finite focus or stabilization motion is supported. Assumptions: S12 A8/A10 cells blank in both publications: approved zero completion is inference, not printed zeros. Final Fb derived; no source value claimed.",
+    "description": "G2 moves toward the object for near focus, but the patent prints infinity focus only, so the model stays at infinity and the focus control does not change the optics. The 0.3 m close-focus figure is Sigma's specification. Spacings are printed at 18.60, 27.99 and 48.32 mm; those between are inferred, not a published cam. The optical stabilizer shift is not modeled.",
     "step": 1
   },
   "gaps": {
@@ -6404,6 +6438,9 @@ const LENS_DATA = {
       "toSurface": "32"
     }
   ],
+  "checks": {
+    "gapSagFrac": 0.95
+  },
   "layout": {
     "yScFill": 0.66
   }

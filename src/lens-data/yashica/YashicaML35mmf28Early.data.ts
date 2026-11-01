@@ -1,18 +1,27 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * JPS50132921A sole prescription; early diamond-grip ML35 only, factory numbers unproved.
- * Uniform scale 0.35. Stop assumed strictly inside d7:9.56+9.56 native,3.346+3.346 mm.
- * Seidel coefficient-reference mismatch remains; stop is NOT moved after L5.
- * Printed BF 108.7 retained (38.045 mm). Reconstructed unit focus 0.3 m,41 keyframes.
- * Finite MTF not source-certified. Engineering rims; source R/d/nd/Vd unchanged; no sag override.
+ * JP S50-132921 A, sole numerical example, printed at f = 100. Associated with the early
+ * diamond-grip ML 35mm f/2.8 (7 elements, 6 groups); it is a patent design, not a confirmed
+ * factory prescription, and does not describe the later 6-element, 5-group version.
+ * Every radius and spacing is scaled by 0.35, giving EFL 35.001 mm. nd and νd are as printed.
+ * Stop: the patent says between groups III and IV and prints no offset. Fig. 1 draws it inside
+ * d7. The model uses the middle of d7: 9.56 + 9.56 at f = 100, 3.346 + 3.346 mm. At f/2.8 the
+ * paraxial entrance pupil is 12.50 mm and the stop radius 6.815 mm.
+ * Seidel table: spherical and Petzval columns reproduce at all 13 surfaces. Coma, astigmatism
+ * and distortion do not, because the table's chief ray crosses the axis behind L5. The stop
+ * stays in d7, where the patent text and figure put it.
+ * Back focus: printed 108.7 (38.045 mm) is used; the paraxial 108.666 rounds to it.
+ * Focus: unit focus to 0.3 m is reconstructed by Gaussian extension at 41 keyframes. The patent
+ * and the FX-1 manual do not state the mechanism. Finite-conjugate MTF is unavailable.
+ * Rims are inferred from ray envelopes, not measured from the patent figure. No sag override.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "yashica-ml-35mm-f28-early",
   "maker": "Yashica",
   "name": "YASHICA ML 35mm f/2.8 (early diamond-grip)",
-  "subtitle": "JP S50-132921 A Sole numerical prescription, original page3 — qualified reconstruction",
+  "subtitle": "JP S50-132921 A, Sole example — uniformly scaled ×0.35 production correlation",
   "catalog": {
     "imageFormat": "135-full-frame",
     "elementCount": 7,
@@ -27,8 +36,10 @@ const LENS_DATA = {
     },
     "specs": [
       "7 ELEMENTS / 6 GROUPS",
-      "QUALIFIED PATENT-DERIVED RECONSTRUCTION",
-      "FACTORY IDENTITY NOT PROVEN"
+      "35mm f/2.8",
+      "64°",
+      "0.3m MINIMUM FOCUS",
+      "ALL SPHERICAL"
     ],
     "lensMounts": [
       "contax-yashica"
@@ -54,10 +65,10 @@ const LENS_DATA = {
       "nd": 1.59181,
       "vd": 58.3,
       "indexReference": "d",
-      "glass": "Unmatched (source index/Abbe pair; spectral surrogate, not factory melt)",
+      "glass": "BACD13 (HOYA, coordinate equivalent)",
       "apd": false,
       "focalLengthMm": -57.414183670484995,
-      "role": "Source-prescribed spherical component; isolated-in-air focal power is a diagnostic, not its in-system contribution."
+      "role": "Negative front meniscus (group I); it lengthens the back focus and takes in the 64° field."
     },
     {
       "id": 2,
@@ -67,11 +78,11 @@ const LENS_DATA = {
       "nd": 1.56384,
       "vd": 60.8,
       "indexReference": "d",
-      "glass": "Unmatched (source index/Abbe pair; spectral surrogate, not factory melt)",
+      "glass": "N-SK11 (SCHOTT catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": -29.472214517159177,
-      "cemented": "D1",
-      "role": "Source-prescribed spherical component; isolated-in-air focal power is a diagnostic, not its in-system contribution."
+      "cemented": "C1",
+      "role": "Negative front half of cemented doublet C1; its concave first surface eases the steep oblique rays."
     },
     {
       "id": 3,
@@ -81,11 +92,11 @@ const LENS_DATA = {
       "nd": 1.713,
       "vd": 53.9,
       "indexReference": "d",
-      "glass": "Unmatched (source index/Abbe pair; spectral surrogate, not factory melt)",
+      "glass": "LAC8 (HOYA, coordinate equivalent)",
       "apd": false,
       "focalLengthMm": 28.01260195110375,
-      "cemented": "D1",
-      "role": "Source-prescribed spherical component; isolated-in-air focal power is a diagnostic, not its in-system contribution."
+      "cemented": "C1",
+      "role": "Thick positive rear half of doublet C1; the cemented surface, convex to the object, helps correct coma."
     },
     {
       "id": 4,
@@ -95,10 +106,10 @@ const LENS_DATA = {
       "nd": 1.6935,
       "vd": 53.4,
       "indexReference": "d",
-      "glass": "Unmatched (source index/Abbe pair; spectral surrogate, not factory melt)",
+      "glass": "LAC13 (HOYA, coordinate equivalent)",
       "apd": false,
       "focalLengthMm": 30.05868108792665,
-      "role": "Source-prescribed spherical component; isolated-in-air focal power is a diagnostic, not its in-system contribution."
+      "role": "Positive group III ahead of the stop; it converges the beam toward the rear group."
     },
     {
       "id": 5,
@@ -108,10 +119,10 @@ const LENS_DATA = {
       "nd": 1.71736,
       "vd": 29.5,
       "indexReference": "d",
-      "glass": "Unmatched (source index/Abbe pair; spectral surrogate, not factory melt)",
+      "glass": "SF1 (SCHOTT catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": -19.459840068215335,
-      "role": "Source-prescribed spherical component; isolated-in-air focal power is a diagnostic, not its in-system contribution."
+      "role": "Biconcave flint just behind the stop and the design's main colour corrector."
     },
     {
       "id": 6,
@@ -121,10 +132,10 @@ const LENS_DATA = {
       "nd": 1.713,
       "vd": 53.9,
       "indexReference": "d",
-      "glass": "Unmatched (source index/Abbe pair; spectral surrogate, not factory melt)",
+      "glass": "LAC8 (HOYA, coordinate equivalent)",
       "apd": false,
       "focalLengthMm": 33.98728015658522,
-      "role": "Source-prescribed spherical component; isolated-in-air focal power is a diagnostic, not its in-system contribution."
+      "role": "Positive meniscus of group IV, concave to the object; it carries part of the rear group's power."
     },
     {
       "id": 7,
@@ -134,10 +145,10 @@ const LENS_DATA = {
       "nd": 1.64085,
       "vd": 56.8,
       "indexReference": "d",
-      "glass": "Unmatched (source index/Abbe pair; spectral surrogate, not factory melt)",
+      "glass": "LACL1 (HOYA, coordinate equivalent)",
       "apd": false,
       "focalLengthMm": 58.83662858155777,
-      "role": "Source-prescribed spherical component; isolated-in-air focal power is a diagnostic, not its in-system contribution."
+      "role": "Near plano-convex last element of group IV; it shares the rear group's positive power with L6."
     }
   ],
   "surfaces": [
@@ -276,7 +287,7 @@ const LENS_DATA = {
       0.975,
       1
     ],
-    "description": "Reconstructed unit focus to 0.3 m image-plane distance. Gaussian extension sampled in inverse distance, preserving the source infinity-plane residual. Not a recovered factory motion law; finite MTF is not source-certified."
+    "description": "Unit focus to 0.3 m, reconstructed: the whole lens moves forward 5.88 mm and the back focus grows from 38.045 mm to 43.920 mm. The patent and the FX-1 manual do not state the focusing mechanism. Finite-conjugate MTF is unavailable."
   },
   "gaps": {
     "13": {
@@ -336,11 +347,8 @@ const LENS_DATA = {
       5.6,
       8,
       11,
-      16,
-      22,
-      32
-    ],
-    "maxFNumber": 32
+      16
+    ]
   },
   "projection": {
     "kind": "rectilinear",
@@ -350,9 +358,31 @@ const LENS_DATA = {
     "scFill": 0.65,
     "yScFill": 0.3
   },
+  "groups": [
+    {
+      "text": "I",
+      "fromSurface": "1",
+      "toSurface": "2"
+    },
+    {
+      "text": "II",
+      "fromSurface": "3",
+      "toSurface": "5"
+    },
+    {
+      "text": "III",
+      "fromSurface": "6",
+      "toSurface": "7"
+    },
+    {
+      "text": "IV",
+      "fromSurface": "8",
+      "toSurface": "13"
+    }
+  ],
   "doublets": [
     {
-      "text": "D1",
+      "text": "C1",
       "fromSurface": "3",
       "toSurface": "5"
     }

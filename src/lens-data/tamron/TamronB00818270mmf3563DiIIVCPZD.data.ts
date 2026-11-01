@@ -1,10 +1,48 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/*
+ * Tamron 18-270mm f/3.5-6.3 Di II VC PZD (Model B008)
+ *
+ * Data source: JP 2011-248219 A (Tamron; Dayong Li), Embodiment 1 (第１実施形態, ¶0020–0027, Figure 1). Production
+ * correlation by construction and special-element positions, not factory confirmation. Radii, thicknesses, indices and
+ * aspheric coefficients are unchanged and unscaled. Indices are d-line. The patent lists no cover glass.
+ *
+ * Construction: 16 glass elements in 13 groups (matches Tamron). Surface 6 is a 0.2 mm resin layer cemented to L4 and
+ * modeled as its own medium, so the elements array has 17 entries while elementCount is 16. LD (L2, L9) and AD (L3) tags
+ * follow Tamron's construction drawing; the patent names no glass or supplier. Embodiment 2 (272.113 mm) has the same
+ * construction but one LD-class element where the drawing shows two.
+ *
+ * Focal length: the tele end is the patent's 291.2015 mm against the marketed 270 mm. ¶0021, ¶0024 and ¶0026 print it
+ * and the prescription computes to 291.217 mm. No rescaling is applied.
+ *
+ * Asphere equation: ¶0019 prints y without its exponent under the radical and a squared parenthesis after the
+ * denominator. It is read as the standard conic with K used directly; only that reading gives the paraxial radius R
+ * and the spherical aberration of Figures 3, 5 and 7.
+ *
+ * Zoom: the six published stations are the patent's infinity states. ¶0024 prints D5, D14, D25 and D31 at 18.5, 71.0 and
+ * 291.2015 mm. ¶0026 prints group movements at those and at 21.477, 36.181 and 140.001 mm. At those three, D5, D14 and
+ * D25 come from the movement table, D31 is computed for focus, and the f-number is interpolated because ¶0026 prints
+ * none. Group positions then sit a rigid 0.034, 0.100 and 0.054 mm imageward of ¶0026 (0.027 and 0.060 mm at the middle
+ * and tele ¶0024 states, where D31 is as printed). Between the six states G3 and G4 follow monotone curves and G1 and G2
+ * are solved for focal length and focus. These are calculated first-order states, not cam data; interpolated defocus
+ * stays under 0.01 mm.
+ *
+ * Focus: infinity only. The patent names no focus group, prints no near-focus spacings and does not mention PZD;
+ * closeFocusM records Tamron's 0.49 m minimum focus distance only.
+ *
+ * Aperture: the stop diameter is not published. The iris is sized to the patent's F/3.44 / 6.03 / 6.50 at the three
+ * printed f-number states, radii 8.112 / 7.876 / 8.121 mm, and follows a smooth curve between them.
+ *
+ * Semi-diameters are inferred from ray clearance, not published. Stabilization (claim 3: lateral shift of the negative
+ * rear subgroup of G3, here the L12/L13 doublet) is not simulated.
+ */
+
 const LENS_DATA = {
   "schema": 2,
   "key": "tamron-18-270mm-f35-63-di-ii-vc-pzd-b008",
   "maker": "Tamron",
   "name": "TAMRON 18-270mm f/3.5-6.3 Di II VC PZD (B008)",
-  "subtitle": "JP 2011-248219 A; INFERRED continuous zoom path; native source knots preserved",
+  "subtitle": "JP 2011-248219 A, Embodiment 1 — B008 production correlation",
   "catalog": {
     "lensMounts": [
       "canon-ef",
@@ -13,11 +51,10 @@ const LENS_DATA = {
     ],
     "imageFormat": "aps-c",
     "specs": [
-      "16 PHYSICAL ELEMENTS / 13 GROUPS",
-      "17 MEDIA INCLUDING HYBRID RESIN",
-      "NATIVE 18.5000 / 71.000 / 291.2015mm",
-      "NATIVE f/3.44 / 6.03 / 6.50",
-      "APPROVED STANDARD-CONIC INTERPRETATION"
+      "16 ELEMENTS / 13 GROUPS",
+      "DESIGN f = 18.50–291.20 mm",
+      "DESIGN F/3.44–6.50",
+      "4 ASPHERICAL SURFACES / 3 ELEMENTS"
     ],
     "elementCount": 16,
     "groupCount": 13,
@@ -38,253 +75,249 @@ const LENS_DATA = {
   },
   "source": {
     "patentNumber": "JP 2011-248219 A",
-    example: {"label": "Example 1", "id": "1"},
+    example: {"label": "Embodiment 1", "id": "1"},
     "patentYear": 2011,
     "authors": [
       "Dayong Li"
     ],
     "assignees": [
       "Tamron Co., Ltd."
-    ],
-    "errata": [
-      {
-        "status": "unresolved",
-        "note": "The native para0019 equation has unsquared y under the radical and a trailing squared parenthesis. Owner-approved standard conic interpretation preserves K/A4–A12. Original facsimile remains in dossier; no source numerical coefficient is repaired."
-      },
-      {
-        "status": "unresolved",
-        "note": "Direct-gap image-fixed G4 motion differs from para0026 by0.0266/0.0598 at middle/tele. Direct gaps control; no image-plane-drift explanation or continuous cam law is inferred."
-      }
     ]
   },
   "elements": [
     {
       "id": 1,
       "name": "L1",
-      "label": "Physical element 1",
+      "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.90366,
       "vd": 31.31,
       "indexReference": "d",
       "focalLengthMm": -152.47573110204135,
-      "glass": "TAFD25L (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G1. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "TAFD25L (HOYA, coordinate equivalent)",
+      "role": "High-index negative front element of the cemented doublet in the positive first group",
       "diagramLabel": "1",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 2,
       "name": "L2",
-      "label": "Physical element 2",
+      "label": "Element 2",
       "type": "Biconvex Positive",
       "nd": 1.497,
       "vd": 81.61,
       "indexReference": "d",
       "focalLengthMm": 116.17383249292503,
-      "glass": "FCD1 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G1. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "FCD1 (HOYA, coordinate equivalent)",
+      "apd": "inferred",
+      "apdNote": "Tamron's construction drawing marks this position LD; the patent's nd/νd fit a 497816 fluor crown, whose catalog equivalent gives ΔPgF ≈ +0.032. The patent prints nd and νd only.",
+      "role": "Low-dispersion positive rear element of the front cemented doublet",
       "diagramLabel": "2",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 3,
       "name": "L3",
-      "label": "Physical element 3",
+      "label": "Element 3",
       "type": "Positive Meniscus",
       "nd": 1.618,
       "vd": 63.39,
       "indexReference": "d",
       "focalLengthMm": 127.5569444219475,
-      "glass": "PCD4 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G1. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "PCD4 (HOYA, coordinate equivalent)",
+      "apd": "inferred",
+      "apdNote": "Tamron's construction drawing marks this position AD; the patent's nd/νd fit a 618634 phosphate crown, whose catalog equivalent gives ΔPgF ≈ +0.003. The patent prints nd and νd only.",
+      "role": "Anomalous-dispersion positive meniscus completing the first group",
       "diagramLabel": "3"
     },
     {
       "id": 4,
       "name": "L4r",
-      "label": "Hybrid resin layer",
+      "label": "Element 4 hybrid layer",
       "type": "Hybrid Aspheric Resin",
       "nd": 1.5146,
       "vd": 49.96,
       "indexReference": "d",
       "focalLengthMm": -1362.9735960478474,
-      "glass": "Unmatched (hybrid optical resin; nd 1.51460 / vd 49.96)",
-      "role": "Explicit thin front resin of the G2 hybrid; not an extra physical lens body.",
+      "glass": "Unmatched (hybrid asphere layer; chemistry unestablished, nd=1.51460, vd=49.96)",
+      "role": "Thin resin layer bonded to Element 4, carrying the aspherical surface of the hybrid",
       "diagramLabel": "4r",
-      "cemented": "H1"
+      "cemented": "C2"
     },
     {
       "id": 5,
       "name": "L4",
-      "label": "Physical element 4",
+      "label": "Element 4",
       "type": "Negative Meniscus",
       "nd": 1.883,
       "vd": 40.8,
       "indexReference": "d",
       "focalLengthMm": -20.201293061846116,
-      "glass": "TAFD30 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G2. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "TAFD30 (HOYA, coordinate equivalent)",
+      "role": "Strong negative meniscus leading the second group, with the hybrid resin on its front face",
       "diagramLabel": "4",
-      "cemented": "H1"
+      "cemented": "C2"
     },
     {
       "id": 6,
       "name": "L5",
-      "label": "Physical element 5",
+      "label": "Element 5",
       "type": "Biconcave Negative",
       "nd": 1.7725,
       "vd": 49.62,
       "indexReference": "d",
       "focalLengthMm": -25.69121615341672,
-      "glass": "TAF1 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G2. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "TAF1 (HOYA, coordinate equivalent)",
+      "role": "Biconcave second negative element of the second group",
       "diagramLabel": "5"
     },
     {
       "id": 7,
       "name": "L6",
-      "label": "Physical element 6",
+      "label": "Element 6",
       "type": "Biconvex Positive",
       "nd": 1.84666,
       "vd": 23.78,
       "indexReference": "d",
       "focalLengthMm": 18.28240014250227,
-      "glass": "FDS90 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G2. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "FDS90 (HOYA, coordinate equivalent)",
+      "role": "Dense-flint positive element inside the negative second group",
       "diagramLabel": "6"
     },
     {
       "id": 8,
       "name": "L7",
-      "label": "Physical element 7",
+      "label": "Element 7",
       "type": "Negative Meniscus",
       "nd": 1.83481,
       "vd": 42.72,
       "indexReference": "d",
       "focalLengthMm": -29.547990933264042,
-      "glass": "TAFD5G (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G2. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "TAFD5G (HOYA, coordinate equivalent)",
+      "role": "Negative meniscus closing the second group",
       "diagramLabel": "7"
     },
     {
       "id": 9,
       "name": "L8",
-      "label": "Physical element 8",
+      "label": "Element 8",
       "type": "Positive Meniscus",
       "nd": 1.72916,
       "vd": 54.67,
       "indexReference": "d",
       "focalLengthMm": 76.18480987141733,
-      "glass": "TAC8 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G3. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "TAC8 (HOYA, coordinate equivalent)",
+      "role": "Positive meniscus opening the third group, just behind the stop",
       "diagramLabel": "8"
     },
     {
       "id": 10,
       "name": "L9",
-      "label": "Physical element 9",
+      "label": "Element 9",
       "type": "Biconvex Positive",
       "nd": 1.497,
       "vd": 81.61,
       "indexReference": "d",
       "focalLengthMm": 46.92762835778839,
-      "glass": "FCD1 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G3. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "FCD1 (HOYA, coordinate equivalent)",
+      "apd": "inferred",
+      "apdNote": "Tamron's construction drawing marks one element behind the stop LD; this is the only one there with 497816 fluor-crown coordinates, whose catalog equivalent gives ΔPgF ≈ +0.032. The patent prints nd and νd only.",
+      "role": "Low-dispersion biconvex element in the positive front part of the third group",
       "diagramLabel": "9"
     },
     {
       "id": 11,
       "name": "L10",
-      "label": "Physical element 10",
+      "label": "Element 10",
       "type": "Biconvex Positive",
       "nd": 1.48749,
       "vd": 70.44,
       "indexReference": "d",
       "focalLengthMm": 33.85335657076644,
-      "glass": "FC5 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G3. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "FC5 (HOYA, coordinate equivalent)",
+      "role": "Positive crown of the cemented doublet in the front part of the third group",
       "diagramLabel": "10",
-      "cemented": "D3"
+      "cemented": "C3"
     },
     {
       "id": 12,
       "name": "L11",
-      "label": "Physical element 11",
+      "label": "Element 11",
       "type": "Negative Meniscus",
       "nd": 1.92286,
       "vd": 20.88,
       "indexReference": "d",
       "focalLengthMm": -59.62207517829984,
-      "glass": "E-FDS1 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G3. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "E-FDS1 (HOYA, coordinate equivalent)",
+      "role": "Dense-flint negative meniscus completing that cemented doublet",
       "diagramLabel": "11",
-      "cemented": "D3"
+      "cemented": "C3"
     },
     {
       "id": 13,
       "name": "L12",
-      "label": "Physical element 12",
+      "label": "Element 12",
       "type": "Biconcave Negative (Aspheric)",
       "nd": 1.85135,
       "vd": 40.1,
       "indexReference": "d",
       "focalLengthMm": -14.44910412241646,
-      "glass": "M-TAFD305 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G3. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "M-TAFD305 (HOYA, coordinate equivalent)",
+      "role": "Molded aspherical negative element of the rear doublet of the third group, the subgroup claim 3 shifts for stabilization",
       "diagramLabel": "12",
-      "cemented": "D4"
+      "cemented": "C4"
     },
     {
       "id": 14,
       "name": "L13",
-      "label": "Physical element 13",
+      "label": "Element 13",
       "type": "Positive Meniscus",
       "nd": 1.80809,
       "vd": 22.76,
       "indexReference": "d",
       "focalLengthMm": 28.030239304747706,
-      "glass": "FD225 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G3. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "FD225 (HOYA, coordinate equivalent)",
+      "role": "High-dispersion positive meniscus completing the rear doublet of the third group",
       "diagramLabel": "13",
-      "cemented": "D4"
+      "cemented": "C4"
     },
     {
       "id": 15,
       "name": "L14",
-      "label": "Physical element 14",
+      "label": "Element 14",
       "type": "Biconvex Positive (Aspheric)",
       "nd": 1.59201,
       "vd": 67.02,
       "indexReference": "d",
       "focalLengthMm": 22.376659002975163,
-      "glass": "M-PCD51 (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G4. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "M-PCD51 (HOYA, coordinate equivalent)",
+      "role": "Molded double-sided asphere leading the fourth group",
       "diagramLabel": "14"
     },
     {
       "id": 16,
       "name": "L15",
-      "label": "Physical element 15",
+      "label": "Element 15",
       "type": "Biconcave Negative",
       "nd": 1.90366,
       "vd": 31.31,
       "indexReference": "d",
       "focalLengthMm": -21.28185708375934,
-      "glass": "TAFD25L (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G4. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "TAFD25L (HOYA, coordinate equivalent)",
+      "role": "High-index negative element in the fourth group",
       "diagramLabel": "15"
     },
     {
       "id": 17,
       "name": "L16",
-      "label": "Physical element 16",
+      "label": "Element 16",
       "type": "Biconvex Positive",
       "nd": 1.69895,
       "vd": 30.05,
       "indexReference": "d",
       "focalLengthMm": 51.250087074146336,
-      "glass": "E-FD15L (HOYA coordinate-compatible class; supplier unproven)",
-      "role": "Native material interval in G4. Standalone-in-air power does not describe its in-situ contribution.",
+      "glass": "E-FD15L (HOYA, coordinate equivalent)",
+      "role": "Biconvex positive element closing the lens",
       "diagramLabel": "16"
     }
   ],
@@ -519,7 +552,7 @@ const LENS_DATA = {
       {
         "focalLengthMm": 18.5,
         "nominalFNumber": 3.44,
-        "label": "Wide 18.5000mm",
+        "label": "Wide 18.5000 mm",
         "published": true
       },
       {
@@ -549,7 +582,7 @@ const LENS_DATA = {
       {
         "focalLengthMm": 21.477,
         "nominalFNumber": 3.6828,
-        "label": "21.477mm (para. 0026 movement table)",
+        "label": "21.477 mm (¶0026 movement table)",
         "published": true
       },
       {
@@ -645,7 +678,7 @@ const LENS_DATA = {
       {
         "focalLengthMm": 36.181,
         "nominalFNumber": 4.5162,
-        "label": "36.181mm (para. 0026 movement table)",
+        "label": "36.181 mm (¶0026 movement table)",
         "published": true
       },
       {
@@ -765,7 +798,7 @@ const LENS_DATA = {
       {
         "focalLengthMm": 71,
         "nominalFNumber": 6.03,
-        "label": "Middle 71.000mm",
+        "label": "Middle 71.000 mm",
         "published": true
       },
       {
@@ -945,7 +978,7 @@ const LENS_DATA = {
       {
         "focalLengthMm": 140.001,
         "nominalFNumber": 6.288,
-        "label": "140.001mm (para. 0026 movement table)",
+        "label": "140.001 mm (¶0026 movement table)",
         "published": true
       },
       {
@@ -1221,7 +1254,7 @@ const LENS_DATA = {
       {
         "focalLengthMm": 291.2015,
         "nominalFNumber": 6.5,
-        "label": "Tele 291.2015mm",
+        "label": "Tele 291.2015 mm",
         "published": true
       }
     ],
@@ -1230,7 +1263,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 0.49,
-    "description": "INFERRED CONTINUOUS ZOOM CANDIDATE, NOT FACTORY CAM. Source knots and fixed optics unchanged. Non-compensating gaps are piecewise-linear drivers; {\"5\":1,\"14\":-1} gives the source-group compensator gap signs, solved for the interpolated native image-plane residual. Near-focus deltas, when present, retained at native knots and interpolated; finite conjugates not newly certified. This candidate remains subject to full validation."
+    "description": "Infinity focus only. The patent does not say which group focuses, prints no near-focus spacings and does not mention PZD, so no focus movement is modeled; the 0.49 m distance is Tamron's specification. The zoom path passes through the patent's six printed states. Between them G3 and G4 follow smooth curves and G1 and G2 are solved for focal length and focus, so that path is inferred, not factory cam data."
   },
   "gaps": {
     "5": {
@@ -1603,7 +1636,7 @@ const LENS_DATA = {
       ]
     },
     "31": {
-      "label": "Printed image gap",
+      "label": "BF",
       "values": [
         [39.055, 39.055],
         [39.89738, 39.89738],
@@ -1765,22 +1798,22 @@ const LENS_DATA = {
   ],
   "doublets": [
     {
-      "text": "D1",
+      "text": "C1",
       "fromSurface": "1",
       "toSurface": "3"
     },
     {
-      "text": "H1",
+      "text": "C2",
       "fromSurface": "6A",
       "toSurface": "8"
     },
     {
-      "text": "D3",
+      "text": "C3",
       "fromSurface": "20",
       "toSurface": "22"
     },
     {
-      "text": "D4",
+      "text": "C4",
       "fromSurface": "23A",
       "toSurface": "25"
     }
