@@ -141,7 +141,7 @@ const LENS_DATA = {
       "label": "3",
       "R": 21.179,
       "d": 3.81,
-      "sd": 15.6,
+      "sd": 14.2,
       "medium": 2
     },
     {
@@ -161,7 +161,7 @@ const LENS_DATA = {
       "label": "6",
       "R": 15.531,
       "d": 6.09,
-      "sd": 12.1
+      "sd": 11.0
     },
     {
       "label": "STO",
@@ -179,7 +179,7 @@ const LENS_DATA = {
       "label": "8",
       "R": 66.165,
       "d": 6.41,
-      "sd": 11.0,
+      "sd": 11.4,
       "medium": 5
     },
     {
@@ -198,14 +198,14 @@ const LENS_DATA = {
     {
       "label": "11",
       "R": -43.293,
-      "d": 36.883733655908784,
       "sd": 11.8
     }
   ],
   "focus": {
-    "closeFocusM": 1e15,
-    "description": "Infinity-only reconstruction of the unnumbered photographic master in JP S60-111215 A; converter Examples 1–4 are separate. Clear apertures and stop are inferred; heavy modeled clipping remains. Exact factory prescription pairing and full dispersion are unproven. The source design is f/1.73, with a computed 51.498291 mm focal length and fixed computed infinity image plane. Retail minimum focus of 0.45 m is descriptive only; no finite focus motion or performance is modeled."
+    "closeFocusM": 0.45,
+    "description": "Unit focus: the whole lens moves forward as one piece. JP S60-111215 A describes this taking lens as a whole-extension type and prints its extension to closest focus as dM = 7.65 mm. Added to the computed infinity back focus of 36.884 mm, that gives 44.534 mm and an object-to-image distance of about 450 mm, in line with the 0.45 m minimum focus of the production lens."
   },
+  "gaps": { "11": { "label": "BF", "values": [[36.883733655908784, 44.533733655908784]] } },
   "aperture": {
     "nominalFNumber": 1.73,
     "fStops": [
