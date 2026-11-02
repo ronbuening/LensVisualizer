@@ -26,7 +26,6 @@ const LENS_DATA = {
       design: 34.45,
     },
     fNumber: {
-      marketing: 1.2,
       design: 1.23,
     },
     specs: ["8 ELEMENTS / 6 GROUPS", "DESIGN f = 34.45 mm", "DESIGN F/1.23", "ALL SPHERICAL"],
