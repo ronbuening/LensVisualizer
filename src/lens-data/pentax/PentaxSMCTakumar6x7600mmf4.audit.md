@@ -53,3 +53,45 @@ Clearances after the change: no `CLIPS-AXIAL` or `BLOCKS-CHIEF`, the validator p
 Open: the vertical scale is bounded by the F/4 ray, not measured. A maker section could raise the three front rims together; the old values stood 5 to 8 % higher. The rear pair remains above its reading on light alone.
 
 Open: the exact F/4 ray crosses the stop plane at 57.75 mm against the 54.54 mm paraxial stop radius, 3.2 mm outside the drawn blade. That comes from the sag of the fast front faces, the engine sizes the stop paraxially, and the f-number check still passes, so nothing here depends on it.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity and at `focus=1`, the movement overlay and inspectors for all six elements, against Fig. 1 at native pixels, the patent text, Tables 1 to 3, Figs. 2 and 3, and Pentax's lens table. No maker section was in hand. The Asahi catalogue among the supplied scans has no 6×7 section and is not the Pacific Rim item, so that `Open:` line stays. Table 1 was checked by hand against the file: all 11 radii and 10 spacings equal the printed values × 6, and the six glass pairs are as printed.
+
+Rims were re-read from top to bottom stroke centres, on both sides of the axis. The readings agree with the first pass within 0.5 pixel, which is under the ±1 pixel error. No rim changed. There are no lands.
+
+| Surfaces | Fig. 1 height (px) | At 0.85 mm/px | Baseline | Final | Verdict | Points a restore wins |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1, 2 (L1) | 91.0 | 77.4 | 82.5 | 76.9 | Keep: slight | 0.0 |
+| 3, 4 (L2) | 87.5, slanting 84.5 to 89.5 | 74.4 | 78.03 | 74.5 | Keep: slight | 0.3 |
+| 5, 6 (L3) | 85.0 | 72.3 | 78.38 | 72.7 | Keep: slight | 0.0 |
+| 7, 8 (L4) | 52.25 | 44.4 | 45.97 | 45.97 | Not a cut; 3.5 % above the reading, inside noise | n/a |
+| 9, 10, 11 (L5, L6) | 32.0 | 27.2 | 29.7 | 29.7 | Not a cut; 9 % above the reading, held by light | n/a |
+
+Final worst loss from the rim-cost tool: 1.7 points at 4.2°. The corner at 4.2° is 88.4 % on baseline rims and 86.7 % on the final ones, and 3.5° is 94.7 % and 94.1 %. A separate exact skew-ray trace, typed from Table 1 with no repo code, gives 89.0 % and 87.7 % at 4.2°, a loss of 1.3 points, so the budget holds on either count. That trace also reproduces every F/4 ray height to 0.01 mm (75.00, 74.17, 73.30, 72.74, 72.07, 71.12, 43.65, 42.13, 23.00, 22.51, 21.93).
+
+Test of the vertical-scale argument. The first pass's lower bound stands, and it is stronger than it was stated, because the F/4 ray height at each element does not depend on the inferred stop plane. At these readings the rims run 1.213, 1.194, 1.180 and 1.197 pixels per mm of ray at L1 to L4, and 1.39 at the rear pair. L3 is tightest and sets 0.848 mm per pixel, so 0.85 clears it. The 12 % stretch is against the whole-lens axial fit; L1 to L3 alone are drawn at 0.79 mm per pixel, which makes it 7 %.
+
+Two new checks bound the scale from above. L1's drawn rim is 8 to 11 pixels thick between stroke centres, or 6.1 to 8.7 mm on the axial scale. With the true radii that thickness occurs at a rim height of 70 to 77.3 mm: 76.9 mm gives 6.24 mm and 82.5 mm gives 3.93 mm, well under the drawn thinnest. This assumes the rim thickness is drawn to the proven axial scale, which is a judgement, though r1 is among the figure's truer curves. L3's drawn rim, 10 to 11 pixels, points below the F/4 ray altogether, so it too argues for the floor and not above it. L2's drawn rim argues upward, but r3 and r4 are visibly overdrawn. The barrel agrees: Pentax's 170 mm diameter over a 150 mm entrance pupil, a ratio of 1.13, is the leanest of its long lenses (800 mm f/4 1.18, 300 mm f/4 1.24, 400 mm f/4 1.33). The 76.9 mm rim leaves 8.1 mm a side for cell, tube and hood; 82.5 mm leaves 2.5 mm.
+
+So L1 lies between 75.0 and about 77.3 mm, and the second review cannot improve on 76.9, 74.5 and 72.7 mm. One scale of 0.91 mm per pixel would fit the rear pair within 3 %, but it brings back the thin L1 rim and the barrel problem, so no single scale fits both ends. The rear pair's excess is not worth a new cut: the budget allows 29.3 mm at most (85.6 % at the corner; 29.2 mm gives 85.2 %, past 3 points), a 0.4 mm move under the reading error. L4 at its 44.4 mm reading would cost nothing, but 1.6 mm is inside the same noise and the playbook says not to repaint it.
+
+Live silhouette against Fig. 1: step order L1 > L2 > L3 > L4 > rear pair matches; L2, L4 and the rear pair are square as drawn; L1 and L3 end in short blunt rims as drawn. Remaining differences are the figure's: the section is 12 % taller for its length, because the F/4 ray forces it; L2's rim is 14.07 mm against about 20 mm drawn; L3's front face reaches 7 to 9 mm further back at the rim than the drawn r5, which is too shallow.
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| L5, L6 `cemented` | D1 | C1 | The inspector read DOUBLET D1 beside a C1 bracket, and the patent's d1 is a thickness |
+| `focus.description` | No statement on the focusing group | Adds that the patent names no focusing group | Patent text and figures |
+| Header comment, analysis | No note on numbering | Records the patent's numbering, its l and L, and that it names no group | Patent cols. 2 and 3 |
+
+Checked and found correct: `type` for all six against the signs of R; `focalLengthMm` against the paraxial trace; `role` text against cols. 2 and 3; F123 = 58.82 and F1234 = 45.45. The patent calls its elements lenses 1 to 6, and the diagram's numerals are those numbers. L1 to L6 is the file's short form, since lowercase l is a spacing and capital L the whole length. The patent names no front or rear group, so no `groups` entry is right; its conditions F123 and F1234 are resultants, not groups. The bracket C1 covers surfaces 9 to 11, and the one cemented pair makes 5 groups and 6 elements, which Pentax's table prints as 5-6. No `A` label, no `apd` tag: the patent has no asphere and names no special glass. The abstract also misprints condition (3) as f/19 for f/1.9.
+
+Stop: Fig. 1 draws no iris, and the midpoint of l3 remains an inference. An independent Seidel sum reproduces Table 2 exactly (−0.313, 0.122, 0.480, −0.453, −2.894) with the pupil at r1, as the earlier section found. The plots do not fix it either. Distortion at 4.1° stays between +0.76 % and +0.84 % for any plane from r1 to r9, and Fig. 2b's curve ends at +0.075 on an axis labelled ±0.1, the same sign and shape but a factor of 10 if that axis is per cent. Tangential field at 4.1° moves from −0.23 mm at r1 to −0.18 mm at the model's plane and +0.10 mm behind L4 (f = 100), but Fig. 2c is too small and too loosely drawn to separate those. Sagittal is near zero in both through mid-field. Fig. 2a shows the same reversed curve as the model, crossing zero near full aperture, though it peaks at +0.15 at 0.7 of the aperture where the model and Table 3 give +0.09 at 0.8. The STO `sd` is untouched.
+
+Movement: no zoom and no modeled focus, so there are no gap tables, the movement overlay reports none, and `focus=1` draws the same section with the far end labelled "Not modeled". The patent names no group and no direction. Its only close-range statement is that Fig. 3, for an object "spaced 7f from the lens system", worsens very little, with no spacings. Pentax's 12.0 m and rear focusing knobs are as cited.
+
+Colour: there is nothing to compare with. Figs. 2 and 3 plot only spherical aberration, sine condition, distortion and astigmatism, and the text never mentions colour. The model gives C−d +0.818, F−d −0.469 and g−d +0.546 mm. Glass sensitivity is high: L2 on FD140 (νd 26.61) would give g−d +0.389 mm, so S-TIH14 at 26.52 is the right row for the printed 26.5. L4 on Ohara FTM8 moves g−d by 13 µm. L5 as `Unmatched` on its printed νd, instead of FF5's 35.45, moves C−d by 5 µm, F−d by 26 µm and g−d by 73 µm, most of the last from the normal-line PgF that label takes. Period check: S-TIH14 is a modern lead-free row and only a coordinate equivalent, with the older FD140 close in PgF (0.6136 and 0.6123); Sumita's LLF8 is a discontinued legacy row and equals the printed pair.
+
+Glass: Table 1 and the claim's table give only nd and νd for L3, with no name, extra line or partial dispersion. L3 and L4 alone print νd to two decimals, which suggests a different source from the other four. L3 has no row in the Hoya, Ohara or Sumita catalog files; K7 and NSL7 are the nearest, at Δnd −0.0016 and Δνd +0.7. Its model PgF of 0.5433 is the normal-line estimate.
+
+On the page after the edits: bracket and inspector both read C1, and the focus note shows the new text. Half-field 8.87°, F/4.00, EFL 599.97 mm and stop radius 54.54 mm are unchanged. The validator passes, the image-circle and field-coverage checks are clean, and there is no `CLIPS-AXIAL` or `BLOCKS-CHIEF`. The first pass's `Open:` lines on the vertical scale, the maker drawing and the stop-plane ray all stay open.

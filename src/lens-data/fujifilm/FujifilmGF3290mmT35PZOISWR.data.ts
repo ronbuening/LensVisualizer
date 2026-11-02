@@ -9,13 +9,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * surfaces 46 and 47, modeled as a rear plate with the 0.991 mm gap to the image plane. That plane stays fixed at
  * 248.034 mm from surface 1, and no refocus is applied. The six aspherical faces keep the patent's KA form as
  * K = KA - 1 and every A3-A16 term, including the odd terms.
- * Each lens `sd` is half the printed maximum effective diameter, not a proven clear rim, and nothing is added for
- * aperture or performance. Each `rimExtensionSd` is the square element edge drawn in Figures 2 and 3, kept as an opaque
- * land that passes no light. The sheets are stretched 4.4% along the axis against height, so those edges are read at
- * 14.78 px/mm on Figure 3 and 6.36 px/mm on Figure 2, the height scales that arc fits to the printed radii give.
- * Cemented joints carry no land, so each doublet's edge dips to its joint's printed radius where the figures draw it
- * straight. gapSagFrac 0.95 admits the facing L21 and L22 lands at S8-S9 and the rims at S14-S15, which keep positive
- * clearance; the printed radii alone would need 0.92.
+ * Each air-facing `sd` is half the printed maximum effective diameter, not a proven clear rim, and nothing is added
+ * for aperture or performance. Each `rimExtensionSd` is the square element edge drawn in Figures 2 and 3, kept as an
+ * opaque land that passes no light. The sheets are stretched 4.4% along the axis against height, so those edges are
+ * read at 14.78 px/mm on Figure 3 and 6.36 px/mm on Figure 2, the height scales that arc fits to the printed radii
+ * give. A cemented joint cannot carry a land, so each joint's `sd` is the height Figure 2 draws it to, the top of the
+ * square block, in place of its printed ED/2; transmission moves by under 0.1 point at any field. L52 and L55 are
+ * drawn as stepped blocks, and their edges here run straight from the outer corner to the joint. gapSagFrac 0.95
+ * admits the facing L21 and L22 lands at S8-S9 and the rims at S14-S15, which keep positive clearance; the printed
+ * radii alone would need 0.92.
  *
  * Derived: the stop position is printed at surface 17, and its radius comes from the paraxial stop rule at F/3.19.
  * It stays constant through zoom, following conditional expression (36). Seven inferred stations are solved to hold
@@ -614,7 +616,7 @@ const LENS_DATA = {
       label: "19",
       R: 28.4192,
       d: 3.48,
-      sd: 13.3585,
+      sd: 14.4,
       medium: 10,
     },
     {
@@ -685,7 +687,7 @@ const LENS_DATA = {
       label: "24",
       R: 75.1999,
       d: 4.13,
-      sd: 16.1265,
+      sd: 16.6,
       medium: 13,
     },
     {
@@ -693,7 +695,7 @@ const LENS_DATA = {
       R: -118.4665,
       d: 0.11,
       sd: 16.2795,
-      rimExtensionSd: 16.7,
+      rimExtensionSd: 16.6,
     },
     {
       label: "26",
@@ -722,7 +724,7 @@ const LENS_DATA = {
       label: "29",
       R: 100.008,
       d: 7.79,
-      sd: 16.5785,
+      sd: 17.9,
       medium: 16,
     },
     {
@@ -807,7 +809,7 @@ const LENS_DATA = {
       label: "36",
       R: "flat",
       d: 4.7,
-      sd: 18.7445,
+      sd: 19.8,
       medium: 20,
     },
     {
@@ -843,7 +845,7 @@ const LENS_DATA = {
       label: "41",
       R: 30.2109,
       d: 12.43,
-      sd: 20.6945,
+      sd: 21.3,
       medium: 23,
     },
     {
@@ -865,7 +867,7 @@ const LENS_DATA = {
       label: "44",
       R: -28.7482,
       d: 1.4,
-      sd: 20.033,
+      sd: 21.1,
       medium: 25,
     },
     {

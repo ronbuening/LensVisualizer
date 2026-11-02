@@ -15,7 +15,7 @@ This is a patent design associated with the original AF-S VR Nikkor 200mm f/2G I
 
 1. **Construction.** Nikon lists 13 elements in 9 groups. Examples 1, 3, 5 and 6 have that count; Example 2 has 12 in 8 and Example 4 has 12 in 9.
 2. **Special glass.** Nikon lists three ED elements and one Super ED element. Example 3 is the only example with three νd 82.6 elements and one νd 91.0 element. Example 1 has four near νd 82.5, Example 5 two of each, and Example 6 three νd 91.0 and one νd 82.5.
-3. **Positions.** Nikon's construction drawing marks ED on the first two positive elements and on the rear element of the second doublet, and Super ED on the meniscus. In Example 3 these are L1, L2, L6 and L4.
+3. **Positions.** Nikon's construction drawing marks ED on the first two positive elements and on the rear element of the second doublet, and Super ED on the meniscus. In Example 3 these are L11, L12, L16 and L14.
 4. **Mechanism.** The patent focuses with G2 and reduces vibration with G3; Nikon's lens is internal-focus with VR.
 5. **Close focus.** Example 3's printed close state computes to about 1.897 m, against Nikon's 1.9 m (see Focus Mechanism).
 6. **Timing.** The priority date is 7 May 2004, and Nikon announced the lens on 28 May 2004.
@@ -32,79 +32,79 @@ The production lens also has a meniscus protective glass and a 52 mm drop-in fil
 
 Isolated focal lengths below treat each thick element in air; values in cemented groups are not their in-assembly powers.
 
-### L1 (patent L11) — Biconvex Positive
+### L11 — Biconvex Positive
 
 nd = 1.49782, νd = 82.6, ng = 1.50526. Glass: J-FKH1 (HIKARI equivalent) — ED position. f = +181.288 mm.
 
 Front collector of G1, carrying the widest beam in the lens.
 
-### L2 (patent L12) — Biconvex Positive
+### L12 — Biconvex Positive
 
 nd = 1.49782, νd = 82.6, ng = 1.50526. Glass: J-FKH1 (HIKARI equivalent) — ED position. f = +136.791 mm.
 
-Positive member of G1's first cemented pair, joined to L3.
+Positive member of G1's first cemented pair, joined to L13.
 
-### L3 (patent L13) — Biconcave Negative
+### L13 — Biconcave Negative
 
 nd = 1.74810, νd = 52.3, ng = 1.76589. Glass: E-LAKH1 (HIKARI equivalent). f = −115.801 mm.
 
 Negative member of the first pair. The two G1 pairs use the same νd 82.6 and νd 52.3 combination; the patent prints νp − νn = 30.26 for its conditional expression (1).
 
-### L4 (patent L14) — Positive Meniscus
+### L14 — Positive Meniscus
 
-nd = 1.44679, νd = 91.0, ng = 1.45282. Glass: Unmatched (no public catalog row) — Super ED position. f = +264.581 mm.
+nd = 1.44679, νd = 91.0, ng = 1.45282. Glass: Unmatched (no public catalog row) — Super ED position. The stored `dPgF` of +0.0542 places the model's g-line index on the printed value, which brings the axial g-to-d focus shift to +30 µm against about +31 µm in Fig. 8A. f = +264.581 mm.
 
 Convex toward the object, in the air space between G1's two cemented pairs.
 
-### L5 (patent L15) — Negative Meniscus
+### L15 — Negative Meniscus
 
 nd = 1.74810, νd = 52.3, ng = 1.76589. Glass: E-LAKH1 (HIKARI equivalent). f = −87.445 mm.
 
-Convex toward the object; negative member of G1's second cemented pair, joined to L6.
+Convex toward the object; negative member of G1's second cemented pair, joined to L16.
 
-### L6 (patent L16) — Positive Meniscus
+### L16 — Positive Meniscus
 
 nd = 1.49782, νd = 82.6, ng = 1.50526. Glass: J-FKH1 (HIKARI equivalent) — ED position. f = +89.041 mm.
 
 Convex toward the object; rear element of G1 and positive member of its second cemented pair.
 
-### L7 (patent L21) — Positive Meniscus
+### L21 — Positive Meniscus
 
 nd = 1.80454, νd = 39.6, ng = 1.83050. Glass: NBFD3 (HOYA equivalent). f = +138.654 mm.
 
-Concave toward the object; positive member of G2's first cemented pair, joined to L8.
+Concave toward the object; positive member of G2's first cemented pair, joined to L22.
 
-### L8 (patent L22) — Biconcave Negative
+### L22 — Biconcave Negative
 
 nd = 1.51454, νd = 54.6, ng = 1.52632. Glass: KF3 (SUMITA equivalent). f = −68.991 mm.
 
 Negative member of G2's first cemented pair.
 
-### L9 (patent L23) — Positive Meniscus
+### L23 — Positive Meniscus
 
 nd = 1.80384, νd = 33.9, ng = 1.83464. Glass: E-LAFH2 (HIKARI equivalent). f = +117.700 mm.
 
-Concave toward the object; positive member of G2's second cemented pair, joined to L10.
+Concave toward the object; positive member of G2's second cemented pair, joined to L24.
 
-### L10 (patent L24) — Biconcave Negative
+### L24 — Biconcave Negative
 
 nd = 1.62280, νd = 57.0, ng = 1.63639. Glass: S-BSM10 (OHARA equivalent). f = −42.420 mm.
 
 Negative member of G2's second cemented pair and the last element ahead of the stop.
 
-### L11 (patent L31) — Biconvex Positive
+### L31 — Biconvex Positive
 
 nd = 1.74810, νd = 52.3, ng = 1.76589. Glass: E-LAKH1 (HIKARI equivalent). f = +78.303 mm.
 
 First element behind the stop and first of G3. The patent keeps G3 to a positive, a negative and a positive element of high index (col. 4).
 
-### L12 (patent L32) — Negative Meniscus
+### L32 — Negative Meniscus
 
 nd = 1.72825, νd = 28.5, ng = 1.76200. Glass: S-TIH10 (OHARA equivalent). f = −129.829 mm.
 
 Concave toward the object; the only negative element of G3 and the highest-dispersion glass in the lens.
 
-### L13 (patent L33) — Biconvex Positive
+### L33 — Biconvex Positive
 
 nd = 1.64000, νd = 60.1, ng = 1.65311. Glass: S-BSM81 (OHARA equivalent). f = +93.010 mm.
 
@@ -116,15 +116,15 @@ The patent prints nd, νd and ng for every element and names no glass. The catal
 
 | Glass | nd | νd | Elements | Role |
 |---|---|---|---|---|
-| J-FKH1 (HIKARI equivalent) | 1.49782 | 82.6 | L1, L2, L6 | ED positions in G1 |
-| Unmatched | 1.44679 | 91.0 | L4 | Super ED position in G1 |
-| E-LAKH1 (HIKARI equivalent) | 1.74810 | 52.3 | L3, L5, L11 | G1 negatives; G3 front positive |
-| NBFD3 (HOYA equivalent) | 1.80454 | 39.6 | L7 | G2 positive |
-| KF3 (SUMITA equivalent) | 1.51454 | 54.6 | L8 | G2 negative |
-| E-LAFH2 (HIKARI equivalent) | 1.80384 | 33.9 | L9 | G2 positive |
-| S-BSM10 (OHARA equivalent) | 1.62280 | 57.0 | L10 | G2 negative |
-| S-TIH10 (OHARA equivalent) | 1.72825 | 28.5 | L12 | G3 negative |
-| S-BSM81 (OHARA equivalent) | 1.64000 | 60.1 | L13 | G3 rear positive |
+| J-FKH1 (HIKARI equivalent) | 1.49782 | 82.6 | L11, L12, L16 | ED positions in G1 |
+| Unmatched | 1.44679 | 91.0 | L14 | Super ED position in G1 |
+| E-LAKH1 (HIKARI equivalent) | 1.74810 | 52.3 | L13, L15, L31 | G1 negatives; G3 front positive |
+| NBFD3 (HOYA equivalent) | 1.80454 | 39.6 | L21 | G2 positive |
+| KF3 (SUMITA equivalent) | 1.51454 | 54.6 | L22 | G2 negative |
+| E-LAFH2 (HIKARI equivalent) | 1.80384 | 33.9 | L23 | G2 positive |
+| S-BSM10 (OHARA equivalent) | 1.62280 | 57.0 | L24 | G2 negative |
+| S-TIH10 (OHARA equivalent) | 1.72825 | 28.5 | L32 | G3 negative |
+| S-BSM81 (OHARA equivalent) | 1.64000 | 60.1 | L33 | G3 rear positive |
 
 The ED and Super ED assignments come from Nikon's construction drawing and the printed νd values. The patent does not call any element anomalous in dispersion, so the model tags these four as inferred.
 
@@ -149,23 +149,23 @@ The printed infinity spacings put the image plane 217.3714 mm behind surface 1. 
 
 Surface 17 is the printed aperture stop, 133.5139 mm behind surface 1 and 1.20 mm ahead of surface 18. Its radius of 18.207 mm follows from F/1.84.
 
-The patent prints no clear apertures. The semi-diameters are estimated from Figure 7 and checked by real-ray trace at both printed focus states; they are model values, not production measurements. L1 is square-cut at 53.5 mm on both faces, the height Figure 7 draws, which leaves about 0.5 mm over the 52.99 mm entrance-pupil radius. The patent's ray data arrive at the same rim: the short ends of the coma fans in Figures 8A and 9A trace back to 52 to 53.5 mm at surface 1, and the printed NA of 0.25 at the closest distance reaches 53.15 mm there.
+The patent prints no clear apertures. The semi-diameters are estimated from Figure 7 and checked by real-ray trace at both printed focus states; they are model values, not production measurements. L11 is square-cut at 53.5 mm on both faces, the height Figure 7 draws, which leaves about 0.5 mm over the 52.99 mm entrance-pupil radius. The patent's ray data arrive at the same rim: the short ends of the coma fans in Figures 8A and 9A trace back to 52 to 53.5 mm at surface 1, and the printed NA of 0.25 at the closest distance reaches 53.15 mm there.
 
 Figure 7 ends several curved faces short of the element edge and finishes them with flat lands, and the model draws those lands:
 
 | Surface | Curve ends | Land reaches |
 |---|---:|---:|
-| 5 (L3 rear) | 42.2 mm | 47.1 mm |
-| 7 (L4 rear) | 35.8 mm | 37.3 mm |
-| 10 (L6 rear) | 28.5 mm | 29.4 mm |
-| 13 (L8 rear) | 20.8 mm | 24.9 mm |
-| 16 (L10 rear) | 19.0 mm | 20.9 mm |
+| 5 (L13 rear) | 42.2 mm | 47.1 mm |
+| 7 (L14 rear) | 35.8 mm | 37.3 mm |
+| 10 (L16 rear) | 28.5 mm | 29.4 mm |
+| 13 (L22 rear) | 20.8 mm | 24.9 mm |
+| 16 (L24 rear) | 19.0 mm | 20.9 mm |
 
-Each curve end sits just outside the on-axis beam of the tighter focus state: 0.14 mm at surface 7 at the closest distance, and 0.19 mm at surface 13 at infinity. L5 also has a flat rear land in the figure, outside its cemented joint with L6; a cemented face cannot carry one in the model, so L5's rear edge is drawn as a straight line from 34.4 mm to 29.4 mm.
+Each curve end sits just outside the on-axis beam of the tighter focus state: 0.14 mm at surface 7 at the closest distance, and 0.19 mm at surface 13 at infinity. L15 also has a flat rear land in the figure, outside its cemented joint with L16; a cemented face cannot carry one in the model, so L15's rear edge is drawn as a straight line from 34.4 mm to 29.4 mm.
 
-L13 is 21.5 mm on both faces, above the 20.4 mm Figure 7 draws, because the drawn rim would take 3.6 points from the corner. The long ends of the Figures 8A and 9A coma fans trace to about 18.7 mm at L13, smaller than the figure's own rim, so the patent's corner is darker than the model's.
+L33 is 21.5 mm on both faces, above the 20.4 mm Figure 7 draws, because the drawn rim would take 3.6 points from the corner. The long ends of the Figures 8A and 9A coma fans trace to about 18.7 mm at L33, smaller than the figure's own rim, so the patent's corner is darker than the model's.
 
-With these rims the model passes about 47% of the full pupil at the 6.3° corner at F/1.84, and about 37% with L13 at the 18.7 mm the fans imply. Those figures follow from the inferred rims and are not measured production vignetting.
+With these rims the model passes about 47% of the full pupil at the 6.3° corner at F/1.84, and about 37% with L33 at the 18.7 mm the fans imply. Those figures follow from the inferred rims and are not measured production vignetting.
 
 The patent's half-field is 6.31°, and Figure 8A gives Y = 21.6 mm. The model reaches 21.60 mm, just short of the 21.65 mm full-frame corner reference.
 

@@ -26,6 +26,8 @@ Eleven elements in ten groups, all spherical: negative L1, positive L2, negative
 
 The power layout is a retrofocus. At this scale L1 to L4 combine to −10.08 mm and L1 to L6 to +20.50 mm. The back focus of 35.95 mm is 1.997 times the focal length, against the patent's stated aim of more than 1.85. The first embodiment (Table I, Fig. 1) has the same order, but with a biconcave L10 and a meniscus L11.
 
+The patent's text speaks of a "front or object side lens group" and an "image side or rear lens group", with no reference numerals and no list of members. The FRONT and REAR brackets on the diagram are a reading of that text. Its requirement (1) paragraph ties the front group to the negative lenses of F1234 and sets it against "the fifth lens and the following lenses", so FRONT covers L1 to L4 and REAR covers L5 to L11, with the stop inside REAR. The discussion of requirement (2) could also place the division at the stop, since it moves on to "the seventh lens and the following lenses". The numerals 1 to 11 under the diagram are the patent's own for Fig. 3.
+
 Every radius, axial spacing and the image distance use the same factor of 0.18; indices and Abbe numbers are as printed. The stop radius follows from the patent's 1:3.5, which matches the marketed f/3.5.
 
 ## Element-by-Element Analysis
@@ -58,7 +60,7 @@ The last negative meniscus of the front group, which it brings to |F1234| = F/1.
 
 nd = 1.64000, νd = 60.2. Glass: LACL60 (HOYA) catalog equivalent; supplier not established. f = +72.1 mm.
 
-A thin, weak biconvex lens that opens the positive section. Pentax's drawing places the filter plate right behind it, in the 3.89 mm air space before L6.
+A thin, weak biconvex lens that opens the rear group. Pentax's drawing places the filter plate right behind it, in the 3.89 mm air space before L6.
 
 ### L6 — Biconvex Positive
 
@@ -115,7 +117,7 @@ The patent's only Abbe-number discussion concerns the first two lenses: ν1 near
 
 ## Focus Mechanism
 
-The model is static at infinity focus and has no variable gaps, because the patent prints no close-focus spacings. Pentax's table lists a minimum focus of 0.25 m, which the data file carries as `closeFocusM`. That distance is a catalog figure, not a modeled state.
+The patent says nothing about focusing. Its only uses of the word are "back focus" and "rear focus", so it names no focusing lens or direction, and it prints no close-focus spacings. The model is therefore static at infinity focus and has no variable gaps. Pentax's table lists a minimum focus of 0.25 m, which the data file carries as `closeFocusM`. That distance is a catalog figure, not a modeled state.
 
 ## Stop, Clear Apertures and Image Plane
 

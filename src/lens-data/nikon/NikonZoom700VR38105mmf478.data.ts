@@ -17,12 +17,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * tables within 0.04°, so 58.20 is probably a misprint of 57.20. The printed KT/Z = 0.363 also looks misprinted
  * (model 0.670).
  * The patent prints no clear apertures: sd values follow Figure 3, which is isotropic within about 1 %, with flat
- * lands on S2, S20 and S22 as drawn. Cemented faces take no land, so the L4 and L8 edges slant where the figure steps.
+ * lands on S2, S20 and S22 as drawn. Cemented faces take no land, so S8 and S14 run out to the L4 and L8 rims to keep
+ * those two square, and the L5 and L7 edges slant where the figure steps.
  * S22 sits 0.2 mm over the drawing to clear the image circle. L11 and L12 nearly touch at that rim, as drawn, so
  * gapSagFrac is 0.96 for the S21-S22 air gap, which stays open by about 0.17 mm.
- * Focus is static at infinity: the patent moves G3 toward the image but prints no close state, and closeFocusM rests
- * on a single hobby reference page. GR is centered, with no decentering modeled. The fixed flare stopper SF has no
- * data and is not modeled.
+ * Focus is static at infinity: the patent favors moving G3 toward the image but prints no close state, and closeFocusM
+ * rests on a single hobby reference page. GR is centered, with no decentering modeled. The fixed flare stopper SF has
+ * no data and is not modeled.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -158,7 +159,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "J-PKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 34.673115378631344,
-      "role": "Thick positive front of doublet C2, first element of stabilizing group GR",
+      "role": "Thick positive front of doublet C2, the patent's LR1 and first element of stabilizing group GR",
       "cemented": "C2"
     },
     {
@@ -275,7 +276,7 @@ const LENS_DATA = {
       "R": 13.576,
       "d": 3.1,
       "medium": 5,
-      "sd": 6.6
+      "sd": 7.4
     },
     {
       "label": "9",
@@ -313,7 +314,7 @@ const LENS_DATA = {
       "R": -9.069,
       "d": 1.4,
       "medium": 8,
-      "sd": 5.6
+      "sd": 6.1
     },
     {
       "label": "15",
@@ -596,7 +597,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 0.75,
-    "description": "The patent moves G3 toward the image to focus but prints no close state, so this model holds infinity focus at every zoom position and no group moves with focus. The 0.75 m closest distance rests on a single hobby reference page."
+    "description": "The patent favors moving G3 toward the image to focus but prints no close state, so this model holds infinity focus at every zoom position and no group moves with focus. The 0.75 m closest distance rests on a single hobby reference page."
   },
   "aperture": {
     "fStops": [
@@ -615,8 +616,13 @@ const LENS_DATA = {
       "toSurface": "6"
     },
     {
-      "text": "G2 (+) / GF + GR",
+      "text": "GF (G2)",
       "fromSurface": "7",
+      "toSurface": "11"
+    },
+    {
+      "text": "GR (G2)",
+      "fromSurface": "13",
       "toSurface": "17"
     },
     {

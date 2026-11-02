@@ -21,7 +21,7 @@ The patent's 8.2° full field is close to the 8.5° in Pentax's table, and its 1
 
 ## Optical Architecture
 
-Six elements in five groups: positive, negative and positive front singlets, an isolated positive fourth element, and a positive/negative rear cemented doublet. All faces are spherical, and the model adds no filter or cover plate.
+Six elements in five groups: positive, negative and positive front singlets, an isolated positive fourth element, and a positive/negative rear cemented doublet. All faces are spherical, and the model adds no filter or cover plate. The patent numbers its lenses 1 to 6, written L1 to L6 here; its own lowercase l1 to l4 are the air spaces and its capital L is the whole length. It names no front or rear group, so "front section" below is a description, not a patent term.
 
 The power layout is a telephoto. At this scale L1 to L3 have a combined focal length of +352.9 mm, L1 to L4 +272.7 mm, and the cemented rear pair −151.0 mm in air. The printed whole length gives L/f = 0.742; the patent treats about 0.85 as the practical limit of earlier designs.
 
@@ -86,7 +86,7 @@ Neither the patent nor Pentax's table names ED or anomalous-dispersion glass, an
 
 ## Focus Mechanism
 
-The model is static at infinity focus and has no variable gaps, because the patent prints no close-focus spacings. Fig. 3 plots aberrations for an object at 7f, which is 4.2 m at this scale, without a spacing table; the patent says only that the aberrations worsen very little at close range.
+The model is static at infinity focus and has no variable gaps, because the patent prints no close-focus spacings and names no focusing group or direction. Fig. 3 plots aberrations for an object at 7f, which is 4.2 m at this scale, without a spacing table; the patent says only that the aberrations worsen very little at close range.
 
 Pentax's table lists a minimum focus of 12.0 m, which the data file carries as `closeFocusM`, and its lens manual says lenses of 600 mm and longer focus with two knobs at the rear. That distance is a catalog figure, not a modeled state, and the 7f plot is a different condition from it.
 

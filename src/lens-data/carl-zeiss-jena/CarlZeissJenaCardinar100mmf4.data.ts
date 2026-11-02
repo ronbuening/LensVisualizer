@@ -95,8 +95,10 @@ const LENS_DATA = {
 
   /*
    * Each sd is half the sheet's freier Ø. Lands run to the printed Linsen Ø (42, 35, 27, 27, 17 mm), except S4, which
-   * stops at the printed facet Ø 26.8 mm, and S7, which stops at the printed facet Ø 18 mm. The straight edges drawn
-   * between those heights stand in for the 40° and 45° facets of the sheet's 1:1 section. Lands add no traced aperture.
+   * stops at the printed facet Ø 26.8 mm, and S7. The 45° facet reaches its printed Ø 18 mm at S7's sag there, 2.13 mm,
+   * but S7's land sits at the sag of its clear opening, 1.17 mm, and the cone is 9.96 mm high at that plane. The land
+   * stops there, so its corner lies on the drawn facet. The straight edges drawn between those heights stand in for the
+   * 40° and 45° facets of the sheet's 1:1 section. Lands add no traced aperture.
    *
    * S6 is a cemented interface and cannot carry a land, so its sd is the printed Linsen Ø 27 mm. Its printed freier Ø
    * 18.1 mm is the beam envelope there, not a limit: the peak footprint traces to 9.05 mm with this face open, and
@@ -109,7 +111,7 @@ const LENS_DATA = {
     { label: "4", R: 158.625, d: 0.2, sd: 12.2, rimExtensionSd: 13.4 },
     { label: "5", R: 143.24, d: 6.95, sd: 12, rimExtensionSd: 13.5, medium: 3 },
     { label: "6", R: -67.72, d: 3.85, sd: 13.5, medium: 4 },
-    { label: "7", R: 20.098, d: 9.2, sd: 6.75, rimExtensionSd: 9 },
+    { label: "7", R: 20.098, d: 9.2, sd: 6.75, rimExtensionSd: 9.96 },
     { label: "STO", R: "flat", d: 8.2 },
     { label: "8", R: 51.53, d: 2.9, sd: 7.6, rimExtensionSd: 8.5, medium: 5 },
     { label: "9", R: 185.84, d: 38.31, sd: 8, rimExtensionSd: 8.5 },
@@ -128,10 +130,6 @@ const LENS_DATA = {
    */
   aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
-  groups: [
-    { text: "G1 (+)", fromSurface: "1", toSurface: "7" },
-    { text: "G2 (+)", fromSurface: "8", toSurface: "9" },
-  ],
   doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }],
 
   layout: { yScFill: 0.34 },

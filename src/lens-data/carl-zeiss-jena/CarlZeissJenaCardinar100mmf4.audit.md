@@ -80,5 +80,57 @@ Baseline: every face at half its printed freier Ø, no lands. Transmission at f/
 ### Open items
 
 - Close focus and focusing mechanism are not on the sheet. `closeFocusM` is 1.5 m from the museum-digital record (object 3836), with static geometry; unit focus has only an owner account behind it, so it is not modeled.
-- Exit-pupil Ø: 12.21 against the printed 12.37, unresolved.
+- Exit-pupil Ø: closed by the second review below. The printed 12.37 is the real f/4 axial beam at the pupil plane, 12.33 to 12.34 in the model; the paraxial 12.21 is a different quantity.
 - The sheet's calculation date reads 14.6.58, while the zeissikonveb.de history gives 16 June 1958.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+### Compared
+
+The local page at f/4, f/32, `focus=1`, `mv=focus` and every `?el=`, against the sheet's 1:1 section and the published section drawing. DD 23 651 served for layout only. Vertex crossings and rims were measured afresh from the images: the sheet at 7.50 px per mm (S1 to S9, 416 px for 55.45 mm), the published section at 8.88 px per mm axially (492.5 px) and 8.95 radially (L1 Ø42). The model's outline, overlaid on both at those scales, lands on the drawn radii and thicknesses, which confirms the reading of the prescription, its signs and the stop gap.
+
+### Rim and land verdicts
+
+Baseline is the printed-rim file `.lens-work/base1104c`. Every land stays under rule (b), since none costs light. Nothing is cut below baseline.
+
+| Surface | Sheet section | Published section | Baseline sd + land | Final sd + land | Light cost, points | Verdict |
+|---|---|---|---|---|---|---|
+| 1, 2 | 20.8 to 21.2 | 21.0 | 20.5, 19.3 + 21 | unchanged | 0.0 | keep |
+| 3 | 17.5 | 17.6 | 16.6 + 17.5 | unchanged | 0.0 | keep |
+| 4 | 13.3 | 13.4 | 12.2 + 13.4 | unchanged | 0.0 | keep |
+| 5 | 13.3 to 13.5 | 13.5 | 12.0 + 13.5 | unchanged | 0.0 | keep |
+| 6 | 13.3 to 13.5 | 13.5 | 13.5, no land | unchanged | 0.0 | keep |
+| 7 | 9.6 | 9.2 to 9.3 | 6.75 + 9 | 6.75 + 9.96 | 0.0 | land raised |
+| 8, 9 | 8.4 to 8.5 | 8.55 | 7.6, 8.0 + 8.5 | unchanged | 0.0 | keep |
+
+Worst loss against baseline: 0.0 points at every field. Transmission is unchanged at 100.0 / 100.0 / 95.6 / 89.1 / 80.9 / 66.2 / 43.9 %. Engine half-field 14.47° and f/4.00 before and after; stop radius 5.574 mm. No clipping flags, surface audit clean, image circle and field coverage 100 %. Step order is L1 21 > L2 17.5 > L3 13.5 = L4 13.5 > L5 8.5, with the neck at 13.4 as printed.
+
+### Facets
+
+Both drawings confirm the printed angles. L2's cone measures 40° on the sheet (37 by 31 px) and 39.8° on the published section (42 by 35 px). L4's measures 46° and 45.8°. The printed 1.7 mm on the sheet runs from the end of the 40° cone to S4's vertex plane, which puts the cone between 6.66 and 11.55 mm behind S3's vertex.
+
+- **L2:** the renderer joins the two land corners with one segment, so the neck cannot be drawn. The edge runs at 23.9°. A 40° edge from S3's corner would need S4's corner at 9.7 mm, inside its clear opening. S4 stays at the printed 13.4: it has the smallest worst departure, 0.97 mm against 1.16, 1.07 and 1.42 mm at trial heights of 12.6, 13.0 and 14.0. Outline area is 4.6 mm² at 13.4; 13.0 trims it to 4.1 mm² but drops the neck further below L3's rim than the sheet prints.
+- **L4:** S7's land sits at the sag of the Ø13.5 mm opening, 1.17 mm behind the vertex, and the printed Ø18 belongs to the rim plane at 2.13 mm. At the land's plane the 45° cone is 9.96 mm high. At 9.0 the corner fell 0.68 mm inside the glass. At 9.96 it lies on the drawn facet: the glass missing from the upper half falls from 9.6 to 6.5 mm², and the worst departure from 2.00 to 1.57 mm. The edge eases from 35.2° to 29.0°. A 45° edge would need the corner at 7.2 mm and leaves 15.3 mm² missing, so the outline is preferred to the angle.
+- **S3, not changed:** the land sits 0.54 mm ahead of the true Ø35 corner, which leaves a small point on L2's rim. Setting sd 17.5 with no land removes it at 0.0 points, but it departs from the printed freier Ø 33.2 mm, so it is left for the coordinator.
+
+### Stop, focus and movement
+
+- The stop sits at 9.2 + 8.2, between S7 and S8, as printed, and the published section draws the iris 8.9 to 9.3 mm behind S7.
+- The page shows stop Ø 11.15 mm at f/4 and 1.39 mm at f/32, against the printed 11.24 and 1.40. The marked stops run f/4 to f/32 as printed. Stopped down, the app follows the marked number, so f/5.6, f/11 and f/22 give 7.96, 4.05 and 2.03 mm, where the printed 7.95, 3.97 and 1.99 follow an exact √2 series. That is the app-wide stop rule.
+- `focus.description` is true of the sheet, which gives no focus data. The 1.5 m value was not rechecked, because this pass downloads nothing. `focus=1` draws the same lens, and the slider reads "Not modeled". There is no zoom.
+
+### Labels
+
+- `G1 (+)` and `G2 (+)` are removed. The sheet names no groups, and DD 23 651 counts four Glieder, not two. The brackets hid the negative doublet that does the telephoto work, and the movement panel read "Groups 2" beside the header's 4 GROUPS. It now reads 4, from the construction fallback. The other static primes in this batch carry no `groups` either.
+- `C1` stays: one cemented component, surfaces 5 to 7, the name the analysis uses, and the inspector shows "DOUBLET C1" on L3 and L4.
+- `name` L1 to L5 follows the sheet's Teil-Nr. -01 to -05 and the patent's L1 to L5. Surface labels are the sheet's Flächen-Nr. Types agree with the signs of R.
+- Recomputed in-air focal lengths are 107.70, 68.17, 91.14, -21.78 and 87.49 mm. The front pair is +43.68 mm, C1 is -30.00 mm and L1 to L4 is +177.19 mm, so the roles hold.
+- The lens is all spherical, with no `A` labels and no `apd` tags; the sheet marks no special glass. The Werra badge matches "Wechselobjektiv Werra" and the format badge matches "Format 24 x 36". `/mounts/werra` lists the lens.
+
+### Colour
+
+With the current rows, including BACD13 on L2, the paraxial A' focus sits +0.291 mm from d at 768.2 nm and +0.288 mm at 766.5 nm. Real rays give +0.275 mm at 0.5 of the pupil, the zone the sheet's s'm matches, and +0.221 mm at full aperture. The pen note reads +0.28. The C, F and g shifts trace to +0.106, -0.100 and -0.051 mm, as the analysis states. The e focus is -0.055 mm, so e and g nearly coincide in the model.
+
+### Exit pupil
+
+A real f/4 axial ray leaves S9 at 4.815 mm and crosses the axis 38.24 mm behind it. That beam measures Ø12.33 mm at the model's 8° pupil plane, 10.65 mm ahead of S9, and Ø12.34 mm at the printed 10.7. Against the printed 12.37 mm that is 0.2 to 0.3 %, where the paraxial 12.21 mm misses by 1.3 %.

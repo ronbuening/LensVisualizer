@@ -63,4 +63,54 @@ Rendered comparison. The local page was checked at infinity and at the closest d
 
 Maker drawing, for order and proportions only. It agrees on 13 elements in 9 groups and adds the front protective plate and the drop-in filter. ED sits on elements 1, 2 and 6 and Super ED on element 4. Its rear group shows L13 slightly above L11 and L12, as Fig. 7 does.
 
-Open: L5's rear land and L2's step outside the cemented joints cannot be drawn. Open: L13's 18.7 mm fan limit has no support in Fig. 7. If S1 is treated as outside the 3-point allowance as a fan-traced radius, L13 could fall to 20.6 mm at 43.9%.
+Open: L5's rear land and L2's step outside the cemented joints cannot be drawn. Closed in the second review below: L13's 18.7 mm fan limit stays a log note, because the 3-point allowance counts S1 like any other rim and Fig. 7 draws no cap end near that height.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+Element `name` values now carry the patent's designations, so this section uses L11–L16, L21–L24 and L31–L33. The sections above use the old sequential names: their L1–L6 are L11–L16, L7–L10 are L21–L24 and L11–L13 are L31–L33.
+
+Compared: the local page at infinity and closest focus, the inspector for L11, L14 and L31, and the `mv=focus` overlay at both ends, against Fig. 7 (PDF p. 8), Figs. 8A and 9A (pp. 9–10), the text of cols. 3–6 and 9–10 (pp. 21–22, 24), Table 3 (p. 24) and Nikon's section drawing.
+
+Changes, all to names:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Element `name`, elements 1–13 | L1 … L13 | L11–L16, L21–L24, L31–L33 | The inspector showed "Element 11 · L11" on the element the diagram labels L31, while the diagram's L11 is element 1. Fig. 7 and cols. 9–10 name them L11 … L33; `name` now equals `diagramLabel`. |
+| `.analysis.md` headings, tables and prose | L1 (patent L11) … | L11 … | Follows the rename. No number changed. |
+| Header comment | Element 1, 5, 13 (patent …) | L11, L15, L33 | Follows the rename. |
+
+No `sd`, land, gap, tag or bracket changed.
+
+Rims. Each row was run alone from the baseline rims. All of these are the first pass's values; the table confirms them.
+
+| Surface | Kind | Figure | Baseline | Final | Cost alone (points) | Verdict |
+|---|---|---:|---:|---:|---:|---|
+| 1, 2 (L11) | cut | 53.6 | 57.5, 55.0 | 53.5 | 2.9 at 6.3° | keep: slight |
+| 3 (L12 front) | cut | 48.15 | 50.0 | 48.1 | 0.0 with S4 | keep: slight |
+| 4 (L12/L13 joint) | raise | 47.1 | 46.0 | 47.1 | gains up to 1.5 mid-field | keep: improved |
+| 5 (L13 rear) | cut, land | 42.2, land 47.1 | 44.5 | 42.2 + 47.1 | 0.0 | keep: slight |
+| 6 (L14 front) | cut | 37.3 | 39.0 | 37.3 | 0.0 | keep: slight |
+| 7 (L14 rear) | cut, land | 35.4–36.0, land 37.3 | 36.5 | 35.8 + 37.3 | 0.0 | keep: slight |
+| 8, 9 (L15, joint) | cut | 34.4, 29.4 | 36.0, 30.0 | 34.4, 29.4 | 0.0 | keep: slight |
+| 10 (L16 rear) | land | 28.1–28.4, land 29.4 | 28.5 | 28.5 + 29.4 | 0.0 | keep: slight |
+| 11, 12 (L21, joint) | cut, raise | 25.5, 24.9 | 26.0, 24.5 | 25.5, 24.9 | 0.0 | keep: slight |
+| 13 (L22 rear) | cut, land | 20.2–20.9, land 24.9 | 23.5 | 20.8 + 24.9 | 0.0 | keep: slight |
+| 15, 16 (joint, L24 rear) | raise, cut, land | 20.9; 19.0, land 20.9 | 20.5, 20.5 | 20.9; 19.0 + 20.9 | 0.0 | keep: slight |
+| 18, 19 (L31) | cut | 19.5 | 20.5, 20.0 | 19.5 | 0.0 | keep: slight |
+| 20 (L32 front) | raise | 19.3 | 19.0 | 19.3 | 0.0 | keep |
+
+Final `rimcost.mjs` worst loss against baseline: 2.9 points at 6.3°. Corner 49.7% → 46.8%, field by field 100.0, 93.4, 85.3, 77.0, 68.2, 58.4, 46.8%. With S1 and S2 restored and every other rim as filed, the curve is at or above baseline at every field, 49.8% at the corner, so no land costs light.
+
+Above the figure, as the budget leaves them: S21 stays 19.5 against 19.3, because 19.3 gives 46.3%, a 3.4-point loss. S22 and S23 stay 21.5 against 20.4, 1.1 mm over. 21.45 mm gives 46.7%, which spends the last of the budget for 0.05 mm no one can see, and a trade against S1 is poor: S1 at 54.0 with L33 at 21.0 gives 46.2%, so it loses more than it pays. L32 stays 19.3 and 19.5 because squaring it at 19.5 fails the cross-gap check: combined sag 2.46 mm against 2.43 mm allowed, which would need `gapSagFrac` 0.92 for a 0.2 mm step. L15's and L12's steps cannot be drawn: the validator refuses a rim extension on a cemented joint ("a rim extension needs a glass/air boundary").
+
+Figure re-read. A two-sided profile at native resolution agrees with the first pass: L33 stroke-outer half-width 217 px, about 214 px to stroke centre; L32 204; L31 205; L24 219.5; L23 222; L15 360; L13 494; L12 505; L11 562. Real-ray floors reproduce too: S1 53.15, S7 35.66 and S13 20.61 mm. Coma-fan ends, traced with the pupil normalized at the stop rather than the entrance pupil, give S1 51.3–52.9 mm and L33 18.7–19.5 mm, so the normalization moves them by up to 1.3 mm without changing the reading.
+
+Labels and tags. Group brackets G1, G2 and G3 match Fig. 7. G3 spans surfaces 18–23 and leaves the stop out, as col. 10 lines 18–21 has it: the third lens group moves perpendicularly "as a whole". C1–C4 bracket the four cemented pairs. Every `type` agrees with the signs of R and with the col. 9–10 description. There are no aspheres. The stop sits between L24 and L31. All 13 `focalLengthMm` recompute to the file's values. Nikon's drawing marks yellow on elements 1, 2 and 6 and red on element 4, which are L11, L12, L16 and L14, so the four `inferred` tags are right. The patent's only mention of anomalous dispersion is prior art in col. 1, so none is `patent`.
+
+Movement. Fig. 7 draws the focusing arrow from ∞ toward the image and Table 3 agrees: d1 5.5000 → 15.0995 mm, d2 15.5239 → 5.9244 mm, B.f. 59.4575 → 59.4386 mm, index 0 infinity and index 1 closest. G2 moves 9.5995 mm toward the image; G1 and G3 stay fixed. The page reads D10 15.10, D16 5.92, BF 59.44 and 1.90 m at the far end, and the overlay moves G2 right. Its "max travel 9.62 mm" is 9.5995 mm plus the 0.0189 mm printed B.f. change, since it measures from the image plane. At the closest distance the on-axis fan draws two rays a side, not three, and the page reads a 149.31 mm paraxial entrance pupil, wider than L11; that is the app's infinity-conjugate pupil.
+
+Colour. Printed nd and ng traced through Table 3 reproduce both plots. Infinity g−d paraxial focus shift: +27.4 µm against about +31 µm in Fig. 8A (6.5 px at 4.76 µm/px). Fig. 9A, zones 0.29 to 0.93, traced and plotted d: −82/−93, −194/−200, −335/−333, −286/−295 µm; g: −62/−60, −156/−155, −252/−257, −157/−167 µm. Corner lateral g−d: −3.9 µm traced, about −3.4 µm in Fig. 8A. The model misses: engine g−d is +68.1 µm at infinity, about +63 µm at closest focus and −12.6 µm lateral at the corner. C−d is +31.4 µm, and the patent has no C data to check it against.
+
+The miss is L14. The other 12 elements resolve to catalog curves within 8e-5 of the printed ng. L14 is on the Abbe tier, which reads no lone `ng`, so its g index is 1.45255 against the printed 1.45282. Tracing the printed L14 index alone brings g−d to +30.6 µm. Table 3 prints nd, νd and ng for it and the text names no glass. Those give (ng − nd)/(nF − nC) = 1.228 ± 0.002, on the fluorophosphate line of S-FPL52, S-FPL53 and FCD10A (1.227–1.229) and off CaF₂ at 1.234.
+
+Closed: L14 now carries `dPgF` +0.0542, solved so the Abbe path returns the printed ng 1.45282. It takes g−d from +68.1 µm to +30.0 µm against about +31 µm in Fig. 8A. The value belongs to the engine's Abbe line, so it should not be read as the glass's catalog deviation, which is about +0.044 for this family.

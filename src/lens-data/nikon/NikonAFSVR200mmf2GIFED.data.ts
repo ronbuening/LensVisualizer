@@ -13,10 +13,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The infinity image plane is the printed BF, 59.4575 mm; the paraxial back focus computes to 59.461 mm.
  * The patent prints no clear apertures: sd values are estimated from Figure 7 at 0.0954 mm/px and floor-checked by
  * real-ray trace at both printed focus states. Where Figure 7 ends a curved face short of the element edge, sd is the
- * end of the curve and rimExtensionSd the flat land beyond it, on surfaces 5, 7, 10, 13 and 16. Element 1 (patent L11)
- * is square-cut at 53.5 mm on both faces, as Figure 7 draws it; the short ends of the Figures 8A and 9A coma fans trace
- * to the same rim. Element 13 (patent L33) is 21.5 mm, above the 20.4 mm Figure 7 draws, to hold the corner light.
- * Element 5 (patent L15) has a flat rear land outside its cemented joint in Figure 7; a cemented face cannot carry one.
+ * end of the curve and rimExtensionSd the flat land beyond it, on surfaces 5, 7, 10, 13 and 16. L11 is square-cut at
+ * 53.5 mm on both faces, as Figure 7 draws it; the short ends of the Figures 8A and 9A coma fans trace to the same rim.
+ * L33 is 21.5 mm, above the 20.4 mm Figure 7 draws, to hold the corner light.
+ * L15 has a flat rear land outside its cemented joint in Figure 7; a cemented face cannot carry one.
  * Nikon's protective meniscus and drop-in filter are not in the patent and are not modeled.
  * VR decentering of G3 is not modeled.
  */
@@ -66,7 +66,7 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "L11",
       "label": "Element 1",
       "diagramLabel": "L11",
       "type": "Biconvex Positive",
@@ -82,7 +82,7 @@ const LENS_DATA = {
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "L12",
       "label": "Element 2",
       "diagramLabel": "L12",
       "type": "Biconvex Positive",
@@ -99,7 +99,7 @@ const LENS_DATA = {
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "L13",
       "label": "Element 3",
       "diagramLabel": "L13",
       "type": "Biconcave Negative",
@@ -114,23 +114,24 @@ const LENS_DATA = {
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "L14",
       "label": "Element 4",
       "diagramLabel": "L14",
       "type": "Positive Meniscus",
       "nd": 1.44679,
       "vd": 91.0,
       "ng": 1.45282,
+      "dPgF": 0.0542,
       "indexReference": "d",
       "glass": "Unmatched (Super ED glass; no public catalog row)",
       "focalLengthMm": 264.58105701813776,
       "apd": "inferred",
-      "apdNote": "Nikon's construction drawing marks this position Super ED; the patent prints νd 91.0 and does not designate the glass as anomalous.",
+      "apdNote": "Nikon's construction drawing marks this position Super ED; the patent prints νd 91.0 and does not designate the glass as anomalous. dPgF places the g-line index on the printed ng.",
       "role": "Positive meniscus of G1 between its two cemented pairs"
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "L15",
       "label": "Element 5",
       "diagramLabel": "L15",
       "type": "Negative Meniscus",
@@ -145,7 +146,7 @@ const LENS_DATA = {
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "L16",
       "label": "Element 6",
       "diagramLabel": "L16",
       "type": "Positive Meniscus",
@@ -162,7 +163,7 @@ const LENS_DATA = {
     },
     {
       "id": 7,
-      "name": "L7",
+      "name": "L21",
       "label": "Element 7",
       "diagramLabel": "L21",
       "type": "Positive Meniscus",
@@ -177,7 +178,7 @@ const LENS_DATA = {
     },
     {
       "id": 8,
-      "name": "L8",
+      "name": "L22",
       "label": "Element 8",
       "diagramLabel": "L22",
       "type": "Biconcave Negative",
@@ -192,7 +193,7 @@ const LENS_DATA = {
     },
     {
       "id": 9,
-      "name": "L9",
+      "name": "L23",
       "label": "Element 9",
       "diagramLabel": "L23",
       "type": "Positive Meniscus",
@@ -207,7 +208,7 @@ const LENS_DATA = {
     },
     {
       "id": 10,
-      "name": "L10",
+      "name": "L24",
       "label": "Element 10",
       "diagramLabel": "L24",
       "type": "Biconcave Negative",
@@ -222,7 +223,7 @@ const LENS_DATA = {
     },
     {
       "id": 11,
-      "name": "L11",
+      "name": "L31",
       "label": "Element 11",
       "diagramLabel": "L31",
       "type": "Biconvex Positive",
@@ -236,7 +237,7 @@ const LENS_DATA = {
     },
     {
       "id": 12,
-      "name": "L12",
+      "name": "L32",
       "label": "Element 12",
       "diagramLabel": "L32",
       "type": "Negative Meniscus",
@@ -250,7 +251,7 @@ const LENS_DATA = {
     },
     {
       "id": 13,
-      "name": "L13",
+      "name": "L33",
       "label": "Element 13",
       "diagramLabel": "L33",
       "type": "Biconvex Positive",

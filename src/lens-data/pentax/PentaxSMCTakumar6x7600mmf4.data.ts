@@ -20,8 +20,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * least that clears that ray. L4 is within reading error of that scale. The rear pair stays about 10% above it, because
  * a rear rim at the drawn height would cost about 9 points of corner light.
  *
- * Focus is static at infinity. The patent's 7f near plots come with no spacings; closeFocusM is the 12 m in Pentax's
- * table. The abstract reverses the condition n5 < n6; the detailed text, Table 1 and the claim's table govern.
+ * Focus is static at infinity. The patent names no focusing group, and its 7f near plots come with no spacings;
+ * closeFocusM is the 12 m in Pentax's table. The abstract reverses the condition n5 < n6; the detailed text, Table 1 and
+ * the claim's table govern.
+ *
+ * The patent numbers its lenses 1 to 6, which are L1 to L6 here and the diagram's numerals. Its l1 to l4 are the air
+ * spaces and its L is the whole length. It names no front or rear group, so the file has no `groups` brackets.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -126,7 +130,7 @@ const LENS_DATA = {
       "glass": "FF5 (HOYA; coordinate proxy; production supplier unspecified)",
       "focalLengthMm": 236.665,
       "role": "Positive half of the rear cemented meniscus; its lower index reduces Petzval over-correction",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 6,
@@ -139,7 +143,7 @@ const LENS_DATA = {
       "glass": "S-LAL52 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -94.791,
       "role": "Negative half of the rear cemented meniscus; supplies the telephoto's negative power",
-      "cemented": "D1"
+      "cemented": "C1"
     }
   ],
   "surfaces": [
@@ -230,7 +234,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 12,
-    "description": "The model stays at infinity focus because the patent prints no close-focus spacings; the production lens focuses to 12 m."
+    "description": "The model stays at infinity focus because the patent prints no close-focus spacings and names no focusing group; the production lens focuses to 12 m."
   },
   "aperture": {
     "nominalFNumber": 4,

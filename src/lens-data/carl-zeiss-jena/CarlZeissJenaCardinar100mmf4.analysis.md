@@ -96,7 +96,7 @@ The sheet prints a field of 2σ = 25° for the 24 x 36 format. The real chief ra
 
 Each surface's clear semi-diameter is half the printed freier Ø, except the cemented S6. Tracing the lens shows what those printed diameters are. The limiting faces are S1, S7, the stop and L5. With S6 left open, the peak beam footprint across the field traces to 9.05 mm there, exactly half the printed 18.1 mm, and it reaches 19.27, 16.57, 12.16 and 11.97 mm at S2 to S5 against printed 19.3, 16.6, 12.2 and 12.0 mm. These faces record the size of the beam rather than a mechanical limit.
 
-Because a cemented interface cannot stop a ray and cannot carry a land in this model, S6 is set to the printed lens Ø27 mm so that the doublet draws as the square-edged pair in the sheet's section. Vignetting is unchanged at every field. The other faces carry flat lands out to the printed lens diameters of 42, 35, 27 and 17 mm, stopping at the printed facet diameters on S4 and S7. The lands add no aperture and cost no light. The straight edges drawn between those heights stand in for the facets; the model has no cone-shaped rim, so the silhouettes of L2 and L4 are approximate.
+Because a cemented interface cannot stop a ray and cannot carry a land in this model, S6 is set to the printed lens Ø27 mm so that the doublet draws as the square-edged pair in the sheet's section. Vignetting is unchanged at every field. The other faces carry flat lands out to the printed lens diameters of 42, 35, 27 and 17 mm. On S4 the land stops at the printed facet Ø26.8 mm. On S7 the land sits at the edge of the Ø13.5 mm opening, 0.96 mm ahead of the rim plane where the 45° cone reaches its printed Ø18 mm, and it stops where the cone crosses the land's own plane, at Ø19.92 mm. The lands add no aperture and cost no light. The straight edges drawn between those heights stand in for the facets; the model has no cone-shaped rim, so the silhouettes of L2 and L4 are approximate.
 
 | Field | 0° | 2.1° | 4.2° | 6.3° | 8.5° | 10.6° | 12.7° |
 |---|---|---|---|---|---|---|---|
@@ -115,14 +115,14 @@ Vignetting starts within the first few degrees, because the S7 opening is only s
 | Entrance pupil Ø | 23.77 mm | 23.78 mm |
 | Entrance pupil position, 8° | +80.2 mm | +80.23 mm |
 | Exit pupil position, 8° | −10.7 mm | −10.65 mm |
-| Exit pupil Ø | 12.37 mm | 12.21 mm |
+| Exit pupil Ø | 12.37 mm | 12.33 mm, the axial f/4 beam at the 8° pupil plane; 12.21 mm paraxial |
 | Stop Ø, f/4 | 11.24 mm | 11.15 mm paraxial; 11.21 mm real marginal |
 | L5 focal length (pencil) | 87.49 mm | 87.49 mm |
 | s'm | 38.26 mm | 38.27 mm at 0.5 pupil; 38.24 mm at 0.71 pupil |
 | fm | 95.08 mm | 95.07 mm at 0.5 pupil |
 | Axial beam Ø, S1 to S9 | 23.77 … 9.65 mm | within 0.14 mm by real marginal ray |
 
-The radii are unsigned on the sheet. Their signs come from the Sinnbild, the row of curved symbols between the radii and the thicknesses, which shows S6 alone curving the other way. The closure above confirms that reading: any other sign would miss the printed focal length by a wide margin. The subscript "m" is read here as a mid-zone value, which is an inference; the printed values fall on the model's zonal curve near 0.5 of the pupil. The exit-pupil diameter is the one printed value that stays more than 1 % away, and it is not resolved here.
+The radii are unsigned on the sheet. Their signs come from the Sinnbild, the row of curved symbols between the radii and the thicknesses, which shows S6 alone curving the other way. The closure above confirms that reading: any other sign would miss the printed focal length by a wide margin. The subscript "m" is read here as a mid-zone value, which is an inference; the printed values fall on the model's zonal curve near 0.5 of the pupil. The printed exit-pupil diameter sits 1.3 % above the paraxial pupil but within 0.3 % of the real axial beam at the printed pupil plane, so it is read as that beam; this too is an inference.
 
 ## Relation to Patent DD 23 651
 

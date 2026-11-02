@@ -25,12 +25,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * All `sd` values are estimates read from Fig. 3 by fitting Table III's arcs (vertical scale 1.04 × axial), each height
  * being half the drawn span across the axis. L1 to L3 follow the figure within 0.5 mm; from L4 back the rims stand 0.8 to
- * 2 mm above it to keep corner light, which is 52.5 % at 51°.
+ * 2 mm above it to keep corner light, which is 52.5 % at 51°. Fig. 3 draws L9 flat-topped, so its two faces share one
+ * height.
+ *
+ * Fig. 3's numerals 1 to 11 are the diagram's element numbers. The patent's text names a "front or object side lens group"
+ * and an "image side or rear lens group" without numerals or a member list; the FRONT and REAR brackets follow its
+ * requirement (1) paragraph, which sets L1 to L4 against "the fifth lens and the following lenses".
  *
  * The patent's 51° half field lands at 21.15 mm, so the model covers 98 % of the 21.65 mm full-frame corner. `projection`
  * declares that field because the paraxial chief-ray estimate undercounts it. Pentax quotes 100°.
  *
- * Focus is static at infinity. The patent prints no close-focus spacings; closeFocusM is the 0.25 m in Pentax's table.
+ * Focus is static at infinity. The patent says nothing about focusing and prints no close-focus spacings; closeFocusM is
+ * the 0.25 m in Pentax's table.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -87,7 +93,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -46.388,
-      "role": "Large front meniscus; opens the negative group that gives the long back focus and reduces the field angle reaching L5"
+      "role": "Large front meniscus; opens the negative front group that gives the long back focus and reduces the field angle reaching L5"
     },
     {
       "id": 2,
@@ -99,7 +105,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 109.022,
-      "role": "Thick positive inside the negative group; the patent has it hold back negative distortion and chromatic aberration"
+      "role": "Thick positive inside the front group; the patent has it hold back negative distortion and chromatic aberration"
     },
     {
       "id": 3,
@@ -135,7 +141,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 72.069,
-      "role": "Thin, weak positive opening the positive section; Pentax's drawing puts a filter plate right behind it"
+      "role": "Thin, weak positive opening the rear group; Pentax's drawing puts a filter plate right behind it"
     },
     {
       "id": 6,
@@ -160,7 +166,7 @@ const LENS_DATA = {
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 18.131,
       "role": "Positive half of doublet C1, just behind the stop; low-index side of the r14 junction",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 8,
@@ -173,7 +179,7 @@ const LENS_DATA = {
       "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -10.12,
       "role": "High-index negative half of C1; the 0.318 index step at r14 is the patent's spherical-aberration correction",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 9,
@@ -185,7 +191,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 28.045,
-      "role": "Low-dispersion positive with a nearly flat front; rear face r17 carries much of the rear section's load"
+      "role": "Low-dispersion positive with a nearly flat front; rear face r17 carries much of the rear group's load"
     },
     {
       "id": 10,
@@ -209,7 +215,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 33.947,
-      "role": "Last element; rear face r21 shares the rear section's load with r17"
+      "role": "Last element; rear face r21 shares the rear group's load with r17"
     }
   ],
   "surfaces": [
@@ -320,14 +326,14 @@ const LENS_DATA = {
       "label": "16",
       "R": -270.486,
       "d": 2.6262,
-      "sd": 7.15,
+      "sd": 7.3,
       "medium": 9
     },
     {
       "label": "17",
       "R": -13.0554,
       "d": 0.09720000000000001,
-      "sd": 7.35
+      "sd": 7.3
     },
     {
       "label": "18",
@@ -356,6 +362,18 @@ const LENS_DATA = {
       "sd": 8.7
     }
   ],
+  "groups": [
+    {
+      "text": "FRONT",
+      "fromSurface": "1",
+      "toSurface": "8"
+    },
+    {
+      "text": "REAR",
+      "fromSurface": "9",
+      "toSurface": "21"
+    }
+  ],
   "doublets": [
     {
       "text": "C1",
@@ -365,7 +383,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 0.25,
-    "description": "The model stays at infinity focus because the patent prints no close-focus spacings; the production lens focuses to 0.25 m."
+    "description": "The model stays at infinity: the patent says nothing about focusing, naming no focusing lens or direction and printing no close-focus spacings. Pentax's table lists 0.25 m."
   },
   "aperture": {
     "nominalFNumber": 3.5,
