@@ -214,58 +214,59 @@ const LENS_DATA = {
       "R": -114.155,
       "d": 1.5,
       "medium": 1,
-      "sd": 9.0
+      "sd": 12.8
     },
     {
       "label": "2",
       "R": 34.074,
       "d": 1.0,
-      "sd": 9.0
+      "sd": 11.8,
+      "rimExtensionSd": 12.8
     },
     {
       "label": "3",
       "R": 34.383,
       "d": 5.3,
       "medium": 2,
-      "sd": 8.5
+      "sd": 11.7
     },
     {
       "label": "4",
       "R": -45.27,
       "d": 0.1,
-      "sd": 8.0
+      "sd": 11.7
     },
     {
       "label": "5",
       "R": 30.065,
       "d": 2.6,
       "medium": 3,
-      "sd": 8.0
+      "sd": 9.9
     },
     {
       "label": "6",
       "R": 73.586,
-      "sd": 7.5
+      "sd": 9.9
     },
     {
       "label": "7",
       "R": -22.875,
       "d": 1.1,
       "medium": 4,
-      "sd": 5.5
+      "sd": 7.4
     },
     {
       "label": "8",
       "R": 13.576,
       "d": 3.1,
       "medium": 5,
-      "sd": 5.5
+      "sd": 6.6
     },
     {
       "label": "9",
       "R": -88.72,
       "d": 0.8,
-      "sd": 6.0
+      "sd": 6.6
     },
     {
       "label": "10",
@@ -290,52 +291,53 @@ const LENS_DATA = {
       "R": -14.37,
       "d": 5.7,
       "medium": 7,
-      "sd": 5.5
+      "sd": 5.6
     },
     {
       "label": "14",
       "R": -9.069,
       "d": 1.4,
       "medium": 8,
-      "sd": 6.0
+      "sd": 5.6
     },
     {
       "label": "15",
       "R": -13.774,
       "d": 0.1,
-      "sd": 6.5
+      "sd": 6.1
     },
     {
       "label": "16",
       "R": 70.726,
       "d": 2.7,
       "medium": 9,
-      "sd": 6.5
+      "sd": 6.1
     },
     {
       "label": "17",
       "R": -26.349,
-      "sd": 6.0
+      "sd": 6.1
     },
     {
       "label": "18",
       "R": -47.072,
       "d": 3.4,
       "medium": 10,
-      "sd": 10.5
+      "sd": 9.9
     },
     {
       "label": "19",
       "R": -18.922,
       "d": 2.2,
-      "sd": 11.5
+      "sd": 9.9
     },
     {
       "label": "20",
       "R": -17.796,
       "d": 1.3,
       "medium": 11,
-      "sd": 11.5
+      "sd": 9.7,
+      "rimExtensionSd": 11.0
     },
     {
       "label": "21",
@@ -348,12 +350,13 @@ const LENS_DATA = {
       "R": -16.876,
       "d": 1.4,
       "medium": 12,
-      "sd": 14.0
+      "sd": 11.3,
+      "rimExtensionSd": 13.4
     },
     {
       "label": "23",
       "R": -46.779,
-      "sd": 15.0
+      "sd": 13.4
     }
   ],
   "zoom": {
@@ -365,10 +368,58 @@ const LENS_DATA = {
         "published": true
       },
       {
+        "focalLengthMm": 42.9934,
+        "nominalFNumber": 4.42,
+        "label": "Inferred 43 mm",
+        "published": false
+      },
+      {
+        "focalLengthMm": 47.3958,
+        "nominalFNumber": 4.7773,
+        "label": "Inferred 47 mm",
+        "published": false
+      },
+      {
+        "focalLengthMm": 52.249,
+        "nominalFNumber": 5.1531,
+        "label": "Inferred 52 mm",
+        "published": false
+      },
+      {
+        "focalLengthMm": 57.5994,
+        "nominalFNumber": 5.5486,
+        "label": "Inferred 58 mm",
+        "published": false
+      },
+      {
+        "focalLengthMm": 63.4975,
+        "nominalFNumber": 5.9649,
+        "label": "Inferred 63 mm",
+        "published": false
+      },
+      {
         "focalLengthMm": 69.9996,
         "nominalFNumber": 6.403246164317329,
         "label": "Middle (derived aperture)",
         "published": true
+      },
+      {
+        "focalLengthMm": 76.9083,
+        "nominalFNumber": 6.8358,
+        "label": "Inferred 77 mm",
+        "published": false
+      },
+      {
+        "focalLengthMm": 84.4981,
+        "nominalFNumber": 7.2621,
+        "label": "Inferred 84 mm",
+        "published": false
+      },
+      {
+        "focalLengthMm": 92.8371,
+        "nominalFNumber": 7.6714,
+        "label": "Inferred 93 mm",
+        "published": false
       },
       {
         "focalLengthMm": 101.9998,
@@ -388,8 +439,40 @@ const LENS_DATA = {
           3.2347
         ],
         [
+          4.2055,
+          4.2055
+        ],
+        [
+          5.2868,
+          5.2868
+        ],
+        [
+          6.454,
+          6.454
+        ],
+        [
+          7.6883,
+          7.6883
+        ],
+        [
+          8.9749,
+          8.9749
+        ],
+        [
           10.3035,
           10.3035
+        ],
+        [
+          11.6944,
+          11.6944
+        ],
+        [
+          13.2751,
+          13.2751
+        ],
+        [
+          15.0558,
+          15.0558
         ],
         [
           17.0677,
@@ -405,8 +488,40 @@ const LENS_DATA = {
           15.0298
         ],
         [
+          13.5168,
+          13.5168
+        ],
+        [
+          12.109,
+          12.109
+        ],
+        [
+          10.792,
+          10.792
+        ],
+        [
+          9.5532,
+          9.5532
+        ],
+        [
+          8.3822,
+          8.3822
+        ],
+        [
           7.2691,
           7.2691
+        ],
+        [
+          6.2377,
+          6.2377
+        ],
+        [
+          5.2268,
+          5.2268
+        ],
+        [
+          4.2202,
+          4.2202
         ],
         [
           3.1954,
@@ -422,8 +537,40 @@ const LENS_DATA = {
           8.9728
         ],
         [
+          12.0927,
+          12.0927
+        ],
+        [
+          15.4155,
+          15.4155
+        ],
+        [
+          18.958,
+          18.958
+        ],
+        [
+          22.7381,
+          22.7381
+        ],
+        [
+          26.774,
+          26.774
+        ],
+        [
           31.0851,
           31.0851
+        ],
+        [
+          35.4471,
+          35.4471
+        ],
+        [
+          39.9124,
+          39.9124
+        ],
+        [
+          44.4253,
+          44.4253
         ],
         [
           48.8923,
@@ -433,8 +580,8 @@ const LENS_DATA = {
     }
   },
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Only the published infinity zoom prescriptions are modeled. The service manual identifies a rear focusing group and VR subgroup; no finite conjugate, focusing cam or decentering law is certified."
+    "closeFocusM": 0.75,
+    "description": "The patent prints infinity states only, so this model holds infinity focus at every zoom position, with inferred positions solved between the printed ones."
   },
   "aperture": {
     "fStops": [
