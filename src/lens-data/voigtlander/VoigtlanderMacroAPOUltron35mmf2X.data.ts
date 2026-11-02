@@ -1,15 +1,22 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Private Grade B patent-family reconstruction. Literal source R/d/nd/vd and source infinity plane retained.
- * Clear apertures and iris opening inferred; Pancolar axial stop is additionally unprinted.
- * Spherical surfaces only. No optimization, retail rescaling except explicit Pancolar x0.5, or finite law.
+/** VOIGTLÄNDER MACRO APO-ULTRON 35mm f/2 X-Mount: JP 2023-130072 A, Example 1 (Cosina; Shibata).
+ * Tables 1 to 3 are transcribed at patent scale: f = 36.08 mm, F/2.01, half field 21.28°, Y 14.20 mm (APS-C).
+ * No optimization and no rescaling to the retail 35 mm f/2. Paraxial trace gives EFL 36.085 mm and BFD 12.505 mm. The
+ * printed gaps sum to 50.36 mm against the printed TL of 50.37 mm, and the 12.49 mm last gap sits 0.015 mm short of the
+ * BFD; both residuals are within the rounding of the printed table and stay in place. The stop position is printed.
+ * Spherical surfaces only.
+ * Front focus: Table 3 prints the near state (magnification 0.50, ZD0 95.58 mm, ZD11 17.62 mm, ZD16 12.49 mm).
+ * The patent prints no clear apertures or iris opening: semi-diameters are inferred and the engine sizes the iris from
+ * F/2.01. The stored rims run 9 to 14 % wider than Fig. 1.
+ * Element names count the glass in order; the patent's signs are L1, L2, L3f, L3r, L4f, L4r, L5f, L5r, L6.
  */
 const LENS_DATA = {
   schema: 2,
   key: "voigtlander-macro-apo-ultron-x-35f2",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER MACRO APO-ULTRON 35mm f/2 X-Mount",
-  subtitle: "JP2023130072A Example 1; literal36.08mm/F2.01; source plane50.36mm, no retail scaling; infinity only.",
+  subtitle: "JP 2023-130072 A — Example 1; matches Cosina's published 9/6 construction",
   catalog: {
     imageFormat: "aps-c",
     elementCount: 9,
@@ -22,13 +29,7 @@ const LENS_DATA = {
       marketing: 2,
       design: 2.01,
     },
-    specs: [
-      "Grade B probable X-mount patent family; factory formula unproved",
-      "Literal36.08mm/F2.01; infinity only; no retail scaling",
-      "Clear apertures and iris opening inferred; source stop retained",
-      "Literal track50.36mm versus printed TL50.37mm discrepancy retained",
-      "APO is product name; source nd/vd alone does not validate APO",
-    ],
+    specs: ["9 ELEMENTS / 6 GROUPS", "DESIGN f = 36.08 mm", "DESIGN F/2.01", "ALL SPHERICAL"],
     lensMounts: ["fujifilm-x"],
   },
   source: {
@@ -52,7 +53,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 53.91870125499691,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Biconvex front element of the moving group G1",
     },
     {
       id: 2,
@@ -64,7 +65,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 39.35568779934719,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Positive meniscus ahead of the first cemented pair, convex toward the object",
     },
     {
       id: 3,
@@ -76,7 +77,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "E-FD13 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -14.831590121696824,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Biconcave negative of the first cemented pair, ahead of the stop",
       cemented: "C1",
     },
     {
@@ -89,7 +90,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "E-FDS1 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 42.57282372017818,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Positive meniscus of the first cemented pair, concave toward the stop",
       cemented: "C1",
       apd: "inferred",
       apdNote:
@@ -105,7 +106,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-TIM35 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -36.64425822159784,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Negative meniscus of the second cemented pair, just behind the stop",
       cemented: "C2",
     },
     {
@@ -118,7 +119,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH96 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 17.04050846319126,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Biconvex positive of the second cemented pair, last element of G1",
       cemented: "C2",
     },
     {
@@ -131,7 +132,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 13.873706826087934,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Positive meniscus of the fixed rear cemented pair, concave toward the object",
       cemented: "C3",
     },
     {
@@ -144,7 +145,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-NBH53V (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -19.779072943946478,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Negative meniscus closing the fixed rear cemented pair",
       cemented: "C3",
       apd: "inferred",
       apdNote:
@@ -160,7 +161,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-NPH1 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -40.197754084266364,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Final negative meniscus of the fixed group G2, concave toward the object",
       apd: "inferred",
       apdNote:
         "Cosina's optical section marks L9 as anomalous partial dispersion; catalog-equivalent S-NPH1 has PgF 0.6307 (dPgF +0.0252), and the patent supplies no line indices.",

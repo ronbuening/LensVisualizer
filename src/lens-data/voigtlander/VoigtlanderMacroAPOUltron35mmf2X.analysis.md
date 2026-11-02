@@ -5,140 +5,139 @@
 **Published:** 20 September 2023
 **Inventors:** Yuki Shibata
 **Applicant:** Cosina Co., Ltd.
-**Example details:** Tables1–3, printed pages6–8/PDF7–9; Fig1 printed14/PDF15. Literal R2=−97.6458mm; no retail scaling.
+**Example details:** Tables 1 to 3 (pp. 6–8) and Fig. 1 (p. 14); f = 36.08 mm, F/2.01, half field 21.28°, modeled at patent scale.
 
-Example1 is the favored representative for the original2022 MACRO APO-ULTRON35mm F2 X-mount family. The nine-element/six-group architecture, three cemented pairs, distinctive rear menisci and front-four-group/six-element focusing arrangement agree with the official maker drawing and description. Example2 has ten elements, while Example3 has a different rear doublet bending and42.03mm focal length. This supports a Grade B family association, not a unique factory formula. The native36.08mm/F2.01/full42.56° is not rescaled to retail35mm/F2/full42.8°; no D35 Z identity is asserted.
+Example 1 is the closest numerical match to the MACRO APO-ULTRON 35mm F2 X, released in August 2022. Cosina's section agrees in its nine elements in six groups, arranged L1, L2, L3/L4, L5/L6, L7/L8, L9, and Cosina's page states that the front four groups, six elements, move for focus, as G1 does here. Example 2 has ten elements with a cemented triplet behind the stop, and Example 3 has a biconvex/biconcave rear pair and a 42.03 mm focal length. Fig. 3 plots to an image height of 14.20 mm, so the example covers APS-C, not full frame. The design values of 36.08 mm, F/2.01 and full field 42.56° stay separate from the retail 35 mm, F2 and 42.8°. The exact production identity is unproved, since Cosina publishes no prescription and its Z-mount D35mm F2 page lists the same 9/6 construction and focusing motion.
 
 ## Optical Architecture
 
-Nine spherical elements form six air groups. The moving front unit contains L1, L2, the L3/L4 cemented pair, the stop and the L5/L6 cemented pair. The fixed rear unit contains the L7/L8 cemented pair and negative meniscus L9. The source explicitly assigns16mm front-unit motion between its endpoints; the initial delivered model retains only the infinity position. The source h2/h1=0.36 describes on-axis imaging-ray heights, not clear-aperture diameters.
+Nine spherical elements form six groups with three cemented doublets. The moving group G1 (f1 = 33.99 mm) holds L1, L2 and the L3/L4 pair ahead of the printed stop and the L5/L6 pair behind it. The fixed group G2 (f2 = −214.63 mm) holds the L7/L8 pair and negative meniscus L9. The model counts the elements in order; the patent's signs for them are L1, L2, L3f, L3r, L4f, L4r, L5f, L5r and L6. The printed h2/h1 = 0.36 describes on-axis ray heights at the first and last surfaces, not clear apertures; real rays in the model give 0.362.
 
-The architecture statements describe the selected source arrangement. A probable product match does not supply unprinted factory clear apertures, iris mechanics or spectral coefficients.
+The patent does not print clear apertures, iris mechanics or partial-dispersion data.
 
 ## Element-by-Element Analysis
 
 ### L1 — Biconvex Positive
 
-nd = 1.72920, νd = 54.67. Glass: Unmatched literal d-line coordinates; supplier unproved. Isolated-in-air computed f = +53.91870mm.
+nd = 1.7292, νd = 54.67. Glass: TAC8 (HOYA) catalog equivalent. f = +53.919 mm in air.
 
-The biconvex positive front singlet begins the moving positive unit. Its negative rear radius is transcribed explicitly.
+The biconvex front singlet begins the moving positive group G1.
 
 ### L2 — Positive Meniscus
 
-nd = 1.72920, νd = 54.67. Glass: Unmatched literal d-line coordinates; supplier unproved. Isolated-in-air computed f = +39.35569mm.
+nd = 1.7292, νd = 54.67. Glass: TAC8 (HOYA) catalog equivalent. f = +39.356 mm in air.
 
-The air-separated positive meniscus uses the same printed nd/νd coordinates as L1; common coordinates do not prove common production glass.
+The air-separated positive meniscus uses the same printed pair as L1, which does not prove the same production glass.
 
 ### L3 — Biconcave Negative
 
-nd = 1.74080, νd = 27.74. Glass: Unmatched literal d-line coordinates; supplier unproved. Isolated-in-air computed f = -14.83159mm.
+nd = 1.7408, νd = 27.74. Glass: E-FD13 (HOYA) catalog equivalent. f = −14.832 mm in air.
 
-The biconcave negative component begins the first cemented pair and supplies opposite sign refractive power.
+The biconcave element begins the first cemented pair and supplies its negative power.
 
 ### L4 — Positive Meniscus
 
-nd = 1.92290, νd = 20.88. Glass: Unmatched literal d-line coordinates; supplier unproved. Isolated-in-air computed f = +42.57282mm.
+nd = 1.9229, νd = 20.88. Glass: E-FDS1 (HOYA) catalog equivalent. f = +42.573 mm in air.
 
-The positive meniscus completes the first cemented pair. The maker colors this probable position as anomalous partial dispersion; no APD scalar is fabricated from nd/νd.
+The positive meniscus completes the first cemented pair, with its rear surface concave toward the stop. Cosina's section marks this element as anomalous partial dispersion.
 
 ### L5 — Negative Meniscus
 
-nd = 1.69900, νd = 30.13. Glass: Unmatched literal d-line coordinates; supplier unproved. Isolated-in-air computed f = -36.64426mm.
+nd = 1.6990, νd = 30.13. Glass: S-TIM35 (OHARA) catalog equivalent. f = −36.644 mm in air.
 
-The negative meniscus after the stop begins the second cemented pair. Its positive front and rear radii are retained with the source orientation.
+The negative meniscus just behind the stop begins the second cemented pair. Both of its radii are positive.
 
 ### L6 — Biconvex Positive
 
-nd = 1.76390, νd = 48.49. Glass: Unmatched literal d-line coordinates; supplier unproved. Isolated-in-air computed f = +17.04051mm.
+nd = 1.7639, νd = 48.49. Glass: S-LAH96 (OHARA) catalog equivalent. f = +17.041 mm in air.
 
-The biconvex positive partner completes the moving front optical unit. Its final face is followed by the infinity1.62mm inter-unit interval.
+The biconvex partner completes G1. Its rear face is followed by ZD11, 1.62 mm at infinity, the gap that opens during focus.
 
 ### L7 — Positive Meniscus
 
-nd = 2.00100, νd = 29.13. Glass: Unmatched literal d-line coordinates; supplier unproved. Isolated-in-air computed f = +13.87371mm.
+nd = 2.0010, νd = 29.13. Glass: TAFD55 (HOYA) catalog equivalent. f = +13.874 mm in air.
 
-The positive meniscus begins the fixed rear cemented pair. Its two negative radii are preserved rather than changed to a biconvex approximation.
+The positive meniscus begins the fixed rear cemented pair. Both of its radii are negative.
 
 ### L8 — Negative Meniscus
 
-nd = 1.73800, νd = 32.33. Glass: Unmatched literal d-line coordinates; supplier unproved. Isolated-in-air computed f = -19.77907mm.
+nd = 1.7380, νd = 32.33. Glass: S-NBH53V (OHARA) catalog equivalent. f = −19.779 mm in air.
 
-The negative meniscus completes the fixed rear pair. Its probable manufacturer APD marking remains a location-level inference, not a spectral measurement.
+The negative meniscus completes the fixed rear pair. Cosina's section marks this element as anomalous partial dispersion, although the catalog curve sits near the normal line.
 
 ### L9 — Negative Meniscus
 
-nd = 1.80810, νd = 22.76. Glass: Unmatched literal d-line coordinates; supplier unproved. Isolated-in-air computed f = -40.19775mm.
+nd = 1.8081, νd = 22.76. Glass: S-NPH1 (OHARA) catalog equivalent. f = −40.198 mm in air.
 
-The last negative meniscus is broader in the maker section than the middle unit. Its inferred clear cap remains distinct from the on-axis ray-height ratio; the final12.49mm physical interval is fixed.
+The last negative meniscus is the widest element in Fig. 1. Cosina's section marks it as anomalous partial dispersion. The 12.49 mm gap behind it is the same in both printed states.
 
-The isolated element focal lengths above are derived from each element’s literal radii, center thickness and nd in air. They are not its net power inside a cemented system, a factory measurement or a replacement for rounded source FL entries.
+The focal lengths above are thick-lens values in air from each element's printed radii, thickness and nd. They are not its net power inside a cemented system.
 
 ## Glass Identification and Selection
 
-| Element | nd | νd | Identification status |
+| Element | nd | νd | Catalog equivalent |
 | --- | ---: | ---: | --- |
-| L1 | 1.72920 | 54.67 | Literal source; supplier/full dispersion unproved |
-| L2 | 1.72920 | 54.67 | Literal source; supplier/full dispersion unproved |
-| L3 | 1.74080 | 27.74 | Literal source; supplier/full dispersion unproved |
-| L4 | 1.92290 | 20.88 | Literal source; supplier/full dispersion unproved |
-| L5 | 1.69900 | 30.13 | Literal source; supplier/full dispersion unproved |
-| L6 | 1.76390 | 48.49 | Literal source; supplier/full dispersion unproved |
-| L7 | 2.00100 | 29.13 | Literal source; supplier/full dispersion unproved |
-| L8 | 1.73800 | 32.33 | Literal source; supplier/full dispersion unproved |
-| L9 | 1.80810 | 22.76 | Literal source; supplier/full dispersion unproved |
+| L1 | 1.7292 | 54.67 | TAC8 (HOYA) |
+| L2 | 1.7292 | 54.67 | TAC8 (HOYA) |
+| L3 | 1.7408 | 27.74 | E-FD13 (HOYA) |
+| L4 | 1.9229 | 20.88 | E-FDS1 (HOYA) |
+| L5 | 1.6990 | 30.13 | S-TIM35 (OHARA) |
+| L6 | 1.7639 | 48.49 | S-LAH96 (OHARA) |
+| L7 | 2.0010 | 29.13 | TAFD55 (HOYA) |
+| L8 | 1.7380 | 32.33 | S-NBH53V (OHARA) |
+| L9 | 1.8081 | 22.76 | S-NPH1 (OHARA) |
 
-The coordinates are explicitly d-line values. The native reference convention is587.5618nm, consistent with the sources’ rounded587.56/587.6nm descriptions. No commercial-glass substitution, e-to-d conversion, invented PgF/ΔPgF or absorption law is introduced. Similar nd/νd pairs alone do not establish vendor or partial dispersion.
+All values are d-line (587.56 nm, ¶0033). The labels are catalog equivalents that match the printed nd/νd pairs, not production identifications; the production supplier is unspecified. L3's printed νd of 27.74 sits 0.02 below E-FD13's listed 27.76. Dispersion away from the d-line comes from these catalog curves, so the model makes no apochromatic or secondary-spectrum claim. APO is Cosina's product name; the printed pairs do not establish it.
 
-Controlled calculations use literal reference indices with useResolvedReference:false. Other-wavelength interface tools are conditional dispersion estimates; this validation supplies no broadband, secondary-spectrum or factory APO certification.
-
-Manufacturer APD color marks are recorded only as inferred probable-element-position notes. Their presence is not inferred from the numerical Abbe pairs and does not supply a quantitative APD model.
+Cosina's page counts three anomalous partial dispersion elements and its section marks L4, L8 and L9, so those tags are inferred positions. The catalog curves support L4 (E-FDS1, ΔPgF +0.0303) and L9 (S-NPH1, ΔPgF +0.0252). L8's pair is near normal: S-NBH53V has ΔPgF +0.0006, about 0.0085 below ordinary flints of similar νd, so its mark does not follow from the printed pair alone.
 
 ## Focus Mechanism
 
-Table3, including the mandatory PDF9 companion, gives ZD0=∞/95.58mm, ZD11=1.62/17.62mm and ZD16=12.49/12.49mm for β=0/0.50. The front six elements and stop move16mm toward the object; the rear three elements and image stay fixed in that convention. ZD0 is measured to the first surface, not the retail image-reference MFD. The derived near object-to-image sum161.94mm is not forced to163mm. These complete source endpoints remain research evidence; the initial data authors infinity only with closeFocusM=1e15 and no unprinted finite interpolation.
+The patent uses front focus (¶0005, ¶0015): G1, with L1 to L6 and the stop, moves toward the object while G2, L7 to L9, stays fixed. Table 3 prints two states. At infinity ZD11 is 1.62 mm. At magnification 0.50 the object sits 95.58 mm from the first surface and ZD11 is 17.62 mm, so G1 travels 16.00 mm, below the printed fM of 18.03 mm (condition 3). ZD16 is 12.49 mm in both states. Adding the 53.87 mm near track gives 161.94 mm object to image, derived from the printed intervals. A paraxial trace at the printed object distance gives magnification 0.4997 and a last gap of 12.506 mm, about the same 0.015 mm residual as at infinity.
 
-The existing canonical infinity-only state disables finite focus controls. A separately labeled native best-axial diagnostic can move its analysis plane; it does not create a finite conjugate or alter the authored prescription.
+The model publishes both printed states, with the close endpoint at 0.16194 m. It is not forced to the production specification of 0.163 m at 1:2. Positions between the two states are interpolated.
 
 ## Stop and Clear-Aperture Assumptions
 
-The printed stop is positional S8 at z13.28mm, with2.57mm before and3.94mm after it. Its diameter and the surface clear apertures are unprinted. The normal native f/2.01 rule supplies the opening; inferred surface caps follow pupil geometry and the maker’s broader rear menisci. No source h2/h1 ray footprint is transplanted as a clear rim.
+The stop plane is printed 13.28 mm behind surface 1, with 2.57 mm before it and 3.94 mm after it. The patent prints no iris diameter, so the engine sizes the opening from F/2.01, a semi-diameter of 6.37 mm. Clear semi-diameters are also unprinted; they are inferred from the entrance-pupil scale, the proportions of the section and the surface geometry.
 
-Frozen per-surface clear SDs in millimetres are 1:9.9, 2:9.9, 3:9.4, 4:9.4, 5:8.6, 6:8.6, 7:8.6, 9:7.2, 10:7.2, 11:7.2, 12:8.9, 13:8.9, 14:8.9, 15:10.6, 16:10.6.
+Inferred clear semi-diameters in millimetres are 1: 9.9, 2: 9.9, 3: 9.4, 4: 9.4, 5: 8.6, 6: 8.6, 7: 8.6, 9: 7.2, 10: 7.2, 11: 7.2, 12: 8.9, 13: 8.9, 14: 8.9, 15: 10.6, 16: 10.6.
 
-The front scale begins with roughly10% paraxial entrance-pupil clearance; later per-face caps are refined from schematic proportions and exact curvature/gap limits. Beveled bodies, rectangular flanges, filter threads and on-axis ray footprints are not calibrated clear rims. These hypotheses were frozen before MTF; off-axis clipping is retained. Opening-disk clearance does not prove blade or mount fit.
+The front rim begins with roughly 10 % paraxial entrance-pupil clearance; later rims are refined from the section and from curvature and gap limits. Off-axis clipping is retained. Clearance of the iris opening does not prove blade or mount fit.
 
-Maker APD colors occur at probable L4/L8/L9 positions, encoded as inferred position notes. Bare nd/νd values do not identify supplier glasses or prove apochromatic correction. APO remains part of the retail name; all accepted MTF here is monochromatic reference-line estimated diffraction.
+Fig. 1 is drawn to true scale, and these rims run 9 to 14 % wider than it. Its elements read 9.08 mm for L1, 8.30 mm for L2, 7.59 mm for L3/L4, 6.55 mm for L5/L6, 8.04 mm for L7/L8 and 9.27 mm for L9. Those values would cut wide-open corner light from about 42 % to about 28 % at 21.3° and clip the f/2.01 axial ray at S3 and S5 by about 0.13 mm.
 
-## First-Order Verification and Source Plane
+## First-Order Properties and Aberrations
 
-The literal infinity interval sum is50.36mm while Table1 prints rounded TL50.37mm. That0.01mm discrepancy remains explicit; the final source interval12.49mm is not replaced by a paraxial BFL or a corrected total length. The original application controls the numeric model; the later grant is an alias, not a numerically inspected substitute.
+The printed gaps sum to 50.36 mm while Table 1 prints TL 50.37 mm. The 0.01 mm difference is rounding: the table cells read cleanly, no single-cell correction explains it, and Example 3 misses by the same amount in the other direction. The model keeps the printed 12.49 mm last gap, which places the image plane 50.36 mm behind surface 1, with a 37.87 mm vertex track. The numbers come from this application, not from the later grant.
 
-Independent reduced-angle matrices and physical-slope recursion give EFL36.0848540088mm and BFL12.5048154841mm. The modeled nominal source focal length is36.08mm, leaving an EFL residual+0.0048540088mm. Powered vertex track is37.8700000000mm, fixed final gap12.4900000000mm and source image z=50.3600000000mm. The authored-final-gap minus computed-BFL residual is-0.0148154841mm. Native EFL agrees with the independent arithmetic; no residual is tuned away.
+A paraxial trace gives EFL 36.085 mm and BFD 12.505 mm. The printed f is reproduced, and the authored last gap falls 0.015 mm short of the computed BFD. That residual is within the rounding of the printed table and stays in place. The groups trace to 33.99 mm and −214.67 mm against the printed 33.99 mm and −214.63 mm. Image height 14.20 mm in Fig. 3 corresponds to 21.28° in the model, matching the printed half field.
+
+The model's d-line spherical aberration agrees with Fig. 3(a): −0.061 mm at the rim and +0.032 mm near 0.7 of the pupil, against about −0.05 mm and +0.03 mm. Sagittal field curvature is −0.099 mm at 10.65 mm and tangential −0.056 mm at 14.20 mm, against about −0.10 mm and −0.06 mm. Distortion at 14.20 mm is +1.04 % against about +1.0 %. At the near state the model gives −0.173 mm near 0.8 of the pupil and −0.111 mm at the rim, against about −0.17 mm and −0.12 mm in Fig. 3(b).
 
 ## Modeled Diffraction and Coverage
 
-Native source-angle pupil checks use0°, half the printed half-field and its exact edge. At wide open, 208/184/86 of208samples reach the fixed image in those fields. Final failed/unaimed/unresolved-in-beam counts are zero. The full raw lattice and independent traces retain clipping by surface, raw failure codes and aim-certified blocks. Raw failures/certified blocks overlap and are not added as disjoint losses. These are conditional model pupils, not measured illumination.
+Wide open at infinity, the model passes 100 % of the axial beam, about 90 % at 10.6° and about 42 % at 21.3°. These fractions depend on the inferred rims and are model pupils, not measured illumination.
 
-The normal native scalar sheared-pupil diffraction estimator uses reference/design focus, grids16–256 and sampled0/10/20/30/40/50lp/mm. All six final fields below converge under the unchanged maximum successive-grid contrast difference0.01 through sampled50lp/mm and unknown-flux limit0.005; actual final unknown flux, failed rays and unaimed rays are zero. Raw prior-grid arrays and unapplied focus diagnostics remain available.
+The table gives monochromatic scalar diffraction MTF at infinity on the authored image plane, with no focus shift.
 
-| f-number | Actual angle ° | S/T at10lp/mm | S/T at30lp/mm | S/T at50lp/mm | Grid | Final Δ |
-| ---: | ---: | --- | --- | --- | ---: | ---: |
-| 2.01 | 0.0000000 | 0.951890 / 0.951890 | 0.697676 / 0.697676 | 0.358438 / 0.358438 | 128 | 0.001158444 |
-| 2.01 | 10.6399981 | 0.938933 / 0.940153 | 0.671739 / 0.773650 | 0.479082 / 0.663746 | 32 | 0.006205789 |
-| 2.01 | 21.2799914 | 0.516078 / 0.911944 | 0.329979 / 0.597409 | 0.261621 / 0.298824 | 128 | 0.003684563 |
-| 8 | 0.0000000 | 0.939864 / 0.939864 | 0.817864 / 0.817864 | 0.696110 / 0.696110 | 32 | 0.006703197 |
-| 8 | 10.6399981 | 0.936405 / 0.937757 | 0.797651 / 0.813074 | 0.658002 / 0.688493 | 32 | 0.007346934 |
-| 8 | 21.2799914 | 0.935289 / 0.925071 | 0.802912 / 0.762735 | 0.672941 / 0.606979 | 32 | 0.006647121 |
+| f-number | Angle ° | S/T at 10 lp/mm | S/T at 30 lp/mm | S/T at 50 lp/mm |
+| ---: | ---: | --- | --- | --- |
+| 2.01 | 0 | 0.952 / 0.952 | 0.698 / 0.698 | 0.358 / 0.358 |
+| 2.01 | 10.6 | 0.939 / 0.940 | 0.672 / 0.774 | 0.479 / 0.664 |
+| 2.01 | 21.3 | 0.516 / 0.912 | 0.330 / 0.597 | 0.262 / 0.299 |
+| 8 | 0 | 0.940 / 0.940 | 0.818 / 0.818 | 0.696 / 0.696 |
+| 8 | 10.6 | 0.936 / 0.938 | 0.798 / 0.813 | 0.658 / 0.688 |
+| 8 | 21.3 | 0.935 / 0.925 | 0.803 / 0.763 | 0.673 / 0.607 |
 
-Every result applies0mm focus shift. Native best-axial offsets of +0.030811776mm at f/2.01, +0.019756848mm at f/8 are diagnostics only. Low wide-open source-plane contrast, where present, is preserved rather than replaced by refocused curves.
+Best-axial-focus offsets of +0.031 mm at f/2.01 and +0.020 mm at f/8 are not applied, so the wide-open contrast stands as computed.
 
-The authored native format reference radius is14.175mm. Printed source angles are not assumed equal to its corner. Actual source-edge chief image height is14.1944268575mm, or1.0013705014 of that reference. Format-corner UI results and source-angle research remain separate.
+The APS-C format reference radius is 14.175 mm. The chief ray at the printed half field reaches 14.19 mm, 1.0014 times that reference, so the 21.3° rows sit slightly beyond the format corner. That height is not a claim of factory image-circle coverage.
 
-Because the source edge falls slightly beyond the generic format cap, the private source-angle MTF copy uses supported imageCircleMm=28.392 only as a coordinate window. It changes no R, d, nd, νd, clear cap, stop or image plane, and is absent from the delivered model. It is derived from the actual chief height plus a small pre-MTF rounding margin, not asserted factory image-circle coverage or a contrast adjustment.
-
-These are sampled-frequency native estimates, not continuous-frequency, independent optical-phase or factory measurements. No withdrawn one-dimensional waveLatticeOtf reference is used. Current integration and compiled desktop/mobile/comparison checks are separate acceptance gates; their fresh/inherited scope is retained in the private handoff.
+These are sampled-frequency estimates, not factory measurements.
 
 ## Sources
 
-1. [Primary patent publication](https://patents.google.com/patent/JP2023130072A/en); exact literal card and source pixels retained in the private source packet.
-2. [Original manufacturer material](https://www.cosina.co.jp/voigtlander/x-mount/macro-apo-ultron-35mm-f2/); matched topology and retail specifications support a probable family correlation.
+1. [JP 2023-130072 A](https://patents.google.com/patent/JP2023130072A/en), Tables 1 to 3 and Figs. 1 to 3.
+2. [Cosina MACRO APO-ULTRON 35mm F2](https://www.cosina.co.jp/voigtlander/x-mount/macro-apo-ultron-35mm-f2/): construction, focusing method and retail specifications.
+3. [Cosina MACRO APO-ULTRON D35mm F2](https://www.cosina.co.jp/voigtlander/z-mount/macro-apo-ultron-d35mm-f2/): Z-mount construction, focusing method and specifications.
