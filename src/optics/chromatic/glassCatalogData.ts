@@ -688,6 +688,8 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "BAFD8",
   "K-VC181",
   "L-TIM28",
+  "PBM25",
+  "TPH55",
   "KF5",
   "LAL7",
   "LAL8",
