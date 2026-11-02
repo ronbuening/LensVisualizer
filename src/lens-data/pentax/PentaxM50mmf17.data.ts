@@ -204,7 +204,7 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.45,
     description:
       "Infinity-only patent reconstruction; exact factory pairing is unproven. The clear apertures and midpoint stop17.28 mm are hypotheses. Radius r4 is corrected from the printed 94.93 to 94.39; the other radii, gaps and d-line indices are literal, with no scale retuning or refocus. The computed67.7655843906 mm infinity image plane is fixed. Manufacturer0.45 m minimum focus is descriptive only; no finite motion, iris law or conjugates are certified. Native scalar diffraction is an estimate; the old line-based OPL reference validation is withdrawn and corrected2D studies remain conditional research. Native format corner23.5555 degrees exceeds source22.7 degrees, so it is a model extension, not source/factory coverage.",
   },
