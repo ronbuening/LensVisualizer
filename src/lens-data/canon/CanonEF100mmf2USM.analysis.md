@@ -77,7 +77,7 @@ Thick biconvex member of the rear doublet, which has f = +67.74 mm as a pair. Ce
 
 ## Glass Identification and Selection
 
-The patent names no commercial glass. Seven of the eight printed pairs match catalog rows, and the model traces those rows. They are catalog equivalents, not production identifications. L4's pair has no catalog row, so the model traces it from nd and νd with normal-line partial dispersion.
+The patent names no commercial glass. Seven of the eight printed pairs match catalog rows, and the model traces those rows. They are catalog equivalents, not production identifications. L4's pair has no row in the repo catalog, so the model traces it from nd and νd, with ΔPgF +0.0190 from the published P_g,F of OHARA TPH55, the catalogue glass at these coordinates.
 
 The table names no spectral line for N and ν. The patent's plots use the d and g lines and the catalog rows match at nd and νd, so the pairs are read at the d line.
 
@@ -89,7 +89,7 @@ The table names no spectral line for N and ν. The patent's plots use the d and 
 | L4 | 1.75550 | 25.10 | Unmatched |
 | L5, L7 | 1.80518 | 25.40 | SF6 (Schott) |
 
-The model's g-line focus runs about 0.12 mm short of Fig. 4. At infinity g−d is −0.12 mm paraxially and +0.08 mm at the top of the pupil, against about 0 and +0.20 mm in the plot; at 1 m it is −0.03 and +0.33 mm against about +0.09 and +0.45 mm. A ΔPgF near +0.02 on L4, which the model does not carry, would close all four readings.
+The model's g-line focus agrees with Fig. 4 within about 0.03 mm. At infinity g−d is −0.03 mm paraxially and +0.18 mm at the top of the pupil, against about 0 and +0.20 mm in the plot; at 1 m it is +0.07 and +0.45 mm against about +0.09 and +0.45 mm.
 
 ## Focus Mechanism
 

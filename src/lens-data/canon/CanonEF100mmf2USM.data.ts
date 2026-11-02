@@ -100,6 +100,9 @@ const LENS_DATA = {
       role: "Negative meniscus closing group 1; its concave rear face balances the spherical aberration of L1 to L3.",
       indexReferenceNote:
         "The table names no spectral line for N and ν; the patent's d-line aberration plots support reading them as nd and νd.",
+      dPgF: 0.018978,
+      apdNote:
+        "dPgF comes from the published P_g,F of 0.62056 for OHARA TPH55, the catalogue glass at these coordinates; the repo catalog has no row for it.",
     },
     {
       id: 5,
