@@ -8,7 +8,7 @@ import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
 import { build, buildSimplePositiveElementLens } from "../../optics/testLensFixtures.js";
 import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 import { installMatchMediaMock } from "../../../testUtils.js";
-import { replaceTextForTranslation } from "../../../translationTestUtils.js";
+import { auditDetachedReactText, replaceTextForTranslation } from "../../../translationTestUtils.js";
 import themes from "../../../../src/utils/theme/themes.js";
 
 // The real panel receives runtime lenses, so catalog I/O is unnecessary. Optics,
@@ -94,8 +94,10 @@ describe("translated lens views", () => {
       [0, 0],
     ]) {
       expect(replaceTextForTranslation(container)).toBeGreaterThan(0);
+      auditDetachedReactText(container);
       rerender(view(index, stage));
       expect(screen.queryByText("Diagram Rendering Error")).toBeNull();
+      expect(auditDetachedReactText(container).staleWrites).toBe(0);
       expect(container.querySelector("svg")).not.toBeNull();
     }
     const element = screen.getByRole("button", { name: /Select lens element/ });

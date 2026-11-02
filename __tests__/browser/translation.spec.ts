@@ -1,18 +1,23 @@
 import { expect, test, type Page } from "@playwright/test";
-import { replaceTextForTranslation } from "../translationTestUtils.js";
+import { auditDetachedReactText, replaceTextForTranslation } from "../translationTestUtils.js";
 import { TRANSLATION_ROUTES, TRANSLATION_ANALYSIS_TABS } from "../translationCoverage.js";
 
 const lensName = "NIKON AF-S NIKKOR 85mm f/1.4 G";
 const lensUrl = "/lens/nikkor-85f14g";
 
+/** Replace text as a translator would, then record the React text nodes that replacement detached. */
 async function translate(page: Page) {
-  return page.locator("body").evaluate(replaceTextForTranslation);
+  const replaced = await page.locator("body").evaluate(replaceTextForTranslation);
+  await page.locator("body").evaluate(auditDetachedReactText);
+  return replaced;
 }
 
 async function healthy(page: Page) {
   await expect(page.getByText(/Diagram Rendering Error|Something went wrong/)).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Page Error", exact: true })).toHaveCount(0);
   await expect(page.locator('[translate="no"],.notranslate,meta[name="google"][content="notranslate"]')).toHaveCount(0);
+  // Any component, lint-visible or not, that wrote new text into a node the translator detached.
+  expect(await page.locator("body").evaluate(auditDetachedReactText)).toMatchObject({ staleWrites: 0 });
 }
 
 async function readyHeading(page: Page) {
@@ -89,7 +94,7 @@ for (const route of TRANSLATION_ROUTES) {
   });
 }
 
-test("lens navigation, translated inspector and display modes", async ({ page }, testInfo) => {
+test("lens navigation, translated inspector and display modes", { tag: "@smoke" }, async ({ page }, testInfo) => {
   const compact = testInfo.project.name === "compact";
   await page.goto(lensUrl);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(lensName);
@@ -177,7 +182,7 @@ test("all analysis tabs open, accept controls and close/reopen after text replac
   await healthy(page);
 });
 
-test("comparison captions and compact details update to the current aperture", async ({ page }) => {
+test("comparison captions and compact details update to the current aperture", { tag: "@smoke" }, async ({ page }) => {
   await page.goto("/compare/nikkor-85f14g/agfa-color-telinear-90mm-f4");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(2);
   expect(await translate(page)).toBeGreaterThan(0);
@@ -223,7 +228,7 @@ test("search text and counts follow empty, matching and zero-result queries", as
   }
 });
 
-test("catalog filtering and regrouping keep translated counts current", async ({ page }) => {
+test("catalog filtering and regrouping keep translated counts current", { tag: "@smoke" }, async ({ page }) => {
   await page.goto("/lenses");
   const count = page.getByText(/^Showing \d+ of \d+ interactive/);
   await expect(count).toBeVisible();
@@ -268,38 +273,42 @@ test("author filtering and sorting preserve translated cards and live counts", a
   await healthy(page);
 });
 
-test("translated primer content changes level and dialogs close, restore focus and reopen", async ({ page }) => {
-  await page.goto(lensUrl);
-  for (const [buttonName, dialogName] of [
-    ["Optics", "Optics primer"],
-    ["Aberrations", "Aberrations primer"],
-    ["Site", "About this site"],
-    ["Author", "About the author"],
-  ]) {
-    const opener = page.getByRole("button", { name: buttonName, exact: true });
-    await opener.click();
-    const dialog = page.getByRole("dialog", { name: dialogName, exact: true });
-    await expect(dialog).toBeVisible();
-    expect(await translate(page)).toBeGreaterThan(0);
-    if (dialogName.endsWith("primer")) {
-      await dialog.getByRole("button", { name: /Want more detail/ }).click();
-      await expect(dialog.getByRole("button", { name: /Back to Simple Primer/ })).toBeVisible();
+test(
+  "translated primer content changes level and dialogs close, restore focus and reopen",
+  { tag: "@smoke" },
+  async ({ page }) => {
+    await page.goto(lensUrl);
+    for (const [buttonName, dialogName] of [
+      ["Optics", "Optics primer"],
+      ["Aberrations", "Aberrations primer"],
+      ["Site", "About this site"],
+      ["Author", "About the author"],
+    ]) {
+      const opener = page.getByRole("button", { name: buttonName, exact: true });
+      await opener.click();
+      const dialog = page.getByRole("dialog", { name: dialogName, exact: true });
+      await expect(dialog).toBeVisible();
+      expect(await translate(page)).toBeGreaterThan(0);
+      if (dialogName.endsWith("primer")) {
+        await dialog.getByRole("button", { name: /Want more detail/ }).click();
+        await expect(dialog.getByRole("button", { name: /Back to Simple Primer/ })).toBeVisible();
+        await translate(page);
+        await dialog.getByRole("button", { name: /Back to Simple Primer/ }).click();
+        await expect(dialog.getByRole("button", { name: /Want more detail/ })).toBeVisible();
+      }
       await translate(page);
-      await dialog.getByRole("button", { name: /Back to Simple Primer/ }).click();
-      await expect(dialog.getByRole("button", { name: /Want more detail/ })).toBeVisible();
+      await page.keyboard.press("Escape");
+      await expect(dialog).toHaveCount(0);
+      await expect(opener).toBeFocused();
+      await opener.click();
+      await expect(dialog).toBeVisible();
+      await translate(page);
+      await dialog.getByRole("button", { name: "Close", exact: true }).click();
+      await expect(dialog).toHaveCount(0);
+      await healthy(page);
     }
-    await translate(page);
-    await page.keyboard.press("Escape");
-    await expect(dialog).toHaveCount(0);
-    await expect(opener).toBeFocused();
-    await opener.click();
-    await expect(dialog).toBeVisible();
-    await translate(page);
-    await dialog.getByRole("button", { name: "Close", exact: true }).click();
-    await expect(dialog).toHaveCount(0);
-    await healthy(page);
-  }
-});
+  },
+);
 
 test("perspective movement and unavailable folded analysis survive replacement", async ({ page }, testInfo) => {
   await page.goto("/lens/canon-ts-e-24mm-f35l-ii");
@@ -395,7 +404,8 @@ for (const [tab, label] of [
   ["vignetting", "EDGE RI"],
   ["pupils", "MAX EP SHIFT"],
 ]) {
-  test(`translated ${tab} readout matches clean focus states`, async ({ page }, testInfo) => {
+  const tag = tab === "summary" ? ["@smoke"] : [];
+  test(`translated ${tab} readout matches clean focus states`, { tag }, async ({ page }, testInfo) => {
     await page.goto(lensUrl);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(lensName);
     if (testInfo.project.name === "compact")

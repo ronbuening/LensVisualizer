@@ -10,7 +10,7 @@ import { doLayout, eflAtFocus } from "../../../../../src/optics/optics.js";
 import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/state/fieldAdapters.js";
 import { constructionFixtureData } from "../../../optics/constructionFixtures.js";
 import { installMatchMediaMock } from "../../../../testUtils.js";
-import { replaceTextForTranslation } from "../../../../translationTestUtils.js";
+import { auditDetachedReactText, replaceTextForTranslation } from "../../../../translationTestUtils.js";
 import type { AnalysisTabId } from "../../../../../src/types/state.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 
@@ -68,10 +68,14 @@ describe("translated analysis drawers", () => {
     };
     const { container, rerender, unmount } = render(view(0, 0));
     expect(replaceTextForTranslation(container)).toBeGreaterThan(10);
+    auditDetachedReactText(container);
     rerender(view(0, 0.5));
     expect(container.textContent?.length).toBeGreaterThan(100);
+    expect(auditDetachedReactText(container).staleWrites).toBe(0);
     replaceTextForTranslation(container);
+    auditDetachedReactText(container);
     rerender(view(1, 0.25, true, false));
+    expect(auditDetachedReactText(container).staleWrites).toBe(0);
     expect(screen.getByRole("region").getAttribute("aria-label")).toContain("analysis");
     replaceTextForTranslation(container);
     fireEvent.keyDown(document, { key: "Escape" });

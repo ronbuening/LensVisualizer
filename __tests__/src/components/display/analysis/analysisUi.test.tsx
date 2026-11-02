@@ -7,11 +7,28 @@ import {
   AberrationValueDisplay,
 } from "../../../../../src/components/display/analysis/analysisUi.js";
 import themes from "../../../../../src/utils/theme/themes.js";
-import { replaceTextForTranslation } from "../../../../translationTestUtils.js";
+import { auditDetachedReactText, replaceTextForTranslation } from "../../../../translationTestUtils.js";
+import { textRun } from "../../../../../src/utils/text.js";
 
 afterEach(cleanup);
 
 describe("translated analysis values", () => {
+  it("audits React text rewritten after a translator detached it", () => {
+    const mixed = (value: number) => <span>A: {value}</span>;
+    const owned = (value: number) => <span>{textRun("A: ", value)}</span>;
+    for (const [view, staleWrites] of [
+      [mixed, 1],
+      [owned, 0],
+    ] as const) {
+      const { container, rerender, unmount } = render(view(1));
+      replaceTextForTranslation(container);
+      expect(auditDetachedReactText(container)).toEqual({ detached: view === mixed ? 2 : 0, staleWrites: 0 });
+      rerender(view(2));
+      expect(auditDetachedReactText(container).staleWrites).toBe(staleWrites);
+      unmount();
+    }
+  });
+
   it.each([undefined, "mm"])("updates metrics with suffix %s and preserves other translated text", (suffix) => {
     const { container, rerender } = render(
       <AnalysisMetricRow label="Distance" value={10} suffix={suffix} t={themes.dark} />,
