@@ -1,17 +1,18 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Representative Grade B probable patent-family reconstruction; exact factory prescription is unproved.
- * Source R/d/N/V and published stop are literal. Clear SDs are frozen figure-informed inferences.
- * Infinity only; source/retail near-focus data are not turned into an unproved motion law.
- * Normal scalar native diffraction estimates are numerical checks, not independent phase or factory validation.
+ * JP H04-015611 A, Numerical Example 1; the exact production prescription is unproved.
+ * R, d, N, ν and the stop position are as printed. Back focus and the image plane are computed; the patent prints neither.
+ * N and ν are read at the d line: all seven pairs reproduce catalog nd/νd, and Figures 4 to 6 plot the d and g lines.
+ * Clear semi-diameters are inferred from Figure 1 and Canon's section; the wide-open iris radius is derived.
+ * The patent gives no focus motion, so the model is static at the retail 0.25 m close focus.
  */
 const LENS_DATA = {
   schema: 2,
   key: "canon-ef-35mm-f2",
   maker: "Canon",
   name: "CANON EF 35mm f/2",
-  subtitle: "JP H04-015611 A; Grade B probable family, representative numerical embodiment",
+  subtitle: "JP H04-015611 A — Example 1; best fit to Canon's published section",
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
@@ -26,11 +27,10 @@ const LENS_DATA = {
       design: 2,
     },
     specs: [
-      "PATENT RECONSTRUCTION; CLEAR APERTURES AND IRIS OPENING INFERRED",
-      "MODELED AXIAL CLIPPING: 40 OF 3,228 SAMPLES AT S8; NOT FACTORY PERFORMANCE",
       "7 ELEMENTS / 5 GROUPS",
-      "GRADE B PROBABLE FAMILY; REPRESENTATIVE EMBODIMENT",
-      "INFINITY CONFIGURATION ONLY",
+      "DESIGN f = 35.51 mm",
+      "DESIGN F/2.0",
+      "ALL SPHERICAL",
     ],
   },
   source: {
@@ -47,6 +47,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.58913,
@@ -54,13 +55,12 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "BACD5 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -63.6062380124121,
-      role: "Literal representative prescription; negative isolated-in-air paraxial power.",
-      indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+      role: "Front negative meniscus, convex to the object; bends the off-axis beam gradually and sets up the long back focus.",
     },
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.8061,
@@ -68,14 +68,13 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 17.541461091812614,
-      role: "Literal representative prescription; positive isolated-in-air paraxial power.",
-      indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+      role: "Thick biconvex member of doublet HL1; converges the diverging beam from L1.",
       cemented: "HL1",
     },
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.64769,
@@ -83,14 +82,13 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "E-FD2 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -35.63416681048583,
-      role: "Literal representative prescription; negative isolated-in-air paraxial power.",
-      indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+      role: "Negative meniscus cemented to L2; the joined surface corrects coma and astigmatism.",
       cemented: "HL1",
     },
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.6727,
@@ -98,13 +96,12 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "E-FD5 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -25.29924944292772,
-      role: "Literal representative prescription; negative isolated-in-air paraxial power.",
-      indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+      role: "Biconcave negative single behind the stop; shares spherical aberration and coma correction.",
     },
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.78472,
@@ -112,14 +109,13 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -50.3414027811061,
-      role: "Literal representative prescription; negative isolated-in-air paraxial power.",
-      indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+      role: "High-dispersion negative member of doublet HL2; second negative component of rear group II.",
       cemented: "HL2",
     },
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.7725,
@@ -127,14 +123,13 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 28.903561637089588,
-      role: "Literal representative prescription; positive isolated-in-air paraxial power.",
-      indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+      role: "Positive member of doublet HL2; its strongly curved rear face converges the beam after the negative components.",
       cemented: "HL2",
     },
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.7725,
@@ -142,9 +137,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 44.868308846086855,
-      role: "Literal representative prescription; positive isolated-in-air paraxial power.",
-      indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+      role: "Final positive single, 0.10 mm behind HL2.",
     },
   ],
   surfaces: [
