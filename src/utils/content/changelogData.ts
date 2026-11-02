@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-11-05",
+    type: "lens",
+    summary:
+      "Added the Canon EF 35mm f/2 and 100mm f/2 USM, Carl Zeiss Jena MC Pancolar 50mm f/1.8, Nikon AF-S 35mm f/1.8 G ED, and Voigtländer Nokton 35mm f/1.2 and Macro APO-Ultron 35mm f/2",
+  },
+  {
     date: "2026-11-02",
     type: "lens",
     summary:
