@@ -1,20 +1,35 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** US5530593A first embodiment, Table1/Figure3; Grade B probable camera-lens family.
- * Literal39-102mm F4.08-8.05 distinct from marketed38-105mmf4-7.8. Twelve elements/ten groups.
- * Explicit source stop S12. One fixed-iris hypothesis consistent with rounded endpoint FNos;
- * middleFNo6.4032461643 is derived, not printed. Printed BF/gaps retained, no refocus.
- * Clear SDs are inferred from paraxial pupil/chief floors and figure topology. Initial S21
- * cap rejected for gap intrusion;11mm geometry branch frozen before tracing. Clipping retained.
- * Canonical infinity-only; service VR/focus topology does not establish motion laws.
- * Native scalar diffraction estimate, not independent phase or factory validation.
+/**
+ * US 5,530,593, Embodiment 1 (Table 1, Figure 3): a patent design associated with the Nikon Zoom 700 VR, also sold
+ * as the Zoom-Touch 105 VR, not a confirmed factory prescription. Nikon does not link the patent to the camera.
+ * Kept at the patent's scale, f = 39-102 mm, F/4.08-8.05, H = 21.6 mm, with no scaling to the marketed 38-105mm f/4-7.8.
+ * 12 spherical elements in 10 groups: G1 three singlets; G2 is GF (cemented L4 + L5, then L6), the stop and GR
+ * (cemented L7 + L8, then L9); G3 three singlets. GF and GR move together in this embodiment.
+ * R, d, nd and νd are printed values. The stop is printed as surface 12, 2.00 mm from S11 and S13.
+ * d6, d17 and B.f are printed at f = 38.9998, 69.9996 and 101.9998 mm and are kept. The eight stations marked
+ * published: false are inferred: d6 and d17 follow monotone curves in log f, geometric steps in f, and G3 is solved
+ * to hold the paraxial image on the image plane. They model the cam; they are not Nikon's.
+ * Aperture: the printed ends imply stop radii of 4.990 and 4.988 mm, so one constant iris of about 4.99 mm is used,
+ * sized at F/4.08. The middle f/6.403 and the inferred f-numbers are computed from it, not printed. f/16 is a model
+ * control, not a sourced camera value.
+ * Table 1 prints wide 2ω = 58.20°, but the model gives 57.19° at H = 21.6 mm and Embodiments 2-5 agree with their own
+ * tables within 0.04°, so 58.20 is probably a misprint of 57.20. The printed KT/Z = 0.363 also looks misprinted
+ * (model 0.670).
+ * The patent prints no clear apertures: sd values follow Figure 3, which is isotropic within about 3 %, with flat
+ * lands on S2, S20 and S22 as drawn. Cemented faces take no land, so the L4 and L8 edges slant where the figure steps.
+ * S21 stays 0.2 mm under the drawing to keep the air gap to S22 open, and S22 sits 0.2 mm over it to clear the image
+ * circle.
+ * Focus is static at infinity: the patent moves G3 toward the image but prints no close state, and closeFocusM rests
+ * on a single hobby reference page. GR is centered, with no decentering modeled. The fixed flare stopper SF has no
+ * data and is not modeled.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "nikon-zoom-700-vr-38-105mm-f4-78",
   "maker": "Nikon",
   "name": "NIKON 38-105mm f/4-7.8 (Nikon Zoom 700 VR)",
-  "subtitle": "US 5,530,593 first embodiment; Grade B probable camera-lens family, literal 39-102mm reconstruction",
+  "subtitle": "US 5,530,593, Embodiment 1 — design 39-102 mm F/4.08-8.05 for the marketed 38-105 mm f/4-7.8",
   "catalog": {
     "lensMounts": [
       "fixed-lens-camera"
@@ -37,10 +52,10 @@ const LENS_DATA = {
       "design": 4.08
     },
     "specs": [
-      "Literal39–102mm F4.08–8.05; retail38–105mm f4–7.8",
-      "Middle FNo6.403246 is derived",
-      "Infinity-only; GradeB probable family",
-      "Clear apertures inferred; constant maximum iris opening assumed across zoom; clipping retained"
+      "12 ELEMENTS / 10 GROUPS",
+      "DESIGN f = 39-102 mm",
+      "DESIGN F/4.08-8.05",
+      "ALL SPHERICAL"
     ]
   },
   "source": {
@@ -69,7 +84,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "E-LAFH2 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -32.49834248292522,
-      "role": "Zoom group G1"
+      "role": "Negative front element of G1"
     },
     {
       "id": 2,
@@ -81,7 +96,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "K-SSK1 (SUMITA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 32.48607565003863,
-      "role": "Zoom group G1"
+      "role": "Main positive element of G1"
     },
     {
       "id": 3,
@@ -93,7 +108,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "J-SK16 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 80.10450061692084,
-      "role": "Zoom group G1"
+      "role": "Rear positive meniscus of G1"
     },
     {
       "id": 4,
@@ -105,8 +120,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "TAF3D (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -10.454554158658768,
-      "role": "Front subgroup G2F",
-      "cemented": "D1"
+      "role": "Negative front of doublet C1 in GF",
+      "cemented": "C1"
     },
     {
       "id": 5,
@@ -118,8 +133,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "FD3 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 16.11894297452266,
-      "role": "Front subgroup G2F",
-      "cemented": "D1"
+      "role": "Positive rear of doublet C1 in GF",
+      "cemented": "C1"
     },
     {
       "id": 6,
@@ -131,7 +146,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "N-BK7 (Schott catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 38.35191832239908,
-      "role": "Front subgroup G2F"
+      "role": "Positive meniscus closing GF ahead of the stop"
     },
     {
       "id": 7,
@@ -143,8 +158,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "J-PKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 34.673115378631344,
-      "role": "Centered stabilizing subgroup G2R",
-      "cemented": "D2"
+      "role": "Thick positive front of doublet C2, first element of stabilizing group GR",
+      "cemented": "C2"
     },
     {
       "id": 8,
@@ -156,8 +171,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "J-SFH2 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -35.7685112984275,
-      "role": "Centered stabilizing subgroup G2R",
-      "cemented": "D2"
+      "role": "Flint rear of doublet C2, the color partner in GR",
+      "cemented": "C2"
     },
     {
       "id": 9,
@@ -169,7 +184,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "J-PKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 37.37215087052252,
-      "role": "Centered stabilizing subgroup G2R"
+      "role": "Positive rear element of stabilizing group GR"
     },
     {
       "id": 10,
@@ -181,7 +196,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "SF4 (Schott catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 39.827842884483545,
-      "role": "Rear group G3, infinity-only focus state"
+      "role": "Positive meniscus at the front of negative group G3"
     },
     {
       "id": 11,
@@ -193,7 +208,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "Unmatched (840433 lanthanum flint; no public catalog row)",
       "focalLengthMm": -24.835845391431647,
-      "role": "Rear group G3, infinity-only focus state"
+      "role": "Strongest negative element of G3"
     },
     {
       "id": 12,
@@ -205,7 +220,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -38.630349638329314,
-      "role": "Rear group G3, infinity-only focus state"
+      "role": "Negative rear meniscus of G3, the largest element"
     }
   ],
   "surfaces": [
@@ -581,7 +596,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 0.75,
-    "description": "The patent prints infinity states only, so this model holds infinity focus at every zoom position, with inferred positions solved between the printed ones."
+    "description": "The patent moves G3 toward the image to focus but prints no close state, so this model holds infinity focus at every zoom position and no group moves with focus. The 0.75 m closest distance rests on a single hobby reference page."
   },
   "aperture": {
     "fStops": [
@@ -593,6 +608,35 @@ const LENS_DATA = {
     ],
     "maxFNumber": 16
   },
+  "groups": [
+    {
+      "text": "G1 (+)",
+      "fromSurface": "1",
+      "toSurface": "6"
+    },
+    {
+      "text": "G2 (+) / GF + GR",
+      "fromSurface": "7",
+      "toSurface": "17"
+    },
+    {
+      "text": "G3 (−)",
+      "fromSurface": "18",
+      "toSurface": "23"
+    }
+  ],
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "7",
+      "toSurface": "9"
+    },
+    {
+      "text": "C2",
+      "fromSurface": "13",
+      "toSurface": "15"
+    }
+  ],
   "layout": {
     "yScFill": 0.76
   }
