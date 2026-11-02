@@ -5,8 +5,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * rescaling to the retail 35 mm f/1.2. Paraxial trace gives EFL 34.454 mm and BFD 15.868 mm; the 0.011 mm BF residual is
  * within the rounding of the printed table and stays in place. The stop position is printed. Spherical surfaces only.
  * Unit focus: Table 1 prints the near state (magnification 0.1436, ZD0 240.11 mm, BF 20.826 mm).
- * The patent prints no clear apertures or iris opening: semi-diameters are inferred and the engine sizes the iris from
- * F/1.23. S4 is 11.5 mm because 11.1 mm would limit the axial beam to about f/1.26.
+ * The patent prints no clear apertures or iris opening, so the engine sizes the iris from F/1.23. Semi-diameters are estimated
+ * from Fig. 1, true scale at 47.2 px/mm (the drawn arcs fit the printed radii within about 1 px), and floor-checked by real
+ * rays at infinity and at the printed near state. S3 to S11 follow the figure; S5, S7 and S11 keep the drawn cap ends, with
+ * rimExtensionSd lands to the element edges. L1, L6 and L7 are drawn to 14.0, 9.7 and 12.0 mm but stay at 15.1, 10.2 and
+ * 12.4 mm: the drawn rims would cut corner transmission to about 14 %, and these hold it at about 23 %.
  */
 const LENS_DATA = {
   schema: 2,
@@ -157,27 +160,27 @@ const LENS_DATA = {
       label: "1",
       R: 28.272,
       d: 3.55,
-      sd: 15.5,
+      sd: 15.1,
       medium: 1,
     },
     {
       label: "2",
       R: 55.23,
       d: 0.15,
-      sd: 15.0,
+      sd: 15.1,
     },
     {
       label: "3",
       R: 17.92,
       d: 6.31,
-      sd: 13.8,
+      sd: 12.6,
       medium: 2,
     },
     {
       label: "4",
       R: 84.1,
       d: 1.0,
-      sd: 11.5,
+      sd: 12.6,
       medium: 3,
     },
     {
@@ -185,19 +188,21 @@ const LENS_DATA = {
       R: 11.093,
       d: 2.63,
       sd: 8.8,
+      rimExtensionSd: 12.6,
     },
     {
       label: "6",
       R: 20.47,
       d: 1.78,
-      sd: 9.5,
+      sd: 8.9,
       medium: 4,
     },
     {
       label: "7",
       R: 21.343,
       d: 3.86,
-      sd: 9.5,
+      sd: 8.5,
+      rimExtensionSd: 8.9,
     },
     {
       label: "STO",
@@ -208,20 +213,21 @@ const LENS_DATA = {
       label: "9",
       R: -2082.087,
       d: 1.52,
-      sd: 8.5,
+      sd: 8.0,
       medium: 5,
     },
     {
       label: "10",
       R: -87.621,
       d: 2.26,
-      sd: 8.1,
+      sd: 8.0,
     },
     {
       label: "11",
       R: -14.872,
       d: 1.0,
-      sd: 10.2,
+      sd: 7.9,
+      rimExtensionSd: 10.2,
       medium: 6,
     },
     {
@@ -241,13 +247,13 @@ const LENS_DATA = {
       label: "14",
       R: 56.158,
       d: 3.51,
-      sd: 12.7,
+      sd: 12.4,
       medium: 8,
     },
     {
       label: "15",
       R: -112.557,
-      sd: 12.7,
+      sd: 12.4,
     },
   ],
   focus: {

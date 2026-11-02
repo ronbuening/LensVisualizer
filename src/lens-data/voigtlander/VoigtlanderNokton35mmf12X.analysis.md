@@ -33,7 +33,7 @@ The thick positive meniscus is cemented to L3. Both of its radii are positive.
 
 nd = 1.84666, νd = 23.78. Glass: S-TIH53 (OHARA) catalog equivalent. f = −15.188 mm in air.
 
-The strongly bent negative meniscus supplies opposite-sign power within the front cemented pair. The inferred rim of its shared front interface is set to clear the f/1.23 axial beam, as described below.
+The strongly bent negative meniscus supplies opposite-sign power within the front cemented pair. The f/1.23 axial beam reaches about 11.4 mm on the shared interface, inside the 12.6 mm element edge drawn in Fig. 1.
 
 ### L4 — Positive Meniscus
 
@@ -92,13 +92,13 @@ The model publishes this printed state as its close endpoint at 0.2989 m. It is 
 
 ## Stop and Clear-Aperture Assumptions
 
-The stop plane is printed 19.28 mm behind surface 1. The patent prints no iris diameter, so the engine sizes the opening from F/1.23. Clear semi-diameters are also unprinted; they are inferred from the entrance-pupil scale, the proportions of the section and the surface geometry, keeping spherical caps distinct from rectangular flanges.
+The stop plane is printed 19.28 mm behind surface 1. The patent prints no iris diameter, so the engine sizes the opening from F/1.23. Clear semi-diameters are also unprinted; they are inferred from Fig. 1, which is drawn at true scale, and checked by real rays at infinity and at the printed near state.
 
-Inferred clear semi-diameters in millimetres are 1: 15.5, 2: 15, 3: 13.8, 4: 11.5, 5: 8.8, 6: 9.5, 7: 9.5, 9: 8.5, 10: 8.1, 11: 10.2, 12: 10.2, 13: 10.2, 14: 12.7, 15: 12.7.
+Inferred clear semi-diameters in millimetres are 1: 15.1, 2: 15.1, 3: 12.6, 4: 12.6, 5: 8.8, 6: 8.9, 7: 8.5, 9: 8, 10: 8, 11: 7.9, 12: 10.2, 13: 10.2, 14: 12.4, 15: 12.4. The spherical caps of surfaces 5, 7 and 11 end at these heights and continue as flat lands to 12.6, 8.9 and 10.2 mm, the form Fig. 1 draws.
 
-The front rim begins with roughly 10 % paraxial entrance-pupil clearance; later rims are refined from the section and from curvature and gap limits. Off-axis clipping is retained. Clearance of the iris opening does not prove blade or mount fit.
+Fig. 1 draws L1 to 14.0 mm, L6 to 9.7 mm and L7 to 12.0 mm. The model keeps these three wider, because the drawn rims would lower corner transmission to about 14 %; Cosina's section also draws them wider than Fig. 1. Off-axis clipping is retained. Clearance of the iris opening does not prove blade or mount fit.
 
-Surface 4 is 11.5 mm because 11.1 mm would limit the axial beam to about f/1.26; the f/1.23 axial ray needs about 11.4 mm there.
+The f/1.23 axial ray reaches about 11.4 mm on surface 4, where Fig. 1 ends the cemented arc at about 11.7 mm with a flat collar to the element edge. Surface 12 is drawn the same way, with its arc ending at about 8.8 mm. The model carries both arcs to the edge.
 
 ## First-Order Properties and Aberrations
 
@@ -108,15 +108,15 @@ The model's d-line spherical aberration at full aperture differs from Fig. 2(a).
 
 ## Modeled Diffraction and Coverage
 
-Wide open at infinity, the model passes 100 % of the axial beam, about 81 % at 11.4° and about 26 % at 22.8°. These fractions depend on the inferred rims and are model pupils, not measured illumination.
+Wide open at infinity, the model passes 100 % of the axial beam, about 80 % at 11.4° and about 23 % at 22.8°. These fractions depend on the inferred rims and are model pupils, not measured illumination.
 
 The table gives scalar diffraction MTF at infinity on the authored image plane, with no focus shift.
 
 | f-number | Angle ° | S/T at 10 lp/mm | S/T at 30 lp/mm | S/T at 50 lp/mm |
 | ---: | ---: | --- | --- | --- |
 | 1.23 | 0 | 0.303 / 0.303 | 0.187 / 0.187 | 0.123 / 0.123 |
-| 1.23 | 11.4 | 0.412 / 0.436 | 0.041 / 0.010 | 0.060 / 0.057 |
-| 1.23 | 22.8 | 0.640 / 0.673 | 0.389 / 0.261 | 0.215 / 0.188 |
+| 1.23 | 11.4 | 0.410 / 0.448 | 0.048 / 0.010 | 0.067 / 0.055 |
+| 1.23 | 22.8 | 0.668 / 0.721 | 0.419 / 0.291 | 0.237 / 0.190 |
 | 8 | 0 | 0.940 / 0.940 | 0.820 / 0.820 | 0.699 / 0.699 |
 | 8 | 11.4 | 0.919 / 0.924 | 0.695 / 0.732 | 0.483 / 0.548 |
 | 8 | 22.8 | 0.934 / 0.924 | 0.793 / 0.765 | 0.653 / 0.615 |
