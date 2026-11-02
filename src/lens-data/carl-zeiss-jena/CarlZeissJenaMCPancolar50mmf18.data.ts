@@ -1,16 +1,18 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Private Grade B patent-family reconstruction. Literal source R/d/nd/vd and source infinity plane retained.
- * Clear apertures and iris opening inferred; Pancolar axial stop is additionally unprinted.
- * Spherical surfaces only. No optimization, retail rescaling except explicit Pancolar x0.5, or finite law.
+/** DD 77 830 sole table, printed at f = 100 and scaled 0.5× here; R, d, nd and νd are otherwise as printed.
+ * The final gap is the printed back focus, s′ = 72.700 → 36.35 mm; the paraxial back focus is 36.38 mm.
+ * The table is a rescaled design: 19 of its 21 R and d values are round millimetre figures × 1.9119 (f ≈ 52.30 mm).
+ * Clear apertures and the iris opening are inferred. The patent prints no iris position; it sits at 55 % of the
+ * central air space here, and the patent figure draws it at about 57 %.
+ * Spherical surfaces only; nothing is re-optimized, and no focus motion is modeled.
  */
 const LENS_DATA = {
   schema: 2,
   key: "carl-zeiss-jena-mc-pancolar-50mm-f18",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA MC PANCOLAR 50mm f/1.8",
-  subtitle:
-    "DD77830 sole table x0.5; six-element/five-group MC family; inferred clear apertures and central stop; infinity only.",
+  subtitle: "DD 77 830 — Sole example; six-element, five-group form of the 1978 catalogue",
   catalog: {
     lensMounts: ["m42"], // M42: 1978 catalogue "für PRAKTICA-Typen" and Kamerastore MC listings; MC in Exakta unconfirmed
     imageFormat: "135-full-frame",
@@ -24,12 +26,7 @@ const LENS_DATA = {
       marketing: 1.8,
       design: 1.8,
     },
-    specs: [
-      "6 elements / 5 groups; Grade B probable patent family",
-      "Literal patent f100 scaled x0.5; fixed source BFL36.35 mm",
-      "Infinity only; clear apertures and iris position/opening inferred",
-      "Later MC/electric MC six/five version; earlier six/four not asserted",
-    ],
+    specs: ["6 ELEMENTS / 5 GROUPS", "DESIGN f = 100 mm (SCALED 0.5× TO 50 mm)", "DESIGN F/1.8", "ALL SPHERICAL"],
   },
   source: {
     patentNumber: "DD 77 830",
@@ -52,7 +49,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "BASF8 (SUMITA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 70.39438717915573,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Positive front meniscus collecting the full-aperture beam",
     },
     {
       id: 2,
@@ -64,7 +61,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "LAC12 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 31.361969431236684,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Positive half of the cemented front inner group",
       cemented: "D2",
     },
     {
@@ -77,7 +74,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "Unmatched (patent nd=1.5995, νd=35.2; no catalog row at these coordinates)",
       focalLengthMm: -23.64434088503424,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Negative half of the cemented front inner group; its rear face bounds the central air space",
       cemented: "D2",
     },
     {
@@ -90,7 +87,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "SF5 (Schott catalog equivalent; production supplier unspecified)",
       focalLengthMm: -27.026340136532276,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Negative inner element behind the iris; its rear face is almost flat",
     },
     {
       id: 5,
@@ -102,7 +99,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "LAC12 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 43.15961674465532,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Positive meniscus separated from L4 by the air space that makes the fifth group",
     },
     {
       id: 6,
@@ -114,7 +111,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "LAC12 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 49.6308166102886,
-      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      role: "Biconvex last element completing the rear positive power",
     },
   ],
   surfaces: [
@@ -199,7 +196,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.35,
     description:
-      "Infinity prescription only: the patent gives no focus travel, and the 1978 Carl Zeiss Jena catalogue states a 0.35 m close focus.",
+      "The model does not move. The patent gives no focus travel; the 1978 catalogue gives a close focus of 0.35 m.",
   },
   aperture: {
     nominalFNumber: 1.8,
