@@ -14,7 +14,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1050** lenses scanned
 - **12048** glass elements examined
-- **2695** elements have multiple coordinate-compatible candidates
+- **2697** elements have multiple coordinate-compatible candidates
 - **491** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
@@ -23,7 +23,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---:|
 | Smallest reference-index residual | 1570 |
 | Evidence-source priority | 835 |
-| Vendor context | 276 |
+| Vendor context | 278 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -826,6 +826,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `589611 crown class (L-BAL35 / N-SK5 / K-SKLD5 coordinate family)` | 1.58913 / 61.10 (d) | N-SK5 — direct name evidence outranks alias evidence. | S-BAL35 (Ohara, alias) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L7 |
 | `658509 dense crown / N-SSK5 class` | 1.65844 / 50.90 (d) | N-SSK5 — direct name evidence outranks six-digit code evidence. | S-BSM25 (Ohara, code, alternate code row)<br>BACED5 (Hoya, code, alternate code row) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L9 |
 | `673322 dense flint / SF5 class` | 1.67270 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L11 |
+| `J-BASF8 (Hikari spectral proxy for patent BaSF8; historical supplier/melt unconfirmed)` | 1.72342 / 37.90 (d) | J-BASF8 — Annotation vendor context matches Hikari. | BASF8 (Sumita, name, vendor ✗) | 2 | [MIRANDA AUTO E 50mm f/1.4](../../src/lens-data/miranda/MirandaAutoE50mmf14.data.ts) L1 |
 | `J-BAF11 (Hikari spectral proxy for patent BaF11; historical supplier/melt unconfirmed)` | 1.66672 / 48.30 (d) | J-BAF11 — Annotation vendor context matches Hikari. | BAF11 (Sumita, name, vendor ✗) | 2 | [MIRANDA AUTO E 50mm f/1.4](../../src/lens-data/miranda/MirandaAutoE50mmf14.data.ts) L6 |
 | `BK7 / S-BSL7 class (protective glass)` | 1.51680 / 63.88 (d) | S-BSL7 — direct name evidence outranks alias evidence. | N-BK7 (Schott, alias) | 1 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) P |
 | `S-TIH53 equivalent (N-SF57HT / FDS90-SG class dense flint)` | 1.84666 / 23.80 (d) | S-TIH53 — smallest d-line \|Δn\| (3.2e-7 vs 3.2e-6) | FDS90 (Hoya, name) | 1 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) L3 |
