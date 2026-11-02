@@ -53,7 +53,7 @@ const LENS_DATA = {
       nd: 1.5889,
       vd: 58.5,
       focalLengthMm: 68.17,
-      glass: "Unmatched (SK13, Jena; no public catalog row)",
+      glass: "SK13 (Jena; catalog row BACD13, Hoya, the SK13-class counterpart)",
       role: "Thick meniscus and strongest positive element; brings the front pair to +43.7 mm.",
     },
     {

@@ -73,12 +73,12 @@ Baseline: every face at half its printed freier Ø, no lands. Transmission at f/
   −0.00202 and +0.13.
 - SF15 and SF6 comparison: SF15 (Sumita) PgF 0.5994 against E-FD15 (Hoya) 0.6029; SF6 (Schott) 0.6102 against N-SF6 (Schott)
   0.6158. Legacy rows are kept for these lead flints. Lead-free rows move g focus by 0.007 mm.
-- L2 stays Unmatched. No catalog holds an SK13 row. BACD13 (Hoya, obsolete) is 0.00291 from the sheet's index, and no
-  equivalence is documented. Using it would move g focus by 0.018 mm.
+- L2 takes BACD13 (Hoya, obsolete) as the SK13-class counterpart: no catalog holds an SK13 row, and Hoya numbers its BACD
+  series after the SK series. It is 0.00291 from the sheet's index and −0.19 in νd. The pairing is an inference from the
+  series numbering; no document states it for Jena SK13.
 
 ### Open items
 
 - Close focus and focusing mechanism are not on the sheet. `closeFocusM` is 1.5 m from the museum-digital record (object 3836), with static geometry; unit focus has only an owner account behind it, so it is not modeled.
-- SK13 dispersion has no catalog row.
 - Exit-pupil Ø: 12.21 against the printed 12.37, unresolved.
 - The sheet's calculation date reads 14.6.58, while the zeissikonveb.de history gives 16 June 1958.

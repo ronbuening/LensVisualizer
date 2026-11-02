@@ -40,7 +40,7 @@ L1 meets the full beam and takes the smaller share of the front pair's power. It
 
 ### L2 — Positive Meniscus, convex to object
 
-nd = 1.5889, νd = 58.5. Glass: SK13 (Jena), Unmatched in the catalog. f = +68.2 mm.
+nd = 1.5889, νd = 58.5. Glass: SK13 (Jena), catalog row BACD13 (Hoya). f = +68.2 mm.
 
 L2 is the strongest positive element and, at 13.25 mm, by far the thickest. Its front face S3 carries most of its power. The sheet relieves the rear rim with a printed facet, "Fac 26.8 ∢40°", and the 1:1 section shows a cone from Ø35 down to a short Ø26.8 band at the rear. A 0.20 mm air space separates L2 from L3.
 
@@ -65,16 +65,16 @@ The sheet names each glass and melt and prints the melt's index and Abbe number.
 | Element | Sheet glass | Melt | nd / νd | Catalog row | Δnd | Δνd |
 |---|---|---|---|---|---|---|
 | L1 | SK5 | G 4703 | 1.5890 / 61.1 | SK5 (Sumita) | +0.00013 | +0.10 |
-| L2 | SK13 | 59976 | 1.5889 / 58.5 | none | — | — |
+| L2 | SK13 | 59976 | 1.5889 / 58.5 | BACD13 (Hoya) | +0.00291 | −0.19 |
 | L3 | BK1 | G 68327 | 1.5102 / 63.4 | BK1 (Sumita) | −0.00011 | 0.00 |
 | L4 | SF15 | G 69242 | 1.6991 / 30.0 | SF15 (Sumita) | −0.00015 | 0.00 |
 | L5 | SF6 | 67433 | 1.8072 / 25.3 | SF6 (Schott) | −0.00202 | +0.13 |
 
-No public catalog lists SK13 under that name, so L2 traces its printed pair by Abbe number alone. The nearest row, Hoya's obsolete BACD13 (1.59181 / 58.31), is 0.0029 away in index and no equivalence to Jena SK13 has been documented.
+No public catalog lists SK13 under that name. Hoya's obsolete BACD13 (1.59181 / 58.31), whose number follows the same SK series, supplies L2's dispersion shape. It sits 0.0029 from the sheet's index, the widest gap of the five, so the match is by glass class rather than by melt.
 
 SF15 and SF6 of this period are lead flints, so the legacy rows are used rather than their lead-free successors. The choice is small here: lead-free rows move the g-line focus by 0.007 mm.
 
-The sheet marks the lens "Farbortkorrig.", corrected for the position of colour. The model puts the paraxial C-line focus 0.10 mm behind the d-line focus, the F-line 0.09 mm ahead of it and the g-line 0.03 mm ahead of it. A pen note dated 7.12.65 gives the A′ focus difference from d as +0.28 mm; with L2 given BACD13's dispersion shape for this one comparison, the model gives +0.29 mm. That is good evidence that the catalog dispersions are representative, even though the sheet prints no spectral indices.
+The sheet marks the lens "Farbortkorrig.", corrected for the position of colour. The model puts the paraxial C-line focus 0.11 mm behind the d-line focus, the F-line 0.10 mm ahead of it and the g-line 0.05 mm ahead of it. A pen note dated 7.12.65 gives the A′ focus difference from d as +0.28 mm, and the model gives +0.29 mm. That is good evidence that the catalog dispersions are representative, even though the sheet prints no spectral indices.
 
 ## Focus Mechanism
 
