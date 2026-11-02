@@ -74,9 +74,11 @@ Column 2 of the patent defines the index as d-line (587.6 nm). The table gives c
 
 The palette is simple: both negatives are flints near νd 30, and all three positives are high-index glasses near νd 41 to 47. That high index on every positive is what lets a lens this short keep its curves moderate.
 
+Fig. 2 also plots the g-line, which tests these equivalents, because the patent prints no g-line indices. With the catalog dispersions the paraxial g focus lies 0.004 mm behind the d focus, and the two plotted curves likewise merge at the foot of the chart, so primary color is corrected. Toward the rim they part. On the patent's F = 100 scale the traced g curve has its low point of −0.12 near half the pupil against −0.15 plotted, crosses zero near 0.74 of the pupil against about 0.79, and reads +0.42 at 0.9 against +0.44. The largest gap is about 0.15, near the rim. At full aperture the g ray crosses the axis 0.32 mm behind the d ray at this scale, so the color error of this lens is spherochromatism.
+
 ## Focus Mechanism and Image Plane
 
-The patent prints the infinity state only, with no focus movement or close-distance data, so no gap varies and the focus control stays at infinity. The 0.6 m minimum focus is the retail specification and is not traced.
+The patent names no focusing group or movement and prints the infinity state only, with no close-distance data, so no gap varies and the focus control stays at infinity. The 0.6 m minimum focus is the retail specification and is not traced.
 
 The final gap of 36.760 mm is the patent's printed back focus of 91.90 at F = 100, and it places the image plane 53.408 mm behind S1. This is the paraxial focus: the computed paraxial value is 36.7637 mm, and the 0.0037 mm difference is rounding in the printed table.
 
@@ -97,9 +99,9 @@ The patent prints no semi-diameters, so all are inferred:
 | L1 | 7.7 | 7.5 | Fig. 1, held above it for corner light |
 | L2 | 6.7 | 6.65 | Fig. 1; about 7 % over the axial beam, and the height where the rim of S4 meets the stop plane |
 | L3, L4 | 7.3 | 7.2 | Fig. 1, one rim for the doublet, about 7 % over the axial beam |
-| L5 | 8.0 | 8.0 | Fig. 1; the tallest element there and in Pentax's drawing |
+| L5 | 8.2 | 8.05 | Fig. 1, in proportion to the other rims; the tallest element there and in Pentax's drawing |
 
-Fig. 1 is scaled by its own axial length, and the patent calls it a simplified view, so its readings are schematic. With these rims about 55 % of the f/2.8 beam passes at 28°.
+Fig. 1 is scaled by its own axial length, and the patent calls it a simplified view, so its millimeter readings are schematic. Its height ratios are firmer, repeating within 0.3 % on the two printed sizes of the figure, and L5 follows them: at 8.2 mm it stands 1.065 times L1 against 1.07 drawn, and 1.12 times L3 and L4 as drawn. With these rims about 56 % of the f/2.8 beam passes at 28°.
 
 ## Model Scope and Limitations
 
@@ -119,7 +121,7 @@ The example satisfies all ten of the patent's conditions, and the printed group 
 - The image plane is the printed paraxial focus, not best focus.
 - The model is static at infinity and says nothing about performance at 0.6 m.
 - The ±28° edge reaches 21.15 mm of image height, 0.50 mm short of the 21.65 mm format corner at 28.5°. Rays beyond 28° extend past the patent's stated field.
-- The patent gives d-line indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents.
+- The patent gives d-line indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents, which Fig. 2 checks at the g-line alone.
 
 ## Sources
 

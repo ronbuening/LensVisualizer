@@ -65,3 +65,66 @@ The file is level with or above the package at every field, by 0 to 2.5 points, 
 Maker's drawing, FA version, low resolution, check only: eight elements in seven groups in the same order, with a meniscus cemented doublet. Rim heights against L1, read by eye, are 0.94, 0.84, 0.75, 0.57, 0.49 and 0.73 for L2, L3, L4, the doublet, L7 and L8; the figure gives 0.96, 0.85, 0.74, 0.57, 0.49 and 0.73. It shows the same L4 flat rim and chamfer, L6 rear chamfer and L7 front bevel, and an iris mark just behind L4's tip. No element carries a special-glass or aspherical mark. Nothing disagrees with the figure.
 
 Limitations: L4's top edge slopes where the figure draws a flat rim and a 45° chamfer, up to 1 mm off, and L7's front bevel is not drawn. S9 and S10 sit 0.55 mm above the figure's top line, inside the noise band.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+Compared the live page at infinity, `focus=1`, `focus=0.5`, `mv=focus` and the inspector on elements 4 and 7 against Fig. 1 of US 4,793,698 (sheet 1, PDF page 2, 300 dpi), the Example 1 table (PDF page 12), the text columns (PDF pages 10 to 12) and Pentax's FA drawing, which is low resolution and shows the FA. Rims were re-read from the page pixels, top and bottom stroke centres, and every light figure below comes from `rimcost.mjs` unless it says otherwise.
+
+Designations: the patent numbers its elements in text and figure, so `name`, `label` and a new `diagramLabel` now carry those numerals, and the analysis follows. L1 to L8 of the sections above are elements 12, 14, 16, 18, 24, 22, 32 and 42. Fig. 1's leaders put 24 on the front of the doublet and 22 on the rear, and the text makes 24 the negative and 22 the positive member, matching i = 9 and i = 10. `source.errata` still says "L4 (i = 7)"; it is outside this review's edit list.
+
+Rim reads, half the top-to-bottom stroke distance on the sheet copy, at 10.275 px/mm, then the front-page value recorded above: element 12 257.0 px (25.01, 24.84), 14 246.0 px (23.94, 23.77), 16 218.25 px (21.24, 21.07), 18 190.25 px (18.52, 18.42), doublet 147.5 px (14.35, 14.31), 32 125.5 px (12.21, 12.25), 42 187.0 px (18.20, 18.17). Scale agrees with the earlier section. Those rims and the step order hold, with one exception. S9 and S10 at 14.85 stood above both copies, and the doublet at 0.59 of element 12 against 0.57 on the figure and the maker's drawing.
+
+Cuts and lands against `.lens-work/base1103`:
+
+| Face | Baseline | Figure, sheet / front | Final | Restore wins | Verdict |
+|---|---|---|---|---|---|
+| S1, S2 | 26.52 | 25.01 / 24.84 | 25.15 | 4.5 at 9.2° | Keep: slight. Whole lens −0.1 at worst |
+| S3, S4 | 25.81 | 23.94 / 23.77 | 23.98 | 0.0 | Keep: costs nothing |
+| S5 | 23.81 | 21.24 / 21.07 | 21.37 | 0.0 | Keep: costs nothing |
+| S6 | 23.81 | 19.76 / 19.65 | 19.70 | 0.0 | Keep: costs nothing |
+| S8 | 18.58 | 15.86 / 15.68 cap end | 15.70 | 0.0 | Keep: costs nothing |
+| S8 land | none | 18.52 outer rim | 17.00, was 16.60 | 0.0 | Keep: redraws the rim only |
+| S9, S10 | 14.85 | 14.35 / 14.31 | 14.30, was 14.85 | 0.0 | New cut, keep: costs nothing |
+| S11 | 14.85 | 12.94 / 13.07 | 13.00 | 0.0 | Keep: costs nothing |
+
+No cut needs the spacing clause. Final worst loss against baseline is 0.1 point at 7.6°, and the largest gain is 1.8 points at 3.1°. S12 and S13 (baseline 11.69), S14 and S15 (baseline 17.238) sit above baseline on the figure's outer rims, so they are raises, not cuts. S12 moved down from 12.27, as below.
+
+Element 12 by the rule's own test: the whole lens against baseline loses 0.1 point at worst, so the cut stays at 25.15 and no partial raise is called for. Measured both ways, in percent at infinity, wide open:
+
+| Rims | 3.1° | 4.6° | 6.1° | 7.6° | 9.2° |
+|---|---|---|---|---|---|
+| Package | 97.1 | 91.4 | 84.4 | 75.7 | 63.0 |
+| Package with element 12 at 25.15 alone | 97.1 | 89.3 | 80.7 | 71.2 | 58.1 |
+| First pass | 99.6 | 93.1 | 85.0 | 75.7 | 64.6 |
+| This file | 98.9 | 92.5 | 84.8 | 75.6 | 64.6 |
+| This file, element 12 = 26.00 | 99.0 | 94.4 | 87.2 | 78.6 | 67.7 |
+| This file, element 12 = 26.52 | 99.0 | 94.4 | 87.6 | 79.3 | 69.1 |
+
+So the cut alone costs 4.9 points at 9.2°, and 26.00 would give back 3.1 there. The whole-lens pass rests on the raises of elements 32 and 42. A separate lattice trace written for this review, 361 × 361 rays through the 14.10 mm stop, reads 98.8, 92.7, 85.0, 76.0 and 64.2 for this file and 67.0 at 9.2° for 26.00. The Open line on this cut stays open as the owner's choice.
+
+Near curve: it does not count against the rule, which reads infinity, wide open. The app's curve at the near gaps launches collimated rays, and against baseline it reads 99.1 for 100.0 at 3.8°, 97.5 for 100.0 at 5.0°, 95.5 for 96.7 at 6.3° and 84.0 for 81.7 at 7.5°, so −2.5 points at worst, inside 3 regardless. The same lattice trace with the object 599.2 mm from S1 finds no loss: 100.0 against 100.0 out to Y = 10, then 96.4 against 92.4 at Y = 14, 87.8 against 83.4 at Y = 17 and 70.8 against 67.5 at Y = 21.65. Collimated at the near gaps it gives −2.2 at 5.0°, so the loss belongs to the launch. The app's near curve is unchanged by this review's rims.
+
+Element 18's rim: the figure's stroke centres give a flat at ±190.25 px for 3.2 mm behind S7's edge, then a true 45° line, 26.5 × 26.5 px, to a tip at 163 px. The renderer offers one straight top edge and one vertical land, so that outline cannot be drawn. Against those centres, as symmetric difference in sheet px² and the larger of the two gaps at the flat's end and the land's corner: cap 15.70 with the land at 16.60 gives 368 and 10.0 px; at 17.00, 338 and 8.1 px; at 18.45, 435 and 18.7 px. Cap 15.40 with a land at 17.40 gives 305 and 8.6 px, but its tip falls 0.4 mm short of the figure's, so the cap stays at 15.70 and the land goes to 17.00, where the two gaps balance. The land sits on S8's unchanged sag, 0.29 mm ahead of the iris plane, and costs no light.
+
+Element 32's bevel: at the top it runs 0.8 × 1.0 mm, at the bottom 0.4 × 0.8 mm, and the curve ends at 115.5 and 118.5 px (11.24, 11.53 mm), below baseline. A vertical land cannot draw it: S12 at 11.69 with a land to 12.27 moves the corner 0.08 mm. Lowering S12 tilts the top edge instead:
+
+| S12 | Sym. diff., px² | Whole lens vs baseline | Against first pass |
+|---|---|---|---|
+| 12.27 | 88 | No loss | |
+| 12.10 | 71 | No loss | −0.3 at worst |
+| 12.00 | 66 | −0.1 at 7.6° | −0.7 at 3.1° |
+| 11.90 | 61 | −0.5 at 7.6° | −1.3 at 4.6° |
+| 11.69 | 55 | −2.2 at 7.6° | −2.8 at 4.6° |
+| 11.60 | not run | −2.8 at 7.6° | |
+| 11.36 | 55 | −4.6 at 7.6°, fails | |
+| 11.20 | 61 | −5.9 at 7.6°, fails | |
+
+12.00 takes 22 of the 33 px² on offer for at most 0.7 point, and keeps the whole lens level with baseline, so it is the value used. The figure's cap end stays 0.6 mm lower; below 11.60 the budget refuses it, and between there and 12.00 the light goes faster than the fit improves. It is a slanted edge, not a bevel: 0.27 mm across the rim where the figure has a 0.8 mm corner.
+
+Clearance: `audit:surface`, `audit:image-circle`, `audit:field-coverage` and `built.mjs` pass; `clearap.mjs` shows no `CLIPS-AXIAL` or `BLOCKS-CHIEF`. Axial margins are S9 0.74, S11 0.71 and S12 1.22 mm at the real ray of the full paraxial pupil. Engine half-field stays 9.40°, f-number 2.80, stop 14.10 mm, and the corner stays at 21.65 mm at 9.2°. The stop housing line follows S9, 14.85 to 14.30.
+
+Movement: the table prints d8 7.247–25.603, d11 10.753–3.410 and d13 14.075–3.061. Fig. 1 draws the first value, and conditions (4) and (5) reproduce from it (0.108, 0.141), so the first of each pair is infinity. Near, ×1.35: unit 20 moves 24.78 mm toward the image and unit 30 14.87 mm the same way, X3/X2 = 0.600 as printed. The text gives no direction in words, but condition (3)'s warnings that unit 20 would contact unit 30 and unit 30 would contact unit 40 fit it. Swapping in d8 alone gives m = −0.35 and 632 mm, where the pairing as stored gives m = −0.2500 and 725.00 mm. Index 0 of each `gaps` pair is infinity and index 1 the near state, exact at ×1.35. On `mv=focus` units 10 and 40 show no travel, units 20 and 30 move toward the image plane, and maximum travel reads 24.78 mm. The slider's far end reads 70 cm.
+
+Labels: Fig. 1 brackets 10 over r1–r8, 20 over r9–r11, 30 over r12–r13 and 40 over r14–r15, the file's four `groups`. `C1` brackets S9 to S11, and no bracket collides with the `d8b`, `d11` or `d13` labels. Every `type` agrees with the signs of R, every `role` holds, and all eight elements carry `focalLengthMm`. There is no aspheric surface and no `A` suffix. The stop sits between 18 and 24. On `focus=1` the `30 FOCUS` bracket packs to a second row and stays readable. No `apd` is warranted: the patent asks only for "relatively small dispersion" at 12 and the "smallest possible dispersion" at 32, which is ordinary low dispersion, and the maker's drawing marks nothing.
+
+Open limitations: element 18's top edge still leans across the flat, up to 0.8 mm off, and element 32's edge is a slant, as above. The renderer would need a sloped land to draw either.

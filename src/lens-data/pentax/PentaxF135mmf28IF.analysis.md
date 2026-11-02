@@ -25,7 +25,7 @@ Example 1 is a fit, not proof. All five examples share f = 100, F2.8, the 9.4° 
 
 ## Optical Architecture
 
-Eight spherical elements in seven groups form a telephoto with a positive, negative, negative, positive unit sequence and a telephoto ratio of 0.93. Unit 10 comprises L1–L4 (f ≈ +97 mm); unit 20 is the cemented L5/L6 doublet (f ≈ −99 mm); unit 30 is L7 (f ≈ −288 mm); unit 40 is L8 (f ≈ +97 mm). Units 10 and 40 stay fixed while units 20 and 30 move by different amounts to focus. Surface 10 is a cemented interface, not an air gap.
+Eight spherical elements in seven groups form a telephoto with a positive, negative, negative, positive unit sequence and a telephoto ratio of 0.93. Element and unit numbers below are the patent's own reference numerals. Unit 10 comprises elements 12, 14, 16 and 18 (f ≈ +97 mm); unit 20 is the cemented doublet of elements 24 and 22 (f ≈ −99 mm), with 24 in front; unit 30 is element 32 (f ≈ −288 mm); unit 40 is element 42 (f ≈ +97 mm). Units 10 and 40 stay fixed while units 20 and 30 move by different amounts to focus. Surface 10 is a cemented interface, not an air gap.
 
 The prescription reproduces all five printed conditional values: f/f2,3 = −1.893, f2/f3 = 0.343, X3/X2 = 0.600, d2-3/f = 0.108 and d3-4/f = 0.141.
 
@@ -33,49 +33,49 @@ The prescription reproduces all five printed conditional values: f/f2,3 = −1.8
 
 Element focal lengths below are isolated thick-element calculations in air. Values for cemented elements are not their in-assembly contributions.
 
-### L1 — Positive Meniscus
+### Element 12 — Positive Meniscus
 
 nd = 1.48749, νd = 70.1. Glass: S-FSL5 (Ohara) catalog equivalent. Isolated f = +165.386 mm.
 
 A low-index, high-Abbe positive front meniscus supplies converging power at the front of unit 10. The patent calls for low-dispersion glass here to offset the chromatic weakness of a positive, positive, positive, negative front unit.
 
-### L2 — Positive Meniscus
+### Element 14 — Positive Meniscus
 
 nd = 1.58913, νd = 61.0. Glass: S-BAL35 (Ohara) catalog equivalent. Isolated f = +126.660 mm.
 
-The second positive meniscus contributes positive power within the fixed front unit, 0.18 mm behind L1.
+The second positive meniscus contributes positive power within the fixed front unit, 0.18 mm behind element 12.
 
-### L3 — Positive Meniscus
+### Element 16 — Positive Meniscus
 
 nd = 1.71300, νd = 53.8. Glass: S-LAL8 (Ohara) catalog equivalent. Isolated f = +87.380 mm.
 
 The third positive meniscus has the highest index and the strongest curvature of the three. It precedes the negative member that completes the front unit.
 
-### L4 — Negative Meniscus
+### Element 18 — Negative Meniscus
 
 nd = 1.76182, νd = 27.5 as printed (see Glass Identification and Selection). Glass: S-TIH14 (Ohara), SF14 class. Isolated f = −45.025 mm.
 
 The negative meniscus completes unit 10, with the iris behind it. Fig. 1 chamfers the rim of its strongly curved rear face, so S8's clear aperture sits below S7's.
 
-### L5 — Negative Meniscus
+### Element 24 — Negative Meniscus
 
 nd = 1.77250, νd = 49.6. Glass: S-LAH66 (Ohara) catalog equivalent. Isolated f = −54.065 mm.
 
-The negative member of cemented unit 20 opens at S9 and shares S10 with L6. The patent wants this moving unit achromatic in itself, so that focusing disturbs chromatic correction as little as possible.
+The negative member of cemented unit 20 opens at S9 and shares S10 with element 22. The patent wants this moving unit achromatic in itself, so that focusing disturbs chromatic correction as little as possible.
 
-### L6 — Positive Meniscus
+### Element 22 — Positive Meniscus
 
 nd = 1.74077, νd = 27.8. Glass: S-TIH13 (Ohara) catalog equivalent. Isolated f = +110.578 mm.
 
-The positive member of unit 20 shares the S10 interface. Its dense flint pairs with the higher-Abbe lanthanum glass of L5 to achromatize the unit.
+The positive member of unit 20 shares the S10 interface. Its dense flint pairs with the higher-Abbe lanthanum glass of element 24 to achromatize the unit.
 
-### L7 — Negative Meniscus
+### Element 32 — Negative Meniscus
 
 nd = 1.51633, νd = 64.1. Glass: S-BSL7 (Ohara) catalog equivalent. Isolated f = −287.726 mm.
 
 This weak negative meniscus forms moving unit 30. The patent gives it part of the correction of unit 10's spherical aberration and of the Petzval sum, and prefers the lowest practical dispersion when the unit is a single negative element.
 
-### L8 — Biconvex Positive
+### Element 42 — Biconvex Positive
 
 nd = 1.53172, νd = 48.9. Glass: LLF6 (Sumita) catalog equivalent. Isolated f = +96.988 mm.
 
@@ -87,16 +87,16 @@ The patent prints Nd and νd at the d line and names no glass. Each element carr
 
 | Element | Catalog equivalent | nd | νd (printed) | Class |
 |---|---|---|---|---|
-| L1 | S-FSL5 (Ohara) | 1.48749 | 70.1 | FK5 fluor crown |
-| L2 | S-BAL35 (Ohara) | 1.58913 | 61.0 | SK5 dense crown |
-| L3 | S-LAL8 (Ohara) | 1.71300 | 53.8 | LaK8 lanthanum crown |
-| L4 | S-TIH14 (Ohara) | 1.76182 | 27.5 | SF14 dense flint |
-| L5 | S-LAH66 (Ohara) | 1.77250 | 49.6 | LaF34 lanthanum flint |
-| L6 | S-TIH13 (Ohara) | 1.74077 | 27.8 | SF13 dense flint |
-| L7 | S-BSL7 (Ohara) | 1.51633 | 64.1 | BK7 borosilicate crown |
-| L8 | LLF6 (Sumita) | 1.53172 | 48.9 | LLF6 extra-light flint |
+| 12 | S-FSL5 (Ohara) | 1.48749 | 70.1 | FK5 fluor crown |
+| 14 | S-BAL35 (Ohara) | 1.58913 | 61.0 | SK5 dense crown |
+| 16 | S-LAL8 (Ohara) | 1.71300 | 53.8 | LaK8 lanthanum crown |
+| 18 | S-TIH14 (Ohara) | 1.76182 | 27.5 | SF14 dense flint |
+| 24 | S-LAH66 (Ohara) | 1.77250 | 49.6 | LaF34 lanthanum flint |
+| 22 | S-TIH13 (Ohara) | 1.74077 | 27.8 | SF13 dense flint |
+| 32 | S-BSL7 (Ohara) | 1.51633 | 64.1 | BK7 borosilicate crown |
+| 42 | LLF6 (Sumita) | 1.53172 | 48.9 | LLF6 extra-light flint |
 
-**Source erratum.** The table and claim 7 print νd 27.5 for L4, which disagrees with nd 1.76182, the SF14 class at about 26.5. Example 4 uses the same index and prints 26.5. Figs. 2 and 3 fit 26.5: their paraxial g-line offsets read +0.07 and +0.45 at f = 100, S-TIH14 traces +0.07 and +0.45, and νd 27.5 would give −0.16 and +0.14. The file keeps the printed value, and the chromatic trace uses S-TIH14's catalog dispersion, which corresponds to νd 26.5.
+**Source erratum.** The table and claim 7 print νd 27.5 for element 18, which disagrees with nd 1.76182, the SF14 class at about 26.5. Example 4 uses the same index and prints 26.5. Figs. 2 and 3 fit 26.5: their paraxial g-line offsets read +0.07 and +0.45 at f = 100, S-TIH14 traces +0.07 and +0.45, and νd 27.5 would give −0.16 and +0.14. The file keeps the printed value, and the chromatic trace uses S-TIH14's catalog dispersion, which corresponds to νd 26.5.
 
 ## Focus Mechanism and Image Plane
 
@@ -114,15 +114,15 @@ The patent prints no back focus. The last gap, 46.385 mm, is the paraxial back f
 
 ## Iris and Clear Apertures
 
-The patent prints no stop position and Fig. 1 marks none. The iris sits at a fixed plane 75 % of the way through the infinity d8, 30.71 mm from S1 and 7.34 mm behind S8. The 75 % position is inferred, but Fig. 3 supports a fixed iris there. At Y = 16.5 its field curves read about −0.27 sagittal and −0.57 meridional at f = 100, and this iris traces −0.26 and −0.58. An iris moving with unit 20 traces −0.40 and −1.0 or worse, and at close focus it would need a beam about 33 mm high at L1, more than the front element offers. The wide-open radius, 14.10 mm, follows paraxial entrance pupil diameter = F/N at infinity focus, and the aperture scale runs to f/32.
+The patent prints no stop position and Fig. 1 marks none. The iris sits at a fixed plane 75 % of the way through the infinity d8, 30.71 mm from S1 and 7.34 mm behind S8. The 75 % position is inferred, but Fig. 3 supports a fixed iris there. At Y = 16.5 its field curves read about −0.27 sagittal and −0.57 meridional at f = 100, and this iris traces −0.26 and −0.58. An iris moving with unit 20 traces −0.40 and −1.0 or worse, and at close focus it would need a beam about 33 mm high at element 12, more than the front element offers. The wide-open radius, 14.10 mm, follows paraxial entrance pupil diameter = F/N at infinity focus, and the aperture scale runs to f/32.
 
-The clear apertures are inferred, not measured from a lens. Fig. 1 at its axial scale gives 25.15 mm for L1, 23.98 mm for L2, 21.37 mm for S5, 12.27 mm for L7 and 18.30 mm for L8. It chamfers the rear rims of L3, L4 and L6, so those concave faces end short of their elements' edges: 19.70 mm at S6, 15.70 mm at S8 and 13.00 mm at S11. S8 carries a drawn land out to 16.60 mm, the nearest the diagram can come to L4's flat rim and 45° chamfer, and that land stays 0.29 mm ahead of the iris plane. S7 (18.58 mm) and S9–S10 (14.85 mm) keep earlier values within 4 % of the figure. Pentax's FA drawing shows the same L4 and L6 chamfers, and L8 taller than L7. L1's 50.3 mm diameter fits inside the 52 mm filter thread.
+The clear apertures are inferred, not measured from a lens. Fig. 1 at its axial scale gives 25.15 mm for element 12, 23.98 mm for element 14, 21.37 mm for S5, 18.58 mm for S7, 14.30 mm for the doublet's S9 and S10, 12.27 mm for S13 and 18.30 mm for element 42. It chamfers the rear rims of elements 16, 18 and 22, so those concave faces end short of their elements' edges: 19.70 mm at S6, 15.70 mm at S8 and 13.00 mm at S11. S8 carries a drawn land out to 17.00 mm, the nearest the diagram can come to element 18's flat rim and 45° chamfer, and that land stays 0.29 mm ahead of the iris plane. Element 32 has a small bevel on its concave front rim. The face's curve ends at about 11.4 mm in the figure, and S12 at 12.00 mm leans the top edge that way; a lower rim would cost mid-field light. Pentax's FA drawing shows the same chamfers on elements 18 and 22, the bevel on element 32, and element 42 taller than element 32. Element 12's 50.3 mm diameter fits inside the 52 mm filter thread.
 
-Every rim clears the axial beam at both printed states. The 14.10 mm iris limits it to 23.6 mm at L1 at infinity and 22.4 mm at 1/4 magnification, a working f/3.35 there, and the end of Fig. 3's spherical aberration curve traces to that same fixed iris. The three chamfered faces stop only rays that L1 or L7 already stops, so they take no light from the corners.
+Every rim clears the axial beam at both printed states. The 14.10 mm iris limits it to 23.6 mm at element 12 at infinity and 22.4 mm at 1/4 magnification, a working f/3.35 there, and the end of Fig. 3's spherical aberration curve traces to that same fixed iris. S6, S8, S9, S10 and S11 stop only rays that another rim already stops, so they take no light from the corners.
 
 ## Coverage
 
-The patent states a 9.4° half-field, or 18.8° in full. The model reaches the 21.65 mm corner of the 135 format at 9.2°, inside that field. At infinity focus and f/2.8, relative illumination is 93.1 % at 4.6°, 85.0 % at 6.1°, 75.7 % at 7.6° and 64.6 % at 9.2°. L7 does most of the corner clipping, followed by L1. These values follow from the inferred rims, so they describe this model rather than a measured lens.
+The patent states a 9.4° half-field, or 18.8° in full. The model reaches the 21.65 mm corner of the 135 format at 9.2°, inside that field. At infinity focus and f/2.8, the rims pass 98.9 % of the beam at 3.1°, 92.5 % at 4.6°, 84.8 % at 6.1°, 75.6 % at 7.6° and 64.6 % at 9.2°. Element 32 does most of the clipping out to 7.6°. At the corner it and element 42 clip the same side of the beam, and element 12 trims the other. These values follow from the inferred rims, so they describe this model rather than a measured lens.
 
 ## Sources
 

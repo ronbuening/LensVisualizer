@@ -104,3 +104,61 @@ Clearance on the final set: wide open at f/1.7 the axial ray reaches 10.57 mm at
 Maker's drawing, Pentax catalog section, read at its own axial scale of 0.152 mm/px: L1 16.0–16.3, L2 14.4, L3 13.55, bevel ends 10.9 and 10.6, L4/L5 12.4–12.7, L6 12.4–12.7 mm. Six elements in five groups with the same order, L6 square, and flat rims with bevels on L3 and L4. Its curve ends agree with the new surfaces 6 and 7 within 0.2 mm. It runs closer to the file's outer rims than to the patent figure, and it is a check on order and proportion only.
 
 Live page checked at the only printed state, infinity. `focus=1` renders the same, because the model is static. L3 and L4 now read flat-topped as in both drawings, and the STO label sits against the L3 land without covering it. No patent stop tick exists to test the stop, and Figure 2 prints no lateral fans, so neither gives a second rim reading.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+Compared the local page at infinity and with `focus=1`, the element inspector and an overlay of the model on the front-page print with the patent's sole example (`patents/US3817603.pdf`, front page and Fig. 1, native 2320 × 3408) and with the Pentax catalog section. All readings below are new, from stroke centerlines. Rays come from a separate hand-entered skew-ray trace on the stop lattice, which reproduces the engine's curve within 0.1 point, so the rim costs do not rest on the app's code alone.
+
+No `sd` or land changed. Corner light at 22.7° is 45.5 % before and after, engine half-field stays 22.7° and f/1.7 stays f/1.7 with stop 10.35 mm and EFL 49.986 mm. `rimcost.mjs` worst loss against baseline rims is 0.0 points.
+
+| Surface | Figure reading (mm) | Baseline | Final | Light cost | Verdict |
+|---|---:|---:|---:|---:|---|
+| 6 | 10.5 at the curve end | 11.5 | 10.7, land 13.5 | 0.00 | Keep: slight. Beam reaches 10.61 near 6° |
+| 7 | 10.45 at the curve end | 11.1 | 10.6, land 12.9 | 0.00 | Keep: slight. Beam reaches 10.44 near 5.5° |
+| 10 | 12.05 | 12.7 | 12.5 | 0.00 | Keep: slight; squares L6 as drawn |
+
+The cost is 0.0000 points at 256 cells across the stop, every 0.25° from 0 to 23.5°. Taking the lands off and restoring all three rims passes the validator and changes nothing, so spacing is not the reason they stay: they cost no light and draw the flat rims of L3 and L4.
+
+Figure stretch, settled at about 2.5 %. With the axial scale fixed at 25.33 px/mm on the front page and 18.9 px/mm on Fig. 1, each drawn arc was fitted against its printed radius, each reaching an rms of 0.2–0.6 px at its own ratio of axial to across-axis scale:
+
+| Arc | 3 | 4 | 6 | 7 | 9 | 11 |
+|---|---:|---:|---:|---:|---:|---:|
+| Front page | 1.040 | 1.068 | 0.990 | 1.040 | 1.008 | 1.128 |
+| Fig. 1 | 1.038 | 1.063 | 0.985 | 1.028 | 0.995 | 1.110 |
+
+| Common ratio tried | 1.000 | 1.025 | 1.0375 | 1.050 | 1.070 |
+|---|---:|---:|---:|---:|---:|
+| Summed squared rms, front page (px²) | 20.2 | 11.5 | 12.4 | 17.0 | 32.6 |
+| Summed squared rms, Fig. 1 (px²) | 11.1 | 7.9 | 9.8 | 14.3 | 27.2 |
+
+The best common ratio is 1.02–1.03 on both prints, and 1.07 fits about three times worse. Surface 1 is drawn asymmetrically and is left out. Freeing the radius as well gives no answer: rms moves by at most 0.16 px from 0.9 to 1.2 on the strong arcs, as the first pass found.
+
+Effect on rims: none moves. At 24.7 px/mm the file's outer rims stand 4–6 % above the figure, where a 7 % stretch would have put them within about 2 % of it. That excess stays for three reasons. L1 to the figure, 15.25 mm, costs 5.74 points; the budget would stop it near 15.7 mm. With L1 held, the others already keep the drawn proportions: rim over L1 is 0.926, 0.890, 0.841, 0.797 and 0.791 on the figure and 0.920, 0.889, 0.833, 0.796 and 0.772 in the file, so cutting L2 to L5 alone would break them. The catalog drawing also stands above the patent figure: by eye at its own axial scale L1 16.0, L3 13.4, L4/L5 and L6 12.4 mm, to about ±0.3 mm. Surfaces 6 and 7 do not depend on the stretch, because they come from sag along the axis.
+
+| Rim | Figure at 24.7 px/mm | File | Gap (mm) |
+|---|---:|---:|---:|
+| 1, 2 | 15.25 | 16.2 | 0.95 |
+| 3 | 14.12 | 14.9 | 0.78 |
+| 4 | 13.57 | 14.4 | 0.83 |
+| 5 | 12.82 | 13.5 | 0.68 |
+| 8, 9 | 12.16 | 12.9 | 0.74 |
+| 10, 11 | 12.05 | 12.5 | 0.45 |
+
+Surfaces 6 and 7, measured to stroke centerlines: half-spans 269.2 and 254.9 px, drawn sags 89 px (3.52 mm) and 78 px (3.09 mm), arc-fit curve ends about 10.5 and 10.45 mm. The first pass's 3.63 and 3.20 mm ran from a vertex centerline to the outer edge of the ink. The drawn ends stand 2.74 mm apart on centerlines and 2.53 mm between ink edges, and the model gives 2.62 mm. Surface 6 cannot reach 10.5 mm: that is inside the f/1.7 axial ray at 10.57 mm and costs 0.70 points at 5.7°. Surface 7 could reach 10.45 mm at no cost, but that moves its land 0.1 mm, under one screen pixel, so it stays.
+
+L3 and L4 on the site: flat tops, then a land square to the axis at the curve end, where the figure and the catalog chamfer the corner. The chamfers measure about 0.9 × 1.9 mm (L3 top), 1.1 × 1.8 (L3 bottom), 1.2 × 1.8 (L4 top) and 1.8 × 2.0 (L4 bottom). The renderer cannot draw them. The land adds about 1.4 mm² at an L3 corner, against about 5.8 mm² missing if one straight edge ran from surface 5 to the curve end, so the land is the better picture. Stop: z = 17.28 mm, 1.07 mm behind the L3 land and 1.55 mm ahead of the L4 land, drawn inside the gap and touching neither. The figure draws the junction, surface 8, about 0.3 mm forward: L4 2.2 and L5 4.8 mm against the table's 2.41 and 4.505, and the catalog leans the same way. Table 1 and the claim both read t4 = 4.82 and t5 = 9.01, so this is drafting, not a data fault.
+
+Label changes, with the patent's column 1 as evidence ("six lenses designated I-VI from front to rear"):
+
+| Field | Before | After |
+|---|---|---|
+| Element `label` | Element 1 … 6 | Element I … VI |
+| Element `diagramLabel` | none, diagram showed 1 … 6 | I … VI, following the repo's Roman-numeral form; `name` stays L1 … L6 |
+| L4, L5 `cemented` | missing, no doublet badge | C1, inspector shows DOUBLET C1 |
+| `focus.description` | infinity state only | also says the patent gives no focus motion and names no focusing group |
+
+Checked and found right: `type` strings against column 1 (I double convex, II positive meniscus, III negative meniscus, IV negative, V positive, VI positive) and against the signs of R; L2 stays a positive meniscus with r3 = 22.445 and the corrected r4 = 47.195, f = +48.90 mm. The six `focalLengthMm` values match a separate thick-lens calculation to four places. Doublet C1 spans surfaces 7 to 9, and the patent names no groups, so `groups` stays absent. No surface is aspheric. The patent names no special glass and the catalog marks none, so no `apd` tag belongs here. All six `role` strings hold.
+
+Movement: static. All four columns were read, and the patent says nothing about focusing, so there is no paragraph to quote and no table to order. The slider reads "Not modeled" and `focus=1` renders the same as infinity.
+
+Open lines above are unchanged: the F12 residual, and a page image of DE 2224723's table.

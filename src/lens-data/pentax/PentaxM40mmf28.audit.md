@@ -65,3 +65,59 @@ Heights are the mean of the top and bottom stroke centers: 219.5, 193.75, 210.25
 **Render.** The overlay at 29.2 px/mm and the local page at infinity match Fig. 1 in order, proportion and square rims. The focus control is not modeled, so the page at `focus=1` is the same state.
 
 Limit: the vertical scale of Fig. 1 is bracketed, not proved. If the arcs are right, every rim could stand 3 % higher, and L5 would sit lowest in that bracket.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+**Result.** One element changed: L5 8.0 → 8.2 mm on both faces, decided on the height ratios of Fig. 1. `focus.description`, the header and the analysis now say the patent names no focusing group or motion. The cut on L1 passes the 3-point rule, there are no lands, and `checks.gapSagFrac` is not set. Labels, tags and the static state are correct. The model's g-line curve agrees with Fig. 2.
+
+| Faces | Element | Figure reading, 29.2 px/mm | Baseline | Before | Final | Verdict | Light |
+|---|---|---|---|---|---|---|---|
+| S1, S2 | L1 | 7.52 | 7.9 | 7.7 | 7.7 | Cut, keep: slight | Restoring wins 2.7 points at 22.4°; the whole lens loses 0.7 at 8.4° |
+| S3, S4 | L2 | 6.64 | 6.7 | 6.7 | 6.7 | Not a cut, unchanged | None |
+| S5 to S7 | L3–L4 | 7.19 | 7.3 | 7.3 | 7.3 | Not a cut, unchanged | None |
+| S8, S9 | L5 | 8.05 | 7.3 | 8.0 | 8.2 | Raised above baseline on the figure | Gains 7.4 points at 28° against baseline |
+
+The final `rimcost.mjs` worst loss against baseline rims is 0.7 points at 8.4°.
+
+**Re-measure.** Stroke centers on the native 2320 × 3408 raster, top and bottom averaged about the axis: page 1 L1 219.75, L2 194, L3–L4 210, L5 235.25 px; page 2 146, 129.25, 139.75, 156.5 px. These repeat the first pass at the same 29.2 px/mm: L1 7.52, L2 6.64, L3–L4 7.19, L5 8.05 mm.
+
+**L5.** The millimeter reading depends on the vertical scale, which is bracketed from 28.2 to 29.2 px/mm and puts L5 between 8.05 and 8.32 mm. The ratios of the heights do not. They repeat within 0.3 % between the two printed sizes, far inside the 2.5 % the first pass took as noise for an absolute reading.
+
+| Ratio | Page 1 | Page 2 | L5 at 8.0 | L5 at 8.2 |
+|---|---|---|---|---|
+| L5 / L1 | 1.071 | 1.072 | 1.039 | 1.065 |
+| L5 / L3–L4 | 1.120 | 1.120 | 1.096 | 1.123 |
+| L5 / L2 | 1.213 | 1.211 | 1.194 | 1.224 |
+| L1 / L3–L4 | 1.046 | 1.045 | 1.055 | 1.055 |
+| L1 / L2 | 1.133 | 1.130 | 1.149 | 1.149 |
+| L3–L4 / L2 | 1.083 | 1.081 | 1.090 | 1.090 |
+
+Over the six ratios the rms error falls from 1.8 % at 8.0 mm to 0.9 % at 8.2 mm, against 1.2 % at 8.1 mm and 1.4 % at 8.3 mm. L1, L3–L4 and L2 each imply L5 at 8.25, 8.18 and 8.12 mm. All four final rims fit one vertical scale of 28.72 px/mm to 0.06 mm, which is 0.983 of the axial scale and inside the bracket; at 8.0 mm the same fit leaves L5 0.13 mm short. The drawn step from L1 to L5 is 0.53 mm, and it was 0.3 mm on the site and is now 0.5 mm. Pentax's drawing asks for more, not less: mirrored and read by eye, half-heights 343, 311, 311 and 390 give L5 / L1 of 1.14. The light gain, 1.0 point at 28°, played no part. The audit's earlier "L5 keeps 8.0 mm" stood on the absolute reading alone.
+
+**L1.** L1 stays at 7.7 mm, 2.4 % over the axial reading. The 3-point rule would admit less: L1 7.5 with L5 8.0 loses 2.6 points at 11.2° as a whole lens, and L1 7.6 with L5 8.2 loses 1.5 at 8.4°. Neither is taken. The first leaves L1 / L3–L4 at 1.027 against 1.046 drawn (rms 1.4 %), and the second gains 0.3 % of rms, which is inside the noise, for up to 1.5 points of light.
+
+**Stop plane and L2.** L2 keeps 6.7 mm. The S4 sag at 6.7 mm is 0.64308 mm against the 0.643 mm gap, an overrun of 0.00008 mm, with exact contact at sd 6.6996. That is below the 0.001 mm precision of the gap, which was itself rounded from this sag, so at the file's precision the rim and plane are in contact. The iris stroke stays in air, because `irisInAir` tests radii up to the open 5.99 mm, where S4 clears the plane by 0.131 mm. Dropping to 6.69 mm would add a cut with no figure or ray reason: against the other rims the ratios put L2 at 6.75 to 6.81 mm, so the plane already holds it low. On the site at 3× the iris runs from 5.09 mm, where the outer ray passes, to the 6.7 mm housing, which is the smaller neighbouring rim. It stands in the air gap, leaves S4's curve to the left, and its outer end meets L2's rear rim corner. The overrun is 0.003 px at that scale and invisible. No change.
+
+**Silhouette against Fig. 1.** Step order, square rims and proportions now match. Differences that remain are the first pass's and are not authored: drawn bevels on the rear corners of L1 and the front corners of L3, the rounded upper front corner of L5, and heavier strokes on the right-hand faces. S5's beam reaches 6.99 mm at 28°, past the 6.65 mm where the drawn curve ends, so an L3 bevel would cost light and fail the rule. L3–L4 is 1.4 % over the axial reading and on the 28.72 px/mm line, so it stays.
+
+**Labels and tags.** `L1` to `L5` are the patent's names in the column 4 tables, and the inspector shows them. The diagram shows ids 1 to 5, the same sequence, so no `diagramLabel` is needed. The patent names no groups, so there is no `groups` block. Bracket `C1` spans S5 to S7, and it collides with nothing because no gap varies. Each `type` agrees with the signs of R. L5's "Positive Meniscus" matches the patent's wording. There are no aspheres and no `apd` tags: the patent names no special glass and Pentax's drawing marks none. Inspector read for all five elements: focal lengths +28.05, −19.17, −31.97, +22.36 and +50 mm, matching an independent thick-lens calculation, with roles true to the patent. The doublet is +61.96 mm.
+
+**Movement.** Static. Columns 1 to 4 and the tables contain no focusing text; the only related terms are back focal length and "Backfocus = 91.90 = 0.919F". The slider reads "Not modeled", `focus=1` is the same state, and `mv=focus` reports no modeled movement. `focus.description` previously said only that the infinity state is printed; it now states the silence. The retail lens's focusing method is not claimed.
+
+**Axial colour.** Fig. 2 digitized at native resolution, ticks at 92.5 px per unit, h = 1 at the top of the curves. Model values are the engine's C/d/F/g channel trace with the catalog equivalents; the d values match `lsa.mjs`. F = 100 scale:
+
+| Quantity | Fig. 2 | Model |
+|---|---|---|
+| d low point | −0.38 at 0.67 | −0.375 at 0.70 |
+| d zero crossing | 0.95 | 0.955 |
+| d at 0.98 | +0.22 | +0.14 |
+| g low point | −0.15 at 0.56 | −0.12 at 0.55 |
+| g zero crossing | 0.79 | 0.74 |
+| g at 0.90 | +0.44 | +0.42 |
+| g at 0.944 | +0.69 | +0.63 |
+| g at 0.98 | +1.04 | +0.89 |
+| g − d near axis | merged in the stroke | +0.009 |
+
+Agreement is within 0.07 up to 0.94 of the pupil and 0.15 at the top, or 0.06 mm at this scale. The patent prints no g-line data, so this is the only outside test of the catalog equivalents, and they pass. At full aperture the model has g − d = +0.80, or 0.32 mm.
+
+**Field and corners.** Engine half-field 28.00° and f/2.8 before and after, stop radius 5.99 mm, chief ray clear at 28°, surface validator clean, image-circle floor clear, field coverage 21.15 of 21.65 mm by the declared 28°. Full-pupil transmission at the final rims: 100.0 to 5.6°, 99.3, 96.5, 92.5, 87.2, 81.0, 73.6, 65.8 and 56.1 % at 28°. Before: the same to 22.4°, then 65.5 and 55.1 %. Baseline: 48.7 % at 28°.

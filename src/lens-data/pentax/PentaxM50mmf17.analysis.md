@@ -22,7 +22,7 @@ The patent's prose mentions a standard objective of 1:1.8 or so, but its example
 
 ## Optical Architecture
 
-Six spherical elements in five air-separated groups form a Gaussian normal lens: positive L1 and L2, negative meniscus L3, the stop gap, the cemented L4/L5 doublet and positive L6. L4 and L5 share surface 8. Four of the six elements use the high index of 1.816, the feature the title names, and Table 2 gives a Petzval sum of +0.170.
+Six spherical elements in five air-separated groups form a Gaussian normal lens: positive L1 and L2, negative meniscus L3, the stop gap, the cemented L4/L5 doublet and positive L6. The patent designates these lenses I to VI from front to rear, and the diagram carries its numerals; L1 to L6 below follow the same order. L4 and L5 share surface 8. Four of the six elements use the high index of 1.816, the feature the title names, and Table 2 gives a Petzval sum of +0.170.
 
 The patent's distinguishing choice is a slightly negative rear radius on L1 (r2 = −16328.50 at F = 100, or −8164.25 mm here), kept as a finite signed radius rather than flattened. The patent notes that such a radius usually narrows the field and aggravates coma, and accepts it to reduce distortion, leaving the other conditions below to compensate. Figure 2C shows about −0.44% at 22.7°, which the model reproduces.
 
@@ -95,7 +95,7 @@ Patent and catalog agree in nd. The small Abbe differences are within period cat
 
 ## Focus Mechanism and Image Plane
 
-The patent publishes the infinity state only and gives no close-focus spacing, so the model is static and no element moves. The 0.45 m in the data file is Pentax's stated minimum focus; the production lens's focus travel is not modeled.
+The patent names no focusing group, describes no focus motion, publishes the infinity state only and gives no close-focus spacing, so the model is static and no element moves. The 0.45 m in the data file is Pentax's stated minimum focus; the production lens's focus travel is not modeled.
 
 The patent prints no back focus. The last gap of 35.966 mm is the paraxial back focus of the corrected prescription, which puts the image plane 67.766 mm behind the first vertex with no refocus.
 
@@ -113,7 +113,7 @@ The patent marks no stop and prints no clear diameters. The stop is inferred at 
 
 The inferred semi-diameters are 16.2, 16.2, 14.9, 14.4, 13.5, 10.7, 10.6, 12.9, 12.9, 12.5 and 12.5 mm. Surface 1 is the f/1.7 beam plus 10%. The others follow the proportions of Figure 1. The figure's arcs fit about 24.7 px/mm across the axis against 25.3 px/mm along it, a stretch of about 2.5%, and at the across-axis scale the outer rims run about 5% above the drawing.
 
-Surfaces 6 and 7 end where the drawn curves end, just outside the f/1.7 axial beam at 10.57 and 10.33 mm. Figure 1 bevels from those points out to the flat rims of L3 and L4. The model draws the flats as lands to 13.5 and 12.9 mm, square where the figure bevels, and the lands take no rays. L6 is cut square, so its two faces share one height. Pentax's catalog drawing agrees with the file's rims within 0.5 mm.
+Surfaces 6 and 7 end within 0.2 mm of the drawn curve ends, just outside the wide-open beam, which reaches 10.61 and 10.44 mm there at any field. Figure 1 bevels from those points out to the flat rims of L3 and L4. The model draws the flats as lands to 13.5 and 12.9 mm, square where the figure bevels, and the lands take no rays. L6 is cut square, so its two faces share one height. Pentax's catalog drawing agrees with the file's rims within 0.5 mm.
 
 ## Model Scope and Limitations
 

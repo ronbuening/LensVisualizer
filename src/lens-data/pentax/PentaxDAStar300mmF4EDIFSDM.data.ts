@@ -6,6 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * A patent design associated with the product, not a confirmed factory prescription. Embodiments 6 and 7 both fit
  * the retail data, and no retail figure separates them.
  *
+ * Names: Figure 19 and col. 4 call the first to fourth lens groups 10–40 and the eight elements 11, 12, 13, 21, 22, 31,
+ * 32 and 41. Elements are named L11 … L41 after those numerals and the diagram prints the bare numerals; G1–G4
+ * abbreviate the four groups, and C1 and C2 are the cemented pairs 21 + 22 and 31 + 32.
+ *
  * Radii, thicknesses, Nd and ν are the printed values at patent scale (scale factor 1). Printed f = 291.00,
  * FNO = 1:4.1, W = 4.2°, fB = 56.93 mm; Figures 20A and 20B label FNO 1:4.12. The traced EFL is 290.991 mm and BFD
  * 56.933 mm. The 0.009 mm EFL difference is rounding in the printed table: d7 alone spans ±0.083 mm of EFL within its
@@ -13,8 +17,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * The patent places the stop 3.500 mm in front of surface 10, so printed d9 = 7.00 splits into 3.5 + 3.5 at infinity.
  * The stop stays fixed with the second group during focus: closest-focus d9 = 18.29 leaves 14.79 mm from stop to
- * surface 10. That agrees with Figure 21's FE 4.63 (computed 4.67; a stop moving with the third group gives 3.76).
- * The stop radius is derived from the design f-number (paraxial EPD = F/N); the patent prints no stop diameter.
+ * surface 10. A real-ray trace from Figure 20's 1:4.12 gives Figure 21's FE 4.63; a stop moving with the third group
+ * would give 3.81. The stop radius is derived from the design f-number (paraxial EPD = F/N); the patent prints no stop diameter.
  *
  * The patent prints no clear apertures. All 14 lens semi-diameters are estimates from Figure 19, not factory values.
  * Their rim heights keep the figure's proportions and sit about 3 % above it at 5.83 px/mm in both directions. Figure 19
@@ -25,8 +29,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Table 7 prints m = 0, −0.02 and −0.25. The infinity and closest rows are authored; the −0.02 row is not, so
  * positions between them are interpolated. Traced at the closest row, object to image is 1400 mm at m = −0.2445.
  *
- * Indices are d-line. Glass labels on L3, L4, L7 and L8 are nearest-catalog proxies, because those printed pairs match
- * no catalog row; the labels on L1, L2, L5 and L6 are catalog equivalents, and the supplier is not established.
+ * Indices are d-line. Glass labels on L13, L21, L32 and L41 are nearest-catalog proxies, because those printed pairs
+ * match no catalog row and recur in no other embodiment; the labels on L11, L12, L22 and L31 are catalog equivalents,
+ * and the supplier is not established.
  * fStops run to the f/32 Ricoh lists; the stop opens to the design F/4.1.
  */
 const LENS_DATA = {
@@ -64,8 +69,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "L11",
+      label: "Element 11",
+      diagramLabel: "11",
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.2,
@@ -76,23 +82,25 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "L12",
+      label: "Element 12",
+      diagramLabel: "12",
       type: "Biconvex Positive",
       nd: 1.43875,
       vd: 95,
       focalLengthMm: 155.86,
-      apd: "inferred",
+      apd: "patent",
       apdNote:
-        "Ricoh names the second element as ED glass; the printed 1.43875/95.0 is the S-FPL53 coordinate (catalog dPgF +0.0503), and the supplier is not established.",
+        "Col. 6 calls element 12 a special low-dispersion glass and condition (5) bounds only its νd; the patent prints no partial dispersion. Ricoh names the second element as ED, and the printed 1.43875/95.0 is the S-FPL53 coordinate (catalog dPgF +0.0503). The supplier is not established.",
       indexReference: "d",
       glass: "S-FPL53 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Main positive power of the first group, in ED glass",
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "L13",
+      label: "Element 13",
+      diagramLabel: "13",
       type: "Biconcave Negative",
       nd: 1.8,
       vd: 44.1,
@@ -103,8 +111,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "L21",
+      label: "Element 21",
+      diagramLabel: "21",
       type: "Negative Meniscus",
       nd: 1.79952,
       vd: 41.3,
@@ -116,15 +125,16 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
-      label: "Element 5",
+      name: "L22",
+      label: "Element 22",
+      diagramLabel: "22",
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.6,
       focalLengthMm: 60.52,
-      apd: "inferred",
+      apd: "patent",
       apdNote:
-        "Ricoh names the fifth element as ED glass; the printed 1.49700/81.6 is the FCD1 coordinate (catalog dPgF +0.0323), and the supplier is not established.",
+        "Col. 6 calls element 22 a special low-dispersion glass and condition (6) bounds only its νd; the patent prints no partial dispersion. Ricoh names the fifth element as ED, and the printed 1.49700/81.6 is the FCD1 coordinate (catalog dPgF +0.0323). The supplier is not established.",
       indexReference: "d",
       glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "ED positive meniscus giving the second-group doublet its power",
@@ -132,8 +142,9 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
-      label: "Element 6",
+      name: "L31",
+      label: "Element 31",
+      diagramLabel: "31",
       type: "Biconvex Positive",
       nd: 1.80518,
       vd: 25.4,
@@ -145,8 +156,9 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
-      label: "Element 7",
+      name: "L32",
+      label: "Element 32",
+      diagramLabel: "32",
       type: "Biconcave Negative",
       nd: 1.7426,
       vd: 44.4,
@@ -158,8 +170,9 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
-      label: "Element 8",
+      name: "L41",
+      label: "Element 41",
+      diagramLabel: "41",
       type: "Positive Meniscus",
       nd: 1.69883,
       vd: 29.6,

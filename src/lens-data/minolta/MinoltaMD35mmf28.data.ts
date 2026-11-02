@@ -9,8 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (11.137 mm) splits 5.7365 + 5.4005 mm and the stop is at z = 29.463 mm. Its radius follows the paraxial stop rule.
  * Semi-diameters are not printed. They are read from Figure 1 at 21.5 px/mm, set by its vertex positions; arc fits give
  * the same scale across the axis, so the drawing is not stretched.
- * L2, L4 and L5 keep the drawn square rims. S6 is 7.5 mm inside the 7.4-7.8 mm drawn below and above the axis, and L3
- * and L4 close at that rim as drawn. rimExtensionSd on S2 and S5 draws the flat L1 and L3 edges; each land stands in
+ * G1-G5 are the patent's element designations, from Figure 1 and its text.
+ * G2, G4 and G5 keep the drawn square rims. S6 is 7.5 mm inside the 7.4-7.8 mm drawn below and above the axis, and G3
+ * and G4 close at that rim as drawn. rimExtensionSd on S2 and S5 draws the flat G1 and G3 edges; each land stands in
  * for a drawn bevel and carries no light.
  * Table I prints N and v without naming a wavelength. Four of its five pairs reproduce catalog nd/vd and none a catalog
  * ne/ve, which establishes the d line by the coordinate test in LENS_DATA_SPEC.md.
@@ -52,8 +53,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "G1",
       label: "Element 1",
+      diagramLabel: "G1",
       role: "Front diverging element that creates the long back focus",
       type: "Negative Meniscus",
       nd: 1.5714,
@@ -64,9 +66,10 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "G2",
       label: "Element 2",
-      role: "Thick element ahead of the stop, correcting L1's coma, distortion and lateral color",
+      diagramLabel: "G2",
+      role: "Thick element ahead of the stop, correcting G1's coma, distortion and lateral color",
       type: "Biconvex Positive",
       nd: 1.6583,
       vd: 58.5,
@@ -76,20 +79,22 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "G3",
       label: "Element 3",
+      diagramLabel: "G3",
       role: "High-dispersion negative behind the stop, the main spherical and Petzval corrector",
       type: "Biconcave Negative",
       nd: 1.6889,
       vd: 31.2,
       indexReference: "d",
       focalLengthMm: -17.36048337037693,
-      glass: "PBM28 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "FD8 (HOYA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 4,
-      name: "L4",
+      name: "G4",
       label: "Element 4",
+      diagramLabel: "G4",
       role: "High-index meniscus, convex to the image, carrying the rear group's strongest positive power",
       type: "Positive Meniscus",
       nd: 1.72,
@@ -100,8 +105,9 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "G5",
       label: "Element 5",
+      diagramLabel: "G5",
       role: "Rear crown sharing the positive power of the rear group",
       type: "Biconvex Positive",
       nd: 1.6204,

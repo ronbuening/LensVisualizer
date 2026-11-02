@@ -10,11 +10,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the patent marks none. The iris is a fixed plane 75 % through the infinity d8, 30.7101375 mm from S1, sized
  * by paraxial EPD = F/N. The 75 % position is inferred; the field curves of Fig. 3 fit a fixed iris there and do
  * not fit one moving with unit 20.
- * sd: inferred, not measured. L1, L2, S5, S6, S8, S11, L7 and L8 are read from Fig. 1 at its axial scale; S7, S9 and
- * S10 keep earlier values within 4 % of that figure. The figure chamfers the rear rims of L3, L4 and L6, so S6, S8 and
- * S11 stop at the drawn cap ends, clear of every traced beam at both focus states. S8's rimExtensionSd 16.6 stands in
- * for L4's flat rim and chamfer, which one rim edge cannot draw, and keeps the land ahead of the iris plane.
- * Erratum: the table and claim 7 print νd 27.5 for L4, where nd 1.76182 is SF14 class at 26.5 and Figs. 2 and 3
+ * Elements carry the patent's reference numerals: 12, 14, 16 and 18 in unit 10, 24 and 22 in unit 20, 32 and 42.
+ * sd: inferred, not measured. S1 to S6, S8 to S11, S13 and S14 to S15 are read from Fig. 1 at its axial scale, and S7
+ * keeps an earlier value within 1 % of it. The figure chamfers the rear rims of 16, 18 and 22, so S6, S8 and S11 stop
+ * at the drawn cap ends, clear of every traced beam at both focus states. S8's rimExtensionSd 17.0 stands in for 18's
+ * flat rim and chamfer, which one rim edge cannot draw, and keeps the land ahead of the iris plane. S12 at 12.0 sits
+ * between the foot of 32's front bevel and its 12.27 outer rim, so the top edge leans the way the bevel does; any
+ * lower costs mid-field light.
+ * Erratum: the table and claim 7 print νd 27.5 for element 18, where nd 1.76182 is SF14 class at 26.5 and Figs. 2 and 3
  * fit 26.5. vd keeps the printed value and S-TIH14 catalog dispersion traces it at 26.5; see source.errata.
  */
 const LENS_DATA = {
@@ -56,15 +59,16 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "The table and claim 7 print νd 27.5 for L4 (i = 7), but nd 1.76182 is the SF14 class at 26.5, and Figs. 2 and 3 fit 26.5: their paraxial g-line offsets read +0.07 and +0.45 at f = 100; S-TIH14 traces +0.07 and +0.45, while νd 27.5 gives −0.16 and +0.14. Among Examples 2–5 only Example 4 uses this glass, and it prints 26.5; Examples 2 and 5 print 1.78470/26.2 and Example 3 prints 1.80518/25.4 for the same element. This file keeps the printed vd 27.5, and S-TIH14 catalog dispersion traces it at 26.5.",
+        note: "The table and claim 7 print νd 27.5 for element 18 (i = 7), but nd 1.76182 is the SF14 class at 26.5, and Figs. 2 and 3 fit 26.5: their paraxial g-line offsets read +0.07 and +0.45 at f = 100; S-TIH14 traces +0.07 and +0.45, while νd 27.5 gives −0.16 and +0.14. Among Examples 2–5 only Example 4 uses this glass, and it prints 26.5; Examples 2 and 5 print 1.78470/26.2 and Example 3 prints 1.80518/25.4 for the same element. This file keeps the printed vd 27.5, and S-TIH14 catalog dispersion traces it at 26.5.",
       },
     ],
   },
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "12",
+      label: "Element 12",
+      diagramLabel: "12",
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.1,
@@ -75,8 +79,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "14",
+      label: "Element 14",
+      diagramLabel: "14",
       type: "Positive Meniscus",
       nd: 1.58913,
       vd: 61,
@@ -87,8 +92,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "16",
+      label: "Element 16",
+      diagramLabel: "16",
       type: "Positive Meniscus",
       nd: 1.713,
       vd: 53.8,
@@ -99,8 +105,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "18",
+      label: "Element 18",
+      diagramLabel: "18",
       type: "Negative Meniscus",
       nd: 1.76182,
       vd: 27.5,
@@ -111,8 +118,9 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
-      label: "Element 5",
+      name: "24",
+      label: "Element 24",
+      diagramLabel: "24",
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
@@ -124,8 +132,9 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
-      label: "Element 6",
+      name: "22",
+      label: "Element 22",
+      diagramLabel: "22",
       type: "Positive Meniscus",
       nd: 1.74077,
       vd: 27.8,
@@ -137,8 +146,9 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
-      label: "Element 7",
+      name: "32",
+      label: "Element 32",
+      diagramLabel: "32",
       type: "Negative Meniscus",
       nd: 1.51633,
       vd: 64.1,
@@ -149,8 +159,9 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
-      label: "Element 8",
+      name: "42",
+      label: "Element 42",
+      diagramLabel: "42",
       type: "Biconvex Positive",
       nd: 1.53172,
       vd: 48.9,
@@ -211,7 +222,7 @@ const LENS_DATA = {
       label: "8",
       R: 21.0141,
       sd: 15.7,
-      rimExtensionSd: 16.6,
+      rimExtensionSd: 17,
       d: 7.3375875,
     },
     {
@@ -221,14 +232,14 @@ const LENS_DATA = {
     {
       label: "9",
       R: 89.6967,
-      sd: 14.85,
+      sd: 14.3,
       medium: 5,
       d: 2.06145,
     },
     {
       label: "10",
       R: 28.21095,
-      sd: 14.85,
+      sd: 14.3,
       medium: 6,
       d: 3.14415,
     },
@@ -240,7 +251,7 @@ const LENS_DATA = {
     {
       label: "12",
       R: -92.55195,
-      sd: 12.27,
+      sd: 12,
       medium: 7,
       d: 2.06145,
     },

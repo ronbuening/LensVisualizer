@@ -34,14 +34,14 @@ The printed 291.00 mm and F/4.1 sit close to the marketed 300 mm and f/4 without
 
 ## Optical Architecture
 
-Embodiment 7 is an all-spherical telephoto with four groups of positive, positive, negative and positive power; the patent states that no surface is aspherical (col. 7). Its 8 elements form 6 air-separated components: L1, L2, L3, cemented doublet C1 (L4 + L5), cemented doublet C2 (L6 + L7) and L8.
+Embodiment 7 is an all-spherical telephoto with four groups of positive, positive, negative and positive power; the patent states that no surface is aspherical (col. 7). Figure 19 and col. 4 identify parts by reference numeral: lens groups 10, 20, 30 and 40, and elements 11, 12, 13, 21, 22, 31, 32 and 41, which the text calls the first to eighth lens elements. The elements here are named L11 … L41 after those numerals, and the diagram prints the bare numerals as Figure 19 does. G1–G4 abbreviate the four groups. The 8 elements form 6 air-separated components: L11, L12, L13, cemented doublet C1 (L21 + L22), cemented doublet C2 (L31 + L32) and L41.
 
 | Group | Elements | Focal length (mm) | During focus |
 | --- | --- | ---: | --- |
-| G1 | L1–L3 | +182.60 | Fixed |
+| G1 | L11–L13 | +182.60 | Fixed |
 | G2 | C1 | +147.68 | Fixed |
 | G3 | C2 | −55.83 | Moves toward the image |
-| G4 | L8 | +332.35 | Fixed |
+| G4 | L41 | +332.35 | Fixed |
 
 G1 and G2 have a combined focal length of 106.11 mm, and the 228.21 mm length gives a telephoto ratio of 0.78. The patent's aims are a light two-element focusing group, small changes in distortion and spherical aberration during focus, and a short minimum distance. It faults earlier designs for leaving the focusing group too little room behind it (col. 1), and the 56.96 mm space behind C2 supplies that room.
 
@@ -51,70 +51,70 @@ The patent places the diaphragm 3.500 mm in front of surface 10 (col. 11), so th
 
 Focal lengths are for each element alone in air.
 
-### L1 — Positive Meniscus
+### L11 — Positive Meniscus
 
 nd = 1.48749, νd = 70.2. Glass: S-FSL5 (OHARA) equivalent. f = +318.80 mm.
 
-L1 is the weak front meniscus of G1, convex to the object. The patent keeps low-dispersion glass out of this position: it would correct aberrations about as well here, but element 11 is the one exposed to contact with external objects (col. 6).
+L11 is the weak front meniscus of G1, convex to the object. The patent keeps low-dispersion glass out of this position: it would correct aberrations about as well here, but element 11 is the one exposed to contact with external objects (col. 6).
 
-### L2 — Biconvex Positive
+### L12 — Biconvex Positive
 
-nd = 1.43875, νd = 95.0. Glass: S-FPL53 (OHARA) equivalent — ED, inferred. f = +155.86 mm.
+nd = 1.43875, νd = 95.0. Glass: S-FPL53 (OHARA) equivalent — special low-dispersion in the patent, ED per Ricoh. f = +155.86 mm.
 
-L2 carries most of G1's positive power and is the second element Ricoh names as ED. Condition (5) requires νd above 80.
+L12 carries most of G1's positive power. It is the patent's second lens element and the first of the two elements Ricoh names as ED. Condition (5) asks for νd above 80.
 
-### L3 — Biconcave Negative
+### L13 — Biconcave Negative
 
 nd = 1.80000, νd = 44.1. Glass: NBFD14 (HOYA) coordinate proxy. f = −223.37 mm.
 
-L3 closes G1 and precedes the 54.85 mm air space to C1. Its printed pair matches no catalog row.
+L13 closes G1 and precedes the 54.85 mm air space to C1. Its printed pair matches no catalog row.
 
-### L4 — Negative Meniscus in C1
+### L21 — Negative Meniscus in C1
 
 nd = 1.79952, νd = 41.3. Glass: S-LAH52 (OHARA) coordinate proxy. f = −107.25 mm.
 
-L4 leads C1 and shares surface 8 with L5. Its nd is the S-LAH52 value, but its printed νd is 0.9 below that glass.
+L21 leads C1 and shares surface 8 with L22. Its nd is the S-LAH52 value, but its printed νd is 0.9 below that glass.
 
-### L5 — Positive Meniscus in C1
+### L22 — Positive Meniscus in C1
 
-nd = 1.49700, νd = 81.6. Glass: FCD1 (HOYA) equivalent — ED, inferred. f = +60.52 mm.
+nd = 1.49700, νd = 81.6. Glass: FCD1 (HOYA) equivalent — special low-dispersion in the patent, ED per Ricoh. f = +60.52 mm.
 
-L5 is the positive member of C1 and the fifth element Ricoh names as ED. Condition (6) requires νd above 80. The patent places this second low-dispersion element in G2, whose aperture is smaller than G1's, for cost (col. 6).
+L22 is the positive member of C1, the patent's fifth lens element and the second of the two elements Ricoh names as ED. Condition (6) asks for νd above 80. The patent places this second low-dispersion element in G2, whose aperture is smaller than G1's, for cost (col. 6).
 
-### L6 — Biconvex Positive in C2
+### L31 — Biconvex Positive in C2
 
 nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA) equivalent. f = +68.35 mm.
 
-L6 leads the focusing doublet just behind the stop and shares surface 11 with L7. The patent allows the positive and negative members of G2 and G3 to be reversed (col. 4).
+L31 leads the focusing doublet just behind the stop and shares surface 11 with L32. The patent allows the positive and negative members of G2 and G3 to be reversed (col. 4).
 
-### L7 — Biconcave Negative in C2
+### L32 — Biconcave Negative in C2
 
 nd = 1.74260, νd = 44.4. Glass: LAF2 (HOYA) coordinate proxy. f = −29.88 mm.
 
-L7 gives C2 its net negative power. Its printed pair matches no catalog row.
+L32 gives C2 its net negative power. Its printed pair matches no catalog row.
 
-### L8 — Positive Meniscus
+### L41 — Positive Meniscus
 
 nd = 1.69883, νd = 29.6. Glass: E-FD15 (HOYA) coordinate proxy. f = +332.35 mm.
 
-L8 is the only element of G4, a weak meniscus concave to the object. The patent ties that orientation to correcting both distortion and spherical aberration with a single element, and condition (4) bounds its object-side radius (col. 5). Its printed pair matches no catalog row.
+L41 is the only element of G4, a weak meniscus concave to the object. The patent ties that orientation to correcting both distortion and spherical aberration with a single element, and condition (4) bounds its object-side radius (col. 5). Its printed pair matches no catalog row.
 
 ## Glass Identification and Selection
 
 | Element | Patent nd / νd | Catalog label | Catalog nd / νd | Status |
 | --- | --- | --- | --- | --- |
-| L1 | 1.48749 / 70.2 | S-FSL5 (OHARA) | 1.48749 / 70.24 | Equivalent |
-| L2 | 1.43875 / 95.0 | S-FPL53 (OHARA) | 1.43875 / 94.95 | Equivalent; ED, inferred |
-| L3 | 1.80000 / 44.1 | NBFD14 (HOYA) | 1.80170 / 44.32 | Coordinate proxy |
-| L4 | 1.79952 / 41.3 | S-LAH52 (OHARA) | 1.79952 / 42.23 | Coordinate proxy |
-| L5 | 1.49700 / 81.6 | FCD1 (HOYA) | 1.49700 / 81.61 | Equivalent; ED, inferred |
-| L6 | 1.80518 / 25.4 | S-TIH6 (OHARA) | 1.80518 / 25.43 | Equivalent |
-| L7 | 1.74260 / 44.4 | LAF2 (HOYA) | 1.74400 / 44.90 | Coordinate proxy |
-| L8 | 1.69883 / 29.6 | E-FD15 (HOYA) | 1.69895 / 30.05 | Coordinate proxy |
+| L11 | 1.48749 / 70.2 | S-FSL5 (OHARA) | 1.48749 / 70.24 | Equivalent |
+| L12 | 1.43875 / 95.0 | S-FPL53 (OHARA) | 1.43875 / 94.95 | Equivalent; special low-dispersion glass (col. 6) |
+| L13 | 1.80000 / 44.1 | NBFD14 (HOYA) | 1.80170 / 44.32 | Coordinate proxy |
+| L21 | 1.79952 / 41.3 | S-LAH52 (OHARA) | 1.79952 / 42.23 | Coordinate proxy |
+| L22 | 1.49700 / 81.6 | FCD1 (HOYA) | 1.49700 / 81.61 | Equivalent; special low-dispersion glass (col. 6) |
+| L31 | 1.80518 / 25.4 | S-TIH6 (OHARA) | 1.80518 / 25.43 | Equivalent |
+| L32 | 1.74260 / 44.4 | LAF2 (HOYA) | 1.74400 / 44.90 | Coordinate proxy |
+| L41 | 1.69883 / 29.6 | E-FD15 (HOYA) | 1.69895 / 30.05 | Coordinate proxy |
 
-The patent defines Nd at the d-line (col. 6), and the model traces the printed indices. L1, L2, L5 and L6 match catalog rows, so their names are equivalents; the supplier is not established. The pairs on L3, L4, L7 and L8 match no exact catalog row. Those labels are nearest-coordinate proxies, and their dispersion away from the d-line is the proxy glass's, not a known property of the patent glass. Embodiment 6 prints catalog pairs at the same positions: 1.79952/42.2 on L3 and L4, 1.74400/44.8 on L7 and 1.68893/31.1 on L8.
+The patent defines Nd at the d-line (col. 6), and the model traces the printed indices. L11, L12, L22 and L31 match catalog rows, so their names are equivalents; the supplier is not established. The pairs on L13, L21, L32 and L41 match no exact catalog row. Those labels are nearest-coordinate proxies, and their dispersion away from the d-line is the proxy glass's, not a known property of the patent glass. The patent prints only Nd and ν, with no glass name or other line index. Embodiment 6 prints catalog pairs at the same positions: 1.79952/42.2 on L13 and L21, 1.74400/44.8 on L32 and 1.68893/31.1 on L41. None of Embodiment 7's four pairs appears in another embodiment. Only L21's index recurs, in Embodiment 6, and embodiments 1, 3 and 5 hold similar one-off pairs in the same positions, so these read as design values rather than stocked melts.
 
-The ED identification is inferred from Ricoh's statement and the printed pairs. Catalog dPgF is +0.0503 for S-FPL53 and +0.0323 for FCD1. The patent uses one such element in each of G1 and G2, rather than two in the larger G1, to lower cost while keeping chromatic correction (col. 6). Table 8 prints condition (6) as 81.2 for every embodiment, while every table prints 81.6 at element 5; the model uses the table value, and both satisfy the condition.
+The patent names the glass class without naming a melt. Col. 6 uses a special low-dispersion glass satisfying conditions (5) and (6) for elements 12 and 22 to correct axial and lateral chromatic aberration. Those conditions bound only νd, and the patent prints no partial dispersion, so the anomalous partial dispersion of L12 and L22 stays inferred from Ricoh's ED statement and the printed pairs. Catalog dPgF is +0.0503 for S-FPL53 and +0.0323 for FCD1. The patent uses one such element in each of G1 and G2, rather than two in the larger G1, to lower cost while keeping chromatic correction (col. 6). Table 8 prints condition (6) as 81.2 for every embodiment, while every table prints 81.6 at element 5; the model uses the table value, and both satisfy the condition.
 
 ## Focus Mechanism
 
@@ -130,7 +130,7 @@ The model uses the infinity and closest rows, so the closest state is a printed 
 
 Traced at the closest row with the image plane fixed, object to image is 1400 mm and the magnification is −0.2445, against the printed −0.25. The patent prints no object distance. The traced values agree with Ricoh's 1.4 m and 0.24×. Embodiment 6 shows the same difference, tracing to −0.2436 where its table prints −0.26.
 
-The patent does not say whether the stop moves, but Figure 21 settles it. A stop fixed with G2 gives a closest-focus F-number of 4.67 from the 1:4.12 of Figure 20, against the printed FE 4.63; a stop moving with G3 would give 3.76. The model therefore keeps the stop fixed with G2, and its distance to surface 10 grows from 3.5 mm to 14.79 mm (printed d9 = 18.29 mm less the 3.5 mm before the stop).
+The patent does not say whether the stop moves, but Figure 21 settles it. A real-ray trace with the stop fixed with G2 gives a closest-focus F-number of 4.63 from the 1:4.12 of Figure 20, which is the printed FE; a stop moving with G3 would give 3.81. The model therefore keeps the stop fixed with G2, and its distance to surface 10 grows from 3.5 mm to 14.79 mm (printed d9 = 18.29 mm less the 3.5 mm before the stop).
 
 Autofocus is driven by Pentax's SDM ultrasonic motor, and Ricoh's Quick-Shift system allows manual focus after autofocus without switching.
 

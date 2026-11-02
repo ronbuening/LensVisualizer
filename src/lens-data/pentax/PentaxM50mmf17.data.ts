@@ -11,10 +11,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters are inferred: surface 1 is the f/1.7 beam plus 10 %, the others follow the
  * proportions of Figure 1 and clear the f/1.7 axial ray. Figure 1's arcs fit 24.7 px/mm across
  * the axis against 25.3 px/mm along it; at 24.7 the outer rims run about 5 % above the drawing.
- * Surfaces 6 and 7 end where the drawn curves end. Their rimExtensionSd lands draw the flat rims
- * of L3 and L4 in place of the drawn bevels and take no rays. L6 is drawn square-cut, so
- * surfaces 10 and 11 share one height. The patent marks no stop; it sits at the midpoint of the
- * 18.98 mm gap, z = 17.28 mm, with its radius solved from the paraxial f/1.7 pupil.
+ * Surfaces 6 and 7 end within 0.2 mm of the drawn curve ends, just outside the wide-open beam at
+ * 10.61 and 10.44 mm. Their rimExtensionSd lands draw the flat rims of L3 and L4 in place of the
+ * drawn bevels and take no rays. L6 is drawn square-cut, so surfaces 10 and 11 share one height.
+ * The patent marks no stop; it sits at the midpoint of the 18.98 mm gap, z = 17.28 mm, with its
+ * radius solved from the paraxial f/1.7 pupil. Element labels are the patent's lenses I to VI.
  * Infinity state only: closeFocusM is Pentax's stated 0.45 m and no focus travel is modeled.
  * The patent field is 45.4 degrees full against Pentax's 47 degrees. This is a patent design
  * associated with the SMC Pentax-M 50mm f/1.7, not a confirmed factory prescription.
@@ -69,7 +70,8 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Element 1",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Biconvex Positive",
       role: "Front collector; its slightly negative rear radius limits distortion",
       nd: 1.816,
@@ -81,7 +83,8 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
-      label: "Element 2",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Positive Meniscus",
       role: "Shares the front positive power with L1; carries the corrected r4",
       nd: 1.816,
@@ -93,7 +96,8 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
-      label: "Element 3",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Negative Meniscus",
       role: "Flint meniscus ahead of the stop; concave rear face faces the stop gap",
       nd: 1.72825,
@@ -105,7 +109,9 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
-      label: "Element 4",
+      label: "Element IV",
+      diagramLabel: "IV",
+      cemented: "C1",
       type: "Biconcave Negative",
       role: "Negative member of the cemented doublet behind the stop",
       nd: 1.6668,
@@ -117,7 +123,9 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
-      label: "Element 5",
+      label: "Element V",
+      diagramLabel: "V",
+      cemented: "C1",
       type: "Biconvex Positive",
       role: "High-index positive member of the doublet; its index step at the junction corrects coma",
       nd: 1.816,
@@ -129,7 +137,8 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
-      label: "Element 6",
+      label: "Element VI",
+      diagramLabel: "VI",
       type: "Biconvex Positive",
       role: "Rear positive singlet, working mainly through its strong rear face",
       nd: 1.816,
@@ -224,7 +233,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.45,
     description:
-      "The patent publishes the infinity state only, so no element moves in this model. The production lens focuses to 0.45 m; its focus travel is not modeled. The image plane is computed, because the patent prints no back focus.",
+      "The patent gives no focus motion: it names no focusing group and publishes the infinity state only, so no element moves in this model. The production lens focuses to 0.45 m; its focus travel is not modeled. The image plane is computed, because the patent prints no back focus.",
   },
   aperture: {
     nominalFNumber: 1.7,

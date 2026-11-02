@@ -14,10 +14,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * stop 9.039 mm behind S1 in the air between L2 and L3. Fig. 2 points to a chief-ray crossing inside L2, about 7 mm
  * behind S1, where no iris can sit. The stop radius follows the paraxial entrance pupil, F/N.
  * Semi-diameters are inferred, none is printed. Fig. 1 at its axial scale reads L1 7.5, L2 6.65, L3-L4 7.2 and L5
- * 8.0 mm, and each element keeps one rim, floor-checked by real-ray trace: L2 and L3-L4 clear the axial beam by about
- * 7 %. L5 is the tallest element in Fig. 1 and in Pentax's catalog drawing. L2 stops at 6.7 mm, where the S4 rim meets
- * the stop plane. L1 stays above the figure, at 7.7 mm, because a lower rim costs corner illumination.
- * Focus: the patent prints the infinity state only, so no gap varies; closeFocusM is the retail minimum focus.
+ * 8.05 mm, and each element keeps one rim, floor-checked by real-ray trace: L2 and L3-L4 clear the axial beam by about
+ * 7 %. L1 stays above the figure, at 7.7 mm, because a lower rim costs corner illumination. L5 follows the height
+ * ratios of Fig. 1, which repeat on both printed sizes: at 8.2 mm it stands 1.065 times L1 against 1.07 drawn. It is
+ * the tallest element in Fig. 1 and in Pentax's catalog drawing. L2 stops at 6.7 mm, where the S4 rim meets the stop
+ * plane to within the 0.001 mm precision of the gaps.
+ * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies;
+ * closeFocusM is the retail minimum focus.
  */
 
 const LENS_DATA = {
@@ -172,20 +175,20 @@ const LENS_DATA = {
       label: "8",
       R: -85.028,
       d: 1.732,
-      sd: 8,
+      sd: 8.2,
       medium: 5,
     },
     {
       label: "9",
       R: -27.544,
       d: 36.76,
-      sd: 8,
+      sd: 8.2,
     },
   ],
   focus: {
     closeFocusM: 0.6,
     description:
-      "The patent prints the infinity state only, so the lens is modeled at infinity with no focus movement; 0.6 m is the retail minimum focus.",
+      "The patent names no focusing group or motion and prints the infinity state only, so the lens is modeled at infinity with no focus movement; 0.6 m is the retail minimum focus.",
   },
   aperture: {
     nominalFNumber: 2.8,

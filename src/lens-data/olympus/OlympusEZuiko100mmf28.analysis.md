@@ -76,7 +76,7 @@ The labels are present-day catalog equivalents that supply the model's dispersio
 
 ## Focus Mechanism
 
-The patent prints the infinity state only, so the model is static: all spacings are fixed and no focus travel is authored. The 1 m minimum focus is Olympus's catalog figure. The catalog also says the lens has an automatic correction mechanism for close distances. The model does not carry that mechanism and assumes no unit-focus law in its place.
+The patent prints the infinity state only and says nothing about focusing, so the model is static: all spacings are fixed and no focus travel is authored. The 1 m minimum focus is Olympus's catalog figure. The catalog also says the lens has an automatic correction mechanism for close distances. The model does not carry that mechanism and assumes no unit-focus law in its place.
 
 ## Image Plane
 
@@ -94,13 +94,13 @@ No semi-diameters are printed, and the patent has no drawing of Example 2. Its F
 
 L1 to L3 use 1.10 times the paraxial axial marginal height at f/2.8, rounded up to 0.01 mm and shared by both faces of each element: 19.66, 18.70 and 17.38 mm. These sit within about 5 % of the drawing, and L1 : L2 : L3 is 1 : 0.95 : 0.88 here against 1 : 0.94 : 0.89 drawn.
 
-L4 and L5 take the drawn heights, 14.5 and 13.4 mm, square-cut with both faces at one height. They are 0.74 and 0.68 of L1 here, against 0.76 and 0.70 drawn, and L5 keeps the drawn 0.92 of L4. Patent Fig. 1 reads L4 at 0.73 of L1, which supports that rim. It is no guide to L5: that element belongs to the other example, and the figure draws S7 as a straight line and S10 far more curved than printed.
+L4 and L5 take the drawn heights, 14.5 and 13.3 mm, square-cut with both faces at one height. They are 0.74 and 0.68 of L1 here, against 0.76 and 0.70 drawn, and L5 keeps the drawn 0.92 of L4. Patent Fig. 1 reads L4 at 0.73 of L1, which supports that rim. It is no guide to L5: that element belongs to the other example, and the figure draws S7 as a straight line and S10 far more curved than printed.
 
-Olympus's curves are flatter than Example 2's printed radii, so the drawing's height scale has no independent proof. The f/2.8 axial beam, 17.87 mm at L1, limits any vertical stretch to about 6 %, which would read L4 and L5 at 13.7 and 12.6 mm and leave the ratios between rims as they are.
+The drawing holds one scale across and along the axis: its four corner chamfers on L3 and L4 measure 44.6° to 45.7°. Its curves on S4, S5, S7 and S8 are still flatter than Example 2's printed radii, S5 for instance 45 to 48 mm against 34.06 mm, while L5's two faces match the print within 1.5 px of sag. The rear heights carry over all the same, because the beams there depend little on those curves. With the four drawn radii placed in Example 2's prescription the focal length stays near 98 mm, and the marginal and chief rays at L4 and L5 move by under 5 %.
 
 Both drawings end S8's concave cap short of the element's edge. Olympus's stops at about 10.7 mm and continues as a flat land. The model carries that land 3.46 mm behind the vertex, where the cap ends at 11.12 mm, because the wide-open beams reach 11.07 mm on this face. The land stops no light and gives L4 a 6.1 mm edge, against about 6.15 mm drawn. The drawing's corner chamfers on L3 and L4 are not modeled.
 
-With these rims at f/2.8, the transmitted share of the off-axis bundle is 94.7 % at 6.0°, 89.4 % at 8.1°, 82.0 % at 10.1° and 67.0 % at the 12.1° format corner, with L5 and L1 setting the limit. Example 2's 12°10′ edge lands at 21.82 mm, 0.17 mm beyond the 21.65 mm corner used for this comparison.
+With these rims at f/2.8, the transmitted share of the off-axis bundle is 94.7 % at 6.0°, 89.4 % at 8.1°, 81.4 % at 10.1° and 66.1 % at the 12.1° format corner, with L5 and L1 setting the limit. Example 2's 12°10′ edge lands at 21.82 mm, 0.17 mm beyond the 21.65 mm corner used for this comparison.
 
 ## Conditional Expressions
 

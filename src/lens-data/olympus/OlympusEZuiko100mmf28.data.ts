@@ -20,11 +20,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters: none are printed, and no drawing of Example 2 exists in the patent: Fig. 1 is drawn at Example 1's
  * spacing. Olympus's section drawing, at Example 2's spacing, is the shape reference. L1 to L3 are 1.10 times the
  * paraxial axial marginal height at f/2.8, rounded up to 0.01 mm and shared by both faces, and agree with that
- * drawing within its noise. L4 (14.5 mm) and L5 (13.4 mm) are estimated from it at 10.16 px/mm, square-cut like the
- * drawing, and floor-checked by real-ray trace. S8's flat land at 3.46 mm is inferred: the drawing ends the cap at
- * about 10.7 mm, and the wide-open beams keep it out to 11.12 mm.
+ * drawing within its noise. L4 (14.5 mm) and L5 (13.3 mm) are read from it at 10.16 px/mm, a scale its 45° chamfers
+ * confirm across the axis, square-cut like the drawing, and floor-checked by real-ray trace. S8's flat land at 3.46 mm
+ * is inferred: the drawing ends the cap at about 10.7 mm, and the wide-open beams keep it out to 11.12 mm.
  *
- * Focus: static at infinity. The patent prints no close state; 1 m is Olympus's catalog figure.
+ * Focus: static at infinity. The patent gives no focus motion or close state; 1 m is Olympus's catalog figure.
  */
 const LENS_DATA = {
   schema: 2,
@@ -189,20 +189,20 @@ const LENS_DATA = {
       label: "9",
       R: 64.86,
       d: 2.55,
-      sd: 13.4,
+      sd: 13.3,
       medium: 5,
     },
     {
       label: "10",
       R: 179.95,
       d: 42.86911164332392,
-      sd: 13.4,
+      sd: 13.3,
     },
   ],
   focus: {
     closeFocusM: 1,
     description:
-      "Static at infinity. The patent prints no close state, so the model carries no focus motion. Olympus's catalog gives a 1 m minimum focus and an automatic correction mechanism for close distances, which the model does not include.",
+      "Static at infinity. The patent gives no focus motion or close state, so the model carries none. Olympus's catalog gives a 1 m minimum focus and an automatic correction mechanism for close distances, which the model does not include.",
   },
   aperture: {
     nominalFNumber: 2.8,
