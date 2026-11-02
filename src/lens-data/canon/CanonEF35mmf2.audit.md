@@ -63,4 +63,60 @@ Canon's section, 3.2 px/mm: seven elements in five groups, same order. Half-heig
 
 The live page at infinity and at `focus=1` shows the same section, since the model is static, and agrees with the figure: L1's flat rear land, the air lens closing on the L4–L5 flats, HL2 stepping over L4, and L7's thin edge. An overlay at 11.71 and 11.29 px/mm lies on the drawn strokes everywhere except HL1's top, about 4 px inside the ink.
 
-Open limitations: rims are read to about 0.15 mm, and the arc fits run from 11.4 to 12.2 px/mm surface by surface. Figure 1 draws no chamfers and the model has none. HL1 is left inside its reading.
+Open limitations: rims are read to about 0.15 mm, and the arc fits run from 11.4 to 12.2 px/mm surface by surface. Figure 1 draws no chamfers and the model has none. HL1 is left inside its reading. (HL1 closed 2026-11-02: set to its 11.8 mm edge reading in the section below.)
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+Compared the local page at infinity, `focus=1`, `mv=focus` and the inspector for L1, L3, L4, L5 and L7 with `patents/JPH04015611A.pdf`, PDF p. 4, Figure 1, re-measured at 347 dpi, with the patent text (PDF pp. 2–4), with Figure 4 (PDF p. 5), and with Canon's section. All first-pass readings were redone from the raster.
+
+Scale. Along the axis S1 to S13 is 535 px over 47.40 mm, 11.29 px/mm. Each arc fitted alone with its own tilt gives S1 11.84, S2 11.70, S4 11.70, S7 11.68 and S8 11.66 px/mm; the flatter S3, S5 and S10 are unreliable at 11.9–12.1. Figure 1 is about 3.7% tall, as the first pass found. Half-spans between opposite edges: L1 176.5 px, HL1 138.5, L4 115.5, HL2 123.0, L7 140.25, stop ticks 111.5.
+
+| Surface | Before | After | Figure | Evidence |
+| --- | ---: | ---: | ---: | --- |
+| 3, 4, 5 | 11.50 | 11.80 | 138.5 px, 11.83 mm | The other four element edges sit within 0.4 px of their reading at 11.71 px/mm; HL1 sat 3.8 px under, the one visible miss on the overlay. HL1/L1 is drawn 0.785, was 0.762 and is now 0.781; Canon's section gives 0.794. L7 stands 0.15 mm over HL1 as drawn, was 0.50 mm and is now 0.20 mm. |
+
+The S4 junction read through the printed R gives 11.65 mm and S3 gives 11.36 mm, because S3's arc is drawn flatter than printed; the edges and the proportions set the value. The move follows the figure, not the numbers; it happens to add 0.6 points at the corner and up to 2.5 points at 22.8°.
+
+Every cut and land against the baseline rims. Points are what the final lens loses against restoring that one rim, wide open at every field.
+
+| Face | Kind | Verdict | Figure | Baseline | Final | Points |
+| --- | --- | --- | ---: | ---: | ---: | ---: |
+| S2 | cut | keep: slight | 12.9 | 14.00 | 13.00 | 0.0 |
+| S2 | land | keep: redraws the outer rim, slight | 15.07 | none | 15.10 | 0.0 |
+| S8 | land | keep: redraws the outer rim, slight | 9.86 | none | 9.90 | 0.0 |
+| S9 | cut | keep: slight | 9.5 | 9.75 | 9.50 | 0.1 at 11.4° |
+| S9 | land | keep: redraws the outer rim, slight | 10.50 | none | 10.50 | 0.0 |
+
+S9 can rise only to about 9.54 mm, which wins that 0.1 point; at 9.58 and 9.75 mm the validator refuses it, with combined sag 2.00 and 2.04 mm in the 2.00 mm gap, so 9.75 cannot return. S2 at 12.9 mm, its sag reading, would cost 0.8 points at 25.7°, still far above baseline, but it moves 1.4 px along the axis, inside the noise, so 13.00 stays. All other faces sit above baseline.
+
+Final `rimcost.mjs`: worst loss 0.0 points against baseline rims; every field off axis gains, by as much as 12.9 points. Geometric transmission at 0, 11.4, 22.8, 28.5 and 31.4°: baseline 100.0, 87.7, 67.0, 48.6, 36.7; before this review 100.0, 93.7, 75.3, 60.0, 48.3; final 100.0, 95.7, 77.8, 61.2, 48.9.
+
+`gapSagFrac` stays 1, the smallest two-decimal value for these rims: at 0.99 the validator refuses S8→S9 with 1.984 mm of land intrusion against 1.980 mm allowed. The default 0.9 allows 1.80 mm, a common rim of 9.05 mm, 0.45 mm short of the figure and a point down on axis. S8 and S9 at 9.48 mm would pass at 0.99 but moves two rims for no gain in the drawing. The faces do not cross: the lands stay 0.02 mm apart, and the printed radii close the gap at 9.54 mm.
+
+After the edit the surface audit passes, no surface is flagged, the image-circle floor is clear and `built.mjs` runs. Engine half-field stays 31.35° with tracing limit 33.4° (S2 cap), f/2.0, stop 9.461 mm; corner chief ray 21.22 mm. The overlay at 11.71 and 11.29 px/mm now lies on the drawn strokes everywhere, HL1's top included.
+
+Found correct, no change. Group brackets I and II are the patent's 前群 I and 後群 II (PDF p. 2, Figure 1) and span S1–S5 and S7–S13. Cemented brackets HL1 and HL2 are the patent's own letters, 第1 and 第2接合レンズ in the text and bracketed in Figure 1; page and patent both read H, not B, and no gap label exists to collide with them. Element names and `diagramLabel` are the patent's L1–L7, and the inspector shows DOUBLET HL1 and HL2 with no triplet. Every `type` follows the signs of R; every `role` matches the patent's text on L1, HL1 and the two rear negative components. The stop sits between L3 and L4 by the printed D5 and D6; the patent calls it SP and the page keeps the repo's STO. Nothing is aspheric, in the patent or on Canon's section. No `apd` tag exists: the patent names no special glass and Canon's section is plain line art with no mark. Stored focal lengths match a recomputation, and the inspector shows -63.61, -35.63, -25.3, -50.34 and +44.87 mm for L1, L3, L4, L5 and L7.
+
+Movement. The patent gives one infinity state and mentions focusing only as fast autofocus on a light lens (PDF p. 4), so no keyframes exist and none were invented. The slider's far end reads "Not modeled", `focus.description` says the same, the `mv=focus` panel reads "This lens has no modeled focus or zoom group movement", and `focus=1` draws the same section.
+
+Colour and field curves, read from the local axis line, which leans 0.42° in the plot. Figure 4's ticks are 308 px over 0.80 mm, 385 px/mm, so the first pass's g reading of +0.156 mm becomes +0.162 mm. The curves end at the iris-limited ray, 8.53 mm at entry, 96.1% of the 8.877 mm paraxial radius: the ghost ray at full radius gives d -0.150 and g +0.148 mm, which the plot does not reach.
+
+| Plot height | 0.997 | 0.894 | 0.791 | 0.688 | 0.533 | 0.379 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| d, Figure 4 | -0.114 | -0.088 | -0.097 | -0.105 | -0.086 | -0.047 |
+| d, model | -0.109 | -0.094 | -0.104 | -0.105 | -0.085 | -0.050 |
+| g, Figure 4 | +0.162 | +0.126 | +0.061 | on the axis | -0.021 | -0.017 |
+| g, model | +0.167 | +0.118 | +0.055 | +0.008 | -0.020 | -0.019 |
+
+Paraxially g sits on d, as printed. No line disagrees beyond the reading error of about 0.008 mm. The patent prints no C or F; the model puts their paraxial foci +0.065 and -0.054 mm from d. The astigmatism plot's height is linear in tan ω.
+
+| ω, ° | 10.6 | 15.7 | 20.6 | 25.2 | 29.5 | 31.35 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| ΔS, Figure 4 | -0.079 | -0.150 | -0.200 | -0.162 | +0.036 | +0.23 |
+| ΔS, model | -0.076 | -0.145 | -0.191 | -0.159 | +0.026 | +0.20 |
+| ΔM, Figure 4 | -0.045 | -0.090 | -0.142 | -0.204 | -0.296 | -0.355 |
+| ΔM, model | -0.044 | -0.088 | -0.134 | -0.190 | -0.295 | -0.389 |
+
+The curves agree within 0.015 mm below 30°. At the last degree they run steepest, and both model curves lie about 0.03 mm left of the plot. Distortion, Figure 4 and model: -0.13 / -0.14% at 7.1°, -0.81 / -0.79% at 17.4°, -1.56 / -1.49% at 25.2°, -1.99 / -1.92% at 31.35°; the plot reads to about 0.05%.
+
+The `Open:` line on the unit-extension focus stays open: no source states the mechanism.

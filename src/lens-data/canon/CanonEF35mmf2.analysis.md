@@ -65,7 +65,7 @@ Positive final single, separated by the printed 0.10 mm air space. The patent fa
 
 The patent names no commercial glass and prints no partial-dispersion data. The labels below are catalog equivalents for the printed N and ν, not production identifications.
 
-The table names no spectral line, but Figures 4 to 6 plot the d and g lines and all seven pairs reproduce catalog nd/νd values, which places N and ν at the d line. With these labels the paraxial g-line focus lies within 0.001 mm of the d-line focus and the top-of-pupil g ray +0.167 mm from it, against about 0 and +0.156 mm read from Figure 4.
+The table names no spectral line, but Figures 4 to 6 plot the d and g lines and all seven pairs reproduce catalog nd/νd values, which places N and ν at the d line. With these labels the paraxial g-line focus lies within 0.001 mm of the d-line focus. Figure 4's curves end at the iris-limited top of the beam, 8.53 mm above the axis at entry, where the g ray lands +0.167 mm from the d-line focus, against about 0 and +0.16 mm read from the plot. The patent plots no C or F line.
 
 | Element | nd | νd | Catalog equivalent |
 | --- | ---: | ---: | --- |
@@ -83,7 +83,7 @@ The patent gives only the infinity state and no focus travel, and Canon's page d
 
 ## Geometry, Aperture and Image Plane
 
-All clear radii are inferred from Figure 1, not printed. Fitting the printed radii to the drawn arcs shows the figure about 3.7% wider across the axis than along it, at 11.71 px/mm against 11.29 px/mm. On that scale its stop ticks sit at 9.48 mm, against the derived 9.461 mm, and the element edges read 15.1 mm for L1, 9.9 mm for L4, 10.5 mm for HL2 and 12.0 mm for L7. The front doublet reads 11.9 mm and is set at 11.5 mm, just clear of the marginal ray at S3. Drawing distortion is unknown, so these are not factory apertures. Canon's section reverses the rear step, drawing L4's rim wider than HL2.
+All clear radii are inferred from Figure 1, not printed. Fitting the printed radii to the drawn arcs shows the figure about 3.7% wider across the axis than along it, at 11.71 px/mm against 11.29 px/mm. On that scale its stop ticks sit at 9.48 mm, against the derived 9.461 mm, and the element edges read 15.1 mm for L1, 11.8 mm for HL1, 9.9 mm for L4, 10.5 mm for HL2 and 12.0 mm for L7. Drawing distortion is unknown, so these are not factory apertures. Canon's section reverses the rear step, drawing L4's rim wider than HL2.
 
 Figure 1 ends three curves short of their element edges with flat lands. S2's concave face stops at 13.0 mm, about 6.8 mm behind its vertex, and its land runs out to L1's edge. The facing curves of S8 and S9 close across the 2.00 mm air space and stop at 9.5 mm, 0.02 mm apart; their lands run out to 9.9 mm on L4 and 10.5 mm on HL2. The iris limits the axial beam, which reaches 9.05 mm at S8. A ray entering at the full 8.88 mm paraxial pupil radius would cross S8 and S9 at 9.49 and 9.50 mm, so the curves clear it too.
 
@@ -95,9 +95,9 @@ The wide-open iris radius of 9.461 mm is derived. The adjacent surfaces clear th
 | --- | ---: | ---: |
 | 1 | 15.10 | 15.10 |
 | 2 | 13.00 | 15.10 |
-| 3 | 11.50 | 11.50 |
-| 4 | 11.50 | 11.50 |
-| 5 | 11.50 | 11.50 |
+| 3 | 11.80 | 11.80 |
+| 4 | 11.80 | 11.80 |
+| 5 | 11.80 | 11.80 |
 | 7 | 9.90 | 9.90 |
 | 8 | 9.50 | 9.90 |
 | 9 | 9.50 | 10.50 |
@@ -110,7 +110,7 @@ The wide-open iris radius of 9.461 mm is derived. The adjacent surfaces clear th
 
 The model is Example 1 at infinity. Back focus, the image plane, the clear apertures and the iris radius are computed or inferred rather than printed, and the exact production prescription is unproved.
 
-The model's d-line spherical aberration of about -0.11 mm at the top of the pupil and its distortion of -1.9% at full field agree with Figure 4. The printed 2ω of 62.7° gives a half-field of 31.35°; with that distortion the chief ray lands 21.22 mm off axis, short of the 21.63 mm format corner.
+The model's d-line spherical aberration of about -0.11 mm at the iris-limited top of the beam and its distortion of -1.9% at full field agree with Figure 4. Its ΔS and ΔM stay within about 0.02 mm of the plot out to 30° and reach +0.20 and -0.39 mm at full field, against +0.23 and -0.36 mm read where the curves run steepest. The printed 2ω of 62.7° gives a half-field of 31.35°; with that distortion the chief ray lands 21.22 mm off axis, short of the 21.63 mm format corner.
 
 ## Sources and References
 

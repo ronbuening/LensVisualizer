@@ -162,20 +162,20 @@ const LENS_DATA = {
       R: 37.84,
       d: 10.54,
       medium: 2,
-      sd: 11.5,
+      sd: 11.8,
     },
     {
       label: "4",
       R: -19.77,
       d: 1.53,
       medium: 3,
-      sd: 11.5,
+      sd: 11.8,
     },
     {
       label: "5",
       R: -142.05,
       d: 3.09,
-      sd: 11.5,
+      sd: 11.8,
     },
     {
       label: "STO",
