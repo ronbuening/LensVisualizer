@@ -435,6 +435,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "TAFD5",
   "TAF4",
   "FD140",
+  "FD8",
   "K-LaK14",
   "K-LaFn11",
   "BAF13",
