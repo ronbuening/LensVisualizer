@@ -1,0 +1,213 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/** Private Grade B patent-family reconstruction. Literal source R/d/nd/vd and source infinity plane retained.
+ * Clear apertures and iris opening inferred; Pancolar axial stop is additionally unprinted.
+ * Spherical surfaces only. No optimization, retail rescaling except explicit Pancolar x0.5, or finite law.
+ */
+const LENS_DATA = {
+  schema: 2,
+  key: "carl-zeiss-jena-mc-pancolar-50mm-f18-dd77830",
+  maker: "Carl Zeiss Jena",
+  name: "CARL ZEISS JENA MC PANCOLAR 50mm f/1.8 (patent reconstruction; inferred apertures)",
+  subtitle:
+    "DD77830 sole table x0.5; six-element/five-group MC family; inferred clear apertures and central stop; infinity only.",
+  catalog: {
+    imageFormat: "135-full-frame",
+    elementCount: 6,
+    groupCount: 5,
+    focalLengthMm: {
+      marketing: 50,
+      design: 50.0,
+    },
+    fNumber: {
+      marketing: 1.8,
+      design: 1.8,
+    },
+    specs: [
+      "6 elements / 5 groups; Grade B probable patent family",
+      "Literal patent f100 scaled x0.5; fixed source BFL36.35 mm",
+      "Infinity only; clear apertures and iris position/opening inferred",
+      "Later MC/electric MC six/five version; earlier six/four not asserted",
+    ],
+  },
+  source: {
+    patentNumber: "DD 77 830",
+    example: {
+      label: "Sole example",
+      id: null,
+    },
+    patentYear: 1970,
+    authors: ["Wolf Dannberg", "Gerhard Risch"],
+    assignees: [],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.7234,
+      vd: 38.0,
+      indexReference: "d",
+      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      focalLengthMm: 70.39438717915573,
+      role: "Source-prescribed spherical element; no factory-exact identity claim",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Biconvex Positive",
+      nd: 1.6779,
+      vd: 55.5,
+      indexReference: "d",
+      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      focalLengthMm: 31.361969431236684,
+      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      cemented: "D2",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Biconcave Negative",
+      nd: 1.5995,
+      vd: 35.2,
+      indexReference: "d",
+      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      focalLengthMm: -23.64434088503424,
+      role: "Source-prescribed spherical element; no factory-exact identity claim",
+      cemented: "D2",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Negative Meniscus",
+      nd: 1.6727,
+      vd: 32.2,
+      indexReference: "d",
+      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      focalLengthMm: -27.026340136532276,
+      role: "Source-prescribed spherical element; no factory-exact identity claim",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Positive Meniscus",
+      nd: 1.6779,
+      vd: 55.5,
+      indexReference: "d",
+      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      focalLengthMm: 43.15961674465532,
+      role: "Source-prescribed spherical element; no factory-exact identity claim",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      nd: 1.6779,
+      vd: 55.5,
+      indexReference: "d",
+      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      focalLengthMm: 49.6308166102886,
+      role: "Source-prescribed spherical element; no factory-exact identity claim",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 35.848,
+      d: 3.824,
+      sd: 15.3,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 115.67,
+      d: 0.0955,
+      sd: 15.3,
+    },
+    {
+      label: "3",
+      R: 24.281,
+      d: 6.3095,
+      sd: 14.0,
+      medium: 2,
+    },
+    {
+      label: "4",
+      R: -152.952,
+      d: 1.434,
+      sd: 13.0,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: 15.6775,
+      d: 4.731925,
+      sd: 10.7,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 3.871575,
+    },
+    {
+      label: "6",
+      R: -18.1475,
+      d: 1.5295,
+      sd: 10.6,
+      medium: 4,
+    },
+    {
+      label: "7",
+      R: -10299.7,
+      d: 1.912,
+      sd: 11.8,
+    },
+    {
+      label: "8",
+      R: -125.4685,
+      d: 6.0225,
+      sd: 11.8,
+      medium: 5,
+    },
+    {
+      label: "9",
+      R: -24.1855,
+      d: 0.0955,
+      sd: 11.8,
+    },
+    {
+      label: "10",
+      R: 87.9475,
+      d: 3.824,
+      sd: 13.2,
+      medium: 6,
+    },
+    {
+      label: "11",
+      R: -53.533,
+      d: 36.35,
+      sd: 13.2,
+    },
+  ],
+  focus: {
+    closeFocusM: 1000000000000000.0,
+    description:
+      "Static infinity only. Grade B probable six-element/five-group MC family, not exact factory data. Literal f100 prescription uniformly scaled x0.5; stop position and clear apertures inferred. Catalog 0.35 m is descriptive; no finite conjugate or focus law is modeled.",
+  },
+  aperture: {
+    nominalFNumber: 1.8,
+    fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+  },
+  layout: {
+    yScFill: 0.43,
+  },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;
