@@ -8,8 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent prints no clear apertures or iris opening, so the engine sizes the iris from F/1.23. Semi-diameters are estimated
  * from Fig. 1, true scale at 47.2 px/mm (the drawn arcs fit the printed radii within about 1 px), and floor-checked by real
  * rays at infinity and at the printed near state. S3 to S11 follow the figure; S5, S7 and S11 keep the drawn cap ends, with
- * rimExtensionSd lands to the element edges. L1, L6 and L7 are drawn to 14.0, 9.7 and 12.0 mm but stay at 15.1, 10.2 and
- * 12.4 mm: the drawn rims would cut corner transmission to about 14 %, and these hold it at about 23 %.
+ * rimExtensionSd lands to the element edges. gapSagFrac 0.93 is the smallest two-decimal limit that admits S5 at its drawn
+ * land (combined sag 2.44 of the 2.63 mm gap; the faces stay 0.19 mm apart). L1, L6 and L7 are drawn to 14.0, 9.7 and 12.0 mm
+ * but stay at 15.07, 10.2 and 12.39 mm: the drawn rims would cut corner transmission to about 14 %, and these hold it at 23 %.
  */
 const LENS_DATA = {
   schema: 2,
@@ -159,14 +160,14 @@ const LENS_DATA = {
       label: "1",
       R: 28.272,
       d: 3.55,
-      sd: 15.1,
+      sd: 15.07,
       medium: 1,
     },
     {
       label: "2",
       R: 55.23,
       d: 0.15,
-      sd: 15.1,
+      sd: 15.07,
     },
     {
       label: "3",
@@ -186,7 +187,7 @@ const LENS_DATA = {
       label: "5",
       R: 11.093,
       d: 2.63,
-      sd: 8.8,
+      sd: 8.9,
       rimExtensionSd: 12.6,
     },
     {
@@ -246,13 +247,13 @@ const LENS_DATA = {
       label: "14",
       R: 56.158,
       d: 3.51,
-      sd: 12.4,
+      sd: 12.39,
       medium: 8,
     },
     {
       label: "15",
       R: -112.557,
-      sd: 12.4,
+      sd: 12.39,
     },
   ],
   focus: {
@@ -276,6 +277,7 @@ const LENS_DATA = {
     { text: "C1", fromSurface: "3", toSurface: "5" },
     { text: "C2", fromSurface: "11", toSurface: "13" },
   ],
+  checks: { gapSagFrac: 0.93 },
   layout: {
     yScFill: 0.43,
   },

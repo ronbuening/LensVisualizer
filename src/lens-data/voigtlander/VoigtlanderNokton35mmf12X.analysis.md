@@ -94,7 +94,7 @@ The model publishes this printed state as its close endpoint at 0.2989 m. It is 
 
 The stop plane is printed 19.28 mm behind surface 1. The patent prints no iris diameter, so the engine sizes the opening from F/1.23. Clear semi-diameters are also unprinted; they are inferred from Fig. 1, which is drawn at true scale, and checked by real rays at infinity and at the printed near state.
 
-Inferred clear semi-diameters in millimetres are 1: 15.1, 2: 15.1, 3: 12.6, 4: 12.6, 5: 8.8, 6: 8.9, 7: 8.5, 9: 8, 10: 8, 11: 7.9, 12: 10.2, 13: 10.2, 14: 12.4, 15: 12.4. The spherical caps of surfaces 5, 7 and 11 end at these heights and continue as flat lands to 12.6, 8.9 and 10.2 mm, the form Fig. 1 draws.
+Inferred clear semi-diameters in millimetres are 1: 15.07, 2: 15.07, 3: 12.6, 4: 12.6, 5: 8.9, 6: 8.9, 7: 8.5, 9: 8, 10: 8, 11: 7.9, 12: 10.2, 13: 10.2, 14: 12.39, 15: 12.39. The spherical caps of surfaces 5, 7 and 11 end at these heights and continue as flat lands to 12.6, 8.9 and 10.2 mm, the form Fig. 1 draws.
 
 Fig. 1 draws L1 to 14.0 mm, L6 to 9.7 mm and L7 to 12.0 mm. The model keeps these three wider, because the drawn rims would lower corner transmission to about 14 %; Cosina's section also draws them wider than Fig. 1. Off-axis clipping is retained. Clearance of the iris opening does not prove blade or mount fit.
 
@@ -102,9 +102,23 @@ The f/1.23 axial ray reaches about 11.4 mm on surface 4, where Fig. 1 ends the c
 
 ## First-Order Properties and Aberrations
 
-The printed infinity BF of 15.879 mm fixes the image plane 53.829 mm behind surface 1, with a 37.95 mm vertex track. A paraxial trace gives EFL 34.454 mm and BFD 15.868 mm. The printed f is reproduced, and the authored last gap exceeds the computed BFD by 0.011 mm. That residual is within the rounding of the printed table and stays in place. Image height 14.20 mm in Fig. 2 corresponds to 22.80° in the model, against the printed 22.81°.
+The printed infinity BF of 15.879 mm fixes the image plane 53.829 mm behind surface 1, with a 37.95 mm vertex track. A paraxial trace gives EFL 34.454 mm and BFD 15.868 mm. The printed f is reproduced, and the authored last gap exceeds the computed BFD by 0.011 mm. That residual is within the rounding of the printed table and stays in place.
 
-The model's d-line spherical aberration at full aperture differs from Fig. 2(a). The model gives −0.066 mm at the rim and a peak of −0.110 mm near 0.78 of the pupil; Fig. 2(a) reads about +0.03 mm at the rim and about −0.06 mm near 0.65. Rounding of the printed table accounts for only about ±0.007 mm, and no single slip in a table cell reconciles the difference. The axial C-line offset of +0.044 mm agrees with Fig. 2(a). Distortion at 14.20 mm is −1.94 % against about −2.06 %, and astigmatism agrees in sign and form.
+The aberration plots of Fig. 2 are not a trace of Table 1 alone. Against the model, Fig. 2(a) is over-corrected by about +0.10 mm at the rim of the pupil at all three plotted wavelengths, and the difference grows as the square of the pupil height. A plane plate in the converging beam does exactly that, and neither Table 1 nor the text lists one. A trial plate of about 2.9 mm at n ≈ 1.52 behind surface 15 reproduces every plot in Fig. 2 within its reading error, and it also gives the printed half field. Thickness and index are inferred from the curves; they are not printed values.
+
+| Quantity | Table 1 alone | With the trial plate | Patent |
+| --- | ---: | ---: | ---: |
+| d-line at the pupil rim, mm | −0.066 | +0.033 | +0.034 |
+| d-line peak, mm (pupil height) | −0.111 (0.79) | −0.059 (0.68) | −0.058 (0.70) |
+| d-line zero crossing, pupil height | past 1.0 | 0.948 | 0.949 |
+| C-line on axis, mm | +0.044 | +0.041 | +0.042 |
+| g-line on axis, mm | −0.014 | −0.002 | −0.004 |
+| Sagittal focus at 10.65 mm, mm | −0.144 | −0.120 | −0.122 |
+| Tangential focus at 10.65 mm, mm | −0.103 | −0.030 | −0.035 |
+| Distortion at 14.20 mm, % | −1.94 | −2.00 | −2.00 |
+| Half field at 14.20 mm, ° | 22.80 | 22.81 | 22.81 |
+
+The model traces the printed table with no plate, so its aberrations are those of the "Table 1 alone" column. The catalog dispersion curves carry the plotted colour: with the plate, C and g fall within reading error of Fig. 2(a) from the axis to the rim, where the printed nd/νd pairs alone would put the g-line on axis at −0.057 mm.
 
 ## Modeled Diffraction and Coverage
 
@@ -116,7 +130,7 @@ The table gives scalar diffraction MTF at infinity on the authored image plane, 
 | ---: | ---: | --- | --- | --- |
 | 1.23 | 0 | 0.303 / 0.303 | 0.187 / 0.187 | 0.123 / 0.123 |
 | 1.23 | 11.4 | 0.410 / 0.448 | 0.048 / 0.010 | 0.067 / 0.055 |
-| 1.23 | 22.8 | 0.668 / 0.721 | 0.419 / 0.291 | 0.237 / 0.190 |
+| 1.23 | 22.8 | 0.672 / 0.727 | 0.423 / 0.295 | 0.240 / 0.189 |
 | 8 | 0 | 0.940 / 0.940 | 0.820 / 0.820 | 0.699 / 0.699 |
 | 8 | 11.4 | 0.919 / 0.924 | 0.695 / 0.732 | 0.483 / 0.548 |
 | 8 | 22.8 | 0.934 / 0.924 | 0.793 / 0.765 | 0.653 / 0.615 |
