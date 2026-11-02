@@ -7,8 +7,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * central air space here, and the patent figure draws it at about 57 %.
  * NOTE ON SEMI-DIAMETERS: the patent figure's arcs fit the table only with its heights scaled up 3.1 % against its
  * axial scale. Rims are read at that corrected scale: S1–2 15.0, S3–4 13.5, S5 10.5, S6 9.3, S7–9 11.5, S10–11 13.0.
- * S3 and S4 take the square L2/L3 rim the figure draws. S6 sits at 9.7 mm, the f/1.8 axial floor, above the figure's
- * cap. The other rims agree with that reading within about 2.6 % and stay at their inferred values.
+ * S3 and S4 take the square II/III rim the figure draws. S6 sits at 9.7 mm, the f/1.8 axial floor, above the figure's
+ * cap. The other rims agree with that reading within about 2.6 % and stay at their inferred values. The figure's flat
+ * shoulder and 45° chamfer on the rear of III and the front of IV render as straight edges, up to 1.3 mm inside the
+ * drawn corner; a vertical land would draw a stroke the figure does not have.
+ * Element names are the patent's lens numbers I–VI; it numbers its air spaces l1–l4 and names no group numbers.
  * Spherical surfaces only; nothing is re-optimized, and no focus motion is modeled.
  */
 const LENS_DATA = {
@@ -45,8 +48,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Positive Meniscus",
       nd: 1.7234,
       vd: 38.0,
@@ -57,8 +61,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Biconvex Positive",
       nd: 1.6779,
       vd: 55.5,
@@ -66,12 +71,13 @@ const LENS_DATA = {
       glass: "LAC12 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 31.361969431236684,
       role: "Positive half of the cemented front inner group",
-      cemented: "D2",
+      cemented: "C1",
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Biconcave Negative",
       nd: 1.5995,
       vd: 35.2,
@@ -79,12 +85,13 @@ const LENS_DATA = {
       glass: "Unmatched (patent nd=1.5995, νd=35.2; no catalog row at these coordinates)",
       focalLengthMm: -23.64434088503424,
       role: "Negative half of the cemented front inner group; its rear face bounds the central air space",
-      cemented: "D2",
+      cemented: "C1",
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "Element IV",
+      diagramLabel: "IV",
       type: "Negative Meniscus",
       nd: 1.6727,
       vd: 32.2,
@@ -95,20 +102,22 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
-      label: "Element 5",
+      name: "V",
+      label: "Element V",
+      diagramLabel: "V",
       type: "Positive Meniscus",
       nd: 1.6779,
       vd: 55.5,
       indexReference: "d",
       glass: "LAC12 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 43.15961674465532,
-      role: "Positive meniscus separated from L4 by the air space that makes the fifth group",
+      role: "Positive meniscus separated from IV by the air lens l3, the space that makes the fifth group",
     },
     {
       id: 6,
-      name: "L6",
-      label: "Element 6",
+      name: "VI",
+      label: "Element VI",
+      diagramLabel: "VI",
       type: "Biconvex Positive",
       nd: 1.6779,
       vd: 55.5,
@@ -215,7 +224,7 @@ const LENS_DATA = {
     { text: "G4", fromSurface: "8", toSurface: "9" },
     { text: "G5", fromSurface: "10", toSurface: "11" },
   ],
-  doublets: [{ text: "D2", fromSurface: "3", toSurface: "5" }],
+  doublets: [{ text: "C1", fromSurface: "3", toSurface: "5" }],
   layout: {
     yScFill: 0.43,
   },

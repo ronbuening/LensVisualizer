@@ -11,47 +11,49 @@ The table matches the MC PANCOLAR 1.8/50 and electric MC PANCOLAR 1.8/50 in the 
 
 ## Optical Architecture
 
-A modified Gauss objective uses a positive front meniscus, a positive/negative cemented front doublet, a separate inner negative meniscus, a rear positive meniscus and a final biconvex positive singlet. The separation of the rear inner negative element from the next positive meniscus distinguishes the five-group arrangement. The drawing encloses the diaphragm gap between the two inner negative components. All eleven glass interfaces remain spherical, including the very weak finite rear face of L4.
+A modified Gauss objective uses a positive front meniscus, a positive/negative cemented front doublet, a separate inner negative meniscus, a rear positive meniscus and a final biconvex positive singlet. The separation of the rear inner negative element from the next positive meniscus distinguishes the five-group arrangement. The drawing encloses the diaphragm gap between the two inner negative components. All eleven glass interfaces remain spherical, including the very weak finite rear face of IV.
+
+The patent numbers its six lenses I to VI and its air spaces l1 to l4, and this page keeps those numbers. It describes five members, or Glieder, without numbering them: the front lens I, the cemented front inner member II and III, the rear inner member IV, the meniscus V and the outer lens VI. The brackets G1 to G5 count those members front to rear.
 
 The patent and the catalogue print no factory clear apertures, iris mechanics or spectral coefficients.
 
 ## Element-by-Element Analysis
 
-### L1 — Positive Meniscus
+### Element I — Positive Meniscus
 
 nd = 1.72340, νd = 38.00. Glass: BASF8 (Sumita), catalog equivalent. In-air f = +70.39 mm.
 
 The front positive meniscus admits the large entrance pupil and supplies positive power. Both radii are positive; the second face is weakly curved, not flat.
 
-### L2 — Biconvex Positive
+### Element II — Biconvex Positive
 
 nd = 1.67790, νd = 55.50. Glass: LAC12 (Hoya), catalog equivalent. In-air f = +31.36 mm.
 
-The biconvex positive member shares its rear face with L3. Its higher Abbe number contrasts with the negative partner; chromatic balancing is inferred from that pairing, since the patent prints no spectral data.
+The biconvex positive member shares its rear face with III. Its higher Abbe number contrasts with the negative partner; chromatic balancing is inferred from that pairing, since the patent prints no spectral data.
 
-### L3 — Biconcave Negative
+### Element III — Biconcave Negative
 
 nd = 1.59950, νd = 35.20. Glass: unmatched; no catalog row at the printed pair. In-air f = −23.64 mm.
 
 The biconcave negative member forms the front inner diverger. Its strongly curved rear surface borders the central air space, and the model gives it an inferred clear aperture smaller than the outer body of the element.
 
-### L4 — Negative Meniscus
+### Element IV — Negative Meniscus
 
 nd = 1.67270, νd = 32.20. Glass: SF5 (Schott), catalog equivalent. In-air f = −27.03 mm.
 
 The separate rear inner negative meniscus has printed r7 = −20 599.400, scaled to −10 299.700 mm. This very weak curvature is kept rather than replaced by a plane.
 
-### L5 — Positive Meniscus
+### Element V — Positive Meniscus
 
 nd = 1.67790, νd = 55.50. Glass: LAC12 (Hoya), catalog equivalent. In-air f = +43.16 mm.
 
-The rear positive meniscus is separated from L4 by the printed air gap, so the two do not form a second cemented doublet.
+The rear positive meniscus is separated from IV by the printed air lens l3, so the two do not form a second cemented doublet. Claim 1 limits l3 to between 0.028 f and 0.048 f; the table gives 0.038 f.
 
-### L6 — Biconvex Positive
+### Element VI — Biconvex Positive
 
 nd = 1.67790, νd = 55.50. Glass: LAC12 (Hoya), catalog equivalent. In-air f = +49.63 mm.
 
-The final biconvex positive singlet completes the rear positive power. Its printed nd and νd equal those of L2 and L5.
+The final biconvex positive singlet completes the rear positive power. Its printed nd and νd equal those of II and V.
 
 The element focal lengths above are computed in air from each element’s printed radii, center thickness and nd at the 0.5× scale. They are not net powers inside the cemented group, and they are not factory measurements.
 
@@ -59,16 +61,16 @@ The element focal lengths above are computed in air from each element’s printe
 
 | Element | nd | νd | Catalog equivalent |
 | --- | ---: | ---: | --- |
-| L1 | 1.72340 | 38.00 | BASF8 (Sumita) |
-| L2 | 1.67790 | 55.50 | LAC12 (Hoya) |
-| L3 | 1.59950 | 35.20 | Unmatched |
-| L4 | 1.67270 | 32.20 | SF5 (Schott) |
-| L5 | 1.67790 | 55.50 | LAC12 (Hoya) |
-| L6 | 1.67790 | 55.50 | LAC12 (Hoya) |
+| I | 1.72340 | 38.00 | BASF8 (Sumita) |
+| II | 1.67790 | 55.50 | LAC12 (Hoya) |
+| III | 1.59950 | 35.20 | Unmatched |
+| IV | 1.67270 | 32.20 | SF5 (Schott) |
+| V | 1.67790 | 55.50 | LAC12 (Hoya) |
+| VI | 1.67790 | 55.50 | LAC12 (Hoya) |
 
-The patent prints d-line values, quoting 587.6 nm in its claims, and names no glass types. The catalog names above are equivalents at the printed nd and νd, not identifications of the glass used in production, and similar nd/νd pairs do not establish a vendor or a partial dispersion. The pair printed for L3 matches no catalog row.
+The patent prints d-line values, quoting 587.6 nm in its claims, and names no glass types. The catalog names above are equivalents at the printed nd and νd, not identifications of the glass used in production, and similar nd/νd pairs do not establish a vendor or a partial dispersion. The pair printed for III matches no catalog row.
 
-The d-line trace uses the printed indices. Results at other wavelengths are dispersion estimates from the catalog equivalents, and from the printed Abbe number for L3, not measured spectral data.
+The d-line trace uses the printed indices. Results at other wavelengths are dispersion estimates from the catalog equivalents, and from the printed Abbe number for III, not measured spectral data.
 
 ## Focus Mechanism
 
@@ -76,11 +78,11 @@ The 1978 catalogue gives a shortest focusing distance of 0.35 m, but the patent 
 
 ## Stop and Clear-Aperture Assumptions
 
-The patent prints no iris position within the central air space, 17.207 in the table and 8.6035 mm at this scale. The model places the iris at 55 % of that space, z = 16.395 mm from the first vertex; the patent figure draws it at about 57 %. Positions of 50 % and 60 % also clear the adjacent glass at f/1.8, while 25 % and 75 % would intersect L3 and L4 respectively. The 55 % position was not chosen by contrast, and it is not a measurement of the production lens.
+The patent prints no iris position within the central air space, 17.207 in the table and 8.6035 mm at this scale. The model places the iris at 55 % of that space, z = 16.395 mm from the first vertex; the patent figure draws it at about 57 %. Positions of 50 % and 60 % also clear the adjacent glass at f/1.8, while 25 % and 75 % would intersect III and IV respectively. The 55 % position was not chosen by contrast, and it is not a measurement of the production lens.
 
 Clear semi-diameters are inferred, because the patent prints none. In millimetres they are 1: 15.3, 2: 15.3, 3: 13.5, 4: 13.5, 5: 10.7, 6: 9.7, 7: 11.8, 8: 11.8, 9: 11.8, 10: 13.2, 11: 13.2.
 
-The front value starts from roughly 10 % clearance over the paraxial entrance pupil; the others follow the proportions of the patent drawing and the curvature and gap limits of each face. The drawing's arcs fit the printed radii only with its heights scaled up about 3 % against its axial scale, so its rims are read at that corrected scale. It draws faces 3 and 4 at one height. It also bevels the rear of L3 and the front of L4, which the model shows as straight edges from cap to rim. The cap of face 6 ends there at about 9.3 mm, inside the f/1.8 axial beam, so the model holds that face at 9.7 mm. Beveled bodies, rectangular flanges, filter threads and on-axis ray footprints are not calibrated clear apertures. Off-axis clipping by these rims stays in the model. Iris clearance does not show that the blades or the mount would fit.
+The front value starts from roughly 10 % clearance over the paraxial entrance pupil; the others follow the proportions of the patent drawing and the curvature and gap limits of each face. The drawing's arcs fit the printed radii only with its heights scaled up about 3 % against its axial scale, so its rims are read at that corrected scale. It draws faces 3 and 4 at one height. It also bevels the rear of III and the front of IV with a flat shoulder and a chamfer of about 45°, which the model shows as straight edges from cap to rim, up to 1.3 mm inside the drawn corner. The cap of face 6 ends there at about 9.3 mm, inside the f/1.8 axial beam, so the model holds that face at 9.7 mm. Beveled bodies, rectangular flanges, filter threads and on-axis ray footprints are not calibrated clear apertures. Off-axis clipping by these rims stays in the model. Iris clearance does not show that the blades or the mount would fit.
 
 ## First-Order Properties and Image Plane
 

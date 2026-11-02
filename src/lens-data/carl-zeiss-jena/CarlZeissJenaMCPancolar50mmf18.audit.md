@@ -30,7 +30,7 @@ Rim pass (closed 2026-11-02: S3, S4 and S6 changed, see the semi-diameter pass b
 
 Open: production scale. The design scale is 0.52304×, the model uses 0.5× for the marketed 50 mm, and no measured focal length was found.
 
-Open: MC in Exakta is unconfirmed, so `lensMounts` stays `["m42"]`. No maker source states the focus mechanism, so the model stays static.
+Open: MC in Exakta is unconfirmed, so `lensMounts` stays `["m42", "praktica-b"]`. No maker source states the focus mechanism, so the model stays static.
 
 ## 2026-11-02 — Semi-diameter pass against the patent figure
 
@@ -62,8 +62,71 @@ The analysis rim list, the 11.5° transmission, now about 87 % (11182 of 12892 l
 
 The 1978 catalogue section, read at 4×, has the same six elements in five groups, the square L2/L3 rim with its rear bevel, the L4 front bevel, and the same rim order, L1 > L2/L3 > L6 > L4/L5 and S5 above S6. Heights over L1, catalogue, patent, final model: L2/L3 0.93, 0.90, 0.88; S5 0.69, 0.70, 0.70; S6 0.66, 0.62, 0.63; L4 0.78, 0.77, 0.77; L5 0.80, 0.77, 0.77; L6 0.87, 0.87, 0.86. It draws L2/L3 a little taller, S6 a little higher and L4 just under L5; none of this was used.
 
-Open: the patent draws the L3 and L4 bevels as a flat shoulder then a chamfer of about 45°. The model has no bevel, so each rim is a straight edge from cap to rim, up to about 1.4 mm inside the drawn corner. `rimExtensionSd` is a vertical land the figure does not draw, so it was not used.
+Bevels (closed 2026-11-02: lands were tried and rejected in the second review below, so the straight edges stay as a recorded model limit): the patent draws the L3 and L4 bevels as a flat shoulder then a chamfer of about 45°. The model has no bevel, so each rim is a straight edge from cap to rim, up to about 1.4 mm inside the drawn corner. `rimExtensionSd` is a vertical land the figure does not draw, so it was not used.
 
 ## 2026-11-02 — Mount and aperture metadata
 
 `lensMounts` gains `praktica-b`: Phillip Reeve's review dates the Praktica B version to 1979–82, after the six-element, five-group form replaced the earlier design. Exakta stays out because no source ties an MC Pancolar to that mount. `aperture.blades` is 6 from the same review and Kamerastore's electric MC listings. The review gives f/16 as the Praktica B version's minimum aperture; the model keeps the catalogue's f/22.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+The local page was compared with `patents/DD77830A1.pdf` page 5 (Blatt II, the figure) and page 4 (Blatt I, the table) at native 300 dpi, and with the 1978 catalogue crop. Names below are the patent's; L1 to L6 in the sections above are I to VI in order.
+
+### Figure, re-measured
+
+Twelve arc tracks, both sides of r1, r3, r5, r6, r9 and r11, against the printed radii at 24.0 px/mm axial give heights of 23.10 to 23.82 px/mm, mean 23.36, so the figure is 2.7 % short across the axis. That confirms the semi-diameter pass's 3.0 %, and its readings stand to 0.1 mm.
+
+Top-to-bottom stroke centres at that scale: I 695 px, 14.9 mm; II/III 628 px, 13.4 mm; IV and V 535.5 px each, 11.5 mm; VI 604.5 px, 12.9 mm. IV and V share the same rows above and below the axis, so the figure draws them at one height. Cap ends: S5 490 px, 10.5 mm; S6 433 px, 9.3 mm. Height order in the model and the figure is the same: I > II/III > VI > IV/V > S5 > S6.
+
+The bevels: on III the flat shoulder ends 1.03 mm behind the S5 vertex and a 45° chamfer runs to the tip 4.12 mm behind it. On IV the shoulder ends 0.71 mm ahead of the S6 vertex and a chamfer of about 49° runs to the tip 2.58 mm ahead of it. Both tips are sharp in the figure. Apart from these two edges the only visible differences on the page are the small amounts listed in the second table.
+
+### Cuts and lands
+
+| Face | Kind | Figure | Baseline | Final | Light cost, points | Verdict |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| S3 | Cut | 13.4 | 14.0 | 13.5 | 1.1 at 6.0° | Keep: slight; S3 and S4 form the one flat rim the figure draws |
+| S6 | Cut | 9.3 | 10.6 | 9.7 | 0.0 | Keep: slight; held above the figure at the axial floor |
+| S5 land | Trial, `rimExtensionSd` 11.6 | none drawn | none | none | 0.0 | Not added: the figure draws no vertical stroke |
+| S6 land | Trial, `rimExtensionSd` 10.1 | none drawn | none | none | 0.0 | Not added: same, and it gains nothing |
+
+S4 rose from 13.0 to 13.5 on the same flat rim; that raise has figure support and costs nothing. The file has no land. Final `rimcost.mjs` worst loss against baseline rims is 1.1 points at 6.0°, inside the 3-point budget. Restoring S3 and S4 wins back that 1.1, restoring S6 wins back 0.0, and the validator refuses neither, so no rim here depends on spacing.
+
+Percent transmitted at 0.0 / 3.0 / 6.0 / 8.9 / 11.9 / 14.9 / 17.9 / 20.9 / 23.8°: baseline 100.0 / 100.0 / 98.0 / 92.9 / 86.1 / 77.9 / 68.0 / 55.3 / 41.0, final 100.0 / 100.0 / 97.0 / 91.9 / 85.9 / 77.6 / 67.8 / 55.3 / 41.0. The corner is 41.0 % before and after.
+
+Rims left above the figure, none of which moved:
+
+| Faces | Final | Figure | Gap | Light to reach the figure | Why it stays |
+| --- | ---: | ---: | ---: | ---: | --- |
+| S1, S2 | 15.3 | 14.9 | 0.4 | 2.0 at 17.9° | Costs light for a move inside the noise band; S2 alone is free but would slant a square rim |
+| S5 | 10.7 | 10.5 | 0.2 | 0.0 | S6 cannot go lower, so 10.5 shrinks the drawn step over S6 further, 1.2 mm drawn, 1.0 now, 0.8 then |
+| S7, S8, S9 | 11.8 | 11.5 | 0.3 | 3.2 at 8.9° | Over budget alone; S7 alone is free but would break the height IV and V share |
+| S10, S11 | 13.2 | 12.9 | 0.3 | 1.2 at 20.9° | Costs light for a move inside the noise band; S10 alone is free but would slant a square rim |
+
+A land cannot draw these bevels. The outline joins each face's rim point with one straight edge, so a land adds one vertex at the cap end, and a shoulder plus a chamfer needs a vertex at the corner. On III the best height, 11.6 mm, cuts the largest miss from the drawn outline from 1.25 to 0.89 mm and the area between the two outlines from 5.02 to 4.20 mm². It also blunts the sharp tip, runs the outline 0.9 mm past that tip and brings its top up against the STO label. A full-height land at 13.5 makes the miss worse, 2.22 mm. On IV the best height, 10.0 mm, moves the miss from 0.85 to 0.75 mm and the area from 4.02 to 3.98 mm². Both lands were shot on the live page and laid over the figure before they were removed. The straight edges stay, with the III edge up to about 1.3 mm inside the drawn corner.
+
+### Labels and text
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| Element `name`, `diagramLabel` | L1–L6, diagram 1–6 | I–VI | "Linsen-Nr." on page 4 and the figure on page 5 number all six lenses; the patent's own l1–l4 are air spaces |
+| Element `label` | Element 1–6 | Element I–VI | Follows the names, as the Kodak Ektar 52 mm does |
+| `doublets`, element `cemented` | D2 | C1 | The only cemented pair; d2 is a thickness in the figure |
+| Element V `role` | Air space, "L4" | Names IV and the air lens l3 | Claim 1, page 3: "Luftlinse (l3)" |
+
+The brackets stay G1 to G5. The patent's Roman numerals number lenses, not members: they run to VI, so a bracket III would sit over lens IV. The patent calls the lens "fünfgliedrig" and describes its five members in words without numbering them. The ranges 1–2, 3–5, 6–7, 8–9 and 10–11 match those members. The analysis and the header comment follow the new names.
+
+Checked and correct: every `type` agrees with the signs of R; the patent prints no asphere and none is modelled; the stop sits between III and IV; every element has a `focalLengthMm` and the stored values match the probe. II and III together come to −205 mm, the "zerstreuendes" front inner member of the claim. No `apd` tag is set: the patent names no glass and the catalogue marks none. All 22 R and d cells and the 12 index and Abbe cells match page 4 at the 0.5× scale.
+
+The iris stroke sits at x = 1210 between vertices 1091.7 and 1301, 56.5 % of l2 against the modelled 55 %. The drawn opening is 443 px across, 9.5 mm in radius, against the engine's 9.81 mm. Neither was changed.
+
+### Movement and aberrations
+
+The lens is static. The patent prints no focus table or figure arrows, and `focus.description` says so. The slider's far end reads "Not modeled", `focus=1` draws the same section, and `mv=focus` reports no modeled focus or zoom movement for five groups.
+
+The patent prints no aberration plots, so C, d, F and g, astigmatism and distortion have nothing to be compared with. For the unmatched III, pages 2 to 4 give only nd = 1.5995 and νd = 35.2, with λ = 587.6 nm for the index difference in claim 1; no glass name, line index or partial dispersion.
+
+### Final state
+
+The validator passes with `gapSagFrac` unset, the image-circle check prints nothing, the corner chief ray reaches 21.65 mm at 23.8° clear, and the clearance trace shows no axial clip or blocked chief ray. Engine half-field is 28.10° and F/1.800 before and after, entrance pupil 13.895 mm, stop 9.814 mm.
+
+Page 1 reads "Erfinder zugleich Inhaber", so Dannberg and Risch held the patent themselves; `source.assignees` is empty.
