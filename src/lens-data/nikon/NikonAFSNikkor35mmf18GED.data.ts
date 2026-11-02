@@ -4,8 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * JP 2015-118186 A, Example 1 (Table 1). The patent names no product; the exact production prescription is not known.
  * R, d, nd, νd and the stop position are as printed; the iris is derived. Semi-diameters are estimated from Figure 1
  * (10.02 px/mm along the axis, about 10.05 across it) and floor-checked by real-ray trace at all three focus states.
- * Surfaces 2, 12 and 14 carry the figure's lands as inferred rim cuts, with caps ending at 19.05, 11.49 and 11.05 mm,
- * clear of every wide-open beam. The resin on surface 19 stops at 14.0 mm, inside the 14.5 mm rim of L27.
+ * Surfaces 2, 5, 12 and 14 carry the figure's lands as inferred rim cuts, with caps ending at 19.05, 17.69, 11.49 and
+ * 11.05 mm, clear of every wide-open beam. The resin on surface 19 stops at 14.0 mm, inside the 14.5 mm rim of L27.
  * Surface 19 carries the printed asphere (κ = 1, so K = 0) on a 0.150 mm resin layer, modeled as a separate medium:
  * 12 media for 11 glass elements. Element names follow the patent (L11–L14, L21–L27), with L27r the resin on L27g.
  * Focus: G1 fixed, G2 and the stop move as one unit. The β = −1/30 state prints D0 and D7; its BF is derived with G1
@@ -199,7 +199,6 @@ const LENS_DATA = {
       focalLengthMm: 419.53096866181676,
       role: "0.150 mm aspherical resin layer on the front of L27; a separate medium, not a twelfth glass element.",
       diagramLabel: "L27r",
-      cemented: "H1",
     },
     {
       id: 12,
@@ -213,7 +212,6 @@ const LENS_DATA = {
       focalLengthMm: 136.22389772466977,
       role: "Positive glass meniscus, concave to the object, under the resin layer.",
       diagramLabel: "L27g",
-      cemented: "H1",
     },
   ],
   surfaces: [
@@ -250,6 +248,7 @@ const LENS_DATA = {
       R: 50.3375,
       d: 2.0,
       sd: 18.25,
+      rimCutDepthMm: 3.21,
     },
     {
       label: "6",
@@ -337,7 +336,7 @@ const LENS_DATA = {
       sd: 13.25,
     },
     {
-      label: "19",
+      label: "19A",
       R: -124.4651,
       d: 0.15,
       medium: 11,
@@ -381,7 +380,7 @@ const LENS_DATA = {
     },
     {
       text: "H1",
-      fromSurface: "19",
+      fromSurface: "19A",
       toSurface: "21",
     },
   ],

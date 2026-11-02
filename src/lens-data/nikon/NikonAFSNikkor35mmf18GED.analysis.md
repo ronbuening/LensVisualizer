@@ -134,7 +134,7 @@ Surface 19, the front of the resin layer on L27, is the only asphere. Equation (
 
 Semi-diameters are read from Figure 1 (p. 31). The 76.98 mm first-to-last vertex length gives 10.02 pixels per millimetre along the axis of the 300 dpi drawing, and arc fits give about 10.05 across it, so the figure is not stretched. Readings hold to about ±0.15 mm, but the table below is still an inference, not a factory clear aperture. Front values include field clearance beyond the axial beam.
 
-Figure 1 ends three concave faces short of their element edges with flat lands. The model cuts these faces flat at 8.15 mm from the vertex on m2, 2.25 mm on m12 and 4.22 mm on m14, so their curved caps end at radii of 19.05, 11.49 and 11.05 mm. Every wide-open traced beam stays inside those radii. The resin layer on L27 stops at 14.00 mm, inside the 14.50 mm rim of the glass.
+Figure 1 ends four concave faces short of their element edges with flat lands. The model cuts these faces flat at 8.15 mm from the vertex on m2, 3.21 mm on m5, 2.25 mm on m12 and 4.22 mm on m14, so their curved caps end at radii of 19.05, 17.69, 11.49 and 11.05 mm. Every wide-open traced beam stays inside those radii. The resin layer on L27 stops at 14.00 mm, inside the 14.50 mm rim of the glass.
 
 The image plane sits 115.40 mm from the first vertex, using the printed infinity Bf of 38.42 mm with no refocus. The model's EFL is 34.517 mm against the printed 34.5 mm, and its paraxial back focus is 38.417 mm, a 0.003 mm residual.
 
@@ -159,13 +159,15 @@ The wide-open iris radius of 10.519 mm is derived from F/1.86, not printed. At t
 | 16 | 12.25 |
 | 17 | 13.25 |
 | 18 | 13.25 |
-| 19 | 14.00 |
+| 19A | 14.00 |
 | 20 | 14.50 |
 | 21 | 14.50 |
 
 ## Model Scope and Limitations
 
-The model follows the patent's infinity plots at their scale: spherical aberration of about +0.03 mm at full aperture and −0.04 mm at 0.7 pupil, and distortion of about −2.4% at the 21.6 mm image height.
+The model follows the patent's infinity plots at their scale: spherical aberration of about +0.03 mm at full aperture and −0.04 mm at 0.7 pupil, and distortion of about −2.4% at the 21.6 mm image height. The patent plots only the d and g lines (¶0061, ¶0080). The g line follows as well, at about +0.11 mm of spherical aberration at full aperture and +0.026 mm of lateral colour at 21.6 mm image height.
+
+The sagittal curves agree within about 0.04 mm. At 21.6 mm image height the patent's meridional curves end about 0.1 mm nearer the image plane than the app's. The app's reference ray crosses the centre of the stop. A ray aimed at the paraxial entrance pupil instead, which misses that centre by 3.6% of the stop radius, recovers most of the difference, so it comes from the reference ray and not from the prescription.
 
 The patent's maximum image height is 21.6 mm, slightly short of the 21.63 mm corner of a 36×24 mm frame.
 
