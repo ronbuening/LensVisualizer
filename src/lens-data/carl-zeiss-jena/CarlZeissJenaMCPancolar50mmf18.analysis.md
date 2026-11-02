@@ -78,9 +78,9 @@ The 1978 catalogue gives a shortest focusing distance of 0.35 m, but the patent 
 
 The patent prints no iris position within the central air space, 17.207 in the table and 8.6035 mm at this scale. The model places the iris at 55 % of that space, z = 16.395 mm from the first vertex; the patent figure draws it at about 57 %. Positions of 50 % and 60 % also clear the adjacent glass at f/1.8, while 25 % and 75 % would intersect L3 and L4 respectively. The 55 % position was not chosen by contrast, and it is not a measurement of the production lens.
 
-Clear semi-diameters are inferred, because the patent prints none. In millimetres they are 1: 15.3, 2: 15.3, 3: 14, 4: 13, 5: 10.7, 6: 10.6, 7: 11.8, 8: 11.8, 9: 11.8, 10: 13.2, 11: 13.2.
+Clear semi-diameters are inferred, because the patent prints none. In millimetres they are 1: 15.3, 2: 15.3, 3: 13.5, 4: 13.5, 5: 10.7, 6: 9.7, 7: 11.8, 8: 11.8, 9: 11.8, 10: 13.2, 11: 13.2.
 
-The front value starts from roughly 10 % clearance over the paraxial entrance pupil; the others follow the proportions of the patent drawing and the curvature and gap limits of each face. Beveled bodies, rectangular flanges, filter threads and on-axis ray footprints are not calibrated clear apertures. Off-axis clipping by these rims stays in the model. Iris clearance does not show that the blades or the mount would fit.
+The front value starts from roughly 10 % clearance over the paraxial entrance pupil; the others follow the proportions of the patent drawing and the curvature and gap limits of each face. The drawing's arcs fit the printed radii only with its heights scaled up about 3 % against its axial scale, so its rims are read at that corrected scale. It draws faces 3 and 4 at one height. It also bevels the rear of L3 and the front of L4, which the model shows as straight edges from cap to rim. The cap of face 6 ends there at about 9.3 mm, inside the f/1.8 axial beam, so the model holds that face at 9.7 mm. Beveled bodies, rectangular flanges, filter threads and on-axis ray footprints are not calibrated clear apertures. Off-axis clipping by these rims stays in the model. Iris clearance does not show that the blades or the mount would fit.
 
 ## First-Order Properties and Image Plane
 
@@ -90,14 +90,14 @@ The table is itself a rescaled design. Nineteen of its 21 radii and spacings are
 
 ## Modeled Diffraction and Coverage
 
-At f/1.8 the model passes all of the axial beam, about 86 % of it at 11.5° and about 45 % at 23°, the printed half-field. These are model pupils set by the inferred rims, not measured illumination.
+At f/1.8 the model passes all of the axial beam, about 87 % of it at 11.5° and about 45 % at 23°, the printed half-field. These are model pupils set by the inferred rims, not measured illumination.
 
 The table gives computed contrast from the scalar diffraction estimator, as sagittal / tangential values.
 
 | f-number | Field ° | S/T at 10 lp/mm | S/T at 30 lp/mm | S/T at 50 lp/mm |
 | ---: | ---: | --- | --- | --- |
 | 1.8 | 0.0 | 0.689 / 0.689 | 0.113 / 0.113 | 0.211 / 0.211 |
-| 1.8 | 11.5 | 0.491 / 0.563 | 0.038 / 0.362 | 0.033 / 0.202 |
+| 1.8 | 11.5 | 0.491 / 0.566 | 0.039 / 0.364 | 0.033 / 0.203 |
 | 1.8 | 23.0 | 0.243 / 0.440 | 0.111 / 0.125 | 0.070 / 0.130 |
 | 8 | 0.0 | 0.940 / 0.940 | 0.820 / 0.820 | 0.698 / 0.698 |
 | 8 | 11.5 | 0.911 / 0.927 | 0.652 / 0.743 | 0.416 / 0.563 |

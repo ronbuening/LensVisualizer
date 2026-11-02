@@ -5,6 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The table is a rescaled design: 19 of its 21 R and d values are round millimetre figures × 1.9119 (f ≈ 52.30 mm).
  * Clear apertures and the iris opening are inferred. The patent prints no iris position; it sits at 55 % of the
  * central air space here, and the patent figure draws it at about 57 %.
+ * NOTE ON SEMI-DIAMETERS: the patent figure's arcs fit the table only with its heights scaled up 3.1 % against its
+ * axial scale. Rims are read at that corrected scale: S1–2 15.0, S3–4 13.5, S5 10.5, S6 9.3, S7–9 11.5, S10–11 13.0.
+ * S3 and S4 take the square L2/L3 rim the figure draws. S6 sits at 9.7 mm, the f/1.8 axial floor, above the figure's
+ * cap. The other rims agree with that reading within about 2.6 % and stay at their inferred values.
  * Spherical surfaces only; nothing is re-optimized, and no focus motion is modeled.
  */
 const LENS_DATA = {
@@ -14,7 +18,7 @@ const LENS_DATA = {
   name: "CARL ZEISS JENA MC PANCOLAR 50mm f/1.8",
   subtitle: "DD 77 830 — Sole example; six-element, five-group form of the 1978 catalogue",
   catalog: {
-    lensMounts: ["m42"], // M42: 1978 catalogue "für PRAKTICA-Typen" and Kamerastore MC listings; MC in Exakta unconfirmed
+    lensMounts: ["m42", "praktica-b"], // M42: 1978 catalogue, Kamerastore; Praktica B 1979-82: Reeve; MC in Exakta unconfirmed
     imageFormat: "135-full-frame",
     elementCount: 6,
     groupCount: 5,
@@ -132,14 +136,14 @@ const LENS_DATA = {
       label: "3",
       R: 24.281,
       d: 6.3095,
-      sd: 14.0,
+      sd: 13.5,
       medium: 2,
     },
     {
       label: "4",
       R: -152.952,
       d: 1.434,
-      sd: 13.0,
+      sd: 13.5,
       medium: 3,
     },
     {
@@ -157,7 +161,7 @@ const LENS_DATA = {
       label: "6",
       R: -18.1475,
       d: 1.5295,
-      sd: 10.6,
+      sd: 9.7,
       medium: 4,
     },
     {
@@ -202,6 +206,7 @@ const LENS_DATA = {
     nominalFNumber: 1.8,
     fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
+    blades: 6,
   },
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },
