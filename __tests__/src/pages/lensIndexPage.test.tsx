@@ -12,7 +12,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, screen, waitFor } from "@testing-library/react";
 import LensIndexPage from "../../../src/pages/LensIndexPage.js";
-import { clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
+import { CATALOG_RENDER_TIMEOUT_MS, clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
   default: function SEOHead() {
@@ -34,7 +34,8 @@ describe("LensIndexPage", () => {
     cleanup();
   });
 
-  it("switches between maker, focal-length, and patent-year groupings", () => {
+  // Renders the whole catalog once per grouping under jsdom, so its cost grows with the lens count.
+  it("switches between maker, focal-length, and patent-year groupings", { timeout: CATALOG_RENDER_TIMEOUT_MS }, () => {
     renderLensIndexPage();
 
     expect(screen.getByRole("link", { name: "Canon" })).toBeTruthy();
