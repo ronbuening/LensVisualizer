@@ -14,6 +14,14 @@ function primitive(type) {
   return type.isUnion() ? type.types.every(primitive) : (type.flags & primitiveFlags) !== 0;
 }
 
+/** An array or tuple of primitives renders one Text node per item, so it can never be a single owned string. */
+function primitiveList(checker, type) {
+  if (type.isUnion()) return type.types.some((part) => primitiveList(checker, part));
+  if (!checker.isArrayType(type) && !checker.isTupleType(type)) return false;
+  const items = checker.getTypeArguments(type);
+  return items.length > 0 && items.every(primitive);
+}
+
 function containsJsx(node) {
   if (ts.isJsxElement(node) || ts.isJsxSelfClosingElement(node) || ts.isJsxFragment(node)) return true;
   return ts.forEachChild(node, containsJsx) === true;
@@ -29,11 +37,15 @@ export default {
     messages: {
       mixed:
         "Keep a changing text run in its own HTML element with one primitive child. Join text with textRun(...) or a template string; wrap text next to rich content in a span. See agent_docs/code_conventions.md.",
+      list: 'A list of strings or numbers renders one Text node per item. Join it into one string (e.g. items.join(", ")) or render each item in its own element. See agent_docs/code_conventions.md.',
+      untyped:
+        "translation/owned-text needs type information; enable parserOptions.projectService for this file so the rule can tell text from rich content.",
     },
   },
   create(context) {
     const services = context.sourceCode.parserServices;
-    if (!services?.program || !services.esTreeNodeToTSNodeMap) return {};
+    if (!services?.program || !services.esTreeNodeToTSNodeMap)
+      return { Program: (node) => context.report({ node, messageId: "untyped" }) };
     const checker = services.program.getTypeChecker();
     return {
       Program(node) {
@@ -57,6 +69,17 @@ export default {
                       (!child.expression || (ts.isStringLiteralLike(child.expression) && !child.expression.text.trim()))
                     ),
               );
+              for (const child of children) {
+                if (
+                  ts.isJsxExpression(child) &&
+                  child.expression &&
+                  !containsJsx(child.expression) &&
+                  primitiveList(checker, checker.getTypeAtLocation(child.expression))
+                ) {
+                  const position = source.getLineAndCharacterOfPosition(child.getStart(source));
+                  context.report({ loc: { line: position.line + 1, column: position.character }, messageId: "list" });
+                }
+              }
               const text = children.filter(
                 (child) =>
                   ts.isJsxText(child) ||

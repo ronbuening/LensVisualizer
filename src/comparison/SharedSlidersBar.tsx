@@ -296,8 +296,7 @@ export default function SharedSlidersBar({
               <>
                 <span>
                   {textRun(
-                    "A:",
-                    " ",
+                    "A: ",
                     LA.perspectiveControl && isMovementAxisEnabled(LA.perspectiveControl.shiftRangeMm)
                       ? signed(movementPair.shiftA, 1, "mm")
                       : "n/a",
@@ -305,8 +304,7 @@ export default function SharedSlidersBar({
                 </span>
                 <span>
                   {textRun(
-                    "B:",
-                    " ",
+                    "B: ",
                     LB.perspectiveControl && isMovementAxisEnabled(LB.perspectiveControl.shiftRangeMm)
                       ? signed(movementPair.shiftB, 1, "mm")
                       : "n/a",
@@ -335,8 +333,7 @@ export default function SharedSlidersBar({
               <>
                 <span>
                   {textRun(
-                    "A:",
-                    " ",
+                    "A: ",
                     LA.perspectiveControl && isMovementAxisEnabled(LA.perspectiveControl.tiltRangeDeg)
                       ? signed(movementPair.tiltA, 1, "deg")
                       : "n/a",
@@ -344,8 +341,7 @@ export default function SharedSlidersBar({
                 </span>
                 <span>
                   {textRun(
-                    "B:",
-                    " ",
+                    "B: ",
                     LB.perspectiveControl && isMovementAxisEnabled(LB.perspectiveControl.tiltRangeDeg)
                       ? signed(movementPair.tiltB, 1, "deg")
                       : "n/a",
