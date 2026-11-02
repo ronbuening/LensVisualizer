@@ -249,13 +249,13 @@ const LENS_DATA = {
       "R": 104.204,
       "d": 20.0,
       "medium": 1,
-      "sd": 57.5
+      "sd": 53.5
     },
     {
       "label": "2",
       "R": -630.89,
       "d": 0.3,
-      "sd": 55.0
+      "sd": 53.5
     },
     {
       "label": "3",
@@ -307,7 +307,6 @@ const LENS_DATA = {
     {
       "label": "10",
       "R": 126.546,
-      "d": 5.5,
       "sd": 28.5
     },
     {
@@ -347,7 +346,6 @@ const LENS_DATA = {
     {
       "label": "16",
       "R": 54.98,
-      "d": 15.5239,
       "sd": 20.5
     },
     {
@@ -391,13 +389,44 @@ const LENS_DATA = {
     {
       "label": "23",
       "R": -69.215,
-      "d": 59.4575,
       "sd": 21.5
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Infinity-only patent reconstruction. Source near gaps/magnification and maker 1.9 m do not certify a finite conjugate, cam or VR-decentering law."
+    "closeFocusM": 1.9,
+    "description": "Internal focus: the negative second group moves toward the image, and the patent's closest state (β = −0.1258) falls at about 1.9 m.",
+    "published": [
+      1
+    ]
+  },
+  "gaps": {
+    "10": {
+      "label": "D10",
+      "values": [
+        [
+          5.5,
+          15.0995
+        ]
+      ]
+    },
+    "16": {
+      "label": "D16",
+      "values": [
+        [
+          15.5239,
+          5.9244
+        ]
+      ]
+    },
+    "23": {
+      "label": "BF",
+      "values": [
+        [
+          59.4575,
+          59.4386
+        ]
+      ]
+    }
   },
   "aperture": {
     "nominalFNumber": 1.84,
