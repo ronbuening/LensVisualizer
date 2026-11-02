@@ -13,7 +13,7 @@ const LENS_DATA = {
   schema: 2,
   key: "minolta-md-35mm-f28",
   maker: "Minolta",
-  name: "MINOLTA MD 35mm f/2.8 — patent reconstruction (inferred apertures/stop; infinity only; factory identity unproven)",
+  name: "MINOLTA MD 35mm f/2.8",
   subtitle: "US 3,936,153 Table I; Figure 1 aperture hypothesis and inferred midpoint iris",
   catalog: {
     lensMounts: ["minolta-sr"],
@@ -51,7 +51,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "Table I prints N/v without explicit wavelength subscript. d-line reference is convention/inference, not a printed wavelength claim.",
       focalLengthMm: -36.40841537550411,
-      glass: "Unmatched (1.5714/53.0; literal patent coordinate; supplier unresolved)",
+      glass: "S-BAL3 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 2,
@@ -64,7 +64,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "Table I prints N/v without explicit wavelength subscript. d-line reference is convention/inference, not a printed wavelength claim.",
       focalLengthMm: 25.91416494122884,
-      glass: "Unmatched (1.6583/58.5; literal patent coordinate; supplier unresolved)",
+      glass: "K-LaK11 spectral proxy (Sumita; lanthanum crown; patent vd 58.5 retained versus catalog 57.3; supplier unconfirmed)",
     },
     {
       id: 3,
@@ -77,7 +77,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "Table I prints N/v without explicit wavelength subscript. d-line reference is convention/inference, not a printed wavelength claim.",
       focalLengthMm: -17.36048337037693,
-      glass: "Unmatched (1.6889/31.2; literal patent coordinate; supplier unresolved)",
+      glass: "J-SF8 (HIKARI catalog equivalent; production supplier unspecified)",
     },
     {
       id: 4,
@@ -90,7 +90,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "Table I prints N/v without explicit wavelength subscript. d-line reference is convention/inference, not a printed wavelength claim.",
       focalLengthMm: 30.73201073078851,
-      glass: "Unmatched (1.72/50.3; literal patent coordinate; supplier unresolved)",
+      glass: "K-LaK10 (SUMITA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 5,
@@ -103,7 +103,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "Table I prints N/v without explicit wavelength subscript. d-line reference is convention/inference, not a printed wavelength claim.",
       focalLengthMm: 45.298700202055215,
-      glass: "Unmatched (1.6204/60.3; literal patent coordinate; supplier unresolved)",
+      glass: "S-BSM16 (OHARA catalog equivalent; production supplier unspecified)",
     },
   ],
   surfaces: [

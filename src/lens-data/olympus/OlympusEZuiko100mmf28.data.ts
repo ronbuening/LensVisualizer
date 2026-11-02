@@ -9,9 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
-  key: "olympus-zuiko-auto-t-100mm-f28-patent-candidate",
+  key: "olympus-e-zuiko-auto-t-100mm-f28",
   maker: "Olympus",
-  name: "Olympus Zuiko Auto-T 100mm f/2.8 — patent reconstruction (inferred apertures/stop; infinity only; factory identity unproven; private)",
+  name: "OLYMPUS E.ZUIKO AUTO-T 100mm f/2.8",
   subtitle: "US 3,749,478 Example 2 — private infinity reconstruction; retail pairing unproven",
   visible: true,
   catalog: {
@@ -56,7 +56,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "Literal patent n used as native reference index; d-line convention assumed, not explicit table nd; production glass and full dispersion unverified.",
       focalLengthMm: 81.54926370413664,
-      glass: "Unmatched (literal patent n/v; production identity unverified)",
+      glass: "S-BAL35 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Converging spherical singlet",
     },
     {
@@ -70,7 +70,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "Literal patent n used as native reference index; d-line convention assumed, not explicit table nd; production glass and full dispersion unverified.",
       focalLengthMm: 147.22221465471762,
-      glass: "Unmatched (literal patent n/v; production identity unverified)",
+      glass: "BAL22 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Converging spherical singlet",
     },
     {
@@ -84,7 +84,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "Literal patent n used as native reference index; d-line convention assumed, not explicit table nd; production glass and full dispersion unverified.",
       focalLengthMm: 198.6514566165605,
-      glass: "Unmatched (literal patent n/v; production identity unverified)",
+      glass: "BASF7 (SUMITA catalog equivalent; production supplier unspecified)",
       role: "Converging spherical singlet",
     },
     {
@@ -98,7 +98,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "Literal patent n used as native reference index; d-line convention assumed, not explicit table nd; production glass and full dispersion unverified.",
       focalLengthMm: -33.40129153305743,
-      glass: "Unmatched (literal patent n/v; production identity unverified)",
+      glass: "PBH23 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Diverging telephoto element",
     },
     {
@@ -112,7 +112,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "Literal patent n used as native reference index; d-line convention assumed, not explicit table nd; production glass and full dispersion unverified.",
       focalLengthMm: 127.99034219283872,
-      glass: "Unmatched (literal patent n/v; production identity unverified)",
+      glass: "PBH23 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Converging spherical singlet",
     },
   ],

@@ -17,9 +17,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
-  key: "private-pentax-m-40mm-f28-stop-9p682",
+  key: "pentax-m-40mm-f28",
   maker: "Pentax",
-  name: "SMC PENTAX-M 40mm f/2.8 — patent reconstruction (inferred apertures/stop; infinity only; factory identity unproven; private)",
+  name: "PENTAX SMC M 40mm f/2.8",
   subtitle: "US 4,154,509 \u2014 sole example; STOP HYPOTHESIS 9.682 mm",
   visible: true,
   catalog: {
@@ -55,7 +55,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 41,
       indexReference: "d",
-      glass: "Unmatched (patent d-line nd/Vd only; historical melt and full dispersion unproven)",
+      glass: "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 2,
@@ -65,7 +65,7 @@ const LENS_DATA = {
       nd: 1.68893,
       vd: 31.1,
       indexReference: "d",
-      glass: "Unmatched (patent d-line nd/Vd only; historical melt and full dispersion unproven)",
+      glass: "S-TIM28 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 3,
@@ -75,7 +75,7 @@ const LENS_DATA = {
       nd: 1.69895,
       vd: 30.1,
       indexReference: "d",
-      glass: "Unmatched (patent d-line nd/Vd only; historical melt and full dispersion unproven)",
+      glass: "SF15 (SUMITA catalog equivalent; production supplier unspecified)",
       cemented: "D1",
     },
     {
@@ -86,7 +86,7 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.8,
       indexReference: "d",
-      glass: "Unmatched (patent d-line nd/Vd only; historical melt and full dispersion unproven)",
+      glass: "TAF5 (HOYA coordinate equivalent; patent νd 46.8 versus catalog 46.6)",
       cemented: "D1",
     },
     {
@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       indexReference: "d",
-      glass: "Unmatched (patent d-line nd/Vd only; historical melt and full dispersion unproven)",
+      glass: "S-LAH65 (OHARA catalog equivalent; production supplier unspecified)",
     },
   ],
   surfaces: [

@@ -15,7 +15,7 @@ const LENS_DATA = {
   schema: 2,
   key: "pentax-m-50mm-f17",
   maker: "Pentax",
-  name: "PENTAX SMC PENTAX-M 50mm f/1.7 — patent reconstruction (inferred apertures/stop; infinity only; factory identity unproven)",
+  name: "PENTAX SMC M 50mm f/1.7",
   subtitle: "US 3,817,603 sole example; r4 corrected from a printed digit transposition",
   catalog: {
     lensMounts: ["pentax-k"],
@@ -65,7 +65,7 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.8,
       indexReference: "d",
-      glass: "Unmatched (1.816/46.8; literal patent d-line coordinate; vendor unresolved)",
+      glass: "TAF5 (HOYA coordinate equivalent; patent νd 46.8 versus catalog 46.6)",
       focalLengthMm: 84.63747104322509,
     },
     {
@@ -76,7 +76,7 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.8,
       indexReference: "d",
-      glass: "Unmatched (1.816/46.8; literal patent d-line coordinate; vendor unresolved)",
+      glass: "TAF5 (HOYA coordinate equivalent; patent νd 46.8 versus catalog 46.6)",
       focalLengthMm: 48.90360893535522,
     },
     {
@@ -87,7 +87,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.3,
       indexReference: "d",
-      glass: "Unmatched (1.72825/28.3; literal patent d-line coordinate; vendor unresolved)",
+      glass: "SF10 (SCHOTT catalog equivalent; production supplier unspecified)",
       focalLengthMm: -29.13239634620976,
     },
     {
@@ -98,7 +98,7 @@ const LENS_DATA = {
       nd: 1.6668,
       vd: 33.1,
       indexReference: "d",
-      glass: "Unmatched (1.6668/33.1; literal patent d-line coordinate; vendor unresolved)",
+      glass: "S-TIM39 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -27.262866221612676,
     },
     {
@@ -109,7 +109,7 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.8,
       indexReference: "d",
-      glass: "Unmatched (1.816/46.8; literal patent d-line coordinate; vendor unresolved)",
+      glass: "TAF5 (HOYA coordinate equivalent; patent νd 46.8 versus catalog 46.6)",
       focalLengthMm: 30.338735980776068,
     },
     {
@@ -120,7 +120,7 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.8,
       indexReference: "d",
-      glass: "Unmatched (1.816/46.8; literal patent d-line coordinate; vendor unresolved)",
+      glass: "TAF5 (HOYA coordinate equivalent; patent νd 46.8 versus catalog 46.6)",
       focalLengthMm: 54.2804795718613,
     },
   ],

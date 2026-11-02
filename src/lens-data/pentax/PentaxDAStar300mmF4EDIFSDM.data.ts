@@ -21,9 +21,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "private-lensgap-primes-1014-infinity",
+  key: "pentax-da-star-300mm-f4",
   maker: "Pentax",
-  name: "smc PENTAX-DA Star 300mm f/4 — patent reconstruction (inferred apertures; sourced stop plane; infinity only; factory identity unproven; private)",
+  name: "PENTAX DA* 300mm f/4 ED [IF] SDM",
   subtitle: "US 7,715,116 B2, Embodiment 7 / Table 7 / Figure 19; infinity only",
   visible: true,
   catalog: {
@@ -59,7 +59,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       indexReference: "d",
-      glass: "Unmatched (source Nd/nu_d retained; spectral proxy review pending)",
+      glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 2,
@@ -69,7 +69,7 @@ const LENS_DATA = {
       nd: 1.43875,
       vd: 95,
       indexReference: "d",
-      glass: "Unmatched (source Nd/nu_d retained; spectral proxy review pending)",
+      glass: "S-FPL53 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 3,
@@ -79,7 +79,7 @@ const LENS_DATA = {
       nd: 1.8,
       vd: 44.1,
       indexReference: "d",
-      glass: "Unmatched (source Nd/nu_d retained; spectral proxy review pending)",
+      glass: "NBFD14 (HOYA coordinate proxy; patent 1.80000/44.1 is not a catalog coordinate)",
     },
     {
       id: 4,
@@ -89,7 +89,7 @@ const LENS_DATA = {
       nd: 1.79952,
       vd: 41.3,
       indexReference: "d",
-      glass: "Unmatched (source Nd/nu_d retained; spectral proxy review pending)",
+      glass: "S-LAH52 (OHARA coordinate proxy; patent νd 41.3 versus catalog 42.2)",
       cemented: "D1",
     },
     {
@@ -100,7 +100,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       indexReference: "d",
-      glass: "Unmatched (source Nd/nu_d retained; spectral proxy review pending)",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       cemented: "D1",
     },
     {
@@ -111,7 +111,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       indexReference: "d",
-      glass: "Unmatched (source Nd/nu_d retained; spectral proxy review pending)",
+      glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       cemented: "D2",
     },
     {
@@ -122,7 +122,7 @@ const LENS_DATA = {
       nd: 1.7426,
       vd: 44.4,
       indexReference: "d",
-      glass: "Unmatched (source Nd/nu_d retained; spectral proxy review pending)",
+      glass: "LAF2 (HOYA coordinate proxy; patent 1.74260/44.4 is not a catalog coordinate)",
       cemented: "D2",
     },
     {
@@ -133,7 +133,7 @@ const LENS_DATA = {
       nd: 1.69883,
       vd: 29.6,
       indexReference: "d",
-      glass: "Unmatched (source Nd/nu_d retained; spectral proxy review pending)",
+      glass: "E-FD15 (HOYA coordinate proxy; patent 1.69883/29.6 is not a catalog coordinate)",
     },
   ],
   surfaces: [
