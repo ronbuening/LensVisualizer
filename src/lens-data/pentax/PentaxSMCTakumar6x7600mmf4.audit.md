@@ -1,8 +1,6 @@
-# Private source and inference audit
+# Audit Log — Pentax SMC Takumar 6x7 600mm f/4
 
-Source packet and every embedded member passed exact SHA256 and size checks. The original jobcard is retained unchanged. The oversized combined transfer failed twice with MCP Transport closed; the three smaller packets resolved source access, without retrying the oversized transfer.
-
-Native patent f100/F4 is uniformly scaled x6 as a modeled interpretation of the 600mm family. The printed L 74.2 defines the image plane; its source rounding and paraxial residual remain. Maker 12 m MOD and patent 7f near plot do not supply finite spacings.
+Patent f100/F4 is uniformly scaled x6 as a modeled interpretation of the 600mm family. The printed L 74.2 defines the image plane; its source rounding and paraxial residual remain. Maker 12 m MOD and patent 7f near plot do not supply finite spacings.
 
 Optical input source: Sole specific numerical example, Table 1, Figs. 1–3; printed L 74.2. All lengths x6; indices and Abbe numbers unchanged. Earlier secondary 3502292 identification is unrelated.
 
