@@ -77,7 +77,7 @@ const LENS_DATA = {
       glass: "E-FD13 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -14.831590121696824,
       role: "Source-prescribed spherical element; no factory-exact identity claim",
-      cemented: "D3",
+      cemented: "C1",
     },
     {
       id: 4,
@@ -90,10 +90,10 @@ const LENS_DATA = {
       glass: "E-FDS1 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 42.57282372017818,
       role: "Source-prescribed spherical element; no factory-exact identity claim",
-      cemented: "D3",
+      cemented: "C1",
       apd: "inferred",
       apdNote:
-        "Manufacturer colors this probable matched element position as anomalous partial dispersion; patent nd/vd alone supplies no APD scalar, supplier identity or APO validation.",
+        "Cosina's optical section marks L4 as anomalous partial dispersion; catalog-equivalent E-FDS1 has PgF 0.6390 (dPgF +0.0303), and the patent supplies no line indices.",
     },
     {
       id: 5,
@@ -106,7 +106,7 @@ const LENS_DATA = {
       glass: "S-TIM35 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -36.64425822159784,
       role: "Source-prescribed spherical element; no factory-exact identity claim",
-      cemented: "D4",
+      cemented: "C2",
     },
     {
       id: 6,
@@ -119,7 +119,7 @@ const LENS_DATA = {
       glass: "S-LAH96 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 17.04050846319126,
       role: "Source-prescribed spherical element; no factory-exact identity claim",
-      cemented: "D4",
+      cemented: "C2",
     },
     {
       id: 7,
@@ -132,7 +132,7 @@ const LENS_DATA = {
       glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 13.873706826087934,
       role: "Source-prescribed spherical element; no factory-exact identity claim",
-      cemented: "D5",
+      cemented: "C3",
     },
     {
       id: 8,
@@ -145,10 +145,10 @@ const LENS_DATA = {
       glass: "S-NBH53V (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -19.779072943946478,
       role: "Source-prescribed spherical element; no factory-exact identity claim",
-      cemented: "D5",
+      cemented: "C3",
       apd: "inferred",
       apdNote:
-        "Manufacturer colors this probable matched element position as anomalous partial dispersion; patent nd/vd alone supplies no APD scalar, supplier identity or APO validation.",
+        "Cosina's optical section marks L8 as anomalous partial dispersion; catalog-equivalent S-NBH53V is a short flint with PgF 0.5900, near the normal line (dPgF +0.0006) but about 0.0085 below ordinary flints of similar Abbe number.",
     },
     {
       id: 9,
@@ -163,7 +163,7 @@ const LENS_DATA = {
       role: "Source-prescribed spherical element; no factory-exact identity claim",
       apd: "inferred",
       apdNote:
-        "Manufacturer colors this probable matched element position as anomalous partial dispersion; patent nd/vd alone supplies no APD scalar, supplier identity or APO validation.",
+        "Cosina's optical section marks L9 as anomalous partial dispersion; catalog-equivalent S-NPH1 has PgF 0.6307 (dPgF +0.0252), and the patent supplies no line indices.",
     },
   ],
   surfaces: [
@@ -235,7 +235,6 @@ const LENS_DATA = {
     {
       label: "11",
       R: -33.9782,
-      d: 1.62,
       sd: 7.2,
     },
     {
@@ -272,16 +271,39 @@ const LENS_DATA = {
       sd: 10.6,
     },
   ],
+  gaps: {
+    "11": { label: "ZD11", values: [[1.62, 17.62]] },
+  },
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.16194,
+    published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 95.58,
+        distanceReference: "first-surface",
+        source: "JP 2023-130072 A Tables 2-3",
+      },
+    ],
     description:
-      "Static infinity only. Grade B probable X-mount family; source36.08mm/F2.01 and final12.49mm gap retained. Clear apertures and iris opening inferred. Source0.5x and retail0.163m remain research/descriptive evidence; no finite state or unprinted focus law is modeled.",
+      "PUBLISHED infinity and β = 0.50 states. L1–L6 and the stop move 16.00 mm toward the object while L7–L9 stay fixed, so ZD11 opens from 1.62 to 17.62 mm and the 12.49 mm back gap does not change. The near object sits 95.58 mm from the first surface, 161.94 mm from the image plane; the production lens is rated 0.163 m at 1:2.",
   },
   aperture: {
     nominalFNumber: 2.01,
-    fStops: [2.01, 2.8, 4, 5.6, 8, 11, 16],
-    maxFNumber: 16,
+    fStops: [2.01, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    blades: 10,
   },
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "11" },
+    { text: "G2", fromSurface: "12", toSurface: "16" },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "5", toSurface: "7" },
+    { text: "C2", fromSurface: "9", toSurface: "11" },
+    { text: "C3", fromSurface: "12", toSurface: "14" },
+  ],
   layout: {
     yScFill: 0.43,
   },
