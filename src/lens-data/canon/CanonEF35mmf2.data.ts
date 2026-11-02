@@ -53,7 +53,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.2,
       indexReference: "d",
-      glass: "Unmatched (literal source indices and Abbe number; vendor and full dispersion unproved)",
+      glass: "BACD5 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -63.6062380124121,
       role: "Literal representative prescription; negative isolated-in-air paraxial power.",
       indexReferenceNote:
@@ -67,7 +67,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.9,
       indexReference: "d",
-      glass: "Unmatched (literal source indices and Abbe number; vendor and full dispersion unproved)",
+      glass: "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 17.541461091812614,
       role: "Literal representative prescription; positive isolated-in-air paraxial power.",
       indexReferenceNote:
@@ -82,7 +82,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.8,
       indexReference: "d",
-      glass: "Unmatched (literal source indices and Abbe number; vendor and full dispersion unproved)",
+      glass: "E-FD2 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -35.63416681048583,
       role: "Literal representative prescription; negative isolated-in-air paraxial power.",
       indexReferenceNote:
@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.6727,
       vd: 32.1,
       indexReference: "d",
-      glass: "Unmatched (literal source indices and Abbe number; vendor and full dispersion unproved)",
+      glass: "S-TIM25 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -25.29924944292772,
       role: "Literal representative prescription; negative isolated-in-air paraxial power.",
       indexReferenceNote:
@@ -111,7 +111,7 @@ const LENS_DATA = {
       nd: 1.78472,
       vd: 25.7,
       indexReference: "d",
-      glass: "Unmatched (literal source indices and Abbe number; vendor and full dispersion unproved)",
+      glass: "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -50.3414027811061,
       role: "Literal representative prescription; negative isolated-in-air paraxial power.",
       indexReferenceNote:
@@ -126,7 +126,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      glass: "Unmatched (literal source indices and Abbe number; vendor and full dispersion unproved)",
+      glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 28.903561637089588,
       role: "Literal representative prescription; positive isolated-in-air paraxial power.",
       indexReferenceNote:
@@ -141,7 +141,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      glass: "Unmatched (literal source indices and Abbe number; vendor and full dispersion unproved)",
+      glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 44.868308846086855,
       role: "Literal representative prescription; positive isolated-in-air paraxial power.",
       indexReferenceNote:
