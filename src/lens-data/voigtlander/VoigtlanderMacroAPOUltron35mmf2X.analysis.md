@@ -99,13 +99,13 @@ The model publishes both printed states, with the close endpoint at 0.16194 m. I
 
 ## Stop and Clear-Aperture Assumptions
 
-The stop plane is printed 13.28 mm behind surface 1, with 2.57 mm before it and 3.94 mm after it. The patent prints no iris diameter, so the engine sizes the opening from F/2.01, a semi-diameter of 6.37 mm. Clear semi-diameters are also unprinted; they are inferred from the entrance-pupil scale, the proportions of the section and the surface geometry.
+The stop plane is printed 13.28 mm behind surface 1, with 2.57 mm before it and 3.94 mm after it. The patent prints no iris diameter, so the engine sizes the opening from F/2.01, a semi-diameter of 6.37 mm. Clear semi-diameters are also unprinted; they are estimated from Fig. 1 and from the rays each surface has to pass.
 
-Inferred clear semi-diameters in millimetres are 1: 9.9, 2: 9.9, 3: 9.4, 4: 9.4, 5: 8.6, 6: 8.6, 7: 8.6, 9: 7.2, 10: 7.2, 11: 7.2, 12: 8.9, 13: 8.9, 14: 8.9, 15: 10.6, 16: 10.6.
+Inferred clear semi-diameters in millimetres are 1: 9.7, 2: 9.7, 3: 8.9, 4: 7.9, 5: 7.8, 6: 7.8, 7: 6.6, 9: 7.2, 10: 7.2, 11: 7.2, 12: 8.8, 13: 8.8, 14: 8.8, 15: 8.7, 16: 10.2. Surfaces 4, 7 and 15 end there, and flat lands carry them out to the element rims of 8.9, 7.8 and 10.2 mm.
 
-The front rim begins with roughly 10 % paraxial entrance-pupil clearance; later rims are refined from the section and from curvature and gap limits. Off-axis clipping is retained. Clearance of the iris opening does not prove blade or mount fit.
+Fig. 1 is drawn to true scale: its curves fit the printed radii in both directions. Its elements read 9.00 mm for L1, 8.26 mm for L2, 7.52 mm for L3/L4, 6.46 mm for L5/L6, 8.01 mm for L7/L8 and 9.21 mm for L9, and it draws the three lands, with the curves ending at 7.8 mm on surface 4, 6.47 mm on surface 7 and 8.0 mm on surface 15. Fig. 2 repeats those outlines at the same size, with a ray 8.15 mm from the axis at surface 1 rather than the 8.98 mm of F/2.01. Cosina's section shows the same size order and the lands on L4 and L9.
 
-Fig. 1 is drawn to true scale, and these rims run 9 to 14 % wider than it. Its elements read 9.08 mm for L1, 8.30 mm for L2, 7.59 mm for L3/L4, 6.55 mm for L5/L6, 8.04 mm for L7/L8 and 9.27 mm for L9. Those values would cut wide-open corner light from about 42 % to about 28 % at 21.3° and clip the f/2.01 axial ray at S3 and S5 by about 0.13 mm.
+The model's rims stand 4 to 12 % above Fig. 1 because the rays need the room. The F/2.01 axial ray reaches 8.44 mm at surface 3, 7.72 mm at surface 5 and 6.59 mm at surface 7. At magnification 0.50 it reaches 6.79 mm at surface 10, and the chief ray to the 14.20 mm image height of Fig. 3(b) crosses surface 14 at 8.44 mm, surface 15 at 8.48 mm and surface 16 at 9.64 mm, past the rims Fig. 1 draws for L7/L8 and L9. The remaining margin keeps the off-axis bundles. Off-axis clipping is retained. Clearance of the iris opening does not prove blade or mount fit.
 
 ## First-Order Properties and Aberrations
 
@@ -117,15 +117,15 @@ The model's d-line spherical aberration agrees with Fig. 3(a): −0.061 mm at th
 
 ## Modeled Diffraction and Coverage
 
-Wide open at infinity, the model passes 100 % of the axial beam, about 90 % at 10.6° and about 42 % at 21.3°. These fractions depend on the inferred rims and are model pupils, not measured illumination.
+Wide open at infinity, the model passes 100 % of the axial beam, about 88 % at 10.6° and about 40 % at 21.3°. At magnification 0.50 it passes about 74 % at the 14.2° format corner. These fractions depend on the inferred rims and are model pupils, not measured illumination.
 
 The table gives monochromatic scalar diffraction MTF at infinity on the authored image plane, with no focus shift.
 
 | f-number | Angle ° | S/T at 10 lp/mm | S/T at 30 lp/mm | S/T at 50 lp/mm |
 | ---: | ---: | --- | --- | --- |
 | 2.01 | 0 | 0.952 / 0.952 | 0.698 / 0.698 | 0.358 / 0.358 |
-| 2.01 | 10.6 | 0.939 / 0.940 | 0.672 / 0.774 | 0.479 / 0.664 |
-| 2.01 | 21.3 | 0.516 / 0.912 | 0.330 / 0.597 | 0.262 / 0.299 |
+| 2.01 | 10.6 | 0.940 / 0.952 | 0.677 / 0.804 | 0.490 / 0.685 |
+| 2.01 | 21.3 | 0.528 / 0.913 | 0.343 / 0.607 | 0.274 / 0.315 |
 | 8 | 0 | 0.940 / 0.940 | 0.818 / 0.818 | 0.696 / 0.696 |
 | 8 | 10.6 | 0.936 / 0.938 | 0.798 / 0.813 | 0.658 / 0.688 |
 | 8 | 21.3 | 0.935 / 0.925 | 0.803 / 0.763 | 0.673 / 0.607 |
