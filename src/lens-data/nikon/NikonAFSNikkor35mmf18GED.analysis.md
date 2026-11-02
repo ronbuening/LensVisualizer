@@ -132,7 +132,9 @@ Surface 19, the front of the resin layer on L27, is the only asphere. Equation (
 
 ## Geometry, Aperture and Image Plane
 
-Semi-diameters are read from Figure 1 (p. 31), scaled from the 76.98 mm first-to-last vertex length and rounded to 0.25 mm. The reading carries about ±0.7 mm plus unknown drawing distortion, so the table below is an inference, not a factory clear aperture. Front values include field clearance beyond the axial beam. Figure 1 also draws lands on m2 and m14 that the model does not.
+Semi-diameters are read from Figure 1 (p. 31). The 76.98 mm first-to-last vertex length gives 10.02 pixels per millimetre along the axis of the 300 dpi drawing, and arc fits give about 10.05 across it, so the figure is not stretched. Readings hold to about ±0.15 mm, but the table below is still an inference, not a factory clear aperture. Front values include field clearance beyond the axial beam.
+
+Figure 1 ends three concave faces short of their element edges with flat lands. The model cuts these faces flat at 8.15 mm from the vertex on m2, 2.25 mm on m12 and 4.22 mm on m14, so their curved caps end at radii of 19.05, 11.49 and 11.05 mm. Every wide-open traced beam stays inside those radii. The resin layer on L27 stops at 14.00 mm, inside the 14.50 mm rim of the glass.
 
 The image plane sits 115.40 mm from the first vertex, using the printed infinity Bf of 38.42 mm with no refocus. The model's EFL is 34.517 mm against the printed 34.5 mm, and its paraxial back focus is 38.417 mm, a 0.003 mm residual.
 
@@ -149,15 +151,15 @@ The wide-open iris radius of 10.519 mm is derived from F/1.86, not printed. At t
 | 7 | 17.75 |
 | 8 | 14.25 |
 | 9 | 14.25 |
-| 10 | 13.00 |
-| 11 | 13.00 |
-| 12 | 13.00 |
+| 10 | 13.50 |
+| 11 | 13.20 |
+| 12 | 13.20 |
 | 14 | 12.25 |
 | 15 | 12.25 |
 | 16 | 12.25 |
 | 17 | 13.25 |
 | 18 | 13.25 |
-| 19 | 14.50 |
+| 19 | 14.00 |
 | 20 | 14.50 |
 | 21 | 14.50 |
 
@@ -167,7 +169,7 @@ The model follows the patent's infinity plots at their scale: spherical aberrati
 
 The patent's maximum image height is 21.6 mm, slightly short of the 21.63 mm corner of a 36×24 mm frame.
 
-Inferred rims clip the off-axis beam, and the clipping is left in place rather than opened up. The patent's coma plots appear to end at narrower ray fans than the model passes (about ±0.73 of the pupil at 10.8 mm image height, against ±0.91), so the model's mid-field vignetting is probably lighter than the design's.
+Inferred rims clip the off-axis beam, and the clipping is left in place rather than opened up. The patent's coma plots end at narrower ray fans than the model passes: about ±0.72 of the pupil at 10.8 mm image height against ±0.92, and −0.29 to +0.35 at 21.6 mm against −0.54 to +0.68. Those fan ends trace to radii of about 14.8 mm at m6 and 11.5 mm at m19, where Figure 1 draws about 17.6 and 14.0 mm. The rims follow the figure, so the model's mid-field vignetting is probably lighter than the design's.
 
 ## Sources and References
 

@@ -2,7 +2,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * JP 2015-118186 A, Example 1 (Table 1). The patent names no product; the exact production prescription is not known.
- * R, d, nd, νd and the stop position are as printed. Semi-diameters are inferred from Figure 1; the iris is derived.
+ * R, d, nd, νd and the stop position are as printed; the iris is derived. Semi-diameters are estimated from Figure 1
+ * (10.02 px/mm along the axis, about 10.05 across it) and floor-checked by real-ray trace at all three focus states.
+ * Surfaces 2, 12 and 14 carry the figure's lands as inferred rim cuts, with caps ending at 19.05, 11.49 and 11.05 mm,
+ * clear of every wide-open beam. The resin on surface 19 stops at 14.0 mm, inside the 14.5 mm rim of L27.
  * Surface 19 carries the printed asphere (κ = 1, so K = 0) on a 0.150 mm resin layer, modeled as a separate medium:
  * 12 media for 11 glass elements. Element names follow the patent (L11–L14, L21–L27), with L27r the resin on L27g.
  * Focus: G1 fixed, G2 and the stop move as one unit. The β = −1/30 state prints D0 and D7; its BF is derived with G1
@@ -12,7 +15,7 @@ const LENS_DATA = {
   schema: 2,
   key: "nikon-af-s-nikkor-35mm-f18g-ed",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 35mm f/1.8G ED",
+  name: "NIKON AF-S NIKKOR 35mm f/1.8 G ED",
   subtitle: "JP 2015-118186 A — Example 1; closest fit to Nikon's published section",
   catalog: {
     lensMounts: ["nikon-f"],
@@ -227,6 +230,7 @@ const LENS_DATA = {
       R: 26.3342,
       d: 13.931,
       sd: 22.5,
+      rimCutDepthMm: 8.15,
     },
     {
       label: "3",
@@ -278,20 +282,21 @@ const LENS_DATA = {
       R: 391.7521,
       d: 3.425,
       medium: 6,
-      sd: 13,
+      sd: 13.5,
     },
     {
       label: "11",
       R: -41.6538,
       d: 2.322,
       medium: 7,
-      sd: 13,
+      sd: 13.2,
     },
     {
       label: "12",
       R: 30.4662,
       d: 3.636,
-      sd: 13,
+      sd: 13.2,
+      rimCutDepthMm: 2.25,
     },
     {
       label: "STO",
@@ -304,6 +309,7 @@ const LENS_DATA = {
       d: 1.1,
       medium: 8,
       sd: 12.25,
+      rimCutDepthMm: 4.22,
     },
     {
       label: "15",
@@ -336,7 +342,7 @@ const LENS_DATA = {
       R: -124.4651,
       d: 0.15,
       medium: 11,
-      sd: 14.5,
+      sd: 14,
       asphere: {
         K: 0,
         A4: -1.39304e-5,
