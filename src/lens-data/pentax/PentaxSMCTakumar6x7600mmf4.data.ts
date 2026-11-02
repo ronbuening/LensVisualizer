@@ -197,8 +197,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Static infinity only; Grade B probable family match. All dimensions scaled x6 from patent f100. Stop and clear apertures inferred. Retail12m MOD and patent7f near curves are not modeled finite states."
+    "closeFocusM": 12,
+    "description": "The model stays at infinity focus because the patent prints no close-focus spacings; the production lens focuses to 12 m."
   },
   "aperture": {
     "nominalFNumber": 4,
