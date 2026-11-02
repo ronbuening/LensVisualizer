@@ -1,22 +1,50 @@
-// Private qualified patent reconstruction. Literal source R/d/nd/vd retained; no optimization.
-// TableIII/Fig3 contains11powered elements/10groups and no built-in filter prescription. The manufacturer drawing has an extra filter body afterE5. Filter parameters remain absent; the model does not assert exact retail behavior.
-// All SDs and midpoint stop are explicit initialization hypotheses; see external evidence.
-// Printed source backfocus199.7 ×0.18. Canonical static-infinity convention.
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/**
+ * US 3,841,736 (Asahi Kogaku Kogyo; Takahashi and Okudaira), second embodiment, Table III and Fig. 3: F = 100, 1:3.5,
+ * half field 51°, back focus FB = 199.7. All surfaces are spherical, and no R, d, nd or νd has been adjusted.
+ *
+ * The patent names no product and gives its dimensions as relative values. All radii and spacings are the printed values
+ * × 0.18; that scale is inferred from the marketed focal length. nd and νd are as printed. The association with the
+ * SMC Pentax 18mm f/3.5 is at family level: the patent's Japanese priority is May 1972, the lens reached retail in 1975,
+ * and no Takumar 18mm f/3.5 was found. It is not a confirmed factory prescription.
+ *
+ * Pentax's table prints 11 groups, 12 elements, and catalog.elementCount and groupCount carry that count, but the model
+ * draws 11 elements in 10 groups. Pentax's count includes a filter plate: its section drawing shows a thin plate right
+ * after L5, and its brochure gives the lens four built-in filters and a rear gelatin holder. The patent lists no plate,
+ * its printed back focus excludes one (Table III computes to FB = 199.71), and the plate's thickness and index are
+ * unknown, so it stays out of the prescription. Pentax's drawing otherwise has the model's order and shapes. L1 to L6, L10
+ * and L11 fit Table III; its cemented L7/L8 is thinner, and its L9 is about twice as thick with a stepped rim.
+ *
+ * The image plane is the printed FB × 0.18: 35.946 mm behind r21, 92.25 mm from the first vertex. The paraxial focus is
+ * 35.948 mm.
+ *
+ * Column 2 of the patent puts the diaphragm between L6 and L7 and prints no position. Table IV, whose caption misnames
+ * Table I, recomputes from Table III with the pupil 5.36 behind r12 at F = 100, so the stop sits 0.965 mm after r12. Its
+ * radius follows from F/3.5.
+ *
+ * All `sd` values are estimates read from Fig. 3 by fitting Table III's arcs (vertical scale 1.04 × axial). Rims follow
+ * the figure at the front; from L5 back they stop 0.8 to 1.8 mm above it to keep corner light, which is 48.1 % at 51°.
+ *
+ * The patent's 51° half field lands at 21.15 mm, so the model covers 98 % of the 21.65 mm full-frame corner. `projection`
+ * declares that field because the paraxial chief-ray estimate undercounts it. Pentax quotes 100°.
+ *
+ * Focus is static at infinity. The patent prints no close-focus spacings; closeFocusM is the 0.25 m in Pentax's table.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "pentax-smc-18mm-f35",
   "maker": "Pentax",
   "name": "PENTAX SMC PENTAX 18mm f/3.5",
-  "subtitle": "US 3,841,736 Table III x0.18; probable family reconstruction. Factory built-in filter unmodeled; iris and clear apertures inferred. Infinity only.",
+  "subtitle": "US 3,841,736, Table III — f = 100, 1:3.5 design of Fig. 3 scaled 0.18× to 18 mm; production association",
   "catalog": {
     "imageFormat": "135-full-frame",
     "specs": [
-      "11 ELEMENTS / 10 GROUPS",
-      "GRADE B PATENT RECONSTRUCTION",
-      "INFINITY ONLY; STOP / APERTURES INFERRED",
-      "PATENT HALF FIELD 51 DEG"
+      "12 ELEMENTS / 11 GROUPS",
+      "DESIGN f = 100 (NORMALIZED; SCALED 0.18× TO 18 mm)",
+      "DESIGN F/3.5",
+      "ALL SPHERICAL",
+      "FILTER PLATE NOT MODELED"
     ],
     "elementCount": 12,
     "groupCount": 11,
@@ -57,7 +85,8 @@ const LENS_DATA = {
       "vd": 60.2,
       "indexReference": "d",
       "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": -46.388,
+      "role": "Large front meniscus; opens the negative group that gives the long back focus and reduces the field angle reaching L5"
     },
     {
       "id": 2,
@@ -68,7 +97,8 @@ const LENS_DATA = {
       "vd": 64.1,
       "indexReference": "d",
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": 109.022,
+      "role": "Thick positive inside the negative group; the patent has it hold back negative distortion and chromatic aberration"
     },
     {
       "id": 3,
@@ -79,7 +109,8 @@ const LENS_DATA = {
       "vd": 60.2,
       "indexReference": "d",
       "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": -26.522,
+      "role": "Strongest negative lens of the front group; steeply curved rear face r6"
     },
     {
       "id": 4,
@@ -90,7 +121,8 @@ const LENS_DATA = {
       "vd": 64.1,
       "indexReference": "d",
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": -38.563,
+      "role": "Last negative meniscus of the front group; brings L1 to L4 to −10.08 mm"
     },
     {
       "id": 5,
@@ -101,7 +133,8 @@ const LENS_DATA = {
       "vd": 60.2,
       "indexReference": "d",
       "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": 72.069,
+      "role": "Thin, weak positive opening the positive section; Pentax's drawing puts a filter plate right behind it"
     },
     {
       "id": 6,
@@ -112,7 +145,8 @@ const LENS_DATA = {
       "vd": 35.7,
       "indexReference": "d",
       "glass": "F1 (SUMITA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": 18.675,
+      "role": "Thick positive ahead of the stop; brings L1 to L6 to +20.50 mm"
     },
     {
       "id": 7,
@@ -123,7 +157,8 @@ const LENS_DATA = {
       "vd": 64.1,
       "indexReference": "d",
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven",
+      "focalLengthMm": 18.131,
+      "role": "Positive half of doublet C1, just behind the stop; low-index side of the r14 junction",
       "cemented": "D1"
     },
     {
@@ -135,7 +170,8 @@ const LENS_DATA = {
       "vd": 37.2,
       "indexReference": "d",
       "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven",
+      "focalLengthMm": -10.12,
+      "role": "High-index negative half of C1; the 0.318 index step at r14 is the patent's spherical-aberration correction",
       "cemented": "D1"
     },
     {
@@ -147,7 +183,8 @@ const LENS_DATA = {
       "vd": 70.1,
       "indexReference": "d",
       "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": 28.045,
+      "role": "Low-dispersion positive with a nearly flat front; rear face r17 carries much of the rear section's load"
     },
     {
       "id": 10,
@@ -158,7 +195,8 @@ const LENS_DATA = {
       "vd": 25.4,
       "indexReference": "d",
       "glass": "SF6 (Schott catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": -44.132,
+      "role": "Thin dense-flint meniscus; the patent sets rear face r19 to correct coma of low rays"
     },
     {
       "id": 11,
@@ -169,7 +207,8 @@ const LENS_DATA = {
       "vd": 64.1,
       "indexReference": "d",
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": 33.947,
+      "role": "Last element; rear face r21 shares the rear section's load with r17"
     }
   ],
   "surfaces": [
@@ -316,9 +355,16 @@ const LENS_DATA = {
       "sd": 9.1
     }
   ],
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "13",
+      "toSurface": "15"
+    }
+  ],
   "focus": {
     "closeFocusM": 0.25,
-    "description": "Static infinity only; Grade B probable family match. Stop and clear apertures inferred. Source TableIII x0.18 omits the factory built-in filter; its thickness/glass are unknown. No retail finite focus is modeled."
+    "description": "The model stays at infinity focus because the patent prints no close-focus spacings; the production lens focuses to 0.25 m."
   },
   "aperture": {
     "nominalFNumber": 3.5,
