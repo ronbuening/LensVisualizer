@@ -199,7 +199,6 @@ const LENS_DATA = {
     {
       label: "STO",
       R: "flat",
-      d: 3.5,
     },
     {
       label: "10",
@@ -218,7 +217,6 @@ const LENS_DATA = {
     {
       label: "12",
       R: 32.934,
-      d: 56.96,
       sd: 15.8,
     },
     {
@@ -236,15 +234,19 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1e15,
-    published: [],
+    closeFocusM: 1.4,
+    published: [1],
     description:
-      "Infinity-only reconstruction; source 291.00 mm / F4.1 differs from retail 300 mm / f/4. Figure-informed clear apertures and the native F/N iris opening are hypotheses; the stop plane and 56.93 mm back gap are sourced. Fixed image z228.21 mm is unchanged; the EFL residual -0.0092543 mm is unexplained and not retuned. Retail APS-C/Pentax K and 1.4 m minimum focus are contextual product metadata, not finite optical support or factory identity proof. No motion or finite conjugates are modeled. Existing native monochromatic source fields 0, 2.1, 4.2 degrees converge at the design plane; clipping and historical misses remain explicit. The current native APS-C reference field is separate from the wider patent field. Scalar MTF is a simulation, not measured production, illumination or full-spectrum validation.",
+      "Inner focus: the cemented negative third group moves toward the image while the stop stays fixed with the second group, between the printed infinity and closest-focus spacings of Table 7.",
+  },
+  gaps: {
+    STO: { label: "D9b", values: [[3.5, 14.79]] },
+    "12": { label: "D12", values: [[56.96, 45.67]] },
   },
   aperture: {
     nominalFNumber: 4.1,
-    fStops: [4.1, 5.6, 8, 11, 16],
-    maxFNumber: 16,
+    fStops: [4.1, 5.6, 8, 11, 16, 22, 32],
+    maxFNumber: 32,
   },
   layout: {
     yScFill: 0.4,
