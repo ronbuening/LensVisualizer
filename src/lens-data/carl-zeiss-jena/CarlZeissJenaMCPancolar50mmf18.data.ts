@@ -12,6 +12,7 @@ const LENS_DATA = {
   subtitle:
     "DD77830 sole table x0.5; six-element/five-group MC family; inferred clear apertures and central stop; infinity only.",
   catalog: {
+    lensMounts: ["m42"], // M42: 1978 catalogue "für PRAKTICA-Typen" and Kamerastore MC listings; MC in Exakta unconfirmed
     imageFormat: "135-full-frame",
     elementCount: 6,
     groupCount: 5,
@@ -196,15 +197,23 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.35,
     description:
-      "Static infinity only. Grade B probable six-element/five-group MC family, not exact factory data. Literal f100 prescription uniformly scaled x0.5; stop position and clear apertures inferred. Catalog 0.35 m is descriptive; no finite conjugate or focus law is modeled.",
+      "Infinity prescription only: the patent gives no focus travel, and the 1978 Carl Zeiss Jena catalogue states a 0.35 m close focus.",
   },
   aperture: {
     nominalFNumber: 1.8,
     fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
   },
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "2" },
+    { text: "G2", fromSurface: "3", toSurface: "5" },
+    { text: "G3", fromSurface: "6", toSurface: "7" },
+    { text: "G4", fromSurface: "8", toSurface: "9" },
+    { text: "G5", fromSurface: "10", toSurface: "11" },
+  ],
+  doublets: [{ text: "D2", fromSurface: "3", toSurface: "5" }],
   layout: {
     yScFill: 0.43,
   },
