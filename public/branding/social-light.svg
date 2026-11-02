@@ -34,7 +34,7 @@
 
   <rect width="1200" height="630" fill="url(#bg-vignette)"/>
 
-  <g transform="translate(240, 265) scale(1.8)">
+  <g transform="translate(331, 265) scale(1.8)">
     <!-- GROUP 1 -->
     <path d="M 29,-46 A 82,82 0 0 0 29,46 L 40,44 A 180,180 0 0 0 40,-44 Z"
           fill="url(#crown-glass)" stroke="#3a6a8a" stroke-width="1.1" stroke-linejoin="round"/>

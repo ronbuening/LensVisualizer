@@ -1,9 +1,10 @@
 import { useMemo } from "react";
-import { analysisJobsForState2 } from "../../../../optics/compat.js";
-import { computeFieldCurvatureBundle } from "../../../../optics/aberrationAnalysis.js";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../../optics/analysis.js";
+import { stateWithZ } from "../../../../optics/optics.js";
+import usePreparedAnalysisState from "../usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../../optics/types.js";
-import type { AnalysisComputationContext } from "../../../../optics/compat.js";
-import type { FieldGeometryState } from "../../../../optics/optics.js";
+import type { AnalysisComputationContext } from "../../../../optics/analysis.js";
+import type { FieldGeometryState } from "../../../../optics/fieldGeometry.js";
 import type { RuntimeLens } from "../../../../types/optics.js";
 
 interface Params {
@@ -31,40 +32,34 @@ export default function useFieldCurvatureData({
   preparedState,
   analysisContext,
 }: Params) {
+  const state = usePreparedAnalysisState({
+    L,
+    focusT,
+    zoomT,
+    aberrationT,
+    preparedState: analysisContext?.preparedState ?? preparedState,
+  });
+  const request = useMemo(
+    () =>
+      analysisContext?.request ??
+      createAnalysisRequest({
+        preparedState: preparedState ? state : stateWithZ(state, zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD,
+        currentPhysStopSD,
+        fieldGeometry,
+      }),
+    [analysisContext, preparedState, state, zPos, L, currentEPSD, currentPhysStopSD, fieldGeometry],
+  );
+  const context = useMemo(
+    () => analysisContext ?? createAnalysisComputationContext(request),
+    [analysisContext, request],
+  );
   return useMemo(() => {
-    const bundle = analysisContext
-      ? analysisContext.computeFieldCurvatureBundle()
-      : preparedState
-        ? analysisJobsForState2.computeFieldCurvatureBundle(
-            preparedState,
-            currentEPSD,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-          )
-        : computeFieldCurvatureBundle(
-            L,
-            zPos,
-            focusT,
-            zoomT,
-            currentEPSD,
-            currentPhysStopSD,
-            aberrationT,
-            fieldGeometry ?? undefined,
-          );
+    const bundle = context.computeFieldCurvatureBundle();
     return {
       fieldCurvatureResult: bundle.fieldCurvature,
       chromaticFieldCurvatureResult: bundle.chromaticFieldCurvature,
     };
-  }, [
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    aberrationT,
-    currentEPSD,
-    currentPhysStopSD,
-    fieldGeometry,
-    preparedState,
-    analysisContext,
-  ]);
+  }, [context]);
 }

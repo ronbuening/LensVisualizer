@@ -9,7 +9,7 @@
 **Inventor:** Kenzaburo Suzuki
 **Assignee:** Nikon Corporation
 **Title:** *Lens Capable of Short Distance Photographing with Vibration Reduction Function*
-**Embodiment analyzed:** First Embodiment / Table 1 (job-card designation: Example 1)
+**Example details:** Table 1 (job-card designation: Example 1)
 
 The selected prescription is the First Embodiment shown in Fig. 1 and tabulated in Table 1 of US 5,751,485. The patent gives an infinity focal length of 59.9998 mm, FNo = 2.82, a full field of 39.4°, three published focus states through 1:1, and an 8-element arrangement divided into three functional groups G1, G2, and G3. The first two groups move toward the object for close focus; G3 remains fixed axially. (US 5,751,485, PDF pp. 25–26, Fig. 1 and Table 1.)
 
@@ -169,6 +169,8 @@ The surface-by-surface Petzval sum, using `φ/(n·n′)` on every refracting sur
 The inferred stop has a modeled entrance-pupil semi-diameter of 10.638270 mm and produces f/2.820000 by construction. That agreement is calibration, not independent evidence for an unpublished physical aperture diameter.
 
 The semi-diameters remain estimates. Figure 1 review sets surfaces 7–11 to a common 11.0 mm rim, matching the smaller middle group. Repository surface validation passes; the revised apertures can alter peripheral vignetting, so earlier portable ray-clearance counts are not presented as validation of this revision.
+
+A fresh native-resolution review of both halves of Fig. 1 also restores the squared L3 edge at surface 6: its outer semi-diameter is 10 mm and an inferred 2.83 mm-deep opaque land leaves an 8.9293 mm optical cap. The cap is moved outward from the schematic endpoint to clear the full modeled wide-open beam by at least 0.05 mm across focus, while the land remains before the inferred stop plane.
 
 ## Sources
 

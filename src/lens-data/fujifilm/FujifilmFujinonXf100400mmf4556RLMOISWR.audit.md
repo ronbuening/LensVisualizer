@@ -20,7 +20,7 @@
   physical track through PP. D29 close 8.791403 / 11.673677 / 17.194319 → 8.792362 / 11.676068 / 17.202735 mm; D34
   close 3.575597 / 13.108323 / 13.046681 → 3.574638 / 13.105932 / 13.038265 mm (full precision in the data). G5 travel
   is now 1.590362 / 4.102068 / 14.859735 mm. These remain reconstructions, not patent values.
-- Method: paraxial y–u trace of the `expandRearPlates` surfaces from an axial object 1750 mm before the image plane,
+- Method: paraxial y–u trace of the rear-plate-expanded surfaces from an axial object 1750 mm before the image plane,
   bisecting G5 travel with D29 + D34 conserved and the infinity gaps untouched. The earlier solve used the 0.993 mm
   shorter air-equivalent track: folding PP preserves infinity focus but not a finite object's distance, so the old
   pairs left the paraxial image 0.0037 / 0.0099 / 0.0353 mm off the image plane.

@@ -9,7 +9,7 @@
 **Filed:** April 19, 2016
 **Published:** October 27, 2016
 **Title:** Optical System and Imaging Apparatus Including the Same
-**Embodiment analyzed:** Numerical Example 1, first embodiment, FIGS. 1A–1D / 2A–2D
+**Example details:** first embodiment, FIGS. 1A–1D / 2A–2D
 
 This analysis concerns Canon patent publication **US 2016/0313535 A1**, “Optical System and Imaging Apparatus Including the Same,” filed by **Canon Kabushiki Kaisha**, inventor **Makoto Nakahara**, filed 19 April 2016, published 27 October 2016, and claiming priority from Japanese application JP 2015-089582 of 24 April 2015. The prescription transcribed here is **Numerical Example 1**, corresponding to the patent's first embodiment and FIGS. 1A–1D / 2A–2D.
 

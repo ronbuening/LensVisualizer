@@ -6,6 +6,7 @@ import DistortionTab from "../../../../../src/components/display/analysis/Distor
 import OpticalSummaryTab from "../../../../../src/components/display/analysis/OpticalSummaryTab.js";
 import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
 import VignettingTab from "../../../../../src/components/display/analysis/VignettingTab.js";
+import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 import type { PreparedOpticalState } from "../../../../../src/optics/types.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
@@ -30,7 +31,7 @@ const {
   mockComputeFieldCurvatureBundle: vi.fn(),
   mockComputeOpticalSummary: vi.fn(),
   mockComputeVignettingCurve: vi.fn(),
-  mockPreparedState: { cacheKey: "prepared-analysis-test" },
+  mockPreparedState: { cacheKey: "prepared-analysis-test", lens: {} },
   mockPrepareRuntimeState: vi.fn(),
 }));
 
@@ -38,23 +39,50 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
   const actual = await vi.importActual("../../../../../src/optics/compat.js");
   return {
     ...actual,
-    analysisJobsForState2: {
-      ...(actual as { analysisJobsForState2: Record<string, unknown> }).analysisJobsForState2,
-      computeBothPupilAberrationProfiles: mockComputeBothPupilAberrationProfiles,
-      computeChromaticAnalysis: mockComputeChromaticAnalysis,
-      computeChromaticRayFanAnalysis: mockComputeChromaticRayFanAnalysis,
-      computeDistortionCurve: mockComputeDistortionCurve,
-      computeDistortionFieldGrid: mockComputeDistortionFieldGrid,
-      computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle,
-      computeOpticalSummary: mockComputeOpticalSummary,
-      computeVignettingCurve: mockComputeVignettingCurve,
-    },
     prepareRuntimeState: mockPrepareRuntimeState,
   };
 });
 
+vi.mock("../../../../../src/optics/analysis/chromatic/analysis.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/optics/analysis/chromatic/analysis.js")>();
+  return { ...actual, computeChromaticAnalysis: mockComputeChromaticAnalysis };
+});
+vi.mock("../../../../../src/optics/analysis/chromatic/rayFan.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/optics/analysis/chromatic/rayFan.js")>();
+  return { ...actual, computeChromaticRayFanAnalysis: mockComputeChromaticRayFanAnalysis };
+});
+
+vi.mock("../../../../../src/optics/analysis/summary/summary.js", () => ({
+  computeOpticalSummary: mockComputeOpticalSummary,
+}));
+
+vi.mock("../../../../../src/optics/analysis/aberration/fieldCurvature.js", async (importOriginal) => {
+  const actual =
+    await importOriginal<typeof import("../../../../../src/optics/analysis/aberration/fieldCurvature.js")>();
+  return { ...actual, computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle };
+});
+
+vi.mock("../../../../../src/optics/analysis/distortion/distortion.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/optics/analysis/distortion/distortion.js")>();
+  return {
+    ...actual,
+    computeDistortionCurve: mockComputeDistortionCurve,
+    computeDistortionFieldGrid: mockComputeDistortionFieldGrid,
+  };
+});
+
+vi.mock("../../../../../src/optics/analysis/vignetting/vignetting.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/optics/analysis/vignetting/vignetting.js")>();
+  return { ...actual, computeVignettingCurve: mockComputeVignettingCurve };
+});
+
+vi.mock("../../../../../src/optics/analysis/pupils/pupilAberration.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/optics/analysis/pupils/pupilAberration.js")>();
+  return { ...actual, computeBothPupilAberrationProfiles: mockComputeBothPupilAberrationProfiles };
+});
+
 const preparedState = mockPreparedState as PreparedOpticalState;
-const lens = { N: 2, EFL: 50, isZoom: false } as RuntimeLens;
+const lens = { N: 2, EFL: 50, EP: { epSD: 5 }, isZoom: false, elements: [] } as unknown as RuntimeLens;
 const fieldGeometry = { halfFieldDeg: 12, yRatio: 1, b: 1, epRatio: 1 };
 
 const distortionSamples = [
@@ -114,10 +142,24 @@ const distortionFieldGrid = {
   referenceLabel: "Rectilinear",
 };
 
-const vignettingSamples = [
-  { fieldAngleDeg: 0, geometricTransmission: 1, relativeIllumination: 1 },
-  { fieldAngleDeg: 12, geometricTransmission: 0.82, relativeIllumination: 0.75 },
-];
+const vignettingSample = (fieldAngleDeg: number, unvignettedFraction: number, relativeIllumination: number) => ({
+  fieldAngleDeg,
+  fieldFraction: fieldAngleDeg / 12,
+  unvignettedFraction,
+  relativeIllumination,
+  sampleCount: 3216,
+  transmittedCount: Math.round(unvignettedFraction * 3216),
+  blockedCount: 0,
+  unaimedCount: 0,
+  unavailableReason: null,
+  relativeIlluminationReason: null,
+});
+const vignettingSamples = {
+  available: true,
+  reason: null,
+  cellsAcross: 64,
+  samples: [vignettingSample(0, 1, 1), vignettingSample(12, 0.82, 0.75)],
+};
 
 const chromaticAnalysis = {
   longitudinalFocus: {
@@ -138,6 +180,7 @@ const chromaticAnalysis = {
       axis: "onAxis",
       fraction: 0.95,
       channels: ["R", "G", "B", "V"],
+      omittedChannels: [],
     },
     samples: [
       {
@@ -182,6 +225,7 @@ const chromaticAnalysis = {
       },
     ],
     validChannelCount: 4,
+    omittedChannels: [],
   },
   lateralColor: {
     channels: ["R", "G", "B", "V"],
@@ -203,6 +247,7 @@ const chromaticAnalysis = {
           { channel: "V", imageHeightMm: 0, relativeHeightMm: 0, usable: true, clipped: false },
         ],
         validChannelCount: 4,
+        omittedChannels: [],
         usable: true,
       },
       {
@@ -220,12 +265,14 @@ const chromaticAnalysis = {
           { channel: "V", imageHeightMm: 10.012, relativeHeightMm: 0.012, usable: true, clipped: false },
         ],
         validChannelCount: 4,
+        omittedChannels: [],
         usable: true,
       },
     ],
     usableFieldCount: 2,
     maxLateralSpreadMm: 0.017,
     maxLateralSpreadUm: 17,
+    maxLateralFieldFraction: 1,
     imagePlaneZ: 60,
     halfFieldDeg: 12,
   },
@@ -278,7 +325,9 @@ const opticalSummary = {
   currentEFLMm: 51,
   infinityEFLMm: 50,
   breathingPercent: 2,
-  effectiveFNumber: 2.55,
+  imageSpaceFNumber: 2.55,
+  paraxialWorkingFNumber: 2.6,
+  workingFNumber: { status: "traced", value: 2.62, indexLine: "d" },
   entrancePupilDiameterMm: 20,
   physicalStopDiameterMm: 10,
   halfFieldDeg: 12,
@@ -289,6 +338,7 @@ const opticalSummary = {
   aberrationT: 0.4,
   imagePlaneZMm: 60,
   totalTrackMm: 60,
+  telephotoRatio: 1.18,
   surfaceCount: 2,
   opticalPath: "sequential",
   cardinalEFLMm: 50.9,
@@ -299,6 +349,7 @@ const opticalSummary = {
 
 describe("prepared-state analysis tabs", () => {
   beforeEach(() => {
+    mockPreparedState.lens = {};
     mockComputeBothPupilAberrationProfiles.mockReset();
     mockComputeBothPupilAberrationProfiles.mockReturnValue(pupilProfiles);
     mockComputeChromaticAnalysis.mockReset();
@@ -306,7 +357,11 @@ describe("prepared-state analysis tabs", () => {
     mockComputeChromaticRayFanAnalysis.mockReset();
     mockComputeChromaticRayFanAnalysis.mockReturnValue(chromaticRayFanAnalysis);
     mockComputeDistortionCurve.mockReset();
-    mockComputeDistortionCurve.mockReturnValue(distortionSamples);
+    mockComputeDistortionCurve.mockReturnValue({
+      samples: distortionSamples,
+      corner: { status: "reached" },
+      cornerImageHeight: 10,
+    });
     mockComputeDistortionFieldGrid.mockReset();
     mockComputeDistortionFieldGrid.mockReturnValue(distortionFieldGrid);
     mockComputeFieldCurvatureBundle.mockReset();
@@ -318,7 +373,7 @@ describe("prepared-state analysis tabs", () => {
     mockPrepareRuntimeState.mockReset();
   });
 
-  it("routes distortion work through the prepared-state job facade", () => {
+  it("routes distortion work through one request and lazy context", () => {
     const html = renderToStaticMarkup(
       React.createElement(DistortionTab, {
         L: lens,
@@ -339,11 +394,100 @@ describe("prepared-state analysis tabs", () => {
     expect(html).toContain("100%");
     expect(html).not.toContain("Field angle (°)");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
-    expect(mockComputeDistortionCurve).toHaveBeenCalledWith(preparedState, 51, 5, fieldGeometry);
-    expect(mockComputeDistortionFieldGrid).toHaveBeenCalledWith(preparedState, 5, fieldGeometry);
+    expect(mockComputeDistortionCurve).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        dynamicEFL: 51,
+        aperture: { entrancePupilSemiDiameterMm: 5, stopSemiDiameterMm: 5 },
+        fieldGeometry,
+      }),
+    );
+    expect(mockComputeDistortionFieldGrid).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        fieldGeometry,
+        sampling: {},
+      }),
+    );
   });
 
-  it("routes optical summary work through the prepared-state job facade", () => {
+  it("keeps an unavailable corner separate from the last traced height", () => {
+    mockComputeDistortionCurve.mockReturnValue({
+      samples: distortionSamples.map((sample) => ({
+        ...sample,
+        normalizedImageHeight: sample.normalizedImageHeight * 0.6,
+      })),
+      corner: { status: "unreachable", reason: "trace-failure" },
+      cornerImageHeight: 16.67,
+    });
+    const html = renderToStaticMarkup(
+      React.createElement(DistortionTab, {
+        L: lens,
+        t: themes.dark,
+        focusT: 0,
+        zoomT: 0,
+        dynamicEFL: 50,
+        currentPhysStopSD: 5,
+        preparedState,
+      }),
+    );
+    expect(html).toContain("CORNER");
+    expect(html).toContain("Unavailable");
+    expect(html).toContain("No complete chief ray reaches the corner");
+    expect(html).toContain("LAST TRACED HEIGHT");
+    expect(html).toContain("Last traced: +1.20%");
+    expect(html).toContain("Image height (% of edge)");
+  });
+
+  it("names the distortion sign: negative is barrel, positive is pincushion", () => {
+    /* distortionPercent = 100 × (real − ideal) / ideal, so the sign fixes the direction. */
+    const renderEdge = (edgePercent: number, referenceKind = "rectilinear") => {
+      mockComputeDistortionCurve.mockReturnValue({
+        corner: { status: "reached" },
+        cornerImageHeight: 10,
+        samples: distortionSamples.map((sample, index) => ({
+          ...sample,
+          referenceKind,
+          distortionPercent: index === 0 ? 0 : edgePercent,
+        })),
+      });
+      return renderToStaticMarkup(
+        React.createElement(DistortionTab, {
+          L: lens,
+          t: themes.dark,
+          focusT: 0,
+          zoomT: 0,
+          dynamicEFL: 50,
+          currentPhysStopSD: 5,
+          fieldGeometry,
+          preparedState: { ...preparedState },
+        }),
+      );
+    };
+
+    /* The chart label is the SVG text node; the summary note is the parenthesised one. */
+    const barrel = renderEdge(-1.2);
+    expect(barrel).toContain(">barrel</text>");
+    expect(barrel).toContain("(barrel)");
+    expect(barrel).not.toContain("pincushion");
+
+    const pincushion = renderEdge(1.2);
+    expect(pincushion).toContain(">pincushion</text>");
+    expect(pincushion).toContain("(pincushion)");
+    expect(pincushion).not.toContain(">barrel</text>");
+    expect(pincushion).not.toContain("(barrel)");
+
+    const outward = renderEdge(1.2, "fisheye-equidistant");
+    expect(outward).toContain(">outward residual</text>");
+    expect(outward).toContain("(outward residual)");
+
+    const inward = renderEdge(-1.2, "fisheye-equidistant");
+    expect(inward).toContain(">inward residual</text>");
+    expect(inward).toContain("(inward residual)");
+  });
+
+  it.each([1.18, null])("routes optical summary requests and renders telephoto ratio %s", (telephotoRatio) => {
+    mockComputeOpticalSummary.mockReturnValue({ ...opticalSummary, telephotoRatio });
     const html = renderToStaticMarkup(
       React.createElement(OpticalSummaryTab, {
         L: lens,
@@ -360,11 +504,23 @@ describe("prepared-state analysis tabs", () => {
     );
 
     expect(html).toContain("Optical State");
+    expect(html).toMatch(
+      telephotoRatio === null
+        ? /TELEPHOTO RATIO<\/span><span[^>]*><span>n\/a<\/span>/
+        : /TELEPHOTO RATIO<\/span><span[^>]*><span>1\.18<\/span>/,
+    );
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
-    expect(mockComputeOpticalSummary).toHaveBeenCalledWith(preparedState, 51, 10, 5, fieldGeometry);
+    expect(mockComputeOpticalSummary).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        dynamicEFL: 51,
+        aperture: { entrancePupilSemiDiameterMm: 10, stopSemiDiameterMm: 5 },
+        fieldGeometry,
+      }),
+    );
   });
 
-  it("routes chromatic work through the prepared-state job facade", () => {
+  it("routes chromatic work through one request and lazy context", () => {
     const html = renderToStaticMarkup(
       React.createElement(ChromaticTab, {
         L: lens,
@@ -382,14 +538,25 @@ describe("prepared-state analysis tabs", () => {
     expect(html).toContain("Axial Color (LoCA)");
     expect(html).toContain("V ng");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
-    expect(mockComputeChromaticAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry);
-    expect(mockComputeChromaticRayFanAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry, {
+    const request = expect.objectContaining({
+      preparedGeometry: preparedState,
+      aperture: { entrancePupilSemiDiameterMm: 10, stopSemiDiameterMm: 5 },
+      fieldGeometry,
       channels: ["R", "G", "B", "V"],
     });
-    expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry);
+    expect(mockComputeChromaticAnalysis).toHaveBeenCalledWith(request);
+    expect(mockComputeChromaticRayFanAnalysis).toHaveBeenCalledWith(request);
+    expect(mockComputeChromaticRayFanAnalysis.mock.calls[0][0]).toBe(mockComputeChromaticAnalysis.mock.calls[0][0]);
+    expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        aperture: { entrancePupilSemiDiameterMm: 10, stopSemiDiameterMm: 5 },
+        fieldGeometry,
+      }),
+    );
   });
 
-  it("routes vignetting work through the prepared-state job facade", () => {
+  it("routes vignetting work through one request and lazy context", () => {
     const html = renderToStaticMarkup(
       React.createElement(VignettingTab, {
         L: lens,
@@ -406,10 +573,16 @@ describe("prepared-state analysis tabs", () => {
 
     expect(html).toContain("Vignetting / Relative Illumination");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
-    expect(mockComputeVignettingCurve).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry);
+    expect(mockComputeVignettingCurve).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        aperture: { entrancePupilSemiDiameterMm: 10, stopSemiDiameterMm: 5 },
+        fieldGeometry,
+      }),
+    );
   });
 
-  it("routes pupil work through the prepared-state job facade", () => {
+  it("routes pupil work through one request and lazy context", () => {
     const html = renderToStaticMarkup(
       React.createElement(PupilAberrationTab, {
         L: lens,
@@ -424,6 +597,38 @@ describe("prepared-state analysis tabs", () => {
 
     expect(html).toContain("Pupil aberration");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
-    expect(mockComputeBothPupilAberrationProfiles).toHaveBeenCalledWith(preparedState, undefined, fieldGeometry);
+    expect(mockComputeBothPupilAberrationProfiles).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preparedGeometry: preparedState,
+        dynamicEFL: 0,
+        aperture: { entrancePupilSemiDiameterMm: 0, stopSemiDiameterMm: 0 },
+        fieldGeometry,
+        sampling: {},
+      }),
+    );
+  });
+
+  it("reuses the supplied pupil request and its combined cached result", () => {
+    const analysisContext = createAnalysisComputationContext({
+      preparedState,
+      dynamicEFL: 50,
+      currentEPSD: 10,
+      currentPhysStopSD: 5,
+      fieldGeometry: { ...fieldGeometry, halfFieldDeg: 8 },
+      sampling: { pupilAberrationSampleCount: 7 },
+    });
+    const tab = React.createElement(PupilAberrationTab, {
+      L: lens,
+      t: themes.dark,
+      focusT: 0.2,
+      zoomT: 0.3,
+      aberrationT: 0.4,
+      fieldGeometry,
+      preparedState,
+      analysisContext,
+    });
+    expect(renderToStaticMarkup(tab)).toContain("Pupil aberration");
+    expect(renderToStaticMarkup(tab)).toContain("Pupil aberration");
+    expect(mockComputeBothPupilAberrationProfiles).toHaveBeenCalledExactlyOnceWith(analysisContext.request);
   });
 });

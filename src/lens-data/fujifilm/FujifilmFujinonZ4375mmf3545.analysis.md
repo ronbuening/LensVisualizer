@@ -8,7 +8,7 @@
 **Inventors:** Yoshikazu Doi; Yutaka Sakai; Kazunori Ohono
 **Assignee:** Fuji Photo Optical Co., Ltd., Omiya, Japan
 **Title:** Zoom Lens System
-**Embodiment analyzed:** Example 2 (Table II, FIG. 4, Claim 4)
+**Example details:** Table II, FIG. 4, Claim 4
 
 The prescription is identified with the Fujinon-Z 43-75mm f/3.5-4.5 standard zoom. Example 2 is the relevant embodiment: it is the first 7-element embodiment in the patent and matches the production lens' 7 elements in 7 air-spaced groups, variable f/3.5-4.5 aperture, and approximately 53° to 32° full field across the zoom range.
 

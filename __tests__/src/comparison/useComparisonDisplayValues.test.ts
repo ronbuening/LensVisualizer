@@ -1,20 +1,27 @@
 // @vitest-environment jsdom
+import { constructionFixtureData } from "../optics/constructionFixtures.js";
 
 import { describe, it, expect } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useComparisonDisplayValues from "../../../src/comparison/useComparisonDisplayValues.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import type { LensData } from "../../../src/types/optics.js";
+import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
+import { catalogLensData } from "../optics/testLensFixtures.js";
 import type { ComparisonLensesResult } from "../../../src/comparison/useComparisonMode.js";
 import { computeFocusPair, computeAperturePair, computeZoomPair } from "../../../src/comparison/comparisonSliders.js";
 import SonnarRaw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import { build, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
 import useLensComputation from "../../../src/components/hooks/useLensComputation.js";
+import type { ParaxialWorkingFNumberResult } from "../../../src/optics/optics.js";
 
-const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
-const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
+/** The computed paraxial working f-number; these refractive lenses always have one. */
+function value(result: ParaxialWorkingFNumberResult): number {
+  if (result.status !== "computed") throw new Error(`paraxial working f-number ${result.reason}`);
+  return result.value;
+}
+
+const Sonnar = catalogLensData(SonnarRaw);
+const ApoLanthar = catalogLensData(ApoLantharRaw);
 
 function buildFixture() {
   const LA = buildLens(Sonnar);
@@ -33,8 +40,8 @@ describe("useComparisonDisplayValues", () => {
       [1.2, 1.3],
       [1.4, 1.5],
     ]);
-    const LA = build({ ...base.data, nominalFno: [2, 4, 8], maxFstop: 16 });
-    const LB = build({ ...base.data, nominalFno: [4, 7, 10], maxFstop: 16 });
+    const LA = build({ ...constructionFixtureData(base), nominalFno: [2, 4, 8], maxFstop: 16 });
+    const LB = build({ ...constructionFixtureData(base), nominalFno: [4, 7, 10], maxFstop: 16 });
     const { result, rerender } = renderHook(
       ({ zoom, request, focus }) => {
         const sharedStopdownT = Math.log(request / 2) / Math.log(16 / 2);
@@ -58,14 +65,20 @@ describe("useComparisonDisplayValues", () => {
       for (const request of [2, 8, 11]) {
         for (const focus of [0, 0.5]) {
           rerender({ zoom, request, focus });
-          expect(result.current.display.effectiveFNumA).toBeCloseTo(result.current.a.effectiveFNum, 10);
-          expect(result.current.display.effectiveFNumB).toBeCloseTo(result.current.b.effectiveFNum, 10);
+          expect(value(result.current.display.paraxialWorkingFNumA)).toBeCloseTo(
+            value(result.current.a.paraxialWorkingFNum),
+            10,
+          );
+          expect(value(result.current.display.paraxialWorkingFNumB)).toBeCloseTo(
+            value(result.current.b.paraxialWorkingFNum),
+            10,
+          );
         }
       }
     }
     rerender({ zoom: 1, request: 8, focus: 0 });
-    expect(result.current.display.effectiveFNumA).toBeCloseTo(8, 10);
-    expect(result.current.display.effectiveFNumB).toBeCloseTo(10, 10);
+    expect(value(result.current.display.paraxialWorkingFNumA)).toBeCloseTo(8, 10);
+    expect(value(result.current.display.paraxialWorkingFNumB)).toBeCloseTo(10, 10);
   });
 
   it("returns computed values for valid comparison lenses", () => {
@@ -83,8 +96,8 @@ describe("useComparisonDisplayValues", () => {
     expect(result.current.ok).toBe(true);
     expect(result.current.dynamicEflA).toBeGreaterThan(0);
     expect(result.current.dynamicEflB).toBeGreaterThan(0);
-    expect(result.current.effectiveFNumA).toBeGreaterThan(0);
-    expect(result.current.effectiveFNumB).toBeGreaterThan(0);
+    expect(value(result.current.paraxialWorkingFNumA)).toBeGreaterThan(0);
+    expect(value(result.current.paraxialWorkingFNumB)).toBeGreaterThan(0);
   });
 
   it("returns zeros for failed comparison lenses", () => {

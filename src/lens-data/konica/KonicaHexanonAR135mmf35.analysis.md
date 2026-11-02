@@ -6,8 +6,7 @@
 **Published:** 1979-05-02\
 **Inventor:** Toshiko Shimokura\
 **Applicant:** Konishiroku Photo Industry Co., Ltd.\
-**Title:** 望遠写真レンズ (*Telephoto photographic lens*)\
-**Embodiment analyzed:** Example 1
+**Title:** 望遠写真レンズ (*Telephoto photographic lens*)
 
 The prescription is JPS54-55423A Example 1, correlated here with the **KONICA HEXANON AR 135mm f/3.5**. The patent itself does not name the production lens, so this identification is a production-correlation inference rather than a manufacturer-confirmed patent mapping. The native JPO front page identifies the historical applicant as Konishiroku Photo Industry Co., Ltd.; later patent databases may normalize ownership to a successor entity.
 

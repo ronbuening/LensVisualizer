@@ -9,7 +9,7 @@
 **Priority:** September 1, 1931, Germany
 **Granted:** April 23, 1935
 **Title:** Photographic Objective
-**Embodiment analyzed:** Example I, Fig. 1, scaled by 0.5
+**Example details:** Fig. 1, scaled by 0.5
 
 Example I specifies f = 100 mm and f/2 with six elements in three groups. The
 viewer halves the published radii and axial dimensions to represent the 50 mm
@@ -35,8 +35,9 @@ member. Its two media differ in reference index by more than 0.1, and the hollow
 side of that interface faces the picture. Here the step from L5 to L6 is 0.1064.
 
 The 7.5 mm air gap between the triplet and rear doublet is sourced at this scale.
-The stop divides it into 2.5 and 5.0 mm in the model. The patent does not give
-that precise stop position; it remains inferred. All powered surfaces are spherical.
+The stop divides it into 3.4 and 4.1 mm in the model, just behind the clear cap
+of L4's steep rear surface (sag 3.34 mm at its 8.25 mm rim). The patent does not
+give that precise stop position; it remains inferred. All powered surfaces are spherical.
 
 ## Element-by-Element Analysis
 

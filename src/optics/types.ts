@@ -5,8 +5,10 @@
  * tracing, prepared-state caches, field launch, and first-order analysis.
  */
 
-import type { DispersionQuality } from "./dispersion.js";
-import type { GlassEntry } from "./glassCatalog.js";
+import type { TraceGeometry } from "./trace/types.js";
+import type { RimCut, RimLand } from "./geometry/rimCut.js";
+import type { DispersionQuality } from "../types/dispersion.js";
+import type { GlassEntry } from "./chromatic/glassCatalogTypes.js";
 import type {
   AberrationControlConfig,
   AberrationVarRange,
@@ -41,21 +43,48 @@ export interface Plane3 {
   label: string;
 }
 
+/** Sag in mm and radial slope dz/dr of a surface profile at one radius. */
+export interface SagSlope {
+  sag: number;
+  slope: number;
+}
+
 /**
  * Surface geometry abstraction used by exact intersection and diagram rendering.
  *
  * Sag and slope are functions of radial aperture height in mm. `pointAt` converts
  * a vertex z plus x/y aperture coordinates into the actual 3D surface point.
+ * A tilted plane is the exception: its `sag` and `evaluate` read the argument
+ * as the signed meridional coordinate y.
+ *
+ * The four readonly fields give the base conic as data. An aspheric profile
+ * from its factory reads `conic` and `hasPolynomial` from the coefficient object
+ * on every access. A spread copy holds the values read when it was copied, while
+ * its copied evaluators go on reading the object, so over mutable coefficients
+ * a copy's data can disagree with its evaluators.
  */
 export interface SurfaceProfile {
   kind: "flat" | "spherical" | "aspheric" | "tilted-plane";
   sag(radius: number): number;
   slope(radius: number): number;
+  /**
+   * Sag and slope at one radius from one pass. Each field is bit-identical to
+   * `sag(radius)` and `slope(radius)`. Fills and returns `out` when given.
+   */
+  evaluate(radius: number, out?: SagSlope): SagSlope;
   normalAt(point: Vec3, vertexZ: number): Vec3;
   pointAt(vertexZ: number, x: number, y: number): Vec3;
   finiteRadiusLimit(): number | null;
   /** Conservative absolute radial slope bound; absent for unproved/custom geometry. */
   maxAbsSlope?(radius: number): number;
+  /** Vertex curvature 1/R in 1/mm; 0 for a flat base or a plane. */
+  readonly curvature: number;
+  /** Conic constant K; 0 for a sphere or a plane. */
+  readonly conic: number;
+  /** True when a polynomial coefficient is nonzero, so the surface is more than its base conic. */
+  readonly hasPolynomial: boolean;
+  /** Unit normal of a tilted plane; null for every other kind. */
+  readonly planeNormal: Vec3 | null;
 }
 
 /** Compiled refract/reflect/block behavior for one physical surface. */
@@ -94,6 +123,12 @@ export interface CompiledSurface {
   nd: number;
   sd: number;
   innerSd: number | null;
+  /** Flat land cutting the rim: tracing clips beyond its radius, drawing follows it; null on an uncut surface. */
+  rimCut: RimCut | null;
+  /** Shared drawn boundary of a rim cut or extension; null on an ordinary face. */
+  rimLand: RimLand | null;
+  /** False when `sd` is a generated rear-plate rim: the surface never clips a ray or limits the field. */
+  clips: boolean;
   elemId: number;
   stopPlacement: "inside-element" | null;
   asphere: AsphericCoefficients | null;
@@ -112,6 +147,7 @@ export interface CompiledElement {
   nd: number;
   vd: number | null;
   glass: string | null;
+  absorptionCoefficientPerMm: number | null;
   surfaceSpan: readonly [number, number];
   source: ElementData;
 }
@@ -191,38 +227,79 @@ export interface AuthoredRayFans {
 }
 
 /** Feature flags derived from RuntimeLens capabilities for engine branching. */
-export interface EngineLensFlags {
+export interface CompiledLensFlags {
   isZoom: boolean;
   isFoldedOptics: boolean;
   hasPerspectiveControl: boolean;
   hasAberrationControl: boolean;
 }
 
-/**
- * Normalized engine lens shared by trace, field, state, and analysis modules.
- *
- * This is immutable by convention and retains the originating RuntimeLens only as
- * a compatibility bridge for older public helper signatures.
- */
-export interface EngineLens {
+/** Constants own derived numbers and station tables, never the RuntimeLens read model. */
+export type LensConstants = Omit<
+  RuntimeLens,
+  | "source"
+  | "attachedTeleconverter"
+  | "S"
+  | "N"
+  | "ES"
+  | "elements"
+  | "lastLensSurfaceIdx"
+  | "asphByIdx"
+  | "varByIdx"
+  | "vdByIdx"
+  | "spectralByIdx"
+  | "indexByIdx"
+  | "varLabels"
+  | "groups"
+  | "doublets"
+  | "perspectiveControl"
+  | "aberrationControl"
+  | "projection"
+  | "opticalPath"
+  | "stopIdx"
+  | "labelIdx"
+>;
+
+/** Shared compiled indices; material callbacks are resolved once per medium identity. */
+export type CompiledIndices = Pick<RuntimeLens, "asphByIdx" | "vdByIdx" | "spectralByIdx" | "indexByIdx">;
+
+/** Canonical projection after ingest has supplied the catalog defaults. */
+export type LensConstructionData = LensData & { lensShiftFrac: number };
+
+/** Immutable prescription primitives available before constants are calculated. */
+export interface CompiledPrescription {
   key: string;
-  source: LensData;
-  runtime: RuntimeLens;
+  source: import("./prescription/canonical.js").CanonicalLens;
+  attachedTeleconverter?: LensData["attachedTeleconverter"];
+  /** Numeric construction columns, discarded once constants are complete. */
+  data: LensConstructionData;
+  indices: CompiledIndices;
+  lastLensSurfaceIndex: number;
+  displayElementSpans: RuntimeLens["ES"];
+  hasExplicitImagePlane: boolean;
   surfaces: readonly CompiledSurface[];
   elements: readonly CompiledElement[];
   labelToSurfaceIndex: Readonly<Record<string, number>>;
   stop: StopSpec;
   projection: ProjectionSpec;
   opticalPath: PathSpec;
-  imagePlane: Plane3;
   variables: VariableSpec;
   aberrationControl: AberrationControlSpec | null;
   annotations: AnnotationSpec;
   dispersion: readonly CompiledSurfaceDispersion[];
-  display: DisplaySpec;
+  display: Omit<DisplaySpec, "maxRimTan">;
   authoredRayFans: AuthoredRayFans;
   perspectiveControl: PerspectiveControlConfig | null;
-  flags: EngineLensFlags;
+  flags: CompiledLensFlags;
+}
+
+/** Final published compiled identity: constants are complete before preparation or view assembly. */
+export interface CompiledLens extends Omit<CompiledPrescription, "data"> {
+  /** Canonical surface rows needed by the compatibility view; the remaining construction data is released. */
+  constructionSurfaces: readonly SurfaceData[];
+  imagePlane: Plane3;
+  display: DisplaySpec;
+  constants: LensConstants;
 }
 
 /** Surface state after current focus/zoom/aberration thicknesses and z positions are applied. */
@@ -238,8 +315,9 @@ export interface CompiledStateSurface extends Omit<CompiledSurface, "d"> {
  * All distances are millimeters. `z` and `imgZ` use the global optical-axis
  * coordinate; folded systems may have an image plane whose normal is not +z.
  */
-export interface PreparedOpticalState {
-  lens: EngineLens;
+export interface PreparedGeometry {
+  readonly traceGeometry: TraceGeometry;
+  lens: CompiledLens;
   focusT: number;
   zoomT: number;
   aberrationT: number;
@@ -251,16 +329,12 @@ export interface PreparedOpticalState {
   cacheKey: string;
 }
 
+/** Optical state is the immutable prepared geometry for one control tuple. */
+export type PreparedOpticalState = PreparedGeometry;
+
 /** Reason a prepared state could not be constructed. */
 export type PreparationFailureReason = "invalid-control" | "invalid-thickness";
 
-/** Error raised when normalized lens data cannot produce a valid prepared state. */
-export class Optics2PreparationError extends Error {
-  readonly reason: PreparationFailureReason;
+export { OpticsPreparationError } from "./state/preparationError.js";
 
-  constructor(reason: PreparationFailureReason, message: string) {
-    super(message);
-    this.name = "Optics2PreparationError";
-    this.reason = reason;
-  }
-}
+export type { CanonicalLens, CanonicalTeleconverter, IngestedPrescription } from "./prescription/canonical.js";

@@ -12,7 +12,7 @@
 
 **Published:** 2025-05-01
 
-**Embodiment analyzed:** Numerical Example 2, Figure 2, Tables 5–8
+**Example details:** Figure 2, Tables 5–8
 
 **Title:** Imaging Lens, Interchangeable Lens, Imaging Device, and Information Processing Device
 

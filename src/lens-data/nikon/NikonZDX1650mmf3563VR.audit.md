@@ -82,3 +82,56 @@ element and the old L11 front (10.0 mm) about 0.76×. The L11 rear (≈11.1 mm d
 The validator accepts the new values, every station now reaches 100% of the corner (42.91° / 21.24° / 15.88°) with
 every rim clear, and the image-circle floor still reports nothing undersized. The tightest remaining rims are at the
 wide corner: 3A (chief ray 9.37 mm, sd 9.5) and 2 (9.45 mm, sd 9.8). No aspheric surface changed.
+
+## 2026-10-27 — Rim-cut figure review
+
+FIG. 15 (PDF p. 41, first raster: 1004 × 1334 px, 300 ppi, wide end at infinity; rotated so the object is on the left,
+12.64 px/mm) was read element by element, on both halves, for flat lands square to the axis at the rims of concave
+faces, the shape `rimCutDepthMm` draws. No cut was authored; the data file is unchanged.
+
+| Surface | Figure rim | q (cap end ÷ edge) | sd | Largest stated axial ray | Disposition |
+|---|---|---|---|---|---|
+| 3A (L11 resin rear, R 11.576 asph) | The L11 glass body ends its concave rear (junction 2) at 10.7–10.8 mm in a flange land square to the axis out to the 13.16 mm body edge; the resin rear runs past that land plane to its own edge at 11.3 mm, with no land of its own | 0.81–0.82 (junction cap ÷ body edge) | 9.5 | 3.84 mm | Not authored: the drawn land belongs to cemented junction 2, which opens into the resin, not air, so it cannot carry a cut; 3A itself shows no land, and drawing the flange would need surfaces 2 and 3A raised toward 13.2 mm, at or past junction 2's \|R\| = 13.201 |
+| 5 (L12 rear) | Follows the R 34.90 arc to the edge; the last rows sit ≤ 1.5 px off at the corner | — | 9.5 | 5.23 mm | No land |
+| 8 (L22 rear) | Near-straight to the edge (0.32 mm drawn sag, as prescribed) | — | 5.2 | 5.33 mm | No land |
+| 14 (L25 rear) | Follows the arc to the edge | — | 4.9 | 3.72 mm | No land |
+| 15A (L31 front) | Top half follows the aspheric profile to the edge within 0.5 px; the bottom corner's last five rows sit 1.5 px off, one staircase step of a slope-0.2 curve | — | 5.5 | 2.14 mm | No resolvable land |
+| 16A (L31 rear) | Follows the profile to the edge | — | 5.6 | 2.06 mm | No land |
+| 17 (L41 front) | Near-flat R −345 face runs to the edge | — | 14.5 | 1.68 mm | No land |
+
+- The steps between L21/L22 and L23/L24 at their rims are cemented-junction edge steps, not lands.
+- No cap reaches the stop plane at any zoom or focus state: surface 8 clears it by 1.34 mm, and surface 10 behind the
+  stop is convex to the object, so its rim bends away from the stop.
+- Aperture and vignetting are unchanged: all three stations still trace within 3 % of the stated f-number with no
+  `rim`, `trace`, `iris` or `failed` rows.
+- The diagram draws the L11 body's rim as a slant from the 13.2 mm front edge to junction 2's 9.8 mm rim; the figure's
+  square flange would need a land on a cemented face, which `rimCutDepthMm` does not cover.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened `patents/JPWO2020012638A1.pdf`, Numerical Example 8, Figure 15 (PDF p. 41, upper-left panel), and inspected every element at 600 dpi. The source S1-to-image span gives 12.64 native px/mm. No air-side cap shows a resolved flat land. The long front-element square flange belongs to cemented resin junction 2: the air-side resin face 3A continues past that plane to its own curved edge. Neither `rimExtensionSd` nor a concave rim cut applies to that junction. The remaining small steps belong to cemented interfaces, and the other curves run continuously to their rims.
+
+No geometry changed. `audit:surface` passes; `audit:image-circle` reports 0 undersized and 0 skipped. The existing optical apertures and the front composite-element limitation are retained.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected `patents/JPWO2020012638A1.pdf`, Numerical Example 8, Table 8 on PDF pp. 34–35 and the line definitions on p. 14 (¶0077). All ten modeled media (nine physical elements) match the source nd/νd coordinates except L25's rounded nd, restored from 1.79526 to the printed 1.795256. The patent explicitly defines nd/νd on d = 587.6 nm and ng on g = 435.8 nm.
+
+The previously omitted source ng column is now preserved for every medium:
+
+| Medium | Source ng |
+| --- | --- |
+| L11b | 1.859557 |
+| L11r | 1.580890 |
+| L12 | 1.982810 |
+| L21 | 1.863100 |
+| L22 | 1.779953 |
+| L23 | 1.992059 |
+| L24 | 1.504510 |
+| L25 | 1.817888 |
+| L31 | 1.823570 |
+| L41 | 1.992059 |
+
+The nine glass-media proxies all resolve compatibly: S-LAH55, PBH21, M-NBFD10, J-LASKH2, S-LAH98 (twice), FCD1, Q-LASFPH3S and M-TAF31. L31's annotation/analysis now identify its already-available M-TAF31 proxy rather than describing it as unresolved. The resin remains without a catalog curve; the source specifies a resin layer, not UV curing, composition or supplier. Removed that unsupported curing claim. L24's APD remains inferred from its catalog counterpart, not a patent-listed PgF value.
+
+Runtime limitation: `buildSpectralIndex` preserves ng without synthesizing C/F, and `makeSurfaceDispersion` does not use ng alone to override its catalog or Abbe curve. The source indices are therefore preserved data, not a claim that the current traced g channel uses them. No unsourced C/F values were added; the analysis states this limit. `assertCatalogConsistent()`, the scoped resolver review and the three shared glass suites pass (94 tests); `audit:surface` passes. No surface geometry changed.

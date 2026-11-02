@@ -9,64 +9,89 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_optics_chromatic["src/optics/chromatic"]
-    n_src_optics_chromatic_src_optics_chromatic_analysis_ts["analysis.ts"]
+    n_src_optics_chromatic_src_optics_chromatic_glassCatalogEntries["glassCatalogEntries/"]
     n_src_optics_chromatic_src_optics_chromatic_channels_ts["channels.ts"]
     n_src_optics_chromatic_src_optics_chromatic_chromaticTrace_ts["chromaticTrace.ts"]
     n_src_optics_chromatic_src_optics_chromatic_dispersionAdapter_ts["dispersionAdapter.ts"]
     n_src_optics_chromatic_src_optics_chromatic_dispersionQuality_ts["dispersionQuality.ts"]
+    n_src_optics_chromatic_src_optics_chromatic_dispersionTable_ts["dispersionTable.ts"]
+    n_src_optics_chromatic_src_optics_chromatic_glassCatalog_ts["glassCatalog.ts"]
+    n_src_optics_chromatic_src_optics_chromatic_glassCatalogAliases_ts["glassCatalogAliases.ts"]
+    n_src_optics_chromatic_src_optics_chromatic_glassCatalogData_ts["glassCatalogData.ts"]
+    n_src_optics_chromatic_src_optics_chromatic_glassCatalogTypes_ts["glassCatalogTypes.ts"]
     n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts["indexResolver.ts"]
+    n_src_optics_chromatic_src_optics_chromatic_materialResolver_ts["materialResolver.ts"]
+    n_src_optics_chromatic_src_optics_chromatic_spectralLines_ts["spectralLines.ts"]
+    n_src_optics_chromatic_src_optics_chromatic_zoneSelection_ts["zoneSelection.ts"]
   end
   n_external_src_optics_trace["src/optics/trace"]
-  n_external_src_optics_aberration["src/optics/aberration"]
-  n_external_src_optics_dispersion_ts["src/optics/dispersion.ts"]
-  n_external_src_optics_field["src/optics/field"]
-  n_external_src_optics_glassCatalog_ts["src/optics/glassCatalog.ts"]
-  n_external_src_optics_layout_ts["src/optics/layout.ts"]
-  n_external_src_optics_prescription["src/optics/prescription"]
-  n_external_src_optics_spectralLines_ts["src/optics/spectralLines.ts"]
-  n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
+  n_external_src_optics_prescription["src/optics/prescription"]
+  n_external_src_optics_types_ts["src/optics/types.ts"]
+  n_src_optics_chromatic_src_optics_chromatic_glassCatalogData_ts --> |8| n_src_optics_chromatic_src_optics_chromatic_glassCatalogEntries
   n_src_optics_chromatic_src_optics_chromatic_chromaticTrace_ts --> |2| n_external_src_optics_trace
-  n_src_optics_chromatic_src_optics_chromatic_analysis_ts --> n_external_src_optics_aberration
-  n_src_optics_chromatic_src_optics_chromatic_dispersionAdapter_ts --> n_external_src_optics_dispersion_ts
-  n_src_optics_chromatic_src_optics_chromatic_dispersionQuality_ts --> n_external_src_optics_dispersion_ts
-  n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_optics_dispersion_ts
-  n_src_optics_chromatic_src_optics_chromatic_analysis_ts --> n_external_src_optics_field
-  n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_optics_glassCatalog_ts
-  n_src_optics_chromatic_src_optics_chromatic_analysis_ts --> n_external_src_optics_layout_ts
+  n_src_optics_chromatic_src_optics_chromatic_dispersionQuality_ts --> |2| n_external_src_types
+  n_src_optics_chromatic_src_optics_chromatic_materialResolver_ts --> |2| n_external_src_types
+  n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> |2| n_src_optics_chromatic_src_optics_chromatic_channels_ts
+  n_src_optics_chromatic_src_optics_chromatic_glassCatalog_ts --> |2| n_src_optics_chromatic_src_optics_chromatic_glassCatalogTypes_ts
+  n_src_optics_chromatic_src_optics_chromatic_glassCatalogData_ts --> |2| n_src_optics_chromatic_src_optics_chromatic_glassCatalogTypes_ts
+  n_src_optics_chromatic_src_optics_chromatic_glassCatalog_ts --> |2| n_src_optics_chromatic_src_optics_chromatic_spectralLines_ts
   n_src_optics_chromatic_src_optics_chromatic_dispersionAdapter_ts --> n_external_src_optics_prescription
-  n_src_optics_chromatic_src_optics_chromatic_dispersionQuality_ts --> n_external_src_optics_prescription
   n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_optics_prescription
-  n_src_optics_chromatic_src_optics_chromatic_channels_ts --> n_external_src_optics_spectralLines_ts
-  n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_optics_spectralLines_ts
   n_src_optics_chromatic_src_optics_chromatic_dispersionAdapter_ts --> n_external_src_optics_types_ts
   n_src_optics_chromatic_src_optics_chromatic_dispersionQuality_ts --> n_external_src_optics_types_ts
+  n_src_optics_chromatic_src_optics_chromatic_dispersionTable_ts --> n_external_src_optics_types_ts
   n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_optics_types_ts
-  n_src_optics_chromatic_src_optics_chromatic_analysis_ts --> n_external_src_types
   n_src_optics_chromatic_src_optics_chromatic_channels_ts --> n_external_src_types
   n_src_optics_chromatic_src_optics_chromatic_chromaticTrace_ts --> n_external_src_types
   n_src_optics_chromatic_src_optics_chromatic_dispersionAdapter_ts --> n_external_src_types
-  n_src_optics_chromatic_src_optics_chromatic_dispersionQuality_ts --> n_external_src_types
+  n_src_optics_chromatic_src_optics_chromatic_dispersionTable_ts --> n_external_src_types
+  n_src_optics_chromatic_src_optics_chromatic_glassCatalog_ts --> n_external_src_types
   n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_external_src_types
-  n_src_optics_chromatic_src_optics_chromatic_analysis_ts --> n_src_optics_chromatic_src_optics_chromatic_channels_ts
-  n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_src_optics_chromatic_src_optics_chromatic_channels_ts
-  n_src_optics_chromatic_src_optics_chromatic_analysis_ts --> n_src_optics_chromatic_src_optics_chromatic_chromaticTrace_ts
+  n_src_optics_chromatic_src_optics_chromatic_zoneSelection_ts --> n_external_src_types
+  n_src_optics_chromatic_src_optics_chromatic_chromaticTrace_ts --> n_src_optics_chromatic_src_optics_chromatic_channels_ts
+  n_src_optics_chromatic_src_optics_chromatic_materialResolver_ts --> n_src_optics_chromatic_src_optics_chromatic_channels_ts
+  n_src_optics_chromatic_src_optics_chromatic_zoneSelection_ts --> n_src_optics_chromatic_src_optics_chromatic_channels_ts
+  n_src_optics_chromatic_src_optics_chromatic_zoneSelection_ts --> n_src_optics_chromatic_src_optics_chromatic_chromaticTrace_ts
+  n_src_optics_chromatic_src_optics_chromatic_dispersionAdapter_ts --> n_src_optics_chromatic_src_optics_chromatic_dispersionTable_ts
+  n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_src_optics_chromatic_src_optics_chromatic_glassCatalog_ts
+  n_src_optics_chromatic_src_optics_chromatic_materialResolver_ts --> n_src_optics_chromatic_src_optics_chromatic_glassCatalog_ts
+  n_src_optics_chromatic_src_optics_chromatic_glassCatalog_ts --> n_src_optics_chromatic_src_optics_chromatic_glassCatalogAliases_ts
+  n_src_optics_chromatic_src_optics_chromatic_glassCatalog_ts --> n_src_optics_chromatic_src_optics_chromatic_glassCatalogData_ts
+  n_src_optics_chromatic_src_optics_chromatic_dispersionAdapter_ts --> n_src_optics_chromatic_src_optics_chromatic_materialResolver_ts
+  n_src_optics_chromatic_src_optics_chromatic_dispersionTable_ts --> n_src_optics_chromatic_src_optics_chromatic_materialResolver_ts
+  n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_src_optics_chromatic_src_optics_chromatic_materialResolver_ts
+  n_src_optics_chromatic_src_optics_chromatic_channels_ts --> n_src_optics_chromatic_src_optics_chromatic_spectralLines_ts
+  n_src_optics_chromatic_src_optics_chromatic_indexResolver_ts --> n_src_optics_chromatic_src_optics_chromatic_spectralLines_ts
 ```
 
 ## Directory Overview
 
-- Direct source files: 6
-- Direct subfolders: 0
-- Main outbound areas: src/types (6), same folder (3), src/optics/dispersion.ts (3), src/optics/prescription (3), src/optics/types.ts (3), src/optics/spectralLines.ts (2), src/optics/trace (2), src/optics/aberration, +3 more
-- External consumers: src/components/controls, src/components/diagram, src/components/display, src/optics/aberration, src/optics/analysis, src/optics/compat.ts, src/optics/perspective, src/optics/rayTrace.ts
+- Direct source files: 13
+- Direct subfolders: 1
+- Main outbound areas: same folder (30), src/types (11), src/optics/types.ts (4), src/optics/prescription (2), src/optics/trace (2)
+- External consumers: src/optics/analysis, src/optics/chromatic, src/optics/chromatic.ts, src/optics/field, src/optics/glassCatalog.ts, src/optics/math, src/optics/perspective, src/optics/prescription, +2 more
+
+## Subfolders
+
+| Folder | Role |
+| --- | --- |
+| [glassCatalogEntries/](glassCatalogEntries/readme.md) | src/optics/chromatic/glassCatalogEntries source folder |
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `analysis.ts` | Analysis helper module | same folder (2), src/optics/aberration, src/optics/field, src/optics/layout.ts, src/types | src/optics/analysis (2) | DEFAULT_CHROMATIC_ANALYSIS_CHANNELS, DEFAULT_LONGITUDINAL_CHROMATIC_FRACTIONS, DEFAULT_LATERAL_COLOR_FIELD_FRACTIONS, ChromaticAnalysisOptions, LongitudinalChromaticFocusSample, LongitudinalChromaticFocusResult, LateralColorChannelSample, LateralColorFieldSample, +5 more |
-| `channels.ts` | Channels helper module | src/optics/spectralLines.ts, src/types | src/components/display (4), src/optics/analysis (4), same folder (2), src/components/controls, src/components/diagram, +2 more | ChromaticChannelMetadata, CHROMATIC_CHANNEL_ORDER, CHROMATIC_CHANNEL_METADATA, chromaticChannelWavelengthLabel, chromaticChannelIndexLabel |
-| `chromaticTrace.ts` | Chromatic Trace helper module | src/optics/trace (2), src/types | same folder, src/optics/analysis, src/optics/compat.ts, src/optics/rayTrace.ts | computeChromaticRayFanSpread2, traceRayChromatic2, traceRayVectorChromatic2, traceSkewRayChromatic2, traceSkewRayVectorChromatic2, VectorRayTraceInput2, ChromaticChannel, ChromaticRayFanSpread, +2 more |
-| `dispersionAdapter.ts` | Dispersion Adapter helper module | src/optics/dispersion.ts, src/optics/prescription, src/optics/types.ts, src/types | src/optics/compat.ts | compileSurfaceDispersions, makeSurfaceDispersion2, dispersionTableFromRuntime2 |
-| `dispersionQuality.ts` | Dispersion Quality helper module | src/optics/dispersion.ts, src/optics/prescription, src/optics/types.ts, src/types | src/optics/compat.ts | summarizeDispersionQualityForLens2, summarizeDispersionQualityForState2, summarizeDispersionQuality2 |
-| `indexResolver.ts` | Index Resolver helper module | same folder, src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/optics/prescription, src/optics/spectralLines.ts, +2 more | src/optics/analysis, src/optics/compat.ts, src/optics/perspective, src/optics/rayTrace.ts | CHROMATIC_CHANNELS_2, CHANNEL_WAVELENGTH_NM_2, SurfaceIndexResolver2, wavelengthNd2, indexAtPreparedSurface2, indexAtRuntimeSurface2, channelIndexResolverForState2, anchoredIndexAtWavelength, +1 more |
+| `channels.ts` | Channels helper module | same folder, src/types | src/optics/analysis (8), same folder (4), src/optics/perspective (2), src/optics/chromatic.ts, src/optics/field, +2 more | ChromaticChannelMetadata, CHROMATIC_CHANNEL_ORDER, CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_WAVELENGTH_NM, E_LINE_CHANNEL_WAVELENGTH_NM, lensChromaticReference, chromaticChannelWavelengthLabel, chromaticChannelDescription, +2 more |
+| `chromaticTrace.ts` | Chromatic Trace helper module | src/optics/trace (2), same folder, src/types | src/optics/analysis (2), same folder, src/optics/chromatic.ts | computeChromaticRayFanSpread, traceRayChromatic, traceRayVectorChromatic, traceSkewRayChromatic, traceSkewRayVectorChromatic, VectorRayTraceInput, ChromaticChannel, ChromaticRayFanSpread, +2 more |
+| `dispersionAdapter.ts` | Dispersion Adapter helper module | same folder (2), src/optics/prescription, src/optics/types.ts, src/types | src/optics/chromatic.ts | compileSurfaceDispersions, makeSurfaceDispersionForRuntimeSurface, dispersionTableFromRuntime |
+| `dispersionQuality.ts` | Dispersion Quality helper module | src/types (2), src/optics/types.ts | src/optics/chromatic.ts | summarizeDispersionQualityForLens, summarizeDispersionQualityForState, summarizeDispersionQuality |
+| `dispersionTable.ts` | Dispersion Table helper module | same folder, src/optics/types.ts, src/types | same folder, src/optics/chromatic.ts, src/optics/prescription | compileSurfaceDispersions, buildVdIndex, buildSpectralIndex, resolveMaterialTable, compiledDispersionTable |
+| `glassCatalog.ts` | Glass Catalog helper module | same folder (6), src/types | same folder (2), src/optics/glassCatalog.ts | GlassEntry, LINE_NM, GLASS_ND_TOLERANCE, GLASS_CATALOG_ND_TOLERANCE, GLASS_CATALOG_VD_TOLERANCE, GLASS_VD_TOLERANCE, CatalogGlassCompatibility, GlassResolutionMatchSource, +16 more |
+| `glassCatalogAliases.ts` | Glass Catalog Aliases helper module | none | same folder, src/optics/glassCatalog.ts | GlassAliasKind, GlassAliasRecord, ALIAS_RECORDS, ALIASES |
+| `glassCatalogData.ts` | Glass Catalog Data helper module | same folder (10) | same folder, src/optics/glassCatalog.ts | GlassEntry, DUPLICATE_CODE6_PRECEDENCE, RAW_CATALOG |
+| `glassCatalogTypes.ts` | Glass Catalog Types helper module | none | same folder (10), src/optics/glassCatalog.ts, src/optics/types.ts | GlassEntry |
+| `indexResolver.ts` | Index Resolver helper module | same folder (5), src/optics/prescription, src/optics/types.ts, src/types | src/optics/analysis, src/optics/chromatic.ts, src/optics/perspective | CHROMATIC_CHANNELS, CHANNEL_WAVELENGTH_NM, SurfaceIndexResolver, wavelengthNd, indexAtPreparedSurface, indexAtRuntimeSurface, channelIndexResolverForState, anchoredIndexAtWavelength, +1 more |
+| `materialResolver.ts` | Material Resolver helper module | same folder (2), src/types (2) | same folder (3), src/optics/chromatic.ts | normalLinePgF, normalLinePdC, normalLinePeC, normalLinePgFPrime, abbeLineIndices, makeSurfaceDispersion |
+| `spectralLines.ts` | Spectral Lines helper module | none | same folder (3), src/optics/analysis (2), src/optics/chromatic.ts, src/optics/math | LINE_NM |
+| `zoneSelection.ts` | Zone Selection helper module | same folder (2), src/types | src/optics/analysis (2), src/optics/chromatic.ts | CHROMATIC_ZONE_CHANNELS, chromaticRayOmission, selectChromaticZone, requestedZoneChannels, ChromaticFanRay, chromaticSpreadFromRays |

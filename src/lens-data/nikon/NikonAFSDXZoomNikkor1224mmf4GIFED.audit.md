@@ -47,3 +47,30 @@ a duplicate glass record. The remaining proprietary/code-only rows stay unresolv
 - Visually rechecked `patents/US6940655.pdf`, PDF page 14, Example 1 / Table 1. L11 remains patent code `606574`, `nd = 1.606020`, `νd = 57.44`.
 - Schott N-SK2 is within the runtime catalog-equivalent window (`Δnd = +0.001361`, `Δνd = -0.79`).
 - Relabeled L11 as an N-SK2 optical equivalent while leaving the production supplier unspecified. No prescription geometry changed.
+
+## 2026-10-29 — F-mount surface and glass reinspection
+
+Fresh original source `patents/US6940655.pdf`: Example1 Figure1 on PDFpage2, directly reviewed at600dpi; Table1 and d-line definitionspage14, coefficient/maximum-effective-diameter conditionpage15. Inspected all12media faces, including four ordinary cemented interfaces and the resin bond. Embedded figure is300dpi. The approximately1818px first-to-last vertex span over96.0404mm gives18.9px/mm at600dpi,9.46nativepx/mm.
+
+Retained geometry after testing both source-visible larger seats. For L1, the figure cap/edge ratio is about0.80±0.007 (approximately269native edge pixels; one-pixel bound±(1+q)/edge). Applying q to the current21.825mm rim gives a trial rear S2A cut6.65mm/cap17.455061mm. Sampled beams reach18.175629mm at zoom0/focus0.10/field42.57688°. Moving outward to depth7.16mm gives cap18.239883mm, margin0.054720mm, and passes the inferred-beam rule. It is nevertheless rejected: the21.825mm authored radii represent the source43.65mm maximum effective aperture, and the cut would reduce that clear radius and change the reproduced dmax/d0condition. Vertex-span calibration places the drawn physical outer rim near28.3mm, beyond that clear radius. A rear-only extension to that rim would require an unsupported closure of the continuing front outer curve; no fabricated front flat seat is added.
+
+The separate resin S6A10.6→17mm extension passes simple geometry but would form a resin-only wing above the10.6mm cemented substrate boundary. The complete compound step requires an unsupported cemented-interface representation. It is rejected without substituting a short partial land. Other concave air faces have no resolved new cap-end land. Source R/d/aspheres, aperture, effective diameter and constrained focus/zoom model remain unchanged.
+
+All12source nd/νd pairs match Table1 and retain its d-line convention:11physical glass elements plus one0.1mm resin layer. No source θgF/extra line indices/APD identity is published. Current coefficient coverage11/12 is confirmed; only resin1.55389/38.09 lacks a compatible catalog row. Existing supplier-neutral labels/qualified curves remain. Public text now records complete current coverage and distinguishes the optical compound-outline limitation from an invented housing feature.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy |
+|---|---|---|
+| L1 | 1.744429 / 49.55 | M-NBF1 |
+| L2 | 1.581440 / 40.75 | PBL25 |
+| L3 | 1.772500 / 49.61 | J-LASF016 |
+| L3r | 1.553890 / 38.09 | Unresolved |
+| L4 | 1.755200 / 27.51 | E-FD4 |
+| L5 | 1.741000 / 52.67 | LAK011 |
+| L6 | 1.548140 / 45.79 | LLF1 |
+| L7 | 1.497820 / 82.52 | J-FKH1 |
+| L8 | 1.804000 / 46.58 | H-ZLaF50D |
+| L9 | 1.804400 / 39.59 | J-LASF013 |
+| L10 | 1.497820 / 82.52 | J-FKH1 |
+| L11 | 1.606020 / 57.44 | N-SK2 |
+
+Absolute-path candidate surface, image-circle and aperture audits pass; resolver/`assertCatalogConsistent()` pass. Nine native SVG focus/zoom states were rendered and visually inspected with zero hidden rim trim. All source indices, actual spectral constraints, and selected qualified curves are retained; no tolerance is relaxed. Shared dispersion/partial-dispersion suites passed2files/93tests earlier in this wave. Coordinator records full gates/commit integration.

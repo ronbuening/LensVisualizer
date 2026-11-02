@@ -1,7 +1,7 @@
 import type {
   PerspectiveFieldAberrationAnalysis,
   PerspectiveFieldCurvatureSample,
-} from "../../../../optics/perspective/index.js";
+} from "../../../../optics/perspective.js";
 import type { Theme } from "../../../../types/theme.js";
 import { AnalysisMetricRow } from "../analysisUi.js";
 import {

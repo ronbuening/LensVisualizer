@@ -9,7 +9,7 @@
 **Inventor:** Hisataro Shimada (島田 久太郎)<br>
 **Applicant:** Mamiya-OP Co., Ltd. (マミヤ・オーピー株式会社)<br>
 **Title:** 逆望遠型広角レンズ (retrofocus wide-angle lens)
-**Embodiment analyzed:** Example 1 / 実施例1
+**Example details:** 実施例1
 
 The data file transcribes Example 1 of JP 1997-297263 A and treats it as the fixed production correlation for the Mamiya Sekor AF 55mm f/2.8. The patent itself does not identify a commercial product, so that correlation remains an author/modeling inference rather than a manufacturer-confirmed patent assignment.
 

@@ -8,7 +8,7 @@
 **Inventor:** Takashi Suzuki  
 **Assignee:** Fujinon Corporation — same-application assignment history; none printed on the supplied US publication\
 **Title:** *Lens Having Vibration Proof Function and Imaging Apparatus*  
-**Embodiment analyzed:** Example 1, corresponding to Figs. 1, 6, and 7
+**Example details:** corresponding to Figs. 1, 6, and 7
 
 The implemented prescription is the unscaled Example 1 of US 2009/0190239 A1. The patent describes a three-group telephoto system in which positive G1 is followed by a negative focusing group G2 and a positive G3; G3 is itself divided into positive G3a and negative G3b. G2 moves axially for focusing, while G3a moves laterally for vibration correction (abstract; ¶¶0043–0046; claim 1). Fig. 6 gives the complete Example 1 prescription and Fig. 7 gives the design focal length, F-number, field angle, focus spacings, third-group focal length, conditional-expression values, and vibration-correction motion.
 

@@ -15,7 +15,8 @@
 
 import summariesJson from "../../generated/teleconverter-summaries.json";
 import { canonicalPagePath } from "../seo/siteUrls.js";
-import type { LensMountId } from "./lensTaxonomy.js";
+import type { PatentExample } from "../../types/optics.js";
+import type { ImageFormatId, LensMountId } from "./lensTaxonomy.js";
 
 export interface TeleconverterSummary {
   key: string;
@@ -28,9 +29,11 @@ export interface TeleconverterSummary {
   specs?: string[];
   magnification: number;
   lensMounts: LensMountId[];
+  imageFormat?: ImageFormatId;
   universal?: boolean;
   minHostFno?: number;
   patentNumber?: string;
+  patentExample?: PatentExample;
   patentAuthors?: string[];
   patentAssignees?: string[];
   patentYear?: number;

@@ -2,8 +2,11 @@
 
 import type { ChromaticChannel } from "../../types/optics.js";
 import type { Vec3 } from "../types.js";
-import { sampleSceneLockedFields, type FieldSample, type PerspectiveFieldStatus } from "./fieldSampling.js";
-import { perspectiveTraceToDiagram, perspectiveVectorLeadPoint, type PerspectiveDiagramTrace } from "./diagramTrace.js";
+import { sampleSceneLockedFields } from "./fieldSampling.js";
+import type { FieldSample } from "./fieldTypes.js";
+import type { PerspectiveFieldStatus } from "./chiefRay.js";
+import { perspectiveTraceToDiagram, perspectiveVectorLeadPoint } from "./diagramTrace.js";
+import type { PerspectiveDiagramTrace } from "./diagramTrace.js";
 import type { PerspectiveTraceContext } from "./trace.js";
 
 export interface PerspectiveDiagramFanSample {
@@ -35,7 +38,7 @@ export function tracePerspectiveDiagramFan({
   stopSemiDiameterMm,
   fractions,
   channel,
-  leadDistanceMm = context.state.lens.runtime.rayLead,
+  leadDistanceMm = context.state.lens.constants.rayLead,
 }: TracePerspectiveDiagramFanParams): PerspectiveDiagramFan | null {
   const field = sampleSceneLockedFields(context, [sceneDirectionCamera], {
     pupilBundle: {
@@ -44,6 +47,8 @@ export function tracePerspectiveDiagramFan({
       stopSemiDiameterMm,
       fractions,
       channel,
+      // A rendering sampler: the diagram keeps the paraxial entrance-pupil fan, like the unmoved diagram's rays.
+      launch: "paraxial-entrance",
     },
   })[0];
   if (!field?.pupilBundle || field.pupilBundle.kind !== "meridional") return null;

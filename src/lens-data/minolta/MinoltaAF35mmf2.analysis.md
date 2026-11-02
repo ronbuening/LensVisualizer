@@ -6,8 +6,7 @@
 **Published:** 1988-08-19\
 **Inventor:** 得丸 祥\
 **Applicant:** Minolta Camera Co., Ltd.\
-**Title:** 小型のレトロフォーカス型広角レンズ (Compact retrofocus-type wide-angle lens)\
-**Embodiment analyzed:** Example 4
+**Title:** 小型のレトロフォーカス型広角レンズ (Compact retrofocus-type wide-angle lens)
 
 The modeled prescription is Example 4 of JP 1988-201614 A, correlated in this corpus to the MINOLTA AF 35mm f/2. The correlation is fixed for this entry but is not presented as a manufacturer-confirmed patent-to-product identification. It rests on several convergent features:
 

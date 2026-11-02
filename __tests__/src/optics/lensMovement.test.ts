@@ -6,8 +6,8 @@ import {
   isIdentityLensMovement,
   transformMovedPoint,
   transformMovedSlope,
-} from "../../../src/optics/lensMovement.js";
-import { createPerspectivePose } from "../../../src/optics/perspective/index.js";
+} from "../../../src/optics/perspective/lensMovement.js";
+import { createPerspectivePose } from "../../../src/optics/perspective/pose.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 const pcLens = {

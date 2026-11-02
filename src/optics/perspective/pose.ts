@@ -3,7 +3,7 @@
  */
 
 import type { TiltPivot } from "../../types/optics.js";
-import type { LensMovementState } from "../lensMovement.js";
+import type { LensMovementState } from "./lensMovement.js";
 import { formatCacheNumber } from "../math/numerics.js";
 import type { Plane3, Ray3, Vec3 } from "../types.js";
 

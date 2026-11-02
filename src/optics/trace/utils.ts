@@ -5,15 +5,11 @@
  * and RuntimeLens-compatible outputs.
  */
 
-import type { PreparedOpticalState, Vec3 } from "../types.js";
+import type { Vec3 } from "../types.js";
 import { normalize } from "../math/vector.js";
-import type { EngineTraceResult, TraceFailureReason, TraceHit } from "./types.js";
-import { buildTraceDiagnostics } from "./foldedDiagnostics.js";
-import type {
-  FoldedPathAutoStepDiagnostics,
-  FoldedPathClipEvent,
-  FoldedPathTraceTermination,
-} from "../../types/optics.js";
+import type { TraceGeometry, EngineTraceResult, TraceFailureReason, TraceCapture } from "./types.js";
+import type { TraceRecorder } from "./capture.js";
+import type { FoldedPathTraceTermination } from "../../types/optics.js";
 
 /**
  * Convert a normalized 3D ray direction to legacy skew slopes.
@@ -66,10 +62,10 @@ export function normalizeTraceDirection(direction: Vec3): Vec3 | null {
  * @param args - accumulated trace state and diagnostics
  * @returns finalized engine trace result
  */
-export function finalizeTraceResult({
-  state,
+export function finalizeTraceResult<C extends TraceCapture>({
+  geometry,
   input,
-  hits,
+  capture,
   heights,
   terminalPoint,
   terminalDirection,
@@ -80,13 +76,11 @@ export function finalizeTraceResult({
   failureReason,
   reachedImagePlane,
   terminationReason,
-  clipEvents,
-  autoSteps,
   loopKey,
 }: {
-  state: PreparedOpticalState;
+  geometry: TraceGeometry;
   input: { origin: Vec3; direction: Vec3 };
-  hits: readonly TraceHit[];
+  capture: TraceRecorder;
   heights: readonly number[] | null;
   terminalPoint: Vec3;
   terminalDirection: Vec3;
@@ -97,13 +91,11 @@ export function finalizeTraceResult({
   failureReason: TraceFailureReason | null;
   reachedImagePlane: boolean;
   terminationReason: FoldedPathTraceTermination;
-  clipEvents: FoldedPathClipEvent[];
-  autoSteps: FoldedPathAutoStepDiagnostics[];
   loopKey: string | null;
-}): EngineTraceResult {
+}): EngineTraceResult<C> {
   const returnZ = reachedImagePlane
     ? terminalPoint[2]
-    : (state.z[returnVertexIndex] ?? state.z[state.z.length - 1] ?? 0);
+    : (geometry.z[returnVertexIndex] ?? geometry.z[geometry.z.length - 1] ?? 0);
   const x = reachedImagePlane
     ? terminalPoint[0]
     : projectCoordinateToZ(terminalPoint[0], terminalPoint[2], terminalDirection[0], terminalDirection[2], returnZ);
@@ -112,9 +104,10 @@ export function finalizeTraceResult({
     : projectCoordinateToZ(terminalPoint[1], terminalPoint[2], terminalDirection[1], terminalDirection[2], returnZ);
   const slopes = directionSlopes(terminalDirection);
   const status = failureReason !== null ? "failed" : clipped ? "clipped" : "ok";
+  // The recorder was selected from C before traversal; only that policy owns history storage.
   return {
     input,
-    hits,
+    hits: capture.hits,
     terminalPoint,
     terminalDirection,
     terminalSurfaceIndex,
@@ -123,16 +116,13 @@ export function finalizeTraceResult({
     status,
     failureReason,
     reachedImagePlane,
-    diagnostics: buildTraceDiagnostics(state, {
-      hits,
+    diagnostics: capture.diagnostics?.({
       finalMedium,
       reachedImagePlane,
       terminalSurfaceIndex,
       clipped,
       failureReason,
       terminationReason,
-      clipEvents,
-      autoSteps,
       loopKey,
     }),
     heights,
@@ -140,7 +130,7 @@ export function finalizeTraceResult({
     y,
     ux: slopes.ux,
     uy: slopes.uy,
-  };
+  } as EngineTraceResult<C>;
 }
 
 /**

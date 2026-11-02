@@ -9,7 +9,7 @@
 **Filed:** March 15, 1978
 **Granted:** January 8, 1980
 **Title:** Modified Gauss Type Lens System
-**Embodiment analyzed:** Embodiment 2 (Table 2)
+**Example details:** Table 2
 
 **US Patent 4,182,550**, "Modified Gauss Type Lens System." Inventor: Tamikazu Yamaguchi. Assignee: Minolta Camera Kabushiki Kaisha, Osaka, Japan. Filed March 15, 1978; granted January 8, 1980. Japanese priority date: March 23, 1977 (JP 52-32728). A Certificate of Correction was issued July 15, 1980, correcting condition (5) from $N_3 < 1.67, N_4 < 1.67$ to $N_3 > 1.67, N_4 > 1.67$.
 

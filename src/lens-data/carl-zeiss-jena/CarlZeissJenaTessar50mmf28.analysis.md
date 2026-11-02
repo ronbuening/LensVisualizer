@@ -12,7 +12,6 @@
 **Granted:** 20 January 1954
 **Published:** 9 June 1954
 **Title:** Objectif à correction sphérique, chromatique et astigmatique
-**Embodiment analyzed:** Example 1
 
 | Field | Value |
 |---|---|

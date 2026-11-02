@@ -5,7 +5,7 @@
 **Assignee:** Nikon Corporation
 **Filed:** December 1, 1992
 **Granted:** September 7, 1993
-**Embodiment analyzed:** Fifth Embodiment (Table 5 / Claim 9)
+**Example details:** Table 5 / Claim 9
 
 ---
 

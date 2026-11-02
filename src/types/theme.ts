@@ -25,6 +25,8 @@ export interface ThemeInternalTokens {
 
 /** Public color tokens exposed on every theme */
 export interface ThemeColorTokens extends ThemeInternalTokens {
+  /** Invalid editable fields and authoring errors. */
+  error: string;
   bg: string;
   headerBgColor: string;
   headerBgImage: string;

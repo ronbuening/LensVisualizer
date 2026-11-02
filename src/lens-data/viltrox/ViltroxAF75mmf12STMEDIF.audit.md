@@ -51,3 +51,13 @@ The authored STO SD remains 11.722108147 mm. Corrected its description from a ve
 ## 2026-09-10 — Withheld from the public catalog
 
 Changed `visible` from its default `true` to `false` because the Table 1 / Figure 1 conflicts above remain unresolved. The prescription and audit evidence are retained for further investigation.
+
+## 2026-10-29 — Fresh Z-mount rim and glass reinspection
+
+Directly inspected `patents/CN114755806A.pdf`, Example 1 Figure 1 (PDF p.12, 600 dpi crop) and Table 1 (p.7). Reviewed all sixteen elements, both faces and cemented interfaces. The existing dimensional normalization gives approximately 6.98 native px/mm. No source optical number or hidden-catalog status changes.
+
+Four resolved concave rear lands now use inferred cuts. Measured q and one-native-pixel uncertainty are S5 **0.84±0.0099**, S10 **0.917±0.0140**, S12 **0.897±0.0150**, S17 **0.924±0.0200**. Their edge radii remain 26.6/19.7/18.1/13.8 mm. S5's first figure-proportional trial (radius 22.038 mm) failed: full beams reach 22.7815 mm, requiring 22.8476 mm. Moved it outward to **22.8997 mm** (depth **6.08 mm**). S10/S12/S17 depths **4.81/6.03/3.04 mm** yield radii **18.0547/16.2452/12.7579 mm** and pass the beam guard. No other resolved exposed-face land supports additional clipping; cement boundaries and the source-conflicted final group are retained.
+
+All sixteen nd/νd rows match the table's coarse d-line coordinates. Ten lens media retain qualified catalog spectral proxies; six remain unmatched with Abbe dispersion. No individual measured partial dispersion is published and no APD or source spectral indices are added. L16's figure/table disagreement, S10 reconstruction and unverified finite endpoint remain disclosed; the lens remains hidden.
+
+`audit:surface`, `audit:image-circle`, and `audit:aperture` passed. Nine prepared-state SVGs were generated and rasterized over focus 0/.5/1 and the ignored prime zoom coordinate: sixteen finite element paths each, zero renderer trim. Shared dispersion/resolver/partial-dispersion checks passed (3 files/94 tests).

@@ -6,26 +6,46 @@ Use this copy when another AI is constructing a LensVisualizer prescription and 
 
 Build the lens as one source-traceable pair: `LensName.data.ts` plus the optional same-stem
 `LensName.analysis.md`. Start from `src/lens-data/TEMPLATE.data.ts.template` and follow
-`LENS_DATA_SPEC.md` and `LENS_ANALYSIS_SPEC.md`; do not infer a new schema from older files. The simplest integration
+`LENS_DATA_SPEC.md` and `LENS_ANALYSIS_SPEC.md`; keep `schema: 2` and `satisfies LensDataV2Input`. The simplest integration
 path is to place both drafts at the `src/lens-data/` root and run `npm run generate:metadata`, which moves the pair into
-the derived maker folder and rewrites the `LensDataInput` import. If working directly in a maker folder, import from
-`../../types/optics.js`. Audit logs are not moved automatically.
+the derived maker folder and rewrites the `LensDataV2Input` import. If working directly in a maker folder, import from
+`../../types/lensDataV2.js`. Audit logs are not moved automatically.
+Author and edit catalog files in V2. Convert archived V1 arrivals with `npm run organize:lens-data` or
+`npm run convert:lens-data -- --input <file> --write` before integration; see
+[Adding Archived V1 Files](workflow.md#adding-archived-v1-files).
+Use [Reading V1 Audits](../src/lens-data/LENS_DATA_SPEC.md#reading-v1-audits) for historical audit field names.
 
 Transcribe one identified patent embodiment, preserve its signs and precision, and record every deviation from it.
-Model source-listed rear cover/filter plates with `rearPlates` (physical gaps as printed, never a hand-folded t/n).
-Exclude front filters, inactive dummy/flare-cutter planes, and mechanical parts. Keep only active mirror/blocking surfaces that the
-modeled path can hit. Use exactly one `STO`; keep cemented-interface `elemId` assignments, variable-gap base values, and
-zoom-position counts consistent. Never invent missing close-focus spacings: either keep the published state or label a
-constrained reconstruction in the header, `focusDescription`, and analysis. Flag the rows the source tabulates in
-`publishedStations`. If scaling by `s`, scale every length
-(`R`, `d`, `sd`, image-plane coordinates) and transform `A_p` to `A_p / s^(p-1)` while leaving `K` unchanged.
+Follow [Scope: What to Include](../src/lens-data/LENS_DATA_SPEC.md#scope-what-to-include) for filters, `rearPlates`,
+dummy planes and active mirror/blocking surfaces. Use exactly one `STO`, with radius authority from
+[Stop and Aperture](../src/lens-data/LENS_DATA_SPEC.md#stop-and-aperture). Check cemented-interface `medium`
+assignments, `gaps` rows, `zoom.stations[]` and `focus.keyframes` against
+[Surfaces](../src/lens-data/LENS_DATA_SPEC.md#surfaces) and [States](../src/lens-data/LENS_DATA_SPEC.md#states).
+Never invent missing close-focus spacings: either keep the published state or label a constrained reconstruction in
+the header, `focus.description`, and analysis. Mark source rows using
+[Published Stations](../src/lens-data/LENS_DATA_SPEC.md#published-stations). Apply the spec's
+[scaling rules](../src/lens-data/LENS_DATA_SPEC.md#data-sourcing-checklist) to all lengths and surface coefficients.
 
-Add complete structured patent attribution (`patentNumber`, all `patentAuthors`, all `patentAssignees`, and
-`patentYear`) and retain a concise `subtitle` for the embodiment/correlation. Use only canonical `lensMounts` and
-`imageFormat` ids. Put `dPgF`, `nC`, `nF`, and `ng` directly on `ElementData`; there is no authored `spectral` block.
+Add complete structured patent attribution (`source.patentNumber`, all `source.authors`, all `source.assignees`, and
+`source.patentYear`) and retain a concise `subtitle` for the correlation. Use only canonical `catalog.lensMounts` and
+`catalog.imageFormat` ids. Put `dPgF`, `nC`, `nF`, and `ng` directly on `ElementV2Input`; there is no authored `spectral` block.
 Resolve glass labels against the catalog and use `Unmatched (...)` when the stored `nd`/`νd` cannot defend a public
 identity. Treat product-to-patent matching, glass equivalence, stop position, semi-diameters, and corrected source typos
 as inferences unless the source explicitly establishes them.
+
+In `source`, right after `patentNumber`, add `example: { label, id }` naming the numerical example you transcribed,
+exactly as the publication prints it. `label` is the source's term and number in English Title Case ("Example 6",
+"Numerical Example 2", "Embodiment 3", "Table IV", "Example A"): keep its term and numerals, write "Third Embodiment"
+as "Embodiment 3", and translate 実施例 / 数値実施例 / 実施形態 / Beispiel / Zahlenbeispiel. `id` is the number in Arabic
+digits, with roman numerals converted and letters and suffixes uppercase. One unnumbered example, even inside
+"TABLE 1", is `{ label: "Sole example", id: null }`. Never invent a number. A source that identifies its examples only
+by figure or only by claim gets "Figure N" or "Claim N"; where each embodiment restarts its example numbers, use the
+table numbered across the whole publication ("Table 8"). If the file combines data from different examples (data
+borrowed from an example with the same prescription is fine; name it in the analysis), or transcribes an unnumbered
+design printed beside the source's examples, leave `example` out and say why. In the analysis, write no
+`**Embodiment analyzed:**`; add `**Example details:**` only for tables, figures, claims, paragraphs, the native term or
+scaling. Any example the subtitle names must match. Full rules:
+[The transcribed example](../src/lens-data/LENS_DATA_SPEC.md#the-transcribed-example-sourceexample).
 
 Write the analysis from the final data file. Begin with the required bold-label patent metadata block, identify the
 embodiment and correlation evidence, then cover architecture, elements, glass, focus, and aspheres when present. Exact

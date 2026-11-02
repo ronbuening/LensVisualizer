@@ -1,7 +1,7 @@
 ---
 slug: canon-rf-lens-development-stories-index
 title: "Canon: RF Lens Developer Stories"
-summary: An index of Canon's official RF Lens World interviews, lens history timeline, and L-lens chapters, plus additional RF development stories, cross-linked to matching Surface & Stop diagrams.
+summary: An index of Canon's official RF Lens World interviews, Japanese developer interviews, lens history timeline, L-lens chapters, and quality and technology stories, cross-linked to matching Surface & Stop diagrams.
 tag: guide
 series: manufacturer-lens-stories
 seriesOrder: 6
@@ -50,6 +50,42 @@ Canon's corporate technology library contains two more substantial RF lens-devel
 | RF5.2mm F2.8 L Dual Fisheye | [The EOS VR System: Dramatically Expanding VR Imaging Possibilities](https://global.canon/en/technology/canon-tech/interview/vrlens/) | — |
 | RF100–500mm F4.5–7.1 L IS USM | [RF Super-telephoto Zoom Lens](https://global.canon/en/technology/rf-2020.html) | [RF100–500mm F4.5–7.1 L](/lens/canon-rf-100-500mm-f45-71-l-is-usm) |
 
+## Canon Japan Developer Interviews
+
+Canon Japan's member site publishes Japanese-language developer interviews for individual RF lenses, alongside a 2018 feature series on the engineering behind the RF mount. They are listed newest first.
+
+| Published | Lens | Official interview | Surface & Stop |
+| --- | --- | --- | --- |
+| 2026-02-05 | RF14mm F1.4 L VCM | [RF14mm F1.4 L VCM 開発者インタビュー](https://personal.canon.jp/articles/interview/developer-rf14-f14l-vcm) | [RF14mm F1.4 L VCM](/lens/canon-rf-14mm-f14-l-vcm) |
+| 2024-09-12 | RF28–70mm F2.8 IS STM | [RF28-70mm F2.8 IS STM 開発者インタビュー](https://personal.canon.jp/articles/interview/developer-f28-70-f28) | [RF28–70mm F2.8 IS STM](/lens/canon-rf-28-70-f28-is-stm) |
+| 2023-05-18 | RF100–300mm F2.8 L IS USM | Parts [01](https://personal.canon.jp/articles/interview/interview01) · [02](https://personal.canon.jp/articles/interview/interview02) · [03](https://personal.canon.jp/articles/interview/interview03) · [04](https://personal.canon.jp/articles/interview/interview04) · [05](https://personal.canon.jp/articles/interview/interview05) · [06](https://personal.canon.jp/articles/interview/interview06) · [07](https://personal.canon.jp/articles/interview/interview07) · [08](https://personal.canon.jp/articles/interview/interview08) · [09](https://personal.canon.jp/articles/interview/interview09) | — |
+| 2019-10-25 | RF15–35mm, RF24–70mm and RF70–200mm F2.8 L IS USM | [第4回（特別編）開発者に聞いた「F2.8 L IS シリーズ」のヒミツ](https://personal.canon.jp/articles/interview/nakanishi/column04) | [RF15–35mm F2.8 L](/lens/canon-rf-15-35-f28) · [RF24–70mm F2.8 L](/lens/canon-rf-24-70-f28) · [RF70–200mm F2.8 L](/lens/canon-rf-70-200-f28) |
+
+The RF28–70mm F2.8 interview was conducted for Canon by an outside editor. The RF100–300mm interview runs to nine parts; the date shown is that of part 01.
+
+### The Developers' Uncompromising Challenge
+
+Canon's 2018 feature [開発者の妥協なき挑戦](https://personal.canon.jp/articles/interview/developer) (The Developers' Uncompromising Challenge), published on 2018-09-05, introduced the EOS R system through its engineers. Two of its chapters name specific RF lenses.
+
+| Chapter | Subject | Official chapter | Surface & Stop |
+| --- | --- | --- | --- |
+| 01 | Large-diameter mount and short back focus | [Read at Canon](https://personal.canon.jp/articles/interview/developer/chapter01) | [RF28–70mm F2 L](/lens/canon-rf-28-70-f2) |
+| 02 | The new mount communication system | [Read at Canon](https://personal.canon.jp/articles/interview/developer/chapter02) | — |
+| 03 | RF lens mechanical design and component development | [Read at Canon](https://personal.canon.jp/articles/interview/developer/chapter03) | [RF24–105mm F4 L](/lens/canon-rf-24-105-f4-l) |
+| 04 | Dual Pixel CMOS AF | [Read at Canon](https://personal.canon.jp/articles/interview/developer/chapter04) | — |
+| Epilogue | The future of the EOS R system and RF mount | [Read at Canon](https://personal.canon.jp/articles/interview/developer/epilogue) | — |
+
+## Canon Global Quality and Technology Stories
+
+Canon's global site adds lens material in two further collections: the numbered _Commitment to Quality_ stories and the Developers' Story interviews in its technology library, which also hosts the dual-fisheye feature above.
+
+| Published | Article | Surface & Stop |
+| --- | --- | --- |
+| 2025-05-21 | [Quality story Vol. 10 — High image quality in a small and lightweight body](https://global.canon/en/quality/story/2025-small-light.html) | [EF35mm F1.4 L II](/lens/canon-ef-35mm-f14l-ii-usm) · [RF35mm F1.4 L VCM](/lens/canon-rf-35mm-f14-l-vcm) |
+| 2024 | [Quality story Vol. 9 — High image quality lens enabled by a mirrorless structure and large aperture mount](https://global.canon/en/quality/story/2024-high-image-quality.html) | [RF50mm F1.2 L](/lens/canon-rf-50-f12-l) |
+| Not shown | [Quality story Vol. 2 — The reason behind the "white lens": searching for a brand-new coating](https://global.canon/en/quality/story/vol02.html) | [EF400mm F2.8 L IS III](/lens/canon-ef-400mm-f28l-is-iii-usm) · [EF600mm F4 L IS III](/lens/canon-ef-600f4l-is-iii-usm) · [RF70–200mm F2.8 L](/lens/canon-rf-70-200-f28) |
+| 2018-09-27 | [Leading-edge production technologies behind Canon's high-performance lenses](https://global.canon/en/technology/canon-tech/interview/element/) | [EF35mm F1.4 L II](/lens/canon-ef-35mm-f14l-ii-usm) · [EF11–24mm F4 L](/lens/canon-ef-11-24-f4l-usm) |
+
 ## Canon Lens History
 
 Canon's RF Lens World also hosts a [lens history timeline](https://personal.canon.jp/product/camera/rf/rf-lensworld/history) running from the 1946 Serenar 50mm F3.5 to the 2026 RF fisheye and power-zoom designs. Each milestone pairs a lens with the advance it introduced — fluorite elements, ground aspherics, image stabilization, diffractive optics, subwavelength and fluorine coatings, and the recent power-zoom designs. The page is Japanese-language.
@@ -77,8 +113,10 @@ The following milestones have exact catalog matches. Years follow Canon's timeli
 | 2009 | EF100mm F2.8 L Macro IS USM | [EF100mm F2.8 L Macro IS](/lens/canon-ef-100mm-f28l-is-macro) |
 | 2008 | EF24mm F1.4 L II USM | [EF24mm F1.4 L II](/lens/canon-ef-24mm-f14-l-ii-usm) |
 | 2001 | EF400mm F4 DO IS USM | [EF400mm F4 DO IS](/lens/canon-ef-400mm-f4-do-is-usm) |
+| 1995 | EF75–300mm F4–5.6 IS USM | [EF75–300mm F4–5.6 IS](/lens/canon-ef-75-300mm-f4-56-is-usm) |
 | 1989 | EF50mm F1.0 L USM | [EF50mm F1.0 L](/lens/canon-ef-50f10l) |
 | 1982 | New FD14mm F2.8 L | [New FD14mm F2.8 L](/lens/canon-new-fd-14mm-f28-l) |
+| 1961 | 50mm F0.95 | [50mm F0.95](/lens/canon-50mm-f095) |
 | 1953 | Serenar 100mm F3.5 I | [Serenar 100mm F3.5 I](/lens/canon-serenar-100mm-f35) |
 | 1951 | Serenar 50mm F1.8 I | [Serenar 50mm F1.8](/lens/canon-serenar-50f18) |
 

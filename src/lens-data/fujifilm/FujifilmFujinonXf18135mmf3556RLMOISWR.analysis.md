@@ -8,8 +8,7 @@
 **Granted:** May 16, 2017\
 **Inventors:** Tetsuya Ori; Michio Cho\
 **Assignee:** FUJIFILM Corporation\
-**Title:** Zoom Lens and Imaging Apparatus\
-**Embodiment analyzed:** Example 1
+**Title:** Zoom Lens and Imaging Apparatus
 
 The prescription represented here is Example 1 of US 9,651,761 B2, correlated to the FUJIFILM FUJINON XF 18-135mm f/3.5-5.6 R LM OIS WR. The patent and embodiment are the fixed optical source for the model. The production
 correlation is not presented as a manufacturer statement that Example 1 is the shipping prescription; it rests on
@@ -174,7 +173,7 @@ L45 is the negative member of G4B. The cemented L44/L45 pair is the complete G4B
 
 ### L51 — Biconvex Positive, 2× Aspherical, G5A
 
-**nd = 1.66630, νd = 55.16. Glass: Unmatched (666552; nd=1.66630, νd=55.16). Standalone f = 21.602616 mm.**
+**nd = 1.66630, νd = 55.16. Glass: K-VC78-M (SUMITA moulding-state catalog equivalent). Standalone f = 21.602616 mm.**
 
 L51 is the biconvex positive element of G5A and is aspherical on both faces. As G5A contains only this element, its standalone focal length and subgroup EFL are both +21.602616 mm. It is followed by the negative cemented G5B pair, producing a complete G5 EFL of +44.429622 mm rather than simply adding the isolated element powers.
 
@@ -215,7 +214,7 @@ evidence that FUJIFILM physically used that vendor's melt in the production lens
 | L42 | 1.49700 / 81.54 | S-FPL51 (OHARA) | Exact OHARA coordinate match |
 | L44 | 2.00069 / 25.46 | 001255 — high-index flint class (TAFD40 coordinates) | Exact coordinate class; historical vendor not asserted |
 | L45 | 1.67300 / 38.15 | 673382 — dense flint class (S-NBH52 coordinates) | Exact coordinate class; vendor not asserted |
-| L51 | 1.66630 / 55.16 | Unmatched (666552) | No exact adopted public match |
+| L51 | 1.66630 / 55.16 | K-VC78-M (SUMITA) | Moulding-state row at 1.66624 / 55.12 |
 | L52 | 1.88300 / 40.76 | S-LAH58 (OHARA) | Exact OHARA coordinate match |
 | L53 | 1.72825 / 28.46 | S-TIH10 (OHARA) | Exact OHARA coordinate match |
 | L61 | 1.48749 / 70.23 | S-FSL5 (OHARA) | Exact OHARA coordinate match |

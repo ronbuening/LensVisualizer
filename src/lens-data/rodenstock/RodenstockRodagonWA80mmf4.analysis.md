@@ -10,7 +10,7 @@
 **Applicant:** Optische Werke G. Rodenstock, 8000 München
 **Title:** Vergrößerungsobjektiv
 **Classification:** G 02 B 13/24
-**Embodiment analyzed:** Sole numerical worked example, normalized to $f' = 100$
+**Example details:** normalized to $f' = 100$
 
 DE 2818435 B1 gives one numerical prescription for a six-element wide-angle enlarging objective. The prescription is normalized to $f' = 100$ at the e-line. The production Rodenstock Rodagon-WA 80mm f/4 is represented by applying a uniform 0.8 scale factor to all radii and axial separations.
 

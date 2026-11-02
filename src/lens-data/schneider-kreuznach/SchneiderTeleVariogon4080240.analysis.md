@@ -9,7 +9,7 @@
 **Inventor:** Karl Heinrich Macher<br>
 **Assignee:** Jos. Schneider & Co., Optische Werke<br>
 **Title:** *Varifocal Teleobjective with Movable Negative Components*<br>
-**Embodiment analyzed:** Job-card Example 2, corresponding to Figure 2 / Table B
+**Example details:** Job-card Example 2, corresponding to Figure 2
 
 The implemented prescription is based on the second representative embodiment in the patent, Figure 2 and Table B. The patent describes both representative embodiments as 80–240 mm varifocal objectives with a relative aperture of 1:4 and a 24 × 36 mm image size. Figure 2 changes the first moving negative component to a cemented doublet and the fourth front component to a single biconvex element. The numerical Table B prescription contains 14 glass elements in nine air-separated groups and is entirely spherical. ([US 3,336,094](US3336094A.pdf), PDF pp. 2–3, Figure 2 and Table B.)
 
@@ -221,3 +221,6 @@ The all-spherical prescription has no aspherical surfaces or diffractive phase t
 ## Integration audit
 
 The October 2, 2026 UTC audit reviewed the exact local patent figure, checked optical rims against edge and gap constraints, and reviewed compatible catalog dispersion. The sibling audit log records retained dimensions, changes and unresolved source limits. Catalog curves are qualified spectral proxies, with production supplier/melt identity unconfirmed.
+
+
+The fresh F-mount Figure 2 review enlarges the continuous front singlet caps to 35.5 mm and the fixed front doublet to 33 mm, using source contour-height proportions rather than a global axial scale. This improves the modeled tele corner reach from about 15.69 to 17.99 mm of the nominal 21.65 mm frame radius. The model still reaches only 77–99% of that radius across zoom, and no full-frame pupil-coverage or production performance claim follows. The source's Table B L2′ index/Abbe pair remains 1.50378/76.7 and unmatched; Table A's different value is not substituted.

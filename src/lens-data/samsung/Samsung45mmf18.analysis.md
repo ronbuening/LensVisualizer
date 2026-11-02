@@ -7,7 +7,7 @@
 **Inventor:** Yong-su Kim\
 **Applicant / Assignee:** Samsung Electronics Co., Ltd.\
 **Title:** *Telephoto Lens System*\
-**Embodiment analyzed:** First Embodiment / Example 1
+**Example details:** Example 1
 
 The prescription is the first numerical embodiment in US 2013/0314588 A1, principally Figure 1, paragraphs 0046–0049, Table 1, and Table 5. The job-card correlation identifies this embodiment with the **SAMSUNG 45mm f/1.8**. That correlation is adopted as fixed for this model, but the available manufacturer material does not state that the production lens directly implements this patent.
 

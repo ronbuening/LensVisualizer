@@ -7,7 +7,7 @@
 **Inventor:** Willy Merté\
 **Assignee:** Carl Zeiss\
 **Title:** Objective Corrected Spherically, Chromatically, Astigmatically, and for Coma\
-**Embodiment analyzed:** Example 2 (Fig. 2)
+**Example details:** Fig. 2
 
 US 1,786,916 describes a fast photographic objective made from four air-separated components. The two outer components are collective, while the two inner components are dispersive menisci with their concave sides facing one another. The patent explicitly permits the four components to be subdivided into cemented members, and Example 2 uses that option to form a six-element, four-component lens. The numerical table is normalized to focal length 100 and the patent states that both illustrated examples are intended for a relative aperture of 1:1.4. The selected prescription is the Example 2 table and Fig. 2, not the neighboring Example 1 prescription or its separate spherical-aberration statement. [1, PDF pp. 1–2]
 

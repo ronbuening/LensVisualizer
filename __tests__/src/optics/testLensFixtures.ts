@@ -1,19 +1,50 @@
-import buildLens, { paraxialTrace } from "../../../src/optics/buildLens.js";
-import { epAtZoom, fopenAtZoom } from "../../../src/optics/optics.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { buildFixtureLens, constructionFixtureData } from "./constructionFixtures.js";
+import { stateWithZ } from "../../../src/optics/state/preparedGeometry.js";
+import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import { associateRuntimeView } from "../../../src/optics/prescription/runtimeView.js";
+import { compilePrescription, completeCompilation } from "../../../src/optics/prescription/compileCanonical.js";
+import { compileConstruction } from "../../../src/optics/prescription/compileConstruction.js";
+
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
+import { paraxialTrace } from "../../../src/optics/first-order/lensConstants.js";
+import { canonicalConstructionData } from "../../../src/optics/prescription/constructionData.js";
+import { fopenAtZoomClamped as fopenAtZoom } from "../../../src/optics/state/runtimeAdapters.js";
+import { stopSemiDiameterForFNumber } from "../../../src/optics/state/apertureStop.js";
+import { entrancePupilAtState } from "../../../src/optics/state/fieldAdapters.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
 import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import { rearPlateAirEquivalentMm } from "../../../src/optics/prescription/rearPlates.js";
-import type { LensData, RearPlateData, RuntimeLens, SurfaceData, VarRange } from "../../../src/types/optics.js";
+import { rearPlateAirEquivalentMm } from "../../../src/optics/prescription/teleconverterCompatibility.js";
+import type {
+  LensData,
+  LensDataInput,
+  RearPlateData,
+  RuntimeLens,
+  SurfaceData,
+  VarRange,
+} from "../../../src/types/optics.js";
 import type { TeleconverterData } from "../../../src/types/teleconverter.js";
 
-/** Merge project defaults and build — the canonical test-side `buildLens` wrapper. */
+/**
+ * A lens file of either version as the catalog hands it on: read through canonical ingest, whose V1 view applies the
+ * schema defaults. Test helpers take merged lens data from here, never by spreading a defaults table.
+ */
+export function catalogLensData(raw: object): LensData {
+  const data = canonicalConstructionData(ingestLens(raw as LensDataInput).prescription);
+  for (const surface of data.surfaces) if (surface.label === "STO" && surface.sd === undefined) surface.sd = 1;
+  return data;
+}
+
+/**
+ * Build a lens file or a composed pair — the canonical test-side `buildLens` wrapper. `buildLens` applies the schema
+ * defaults through canonical ingest, and builds a composed pair through its canonical association.
+ */
 export function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
+  return buildFixtureLens(raw);
 }
 
 /**
@@ -29,16 +60,15 @@ export function apertureAt(
   const currentFOPEN = fopenAtZoom(zoomT, L);
   const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
   const fNumber = Math.max(rawFNumber, currentFOPEN);
-  return {
-    currentPhysStopSD: (L.stopPhysSD * L.FOPEN) / fNumber,
-    currentEPSD: (epAtZoom(zoomT, L) * L.FOPEN) / fNumber,
-  };
+  // As the aperture control sizes them: the stop rule's stop and its paraxial entrance pupil at infinity focus.
+  const currentPhysStopSD = stopSemiDiameterForFNumber(fNumber, zoomT, L);
+  return { currentPhysStopSD, currentEPSD: entrancePupilAtState(currentPhysStopSD, 0, zoomT, L).epSD };
 }
 
 /* ── Shared pre-built production lenses ──────────────────────────────────
  *
  * buildLens returns a frozen RuntimeLens, and the prepared-state/chief-ray
- * helpers cache by lens object identity (src/optics/compat.ts), so sharing
+ * helpers cache by compiled/state identity (src/optics/state/preparedGeometry.ts), so sharing
  * one instance per file makes repeated analysis calls cheap — rebuilding the
  * same production lens per test was a dominant suite cost. Lazily memoized so
  * files only pay for the lenses they use. Never mutate a shared lens
@@ -66,8 +96,7 @@ const BASE_ELEMENT = {
 };
 
 function buildFixture(overrides: Partial<LensData>): RuntimeLens {
-  const data = {
-    ...LENS_DEFAULTS,
+  const data = catalogLensData({
     key: "test-optics-fixture",
     name: "Test optics fixture",
     closeFocusM: 0.5,
@@ -77,27 +106,37 @@ function buildFixture(overrides: Partial<LensData>): RuntimeLens {
     elements: [BASE_ELEMENT],
     surfaces: simplePositiveSurfaces(),
     ...overrides,
-  } as LensData;
-  return buildLens(data);
+  });
+  return buildFixtureLens(data);
 }
 
-function simplePositiveSurfaces(stopGap = 1, frontGap = 5, imageGap = 80): SurfaceData[] {
+function simplePositiveSurfaces(stopGap = 1, frontGap = 5, imageGap = 80, elementSd = 15): SurfaceData[] {
   return [
     { label: "STO", R: 1e15, nd: 1.0, sd: 15, d: stopGap, elemId: 0 },
-    { label: "1", R: 50, nd: 1.5168, sd: 15, d: frontGap, elemId: 1 },
-    { label: "2", R: -50, nd: 1.0, sd: 15, d: imageGap, elemId: 1 },
+    { label: "1", R: 50, nd: 1.5168, sd: elementSd, d: frontGap, elemId: 1 },
+    { label: "2", R: -50, nd: 1.0, sd: elementSd, d: imageGap, elemId: 0 },
   ];
 }
 
-export function buildSimplePositiveElementLens(key = "test-simple-positive-element"): RuntimeLens {
-  return buildFixture({ key, surfaces: simplePositiveSurfaces() });
+/**
+ * A stop 1 mm ahead of a biconvex singlet. Its stop sits on the launch plane, so an aimed launch lands on its target.
+ * A smaller `elementSd` makes the element's rims vignette what the stop admits.
+ */
+export function buildSimplePositiveElementLens(
+  key = "test-simple-positive-element",
+  { elementSd = 15 }: { elementSd?: number } = {},
+): RuntimeLens {
+  return buildFixture({ key, surfaces: simplePositiveSurfaces(1, 5, 80, elementSd) });
 }
 
-export function buildChromaticPositiveElementLens(key = "test-chromatic-positive-element"): RuntimeLens {
+export function buildChromaticPositiveElementLens(
+  key = "test-chromatic-positive-element",
+  { elementSd = 15 }: { elementSd?: number } = {},
+): RuntimeLens {
   return buildFixture({
     key,
     elements: [{ ...BASE_ELEMENT, glass: "N-BK7" }],
-    surfaces: simplePositiveSurfaces(),
+    surfaces: simplePositiveSurfaces(1, 5, 80, elementSd),
   });
 }
 
@@ -125,7 +164,7 @@ export function buildLayoutLens(thicknesses: readonly [number, number, number]):
     surfaces: [
       { label: "STO", R: 1e15, nd: 1.0, sd: 15, d: thicknesses[0], elemId: 0 },
       { label: "1", R: 100, nd: 1.5168, sd: 15, d: thicknesses[1], elemId: 1 },
-      { label: "2", R: -100, nd: 1.0, sd: 15, d: thicknesses[2], elemId: 1 },
+      { label: "2", R: -100, nd: 1.0, sd: 15, d: thicknesses[2], elemId: 0 },
     ],
   });
 }
@@ -138,7 +177,7 @@ export function buildTirLens(key = "test-tir-lens"): RuntimeLens {
     surfaces: [
       { label: "STO", R: 1e15, nd: 1.0, sd: 20, d: 1, elemId: 0 },
       { label: "1", R: 10, nd: 2.0, sd: 8, d: 5, elemId: 1 },
-      { label: "2", R: 1e15, nd: 1.0, sd: 8, d: 10, elemId: 1 },
+      { label: "2", R: 1e15, nd: 1.0, sd: 8, d: 10, elemId: 0 },
     ],
   });
 }
@@ -226,10 +265,11 @@ export function buildGhostClippingLens(key = "test-ghost-clipping-lens"): Runtim
   return buildFixture({
     key,
     nominalFno: 4,
+    elements: [{ ...BASE_ELEMENT, nd: 1.5 }],
     surfaces: [
       { label: "STO", R: 1e15, nd: 1.0, sd: 5, d: 1, elemId: 0 },
       { label: "1", R: 50, nd: 1.5, sd: 20, d: 10, elemId: 1 },
-      { label: "2", R: -50, nd: 1.0, sd: 20, d: 50, elemId: 1 },
+      { label: "2", R: -50, nd: 1.0, sd: 20, d: 50, elemId: 0 },
     ],
   });
 }
@@ -238,11 +278,195 @@ export function buildMissAfterFirstHitLens(key = "test-miss-after-first-hit-lens
   return buildFixture({
     key,
     nominalFno: 4,
+    elements: [{ ...BASE_ELEMENT, nd: 1.5 }],
     surfaces: [
       { label: "STO", R: 1e15, nd: 1.0, sd: 100, d: 10, elemId: 0 },
       { label: "1", R: 20, nd: 1.5, sd: 10, d: 8, elemId: 1 },
-      { label: "2", R: -20, nd: 1.0, sd: 10, d: 50, elemId: 1 },
+      { label: "2", R: -20, nd: 1.0, sd: 10, d: 50, elemId: 0 },
     ],
+  });
+}
+
+/**
+ * Positive meniscus whose concave rear (R = 20, sd = 12) sags 4 mm rearward at its rim. `rimCutDepthMm` cuts that
+ * rim flat; at 2 mm the cap ends at r = √76 ≈ 8.718 mm.
+ */
+export function buildRimCutLens(
+  rimCutDepthMm?: number,
+  key = "test-rim-cut-lens",
+  rearSd = 12,
+  rimCutDepthSource?: string,
+  overrides: Partial<LensData> = {},
+): RuntimeLens {
+  return buildFixture({
+    key,
+    nominalFno: 8,
+    ...overrides,
+    surfaces: [
+      { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: 1, elemId: 0 },
+      { label: "1", R: 15, nd: 1.5168, sd: 12, d: 6, elemId: 1 },
+      {
+        label: "2",
+        R: 20,
+        nd: 1.0,
+        sd: rearSd,
+        d: 80,
+        elemId: 0,
+        ...(rimCutDepthMm === undefined ? {} : { rimCutDepthMm }),
+        ...(rimCutDepthSource === undefined ? {} : { rimCutDepthSource }),
+      },
+    ],
+  });
+}
+
+/**
+ * A stop `stopGap` mm ahead of a singlet whose concave front (R = −20, sd = 12) reaches forward toward it, cut
+ * `rimCutDepthMm` deep. A depth equal to `stopGap` puts the land on the stop plane. `A4` makes the front aspheric.
+ */
+export function buildFrontRimCutLens(
+  rimCutDepthMm: number,
+  stopGap: number,
+  A4 = 0,
+  key = "test-front-rim-cut",
+): RuntimeLens {
+  return buildFixture({
+    key,
+    nominalFno: 8,
+    surfaces: [
+      { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: stopGap, elemId: 0 },
+      { label: "1", R: -20, nd: 1.5168, sd: 12, d: 6, elemId: 1, rimCutDepthMm },
+      { label: "2", R: -40, nd: 1.0, sd: 12, d: 80, elemId: 0 },
+    ],
+    ...(A4 ? { asph: { "1": { K: 0, A4, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } } } : {}),
+  });
+}
+
+/**
+ * The rim-cut meniscus (concave rear R = 20, cut `rearDepthMm` deep) and, 10 mm behind it, a second meniscus whose
+ * concave front (R = −20, sd = 12) is cut `frontDepthMm` deep: two inferred cuts the outer rays of the beams cross.
+ */
+export function buildTwoRimCutLens(rearDepthMm: number, frontDepthMm: number, key = "test-two-rim-cuts"): RuntimeLens {
+  return buildFixture({
+    key,
+    nominalFno: 8,
+    elements: [BASE_ELEMENT, { ...BASE_ELEMENT, id: 2, name: "Fixture element 2", label: "L2" }],
+    surfaces: [
+      { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: 1, elemId: 0 },
+      { label: "1", R: 15, nd: 1.5168, sd: 12, d: 6, elemId: 1 },
+      { label: "2", R: 20, nd: 1.0, sd: 12, d: 10, elemId: 0, rimCutDepthMm: rearDepthMm },
+      { label: "3", R: -20, nd: 1.5168, sd: 12, d: 6, elemId: 2, rimCutDepthMm: frontDepthMm },
+      { label: "4", R: -15, nd: 1.0, sd: 12, d: 60, elemId: 0 },
+    ],
+  });
+}
+
+/**
+ * A two-station zoom on a 1-inch format: a stop, a biconvex singlet (R = ±80) and, 20 mm behind it at the short
+ * station and 70 mm at the long one, a meniscus whose concave front (R = −200, sd = 12) is cut `rimCutDepthMm` deep.
+ * The chief ray meets the meniscus at the gap times the field's slope, and the slope falls as the focal length grows,
+ * so the beams reach furthest there between the stations. `station` builds that station alone, as a prime; `focus`
+ * builds a prime that moves the meniscus from the long station's gap at infinity to the short one's close up.
+ */
+export function buildTwoStationRimCutLens(
+  rimCutDepthMm: number,
+  station?: 0 | 1,
+  key = "test-two-station-rim-cut",
+  focus = false,
+): RuntimeLens {
+  const gaps = [20, 70];
+  const stationSurfaces = (gap: number, backFocus = 0): SurfaceData[] => [
+    { label: "STO", R: 1e15, nd: 1.0, sd: 4, d: 1, elemId: 0 },
+    { label: "1", R: 80, nd: 1.5168, sd: 8, d: 5, elemId: 1 },
+    { label: "2", R: -80, nd: 1.0, sd: 8, d: gap, elemId: 0 },
+    { label: "3", R: -200, nd: 1.5168, sd: 12, d: 9, elemId: 2, rimCutDepthMm },
+    { label: "4", R: -16, nd: 1.0, sd: 12, d: backFocus, elemId: 0 },
+  ];
+  const backFoci = gaps.map((gap) => paraxialImageDistance(stationSurfaces(gap)));
+  const focalLengths = gaps.map((gap) => -1 / paraxialTrace(stationSurfaces(gap), 1, 0, { skipLastTransfer: true }).u);
+  const at = focus ? 1 : (station ?? 0);
+  const zoom = {
+    nominalFno: [8, 8],
+    zoomPositions: focalLengths.map((focalLength) => Math.round(focalLength * 100) / 100),
+    var: {
+      "2": gaps.map((gap): [number, number] => [gap, gap]),
+      "4": backFoci.map((gap): [number, number] => [gap, gap]),
+    },
+  };
+  const keyframes = {
+    nominalFno: 8,
+    var: { "2": [gaps[1], gaps[0]] as [number, number], "4": [backFoci[1], backFoci[0]] as [number, number] },
+  };
+  return buildFixture({
+    key,
+    imageFormat: "1-inch-type",
+    elements: [BASE_ELEMENT, { ...BASE_ELEMENT, id: 2, name: "Fixture element 2", label: "L2" }],
+    surfaces: stationSurfaces(gaps[at], backFoci[at]),
+    fstopSeries: [8, 11, 16],
+    ...(focus ? keyframes : station === undefined ? zoom : { nominalFno: 8 }),
+  });
+}
+
+/** A plane window: its clear radius, the gap after it, and that gap at close focus when focus moves it. */
+interface FixtureWindow {
+  sd: number;
+  gap: number;
+  closeGap?: number;
+}
+
+/**
+ * The rim-cut meniscus of `buildRimCutLens()` (concave rear R = 20, cut `rimCutDepthMm` deep) `stopGap` mm behind its
+ * stop, on a full-frame format, with plane windows that vignette its off-axis beams. A `front` window ahead of the stop
+ * clips the bottom of the stop as the field grows, so the top survives until the beam vanishes and the reach at the
+ * cut peaks there; moved away by focus, it makes the beam vanish inside the field the lens traces at infinity. A
+ * `rear` window behind the meniscus clips the top of the beam, so the reach peaks where it takes over the top edge.
+ * The image stays 80 mm behind the meniscus.
+ */
+export function buildVignettedRimCutLens({
+  rimCutDepthMm,
+  stopGap = 1,
+  stopCloseGap,
+  front,
+  rear,
+  meniscus = { front: 15, rear: 20, sd: 12 },
+  nominalFno = 8,
+  key = "test-vignetted-rim-cut",
+}: {
+  rimCutDepthMm?: number;
+  stopGap?: number;
+  stopCloseGap?: number;
+  front?: FixtureWindow;
+  rear?: FixtureWindow;
+  meniscus?: { front: number; rear: number; sd: number };
+  nominalFno?: number;
+  key?: string;
+}): RuntimeLens {
+  const window = (id: number, at: FixtureWindow, label: string): SurfaceData[] => [
+    { label: `${label}1`, R: 1e15, nd: 1.5168, sd: at.sd, d: 2, elemId: id },
+    { label: `${label}2`, R: 1e15, nd: 1.0, sd: at.sd, d: at.gap, elemId: 0 },
+  ];
+  const cut = rimCutDepthMm === undefined ? {} : { rimCutDepthMm };
+  return buildFixture({
+    key,
+    nominalFno,
+    fstopSeries: [nominalFno, nominalFno * 2],
+    imageFormat: "135-full-frame",
+    elements: [1, ...(front ? [2] : []), ...(rear ? [3] : [])].map((id) => ({
+      ...BASE_ELEMENT,
+      id,
+      name: `Fixture element ${id}`,
+      label: `L${id}`,
+    })),
+    surfaces: [
+      ...(front ? window(2, front, "F") : []),
+      { label: "STO", R: 1e15, nd: 1.0, sd: 6, d: stopGap, elemId: 0 },
+      { label: "1", R: meniscus.front, nd: 1.5168, sd: meniscus.sd, d: 6, elemId: 1 },
+      { label: "2", R: meniscus.rear, nd: 1.0, sd: meniscus.sd, d: rear ? rear.gap : 80, elemId: 0, ...cut },
+      ...(rear ? window(3, { sd: rear.sd, gap: 78 - rear.gap }, "R") : []),
+    ],
+    var: {
+      ...(front?.closeGap === undefined ? {} : { F2: [front.gap, front.closeGap] }),
+      ...(stopCloseGap === undefined ? {} : { STO: [stopGap, stopCloseGap] }),
+    },
   });
 }
 
@@ -366,8 +590,7 @@ export function teleconverterHostData({
   const airBackFocus = paraxialImageDistance(surfaces);
   const lastGap = airBackFocus - (plates ? rearPlateAirEquivalentMm(plates) : 0);
   surfaces[2].d = lastGap;
-  return {
-    ...LENS_DEFAULTS,
+  return catalogLensData({
     key: "test-teleconverter-host",
     name: "Test converter host",
     closeFocusM: 0.5,
@@ -385,7 +608,7 @@ export function teleconverterHostData({
       ? { var: { "2": [lastGap + lastGapFocusOffsets[0], lastGap + lastGapFocusOffsets[1]] }, varLabels: [["2", "BF"]] }
       : {}),
     ...overrides,
-  } as LensData;
+  });
 }
 
 /**
@@ -412,8 +635,7 @@ export function teleconverterZoomHostData(overrides: Partial<LensData> = {}): Le
   });
   const surfaces = stationSurfaces(separations[0]);
   surfaces[4].d = backFocus[0];
-  return {
-    ...LENS_DEFAULTS,
+  return catalogLensData({
     key: "test-teleconverter-zoom-host",
     name: "Test converter zoom host",
     closeFocusM: 0.5,
@@ -434,5 +656,113 @@ export function teleconverterZoomHostData(overrides: Partial<LensData> = {}): Le
       ["4", "BF"],
     ],
     ...overrides,
-  } as LensData;
+  });
+}
+
+/** Explicit compiler records for synthetic probes that intentionally bypass full-lens validation/constants. */
+export function registerRuntimeFixture(runtime: RuntimeLens): RuntimeLens {
+  const input = compileConstruction(
+    { ...constructionFixtureData(runtime), lensShiftFrac: runtime.lensShiftFrac, surfaces: runtime.S },
+    constructionFixtureData(runtime),
+  );
+  input.stopIdx = runtime.stopIdx;
+  input.projection = runtime.projection;
+  input.opticalPath = runtime.opticalPath;
+  input.isFoldedOptics = runtime.isFoldedOptics;
+  const {
+    source: _source,
+    attachedTeleconverter: _attachedTeleconverter,
+    S: _S,
+    N: _N,
+    ES: _ES,
+    elements: _elements,
+    lastLensSurfaceIdx: _lastLensSurfaceIdx,
+    asphByIdx: _asphByIdx,
+    varByIdx: _varByIdx,
+    vdByIdx: _vdByIdx,
+    spectralByIdx: _spectralByIdx,
+    indexByIdx: _indexByIdx,
+    varLabels: _varLabels,
+    groups: _groups,
+    doublets: _doublets,
+    perspectiveControl: _perspectiveControl,
+    aberrationControl: _aberrationControl,
+    projection: _projection,
+    opticalPath: _opticalPath,
+    stopIdx: _stopIdx,
+    labelIdx: _labelIdx,
+    ...constants
+  } = runtime;
+  const prescription = compilePrescription(input, runtime.source, runtime.attachedTeleconverter);
+  const compiled = completeCompilation(
+    {
+      ...prescription,
+      lastLensSurfaceIndex: runtime.lastLensSurfaceIdx ?? runtime.N - 1,
+      displayElementSpans: runtime.ES,
+    },
+    Object.freeze(constants),
+  );
+  associateRuntimeView(compiled, runtime);
+  return runtime;
+}
+
+/**
+ * Build request fixtures from the existing runtime fixture builders.
+ * @param L - registered synthetic or catalog runtime fixture
+ * @param focusT - normalized focus control
+ * @param zoomT - normalized zoom control
+ * @param aberrationT - normalized aberration control
+ * @returns request using fixture aperture/EFL defaults
+ */
+export function analysisRequestForLens(L: RuntimeLens, focusT = 0, zoomT = 0, aberrationT = 0) {
+  return createAnalysisRequest({
+    preparedState: prepareRuntimeState(L, focusT, zoomT, aberrationT),
+    dynamicEFL: L.EFL,
+    currentEPSD: L.EP?.epSD ?? 0,
+    currentPhysStopSD: L.stopPhysSD,
+  });
+}
+
+/** Build requests from the explicit fixture coordinates used by ray-reference assertions. */
+export function analysisRequestAt(
+  L: RuntimeLens,
+  options: {
+    zPos?: readonly number[];
+    focusT?: number;
+    zoomT?: number;
+    aberrationT?: number;
+    currentEPSD?: number;
+    currentPhysStopSD?: number;
+    fieldGeometry?: import("../../../src/optics/fieldGeometry.js").FieldGeometryState;
+    sampling?: import("../../../src/optics/analysis/analysisQuality.js").AnalysisSamplingOptions;
+  },
+) {
+  const state = prepareRuntimeState(L, options.focusT ?? 0, options.zoomT ?? 0, options.aberrationT ?? 0);
+  return createAnalysisRequest({
+    preparedState: options.zPos ? stateWithZ(state, options.zPos) : state,
+    dynamicEFL: L.EFL,
+    currentEPSD: options.currentEPSD ?? L.EP.epSD,
+    currentPhysStopSD: options.currentPhysStopSD ?? L.stopPhysSD,
+    fieldGeometry: options.fieldGeometry,
+    sampling: options.sampling,
+  });
+}
+
+/** Preserve synthetic MTF fixtures while moving their entry-call inputs onto a request. */
+export function mtfInputs(
+  state: import("../../../src/optics/types.js").PreparedGeometry,
+  options: import("../../../src/types/mtf.js").MtfOptions,
+): [
+  import("../../../src/optics/analysis/request.js").AnalysisRequest,
+  import("../../../src/types/mtf.js").MtfRequestOptions,
+] {
+  return [
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options.pupilSemiDiameterMm,
+      currentPhysStopSD: options.stopSemiDiameterMm,
+    }),
+    options,
+  ];
 }

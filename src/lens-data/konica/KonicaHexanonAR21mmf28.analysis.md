@@ -6,8 +6,7 @@
 **Published:** 1980-02-06\
 **Inventor:** Toshiko Shimokura\
 **Applicant:** Konishiroku Photo Industry Co., Ltd.\
-**Title:** Retrofocus-type wide-angle lens\
-**Embodiment analyzed:** Example 1
+**Title:** Retrofocus-type wide-angle lens
 
 The prescription modeled here is Example 1 of JPS5517129A. The patent itself does not name a commercial lens, so the identification with the KONICA HEXANON AR 21mm f/2.8 is a production correlation rather than a manufacturer-confirmed patent mapping. The selected correlation is nevertheless specific: Example 1 is a normalized `f = 1` design at f/2.8 with a 92° full field, and the patent defines a nine-element, eight-group retrofocus architecture. The final data file applies a uniform scale of exactly 21.0000 to the patent dimensions, giving a computed design EFL of 20.9973 mm after the source table's rounding is retained.
 

@@ -7,7 +7,7 @@
 **Inventor:** Tomokazu Kazamaki\
 **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha\
 **Title:** _Compact Retrofocus Wide Angle Objective Lens System_\
-**Embodiment analyzed:** Table 1, the patent's sole numerical example
+**Example details:** Table 1, the patent's sole numerical example
 
 The patent gives one seven-element prescription normalized to $F=100\,\text{mm}$ at $f/3.5$. The numerical table and
 claim specify fourteen spherical refracting surfaces, seven air-separated elements, and the complete set of axial

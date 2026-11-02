@@ -78,4 +78,29 @@ describe("useLensIndexFilters", () => {
     expect(result.current.customFilter.imageFormatIds).toEqual([]);
     expect(result.current.customFilter.makerSlugs).toEqual(["nikon"]);
   });
+
+  it("batches min then max updates when switching between disjoint ranges", () => {
+    const clampedBounds = { ...bounds, patentYearMin: 1902 };
+    const { result } = renderHook(() => useLensIndexFilters({ entries: [], bounds: clampedBounds }));
+    act(() => result.current.toggleMaker("nikon"));
+    const applyRange = (min: number, max: number) =>
+      act(() => {
+        result.current.applyNumericField("patentYearMin", min);
+        result.current.applyNumericField("patentYearMax", max);
+      });
+    applyRange(2020, 2026);
+    expect(result.current.customFilter).toMatchObject({ patentYearMin: 2020, patentYearMax: 2026 });
+    applyRange(1902, 1909);
+    expect(result.current.customFilter).toMatchObject({ patentYearMin: 1902, patentYearMax: 1909 });
+    expect(result.current.filterInputValues).toMatchObject({ patentYearMin: "1902", patentYearMax: "1909" });
+    applyRange(1902, 2026);
+    expect(result.current.customFilter).toMatchObject({ patentYearMin: 1902, patentYearMax: 2026 });
+    applyRange(1960, 1969);
+    applyRange(1902, 2026);
+    expect(result.current.customFilter).toMatchObject({
+      patentYearMin: 1902,
+      patentYearMax: 2026,
+      makerSlugs: ["nikon"],
+    });
+  });
 });

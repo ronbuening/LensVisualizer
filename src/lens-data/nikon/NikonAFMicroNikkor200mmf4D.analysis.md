@@ -7,7 +7,7 @@
 **Inventor:** Wataru Tatsuno<br />
 **Assignee:** Nikon Corporation<br />
 **Title:** “Telephoto Lens System Allowing Short-Distance Photographing Operation”<br />
-**Embodiment analyzed:** Example 1 / First Embodiment, Fig. 1, Table 1, claim 14
+**Example details:** First Embodiment, Fig. 1, Table 1, claim 14
 
 The prescription models the NIKON AF MICRO-NIKKOR 200mm f/4 D IF-ED with the first numerical embodiment of
 US 5,402,268. The patent does not identify a commercial lens by product name, so the production correlation is an
@@ -320,12 +320,14 @@ pupil dimensions.
 The patent also supplies no element clear apertures. The authored semi-diameters were constrained from on-axis and
 off-axis rays across all three published focus states, the relative proportions of Nikon's production optical section,
 and the current edge-thickness, actual-rim-slope, cross-gap, and containment rules. In the final geometry the minimum
-element edge thickness is 0.619565 mm, the maximum actual rim-slope angle is 40.736050°, and the maximum non-stop shared-
+element edge thickness is 0.136293 mm, the maximum actual rim-slope angle is 40.736050°, and the maximum non-stop shared-
 gap intrusion fraction is 0.894226. L5 uses a 16.0 mm front and 17.0 mm cemented/rear semi-diameter so its displayed
 height more closely follows Fig. 1 while retaining physical edge and gap clearance. The full on-axis f/4 pupil and the
 viewer's default visible off-axis fan remain contained in all three source states. Full-field/full-pupil corner bundles
 may vignette at exterior element rims; that is treated as physical wide-open vignetting rather than hidden by layout
 controls.
+
+The 2026-10-29 fresh Fig. 1 review raises the common L1 rim from 27.5 to 28.5 mm, near the schematic's approximately 28.8 mm, while retaining positive edge thickness. A 29 mm trial makes the literal S2/S3 profiles cross. No independently resolved exposed square cap-end land supports a cut or extension.
 
 ## Verification Summary
 

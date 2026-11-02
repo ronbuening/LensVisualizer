@@ -9,7 +9,7 @@
 **Filed:** April 24, 1973
 **Granted:** October 1, 1974
 **Title:** Telephoto Lens System
-**Embodiment analyzed:** Embodiment 1 / Example 1
+**Example details:** Example 1
 
 The relevant patent is **US 3,838,911, "Telephoto Lens System,"** assigned to Olympus Optical Co. Ltd. and naming Yoshitsugi Ikeda as inventor. The U.S. filing date is 24 April 1973, the Japanese priority date is 3 July 1972 (Japanese Application 47-66514), and the U.S. grant date is 1 October 1974. The analysis below uses **Embodiment 1 / Example 1**, the f/3.5 example in the patent.
 

@@ -10,7 +10,7 @@
 **Inventor:** Takayuki Itoh  
 **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha  
 **Title:** Telephoto Macro Lens System  
-**Embodiment analyzed:** Example 1, also reproduced as claim 5
+**Example details:** also reproduced as claim 5
 
 The production lens identified for this prescription is the **smc Pentax-A★ 200mm F/4 Macro ED**. The match rests on convergent rather than single-factor evidence. The patent states a 200 mm f/4 telephoto macro for 35 mm still cameras, covering object distances from infinity to unity magnification. Example 1 is a ten-element, nine-group, all-spherical telephoto macro whose two lowest-dispersion positive elements are the nd = 1.49700, νd = 81.6 glasses in the front subgroup. Public lens references for the production A★ Macro likewise list 200 mm, f/4, ten elements in nine groups, ED glass, Pentax K mount, 1:1 macro capability, and a 0.55 m minimum focus distance.
 

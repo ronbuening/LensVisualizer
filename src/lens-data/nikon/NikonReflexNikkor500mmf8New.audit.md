@@ -28,3 +28,13 @@ Patent: US 4,666,259 A, Example 1 / Table 1
 
 - Rechecked US 4,666,259 A and assigned NBFD2 as a supplier-neutral spectral proxy for L23's `796410` class.
 - No mirror path, obstruction, prescription coordinate, or geometry changed.
+
+## 2026-10-30 — Fresh folded figure and glass reinspection
+
+Direct source: `patents/US4666259.pdf`, PDF p.2 FIG.1 (600 dpi/native 300 dpi), p.10 Table 1 and first-embodiment focus text (600 dpi), p.11 repeated Claim 3 table. Reviewed every physical face, including repeated Mangin interactions and the rear correctors inside the primary opening.
+
+Geometry retained: all exposed concave caps meet continuous source rims; no independently resolved new flat annuli/cap-end cuts. Printed primary13.7 mm thickness and source 7.5 mm S10→S11 interval are correctly represented by sums of interleaved physical rows; no false transcription correction. Source41.50 mm gap,8.05 mm front-unit travel,63.216 mm final gap, all R/d, primary hole and synthetic annulus remain unchanged. No source clear-aperture table is claimed.
+
+All 6 media nd/ν pairs freshly match Table 1. Its index headings are n/ν, with d-line aberration convention stated on p.10; the d-line interpretation is qualified per element. No numeric partial/spectral rows or APD claim. Six resolver curves qualified: four N-BK7 crowns (catalogν64.17 versus source 64.12), E-C3 exact1.51823/58.96 and NBFD2 near proxy (source 1.79631/40.96; actual current catalog 1.797199/41.143795, Δnd+.000889/Δν+.183795). No exact historical glass or production supplier is asserted.
+
+Canonical/full guard/surface pass; ordinary circle/aperture/field audits skip folded path correctly. Nine actual SVG states inspected with annular even-odd fill,zero trim. Generalized annular collimated samples96/96 axial at all three focus positions,91/96 at source±2.5° infinity/mid and 77/96 at the closest spacing (remaining rays atprimary/rear caps). Closest-spacing collimated samples validate traversal,not finite focusing accuracy; shared folded test separately checks tracked finite rays and the8.05 mm movement. Counts are not flux/production throughput. SourceF6.7/productionf8 and modeled obstruction-derived area equivalence stay explicitly distinct.

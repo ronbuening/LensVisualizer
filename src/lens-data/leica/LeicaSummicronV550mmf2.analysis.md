@@ -6,7 +6,7 @@
 **Filed:** May 16, 1977 (DE priority May 18, 1976, DE 2621981)
 **Granted:** October 31, 1978
 **Leica computation number:** C368 (design circa 1974; attribution from Leica literature, not the patent)
-**Production embodiment:** Example 9 (FIG. 2 configuration, planar r₁₀)
+**Example details:** FIG. 2 configuration, planar r₁₀
 **Index reference:** the patent tables are headed n_e / ν_e (mercury e-line, 546.07 nm); the data file stores these native values with `indexReference: "e"`
 **Production era:** Summicron-R 50mm f/2 II (R-mount, 1976–2009); Summicron-M 50mm f/2 (M-mount, 1979–present)
 

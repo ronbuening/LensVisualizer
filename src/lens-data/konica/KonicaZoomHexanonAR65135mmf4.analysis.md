@@ -9,7 +9,6 @@
 **Inventors:** Norikazu Arai; Hiroshi Miyamae; Shozo Ishiyama; Makoto Sakano; Tadashi Kojima
 **Applicant:** Konishiroku Photo Industry Co., Ltd.
 **Title:** ３レンズ群の１体移動によるズームレンズのフォーカシング方式 — focusing method for a zoom lens by integral movement of three lens groups
-**Embodiment analyzed:** Example 3
 
 Example 3 is the selected prescription for the KONICA ZOOM-HEXANON AR 65-135mm f/4. The patent describes a four-or-more-group zoom in which the three object-side functional groups can be translated together for focusing. Its Example 3 is explicitly a 65–135 mm class design with positive, negative, positive, positive functional-group powers.
 

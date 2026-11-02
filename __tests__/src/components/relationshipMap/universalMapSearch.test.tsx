@@ -40,6 +40,16 @@ describe("universal map search", () => {
     ).toEqual([patent]);
   });
 
+  it("finds a patent by the name of a catalog lens taken from it", () => {
+    const patents = graph.nodes.filter((n) => n.kind === "patent");
+    const owners = (name: string) => patents.filter((p) => p.patent.lenses.some((lens) => lens.name === name)).length;
+    const patent = patents.find((p) => p.patent.lenses.length > 0 && owners(p.patent.lenses[0].name) === 1)!;
+    const index = buildUniversalSearchIndex(graph.nodes);
+    expect(searchUniversalNodes(index, patent.patent.lenses[0].name)[0]).toBe(patent);
+    const organization: UniversalRelationshipNode = { id: "organization:x", kind: "organization", name: "Example" };
+    expect(searchUniversalNodes(buildUniversalSearchIndex([organization]), patent.patent.lenses[0].name)).toEqual([]);
+  });
+
   it("selects the highlighted result with Enter and keeps focus without navigation", () => {
     const pick = vi.fn();
     render(<UniversalMapSearch graph={graph} theme={themes.dark} onSelectNode={pick} />);

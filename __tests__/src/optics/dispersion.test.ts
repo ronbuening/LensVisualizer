@@ -9,29 +9,42 @@ import {
   explainCompatibleGlassResolution,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
-  LINE_NM,
   resolveCompatibleGlass,
   resolveGlass,
   decodeCode6,
   resolveGlassCandidates,
-} from "../../../src/optics/glassCatalog.js";
-import { ALIAS_RECORDS } from "../../../src/optics/glassCatalogAliases.js";
-import { DUPLICATE_CODE6_PRECEDENCE } from "../../../src/optics/glassCatalogData.js";
-import { CDGM_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/cdgm.js";
-import { HIKARI_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/hikari.js";
-import { HOYA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/hoya.js";
-import { NHG_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/nhg.js";
-import { OHARA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/ohara.js";
-import { SCHOTT_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/schott.js";
-import { SPECIAL_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/special.js";
-import { SUMITA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/sumita.js";
+} from "../../../src/optics/chromatic/glassCatalog.js";
+import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
+import { ALIAS_RECORDS } from "../../../src/optics/chromatic/glassCatalogAliases.js";
+import { DUPLICATE_CODE6_PRECEDENCE } from "../../../src/optics/chromatic/glassCatalogData.js";
+import { CDGM_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/cdgm.js";
+import { HIKARI_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/hikari.js";
+import { HOYA_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/hoya.js";
+import { NHG_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/nhg.js";
+import { OHARA_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/ohara.js";
+import { SCHOTT_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/schott.js";
+import { SPECIAL_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/special.js";
+import { SUMITA_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/sumita.js";
 import {
+  abbeLineIndices,
   makeSurfaceDispersion,
   normalLinePdC,
   normalLinePeC,
-  summarizeDispersionQuality,
-} from "../../../src/optics/dispersion.js";
+  normalLinePgF,
+  normalLinePgFPrime,
+} from "../../../src/optics/chromatic/materialResolver.js";
 import {
+  CHROMATIC_CHANNEL_ORDER,
+  E_LINE_CHANNEL_WAVELENGTH_NM as E_LINE_CHANNEL_NM,
+} from "../../../src/optics/chromatic/channels.js";
+import { anchoredIndexAtWavelength } from "../../../src/optics/chromatic/indexResolver.js";
+import { summarizeDispersionQuality } from "../../../src/optics/chromatic/dispersionQuality.js";
+import { traceParaxialSurfaces } from "../../../src/optics/math/paraxial.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import type { ChromaticChannel, ElementData, SurfaceData } from "../../../src/types/optics.js";
+import { constructionFixtureData } from "./constructionFixtures.js";
+import {
+  build,
   buildChromaticPositiveElementLens,
   buildSimplePositiveElementLens,
   sharedApoLanthar50f2,
@@ -51,6 +64,13 @@ describe("glass catalog", () => {
       .filter((entry) => resolveGlass(entry.name)?.name !== entry.name)
       .map((entry) => entry.name);
     expect(offenders).toEqual([]);
+  });
+
+  it("resolves registered all-letter material names in qualified annotations", () => {
+    expect(resolveCompatibleGlass("POLYCARB (published polymer spectral proxy)", 1.58306, 30.2)?.name).toBe("POLYCARB");
+    expect(resolveGlass("POLYCARBONATE")).toBeNull();
+    expect(resolveGlass("NOTPOLYCARB")).toBeNull();
+    expect(resolveCompatibleGlass("Unmatched POLYCARB", 1.58306, 30.2)).toBeNull();
   });
 
   // assertCatalogConsistent only checks that each entry's Sellmeier fit
@@ -166,6 +186,17 @@ describe("glass catalog", () => {
     expect(resolveGlass("654337")?.name).toBe("FD9");
   });
 
+  it("FCD1 carries the HOYA dispersion without taking elements from the rows that share code 497816", () => {
+    const entry = resolveGlass("FCD1 (HOYA)")!;
+    const nC = evaluateSellmeier(entry, LINE_NM.C);
+    const nF = evaluateSellmeier(entry, LINE_NM.F);
+    expect(evaluateCatalogAbbeNumber(entry)).toBeCloseTo(81.61, 2);
+    expect((evaluateSellmeier(entry, LINE_NM.g) - nF) / (nF - nC)).toBeCloseTo(0.5389, 3);
+    // These rows are ranked by d-line residual, so FCD1's n(d) has to stay between S-FPL51's and H-FK61's.
+    expect(resolveCompatibleGlass("S-FPL51 (OHARA) / FCD1 (HOYA)", 1.497, 81.54)?.name).toBe("FCD1");
+    expect(resolveCompatibleGlass("497816 class (vendor unresolved)", 1.497, 81.6)?.name).toBe("H-FK61");
+  });
+
   it("L-TIM28P reproduces the published OHARA line indices and Abbe number", () => {
     const entry = resolveGlass("L-TIM28P (OHARA)");
     expect(entry?.name).toBe("L-TIM28P");
@@ -209,6 +240,24 @@ describe("glass catalog", () => {
       criterion: "none",
       reason: "No coordinate-compatible catalog candidate.",
     });
+  });
+
+  it("keeps the revised Hikari J-LASFH9A curve distinct from the discontinued J-LASFH9", () => {
+    const revised = resolveCompatibleGlass("J-LASFH9A", 1.90265, 35.73)!;
+    const legacy = resolveCompatibleGlass("J-LASFH9", 1.90265, 35.73)!;
+    expect(revised.name).toBe("J-LASFH9A");
+    expect(legacy.name).toBe("J-LASFH9");
+    expect(resolveGlass("903358")?.name).toBe("J-LASFH9A");
+    expect(resolveGlass("903357")?.name).toBe("J-LASFH9");
+    // Hikari's current page publishes these line indices independently of the power-series coefficients.
+    for (const [line, index] of [
+      ["C", 1.895235],
+      ["F", 1.920469],
+      ["g", 1.935143],
+    ] as const) {
+      expect(Math.abs(evaluateSellmeier(revised, LINE_NM[line]) - index)).toBeLessThan(2e-6);
+    }
+    expect(resolveCompatibleGlass("J-LASFH9A", 1.85, 40.8)).toBeNull();
   });
 
   it("uses the tightened catalog compatibility window", () => {
@@ -305,6 +354,20 @@ describe("glass catalog", () => {
     expect(resolveCompatibleGlass("BSC3", 1.499, 66.8, "e")?.name).toBe("BSC3");
     expect(resolveCompatibleGlass("BSC3", 1.51823, 59)).toBeNull();
     expect(resolveCompatibleGlass("E-C3", 1.51823, 59)?.name).toBe("E-C3");
+  });
+
+  it("distinguishes Hikari LAK09 from LAK9 without redirecting shared glass codes", () => {
+    expect(resolveCompatibleGlass("J-LAK09 (Hikari spectral proxy)", 1.734, 51.3)?.name).toBe("J-LAK09");
+    expect(resolveCompatibleGlass("J-LAK9", 1.691, 54.93)?.name).toBe("J-LAK9");
+    expect(resolveCompatibleGlass("J-LAK09", 1.691, 54.93)).toBeNull();
+    expect(resolveCompatibleGlass("J-LAK9", 1.734, 51.3)).toBeNull();
+    expect(resolveCompatibleGlass("J-BASF8 (Hikari spectral proxy)", 1.72342, 37.9)?.name).toBe("J-BASF8");
+    expect(resolveCompatibleGlass("J-BASF8", 1.66672, 48.3)).toBeNull();
+    expect(resolveCompatibleGlass("J-BAF11 (Hikari spectral proxy)", 1.66672, 48.3)?.name).toBe("J-BAF11");
+    expect(resolveCompatibleGlass("J-BAF11", 1.72342, 37.9)).toBeNull();
+    expect(resolveGlass("723380")?.name).toBe("S-BAH28");
+    expect(resolveGlass("734515")?.name).toBe("S-LAL59");
+    expect(resolveGlass("667483")?.name).toBe("S-BAH11");
   });
 
   it("evaluates vendor polynomial catalog entries", () => {
@@ -495,12 +558,18 @@ describe("resolveGlass", () => {
     expect(resolveGlass("BK7")?.name).toBe("N-BK7");
   });
 
-  it("resolves Hoya patent-class aliases to coefficient-backed rows", () => {
-    expect(resolveGlass("TAF1 (HOYA)")?.name).toBe("S-LAH66");
+  it("resolves Hoya names and preform aliases to coefficient-backed rows", () => {
+    expect(resolveGlass("TAF1 (HOYA)")?.name).toBe("TAF1");
     expect(resolveGlass("MP-NBFD130 molded high-index flint")?.name).toBe("M-NBFD130");
   });
 
   it("resolves Hoya names that once aliased to a neighbouring row to their own curves", () => {
+    expect(resolveCompatibleGlass("TAF1 (HOYA)", 1.7725, 49.63)?.name).toBe("TAF1");
+    expect(resolveCompatibleGlass("TAF1 (HOYA)", 1.744, 44.9)).toBeNull();
+    expect(resolveCompatibleGlass("LAF2 (HOYA)", 1.744, 44.9)?.name).toBe("LAF2");
+    expect(resolveCompatibleGlass("LAF2 (HOYA)", 1.7725, 49.63)).toBeNull();
+    expect(resolveGlass("773496")?.name).toBe("S-LAH66");
+    expect(resolveGlass("744449")?.name).toBe("H-LaF3B");
     expect(resolveGlass("PCD51 (HOYA)")?.name).toBe("PCD51");
     expect(resolveGlass("MP-PCD51-70 precision-mold preform")?.name).toBe("MP-PCD51-70");
     expect(resolveCompatibleGlass("M-PCD51 (HOYA)", 1.59201, 67.02)?.name).toBe("M-PCD51");
@@ -573,6 +642,8 @@ describe("resolveGlass", () => {
     expect(resolveGlassCandidates("626357").map((entry) => entry.name)).toEqual(["E-F1", "F13", "S-TIM1"]);
     expect(resolveGlassCandidates("589485").map((entry) => entry.name)).toEqual(["BAF6", "BAFN6"]);
     expect(resolveGlassCandidates("501564").map((entry) => entry.name)).toEqual(["K10", "S-FTL10"]);
+    expect(resolveGlassCandidates("773496").map((entry) => entry.name)).toContain("TAF1");
+    expect(resolveGlassCandidates("744449").map((entry) => entry.name)).toContain("LAF2");
   });
 
   it("uses vendor context and coordinates to disambiguate duplicate codes", () => {
@@ -724,25 +795,145 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.glassEntry).toBeUndefined();
   });
 
-  it("uses an explicit e-line-compatible catalog curve at physical C/d/F/g wavelengths", () => {
+  it("anchors an explicit e-line catalog curve to the authored ne at C′/e/F′/g", () => {
+    // Authored ne rounded to three decimals, as e-line patents often print it: 2.8e-4 above catalog N-BK7.
+    const ne = 1.519;
     const d = makeSurfaceDispersion(
-      { R: 0, d: 0, sd: 0, label: "", nd: 1.51872, elemId: 1 },
-      {
-        id: 1,
-        name: "L1",
-        label: "L1",
-        type: "Test",
-        nd: 1.51872,
-        vd: 63.96,
-        indexReference: "e",
-        glass: "N-BK7",
-      },
+      { R: 0, d: 0, sd: 0, label: "", nd: ne, elemId: 1 },
+      { id: 1, name: "L1", label: "L1", type: "Test", nd: ne, vd: 64, indexReference: "e", glass: "N-BK7" },
       undefined,
     );
+    const nbk7 = d.glassEntry!;
+    const anchor = ne - evaluateSellmeier(nbk7, E_LINE_CHANNEL_NM.G);
     expect(d.quality).toBe("sellmeier");
-    expect(d.glassEntry?.name).toBe("N-BK7");
-    expect(d.fn("G")).toBeCloseTo(1.5168, 5);
-    expect(d.fn("G")).not.toBeCloseTo(1.51872, 5);
+    expect(nbk7.name).toBe("N-BK7");
+    expect(E_LINE_CHANNEL_NM).toEqual({ R: LINE_NM.CPrime, G: LINE_NM.e, B: LINE_NM.FPrime, V: LINE_NM.g });
+    // Bit for bit: the d-line anchoring beside this tier must not move native e-line channels.
+    expect(d.fn("G")).toBe(ne);
+    expect(d.fn("R")).toBe(evaluateSellmeier(nbk7, E_LINE_CHANNEL_NM.R) + anchor);
+    expect(d.fn("B")).toBe(evaluateSellmeier(nbk7, E_LINE_CHANNEL_NM.B) + anchor);
+    expect(d.fn("V")).toBe(evaluateSellmeier(nbk7, E_LINE_CHANNEL_NM.V) + anchor);
+  });
+
+  it.each([{ dPgF: undefined }, { dPgF: 0.01 }])(
+    "anchors a d-line catalog curve to the authored nd (dPgF $dPgF)",
+    ({ dPgF }) => {
+      // N-BK7 stays a compatible catalog proxy for an authored index 1e-3 above its catalog nd.
+      const authored = 1.5178;
+      const base = buildChromaticPositiveElementLens();
+      const data = constructionFixtureData(base);
+      const state = prepareRuntimeState(
+        build({
+          ...data,
+          elements: data.elements.map((element) => ({ ...element, nd: authored, dPgF })),
+          surfaces: data.surfaces.map((surface) => ({ ...surface, nd: surface.nd === 1 ? 1 : authored })),
+        }),
+        0,
+        0,
+      );
+      const glass = state.lens.dispersion[1];
+      expect(glass.quality).toBe("sellmeier");
+      expect(glass.glassEntry?.name).toBe("N-BK7");
+      // The catalog's own nd misses the authored one; G used to trace it.
+      expect(Math.abs(evaluateSellmeier(glass.glassEntry!, LINE_NM.d) - authored)).toBeGreaterThan(9e-4);
+
+      const anchored = (lineNm: number) => anchoredIndexAtWavelength(state, 1, lineNm);
+      // Anchoring adds once where the MTF helper subtracts once, so the two may differ in the last bit.
+      const sameIndex = 1e-15;
+      expect(glass.indexAt("G")).toBe(authored);
+      expect(Math.abs(glass.indexAt("R") - anchored(LINE_NM.C))).toBeLessThanOrEqual(sameIndex);
+      expect(Math.abs(glass.indexAt("B") - anchored(LINE_NM.F))).toBeLessThanOrEqual(sameIndex);
+      const violet =
+        dPgF === undefined
+          ? anchored(LINE_NM.g)
+          : anchored(LINE_NM.F) + normalLinePgF(64.17, dPgF) * (anchored(LINE_NM.F) - anchored(LINE_NM.C));
+      expect(Math.abs(glass.indexAt("V") - violet)).toBeLessThanOrEqual(sameIndex);
+    },
+  );
+
+  it("leaves tiers without a catalog match unchanged", () => {
+    const vd = 64.14;
+    const dPgF = 0.004;
+    const surface: SurfaceData = { R: 0, d: 0, sd: 0, label: "", nd, elemId: 1 };
+    const element = (glass: string): ElementData => ({
+      id: 1,
+      name: "L1",
+      label: "L1",
+      type: "Test",
+      nd,
+      vd,
+      dPgF,
+      glass,
+    });
+
+    // Abbe tier: an unresolved name, and a catalog name whose Abbe number disagrees.
+    for (const [glass, abbeVd] of [
+      ["Unmatched proprietary", vd],
+      ["N-BK7", 52],
+    ] as const) {
+      const abbe = makeSurfaceDispersion(surface, { ...element(glass), vd: abbeVd }, undefined);
+      const lines = abbeLineIndices(nd, abbeVd, dPgF);
+      expect(abbe.quality).toBe("abbe");
+      expect(CHROMATIC_CHANNEL_ORDER.map((channel) => abbe.fn(channel))).toEqual([lines.nC, nd, lines.nF, lines.ng]);
+    }
+
+    // Line-index tier from measured C and F; g extends them with the authored dPgF.
+    const nC = 1.51;
+    const nF = 1.52;
+    const measured = makeSurfaceDispersion(surface, element("Unmatched proprietary"), { nC, nF });
+    expect(measured.quality).toBe("lineIndices");
+    expect(CHROMATIC_CHANNEL_ORDER.map((channel) => measured.fn(channel))).toEqual([
+      nC,
+      nd,
+      nF,
+      nF + normalLinePgF(vd, dPgF) * (nF - nC),
+    ]);
+  });
+
+  it("traces a partly catalog-resolved e-line doublet at one set of lines", () => {
+    // Crown resolves to catalog N-BK7; the flint carries F2's ne/νe under a name the catalog cannot resolve.
+    const crown = { id: 1, name: "L1", label: "L1", type: "Test", nd: 1.519, vd: 64, glass: "N-BK7" };
+    const flint = { id: 2, name: "L2", label: "L2", type: "Test", nd: 1.62408, vd: 36.11, glass: "Unmatched flint" };
+    const elements: ElementData[] = [crown, flint].map((element) => ({ ...element, indexReference: "e" }));
+    const surfaces: SurfaceData[] = [
+      { label: "1", R: 60, d: 6, nd: crown.nd, sd: 12, elemId: 1 },
+      { label: "2", R: -45, d: 2.5, nd: flint.nd, sd: 12, elemId: 2 },
+      { label: "3", R: -130, d: 95, nd: 1.0, sd: 12, elemId: 0 },
+    ];
+    const dispersion = surfaces.map((surface) =>
+      makeSurfaceDispersion(
+        surface,
+        elements.find((element) => element.id === surface.elemId && surface.nd !== 1),
+        undefined,
+      ),
+    );
+    expect(dispersion.map(({ quality }) => quality)).toEqual(["sellmeier", "abbe", "air"]);
+
+    const backFocus = (indexAt: (surfaceIndex: number) => number) => {
+      const traced = surfaces.map((surface, index) => ({ ...surface, nd: indexAt(index) }));
+      const { y, u } = traceParaxialSurfaces(traced, 1, 0, { skipLastTransfer: true });
+      return -y / u;
+    };
+    const channelFocus = (channel: ChromaticChannel) => backFocus((index) => dispersion[index].fn(channel));
+    const reference = backFocus((index) => surfaces[index].nd);
+    // G is the authored ne on both tiers. Catalog nd on the crown alone moved this focus by 0.68 mm.
+    expect(Math.abs(channelFocus("G") - reference)).toBeLessThan(0.003);
+
+    // The same doublet with the flint named resolves both glasses; estimating one must not move the color foci far.
+    const resolved = surfaces.map((surface) =>
+      makeSurfaceDispersion(
+        surface,
+        elements
+          .map((element) => (element.id === 2 ? { ...element, glass: "F2" } : element))
+          .find((element) => element.id === surface.elemId && surface.nd !== 1),
+        undefined,
+      ),
+    );
+    expect(resolved.map(({ quality }) => quality)).toEqual(["sellmeier", "sellmeier", "air"]);
+    for (const channel of ["R", "B", "V"] as const) {
+      const fullyResolved = backFocus((index) => resolved[index].fn(channel));
+      expect(Math.abs(channelFocus(channel) - fullyResolved)).toBeLessThan(0.03);
+    }
   });
 
   it("keeps authored ne in the fallback G channel when no e-line catalog name is trusted", () => {
@@ -822,6 +1013,27 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(residuals.length).toBeGreaterThan(500);
     expect(residuals[Math.floor(residuals.length / 2)]).toBeLessThan(0.002);
     expect(residuals.at(-1)!).toBeLessThan(0.02);
+  });
+
+  it("reaches g from F′ on e-line spans like the catalog glasses", () => {
+    const residuals = allEntries()
+      .map((entry) => {
+        const [nC, nd, nF, ng, nRed, ne, nBlue] = [
+          LINE_NM.C,
+          LINE_NM.d,
+          LINE_NM.F,
+          LINE_NM.g,
+          LINE_NM.CPrime,
+          LINE_NM.e,
+          LINE_NM.FPrime,
+        ].map((line) => evaluateSellmeier(entry, line));
+        // The glass's own deviation from the d-line normal line, which the e-line counterpart must carry over.
+        const dPgF = (ng - nF) / (nF - nC) - (0.6438 - 0.001682 * ((nd - 1) / (nF - nC)));
+        return Math.abs((ng - nBlue) / (nBlue - nRed) - normalLinePgFPrime((ne - 1) / (nBlue - nRed), dPgF));
+      })
+      .sort((a, b) => a - b);
+    expect(residuals[Math.floor(residuals.length / 2)]).toBeLessThan(0.002);
+    expect(residuals.at(-1)!).toBeLessThan(0.01);
   });
 
   it("dPgF on the element shifts the V-channel index away from the normal-line baseline", () => {

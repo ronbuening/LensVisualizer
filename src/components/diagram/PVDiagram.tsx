@@ -4,7 +4,7 @@
 // Glass positions are schematic, not computed from precise catalog data.
 
 import { memo } from "react";
-import { normalLinePgF } from "../../optics/dispersion.js";
+import { normalLinePgF } from "../../optics/chromatic.js";
 
 interface Colors {
   bg: string;

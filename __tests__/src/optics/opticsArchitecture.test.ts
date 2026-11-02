@@ -1,0 +1,1274 @@
+/**
+ * Optics architecture guards — import cycles, the outside-import seam, caches, and analysis requests.
+ *
+ * The structural guards scan source text; the analysis request guard walks the TypeScript AST.
+ * Registry guards compare what they find with the lists below. The lists
+ * come in two kinds:
+ *
+ * - The LEGACY lists are empty and must stay empty. Every violation fails the guard;
+ *   fix the code rather than add an exception.
+ * - A REGISTRY holds entries that meet the rule by design. Each guard checks its own
+ *   admission rule, so an entry that stops qualifying fails here.
+ *
+ * How to change a list: "Architecture Guards" in agent_docs/architecture/testing.md.
+ */
+
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { describe, expect, it } from "vitest";
+import ts from "typescript";
+
+/* ── Cycle guard lists ── */
+
+/**
+ * Retired cycle exceptions: this list must stay empty.
+ * Rule: the runtime import graph of src/optics/ has no strongly connected component larger
+ * than one module and no self-import. There is no registry, because no cycle is approved.
+ */
+const CYCLE_LEGACY: readonly string[] = [];
+
+/* ── Seam guard lists ── */
+
+interface SeamRegistryEntry {
+  module: string;
+  /** Set on a permanent entry: the script that loads this module by path under plain Node. */
+  plainNodeLoader?: string;
+  /** Restricted seams are admitted separately for each importing file. */
+  importers?: readonly string[];
+}
+
+/**
+ * Registry: the optics modules that code outside src/optics/ may import.
+ * Admission: a top-level src/optics/*.ts file that holds only imports, re-exports, type
+ * declarations and aliases of imported bindings — no function, class or computed value.
+ * One entry is permanent and exempt from that rule. Plain Node strips types but cannot follow
+ * a barrel's `.js` specifiers, so build metadata loads the import-free compatibility predicate
+ * by path; its admission is that the named script, under scripts/, still names that path and
+ * that the module still imports nothing at runtime.
+ */
+const SEAM_REGISTRY: readonly SeamRegistryEntry[] = [
+  { module: "src/optics/analysis.ts" },
+  { module: "src/optics/buildLens.ts" },
+  { module: "src/optics/chromatic.ts" },
+  { module: "src/optics/diagramGeometry.ts" },
+  { module: "src/optics/fieldGeometry.ts" },
+  { module: "src/optics/geometry.ts" },
+  { module: "src/optics/glassCatalog.ts" },
+  {
+    module: "src/optics/lensDataConversion.ts",
+    importers: ["scripts/lens-data-convert/load.mjs"],
+  },
+  { module: "src/optics/mtf.ts" },
+  { module: "src/optics/optics.ts" },
+  { module: "src/optics/perspective.ts" },
+  {
+    module: "src/optics/prescription/teleconverterCompatibility.ts",
+    plainNodeLoader: "scripts/generate-build-metadata.mjs",
+  },
+  { module: "src/optics/projection.ts" },
+  { module: "src/optics/publishedStations.ts" },
+  { module: "src/optics/teleconverter.ts" },
+  { module: "src/optics/types.ts" },
+  { module: "src/optics/validation.ts" },
+];
+
+/**
+ * Retired seam exceptions: this list must stay empty.
+ * Rule: an import into src/optics/ from the rest of src/, from scripts/ or from reports/
+ * targets a registered module. Type-only imports count, because a type import still depends
+ * on that module's surface, and so do the path strings that scripts load.
+ * Two exclusions. Files under __tests__/ are not importers: tests follow the internals they
+ * test. Targets under src/optics/mount/ are skipped: the mount diagram renderer shares the
+ * folder but is not part of the optical engine, and mount specs import it directly.
+ */
+const SEAM_LEGACY: readonly string[] = [];
+
+/** Retired report-import exceptions: reports now use the public seam. */
+const REPORT_INTERNAL_IMPORTS: readonly { importer: string; module: string }[] = [];
+
+/* ── Cache guard lists ── */
+
+type CacheRecord =
+  | { kind: "constant" }
+  | { kind: "bounded"; owner: string; key: string; capacity: number; limit: string }
+  | { kind: "weak-owner"; owner: string; key: string; perOwner: string; capacity?: number; limit?: string };
+
+interface CacheLegacyRecord {
+  /** What makes the container grow without bound. */
+  grows: string;
+  /** The change that would let the entry leave this list. */
+  retire: string;
+  /** Set when a WeakMap's declaration shows only a type name: the module type that holds the per-owner Map. */
+  storeType?: string;
+}
+
+/**
+ * Registry: module-level containers that meet the rule, keyed `<module>#<identifier>`.
+ * Admission by kind:
+ * - "constant": a lookup table. Its module never calls set, add, delete or clear on it.
+ * - "bounded": records owner, key and capacity. `limit` names the module constant that holds
+ *   the capacity, so the record cannot drift from the code.
+ * - "weak-owner": a WeakMap keyed by its owner object. Records the owner, the key and what one
+ *   owner holds, which must not grow without bound: a per-owner Map or Set needs a capacity
+ *   and its `limit` constant.
+ */
+const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
+  "src/optics/analysis/analysisContext.ts#CONTEXT_BY_REQUEST": {
+    kind: "weak-owner",
+    owner: "AnalysisRequest",
+    key: "request identity",
+    perOwner: "one lazy context; results die with the request after bounded request-history eviction",
+  },
+  "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_AWARE_SECTIONS": { kind: "constant" },
+  "src/optics/analysis/analysisMovementSupport.ts#MOVEMENT_INVARIANT_SECTIONS": { kind: "constant" },
+  "src/optics/analysis/mtf/mtfTracing.ts#indexTablesByState": {
+    kind: "weak-owner",
+    owner: "PreparedGeometry",
+    key: "owner identity, then exact wavelength in nanometres",
+    perOwner: "at most 64 immutable surface-index tables, evicting the oldest insertion",
+    capacity: 64,
+    limit: "MTF_INDEX_TABLE_CACHE_LIMIT",
+  },
+  "src/optics/analysis/pupils/aimedPupil.ts#fieldModelsByState": {
+    kind: "weak-owner",
+    owner: "PreparedGeometry",
+    key: "owner identity, then every exact field-launch, stop-radius, launch-scale and spectrum input",
+    perOwner:
+      "at most 64 aim field models (chief crossing, Jacobian, stop-to-launch fit), evicting the oldest insertion",
+    capacity: 64,
+    limit: "FIELD_MODEL_CACHE_LIMIT",
+  },
+  "src/optics/analysis/pupils/aimedPupil.ts#latticeModelKeys": {
+    kind: "weak-owner",
+    owner: "AimedStopLattice",
+    key: "lattice identity",
+    perOwner: "one field-model key string, so a coarser lattice seeds only lattices of its own field and spectrum",
+  },
+  "src/optics/analysis/request.ts#REQUESTS_BY_LENS": {
+    kind: "bounded",
+    owner: "module",
+    key: "compiled identity; each lens LRU holds at most 2 requests keyed by geometry and exact controls",
+    capacity: 2,
+    limit: "REQUEST_LENS_CACHE_LIMIT",
+  },
+  "src/optics/chromatic/glassCatalog.ts#ALIAS_PATTERNS": { kind: "constant" },
+  "src/optics/chromatic/glassCatalog.ts#CATALOG": { kind: "constant" },
+  "src/optics/chromatic/glassCatalog.ts#CODE6_CANDIDATES": { kind: "constant" },
+  "src/optics/chromatic/glassCatalog.ts#CODE6_INDEX": { kind: "constant" },
+  "src/optics/chromatic/glassCatalog.ts#NON_NUMERIC_CATALOG_NAME_PATTERNS": { kind: "constant" },
+  "src/optics/chromatic/glassCatalogAliases.ts#ALIASES": { kind: "constant" },
+  "src/optics/chromatic/glassCatalogData.ts#DUPLICATE_CODE6_PRECEDENCE": { kind: "constant" },
+  "src/optics/chromatic/glassCatalogData.ts#GLASS_CATALOG_ENTRIES_BY_NAME": { kind: "constant" },
+  "src/optics/chromatic/indexResolver.ts#cauchyCoefficientsByDispersion": {
+    kind: "weak-owner",
+    owner: "CompiledSurfaceDispersion",
+    key: "owner identity",
+    perOwner: "one frozen Cauchy coefficient vector",
+  },
+  "src/optics/chromatic/indexResolver.ts#referenceLineByLens": {
+    kind: "weak-owner",
+    owner: "CompiledLens",
+    key: "owner identity",
+    perOwner: "one read-only map with a row per element, built once",
+  },
+  "src/optics/diagnostics/chiefRay.ts#DIAGNOSTICS": {
+    kind: "bounded",
+    owner: "module",
+    key: "compiled identity",
+    capacity: 2048,
+    limit: "DIAGNOSTIC_LENS_LIMIT",
+  },
+  "src/optics/field/chiefRayCache.ts#CACHE": {
+    kind: "weak-owner",
+    owner: "PreparedGeometry",
+    key: "owner identity, then exact field angle, launch surface and channel",
+    perOwner: "an LRU of at most 512 chief solves",
+    capacity: 512,
+    limit: "CHIEF_RAY_CACHE_LIMIT",
+  },
+  "src/optics/geometry/surfaceProfile.ts#COMPILED_ASPHERES": {
+    kind: "weak-owner",
+    owner: "frozen AsphericCoefficients",
+    key: "owner identity",
+    perOwner: "one record of compiled Horner coefficient vectors",
+  },
+  "src/optics/geometry/surfaceProfile.ts#IMMUTABLE_ASPHERIC_PROFILES": {
+    kind: "weak-owner",
+    owner: "frozen AsphericCoefficients",
+    key: "owner identity",
+    perOwner: "one profile, for the base radius it was last built with",
+  },
+  "src/optics/mount/layers.ts#CAMERA_CLEAR_TYPES": { kind: "constant" },
+  "src/optics/mount/layers.ts#CAMERA_METAL_TYPES": { kind: "constant" },
+  "src/optics/mount/layers.ts#LENS_METAL_TYPES": { kind: "constant" },
+  "src/optics/mount/renderMount.ts#DOT_TYPES": { kind: "constant" },
+  "src/optics/mount/renderMount.ts#INDEX_TYPES": { kind: "constant" },
+  "src/optics/mount/renderMount.ts#OPENING_TYPES": { kind: "constant" },
+  "src/optics/mount/renderMount.ts#RING_TYPES": { kind: "constant" },
+  "src/optics/mount/validateMountSpec.ts#PROVENANCE_STATUSES": { kind: "constant" },
+  "src/optics/perspective/analysis/vignetting.ts#ZERO_CENTER_REFERENCE_BY_STATE": {
+    kind: "weak-owner",
+    owner: "PreparedOpticalState",
+    key: "owner identity, then zero context, aperture, pupil quadrature, channel and chief sampling",
+    perOwner: "at most 64 center references, evicting the oldest insertion",
+    capacity: 64,
+    limit: "MAX_REFERENCE_CACHE_ENTRIES_PER_STATE",
+  },
+  "src/optics/prescription/compile.ts#COMPILED_BY_CANONICAL": {
+    kind: "weak-owner",
+    owner: "CanonicalLens",
+    key: "owner identity",
+    perOwner: "one successful immutable CompiledLens",
+  },
+  "src/optics/prescription/identity.ts#CANONICAL_BY_VIEW": {
+    kind: "weak-owner",
+    owner: "authored object or catalog view",
+    key: "owner identity",
+    perOwner: "one IngestedPrescription",
+  },
+  "src/optics/prescription/identity.ts#COMPILED_BY_RUNTIME": {
+    kind: "weak-owner",
+    owner: "RuntimeLens",
+    key: "owner identity",
+    perOwner: "one lookup-only CompiledLens association",
+  },
+  "src/optics/prescription/runtimeView.ts#VIEWS": {
+    kind: "weak-owner",
+    owner: "CompiledLens",
+    key: "owner identity",
+    perOwner: "one weak reference to the frozen derived RuntimeLens; live callers share it",
+  },
+  "src/optics/prescription/sourcePaths.ts#LABEL_KEYED": { kind: "constant" },
+  "src/optics/prescription/validate/references.ts#KNOWN_ASPHERIC_COEFFICIENTS": { kind: "constant" },
+  "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_EVIDENCE": { kind: "constant" },
+  "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_SURFACE_FIELDS": { kind: "constant" },
+  "src/optics/state/apertureStop.ts#STOP_RULE_GEOMETRY_BY_LENS": {
+    kind: "weak-owner",
+    owner: "CompiledLens",
+    key: "owner identity, then exact clamped zoom control",
+    perOwner: "at most 128 frozen paraxial stop-rule records, evicting the oldest insertion",
+    capacity: 128,
+    limit: "STOP_RULE_CACHE_LIMIT",
+  },
+  "src/optics/state/preparedGeometry.ts#PREPARED_STATE_BY_LENS": {
+    kind: "bounded",
+    owner: "module",
+    key: "compiled identity; each of two lens LRUs holds at most 96 exact clamped control states",
+    capacity: 2,
+    limit: "PREPARED_LENS_CACHE_LIMIT",
+  },
+  "src/optics/state/preparedGeometry.ts#Z_STATE_BY_BASE": {
+    kind: "weak-owner",
+    owner: "PreparedOpticalState",
+    key: "owner identity, then the identity of the caller's z-position array and image-plane mode",
+    perOwner: "one WeakMap keyed by z-position array, at most two modes per array; entries die with the array",
+  },
+  "src/optics/trace/bulkAbsorption.ts#ABSORPTION_BY_ELEMENT_ID": {
+    kind: "weak-owner",
+    owner: "CompiledLens",
+    key: "owner identity",
+    perOwner: "one read-only map with a row per absorbing element, built once",
+  },
+  "src/optics/trace/rayAdapters.ts#MERIDIONAL_DIRECTION_BY_SLOPE": {
+    kind: "bounded",
+    owner: "module",
+    key: "meridional slope",
+    capacity: 4096,
+    limit: "DIRECTION_CACHE_LIMIT",
+  },
+  "src/optics/trace/rayAdapters.ts#SKEW_DIRECTION_BY_UX": {
+    kind: "bounded",
+    owner: "module",
+    key: "skew slope ux, then uy",
+    capacity: 4096,
+    limit: "DIRECTION_CACHE_LIMIT",
+  },
+  "src/optics/trace/rayAdapters.ts#TRACE_OPTIONS_BY_STATE": {
+    kind: "weak-owner",
+    owner: "PreparedOpticalState",
+    key: "owner identity, then stop radius, ghost flag, channel, normalization and capture policy",
+    perOwner: "at most 256 options records plus a last-hit shortcut, evicting the oldest insertion",
+    capacity: 256,
+    limit: "TRACE_OPTIONS_CACHE_LIMIT",
+  },
+  "src/optics/trace/rayClassification.ts#boundsBySurface": {
+    kind: "weak-owner",
+    owner: "CompiledStateSurface",
+    key: "owner identity, with the last evaluated semi-diameter stored in its bounds record",
+    perOwner: "one reusable profile-bounds record, recomputed when the aperture changes",
+  },
+  "src/optics/trace/symmetry.ts#X_SYMMETRIC_PROFILES": { kind: "constant" },
+};
+
+/** All module-level containers are registered; no unbounded-cache exceptions remain. */
+const CACHE_LEGACY: Readonly<Record<string, CacheLegacyRecord>> = {};
+
+/* ── Analysis request guard list ── */
+
+interface AnalysisNumericLeaf {
+  parameters: string;
+  reason: string;
+}
+
+/**
+ * M6 numeric leaves retained by the request-helper audit. These accept independent ray,
+ * aperture, field or sensor coordinates; prepared owners already carry the tracing state.
+ * Admission requires the exact module, function and parameter contract below, and the
+ * declaration must still match the broad lens-plus-numbers rule. Removal, migration or
+ * signature changes make an entry stale; never allowlist a new positional state adapter.
+ */
+const ANALYSIS_NUMERIC_LEAVES: Readonly<Record<string, AnalysisNumericLeaf>> = {
+  "src/optics/analysis/aberration/shared.ts#generalizedImagePlaneIntercept": {
+    parameters: "y: number, u: number, referenceZ: number, L: RuntimeLens",
+    reason: "Pure ray/plane intersection; lens supplies only generalized image-plane metadata.",
+  },
+  "src/optics/analysis/aberration/shared.ts#imagePlaneCoordinate": {
+    parameters: "y: number, u: number, referenceZ: number, L: RuntimeLens, planeZ = L.imagePlane?.z ?? referenceZ",
+    reason: "Pure ray/plane intersection at an independent plane coordinate.",
+  },
+  "src/optics/analysis/aberration/shared.ts#meridionalImagePlaneCoordinate": {
+    parameters: "z: number, y: number, L: RuntimeLens, planeZ = L.imagePlane?.z ?? z",
+    reason: "Pure point-to-plane coordinate conversion using the lens plane normal.",
+  },
+  "src/optics/analysis/bokeh/bokeh.ts#computeBokehFieldFootprintFromContext": {
+    parameters:
+      "L: RuntimeLens, context: BokehTraceContext, currentEPSD: number, currentPhysStopSD: number, fieldFraction: number, sensorZ: number",
+    reason: "Prepared bokeh context owns tracing state; aperture, field and defocused sensor plane vary independently.",
+  },
+  "src/optics/analysis/bokeh/bokeh.ts#computeBokehPreviewFromContext": {
+    parameters:
+      "L: RuntimeLens, context: BokehTraceContext, sensorZ: number, currentEPSD: number, currentPhysStopSD: number, label: string, sampling: AnalysisSamplingOptions = {}",
+    reason: "Reduces footprints from the existing prepared context at an independent sensor plane and aperture.",
+  },
+};
+
+/* ── Source scanning ── */
+
+const repoRoot = fileURLToPath(new URL("../../..", import.meta.url));
+const OPTICS_ROOT = "src/optics";
+const MOUNT_PREFIX = "src/optics/mount/";
+const IMPORTER_ROOTS = ["src", "scripts", "reports"];
+/** Names optics files to keep them out of large-file warnings; it never loads them. */
+const PATH_MENTION_ONLY_SCRIPTS = ["scripts/generate-src-readmes.mjs"];
+
+interface ModuleReference {
+  specifier: string;
+  /** True when the declaration carries types only, so nothing is imported at runtime. */
+  typeOnly: boolean;
+}
+
+interface ModuleContainer {
+  module: string;
+  name: string;
+  /** Map, WeakMap, Set or WeakSet: from `new X`, or from the declared type when there is none. */
+  constructorName: string;
+  /** Declaration text through its first semicolon; holds the type arguments. */
+  declaration: string;
+  /** True when the module calls set, add, delete or clear on the identifier. */
+  written: boolean;
+}
+
+/** Evaluate a scan once and share the result between tests. */
+function once<T>(compute: () => T): () => T {
+  let result: { value: T } | undefined;
+  return () => (result ??= { value: compute() }).value;
+}
+
+const isTypeScriptModule = (name: string): boolean => /\.tsx?$/.test(name) && !name.endsWith(".d.ts");
+const isCodeFile = (name: string): boolean => /\.(?:[cm]?[jt]s|[jt]sx)$/.test(name);
+const readSource = (path: string): string => readFileSync(join(repoRoot, path), "utf-8");
+
+/** Repo-relative, forward-slash paths of the matching files under a directory, recursively. */
+function sourceFiles(relativeDir: string, matches: (name: string) => boolean): string[] {
+  return readdirSync(join(repoRoot, relativeDir)).flatMap((name) => {
+    const path = `${relativeDir}/${name}`;
+    if (statSync(join(repoRoot, path)).isDirectory()) return sourceFiles(path, matches);
+    return matches(name) ? [path] : [];
+  });
+}
+
+const opticsModules = once(() => new Set(sourceFiles(OPTICS_ROOT, isTypeScriptModule)));
+
+/** `import type …`, `export type …`, or a braced list whose every specifier is `type`-qualified. */
+function isTypeOnlyClause(clause: string): boolean {
+  if (/^type\s+[\w$*{]/.test(clause)) return true;
+  const named = /^\{([\s\S]*)\}$/.exec(clause);
+  if (!named) return false;
+  const specifiers = named[1]
+    .split(",")
+    .map((specifier) => specifier.trim())
+    .filter((specifier) => specifier !== "");
+  return specifiers.length > 0 && specifiers.every((specifier) => /^type\s/.test(specifier));
+}
+
+/**
+ * Module specifiers a file imports: static imports and re-exports, side-effect imports and
+ * `import()` calls with a literal specifier. A declaration is found where `import` or `export`
+ * starts a line or follows the end of a block comment. Text is scanned as written, so a
+ * match inside a block comment or a template string counts too, which only adds a reference.
+ * Not seen: a declaration after other code on its line, which Prettier never leaves there,
+ * and an `import()` whose specifier is not one plain literal.
+ */
+function moduleReferences(text: string): ModuleReference[] {
+  const references: ModuleReference[] = [];
+  for (const head of text.matchAll(/(?:^[ \t]*|\*\/[ \t]*)(import|export)\b/gm)) {
+    // Walk the clause by hand so a comment between the braces cannot end it early.
+    let index = head.index + head[0].length;
+    let clause = "";
+    while (index < text.length && !";\"'`".includes(text[index])) {
+      const lineComment = text.startsWith("//", index);
+      if (lineComment || text.startsWith("/*", index)) {
+        const end = text.indexOf(lineComment ? "\n" : "*/", index + 2);
+        index = end < 0 ? text.length : end + (lineComment ? 0 : 2);
+      } else {
+        clause += text[index];
+        index += 1;
+      }
+    }
+    const quote = text[index];
+    const end = quote === '"' || quote === "'" ? text.indexOf(quote, index + 1) : -1;
+    if (end < 0) continue;
+    const specifier = text.slice(index + 1, end);
+    const from = /^([\s\S]*)\bfrom$/.exec(clause.trim());
+    if (from) references.push({ specifier, typeOnly: isTypeOnlyClause(from[1].trim()) });
+    else if (head[1] === "import" && clause.trim() === "") references.push({ specifier, typeOnly: false });
+  }
+  // `import("x").Name` is a type reference; any other `import("x")` loads the module. The
+  // specifier may be a template literal, and a bundler hint comment may come before it.
+  const dynamicImport = /\bimport\s*\(\s*(?:\/\*(?:[^*]|\*(?!\/))*\*\/\s*)*["'`]([^"'`]+)["'`]\s*\)(\s*\.\s*[A-Z])?/g;
+  for (const call of text.matchAll(dynamicImport)) {
+    references.push({ specifier: call[1], typeOnly: call[2] !== undefined });
+  }
+  return references;
+}
+
+/** The optics module a relative specifier resolves to, as the bundler would, or null. */
+function resolveOpticsModule(importer: string, specifier: string): string | null {
+  if (!specifier.startsWith(".")) return null;
+  const segments = importer.split("/").slice(0, -1);
+  for (const segment of specifier.split("/")) {
+    if (segment === "..") segments.pop();
+    else if (segment !== "." && segment !== "") segments.push(segment);
+  }
+  const base = segments.join("/");
+  if (base !== OPTICS_ROOT && !base.startsWith(`${OPTICS_ROOT}/`)) return null;
+  // Source writes `.js` specifiers for `.ts` files; scripts write `.ts`; a folder means its index.
+  const stem = base.replace(/\.(?:m?js|jsx)$/, "");
+  const candidates = [base, `${stem}.ts`, `${stem}.tsx`, `${base}.ts`, `${base}.tsx`, `${base}/index.ts`];
+  return candidates.find((candidate) => opticsModules().has(candidate)) ?? null;
+}
+
+/**
+ * Runtime import graph of src/optics/: each module mapped to the optics modules it imports or
+ * re-exports at least one value from. Type-only declarations are erased and add no edge.
+ */
+const opticsRuntimeGraph = once(() => {
+  const graph = new Map([...opticsModules()].sort().map((module) => [module, new Set<string>()]));
+  for (const [module, targets] of graph) {
+    for (const reference of moduleReferences(readSource(module))) {
+      const target = reference.typeOnly ? null : resolveOpticsModule(module, reference.specifier);
+      if (target !== null) targets.add(target);
+    }
+  }
+  return graph;
+});
+
+/** Strongly connected components with more than one module, plus self-importing modules (Tarjan). */
+function importCycles(graph: ReadonlyMap<string, ReadonlySet<string>>): string[][] {
+  const order = new Map<string, number>();
+  const low = new Map<string, number>();
+  const stack: string[] = [];
+  const onStack = new Set<string>();
+  const cycles: string[][] = [];
+  const visit = (node: string): void => {
+    order.set(node, order.size);
+    low.set(node, order.get(node)!);
+    stack.push(node);
+    onStack.add(node);
+    for (const next of graph.get(node)!) {
+      if (!order.has(next)) {
+        visit(next);
+        low.set(node, Math.min(low.get(node)!, low.get(next)!));
+      } else if (onStack.has(next)) {
+        low.set(node, Math.min(low.get(node)!, order.get(next)!));
+      }
+    }
+    if (low.get(node) !== order.get(node)) return;
+    const component = stack.splice(stack.lastIndexOf(node));
+    for (const member of component) onStack.delete(member);
+    if (component.length > 1 || graph.get(node)!.has(node)) cycles.push(component.sort());
+  };
+  for (const node of graph.keys()) if (!order.has(node)) visit(node);
+  return cycles;
+}
+
+/** One shortest import chain from a module back to itself, for a failure message. */
+function cycleThrough(graph: ReadonlyMap<string, ReadonlySet<string>>, start: string): string[] {
+  const cameFrom = new Map<string, string>();
+  const queue = [start];
+  for (const node of queue) {
+    for (const next of graph.get(node)!) {
+      if (next === start) {
+        const chain = [start];
+        for (let step = node; step !== start; step = cameFrom.get(step)!) chain.unshift(step);
+        return [start, ...chain];
+      }
+      if (!cameFrom.has(next)) {
+        cameFrom.set(next, node);
+        queue.push(next);
+      }
+    }
+  }
+  return [start];
+}
+
+/**
+ * Optics modules a script names as a path: "src/optics/x.ts", with or without a relative
+ * prefix, or "src", "optics", "x.ts" segments.
+ */
+function pathLoadedOpticsModules(text: string): string[] {
+  const whole = [...text.matchAll(/["'`](?:\.{0,2}\/)*(src\/optics\/[\w./-]+\.tsx?)["'`]/g)].map((match) => match[1]);
+  const segmented = [...text.matchAll(/["']src["'],\s*["']optics["']((?:,\s*["'][\w.-]+["'])+)/g)].map((match) =>
+    [OPTICS_ROOT, ...[...match[1].matchAll(/["']([^"']+)["']/g)].map((segment) => segment[1])].join("/"),
+  );
+  return [...whole, ...segmented].filter((path) => opticsModules().has(path));
+}
+
+/**
+ * Outside importers of each optics module: target mapped to the sorted files under src/ (outside
+ * src/optics/), scripts/ and reports/ that import it, type-only imports included. Scripts also
+ * count for the modules they load by path string. Mount targets are left out.
+ * Not seen: an `import.meta.glob` pattern, a `new URL("x", import.meta.url)` outside scripts/,
+ * and a path assembled at runtime.
+ */
+const outsideImporters = once(() => {
+  const importers = new Map<string, Set<string>>();
+  const files = IMPORTER_ROOTS.flatMap((root) => sourceFiles(root, isCodeFile));
+  for (const file of files) {
+    if (file.startsWith(`${OPTICS_ROOT}/`)) continue;
+    const text = readSource(file);
+    // Every path into src/optics/ spells the folder name, so most files need no further scan.
+    if (!text.includes("optics")) continue;
+    const targets = moduleReferences(text).map((reference) => resolveOpticsModule(file, reference.specifier));
+    if (file.startsWith("scripts/") && !PATH_MENTION_ONLY_SCRIPTS.includes(file)) {
+      targets.push(...pathLoadedOpticsModules(text));
+    }
+    for (const target of targets) {
+      if (target === null || target.startsWith(MOUNT_PREFIX)) continue;
+      if (!importers.has(target)) importers.set(target, new Set());
+      importers.get(target)!.add(file);
+    }
+  }
+  return new Map([...importers.keys()].sort().map((target) => [target, [...importers.get(target)!].sort()]));
+});
+
+/** Every restricted importer is an exact file, and each admitted file must still import the target. */
+function restrictedImporterProblems(
+  imports: ReadonlyMap<string, readonly string[]>,
+  registry: readonly SeamRegistryEntry[],
+): string[] {
+  return registry.flatMap(({ module, importers: allowed }) => {
+    if (!allowed) return [];
+    const actual = imports.get(module) ?? [];
+    return [
+      ...actual.filter((file) => !allowed.includes(file)).map((file) => `${file} may not import ${module}.`),
+      ...allowed
+        .filter((file) => !actual.includes(file))
+        .map((file) => `${file} no longer imports ${module}; remove the stale importer entry.`),
+    ];
+  });
+}
+
+/** Only the conversion barrel and V1 implementation modules may reference the V1 directory. */
+function v1IsolationProblems(references: ReadonlyMap<string, readonly string[]>): string[] {
+  return [...references].flatMap(([module, targets]) =>
+    module.includes("/v1/") || module === "src/optics/lensDataConversion.ts"
+      ? []
+      : targets
+          .filter((target) => target.includes("/v1/"))
+          .map((target) => `${module} imports converter-only ${target}.`),
+  );
+}
+
+/** Source with comments removed; string and template literals are kept whole. */
+function stripComments(text: string): string {
+  const literalOrComment = /("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'|`(?:[^`\\]|\\.)*`)|\/\/[^\n]*|\/\*[\s\S]*?\*\//g;
+  return text.replace(literalOrComment, (_match, literal: string | undefined) => literal ?? "");
+}
+
+/** Local names an import clause binds: default, namespace and named (after any `as`). */
+function importedBindings(clause: string): string[] {
+  const named = /\{([\s\S]*)\}/.exec(clause);
+  const outside = clause.replace(/\{[\s\S]*\}/, "").replace(/^\s*type\b/, "");
+  const names = [...outside.matchAll(/(?:\*\s*as\s+)?([\w$]+)/g)].map((match) => match[1]);
+  for (const specifier of named?.[1].split(",") ?? []) {
+    const local = /([\w$]+)\s*$/.exec(specifier);
+    if (local) names.push(local[1]);
+  }
+  return names.filter((name) => name !== "from");
+}
+
+/** Length of a leading `type` or `interface` declaration, or 0 when it has no clear end. */
+function typeDeclarationLength(text: string): number {
+  const isInterface = /^(?:export\s+)?interface\b/.test(text);
+  let depth = 0;
+  for (let index = 0; index < text.length; index += 1) {
+    const character = text[index];
+    if ("\"'`".includes(character)) {
+      index = text.indexOf(character, index + 1);
+      if (index < 0) return 0;
+    } else if ("{[(".includes(character)) {
+      depth += 1;
+    } else if ("}])".includes(character)) {
+      depth -= 1;
+      if (isInterface && depth === 0 && character === "}") return index + 1;
+    } else if (!isInterface && depth === 0 && character === ";") {
+      return index + 1;
+    }
+  }
+  return 0;
+}
+
+/**
+ * The first top-level statement that keeps a module from being a barrel or thin facade, or null
+ * when every statement is an import, a re-export, a type declaration, or an alias of an imported
+ * binding (`export default imported;`, `export const name = imported;`).
+ */
+function facadeViolation(module: string): string | null {
+  const imported = new Set<string>();
+  // Only `*` or a braced list may stand before `from`, so a declaration cannot ride in on a re-export.
+  const reExportForm = /^export\s+(?:type\s+)?(?:\*(?:\s+as\s+[\w$]+)?|\{[^{};"'`]*\})\s*from\s*["'][^"'\n]*["'];?/;
+  let rest = stripComments(readSource(module)).trimStart();
+  while (rest !== "") {
+    const importDeclaration = /^import\b([^;"'`]*)["'][^"'\n]*["'];?/.exec(rest);
+    const reExport = reExportForm.exec(rest);
+    const alias = /^export\s+(?:default\s+|const\s+[\w$]+\s*=\s*)([\w$]+);/.exec(rest);
+    let length = 0;
+    if (importDeclaration) {
+      for (const name of importedBindings(importDeclaration[1])) imported.add(name);
+      length = importDeclaration[0].length;
+    } else if (reExport) {
+      length = reExport[0].length;
+    } else if (/^(?:export\s+)?(?:type|interface)\b/.test(rest)) {
+      length = typeDeclarationLength(rest);
+    } else if (alias && imported.has(alias[1])) {
+      length = alias[0].length;
+    }
+    if (length === 0) return rest.split("\n")[0].slice(0, 80);
+    rest = rest.slice(length).trimStart();
+  }
+  return null;
+}
+
+/** Why a module fails seam admission, phrased to follow its path, or null when it is admitted. */
+function seamAdmissionFailure(module: string): string | null {
+  if (!/^src\/optics\/[^/]+\.ts$/.test(module)) return "is not a top-level src/optics/*.ts file";
+  const statement = facadeViolation(module);
+  if (statement === null) return null;
+  return `is an implementation file, not a barrel or thin facade (first disqualifying statement: \`${statement}\`)`;
+}
+
+/**
+ * Why a permanent seam entry's stated reason no longer holds, phrased to follow its path and to
+ * end the sentence, or null when it does: a script under scripts/ names the module as a path, and
+ * the module imports nothing at runtime, which is what lets plain Node load it without resolving
+ * a specifier.
+ */
+function plainNodeLoadFailure(module: string, loader: string): string | null {
+  const entry = "is a permanent SEAM_REGISTRY entry";
+  const nameLoader = "Name the script that loads it, or remove the entry.";
+  if (!loader.startsWith("scripts/")) {
+    return `${entry}, but its plainNodeLoader ${loader} is not a script under scripts/. ${nameLoader}`;
+  }
+  // The importer scan lists the loader only when that file exists, so a missing file is never read.
+  const loads =
+    outsideImporters().get(module)?.includes(loader) === true &&
+    pathLoadedOpticsModules(readSource(loader)).includes(module);
+  if (!loads) return `${entry} because ${loader} loads it by path, but that script no longer does. ${nameLoader}`;
+  const runtimeImport = moduleReferences(readSource(module)).find((reference) => !reference.typeOnly);
+  if (runtimeImport === undefined) return null;
+  return (
+    `${entry} because plain Node loads it by path, but it imports "${runtimeImport.specifier}" at runtime. ` +
+    "Keep its imports type-only, or remove the entry."
+  );
+}
+
+/**
+ * Module-level containers in src/optics/, keyed `<module>#<identifier>`: a column-0 declaration
+ * whose initializer starts with `new Map`, `new WeakMap`, `new Set` or `new WeakSet`, or whose
+ * declared type is one of those or their Readonly forms.
+ * Not seen: a container nested in another value, returned by a factory call or chosen by a
+ * conditional initializer; a second declarator of one statement; a class static field.
+ */
+const moduleLevelContainers = once(() => {
+  const containers = new Map<string, ModuleContainer>();
+  // The type annotation ends at the first `=` that is not an arrow's, and cannot run onto a line
+  // that starts a new statement: Prettier indents a continuation line or starts it with a closer.
+  const declaration =
+    /^(?:export\s+)?(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*(?::\s*((?:(?!\n[^ \t)\]}>])(?:=>|[^=]))+))?(?:\s*=(?!>)\s*new\s+(Map|WeakMap|Set|WeakSet)\b)?/gm;
+  for (const module of [...opticsModules()].sort()) {
+    const text = readSource(module);
+    for (const match of text.matchAll(declaration)) {
+      const declared = /^(?:Readonly)?(Map|Set)<|^(WeakMap|WeakSet)</.exec(match[2] ?? "");
+      const constructorName = match[3] ?? declared?.[1] ?? declared?.[2];
+      if (constructorName === undefined) continue;
+      const name = match[1];
+      const end = text.indexOf(";", match.index);
+      const write = new RegExp(`\\b${name.replace(/\$/g, "\\$")}\\s*\\??\\.\\s*(?:set|add|delete|clear)\\s*\\(`);
+      containers.set(`${module}#${name}`, {
+        module,
+        name,
+        constructorName,
+        declaration: text.slice(match.index, end < 0 ? undefined : end),
+        written: write.test(text),
+      });
+    }
+  }
+  return containers;
+});
+
+/** True when the module declares `const <limit> = <capacity>;` at module level. */
+function declaresLimit(module: string, limit: string, capacity: number): boolean {
+  const value = new RegExp(`^(?:export\\s+)?const\\s+${limit}\\s*=\\s*([\\d_]+)\\s*;`, "m").exec(readSource(module));
+  return value !== null && Number(value[1].replaceAll("_", "")) === capacity;
+}
+
+/** A Map or Set in a declaration. The word boundary keeps WeakMap, ReadonlyMap and their Set forms out. */
+const GROWABLE_STORE = /\b(?:Map|Set)</;
+
+/** Why a registry record fails its kind's admission rule, or null when it is admitted. */
+function cacheAdmissionFailure(container: ModuleContainer, record: CacheRecord): string | null {
+  const { module, name } = container;
+  if (record.kind === "constant") {
+    return container.written ? `is registered as a constant, but ${module} calls a mutating method on it` : null;
+  }
+  if (record.owner.trim() === "" || record.key.trim() === "") return "must record a non-empty owner and key";
+  const { capacity, limit } = record;
+  const capped = capacity !== undefined && limit !== undefined;
+  if (capped && !(Number.isInteger(capacity) && capacity > 0 && declaresLimit(module, limit, capacity))) {
+    return `records capacity ${capacity}, but ${module} does not declare \`const ${limit} = ${capacity};\``;
+  }
+  if (record.kind === "bounded") return null;
+  if (container.constructorName !== "WeakMap") return `is registered as "weak-owner" but ${name} is not a WeakMap`;
+  if (record.perOwner.trim() === "") return "must record what one owner holds (perOwner)";
+  if ((capacity === undefined) !== (limit === undefined)) return "must record capacity and limit together";
+  // Only the declaration is read, so a growable store behind a type alias is left to review.
+  if (!capped && GROWABLE_STORE.test(container.declaration)) {
+    return "holds a Map or Set per owner, which grows without bound unless the record has a capacity and limit";
+  }
+  return null;
+}
+
+/**
+ * Why a legacy cache no longer violates, phrased to follow its id and to end the sentence, or null
+ * while it still does. A WeakMap violates through the Map or Set it holds per owner: one shown in
+ * its declaration, or one inside the module type the record names as `storeType`.
+ */
+function cacheLegacyStaleness(container: ModuleContainer | undefined, record: CacheLegacyRecord): string | null {
+  if (container === undefined) return "is no longer a module-level container. Remove it from CACHE_LEGACY.";
+  if (!container.written) {
+    return (
+      "is no longer written by its module, so it is a constant. Move it from CACHE_LEGACY to " +
+      'CACHE_REGISTRY as { kind: "constant" }.'
+    );
+  }
+  if (container.constructorName !== "WeakMap") return null;
+  const { storeType } = record;
+  const toRegistry = 'Move it from CACHE_LEGACY to CACHE_REGISTRY as { kind: "weak-owner" }';
+  if (storeType === undefined) {
+    if (GROWABLE_STORE.test(container.declaration)) return null;
+    return (
+      `no longer shows a Map or Set per owner in its declaration. ${toRegistry}, or record the type ` +
+      "that now holds the Map as storeType."
+    );
+  }
+  // The named type has to be the one the WeakMap holds, and has to hold the Map itself.
+  const source = stripComments(readSource(container.module));
+  const start = source.search(new RegExp(`^(?:export\\s+)?(?:interface|type)\\s+${storeType}\\b`, "m"));
+  const storeDeclaration = start < 0 ? "" : source.slice(start, start + typeDeclarationLength(source.slice(start)));
+  const named = new RegExp(`\\b${storeType}\\b`).test(container.declaration);
+  if (named && GROWABLE_STORE.test(storeDeclaration)) return null;
+  return (
+    `records storeType ${storeType}, but its declaration no longer names that type or ${container.module} no ` +
+    `longer declares it with a Map or Set. ${toRegistry}, or correct storeType.`
+  );
+}
+
+/** A short list of importer files for a failure message. */
+function summarize(files: readonly string[]): string {
+  return files.length <= 3 ? files.join(", ") : `${files.slice(0, 3).join(", ")} and ${files.length - 3} more`;
+}
+
+interface PositionalAnalysisStateDeclaration {
+  name: string;
+  line: number;
+  parameters: string;
+}
+
+/**
+ * M6: a bare lens plus two numeric parameters is a possible unwrapped state bundle,
+ * regardless of their names/order or intervening/optional geometry. Known control names
+ * (including destructured source properties and aliases) also retain the single-control
+ * restriction. Request/prepared-only sweeps and lens-free numeric leaves do not match.
+ * Scan the AST, including arrows, methods and overloads, rather than comments/strings.
+ */
+function positionalAnalysisStateDeclarations(source: string): PositionalAnalysisStateDeclaration[] {
+  const file = ts.createSourceFile("analysis.ts", source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  const lensTypes = new Set(["RuntimeLens", "CompiledLens", "CanonicalLens", "LensData", "LensConstructionData"]);
+  const numericTypes = new Set<string>();
+  const isLensName = (name: string): boolean => lensTypes.has(name) || /(?:Lens|LensLike)$/.test(name);
+  for (const statement of file.statements) {
+    if (ts.isImportDeclaration(statement)) {
+      const bindings = statement.importClause?.namedBindings;
+      if (bindings && ts.isNamedImports(bindings)) {
+        for (const binding of bindings.elements) {
+          if (isLensName((binding.propertyName ?? binding.name).text)) lensTypes.add(binding.name.text);
+        }
+      }
+    }
+  }
+  const hasLensType = (node: ts.Node): boolean => {
+    if (ts.isIdentifier(node) && isLensName(node.text)) return true;
+    // A callback, array or property containing a lens is not itself a lens parameter.
+    if (ts.isFunctionTypeNode(node) || ts.isArrayTypeNode(node) || ts.isTypeLiteralNode(node)) return false;
+    return ts.forEachChild(node, hasLensType) ?? false;
+  };
+  const isNumericType = (node: ts.TypeNode): boolean => {
+    if (node.kind === ts.SyntaxKind.NumberKeyword) return true;
+    if (ts.isTypeReferenceNode(node)) return numericTypes.has(node.typeName.getText(file));
+    if (ts.isParenthesizedTypeNode(node)) return isNumericType(node.type);
+    if (ts.isLiteralTypeNode(node)) return ts.isNumericLiteral(node.literal);
+    if (ts.isUnionTypeNode(node) || ts.isIntersectionTypeNode(node)) return node.types.some(isNumericType);
+    return false;
+  };
+  // Resolve imported renames and local alias/extends chains, in either declaration order.
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const statement of file.statements) {
+      if (ts.isTypeAliasDeclaration(statement) || ts.isInterfaceDeclaration(statement)) {
+        const lens = ts.isTypeAliasDeclaration(statement)
+          ? hasLensType(statement.type)
+          : (statement.heritageClauses?.some((clause) => clause.types.some(hasLensType)) ?? false);
+        if (lens && !lensTypes.has(statement.name.text)) {
+          lensTypes.add(statement.name.text);
+          changed = true;
+        }
+        if (
+          ts.isTypeAliasDeclaration(statement) &&
+          isNumericType(statement.type) &&
+          !numericTypes.has(statement.name.text)
+        ) {
+          numericTypes.add(statement.name.text);
+          changed = true;
+        }
+      }
+    }
+  }
+  const isControlName = (name: string): boolean =>
+    /^(?:(?:current|trace|target|requested|effective|lens|optical|state|new|old))?(?:(?:focus|zoom|aberration)(?:t|control|setting|position|fraction|value)?|zpos|zpositions|surfacepositions)$/i.test(
+      name.replaceAll("_", ""),
+    );
+  const hasControlBinding = (name: ts.BindingName): boolean => {
+    if (ts.isIdentifier(name)) return isControlName(name.text);
+    return name.elements.some(
+      (element) =>
+        ts.isBindingElement(element) &&
+        ((element.propertyName !== undefined && isControlName(element.propertyName.getText(file))) ||
+          hasControlBinding(element.name)),
+    );
+  };
+  const isNumericDefault = (node: ts.Expression): boolean =>
+    ts.isNumericLiteral(node) ||
+    (ts.isPrefixUnaryExpression(node) &&
+      [ts.SyntaxKind.PlusToken, ts.SyntaxKind.MinusToken].includes(node.operator) &&
+      ts.isNumericLiteral(node.operand));
+  const violations: PositionalAnalysisStateDeclaration[] = [];
+  const visit = (node: ts.Node): void => {
+    if (ts.isFunctionLike(node)) {
+      const lens = node.parameters.some((parameter) => parameter.type && hasLensType(parameter.type));
+      const numbers = node.parameters.filter(
+        (parameter) =>
+          (parameter.type && isNumericType(parameter.type)) ||
+          (!parameter.type && parameter.initializer && isNumericDefault(parameter.initializer)),
+      ).length;
+      if (lens && (numbers >= 2 || node.parameters.some((parameter) => hasControlBinding(parameter.name)))) {
+        const name =
+          node.name?.getText(file) ??
+          (ts.isVariableDeclaration(node.parent) ? node.parent.name.getText(file) : "<anonymous>");
+        violations.push({
+          name,
+          line: file.getLineAndCharacterOfPosition(node.getStart(file)).line + 1,
+          parameters: node.parameters.map((parameter) => parameter.getText(file)).join(", "),
+        });
+      }
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(file);
+  return violations;
+}
+
+/** Apply the same allowlist and staleness checks to the corpus and synthetic self-tests. */
+function analysisRequestProblems(
+  modules: ReadonlyMap<string, string>,
+  leaves: Readonly<Record<string, AnalysisNumericLeaf>> = ANALYSIS_NUMERIC_LEAVES,
+): string[] {
+  const problems: string[] = [];
+  const admitted = new Set<string>();
+  const normalize = (parameters: string): string => parameters.replace(/\s+/g, "");
+  for (const [module, source] of modules) {
+    if (!/^src\/optics\/(?:analysis|perspective\/analysis)\//.test(module)) continue;
+    for (const declaration of positionalAnalysisStateDeclarations(source)) {
+      const id = `${module}#${declaration.name}`;
+      const leaf = leaves[id];
+      if (leaf && leaf.reason.trim() !== "" && normalize(leaf.parameters) === normalize(declaration.parameters)) {
+        admitted.add(id);
+      } else {
+        problems.push(
+          `${id}:${declaration.line}: pass AnalysisRequest or PreparedGeometry instead of a lens and state scalars.`,
+        );
+      }
+    }
+  }
+  for (const id of Object.keys(leaves)) {
+    if (!admitted.has(id)) problems.push(`${id}: stale numeric leaf entry; remove or re-audit its parameter contract.`);
+  }
+  return problems;
+}
+
+/* ── Guards ── */
+
+describe("optics architecture guards", () => {
+  it("keeps every retired exception list empty", () => {
+    expect(CYCLE_LEGACY).toEqual([]);
+    expect(SEAM_LEGACY).toEqual([]);
+    expect(REPORT_INTERNAL_IMPORTS).toEqual([]);
+    expect(CACHE_LEGACY).toEqual({});
+  });
+
+  it("keeps every list sorted", () => {
+    const lists = {
+      CYCLE_LEGACY,
+      SEAM_REGISTRY: SEAM_REGISTRY.map((entry) => entry.module),
+      SEAM_LEGACY,
+      CACHE_REGISTRY: Object.keys(CACHE_REGISTRY),
+      CACHE_LEGACY: Object.keys(CACHE_LEGACY),
+      ANALYSIS_NUMERIC_LEAVES: Object.keys(ANALYSIS_NUMERIC_LEAVES),
+    };
+    const unsorted = Object.entries(lists)
+      .filter(([, entries]) => entries.join("\n") !== [...new Set(entries)].sort().join("\n"))
+      .map(([name]) => name);
+    expect(unsorted, "sort these lists by entry and drop duplicates").toEqual([]);
+  });
+
+  describe("analysis requests", () => {
+    it("rejects positional runtime/state declarations throughout analysis implementations", () => {
+      const modules = new Map([...opticsModules()].sort().map((module) => [module, readSource(module)]));
+      const problems = analysisRequestProblems(modules);
+      expect(problems, "M6 request contract").toEqual([]);
+    });
+
+    it("detects function, arrow, method and aliased signatures while allowing numeric leaves and request sweeps", () => {
+      const source = [
+        'import type { RuntimeLens as Lens } from "./types.js";',
+        "type Alias = Lens;",
+        "function base(L: RuntimeLens, zPos: number[], focusT: number, zoomT: number, aberrationT = 0) {}",
+        "const arrow = (L: Lens, focusT: number) => 0;",
+        "const object = { method(L: Alias, zoomT: number) {} };",
+        "function overload(L: Lens, aberrationT: number): number;",
+        "function pure(zoomPositions: readonly number[], zoomT: number) {}",
+        "function sweep(request: AnalysisRequest, focusT: number) {}",
+        "function prepared(state: PreparedGeometry, fieldAngle: number) {}",
+        "// function comment(L: RuntimeLens, zoomT: number) {}",
+        'const text = "function string(L: RuntimeLens, focusT: number) {}";',
+      ].join("\n");
+      expect(positionalAnalysisStateDeclarations(source).map(({ name, line }) => `${name}:${line}`)).toEqual([
+        "base:3",
+        "arrow:4",
+        "method:5",
+        "overload:6",
+      ]);
+    });
+
+    it.each([
+      ["renamed controls", "function bad(lens: RuntimeLens, focus: number, zoom: number) {}"],
+      ["arbitrary scalar names", "function bad(lens: RuntimeLens, a: number, b: number) {}"],
+      [
+        "optional geometry",
+        "function bad(lens: RuntimeLens, focus: number, zoom: number, geometry?: FieldGeometryState) {}",
+      ],
+      [
+        "reordered lens and intervening geometry",
+        "function bad(a: number, geometry: FieldGeometryState, lens: RuntimeLens, b: number) {}",
+      ],
+      ["inferred numeric defaults", "function bad(lens: RuntimeLens, a = 0, b = -1) {}"],
+      ["optional scalars", "function bad(lens: RuntimeLens, a?: number, b?: number) {}"],
+      [
+        "destructured controls",
+        "function bad(L: RuntimeLens, { focusT, zoomT }: { focusT: number; zoomT: number }) {}",
+      ],
+      [
+        "renamed destructured bindings",
+        "function bad(L: RuntimeLens, { focusT: a, zoomT: b }: Controls, geometry?: FieldGeometryState) {}",
+      ],
+      [
+        "nested destructuring with defaults",
+        "function bad(L: RuntimeLens, { controls: { focusT: a = 0, zoomT: b = 0 } } = defaults) {}",
+      ],
+      ["destructured layout", "function bad(L: RuntimeLens, { zPos: positions }: Layout) {}"],
+      [
+        "compiled lens import and reverse alias chain",
+        'import type { CompiledLens as Model } from "./types.js"; type Alias = Later; type Later = Model; function bad(L: Alias, a: number, b: number) {}',
+      ],
+      [
+        "lens-like interface and scalar aliases",
+        "interface Model extends LensLike {} type Scalar = Later; type Later = number; function bad(L: Model, a: Scalar, b: Scalar) {}",
+      ],
+      ["qualified lens type", "function bad(L: Optics.CompiledLens, a: number, b: number) {}"],
+      ["wrapped lens type", 'function bad(L: Readonly<Pick<RuntimeLens, "N">>, a: number, b: number) {}'],
+      [
+        "common control variants",
+        "function bad(L: RuntimeLens, currentFocus: Scalar, zoom_setting: Scalar, traceAberrationT = 0) {}",
+      ],
+    ])("rejects %s in both analysis trees", (_label, source) => {
+      for (const module of ["src/optics/analysis/probe.ts", "src/optics/perspective/analysis/probe.ts"]) {
+        expect(analysisRequestProblems(new Map([[module, source]]), {})).toEqual([
+          expect.stringContaining(`${module}#bad:`),
+        ]);
+      }
+    });
+
+    it("allows request sweeps, prepared geometry and numeric leaves without a bare lens", () => {
+      const source = [
+        "function pure(a: number, b: number) {}",
+        "function sweep(request: AnalysisRequest, focusT: number, zoomT: number) {}",
+        "function prepared(state: PreparedGeometry, a: number, b: number) {}",
+        "function metadata(lens: RuntimeLens, sampling: AnalysisSamplingOptions) {}",
+        "function callback(read: () => RuntimeLens, a: number, b: number) {}",
+        "function collection(lenses: RuntimeLens[], a: number, b: number) {}",
+        "// function comment(lens: RuntimeLens, a: number, b: number) {}",
+        'const text = "function string(lens: RuntimeLens, a: number, b: number) {}";',
+      ].join("\n");
+      expect(positionalAnalysisStateDeclarations(source)).toEqual([]);
+      expect(analysisRequestProblems(new Map([["src/optics/state/runtimeAdapters.ts", source]]), {})).toEqual([]);
+    });
+
+    it("admits an explicitly audited numeric leaf only in its registered module", () => {
+      const module = "src/optics/analysis/aberration/shared.ts";
+      const id = `${module}#generalizedImagePlaneIntercept`;
+      const source =
+        "function generalizedImagePlaneIntercept(y: number, u: number, referenceZ: number, L: RuntimeLens) {}";
+      const leaves = { [id]: ANALYSIS_NUMERIC_LEAVES[id] };
+      expect(positionalAnalysisStateDeclarations(source)).toHaveLength(1);
+      expect(analysisRequestProblems(new Map([[module, source]]), leaves)).toEqual([]);
+      expect(analysisRequestProblems(new Map([["src/optics/analysis/copy.ts", source]]), leaves)).toEqual([
+        expect.stringContaining("src/optics/analysis/copy.ts#generalizedImagePlaneIntercept:"),
+        expect.stringContaining(`${id}: stale numeric leaf entry`),
+      ]);
+    });
+
+    it.each([
+      ["deleted declaration", ""],
+      ["migrated to a request", "function generalizedImagePlaneIntercept(request: AnalysisRequest) {}"],
+      [
+        "changed parameter contract",
+        "function generalizedImagePlaneIntercept(y: number, u: number, referenceZ: number, L: RuntimeLens, extra?: number) {}",
+      ],
+    ])("rejects a stale numeric leaf entry after %s", (_label, source) => {
+      const module = "src/optics/analysis/aberration/shared.ts";
+      const id = `${module}#generalizedImagePlaneIntercept`;
+      const problems = analysisRequestProblems(new Map([[module, source]]), { [id]: ANALYSIS_NUMERIC_LEAVES[id] });
+      expect(problems).toContain(`${id}: stale numeric leaf entry; remove or re-audit its parameter contract.`);
+      if (source.includes("extra?")) expect(problems).toContainEqual(expect.stringContaining(`${id}:1:`));
+    });
+  });
+
+  describe("import cycles", () => {
+    it("keeps the retired trace stack deleted", () => {
+      for (const module of [
+        "internal/exactSurfaceTrace.ts",
+        "internal/surfaceIntersection.ts",
+        "internal/traceSurfaces.ts",
+        "rayTrace.ts",
+      ]) {
+        expect(existsSync(join(OPTICS_ROOT, module)), module).toBe(false);
+      }
+    });
+
+    it("finds no runtime import cycle outside CYCLE_LEGACY, and no stale legacy entry", () => {
+      const graph = opticsRuntimeGraph();
+      const cyclic = new Set(importCycles(graph).flat());
+      const added = [...cyclic].filter((module) => !CYCLE_LEGACY.includes(module)).sort();
+      const problems = [
+        ...added.map(
+          (module) =>
+            `${module} is in a runtime import cycle (${cycleThrough(graph, module).join(" -> ")}). ` +
+            "Break the cycle: CYCLE_LEGACY only shrinks, so do not add the module there.",
+        ),
+        ...CYCLE_LEGACY.filter((module) => !cyclic.has(module)).map(
+          (module) => `${module} is no longer in a runtime import cycle. Remove it from CYCLE_LEGACY.`,
+        ),
+      ];
+      expect(problems, "import-cycle guard").toEqual([]);
+    });
+  });
+
+  describe("seam", () => {
+    it("keeps the source-preserving V1 view reachable only through the conversion seam", () => {
+      const graph = opticsRuntimeGraph();
+      const reachable = new Set<string>();
+      const visit = (module: string): void => {
+        if (reachable.has(module)) return;
+        reachable.add(module);
+        for (const target of graph.get(module) ?? []) visit(target);
+      };
+      for (const { module } of SEAM_REGISTRY) {
+        if (!module.endsWith("lensDataConversion.ts")) visit(module);
+      }
+      expect([...reachable].filter((module) => module.includes("/v1/") || /\/toLensDataV2\.ts$/.test(module))).toEqual(
+        [],
+      );
+    });
+
+    it("restricts the conversion seam per importer and isolates the V1 mapping", () => {
+      const importers = new Map(outsideImporters());
+      const loader = "scripts/lens-data-convert/load.mjs";
+      const loaderImporters = IMPORTER_ROOTS.flatMap((root) => sourceFiles(root, isCodeFile)).filter((file) =>
+        moduleReferences(readSource(file)).some(
+          ({ specifier }) => specifier.startsWith(".") && join(dirname(file), specifier) === loader,
+        ),
+      );
+      importers.set(loader, loaderImporters);
+      const restrictions = [
+        ...SEAM_REGISTRY,
+        { module: loader, importers: ["scripts/lens-data-convert/cli.mjs", "scripts/lens-data-convert/convert.mjs"] },
+      ];
+      const references = new Map(
+        [...opticsModules()].map((module) => [
+          module,
+          moduleReferences(readSource(module)).flatMap(({ specifier }) => {
+            const target = resolveOpticsModule(module, specifier);
+            return target ? [target] : [];
+          }),
+        ]),
+      );
+      expect([...restrictedImporterProblems(importers, restrictions), ...v1IsolationProblems(references)]).toEqual([]);
+    });
+
+    it("rejects forbidden and stale conversion importers, including a direct V1 import", () => {
+      const seam = "src/optics/lensDataConversion.ts";
+      const loader = "scripts/lens-data-convert/load.mjs";
+      const registry = [{ module: seam, importers: [loader] }];
+      expect(restrictedImporterProblems(new Map([[seam, [loader]]]), registry)).toEqual([]);
+      expect(restrictedImporterProblems(new Map([[seam, [loader, "scripts/audit-aperture.mjs"]]]), registry)).toEqual([
+        `scripts/audit-aperture.mjs may not import ${seam}.`,
+      ]);
+      expect(restrictedImporterProblems(new Map(), registry)).toEqual([
+        `${loader} no longer imports ${seam}; remove the stale importer entry.`,
+      ]);
+      const module = "src/optics/prescription/compile.ts";
+      const target = resolveOpticsModule(module, "./v1/ingestV1.js")!;
+      expect(target).toBe("src/optics/prescription/v1/ingestV1.ts");
+      expect(v1IsolationProblems(new Map([[module, [target]]]))).toEqual([
+        `${module} imports converter-only ${target}.`,
+      ]);
+      expect(
+        v1IsolationProblems(
+          new Map([
+            [seam, [target]],
+            [target, [target]],
+          ]),
+        ),
+      ).toEqual([]);
+    });
+
+    it("registers only modules that meet the admission rule", () => {
+      const problems = SEAM_REGISTRY.flatMap(({ module, plainNodeLoader }) => {
+        if (!opticsModules().has(module)) return [`${module} does not exist. Remove it from SEAM_REGISTRY.`];
+        if (plainNodeLoader !== undefined) {
+          const unloadable = plainNodeLoadFailure(module, plainNodeLoader);
+          return unloadable === null ? [] : [`${module} ${unloadable}`];
+        }
+        const failure = seamAdmissionFailure(module);
+        return failure === null ? [] : [`${module} ${failure}. Remove it from SEAM_REGISTRY.`];
+      });
+      expect(problems, "seam registry admission").toEqual([]);
+    });
+
+    it("finds no outside import of an unlisted optics module, and no stale legacy entry", () => {
+      const registered = new Set(SEAM_REGISTRY.map((entry) => entry.module));
+      const problems: string[] = [];
+      for (const entry of REPORT_INTERNAL_IMPORTS) {
+        if (!outsideImporters().get(entry.module)?.includes(entry.importer)) {
+          problems.push(`Remove stale report-only import: ${entry.importer} -> ${entry.module}.`);
+        }
+      }
+      for (const [module, importers] of outsideImporters()) {
+        const files = importers.filter(
+          (importer) =>
+            !REPORT_INTERNAL_IMPORTS.some((entry) => entry.module === module && entry.importer === importer),
+        );
+        if (files.length === 0 || registered.has(module) || SEAM_LEGACY.includes(module)) continue;
+        const failure = seamAdmissionFailure(module);
+        problems.push(
+          failure === null
+            ? `${module} is imported from outside src/optics/ (${summarize(files)}) and meets the admission ` +
+                "rule. Add it to SEAM_REGISTRY."
+            : `${module} is imported from outside src/optics/ (${summarize(files)}) but ${failure}. Import a ` +
+                "SEAM_REGISTRY module instead: SEAM_LEGACY only shrinks, so do not add the module there.",
+        );
+      }
+      for (const module of SEAM_LEGACY) {
+        if (registered.has(module)) {
+          problems.push(`${module} is in both seam lists. Remove it from SEAM_LEGACY.`);
+        } else if (!outsideImporters().has(module)) {
+          problems.push(`${module} is no longer imported from outside src/optics/. Remove it from SEAM_LEGACY.`);
+        } else if (seamAdmissionFailure(module) === null) {
+          problems.push(`${module} now meets the admission rule. Move it from SEAM_LEGACY to SEAM_REGISTRY.`);
+        }
+      }
+      expect(problems, "seam guard").toEqual([]);
+    });
+  });
+
+  describe("caches", () => {
+    it("finds no unlisted module-level container, and no entry without one", () => {
+      const containers = moduleLevelContainers();
+      const problems: string[] = [];
+      for (const [id, container] of containers) {
+        if (id in CACHE_REGISTRY || id in CACHE_LEGACY) continue;
+        problems.push(
+          `${id} is a module-level ${container.constructorName} that is not listed. Add it to CACHE_REGISTRY as ` +
+            '"constant", "bounded" or "weak-owner": CACHE_LEGACY only shrinks, so do not add it there.',
+        );
+      }
+      for (const id of Object.keys(CACHE_REGISTRY)) {
+        if (id in CACHE_LEGACY) problems.push(`${id} is in both cache lists. Remove it from CACHE_LEGACY.`);
+        if (!containers.has(id)) problems.push(`${id} is not a module-level container. Remove it from CACHE_REGISTRY.`);
+      }
+      for (const [id, record] of Object.entries(CACHE_LEGACY)) {
+        const staleness = cacheLegacyStaleness(containers.get(id), record);
+        if (staleness !== null) problems.push(`${id} ${staleness}`);
+      }
+      expect(problems, "cache guard").toEqual([]);
+    });
+
+    it("registers only containers that meet their kind's admission rule", () => {
+      const problems = Object.entries(CACHE_REGISTRY).flatMap(([id, record]) => {
+        const container = moduleLevelContainers().get(id);
+        const failure = container === undefined ? null : cacheAdmissionFailure(container, record);
+        return failure === null ? [] : [`${id} ${failure}. Fix the code or the CACHE_REGISTRY record.`];
+      });
+      expect(problems, "cache registry admission").toEqual([]);
+    });
+
+    it("records how each legacy cache grows and what would retire it", () => {
+      const incomplete = Object.entries(CACHE_LEGACY)
+        .filter(([, record]) => record.grows.trim() === "" || record.retire.trim() === "")
+        .map(([id]) => id);
+      expect(incomplete, "CACHE_LEGACY records need non-empty `grows` and `retire` text").toEqual([]);
+    });
+  });
+});

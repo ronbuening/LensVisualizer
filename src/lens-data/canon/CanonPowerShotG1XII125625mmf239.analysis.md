@@ -10,7 +10,7 @@
 **Inventor:** Shuichi Mogi
 **Applicant:** Canon Kabushiki Kaisha
 **Title:** Zoom Lens and Imaging Apparatus Having the Same
-**Embodiment analyzed:** Numerical Example 2 (¶0088; FIG. 3, FIGS. 4A-4C)
+**Example details:** ¶0088; FIG. 3, FIGS. 4A-4C
 
 Numerical Example 2 is the closest patent match for the fixed zoom lens used in the Canon PowerShot G1 X Mark II. The patent example is a six-zoom-group positive-lead design with the power distribution + - + + - +. Its tabulated focal-length range is 12.84-60.72 mm, its F-number range is 2.06-4.02, and its wide/middle/tele image heights are 9.17 / 10.46 / 11.25 mm.
 

@@ -7,6 +7,8 @@ import {
   latestRunRecords,
   percentChange,
   summarizeRun,
+  digestCompletedWork,
+  tallyMarkupElements,
   type BenchmarkEntry,
   type BenchmarkRunRecord,
 } from "../../../src/benchmarks/benchmarkReport.js";
@@ -139,5 +141,90 @@ describe("benchmark report helpers", () => {
     expect(record.summary.analysis?.perspectiveFocus).toBeNull();
     expect(record.summary.analysis?.perspectiveDistortion).toBeNull();
     expect(buildBenchmarkReport([record])).toContain("perspectiveFocus");
+  });
+});
+
+describe("completed work", () => {
+  it("tallies every member of a result, and reads no float", () => {
+    const tallies: Record<string, number> = {};
+    digestCompletedWork(
+      "result",
+      {
+        fields: [
+          { usable: true, validSampleCount: 9, clippedSampleCount: 0, chiefImageHeight: 12.5, status: "usable" },
+          { usable: false, validSampleCount: 3, clippedSampleCount: 6, chiefImageHeight: 20.25, status: "clipped" },
+        ],
+        points: [
+          [0, 1],
+          [2, 3, Number.NaN],
+        ],
+        usableFieldCount: 1,
+        preview: null,
+        pending: undefined,
+        imagePlaneZ: 168.9,
+        blurRadius: Number.NaN,
+        focusDistance: Number.POSITIVE_INFINITY,
+        label: "50%",
+        vector: [1, 2, 3],
+        weights: new Float64Array(5),
+        hits: [null, { slope: 0.1 }, null],
+        plain: { x: 1.5 },
+        empty: {},
+      },
+      tallies,
+    );
+    digestCompletedWork("curve", [{ clipped: false }, { clipped: true }], tallies);
+    digestCompletedWork("flag", true, tallies);
+    digestCompletedWork("none", null, tallies);
+    digestCompletedWork("number", 4.5, tallies);
+
+    expect(tallies).toEqual({
+      "result.fields.length": 2,
+      "result.fields.usable=true": 1,
+      "result.fields.usable=false": 1,
+      "result.fields.validSampleCount": 12,
+      "result.fields.clippedSampleCount": 6,
+      "result.fields.chiefImageHeight=number": 2,
+      "result.fields.status=usable": 1,
+      "result.fields.status=clipped": 1,
+      /* A list in a list is tallied under the outer list's items, and so is what is not finite there. */
+      "result.points.length": 2,
+      "result.points[].length": 5,
+      "result.points[][]=NaN": 1,
+      "result.usableFieldCount": 1,
+      "result.preview=null": 1,
+      "result.pending=undefined": 1,
+      "result.imagePlaneZ=number": 1,
+      "result.blurRadius=NaN": 1,
+      "result.focusDistance=Infinity": 1,
+      "result.label=text": 1,
+      "result.vector.length": 3,
+      "result.weights.length": 5,
+      "result.hits.length": 3,
+      "result.hits[]=null": 2,
+      "result.hits.slope=number": 1,
+      "result.plain.x=number": 1,
+      "result.empty=object": 1,
+      "curve.length": 2,
+      "curve.clipped=false": 1,
+      "curve.clipped=true": 1,
+      "flag=true": 1,
+      "none=null": 1,
+      "number=number": 1,
+    });
+  });
+
+  it("tallies an object past the depth it reads as present, and the elements of markup as one count", () => {
+    const tallies: Record<string, number> = {};
+    digestCompletedWork("deep", { a: { b: { c: { d: { e: { f: 1 } } } } } }, tallies);
+    expect(tallies).toEqual({ "deep.a.b.c.d=object": 1 });
+
+    const markup: Record<string, number> = {};
+    tallyMarkupElements(
+      '<svg width="10"><g><path d="M0 0L1.5 2"/><path d="M0 0"/></g><text>a &lt; b</text></svg>',
+      markup,
+    );
+    tallyMarkupElements("<div><span>x</span></div>", markup);
+    expect(markup).toEqual({ "markup.elements": 7 });
   });
 });

@@ -5,6 +5,8 @@
  * comparison slider math.
  */
 
+import { interpolateStationTable } from "../../optics/optics.js";
+
 export interface ZoomConvertibleLens {
   isZoom: boolean;
   zoomPositions?: number[] | null;
@@ -45,8 +47,5 @@ export function zoomTToFocalLength(zoomT: number, L: ZoomConvertibleLens): numbe
   if (!L.isZoom) return null;
   const zp = L.zoomPositions ?? [];
   if (zp.length < 2) return null;
-  const pos: number = zoomT * (zp.length - 1);
-  const idx: number = Math.min(Math.floor(pos), zp.length - 2);
-  const frac: number = pos - idx;
-  return zp[idx] + (zp[idx + 1] - zp[idx]) * frac;
+  return interpolateStationTable(zoomT, zp);
 }

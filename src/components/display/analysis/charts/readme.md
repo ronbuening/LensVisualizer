@@ -24,11 +24,11 @@ flowchart LR
 - Direct source files: 2
 - Direct subfolders: 0
 - Main outbound areas: package:react, src/components/display, src/types
-- External consumers: src/components/display
+- External consumers: src/components/display, src/components/relationshipMap
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `chartMath.ts` | Chart Math helper module | none | src/components/display (14) | ChartMargin, PlotArea, DEFAULT_ANALYSIS_CHART_MARGIN, createPlotArea, linearScale, symmetricDomain, niceTicks, angleTicks, +18 more |
+| `chartMath.ts` | Chart Math helper module | none | src/components/display (14), src/components/relationshipMap | ChartMargin, PlotArea, DEFAULT_ANALYSIS_CHART_MARGIN, createPlotArea, linearScale, symmetricDomain, niceTicks, angleTicks, +18 more |
 | `SvgChartFrame.tsx` | React component module | package:react, src/components/display, src/types | src/components/display (7) | SvgChartFrame, ChartLegend |

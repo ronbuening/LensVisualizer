@@ -20,8 +20,10 @@ flowchart LR
   n_external_pkg_react_router["pkg:react-router"]
   n_external_src_types["src/types"]
   n_external_src_utils_content["src/utils/content"]
+  n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
   n_external_src_utils_seo["src/utils/seo"]
   n_external_src_utils_style["src/utils/style"]
+  n_external_src_utils_text_ts["src/utils/text.ts"]
   n_external_src_utils_useMediaQuery_ts["src/utils/useMediaQuery.ts"]
   n_src_components_homepage_src_components_homepage_QuickNavCards_tsx --> |2| n_external_src_utils_catalog
   n_src_components_homepage_src_components_homepage_RecentLenses_tsx --> |2| n_external_src_utils_catalog
@@ -40,10 +42,12 @@ flowchart LR
   n_src_components_homepage_src_components_homepage_HomeFooter_tsx --> n_external_src_utils_content
   n_src_components_homepage_src_components_homepage_RecentLenses_tsx --> n_external_src_utils_content
   n_src_components_homepage_src_components_homepage_TrustStrip_tsx --> n_external_src_utils_content
+  n_src_components_homepage_src_components_homepage_QuickNavCards_tsx --> n_external_src_utils_featureFlags_ts
   n_src_components_homepage_src_components_homepage_IndexNavBar_tsx --> n_external_src_utils_seo
   n_src_components_homepage_src_components_homepage_QuickNavCards_tsx --> n_external_src_utils_seo
   n_src_components_homepage_src_components_homepage_TrustStrip_tsx --> n_external_src_utils_seo
   n_src_components_homepage_src_components_homepage_QuickNavCards_tsx --> n_external_src_utils_style
+  n_src_components_homepage_src_components_homepage_QuickNavCards_tsx --> n_external_src_utils_text_ts
   n_src_components_homepage_src_components_homepage_HeroSection_tsx --> n_external_src_utils_useMediaQuery_ts
   n_src_components_homepage_src_components_homepage_TrustStrip_tsx --> n_external_src_utils_useMediaQuery_ts
 ```
@@ -52,7 +56,7 @@ flowchart LR
 
 - Direct source files: 6
 - Direct subfolders: 0
-- Main outbound areas: src/types (6), package:react-router (5), src/utils/catalog (5), src/utils/content (3), src/utils/seo (3), src/utils/useMediaQuery.ts (2), src/utils/style
+- Main outbound areas: src/types (6), package:react-router (5), src/utils/catalog (5), src/utils/content (3), src/utils/seo (3), src/utils/useMediaQuery.ts (2), src/utils/featureFlags.ts, src/utils/style, +1 more
 - External consumers: src/pages/HomePage.tsx
 
 ## Files
@@ -62,6 +66,6 @@ flowchart LR
 | `HeroSection.tsx` | React component module | src/types, src/utils/useMediaQuery.ts | src/pages/HomePage.tsx | default, HeroSection |
 | `HomeFooter.tsx` | React component module | package:react-router, src/types, src/utils/content | src/pages/HomePage.tsx | default, HomeFooter |
 | `IndexNavBar.tsx` | React component module | package:react-router, src/types, src/utils/catalog, src/utils/seo | src/pages/HomePage.tsx | default, IndexNavBar |
-| `QuickNavCards.tsx` | React component module | src/utils/catalog (2), package:react-router, src/types, src/utils/seo, src/utils/style | src/pages/HomePage.tsx | default, QuickNavCards |
+| `QuickNavCards.tsx` | React component module | src/utils/catalog (2), package:react-router, src/types, src/utils/featureFlags.ts, src/utils/seo, +2 more | src/pages/HomePage.tsx | default, QuickNavCards |
 | `RecentLenses.tsx` | React component module | src/utils/catalog (2), package:react-router, src/types, src/utils/content | src/pages/HomePage.tsx | default, RecentLenses |
 | `TrustStrip.tsx` | React component module | package:react-router, src/types, src/utils/content, src/utils/seo, src/utils/useMediaQuery.ts | src/pages/HomePage.tsx | default, TrustStrip |

@@ -22,13 +22,18 @@ import type { LensData } from "../../../../src/types/optics.js";
 
 /* ── helpers ── */
 
-function makeLens(overrides: Partial<LensData> = {}): LensData {
-  return {
+function makeLens(overrides: Partial<LensData> = {}): import("../../../../src/optics/buildLens.js").CanonicalLens {
+  const fields = {
     name: "NIKON NIKKOR Z 50mm f/1.8 S",
     specs: ["50mm", "f/1.8", "9 elements"],
     subtitle: "US Patent 2019/0234567",
     ...overrides,
-  } as unknown as LensData;
+  };
+  return {
+    ...fields,
+    catalog: { specs: fields.specs },
+    source: { patentNumber: fields.patentNumber, example: fields.patentExample, authors: fields.patentAuthors },
+  } as unknown as import("../../../../src/optics/buildLens.js").CanonicalLens;
 }
 
 /* ── deriveMaker ── */
@@ -272,6 +277,16 @@ describe("lensDisplaySubtitle", () => {
         }),
       ),
     ).toBe("US 10,571,651 B2 — Hideki Sakai, Aiko Example");
+  });
+
+  it("follows the patent number with the transcribed example", () => {
+    const lens = (patentExample: LensData["patentExample"]) =>
+      makeLens({ patentNumber: "US 4,303,312 A", patentExample, patentAuthors: ["Ada Lovelace"] });
+    expect(lensDisplaySubtitle(lens({ label: "Table IV", id: "4" }))).toBe("US 4,303,312 A, Table IV — Ada Lovelace");
+    expect(lensDisplaySubtitle(lens({ label: "Sole example", id: null }))).toBe(
+      "US 4,303,312 A, sole example — Ada Lovelace",
+    );
+    expect(lensDisplaySubtitle(lens(undefined))).toBe("US 4,303,312 A — Ada Lovelace");
   });
 
   it("shows only the patent number when the source names no individual inventor", () => {

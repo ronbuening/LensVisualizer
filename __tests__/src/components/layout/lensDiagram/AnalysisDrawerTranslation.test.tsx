@@ -6,7 +6,9 @@ import AnalysisDrawer from "../../../../../src/components/layout/AnalysisDrawer.
 import AnalysisDrawerContent from "../../../../../src/components/layout/lensDiagram/AnalysisDrawerContent.js";
 import { ANALYSIS_TABS } from "../../../../../src/components/layout/lensDiagram/analysisTabs.js";
 import { build, buildSimplePositiveElementLens, apertureAt } from "../../../optics/testLensFixtures.js";
-import { doLayout, eflAtFocus, computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/optics.js";
+import { doLayout, eflAtFocus } from "../../../../../src/optics/optics.js";
+import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/state/fieldAdapters.js";
+import { constructionFixtureData } from "../../../optics/constructionFixtures.js";
 import { installMatchMediaMock } from "../../../../testUtils.js";
 import { replaceTextForTranslation } from "../../../../translationTestUtils.js";
 import type { AnalysisTabId } from "../../../../../src/types/state.js";
@@ -15,13 +17,14 @@ import themes from "../../../../../src/utils/theme/themes.js";
 // MTF's worker-driven transitions have their own real-engine test in MtfTab.test.tsx.
 const tabs = ANALYSIS_TABS.filter((tab) => tab.id !== "mtf");
 const firstLens = buildSimplePositiveElementLens("translation-first");
+const firstData = constructionFixtureData(firstLens);
 const lenses = [
   firstLens,
   build({
-    ...firstLens.data,
+    ...firstData,
     key: "translation-second",
     name: "Second fixture",
-    surfaces: firstLens.data.surfaces.map((surface) => (surface.elemId ? { ...surface, R: surface.R * 1.2 } : surface)),
+    surfaces: firstData.surfaces.map((surface) => (surface.elemId ? { ...surface, R: surface.R * 1.2 } : surface)),
   }),
 ];
 beforeEach(() => installMatchMediaMock());

@@ -8,7 +8,7 @@
 **Inventor:** Hiltrud Ebbesmeier née Schitthof (credited as Hiltrud Schitthof)\
 **Assignee:** Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG\
 **Title:** Compact Wide-Angle Objective\
-**Embodiment analyzed:** First numerical example, reproduced in claim 3 and associated with Fig. 2
+**Example details:** reproduced in claim 3 and associated with Fig. 2
 
 US 4,773,745 discloses an all-spherical wide-angle objective containing eight glass lenses arranged in six air-spaced groups. The first numerical example is normalized to a stated focal length of 100 units. It is the closest published prescription for the Schneider-Kreuznach Super-Symmar HM 120 mm f/5.6, but the numerical residuals show that it should be treated as a design-family embodiment rather than asserted to be the unchanged factory prescription.
 

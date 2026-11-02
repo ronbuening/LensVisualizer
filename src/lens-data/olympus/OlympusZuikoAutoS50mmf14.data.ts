@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -22,10 +22,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    to the full-frame corner (23.8°, just past the patent's        ║
  * ║    ω = 23°); L7's edge thins to 0.20 mm there, below the 0.7 mm   ║
  * ║    target (2026-09-24 field-coverage audit).                      ║
+ * ║    Surfaces 4, 5, 7-11 stand 1 % above the f/1.4 on-axis ray      ║
+ * ║    at the paraxial pupil, rounded up to 0.1 mm (L5 and L6 square, ║
+ * ║    as FIG. 1 draws them); each stays inside the drawn element.    ║
+ * ║    The paraxial F/N iris admits a beam 6.8 % wider (pupil         ║
+ * ║    spherical aberration), which no rim inside FIG. 1 passes:      ║
+ * ║    f/1.4 traces f/1.48, limited at r₅ (2026-10-28 audit).         ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                           ║
- * ║    STO position inferred from Fig. 1 — approximately 25% of the  ║
- * ║    d₆ air gap from r₆, splitting the gap into 4.20 + 12.59 mm.  ║
+ * ║    Fig. 1 draws no diaphragm, so the stop plane is a model        ║
+ * ║    choice: 7.80 mm behind r₆, just behind r₆'s clear cap (sag     ║
+ * ║    7.72 mm at its 12.4 mm rim), splitting d₆ into 7.80 + 8.985.  ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:          ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -36,23 +43,30 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "olympus-zuiko-auto-s-50f14",
   maker: "Olympus",
   name: "OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4",
   subtitle: "US 4,094,588 EXAMPLE 1 — NAKAGAWA / OLYMPUS",
-  specs: ["7 ELEMENTS / 6 GROUPS", "f ≈ 50.0 mm", "F/1.4", "2ω ≈ 46°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata fields ── */
-  focalLengthMarketing: 50,
-  apertureMarketing: 1.4,
-  lensMounts: ["olympus-om"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 4,094,588",
-  patentAuthors: ["Jihei Nakagawa"],
-  patentAssignees: ["Olympus Optical Co., Ltd."],
-  patentYear: 1978,
-  elementCount: 7,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["olympus-om"],
+    imageFormat: "135-full-frame",
+    specs: ["7 ELEMENTS / 6 GROUPS", "f ≈ 50.0 mm", "F/1.4", "2ω ≈ 46°", "ALL SPHERICAL"],
+    elementCount: 7,
+    groupCount: 6,
+    /* ── Explicit metadata fields ── */
+    focalLengthMm: { marketing: 50 },
+    fNumber: { marketing: 1.4 },
+  },
+
+  source: {
+    patentNumber: "US 4,094,588",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 1978,
+    authors: ["Jihei Nakagawa"],
+    assignees: ["Olympus Optical Co., Ltd."],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -63,7 +77,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6204,
       vd: 60.3,
-      fl: 61.6,
+      focalLengthMm: 61.6,
       glass: "SK16-type (Schott SK16 / HOYA BACD5 — exact)",
       apd: false,
       role: "Front positive meniscus; primary light-gathering element with low-dispersion crown glass. Meniscus shape distributes refraction to reduce spherical aberration.",
@@ -75,7 +89,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6935,
       vd: 50.8,
-      fl: 76.3,
+      focalLengthMm: 76.3,
       glass: "694508 - LaK-type A (S-LAL58 code match; patent nd=1.69350, vd=50.8)",
       apd: false,
       role: "Second positive meniscus; shares front-group positive power with L1. Steeper curvatures and higher nd balance higher-order spherical aberration.",
@@ -87,7 +101,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5814,
       vd: 40.8,
-      fl: -32.4,
+      focalLengthMm: -32.4,
       glass: "PBL25 (OHARA, 581408)",
       apd: false,
       role: "Critical negative meniscus of the front group. Steep concave rear surface (r₆) dominates the Petzval sum and coma balance. Patent condition (1) constrains r₆ relative to r₇.",
@@ -99,11 +113,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.5,
-      fl: -19.4,
+      focalLengthMm: -19.4,
       glass: "SF4 (Schott SF4 / OHARA S-TIH4 — exact)",
       apd: false,
-      cemented: "D1",
       role: "Thin dense-flint negative element of the cemented doublet. Highest dispersion in the system (νd = 27.5), providing chromatic correction in the rear group. Front surface r₇ pairs with r₆ across the stop.",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -112,11 +126,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6935,
       vd: 53.3,
-      fl: 35.8,
+      focalLengthMm: 35.8,
       glass: "LAC13 (HOYA, 694533)",
       apd: false,
-      cemented: "D1",
       role: "Positive crown element of the cemented doublet. Nearly flat junction (R₈ = +792 mm) means chromatic correction relies on the Δν = 25.8 glass-dispersion difference rather than junction curvature.",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -125,7 +139,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.8061,
       vd: 40.9,
-      fl: 48.6,
+      focalLengthMm: 48.6,
       glass: "LaSF3 (Schott LaSF3 / HOYA NBFD3 — exact)",
       apd: false,
       role: "Highest-nd element (1.8061). Meniscus concave-to-object; high refractive index keeps curvatures moderate despite strong positive power, and contributes favorably to the Petzval sum. Rear surface r₁₁ constrained by patent condition (3).",
@@ -137,7 +151,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6935,
       vd: 50.8,
-      fl: 74.9,
+      focalLengthMm: 74.9,
       glass: "694508 - LaK-type A (same glass as L2; S-LAL58 code match)",
       apd: false,
       role: "Weak positive field-flattening element at the rear. Gentle curvatures minimize own aberration contributions while trimming distortion and lateral color.",
@@ -145,52 +159,42 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
-    { label: "1", R: 30.735, d: 5.79, nd: 1.6204, elemId: 1, sd: 18.5 },
-    { label: "2", R: 145.26, d: 0.095, nd: 1.0, elemId: 0, sd: 18.5 },
-    { label: "3", R: 23.69, d: 3.885, nd: 1.6935, elemId: 2, sd: 16.5 },
-    { label: "4", R: 40.01, d: 2.34, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "5", R: 53.085, d: 1.015, nd: 1.5814, elemId: 3, sd: 13.0 },
-    { label: "6", R: 13.82, d: 4.196, nd: 1.0, elemId: 0, sd: 12.4 }, // sd/|R| = 0.897 (slope limit)
-    { label: "STO", R: 1e15, d: 12.589, nd: 1.0, elemId: 0, sd: 10.3 }, // STO position inferred from Fig. 1
-    { label: "7", R: -14.92, d: 0.965, nd: 1.7552, elemId: 4, sd: 11.5 },
-    { label: "8", R: 792.345, d: 5.8, nd: 1.6935, elemId: 5, sd: 13.0 },
-    { label: "9", R: -25.565, d: 0.095, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "10", R: -53.085, d: 4.45, nd: 1.8061, elemId: 6, sd: 14.0 },
-    { label: "11", R: -23.38, d: 0.115, nd: 1.0, elemId: 0, sd: 14.0 },
-    { label: "12", R: 93.92, d: 2.85, nd: 1.6935, elemId: 7, sd: 16.5 },
-    { label: "13", R: -114.865, d: 37.16, nd: 1.0, elemId: 0, sd: 16.5 },
+    { label: "1", R: 30.735, d: 5.79, sd: 18.5, medium: 1 },
+    { label: "2", R: 145.26, d: 0.095, sd: 18.5 },
+    { label: "3", R: 23.69, d: 3.885, sd: 16.5, medium: 2 },
+    { label: "4", R: 40.01, d: 2.34, sd: 15.5 },
+    { label: "5", R: 53.085, d: 1.015, sd: 14.6, medium: 3 },
+    { label: "6", R: 13.82, d: 7.8, sd: 12.4 }, // sd/|R| = 0.897 (slope limit)
+    { label: "STO", R: "flat", d: 8.985 }, // model choice: just behind r6's clear cap (sag 7.72 mm)
+    { label: "7", R: -14.92, d: 0.965, sd: 11.6, medium: 4 },
+    { label: "8", R: 792.345, d: 5.8, sd: 14.9, medium: 5 },
+    { label: "9", R: -25.565, d: 0.095, sd: 14.9 },
+    { label: "10", R: -53.085, d: 4.45, sd: 15.8, medium: 6 },
+    { label: "11", R: -23.38, d: 0.115, sd: 15.8 },
+    { label: "12", R: 93.92, d: 2.85, sd: 16.5, medium: 7 },
+    { label: "13", R: -114.865, sd: 16.5 },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: { closeFocusM: 0.45, description: "Unit focus — entire optical assembly translates forward as a rigid unit." },
 
-  /* ── Variable air spacings (unit focus — BFD changes) ── */
-  var: {
-    "13": [37.16, 44.12],
-  },
+  /* (moved from var) ── Variable air spacings (unit focus — BFD changes) ── */
+  gaps: { "13": { label: "BF", values: [[37.16, 44.12]] } },
 
-  varLabels: [["13", "BF"]],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 1.4, fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16] },
 
   /* ── Group and doublet annotations ── */
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "6" },
     { text: "REAR", fromSurface: "7", toSurface: "13" },
   ],
-
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.45,
-  focusDescription: "Unit focus — entire optical assembly translates forward as a rigid unit.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 1.4,
-  fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

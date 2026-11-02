@@ -10,7 +10,7 @@
 **Inventor:** Masato Kondo
 **Applicant:** FUJIFILM Corporation
 **Title:** Zoom Lens and Imaging Apparatus
-**Embodiment analyzed:** Example 1 (FIG. 1, FIG. 2, FIG. 11; Tables 1–3 and 28)
+**Example details:** FIG. 1, FIG. 2, FIG. 11; Tables 1–3 and 28
 
 This prescription transcribes Example 1 of US 2019/0361195 A1. The patent describes a four-group zoom lens with a positive first group, negative second group, positive third group, and positive fourth group; G2 and G3 move during zooming, G4 remains fixed, and only G3 moves during focusing. Example 1 is the embodiment illustrated in FIG. 1, FIG. 2, and FIG. 11 and tabulated in Tables 1–3.
 

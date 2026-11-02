@@ -9,7 +9,7 @@
 **Inventor:** Dr. Erhard Glatzel, Heidenheim  
 **Applicant:** Fa. Carl Zeiss, 7920 Heidenheim  
 **Title:** Lichtstarkes photographisches Objektiv mit großem Bildwinkel  
-**Embodiment analyzed:** Beispiel 12 (Example 12), Figure 7
+**Example details:** Beispiel 12, Figure 7
 
 DE 2359156 A1 discloses a family of high-speed wide-angle photographic objectives using a relaxed negative-positive front construction, a central aperture-stop region, and a strong negative member behind the stop. Example 12 is the relevant numerical prescription for the early 9-element Distagon T* 28mm f/2 design. The patent table gives:
 

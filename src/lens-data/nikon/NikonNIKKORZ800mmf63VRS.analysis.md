@@ -7,7 +7,7 @@
 **Inventors:** Masaki Ito (伊藤 匡輝); Satoshi Miwa (三輪 哲史); Fumiaki Ohtake (大竹 史哲) <br>
 **Applicant:** Nikon Corporation (株式会社ニコン) <br>
 **Title:** 光学系及び光学機器 (*Optical system and optical apparatus*)
-**Embodiment analyzed:** Example 6 (第6実施例), optical system OL6
+**Example details:** 第6実施例, optical system OL6
 
 The implemented prescription is Example 6 of JP 2023-23323 A. The patent describes OL6 as a three-power-group optical system consisting, from object to image, of positive G1, negative focusing group G2, and negative rear group G3. G1 contains a bonded phase-Fresnel (PF) diffractive element, G2 is the single negative meniscus L21, and the aperture stop lies behind G2 and before G3. Example 6 itself is given in paragraphs ¶0158–¶0167, Tables 16–18 on patent PDF pages 29–31, and Figure 11 on page 40.
 
@@ -81,7 +81,7 @@ L18: nd = 1.66382, νd = 27.35. Glass: J-SFH4 (HIKARI), coordinate-compatible ca
 
 L17 is biconcave negative and L18 is biconvex positive. Their standalone powers are nearly opposed, and the computed cemented-pair focal length is about +10.56 m, making D2 nearly neutral in first-order power while still allowing the two surfaces and two dispersions to participate in the G1 correction balance.
 
-L18 is also the positive lens in G1 with the smallest νd in Example 6. That specific status is used by the patent's conditions involving νdp1, ndp1, and θgFp1. The model carries the independently checked J-SFH4 line data nC = 1.656918, nF = 1.681192, ng = 1.696531, and dPgF = +0.0334 on L18.
+L18 is also the positive lens in G1 with the smallest νd in Example 6. That specific status is used by the patent's conditions involving νdp1, ndp1, and θgFp1. The model borrows the compatible J-SFH4 coefficient curve for C/d/F dispersion and retains the patent's θgF = 0.6319, converted to the runtime normal-line deviation dPgF = +0.0341027. Catalog-derived line indices are resolved through that shared curve rather than duplicated as patent-specific values.
 
 ### L21 — Negative Meniscus Focus Element
 
@@ -169,13 +169,13 @@ The patent publishes nd and νd coordinates, not supplier glass names. The names
 | J-LASFH23 (HIKARI) | 1.85 | 27.03 | L312 | Exact coordinate match |
 | FDS18 (HOYA) | 1.945944 | 17.98 | L313 | Coordinate-compatible to catalog rounding |
 
-The patent explicitly singles out L18 as the positive lens in G1 with the smallest νd. Its stored Hikari line indices give
+The patent explicitly singles out L18 as the positive lens in G1 with the smallest νd (¶0159, PDF p. 29). Table 16 gives νd = 27.35, and Table 26 gives θgF = 0.6319 for Example 6. The runtime normal line is 0.6438 − 0.001682νd, so the stored deviation is
 
 $$
-\theta_{gF}=\frac{n_g-n_F}{n_F-n_C}=0.6319106863,
+\Delta P_{gF}=0.6319-(0.6438-0.001682\times27.35)=+0.0341027.
 $$
 
-which reproduces the patent's Table 26 value 0.6319. The same L18 entry carries dPgF = +0.0334 from the authoritative Hikari data sheet. This provides direct spectral support for the patent conditions involving θgFp1; it does not by itself justify describing the complete lens as apochromatic. No broader APO claim is made here.
+The former +0.0334 and copied Hikari C/F/g indices have been removed. J-SFH4 remains a compatible coefficient-backed spectral proxy, with the patent ratio controlling g relative to the catalog C/F span. The source does not publish those separate C/F/g indices or prove the production supplier. The source ratio supports the stated secondary-spectrum condition; it does not establish system-level apochromatic performance.
 
 Nikon markets the production lens as containing three ED elements and one SR element in addition to one PF element, and its lens-construction diagram identifies them as L16, L34, and L37 (ED) and L18 (SR). The data file flags the three ED rows `apd: "inferred"` (the identification comes from the manufacturer diagram, not the patent) and L18 `apd: "patent"` (the patent's θgF conditions single it out). The catalog labels still name dispersion curves, not Nikon's production melts.
 
@@ -247,7 +247,7 @@ The surface-by-surface Petzval calculation uses φ/(n·n′) for every refractin
 
 The patent does not publish a physical diaphragm diameter. The implemented stop semi-diameter, 10.5056371475 mm, is therefore a model calibration chosen so that the parsed pre-stop pupil matrix reproduces the design FNO 6.41999. Agreement with that f-number is not independent evidence of the real diaphragm size.
 
-Likewise, the patent gives no numerical clear-aperture or semi-diameter table. The authored semi-diameters are modeled values, not source facts. They follow the element rims drawn in Figure 11, measured at 0.348 mm per 300-dpi pixel with the scale set from the L11-to-L13 axial vertex spacing: L11 63.0 mm, L12 61.6 mm, L13 and its PF layers 38.3 mm, L14+L15 34.8 mm, L16 33.8 mm, L17+L18 27.1 mm, L21 22.6 mm, and the rear G3 assemblies rising from 11.5 mm behind the stop to 17.1 mm at L312+L313. Each value clears the infinity-focus axial marginal ray traced with the diffractive surface's power included (for example 60.75 mm at surface 1 and 21.35 mm at L21), and every rear G3 rim also contains the full-field chief ray; the extreme off-axis front-group rays vignette, as in any long telephoto. The minimum physical-lens edge thickness is 0.566 mm (L16), the maximum rim angle is 31.98° (surface 11), and the maximum shared-gap sag-intrusion fraction is 0.621 against the 0.90 limit. These checks validate the authored geometry but do not turn the figure-derived apertures into Nikon production dimensions.
+Likewise, the patent gives no numerical clear-aperture or semi-diameter table. The authored semi-diameters are modeled values, not source facts. They follow the element rims drawn in Figure 11, measured at 0.348 mm per 300-dpi pixel with the scale set from the L11-to-L13 axial vertex spacing: L11 63.0 mm, L12 61.6 mm, L13 and its PF layers 38.3 mm, L14+L15 34.8 mm, L16 33.8 mm, L17+L18 27.1 mm, L21 22.6 mm, and the rear G3 assemblies rising from 11.5 mm behind the stop to 17.1 mm at L312+L313. Each value clears the infinity-focus axial marginal ray traced with the diffractive surface's power included (for example 60.75 mm at surface 1 and 21.35 mm at L21), and every rear G3 rim also contains the full-field chief ray; the extreme off-axis front-group rays vignette, as in any long telephoto. The minimum physical-lens edge thickness is 0.566 mm (L16), the maximum rim angle is 30.72° (surface 12; Figure 11's flat rim lands on surfaces 11 and 37 are modeled as rim cuts that end those caps at 32.09 and 15.59 mm, where their slopes are taken; the figure ends 37's cap at 14.93 mm, but the cut sits just outside the traced beams), and the maximum shared-gap sag-intrusion fraction is 0.621 against the 0.90 limit. These checks validate the authored geometry but do not turn the figure-derived apertures into Nikon production dimensions.
 
 No uniform scaling is applied. Marketed 800 mm / f/6.3 and patent design 779.99933 mm / f/6.41999 remain separate throughout the model and this analysis.
 

@@ -1,12 +1,11 @@
-/**
- * buildLens public entry — stable constructor exports for runtime lens creation.
- *
- * Keeps app imports pointed at the historical buildLens path while delegating the
- * active implementation to runtimeLens and the engine compatibility layer.
- */
+/** Public buildLens seam; implementations live in the focused engine subdirectories. */
+export { compileLens } from "./prescription/compile.js";
+export { canonicalInput } from "./prescription/canonicalInput.js";
+export type { CanonicalTeleconverter } from "./prescription/canonical.js";
+export { buildCanonicalLens, buildLens } from "./prescription/buildRuntimeLens.js";
+export type { CanonicalLens, IngestedPrescription } from "./prescription/canonical.js";
+export { canonicalLensFromRuntime, compiledLensFromRuntime } from "./prescription/identity.js";
+export { ingestLens, ingestTeleconverter, lensDataVersion } from "./prescription/ingestV2.js";
+export { buildLens as default } from "./prescription/buildRuntimeLens.js";
 
-import { buildLens2 } from "./compat.js";
-
-export { paraxialTrace, realTraceToStop } from "./runtimeLens.js";
-
-export default buildLens2;
+export { prepareRuntimeState } from "./state/runtimeAdapters.js";

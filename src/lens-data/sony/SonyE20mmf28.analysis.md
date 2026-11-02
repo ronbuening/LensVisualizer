@@ -8,7 +8,7 @@
 **Inventor:** Toshihiro Sunaga  
 **Applicant / Assignee:** Sony Corporation  
 **Title:** Image Pickup Lens and Image Pickup Apparatus  
-**Embodiment analyzed:** Fourth Embodiment, Numerical Example 4, FIG. 10 and Tables 10–13
+**Example details:** Numerical Example 4, FIG. 10 and Tables 10–13
 
 Numerical Example 4 is the strongest disclosed match to the Sony E 20mm f/2.8 (SEL20F28). The identification is convergent rather than explicit: the patent does not print the retail model number.
 

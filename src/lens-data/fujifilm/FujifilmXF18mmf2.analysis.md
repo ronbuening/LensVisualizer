@@ -59,7 +59,7 @@ The Petzval sum of 0.00728 mm⁻¹ (Petzval sum × f ≈ 0.136) is quite well-co
 | Property | Value |
 |---|---|
 | Surfaces | S1 (R = −130.000 mm), S2 (R = +8.903 mm) |
-| Glass | nd = 1.51742, νd = 52.43 → **OHARA S-NSL36** (exact match) |
+| Glass | nd = 1.517417, νd = 52.43 → **OHARA S-NSL36** (exact match) |
 | Thickness | 1.00 mm |
 | Focal length | −16.1 mm |
 
@@ -95,7 +95,7 @@ The stop is located 6.90 mm from the front of L1, in the 4.50 mm air gap between
 | Property | Value |
 |---|---|
 | Surfaces | S6 (R = +24.734 mm), junction S7 (R = +9.003 mm) |
-| Glass | nd = 1.64769, νd = 33.79 → **HOYA E-FD2** (exact nd and νd match) |
+| Glass | nd = 1.647689, νd = 33.79 → **HOYA E-FD2** (exact nd and νd match) |
 | Thickness | 0.86 mm |
 | Focal length | −22.3 mm |
 
@@ -167,7 +167,7 @@ L7 is the patent's "Lens B" — the element around which the invention's key cla
 | Property | Value |
 |---|---|
 | Surfaces | S15 (R = +52.117 mm), S16 (R = −30.012 mm) |
-| Glass | nd = 1.83481, νd = 42.71 → **OHARA S-LAH55VS** (exact match) |
+| Glass | nd = 1.834807, νd = 42.71 → **OHARA S-LAH55VS** (exact match) |
 | Thickness | 5.30 mm |
 | Focal length | +23.5 mm |
 
@@ -239,14 +239,14 @@ Seven of the eight glass types in Example 4 can be identified with exact matches
 
 | Element | nd | νd | Glass identification | Type | Role |
 |---|---|---|---|---|---|
-| L1 | 1.51742 | 52.43 | OHARA S-NSL36 (exact) | Normal crown | Front negative, low cost |
-| L2 | 1.83400 | 37.16 | OHARA S-LAH60 (exact coordinate) | Lanthanum dense flint | Positive meniscus, high index |
-| L3 | 1.64769 | 33.79 | HOYA E-FD2 (exact nd and νd) | Dense flint | Doublet negative, high dispersion |
-| L4 | 1.80400 | 46.57 | OHARA S-LAH65V (exact) | Lanthanum crown | Doublet positive, main power |
-| L5 | 1.80348 | 40.45 | OHARA S-LAH63 (exact) | Lanthanum crown | Aspheric positive (glass-mold) |
-| L6 | 1.92286 | 18.90 | OHARA S-NPH2 (exact) | Dense phosphate flint | Field flattener, extreme index |
-| L7 | 1.80348 | 40.45 | OHARA S-LAH63 (exact) | Lanthanum crown | Aspheric negative meniscus (glass-mold) |
-| L8 | 1.83481 | 42.71 | OHARA S-LAH55VS (exact) | Lanthanum crown | Rear positive, telecentricity |
+| L1 | 1.517417 | 52.43 | OHARA S-NSL36 (exact) | Normal crown | Front negative, low cost |
+| L2 | 1.834000 | 37.16 | OHARA S-LAH60 (exact coordinate) | Lanthanum dense flint | Positive meniscus, high index |
+| L3 | 1.647689 | 33.79 | HOYA E-FD2 (exact nd and νd) | Dense flint | Doublet negative, high dispersion |
+| L4 | 1.804000 | 46.57 | OHARA S-LAH65V (exact) | Lanthanum crown | Doublet positive, main power |
+| L5 | 1.803480 | 40.45 | OHARA S-LAH63 (exact) | Lanthanum crown | Aspheric positive (glass-mold) |
+| L6 | 1.922860 | 18.90 | OHARA S-NPH2 (exact) | Dense phosphate flint | Field flattener, extreme index |
+| L7 | 1.803480 | 40.45 | OHARA S-LAH63 (exact) | Lanthanum crown | Aspheric negative meniscus (glass-mold) |
+| L8 | 1.834807 | 42.71 | OHARA S-LAH55VS (exact) | Lanthanum crown | Rear positive, telecentricity |
 
 The glass palette is dominated by OHARA lanthanum types (5 of 8 elements), reflecting Fujifilm's established supply relationship with OHARA and the design's need for high-index materials to achieve compact dimensions. The S-prefix in OHARA nomenclature denotes environmentally safe compositions (lead- and arsenic-free), meeting RoHS/REACH requirements. The sole HOYA glass (L3 / E-FD2) provides the dense flint dispersion needed for the cemented doublet; the nearest Schott equivalent (N-SF2, νd = 33.82) is slightly off in Abbe number.
 

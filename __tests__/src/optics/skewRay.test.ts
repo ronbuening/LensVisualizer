@@ -1,29 +1,38 @@
+import { analysisRequestAt } from "./testLensFixtures.js";
+import { registerRuntimeFixture } from "./testLensFixtures.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { describe, expect, it } from "vitest";
+import { computeChromaticRayFanSpread } from "../../../src/optics/chromatic/chromaticTrace.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { sampleCircularPupil, sampleOrthogonalPupilFan } from "../../../src/optics/analysis/sampling.js";
 import {
-  computeChromaticRayFanSpread,
-  doLayout,
-  sampleCircularPupil,
-  sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
-  traceChiefRelativeSkewRay,
-  traceChiefRelativeSkewRayChromatic,
   traceRay,
   traceRayChromatic,
   traceSkewRay,
   traceSkewRayChromatic,
-} from "../../../src/optics/optics.js";
+} from "../../../src/optics/trace/rayAdapters.js";
 import {
-  traceRay as traceRayFacade,
-  traceRayChromatic as traceRayChromaticFacade,
-  traceRayVector as traceRayVectorFacade,
-  traceRayVectorChromatic as traceRayVectorChromaticFacade,
-  traceSkewRay as traceSkewRayFacade,
-  traceSkewRayVector as traceSkewRayVectorFacade,
-  traceSkewRayVectorChromatic as traceSkewRayVectorChromaticFacade,
-} from "../../../src/optics/rayTrace.js";
-import { computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "../../../src/optics/aberration/offAxis.js";
+  traceChiefRelativeSkewRay,
+  traceChiefRelativeSkewRayChromatic,
+} from "../../../src/optics/trace/chiefRelative.js";
+import {
+  traceEngineRay,
+  traceRay as traceRayAdapter,
+  traceRayChromatic as traceRayChromaticAdapter,
+  traceRayVector as traceRayVectorAdapter,
+  traceRayVectorChromatic as traceRayVectorChromaticAdapter,
+  traceSkewRay as traceSkewRayAdapter,
+  traceSkewRayVector as traceSkewRayVectorAdapter,
+  traceSkewRayVectorChromatic as traceSkewRayVectorChromaticAdapter,
+} from "../../../src/optics/trace/rayAdapters.js";
+import {
+  computeOffAxisFieldGeometryParaxial,
+  traceOrthogonalOffAxisBundle,
+} from "../../../src/optics/analysis/aberration/offAxis.js";
 import {
   buildChromaticPositiveElementLens,
+  buildVariableStopGapLens,
   buildSimplePositiveElementLens,
   sharedApoLanthar50f2,
   sharedSonnar50f15,
@@ -152,49 +161,103 @@ describe("traceChiefRelativeSkewRay", () => {
     const viaWrapper = traceChiefRelativeSkewRay(xFrac, yFrac, yChief, fieldSlope, epSD, 0, 0, 15, false, L);
     const viaDirect = traceSkewRay(xFrac * epSD, yChief + yFrac * epSD, 0, fieldSlope, 0, 0, 15, false, L);
 
-    expect(viaWrapper.x).toBeCloseTo(viaDirect.x, 12);
-    expect(viaWrapper.y).toBeCloseTo(viaDirect.y, 12);
-    expect(viaWrapper.ux).toBeCloseTo(viaDirect.ux, 12);
-    expect(viaWrapper.uy).toBeCloseTo(viaDirect.uy, 12);
+    expect(viaWrapper).toEqual(viaDirect);
   });
 
   it("routes chromatic chief-relative launches through the channel adapter", () => {
     const Lchrom = buildChromaticPositiveElementLens("test-chief-relative-skew-chromatic");
     const viaWrapper = traceChiefRelativeSkewRayChromatic(0.25, -0.2, 1.5, -0.02, 8, 0, 0, 15, false, Lchrom, "B");
-    const viaDirect = traceSkewRayChromatic(2, -0.1, 0, -0.02, 0, 0, 15, false, Lchrom, "B");
+    const viaDirect = traceSkewRayChromatic(0.25 * 8, 1.5 + -0.2 * 8, 0, -0.02, 0, 0, 15, false, Lchrom, "B");
 
-    expect(viaWrapper.x).toBeCloseTo(viaDirect.x, 12);
-    expect(viaWrapper.y).toBeCloseTo(viaDirect.y, 12);
-    expect(viaWrapper.ux).toBeCloseTo(viaDirect.ux, 12);
-    expect(viaWrapper.uy).toBeCloseTo(viaDirect.uy, 12);
+    expect(viaWrapper).toEqual(viaDirect);
+  });
+
+  it("exports the trace module through the stable public barrel", async () => {
+    const direct = await import("../../../src/optics/trace/chiefRelative.js");
+    expect(direct.traceChiefRelativeSkewRay).toBe(traceChiefRelativeSkewRay);
+    expect(direct.traceChiefRelativeSkewRayChromatic).toBe(traceChiefRelativeSkewRayChromatic);
+  });
+
+  it.each([0, 7, -3])("forwards every field and channel with rayLead=%s", (rayLead) => {
+    const L = buildVariableStopGapLens(
+      [
+        [1, 2],
+        [2, 3],
+        [3, 4],
+      ],
+      "test-chief-relative-controls",
+    );
+    const lens = registerRuntimeFixture({ ...L, rayLead });
+    for (const ghost of [false, true]) {
+      for (const stopSD of [undefined, 0.1, 8]) {
+        for (const channel of [undefined, "R", "G", "B", "V"] as const) {
+          const args = [0.3, -0.2, 1.5, -0.02, 8, 0.4, 0.7, stopSD, ghost, lens] as const;
+          const launch = [0.3 * 8, 1.5 + -0.2 * 8, 0, -0.02, 0.4, 0.7, stopSD, ghost, lens] as const;
+          const result = channel
+            ? traceChiefRelativeSkewRayChromatic(...args, channel, 0.6)
+            : traceChiefRelativeSkewRay(...args, 0.6);
+          const expected = channel ? traceSkewRayChromatic(...launch, channel, 0.6) : traceSkewRay(...launch, 0.6);
+          expect(result).toEqual(expected);
+          expect(Number.isFinite(result.transmission)).toBe(true);
+          expect(result.clipped).toBe(rayLead < 0 || stopSD === 0.1);
+          if (rayLead < 0) {
+            // A negative lead starts after the flat first surface; production never backtracks to it.
+            expect(result).toEqual({ x: 0.3 * 8, y: 1.5 + -0.2 * 8, ux: 0, uy: -0.02, clipped: true, transmission: 1 });
+          }
+        }
+      }
+    }
+  });
+
+  it.each([NaN, Infinity, -Infinity])("uses preparation's finite-control contract (%s)", (invalid) => {
+    for (const controls of [
+      [invalid, 0, 0],
+      [0, invalid, 0],
+      [0, 0, invalid],
+    ]) {
+      const [focus, zoom, aberration] = controls;
+      expect(() => traceChiefRelativeSkewRay(0, 0, 0, 0, 1, focus, zoom, 15, false, L, aberration)).toThrow(/finite/);
+      expect(() =>
+        traceChiefRelativeSkewRayChromatic(0, 0, 0, 0, 1, focus, zoom, 15, false, L, "B", aberration),
+      ).toThrow(/finite/);
+    }
   });
 });
 
-describe("rayTrace facade adapters", () => {
+describe("production ray adapters", () => {
   const L = buildChromaticPositiveElementLens("test-ray-trace-facade-adapters");
   const { z: zPos } = doLayout(0, 0, L);
 
-  it("keeps direct meridional facade results aligned with the public optics wrapper", () => {
-    const viaFacade = traceRayFacade(2, -0.01, zPos, 0, 0, L.stopPhysSD, true, L);
-    const viaPublic = traceRay(2, -0.01, zPos, 0, 0, L.stopPhysSD, true, L);
+  it("keeps the meridional adapter aligned with prepared traversal", () => {
+    const viaAdapter = traceRayAdapter(2, -0.01, zPos, 0, 0, L.stopPhysSD, true, L);
+    const lead = L.rayLead ?? 0;
+    const norm = Math.hypot(-0.01, 1);
+    const engine = traceEngineRay(
+      prepareRuntimeState(L, 0, 0),
+      {
+        origin: [0, 2 + 0.01 * lead, zPos[0] - lead],
+        direction: [0, -0.01 / norm, 1 / norm],
+      },
+      { checkSemiDiameter: true, stopSemiDiameter: L.stopPhysSD, ghost: true, stopOnClip: true },
+    );
 
-    expect(viaFacade.y).toBeCloseTo(viaPublic.y, 12);
-    expect(viaFacade.u).toBeCloseTo(viaPublic.u, 12);
-    expect(viaFacade.clipped).toBe(viaPublic.clipped);
-    expect(viaFacade.pts.length).toBeGreaterThan(1);
+    expect(viaAdapter.y).toBeCloseTo(engine.y, 12);
+    expect(viaAdapter.u).toBeCloseTo(engine.uy, 12);
+    expect(viaAdapter.clipped).toBe(engine.status !== "ok");
+    expect(viaAdapter.pts.length).toBeGreaterThan(1);
   });
 
-  it("traces chromatic and vector launches through the direct facade", () => {
+  it("traces chromatic and vector launches through the production adapters", () => {
     const theta = (3 * Math.PI) / 180;
     const direction: [number, number, number] = [0, -Math.sin(theta), Math.cos(theta)];
     const origin: [number, number, number] = [0, 0.5, zPos[0]];
 
-    const chromatic = traceRayChromaticFacade(0.5, -Math.tan(theta), zPos, 0, 0, L.stopPhysSD, true, L, "R");
-    const vector = traceRayVectorFacade({ origin, direction }, zPos, L.stopPhysSD, true, L);
-    const vectorChromatic = traceRayVectorChromaticFacade({ origin, direction }, zPos, L.stopPhysSD, true, L, "R");
+    const chromatic = traceRayChromaticAdapter(0.5, -Math.tan(theta), zPos, 0, 0, L.stopPhysSD, true, L, "R");
+    const vector = traceRayVectorAdapter({ origin, direction }, zPos, L.stopPhysSD, true, L);
+    const vectorChromatic = traceRayVectorChromaticAdapter({ origin, direction }, zPos, L.stopPhysSD, true, L, "R");
 
     expect(chromatic.clipped).toBe(false);
-    expect(vector.y).toBeCloseTo(traceRayFacade(0.5, -Math.tan(theta), zPos, 0, 0, L.stopPhysSD, true, L).y, 10);
+    expect(vector.y).toBeCloseTo(traceRayAdapter(0.5, -Math.tan(theta), zPos, 0, 0, L.stopPhysSD, true, L).y, 10);
     expect(vectorChromatic.y).toBeCloseTo(chromatic.y, 10);
     expect(vectorChromatic.pts.length).toBeGreaterThan(1);
   });
@@ -206,9 +269,16 @@ describe("rayTrace facade adapters", () => {
     const direction: [number, number, number] = [ux / length, uy / length, 1 / length];
     const origin: [number, number, number] = [0.3, 0.4, zPos[0]];
 
-    const skew = traceSkewRayFacade(0.3, 0.4, ux, uy, 0, 0, L.stopPhysSD, false, L);
-    const vector = traceSkewRayVectorFacade({ origin, direction }, zPos, L.stopPhysSD, false, L);
-    const chromaticVector = traceSkewRayVectorChromaticFacade({ origin, direction }, zPos, L.stopPhysSD, false, L, "B");
+    const skew = traceSkewRayAdapter(0.3, 0.4, ux, uy, 0, 0, L.stopPhysSD, false, L);
+    const vector = traceSkewRayVectorAdapter({ origin, direction }, zPos, L.stopPhysSD, false, L);
+    const chromaticVector = traceSkewRayVectorChromaticAdapter(
+      { origin, direction },
+      zPos,
+      L.stopPhysSD,
+      false,
+      L,
+      "B",
+    );
 
     expect(vector.x).toBeCloseTo(skew.x, 10);
     expect(vector.y).toBeCloseTo(skew.y, 10);
@@ -362,10 +432,24 @@ describe("skew-meridional cross-validation", () => {
     const currentEPSD = L.EP.epSD * 0.6;
     const currentPhysStopSD = L.stopPhysSD * 0.6;
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeOffAxisFieldGeometryParaxial(
+      analysisRequestAt(L, { zPos: zPos, zoomT: 0 }).preparedGeometry,
+      0,
+    );
     expect(geometry).not.toBeNull();
 
-    const bundle = traceOrthogonalOffAxisBundle("sagittal", 11, geometry!, L, 0, 0, currentEPSD, currentPhysStopSD);
+    const bundle = traceOrthogonalOffAxisBundle(
+      analysisRequestAt(L, {
+        focusT: 0,
+        zoomT: 0,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+        aberrationT: undefined,
+      }),
+      "sagittal",
+      11,
+      geometry!,
+    );
     expect(bundle).not.toBeNull();
 
     // At center field, sagittal rays should have symmetric x-displacement

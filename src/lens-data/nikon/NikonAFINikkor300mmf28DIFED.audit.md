@@ -30,3 +30,11 @@ Patent: JP H04-294310 A, Example 1
 - Nikon's AF-I 300mm f/2.8D manual says always to use a filter (39 mm slip-in holder, L37C supplied). A 2 mm crown plate
   would account for about 0.68 mm of the unexplained 0.685 mm Bf offset, but with no source-listed plate nothing is
   modeled. Header and analysis now record the manual requirement; no data values changed.
+
+## 2026-10-29 — Fresh shape and glass reinspection
+
+- Directly viewed local `patents/JP_H04294310_A.pdf`: Example 1 table on PDF page 5, d-line definition on page 4, and Figure 1 on page 7, including a 600 dpi optical-section crop. Inspected all 20 powered faces, including cemented boundaries. The visible L14 shoulder is cemented; no independently resolved exposed concave cap-end land supports a new cut or extension.
+- The original inferred common L14 rim of 29.5 mm clips the published infinity FN=2.9 beam. `audit:aperture --raise` requires S7 >=29.77 mm and S11 >=23.49 mm. Adopted square S7/S8/S9=29.8 mm and S11=23.5 mm, preserving source radii, spacings, nd/vd, focus motion, and stop. This is a beam-clearance floor beyond the diagram estimate, not a published aperture dimension.
+- Rechecked all 11 lens media against the printed nd/νd table. Retained every coordinate and qualified catalog proxy; all resolve consistently. The source gives no nC/nF/ng/dPgF or supplier identities, and none are authored. The ED positions remain inferred from high νd, without measured APD claims.
+- Surface and image-circle audits pass; the infinity aperture is iris-limited at f/2.900000. Actual renderer output at 3 focus x 3 secondary-control states has 11 finite element paths and zero trim diagnostics per state; inspected the SVG raster. Neighboring-gap/stop checks show no new regression. Four cardinal full-iris rays at the published finite object distance retain baseline S2 clipping; the prior infinity S7 clipping is removed. The unresolved Bf offset and inferred stop station are retained.
+- Shared dispersion, glass-resolution-parity, and partial-dispersion tests pass (3 files / 94 tests for this triad); catalog consistency passes. No full-suite claim is made here.

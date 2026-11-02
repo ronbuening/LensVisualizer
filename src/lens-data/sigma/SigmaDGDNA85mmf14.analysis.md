@@ -6,7 +6,7 @@
 **Priority:** P2019-213387
 **Filed:** 26 November 2019
 **Published:** 3 June 2021
-**Embodiment analyzed:** Numerical Example 1 (数値実施例 1, fig. 1)
+**Example details:** 数値実施例 1, fig. 1
 **Production lens identified as:** Sigma 85 mm F/1.4 DG DN | Art (announced 6 August 2020; mounts: Sony E and L-mount)
 
 ---

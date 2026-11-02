@@ -10,7 +10,7 @@
 **Inventor:** Hiroshi Ito  
 **Applicant:** Canon Camera Company, Incorporated, Ōta-ku, Tokyo, Japan  
 **Title:** *Fotografisches Teleobjektiv mit großer relativer Öffnung und geringem Gewicht*  
-**Embodiment analyzed:** The sole numerical embodiment in the patent, tabulated in col. 3 and repeated in Claim 2; normalized to f = 100 mm, f/3.5, 2ω = 24°.
+**Example details:** in the patent, tabulated in col. 3 and repeated in Claim 2; normalized to f = 100 mm, f/3.5, 2ω = 24°.
 
 The patent discloses a compact telephoto objective of four air-spaced members and five glass elements. The numerical prescription is already normalized to a focal length of 100 mm, so no production scaling is needed for the Canon Serenar 100mm f/3.5.
 

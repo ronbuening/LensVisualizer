@@ -9,7 +9,7 @@
 **Filed:** 15 December 2022 (PCT/JP2022/046159)
 **Published:** 17 August 2023
 
-**Embodiment analyzed:** Example 8 (実施例 8), described at ¶0189–¶0198 and illustrated in Figure 92. The prescription is given in Tables 36–40 (¶0199–¶0203).
+**Example details:** 実施例 8, described at ¶0189–¶0198 and illustrated in Figure 92. The prescription is given in Tables 36–40 (¶0199–¶0203).
 
 The identification of Example 8 as the production SEL2070G design rests on the following convergent evidence:
 

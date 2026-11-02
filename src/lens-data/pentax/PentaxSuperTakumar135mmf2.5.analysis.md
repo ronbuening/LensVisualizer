@@ -7,7 +7,7 @@
 **Inventor:** Yasuo Takahashi
 **Assignee:** Asahi Kogaku Kogyo Co., Ltd.
 **Title:** *Lens System*
-**Embodiment analyzed:** Example 1, the numerical example stated at $F = 1000$ mm
+**Example details:** the numerical example stated at $F = 1000$ mm
 
 The data model represents the **PENTAX SUPER-TAKUMAR 135mm f/2.5** using the job-card-selected correlation to US
 3,459,469 Example 1. The patent itself does not name the production lens, so this identification is a production

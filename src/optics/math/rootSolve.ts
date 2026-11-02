@@ -2,8 +2,8 @@
  * Callback-driven scalar root solving with expanding bracket scans.
  *
  * Optical callers often have discontinuous valid domains because a trial ray
- * can clip or miss a surface. Null callback values split the scan so a bracket
- * never crosses an unavailable interval.
+ * can clip or miss a surface. Unavailable grid samples split the scan so a
+ * bracket never crosses a sampled gap in the valid domain.
  */
 
 export type ScalarRootEvaluation = number | null | undefined;
@@ -49,8 +49,8 @@ const DEFAULT_INTERVAL_TOLERANCE = 1e-9;
 const DEFAULT_MAX_ITERATIONS = 30;
 
 /**
- * Find a scalar root by scanning expanding intervals and bisecting a
- * sign-changing bracket.
+ * Find a scalar root by scanning outward from the seed in expanding intervals,
+ * then refining a sign-changing bracket with Brent's method.
  *
  * @param evaluate - residual callback; null/undefined/non-finite means unavailable
  * @param options - seed, search envelope, tolerances, and iteration limits
@@ -119,22 +119,41 @@ export function solveScalarRoot(
     const hi = Math.min(max, initialGuess + halfWidth);
     if (!Number.isFinite(lo) || !Number.isFinite(hi) || lo >= hi) continue;
 
-    let previous: EvaluatedPoint | null = null;
-    for (let index = 0; index <= scanSamples; index++) {
-      const x = lo + ((hi - lo) * index) / scanSamples;
-      const current = evaluateAt(x);
-      if (current === null) {
-        previous = null;
-        continue;
-      }
+    const samples = Array.from({ length: scanSamples + 1 }, (_, index) =>
+      index === 0 ? lo : index === scanSamples ? hi : lo + ((hi - lo) * index) / scanSamples,
+    );
+    // Only a finite off-grid seed joins the grid. An unavailable off-grid probe
+    // must not split the original grid pair that straddles it.
+    if (seed !== null && initialGuess >= lo && initialGuess <= hi && !samples.includes(initialGuess)) {
+      samples.splice(
+        samples.findIndex((x) => x > initialGuess),
+        0,
+        initialGuess,
+      );
+    }
+    const firstRight = samples.findIndex((x) => x > initialGuess);
+    let leftIndex = (firstRight === -1 ? samples.length : firstRight) - 1;
+    let rightIndex = leftIndex + 1;
+    const points: (EvaluatedPoint | null | undefined)[] = new Array(samples.length);
+    // Visit outward, checking only adjacent grid entries as each pair completes.
+    // Null grid samples (including an on-grid seed) still end adjacency.
+    while (leftIndex >= 0 || rightIndex < samples.length) {
+      const goLeft =
+        leftIndex >= 0 &&
+        (rightIndex >= samples.length || initialGuess - samples[leftIndex] <= samples[rightIndex] - initialGuess);
+      const index = goLeft ? leftIndex-- : rightIndex++;
+      const x = samples[index];
+      const previous = points[goLeft ? index + 1 : index - 1];
+      const current = x === initialGuess ? seed : evaluateAt(x);
+      points[index] = current;
+      if (current === null) continue;
       if (Math.abs(current.value) <= residualTolerance) {
         return success(current, 0, evaluations, [current.x, current.x]);
       }
-      if (previous !== null && oppositeSignsOrZero(previous.value, current.value)) {
-        bracket = { lo: previous, hi: current };
+      if (previous != null && oppositeSignsOrZero(previous.value, current.value)) {
+        bracket = goLeft ? { lo: current, hi: previous } : { lo: previous, hi: current };
         break;
       }
-      previous = current;
     }
   }
 
@@ -144,12 +163,41 @@ export function solveScalarRoot(
       : failure("unbracketed", search.nearest.x, search.nearest.value, 0, evaluations, null);
   }
 
-  let { lo, hi } = bracket;
-  const originalBracket: readonly [number, number] = [lo.x, hi.x];
+  const originalBracket: readonly [number, number] = [bracket.lo.x, bracket.hi.x];
+  let a = bracket.lo;
+  let b = bracket.hi;
+  if (Math.abs(a.value) < Math.abs(b.value)) [a, b] = [b, a];
+  let c = a;
+  let d = c;
+  let bisected = true;
   for (let iteration = 1; iteration <= maxIterations; iteration++) {
-    const midpointX = (lo.x + hi.x) / 2;
-    const midpoint = evaluateAt(midpointX);
-    if (midpoint === null) {
+    // Brent (1973), ch. 4: inverse quadratic interpolation (secant with two
+    // distinct residuals), guarded by bisection when progress is too slow.
+    let x: number;
+    if (a.value !== c.value && b.value !== c.value) {
+      x =
+        a.x * (b.value / (a.value - b.value)) * (c.value / (a.value - c.value)) +
+        b.x * (a.value / (b.value - a.value)) * (c.value / (b.value - c.value)) +
+        c.x * (a.value / (c.value - a.value)) * (b.value / (c.value - b.value));
+    } else {
+      x = b.x - (b.value / (b.value - a.value)) * (b.x - a.x);
+    }
+    const guard = a.x + (b.x - a.x) / 4;
+    const previousStep = bisected ? Math.abs(b.x - c.x) : Math.abs(c.x - d.x);
+    if (
+      !Number.isFinite(x) ||
+      x <= Math.min(guard, b.x) ||
+      x >= Math.max(guard, b.x) ||
+      Math.abs(x - b.x) >= previousStep / 2 ||
+      previousStep < intervalTolerance
+    ) {
+      x = (a.x + b.x) / 2;
+      bisected = true;
+    } else {
+      bisected = false;
+    }
+    const current = evaluateAt(x);
+    if (current === null) {
       return failure(
         "evaluation-failed",
         search.nearest?.x ?? null,
@@ -159,14 +207,17 @@ export function solveScalarRoot(
         originalBracket,
       );
     }
-    if (Math.abs(midpoint.value) <= residualTolerance || Math.abs(hi.x - lo.x) <= intervalTolerance) {
-      return success(midpoint, iteration, evaluations, originalBracket);
+    if (Math.abs(current.value) <= residualTolerance || Math.abs(b.x - a.x) <= intervalTolerance) {
+      return success(current, iteration, evaluations, originalBracket);
     }
-    if (oppositeSignsOrZero(lo.value, midpoint.value)) hi = midpoint;
-    else lo = midpoint;
+    d = c;
+    c = b;
+    if (oppositeSignsOrZero(a.value, current.value)) b = current;
+    else a = current;
+    if (Math.abs(a.value) < Math.abs(b.value)) [a, b] = [b, a];
   }
 
-  const root = (lo.x + hi.x) / 2;
+  const root = (a.x + b.x) / 2;
   const finalPoint = evaluateAt(root) ?? search.nearest;
   return failure(
     "iteration-limit",

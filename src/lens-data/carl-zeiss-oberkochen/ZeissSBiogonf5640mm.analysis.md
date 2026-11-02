@@ -11,7 +11,7 @@
 **Assignee:** Carl-Zeiss-Stiftung, Oberkochen, Germany (printed "Carl Zeiss-Stiftung")
 **Title:** Unsymmetrical Wide Angle Lens
 **Claims / examples:** 18 claims; 14 numerical examples
-**Embodiment analyzed:** Example 11 (FIG. 2; the same table is reproduced as claim 15)
+**Example details:** FIG. 2; the same table is reproduced as claim 15
 
 US 3,997,247 presents itself as an improvement on the same inventors' earlier US 3,833,290 (col. 1, ll. 4–10). It keeps the parent's five-component layout — two front menisci A and B, two condensing components C and D separated by a central vertex space CS that may hold a diaphragm, and a rear negative component E convex to the image (col. 1, l. 28 – col. 2, l. 30). The new teaching is a power distribution rule for the front pair and for the two air lenses that follow it (col. 2, l. 53 – col. 3, l. 13). Example 11 is a moderate-aperture member of the family: f/5.6, 2ω₀ = 63°, s′∞ = 0.35027 F (col. 11, ll. 1–25).
 
@@ -23,6 +23,8 @@ The production lens taken as the counterpart is the Carl Zeiss S-Biogon 5,6/40, 
 4. **Mechanics.** Dealer descriptions agree on a fixed f/5.6 aperture with no iris, no focusing mount, and an M50 × 0.75 thread. This matches a fixed-focus, fixed-stop optical design such as Example 11, but does not discriminate between examples.
 
 The correlation is limited. Examples 5, 6, and 7 (FIG. 2) and Example 10 (FIG. 4) are also f/5.6 designs with 62–66° fields, and none of the third-party sources reproduces a prescription. Example 11 is the selected embodiment, not a manufacturer-confirmed one. One dealer text attributes the lens to Charles G. Wynne for X-ray screening; that attribution is unsupported by any other source and is not adopted.
+
+No catalog mount or image format is assigned. Cröll places the S-Biogon in Zeiss Oberkochen's series of lenses for reduction and enlarging on microfilm, and Cavina names the Mikrobox recorder as its installation; neither is a camera system. The only fitting the sources describe is the M50 × 0.75 rear thread given by Delta Lenses, an industrial thread rather than a camera mount. The only recording-frame figure, 32 × 45 mm on 35 mm microfilm, comes from the staff forum post rather than a Zeiss publication, and Cavina describes the Mikrobox output as microfiche. The catalog taxonomy has no id for this thread or for a microfilm frame, and the 24 × 36 mm diagonal discussed below is a comparison, not a recording format.
 
 ## Optical Architecture
 

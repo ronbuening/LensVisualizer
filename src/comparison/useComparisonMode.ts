@@ -12,7 +12,7 @@
  */
 
 import { useMemo, useState, useCallback } from "react";
-import buildLens from "../optics/buildLens.js";
+import { buildLens } from "../optics/buildLens.js";
 import { lensSystemKey, resolveLensSystemData } from "../utils/catalog/teleconverterCatalog.js";
 import { computeFocusPair, computeAperturePair, computeZoomPair, computeMovementPair } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";

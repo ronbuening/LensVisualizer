@@ -8,7 +8,7 @@
 **Inventor:** Iain A. Neil\
 **Assignee:** ACM Projektentwicklung GmbH\
 **Title:** Objective Lens System\
-**Embodiment analyzed:** Example 2 / second embodiment, substantially 40 mm prime
+**Example details:** second embodiment, substantially 40 mm prime
 
 The implemented prescription is the second embodiment of US 8,508,864 B2, centered on Table 3 and FIGS. 12–14. The patent describes it as a medium-angle prime of substantially 40 mm, with a fixed first lens group G1, a focusing second lens group G2, two aspherical surfaces, and approximately f/1.4 full aperture. The final modeled infinity-focus effective focal length is 39.0263 mm, which is consistent with that nominal description.
 

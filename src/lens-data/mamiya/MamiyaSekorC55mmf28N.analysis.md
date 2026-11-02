@@ -1,14 +1,14 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP S55-45883 B2<br>
-**Application / laid-open publication:** JP S54-107336 (JP1979-107336)<br>
+**Patent:** JP S54-107336 A<br>
+**Application:** JP S53-13641<br>
 **Filed:** 10 February 1978<br>
 **Laid open:** 23 August 1979<br>
-**Published as examined patent:** 20 November 1980<br>
-**Inventor:** Yusuke Arisaka<br>
+**Examined publication:** JP S55-45883 B2, 20 November 1980<br>
+**Inventor:** Yusuke Nanjo<br>
 **Applicant:** Mamiya Koki Co., Ltd.<br>
 **Title:** Retrofocus-type wide-angle lens<br>
-**Embodiment analyzed:** Example 1
+**Example details:** 第1実施例
 
 The prescription is Example 1 of the Japanese publication supplied for transcription. The patent gives an all-spherical
 retrofocus lens normalized to $f=100$, with an aperture ratio of 1:2.8 and a full field of $66^\circ$. The data file
@@ -228,9 +228,9 @@ source facts.
 
 ## Sources
 
-1. **JP S55-45883 B2**, “Retrofocus-type wide-angle lens,” especially Example 1 on patent pages 11–12, the continued
-   first-order and third-order tables on pages 12–13, and Figure 1 on page 16 of the printed publication. The job-card
-   identifier JP1979-107336 is the laid-open publication of the same application.
+1. **JP S54-107336 A**, “Retrofocus-type wide-angle lens” (レトロフォーカス型広角レンズ), Mamiya Koki Co., Ltd.,
+   inventor Yusuke Nanjo, laid open 23 August 1979: the 第1実施例 prescription on printed page 197 and its third-order
+   coefficients on page 198. The same application was published as examined patent JP S55-45883 B2.
 2. **Mamiya-Sekor C Interchangeable Lenses / M645 Super system literature**, manufacturer-origin scan, especially the
    lens specification table and system chart identifying the 55mm f/2.8 N, Mamiya 645 mount, eight-element/six-group
    construction, 65° field, 0.45 m minimum focus, and 0.18× maximum magnification.

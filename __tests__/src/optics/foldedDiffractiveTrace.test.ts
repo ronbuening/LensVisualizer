@@ -12,32 +12,43 @@
  */
 
 import { describe, expect, it } from "vitest";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { catalogLensData } from "./testLensFixtures.js";
 import FoldedDiffractiveRaw from "../../../src/lens-data/reference/ReferenceFoldedDiffractivePlate.data.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import validateLensData from "../../../src/optics/validateLensData.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
+import validateLensData from "../../../src/optics/prescription/validate/index.js";
 import {
   DEFAULT_PHASE_WAVELENGTH_NM,
   diffractiveParaxialPower,
   radialPhaseKick,
 } from "../../../src/optics/math/diffractivePhase.js";
-import { doLayout, traceRay, traceRayVector } from "../../../src/optics/optics.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import {
+  traceRay,
+  traceRayVector,
+  traceSkewRay,
+  traceSkewRayChromatic,
+} from "../../../src/optics/trace/rayAdapters.js";
+import {
+  traceChiefRelativeSkewRay,
+  traceChiefRelativeSkewRayChromatic,
+} from "../../../src/optics/trace/chiefRelative.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
 
 const LAUNCH_HEIGHTS = [8, 5, 2];
 const PHASE = FoldedDiffractiveRaw.surfaces.find((surface) => surface.label === "PF")!.diffractive!;
 
 function buildFixture(): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...FoldedDiffractiveRaw } as LensData);
+  return buildLens(catalogLensData(FoldedDiffractiveRaw));
 }
 
 /** The same fixture with the phase term removed: a plain same-index flat plate. */
 function buildRefractiveControl(): RuntimeLens {
-  const surfaces = FoldedDiffractiveRaw.surfaces.map((surface) => {
-    const { diffractive: _diffractive, ...rest } = surface as Record<string, unknown>;
+  const data = catalogLensData(FoldedDiffractiveRaw);
+  const surfaces = data.surfaces.map((surface) => {
+    const { diffractive: _diffractive, ...rest } = surface;
     return rest;
   });
-  return buildLens({ ...LENS_DEFAULTS, ...FoldedDiffractiveRaw, surfaces } as unknown as LensData);
+  return buildLens({ ...data, surfaces } as unknown as LensData);
 }
 
 /**
@@ -62,7 +73,7 @@ function tangentFromKick(kick: number): number {
 
 describe("folded diffractive fixture — data contract", () => {
   it("validates as authored", () => {
-    expect(validateLensData({ ...LENS_DEFAULTS, ...FoldedDiffractiveRaw } as LensData)).toEqual([]);
+    expect(validateLensData(catalogLensData(FoldedDiffractiveRaw))).toEqual([]);
   });
 
   it("is hidden from the public catalog", () => {
@@ -70,17 +81,18 @@ describe("folded diffractive fixture — data contract", () => {
   });
 
   it("still rejects a phase term attached to the fold mirror", () => {
-    const surfaces = FoldedDiffractiveRaw.surfaces.map((surface) =>
+    const data = catalogLensData(FoldedDiffractiveRaw);
+    const surfaces = data.surfaces.map((surface) =>
       surface.label === "FOLD" ? { ...surface, diffractive: PHASE } : surface,
     );
-    const errors = validateLensData({ ...LENS_DEFAULTS, ...FoldedDiffractiveRaw, surfaces } as unknown as LensData);
+    const errors = validateLensData({ ...data, surfaces } as unknown as LensData);
 
     expect(errors.some((error) => error.includes("diffractive is only valid on refracting surfaces"))).toBe(true);
   });
 
   it("carries the analytic 200 mm equivalent power in the phase term alone", () => {
     // Measured from the coefficients, NOT from RuntimeLens.EFL: that field is
-    // `focalLengthDesign ?? focalLengthMarketing ?? axialExtent` (runtimeLens.ts
+    // `focalLengthDesign ?? focalLengthMarketing ?? axialExtent` (first-order/lensConstants.ts
     // ~410), so it echoes authored metadata and would report 200 even with the
     // phase term deleted.
     expect(diffractiveParaxialPower(PHASE, PHASE.referenceWavelengthNm)).toBeCloseTo(1 / 200, 12);
@@ -211,4 +223,18 @@ describe("folded diffractive fixture — refractive control", () => {
       expect(Math.abs(withPhase - withoutPhase), `h=${h}`).toBeGreaterThan(1);
     }
   });
+});
+
+it("routes chief-relative generalized phase rays through the production channel adapters", () => {
+  const L = buildFixture();
+  const mono = traceChiefRelativeSkewRay(0, 0.5, 1, 0, 8, 0, 0, L.stopPhysSD, true, L);
+  expect(mono).toEqual(traceSkewRay(0, 1 + 0.5 * 8, 0, 0, 0, 0, L.stopPhysSD, true, L));
+  expect(mono.clipped).toBe(false);
+  const channels = (["R", "G", "B", "V"] as const).map((channel) => {
+    const ray = traceChiefRelativeSkewRayChromatic(0, 0.5, 1, 0, 8, 0, 0, L.stopPhysSD, true, L, channel);
+    expect(ray).toEqual(traceSkewRayChromatic(0, 1 + 0.5 * 8, 0, 0, 0, 0, L.stopPhysSD, true, L, channel));
+    expect(ray.clipped).toBe(false);
+    return ray;
+  });
+  expect(channels[0].uy).not.toBe(channels[2].uy);
 });

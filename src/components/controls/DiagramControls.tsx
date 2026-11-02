@@ -8,11 +8,19 @@
  */
 
 import { useCallback, useEffect, useMemo } from "react";
-import { eflAtZoom, formatDist, formatFNumber, marketedApertureNote } from "../../optics/optics.js";
+import {
+  eflAtZoomClamped as eflAtZoom,
+  formatDist,
+  formatFNumber,
+  formatParaxialWorkingFNumber,
+  marketedApertureNote,
+  showsParaxialWorkingFNumber,
+} from "../../optics/optics.js";
+import type { ParaxialWorkingFNumberResult } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
-import { closeFocusAtZoom, remapFocusDistance } from "../../optics/focusDistance.js";
-import { getGroupMovementAvailability } from "../../optics/groupMovement.js";
-import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/lensMovement.js";
+import { closeFocusAtZoom, remapFocusDistance } from "../../optics/optics.js";
+import { getGroupMovementAvailability } from "../../optics/analysis.js";
+import { isMovementAxisEnabled, perspectiveControlSteps } from "../../optics/perspective.js";
 import {
   nearestPublishedStation,
   publishedFocusStations,
@@ -60,7 +68,7 @@ interface DiagramControlsProps {
   currentPhysStopSD: number;
   baseEPSD: number;
   dynamicEFL: number;
-  effectiveFNum: number;
+  paraxialWorkingFNum: ParaxialWorkingFNumberResult;
   showEffectiveFocalLength: boolean;
   onToggleEffectiveFocalLength?: () => void;
   showEffectiveAperture: boolean;
@@ -107,7 +115,7 @@ export default function DiagramControls({
   currentPhysStopSD,
   baseEPSD,
   dynamicEFL,
-  effectiveFNum,
+  paraxialWorkingFNum,
   showEffectiveFocalLength,
   onToggleEffectiveFocalLength,
   showEffectiveAperture,
@@ -240,7 +248,10 @@ export default function DiagramControls({
   const apertureReferenceLabel = isFisheye ? "Projection f" : "EFL";
   const apertureReferenceValue = fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? dynamicEFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
-  const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
+  const paraxialWorkingNote =
+    showEffectiveAperture && showsParaxialWorkingFNumber(paraxialWorkingFNum, fNumber)
+      ? ` (paraxial working ${formatParaxialWorkingFNumber(paraxialWorkingFNum)})`
+      : "";
   const availableFStops = [
     currentFOPEN,
     ...L.fstopSeries.filter((value) => value > currentFOPEN + 0.001 && value <= L.maxFstop),
@@ -347,7 +358,9 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="FOCUS"
           labelMinWidth={85}
-          displayValue={formatDist(focusT, L, zoomT)}
+          /* A lens with no modeled focus travel stays at infinity whatever focusT a shared URL carries. */
+          displayValue={groupMovementAvailability.focus ? formatDist(focusT, L, zoomT) : "\u221e"}
+          displayValueStyle={{ whiteSpace: "nowrap" }}
           value={focusT}
           step={L.focusStep}
           onPointerDown={beginInteraction}
@@ -527,8 +540,8 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="APERTURE"
           labelMinWidth={85}
-          displayValue={`f/${formatFNumber(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (eff. f/${formatFNumber(effectiveFNum)})` : ""}`}
-          displayNote={marketedApertureNote(L.data, fNumber, currentFOPEN)}
+          displayValue={`f/${formatFNumber(fNumber)}${paraxialWorkingNote}`}
+          displayNote={marketedApertureNote(L.source, fNumber, currentFOPEN)}
           displayValueStyle={{ minWidth: "3.5em" }}
           value={patentPositions ? 0 : stopdownT}
           step={L.apertureStep}
@@ -562,13 +575,9 @@ export default function DiagramControls({
                   apertureReferenceLabel,
                   " ",
                   apertureReferenceValue.toFixed(2),
-                  " mm · Est. wide-open EP ",
-                  "\u2300",
-                  " ",
+                  " mm · Wide-open paraxial EP \u2300 ",
                   (baseEPSD * 2).toFixed(2),
-                  " mm · Stop ",
-                  "\u2300",
-                  " ",
+                  " mm · Stop \u2300 ",
                   (currentPhysStopSD * 2).toFixed(2),
                   " mm",
                 )}
@@ -630,7 +639,7 @@ export default function DiagramControls({
                 }}
               >
                 <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
-                  {textRun(showEffectiveAperture ? "\u2611" : "\u2610", " Show effective aperture")}
+                  {textRun(showEffectiveAperture ? "\u2611" : "\u2610", " Show paraxial working f-number")}
                 </span>
               </button>
             </>

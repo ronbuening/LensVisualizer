@@ -6,7 +6,10 @@
  */
 
 import { useMemo } from "react";
-import { eflAtFocus, eflAtZoom, formatDist } from "../../../optics/optics.js";
+import { eflAtZoomClamped as eflAtZoom, formatDist } from "../../../optics/optics.js";
+import { computeFocusBreathingSeries, createAnalysisRequest } from "../../../optics/analysis.js";
+import type { BreathingSample } from "../../../optics/analysis.js";
+import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 
@@ -18,34 +21,7 @@ interface FocusBreathingTabProps {
   dynamicEFL: number;
 }
 
-interface BreathingSample {
-  focusT: number;
-  efl: number;
-  breathingPercent: number;
-  distanceLabel: string;
-}
-
-const SAMPLE_COUNT = 21;
 const MARGIN = { top: 24, right: 20, bottom: 42, left: 48 };
-
-function buildBreathingSamples(L: RuntimeLens, zoomT: number, currentFocusT: number): BreathingSample[] {
-  const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
-  const points = new Set<number>([0, 1, currentFocusT]);
-  for (let i = 0; i < SAMPLE_COUNT; i++) points.add(i / (SAMPLE_COUNT - 1));
-
-  return [...points]
-    .sort((a, b) => a - b)
-    .map((focusT) => {
-      const efl = eflAtFocus(focusT, zoomT, L);
-      const breathingPercent = Math.abs(infinityEFL) > 1e-9 ? (100 * (efl - infinityEFL)) / infinityEFL : 0;
-      return {
-        focusT,
-        efl,
-        breathingPercent,
-        distanceLabel: formatDist(focusT, L, zoomT),
-      };
-    });
-}
 
 function FocusBreathingChart({
   samples,
@@ -235,7 +211,18 @@ function FocusBreathingChart({
 }
 
 export default function FocusBreathingTab({ L, t, focusT, zoomT, dynamicEFL }: FocusBreathingTabProps) {
-  const samples = useMemo(() => buildBreathingSamples(L, zoomT, focusT), [L, zoomT, focusT]);
+  const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT: 0 });
+  const request = useMemo(
+    () =>
+      createAnalysisRequest({
+        preparedState,
+        dynamicEFL: L.EFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD: L.stopPhysSD,
+      }),
+    [preparedState, L],
+  );
+  const samples = useMemo(() => computeFocusBreathingSeries(request), [request]);
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   const currentBreathingPercent = Math.abs(infinityEFL) > 1e-9 ? (100 * (dynamicEFL - infinityEFL)) / infinityEFL : 0;
   const closeSample = samples[samples.length - 1];

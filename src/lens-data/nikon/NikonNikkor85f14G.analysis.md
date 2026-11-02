@@ -14,7 +14,7 @@
 
 **Granted:** July 1, 2014
 
-**Embodiment analyzed:** Example 1, Figure 1, numerical data in columns 11–12 (PDF p.17).
+**Example details:** Figure 1, numerical data in columns 11–12 (PDF p.17).
 
 The 85.000 mm example has ten elements, nine air-separated components and an internal focusing group. These support the catalog association with the AF-S 85mm f/1.4G, but the patent does not establish an identical production prescription, supplier roster or coating placement. The source f/1.450 is used for numerical controls; f/1.4 remains the marketing designation. The published half-field is14.333° and image height21.630mm.
 
@@ -109,7 +109,7 @@ The source near object lies719.0mm ahead of the first vertex. Adding the126.370m
 
 No clear-aperture radii are tabulated. Figure1 was inspected from the original PDF at600dpi. Scaling its85.320mm glass span gives a front optical-rim radius about27.9mm and rear radius about15.1mm. The front value is smaller than the29.31mm entrance-pupil radius implied by85mm at f/1.45. Thus the drawn outline cannot be used directly as the clear aperture for the full nominal axial beam.
 
-Existing inferred semi-diameters are retained pending a reliable resolution of that figure/aperture discrepancy. They pass surface-clearance and image-circle checks, but are not claimed as exact published rims. The automatic L21 measurement hits a label leader; it is excluded from rim evidence. Production filter-thread diameter does not establish any optical clear aperture.
+Existing inferred optical semi-diameters are retained pending a reliable resolution of that figure/aperture discrepancy. Figure 1 resolves straight rear concave end lands on L12 and L13: surface 4 now carries its existing 25.0 mm cap to a 30.0 mm outer rim, and surface 6 carries its 22.0 mm cap to 23.0 mm. The outer values follow the retained working front rims; their absolute scale and the preserved optical endpoints are modeling inferences, rather than exact numerical source apertures. No new optical clipping is introduced. The lands pass surface-clearance and image-circle checks; nine actual SVG focus views have connected outlines and no automatic rim trim. The automatic L21 measurement hits a label leader; it is excluded from rim evidence. Production filter-thread diameter does not establish any optical clear aperture.
 
 The source explicitly defines BF as air-equivalent. The prescription already ends in41.050mm of air; no cover glass or filter is added, and no second air-equivalent conversion is applied.
 

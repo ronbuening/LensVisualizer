@@ -8,7 +8,7 @@
 **Inventor:** Min Heu\
 **Assignee:** Samsung Digital Imaging Co., Ltd.\
 **Title:** *Large Caliber Standard Lens*\
-**Embodiment analyzed:** First Embodiment, Figure 1 and ¶0045 (job-card Example 1)
+**Example details:** Figure 1 and ¶0045 (job-card Example 1)
 
 The prescription is correlated with the **SAMSUNG 30mm f/2** for the Samsung NX APS-C system. This is a fixed production correlation for the present model, not a documented statement by Samsung that the commercial lens uses this exact patent embodiment. The identification rests on convergent evidence:
 

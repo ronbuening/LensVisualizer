@@ -9,7 +9,6 @@
 **Inventor:** Iwatatsu Fujioka<br>
 **Applicant:** Yashica Co., Ltd.<br>
 **Title:** 大口径比広角写真レンズ (*Large-aperture-ratio wide-angle photographic lens*)
-**Embodiment analyzed:** Example 1
 
 The prescription is JP 1969-024068 B Example 1. The patent gives a normalized focal length of 100.0, an aperture ratio of 1:3.3, and a 92° included field, with eight glass elements shown in Figure 1 (pp. 3 and 5). The LensVisualizer data file applies the fixed project correlation to the production YASHICA YASHINON-DX 21mm f/3.3; this correlation is not presented as a manufacturer-confirmed patent attribution.
 

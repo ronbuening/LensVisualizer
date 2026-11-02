@@ -6,7 +6,7 @@
 **Granted:** May 9, 1967  
 **Inventor:** Karl Heinrich Macher  
 **Assignee:** Jos. Schneider & Co., Optische Werke  
-**Embodiment analyzed:** the sole representative numerical prescription, designated “Example 1” by the project job card
+**Example details:** designated “Example 1” by the project job card
 
 US 3,318,653 describes a six-singlet wide-angle objective divided into a negative front component I and a positive rear component II. The patent states a normalized overall focal length of 100, relative aperture 1:2.8, back-focal length 103.11, and a field angle of about 63°; the numerical table is printed on patent PDF page 2 and repeated in the single claim on page 3. [1, pp. 2–3]
 

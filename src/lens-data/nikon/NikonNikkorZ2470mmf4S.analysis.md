@@ -106,7 +106,7 @@ The variator is the engine of any zoom lens — its axial position relative to G
 - Element focal length: −24.0 mm (thick lens)
 - Aspherical surface: K = −1 (paraboloid base conic, patent κ = 0)
 
-L21 is the most powerful single element in the entire lens. Its nearly flat front surface (R = 400 mm) combined with the strongly curved aspherical rear (R = 17 mm) creates extreme negative meniscus geometry. The paraboloidal base conic (K = −1) on the rear surface significantly flattens the sag profile at the rim compared to a sphere, allowing the beam to pass through at steep angles without exceeding slope limits. The polynomial aspheric coefficients provide additional correction for off-axis coma and astigmatism.
+L21 is the most powerful single element in the entire lens. Its nearly flat front surface (R = 400 mm) combined with the strongly curved aspherical rear (R = 17 mm) creates extreme negative meniscus geometry. The paraboloidal base conic (K = −1) on the rear surface significantly flattens the sag profile at the rim compared to a sphere, allowing the beam to pass through at steep angles without exceeding slope limits. The polynomial aspheric coefficients provide additional correction for off-axis coma and astigmatism. Figure 1A's rear-face land extends from the unchanged 14.4 mm clear cap to the 21.5 mm outer rim; `rimExtensionSd` draws that opaque material without continuing the asphere.
 
 **L22 — Biconcave negative**
 - Radii: R₁ = −181.132, R₂ = +49.985
@@ -147,7 +147,7 @@ This is the element Nikon designates as the **"aspherical ED glass"** (AS-ED). T
 - L35: nd = 1.59319, νd = 67.9 → **J-PSKH1 (Hikari)** (nd = 1.59319, νd = 67.90, exact match)
 - Doublet EFL: −137.3 mm
 
-L35 is the most likely candidate for Nikon's second designated **ED glass** element. Its low dispersion (νd = 67.9) provides secondary spectrum correction when paired with the high-dispersion L34.
+L35 is a candidate for the production lens's second **ED glass** element; that association remains unconfirmed. The patent supplies its low dispersion (νd = 67.9), while anomalous partial dispersion is inferred from the compatible J-PSKH1 catalog curve. The source does not identify its chemistry, softening temperature or supplier.
 
 ### 3.4 Group 4 — Focusing Group (L41, L42)
 
@@ -227,7 +227,7 @@ The design uses 10 distinct glass types across 14 elements (plus one filter glas
 Nikon's marketing identifies **two** ED glass elements:
 
 1. **L31 (νd = 71.7):** The AS-ED element. Fluorophosphate ED glass (M-FCD500 or equivalent). APD classification: patent (¶0031, condition (6)).
-2. **L35 (νd = 67.9):** The non-aspherical ED element. Confirmed match J-PSKH1 (Hikari). APD classification: inferred.
+2. **L35 (νd = 67.9):** Candidate for the non-aspherical production ED element. J-PSKH1 is a coordinate-compatible catalog proxy; production identity and its ED designation remain unconfirmed. APD classification: inferred.
 
 ### 5.3 Ultra-High Index Glass
 

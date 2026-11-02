@@ -14,7 +14,7 @@
 
 **Published:** 2021-12-02
 
-**Embodiment analyzed:** Example 1, Table 1 and Figure 1
+**Example details:** Table 1 and Figure 1
 
 This diagram follows **Example 1, Table 1** of WO 2021/241230 A1,
 *Optical System, Optical Device, and Method for Manufacturing Optical System*.
@@ -206,8 +206,15 @@ support in the numerical example.
 
 The revised estimates retain stepped rims where required. The S4 exit is
 limited to 26.5 mm by the adjacent air-gap constraint. S31 is limited to
-17.75 mm and S32A to 18 mm near the final asphere. Larger trial rims caused
-cross-gap overlap and were rejected. Surface validation and rendered-element
+17.75 mm, and the clear aperture of S32A ends at 18 mm near the final
+asphere. Larger trial rims caused cross-gap overlap and were rejected.
+Figure 1 also draws flat lands square to the axis at several concave rims.
+Surfaces 2, 5, 7 and 17 carry them as rim cuts. L11 now reaches its
+front-face edge (31.5 mm), and its clear radius goes from the old 28.5 mm
+rim to the 28.5044 mm cut radius; the wide-open beams reach 27.3534 mm
+there. The L19 rear cap ends at 21.7 mm, ahead of the stop plane. L44 now draws its flat land to the 19.5 mm rim with `rimExtensionSd`,
+while S32A keeps its 18 mm designed optical extent, uncut. Lands on S4
+and S31 remain omitted because their drawn material fails the existing air-gap checks. Surface validation and rendered-element
 checks pass at infinity, midpoint and close focus, without hidden trimming.
 These remain constrained figure estimates, not measured production apertures.
 

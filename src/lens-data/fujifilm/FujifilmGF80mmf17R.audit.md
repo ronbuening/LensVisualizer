@@ -66,3 +66,109 @@ Catalog version: 88dde1c
   object-to-image distance and was left unchanged.
 - Paraxial check against the previous data: EFL identical; defocus changes by 0.0001 mm at infinity and at 700 mm
   (rounding in the old 23.2843). Physical track grows by 1.090 mm (3.20 × (1 − 1/1.51680)).
+
+
+## 2026-10-27 — Rimmer localization audit (asphere data)
+
+Patent: US 2021/0294073 A1, Example 1. Table 1 and Table 2 are on PDF page 18 (printed page 7);
+Table 3 and Table 4 are on PDF page 19 (printed page 8). FIG. 2 is on PDF page 2; FIG. 3 is on PDF page 3.
+The coefficient digits/signs/exponents were read from 400 dpi table crops, with the complete pages also inspected.
+
+### Phase 2 — Retained-information audit
+
+| Surface | Field | Before | After | Evidence |
+|---|---|---|---|---|
+| 14A | `A3` | Omitted (zero) | `0` | Table 4, PDF p. 19, Sn 14, A3 row. |
+| 15A | `A3` | Omitted (zero) | `0` | Table 4, PDF p. 19, Sn 15, A3 row. |
+| 14A | `A5` | Omitted (zero) | `-2.6513493e-7` | Table 4, PDF p. 19, Sn 14, A5 row. |
+| 15A | `A5` | Omitted (zero) | `-2.3150181e-7` | Table 4, PDF p. 19, Sn 15, A5 row. |
+| 14A | `A7` | Omitted (zero) | `8.2564362e-10` | Table 4, PDF p. 19, Sn 14, A7 row. |
+| 15A | `A7` | Omitted (zero) | `4.7477332e-10` | Table 4, PDF p. 19, Sn 15, A7 row. |
+| 14A | `A9` | Omitted (zero) | `-1.7643417e-11` | Table 4, PDF p. 19, Sn 14, A9 row. |
+| 15A | `A9` | Omitted (zero) | `-8.2435003e-13` | Table 4, PDF p. 19, Sn 15, A9 row. |
+| 14A | `A11` | Omitted (zero) | `4.7629976e-14` | Table 4, PDF p. 19, Sn 14, A11 row. |
+| 15A | `A11` | Omitted (zero) | `1.2547704e-14` | Table 4, PDF p. 19, Sn 15, A11 row. |
+| 14A | `A13` | Omitted (zero) | `-1.9007385e-16` | Table 4, PDF p. 19, Sn 14, A13 row. |
+| 15A | `A13` | Omitted (zero) | `-1.6440179e-17` | Table 4, PDF p. 19, Sn 15, A13 row. |
+| 14A | `A15` | Omitted (zero) | `-6.3292092e-19` | Table 4, PDF p. 19, Sn 14, A15 row. |
+| 15A | `A15` | Omitted (zero) | `-7.9972791e-20` | Table 4, PDF p. 19, Sn 15, A15 row. |
+| 14A | `A17` | Omitted (zero) | `4.8308631e-21` | Table 4, PDF p. 19, Sn 14, A17 row. |
+| 15A | `A17` | Omitted (zero) | `1.5944044e-22` | Table 4, PDF p. 19, Sn 15, A17 row. |
+| 14A | `A19` | Omitted (zero) | `-3.6580337e-24` | Table 4, PDF p. 19, Sn 14, A19 row. |
+| 15A | `A19` | Omitted (zero) | `5.0171611e-25` | Table 4, PDF p. 19, Sn 15, A19 row. |
+| 8 | `sd` (mm) | 16.0 | 17.4 | Table 2 f/1.75 axial-beam floor, 17.367 mm under the paraxial stop rule (stop 12.966 mm); FIG. 2 stepped L23 rim permits S9 to remain 16.0. |
+| 21 | `sd` (mm) | 18.0 | 19.2 | L34 square rim in FIG. 2; paired with S22. |
+| 22 | `sd` (mm) | 18.0 | 19.2 | Table 2 19° / Y = 27.35 mm chief ray reaches S22 at 18.2899 mm (floor); FIG. 2 gives 19.2 mm on the lens's own scale (SD procedure Step 1 takes the figure value). |
+| focus.conjugates[0] | `source` wording | PP omitted; air-equivalent model | PP traced in rearPlates at physical thickness/gaps | Table 1 rows 23/24 and existing rearPlates; numeric object distance stays 576.6736 mm. |
+
+All printed non-zero A3–A20 terms are now encoded; the explicit A3 zeros document the source's starting order.
+The former file was an even-only truncation, not a fitted even-order approximation. Every previously stored even
+coefficient agrees with Table 4, including S14 A20 = 1.8806460e-25. Paragraphs 0085–0092 define the sum over powers
+h^m in mm, with no normalization (scale s = 1); KA = 1.0000000 on both surfaces converts to K = 0. The Table 1
+R/d/nd/vd rows 1–24 and both Table 3 focus columns agree with the retained prescription, including the traced PP.
+No printed radius, spacing, glass constant, even coefficient or conic was altered.
+
+The baseline failed field at 2.82° had a -1 pupil ray at S14 height 14.04 mm, beyond its truncated-polynomial
+turnover at 12.86 mm, and image-plane error 8.9279 mm. Restoring the omitted terms moves the first S14 reversal to
+about 19.61 mm, beyond sd = 18.4 mm. S15 has no reversal inside sd = 19.2 mm. No aspheric rim cap is warranted.
+Base-sphere departures at the retained rims change from -2.2 to -133.3 µm at S14 and -1320.6 to -77.8 µm at S15.
+
+### Rims and figure evidence
+
+The source has no printed effective-diameter column. The stated axial beam requires S8 = 17.4 mm at the file's
+0.1 mm precision; the old 16.0 mm rim limited the lens to about f/1.84 against printed f/1.75. FIG. 2's enlarged
+L23 view shows the image-side curve ending inside the front junction rim, so only S8 rises and S9 retains 16.0 mm.
+The S8 value is below the figure's optical extent and passes the geometric validator.
+
+The exact 19° chief ray reaches image height 27.3495 mm, matching printed Y = 27.35 mm, but reaches S22 at
+18.2899 mm against the old 18.0 mm rim, so the rim is floor-proven and Step 1 of the SD procedure takes its value
+from the figure. `npm run audit:patent-figure` on FIG. 2 (PDF p. 2, crop `0.195,0.665,0.715,0.895`, 77.01 µm/px) reads
+L34 at 23.18/23.33 mm (ENV/RIM, agreeing), level with L31–L33 (23.56–23.79 mm); a column scan of a 300 dpi render
+confirms the flat L34 top and bottom at 302 px from the axis. The figure draws the whole lens 1.210× the data's rims
+(median figure/data), so on the lens's own scale L34 is 23.26 / 1.210 = 19.2 mm. S22 takes 19.2 mm, above the floor;
+S21 follows to preserve FIG. 2's square L34 rim. The chief ray then reaches the full 27.39 mm format corner, and the
+vignetting tab reads RI at all eight fields, 0.058 at 19° (unvignetted fraction 0.081). The candidate rims were checked by substitution before retention. S14/S15 and all other rims are retained.
+The figure-measurement screen was contaminated by leader/bracket/flange ink on some G2 elements; its automatic
+L23/L25 estimates were not used. Manual inspection of the zoomed optical curves determines the stepped L23 and
+square L34 relationships.
+
+### Optical result and the source's TL summary
+
+Full-pupil / 85% / 70% / 50% d-line LSA changes from -8.609 / -2.212 / -0.439 / -0.034 mm to
+-0.010 / +0.021 / +0.014 / +0.007 mm. EFL remains 78.6822 mm. The corrected edge near 19° gives tangential/sagittal
+focus shifts +0.155 / -0.010 mm and distortion +0.949%; these have FIG. 3's signs and shapes within its ±500 µm
+spherical/astigmatism and ±3% distortion axes. The former edge gave -25.540 / -6.534 mm and -8.428% at 19.71°,
+far outside those plots. All sampled modeled fields now have localized rays and relative illumination; the axial
+beam clears the inferred rims at the stated design aperture.
+
+Tables 1/3 give first-to-last-lens-vertex length 98.9517 mm, physical track 123.3264 mm and air-equivalent TL
+122.2361 mm under paragraph 0083. Table 2 instead prints TL = 103.58 mm; subtracting DD4 + DD15 = 18.6600 mm
+gives 103.5761 mm. Table 17 condition (1), PDF page 21, prints 4.985, consistent with that shorter summary TL;
+the complete spacing sum gives 6.943. No change to a printed prescription value is justified by this discrepancy.
+It is recorded as an `unresolved` `source.errata` entry with a header note and an `sd-audit-queue.md` Section G
+row. No single-slip search is warranted: the full printed polynomial reproduces the aberration
+figures, EFL, Bf and the 19° image height.
+
+### Phase 4 — Analysis sync
+
+Replaced the even-only/schema-limitation statements with the full-polynomial transcription and retained both
+canonical coefficient tables. Added the recomputed rim departures, estimated-rim rationale and qualified
+illumination behavior. Corrected the stale finiteConjugates/omitted-PP wording to focus.conjugates and the existing
+rearPlates model. Replaced the blanket all-conditions-independently-verified claim with the unresolved TL finding.
+
+### Follow-ups
+
+The outer-field illumination remains sensitive to inferred rims and is not a production-lens measurement. The
+printed 27.35 mm image height is slightly smaller than the format's 27.39 mm corner; the latter crosses S22 at about
+18.32 mm, inside the 19.2 mm rim. Coordinator to review the interactive lens page/aspheric overlay:
+browser access was unavailable, and a scratch-only local server was denied by the sandbox (listen EPERM).
+The coordinator owns repository-wide gates and commits.
+
+## 2026-10-28 — S8 under the paraxial stop rule
+
+After #933's paraxial stop rule the stop radius is 12.966 mm (12.772 mm before), and the f/1.75 marginal ray crosses
+S8 at 17.367 mm, so `npm run audit:aperture -- --raise` lists S8 17.1 → 17.4 mm. S8 takes 17.4 mm. Its only flag is
+the unrelated Table 2 TL erratum. `audit:patent-figure` on FIG. 2 (same crop) cannot read L23 itself, because flange ink
+contaminates it (25.6 mm in figure units). The L22/L23 junction at 17.4 mm stays inside L22's drawn rim (19.87–20.79 mm
+in figure units, against 20.0 mm in the data). The validator reports no errors, and the axial beam traces at f/1.75
+with no rim clip. Wide open at design focus the vignetting tab reads RI at all eight fields, 0.06 at 19°.

@@ -68,3 +68,9 @@ Left open:
   (7.893-8.007 mm). It is left as authored.
 - `fstopSeries` starts at the marketed 3.5 while the wide station opens to f/3.56, and the file has no `apertureDesign`
   field. Neither is touched because `nominalFno` is unchanged.
+
+## 2026-10-29 — Original-figure shape and fresh glass reinspection
+
+- Directly viewed `patents/US20060007559A1.pdf`: Figure 13, PDF page 14 at 600 dpi; Table 4, page 35; d-line convention, page 30; source FNO plots, pages 15–17. Every face and bonded boundary was inspected. No geometric change: the visible front compound land crosses the glass/resin interface. A coupled 15.5 mm interface/outer trial gives a −1.471 mm resin edge and exceeds the existing spherical rim limit. A resin-only land leaves a tapered substrate. Rejected both representations; no independently resolved exposed rear land elsewhere. No prescription coefficient, spacing, control, or tolerance changed.
+- All eight source media retain exact `nd`/`νd` pairs at the d line. Seven current catalog curves are labeled as spectral proxies with production supplier unspecified: J-LASF016 (L1g/L2an), J-SFH2, H-FK61, N-BK7 (L2ap/Lbp), J-LASF010. The resin remains unresolved; no catalog row or source spectral value is invented. L2a's inferred ED role remains a qualified product correlation, not measured APD.
+- Focused surface/image-circle audits pass. W/M/T axial aperture audits are iris-limited at source f/3.56/4.65/5.90. Current iris radii are 7.799001/7.790765/7.748381 mm; the public analysis/header now distinguish these from the earlier historical real-ray estimates. Nine actual zoom/focus SVG states have eight finite element paths and zero render trim. Source-coordinate/catalog consistency checks pass; shared dispersion/parity/partial tests: 3 files, 94 tests passed.

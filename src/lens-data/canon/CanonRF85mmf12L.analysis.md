@@ -14,19 +14,19 @@ The First Numerical Embodiment of US 2020/0012073 A1 presents a 14-element, 3-un
 
 ### Design-patent concordance
 
-| Parameter | Patent (Ex. 1) | Production (Canon) |
-|---|---|---|
-| Focal length | 86.53 mm | 85 mm |
-| Maximum aperture | f/1.24 | f/1.2 |
-| Elements / groups | 14 / 9 | 13 / 9 |
-| Aspherical surfaces | 1 (surface 8) | 1 element |
-| BR optics element | Lens 9 (nd = 1.60401; material not named in the patent) | 1 BR element |
-| UD element | Lens 4 (nd = 1.49700; "UD" not used in the patent) | 1 UD element |
-| Half-field angle | 14.04° | 14.25° (diagonal 28°30′) |
-| Close focus | not tabulated (0.85 m calculated, β ≈ −0.126) | 0.85 m (0.12×) |
-| Filter thread | — | 82 mm |
-| Overall length | 134.49 mm (first vertex to image) | 117.3 mm (barrel) |
-| Image circle | 43.28 mm (2 × 21.64) | 43.2 mm (full-frame) |
+| Parameter           | Patent (Ex. 1)                                          | Production (Canon)       |
+| ------------------- | ------------------------------------------------------- | ------------------------ |
+| Focal length        | 86.53 mm                                                | 85 mm                    |
+| Maximum aperture    | f/1.24                                                  | f/1.2                    |
+| Elements / groups   | 14 / 9                                                  | 13 / 9                   |
+| Aspherical surfaces | 1 (surface 8)                                           | 1 element                |
+| BR optics element   | Lens 9 (nd = 1.60401; material not named in the patent) | 1 BR element             |
+| UD element          | Lens 4 (nd = 1.49700; "UD" not used in the patent)      | 1 UD element             |
+| Half-field angle    | 14.04°                                                  | 14.25° (diagonal 28°30′) |
+| Close focus         | not tabulated (0.85 m calculated, β ≈ −0.126)           | 0.85 m (0.12×)           |
+| Filter thread       | —                                                       | 82 mm                    |
+| Overall length      | 134.49 mm (first vertex to image)                       | 117.3 mm (barrel)        |
+| Image circle        | 43.28 mm (2 × 21.64)                                    | 43.2 mm (full-frame)     |
 
 The two lengths measure different things. The patent's 134.49 mm runs from the first surface vertex to the image plane; the RF mount flange sits 20 mm in front of the sensor, so about 114.5 mm of the optical track lies ahead of the flange, consistent with Canon's 117.3 mm barrel length.
 
@@ -48,18 +48,18 @@ The patent organizes the 14 elements into three lens units defined by their focu
 
 The nine air-separated groups, from front to rear, are listed below. The patent numbers individual lenses G1–G14 (¶0068), so Lp1 is G3 and Lp2 is G9; the group numbers here are air-spaced groups, not the patent's Gn.
 
-| Air-spaced group | Elements | Type | Unit |
-|---|---|---|---|
-| 1 | L1 + L2 | Cemented doublet | L1 |
-| 2 | L3 (Lp1) | Singlet — positive meniscus | L2 |
-| 3 | L4 | Singlet — positive meniscus (UD) | L2 |
-| 4 | L5 | Singlet — negative meniscus (asph.) | L2 |
-| — | STO | Aperture stop | L2 |
-| 5 | L6 + L7 | Cemented doublet | L2 |
-| 6 | L8 + L9 + L10 | Cemented triplet (Lp2 layer) | L2 |
-| 7 | L11 + L12 | Cemented doublet | L3 |
-| 8 | L13 | Singlet — biconcave | L3 |
-| 9 | L14 | Singlet — biconvex | L3 |
+| Air-spaced group | Elements      | Type                                | Unit |
+| ---------------- | ------------- | ----------------------------------- | ---- |
+| 1                | L1 + L2       | Cemented doublet                    | L1   |
+| 2                | L3 (Lp1)      | Singlet — positive meniscus         | L2   |
+| 3                | L4            | Singlet — positive meniscus (UD)    | L2   |
+| 4                | L5            | Singlet — negative meniscus (asph.) | L2   |
+| —                | STO           | Aperture stop                       | L2   |
+| 5                | L6 + L7       | Cemented doublet                    | L2   |
+| 6                | L8 + L9 + L10 | Cemented triplet (Lp2 layer)        | L2   |
+| 7                | L11 + L12     | Cemented doublet                    | L3   |
+| 8                | L13           | Singlet — biconcave                 | L3   |
+| 9                | L14           | Singlet — biconvex                  | L3   |
 
 ---
 
@@ -73,25 +73,25 @@ The surface uses the standard even-polynomial sag equation with a spherical base
 
 $$Z(h) = \frac{h^2/R}{1 + \sqrt{1 - (h/R)^2}} + B \cdot h^4 + C \cdot h^6 + D \cdot h^8$$
 
-| Coefficient | Value |
-|---|---|
-| R | 75.484 mm |
-| K | 0.0 (spherical base) |
-| B (4th order) | −2.2875 × 10⁻⁶ |
-| C (6th order) | −2.1286 × 10⁻¹⁰ |
-| D (8th order) | +2.6709 × 10⁻¹³ |
-| E (10th order) | 0.0 |
+| Coefficient    | Value                |
+| -------------- | -------------------- |
+| R              | 75.484 mm            |
+| K              | 0.0 (spherical base) |
+| B (4th order)  | −2.2875 × 10⁻⁶       |
+| C (6th order)  | −2.1286 × 10⁻¹⁰      |
+| D (8th order)  | +2.6709 × 10⁻¹³      |
+| E (10th order) | 0.0                  |
 
 ### Aspherical departure from the base sphere
 
 | Height h (mm) | Sphere sag (mm) | Aspherical sag (mm) | Departure (μm) |
-|---|---|---|---|
-| 5.0 | 0.1658 | 0.1643 | −1.4 |
-| 10.0 | 0.6653 | 0.6423 | −23.1 |
-| 15.0 | 1.5054 | 1.3878 | −117.5 |
-| 20.0 | 2.6978 | 2.3250 | −372.8 |
+| ------------- | --------------- | ------------------- | -------------- |
+| 5.0           | 0.1658          | 0.1643              | −1.4           |
+| 10.0          | 0.6653          | 0.6423              | −23.1          |
+| 15.0          | 1.5054          | 1.3878              | −117.5         |
+| 20.0          | 2.6978          | 2.3250              | −372.8         |
 
-The aspherical departure is uniformly negative, meaning the surface is *flatter* than the base sphere at all zones. At 20 mm the departure is −373 µm, and at the clear-aperture rim (20.62 mm, half the patent's 41.24 mm effective diameter) it reaches −421 µm — a substantial correction. The dominant 4th-order term (B < 0) is the primary spherical aberration corrector, while the 8th-order term (D > 0) provides a small restorative kick at high zones, preventing over-correction at the rim. The 6th-order term (C < 0) is comparatively weak, acting as a smooth bridge between the two.
+The aspherical departure is uniformly negative, meaning the surface is _flatter_ than the base sphere at all zones. At 20 mm the departure is −373 µm, and at the clear-aperture rim (20.62 mm, half the patent's 41.24 mm effective diameter) it reaches −421 µm — a substantial correction. The dominant 4th-order term (B < 0) is the primary spherical aberration corrector, while the 8th-order term (D > 0) provides a small restorative kick at high zones, preventing over-correction at the rim. The 6th-order term (C < 0) is comparatively weak, acting as a smooth bridge between the two.
 
 This aspherical element is large-diameter (effective ray diameter ~41 mm) and made from high-index glass (nd = 1.85478), which presents significant manufacturing challenges. Canon markets this as a "large diameter aspherical element" and it is likely produced by precision glass molding (PGM) given the glass type and the scale involved.
 
@@ -103,40 +103,40 @@ Surface 8 is positioned just before the stop, where marginal ray heights are sti
 
 ## 4. Glass Identification and Material Analysis
 
-The design uses 12 distinct materials across 14 elements (L5/L6 and L10/L11 share a glass). The patent lists only nd and νd, so each name below is an exact catalog equivalent for the six-digit code (nd × 1000 / νd × 10), not a statement of Canon's supplier.
+The design uses 12 distinct materials across 14 elements (L5/L6 and L10/L11 share a glass). The prescription lists nd/νd, with two genuine anomalous-partial-dispersion deviations separately in Table 1. Names below are compatible catalog-coordinate proxies, not proof of historical supplier, melt or composition.
 
 ### Complete glass table
 
-| Element | nd | νd | Code | Probable glass family | Notes |
-|---|---|---|---|---|---|
-| L1 | 1.61800 | 63.4 | 618/634 | PCD4 (HOYA) | Phosphate crown |
-| L2 | 1.72047 | 34.7 | 720/347 | S-NBH8 (OHARA) | Dense flint (Schott N-KZFS8 has the same code) |
-| L3 (Lp1) | 1.92286 | 20.9 | 923/209 | PBH21 (OHARA) | Ultra-high-index dense flint |
-| L4 | 1.49700 | 81.5 | 497/815 | S-FPL51 (OHARA) | UD glass (fluorophosphate crown) |
-| L5 | 1.85478 | 24.8 | 855/248 | S-NBH56 (OHARA) | High-index niobium flint (aspherical) |
-| L6 | 1.85478 | 24.8 | 855/248 | S-NBH56 (OHARA) | High-index niobium flint |
-| L7 | 1.88300 | 40.8 | 883/408 | S-LAH58 (OHARA) | Lanthanum heavy flint |
-| L8 | 1.54072 | 47.2 | 541/472 | S-TIL2 (OHARA) | Light flint; object-side element of the triplet |
-| L9 (Lp2) | 1.60401 | 20.8 | 604/208 | No catalog match | Canon BR optics (inferred) |
-| L10 | 1.95375 | 32.3 | 954/323 | S-LAH98 (OHARA) | Ultra-high-index lanthanum |
-| L11 | 1.95375 | 32.3 | 954/323 | S-LAH98 (OHARA) | Same as L10 |
-| L12 | 1.62004 | 36.3 | 620/363 | S-TIM2 (OHARA) | Titanium flint |
-| L13 | 1.68893 | 31.1 | 689/311 | S-TIM28 (OHARA) | Titanium flint |
-| L14 | 1.90043 | 37.4 | 900/374 | TAFD37A (HOYA) | Lanthanum/tantalum dense flint |
+| Element  | nd      | νd   | Code    | Probable glass family | Notes                                                   |
+| -------- | ------- | ---- | ------- | --------------------- | ------------------------------------------------------- |
+| L1       | 1.61800 | 63.4 | 618/634 | PCD4 (HOYA)           | Phosphate crown                                         |
+| L2       | 1.72047 | 34.7 | 720/347 | S-NBH8 (OHARA)        | Dense flint (Schott N-KZFS8 has the same code)          |
+| L3 (Lp1) | 1.92286 | 20.9 | 923/209 | PBH21 (OHARA)         | Ultra-high-index dense flint                            |
+| L4       | 1.49700 | 81.5 | 497/815 | S-FPL51 (OHARA)       | High-Abbe medium; UD association and chemistry inferred |
+| L5       | 1.85478 | 24.8 | 855/248 | S-NBH56 (OHARA)       | High-index niobium flint (aspherical)                   |
+| L6       | 1.85478 | 24.8 | 855/248 | S-NBH56 (OHARA)       | High-index niobium flint                                |
+| L7       | 1.88300 | 40.8 | 883/408 | S-LAH58 (OHARA)       | Lanthanum heavy flint                                   |
+| L8       | 1.54072 | 47.2 | 541/472 | S-TIL2 (OHARA)        | Light flint; object-side element of the triplet         |
+| L9 (Lp2) | 1.60401 | 20.8 | 604/208 | No catalog match      | Canon BR optics (inferred)                              |
+| L10      | 1.95375 | 32.3 | 954/323 | S-LAH98 (OHARA)       | Ultra-high-index lanthanum                              |
+| L11      | 1.95375 | 32.3 | 954/323 | S-LAH98 (OHARA)       | Same as L10                                             |
+| L12      | 1.62004 | 36.3 | 620/363 | S-TIM2 (OHARA)        | Titanium flint                                          |
+| L13      | 1.68893 | 31.1 | 689/311 | S-TIM28 (OHARA)       | Titanium flint                                          |
+| L14      | 1.90043 | 37.4 | 900/374 | TAFD37A (HOYA)        | Lanthanum/tantalum dense flint                          |
 
 ### Key material observations
 
 **Ultra-high-index glasses (nd > 1.9):** Four elements (L3, L10, L11, L14) employ glasses with nd exceeding 1.90 — an exceptionally aggressive choice that allows strong positive refractive power without proportionally large Petzval sum contributions. The verified Petzval sum for the entire system is 0.00107 mm⁻¹, yielding a Petzval radius of 934 mm — remarkably flat for a lens of this speed.
 
-**UD glass (L4):** Lens 4 (nd = 1.49700, νd = 81.5) corresponds to the one Ultra-low Dispersion element Canon lists; the patent itself does not use the term. This glass is essentially equivalent to OHARA S-FPL51, a fluorophosphate crown with dispersion properties approaching fluorite (CaF₂). Positioned in air-spaced group 3 as a strongly positive meniscus (fl = +97.8 mm), it provides primary chromatic correction in the front half of L2.
+**Inferred UD association (L4):** Source 1.49700/81.5 is compatible with the retained S-FPL51 spectral proxy. Its association with the production UD count remains inferred; the tuple and catalog curve do not establish fluorophosphate or other historical chemistry. It is a strong positive meniscus (isolated focal length +97.8 mm) in the front half of L2.
 
-**BR optics (L9):** Lens 9 (nd = 1.60401, νd = 20.8) is identified here with Canon's Blue Spectrum Refractive (BR) optics, a proprietary organic material. The patent names neither BR nor any material; the identification is inferred from two features: its very high anomalous partial dispersion (ΔθgF = 0.092, nearly an order of magnitude above the Lp1 element), and its refractive index / Abbe number combination, which falls well outside the standard glass map. No conventional optical glass matches nd = 1.604 with νd = 20.8. The material is sandwiched between Lens 8 (nd = 1.54072) and Lens 10 (nd = 1.95375) to form a cemented triplet (L8–L10).
+**Inferred BR association (L9):** Source Lp2 has nd 1.60401/vd 20.8 and genuinely published anomalous dispersion. The patent does not name BR or identify glass/polymer chemistry. The unmatched medium remains unidentified; its BR association is product correlation only. L8/L10 carry the layer at a shared optical triplet interface.
 
 ---
 
 ## 5. Blue Spectrum Refractive (BR) Optics — Lens 9
 
-Canon's BR optics technology, first deployed in the EF 35mm f/1.4L II USM (2015), uses a specially engineered organic polymer whose molecular structure produces anomalous dispersion characteristics exceeding those of fluorite or Super UD glass. The key property is an extremely strong ability to refract blue light (short wavelengths around 435–486 nm) relative to longer wavelengths, quantified by the anomalous partial dispersion ΔθgF.
+The production BR name is used here only as an inferred correlation. The selected source identifies Lp2 through its optical tuple and anomalous partial dispersion; it does not establish whether the actual medium is glass, resin or another organic material. Its genuine spectral evidence is retained independently of that unresolved identity.
 
 ### Physical construction
 
@@ -173,10 +173,10 @@ The rear element of the front cemented doublet, a dense flint (720/347) with hig
 ### Focusing Group — Unit L2 (movable)
 
 **Lens 3 (Lp1)** — Positive meniscus (fl = +134.4 mm), nd = 1.923, νd = 20.9.
-The first positive lens with anomalous partial dispersion (ΔθgF₁ = 0.008). This ultra-high-index dense flint (probably PBH21) is powerfully refracting in a meniscus form that minimizes surface aberrations. As a positive element with very high dispersion (νd = 20.9), L3 contributes significantly to primary longitudinal chromatic aberration — its strong wavelength-dependent power is then compensated by the negative flint elements (L5, L6) through conventional achromatization. However, L3's position in the design is driven primarily by its anomalous partial dispersion: even after the system's primary crown-flint chromatic balance is established, a secondary spectrum residual persists, and L3's modest ΔθgF = 0.008 provides a small but meaningful correction to this residual at the on-axis level. Its very high refractive index (1.923) keeps the Petzval contribution manageable despite the strong positive power.
+The first positive lens with anomalous partial dispersion (ΔθgF₁ = 0.008). This high-index low-Abbe coordinate with a qualified PBH21 spectral proxy is powerfully refracting in a meniscus form that minimizes surface aberrations. As a positive element with very high dispersion (νd = 20.9), L3 contributes significantly to primary longitudinal chromatic aberration — its strong wavelength-dependent power is then compensated by the negative flint elements (L5, L6) through conventional achromatization. However, L3's position in the design is driven primarily by its anomalous partial dispersion: even after the system's primary crown-flint chromatic balance is established, a secondary spectrum residual persists, and L3's modest ΔθgF = 0.008 provides a small but meaningful correction to this residual at the on-axis level. Its very high refractive index (1.923) keeps the Petzval contribution manageable despite the strong positive power.
 
 **Lens 4 (UD)** — Positive meniscus (fl = +97.8 mm), nd = 1.497, νd = 81.5.
-The UD (Ultra-low Dispersion) element, equivalent to S-FPL51 fluorophosphate. This is the strongest positive power contributor in the front half of L2 (fl = +97.8 mm), and its extremely low dispersion (νd = 81.5) means it introduces very little primary chromatic aberration per unit of refractive power — a highly efficient "crown" element. S-FPL51-class glasses also possess significant anomalous partial dispersion, making L4 a contributor to secondary spectrum correction alongside Lp1 and the BR element. The thick meniscus form (11.43 mm center thickness) also helps control spherical aberration and coma.
+The high-Abbe positive element, using a compatible S-FPL51 curve; UD and chemistry are inferred. This is the strongest positive power contributor in the front half of L2 (fl = +97.8 mm), and its extremely low dispersion (νd = 81.5) means it introduces very little primary chromatic aberration per unit of refractive power — a highly efficient "crown" element. S-FPL51-class glasses also possess significant anomalous partial dispersion, making L4 a contributor to secondary spectrum correction alongside Lp1 and the BR element. The thick meniscus form (11.43 mm center thickness) also helps control spherical aberration and coma.
 
 **Lens 5 (Aspherical)** — Negative meniscus (fl = −52.5 mm), nd = 1.855, νd = 24.8.
 The sole aspherical element, a strongly negative meniscus positioned immediately before the aperture stop. Its aspherical front surface (surface 8) corrects the dominant higher-order spherical aberration that would otherwise overwhelm the image at f/1.2. The negative power also contributes to the telephoto ratio, helps flatten the Petzval field, and provides chromatic balancing against the preceding positive elements. Made from high-index flint glass to allow the aspherical correction without excessive curvature.
@@ -198,7 +198,7 @@ L11 is a strongly positive biconvex element (fl = +41.4 mm, nd = 1.954, νd = 32
 A weakly negative singlet that provides field curvature correction and helps control astigmatism in the outer field zones. Its titanium flint glass (S-TIM28) balances the chromatic residuals from the preceding doublet.
 
 **Lens 14** — Biconvex positive (fl = +86.3 mm), nd = 1.900, νd = 37.4.
-The final element, a strongly positive biconvex in ultra-high-index lanthanum glass. This element serves two purposes: it provides positive power to reduce the convergence angle of the exit rays (bringing them closer to perpendicular incidence on the sensor for better microlens compatibility), and it contributes final chromatic balancing. Its focal length (+86.3 mm) is almost identical to the system focal length, and its strong convergence helps place the exit pupil 38 mm in front of the image plane — far enough that ray angles at the sensor remain moderate across the field.
+The final element is a strongly positive biconvex at the source 1.90043/37.4 coordinate; its TAFD37A curve is a compatible proxy and does not identify historical chemistry. This element serves two purposes: it provides positive power to reduce the convergence angle of the exit rays (bringing them closer to perpendicular incidence on the sensor for better microlens compatibility), and it contributes final chromatic balancing. Its focal length (+86.3 mm) is almost identical to the system focal length, and its strong convergence helps place the exit pupil 38 mm in front of the image plane — far enough that ray angles at the sensor remain moderate across the field.
 
 ---
 
@@ -210,12 +210,12 @@ The entire L2 unit (elements 3–10 and the stop) translates bodily toward the o
 
 The two variable air gaps are:
 
-| Gap | Surface | Infinity (patent) | Close (0.85 m, calculated) | Change |
-|---|---|---|---|---|
-| L1 → L2 | d₃ | 14.36 mm | 1.61 mm | −12.75 mm |
-| L2 → L3 | d₁₇ | 1.64 mm | 14.39 mm | +12.75 mm |
+| Gap     | Surface | Infinity (patent) | Close (0.85 m, calculated) | Change    |
+| ------- | ------- | ----------------- | -------------------------- | --------- |
+| L1 → L2 | d₃      | 14.36 mm          | 1.61 mm                    | −12.75 mm |
+| L2 → L3 | d₁₇     | 1.64 mm           | 14.39 mm                   | +12.75 mm |
 
-The patent tabulates only the infinity gaps. The close values are a paraxial solve that moves L2 alone, holds the image plane fixed and places the object 850.6 mm from the image (β ≈ −0.126, against Canon's 0.12× maximum magnification). The resulting L2 shift of 12.75 mm is substantial — nearly the entire available gap between L1 and L2 is consumed at minimum focus distance. Because only L2 moves, Δd₃ + Δd₁₇ = 0 and the total track stays at 134.49 mm.
+The patent tabulates only the infinity gaps. The close values are a paraxial solve that moves L2 alone, holds the image plane fixed and places the object approximately 850.0 mm from the image under the current canonical model (β ≈ −0.126, against Canon's 0.12× maximum magnification). The resulting L2 shift of 12.75 mm is substantial — nearly the entire available gap between L1 and L2 is consumed at minimum focus distance. Because only L2 moves, Δd₃ + Δd₁₇ = 0 and the total track stays at 134.49 mm.
 
 ### Why L2 focus works
 
@@ -231,45 +231,45 @@ All values independently verified by paraxial ray trace (ABCD matrix / y-nu meth
 
 ### System parameters
 
-| Parameter | Value |
-|---|---|
-| Effective focal length | 86.53 mm |
-| F-number (design) | f/1.24 |
-| Half-field angle (ω) | 14.04° |
-| Image height | 21.64 mm (full-frame 43.28 mm diagonal) |
-| Overall optical length | 134.49 mm |
-| Back focal distance | 14.91 mm |
-| Entrance pupil position | 113.67 mm behind front surface |
-| Exit pupil position | −38.04 mm (38 mm in front of image plane) |
-| Petzval sum | 0.00107 mm⁻¹ |
-| Petzval radius | 934 mm |
+| Parameter               | Value                                     |
+| ----------------------- | ----------------------------------------- |
+| Effective focal length  | 86.53 mm                                  |
+| F-number (design)       | f/1.24                                    |
+| Half-field angle (ω)    | 14.04°                                    |
+| Image height            | 21.64 mm (full-frame 43.28 mm diagonal)   |
+| Overall optical length  | 134.49 mm                                 |
+| Back focal distance     | 14.91 mm                                  |
+| Entrance pupil position | 113.67 mm behind front surface            |
+| Exit pupil position     | −38.04 mm (38 mm in front of image plane) |
+| Petzval sum             | 0.00107 mm⁻¹                              |
+| Petzval radius          | 934 mm                                    |
 
 ### Unit focal lengths
 
-| Unit | Focal length (mm) | Power contribution |
-|---|---|---|
-| L1 | +452.3 | Weak positive collector |
-| L2 | +93.1 | Primary power; focusing |
-| L3 | +845.7 | Weak positive; exit pupil control |
+| Unit | Focal length (mm) | Power contribution                |
+| ---- | ----------------- | --------------------------------- |
+| L1   | +452.3            | Weak positive collector           |
+| L2   | +93.1             | Primary power; focusing           |
+| L3   | +845.7            | Weak positive; exit pupil control |
 
 ### Element focal lengths (thick-lens, standalone in air)
 
-| Element | Shape | fl (mm) | Glass (nd/νd) | Role |
-|---|---|---|---|---|
-| L1 | Biconvex (+) | +80.5 | 1.618/63.4 | Front crown |
-| L2 | Biconcave (−) | −88.7 | 1.720/34.7 | Front flint |
-| L3 (Lp1) | Pos. meniscus (+) | +134.4 | 1.923/20.9 | APD corrector (axial CA) |
-| L4 (UD) | Pos. meniscus (+) | +97.8 | 1.497/81.5 | UD glass (low-dispersion positive) |
-| L5 (asph.) | Neg. meniscus (−) | −52.5 | 1.855/24.8 | Spherical aberration corrector |
-| L6 | Biconcave (−) | −27.9 | 1.855/24.8 | Post-stop doublet flint |
-| L7 | Biconvex (+) | +26.6 | 1.883/40.8 | Post-stop doublet crown |
-| L8 | Biconcave (−) | −48.6 | 1.541/47.2 | Triplet object-side element |
-| L9 (BR) | Pos. meniscus (+) | +375.2 | 1.604/20.8 | BR optics (lateral CA) |
-| L10 | Biconvex (+) | +41.7 | 1.954/32.3 | Triplet image-side element, positive power |
-| L11 | Biconvex (+) | +41.4 | 1.954/32.3 | Rear doublet crown |
-| L12 | Biconcave (−) | −51.6 | 1.620/36.3 | Rear doublet flint |
-| L13 | Biconcave (−) | −61.9 | 1.689/31.1 | Field flattener |
-| L14 | Biconvex (+) | +86.3 | 1.900/37.4 | Exit angle control |
+| Element    | Shape             | fl (mm) | Glass (nd/νd) | Role                                       |
+| ---------- | ----------------- | ------- | ------------- | ------------------------------------------ |
+| L1         | Biconvex (+)      | +80.5   | 1.618/63.4    | Front crown                                |
+| L2         | Biconcave (−)     | −88.7   | 1.720/34.7    | Front flint                                |
+| L3 (Lp1)   | Pos. meniscus (+) | +134.4  | 1.923/20.9    | APD corrector (axial CA)                   |
+| L4 (UD)    | Pos. meniscus (+) | +97.8   | 1.497/81.5    | UD glass (low-dispersion positive)         |
+| L5 (asph.) | Neg. meniscus (−) | −52.5   | 1.855/24.8    | Spherical aberration corrector             |
+| L6         | Biconcave (−)     | −27.9   | 1.855/24.8    | Post-stop doublet flint                    |
+| L7         | Biconvex (+)      | +26.6   | 1.883/40.8    | Post-stop doublet crown                    |
+| L8         | Biconcave (−)     | −48.6   | 1.541/47.2    | Triplet object-side element                |
+| L9 (BR)    | Pos. meniscus (+) | +375.2  | 1.604/20.8    | BR optics (lateral CA)                     |
+| L10        | Biconvex (+)      | +41.7   | 1.954/32.3    | Triplet image-side element, positive power |
+| L11        | Biconvex (+)      | +41.4   | 1.954/32.3    | Rear doublet crown                         |
+| L12        | Biconcave (−)     | −51.6   | 1.620/36.3    | Rear doublet flint                         |
+| L13        | Biconcave (−)     | −61.9   | 1.689/31.1    | Field flattener                            |
+| L14        | Biconvex (+)      | +86.3   | 1.900/37.4    | Exit angle control                         |
 
 ---
 
@@ -279,7 +279,7 @@ The Canon RF 85mm f/1.2L USM exemplifies several trends in modern high-performan
 
 **Ultra-high-index glass usage:** Four elements exceed nd = 1.90, allowing the design to distribute positive power across many surfaces while keeping the Petzval sum remarkably low (R_P = 934 mm). Without these materials, an f/1.2 design at 85 mm would suffer from pronounced field curvature.
 
-**BR optics for secondary spectrum:** The organic BR element addresses a limitation that even fluorite and Super UD glass cannot fully solve: the secondary spectrum of the g-line and F-line in the lateral (magnification) direction. By placing the BR element after the stop — symmetrically opposite the Lp1 element before the stop — the design achieves simultaneous correction of both longitudinal and lateral secondary chromatic aberration.
+**Lp2 for secondary spectrum:** The source anomalous-partial-dispersion medium contributes to the g/F secondary spectrum; its BR/organic association remains inferred. By placing the BR element after the stop — symmetrically opposite the Lp1 element before the stop — the design achieves simultaneous correction of both longitudinal and lateral secondary chromatic aberration.
 
 **Single aspherical surface efficiency:** Rather than using multiple aspherical surfaces, the design achieves spherical aberration control with a single well-placed aspherical surface on a high-index substrate, immediately before the stop. The 0.42 mm departure at the rim indicates a heavily worked asphere, but the K = 0 (spherical) conic base with only three non-zero polynomial terms suggests the manufacturing challenge is primarily in the departure magnitude rather than in surface complexity.
 
@@ -291,18 +291,61 @@ The Canon RF 85mm f/1.2L USM exemplifies several trends in modern high-performan
 
 The patent defines 18 conditional expressions that bound the design space. Example 1 satisfies all of them, with key values confirming the design intent:
 
-| Expression | Meaning | Value | Bounds |
-|---|---|---|---|
-| (1) ΔθgF1 | Lp1 anomalous dispersion | 0.01 | 0.005–0.40 |
-| (2) ΔθgF2 | Lp2 anomalous dispersion | 0.09 | 0.005–0.40 |
-| (3) DL1/DL2 | Symmetry about stop | 1.61 | 0.50–3.00 |
-| (4) nd1 | Lp1 refractive index | 1.9229 | 1.80–2.40 |
-| (13) fp1/f2 | Lp1 power relative to L2 | 1.44 | 0.50–5.00 |
-| (14) fp2/f2 | Lp2 power relative to L2 | 4.03 | 0.50–10.0 |
-| (15) f1/f | L1 power relative to system | 5.23 | 1.50–45.0 |
-| (16) f2/f | L2 power relative to system | 1.08 | 0.50–1.50 |
-| (18) Fno | Aperture ratio | 1.24 | 0.50–2.50 |
+| Expression  | Meaning                     | Value  | Bounds     |
+| ----------- | --------------------------- | ------ | ---------- |
+| (1) ΔθgF1   | Lp1 anomalous dispersion    | 0.01   | 0.005–0.40 |
+| (2) ΔθgF2   | Lp2 anomalous dispersion    | 0.09   | 0.005–0.40 |
+| (3) DL1/DL2 | Symmetry about stop         | 1.61   | 0.50–3.00  |
+| (4) nd1     | Lp1 refractive index        | 1.9229 | 1.80–2.40  |
+| (13) fp1/f2 | Lp1 power relative to L2    | 1.44   | 0.50–5.00  |
+| (14) fp2/f2 | Lp2 power relative to L2    | 4.03   | 0.50–10.0  |
+| (15) f1/f   | L1 power relative to system | 5.23   | 1.50–45.0  |
+| (16) f2/f   | L2 power relative to system | 1.08   | 0.50–1.50  |
+| (18) Fno    | Aperture ratio              | 1.24   | 0.50–2.50  |
 
 ---
 
-*Analysis verified by independent paraxial ray trace. All focal lengths, unit powers, Petzval sum, and variable-gap values confirmed to within rounding tolerance of the patent prescription.*
+_Analysis verified by independent paraxial ray trace. All focal lengths, unit powers, Petzval sum, and variable-gap values confirmed to within rounding tolerance of the patent prescription._
+
+## Scoped source-normal correction — 2026-10-30
+
+The completed shape/prescription review remains **2026-09-23**, with May 19, June 4 and July 29 glass/provenance history preserved. Current optical semantic equality to that review was proved excluding only the later `source.example` annotation. This reopening addresses a reproducible spectral-convention error, not a fresh inspection of unchanged source rims or the other media. Source geometry, clear caps, aspheres, index/Abbe pairs, iris and focus controls are unchanged.
+
+The exact local original `patents/US20200012073A1.pdf`, PDF p22/printed p2 paragraph 0038 equation(c), defines a **cubic** normal:
+
+`Nsource(v) = −1.665e−7 v³ +5.213e−5 v² −5.656e−3 v +.7278`
+
+`ΔθgF = θgF − Nsource(vd)`
+
+Native Table 1 PDF p36/printed p16 gives Lp1/L3 Δθ=.008 at vd 20.90 and Lp2/L9 Δθ=.092 at vd 20.80. Those genuine source deviations are retained in the notes and source-condition discussion. The old active fields copied them directly into engine `dPgF`, which uses `.6438−.001682 vd`; the two definitions are different. This corrects the authored data convention, not a patent misprint.
+
+| Element | Genuine source Δθ | Source cubic normal | Reconstructed absolute θ | Correct engine dPgF |
+| ------- | ----------------: | ------------------: | -----------------------: | ------------------: |
+| L3/Lp1  |              .008 |      .6308404720215 |           .6388404720215 |      .0301942720215 |
+| L9/Lp2  |              .092 |       .631210404352 |            .723210404352 |       .114396004352 |
+
+The public `normalLinePgF(vd, dPgF)` reconstructs both source absolute ratios within 1e−15, as do the actual compiled `(ng−nF)/(nF−nC)` ratios. Extra digits preserve arithmetic reproducibility; the printed deviations have only three decimal places (about ±.0005 if rounded), with additional source coefficient/Abbe rounding. These are not newly published precision measurements. Paragraph 0038 explicitly defines d 587.6/F 486.1/C 656.3/g 435.8 nm. Actual runtime ng changes L3 1.981794571878→1.982775325890 and L9 1.645058217595→1.645708573873; these ng values are model reconstructions, not printed source line indices. Catalog C/F curves remain qualified approximations and the unmatched Lp2 medium remains unresolved.
+
+All existing catalog curve identities are unchanged. Source d geometry and all 65 prepared focus states agree exactly before/after; every actual SVG path is identical, finite, closed and connected with 0 hidden trim. The source shape review is reused at its actual September 23 date. Labels now explicitly qualify L4 UD/chemistry and L9 BR inference, and the L5 role names modeled f1.24.
+
+Both 65-position d-line launch grids remain clear: 3,185/3,185 axial rays and 195/195 chiefs, 0 failed seeds. One is collimated in every focus-adjusted geometry; the other uses actual finite-object Gaussian conjugates at nonzero focus (half 1546.703537 mm, near 850.003712 mm object-to-image), which remain inferred rather than published close states. Gaussian d-line bundles at 0/.6/1 pass 49/36/17 infinity, 49/38/22 half and 49/43/24 near. Finite field heights `(21.65×fraction)/A` are paraxial object-field probes, not inverse-solved sensor corners. No full finite-corner claim is made.
+
+A 65-state actual-Gaussian axial comparison traces 3,185 rays per channel before/after: C/d/F terminal-ray hashes are byte-identical; g changes as intended, with maximum terminal-coordinate difference .018175287 mm and all 3,185 axial samples still passing. Full g-line 65-state field grids retain 195/195 chiefs and 0 failed seeds; total survivors change 6,950→6,944 of 9,555, showing the actual off-axis consequence rather than claiming a passing axial bundle proves all-field transmission. Endpoint g bundles remain 49/34/15,49/38/22 and49/43/24. No caps or cams are tuned to spectral output.
+
+Narrow canonical surface, image-circle, aperture and field audits and the full no-inferred-cut probe are checked on the result. Source fidelity, sampled runtime clearance and production correlation remain separate. The source/count mismatch, retained S20 cap constraint, calculated focus travel, inferred BR/UD identities and qualified spectral proxies remain limitations.
+
+## October 31, 2026 — Scoped Lp1 Catalog Trial Retained
+
+Preserve September 23 whole source/shape coverage, earlier May/June/July glass history and the October 30 cubic-normal correction. Directly rechecked the same `US20200012073A1.pdf`: First Numerical Embodiment on PDF p. 28 (printed p. 8), L3 at source rows 4–5, Table 1 on PDF p. 36 (printed p. 16), and paragraph 0038 equation (c) on PDF p. 22 (printed p. 2). Figure 1 on PDF p. 2 identifies Lp1 before the stop and Lp2 in the bonded rear assembly; no layer, interface or rim is changed.
+
+The genuine Lp1 deviation is .008 on the source cubic `−1.665e−7ν³ + 5.213e−5ν² − 5.656e−3ν + .7278`. At ν = 20.90 this gives absolute θ = .6388404720215 and the retained engine dPgF .0301942720215. Lp2’s separate .092/cubic conversion also remains unchanged. The source identifies d/F/C/g as 587.6/486.1/656.3/435.8 nm; catalog comparisons use the project standard lines, with the source’s stated rounding retained. No catalog deviation is substituted for either source convention.
+
+| Element | Current curve → candidate | F−C error before → trial (%) | Native PgF residual before → trial | Disposition          |
+| ------- | ------------------------- | ---------------------------: | ---------------------------------: | -------------------- |
+| E3      | PBH21 → E-FDS1            |        +0.075934 → +0.093912 |        -0.008216112 → +0.000129610 | Retain current curve |
+
+The comparison uses the source-implied F−C span `(nd−1)/νd` and the genuine absolute source partial, rather than ranking the catalog’s native g value alone. All authored partial fields remain authoritative at g. Consequently, a closer unused native catalog PgF does not justify worsening the known C/F constraint. This is a source-fidelity tradeoff, not a new compatibility tolerance or a claim of measured production performance. The curve’s C/F values remain estimates anchored to the source d index; source-relative g is preserved, while absolute chromatic indices may change with a qualified curve selection. No source numerical field is refitted.
+
+The primary HOYA E-FDS1 polynomial is coherent and its native PgF is much closer to the genuine Lp1 ratio, but the current PBH21-plus-source-partial model already enforces that ratio at g. E-FDS1 slightly increases the source-implied C/F span error. Both span errors are inside the coarse source Abbe rounding; there is no source-backed runtime benefit that warrants curve churn. PBH21 remains a qualified proxy whose native g alone does not reproduce the patent partial. The authored correction supplies that evidence. Its historical material, supplier and melt remain unidentified.
+
+Coverage remains 13/14, with the Lp2 medium unresolved and its BR/organic association still inferred. No new row, spectral field, APD designation, geometry or control is added. All current finite, source-rounding, image-plane and connected-layer qualifications remain applicable.

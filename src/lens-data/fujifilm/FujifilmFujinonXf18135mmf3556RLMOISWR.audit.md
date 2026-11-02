@@ -10,3 +10,7 @@
   focus keyframes (worst difference 4e-15 mm), because the old gap stored the exact fold. The reconstructed 0.45 m
   close-focus D11/D13 pairs are unchanged.
 - Physical track grows by 2.850 × (1 − 1/1.5168) = 0.971 mm to 110.920 / 138.017 / 171.079 mm.
+
+## 2026-11-01 — Glass row for L51
+
+SUMITA's catalog lists K-VC78 in its moulding state at nd 1.66624, νd 55.12; the row was missing from the repo. L51 is aspherical on both faces and prints 1.66630/55.16, so it now resolves to the new `K-VC78-M` row.

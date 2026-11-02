@@ -1,25 +1,34 @@
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
+import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 // @vitest-environment jsdom
 
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useChromaticRays from "../../../../src/components/hooks/useChromaticRays.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
+import { computeLongitudinalChromaticFocus } from "../../../../src/optics/analysis/chromatic/analysis.js";
 import {
-  computeLongitudinalChromaticFocus,
-  doLayout,
-  entrancePupilAtState,
-  fopenAtZoom,
-} from "../../../../src/optics/optics.js";
-import { createCoordinateTransforms } from "../../../../src/optics/diagramGeometry.js";
-import { raySampleCountForDensity } from "../../../../src/optics/raySampling.js";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
-import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
+  doLayoutForRuntimeLens as doLayout,
+  fopenAtZoomClamped as fopenAtZoom,
+} from "../../../../src/optics/state/runtimeAdapters.js";
+import { entrancePupilAtState } from "../../../../src/optics/state/fieldAdapters.js";
+import { createCoordinateTransforms } from "../../../../src/optics/diagram/coordinateTransforms.js";
+import { raySampleCountForDensity } from "../../../../src/optics/trace/raySampling.js";
+import { catalogLensData } from "../../optics/testLensFixtures.js";
+import type { ChromaticChannel, LensData, RuntimeLens } from "../../../../src/types/optics.js";
+import { formatChromaticZone } from "../../../../src/components/display/analysis/chromaticChartUtils.js";
 import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import ApoLantharRaw from "../../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 
-const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
-const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
+const Sonnar = catalogLensData(SonnarRaw);
+const ApoLanthar = catalogLensData(ApoLantharRaw);
 const displayLocaFallbackFractions = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
+/**
+ * The Sonnar 50/1.5's wide-open zone where a rim behind the stop vignettes blue's and violet's aimed rays while red
+ * and green pass: 0.9827–0.9831 R under the paraxial stop rule.
+ */
+const SONNAR_BLUE_RIM_ZONE = 0.9829;
 
 function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
   const L = buildLens(data);
@@ -326,15 +335,65 @@ describe("useChromaticRays", () => {
     expect(result.current.chromaticRayFanSpread!.channels).toEqual(["R", "G", "B"]);
     expect(typeof result.current.chromaticRayFanSpread!.fraction).toBe("number");
 
-    const expected = computeLongitudinalChromaticFocus(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, 0, {
-      channels: ["R", "G", "B"],
-      longitudinalFractions: expectedDisplayLocaFractions(L),
-    })!.spread;
+    const expected = computeLongitudinalChromaticFocus(
+      createAnalysisRequest({
+        preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+        dynamicEFL: L.EFL,
+        currentEPSD: currentEPSD,
+        currentPhysStopSD: currentPhysStopSD,
+      }),
+      {
+        channels: ["R", "G", "B"],
+        longitudinalFractions: expectedDisplayLocaFractions(L),
+      },
+    )!.spread;
     expect(result.current.chromaticRayFanSpread!.axialInterceptSpreadMm).toBeCloseTo(
       expected.axialInterceptSpreadMm,
       12,
     );
     expect(result.current.chromaticRayFanSpread!.fraction).toBe(expected.fraction);
+  });
+
+  it("keeps fixed-index rays visible without reporting artificial zero color error", () => {
+    const data = catalogLensData({
+      schema: 2,
+      key: "constant-dispersion-fixture",
+      name: "Constant-index singlet",
+      elements: [{ id: 1, name: "L1", nd: 1.5, glass: "Unmatched" }],
+      surfaces: [
+        { label: "STO", R: "flat", d: 1 },
+        { label: "1", R: 30, d: 3, sd: 5, medium: 1 },
+        { label: "2", R: -30, d: 30, sd: 5 },
+      ],
+      focus: { closeFocusM: 1e15 },
+      aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8] },
+      projection: { kind: "rectilinear", fullFieldDeg: 10, maxTraceFieldDeg: 5 },
+      layout: { yScFill: 0.3 },
+    });
+    const fixture = buildTestFixture(0, 0, data);
+    const { result } = renderHook(() =>
+      useChromaticRays({
+        ...fixture,
+        focusT: 0,
+        zoomT: 0,
+        rayDensity: "normal",
+        rayTracksF: false,
+        focusK: 0,
+        showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "trueAngle",
+        chromR: true,
+        chromG: true,
+        chromB: true,
+        chromV: false,
+        lensKey: "constant-dispersion-fixture",
+      }),
+    );
+
+    expect(result.current.error).toBeNull();
+    expect(result.current.chromaticRays.length).toBeGreaterThan(0);
+    expect(result.current.chromaticRayFanSpreads).toEqual({ onAxis: null, offAxis: null });
+    expect(result.current.chromaticRayFanSpread).toBeNull();
   });
 
   it("does not report a larger LoCA spread when a selected RGB channel is hidden", () => {
@@ -376,6 +435,60 @@ describe("useChromaticRays", () => {
     expect(noRed).toBeLessThanOrEqual(allRgb + 1e-9);
     expect(noGreen).toBeLessThanOrEqual(allRgb + 1e-9);
     expect(noBlue).toBeLessThanOrEqual(allRgb + 1e-9);
+  });
+
+  it("chooses the LoCA zone from all four channels, whichever are requested, and compares each requested one there", () => {
+    const { L, zPos, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    const request = createAnalysisRequest({
+      preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+      dynamicEFL: L.EFL,
+      currentEPSD,
+      currentPhysStopSD,
+    });
+    const fractions = expectedDisplayLocaFractions(L);
+    const order: ChromaticChannel[] = ["R", "G", "B", "V"];
+    const subsets = Array.from({ length: 16 }, (_, mask) => order.filter((_, bit) => mask & (1 << bit))).filter(
+      (channels) => channels.length >= 2,
+    );
+
+    // Wide open, a rim behind the stop vignettes blue's and violet's aimed rim zone; all four pass 0.97 R. Red and
+    // green alone pass the rim zone, but the zone does not move when the other channels are hidden.
+    const atOuter = computeLongitudinalChromaticFocus(request, {
+      channels: order,
+      longitudinalFractions: [SONNAR_BLUE_RIM_ZONE],
+    })!;
+    expect(atOuter.omittedChannels.map((omission) => omission.channel)).toEqual(["B", "V"]);
+    for (const channels of subsets) {
+      const result = computeLongitudinalChromaticFocus(request, {
+        channels,
+        longitudinalFractions: [SONNAR_BLUE_RIM_ZONE, ...fractions],
+      })!;
+      expect(result.marginalFraction).toBe(0.97);
+      expect(result.spread.channels).toEqual(channels);
+      expect(result.omittedChannels).toEqual([]);
+    }
+  });
+
+  it("states the zone, the channels compared and each missing channel's reason when no zone admits them all", () => {
+    const { L, zPos, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    const request = createAnalysisRequest({
+      preparedState: stateWithZ(prepareRuntimeState(L, 0, 0, 0), zPos),
+      dynamicEFL: L.EFL,
+      currentEPSD,
+      currentPhysStopSD,
+    });
+
+    // Offered only the rim zone, where a rim behind the stop vignettes blue, LoCA compares red and green.
+    const result = computeLongitudinalChromaticFocus(request, {
+      channels: ["R", "G", "B"],
+      longitudinalFractions: [SONNAR_BLUE_RIM_ZONE],
+    })!;
+    expect(result.marginalFraction).toBe(SONNAR_BLUE_RIM_ZONE);
+    expect(result.spread.fraction).toBe(SONNAR_BLUE_RIM_ZONE);
+    expect(result.spread.channels).toEqual(["R", "G"]);
+    expect(result.omittedChannels).toEqual([{ channel: "B", reason: "vignetted" }]);
+    expect(result.spread.omittedChannels).toEqual(result.omittedChannels);
+    expect(formatChromaticZone(result.spread)).toBe("0.98 R, R–G; B vignetted");
   });
 
   it("falls back to the outermost usable sample when marginal chromatic rays clip", () => {

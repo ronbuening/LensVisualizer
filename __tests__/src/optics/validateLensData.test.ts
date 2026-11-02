@@ -1,9 +1,15 @@
+import { validateFixtureLensInput as validateLensInput, constructionFixtureData } from "./constructionFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, it, expect, vi } from "vitest";
-import validateLensData from "../../../src/optics/validateLensData.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/internal/surfaceMath.js";
+import validateLensData, { validateCanonicalLens } from "../../../src/optics/prescription/validate/index.js";
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
+import { FIXTURE_PAIRS } from "./prescription/ingestV2Fixtures.js";
+import type { LensDataInput } from "../../../src/types/optics.js";
+import type { LensDataV2Input } from "../../../src/types/lensDataV2.js";
+import { v1CatalogDefaults } from "../../../src/optics/prescription/defaults.js";
+import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/geometry/surfaceProfile.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../src/types/asphericSchema.js";
-import { attachTeleconverter } from "../../../src/optics/prescription/teleconverter.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import { teleconverterFixture, teleconverterHostData } from "./testLensFixtures.js";
 
 /* Passthrough mock so a single test can make buildAsphereIndex throw once.
@@ -11,8 +17,8 @@ import { teleconverterFixture, teleconverterHostData } from "./testLensFixtures.
  * folded image-plane guard's catch branch is only reachable this way. */
 const asphereIndexControl = vi.hoisted(() => ({ failNextBuild: false }));
 
-vi.mock("../../../src/optics/internal/lensState.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../../../src/optics/internal/lensState.js")>();
+vi.mock("../../../src/optics/prescription/compileAspheres.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../src/optics/prescription/compileAspheres.js")>();
   return {
     ...actual,
     buildAsphereIndex: (...args: Parameters<typeof actual.buildAsphereIndex>) => {
@@ -25,9 +31,10 @@ vi.mock("../../../src/optics/internal/lensState.js", async (importOriginal) => {
   };
 });
 
+/* The validator's cases include data ingest refuses, so this spreads the raw catalog defaults rather than ingesting. */
 function makeValid(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   return {
-    ...LENS_DEFAULTS,
+    ...v1CatalogDefaults(),
     key: "test",
     name: "Test Lens",
     nominalFno: 2.0,
@@ -64,6 +71,394 @@ function makeValid(overrides: Record<string, unknown> = {}): Record<string, unkn
 }
 
 describe("validateLensData", () => {
+  describe("patent metadata", () => {
+    const metadata = {
+      patentNumber: "JP 2000-000001 A",
+      patentAuthors: ["Ada Lovelace"],
+      patentAssignees: ["Fixture Optical Co., Ltd."],
+    };
+    const cases: { name: string; overrides: Record<string, unknown>; error: string }[] = [
+      ...[undefined, null, 123, "", "  ", " JP 2000-000001 A"].map((patentNumber) => ({
+        name: `missing, empty, wrong-typed or untrimmed publication number: ${String(patentNumber)}`,
+        overrides: { patentNumber },
+        error: '"patentNumber" must be a non-empty, trimmed string when patent metadata is provided',
+      })),
+      ...["not a patent", "JP2000-000001 A", "JP 2000-000001A", "jp 2000-000001 A"].map((patentNumber) => ({
+        name: `publication format: ${patentNumber}`,
+        overrides: { patentNumber },
+        error: '"patentNumber" must be a patent publication number with country and kind-code spacing',
+      })),
+      ...(["patentAuthors", "patentAssignees"] as const).flatMap((field) => [
+        ...[undefined, null, "Ada Lovelace"].map((value) => ({
+          name: `${field} must be an array: ${String(value)}`,
+          overrides: { [field]: value },
+          error: `"${field}" must be an array when patent metadata is provided`,
+        })),
+        ...["", " Ada Lovelace", "Ada Lovelace ", null, 123].map((value) => ({
+          name: `${field} non-empty trimmed string: ${String(value)}`,
+          overrides: { [field]: [value] },
+          error: `"${field}[0]" must be a non-empty, trimmed string`,
+        })),
+        {
+          name: `${field} uniqueness`,
+          overrides: { [field]: [metadata[field][0], metadata[field][0]] },
+          error: `"${field}" entries must be unique`,
+        },
+        {
+          name: `${field} explicit named parties`,
+          overrides: { [field]: ["Example et al."] },
+          error: `"${field}[0]" must list every named party explicitly`,
+        },
+        {
+          name: `${field} NFKC normalization`,
+          overrides: { [field]: ["Jose\u0301 Example"] },
+          error: `"${field}[0]" must use normalized Unicode (NFKC)`,
+        },
+        {
+          name: `${field} parenthetical annotations`,
+          overrides: { [field]: ["Example (Source)"] },
+          error: `"${field}[0]" must omit parenthetical source annotations`,
+        },
+        {
+          name: `${field} conventional capitalization`,
+          overrides: { [field]: ["EXAMPLE"] },
+          error: `"${field}[0]" must use conventional capitalization`,
+        },
+      ]),
+      {
+        name: "romanized inventor names",
+        overrides: { patentAuthors: ["仲田 丈晴"] },
+        error: '"patentAuthors[0]" must be romanized',
+      },
+      ...["Dr.", "Prof."].map((title) => ({
+        name: `inventor honorific: ${title}`,
+        overrides: { patentAuthors: [`${title} Ada Lovelace`] },
+        error: '"patentAuthors[0]" must omit honorifics',
+      })),
+      ...["Co", "Corp", "Inc", "Ltd", "KK"].map((suffix) => ({
+        name: `canonical corporate suffix: ${suffix}`,
+        overrides: { patentAssignees: [`Example ${suffix}`] },
+        error: '"patentAssignees[0]" must use canonical corporate suffixes',
+      })),
+      {
+        name: "inventor repeated as an assignee despite punctuation and case",
+        overrides: { patentAssignees: ["ada-lovelace"] },
+        error: '"patentAssignees" must contain organizations, not inventor-applicants',
+      },
+      ...["Example 6", ["Example 6"]].map((patentExample) => ({
+        name: `example that is not a record: ${JSON.stringify(patentExample)}`,
+        overrides: { patentExample },
+        error: '"patentExample" must be an object with "label" and "id"',
+      })),
+      {
+        name: "example with a member beside label and id",
+        overrides: { patentExample: { label: "Table IV", id: "4", figure: "FIG. 5" } },
+        error: '"patentExample" holds only "label" and "id", not "figure"',
+      },
+      ...["", " Example 6", "Example  6"].map((label) => ({
+        name: `example label not trimmed and single-spaced: ${JSON.stringify(label)}`,
+        overrides: { patentExample: { label, id: "6" } },
+        error: '"patentExample" label must be a non-empty, trimmed, single-spaced string',
+      })),
+      ...[6, "", " 6"].map((id) => ({
+        name: `example id not a trimmed string: ${JSON.stringify(id)}`,
+        overrides: { patentExample: { label: "Example 6", id } },
+        error: '"patentExample" id must be a non-empty, trimmed string or null',
+      })),
+      ...[
+        { label: "Sole example", id: "1" },
+        { label: "Example 1", id: null },
+      ].map((patentExample) => ({
+        name: `null id other than a sole example: ${JSON.stringify(patentExample)}`,
+        overrides: { patentExample },
+        error: '"patentExample" id is null exactly when the label is "Sole example"',
+      })),
+      {
+        name: "example label repeating the publication number",
+        overrides: { patentExample: { label: "Example 2000000001", id: "2000000001" } },
+        error: '"patentExample" label must not repeat the publication number',
+      },
+      ...["EXAMPLE 6", "Third Embodiment", "Example IIII", "Example 6 (FIG. 5)"].map((label) => ({
+        name: `example label outside the term-and-numeral form: ${label}`,
+        overrides: { patentExample: { label, id: "6" } },
+        error: `"patentExample" label "${label}" must be a Title Case term and a numeral, or "Sole example"`,
+      })),
+      ...[
+        { label: "Example 6", id: "5", derived: "6" },
+        { label: "Table IV", id: "IV", derived: "4" },
+        { label: "Numerical Example 2-1", id: "2", derived: "2-1" },
+        { label: "Example 1a", id: "1a", derived: "1A" },
+      ].map(({ label, id, derived }) => ({
+        name: `example id that the label does not give: ${label} / ${id}`,
+        overrides: { patentExample: { label, id } },
+        error: `"patentExample" id "${id}" must be "${derived}", as label "${label}" gives`,
+      })),
+    ];
+
+    it.each(cases)("rejects $name through raw and canonical V1/V2 validation", ({ overrides, error }) => {
+      const data = makeValid({ ...metadata, ...overrides });
+      expect(validateLensData(data)).toEqual([error]);
+      expect(validateLensInput(data)).toEqual([error]);
+      expect(validateCanonicalLens(ingestLens(data as LensDataInput))).toEqual([error]);
+      const pair = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
+      if (!pair || pair.kind !== "lens") throw new Error("missing prime fixture");
+      const v2 = {
+        ...pair.v2,
+        source: {
+          patentNumber: data.patentNumber,
+          example: data.patentExample,
+          authors: data.patentAuthors,
+          assignees: data.patentAssignees,
+        },
+      } as LensDataV2Input;
+      const v2Error = error
+        .replace("patentExample", "source.example")
+        .replace("patentNumber", "source.patentNumber")
+        .replace("patentAuthors", "source.authors")
+        .replace("patentAssignees", "source.assignees");
+      expect(validateCanonicalLens(ingestLens(v2))).toEqual([v2Error]);
+    });
+
+    it("accepts source-declared empty party lists and synthetic lenses without patent metadata", () => {
+      for (const fields of [
+        {},
+        { patentYear: 2026 },
+        { patentAuthors: [], patentAssignees: [] },
+        metadata,
+        { ...metadata, patentAuthors: [], patentAssignees: [] },
+      ]) {
+        const data = makeValid(fields);
+        const before = structuredClone(data);
+        expect(validateLensData(data)).toEqual([]);
+        expect(validateCanonicalLens(ingestLens(data as LensDataInput))).toEqual([]);
+        expect(data).toEqual(before);
+      }
+    });
+
+    it("accepts an example whose id its label gives, and refuses one without a patent number", () => {
+      for (const [label, id] of [
+        ["Example 6", "6"],
+        ["Numerical Example 2-1", "2-1"],
+        ["Example 1a", "1A"],
+        ["Table IV", "4"],
+        ["Example III", "3"],
+        ["Example A", "A"],
+        ["Numerical Value Embodiment 12", "12"],
+        ["Sole example", null],
+      ] as const) {
+        const data = makeValid({ ...metadata, patentExample: { label, id } });
+        expect(validateLensData(data), label).toEqual([]);
+        expect(validateCanonicalLens(ingestLens(data as LensDataInput)), label).toEqual([]);
+      }
+      expect(validateLensData(makeValid({ patentExample: { label: "Example 1", id: "1" } }))).toEqual([
+        '"patentExample" requires a patent number',
+      ]);
+    });
+
+    it("accepts romanized diacritics, initials and mixed-case corporate names", () => {
+      expect(
+        validateLensData(
+          makeValid({
+            ...metadata,
+            patentAuthors: ["José Example", "A. B. Smith"],
+            patentAssignees: ["FUJIFILM Corporation", "Example GmbH", "Example Co., Ltd."],
+          }),
+        ),
+      ).toEqual([]);
+    });
+  });
+
+  it("validates canonical prescriptions in both formats without changing them", () => {
+    for (const pair of FIXTURE_PAIRS) {
+      if (pair.kind !== "lens") continue;
+      for (const file of [pair.v1, pair.v2]) {
+        const ingested = ingestLens(file);
+        const before = structuredClone(ingested);
+        expect(validateCanonicalLens(ingested), `${pair.family} V${ingested.provenance.format}`).toEqual([]);
+        expect(ingested).toEqual(before);
+      }
+    }
+  });
+
+  it("reads omitted catalog defaults individually, preserving explicit undefined and refused spellings", () => {
+    const authored = makeValid();
+    for (const field of Object.keys(v1CatalogDefaults())) delete authored[field];
+    const before = structuredClone(authored);
+    expect(validateLensInput(authored)).toEqual([]);
+    expect(authored).toEqual(before);
+    expect(validateLensData(authored)).toContain('Missing or non-finite required number field: "focusStep"');
+    expect(validateLensInput({ ...authored, focusStep: undefined })).toEqual([
+      'Missing or non-finite required number field: "focusStep"',
+    ]);
+    // The compiler reads lensShiftFrac without a fallback, so a non-finite value is refused here.
+    expect(validateLensInput({ ...authored, lensShiftFrac: NaN })).toEqual([
+      'Missing or non-finite required number field: "lensShiftFrac"',
+    ]);
+    expect(validateLensInput({ ...authored, publishedStations: {} })).toEqual([
+      '"publishedStations" must declare "zoom" and/or "focus"',
+    ]);
+    // Ingest intentionally canonicalizes this empty declaration; authored validation must still refuse it.
+    expect(() => ingestLens({ ...authored, publishedStations: {} } as LensDataInput)).not.toThrow();
+  });
+
+  it("preserves reference and aperture diagnostics for canonical V1/V2 counterparts", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
+    if (!pair || pair.kind !== "lens") throw new Error("missing prime fixture");
+    for (const file of [pair.v1, pair.v2]) {
+      const ingested = ingestLens(file);
+      ingested.prescription.groups = [{ text: "test", fromSurface: "missing", toSurface: "2" }];
+      ingested.prescription.surfaces[1].innerSd = ingested.prescription.surfaces[1].sd;
+      expect(validateCanonicalLens(ingested)).toEqual([
+        'surfaces[1] ("1"): innerSd must be smaller than sd',
+        'groups[0] ("test"): fromSurface "missing" not found',
+      ]);
+    }
+  });
+
+  it("keeps geometry refusals and numeric messages identical for canonical V1/V2 counterparts", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
+    if (!pair || pair.kind !== "lens") throw new Error("missing prime fixture");
+    const errors = [pair.v1, pair.v2].map((file) => {
+      const ingested = ingestLens(file);
+      delete ingested.prescription.surfaces[1].asphere;
+      ingested.prescription.surfaces[1].sd = 49;
+      ingested.prescription.surfaces[2].sd = 49;
+      return validateCanonicalLens(ingested);
+    });
+    expect(errors[0]).toEqual(errors[1]);
+    expect(errors[0].some((error) => error.includes("negative edge thickness"))).toBe(true);
+    expect(errors[0].filter((error) => error.includes("rim slope"))).toHaveLength(2);
+  });
+
+  describe("zoom design focal-length endpoints", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "zoom");
+    if (!pair || pair.kind !== "lens") throw new Error("missing zoom fixture");
+
+    const fixtures = (design: [number, number], stations = [24, 50, 100]) => [
+      { ...pair.v1, focalLengthDesign: design, zoomPositions: stations },
+      {
+        ...pair.v2,
+        catalog: { ...pair.v2.catalog, focalLengthMm: { design } },
+        zoom: {
+          ...pair.v2.zoom,
+          stations: stations.map((focalLengthMm, index) => ({ ...pair.v2.zoom!.stations[index], focalLengthMm })),
+        },
+      },
+    ];
+
+    it.each([
+      { design: [24.25, 100] as [number, number], endpoint: 0, station: 0, focalLength: 24, percentage: "1.04" },
+      { design: [24, 98.99] as [number, number], endpoint: 1, station: 2, focalLength: 100, percentage: "1.01" },
+    ])("rejects a miss at endpoint $endpoint", ({ design, endpoint, station, focalLength, percentage }) => {
+      for (const file of fixtures(design)) {
+        const ingested = ingestLens(file);
+        const path = ingested.provenance.format === 1 ? "focalLengthDesign" : "catalog.focalLengthMm.design";
+        expect(validateCanonicalLens(ingested)).toEqual([
+          `"${path}[${endpoint}]": ${design[endpoint]} mm differs from zoom station ${station} focal length ${focalLength} mm by ${percentage}% (maximum 1%)`,
+        ]);
+      }
+    });
+
+    it("accepts both endpoints just under 1% from their station values", () => {
+      // Both differences are 0.999%, with opposite signs; the middle station is not a design endpoint.
+      for (const file of fixtures([24.23976, 99.001])) {
+        expect(validateCanonicalLens(ingestLens(file))).toEqual([]);
+      }
+    });
+
+    it.each([
+      { design: [35.35, 70] as [number, number], endpoint: 0, percentage: "+1%" },
+      { design: [34.65, 70] as [number, number], endpoint: 0, percentage: "-1%" },
+      { design: [35, 70.7] as [number, number], endpoint: 1, percentage: "+1%" },
+      { design: [35, 69.3] as [number, number], endpoint: 1, percentage: "-1%" },
+    ])("accepts exact $percentage at endpoint $endpoint despite decimal roundoff", ({ design }) => {
+      // These decimal differences round above 0.01 in binary floating point.
+      for (const file of fixtures(design, [35, 50, 70])) {
+        expect(validateCanonicalLens(ingestLens(file))).toEqual([]);
+      }
+    });
+
+    it.each([
+      { design: [35.35000035, 70] as [number, number], endpoint: 0, station: 0, focalLength: 35 },
+      { design: [34.64999965, 70] as [number, number], endpoint: 0, station: 0, focalLength: 35 },
+      { design: [35, 70.7000007] as [number, number], endpoint: 1, station: 2, focalLength: 70 },
+      { design: [35, 69.2999993] as [number, number], endpoint: 1, station: 2, focalLength: 70 },
+    ])("rejects a 1.000001% miss with design $design", ({ design, endpoint, station, focalLength }) => {
+      for (const file of fixtures(design, [35, 50, 70])) {
+        const ingested = ingestLens(file);
+        const path = ingested.provenance.format === 1 ? "focalLengthDesign" : "catalog.focalLengthMm.design";
+        expect(validateCanonicalLens(ingested)).toEqual([
+          `"${path}[${endpoint}]": ${design[endpoint]} mm differs from zoom station ${station} focal length ${focalLength} mm by 1.00% (maximum 1%)`,
+        ]);
+      }
+    });
+  });
+
+  it("names a V2 zoom's own station fields in unpublished-station diagnostics", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "published stations");
+    if (!pair || pair.kind !== "lens") throw new Error("missing published stations fixture");
+    const file = structuredClone(pair.v2) as LensDataV2Input;
+    file.zoom!.stations[1].publishedFocus = [1];
+    file.focus = {
+      ...file.focus!,
+      conjugates: [
+        { zoomStation: 1, keyframe: 1, objectDistanceMm: 500, distanceReference: "first-surface", source: "Fixture" },
+      ],
+    };
+    expect(validateCanonicalLens(ingestLens(file))).toEqual(
+      expect.arrayContaining([
+        '"zoom.stations[1].publishedFocus" must be empty: "zoom.stations[1].published" omits that zoom station',
+        '"focus.conjugates" names zoom station 1, which "zoom.stations[1].published" omits',
+      ]),
+    );
+  });
+
+  it("maps canonical control and nested scalar paths to their authored format", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "published stations (prime)");
+    if (!pair || pair.kind !== "lens") throw new Error("missing gap fixture");
+    for (const file of [pair.v1, pair.v2]) {
+      const ingested = ingestLens(file);
+      ingested.prescription.gaps[0].values[0][1] = -1;
+      ingested.prescription.focus.step = NaN;
+      const errors = validateCanonicalLens(ingested);
+      expect(errors).toContain(
+        ingested.provenance.format === 1
+          ? 'var["2"][1]: thickness=-1 is negative'
+          : 'gaps["2"].values[0][1]: thickness=-1 is negative',
+      );
+      expect(errors).toContain(
+        ingested.provenance.format === 1
+          ? 'Missing or non-finite required number field: "focusStep"'
+          : 'Missing or non-finite required number field: "focus.step"',
+      );
+    }
+  });
+
+  it("names authored V2 span endpoints for a zero-length element span", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
+    if (!pair || pair.kind !== "lens") throw new Error("missing prime fixture");
+    const ingested = ingestLens(pair.v2);
+    ingested.prescription.elements[0].span = ["1", "1"];
+    expect(validateCanonicalLens(ingested)).toEqual([
+      'Element 1 ("L1"): elements[0].span[0] "1" must come before elements[0].span[1] "1"',
+    ]);
+  });
+
+  it("maps source and published-station paths without rewriting authored surface labels", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "published stations (prime)");
+    if (!pair || pair.kind !== "lens") throw new Error("missing gap fixture");
+    const ingested = ingestLens(pair.v2);
+    ingested.prescription.source.errata = [{ status: "unresolved", note: "" }];
+    ingested.prescription.gaps[0].values[0][1] = ingested.prescription.gaps[0].values[0][0];
+    ingested.prescription.surfaces[1].label = "focusStep";
+    ingested.prescription.surfaces[1].sd = -1;
+    expect(validateCanonicalLens(ingested)).toEqual([
+      'surfaces[1] ("focusStep"): sd must be a positive finite number',
+      '"source.errata[0]" needs a non-empty note',
+      '"focus.published": focus keyframe 1 has no focus travel in "gaps"',
+    ]);
+  });
+
   it("requires finite-conjugate source evidence, distance conventions and authored stations", () => {
     const station = {
       focusT: 1,
@@ -219,12 +614,25 @@ describe("validateLensData", () => {
     const surfaces = valid.surfaces as Record<string, unknown>[];
     const errors = validateLensData({
       ...valid,
-      surfaces: [{ ...surfaces[0], label: "RP1a" }, surfaces[1], { ...surfaces[2], synthetic: "rearPlate" }],
+      surfaces: [
+        { ...surfaces[0], label: "RP1a" },
+        { ...surfaces[1], clips: false },
+        { ...surfaces[2], synthetic: "rearPlate" },
+      ],
       elements: [{ ...(valid.elements as Record<string, unknown>[])[0], synthetic: "rearPlate" }],
     });
 
     expect(errors.some((error) => error.includes("reserved for generated rear plates"))).toBe(true);
     expect(errors.filter((error) => error.includes('"synthetic" is engine-generated'))).toHaveLength(2);
+    expect(errors.some((error) => error.includes('"clips" is engine-generated'))).toBe(true);
+  });
+
+  it("reserves IMG, the image plane's label, as a surface label", () => {
+    const valid = makeValid();
+    const surfaces = valid.surfaces as Record<string, unknown>[];
+    expect(
+      validateLensData({ ...valid, surfaces: [surfaces[0], surfaces[1], { ...surfaces[2], label: "IMG" }] }),
+    ).toContain('surfaces[2] ("IMG"): the label IMG is reserved for the image plane');
   });
 
   it("reserves the teleconverter label prefix for composed systems and checks their descriptor", () => {
@@ -242,7 +650,7 @@ describe("validateLensData", () => {
       has(validateLensData(makeValid({ acceptsTeleconverters: "yes" })), '"acceptsTeleconverters" must be a boolean'),
     ).toBe(true);
 
-    const composed = attachTeleconverter(teleconverterHostData(), teleconverterFixture());
+    const composed = constructionFixtureData(attachTeleconverter(teleconverterHostData(), teleconverterFixture()));
     const descriptor = composed.attachedTeleconverter!;
     expect(validateLensData(composed)).toEqual([]);
     expect(
@@ -382,7 +790,7 @@ describe("validateLensData", () => {
   it("rejects gapSagFrac values that would allow visible overlap", () => {
     const errors = validateLensData(makeValid({ gapSagFrac: 1.1 }));
 
-    expect(LENS_DEFAULTS.gapSagFrac).toBe(0.9);
+    expect(v1CatalogDefaults().gapSagFrac).toBe(0.9);
     expect(errors.some((e) => e.includes('"gapSagFrac"'))).toBe(true);
   });
 
@@ -1093,6 +1501,15 @@ describe("validateLensData", () => {
     expect(errors.some((error) => error.includes("must fit inside annular central opening"))).toBe(true);
   });
 
+  it("reports malformed phase data before compiling the folded validation probe", () => {
+    const data = makeValid({
+      opticalPath: { surfaceOrder: ["1", "STO", "2"], imagePlane: { z: 60 } },
+    });
+    (data.surfaces as Record<string, unknown>[])[0].diffractive = null;
+
+    expect(validateLensData(data)).toContain('surfaces[0] ("1"): diffractive must be an object when provided');
+  });
+
   it("reports an error instead of silently skipping folded image-plane validation when asphere indexing fails", () => {
     const data = makeValid({
       opticalPath: {
@@ -1116,7 +1533,8 @@ describe("validateLensData", () => {
    * Newtonian reference (auto mode, so no probe trace runs). Branches already exercised by
    * mirrorOptics.test.ts (unknown surfaceOrder label, innerSd >= sd, backing normals, maxInteractions floor,
    * paired innerSd, unreachable image plane) are not repeated. */
-  const foldedBase = (): Record<string, any> => structuredClone(LENS_CATALOG["reference-newtonian-side-focus"]);
+  const foldedBase = (): Record<string, any> =>
+    structuredClone(CATALOG_CONSTRUCTION_FIXTURES["reference-newtonian-side-focus"]);
   const surf = (d: Record<string, any>, label: string) => d.surfaces.find((s: { label: string }) => s.label === label);
   const zoomControl = (range: unknown) => (d: Record<string, any>) =>
     Object.assign(d, { zoomPositions: [100, 200], aberrationControl: { label: "SA", var: { STO: range } } });
@@ -1501,11 +1919,10 @@ describe("validateLensData", () => {
  * One offender-collecting sweep over the full catalog (visible and hidden
  * entries alike) subsumes any hand-picked per-lens "passes validation"
  * list — every registered lens, including every zoom, is covered. */
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 describe("validateLensData — production lenses", () => {
   it("every catalog lens passes validation with no errors", () => {
-    const offenders = Object.entries(LENS_CATALOG).flatMap(([key, data]) =>
+    const offenders = Object.entries(CATALOG_CONSTRUCTION_FIXTURES).flatMap(([key, data]) =>
       validateLensData(data).map((error) => `${key}: ${error}`),
     );
 
@@ -1785,12 +2202,263 @@ describe("validateLensData — conic h_max", () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════════
+ *  Rim cuts
+ * ═══════════════════════════════════════════════════════════════════ */
+
+describe("validateLensData — rim cut", () => {
+  /* L1's concave rear (R = 20, sd = 12) sags 4 mm toward L2's front, 2 mm behind it. */
+  const rimCutLens = (cut: Record<string, unknown> = {}, frontR = 15) =>
+    makeValid({
+      elements: [
+        { id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 },
+        { id: 2, name: "L2", label: "E2", type: "test", nd: 1.5, vd: 50 },
+      ],
+      surfaces: [
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 6 },
+        { label: "1", R: frontR, d: 6, nd: 1.5, elemId: 1, sd: 12 },
+        { label: "2", R: 20, d: 2, nd: 1.0, elemId: 0, sd: 12, ...cut },
+        { label: "3", R: 100, d: 4, nd: 1.5, elemId: 2, sd: 10 },
+        { label: "4", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+    });
+  const errorsFor = (data: Record<string, unknown>) => validateLensData(data);
+
+  it("measures cross-gap intrusion and edge thickness to the land", () => {
+    expect(errorsFor(rimCutLens()).some((e) => e.includes('Air gap "2"→"3"'))).toBe(true);
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 1.5 }))).toEqual([]);
+    /* A deeper front cap leaves 3.2 mm of edge uncut, and less than none once the land removes 3.5 mm of it. */
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 1.5 }, 14)).some((e) => e.includes("negative edge thickness"))).toBe(
+      false,
+    );
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 0.5 }, 14)).some((e) => e.includes("negative edge thickness"))).toBe(
+      true,
+    );
+  });
+
+  it("refuses a depth the cap does not reach inside sd", () => {
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 4.5 }))).toContain(
+      'Surface "2": rimCutDepthMm 4.5 must be smaller than the cap\'s sag at sd=12 (4.000 mm)',
+    );
+  });
+
+  it("refuses a cut where the rim bends into glass", () => {
+    const data = rimCutLens({ rimCutDepthMm: 1.5 });
+    (data.surfaces as Record<string, unknown>[])[4].rimCutDepthMm = 0.2;
+    expect(
+      errorsFor(data).some((e) => e.startsWith('Surface "4": a rim cut trims glass where the rim bends into air')),
+    ).toBe(true);
+  });
+
+  it("refuses a cut on the stop, a diffractive surface or a non-positive depth", () => {
+    const data = rimCutLens({ rimCutDepthMm: 1.5 });
+    const surfaces = data.surfaces as Record<string, unknown>[];
+    surfaces[0].rimCutDepthMm = 0.1;
+    surfaces[3].rimCutDepthMm = -1;
+    surfaces[1].rimCutDepthMm = 0.5;
+    surfaces[1].diffractive = {
+      kind: "radial-polynomial",
+      referenceWavelengthNm: 587.6,
+      diffractionOrder: 1,
+      terms: [{ radialPower: 2, coefficient: -4.25304e-5 }],
+    };
+    const errors = errorsFor(data);
+    const refusal =
+      "rimCutDepthMm cuts an ordinary refracting surface, not the stop, an annular surface, a diffractive surface or one with an interaction";
+    expect(errors).toContain(`surfaces[0] ("STO"): ${refusal}`);
+    expect(errors).toContain(`surfaces[1] ("1"): ${refusal}`);
+    expect(errors).toContain('surfaces[3] ("3"): rimCutDepthMm must be a positive finite number when provided');
+  });
+
+  it("refuses a cut on a folded lens, and a depth source without a cut or text", () => {
+    const folded = rimCutLens({ rimCutDepthMm: 1.5 });
+    folded.opticalPath = { mode: "auto" };
+    expect(errorsFor(folded)).toContain(
+      'surfaces[2] ("2"): rimCutDepthMm is not allowed on a folded (opticalPath) lens, where a ray beyond the cut passes through the land',
+    );
+    expect(errorsFor(rimCutLens({ rimCutDepthSource: "Fig. 1" }))).toContain(
+      'surfaces[2] ("2"): rimCutDepthSource needs a rimCutDepthMm to source',
+    );
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 1.5, rimCutDepthSource: " " }))).toContain(
+      'surfaces[2] ("2"): rimCutDepthSource must be a non-empty string when provided',
+    );
+    expect(errorsFor(rimCutLens({ rimCutDepthMm: 1.5, rimCutDepthSource: "Fig. 1 land" }))).toEqual([]);
+  });
+
+  /* L2's concave front (R = −20, sd = 12) sags 4 mm forward, into the 1.5 mm gap behind L1. */
+  const frontCutLens = (cut: Record<string, unknown> = {}, front: Record<string, unknown> = {}) =>
+    makeValid({
+      elements: [
+        { id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 },
+        { id: 2, name: "L2", label: "E2", type: "test", nd: 1.5, vd: 50 },
+      ],
+      surfaces: [
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 6 },
+        { label: "1", R: 50, d: 5, nd: 1.5, elemId: 1, sd: 12 },
+        { label: "2", R: -50, d: 1.5, nd: 1.0, elemId: 0, sd: 12 },
+        { label: "3", R: -20, d: 6, nd: 1.5, elemId: 2, sd: 12, ...front, ...cut },
+        { label: "4", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 12 },
+      ],
+    });
+
+  it("cuts a concave front face where its rim bends forward into air", () => {
+    expect(errorsFor(frontCutLens()).some((e) => e.includes('Air gap "2"→"3"'))).toBe(true);
+    expect(errorsFor(frontCutLens({ rimCutDepthMm: 0.5 }))).toEqual([]);
+  });
+
+  it("resolves a cut on the aspheric profile, not its base sphere", () => {
+    /* A4 flattens the R = −20 cap: it sags 3.585 mm at sd where the sphere sags 4. */
+    const aspheric = (depth: number) => {
+      const data = frontCutLens({ rimCutDepthMm: depth });
+      data.asph = { "3": { K: 0, A4: 2e-5, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } };
+      return data;
+    };
+    expect(errorsFor(aspheric(0.5))).toEqual([]);
+    expect(errorsFor(aspheric(3.8))).toContain(
+      'Surface "3": rimCutDepthMm 3.8 must be smaller than the cap\'s sag at sd=12 (3.585 mm)',
+    );
+  });
+
+  it("checks a land against the stop plane at every focus keyframe of a variable gap", () => {
+    /* The stop closes from 3 mm to 1.5 mm behind L1 at close focus; L1's concave rear is cut 2 mm deep. */
+    const moving = (depth: number) =>
+      makeValid({
+        surfaces: [
+          { label: "1", R: 100, d: 5, nd: 1.5, elemId: 1, sd: 10 },
+          { label: "2", R: 20, d: 3, nd: 1.0, elemId: 0, sd: 10, rimCutDepthMm: depth },
+          { label: "STO", R: 1e15, d: 50, nd: 1.0, elemId: 0, sd: 6 },
+        ],
+        var: { "2": [3, 1.5] },
+      });
+    expect(errorsFor(moving(1.2))).toEqual([]);
+    expect(errorsFor(moving(2))).toContain(
+      'Surface "2": its rim cut (depth 2 mm) reaches past the stop plane, 1.500 mm away at focus keyframe 1',
+    );
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
  *  Slope-based rim check (replaces old sd/|R| ratio check)
  * ═══════════════════════════════════════════════════════════════════ */
 
+describe("validateLensData — rim extensions", () => {
+  const extended = (extra: Record<string, unknown> = {}) =>
+    makeValid({
+      surfaces: [
+        { label: "STO", R: 1e15, d: 3, nd: 1, elemId: 0, sd: 6 },
+        { label: "1", R: 50, d: 5, nd: 1.5, elemId: 1, sd: 8, rimExtensionSd: 12, ...extra },
+        { label: "2", R: -50, d: 50, nd: 1, elemId: 0, sd: 12 },
+      ],
+    }) as Record<string, unknown> & {
+      surfaces: Record<string, unknown>[];
+      elements: Record<string, unknown>[];
+    };
+
+  it.each([50, -50, 1e15])("allows an extension on a convex, concave or flat face (R=%s)", (R) => {
+    expect(validateLensData(extended({ R }))).toEqual([]);
+  });
+
+  it.each([0, -1, NaN, Infinity, "12", null, 8, 7])(
+    "refuses an invalid or non-increasing rim height (%s)",
+    (rimExtensionSd) => {
+      expect(validateLensData(extended({ rimExtensionSd })).some((e) => e.includes("rimExtensionSd must be"))).toBe(
+        true,
+      );
+    },
+  );
+
+  it("refuses two land definitions on the same face", () => {
+    expect(validateLensData(extended({ rimCutDepthMm: 0.5 }))).toContain(
+      'surfaces[1] ("1"): rimExtensionSd and rimCutDepthMm are mutually exclusive',
+    );
+  });
+
+  it("reports the drawn heights when an extension exceeds the element's height ratio", () => {
+    expect(
+      validateLensData(extended({ rimExtensionSd: 40 })).some(
+        (e) => e.includes("SD ratio 3.33") && e.includes("sd=40"),
+      ),
+    ).toBe(true);
+  });
+
+  it.each([
+    { innerSd: 0 },
+    { interaction: { type: "refract" } },
+    { diffractive: { kind: "radial-polynomial", referenceWavelengthNm: 550, diffractionOrder: 1, terms: [] } },
+  ])("keeps rim extensions on ordinary refracting surfaces (%j)", (extra) => {
+    expect(
+      validateLensData(extended(extra)).some((e) =>
+        e.includes("rimExtensionSd extends an ordinary refracting surface"),
+      ),
+    ).toBe(true);
+  });
+
+  it("refuses an extension on a stop, folded lens or cemented interface", () => {
+    const stopped = extended();
+    stopped.surfaces[0].rimExtensionSd = 12;
+    expect(validateLensData(stopped).some((e) => e.includes('("STO"): rimExtensionSd extends'))).toBe(true);
+    expect(validateLensData({ ...extended(), opticalPath: { mode: "auto" } })).toContain(
+      'surfaces[1] ("1"): rimExtensionSd is not allowed on a folded (opticalPath) lens',
+    );
+    const cemented = extended();
+    cemented.surfaces[0].elemId = 2;
+    cemented.surfaces[0].nd = 1.6;
+    expect(validateLensData(cemented)).toContain('Surface "1": a rim extension needs a glass/air boundary');
+  });
+
+  it("checks edge thickness to the taller land, while checking slope only at the cap edge", () => {
+    const data = extended({ R: 20, sd: 7, rimExtensionSd: 14 });
+    data.surfaces[2].sd = 14;
+    data.surfaces[2].R = -100;
+    data.asph = { "1": { K: 3, A4: 1e-5, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } };
+    expect(validateLensData(data)).toEqual([]);
+    data.surfaces[1].d = 2;
+    expect(validateLensData(data).some((e) => e.includes("negative edge thickness"))).toBe(true);
+  });
+
+  it("detects overlap above the original cap edge with the next element", () => {
+    const data = extended({ R: 100, d: 5, rimExtensionSd: undefined, sd: 12 });
+    data.elements.push({ id: 2, name: "L2", label: "L2", type: "test", nd: 1.5, vd: 50 });
+    Object.assign(data.surfaces[2], { R: -50, sd: 6, rimExtensionSd: 12, d: 1 });
+    data.surfaces.push(
+      { label: "3", R: -20, d: 6, nd: 1.5, elemId: 2, sd: 12 },
+      { label: "4", R: -100, d: 50, nd: 1, elemId: 0, sd: 12 },
+    );
+    expect(validateLensData(data).some((e) => e.includes("rim extension's land intrudes"))).toBe(true);
+    delete data.surfaces[2].rimExtensionSd;
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("checks the land against a moving stop at every focus and zoom keyframe", () => {
+    const data = extended({ R: 100, sd: 12, rimExtensionSd: undefined });
+    data.surfaces = [
+      data.surfaces[1],
+      { label: "2", R: 20, d: 3, nd: 1, elemId: 0, sd: 8, rimExtensionSd: 12 },
+      { label: "STO", R: 1e15, d: 50, nd: 1, elemId: 0, sd: 6 },
+    ];
+    data.var = { "2": [3, 1.5] };
+    expect(validateLensData(data).some((e) => e.includes("rim extension") && e.includes("focus keyframe 1"))).toBe(
+      true,
+    );
+    data.var = { "2": [3, 2] };
+    expect(validateLensData(data)).toEqual([]);
+    data.zoomPositions = [50, 70];
+    data.var = {
+      "2": [
+        [3, 2],
+        [3, 1.5],
+      ],
+    };
+    expect(
+      validateLensData(data).some(
+        (e) => e.includes("rim extension") && e.includes("zoom position 1") && e.includes("focus keyframe 1"),
+      ),
+    ).toBe(true);
+  });
+});
+
 describe("validateLensData — rim slope check", () => {
   it("keeps the renderer default rim angle synchronized with validation", () => {
-    expect(Math.tan(((LENS_DEFAULTS.maxRimAngleDeg as number) * Math.PI) / 180)).toBeCloseTo(MAX_RIM_SLOPE_TAN);
+    expect(Math.tan(((v1CatalogDefaults().maxRimAngleDeg as number) * Math.PI) / 180)).toBeCloseTo(MAX_RIM_SLOPE_TAN);
   });
 
   it("catches high slope on spherical surface (sd/|R| = 0.92)", () => {
@@ -1933,11 +2601,24 @@ describe("source errata", () => {
     expect(
       errataErrors([corrected, { status: "unresolved", note: "Table and summary focal lengths differ." }]),
     ).toEqual([]);
+    expect(errataErrors([{ ...corrected, evidence: ["aberration-figure", "family-publication"] }])).toEqual([]);
     const coefficient = { ...corrected, field: "A4", printed: 1e-6, applied: -1e-6 };
     const asph = { "1": { K: 0, A4: -1e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } };
     expect(
       validateLensData(makeValid({ asph, sourceErrata: [coefficient] })).filter((e) => e.includes("sourceErrata")),
     ).toEqual([]);
+  });
+  it("reads an asphere term the file leaves out as zero, so a correction may apply 0 to it", () => {
+    const zeroed = { ...corrected, field: "A6", printed: 2e-9, applied: 0 };
+    const asph = { "1": { K: 0, A4: -1e-6 } };
+    expect(
+      validateLensData(makeValid({ asph, sourceErrata: [zeroed] })).filter((e) => e.includes("sourceErrata")),
+    ).toEqual([]);
+    expect(
+      validateLensData(makeValid({ asph, sourceErrata: [{ ...zeroed, applied: 1e-9 }] }))
+        .filter((e) => e.includes("sourceErrata"))
+        .join(" "),
+    ).toContain("must carry the applied value 1e-9");
   });
   it("requires the applied value to be the one in the file", () => {
     expect(errataErrors([{ ...corrected, applied: 90 }]).join(" ")).toContain("must carry the applied value 90");
@@ -1948,14 +2629,16 @@ describe("source errata", () => {
     const last = host.surfaces.at(-1)!;
     const sourceErrata = [{ ...corrected, surface: last.label, field: "d", printed: last.d + 1, applied: last.d }];
     expect(validateLensData({ ...host, sourceErrata }).filter((e) => e.includes("sourceErrata"))).toEqual([]);
-    const composed = attachTeleconverter({ ...host, sourceErrata } as typeof host, teleconverterFixture());
+    const composed = constructionFixtureData(
+      attachTeleconverter({ ...host, sourceErrata } as typeof host, teleconverterFixture()),
+    );
     expect(composed.surfaces.find((surface) => surface.label === last.label)!.d).not.toBe(last.d);
     expect(validateLensData(composed).filter((e) => e.includes("sourceErrata"))).toEqual([]);
     // Any other value of the host must still match on the composed system.
     const first = host.surfaces[0];
     const wrong = [{ ...corrected, surface: first.label, field: "R", printed: first.R + 1, applied: first.R + 2 }];
     expect(
-      validateLensData(attachTeleconverter({ ...host, sourceErrata: wrong } as typeof host, teleconverterFixture()))
+      validateLensData({ ...composed, sourceErrata: wrong })
         .filter((e) => e.includes("sourceErrata"))
         .join(" "),
     ).toContain("must carry the applied value");
@@ -1979,5 +2662,44 @@ describe("source errata", () => {
     ["a non-finite value", [{ ...corrected, printed: NaN }], "printed must be a finite number"],
   ])("rejects %s", (_label, sourceErrata, message) => {
     expect(errataErrors(sourceErrata).join(" ")).toContain(message);
+  });
+});
+
+describe("stop semi-diameter", () => {
+  /** Stop first, in air, then one element: a stop whose radius the engine derives unless something else decides it. */
+  const stopFirst = (stop: Record<string, unknown>, overrides: Record<string, unknown> = {}) =>
+    makeValid({
+      surfaces: [
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, ...stop },
+        { label: "1", R: 100, d: 5, nd: 1.5, elemId: 1, sd: 10 },
+        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+      ...overrides,
+    });
+  const sdErrors = (data: Record<string, unknown>) => validateLensData(data).filter((e) => e.includes("sd"));
+
+  it("accepts a stop without sd where the engine derives its radius or takes it from a schedule", () => {
+    expect(validateLensData(stopFirst({}))).toEqual([]);
+    expect(
+      sdErrors(stopFirst({}, { zoomPositions: [20, 35, 50], nominalFno: 2, zoomStopSemiDiameters: [8, 10, 12] })),
+    ).toEqual([]);
+  });
+
+  it("still checks a derived stop's sd where the file writes one", () => {
+    expect(sdErrors(stopFirst({ sd: -1 }))).toEqual(['surfaces[0] ("STO"): sd must be a positive finite number']);
+  });
+
+  it("requires the sd of a stop whose radius is authored: inside glass, or on a folded system", () => {
+    const embedded = makeValid({
+      elements: [{ id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50, fromSurface: "1", toSurface: "2" }],
+      surfaces: [
+        { label: "1", R: 100, d: 2.5, nd: 1.5, elemId: 1, sd: 10 },
+        { label: "STO", R: 1e15, d: 2.5, nd: 1.5, elemId: 1, stopPlacement: "inside-element" },
+        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+    });
+    expect(sdErrors(embedded)).toContain('surfaces[1] ("STO"): missing or invalid sd');
+    const folded = stopFirst({}, { opticalPath: { mode: "auto", imagePlane: { z: 57 } } });
+    expect(sdErrors(folded)).toContain('surfaces[0] ("STO"): missing or invalid sd');
   });
 });

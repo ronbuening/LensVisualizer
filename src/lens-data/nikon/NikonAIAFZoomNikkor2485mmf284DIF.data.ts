@@ -1,0 +1,508 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Nikon Ai AF Zoom-Nikkor 24-85mm f/2.8-4D IF (NIKKOR Tale 99) — JP 2000-321497 A,
+ * Example 1, scale 1.0. Nikon / Haruo Sato. Production correlation: the patent
+ * and the product share designer, 15/11 construction, four moving groups, G2
+ * focus and 1:2 macro; the exact production prescription is not published.
+ * Example 1 best matches Nikon's Tale 99 section drawing (axial-vertex RMS
+ * 1.28 px vs 2.34/2.11 px for Examples 2/3; front element 1.8 mm as drawn vs
+ * 2.4 mm in Example 2); Example 3 is F/2.9-4.1.
+ *
+ * Source: application gazette, Table 1 on pages 7-9. All source R/d/nd/vd and
+ * coefficients retained. The grant JP 4374652 B2 (Tables 1-3, pages 11-19)
+ * prints identical values for all three examples.
+ *
+ * 15 glass elements / 11 air-separated groups; 16 modeled material bodies:
+ * L21r is the printed 0.0600 mm resin layer, bonded to L21g, not a 16th glass lens.
+ * K=κ-1 (source κ=1 is a sphere); all nonzero C3/C5 terms transcribed directly.
+ * Surface 6A reverses its sag slope near h=8 mm as the printed function requires;
+ * it is not truncated or replaced by an even-order fit.
+ *
+ * All 11 published infinity/finite/macro configurations retained. The shared
+ * focusPositions union uses calculated object-to-image distances; other states
+ * are piecewise-linear spacing samples, not a source cam law. No finiteConjugates
+ * are declared: published β and spacings do not certify a printed object distance.
+ * Zoom endpoints use Table 1's rounded F/2.8 and F/4.1; middle F/3.62 is Fig. 3.
+ * Figure legends are 2.79/3.62/4.12; these are retained in the analysis/audit.
+ * No physical iris diameter or fixed-iris zoom law is claimed from the source.
+ *
+ * Zoom stations: the patent prints only 24.7 / 50 / 82.5 mm (zoom indices 0, 7, 11,
+ * values verbatim). Linear interpolation between those three rows alone defocuses
+ * the infinity image by up to 1.87 mm near 35 mm. Nine stations at EFL
+ * 27/30/33/36/40/45/57/66/75 mm are SOLVED, not published: d5, d15 and d21 follow
+ * quadratics in ln(f) through the three printed rows, the parameter is solved for
+ * the target EFL, and BF is the paraxial infinity image distance. Residual
+ * interpolation defocus <= 0.048 mm. At those stations the G2 focus offsets (d5
+ * down, d15 up by the same amount) are interpolated in ln(f) from the neighbouring
+ * printed stations; zoomCloseFocusM is the calculated object-to-image distance of
+ * the focusT = 1 row. Their nominalFNumber values keep the iris radius interpolated
+ * between the printed stations (derived, not printed).
+ *
+ * Semi-diameters are Figure 1 estimates, checked against Nikon's optical outline,
+ * geometry and the stated axial beam. They are not published clear apertures.
+ * L21 outer rims are 14.2 mm; S8 has a 10.9371 mm clear cap and an inferred
+ * flat land at depth 4.30 mm. The square Lasp rim is 9.4 mm on both faces (24A/25). Its unchanged 2.0000 mm
+ * gap to surface 26 retains 0.1244 mm positive clearance. gapSagFrac=0.95 preserves
+ * that geometry with a 5% drawing margin instead of the default 10%; no source
+ * optical dimension or engine-wide threshold is changed.
+ * Only printed d-line nd/vd are sourced. Catalog curves are coordinate-compatible spectral
+ * proxies, not production-glass identities; the hybrid resin remains unresolved.
+ */
+
+const LENS_DATA = {
+  schema: 2,
+  key: "nikon-ai-af-zoom-nikkor-24-85mm-f28-4d-if",
+  maker: "Nikon",
+  name: "NIKON AI AF ZOOM-NIKKOR 24-85mm f/2.8-4 D IF",
+  subtitle: "JP 2000-321497 A, Example 1 — production correlation",
+  visible: true,
+
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    imageCircleMm: 43.2,
+    specs: [
+      "15 ELEMENTS / 11 GROUPS",
+      "DESIGN f = 24.7-82.5 mm",
+      "DESIGN F/2.8-4.1",
+      "2 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "G2 INTERNAL FOCUS / 1:2 MACRO",
+    ],
+    elementCount: 15,
+    groupCount: 11,
+    focalLengthMm: { marketing: [24, 85], design: [24.7, 82.5] },
+    fNumber: { marketing: 2.8, design: 2.8 },
+  },
+
+  source: {
+    patentNumber: "JP 2000-321497 A",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 2000,
+    authors: ["Haruo Sato"],
+    assignees: ["Nikon Corporation"],
+  },
+
+  elements: [
+    {
+      id: 1,
+      name: "L11n",
+      label: "Element 1 — L11 front member",
+      type: "Negative Meniscus",
+      nd: 1.84666,
+      vd: 23.78,
+      focalLengthMm: -116.13357532429241,
+      glass: "S-TIH53 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "High-dispersion negative meniscus at the front of the cemented positive L11 doublet in G1.",
+      diagramLabel: "L11n",
+      cemented: "C1",
+    },
+    {
+      id: 2,
+      name: "L11p",
+      label: "Element 2 — L11 rear member",
+      type: "Biconvex Positive",
+      nd: 1.755,
+      vd: 52.32,
+      focalLengthMm: 95.2961743512028,
+      glass: "S-LAH97 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Positive rear member of the L11 doublet; the pair balances color within the positive first group.",
+      diagramLabel: "L11p",
+      cemented: "C1",
+    },
+    {
+      id: 3,
+      name: "L12",
+      label: "Element 3 — L12",
+      type: "Positive Meniscus",
+      nd: 1.755,
+      vd: 52.32,
+      focalLengthMm: 102.47479621037132,
+      glass: "S-LAH97 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Positive meniscus completing the weak positive first zoom group.",
+      diagramLabel: "L12",
+    },
+    {
+      id: 4,
+      name: "L21r",
+      label: "Element 4 — L21 aspherical resin layer",
+      type: "Hybrid Resin Layer (1× Asph)",
+      nd: 1.49521,
+      vd: 56.34,
+      focalLengthMm: -235.17878021971427,
+      glass: "Unmatched (source nd=1.495210, νd=56.34; commercial identity unverified)",
+      role: "Thin aspherical resin layer bonded to the front of the L21 glass body (hybrid aspherical element).",
+      diagramLabel: "L21r",
+      cemented: "H1",
+    },
+    {
+      id: 5,
+      name: "L21g",
+      label: "Element 4 — L21 glass body",
+      type: "Negative Meniscus",
+      nd: 1.83481,
+      vd: 42.72,
+      focalLengthMm: -20.629857277706215,
+      glass: "S-LAH55VS (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Strong negative meniscus of the focusing second group; with its resin layer it corrects wide-angle distortion and field aberrations.",
+      diagramLabel: "L21g",
+      cemented: "H1",
+    },
+    {
+      id: 6,
+      name: "L22",
+      label: "Element 5 — L22",
+      type: "Biconcave Negative",
+      nd: 1.741,
+      vd: 52.67,
+      focalLengthMm: -33.181202365198686,
+      glass: "S-LAL61 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Biconcave negative singlet adding second-group power for wide-angle distortion, astigmatism and coma correction.",
+      diagramLabel: "L22",
+    },
+    {
+      id: 7,
+      name: "L23p",
+      label: "Element 6 — L23 front member",
+      type: "Biconvex Positive",
+      nd: 1.74077,
+      vd: 27.79,
+      focalLengthMm: 15.824973988863153,
+      glass: "S-TIH13 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Biconvex positive member of the cemented positive L23 doublet in G2.",
+      diagramLabel: "L23p",
+      cemented: "C2",
+    },
+    {
+      id: 8,
+      name: "L23n",
+      label: "Element 7 — L23 rear member",
+      type: "Negative Meniscus",
+      nd: 1.804,
+      vd: 46.58,
+      focalLengthMm: -32.949363913824804,
+      glass: "S-LAH65 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Negative meniscus rear member of L23; the doublet controls spherical aberration, coma and the Petzval sum.",
+      diagramLabel: "L23n",
+      cemented: "C2",
+    },
+    {
+      id: 9,
+      name: "L24",
+      label: "Element 8 — L24",
+      type: "Negative Meniscus",
+      nd: 1.7432,
+      vd: 49.32,
+      focalLengthMm: -50.85041238712904,
+      glass: "S-LAM60 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Negative meniscus, concave to the object, closing the focusing second group.",
+      diagramLabel: "L24",
+    },
+    {
+      id: 10,
+      name: "L31",
+      label: "Element 9 — L31",
+      type: "Biconvex Positive",
+      nd: 1.603,
+      vd: 65.47,
+      focalLengthMm: 66.71194915762172,
+      glass: "S-PHM53 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Biconvex positive singlet directly behind the aperture stop, opening the third group.",
+      diagramLabel: "L31",
+    },
+    {
+      id: 11,
+      name: "L32p",
+      label: "Element 10 — L32 front member",
+      type: "Biconvex Positive",
+      nd: 1.603,
+      vd: 65.47,
+      focalLengthMm: 20.757007985997873,
+      glass: "S-PHM53 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Low-dispersion biconvex positive member of the cemented L32 doublet in G3.",
+      diagramLabel: "L32p",
+      cemented: "C3",
+    },
+    {
+      id: 12,
+      name: "L32n",
+      label: "Element 11 — L32 rear member",
+      type: "Biconcave Negative",
+      nd: 1.834,
+      vd: 37.17,
+      focalLengthMm: -24.23782168932991,
+      glass: "S-LAH60 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "High-index biconcave negative member of L32, correcting color in the positive third group.",
+      diagramLabel: "L32n",
+      cemented: "C3",
+    },
+    {
+      id: 13,
+      name: "L41",
+      label: "Element 12 — L41",
+      type: "Biconvex Positive",
+      nd: 1.7432,
+      vd: 49.32,
+      focalLengthMm: 25.64072742187177,
+      glass: "S-LAM60 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Equiconvex positive singlet carrying most of the fourth group's power.",
+      diagramLabel: "L41",
+    },
+    {
+      id: 14,
+      name: "Lasp",
+      label: "Element 13 — Lasp aspherical element",
+      type: "Neg. Meniscus (1× Asph)",
+      nd: 1.744429,
+      vd: 49.52,
+      focalLengthMm: -64.5229039886504,
+      glass: "N-LAF35 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Negative meniscus with an aspherical front surface, correcting off-axis aberrations near the image side.",
+      diagramLabel: "Lasp",
+    },
+    {
+      id: 15,
+      name: "L4n",
+      label: "Element 14 — L4np front member",
+      type: "Biconcave Negative",
+      nd: 1.834,
+      vd: 37.17,
+      focalLengthMm: -16.821618514018198,
+      glass: "S-LAH60 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "High-index biconcave negative member of the cemented negative L4np doublet.",
+      diagramLabel: "L4n",
+      cemented: "C4",
+    },
+    {
+      id: 16,
+      name: "L4p",
+      label: "Element 15 — L4np rear member",
+      type: "Biconvex Positive",
+      nd: 1.6172,
+      vd: 54.01,
+      focalLengthMm: 21.170914335251645,
+      glass: "K-SSK1 (coordinate-compatible spectral proxy; supplier and melt unconfirmed)",
+      role: "Biconvex positive rear member of L4np; the 0.217 index step to Element 14 is the patent's N4n − N4p condition.",
+      diagramLabel: "L4p",
+      cemented: "C4",
+    },
+  ],
+
+  surfaces: [
+    { label: "1", R: 843.3093, d: 1.8, sd: 32, medium: 1 },
+    { label: "2", R: 87.9723, d: 7.6, sd: 32, medium: 2 },
+    { label: "3", R: -380.3274, d: 0.1, sd: 32 },
+    { label: "4", R: 49.2952, d: 5.6, sd: 27, medium: 3 },
+    { label: "5", R: 129.2156, sd: 27 },
+    {
+      label: "6A",
+      R: -218.052,
+      d: 0.06,
+      sd: 14.2,
+      medium: 4,
+      asphere: {
+        K: 99.0,
+        A4: 2.5777e-5,
+        A6: -5.9863e-8,
+        A8: 1.7443e-10,
+        A10: -3.1895e-14,
+        A12: -1.6029e-15,
+        A14: 3.4996e-18,
+        A3: -1.3978e-5,
+      },
+    },
+    { label: "7", R: 250.0, d: 1.8, sd: 14.2, medium: 5 },
+    // Figure 1 L21 rear: source q ≈ 0.73; adopted cut is outward to clear every traced beam.
+    { label: "8", R: 16.0593, d: 6.1, sd: 14.2, rimCutDepthMm: 4.3 },
+    { label: "9", R: -55.2385, d: 1.3, sd: 10.5, medium: 6 },
+    { label: "10", R: 44.7541, d: 0.1, sd: 10.5 },
+    { label: "11", R: 30.8107, d: 7.3, sd: 11.5, medium: 7 },
+    { label: "12", R: -17.0142, d: 1.3, sd: 11.5, medium: 8 },
+    { label: "13", R: -49.1793, d: 2.6, sd: 11.5 },
+    { label: "14", R: -21.979, d: 1, sd: 10, medium: 9 },
+    { label: "15", R: -53.5472, sd: 10 },
+    { label: "STO", R: "flat", d: 1 },
+    { label: "17", R: 63.2297, d: 3, sd: 12, medium: 10 },
+    { label: "18", R: -108.6045, d: 0.1, sd: 12 },
+    { label: "19", R: 25.4589, d: 7.5, sd: 12, medium: 11 },
+    { label: "20", R: -21.8926, d: 1.6, sd: 12, medium: 12 },
+    { label: "21", R: 272.4567, sd: 12 },
+    { label: "22", R: 36.6954, d: 6.4, sd: 12, medium: 13 },
+    { label: "23", R: -36.6954, d: 0.2, sd: 12 },
+    {
+      label: "24A",
+      R: 125.3016,
+      d: 1.8,
+      sd: 9.4,
+      medium: 14,
+      asphere: {
+        K: -17.7909,
+        A4: -3.0023e-5,
+        A6: -5.712e-8,
+        A8: -3.8454e-10,
+        A10: 7.1889e-12,
+        A12: -3.6321e-14,
+        A14: 0,
+        A3: -5.9892e-6,
+        A5: 2.2049e-8,
+      },
+    },
+    { label: "25", R: 34.5095, d: 2, sd: 9.4 },
+    { label: "26", R: -77.7006, d: 1.5, sd: 11.5, medium: 15 },
+    { label: "27", R: 17.2707, d: 6.4, sd: 11.5, medium: 16 },
+    { label: "28", R: -46.0881, sd: 11.5 },
+  ],
+
+  zoom: {
+    stations: [
+      {
+        focalLengthMm: 24.7,
+        nominalFNumber: 2.8,
+        closeFocusM: 0.4990473256010185,
+        published: true,
+        publishedFocus: [5, 6],
+      },
+      { focalLengthMm: 27, nominalFNumber: 2.89, closeFocusM: 0.33181, published: false },
+      { focalLengthMm: 30, nominalFNumber: 3.002, closeFocusM: 0.26013, published: false },
+      { focalLengthMm: 33, nominalFNumber: 3.109, closeFocusM: 0.22827, published: false },
+      { focalLengthMm: 36, nominalFNumber: 3.212, closeFocusM: 0.21056, published: false },
+      { focalLengthMm: 40, nominalFNumber: 3.34, closeFocusM: 0.19667, published: false },
+      { focalLengthMm: 45, nominalFNumber: 3.487, closeFocusM: 0.1867, published: false },
+      {
+        focalLengthMm: 50,
+        nominalFNumber: 3.62,
+        closeFocusM: 0.18075363333206662,
+        published: true,
+        publishedFocus: [2, 3, 6],
+      },
+      { focalLengthMm: 57, nominalFNumber: 3.778, closeFocusM: 0.18602, published: false },
+      { focalLengthMm: 66, nominalFNumber: 3.939, closeFocusM: 0.19325, published: false },
+      { focalLengthMm: 75, nominalFNumber: 4.05, closeFocusM: 0.20134, published: false },
+      {
+        focalLengthMm: 82.5,
+        nominalFNumber: 4.1,
+        closeFocusM: 0.20933217725707254,
+        published: true,
+        publishedFocus: [1, 4, 6],
+      },
+    ],
+  },
+
+  focus: {
+    closeFocusM: 0.18075363333206662,
+    keyframes: [0, 0.084450848924, 0.115642881484, 0.36221834756, 0.419499661214, 0.604725566484, 1.0],
+    description:
+      "PUBLISHED: G2 moves toward the object while the other groups and the image plane stay fixed. Table 1 prints a β = −0.033 row and a 0.5 m near row at 24.7, 50 and 82.5 mm, and a 1:2 macro row (β = −0.5) at 50 and 82.5 mm; G2 travels 0.89, 5.81 and 6.59 mm to the closest row. Object distances are calculated from the printed gaps. The 0.5 m near rows match the marketed minimum focus; the patent's 50 mm macro row (0.18 m) is closer than the marketed 0.21 m macro distance at 85 mm. Intermediate zoom stations and focus samples are interpolated.",
+  },
+
+  gaps: {
+    "5": {
+      label: "d5",
+      values: [
+        [
+          2.47033, 2.4002291228685206, 2.3743372713379642, 2.169660152383406, 2.122112136211272, 1.9683600000002492,
+          1.57789,
+        ],
+        [4.18199, 4.0779, 4.03946, 3.72038, 3.62591, 3.32042, 2.61471],
+        [6.22631, 6.0835, 6.03075, 5.58128, 5.43333, 4.95493, 3.88994],
+        [8.10245, 7.92565, 7.86035, 7.29645, 7.10158, 6.47143, 5.09116],
+        [9.84085, 9.63374, 9.55724, 8.89127, 8.65454, 7.88902, 6.2275],
+        [11.98472, 11.74161, 11.65181, 10.86462, 10.57817, 9.65189, 7.65637],
+        [14.44353, 14.16079, 14.05637, 13.13579, 12.79462, 11.69143, 9.32836],
+        [
+          16.71393, 16.39602034926968, 16.278600000000694, 15.239590000000682, 14.849855698468586, 13.589603720796099,
+          10.90021,
+        ],
+        [19.66077, 19.2903, 19.15524, 18.00441, 17.62568, 16.35843, 13.65409],
+        [23.18476, 22.75425, 22.59903, 21.32041, 20.95426, 19.67901, 16.9576],
+        [26.54474, 26.05946, 25.88586, 24.49068, 24.13601, 22.85346, 20.11647],
+        [
+          29.30687, 28.778170000002007, 28.589991212489227, 27.102423124474814, 26.756849999997577, 25.468511249851254,
+          22.71918,
+        ],
+      ],
+    },
+    "15": {
+      label: "d15",
+      values: [
+        [
+          12.21507, 12.285170877131481, 12.311062728662037, 12.515739847616596, 12.563287863788728, 12.717039999999752,
+          13.10751,
+        ],
+        [10.93264, 11.03672, 11.07517, 11.39425, 11.48872, 11.7942, 12.49992],
+        [9.55025, 9.69306, 9.74581, 10.19528, 10.34323, 10.82163, 11.88662],
+        [8.4066, 8.5834, 8.6487, 9.21259, 9.40747, 10.03762, 11.41789],
+        [7.44122, 7.64833, 7.72482, 8.39079, 8.62753, 9.39305, 11.05456],
+        [6.36186, 6.60498, 6.69477, 7.48196, 7.76841, 8.69469, 10.69021],
+        [5.25832, 5.54105, 5.64548, 6.56606, 6.90723, 8.01042, 10.37349],
+        [
+          4.35255, 4.670459650730321, 4.787879999999307, 5.826889999999317, 6.216624301531414, 7.476876279203902,
+          10.16627,
+        ],
+        [3.32039, 3.69085, 3.82591, 4.97674, 5.35547, 6.62272, 9.32706],
+        [2.2734, 2.70391, 2.85913, 4.13775, 4.5039, 5.77915, 8.50056],
+        [1.44164, 1.92692, 2.10053, 3.49571, 3.85038, 5.13293, 7.86991],
+        [
+          0.86585, 1.3945499999979911, 1.5827287875107723, 3.0702968755251865, 3.415870000002422, 4.704208750148745,
+          7.45354,
+        ],
+      ],
+    },
+    "21": {
+      label: "d21",
+      values: [
+        [5.32672, 5.32672, 5.32672, 5.32672, 5.32672, 5.32672, 5.32672],
+        [4.70177, 4.70177, 4.70177, 4.70177, 4.70177, 4.70177, 4.70177],
+        [4.04522, 4.04522, 4.04522, 4.04522, 4.04522, 4.04522, 4.04522],
+        [3.51793, 3.51793, 3.51793, 3.51793, 3.51793, 3.51793, 3.51793],
+        [3.08611, 3.08611, 3.08611, 3.08611, 3.08611, 3.08611, 3.08611],
+        [2.6205, 2.6205, 2.6205, 2.6205, 2.6205, 2.6205, 2.6205],
+        [2.16738, 2.16738, 2.16738, 2.16738, 2.16738, 2.16738, 2.16738],
+        [1.81712, 1.81712, 1.81712, 1.81712, 1.81712, 1.81712, 1.81712],
+        [1.44886, 1.44886, 1.44886, 1.44886, 1.44886, 1.44886, 1.44886],
+        [1.12124, 1.12124, 1.12124, 1.12124, 1.12124, 1.12124, 1.12124],
+        [0.90908, 0.90908, 0.90908, 0.90908, 0.90908, 0.90908, 0.90908],
+        [0.79966, 0.79966, 0.79966, 0.79966, 0.79966, 0.79966, 0.79966],
+      ],
+    },
+    "28": {
+      label: "BF",
+      values: [
+        [37.98862, 37.98862, 37.98862, 37.98862, 37.98862, 37.98862, 37.98862],
+        [40.16973, 40.16973, 40.16973, 40.16973, 40.16973, 40.16973, 40.16973],
+        [42.81008, 42.81008, 42.81008, 42.81008, 42.81008, 42.81008, 42.81008],
+        [45.26162, 45.26162, 45.26162, 45.26162, 45.26162, 45.26162, 45.26162],
+        [47.5475, 47.5475, 47.5475, 47.5475, 47.5475, 47.5475, 47.5475],
+        [50.36458, 50.36458, 50.36458, 50.36458, 50.36458, 50.36458, 50.36458],
+        [53.54933, 53.54933, 53.54933, 53.54933, 53.54933, 53.54933, 53.54933],
+        [56.38741, 56.38741, 56.38741, 56.38741, 56.38741, 56.38741, 56.38741],
+        [59.80985, 59.80985, 59.80985, 59.80985, 59.80985, 59.80985, 59.80985],
+        [63.27831, 63.27831, 63.27831, 63.27831, 63.27831, 63.27831, 63.27831],
+        [65.66108, 65.66108, 65.66108, 65.66108, 65.66108, 65.66108, 65.66108],
+        [66.73943, 66.73943, 66.73943, 66.73943, 66.73943, 66.73943, 66.73943],
+      ],
+    },
+  },
+
+  aperture: { fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+
+  groups: [
+    { text: "G1 +", fromSurface: "1", toSurface: "5" },
+    { text: "G2 −", fromSurface: "6A", toSurface: "15" },
+    { text: "G3 +", fromSurface: "STO", toSurface: "21" },
+    { text: "G4 +", fromSurface: "22", toSurface: "28" },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "1", toSurface: "3" },
+    { text: "H1", fromSurface: "6A", toSurface: "8" },
+    { text: "C2", fromSurface: "11", toSurface: "13" },
+    { text: "C3", fromSurface: "19", toSurface: "21" },
+    { text: "C4", fromSurface: "26", toSurface: "28" },
+  ],
+
+  layout: { yScFill: 0.5 },
+
+  checks: { gapSagFrac: 0.95 },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -27,7 +27,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  (45.82 wide / 46.37 tele — the design is varifocal by 0.55 mm),  ║
  * ║  plus the common unit-focus extension at close focus.              ║
  * ║                                                                    ║
- * ║  NOTE ON EFL DISCREPANCY (sourceErrata: unresolved):               ║
+ * ║  NOTE ON EFL DISCREPANCY (source.errata: unresolved):               ║
  * ║    Every row of Table I matches this file, and so do the copies in ║
  * ║    claims 7, 8 and 17 (claim 17 as corrected), except that claim 8 ║
  * ║    prints R21 as −35.95.                                           ║
@@ -45,7 +45,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    further off (38.86 / 90.02 mm). The patent has no aberration    ║
  * ║    plots and no second example, and the printed rows satisfy every ║
  * ║    claimed condition, so the table is kept as printed;             ║
- * ║    focalLengthDesign records the computed EFL.                     ║
+ * ║ catalog.focalLengthMm.design and the station labels record the ║
+ * ║ patent's stated 36–83 mm; the unchanged Table I prescription   ║
+ * ║ traces to 38.46 / 89.08 mm, as reported in specs and           ║
+ * ║ source.errata.                                                 ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                            ║
  * ║    Fig. 1 draws the iris symbol between L10 and L11, inside the    ║
@@ -62,53 +65,69 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    167 px), cross-checked with a real-ray trace at f/2.8 and       ║
  * ║    Y = 21.6 mm. L3, L4, L7, L8, L9 and L11 are drawn at their     ║
  * ║    knife edges and are stored 0.1–0.4 mm inside the zero-edge     ║
- * ║    height. L5 rear / L6 front are capped (9.2 / 8.5) because the  ║
- * ║    two facing concave bowls would touch at h ≈ 8.9 mm at the      ║
- * ║    tele station's 5.01 mm gap (Fig. 1 shows the L5 rear clear     ║
- * ║    aperture at ≈9 mm with a flat annulus outside it). The 72 mm   ║
- * ║    filter thread of the production lens bounds L1 at ~33 mm.       ║
+ * ║    height. L6 front is capped at 8.5 because the two facing       ║
+ * ║    concave bowls would touch at h ≈ 8.9 mm at the tele station's  ║
+ * ║    5.01 mm gap. Fig. 1 ends the L5 rear curve at ≈9 mm with a     ║
+ * ║    flat annulus outside it; the model runs it to 11.35 mm because ║
+ * ║    the drawn end stopped the wide-end chief ray at 23.6°.         ║
+ * ║    The 72 mm filter thread of the production lens bounds L1 at    ║
+ * ║    ~33 mm.                                                        ║
  * ║    Consequences at the computed 89 mm tele EFL: the f/2.8 axial    ║
  * ║    beam is clipped ~5 % in radius by L6/L7/L8 (effective ≈ f/3);  ║
  * ║    at the patent's nominal 83 mm it fits. At the wide end the     ║
- * ║    full-frame corner chief ray (Y = 21.6) is intercepted by the   ║
- * ║    L4 knife edge and the L5 rear rim; the chief ray clears every   ║
- * ║    surface only to Y ≈ 15–16 mm, so the extreme corners are lit    ║
- * ║    by the lower part of the bundle (heavy mechanical vignetting,  ║
- * ║    a property of the design rather than of these estimates).      ║
+ * ║    chief ray clears every surface to about 29.5°, close to the    ║
+ * ║    full-frame corner (Y = 21.6), where about 39 % of the beam     ║
+ * ║    passes wide open.                                              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
+// 2026-11-01: S2 inferred cut 9.93, outer 32.5; S9 cap 11.35 + land to 15.8 (Fig. 1 curve end ≈9). See audit.
+// Source media/TableI4–5 exact at printed precision. Existing focal/field limitations remain.
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "vivitar-s1-35-85-f28",
   maker: "Vivitar",
   name: "VIVITAR SERIES 1 35-85mm f/2.8 VMC",
   subtitle: "US 3,975,089 Table I — Betensky / Ponder & Best",
-  specs: [
-    "12 ELEMENTS / 9 GROUPS",
-    "f ≈ 38.5–89.1 mm (patent: 36–83 mm)",
-    "F/2.8",
-    "2ω ≈ 58.7°–27.3°",
-    "ALL SPHERICAL",
-  ],
 
-  focalLengthMarketing: [35, 85] as [number, number],
-  focalLengthDesign: [38.5, 89.1] as [number, number],
-  apertureMarketing: 2.8,
-  imageFormat: "135-full-frame",
-  lensMounts: ["canon-fd", "konica-ar", "m42", "minolta-sr", "nikon-f", "olympus-om", "pentax-k"],
-  patentNumber: "US 3,975,089",
-  patentAuthors: ["Ellis I. Betensky"],
-  patentAssignees: ["Ponder & Best, Inc."],
-  patentYear: 1976,
-  sourceErrata: [
-    {
-      status: "unresolved",
-      note: "Table I as printed computes to f = 38.46 / 89.08 mm and a back focus of 45.82 mm; the text states 36–83 mm and 40.06 mm. Group IV computes to a power of 0.0319 against Table III's .0333. The claim copies of the table carry the same Group IV rows (claim 17 as corrected by the Certificate), apart from claim 8's R21 of −35.95, which moves f further off, and no single Group IV value reproduces the stated focal lengths, back focus and group power together.",
-    },
-  ],
-  elementCount: 12,
-  groupCount: 9,
+  catalog: {
+    lensMounts: [
+      "canon-fd",
+      "konica-ar",
+      "m42",
+      "minolta-sr",
+      "nikon-f",
+      "olympus-om",
+      "pentax-k",
+    ],
+    imageFormat: "135-full-frame",
+    specs: [
+      "12 ELEMENTS / 9 GROUPS",
+      "f ≈ 38.5–89.1 mm (patent: 36–83 mm)",
+      "F/2.8",
+      "2ω ≈ 58.7°–27.3°",
+      "ALL SPHERICAL",
+    ],
+    elementCount: 12,
+    groupCount: 9,
+    focalLengthMm: { marketing: [35, 85], design: [36, 83] },
+    fNumber: { marketing: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 3,975,089",
+    example: { label: "Sole example", id: null },
+    patentYear: 1976,
+    authors: ["Ellis I. Betensky"],
+    assignees: ["Ponder & Best, Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Table I as printed computes to f = 38.46 / 89.08 mm and a back focus of 45.82 mm; the text states 36–83 mm and 40.06 mm. Group IV computes to a power of 0.0319 against Table III's .0333. The claim copies of the table carry the same Group IV rows (claim 17 as corrected by the Certificate), apart from claim 8's R21 of −35.95, which moves f further off, and no single Group IV value reproduces the stated focal lengths, back focus and group power together.",
+      },
+    ],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -119,7 +138,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.805,
       vd: 25.5,
-      fl: -89.6,
+      focalLengthMm: -89.6,
       glass: "SF6 (Schott)",
       apd: false,
       role: "High-index negative meniscus (concave toward image). Negative Petzval contribution to flatten field.",
@@ -131,7 +150,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.531,
       vd: 62.1,
-      fl: 68.7,
+      focalLengthMm: 68.7,
       glass: "BSC6 (HOYA catalog-equivalent; production supplier unspecified)",
       apd: false,
       role: "Primary positive power in Group I. Exceptionally thick (13.8 mm) for principal-plane control.",
@@ -143,7 +162,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.694,
       vd: 53.3,
-      fl: 87.7,
+      focalLengthMm: 87.7,
       glass: "S-LAL13 (Ohara)",
       apd: false,
       role: "Lanthanum crown meniscus completing Group I positive triplet.",
@@ -155,11 +174,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.847,
       vd: 23.8,
-      fl: 50.2,
+      focalLengthMm: 50.2,
       glass: "SF57 (Schott)",
       apd: false,
-      cemented: "D1",
       role: "Ultra-dense flint; individually positive element of Group II variator doublet.",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -168,11 +187,12 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.834,
       vd: 37.3,
-      fl: -16.5,
-      glass: "834373 — dense flint (M-NBFD10 catalog match; LaSF5/S-LAH60 class)",
+      focalLengthMm: -16.5,
+      glass:
+        "834373 — dense flint (M-NBFD10 catalog match; LaSF5/S-LAH60 class)",
       apd: false,
-      cemented: "D1",
       role: "Strongly negative element dominating Group II. R9 (+17.98 mm) is the steepest curvature in the system.",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -181,11 +201,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.498,
       vd: 65.1,
-      fl: -19.2,
+      focalLengthMm: -19.2,
       glass: "BSL3 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
-      cemented: "D2",
       role: "Low-index crown element of Group III compensator doublet.",
+      cemented: "D2",
     },
     {
       id: 7,
@@ -194,11 +214,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.785,
       vd: 25.7,
-      fl: 24.5,
+      focalLengthMm: 24.5,
       glass: "SF11 (Schott)",
       apd: false,
-      cemented: "D2",
       role: "Dense flint in reversed crown-flint arrangement; opposes Group II chromatism.",
+      cemented: "D2",
     },
     {
       id: 8,
@@ -207,7 +227,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.62,
       vd: 60.3,
-      fl: 38.4,
+      focalLengthMm: 38.4,
       glass: "SK16 (Schott)",
       apd: false,
       role: "Strongest positive singlet. First element of stationary relay Group IV.",
@@ -219,11 +239,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.487,
       vd: 70.4,
-      fl: 31.4,
+      focalLengthMm: 31.4,
       glass: "FK5 (Schott)",
       apd: false,
-      cemented: "D3",
       role: "Fluor crown with near-plano front (R15 ≈ −502 mm). Positive power with minimal chromatic contribution.",
+      cemented: "D3",
     },
     {
       id: 10,
@@ -232,11 +252,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.805,
       vd: 25.5,
-      fl: -27.8,
+      focalLengthMm: -27.8,
       glass: "SF6 (Schott)",
       apd: false,
-      cemented: "D3",
       role: "Chromatic corrector for L9. FK5+SF6 pairing yields Δνd = 44.9 — the most aggressive achromat in the system.",
+      cemented: "D3",
     },
     {
       id: 11,
@@ -245,8 +265,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.639,
       vd: 45.1,
-      fl: 33.9,
-      glass: "BAF12 (SUMITA catalog-equivalent; production supplier unspecified)",
+      focalLengthMm: 33.9,
+      glass:
+        "BAF12 (SUMITA catalog-equivalent; production supplier unspecified)",
       apd: false,
       role: "Strongly asymmetric biconvex behind the iris. Moderate-dispersion barium flint for higher-order chromatic tuning.",
     },
@@ -257,7 +278,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.805,
       vd: 25.5,
-      fl: -54.9,
+      focalLengthMm: -54.9,
       glass: "SF6 (Schott)",
       apd: false,
       role: "Field flattener. High-index SF6 maximizes negative Petzval contribution per unit power. Convex side faces image.",
@@ -265,48 +286,58 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription (US 3,975,089 Table I, mm) ── */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // ── Group I (L1, L2, L3) — moves during zoom ──
-    { label: "1", R: 135.72, d: 2.6, nd: 1.805, elemId: 1, sd: 32.5 }, // L1 front
-    { label: "2", R: 46.71, d: 2.84, nd: 1.0, elemId: 0, sd: 32.0 }, // L1 rear → air
-    { label: "3", R: 46.5, d: 13.8, nd: 1.531, elemId: 2, sd: 28.5 }, // L2 front
-    { label: "4", R: -152.15, d: 0.1, nd: 1.0, elemId: 0, sd: 28.5 }, // L2 rear → air
-    { label: "5", R: 41.84, d: 6.6, nd: 1.694, elemId: 3, sd: 25.8 }, // L3 front
-    { label: "6", R: 125.2, d: 0.47, nd: 1.0, elemId: 0, sd: 25.8 }, // L3 rear → air — var gap (1)
+    { label: "1", R: 135.72, d: 2.6, sd: 32.5, medium: 1 }, // L1 front
+    { label: "2", R: 46.71, d: 2.84, sd: 32.5, rimCutDepthMm: 9.93 }, // L1 rear → air
+    { label: "3", R: 46.5, d: 13.8, sd: 28.5, medium: 2 }, // L2 front
+    { label: "4", R: -152.15, d: 0.1, sd: 28.5 }, // L2 rear → air
+    { label: "5", R: 41.84, d: 6.6, sd: 25.8, medium: 3 }, // L3 front
+    { label: "6", R: 125.2, sd: 25.8 }, // L3 rear → air — var gap (1)
 
     // ── Group II (L4–L5 cemented) — moves during zoom ──
-    { label: "7", R: 140.19, d: 3.1, nd: 1.847, elemId: 4, sd: 15.8 }, // L4 front
-    { label: "8", R: -60.45, d: 1.1, nd: 1.834, elemId: 5, sd: 15.8 }, // L4→L5 junction
-    { label: "9", R: 17.98, d: 15.94, nd: 1.0, elemId: 0, sd: 9.2 }, // L5 rear → air — var gap (2)
+    { label: "7", R: 140.19, d: 3.1, sd: 15.8, medium: 4 }, // L4 front
+    { label: "8", R: -60.45, d: 1.1, sd: 15.8, medium: 5 }, // L4→L5 junction
+    { label: "9", R: 17.98, sd: 11.35, rimExtensionSd: 15.8 }, // L5 rear → air — var gap (2)
 
     // ── Group III (L6–L7 cemented) — moves during zoom ──
-    { label: "10", R: -16.56, d: 1.0, nd: 1.498, elemId: 6, sd: 8.5 }, // L6 front
-    { label: "11", R: 22.97, d: 3.1, nd: 1.785, elemId: 7, sd: 10.4 }, // L6→L7 junction
-    { label: "12", R: -112.11, d: 9.33, nd: 1.0, elemId: 0, sd: 10.4 }, // L7 rear → air — var gap (3)
+    { label: "10", R: -16.56, d: 1.0, sd: 8.5, medium: 6 }, // L6 front
+    { label: "11", R: 22.97, d: 3.1, sd: 10.4, medium: 7 }, // L6→L7 junction
+    { label: "12", R: -112.11, sd: 10.4 }, // L7 rear → air — var gap (3)
 
     // ── Group IV (L8, L9–L10, STO, L11, L12) — stationary during zoom ──
-    { label: "13", R: 53.32, d: 2.9, nd: 1.62, elemId: 8, sd: 11.3 }, // L8 front
-    { label: "14", R: -42.06, d: 2.0, nd: 1.0, elemId: 0, sd: 11.3 }, // L8 rear → air
-    { label: "15", R: -502.33, d: 5.0, nd: 1.487, elemId: 9, sd: 11.0 }, // L9 front
-    { label: "16", R: -14.89, d: 0.9, nd: 1.805, elemId: 10, sd: 11.0 }, // L9→L10 junction
-    { label: "17", R: -45.59, d: 4.15, nd: 1.0, elemId: 0, sd: 11.5 }, // L10 rear → air (patent 11.53 gap, part 1)
+    { label: "13", R: 53.32, d: 2.9, sd: 11.3, medium: 8 }, // L8 front
+    { label: "14", R: -42.06, d: 2.0, sd: 11.3 }, // L8 rear → air
+    { label: "15", R: -502.33, d: 5.0, sd: 11.0, medium: 9 }, // L9 front
+    { label: "16", R: -14.89, d: 0.9, sd: 11.0, medium: 10 }, // L9→L10 junction
+    { label: "17", R: -45.59, d: 4.15, sd: 11.5 }, // L10 rear → air (patent 11.53 gap, part 1)
     // ── Aperture stop — Fig. 1 iris symbol between L10 and L11; split of the 11.53 mm gap is figure-derived ──
-    { label: "STO", R: 1e15, d: 7.38, nd: 1.0, elemId: 0, sd: 11.6 }, // STO → L11 (patent 11.53 gap, part 2)
-    { label: "18", R: 125.96, d: 3.5, nd: 1.639, elemId: 11, sd: 11.7 }, // L11 front
-    { label: "19", R: -25.9, d: 5.98, nd: 1.0, elemId: 0, sd: 11.7 }, // L11 rear → air
-    { label: "20", R: -19.4, d: 1.296, nd: 1.805, elemId: 12, sd: 12.2 }, // L12 front
-    { label: "21", R: -35.59, d: 45.82, nd: 1.0, elemId: 0, sd: 12.2 }, // L12 rear → image — var BF
+    { label: "STO", R: "flat", d: 7.38 }, // STO → L11 (patent 11.53 gap, part 2)
+    { label: "18", R: 125.96, d: 3.5, sd: 11.7, medium: 11 }, // L11 front
+    { label: "19", R: -25.9, d: 5.98, sd: 11.7 }, // L11 rear → air
+    { label: "20", R: -19.4, d: 1.296, sd: 12.2, medium: 12 }, // L12 front
+    { label: "21", R: -35.59, sd: 12.2 }, // L12 rear → image — var BF
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {},
+  zoom: {
+    /* (moved from zoomPositions) ── Zoom positions (patent's stated station focal lengths) ── */
+    stations: [
+      { focalLengthMm: 36, closeFocusM: 0.26, label: "Wide" },
+      { focalLengthMm: 83, closeFocusM: 0.885, label: "Tele" },
+    ],
+    apertureModel: "fixed-iris",
+    step: 0.004,
+  },
 
-  /* ── Zoom positions (patent's stated station focal lengths) ── */
-  zoomPositions: [36, 83],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.26,
+    description:
+      "Unit focus — all four groups move together on the focusing thread (patent col. 4); one push-pull ring zooms and focuses. Close-focus states use a single 11.18 mm extension calculated to reach the production 0.26 m (film plane) at 35 mm; the same extension gives ≈0.885 m at 85 mm (published 0.9 m).",
+  },
 
-  /* ── Variable air spacings ──
+  /* (moved from var) ── Variable air spacings ──
    *  Zoom: patent footnotes (1) D6, (2) D9, (3) D12 at the wide / tele stations.
    *  Unit focus: the zoom gaps are identical at infinity and close focus.
    *  BF (surface 21): paraxial back focus of each station at infinity (calculated
@@ -315,31 +346,39 @@ const LENS_DATA = {
    *  object-to-image at 35 mm (m ≈ −0.29, published 1:3) and ≈0.885 m at 85 mm
    *  (published 0.9 m) — see zoomCloseFocusM.
    */
-  var: {
-    "6": [
-      [0.47, 0.47],
-      [19.48, 19.48],
-    ],
-    "9": [
-      [15.94, 15.94],
-      [5.01, 5.01],
-    ],
-    "12": [
-      [9.33, 9.33],
-      [1.19, 1.19],
-    ],
-    "21": [
-      [45.82, 57.0],
-      [46.37, 57.55],
-    ],
+  gaps: {
+    "6": {
+      label: "D6",
+      values: [
+        [0.47, 0.47],
+        [19.48, 19.48],
+      ],
+    },
+    "9": {
+      label: "D9",
+      values: [
+        [15.94, 15.94],
+        [5.01, 5.01],
+      ],
+    },
+    "12": {
+      label: "D12",
+      values: [
+        [9.33, 9.33],
+        [1.19, 1.19],
+      ],
+    },
+    "21": {
+      label: "BF",
+      values: [
+        [45.82, 57.0],
+        [46.37, 57.55],
+      ],
+    },
   },
 
-  varLabels: [
-    ["6", "D6"],
-    ["9", "D9"],
-    ["12", "D12"],
-    ["21", "BF"],
-  ],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16] },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -348,27 +387,14 @@ const LENS_DATA = {
     { text: "III (−)", fromSurface: "10", toSurface: "12" },
     { text: "IV (+)", fromSurface: "13", toSurface: "21" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "7", toSurface: "9" },
     { text: "D2", fromSurface: "10", toSurface: "12" },
     { text: "D3", fromSurface: "15", toSurface: "17" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.26,
-  zoomCloseFocusM: [0.26, 0.885],
-  focusDescription:
-    "Unit focus — all four groups move together on the focusing thread (patent col. 4); one push-pull ring zooms and focuses. Close-focus states use a single 11.18 mm extension calculated to reach the production 0.26 m (film plane) at 35 mm; the same extension gives ≈0.885 m at 85 mm (published 0.9 m).",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  zoomApertureModel: "fixed-iris",
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
-
   /* ── Layout tuning ── */
-  scFill: 0.48,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.48, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

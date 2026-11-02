@@ -7,7 +7,7 @@
 **Inventor:** Akihiko Yuki\
 **Applicant:** Canon Inc.\
 **Title:** ズームレンズ及びそれを有する撮像装置\
-**Embodiment analyzed:** Example 1 (実施例1)
+**Example details:** 実施例1
 
 The data file transcribes Example 1 of JP 2016-161889 A and associates it with the fixed-lens Canon PowerShot G9 X. The patent is the numerical authority for the optical prescription; Canon product documentation is used only for the production identity and marketed specifications. The correlation is not presented as manufacturer confirmation.
 

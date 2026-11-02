@@ -9,8 +9,7 @@
 **Granted:** November 30, 1976\
 **Inventor:** Jihei Nakagawa\
 **Assignee:** Olympus Optical Co., Ltd.\
-**Title:** Wide-Angle Photographic Lens System\
-**Embodiment analyzed:** Embodiment 2
+**Title:** Wide-Angle Photographic Lens System
 
 US 3,994,574 describes a seven-component, eight-element wide-angle objective in which the first four components have negative combined focal power. The patent gives five numerical embodiments. Embodiment 1 corresponds to Fig. 1; Embodiments 2–5 correspond to Fig. 2. Aberration plots are published for Embodiments 1 and 2, both at f/2.8 and a 42.5° half-field. The complete Embodiment 2 prescription appears on PDF page 6 (printed patent pp. 3–4) and is repeated in claim 3 on PDF pages 7–8.
 

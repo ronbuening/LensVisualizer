@@ -6,8 +6,7 @@
 **Granted:** March 11, 1980<br>
 **Inventor:** Shuji Ogino<br>
 **Assignee:** Minolta Camera Co., Ltd. (printed as Minolta Camera Kabushiki Kaisha)<br>
-**Title:** *Zoom Lens System*<br>
-**Embodiment analyzed:** Example 1
+**Title:** *Zoom Lens System*
 
 Example 1 is the numerical prescription used for this model. The patent gives the design as
 $f = 131.5\text{–}51.5$ mm, FNo. 3.6, and full field $2\omega = 18^\circ\text{–}47^\circ$, with 12 glass

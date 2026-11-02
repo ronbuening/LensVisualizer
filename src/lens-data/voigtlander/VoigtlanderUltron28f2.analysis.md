@@ -12,7 +12,7 @@
 
 **Published:** July 6, 2022
 
-**Embodiment analyzed:** Example 1, Table 1 and Figure 1
+**Example details:** Table 1 and Figure 1
 
 The hosted design is associated with the ten-element, seven-component Ultron. The patent states 28.5000 mm, f/2, full field 75.4° and image semi-height 21.63 mm. Its rounded prescription computes a slightly different focal length, discussed below. The data's subtitle now agrees with its verified author metadata; the former Hatta attribution was incorrect. Patent association does not establish an exact production prescription or production materials.
 

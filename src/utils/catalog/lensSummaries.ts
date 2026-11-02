@@ -14,7 +14,7 @@
 
 import summariesJson from "../../generated/lens-summaries.json";
 import buildMeta from "../../generated/client-metadata.json";
-import type { OpticalConfigurationData } from "../../types/optics.js";
+import type { OpticalConfigurationData, PatentExample } from "../../types/optics.js";
 import type { LensMountId, ImageFormatId } from "./lensTaxonomy.js";
 
 export interface LensSummary {
@@ -28,6 +28,7 @@ export interface LensSummary {
   apertureDesign?: number;
   nominalFno?: number | number[];
   patentNumber?: string;
+  patentExample?: PatentExample;
   patentAuthors?: string[];
   patentAssignees?: string[];
   patentYear?: number;

@@ -7,7 +7,7 @@
 **Inventor:** No individual inventor is named in the selected DE utility-model publication\
 **Assignee:** VEB Feinoptisches Werk Görlitz\
 **Title:** *Vierlinsiges Weitwinkelobjektiv*\
-**Embodiment analyzed:** *Zahlenbeispiel* / claim 4, designated “Example 1” by the project job card
+**Example details:** *Zahlenbeispiel* / claim 4, designated “Example 1” by the project job card
 
 The selected publication describes a four-lens, four-group wide-angle objective with a negative front meniscus separated by a large air space from a positive-negative-positive rear triplet. Its numerical example specifies a relative aperture of 1:4.5, a full image angle of 62°, and correction over 434–656 nm. The prescription is normalized to `f = 100 mm`; the project model applies a uniform scale of 0.35 to correlate it with the 35 mm production lens while preserving all refractive indices and Abbe numbers. [1, pp. 1–3, 5–6]
 

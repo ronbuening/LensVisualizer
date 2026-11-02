@@ -4,7 +4,7 @@
 **Filed:** 25 March 1955 · **Published:** 15 September 1960
 **Applicant:** Fa. Carl Zeiss, Heidenheim/Brenz
 **Inventor:** Dr. Günther Lange, Königsbronn (Württemberg)
-**Example analyzed:** Table 1 (Example 1) — the full system per Fig. 1
+**Example details:** the full system per Fig. 1
 
 ---
 

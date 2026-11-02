@@ -8,7 +8,7 @@
 **Inventor:** Edgard Hugues\
 **Assignee:** Les Appareils de Precision Kinoptik\
 **Title:** *Photographic Objectives Having a Large Angular Field*\
-**Embodiment analyzed:** Example 1 / Table 1 / FIG. 1
+**Example details:** Table 1 / FIG. 1
 
 The prescription transcribes the first numerical embodiment of Hugues's large-angular-field objective. The patent describes three successive dioptric systems: a negative first system with a paraboloidal surface, a positive second system, and a positive four-element third system. For Example 1 it publishes a 5.8 mm focal length, f/1.8 aperture, 103° total object field, and 17.95 mm distance from the last objective surface to the image plane. Table 1 supplies the complete six-element, all-air-spaced numerical prescription and the diaphragm position. [US 3,037,426, printed pp. 1–3; Table 1 on printed p. 3 / PDF p. 5.]
 

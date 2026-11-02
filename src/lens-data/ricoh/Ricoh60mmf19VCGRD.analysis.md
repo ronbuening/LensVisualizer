@@ -15,7 +15,6 @@
 **Applicant:** Ricoh Co., Ltd.
 
 **Title:** 結像レンズおよびカメラ装置および携帯情報端末装置 (*Imaging lens, camera apparatus, and portable information terminal apparatus*, translated)
-**Embodiment analyzed:** Example 4
 
 The modeled prescription is Example 4 of JP 2010-164839 A. The patent gives a infinity-state numerical example with a published focal length of 6.00 mm, F-number 1.99, maximum image height 4.90 mm, and half field angle 39.1° (¶0071, ¶0087–¶0091). The final data file computes a d-line effective focal length of 6.002506 mm and preserves the published design aperture as `nominalFno = 1.99`.
 

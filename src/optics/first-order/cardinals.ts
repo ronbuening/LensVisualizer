@@ -4,25 +4,25 @@
  * Uses the prepared system matrix and current image-plane geometry to feed the diagram's axial first-order overlays.
  */
 
-import type { RuntimeLens } from "../../types/optics.js";
-import { traceParaxialSurfaces2, transferParaxialRay2, type ParaxialState } from "../math/paraxial.js";
-import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
-import { prepareState } from "../state/prepareState.js";
+import { traceParaxialSurfaces, transferParaxialRay } from "../math/paraxial.js";
+import type { ParaxialState } from "../math/paraxial.js";
+import { createTraceGeometry } from "../trace/geometry.js";
 import type { PreparedOpticalState } from "../types.js";
-import { traceEngineRay2 } from "../trace/rayAdapters.js";
-import { computeSystemMatrix2 } from "./systemMatrix.js";
+import { prepareEngineTrace } from "../trace/rayAdapters.js";
+import { computeSystemMatrix } from "./systemMatrix.js";
+import type { FirstOrderSystemMatrix } from "./systemMatrix.js";
 
 const CARDINAL_EPSILON = 1e-12;
 const FOLDED_PARAXIAL_SAMPLE_FRACTIONS = [0.04, 0.08, 0.16, 0.32, 0.5, 0.7, 0.9] as const;
 
 /** One axial cardinal point in optical coordinates, measured in mm along z. */
-export interface CardinalPoint2 {
+export interface CardinalPoint {
   id: "F" | "F'" | "H" | "H'" | "N" | "N'";
   z: number;
 }
 
 /** One signed axial distance annotation between two cardinal/vertex/image points. */
-export interface CardinalDistance2 {
+export interface CardinalDistance {
   id: "EFL" | "BFD" | "FFD" | "Hiatus" | "Total track";
   fromZ: number;
   toZ: number;
@@ -36,21 +36,21 @@ export interface CardinalDistance2 {
  * object side toward the nominal image side, with folded axial reflective fixtures
  * reported only when their final image plane can be represented on that same axis.
  */
-export interface CardinalElements2 {
+export interface CardinalElements {
   points: {
-    frontFocal: CardinalPoint2;
-    rearFocal: CardinalPoint2;
-    frontPrincipal: CardinalPoint2;
-    rearPrincipal: CardinalPoint2;
-    frontNodal: CardinalPoint2;
-    rearNodal: CardinalPoint2;
+    frontFocal: CardinalPoint;
+    rearFocal: CardinalPoint;
+    frontPrincipal: CardinalPoint;
+    rearPrincipal: CardinalPoint;
+    frontNodal: CardinalPoint;
+    rearNodal: CardinalPoint;
   };
   distances: {
-    efl: CardinalDistance2;
-    bfd: CardinalDistance2;
-    ffd: CardinalDistance2;
-    hiatus: CardinalDistance2;
-    totalTrack: CardinalDistance2;
+    efl: CardinalDistance;
+    bfd: CardinalDistance;
+    ffd: CardinalDistance;
+    hiatus: CardinalDistance;
+    totalTrack: CardinalDistance;
   };
   frontVertexZ: number;
   /** Rear vertex of the traced system (matrix reference; includes synthetic rear plates). */
@@ -73,17 +73,17 @@ export interface CardinalElements2 {
  * @param state - prepared optical state for current focus/zoom/aberration sliders
  * @returns cardinal points/distances in mm, or null when the matrix is degenerate
  */
-export function computeCardinalElements2(state: PreparedOpticalState): CardinalElements2 | null {
-  if (state.lens.flags.isFoldedOptics) return computeFoldedReflectiveCardinals2(state);
+export function computeCardinalElementsFromState(state: PreparedOpticalState): CardinalElements | null {
+  if (state.lens.flags.isFoldedOptics) return computeFoldedReflectiveCardinals(state);
   if (state.z.length < state.surfaces.length) return null;
 
-  const matrix = computeSystemMatrix2(state);
-  return buildCardinalElementsFromMatrix2({
+  const matrix = computeSystemMatrix(state);
+  return buildCardinalElementsFromMatrix({
     ...matrix,
     frontVertexZ: state.z[0],
     rearVertexZ: state.z[state.surfaces.length - 1],
-    /* Hand-built RuntimeLens fixtures may omit lastLensSurfaceIdx; they never carry rear plates. */
-    rearLensVertexZ: state.z[state.lens.runtime.lastLensSurfaceIdx ?? state.surfaces.length - 1],
+    /* BFD starts at the last drawn lens vertex, before any hidden rear plates. */
+    rearLensVertexZ: state.z[state.lens.lastLensSurfaceIndex ?? state.surfaces.length - 1],
     imagePlaneZ: state.imgZ,
   });
 }
@@ -97,7 +97,7 @@ export function computeCardinalElements2(state: PreparedOpticalState): CardinalE
  * @param matrix - ABCD coefficients, vertex positions, image plane, and end media indices
  * @returns cardinal-element result in millimeters, or null for afocal/degenerate systems
  */
-export function buildCardinalElementsFromMatrix2({
+export function buildCardinalElementsFromMatrix({
   A,
   B,
   C,
@@ -120,11 +120,14 @@ export function buildCardinalElementsFromMatrix2({
   imagePlaneZ: number;
   objectIndex: number;
   imageIndex: number;
-}): CardinalElements2 | null {
+}): CardinalElements | null {
   if (!Number.isFinite(C) || Math.abs(C) < CARDINAL_EPSILON) return null;
   const frontFocalZ = frontVertexZ + (objectIndex * D) / C;
   const rearFocalZ = rearVertexZ - (imageIndex * A) / C;
-  const frontPrincipalZ = frontVertexZ + (objectIndex * (D - 1)) / C;
+  /* H uses n(D - det)/C. Each mirror flips the (y, n·u) determinant's sign, so det is exactly ±1; refractive and
+   * even-reflection systems keep the literal det = +1 and therefore today's arithmetic bit for bit. */
+  const det = reflectionDeterminant(A, B, C, D);
+  const frontPrincipalZ = frontVertexZ + (objectIndex * (D - det)) / C;
   const rearPrincipalZ = rearVertexZ + (imageIndex * (1 - A)) / C;
 
   const nodalDistanceToFrontVertex = (imageIndex - objectIndex * D) / C;
@@ -165,71 +168,107 @@ export function buildCardinalElementsFromMatrix2({
 }
 
 /**
- * Compute cardinal elements through the RuntimeLens compatibility path.
+ * Snap a first-order matrix determinant to its exact reflection parity.
  *
- * `zPos` and `imagePlaneZ` let diagram callers pass their current layout positions,
- * including focused/zoomed or display-adjusted image planes, without rebuilding the lens.
+ * With `y` and reduced slope `n·u` on both sides, refraction preserves det = +1 and each reflection negates it, so
+ * the traced `AD - BC` differs from ±1 only by rounding. A non-finite determinant keeps the refractive +1.
  *
- * @param L - runtime lens object
- * @param focusT - normalized focus slider, 0=infinity and 1=close focus
- * @param zoomT - normalized zoom slider, ignored by prime lenses
- * @param zPos - current surface vertex positions in mm
- * @param imagePlaneZ - current image-plane z coordinate in mm
- * @param aberrationT - normalized aberration spacing slider
- * @returns cardinal-element result in millimeters, or null when unsupported
+ * @param A - marginal-ray output height
+ * @param B - chief-ray output height
+ * @param C - marginal-ray output reduced slope
+ * @param D - chief-ray output reduced slope
+ * @returns -1 for an odd number of reflections, otherwise +1
  */
-export function computeCardinalElementsAtState2(
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  zPos: number[],
-  imagePlaneZ: number,
-  aberrationT = 0,
-): CardinalElements2 | null {
-  const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
-  const stateWithZ = {
-    ...state,
-    z: Object.freeze([...zPos]),
-    imgZ: imagePlaneZ,
-    surfaces: Object.freeze(
-      state.surfaces.map((surface, index) => Object.freeze({ ...surface, z: zPos[index] ?? surface.z })),
-    ),
-  } as PreparedOpticalState;
-  return computeCardinalElements2(stateWithZ);
+export function reflectionDeterminant(A: number, B: number, C: number, D: number): 1 | -1 {
+  return A * D - B * C < 0 ? -1 : 1;
 }
 
-function computeFoldedReflectiveCardinals2(state: PreparedOpticalState): CardinalElements2 | null {
+/**
+ * Compute cardinal elements with camera/display coordinate overrides.
+ *
+ * @param state - prepared optical state for current controls
+ * @param zPos - current surface vertex positions in mm
+ * @param imagePlaneZ - current image-plane z coordinate in mm
+ * @returns cardinal-element result in millimeters, or null when unsupported
+ */
+export function computeCardinalElementsWithLayout(
+  state: PreparedOpticalState,
+  zPos: readonly number[],
+  imagePlaneZ: number,
+): CardinalElements | null {
+  const z = Object.freeze([...zPos]);
+  const surfaces = Object.freeze(
+    state.surfaces.map((surface, index) => Object.freeze({ ...surface, z: zPos[index] ?? surface.z })),
+  );
+  const stateWithZ = {
+    ...state,
+    z,
+    imgZ: imagePlaneZ,
+    surfaces,
+    traceGeometry: createTraceGeometry({
+      surfaces,
+      z,
+      imagePlane: state.imagePlane,
+      stopSurfaceIndex: state.lens.stop.surfaceIndex,
+      pathPlan: state.lens.opticalPath,
+      isFoldedOptics: state.lens.flags.isFoldedOptics,
+    }),
+  } as PreparedOpticalState;
+  return computeCardinalElementsFromState(stateWithZ);
+}
+
+function computeFoldedReflectiveCardinals(state: PreparedOpticalState): CardinalElements | null {
+  const matrix = computeFoldedSystemMatrix(state);
+  if (matrix === null) return null;
+  const { rearSurfaceIndex, ...coefficients } = matrix;
+  return buildCardinalElementsFromMatrix({
+    ...coefficients,
+    frontVertexZ: state.z[0],
+    rearVertexZ: state.z[rearSurfaceIndex],
+    imagePlaneZ: state.imgZ,
+  });
+}
+
+/**
+ * Compute the axial first-order matrix of a folded reflective system along its paraxial hit order.
+ *
+ * Slopes are physical dy/dz along the diagram axis with unsigned media indices, so each reflection negates the
+ * determinant (see `reflectionDeterminant`).
+ *
+ * @param state - prepared folded optical state
+ * @returns ABCD matrix, end media indices, and the last surface hit, or null when unsupported
+ */
+export function computeFoldedSystemMatrix(
+  state: PreparedOpticalState,
+): (FirstOrderSystemMatrix & { rearSurfaceIndex: number }) | null {
   if (state.z.length < state.surfaces.length) return null;
   if (Math.abs(state.imagePlane.normal[1]) > 1e-9) return null;
 
-  const order = resolveFoldedParaxialSurfaceOrder2(state);
+  const order = resolveFoldedParaxialSurfaceOrder(state);
   if (order.length === 0) return null;
-  if (!order.every((surfaceIndex) => isFoldedParaxialSurfaceSupported2(state, surfaceIndex))) return null;
+  if (!order.every((surfaceIndex) => isFoldedParaxialSurfaceSupported(state, surfaceIndex))) return null;
 
-  const marginal = traceFoldedReflectiveParaxialPath2(state, order, 1, 0);
-  const chief = traceFoldedReflectiveParaxialPath2(state, order, 0, 1);
+  const marginal = traceFoldedReflectiveParaxialPath(state, order, 1, 0);
+  const chief = traceFoldedReflectiveParaxialPath(state, order, 0, 1);
   if (marginal === null || chief === null) return null;
 
-  const objectIndex = 1;
   const imageIndex = marginal.n;
-  return buildCardinalElementsFromMatrix2({
+  return {
     A: marginal.y,
     B: chief.y,
     C: imageIndex * marginal.u,
     D: imageIndex * chief.u,
-    frontVertexZ: state.z[0],
-    rearVertexZ: state.z[order[order.length - 1]],
-    imagePlaneZ: state.imgZ,
-    objectIndex,
+    objectIndex: 1,
     imageIndex,
-  });
+    rearSurfaceIndex: order[order.length - 1],
+  };
 }
 
-function resolveFoldedParaxialSurfaceOrder2(state: PreparedOpticalState): number[] {
+function resolveFoldedParaxialSurfaceOrder(state: PreparedOpticalState): number[] {
   if (state.lens.opticalPath.surfaceOrder?.length) return [...state.lens.opticalPath.surfaceOrder];
 
   /* Auto folded fixtures need a real trace to discover the actual reflective hit order. */
-  const runtime = state.lens.runtime;
+  const constants = state.lens.constants;
   const candidateFractions = new Set<number>([
     0,
     ...state.lens.authoredRayFans.rayFractions.map((fraction) => Math.abs(fraction)),
@@ -239,18 +278,15 @@ function resolveFoldedParaxialSurfaceOrder2(state: PreparedOpticalState): number
   const candidateHeights = [...candidateFractions]
     .filter((fraction) => Number.isFinite(fraction) && fraction >= 0)
     .sort((a, b) => a - b)
-    .map((fraction) => fraction * runtime.EP.epSD);
+    .map((fraction) => fraction * constants.EP.epSD);
 
+  const trace = prepareEngineTrace(state, {
+    checkSemiDiameter: true,
+    stopSemiDiameter: constants.stopPhysSD,
+    stopOnClip: true,
+  });
   for (const y0 of candidateHeights) {
-    const result = traceEngineRay2(
-      state,
-      { origin: [0, y0, state.z[0] ?? 0], direction: [0, 0, 1] },
-      {
-        checkSemiDiameter: true,
-        stopSemiDiameter: runtime.stopPhysSD,
-        stopOnClip: true,
-      },
-    );
+    const result = trace({ origin: [0, y0, state.z[0] ?? 0], direction: [0, 0, 1] });
     if (!result.reachedImagePlane || result.status !== "ok") continue;
     const opticalHits = result.hits
       .map((hit) => hit.surfaceIndex)
@@ -266,7 +302,7 @@ function resolveFoldedParaxialSurfaceOrder2(state: PreparedOpticalState): number
   return [];
 }
 
-function isFoldedParaxialSurfaceSupported2(state: PreparedOpticalState, surfaceIndex: number): boolean {
+function isFoldedParaxialSurfaceSupported(state: PreparedOpticalState, surfaceIndex: number): boolean {
   const surface = state.surfaces[surfaceIndex];
   if (!surface) return false;
   if (surface.interaction.normal) return false;
@@ -278,7 +314,7 @@ function isFoldedParaxialSurfaceSupported2(state: PreparedOpticalState, surfaceI
   return Math.abs(nextIndex - 1) <= 1e-12;
 }
 
-function traceFoldedReflectiveParaxialPath2(
+function traceFoldedReflectiveParaxialPath(
   state: PreparedOpticalState,
   order: readonly number[],
   y0: number,
@@ -292,10 +328,10 @@ function traceFoldedReflectiveParaxialPath2(
     const targetZ = state.z[surfaceIndex];
     if (!surface || !Number.isFinite(targetZ)) return null;
 
-    rayState = transferParaxialRay2(rayState, targetZ - currentZ);
+    rayState = transferParaxialRay(rayState, targetZ - currentZ);
     currentZ = targetZ;
 
-    const nextState = traceParaxialSurfaces2([surface], rayState.y, rayState.u, {
+    const nextState = traceParaxialSurfaces([surface], rayState.y, rayState.u, {
       allowReflect: true,
       requireSameIndexRefraction: true,
       skipLastTransfer: true,

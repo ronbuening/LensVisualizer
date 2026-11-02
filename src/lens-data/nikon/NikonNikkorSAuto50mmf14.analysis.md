@@ -94,25 +94,25 @@ All four parameters agree to within rounding of the patent's stated values, conf
 
 ## 5. Glass Identification
 
-The patent specifies refractive index (nd) and Abbe number (νd) for each element. In the 1960s, Nikon sourced optical glass primarily from Japanese manufacturers (Ohara, Hoya, and others), though the nd/νd values also correspond closely to well-known Schott catalog designations. The following identifications are based on six-digit glass code matching against historical catalogs. These are inferences at the family level — the exact proprietary melt used by Nikon in production cannot be determined from the patent alone.
+Example 1/PDF3 publishes seven d-line index/Abbe pairs and no partial dispersion or C/F/g indices. The claim text explicitly identifies the spectral d line. The following are the actual compatible coefficient curves used for wavelength tracing; they are qualified spectral proxies, without proof of the historical melt or supplier.
 
-| Element | nd | νd | Schott Equivalent | Ohara Equivalent | Glass Family |
-|---------|------|------|-------------------|-----------------|-------------|
-| L1 (G₁) | 1.66446 | 35.9 | SF2 | NSL36 | Dense flint |
-| L2 (G₂) | 1.69350 | 53.4 | LaK9 | LAL7 | Lanthanum crown |
-| L3 (G₃) | 1.64831 | 33.8 | SF4 | PBM5 | Dense flint |
-| L4 (G₄) | 1.69895 | 30.1 | SF6 | PBM6 | Dense flint |
-| L5 (G₅) | 1.71300 | 53.9 | LaK8 | LAL14 | Lanthanum crown |
-| L6 (G₆) | 1.67790 | 55.5 | SK16 or BaLF4 | BSL7 | Barium crown / barium light flint |
-| L7 (G₇) | 1.71300 | 53.9 | LaK8 | LAL14 | Lanthanum crown |
+| Element | Source nd | Source νd | Selected catalog spectral proxy |
+|---|---:|---:|---|
+| L1 | 1.66446 | 35.9 | J-BASF2 (Hikari) |
+| L2 | 1.69350 | 53.4 | S-LAL13 (Ohara) |
+| L3 | 1.64831 | 33.8 | E-FD2 (Hoya; approximate nd match, Δnd≈−.000620) |
+| L4 | 1.69895 | 30.1 | S-TIM35 (Ohara) |
+| L5 | 1.71300 | 53.9 | S-LAL8 (Ohara) |
+| L6 | 1.67790 | 55.5 | LAC12 (Hoya) |
+| L7 | 1.71300 | 53.9 | S-LAL8 (Ohara) |
 
 ### Glass Selection Patterns
 
 The design employs a deliberate alternation between high-dispersion flint glasses (νd ≈ 30–36) and low-dispersion crown/lanthanum glasses (νd ≈ 53–56) that is characteristic of a well-corrected achromatic Gauss design:
 
-The three **flint glasses** (L1, L3, L4) all have Abbe numbers below 36 and serve as the negative-power or dispersion-controlling elements. The four **crown and lanthanum crown glasses** (L2, L5, L6, L7) have Abbe numbers above 53 and carry the positive refractive power. The use of lanthanum crowns (LaK8/LaK9) is noteworthy: these high-index, low-dispersion glasses were relatively new in the 1960s and allow strong positive refractive power to be achieved at reduced surface curvatures, which helps control spherical aberration and coma. Elements L5 and L7 share the same glass (nd = 1.71300, νd = 53.9, matching LaK8/Ohara LAL14), simplifying production inventory.
+The three **flint glasses** (L1, L3, L4) all have Abbe numbers below 36 and serve as the negative-power or dispersion-controlling elements. The four **crown and lanthanum crown glasses** (L2, L5, L6, L7) have Abbe numbers above 53 and carry the positive refractive power. The use of lanthanum crowns (LaK8/LaK9) is noteworthy: these high-index, low-dispersion glasses were relatively new in the 1960s and allow strong positive refractive power to be achieved at reduced surface curvatures, which helps control spherical aberration and coma. L5 and L7 repeat the same source coordinates and compatible S-LAL8 proxy; this does not establish a shared production melt or procurement intent.
 
-No anomalous partial dispersion (APD) glasses are used. This is expected for a 1960s design — APD glasses like fluorite crowns and short-flint specials became significant in lens design primarily from the 1970s onward.
+The patent does not publish partial-dispersion values or identify APD material positions. The unflagged annotations record that evidence limit, without asserting that every production glass had normal partial dispersion.
 
 ### Note on Production Glass Tolerances
 
@@ -146,7 +146,7 @@ L1 is a moderately thick positive meniscus made of dense flint glass, convex tow
 | Focal Length (standalone) | +0.86f = +43.1 mm | −0.51f = −25.7 mm |
 | Doublet Focal Length | −1.98f = −98.8 mm (combined) | |
 
-The front cemented doublet is the primary beam-contracting group ahead of the stop. L2 is a thick, strongly curved positive meniscus of lanthanum crown glass (LaK9) that is effectively plano-convex — its rear surface R₂ = +12.4041 has a radius 22 times that of the front, contributing negligible curvature. L3 is a thin negative meniscus of dense flint (SF4) with a nearly flat front surface (the shared junction r₄) and a strongly curved rear surface r₅. The junction surface r₄ (R = +12.4041, nearly flat) provides almost no refractive bending on its own; its primary role is chromatic: by placing a high-dispersion flint (νd = 33.8) in contact with a low-dispersion crown (νd = 53.4), the doublet achieves local achromatism — the dispersion introduced by L2's positive power is partially cancelled by L3's negative power in a complementary glass, reducing longitudinal chromatic aberration without requiring the two elements to have equal and opposite power.
+The front cemented doublet is the primary beam-contracting group ahead of the stop. L2 is a thick, strongly curved positive meniscus of lanthanum-crown proxy (S-LAL13) that is effectively plano-convex — its rear surface R₂ = +12.4041 has a radius 22 times that of the front, contributing negligible curvature. L3 is a thin negative meniscus of dense-flint proxy (E-FD2) with a nearly flat front surface (the shared junction r₄) and a strongly curved rear surface r₅. The junction surface r₄ (R = +12.4041, nearly flat) provides almost no refractive bending on its own; its primary role is chromatic: by placing a high-dispersion flint (νd = 33.8) in contact with a low-dispersion crown (νd = 53.4), the doublet achieves local achromatism — the dispersion introduced by L2's positive power is partially cancelled by L3's negative power in a complementary glass, reducing longitudinal chromatic aberration without requiring the two elements to have equal and opposite power.
 
 The combined power of this doublet is weakly negative (f = −98.8 mm), meaning the doublet as a whole diverges slightly. This is consistent with the patent's strategy: reducing the beam contraction in the front group (compared to earlier Gauss designs) to preserve a longer back focus. The thick positive element L2 carries the chromatic correction load, while the thin negative element L3 provides the diverging component that balances Petzval curvature.
 
@@ -167,7 +167,7 @@ The iris diaphragm (7 blades in production) is located in the large air gap d₅
 | Focal Length (standalone) | −0.45f = −22.5 mm | +0.71f = +35.3 mm |
 | Doublet Focal Length | −2.55f = −127.7 mm (combined) | |
 
-This is the mirror-image counterpart of the front doublet, placed symmetrically about the stop as prescribed by the Gauss type. L4 is a thin negative meniscus of very high-dispersion flint (SF6, νd = 30.1 — the highest dispersion glass in the system), while L5 is a thick positive meniscus of lanthanum crown (LaK8). As with the front doublet, this pairing achieves local achromatism: L4's high dispersion partially cancels the chromatic contribution of L5's positive power, keeping longitudinal chromatic aberration under control in the rear half of the system. The doublet's combined power is weakly negative, matching the front doublet's behavior. The strongly curved front surface r₆ (R = −14.46 mm at production scale) is the most tightly curved surface in the entire system and is the dominant source of both spherical aberration and its correction — the patent specifically discusses how reducing this radius to extend back focus produces large spherical aberration and coma that must then be compensated by the rear elements.
+This is the mirror-image counterpart of the front doublet, placed symmetrically about the stop as prescribed by the Gauss type. L4 is a thin negative meniscus of very high-dispersion flint proxy (S-TIM35, νd = 30.1 — the highest dispersion glass in the system), while L5 is a thick positive meniscus of lanthanum-crown proxy (S-LAL8). As with the front doublet, this pairing achieves local achromatism: L4's high dispersion partially cancels the chromatic contribution of L5's positive power, keeping longitudinal chromatic aberration under control in the rear half of the system. The doublet's combined power is weakly negative, matching the front doublet's behavior. The strongly curved front surface r₆ (R = −14.46 mm at production scale) is the most tightly curved surface in the entire system and is the dominant source of both spherical aberration and its correction — the patent specifically discusses how reducing this radius to extend back focus produces large spherical aberration and coma that must then be compensated by the rear elements.
 
 The patent's Condition 3 governs r₆: 0.25f < |r₆| < 0.35f. Example 1 has |r₆| = 0.2892f, near the lower bound, indicating aggressive curvature for maximum back focus extension.
 
@@ -221,36 +221,21 @@ The surface-by-surface Petzval sum is Σ = 0.1098 (normalized), giving a Petzval
 
 ## 8. Semi-Diameter Estimation
 
-The patent does not provide semi-diameters (clear apertures). The following estimates were derived using a multi-step approach and validated against all renderer constraints.
+The patent does not tabulate clear apertures. Figure1/PDF1 was freshly inspected at 600 dpi from its native 300 ppi scan, about 14.1 native px/mm from the 50.5634 mm vertex span. The front caps retain their existing off-axis allowance; the figure is a schematic reference rather than a production clear-aperture table.
 
-### Method
+The two deep concave faces end in visible flat strokes. The source cap/edge ratios are approximately .74 and .74 with one-native-pixel bands about ±.008. S5 uses outer 16.5 mm and rimCutDepthMm6.15, giving clear cap 12.704015 mm/q=.76994. The cut lies outward from the source’s roughly 12.4 mm cap estimate to retain the beams. S6 retains its 12.5 mm clear cap with a land to 16.5 mm (q=.75758). Its numeric equivalent is not substituted to evade a guard: the S6 cap is unchanged, while S5 is explicitly tested as an inferred cut. Extending S5 at the old 14 mm cap would consume 15.2466 mm of the central gap's allowed 14.6486 mm and cause hidden rendering trim; the adopted cut reduces combined intrusion to 13.3440 mm without changing the 16.2762 mm source gap or its inferred central stop.
 
-1. **Paraxial marginal ray trace** at f/1.4 (entrance pupil semi-diameter = 17.86 mm) establishes the minimum clear aperture at each surface for full on-axis illumination.
-2. **Front-group off-axis allowance** accounts for the fact that elements ahead of the stop must pass both the on-axis marginal beam and off-axis ray bundles. The front element SD is constrained by the 52 mm filter thread (clear aperture ≈ 46 mm diameter, SD ≈ 23 mm), with intermediate surfaces scaled by the marginal ray progression plus mechanical clearance.
-3. **Rear-group SDs** are dominated by the marginal ray height plus ~8–15% clearance, since the chief ray is already close to the axis behind the stop.
-4. **Constraint validation**: all SDs were checked against slope limits (sag slope < 2.065), cross-gap sag intrusion (< 90% of air gap), and element edge thickness (positive).
+| Surface(s) | Adopted clear / outer height (mm) | Reason |
+|---|---|---|
+| S1/S2 |23/23| Paired continuous front rim; S2 rises21→23 |
+| S3/S4 |19.5/16.5| Existing front/cement heights retained |
+| S5 |12.704015/16.5| Source flat end; inferred cut 6.15 |
+| S6 |12.5/16.5| Source flat end; clear cap retained |
+| S7/S8 |16.5/16.5| Whole rear doublet height; nominal beam allowance |
+| S9/S10 |17.2/17.2| Nominal axial beam requires up to 17.2 |
+| S11/S12 |19/19| Full paired final rim supported by the source |
 
-### Semi-Diameter Table
-
-| Surface | R (mm) | Marginal (mm) | SD (mm) | sd/|R| | Limiting Factor |
-|---------|--------|---------------|---------|--------|-----------------|
-| r₁  | +38.27  | 17.86 | 23.0 | 0.60 | 52 mm filter thread |
-| r₂  | +125.24 | 16.68 | 21.0 | 0.17 | L1 edge thickness |
-| r₃  | +28.67  | 16.66 | 19.5 | 0.68 | L2 edge thickness |
-| r₄  | +620.06 | 13.55 | 16.5 | 0.03 | Cemented junction taper |
-| r₅  | +16.20  | 12.93 | 14.0 | 0.86 | Sag slope (1.72 at SD=14) |
-| STO | ∞       | 12.07 | 12.1 | —    | f/1.4 stop aperture |
-| r₆  | −14.46  | 11.21 | 12.5 | 0.86 | Cross-gap sag vs r₅ |
-| r₇  | −193.76 | 11.73 | 13.0 | 0.07 | Cemented junction |
-| r₈  | −22.67  | 13.83 | 15.0 | 0.66 | Marginal + clearance |
-| r₉  | −116.25 | 13.83 | 15.0 | 0.13 | Marginal + clearance |
-| r₁₀ | −31.78  | 14.04 | 14.5 | 0.46 | Marginal + clearance |
-| r₁₁ | +77.50  | 14.01 | 14.5 | 0.19 | Marginal + clearance |
-| r₁₂ | −843.68 | 13.39 | 14.0 | 0.02 | Marginal + clearance |
-
-### Key Constraints
-
-The two most strongly curved surfaces in the system — r₅ (R = +16.20 mm, L3 rear) and r₆ (R = −14.46 mm, L4 front) — are the binding constraints. Both face each other across the central air gap d₅ = 16.28 mm (which contains the aperture stop), and their sags curve toward each other, reducing the effective air clearance at the rim. The cross-gap sag intrusion at the mutual check diameter (12.5 mm) is approximately 13.1 mm, consuming about 80% of the 16.28 mm gap — within the 90% limit but leaving only about 3.2 mm of physical clearance at the rim. This is tight but consistent with production lenses of this era, where the strongly curved surfaces near the stop in fast Gauss designs operate close to physical clearance limits.
+The inherited nominal f/1.4 clips at S7–12 are removed. All powered boundaries remain refracting and no opaque cement-interface land is introduced. The dense inferred-cut check traced 461,454 rays over 21 focus samples/grid41/.5° fields: refined S5 reach 12.5319 mm < cap 12.704015−.05 mm, with zero clips, margin failures or unlaunchable fields. All nine actual SVG states have finite continuous paths and zero hidden trim. All source R/d/material pairs, inferred stop and unit-focus motion, image-plane gaps and tolerances remain unchanged.
 
 ---
 

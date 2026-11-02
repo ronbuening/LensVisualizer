@@ -2,7 +2,7 @@
  * Field-coverage audit: does each lens's modeled analysis half-field reach its image-format corner?
  *
  * The analysis tabs (vignetting, pupils, coma, field curvature, distortion, MTF) and the Summary field of view sample
- * fields up to `computeAnalysisFieldGeometryAtState2().halfFieldDeg`. That half-field follows the real chief ray to
+ * fields up to `computeAnalysisFieldGeometryAtState().halfFieldDeg`. That half-field follows the real chief ray to
  * the format corner (imageCircleMm, or the imageFormat diagonal) unless a clear aperture clips the chief ray first.
  * For every visible lens and zoom station at infinity focus this script reports:
  *
@@ -16,7 +16,7 @@
  *   clip      an authored clear aperture clips the chief ray at the modeled edge
  *   blocked   no chief ray can be aimed through the stop centre past the modeled edge; the rim named is the one
  *             the aimed rays leave on the way (a clip that shows up as a trace failure)
- *   plate     a synthetic rear-plate rim clips the chief ray (engine sizing, see expandRearPlates)
+ *   plate     a synthetic rear-plate rim clips the chief ray (engine sizing, see expandCanonicalRearPlates)
  *   declared  the lens declares a narrower rectilinear projection field (projection.fullFieldDeg / maxTraceFieldDeg)
  *   peak      chief-ray image height stops growing before the corner (extreme distortion)
  *   bound     the chief ray still clears every rim past the modeled edge (an engine bound stops short)
@@ -46,14 +46,12 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
-const buildLens = (await load("src/optics/buildLens.ts")).default;
-const LENS_DEFAULTS = (await load("src/lens-data/defaults.ts")).default;
-const { computeAnalysisFieldGeometryAtState2, computeFieldGeometryAtState2, solveChiefRay2 } =
-  await load("src/optics/field/chiefRay.ts");
-const { isFisheyeProjection2, rectilinearProjectionMaxTraceField2 } = await load("src/optics/field/projection.ts");
-const { normalizeRuntimeLens } = await load("src/optics/prescription/normalizeLensData.ts");
-const { prepareState } = await load("src/optics/state/prepareState.ts");
-const { traceEngineRay2 } = await load("src/optics/trace/rayAdapters.ts");
+const { default: buildLens, ingestLens } = await load("src/optics/buildLens.ts");
+const { computeAnalysisFieldGeometryAtState, computeFieldGeometryAtState, solveChiefRayForRuntimeLens } =
+  await load("src/optics/fieldGeometry.ts");
+const { isFisheyeProjection, rectilinearProjectionMaxTraceField } = await load("src/optics/projection.ts");
+const { traceEngineRay, prepareRuntimeState } = await load("src/optics/optics.ts");
+const { clearSemiDiameter } = await load("src/optics/geometry.ts");
 const { IMAGE_FORMAT_BY_ID } = await load("src/utils/catalog/lensTaxonomy.ts");
 
 const OK_COVERAGE = 0.99;
@@ -79,28 +77,33 @@ function chiefRayTracer(L, state, zoomT, geometry) {
       direction: [0, uField / norm, 1 / norm],
     };
   };
-  /* Rims are compared on the unclipped physical path. The engine's aperture-checked ghost trace stops refracting
-   * after a clipped hit beyond a sphere's radius, so every clip it reports after that one would be spurious. */
+  /* Rims are compared on the unclipped physical path, at each surface's clear radius (a rim cut's radius inside its
+   * sd). The engine's aperture-checked ghost trace stops refracting after a clipped hit beyond a sphere's radius, so
+   * every clip it reports after that one would be spurious. */
+  const clearRadius = (index) => {
+    const surface = state.surfaces[index];
+    return typeof surface.sd === "number" ? clearSemiDiameter(surface.sd, surface.rimCut) : null;
+  };
   const clipsOf = (trace) =>
     trace.hits
-      .filter((hit) => typeof state.surfaces[hit.surfaceIndex].sd === "number")
-      .filter((hit) => hit.radius > state.surfaces[hit.surfaceIndex].sd + 1e-9)
+      .filter((hit) => clearRadius(hit.surfaceIndex) !== null)
+      .filter((hit) => hit.radius > clearRadius(hit.surfaceIndex) + 1e-9)
       .map((hit) => ({
         label: hit.surfaceLabel,
         height: hit.radius,
-        sd: state.surfaces[hit.surfaceIndex].sd,
+        sd: clearRadius(hit.surfaceIndex),
         synthetic: Boolean(L.S[hit.surfaceIndex]?.synthetic),
       }));
 
   /* The analysis tabs trace whatever launch the solver returns, so the modeled edge accepts a fallback solve
    * (reported beside the coverage); every other probe needs a converged chief ray. */
   const chiefAt = (fieldDeg, checkApertures, acceptFallback = false) => {
-    const solve = solveChiefRay2(fieldDeg, 0, zoomT, L, geometry, 0);
+    const solve = solveChiefRayForRuntimeLens(fieldDeg, 0, zoomT, L, geometry, 0);
     const usable = solve.status === "converged" || (acceptFallback && Number.isFinite(solve.yLaunch));
     if (!usable || solve.vectorLaunch) {
       return { ok: false, solve, reason: `chief-ray solve ${solve.status}` };
     }
-    const trace = traceEngineRay2(state, rayFor(solve.yLaunch, solve.uField), { ghost: true });
+    const trace = traceEngineRay(state, rayFor(solve.yLaunch, solve.uField), { ghost: true });
     if (trace.failureReason !== null) {
       const at = state.surfaces[trace.terminalSurfaceIndex + 1]?.label ?? "?";
       return { ok: false, solve, reason: `${trace.failureReason} at ${at}` };
@@ -120,11 +123,11 @@ function chiefRayTracer(L, state, zoomT, geometry) {
    * are the ones that failed; the first clear aperture such a ray leaves is what blocks the chief ray.
    */
   const blockingRim = (fieldDeg) => {
-    const solve = solveChiefRay2(fieldDeg, 0, zoomT, L, geometry, 0);
+    const solve = solveChiefRayForRuntimeLens(fieldDeg, 0, zoomT, L, geometry, 0);
     if (!Number.isFinite(solve.yLaunch) || !Number.isFinite(solve.uField) || solve.vectorLaunch) return null;
     const stopIndex = state.lens.stop.surfaceIndex;
     const stopHeight = (yLaunch) => {
-      const trace = traceEngineRay2(state, rayFor(yLaunch, solve.uField), { stopAt: stopIndex });
+      const trace = traceEngineRay(state, rayFor(yLaunch, solve.uField), { stopAt: stopIndex });
       return trace.failureReason === null ? trace.y : null;
     };
     const nearest = stopHeight(solve.yLaunch);
@@ -133,7 +136,7 @@ function chiefRayTracer(L, state, zoomT, geometry) {
     const probe = stopHeight(solve.yLaunch + step);
     const direction = probe === null || Math.abs(probe) < Math.abs(nearest) ? 1 : -1;
     for (let k = 1; k <= 400; k++) {
-      const trace = traceEngineRay2(state, rayFor(solve.yLaunch + direction * k * step, solve.uField), {
+      const trace = traceEngineRay(state, rayFor(solve.yLaunch + direction * k * step, solve.uField), {
         ghost: true,
       });
       const [clip] = clipsOf(trace);
@@ -197,7 +200,7 @@ function cornerField(chiefAt, fromDeg, fromHeight, corner) {
 
 /** What ends the modeled field: the first limit met just past the edge. */
 function fieldStop(L, tracer, modeledDeg, edgeHeight) {
-  const declaredDeg = rectilinearProjectionMaxTraceField2(L.projection);
+  const declaredDeg = rectilinearProjectionMaxTraceField(L.projection);
   if (declaredDeg !== undefined && Math.abs(declaredDeg - modeledDeg) < 1e-6) {
     return { diagnosis: "declared", detail: `projection declares ${declaredDeg.toFixed(1)}°` };
   }
@@ -214,10 +217,10 @@ function fieldStop(L, tracer, modeledDeg, edgeHeight) {
 }
 
 function auditStation(lens, L, zoomT, stationLabel) {
-  const corner = (lens.imageCircleMm ?? IMAGE_FORMAT_BY_ID[lens.imageFormat].diagonalMm) / 2;
-  const state = prepareState(normalizeRuntimeLens(L), 0, zoomT, 0);
-  const raw = computeFieldGeometryAtState2(0, zoomT, L, 0);
-  const modeledDeg = computeAnalysisFieldGeometryAtState2(0, zoomT, L, 0).halfFieldDeg;
+  const corner = (lens.catalog.imageCircleMm ?? IMAGE_FORMAT_BY_ID[lens.catalog.imageFormat].diagonalMm) / 2;
+  const state = prepareRuntimeState(L, 0, zoomT);
+  const raw = computeFieldGeometryAtState(0, zoomT, L, 0);
+  const modeledDeg = computeAnalysisFieldGeometryAtState(0, zoomT, L, 0).halfFieldDeg;
   const tracer = chiefRayTracer(L, state, zoomT, raw);
 
   const edge = tracer.chiefAt(modeledDeg, false, true);
@@ -262,20 +265,27 @@ function stationLabel(L, index) {
 }
 
 async function auditLens(file, includeHidden) {
-  const lens = { ...LENS_DEFAULTS, ...(await import(pathToFileURL(file).href)).default };
+  const authored = (await import(pathToFileURL(file).href)).default;
   const rel = relative(LENS_DIR, file);
-  const base = { rel, key: lens.key, name: lens.name };
-  if (lens.visible === false && !includeHidden) return { ...base, skipped: "hidden" };
+  const base = { rel, key: authored.key, name: authored.name };
+  if (authored.visible === false && !includeHidden) return { ...base, skipped: "hidden" };
+  let lens;
+  try {
+    /* Ingest once into canonical records, as the catalog does. */
+    lens = ingestLens(authored, { path: relative(ROOT, file).replaceAll("\\", "/") }).prescription;
+  } catch (error) {
+    return { ...base, skipped: `buildLens failed: ${error.message}` };
+  }
   if (lens.opticalPath) return { ...base, skipped: "folded optical path" };
-  if (!(IMAGE_FORMAT_BY_ID[lens.imageFormat] || lens.imageCircleMm))
-    return { ...base, skipped: `no usable imageFormat (${String(lens.imageFormat)})` };
+  if (!(IMAGE_FORMAT_BY_ID[lens.catalog.imageFormat] || lens.catalog.imageCircleMm))
+    return { ...base, skipped: `no usable imageFormat (${String(lens.catalog.imageFormat)})` };
   let L;
   try {
     L = buildLens(lens);
   } catch (error) {
     return { ...base, skipped: `buildLens failed: ${error.message}` };
   }
-  if (isFisheyeProjection2(L.projection)) return { ...base, skipped: "fisheye projection" };
+  if (isFisheyeProjection(L.projection)) return { ...base, skipped: "fisheye projection" };
 
   const count = L.isZoom ? L.zoomPositions.length : 1;
   const stations = [];
@@ -283,7 +293,11 @@ async function auditLens(file, includeHidden) {
     const zoomT = count === 1 ? 0 : i / (count - 1);
     stations.push(auditStation(lens, L, zoomT, L.isZoom ? stationLabel(L, i) : ""));
   }
-  return { ...base, format: lens.imageCircleMm ? `${lens.imageCircleMm} mm circle` : lens.imageFormat, stations };
+  return {
+    ...base,
+    format: lens.catalog.imageCircleMm ? `${lens.catalog.imageCircleMm} mm circle` : lens.catalog.imageFormat,
+    stations,
+  };
 }
 
 function allLensFiles() {

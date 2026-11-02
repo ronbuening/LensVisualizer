@@ -7,7 +7,7 @@
 **Filed:** December 24, 1969
 **Granted:** November 23, 1971
 **Title:** Retrofocus-Type Wide-Angle Camera Lens
-**Embodiment analyzed:** Example I, Fig. 1, normalized dimensions multiplied by 24
+**Example details:** Fig. 1, normalized dimensions multiplied by 24
 
 Example I supplies a nine-element, seven-group f/2.8 prescription with an 84°
 field and normalized back focus of 1.5597. The source title page names the
@@ -152,3 +152,7 @@ visualization setting beyond the source's f/2.8 specification.
   `patents/US3622227.pdf`: title page 1, Fig. 1 page 2, Example I page 4.
 - [Nikon, The Thousand and One Nights No. 14](https://imaging.nikon.com/imaging/information/story/0014/index.html):
   product identification, L6/L7 close-range-correction topology and 0.3 m marking.
+
+## Fresh source review (2026-10-30)
+
+The leading S2/S6 transitions in FIG.1 are bevels, so the current curved caps are retained without invented flat lands. All9 source indices and8 explicit Abbe entries were reread; L6 Abbe26.1 is inferred from equal-index L7 and remains labeled as such. Nine compatible catalog curves are qualified spectral proxies, with no production supplier identity. Current surface/circle/aperture/corner and nine actual SVG states pass; the existing calculated closest-focus model passes25/25 axial samples. No unpublished spectral-line indices or partial-dispersion values are added.

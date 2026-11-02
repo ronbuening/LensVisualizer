@@ -1,22 +1,25 @@
+import { traceParaxialSurfaces } from "../../../src/optics/math/paraxial.js";
+import { stateSurfaces } from "../../../src/optics/state/layout.js";
 import { describe, it, expect } from "vitest";
+import { sagSlope } from "../../../src/optics/diagram/runtimeSurface.js";
 import {
-  sag,
-  sagSlope,
-  thick,
-  doLayout,
+  thickOrZero as thick,
+  doLayoutForRuntimeLens as doLayout,
+  eflAtZoomClamped as eflAtZoom,
+} from "../../../src/optics/state/runtimeAdapters.js";
+import {
   entrancePupilAtState,
-  formatDist,
-  traceRay,
-  traceRayChromatic,
-  computeChromaticRayFanSpread,
-  traceToImage,
-  conjugateK,
-  eflAtZoom,
-  eflAtFocus,
-  effectiveFNumber,
-} from "../../../src/optics/optics.js";
-import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
-import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
+  conjugateKForRuntimeLens as conjugateK,
+} from "../../../src/optics/state/fieldAdapters.js";
+import { formatDist } from "../../../src/optics/first-order/format.js";
+import { traceRay, traceRayChromatic } from "../../../src/optics/trace/rayAdapters.js";
+import { computeChromaticRayFanSpread } from "../../../src/optics/chromatic/chromaticTrace.js";
+import { FOCUS_INFINITY_CUTOFF } from "../../../src/optics/state/focusDistance.js";
+import { eflAtFocus } from "../../../src/optics/first-order/focusBreathing.js";
+import { sag } from "../../../src/optics/geometry/surfaceProfile.js";
+import type { RuntimeLens, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
+import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/state/stationTables.js";
+
 import {
   buildChromaticPositiveElementLens,
   buildGhostClippingLens,
@@ -26,38 +29,6 @@ import {
   buildTirLens,
   buildVariableStopGapLens,
 } from "./testLensFixtures.js";
-
-describe("sag", () => {
-  it("returns 0 for h = 0", () => {
-    expect(sag(0, 50)).toBe(0);
-    expect(sag(0, -100)).toBeCloseTo(0, 10);
-  });
-
-  it("returns 0 for flat surface (R > threshold)", () => {
-    expect(sag(10, 1e15)).toBe(0);
-    expect(sag(10, -1e15)).toBe(0);
-    expect(sag(10, Infinity)).toBe(0);
-  });
-
-  it("computes correct sag for positive R", () => {
-    const result = sag(10, 50);
-    // sag = (c·h²) / (1 + √(1 - c²·h²)), c = 1/50
-    expect(result).toBeCloseTo(1.0102, 3);
-  });
-
-  it("computes correct sag for negative R", () => {
-    const result = sag(10, -50);
-    expect(result).toBeCloseTo(-1.0102, 3);
-  });
-
-  it("handles h near R (large angle)", () => {
-    // h = R * sin(45°) ≈ 35.36 for R=50
-    const h = 50 * Math.sin(Math.PI / 4);
-    const result = sag(h, 50);
-    expect(result).toBeGreaterThan(0);
-    expect(isFinite(result)).toBe(true);
-  });
-});
 
 describe("formatDist", () => {
   const mockL = { closeFocusM: 0.4 } as unknown as RuntimeLens;
@@ -176,9 +147,9 @@ describe("sagSlope", () => {
   });
 
   /* Finite-difference correctness of the sag/slope pair is anchored in
-     internal/asphericSchemaMath.test.ts and opticsEngineMath.test.ts; the
-     facade delegates directly to those primitives (layout.ts), and the
-     facade-vs-engine equivalence is proven in opticsEngineMath.test.ts. */
+     geometry/surfaceProfile.test.ts; the facade delegates directly to those
+     primitives (layout.ts), and that file also proves the profile methods
+     equal the positional functions the facade calls. */
 });
 
 describe("traceRay — exact Snell", () => {
@@ -199,11 +170,11 @@ describe("traceRay — exact Snell", () => {
     const { z: zPos, imgZ } = doLayout(0, 0, L);
     const h = 0.1; // very small height
     const { y: yReal, u: uReal } = traceRay(h, 0, zPos, 0, 0, 15, false, L);
-    // traceRay stops at last surface; traceToImage propagates through final gap
+    // Compare the exact trace with the paraxial reference after its final gap transfer.
     // Extrapolate real ray to image plane for comparison
     const lastSurfZ = zPos[L.N - 1];
     const yRealAtImage = yReal + (imgZ - lastSurfZ) * uReal;
-    const yParax = traceToImage(h, 0, 0, 0, L);
+    const yParax = paraxialImageHeight(h, 0, 0, 0, L);
     expect(yRealAtImage).toBeCloseTo(yParax, 3);
   });
 
@@ -216,7 +187,7 @@ describe("traceRay — exact Snell", () => {
     const lastSurfZ = zPos[L.N - 1];
     const yRealAtImage = yReal + (imgZ - lastSurfZ) * uReal;
     // Paraxial image height
-    const yParax = traceToImage(h, 0, 0, 0, L);
+    const yParax = paraxialImageHeight(h, 0, 0, 0, L);
     // Real ray at paraxial image plane should differ from paraxial (spherical aberration)
     expect(Math.abs(yRealAtImage - yParax)).toBeGreaterThan(0.01);
   });
@@ -435,8 +406,8 @@ describe("computeChromaticRayFanSpread", () => {
 });
 
 /* ── Production lens ray tracing ── */
-import buildLens from "../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
+import { catalogLensData } from "./testLensFixtures.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
 import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
@@ -445,7 +416,7 @@ import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 
 describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
-  const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
+  const L = buildLens(catalogLensData(Sonnar50f15Raw));
   const { z: zPos, imgZ } = doLayout(0, 0, L);
 
   it("on-axis marginal ray at entrance-pupil edge reports aperture clipping", () => {
@@ -479,7 +450,7 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
   it("paraxial and exact rays agree for small heights", () => {
     const h = 0.01; // very small ray height
     const { y: yExact, u: uExact } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
-    const yParax = traceToImage(h, 0, 0, 0, L);
+    const yParax = paraxialImageHeight(h, 0, 0, 0, L);
     const yExactAtImage = yExact + (imgZ - zPos[L.N - 1]) * uExact;
     expect(yExactAtImage).toBeCloseTo(yParax, 2);
   });
@@ -596,12 +567,23 @@ function solveKForImageHeight(L: RuntimeLens, focusT: number, h: number): number
 
 describe("conjugateK", () => {
   const allLenses: [string, RuntimeLens][] = [
-    ["ApoLanthar50f2", buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData)],
-    ["Nokton50f1", buildLens({ ...LENS_DEFAULTS, ...NoktonRaw } as LensData)],
-    ["NikkorZ50mmf18S", buildLens({ ...LENS_DEFAULTS, ...NikkorRaw } as LensData)],
-    ["Nikkor105f14E", buildLens({ ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData)],
-    ["Sonnar50f15", buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData)],
+    ["ApoLanthar50f2", buildLens(catalogLensData(ApoLantharRaw))],
+    ["Nokton50f1", buildLens(catalogLensData(NoktonRaw))],
+    ["NikkorZ50mmf18S", buildLens(catalogLensData(NikkorRaw))],
+    ["Nikkor105f14E", buildLens(catalogLensData(Nikkor105Raw))],
+    ["Sonnar50f15", buildLens(catalogLensData(Sonnar50f15Raw))],
   ];
+
+  it("treats focus below the infinity cutoff as zero conjugate correction", () => {
+    const L = buildVariableStopGapLens([1, 10]);
+    expect(FOCUS_INFINITY_CUTOFF).toBe(0.003);
+    for (const focusT of [0.001, 0.002, FOCUS_INFINITY_CUTOFF - 1e-6]) {
+      expect(conjugateK(focusT, 0, L)).toBe(0);
+    }
+    for (const focusT of [FOCUS_INFINITY_CUTOFF, FOCUS_INFINITY_CUTOFF + 1e-6]) {
+      expect(Math.abs(conjugateK(focusT, 0, L))).toBeGreaterThan(1e-8);
+    }
+  });
 
   /* Includes the Sonnar50f15 regression case: |K(0)| was 0.00442 with the
    * paraxial trace before the exact-trace rollout. */
@@ -617,7 +599,7 @@ describe("conjugateK", () => {
 
   it("returns 0 gracefully for TIR conditions", () => {
     // Pathological lens that causes TIR at zonal height
-    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
+    const L = buildLens(catalogLensData(Sonnar50f15Raw));
     // Manually corrupt EP to trigger NaN path
     const badL = { ...L, EP: { ...L.EP, epSD: 1e6 } };
     expect(conjugateK(0, 0, badL)).toBe(0);
@@ -644,7 +626,7 @@ describe("conjugateK", () => {
   });
 
   it("Sonnar50f15: |conjugateK| increases monotonically from t=0 to t=1", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
+    const L = buildLens(catalogLensData(Sonnar50f15Raw));
     const K0 = Math.abs(conjugateK(0, 0, L)); // ≈ 0
     const K25 = Math.abs(conjugateK(0.25, 0, L));
     const K50 = Math.abs(conjugateK(0.5, 0, L));
@@ -706,13 +688,13 @@ describe("centered aberration-control interpolation", () => {
 
 describe("eflAtFocus", () => {
   it("returns static EFL at infinity focus for prime lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    const L = buildLens(catalogLensData(ApoLantharRaw));
     expect(eflAtFocus(0, 0, L)).toBe(L.EFL);
     expect(eflAtFocus(0.001, 0, L)).toBe(L.EFL); // below threshold
   });
 
   it("returns a different EFL at close focus for internal-focusing lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData);
+    const L = buildLens(catalogLensData(Nikkor105Raw));
     const eflInf = eflAtFocus(0, 0, L);
     const eflClose = eflAtFocus(1, 0, L);
     expect(eflInf).toBeCloseTo(L.EFL, 2);
@@ -721,46 +703,21 @@ describe("eflAtFocus", () => {
   });
 
   it("returns zoom-interpolated EFL at infinity for zoom lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
+    const L = buildLens(catalogLensData(NikkorZ70200Raw));
     expect(eflAtFocus(0, 0, L)).toBeCloseTo(eflAtZoom(0, L), 5);
     expect(eflAtFocus(0, 1, L)).toBeCloseTo(eflAtZoom(1, L), 5);
   });
 
   it("returns finite positive value at close focus", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    const L = buildLens(catalogLensData(ApoLantharRaw));
     const efl = eflAtFocus(1, 0, L);
     expect(isFinite(efl)).toBe(true);
     expect(efl).toBeGreaterThan(0);
   });
 });
 
-describe("effectiveFNumber", () => {
-  it("returns nominal f-number at infinity focus", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    expect(effectiveFNumber(2.0, 0, 0, L)).toBe(2.0);
-    expect(effectiveFNumber(2.0, 0.001, 0, L)).toBe(2.0); // below threshold
-  });
-
-  it("returns higher effective f-number at close focus", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    const nominalF = 2.0;
-    const effF = effectiveFNumber(nominalF, 1, 0, L);
-    expect(effF).toBeGreaterThan(nominalF);
-  });
-
-  it("increases monotonically as focus gets closer", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
-    const f1 = effectiveFNumber(2.0, 0.3, 0, L);
-    const f2 = effectiveFNumber(2.0, 0.6, 0, L);
-    const f3 = effectiveFNumber(2.0, 1.0, 0, L);
-    expect(f2).toBeGreaterThan(f1);
-    expect(f3).toBeGreaterThan(f2);
-  });
-
-  it("works with zoom lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
-    const effF = effectiveFNumber(2.8, 1, 0, L);
-    expect(effF).toBeGreaterThan(2.8);
-    expect(isFinite(effF)).toBe(true);
-  });
-});
+function paraxialImageHeight(y0: number, u0: number, focusT: number, zoomT: number, L: RuntimeLens): number {
+  const surfaces = stateSurfaces(focusT, zoomT, L);
+  const trace = traceParaxialSurfaces(surfaces, y0, u0);
+  return trace.y + surfaces[surfaces.length - 1].d * trace.u;
+}

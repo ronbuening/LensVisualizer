@@ -7,7 +7,7 @@
 **Inventor:** Shimazaki Yoshio (島崎 喜雄)
 **Applicant:** Konica Corporation (コニカ株式会社)
 **Title:** 写真レンズ (Photographic Lens)
-**Embodiment analyzed:** Example 1 (実施例1)
+**Example details:** 実施例1
 
 The patent discloses a modified Xenotar-type photographic lens for leaf-shutter cameras (¶0001). Example 1 is the worked prescription used here. The patent states $f = 1$, F-number = 2.0, and full field angle = 63°, followed by a 13-surface, 6-group, 7-element numerical prescription (¶0016). The published Konica Hexar AF specification gives a 24 × 36 mm lens-shutter camera with a Konica Hexar 35 mm f/2 lens, 6 groups / 7 elements, f/22 minimum aperture, and a 0.6 m to infinity shooting range. The element/group count, focal length, aperture, field angle, and leaf-shutter clearance requirement therefore all point to the Hexar AF fixed lens rather than to a later interchangeable M-Hexanon rangefinder lens.
 

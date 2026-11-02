@@ -6,7 +6,6 @@
 **Inventor:** Willy Schade  
 **Assignee:** Eastman Kodak Company  
 **Title:** Large Aperture Objective  
-**Embodiment analyzed:** Example 1
 
 The implemented prescription is Schade's Example 1, the seven-element, four-component f/1.5 objective tabulated with a nominal focal length of 100 mm in Figs. 1–2 of the patent. The data model retains that numerical example and applies a uniform linear scale of 0.52 for the selected 52 mm lens correlation. The resulting computed paraxial effective focal length is 52.020687 mm; the difference from the selected 52 mm correlation value is kept explicit rather than folded into the prescription. (US 2,397,565, Fig. 2 and printed p. 1 / PDF p. 2.)
 

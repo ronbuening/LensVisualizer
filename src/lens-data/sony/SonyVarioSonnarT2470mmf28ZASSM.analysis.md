@@ -9,7 +9,7 @@
 **Inventors:** Tetsuya Arimoto; Yasushi Yamamoto
 **Assignee:** Sony Corporation
 **Title:** *Zoom Lens and Image Capture Apparatus*
-**Embodiment analyzed:** Example 3 / third numerical embodiment, Fig. 9 and Tables 7–9
+**Example details:** third numerical embodiment, Fig. 9 and Tables 7–9
 
 The modeled prescription is the job-card-selected production correlation for the Sony SAL2470Z Vario-Sonnar T* 24–70mm
 f/2.8 ZA SSM. The patent does not state that Example 3 became the commercial SAL2470Z, and the cited Sony product

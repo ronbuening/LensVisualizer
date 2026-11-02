@@ -7,7 +7,7 @@
 **Inventors:** 刘瑞军; 陈宝锋\
 **Applicant:** 深圳市雷影光电科技有限公司\
 **Title:** 内合焦式成像镜头 (*Internal-focusing imaging lens*)\
-**Embodiment analyzed:** Example 1 (实施例1)
+**Example details:** 实施例1
 
 This analysis follows the fixed correlation to the **VILTROX AF 50mm f/1.8 FE**. The current Viltrox support archive retains the exact AF 50/1.8 FE model designation, while Viltrox's current full-frame F1.8 kit page identifies a 50 mm F1.8 prime within its Sony E-mount full-frame family. Those manufacturer sources establish product identity, mount, format, and marketed focal/aperture values; they do not constitute manufacturer confirmation that CN 211955966 U is the production prescription.
 

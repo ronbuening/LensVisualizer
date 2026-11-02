@@ -8,8 +8,7 @@
 **Granted:** June 15, 1971\
 **Inventor:** Tadashi Kojima\
 **Assignee:** Konishiroku Photo Industry Co., Ltd.\
-**Title:** Improved Wide Angle Zoom Objective Lens System\
-**Embodiment analyzed:** Example 1, the single published numerical prescription
+**Title:** Improved Wide Angle Zoom Objective Lens System
 
 US 3,584,935 describes a four-component wide-angle variable-magnification objective for a still camera. The numerical
 example covers 35.992–100.000 mm at f/2.8, uses 15 elements in 10 air-separated groups, and reaches a stated maximum

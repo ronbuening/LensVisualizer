@@ -10,7 +10,6 @@
 **Inventor:** Keiji Ikemori  
 **Assignee:** Canon Kabushiki Kaisha  
 **Title:** Telephoto Type Zoom Lens  
-**Embodiment analyzed:** Example 4
 
 The prescription used here is Example 4 of US 4,110,006. The embodiment is a 150-600 mm f/5.6 telephoto zoom with an internally moving positive focusing group inside the convergent front group. It is identified as the closest patent disclosure for the Canon New FD 150-600mm f/5.6L by the following convergent evidence.
 
@@ -211,6 +210,8 @@ All load-bearing first-order quantities were recalculated from the transcribed p
 | First surface to image | 493.530 mm | 493.531 mm | 493.531 mm |
 | Half-field for 43.27 mm diagonal | 8.113 deg | 4.122 deg | 2.081 deg |
 | Patent aberration-figure field | 8.2 deg | 4.1 deg | 2.1 deg |
+
+Catalog design focal length records the patent-stated 150–600 mm range; the computed EFLs above are separate results from the unchanged Example 4 prescription. The wide-end computed EFL exceeds the printed 150 mm position by 1.172%; the cause is not established here.
 
 The surface-by-surface Petzval sum, computed as $\sum \Phi/(n n')$, is $1.588 \times 10^{-4}\ \mathrm{mm}^{-1}$, corresponding to a Petzval radius of about 6297 mm. This is a very weak residual Petzval curvature for a system of this focal length and is consistent with the strong cancellation among the large positive and negative sub-group powers.
 

@@ -1,6 +1,6 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { describe, expect, it } from "vitest";
 import type { LensData, SurfaceData, VarRange } from "../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 /**
  * Shared-prescription parity for switchable `opticalConfiguration` groups.
@@ -13,7 +13,7 @@ import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
  * `CONTRACTS`; a new configuration family fails until it does.
  */
 
-interface ConfigurationContract {
+interface InsertionContract {
   /** Leading surfaces the variant copies from the base, through the insertion gap. */
   sharedLeadingSurfaces: number;
   /** Label of the last shared surface; the inserted optics occupy its air gap, so only its `d` may change. */
@@ -25,6 +25,14 @@ interface ConfigurationContract {
   /** Whether close-focus `var` values are copied or solved per configuration. */
   closeFocus: "shared" | "solved-per-configuration";
 }
+
+/** Same optics under a different focusing law: every surface is shared and only close-focus `var` values differ. */
+interface IdenticalPrescriptionContract {
+  prescription: "identical";
+  closeFocus: "solved-per-configuration";
+}
+
+type ConfigurationContract = InsertionContract | IdenticalPrescriptionContract;
 
 const CONTRACTS: Record<string, ConfigurationContract> = {
   // US 2013/0308041 A1 Numerical Example 1: surfaces 1-40 are identical, the
@@ -46,6 +54,22 @@ const CONTRACTS: Record<string, ConfigurationContract> = {
     trailingSpacing: "re-solved",
     closeFocus: "solved-per-configuration",
   },
+  // JP 2021-096331 A Numerical Examples 5/6, paragraphs 0564-0568: the built-in
+  // TC occupies the gap after 33; the same rear doublet follows as surfaces 45-47.
+  // Finite-focus endpoints are separately reconstructed, not source-published.
+  "olympus-mzuiko-150400-f45-tc125-is-pro-configurations": {
+    sharedLeadingSurfaces: 33,
+    insertionGapLabel: "33",
+    sharedTrailingSurfaces: 3,
+    trailingSpacing: "shared",
+    closeFocus: "solved-per-configuration",
+  },
+  // CN 120276109 A Example 1: one prescription with separate MF (G2 + stop) and
+  // AF (G3a) focusing tables that share the infinity spacings.
+  "laowa-180mm-f45-dual-focus": {
+    prescription: "identical",
+    closeFocus: "solved-per-configuration",
+  },
 };
 
 interface ConfigurationGroup {
@@ -54,7 +78,7 @@ interface ConfigurationGroup {
 }
 
 const GROUPS = new Map<string, ConfigurationGroup>();
-for (const data of Object.values(LENS_CATALOG)) {
+for (const data of Object.values(CATALOG_CONSTRUCTION_FIXTURES)) {
   const groupKey = data.opticalConfiguration?.groupKey;
   if (groupKey === undefined) continue;
   const group = GROUPS.get(groupKey) ?? { base: undefined as unknown as LensData, variants: [] };
@@ -64,6 +88,12 @@ for (const data of Object.values(LENS_CATALOG)) {
 }
 
 const CONTRACT_ENTRIES = Object.entries(CONTRACTS);
+const INSERTION_ENTRIES = CONTRACT_ENTRIES.filter(
+  (entry): entry is [string, InsertionContract] => !("prescription" in entry[1]),
+);
+const IDENTICAL_ENTRIES = CONTRACT_ENTRIES.filter(
+  (entry): entry is [string, IdenticalPrescriptionContract] => "prescription" in entry[1],
+);
 
 function groupFor(groupKey: string): ConfigurationGroup {
   const group = GROUPS.get(groupKey);
@@ -87,7 +117,7 @@ describe("optical configuration parity", () => {
     expect([...GROUPS.keys()].sort()).toEqual(Object.keys(CONTRACTS).sort());
   });
 
-  it.each(CONTRACT_ENTRIES)("%s copies the shared leading surfaces from the base", (groupKey, contract) => {
+  it.each(INSERTION_ENTRIES)("%s copies the shared leading surfaces from the base", (groupKey, contract) => {
     const { base, variants } = groupFor(groupKey);
     expect(base.surfaces[contract.sharedLeadingSurfaces - 1]?.label).toBe(contract.insertionGapLabel);
 
@@ -100,7 +130,7 @@ describe("optical configuration parity", () => {
     }
   });
 
-  it.each(CONTRACT_ENTRIES)("%s changes only the insertion gap ahead of the inserted optics", (groupKey, contract) => {
+  it.each(INSERTION_ENTRIES)("%s changes only the insertion gap ahead of the inserted optics", (groupKey, contract) => {
     const { base, variants } = groupFor(groupKey);
     const gapIndex = contract.sharedLeadingSurfaces - 1;
 
@@ -120,7 +150,7 @@ describe("optical configuration parity", () => {
     }
   });
 
-  it.each(CONTRACT_ENTRIES)("%s reuses the trailing surfaces after the inserted optics", (groupKey, contract) => {
+  it.each(INSERTION_ENTRIES)("%s reuses the trailing surfaces after the inserted optics", (groupKey, contract) => {
     const { base, variants } = groupFor(groupKey);
     const strip = contract.trailingSpacing === "shared" ? omitIdentity : (s: SurfaceData) => omitD(omitIdentity(s));
 
@@ -130,6 +160,16 @@ describe("optical configuration parity", () => {
           strip(base.surfaces.at(-k)!),
         );
       }
+    }
+  });
+
+  it.each(IDENTICAL_ENTRIES)("%s shares every surface with the base", (groupKey) => {
+    const { base, variants } = groupFor(groupKey);
+
+    for (const variant of variants) {
+      expect(variant.surfaces, `${variant.key} surfaces`).toEqual(base.surfaces);
+      expect(variant.asph, `${variant.key} asph`).toEqual(base.asph);
+      expect(variant.rearPlates, `${variant.key} rearPlates`).toEqual(base.rearPlates);
     }
   });
 

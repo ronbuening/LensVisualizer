@@ -44,3 +44,10 @@ Patent: US 5,438,455 A, Example 1
 - Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
   axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
   corner.
+
+## 2026-10-29 — Fresh shape and glass reinspection
+
+- Directly viewed local `patents/US_5438455_A.pdf`: Figure 1 on PDF page 2 at 600 dpi and Embodiment 1 / Table 1 plus the d-line definition on page 8. Inspected all 17 powered faces, including cemented boundaries, and the rear filter. The S8 shoulder is cemented; no independently resolved exposed concave cap-end land supports a cut or extension. Existing geometry constraints still limit the rear group below the schematic outline; no forced diagram fit is adopted.
+- Rechecked all 10 lens media and the rear filter against printed nd/νd. Removed 40 catalog-derived nC/nF/ng/dPgF fields from the lens elements because the patent does not publish them. Every source nd/νd remains unchanged; compatible catalog dispersion curves remain available through the resolver. J-LLF6 is explicitly qualified: source νd=49.1 versus current catalog 48.78, with no production-supplier claim. Qualified the filter's J-BK7A label. No source APD measurement is asserted.
+- Surface and image-circle audits pass; the infinity aperture remains iris-limited at f/2.880000. Actual renderer output at 3 focus x 3 secondary-control states has 11 finite element paths and zero trim diagnostics per state; inspected the SVG raster. Four cardinal full-iris rays pass at infinity but retain baseline S1 clipping at the published close object distance. Source prescription, focus motion, and inferred iris station remain unchanged.
+- Shared dispersion, glass-resolution-parity, and partial-dispersion tests pass (3 files / 94 tests for this triad); catalog consistency passes. The retained finite-conjugate clipping is not described as full-iris clearance across the focus range.

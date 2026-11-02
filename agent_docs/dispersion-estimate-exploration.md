@@ -16,7 +16,7 @@ Two changes are proposed, in order:
 - The MTF data warning (`assessMtfDataLimitations` in `src/optics/analysis/mtfDataLimitations.ts`, drawn by
   `src/components/display/analysis/mtf/MtfDataWarning.tsx`) lists `estimated-dispersion` whenever a spectral chart uses
   a glass with no catalog or line-index data, and blurs the chart for it.
-- The estimate is `abbeLineIndices` in `src/optics/dispersion.ts`. It keeps the F−C span exact and places the d line
+- The estimate is `abbeLineIndices` in `src/optics/chromatic/materialResolver.ts`. It keeps the F−C span exact and places the d line
   and the g line with two normal lines: `normalLinePdC`, a straight-line fit to the catalog, and `normalLinePgF`,
   Schott's standard line, which is not fitted to the catalog. Spectral MTF uses the estimate only up to `νd` 65
   (`MTF_ESTIMATED_DISPERSION_MAX_VD`).
@@ -118,7 +118,7 @@ whose glasses were picked without regard to type (2,512 cases; 247 reach 0.02 an
 - Apply the fit only as the default when no partial-dispersion data is authored. An authored `dPgF` keeps its standard
   meaning as a deviation from Schott's line, the glass-map diagram keeps drawing that line, and the `νd`-above-65
   block stays.
-- Keep it in `src/optics/dispersion.ts`; `agent_docs/decisions.md` names `normalLinePgF` and `abbeLineIndices` as the
+- Keep it in `src/optics/chromatic/materialResolver.ts`; `agent_docs/decisions.md` names `normalLinePgF` and `abbeLineIndices` as the
   single homes.
 
 Residuals over the fitted glasses, as root mean square:
@@ -146,7 +146,7 @@ Measured on the same lenses and glasses as above, as cases reaching 0.02 and 0.0
 
 Work, as a separate PR:
 
-- Engine: two fitted functions and the default selection in `src/optics/dispersion.ts`.
+- Engine: two fitted functions and the default selection in `src/optics/chromatic/materialResolver.ts`.
 - Tests: `__tests__/src/optics/dispersion.test.ts` pins the current formulas and checks the P_d,C lines against the
   catalog; update the pin and extend the catalog check to P_g,F so the constants cannot drift.
 - Docs: the Spectra paragraph of `agent_docs/architecture/optics-engine.md`, the single-home entry in

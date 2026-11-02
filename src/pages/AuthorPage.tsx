@@ -10,8 +10,8 @@ import { useMemo } from "react";
 import { Link, Navigate, useParams, useSearchParams } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import InventorLinks from "../components/content/InventorLinks.js";
-import LensEntryLink from "../components/content/LensEntryLink.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
+import PatentLensList from "../components/content/PatentLensList.js";
 import PatentNumberLink from "../components/content/PatentNumberLink.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
@@ -102,18 +102,11 @@ function PatentCard({ patent, currentAuthor, theme: t }: PatentCardProps) {
       <p style={{ color: t.muted, fontSize: "0.72rem", margin: "0.2rem 0 0.55rem" }}>
         Inventors: <InventorLinks names={patent.authors} currentAuthor={currentAuthor} theme={t} />
       </p>
-      <div style={{ borderTop: `1px solid ${t.panelDivider}`, paddingTop: "0.35rem" }}>
-        {patent.lenses.map((lens) => (
-          <LensEntryLink
-            key={lens.key}
-            lensKey={lens.key}
-            text={lens.name}
-            specs={lens.specs}
-            theme={t}
-            metaStyle={{ fontSize: "0.68rem" }}
-          />
-        ))}
-      </div>
+      <PatentLensList
+        lenses={patent.lenses}
+        theme={t}
+        style={{ borderTop: `1px solid ${t.panelDivider}`, paddingTop: "0.35rem" }}
+      />
     </article>
   );
 }

@@ -14,7 +14,7 @@
 
 **Published:** 2023-10-05
 
-**Embodiment analyzed:** Example 1, Table 1 and Figure 1
+**Example details:** Table 1 and Figure 1
 
 The diagram uses the compact wide-angle example associated with the NIKKOR Z26. Its source prescription is 26.78 mm f/2.90, distinct from the 26mm f/2.8 product name. The correspondence does not establish identical production prescriptions, material suppliers or manufacturing processes.
 
@@ -28,7 +28,7 @@ The catalog group count means air-separated components, as defined by the lens-d
 
 Paragraph 199 explicitly identifies L8 as a single composite aspherical lens and assigns surface 14 to the resin front, 15 to the resin/glass interface and 16 to the glass rear. The 0.1 mm resin layer is a refracting part of the lens, not sensor cover glass or a filter. Its chemistry and supplier are unspecified; UV curing is not established by this paragraph.
 
-Optical rims are inferred from Figure 1 at 600 dpi using the 27.39 mm first-to-last-surface span. Front L1 has approximately 5.5 mm radius, the first cemented pair 5 mm, L6 about 7.3 mm, L7 up to 9.7 mm, the resin about 12.2 mm and the rear glass about 14 mm. Mechanical edge extensions are excluded. Surface 9 retains 6.2 mm rather than a 6.3 mm trial that exceeded the 9→10 clearance allowance. These estimates are constrained by geometry and image-circle checks, not published clear-aperture dimensions.
+Optical rims are inferred from Figure 1 at 600 dpi using the 27.39 mm first-to-last-surface span. Front L1 has approximately 5.5 mm radius, the first cemented pair 5 mm, L6 about 7.3 mm, L7 up to 9.7 mm, the resin about 12.2 mm and the rear glass about 14 mm. L7's front keeps its 7.2 mm optical cap and now draws the figure's opaque land out to its 9.7 mm rear-face edge. Cemented resin/glass flanges remain excluded. Surface 9 retains 6.2 mm rather than a 6.3 mm trial that exceeded the 9→10 clearance allowance. These estimates are constrained by geometry and image-circle checks, not published clear-aperture dimensions.
 
 ## Element-by-Element Analysis
 

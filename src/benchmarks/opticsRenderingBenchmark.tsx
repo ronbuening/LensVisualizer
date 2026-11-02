@@ -12,8 +12,12 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import {
   BENCHMARK_SCHEMA_VERSION,
+  DEFAULT_BENCHMARK_ITERATIONS,
+  digestCompletedWork,
   summarizeRun,
+  tallyMarkupElements,
   type AberrationPanelScenarioResults,
+  type BenchmarkCellRef,
   type BenchmarkEntry,
   type BenchmarkRunRecord,
   type BenchmarkScenarioConfigSnapshot,
@@ -21,51 +25,56 @@ import {
   type BenchmarkSkip,
   type BenchmarkStats,
   type AnalysisBenchmarkCategory,
+  type HeapReading,
   type MainBenchmarkCategory,
+  type MemorySessionReport,
   type NumericSummary,
+  type UntimedBenchmarkPass,
 } from "./benchmarkReport.js";
-export { buildBenchmarkReport, formatRunFileName } from "./benchmarkReport.js";
-import { wideOpenStopAtZoom } from "../optics/apertureStop.js";
-import buildLens from "../optics/buildLens.js";
-import { analysisJobsForState2, createAnalysisComputationContext, prepareRuntimeState } from "../optics/compat.js";
+export {
+  buildBenchmarkReport,
+  buildSessionSummary,
+  finishBenchmarkRecord,
+  formatSessionRunFileName,
+  formatRunFileName,
+  serializeBenchmarkRecord,
+} from "./benchmarkReport.js";
+import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../optics/optics.js";
+import { buildLens } from "../optics/buildLens.js";
+import { createAnalysisComputationContext } from "../optics/analysis.js";
+import { prepareRuntimeState } from "../optics/buildLens.js";
 import {
   anchorLayoutToCamera,
-  computeAnalysisFieldGeometryAtState,
-  computeChromaticRayFanSpread,
-  conjugateK,
-  doLayout,
-  effectiveFNumber,
+  doLayoutForRuntimeLens as doLayout,
+  paraxialWorkingFNumberForRuntimeLens,
   eflAtFocus,
-  entrancePupilAtState,
-  fopenAtZoom,
-  offsetVectorFieldRay,
+  fopenAtZoomClamped as fopenAtZoom,
   traceRay,
   traceRayChromatic,
   traceRayVector,
   traceRayVectorChromatic,
 } from "../optics/optics.js";
-import { computeCardinalElementsAtState } from "../optics/cardinalElements.js";
-import { computeElementShapes, createCoordinateTransforms } from "../optics/diagramGeometry.js";
 import {
-  clampLensMovement,
-  createLensMovementTransform,
-  type LensMovementTransform,
-  type ResolvedLensMovement,
-} from "../optics/lensMovement.js";
+  computeAnalysisFieldGeometryAtState,
+  conjugateKForRuntimeLens as conjugateK,
+  entrancePupilAtState,
+  offsetVectorFieldRay,
+} from "../optics/fieldGeometry.js";
+import { computeChromaticRayFanSpread } from "../optics/chromatic.js";
+import { analysisJobs, computeCardinalElements, createAnalysisRequest } from "../optics/analysis.js";
+import { computeElementShapes, createCoordinateTransforms } from "../optics/diagramGeometry.js";
+import { clampLensMovement, createLensMovementTransform } from "../optics/perspective.js";
+import type { LensMovementTransform, ResolvedLensMovement } from "../optics/perspective.js";
 import {
   cameraDirectionForDiagramField,
   computePerspectiveMovementViewportExtent,
   createPerspectiveTraceContext,
   tracePerspectiveDiagramFan,
-  type PerspectiveDiagramFanSample,
-  type PerspectiveTraceContext,
-} from "../optics/perspective/index.js";
-import { obstructionAwareRayFractionsForDensity } from "../optics/raySampling.js";
-import {
-  analysisSamplingForQuality,
-  type AnalysisQuality,
-  type AnalysisSamplingOptions,
-} from "../optics/analysis/analysisQuality.js";
+} from "../optics/perspective.js";
+import type { PerspectiveDiagramFanSample, PerspectiveTraceContext } from "../optics/perspective.js";
+import { obstructionAwareRayFractionsForDensity } from "../optics/optics.js";
+import { analysisSamplingForQuality } from "../optics/analysis.js";
+import type { AnalysisQuality, AnalysisSamplingOptions } from "../optics/analysis.js";
 import { resetPerfProbe } from "../utils/perfProbe.js";
 import { LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
 import themes from "../utils/theme/themes.js";
@@ -82,9 +91,9 @@ import { computeOffAxisTraceGeometry } from "../components/hooks/offAxisRayUtils
 import { compileRaySegment, filterChannels } from "../components/hooks/raySegmentUtils.js";
 import type { ChromaticRaySegment } from "../components/hooks/useChromaticRays.js";
 import type { RaySegment } from "../components/hooks/useOnAxisRays.js";
-import type { FieldGeometryState } from "../optics/optics.js";
+import type { FieldGeometryState } from "../optics/fieldGeometry.js";
 import type { PreparedOpticalState } from "../optics/types.js";
-import type { AnalysisComputationContext } from "../optics/compat.js";
+import type { AnalysisComputationContext } from "../optics/analysis.js";
 import type {
   ChromaticChannel,
   ChromaticRayFanSpread,
@@ -95,7 +104,7 @@ import type { OffAxisMode, RayDensity } from "../types/state.js";
 
 declare const process:
   | {
-      memoryUsage?: () => { heapUsed: number };
+      memoryUsage?: () => { heapUsed: number; arrayBuffers?: number };
     }
   | undefined;
 
@@ -190,6 +199,25 @@ export const BENCHMARK_SCENARIOS = [
   },
 ] as const satisfies readonly BenchmarkScenarioConfigSnapshot[];
 
+/**
+ * The heavy set: seven cells of the matrix above that hold about half of its run time, for a check that is
+ * quicker than the whole matrix. It has the perspective-control lenses in their moved and dragged states, the
+ * PC-Nikkor 19mm default cell that carries the cost of the intersection contract, and two wide zooms at default.
+ */
+export const HEAVY_BENCHMARK_CELLS = [
+  { lensKey: "nikon-pc-nikkor-19mm-f4e-ed", scenarioId: "default" },
+  { lensKey: "nikon-pc-nikkor-19mm-f4e-ed", scenarioId: "stopped-close" },
+  { lensKey: "nikon-pc-nikkor-19mm-f4e-ed", scenarioId: "interactive-drag" },
+  { lensKey: "canon-tse-50f28l-macro", scenarioId: "stopped-close" },
+  { lensKey: "canon-tse-50f28l-macro", scenarioId: "interactive-drag" },
+  { lensKey: "sony-fe-24-70mm-f28-gm-ii", scenarioId: "default" },
+  { lensKey: "fujifilm-gf-20-35mm-f4-r-wr", scenarioId: "default" },
+] as const satisfies readonly {
+  /* Typed against the matrix, so a lens or scenario that leaves it fails the type check here. */
+  lensKey: (typeof DEFAULT_BENCHMARK_LENS_KEYS)[number];
+  scenarioId: (typeof BENCHMARK_SCENARIOS)[number]["id"];
+}[];
+
 /** Input contract shared by persisted scenario metadata and runtime snapshots. */
 type ScenarioConfig = BenchmarkScenarioConfigSnapshot;
 
@@ -213,6 +241,67 @@ export interface OpticsRenderingBenchmarkOptions extends BenchmarkMetadata {
   dryRun?: boolean;
   /** Optional subset of catalog lens keys; primarily useful for local diagnosis. */
   lensKeys?: string[];
+  /** Run only these lens/scenario cells, a lens at a time in the order given, and mark the record as that subset. */
+  cells?: readonly BenchmarkCellRef[];
+  /**
+   * Keep every measured sample and heap delta for a session record.
+   * Set for records that are not written to `runs/`.
+   */
+  keepSamples?: boolean;
+  /** Called before each cell is prepared, so a driver can report progress. */
+  onCell?: BenchmarkCellHook;
+}
+
+/** Called before a cell is prepared, with the cell and its place in the run. */
+export type BenchmarkCellHook = (progress: BenchmarkCellRef & { index: number; count: number }) => void | Promise<void>;
+
+/**
+ * One timed callback of a cell, described before it is sampled.
+ *
+ * A cell lays out each timed callback after the setup it depends on.
+ */
+export interface BenchmarkCase {
+  /** Stable `lens:scenario:category` identifier. */
+  id: string;
+  /** Unmeasured work that this case and the ones after it rely on. It runs once, before the case's first call. */
+  setup?: () => void;
+  /** The timed callback. */
+  run: () => BenchmarkOutput;
+  /**
+   * Untimed work that tallies what the results of `run` do not show. The untimed pass calls it after the case's one
+   * call.
+   */
+  inspect?: () => void;
+  /** The case's place in the cell's results, filled when the case has been sampled. */
+  entry: BenchmarkEntry;
+}
+
+/** One lens/scenario cell, prepared and laid out as cases. Sampling the cases fills the two result objects. */
+export interface PreparedBenchmarkCell {
+  results: BenchmarkScenarioResults;
+  aberrationPanels: AberrationPanelScenarioResults;
+  cases: BenchmarkCase[];
+}
+
+/** One built lens, whose cells share it as the scenarios of a viewer session share one lens. */
+export interface PreparedBenchmarkLens {
+  prepareCell(scenarioId: string): PreparedBenchmarkCell;
+}
+
+/** Sampling counts and what to keep of the samples. */
+interface SamplingOptions {
+  warmups: number;
+  iterations: number;
+  keepSamples: boolean;
+}
+
+/** Collects the cases of one cell while its result objects are built. */
+interface CasePlan {
+  cases: BenchmarkCase[];
+  /** Queue a timed callback, with what inspects it in the untimed pass. The entry is filled when the case is sampled. */
+  measure(id: string, run: () => BenchmarkOutput, inspect?: () => void): BenchmarkEntry;
+  /** Run unmeasured work once, just before the next queued case is first called. */
+  before(setup: () => void): void;
 }
 
 /**
@@ -281,7 +370,7 @@ interface AberrationDataValues {
   saBlurCharacter?: unknown;
   fieldCurvature?: unknown;
   chromaticFieldCurvature?: unknown;
-  coma?: ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
+  coma?: ReturnType<typeof analysisJobs.computeComaAnalysis>;
 }
 
 /** Analysis breakdown results keyed by category id. */
@@ -293,32 +382,15 @@ type AnalysisBenchmarkResults = Record<AnalysisBenchmarkCategory, BenchmarkEntry
  * The function is side-effect-free with respect to the filesystem. The script wrapper
  * owns writing run JSON, pruning old records, and regenerating the Markdown report.
  * With `dryRun`, only lens-key validation and schema construction are performed.
+ *
  */
 export async function runOpticsRenderingBenchmark(
   options: OpticsRenderingBenchmarkOptions,
 ): Promise<BenchmarkRunRecord> {
-  const lensKeys = options.lensKeys ?? [...DEFAULT_BENCHMARK_LENS_KEYS];
-  validateLensKeys(lensKeys);
+  const selection = selectBenchmarkCells(options);
   const warmups = options.warmups ?? 1;
-  const iterations = options.iterations ?? 3;
-
-  const record: BenchmarkRunRecord = {
-    schemaVersion: BENCHMARK_SCHEMA_VERSION,
-    createdAt: options.createdAt,
-    git: options.git,
-    environment: options.environment,
-    config: {
-      warmups,
-      iterations,
-      lensKeys,
-      scenarios: BENCHMARK_SCENARIOS.map((scenario) => scenario.id),
-      scenarioSnapshots: BENCHMARK_SCENARIOS.map(copyScenarioConfig),
-    },
-    results: {},
-    aberrationPanels: {},
-    summary: { main: {}, aberrationPanels: {} },
-    warnings: [],
-  };
+  const iterations = options.iterations ?? DEFAULT_BENCHMARK_ITERATIONS;
+  const record = createRunRecord(options, selection, warmups, iterations);
 
   if (options.dryRun) {
     record.warnings.push("Dry run: lens keys and benchmark schema were validated without running measurements.");
@@ -326,28 +398,330 @@ export async function runOpticsRenderingBenchmark(
     return record;
   }
 
-  for (const lensKey of lensKeys) {
+  const sampling: SamplingOptions = { warmups, iterations, keepSamples: options.keepSamples ?? false };
+  let cellIndex = 0;
+  for (const lensKey of selection.lensKeys) {
     record.results[lensKey] = {};
     record.aberrationPanels[lensKey] = {};
-    const L = buildLens(LENS_CATALOG[lensKey]);
+    const lens = prepareBenchmarkLens(lensKey);
 
-    for (const scenario of BENCHMARK_SCENARIOS) {
-      const snapshot = buildScenarioSnapshot(L, scenario);
-      const rayWork = computeRayWork(snapshot);
-
-      record.results[lensKey][scenario.id] = measureMainScenario(lensKey, scenario, L, snapshot, rayWork, {
-        warmups,
-        iterations,
-      });
-      record.aberrationPanels[lensKey][scenario.id] = measureAberrationPanels(lensKey, scenario, snapshot, {
-        warmups,
-        iterations,
-      });
+    for (const scenario of selection.scenariosByLens[lensKey]) {
+      if (options.onCell) {
+        await options.onCell({ lensKey, scenarioId: scenario.id, index: cellIndex, count: selection.cellCount });
+      }
+      cellIndex++;
+      const cell = lens.prepareCell(scenario.id);
+      sampleCell(cell, sampling);
+      record.results[lensKey][scenario.id] = cell.results;
+      record.aberrationPanels[lensKey][scenario.id] = cell.aberrationPanels;
     }
   }
 
   record.summary = summarizeRun(record);
   return record;
+}
+
+/**
+ * Runs every case once, untimed, for what a timing cannot show: what each case completed.
+ *
+ * A driver runs this in a process of its own, on the bundle it times, so tallying costs the timed samples nothing.
+ *
+ * @param options - the lenses or cells to run, as for the timed run
+ * @returns the tallies of every case, by case id
+ */
+export async function runUntimedBenchmarkPass(
+  options: Pick<OpticsRenderingBenchmarkOptions, "lensKeys" | "cells" | "onCell">,
+): Promise<UntimedBenchmarkPass> {
+  const selection = selectBenchmarkCells(options);
+  const pass: UntimedBenchmarkPass = { cases: {} };
+  let cellIndex = 0;
+  for (const lensKey of selection.lensKeys) {
+    const lens = prepareBenchmarkLens(lensKey);
+    for (const scenario of selection.scenariosByLens[lensKey]) {
+      if (options.onCell) {
+        await options.onCell({ lensKey, scenarioId: scenario.id, index: cellIndex, count: selection.cellCount });
+      }
+      cellIndex++;
+      for (const benchmarkCase of lens.prepareCell(scenario.id).cases) {
+        benchmarkCase.setup?.();
+        const work = new Map<string, Record<string, number>>();
+        workLog = work;
+        try {
+          benchmarkCase.run();
+          benchmarkCase.inspect?.();
+          pass.cases[benchmarkCase.id] = { work: [...work.values()] };
+        } catch (error) {
+          pass.cases[benchmarkCase.id] = { message: error instanceof Error ? error.message : String(error) };
+        } finally {
+          for (const restore of observedContextRestorers.values()) restore();
+          observedContextRestorers.clear();
+          workLog = null;
+        }
+      }
+    }
+  }
+  return pass;
+}
+
+/* The state a memory session sets each lens to first. It is none of the benchmark scenarios: nothing is moved or
+ * stopped down, and every ray family is drawn. */
+const MEMORY_SESSION_AT_REST: ScenarioConfig = {
+  id: "memory-session",
+  focusT: 0,
+  zoomT: 0,
+  aberrationT: 0,
+  stopdownT: 0,
+  movement: { shiftMm: 0, tiltDeg: 0 },
+  rayDensity: "normal",
+  rayTracksF: false,
+  showOnAxis: true,
+  showOffAxis: "trueAngle",
+  showChromatic: true,
+  analysisQuality: "settled",
+};
+
+/* What each control of the memory session is swept through, after that state. Shift and tilt apply to
+ * perspective-control lenses and zoom to zooms; the values are inside every benchmark lens's ranges. */
+const MEMORY_SESSION_SWEEPS = {
+  focusT: [0.5, 1],
+  zoomT: [0.5, 1],
+  stopdownT: [0.5, 1],
+  shiftMm: [6, -6],
+  tiltDeg: [4, -4],
+} as const;
+
+/** Passes over the lens list in one memory session, unless the caller asks for another number. */
+const MEMORY_SESSION_CYCLES = 3;
+
+/**
+ * Runs a scripted viewer session and reports the heap it leaves in use.
+ *
+ * A cycle builds each lens in turn, as switching lenses does, sweeps its controls one at a time, computing the
+ * diagram rays and the settled analysis at every state, and drops every reference to the lens before the next.
+ * The retained heap is read after forced collections before the first cycle, after each cycle and at the end: the
+ * JavaScript heap in use and the array buffers, which hold the data of typed arrays outside that heap. A cache
+ * that outlives its lens, or grows with every state, shows as memory the session did not give back, whichever of
+ * the two it is kept in.
+ *
+ * It needs `--expose-gc`, and a process of its own: a second engine or a bundler in the same heap would be counted.
+ *
+ * @param options - the lenses or cells whose lenses to use, and the number of cycles
+ * @returns the retained heap at each of those points
+ * @throws when the runtime exposes no forced collection or no heap figure
+ */
+export async function runMemorySession(
+  options: Pick<OpticsRenderingBenchmarkOptions, "lensKeys" | "cells"> & { cycles?: number },
+): Promise<MemorySessionReport> {
+  const { lensKeys } = selectBenchmarkCells(options);
+  const cycles = options.cycles ?? MEMORY_SESSION_CYCLES;
+  const heapBefore = await settledHeap();
+  const heapAfterCycle: HeapReading[] = [];
+  let statesPerCycle = 0;
+  for (let cycle = 0; cycle < cycles; cycle++) {
+    statesPerCycle = 0;
+    for (const lensKey of lensKeys) statesPerCycle += runMemorySessionLens(lensKey);
+    heapAfterCycle.push(await settledHeap());
+  }
+  const heapAtEnd = await settledHeap();
+  return {
+    lensKeys,
+    cycles,
+    statesPerCycle,
+    heapBefore,
+    heapAfterCycle,
+    heapAtEnd,
+    retainedGrowthBytes: heapAtEnd.totalBytes - heapBefore.totalBytes,
+  };
+}
+
+/** Build one lens, sweep its controls and return how many states were computed; nothing built here outlives it. */
+function runMemorySessionLens(lensKey: string): number {
+  const L = buildLens(LENS_CATALOG[lensKey]);
+  const atRest = MEMORY_SESSION_AT_REST;
+  const states: ScenarioConfig[] = [
+    atRest,
+    ...MEMORY_SESSION_SWEEPS.focusT.map((focusT) => ({ ...atRest, focusT })),
+    ...(L.isZoom ? MEMORY_SESSION_SWEEPS.zoomT.map((zoomT) => ({ ...atRest, zoomT })) : []),
+    ...MEMORY_SESSION_SWEEPS.stopdownT.map((stopdownT) => ({ ...atRest, stopdownT })),
+    ...(L.perspectiveControl
+      ? [
+          ...MEMORY_SESSION_SWEEPS.shiftMm.map((shiftMm) => ({ ...atRest, movement: { shiftMm, tiltDeg: 0 } })),
+          ...MEMORY_SESSION_SWEEPS.tiltDeg.map((tiltDeg) => ({ ...atRest, movement: { shiftMm: 0, tiltDeg } })),
+        ]
+      : []),
+  ];
+  for (const state of states) {
+    const snapshot = buildScenarioSnapshot(L, state);
+    computeRayWork(snapshot);
+    computeAnalysisWork(snapshot);
+  }
+  return states.length;
+}
+
+/**
+ * Memory in use once forced collections have settled.
+ *
+ * One collection is not enough. A cache keyed weakly by a lens gives its values up in the collection after the one
+ * that frees the lens, and finalizers run between turns of the event loop. The array buffers are read with the
+ * heap: a typed array's numbers live there, and a collection frees them as it frees the array.
+ */
+async function settledHeap(): Promise<HeapReading> {
+  const gc = (globalThis as { gc?: () => void }).gc;
+  if (typeof gc !== "function") throw new Error("The memory session needs a runtime started with --expose-gc.");
+  for (let round = 0; round < 3; round++) {
+    gc();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  }
+  gc();
+  const usage = process?.memoryUsage?.();
+  if (!usage || usage.arrayBuffers === undefined) {
+    throw new Error("The memory session needs process.memoryUsage() with its arrayBuffers figure.");
+  }
+  return {
+    heapUsedBytes: usage.heapUsed,
+    arrayBuffersBytes: usage.arrayBuffers,
+    totalBytes: usage.heapUsed + usage.arrayBuffers,
+  };
+}
+
+/**
+ * Builds the record of a `--memory` run from the sessions its driver ran, a fresh child process.
+ *
+ * No scenario of the matrix runs in a session, so the record's config names none. It holds the lenses and the
+ * session itself: the state each lens is set to first and what each control is swept through.
+ *
+ * @param options - the run's metadata, the lenses or cells the session used
+ * @param session - what the isolated `runMemorySession` returned
+ * @returns a record with no timed results and the sessions under `memory`
+ */
+export function createMemoryBenchmarkRecord(
+  options: BenchmarkMetadata & Pick<OpticsRenderingBenchmarkOptions, "lensKeys" | "cells">,
+  session: MemorySessionReport,
+): BenchmarkRunRecord {
+  const record = createRunRecord(options, selectBenchmarkCells(options), 0, 0);
+  const { caseSet } = record.config;
+  record.config = {
+    warmups: 0,
+    iterations: 0,
+    lensKeys: record.config.lensKeys,
+    scenarios: [],
+    ...(caseSet ? { caseSet } : {}),
+    memorySession: {
+      cycles: session.cycles,
+      atRest: copyScenarioConfig(MEMORY_SESSION_AT_REST),
+      sweeps: Object.fromEntries(
+        Object.entries(MEMORY_SESSION_SWEEPS).map(([control, values]) => [control, [...values]]),
+      ),
+    },
+  };
+  record.summary = summarizeRun(record);
+  record.memory = { head: session };
+  return record;
+}
+
+/** The lenses of a run, each with the scenarios it runs under, in run order. */
+interface CellSelection {
+  lensKeys: string[];
+  scenariosByLens: Record<string, ScenarioConfig[]>;
+  cellCount: number;
+  /** The cells as given, when the run is a subset of the matrix. */
+  cells?: readonly BenchmarkCellRef[];
+}
+
+/** Resolve what a run covers: the given cells, or every scenario of the given or default lenses. */
+function selectBenchmarkCells({
+  lensKeys,
+  cells,
+}: Pick<OpticsRenderingBenchmarkOptions, "lensKeys" | "cells">): CellSelection {
+  if (cells) {
+    validateBenchmarkCells(cells);
+    const scenariosByLens: Record<string, ScenarioConfig[]> = {};
+    for (const { lensKey, scenarioId } of cells) {
+      const scenario = BENCHMARK_SCENARIOS.find((candidate) => candidate.id === scenarioId);
+      if (scenario) (scenariosByLens[lensKey] ??= []).push(scenario);
+    }
+    return { lensKeys: Object.keys(scenariosByLens), scenariosByLens, cellCount: cells.length, cells };
+  }
+  const keys = lensKeys ?? [...DEFAULT_BENCHMARK_LENS_KEYS];
+  validateLensKeys(keys);
+  return {
+    lensKeys: keys,
+    scenariosByLens: Object.fromEntries(keys.map((key) => [key, [...BENCHMARK_SCENARIOS]])),
+    cellCount: keys.length * BENCHMARK_SCENARIOS.length,
+  };
+}
+
+/** Start a record: everything but the measurements. A subset run names its cells and only the scenarios they use. */
+function createRunRecord(
+  metadata: BenchmarkMetadata,
+  selection: CellSelection,
+  warmups: number,
+  iterations: number,
+): BenchmarkRunRecord {
+  const { cells } = selection;
+  const scenarios = BENCHMARK_SCENARIOS.filter(({ id }) => !cells || cells.some((cell) => cell.scenarioId === id));
+  const isHeavySet =
+    cells?.length === HEAVY_BENCHMARK_CELLS.length &&
+    HEAVY_BENCHMARK_CELLS.every(
+      (heavy, index) => heavy.lensKey === cells[index].lensKey && heavy.scenarioId === cells[index].scenarioId,
+    );
+  return {
+    schemaVersion: BENCHMARK_SCHEMA_VERSION,
+    createdAt: metadata.createdAt,
+    git: metadata.git,
+    environment: metadata.environment,
+    config: {
+      warmups,
+      iterations,
+      lensKeys: selection.lensKeys,
+      scenarios: scenarios.map((scenario) => scenario.id),
+      scenarioSnapshots: scenarios.map(copyScenarioConfig),
+      ...(cells ? { cells: cells.map((cell) => ({ ...cell })), caseSet: isHeavySet ? "heavy" : "custom" } : {}),
+    },
+    results: {},
+    aberrationPanels: {},
+    summary: { main: {}, aberrationPanels: {} },
+    warnings: [],
+  };
+}
+
+/**
+ * Build one benchmark lens and return what lays out its cells.
+ *
+ * Every cell of a lens shares the one built lens, so a later scenario runs on the caches an earlier one filled, as
+ * a viewer session does.
+ *
+ * @param lensKey - a catalog lens key
+ * @throws when the catalog has no such lens
+ */
+export function prepareBenchmarkLens(lensKey: string): PreparedBenchmarkLens {
+  validateLensKeys([lensKey]);
+  const L = buildLens(LENS_CATALOG[lensKey]);
+  return {
+    prepareCell(scenarioId) {
+      const scenario = BENCHMARK_SCENARIOS.find((candidate) => candidate.id === scenarioId);
+      if (!scenario) throw new Error(`Benchmark scenario not found: ${scenarioId}`);
+      const snapshot = buildScenarioSnapshot(L, scenario);
+      const rayWork = computeRayWork(snapshot);
+      const plan = createCasePlan();
+      const results = measureMainScenario(lensKey, scenario, L, snapshot, rayWork, plan);
+      const aberrationPanels = measureAberrationPanels(lensKey, scenario, snapshot, plan);
+      return { results, aberrationPanels, cases: plan.cases };
+    },
+  };
+}
+
+/**
+ * Throws when a cell names a lens the catalog lacks or a scenario the matrix lacks.
+ *
+ * @param cells - the cells of a subset run
+ */
+export function validateBenchmarkCells(cells: readonly BenchmarkCellRef[]): void {
+  validateLensKeys(cells.map(({ lensKey }) => lensKey));
+  const unknown = cells.filter(({ scenarioId }) => !BENCHMARK_SCENARIOS.some(({ id }) => id === scenarioId));
+  if (unknown.length > 0) {
+    throw new Error(`Benchmark scenario(s) not found: ${unknown.map(({ scenarioId }) => scenarioId).join(", ")}`);
+  }
 }
 
 /** Throws early when a requested benchmark lens is not present in the runtime catalog. */
@@ -390,6 +764,9 @@ export function computeBenchmarkScenarioAnalysisWork(snapshot: ScenarioSnapshot)
  * Cold total rebuilds the lens and all derived work to approximate first-use cost.
  * Warm total reuses the prepared snapshot and measures repeated viewer work after the
  * catalog lens has already been normalized.
+ *
+ * Each category is queued on the plan in the order written here, which is the order it
+ * is sampled in; the entries of the object returned are filled then.
  */
 function measureMainScenario(
   lensKey: string,
@@ -397,10 +774,11 @@ function measureMainScenario(
   L: RuntimeLens,
   snapshot: ScenarioSnapshot,
   rayWork: RayWorkResult,
-  options: Required<Pick<OpticsRenderingBenchmarkOptions, "warmups" | "iterations">>,
+  plan: CasePlan,
 ): BenchmarkScenarioResults {
-  const measure = (category: MainBenchmarkCategory, fn: () => BenchmarkOutput): BenchmarkEntry =>
-    measureEntry(`${lensKey}:${scenario.id}:${category}`, fn, options);
+  const measure = (category: MainBenchmarkCategory, fn: () => BenchmarkOutput, inspect?: () => void): BenchmarkEntry =>
+    plan.measure(`${lensKey}:${scenario.id}:${category}`, fn, inspect);
+  const inspectFocus = bestFocusInspection(snapshot);
 
   return {
     build: measure("build", () => {
@@ -421,30 +799,38 @@ function measureMainScenario(
       };
     }),
     rays: measure("rays", () => computeRayWork(snapshot).output),
-    analysis: measure("analysis", () => computeAnalysisWork(buildScenarioSnapshot(L, scenario))),
-    analysisBreakdown: measureAnalysisBreakdown(lensKey, scenario, snapshot, options),
+    analysis: measure("analysis", () => computeAnalysisWork(buildScenarioSnapshot(L, scenario)), inspectFocus),
+    analysisBreakdown: measureAnalysisBreakdown(lensKey, scenario, snapshot, plan),
     svgRender: measure("svgRender", () => renderDiagram(snapshot, rayWork)),
-    totalCold: measure("totalCold", () => {
-      const built = buildLens(LENS_CATALOG[lensKey]);
-      const nextSnapshot = buildScenarioSnapshot(built, scenario);
-      const nextRayWork = computeRayWork(nextSnapshot);
-      computeAnalysisWork(nextSnapshot);
-      renderDiagram(nextSnapshot, nextRayWork);
-      return {
-        surfaces: nextSnapshot.L.N,
-        rays: nextRayWork.output.onAxisRays + nextRayWork.output.offAxisRays + nextRayWork.output.chromaticRays,
-      };
-    }),
-    totalWarm: measure("totalWarm", () => {
-      const nextSnapshot = buildScenarioSnapshot(L, scenario);
-      const nextRayWork = computeRayWork(nextSnapshot);
-      computeAnalysisWork(nextSnapshot);
-      renderDiagram(nextSnapshot, nextRayWork);
-      return {
-        surfaces: nextSnapshot.L.N,
-        rays: nextRayWork.output.onAxisRays + nextRayWork.output.offAxisRays + nextRayWork.output.chromaticRays,
-      };
-    }),
+    totalCold: measure(
+      "totalCold",
+      () => {
+        const built = buildLens(LENS_CATALOG[lensKey]);
+        const nextSnapshot = buildScenarioSnapshot(built, scenario);
+        const nextRayWork = computeRayWork(nextSnapshot);
+        computeAnalysisWork(nextSnapshot);
+        renderDiagram(nextSnapshot, nextRayWork);
+        return {
+          surfaces: nextSnapshot.L.N,
+          rays: nextRayWork.output.onAxisRays + nextRayWork.output.offAxisRays + nextRayWork.output.chromaticRays,
+        };
+      },
+      inspectFocus,
+    ),
+    totalWarm: measure(
+      "totalWarm",
+      () => {
+        const nextSnapshot = buildScenarioSnapshot(L, scenario);
+        const nextRayWork = computeRayWork(nextSnapshot);
+        computeAnalysisWork(nextSnapshot);
+        renderDiagram(nextSnapshot, nextRayWork);
+        return {
+          surfaces: nextSnapshot.L.N,
+          rays: nextRayWork.output.onAxisRays + nextRayWork.output.offAxisRays + nextRayWork.output.chromaticRays,
+        };
+      },
+      inspectFocus,
+    ),
   };
 }
 
@@ -452,10 +838,11 @@ function measureMainScenario(
  * Builds the viewer-equivalent optical state for one scenario.
  *
  * The benchmark mirrors `LensViewer` conventions: layout is anchored to the reference
- * image plane, focus/zoom/aberration sliders are normalized, and stop-down scales both
- * physical stop semi-diameter and entrance-pupil semi-diameter from the open-aperture
- * values. Cardinal and effective f-number calls are included to keep layout work close
- * to the visible viewer path even when their return values are not serialized.
+ * image plane, focus/zoom/aberration sliders are normalized, the stop comes from the stop
+ * rule at the slider's f-number, and the entrance pupil is that stop's paraxial pupil in
+ * the current state. Cardinal and paraxial working f-number calls are included to keep
+ * layout work close to the visible viewer path even when their return values are not
+ * serialized.
  */
 function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): ScenarioSnapshot {
   const focusT = scenario.focusT;
@@ -499,16 +886,21 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
   const fNumber = Math.max(rawFNumber, currentFOPEN);
   const wideOpenStopSD = wideOpenStopAtZoom(zoomT, L);
-  const currentPhysStopSD = (wideOpenStopSD * currentFOPEN) / fNumber;
+  const currentPhysStopSD = stopSemiDiameterForFNumber(fNumber, zoomT, L);
   const baseEPSD = fieldGeometry
     ? entrancePupilAtState(wideOpenStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD
     : L.EP.epSD;
-  const currentEPSD = (baseEPSD * currentFOPEN) / fNumber;
+  const currentEPSD = fieldGeometry
+    ? entrancePupilAtState(currentPhysStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD
+    : (baseEPSD * currentPhysStopSD) / wideOpenStopSD;
   const dynamicEFL = eflAtFocus(focusT, zoomT, L, aberrationT);
-  effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT);
-  computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT);
+  paraxialWorkingFNumberForRuntimeLens(currentPhysStopSD, focusT, zoomT, L, aberrationT);
 
   const preparedState = prepareRuntimeState(L, focusT, zoomT, aberrationT);
+  computeCardinalElements(
+    createAnalysisRequest({ preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry }),
+    { zPos, imagePlaneZ: IMG_MM },
+  );
   const perspectiveTraceContext = createPerspectiveTraceContext({
     preparedState,
     cameraZPos: zPos,
@@ -801,16 +1193,19 @@ function computeRayWork(snapshot: ScenarioSnapshot): RayWorkResult {
 function computeAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const { L, analysisContext } = snapshot;
   const output: BenchmarkOutput = {};
-  const summary = analysisContext.computeOpticalSummary();
+  const summary = completed("summary", analysisContext.computeOpticalSummary());
   output.summarySurfaceCount = summary.surfaceCount;
 
   if (snapshot.movement.active) {
-    const focus = analysisContext.computePerspectiveFocusAnalysis();
-    const fieldAberrations = analysisContext.computePerspectiveFieldAberrations();
-    const chromatic = analysisContext.computePerspectiveChromaticAnalysis();
-    const distortion = analysisContext.computePerspectiveDistortionAnalysis();
-    const vignetting = analysisContext.computePerspectiveVignettingAnalysis();
-    const pupils = analysisContext.computePerspectivePupilAnalysis();
+    const focus = completed("perspectiveFocus", analysisContext.computePerspectiveFocusAnalysis());
+    const fieldAberrations = completed(
+      "perspectiveFieldAberrations",
+      analysisContext.computePerspectiveFieldAberrations(),
+    );
+    const chromatic = completed("perspectiveChromatic", analysisContext.computePerspectiveChromaticAnalysis());
+    const distortion = completed("perspectiveDistortion", analysisContext.computePerspectiveDistortionAnalysis());
+    const vignetting = completed("perspectiveVignetting", analysisContext.computePerspectiveVignettingAnalysis());
+    const pupils = completed("perspectivePupils", analysisContext.computePerspectivePupilAnalysis());
     output.perspectiveAnalysisJobs = 6;
     output.legacyRayBasedAnalysisJobs = 0;
     output.perspectiveFocusSamples = focus.samples.length;
@@ -827,16 +1222,16 @@ function computeAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   output.perspectiveAnalysisJobs = 0;
 
   if (!L.isFoldedOptics) {
-    output.distortionSamples = analysisContext.computeDistortionCurve().length;
-    output.distortionGridLines = analysisContext.computeDistortionFieldGrid().lines.length;
-    output.vignettingSamples = analysisContext.computeVignettingCurve().length;
+    output.distortionSamples = completed("distortionCurve", analysisContext.computeDistortionCurve().samples).length;
+    output.distortionGridLines = completed("distortionGrid", analysisContext.computeDistortionFieldGrid()).lines.length;
+    output.vignettingSamples = completed("vignetting", analysisContext.computeVignettingCurve()).samples.length;
   } else {
     output.foldedSequentialAnalysisSkipped = true;
   }
 
-  const pupilProfiles = analysisContext.computeBothPupilAberrationProfiles();
+  const pupilProfiles = completed("pupils", analysisContext.computeBothPupilAberrationProfiles());
   output.pupilSamples = pupilProfiles.ep.samples.length + pupilProfiles.xp.samples.length;
-  const bokehPair = analysisContext.computeBokehPreviewPair();
+  const bokehPair = completed("bokehPair", analysisContext.computeBokehPreviewPair());
   output.bokehInfinityFields = bokehPair.infinity?.fields.length ?? 0;
   output.bokehNearFocusFields = bokehPair.nearFocus?.fields.length ?? 0;
   output.bestFocusZ = analysisContext.computeBestFocusZ();
@@ -852,22 +1247,30 @@ function measureAnalysisBreakdown(
   lensKey: string,
   scenario: ScenarioConfig,
   snapshot: ScenarioSnapshot,
-  options: Required<Pick<OpticsRenderingBenchmarkOptions, "warmups" | "iterations">>,
+  plan: CasePlan,
 ): AnalysisBenchmarkResults {
-  const measure = (category: AnalysisBenchmarkCategory, fn: () => BenchmarkOutput): BenchmarkEntry =>
-    measureEntry(`${lensKey}:${scenario.id}:analysis.${category}`, fn, options);
+  const measure = (
+    category: AnalysisBenchmarkCategory,
+    fn: () => BenchmarkOutput,
+    inspect?: () => void,
+  ): BenchmarkEntry => plan.measure(`${lensKey}:${scenario.id}:analysis.${category}`, fn, inspect);
+  const inspectFocus = bestFocusInspection(snapshot);
   const foldedSkip = (category: AnalysisBenchmarkCategory): BenchmarkEntry =>
     skippedEntry(`${category} uses sequential field analysis guarded for folded optics`);
   const movementSkip = (category: AnalysisBenchmarkCategory): BenchmarkEntry =>
     skippedEntry(`${category} is replaced by movement-aware perspective analysis`);
   const centeredSkip = (category: AnalysisBenchmarkCategory): BenchmarkEntry =>
     skippedEntry(`${category} is not scheduled on the centered fast path`);
-  const centeredOrFolded = (category: AnalysisBenchmarkCategory, work: () => BenchmarkOutput): BenchmarkEntry => {
+  const centeredOrFolded = (
+    category: AnalysisBenchmarkCategory,
+    work: () => BenchmarkOutput,
+    inspect?: () => void,
+  ): BenchmarkEntry => {
     if (snapshot.movement.active) return movementSkip(category);
     if (snapshot.L.isFoldedOptics && ["distortionCurve", "distortionGrid", "vignetting"].includes(category)) {
       return foldedSkip(category);
     }
-    return measure(category, work);
+    return measure(category, work, inspect);
   };
   const perspective = (category: AnalysisBenchmarkCategory, work: () => BenchmarkOutput): BenchmarkEntry =>
     snapshot.movement.active ? measure(category, work) : centeredSkip(category);
@@ -878,8 +1281,8 @@ function measureAnalysisBreakdown(
     distortionGrid: centeredOrFolded("distortionGrid", () => computeAnalysisDistortionGridWork(snapshot)),
     vignetting: centeredOrFolded("vignetting", () => computeAnalysisVignettingWork(snapshot)),
     pupils: centeredOrFolded("pupils", () => computeAnalysisPupilsWork(snapshot)),
-    bokehPair: centeredOrFolded("bokehPair", () => computeAnalysisBokehPairWork(snapshot)),
-    bestFocus: centeredOrFolded("bestFocus", () => computeAnalysisBestFocusWork(snapshot)),
+    bokehPair: centeredOrFolded("bokehPair", () => computeAnalysisBokehPairWork(snapshot), inspectFocus),
+    bestFocus: centeredOrFolded("bestFocus", () => computeAnalysisBestFocusWork(snapshot), inspectFocus),
     perspectiveFocus: perspective("perspectiveFocus", () => computePerspectiveFocusWork(snapshot)),
     perspectiveFieldAberrations: perspective("perspectiveFieldAberrations", () =>
       computePerspectiveFieldAberrationsWork(snapshot),
@@ -891,27 +1294,19 @@ function measureAnalysisBreakdown(
   };
 }
 
-/** Creates an uncached facade so each fine-grained benchmark times real job work. */
-function createFreshAnalysisContext(snapshot: ScenarioSnapshot): AnalysisComputationContext {
-  return createAnalysisComputationContext({
-    preparedState: snapshot.preparedState,
-    dynamicEFL: snapshot.dynamicEFL,
-    currentEPSD: snapshot.currentEPSD,
-    currentPhysStopSD: snapshot.currentPhysStopSD,
-    fieldGeometry: snapshot.fieldGeometry,
-    analysisQuality: snapshot.scenario.analysisQuality ?? "settled",
-    sampling: snapshot.analysisSampling,
-    perspectiveTraceContext: snapshot.perspectiveTraceContext,
-  });
-}
-
 function computePerspectiveFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const result = createFreshAnalysisContext(snapshot).computePerspectiveFocusAnalysis();
+  const result = completed(
+    "perspectiveFocus",
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectiveFocusAnalysis(),
+  );
   return { samples: result.samples.length, usableSamples: result.usableSampleCount };
 }
 
 function computePerspectiveFieldAberrationsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const result = createFreshAnalysisContext(snapshot).computePerspectiveFieldAberrations();
+  const result = completed(
+    "perspectiveFieldAberrations",
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectiveFieldAberrations(),
+  );
   return {
     fieldCurvatureSamples: result.fieldCurvature.samples.length,
     comaSamples: result.coma.samples.length,
@@ -921,12 +1316,18 @@ function computePerspectiveFieldAberrationsWork(snapshot: ScenarioSnapshot): Ben
 }
 
 function computePerspectiveChromaticWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const result = createFreshAnalysisContext(snapshot).computePerspectiveChromaticAnalysis();
+  const result = completed(
+    "perspectiveChromatic",
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectiveChromaticAnalysis(),
+  );
   return { samples: result.samples.length, usableSamples: result.usableSampleCount };
 }
 
 function computePerspectiveDistortionWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const result = createFreshAnalysisContext(snapshot).computePerspectiveDistortionAnalysis();
+  const result = completed(
+    "perspectiveDistortion",
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectiveDistortionAnalysis(),
+  );
   return {
     verticalSamples: result.vertical.length,
     gridSamples: result.grid.rows.reduce((count, row) => count + row.length, 0),
@@ -935,7 +1336,10 @@ function computePerspectiveDistortionWork(snapshot: ScenarioSnapshot): Benchmark
 }
 
 function computePerspectiveVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const result = createFreshAnalysisContext(snapshot).computePerspectiveVignettingAnalysis();
+  const result = completed(
+    "perspectiveVignetting",
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectiveVignettingAnalysis(),
+  );
   return {
     samples: result.samples.length,
     usableSamples: result.samples.filter((sample) => sample.status === "usable").length,
@@ -943,78 +1347,108 @@ function computePerspectiveVignettingWork(snapshot: ScenarioSnapshot): Benchmark
 }
 
 function computePerspectivePupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const result = createFreshAnalysisContext(snapshot).computePerspectivePupilAnalysis();
+  const result = completed(
+    "perspectivePupils",
+    createFreshAnalysisContext(snapshot.analysisContext).computePerspectivePupilAnalysis(),
+  );
   return {
     samples: result.samples.length,
     usableSamples: result.samples.filter((sample) => sample.status === "usable").length,
   };
 }
 
-/** Measures the optical summary path through the prepared-state analysis API. */
+/** Measures the optical summary path through its request-facing analysis job. */
 function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const summary = analysisJobsForState2.computeOpticalSummary(
-    snapshot.preparedState,
-    snapshot.dynamicEFL,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
+  const summary = analysisJobs.computeOpticalSummary(
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+    }),
   );
+  completed("summary", summary);
   return { summarySurfaceCount: summary.surfaceCount };
 }
 
 /** Measures distortion-curve sampling for non-folded systems. */
 function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const samples = analysisJobsForState2.computeDistortionCurve(
-    snapshot.preparedState,
-    snapshot.dynamicEFL,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
+  const samples = analysisJobs.computeDistortionCurve(
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
-  return { distortionSamples: samples.length };
+  const curve = samples.samples;
+  completed("distortionCurve", curve);
+  return { distortionSamples: curve.length };
 }
 
 /** Measures the distortion field-grid helper used by the analysis drawer. */
 function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const grid = analysisJobsForState2.computeDistortionFieldGrid(
-    snapshot.preparedState,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
+  const grid = analysisJobs.computeDistortionFieldGrid(
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
+  completed("distortionGrid", grid);
   return { distortionGridLines: grid.lines.length };
 }
 
 /** Measures vignetting sampling for non-folded sequential systems. */
 function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const samples = analysisJobsForState2.computeVignettingCurve(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
+  const curve = analysisJobs.computeVignettingCurve(
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
-  return { vignettingSamples: samples.length };
+  completed("vignetting", curve);
+  return { vignettingSamples: curve.samples.length };
 }
 
 /** Measures entrance/exit pupil aberration profile generation. */
 function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const pupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(
-    snapshot.preparedState,
-    snapshot.analysisSampling?.pupilAberrationSampleCount ?? undefined,
-    snapshot.fieldGeometry ?? undefined,
+  const pupilProfiles = analysisJobs.computeBothPupilAberrationProfiles(
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      fieldGeometry: snapshot.fieldGeometry,
+      sampling: snapshot.analysisSampling,
+    }),
   );
+  completed("pupils", pupilProfiles);
   return { pupilSamples: pupilProfiles.ep.samples.length + pupilProfiles.xp.samples.length };
 }
 
 /** Measures paired infinity/near-focus bokeh preview data generation. */
 function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const bokehPair = analysisJobsForState2.computeBokehPreviewPair(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.analysisSampling,
+  const bokehPair = analysisJobs.computeBokehPreviewPair(
+    createAnalysisRequest({
+      preparedState: snapshot.preparedState,
+      dynamicEFL: snapshot.dynamicEFL,
+      currentEPSD: snapshot.currentEPSD,
+      currentPhysStopSD: snapshot.currentPhysStopSD,
+      sampling: snapshot.analysisSampling,
+    }),
   );
+  completed("bokehPair", bokehPair);
   return {
     bokehInfinityFields: bokehPair.infinity?.fields.length ?? 0,
     bokehNearFocusFields: bokehPair.nearFocus?.fields.length ?? 0,
@@ -1024,11 +1458,46 @@ function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutp
 /** Measures best-focus solve cost for the current stop and entrance-pupil scale. */
 function computeAnalysisBestFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   return {
-    bestFocusZ: analysisJobsForState2.computeBestFocusZ(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    ),
+    bestFocusZ: analysisJobs.computeBestFocusZ(createAnalysisRequest(sphericalRequest(snapshot))),
+  };
+}
+
+/**
+ * The entrance-pupil fractions of the on-axis profile rays that best focus is fitted to, each traced above and below
+ * the axis. The engine keeps its list inside the aberration module; this is a copy, and a test holds it to that list.
+ */
+export const BEST_FOCUS_PROFILE_FRACTIONS = [
+  0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.88, 0.91, 0.93, 0.95,
+  0.97,
+] as const;
+
+/**
+ * What inspects, in the untimed pass, a case that solves best focus: alone, or inside the bokeh pair, the whole
+ * analysis and the two totals. A moved lens solves none, and has no inspection.
+ *
+ * The solve returns one position, which says nothing of the work behind it. It is fitted to the on-axis profile
+ * rays that are not clipped, and it answers with the layout's image plane when fewer than four of them give a hit.
+ * So the inspection traces that ray set as the solve does and marks every ray as completed work, and it solves once
+ * more and tallies whether the answer is that fallback. It does not see the rays the case itself traced: a solve
+ * that traced fewer and still answered with a focus of its own is not flagged.
+ *
+ * @param snapshot - the cell's prepared state
+ * @returns the inspection, or undefined for a moved lens
+ */
+function bestFocusInspection(snapshot: ScenarioSnapshot): (() => void) | undefined {
+  if (snapshot.movement.active) return undefined;
+  return () => {
+    const { L, focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD } = snapshot;
+    /* The solve's own layout, which is not the camera-anchored one the snapshot holds. */
+    const layout = doLayout(focusT, zoomT, L, aberrationT);
+    for (const fraction of BEST_FOCUS_PROFILE_FRACTIONS) {
+      for (const height of [fraction * currentEPSD, -fraction * currentEPSD]) {
+        const ray = traceRay(height, 0, layout.z, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
+        completed("bestFocusRay", ray);
+      }
+    }
+    const z = analysisJobs.computeBestFocusZ(createAnalysisRequest(sphericalRequest(snapshot)));
+    completed("bestFocus", { z, isLayoutImagePlane: Object.is(z, layout.imgZ) });
   };
 }
 
@@ -1043,42 +1512,28 @@ function measureAberrationPanels(
   lensKey: string,
   scenario: ScenarioConfig,
   snapshot: ScenarioSnapshot,
-  options: Required<Pick<OpticsRenderingBenchmarkOptions, "warmups" | "iterations">>,
+  plan: CasePlan,
 ): AberrationPanelScenarioResults {
   const skips: BenchmarkSkip[] = [];
   const data: Record<string, BenchmarkEntry> = {};
   const render: Record<string, BenchmarkEntry> = {};
   const measure = (group: "data" | "render", category: string, fn: () => BenchmarkOutput): BenchmarkEntry =>
-    measureEntry(`${lensKey}:${scenario.id}:aberrationPanels:${group}.${category}`, fn, options);
+    plan.measure(`${lensKey}:${scenario.id}:aberrationPanels:${group}.${category}`, fn);
 
   data.sphericalAberration = measure("data", "sphericalAberration", () => {
-    const result = analysisJobsForState2.computeSphericalAberration(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    );
+    const result = analysisJobs.computeSphericalAberration(createAnalysisRequest(sphericalRequest(snapshot)));
     return describeComputationOutput(result);
   });
   data.saProfile = measure("data", "saProfile", () => {
-    const result = analysisJobsForState2.computeSAProfile(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    );
+    const result = analysisJobs.computeSAProfile(createAnalysisRequest(sphericalRequest(snapshot)));
+    completed("result", result);
     return { points: Array.isArray(result) ? result.length : 0 };
   });
   data.saBlurCharacter = measure("data", "saBlurCharacter", () => {
-    const base = analysisJobsForState2.computeSphericalAberration(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
-    );
-    const result = analysisJobsForState2.computeSphericalAberrationBlurCharacter(
-      snapshot.preparedState,
-      snapshot.currentEPSD,
-      snapshot.currentPhysStopSD,
+    const base = analysisJobs.computeSphericalAberration(createAnalysisRequest(sphericalRequest(snapshot)));
+    const result = analysisJobs.computeSphericalAberrationBlurCharacter(
+      createAnalysisRequest(sphericalRequest(snapshot)),
       base,
-      snapshot.analysisSampling,
     );
     return describeComputationOutput(result);
   });
@@ -1099,53 +1554,31 @@ function measureAberrationPanels(
   } else {
     data.fieldCurvature = measure("data", "fieldCurvature", () =>
       describeComputationOutput(
-        analysisJobsForState2.computeFieldCurvature(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          false,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
+        analysisJobs.computeFieldCurvature(createAnalysisRequest(fieldCurvatureRequest(snapshot)), false),
       ),
     );
     data.chromaticFieldCurvature = measure("data", "chromaticFieldCurvature", () =>
       describeComputationOutput(
-        analysisJobsForState2.computeFieldCurvature(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          true,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
+        analysisJobs.computeFieldCurvature(createAnalysisRequest(fieldCurvatureRequest(snapshot)), true),
       ),
     );
     data.fieldCurvatureBundle = measure("data", "fieldCurvatureBundle", () =>
       describeComputationOutput(
-        analysisJobsForState2.computeFieldCurvatureBundle(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
+        analysisJobs.computeFieldCurvatureBundle(createAnalysisRequest(fieldCurvatureRequest(snapshot))),
       ),
     );
     data.coma = measure("data", "coma", () =>
       describeComputationOutput(
-        analysisJobsForState2.computeComaAnalysis(
-          snapshot.preparedState,
-          snapshot.currentEPSD,
-          snapshot.currentPhysStopSD,
-          snapshot.fieldGeometry ?? undefined,
-          snapshot.analysisSampling,
-        ),
+        analysisJobs.computeComaAnalysis(createAnalysisRequest(fieldCurvatureRequest(snapshot))),
       ),
     );
   }
 
-  const values = computeAberrationDataValues(snapshot);
+  /* Computed once the data categories above have been sampled, as the render categories find it in the viewer. */
+  let values: AberrationDataValues = {};
+  plan.before(() => {
+    values = computeAberrationDataValues(snapshot);
+  });
   render.aberrationsTab = measure("render", "aberrationsTab", () => renderAberrationsTab(snapshot));
   render.sphericalSection = measure("render", "sphericalSection", () => renderSphericalSection(snapshot, values));
 
@@ -1195,42 +1628,23 @@ function measureAberrationPanels(
  * guarded until fixture-backed validation says they are mirror-safe.
  */
 function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationDataValues {
-  const sphericalAberration = analysisJobsForState2.computeSphericalAberration(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
+  const sphericalAberration = analysisJobs.computeSphericalAberration(
+    createAnalysisRequest(sphericalRequest(snapshot)),
   );
-  const saProfile = analysisJobsForState2.computeSAProfile(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-  );
-  const saBlurCharacter = analysisJobsForState2.computeSphericalAberrationBlurCharacter(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
+  const saProfile = analysisJobs.computeSAProfile(createAnalysisRequest(sphericalRequest(snapshot)));
+  const saBlurCharacter = analysisJobs.computeSphericalAberrationBlurCharacter(
+    createAnalysisRequest(sphericalRequest(snapshot)),
     sphericalAberration,
-    snapshot.analysisSampling,
   );
   if (snapshot.L.isFoldedOptics || snapshot.movement.active) {
     return { sphericalAberration, saProfile, saBlurCharacter };
   }
-  const fieldCurvatureBundle = analysisJobsForState2.computeFieldCurvatureBundle(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
+  const fieldCurvatureBundle = analysisJobs.computeFieldCurvatureBundle(
+    createAnalysisRequest(fieldCurvatureRequest(snapshot)),
   );
   const fieldCurvature = fieldCurvatureBundle.fieldCurvature;
   const chromaticFieldCurvature = fieldCurvatureBundle.chromaticFieldCurvature;
-  const coma = analysisJobsForState2.computeComaAnalysis(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    snapshot.fieldGeometry ?? undefined,
-    snapshot.analysisSampling,
-  );
+  const coma = analysisJobs.computeComaAnalysis(createAnalysisRequest(fieldCurvatureRequest(snapshot)));
   return { sphericalAberration, saProfile, saBlurCharacter, fieldCurvature, chromaticFieldCurvature, coma };
 }
 
@@ -1241,7 +1655,7 @@ function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationData
  * while still exercising the same diagram props used by the viewer.
  */
 function renderDiagram(snapshot: ScenarioSnapshot, rayWork: RayWorkResult): BenchmarkOutput {
-  const html = renderToStaticMarkup(
+  const html = renderedMarkup(
     <DiagramSVG
       L={snapshot.L}
       t={themes.dark}
@@ -1284,9 +1698,12 @@ function renderDiagram(snapshot: ScenarioSnapshot, rayWork: RayWorkResult): Benc
   return { markupLength: html.length, shapes: snapshot.shapes.length };
 }
 
-/** Server-renders the complete aberrations panel with the prepared analysis context. */
+/**
+ * Server-renders the complete aberrations panel with the prepared analysis context. The panel computes its own
+ * data through that context, so the untimed pass watches what it asks for.
+ */
 function renderAberrationsTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const html = renderToStaticMarkup(
+  const html = renderedMarkup(
     <AberrationsPanel
       L={snapshot.L}
       t={themes.dark}
@@ -1298,7 +1715,7 @@ function renderAberrationsTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
       currentPhysStopSD={snapshot.currentPhysStopSD}
       fieldGeometry={snapshot.fieldGeometry}
       preparedState={snapshot.preparedState}
-      analysisContext={snapshot.analysisContext}
+      analysisContext={observedAnalysisContext(snapshot.analysisContext)}
       expanded={true}
       onExpandedChange={noop}
     />,
@@ -1306,9 +1723,9 @@ function renderAberrationsTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
   return { markupLength: html.length };
 }
 
-/** Server-renders the standalone coma tab for non-folded systems. */
+/** Server-renders the standalone coma tab for non-folded systems, which computes its data as the panel does. */
 function renderComaTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const html = renderToStaticMarkup(
+  const html = renderedMarkup(
     <ComaTab
       L={snapshot.L}
       t={themes.dark}
@@ -1320,7 +1737,7 @@ function renderComaTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
       currentPhysStopSD={snapshot.currentPhysStopSD}
       fieldGeometry={snapshot.fieldGeometry}
       preparedState={snapshot.preparedState}
-      analysisContext={snapshot.analysisContext}
+      analysisContext={observedAnalysisContext(snapshot.analysisContext)}
     />,
   );
   return { markupLength: html.length };
@@ -1328,7 +1745,7 @@ function renderComaTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
 
 /** Server-renders the spherical-aberration section using precomputed section data. */
 function renderSphericalSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
-  const html = renderToStaticMarkup(
+  const html = renderedMarkup(
     <SphericalAberrationSection
       result={values.sphericalAberration as Parameters<typeof SphericalAberrationSection>[0]["result"]}
       profile={values.saProfile as Parameters<typeof SphericalAberrationSection>[0]["profile"]}
@@ -1343,7 +1760,7 @@ function renderSphericalSection(snapshot: ScenarioSnapshot, values: AberrationDa
 
 /** Server-renders field-curvature output, preferring chromatic data when available. */
 function renderFieldCurvatureSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
-  const html = renderToStaticMarkup(
+  const html = renderedMarkup(
     <FieldCurvatureSection
       result={
         (values.chromaticFieldCurvature ?? values.fieldCurvature) as Parameters<
@@ -1360,7 +1777,7 @@ function renderFieldCurvatureSection(snapshot: ScenarioSnapshot, values: Aberrat
 
 /** Server-renders the astigmatism section from the same field-curvature bundle. */
 function renderAstigmatismSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
-  const html = renderToStaticMarkup(
+  const html = renderedMarkup(
     <AstigmatismSection
       result={
         (values.chromaticFieldCurvature ?? values.fieldCurvature) as Parameters<typeof AstigmatismSection>[0]["result"]
@@ -1375,7 +1792,7 @@ function renderAstigmatismSection(snapshot: ScenarioSnapshot, values: Aberration
 
 /** Server-renders the coma point-cloud preview section. */
 function renderComaPreviewSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
-  const html = renderToStaticMarkup(
+  const html = renderedMarkup(
     <ComaPreviewSection
       result={values.coma?.pointCloudPreview ?? null}
       expanded={true}
@@ -1388,7 +1805,7 @@ function renderComaPreviewSection(snapshot: ScenarioSnapshot, values: Aberration
 
 /** Server-renders the meridional coma plot section. */
 function renderMeridionalComaSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
-  const html = renderToStaticMarkup(
+  const html = renderedMarkup(
     <MeridionalComaSection
       result={values.coma?.meridionalComa ?? null}
       expanded={true}
@@ -1401,7 +1818,7 @@ function renderMeridionalComaSection(snapshot: ScenarioSnapshot, values: Aberrat
 
 /** Server-renders the sagittal coma plot section. */
 function renderSagittalComaSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
-  const html = renderToStaticMarkup(
+  const html = renderedMarkup(
     <SagittalComaSection
       result={values.coma?.sagittalComa ?? null}
       expanded={true}
@@ -1423,6 +1840,7 @@ function compileTraceSegment(
   result: ReturnType<typeof traceRay>,
   endOverride?: number[],
 ): RaySegment {
+  completed("ray", result);
   return compileRaySegment(
     result.pts,
     result.ghostPts,
@@ -1439,7 +1857,7 @@ function compileTraceSegment(
 
 /** Compiles a camera-frame perspective trace without synthesizing an image-plane tail. */
 function compilePerspectiveTraceSegment(snapshot: ScenarioSnapshot, sample: PerspectiveDiagramFanSample): RaySegment {
-  const result = sample.diagramTrace.ray;
+  const result = completed("ray", sample.diagramTrace.ray);
   return compileRaySegment(
     result.pts,
     result.ghostPts,
@@ -1534,54 +1952,142 @@ function spreadForAxis(
   return null;
 }
 
-/**
- * Times one benchmark callback with warmups, optional forced GC, and heap deltas.
- *
- * The measured callback must return a compact serializable output object. Errors are
- * captured into the benchmark entry rather than thrown, allowing one failing category
- * to appear in the report without aborting the full run.
- */
-function measureEntry(
-  _label: string,
-  fn: () => BenchmarkOutput,
-  { warmups, iterations }: Required<Pick<OpticsRenderingBenchmarkOptions, "warmups" | "iterations">>,
-): BenchmarkEntry {
-  const durations: number[] = [];
-  const heapDeltas: number[] = [];
-  let output: BenchmarkOutput | undefined;
+/* What the running case has completed, as the untimed pass tallies it: the tallies of each result the case has
+ * marked, by the result's label. Null in a timed pass, where `completed` costs one comparison and a case reports
+ * its `output` alone. */
+let workLog: Map<string, Record<string, number>> | null = null;
+const observedContextRestorers = new Map<AnalysisComputationContext, () => void>();
 
-  try {
+/** The tallies kept under one label in the running case's log, started when the label is first met. */
+function talliesUnder(log: Map<string, Record<string, number>>, label: string): Record<string, number> {
+  const tallies = log.get(label) ?? {};
+  log.set(label, tallies);
+  return tallies;
+}
+
+/**
+ * Marks an engine result as part of what the running case completed, and passes it through.
+ *
+ * @param label - names the result within its case
+ * @param result - what the engine returned
+ */
+function completed<T>(label: string, result: T): T {
+  if (workLog) digestCompletedWork(label, result, talliesUnder(workLog, label));
+  return result;
+}
+
+/**
+ * Renders a tree to static markup. In the untimed pass it also tallies the elements of the markup, so a run that
+ * draws less differs by a count and not only by a length that follows every printed coordinate.
+ */
+function renderedMarkup(tree: React.ReactElement): string {
+  const html = renderToStaticMarkup(tree);
+  if (workLog) tallyMarkupElements(html, talliesUnder(workLog, "markup"));
+  return html;
+}
+
+/**
+ * The analysis context a tab is rendered with. In the untimed pass it is wrapped, so that every data section the
+ * tab computes through it is marked as completed work under the name of the method that computed it. A timed
+ * pass hands the context over as it is.
+ */
+function observedAnalysisContext(context: AnalysisComputationContext): AnalysisComputationContext {
+  if (!workLog || observedContextRestorers.has(context)) return context;
+  /* Request-era panels retrieve this same cached object through the engine factory.
+   * Observe its methods in place during the untimed case, then restore every descriptor;
+   * a proxy alone sees only the older panels that call their context prop directly. */
+  const descriptors = new Map<string, PropertyDescriptor>();
+  for (const name of Object.keys(context)) {
+    const member: unknown = Reflect.get(context, name);
+    if (typeof member !== "function" || !name.startsWith("compute")) continue;
+    const descriptor = Object.getOwnPropertyDescriptor(context, name)!;
+    descriptors.set(name, descriptor);
+    Object.defineProperty(context, name, {
+      ...descriptor,
+      value: (...args: unknown[]): unknown => completed(name, Reflect.apply(member, context, args)),
+    });
+  }
+  observedContextRestorers.set(context, () => {
+    for (const [name, descriptor] of descriptors) Object.defineProperty(context, name, descriptor);
+  });
+  return context;
+}
+
+/** Start the case list of one cell. */
+function createCasePlan(): CasePlan {
+  const cases: BenchmarkCase[] = [];
+  let pendingSetup: (() => void) | undefined;
+  return {
+    cases,
+    measure(id, run, inspect) {
+      /* The cell's results hold this object from now on, so sampling fills it in place. */
+      const entry: BenchmarkEntry = { status: "error", message: "The case was not sampled." };
+      cases.push({ id, run, entry, ...(pendingSetup ? { setup: pendingSetup } : {}), ...(inspect ? { inspect } : {}) });
+      pendingSetup = undefined;
+      return entry;
+    },
+    before(setup) {
+      pendingSetup = setup;
+    },
+  };
+}
+
+/**
+ * Sample callbacks after unmeasured setup, retaining failures per case.
+ *
+ * @param cell - prepared callbacks and their result entries, updated in place
+ * @param sampling - warmup and measured call counts, with optional duration samples
+ */
+export function sampleCell(cell: PreparedBenchmarkCell, sampling: SamplingOptions): void {
+  for (const item of cell.cases) {
+    item.setup?.();
+    const sampled = {
+      durations: [] as number[],
+      heapDeltas: [] as number[],
+      output: undefined as BenchmarkOutput | undefined,
+      message: undefined as string | undefined,
+    };
     resetPerfProbe();
-    for (let i = 0; i < warmups + iterations; i++) {
-      collectGarbage();
-      const heapBefore = heapUsed();
-      const start = performance.now();
-      output = fn();
-      const elapsed = performance.now() - start;
-      collectGarbage();
-      const heapAfter = heapUsed();
-      if (i >= warmups) {
-        durations.push(elapsed);
-        if (heapBefore !== null && heapAfter !== null) heapDeltas.push(heapAfter - heapBefore);
+    for (let i = 0; i < sampling.warmups + sampling.iterations; i++) {
+      try {
+        collectGarbage();
+        const before = heapUsed();
+        const start = performance.now();
+        sampled.output = item.run();
+        const elapsed = performance.now() - start;
+        collectGarbage();
+        const after = heapUsed();
+        if (i >= sampling.warmups) {
+          sampled.durations.push(elapsed);
+          if (before !== null && after !== null) sampled.heapDeltas.push(after - before);
+        }
+      } catch (error) {
+        sampled.message = error instanceof Error ? error.message : String(error);
+        break;
       }
     }
-  } catch (error) {
-    return {
-      status: "error",
-      message: error instanceof Error ? error.message : String(error),
-    };
+    delete item.entry.message;
+    Object.assign(item.entry, entryFromSamples(sampled, sampling));
   }
+}
 
-  const timeStats = summarizeSamples(durations);
+/** Builds the entry of a sampled case: its statistics and last output, or the message of what it threw. */
+function entryFromSamples(
+  sampled: { durations: number[]; heapDeltas: number[]; output?: BenchmarkOutput; message?: string },
+  { warmups, iterations, keepSamples }: SamplingOptions,
+): BenchmarkEntry {
+  if (sampled.message !== undefined) return { status: "error", message: sampled.message };
+  const timeStats = summarizeSamples(sampled.durations);
   if (!timeStats) return { status: "error", message: "No timing samples were recorded." };
-  const heapStats = summarizeSamples(heapDeltas);
+  const heapStats = summarizeSamples(sampled.heapDeltas);
   const stats: BenchmarkStats = {
     ...timeStats,
     iterations,
     warmups,
     ...(heapStats ? { heapDeltaBytes: heapStats } : {}),
+    ...(keepSamples ? { samplesMs: sampled.durations } : {}),
   };
-  return { status: "ok", stats, output };
+  return { status: "ok", stats, output: sampled.output };
 }
 
 /** Creates a skipped benchmark entry with a stable human-readable reason. */
@@ -1630,6 +2136,7 @@ function collectGarbage(): void {
  * React markup, or optical data structures in every JSON run file.
  */
 function describeComputationOutput(value: unknown): BenchmarkOutput {
+  completed("result", value);
   if (Array.isArray(value)) return { items: value.length };
   if (value && typeof value === "object") return { keys: Object.keys(value).length };
   if (typeof value === "number") return { value };
@@ -1639,3 +2146,31 @@ function describeComputationOutput(value: unknown): BenchmarkOutput {
 
 /** Stable no-op callback used for server-rendered interactive components. */
 const noop = () => {};
+
+/** Preserve the field-geometry override alongside the shared aperture and sampling snapshot. */
+function fieldCurvatureRequest(snapshot: ScenarioSnapshot) {
+  return {
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    fieldGeometry: snapshot.fieldGeometry,
+    sampling: snapshot.analysisSampling,
+  };
+}
+
+/** Keep benchmark dispatch on the same current-state request as the drawer. */
+function sphericalRequest(snapshot: ScenarioSnapshot) {
+  return {
+    preparedState: snapshot.preparedState,
+    dynamicEFL: snapshot.dynamicEFL,
+    currentEPSD: snapshot.currentEPSD,
+    currentPhysStopSD: snapshot.currentPhysStopSD,
+    sampling: snapshot.analysisSampling,
+  };
+}
+
+/** Force each timed job to compute rather than reuse a previous context result. */
+function createFreshAnalysisContext(context: AnalysisComputationContext): AnalysisComputationContext {
+  return createAnalysisComputationContext(Object.freeze({ ...context.request }));
+}

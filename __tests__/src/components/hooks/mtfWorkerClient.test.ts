@@ -1,3 +1,4 @@
+import { mtfInputs } from "../../optics/testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   MtfWorkerClient,
@@ -7,8 +8,8 @@ import {
   type MtfWorkerRequest,
 } from "../../../../src/components/hooks/mtfWorkerClient.js";
 import { buildSimplePositiveElementLens } from "../../optics/testLensFixtures.js";
-import { computeMtf } from "../../../../src/optics/mtf.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
+import { computeMtf } from "../../../../src/optics/analysis/mtf/mtf.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 
 class Port implements MtfWorkerPort {
   onmessage: MtfWorkerPort["onmessage"] = null;
@@ -44,12 +45,12 @@ const job: MtfJob = {
     maxGridSize: 32,
   },
 };
-const result = computeMtf(prepareRuntimeState(L, 0, 0), job.options);
+const result = computeMtf(...mtfInputs(prepareRuntimeState(L, 0, 0), job.options));
 
 describe("MTF worker lifecycle", () => {
   it("retains completed curves across chart requests and invalidates changed apertures", async () => {
     const port = new Port();
-    const client = new MtfWorkerClient(L.data, () => port);
+    const client = new MtfWorkerClient(L, () => port);
     const pending = client.compute(job);
     port.reply({ type: "result", id: 1, result });
     expect(await pending).toEqual(result);
@@ -65,7 +66,7 @@ describe("MTF worker lifecycle", () => {
   it("cancels superseded work cooperatively, keeps the warm worker and ignores late messages", async () => {
     let created = 0;
     const port = new Port();
-    const client = new MtfWorkerClient(L.data, () => {
+    const client = new MtfWorkerClient(L, () => {
       created++;
       return port;
     });
@@ -83,7 +84,7 @@ describe("MTF worker lifecycle", () => {
   });
   it("reports progress for the running request only", async () => {
     const port = new Port();
-    const client = new MtfWorkerClient(L.data, () => port);
+    const client = new MtfWorkerClient(L, () => port);
     const partials: number[] = [];
     const pending = client.compute(job, (partial) => partials.push(partial.fields.length));
     port.reply({ type: "progress", id: 1, result: { ...result, fields: [] } });
@@ -96,7 +97,7 @@ describe("MTF worker lifecycle", () => {
   it("evicts retained payloads and keeps caller mutations out of cached calculations", async () => {
     const port = new Port();
     const bytes = (JSON.stringify(result).length + JSON.stringify(job).length) * 2 + 1024;
-    const client = new MtfWorkerClient(L.data, () => port, bytes + 50);
+    const client = new MtfWorkerClient(L, () => port, bytes + 50);
     const first = client.compute(job);
     port.reply({ type: "result", id: 1, result });
     await first;
@@ -114,7 +115,7 @@ describe("MTF worker lifecycle", () => {
   });
   it("does not cache results beyond its byte budget and reports worker errors", async () => {
     const port = new Port();
-    const client = new MtfWorkerClient(L.data, () => port, 1);
+    const client = new MtfWorkerClient(L, () => port, 1);
     const first = client.compute(job);
     port.reply({ type: "result", id: 1, result });
     await first;

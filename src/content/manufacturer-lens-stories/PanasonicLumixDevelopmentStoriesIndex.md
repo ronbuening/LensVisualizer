@@ -16,12 +16,15 @@ Panasonic publishes lens-development material across several official regional a
 
 | Edition | Lens or subject | Official article | Surface & Stop |
 | --- | --- | --- | --- |
+| 14 | LEICA DG VARIO-ELMARIT 35–100mm F2.8 POWER O.I.S. | [Read at Panasonic (Japanese)](https://note.com/lumix_magazine/n/nb1be5e01f73c) | — |
+| 13 | LUMIX S 100mm F2.8 MACRO | [Read at Panasonic (Japanese)](https://note.com/lumix_magazine/n/n0b57ed80d79c) | — |
+| 12 | LEICA DG VARIO-ELMAR 100–400mm F4.0–6.3 II ASPH. POWER O.I.S. | [Read at Panasonic (Japanese)](https://note.com/lumix_magazine/n/n173a5eaed7cc) | — |
 | 11 | LEICA DG VARIO-ELMARIT 12–60mm F2.8–4.0 ASPH. POWER O.I.S. | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-eleventh-edition.html) | — |
 | 10 | LEICA DG VARIO-ELMARIT 12–35mm F2.8 ASPH. POWER O.I.S. | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-tenth-edition.html) | — |
 | 9 | LUMIX S 24–105mm F4 MACRO O.I.S. | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-ninth-edition.html) | [S 24–105mm F4 MACRO O.I.S.](/lens/panasonic-lumix-s-24-105-f4-macro-ois) |
 | 8 | LUMIX S 18–40mm F4.5–6.3 | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-eighth-edition.html) | — |
 | 7 | LUMIX S 20–60mm F3.5–5.6 | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-seventh-edition.html) | [S 20–60mm](/lens/lumix-s-20-60-f35-56) |
-| 6 | LUMIX S 14–28mm F4–5.6 MACRO | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-sixth-edition.html) | — |
+| 6 | LUMIX S 14–28mm F4–5.6 MACRO | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-sixth-edition.html) | [LUMIX S 14–28mm F4–5.6 MACRO](/lens/panasonic-lumix-s-14-28mm-f4-56-macro) |
 | 5 | LUMIX S F1.8 prime series | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-fifth-edition.html) | [S 35mm F1.8](/lens/panasonic-lumix-s-35-f18) |
 | 4 | LUMIX S 70–300mm F4.5–5.6 MACRO O.I.S. | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-fourth-edition.html) | [S 70–300mm F4.5–5.6 MACRO O.I.S.](/lens/panasonic-lumix-s-70-300-f45-56-macro-ois) |
 | 3 | LUMIX S PRO 70–200mm F2.8 O.I.S. | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-third-edition.html) | [S PRO 70–200mm F2.8 O.I.S.](/lens/panasonic-lumix-s-pro-70-200mm-f2-8-ois) |
@@ -29,6 +32,8 @@ Panasonic publishes lens-development material across several official regional a
 | 1 | LUMIX S PRO 50mm F1.4 | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-first-edition.html) | [S PRO 50mm F1.4](/lens/panasonic-lumix-s-pro-50-f14) |
 
 The fifth edition covers five F1.8 primes. Its Surface & Stop link points specifically to the exact 35mm lens currently in the catalog.
+
+The series first appears in Japanese as [こちら、光学設計部](https://note.com/lumix_magazine/m/m51d8dc7670a0) on Panasonic's official _LUMIX Magazine_. Editions 12 to 14, published there between September 2025 and July 2026, are linked to those Japanese originals because no English edition could be confirmed.
 
 ## LUMIX S 20–60mm Development Story
 

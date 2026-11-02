@@ -10,7 +10,7 @@
 **Inventor:** Günther Lange  
 **Assignee:** Carl-Zeiss-Stiftung  
 **Title:** *Gauss Type Photographic Objective Containing Two Outer Collective and Two Inner Dispersive Members*  
-**Embodiment analyzed:** Embodiment I (job-card Example 1)
+**Example details:** job-card Example 1
 
 US 2,799,207 describes a Gauss-type photographic objective in which outer collective members flank inner dispersive
 members around the diaphragm. Embodiment I is the selected numerical example. The patent normalizes its prescription to

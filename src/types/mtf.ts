@@ -23,11 +23,16 @@ export type MtfUnavailableReason =
   | "spectral-data-unavailable"
   | "method-unavailable"
   | "chief-ray-failed"
+  | "aim-failed"
   | "trace-failed"
   | "empty-pupil"
   | "vignetted"
   | "outside-modeled-field";
 
+/** Method-specific settings; physical aperture comes from AnalysisRequest. */
+export type MtfRequestOptions = Omit<MtfOptions, "pupilSemiDiameterMm" | "stopSemiDiameterMm">;
+
+/** Resolved inputs used by the MTF kernels and the serializable worker protocol. */
 export interface MtfOptions {
   method: MtfMethod;
   spectrum: MtfSpectrum;
@@ -102,17 +107,14 @@ export interface MtfFocus {
 }
 
 /**
- * Aperture the axial beam actually traces at, as opposed to the f-number on the label. Authored clear apertures can
- * limit the axial beam before the iris does, and a stopped-down iris is scaled from the wide-open one.
+ * The clear aperture that vignettes the axial marginal ray, the Summary working f-number's `vignetted` state
+ * (`computeWorkingFNumber`). The chart header names it beside the marked f-number.
  */
-export interface MtfAperture {
-  /**
-   * F-number of the transmitted axial beam: its rim height times the near-axis slope n′ sin U′ per launch height.
-   * At infinity this is f / (2 × pupil radius); at a finite conjugate it is the paraxial working f-number.
-   */
-  tracedFNumber: number;
-  /** Label of the surface that stops the next ray outward; null when that surface is the iris. */
-  limitingSurfaceLabel: string | null;
+export interface MtfAxialVignetting {
+  /** Label of the surface that stops the marginal ray. */
+  surfaceLabel: string;
+  /** True when the ray is stopped before it reaches the stop. */
+  beforeStop: boolean;
 }
 
 /** What a lens's data lacks for the chart on screen; see `assessMtfDataLimitations`. */
@@ -148,14 +150,27 @@ export interface MtfFieldResult {
   status: MtfFieldStatus;
   reason: MtfUnavailableReason | null;
   message: string;
-  /** Qualifications that keep a result usable, e.g. edge rays the tracer could not resolve. */
+  /** Qualifications that keep a result usable, e.g. pupil samples that could not be aimed or traced. */
   notes: string[];
-  /** Launch cells across the transmitted beam's larger dimension. */
+  /**
+   * Where the pupil is sampled: `stop`, positions evenly spaced on the real aperture stop (OpticStudio with ray aiming,
+   * CODE V); `launch-plane`, equal cells on the launch plane, kept for a field launched from the bounding sphere.
+   */
+  pupilSampling: "stop" | "launch-plane";
+  /** Cells across the stop's diameter (across the beam's larger dimension on the launch plane). */
   gridSize: number;
   validRays: number;
   blockedRays: number;
+  /** Aimed samples whose full trace failed or never reached the image plane. */
   failedRays: number;
-  /** Share of launch flux carried by unresolved rays; the geometric OTF error is at most twice this. */
+  /** Stop samples no ray could be aimed at. */
+  unaimedRays: number;
+  /** Unaimed or failed samples beside the transmitted beam (the row or column neighbour of a transmitted cell). */
+  unresolvedInBeamRays: number;
+  /**
+   * Share of the beam's flux carried by the unaimed and failed samples beside it, which the field is judged by; the
+   * geometric OTF error is at most twice this. Samples that touch no transmitted cell are counted but not in it.
+   */
   unknownFluxFraction: number;
   /** Largest change between the last two grids at or below the convergence band. */
   maxDelta: number | null;
@@ -176,6 +191,6 @@ export interface MtfResult {
   fields: MtfFieldResult[];
   geometry: MtfFieldGeometry | null;
   focus: MtfFocus | null;
-  /** Traced axial aperture; null when the request is unsupported or no axial rim ray can be found. */
-  aperture: MtfAperture | null;
+  /** Where the axial marginal ray is vignetted; null when it is not, or when the request is unsupported. */
+  axialVignetting: MtfAxialVignetting | null;
 }

@@ -8,7 +8,6 @@
 **Inventor:** Fumikazu Kanetaka
 **Applicant:** Sony Group Corporation
 **Title:** ZOOM LENS AND IMAGE CAPTURE DEVICE
-**Embodiment analyzed:** Example 1
 
 This prescription is a transcription and model of Example 1 of WO 2024/154461 A1. The patent gives the complete
 Example 1 surface tables, three infinity zoom states, a finite-focus state at each zoom position, group focal lengths,

@@ -1,4 +1,7 @@
 // @vitest-environment jsdom
+import { constructionFixtureData } from "../../../optics/constructionFixtures.js";
+import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
+import { mtfInputs } from "../../../optics/testLensFixtures.js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { replaceTextForTranslation } from "../../../../translationTestUtils.js";
@@ -10,9 +13,11 @@ import {
   buildChromaticPositiveElementLens,
   buildSimplePositiveElementLens,
 } from "../../../optics/testLensFixtures.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
-import { assessMtfSupport, computeMtf } from "../../../../../src/optics/mtf.js";
-import { mtfImagePlaneOffset } from "../../../../../src/optics/analysis/mtfFocus.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
+import { stopSemiDiameterForFNumber } from "../../../../../src/optics/state/apertureStop.js";
+import { assessMtfSupport } from "../../../../../src/optics/analysis/mtf/mtfSupport.js";
+import { computeMtf } from "../../../../../src/optics/analysis/mtf/mtf.js";
+import { mtfImagePlaneOffset } from "../../../../../src/optics/analysis/mtf/mtfFocus.js";
 import type { MtfResult } from "../../../../../src/types/mtf.js";
 import type { MtfJob, MtfWorkerReply, MtfWorkerRequest } from "../../../../../src/components/hooks/mtfWorkerClient.js";
 import { MTF_PREFERENCES_KEY, resetMtfPreferencesCache } from "../../../../../src/utils/state/mtfPreferences.js";
@@ -28,10 +33,12 @@ const referenceOptions = {
   pupilSemiDiameterMm: 1,
   stopSemiDiameterMm: 1,
 } as const;
-const offsetMm = mtfImagePlaneOffset(state, assessMtfSupport(state, referenceOptions))!.offsetMm;
+const offsetMm = mtfImagePlaneOffset(state, assessMtfSupport(...mtfInputs(state, referenceOptions)))!.offsetMm;
 const focusedL = build({
-  ...L.data,
-  surfaces: L.data.surfaces.map((s, i, all) => (i === all.length - 1 ? { ...s, d: s.d + offsetMm } : s)),
+  ...constructionFixtureData(L),
+  surfaces: constructionFixtureData(L).surfaces.map((s, i, all) =>
+    i === all.length - 1 ? { ...s, d: s.d + offsetMm } : s,
+  ),
 });
 const focusedState = prepareRuntimeState(focusedL, 0, 0);
 
@@ -44,7 +51,7 @@ function memoizedMtf(target: typeof state, options: MtfJob["options"]): MtfResul
   const key = JSON.stringify(options);
   const cached = byOptions.get(key);
   if (cached) return cached;
-  const result = computeMtf(target, { ...options, maxGridSize: 32 });
+  const result = computeMtf(...mtfInputs(target, { ...options, maxGridSize: 32 }));
   byOptions.set(key, result);
   return result;
 }
@@ -126,6 +133,27 @@ describe("MTF tab", () => {
     expect(screen.getByRole("status").textContent).toContain("tilt or shift");
     expect(worker).not.toHaveBeenCalled();
   });
+  it("reuses the deferred request and recomputes only when its aperture changes", async () => {
+    const { calls } = stubWorker();
+    const context = (aperture: number) =>
+      createAnalysisComputationContext({
+        preparedState: state,
+        dynamicEFL: 0,
+        currentEPSD: aperture,
+        currentPhysStopSD: aperture,
+      });
+    const initial = context(1);
+    const props = { L, t: mockTheme, preparedState: state, currentEPSD: 9, currentPhysStopSD: 9 };
+    const { rerender } = render(<MtfTab {...props} analysisContext={initial} />);
+    await screen.findByRole("figure", { name: /image height/ });
+    expect(calls.jobs[0].options.pupilSemiDiameterMm).toBe(1);
+    rerender(<MtfTab {...props} analysisContext={initial} focalLengthMm={50} />);
+    expect(calls.compute).toBe(1);
+    rerender(<MtfTab {...props} analysisContext={context(0.5)} focalLengthMm={50} />);
+    await vi.waitFor(() => expect(calls.compute).toBe(2));
+    expect(calls.jobs[1].options.pupilSemiDiameterMm).toBe(0.5);
+    expect(calls.jobs[1].options.stopSemiDiameterMm).toBe(0.5);
+  });
   it("defaults to the diffraction-corrected photopic model at best axial focus and notes estimated dispersion", async () => {
     stubWorker({ target: focusedState });
     render(
@@ -140,36 +168,45 @@ describe("MTF tab", () => {
       />,
     );
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
-    // The fixture opens its iris to 1 mm, far from the f/2.8 label, so the header reports the traced aperture.
-    const header = screen.getByText(/^f\/2\.8 \(traced f\/2[45]\.\d+\) · 49\.2 mm · Diffraction-corrected · /);
+    // The iris limits the axial beam, so the marked f-number stands alone, however far the 1 mm iris is from f/2.8.
+    const header = screen.getByText(/^f\/2\.8 · 49\.2 mm · Diffraction-corrected · /);
     expect(header.textContent).toContain("photopic spectrum");
     expect(header.textContent).toContain("Best axial focus (");
     // The fixture glass has only nd and νd, so its dispersion is estimated and the tab says so.
     expect(screen.getByText("Dispersion of one glass is estimated from nd and νd.")).toBeTruthy();
     expect(screen.queryByText(/own prescription's paraxial focus/)).toBeNull();
   });
-  it("drops the translated traced-aperture note while the result belongs to an earlier request", async () => {
-    stubWorker({ target: focusedState });
+  it("names the surface that vignettes the axial beam, but not while the result belongs to an earlier request, including after translation", async () => {
+    // Element rims of 6 mm behind an iris of 8 mm or more clip the axial marginal ray at surface 1.
+    const rimmedL = build({
+      ...constructionFixtureData(focusedL),
+      surfaces: constructionFixtureData(focusedL).surfaces.map((surface) =>
+        surface.label === "STO" ? surface : { ...surface, sd: 6 },
+      ),
+    });
+    const rimmedState = prepareRuntimeState(rimmedL, 0, 0);
+    stubWorker({ target: rimmedState });
     const tab = (fNumber: number, stop: number) => (
       <MtfTab
-        L={focusedL}
+        L={rimmedL}
         t={mockTheme}
-        preparedState={focusedState}
+        preparedState={rimmedState}
         currentEPSD={stop}
         currentPhysStopSD={stop}
         fNumber={fNumber}
         focalLengthMm={49.2}
       />
     );
-    const { container, rerender } = render(tab(2.8, 1));
-    const oldHeader = (await screen.findByText(/^f\/2\.8 \(traced f\/2[45]\.\d+\)/)).textContent!;
+    const { container, rerender } = render(tab(2.8, 8));
+    const oldHeader = (await screen.findByText(/^f\/2\.8 \(axial beam vignetted at surface 1\) · 49\.2 mm/))
+      .textContent!;
     replaceTextForTranslation(container);
-    // The new label must not be compared with the previous request's beam.
-    rerender(tab(4, 0.7));
-    expect(screen.getByText(/^f\/4\.0 · 49\.2 mm/)).toBeTruthy();
+    // The new label must not carry the previous request's state.
+    rerender(tab(2.5, 9));
+    expect(screen.getByText(/^f\/2\.5 · 49\.2 mm/)).toBeTruthy();
     expect(screen.queryByText(oldHeader)).toBeNull();
     replaceTextForTranslation(container);
-    expect(await screen.findByText(/^f\/4\.0 \(traced f\/3[45]\.\d+\)/)).toBeTruthy();
+    expect(await screen.findByText(/^f\/2\.5 \(axial beam vignetted at surface 1\) · 49\.2 mm/)).toBeTruthy();
   });
   it("explains each dropdown's options in a tooltip", async () => {
     stubWorker({ target: focusedState });
@@ -263,7 +300,7 @@ describe("MTF tab", () => {
   it("lists a source erratum beside the chart without holding the chart back", async () => {
     // Catalog glass leaves no dispersion gap, so the unresolved source contradiction is the only item.
     const noted = build({
-      ...buildChromaticPositiveElementLens("test-source-erratum").data,
+      ...constructionFixtureData(buildChromaticPositiveElementLens("test-source-erratum")),
       sourceErrata: [{ status: "unresolved", note: "The table traces to a shorter focal length than stated." }],
     });
     const notedState = prepareRuntimeState(noted, 0, 0);
@@ -323,15 +360,17 @@ describe("MTF tab", () => {
 });
 
 describe("MTF chart", () => {
-  const result = computeMtf(state, {
-    method: "geometric",
-    spectrum: "reference",
-    focus: "design",
-    pupilSemiDiameterMm: 1,
-    stopSemiDiameterMm: 1,
-    fieldFractions: [0, 0.5, 1],
-    maxGridSize: 32,
-  });
+  const result = computeMtf(
+    ...mtfInputs(state, {
+      method: "geometric",
+      spectrum: "reference",
+      focus: "design",
+      pupilSemiDiameterMm: 1,
+      stopSemiDiameterMm: 1,
+      fieldFractions: [0, 0.5, 1],
+      maxGridSize: 32,
+    }),
+  );
   it("breaks curves at unavailable fields without NaN coordinates", () => {
     const gapped: MtfResult = {
       ...result,
@@ -391,11 +430,13 @@ describe("MTF export and aperture comparison", () => {
     await screen.findByRole("figure", { name: /image height/ });
     replaceTextForTranslation(container);
     fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
-    // The fixture's stopped-down iris is far from f/8, so the overlay label carries its traced aperture too.
-    expect(await screen.findByText(/^f\/8 \(traced f\/\d+(\.\d+)?\) \(thin lines\)$/)).toBeTruthy();
+    // The f/8 stop comes from the stop rule, not from the current stop, and the iris limits its beam: no note.
+    expect(await screen.findByText(/^f\/8 \(thin lines\)$/)).toBeTruthy();
     const stopped = calls.jobs.at(-1)!.options;
-    expect(stopped.pupilSemiDiameterMm).toBeCloseTo(2.8 / 8, 12);
-    expect(stopped.stopSemiDiameterMm).toBeCloseTo(2.8 / 8, 12);
+    const f8Stop = stopSemiDiameterForFNumber(8, 0, L);
+    expect(stopped.stopSemiDiameterMm).toBe(f8Stop);
+    // The current request's pupil-to-stop ratio (1 : 1 here) carries over to the f/8 stop.
+    expect(stopped.pupilSemiDiameterMm).toBeCloseTo(f8Stop, 12);
     replaceTextForTranslation(container);
     fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
     expect(screen.queryByText(/thin lines/)).toBeNull();

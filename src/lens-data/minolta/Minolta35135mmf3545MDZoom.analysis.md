@@ -10,7 +10,7 @@
 **Inventor:** Hiromu Umeda
 **Assignee:** Minolta Camera Co., Ltd. (printed as Minolta Camera Kabushiki Kaisha)
 **Title:** Lens System
-**Embodiment analyzed:** Table 4, the single worked numerical embodiment (the patent does not number it)
+**Example details:** Table 4, the single worked numerical embodiment (the patent does not number it)
 
 The implemented prescription transcribes the single numerical zoom example in Table 4 of US 5,249,079 A. The patent describes a four-unit zoom arranged positive, negative, positive, positive from object to image, with the diaphragm in the third unit and a deflecting lens element immediately behind it. Figure 1 supplies the unit arrangement and zoom-motion context; Table 4 supplies the radii, axial spacings, refractive indices, Abbe numbers, and the two published zoom endpoints.[1]
 

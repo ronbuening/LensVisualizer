@@ -7,8 +7,7 @@
 **Published:** 1980-01-05\
 **Inventors:** Ryoichi Doi; Soho Takahashi\
 **Applicant:** Fuji Photo Optical Co., Ltd.\
-**Title:** 明るい軟焦点レンズ (Bright soft-focus lens)\
-**Embodiment analyzed:** Example 1
+**Title:** 明るい軟焦点レンズ (Bright soft-focus lens)
 
 The source prints 高橋宗甫 without kana or Latin spelling. “Soho Takahashi” is a provisional romanization for catalog metadata; the personal-name reading remains unverified.
 

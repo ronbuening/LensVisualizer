@@ -8,7 +8,6 @@
 **Filed:** March 3, 1972 (JP priority March 11, 1971, No. 46/12786)
 **Granted:** July 24, 1973
 **Classification:** US 350/214; Int. Cl. G02b 9/64
-**Embodiment analyzed:** Single numerical embodiment
 
 The patent's single numerical embodiment is correlated here with the **Canon FD 35mm f/2 S.S.C. (I)**. The correlation is an author inference, not a statement in the patent: the embodiment is a 35 mm-class f/2 reverse telephoto with 2ω = 64°, nine elements in eight groups, a **concave front surface** (R₁ < 0) and a variable air interval for close focus, and the Canon Camera Museum lists the S.S.C. (I) as an 8-group, 9-element lens with a floating mechanism. The Japanese priority date (March 1971) predates the S.S.C. (I) by two years, so the same formula may also underlie earlier concave-front FD 35mm f/2 barrels; that has not been checked against a source. Collector reports describe yellowing, radioactive glass in concave-front examples; neither the patent nor Canon says so (see Glass Selection Strategy).
 

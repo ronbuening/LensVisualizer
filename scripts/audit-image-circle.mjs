@@ -20,10 +20,15 @@
  * This needs no patent and has no measurement error, which makes it the entry
  * point for the semi-diameter audit — see agent_docs/patent-figure-sd-audit-procedure.md.
  *
- * Usage:
- *   node scripts/audit-image-circle.mjs                  # whole catalog
- *   node scripts/audit-image-circle.mjs <data.ts> [...]  # named files
- *   node scripts/audit-image-circle.mjs --markdown       # queue-table output
+ * A V2 file is read through canonical ingest.
+ *
+ * Usage (`npm run audit:image-circle -- ...` passes the hook):
+ *   node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-image-circle.mjs [data.ts ...] [--markdown]
+ *     no file       the whole catalog
+ *     --markdown    queue-table output
+ *
+ * The `--import` hook is required: canonical ingest reaches value imports written
+ * with a ".js" specifier, which plain Node cannot resolve to the ".ts" source.
  */
 
 import { readdirSync } from "node:fs";
@@ -34,6 +39,9 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 
 const { IMAGE_FORMAT_BY_ID } = await import(pathToFileURL(join(ROOT, "src/utils/catalog/lensTaxonomy.ts")).href);
+const { default: buildLens, ingestLens } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
+const { clearSemiDiameter } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
+const { prepareRuntimeState } = await import(pathToFileURL(join(ROOT, "src/optics/optics.ts")).href);
 
 /** Collect every `*.data.ts` under src/lens-data. */
 function allLensFiles() {
@@ -61,8 +69,8 @@ function firstFocalLength(value) {
  * @returns multiplier to apply to real-world millimetres
  */
 function prescriptionScale(lens) {
-  const design = firstFocalLength(lens.focalLengthDesign);
-  const marketing = firstFocalLength(lens.focalLengthMarketing);
+  const design = firstFocalLength(lens.catalog.focalLengthMm?.design);
+  const marketing = firstFocalLength(lens.catalog.focalLengthMm?.marketing);
   if (!design || !marketing) return 1;
   const ratio = design / marketing;
   return ratio < 0.5 || ratio > 2 ? ratio : 1;
@@ -75,27 +83,36 @@ function prescriptionScale(lens) {
  * @returns per-lens verdict, or a skip reason when the check does not apply
  */
 async function auditLens(file) {
-  const lens = (await import(pathToFileURL(file).href)).default;
+  /* Read canonical facts, with schema defaults already applied. */
+  const lens = ingestLens((await import(pathToFileURL(file).href)).default, {
+    path: relative(ROOT, file).replaceAll("\\", "/"),
+  }).prescription;
   const rel = relative(ROOT, file);
-  const format = IMAGE_FORMAT_BY_ID[lens.imageFormat];
-  const diameterMm = lens.imageCircleMm ?? format?.diagonalMm;
+  const format = IMAGE_FORMAT_BY_ID[lens.catalog.imageFormat];
+  const diameterMm = lens.catalog.imageCircleMm ?? format?.diagonalMm;
   if (!(Number.isFinite(diameterMm) && diameterMm > 0))
-    return { rel, name: lens.name, skipped: `no usable imageFormat (${String(lens.imageFormat)})` };
+    return { rel, name: lens.name, skipped: `no usable imageFormat (${String(lens.catalog.imageFormat)})` };
   /* Folded systems route the beam through mirrors, so the axial gap between a
    * surface vertex and the image plane is not the distance the ray travels. */
   if (lens.opticalPath) return { rel, name: lens.name, skipped: "folded optical path" };
 
   const scale = prescriptionScale(lens);
   const semiDiagonal = (diameterMm / 2) * scale;
-  const focalLength = firstFocalLength(lens.focalLengthDesign) ?? firstFocalLength(lens.focalLengthMarketing);
+  const focalLength =
+    firstFocalLength(lens.catalog.focalLengthMm?.design) ?? firstFocalLength(lens.catalog.focalLengthMm?.marketing);
   if (!focalLength) return { rel, name: lens.name, skipped: "no usable focal length" };
 
   const fieldSlope = Math.max(1, semiDiagonal / focalLength);
   const wide = semiDiagonal / focalLength > 0.9;
 
+  /* A rim cut's radius, not its sd, is the surface's clear radius. */
+  const compiled = lens.surfaces.some((surface) => surface.rimCutDepthMm !== undefined)
+    ? prepareRuntimeState(buildLens(lens), 0, 0).surfaces
+    : null;
   let z = 0;
-  const surfaces = lens.surfaces.map((surface) => {
-    const row = { ...surface, z };
+  const surfaces = lens.surfaces.map((surface, i) => {
+    const cut = compiled?.[i]?.rimCut ?? null;
+    const row = { ...surface, sd: surface.sd === undefined ? surface.sd : clearSemiDiameter(surface.sd, cut), z };
     z += surface.d;
     return row;
   });
@@ -114,7 +131,7 @@ async function auditLens(file) {
   return {
     rel,
     name: lens.name,
-    format: lens.imageCircleMm ? `${diameterMm} mm circle` : lens.imageFormat,
+    format: lens.catalog.imageCircleMm ? `${diameterMm} mm circle` : lens.catalog.imageFormat,
     semiDiagonal,
     scale,
     wide,

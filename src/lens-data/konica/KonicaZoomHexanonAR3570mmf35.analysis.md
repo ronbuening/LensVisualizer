@@ -7,7 +7,7 @@
 **Inventors:** Tadashi Kojima; Reiko Mao
 **Applicant:** Konishiroku Photo Industry Co., Ltd.
 **Title:** 広角ズームレンズ ("Wide-angle zoom lens")
-**Embodiment analyzed:** Example 1 (`実施例1`), Figure 4; aberration data in Figure 6
+**Example details:** `実施例1`, Figure 4; aberration data in Figure 6
 
 The data file models a correlation between Example 1 of JPS55-21005A and the **KONICA ZOOM-HEXANON AR 35-70mm f/3.5**. The patent itself does not name the production lens, so that correspondence is an authorial production correlation rather than a manufacturer statement. The identification is supported by several convergent facts:
 

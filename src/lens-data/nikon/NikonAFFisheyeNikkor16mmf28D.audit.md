@@ -37,3 +37,29 @@ Surface 2 remains at 14.3 mm because its steep rim and adjacent gap are the phys
   none the fundamental performance is unaffected. Filters the source calls optional are not modeled, so the file is
   unchanged: no plate, and the last gap is the filter-absent back focus, 0.88 + 1.20/1.51680 + 38.5974 = 40.268539 mm.
 - The header and the inline comment now give that reason in place of "filter normalization".
+
+
+## 2026-10-29 — F-mount surface and glass reinspection
+
+Fresh direct Figure 1 review: `patents/US5434713.pdf`, PDF page 2, rendered at 600 dpi. Native page raster 300 dpi; the approximately 1580 px S1–S13 span at 600 dpi over 59.7383 mm gives about 26.45 px/mm, or 13.22 native px/mm. Every convex/concave face and all three cemented boundaries were inspected. The original clearly resolves large concave rear seats on L1 and L2. Added extensions at S2 (14.3 mm optical cap →26.0 mm drawn rim) and S4 (12.0→18.0 mm), retaining the original optical caps.
+
+No inferred rim cut is authored on this fisheye. The source’s L3 rear silhouette continues its curved face toward a taller rim; it does not show a flat cap-end seat at the constrained 7.9 mm S7 cap, so no invented extension is used there. Cemented S6/S9/S12 cannot use this feature. Other faces retain their existing geometry. The declared equisolid modeling inference, vector launch/projection fields,72° rim-angle and 0.92 gap allowance are retained.
+
+The optional source filter F (Table 1 S14–S15,1.20 mm, nd 1.51680/νd 64.1) stays unmodeled under the standing decision. Its existing filter-absent final spacing is unchanged; it is recorded separately and is not counted among eight physical lens media.
+
+Fresh source glass review: `patents/US5434713.pdf`, First Embodiment Table 1 and explicit d-line definition on PDF page 8; optional-filter description also rechecked. All 8 lens-media nd/νd pairs match the source and retain its d-line convention (587.6 nm). No source θgF/partial-dispersion, extra spectral-line indices or glass-dispersion coefficient table is published; no APD flag or spectral datum is inferred from the source.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy |
+|---|---|---|
+| L1 | 1.640000 / 60 | J-LAK01 |
+| L2 | 1.620410 / 60.1 | N-SK16 |
+| L31 | 1.625880 / 35.7 | F1 |
+| L32 | 1.796680 / 45.4 | J-LASF017 |
+| L41 | 1.581440 / 40.8 | PBL25 |
+| L42 | 1.518230 / 58.9 | J-K3 |
+| L51 | 1.518600 / 70 | J-PKH1 |
+| L52 | 1.784700 / 26.1 | S-TIH23 |
+
+Coverage: 8/8 modeled media, representing 8 physical lens elements. All available curves remain qualified spectral proxies; source coordinates are authoritative, and supplier/melt identity is unconfirmed. No tolerance is relaxed.
+
+Verification: focused surface and projection-aware image-circle audits, aperture census, and actual native SVG shapes/render diagnostics at nine focus/zoom states (prime-lens zoom states coincide); no inferred cut was authored. No hidden rim trim was observed. Current-label glass resolver, `assertCatalogConsistent()` and the shared dispersion/partial-dispersion suites pass (2 files, 93 tests). Full repository gates are recorded by the coordinator at commit time.

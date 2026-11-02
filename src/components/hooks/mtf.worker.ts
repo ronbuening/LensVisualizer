@@ -2,9 +2,11 @@
  * Browser-only MTF worker. The pure engine receives a complete immutable state per request; the
  * worker time-slices its generator so progress and cancellation are serviced between slices.
  */
-import buildLens from "../../optics/buildLens.js";
-import { prepareRuntimeState } from "../../optics/compat.js";
-import { computeMtfSteps, type MtfJobCache } from "../../optics/mtf.js";
+import { buildCanonicalLens } from "../../optics/buildLens.js";
+import { createAnalysisRequest } from "../../optics/analysis.js";
+import { prepareRuntimeState } from "../../optics/optics.js";
+import { computeMtfSteps } from "../../optics/mtf.js";
+import type { MtfJobCache } from "../../optics/mtf.js";
 import type { MtfResult } from "../../types/mtf.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { MtfJob, MtfWorkerReply, MtfWorkerRequest } from "./mtfWorkerClient.js";
@@ -70,13 +72,7 @@ self.onmessage = (event: MessageEvent<MtfWorkerRequest>) => {
     active = null;
     jobCaches.clear();
     try {
-      // RuntimeLens.data already contains generated plates. Rebuild from the authored
-      // surfaces/elements plus rearPlates so validation and expansion run exactly once.
-      lens = buildLens({
-        ...message.data,
-        surfaces: message.data.surfaces.filter((surface) => !surface.synthetic),
-        elements: message.data.elements.filter((element) => !element.synthetic),
-      });
+      lens = buildCanonicalLens(message.input);
       initializationError = null;
     } catch (error) {
       lens = null;
@@ -95,7 +91,16 @@ self.onmessage = (event: MessageEvent<MtfWorkerRequest>) => {
     // A newer request supersedes the running one; its generator is dropped mid-field.
     active = {
       id: message.id,
-      steps: computeMtfSteps(state, options, jobCache(message.job)),
+      steps: computeMtfSteps(
+        createAnalysisRequest({
+          preparedState: state,
+          dynamicEFL: 0,
+          currentEPSD: options.pupilSemiDiameterMm,
+          currentPhysStopSD: options.stopSemiDiameterMm,
+        }),
+        options,
+        jobCache(message.job),
+      ),
       postedAt: performance.now(),
     };
     pump();

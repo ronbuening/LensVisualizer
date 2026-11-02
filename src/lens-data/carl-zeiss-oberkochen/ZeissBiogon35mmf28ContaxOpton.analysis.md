@@ -10,7 +10,6 @@
 **Inventor:** Ludwig Bertele (Heerbrugg, Switzerland)
 **Applicant:** Carl Zeiss (Brenz/Heidenheim, Germany), cataloged under Carl-Zeiss-Stiftung
 **Title:** 対物レンズ (Objective lens)
-**Embodiment analyzed:** Example 1 (the publication's single numerical example)
 
 The publication describes a photographic or projection objective of four members separated by air: a simple collective first member, a cemented second member bent strongly toward the object, a cemented collective third member, and a cemented dispersive meniscus as the fourth member (p. 1 ¶2–¶3; claim, p. 2). The single example is tabulated for a focal length of 100 units, with an aperture ratio of 1:2.8 and an image angle of 62° (p. 1 ¶8; p. 2, line below the table). No stop position, clear apertures, back focus or close-focus state is published.
 

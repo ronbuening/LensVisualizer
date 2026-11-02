@@ -3,10 +3,11 @@
  * runtime lens objects, ray-trace results, and diagram geometry.
  */
 
-/* ── Raw lens data types (as declared in .data.ts files) ── */
+/* ── Numeric construction and legacy V1 data types; authored V2 types live in lensDataV2.ts ── */
 
 import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 import type { AsphericCoefficients } from "./asphericSchema.js";
+import type { SurfaceDispersion } from "./dispersion.js";
 import type { AttachedTeleconverterInfo } from "./teleconverter.js";
 
 /** One sparse coefficient in a rotationally symmetric optical-path polynomial W(h). */
@@ -32,12 +33,23 @@ export interface SurfaceData {
   nd: number;
   sd: number;
   innerSd?: number;
+  /** Depth of a flat rim cut from the vertex in mm; see `RimCut` in `optics/geometry/rimCut.ts`. */
+  rimCutDepthMm?: number;
+  /** Source of a rim cut's depth; absent on an inferred cut. */
+  rimCutDepthSource?: string;
+  /** Outer drawn semi-diameter of a vertical rim extension in mm; `sd` remains the clear aperture. */
+  rimExtensionSd?: number;
   elemId: number;
   stopPlacement?: "inside-element";
   interaction?: SurfaceInteraction;
   diffractive?: DiffractivePhaseSurface;
-  /** Set only by `expandRearPlates()`; authored data must not use it. Traced, never drawn. */
+  /** Set only by `expandCanonicalRearPlates()`; authored data must not use it. Traced, never drawn. */
   synthetic?: SyntheticOpticsKind;
+  /**
+   * `false` only on a rear plate with a generated rim, set by `expandCanonicalRearPlates()`; never authored.
+   * Such a surface never clips a ray or limits the field, and its `sd` serves only as an envelope extent.
+   */
+  clips?: false;
 }
 
 /** Marker for engine-generated optics that participate in tracing but are hidden from drawing and element UI. */
@@ -224,7 +236,9 @@ export interface ElementData {
   /** Explicit physical span for elements that contain optically neutral internal surfaces such as an embedded stop. */
   fromSurface?: string;
   toSurface?: string;
-  /** Set only by `expandRearPlates()`; synthetic elements feed dispersion lookup but are never drawn or listed. */
+  /**
+   * Set only by `expandCanonicalRearPlates()`; synthetic elements feed dispersion lookup, never drawing or lists.
+   */
   synthetic?: SyntheticOpticsKind;
 }
 
@@ -356,8 +370,16 @@ export interface PublishedStations {
   focus?: number[] | number[][];
 }
 
-/** Evidence a source erratum may cite. Every kind is internal to the source document; an MTF chart is never one. */
-export type SourceErratumEvidence = "source-summary" | "sibling-example" | "aberration-figure" | "claims";
+/**
+ * Evidence a source erratum may cite. Four kinds are internal to the cited document; `family-publication` is another
+ * publication of the same application that prints the corrected value. An MTF chart is never one.
+ */
+export type SourceErratumEvidence =
+  | "source-summary"
+  | "sibling-example"
+  | "aberration-figure"
+  | "claims"
+  | "family-publication";
 
 /** A value the source prints that contradicts the source's own data and is corrected in this file. */
 export interface CorrectedSourceErratum {
@@ -383,6 +405,14 @@ export interface UnresolvedSourceErratum {
 
 export type SourceErratum = CorrectedSourceErratum | UnresolvedSourceErratum;
 
+/** The numerical example of the cited publication a file transcribes; see LENS_DATA_SPEC.md § Patent metadata. */
+export interface PatentExample {
+  /** The source's designation in Title Case ("Example 6", "Table IV"), or "Sole example" for an unnumbered one. */
+  label: string;
+  /** The comparable token `label` gives ("6", "4", "2-1"); `null` only for "Sole example". */
+  id: string | null;
+}
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   /** Optional UTC publication timestamp for a replacement model; otherwise derived from Git history. */
@@ -403,6 +433,8 @@ export interface LensData {
   imageCircleMm?: number;
   /** Source patent publication or grant identifier, including jurisdiction and kind code when published. */
   patentNumber?: string;
+  /** The numerical example of `patentNumber` the file transcribes. */
+  patentExample?: PatentExample;
   /** Inventors named by the source patent, in source order; empty when the patent names none. */
   patentAuthors?: string[];
   /** Organizational assignees or applicants named by the source patent; empty when no organization is named. */
@@ -473,7 +505,7 @@ export interface LensData {
   apertureBladeRoundedness?: number;
 }
 
-/** Fields provided by LENS_DEFAULTS — optional in raw lens data files */
+/** Fields the schema's catalog defaults supply (`src/optics/prescription/defaults.ts`) — optional in raw lens data files */
 type DefaultedFields =
   | "rayFractions"
   | "rayLeadFrac"
@@ -489,7 +521,7 @@ type DefaultedFields =
   | "apertureStep"
   | "maxFstop";
 
-/** Raw lens data shape before defaults merging (used in .data.ts files); composer-only fields are not authorable. */
+/** Archived V1 file shape before defaults merging; current .data.ts files use LensDataV2Input. */
 export type LensDataInput = Omit<LensData, DefaultedFields | "attachedTeleconverter"> &
   Partial<Pick<LensData, DefaultedFields>>;
 
@@ -498,6 +530,16 @@ export interface EntrancePupil {
   epSD: number;
   yRatio: number;
 }
+
+/**
+ * What sizes a lens's wide-open stop (`src/optics/state/apertureStop.ts`).
+ * - `"f-number"`: the rule, paraxial EPD = F/N at the marked wide-open N of the current zoom position;
+ * - `"schedule"`: the published station radii (`zoomStopSemiDiameters`), interpolated between stations;
+ * - `"fixed-iris"`: one iris, the rule's radius at the first zoom station, kept at every zoom;
+ * - `"authored"`: the stop surface's own `sd` (folded systems and stops inside an element).
+ * Stopped-down f-numbers follow the rule on every lens, never opening past the wide-open stop.
+ */
+export type ApertureStopRule = "f-number" | "schedule" | "fixed-iris" | "authored";
 
 /** Element span: [elementId, frontSurfaceIndex, rearSurfaceIndex] */
 export type ElementSpan = [number, number, number];
@@ -516,13 +558,15 @@ export interface SurfaceSpectral {
 
 /** Frozen runtime lens object returned by buildLens() */
 export interface RuntimeLens {
-  /** Lens data after defaults and `expandRearPlates()`; `surfaces`/`elements` include synthetic plates. */
-  readonly data: LensData;
+  /** Original canonical prescription, before synthetic rear-plate expansion. */
+  readonly source: import("../optics/types.js").CanonicalLens;
+  /** Composition metadata is outside authored prescription semantics. */
+  readonly attachedTeleconverter?: LensData["attachedTeleconverter"];
   readonly S: SurfaceData[];
   readonly N: number;
   /** Drawable element spans; synthetic rear plates are excluded. */
   readonly ES: ElementSpan[];
-  /** Displayable elements; synthetic rear plates are excluded (they remain in `data.elements`). */
+  /** Displayable elements; synthetic rear plates are excluded (they remain in the compiled elements). */
   readonly elements: ElementData[];
   /** Index of the last authored (non-synthetic) surface — the rear lens vertex for back-focus readouts. */
   readonly lastLensSurfaceIdx: number;
@@ -530,7 +574,7 @@ export interface RuntimeLens {
   readonly varByIdx: Record<number, VarRange>;
   readonly vdByIdx: Record<number, number>;
   readonly spectralByIdx: Record<number, SurfaceSpectral>;
-  readonly indexByIdx: Record<number, import("../optics/dispersion.js").SurfaceDispersion>;
+  readonly indexByIdx: Record<number, SurfaceDispersion>;
   readonly varLabels: [number, string][];
   readonly groups: ResolvedAnnotation[];
   readonly doublets: ResolvedAnnotation[];
@@ -609,7 +653,10 @@ export interface RuntimeLens {
   readonly zoomXpZRelLastSurfs: number[] | null;
   readonly zoomXpSDs: number[] | null;
   readonly zoomFOPENs: number[] | null;
+  /** Wide-open stop radius at each zoom station: the f-number rule's radius, or the published schedule. */
   readonly zoomStopSDs?: readonly number[] | null;
+  /** What sizes the wide-open stop; see `ApertureStopRule`. */
+  readonly stopRule: ApertureStopRule;
   readonly zoomStep: number;
   readonly zoomLabels: string[] | null;
   readonly labelIdx: Record<string, number>;
@@ -644,6 +691,28 @@ export interface LayoutResult {
 
 export type ChromaticChannel = "R" | "G" | "B" | "V";
 
+/**
+ * Why a selected channel has no ray in a chromatic spread's zone or field: an aperture clips it, it leaves parallel to
+ * the axis, no ray could be aimed at its stop target (or chief), or the display sampler traced none.
+ */
+export type ChromaticChannelOmissionReason = "vignetted" | "no-axis-crossing" | "unaimed" | "untraced";
+
+/** A selected channel a chromatic spread leaves out, with why. */
+export interface ChromaticChannelOmission {
+  channel: ChromaticChannel;
+  reason: ChromaticChannelOmissionReason;
+}
+
+/**
+ * The ray that ended a chromatic zone search: the first channel no ray could be aimed for, at the first such zone.
+ * `reason` is the aimed launch's unaimed reason.
+ */
+export interface ChromaticZoneSearchEnd {
+  fraction: number;
+  channel: ChromaticChannel;
+  reason: "aim-not-converged" | "stop-unreachable" | "trace-failed";
+}
+
 export interface ChromaticRayFanSpread {
   axialInterceptSpreadMm: number;
   imagePlaneHeightSpreadMm: number;
@@ -652,6 +721,10 @@ export interface ChromaticRayFanSpread {
   axis?: "onAxis" | "offAxis";
   fraction?: number;
   channels?: ChromaticChannel[];
+  /** Selected channels left out of `channels`, each with why; empty when every one is compared. */
+  omittedChannels?: ChromaticChannelOmission[];
+  /** Set when an unaimed ray ended the zone search before any zone passed every channel. */
+  searchEndedBy?: ChromaticZoneSearchEnd;
 }
 
 export interface ChromaticRayFanSpreadByAxis {

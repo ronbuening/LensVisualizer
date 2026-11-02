@@ -5,7 +5,7 @@
  */
 
 import type { Theme } from "../../../types/theme.js";
-import type { DistortionSample } from "../../../optics/distortionAnalysis.js";
+import type { DistortionSample } from "../../../optics/analysis.js";
 import { SvgChartFrame } from "./charts/SvgChartFrame.js";
 import {
   createPlotArea,
@@ -21,11 +21,18 @@ import { AnalysisEmptyState } from "./analysisUi.js";
 interface DistortionChartProps {
   samples: DistortionSample[];
   t: Theme;
+  partial?: boolean;
   width?: number;
   height?: number;
 }
 
-export default function DistortionChart({ samples, t, width = 320, height = 220 }: DistortionChartProps) {
+export default function DistortionChart({
+  samples,
+  t,
+  partial = false,
+  width = 320,
+  height = 220,
+}: DistortionChartProps) {
   if (samples.length < 2) {
     return <AnalysisEmptyState t={t}>Not enough data to plot distortion curve.</AnalysisEmptyState>;
   }
@@ -54,20 +61,22 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
 
   /* ── Edge distortion annotation ── */
   const edgeSample = samples[samples.length - 1];
-  const edgeLabel = `${edgeSample.distortionPercent >= 0 ? "+" : ""}${edgeSample.distortionPercent.toFixed(2)}%`;
+  const edgeLabel = `${partial ? "Last traced: " : ""}${edgeSample.distortionPercent >= 0 ? "+" : ""}${edgeSample.distortionPercent.toFixed(2)}%`;
   const isProjectionResidual =
     edgeSample.referenceKind === "fisheye-equidistant" || edgeSample.referenceKind === "fisheye-equisolid";
 
-  /* ── Barrel / pincushion direction ── */
+  /* ── Barrel / pincushion direction ──
+   * distortionPercent = 100 × (real − ideal) / ideal, so a positive value puts the image
+   * point outside the reference height (pincushion) and a negative one inside it (barrel). */
   const dominantDirection =
     edgeSample.distortionPercent > 0.01
       ? isProjectionResidual
         ? "outward residual"
-        : "barrel"
+        : "pincushion"
       : edgeSample.distortionPercent < -0.01
         ? isProjectionResidual
           ? "inward residual"
-          : "pincushion"
+          : "barrel"
         : "";
 
   /* ── Y-axis tick values ── */

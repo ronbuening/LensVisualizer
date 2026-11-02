@@ -9,8 +9,7 @@
 **Published:** 2023-07-28\
 **Inventor:** Yuya Hirakawa (平川友也)\
 **Applicant:** FUJIFILM Corporation (富士胶片株式会社)\
-**Title:** Imaging lens and imaging apparatus (成像镜头及摄像装置)\
-**Embodiment analyzed:** Example 1
+**Title:** Imaging lens and imaging apparatus (成像镜头及摄像装置)
 
 The prescription is transcribed from Example 1 of CN 116500768 A. The patent describes a compact macro imaging lens in
 which only the negative second group moves during focusing, while the first and third groups remain fixed relative to the

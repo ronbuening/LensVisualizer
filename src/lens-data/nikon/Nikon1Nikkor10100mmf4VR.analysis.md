@@ -10,7 +10,7 @@
 **Inventors:** Akihiko Obama; Masashi Yamashita  
 **Applicant:** Nikon Corporation  
 **Title:** Variable Magnification Optical System, Optical Device, and Method for Producing Variable Magnification Optical System  
-**Embodiment analyzed:** Eighth Example, Table 8, ¶0391-0401; close-focus and VR behavior cross-checked against the numerically identical Third Example, Table 3, ¶0311-0328
+**Example details:** Table 8, ¶0391-0401; close-focus and VR behavior cross-checked against the numerically identical Third Example, Table 3, ¶0311-0328
 
 The prescription transcribed in the data file is the Eighth Example. The close-focus and stabilization discussion also uses the Third Example because Table 3 and Table 8 share the same optical prescription to the precision published in the patent, while Table 3 includes close-focus gap data and a vibration-reduction description that Table 8 omits. Table 8 remains the primary source for the exported infinity-focus prescription.
 

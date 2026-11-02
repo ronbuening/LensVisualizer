@@ -10,7 +10,7 @@
 **Applicant:** Sigma Corporation (株式会社シグマ)  
 **Title:** Inner-focus large-aperture telephoto macro lens with image-stabilization function (防振機能を有するインナーフォーカス式大口径望遠マクロレンズ)  
 **Classification:** G02B 13/02, G03B 5/00  
-**Embodiment analyzed:** Numerical Example 2 (数値実施例2)
+**Example details:** 数値実施例2
 
 JP 2013-104994 A discloses five numerical examples of the same basic inner-focus telephoto macro architecture. Numerical Example 2 is the best match for the production **Sigma APO Macro 180 mm f/2.8 EX DG OS HSM**. The identification rests on convergent evidence rather than on one isolated number.
 
@@ -27,14 +27,14 @@ Manufacturer-published specifications are treated as authoritative for product m
 
 The prescription is a six-group telephoto macro with the power sequence **positive – negative – positive – positive – negative – positive** (claim 1; ¶0009, ¶0019). The stop is placed between L3 and L4 (¶0043). The first, fourth, fifth, and sixth groups remain fixed relative to the image plane during focusing; the second and third groups translate in opposite directions.
 
-| Group | Surfaces | Elements | Isolated f (mm) | Power | Principal role |
-|---|---:|---:|---:|---|---|
-| L1 | 1–9 | 5 | +110.33 | Positive | Front collector and principal axial-color correction |
-| L2 | 10–14 | 3 | −103.40 | Negative | Front floating-focus group, moving imageward |
-| L3 | 15–19 | 3 | +75.39 | Positive | Rear floating-focus group, moving objectward |
-| L4 | 21–24 | 2 | +3207.77 | Very weak positive | Near-afocal beam conditioner before the OS group |
-| L5 | 25–29 | 3 | −32.41 | Negative | Decentering image-stabilization group |
-| L6 | 30–34 | 3 | +48.62 | Positive | Rear relay, exit-pupil, and field-control group |
+| Group | Surfaces | Elements | Isolated f (mm) | Power              | Principal role                                       |
+| ----- | -------: | -------: | --------------: | ------------------ | ---------------------------------------------------- |
+| L1    |      1–9 |        5 |         +110.33 | Positive           | Front collector and principal axial-color correction |
+| L2    |    10–14 |        3 |         −103.40 | Negative           | Front floating-focus group, moving imageward         |
+| L3    |    15–19 |        3 |          +75.39 | Positive           | Rear floating-focus group, moving objectward         |
+| L4    |    21–24 |        2 |        +3207.77 | Very weak positive | Near-afocal beam conditioner before the OS group     |
+| L5    |    25–29 |        3 |          −32.41 | Negative           | Decentering image-stabilization group                |
+| L6    |    30–34 |        3 |          +48.62 | Positive           | Rear relay, exit-pupil, and field-control group      |
 
 The key architectural decision is the location of the stabilization group. The patent criticizes prior stabilizing macro designs that either used a large-diameter front group or a rear group whose stabilizing coefficient was too low, forcing larger decentering strokes and larger OS hardware (¶0006–¶0007). Sigma's layout places the decentering L5 group behind L4, where the beam is already relatively compact, but gives L5 strong negative power so that a small lateral shift has a useful image displacement.
 
@@ -48,7 +48,7 @@ Element focal lengths below are standalone in-air thick-lens values computed dir
 
 The patent describes L1 as, from object side to image side, a biconvex lens, a biconvex lens, a positive meniscus convex to the object, and a cemented biconvex-plus-biconcave doublet (¶0060). It also states that L1 preferably contains at least one positive lens with νd ≥ 80 and that the cemented doublet helps correct axial chromatic aberration while reducing sensitivity to first-group decentering (¶0044). In Example 2, two of L1's four positive elements meet that νd ≥ 80 criterion; the third νd = 95.10 element is in L3, not L1.
 
-**L11 — Biconvex positive.** nd = 1.51680, νd = 64.20. Glass: N-BK7 catalog-equivalent; production supplier unspecified. f = +487.2 mm. This weak, nearly symmetric crown element begins the axial convergence without carrying enough power to dominate the chromatic correction. Its patent-listed C/F/g indices select the N-BK7 curve over the nearby S-BSL7 equivalent.
+**L11 — Biconvex positive.** nd = 1.51680, νd = 64.20. Glass: BSC7 qualified HOYA spectral proxy; source supplier and melt unspecified. f = +487.2 mm. This weak, nearly symmetric crown element begins the axial convergence without carrying enough power to dominate the chromatic correction. Its complete patent-listed C/F/g vector now favors BSC7 over the former N-BK7 proxy; this is a numerical spectral comparison, not a production supplier identification.
 
 **L12 — Biconvex positive, FLD class.** nd = 1.43700, νd = 95.10. Glass: FCD100-class fluorite-like ED glass; Sigma markets this class as FLD. f = +424.6 mm. This is the first of the three very-low-dispersion elements. Its patent-listed θgF is 0.533, giving ΔPgF ≈ +0.049 against the Schott normal line used here.
 
@@ -56,7 +56,7 @@ The patent describes L1 as, from object side to image side, a biconvex lens, a b
 
 **L14 — Biconvex positive, cemented.** nd = 1.59349, νd = 67.00. Glass: PCD51-class low-dispersion crown. f = +111.2 mm. This is the stronger crown half of the L1 achromatizing doublet. The patent-listed θgF is 0.536.
 
-**L15 — Biconcave negative, cemented.** nd = 1.80610, νd = 40.73. Glass: dense lanthanum flint, M-NBFD130-class. f = −136.5 mm. This flint half of the L1 doublet is cemented to L14 at R = −186.4796 mm. Its patent-listed θgF is 0.567, and the positive/negative θgF difference in L1 is the quantity controlled by condition (8).
+**L15 — Biconcave negative, cemented.** nd = 1.80610, νd = 40.73. Glass: NBFD13 qualified HOYA spectral proxy; source supplier, melt and forming process unspecified. f = −136.5 mm. This flint half of the L1 doublet is cemented to L14 at R = −186.4796 mm. Its patent-listed θgF is 0.567, and the positive/negative θgF difference in L1 is the quantity controlled by condition (8).
 
 ### Group L2 — Front floating-focus group
 
@@ -110,20 +110,21 @@ L6 is a positive rear relay: a positive meniscus followed by a cemented negative
 
 The patent gives nd and νd for every element and gives C/F/g-line indices plus θgF for the five L1 elements in Example 2. It does not name glass vendors. The glass names below are therefore catalog-class identifications, not Sigma procurement claims. Where several manufacturers publish close equivalents, the designation is intentionally expressed as a class; for nd = 1.43700 and νd = 95.10, the stored value is closest to Hoya FCD100, while OHARA S-FPL53/S-FPL55 occupy the same fluorophosphate class but are not exact nd/νd matches.
 
-| Glass class | nd | νd | θgF / ΔPgF data | Used at | Role |
-|---|---:|---:|---|---|---|
-| FCD100-class fluorite-like ED (Sigma FLD; nearby S-FPL53/S-FPL55-class equivalents) | 1.43700 | 95.10 | θgF = 0.533; ΔPgF ≈ +0.049 for L12/L13 | L12, L13, L33 | Primary secondary-spectrum correction |
-| PCD51-class low-dispersion crown | 1.59349 | 67.00 | θgF = 0.536 for L14 | L14 | Crown half of L1 doublet |
-| Dense lanthanum flint, M-NBFD130 class | 1.80610 | 40.73 | θgF = 0.567 for L15 | L15, L63 | L1 flint partner and rear positive |
-| N-BK7 catalog-equivalent | 1.51680 | 64.20 | Patent nC/nF/ng = 1.51432/1.52237/1.52667 | L11 | Weak front collector; supplier unspecified |
-| N-LAF34 / TAF1-class lanthanum dense flint | 1.77250 | 49.62 | catalog-class | L21 | Front focus meniscus |
-| SF6 / S-TIH6-class dense flint | 1.80518 | 25.46 | catalog-class | L22, L41, L42, L52 | High-dispersion partner in focus, L4, and OS groups |
-| E-C3 / S-NSL3-class light crown | 1.51823 | 58.96 | catalog-class | L23 | Negative crown in L2 doublet |
-| S-LAL18 / TAC8-class lanthanum crown | 1.72916 | 54.67 | catalog-class | L31 | L3 leading positive |
-| NBFD15 / H-ZLaF56B-class dense lanthanum flint | 1.80610 | 33.27 | catalog-class | L32 | L3 dispersive doublet element |
-| N-SK16 / BACD16-class dense barium crown | 1.62041 | 60.34 | catalog-class | L51, L61 | OS and rear-group crown elements |
-| S-BAL35 / M-BACD5N-class barium crown | 1.58913 | 61.25 | catalog-class | L53 | Separated OS negative singlet |
-| N-SF57 / S-TIH53-class dense flint | 1.84666 | 23.78 | catalog-class | L62 | Final rear doublet flint |
+| Glass class                                                                         |      nd |    νd | θgF / ΔPgF data                           | Used at            | Role                                                |
+| ----------------------------------------------------------------------------------- | ------: | ----: | ----------------------------------------- | ------------------ | --------------------------------------------------- |
+| FCD100-class fluorite-like ED (Sigma FLD; nearby S-FPL53/S-FPL55-class equivalents) | 1.43700 | 95.10 | θgF = 0.533; ΔPgF ≈ +0.049 for L12/L13    | L12, L13, L33      | Primary secondary-spectrum correction               |
+| PCD51-class low-dispersion crown                                                    | 1.59349 | 67.00 | θgF = 0.536 for L14                       | L14                | Crown half of L1 doublet                            |
+| NBFD13 qualified HOYA spectral proxy | 1.80610 | 40.73 | Source θgF = 0.567; complete source indices | L15 | L1 flint partner; source supplier/melt unspecified |
+| M-NBFD130 qualified catalog class | 1.80610 | 40.73 | No individual source C/F/g or θgF | L63 | Rear positive; existing qualified proxy retained |
+| BSC7 qualified HOYA spectral proxy | 1.51680 | 64.20 | Patent nC/nF/ng = 1.51432/1.52237/1.52667 | L11 | Weak front collector; source supplier unspecified |
+| N-LAF34 / TAF1-class lanthanum dense flint                                          | 1.77250 | 49.62 | catalog-class                             | L21                | Front focus meniscus                                |
+| SF6 / S-TIH6-class dense flint                                                      | 1.80518 | 25.46 | catalog-class                             | L22, L41, L42, L52 | High-dispersion partner in focus, L4, and OS groups |
+| E-C3 / S-NSL3-class light crown                                                     | 1.51823 | 58.96 | catalog-class                             | L23                | Negative crown in L2 doublet                        |
+| S-LAL18 / TAC8-class lanthanum crown                                                | 1.72916 | 54.67 | catalog-class                             | L31                | L3 leading positive                                 |
+| NBFD15 / H-ZLaF56B-class dense lanthanum flint                                      | 1.80610 | 33.27 | catalog-class                             | L32                | L3 dispersive doublet element                       |
+| N-SK16 / BACD16-class dense barium crown                                            | 1.62041 | 60.34 | catalog-class                             | L51, L61           | OS and rear-group crown elements                    |
+| S-BAL35 / M-BACD5N-class barium crown                                               | 1.58913 | 61.25 | catalog-class                             | L53                | Separated OS negative singlet                       |
+| N-SF57 / S-TIH53-class dense flint                                                  | 1.84666 | 23.78 | catalog-class                             | L62                | Final rear doublet flint                            |
 
 The chromatic design is built around three FLD-class elements, but only two of them are in L1. L33's placement in the moving L3 group is analytically important because the focus mechanism substantially reconfigures the optical conjugates between infinity and 1:1. A correction concentrated entirely in the fixed front group would be less stable at close focus.
 
@@ -131,11 +132,11 @@ The chromatic design is built around three FLD-class elements, but only two of t
 
 The lens uses a dual-group floating internal focus system. During focusing from infinity to 1:1, L2 moves toward the image side and L3 moves toward the object side; L1, L4, L5, L6, and the image plane remain fixed (claim 1; ¶0059). The front-surface-to-last-surface track remains 187.458 mm at all three tabulated focus states, and the first-surface-to-image distance remains 240.748 mm because Bf is constant at 53.29 mm.
 
-| Configuration | Magnification | Patent f (mm) | Fno | d9 | d14 | d19 | Bf |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Infinity | 0 | 174.60 | 2.92 | 4.9234 | 73.9422 | 5.8630 | 53.29 |
-| 1:2 | −0.5 | 135.59 | 4.62 | 20.5289 | 39.9411 | 24.2585 | 53.29 |
-| 1:1 | −1.0 | 103.47 | 5.34 | 37.6004 | 6.3155 | 40.8127 | 53.29 |
+| Configuration | Magnification | Patent f (mm) |  Fno |      d9 |     d14 |     d19 |    Bf |
+| ------------- | ------------: | ------------: | ---: | ------: | ------: | ------: | ----: |
+| Infinity      |             0 |        174.60 | 2.92 |  4.9234 | 73.9422 |  5.8630 | 53.29 |
+| 1:2           |          −0.5 |        135.59 | 4.62 | 20.5289 | 39.9411 | 24.2585 | 53.29 |
+| 1:1           |          −1.0 |        103.47 | 5.34 | 37.6004 |  6.3155 | 40.8127 | 53.29 |
 
 From infinity to 1:1, d9 increases by 32.6770 mm while d19 increases by 34.9497 mm; d14 decreases by 67.6267 mm, exactly the sum of those two group motions within rounding. This confirms the opposite-direction floating motion.
 
@@ -173,16 +174,16 @@ matching the patent's 0.55 value for condition (6). The ratio β6/β5 = 0.03495,
 
 The patent states eight conditional expressions and gives Example 2 values in ¶0085. Independent paraxial recomputation from the transcribed prescription gives the following results.
 
-| # | Condition | Patent Example 2 | Recomputed | Status |
-|---|---|---:|---:|---|
-| (1) | $0.38 < f_1/f < 1.00$ | 0.63 | 0.632 | Satisfied |
-| (2) | $3.33 < \beta_2 < 8.79$ | 5.40 | 5.402 | Satisfied |
-| (3) | $0.34 < |f_2/f| < 0.97$ | 0.59 | 0.592 | Satisfied |
-| (4) | $0.81 < (f_3 \cdot \mathrm{Fno})/f < 1.90$ | 1.26 | 1.260 | Satisfied |
-| (5) | $0.003 < f_{4R}/f_4 < 0.070$ | 0.015 | 0.0152 | Satisfied |
-| (6) | $0.40 < |1/\{\beta_6(1-\beta_5)\}| < 0.86$ | 0.55 | 0.5535 | Satisfied |
-| (7) | $0.016 < \beta_6/\beta_5 < 0.052$ | 0.035 | 0.03495 | Satisfied |
-| (8) | $\theta_{gF,L1}' - \theta_{gF,L1} < 0.050$ | 0.033 | 0.0330 | Satisfied |
+| #   | Condition                                  |         Patent Example 2 | Recomputed | Status    |
+| --- | ------------------------------------------ | -----------------------: | ---------: | --------- | ------ | --------- |
+| (1) | $0.38 < f_1/f < 1.00$                      |                     0.63 |      0.632 | Satisfied |
+| (2) | $3.33 < \beta_2 < 8.79$                    |                     5.40 |      5.402 | Satisfied |
+| (3) | $0.34 <                                    |                    f_2/f |    < 0.97$ | 0.59      | 0.592  | Satisfied |
+| (4) | $0.81 < (f_3 \cdot \mathrm{Fno})/f < 1.90$ |                     1.26 |      1.260 | Satisfied |
+| (5) | $0.003 < f_{4R}/f_4 < 0.070$               |                    0.015 |     0.0152 | Satisfied |
+| (6) | $0.40 <                                    | 1/\{\beta_6(1-\beta_5)\} |    < 0.86$ | 0.55      | 0.5535 | Satisfied |
+| (7) | $0.016 < \beta_6/\beta_5 < 0.052$          |                    0.035 |    0.03495 | Satisfied |
+| (8) | $\theta_{gF,L1}' - \theta_{gF,L1} < 0.050$ |                    0.033 |     0.0330 | Satisfied |
 
 Every condition falls inside the patent's stated range and also inside the tighter preferred ranges described in the body of the patent.
 
@@ -196,7 +197,7 @@ The prescription was rechecked independently by paraxial matrix trace and y-u ra
 - Element focal lengths: all element focal lengths quoted above are standalone in-air thick-lens values from the same prescription, not in-situ cemented-group powers.
 - Petzval sum: surface-by-surface evaluation of $\sum (n' - n)/(n n' R)$ gives P = 8.8908 × 10⁻⁴ mm⁻¹, corresponding to a Petzval radius of about 1125 mm.
 - Image circle: the patent infinity half-field, 2ω/2 = 7.035°, with f = 174.60 mm implies a 43.1 mm diagonal, consistent with 135 full-frame coverage.
-- Semi-diameters in the data file are not patent-listed values. They were estimated from the f/2.92 marginal ray, constrained by the ⌀86 mm filter, the 187.458 mm invariant optical track, element edge thickness, adjacent-surface sag clearance, and an element front/rear semi-diameter ratio no greater than 1.25.
+- Semi-diameters are inferred from Example2 Figure11 (PDF25) optical rims, checked against exact profile/air-gap geometry. Five concave lands preserve the existing clear caps; the other accepted changes extend continuous caps outward. Some full schematic bodies cross the literal profiles and remain conservatively bounded. The production filter diameter is not a printed patent clear aperture.
 
 ## Sources and References
 
@@ -206,4 +207,25 @@ The prescription was rechecked independently by paraxial matrix trace and y-u ra
 
 ---
 
-*Conventions.* Surface numbers follow JP 2013-104994 A, Numerical Example 2. Element focal lengths are standalone in-air thick-lens values. Group focal lengths are isolated-group paraxial EFLs in air. Partial-dispersion deviation ΔPgF is referenced to $P_{g,F} = 0.6438 - 0.001682\nu_d$.
+_Conventions._ Surface numbers follow JP 2013-104994 A, Numerical Example 2. Element focal lengths are standalone in-air thick-lens values. Group focal lengths are isolated-group paraxial EFLs in air. Partial-dispersion deviation ΔPgF is referenced to $P_{g,F} = 0.6438 - 0.001682\nu_d$.
+
+## 2026-10-30 source outline and glass reinspection
+
+Figure11 was inspected at600dpi against every face and cemented boundary. Air-facing S9/S11/S14/S22/S29 now have explicit flat lands, preserving clear caps34/26.5/26/15.5/12.2mm and extending to36.1/32.5/31/17/14.5mm. Continuous caps grow elsewhere to source-supported heights, including S27 at15mm. S7/S8 remain36.1mm because the drawn38mm body would cross by1.050mm (36.3mm already crosses by.025mm). The S18/S19 doublet remains bounded at20.2mm; a22mm common interface/body crosses by1.757mm. No additional inward clear-cap trim is inferred.
+
+All19 source d-line nd/νd pairs were freshly read in PDF15. PDF16 prints C/F/g and θ only for L11–L15; those exact indices and rounded source θ overrides remain. Definitions in PDF12 give d587.6/C656.3/F486.1/g435.8nm. L33 shares the FLD coordinate but has no individually published additional indices; its catalog-derived per-element spectral copies were removed so its resolved coefficient curve supplies the proxy. Source condition8 (PDF11) constrains the mean group partial-dispersion balance, rather than individually certifying anomalous materials. L11/L14/L15 badges are ordinary, L12/L13 and the correlated FLD position L33 remain inferred. Catalog coverage is available for all19; supplier, melt and manufactured color performance remain unproved.
+
+
+## 2026-10-31 — Source-vector catalog follow-up
+
+Exact local original JP 2013-104994 A, Numerical Example 2, paragraph 0062: prescription PDF/printed p15 and first-five-element spectral table p16. Paragraph 0051 p12 explicitly names d587.6/C656.3/F486.1/g435.8nm, and paragraphs 0041–42 p11 define θgF=(ng−nF)/(nF−nC) and a group-average balance. The source table prints absolute θgF values0.534/0.533/0.533/0.536/0.567, not five directly published ΔPgF deviations. Existing stored dPgF values are rounded conversions using the model normal line0.6438−0.001682νd. All those numeric fields remain unchanged. The actual C/F/g-derived ratios for the targeted L11/L14/L15 are0.534161490683/0.536117381490/0.566953006569, whereas stored-deviation reconstruction gives0.5340156/0.5360060/0.56699214. The complete indices remain the tracing evidence; do not rank substitutes against the reconstructed values alone.
+
+L11 now uses BSC7 as a qualified full-spectrum proxy. Maximum anchored C/d/F/g residual falls from14.55246×10⁻⁶ for N-BK7 to1.50061×10⁻⁶; RMS falls from8.00392×10⁻⁶ to0.83081×10⁻⁶. Source F−C span error improves from+0.048975% to+0.000433%. The gain exceeds the source's five-decimal half-rounding unit5×10⁻⁶ and the new vector fits all printed line bins. The old August7 conclusion favoring N-BK7 over S-BSL7 remains dated history; the current BSC7 evidence is a further qualified comparison, not proof of historical HOYA supply.
+
+L15 now uses NBFD13 as a qualified full-spectrum proxy. Maximum anchored residual falls from53.94707×10⁻⁶ for M-NBFD130 to6.21800×10⁻⁶; RMS falls from27.20060×10⁻⁶ to4.32760×10⁻⁶. The remaining residual means this is approximate, not a source melt identification. P-LASF47 has closer raw θ but worsens the maximum line residual to109.38761×10⁻⁶ and F−C span error to−0.408892%; it is rejected. L63 shares nd/νd but has no individual published C/F/g or θ row, so its existing M-NBFD130 proxy is retained rather than silently importing L15's measured spectrum or a manufacturing claim.
+
+L14 keeps PCD51. M-PCD51, Q-PSKH4S and J-PSKH4 improve a scalar θ ranking but worsen the complete anchored maximum residual from7.45277×10⁻⁶ to38.50003/20.36952/14.95814×10⁻⁶. A smaller catalog index difference or partial-ratio difference is insufficient against the full available source vector.
+
+All fifteen genuine first-group C/F/g values, all five rounded source partial conversions, all nineteen nd/νd pairs and every APD flag stay unchanged. Both new labels are numerical proxies only; source chemistry, historical supplier, melt and forming process remain unestablished. Complete line-index tracing gives exactly the same R/G/B/V channels before/after. Figure 11 on PDF p25 is the native 1058×532 optical bitmap at about 400 ppi (not the neighboring aberration images). Only the relevant first singlet and L14/L15 cemented interface were reinspected; no rim, land, bonded fill or curvature is changed. The completed 2026-10-30 whole-lens shape review and actual June23/August7 dates remain reused.
+
+This is a scoped source/catalog assignment follow-up, not a new whole-lens shape review. Source reference/table pages were rendered at180dpi, separately from native figure pixels. No upsampled figure detail is treated as new evidence. The preserved production-correlation and sampled-runtime limits remain separate from source fidelity. No shared catalog row, tolerance, test or engine change is introduced.

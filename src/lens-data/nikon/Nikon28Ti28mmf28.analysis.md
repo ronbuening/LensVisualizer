@@ -7,7 +7,6 @@
 **Assignee:** Nikon Corporation
 **Priority dates:** November 13, 1991 (JP 3-297444); May 13, 1993 (JP 5-111289)
 **Granted:** June 18, 1996
-**Embodiment analyzed:** Embodiment 3
 
 ---
 

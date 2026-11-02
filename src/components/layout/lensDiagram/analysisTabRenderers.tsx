@@ -10,8 +10,8 @@ import OpticalSummaryTab from "../../display/analysis/OpticalSummaryTab.js";
 import PupilAberrationTab from "../../display/analysis/PupilAberrationTab.js";
 import VignettingTab from "../../display/analysis/VignettingTab.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
-import type { AnalysisComputationContext } from "../../../optics/compat.js";
-import type { FieldGeometryState } from "../../../optics/optics.js";
+import type { AnalysisComputationContext } from "../../../optics/analysis.js";
+import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { AnalysisTabId } from "../../../types/state.js";
 import type { Theme } from "../../../types/theme.js";
@@ -23,7 +23,7 @@ export interface AnalysisDrawerInputs {
   currentEPSD: number;
   currentPhysStopSD: number;
   dynamicEFL: number;
-  /** Selected working f-number, when the host knows it. */
+  /** Marked f-number of the aperture control, when the host knows it. */
   fNumber?: number;
   fieldGeometry?: FieldGeometryState | null;
 }
@@ -51,6 +51,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       currentPhysStopSD={inputs.currentPhysStopSD}
       fNumber={inputs.fNumber}
       focalLengthMm={inputs.dynamicEFL}
+      analysisContext={analysisContext}
       movementActive={analysisContext?.movementActive}
     />
   ),
@@ -64,6 +65,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       dynamicEFL={inputs.dynamicEFL}
       currentEPSD={inputs.currentEPSD}
       currentPhysStopSD={inputs.currentPhysStopSD}
+      fNumber={inputs.fNumber}
       fieldGeometry={inputs.fieldGeometry}
       preparedState={preparedState}
       analysisContext={analysisContext}

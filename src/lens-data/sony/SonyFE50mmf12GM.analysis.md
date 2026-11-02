@@ -9,7 +9,7 @@
 **Inventors:** Yosuke Utagawa; Masaki Maruyama\
 **Applicant:** Sony Group Corporation\
 **Title:** 撮像レンズおよび撮像装置\
-**Embodiment analyzed:** Example 1 / 実施例1
+**Example details:** 実施例1
 
 The prescription implemented here is Example 1 of JP 2022-140076 A. The patent gives a 53.90 mm design focal length, Fno 1.21, 21.76° half field, 21.63 mm image height, 14 powered elements, and a two-group floating-focus mechanism. The LensVisualizer model retains that native design scale rather than scaling the prescription to the marketed 50 mm nominal focal length. [JP 2022-140076 A, pp. 12–15, Tables 1–5, ¶¶0064–0072]
 

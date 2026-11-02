@@ -10,7 +10,7 @@
 **Inventor:** Riki Maruyama (丸山 理樹)  
 **Applicant:** Sony Group Corporation  
 **Title:** 光学系および撮像装置 (Optical System and Imaging Device)  
-**Embodiment analyzed:** Example 2, Figure 5, Tables 4–6
+**Example details:** Figure 5, Tables 4–6
 
 The prescription in this file is Example 2 of JP 2025-63175 A. The numerical example begins at ¶0089; Table 4 gives the complete surface prescription, Table 5 gives the infinity-focus system values, and Table 6 gives the published infinity and 2.7 m focus states. Figure 5 is the corresponding optical section. [JP 2025-63175 A, ¶0089–¶0097; PDF pp. 18–20 and 63.]
 

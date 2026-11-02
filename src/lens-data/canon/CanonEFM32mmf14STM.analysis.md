@@ -7,7 +7,7 @@
 **Published:** November 2018
 **Assignee:** Canon Inc.
 **Title:** Imaging Optical System and Imaging Apparatus
-**Embodiment analyzed:** Numerical Data 1 / Example 1
+**Example details:** Example 1
 
 The relevant patent is Japanese published application **JP 2018-180366 A**, titled *Imaging Optical System and Imaging Apparatus*, assigned to Canon Inc. and filed on 17 April 2017. The implemented prescription is **Numerical Data 1 / Example 1**.
 

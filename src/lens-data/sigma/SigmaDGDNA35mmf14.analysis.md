@@ -7,7 +7,6 @@
 **Filed:** 17 August 2020
 **Published:** 2 March 2022
 **Title:** Optical System
-**Embodiment analyzed:** Numerical Example 1
 
 ---
 

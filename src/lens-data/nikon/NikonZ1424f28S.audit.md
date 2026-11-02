@@ -129,3 +129,78 @@ The stop tick marks in Fig. 10 (22 mm) are a drawing symbol, not an iris radius.
   chief-ray heights on 2A/4A; rectilinear `projection` overrides are single-valued and unsuitable for a zoom.
 - Iris radii are inferred from the nominal f-number, not published. Sub-aperture stop Sa is not modeled.
 - G3 rims remain estimates; no published clear apertures exist.
+
+## 2026-10-27 — Rim-cut figure review
+
+Fig. 10 (PDF p. 82, sheet 10/23; native 2478 × 3507 raster, axis vertical on columns 1145–1146, object at the bottom)
+was read element by element on the label-free half for flat lands square to the axis at the rims of concave faces,
+the shape `rimCutDepthMm` draws. Scale 0.0784 mm/px, as in the 2026-09-21 audit.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2A (L11 rear, R 16.04, asph) | 0.655 (273 / 417 px) | 15.18 mm | 21.40 mm | 21.4 → 32.8 | 3.97 mm |
+| 4A (L12 rear, R 27.44, asph) | 0.82 (214 / 262 px) | 6.24 mm | 15.60 mm | 15.6 → 20.6 | 5.82 mm |
+
+- Both rear faces stopped at their cap ends (sd 21.4 and 15.6, flat annuli excluded), so the diagram drew a slanted
+  chamfer to the front rim. Fig. 10 draws each element's edge parallel to the axis at the front face's height
+  (417 px = 32.7 mm, 262 px = 20.5 mm) and a land joining it to the cap. This review gave each rear face its front
+  partner's sd, with the cut at the old sd (cut radii 21.403 and 15.604 mm, 0.003 and 0.004 mm outside the old rims).
+  Neither cut remains: the rule section below returns both faces to their old 21.4 and 15.6 mm rims, uncut.
+- 4A: Fig. 10 runs the cap out to 214 px (about 16.8 mm), where L12's land meets L13's front rim. The 15.25 mm read on
+  2026-09-21 is the inner end of the land stroke, where L13's front face 5 joins it. This review put the cut at the
+  stored 15.6 mm, which the rule section below drops. A figure-matched cut (radius 16.83 mm, depth 7.80 mm, 0.26 mm
+  ahead of L13's front rim) would open 4A's traced rim by 1.2 mm (side vignetting there 86 % → 40 %) and is left for
+  a separate decision.
+- 27A (L40 front, R −68.43, asph) also carries a land: cap end ÷ edge 0.90 on both halves (136 / 151 px), so cut
+  radius 10.81 mm at depth 1.31 mm, which matches the land's 17 px offset from the vertex. Not cut: at the wide-end
+  full field (Y = 21.6 mm) it adds 21 points of side vignetting at that surface (0 % → 21 %) and removes 17.5 % of the
+  meridional fan that passes every other rim at 14.42 mm (6.5 / 3.8 / 0.5 % at the other three stations).
+- No land on the other concave faces (5, 6, 11, 14, 16, 23, 26): each cap meets its element edge within the figure's
+  3 px line width. The steps at 10, 13, 22 and 25 are the larger element's annulus beside a cemented junction
+  (L21, L31, L36, L39), not lands.
+- No cap reaches the stop plane at any zoom or focus state (surface 14 clears it by 1.81 mm, surface 16 by 1.88 mm).
+- All four stations still trace the stated f/2.91, with no rim, trace, iris or failed rows before or after, and
+  `audit:surface` reports no validation errors. The vignetting and distortion tabs (field 57.5°) are unchanged.
+- The viewer's vignetting-limited half-field bounds each face by its clear radius, now the uncut 21.4 and 15.6 mm
+  rims on 2A and 4A; it is 48.8 / 49.9 / 50.5 / 51.3° at the four stations, and the 49° wide-end limit listed on
+  2026-09-21 stands.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current search,
+which follows beams that vanish between screened fields, seeds from the stop and refines near cuts on the full
+measurement. The lens now carries no cut; both faces from the figure review above keep their old rims:
+
+- Surface 2A: the review raised sd to L11's 32.8 mm edge and cut at the old 21.4 mm rim. Raising sd extended the
+  asphere past its designed 21.4 mm extent, so sd returns to 21.4 mm with no cut. The land Fig. 10 draws outside it
+  is not modelled.
+- Surface 4A: the cut sat at the old 15.6 mm rim (cut radius 15.6042 mm). With the review's 20.6 mm sd and cut put
+  back, the beams reach 16.5864 mm there (wide, focus keyframe 0.404, 57.46°), so the land stopped the rays that rim
+  stops. The sd returns to 15.6 mm with no cut.
+
+Both faces draw as they did before the figure review. With no cut left, no land is checked against the 0.1 mm minimum.
+The surface audit and the beam rule pass.
+
+## 2026-10-29 — Rim extensions from the original figure
+
+Reopened `patents/WO2021117563A1.pdf`, Example 4, Figure 10 (PDF p. 82), and inspected every element on a 600 dpi crop. The 1476 native-pixel first-to-last-vertex span / 115.72 mm gives 12.76 native px/mm. The long square lands on L11 and L12 are directly resolved on both halves; the short L40 front land is also visible. Cemented shoulders remain junction geometry.
+
+| Surface | Optical cap `sd` (retained) | New drawn `rimExtensionSd` | Evidence |
+| --- | --- | --- | --- |
+| 2A | 21.4 mm | 32.8 mm | L11 rear cap ends below the front-face edge, followed by a long square land. |
+| 4A | 15.6 mm | 20.6 mm | L12 rear cap ends below the front-face edge; land returns to that edge. |
+| 27A | 12.0 mm | 12.5 mm | L40 front carries a short land to its rear-face edge. |
+
+The source's smaller L40 cap end (about 10.8 mm) and L12's approximately 16.8 mm reading do not replace the validated optical rims. Extensions retain the existing cap endpoints and add only opaque material, so the 2026-10-27 beam-rule exclusions remain in force; no asphere continues beyond its old `sd`. No additional concave cut is justified by the other faces. The public analysis now describes the drawn lands.
+
+`audit:surface` passes; `audit:image-circle` reports 0 undersized and 0 skipped. No optical `sd`, curvature, gap, asphere coefficient, stop or glass changed.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected `patents/WO2021117563A1.pdf`, Example 4: Table 4 on PDF pp. 41–43 and the element-specific prose on pp. 39–40 (¶0108–¶0111). Every stored nd/νd pair for all 16 lens elements matches the d-line table, including L11 1.588870/61.1, L12 1.743104/49.4, the repeated 1.497820/82.6 group and the rounded 32.3/23.7/42.7 Abbe values.
+
+All catalog counterparts were checked and retained: L11 S-BAL35; L12 S-LAM60; L13/L35/L37/L38 J-FKH1; L14 J-KZFH9; L21 TAFD40; L22 S-TIM22; L31 J-LASFH23; L32 J-PSKH4; L33 S-LAH98; L34 S-TIH53; L36/L39 S-LAH55; L40 Q-LASFH58S. All 16 have compatible coefficient-backed curves. The new data-file qualification makes the supplier-neutral proxy status explicit; no production glass identity is inferred.
+
+The four `apd: "patent"` classifications are supported: ¶0108 identifies L13's anomalous-dispersion glass, and ¶0110 does so for L35/L37/L38. No numerical partial dispersion or C/F/g line-index table is supplied for them, so no such values were invented. The other APD flags remain false. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). No optical or geometry values changed.

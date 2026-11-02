@@ -2,7 +2,7 @@
 
 **Patent:** US 2,645,974 — *High Aperture Wide Angle Six Element Gauss Type Objective Lens System*
 **Inventor:** Hiroshi Ito, assigned to Canon Camera Company, Ltd. (as printed on the grant; catalogued here under the canonical entity name Canon Camera Co., Inc.)
-**Embodiment:** sole illustrative example (Fig. 1); the same table is repeated verbatim in claim 5
+**Example details:** Fig. 1; the same table is repeated verbatim in claim 5
 **Filed:** June 29, 1951 (Japan priority: January 31, 1951)
 **Granted:** July 21, 1953
 **Production lens:** Canon Serenar 28mm f/3.5 I (marketed October 1951)

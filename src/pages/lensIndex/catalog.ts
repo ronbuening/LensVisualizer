@@ -14,7 +14,12 @@ import {
   LENS_SUMMARIES,
 } from "../../utils/catalog/lensSummaries.js";
 import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
-import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../../utils/catalog/lensTaxonomy.js";
+import {
+  IMAGE_FORMAT_BY_ID,
+  LENS_MOUNT_BY_ID,
+  imageFormatMetadata,
+  lensMountMetadata,
+} from "../../utils/catalog/lensTaxonomy.js";
 import type {
   CatalogLensEntry,
   CustomFilterState,
@@ -79,8 +84,9 @@ function lensAperture(data: LensSummary): number | null {
 function buildCatalogEntries(keys: readonly string[]): CatalogLensEntry[] {
   return keys.map((key) => {
     const data = LENS_SUMMARIES[key];
-    const lensMounts = (data.lensMounts ?? []).map((mountId) => LENS_MOUNT_BY_ID[mountId]);
-    const imageFormat = data.imageFormat ? IMAGE_FORMAT_BY_ID[data.imageFormat] : null;
+    /* Summaries are read from source files without validation; an id outside the taxonomy is left out. */
+    const lensMounts = (data.lensMounts ?? []).flatMap((mountId) => lensMountMetadata(mountId) ?? []);
+    const imageFormat = imageFormatMetadata(data.imageFormat) ?? null;
     return {
       key,
       data,
@@ -153,7 +159,9 @@ export function buildMakerOptions(entries: CatalogLensEntry[]): MakerOption[] {
 export function buildMountOptions(entries: CatalogLensEntry[]): MountOption[] {
   const counts = new Map<LensMountId, MountOption>();
   for (const entry of entries) {
-    for (const mount of entry.lensMounts) {
+    for (const entryMount of entry.lensMounts) {
+      const mount = lensMountMetadata(entryMount?.id);
+      if (!mount) continue;
       const existing = counts.get(mount.id);
       if (existing) {
         existing.count++;
@@ -171,12 +179,13 @@ export function buildMountOptions(entries: CatalogLensEntry[]): MountOption[] {
 export function buildImageFormatOptions(entries: CatalogLensEntry[]): ImageFormatOption[] {
   const counts = new Map<ImageFormatId, ImageFormatOption>();
   for (const entry of entries) {
-    if (!entry.imageFormat) continue;
-    const existing = counts.get(entry.imageFormat.id);
+    const format = imageFormatMetadata(entry.imageFormat?.id);
+    if (!format) continue;
+    const existing = counts.get(format.id);
     if (existing) {
       existing.count++;
     } else {
-      counts.set(entry.imageFormat.id, { id: entry.imageFormat.id, label: entry.imageFormat.label, count: 1 });
+      counts.set(format.id, { id: format.id, label: format.label, count: 1 });
     }
   }
   return Array.from(counts.values()).sort(

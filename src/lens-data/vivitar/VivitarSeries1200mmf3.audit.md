@@ -64,21 +64,21 @@ Table IV on page 5 of the local family member `patents/GB_1408910_A.pdf`.
 
 ### Changes
 
-| Field | Before | After | Evidence |
-|---|---|---|---|
-| `sd` surface 1 | 33.5 | 33.8 | Exact f/3 marginal ray 33.67 mm was clipped. Edge thickness 1.02 mm at 33.8, so not taken higher. |
-| `sd` surface 2 | 31.5 | 33.8 | Marginal ray 33.39 mm was clipped by 1.9 mm; kept coherent with surface 1. |
-| `sd` surface 4 | 27.0 | 28.5 | Marginal ray 28.06 mm was clipped. |
-| `sd` surface 5 | 24.0 | 26.0 | Marginal ray 25.68 mm was clipped. |
-| `sd` surface 6 | 23.0 | 24.0 | Marginal ray 22.92 mm had 0.08 mm margin; kept coherent with surface 5. |
-| `sd` STO | 19.5 | 20.65 | Exact-ray f/3 iris radius (engine-built value 20.648); 19.5 was close to the paraxial marginal height (19.4 mm). |
-| `sd` surface 8 | 17.5 | 18.2 | Marginal ray 17.71 mm was clipped. |
-| `sd` surface 9 | 17.0 | 18.0 | Marginal ray 17.40 mm was clipped. |
-| `focusPositions` / `var["11"]` | `[3.2, 33.8]` | `[0, 0.489091, 1]` / `[3.2, 15.0, 33.8]` | The patent's 15.0 mm close row was not stored. Its coordinate is 1.2 m ÷ 2.4535 m, the calculated object-to-film distance of that state in the stored prescription (same convention as the 135 mm f/2.3 sibling). |
-| `focusDescription` | "Unit focus — …" | objective L1–L5 moves, L6 fixed; names patent rows and the calculated endpoint | Patent description of barrel 12 / compensating lens 32. |
-| `imageFormat` | unset | `135-full-frame` | Patent: "scaled for a 24 × 36mm image frame". |
-| `subtitle` | "Ex. 4 (FIG. 5)" | "Table IV (FIG. 5)" | The patent has no example numbers. |
-| Header comment | short notes | scale, R7 source conflict, focus, stop, NOTE ON SEMI-DIAMETERS | — |
+| Field                          | Before           | After                                                                          | Evidence                                                                                                                                                                                                          |
+| ------------------------------ | ---------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sd` surface 1                 | 33.5             | 33.8                                                                           | Exact f/3 marginal ray 33.67 mm was clipped. Edge thickness 1.02 mm at 33.8, so not taken higher.                                                                                                                 |
+| `sd` surface 2                 | 31.5             | 33.8                                                                           | Marginal ray 33.39 mm was clipped by 1.9 mm; kept coherent with surface 1.                                                                                                                                        |
+| `sd` surface 4                 | 27.0             | 28.5                                                                           | Marginal ray 28.06 mm was clipped.                                                                                                                                                                                |
+| `sd` surface 5                 | 24.0             | 26.0                                                                           | Marginal ray 25.68 mm was clipped.                                                                                                                                                                                |
+| `sd` surface 6                 | 23.0             | 24.0                                                                           | Marginal ray 22.92 mm had 0.08 mm margin; kept coherent with surface 5.                                                                                                                                           |
+| `sd` STO                       | 19.5             | 20.65                                                                          | Exact-ray f/3 iris radius (engine-built value 20.648); 19.5 was close to the paraxial marginal height (19.4 mm).                                                                                                  |
+| `sd` surface 8                 | 17.5             | 18.2                                                                           | Marginal ray 17.71 mm was clipped.                                                                                                                                                                                |
+| `sd` surface 9                 | 17.0             | 18.0                                                                           | Marginal ray 17.40 mm was clipped.                                                                                                                                                                                |
+| `focusPositions` / `var["11"]` | `[3.2, 33.8]`    | `[0, 0.489091, 1]` / `[3.2, 15.0, 33.8]`                                       | The patent's 15.0 mm close row was not stored. Its coordinate is 1.2 m ÷ 2.4535 m, the calculated object-to-film distance of that state in the stored prescription (same convention as the 135 mm f/2.3 sibling). |
+| `focusDescription`             | "Unit focus — …" | objective L1–L5 moves, L6 fixed; names patent rows and the calculated endpoint | Patent description of barrel 12 / compensating lens 32.                                                                                                                                                           |
+| `imageFormat`                  | unset            | `135-full-frame`                                                               | Patent: "scaled for a 24 × 36mm image frame".                                                                                                                                                                     |
+| `subtitle`                     | "Ex. 4 (FIG. 5)" | "Table IV (FIG. 5)"                                                            | The patent has no example numbers.                                                                                                                                                                                |
+| Header comment                 | short notes      | scale, R7 source conflict, focus, stop, NOTE ON SEMI-DIAMETERS                 | —                                                                                                                                                                                                                 |
 
 Analysis sync: embodiment wording; R7 discussion rewritten (the earlier text said the repair converged on all stated
 parameters and that Table II computed to 131.3 mm — Table II computes to 135.21 mm); claim/page references; focus
@@ -116,3 +116,11 @@ implementation notes.
   with no console errors.
 - The νd rounding of all five glasses (63.1, 64.2, 25.5, 43.3, 53.7) follows HOYA catalog values rather than Schott's
   (SF6 25.43 would print 25.4); supplier remains unspecified in the patent.
+
+## 2026-10-30 — Fresh original-source shape and glass review
+
+- Original US3942876 TableIV/PDF6, Nd/Vd key and focus prose/PDF7, Fig5/PDF3 at native300dpi+600dpi freshly viewed. Every12glass face inspected. All6source nd/νd pairs exact; source gives no extraindices/θ/APDmeasurement. Existing printedR7−1567 versus inferred−567repair and other documented source residuals are retained, not passed off as source text.
+- Source scale≈19.46px/mm600dpi/native9.73px/mm. Strong concave S6 endpoint has an independent land. Keep opticalcap24 and add rimExtensionSd26 to match existingfrontL3body; sourceq≈.88 suggests a shortercap, but existing24clearcap is retained for beam clearance (adoptq.9231), not claimed measured. Other nearplanar/fewpixel endpoint marks do not justify cuts. No new inwardtrim or cementedland.
+- All6compatible currentcurves qualified. L1label now names actual PCD2spectralproxy (coefficientνd63.10503) while retainingPSK2referenceclass, no supplier/melt identity. Correct publicN-BK7nd1.51633→1.51680 and remove unsupported.00047manufacturervariation claim; currentcurveνd64.16734. L3/L4 S-TIH6νd25.42536 vs25.5 and L6 N-BALF4νd53.86590 vs53.7 are nonidentical proxies, not proven source-rounding or chemistry. Remove same-melt assertion and absence-of-APD-as-zero wording.
+  -144405samecollimated samples at3zoom(deduplicatedprime)×3focus×5format-fieldfractions:119328retained,0lost/0gained,25077bothblocked;countsnotflux. Opticalcaps invariant; source15mm intermediate gap and reconstructed33.8mm/1.2m endpoint unchanged.
+- Focused surface and image-circle checks pass (0 errors/undersized). Aperture audit:5/5 stored-design stations within3%, no rim/iris/trace failures. Field audit:4/5stations≥99%;35–85wide retains75% (16.28/21.65mm, S9limit), explicitly unresolved.27actualSVG zoom/focusstates viewed,0renderertrim and connected compounds.94shared dispersion/resolver/partial-line tests pass. Source R/d/nd/vd/stop/focus/zoom/tolerances and existing normalizations/errata invariant. No live/shared engine/catalog/test/report edits.

@@ -7,8 +7,7 @@
 **Published:** March 30, 2017\
 **Inventor:** Taiga Noda\
 **Assignee:** FUJIFILM Corporation\
-**Title:** ZOOM LENS AND IMAGING APPARATUS\
-**Embodiment analyzed:** Example 1
+**Title:** ZOOM LENS AND IMAGING APPARATUS
 
 The prescription analyzed here is Example 1 of US 2017/0090170 A1. The patent itself does not name a commercial lens. For this LensVisualizer entry, Example 1 is correlated with the **FUJIFILM FUJINON XF 100-400mm f/4.5-5.6 R LM OIS WR**. That correlation is fixed for this project but remains an identification inference rather than a statement of manufacturer confirmation.
 

@@ -1,19 +1,22 @@
 # Lens Mount And Image-Format Options
 
-Reference for the canonical `lensMounts` and `imageFormat` ids used in `*.data.ts` files.
+Reference for the canonical `catalog.lensMounts` and `catalog.imageFormat` ids used in `*.data.ts` files (and
+`catalog.lensMounts` in `*.teleconverter.ts` files).
 
 The code source of truth is `src/utils/catalog/lensTaxonomy.ts`. Keep this document in sync when adding or renaming taxonomy
 entries. Lens files should store ids, not display labels.
 
 ```ts
-lensMounts: ["nikon-z", "sony-fe"],
-imageFormat: "135-full-frame",
+catalog: {
+  lensMounts: ["nikon-z", "sony-fe"],
+  imageFormat: "135-full-frame",
+},
 ```
 
 ## Lens Mount IDs
 
-Use `lensMounts` for production mount variants represented by the optical formula. The field is optional while the
-catalog is being backfilled, but when present it must be a non-empty array of unique known ids. Supported variants may be a documented subset; describe unrepresented sockets and body-specific compatibility limits in the lens analysis. Adapter compatibility alone is not a native production mount.
+Use `catalog.lensMounts` for production mount variants represented by the optical formula. The field is optional
+while the catalog is being backfilled, but when present it must be a non-empty array of unique known ids. Supported variants may be a documented subset; describe unrepresented sockets and body-specific compatibility limits in the lens analysis. Adapter compatibility alone is not a native production mount.
 
 | ID | Display Label | Notes |
 |----|---------------|-------|
@@ -37,6 +40,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `canon-fl` | Canon FL | Canon FL manual-focus SLR mount; usually pairs with `135-full-frame`. |
 | `canon-r` | Canon R | Canon R manual-focus SLR mount; usually pairs with `135-full-frame`. |
 | `canon-rf` | Canon RF | Canon RF mirrorless mount. |
+| `canon-7-bayonet` | Canon 7 bayonet | Clip-on three-lug bayonet around the screw mount of the Canon 7 / 7s / 7sZ rangefinders (50mm f/0.95); pairs with `135-full-frame`. |
 | `contax-645` | Contax 645 | Contax 645 autofocus medium-format mount; usually pairs with `645`. |
 | `contax-g` | Contax G | Contax G autofocus rangefinder-style mount; usually pairs with `135-full-frame`. |
 | `contax-n` | Contax N | Contax N autofocus SLR mount; usually pairs with `135-full-frame`. |
@@ -74,6 +78,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `minolta-v` | Minolta V | Minolta Vectis APS film mount; usually pairs with `aps-film`. |
 | `nikon-1` | Nikon 1 | Nikon 1 mirrorless mount; usually pairs with `1-inch-type`. |
 | `nikon-f` | Nikon F | Nikon F SLR mount. |
+| `nikon-ix` | Nikon IX | IX-Nikkor lenses for the Pronea APS film SLRs; usually pairs with `aps-film`. |
 | `nikonos` | Nikonos | Nikon/Nikkor underwater camera mount; usually pairs with `135-full-frame`. |
 | `nikonos-rs` | Nikonos RS | Nikonos RS underwater AF SLR mount; usually pairs with `135-full-frame`. |
 | `nikon-s` | Nikon S | Nikon S rangefinder mount; usually pairs with `135-full-frame`. |
@@ -94,7 +99,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `samsung-nx-mini` | Samsung NX Mini | Samsung NX Mini mirrorless mount; usually pairs with `1-inch-type`. |
 | `sigma-sa` | Sigma SA | Sigma SA SLR/mirrorless mount; usually pairs with `aps-c` or `135-full-frame`. |
 | `sony-a` | Sony A | Minolta/Sony A SLR/SLT mount. |
-| `sony-fe` | Sony E | Sony E mount. Use this id for both full-frame FE and APS-C E lenses; the format lives in `imageFormat`. |
+| `sony-fe` | Sony E | Sony E mount. Use this id for both full-frame FE and APS-C E lenses; the format lives in `catalog.imageFormat`. |
 | `bronica-etr` | Zenza Bronica ETR | Bronica ETR 6x4.5 medium-format SLR mount; usually pairs with `645`. |
 | `bronica-gs` | Zenza Bronica GS | Bronica GS-1 6x7 medium-format SLR mount; usually pairs with `6x7`. |
 | `bronica-sq` | Zenza Bronica SQ | Bronica SQ 6x6 medium-format SLR mount; usually pairs with `6x6`. |
@@ -102,8 +107,10 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 
 ## Image Format IDs
 
-Use `imageFormat` for the single image circle or capture format the prescription is intended to cover. The field is
-optional while the catalog is being backfilled, but when present it must be exactly one known id.
+Use `catalog.imageFormat` for the single image circle or capture format the prescription is intended to cover. The
+field is optional while the catalog is being backfilled, but when present it must be exactly one known id. A published
+circular image diameter goes in `catalog.imageCircleMm` beside it, and overrides the format diagonal for analysis-field
+bounds ([LENS_DATA_SPEC.md](LENS_DATA_SPEC.md) § Identity and Catalog).
 
 Dimensions are nominal usable frame dimensions in millimeters and are used for catalog grouping plus image-field limits
 in distortion, vignetting, bokeh, and aberration analysis.
@@ -147,13 +154,14 @@ in distortion, vignetting, bokeh, and aberration analysis.
 
 - Prefer official product specs, patent examples, or documented production variants over filename inference.
 - Multi-mount lenses should list every known production mount represented by the same optical formula.
-- Fixed-lens cameras should use `lensMounts: ["fixed-lens-camera"]` plus the appropriate `imageFormat`.
+- Fixed-lens cameras should use `catalog.lensMounts: ["fixed-lens-camera"]` plus the appropriate
+  `catalog.imageFormat`.
 - Use `1-2.3-inch-type` or `1-1.7-inch-type` for Pentax Q lenses when the source format is known.
 - Use `1-inch-type` for Nikon 1 / CX-format lenses.
 - Use `four-thirds` for both Four Thirds DSLR and Micro Four Thirds lenses.
 - Use `aps-c` for Canon EF-M, Samsung NX, Fujifilm X, and most Sigma SA digital lenses unless the source explicitly
   describes a different covered field.
-- Use `aps-film` for Minolta Vectis lenses.
+- Use `aps-film` for Minolta Vectis and Nikon IX-Nikkor lenses.
 - Use `half-frame-135` for Olympus Pen F lenses.
 - Use `135-full-frame` for 35 mm SLR and rangefinder mounts unless a narrower or wider covered field is documented.
 - Use `135-panoramic` for Hasselblad XPan / Fujifilm TX lenses.
@@ -203,8 +211,8 @@ not measurements of the individual production camera or of a patent's variable i
   it does not reconstruct either crop or imply the patent covers the entire envelope at every zoom station.
 - `super-35-cinema`: ANSI silent aperture 24.9 × 18.7 mm from [ARRI's Ultra Prime technical table](https://www.arri.com/en/cine-lenses/arri-zeiss-fujinon-lenses/legacy/ultra-prime-lenses/arri-ultra-prime-lenses-technical-data).
 - `super-35-1.9`: 26.2 × 13.8 mm is the EOS C500 1.9:1 reference in [Canon's CN7×17 manual](https://downloads.canon.com/nw/camera/products/cine-lenses/cine-servo/pdfs/b-im-20237-4-web.pdf).
-  The CN7 also covers a 24.6 × 13.8 mm C300 frame. Keep its explicit 29.6 mm image circle; the larger silent-aperture
-  Super 35 format would exceed this lens's disclosed coverage.
+  The CN7 also covers a 24.6 × 13.8 mm C300 frame. Keep its explicit 29.6 mm `catalog.imageCircleMm`; the larger
+  silent-aperture Super 35 format would exceed this lens's disclosed coverage.
 
 Production-format assignments retain each lens's existing patent/product correlation caveat. A format is not proof of
 production prescription identity or unvignetted full-field performance. The S-100 remains unresolved: Nikon's

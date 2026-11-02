@@ -10,7 +10,7 @@
 **Inventor:** Tetsuya Arimoto  
 **Assignee:** Minolta Camera Kabushiki Kaisha, Osaka, Japan  
 **Title:** Telephoto Lens System  
-**Embodiment analyzed:** Embodiment 3 (Table 3, Figure 7)
+**Example details:** Table 3, Figure 7
 
 The patent discloses a compact large-aperture telephoto lens made from three lens units in positive-negative-positive order. Only the negative second unit moves for focusing. Embodiment 3 is the closest disclosed numerical form for the Minolta AF APO Tele 200mm f/2.8 because the worked example has the same 8-element, 7-group count, the same all-spherical three-unit layout, two patent-listed anomalous-dispersion positive front elements, an f/2.8 aperture, and a full field close to the production lens. The manufacturer manual for the high-speed version lists the AF 200mm f/2.8 APO TELE (N), inner autofocusing, anomalous-dispersion glass, a 1.5 m minimum focus distance, f/32 minimum aperture, 72 mm filter, 86 × 134 mm size, and 790 g weight.
 

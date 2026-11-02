@@ -10,7 +10,7 @@
 **Inventors:** Ryosuke Nagami, Takashi Suzuki (Saitama-shi, Japan)
 **Applicant:** FUJIFILM Corporation, Tokyo (Japan)
 **Title:** Imaging Lens and Imaging Apparatus
-**Embodiment analyzed:** Example 1 (Tables 1–3, Figures 1 and 5)
+**Example details:** Tables 1–3, Figures 1 and 5
 
 The patent discloses four worked examples of a compact wide-angle imaging lens intended for digital cameras with large imaging sensors (APS-C to Four Thirds format). Example 1 is identified as the prescription most likely implemented in the production Fujifilm X70 based on the following convergent evidence:
 

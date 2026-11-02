@@ -17,3 +17,9 @@ Added manufacturer power-series rows J-LASF05 (PDF p.136), J-PSK02 (p.36), J-LAF
 ## 2026-09-30 — Local-site follow-up
 
 Compared wide/middle/tele local-site sections with Fig. 1; retained SDs. G2 moves imageward by 25.313/34.661 mm at middle/tele; G3 moves 13.749/10.991 mm, correctly reversing after the middle station. Restored printed middle d18=2.127 mm: the published gap sums differ by 0.001 mm despite the text describing fixed G4. Preserve that rounding discrepancy rather than altering the prescription. Added inferred-APD tags to L13/L14/L42 from the J-FKH1 proxy curve. Nikon Corporation is canonical; the historical Nippon Kogaku entity remains distinct and linked through corporate history.
+
+## 2026-10-30 — Original-figure and fresh glass reinspection
+
+- Directly viewed `patents/US20170315337A1.pdf`, Example1 Figure1/PDF2 at600dpi, Table1/d-line definition/PDF35. Every convex/concave face and bonded boundary inspected. G2 and last-meniscus concave arcs reach their optical rims; small bevels are unresolved at native stroke width. No additional land/clip is justified; leaders/brackets excluded. All SDs, source spacings, focus availability and tolerances retained, including0.001mm source-gap rounding.
+- All20 source nd/vd pairs exact, all20 current catalog curves retained with qualified spectral-proxy labels. No patent C/F/g or partial-dispersion table. Existing catalog-normal-line deviations remain distinct from the runtime baseline/patent evidence; three inferred J-FKH1 roles stay qualified. No source spectral fields or supplier identity invented.
+- Source FNO4.1 agrees with current fixediris calibration4.0997 at printed precision. Three aperture stations iris-limited within3%, three formatcorners>=99%; surface/circle pass. Nine actualSVG states have20finite paths/zero trim; finalraster inspected.20sourcepairs/catalog consistency and sharedglass3files94testspass. Numeric close-focus law remains unavailable.

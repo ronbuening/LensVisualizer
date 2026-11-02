@@ -7,7 +7,7 @@
 **Inventors:** Johann Lautenbacher; Theodor Brendel  
 **Assignee:** Enna-Werk Optische Anstalt Dr. Appelt K.G., Munich, Germany  
 **Title:** Four-Membered Photographic Wide-Angle Objective  
-**Embodiment analyzed:** Sole numerical example / claim 2 construction data
+**Example details:** claim 2 construction data
 
 US 2,821,112 discloses a four-member wide-angle photographic objective consisting of a front negative meniscus separated from a simple triplet by a long air gap. The patent states that the design was intended for single-reflex cameras because of its long back focal length, and that the object of the invention was to increase the relative aperture of this design class to f/3.5 while improving coma and reducing vignetting for oblique rays. The worked prescription is normalized to $f = 1.0$ and gives a stated back focal length of $s' = 1.01941f$.
 

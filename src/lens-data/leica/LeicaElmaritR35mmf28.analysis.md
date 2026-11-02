@@ -6,7 +6,7 @@
 **Priority:** German application L 50.417, filed 8 April 1965  
 **Applicant:** Ernst Leitz G.m.b.H., Wetzlar, Federal Republic of Germany  
 **Title:** Objectif photographique  
-**Embodiment analyzed:** Single numerical prescription; the patent contains one worked table and one optical section drawing
+**Example details:** the patent contains one worked table and one optical section drawing
 
 FR 1,471,493 describes a short-focal-length photographic objective whose rear focal distance on the image side is intentionally longer than the focal length. The tabulated numerical example is normalized to $f = 1.0$, has aperture ratio 1:2.8, and gives $s' = 1.0918f$ for the back focal distance. Scaled uniformly by 35.0, the prescription computes to $f = 35.073\ \mathrm{mm}$ and a computed paraxial back focal length of $38.305\ \mathrm{mm}$, with the patent-listed $s'$ scaling to $38.213\ \mathrm{mm}$.
 

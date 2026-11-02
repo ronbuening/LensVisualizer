@@ -9,7 +9,7 @@
 **Inventor:** Sakai Takahiko (坂井 隆彦)  
 **Applicant:** Tamron Co., Ltd. (株式会社タムロン)  
 **Title:** インナーフォーカス式レンズ ("Inner-Focus-Type Lens")  
-**Embodiment analyzed:** Example 1 (実施例1, ¶0050-0066)
+**Example details:** 実施例1, ¶0050-0066
 
 JP 2014-89352 A describes a compact positive-negative-positive inner-focus standard lens intended for still and video cameras. Example 1 is the closest match to the production Sony E 35mm F1.8 OSS (SEL35F18). The identification rests on convergent numerical and architectural evidence rather than on an explicit Sony product name in the patent.
 

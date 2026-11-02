@@ -1,22 +1,19 @@
+import { runtimeFixtureView } from "./constructionFixtures.js";
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
+import { buildRimCutLens, registerRuntimeFixture } from "./testLensFixtures.js";
 import { describe, it, expect } from "vitest";
+import { createCoordinateTransforms } from "../../../src/optics/diagram/coordinateTransforms.js";
 import {
-  createCoordinateTransforms,
   computeElementRenderDiagnostics,
   computeElementShapes,
   computeStandaloneMirrorPaths,
-} from "../../../src/optics/diagramGeometry.js";
-import buildLens from "../../../src/optics/buildLens.js";
+} from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
 import nikonPf500Data from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import { doLayout, SVG_PATH_SUBDIVISIONS } from "../../../src/optics/optics.js";
-import type {
-  RuntimeLens,
-  AsphericCoefficients,
-  ElementSpan,
-  SurfaceData,
-  LensData,
-} from "../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { catalogLensData } from "./testLensFixtures.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { SVG_PATH_SUBDIVISIONS } from "../../../src/optics/diagram/surfaceOutline.js";
+import type { RuntimeLens, AsphericCoefficients, ElementSpan, SurfaceData } from "../../../src/types/optics.js";
 
 /* ═══════════════════════════════════════════════════════════════════
  * §1  createCoordinateTransforms
@@ -176,6 +173,7 @@ describe("computeElementShapes", () => {
         nd: surface.nd,
         sd: surface.sd,
         innerSd: surface.innerSd,
+        rimExtensionSd: surface.rimExtensionSd,
         elemId: surface.elemId ?? span?.[0] ?? 0,
         stopPlacement: surface.stopPlacement,
         interaction: surface.interaction,
@@ -199,9 +197,9 @@ describe("computeElementShapes", () => {
       toSurface: surfaces[s2].label,
     }));
     const imageZ = surfaces.reduce((sum, surface) => sum + surface.d, 0);
-    return {
+    return registerRuntimeFixture({
       ...partial,
-      data: {
+      ...runtimeFixtureView({
         key: "diagram-geometry-fixture",
         name: "Diagram geometry fixture",
         closeFocusM: 0.5,
@@ -224,7 +222,7 @@ describe("computeElementShapes", () => {
         offAxisFieldFrac: 0.6,
         offAxisFractions: [-0.5, 0, 0.5],
         nominalFno: 2,
-      },
+      }),
       S: surfaces,
       N: partial.N ?? surfaces.length,
       ES: partial.ES,
@@ -266,7 +264,7 @@ describe("computeElementShapes", () => {
       maxAspectRatio: 1.6,
       lensShiftFrac: 0,
       rayLeadFrac: 0.35,
-    } as RuntimeLens;
+    } as RuntimeLens);
   }
 
   /**
@@ -310,7 +308,7 @@ describe("computeElementShapes", () => {
   }
 
   it("returns empty array for empty ES", () => {
-    const L = { ...makeSingleElementLens(), ES: [] };
+    const L = registerRuntimeFixture({ ...makeSingleElementLens(), ES: [] });
     expect(computeElementShapes(L, [0, 5], sx, sy)).toEqual([]);
   });
 
@@ -345,6 +343,62 @@ describe("computeElementShapes", () => {
 
     expect(shifted[0][0]).toBeCloseTo(unmoved[0][0]);
     expect(shifted[0][1]).toBeCloseTo(unmoved[0][1] + 5);
+  });
+
+  it("draws a rim cut as a flat land from the cut radius to the rim", () => {
+    const corner = Math.sqrt(76);
+    const coords = pathCoords(computeElementShapes(buildRimCutLens(2), [0, 1, 7], sx, sy)[0].d);
+    const rear = coords.slice(SVG_PATH_SUBDIVISIONS + 1);
+    expect(rear).toHaveLength(SVG_PATH_SUBDIVISIONS + 3);
+    expect(rear.filter(([, y]) => Math.abs(Math.abs(y) - corner) < 1e-9)).toHaveLength(2);
+    for (const [z, y] of rear) {
+      if (Math.abs(y) >= corner - 1e-9) expect(z).toBeCloseTo(9, 9);
+      else expect(z).toBeLessThan(9);
+    }
+  });
+
+  it.each([50, -50, 1e15])("extends a shorter face vertically from its existing cap edge (R=%s)", (R) => {
+    const L = hydrateDiagramLens({
+      S: [
+        { label: "1", R, d: 5, nd: 1.5, sd: 8, rimExtensionSd: 12 },
+        { label: "2", R: -50, d: 50, nd: 1, sd: 12 },
+      ],
+      ES: [[1, 0, 1]],
+    });
+    const coords = pathCoords(computeElementShapes(L, [0, 5], sx, sy)[0].d);
+    const front = coords.slice(0, SVG_PATH_SUBDIVISIONS + 3);
+    const edgeSag = R > 1e10 ? 0 : R - Math.sign(R) * Math.sqrt(R * R - 8 * 8);
+    expect(front[0][1]).toBe(-12);
+    expect(front.at(-1)![1]).toBe(12);
+    expect(new Set(front.filter(([, y]) => Math.abs(y) === 8).map(([, y]) => y))).toEqual(new Set([-8, 8]));
+    for (const [z] of front.filter(([, y]) => Math.abs(y) >= 8)) expect(z).toBeCloseTo(edgeSag, 10);
+    expect(computeElementRenderDiagnostics(L, [0, 5])[0].front).toMatchObject({
+      declaredSD: 12,
+      renderSD: 12,
+      trimAmount: 0,
+      trimCause: "none",
+    });
+  });
+
+  it("keeps a vertical extension beyond the asphere's conic domain without extending the cap", () => {
+    const L = hydrateDiagramLens({
+      S: [
+        { label: "1", R: 20, d: 10, nd: 1.5, sd: 7, rimExtensionSd: 14 },
+        { label: "2", R: -50, d: 50, nd: 1, sd: 14 },
+      ],
+      ES: [[1, 0, 1]],
+      asphByIdx: { 0: { K: 3, A4: 1e-5, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
+    });
+    const shape = computeElementShapes(L, [0, 10], sx, sy)[0];
+    const front = pathCoords(shape.d).slice(0, SVG_PATH_SUBDIVISIONS + 3);
+    const land = front.filter(([, y]) => Math.abs(y) >= 7);
+    expect(front[0][1]).toBe(-14);
+    expect(front.at(-1)![1]).toBe(14);
+    expect(land.every(([z]) => Math.abs(z - land[0][0]) < 1e-10)).toBe(true);
+    expect(land[0][0]).toBeCloseTo(49 / (20 + Math.sqrt(400 - 4 * 49)) + 1e-5 * 7 ** 4, 10);
+    expect(shape.asphPaths[0].pathD).not.toMatch(/NaN|Infinity/);
+    const moved = pathCoords(computeElementShapes(L, [0, 10], sx, sy, (z, y) => [z + 2, y - 3])[0].d);
+    expect(moved).toEqual(pathCoords(shape.d).map(([z, y]) => [z + 2, y - 3]));
   });
 
   it("path contains expected number of line segments", () => {
@@ -622,10 +676,10 @@ describe("computeElementShapes", () => {
   });
 
   it("samples slope-trimmed surfaces only to the diagnostic render SD", () => {
-    const L = {
+    const L = registerRuntimeFixture({
       ...makeSingleElementLens({ R1: 32.975, sd1: 24, R2: 84.15, sd2: 20 }),
       maxRimTan: 0.95,
-    } as RuntimeLens;
+    } as RuntimeLens);
     const zPos = [0, 8.01];
     const diagnostics = computeElementRenderDiagnostics(L, zPos);
     const shape = computeElementShapes(L, zPos, sx, sy)[0];
@@ -676,7 +730,7 @@ describe("computeElementShapes", () => {
         { label: "L2F", R: 1e15, d: 3, nd: 1.5, elemId: 2, sd: 8 },
         { label: "L2R", R: 12, d: 0.3, nd: 1.0, elemId: 0, sd: 8 },
         { label: "M1F", R: 1e15, d: 1, nd: 1.5, elemId: 1, sd: 20, innerSd: 10 },
-        { label: "BYPASS", R: 1e15, d: 1, nd: 1.0, elemId: 1, sd: 8 },
+        { label: "BYPASS", R: 1e15, d: 1, nd: 1.0, elemId: 0, sd: 8 },
         {
           label: "M1R",
           R: 1e15,
@@ -750,7 +804,7 @@ describe("computeElementShapes", () => {
         { label: "L2F", R: 1e15, d: 3, nd: 1.5, elemId: 2, sd: 8 },
         { label: "L2R", R: 12, d: 0.3, nd: 1.0, elemId: 0, sd: 8 },
         { label: "M1F", R: 1e15, d: 1, nd: 1.5, elemId: 1, sd: 20 },
-        { label: "BYPASS", R: 1e15, d: 1, nd: 1.0, elemId: 1, sd: 8 },
+        { label: "BYPASS", R: 1e15, d: 1, nd: 1.0, elemId: 0, sd: 8 },
         {
           label: "M1R",
           R: 1e15,
@@ -792,7 +846,7 @@ describe("computeElementShapes", () => {
   });
 
   it("renders a tilted fold mirror and its passive backing plane with matching meridional normals", () => {
-    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-newtonian-side-focus"]);
     const layout = doLayout(0, 0, L);
     const shapes = computeElementShapes(L, layout.z, sx, sy);
     const secondaryShape = shapes.find((shape) => shape.eid === 2);
@@ -814,7 +868,7 @@ describe("computeElementShapes", () => {
   });
 
   it("emits a coating accent path for second-surface mirror fixtures", () => {
-    const L = buildLens(LENS_CATALOG["reference-mangin-second-surface-mirror"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-mangin-second-surface-mirror"]);
     const layout = doLayout(0, 0, L);
     const shapes = computeElementShapes(L, layout.z, sx, sy);
     const manginShape = shapes.find((shape) => shape.eid === 1);
@@ -830,7 +884,7 @@ describe("computeElementShapes", () => {
   });
 
   it("emits a semantic phase accent without changing the authored spherical profile", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...nikonPf500Data } as LensData);
+    const L = buildLens(catalogLensData(nikonPf500Data));
     const layout = doLayout(0, 0, L);
     const shapes = computeElementShapes(L, layout.z, sx, sy);
     const phaseSurfaceIndex = L.labelIdx["8"];
@@ -879,10 +933,11 @@ describe("computeElementShapes", () => {
 
 describe("standalone reflecting surfaces", () => {
   it("renders annular and tilted mirrors without inventing glass bodies", () => {
-    const base = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const base = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-newtonian-side-focus"]);
     const L = { ...base, ES: [], S: base.S.map((surface) => ({ ...surface })) };
     const primary = L.S.findIndex((surface) => surface.label === "M1");
     L.S[primary].innerSd = 5;
+    registerRuntimeFixture(L);
     const layout = doLayout(0, 0, L);
     const paths = computeStandaloneMirrorPaths(
       L,
@@ -911,7 +966,7 @@ describe("standalone reflecting surfaces", () => {
   });
 
   it("leaves glass-bound mirror coatings to the element renderer", () => {
-    const L = buildLens(LENS_CATALOG["reference-mangin-second-surface-mirror"]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["reference-mangin-second-surface-mirror"]);
     const layout = doLayout(0, 0, L);
     const standalone = computeStandaloneMirrorPaths(
       L,

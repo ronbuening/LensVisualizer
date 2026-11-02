@@ -7,8 +7,7 @@
 **Published:** 2020-05-28\
 **Inventors:** Ryosuke Nagami; Tetsuya Ori\
 **Applicant / Assignee:** Fujifilm Corporation\
-**Title:** *Imaging Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Imaging Lens and Imaging Apparatus*
 
 This prescription is the selected production correlation for the **FUJIFILM FUJINON GF 50mm f/3.5 R LM WR**. The correlation is inferential rather than an explicit FUJIFILM statement that the production lens implements this patent example. Several independent points converge:
 

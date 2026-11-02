@@ -4,18 +4,22 @@
  * For every visible lens and zoom station at infinity focus, wide open, this script reports:
  *
  *   stated    `nominalFno` at the station
- *   traced    the stated value scaled by (stated entrance-pupil radius ÷ the largest on-axis ray height that clears
- *             the iris and every clear aperture)
+ *   traced    the iris's own image-space f-number (EFL / paraxial EPD, the stop rule's f-number) scaled by (height
+ *             of the on-axis ray that meets the iris rim ÷ the largest on-axis ray height that clears the iris and
+ *             every clear aperture)
  *   limiter   what stops the next ray: the iris, a rim, or a trace failure at the surface named
  *
  * Diagnoses (stations more than `--over` away from the stated value, 3 % by default):
  *
- *   rim       a clear aperture clips the stated axial beam, so the lens is traced slower than its label
+ *   rim       a clear aperture clips the stated axial beam, so the lens is traced slower than its label; a limiter
+ *             marked "(rim cut)" is a surface's `rimCutDepthMm` land, inside its semi-diameter
  *   trace     no rim clips the beam, but the next ray cannot be continued: it is totally reflected at the surface
- *             named, or it leaves a surface beyond the next one's vertex plane (`noBracket`)
+ *             named, or its line meets the next surface in neither direction (`noBracket`); a surface behind the
+ *             last hit is met by a step backwards, as in every sequential trace. Or the ray toward the iris rim
+ *             cannot be traced to the stop, so the beam is compared with the stated pupil instead
  *   iris      the iris itself is not the stated one: `zoomApertureModel: "fixed-iris"`, a published
- *             `zoomStopSemiDiameters` schedule, an embedded glass stop that keeps its authored radius, or a derived
- *             iris at its paraxial radius because the stated marginal ray cannot be real-traced to the stop
+ *             `zoomStopSemiDiameters` schedule, or an embedded glass stop that keeps its authored radius (a derived
+ *             iris gives the stated f-number by the stop rule)
  *   failed    no usable on-axis ray reaches the image plane; the limiter names where a near-axis ray stops
  *
  * A rim-limited row is not automatically a data error. Check whether the semi-diameter is printed in the source or
@@ -44,9 +48,8 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
-const buildLens = (await load("src/optics/buildLens.ts")).default;
-const { prepareRuntimeState } = await load("src/optics/compat.ts");
-const { traceEngineRay2 } = await load("src/optics/trace/rayAdapters.ts");
+const { default: buildLens, ingestLens } = await load("src/optics/buildLens.ts");
+const { prepareRuntimeState, stopRuleGeometry, traceEngineRay } = await load("src/optics/optics.ts");
 
 const args = process.argv.slice(2);
 const flag = (name) => args.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3);
@@ -72,15 +75,18 @@ function axialBeam(state, statedRadius) {
   const first = state.surfaces[0];
   const lead = Math.max(1, Math.abs(first.profile.sag(first.sd ?? 0)) + 1);
   const firstClip = (height) => {
-    const trace = traceEngineRay2(
+    const trace = traceEngineRay(
       state,
       { origin: [0, height, (state.z[0] ?? 0) - lead], direction: [0, 0, 1] },
       { ghost: true },
     );
     for (const hit of trace.hits) {
-      const sd = state.surfaces[hit.surfaceIndex].sd;
+      const { sd, rimCut } = state.surfaces[hit.surfaceIndex];
       if (typeof sd === "number" && hit.radius > sd * (1 + 1e-9)) {
         return { label: hit.surfaceLabel, index: hit.surfaceIndex };
+      }
+      if (rimCut && hit.radius > rimCut.radius * (1 + 1e-9)) {
+        return { label: `${hit.surfaceLabel} (rim cut)`, index: hit.surfaceIndex };
       }
       if (hit.failureReason) {
         return { label: `${hit.surfaceLabel} (${hit.failureReason})`, index: hit.surfaceIndex, failed: true };
@@ -113,6 +119,47 @@ function axialBeam(state, statedRadius) {
   return { radius: pass, limiter: firstClip(fail) };
 }
 
+/**
+ * Height of the on-axis ray that meets the iris rim, rims ignored: the beam the iris admits.
+ *
+ * @returns launch height in mm, or null when the ray toward the rim cannot be traced to the stop
+ */
+function irisBeamRadius(state, statedRadius) {
+  const stopIndex = state.lens.stop.surfaceIndex;
+  const iris = state.surfaces[stopIndex].sd;
+  const first = state.surfaces[0];
+  const lead = Math.max(1, Math.abs(first.profile.sag(first.sd ?? 0)) + 1);
+  const atStop = (height) => {
+    const trace = traceEngineRay(
+      state,
+      { origin: [0, height, (state.z[0] ?? 0) - lead], direction: [0, 0, 1] },
+      { ghost: true },
+    );
+    const hits = trace.hits.slice(0, trace.hits.findIndex((hit) => hit.surfaceIndex === stopIndex) + 1);
+    const hit = hits.at(-1);
+    return hit?.surfaceIndex === stopIndex && !hits.some((h) => h.failureReason) ? hit.radius : NaN;
+  };
+  const ceiling = 2 * Math.max(statedRadius, first.sd ?? 0);
+  let inside = 0;
+  let outside = null;
+  for (let step = 1; step <= SCAN_STEPS && outside === null; step++) {
+    const height = (ceiling * step) / SCAN_STEPS;
+    const radius = atStop(height);
+    if (!Number.isFinite(radius)) return null;
+    if (radius > iris) outside = height;
+    else inside = height;
+  }
+  if (outside === null) return null;
+  for (let i = 0; i < BISECTIONS; i++) {
+    const middle = (inside + outside) / 2;
+    const radius = atStop(middle);
+    if (!Number.isFinite(radius)) return null;
+    if (radius > iris) outside = middle;
+    else inside = middle;
+  }
+  return inside;
+}
+
 const requested = args.filter((arg) => arg.endsWith(".data.ts")).map((arg) => resolve(arg));
 const files = requested.length
   ? requested
@@ -125,7 +172,7 @@ const files = requested.length
 function statedRayHeights(state, statedRadius) {
   const first = state.surfaces[0];
   const lead = Math.max(1, Math.abs(first.profile.sag(first.sd ?? 0)) + 1);
-  const trace = traceEngineRay2(
+  const trace = traceEngineRay(
     state,
     { origin: [0, statedRadius, (state.z[0] ?? 0) - lead], direction: [0, 0, 1] },
     { ghost: true },
@@ -146,7 +193,10 @@ const raises = [];
 let lenses = 0;
 let folded = 0;
 for (const path of files) {
-  const data = (await import(pathToFileURL(path).href)).default;
+  /* Read canonical facts, with schema defaults already applied. */
+  const data = ingestLens((await import(pathToFileURL(path).href)).default, {
+    path: relative(ROOT, path).replaceAll("\\", "/"),
+  }).prescription;
   if (data.visible === false && !ALL && requested.length === 0) continue;
   const L = buildLens(data);
   if (L.isFoldedOptics) {
@@ -154,22 +204,36 @@ for (const path of files) {
     continue;
   }
   lenses++;
-  const stations = L.isZoom ? data.zoomPositions.length : 1;
+  const stations = L.isZoom ? data.zoom.stations.length : 1;
   const stopLabel = L.S[L.stopIdx].label;
   const needs = new Map();
+  /* A rim cut's radius is not a semi-diameter: raising sd does not move the land. */
+  const cutRadii = new Map(
+    L.S.flatMap((surface, i) => {
+      const cut = prepareRuntimeState(L, 0, 0).surfaces[i].rimCut;
+      return cut ? [[surface.label, cut.radius]] : [];
+    }),
+  );
   let untraceable = false;
   for (let zi = 0; zi < stations; zi++) {
     const zoomT = stations > 1 ? zi / (stations - 1) : 0;
     const state = prepareRuntimeState(L, 0, zoomT);
-    const stated = Array.isArray(data.nominalFno) ? data.nominalFno[zi] : data.nominalFno;
-    const statedRadius = L.zoomEPs?.[zi] ?? L.EP.epSD;
+    const stated = data.aperture.nominalFNumber ?? data.zoom?.stations[zi].nominalFNumber;
+    const pupilRadius = L.zoomEPs?.[zi] ?? L.EP.epSD;
+    /* The beam the iris admits; a lens whose ray toward the iris rim cannot reach the stop is `trace`/`failed`. */
+    const irisRadius = irisBeamRadius(state, pupilRadius);
+    const statedRadius = irisRadius ?? pupilRadius;
+    /* The f-number the iris gives: F / paraxial EPD, F the stop rule's reference (a fisheye's projection focal length). */
+    const rule = stopRuleGeometry(L, zoomT);
+    const irisFNumber =
+      (rule.referenceFocalLengthMm * Math.abs(rule.stopHeightRatio)) / (2 * state.surfaces[L.stopIdx].sd);
     if (RAISE) {
       const heights = statedRayHeights(state, statedRadius);
-      if (heights === null) untraceable = true;
+      if (heights === null || irisRadius === null) untraceable = true;
       else for (const [label, radius] of heights) needs.set(label, Math.max(needs.get(label) ?? 0, radius));
     }
     const beam = axialBeam(state, statedRadius);
-    const traced = beam.radius === null ? null : (stated * statedRadius) / beam.radius;
+    const traced = beam.radius === null ? null : (irisFNumber * statedRadius) / beam.radius;
     const limiter = beam.limiter;
     const diagnosis =
       traced === null
@@ -179,22 +243,24 @@ for (const path of files) {
           : limiter?.failed
             ? "trace"
             : limiter === null || limiter.index === L.stopIdx
-              ? "iris"
+              ? irisRadius === null
+                ? "trace"
+                : "iris"
               : "rim";
     rows.push({
       key: data.key,
       name: data.name,
       file: relative(LENS_DIR, path),
-      station: stations > 1 ? `${Number(data.zoomPositions[zi].toFixed(2))} mm` : "",
+      station: stations > 1 ? `${Number(data.zoom.stations[zi].focalLengthMm.toFixed(2))} mm` : "",
       stated,
       traced,
       ratio: traced === null ? null : traced / stated,
       limiter: limiter?.label ?? "none",
       diagnosis,
       stopLabel,
-      stopModel: data.zoomStopSemiDiameters
+      stopModel: data.zoom?.stations.some((station) => station.stopSemiDiameter !== undefined)
         ? "published schedule"
-        : data.zoomApertureModel === "fixed-iris"
+        : data.zoom?.apertureModel === "fixed-iris"
           ? "fixed iris"
           : state.surfaces[L.stopIdx].stopPlacement === "inside-element"
             ? "embedded stop"
@@ -203,17 +269,22 @@ for (const path of files) {
   }
   if (RAISE) {
     const changes = data.surfaces
-      .filter((surface) => surface.label !== "STO" && typeof surface.sd === "number")
+      .filter((surface) => surface.label !== "STO" && typeof surface.sd === "number" && !cutRadii.has(surface.label))
       .map((surface) => ({ label: surface.label, from: surface.sd, need: needs.get(surface.label) ?? 0 }))
       .filter((change) => change.need > change.from * (1 + 1e-9))
       .map((change) => ({ ...change, to: roundUpLike(change.from, change.need) }));
-    const wideOpen = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno;
+    const wideOpen = data.aperture.nominalFNumber ?? data.zoom?.stations[0].nominalFNumber;
     const flags = [
       untraceable && "stated ray cannot be traced at some station",
-      data.apertureDesign === undefined && "no apertureDesign recorded",
-      data.apertureDesign !== undefined && wideOpen / data.apertureDesign < 0.995 && "nominalFno faster than design",
-      data.sourceErrata?.some((entry) => entry.status === "unresolved") && "unresolved source contradiction",
+      data.catalog.fNumber?.design === undefined && "no apertureDesign recorded",
+      data.catalog.fNumber?.design !== undefined &&
+        wideOpen / data.catalog.fNumber?.design < 0.995 &&
+        "nominalFno faster than design",
+      data.source.errata?.some((entry) => entry.status === "unresolved") && "unresolved source contradiction",
       changes.some((change) => change.to / change.from - 1 > RAISE_REVIEW) && "raise over 15 %: read the figure",
+      ...[...cutRadii]
+        .filter(([label, radius]) => (needs.get(label) ?? 0) > radius * (1 + 1e-9))
+        .map(([label]) => `rim cut on ${label} clips the stated beam`),
     ].filter(Boolean);
     /* Per element whose two faces share one value now and would end apart: the height a square-cut rim would carry. */
     const after = new Map(data.surfaces.map((surface) => [surface.label, surface.sd]));
@@ -223,7 +294,8 @@ for (const path of files) {
     for (let i = 0; i < data.surfaces.length - 1; i++) {
       const front = data.surfaces[i];
       const rear = data.surfaces[i + 1];
-      if (!(front.elemId > 0) || front.label === "STO" || rear.label === "STO") continue;
+      if (!(typeof front.medium === "number" && front.medium > 0) || front.label === "STO" || rear.label === "STO")
+        continue;
       if (!raised.has(front.label) && !raised.has(rear.label)) continue;
       if (front.sd !== rear.sd) continue;
       const a = after.get(front.label);
@@ -232,7 +304,7 @@ for (const path of files) {
         squares.push({ front: front.label, rear: rear.label, value: Math.max(a, b) });
       }
     }
-    if (changes.length > 0 || untraceable) {
+    if (changes.length > 0 || untraceable || flags.some((flag) => flag.startsWith("rim cut"))) {
       raises.push({ key: data.key, name: data.name, file: relative(LENS_DIR, path), changes, squares, flags });
     }
   }

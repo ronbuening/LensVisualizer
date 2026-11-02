@@ -10,7 +10,7 @@
 **Inventors:** Kazuteru Kawamura; Keitaro Yokoyama
 **Assignee:** Olympus Imaging Corp., Tokyo
 **Title:** Imaging Optical System, and Imaging Apparatus Incorporating the Same
-**Embodiment analyzed:** Numerical Example 1, corresponding to FIG. 1 and FIG. 8
+**Example details:** corresponding to FIG. 1 and FIG. 8
 
 The patent discloses seven numerical examples for a compact wide-angle imaging optical system intended for a mirrorless interchangeable-lens camera. Numerical Example 1 is the embodiment transcribed here. It is the best match for the Olympus M.Zuiko Digital ED 12mm f/2.0, with the important caveat that the patent prescription resolves into nine air-separated optical groups while Olympus publishes the production construction as eleven elements in eight groups. The 0.189 mm air space between L6 and L7 is the probable source of that group-count discrepancy; the patent data are retained as written, while production-facing metadata use the manufacturer-published focal length, aperture, corrected angle of view, and minimum focus distance.
 

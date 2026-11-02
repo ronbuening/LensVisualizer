@@ -7,7 +7,7 @@
 **Inventor:** Tatsuyuki Onozaki
 **Applicant:** Ricoh Imaging Company, Ltd.
 **Title:** Zoom lens system
-**Embodiment analyzed:** Numerical Example 1, Tables 1–4 and Figures 1–7
+**Example details:** Tables 1–4 and Figures 1–7
 
 The prescription corresponds to Numerical Example 1 of JP 2015-87681 A. The patent describes a four-group negative-positive-negative-positive wide-angle zoom for single-lens-reflex cameras, with the aperture stop between the second and third functional groups and with the second group divided into a moving focus subgroup G2a and a fixed-within-G2 subgroup G2b (¶¶0021, 0049–0055). The LensVisualizer data file preserves the patent's native d-line prescription and uses the patent's three infinity-focus zoom states at 28.70, 35.00, and 43.87 mm.
 

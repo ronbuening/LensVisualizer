@@ -8,7 +8,7 @@
 **Inventors:** Wolf Dannberg; Eberhard Dietzsch  
 **Applicant:** Jenoptik Jena G.m.b.H.  
 **Title:** *Weitwinkelobjektiv für photographische Zwecke*  
-**Embodiment analyzed:** Claim 8 / Example 1 / Fig. 1
+**Example details:** Claim 8 / Fig. 1
 
 The implemented prescription is derived from the first numerical construction in DE 1 157 000. The patent's numerical table gives an opening ratio of 1:4 at a normalized focal length of 100, eleven refracting radii, the corresponding axial spacings and d-line glass coordinates, and the focal lengths of the four source-defined members I, IIa, IIb, and IIc. Fig. 1 identifies the physical sequence as a cemented front doublet followed, after a long air space, by a positive singlet, a positive meniscus, and a cemented rear triplet. [1, p. 2, Claim 8; p. 4, Fig. 1]
 

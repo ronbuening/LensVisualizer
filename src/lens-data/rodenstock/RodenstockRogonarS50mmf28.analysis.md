@@ -6,7 +6,7 @@
 **Inventor:** Karlheinz Pennig
 **Applicant:** Optische Werke G. Rodenstock, München
 **Title:** Vierlinsiges fotografisches Objektiv
-**Embodiment analyzed:** Single worked example; the patent contains one numerical prescription.
+**Example details:** the patent contains one numerical prescription.
 
 DE 1,089,991 describes a four-element photographic objective in which the aperture stop is enclosed between two negative elements: a front-side negative singlet and the negative component of the rear cemented doublet. The design is directed to a 1:2.8 objective with improved coma correction and comparatively low vignetting. The numerical prescription is given in arbitrary length units, with the claim allowing ±3% tolerance on curvatures by refractive power, ±10% on thicknesses and spacings by focal length, ±0.02 on refractive indices, and ±5 Abbe-number units.
 

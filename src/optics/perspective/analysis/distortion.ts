@@ -6,17 +6,19 @@
  * by the real optical prescription after movement.
  */
 
+import { evenlySpacedSigned } from "../../analysis/sampling.js";
+
+import type { AnalysisRequest } from "../../analysis/request.js";
+import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { Vec3 } from "../../types.js";
-import {
-  sampleSceneLockedFields,
-  zeroPoseSceneDirectionForSensorUv,
-  type FieldSample,
-  type PerspectiveFieldSamplingOptions,
-  type PerspectiveFieldStatus,
-  type SensorUv,
-} from "../fieldSampling.js";
+import { sampleSceneLockedFields, zeroPoseSceneDirectionForSensorUv } from "../fieldSampling.js";
+import type { FieldSample, PerspectiveFieldSamplingOptions } from "../fieldTypes.js";
+import type { PerspectiveFieldStatus } from "../chiefRay.js";
+import type { SensorUv } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext } from "../trace.js";
-import { sensorFrameDisplacement, sensorPointForUv, type SensorFrameDisplacement } from "./shared.js";
+import { sensorPointForUv } from "../fieldGeometry.js";
+import { sensorFrameDisplacement } from "./shared.js";
+import type { SensorFrameDisplacement } from "./shared.js";
 
 const DEFAULT_VERTICAL_SAMPLE_COUNT = 17;
 const DEFAULT_GRID_COORDINATES = [-1, -0.5, 0, 0.5, 1] as const;
@@ -147,14 +149,16 @@ export function summarizePerspectiveDistortionSamples(
  * analytic camera-space directions are then traced unchanged through the
  * active pose, so `actual - poseIdeal` remains a true moved-optics residual.
  *
- * @param context - physical moved-lens trace context with a fixed sensor
- * @param options - signed curve/grid coordinates and chief-solve controls
+ * @param request - shared prepared geometry, physical pose and fixed-sensor trace context
+ * @param options - explicit scene-locked sampling; omitted uses request quality and sampling
  * @returns ordered samples, retained failures, grid, and summary statistics
  */
 export function computePerspectiveDistortionAnalysis(
-  context: PerspectiveTraceContext,
-  options: PerspectiveDistortionOptions = {},
+  request: AnalysisRequest,
+  options: PerspectiveDistortionOptions = perspectiveAnalysisSamplingPlan(request).distortion,
 ): PerspectiveDistortionAnalysis {
+  const context = request.perspectiveTraceContext;
+  if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
   const verticalSensorV = options.verticalSensorV ?? evenlySpacedSigned(DEFAULT_VERTICAL_SAMPLE_COUNT);
   const gridSensorU = options.gridSensorU ?? DEFAULT_GRID_COORDINATES;
   const gridSensorV = options.gridSensorV ?? DEFAULT_GRID_COORDINATES;
@@ -228,8 +232,4 @@ function sampleSceneLockedCoordinates(
 
 function sensorUvKey({ u, v }: SensorUv): string {
   return `${u === 0 ? 0 : u}|${v === 0 ? 0 : v}`;
-}
-
-function evenlySpacedSigned(count: number): number[] {
-  return Array.from({ length: count }, (_, index) => -1 + (2 * index) / (count - 1));
 }

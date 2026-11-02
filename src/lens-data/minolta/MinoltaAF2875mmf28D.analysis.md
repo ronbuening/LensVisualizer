@@ -9,7 +9,7 @@
 **Inventor:** Yamada Yasuharu (山田 康晴)
 **Applicant:** 株式会社タムロン (Tamron Co., Ltd.)
 **Title:** 大口径ズームレンズ — *Large-Aperture Zoom Lens*
-**Embodiment analyzed:** Sole numerical embodiment, surfaces 1–35, with three zoom positions.
+**Example details:** surfaces 1–35, with three zoom positions.
 
 JP 2004-101739 A discloses a compact large-aperture standard zoom for single-lens reflex cameras. The embodiment is a positive-lead four-group zoom whose design data are given at $f = 28.87$, $49.98$, and $72.65$ mm with a constant design F-number of 2.91 (§0026). The production lens identified here is the Minolta / Konica Minolta AF 28–75mm F2.8 (D), an A-mount version of Tamron model A09, the SP AF 28–75mm F/2.8 XR Di LD Aspherical (IF) Macro.
 
@@ -121,7 +121,7 @@ The last element is a positive body plus a final resin asphere on surface 35. It
 
 ## Glass Identification and Selection
 
-The glass palette was rechecked against manufacturer-published catalog values rather than by circular lookup from expected names. The following identifications are treated as strong catalog matches unless otherwise noted.
+The glass palette was rechecked against manufacturer-published catalog values rather than by circular lookup from expected names. The following names identify compatible catalog spectral proxies unless otherwise noted; they do not establish historical production suppliers or melts. The patent prints no C/F/g indices or partial-dispersion ratios, and catalog-only per-lens copies are removed. The thin-layer resin interpretation remains qualified; chemistry and cure are unspecified.
 
 | nd / νd | Identification | Use | Notes |
 |---|---|---|---|
@@ -236,3 +236,5 @@ The resulting A09 formula became a compact fast standard zoom sold under Tamron�
 - Tamron model A09 product information for the SP AF 28–75mm F/2.8 XR Di LD Aspherical (IF) Macro, including model identity and production-mount context.
 - Konica Minolta / Tamron product specifications for the AF 28–75mm F2.8 (D) / A09 class: 28–75mm f/2.8, 16 elements / 14 groups, 67 mm filter, 0.33 m minimum focus distance, and approximately 1:3.9 maximum magnification.
 - Ohara optical-glass catalog pages for S-TIH53, S-LAL14, S-LAH66, S-LAH65V, S-TIH6, S-FSL5, S-FPL51, S-LAH60V, and S-TIL25; Hoya catalog cross-reference for FCD1 / S-FPL51-class low-dispersion glass.
+
+The 2026-10-30 figure review adds exposed flat lands at S2/S9 and refines continuous common rims in G2/G3 while keeping each thin layer connected to its glass body. These are inferred drawing/bundle choices; the patent publishes no clear-aperture table. The source-shaped S10/S11 body remains conservatively smaller than the drawing because unchanged edge/gap rules bound it.

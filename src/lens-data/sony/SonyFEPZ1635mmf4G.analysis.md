@@ -7,7 +7,6 @@
 **Inventors:** Kohei Uemura; Tetsuichiro Okumura; Naoki Miyagawa
 **Applicant:** Sony Group Corporation
 **Title:** Zoom Lens and Imaging Apparatus
-**Embodiment analyzed:** Example 5
 
 The prescription modeled here is Example 5 of JP 2023-44106 A. The production identification is the Sony FE PZ
 16–35mm f/4 G, but that identification is a correlation rather than an explicit statement by Sony in the patent. The

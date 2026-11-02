@@ -1,4 +1,6 @@
 // @vitest-environment jsdom
+import { runtimeFixtureView } from "../../optics/constructionFixtures.js";
+import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -11,7 +13,7 @@ function lensWithGlassMap(): RuntimeLens {
   const lens = buildSimplePositiveElementLens("test-abbe-diagram");
   return {
     ...lens,
-    data: { ...lens.data, name: "Glass map fixture" },
+    ...runtimeFixtureView({ ...constructionFixtureData(lens), name: "Glass map fixture" }),
     elements: [
       {
         id: 1,

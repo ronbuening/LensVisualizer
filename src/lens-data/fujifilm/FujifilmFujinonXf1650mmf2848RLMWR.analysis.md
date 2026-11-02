@@ -8,7 +8,6 @@
 **Inventors:** Masaru Amano; Taiga Noda; Yasutaka Shimada; Yuya Hirakawa
 **Applicant:** FUJIFILM Corporation
 **Title:** Zoom lens and imaging device
-**Embodiment analyzed:** Example 17
 
 The prescription modeled here is Example 17 of WO 2024/057734 A1. The example is described in the patent at ¶¶0292–0297 and tabulated in Tables 49–51 on printed pages 98–99. Table 49 supplies the radii, axial spacings, d-line indices, Abbe numbers, partial-dispersion ratios, effective diameters, and specific gravities. Table 50 gives the three published infinity-focus zoom states. Table 51 gives the six aspherical-surface coefficient sets. The patent identifies the zoom architecture as four lens groups, G1− / G2+ / G3− / G4+, with G3 as the focus group and G4 fixed relative to the image plane during zooming. [WO 2024/057734 A1, ¶¶0292–0297, Fig. 35, Tables 49–51.]
 

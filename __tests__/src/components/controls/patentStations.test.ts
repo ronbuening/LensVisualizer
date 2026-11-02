@@ -5,7 +5,7 @@ import {
   patentStationNotes,
   zoomStationOptions,
 } from "../../../../src/components/controls/patentStations.js";
-import { attachTeleconverter } from "../../../../src/optics/prescription/teleconverter.js";
+import { attachFixtureTeleconverter as attachTeleconverter } from "../../optics/constructionFixtures.js";
 import type { ZoomVarRange } from "../../../../src/types/optics.js";
 import {
   build,

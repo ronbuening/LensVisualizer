@@ -9,7 +9,7 @@
 **Inventor:** Albrecht Wilhelm Tronnier
 **Applicant:** Jos. Schneider & Co., Optische Werke
 **Title:** *Photographisches Fernobjektiv*
-**Embodiment analyzed:** Job-card “Example 1,” corresponding to the patent's f/4.5 numerical example and Abb. 1
+**Example details:** Job-card “Example 1,” corresponding to the patent's f/4.5 numerical example and Abb. 1
 
 DE 471565 C describes a photographic telephoto objective built from a cemented positive member, a cemented negative
 member separated from it by a large air space, and a nearby uncemented meniscus whose power sign is opposite that of the

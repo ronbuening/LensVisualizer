@@ -7,7 +7,6 @@
 **Inventor:** Ryosuke Sato  
 **Applicant / Assignee:** Sigma Corporation  
 **Title:** Imaging Optical System  
-**Embodiment analyzed:** Numerical Example 2
 
 The prescription is transcribed at unit scale from the selected A-publication, PDF pp42–44
 (printed pp11–13), with the optical section in Figure 6, PDF p7. The front page records

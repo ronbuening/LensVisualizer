@@ -1,15 +1,23 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — LEICA ELMARIT-R 28mm f/2.8                     ║
+ * ║        LENS DATA — LEICA ELMARIT 28mm f/2.8 (11801)                  ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 3,591,257 Example 3 (Mandler, Edwards, Wagner;      ║
  * ║  Ernst Leitz GmbH). Table: patent cols. 3–4 (also restated in claim  ║
  * ║  4, cols. 5–6); section drawing Fig. 3 and Fig. 6c.                  ║
- * ║  Retrofocus wide-angle for the Leicaflex SLR.                        ║
+ * ║  Moderate retrofocus wide-angle for the Leica M: the second          ║
+ * ║  version (Leitz Canada, 1972–1979; order no. 11801, also used        ║
+ * ║  for the nine-element first version, a different design).            ║
+ * ║  Production is 8 elements / 6 groups, credited to the patent's       ║
+ * ║  three inventors, and its section drawing matches Example 3.         ║
+ * ║  Until 2026-10 this file was published as the Elmarit-R 28mm         ║
+ * ║  f/2.8; the 18.4 mm back focus rules out an SLR, and that lens       ║
+ * ║  is the eight-singlet design of US 3,740,120.                        ║
  * ║  8 elements / 6 groups, 2 cemented doublets, all spherical.          ║
- * ║  Focus: unit focusing (entire lens translates).                      ║
+ * ║  Focus: modelled as unit focusing (entire lens translates);          ║
+ * ║  the patent describes no moving subgroup.                            ║
  * ║                                                                      ║
  * ║  NOTE ON SCALING:                                                    ║
  * ║    Patent normalized to f = 100. All R, d, sd scaled uniformly by    ║
@@ -33,37 +41,44 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
  * ║    Patent does not list SDs. Values are ray-trace estimates checked  ║
- * ║    against Fig. 6c (and Fig. 3), scaled by the r1→r14 vertex span    ║
- * ║    (483 px = 54.05 mm): L1 ≈16.1, L2 ≈13.4, L3/L4 ≈8.7 (drawn as a   ║
- * ║    near-cylinder), L5 ≈6.9, L6/L7 ≈8.0, L8 ≈9.7 mm. The figure is    ║
- * ║    schematic (L8 and the L1 rear face are drawn flatter than their   ║
- * ║    radii allow), so r2/r13 are held inside rim-slope limits. r5      ║
- * ║    stays at 10.4 for the 20–28° off-axis bundles. All values clear   ║
- * ║    the f/2.8 axial beam and the 37.7° full-field chief ray; corner   ║
- * ║    vignetting at full aperture is ordinary for this class.           ║
+ * ║    against Fig. 3 and Fig. 6c, which draw Example 3 at one scale     ║
+ * ║    (r1→r14 = 480 px for 54.05 mm at 300 dpi). Line-centre heights:   ║
+ * ║    L1 16.1 front / 14.1 rear (bevelled), L2 13.3 / 12.3, L3+L4 8.5   ║
+ * ║    and L6+L7 7.8 (square-cut blocks), L5 6.0 / 6.8, L8 8.1 / 9.4–9.7 ║
+ * ║    (chamfered front corner). Each block keeps one height: r5–r7      ║
+ * ║    8.7, r10–r12 7.4. All values clear the f/2.8 axial beam (7.65 mm  ║
+ * ║    at r5) and the 37.7° chief ray. r5 trims the outer edge of the    ║
+ * ║    15–32° bundles, as the limit bars of Figs. 3a–3c show (they fall  ║
+ * ║    on a 7.7 mm clear radius at r5); corner vignetting is ordinary.   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
 const LENS_DATA = {
   /* ── Identity ── */
-  key: "elmarit-r-28f28",
+  schema: 2,
+  key: "leica-elmarit-28mm-f28-11801",
   maker: "Leica",
-  name: "LEICA ELMARIT-R 28mm f/2.8",
+  name: "LEICA ELMARIT 28mm f/2.8 (11801)",
   subtitle: "US 3,591,257 Example 3 — Mandler / Edwards / Wagner",
-  specs: ["8 ELEMENTS / 6 GROUPS", "f = 28 mm", "F/2.8", "2ω ≈ 74°", "ALL SPHERICAL"],
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: 28,
-  focalLengthDesign: 28,
-  apertureMarketing: 2.8,
-  lensMounts: ["leica-r"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 3,591,257",
-  patentAuthors: ["Walter Mandler", "Garry Edwards", "Erich Wagner"],
-  patentAssignees: ["Ernst Leitz GmbH"],
-  patentYear: 1971,
-  elementCount: 8,
-  groupCount: 6,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: ["8 ELEMENTS / 6 GROUPS", "f = 28 mm", "F/2.8", "2ω ≈ 74°", "ALL SPHERICAL"],
+    elementCount: 8,
+    groupCount: 6,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: 28, design: 28 },
+    fNumber: { marketing: 2.8 },
+  },
+
+  source: {
+    patentNumber: "US 3,591,257",
+    example: { label: "Example 3", id: "3" },
+    patentYear: 1971,
+    authors: ["Walter Mandler", "Garry Edwards", "Erich Wagner"],
+    assignees: ["Ernst Leitz GmbH"],
+  },
 
   /* ── Elements ──
    *  The patent gives only nₑ / νₑ (546.1 nm); element nd/vd store those e-line values.
@@ -78,7 +93,7 @@ const LENS_DATA = {
       nd: 1.62286,
       vd: 60.08,
       indexReference: "e",
-      fl: -76.5,
+      focalLengthMm: -76.5,
       glass: "SK16 (Schott catalog equivalent; patent ne 1.62286 / νe 60.08; production supplier unspecified)",
       apd: false,
       role: "Front negative meniscus — diverges beam for retrofocus BFD extension; low-dispersion crown minimizes lateral chromatic contribution",
@@ -91,7 +106,7 @@ const LENS_DATA = {
       nd: 1.62286,
       vd: 60.08,
       indexReference: "e",
-      fl: -71.6,
+      focalLengthMm: -71.6,
       glass: "SK16 (Schott catalog equivalent; patent ne 1.62286 / νe 60.08; production supplier unspecified)",
       apd: false,
       role: "Second front meniscus — distributes negative power across two elements for off-axis aberration control",
@@ -104,11 +119,12 @@ const LENS_DATA = {
       nd: 1.79227,
       vd: 47.15,
       indexReference: "e",
-      fl: 14.1,
-      glass: "Unmatched (LaF21-class patent e-line value; no verified d-line catalog identity)",
+      focalLengthMm: 14.1,
+      glass:
+        "K-LaSFn16 (SUMITA catalog equivalent of LaF21, catalog ne 1.79226 / νe 47.17; patent ne 1.79227 / νe 47.15; production supplier unspecified)",
       apd: false,
-      cemented: "D1",
       role: "Principal positive element — thick biconvex of lanthanum flint providing majority of system convergence",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -118,11 +134,11 @@ const LENS_DATA = {
       nd: 1.81265,
       vd: 25.24,
       indexReference: "e",
-      fl: -38.3,
+      focalLengthMm: -38.3,
       glass: "SF6 (Schott catalog equivalent; patent ne 1.81265 / νe 25.24; production supplier unspecified)",
       apd: false,
-      cemented: "D1",
       role: "Achromatizing negative — SF6-class dense flint cemented to L3; Δνₑ ≈ 22 provides primary chromatic correction",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -132,24 +148,24 @@ const LENS_DATA = {
       nd: 1.62286,
       vd: 60.08,
       indexReference: "e",
-      fl: -167.1,
+      focalLengthMm: -167.1,
       glass: "SK16 (Schott catalog equivalent; patent ne 1.62286 / νe 60.08; production supplier unspecified)",
       apd: false,
-      role: "Weakly negative meniscus behind stop — controls spherical aberration and coma in diverging beam; field flattener",
+      role: "Weakly negative thick meniscus 2.3 mm behind the stop, concave toward it — sits in the converging beam; its front surface is the second-largest field-flattening (negative Petzval) contribution",
     },
     {
       id: 6,
       name: "L6",
       label: "Element 6",
-      type: "Plano-Convex Positive",
+      type: "Biconvex Positive (near-plano front)",
       nd: 1.72823,
       vd: 37.85,
       indexReference: "e",
-      fl: 13.7,
+      focalLengthMm: 13.7,
       glass: "LaF10 class; S-BAH28 catalog e-line spectral proxy (production supplier unspecified)",
       apd: false,
+      role: "Positive member of the rear cemented doublet — nearly flat front, strongly curved cemented rear; the index step there is only 0.084, so the doublet's power arises at the L7 rear surface",
       cemented: "D2",
-      role: "Nearly flat front, strongly convex rear — concentrates power at cemented interface to reduce ghosting",
     },
     {
       id: 7,
@@ -159,11 +175,11 @@ const LENS_DATA = {
       nd: 1.81265,
       vd: 25.24,
       indexReference: "e",
-      fl: -20.2,
+      focalLengthMm: -20.2,
       glass: "SF6 (Schott catalog equivalent; patent ne 1.81265 / νe 25.24; production supplier unspecified)",
       apd: false,
-      cemented: "D2",
       role: "Rear-group achromatizer — SF6-class dense flint paired with the LaF10-class L6 (Δνₑ ≈ 13) for local chromatic correction",
+      cemented: "D2",
     },
     {
       id: 8,
@@ -173,7 +189,7 @@ const LENS_DATA = {
       nd: 1.62408,
       vd: 36.11,
       indexReference: "e",
-      fl: -39.0,
+      focalLengthMm: -39.0,
       glass: "F2 (Schott catalog equivalent; patent ne 1.62408 / νe 36.11; production supplier unspecified)",
       apd: false,
       role: "Final negative meniscus — primary field curvature corrector; large Petzval flattening contribution from strongly curved front surface",
@@ -186,37 +202,42 @@ const LENS_DATA = {
    *  S2 gap: printed a₁ = 9.86 corrected to 19.86 (see header).
    *  Stop position from patent: a₃₁=2.14 (L4→stop), a₃₂=8.35 (stop→L5) at f=100.
    */
+  /* (moved from asph) ── Aspherical coefficients — none (all spherical) ── */
   surfaces: [
-    { label: "1", R: 27.661, d: 1.52, nd: 1.62286, elemId: 1, sd: 15.4 },
-    { label: "2", R: 17.136, d: 5.561, nd: 1.0, elemId: 0, sd: 13.5 },
-    { label: "3", R: 28.448, d: 1.52, nd: 1.62286, elemId: 2, sd: 14.0 },
-    { label: "4", R: 17.01, d: 14.336, nd: 1.0, elemId: 0, sd: 13.2 },
-    { label: "5", R: 16.828, d: 8.602, nd: 1.79227, elemId: 3, sd: 10.4 },
-    { label: "6", R: -25.536, d: 4.931, nd: 1.81265, elemId: 4, sd: 8.7 },
-    { label: "7", R: -153.804, d: 0.599, nd: 1.0, elemId: 0, sd: 8.7 },
-    { label: "STO", R: 1e15, d: 2.338, nd: 1.0, elemId: 0, sd: 5.9 },
-    { label: "8", R: -15.789, d: 3.161, nd: 1.62286, elemId: 5, sd: 6.0 },
-    { label: "9", R: -20.042, d: 0.655, nd: 1.0, elemId: 0, sd: 6.4 },
-    { label: "10", R: 932.4, d: 3.811, nd: 1.72823, elemId: 6, sd: 7.3 },
-    { label: "11", R: -10.102, d: 1.68, nd: 1.81265, elemId: 7, sd: 7.3 },
-    { label: "12", R: -28.14, d: 3.811, nd: 1.0, elemId: 0, sd: 7.4 },
-    { label: "13", R: -9.694, d: 1.52, nd: 1.62408, elemId: 8, sd: 8.2 },
-    { label: "14", R: -17.08, d: 18.396, nd: 1.0, elemId: 0, sd: 9.0 },
+    { label: "1", R: 27.661, d: 1.52, sd: 15.4, medium: 1 },
+    { label: "2", R: 17.136, d: 5.561, sd: 13.5 },
+    { label: "3", R: 28.448, d: 1.52, sd: 14.0, medium: 2 },
+    { label: "4", R: 17.01, d: 14.336, sd: 13.2 },
+    { label: "5", R: 16.828, d: 8.602, sd: 8.7, medium: 3 },
+    { label: "6", R: -25.536, d: 4.931, sd: 8.7, medium: 4 },
+    { label: "7", R: -153.804, d: 0.599, sd: 8.7 },
+    { label: "STO", R: "flat", d: 2.338 },
+    { label: "8", R: -15.789, d: 3.161, sd: 6.0, medium: 5 },
+    { label: "9", R: -20.042, d: 0.655, sd: 6.4 },
+    { label: "10", R: 932.4, d: 3.811, sd: 7.4, medium: 6 },
+    { label: "11", R: -10.102, d: 1.68, sd: 7.4, medium: 7 },
+    { label: "12", R: -28.14, d: 3.811, sd: 7.4 },
+    { label: "13", R: -9.694, d: 1.52, sd: 8.2, medium: 8 },
+    { label: "14", R: -17.08, sd: 9.0 },
   ],
 
-  /* ── Aspherical coefficients — none (all spherical) ── */
-  asph: {},
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.7,
+    description:
+      "Unit focusing — entire optical assembly translates along the optical axis (0.70 m extension calculated).",
+  },
 
-  /* ── Variable air spacings (unit focus) ──
+  /* (moved from var) ── Variable air spacings (unit focus) ──
    *  Entire lens translates for focusing. Only BFD changes.
    *  Infinity BF = patent s′ 65.70 × 0.28. The patent publishes no close-focus state; the
-   *  0.30 m extension (+3.57 mm, m ≈ −0.127) is calculated by paraxial trace for a 300 mm
-   *  object-to-image distance.
+   *  0.70 m extension (+1.261 mm, m ≈ −0.045) is calculated by paraxial trace for a 700 mm
+   *  object-to-image distance, the production minimum focus.
    */
-  var: {
-    "14": [18.396, 21.964],
-  },
-  varLabels: [["14", "BF"]],
+  gaps: { "14": { label: "BF", values: [[18.396, 19.657]] } },
+
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -224,24 +245,13 @@ const LENS_DATA = {
     { text: "POS DOUBLET (f₂≈+20)", fromSurface: "5", toSurface: "7" },
     { text: "REAR NEG (f₃≈−105)", fromSurface: "8", toSurface: "14" },
   ],
-
   doublets: [
     { text: "D1", fromSurface: "5", toSurface: "7" },
     { text: "D2", fromSurface: "10", toSurface: "12" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.3,
-  focusDescription: "Unit focusing — entire optical assembly translates along the optical axis (0.30 m extension calculated).",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 2.8,
-  fstopSeries: [2.8, 4, 5.6, 8, 11, 16],
-  maxFstop: 16,
-
   /* ── Layout tuning ── */
-  scFill: 0.5,
-  yScFill: 0.42,
-} satisfies LensDataInput;
+  layout: { scFill: 0.5, yScFill: 0.42 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

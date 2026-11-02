@@ -3,9 +3,9 @@
 import { describe, it, expect, afterEach, vi } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import ElementInspector from "../../../../src/components/display/ElementInspector.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import nikonPf500Data from "../../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
+import { catalogLensData } from "../../optics/testLensFixtures.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 afterEach(() => cleanup());
@@ -78,6 +78,25 @@ describe("ElementInspector", () => {
     expect(screen.getByText("\u03bde =")).toBeTruthy();
   });
 
+  it("marks missing Abbe data without inventing spectral line indices", () => {
+    const info: ElementData = { ...basicElement, nd: 1.6, vd: undefined, indexReference: "e" };
+    const L = {
+      ...mockLens,
+      S: [
+        { label: "1", elemId: 1 },
+        { label: "2", elemId: 0 },
+      ],
+      indexByIdx: { 0: { quality: "constant", fn: () => 1.6 } },
+    } as unknown as RuntimeLens;
+    render(<ElementInspector info={info} L={L} t={mockTheme} showChromatic={true} />);
+
+    expect(screen.getByText("not supplied")).toBeTruthy();
+    expect(screen.getByText("No dispersion data")).toBeTruthy();
+    expect(screen.queryByText("nF′−nC′ =")).toBeNull();
+    expect(screen.queryByText("ng")).toBeNull();
+    expect(screen.queryByText("0.00000")).toBeNull();
+  });
+
   it("renders glass type", () => {
     render(<ElementInspector info={basicElement} L={mockLens} t={mockTheme} showChromatic={false} />);
     expect(screen.getByText("S-BSL7")).toBeTruthy();
@@ -129,7 +148,7 @@ describe("ElementInspector", () => {
     [4, "CEMENTED"],
   ])("labels a %i-element cemented component as %s", (count, label) => {
     const elements = Array.from({ length: count }, (_, id) => ({ ...basicElement, id: id + 1, cemented: "C1" }));
-    const L = { ...mockLens, data: { elements } } as unknown as RuntimeLens;
+    const L = { ...mockLens, elements } as unknown as RuntimeLens;
     render(<ElementInspector info={elements[0]} L={L} t={mockTheme} showChromatic={false} />);
     expect(screen.getByText(`${label} C1`)).toBeTruthy();
   });
@@ -186,7 +205,7 @@ describe("ElementInspector", () => {
   });
 
   it("discloses a selected element's diffractive phase surface", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...nikonPf500Data } as LensData);
+    const L = buildLens(catalogLensData(nikonPf500Data));
     const info = L.elements.find((element) => element.id === 6)!;
 
     render(<ElementInspector info={info} L={L} t={mockTheme} showChromatic={false} />);
@@ -247,7 +266,7 @@ describe("ElementInspector", () => {
     expect(screen.queryByText(/Sellmeier.*Flint/)).toBeNull();
   });
 
-  it("labels an e-line-compatible Sellmeier trace with physical C/d/F/g wavelengths", () => {
+  it("labels an e-line Sellmeier trace with the C′/e/F′ lines it is evaluated at", () => {
     const chromaticLens = {
       ...mockLens,
       S: [{ label: "1", R: 100, d: 5, nd: 1.51872, sd: 10, elemId: basicElement.id }],
@@ -256,7 +275,7 @@ describe("ElementInspector", () => {
         0: {
           quality: "sellmeier",
           glassEntry: { name: "N-BK7" },
-          fn: (channel: ChromaticChannel) => ({ R: 1.51432, G: 1.5168, B: 1.52238, V: 1.52668 })[channel],
+          fn: (channel: ChromaticChannel) => ({ R: 1.51472, G: 1.51872, B: 1.52283, V: 1.52668 })[channel],
         },
       },
     } as unknown as RuntimeLens;
@@ -270,9 +289,9 @@ describe("ElementInspector", () => {
       />,
     );
 
-    expect(screen.getByText("1.51432").getAttribute("title")).toBe("C-line 656.3 nm");
-    expect(screen.getByText("1.51680").getAttribute("title")).toBe("d-line 587.6 nm");
-    expect(screen.getByText("1.52238").getAttribute("title")).toBe("F-line 486.1 nm");
+    expect(screen.getByText("1.51472").getAttribute("title")).toBe("Cadmium C′-line 643.8 nm");
+    expect(screen.getByText("1.52283").getAttribute("title")).toBe("Cadmium F′-line 480.0 nm");
+    expect(screen.getByText("nF′−nC′ =")).toBeTruthy();
   });
 
   it("does not infer ED status from a high Abbe number alone", () => {

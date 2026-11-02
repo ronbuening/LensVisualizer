@@ -11,7 +11,7 @@
 **Title:** Imaging Optical System (結像光学系)
 **Classification:** G02B 13/00, G02B 13/18
 **Worked examples:** 4 numerical examples; 3 claims
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1, Fig. 1)
+**Example details:** 数値実施例1, Fig. 1
 
 JP 2014-145954 A describes a compact inner-focusing medium-telephoto photographic objective for a large image sensor. Numerical Example 1 is the embodiment transcribed here. It is the most conservative representative match for the Sigma 60 mm F2.8 DN | Art, although Sigma has not publicly identified which of the patent's four examples became the manufactured prescription.
 

@@ -10,7 +10,7 @@
 **Inventor:** Daiki Komatsu
 **Applicant / Assignee:** Fujifilm Corporation, Tokyo
 **Title:** Imaging Lens and Imaging Apparatus
-**Embodiment analyzed:** Example 5; Tables 13, 14, and 15; FIG. 13 and FIG. 14
+**Example details:** Tables 13, 14, and 15; FIG. 13 and FIG. 14
 
 Example 5 is the strongest match to the fixed 35 mm f/4 lens in the Fujifilm GFX100RF. The patent table gives $f = 34.8463$ mm, $FNo = 4.12$, $Bf = 5.3962$ mm, and $2ω = 83.0°$. The production camera is specified by Fujifilm as a 35 mm f/4 fixed-focal-length lens, equivalent to 28 mm on 135 format, built as 10 elements in 8 groups including 2 aspherical elements, with a 0.20 m minimum focus distance measured from the front of the lens. Fujifilm also states that the lens was designed as a single fixed-lens unit, uses two glass-molded aspherical lenses, and shortens back focus by using a leaf shutter instead of a focal-plane shutter.
 

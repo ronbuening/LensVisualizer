@@ -1,10 +1,21 @@
-import type { LensData } from "../../types/optics.js";
+import type { CanonicalLens } from "../../optics/buildLens.js";
+import type { PatentExample } from "../../types/optics.js";
 
-type LensPatentDisplayData = Pick<LensData, "patentNumber" | "patentAuthors" | "subtitle">;
+type LensPatentDisplayData = Pick<CanonicalLens, "source" | "subtitle">;
 
 export interface LensPatentAttribution {
   patentNumber: string;
+  example?: PatentExample;
   authors: string[];
+}
+
+/**
+ * The text that follows a patent number for its example: `", Example 6"`, `", sole example"`, or `""` when the
+ * example is not recorded. Every patent line renders it as plain text after the number's link.
+ */
+export function patentExampleSuffix(example: PatentExample | undefined): string {
+  if (!example) return "";
+  return `, ${example.id === null ? "sole example" : example.label}`;
 }
 
 function legacySubtitle(lens: LensPatentDisplayData): string | null {
@@ -13,12 +24,13 @@ function legacySubtitle(lens: LensPatentDisplayData): string | null {
 
 /** Return normalized structured attribution when both patent fields are present. */
 export function lensPatentAttribution(lens: LensPatentDisplayData): LensPatentAttribution | null {
-  const patentNumber = lens.patentNumber?.trim();
-  if (!patentNumber || lens.patentAuthors === undefined) return null;
+  const patentNumber = lens.source.patentNumber?.trim();
+  if (!patentNumber || lens.source.authors === undefined) return null;
 
   return {
     patentNumber,
-    authors: lens.patentAuthors.map((author) => author.trim()).filter(Boolean),
+    ...(lens.source.example ? { example: lens.source.example } : {}),
+    authors: lens.source.authors.map((author) => author.trim()).filter(Boolean),
   };
 }
 
@@ -27,14 +39,13 @@ export function lensDisplaySubtitle(lens: LensPatentDisplayData): string | null 
   const attribution = lensPatentAttribution(lens);
   if (!attribution) return legacySubtitle(lens);
 
-  return attribution.authors.length > 0
-    ? `${attribution.patentNumber} — ${attribution.authors.join(", ")}`
-    : attribution.patentNumber;
+  const publication = `${attribution.patentNumber}${patentExampleSuffix(attribution.example)}`;
+  return attribution.authors.length > 0 ? `${publication} — ${attribution.authors.join(", ")}` : publication;
 }
 
 /** Return the structured patent number, falling back to a legacy subtitle reference. */
 export function lensPatentReference(lens: LensPatentDisplayData): string | null {
-  const patentNumber = lens.patentNumber?.trim();
+  const patentNumber = lens.source.patentNumber?.trim();
   if (patentNumber) return patentNumber;
 
   const subtitle = legacySubtitle(lens);

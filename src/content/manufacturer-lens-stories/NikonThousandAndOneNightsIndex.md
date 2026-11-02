@@ -1,7 +1,7 @@
 ---
 slug: nikon-thousand-and-one-nights-index
 title: "Nikon: NIKKOR — The Thousand and One Nights"
-summary: A complete index of Nikon's 98 English Thousand and One Nights lens tales plus the Research Report papers, the Frontiers of Vision series, and corporate technology and design features, with exact Surface & Stop catalog matches.
+summary: A complete index of Nikon's 99 English Thousand and One Nights lens tales plus the Research Report papers, the Frontiers of Vision series, and corporate technology and design features, with exact Surface & Stop catalog matches.
 tag: guide
 series: manufacturer-lens-stories
 seriesOrder: 1
@@ -10,12 +10,13 @@ toc: true
 
 ## Nikon: NIKKOR — The Thousand and One Nights
 
-Nikon describes _NIKKOR — The Thousand and One Nights_ as a serial history of NIKKOR lens design and manufacture. Its current English [series index](https://imaging.nikon.com/imaging/information/story/) contains 98 tales, ranging from famous production lenses to enlarging optics, compact-camera lenses, accessories, and unusual experiments.
+Nikon describes _NIKKOR — The Thousand and One Nights_ as a serial history of NIKKOR lens design and manufacture. Its current English [series index](https://imaging.nikon.com/imaging/information/story/) contains 99 tales, ranging from famous production lenses to enlarging optics, compact-camera lenses, accessories, and unusual experiments.
 
 Nikon does not display a publication date on the current index or individual English tale pages. Consequently, no dates have been inferred here. The list follows Nikon's numbered publication sequence, newest tale first.
 
 | Sequence | Lens, product, or subject — official tale | Surface & Stop |
 | --- | --- | --- |
+| No. 99 | [Ai AF Zoom-Nikkor 24–85mm f/2.8–4D IF](https://imaging.nikon.com/imaging/information/story/0099/) | [Ai AF Zoom-Nikkor 24–85mm f/2.8–4D IF](/lens/nikon-ai-af-zoom-nikkor-24-85mm-f28-4d-if) |
 | No. 98 | [Ai Nikkor 24mm F2](https://imaging.nikon.com/imaging/information/story/0098/) | [Ai Nikkor 24mm F2](/lens/nikon-ai-nikkor-24mm-f2) |
 | No. 97 | [New Nikkor 50mm F1.4S](https://imaging.nikon.com/imaging/information/story/0097/) | — |
 | No. 96 | [Nikkor-H Auto 85mm F1.8](https://imaging.nikon.com/imaging/information/story/0096/) | — |
@@ -31,7 +32,7 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 86 | [AI Nikkor 24mm f/2.8](https://imaging.nikon.com/imaging/information/story/0086/) | — |
 | No. 85 | [Micro-Nikkor Auto 55mm f/3.5](https://imaging.nikon.com/imaging/information/story/0085/) | — |
 | No. 84 | [AI Nikkor 35mm f/2S](https://imaging.nikon.com/imaging/information/story/0084/) | [AI Nikkor 35mm f/2](/lens/nikon-ai-nikkor-35mm-f2) |
-| No. 83 | [IX-Nikkor 30–60mm f/4–5.6](https://imaging.nikon.com/imaging/information/story/0083/) | — |
+| No. 83 | [IX-Nikkor 30–60mm f/4–5.6](https://imaging.nikon.com/imaging/information/story/0083/) | [IX-Nikkor 30–60mm f/4–5.6](/lens/nikon-ix-nikkor-30-60mm-f4-56) |
 | No. 82 | [AF-S DX VR Zoom-Nikkor 18–200mm f/3.5–5.6G IF-ED](https://imaging.nikon.com/imaging/information/story/0082/) | [AF-S DX VR 18–200mm](/lens/nikon-af-s-dx-vr-zoom-nikkor-18-200-f35-56g-if-ed) |
 | No. 81 | [GN Auto NIKKOR 45mm f/2.8](https://imaging.nikon.com/imaging/information/story/0081/) | — |
 | No. 80 | [Nikon Series E 100mm f/2.8](https://imaging.nikon.com/imaging/information/story/0080/) | [Series E 100mm f/2.8](/lens/nikon-series-e-100mm-f28) |
@@ -72,7 +73,7 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 45 | [NIKKOR-P.C 10.5cm f/2.5](https://imaging.nikon.com/imaging/information/story/0045/) | — |
 | No. 44 | [Nikkor-S Auto 50mm F1.4](https://imaging.nikon.com/imaging/information/story/0044/) | [Nikkor-S Auto 50mm F1.4](/lens/nikkor-s-auto-50mm-f14) |
 | No. 43 | [NIKKOR-Q.C 13.5cm f/4](https://imaging.nikon.com/imaging/information/story/0043/) | — |
-| No. 42 | [Nikon Series E 75–150mm f/3.5](https://imaging.nikon.com/imaging/information/story/0042/) | — |
+| No. 42 | [Nikon Series E 75–150mm f/3.5](https://imaging.nikon.com/imaging/information/story/0042/) | [Nikon Series E 75–150mm f/3.5](/lens/nikon-series-e-75-150mm-f35) |
 | No. 41 | [Ai AF Nikkor 85mm F1.4D (IF)](https://imaging.nikon.com/imaging/information/story/0041/) | [AF Nikkor 85mm F1.4D](/lens/nikkor-85f14d) |
 | No. 40 | [Nikkor-S Auto 5.8cm F1.4](https://imaging.nikon.com/imaging/information/story/0040/) | [Nikkor-S Auto 5.8cm F1.4](/lens/nikon-nikkor-s-auto-58mm-f1-4) |
 | No. 39 | [Ai AF Zoom-Nikkor 35–70mm F2.8S](https://imaging.nikon.com/imaging/information/story/0039/) | [AF Zoom-Nikkor 35–70mm](/lens/nikon-af-zoom-nikkor-35-70mm-f28d) |

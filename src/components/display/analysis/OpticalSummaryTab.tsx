@@ -1,10 +1,13 @@
+/** Summary presentation shares the drawer request, including its movement guards and lazy results. */
+
 import { useMemo, type ReactNode } from "react";
-import { analysisJobsForState2 } from "../../../optics/compat.js";
+import { formatFNumber as formatMarkedFNumber } from "../../../optics/optics.js";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
-import type { AnalysisComputationContext } from "../../../optics/compat.js";
-import type { FieldGeometryState } from "../../../optics/optics.js";
+import type { AnalysisComputationContext, WorkingFNumberResult } from "../../../optics/analysis.js";
+import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import type { RuntimeLens, TiltPivot } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 
@@ -17,6 +20,8 @@ interface OpticalSummaryTabProps {
   dynamicEFL: number;
   currentEPSD: number;
   currentPhysStopSD: number;
+  /** Marked f-number the aperture control is set to. */
+  fNumber?: number;
   fieldGeometry?: FieldGeometryState | null;
   preparedState?: PreparedOpticalState | null;
   analysisContext?: AnalysisComputationContext;
@@ -31,28 +36,25 @@ export default function OpticalSummaryTab({
   dynamicEFL,
   currentEPSD,
   currentPhysStopSD,
+  fNumber,
   fieldGeometry,
   preparedState: preparedStateProp,
   analysisContext,
 }: OpticalSummaryTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
-  const summary = useMemo(
+  const request = useMemo(
     () =>
-      analysisContext?.computeOpticalSummary() ??
-      analysisJobsForState2.computeOpticalSummary(
-        preparedState,
-        dynamicEFL,
-        currentEPSD,
-        currentPhysStopSD,
-        fieldGeometry ?? undefined,
-      ),
+      analysisContext?.request ??
+      createAnalysisRequest({ preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry }),
     [analysisContext, preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry],
   );
+  const context = useMemo(() => createAnalysisComputationContext(request), [request]);
+  const summary = useMemo(() => context.computeOpticalSummary(), [context]);
   const perspectiveFocus = useMemo(
-    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveFocusAnalysis() : null),
-    [analysisContext],
+    () => (request.pose?.active ? context.computePerspectiveFocusAnalysis() : null),
+    [request, context],
   );
-  const perspectiveContext = analysisContext?.movementActive ? analysisContext.perspectiveTraceContext : null;
+  const perspectiveContext = request.pose?.active ? request.perspectiveTraceContext : null;
   const sensorCenterFocus = perspectiveFocus?.samples.find(
     (sample) => Math.abs(sample.requestedSensorUv.u) <= 1e-9 && Math.abs(sample.requestedSensorUv.v) <= 1e-9,
   );
@@ -116,13 +118,33 @@ export default function OpticalSummaryTab({
         <AnalysisMetricRow label="Current EFL" value={formatMm(summary.currentEFLMm)} t={t} />
         <AnalysisMetricRow label="Infinity EFL" value={formatMm(summary.infinityEFLMm)} t={t} />
         <AnalysisMetricRow label="Breathing" value={formatSignedPercent(summary.breathingPercent)} t={t} />
-        <AnalysisMetricRow label="BFD" value={formatMm(summary.bfdMm)} t={t} />
         <AnalysisMetricRow label="FFD" value={formatMm(summary.ffdMm)} t={t} />
         <AnalysisMetricRow label="Hiatus" value={formatMm(summary.principalHiatusMm)} t={t} />
       </SummarySection>
 
       <SummarySection title="Aperture And Field" t={t}>
-        <AnalysisMetricRow label="Working f/#" value={formatFNumber(summary.effectiveFNumber)} t={t} />
+        <span style={{ color: t.muted, fontSize: 9, lineHeight: 1.45 }}>
+          The stop gives a paraxial entrance pupil of F/N at infinity focus, F the focal length (a fisheye&apos;s
+          projection focal length) and N the marked f-number, and stays fixed as focus changes. A published zoom iris
+          schedule, a fixed iris, or a stop inside glass or in a folded path keeps its own wide-open size. Image-space
+          f/# is EFL / EPD, paraxial; paraxial working f/# is 1 / (2n′|u′|) of the paraxial marginal ray; working f/# is
+          1 / (2n′ sin θ′) of the real marginal ray through the stop rim. Both working values are at the current object
+          distance.
+        </span>
+        {fNumber ? <AnalysisMetricRow label="Marked" value={`f/${formatMarkedFNumber(fNumber)}`} t={t} /> : null}
+        <AnalysisMetricRow label="Image-space f/#" value={formatFNumber(summary.imageSpaceFNumber)} t={t} />
+        <AnalysisMetricRow
+          label="Paraxial working f/#"
+          value={formatFNumber(summary.paraxialWorkingFNumber)}
+          note={summary.opticalPath === "folded" ? "not defined on a folded path" : undefined}
+          t={t}
+        />
+        <AnalysisMetricRow
+          label="Working f/#"
+          value={formatWorkingFNumber(summary.workingFNumber)}
+          note={workingFNumberNote(summary.workingFNumber)}
+          t={t}
+        />
         <AnalysisMetricRow label="Entrance pupil" value={formatMm(summary.entrancePupilDiameterMm)} t={t} />
         <AnalysisMetricRow label="Physical stop" value={formatMm(summary.physicalStopDiameterMm)} t={t} />
         <AnalysisMetricRow label="Half field" value={formatDeg(summary.halfFieldDeg)} t={t} />
@@ -136,11 +158,20 @@ export default function OpticalSummaryTab({
           note={perspectiveContext ? "camera frame" : undefined}
           t={t}
         />
-        <AnalysisMetricRow label="Total track" value={formatMm(summary.totalTrackMm)} t={t} />
         <AnalysisMetricRow
           label="Cardinal EFL"
           value={formatMm(summary.cardinalEFLMm)}
           note="intrinsic / lens-local"
+          t={t}
+        />
+      </SummarySection>
+      <SummarySection title="Geometry" t={t}>
+        <AnalysisMetricRow label="BFD" value={formatMm(summary.bfdMm)} t={t} />
+        <AnalysisMetricRow label="Total track" value={formatMm(summary.totalTrackMm)} t={t} />
+        <AnalysisMetricRow
+          label="Telephoto ratio"
+          value={summary.telephotoRatio === null ? "n/a" : summary.telephotoRatio.toFixed(2)}
+          note="track ÷ focal length; below 1 is telephoto"
           t={t}
         />
       </SummarySection>
@@ -199,6 +230,32 @@ function formatPivotBasis(basis: TiltPivot["basis"] | undefined): string {
 
 function formatFNumber(value: number | null): string {
   return value === null ? "n/a" : `f/${value.toFixed(2)}`;
+}
+
+function formatWorkingFNumber(working: WorkingFNumberResult): string {
+  switch (working.status) {
+    case "traced":
+      return formatFNumber(working.value);
+    case "vignetted":
+      return "vignetted";
+    case "unaimed":
+      return "unaimed";
+    case "unavailable":
+      return "n/a";
+  }
+}
+
+function workingFNumberNote(working: WorkingFNumberResult): string | undefined {
+  switch (working.status) {
+    case "traced":
+      return `real marginal ray, ${working.indexLine} line`;
+    case "vignetted":
+      return `marginal ray clipped at ${working.surfaceLabel}${working.beforeStop ? ", before the stop" : ""}`;
+    case "unaimed":
+      return `no ray reaches the stop rim (${working.reason})`;
+    case "unavailable":
+      return `marginal ray not traced (${working.reason})`;
+  }
 }
 
 function formatSignedPercent(value: number | null): string {

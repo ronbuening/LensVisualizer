@@ -11,16 +11,16 @@
 import { describe, it, expect } from "vitest";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import LENS_DEFAULTS from "../../../../../src/lens-data/defaults.js";
+import { buildFixtureLens as buildLens } from "../../../optics/constructionFixtures.js";
+import { catalogLensData } from "../../../optics/testLensFixtures.js";
+import { computeAnalysisFieldGeometryAtState } from "../../../../../src/optics/state/fieldAdapters.js";
+import { anchorLayoutToCamera } from "../../../../../src/optics/state/cameraLayout.js";
 import {
-  computeAnalysisFieldGeometryAtState,
-  anchorLayoutToCamera,
-  doLayout,
-  eflAtFocus,
-  epAtZoom,
-  fopenAtZoom,
-} from "../../../../../src/optics/optics.js";
+  doLayoutForRuntimeLens as doLayout,
+  epAtZoomClamped as epAtZoom,
+  fopenAtZoomClamped as fopenAtZoom,
+} from "../../../../../src/optics/state/runtimeAdapters.js";
+import { eflAtFocus } from "../../../../../src/optics/first-order/focusBreathing.js";
 import AberrationsPanel from "../../../../../src/components/display/analysis/AberrationsPanel.js";
 import ChromaticTab from "../../../../../src/components/display/analysis/ChromaticTab.js";
 import ComaTab from "../../../../../src/components/display/analysis/ComaTab.js";
@@ -33,15 +33,16 @@ import VignettingTab from "../../../../../src/components/display/analysis/Vignet
 import themes from "../../../../../src/utils/theme/themes.js";
 import Sonnar50f15Raw from "../../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikonFisheye6mmf28Raw from "../../../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
-import type { DistortionSample } from "../../../../../src/optics/distortionAnalysis.js";
-import type { LensData, RuntimeLens } from "../../../../../src/types/optics.js";
-import { createAnalysisComputationContext, prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import type { DistortionSample } from "../../../../../src/optics/analysis/distortion/distortion.js";
+import type { RuntimeLens } from "../../../../../src/types/optics.js";
+import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import { INTERACTIVE_ANALYSIS_SAMPLING } from "../../../../../src/optics/analysis/analysisQuality.js";
-import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/index.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
 import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
 
 function build(raw: object): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
+  return buildLens(catalogLensData(raw));
 }
 
 function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
@@ -201,6 +202,12 @@ describe("analysis display tabs", () => {
     expect(html).toContain("HALF FIELD");
     expect(html).toContain("Image Plane");
     expect(html).toContain("CARDINAL EFL");
+    const geometry = html.slice(html.indexOf(">Geometry</h3>"));
+    expect(geometry).toContain("BFD");
+    expect(geometry).toContain("TOTAL TRACK");
+    expect(geometry).toContain("TELEPHOTO RATIO");
+    expect(geometry).toContain((prepareRuntimeState(L, focusT, zoomT).totalTrack / Math.abs(dynamicEFL)).toFixed(2));
+    expect(geometry).toContain("track ÷ focal length; below 1 is telephoto");
   });
 
   it("DistortionChart labels the x-axis as image height percentage", async () => {

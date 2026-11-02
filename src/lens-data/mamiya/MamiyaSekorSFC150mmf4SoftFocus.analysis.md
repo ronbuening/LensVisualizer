@@ -7,7 +7,7 @@
 **Inventor:** Yusuke Nanjo<br>
 **Applicant:** Mamiya Koki Co., Ltd.<br>
 **Title:** Soft-focus lens (軟焦点レンズ)<br>
-**Embodiment analyzed:** Example 1 / 第1実施例
+**Example details:** 第1実施例
 
 Example 1 is the fixed patent assignment for the MAMIYA-SEKOR SFC 150mm f/4 SOFT FOCUS. The patent does not name the production lens, and no located manufacturer document identifies this patent number. The correlation instead rests on several mutually consistent features:
 

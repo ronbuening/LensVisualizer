@@ -6,8 +6,7 @@
 **Granted:** July 14, 1953\
 **Inventor:** Albrecht Wilhelm Tronnier\
 **Assignee:** Voigtländer & Sohn Aktiengesellschaft\
-**Title:** *Five-Lens Photographic Objective*\
-**Embodiment analyzed:** Example 1
+**Title:** *Five-Lens Photographic Objective*
 
 The prescription is the Example 1 five-lens objective in US 2,645,154, treated here as the fixed production correlation for the **VOIGTLÄNDER APO-LANTHAR 210mm f/4.5** specified by the project job card. The patent identifies the design as a Heliar-type objective and publishes a normalized prescription with $F=1.0000$, a relative aperture of f/4.5, five lenses in three air-separated members, and an image field described as almost 60° (US 2,645,154, Example, printed pp. 5–6).
 

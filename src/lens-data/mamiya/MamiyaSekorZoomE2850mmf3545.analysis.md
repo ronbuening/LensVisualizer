@@ -7,7 +7,6 @@
 **Inventor:** Yusuke Nanjo<br>
 **Applicant:** Mamiya Koki Co., Ltd.<br>
 **Title:** Wide-Angle Zoom Lens (広角ズームレンズ)
-**Embodiment analyzed:** Example 1
 
 The data model transcribes Example 1 of JP 1981-119109 A and correlates it with the MAMIYA-SEKOR ZOOM E 28-50mm
 f/3.5-4.5. The patent describes a retrofocus wide-angle zoom formed by a negative-power front major group and a

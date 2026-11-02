@@ -10,8 +10,9 @@ this document only records where to import from and the contracts that are not v
 - Prefer the barrel or focused module listed below before importing from a deeper file.
 - `src/optics/` is the authoritative optics implementation. App code should prefer the stable `src/optics/*` public
   paths; deeper engine modules are for optics internals and focused tests.
-- Do not import from `src/optics/internal/` unless the work is inside the optics implementation or a targeted optics
-  test.
+- Import focused implementation modules only inside the optics engine or a targeted optics test.
+- The seam guard in `__tests__/src/optics/opticsArchitecture.test.ts` enforces this boundary for `src/`, `scripts/`
+  and `reports/`; see "Architecture Guards" in `agent_docs/architecture/testing.md`.
 - Treat `src/generated/` as read-only build output. Regenerate metadata instead of editing it.
 - Lens data modules are auto-discovered through `import.meta.glob`; do not manually import individual lens files for
   catalog behavior.
@@ -20,25 +21,71 @@ this document only records where to import from and the contracts that are not v
 
 ## Which Optics Module To Import From
 
-| Module | Import it for | Rule |
-| --- | --- | --- |
-| `src/optics/buildLens.ts` | `buildLens(data)` (default export) | The only runtime-lens constructor for app code. It validates/defaults lens data, resolves glass and state indices, and returns a frozen `RuntimeLens`. `paraxialTrace` / `realTraceToStop` are re-exported from `src/optics/runtimeLens.ts` for focused optics tests only. |
-| `src/optics/teleconverter.ts` | `attachTeleconverter(host, tc)`, `teleconverterCompatibility`, `teleconverterGeometry`, `validateTeleconverterData`, label helpers | Composes a detachable teleconverter onto a host `LensData`; the result goes through `buildLens()`. Never build a teleconverter alone. |
-| `src/optics/optics.ts` | Pure helpers: surface sag, layout (`doLayout`, `stateSurfaces`, `thick`), derived values (`eflAtZoom`, `effectiveFNumber`, ...), meridional/vector/skew tracing, pupil sampling, chromatic spread | Default barrel for UI hooks, display components, and analysis tabs. It preserves app-facing names over the engine implementation in `compat.ts`. |
-| `src/optics/fieldGeometry.ts` | Field and chief-ray helpers: `computeFieldGeometryAtState`, `computeAnalysisFieldGeometryAtState`, `entrancePupilAtState`, `solveChiefRay`, image-height inversion | Analysis tabs must use the `computeAnalysisFieldGeometryAtState` variant. Fisheye/ultra-wide launches go through `src/optics/projection.ts` and `solveChiefRay`; never inline `Math.tan(field)`. |
-| `src/optics/diagramGeometry.ts` | `createCoordinateTransforms`, `computeElementShapes`, `computeElementRenderDiagnostics` | The only SVG coordinate/shape entry point for diagram components; keeps UI decoupled from the engine's diagram submodule layout. |
-| `src/optics/compat.ts` | `buildLens2`, `prepareRuntimeState`, `engineLensFromRuntime`, `analysisJobsForState2`, and the `*2` analysis facades | Engine-native facade for prepared-state work (`src/optics/state/prepareState.ts`) and engine tests. App code reaches it only through the barrels above or through `analysisJobsForState2` in analysis tabs. |
-| `src/optics/analysisJobs.ts`, `src/optics/analysis/analysisContext.ts` | Grouped analysis job facades and the memoized per-panel analysis context | The context carries the complete perspective trace context and cache key; active movement is routed without centered-result fallback (`src/optics/analysis/analysisMovementSupport.ts` classifies section availability). |
-| `src/optics/perspective/index.ts`, `src/optics/perspective/analysis/index.ts` | Perspective pose/trace context, chief solving, field sampling, and the fixed-sensor analysis variants | Failed field-sample requests are retained with explicit statuses rather than dropped. |
-| `src/optics/lensMovement.ts` | Perspective-control clamping and diagram transform adapters | Keep movement here unless explicitly upgrading full moved-optics analysis. |
-| `src/optics/publishedStations.ts` | `publishedZoomStations`, `publishedFocusStations`, `nearestPublishedStation`, `isOnPublishedStation`, `publishedStationAvailability`, and the data-level `publishedStationGrid` | The only reader of station provenance. Returned `zoomT` / `focusT` are canonical station coordinates; `distanceM` is a slider-convention label, and only `conjugate` is a source claim. |
+The final seam is the 16 top-level barrels below. Outside `src/optics/`, imports (including types and script-loaded
+paths) use these barrels. Focused tests may import the internal module they test. The permanent plain-Node exception
+is `prescription/teleconverterCompatibility.ts`; `mount/` is outside this boundary.
+
+| Module in `src/optics/` | Public surface |
+| --- | --- |
+| `buildLens.ts` | `buildLens` (named/default), canonical ingest, `canonicalInput`, `compileLens`, `buildCanonicalLens`, `canonicalLensFromRuntime`, `compiledLensFromRuntime`, `lensDataVersion`, `prepareRuntimeState` |
+| `teleconverter.ts` | Converter composition, compatibility, geometry and labels |
+| `optics.ts` | Layout and station values, RuntimeLens state adapters, exact ray adapters, focus/aperture controls, the stop rule (`stopSemiDiameterForFNumber`, `fNumberRuleStopSemiDiameter`, `wideOpenStopAtZoom`, `stopRuleGeometry`, which also takes a compiled lens), the paraxial f-numbers (`imageSpaceFNumber`, `paraxialWorkingFNumber`, `paraxialWorkingFNumberForRuntimeLens` with its unavailable reason), pupil-ray density and display formatting (`formatParaxialWorkingFNumber`, `showsParaxialWorkingFNumber`) |
+| `fieldGeometry.ts` | Field and pupil geometry, image-height inversion, RuntimeLens chief-ray adapters and bounded chief-ray diagnostic snapshots |
+| `projection.ts` | Projection domains, fisheye mapping, slopes and bounding-sphere launch vectors |
+| `analysis.ts` | Analysis requests, memoized contexts, movement availability, `analysisJobs`, `analysisPreviewJobs`, the aimed pupil launch (`prepareAimedPupilLaunch`, `prepareAimedPupilLaunchForState`, `prepareAimedPupilTrace`, `spectralTraceOptions`) and aimed stop lattices (`prepareAimedStopLattice`, `prepareAimedStopLatticeForState`), the shared stop lattice (`stopLattice`), the vignetting stop lattice, per-field results and Rimmer helpers (`vignettingStopLattice`, `computeVignettingField`, `computeVignettingCurve`, `exitPupilZ`, `referenceSphere`, `referredDirection`), the real-ray working f-number (`computeWorkingFNumber`), summary/cardinal and aberration/chromatic/bokeh/aspheric families |
+| `mtf.ts` | MTF support, spectrum, orchestration and the numerical helpers used by reports and benchmarks, including the stop-lattice pupil (`aimMtfStopLattice`, `traceMtfStopBundle`, `traceMtfLattice`) and the launch-plane pupil of bounding-sphere fields (`findMtfFieldFootprint`, `traceMtfLaunchPlaneBundle`) |
+| `perspective.ts` | Movement clamping, transforms, trace context, diagram fans, viewport and analysis types |
+| `diagramGeometry.ts` | SVG transforms, shapes, surface paths, display sag/trimming and folded-path labels |
+| `chromatic.ts` | Channel metadata, spectral lines, dispersion compilation/resolution/quality and chromatic ray tracing |
+| `glassCatalog.ts` | Glass entries, catalog resolution, tolerances and index evaluation |
+| `publishedStations.ts` | Published station grids, coordinates, labels and availability |
+| `validation.ts` | Named `validateLensData`, `validateCanonicalLens`, `validateTeleconverterData`, the rim-cut beam rule (`validateRimCutBeams`, `rimCutBeamReach`) and its dense probe (`rimCutDenseProbe`) and schema helpers |
+| `geometry.ts` | Positional sag functions, numerical geometry constants, shared vector helpers and a surface's clear radius under a rim cut (`clearSemiDiameter`) |
+| `types.ts` | Engine types and preparation errors |
+| `lensDataConversion.ts` | Canonical/V1/V2 mapping, source paths and printers; loaded only by `scripts/lens-data-convert/load.mjs` outside focused tests |
+
+## Names And Runtime Adapters
+
+Canonical subdirectory implementations keep their plain names. Where a positional RuntimeLens adapter has a different
+contract, its public name says so: `solveChiefRayForRuntimeLens`, `traceParaxialRayForRuntimeLens`, the RuntimeLens
+image-height/launch adapters, `doLayoutForRuntimeLens`, `thickOrZero`, and `eflAtZoomClamped` / `epAtZoomClamped` /
+`fopenAtZoomClamped`. The station-table interpolators and throwing `thick` keep their plain names. Callers retain the
+contract they previously used; these names do not introduce a new optical model.
+
+Prepared field geometry lives in `field/geometry.ts`, chief solves in `field/chiefRaySolve.ts`, and image-height
+inversion in `field/imageHeight.ts`. Outside callers use `fieldGeometry.ts`; analysis tabs use
+`computeAnalysisFieldGeometryAtState`. `computeCardinalElementsFromState` takes prepared geometry, while
+`computeCardinalElements` takes an analysis request. `analysisJobs` is the full request-facing registry;
+`analysisPreviewJobs` retains the smaller historical job subset with its distinct key set.
+
+The shared off-axis geometry helpers take `PreparedGeometry`. `computeOffAxisFieldGeometry(state, fieldFraction,
+stateGeometry?)` is the canonical projection-aware entry; `computeOffAxisFieldGeometryScalar` and
+`computeOffAxisFieldGeometryParaxial` preserve their scalar/current-state and first-order reference contracts.
+Bundle/chief tracing takes the request plus derived launch geometry, samples and an optional channel/adapter.
+Control sweeps explicitly add only their varied coordinates and reuse prepared geometry, as described in
+[Optics Engine](optics-engine.md#analysis-requests-context-and-jobs).
+
+`getChiefRayDiagnostics` returns defensive snapshots keyed by compiled identity and retains at most 2,048 owners.
+Published stations return canonical `zoomT` / `focusT`; `distanceM` is a slider label and only `conjugate` is a source
+claim. Channel/index helpers expose qualified dispersion data, not historical production-glass identity.
 
 ## Runtime Lens Contracts
 
-Call `buildLens()` once per lens/session state boundary, then pass the returned `RuntimeLens` (`L`) explicitly into
-pure optics helpers. Do not store runtime lens state in module globals, and keep slider-state-dependent analysis out
-of `buildLens()`; analysis helpers are pure and are called from memoized hooks or analysis components with the current
-slider state.
+`ingestLens` and `ingestTeleconverter` accept authored V2 inputs only. `buildLens`, `canonicalInput`, and the internal
+`compileLensData` accept a `LensDataV2Input` or `CanonicalLens`; `attachTeleconverter` accepts those host types and a
+`TeleconverterDataV2Input` or `CanonicalTeleconverter`. Archived V1 handling is owned by
+[`workflow.md`, Adding Archived V1 Files](../workflow.md#adding-archived-v1-files).
+`isV1File` is internal; the `buildLens.ts` barrel exposes `lensDataVersion` for version detection.
+
+`buildLens()` ingests V2 or accepts canonical input and returns the shared frozen read model for that canonical
+identity. A new same-key canonical object has a separate compilation. `L.source` is the unexpanded canonical
+prescription; provenance and the optional composition descriptor travel separately through `canonicalLensFromRuntime`.
+The engine never reconstructs a prescription from UI fields, and `RuntimeLens.data` does not exist.
+
+Use `prepareRuntimeState` to translate UI controls to cached `PreparedGeometry`, then `createAnalysisRequest` for
+current aperture, field, sampling and optional pose. Analysis families and their internal state-dependent helpers pass that same request through; a lazy context memoizes its
+jobs by request identity. Low-level traversal takes `TraceGeometry`, independent of RuntimeLens ownership. Cache
+lifetimes and bounds are in [Optics Engine](optics-engine.md#cache-ownership-and-architecture-guards).
 
 For mirror or telescope data, inspect `L.opticalPath`, `L.imagePlane`, and `L.isFoldedOptics` instead of inferring
 behavior from surface order. Public `traceRay*` helpers report folded termination through `reachedImagePlane`; targeted
@@ -48,7 +95,8 @@ sequential partial tracing.
 
 ## Non-Optics Entry Points
 
-- Types: `src/types/optics.ts` (lens data, runtime lens, folded-path and projection metadata, result shapes),
+- Types: `src/types/lensDataV2.ts` (authored `LensDataV2Input` and `TeleconverterDataV2Input`),
+  `src/types/optics.ts` (internal construction projection, runtime lens, folded-path and projection metadata, result shapes),
   `src/types/state.ts` (reducer state, actions, preferences, `URLState`, UI unions with `is*` guards),
   `src/types/theme.ts`.
 - Catalog: `src/utils/catalog/lensCatalog.ts` exports the full `LENS_CATALOG`; index-style pages and search must use
@@ -74,7 +122,7 @@ sequential partial tracing.
 ## Adding Or Changing Public Functions
 
 - Add or update focused tests for the behavior, especially for optics math, URL parsing, and build scripts.
-- Export from the stable module or barrel expected by callers; avoid asking callers to reach into `internal/`.
+- Export from the stable module or barrel expected by callers; keep callers on the public seam.
 - Update this document only when an import boundary or a non-obvious contract changes, not for every new symbol.
-- For lens data shape changes, update `src/types/optics.ts`, `src/lens-data/LENS_DATA_SPEC.md`, templates, validation,
+- For lens data shape changes, update `src/types/lensDataV2.ts`, canonical ingest, `src/lens-data/LENS_DATA_SPEC.md`, templates, validation,
   and any generated-report scripts that inspect lens files.

@@ -355,3 +355,44 @@ Scope: second and final comparison of the local lens page with FIG. 1 of JP20260
 - The five flat annuli remain undrawn, D1 and D2 remain 0.4 mm below the drawing, and L10 remains 0.2 mm above it, for the reasons in the table.
 - Which production elements Tamron counts as LD is not published in text, so the four inferred tags are a glass-class reading of the patent example, not a confirmed production map.
 - The native dense corner-boundary sampling recorded in the earlier sections was not re-run; no semi-diameter changed in this pass.
+
+
+## 2026-10-29 — Z-mount surface and glass reinspection
+
+Fresh direct source review: `patents/JP2026057675A.pdf`, Numerical Example 1: Figure 1 INF/MOD panels, PDF page 19; complete prescription and rear plate on page 12, focus table page 13. Page images were rendered and read again; earlier notes supplied locators only.
+
+Every convex/concave face and cemented boundary was rechecked in a fresh 600 dpi crop of both Figure 1 panels. The native figure raster is 203 dpi; S1–S28 spans 685 native px / 116.0428 mm = 5.903 native px/mm (17.446 px/mm at 600 dpi). INF and MOD repeat the same outlines. Five concave air-face seats are resolved. The figure cap/edge pixel spans and q values below use the native raster; ±q is the one-native-pixel bound ±(1+q)/(edge px). The source has no numerical clear-aperture column.
+
+| Face | Native cap / edge px | Measured q ± one-pixel range | Adopted depth / cap mm | Furthest beam mm | Decision |
+|---|---|---|---|---|---|
+| 4 | 81 / 101.5 | 0.798 ± 0.018 | 4.97 / 15.579215 | 15.518279 | Retain beam-adjusted land 1.720785 mm |
+| 11 | 81 / 90 | 0.900 ± 0.021 | 2.36 / 13.858984 | 13.793402 | Retain beam-adjusted land 1.341016 mm |
+| 22 | 66 / 79.5 | 0.830 ± 0.023 | none | 13.473303 | Reject: reach + 0.05 exceeds outer sd 13.5 |
+| 25 | 81 / 92.5 | 0.876 ± 0.020 | 3.57 / 14.235355 | 14.184364 | Retain beam-adjusted land 1.464645 mm |
+| 26 | 84 / 92.5 | 0.908 ± 0.021 | 2.09 / 15.468500 | 15.397072 | Retain beam-adjusted land 0.231500 mm |
+
+The measured q values initially place caps at 13.806, 13.680, 11.208, 13.748 and 14.257 mm on the stored rims. All five initial trials clip sampled beams. The four retained cuts move outward under the specified inferred-cut beam rule, separately from the measured source endpoints. Each adopted depth is the smallest 0.01 mm sag step that clears the beam by at least 0.05 mm: the previous-step cap radii are 15.565127, 13.830440, 14.216656 and 15.432123 mm, all too small. Surface 22 cannot carry even a 0.1 mm land without clipping and remains unchanged. No extra land is inferred on the remaining faces. Outer SDs, all source optics and the localized gap policy remain unchanged.
+
+All 15 element nd/νd pairs and the rear plate were freshly checked against the source’s d-line prescription. All are retained. No source θgF/partial-dispersion or extra spectral-line indices are published. The four catalog-based APD annotations remain inferred; no spectral override is introduced.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy |
+|---|---|---|
+| L1 | 1.92119 / 23.96 | FDS24 |
+| L2 | 1.58913 / 61.25 | BACD5 |
+| L3 | 1.59282 / 68.62 | FCD515 |
+| L4 | 1.85451 / 25.15 | NBFD25 |
+| L5 | 1.59282 / 68.62 | FCD515 |
+| L6 | 1.59349 / 67 | PCD51 |
+| L7 | 1.49700 / 81.61 | FCD1 |
+| L8 | 1.80809 / 22.76 | FD225 |
+| L9 | 1.89286 / 20.36 | S-NPH4 |
+| L10 | 1.75500 / 52.32 | TAC6L |
+| L11 | 1.86966 / 20.02 | FDS20-W |
+| L12 | 1.69680 / 55.53 | S-LAL14 |
+| L13 | 1.43700 / 95.1 | FCD100 |
+| L14 | 1.71300 / 53.94 | LAC8 |
+| L15 | 1.48749 / 70.44 | FC5 |
+
+Coverage: 15/15 modeled media, representing 15 physical lens elements. Rear plate checked separately: 1.51633/64.14 (S-BSL7). Compatible catalog curves remain spectral proxies, not production supplier/melt identifications.
+
+Verification: focused surface/inferred-beam and image-circle audits; aperture census for the new cuts; actual native SVG outlines and render diagnostics over nine zoom/focus states; current-label resolver and catalog-coordinate sweep, `assertCatalogConsistent()`, and the shared dispersion/partial-dispersion consistency tests. Full repository gates are recorded by the coordinator at commit time.

@@ -67,6 +67,8 @@ npm run test
 
 Also run `npm run build` and `npm run seo:audit` for route, metadata, article, lens-data organization, sitemap, or SEO
 changes. The quality workflow runs the typecheck, formatting check, lint, dependency audit, tests, and production build.
+Engine changes also preserve the golden trace values and generated-report byte-diffs described in
+`agent_docs/decisions.md`.
 
 ## Pull-request checklist
 

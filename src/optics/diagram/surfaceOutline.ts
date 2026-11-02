@@ -6,9 +6,10 @@
  */
 
 import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
+import { rimOutlineSag } from "../geometry/rimCut.js";
 
 /** Number of straight SVG segments used per rendered surface curve. */
-export const SVG_PATH_SUBDIVISIONS_2 = 96;
+export const SVG_PATH_SUBDIVISIONS = 96;
 
 /**
  * Optional optical-space transform applied before SVG scaling.
@@ -17,17 +18,34 @@ export const SVG_PATH_SUBDIVISIONS_2 = 96;
  * @param y - optical height in mm
  * @returns transformed optical z/y pair in mm
  */
-export type DiagramPointTransform2 = (z: number, y: number) => [number, number];
+export type DiagramPointTransform = (z: number, y: number) => [number, number];
 
 /**
  * Evaluate display sag magnitude for a prepared surface.
  *
  * @param surface - current prepared surface
  * @param height - signed meridional height in mm
- * @returns sag in mm relative to the surface vertex
+ * @returns sag in mm relative to the surface vertex; the flat land beyond its start radius
  */
-export function surfaceSag2(surface: CompiledStateSurface, height: number): number {
-  return surface.profile.sag(Math.abs(height));
+export function surfaceSag(surface: CompiledStateSurface, height: number): number {
+  return rimOutlineSag(surface.profile.sag, surface.rimLand, Math.abs(height));
+}
+
+/**
+ * Signed heights at which to sample one surface curve from `-trim` to `+trim`.
+ *
+ * `SVG_PATH_SUBDIVISIONS + 1` even steps, with the corners of any rim land added so the cap meets it square.
+ *
+ * @param surface - current prepared surface
+ * @param trim - display semi-diameter in mm
+ * @returns ascending heights in mm
+ */
+export function outlineHeights(surface: CompiledStateSurface, trim: number): number[] {
+  const heights: number[] = [];
+  for (let i = 0; i <= SVG_PATH_SUBDIVISIONS; i++) heights.push(-trim + (2 * trim * i) / SVG_PATH_SUBDIVISIONS);
+  const corner = surface.rimLand?.radius;
+  if (corner === undefined || corner >= trim) return heights;
+  return [...heights, -corner, corner].sort((a, b) => a - b);
 }
 
 /**
@@ -35,12 +53,15 @@ export function surfaceSag2(surface: CompiledStateSurface, height: number): numb
  *
  * Tilted mirror planes and image-plane-like profiles can change z/y together, so
  * callers must ask the profile for a point instead of adding sag to `surface.z`.
+ * Beyond a rim land's start radius the point is on its flat boundary.
  *
  * @param surface - current prepared surface
  * @param y - signed meridional height in mm
  * @returns optical z coordinate in mm
  */
-export function renderedSurfaceZ2(surface: CompiledStateSurface, y: number): number {
+export function renderedSurfaceZ(surface: CompiledStateSurface, y: number): number {
+  const land = surface.rimLand;
+  if (land && Math.abs(y) > land.radius) return surface.z + land.sag;
   return surface.profile.pointAt(surface.z, 0, y)[2];
 }
 
@@ -58,13 +79,13 @@ export function renderedSurfaceZ2(surface: CompiledStateSurface, y: number): num
  * @param pointTransform - optional optical-space display transform
  * @returns SVG path `d` string, or an empty string for invalid surface indices
  */
-export function surfacePathD2(
+export function surfacePathD(
   state: PreparedOpticalState,
   surfaceIndex: number,
   trim: number,
   sx: (z: number) => number,
   sy: (y: number) => number,
-  pointTransform?: DiagramPointTransform2,
+  pointTransform?: DiagramPointTransform,
 ): string {
   const surface = state.surfaces[surfaceIndex];
   if (!surface) return "";
@@ -75,33 +96,32 @@ export function surfacePathD2(
   };
 
   let path = "";
-  for (let i = 0; i <= SVG_PATH_SUBDIVISIONS_2; i++) {
-    const y = -trim + (2 * trim * i) / SVG_PATH_SUBDIVISIONS_2;
-    path += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ2(surface, y), y)} `;
+  for (const [i, y] of outlineHeights(surface, trim).entries()) {
+    path += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(surface, y), y)} `;
   }
   return path;
 }
 
 /** Sample only the material bands of a surface, leaving an annular opening clear. */
-export function surfaceMaterialPathD2(
+export function surfaceMaterialPathD(
   state: PreparedOpticalState,
   surfaceIndex: number,
   outerTrim: number,
   innerTrim: number,
   sx: (z: number) => number,
   sy: (y: number) => number,
-  pointTransform?: DiagramPointTransform2,
+  pointTransform?: DiagramPointTransform,
 ): string {
   const surface = state.surfaces[surfaceIndex];
   if (!surface) return "";
   const inner = Number.isFinite(innerTrim) ? Math.max(0, Math.min(innerTrim, outerTrim)) : 0;
-  if (inner <= 0) return surfacePathD2(state, surfaceIndex, outerTrim, sx, sy, pointTransform);
-  const count = Math.max(8, Math.round((SVG_PATH_SUBDIVISIONS_2 * (outerTrim - inner)) / outerTrim));
+  if (inner <= 0) return surfacePathD(state, surfaceIndex, outerTrim, sx, sy, pointTransform);
+  const count = Math.max(8, Math.round((SVG_PATH_SUBDIVISIONS * (outerTrim - inner)) / outerTrim));
   const segment = (from: number, to: number): string => {
     let path = "";
     for (let i = 0; i <= count; i++) {
       const y = from + ((to - from) * i) / count;
-      const z = renderedSurfaceZ2(surface, y);
+      const z = renderedSurfaceZ(surface, y);
       const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
       path += `${i ? "L" : "M"}${sx(zz)},${sy(yy)} `;
     }

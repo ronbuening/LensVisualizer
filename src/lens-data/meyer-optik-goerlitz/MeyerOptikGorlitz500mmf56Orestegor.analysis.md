@@ -6,7 +6,7 @@
 **Published notice:** 7 March 1968
 **Applicant:** VEB Feinoptisches Werk Görlitz
 **Title:** *Photographisches Tele-Objektiv*
-**Embodiment analyzed:** Example 1 / *Zahlenbeispiel*, uniformly scaled 5× in the LensVisualizer production-correlation model
+**Example details:** *Zahlenbeispiel*, uniformly scaled 5× in the LensVisualizer production-correlation model
 
 The selected prescription source is the supplied nine-page German utility-model record. The patent’s general design statement targets a 60 × 60 mm format with a 10° image angle, while the worked numerical example is a normalized prescription at $f' = 100\,\mathrm{mm}$, f/5.6, and 10°. Those statements are not dimensionally literal at the example’s native length scale: a 60 × 60 mm diagonal cannot subtend only 10° at 100 mm focal length. The final model therefore treats the numerical table as a normalized similarity prescription and applies a uniform 5× scale for the 500 mm production correlation. The numerical prescription appears on PDF page 5 (printed page 3), is repeated in claim 3 on PDF page 8, and is illustrated by the optical section on PDF page 9. The patent defines refractive index at the helium d line, 587.6 nm. [DE 1 980 417, PDF pp. 3–9.]
 

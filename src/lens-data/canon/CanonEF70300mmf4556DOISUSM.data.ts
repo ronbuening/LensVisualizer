@@ -1,80 +1,73 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Canon EF 70-300mm f/4.5-5.6 DO IS USM — JP 2004-317867 A, Numerical Example 1.
- *
- * Numerical authority: the fixed local patent. The rendered Example 1 table prints r4=49.800 and r10=-759.945; both
- * literal values are used here. Canon's phase equation
- * is Phi=(2*pi/lambda0)*sum(Cp*h^p), while LensVisualizer stores the optical-path polynomial W=sum(Cp*h^p), so the raw
- * patent coefficients are stored directly. These choices reproduce the published focal lengths and back focus without
- * fitted radii or coefficient scaling. The Example 1 formula is strongly correlated with the marketed lens by focal
- * range, aperture range, DO placement, rear focus, IS group, and publication timing, but Canon does not identify it as
- * the production prescription. The patent model has 17 elements in 14 air-separated assemblies and seven functional
- * zoom groups; Canon marketed 18 elements / 12 groups and a three-layer DO element. elementCount and groupCount
- * describe this authored patent model.
- *
- * Diffractive normalization: source surface 4 is the E2-to-E3 bonded interface and carries Canon's radial phase
- * polynomial. The patent prints raw C2/C4/C6 values of -7.27275e-5, -3.95105e-9, and -3.14725e-12. Its rendered formula
- * is OCR-prone, but Canon's Phi=(2*pi/lambda0)*sum(Cp*h^p) convention makes those Cp values optical-path coefficients.
- * LensVisualizer uses that same W=sum(Cp*h^p) representation, so no additional 2*pi/lambda0 factor is applied. The
- * current tracer follows the ideal +1 design order; it does not model Canon's multi-layer diffraction efficiency,
- * unwanted orders, scatter, or flare.
- *
- * Focus status: PATENT_CAM_SAMPLED. The patent mechanism moves L6 only, with D25 increasing and D31 decreasing by the
- * same amount. The authored 1.5 m shifts are 0.713980 mm wide, 2.399338 mm middle, and 7.934380 mm tele, evaluated from
- * the printed focus-cam polynomial at the reconstructed W/M/T zoom coordinates. Table 2 independently rounds the
- * endpoints to 0.71 and 7.93 mm. The marketed 1.4 m MFD does not override the patent model.
- *
- * Zoom: the patent publishes three infinity states plus 12-term motion cams for L1, L3, L4, and L6; L2 (IS), L5, and
- * L7 remain fixed. A least-squares fit to all six printed variable gaps places the middle station at cam parameter
- * z=0.50540029. The 21-point schedule samples those source cams, includes L4's turning point at z=0.0748997827, and
- * retains the three printed W/M/T gaps exactly. Intermediate zoomPositions are computed d-line EFL labels.
- *
- * Semi-diameters are inferred because Example 1 publishes no clear apertures. The draft values combine the 600 dpi
- * Figure 1 optical outlines with the current edge/slope/cross-gap/render constraints and targeted ray containment at
- * all 21 zoom knots, at infinity and 1.5 m focus. They are modeling apertures, not patent dimensions. The patent
- * gives only rounded endpoint f-numbers and no stop radius; nominalFno therefore uses the published 4.6/5.8
- * endpoints plus a disclosed 5.2 middle interpolation. STO.sd=10.5 mm is a clearance envelope for the largest exact
- * marginal-ray opening (10.408 mm at tele); the runtime wide-open iris follows nominalFno at each zoom station.
- * Surface SDs 4/5 and 7/8 contain that tele marginal ray and remain consistent with the 600 dpi Figure 1 outline.
- *
- * The zero-distance, equal-radius air split at source surfaces 29/30 is collapsed to one direct E15-to-E16 interface
- * labeled 29, with source d30=0.95 mm retained. This leaves the paraxial, exact-refractive, and Petzval behavior
- * unchanged. No cover glass, filter, dummy/flare-cutter plane, folded path, or mechanical component is included.
- *
- * Patent glass identities are unresolved. A coherent whole-prescription coordinate fingerprint supports qualified
- * OHARA catalog surrogates for 13 elements. The four non-unique rows (E2, E6, E14, and E16) retain vendor-neutral
- * six-digit classes while using coordinate-compatible catalog curves. No catalog-derived nC/nF/ng is presented as
- * measured patent data, and dPgF is omitted because the source publishes neither line indices nor partial dispersion.
+ * JP2004317867A Numerical Example 1, original shape/glass inspection 2026-10-30.
+ * Native Figure 1 is 1162x651 at about400dpi; numerical tables about200dpi.
+ * 17 elements /14 air-spaced assemblies /7 functional zoom units; the marketed
+ * 18/12 three-layer DO construction is a qualified correlation, not this formula.
+ * All literal R/d, asphere/phase coefficients, stop and authored cams are retained.
+ * Source r4=49.800 and r10=-759.945 are directly legible. The zero-distance
+ * equal-radius 29/30 split stays normalized to one E15/E16 material interface.
+ * Raw DOE coefficients remain the existing +1 OPD interpretation. The original
+ * phase prefactor and aspheric denominator are defective/undefined as printed;
+ * no claim of exact printed-equation reproduction or physical micro-layer model.
+ * The patent names no spectral line for its bulk ni/vi pairs; only the DOE wavelength
+ * is explicitly d. 17 of 17 printed pairs match catalog d-line coordinates and none
+ * match the e-line, so the table is read as d-line. 17 media use catalog curves as
+ * spectral proxies; supplier, melt and chemistry stay unspecified.
+ * No catalog-derived per-lens spectral values or published partials are present.
+ * S4/S5 restored to27mm optical height under the source connected outline;
+ * S21/S22 inferred caps11mm remove finite-state boundary clips. These are model
+ * apertures, not printed dimensions. No interface lands or inferred cuts.
+ * 21 source-cam sample knots include L4's turning point; intermediate interpolation
+ * and linear focus slider remain approximations, with actual-state iris audited.
  */
 const LENS_DATA = {
+  schema: 2,
   key: "canon-ef-70-300mm-f45-56-do-is-usm",
   maker: "Canon",
   name: "CANON EF 70-300mm f/4.5-5.6 DO IS USM",
   subtitle: "JP 2004-317867 A, Numerical Example 1 — patent-cam L6 focus model",
-  specs: [
-    "17 ELEMENTS / 14 AIR-SPACED ASSEMBLIES",
-    "7 FUNCTIONAL ZOOM GROUPS",
-    "DESIGN 72.10-290.07 mm",
-    "NOMINAL f/4.6-5.8",
-    "PRODUCT 3-LAYER DO / MODEL +1 PHASE",
-    "1 ASPHERE",
-    "L2 IMAGE STABILIZATION / L6 IMAGEWARD REAR FOCUS",
-  ],
 
-  focalLengthMarketing: [70, 300],
-  focalLengthDesign: [72.099975, 290.06786],
-  apertureMarketing: 4.5,
-  apertureDesign: 4.6,
-  lensMounts: ["canon-ef"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 2004-317867 A",
-  patentAuthors: ["Hiroshi Endo"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 2004,
-  elementCount: 17,
-  groupCount: 14,
-  apertureBlades: 6,
+  catalog: {
+    lensMounts: ["canon-ef"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "17 ELEMENTS / 14 AIR-SPACED ASSEMBLIES",
+      "7 FUNCTIONAL ZOOM GROUPS",
+      "DESIGN 72.16-290.26 mm",
+      "NOMINAL f/4.6-5.8",
+      "PRODUCT 3-LAYER DO / MODEL +1 PHASE",
+      "1 ASPHERE",
+      "L2 IMAGE STABILIZATION / L6 IMAGEWARD REAR FOCUS",
+    ],
+    elementCount: 17,
+    groupCount: 14,
+    focalLengthMm: { marketing: [70, 300], design: [72.16, 290.26] },
+    fNumber: { marketing: 4.5, design: 4.6 },
+  },
+
+  source: {
+    patentNumber: "JP 2004-317867 A",
+    example: { label: "Numerical Example 1", id: "1" },
+    patentYear: 2004,
+    authors: ["Hiroshi Endo"],
+    assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Original paragraph0054/page13 prints Phi=2pi*lambda0*(C1*a^2+C2*h^4+C3*h^6+...), while the retained model interprets the tabulated c2/c4/c6 as an OPD polynomial with phase2pi/lambda0. Source focal/back-focus evidence supports that existing interpretation, but the literal prefactor/radial-symbol defect is not silently corrected or claimed to describe physical three-layer geometry.",
+      },
+      {
+        status: "unresolved",
+        note: "The native aspheric equation in paragraph0053/page13 shows an undefined H multiplying the square root in the denominator. The existing standard spherical-base K=0 interpretation and all printed b/c/d coefficients are retained; K is not independently printed and no exact replacement equation is proved here.",
+      },
+      {
+        status: "unresolved",
+        note: "Table3/page24 prints 0.05<abs(DXT/MF)<0.08 but Example1=0.56 and Example2=0.67. The inconsistent bound remains a source defect; no optical or control value is changed to satisfy it.",
+      },
+    ],
+  },
 
   elements: [
     {
@@ -84,8 +77,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.2,
-      fl: 227.345987,
-      glass: "S-FSL5 (OHARA catalog surrogate; patent identity unresolved)",
+      focalLengthMm: 227.345987,
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive collector in patent group L1.",
     },
     {
@@ -95,10 +89,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.834,
       vd: 37.2,
-      fl: -126.309451,
-      glass: "834372 class (vendor unresolved; multiple catalog equivalents)",
-      cemented: "DO1",
+      focalLengthMm: -126.309451,
+      glass:
+        "J-LASF010 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative front member of the bonded pair whose interface carries the effective Canon DO phase.",
+      cemented: "DO1",
     },
     {
       id: 3,
@@ -107,10 +102,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51633,
       vd: 64.1,
-      fl: 91.815361,
-      glass: "S-BSL7 (OHARA catalog surrogate; patent identity unresolved)",
-      cemented: "DO1",
+      focalLengthMm: 91.815361,
+      glass:
+        "S-BSL7 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive rear member of the bonded DO pair and main positive component of patent group L1.",
+      cemented: "DO1",
     },
     {
       id: 4,
@@ -119,8 +115,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.713,
       vd: 53.9,
-      fl: -60.00451,
-      glass: "S-LAL8 (OHARA catalog surrogate; patent identity unresolved)",
+      focalLengthMm: -60.00451,
+      glass:
+        "S-LAL8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front negative member of fixed patent group L2, which the source identifies as the lateral IS group.",
     },
     {
@@ -130,10 +127,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.62299,
       vd: 58.2,
-      fl: -32.872491,
-      glass: "S-BSM15 (OHARA catalog surrogate; patent identity unresolved)",
-      cemented: "D2",
+      focalLengthMm: -32.872491,
+      glass:
+        "S-BSM15 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative member of the cemented rear pair in the IS group.",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -142,10 +140,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84666,
       vd: 23.9,
-      fl: 51.477738,
-      glass: "847239 class (vendor unresolved; multiple catalog equivalents)",
-      cemented: "D2",
+      focalLengthMm: 51.477738,
+      glass:
+        "S-NPH53 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "High-dispersion positive partner completing the net-negative IS group.",
+      cemented: "D2",
     },
     {
       id: 7,
@@ -154,8 +153,9 @@ const LENS_DATA = {
       type: "Biconvex Positive (1x Asph)",
       nd: 1.58313,
       vd: 59.4,
-      fl: 31.188373,
-      glass: "S-BAL42 (OHARA catalog surrogate; patent identity unresolved)",
+      focalLengthMm: 31.188373,
+      glass:
+        "S-BAL42 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Strong positive aspheric member of patent group L3 ahead of the aperture stop.",
     },
     {
@@ -165,8 +165,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      fl: -124.344478,
-      glass: "S-TIH6 (OHARA catalog surrogate; patent identity unresolved)",
+      focalLengthMm: -124.344478,
+      glass:
+        "S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Weak negative partner completing patent group L3.",
     },
     {
@@ -176,8 +177,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.755,
       vd: 52.3,
-      fl: -39.18805,
-      glass: "S-LAH97 (OHARA catalog surrogate; patent identity unresolved)",
+      focalLengthMm: -39.18805,
+      glass:
+        "S-LAH97 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Single negative moving patent group L4 immediately behind the stop.",
     },
     {
@@ -187,8 +189,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.51742,
       vd: 52.4,
-      fl: 61.309616,
-      glass: "S-NSL36 (OHARA catalog surrogate; patent identity unresolved)",
+      focalLengthMm: 61.309616,
+      glass:
+        "S-NSL36 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front positive element of fixed patent group L5.",
     },
     {
@@ -198,8 +201,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      fl: -67.676777,
-      glass: "S-TIH6 (OHARA catalog surrogate; patent identity unresolved)",
+      focalLengthMm: -67.676777,
+      glass:
+        "S-TIH6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative element balancing the positive members of fixed patent group L5.",
     },
     {
@@ -209,8 +213,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 53.201389,
-      glass: "S-FSL5 (OHARA catalog surrogate; patent identity unresolved)",
+      focalLengthMm: 53.201389,
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Low-dispersion positive element in fixed patent group L5.",
     },
     {
@@ -220,8 +225,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.60311,
       vd: 60.6,
-      fl: 59.091672,
-      glass: "S-BSM14 (OHARA catalog surrogate; patent identity unresolved)",
+      focalLengthMm: 59.091672,
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Rear positive element completing fixed patent group L5.",
     },
     {
@@ -231,8 +237,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.7,
-      fl: -37.415378,
-      glass: "835427 class (vendor unresolved; multiple catalog equivalents)",
+      focalLengthMm: -37.415378,
+      glass:
+        "J-LASF05 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Front negative element of moving rear-focus patent group L6.",
     },
     {
@@ -242,10 +249,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72825,
       vd: 28.5,
-      fl: 25.46681,
-      glass: "S-TIH10 (OHARA catalog surrogate; patent identity unresolved)",
-      cemented: "D3",
+      focalLengthMm: 25.46681,
+      glass:
+        "S-TIH10 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive member of the collapsed zero-air-gap E15/E16 assembly in moving patent group L6.",
+      cemented: "D3",
     },
     {
       id: 16,
@@ -254,10 +262,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.83481,
       vd: 42.7,
-      fl: -19.707635,
-      glass: "835427 class (vendor unresolved; multiple catalog equivalents)",
-      cemented: "D3",
+      focalLengthMm: -19.707635,
+      glass:
+        "J-LASF05 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative partner in the normalized E15/E16 assembly completing moving patent group L6.",
+      cemented: "D3",
     },
     {
       id: 17,
@@ -266,23 +275,23 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.58313,
       vd: 59.4,
-      fl: 151.175826,
-      glass: "S-BAL42 (OHARA catalog surrogate; patent identity unresolved)",
+      focalLengthMm: 151.175826,
+      glass:
+        "S-BAL42 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Fixed final positive field-relay patent group L7 ahead of the 38.63 mm image spacing.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 96.39, d: 4.41, nd: 1.48749, elemId: 1, sd: 27.2 },
-    { label: "2", R: 728.769, d: 0.15, nd: 1, elemId: 0, sd: 27.0 },
-    { label: "3", R: 96.142, d: 1.96, nd: 1.834, elemId: 2, sd: 27.0 },
+    { label: "1", R: 96.39, d: 4.41, sd: 27.2, medium: 1 },
+    { label: "2", R: 728.769, d: 0.15, sd: 27.0 },
+    { label: "3", R: 96.142, d: 1.96, sd: 27.0, medium: 2 },
     {
       label: "4",
       R: 49.8,
       d: 8.43,
-      nd: 1.51633,
-      elemId: 3,
-      sd: 23.8,
+      sd: 27.0,
+      medium: 3,
       diffractive: {
         kind: "radial-polynomial",
         referenceWavelengthNm: 587.6,
@@ -294,204 +303,237 @@ const LENS_DATA = {
         ],
       },
     },
-    { label: "5", R: -929.716, d: 2.74, nd: 1, elemId: 0, sd: 23.6 },
-    { label: "6", R: -301.558, d: 0.98, nd: 1.713, elemId: 4, sd: 12.0 },
-    { label: "7", R: 49.924, d: 2.8, nd: 1, elemId: 0, sd: 10.6 },
-    { label: "8", R: -37.115, d: 0.98, nd: 1.62299, elemId: 5, sd: 10.6 },
-    { label: "9", R: 46.153, d: 2.97, nd: 1.84666, elemId: 6, sd: 12.0 },
-    { label: "10", R: -759.945, d: 12.72, nd: 1, elemId: 0, sd: 12.0 },
-    { label: "11A", R: 43.887, d: 5.39, nd: 1.58313, elemId: 7, sd: 12.5 },
-    { label: "12", R: -29.652, d: 0.58, nd: 1, elemId: 0, sd: 12.5 },
-    { label: "13", R: -27.303, d: 1.4, nd: 1.80518, elemId: 8, sd: 12.0 },
-    { label: "14", R: -38.399, d: 3.92, nd: 1, elemId: 0, sd: 12.0 },
-    { label: "STO", R: 1e15, d: 3.05, nd: 1, elemId: 0, sd: 10.5 },
-    { label: "16", R: -26.18, d: 1.47, nd: 1.755, elemId: 9, sd: 12.0 },
-    { label: "17", R: -232.845, d: 9.17, nd: 1, elemId: 0, sd: 12.0 },
-    { label: "18", R: -429.477, d: 3.12, nd: 1.51742, elemId: 10, sd: 12.0 },
-    { label: "19", R: -29.614, d: 0.11, nd: 1, elemId: 0, sd: 12.0 },
-    { label: "20", R: 140.485, d: 1.12, nd: 1.80518, elemId: 11, sd: 11.0 },
-    { label: "21", R: 39.123, d: 0.38, nd: 1, elemId: 0, sd: 10.5 },
-    { label: "22", R: 49.613, d: 4.1, nd: 1.48749, elemId: 12, sd: 10.5 },
-    { label: "23", R: -52.871, d: 0.11, nd: 1, elemId: 0, sd: 11.0 },
-    { label: "24", R: 30.552, d: 3.44, nd: 1.60311, elemId: 13, sd: 13.0 },
-    { label: "25", R: 204.985, d: 15.78, nd: 1, elemId: 0, sd: 13.0 },
-    { label: "26", R: 239.774, d: 0.95, nd: 1.83481, elemId: 14, sd: 11.0 },
-    { label: "27", R: 27.585, d: 1.05, nd: 1, elemId: 0, sd: 10.5 },
-    { label: "28", R: 42.579, d: 4.9, nd: 1.72825, elemId: 15, sd: 10.5 },
-    { label: "29", R: -31.265, d: 0.95, nd: 1.83481, elemId: 16, sd: 10.5 },
-    { label: "31", R: 35.205, d: 3.0, nd: 1, elemId: 0, sd: 10.5 },
-    { label: "32", R: 35.419, d: 3.01, nd: 1.58313, elemId: 17, sd: 19.0 },
-    { label: "33", R: 57.354, d: 38.63, nd: 1, elemId: 0, sd: 19.0 },
+    { label: "5", R: -929.716, sd: 27.0 },
+    { label: "6", R: -301.558, d: 0.98, sd: 12.0, medium: 4 },
+    { label: "7", R: 49.924, d: 2.8, sd: 10.6 },
+    { label: "8", R: -37.115, d: 0.98, sd: 10.6, medium: 5 },
+    { label: "9", R: 46.153, d: 2.97, sd: 12.0, medium: 6 },
+    { label: "10", R: -759.945, sd: 12.0 },
+    {
+      label: "11A",
+      R: 43.887,
+      d: 5.39,
+      sd: 12.5,
+      medium: 7,
+      asphere: { K: 0, A4: -2.993677e-6, A6: 3.06917e-9, A8: -2.094142e-12 },
+    },
+    { label: "12", R: -29.652, d: 0.58, sd: 12.5 },
+    { label: "13", R: -27.303, d: 1.4, sd: 12.0, medium: 8 },
+    { label: "14", R: -38.399, d: 3.92, sd: 12.0 },
+    { label: "STO", R: "flat" },
+    { label: "16", R: -26.18, d: 1.47, sd: 12.0, medium: 9 },
+    { label: "17", R: -232.845, sd: 12.0 },
+    { label: "18", R: -429.477, d: 3.12, sd: 12.0, medium: 10 },
+    { label: "19", R: -29.614, d: 0.11, sd: 12.0 },
+    { label: "20", R: 140.485, d: 1.12, sd: 11.0, medium: 11 },
+    { label: "21", R: 39.123, d: 0.38, sd: 11.0 },
+    { label: "22", R: 49.613, d: 4.1, sd: 11.0, medium: 12 },
+    { label: "23", R: -52.871, d: 0.11, sd: 11.0 },
+    { label: "24", R: 30.552, d: 3.44, sd: 13.0, medium: 13 },
+    { label: "25", R: 204.985, sd: 13.0 },
+    { label: "26", R: 239.774, d: 0.95, sd: 11.0, medium: 14 },
+    { label: "27", R: 27.585, d: 1.05, sd: 10.5 },
+    { label: "28", R: 42.579, d: 4.9, sd: 10.5, medium: 15 },
+    { label: "29", R: -31.265, d: 0.95, sd: 10.5, medium: 16 },
+    { label: "31", R: 35.205, sd: 10.5 },
+    { label: "32", R: 35.419, d: 3.01, sd: 19.0, medium: 17 },
+    { label: "33", R: 57.354, d: 38.63, sd: 19.0 },
   ],
 
-  asph: {
-    "11A": {
-      K: 0,
-      A4: -2.993677e-6,
-      A6: 3.06917e-9,
-      A8: -2.094142e-12,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+  zoom: {
+    // (moved from publishedStations) Source rows only; the other zoom stations are solved or sampled control points.
+    stations: [
+      { focalLengthMm: 72.16, nominalFNumber: 4.6, label: "Wide", published: true, publishedFocus: [1] },
+      { focalLengthMm: 76.94064, nominalFNumber: 4.66, published: false },
+      { focalLengthMm: 79.473917, nominalFNumber: 4.72, published: false },
+      { focalLengthMm: 82.112172, nominalFNumber: 4.78, published: false },
+      { focalLengthMm: 88.535662, nominalFNumber: 4.84, published: false },
+      { focalLengthMm: 95.454696, nominalFNumber: 4.9, published: false },
+      { focalLengthMm: 102.910665, nominalFNumber: 4.96, published: false },
+      { focalLengthMm: 110.958124, nominalFNumber: 5.02, published: false },
+      { focalLengthMm: 119.666444, nominalFNumber: 5.08, published: false },
+      { focalLengthMm: 129.121507, nominalFNumber: 5.14, published: false },
+      { focalLengthMm: 139.54, nominalFNumber: 5.2, published: true },
+      { focalLengthMm: 149.004886, nominalFNumber: 5.26, published: false },
+      { focalLengthMm: 159.395944, nominalFNumber: 5.32, published: false },
+      { focalLengthMm: 170.719113, nominalFNumber: 5.38, published: false },
+      { focalLengthMm: 183.11152, nominalFNumber: 5.44, published: false },
+      { focalLengthMm: 196.732988, nominalFNumber: 5.5, published: false },
+      { focalLengthMm: 211.767048, nominalFNumber: 5.56, published: false },
+      { focalLengthMm: 228.417138, nominalFNumber: 5.62, published: false },
+      { focalLengthMm: 246.893237, nominalFNumber: 5.68, published: false },
+      { focalLengthMm: 267.386223, nominalFNumber: 5.74, published: false },
+      { focalLengthMm: 290.26, nominalFNumber: 5.8, label: "Tele", published: true, publishedFocus: [1] },
+    ],
+    step: 0.004,
+  },
+
+  focus: {
+    closeFocusM: 1.5,
+    description:
+      "PATENT_CAM_SAMPLED: patent group L6 translates imageward with D25 + D31 conserved. The W/M/T close pairs evaluate the printed focus-cam polynomial at the reconstructed zoom coordinates; Table 2 independently rounds the endpoint shifts to 0.71 and 7.93 mm at 1.5 m. The marketed 1.4 m MFD is metadata only.",
+  },
+
+  gaps: {
+    "5": {
+      label: "D5 / L1-L2",
+      values: [
+        [2.74, 2.74],
+        [8.708604398, 8.708604398],
+        [11.374749345, 11.374749345],
+        [13.900299028, 13.900299028],
+        [19.225549434, 19.225549434],
+        [23.999083622, 23.999083622],
+        [28.347006749, 28.347006749],
+        [32.357648153, 32.357648153],
+        [36.096774665, 36.096774665],
+        [39.615173353, 39.615173353],
+        [42.95, 42.95],
+        [45.688027472, 45.688027472],
+        [48.334631028, 48.334631028],
+        [50.909786146, 50.909786146],
+        [53.427970521, 53.427970521],
+        [55.901996701, 55.901996701],
+        [58.343217754, 58.343217754],
+        [60.761320498, 60.761320498],
+        [63.163241926, 63.163241926],
+        [65.551445936, 65.551445936],
+        [67.92, 67.92],
+      ],
+    },
+    "10": {
+      label: "D10 / L2-L3",
+      values: [
+        [12.72, 12.72],
+        [12.238303886, 12.238303886],
+        [11.990015345, 11.990015345],
+        [11.73593188, 11.73593188],
+        [11.140086417, 11.140086417],
+        [10.536698025, 10.536698025],
+        [9.930023424, 9.930023424],
+        [9.322163153, 9.322163153],
+        [8.713813034, 8.713813034],
+        [8.104680377, 8.104680377],
+        [7.49, 7.49],
+        [6.969444491, 6.969444491],
+        [6.44149295, 6.44149295],
+        [5.908489126, 5.908489126],
+        [5.368851977, 5.368851977],
+        [4.820886197, 4.820886197],
+        [4.262882607, 4.262882607],
+        [3.693281311, 3.693281311],
+        [3.11091361, 3.11091361],
+        [2.515352784, 2.515352784],
+        [1.91, 1.91],
+      ],
+    },
+    STO: {
+      label: "D15 / STO-L4",
+      values: [
+        [3.05, 3.05],
+        [3.36479229, 3.36479229],
+        [3.595466028, 3.595466028],
+        [3.865338694, 3.865338694],
+        [4.597805047, 4.597805047],
+        [5.442767411, 5.442767411],
+        [6.367625428, 6.367625428],
+        [7.351940404, 7.351940404],
+        [8.382855337, 8.382855337],
+        [9.452698741, 9.452698741],
+        [10.56, 10.56],
+        [11.527311234, 11.527311234],
+        [12.521743247, 12.521743247],
+        [13.541826115, 13.541826115],
+        [14.589445384, 14.589445384],
+        [15.667074866, 15.667074866],
+        [16.777469435, 16.777469435],
+        [17.923255888, 17.923255888],
+        [19.106455643, 19.106455643],
+        [20.327817895, 20.327817895],
+        [21.58, 21.58],
+      ],
+    },
+    "17": {
+      label: "D17 / L4-L5",
+      values: [
+        [9.17, 9.17],
+        [9.336903825, 9.336903825],
+        [9.354518627, 9.354518627],
+        [9.338729427, 9.338729427],
+        [9.202108536, 9.202108536],
+        [8.960534565, 8.960534565],
+        [8.642351148, 8.642351148],
+        [8.265896444, 8.265896444],
+        [7.843331628, 7.843331628],
+        [7.382620882, 7.382620882],
+        [6.88, 6.88],
+        [6.443244274, 6.443244274],
+        [5.976763803, 5.976763803],
+        [5.489684759, 5.489684759],
+        [4.98170264, 4.98170264],
+        [4.452038937, 4.452038937],
+        [3.899647958, 3.899647958],
+        [3.323462801, 3.323462801],
+        [2.722630748, 2.722630748],
+        [2.096829321, 2.096829321],
+        [1.44, 1.44],
+      ],
+    },
+    "25": {
+      label: "D25 / L6 focus front",
+      values: [
+        [15.78, 16.49398],
+        [15.492303268, 16.288388057],
+        [15.359692662, 16.205050176],
+        [15.229319039, 16.12911007],
+        [14.93021607, 15.971656615],
+        [14.618950744, 15.822620307],
+        [14.281658619, 15.66841996],
+        [13.906456368, 15.499661952],
+        [13.481954039, 15.309044088],
+        [12.996372056, 15.090078796],
+        [12.43, 14.829337654],
+        [11.888793395, 14.585431456],
+        [11.264883155, 14.297549977],
+        [10.552102574, 13.96512226],
+        [9.73535261, 13.579272798],
+        [8.796879861, 13.129173244],
+        [7.715906921, 12.601740555],
+        [6.468610039, 11.98166486],
+        [5.028894849, 11.252206216],
+        [3.37036703, 10.397145514],
+        [1.47, 9.40438],
+      ],
+    },
+    "31": {
+      label: "D31 / L6 focus rear",
+      values: [
+        [3.0, 2.28602],
+        [3.287696732, 2.491611943],
+        [3.420307338, 2.574949824],
+        [3.550680961, 2.65088993],
+        [3.84978393, 2.808343385],
+        [4.161049256, 2.957379693],
+        [4.498341381, 3.11158004],
+        [4.873543632, 3.280338048],
+        [5.298045961, 3.470955912],
+        [5.783627944, 3.689921204],
+        [6.34, 3.940662346],
+        [6.891206605, 4.194568544],
+        [7.515116845, 4.482450023],
+        [8.227897426, 4.81487774],
+        [9.04464739, 5.200727202],
+        [9.983120139, 5.650826756],
+        [11.064093079, 6.178259445],
+        [12.311389961, 6.79833514],
+        [13.751105151, 7.527793784],
+        [15.40963297, 8.382854486],
+        [17.31, 9.37562],
+      ],
     },
   },
 
-  var: {
-    "5": [
-      [2.74, 2.74],
-      [8.708604398, 8.708604398],
-      [11.374749345, 11.374749345],
-      [13.900299028, 13.900299028],
-      [19.225549434, 19.225549434],
-      [23.999083622, 23.999083622],
-      [28.347006749, 28.347006749],
-      [32.357648153, 32.357648153],
-      [36.096774665, 36.096774665],
-      [39.615173353, 39.615173353],
-      [42.95, 42.95],
-      [45.688027472, 45.688027472],
-      [48.334631028, 48.334631028],
-      [50.909786146, 50.909786146],
-      [53.427970521, 53.427970521],
-      [55.901996701, 55.901996701],
-      [58.343217754, 58.343217754],
-      [60.761320498, 60.761320498],
-      [63.163241926, 63.163241926],
-      [65.551445936, 65.551445936],
-      [67.92, 67.92],
-    ],
-    "10": [
-      [12.72, 12.72],
-      [12.238303886, 12.238303886],
-      [11.990015345, 11.990015345],
-      [11.73593188, 11.73593188],
-      [11.140086417, 11.140086417],
-      [10.536698025, 10.536698025],
-      [9.930023424, 9.930023424],
-      [9.322163153, 9.322163153],
-      [8.713813034, 8.713813034],
-      [8.104680377, 8.104680377],
-      [7.49, 7.49],
-      [6.969444491, 6.969444491],
-      [6.44149295, 6.44149295],
-      [5.908489126, 5.908489126],
-      [5.368851977, 5.368851977],
-      [4.820886197, 4.820886197],
-      [4.262882607, 4.262882607],
-      [3.693281311, 3.693281311],
-      [3.11091361, 3.11091361],
-      [2.515352784, 2.515352784],
-      [1.91, 1.91],
-    ],
-    STO: [
-      [3.05, 3.05],
-      [3.36479229, 3.36479229],
-      [3.595466028, 3.595466028],
-      [3.865338694, 3.865338694],
-      [4.597805047, 4.597805047],
-      [5.442767411, 5.442767411],
-      [6.367625428, 6.367625428],
-      [7.351940404, 7.351940404],
-      [8.382855337, 8.382855337],
-      [9.452698741, 9.452698741],
-      [10.56, 10.56],
-      [11.527311234, 11.527311234],
-      [12.521743247, 12.521743247],
-      [13.541826115, 13.541826115],
-      [14.589445384, 14.589445384],
-      [15.667074866, 15.667074866],
-      [16.777469435, 16.777469435],
-      [17.923255888, 17.923255888],
-      [19.106455643, 19.106455643],
-      [20.327817895, 20.327817895],
-      [21.58, 21.58],
-    ],
-    "17": [
-      [9.17, 9.17],
-      [9.336903825, 9.336903825],
-      [9.354518627, 9.354518627],
-      [9.338729427, 9.338729427],
-      [9.202108536, 9.202108536],
-      [8.960534565, 8.960534565],
-      [8.642351148, 8.642351148],
-      [8.265896444, 8.265896444],
-      [7.843331628, 7.843331628],
-      [7.382620882, 7.382620882],
-      [6.88, 6.88],
-      [6.443244274, 6.443244274],
-      [5.976763803, 5.976763803],
-      [5.489684759, 5.489684759],
-      [4.98170264, 4.98170264],
-      [4.452038937, 4.452038937],
-      [3.899647958, 3.899647958],
-      [3.323462801, 3.323462801],
-      [2.722630748, 2.722630748],
-      [2.096829321, 2.096829321],
-      [1.44, 1.44],
-    ],
-    "25": [
-      [15.78, 16.49398],
-      [15.492303268, 16.288388057],
-      [15.359692662, 16.205050176],
-      [15.229319039, 16.12911007],
-      [14.93021607, 15.971656615],
-      [14.618950744, 15.822620307],
-      [14.281658619, 15.66841996],
-      [13.906456368, 15.499661952],
-      [13.481954039, 15.309044088],
-      [12.996372056, 15.090078796],
-      [12.43, 14.829337654],
-      [11.888793395, 14.585431456],
-      [11.264883155, 14.297549977],
-      [10.552102574, 13.96512226],
-      [9.73535261, 13.579272798],
-      [8.796879861, 13.129173244],
-      [7.715906921, 12.601740555],
-      [6.468610039, 11.98166486],
-      [5.028894849, 11.252206216],
-      [3.37036703, 10.397145514],
-      [1.47, 9.40438],
-    ],
-    "31": [
-      [3.0, 2.28602],
-      [3.287696732, 2.491611943],
-      [3.420307338, 2.574949824],
-      [3.550680961, 2.65088993],
-      [3.84978393, 2.808343385],
-      [4.161049256, 2.957379693],
-      [4.498341381, 3.11158004],
-      [4.873543632, 3.280338048],
-      [5.298045961, 3.470955912],
-      [5.783627944, 3.689921204],
-      [6.34, 3.940662346],
-      [6.891206605, 4.194568544],
-      [7.515116845, 4.482450023],
-      [8.227897426, 4.81487774],
-      [9.04464739, 5.200727202],
-      [9.983120139, 5.650826756],
-      [11.064093079, 6.178259445],
-      [12.311389961, 6.79833514],
-      [13.751105151, 7.527793784],
-      [15.40963297, 8.382854486],
-      [17.31, 9.37562],
-    ],
-  },
-
-  varLabels: [
-    ["5", "D5 / L1-L2"],
-    ["10", "D10 / L2-L3"],
-    ["STO", "D15 / STO-L4"],
-    ["17", "D17 / L4-L5"],
-    ["25", "D25 / L6 focus front"],
-    ["31", "D31 / L6 focus rear"],
-  ],
-
-  zoomPositions: [
-    72.16, 76.94064, 79.473917, 82.112172, 88.535662, 95.454696, 102.910665, 110.958124, 119.666444, 129.121507, 139.54,
-    149.004886, 159.395944, 170.719113, 183.11152, 196.732988, 211.767048, 228.417138, 246.893237, 267.386223, 290.26,
-  ],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
+  aperture: { fStops: [4.6, 5, 5.2, 5.6, 5.8, 6.3, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 6 },
 
   groups: [
     { text: "L1 (+) / DO", fromSurface: "1", toSurface: "5" },
@@ -508,23 +550,11 @@ const LENS_DATA = {
     { text: "D3", fromSurface: "28", toSurface: "31" },
   ],
 
-  closeFocusM: 1.5,
-  // Source rows only; the other zoom stations are solved or sampled control points.
-  publishedStations: { zoom: [0, 10, 20], focus: [[1], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [1]] },
-  focusDescription:
-    "PATENT_CAM_SAMPLED: patent group L6 translates imageward with D25 + D31 conserved. The W/M/T close pairs evaluate the printed focus-cam polynomial at the reconstructed zoom coordinates; Table 2 independently rounds the endpoint shifts to 0.71 and 7.93 mm at 1.5 m. The marketed 1.4 m MFD is metadata only.",
+  layout: { scFill: 0.54, yScFill: 0.55 },
 
-  nominalFno: [
-    4.6, 4.66, 4.72, 4.78, 4.84, 4.9, 4.96, 5.02, 5.08, 5.14, 5.2, 5.26, 5.32, 5.38, 5.44, 5.5, 5.56, 5.62, 5.68, 5.74,
-    5.8,
-  ],
-  fstopSeries: [4.6, 5, 5.2, 5.6, 5.8, 6.3, 8, 11, 16, 22, 32],
-  maxFstop: 32,
+  rays: { offAxisFieldFrac: 0.6 },
 
-  offAxisFieldFrac: 0.6,
-  scFill: 0.54,
-  yScFill: 0.55,
-  gapSagFrac: 0.97,
-} satisfies LensDataInput;
+  checks: { gapSagFrac: 0.97 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

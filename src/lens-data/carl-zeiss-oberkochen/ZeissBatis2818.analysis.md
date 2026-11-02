@@ -9,7 +9,7 @@
 **Inventor:** Keisuke Omori\
 **Applicant:** Tamron Co., Ltd.\
 **Title:** Inner focusing lens (インナーフォーカス式レンズ)\
-**Embodiment analyzed:** Example 1 (実施例1)
+**Example details:** 実施例1
 
 The prescription is transcribed from Example 1 of JP 2016-188967 A. The patent describes a wide-angle inner-focus lens with a positive first group G11, a negative single-element focus group G12, and a negative third group G13. G11 and G13 remain fixed while G12 translates toward the image side for closer focus. The numerical example is given on patent pages 12–15, with the asphere equation defined on page 26 and the Example 1 optical section and aberration plots on page 27 (JP 2016-188967 A, ¶0088–¶0106, ¶0164–¶0166).
 

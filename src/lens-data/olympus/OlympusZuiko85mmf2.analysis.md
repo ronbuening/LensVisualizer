@@ -7,7 +7,6 @@
 **Assignee:** Olympus Optical Co., Ltd., Tokyo, Japan  
 **Filed:** July 14, 1976 (Japanese priority: July 18, 1975)  
 **Granted:** December 20, 1977  
-**Embodiment analyzed:** Embodiment 1
 
 ---
 

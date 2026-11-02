@@ -8,7 +8,7 @@
 **Inventor:** Satoshi Maetaki  
 **Applicant:** Canon Kabushiki Kaisha  
 **Title:** *Zoom Lens and Image-Pickup Apparatus*  
-**Embodiment analyzed:** Numerical Example 3 / Embodiment 3
+**Example details:** Embodiment 3
 
 This entry uses Numerical Example 3 as the fixed production correlation for the **CANON EF-M 11-22mm f/4-5.6 IS STM**.
 The patent does not identify the commercial product by name, so the relationship is a production-correlation inference

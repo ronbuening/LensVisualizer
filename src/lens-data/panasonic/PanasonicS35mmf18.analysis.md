@@ -6,7 +6,7 @@
 **Applicant:** 厦门松下电子信息有限公司 (Xiamen Panasonic Electronic Information Co., Ltd.)  
 **Inventors:** Yidan Zheng, Hanzhao Chen, Xiaoqing Zhan  
 **Filed:** 2021-10-11 &ensp;|&ensp; **Granted:** 2022-06-17  
-**Embodiment analyzed:** Example 1 (第一实施例, ¶0096–0120)
+**Example details:** 第一实施例, ¶0096–0120
 
 ---
 

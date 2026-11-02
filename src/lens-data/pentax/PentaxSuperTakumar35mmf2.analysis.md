@@ -7,7 +7,7 @@
 **Inventor:** Yasuo Takahashi\
 **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha\
 **Title:** Wide Angle Lens System\
-**Embodiment analyzed:** Preferred embodiment; the patent contains one numerical example
+**Example details:** Preferred embodiment; the patent contains one numerical example
 
 US 3,506,336 does not identify a commercial product by name. Its association with the compact Asahi Pentax Super-Takumar 35mm f/2 is therefore strong but inferential rather than patent-stated.
 

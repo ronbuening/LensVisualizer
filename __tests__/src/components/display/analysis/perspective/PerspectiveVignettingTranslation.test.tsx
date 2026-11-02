@@ -3,7 +3,9 @@ import { cleanup, render } from "@testing-library/react";
 import { afterEach, expect, it } from "vitest";
 import PerspectiveVignettingView from "../../../../../../src/components/display/analysis/perspective/PerspectiveVignettingView.js";
 import { build, buildSimplePositiveElementLens } from "../../../../optics/testLensFixtures.js";
-import { prepareRuntimeState } from "../../../../../../src/optics/compat.js";
+import { prepareRuntimeState } from "../../../../../../src/optics/state/runtimeAdapters.js";
+import { createAnalysisRequest } from "../../../../../../src/optics/analysis/request.js";
+import { constructionFixtureData } from "../../../../optics/constructionFixtures.js";
 import { createPerspectiveTraceContext } from "../../../../../../src/optics/perspective/trace.js";
 import {
   computePerspectiveVignettingAnalysis,
@@ -14,14 +16,16 @@ import { replaceTextForTranslation } from "../../../../../translationTestUtils.j
 import themes from "../../../../../../src/utils/theme/themes.js";
 afterEach(cleanup);
 it("removes translated throughput details when a retained sensor sample becomes unreachable", () => {
-  const L = build({ ...buildSimplePositiveElementLens().data, imageFormat: "135-full-frame" });
-  const context = createPerspectiveTraceContext({
-    preparedState: prepareRuntimeState(L, 0, 0),
-    movement: { shiftMm: 0, tiltDeg: 0 },
+  const L = build({ ...constructionFixtureData(buildSimplePositiveElementLens()), imageFormat: "135-full-frame" });
+  const preparedState = prepareRuntimeState(L, 0, 0);
+  const request = createAnalysisRequest({
+    preparedState,
+    dynamicEFL: L.EFL,
+    currentEPSD: 0.25,
+    currentPhysStopSD: L.stopPhysSD,
+    perspectiveTraceContext: createPerspectiveTraceContext({ preparedState, movement: { shiftMm: 0, tiltDeg: 0 } }),
   });
-  const available = computePerspectiveVignettingAnalysis(context, {
-    stopSemiDiameterMm: L.stopPhysSD,
-    pupilSemiDiameterMm: 0.25,
+  const available = computePerspectiveVignettingAnalysis(request, {
     sensorUvs: [{ u: 0, v: 0 }],
     pupilPoints: createAreaWeightedCircularPupilPoints(1, 4),
   });

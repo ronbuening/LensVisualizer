@@ -7,7 +7,6 @@
 **Inventor:** Hans Lautenbacher, München  
 **Applicant:** Enna-Werk Optische Anstalt Dr. Appelt K.G., München  
 **Title:** Fotografisches Retrofocus-Objektiv  
-**Embodiment analyzed:** Sole claimed prescription
 
 DE 1 228 820 B describes a photographic retrofocus objective for single-lens reflex cameras. The patent publishes a single worked prescription in the claim itself, normalized to $f = 100$. A uniform scale factor of 0.24 maps the prescription to a 24 mm production focal length.
 

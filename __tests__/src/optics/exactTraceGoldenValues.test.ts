@@ -1,10 +1,10 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import { solveChiefRay } from "../../../src/optics/fieldGeometry.js";
-import { doLayout, traceRay, traceRayChromatic, traceRayVector, traceSkewRay } from "../../../src/optics/optics.js";
-import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
+import { solveChiefRayForRuntimeLens as solveChiefRay } from "../../../src/optics/state/fieldAdapters.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
+import { traceRay, traceRayChromatic, traceRayVector, traceSkewRay } from "../../../src/optics/trace/rayAdapters.js";
+import type { RuntimeLens } from "../../../src/types/optics.js";
 
 /**
  * Golden-value trace regression suite.
@@ -17,11 +17,11 @@ import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
  * diffractive Phase Fresnel telephoto, an odd-order asphere, a projection-aware
  * fisheye, and a folded mirror fixture.
  *
- * Values were captured from the verified exact-trace output (2026-07) and
+ * Values originate from verified exact-trace output (2026-07), with later source-backed updates noted below, and were
  * sanity-checked against design nominals: each EFL sits at its patent value,
  * and the rectilinear marginal rays refocus within ~20 µm of the axis at the
- * paraxial image plane. If one of these assertions moves, the trace engine's
- * absolute behavior changed — do not simply re-pin without understanding why.
+ * paraxial image plane. If an assertion moves, verify both the trace engine and its catalog prescription;
+ * source-data corrections can change a reference spectrum. Do not re-pin without establishing the cause.
  */
 
 interface GoldenLens {
@@ -44,7 +44,8 @@ const GOLDEN_LENSES: GoldenLens[] = [
     design: "double Gauss",
     efl: 49.994180757309714,
     epSD: 17.855064556182043,
-    stopPhysSD: 11.813952547091576,
+    // 2026-10-27: the inferred stop plane moved behind r₆'s clear cap (7.8 mm); the paraxial EPD = F/N rule sizes it there.
+    stopPhysSD: 12.234122392091002,
     imgZ: 81.345,
     zLast: 44.185,
     marginal: { h: 12.5, y: 9.58533019704501, u: -0.25841395919948856 },
@@ -62,7 +63,7 @@ const GOLDEN_LENSES: GoldenLens[] = [
     design: "telephoto",
     efl: 299.5288015298516,
     epSD: 37.44110019123145,
-    stopPhysSD: 16.852815472696278,
+    stopPhysSD: 16.548876822265246,
     imgZ: 242.48854,
     zLast: 126.21,
     marginal: { h: 26, y: 10.134889384645048, u: -0.08720040235172787 },
@@ -80,7 +81,7 @@ const GOLDEN_LENSES: GoldenLens[] = [
     design: "diffractive (Phase Fresnel telephoto)",
     efl: 489.7123536778453,
     epSD: 42.58227586200154,
-    stopPhysSD: 11.784660898973346,
+    stopPhysSD: 11.60991711313998,
     imgZ: 279.32417999999996,
     zLast: 214.92760999999996,
     marginal: { h: 29.8076, y: 3.9277260192817036, u: -0.060974169984543934 },
@@ -98,7 +99,7 @@ const GOLDEN_LENSES: GoldenLens[] = [
     design: "odd-order asphere (A3/A5/A7 terms)",
     efl: 51.50581892028711,
     epSD: 8.941982451438735,
-    stopPhysSD: 8.887545707713688,
+    stopPhysSD: 8.725054483804726,
     /* Rear plate PP (1.22 mm, nd 1.5168) is modeled in rearPlates: imgZ grows by t(1 − 1/n) and the last
      * vertex is the plate's rear face; EFL, pupil and exit slopes are unchanged. */
     imgZ: 95.37,
@@ -114,21 +115,23 @@ const GOLDEN_LENSES: GoldenLens[] = [
     },
   },
   {
+    // 2026-10-30: R18 source sign erratum, printed filter and Figure 1 stop restored.
+    // Independent source-table matrices match f6.3/BF37.657 and the corrected axial LSA matches Figure 2A.
     key: "nikon-fisheye-nikkor-6mm-f28",
     design: "fisheye (equidistant projection)",
-    efl: 37.41323793170968,
+    efl: 6.2998855004266625,
     epSD: 1.125,
-    stopPhysSD: 5.395191357117423,
-    imgZ: 205.24259111597053,
-    zLast: 167.58559111597054,
-    marginal: { h: 0.75, y: 5.512901727374504, u: -0.017546482708249093 },
+    stopPhysSD: 7.523327661352006,
+    imgZ: 205.85699999999997,
+    zLast: 168.19999999999996,
+    marginal: { h: 0.75, y: 4.5078156370637394, u: -0.12018848679545528 },
     skew: {
       x0: 0.36,
       y0: 0.3,
-      x: 2.635146334408721,
-      y: 2.1959552786739347,
-      ux: -0.00920200349332682,
-      uy: -0.0076683362444390545,
+      x: 2.156063357380727,
+      y: 1.7967194644839386,
+      ux: -0.057395545726545205,
+      uy: -0.047829621438787655,
     },
   },
 ];
@@ -147,7 +150,7 @@ const REFOCUS_BOUND_MM: Record<string, number> = {
 };
 
 function buildCatalogLens(key: string): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...LENS_CATALOG[key] } as LensData);
+  return buildLens(CATALOG_CONSTRUCTION_FIXTURES[key]);
 }
 
 describe("exact trace golden values — refractive designs", () => {
@@ -218,9 +221,12 @@ describe("exact trace golden values — diffractive phase surface", () => {
       return trace.u;
     });
 
-    expect(slopes[0]).toBeCloseTo(-0.06098096391425138, 8);
-    expect(slopes[1]).toBeCloseTo(-0.060974169984543934, 8);
-    expect(slopes[2]).toBeCloseTo(-0.06098734014575166, 8);
+    // 2026-10-30: removed rounded catalog C/F/g copies from the PF prescription. Current anchored coefficient
+    // curves change RGB indices; an explicit-index replay reproduces these slopes and restoring the old indices
+    // reproduces the previous values. The phase, powered prescription and tolerance are unchanged.
+    expect(slopes[0]).toBeCloseTo(-0.06098097543073765, 8);
+    expect(slopes[1]).toBeCloseTo(-0.060974169981466785, 8);
+    expect(slopes[2]).toBeCloseTo(-0.06098633426951101, 8);
     // Distinct per channel: identical slopes would mean wavelength never
     // reached the glass indices or the phase kick.
     expect(new Set(slopes).size).toBe(3);
@@ -250,12 +256,12 @@ describe("exact trace golden values — fisheye projection path", () => {
     const at30 = solveChiefRay(30, 0, 0, L);
     expect(at30.status).toBe("converged");
     expect(at30.launchSurface).toBe("bounding-sphere");
-    expect(at30.yLaunch).toBeCloseTo(28.37371378565419, 6);
+    expect(at30.yLaunch).toBeCloseTo(28.876223741588717, 6);
 
     const at60 = solveChiefRay(60, 0, 0, L);
     expect(at60.status).toBe("converged");
     expect(at60.launchSurface).toBe("bounding-sphere");
-    expect(at60.yLaunch).toBeCloseTo(74.18746088976445, 6);
+    expect(at60.yLaunch).toBeCloseTo(75.85948942283216, 6);
   });
 
   it("traces the solved 30° chief ray to a pinned image-plane intercept", () => {
@@ -276,10 +282,10 @@ describe("exact trace golden values — fisheye projection path", () => {
     );
 
     expect(trace.clipped).toBe(false);
-    expect(trace.y).toBeCloseTo(-4.518794533249658, 6);
-    expect(trace.u).toBeCloseTo(-0.056031104436612474, 8);
+    expect(trace.y).toBeCloseTo(-1.1873110756207985, 6);
+    expect(trace.u).toBeCloseTo(-0.05569076289502699, 8);
     const yImg = trace.y + trace.u * (layout.imgZ - layout.z[layout.z.length - 1]);
-    expect(yImg).toBeCloseTo(-6.628757833019174, 6);
+    expect(yImg).toBeCloseTo(-3.2844581339588306, 6);
   });
 });
 

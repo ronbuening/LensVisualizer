@@ -9,8 +9,7 @@
 **Granted:** January 3, 2017\
 **Inventor:** Tadashi Yanagisawa\
 **Assignee:** Sony Corporation\
-**Title:** *Zoom Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Numerical Example 1
+**Title:** *Zoom Lens and Imaging Apparatus*
 
 The prescription transcribes Numerical Example 1 of US 9,538,088 B2. The patent describes a six-functional-group zoom with power sequence positive–negative–positive–positive–negative–positive, axial motion of all six functional groups during zooming, axial focusing by the negative fifth group, and transverse image-blur compensation by a sub-group of the fourth group. Numerical Example 1 is tabulated in Tables 1–3, with its wide-end optical section shown in Figure 1. [1, pp. 5–12]
 

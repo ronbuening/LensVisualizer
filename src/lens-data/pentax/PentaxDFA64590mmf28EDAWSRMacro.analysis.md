@@ -8,7 +8,7 @@
 **Inventors:** Tatsuyuki Onozaki; Masakazu Saori
 **Applicant / Assignee:** Pentax Ricoh Imaging Company, Ltd.
 **Title:** *Close-Distance Correcting Lens System*
-**Embodiment analyzed:** Numerical Embodiment 4, Figures 25–32 and Tables 13–16
+**Example details:** Figures 25–32 and Tables 13–16
 
 The prescription represented here is Numerical Embodiment 4 of US 2013/0222925 A1. The patent describes a close-distance-correcting photographic lens having a positive first group and a negative second group, with different objectward travel during focusing. The first group contains a positive front subgroup, a negative image-stabilizing subgroup, the aperture diaphragm, and a positive rear subgroup; the negative subgroup is decentered laterally for image stabilization (¶0016, ¶0027, ¶0040–¶0043). Embodiment 4 is identified explicitly in ¶0356, with its optical layout, infinity and close-focus states, asphere data, and stabilization data given in Tables 13–16.
 

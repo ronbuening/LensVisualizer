@@ -1,3 +1,4 @@
+import { constructionFixtureData } from "../optics/constructionFixtures.js";
 import { describe, it, expect } from "vitest";
 import {
   computeFocusPair,
@@ -9,13 +10,13 @@ import {
   sharedFNumber,
   snapToCommon,
 } from "../../../src/comparison/comparisonSliders.js";
-import { formatDist } from "../../../src/optics/optics.js";
+import { formatDist } from "../../../src/optics/first-order/format.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 import { build, buildVariableStopGapLens, buildSimplePositiveElementLens } from "../optics/testLensFixtures.js";
 
 /* ── Mock lens objects (only the fields these functions use) ── */
-const focusData = buildVariableStopGapLens([1, 2]).data;
+const focusData = constructionFixtureData(buildVariableStopGapLens([1, 2]));
 const lensA = build({ ...focusData, closeFocusM: 0.45, nominalFno: 1, maxFstop: 16 });
 const lensB = build({ ...focusData, closeFocusM: 0.9, nominalFno: 1.93, maxFstop: 16 });
 
@@ -350,11 +351,13 @@ describe("computeMovementPair", () => {
 describe("zoom-dependent focus distance", () => {
   it("preserves distance across zoom, including a change in the closest modeled lens", () => {
     const zoom = build({
-      ...buildVariableStopGapLens([
-        [1, 2],
-        [2, 3],
-        [3, 4],
-      ]).data,
+      ...constructionFixtureData(
+        buildVariableStopGapLens([
+          [1, 2],
+          [2, 3],
+          [3, 4],
+        ]),
+      ),
       closeFocusM: 0.3,
       zoomCloseFocusM: [0.3, 0.45, 0.6],
     });
@@ -373,11 +376,13 @@ describe("zoom-dependent focus distance", () => {
   });
   it("uses the current zoom endpoint for labels and comparison clamping", () => {
     const zoom = build({
-      ...buildVariableStopGapLens([
-        [1, 2],
-        [2, 3],
-        [3, 4],
-      ]).data,
+      ...constructionFixtureData(
+        buildVariableStopGapLens([
+          [1, 2],
+          [2, 3],
+          [3, 4],
+        ]),
+      ),
       zoomCloseFocusM: [0.5, 1, 2],
     });
     const prime = { ...lensB, closeFocusM: 1 } as RuntimeLens;

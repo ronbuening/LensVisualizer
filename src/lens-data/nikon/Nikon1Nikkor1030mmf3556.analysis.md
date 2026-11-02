@@ -8,7 +8,7 @@
 **Inventor:** Akira Yamagami  
 **Assignee:** Nikon Corporation  
 **Title:** Zoom Lens System, Optical Apparatus and Method for Manufacturing Zoom Lens System  
-**Embodiment analyzed:** Example 4, Table 4, Figures 13-16B
+**Example details:** Table 4, Figures 13-16B
 
 The transcribed design is Numerical Example 4 of US 2012/0019926 A1. The patent identifies Example 4 as a three-group zoom lens composed, from the object side, of a negative first group G1, a positive second group G2, and a negative third group G3. The worked prescription appears in Table 4, and the corresponding section drawing is Figure 13. The patent also states that the L21+L22 cemented doublet is the focusing group and that the L24+L25 cemented doublet is shifted perpendicular to the optical axis for vibration reduction (¶0163-0171).
 

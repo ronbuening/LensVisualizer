@@ -11,7 +11,7 @@
 **Assignee:** Minolta Camera Kabushiki Kaisha (Osaka, Japan)
 **Title:** Inverted Telephoto Type Wide Angle Lens System
 **Classification:** Int. Cl. G02B 13/04 (U.S. Cl. 350/459)
-**Embodiment analyzed:** Example 4 — Table 4, illustrated in Fig. 7 with aberration plots Fig. 8a–8c, and reproduced as claim 9.
+**Example details:** Table 4, illustrated in Fig. 7 with aberration plots Fig. 8a–8c, and reproduced as claim 9.
 
 US 4,258,985 discloses four worked inverted-telephoto wide-angle examples for the 35 mm SLR format. Each is normalized to `f = 100` and a full field angle of `2ω = 75°`. Example 4 is the relevant prescription: it is the `FNo. = 2.0` design in which the second functional group is split into two air-spaced positive singlets rather than made as a cemented component or a single thick singlet.
 

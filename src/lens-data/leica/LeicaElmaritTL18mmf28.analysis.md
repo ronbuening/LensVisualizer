@@ -8,7 +8,7 @@
 **Inventor:** Hideki Kai  
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd. (Osaka, JP)  
 **Title:** Single Focus Image Pickup Optical System, and Image Pickup Device and Camera System Using Single Focus Image Pickup Optical System  
-**Embodiment analyzed:** Third Numerical Example (Tables 7-9B; FIG. 5-6)
+**Example details:** Tables 7-9B; FIG. 5-6
 
 ## Patent Reference and Design Identification
 

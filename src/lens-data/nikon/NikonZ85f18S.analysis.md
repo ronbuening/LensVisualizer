@@ -14,7 +14,7 @@
 
 **Published:** October 22, 2020
 
-**Embodiment analyzed:** Example 3 (EX3), Figure 3; paragraphs69–70, PDF pp.16–17.
+**Example details:** EX3, Figure 3; paragraphs69–70, PDF pp.16–17.
 
 The diagram reproduces the twelve-element, eight-component spherical patent example associated with the catalog's85mm f/1.8 lens. Its source summary says83mm, f/1.85 and full field29.26°. The association is not proof of an identical production prescription, commercial glass identities or motor arrangement. These distinctions replace the previous assertions of confirmed production correspondence and hypothetical production re-optimization.
 

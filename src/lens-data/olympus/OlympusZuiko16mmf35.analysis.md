@@ -9,7 +9,7 @@
 **Filed:** November 30, 1972
 **Granted:** November 26, 1974
 **Title:** Fisheye lens system
-**Embodiment analyzed:** Example 1 / Table 1
+**Example details:** Table 1
 
 The prescription analyzed here is **Example 1 / Table 1** of **U.S. Patent 3,850,509, "Fisheye lens system,"** filed by Jihei Nakagawa for Olympus Optical Co., Ltd. The U.S. filing was made on 1972-11-30 from Japanese priority 1971-12-07 and was granted on 1974-11-26. The patent describes a 180° fisheye objective for a 24 × 36 mm "Leica size" camera, with a long back focal length, a comparatively short overall lens system, and a small front element for the class.[^patent]
 

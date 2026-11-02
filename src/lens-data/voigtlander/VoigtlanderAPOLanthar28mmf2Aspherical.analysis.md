@@ -7,7 +7,7 @@
 **Inventor:** Nozomu Mishima\
 **Applicant:** Cosina Co., Ltd.\
 **Title:** 光学レンズ系 (*Optical lens system*)
-**Embodiment analyzed:** Example 2 (第2実施形態; Fig. 3, Tables 5–8)
+**Example details:** 第2実施形態; Fig. 3, Tables 5–8
 
 The data file correlates Example 2 with the **VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM**. This is a fixed author correlation, not a statement by Cosina that the production prescription is identical to the patent example. The identification rests on a convergent set of source facts:
 

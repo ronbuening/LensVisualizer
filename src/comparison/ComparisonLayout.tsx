@@ -62,8 +62,8 @@ export default function ComparisonLayout({
   const maxSvgHeight = isWide ? "none" : "42vh";
   const minHeaderHeight = isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined;
   /* Each pane's converter is read from the lens it was built into, so pane identity follows the built system. */
-  const teleconverterKeyA = comparisonLenses?.LA.data.attachedTeleconverter?.key ?? null;
-  const teleconverterKeyB = comparisonLenses?.LB.data.attachedTeleconverter?.key ?? null;
+  const teleconverterKeyA = comparisonLenses?.LA.attachedTeleconverter?.key ?? null;
+  const teleconverterKeyB = comparisonLenses?.LB.attachedTeleconverter?.key ?? null;
 
   return (
     <div

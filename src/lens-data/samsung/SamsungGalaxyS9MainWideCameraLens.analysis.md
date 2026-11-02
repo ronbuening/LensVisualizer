@@ -8,7 +8,7 @@
 **Inventors:** Jae Hyuk Huh; Jae Hyun Baik; Yong Joo Jo
 **Assignee:** Samsung Electro-Mechanics Co., Ltd.
 **Title:** Optical Imaging System
-**Embodiment analyzed:** Example 1, FIGS. 1-6, Tables 1-4, ¶¶0098-0131
+**Example details:** FIGS. 1-6, Tables 1-4, ¶¶0098-0131
 
 The prescription is Example 1 of US 2021/0149156 A1. The patent describes seven air-separated lenses, a variable stop
 (VST) in front of the first lens, an infrared-block filter behind the seventh lens, and an image sensor behind that filter

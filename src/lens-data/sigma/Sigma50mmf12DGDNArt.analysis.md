@@ -9,7 +9,6 @@
 **Inventor:** Yuki Ueda  
 **Applicant:** Sigma Corporation  
 **Title:** Optical System  
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription is a construction correlation with the Sigma 50mm F1.2 DG DN | Art,
 not manufacturer confirmation of the exact production prescription. Numerical Example 1,

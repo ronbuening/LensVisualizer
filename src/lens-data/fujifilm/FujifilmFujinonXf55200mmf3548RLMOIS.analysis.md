@@ -10,8 +10,7 @@
 **Granted / published as the transcribed German source:** 1 February 2018\
 **Inventors:** Tetsuya Ori; Michio Cho\
 **Assignee:** Fujifilm Corporation\
-**Title:** *Zoomobjektiv und Abbildungsvorrichtung* (*Zoom lens and imaging apparatus*)\
-**Embodiment analyzed:** Example 1
+**Title:** *Zoomobjektiv und Abbildungsvorrichtung* (*Zoom lens and imaging apparatus*)
 
 The LensVisualizer prescription transcribes Example 1 of DE 11 2013 006 887 B4 at its native patent scale. The patent does not identify Example 1 by the retail product name. The association with the **FUJIFILM FUJINON XF 55-200mm f/3.5-4.8 R LM OIS** is therefore a fixed project correlation, not a statement of manufacturer confirmation.
 

@@ -2,7 +2,7 @@ import type {
   PerspectiveComaFieldSample,
   PerspectiveComaRaySample,
   PerspectiveFieldAberrationAnalysis,
-} from "../../../../optics/perspective/index.js";
+} from "../../../../optics/perspective.js";
 import type { Theme } from "../../../../types/theme.js";
 import { AnalysisMetricRow } from "../analysisUi.js";
 import {

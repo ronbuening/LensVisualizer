@@ -1,0 +1,41 @@
+# Audit Log — SIGMA APO 50-500mm f/4.5-6.3 DG OS HSM
+
+Patent: JP 2011-039260 A, Numerical Example 2/¶0034, Figure 8. Family JP5417083B2 parity is a historical check; the fresh review below uses the original A publication. This consolidates the three2026-10-24 records while preserving their source decisions.
+
+## Retained source, reconstruction and scope — 2026-10-24
+
+- Original metadata: Sigma Corporation, Tomoki Kono, filed2009-08-11, published2011-02-24. Example2 uniquely has22 lenses/16 groups/39rows (38refracting+stop21); Examples1/3 have23lenses/41rows. Example3 also has a43–426mm range. All surfaces spherical; no cover plate/filter is source-listed.
+- Every source R/d/nd/νd row and every infinity/finite variable spacing at51.50/159.61/485mm was checked historically. Source stop21 is followed by4.7312mm. The table's last variable labels d28/d35 are carried over from41-row examples; actual Example2 rows28/35 have fixed0.15/0.80 gaps, so these variable rows map to the only possible d24/d33. Numeric values are literal; G3 remains fixed relative to the image, matching claim3.
+- Literal paraxial EFL51.4979/159.6018/484.9537 versus printed51.50/159.61/485, BFL residual+0.0034/+0.0063/+0.0179mm, and source conditions0.41/0.179/0.087/0.52/0.0035 were disclosed without fitting R/d or indices. Source finite d0=1978.6638/6115.9619/18651.9325mm is explicitly object-to-first-surface; resulting magnification≈−0.025 and object-to-image2.240/6.425/19.001m remain distinct from marketed0.5–1.8m MFD.
+- Source infinity/finite stations are indices0/20/64. The other62zoom rows are solved cam samples, not factorycam: interpolate L1–L6 image-relative positions and solve L7 focus compensation. Source-like residual≤0.02mm and between-station interpolation≤0.016mm remain disclosed. Focus keyframe4 is the source finite column,1–3 interpolate L7; no unreported production-close travel is invented.
+- Iris is calibrated from source F4.57/5.73/6.47; marketed4.5–6.3 stays separate. L1/L4/L5/L6/L7 advance objectward, L2 imageward, L3 fixed; L3b is the OIS group but decentered OIS is unmodeled. Stop sits in the fixed4.7312gap precedingL5 and moves withL5; brackets/labels/types follow original Figure8.
+- Four APD inferred badges E2/E3/E9/E14 follow the previously recorded Sigma SLD construction positions and source81.6 Abbe coordinates. The patent names no special glass, so no patent APD badge or manufacturer-confirmed material identity is asserted. All catalogue names are qualified spectral proxies. Source R/d, indices and literal focus endpoints are not production-verified.
+- Historical 300dpi figure scale: first/last vertex span979px/206.359mm=4.744px/mm, radial agreement confirmed against stop ticks and sag. Caps were placed at curve ends rather than mounting flanges. Tight axial floors S22≈10.32 versus cap10.4; S27≈12.18 versus12.2; S25≈11.77 versus11.9. No aperture or tolerance change was used to remove this source-like vignetting. Historical wide-corner sample transmission38% and tele41% are model samples, not production photometry.
+
+## 2026-10-30 — Fresh original-source shape and glass reinspection
+
+- Directly viewed original `patents/JP2011039260A.pdf`: Example2 all22 media/39rows and all zoom/finite columns on PDF9; d-line/Abbe and Obj=object-to-first-surface definitions¶0032/PDF7; Fig.8/PDF13 at native300dpi and600dpi (rotated only for inspection). Paired Fig.9 F4.57/2ω46.37 and Fig.10 F6.47/2ω4.97 confirm Example2. All38 refracting faces, stop and every cemented interface inspected. No different embodiment/grant rims substituted.
+- Ten cap-preserving `rimExtensionSd` additions reproduce independent flat concave lands: S2 cap40.6→outer43.5; S6 36.8→41.2; S8 22.2→26.2; S11 13.2→14.3; S12 12.1→14.3; S22 10.4→12; S25 11.9→13.2; S27 12.2→13.3; S36 9.6→11.7841; S37 11→13mm. Native outer pixels≈206/195/124/68/57/63/56/62 agree with4.744px/mm and retained opposite/interfaces. No inward optical trim is added: these source concave endpoints were already the stored clear caps. No arbitrary small lands, opaque cement-interface lands or detached wings.
+- Other faces retain their source-compatible continuous rims; weak few-pixel curves do not independently establish another flat land. Every optical clear cap, R/d, stop, source/calculated zoom/focus row and tolerance remains invariant, so all optical traces/acceptance remain identical. Only opaque outer drawing geometry changes.
+- Fresh glass: all22 source nd/νd pairs exact, d-line throughout. All22 retain compatible current coefficient models. No C/F/g indices, θgF/ΔPgF or individual anomalous-material designation is printed. No override or new APD badge; the four badges stay qualified inferences. Source spectral absence does not measure zero anomaly or production chromatic correction. Supplier/melt uncertainty is explicit in data/public text.
+- Validation: canonical/surface/full-cut checks pass (no inferred numeric cuts); image-circle0undersized, fullfield≥99% and aperture within3% at all65stations, with no rim/trace/iris failures. Catalog consistency and3existing shared glass suites/94tests pass. Actual9state zoom/focus SVGs viewed: max automatic trim0 and all compounds connected. Source/control/cap invariant proof passes; public shape/glass notes synchronized. Exact local source renders, current resolver reports and logs live untracked in `/tmp/ftb4/`; no patents or scratch assets staged.
+
+## 2026-11-01 — Lands against corner light
+
+Owner's rule: a land stays only if vignetting improves, drops slightly, or spacing needs it. Slightly means at most 3 points against the same lens with its lands opened, at every field of every zoom node, wide open at infinity, compared by field angle, with a field the chief ray no longer reaches counted as no light. Raises stop at the smallest value that meets it, so the figure still governs what costs no light. Drawn outer rims do not change.
+
+| Surface | Figure curve end (mm) | Final `sd` (mm) | Outer rim (mm) | Verdict |
+| --- | ---: | ---: | ---: | --- |
+| S2 | 40.6 | 42 | 43.5 | partly raised |
+| S6 | 36.8 | 39.75 | 41.2 | partly raised |
+| S8 | 22.2 | 23.15 | 26.2 | partly raised |
+| S11 | 13.2 | 14.3 | 14.3 | land removed |
+| S12 | 12.1 | 13.4 | 14.3 | partly raised |
+| S22 | 10.4 | 10.4 | 12 | kept: within budget |
+| S25 | 11.9 | 12 | 13.2 | partly raised |
+| S27 | 12.2 | 12.85 | 13.3 | partly raised |
+| S36 | 9.6 | 10.8 | 11.7841 | partly raised |
+| S37 | 11 | 11 | 13 | kept: within budget |
+
+Worst loss against lands open: 25.5 points before, 2.9 at 8.2° and 54.1 mm now. Corners wide open at infinity: 30.0 → 52.8 % at
+51.5 mm, 39.3 → 56.0 % at 159.6 mm, 31.5 → 46.3 % at 485 mm. Engine half-field 23.20° → 24.08°. Nine extensions remain.

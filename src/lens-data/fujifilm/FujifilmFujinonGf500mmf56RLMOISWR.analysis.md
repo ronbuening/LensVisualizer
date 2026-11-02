@@ -8,7 +8,7 @@
 **Inventors:** Takuya Tanaka; Shunsuke Miyagishima\
 **Applicant:** Fujifilm Corporation\
 **Title:** *Imaging Lens and Imaging Device*\
-**Embodiment analyzed:** Example 7, Tables 13–14, Figs. 15–16
+**Example details:** Tables 13–14, Figs. 15–16
 
 The prescription represented here is Example 7 of WO 2025/013477 A1. The patent describes a three-group imaging lens in which G1 has positive refractive power, G2 has negative refractive power, and G3 has negative refractive power. During focusing from infinity toward the nearest object, G2 moves toward the image while G1 and G3 remain fixed relative to the image plane. The patent also identifies L34–L36 as the image-stabilization group, displaced transverse to the optical axis for shake correction (¶0183–¶0185; Fig. 15).
 

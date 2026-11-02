@@ -8,7 +8,7 @@
 **Inventor:** Kouichi Ohshita  
 **Assignee:** Nikon Corporation  
 **Title:** Underwater Wide Angle Zoom Lens  
-**Embodiment analyzed:** First Embodiment, Table 1
+**Example details:** Table 1
 
 US 5,490,012 describes an underwater wide-angle zoom for a 35 mm underwater single-lens reflex camera. The relevant worked example is the First Embodiment, because it gives a 20.6007-34.0012 mm focal-length range, F/2.88 design aperture, 79.8°-51.4° stated underwater angle of view, and a 10-element / 10-group all-spherical layout including the rear dustproof plate. Those features align closely with the production R-UW AF Zoom-Nikkor 20-35mm f/2.8 for the Nikonos RS system.
 

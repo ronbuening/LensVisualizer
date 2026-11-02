@@ -10,7 +10,7 @@
 **Inventors:** Yoshihisa Tashiro; Yasuaki Hagiwara  
 **Applicant:** Canon Kabushiki Kaisha  
 **Title:** *Zoom Lens and Optical Apparatus Equipped with Zoom Lens*  
-**Embodiment analyzed:** Numerical Embodiment 1 / First Embodiment
+**Example details:** First Embodiment
 
 This analysis uses Numerical Embodiment 1 as the production correlation fixed by the project job card. Canon does not explicitly identify the retail EF-M 18-55mm f/3.5-5.6 IS STM with this patent, so the production mapping remains an author modeling inference rather than a manufacturer statement. The selected embodiment and the retail lens nevertheless agree on the most discriminating structural facts: 13 elements in 11 groups, three aspherical elements, an approximately 18-55 mm variable-aperture range, a small internal focus unit, and an optical image-stabilization unit. The patent gives design focal lengths of 18.58, 27.82, and 53.36 mm with F-numbers of 3.60, 4.27, and 5.69, while Canon marketed the lens as 18-55mm f/3.5-5.6. Canon lists 13 elements in 11 groups, three aspherical elements, a 0.25 m closest focusing distance, 0.25× maximum magnification at 55 mm, seven diaphragm blades, and optical IS. The lens and the EOS M were marketed in September 2012, three months after the patent's Japanese priority date.
 

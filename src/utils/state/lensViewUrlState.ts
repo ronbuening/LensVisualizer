@@ -10,8 +10,8 @@
 
 import { isAnalysisTabId, type LensState, type URLState } from "../../types/state.js";
 import { isGroupMovementMode } from "../../types/groupMovement.js";
-import { MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG } from "../../optics/lensMovement.js";
-import { LENS_KEY_PATTERN } from "../../optics/validateLensData.js";
+import { MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG } from "../../optics/perspective.js";
+import { LENS_KEY_PATTERN } from "../../optics/validation.js";
 
 type LensViewQueryKey =
   | "focus"

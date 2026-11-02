@@ -8,8 +8,7 @@
 **Published:** 2016-06-30\
 **Inventor:** Taku Inoue\
 **Applicant:** Canon Inc.\
-**Title:** Zoom lens and imaging apparatus including the same\
-**Embodiment analyzed:** Numerical Example 8
+**Title:** Zoom lens and imaging apparatus including the same
 
 The prescription is the complete Numerical Example 8 of JP 2016-118658 A. The patent describes a negative-lead zoom
 in which the first four functional groups have negative, positive, negative, and negative power, followed by a positive

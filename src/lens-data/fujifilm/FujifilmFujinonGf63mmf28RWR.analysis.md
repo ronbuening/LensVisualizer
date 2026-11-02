@@ -7,8 +7,7 @@
 **Published:** 2017-08-24\
 **Inventor:** Masato Kondo\
 **Applicant / Assignee:** Fujifilm Corporation\
-**Title:** *Imaging Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Imaging Lens and Imaging Apparatus*
 
 This analysis treats Example 1 as the fixed patent correlation for the **FUJIFILM FUJINON GF 63mm f/2.8 R WR**. The patent does not name the commercial GF63mm lens, so the correlation is not presented as an explicit Fujifilm statement that Example 1 became the production lens. Instead, it rests on convergent agreement between the selected embodiment, Fujifilm's published product specifications, and the independently verified optical model.
 

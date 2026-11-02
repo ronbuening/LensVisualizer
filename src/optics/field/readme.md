@@ -9,57 +9,72 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 ```mermaid
 flowchart LR
   subgraph n_src_optics_field["src/optics/field"]
-    n_src_optics_field_src_optics_field_chiefRay_ts["chiefRay.ts"]
     n_src_optics_field_src_optics_field_chiefRayCache_ts["chiefRayCache.ts"]
-    n_src_optics_field_src_optics_field_fieldGeometry_ts["fieldGeometry.ts"]
+    n_src_optics_field_src_optics_field_chiefRaySolve_ts["chiefRaySolve.ts"]
+    n_src_optics_field_src_optics_field_geometry_ts["geometry.ts"]
+    n_src_optics_field_src_optics_field_imageHeight_ts["imageHeight.ts"]
     n_src_optics_field_src_optics_field_launch_ts["launch.ts"]
     n_src_optics_field_src_optics_field_projection_ts["projection.ts"]
   end
   n_external_src_optics_trace["src/optics/trace"]
-  n_external_src_optics_apertureStop_ts["src/optics/apertureStop.ts"]
-  n_external_src_optics_math["src/optics/math"]
-  n_external_src_optics_prescription["src/optics/prescription"]
-  n_external_src_optics_raySampling_ts["src/optics/raySampling.ts"]
   n_external_src_optics_state["src/optics/state"]
+  n_external_src_optics_chromatic["src/optics/chromatic"]
+  n_external_src_optics_diagnostics["src/optics/diagnostics"]
+  n_external_src_optics_geometry["src/optics/geometry"]
+  n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_types["src/types"]
   n_external_src_utils_catalog["src/utils/catalog"]
-  n_src_optics_field_src_optics_field_chiefRay_ts --> |3| n_external_src_optics_trace
-  n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_apertureStop_ts
-  n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_math
-  n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_prescription
-  n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_raySampling_ts
-  n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_state
-  n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_optics_types_ts
+  n_src_optics_field_src_optics_field_geometry_ts --> |4| n_external_src_optics_trace
+  n_src_optics_field_src_optics_field_geometry_ts --> |3| n_external_src_optics_state
+  n_src_optics_field_src_optics_field_chiefRaySolve_ts --> |3| n_external_src_optics_trace
+  n_src_optics_field_src_optics_field_imageHeight_ts --> |2| n_external_src_optics_trace
+  n_src_optics_field_src_optics_field_imageHeight_ts --> |2| n_src_optics_field_src_optics_field_chiefRaySolve_ts
+  n_src_optics_field_src_optics_field_chiefRaySolve_ts --> |2| n_src_optics_field_src_optics_field_launch_ts
+  n_src_optics_field_src_optics_field_chiefRaySolve_ts --> |2| n_src_optics_field_src_optics_field_projection_ts
+  n_src_optics_field_src_optics_field_chiefRaySolve_ts --> n_external_src_optics_chromatic
+  n_src_optics_field_src_optics_field_chiefRaySolve_ts --> n_external_src_optics_diagnostics
+  n_src_optics_field_src_optics_field_geometry_ts --> n_external_src_optics_geometry
+  n_src_optics_field_src_optics_field_geometry_ts --> n_external_src_optics_math
+  n_src_optics_field_src_optics_field_imageHeight_ts --> n_external_src_optics_state
+  n_src_optics_field_src_optics_field_projection_ts --> n_external_src_optics_state
+  n_src_optics_field_src_optics_field_chiefRayCache_ts --> n_external_src_optics_types_ts
+  n_src_optics_field_src_optics_field_chiefRaySolve_ts --> n_external_src_optics_types_ts
+  n_src_optics_field_src_optics_field_geometry_ts --> n_external_src_optics_types_ts
+  n_src_optics_field_src_optics_field_imageHeight_ts --> n_external_src_optics_types_ts
   n_src_optics_field_src_optics_field_launch_ts --> n_external_src_optics_types_ts
-  n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_types
   n_src_optics_field_src_optics_field_chiefRayCache_ts --> n_external_src_types
-  n_src_optics_field_src_optics_field_launch_ts --> n_external_src_types
+  n_src_optics_field_src_optics_field_chiefRaySolve_ts --> n_external_src_types
+  n_src_optics_field_src_optics_field_geometry_ts --> n_external_src_types
+  n_src_optics_field_src_optics_field_imageHeight_ts --> n_external_src_types
   n_src_optics_field_src_optics_field_projection_ts --> n_external_src_types
-  n_src_optics_field_src_optics_field_chiefRay_ts --> n_external_src_utils_catalog
-  n_src_optics_field_src_optics_field_chiefRayCache_ts --> n_src_optics_field_src_optics_field_chiefRay_ts
-  n_src_optics_field_src_optics_field_fieldGeometry_ts --> n_src_optics_field_src_optics_field_chiefRay_ts
-  n_src_optics_field_src_optics_field_chiefRay_ts --> n_src_optics_field_src_optics_field_chiefRayCache_ts
-  n_src_optics_field_src_optics_field_chiefRay_ts --> n_src_optics_field_src_optics_field_launch_ts
-  n_src_optics_field_src_optics_field_fieldGeometry_ts --> n_src_optics_field_src_optics_field_launch_ts
-  n_src_optics_field_src_optics_field_chiefRay_ts --> n_src_optics_field_src_optics_field_projection_ts
+  n_src_optics_field_src_optics_field_imageHeight_ts --> n_external_src_utils_catalog
+  n_src_optics_field_src_optics_field_chiefRaySolve_ts --> n_src_optics_field_src_optics_field_chiefRayCache_ts
+  n_src_optics_field_src_optics_field_chiefRayCache_ts --> n_src_optics_field_src_optics_field_chiefRaySolve_ts
+  n_src_optics_field_src_optics_field_chiefRaySolve_ts --> n_src_optics_field_src_optics_field_geometry_ts
+  n_src_optics_field_src_optics_field_imageHeight_ts --> n_src_optics_field_src_optics_field_geometry_ts
+  n_src_optics_field_src_optics_field_geometry_ts --> n_src_optics_field_src_optics_field_launch_ts
+  n_src_optics_field_src_optics_field_imageHeight_ts --> n_src_optics_field_src_optics_field_launch_ts
   n_src_optics_field_src_optics_field_chiefRayCache_ts --> n_src_optics_field_src_optics_field_projection_ts
+  n_src_optics_field_src_optics_field_geometry_ts --> n_src_optics_field_src_optics_field_projection_ts
+  n_src_optics_field_src_optics_field_imageHeight_ts --> n_src_optics_field_src_optics_field_projection_ts
   n_src_optics_field_src_optics_field_launch_ts --> n_src_optics_field_src_optics_field_projection_ts
 ```
 
 ## Directory Overview
 
-- Direct source files: 5
+- Direct source files: 6
 - Direct subfolders: 0
-- Main outbound areas: same folder (8), src/types (4), src/optics/trace (3), src/optics/types.ts (2), src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, src/optics/raySampling.ts, +2 more
-- External consumers: src/optics/aberration, src/optics/analysis, src/optics/chromatic, src/optics/compat.ts, src/optics/perspective, src/optics/prescription, src/optics/runtimeLens.ts
+- Main outbound areas: same folder (16), src/optics/trace (9), src/optics/state (5), src/optics/types.ts (5), src/types (5), src/optics/chromatic, src/optics/diagnostics, src/optics/geometry, +2 more
+- External consumers: src/optics/analysis, src/optics/diagnostics, src/optics/fieldGeometry.ts, src/optics/first-order, src/optics/perspective, src/optics/prescription, src/optics/projection.ts, src/optics/state
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `chiefRay.ts` | Chief Ray helper module | same folder (3), src/optics/trace (3), src/optics/apertureStop.ts, src/optics/math, src/optics/prescription, +5 more | same folder (2), src/optics/analysis (2) | EntrancePupilState2, ChiefRaySolveResult2, FieldGeometryState2, OffsetVectorFieldRay2, VectorFieldRayLaunch2, computeFieldGeometryAtState2, computeAnalysisFieldGeometryAtState2, traceChiefRayAtAngle2, +10 more |
-| `chiefRayCache.ts` | Chief Ray Cache helper module | same folder (2), src/types | same folder, src/optics/compat.ts | ChiefRayStatus2, ChiefRayDiagnostics2, chiefRayCacheKey2, getCachedChiefRaySolve2, setCachedChiefRaySolve2, recordChiefRayStatus2, getChiefRayDiagnostics2, resetChiefRayDiagnostics2 |
-| `fieldGeometry.ts` | Field Geometry helper module | same folder (2) | src/optics/aberration (5), src/optics/analysis, src/optics/chromatic, src/optics/compat.ts | chiefRayImageHeight2, chiefRayImageHeightAccurate2, computeAnalysisFieldGeometryAtState2, computeFieldGeometryAtState2, conjugateK2, entrancePupilAtState2, solveChiefRay2, solveChiefRayBoundingSphere2, +13 more |
-| `launch.ts` | Launch helper module | same folder, src/optics/types.ts, src/types | same folder (2) | FieldGeometryState2, VectorFieldRayLaunch2, OffsetVectorFieldRay2, computeBoundingSphereLaunchRadiusMm2, computeBoundingSphereVectorFieldLaunch2, offsetVectorFieldRay2 |
-| `projection.ts` | Projection helper module | src/types | same folder (3), src/optics/analysis (2), src/optics/perspective (2), src/optics/aberration, src/optics/compat.ts, +2 more | ProjectionReferenceKind, ProjectionReference2, ProjectionFieldSlopes2, ProjectionLaunchSlope2, ProjectionAngularLaunch2, BoundingSphereLaunch2, MAX_FIELD_LAUNCH_DEG, ABSOLUTE_HALF_FIELD_CEILING, +17 more |
+| `chiefRayCache.ts` | Chief Ray Cache helper module | same folder (2), src/optics/types.ts, src/types | same folder | chiefRayCacheKey, getCachedChiefRaySolve, setCachedChiefRaySolve |
+| `chiefRaySolve.ts` | Chief Ray Solve helper module | same folder (6), src/optics/trace (3), src/optics/chromatic, src/optics/diagnostics, src/optics/types.ts, +1 more | same folder (2), src/optics/analysis, src/optics/diagnostics, src/optics/fieldGeometry.ts, src/optics/prescription, +1 more | ChiefRaySolveResult, solveChiefRay, solveChiefRayBoundingSphere, computeChiefRaySolve, solveChiefRayFromSeed, solvesChiefRay, ChiefRayRequest |
+| `geometry.ts` | Geometry helper module | src/optics/trace (4), src/optics/state (3), same folder (2), src/optics/geometry, src/optics/math, +2 more | same folder (2), src/optics/analysis, src/optics/fieldGeometry.ts, src/optics/first-order, src/optics/state | EntrancePupilState, computeFieldGeometry, traceParaxialRay, entrancePupil, conjugateK, paraxialObjectVergence, prepareStateSurfacesReal |
+| `imageHeight.ts` | Image Height helper module | same folder (5), src/optics/trace (2), src/optics/state, src/optics/types.ts, src/types, +1 more | src/optics/analysis, src/optics/fieldGeometry.ts, src/optics/state | ImageHeightInversionResult, computeAnalysisFieldGeometry, traceChiefRayAtAngle, chiefRayImageHeight, chiefRayImageHeightAccurate, solveFieldAngleForImageHeightAccurate, solveFieldAnglesForImageHeightsAccurate, invertChiefRayImageHeights, +1 more |
+| `launch.ts` | Launch helper module | same folder, src/optics/types.ts | src/optics/analysis (9), same folder (3), src/optics/fieldGeometry.ts, src/optics/state | FieldGeometryState, VectorFieldRayLaunch, OffsetVectorFieldRay, computeBoundingSphereLaunchRadiusMm, computeBoundingSphereVectorFieldLaunch, offsetVectorFieldRay |
+| `projection.ts` | Projection helper module | src/optics/state, src/types | src/optics/analysis (7), same folder (5), src/optics/prescription (3), src/optics/perspective (2), src/optics/first-order, +2 more | ProjectionReferenceKind, ProjectionReference, ProjectionFieldSlopes, ProjectionLaunchSlope, ProjectionAngularLaunch, BoundingSphereLaunch, MAX_FIELD_LAUNCH_DEG, ABSOLUTE_HALF_FIELD_CEILING, +17 more |

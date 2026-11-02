@@ -3,17 +3,16 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useOffAxisRays from "../../../../src/components/hooks/useOffAxisRays.js";
-import buildLens from "../../../../src/optics/buildLens.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import {
-  doLayout,
-  entrancePupilAtState,
-  fopenAtZoom,
-  halfFieldAtZoom,
-  tracingHalfFieldAtZoom,
-} from "../../../../src/optics/optics.js";
-import { createCoordinateTransforms } from "../../../../src/optics/diagramGeometry.js";
-import { raySampleCountForDensity } from "../../../../src/optics/raySampling.js";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
+  doLayoutForRuntimeLens as doLayout,
+  fopenAtZoomClamped as fopenAtZoom,
+} from "../../../../src/optics/state/runtimeAdapters.js";
+import { entrancePupilAtState } from "../../../../src/optics/state/fieldAdapters.js";
+import { halfFieldAtZoom, tracingHalfFieldAtZoom } from "../../../../src/optics/state/stationTables.js";
+import { createCoordinateTransforms } from "../../../../src/optics/diagram/coordinateTransforms.js";
+import { raySampleCountForDensity } from "../../../../src/optics/trace/raySampling.js";
+import { catalogLensData } from "../../optics/testLensFixtures.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikonFisheye6mmf28Raw from "../../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
@@ -25,9 +24,9 @@ vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
   return { ...actual, ENABLE_EDGE_PROJECTION: false };
 });
 
-const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
-const NikonFisheye6mmf28 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf28Raw } as LensData;
-const Nikon500mmPF = { ...LENS_DEFAULTS, ...Nikon500mmPFRaw } as LensData;
+const Sonnar = catalogLensData(SonnarRaw);
+const NikonFisheye6mmf28 = catalogLensData(NikonFisheye6mmf28Raw);
+const Nikon500mmPF = catalogLensData(Nikon500mmPFRaw);
 
 function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
   const L = buildLens(data);

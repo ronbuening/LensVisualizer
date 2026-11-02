@@ -1,17 +1,18 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../../constructionFixtures.js";
+/** Fixed-sensor request contract and ordered perspective diagnostics. */
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../../../../../src/optics/compat.js";
+import { createAnalysisRequest } from "../../../../../src/optics/analysis/request.js";
+import { buildFixtureLens as buildLens } from "../../constructionFixtures.js";
+import { prepareRuntimeState } from "../../../../../src/optics/state/runtimeAdapters.js";
 import {
   computePerspectiveFieldAberrations,
   describeComaTail,
 } from "../../../../../src/optics/perspective/analysis/fieldAberrations.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../../src/optics/perspective/trace.js";
-import { LENS_CATALOG } from "../../../../../src/utils/catalog/lensCatalog.js";
+import { createPerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import {} from "../../../../../src/utils/catalog/lensCatalog.js";
 
-const L = buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]);
+const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES["nikon-pc-nikkor-19mm-f4e-ed"]);
 const STATE = prepareRuntimeState(L, 0, 0);
 const COMA_POINTS = [
   { u: 0, v: 0, weight: 1 },
@@ -29,11 +30,55 @@ function context(shiftMm = 0, tiltDeg = 0): PerspectiveTraceContext {
   });
 }
 
+function request(camera: PerspectiveTraceContext) {
+  return createAnalysisRequest({
+    preparedState: camera.state,
+    dynamicEFL: L.EFL,
+    currentEPSD: 0.25,
+    currentPhysStopSD: L.stopPhysSD,
+    perspectiveTraceContext: camera,
+  });
+}
+
 describe("perspective field aberrations", () => {
+  it.each(["settled", "interactive"] as const)(
+    "reads aperture and %s sampling directly from the request",
+    (analysisQuality) => {
+      const camera = context(3, 2);
+      const input = createAnalysisRequest({
+        preparedState: camera.state,
+        dynamicEFL: L.EFL,
+        currentEPSD: 0.25,
+        currentPhysStopSD: L.stopPhysSD / 2,
+        perspectiveTraceContext: camera,
+        analysisQuality,
+        sampling: { comaRingSamples: [1, 4], fieldCurvatureDiagnosticSampleCount: 5 },
+      });
+      const result = computePerspectiveFieldAberrations(input);
+
+      expect(result.fieldCurvature.samples.map((sample) => sample.requestedSensorUv.v)).toEqual(
+        analysisQuality === "interactive" ? [-1, 0, 1] : [-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1],
+      );
+      expect(result.contextCacheKey).toBe(camera.cacheKey);
+      expect(result.pupilSemiDiameterMm).toBe(input.aperture.entrancePupilSemiDiameterMm);
+      expect(result.coma.samples[1].sampleCount).toBe(5);
+    },
+  );
+
+  it("requires the request's shared perspective trace context", () => {
+    const input = createAnalysisRequest({
+      preparedState: STATE,
+      dynamicEFL: L.EFL,
+      currentEPSD: 0.25,
+      currentPhysStopSD: L.stopPhysSD,
+    });
+    expect(() => computePerspectiveFieldAberrations(input)).toThrow(
+      "Movement-aware analysis requires a PerspectiveTraceContext",
+    );
+  });
+
   it("defaults to signed top-through-center-to-bottom field sampling", () => {
-    const result = computePerspectiveFieldAberrations(context(1, 1), {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
+    const result = computePerspectiveFieldAberrations(request(context(1, 1)), {
       focusPupilFractions: [-0.5, 0, 0.5],
       comaPupilPoints: COMA_POINTS,
     });
@@ -48,9 +93,7 @@ describe("perspective field aberrations", () => {
   });
 
   it("retains unavailable fields and solves tangential/sagittal focus along the sensor normal", () => {
-    const result = computePerspectiveFieldAberrations(context(3, 2), {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
+    const result = computePerspectiveFieldAberrations(request(context(3, 2)), {
       sensorUvs: [
         { u: 0, v: -0.25 },
         { u: 0, v: 0.25 },
@@ -81,9 +124,7 @@ describe("perspective field aberrations", () => {
   });
 
   it("keeps circular-pupil ray order and reports chief-relative coma", () => {
-    const result = computePerspectiveFieldAberrations(context(3, 2), {
-      stopSemiDiameterMm: L.stopPhysSD,
-      pupilSemiDiameterMm: 0.25,
+    const result = computePerspectiveFieldAberrations(request(context(3, 2)), {
       sensorUvs: [
         { u: 0, v: 0.5 },
         { u: 0, v: 1.2 },

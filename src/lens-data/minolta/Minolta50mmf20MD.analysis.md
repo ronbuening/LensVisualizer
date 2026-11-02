@@ -8,7 +8,7 @@
 **Inventor:** Yoshinobu Kudo\
 **Assignee:** Minolta Camera Co., Ltd.\
 **Title:** *Gauss Type Lens System*\
-**Embodiment analyzed:** Example 5, TABLE 5; optical form shown in FIG. 9
+**Example details:** TABLE 5; optical form shown in FIG. 9
 
 The modeled prescription is Example 5 of US 4,444,473. The patent describes a compact modified Gauss objective for a
 single-lens-reflex camera, with five lens units, six glass elements, approximately f/2 aperture, and about 46° full field

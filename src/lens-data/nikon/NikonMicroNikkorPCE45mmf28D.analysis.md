@@ -11,7 +11,7 @@
 
 US 7,656,591 B2 discloses a retrofocus lens system designed for single-lens reflex and digital cameras. The patent describes a three-group architecture — negative, negative, positive — with a floating focus mechanism that moves all three groups toward the object while differentially varying the inter-group separations. The design achieves a maximum reproduction ratio of 1:2 at a close focus distance of approximately 0.253 m (Nikon specification), and an image circle large enough to support the tilt-shift movements of a perspective control lens.
 
-Example 1 of this patent is the optical design underlying the **Nikon PC-E Micro-NIKKOR 45mm f/2.8D ED**, released in January 2008. The identification is confirmed by the following correspondences between patent and production lens:
+Example 1 of this patent is the selected optical-design correlation for the **Nikon PC-E Micro-NIKKOR 45mm f/2.8D ED**, released in January 2008. The correlation is supported by the following correspondences between patent and production lens:
 
 | Parameter | Patent (Example 1) | Nikon Marketed Specification |
 |---|---|---|
@@ -26,7 +26,7 @@ Example 1 of this patent is the optical design underlying the **Nikon PC-E Micro
 | Image height | Y = 29.30 mm (half-field 2ω ≈ 72°) | 51° on FX (sufficient image circle for ±11.5 mm shift) |
 | Minimum focus distance | d₀ = 72.3 mm (object to S1 at β = −0.50) | 0.253 m (0.83 ft, from focal plane) |
 
-The modest discrepancy between the patent's 41.2 mm design EFL and the marketed 45 mm focal length is typical of Nikon patent practice: the patent prescription may represent the optical design at a normalized or near-production focal length, with the marketed value reflecting the conventional rounding or the lens's actual performance at a specific conjugate. A paraxial ray trace of the Example 1 prescription yields EFL = 41.196 mm, confirming the patent's stated value to within rounding precision.
+The patent's 41.2 mm design EFL differs from the marketed 45 mm by about 8.4%. That difference is retained as a production-correlation limitation, without claiming that ordinary rounding or an undisclosed normalization explains it. A paraxial trace yields 41.196 mm, confirming the source design value. The modeled prescription is not rescaled to force the marketing value.
 
 The 72° full field angle from the patent (image height Y = 29.30 mm) exceeds the 51° on-axis field of view of the FX format. This is intentional: the PC-E 45mm must illuminate a substantially larger image circle than FX format to support the full ±11.5 mm shift range. The required image circle radius depends on the shift direction: approximately 29.6 mm for short-axis shift, 31.8 mm for long-axis shift, and up to 33.0 mm for worst-case 45° rotation (the rotation mechanism permits ±90° in 30° increments). The patent's Y = 29.30 mm design image height corresponds to a 58.6 mm image circle diameter, which falls slightly short of the maximum theoretical requirement (~66 mm for diagonal shift). In practice, the lens transmits light beyond the design image height with gradually increasing vignetting, and some corner illumination falloff at extreme shift angles is normal and accepted in tilt-shift operation.
 
@@ -64,37 +64,21 @@ The absence of aspherical surfaces is consistent with the lens's moderate f/2.8 
 
 ## 4. Glass Identification
 
-The prescription specifies nine distinct glass types. Using six-digit glass codes (first three digits = (nd − 1) × 1000 rounded; last three digits = νd × 10 rounded) and cross-referencing against the OHARA, Schott, HOYA, Sumita, and HIKARI catalogs, the following identifications were determined:
+Table 1 on PDF page 12 supplies nine d-line index/Abbe pairs and explicitly defines d = 587.6 nm (g = 435.8 nm in the aberration plots). All nine source pairs remain intact. The source provides no per-element C/F/g indices, θgF or partial-dispersion deviation. Compatible catalog curves supply spectral proxies, with source indices retained as the anchors; they do not identify production suppliers, melts or composition.
 
-### 4.1 Confirmed Exact Matches
+| Element | Source nd / νd | Current coefficient proxy | Native catalog coordinate / qualification |
+|---|---|---|---|
+| L11 | 1.83481 / 42.72 | S-LAH55V | 1.834807 / 42.7253; compatible proxy |
+| L12 | 1.75692 / 31.59 | E-LAF11 | 1.75692 / 31.591329; compatible proxy |
+| L21 | 1.49782 / 82.56 | J-FKH1 | 1.49782 / 82.57; closer coordinate than the former FCD1 proxy |
+| L22 | 1.78800 / 47.38 | N-LAF21 | 1.78800 / 47.49; nonidentical Abbe number |
+| L23 | 1.56732 / 42.72 | S-TIL26 | 1.567322 / 42.817076; nonidentical Abbe number |
+| L31 | 1.61800 / 63.38 | S-PHM52Q | 1.617999 / 63.321449; nonidentical Abbe number |
+| L32 | 1.71736 / 29.52 | SF1 | 1.71736 / 29.51; compatible proxy |
+| L33 | 1.48749 / 70.45 | N-FK5 | 1.48749 / 70.41; compatible proxy |
+| L34 | 1.80400 / 46.58 | S-LAH65V | 1.803999 / 46.5834; compatible proxy |
 
-| Element | nd | νd | Code | Best Catalog Match | Confidence |
-|---|---|---|---|---|---|
-| L11 | 1.83481 | 42.72 | 835/427 | OHARA S-LAH55V / HOYA TAFD5F | Exact (Δnd < 0.00001, Δνd < 0.01) |
-| L31 | 1.61800 | 63.38 | 618/634 | OHARA S-PHM52Q | Exact (Δnd = 0, Δνd = 0.01) |
-| L32 | 1.71736 | 29.52 | 717/295 | Schott SF1 / HOYA FD60 | Exact (Δnd = 0, Δνd ≤ 0.02) |
-| L33 | 1.48749 | 70.45 | 487/704 | OHARA S-FSL5 / Schott N-FK5 / HOYA FC5 | Exact (Δnd = 0, Δνd ≤ 0.04) |
-| L34 | 1.80400 | 46.58 | 804/466 | OHARA S-LAH65V / HOYA TAF3 | Exact (Δnd = 0, Δνd ≤ 0.01) |
-
-### 4.2 Close Matches
-
-| Element | nd | νd | Code | Best Catalog Match | Confidence |
-|---|---|---|---|---|---|
-| L22 | 1.78800 | 47.38 | 788/474 | Schott N-LAF21 (nd = 1.78800, νd = 47.49) | Very close (Δnd = 0, Δνd = 0.11) |
-| L21 | 1.49782 | 82.56 | 498/826 | OHARA S-FPL51 (1.497/81.6) / HOYA FCD1 | Near (Δnd = 0.0008, Δνd = 0.95) — **ED glass** |
-| L23 | 1.56732 | 42.72 | 567/427 | OHARA S-TIL26 (1.56739/42.84; code 567428) | Close coefficient-backed match within patent rounding tolerance |
-
-### 4.3 Catalog-equivalent glass
-
-| Element | nd | νd | Code | Assessment |
-|---|---|---|---|---|
-| L12 | 1.75692 | 31.59 | 757/316 | Hikari E-LAF11 catalog equivalent. Its published curve reproduces the patent coordinate; the production supplier remains unidentified. |
-
-### 4.4 The ED Element
-
-Nikon's published specifications list "one ED glass element." The ED element is identified as **L21** (nd = 1.49782, νd = 82.56), the negative meniscus in Group G2. Its optical properties place it in the fluorite-crown / phosphate-crown family, very near OHARA S-FPL51 (nd = 1.497, νd = 81.6) or its HOYA equivalent FCD1. The small residual differences (Δnd ≈ +0.0008, Δνd ≈ +1.0) suggest Nikon may use their own proprietary ED glass formulation rather than an off-the-shelf catalog type — a common practice, as Nikon has historically manufactured some of their own optical glasses.
-
-L21's placement in G2 — the strongly negative group — is deliberate. As a high-νd, low-dispersion glass in a diverging element, L21 introduces a large negative chromatic power contribution that counteracts the positive chromatic power from the converging elements in G3. Its anomalous partial dispersion properties provide superior correction of secondary chromatic aberration (lateral color) compared to what would be achievable with conventional crown glasses, which is particularly important for a wide-field lens with tilt-shift capability.
+The production specification's one ED position is correlated with the high-Abbe L21. Its inherited APD badge remains an explicit inference from that correlation, with no source-published numerical anomaly or material identity. J-FKH1 improves the available coordinate match over FCD1; it does not establish Nikon's production formulation. The source supports the distribution of chromatic power, but does not quantitatively establish a particular secondary-spectrum benefit for L21. No catalog-only spectral overrides are added.
 
 ---
 
@@ -119,9 +103,9 @@ The following analysis describes the shape, power, and role of each element in t
 ### L21 — Negative Meniscus, ED Glass (G2, front element)
 
 - **Shape:** Negative meniscus, convex toward object (R₁ = +138.964, R₂ = +19.308; both positive, much steeper rear)
-- **Glass:** Nikon ED glass, near OHARA S-FPL51 (nd = 1.49782, νd = 82.56)
-- **Focal length:** f ≈ −45 mm (strongly negative — the most powerful diverging element)
-- **Role:** L21 is the workhorse diverging element of the retrofocus design and the lone ED glass element. Its very strong negative power (|f| ≈ 45 mm, nearly equal to the system EFL in magnitude) creates the substantial ray divergence that pushes the rear principal plane forward, producing the long BFD essential for both SLR mirror clearance and the tilt-shift mechanism. The extremely high Abbe number (82.56) means L21 introduces very little chromatic dispersion despite its strong refractive power, and its anomalous partial dispersion (characteristic of the FPL51-family glasses) provides the secondary spectrum correction that distinguishes ED lenses. The large radius ratio (R₂/R₁ ≈ 0.139) produces a deeply curved meniscus shape that is characteristic of strong negative elements in retrofocus front groups.
+- **Glass:** J-FKH1 compatible spectral proxy; source nd = 1.49782, νd = 82.56; production ED position inferred
+- **Focal length:** f ≈ −45 mm (strongly negative — the main diverging element in G2)
+- **Role:** L21 is the workhorse diverging element of the retrofocus design and the lone ED glass element. Its very strong negative power (|f| ≈ 45 mm, nearly equal to the system EFL in magnitude) creates the substantial ray divergence that pushes the rear principal plane forward, producing the long BFD essential for both SLR mirror clearance and the tilt-shift mechanism. The extremely high Abbe number (82.56) means L21 introduces very little chromatic dispersion despite its strong refractive power, while the patent supplies no numerical partial-dispersion evidence to quantify secondary-spectrum correction for this medium. The large radius ratio (R₂/R₁ ≈ 0.139) produces a deeply curved meniscus shape that is characteristic of strong negative elements in retrofocus front groups.
 
 ### L22 — Biconvex Positive (G2, cemented with L23)
 
@@ -140,9 +124,9 @@ The following analysis describes the shape, power, and role of each element in t
 ### L31 — Biconvex Positive (G3, before stop)
 
 - **Shape:** Biconvex, rear-biased (R₁ = +80.318, R₂ = −37.349)
-- **Glass:** OHARA S-PHM52Q type (nd = 1.618, νd = 63.38) — phosphate crown
+- **Glass:** OHARA S-PHM52Q type (nd = 1.618, νd = 63.38) — high-Abbe crown proxy
 - **Focal length:** f ≈ +42 mm (strong positive — nearly equal to system EFL)
-- **Role:** L31 is the primary converging element of the rear group and the most powerful positive element in the system. Its placement immediately before the aperture stop is strategic: it receives the diverging beam from G2, bends it strongly toward convergence, and defines the entrance pupil location. The phosphate crown glass has high νd (63.38), contributing minimal chromatic aberration. The rear-biased shape (R₂ curvature about twice R₁'s) distributes the refractive bending between front and rear surfaces, minimizing the spherical aberration generated by each. The patent identifies L31 as the preferred vibration reduction (image stabilization) element, should VR be implemented.
+- **Role:** L31 is the primary converging element of the rear group and the most powerful positive element in the system. Its placement immediately before the aperture stop is strategic: it receives the diverging beam from G2, bends it strongly toward convergence, and defines the entrance pupil location. The source glass has high νd (63.38), reducing primary dispersion for its power; the catalog proxy does not establish its chemical composition. The rear-biased shape (R₂ curvature about twice R₁'s) distributes the refractive bending between front and rear surfaces, minimizing the spherical aberration generated by each. The patent identifies L31 as the preferred vibration reduction (image stabilization) element, should VR be implemented.
 
 ### Aperture Stop (S)
 
@@ -158,7 +142,7 @@ The aperture stop sits in the air space immediately behind L31, at the geometric
 ### L33 — Positive Meniscus (G3, after stop)
 
 - **Shape:** Positive meniscus, convex toward image (R₁ = −95.520, R₂ = −25.721; both negative, steeper rear)
-- **Glass:** OHARA S-FSL5 / Schott N-FK5 (nd = 1.48749, νd = 70.45) — fluorine crown
+- **Glass:** OHARA S-FSL5 / Schott N-FK5 (nd = 1.48749, νd = 70.45) — low-dispersion crown proxy
 - **Focal length:** f ≈ +71 mm (moderate positive)
 - **Role:** L33 continues the convergence after L32 while contributing minimal chromatic aberration thanks to its high νd (70.45). The meniscus shape with both surfaces concave toward the object (convex toward image) is a field-flattening configuration: it adds positive power at high ray heights near the image, counteracting the residual Petzval curvature. The patent's conditional expression (6) constrains the Abbe number of the second lens from the image side of G3 (which is L33) to the range 60 < ν32 < 83. The value of 70.45 sits comfortably in this range, confirming L33's role in correcting lateral chromatic aberration across the wide field.
 
@@ -198,23 +182,11 @@ The patent's conditional expression (1), −30 < ΔD1/(β·D1) < −7, evaluates
 
 ## 7. Semi-Diameter Estimation
 
-The patent does not provide semi-diameter (clear aperture) values. Semi-diameters were estimated using a combined marginal and chief ray trace, following the standard methodology:
+The patent does not publish clear apertures. Fresh inspection of Figure 1 on PDF page 2 distinguishes continuous optical faces from straight concave end lands. Surface 2 retains its existing 20.8 mm optical cap and gains a land to the 22.5 mm outer rim. Surface 6 retains its existing 13.4 mm cap and gains a land to a 17.4 mm rim; its front surface 5 grows continuously to the same outer height. These lands make the source outline explicit without introducing additional optical clipping.
 
-**Ray trace parameters:**
-- Marginal ray: launched at the entrance pupil height corresponding to f/2.8 (EP radius = EFL / 2F = 41.2 / 5.6 = 7.36 mm)
-- Chief ray: launched at 60% of the half-field angle (0.60 × 36° = 21.6°), constrained to pass through the center of the aperture stop
-- Mechanical clearance: 8% applied to the combined |y_marginal| + |y_chief| envelope
+L12's continuous front/rear caps grow to 19.5 mm. The approximately 19.7 mm full-height trial fails the unchanged 5.7 mm gap to L11; 19.5 mm is the conservative connected outline within the gap limit, rather than a claim of a numerical source aperture. The rear caps of L31 and front cap of L34 grow continuously to their existing 12.8 mm partner rims. L33's front cap remains 11.7 mm: growing it to the 12.2 mm rear rim would exceed the unchanged 1.9 mm gap's allowed intrusion. No unsupported flat land is substituted at that face.
 
-**Constraint validation:**
-All estimated semi-diameters were validated against five physical constraints:
-
-1. **Edge thickness ≥ 0.7 mm** for all elements. The binding constraint is L33 (positive meniscus, R₁ = −95.52, R₂ = −25.72), whose deeply curved rear surface causes rapid edge-thickness loss. At sd = 12.5 mm, L33's edge thickness is 0.78 mm.
-2. **Cross-gap sag intrusion ≤ 90% of gap** for all air spaces. The tightest gap is S14–S15 (L32 rear to L33 front, gap = 1.9 mm). At sd_check = 11.5 mm, the intrusion fraction is 0.86.
-3. **sd/|R| < 0.90** for all surfaces. The highest ratio is S6 (L21 rear, sd/|R| = 0.751), well within limits.
-4. **Element front/rear SD ratio ≤ 3.0** for all elements. All ratios are below 1.2.
-5. **Smooth SD progression** verified: SDs decrease smoothly from front (20.0 mm) through the stop (10.3 mm) and increase smoothly toward the image (14.0 mm).
-
-The front element semi-diameter (20.0 mm, diameter ≈ 40 mm) is consistent with the 77 mm filter thread — the large filter size accommodates the tilt-shift mechanism barrel rather than the front element diameter.
+The adopted geometry passes canonical surface, image-circle, stated f/2.89 aperture and centered source-field checks. Nine actual SVG focus states retain connected compound outlines with no automatic rim trimming. Source Table 1 states FNO 2.89 while Figure 2A prints 2.87; the existing table-based 2.89 design aperture is retained and marketing remains f/2.8. The source's 58.6 mm design image circle and the separately disclosed extreme-shift illumination limitation remain distinct from these centered checks.
 
 ---
 
@@ -238,7 +210,7 @@ The front element semi-diameter (20.0 mm, diameter ≈ 40 mm) is consistent with
 | Variable gaps (focusing) | 3 (d4, d9, BFD) | CRC floating focus ✓ |
 | Maximum reproduction ratio | β = −0.50 (1:2) | Matches Nikon spec ✓ |
 
-**Note on ν32:** The patent's conditional expression table (Table 1) states ν32 = 70.76, while the prescription data lists νd = 70.45 for L33 (the second element from the image side of G3). The prescription value of 70.45 is consistent with known catalog glasses (OHARA S-FSL5: νd = 70.44; Schott N-FK5: νd = 70.41), suggesting the conditional expression table contains a minor rounding or transcription error. The discrepancy (Δ ≈ 0.3) does not affect any conclusions.
+**Note on ν32:** Table 1's conditional-expression block states ν32 = 70.76, while its numerical prescription gives L33 νd = 70.45. This is an unresolved source inconsistency rather than ordinary two-decimal rounding. The numerical prescription value is retained and the Abbe condition remains satisfied; the available catalog proxies do not resolve the source discrepancy or identify a production glass.
 
 ---
 

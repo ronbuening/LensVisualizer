@@ -10,7 +10,7 @@
 **Inventors:** Yoshikazu Doi; Yutaka Sakai\
 **Assignee:** Fuji Photo Optical Co., Ltd.\
 **Title:** *Inverted Telephoto Type Super-Wide Angle Lens*\
-**Embodiment analyzed:** Example 1 / Table I
+**Example details:** Table I
 
 The modeled prescription is the patent's first numerical example, uniformly scaled from its normalized focal length of
 1.001 to the 24 mm production class. The scale factor is

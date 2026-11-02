@@ -8,7 +8,7 @@
 **Inventors:** Atsushi Oohata; Hiroki Hagiwara  
 **Applicant / Assignee:** Sony Corporation  
 **Title:** *Zoom Lens and Image Capturing Apparatus*  
-**Embodiment analyzed:** Example 3, Third Embodiment
+**Example details:** Third Embodiment
 
 The prescription modeled here is Example 3 of US 2013/0314585 A1. The patent describes a four-group zoom in the order negative-positive-positive-positive and gives the complete Example 3 numerical prescription in Tables 9–12, with the corresponding layout in Figure 9. The final data file retains that example at its published dimensional scale rather than forcing it to the marketed focal-length endpoints.
 
@@ -208,6 +208,16 @@ Because the patent does not publish clear apertures, aspheric departure can only
 | 15A | 9.800 | +0.482641 |
 
 These departures describe the authored visualization/tracing model, not measured production rims.
+
+## Published Field and Outer-Field Limits
+
+Every coefficient, radius, spacing and glass in the stored prescription matches Example 3 (Tables 9–12). The patent's
+published half-fields are 32.98°, 21.63° and 12.53°; the site follows the chief ray further, to the corner of the 1-inch
+format (41.6° at the wide end), a field the camera reaches only with in-camera distortion correction. Wide open at the
+wide end, the upper-rim rays at about 30° and beyond do not converge closely enough on the image point for the vignetting
+tab to compute relative illumination, even inside the published field. No aspheric rim runs past a turnover, the
+patent's peripheral-ray mask on surface 13 is undimensioned, and its aberration plots do not isolate a misprint, so the
+data are kept as printed.
 
 ## Conditional Expressions
 

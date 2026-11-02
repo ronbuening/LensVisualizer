@@ -12,7 +12,7 @@
 
 **Published:** January 31, 2013
 
-**Embodiment analyzed:** Example 2 (OS2), Figure 3, Tables 4 and 5.
+**Example details:** OS2, Figure 3, Tables 4 and 5.
 
 This is a related patent design candidate associated with the AF-S NIKKOR 58mm f/1.4G, not an established production prescription. The display name uses the associated product's f/1.4 G designation and retains the patent design candidate qualifier. The subtitle and visible specifications distinguish that inferred association from the modeled f/1.45 patent prescription. The source has nine elements in five air-separated components and four optical groups. No production modification, such as splitting a cemented pair, is established by the patent.
 
@@ -124,7 +124,7 @@ The rear conic has a finite domain near20.54mm radius; its adopted rim remains i
 
 ## Diagram Dimensions and Modeling Limits
 
-Figure3 was inspected at600dpi, using the53.5038mm first-to-last vertex span for scale. Inferred optical radii are approximately23.5mm for La,19.8mm for Lb1,16.9mm for Lb2 and16.8mm for both rear cemented assemblies. Optical rims were separated from label leaders and group brackets; several automated envelope readings were contaminated by those annotations. These dimensions replace earlier ray-based estimates and pass surface-clearance and image-circle checks. They are not published clear-aperture measurements.
+Figure3 was inspected at600dpi, using the53.5038mm first-to-last vertex span for scale. Inferred outer blank radii are approximately23.5mm for La,19.8mm for Lb1,16.9mm for Lb2 and16.8mm for both rear cemented assemblies. Optical rims were separated from label leaders and group brackets; several automated envelope readings were contaminated by those annotations. These dimensions replace earlier ray-based estimates and pass surface-clearance and image-circle checks. The 2026-10-29 reinspection adds flat lands on concave air faces 5, 7 and 9 using inferred cut depths 3.84, 4.57 and 3.86 mm. Their clear cap radii are 17.635, 16.379 and 14.926 mm inside the retained outer rims 19.8, 16.9 and 16.8 mm. These source-figure estimates pass the full inferred-cut beam sweep; they are not published clear-aperture measurements. Both aspheric caps and coefficients are unchanged.
 
 Example2 has no cover/filter rows. Its38.7mm rear gap is retained, with no extra sensor-glass surfaces. The candidate association and reconstructed finite focusing remain explicitly distinct from the patent's numerical infinity data.
 

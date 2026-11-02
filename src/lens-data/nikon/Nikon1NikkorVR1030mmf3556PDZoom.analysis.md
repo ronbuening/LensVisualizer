@@ -8,7 +8,7 @@
 **Inventors:** Makoto Fujimoto; Takeshi Umeda\
 **Applicant:** Nikon Corporation\
 **Title:** *Zoom Lens, Optical Apparatus, and Method for Manufacturing the Zoom Lens*\
-**Embodiment analyzed:** Eleventh Example / Example 11 of the third embodiment, Fig. 30A/B and Table 11
+**Example details:** the third embodiment, Fig. 30A/B and Table 11
 
 The implemented prescription transcribes Example 11 of US 2018/0196240 A1. The patent describes this example as a
 four-group negative-positive-negative-positive zoom, with the first three groups moving during zooming and the fourth

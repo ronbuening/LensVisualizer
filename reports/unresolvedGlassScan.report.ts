@@ -8,13 +8,13 @@
  *
  * Runs only via `npm run generate:reports`, never in `npm test`; its job is to emit an authoring report.
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { glassTokens, resolveGlass } from "../src/optics/glassCatalog.js";
 import { activeGlassAnnotation, isExplicitlyUnmatched, walkLensSurfaces } from "./glassScanLib.js";
-import type { LensData } from "../src/types/optics.js";
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 const REPORT_DIR = "agent_docs/generated";
 
 interface Occurrence {

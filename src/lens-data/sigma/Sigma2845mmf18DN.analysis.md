@@ -10,7 +10,7 @@
 **Inventor:** Hiromichi Ochiai (落合裕道)
 **Applicant:** Sigma Corporation (株式会社シグマ)
 **Title:** Zoom Lens (变焦镜头)
-**Embodiment analyzed:** Numerical Example 1 (数值实施例1 / 实施例1)
+**Example details:** 数值实施例1 / 实施例1
 
 Numerical Example 1 is the working prescription that best matches Sigma's production **28-45mm F1.8 DG DN | Art**. The match is not based on a single clue. It is a convergence of the patent's surface data, the patent's worked-example metadata, and Sigma's published production specifications.
 

@@ -1,18 +1,18 @@
 /** Projection, image-format, and fixed-sensor geometry for perspective fields. */
 
+import { interpolateStationTable } from "../state/stationTables.js";
+import { runtimeView } from "../prescription/runtimeView.js";
 import { IMAGE_FORMAT_BY_ID, isImageFormatId, type ImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
-import {
-  projectionFieldAngleForImageHeight2,
-  projectionImageHeightForAngle2,
-  type ProjectionReference2,
-} from "../field/projection.js";
-import { eflAtFocus2 } from "../first-order/focusBreathing.js";
-import { xpZRelLastSurfAtZoom } from "../layout.js";
-import { intersectRayPlane } from "../math/plane.js";
+import { projectionFieldAngleForImageHeight, projectionImageHeightForAngle } from "../field/projection.js";
+import type { ProjectionReference } from "../field/projection.js";
+import { eflAtFocus } from "../first-order/focusBreathing.js";
+import { xpZRelLastSurfAtZoom } from "../state/stationTables.js";
+import { intersectRayPlane } from "../geometry/intersectPlane.js";
 import { add, dot, normalize, scale, subtract } from "../math/vector.js";
 import type { Plane3, Vec3 } from "../types.js";
 import { isPerspectiveDirectionInsideProjectionDomain } from "./chiefRay.js";
-import { createSensorBasis, type SensorBasis } from "./sensorBasis.js";
+import { createSensorBasis } from "./sensorBasis.js";
+import type { SensorBasis } from "./sensorBasis.js";
 import type { PerspectiveTraceContext } from "./trace.js";
 
 /** Normalized coordinates on the fixed image format: +/-1 reaches each edge. */
@@ -29,7 +29,7 @@ export interface FieldPlaneFrame {
   halfHeightMm: number;
 }
 
-export type PerspectiveProjectionReference = ProjectionReference2;
+export type PerspectiveProjectionReference = ProjectionReference;
 
 /** Error raised when field sampling preconditions are not represented in lens data. */
 export class PerspectiveFieldSamplingError extends Error {
@@ -40,7 +40,7 @@ export class PerspectiveFieldSamplingError extends Error {
 }
 
 export function requirePerspectiveImageFormatMetadata(context: PerspectiveTraceContext): ImageFormatMetadata {
-  const imageFormat = context.state.lens.source.imageFormat;
+  const imageFormat = context.state.lens.source.catalog.imageFormat;
   if (!isImageFormatId(imageFormat)) {
     throw new PerspectiveFieldSamplingError(
       `Lens "${context.state.lens.key}" requires validated imageFormat metadata for perspective field sampling`,
@@ -52,7 +52,7 @@ export function requirePerspectiveImageFormatMetadata(context: PerspectiveTraceC
 export function resolvePerspectiveFocalLength(context: PerspectiveTraceContext, override: number | undefined): number {
   const focalLengthMm =
     override ??
-    eflAtFocus2(context.state.focusT, context.state.zoomT, context.state.lens.runtime, context.state.aberrationT);
+    eflAtFocus(context.state.focusT, context.state.zoomT, runtimeView(context.state.lens), context.state.aberrationT);
   if (!Number.isFinite(focalLengthMm) || Math.abs(focalLengthMm) <= 1e-9) {
     throw new PerspectiveFieldSamplingError("Perspective field sampling requires a finite non-zero focal length");
   }
@@ -108,6 +108,18 @@ export function pointForSensorUv(frame: FieldPlaneFrame, uv: SensorUv): Vec3 {
   );
 }
 
+/**
+ * Resolve a normalized format coordinate to the fixed camera sensor, or null
+ * for invalid metadata or out-of-bounds input. Field sampling also needs the
+ * unchecked pointForSensorUv path to retain coordinates on unavailable samples.
+ */
+export function sensorPointForUv(context: PerspectiveTraceContext, sensorUv: SensorUv): Vec3 | null {
+  const imageFormat = context.state.lens.source.catalog.imageFormat;
+  if (!isImageFormatId(imageFormat) || !sensorUvInsideFormat(sensorUv)) return null;
+  const frame = createFieldPlaneFrame(context.sensorPlane, IMAGE_FORMAT_BY_ID[imageFormat], context.sensorBasis);
+  return pointForSensorUv(frame, sensorUv);
+}
+
 export function sensorUvForPoint(frame: FieldPlaneFrame, point: Vec3): SensorUv {
   const offset = subtract(point, frame.plane.point);
   return {
@@ -120,12 +132,24 @@ export function finiteSensorUv(uv: SensorUv): boolean {
   return Number.isFinite(uv.u) && Number.isFinite(uv.v);
 }
 
+/** Shared finite format bounds; retain the normalized edge tolerance for all callers. */
 export function sensorUvInsideFormat(uv: SensorUv): boolean {
   return finiteSensorUv(uv) && Math.abs(uv.u) <= 1 + 1e-9 && Math.abs(uv.v) <= 1 + 1e-9;
 }
 
-export function pointInsideSensor(frame: FieldPlaneFrame, point: Vec3 | null): boolean {
-  return point !== null && sensorUvInsideFormat(sensorUvForPoint(frame, point));
+/** Optional physical band is reserved for sensor-locked landings; requests stay strict. */
+export function pointInsideSensor(frame: FieldPlaneFrame, point: Vec3 | null, toleranceMm?: number): boolean {
+  if (point === null) return false;
+  if (toleranceMm === undefined) return sensorUvInsideFormat(sensorUvForPoint(frame, point));
+  const offset = subtract(point, frame.plane.point);
+  const uMm = dot(offset, frame.uAxis);
+  const vMm = dot(offset, frame.vAxis);
+  return (
+    Number.isFinite(uMm) &&
+    Number.isFinite(vMm) &&
+    Math.abs(uMm) <= frame.halfWidthMm + toleranceMm &&
+    Math.abs(vMm) <= frame.halfHeightMm + toleranceMm
+  );
 }
 
 export function idealPointForDirection(
@@ -187,7 +211,7 @@ export function directionForIdealCoordinates(
   const radius = Math.hypot(imageU, imageV);
   if (!Number.isFinite(radius)) return null;
   if (radius <= 1e-12) return [0, 0, 1];
-  const theta = projectionFieldAngleForImageHeight2(projection, radius);
+  const theta = projectionFieldAngleForImageHeight(projection, radius);
   if (!Number.isFinite(theta)) return null;
   const sinTheta = Math.sin(theta);
   return normalize([-(imageU / radius) * sinTheta, -(imageV / radius) * sinTheta, Math.cos(theta)]);
@@ -200,14 +224,14 @@ export function idealCoordinatesForDirection(
   const transverse = Math.hypot(direction[0], direction[1]);
   if (transverse <= 1e-12) return { u: 0, v: 0 };
   const theta = Math.atan2(transverse, direction[2]);
-  const radius = projectionImageHeightForAngle2(projection, theta);
+  const radius = projectionImageHeightForAngle(projection, theta);
   if (!Number.isFinite(radius)) return null;
   return { u: (-direction[0] / transverse) * radius, v: (-direction[1] / transverse) * radius };
 }
 
 export function paraxialExitPupilCenterLens(context: PerspectiveTraceContext): Vec3 {
   const lastSurfaceZ = context.state.z[context.state.z.length - 1] ?? 0;
-  const relative = xpZRelLastSurfAtZoom(context.state.zoomT, context.state.lens.runtime);
+  const relative = xpZRelLastSurfAtZoom(context.state.zoomT, runtimeView(context.state.lens));
   return [0, 0, lastSurfaceZ + (Number.isFinite(relative) ? relative : 0)];
 }
 
@@ -215,8 +239,5 @@ function projectionValue(context: PerspectiveTraceContext, value: number | reado
   if (typeof value === "number") return value;
   if (value.length === 0) return NaN;
   if (value.length === 1) return value[0];
-  const scaled = Math.max(0, Math.min(1, context.state.zoomT)) * (value.length - 1);
-  const lo = Math.floor(scaled);
-  const hi = Math.min(value.length - 1, lo + 1);
-  return value[lo] + (value[hi] - value[lo]) * (scaled - lo);
+  return interpolateStationTable(Math.max(0, Math.min(1, context.state.zoomT)), value, "last");
 }

@@ -14,7 +14,7 @@
 
 **Title:** Zoom lens system, imaging apparatus including the same, and interchangeable lens apparatus
 
-**Embodiment analyzed:** Embodiment 1 / Numerical Example 1
+**Example details:** Numerical Example 1
 
 The prescription is identified with the production **PANASONIC LUMIX S 70-300mm f/4.5-5.6 MACRO O.I.S.** by convergent evidence rather than by an explicit manufacturer statement that the patent table is the literal production prescription.
 

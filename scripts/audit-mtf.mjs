@@ -1,3 +1,4 @@
+import { createAnalysisRequest } from "../src/optics/analysis.js";
 /**
  * Read-only MTF census. Run with the project's TS specifier hook.
  *
@@ -10,10 +11,11 @@
 import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
-import buildLens from "../src/optics/buildLens.ts";
-import { prepareRuntimeState } from "../src/optics/compat.ts";
-import { assessMtfSupport, computeMtf, resolveMtfGeometry } from "../src/optics/mtf.ts";
-import { mtfImagePlaneOffset } from "../src/optics/analysis/mtfFocus.ts";
+import { buildLens } from "../src/optics/buildLens.js";
+import { prepareRuntimeState } from "../src/optics/optics.js";
+import { entrancePupilAtState } from "../src/optics/fieldGeometry.js";
+import { assessMtfSupport, computeMtf, resolveMtfGeometry } from "../src/optics/mtf.js";
+import { mtfImagePlaneOffset } from "../src/optics/mtf.js";
 
 const spectrum = process.argv.includes("--cdf")
   ? "cdf"
@@ -40,17 +42,26 @@ for (const file of files) {
   const data = (await import(pathToFileURL(resolve("src/lens-data", file)))).default;
   if (data.visible === false) continue;
   audited++;
-  const L = buildLens(data);
+  const L = buildLens(data, { path: `src/lens-data/${file}` });
   const state = prepareRuntimeState(L, 0, 0);
   const options = {
     method: "geometric",
     spectrum,
     focus: FIELD_FOCUS,
     maxGridSize: 32,
-    pupilSemiDiameterMm: L.EP.epSD,
+    // The wide-open stop and the paraxial entrance pupil it gives in this state.
+    pupilSemiDiameterMm: entrancePupilAtState(L.stopPhysSD, 0, 0, L).epSD,
     stopSemiDiameterMm: L.stopPhysSD,
   };
-  const assessed = assessMtfSupport(state, options);
+  const assessed = assessMtfSupport(
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options.pupilSemiDiameterMm,
+      currentPhysStopSD: options.stopSemiDiameterMm,
+    }),
+    options,
+  );
   const reason = assessed.reason ?? "candidate";
   tally(support, reason);
   if (focusCensus) {
@@ -65,13 +76,29 @@ for (const file of files) {
     continue;
   }
   if (!perField || reason !== "candidate") continue;
-  const geometry = resolveMtfGeometry(state, options);
+  const geometry = resolveMtfGeometry(
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options.pupilSemiDiameterMm,
+      currentPhysStopSD: options.stopSemiDiameterMm,
+    }),
+    options,
+  );
   if (!geometry) {
     for (const position of Object.keys(fields)) tally(fields[position], "no-field-axis");
     continue;
   }
   const edge = geometry.modeledEdgeHeightMm / geometry.referenceHeightMm;
-  const result = computeMtf(state, { ...options, fieldFractions: [0, 0.5, edge] });
+  const result = computeMtf(
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: { ...options, fieldFractions: [0, 0.5, edge] }.pupilSemiDiameterMm,
+      currentPhysStopSD: { ...options, fieldFractions: [0, 0.5, edge] }.stopSemiDiameterMm,
+    }),
+    { ...options, fieldFractions: [0, 0.5, edge] },
+  );
   const status = (field) => (field.status === "unavailable" ? field.reason : "available");
   ["center", "half", "edge"].forEach((position, i) => {
     const value = status(result.fields[i]);

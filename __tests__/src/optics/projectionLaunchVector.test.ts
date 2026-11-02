@@ -1,9 +1,6 @@
 import { describe, expect, it } from "vitest";
-import {
-  MAX_FIELD_LAUNCH_DEG,
-  projectionLaunchVectorForFieldAngles,
-  type ProjectionReference,
-} from "../../../src/optics/projection.js";
+import { MAX_FIELD_LAUNCH_DEG, projectionLaunchVectorForFieldAngles } from "../../../src/optics/field/projection.js";
+import type { ProjectionReference } from "../../../src/optics/field/projection.js";
 
 const RECTILINEAR_REFERENCE: ProjectionReference = {
   kind: "rectilinear",

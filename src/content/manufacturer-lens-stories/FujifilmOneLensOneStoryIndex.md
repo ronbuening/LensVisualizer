@@ -1,7 +1,7 @@
 ---
 slug: fujifilm-one-lens-one-story-index
 title: "Fujifilm: One Lens, One Story"
-summary: A chronological index of Fujifilm's One Lens, One Story, History of FUJINON, and FUJINON Speed Lenses series, with links to matching Surface & Stop lens diagrams.
+summary: A chronological index of Fujifilm's One Lens, One Story, History of FUJINON, and FUJINON Speed Lenses series, its GFX development stories, and other FUJINON lens features, with links to matching Surface & Stop lens diagrams.
 tag: guide
 series: manufacturer-lens-stories
 seriesOrder: 2
@@ -58,11 +58,29 @@ _Rebirth of the Legend_ connects Fujifilm's 1950s FUJINON Speed Trio to its fast
 
 ## GFX100RF Fixed-Lens Development
 
-Fujifilm's four-part GFX100RF development story treats the camera and its fixed lens as one design. Volume 03 concentrates entirely on the 35mmF4 lens, including its compact optical layout, aspherical elements, leaf shutter, Nano GI coating, and autofocus mechanism; volume 02 covers the lens team's proposal for a very compact fixed lens on a large-format body. Volumes 01 and 04 are format heritage and industrial design.
+Fujifilm's five-part GFX100RF development story treats the camera and its fixed lens as one design. Volume 03 concentrates entirely on the 35mmF4 lens, including its compact optical layout, aspherical elements, leaf shutter, Nano GI coating, and autofocus mechanism; volume 02 covers the lens team's proposal for a very compact fixed lens on a large-format body. Volumes 01 and 04 are format heritage and industrial design, and volume 05 covers the camera's handling and interface.
 
 | Published | Volume and subject | Official article | Surface & Stop |
 | --- | --- | --- | --- |
+| 2025-03-26 | vol. 05 — Our Answer for a New Experience to Revisit our Origins | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-05-our-answer-for-a-new-experience-to-revisit-our-origins/) | — |
 | 2025-03-25 | vol. 04 — Design that Elevates the Concept | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-04-design-that-elevates-the-concept/) | — |
 | 2025-03-24 | vol. 03 — Newly Developed 35mm F4 Lens | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-03-newly-developed-35mm-f4-lens/) | [GFX100RF 35mmF4](/lens/fujifilm-gfx100rf-35mm-f4) |
 | 2025-03-21 | vol. 02 — Large Format + Compact and Lightweight | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-2-large-format-compact-and-lightweight/) | [GFX100RF 35mmF4](/lens/fujifilm-gfx100rf-35mm-f4) |
 | 2025-03-20 | vol. 01 — The Rangefinder Style and Fujifilm, and the GFX | [Read at Fujifilm](https://www.fujifilm-x.com/global/stories/development-story-vol-01-the-rangefinder-style-and-fujifilm-and-the-gfx/) | — |
+
+## Other FUJINON Lens Features
+
+Fujifilm's stories archive also holds standalone lens features outside the named series: design and autofocus notes from the early XF line, product-planning pieces, a G-mount technology article, a FUJINON craftsmanship feature, and a GFX ETERNA 55 development story on its power-zoom cine lens. They are listed newest first.
+
+| Published | Lens or subject | Official article | Surface & Stop |
+| --- | --- | --- | --- |
+| 2025-11-18 | GF32–90mmT3.5 PZ OIS WR | [GFX ETERNA 55 Development Stories #5](https://www.fujifilm-x.com/global/stories/gfx-eterna-55-development-stories-5-gf32-90mmt3-5-pz-ois-wr/) | — |
+| 2017-02-21 | The G mount | [GFX Technologies #2](https://www.fujifilm-x.com/global/stories/gfx-technologies-2/) | — |
+| 2016-10-11 | XF23mmF2 R WR | [XF23mmF2 into the stardom](https://www.fujifilm-x.com/global/stories/xf23mmf2-into-the-stardom/) | [XF23mmF2 R WR](/lens/fujifilm-xf-23mm-f2-r-wr) |
+| 2016-04-28 | XF35mmF2 R WR | [XF35mmF2 R WR](https://www.fujifilm-x.com/global/stories/xf35mmf2/) | [XF35mmF2 R WR](/lens/fujifilm-fujinon-xf-35mm-f2-r-wr) |
+| 2016-02-25 | XF100–400mmF4.5–5.6 R LM OIS WR | [XF100-400mmF4.5-5.6 R LM OIS WR -The Final Piece-](https://www.fujifilm-x.com/global/stories/xf100-400mmf45-56-r-lm-ois-wr-the-final-piece/) | [XF100–400mmF4.5–5.6](/lens/fujifilm-fujinon-xf-100-400mm-f45-56-r-lm-ois-wr) |
+| 2015-06-03 | XF90mmF2 R LM WR, lens design | [Lens design of XF90mmF2 R LM WR](https://www.fujifilm-x.com/global/stories/lens-design-of-xf90mmf2-r-lm-wr/) | [XF90mmF2 R LM WR](/lens/fujifilm-xf90f2) |
+| 2015-05-11 | XF90mmF2 R LM WR, autofocus motor | [Quad Linear Motor of XF90mmF2 LM WR](https://www.fujifilm-x.com/global/stories/quad-linear-motor-of-xf90mmf2-r-lm-wr/) | [XF90mmF2 R LM WR](/lens/fujifilm-xf90f2) |
+| 2014-10-09 | FUJINON lens manufacturing | [Craftsmanship of FUJINON](https://www.fujifilm-x.com/global/stories/craftsmanship-of-fujinon/) | — |
+
+GFX ETERNA 55 Development Stories #1–4 cover the camera body and are not listed.

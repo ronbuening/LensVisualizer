@@ -8,7 +8,7 @@
 **Inventor:** Ludwig Bertele  
 **Applicant / patent holder:** Ludwig Bertele  
 **Title:** *Objektiv, bestehend aus vier luftraumgetrennten Gliedern*  
-**Embodiment analyzed:** Example 2, Fig. 2
+**Example details:** Fig. 2
 
 The second standalone Ludwig Bertele line on the 1952 title page occupies the patent-holder/applicant position used by
 contemporary Deutsches Patentamt Patentschrift title pages; official DPMA examples show the same position occupied by a

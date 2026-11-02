@@ -8,8 +8,8 @@ import { ANALYSIS_TABS } from "../../../../../src/components/layout/lensDiagram/
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import type { AnalysisTabId } from "../../../../../src/types/state.js";
 import type { Theme } from "../../../../../src/types/theme.js";
-import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/index.js";
-import type { AnalysisComputationContext } from "../../../../../src/optics/compat.js";
+import type { PerspectiveTraceContext } from "../../../../../src/optics/perspective/trace.js";
+import type { AnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
 
 const {
   mockAberrationsPanel,
@@ -45,8 +45,8 @@ const {
   mockVignettingTab: vi.fn(),
 }));
 
-vi.mock("../../../../../src/optics/compat.js", async () => {
-  const actual = await vi.importActual("../../../../../src/optics/compat.js");
+vi.mock("../../../../../src/optics/optics.js", async () => {
+  const actual = await vi.importActual("../../../../../src/optics/optics.js");
   return {
     ...actual,
     prepareRuntimeState: mockPrepareRuntimeState,
@@ -277,6 +277,24 @@ describe("AnalysisDrawerContent", () => {
     const second = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
 
     expect(second).toBe(first);
+  });
+
+  it("retains request identity when equal optical inputs arrive in new render objects", async () => {
+    const fieldGeometry = { halfFieldDeg: 10, yRatio: 1, b: 2, epRatio: 3 };
+    const { rerender } = render(
+      <AnalysisDrawerContent {...baseProps} activeTab="summary" fieldGeometry={fieldGeometry} />,
+    );
+    const first = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+    const nextField = { ...fieldGeometry };
+    rerender(
+      <AnalysisDrawerContent {...baseProps} activeTab="summary" fieldGeometry={nextField} zPos={[...baseProps.zPos]} />,
+    );
+    await waitFor(() => {
+      expect(mockOpticalSummaryTab.mock.calls.at(-1)?.[0].fieldGeometry).toBe(nextField);
+    });
+    const repeated = mockOpticalSummaryTab.mock.calls.at(-1)?.[0].analysisContext as AnalysisComputationContext;
+    expect(repeated.request).toBe(first.request);
+    expect(repeated).toBe(first);
   });
 
   it("keeps intrinsic summary available and invalidates its context on shift/tilt-only changes", async () => {

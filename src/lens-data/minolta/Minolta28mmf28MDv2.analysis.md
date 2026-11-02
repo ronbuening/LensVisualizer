@@ -8,7 +8,7 @@
 **Inventor:** Yoshinobu Kudo
 **Assignee:** Minolta Camera Co., Ltd.
 **Title:** *Inverted Telephoto Type Lens System*
-**Embodiment analyzed:** Example 1 / Embodiment 1
+**Example details:** Embodiment 1
 
 The prescription is taken from Example 1 of U.S. Patent 4,493,536. The patent publishes a five-component, five-element
 wide-angle objective with normalized focal length `f = 100`, `FNo. = 2.8`, full field `2ω = 76°`, and `L.B. = 127.68`.

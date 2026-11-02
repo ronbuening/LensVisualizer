@@ -6,11 +6,11 @@
  * prescription. Built-in converters that ship inside one lens stay on `OpticalConfigurationData`.
  */
 
-import type { LensMountId } from "../utils/catalog/lensTaxonomy.js";
+import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 import type { AsphericCoefficients } from "./asphericSchema.js";
-import type { AnnotationData, ElementData, RearPlateData, SurfaceData } from "./optics.js";
+import type { AnnotationData, ElementData, PatentExample, RearPlateData, SurfaceData } from "./optics.js";
 
-/** Complete teleconverter data object, authored in `*.teleconverter.ts` files. */
+/** Numeric teleconverter data for internal checks and archived V1 conversion; author TeleconverterDataV2Input. */
 export interface TeleconverterData {
   /** Optional UTC publication timestamp; otherwise derived from Git history. */
   publishedAt?: string;
@@ -30,6 +30,7 @@ export interface TeleconverterData {
   magnification: number;
   /** Mounts the converter is made in; a host must share at least one. */
   lensMounts: LensMountId[];
+  imageFormat?: ImageFormatId;
   /** true: fits any host sharing a mount. Otherwise the host must declare `acceptsTeleconverters`. */
   universal?: boolean;
   /** Fastest host f-number whose axial beam the converter's clear apertures pass; faster hosts are rejected. */
@@ -37,6 +38,7 @@ export interface TeleconverterData {
   /** Host lens keys excluded for reasons vertex geometry cannot express (rim contact, mechanical interference). */
   incompatibleLensKeys?: string[];
   patentNumber?: string;
+  patentExample?: PatentExample;
   patentAuthors?: string[];
   patentAssignees?: string[];
   patentYear?: number;
@@ -57,7 +59,7 @@ export interface TeleconverterData {
   masterImageDistanceMm: number;
 }
 
-/** Raw teleconverter shape used in `.teleconverter.ts` files; no fields are defaulted. */
+/** Archived V1 teleconverter file shape; current .teleconverter.ts files use TeleconverterDataV2Input. */
 export type TeleconverterDataInput = TeleconverterData;
 
 /** Composer-written record of the converter attached to a composed `LensData`; never authored in catalog files. */
@@ -74,10 +76,11 @@ export interface AttachedTeleconverterInfo {
   firstElementId: number;
   /**
    * Number of leading host `rearPlates` that sit ahead of the converter (a lens-side drop-in filter).
-   * `expandRearPlates()` emits those between the host's last surface and the converter; the rest stay behind it.
+   * `expandCanonicalRearPlates()` emits those between the host's last surface and the converter; the rest trail it.
    */
   platesAhead?: number;
   patentNumber?: string;
+  patentExample?: PatentExample;
   patentAuthors?: string[];
 }
 

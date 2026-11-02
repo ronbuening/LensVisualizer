@@ -1,7 +1,7 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { normalLinePgF } from "../../../src/optics/dispersion.js";
-import { evaluateSellmeier, resolveCompatibleGlass } from "../../../src/optics/glassCatalog.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { normalLinePgF } from "../../../src/optics/chromatic/materialResolver.js";
+import { evaluateSellmeier, resolveCompatibleGlass } from "../../../src/optics/chromatic/glassCatalog.js";
 import { TELECONVERTER_CATALOG } from "../../../src/utils/catalog/teleconverterCatalog.js";
 
 /**
@@ -23,18 +23,15 @@ const MISS = 0.0012;
 const LINE_NM = { C: 656.2725, F: 486.1327, g: 435.8343 };
 
 /**
- * Lenses the screen lists although their values are not copied deviations, or cannot be settled yet. Seven were read
- * against the patent: it prints PgF for the melt, the stored value is that PgF minus the engine's line, and the
- * catalog glass differs from the melt by about the gap between the lines (the Canon EF 8-15mm patent prints its
- * deviation against the engine's own line). Open rows are in agent_docs/glass-relabel-followup.md: the Fujifilm X10,
+ * Lenses the screen lists although their values are not copied deviations, or cannot be settled yet. Source-checked
+ * entries print PgF for the melt: the stored value is that PgF minus the engine's line, and the catalog glass differs
+ * from the melt by about the gap between the lines. Open rows are in agent_docs/glass-relabel-followup.md: the Fujifilm X10,
  * whose patent is not held locally, and one element of the Leica DC Vario-Elmarit, whose patent prints a deviation
  * without stating its line. The sweep compares for equality, so a corrected file must leave this list and no file may
  * join without its source being read.
  */
 const SOURCE_LINE_FIT_BY_COINCIDENCE: readonly string[] = [
   "canon-ef-600f4l-is-ii-usm",
-  "canon-ef-8-15mm-f4l-fisheye-usm",
-  "canon-rf-16-28mm-f28-is-stm",
   "fujifilm-fujinon-gf-500mm-f56-r-lm-ois-wr",
   "fujifilm-fujinon-xf-18-120mm-f4-lm-pz-wr",
   "fujifilm-x10-7-1-28-4-f2-2-8",
@@ -47,7 +44,7 @@ describe("partial-dispersion normal line", () => {
   it("stores dPgF against the engine's line, not a source's", () => {
     let read = 0;
     const offenders = new Set<string>();
-    for (const data of [...Object.values(LENS_CATALOG), ...Object.values(TELECONVERTER_CATALOG)]) {
+    for (const data of [...Object.values(CATALOG_CONSTRUCTION_FIXTURES), ...Object.values(TELECONVERTER_CATALOG)]) {
       for (const element of data.elements) {
         const { glass, nd, vd, dPgF, indexReference } = element;
         if (dPgF === undefined || vd === undefined || !glass || indexReference === "e") continue;

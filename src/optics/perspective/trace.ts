@@ -3,19 +3,25 @@
  */
 
 import type { ChromaticChannel, TiltPivot } from "../../types/optics.js";
-import { CHANNEL_WAVELENGTH_NM_2, channelIndexResolverForState2 } from "../chromatic/indexResolver.js";
-import type { LensMovementState } from "../lensMovement.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM as CHANNEL_WAVELENGTH_NM } from "../chromatic/channels.js";
+import { channelIndexResolverForState } from "../chromatic/indexResolver.js";
+import { ZERO_LENS_MOVEMENT } from "./lensMovement.js";
+import type { LensMovementState } from "./lensMovement.js";
 import { formatCacheNumber } from "../math/numerics.js";
-import { intersectRayPlane, type RayPlaneIntersection } from "../math/plane.js";
+import { intersectRayPlane } from "../geometry/intersectPlane.js";
+import type { RayPlaneIntersection } from "../geometry/intersectPlane.js";
 import { directionFromMeridionalSlope, directionFromSkewSlope, dot, subtract } from "../math/vector.js";
 import type { Plane3, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { bulkTransmissionForTrace } from "../trace/bulkAbsorption.js";
-import { shouldUseGeneralizedTrace } from "../trace/generalizedTrace.js";
-import { stateWithRuntimeZ, traceEngineRay2 } from "../trace/rayAdapters.js";
+import { traceEngineRay } from "../trace/rayAdapters.js";
+import { stateWithZ } from "../state/preparedGeometry.js";
 import type { EngineTraceResult, TraceHit, TraceOptions } from "../trace/types.js";
 import { directionSlopes } from "../trace/utils.js";
-import { createPerspectivePose, type PerspectivePose } from "./pose.js";
-import { createSensorBasis, type SensorBasis } from "./sensorBasis.js";
+import { createPerspectivePose } from "./pose.js";
+import type { PerspectivePose } from "./pose.js";
+import { createSensorBasis } from "./sensorBasis.js";
+import type { SensorBasis } from "./sensorBasis.js";
+import type { SensorChiefSolve } from "./sensorTarget.js";
 
 /** Inputs required to bind tracing to one camera/lens movement state. */
 export interface CreatePerspectiveTraceContextParams {
@@ -62,6 +68,10 @@ export interface PerspectiveTraceContext {
   readonly pose: PerspectivePose;
   /** Geometry-complete identity for controls, anchored layout, fixed sensor, pivot, and movement. */
   readonly cacheKey: string;
+  /** Solves belong to this exact state/pose/sensor, never a rounded context key. */
+  readonly sensorChiefSolves: Map<string, SensorChiefSolve>;
+  /** Retain the matched reference context so repeated analyses share its solves too. */
+  zeroMovementContext(): PerspectiveTraceContext;
   traceRay(input: Ray3, options?: PerspectiveTraceOptions): PerspectiveTraceResult;
   traceMeridional(y0: number, u0: number, options?: PerspectiveTraceOptions): PerspectiveTraceResult;
   traceSkew(
@@ -91,11 +101,12 @@ export function createPerspectiveTraceContext({
   movement,
   tiltPivot,
 }: CreatePerspectiveTraceContextParams): PerspectiveTraceContext {
-  const state = cameraZPos ? stateWithRuntimeZ(preparedState, cameraZPos) : preparedState;
+  const state = cameraZPos ? stateWithZ(preparedState, cameraZPos) : preparedState;
   const pose = createPerspectivePose({ movement, sensorPlane: requestedSensorPlane ?? state.imagePlane, tiltPivot });
   const sensorPlane = pose.sensorPlane;
   const sensorBasis = createSensorBasis(sensorPlane);
   const cacheKey = perspectiveTraceContextCacheKey(state, pose, sensorBasis);
+  let zeroMovementContext: PerspectiveTraceContext | undefined;
 
   const context: PerspectiveTraceContext = Object.freeze({
     state,
@@ -103,6 +114,15 @@ export function createPerspectiveTraceContext({
     sensorBasis,
     pose,
     cacheKey,
+    sensorChiefSolves: new Map<string, SensorChiefSolve>(),
+    zeroMovementContext() {
+      return (zeroMovementContext ??= createPerspectiveTraceContext({
+        preparedState: state,
+        sensorPlane,
+        movement: ZERO_LENS_MOVEMENT,
+        tiltPivot: pose.tiltPivot,
+      }));
+    },
     traceRay(input: Ray3, options?: PerspectiveTraceOptions) {
       return tracePerspectiveRay(context, input, options);
     },
@@ -124,14 +144,18 @@ export function tracePerspectiveRay(
   input: Ray3,
   options: PerspectiveTraceOptions = {},
 ): PerspectiveTraceResult {
-  if (context.pose.active && options.stopAt === undefined && shouldUseGeneralizedTrace(context.state, undefined)) {
+  if (
+    context.pose.active &&
+    options.stopAt === undefined &&
+    context.state.traceGeometry.traversal.kind === "generalized"
+  ) {
     throw new PerspectiveTraceUnsupportedError(
       "Full perspective-control tracing currently supports sequential optical paths only",
     );
   }
 
   const localInput = context.pose.cameraToLensRay(input);
-  const localTrace = traceEngineRay2(context.state, localInput, engineTraceOptions(context.state, options));
+  const localTrace = traceEngineRay(context.state, localInput, engineTraceOptions(context.state, options));
   const localReturnPoint = traceReturnPoint(localTrace, context.state);
   const cameraReturnPoint = context.pose.lensToCameraPoint(localReturnPoint);
   const cameraTrace = cameraTraceResult(localTrace, context.state, context.pose, cameraReturnPoint);
@@ -143,7 +167,7 @@ export function tracePerspectiveRay(
     cameraReturnPoint,
     sensorIntersection,
     reachedSensor: sensorIntersection !== null,
-    transmission: bulkTransmissionForTrace(context.state.lens.runtime, localTrace.hits),
+    transmission: bulkTransmissionForTrace(context.state.lens, localTrace.hits),
   };
 }
 
@@ -156,7 +180,7 @@ export function tracePerspectiveMeridional(
   u0: number,
   options: PerspectiveTraceOptions = {},
 ): PerspectiveTraceResult {
-  const lead = context.state.lens.runtime.rayLead ?? 0;
+  const lead = context.state.lens.constants.rayLead ?? 0;
   const firstZ = context.state.z[0] ?? 0;
   const direction = directionFromMeridionalSlope(u0) ?? invalidDirection();
   return tracePerspectiveRay(
@@ -180,7 +204,7 @@ export function tracePerspectiveSkew(
   uy0: number,
   options: PerspectiveTraceOptions = {},
 ): PerspectiveTraceResult {
-  const lead = context.state.lens.runtime.rayLead ?? 0;
+  const lead = context.state.lens.constants.rayLead ?? 0;
   const firstZ = context.state.z[0] ?? 0;
   const direction = directionFromSkewSlope(ux0, uy0) ?? invalidDirection();
   return tracePerspectiveRay(
@@ -198,8 +222,8 @@ function engineTraceOptions(state: PreparedOpticalState, options: PerspectiveTra
   if (!channel) return engineOptions;
   return {
     ...engineOptions,
-    indexAtSurface: engineOptions.indexAtSurface ?? channelIndexResolverForState2(state, channel),
-    wavelengthNm: engineOptions.wavelengthNm ?? CHANNEL_WAVELENGTH_NM_2[channel],
+    indexAtSurface: engineOptions.indexAtSurface ?? channelIndexResolverForState(state, channel),
+    wavelengthNm: engineOptions.wavelengthNm ?? CHANNEL_WAVELENGTH_NM[channel],
   };
 }
 

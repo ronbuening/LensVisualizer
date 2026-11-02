@@ -13,7 +13,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [policy] [`documentation-policy.md`](documentation-policy.md) — where things go, what is not documented, retention triggers, CLAUDE.md rules
 - [policy] [`decisions.md`](decisions.md) — verified-healthy, rejected, and excluded items; check before "fixing" or rebuilding
 - [policy] [`workflow.md`](workflow.md) — commit style, the full npm script inventory, CI, deployment
-- [policy] [`code_conventions.md`](code_conventions.md) — naming, TypeScript, the `*2` compat facade, formatting, architecture constraints
+- [policy] [`code_conventions.md`](code_conventions.md) — naming, TypeScript, the optics public seam, formatting, architecture constraints
 - [policy] [`commenting_guide.md`](commenting_guide.md) — comment the why, not the what
 - [policy] [`changelog.md`](changelog.md) — `/updates` entry rules for `src/utils/content/changelogData.ts`
 - [policy] [`article_formatting.md`](article_formatting.md) — markdown polish expectations for articles
@@ -31,7 +31,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [architecture] [`architecture/mount-diagrams.md`](architecture/mount-diagrams.md) — mount data, polar geometry renderer, `/mounts` pages, SVG generator
 - [architecture] [`architecture/state-and-utilities.md`](architecture/state-and-utilities.md) — reducer state, preferences, URL sync, themes, utilities
 - [architecture] [`architecture/comparison.md`](architecture/comparison.md) — comparison mode, shared sliders, compare URLs
-- [architecture] [`architecture/testing.md`](architecture/testing.md) — test layout, regression anchors, and the per-lens test retention policy
+- [architecture] [`architecture/testing.md`](architecture/testing.md) — test layout, regression anchors, optics architecture guards, and the per-lens test retention policy
 
 ## Recipes
 
@@ -39,6 +39,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [recipe] [`adding_a_teleconverter.md`](adding_a_teleconverter.md) — detachable teleconverter workflow; field rules live in `src/lens-data/TELECONVERTER_DATA_SPEC.md`
 - [recipe] [`lens-data-integration-handoff.md`](lens-data-integration-handoff.md) — copy-ready AI handoff for constructing data/analysis pairs
 - [recipe] [`lens-patent-audit.md`](lens-patent-audit.md) — four-phase patent audit and the per-lens `*.audit.md` log format
+- [record] [`lens-review-coverage.md`](lens-review-coverage.md) — patent review log for element heights, concave trimming and glass, with coverage and per-lens audit links
 - [recipe] [`patent-figure-sd-audit-procedure.md`](patent-figure-sd-audit-procedure.md) — semi-diameter vs patent-figure runbook
 - [recipe] [`glass-catalog-buildout.md`](glass-catalog-buildout.md) — glass catalog playbook and how to add a Sellmeier entry safely
 - [recipe] [`adding_an_article.md`](adding_an_article.md) — article and series frontmatter, TOC, links, verification
@@ -57,6 +58,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`../MTF_ACCURACY_PLAN.md`](../MTF_ACCURACY_PLAN.md) — MTF audit findings, assumption review, and the open stages (prescription screen, uncertainty display, validation statement); optional optiland cross-check tool
 - [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, MTF field and image-plane censuses, traced field-coverage shortfalls, prescription errors found in passing, stops still opened to the marketed f-number, stations whose stated axial beam does not pass, the in-progress diagram sweep
 - [queue] [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) — mount/format metadata coverage and review queue
+- [queue] [`patent-example-queue.md`](patent-example-queue.md) — patent-backed lenses without `source.example`, and the schema decision each needs
 - [queue] [`glass-relabel-followup.md`](glass-relabel-followup.md) — catalog-mismatch relabel status and closed families
 - [queue] [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) — patent line-index backfill for proprietary glasses
 - [queue] [`dispersion-estimate-exploration.md`](dispersion-estimate-exploration.md) — paused proposal: narrow the MTF warning's estimated-dispersion blur and refit the nd/νd estimate; findings and the audit script
@@ -87,6 +89,7 @@ except the MTF chart regression, which takes minutes and runs only with `MTF_CHA
 
 - [generated] [`generated/unresolved-glass.generated.md`](generated/unresolved-glass.generated.md) — `npm run generate:reports -- unresolvedGlassScan`
 - [generated] [`generated/catalog-mismatches.generated.md`](generated/catalog-mismatches.generated.md) — `npm run generate:reports -- catalogMismatchScan`
+- [generated] [`generated/element-focal-lengths.generated.md`](generated/element-focal-lengths.generated.md) — `npm run generate:reports -- elementFocalLengths`
 - [generated] [`generated/glass-relabel-candidates.generated.md`](generated/glass-relabel-candidates.generated.md) — `npm run generate:reports -- glassRelabelCandidatesScan`
 - [generated] [`generated/glass-relabel-by-lens.generated.md`](generated/glass-relabel-by-lens.generated.md) — `npm run generate:reports -- glassRelabelByLensScan`
 - [generated] [`generated/glass-ambiguities.generated.md`](generated/glass-ambiguities.generated.md) — `npm run generate:reports -- glassAmbiguityScan`; one rollup row per distinct ambiguity, per-candidate residuals come from `explainCompatibleGlassResolution`
@@ -98,7 +101,7 @@ except the MTF chart regression, which takes minutes and runs only with `MTF_CHA
 - [generated] [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm run generate:reports -- mirrorFixtureAuthoringReport`
 - [generated] [`generated/mtf-chart-regression.generated.md`](generated/mtf-chart-regression.generated.md) — `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`; simulated MTF against digitized manufacturer chart values (`reports/data/`), with diffraction for every maker and under each maker's chart convention, plus the estimator's cross-check against optical path. A report, never a test threshold
 - [generated] [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) — `npm run generate:reports -- mountSvgSpecificationsReport`; figure counts and content hashes, with full SVG markup in [`generated/mounts/`](generated/mounts/) and diffable geometry in `src/mounts/`
-- [generated] [`benchmarks/README.md`](benchmarks/README.md) — on-demand `npm run benchmark:optics-rendering`; one JSON per run in [`benchmarks/runs/`](benchmarks/runs/), latest report in [`benchmarks/benchmark-report.md`](benchmarks/benchmark-report.md)
+- [generated] [`benchmarks/README.md`](benchmarks/README.md) — on-demand `npm run benchmark:optics-rendering`; one JSON per plain run in [`benchmarks/runs/`](benchmarks/runs/), latest report in [`benchmarks/benchmark-report.md`](benchmarks/benchmark-report.md); single-commit heavy and memory records in `benchmarks/sessions/`, which the report does not read
 
 The six-digit and glass-coverage-opportunities scans embed match statuses against the untracked local `patents/` PDF
 inventory and skip their rewrite when it is empty (fresh worktrees, CI); regenerate those three report files only from a

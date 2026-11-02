@@ -27,7 +27,8 @@ src/generated/        - Build-generated metadata and maker-prefix JSON (gitignor
 src/pages/            - Route-level page components (lensIndex/ holds the lens library module)
 src/components/       - React UI: controls, diagram layers, display/analysis, layout, hooks, markdown, mount, search
 src/comparison/       - Comparison mode feature module
-src/optics/           - Pure optical engine and analysis helpers (math, trace, field, prescription, state, analysis, mount)
+src/lensBuilder/      - Pure authored V2 draft edits, validation, export, and glass search
+src/optics/           - Pure optical engine and analysis helpers (public barrels; geometry, math, trace, field, prescription, state, first-order, analysis, mount)
 src/types/            - Shared TypeScript types
 src/utils/            - State, URL sync, themes, catalog, SEO, metadata utilities
 src/lens-data/        - Auto-registered *.data.ts prescriptions, *.teleconverter.ts converters, *.analysis.md notes,
@@ -80,35 +81,36 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 
 ## Core Working Rules
 
-- Keep optics helpers pure and pass the runtime lens object `L` explicitly; avoid module-level optical state.
+- Keep optics helpers pure; analyses take `AnalysisRequest`, field/trace helpers take prepared geometry, and UI adapters
+  take `RuntimeLens`. Use the public barrels in `agent_docs/architecture/public-functions.md`.
 - Exact surface tracing is the only trace path. Do not add per-lens trace rollout state or thread `mode` / `traceMode`
   options through new helpers.
-- Fisheye and ultra-wide field launch go through `src/optics/projection.ts` and `solveChiefRay`; do not inline
+- Fisheye and ultra-wide field launch go through `src/optics/projection.ts` and `solveChiefRayForRuntimeLens`; do not inline
   `Math.tan(field)` or bypass the bounding-sphere vector path.
-- Mirror/folded systems opt into `LensData.opticalPath` and per-surface `interaction` / `innerSd`. Keep ordinary
+- Mirror/folded systems opt into `LensDataV2Input.opticalPath` and per-surface `interaction` / `innerSd`. Keep ordinary
   sequential defaults for refractive lenses, use explicit `surfaceOrder` when hit order is known, and route folded
   stop/chief-ray solves through the generalized tracer instead of sequential `stopAt` partial traces.
 - Folded-system complex analysis stays guarded until the specific path is mirror-safe: the drawer guards coma,
   distortion, vignetting, and pupils, and field curvature/astigmatism stays section-guarded inside the Aberrations tab.
   Details in `agent_docs/architecture/optics-engine.md`.
-- Source-listed camera-side cover glass / filter plates go in `LensData.rearPlates` with the source's physical gaps;
+- Source-listed camera-side cover glass / filter plates go in `LensDataV2Input.rearPlates` with the source's physical gaps;
   never fold t/n into the last gap by hand. `buildLens()` traces them everywhere and hides them from drawing via
   `synthetic`. A required drop-in filter in the lens's own holder is a drawn `Plane-Parallel Plate` element instead.
 - Detachable teleconverters are `*.teleconverter.ts` entities composed onto a host by `attachTeleconverter()` before
   `buildLens()`; never author a host + converter copy, and keep `buildLens()` and analyses converter-unaware. Built-in
-  converters stay on `opticalConfiguration`.
+  converters stay on `catalog.opticalConfiguration`.
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.
 - Use existing shared utilities/components before adding new abstractions; render article and lens-description markdown
   with `src/components/markdown/ThemedMarkdown.tsx`.
 - Add analysis drawer tabs by following `agent_docs/adding_an_analysis_tab.md`; add shareable view state by following
   `agent_docs/adding_url_state.md`.
-- Keep perspective-control movement in `src/optics/lensMovement.ts` unless explicitly upgrading full moved-optics analysis.
+- Keep perspective-control movement in `src/optics/perspective.ts` (implemented in `perspective/lensMovement.ts`) unless explicitly upgrading full moved-optics analysis.
 - Update all four theme variants when changing theme color tokens (`agent_docs/theme_tokens.md`).
 - Lens data and content are auto-discovered; avoid manual catalog/route edits unless changing the pipeline itself.
 - Do not commit per-lens or per-batch test files; the corpus sweeps already validate every catalog lens. Only a shared
   engine, UI, or data-contract regression justifies a new test, added as the smallest synthetic case to the matching
   subsystem suite (`agent_docs/architecture/testing.md`).
-- Lens mount and image-format metadata use canonical ids from `src/utils/catalog/lensTaxonomy.ts`; do not free-type labels.
+- `catalog.lensMounts` and `catalog.imageFormat` use canonical ids from `src/utils/catalog/lensTaxonomy.ts`; do not free-type labels.
 - Mount diagrams: author `src/mounts/*.mount.ts` with `satisfies MountSpecInput`, register in `src/mounts/index.ts`, keep
   `src/types/mount.ts` and `src/mounts/lens-mount.schema.json` in sync, then run `npm run generate:mount-svgs`.
 - Documentation follows `agent_docs/documentation-policy.md`: no per-branch records, delete queue rows when done, one
@@ -116,8 +118,9 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 
 ## Adding Content
 
-- Lens: `agent_docs/adding_a_lens.md` (template, `satisfies LensDataInput`, optional `*.analysis.md`, canonical mount/format ids).
-- Teleconverter: `agent_docs/adding_a_teleconverter.md` (`satisfies TeleconverterDataInput`; hosts declare `acceptsTeleconverters`).
+- Lens: `agent_docs/adding_a_lens.md` (template, `satisfies LensDataV2Input`, optional `*.analysis.md`, canonical mount/format ids).
+- Teleconverter: `agent_docs/adding_a_teleconverter.md` (`satisfies TeleconverterDataV2Input`;
+  hosts declare `catalog.acceptsTeleconverters`).
 - Mount diagram: `src/mounts/MOUNT_SVG_SPEC.md`, then `npm run generate:mount-svgs`.
 - Article: `agent_docs/adding_an_article.md` (`slug` and `title` frontmatter; `series`/`seriesOrder`; `toc: true` for long pieces).
 

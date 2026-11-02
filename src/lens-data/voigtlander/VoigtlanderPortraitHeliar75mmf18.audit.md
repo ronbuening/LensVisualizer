@@ -289,3 +289,23 @@ Final repository verification for this follow-up passed `audit:surface`, `audit:
 files / 2,527 tests, and the 984-route production build. The in-app browser exposed no runnable browser session, so the
 final application-page visual check could not be repeated; the high-resolution patent measurement, geometry validator,
 and built SVG data are the recorded comparison evidence.
+
+## 2026-10-29 — Fresh Z-mount rim and glass reinspection
+
+Directly inspected `patents/JP_2026120386_A.pdf`, Example 2 Figure 5 (PDF p.17, 600 dpi complete crop, rotated for inspection), Table 6 and d-line definitions (p.10), Table 5 (p.9), and Tables 7–8 (p.11). Reviewed every face of the six elements and all three cemented interfaces. The 51.58 mm first-to-last vertex span gives approximately **24.5 native px/mm** in the embedded 424 dpi figure (34.7 render px/mm at 600 dpi).
+
+Figure 5 resolves a square land on G2's concave rear face S6, q≈**0.85±0.0050** from one native pixel at cap and edge. The first 2.87 mm trial, radius 12.755 mm, fails the center-state full-beam guard (reach 12.7651 mm; required 12.8151 mm). The final **2.95 mm** cut has radius **12.9221438 mm** inside the unchanged 15 mm outer rim. Other exposed faces have no reliably separated cap-end break; shallow S3 is contaminated by hatching/leader strokes. No additional cut or cement-interface land is authored.
+
+The shared cut validator prepares center SA only. Additional scratch validation fixes the runtime's original sharp-state physical iris at **13.2460827659 mm**, freezes each source U3 spacing in turn, and calibrates only the scratch f-number to retain that iris before running the existing full focus/field beam search. All **41 SA spacings**, U3=11.73→5.73 mm in 0.15 mm increments (SA −1→+1 by 0.05), launch successfully. Maximum S6 beam reach is **12.8496469 mm**, requiring **12.8996469 mm** with the 0.05 mm margin. Maximum iris residual is 9.76×10⁻⁷ mm. This extra check covers the independent SA range without changing the authored f-number, stop, spacings or controls.
+
+All six stored nd/νd rows match Table 6 at d=587.56 nm. Labels now expose the same six already selected catalog proxies: S-LAH58 for L4f/L6r, J-SF03, J-SF6, E-FD2 and H-ZF13. No source index or runtime curve changes. Supplier, melt and chemistry remain unresolved; removed the unsupported lanthanum-composition attribution. No source nC/nF/ng/dPgF or individual anomaly is published, and all APD flags remain false as an absence of evidence.
+
+`audit:surface` and `audit:image-circle` passed. `audit:aperture` ran successfully and reports the unchanged pre-existing S1 limit, f/1.858→f/1.92 (+3.2%); the baseline `fd673662c` gives the same result. Nine prepared-state SVG probes cover focus 0/.5/1 × SA −1/0/+1: six finite element paths each, zero renderer trim, rasterized and visually inspected. Scoped catalog/resolver consistency and shared dispersion/resolver/partial-dispersion tests passed (3 files/94 tests).
+
+### 2026-10-29 follow-up — Clear the stated axial beam
+
+The initial pass retained a pre-existing f/1.858→f/1.92 axial rim limit. Fresh root-cause review applied the runbook's physical beam floor: Table 6 publishes no clear apertures, so these SDs are inferred and can rise minimally while retaining Figure 5's square groups. `audit:aperture --raise` requires S1≥19.3039362, S4≥15.2580082, S8≥13.5927980 and S9≥13.4398199 mm. Rounded upward and keeping each doublet square, all S1–S3 now use **19.4 mm**, S4–S6 **15.3 mm**, and S8–S10 **13.6 mm**. The largest rise is 3.7%; all printed R/d/nd/νd, source focus/SA spacings and the physical iris remain unchanged.
+
+The larger rims require S6's inferred cut to move from 2.95 to **3.10 mm**, radius **13.2290362 mm**. Repeated the complete 41-SA fixed-iris search described above with the larger rims and final cut: maximum beam reach **13.1653024 mm**, requiring **13.2153024 mm** including the 0.05 mm margin; the minimum depth is 3.0931938 mm, rounded upward to 3.10. All 41 searches launch; maximum physical-iris residual is 9.76×10⁻⁷ mm. No tolerance or source-depth flag changes.
+
+Final `audit:surface` and `audit:image-circle` pass. `audit:aperture` now gives **f/1.8579999982**, limited by **STO**, matching the stated 1.858. Rebuilt, rasterized and viewed all 9 focus×SA SVG states: six finite element paths each, zero renderer trim. Updated current header/analysis and removed the older geometry-minimum figures that no longer described the revised rims.

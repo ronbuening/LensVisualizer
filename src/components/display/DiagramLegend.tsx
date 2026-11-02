@@ -6,15 +6,22 @@
  * Extracted from LensDiagramPanel for separation of concerns.
  */
 
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic.js";
 import { halfFieldAtZoom } from "../../optics/optics.js";
+import { summarizeDispersionQuality } from "../../optics/chromatic.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { collapseBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
-import { formatSpreadUmFromMm } from "./analysis/chromaticChartUtils.js";
+import { formatChromaticZone, formatSpreadUmFromMm } from "./analysis/chromaticChartUtils.js";
 import type { RuntimeLens, ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode } from "../../types/state.js";
 import type { CSSProperties } from "react";
+
+/** A spread's zone, stated in the legend only when a selected channel is left out of the comparison. */
+function zoneNote(spread: ChromaticRayFanSpread, radius: "R" | "EP"): string {
+  return spread.omittedChannels?.length ? ` (${formatChromaticZone(spread, radius)})` : "";
+}
 
 interface DiagramLegendProps {
   L: RuntimeLens;
@@ -55,6 +62,7 @@ export default function DiagramLegend({
   onLegendExpandedChange,
   onOpenAbbeDiagram,
 }: DiagramLegendProps) {
+  const missingDispersion = summarizeDispersionQuality(L) === "constant";
   const hasAbbeData = L.elements.some((e) => e.vd != null);
   const mirrorKinds = new Set(
     L.S?.filter((surface) => surface.interaction?.type === "reflect").map(
@@ -217,18 +225,25 @@ export default function DiagramLegend({
           )}
           {showChromatic &&
             (() => {
-              const activeCh = [chromR && "R", chromG && "G", chromB && "B", chromV && "V"].filter(Boolean);
+              const active = { R: chromR, G: chromG, B: chromB, V: chromV };
+              const activeCh = CHROMATIC_CHANNEL_ORDER.filter((channel) => active[channel]);
               const chromLabel = activeCh.length > 0 ? `Chromatic (${activeCh.join("/")})` : "Chromatic (none)";
               const summaryParts: string[] = [];
-              if (showOnAxis && axisSpreads.onAxis) {
-                summaryParts.push(`LoCA ${formatSpreadUmFromMm(axisSpreads.onAxis.axialInterceptSpreadMm)}`);
-              }
-              if (showOffAxis !== "off" && axisSpreads.offAxis) {
+              if (!missingDispersion && showOnAxis && axisSpreads.onAxis) {
                 summaryParts.push(
-                  `off-axis fan spread ${formatSpreadUmFromMm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)}`,
+                  `LoCA ${formatSpreadUmFromMm(axisSpreads.onAxis.axialInterceptSpreadMm)}${zoneNote(axisSpreads.onAxis, "R")}`,
                 );
               }
-              const spreadSummary = summaryParts.length > 0 ? ` · ${summaryParts.join(" / ")}` : "";
+              if (!missingDispersion && showOffAxis !== "off" && axisSpreads.offAxis) {
+                summaryParts.push(
+                  `off-axis fan spread ${formatSpreadUmFromMm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)}${zoneNote(axisSpreads.offAxis, "EP")}`,
+                );
+              }
+              const spreadSummary = missingDispersion
+                ? " · No dispersion data"
+                : summaryParts.length > 0
+                  ? ` · ${summaryParts.join(" / ")}`
+                  : "";
               return (
                 <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
                   <svg width="22" height="17" viewBox="0 0 22 17">
@@ -250,7 +265,7 @@ export default function DiagramLegend({
               Abbe ↗
             </button>
           )}
-          {showChromatic && hasMetricAxis && (
+          {showChromatic && hasMetricAxis && !missingDispersion && (
             <div
               style={{
                 display: "flex",
@@ -278,6 +293,9 @@ export default function DiagramLegend({
                         ? "unavailable"
                         : "need 2 channels"}
                   </span>
+                  {axisSpreads.onAxis?.omittedChannels?.length ? (
+                    <span style={{ fontSize: 10, color: t.muted }}>{formatChromaticZone(axisSpreads.onAxis)}</span>
+                  ) : null}
                 </>
               )}
               {showOffAxis !== "off" && (
@@ -299,6 +317,11 @@ export default function DiagramLegend({
                         ? "unavailable"
                         : "need 2 channels"}
                   </span>
+                  {axisSpreads.offAxis?.omittedChannels?.length ? (
+                    <span style={{ fontSize: 10, color: t.muted }}>
+                      {formatChromaticZone(axisSpreads.offAxis, "EP")}
+                    </span>
+                  ) : null}
                 </>
               )}
             </div>

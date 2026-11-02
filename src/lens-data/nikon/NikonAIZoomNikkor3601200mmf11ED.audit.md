@@ -48,3 +48,11 @@ Patent: US 3,743,384, Example I / Claim 4
   `nd = 1.58875`, `νd = 51.179278`, exactly reproducing L8's patent coordinate within printed precision.
 - Relabeled L8 as a supplier-neutral BAL7 catalog equivalent and synchronized the analysis. The special `486815`
   family remains unresolved; no prescription, zoom, movement, or semi-diameter values changed.
+
+## 2026-10-30 — Fresh optical section, source glass and partial-dispersion review
+
+- Directly inspected original `patents/US3743384.pdf`: optical Figure 2 on PDF p. 3 at 600 dpi, Example I tables on pp. 8–9, d-line definitions, source prose on pp. 6–8 and the Certificate of Correction on p. 12. Figure 1 is the motion schematic, not the optical section. All 20 source glass pairs and the existing certificate-corrected radii remain intact.
+- Reviewed every air-facing and cemented face against the optical figure. No further resolved concave cap-end land justifies a new cut/extension. Retain all geometry, inferred stop and published infinity-only zoom states; the existing conservative front-envelope/corner-vignetting qualification remains.
+- The prose literally discusses “quartzite or other special optical glass,” good partial dispersion and a no-infrared-calibration claim. It does not establish a composition for the five numerical 1.48606/81.5 media, or supply their θgF/C/F/g anchors. Their spectral anomaly is unestablished, not measured as zero; no guessed material identity, numeric override or APD assertion was added. L1/L2/L7/L12/L15 retain source pairs and unresolved labels. A fresh strict catalog search (|Δnd| ≤ 0.0001, |Δνd| ≤ 0.15) finds no exact-coordinate candidate for that pair.
+- Fifteen of twenty media retain compatible coefficient-backed curves. Public labels qualify the nonidentical M-NBF1 proxy (1.743299744/49.325889 versus source 1.74443/49.4) and K10's source/catalog νd 56.5/56.41. Coefficient availability is separate from historical supplier/melt identity and from the unmodeled special partial dispersion.
+- Focused surface, image-circle, aperture and field checks pass at both zoom stations; catalog consistency passes. Nine actual SVG zoom/focus states were viewed with no automatic rim trimming. No finite-focus mechanism was invented from the production minimum-focus metadata.

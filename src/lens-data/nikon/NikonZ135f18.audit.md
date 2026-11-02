@@ -61,3 +61,85 @@ Patent: WO 2024/147268 A1
 - Re-read Table 1 (PDF pp. 21–22, printed pp. 19–20) and Figure 1 (p. 66): surface 31 d = 11.4681, filter FL surfaces 32–33 t = 1.6000, nd = 1.51680, νd = 64.14, then 1.3712 mm to the image. The gap before the filter is not in the variable-gap table, so it is fixed through focus. 11.4681 + 1.6/1.5168 + 1.3712 reproduces the legacy 13.8941523 mm air-equivalent BFD exactly.
 - Surface 31 now stores the physical 11.4681 mm, and the filter is a single `rearPlates` entry labeled FL. The glass is N-BK7, which matches L6's label for the same 1.51680/64.14 coordinate; `resolveCompatibleGlass` accepts it, and J-BK7A also matches. `closeFocusM` already used the physical object-to-image distance, so it is unchanged.
 - The plate check passed: EFL and paraxial defocus are identical to the folded model at infinity and at close focus (worst |Δ| 7e-15). The physical track grows by 0.545148 mm, which equals 1.6 × (1 − 1/1.5168). The surface and image-circle audits are clean.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 66, native 300 ppi 1-bit raster, axis vertical) was read on both halves, element by element, for flat
+lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. Each land was located by
+fitting the drawn cap to the prescription sag and finding where the ink stops following it (15.40 px/mm from the
+133.01 mm vertex span); q is the cap end over the element edge, averaged over the two halves.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 4 (L2 rear, R 226.522) | 0.967 | 2.67 mm | 34.68 mm | 35.9 | 33.23 mm |
+| 9 (L5 rear, R 50.025) | 0.878 | 6.16 mm | 24.05 mm | 27.4 | 22.46 mm |
+| 14 (L7 rear, R 39.422) | 0.957 | 5.06 mm | 19.32 mm | 20.2 | 16.95 mm |
+| 23 (L12 rear, R 83.184) | 0.96 | 2.82 mm | 21.48 mm | 22.4 | 11.82 mm |
+
+- Surface 9's sd (27.4) is L5's own drawn edge, smaller than the L4/L5 junction's 28.9, so its cut uses 27.4. Its
+  cap came within 0.073 mm of the stop plane; the land now sits 2.08 mm ahead of it. No cap crosses the stop.
+- Concave faces with no resolvable land: 15, 17, 19, 25, 29 and 30 run to their element edges; 12 and 26 are too
+  shallow (sag at sd 0.28 and 0.41 mm) for a land to show. Surface 2 shows at most an 8 px flat (q ≈ 0.986), below
+  what the raster resolves. Surface 6 (q ≈ 0.975) leaves the cap by only 1.6 px at its 7° rim slope, and surface 27
+  shows a 12 px flat on one half but about 4 px on the other; both are at the resolution limit and are not cut.
+- The aperture audit is unchanged (f/1.85 within 3 %, no rim, trace or failed rows, no rim-cut limiter); the surface
+  and image-circle audits are clean. Each of the four cuts, as it now stands (rule section below), clears every
+  traced ray of the wide-open beams by its margin and clips none of them, so none changes the vignetting.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stop of #933 (EPD = F/N) with the rule's current search,
+which follows beams that vanish between screened fields, seeds from the stop and refines near cuts on the full
+measurement. Traced against that rule, two cuts from the figure review above moved out:
+
+- Surface 4: the depth went from 2.67 to 2.76 mm when the beams, traced on the earlier stop, reached 35.09 mm past
+  the figure's 34.68 mm cut. On the paraxial stop they reach 34.8388 mm (infinity, 4.48°), still past the figure's
+  cut. The 35.2531 mm cut radius clears them; the land is shorter than the figure's.
+- Surface 23: the depth went from 2.82 to 2.91 mm when the beams on the earlier stop reached 21.72 mm past the
+  figure's 21.48 mm cut, and then to 2.94 mm, past a dense probe of those beams (21.8277 mm) plus its margin. On the
+  paraxial stop they reach 21.7988 mm (focusT 0.75, between infinity and close focus, 10.08°), still past the
+  figure's cut, so the fixed rule asks for a cut radius of at least 21.8643 mm (that reach plus its 0.0655 mm margin)
+  and refuses the 2.91 mm depth's 21.8097 mm. The 21.9199 mm cut radius clears it by 0.0556 mm; the land is shorter
+  than the figure's.
+
+All four cuts clear the beams by their margins:
+
+| Surface | Cut radius | Reach (focus, field) | Clearance | Margin | Spare |
+| --- | --- | --- | --- | --- | --- |
+| 4 | 35.2531 mm | 34.8388 mm (infinity, 4.48°) | 0.4143 mm | 0.1058 mm | 0.3086 mm |
+| 9 | 24.0492 mm | 21.9254 mm (infinity, 4.48°) | 2.1237 mm | 0.0721 mm | 2.0516 mm |
+| 14 | 19.3223 mm | 18.4538 mm (infinity, 7.51°) | 0.8685 mm | 0.0580 mm | 0.8105 mm |
+| 23 | 21.9199 mm | 21.7988 mm (focusT 0.75, 10.08°) | 0.1210 mm | 0.0658 mm | 0.0553 mm |
+
+**Figure scale and land length.** The review's scale is 15.40 native px per lens mm, from the 133.01 mm vertex span
+on the 300 ppi raster. Edge px is sd × 15.40, and one native pixel at the cap end and at the edge gives
+q ± (1 + q) / (edge px). The q values are averages over the two halves.
+
+| Surface | Edge px | q | q range | Cut radius ÷ sd | Land |
+| --- | --- | --- | --- | --- | --- |
+| 4 | 552.9 | 0.967 | 0.963–0.971 | 0.9820 | 0.6469 mm |
+| 9 | 422.0 | 0.878 | 0.874–0.882 | 0.8777 | 3.3508 mm |
+| 14 | 311.1 | 0.957 | 0.951–0.963 | 0.9565 | 0.8777 mm |
+| 23 | 345.0 | 0.96 | 0.954–0.966 | 0.9786 | 0.4801 mm |
+
+9 and 14 sit at q × sd; 4 and 23 sit outside their q ranges, moved out by the beam rule. Every land is longer than
+the 0.1 mm minimum, and no q range reaches 1. The surface audit and the beam rule pass.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened the original local `patents/WO2024147268A1.pdf`, Example 1, Figure 1 (PDF p. 66), on a 600 dpi crop covering every element. The source's 133.0137 mm vertex span gives 15.40 native px/mm. The four existing concave lands (4, 9, 14 and 23) still match the resolved strokes; their outward beam-rule adjustments remain as documented above. No additional face shows a resolved flat land suitable for a rim extension or another cut. Surface 29's shorter 19.3 mm optical rim remains: the figure shows a continuing curve there, rather than a new square land that would justify `rimExtensionSd`.
+
+No geometry changed. `audit:surface` passes, including the inferred-cut beam check; `audit:image-circle` reports 0 undersized and 0 skipped. Source prescriptions, existing cuts and optical apertures were retained.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected the original `patents/WO2024147268A1.pdf`: Table 1 and d-line definition on PDF pp. 20–22, the element identifications on pp. 18–19, and conditions 14/17 on pp. 56–57. All 16 lens media and the FL rear plate match the printed nd/νd pairs. No additional C/F/g index column is published there.
+
+- Retained catalog spectral proxies for L1; L2–L4; L5/L9; L6/FL; L8; and L10–L16. Each annotation resolves to a coefficient-backed curve under the existing coordinate guard.
+- Clarified L7's existing code-697555 resolution as J-LAK14; its 1.69680/55.52 source coordinate already resolves to that curve. This names the modeling proxy, not the production supplier.
+- Corrected L9 `apd: "patent"` to `"inferred"` and removed its copied `dPgF: 0.0092593`. Paragraph 0109 identifies **L5**, not L9, as Nf. Equal nd/νd pairs do not publish a partial-dispersion measurement for L9. The retained condition-17 conversion belongs to L5; L9 uses its NBFD25 catalog proxy.
+- Retained L1's +0.0343957 and L5's +0.0092593 engine-normal-line departures: source +0.035/+0.010 use 0.6415−0.00162ν, versus the engine's 0.6438−0.001682ν. L1 is explicitly Pf in ¶0109. Source precision remains three decimals. Other APD assertions remain catalog inferences or false.
+
+The public analysis now distinguishes L5's source value from L9's inferred spectrum and lists L7's available proxy. All 16 lens media plus FL resolve; production supplier identities remain unspecified. `assertCatalogConsistent()` and the scoped resolver review pass; the shared dispersion, glass-resolution-parity and partial-dispersion-normal-line suites pass (94 tests). `audit:surface` passes after the L9 provenance correction. Geometry is unchanged.

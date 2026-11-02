@@ -6,7 +6,7 @@
 **Inventor:** Albrecht Wilhelm Tronnier<br>
 **Assignee:** Voigtländer A.G.<br>
 **Title:** *Photographic teleobjective having a composite positive front part axially spaced from a composite negative rear part*<br>
-**Embodiment analyzed:** Sole Numerical Example associated with Figure 3
+**Example details:** associated with Figure 3
 
 The prescription represents the fixed job-card correlation between US 2,662,446 A and the VOIGTLÄNDER TELOMAR 100mm f/5.5. The patent describes Figure 3 as a higher-aperture 150 mm f/5.4 teleobjective and states that the worked table is proportional to that figure.[1] Period Voigtländer literature identifies a five-element Telomar 100mm f/5.5 for the 24×36 mm Prominent system, used with a dedicated reflex housing, and describes a planned 150 mm conversion using an interchangeable element.[2] Agreement in maker, period, element count, telephoto architecture, aperture class, and 100/150 mm product family supports the correlation. It does not establish that the worked patent table is the exact production prescription of the marketed 100 mm lens.
 

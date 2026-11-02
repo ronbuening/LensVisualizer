@@ -6,12 +6,12 @@
  * different maximum apertures) with clamping past common points.
  */
 
-import { closeFocusAtZoom, remapFocusDistance } from "../optics/focusDistance.js";
-import { getGroupMovementAvailability } from "../optics/groupMovement.js";
+import { closeFocusAtZoom, remapFocusDistance } from "../optics/optics.js";
+import { getGroupMovementAvailability } from "../optics/analysis.js";
 import type { RuntimeLens } from "../types/optics.js";
-import { FOCUS_INFINITY_THRESHOLD, fopenAtZoom } from "../optics/optics.js";
-import { fNumberAtStopdown } from "../optics/aperture.js";
-import { clampLensMovement, perspectiveControlSteps } from "../optics/lensMovement.js";
+import { FOCUS_INFINITY_CUTOFF, fopenAtZoomClamped as fopenAtZoom } from "../optics/optics.js";
+import { fNumberAtStopdown } from "../optics/optics.js";
+import { clampLensMovement, perspectiveControlSteps } from "../optics/perspective.js";
 import { snapToStop } from "../utils/style/sliderStops.js";
 
 export interface FocusPairResult {
@@ -151,7 +151,7 @@ function fToStopdownT(fNumber: number, FOPEN: number, maxFstop: number): number 
  * Uses the closest-focusing lens's closeFocusM as the reference.
  */
 export function formatSharedFocusDist(sharedT: number, minCloseFocusM: number): string {
-  if (sharedT < FOCUS_INFINITY_THRESHOLD) return "\u221e";
+  if (sharedT < FOCUS_INFINITY_CUTOFF) return "\u221e";
   const d: number = minCloseFocusM / sharedT;
   if (d >= 100) return `${Math.round(d)} m`;
   if (d >= 10) return `${d.toFixed(1)} m`;

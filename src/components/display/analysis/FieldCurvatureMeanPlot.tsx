@@ -1,4 +1,4 @@
-import type { FieldCurvatureResult } from "../../../optics/aberrationAnalysis.js";
+import type { FieldCurvatureResult } from "../../../optics/analysis.js";
 import type { Theme } from "../../../types/theme.js";
 import {
   centeredMmScale,

@@ -7,7 +7,7 @@
 **Inventor:** Yuki Shibata (柴田 裕輝)
 **Applicant:** Cosina Co., Ltd. (Nakano-shi, Nagano)
 **Title:** 撮像レンズ (Imaging lens)
-**Embodiment analyzed:** Example 1 (実施例1), Table 1 and FIG. 1
+**Example details:** 実施例1, Table 1 and FIG. 1
 
 ---
 

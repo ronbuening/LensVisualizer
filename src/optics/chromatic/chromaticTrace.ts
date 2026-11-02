@@ -4,14 +4,15 @@
  * Converts prepared-state dispersion resolvers into RGB/V ray traces and channel spread summaries for UI displays.
  */
 
+import { CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 import type { ChromaticChannel, ChromaticRayFanSpread, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import {
-  traceRayChromatic2,
-  traceRayVectorChromatic2,
-  traceSkewRayChromatic2,
-  traceSkewRayVectorChromatic2,
+  traceRayChromatic,
+  traceRayVectorChromatic,
+  traceSkewRayChromatic,
+  traceSkewRayVectorChromatic,
 } from "../trace/rayAdapters.js";
-import type { VectorRayTraceInput2 } from "../trace/rayAdapters.js";
+import type { VectorRayTraceInput } from "../trace/rayAdapters.js";
 
 interface MarginalRayData {
   y: number;
@@ -37,14 +38,14 @@ function spanOf(values: number[]): number {
  * @param lastSurfZ - final surface vertex z coordinate in mm
  * @returns ray-fan spans plus per-channel axial intercepts and image heights in mm
  */
-export function computeChromaticRayFanSpread2(
+export function computeChromaticRayFanSpread(
   marginalRays: Partial<Record<ChromaticChannel, MarginalRayData>>,
   imgZ: number,
   lastSurfZ: number,
 ): ChromaticRayFanSpread {
   const axialIntercepts: Partial<Record<ChromaticChannel, number>> = {};
   const imagePlaneHeights: Partial<Record<ChromaticChannel, number>> = {};
-  for (const ch of ["R", "G", "B", "V"] as ChromaticChannel[]) {
+  for (const ch of CHROMATIC_CHANNEL_ORDER) {
     const ray = marginalRays[ch];
     if (!ray || ray.clipped) continue;
     const rayZ = Number.isFinite(ray.z) ? ray.z! : lastSurfZ;
@@ -61,11 +62,11 @@ export function computeChromaticRayFanSpread2(
 }
 
 export {
-  traceRayChromatic2,
-  traceRayVectorChromatic2,
-  traceSkewRayChromatic2,
-  traceSkewRayVectorChromatic2,
-  type VectorRayTraceInput2,
+  traceRayChromatic,
+  traceRayVectorChromatic,
+  traceSkewRayChromatic,
+  traceSkewRayVectorChromatic,
+  type VectorRayTraceInput,
 };
 
 export type { ChromaticChannel, ChromaticRayFanSpread, RayTraceResult, RuntimeLens };

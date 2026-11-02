@@ -3,13 +3,14 @@
  *
  * Walks every lens in the catalog and reports how completely each lens is
  * backed by strict catalog Sellmeier data. This uses the same safety net as
- * src/optics/dispersion.ts: a glass annotation must resolve to a catalog entry
+ * src/optics/chromatic/materialResolver.ts: a glass annotation must resolve to a catalog entry
  * and the catalog coordinates must agree with the authored d- or e-line pair.
  *
  * Runs only via `npm run generate:reports`, never in `npm test`; its job is to emit an authoring report.
  *
  * Regenerate: `npm run generate:reports -- sellmeierCoverageScan`
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import {
@@ -19,11 +20,11 @@ import {
   resolveCompatibleGlass,
   resolveGlass,
 } from "../src/optics/glassCatalog.js";
-import type { DispersionQuality } from "../src/optics/dispersion.js";
+import type { DispersionQuality } from "../src/optics/chromatic.js";
 import { extractPatentNumber, isExplicitlyUnmatched, walkLensSurfaces } from "./glassScanLib.js";
-import type { ElementData, LensData } from "../src/types/optics.js";
+import type { ElementData } from "../src/types/optics.js";
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
 const REPORT_DIR = "agent_docs/generated";
 const MAX_MISSING_DETAILS = 8;
@@ -243,7 +244,7 @@ describe("Sellmeier coverage scan", () => {
         key: data.key,
         name: data.name ?? data.key,
         visible: data.visible !== false,
-        patentNumber: extractPatentNumber(data.patentNumber, data.subtitle),
+        patentNumber: extractPatentNumber(data.source.patentNumber, data.subtitle),
         filePath,
         glassElements,
         fullySellmeierElements,

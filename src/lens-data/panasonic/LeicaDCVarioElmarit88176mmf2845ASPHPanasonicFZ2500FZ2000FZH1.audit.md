@@ -114,3 +114,53 @@ For the rows whose line is established, PgF = printed deviation + 0.64842 − 0.
 - Re-read on the page: no formula or normal line anywhere in the patent (the only mentions of dPgF are PDF pp. 18, 19, the tables on pp. 19–23 and the claims on p. 25); all seventeen Table 1 figures; Table 3A/3B (PDF p. 20) confirm the file transcribes Numerical Example 1. The eighteen HOYA matches were re-checked against the AGF: put on the C7–F2 line, their curves give the listed ΔPgF within 0.0002, where the engine's line misses by up to 0.0052. All nine converted values recompute to six decimals; no stored value was changed in this pass.
 - Further evidence for not converting the off-catalog rows: Examples 3 and 4 (PDF pp. 22–23) print +0.0211 against a 1.58332 / 59.3 crown. That would mean PgF 0.563 or more on the HOYA, OHARA or engine line, while every glass near that coordinate in the three local AGFs has PgF 0.538–0.544 and a listed deviation between −0.0062 and 0; +0.0211 is the figure HOYA lists for M-FCD500. With the +0.0194 printed for the FCD705-type glass (L10 here), that is two rows whose printed deviation does not belong to the glass, so the figures of rows that carry no HOYA catalog value are not a safe basis for a PgF.
 - Still open for a ruling: L10 (+0.0194 kept; +0.014948 on HOYA's line; +0.023345 from the FCD705 curve), L7 (−0.0070 kept; −0.008332 on HOYA's line) and L12/L13 (+0.0074 kept; +0.008288 on HOYA's line). L5/L15 stay within 0.0003 on HOYA's line either way.
+
+
+## 2026-10-27 — Rimmer localization audit (asphere data)
+
+### Source and retained prescription
+
+US 2018/0081156 A1, Numerical Example 1: Figure 1(a), PDF p. 2; Figure 2(a-c), PDF p. 3; paragraphs 0145-0154 and Tables 1-2, PDF p. 19 (printed p. 8); Table 2 continued and Tables 3A-3D, PDF p. 20 (printed p. 9). Table cells and the equation were read from 220-dpi page images, with 400-dpi coefficient crops; the optical rims were inspected at 600 dpi.
+
+Every retained radius, fixed thickness, medium index and Abbe number agrees with Table 1 after the already documented five cement collapses and omitted plate/refocus normalization. The cement junctions are source 2/3, 17/18, 21/22, 27/28 and 31/32: the surviving downstream thicknesses remain 7.055, 0.505, 0.505, 0.505 and 0.805 mm. All five variable lens gaps and the three focal-length station labels agree with Table 3A. No prescription transcription error was found.
+
+| Surface | Table 2 location | Terms checked | Finding |
+|---|---|---|---|
+| 9A | PDF p. 19, surface 9 | K, A4, A6, A8, A10, A12 | All match, including K +3.51523 and A12 zero |
+| 10A | PDF p. 19, surface 10 | K, A4, A6, A8, A10, A12 | All match; K and A12 zero |
+| 14A | PDF p. 19, surface 14 | K, A4, A6, A8, A10, A12 | All match; K +0.836518, A12 -4.68713e-13 |
+| 15A | PDF p. 19, surface 15 | K, A4, A6, A8, A10, A12 | All match; K and A12 zero |
+| 24A | PDF p. 20, surface 24 | K, A4, A6, A8, A10, A12 | All match; K and A12 zero |
+| 25A | PDF p. 20, surface 25 | K, A4, A6, A8, A10, A12 | All match; K and A12 zero |
+| 26A | PDF p. 20, surface 26 | K, A4, A6, A8, A10, A12 | All match; K and A12 zero |
+| 30A | PDF p. 20, surface 30 | K, A4, A6, A8, A10, A12 | All match; K and A12 zero |
+
+The printed denominator is sqrt(1 - (1 + κ)(h/r)^2), and An multiplies h^n. Units are millimetres, without normalization or geometric scaling. There are no printed odd terms or nonzero A14 terms. K is therefore copied directly, not κ - 1. Diagnostic changes of 14A K to -0.836518, -0.163482 or zero give wide-end marginal LSA -218.244, +139.361 or +78.091 mm respectively, against -0.041 mm retained and the Figure 2 ±0.2 mm axis. Those alternatives are rejected, not source errata corrections. A single-slip screen of the 14A/15A block also tried sign, ×10, /10 and zero per K/A4-A12 term, same-power column swaps and one-place coefficient shifts. Every nontrivial candidate either failed stored-geometry validation or exceeded the Figure 2 spherical-aberration scale at one or more stations/pupil samples; multiplying existing zeros was a no-op. No source-supported replacement emerged.
+
+### Rim decisions
+
+No rim changed. 25A's verbatim polynomial first turns over at 4.557307 mm, inside its 6.1 mm rim, and a cap at
+4.5 mm (with 24A square) was tried: it keeps every stated axial beam, but it stops the wide-end chief ray at 33.41°
+(about H = 5.42 mm), short of Table 3A's 41.1636° / H = 6.8100 mm, and the wide curve then withholds RI at
+16.7-30.6° as isolated cells. A cap that clips the chief ray to the source's printed image height is not applied
+(SD procedure Step 6), so 24A/25A keep 6.2/6.1 mm. 10A and 24A turn over only beyond their rims (about 13.13 and 7.03 mm);
+9A, 14A, 15A, 26A and 30A have no turnover. At 14A's 9.9 mm rim the slope is 60.25°, below the 64.2° limit, and
+the conic domain ends near 10.40 mm.
+
+The Figure 1 screening scale is 60.87 µm/px. L7's rim estimator is about 8.58 mm against 9.9 mm authored (13 %,
+inside the figure's noise), while the ink envelope reads 16.74 mm because of leaders and marks; the clean L9 rear
+outline is about 6.88 mm against the authored 7.6 mm. Neither reaches the >25 % figure-only threshold.
+
+### Localization, plots and remaining limits
+
+At 20.55° wide, neighbouring lower-pupil rays reach 14A at 8.23, 9.10 and 10.09 mm with incidence 47°, 55° and 77°; their meridional transverse errors are about 0.004, 0.484 and 11.781 mm. This high-angle branch starts before 25A. Rimmer's reference radius is about 160.8 mm, so materially aberrated rays can remain under its 5% guard.
+
+Figure 2 uses SA/AST axes ±0.2 mm and DIS ±10%, with wide F=2.91/H=6.81, middle F=4.32/H=7.92 and tele F=4.63/H=7.92. Retained marginal LSA is -0.041/-0.007/+0.088 mm across the three stations, consistent with the plotted scale. The close-ray astigmatism is small over most of the wide field but departs near its edge (T/S -0.116/+0.042 mm at 40.99°); this does not quantitatively reproduce the near-axis Figure 2 astigmatism curves. Distortion is barrel, -14.316% at 40.25°, while Figure 2's wide curve reaches roughly -14% to -15% near H=6.81, extending left of its -10% tick. A scratch reconstruction restoring all five cement media and plate P gives EFLs 9.1400/39.1040/168.6755 mm and marginal LSA -0.043/-0.029/+0.076 mm; it does not remove the edge astigmatism discrepancy. No unique printed-cell erratum is established.
+
+With the rims as stored, the wide curve keeps relative illumination at every field but reads 1.17-1.52 at 15-38°, where the rays through 14A's steep zone are referred to the image point across a 160.8 mm sphere. Middle and tele fields keep RI at every sample. These are model outputs, not physical illumination.
+
+### Analysis sync and follow-ups
+
+The data header states the direct conic convention, the retained 25A rim and the unresolved RI limitation; the analysis needed no change.
+
+Coordinator follow-up: retain the lens as unresolved for wide-end Rimmer localization; review the high-incidence 14A branch, and the off-axis engine/plot comparison. The source gives no physical clear apertures that isolate an additional correction. No source.errata entry is added because no printed optical value has been shown wrong; the unresolved quantities are modeled aperture and trace interpretation. Existing cement/plate normalization and source-summary caveats remain. Full repository gates and integration remain with the coordinator.

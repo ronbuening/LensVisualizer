@@ -5,6 +5,8 @@
  * and relationship subsystems cannot silently drift into parallel shapes.
  */
 
+import type { PatentExample } from "./optics.js";
+
 export interface PatentPartyMetadata {
   name: string;
   slug: string;
@@ -55,6 +57,8 @@ export interface PatentLensRef {
   key: string;
   name: string;
   specs?: string[];
+  /** The numerical example of the publication the lens transcribes, when recorded. */
+  example?: PatentExample;
 }
 
 export type PatentPartyRole = "author" | "assignee";

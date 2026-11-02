@@ -52,7 +52,7 @@ export default function LensDiagramLoadedState({
     varReadouts,
     aberrationReadouts,
     dynamicEFL,
-    effectiveFNum,
+    paraxialWorkingFNum,
     info,
     act,
     sel,
@@ -244,7 +244,7 @@ export default function LensDiagramLoadedState({
               currentPhysStopSD={currentPhysStopSD}
               baseEPSD={baseEPSD}
               dynamicEFL={dynamicEFL}
-              effectiveFNum={effectiveFNum}
+              paraxialWorkingFNum={paraxialWorkingFNum}
               showEffectiveFocalLength={showEffectiveFocalLength}
               onToggleEffectiveFocalLength={() => adapters.onEffectiveFocalLengthChange(!showEffectiveFocalLength)}
               showEffectiveAperture={showEffectiveAperture}

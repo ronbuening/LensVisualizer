@@ -16,6 +16,13 @@ export interface MountDetails {
 }
 
 export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
+  "canon-7-bayonet": {
+    era: "Canon 7-series 35 mm rangefinders, introduced in 1961",
+    formatNotes: "35 mm film rangefinder",
+    summary: "The clip-on three-lug bayonet around the screw mount of the Canon 7, 7s and 7sZ rangefinders.",
+    description:
+      "Canon's 7-series rangefinders kept the Leica-thread (S) screw mount but surrounded it with an external three-lug bayonet. The bayonet carried lenses too large or heavy for the thread, most famously the 50mm f/0.95, and accessories such as Canon's Mirror Box reflex housing.\n\nLenses made for the bayonet do not fit screw-mount-only bodies, which is why the f/0.95 is tied to the 7 series rather than to Canon's wider LTM line. In this catalog the bayonet is kept separate from Leica thread mount so that screw-mount Serenar and Canon lenses are not mixed with the bayonet-only designs.",
+  },
   "agfa-ambi-silette": {
     era: "Agfa Ambi Silette 35 mm rangefinder system, introduced in 1957",
     formatNotes: "35 mm film rangefinder",
@@ -233,6 +240,13 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     description:
       "Large-format lenses usually do not belong to a single proprietary camera mount. A lens cell or shutter assembly is fitted to a removable lens board, and the camera supplies the bellows draw, front-standard movements, ground-glass focusing, and film holder or digital back. The practical interface is therefore a board and shutter opening rather than a bayonet with a fixed flange distance.\n\nThat changes the optical problem. Designers can assume unit focusing by moving the whole lens, generous back-focus variation from bellows extension, and image circles larger than the nominal film gate so rise, fall, shift, tilt, and swing can be used without immediately clipping the field. Coverage, usable image circle, and behavior at stopped-down working apertures often matter as much as full-aperture speed.\n\nIn this catalog, the large-format lens-board category groups view-camera and technical-camera taking lenses from makers such as Rodenstock, Schneider-Kreuznach, and Carl Zeiss Jena. Enlarging lenses and fixed-camera lenses remain in their own metadata categories unless the data file represents a view-camera taking lens.",
   },
+  "projection-lens": {
+    era: "Slide and image projection lenses",
+    formatNotes: "Projection formats specified by each lens, including 24 × 36 mm slides",
+    summary: "Projection objectives carried in a projector barrel, sleeve, or lens carrier.",
+    description:
+      "Projection lenses form an enlarged image of a slide or other source on a screen. The projector supplies the lens carrier and focusing travel. This catalog category identifies that application; it does not imply one interchangeable mechanical standard.\n\nBarrel diameter, carrier engagement, and focusing arrangements vary between projectors and lens generations. The original five-element Leitz Colorplan belongs here without implying compatibility with later Leica P2 carriers or a camera bayonet. The associated image-format metadata describes the slide gate.",
+  },
   "enlarging-lens": {
     era: "Darkroom and process enlarging lenses",
     formatNotes: "Negative and print projection formats, commonly from 35 mm through medium format",
@@ -344,6 +358,13 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     description:
       "Leica M replaced the earlier thread mount with a faster bayonet interface and frame-line coupling, beginning with the M3 in 1954. It kept the short rangefinder register that makes compact wide and normal lenses possible, while improving handling for professional reportage, documentary work, and street photography.\n\nThe mount's constraints are as defining as its freedoms. Lenses must work with rangefinder coupling, viewfinder frame lines, and limited close-focus travel, but they can avoid SLR mirror clearance and do not need autofocus motors or electronic aperture mechanisms.\n\nThat combination produced many famously compact Summicron, Summilux, Elmarit, Noctilux, and APO-Summicron designs. In the catalog, M-mount formulas are especially useful for studying how high correction, small size, and mechanical rangefinder usability compete within a long-lived 35 mm system.",
   },
+  "leica-visoflex": {
+    era: "Leitz Visoflex reflex-housing lenses",
+    formatNotes: "35 mm Leica photography through a reflex housing",
+    summary: "Lenses used with a Leitz Visoflex mirror housing and the appropriate focusing mount or adapter.",
+    description:
+      "The Visoflex placed a reflex mirror housing between a Leica body and the lens, supporting through-the-lens viewing with long-focus and close-up optics. Lenses such as the Telyt 200mm f/4 were intended for this extended optical register.\n\nThis category records the Visoflex system association. It does not imply direct rangefinder coupling or direct infinity-focus mounting on a Leica M or LTM body. Compatibility depends on the housing generation, lens focusing mount, and adapter. Leica R versions belong to the separate R category.",
+  },
   "leica-r": {
     era: "Leica manual-focus SLR mount, 1960s-2000s",
     formatNotes: "35 mm SLR",
@@ -447,6 +468,14 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
       "Nikon's long-lived SLR bayonet, spanning manual Nikkors, autofocus F-mount lenses, and modern DSLR optics.",
     description:
       "Nikon F is one of the longest-running interchangeable-lens mounts in photography. Introduced with the Nikon F in 1959, its original mechanical bayonet survived through metering prong changes, AI indexing, AF screw-drive, in-lens AF-S motors, electronic apertures, vibration reduction, and DSLR-era CPU contacts.\n\nThat continuity makes F-mount pages unusually broad. A single mount family contains early rangefinder-influenced SLR optics, classic manual Nikkors, professional AF-D and AF-S lenses, DX lenses for APS-C DSLRs, perspective-control lenses, and late high-performance full-frame DSLR designs.\n\nThe tradeoff is historical complexity: compatibility depends heavily on body and lens generation. For optical comparison, though, the continuity is valuable because it lets decades of Nikon design practice sit under one mount family while the surrounding camera technology changes dramatically.",
+  },
+  "nikon-ix": {
+    era: "Nikon Pronea APS film SLR mount for IX-Nikkor lenses, introduced in 1996",
+    formatNotes: "APS film (IX240)",
+    summary:
+      "The F-bayonet variant of Nikon's Pronea APS SLRs, with compact IX-Nikkor zooms that ordinary F bodies cannot take.",
+    description:
+      "Nikon IX names the lens side of the Pronea system, Nikon's APS-format autofocus SLRs: the Pronea 600i of 1996 and the smaller Pronea S of 1998. The bodies kept the F bayonet, so many autofocus F-mount Nikkors could be used on them, but the dedicated IX-Nikkor lenses were designed around the smaller IX240 frame and the Pronea mirror box.\n\nIX-Nikkors sit deeper in the body than ordinary F-mount lenses, so Nikon warned against mounting them on 35 mm F-mount cameras. The range stayed small, made up of compact, light zooms sized for the APS image circle.\n\nFor catalog use, Nikon IX is kept apart from Nikon F because the lenses are one-way compatible: an IX-Nikkor is an APS design that only the Pronea bodies accept, even though it shares the bayonet.",
   },
   nikonos: {
     era: "Nikonos amphibious camera mount, 1960s-2000s",

@@ -7,7 +7,6 @@
 **Assignee:** Olympus Optical Co., Ltd.
 **Priority:** JP 60-157052, July 18, 1985
 **Granted:** December 20, 1988
-**Embodiment analyzed:** Embodiment 3
 
 ### Patent overview
 

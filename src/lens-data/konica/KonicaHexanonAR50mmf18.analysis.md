@@ -7,7 +7,7 @@
 **Inventors:** Ryoko Watabe; Toshiko Shimokura\
 **Applicant:** Konishiroku Photo Industry Co., Ltd.\
 **Title:** *Gauss-type lens* (ガウス型レンズ)\
-**Embodiment analyzed:** Example 1 (第1実施例)
+**Example details:** 第1実施例
 
 The selected prescription is Example 1 of the Japanese publication. The patent describes a five-group, six-element Gauss-type photographic objective and gives Example 1 as `f = 100`, `F = 1.8`, and `2W = 46°` (printed p. 85). The production lens represented by the data file is the KONICA HEXANON AR 50mm f/1.8, for which Konica's manufacturer-authored lens table gives a 50 mm focal length, f/1.8 maximum aperture, 46° angle of view, six elements in five groups, and 0.55 m minimum focusing distance from the film plane.[1]
 

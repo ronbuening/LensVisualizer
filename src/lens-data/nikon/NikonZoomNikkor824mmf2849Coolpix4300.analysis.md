@@ -14,7 +14,6 @@
 
 **Title:** 光学系 (Optical System)
 
-**Embodiment analyzed:** Example 1
 
 The prescription associated with **NIKON ZOOM-NIKKOR 8-24mm f/2.8-4.9 (Nikon COOLPIX 4300)** is transcribed from
 Example 1, Table 1, with the arrangement shown in Figure 1. The Japanese publication is the numerical source throughout.

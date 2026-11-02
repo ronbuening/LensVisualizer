@@ -10,7 +10,7 @@
 **Applicant:** Olympus Optical Co., Ltd., Tokyo  
 **Title:** Ultra-Weitwinkel-Objektiv  
 **Classification:** G 02b 13/06  
-**Embodiment analyzed:** Example 1 / Tabelle 1, corresponding to Fig. 1 and Fig. 2
+**Example details:** Tabelle 1, corresponding to Fig. 1 and Fig. 2
 
 DE 2157160 A1 discloses a compact photographic fisheye lens with a 180° field and a long rear focal distance for single-lens-reflex use without mirror lock-up. The patent gives two numerical examples. Example 1, transcribed here, is the ten-element version shown in Fig. 1 and tabulated in Tabelle 1. Example 2 changes the third group to two close air-spaced elements and adds one surface; it is not the prescription used for this file.
 

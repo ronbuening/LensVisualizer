@@ -7,10 +7,14 @@
  */
 
 import { useMemo } from "react";
-import { eflAtFocus, effectiveFNumber } from "../optics/optics.js";
+import { paraxialWorkingFNumberForRuntimeLens, stopSemiDiameterForFNumber } from "../optics/optics.js";
+import type { ParaxialWorkingFNumberResult } from "../optics/optics.js";
+import { createAnalysisRequest, computeFocusEFL } from "../optics/analysis.js";
+import { prepareRuntimeState } from "../optics/optics.js";
 import { sharedFNumber } from "./comparisonSliders.js";
 import { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
 import type { AperturePairResult, FocusPairResult, ZoomPairResult } from "./comparisonSliders.js";
+import type { RuntimeLens } from "../types/optics.js";
 
 interface UseComparisonDisplayValuesParams {
   comparisonLenses: ComparisonLensesResult;
@@ -42,8 +46,34 @@ export default function useComparisonDisplayValues({
   const zoomA = zoomPair?.zoomA ?? 0;
   const zoomB = zoomPair?.zoomB ?? 0;
 
-  const dynamicEflA = useMemo(() => (LA ? eflAtFocus(focusA, zoomA, LA) : 0), [LA, focusA, zoomA]);
-  const dynamicEflB = useMemo(() => (LB ? eflAtFocus(focusB, zoomB, LB) : 0), [LB, focusB, zoomB]);
+  const dynamicEflA = useMemo(
+    () =>
+      LA
+        ? computeFocusEFL(
+            createAnalysisRequest({
+              preparedState: prepareRuntimeState(LA, focusA, zoomA),
+              dynamicEFL: LA.EFL,
+              currentEPSD: LA.EP.epSD,
+              currentPhysStopSD: LA.stopPhysSD,
+            }),
+          )
+        : 0,
+    [LA, focusA, zoomA],
+  );
+  const dynamicEflB = useMemo(
+    () =>
+      LB
+        ? computeFocusEFL(
+            createAnalysisRequest({
+              preparedState: prepareRuntimeState(LB, focusB, zoomB),
+              dynamicEFL: LB.EFL,
+              currentEPSD: LB.EP.epSD,
+              currentPhysStopSD: LB.stopPhysSD,
+            }),
+          )
+        : 0,
+    [LB, focusB, zoomB],
+  );
 
   const sharedDisplayFNumber = aperturePair
     ? sharedFNumber(sharedStopdownT, aperturePair.widerFOPEN, aperturePair.sharedMaxFstop)
@@ -51,14 +81,8 @@ export default function useComparisonDisplayValues({
   const fNumA = aperturePair?.fNumberA ?? sharedDisplayFNumber;
   const fNumB = aperturePair?.fNumberB ?? sharedDisplayFNumber;
 
-  const effectiveFNumA = useMemo(
-    () => (LA ? effectiveFNumber(fNumA, focusA, zoomA, LA) : fNumA),
-    [LA, fNumA, focusA, zoomA],
-  );
-  const effectiveFNumB = useMemo(
-    () => (LB ? effectiveFNumber(fNumB, focusB, zoomB, LB) : fNumB),
-    [LB, fNumB, focusB, zoomB],
-  );
+  const paraxialWorkingFNumA = useMemo(() => paraxialWorkingFNum(LA, fNumA, focusA, zoomA), [LA, fNumA, focusA, zoomA]);
+  const paraxialWorkingFNumB = useMemo(() => paraxialWorkingFNum(LB, fNumB, focusB, zoomB), [LB, fNumB, focusB, zoomB]);
 
   return {
     ok,
@@ -66,7 +90,18 @@ export default function useComparisonDisplayValues({
     LB,
     dynamicEflA,
     dynamicEflB,
-    effectiveFNumA,
-    effectiveFNumB,
+    paraxialWorkingFNumA,
+    paraxialWorkingFNumB,
   };
+}
+
+/** Paraxial working f-number at the stop the marked f-number sets, or why the state has none. */
+function paraxialWorkingFNum(
+  L: RuntimeLens | null,
+  fNumber: number,
+  focusT: number,
+  zoomT: number,
+): ParaxialWorkingFNumberResult {
+  if (!L) return { status: "unavailable", reason: "no-stop" };
+  return paraxialWorkingFNumberForRuntimeLens(stopSemiDiameterForFNumber(fNumber, zoomT, L), focusT, zoomT, L);
 }

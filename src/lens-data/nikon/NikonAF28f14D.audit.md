@@ -53,3 +53,32 @@ Surface and image-circle checks passed; three source regression tests pass, incl
 ## 2026-09-09 — Live verification completed
 
 Local infinity, near, midpoint, f16 and movement chart verified. Near40cm: D2=10.38, Stop–G3=7.55, D16=.85, BF=41.63mm. Midpoint79cm/EFL29.04mm; f16 stop2.59mm. G1 fixed; maximum group travel3.88mm. Earlier lock blocker resolved. Full batch validation passed2877 tests, typecheck, format, lint, glass checks and build; included in batch21–30.
+
+
+## 2026-10-29 — F-mount surface and glass reinspection
+
+Fresh direct Figure 1 review: `patents/US5315441.pdf`, PDF page 2, rendered at 600 dpi and rotated. The embedded page raster is 300 dpi. The approximately 2840 px S1–S19 span at 600 dpi over 82.75 mm gives about 34.3 px/mm, or 17.16 native px/mm. Every convex/concave face and all three cemented boundaries were inspected.
+
+Added opaque rim extensions at S2 (22.3 mm optical cap →27.5 mm drawn rim) and S6 (15.5→18.0 mm), restoring the resolved rear seats of L1 and L3. S12 has a separate concave air-face seat on L6a: in the 600 dpi detail its radial cap/edge spans are approximately 493/521 px, q≈0.946±0.008 at native resolution (edge≈261 native px; one-pixel bound ±(1+q)/edge). On stored outer sd 14.8 mm this gives an approximately 14.0 mm cap. Adopted depth 4.69 mm gives cap 14.011880 mm and land 0.788120 mm. Furthest traced wide-open beam 13.117092 mm at focus 0.15/field 11.7604° clears it by much more than the required 0.05 mm.
+
+S7’s geometry-constrained 14.3 mm cap and L8a’s 17.0 mm front/cemented limit remain unchanged: their larger drawn curves have no separately resolved air-face seat that would justify hiding the constraint with a flat extension. Cemented steps at S8/S13/S18 cannot use the air-boundary feature. Other faces retain their existing caps; no unsupported shallow near-plane cuts are added. The S16A optical cap, conic and polynomial, and every source radius/gap remain unchanged.
+
+Fresh source glass review: `patents/US5315441.pdf`, Embodiment 1 Table 1 and equation on PDF page 12 (columns 5–6). All 11 lens-media nd/νd pairs match the source and retain its d-line convention (587.6 nm). No source θgF/partial-dispersion, extra spectral-line indices or glass-dispersion coefficient table is published; no APD flag or spectral datum is inferred from the source. Refreshed the S-LAH66/S-TIH4 numerical annotation rounding to the current resolved curve; no selected curve changed.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy |
+|---|---|---|
+| L1 | 1.516800 / 64.1 | BSC7 |
+| L2 | 1.772790 / 49.4 | S-LAH66 |
+| L3 | 1.487490 / 70.4 | S-FSL5 |
+| L4a | 1.518600 / 69.9 | J-PKH1 |
+| L4b | 1.514540 / 54.6 | KF3 |
+| L5 | 1.804110 / 46.5 | S-LAH65V |
+| L6a | 1.748100 / 52.3 | E-LAKH1 |
+| L6b | 1.755200 / 27.6 | S-TIH4 |
+| L7 | 1.772790 / 49.4 | S-LAH66 |
+| L8a | 1.804110 / 46.5 | S-LAH65V |
+| L8b | 1.860740 / 23 | J-SFH2 |
+
+Coverage: 11/11 modeled media, representing 11 physical lens elements. All available curves remain qualified spectral proxies; source coordinates are authoritative, and supplier/melt identity is unconfirmed. No tolerance is relaxed.
+
+Verification: focused surface/inferred-beam and image-circle audits, aperture census, and actual native SVG shapes/render diagnostics at nine focus/zoom states (prime-lens zoom states coincide). No hidden rim trim was observed. Current-label glass resolver, `assertCatalogConsistent()` and the shared dispersion/partial-dispersion suites pass (2 files, 93 tests). Full repository gates are recorded by the coordinator at commit time.

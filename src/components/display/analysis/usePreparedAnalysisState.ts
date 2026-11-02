@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { prepareRuntimeState } from "../../../optics/compat.js";
+import { prepareRuntimeState } from "../../../optics/optics.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 

@@ -1,4 +1,4 @@
-import type { SAProfilePoint } from "../../../../optics/aberrationAnalysis.js";
+import type { SAProfilePoint } from "../../../../optics/analysis.js";
 import type { Theme } from "../../../../types/theme.js";
 import { formatSignedSaUm } from "./format.js";
 

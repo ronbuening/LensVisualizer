@@ -53,9 +53,26 @@ const JURISDICTION_LABELS: Record<string, string> = {
 
 const patentNumberCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
+/**
+ * Order a patent's lenses by the example each one is taken from, so Example 2 precedes Example 10. Lenses without a
+ * recorded example follow the ones with one, and lenses sharing an example fall back to name order.
+ */
+function comparePatentLenses(a: PatentLensRef, b: PatentLensRef): number {
+  if (a.example && b.example) {
+    const byExample =
+      patentNumberCollator.compare(a.example.id ?? "", b.example.id ?? "") ||
+      patentNumberCollator.compare(a.example.label, b.example.label);
+    if (byExample) return byExample;
+  } else if (a.example || b.example) {
+    return a.example ? -1 : 1;
+  }
+  return catalogCollator.compare(a.name, b.name);
+}
+
 /** Return whether a display value is an external patent publication number rather than a local fallback label. */
 export function isPatentPublicationNumber(value: string): boolean {
-  return /^[A-Z]{2}\s+.*\d/i.test(value.trim());
+  // Country and kind-code spaces are display formatting, not part of a publication's identity.
+  return /^[A-Z]{2}\s*(?:[A-Z]{1,2}\s*)?\d[\d\s,./-]*(?:[A-Z]\d?)?$/i.test(value.trim());
 }
 
 /**
@@ -72,12 +89,14 @@ export function isPatentPublicationNumber(value: string): boolean {
  * format only needs its display punctuation removed.
  */
 export function docdbPublicationNumber(patentNumber: string): string {
-  const display = patentNumber.trim().toUpperCase();
+  const display = patentNumber.toUpperCase().replace(/\s+/g, "");
 
-  const usApplication = display.match(/^US\s+(\d{4})\/0(\d{6})\s*([A-Z]\d?)?$/);
+  const usApplication = display.match(/^US(\d{4})\/?0(\d{6})([A-Z]\d?)?$/);
   if (usApplication) return `US${usApplication[1]}${usApplication[2]}${usApplication[3] ?? ""}`;
 
-  const japanese = display.match(/^JP\s+(?:([SH])(\d{1,2})|(\d{4}))-(\d+)\s*([A-Z]\d?)?$/);
+  const japanese =
+    display.match(/^JP(?:([SH])(\d{1,2})|(\d{4}))-(\d+)([A-Z]\d?)?$/) ??
+    display.match(/^JP(?:([SH])(\d{2})|(\d{4}))(\d{6})([A-Z]\d?)?$/);
   if (japanese) {
     const [, era, eraYear, westernYear, serial, kind = ""] = japanese;
     const resolved = era
@@ -111,7 +130,7 @@ export function espacenetPatentUrl(patentNumber: string): string {
 
 /** Resolve the publication authority encoded at the start of a patent number. */
 export function patentJurisdiction(patentNumber: string): PatentJurisdiction {
-  const code = patentNumber.trim().match(/^([A-Z]{2})\b/)?.[1] ?? "OTHER";
+  const code = isPatentPublicationNumber(patentNumber) ? patentNumber.trim().slice(0, 2).toUpperCase() : "OTHER";
   return {
     code,
     label: JURISDICTION_LABELS[code] ?? (code === "OTHER" ? "Other jurisdictions" : code),
@@ -123,6 +142,7 @@ export function patentJurisdiction(patentNumber: string): PatentJurisdiction {
  *
  * Per-patent `authors`/`assignees` preserve lens-file source order (first
  * occurrence wins) per LENS_DATA_SPEC — only identity-level lists sort.
+ * Per-patent `lenses` sort by source example, then name.
  *
  * @param summaries - lightweight catalog records to aggregate
  * @param options - whether attributed lenses without a patent number become fallback records
@@ -163,7 +183,12 @@ export function aggregatePatentRecords(
     record.patentYear ??= lens.patentYear;
     for (const author of lens.patentAuthors ?? []) record.authors.add(author);
     for (const assignee of lens.patentAssignees ?? []) record.assignees.add(assignee);
-    record.lenses.set(lens.key, { key: lens.key, name: lens.name, specs: lens.specs });
+    record.lenses.set(lens.key, {
+      key: lens.key,
+      name: lens.name,
+      specs: lens.specs,
+      ...(lens.patentExample ? { example: lens.patentExample } : {}),
+    });
     records.set(patentIdentity, record);
   }
 
@@ -174,7 +199,7 @@ export function aggregatePatentRecords(
       jurisdiction: record.jurisdiction,
       authors: [...record.authors],
       assignees: [...record.assignees],
-      lenses: [...record.lenses.values()].sort((a, b) => catalogCollator.compare(a.name, b.name)),
+      lenses: [...record.lenses.values()].sort(comparePatentLenses),
     }))
     .sort((a, b) => patentNumberCollator.compare(a.patentNumber, b.patentNumber));
 }

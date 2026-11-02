@@ -19,6 +19,391 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-11-01",
+    type: "lens",
+    summary:
+      "Added the Panasonic 45-175mm PZ, Sigma 10-20mm f/3.5 and 18-50mm OS, Tamron A18 and B008, and Yashica ML 35mm",
+  },
+  {
+    date: "2026-10-31",
+    type: "lens",
+    summary: "Added four Sigma lenses, the Sony E 55-210mm and the Olympus M.Zuiko 40-150mm R",
+  },
+  {
+    date: "2026-10-31",
+    type: "improvement",
+    summary: "Refined EF- and RF-mount lens rims and expanded sourced glass coverage",
+  },
+  {
+    date: "2026-10-30",
+    type: "lens",
+    summary: "Added the Sigma 15mm fisheye and 100-400mm DG DN, and Pentax, Canon, Nikon and Olympus zooms",
+  },
+  {
+    date: "2026-10-30",
+    type: "improvement",
+    summary: "Refined Z- and F-mount element heights, concave rims and glass against source patents",
+  },
+  {
+    date: "2026-10-29",
+    type: "fix",
+    summary: "Fixed blank off-axis MTF curves for wide lenses focused close",
+  },
+  {
+    date: "2026-10-29",
+    type: "lens",
+    summary:
+      "Added the Pentax SMC FA* 28-70mm f/2.8 AL, FA* 80-200mm f/2.8 ED [IF], FA 100-300mm f/4.7-5.8 and FA J 75-300mm f/4.5-5.8 AL, and the Micro Four Thirds Panasonic Leica DG Vario-Elmarit 8-18mm f/2.8-4.0 ASPH. and Lumix G Vario 12-32mm f/3.5-5.6 ASPH. MEGA O.I.S.",
+  },
+  {
+    date: "2026-10-28",
+    type: "article",
+    summary: "Added new Canon, Sony, Fujifilm and Panasonic articles to the manufacturer lens story index",
+  },
+  {
+    date: "2026-10-28",
+    type: "improvement",
+    summary: "Linked more Sony, Leica, Canon, Tamron and SIGMA manufacturer stories to lens diagrams",
+  },
+  {
+    date: "2026-10-28",
+    type: "lens",
+    summary:
+      "Added the Four Thirds Olympus Zuiko Digital ED 7-14mm f/4.0, 40-150mm f/4.0-5.6 and 50-200mm f/2.8-3.5 SWD, the Canon EF 17-40mm f/4L USM, and the Canon EF-M 18-150mm f/3.5-6.3 IS STM and 55-200mm f/4.5-6.3 IS STM",
+  },
+  {
+    date: "2026-10-28",
+    type: "fix",
+    summary:
+      "The iris of the Leica Elmarit 90mm f/2.8, Zeiss Sonnar 50mm f/2 and Olympus 50mm f/1.4 now sits in air, so it can close at every f-number, and the Sonnar's junction rim was widened to pass its full f/2 beam",
+  },
+  {
+    date: "2026-10-28",
+    type: "improvement",
+    summary:
+      "The MTF now samples the real aperture stop evenly, as lens-design software does with ray aiming, and refines slow-converging fields to 256 samples by default; rays a lens totally reflects before the stop count as vignetted in every analysis",
+  },
+  {
+    date: "2026-10-28",
+    type: "improvement",
+    summary:
+      "The aperture stop now gives each marked f-number the paraxial entrance pupil lens-design software uses, at every aperture and zoom, and the Summary reports image-space, paraxial working and real working f-numbers under their standard names; the MTF header no longer shows a separate traced f-number and instead names a rim that vignettes the axial beam",
+  },
+  {
+    date: "2026-10-27",
+    type: "improvement",
+    summary:
+      "25 Nikkor Z lenses and the Sigma 16mm f/1.4 DC DN now draw the flat rim lands their patent figures show on deeply curved elements",
+  },
+  {
+    date: "2026-10-27",
+    type: "fix",
+    summary: "Corrected asphere data on the GF 80mm, XF 23mm f/1.4, RX1 Sonnar and Pentax 645 35mm",
+  },
+  {
+    date: "2026-10-27",
+    type: "fix",
+    summary:
+      "Rays now step back to a stop or lens surface set inside the curve before it, as in OpticStudio, instead of being dropped, which made lenses such as the Leica Elmarit 90mm trace slower than stated",
+  },
+  {
+    date: "2026-10-27",
+    type: "fix",
+    summary:
+      "The Voigtländer Nokton 50mm f/1's deep surface-8 rim now ends on a flat land at its stop instead of reaching through the iris",
+  },
+  {
+    date: "2026-10-27",
+    type: "fix",
+    summary: "Chromatic readouts now compare every selected color channel, or name the one a rim vignettes",
+  },
+  {
+    date: "2026-10-27",
+    type: "improvement",
+    summary:
+      "Coma spots, ray fans, bokeh, field curves, spherical aberration and color zones now sample the real aperture stop, as lens-design software does with ray aiming",
+  },
+  {
+    date: "2026-10-27",
+    type: "feature",
+    summary:
+      "To mark the catalog reaching 999 lenses, released the lens builder: design a lens element by element, or start from any catalog lens, trace it live and export it",
+  },
+  {
+    date: "2026-10-27",
+    type: "feature",
+    summary:
+      "Added decade filters to the lens library, mount and format links to lens headers and a telephoto ratio to the Summary tab",
+  },
+  {
+    date: "2026-10-27",
+    type: "improvement",
+    summary:
+      "The universal relationship map now reads clearly at every zoom and works well on phones, with a Neighborhoods summary, lens-name search and better inventor grouping",
+  },
+  {
+    date: "2026-10-27",
+    type: "lens",
+    summary:
+      "Added the Canon 35mm f/1.5, Yashica Samurai Z 25-75mm, Schneider Cinelux Première 35mm projection lens, Fujifilm GF 110mm T/S Macro with tilt and shift, Olympus 150-400mm TC1.25× with its built-in converter and Tamron SP 70-150mm Soft (51A)",
+  },
+  {
+    date: "2026-10-26",
+    type: "fix",
+    summary:
+      "Fixed Chromatic, Pupils and Vignetting tab results to use true chief rays, full beams and the patent's glass indices",
+  },
+  {
+    date: "2026-10-26",
+    type: "lens",
+    summary:
+      "Added the Fujifilm XC 13-33mm, Olympus M.Zuiko 12-50mm EZ and 14-42mm (2009), Pentax FA 20-35mm, Sigma 24-70mm HF and Tamron 20-40mm f/2.8, plus the Nikon TC-20E and TC-17E II and Olympus MC-14 teleconverters",
+  },
+  {
+    date: "2026-10-25",
+    type: "lens",
+    summary:
+      "Added the Olympus Zuiko Auto-T 600mm f/6.5, Panasonic Lumix G Vario 100-300mm f/4-5.6 Mega O.I.S., Pentax FA* 300mm f/4.5 ED [IF], Sigma APO 50-500mm f/4.5-6.3 DG OS HSM, Sigma 60-600mm f/4.5-6.3 DG DN OS Sports and Voigtländer Super-Dynarex 200mm f/4",
+  },
+  {
+    date: "2026-10-25",
+    type: "improvement",
+    summary:
+      "The patents, inventor and relationship map pages now name the example each lens is taken from and list a patent's lenses in example order",
+  },
+  {
+    date: "2026-10-25",
+    type: "improvement",
+    summary: "Lens pages now name the patent example each prescription is taken from, after the patent number",
+  },
+  {
+    date: "2026-10-24",
+    type: "lens",
+    summary:
+      "Added the Canon FL 85-300mm f/5, Olympus Zuiko Digital ED 90-250mm f/2.8 and OM Zuiko 35-70mm f/3.6, Pentax FA 28-105mm Power Zoom, Sigma 24-70mm f/2.8 DG OS HSM Art and Zeiss Vario-Sonnar 70-210mm f/3.5",
+  },
+  {
+    date: "2026-10-23",
+    type: "feature",
+    summary: "Added connection tracing, company comparisons, and inventor relationship views",
+  },
+  {
+    date: "2026-10-23",
+    type: "improvement",
+    summary: "Added teleconverter grouping by maker, inventor, assignee, mount, format and patent year",
+  },
+  {
+    date: "2026-10-23",
+    type: "fix",
+    summary: "Fixed page navigation to scroll to the top while preserving anchor destinations",
+  },
+  {
+    date: "2026-10-23",
+    type: "improvement",
+    summary: "Added quick-link sidebars to maker, mount, format and teleconverter indexes",
+  },
+  {
+    date: "2026-10-23",
+    type: "lens",
+    summary:
+      "Added Canon 50mm f/0.95, Olympus OM Zuiko 28mm f/2.8, Pen F G.Zuiko 25mm f/2.8 and 60mm f/1.5, the Minolta MD Fisheye Rokkor-X 7.5mm and the Sigma APO 50-500mm",
+  },
+  {
+    date: "2026-10-22",
+    type: "lens",
+    summary:
+      "Added Canon R 58mm f/1.2 and FL 300mm f/2.8 Fluorite, the original Leitz Noctilux 50mm f/1.2, Rodenstock Geronar-WA 90mm and original Sironar 100mm, and the Sigma 4.5mm circular fisheye",
+  },
+  {
+    date: "2026-10-21",
+    type: "lens",
+    summary:
+      "Added Sony FE 16-35mm GM, 24-70mm F4 ZA and 600mm GM, Tamron 17-50mm, two Viltrox primes and three Zeiss Sonnars",
+  },
+  {
+    date: "2026-10-20",
+    type: "lens",
+    summary: "Added Canon New FD 35-105mm, Zeiss Tele-Tessar 500mm, Olympus, Sigma and Sony tele zooms",
+  },
+  {
+    date: "2026-10-20",
+    type: "improvement",
+    summary: "Rebuilt the Rodenstock Apo-Sironar-W 150mm from the patent's seven-element example",
+  },
+  {
+    date: "2026-10-19",
+    type: "fix",
+    summary: "Fixed close-focus distortion readings, which were measured against an infinity reference",
+  },
+  {
+    date: "2026-10-19",
+    type: "lens",
+    summary: "Added Leica Noctilux-M 35mm, Olympus Zuiko 180mm, two Sigma and two Viltrox primes",
+  },
+  {
+    date: "2026-10-18",
+    type: "lens",
+    summary: "Added the Carl Zeiss Jena PI-Flektogon 30mm f/2.8 e-line research reconstruction",
+  },
+  {
+    date: "2026-10-18",
+    type: "lens",
+    summary: "Added Fujifilm Natura S 24mm f/1.9 and Hasselblad HC 35mm f/3.5 research models",
+  },
+  {
+    date: "2026-10-17",
+    type: "fix",
+    summary: "Stabilized perspective analysis samples at the sensor edge",
+  },
+  {
+    date: "2026-10-17",
+    type: "fix",
+    summary: "Fixed missed grazing rays that could cut off a lens’s traced field",
+  },
+  {
+    date: "2026-10-17",
+    type: "lens",
+    summary: "Added the Leitz Colorplan 90mm f/2.5 and Visoflex Telyt 200mm f/4",
+  },
+  {
+    date: "2026-10-17",
+    type: "lens",
+    summary: "Added Minolta MD Tele Rokkor 135mm f/2.8, RF 250mm f/5.6 and MD APO Tele 600mm f/6.3",
+  },
+  {
+    date: "2026-10-17",
+    type: "lens",
+    summary: "Added the Schneider-Kreuznach PA-Curtagon-R 35mm f/4 shift lens",
+  },
+  {
+    date: "2026-10-17",
+    type: "improvement",
+    summary: "Rebuilt the optics engine: a lens opens in about a third of the time, and its analyses in about 60%",
+  },
+  {
+    date: "2026-10-16",
+    type: "fix",
+    summary:
+      "Corrected the off-axis colour fan and field focus of six mirror lenses, including the Reflex-Nikkor 500mm",
+  },
+  {
+    date: "2026-10-16",
+    type: "fix",
+    summary:
+      "Restored the outermost field sample on the Kinoptik Super-Tegea 1.9mm's field-curvature and colour charts",
+  },
+  {
+    date: "2026-10-16",
+    type: "fix",
+    summary: "Ray diagrams trace an object at infinity wherever the focus readout shows ∞",
+  },
+  {
+    date: "2026-10-16",
+    type: "lens",
+    summary: "Added Miranda 50mm, Olympus 300mm, Panasonic Leica 45mm and Samyang 135mm lenses",
+  },
+  {
+    date: "2026-10-16",
+    type: "lens",
+    summary: "Added Sigma 24-105mm f/4 DG OS HSM Art and 28-105mm f/2.8 DG DN Art zooms",
+  },
+  {
+    date: "2026-10-15",
+    type: "lens",
+    summary: "Added five Canon, Nikon and Tamron zooms, including the IX-Nikkor 30-60mm",
+  },
+  {
+    date: "2026-10-15",
+    type: "lens",
+    summary: "Added Nikon TC-20E III, TC800-1.25E ED and Z TC-1.4x teleconverters",
+  },
+  {
+    date: "2026-10-15",
+    type: "feature",
+    summary: "Added Nikon IX mount metadata for Pronea and IX-Nikkor lenses",
+  },
+  {
+    date: "2026-10-15",
+    type: "fix",
+    summary: "Removed invalid distortion samples while retaining valid corners and later samples",
+  },
+  {
+    date: "2026-10-14",
+    type: "fix",
+    summary:
+      "Rebuilt the Leica Elmarit-R 28mm f/2.8 from its own patent; the old model is now the M-mount Elmarit (11801)",
+  },
+  {
+    date: "2026-10-14",
+    type: "lens",
+    summary: "Added six Hasselblad, Leica, Olympus, Panasonic and Tokina lenses, including the Summilux-C 18mm T1.4",
+  },
+  {
+    date: "2026-10-13",
+    type: "fix",
+    summary: "Fixed the Distortion tab naming barrel distortion as pincushion and pincushion as barrel",
+  },
+  {
+    date: "2026-10-13",
+    type: "fix",
+    summary: "Corrected HOYA FCD1 glass dispersion, slightly shifting violet focus in the lenses that use it",
+  },
+  {
+    date: "2026-10-13",
+    type: "lens",
+    summary: "Added six Olympus, Panasonic, Sigma and Yashica lenses, including a 60-600mm zoom and a 2x macro",
+  },
+  {
+    date: "2026-10-12",
+    type: "fix",
+    summary: "Fixed four Canon and Sony telephoto lenses tracing slower than their stated aperture",
+  },
+  {
+    date: "2026-10-12",
+    type: "fix",
+    summary: "Fixed heavy spherical aberration and an f/3.5 long end on the Sony FE 70-200mm f/2.8 GM OSS",
+  },
+  {
+    date: "2026-10-12",
+    type: "lens",
+    summary: "Added three Canon, Hasselblad and Panasonic lenses plus Canon and Sony teleconverters",
+  },
+  {
+    date: "2026-10-11",
+    type: "lens",
+    summary: "Added six Leica, Samyang and Sigma lenses, including a 15mm f/1.4 fisheye and two macros",
+  },
+  {
+    date: "2026-10-10",
+    type: "lens",
+    summary: "Added six Laowa, Sigma and Sony lenses, including the Argus 45mm f/0.95 and 105mm f/2 STF",
+  },
+  {
+    date: "2026-10-10",
+    type: "fix",
+    summary: "Fixed the Vivitar Series 1 70-210mm f/3.5 passing light only near its aperture center",
+  },
+  {
+    date: "2026-10-09",
+    type: "fix",
+    summary: "Fixed sensor cover glass narrowing the off-axis ray fan of the Nikon AF-S 18-35mm at 35mm",
+  },
+  {
+    date: "2026-10-09",
+    type: "lens",
+    summary: "Added six Laowa, Sigma, Thypoch and Voigtländer lenses, including three macros",
+  },
+  {
+    date: "2026-10-08",
+    type: "lens",
+    summary: "Added nine Zeiss, Laowa, Olympus, Sigma and Voigtländer lenses, from 8mm fisheye to 135mm f/1.4",
+  },
+  {
+    date: "2026-10-08",
+    type: "fix",
+    summary: "Fixed false color-focus error on lenses with e-line glass data, mostly Leica and Rodenstock",
+  },
+  {
     date: "2026-10-08",
     type: "improvement",
     summary: "Improved MTF: diffraction from traced rays, clipped corners charted, traced f-number shown",

@@ -9,7 +9,7 @@
 **Inventor:** Ryo Shioda (塩田 了)
 **Applicant:** Sigma Corporation (株式会社シグマ)
 **Title:** Optical System (光学系)
-**Embodiment analyzed:** Example 1 (実施例1), infinity-focus prescription of §0094-0101
+**Example details:** 実施例1, infinity-focus prescription of §0094-0101
 
 Example 1 is the embodiment transcribed for the Sigma 24mm F1.4 DG DN | Art (A022). The identification is supported by the same independent points rather than by name alone:
 

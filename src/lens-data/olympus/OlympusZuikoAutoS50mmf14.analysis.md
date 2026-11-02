@@ -97,15 +97,15 @@ The BFD of 37.16 mm is well within the 46 mm OM flange focal distance, leaving a
 
 ### 3.4. Stop position
 
-The patent figure (Fig. 1) shows the iris diaphragm positioned in the central air gap d₆ between L3 and L4. The patent does not specify the exact axial position of the stop. From the patent figure, the stop appears to be approximately 25% of the way through d₆ from r₆, yielding the following split for the data file:
+The iris sits in the central air gap d₆ between L3 and L4, but Fig. 1 draws no diaphragm and the patent gives no stop position, so its axial place is a model choice. L3's steep rear surface r₆ sags 7.72 mm at its 12.4 mm rim, so any plane closer to r₆ cuts through L3's glass inside the f/1.4 iris. The data file puts the stop just behind r₆'s clear cap (the sag rounded up to 0.1 mm):
 
 | Gap segment | Normalized | Scaled (mm) |
 |:--|--:|--:|
-| r₆ to STO (d₆ pre) | 0.0839 | 4.20 |
-| STO to r₇ (d₆ post) | 0.2518 | 12.59 |
+| r₆ to STO (d₆ pre) | 0.1560 | 7.80 |
+| STO to r₇ (d₆ post) | 0.1797 | 8.985 |
 | d₆ total | 0.3357 | 16.79 |
 
-This placement puts the stop close to the rear surface of L3 and relatively far from the front surface of L4, consistent with a design where the front group contributes a weakly converging beam that continues to narrow through most of the air gap before reaching the strongly curved r₇.
+Splitting the air gap changes no power or conjugate. The paraxial f/1.4 marginal ray crosses this plane at 12.23 mm, the iris radius the viewer uses (the entrance pupil is sized paraxially, EPD = F/N). The real marginal ray at the paraxial pupil height crosses it at 11.64 mm: the front group's spherical aberration of the pupil means the iris admits real rays up to about 19.1 mm at the front, 6.8 % above the 17.86 mm paraxial pupil. No rim inside the elements Fig. 1 draws passes that beam, so the model's rims clip it first at r₅ and the lens traces f/1.48 wide open (see the audit log).
 
 ---
 
@@ -279,7 +279,7 @@ Semi-diameters were estimated by tracing a marginal ray at f/1.4 (EP SD = 17.86 
 
 The edge thickness constraint proved to be the binding limit for the front group elements. L1's meniscus geometry restricts its SD to approximately 18.9 mm before the edge falls below 0.5 mm, yet the f/1.4 marginal ray requires a minimum of 17.86 mm — leaving only about 1 mm of headroom for off-axis beam contribution. L2 is similarly constrained, with its steeper curvatures imposing a maximum SD of approximately 17 mm for a 0.5 mm edge.
 
-The most severe constraint is the slope limit on surface r₆ (L3 rear). With R₆ = 13.82 mm scaled, the maximum SD for a slope angle of 64.2° (sd/|R| = 0.90 for a sphere) is approximately 12.4 mm. However, the f/1.4 marginal ray reaches 13.1 mm at this surface. Setting SD = 12.4 mm means the rendered aperture is marginally smaller than the true f/1.4 beam — the steep rear surface of L3 becomes the effective vignetting aperture, trimming the outermost rays before they reach the stop. This is a genuine physical characteristic of high-aperture Double Gauss designs where the negative meniscus surfaces operate at extreme slopes.
+The most severe constraint is the slope limit on surface r₆ (L3 rear). With R₆ = 13.82 mm scaled, the maximum SD for a slope angle of 64.2° (sd/|R| = 0.90 for a sphere) is approximately 12.4 mm. The f/1.4 marginal ray crosses r₆ at 11.7 mm, inside that limit, so the steep surface does not clip the axial beam; its deep sag (7.72 mm at the rim) instead fixes how close to it the stop can sit (§3.4).
 
 These tight constraints confirm that the production lens vignettes significantly at full field and full aperture — a well-known characteristic of f/1.4 Double Gauss designs, which typically lose 1–2 stops of illumination at the extreme corners when wide open.
 
@@ -292,15 +292,15 @@ The cross-gap constraints were not binding for this design. The thin air gaps d�
 | r₁ | 1 | 18.5 | L1 edge thickness |
 | r₂ | 2 | 18.5 | L1 edge thickness |
 | r₃ | 3 | 16.5 | L2 edge thickness |
-| r₄ | 4 | 15.0 | Marginal ray + off-axis margin |
-| r₅ | 5 | 13.0 | Marginal ray + margin |
+| r₄ | 4 | 15.5 | f/1.4 marginal ray (15.30 mm) + 1 % |
+| r₅ | 5 | 14.6 | f/1.4 marginal ray (14.45 mm) + 1 % |
 | r₆ | 6 | 12.4 | R₆ slope limit (sd/|R| = 0.90) |
-| STO | STO | 10.3 | f/1.4 marginal ray at stop |
-| r₇ | 7 | 11.5 | Marginal ray + margin |
-| r₈ | 8 | 13.0 | Cemented junction (doublet) |
-| r₉ | 9 | 13.0 | L5 edge thickness / marginal ray |
-| r₁₀ | 10 | 14.0 | Marginal ray + off-axis |
-| r₁₁ | 11 | 14.0 | L6 edge thickness |
+| STO | STO | 12.2 | paraxial f/1.4 marginal ray at the stop (EPD = F/N, derived) |
+| r₇ | 7 | 11.6 | f/1.4 marginal ray (11.47 mm) + 1 % |
+| r₈ | 8 | 14.9 | Cemented junction; L5 square with r₉ |
+| r₉ | 9 | 14.9 | f/1.4 marginal ray (14.69 mm) + 1 % |
+| r₁₀ | 10 | 15.8 | L6 square with r₁₁ |
+| r₁₁ | 11 | 15.8 | f/1.4 marginal ray (15.63 mm) + 1 %; L6 edge 0.71 mm |
 | r₁₂ | 12 | 16.5 | Corner chief ray (15.87 mm) + clearance |
 | r₁₃ | 13 | 16.5 | Corner chief ray (15.93 mm) + clearance |
 

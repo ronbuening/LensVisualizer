@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Nikon AI Nikkor 28mm f/2.8S
@@ -22,27 +22,36 @@ import type { LensDataInput } from "../../types/optics.js";
  * paraxial/meridional ray heights, element-ratio sanity, sd/|R| < 0.90, edge
  * thickness, and signed cross-gap sag clearance. They should not be read as
  * measured Nikon mechanical clear apertures.
+ *
+ * Fresh source audit: common front rim20.6; S3 clear17.3, S4 clear12.6/outer17.3 land;
+ * S6 inferred cut depth5.31 (cap11.5102/outer13.2), passing full inferred-beam guard.
+ * All eight published ng values are retained; ng-only is not currently used by the traced g channel.
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "nikon-ai-nikkor-28mm-f28s",
   maker: "Nikon",
   name: "NIKON AI NIKKOR 28mm f/2.8 S",
   subtitle: "US 5,917,663 Example 2 - Nikon / Kenzaburo Suzuki",
-  specs: ["8 elements / 8 groups", "f = 28.610 mm", "FNO = 2.89", "2omega = 74.1 deg", "all-spherical"],
 
-  focalLengthMarketing: 28,
-  focalLengthDesign: 28.6097,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.89,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 5,917,663",
-  patentAuthors: ["Kenzaburo Suzuki"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 1999,
-  elementCount: 8,
-  groupCount: 8,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: ["8 elements / 8 groups", "f = 28.610 mm", "FNO = 2.89", "2omega = 74.1 deg", "all-spherical"],
+    elementCount: 8,
+    groupCount: 8,
+    focalLengthMm: { marketing: 28, design: 28.6097 },
+    fNumber: { marketing: 2.8, design: 2.89 },
+  },
+
+  source: {
+    patentNumber: "US 5,917,663",
+    example: { label: "Example 2", id: "2" },
+    patentYear: 1999,
+    authors: ["Kenzaburo Suzuki"],
+    assignees: ["Nikon Corporation"],
+  },
 
   elements: [
     {
@@ -52,10 +61,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.67003,
       vd: 47.07,
-      fl: 180.42,
-      glass: "N-BAF10 (SCHOTT; J-BAF10 class)",
-      ng: 1.68806,
+      focalLengthMm: 180.42,
+      glass: "N-BAF10 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Weak positive front meniscus; front-group distortion and field corrector.",
+      ng: 1.68806,
     },
     {
       id: 2,
@@ -64,10 +73,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5168,
       vd: 64.1,
-      fl: -52.39,
-      glass: "N-BK7 (SCHOTT; J-BK7A class)",
-      ng: 1.52669,
+      focalLengthMm: -52.39,
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "First strong negative retrofocus meniscus in GF.",
+      ng: 1.52669,
     },
     {
       id: 3,
@@ -76,10 +85,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5168,
       vd: 64.1,
-      fl: -65.74,
-      glass: "N-BK7 (SCHOTT; J-BK7A class)",
-      ng: 1.52669,
+      focalLengthMm: -65.74,
+      glass: "N-BK7 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Second negative retrofocus meniscus in GF.",
+      ng: 1.52669,
     },
     {
       id: 4,
@@ -88,10 +97,10 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.66755,
       vd: 41.96,
-      fl: 42.84,
-      glass: "J-BASF6 (HIKARI)",
-      ng: 1.68787,
+      focalLengthMm: 42.84,
+      glass: "J-BASF6 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "First rear-group positive element; begins reconvergence after GF.",
+      ng: 1.68787,
     },
     {
       id: 5,
@@ -100,10 +109,10 @@ const LENS_DATA = {
       type: "Plano-Convex",
       nd: 1.62041,
       vd: 60.14,
-      fl: 54.75,
-      glass: "S-BSM16 (OHARA; J-SK16 class)",
-      ng: 1.63314,
+      focalLengthMm: 54.75,
+      glass: "S-BSM16 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Positive element before the aperture stop; CRC partner interval follows L4 in production.",
+      ng: 1.63314,
     },
     {
       id: 6,
@@ -112,10 +121,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.61,
-      fl: -19.51,
-      glass: "SF4 (SCHOTT; J-SF4 class)",
-      ng: 1.79112,
+      focalLengthMm: -19.51,
+      glass: "SF4 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Strong post-stop dense flint negative element for Petzval and chromatic balancing.",
+      ng: 1.79112,
     },
     {
       id: 7,
@@ -124,10 +133,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.67025,
       vd: 57.53,
-      fl: 41.86,
-      glass: "J-LAK02 (HIKARI catalog equivalent; patent coordinate)",
-      ng: 1.68466,
+      focalLengthMm: 41.86,
+      glass: "J-LAK02 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Front element of the patent GLP image-stabilizing subgroup.",
+      ng: 1.68466,
     },
     {
       id: 8,
@@ -136,58 +145,51 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.67025,
       vd: 57.53,
-      fl: 39.75,
-      glass: "J-LAK02 (HIKARI catalog equivalent; patent coordinate)",
-      ng: 1.68466,
+      focalLengthMm: 39.75,
+      glass: "J-LAK02 (catalog-compatible spectral proxy; production supplier unresolved)",
       role: "Rear element of GLP and final converging element before the image plane.",
+      ng: 1.68466,
     },
   ],
 
   surfaces: [
-    { label: "1", R: 60.5, d: 3.5, nd: 1.67003, elemId: 1, sd: 24.5 },
-    { label: "2", R: 118.3, d: 0.1, nd: 1.0, elemId: 0, sd: 24.5 },
-    { label: "3", R: 36.9, d: 1.5, nd: 1.5168, elemId: 2, sd: 13.5 },
-    { label: "4", R: 15.4, d: 4.0, nd: 1.0, elemId: 0, sd: 12.6 },
-    { label: "5", R: 28.2, d: 1.5, nd: 1.5168, elemId: 3, sd: 13.2 },
-    { label: "6", R: 15.13, d: 14.4, nd: 1.0, elemId: 0, sd: 13.2 },
-    { label: "7", R: 28.6, d: 4.4, nd: 1.66755, elemId: 4, sd: 12.0 },
-    { label: "8", R: 1e15, d: 1.35, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "9", R: 1e15, d: 4.0, nd: 1.62041, elemId: 5, sd: 10.8 },
-    { label: "10", R: -33.97, d: 1.0, nd: 1.0, elemId: 0, sd: 10.8 },
-    { label: "STO", R: 1e15, d: 4.3, nd: 1.0, elemId: 0, sd: 6.7245 },
-    { label: "12", R: -20.8, d: 2.55, nd: 1.7552, elemId: 6, sd: 8.2 },
-    { label: "13", R: 53.18, d: 1.0, nd: 1.0, elemId: 0, sd: 6.6 },
-    { label: "14", R: -46.001, d: 3.1, nd: 1.67025, elemId: 7, sd: 7.4 },
-    { label: "15", R: -17.9, d: 0.1, nd: 1.0, elemId: 0, sd: 8.5 },
-    { label: "16", R: 109.097, d: 3.5, nd: 1.67025, elemId: 8, sd: 9.3 },
-    { label: "17", R: -34.8, d: 38.9793, nd: 1.0, elemId: 0, sd: 9.7 },
+    { label: "1", R: 60.5, d: 3.5, sd: 20.6, medium: 1 },
+    { label: "2", R: 118.3, d: 0.1, sd: 20.6 },
+    { label: "3", R: 36.9, d: 1.5, sd: 17.3, medium: 2 },
+    { label: "4", R: 15.4, d: 4.0, sd: 12.6, rimExtensionSd: 17.3 },
+    { label: "5", R: 28.2, d: 1.5, sd: 13.2, medium: 3 },
+    { label: "6", R: 15.13, d: 14.4, sd: 13.2, rimCutDepthMm: 5.31 },
+    { label: "7", R: 28.6, d: 4.4, sd: 12.0, medium: 4 },
+    { label: "8", R: "flat", d: 1.35, sd: 12.0 },
+    { label: "9", R: "flat", d: 4.0, sd: 10.8, medium: 5 },
+    { label: "10", R: -33.97, d: 1.0, sd: 10.8 },
+    { label: "STO", R: "flat", d: 4.3 },
+    { label: "12", R: -20.8, d: 2.55, sd: 8.2, medium: 6 },
+    { label: "13", R: 53.18, d: 1.0, sd: 6.6 },
+    { label: "14", R: -46.001, d: 3.1, sd: 7.4, medium: 7 },
+    { label: "15", R: -17.9, d: 0.1, sd: 8.5 },
+    { label: "16", R: 109.097, d: 3.5, sd: 9.3, medium: 8 },
+    { label: "17", R: -34.8, sd: 9.7 },
   ],
 
-  asph: {},
-
-  var: {
-    "17": [38.9793, 46.3152],
+  focus: {
+    closeFocusM: 0.2,
+    description:
+      "Production CRC changes the L4-L5 interval while the whole lens extends; patent Example 2 lists only infinity spacing, so close focus is approximated by BFD extension to the published 1:3.9 reproduction ratio.",
   },
-  varLabels: [["17", "BF"]],
+
+  gaps: { "17": { label: "BF", values: [[38.9793, 46.3152]] } },
+
+  aperture: { nominalFNumber: 2.89, fStops: [2.89, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "GF", fromSurface: "1", toSurface: "6" },
     { text: "GL", fromSurface: "7", toSurface: "17" },
     { text: "GLP", fromSurface: "14", toSurface: "17" },
   ],
-
   doublets: [],
 
-  closeFocusM: 0.2,
-  focusDescription:
-    "Production CRC changes the L4-L5 interval while the whole lens extends; patent Example 2 lists only infinity spacing, so close focus is approximated by BFD extension to the published 1:3.9 reproduction ratio.",
-
-  nominalFno: 2.89,
-  fstopSeries: [2.89, 4, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
-  scFill: 0.58,
-  yScFill: 0.56,
-} satisfies LensDataInput;
+  layout: { scFill: 0.58, yScFill: 0.56 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

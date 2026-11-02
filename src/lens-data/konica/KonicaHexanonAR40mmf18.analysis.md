@@ -7,7 +7,7 @@
 **Inventor:** Toshiko Shimokura\
 **Applicant:** Konishiroku Photo Industry Co., Ltd.\
 **Title:** Semi-wide Angle Lens (準広角レンズ)\
-**Embodiment analyzed:** Example 1 (第1実施例; Fig. 1(A))
+**Example details:** 第1実施例; Fig. 1(A)
 
 The selected prescription is Example 1 of JP1979-030821. The Japanese source gives the example in normalized form with
 $f=1$, an aperture of F1.8, a full field angle of $2\omega=56^\circ$, and a back focal distance of

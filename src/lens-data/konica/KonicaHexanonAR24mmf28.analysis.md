@@ -7,7 +7,7 @@
 **Inventor:** Toshiko Shimokura
 **Applicant:** Konishiroku Photo Industry Co., Ltd.
 **Title:** Retrofocus Type Wide-Angle Lens (レトロフォーカス型広角レンズ)
-**Embodiment analyzed:** Example 1 (第1実施例)
+**Example details:** 第1実施例
 
 Example 1 is the fixed prescription used for the KONICA HEXANON AR 24mm f/2.8 correlation. The patent describes an
 all-spherical retrofocus wide-angle lens of eight single elements and gives the numerical example in normalized units

@@ -40,8 +40,8 @@ const FOCUS: ReadonlyArray<[MtfFocusMode, string]> = [
   ["design", "Design plane (always)"],
 ];
 const SAMPLING: ReadonlyArray<[MtfGridCap, string]> = [
-  [128, "Standard"],
-  [256, "Refine"],
+  [256, "Standard"],
+  [128, "Faster"],
 ];
 
 /* Hover/focus explanations, one line per option in menu order. */
@@ -61,8 +61,9 @@ const FOCUS_HELP = [
   "Design plane (always): the source's image plane as authored, even when it is out of focus.",
 ].join("\n");
 const SAMPLING_HELP = [
-  "Standard: pupil grids of up to 128 samples across, enough for most lenses.",
-  "Refine: up to 256, for fields that converge slowly, such as thin beams near the edge. Slower.",
+  "Pupil samples are positions on the real aperture stop, evenly spaced, as in OpticStudio with ray aiming and in CODE V.",
+  "Standard: grids of up to 256 samples across the stop. Most fields converge well before that; vignetted beams near the edge of fast lenses can need it.",
+  "Faster: up to 128. Fields that have not converged there are shown and labelled unconverged.",
 ].join("\n");
 /** Wider than the default tooltip so each option fits in a few lines. */
 const HELP_WIDTH = 300;

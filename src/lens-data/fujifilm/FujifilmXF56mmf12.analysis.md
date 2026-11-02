@@ -9,7 +9,7 @@
 **Inventor:** Takashi Suzuki
 **Applicant:** FUJIFILM Corporation
 **Title:** Imaging Lens and Imaging Apparatus
-**Embodiment analyzed:** Example 3 (Tables 7–9, FIG. 3, FIG. 8)
+**Example details:** Tables 7–9, FIG. 3, FIG. 8
 **Production lens:** Fujinon XF56mmF1.2 R (announced January 6, 2014)
 
 The identification of Example 3 as the production embodiment rests on convergent evidence. The production lens is specified by Fujifilm as having 11 elements in 8 groups, with two extra-low dispersion (ED) elements and one double-sided aspherical element. Examples 1, 4, and 5 of the patent contain only 10 elements (five in G1 and five in G2), while Examples 2 and 3 each contain 11 elements — matching the production count. Example 3's focal length of 56.98 mm (Table 8; the rounded Table 7 rows recompute to 56.99 mm) and design f-number of 1.25 are consistent with the marketed 56 mm f/1.2 specification, as is its half-angle of view of 14.0° (total 28.0°, closely matching the published 28.5° angle of view on the APS-C format). All five examples share the same f/1.25 design aperture, but Example 3's 11-element count, two 1.49700 / 81.6 low-dispersion elements, and single double-sided aspherical element collectively match the published optical formula. The patent does not name the product, so the identification is an inference from these counts. The same optics serve the XF56mmF1.2 R APD, which adds an apodization filter that the patent does not describe; the 2022 XF56mmF1.2 R WR is a different 13-element design and is not covered here.

@@ -1,16 +1,17 @@
 import { useDeferredValue, useMemo, type ReactNode } from "react";
 import { ANALYSIS_TAB_RENDERERS } from "./analysisTabRenderers.js";
 import usePreparedAnalysisState from "../../display/analysis/usePreparedAnalysisState.js";
-import { createAnalysisComputationContext } from "../../../optics/compat.js";
-import { analysisSamplingForQuality, type AnalysisQuality } from "../../../optics/analysis/analysisQuality.js";
+import { createAnalysisComputationContext, createAnalysisRequest } from "../../../optics/analysis.js";
+import { analysisSamplingForQuality } from "../../../optics/analysis.js";
+import type { AnalysisQuality } from "../../../optics/analysis.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
-import type { FieldGeometryState } from "../../../optics/optics.js";
+import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import { traceRay } from "../../../optics/optics.js";
 import { isFisheyeProjection, projectionValueAtZoom } from "../../../optics/projection.js";
 import type { AnalysisTabId } from "../../../types/state.js";
-import type { PerspectiveTraceContext } from "../../../optics/perspective/index.js";
-import type { AnalysisSectionId } from "../../../optics/compat.js";
+import type { PerspectiveTraceContext } from "../../../optics/perspective.js";
+import type { AnalysisSectionId } from "../../../optics/analysis.js";
 
 interface AnalysisDrawerContentProps {
   activeTab: AnalysisTabId;
@@ -23,7 +24,7 @@ interface AnalysisDrawerContentProps {
   dynamicEFL: number;
   currentEPSD: number;
   currentPhysStopSD: number;
-  /** Selected working f-number, for analysis headers. */
+  /** Marked f-number of the aperture control, for analysis headers. */
   fNumber?: number;
   fieldGeometry?: FieldGeometryState | null;
   perspectiveTraceContext?: PerspectiveTraceContext | null;
@@ -112,9 +113,9 @@ export default function AnalysisDrawerContent({
     zoomT: analysisInputs.zoomT,
     aberrationT: analysisInputs.aberrationT,
   });
-  const analysisContext = useMemo(
+  const analysisRequest = useMemo(
     () =>
-      createAnalysisComputationContext({
+      createAnalysisRequest({
         preparedState,
         dynamicEFL: analysisInputs.dynamicEFL,
         currentEPSD: analysisInputs.currentEPSD,
@@ -126,6 +127,7 @@ export default function AnalysisDrawerContent({
       }),
     [preparedState, analysisInputs, analysisQuality, analysisSampling, deferredPerspectiveTraceContext],
   );
+  const analysisContext = useMemo(() => createAnalysisComputationContext(analysisRequest), [analysisRequest]);
   const projection = L.projection ?? { kind: "rectilinear" };
   const noticeStyle = {
     margin: "0 0 12px",

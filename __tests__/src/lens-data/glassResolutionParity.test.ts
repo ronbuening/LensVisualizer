@@ -1,6 +1,9 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { explainCompatibleGlassResolution, resolveCompatibleGlass } from "../../../src/optics/glassCatalog.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import {
+  explainCompatibleGlassResolution,
+  resolveCompatibleGlass,
+} from "../../../src/optics/chromatic/glassCatalog.js";
 import { TELECONVERTER_CATALOG } from "../../../src/utils/catalog/teleconverterCatalog.js";
 
 /**
@@ -15,7 +18,7 @@ describe("glass resolution parity", () => {
     let ambiguous = 0;
     const offenders: string[] = [];
     /* Teleconverter elements resolve glass through the same path once composed onto a host. */
-    for (const data of [...Object.values(LENS_CATALOG), ...Object.values(TELECONVERTER_CATALOG)]) {
+    for (const data of [...Object.values(CATALOG_CONSTRUCTION_FIXTURES), ...Object.values(TELECONVERTER_CATALOG)]) {
       for (const element of data.elements) {
         if (!element.glass || element.nd === 1) continue;
         const { glass, nd, vd, indexReference } = element;

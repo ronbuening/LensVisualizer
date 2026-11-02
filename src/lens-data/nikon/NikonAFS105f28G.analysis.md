@@ -20,40 +20,40 @@ G1 comprises L1–L4, G2 comprises L5 and doublet L6/L7, G3 comprises L8 and dou
 
 ## Element by element
 
-| Element | nd / vd | Calculated isolated focal length (mm) | Role |
-|---|---|---|---|
-| L1 | 1.7725 / 49.61 | 103.17 | Positive front singlet in G1 |
-| L2 | 1.61272 / 58.75 | 95 | Positive meniscus in G1 |
-| L3 | 1.71736 / 29.52 | -45.49 | Negative singlet in G1 |
-| L4 | 1.7725 / 49.61 | 50.73 | Plano-convex rear singlet in G1 |
-| L5 | 1.58267 / 46.43 | -40.85 | Negative singlet in moving G2 |
-| L6 | 1.53172 / 48.87 | -42.99 | Negative front element of cemented doublet D1 |
-| L7 | 1.80518 / 25.43 | 45.17 | Positive rear element of cemented doublet D1 |
-| L8 | 1.497 / 81.61 | 115.62 | Low-dispersion positive singlet in moving G3 |
-| L9 | 1.84666 / 23.78 | -65.28 | Negative front element of cemented doublet D2 |
-| L10 | 1.62041 / 60.29 | 32.77 | Positive rear element of cemented doublet D2 |
-| L11 | 1.8061 / 40.94 | -27.37 | Negative front element of G4a stabilization doublet; centered here |
-| L12 | 1.80518 / 25.43 | 54.86 | Positive rear element of G4a stabilization doublet; centered here |
-| L13 | 1.51823 / 58.96 | -113.38 | Negative meniscus in G4b |
-| L14 | 1.7859 / 44.2 | 57.11 | Positive rear singlet in G4b |
+| Element | nd / vd         | Calculated isolated focal length (mm) | Role                                                               |
+| ------- | --------------- | ------------------------------------- | ------------------------------------------------------------------ |
+| L1      | 1.7725 / 49.61  | 103.17                                | Positive front singlet in G1                                       |
+| L2      | 1.61272 / 58.75 | 95                                    | Positive meniscus in G1                                            |
+| L3      | 1.71736 / 29.52 | -45.49                                | Negative singlet in G1                                             |
+| L4      | 1.7725 / 49.61  | 50.73                                 | Plano-convex rear singlet in G1                                    |
+| L5      | 1.58267 / 46.43 | -40.85                                | Negative singlet in moving G2                                      |
+| L6      | 1.53172 / 48.87 | -42.99                                | Negative front element of cemented doublet D1                      |
+| L7      | 1.80518 / 25.43 | 45.17                                 | Positive rear element of cemented doublet D1                       |
+| L8      | 1.497 / 81.61   | 115.62                                | Low-dispersion positive singlet in moving G3                       |
+| L9      | 1.84666 / 23.78 | -65.28                                | Negative front element of cemented doublet D2                      |
+| L10     | 1.62041 / 60.29 | 32.77                                 | Positive rear element of cemented doublet D2                       |
+| L11     | 1.8061 / 40.94  | -27.37                                | Negative front element of G4a stabilization doublet; centered here |
+| L12     | 1.80518 / 25.43 | 54.86                                 | Positive rear element of G4a stabilization doublet; centered here  |
+| L13     | 1.51823 / 58.96 | -113.38                               | Negative meniscus in G4b                                           |
+| L14     | 1.7859 / 44.2   | 57.11                                 | Positive rear singlet in G4b                                       |
 
 The individual focal lengths are calculated as isolated thick lenses in air, including the cemented elements. They are not source-published element focal lengths. The former values for L6, L7, L9, L10 and L12 did not consistently follow that convention and are corrected.
 
 ## Glass
 
-The patent gives nd/vd, without individual catalog names or partial dispersions. Catalog counterparts are explicitly qualified; supplier identity and production chemistry remain unspecified. L2 uses BACD4, whose Abbe number differs slightly from the source. The source nd/vd values are preserved. The unsupported L8 dPgF=0.028 override and inferred APD claim are removed; compatible catalog dispersion now governs without an invented patent anomaly.
+Fresh inspection of Example 3 / Table 3, PDF page 24, confirms all fourteen stored nd/νd pairs. The common table convention on page 22 is d-line, 587.6 nm. The patent gives nd/vd, without individual catalog names or partial dispersions. Catalog counterparts are explicitly qualified; supplier identity and production chemistry remain unspecified. L2 uses BACD4, whose Abbe number differs slightly from the source. L5’s label now names the actually selected J-BAF3 spectral counterpart; the earlier bare BAF3 alias selected that same curve. The source nd/vd values are preserved. The unsupported L8 dPgF=0.028 override and inferred APD claim are removed; compatible catalog dispersion now governs without an invented patent anomaly.
 
 ## Focus and aperture
 
 All three source focus stations are retained, including the previously omitted nominal half-magnification state:
 
 | Gap (mm) | Infinity | Source 0.5× | Source 1× |
-|---|---|---|---|
-| D8 | 3.000 | 12.247 | 21.289 |
-| D13 | 21.449 | 12.203 | 3.160 |
-| D14 | 14.484 | 6.965 | 0 |
-| D20 | 2.000 | 9.519 | 16.484 |
-| BF | 53.12017 | 52.48194 | 52.48113 |
+| -------- | -------- | ----------- | --------- |
+| D8       | 3.000    | 12.247      | 21.289    |
+| D13      | 21.449   | 12.203      | 3.160     |
+| D14      | 14.484   | 6.965       | 0         |
+| D20      | 2.000    | 9.519       | 16.484    |
+| BF       | 53.12017 | 52.48194    | 52.48113  |
 
 Source object distances D0 are 240.735 and 151.487 mm from the first vertex. Adding the corresponding full optical tracks gives image-to-object distances 0.39909544 and 0.30984563 m. These define the reciprocal-distance slider positions 0, 0.7763697576 and 1. The aperture series begins at f/2.88.
 
@@ -65,7 +65,9 @@ The patent explicitly varies stop diameter with focus and gives finite-conjugate
 
 ## Semi-diameter notes
 
-Figures 9A–9C were inspected from the original at 600 dpi. The valid Figure 9A measurement excludes drawing leaders and uses optical rims. Measured-to-authored rim ratios are approximately 0.83–1.18, below the strong-revision threshold. Existing estimated SDs are retained; the drawing does not publish exact clear apertures. Surface and image-circle audits pass, and all three source stations plus half slider have no hidden rim trimming.
+Figures 9A–9C were reinspected from the original at 600 dpi; the embedded source is 300 ppi. Figure 9A gives approximately 9.78 native pixels/mm from the 105.8775 mm first-to-last-vertex span. Its short flat lands support inferred cuts on the concave rear of L3 (S6, depth 5.93 mm, cap radius 19.99199 mm inside the existing 21.5 mm rim) and concave front of L13 (S24, depth 3.29 mm, cap radius 12.95820 mm inside the 14 mm rim). The latter cap is moved outward from the drawing’s ratio to clear the full wide-open beam and its margin. L5’s rear S10 keeps its existing 14 mm clear cap and adds a flat opaque land to a drawn radius of 15.4 mm.
+
+Every remaining air/glass face and all three cemented boundaries were checked. No other resolved land justifies a trim or extension. In particular, L4’s object-side curve reaches its edge in the source; its modeled 15 mm cap is retained across the narrow 0.2601 mm S6–S7 gap instead of inventing a land there. The inferred outer radii still differ from the drawing in some elements; the lands are not exact factory dimensions. The continuous front S11 curve of L6 also grows from 12 to 12.5 mm, the minimum one-decimal radius needed by the stated axial beam. This removes its inherited nominal-aperture clip without adding a land or altering the shared cemented interface. Source radii, axial distances, focus stations and iris controls are unchanged. Surface and image-circle checks pass, and nine focus/zoom render states have finite paths and zero hidden rim trimming. The corrected aperture is within 3% of nominal f/2.88 with no rim limiter; none of the new lands clips the nominal beam.
 
 ## Sources
 

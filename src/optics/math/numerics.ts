@@ -83,3 +83,16 @@ export function normalizeControlT(value: number, label: string): number {
 export function formatCacheNumber(value: number): string {
   return Object.is(value, -0) ? "0" : value.toPrecision(17);
 }
+
+/**
+ * Spacing within the binade holding |x|, including the largest finite double.
+ *
+ * @param x - coordinate or ray parameter
+ * @returns its ulp, Number.MIN_VALUE for zero/subnormals, or NaN for a non-finite input
+ */
+export function ulpOf(x: number): number {
+  const bits = new DataView(new ArrayBuffer(8));
+  bits.setFloat64(0, x);
+  const exponent = (bits.getUint32(0) >>> 20) & 0x7ff;
+  return exponent === 0x7ff ? NaN : 2 ** Math.max(-1074, exponent - 1075);
+}

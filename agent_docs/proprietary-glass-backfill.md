@@ -43,7 +43,7 @@ also set `indexReference: "e"`. Omit the field for d-line values and for prescri
 to d-line. This metadata selects C′/e/F′ compatibility, prevents d-line code substitution, and preserves the source
 prescription unchanged.
 
-The cascade in [src/optics/dispersion.ts](../src/optics/dispersion.ts) honors these immediately: with `nC`/`nF`
+The cascade in [src/optics/chromatic/materialResolver.ts](../src/optics/chromatic/materialResolver.ts) honors these immediately: with `nC`/`nF`
 populated the surface upgrades from `abbe` to `lineIndices` quality, and the LCA inset's quality badge reflects it. If
 the patent lists only `nd`/`vd` and `dPgF` (or `θgF`) without explicit `ng`, populate `dPgF` alone — the V-channel
 cascade uses the Schott normal-line approximation plus `dPgF` to estimate `ng`, including when a compatible catalog
@@ -66,7 +66,6 @@ tasks:
 
 | Lens file | Patent reference | Elements needing backfill | Notes |
 |---|---|---|---|
-| [canon/CanonEFS1022mmf3545.data.ts](../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) | US 2005/0286139 A1 | L4 rear positive asphere (1.48456 / 70) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 | [canon/CanonRF2870mmf28.data.ts](../src/lens-data/canon/CanonRF2870mmf28.data.ts) | US 2024/0329367 A1 | GB (1.544 / 66.3) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 | [carl-zeiss-jena/ZeissSonnar50f15.data.ts](../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | US 1,975,678 | Element 3 (1.4075 / 65.7) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |
 | [minolta/MinoltaAF400mmf45APOG.data.ts](../src/lens-data/minolta/MinoltaAF400mmf45APOG.data.ts) | JP 1996-327896 A | Element 1 (1.4931 / 83.6); Element 2 (1.4931 / 83.6) | νd > 65 without ΔPgF: look for θgF/ΔPgF, nC/nF/ng, or a glass name that resolves to a catalog curve. |

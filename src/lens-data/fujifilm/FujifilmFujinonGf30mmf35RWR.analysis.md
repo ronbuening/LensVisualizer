@@ -6,8 +6,7 @@
 **Published:** July 29, 2021\
 **Inventor:** Shunsuke Miyagishima\
 **Applicant / Assignee:** Fujifilm Corporation\
-**Title:** *Imaging Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Imaging Lens and Imaging Apparatus*
 
 The modeled prescription is Example 1, identified in ¶0082 and Figure 1 of the patent. The patent gives a three-functional-group wide-angle lens in which G1 is positive and fixed, G2 is positive and moves for focusing, and G3 is negative and fixed. Example 1 contains 13 glass elements and three cemented interfaces, corresponding to ten air-separated optical components. The LensVisualizer data retains this numerical embodiment at its native scale.
 

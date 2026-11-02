@@ -152,3 +152,107 @@ the SD method and the 25A turnover (departure −1.23 mm at 17.2 mm) added.
   legacy 12.434 was the patent's rounded BFa, while 10.38 + 1.6/1.5168 + 1.00 = 12.43485 mm. Physical track grows
   0.546 mm, t(1 − 1/n) = 0.545 mm plus rounding, and now matches the patent TL 163.987 mm. Surface validator and
   image-circle check pass.
+
+## 2026-10-27 — Rim-cut figure review
+
+Fig. 1 (PDF p. 41, the same image as the front-page abstract figure; native 2677 × 2909 raster at 812 ppi, scale
+0.0704 mm/px from the 2144 px S1–S33 vertex span) was read element by element on both halves of the upper
+(infinity) panel for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 7 (L14 front, R −38.631) | 0.911 (24.4 / 26.7 mm) | 8.40 mm | 24.05 mm | 26.4 | 20.46 mm |
+| 17 (L19 rear, R 56.178) | 0.88 (20.9 / 23.7 mm) | 4.49 mm | 22.01 mm | 23.0 (was 22.0) | 20.18 mm |
+| 31 (L43 rear, R 37.802) | 0.955 (18.1 / 18.9 mm) | 4.56 mm | 18.00 mm | 19.3 (was 18.0) | 9.21 mm |
+| 32A (L44 front, R −124.601) | 0.933 (17.6 / 18.9 mm) | 1.96 mm | 17.73 mm | 19.0 | 6.05 mm |
+
+- 7 and 32A: the face's `sd` is the element edge, so the cut radius is the figure share of `sd`.
+- 17 and 31: the stored `sd` sat inside the drawn square edge (31 was held at 18.0 for the L43/L44 gap). Each now
+  takes its partner face's rim (16 at 23.0, 30 at 19.3 mm), and the cut sits at the old `sd`. The clear radius of 17
+  goes from the old 22.0 mm rim to the 22.0073 mm cut radius, where the beams reach 19.4168 mm; that of 31 goes from
+  18.0 to 17.9988 mm, where the beams reach 16.8163 mm. On 17 the figure share (cut radius 20.24 mm) would sit only
+  0.06 mm above the close-focus axial ray, so the land drawn is shorter than the figure's (22.01 of 23.0 mm).
+- Concave faces 4A (L12 rear), 6 (L13 rear), 14 (L17 rear), 26 (L32 rear), 28 (L41 rear) and 33 (L44 rear) run
+  to their element edge in the figure; no cut.
+- No cap reaches the stop plane: surface 17's land clears it by 1.14 mm (fixed gap), surface 19 by 8.68 mm.
+- Surface audit clean; aperture audit unchanged (stated f/1.23 traced; no rim, trace, iris or failed rows, no
+  rim-cut limiter); image-circle check passes. At Y = 21.6 mm (ω = 32.62°) the stop-edge rim rays fail on the
+  lens's own geometry, so the cuts were first checked with a meridional fan scan. The beam rule (below) now covers
+  them: each of the four cuts clears every traced ray of the wide-open beams by its margin and clips none of them.
+
+Lands seen but not cut:
+
+- 2 (L11 rear, R 31.105): land at 0.826 (cap end 25.8 mm, edge 31.2 mm). The stored `sd` 26.3 already sits at
+  the cap end, but the face cannot take its partner's 31.2 mm rim because the sphere ends at 31.1 mm. The diagram
+  keeps its sloped edge from 26.3 to 31.2 mm.
+- 19 (L21 front, R −38.223): short land at 0.963 (18.2 / 18.9 mm). The cut radius would be 18.30 mm, inside the
+  18.31 mm close-focus axial ray, so it would slow the lens.
+
+The beam rule (`validateRimCutBeams`) asks an inferred cut to clear the furthest traced ray of the wide-open beams by
+the larger of 0.05 mm and 0.3 % of its radius, at every field and focus state, traced through the lens without its
+inferred cuts. The beams are traced on the paraxial stop of #933 (EPD = F/N) with the rule's current search, which
+follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full measurement.
+All four cuts pass at their figure-review positions:
+
+- Surface 7: cut radius 24.0509 mm. The beams reach 23.8438 mm there (focusT 0.2, 34.09°), a clearance of 0.2072 mm
+  against a 0.0722 mm margin, 0.1350 mm spare.
+- Surface 17: cut radius 22.0073 mm. The beams reach 19.4168 mm there (focusT 0.65, 8.34°), a clearance of 2.5905 mm
+  against a 0.0660 mm margin, 2.5245 mm spare.
+- Surface 31: cut radius 17.9988 mm. The beams reach 16.8163 mm there (focusT 0.9, 34.09°), a clearance of 1.1825 mm
+  against a 0.0540 mm margin, 1.1285 mm spare.
+- Surface 32A: cut radius 17.7264 mm. The beams reach 17.0970 mm there (focusT 0.65, 34.09°), a clearance of
+  0.6294 mm against a 0.0532 mm margin, 0.5762 mm spare.
+
+Figure scale and land length: Fig. 1's 2144 px S1–S33 vertex span over 151.008 mm is 14.198 native px per lens mm.
+One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px).
+
+- 7: q 0.911 at a 374.8 px edge (26.4 mm), range 0.906–0.916. Land 2.3491 mm, over the 0.1 mm minimum.
+- 17: q 0.88 at a 326.6 px edge (23.0 mm), range 0.874–0.886. The cut sits at the old 22.0 mm rim, 0.957 of `sd`.
+  Land 0.9927 mm, over the minimum.
+- 31: q 0.955 at a 274.0 px edge (19.3 mm), range 0.948–0.962. The cut sits at the old 18.0 mm rim, 0.933 of `sd`.
+  Land 1.3012 mm, over the minimum.
+- 32A: q 0.933 at a 269.8 px edge (19.0 mm), range 0.926–0.940. Land 1.2736 mm, over the minimum.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/JP2025052870A.pdf`, PDF p. 41, Figure 1 (upper/infinity), including a 600 dpi crop of the complete cross-section. The source embodiment and every air face were checked against the stored section. The native figure scale is 14.198 px/mm, from the vertex span recorded above; upsampling does not improve the native measurement.
+
+| Surface | Clear `sd` before → after | `rimExtensionSd` before → after | Figure evidence |
+|---|---|---|---|
+| 2 | 26.3 → 26.3 mm | absent → 31.2 mm | Curve ends inside a square outer rim; cap/edge q 0.826, range 0.822–0.830. |
+
+The sphere stops at its original cap end, inside |R| = 31.10505 mm. Cuts on 7, 17, 31 and 32A are retained. Surface 19 cannot take the figure cut without entering its traced beam, so it stays uncut. The extension adds an opaque flat land at the existing cap-end sag and changes no optical aperture, curvature, spacing or medium. Outer rim follows the partner face, within the figure's precision.
+
+Validation: `audit:surface` and `audit:image-circle` on this data file; parent records the full repository gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/JP2025052870A.pdf`, Numerical Example 1 / Table 1, PDF pp. 20–21; θgF definitions and abnormal-dispersion discussion ¶0057–0060 / ¶0071–0073 on pp. 12 and 14. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 1.64000 / 60.1 | S-BSM81 | retained coordinate-compatible curve |
+| L12 | 1.51680 / 64.1 | J-BK7A | retained coordinate-compatible curve |
+| L13 | 1.92119 / 24 | FDS24 | retained coordinate-compatible curve |
+| L14 | 1.73800 / 32.3 | J-KZFH9 | retained coordinate-compatible curve |
+| L15 | 1.95375 / 32.3 | J-LASFH21 | retained coordinate-compatible curve |
+| L16 | 1.59349 / 67 | J-PSKH4 | retained coordinate-compatible curve |
+| L17 | 1.59349 / 67 | J-PSKH4 | retained coordinate-compatible curve |
+| L18 | 1.59319 / 67.9 | J-PSKH1 | retained coordinate-compatible curve |
+| L19 | 1.73800 / 32.3 | J-KZFH9 | retained coordinate-compatible curve |
+| L21 | 1.72047 / 34.7 | N-KZFS8 | retained coordinate-compatible curve |
+| L22 | 1.59319 / 67.9 | J-PSKH1 | retained coordinate-compatible curve |
+| L31 | 1.59294 / 67.9 | J-PSKH1 | retained coordinate-compatible curve |
+| L32 | 1.77503 / 47.3 | M-TAF401 | retained coordinate-compatible curve |
+| L41 | 1.59319 / 67.9 | J-PSKH1 | retained coordinate-compatible curve |
+| L42 | 1.94594 / 17.98 | FDS18 | retained coordinate-compatible curve |
+| L43 | 1.78880 / 28.4 | S-NBH58 | retained coordinate-compatible curve |
+| L44 | 1.62372 / 58.4 | none | unresolved; Abbe approximation |
+
+Coverage: 17 physical lens elements, 17 authored media, 16 modeled media resolving to dispersion curves; 1 rear plate(s) checked separately (FL 1.51680/64.1, J-BK7A). Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All seventeen nd/νd pairs are retained. L31's J-PSKH1 is a non-identical proxy (Δnd +0.000250). L32's M-TAF401 is also non-identical (Δnd about −0.00126, Δνd about −0.13); its label and analysis now explicitly say spectral proxy. L44 (1.62372/58.4) stays unresolved because several nearby crown curves are compatible but none is coordinate-equal or source-identified; unsupported proprietary-chemistry speculation was removed. Source θgF 0.5896 on L19 gives dPgF 0.0001286 (stored rounded 0.0001); θgF 0.6546 on L42 gives 0.04104236 (stored rounded 0.041). Both source-discussed APD tags and rounded deviations are retained. The separate rear plate remains source-matched.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.

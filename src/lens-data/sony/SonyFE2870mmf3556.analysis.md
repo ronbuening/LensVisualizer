@@ -10,7 +10,7 @@
 **Inventors:** Fumikazu Kanetaka; Kodai Nagamatsu  
 **Assignee:** Sony Corporation  
 **Title:** Zoom Lens and Imaging Apparatus  
-**Embodiment analyzed:** Numerical Example 4; Tables 13-17; FIGS. 13-16
+**Example details:** Tables 13-17; FIGS. 13-16
 
 Numerical Example 4 is the closest disclosed prescription for the Sony FE 28-70mm F3.5-5.6 OSS (SEL2870). The identification rests on convergent rather than single-point evidence.
 

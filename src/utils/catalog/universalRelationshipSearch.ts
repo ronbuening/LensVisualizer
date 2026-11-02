@@ -6,7 +6,9 @@ import { catalogCollator } from "./collation.js";
 export function buildUniversalSearchIndex(nodes: readonly UniversalRelationshipNode[]) {
   return nodes.map((node) => {
     const normalized = normalizeSearchText(node.name);
-    return { node, normalized, compactPatent: node.kind === "patent" ? normalized.replaceAll(" ", "") : "" };
+    /* A patent is also found by the names of the catalog lenses taken from it. */
+    const aliases = node.kind === "patent" ? node.patent.lenses.map((lens) => normalizeSearchText(lens.name)) : [];
+    return { node, normalized, aliases, compactPatent: node.kind === "patent" ? normalized.replaceAll(" ", "") : "" };
   });
 }
 
@@ -16,13 +18,19 @@ export function searchUniversalNodes(index: ReturnType<typeof buildUniversalSear
   const words = normalized.split(" ");
   const compact = normalized.replaceAll(" ", "");
   return index
-    .filter((entry) => words.every((word) => entry.normalized.includes(word)) || entry.compactPatent.includes(compact))
+    .filter(
+      (entry) =>
+        [entry.normalized, ...entry.aliases].some((name) => words.every((word) => name.includes(word))) ||
+        entry.compactPatent.includes(compact),
+    )
     .map((entry) => ({
       ...entry,
       score:
-        entry.normalized === normalized || entry.compactPatent === compact
+        entry.normalized === normalized || entry.compactPatent === compact || entry.aliases.includes(normalized)
           ? 0
-          : entry.normalized.startsWith(normalized) || entry.compactPatent.startsWith(compact)
+          : entry.normalized.startsWith(normalized) ||
+              entry.compactPatent.startsWith(compact) ||
+              entry.aliases.some((alias) => alias.startsWith(normalized))
             ? 1
             : 2,
     }))

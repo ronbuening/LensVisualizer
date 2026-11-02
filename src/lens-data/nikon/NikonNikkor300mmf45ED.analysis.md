@@ -7,8 +7,7 @@
 **Granted:** 27 November 1973\
 **Inventor:** Yoshiyuki Shimizu\
 **Assignee:** Nippon Kogaku K.K.\
-**Title:** *Achromatic Telephoto Objective Lens*\
-**Embodiment analyzed:** Example I
+**Title:** *Achromatic Telephoto Objective Lens*
 
 Example I is the 300.0 mm, F/4.5, 8.4° full-field embodiment of Shimizu's achromatic telephoto patent. The implemented prescription preserves the ten published spherical refracting surfaces at unit scale and adds only the model completions needed by LensVisualizer: a Gaussian image-plane spacing, one inferred aperture-stop plane and calibrated opening, and modeled clear apertures. [1, pp. 10–13]
 
@@ -125,6 +124,12 @@ Surface-by-surface Petzval summation using `φ/(n·n′)` over the ten refractin
 One source-reading issue remains explicitly documented rather than silently normalized: Example I r5 is **+650.0 mm** in the rendered source and the repeated prescription context. Reversing only that sign collapses the computed EFL to about 143.55 mm. The patent's 1974 Certificate of Correction changes other text and examples but does not alter Example I. [1, pp. 11, 13]
 
 The numerical model therefore has a well-defined boundary. Prescription radii, d1–d9, d-line indices/Abbe values, focal length, aperture designation, and field are patent-derived; d10, stop placement/opening, and surface clear apertures are modeled completions; 4 m minimum focus, release-series identity, and F-mount production context are manufacturer-side facts; and the product-to-patent identification remains a research correlation rather than a Nikon attribution.
+
+## Patent rim and glass review
+
+The October 30, 2026 review inspected every optical face in US 3,774,991 Fig. 1A (PDF page 2, rendered at 600 dpi from a native 300 ppi scan). The broken long air gap prevents whole-span scaling. The last front-group positive element L4 is drawn almost as tall as L1, so its two continuous clear caps are restored from 31.6/30.7 mm to 35.0/35.0 mm, versus L1's existing 35.6 mm. This is a figure-based height estimate. The weak rear arc at R7 is not evidence of an independently trimmed cap or vertical land; no such feature is invented. The remaining rims and cemented interfaces are retained.
+
+All six source d-line index/Abbe pairs were checked afresh in Example I (PDF page 11, column 5). Four media resolve to compatible catalog spectral proxies: H-LaF3B, BAF12, N-SK16 and F2. The two 1.48606/81.5 fluophosphate positions remain unresolved. The named proxies qualify the current wavelength model and leave its coefficients and source anchors unchanged; they do not identify a historical supplier, melt or production material. The patent's qualitative secondary-spectrum explanation supplies no numeric per-glass partial dispersion or complete C/F/g indices, so none is fabricated.
 
 ## Sources
 

@@ -7,7 +7,6 @@
 **Inventors:** Hitoshi Murakami, Ryosuke Sato  
 **Applicant:** Sigma Corporation  
 **Title:** Large-aperture optical system  
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription transcribes the original Japanese A-publication, ¶0108, at its native millimetre scale.
 Its association with the Sigma 65mm F2 DG DN | Contemporary is a strong construction correlation,

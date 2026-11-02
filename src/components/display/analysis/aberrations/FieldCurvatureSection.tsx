@@ -2,7 +2,7 @@ import { AberrationValueDisplay } from "../analysisUi.js";
 import ChromaticFieldCurvaturePlot from "../ChromaticFieldCurvaturePlot.js";
 import FieldCurvaturePlot from "../FieldCurvaturePlot.js";
 import StandardFieldCurvaturePlot from "../StandardFieldCurvaturePlot.js";
-import type { FieldCurvatureResult } from "../../../../optics/aberrationAnalysis.js";
+import type { FieldCurvatureResult } from "../../../../optics/analysis.js";
 import type { Theme } from "../../../../types/theme.js";
 import { formatSignedMm } from "./format.js";
 import SectionHeader from "./SectionHeader.js";
@@ -28,7 +28,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       <SectionHeader
         title="Field Curves"
         helpLabel="Field curves help"
-        helpText="Parabasal and real-ray tangential/sagittal field curves with Petzval reference. Astigmatic split is in the section below."
+        helpText="Parabasal and real-ray tangential/sagittal field curves with Petzval reference. The real-ray curves trace fans aimed at positions on the real aperture stop, as in OpticStudio with ray aiming and in CODE V; the parabasal curves keep a 0.01 mm ray pair about the chief ray. A field whose surviving fan does not reach a quarter of the stop radius on both sides of the chief ray has no real-ray point, since a one-sided fan reads coma as defocus. Astigmatic split is in the section below."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}

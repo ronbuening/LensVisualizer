@@ -10,7 +10,7 @@
 **Applicant:** Samyang Optics Co., Ltd.  
 **Title:** Lens Optical System  
 **Classification:** G02B 15/14, G02B 3/00, G02B 9/30  
-**Embodiment analyzed:** First embodiment, Example 1, Tables 1–3 and Fig. 1
+**Example details:** Example 1, Tables 1–3 and Fig. 1
 
 WO 2021/246545 A1 discloses five compact wide-angle embodiments using the same broad kinematic architecture: a positive fixed front group, a positive moving focusing group, and a negative fixed rear group. Example 1 is the strongest match to the production Samyang AF 18mm F2.8 FE, also sold under the Rokinon name in the United States.
 

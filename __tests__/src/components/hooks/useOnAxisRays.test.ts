@@ -3,15 +3,19 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useOnAxisRays from "../../../../src/components/hooks/useOnAxisRays.js";
-import buildLens from "../../../../src/optics/buildLens.js";
-import { doLayout, entrancePupilAtState, fopenAtZoom } from "../../../../src/optics/optics.js";
-import { createCoordinateTransforms } from "../../../../src/optics/diagramGeometry.js";
-import { raySampleCountForDensity } from "../../../../src/optics/raySampling.js";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
-import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
+import {
+  doLayoutForRuntimeLens as doLayout,
+  fopenAtZoomClamped as fopenAtZoom,
+} from "../../../../src/optics/state/runtimeAdapters.js";
+import { entrancePupilAtState } from "../../../../src/optics/state/fieldAdapters.js";
+import { createCoordinateTransforms } from "../../../../src/optics/diagram/coordinateTransforms.js";
+import { raySampleCountForDensity } from "../../../../src/optics/trace/raySampling.js";
+import { catalogLensData } from "../../optics/testLensFixtures.js";
+import type { RuntimeLens } from "../../../../src/types/optics.js";
 import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 
-const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
+const Sonnar = catalogLensData(SonnarRaw);
 
 /* ── Build a real lens and derived parameters for realistic testing ── */
 function buildTestFixture(focusT = 0, zoomT = 0, stopdownT = 0) {

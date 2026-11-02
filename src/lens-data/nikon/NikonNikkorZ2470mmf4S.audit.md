@@ -126,3 +126,96 @@ pp. 13–14; Fig. 1A–1C p. 38 (300 dpi raster, axis horizontal); Fig. 3 close-
 - Paraxial check against the previous data: EFL identical; defocus changes by at most 0.0009 mm (tele), the rounding in
   the patent's printed air-equivalent BF (35.599 against 34.444 + 1.600/1.5168 + 0.101 = 35.5999). Physical track grows
   by 0.545 mm and now matches the patent's 121.58–151.03 mm total length.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1A (PDF p. 38, native 300 ppi raster, axis horizontal, 0.2423 mm/px) was read element by element on both halves
+of the section for flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws. The
+L52 land was also measured on Figure 1C.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 5A (L21 rear, R 17.042 asph) | 0.715 (59.2 / 82.2 px upper, 58.8 / 82.8 px lower) | 7.47 mm | 14.40 mm | 21.5 (was 14.4) | 5.73 mm |
+| 25 (L52 front, R −24.365) | 0.84 (58.3 / 69.3 px upper, 58.2 / 69.7 px lower; Fig. 1C 0.84) | 5.26 mm | 15.12 mm | 18.0 | 4.67 mm |
+
+- 5A: Figure 1A draws L21 as a rectangle; the rear cap stops at the curve end the 2026-09-23 audit measured for `sd`
+  (14.4 mm), and a vertical land runs from there to the element's top and bottom edges, level with the front face's
+  rim. `sd` was raised to the front face's 21.5 mm with the cut at the old 14.4 mm rim (depth = sag there): the clear
+  radius went from the old 14.4 mm rim to the 14.4008 mm cut radius. The land sat 7.47 mm behind the 5A vertex and
+  L22's front rim 7.56 mm, a 0.09 mm gap the validator accepts; the figure draws the two about 3 px (0.7 mm) apart.
+  5A has since gone back to its 14.4 mm rim with no cut (below), so it carries no land.
+- 25: the L52 front cap ends short of the element edge with a vertical land at both rims; the cut radius is
+  0.84 × the stored 18.0 mm `sd`.
+- Every other concave face (6, 7, 9 in G2, 16 L34 front, 19 L41 front, 23 L51 front, 26 L52 rear) runs to its
+  element's corner in the figure; no cut. Surface 3 (L12 rear, R 417) bends only 0.84 mm (3.5 px) over its height and
+  its stroke reaches the corner; any land there is below what the figure resolves.
+- No cap reaches the stop plane at any zoom or focus state (surface 9 clears it by 2.48 mm).
+- The aperture audit is unchanged: all three stations trace the stated f/4 within 3 %, with no rim, trace, iris or
+  rim-cut limiter. Surface validator: no errors; image-circle floor: 0 undersized. The cut on 25 clears every traced
+  ray of the wide-open beams by its margin and clips none of them (beam rule below); 5A carries no cut. The engine's
+  field estimate reads the cut radius, and the wide-end half-field estimate is unchanged.
+- The rendered wide-end section now shows the L52 front land; nothing else moved. L21 keeps its earlier outline,
+  without the rear land the figure draws.
+
+The beam rule (`validateRimCutBeams`) asks an inferred cut to clear the furthest traced ray of the wide-open beams by
+the larger of 0.05 mm and 0.3 % of its radius, at every field, zoom and focus state, traced through the lens without
+its inferred cuts. The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current search,
+which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement.
+
+- Surface 25: cut radius 15.1214 mm. The beams reach 13.4433 mm there (wide, 24.72 mm, at infinity, 43.27°), a
+  clearance of 1.6781 mm against a 0.05 mm margin, 1.6281 mm spare. The cut clips none of their rays.
+- Surface 5A: back to its designed 14.4 mm rim with no cut. Raising its `sd` to 21.5 mm had extended the asphere past
+  its designed extent, so the land Figure 1A draws at 14.4 mm is not modelled. The cut did not fail the beam rule: with
+  the face raised and cut, the beams reach 14.0098 mm there, 0.3910 mm inside the 14.4008 mm cut radius.
+
+The surface audit and the beam rule pass.
+
+Figure scale and land length: Figure 1A's 0.2423 mm/px, from the 437.5 px / 106.026 mm S1–S26 vertex span of the
+2026-09-23 audit, is 4.126 native px per lens mm. One native pixel at the cap end and at the edge moves q by
+±(1 + q) / (edge px).
+
+- 25: figure q 0.84 (58.3 / 69.3 px upper, 58.2 / 69.7 px lower) at a 74.3 px edge (18.0 mm), range 0.815–0.865;
+  the figure draws that edge at 69.3–69.7 px (16.8 mm). The cut sits at 0.840 of `sd`. Land 2.8786 mm, over the
+  0.1 mm minimum.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/JPWO2019049372A1.pdf`, PDF p. 38, Figure 1A, including a 600 dpi crop of the complete cross-section. The source embodiment and every air face were checked against the stored section. The native figure scale is 4.126 px/mm, from the vertex span recorded above; upsampling does not improve the native measurement.
+
+| Surface | Clear `sd` before → after | `rimExtensionSd` before → after | Figure evidence |
+|---|---|---|---|
+| 5A | 14.4 → 14.4 mm | absent → 21.5 mm | Curve ends inside a square outer rim; cap/edge q 0.715, range 0.694–0.736. |
+
+The asphere is evaluated only to its original cap end; its taller land clears L22. The existing cut on 25 is retained. No further concave face has a resolved land. The extension adds an opaque flat land at the existing cap-end sag and changes no optical aperture, curvature, spacing or medium. Outer rim follows the partner face, within the figure's precision.
+
+Validation: `audit:surface` and `audit:image-circle` on this data file; parent records the full repository gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/JPWO2019049372A1.pdf` (local JP republication of WO 2019/049372 A1), Example 1 / Table 1, PDF pp. 13–14, and ¶0031 / condition (6), p. 9. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 1.84666 / 23.8 | S-TIH53 | retained coordinate-compatible curve |
+| L12 | 1.75500 / 52.3 | J-LASKH2 | retained coordinate-compatible curve |
+| L21 | 1.74353 / 49.5 | M-NBF1 | retained coordinate-compatible curve |
+| L22 | 1.75500 / 52.3 | J-LASKH2 | retained coordinate-compatible curve |
+| L23 | 2.00069 / 25.5 | TAFD40 | retained coordinate-compatible curve |
+| L31 | 1.55332 / 71.7 | M-FCD500 | retained coordinate-compatible curve |
+| L32 | 1.83481 / 42.7 | S-LAH55V | retained coordinate-compatible curve |
+| L33 | 1.61800 / 63.3 | S-PHM52 | retained coordinate-compatible curve |
+| L34 | 1.81600 / 46.6 | S-LAH59 | retained coordinate-compatible curve |
+| L35 | 1.59319 / 67.9 | J-PSKH1 | retained coordinate-compatible curve |
+| L41 | 1.80100 / 34.9 | J-LAF016 | retained coordinate-compatible curve |
+| L42 | 1.59201 / 67 | M-PCD51 | retained coordinate-compatible curve |
+| L51 | 1.58913 / 61.2 | S-BAL35 | retained coordinate-compatible curve |
+| L52 | 1.61800 / 63.3 | S-PHM52 | retained coordinate-compatible curve |
+
+Coverage: 14 physical lens elements, 14 authored media, 14 modeled media resolving to dispersion curves; 1 rear plate(s) checked separately (FL 1.51680/64.1, J-BK7A). Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All fourteen nd/νd pairs and compatible curves are retained. L21's M-NBF1 is a qualified non-identical proxy (Δnd −0.000230, Δνd about −0.17); source values remain 1.74353/49.5. L31's patent APD status is supported by ¶0031 and the Example 1 condition-(6) value 71.6835. L35 has no source θgF: its APD remains a catalog inference, and wording claiming a low-Tg lanthanum chemistry or a confirmed production ED position was removed. No per-lens spectral overrides were added.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.

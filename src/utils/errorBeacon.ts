@@ -61,6 +61,11 @@ export function errorBeaconKey(key: string): string {
   return slug || "unknown";
 }
 
+/** The error's class name alone, for reports that must not carry message text. */
+function describeErrorClass(error: unknown): string {
+  return error instanceof Error && /^[A-Za-z]{1,40}$/.test(error.name) ? error.name : "Error";
+}
+
 function describeError(error: unknown): string {
   if (error instanceof Error) return error.message || error.name;
   if (typeof error === "string") return error;
@@ -105,6 +110,14 @@ function schedulePendingBeaconFlush(): void {
   }, RETRY_INTERVAL_MS);
 }
 
+export interface ErrorBeaconOptions {
+  /**
+   * Constant id sent in place of the lens key, for callers whose keys and messages can hold private text (the lens
+   * builder's drafts). The event then carries only this id, the source and the error's class name.
+   */
+  telemetryId?: string;
+}
+
 /**
  * Send one GoatCounter event for a runtime error. No-op outside production
  * builds, for repeat errors on the same synthetic path, and once the
@@ -114,18 +127,25 @@ function schedulePendingBeaconFlush(): void {
  * @param source - where the error was caught (boundary or listener name)
  * @param error - the caught error or rejection reason
  * @param lensKey - offending lens key when known; preferred as the path segment
+ * @param options - `telemetryId` replaces the lens key and drops the message
  */
-export function reportErrorBeacon(source: string, error: unknown, lensKey?: string): void {
+export function reportErrorBeacon(
+  source: string,
+  error: unknown,
+  lensKey?: string,
+  { telemetryId }: ErrorBeaconOptions = {},
+): void {
   if (!import.meta.env.PROD) return;
   if (typeof window === "undefined") return;
   flushPendingBeacons();
-  const path = `/_error/${errorBeaconKey(lensKey || source)}`;
+  const anonymous = telemetryId !== undefined;
+  const path = `/_error/${errorBeaconKey(anonymous ? telemetryId : lensKey || source)}`;
   if (sentPaths.has(path) || pendingBeacons.has(path)) return;
   if (sentPaths.size + pendingBeacons.size >= MAX_BEACONS_PER_SESSION) return;
 
   const beacon: ErrorBeacon = {
     path,
-    title: sanitizeErrorMessage(`${source}: ${describeError(error)}`),
+    title: sanitizeErrorMessage(`${source}: ${anonymous ? describeErrorClass(error) : describeError(error)}`),
     event: true,
   };
   if (sendErrorBeacon(beacon)) {
@@ -137,6 +157,14 @@ export function reportErrorBeacon(source: string, error: unknown, lensKey?: stri
   schedulePendingBeaconFlush();
 }
 
+/* Set while a page that renders private user data is mounted; the global listeners then send only this id. */
+let globalTelemetryId: string | undefined;
+
+/** Redact window-level reports to a constant id (pass `undefined` to restore the default). */
+export function setGlobalErrorTelemetryId(telemetryId: string | undefined): void {
+  globalTelemetryId = telemetryId;
+}
+
 /**
  * Register window-level listeners so uncaught errors and unhandled promise
  * rejections outside React error boundaries are also beaconed.
@@ -144,10 +172,10 @@ export function reportErrorBeacon(source: string, error: unknown, lensKey?: stri
 export function installGlobalErrorBeacons(): void {
   if (typeof window === "undefined") return;
   window.addEventListener("error", (event) => {
-    reportErrorBeacon("window-error", event.error ?? event.message);
+    reportErrorBeacon("window-error", event.error ?? event.message, undefined, { telemetryId: globalTelemetryId });
   });
   window.addEventListener("unhandledrejection", (event) => {
-    reportErrorBeacon("unhandled-rejection", event.reason);
+    reportErrorBeacon("unhandled-rejection", event.reason, undefined, { telemetryId: globalTelemetryId });
   });
 }
 

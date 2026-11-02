@@ -8,7 +8,7 @@
 **Inventor:** Hans Lautenbacher  
 **Assignee:** Enna Werk Optische Anstalt Dr. Appelt K.G., Munich, Germany  
 **Title:** Wide Angle Photographic Objective  
-**Embodiment analyzed:** Example 1, Table I
+**Example details:** Table I
 
 US 2,959,100 discloses a three-part retrofocus wide-angle objective for single-lens-reflex cameras. The patent frames the design problem as a field greater than 70° combined with a back focal length of at least 1.2× the system focal length. Example 1 is prescribed at normalized $f = 100.0$, relative aperture 1:3.5, 75° field coverage, and stated back focal length $s' = 125.842$.
 

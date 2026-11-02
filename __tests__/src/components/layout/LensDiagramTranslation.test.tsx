@@ -6,6 +6,7 @@ import LensDiagramPanel from "../../../../src/components/layout/LensDiagramPanel
 import { LensDispatchContext, LensStateContext, PanelStateContext } from "../../../../src/utils/state/LensContext.js";
 import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
 import { build, buildSimplePositiveElementLens } from "../../optics/testLensFixtures.js";
+import { constructionFixtureData } from "../../optics/constructionFixtures.js";
 import { installMatchMediaMock } from "../../../testUtils.js";
 import { replaceTextForTranslation } from "../../../translationTestUtils.js";
 import themes from "../../../../src/utils/theme/themes.js";
@@ -13,22 +14,24 @@ import themes from "../../../../src/utils/theme/themes.js";
 // The real panel receives runtime lenses, so catalog I/O is unnecessary. Optics,
 // diagram SVG, controls, inspector, error boundary and drawers all remain real.
 vi.mock("../../../../src/utils/catalog/lensCatalog.js", () => ({ LENS_CATALOG: {} }));
-const baseLens = buildSimplePositiveElementLens("translated-first");
+const baseData = constructionFixtureData(buildSimplePositiveElementLens("translated-first"));
 const lenses = [
   build({
-    ...baseLens.data,
+    ...baseData,
     name: "First test lens",
     patentNumber: "US 10,571,651 B2",
     patentAuthors: ["Hideki Sakai", "Test Author"],
+    patentAssignees: ["Test Assignee"],
   }),
   build({
-    ...baseLens.data,
+    ...baseData,
     key: "translated-second",
     name: "Second test lens",
     subtitle: "Catalog description",
     patentNumber: undefined,
     patentAuthors: undefined,
-    surfaces: baseLens.data.surfaces.map((s) => (s.elemId ? { ...s, R: s.R * 1.2 } : s)),
+    patentAssignees: undefined,
+    surfaces: baseData.surfaces.map((s) => (s.elemId ? { ...s, R: s.R * 1.2 } : s)),
   }),
 ];
 beforeEach(() => installMatchMediaMock());
@@ -43,7 +46,7 @@ describe("translated lens views", () => {
         {},
         {},
         false,
-        lenses.map((lens) => lens.data.key),
+        lenses.map((lens) => lens.source.key),
       );
       const state = {
         ...initial,
@@ -67,7 +70,7 @@ describe("translated lens views", () => {
             <LensDispatchContext.Provider value={vi.fn()}>
               <PanelStateContext.Provider value={state.panels}>
                 <LensDiagramPanel
-                  lensKey={L.data.key}
+                  lensKey={L.source.key}
                   runtimeLens={L}
                   scaleRatio={null}
                   panelId="main"

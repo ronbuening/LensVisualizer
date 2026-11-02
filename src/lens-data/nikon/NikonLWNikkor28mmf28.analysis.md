@@ -13,7 +13,7 @@
 **Classification:** Int. Cl. G02B 9/60; U.S. Cl. 350/216
 **Total claims:** 5
 **Worked examples:** 2
-**Embodiment analyzed:** Example 1 (the "First Embodiment", col. 3; reprinted as claim 4, col. 4)
+**Example details:** the "First Embodiment", col. 3; reprinted as claim 4, col. 4
 
 US 4,203,653 discloses a five-element inverted-telephoto (retrofocus) wide-angle lens with a relative aperture of 1:2.8, a 74° angle of view, and a back focus of at least 1.29 times the focal length (col. 1, Summary). Example 1 is published at f = 1.0 together with its aberration curves (Figs. 2A–2C). Example 2 (col. 3; claim 5, cols. 5–6) shares the construction but uses different glasses and is not illustrated.
 

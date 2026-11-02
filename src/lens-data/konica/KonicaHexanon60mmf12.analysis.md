@@ -7,7 +7,7 @@
 **Inventor:** Toshiji Yamashita\
 **Applicant:** Konica Corporation\
 **Title:** 大口径レンズ (Large-aperture lens)\
-**Embodiment analyzed:** Example 1 / 実施例1
+**Example details:** 実施例1
 
 The analyzed prescription is Example 1 of JP H11-160615 A. The patent gives a 58.26 mm, F1.24, 40.53° full-field design and describes a seven-element large-aperture lens divided into a positive front group, the aperture stop, and a positive rear group. Example 1 is entirely spherical. The numerical prescription is retained at the patent scale; there is no uniform scaling from the 58.26 mm design focal length to the marketed 60 mm designation. The data file therefore separates the marketed 60 mm f/1.2 identity from the computed design EFL of 58.263500438 mm and the patent F-number of 1.24. [JP H11-160615 A, ¶0001, ¶0016–¶0022, Tables 1–2]
 

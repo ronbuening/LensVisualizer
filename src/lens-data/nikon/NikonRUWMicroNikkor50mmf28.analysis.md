@@ -10,7 +10,7 @@
 **Inventors:** Fumio Suzuki; Yoshinari Hamanishi
 **Assignee:** Nikon Corporation, Tokyo, Japan
 **Title:** Photo-Taking Lens for an Underwater Camera
-**Embodiment analyzed:** Example 1 / Claim 10
+**Example details:** Claim 10
 
 The transcribed prescription is Example 1 of US 5,257,137. The patent describes a water-contact photographic lens for an underwater camera, optimized for use from infinity to approximately one-to-one magnification under water. Example 1 is the representative embodiment used here because it aligns with the production Nikon R-UW AF Micro-Nikkor 50mm f/2.8 in the following ways.
 

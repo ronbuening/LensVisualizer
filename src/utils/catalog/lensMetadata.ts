@@ -5,7 +5,7 @@
  * consistent titles, descriptions, and maker slugs.
  */
 
-import type { LensData } from "../../types/optics.js";
+import type { CanonicalLens } from "../../optics/buildLens.js";
 import buildMeta from "../../generated/client-metadata.json";
 import makerPrefixes from "../../generated/maker-prefixes.json";
 import { canonicalPageUrl, SITE_URL } from "../seo/siteUrls.js";
@@ -75,17 +75,17 @@ function truncateAtWord(value: string, maxLength = META_DESCRIPTION_MAX_LENGTH):
   return `${cut.replace(/[,\s.;:]+$/u, "")}...`;
 }
 
-function lensSpecSummary(lens: LensData, maxSpecs = 3): string {
-  return lens.specs?.slice(0, maxSpecs).join(", ") || "";
+function lensSpecSummary(lens: CanonicalLens, maxSpecs = 3): string {
+  return lens.catalog.specs?.slice(0, maxSpecs).join(", ") || "";
 }
 
 /** Title-case a lens name (e.g., "NIKON NIKKOR Z 50mm f/1.8 S" stays as-is since it's already styled). */
-export function lensPageTitle(lens: LensData): string {
+export function lensPageTitle(lens: CanonicalLens): string {
   return `${lens.name} — Optical Cross-Section & Ray Tracing | ${SITE_NAME}`;
 }
 
 /** Generate a meta description from lens specs and patent metadata. */
-export function lensPageDescription(lens: LensData): string {
+export function lensPageDescription(lens: CanonicalLens): string {
   const specStr = lensSpecSummary(lens);
   const patentRef = lensPatentReference(lens);
   const specClause = specStr ? ` (${specStr})` : "";
@@ -115,7 +115,7 @@ export function formatCanonicalURL(formatId: string): string {
 }
 
 /** Generate JSON-LD structured data for a lens page. */
-export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unknown> {
+export function lensJsonLd(lens: CanonicalLens, lensKey: string): Record<string, unknown> {
   const freshness = (buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string }>)[lensKey];
   return {
     "@context": "https://schema.org",
@@ -153,7 +153,12 @@ export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unkn
 
 /* Re-export comparison metadata (moved to comparison module) for backward compatibility */
 export { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../../comparison/comparisonURLSync.js";
-export { lensDisplaySubtitle, lensPatentAttribution, lensPatentReference } from "./lensPatentMetadata.js";
+export {
+  lensDisplaySubtitle,
+  lensPatentAttribution,
+  lensPatentReference,
+  patentExampleSuffix,
+} from "./lensPatentMetadata.js";
 
 export {
   SITE_NAME,

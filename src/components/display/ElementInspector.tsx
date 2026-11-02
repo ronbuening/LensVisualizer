@@ -9,12 +9,13 @@
 import type { CSSProperties } from "react";
 import type { RuntimeLens, ElementData, ImagePlaneNormal, SurfaceData, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
-import type { DispersionQuality } from "../../optics/dispersion.js";
+import type { DispersionQuality } from "../../optics/chromatic.js";
 import {
   CHROMATIC_CHANNEL_METADATA,
   CHROMATIC_CHANNEL_ORDER,
   chromaticChannelIndexLabel,
-} from "../../optics/chromatic/channels.js";
+  chromaticChannelWavelengthLabel,
+} from "../../optics/chromatic.js";
 import { getAsphericEntriesForElement } from "./asphericElementUtils.js";
 import { withAlpha } from "../../utils/style/styles.js";
 import { textRun } from "../../utils/text.js";
@@ -132,11 +133,9 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
   const foldedSurfaceRows = surfaceIndexesForElement(info, L)
     .map((idx) => ({ surface: L.S[idx], summary: surfaceSummary(L.S[idx]) }))
     .filter((row): row is { surface: SurfaceData; summary: string } => Boolean(row.summary));
-  const imagePlane = L.isFoldedOptics && L.data.opticalPath?.imagePlane ? L.imagePlane : null;
+  const imagePlane = L.isFoldedOptics && L.source.opticalPath?.imagePlane ? L.imagePlane : null;
   const dispersionRows = showChromatic ? elementDispersionRows(info, L) : [];
-  const cementedCount = info.cemented
-    ? (L.data?.elements ?? []).filter((element) => element.cemented === info.cemented).length
-    : 0;
+  const cementedCount = info.cemented ? L.elements.filter((element) => element.cemented === info.cemented).length : 0;
   const cementedLabel = cementedCount === 2 ? "DOUBLET" : cementedCount === 3 ? "TRIPLET" : "CEMENTED";
 
   return (
@@ -244,7 +243,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
           <span style={{ color: t.propLabel }}>
             {textRun(info.indexReferenceNote ? "ν (source)" : `ν${indexReference}`, " = ")}
           </span>
-          <span style={{ color: t.value }}>{info.vd}</span>
+          <span style={{ color: t.value }}>{info.vd ?? "not supplied"}</span>
         </div>
         <div>
           <span style={{ color: t.propLabel }}>FL = </span>
@@ -314,44 +313,42 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
                   {`${row.qualityLabel}${row.glassName ? ` (${row.glassName})` : ""}`}
                 </span>
               </div>
-              <div>
-                <span style={{ color: t.propLabel }}>
-                  {textRun(indexReference === "e" && row.quality !== "sellmeier" ? "nF′−nC′" : "nF−nC", " =", " ")}
-                </span>
-                <span style={{ color: t.value }}>{(row.indices.B - row.indices.R).toFixed(5)}</span>
-              </div>
-              <div style={{ gridColumn: "1 / -1" }}>
-                {CHROMATIC_CHANNEL_ORDER.map((ch, idx) => {
-                  const color =
-                    ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : ch === "B" ? t.rayChromB : t.rayChromV;
-                  const usesNativeELineChannels = indexReference === "e" && row.quality !== "sellmeier";
-                  const indexLabel = usesNativeELineChannels
-                    ? ch === "R"
-                      ? "nC′"
-                      : ch === "G"
-                        ? "n\u2091"
-                        : ch === "B"
-                          ? "nF′"
-                          : chromaticChannelIndexLabel(ch)
-                    : chromaticChannelIndexLabel(ch);
-                  const wavelengthLabel =
-                    usesNativeELineChannels && ch === "R"
-                      ? "Cadmium C′-line 643.8 nm"
-                      : usesNativeELineChannels && ch === "G"
-                        ? "Authored mercury e-line reference (546.1 nm)"
-                        : usesNativeELineChannels && ch === "B"
-                          ? "Cadmium F′-line 480.0 nm"
-                          : CHROMATIC_CHANNEL_METADATA[ch].wavelengthLabel;
-                  return (
-                    <span key={ch} style={{ marginLeft: idx === 0 ? 0 : 10, whiteSpace: "nowrap" }}>
-                      <span style={{ color: t.propLabel }}>{textRun(indexLabel, " ")}</span>
-                      <span style={{ color }} title={wavelengthLabel}>
-                        {row.indices[ch].toFixed(5)}
-                      </span>
+              {row.quality !== "constant" && (
+                <>
+                  <div>
+                    <span style={{ color: t.propLabel }}>
+                      {textRun(indexReference === "e" ? "nF′−nC′" : "nF−nC", " = ")}
                     </span>
-                  );
-                })}
-              </div>
+                    <span style={{ color: t.value }}>{(row.indices.B - row.indices.R).toFixed(5)}</span>
+                  </div>
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    {CHROMATIC_CHANNEL_ORDER.map((ch, idx) => {
+                      const color =
+                        ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : ch === "B" ? t.rayChromB : t.rayChromV;
+                      const usesNativeELineChannels = indexReference === "e";
+                      const indexLabel =
+                        usesNativeELineChannels && ch === "G"
+                          ? "n\u2091"
+                          : chromaticChannelIndexLabel(ch, indexReference);
+                      const channelWavelengthLabel = chromaticChannelWavelengthLabel(ch, indexReference);
+                      const wavelengthLabel =
+                        usesNativeELineChannels && ch === "G"
+                          ? `Authored mercury e-line reference (${CHROMATIC_CHANNEL_METADATA.G.eLine.wavelengthNm.toFixed(1)} nm)`
+                          : usesNativeELineChannels && (ch === "R" || ch === "B")
+                            ? `Cadmium ${channelWavelengthLabel}`
+                            : channelWavelengthLabel;
+                      return (
+                        <span key={ch} style={{ marginLeft: idx === 0 ? 0 : 10, whiteSpace: "nowrap" }}>
+                          <span style={{ color: t.propLabel }}>{textRun(indexLabel, " ")}</span>
+                          <span style={{ color }} title={wavelengthLabel}>
+                            {row.indices[ch].toFixed(5)}
+                          </span>
+                        </span>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
             </div>
           ))}
           {info.vd && (

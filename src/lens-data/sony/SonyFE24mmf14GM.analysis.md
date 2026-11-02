@@ -8,7 +8,7 @@
 **Inventors:** Katsuya Katō, Kōta Ōmiya, Hiroyuki Matsumoto  
 **Applicant:** Sony Corporation  
 **Title:** 撮像レンズおよび撮像装置 (Imaging Lens and Imaging Apparatus)  
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Example details:** 数値実施例1
 
 Numerical Example 1 corresponds closely to the production Sony FE 24mm f/1.4 GM (SEL24F14GM). The match is based on converging evidence rather than on a single numerical coincidence. The patent example has 13 elements in 10 air-spaced groups; the production lens is specified by Sony as a 13-element, 10-group full-frame E-mount lens. The example uses four aspherical surfaces on two lens elements, including an aspherical front negative meniscus and a rear aspherical negative element, and it contains three very-low-dispersion elements with $n_d = 1.49700$ and $ν_d = 81.6$. This matches Sony's published description of two XA elements and three ED elements.
 

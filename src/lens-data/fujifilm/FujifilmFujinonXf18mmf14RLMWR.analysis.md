@@ -7,8 +7,7 @@
 **Published:** January 13, 2022\
 **Inventor:** Hiroki Saito\
 **Applicant / Assignee:** FUJIFILM Corporation\
-**Title:** *Imaging Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 1
+**Title:** *Imaging Lens and Imaging Apparatus*
 
 The prescription transcribed here is Example 1 of US 2022/0011542 A1. The patent defines a three-lens-group system in which G1 and G2 have positive refractive power, G3 has negative refractive power, and only G2 moves during focusing (¶0077). Example 1 contains 15 physical lens elements arranged in nine air-separated groups, with five aspherical surfaces on three elements (Tables 1–3; ¶¶0078–0086).
 

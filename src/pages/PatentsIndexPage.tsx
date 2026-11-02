@@ -7,8 +7,8 @@
 
 import SEOHead from "../components/SEOHead.js";
 import InventorLinks from "../components/content/InventorLinks.js";
-import LensEntryLink from "../components/content/LensEntryLink.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
+import PatentLensList from "../components/content/PatentLensList.js";
 import PatentNumberLink from "../components/content/PatentNumberLink.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
@@ -67,18 +67,7 @@ function PatentCard({ patent, groupedAssignee, theme: t }: PatentCardProps) {
         </p>
       )}
 
-      <div style={{ paddingTop: "0.15rem" }}>
-        {patent.lenses.map((lens) => (
-          <LensEntryLink
-            key={lens.key}
-            lensKey={lens.key}
-            text={lens.name}
-            specs={lens.specs}
-            theme={t}
-            metaStyle={{ fontSize: "0.68rem" }}
-          />
-        ))}
-      </div>
+      <PatentLensList lenses={patent.lenses} theme={t} style={{ paddingTop: "0.15rem" }} />
     </article>
   );
 }

@@ -5,7 +5,7 @@
 **Assignee:** Canon Camera Company, Ltd.
 **Filed:** June 29, 1951 (Japanese priority: January 31, 1951)
 **Granted:** July 21, 1953
-**Embodiment analyzed:** Example 1 (Figure 1) — 7 elements / 4 groups, f/1.5, 30° including field
+**Example details:** Figure 1 — 7 elements / 4 groups, f/1.5, 30° including field
 
 ---
 

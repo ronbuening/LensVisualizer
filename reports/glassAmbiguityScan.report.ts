@@ -12,6 +12,7 @@
  *
  * Regenerate: `npm run generate:reports -- glassAmbiguityScan`
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
@@ -19,14 +20,13 @@ import {
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
   resolveCompatibleGlass,
-  type CompatibleGlassCandidate,
-  type GlassResolutionCriterion,
 } from "../src/optics/glassCatalog.js";
+import type { CompatibleGlassCandidate, GlassResolutionCriterion } from "../src/optics/glassCatalog.js";
 import { walkLensSurfaces } from "./glassScanLib.js";
-import type { LensData, RefractiveIndexReferenceLine } from "../src/types/optics.js";
+import type { RefractiveIndexReferenceLine } from "../src/types/optics.js";
 
 const REPORT_DIR = "agent_docs/generated";
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 
 interface AmbiguousElement {
   lensName: string;

@@ -11,7 +11,6 @@
 **Applicant on the A1 front page:** Takahiko Ohishi<br>
 **Assignee (assignment record):** Ricoh Co., Ltd.<br>
 **Title:** “Zooming Optical System”  
-**Embodiment analyzed:** Numerical Example 1
 
 The local A1 front page does not print an organizational assignee. The [same-application assignment history](https://patents.google.com/patent/US20180164556A1/en) for US 15/825,178 reports assignment to **Ricoh Co., Ltd. (recorded as RICOH COMPANY, LTD.)**, recorded **2017-11-29**, effective 2017-11-27, reel/frame **044243/0469**. This record predates the A1 publication and supports the structured `patentAssignees` attribution. The printed applicant/inventor remains distinct from this assignment evidence; the underlying assignment instrument has not been independently inspected. Patent attribution does not establish the exact production prescription or manufacturing identity.
 

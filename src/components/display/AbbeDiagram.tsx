@@ -107,7 +107,7 @@ export default function AbbeDiagram({ L, t, showGlassType, onToggleGlassType }: 
           ABBE DIAGRAM
         </text>
         <text x={SVG_W / 2} y={34} textAnchor="middle" fontSize={9.5} fill={mutedColor} fontFamily="inherit">
-          {L.data.name}
+          {L.source.name}
         </text>
 
         {/* ── Vd grid lines and axis ticks ── */}

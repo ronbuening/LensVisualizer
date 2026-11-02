@@ -183,6 +183,19 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "T-mount, Adapt-A-Matic, Adaptall and Adaptall-2, SP 90mm Macro series, SP AF 60mm f/2 Di II Macro, SP AF 180mm f/3.5 Di Macro, 28-200mm all-in-one zoom, 28-75mm f/2.8, 35-150mm f/2-2.8, SP 150-600mm",
   },
+  /* Thypoch product pages; patent applicant per CN 118244463 A and CN 118534627 A.
+   * https://thypoch.com/en/simera/50mm
+   * https://thypoch.com/en/ksana/21mm
+   */
+  thypoch: {
+    headquarters: "Shenzhen, China",
+    summary:
+      "Chinese maker of compact manual-focus rangefinder-style primes, chiefly for Leica M mount, sold in the Simera, Eureka, and Ksana lines.",
+    history:
+      "Thypoch is a photographic lens brand whose optical patents are filed by Shenzhen Dongzheng Optical Technology Co., Ltd. Its lenses are manual-focus full-frame primes built around the Leica M mount, with some models also offered in mirrorless mounts. The Simera line covers fast f/1.4 primes with floating focus, and the Ksana 21mm f/3.5 is a compact wide-angle.",
+    notableDesigns:
+      "Simera 28mm f/1.4, Simera 35mm f/1.4, Simera 50mm f/1.4, Simera 75mm f/1.4, Eureka 50mm f/2, Ksana 21mm f/3.5",
+  },
   tokina: {
     founded: 1950,
     headquarters: "Tokyo, Japan",

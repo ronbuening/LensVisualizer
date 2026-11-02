@@ -6,8 +6,7 @@
 **Published:** 11 April 1974\
 **Inventors:** Georg Knetsch; Walter Watz\
 **Applicant:** Ernst Leitz GmbH\
-**Title:** *Viergliedriges Teleobjektiv*\
-**Embodiment analyzed:** Example 1 / claim 3
+**Title:** *Viergliedriges Teleobjektiv*
 
 The implemented prescription is the first numerical example in claim 3 of DE 2 246 966 A1. The patent gives a normalized
 focal length of `f = 1.0`, relative aperture `1:4`, image angle `±13.5°`, and rear intercept `s′ = 0.5102 f`. Its table

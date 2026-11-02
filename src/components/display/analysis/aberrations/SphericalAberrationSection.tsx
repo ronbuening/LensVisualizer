@@ -3,7 +3,7 @@ import type {
   SAProfilePoint,
   SphericalAberrationBlurCharacterResult,
   SphericalAberrationResult,
-} from "../../../../optics/aberrationAnalysis.js";
+} from "../../../../optics/analysis.js";
 import type { Theme } from "../../../../types/theme.js";
 import { ENABLE_REAL_RAY_LSA_DIAGNOSTIC } from "../../../../utils/featureFlags.js";
 import SADiagram from "./SADiagram.js";
@@ -57,7 +57,7 @@ export default function SphericalAberrationSection({
       <SectionHeader
         title="Spherical Aberration"
         helpLabel="Spherical aberration help"
-        helpText="The chart shows the one-sided real-ray transverse fan at the common best-focus plane, referenced to the near-axis real ray; the scalar SA metric still uses symmetric +/- ray pairing so clipped zones are rejected cleanly. The front/rear blur row is a separate on-axis diagnostic traced from circular pupil bundles at a standardized defocus around best focus, so visible edge-bright vs center-bright behavior is derived from the blur itself rather than inferred from LSA sign alone."
+        helpText="Each zone is the axial ray aimed at that fraction of the real aperture stop's radius, as in OpticStudio with ray aiming and in CODE V; when an element rim vignettes the outermost zone, the next one stands in. The chart shows the one-sided real-ray transverse fan at the common best-focus plane, referenced to the near-axis real ray; the scalar SA metric still uses symmetric +/- ray pairing so clipped zones are rejected cleanly. The front/rear blur row is a separate on-axis diagnostic traced from circular pupil bundles at a standardized defocus around best focus, so visible edge-bright vs center-bright behavior is derived from the blur itself rather than inferred from LSA sign alone."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}

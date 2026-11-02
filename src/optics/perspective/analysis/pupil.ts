@@ -6,31 +6,29 @@
  * pupil-bundle lines, then compared with the rigidly posed intrinsic pupils.
  */
 
+import { evenlySpacedSigned, signedVerticalSensorUvs } from "../../analysis/sampling.js";
+
+import type { AnalysisRequest } from "../../analysis/request.js";
+import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
-import { entrancePupilFromStop2, paraxialPupilGeometry2 } from "../../first-order/pupils.js";
-import { traceParaxialSurfaces2 } from "../../math/paraxial.js";
+import { entrancePupilFromStop, paraxialPupilGeometry } from "../../first-order/pupils.js";
+import { traceParaxialSurfaces } from "../../math/paraxial.js";
 import { add, dot, scale } from "../../math/vector.js";
 import type { Ray3, Vec3 } from "../../types.js";
-import {
-  sampleSensorLockedFields,
-  type FieldSample,
-  type PerspectiveFieldSamplingOptions,
-  type PerspectiveFieldStatus,
-  type PerspectivePupilRaySample,
-  type SensorUv,
-} from "../fieldSampling.js";
+import { sampleSensorLockedFields } from "../fieldSampling.js";
+import type { FieldSample, PerspectiveFieldSamplingOptions } from "../fieldTypes.js";
+import type { PerspectiveFieldStatus } from "../chiefRay.js";
+import type { PerspectivePupilRaySample } from "../pupilBundle.js";
+import type { SensorUv } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext } from "../trace.js";
-import { sensorFrameDisplacement, type SensorFrameDisplacement } from "./shared.js";
+import { sensorFrameDisplacement } from "./shared.js";
+import type { SensorFrameDisplacement } from "./shared.js";
 
 const DEFAULT_SENSOR_SAMPLE_COUNT = 9;
 const DEFAULT_PUPIL_SAMPLE_COUNT = 17;
 
 /** Options for signed sensor-locked apparent-pupil sampling. */
 export interface PerspectivePupilOptions {
-  /** Physical active stop semi-diameter in mm for the current aperture. */
-  stopSemiDiameterMm: number;
-  /** Entrance-pupil semi-diameter in mm; derived paraxially when omitted. */
-  pupilSemiDiameterMm?: number;
   /** Ordered signed sensor samples; defaults to a vertical -1..+1 sweep. */
   sensorUvs?: readonly SensorUv[];
   /** Meridional pupil fractions, normally spanning -1..+1. */
@@ -109,23 +107,22 @@ export interface PerspectivePupilAnalysis {
 /**
  * Compute the current-aperture intrinsic EP/XP geometry in the lens frame.
  *
- * @param context - camera-anchored prepared state and physical lens pose
- * @param stopSemiDiameterMm - current physical stop semi-diameter in mm
+ * @param request - camera-anchored geometry, physical lens pose and current aperture
  * @returns first-order pupil centers/sizes plus their rigid camera positions
  */
-export function computeIntrinsicPerspectivePupils(
-  context: PerspectiveTraceContext,
-  stopSemiDiameterMm: number,
-): IntrinsicPerspectivePupils {
+export function computeIntrinsicPerspectivePupils(request: AnalysisRequest): IntrinsicPerspectivePupils {
+  const context = request.perspectiveTraceContext;
+  if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
+  const { stopSemiDiameterMm } = request.aperture;
   assertPositiveFinite(stopSemiDiameterMm, "stopSemiDiameterMm");
-  const geometry = paraxialPupilGeometry2(context.state);
-  const entrance = entrancePupilFromStop2(stopSemiDiameterMm, geometry);
+  const geometry = paraxialPupilGeometry(context.state);
+  const entrance = entrancePupilFromStop(stopSemiDiameterMm, geometry);
   const firstSurfaceZ = context.state.z[0] ?? 0;
   const stopZ = context.state.z[context.state.lens.stop.surfaceIndex] ?? firstSurfaceZ;
   const entranceCenterLens: Vec3 = [0, 0, firstSurfaceZ + entrance.epRatio];
 
-  const marginal = traceParaxialSurfaces2(context.state.surfaces, 1, 0, { skipLastTransfer: true });
-  const chief = traceParaxialSurfaces2(context.state.surfaces, 0, 1, { skipLastTransfer: true });
+  const marginal = traceParaxialSurfaces(context.state.surfaces, 1, 0, { skipLastTransfer: true });
+  const chief = traceParaxialSurfaces(context.state.surfaces, 0, 1, { skipLastTransfer: true });
   const xpY = geometry.yRatio * chief.y - geometry.b * marginal.y;
   const xpU = geometry.yRatio * chief.u - geometry.b * marginal.u;
   const zRelativeToLastSurfaceMm = Math.abs(xpU) > 1e-9 ? -xpY / xpU : Infinity;
@@ -211,16 +208,18 @@ export function estimateApparentPupilFromLines(
 /**
  * Compute intrinsic and apparent entrance/exit pupils across signed sensor fields.
  *
- * @param context - physical moved-lens trace context with a fixed sensor
- * @param options - current aperture, signed sensor fields, and bundle density
+ * @param request - shared aperture, physical pose and per-context sensor-solve memo
+ * @param options - explicit field/channel/bundle overrides; omitted uses request sampling
  * @returns intrinsic lens-frame references plus retained camera-frame samples
  */
 export function computePerspectivePupilAnalysis(
-  context: PerspectiveTraceContext,
-  options: PerspectivePupilOptions,
+  request: AnalysisRequest,
+  options: PerspectivePupilOptions = perspectiveAnalysisSamplingPlan(request).pupils,
 ): PerspectivePupilAnalysis {
-  const intrinsic = computeIntrinsicPerspectivePupils(context, options.stopSemiDiameterMm);
-  const pupilSemiDiameterMm = options.pupilSemiDiameterMm ?? intrinsic.entrance.semiDiameterMm;
+  const context = request.perspectiveTraceContext;
+  if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
+  const { stopSemiDiameterMm, entrancePupilSemiDiameterMm: pupilSemiDiameterMm } = request.aperture;
+  const intrinsic = computeIntrinsicPerspectivePupils(request);
   assertPositiveFinite(pupilSemiDiameterMm, "pupilSemiDiameterMm");
   const sensorUvs = options.sensorUvs ?? signedVerticalSensorUvs(DEFAULT_SENSOR_SAMPLE_COUNT);
   const pupilFractions = options.pupilFractions ?? evenlySpacedSigned(DEFAULT_PUPIL_SAMPLE_COUNT);
@@ -230,7 +229,7 @@ export function computePerspectivePupilAnalysis(
       kind: "meridional",
       pupilSemiDiameterMm,
       fractions: pupilFractions,
-      stopSemiDiameterMm: options.stopSemiDiameterMm,
+      stopSemiDiameterMm,
       channel: options.channel,
     },
   });
@@ -331,14 +330,6 @@ function rayPointAtZ(ray: Ray3, z: number): Vec3 | null {
   const t = (z - ray.origin[2]) / ray.direction[2];
   const point = add(ray.origin, scale(ray.direction, t));
   return point.every(Number.isFinite) ? point : null;
-}
-
-function signedVerticalSensorUvs(count: number): SensorUv[] {
-  return evenlySpacedSigned(count).map((v) => ({ u: 0, v }));
-}
-
-function evenlySpacedSigned(count: number): number[] {
-  return Array.from({ length: count }, (_, index) => -1 + (2 * index) / (count - 1));
 }
 
 function assertPositiveFinite(value: number, label: string): void {

@@ -9,7 +9,7 @@
 **Inventor:** Max Reiss  
 **Assignee:** Eastman Kodak Company, Rochester, New York  
 **Title:** Wide-Angle Camera Objective  
-**Embodiment analyzed:** Example 2 / Fig. 2
+**Example details:** Fig. 2
 
 US 2,518,719 describes a wide-angle photographic objective consisting of two simple negative meniscus components placed between two positive meniscus components. All four components are concave toward the central airspace. The patent states that the objective is intended to correct coma, distortion, and image curvature over an angular field of ±40° or more, with spherical aberration reduced over an aperture of about f/6.3.
 

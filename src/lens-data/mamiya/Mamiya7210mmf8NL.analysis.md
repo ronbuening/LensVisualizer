@@ -7,8 +7,7 @@
 **Published:** 28 January 2000<br>
 **Inventor:** Hideyuki Suga<br>
 **Applicant:** Mamiya-OP Co., Ltd.<br>
-**Title:** Medium-Telephoto Lens<br>
-**Embodiment analyzed:** Example 1
+**Title:** Medium-Telephoto Lens
 
 The prescription is a production-scale transcription of Example 1. The selected numerical example is fixed by the job
 card; no values from Examples 2 or 3 are blended into the model. Four independent features support its correlation with

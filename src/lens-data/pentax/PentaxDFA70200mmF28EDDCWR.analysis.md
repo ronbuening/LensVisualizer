@@ -9,7 +9,6 @@
 **Inventor:** Masakazu Saori  
 **Applicant:** Ricoh Imaging Company, Ltd.  
 **Title:** *Zoom Lens System*  
-**Embodiment analyzed:** Numerical Embodiment 1
 
 The prescription is Numerical Embodiment 1 of US 2016/0103303 A1, specifically Figures 1–6D and Tables 1–3
 (¶0192–¶0198). The patent publishes a 72.06–194.00 mm, constant-f/2.9, full-frame zoom design with a

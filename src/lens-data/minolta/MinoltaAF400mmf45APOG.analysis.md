@@ -6,7 +6,6 @@
 **Inventor:** Yoshinobu Asakura
 **Applicant:** Minolta Co., Ltd.
 **Title:** Lens system (レンズ系)
-**Embodiment analyzed:** Example 1
 
 The modeled prescription is Example 1 of JP1996-327896. The patent describes an inner-focus telephoto lens system for photographic and video cameras in which a negative internal group moves axially while the front and rear groups remain fixed. Example 1 publishes a 390 mm focal-length header, F/4.59, a 3.2° half field, and the infinity/3 m focus endpoints used in the data file (Table 1; ¶0017–0021).
 

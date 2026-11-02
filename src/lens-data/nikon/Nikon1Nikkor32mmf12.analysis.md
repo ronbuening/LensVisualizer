@@ -10,7 +10,7 @@
 **Inventors:** Ishida Kumiko; Tanaka Issei  
 **Applicant:** Nikon Corporation  
 **Title:** Image-Capturing Lens, Optical Device Having Said Lens and Method for Manufacturing Said Lens  
-**Embodiment analyzed:** Example 1, Table 1 / paragraph 0079  
+**Example details:** Table 1 / paragraph 0079  
 **Worked examples in patent:** 4
 
 Example 1 is the prescription transcribed here. It is the strongest production match for the Nikon 1 NIKKOR 32mm f/1.2 for the following reasons.

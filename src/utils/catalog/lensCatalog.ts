@@ -5,8 +5,10 @@
  * calls are not duplicated.
  */
 
-import LENS_DEFAULTS from "../../lens-data/defaults.js";
+import { ingestLens } from "../../optics/buildLens.js";
 import { loadChunkWithReload } from "../chunkLoadRetry.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+import type { CanonicalLens } from "../../optics/buildLens.js";
 import type { LensData } from "../../types/optics.js";
 import { catalogCollator } from "./collation.js";
 
@@ -17,24 +19,64 @@ export interface OpticalConfigurationOption {
 }
 
 /* Eagerly import all lens data files under src/lens-data/ — Vite resolves the glob at build time.
- * Each module's default export is a LENS_DATA object; defaults are merged
- * underneath so per-lens values take precedence. */
-const _modules = import.meta.glob<{ default: LensData }>("../../lens-data/**/*.data.ts", { eager: true });
-const LENS_CATALOG: Record<string, LensData> = {};
+ * Each module's default export is a file as authored. A catalog entry is that file read through canonical ingest,
+ * with schema defaults applied to its canonical prescription. Ingest runs the first time an entry is read and the entry is kept, so a
+ * page pays only for the lenses it shows and every read of a key returns the same object, which caches key on. The
+ * key lists below read only identity fields, from the files as authored, in V2. */
+const _modules = import.meta.glob<{ default: LensDataV2Input }>("../../lens-data/**/*.data.ts", {
+  eager: true,
+});
+
+/** The fields the key lists read. V2 files keep them where V1 does, but for `catalog.opticalConfiguration`. */
+type LensIdentity = Pick<LensData, "key" | "name" | "visible" | "maker" | "opticalConfiguration">;
+
+function identityOfFile(data: LensDataV2Input): LensIdentity {
+  const opticalConfiguration = data.catalog?.opticalConfiguration;
+  return { key: data.key, name: data.name, visible: data.visible, maker: data.maker, opticalConfiguration };
+}
+
+const INPUTS: Record<string, LensDataV2Input> = {};
+const AUTHORED: Record<string, LensIdentity> = {};
+const LENS_CATALOG: Record<string, CanonicalLens> = {};
+const PATH_BY_KEY: Record<string, string> = {};
 for (const [path, mod] of Object.entries(_modules)) {
   const data = mod.default;
   if (data?.key) {
-    LENS_CATALOG[data.key] = { ...LENS_DEFAULTS, ...data } as LensData;
+    if (Object.hasOwn(PATH_BY_KEY, data.key)) {
+      throw new Error(`Two lens-data files share the key "${data.key}": ${PATH_BY_KEY[data.key]} and ${path}`);
+    }
+    PATH_BY_KEY[data.key] = path;
+    AUTHORED[data.key] = identityOfFile(data);
+    INPUTS[data.key] = data;
+    let entry: CanonicalLens | undefined;
+    Object.defineProperty(LENS_CATALOG, data.key, {
+      enumerable: true,
+      get: () =>
+        (entry ??= ingestLens(data, { path: path.replace("../../lens-data/", "src/lens-data/") }).prescription),
+    });
   } else {
     console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);
   }
 }
 function sortLensKeysByName(keys: string[]): string[] {
-  return keys.sort((a, b) => catalogCollator.compare(LENS_CATALOG[a].name, LENS_CATALOG[b].name));
+  return keys.sort((a, b) => catalogCollator.compare(AUTHORED[a].name, AUTHORED[b].name));
+}
+
+/** A key's identity fields, read without ingesting the lens; an entry added at run time is read as it is. */
+function identityOf(key: string): LensIdentity | undefined {
+  const authored = AUTHORED[key];
+  if (authored) return authored;
+  const lens = LENS_CATALOG[key];
+  return lens ? { ...lens, opticalConfiguration: lens.catalog.opticalConfiguration } : undefined;
+}
+
+/** A catalog key's display name, read from its file as authored, so a list of names ingests no lens. */
+function lensNameForKey(key: string): string {
+  return identityOf(key)?.name ?? key;
 }
 
 function isDebugLensKey(key: string): boolean {
-  const data = LENS_CATALOG[key];
+  const data = identityOf(key)!;
   if (data.visible === false && data.opticalConfiguration !== undefined) return false;
   return (
     data.visible === false ||
@@ -48,16 +90,19 @@ function isDebugLensKey(key: string): boolean {
 const ALL_CATALOG_KEYS: string[] = sortLensKeysByName(Object.keys(LENS_CATALOG));
 
 /* Visible lenses sorted alphabetically by display name */
-const CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter((k) => LENS_CATALOG[k].visible !== false).sort((a, b) =>
-  catalogCollator.compare(LENS_CATALOG[a].name, LENS_CATALOG[b].name),
+const CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter((k) => AUTHORED[k].visible !== false).sort((a, b) =>
+  catalogCollator.compare(AUTHORED[a].name, AUTHORED[b].name),
 );
 
 /* Debug/reference lenses sorted alphabetically by display name. */
 const DEBUG_CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter(isDebugLensKey);
 
+/* Lenses the public site shows, with their optical configurations; hidden fixtures and withheld lenses stay out. */
+const PUBLIC_CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter((key) => !isDebugLensKey(key));
+
 const OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP = new Map<string, OpticalConfigurationOption[]>();
 for (const key of ALL_CATALOG_KEYS) {
-  const config = LENS_CATALOG[key].opticalConfiguration;
+  const config = AUTHORED[key].opticalConfiguration;
   if (!config) continue;
   const options = OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.get(config.groupKey) ?? [];
   options.push({ key, label: config.label, order: config.order });
@@ -71,7 +116,7 @@ for (const options of OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.values()) {
 
 /** Ordered alternate prescriptions available for the supplied catalog key. */
 function opticalConfigurationOptionsForKey(key: string): ReadonlyArray<OpticalConfigurationOption> {
-  const groupKey = LENS_CATALOG[key]?.opticalConfiguration?.groupKey;
+  const groupKey = identityOf(key)?.opticalConfiguration?.groupKey;
   if (!groupKey) return [];
   return OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.get(groupKey) ?? [];
 }
@@ -156,10 +201,12 @@ async function loadMdForKey(key: string): Promise<string | null> {
 
 export {
   LENS_CATALOG,
+  lensNameForKey,
   ALL_CATALOG_KEYS,
   CATALOG_KEYS,
   COMPARISON_CATALOG_KEYS,
   DEBUG_CATALOG_KEYS,
+  PUBLIC_CATALOG_KEYS,
   isDebugLensKey,
   opticalConfigurationOptionsForKey,
   resolveOpticalConfigurationKey,
@@ -168,3 +215,13 @@ export {
   cachedMdForKey,
   loadMdForKey,
 };
+
+/** Independent authored V2 input, without canonical defaults or runtime reconstruction. */
+export function authoredInputForKey(key: string): LensDataV2Input | undefined {
+  return Object.hasOwn(INPUTS, key) ? structuredClone(INPUTS[key]) : undefined;
+}
+
+/** Authored input for a PUBLIC_CATALOG_KEYS lens; undefined for hidden fixtures, withheld lenses and unknown keys. */
+export function publicAuthoredInputForKey(key: string): LensDataV2Input | undefined {
+  return Object.hasOwn(INPUTS, key) && !isDebugLensKey(key) ? authoredInputForKey(key) : undefined;
+}

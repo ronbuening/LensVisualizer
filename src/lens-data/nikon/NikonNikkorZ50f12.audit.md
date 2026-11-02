@@ -70,3 +70,118 @@ Patent: WO 2021/241230 A1
   against the previous data: EFL identical and defocus unchanged at both focus keyframes (the old fold was exact).
 - Physical track grows by 0.545 mm to 163.306 mm, matching the patent's 163.307 mm total length to rounding.
   `closeFocusM` is now the physical close object-to-image distance, 0.630805 m (was the air-equivalent 0.6302599 m); it only labels focus distance.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 (PDF p. 63, native 300 ppi raster, 9.241 px/mm from the S1–S33 vertex span) was read element by element for
+flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws: the infinity panel's
+lower half, cross-checked on the close-focus panel's upper half.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 2 (L11 rear, R 46.022) | 0.905; sd raised 28.5 → 31.5 (S1's edge) | 9.89 mm | 28.50 mm | 31.5 | 20.65 mm |
+| 5 (L13 front, R −43.988) | 0.950 | 9.69 mm | 27.54 mm | 29 | 22.66 mm |
+| 7 (L14 front, R −82.014) | 0.973 | 5.37 mm | 29.19 mm | 30 | 25.87 mm |
+| 17 (L19 rear, R 40.041) | 0.850 | 6.37 mm | 21.67 mm | 25.5 | 20.80 mm |
+| 32A (L44 front, R −64.588) | 0.939; not cut (see the beam rule) | — (was 2.96 mm) | — (was 18.01 mm) | 18 | 6.13 mm |
+
+- Face 2: the figure draws L11's edge at its front face's height (31.4 mm) with the land at the old stored rim (figure
+  cap end 28.4 mm), so the cut sits at the old sd: the clear radius goes from the old 28.5 mm rim to the 28.5044 mm
+  cut radius, and the beams reach 27.3534 mm there. Face 32A: the figure draws L44's edge at 19.5 mm with the land at
+  18.3 mm, but 32A keeps its 18.0 mm rim, the asphere's designed extent, with no cut (see the beam rule).
+- Lands seen but not cut: face 4 (L12 rear, figure 0.970 of L12's 28.5 mm edge) and face 31 (L43 rear, figure 0.922
+  of a 19.8 mm edge, meeting L44's land at one plane). Raising either to its partner's sd with the cut at the old rim
+  is refused by the gap check: 4→5 combined sag 15.61 > 14.859 mm allowed, 31→32A 7.00 > 6.984 mm. Face 19 (L21
+  front, 0.958 in both panels) would put the cut at 18.20 mm, below the close-focus stated axial ray (19.25 mm, which
+  already exceeds sd 19); not authored.
+- Concave faces with no land: 12, 14, 28 and 33 (R 275–795 mm) run straight into their element edges; any land there
+  is below the raster's resolution.
+- Stop plane: face 17's cap reached 1.38 mm past the fixed stop plane (sag 9.17 mm at sd against the 7.79 mm gap); the
+  figure's land now clears it by 1.42 mm. Face 19's cap clears the stop by 6.20 mm at close focus.
+- The stated f/1.23 still traces (`audit:aperture` unchanged: no rim, trace or failed rows, no rim-cut limiter); the
+  image-circle audit passes. `clearap` finds no full-field rim rays for this lens (the stop-edge rays at 22.8° fail in
+  the front group or at 24A), so a meridional-fan probe with the cut radii as clear radii was used: the full-field fan passes
+  42.3 % at infinity and 56.0 % at close focus, unchanged, and is also unchanged at 10 and 15 mm image height. The cuts
+  on 2, 5, 7 and 17 clear the traced wide-open beams by their margins and clip none of their rays (see the beam rule).
+  With 32A back at its 18.0 mm rim and uncut, the engine half-field is 23.999°, as before the review.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stop (#933) with the rule's current search, which
+follows each beam to the field where it vanishes and refines near a cut on the full measurement. Traced against that
+rule and the designed rims, these cuts from the figure review above were changed:
+
+- Surface 7: the beams reach 29.1046 mm there (focusT 0.10, 14.40°), past the figure's 29.19 mm cut less its
+  0.0876 mm margin. The depth goes from 5.37 to 5.38 mm, which puts the cut radius at 29.2152 mm; the land is shorter
+  than the figure's.
+- Surface 32A: back to its designed 18.0 mm rim with no cut (it was sd 19.5 with the cut at 18.0). Raising sd
+  extended the asphere past its designed extent; the land the figure draws at 18.3 mm is not modelled. This agrees
+  with the 2026-09-08 audit, which rejected larger rear rims and kept S32A at 18.
+
+Every remaining cut clears the beams by its margin, and the surface audit and the beam rule pass:
+
+| Surface | Cut radius | Beams reach | Where (focus, field) | Clearance | Margin | Spare |
+|---|---|---|---|---|---|---|
+| 2 | 28.5044 mm | 27.3534 mm | infinity, 24.00° | 1.1510 mm | 0.0855 mm | 1.0655 mm |
+| 5 | 27.5427 mm | 26.4654 mm | focusT 0.10, 14.40° | 1.0773 mm | 0.0826 mm | 0.9947 mm |
+| 7 | 29.2152 mm | 29.1046 mm | focusT 0.10, 14.40° | 0.1106 mm | 0.0876 mm | 0.0230 mm |
+| 17 | 21.6691 mm | 20.2864 mm | focusT 0.90, 4.00° | 1.3827 mm | 0.0650 mm | 1.3177 mm |
+
+Figure scale and land length. The figure review's 9.241 native px per lens mm comes from the S1–S33 vertex span. Each
+q range is ±(1 + q) / (sd × 9.241 px/mm):
+
+- 2: q 0.905 ± 0.0065 (0.898–0.912) on a 291 px edge; the cut sits at the old rim, 0.905 of sd; land 2.9956 mm.
+- 5: q 0.950 ± 0.0073 (0.943–0.957) on a 268 px edge; the cut is at q × sd; land 1.4573 mm.
+- 7: q 0.973 ± 0.0071 (0.966–0.980) on a 277 px edge; the cut, moved out by the beam rule, is at 0.974 of sd, inside
+  the range; land 0.7848 mm.
+- 17: q 0.850 ± 0.0079 (0.842–0.858) on a 236 px edge; the cut is at q × sd; land 3.8309 mm.
+
+Every land is longer than the 0.1 mm minimum, and no q range reaches 1.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/WO2021241230A1.pdf`, PDF p. 63, Figure 1 / Example 1, including a 600 dpi crop of the complete infinity section and the close-focus panel. Every concave air face and square outer edge was compared. The native scale remains 9.241 px/mm from the S1–S33 vertex span.
+
+| Surface | Clear `sd` before → after | `rimExtensionSd` before → after | Figure evidence |
+|---|---|---|---|
+| 32A, L44 front | 18 → 18 mm | absent → 19.5 mm | Flat land to L44's rear-face rim; q about 0.939, native one-pixel range 0.928–0.950. |
+
+The extension preserves the designed 18 mm aspheric cap. The asphere is not evaluated out to the taller rim. Existing cuts on 2, 5, 7 and 17 are retained, including surface 7's beam-clearance adjustment.
+
+Two other lands remain limited by the existing gap policy. Trials keeping their original caps but extending 4 to 28.5 mm and 31 to 20 mm fail the gap checks: 4→5 intrusion 15.614 mm against 14.859 mm allowed, and 31→32A 7.009 mm against 6.984 mm allowed. Those trials were reverted; no tolerance was relaxed. Surface 19's figure cut would enter the close-focus beam and remains unauthored. Other concave faces run into their corners.
+
+Validation: `audit:surface` and `audit:image-circle` on the accepted 32A extension; parent records full gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/WO2021241230A1.pdf`, Example 1 / Table 1, PDF pp. 28–30. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 1.64000 / 60.1 | S-BSM81 | source pair retained; compatible proxy |
+| L12 | 1.94595 / 18 | FDS18 | source pair retained; compatible proxy |
+| L13 | 1.55298 / 55.1 | J-KZFH4 | source pair retained; compatible proxy |
+| L14 | 1.59349 / 67 | J-PSKH4 | source pair retained; compatible proxy |
+| L15 | 1.59349 / 67 | J-PSKH4 | source pair retained; compatible proxy |
+| L16 | 1.59349 / 67 | J-PSKH4 | source pair retained; compatible proxy |
+| L17 | 1.59349 / 67 | J-PSKH4 | source pair retained; compatible proxy |
+| L18 | 1.59319 / 67.9 | J-PSKH1 | source pair retained; compatible proxy |
+| L19 | 1.73800 / 32.3 | S-NBH53V | source pair retained; compatible proxy |
+| L21 | 1.72047 / 34.7 | S-NBH8 | source pair retained; compatible proxy |
+| L22 | 1.59319 / 67.9 | J-PSKH1 | source pair retained; compatible proxy |
+| L31 | 1.59306 / 67 | J-PSKH4 | source pair retained; compatible proxy |
+| L32 | 1.76450 / 49.1 | S-LAH96 | source pair retained; compatible proxy |
+| L41 | 1.61800 / 63.3 | S-PHM52 | source pair retained; compatible proxy |
+| L42 | 1.90265 / 35.8 | J-LASFH9 | source pair retained; compatible proxy |
+| L43 | 1.61266 / 44.5 | N-KZFS4 | source pair retained; compatible proxy |
+| L44 | 1.51680 / 64 | J-BK7 | source pair retained; compatible proxy |
+
+Coverage: 17 physical lens elements, 17 authored media, 17 modeled media resolving to dispersion curves; 1 rear plate(s) checked separately (FL 1.51680/63.9, J-BK7). Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All seventeen lens-glass pairs and labels are retained. J-PSKH4 for L31, S-LAH96 for L32 and N-KZFS4 for L43 are non-identical compatible proxies, not exact identities (Δnd about +0.00043, −0.00065 and +0.00070 respectively). Source partial dispersion is not published for any element of this example; the existing L18/L22 APD designations remain catalog inferences. No authored dPgF or per-lens line-index override was found. The rear FL plate (1.51680/63.9) remains separately source-matched. No optical data or geometry changed.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.

@@ -78,4 +78,18 @@ describe("MTF preferences", () => {
     expect(() => updateMtfPreferences({ method: "geometric" })).not.toThrow();
     expect(getMtfPreferences().method).toBe("geometric");
   });
+
+  it("loads 128 cells saved as the old standard as the new 256-cell default, but keeps 128 chosen since", () => {
+    // Before 256 became the standard, every save wrote the old standard 128 whatever the reader chose elsewhere.
+    expect(parseMtfPreferences({ maxGridSize: 128, view: "frequency" }).maxGridSize).toBe(256);
+    expect(parseMtfPreferences({ maxGridSize: 256 }).maxGridSize).toBe(256);
+    expect(DEFAULT_MTF_PREFERENCES.maxGridSize).toBe(256);
+    // A save now marks its grid cap, so 128 chosen as Faster survives a reload.
+    const store = stubStorage();
+    resetMtfPreferencesCache();
+    updateMtfPreferences({ maxGridSize: 128 });
+    resetMtfPreferencesCache();
+    expect(JSON.parse(store.get(MTF_PREFERENCES_KEY)!).maxGridSize).toBe(128);
+    expect(getMtfPreferences().maxGridSize).toBe(128);
+  });
 });

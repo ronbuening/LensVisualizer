@@ -1,4 +1,7 @@
 // @vitest-environment jsdom
+import { runtimeFixtureView } from "../../optics/constructionFixtures.js";
+import { constructionFixtureData } from "../../optics/constructionFixtures.js";
+import { registerRuntimeFixture } from "../../optics/testLensFixtures.js";
 
 /**
  * DiagramSVG behavior tests.
@@ -13,15 +16,15 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import type { ComponentProps } from "react";
 import DiagramSVG from "../../../../src/components/diagram/DiagramSVG.js";
 import nikonPf500Data from "../../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
-import buildLens from "../../../../src/optics/buildLens.js";
-import { computeElementShapes } from "../../../../src/optics/diagramGeometry.js";
-import { createLensMovementTransform } from "../../../../src/optics/lensMovement.js";
-import { doLayout } from "../../../../src/optics/optics.js";
+import { catalogLensData } from "../../optics/testLensFixtures.js";
+import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
+import { computeElementShapes } from "../../../../src/optics/diagram/runtimeDiagramAdapter.js";
+import { createLensMovementTransform } from "../../../../src/optics/perspective/lensMovement.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import { installMatchMediaMock } from "../../../testUtils.js";
-import type { CardinalElements } from "../../../../src/optics/cardinalElements.js";
+import type { CardinalElements } from "../../../../src/optics/first-order/cardinals.js";
 import type { RaySegment } from "../../../../src/components/diagram/diagramSvgTypes.js";
 import type { RuntimeLens, ElementShape, LensData } from "../../../../src/types/optics.js";
 
@@ -103,7 +106,7 @@ function imagePlaneCoordinates(container: HTMLElement, labelText = "IMG") {
 }
 
 const baseLens = {
-  data: { name: "Test Lens 50mm f/2", maker: "Testco" },
+  ...runtimeFixtureView({ name: "Test Lens 50mm f/2", maker: "Testco" }),
   svgW: 1200,
   svgH: 600,
   maxSD: 20,
@@ -216,7 +219,11 @@ describe("DiagramSVG", () => {
   it("does not repeat the maker when the display name already begins with it", () => {
     const namedLens = {
       ...baseLens,
-      data: { ...baseLens.data, maker: "Nikon", name: "NIKON AF DC-NIKKOR 135mm f/2 D" },
+      ...runtimeFixtureView({
+        ...constructionFixtureData(baseLens),
+        maker: "Nikon",
+        name: "NIKON AF DC-NIKKOR 135mm f/2 D",
+      }),
     } as RuntimeLens;
     const { container } = render(
       <DiagramSVG {...baseDiagramSvgProps({ L: namedLens, shapes: [baseShape], onHover, onSelect })} />,
@@ -230,7 +237,7 @@ describe("DiagramSVG", () => {
   it("uses the marketed physical element count in the accessible description", () => {
     const physicalCountLens = {
       ...baseLens,
-      data: { ...baseLens.data, elementCount: 19 },
+      ...runtimeFixtureView({ ...constructionFixtureData(baseLens), elementCount: 19 }),
     } as RuntimeLens;
     const { container } = render(
       <DiagramSVG {...baseDiagramSvgProps({ L: physicalCountLens, shapes: [baseShape], onHover, onSelect })} />,
@@ -612,7 +619,7 @@ describe("DiagramSVG", () => {
   });
 
   it("renders standalone mirrors and packs repeated folded hit-order labels", () => {
-    const L = { ...buildLens(LENS_CATALOG["reference-newtonian-side-focus"]), ES: [] };
+    const L = registerRuntimeFixture({ ...buildLens(LENS_CATALOG["reference-newtonian-side-focus"]), ES: [] });
     const layout = doLayout(0, 0, L);
 
     const { container } = render(
@@ -732,7 +739,7 @@ describe("DiagramSVG", () => {
   });
 
   it("renders a distinct semantic accent for a diffractive phase surface", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...nikonPf500Data } as LensData);
+    const L = buildLens(catalogLensData(nikonPf500Data));
     const layout = doLayout(0, 0, L);
     const sx = (z: number) => z + 100;
     const sy = (y: number) => 300 + y;

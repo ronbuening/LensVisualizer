@@ -6,5 +6,5 @@ import baseConfig from "./vite.config.js";
  * The base config is overridden rather than merged: mergeConfig would concatenate `include`. */
 export default defineConfig((env) => {
   const base = baseConfig(env);
-  return { ...base, test: { ...base.test, include: ["reports/**/*.report.ts"] } };
+  return { ...base, test: { ...base.test, projects: undefined, include: ["reports/**/*.report.ts"] } };
 });

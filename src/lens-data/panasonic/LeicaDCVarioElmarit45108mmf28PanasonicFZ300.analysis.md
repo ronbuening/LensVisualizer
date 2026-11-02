@@ -7,7 +7,7 @@
 **Inventors:** Takakazu Bito; Hiroaki Suzuki; Yoshiaki Kurioka; Yusuke Yonetani\
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd.\
 **Title:** *Zoom Lens System, Imaging Device and Camera*\
-**Embodiment analyzed:** Numerical Example 1 / Embodiment 1
+**Example details:** Embodiment 1
 
 **Manufacturer and branding:** The production LEICA DC lens is manufactured by Panasonic using measurement equipment and quality-assurance systems certified by Leica Camera AG. The catalog therefore lists Panasonic as maker and retains LEICA DC as the optical branding. Patent-assignee attribution is recorded separately and does not establish exclusive design authorship. [Panasonic manufacturing explanation](https://www.panasonic.com/nz/consumer/lumix/brand/technologies/great-lenses-make-great-cameras.html)
 

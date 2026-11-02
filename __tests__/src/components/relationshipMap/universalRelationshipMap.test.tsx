@@ -3,9 +3,10 @@
 /** Interaction coverage for the universal relationship SVG and entity panel. */
 
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { act, cleanup, fireEvent } from "@testing-library/react";
+import { act, cleanup, fireEvent, waitFor, within } from "@testing-library/react";
 import UniversalEntityDetailCard from "../../../../src/components/relationshipMap/UniversalEntityDetailCard.js";
 import UniversalRelationshipMap from "../../../../src/components/relationshipMap/UniversalRelationshipMap.js";
+import UniversalDetailSheet from "../../../../src/components/relationshipMap/UniversalDetailSheet.js";
 import type {
   UniversalPartyNode,
   UniversalRelationshipGraph,
@@ -13,12 +14,17 @@ import type {
 } from "../../../../src/utils/catalog/universalRelationshipGraph.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import { installResizeObserverMock, renderWithRouter } from "../../../testUtils.js";
+import {
+  boundsIntersect,
+  directionalUniversalNode,
+} from "../../../../src/components/relationshipMap/universalMapGeometry.js";
 import { layoutUniversalRelationshipGraph } from "../../../../src/components/relationshipMap/universalLayout.js";
 
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
+  vi.useRealTimers();
 });
 
 const author: UniversalPartyNode = {
@@ -158,6 +164,452 @@ function makeMultiHubGraph(): UniversalRelationshipGraph {
 }
 
 describe("UniversalRelationshipMap", () => {
+  it.each([390, 599, 600, 768, 1024])("defaults the overview by container width (%i px)", (width) => {
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(width);
+    const { getByRole, queryByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    const toggle = getByRole("button", { name: "Overview" });
+    expect(toggle.getAttribute("aria-expanded")).toBe(String(width >= 600));
+    // Phones keep the overlay to one icon row; the text toggles move under the map box.
+    expect(getByRole("group", { name: "Map navigation" }).contains(toggle)).toBe(width >= 560);
+    expect(queryByRole("group", { name: "Map overview" }) !== null).toBe(width >= 600);
+    fireEvent.click(toggle);
+    expect(queryByRole("group", { name: "Map overview" }) !== null).toBe(width < 600);
+    expect(getByRole("button", { name: /MORE|LESS/ }).getAttribute("aria-expanded")).toBe(String(width >= 560));
+  });
+
+  it("retains the reader's overview and legend choices after resizing", () => {
+    const observer = installResizeObserverMock();
+    let width = 390;
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockImplementation(() => width);
+    const { getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    fireEvent.click(getByRole("button", { name: "Overview" }));
+    fireEvent.click(getByRole("button", { name: /MORE/ }));
+    width = 900;
+    act(() => observer.trigger());
+    expect(getByRole("button", { name: "Overview" }).getAttribute("aria-expanded")).toBe("true");
+    fireEvent.click(getByRole("button", { name: "Overview" }));
+    fireEvent.click(getByRole("button", { name: /LESS/ }));
+    width = 390;
+    act(() => observer.trigger());
+    expect(getByRole("button", { name: "Overview" }).getAttribute("aria-expanded")).toBe("false");
+    width = 900;
+    act(() => observer.trigger());
+    expect(getByRole("button", { name: "Overview" }).getAttribute("aria-expanded")).toBe("false");
+    expect(getByRole("button", { name: /MORE/ }).getAttribute("aria-expanded")).toBe("false");
+  });
+
+  it("opens full screen, refits, closes with Escape or Close, and restores focus and page scrolling", () => {
+    const { container, getByRole, getByText } = renderWithRouter(
+      <UniversalRelationshipMap
+        graph={graph}
+        theme={themes.dark}
+        selectedNodeId={author.id}
+        onSelectNode={vi.fn()}
+        belowMap={<div>Selection details</div>}
+      />,
+    );
+    const main = container.querySelector("svg")!;
+    const box = main.parentElement!;
+    expect(box.nextElementSibling).toBe(getByText("Selection details"));
+    const initialView = main.getAttribute("viewBox");
+    const originalOverflow = document.body.style.overflow;
+    const originalPosition = document.body.style.position;
+    const toggle = getByRole("button", { name: "Full screen" });
+    toggle.focus();
+    fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    expect(main.getAttribute("viewBox")).not.toBe(initialView);
+    fireEvent.click(toggle);
+    const close = getByRole("button", { name: "Close full screen" });
+    expect(document.activeElement).toBe(close);
+    expect(box.style.position).toBe("fixed");
+    expect(box.style.inset).toBe("0px");
+    expect(box.style.zIndex).toBe("1000");
+    expect(main.getAttribute("viewBox")).toBe(initialView);
+    expect(document.body.style.overflow).toBe("hidden");
+    expect(document.body.style.position).toBe("fixed");
+    // Full screen covers the page, so the details move into the overlay.
+    expect(getByRole("dialog", { name: "Full-screen relationship map" })).toBe(box);
+    expect(box.getAttribute("aria-modal")).toBe("true");
+    expect(box.contains(getByText("Selection details"))).toBe(true);
+    fireEvent.keyDown(close, { key: "Escape" });
+    expect(box.style.position).toBe("relative");
+    expect(box.getAttribute("role")).toBeNull();
+    expect(box.getAttribute("aria-modal")).toBeNull();
+    expect(box.nextElementSibling).toBe(getByText("Selection details"));
+    expect(document.activeElement).toBe(getByRole("button", { name: "Full screen" }));
+    expect(document.body.style.overflow).toBe(originalOverflow);
+    expect(document.body.style.position).toBe(originalPosition);
+    fireEvent.click(toggle);
+    fireEvent.click(getByRole("button", { name: "Close full screen" }));
+    expect(document.activeElement).toBe(toggle);
+  });
+
+  it("inerts only background branches, cycles Tab through the map and companion, and preserves sheet Escape layering", () => {
+    const closeSheet = vi.fn();
+    const { getByRole, getByText } = renderWithRouter(
+      <main>
+        <button>Background</button>
+        <div inert>Already inert</div>
+        <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={author.id} onSelectNode={vi.fn()} />
+        <div>
+          <button>Sheet sibling</button>
+          <UniversalDetailSheet graph={graph} node={author} theme={themes.dark} onClose={closeSheet}>
+            <a href="#details">Detail link</a>
+          </UniversalDetailSheet>
+        </div>
+      </main>,
+    );
+    const background = getByRole("button", { name: "Background" });
+    const preexisting = getByText("Already inert");
+    const sheet = getByRole("region", { name: author.name });
+    const toggle = getByRole("button", { name: "Full screen" });
+    expect(background.hasAttribute("inert")).toBe(false);
+    fireEvent.click(toggle);
+    expect(background.hasAttribute("inert")).toBe(true);
+    expect(getByRole("button", { name: "Sheet sibling" }).hasAttribute("inert")).toBe(true);
+    expect(sheet.hasAttribute("data-map-companion")).toBe(true);
+    expect(sheet.closest("[inert]")).toBeNull();
+    const overlay = getByRole("dialog", { name: "Full-screen relationship map" });
+    const first = within(overlay).getByRole("button", { name: "Zoom in" });
+    const details = within(sheet).getByRole("button", { name: "Details" });
+    const last = within(sheet).getByRole("button", { name: "Close details" });
+    first.focus();
+    fireEvent.keyDown(first, { key: "Tab", shiftKey: true });
+    expect(document.activeElement).toBe(last);
+    fireEvent.keyDown(last, { key: "Tab" });
+    expect(document.activeElement).toBe(first);
+    fireEvent.click(details);
+    expect(sheet.getAttribute("aria-modal")).toBeNull();
+    const link = getByRole("link", { name: "Detail link" });
+    link.focus();
+    fireEvent.keyDown(link, { key: "Tab" });
+    expect(document.activeElement).toBe(first);
+    fireEvent.keyDown(link, { key: "Escape" });
+    expect(sheet.getAttribute("role")).toBe("region");
+    expect(overlay.getAttribute("aria-modal")).toBe("true");
+    fireEvent.keyDown(details, { key: "Escape" });
+    expect(closeSheet).toHaveBeenCalledOnce();
+    expect(overlay.getAttribute("aria-modal")).toBe("true");
+    fireEvent.keyDown(toggle, { key: "Escape" });
+    expect(background.hasAttribute("inert")).toBe(false);
+    expect(getByRole("button", { name: "Sheet sibling" }).hasAttribute("inert")).toBe(false);
+    expect(preexisting.hasAttribute("inert")).toBe(true);
+    expect(document.activeElement).toBe(toggle);
+  });
+
+  it("keeps a newly mounted companion usable and removes owned inert state on unmount", async () => {
+    const props = { graph, theme: themes.dark, selectedNodeId: null, onSelectNode: vi.fn() };
+    const content = (companion: boolean) => (
+      <>
+        <button>Background</button>
+        <UniversalRelationshipMap {...props} />
+        <div data-testid="sheet-branch">
+          {companion && (
+            <section data-map-companion>
+              <button>Companion control</button>
+            </section>
+          )}
+        </div>
+      </>
+    );
+    const { getByRole, getByTestId, rerender, unmount } = renderWithRouter(content(false));
+    const background = getByRole("button", { name: "Background" });
+    fireEvent.click(getByRole("button", { name: "Full screen" }));
+    expect(getByTestId("sheet-branch").hasAttribute("inert")).toBe(true);
+    rerender(content(true));
+    await waitFor(() => expect(getByRole("button", { name: "Companion control" }).closest("[inert]")).toBeNull());
+    expect(background.hasAttribute("inert")).toBe(true);
+    unmount();
+    expect(background.hasAttribute("inert")).toBe(false);
+    expect(document.body.style.position).not.toBe("fixed");
+  });
+
+  it("ends full screen above a page's bottom panel, and on leaving the view", () => {
+    const props = { graph, theme: themes.dark, selectedNodeId: author.id, onSelectNode: vi.fn() };
+    const { container, getByRole, rerender } = renderWithRouter(
+      <UniversalRelationshipMap {...props} fullScreenBottomInset="62px" />,
+    );
+    const box = container.querySelector<HTMLElement>("[data-map-box]")!;
+    // Text controls size to their labels rather than shrinking onto each other.
+    expect(getByRole("button", { name: "Emphasize connections" }).style.flex).toBe("0 0 auto");
+    fireEvent.click(getByRole("button", { name: "Full screen" }));
+    expect(box.style.inset).toBe("0 0 62px");
+    rerender(<UniversalRelationshipMap {...props} fullScreenBottomInset="62px" active={false} />);
+    expect(box.style.position).toBe("relative");
+    expect(document.body.style.position).not.toBe("fixed");
+    rerender(<UniversalRelationshipMap {...props} fullScreenBottomInset="62px" active />);
+    expect(box.style.position).toBe("relative");
+  });
+
+  it("lets phone drags scroll, briefly hints at two-finger gestures, and allows full-screen one-finger pan", () => {
+    vi.useFakeTimers();
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn().mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() }),
+    );
+    const { container, getByRole, getByText, unmount } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    const main = container.querySelector("svg")!;
+    vi.spyOn(main, "getBoundingClientRect").mockReturnValue({ width: 390, height: 320, left: 0, top: 0 } as DOMRect);
+    const initialView = main.getAttribute("viewBox");
+    const hint = getByText("Use two fingers to move the map");
+    expect(main.style.touchAction).toBe("pan-x pan-y");
+    fireEvent.touchStart(main, { touches: [{ clientX: 100, clientY: 100 }] });
+    fireEvent.touchMove(main, { touches: [{ clientX: 100, clientY: 150 }] });
+    expect(main.getAttribute("viewBox")).toBe(initialView);
+    expect(hint.style.opacity).toBe("1");
+    act(() => vi.advanceTimersByTime(1500));
+    expect(hint.style.opacity).toBe("0");
+    fireEvent.touchEnd(main, { touches: [] });
+    fireEvent.click(getByRole("button", { name: "Full screen" }));
+    expect(main.style.touchAction).toBe("none");
+    fireEvent.touchStart(main, { touches: [{ clientX: 100, clientY: 100 }] });
+    fireEvent.touchMove(main, { touches: [{ clientX: 130, clientY: 140 }] });
+    expect(main.getAttribute("viewBox")).not.toBe(initialView);
+    unmount();
+    expect(document.body.style.position).not.toBe("fixed");
+  });
+
+  it("selects a node by its label text or transparent label box, keeping labels aria-hidden", () => {
+    const select = vi.fn();
+    const { container } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={select} />,
+    );
+    const label = container.querySelector('[data-node-label="assignee:example"]')!;
+    expect(label.closest('[aria-hidden="true"]')).not.toBeNull();
+    fireEvent.click(label);
+    expect(select).toHaveBeenLastCalledWith(assignee.id);
+    const hit = container.querySelector('[data-label-hit-area="assignee:example"]')!;
+    expect(hit.getAttribute("pointer-events")).toBe("all");
+    fireEvent.click(hit);
+    expect(select).toHaveBeenCalledTimes(2);
+  });
+
+  it.each([false, true])("keeps invisible node targets large on screen across zoom (coarse pointer: %s)", (coarse) => {
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn().mockReturnValue({ matches: coarse, addEventListener: vi.fn(), removeEventListener: vi.fn() }),
+    );
+    vi.spyOn(SVGSVGElement.prototype, "getBoundingClientRect").mockReturnValue({
+      width: 390,
+      height: 320,
+      left: 0,
+      top: 0,
+    } as DOMRect);
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    const main = container.querySelector("svg")!;
+    const verifyTargets = () => {
+      const [, , width, height] = main.getAttribute("viewBox")!.split(" ").map(Number);
+      const scale = Math.min(390 / width, 320 / height);
+      const targets = main.querySelectorAll("[data-node-hit-area]");
+      expect(targets).toHaveLength(graph.nodes.length);
+      for (const target of targets) {
+        expect(Number(target.getAttribute("r")) * scale).toBeGreaterThanOrEqual((coarse ? 22 : 12) - 1e-9);
+        expect(target.getAttribute("fill")).toBe("transparent");
+        expect(target.getAttribute("pointer-events")).toBe("all");
+      }
+    };
+    verifyTargets();
+    fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    verifyTargets();
+  });
+
+  it("uses one haloed label layer with constant screen size across zoom and resize", () => {
+    const observer = installResizeObserverMock();
+    let width = 800;
+    vi.spyOn(SVGSVGElement.prototype, "getBoundingClientRect").mockImplementation(
+      () => ({ width, height: 600, left: 0, top: 0 }) as DOMRect,
+    );
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap
+        graph={makeMultiHubGraph()}
+        theme={themes.dark}
+        selectedNodeId={null}
+        onSelectNode={vi.fn()}
+      />,
+    );
+    const main = container.querySelector("svg")!;
+    const verifyLabels = () => {
+      const [, , w, h] = main.getAttribute("viewBox")!.split(" ").map(Number);
+      const scale = Math.min(width / w, 600 / h);
+      const labels = [...main.querySelectorAll("[data-node-label]")];
+      expect(labels.length).toBeGreaterThan(0);
+      expect(main.querySelector("[data-label-layer]")?.getAttribute("aria-hidden")).toBe("true");
+      expect(main.querySelector('g[role="button"] text')).toBeNull();
+      for (const label of labels) {
+        expect(Number(label.getAttribute("font-size")) * scale).toBeCloseTo(13);
+        expect(label.getAttribute("paint-order")).toBe("stroke");
+        expect(label.getAttribute("stroke")).toBe(themes.dark.panelBg);
+        expect(Number(label.getAttribute("stroke-width")) * scale).toBeCloseTo(4);
+      }
+      for (const caption of main.querySelectorAll("[data-network-caption]")) {
+        expect(Number(caption.getAttribute("font-size")) * scale).toBeCloseTo(11);
+      }
+    };
+    expect(main.querySelector('[data-node-label="assignee:alpha"]')?.textContent).toBe("Alpha Optics");
+    expect(main.querySelector("[data-network-caption]")?.textContent).toBe("Network 1 · 19 nodes · 2 neighborhoods");
+    verifyLabels();
+    fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    verifyLabels();
+    width = 390;
+    act(() => observer.trigger(main));
+    verifyLabels();
+    fireEvent.click(getByRole("button", { name: "Fit all" }));
+    verifyLabels();
+    for (const shape of main.querySelectorAll(
+      'g[role="button"] > circle, g[role="button"] > rect, g[role="button"] > polygon, path[data-edge-id]',
+    )) {
+      expect(shape.getAttribute("vector-effect")).toBe("non-scaling-stroke");
+    }
+  });
+
+  it("keeps one tab stop and moves focus directionally, with Enter and Space selecting the focused node", () => {
+    const select = vi.fn();
+    const layout = layoutUniversalRelationshipGraph(graph);
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={select} />,
+    );
+    const tabStops = () => container.querySelectorAll('g[role="button"][tabindex="0"]');
+    expect(tabStops()).toHaveLength(1);
+    let current = layout.nodes.find((node) => node.fullLabel === tabStops()[0].querySelector("title")!.textContent)!;
+    act(() => (tabStops()[0] as SVGGElement).focus());
+    // Modified arrows stay with the browser (Alt+Left is history navigation).
+    fireEvent.keyDown(document.activeElement!, { key: "ArrowRight", altKey: true });
+    expect(document.activeElement!.querySelector("title")?.textContent).toBe(current.fullLabel);
+    for (const key of ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"]) {
+      const target = directionalUniversalNode(layout.nodes, current, key);
+      fireEvent.keyDown(document.activeElement!, { key });
+      if (target) current = target;
+      expect(tabStops()).toHaveLength(1);
+      expect(document.activeElement).toBe(tabStops()[0]);
+      expect(document.activeElement!.querySelector("title")?.textContent).toBe(current.fullLabel);
+    }
+    expect(select).not.toHaveBeenCalled();
+    fireEvent.keyDown(document.activeElement!, { key: "Enter" });
+    fireEvent.keyDown(document.activeElement!, { key: " " });
+    expect(select.mock.calls).toEqual([[current.id], [current.id]]);
+    expect(
+      getByRole("button", {
+        name: `Select ${current.kind === "author" ? "inventor" : current.kind === "family" ? "corporate family" : current.kind} ${current.fullLabel}`,
+      }).getAttribute("tabindex"),
+    ).toBe("0");
+  });
+
+  it("culls offscreen geometry while retaining the selected node, neighbors, labels, and incident edge layer", () => {
+    vi.spyOn(SVGSVGElement.prototype, "getBoundingClientRect").mockReturnValue({
+      width: 800,
+      height: 600,
+      left: 0,
+      top: 0,
+    } as DOMRect);
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={author.id} onSelectNode={vi.fn()} />,
+    );
+    const main = container.querySelector("svg")!;
+    const initialNodes = main.querySelectorAll('g[role="button"]').length;
+    for (let i = 0; i < 40; i++) fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    const overview = getByRole("group", { name: "Map overview" });
+    Object.defineProperty(overview, "getScreenCTM", {
+      value: () => ({ inverse: () => ({ a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 }) }),
+    });
+    fireEvent.click(overview, { clientX: 0, clientY: 0 });
+    expect(main.querySelectorAll('g[role="button"]').length).toBeLessThan(initialNodes);
+    expect(getByRole("button", { name: "Select inventor Ada Inventor" })).toBeDefined();
+    expect(getByRole("button", { name: "Select patent US 1" })).toBeDefined();
+    // The selection stays mounted offscreen, but its label is not clamped beside some other node.
+    const [vbX, vbY, vbW, vbH] = main.getAttribute("viewBox")!.split(" ").map(Number);
+    const ada = layoutUniversalRelationshipGraph(graph).nodeById[author.id];
+    expect(
+      boundsIntersect(
+        { x: ada.x - ada.r, y: ada.y - ada.r, width: ada.r * 2, height: ada.r * 2 },
+        { x: vbX, y: vbY, width: vbW, height: vbH },
+      ),
+    ).toBe(false);
+    expect(main.querySelector('[data-node-label="author:ada"]')).toBeNull();
+    const layers = [...main.querySelectorAll("[data-edge-layer]")];
+    expect(layers.map((layer) => layer.getAttribute("data-edge-layer"))).toEqual(["background", "highlighted"]);
+    expect(layers[1].querySelectorAll("[data-edge-id]")).toHaveLength(1);
+    expect(layers[1].querySelector("[data-edge-id]")?.getAttribute("data-edge-id")).toBe("edge-0");
+    expect(main.querySelectorAll("[data-edge-id]").length).toBeLessThan(graph.edges.length);
+    const layout = layoutUniversalRelationshipGraph(graph);
+    const key = ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].find((key) =>
+      directionalUniversalNode(layout.nodes, layout.nodeById[author.id], key),
+    )!;
+    const target = directionalUniversalNode(layout.nodes, layout.nodeById[author.id], key)!;
+    const before = main.getAttribute("viewBox");
+    const selected = getByRole("button", { name: "Select inventor Ada Inventor" });
+    act(() => selected.focus());
+    fireEvent.keyDown(selected, { key });
+    expect(main.getAttribute("viewBox")).not.toBe(before);
+    expect(document.activeElement?.querySelector("title")?.textContent).toBe(target.fullLabel);
+    expect(main.querySelectorAll('g[role="button"][tabindex="0"]')).toHaveLength(1);
+  });
+
+  it("puts the tab stop on an onscreen node when the selection is offscreen", () => {
+    vi.spyOn(SVGSVGElement.prototype, "getBoundingClientRect").mockReturnValue({
+      width: 800,
+      height: 600,
+      left: 0,
+      top: 0,
+    } as DOMRect);
+    const layout = layoutUniversalRelationshipGraph(graph);
+    const patent = layout.nodeById["patent:US 1"];
+    const ada = layout.nodeById[author.id];
+    const { container, getByRole } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={author.id} onSelectNode={vi.fn()} />,
+    );
+    const main = container.querySelector("svg")!;
+    for (let i = 0; i < 40; i++) fireEvent.click(getByRole("button", { name: "Zoom in" }));
+    const overview = getByRole("group", { name: "Map overview" });
+    Object.defineProperty(overview, "getScreenCTM", {
+      value: () => ({ inverse: () => ({ a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 }) }),
+    });
+    fireEvent.click(overview, { clientX: patent.x, clientY: patent.y });
+    const [vbX, vbY, vbW, vbH] = main.getAttribute("viewBox")!.split(" ").map(Number);
+    expect(Math.abs(ada.x - patent.x) > vbW / 2 || Math.abs(ada.y - patent.y) > vbH / 2).toBe(true);
+    expect(
+      boundsIntersect({ x: patent.x, y: patent.y, width: 0, height: 0 }, { x: vbX, y: vbY, width: vbW, height: vbH }),
+    ).toBe(true);
+    expect(getByRole("button", { name: "Select inventor Ada Inventor" }).getAttribute("tabindex")).toBe("-1");
+    expect(getByRole("button", { name: "Select patent US 1" }).getAttribute("tabindex")).toBe("0");
+  });
+
+  it("labels only hubs before the viewport is measured, as in prerendered HTML", () => {
+    const multiHub = makeMultiHubGraph();
+    const hubIds = layoutUniversalRelationshipGraph(multiHub).clusters.map((cluster) => cluster.anchorId);
+    const { container } = renderWithRouter(
+      <UniversalRelationshipMap graph={multiHub} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    const labelIds = [...container.querySelectorAll("[data-node-label]")].map((label) =>
+      label.getAttribute("data-node-label"),
+    );
+    expect(labelIds.length).toBeGreaterThan(0);
+    expect(labelIds.every((id) => hubIds.includes(id!))).toBe(true);
+  });
+
+  it("hides network captions that cannot fit inside their boundary", () => {
+    const observer = installResizeObserverMock();
+    let width = 800;
+    vi.spyOn(SVGSVGElement.prototype, "getBoundingClientRect").mockImplementation(
+      () => ({ width, height: 600, left: 0, top: 0 }) as DOMRect,
+    );
+    const { container } = renderWithRouter(
+      <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={vi.fn()} />,
+    );
+    const main = container.querySelector("svg")!;
+    expect(main.querySelector("[data-network-caption]")?.textContent).toBe("Network 1 · 4 nodes · 1 neighborhood");
+    width = 60;
+    act(() => observer.trigger(main));
+    expect(main.querySelector("[data-network-caption]")).toBeNull();
+  });
+
   it("renders catalog maker/model links and exposes model navigation without patent claims", () => {
     const maker = { id: "maker:book", kind: "maker", name: "Book Optics", slug: "book" } as const;
     const lens = {
@@ -203,7 +655,7 @@ describe("UniversalRelationshipMap", () => {
         />
       </>,
     );
-    expect(container.querySelector("line title")?.textContent).toBe(
+    expect(container.querySelector("path[data-edge-id] title")?.textContent).toBe(
       "Book Model grouped under catalog maker Book Optics",
     );
     expect(getByRole("link", { name: "Open maker page →" }).getAttribute("href")).toBe("/makers/book/");
@@ -297,19 +749,20 @@ describe("UniversalRelationshipMap", () => {
       node.getAttribute("cx"),
       node.getAttribute("cy"),
     ]);
-    const edgeCount = container.querySelectorAll("line").length;
+    const edgeCount = container.querySelectorAll("path[data-edge-id]").length;
     const toggle = getByRole("button", { name: "Emphasize connections" });
     expect(toggle.getAttribute("aria-pressed")).toBe("false");
     fireEvent.click(toggle);
     const assigneeButton = getByRole("button", { name: "Select assignee Example Optics" });
     expect(assigneeButton.getAttribute("opacity")).toBe("0.15");
+    expect(container.querySelector('[data-node-label="assignee:example"]')?.getAttribute("opacity")).toBe("0.15");
     expect(getByRole("button", { name: "Select inventor Ada Inventor" }).getAttribute("opacity")).toBe("1");
     expect(getByRole("button", { name: "Select patent US 1" }).getAttribute("opacity")).toBe("1");
     fireEvent.pointerEnter(assigneeButton);
     expect(assigneeButton.getAttribute("opacity")).toBe("0.15");
     fireEvent.click(assigneeButton);
     expect(props.onSelectNode).toHaveBeenCalledWith(assignee.id);
-    expect(container.querySelectorAll("line")).toHaveLength(edgeCount);
+    expect(container.querySelectorAll("path[data-edge-id]")).toHaveLength(edgeCount);
     expect(
       [...container.querySelectorAll("circle")].map((node) => [node.getAttribute("cx"), node.getAttribute("cy")]),
     ).toEqual(positions);
@@ -334,12 +787,16 @@ describe("UniversalRelationshipMap", () => {
           onSelectNode={vi.fn()}
         />,
       );
-      const lines = [...container.querySelectorAll("line")];
+      const lines = [...container.querySelectorAll("path[data-edge-id]")];
       const opacities = lines.map((line) => Number(line.getAttribute("opacity")));
       fireEvent.click(getByRole("button", { name: "Emphasize connections" }));
       lines.forEach((line, i) =>
         expect(Number(line.getAttribute("opacity"))).toBeCloseTo(
-          opacities[i] * (edges[i].from === author.id || edges[i].to === author.id ? 1 : 0.15),
+          opacities[i] *
+            (edges.find((edge) => edge.id === line.getAttribute("data-edge-id"))!.from === author.id ||
+            edges.find((edge) => edge.id === line.getAttribute("data-edge-id"))!.to === author.id
+              ? 1
+              : 0.15),
         ),
       );
     },
@@ -417,12 +874,12 @@ describe("UniversalRelationshipMap", () => {
   });
   it("renders every node as a keyboard-operable control", () => {
     const onSelectNode = vi.fn();
-    const { container, getAllByRole, getByRole, getByText } = renderWithRouter(
+    const { container, getAllByRole, getByRole } = renderWithRouter(
       <UniversalRelationshipMap graph={graph} theme={themes.dark} selectedNodeId={null} onSelectNode={onSelectNode} />,
     );
     expect(getByRole("group", { name: /Universal relationship map/ })).toBeDefined();
     expect(getAllByRole("button", { name: /^Select / })).toHaveLength(graph.nodes.length);
-    expect(getByText("Example Optics · 4 nodes")).toBeDefined();
+    expect(container.querySelector('[data-node-label="assignee:example"]')?.textContent).toBe("Example Optics");
     expect(container.querySelector("svg")!.querySelectorAll("ellipse")).toHaveLength(1);
 
     const familyButton = getByRole("button", { name: "Select corporate family Example family" });
@@ -439,7 +896,9 @@ describe("UniversalRelationshipMap", () => {
     );
     const button = getByRole("button", { name: "Select assignee Example Optics" });
     fireEvent.focus(button);
-    const activeLines = [...container.querySelectorAll("line")].filter((line) => line.getAttribute("opacity") === "1");
+    const activeLines = [...container.querySelectorAll("path[data-edge-id]")].filter(
+      (line) => line.getAttribute("opacity") === "1",
+    );
     expect(activeLines).toHaveLength(2);
   });
 
@@ -454,17 +913,28 @@ describe("UniversalRelationshipMap", () => {
     );
     expect(container.querySelector("svg")!.querySelectorAll("ellipse")).toHaveLength(2);
 
-    const authorshipLines = [...container.querySelectorAll("line")].filter((line) =>
+    const authorshipLines = [...container.querySelectorAll("path[data-edge-id]")].filter((line) =>
       line.querySelector("title")?.textContent?.includes("Shared Inventor named on"),
     );
     expect(authorshipLines).toHaveLength(2);
     expect(new Set(authorshipLines.map((line) => line.getAttribute("opacity")))).toEqual(new Set(["0.3"]));
 
-    const acquisitionLine = [...container.querySelectorAll("line")].find(
+    const acquisitionLine = [...container.querySelectorAll("path[data-edge-id]")].find(
       (line) => line.querySelector("title")?.textContent === "Alpha Optics acquired by Beta Optics",
     );
     expect(acquisitionLine?.getAttribute("opacity")).toBe("0.62");
     expect(acquisitionLine?.getAttribute("stroke-width")).toBe("1.35");
+    const layout = layoutUniversalRelationshipGraph(makeMultiHubGraph());
+    for (const edge of layout.edges) {
+      const path = container.querySelector(`[data-edge-id="${edge.id}"]`)!;
+      const [, , , , cx, cy] = path.getAttribute("d")!.split(" ").map(Number);
+      const midpoint = [(edge.x1 + edge.x2) / 2, (edge.y1 + edge.y2) / 2];
+      if (layout.nodeById[edge.from].clusterId === layout.nodeById[edge.to].clusterId) {
+        expect([cx, cy]).toEqual(midpoint);
+      } else {
+        expect([cx, cy]).not.toEqual(midpoint);
+      }
+    }
   });
 });
 

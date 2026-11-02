@@ -13,7 +13,7 @@
 **Filed:** 2012-12-26
 **Published:** 2014-07-07
 **Title:** 結像光学系 (Imaging Optical System)
-**Embodiment analyzed:** Example 3 (数値実施例3)
+**Example details:** 数値実施例3
 
 | Field | Value |
 |---|---|

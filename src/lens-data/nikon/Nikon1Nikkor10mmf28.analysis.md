@@ -13,7 +13,7 @@
 **Classification:** G02B 13/00, G02B 13/18  
 **Total claims:** 14  
 **Worked examples:** 7  
-**Embodiment analyzed:** Example 1 (第1実施例)
+**Example details:** 第1実施例
 
 JP 2011-248340 A describes a compact wide-angle photographic lens for digital cameras. Example 1 is a two-group, six-element prescription with a weak positive first group and a strongly powered positive second group, followed by a filter stack. The patent gives $f = 10.30$ mm, $F_{NO} = 2.92$, $2\omega = 78.61^\circ$, $Y = 8.20$ mm, physical total length $TL = 37.9644$ mm, and air-equivalent total length $37.0144$ mm.
 

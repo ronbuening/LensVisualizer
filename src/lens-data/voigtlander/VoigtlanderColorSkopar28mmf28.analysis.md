@@ -9,7 +9,6 @@
 **Inventors:** Yoshihisa Yomogida; Yuki Shibata\
 **Applicant:** Cosina Co., Ltd.\
 **Title:** 撮像レンズ (*Imaging Lens*)
-**Embodiment analyzed:** Example 3
 
 JP 2024-107941 A describes a compact wide-angle imaging lens for interchangeable-lens cameras. Its common architecture places a three-element front group before the aperture stop and a five-element rear group after it, with dimensional and index conditions intended to preserve a full-frame image circle while controlling chief-ray incidence and aberrations (¶0008–¶0017). Example 3 is the prescription transcribed in the data file; its numerical table appears in Table 3 on patent page 12, and its optical section appears in Figure 6 on page 17 (¶0055–¶0063).
 

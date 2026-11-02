@@ -3,6 +3,9 @@ import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
+import { evaluateLensDataSource } from "../scripts/lens-data-ast.mjs";
+import { buildFixtureLens as buildLens } from "./src/optics/constructionFixtures.js";
+import type { LensData } from "../src/types/optics.js";
 
 const repoRoot = fileURLToPath(new URL("..", import.meta.url));
 const agentDocsRoot = join(repoRoot, "agent_docs");
@@ -152,12 +155,21 @@ describe("doc drift guards", () => {
     const excludedBasenames = [
       "changelogData.ts",
       "glassCatalogData.ts",
-      ...readdirSync(join(repoRoot, "src", "optics", "glassCatalogEntries")).filter((name) => name.endsWith(".ts")),
+      ...readdirSync(join(repoRoot, "src", "optics", "chromatic", "glassCatalogEntries")).filter((name) =>
+        name.endsWith(".ts"),
+      ),
     ];
 
     for (const basename of excludedBasenames) {
       expect(largeFileWarnings, `${basename} should not inform generated large-file warnings`).not.toContain(basename);
     }
+  });
+
+  it("ingests and builds the three examples in LENS_DATA_SPEC.md", () => {
+    const spec = readFileSync(join(repoRoot, "src", "lens-data", "LENS_DATA_SPEC.md"), "utf-8");
+    const blocks = [...(sectionUnderHeading(spec, "Examples") ?? "").matchAll(/```ts\n([\s\S]*?)```/g)];
+    expect(blocks).toHaveLength(3);
+    for (const [, block] of blocks) expect(() => buildLens(evaluateLensDataSource(block) as LensData)).not.toThrow();
   });
 
   it("keeps AGENTS.md byte-identical to CLAUDE.md", () => {

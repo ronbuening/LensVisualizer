@@ -71,3 +71,117 @@ element. No figure measurement was used.
 
 The validator accepts the new values, the traced edge now reaches 14.17 mm at 42.1° with every rim clear, and the
 image-circle floor still reports nothing undersized. No aspheric surface changed.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1 was read from its copy on PDF p. 1 (the selected drawing, native 803 × 449 px, 300 ppi JBIG2 raster); the
+p. 28 raster of Figure 1 has lost nearly every lens stroke. Axis row 268 px; 6.36 px/mm from the vertex spacing of
+surfaces 1–16, and L14's edge (94 px = 14.8 mm, its stored sd) confirms the vertical scale. Both halves were read for
+flat lands square to the axis at the rims of concave faces, the shape `rimCutDepthMm` draws.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 4 (L12 rear, R 16.3986) | 0.72 (93 / 129 px) | 8.56 mm | 14.40 mm | 14.4 → 16.0 (surface 3) | 5.41 mm |
+| 7 (L14 front, R -30.5) | 0.93 (87–88 / 94 px) | 3.29 mm | 13.78 mm | 14.8 | 8.73 mm |
+| 15 (L18 rear, R 40.9323) | 0.92 (77 / 84 px) | 1.87 mm | 12.23 mm | 12.2 → 13.4 (surface 14) | 11.46 mm |
+| 27 (L41 rear, R 17.8877) | 0.91 (69 / 76 px) | 3.37 mm | 10.45 mm | 10.45 → 11.2 (surface 26) | 8.40 mm |
+
+- 7 and 15 carry a drawn 7 px stroke square to the axis, joining the cap's end to the edge line, on both halves. On
+  27 the rear face's last 7 px run straight, 2 px ahead of L42's front, where the sphere would bend 6 px further back
+  into L42. On 4 the stroke itself is missing from the raster, but on both halves the edge line ends at the plane of
+  the cap's end, 36 px above it, so only a land can close the outline.
+- 4, 15 and 27 had their sd near the figure's cap end; each was raised to its partner face's sd with the cut at the
+  old sd. On 4 the clear radius goes from the old 14.4 mm rim to the 14.4038 mm cut radius, and the beams reach
+  13.3504 mm there; on 15 it goes from the old 12.2 mm rim to the 12.2307 mm cut radius, and the beams reach
+  11.5305 mm there. 27 later lost its cut (see the rule section). The figure's land planes sit 8.6, 3.2, 1.7 and
+  3.5 mm from their vertices, against the authored 8.56, 3.29, 1.87 and 3.37 mm.
+- 6A (L13 rear, asphere) shows the same shape as 4 (cap end 87 px of a 101 px edge, q 0.86, edge line ending at the
+  cap's plane, no stroke). The raise to its partner's sd 13.8 with a 6.42 mm cut is refused: gap 6A→7 intrusion
+  9.71 mm exceeds the 9.548 mm allowed (90 % of 10.609 mm), with or without the cut on 7. A raise that passes
+  (≤ 13.455 mm) gains nothing, so 6A keeps sd 13.45 and no cut.
+- No land on the other concave faces: 2 (L11 rear, R 404.5) is near-flat, so a land cannot be told from the face; 14
+  (L18 front) runs to its edge line; 16 (L19 front) ends against L18's land and L19's edge line is not in the raster;
+  25 (L31 rear) runs to the rim within 3 px of the sphere.
+- The raster also drops other strokes square to or along the axis (the L19, L31 and L41 edge lines, the top of L11's
+  rear face). The figure draws L11–L13 rims larger than the stored sds (L12 edge 20.3 mm); no other sd changed.
+- No cap reaches the stop plane: no candidate face borders the stop, and 17 and 19 bend away from it.
+- Still traces f/1.466 against the stated f/1.46, limited by surface 16, before and after; no `(rim cut)` limiter.
+  The cuts on 4, 7 and 15 clear the traced wide-open beams by their margins (see the rule section) and clip none of
+  their rays. The engine half-field moves 38.950° → 38.958° because surface 4's cut radius (14.4038 mm) sits
+  0.0038 mm above the old sd.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). The beams are traced on the paraxial stop of #933 (entrance-pupil diameter F/N at the stated
+f/1.46) with the rule's current search, which follows each beam to the field where it vanishes, seeds from the stop
+and refines near each cut on the full measurement. Traced against that rule, one cut from the figure review above was
+dropped:
+
+- Surface 27: the cut sat at the old 10.45 mm rim (cut radius 10.4502 mm), and the beams reach 10.4514 mm there
+  (focusT 0.9, toward the 0.25 m close-focus end, 32.01°), so the land stopped the rays that rim stops. The sd returns
+  to 10.45 mm with no cut, and the face draws as it did before the figure review.
+
+The other three cuts clear the beams by their margins:
+
+- Surface 4: the beams reach 13.3504 mm there, at infinity (focusT 0) and 31.25°. The cut radius, 14.4038 mm (depth
+  8.56 mm), clears them by 1.0534 mm against a 0.05 mm margin, 1.0034 mm to spare.
+- Surface 7: the beams reach 12.8034 mm there, at infinity and 31.25°. The cut radius, 13.7792 mm (depth 3.29 mm),
+  clears them by 0.9758 mm against a 0.05 mm margin, 0.9258 mm to spare.
+- Surface 15: the beams reach 11.5305 mm there, at focusT 0.5 (between the 1:40 keyframe and the 0.25 m end) and
+  29.26°. The cut radius, 12.2307 mm (depth 1.87 mm), clears them by 0.7002 mm against a 0.05 mm margin, 0.6502 mm
+  to spare.
+
+On this stop the aperture audit traces the stated f/1.46, limited by the iris, with no `(rim cut)` limiter. The
+surface audit and the beam rule pass.
+
+Figure scale and land length. Figure 1 is drawn at 6.36 native px per lens mm, the figure review's vertex spacing of
+surfaces 1–16. The vertex ticks on axis row 268 match it: surface 1 at column 92, surface 16 at 413 (321 px over
+50.503 mm) and the image plane at 785 (693 px over 109.000 mm). The q range is ±(1 + q) / (edge px), with edge px =
+sd × 6.36.
+
+| Surface | Figure q (cap end / edge px) | Edge px | q range | Cut radius ÷ sd | Land (sd − cut radius) |
+|---|---|---|---|---|---|
+| 4 | 0.721 (93 / 129) | 101.8 | 0.704–0.738 | 0.900 | 1.5962 mm |
+| 7 | 0.931 (87.5 / 94) | 94.1 | 0.910–0.951 | 0.931 | 1.0208 mm |
+| 15 | 0.917 (77 / 84) | 85.2 | 0.894–0.939 | 0.913 | 1.1693 mm |
+
+- 4 sits at the old 14.4 mm rim, not at q × sd. The figure draws L12 larger than its 16.0 mm sd (edge 129 px,
+  20.3 mm), and its cap end, 93 px or 14.62 mm (0.16 mm a pixel), lies within 1.4 px of the old rim. On the drawn
+  129 px edge the q range is 0.708–0.734.
+- 15 sits at the old 12.2 mm rim, inside its q range.
+- Every land is longer than the 0.1 mm minimum, and no q range reaches 1.
+
+## 2026-10-29 — Z-mount surface and glass reinspection
+
+Fresh direct source review: `patents/JP2018205527A.pdf`, Numerical Example 1: Figure 1 in the abstract, PDF page 1 (compared with the degraded copy on page 28); prescription table, PDF page 18. Source page images were rendered and inspected anew; prior records supplied locators only.
+
+Every convex/concave face and cemented boundary was inspected in a fresh 600 dpi crop of the abstract figure. The native raster is 150 dpi; S1–S16 gives 321 px / 50.503 mm = 6.356 native px/mm, checked against the image-plane span. Surface 27 has a clear concave rear mounting seat: retain its existing optical cap 10.45 mm and extend the drawn rim to 11.2 mm with `rimExtensionSd`. The existing inferred cuts on 4, 7 and 15 remain unchanged and pass the current beam sweep.
+
+A surface-6A extension to the partner rim 13.8 mm was rejected: intrusion into the following gap is 9.703 mm against 9.548 mm allowed. The existing cap 13.45 mm and the clearance policy stay unchanged. Further surface-27 clipping was rejected because the existing clear cap is already at the beam floor (about 10.451 mm). The figure’s weak raster strokes do not justify other changes.
+
+All 16 authored glass media were checked against every source nd/νd row. Source uses d-line values and publishes no numerical θgF/partial-dispersion or other spectral-line indices for this embodiment. No source glass value changed.
+
+| Medium | Source nd / νd  | Current coefficient-backed proxy |
+| ------ | --------------- | -------------------------------- |
+| L11    | 1.51680 / 64.2  | N-BK7                            |
+| L12    | 2.00100 / 29.13 | TAFD55                           |
+| L13    | 1.58913 / 61.25 | M-BACD5N                         |
+| L14    | 1.43700 / 95.1  | FCD100                           |
+| L15    | 2.00100 / 29.13 | TAFD55                           |
+| L16    | 1.91082 / 35.25 | TAFD35                           |
+| L17    | 1.43700 / 95.1  | FCD100                           |
+| L18    | 1.51742 / 52.15 | E-CF6                            |
+| L19    | 1.67270 / 32.17 | E-FD5                            |
+| L21    | 1.59282 / 68.63 | FCD505                           |
+| L22    | 1.74950 / 35.33 | S-LAM7                           |
+| L23    | 1.69350 / 53.2  | M-LAC130                         |
+| L31    | 1.59282 / 68.63 | FCD505                           |
+| L41    | 1.80518 / 25.46 | S-TIH6                           |
+| L42    | 1.43700 / 95.1  | FCD100                           |
+| L43    | 1.90366 / 31.32 | S-LAH95                          |
+
+Current resolver coverage: 16/16 modeled media; 16 physical lens elements. Rear plates checked separately: 1.51680/64.2. Available curves remain qualified spectral proxies; supplier, melt and material chemistry are not established. Existing family-based APD flags remain inferred, with no new source-dispersion override.
+
+Verification: focused surface/beam, image-circle and aperture audits; native SVG outlines and render diagnostics at the nine zoom/focus endpoint-and-midpoint states; current-label glass resolver, native-coordinate compatibility and shared glass consistency tests. Full repository gates are recorded by the coordinator at commit time.

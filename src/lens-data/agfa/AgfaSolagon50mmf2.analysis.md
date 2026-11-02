@@ -7,7 +7,6 @@
 **Inventor:** Theodor Brendel
 **Assignee:** Agfa Camera-Werk Aktiengesellschaft, Munich, Germany
 **Title:** High Speed Corrected Objective Comprising Four Air Spaced Members
-**Embodiment analyzed:** Example 1
 
 US 2,745,315 describes a high-speed photographic objective of the double-Gauss family: two convergent outer singlets and two negative cemented inner menisci, with both cemented interfaces specified as plane surfaces. The patent presents three worked numerical examples; Example 1 is the embodiment transcribed here.
 

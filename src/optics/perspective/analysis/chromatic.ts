@@ -1,17 +1,18 @@
 /** Fixed-sensor chromatic focus, transverse color, and retained ray fans. */
 
+import { CHROMATIC_PUPIL_FRACTIONS, signedVerticalSensorUvs } from "../../analysis/sampling.js";
+
+import type { AnalysisRequest } from "../../analysis/request.js";
+import { perspectiveAnalysisSamplingPlan } from "../../analysis/perspectiveAnalysisSampling.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 import type { Vec3 } from "../../types.js";
-import {
-  sampleMeridionalPupilBundle,
-  sampleSceneLockedFields,
-  sampleSensorLockedFields,
-  type FieldSample,
-  type PerspectiveFieldSamplingOptions,
-  type PerspectiveFieldStatus,
-  type SensorUv,
-} from "../fieldSampling.js";
+import { sampleMeridionalPupilBundle } from "../pupilBundle.js";
+import { sampleSceneLockedFields, sampleSensorLockedFields } from "../fieldSampling.js";
+import type { FieldSample, PerspectiveFieldSamplingOptions } from "../fieldTypes.js";
+import type { PerspectiveFieldStatus } from "../chiefRay.js";
+import type { SensorUv } from "../fieldGeometry.js";
+import { SENSOR_LOCK_FORMAT_TOLERANCE_MM } from "../sensorTarget.js";
 import { createFieldPlaneFrame, pointInsideSensor, requirePerspectiveImageFormatMetadata } from "../fieldGeometry.js";
 import type { PerspectiveTraceContext, PerspectiveTraceResult } from "../trace.js";
 import {
@@ -20,23 +21,16 @@ import {
   fieldSensorAxes,
   resolvePerspectivePupilSemiDiameter,
   solvePerspectiveSensorBestFocus,
-  type PerspectiveSensorBestFocus,
 } from "./imageSpace.js";
-import { sensorFrameDisplacement, type SensorFrameDisplacement } from "./shared.js";
+import type { PerspectiveSensorBestFocus } from "./imageSpace.js";
+import { sensorFrameDisplacement } from "./shared.js";
+import type { SensorFrameDisplacement } from "./shared.js";
 
-const DEFAULT_CHROMATIC_SENSOR_UVS: readonly SensorUv[] = [
-  { u: 0, v: -1 },
-  { u: 0, v: -0.5 },
-  { u: 0, v: 0 },
-  { u: 0, v: 0.5 },
-  { u: 0, v: 1 },
-];
-const DEFAULT_CHROMATIC_PUPIL_FRACTIONS = [-0.9, -0.6, -0.3, 0, 0.3, 0.6, 0.9] as const;
+const DEFAULT_CHROMATIC_SENSOR_UVS: readonly SensorUv[] = signedVerticalSensorUvs(5);
+const DEFAULT_CHROMATIC_PUPIL_FRACTIONS = CHROMATIC_PUPIL_FRACTIONS;
 
 /** Controls for scene-matched chromatic measurements at fixed-sensor coordinates. */
 export interface PerspectiveChromaticOptions {
-  stopSemiDiameterMm: number;
-  pupilSemiDiameterMm?: number;
   /** Caller order is retained, including unavailable coordinates. */
   sensorUvs?: readonly SensorUv[];
   /** Caller order is retained; duplicate channels are rejected. */
@@ -125,19 +119,22 @@ export interface PerspectiveChromaticAnalysis {
  * The reference wavelength first solves each requested fixed-sensor point. All
  * channels then reuse that camera-space scene direction, so their physical
  * sensor intercept differences remain visible instead of being solved away.
+ *
+ * @param request - shared prepared geometry, aperture, pose and sensor-solve cache
+ * @param options - explicit field/channel/fan sampling; omitted uses request sampling
+ * @returns ordered reference locks, channel metrics and retained ray fans
  */
 export function computePerspectiveChromaticAnalysis(
-  context: PerspectiveTraceContext,
-  options: PerspectiveChromaticOptions,
+  request: AnalysisRequest,
+  options: PerspectiveChromaticOptions = perspectiveAnalysisSamplingPlan(request).chromatic,
 ): PerspectiveChromaticAnalysis {
+  const context = request.perspectiveTraceContext;
+  if (!context) throw new Error("Movement-aware analysis requires a PerspectiveTraceContext");
+  const { stopSemiDiameterMm } = request.aperture;
   const channels = normalizeChannels(options.channels);
   const referenceChannel = resolveReferenceChannel(channels, options.referenceChannel);
   const pupilFractions = normalizePupilFractions(options.pupilFractions);
-  const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(
-    context,
-    options.stopSemiDiameterMm,
-    options.pupilSemiDiameterMm,
-  );
+  const pupilSemiDiameterMm = resolvePerspectivePupilSemiDiameter(request);
   const sensorUvs = options.sensorUvs ?? DEFAULT_CHROMATIC_SENSOR_UVS;
   const referenceLocks = sampleSensorLockedFields(context, sensorUvs, {
     ...options.fieldSampling,
@@ -165,7 +162,8 @@ export function computePerspectiveChromaticAnalysis(
               pupilSemiDiameterMm,
               pupilFractions,
               referenceChannel,
-              options.stopSemiDiameterMm,
+              stopSemiDiameterMm,
+              field.domain,
             )
           : null,
       };
@@ -185,7 +183,7 @@ export function computePerspectiveChromaticAnalysis(
         pupilBundle: {
           kind: "meridional",
           pupilSemiDiameterMm,
-          stopSemiDiameterMm: options.stopSemiDiameterMm,
+          stopSemiDiameterMm,
           fractions: pupilFractions,
           channel,
         },
@@ -213,7 +211,7 @@ export function computePerspectiveChromaticAnalysis(
 
   return {
     contextCacheKey: context.cacheKey,
-    stopSemiDiameterMm: options.stopSemiDiameterMm,
+    stopSemiDiameterMm,
     pupilSemiDiameterMm,
     referenceChannel,
     channels,
@@ -416,7 +414,8 @@ function physicalSensorStatus(context: PerspectiveTraceContext, field: FieldSamp
     requirePerspectiveImageFormatMetadata(context),
     context.sensorBasis,
   );
-  return pointInsideSensor(sensorFrame, field.actualSensorIntercept) ? "usable" : "missed-sensor";
+  const toleranceMm = field.domain === "sensor-locked" ? SENSOR_LOCK_FORMAT_TOLERANCE_MM : undefined;
+  return pointInsideSensor(sensorFrame, field.actualSensorIntercept, toleranceMm) ? "usable" : "missed-sensor";
 }
 
 function normalizeChannels(channels: readonly ChromaticChannel[] | undefined): ChromaticChannel[] {
@@ -435,6 +434,7 @@ function resolveReferenceChannel(
   return reference;
 }
 
+// Unlike centered chromatic fan normalization, preserve supplied signs, zeros, duplicates and order after validation.
 function normalizePupilFractions(fractions: readonly number[] | undefined): number[] {
   const normalized = [...(fractions ?? DEFAULT_CHROMATIC_PUPIL_FRACTIONS)];
   if (normalized.length === 0) throw new RangeError("pupilFractions must contain at least one sample");

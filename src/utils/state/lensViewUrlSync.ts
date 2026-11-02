@@ -33,10 +33,10 @@ export function getComparisonZoomLens(comparisonLenses: ComparisonLensesParam): 
 
 export function getCatalogZoomLens(lensKey: string): ZoomConvertibleLens | null {
   const lensData = LENS_CATALOG[lensKey];
-  if (!lensData || !Array.isArray(lensData.zoomPositions) || lensData.zoomPositions.length < 2) return null;
+  if (!lensData || !Array.isArray(lensData.zoom?.stations) || lensData.zoom?.stations.length < 2) return null;
   return {
     isZoom: true,
-    zoomPositions: lensData.zoomPositions,
+    zoomPositions: lensData.zoom?.stations.map((station) => station.focalLengthMm),
   };
 }
 

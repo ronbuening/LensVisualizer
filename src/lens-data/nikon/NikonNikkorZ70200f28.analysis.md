@@ -12,7 +12,7 @@
 
 **Published:** 2020-05-28
 
-**Embodiment analyzed:** Example 1, Figure 1 and Table 1
+**Example details:** Figure 1 and Table 1
 
 **Title:** Variable Magnification Optical System, Optical Device, and Production Method for Variable Magnification Optical System
 

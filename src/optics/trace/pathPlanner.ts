@@ -6,18 +6,21 @@
  */
 
 import type { FoldedPathAutoCandidateSkip } from "../../types/optics.js";
-import { intersectSurfaceProfile, type SurfaceIntersectionResult } from "../math/intersection.js";
-import { intersectRayPlane, type RayPlaneIntersection } from "../math/plane.js";
-import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
+import { intersectSurfaceProfile } from "../geometry/intersect.js";
+import type { SurfaceIntersectionResult } from "../geometry/intersectTypes.js";
+import { intersectRayPlane } from "../geometry/intersectPlane.js";
+import type { RayPlaneIntersection } from "../geometry/intersectPlane.js";
+import type { Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
 import { incidentSideFor, resolvedNextIndex } from "./interactions.js";
 import { surfaceLabel } from "./foldedDiagnostics.js";
+import type { TraceGeometry } from "./types.js";
 
 /** Candidate hit selected or skipped during generalized surface search. */
-export interface SurfaceHitCandidate {
+export interface SurfaceHitCandidate<C extends boolean = true> {
   surfaceIndex: number | null;
   hit: SurfaceIntersectionResult | null;
-  skippedCandidates: FoldedPathAutoCandidateSkip[];
+  skippedCandidates: C extends true ? FoldedPathAutoCandidateSkip[] : undefined;
 }
 
 /** Intersection of a ray with the current image plane. */
@@ -26,7 +29,7 @@ export type ImagePlaneIntersection = RayPlaneIntersection;
 /**
  * Compute the bounded search length for the next sequential surface.
  *
- * @param state - prepared optical state
+ * @param geometry - indexed trace geometry
  * @param surfaceIndex - surface being targeted
  * @param origin - current ray origin
  * @param direction - normalized ray direction
@@ -34,18 +37,18 @@ export type ImagePlaneIntersection = RayPlaneIntersection;
  * @returns positive parametric maxT for intersection search, or 0 when unbounded search is unsafe
  */
 export function sequentialSurfaceMaxT(
-  state: PreparedOpticalState,
+  geometry: TraceGeometry,
   surfaceIndex: number,
   origin: Vec3,
   direction: Vec3,
   launchBoundT?: number,
 ): number {
-  const surface = state.surfaces[surfaceIndex];
+  const surface = geometry.surfaces[surfaceIndex];
   if (direction[2] > 1e-12) {
     const vertexZ = surface.z;
     const nextZ =
-      surfaceIndex < state.surfaces.length - 1
-        ? state.surfaces[surfaceIndex + 1].z
+      surfaceIndex < geometry.surfaces.length - 1
+        ? geometry.surfaces[surfaceIndex + 1].z
         : vertexZ + Math.abs(surface.d ?? 0);
     const surfaceSag = Math.abs(surface.profile.sag(surface.sd ?? 0));
     const boundZ = Math.max(vertexZ + surfaceSag + 1, nextZ, origin[2] + 1e-6);
@@ -62,22 +65,110 @@ export function sequentialSurfaceMaxT(
  * that non-physical extension before reaching the glass. The glass never lies more than its rim sag ahead of the
  * vertex, so the search starts one millimetre ahead of that plane: the launch plane the chief-ray solver uses.
  *
- * @param state - prepared optical state
+ * @param geometry - indexed trace geometry
  * @param surfaceIndex - surface being targeted
  * @param origin - current ray origin
  * @param direction - normalized ray direction
  * @returns non-negative parametric minT; 0 for later surfaces and for origins already past the start plane
  */
 export function sequentialSurfaceMinT(
-  state: PreparedOpticalState,
+  geometry: TraceGeometry,
   surfaceIndex: number,
   origin: Vec3,
   direction: Vec3,
 ): number {
   if (surfaceIndex !== 0 || !(direction[2] > 1e-12)) return 0;
-  const surface = state.surfaces[0];
+  const surface = geometry.surfaces[0];
   const startZ = surface.z - Math.abs(surface.profile.sag(surface.sd ?? 0)) - 1;
   return startZ > origin[2] ? (startZ - origin[2]) / direction[2] : 0;
+}
+
+/**
+ * Compute how far behind its origin the sequential search for a surface may meet the ray's line.
+ *
+ * Where the next surface of the sequence lies behind the last hit, as a stop plane set inside the sag of the surface
+ * before it, or two neighbouring surfaces that cross, a sequential trace meets it by a step backwards along the line,
+ * as OpticStudio does with a negative thickness. The step goes back no further than one millimetre in front of the
+ * surface's rim-sag plane, the plane `sequentialSurfaceMinT` starts the first surface's search from. There is no step
+ * back to the first surface, whose launch lies in front of the lens; none for a ray that no longer travels toward +z,
+ * which is blocked at the next surface; and none on a folded path, whose generalized trace searches forward only.
+ *
+ * @param geometry - indexed trace geometry
+ * @param surfaceIndex - surface being targeted
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @returns positive parametric length behind the origin, or 0 where the trace does not step back
+ */
+export function sequentialSurfaceBackT(
+  geometry: TraceGeometry,
+  surfaceIndex: number,
+  origin: Vec3,
+  direction: Vec3,
+): number {
+  if (surfaceIndex === 0 || !(direction[2] > 1e-12) || geometry.traversal.kind !== "sequential") return 0;
+  const surface = geometry.surfaces[surfaceIndex];
+  const backZ = surface.z - Math.abs(surface.profile.sag(surface.sd ?? 0)) - 1;
+  return backZ < origin[2] ? (origin[2] - backZ) / direction[2] : 0;
+}
+
+/**
+ * How far past the crossing nearest the origin, in mm along the line, `intersectSequentialSurface` starts its search
+ * for a second crossing behind the origin: far above the rounding of a hit, so that search does not meet the first
+ * crossing again, and far below any distance between two crossings that are not one grazing touch.
+ */
+export const BACKWARD_SECOND_CROSSING_GAP = 1e-6;
+
+/**
+ * Meet a ray's line with the next surface of a sequential trace, in either direction.
+ *
+ * The search runs forward from the origin, between `minT` and `maxT`, as it always has. Only where it finds no root
+ * (`noBracket`) is the line behind the origin searched, out to `sequentialSurfaceBackT`. Of the first two crossings
+ * there, the one nearer the surface's vertex plane is the hit, as OpticStudio takes a surface's root from its vertex
+ * plane: a line can cross a concave face twice behind the origin. Such a hit has negative `t`, `segmentLength` and
+ * `opticalPathLength`, so the optical path charges the step with its sign. A forward hit, and a forward failure of
+ * any other reason, is returned unchanged; so is a search behind that fails for a reason of its own.
+ *
+ * @param geometry - indexed trace geometry
+ * @param surfaceIndex - surface being targeted
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @param options - forward search bounds and current refractive index
+ * @returns the forward hit; else the backward hit with signed lengths; else the backward failure when it is not
+ *   `noBracket`; else the forward failure
+ */
+export function intersectSequentialSurface(
+  geometry: TraceGeometry,
+  surfaceIndex: number,
+  origin: Vec3,
+  direction: Vec3,
+  options: { minT: number; maxT: number; refractiveIndex: number },
+): SurfaceIntersectionResult {
+  const forward = intersectStateSurface({ origin, direction }, geometry, surfaceIndex, options);
+  if (forward.ok || forward.failureReason !== "noBracket") return forward;
+  const backT = sequentialSurfaceBackT(geometry, surfaceIndex, origin, direction);
+  if (!(backT > 0)) return forward;
+  // Along the reversed ray the crossings behind the origin come in ray order, nearest first.
+  const reversed: Vec3 = [-direction[0], -direction[1], -direction[2]];
+  const behind = (minT: number): SurfaceIntersectionResult =>
+    intersectStateSurface({ origin, direction: reversed }, geometry, surfaceIndex, {
+      minT,
+      maxT: backT,
+      refractiveIndex: options.refractiveIndex,
+    });
+  const nearest = behind(0);
+  if (!nearest.ok) return nearest.failureReason === "noBracket" ? forward : nearest;
+  // A second search that finds nothing, or fails, leaves the nearest crossing.
+  const vertexZ = geometry.surfaces[surfaceIndex].z;
+  const secondMinT = nearest.t + BACKWARD_SECOND_CROSSING_GAP;
+  const second = secondMinT < backT ? behind(secondMinT) : null;
+  const hit =
+    second?.ok && Math.abs(second.point[2] - vertexZ) < Math.abs(nearest.point[2] - vertexZ) ? second : nearest;
+  return {
+    ...hit,
+    t: -hit.t,
+    segmentLength: -hit.segmentLength,
+    opticalPathLength: hit.opticalPathLength === null ? null : -hit.opticalPathLength,
+  };
 }
 
 /**
@@ -86,7 +177,7 @@ export function sequentialSurfaceMinT(
  * Tilted planes and grazing vector launches cannot rely on z projection alone,
  * so the fallback bound includes total lens extent and clear aperture margins.
  *
- * @param state - prepared optical state
+ * @param geometry - indexed trace geometry
  * @param surfaceIndex - surface being targeted
  * @param origin - current ray origin
  * @param direction - normalized ray direction
@@ -94,13 +185,13 @@ export function sequentialSurfaceMinT(
  * @returns positive parametric maxT for the surface intersection search
  */
 export function targetedSurfaceMaxT(
-  state: PreparedOpticalState,
+  geometry: TraceGeometry,
   surfaceIndex: number,
   origin: Vec3,
   direction: Vec3,
   launchBoundT?: number,
 ): number {
-  const surface = state.surfaces[surfaceIndex];
+  const surface = geometry.surfaces[surfaceIndex];
   const vertexZ = surface.z;
   const surfaceSag = Math.abs(surface.profile.sag(surface.sd ?? 0));
   const hasTiltedPlaneNormal = surface.interaction.normal !== null;
@@ -111,8 +202,8 @@ export function targetedSurfaceMaxT(
     }
   }
   if (launchBoundT && launchBoundT > 0) return launchBoundT;
-  const extent = state.surfaces.reduce((sum, item) => sum + Math.abs(item.d ?? 0), 0);
-  const maxSD = state.surfaces.reduce((max, item) => Math.max(max, item.sd ?? 0), 0);
+  const extent = geometry.surfaces.reduce((sum, item) => sum + Math.abs(item.d ?? 0), 0);
+  const maxSD = geometry.surfaces.reduce((max, item) => Math.max(max, item.sd ?? 0), 0);
   return Math.max(10, extent + 4 * maxSD + surfaceSag);
 }
 
@@ -120,14 +211,14 @@ export function targetedSurfaceMaxT(
  * Intersect the current ray with a prepared surface profile.
  *
  * @param ray - current ray origin and normalized direction
- * @param state - prepared optical state
+ * @param geometry - indexed trace geometry
  * @param surfaceIndex - surface index to test
  * @param options - search bounds and current refractive index
  * @returns surface intersection result with typed failure reason
  */
 export function intersectStateSurface(
   ray: Ray3,
-  state: PreparedOpticalState,
+  geometry: TraceGeometry,
   surfaceIndex: number,
   options: {
     minT?: number;
@@ -135,7 +226,7 @@ export function intersectStateSurface(
     refractiveIndex?: number;
   } = {},
 ): SurfaceIntersectionResult {
-  const surface = state.surfaces[surfaceIndex];
+  const surface = geometry.surfaces[surfaceIndex];
   return intersectSurfaceProfile(ray, surface.profile, surface.z, {
     ...options,
     directionNormalized: true,
@@ -148,15 +239,15 @@ export function intersectStateSurface(
  *
  * @param origin - current ray origin
  * @param direction - normalized ray direction
- * @param state - prepared optical state carrying the image plane
+ * @param geometry - indexed trace geometry carrying the image plane
  * @returns image-plane hit, or null when the ray is parallel/behind the origin
  */
 export function intersectImagePlane(
   origin: Vec3,
   direction: Vec3,
-  state: PreparedOpticalState,
+  geometry: TraceGeometry,
 ): ImagePlaneIntersection | null {
-  return intersectRayPlane({ origin, direction }, state.imagePlane);
+  return intersectRayPlane({ origin, direction }, geometry.imagePlane);
 }
 
 /**
@@ -167,62 +258,64 @@ export function intersectImagePlane(
  *
  * @param origin - current ray origin
  * @param direction - normalized ray direction
- * @param state - prepared optical state
+ * @param geometry - indexed trace geometry
  * @param launchBoundT - optional bound for grazing/vector launches
  * @param refractiveIndex - current medium index
  * @param indexAtSurface - optional chromatic index resolver
  * @param previousSurfaceIndex - last hit surface, used to suppress self-hits
  * @param allowedSurfaceIndexes - optional explicit candidate set
+ * @param recordCandidates - capture policy chosen before searching; false allocates no skip diagnostics
  * @returns nearest valid candidate and diagnostics for skipped candidates
  */
-export function findNearestGeneralizedSurfaceHit(
+export function findNearestGeneralizedSurfaceHit<C extends boolean = true>(
   origin: Vec3,
   direction: Vec3,
-  state: PreparedOpticalState,
+  geometry: TraceGeometry,
   launchBoundT: number | undefined,
   refractiveIndex: number,
   indexAtSurface: ((surfaceIndex: number, nd: number) => number) | undefined,
   previousSurfaceIndex: number,
   allowedSurfaceIndexes?: ReadonlySet<number>,
-): SurfaceHitCandidate {
+  recordCandidates: C = true as C,
+): SurfaceHitCandidate<C> {
   let best: { surfaceIndex: number; hit: SurfaceIntersectionResult } | null = null;
-  const skippedCandidates: FoldedPathAutoCandidateSkip[] = [];
+  const skippedCandidates: FoldedPathAutoCandidateSkip[] | undefined = recordCandidates ? [] : undefined;
 
-  for (let i = 0; i < state.surfaces.length; i++) {
+  for (let i = 0; i < geometry.surfaces.length; i++) {
     if (allowedSurfaceIndexes && !allowedSurfaceIndexes.has(i)) continue;
-    const maxT = targetedSurfaceMaxT(state, i, origin, direction, launchBoundT);
-    const hit = intersectStateSurface({ origin, direction }, state, i, {
+    const maxT = targetedSurfaceMaxT(geometry, i, origin, direction, launchBoundT);
+    const hit = intersectStateSurface({ origin, direction }, geometry, i, {
       minT: 1e-6,
       maxT,
       refractiveIndex,
     });
 
     if (!hit.ok) {
-      skippedCandidates.push({
+      skippedCandidates?.push({
         surfaceIdx: i,
-        surfaceLabel: surfaceLabel(state, i),
+        surfaceLabel: surfaceLabel(geometry, i),
         reason: "intersection-failed",
         failureReason: hit.failureReason,
       });
       continue;
     }
     if (hit.t <= 0) {
-      skippedCandidates.push({
+      skippedCandidates?.push({
         surfaceIdx: i,
-        surfaceLabel: surfaceLabel(state, i),
+        surfaceLabel: surfaceLabel(geometry, i),
         reason: "non-forward-hit",
         t: hit.t,
       });
       continue;
     }
     if (i === previousSurfaceIndex && hit.t <= selfHitTolerance(hit.t)) {
-      skippedCandidates.push({ surfaceIdx: i, surfaceLabel: surfaceLabel(state, i), reason: "self-hit", t: hit.t });
+      skippedCandidates?.push({ surfaceIdx: i, surfaceLabel: surfaceLabel(geometry, i), reason: "self-hit", t: hit.t });
       continue;
     }
-    if (isPassiveAutoSurface(i, hit, direction, state, refractiveIndex, indexAtSurface)) {
-      skippedCandidates.push({
+    if (isPassiveAutoSurface(i, hit, direction, geometry, refractiveIndex, indexAtSurface)) {
+      skippedCandidates?.push({
         surfaceIdx: i,
-        surfaceLabel: surfaceLabel(state, i),
+        surfaceLabel: surfaceLabel(geometry, i),
         reason: "passive-same-index",
         t: hit.t,
       });
@@ -231,7 +324,11 @@ export function findNearestGeneralizedSurfaceHit(
     if (!best || hit.t < (best.hit.ok ? best.hit.t : Infinity)) best = { surfaceIndex: i, hit };
   }
 
-  return { surfaceIndex: best?.surfaceIndex ?? null, hit: best?.hit ?? null, skippedCandidates };
+  return {
+    surfaceIndex: best?.surfaceIndex ?? null,
+    hit: best?.hit ?? null,
+    skippedCandidates,
+  } as SurfaceHitCandidate<C>;
 }
 
 /**
@@ -271,17 +368,17 @@ function isPassiveAutoSurface(
   surfaceIndex: number,
   hit: SurfaceIntersectionResult,
   direction: Vec3,
-  state: PreparedOpticalState,
+  geometry: TraceGeometry,
   refractiveIndex: number,
   indexAtSurface: ((surfaceIndex: number, nd: number) => number) | undefined,
 ): boolean {
   if (!hit.ok) return true;
-  const surface = state.surfaces[surfaceIndex];
+  const surface = geometry.surfaces[surfaceIndex];
   if (surface.interaction.type !== "refract") return false;
   if (surface.diffractive) return false;
   const side = incidentSideFor(direction, hit.normal);
-  const nextIndex = resolvedNextIndex(surfaceIndex, side, surface, state.surfaces, indexAtSurface);
-  const aperture = evaluateAperture(state, surface, hit.radius);
+  const nextIndex = resolvedNextIndex(surfaceIndex, side, surface, geometry.surfaces, indexAtSurface);
+  const aperture = evaluateAperture(geometry, surface, hit.radius);
   return aperture.state !== "inside" || Math.abs(nextIndex - refractiveIndex) <= 1e-12;
 }
 

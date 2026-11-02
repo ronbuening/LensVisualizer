@@ -9,7 +9,7 @@
 **Priority:** July 8, 1932, Germany
 **Granted:** October 2, 1934
 **Title:** Objective
-**Embodiment analyzed:** Sole numerical example, Fig. 1, dimensions scaled by 0.5
+**Example details:** Fig. 1, dimensions scaled by 0.5
 
 The numerical example specifies f = 100, f/1.5 and a picture angle of about 42°.
 The viewer halves its linear dimensions to the approximately 50 mm scale. The

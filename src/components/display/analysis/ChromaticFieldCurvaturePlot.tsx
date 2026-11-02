@@ -8,8 +8,8 @@
  * metric and should not be inferred from this focus-shift chart.
  */
 
-import type { FieldCurvatureResult } from "../../../optics/aberrationAnalysis.js";
-import { CHROMATIC_CHANNEL_ORDER } from "../../../optics/chromatic/channels.js";
+import type { FieldCurvatureResult } from "../../../optics/analysis.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../../../optics/chromatic.js";
 import type { ChromaticChannel } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import {

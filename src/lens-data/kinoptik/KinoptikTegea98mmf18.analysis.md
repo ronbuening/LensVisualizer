@@ -7,7 +7,7 @@
 **Inventor:** Edgard Hugues\
 **Assignee:** Les Appareils de Precision Kinoptik\
 **Title:** *Photographic Objectives Having a Large Angular Field*\
-**Embodiment analyzed:** Example 2, Fig. 2 / Table 2
+**Example details:** Fig. 2 / Table 2
 
 The prescription is transcribed from Example 2 of Hugues's large-angular-field patent. Table 2 gives nine glass elements,
 L7 through L15, arranged as six air-separated groups after the three zero-spacing mating interfaces are treated as

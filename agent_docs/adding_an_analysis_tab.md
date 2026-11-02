@@ -32,8 +32,8 @@ enforced by the type system — if `npm run typecheck` passes, the wiring is com
 - `L: RuntimeLens` — the runtime lens; pass it explicitly to any optics helper.
 - `t: Theme` — theme tokens; never hardcode colors.
 - `zPos: number[]` — current surface z positions.
-- `preparedState: PreparedOpticalState` — pass to `*ForState2()` analysis helpers.
-- `analysisContext` — optional `AnalysisComputationContext`; forward it if your helper accepts it.
+- `preparedState: PreparedOpticalState` — the geometry snapshot for request construction.
+- `analysisContext` — optional `AnalysisComputationContext`; its `request` owns the deferred snapshot. Reuse it for migrated helpers.
 - `inputs` — `{ focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD, dynamicEFL, fieldGeometry }`.
 
 Only the ACTIVE tab renders (`ANALYSIS_TAB_RENDERERS[activeTab]` in `AnalysisDrawerContent.tsx`),
@@ -42,9 +42,65 @@ the prepared state / slider inputs you actually use.
 
 ## Rules
 
-- Optics math lives in a pure helper under `src/optics/analysis/` (named
-  `computeYourThingForState2(state, ...)` by convention), NOT in the component. The component
-  formats and renders.
+- Optics math and sampled-series orchestration live in a pure helper under
+  `src/optics/analysis/<family>/`, taking `AnalysisRequest`. Expose migrated helpers through
+  `src/optics/analysis.ts`; implementation leaves import lower-level sources directly.
+  The component formats and renders. Summary/cardinals/breathing/group movement and spherical aberration/SA
+  profile/blur character/best focus, field curvature/astigmatism/chromatic field-focus summary, coma,
+  distortion, vignetting, pupil aberration, bokeh and chromatic LoCA/lateral color/fans use this path.
+  The historical job-table names now dispatch centered requests. Perspective focus/bokeh/best focus and
+  field curvature/astigmatism/coma, chromatic, distortion, vignetting and pupils stay under
+  `src/optics/perspective/analysis/` and also take `AnalysisRequest`.
+- Reuse `analysisContext.request`, or memoize `createAnalysisRequest` from the supplied prepared
+  state and every used control/aperture/EFL/field input. Memoize the context/result on that identity.
+  Do not mix deferred geometry with live controls. The breathing series intentionally omits
+  aberration control; preserve that input contract when reusing its chart pattern.
+  Coma detail-field overrides use a distinct request with `sampling.comaDetailFieldFraction`;
+  retain that fraction in memo dependencies so changing it updates the previews.
+  Distortion's context forwards sampling to its curve while retaining separate grid defaults;
+  preserve that distinction when reusing its two-result context pattern.
+  Vignetting uses both aperture radii, field geometry and request sampling; its standalone request
+  uses zero for the unused dynamic EFL. Keep survivor counts separate from absorption-weighted illumination.
+  Pupils share one combined per-angle solve for entrance and exit profiles. Reuse the context request's sampling;
+  standalone pupil requests leave sampling unset (17 samples) and use zero for unused EFL/aperture values.
+  Keep field geometry in the memo dependencies and preserve scalar-domain entrance fallback and vector exit tracing.
+  Bokeh reuses the context request or snapshots prepared controls and both aperture radii (zero unused EFL).
+  Keep both aperture values in memo dependencies. Pair previews trace their own infinity/near layouts with
+  request sampling and recomputed field geometry, retaining T2 best focus; moved bokeh still uses perspective focus.
+  Chromatic summary, fans and field-focus bundle share one request/context. Retain field geometry and both apertures
+  in request memo dependencies; only lateral color forwards the field geometry, while fans recompute it.
+  Diagram LoCA preserves supplied surface z and obstruction-aware marginal fractions through an explicit options
+  override. Keep intrinsic LoCA available in the moved frame without routing perspective chromatic through centered jobs.
+- Moved Bokeh, Coma, Aberrations, Summary, Chromatic, Distortion, Vignetting and Pupil reuse the deferred request/context
+  for all perspective families. Their lazy job entries take that request directly;
+  optional family options override only field/channel/pupil sampling, with aperture and pose supplied by the request.
+  Moved Chromatic uses the same request for its separately labelled intrinsic LoCA. Keep the request in memo dependencies:
+  its identity includes shift, tilt, pivot, focus and both aperture radii. Reuse its perspective trace context
+  to retain one sensor-target solve per point across families, including failures. The shared policy in
+  `analysis/perspectiveAnalysisSampling.ts` retains signed top/center/bottom interactive fields and denser
+  settled fields. Explicit standalone sampling keeps its own defaults. Preserve movement/folded guards;
+  an unavailable fixed-sensor result must never fall back to centered analysis. Distortion stays scene-locked:
+  its sensor solves are deliberately null. Chromatic locks only its reference channel to the sensor; other channels
+  trace that shared scene direction. Vignetting must use the request's original perspective context and its
+  separate `zeroMovementContext()` reference: zero-center and matched-field samples share the zero context's memo,
+  while active fields share the active memo with other families. Keep absolute survivor counts, absorbed flux and
+  zero-center normalization separate. Pupils use request aperture for both intrinsic references and apparent bundles.
+  Explicit family options override sampling only; passing `{}` preserves standalone sweep/quadrature defaults.
+  Preserve the physical format band for sensor-locked fields/fans and strict format bounds for scene-locked
+  non-reference channels.
+- MTF entry points live in `analysis/mtf/` and are exposed through `optics/mtf.ts`. They take
+  `AnalysisRequest` plus `MtfRequestOptions`; geometry-only helpers take `PreparedGeometry`. Reuse
+  `analysisContext.request`, or memoize a standalone request with prepared geometry and both aperture radii.
+  Keep every request input and MTF setting in memo dependencies. The f/8 comparison uses a separate request
+  with scaled radii. `useMtfComputation` serializes controls for the worker, which reconstructs the request;
+  do not serialize prepared geometry or its caches. Preserve the worker's debounce, cancellation, progress,
+  field-cache and chart-only reuse behavior. MTF has no context accessor or job-table entry, and comparison
+  mode uses the shared renderer. Preserve its movement/folded guards and verified kernels.
+- Aspheric comparison is an element overlay, with no job/context accessor. Its request-facing element
+  resolution lives in `analysis/asphericComparison/`; scalar/surface helpers stay request-free. Keep its
+  `[L, info.id]`, `[surfaces, mode]` and `[departureBySurf]` dependencies and element-local construction
+  vertices. Mode resets use `lastModeRef`, never request identity. Preserve its explicit `SAMPLES + 1`
+  profile override and the separate overlay/profile sag arithmetic at coefficient-free spherical rims.
 - Slider-dependent values come from `preparedState`/`inputs` at render time — never bake them into
   `buildLens()`.
 - Folded/mirror lenses: check how existing tabs guard folded systems before computing (several

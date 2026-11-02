@@ -6,7 +6,6 @@
 **Priority:** Germany, 21 July 1952
 **Filed (Switzerland):** 24 June 1953
 **Published:** 31 July 1956
-**Embodiment analyzed:** Example 1
 
 ---
 

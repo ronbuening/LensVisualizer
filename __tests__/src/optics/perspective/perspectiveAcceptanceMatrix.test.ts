@@ -1,25 +1,24 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../constructionFixtures.js";
+import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import { computeMovementPair } from "../../../../src/comparison/comparisonSliders.js";
-import buildLens from "../../../../src/optics/buildLens.js";
-import { anchorLayoutToCamera } from "../../../../src/optics/cameraLayout.js";
-import { prepareRuntimeState } from "../../../../src/optics/compat.js";
-import { clampLensMovement, isMovementAxisEnabled } from "../../../../src/optics/lensMovement.js";
-import { doLayout, entrancePupilAtState } from "../../../../src/optics/optics.js";
+import { buildFixtureLens as buildLens } from "../constructionFixtures.js";
+import { anchorLayoutToCamera } from "../../../../src/optics/state/cameraLayout.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
+import { clampLensMovement, isMovementAxisEnabled } from "../../../../src/optics/perspective/lensMovement.js";
+import { doLayoutForRuntimeLens as doLayout } from "../../../../src/optics/state/runtimeAdapters.js";
+import { entrancePupilAtState } from "../../../../src/optics/state/fieldAdapters.js";
 import { computePerspectiveFocusAnalysis } from "../../../../src/optics/perspective/analysis/focus.js";
-import {
-  computePerspectiveVignettingAnalysis,
-  createAreaWeightedCircularPupilPoints,
-} from "../../../../src/optics/perspective/analysis/vignetting.js";
+import { computePerspectiveVignettingAnalysis } from "../../../../src/optics/perspective/analysis/vignetting.js";
+import { createAreaWeightedCircularPupilPoints } from "../../../../src/optics/perspective/analysis/shared.js";
 import { sampleSensorLockedFields } from "../../../../src/optics/perspective/fieldSampling.js";
-import {
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../../../src/optics/perspective/trace.js";
-import { traceEngineRay2 } from "../../../../src/optics/trace/rayAdapters.js";
+import { createPerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
+import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
+import { traceEngineRay } from "../../../../src/optics/trace/rayAdapters.js";
 import type { Vec3 } from "../../../../src/optics/types.js";
-import type { LensMovementState } from "../../../../src/optics/lensMovement.js";
+import type { LensMovementState } from "../../../../src/optics/perspective/lensMovement.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import {} from "../../../../src/utils/catalog/lensCatalog.js";
 
 const DUAL_AXIS_KEY = "nikon-pc-nikkor-19mm-f4e-ed";
 const SHIFT_ONLY_KEY = "nikon-pc-nikkor-35mm-f28";
@@ -61,7 +60,7 @@ const FOCUS_PUPIL_POINTS = [
 ] as const;
 
 function acceptanceState(lensKey: string, scenario: AcceptanceScenario): AcceptanceState {
-  const L = buildLens(LENS_CATALOG[lensKey]);
+  const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[lensKey]);
   const reference = doLayout(0, 0, L);
   const current = doLayout(scenario.focusT, 0, L);
   const cameraLayout = anchorLayoutToCamera(reference, current);
@@ -140,31 +139,45 @@ describe("perspective-control final acceptance matrix", () => {
       stopSemiDiameter: centered.currentStopSemiDiameterMm,
       stopOnClip: true,
     } as const;
-    const direct = traceEngineRay2(centered.context.state, input, traceOptions);
+    const direct = traceEngineRay(centered.context.state, input, traceOptions);
     const identity = centered.context.traceRay(input, traceOptions);
 
     expect(identity.cameraTrace).toBe(identity.localTrace);
     expect(identity.localTrace).toEqual(direct);
     expectPointOnFixedSensor(centered.context, identity.sensorIntersection?.point ?? null);
 
-    const centeredFocus = computePerspectiveFocusAnalysis(centered.context, {
-      stopSemiDiameterMm: centered.currentStopSemiDiameterMm,
-      pupilSemiDiameterMm: centered.currentPupilSemiDiameterMm,
-      sensorUvs: [
-        { u: 0, v: -0.45 },
-        { u: 0, v: 0.45 },
-      ],
-      pupilPoints: FOCUS_PUPIL_POINTS,
-    });
-    const movedFocus = computePerspectiveFocusAnalysis(combined.context, {
-      stopSemiDiameterMm: combined.currentStopSemiDiameterMm,
-      pupilSemiDiameterMm: combined.currentPupilSemiDiameterMm,
-      sensorUvs: [
-        { u: 0, v: -0.45 },
-        { u: 0, v: 0.45 },
-      ],
-      pupilPoints: FOCUS_PUPIL_POINTS,
-    });
+    const centeredFocus = computePerspectiveFocusAnalysis(
+      createAnalysisRequest({
+        preparedState: centered.context.state,
+        dynamicEFL: 0,
+        currentPhysStopSD: centered.currentStopSemiDiameterMm,
+        currentEPSD: centered.currentPupilSemiDiameterMm,
+        perspectiveTraceContext: centered.context,
+      }),
+      {
+        sensorUvs: [
+          { u: 0, v: -0.45 },
+          { u: 0, v: 0.45 },
+        ],
+        pupilPoints: FOCUS_PUPIL_POINTS,
+      },
+    );
+    const movedFocus = computePerspectiveFocusAnalysis(
+      createAnalysisRequest({
+        preparedState: combined.context.state,
+        dynamicEFL: 0,
+        currentPhysStopSD: combined.currentStopSemiDiameterMm,
+        currentEPSD: combined.currentPupilSemiDiameterMm,
+        perspectiveTraceContext: combined.context,
+      }),
+      {
+        sensorUvs: [
+          { u: 0, v: -0.45 },
+          { u: 0, v: 0.45 },
+        ],
+        pupilPoints: FOCUS_PUPIL_POINTS,
+      },
+    );
 
     expect(centeredFocus.samples.map(({ status }) => status)).toEqual(["usable", "usable"]);
     expect(movedFocus.samples.map(({ status }) => status)).toEqual(["usable", "usable"]);
@@ -177,24 +190,38 @@ describe("perspective-control final acceptance matrix", () => {
     );
 
     const pupilPoints = createAreaWeightedCircularPupilPoints(2, 8);
-    const wideIllumination = computePerspectiveVignettingAnalysis(combined.context, {
-      stopSemiDiameterMm: combined.currentStopSemiDiameterMm,
-      pupilSemiDiameterMm: combined.currentPupilSemiDiameterMm,
-      sensorUvs: [
-        { u: 0, v: -0.6 },
-        { u: 0, v: 0.6 },
-      ],
-      pupilPoints,
-    });
-    const stoppedIllumination = computePerspectiveVignettingAnalysis(stopped.context, {
-      stopSemiDiameterMm: stopped.currentStopSemiDiameterMm,
-      pupilSemiDiameterMm: stopped.currentPupilSemiDiameterMm,
-      sensorUvs: [
-        { u: 0, v: -0.6 },
-        { u: 0, v: 0.6 },
-      ],
-      pupilPoints,
-    });
+    const wideIllumination = computePerspectiveVignettingAnalysis(
+      createAnalysisRequest({
+        preparedState: combined.context.state,
+        perspectiveTraceContext: combined.context,
+        dynamicEFL: 0,
+        currentPhysStopSD: combined.currentStopSemiDiameterMm,
+        currentEPSD: combined.currentPupilSemiDiameterMm,
+      }),
+      {
+        sensorUvs: [
+          { u: 0, v: -0.6 },
+          { u: 0, v: 0.6 },
+        ],
+        pupilPoints,
+      },
+    );
+    const stoppedIllumination = computePerspectiveVignettingAnalysis(
+      createAnalysisRequest({
+        preparedState: stopped.context.state,
+        perspectiveTraceContext: stopped.context,
+        dynamicEFL: 0,
+        currentPhysStopSD: stopped.currentStopSemiDiameterMm,
+        currentEPSD: stopped.currentPupilSemiDiameterMm,
+      }),
+      {
+        sensorUvs: [
+          { u: 0, v: -0.6 },
+          { u: 0, v: 0.6 },
+        ],
+        pupilPoints,
+      },
+    );
 
     for (const analysis of [wideIllumination, stoppedIllumination]) {
       expect(analysis.samples.map(({ status }) => status)).toEqual(["usable", "usable"]);
@@ -208,7 +235,7 @@ describe("perspective-control final acceptance matrix", () => {
   });
 
   it("honors the real Nikon shift-only contract and omits unsupported tilt", () => {
-    const L = buildLens(LENS_CATALOG[SHIFT_ONLY_KEY]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[SHIFT_ONLY_KEY]);
     const clampedExtreme = clampLensMovement(L, { shiftMm: 99, tiltDeg: 8 });
     const shifted = acceptanceState(SHIFT_ONLY_KEY, {
       label: "shift only",
@@ -228,8 +255,8 @@ describe("perspective-control final acceptance matrix", () => {
   });
 
   it("builds independent physical contexts for a PC/ordinary comparison", () => {
-    const pc = buildLens(LENS_CATALOG[DUAL_AXIS_KEY]);
-    const ordinary = buildLens(LENS_CATALOG[ORDINARY_KEY]);
+    const pc = buildLens(CATALOG_CONSTRUCTION_FIXTURES[DUAL_AXIS_KEY]);
+    const ordinary = buildLens(CATALOG_CONSTRUCTION_FIXTURES[ORDINARY_KEY]);
     const pair = computeMovementPair(6, 4, pc, ordinary);
     const pcState = acceptanceState(DUAL_AXIS_KEY, {
       label: "comparison PC",

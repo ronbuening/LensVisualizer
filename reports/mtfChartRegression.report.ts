@@ -1,3 +1,5 @@
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
+import { createAnalysisRequest } from "../src/optics/analysis.js";
 /**
  * Manufacturer-chart regression report.
  *
@@ -16,21 +18,27 @@
 import { describe, expect, it } from "vitest";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { env } from "node:process";
-import { combineOtfs, otfMagnitude, type ComplexOtf, type MtfSpot } from "../src/optics/analysis/mtfMath.js";
-import { shearedOtf } from "../src/optics/analysis/mtfShearedOtf.js";
-import { findMtfFieldFootprint, prepareMtfFieldLaunch, traceMtfBundle } from "../src/optics/analysis/mtfTracing.js";
-import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/analysis/mtfWavefront.js";
-import { wideOpenStopAtZoom } from "../src/optics/apertureStop.js";
-import buildLens from "../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../src/optics/compat.js";
+import { combineOtfs, otfMagnitude } from "../src/optics/mtf.js";
+import type { ComplexOtf, MtfSpot } from "../src/optics/mtf.js";
+import { shearedOtf } from "../src/optics/mtf.js";
+import {
+  findMtfFieldFootprint,
+  prepareMtfFieldLaunch,
+  traceMtfStopBundle,
+  traceMtfLaunchPlaneBundle,
+} from "../src/optics/mtf.js";
+import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/mtf.js";
+import { wideOpenStopAtZoom } from "../src/optics/optics.js";
+import { buildLens } from "../src/optics/buildLens.js";
+import { prepareRuntimeState } from "../src/optics/optics.js";
 import { assessMtfSupport, computeMtf } from "../src/optics/mtf.js";
-import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/optics.js";
+import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/fieldGeometry.js";
 import type { PreparedOpticalState } from "../src/optics/types.js";
 import type { MtfMethod, MtfOptions, MtfResult } from "../src/types/mtf.js";
-import type { LensData } from "../src/types/optics.js";
 import { mtfChartConvention, type MtfChartConvention, type MtfChartMethod } from "./data/mtfChartConventions.js";
+import { correctedSinceAudit } from "./mtfChartLib.js";
 
-const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 const ANCHORS_PATH = "reports/data/mtfChartAnchors.csv";
 const REPORT_DIR = "agent_docs/generated";
 const REPORT_PATH = `${REPORT_DIR}/mtf-chart-regression.generated.md`;
@@ -222,24 +230,33 @@ function curvesAt(result: MtfResult, fieldIndex: number, frequency: number): Cur
 function crossCheckConfiguration(state: PreparedOpticalState, options: MtfOptions, result: MtfResult): CrossCheck {
   const charted = result.fields.filter((field) => field.status === "converged" || field.status === "unconverged");
   const check: CrossCheck = { compared: 0, undersampled: 0, untraced: charted.length, gaps: [], largestStep: 0 };
-  const support = assessMtfSupport(state, options);
+  const support = assessMtfSupport(
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options.pupilSemiDiameterMm,
+      currentPhysStopSD: options.stopSemiDiameterMm,
+    }),
+    options,
+  );
   if (!support.available || !result.focus) return check;
   const planeZ = state.imgZ + result.focus.appliedShiftMm;
   for (const field of charted) {
     if (field.fieldAngleDeg === null) continue;
     const launch = prepareMtfFieldLaunch(state, options, support, field.fieldAngleDeg);
-    const footprint = launch && findMtfFieldFootprint(state, options, support, launch);
-    if (!launch || !footprint) continue;
+    // A bounding-sphere field keeps launch-plane sampling over its footprint, as the product does.
+    const footprint = launch && !launch.aim ? findMtfFieldFootprint(state, options, support, launch) : null;
+    if (!launch || (!launch.aim && !footprint)) continue;
     const estimate = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
     const reference = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
     let common: MtfSpot | undefined;
     let step = 0;
     let complete = true;
     for (const line of support.spectralLines) {
-      const bundle = traceMtfBundle(state, options, support, launch, footprint, CROSS_CHECK_GRID, line, planeZ, {
-        reference: common,
-        opticalPath: true,
-      });
+      const extras = { reference: common, opticalPath: true };
+      const bundle = footprint
+        ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, CROSS_CHECK_GRID, line, planeZ, extras)
+        : traceMtfStopBundle(state, options, support, launch, CROSS_CHECK_GRID, line, planeZ, extras);
       const lattice = bundle && mtfWaveLattice(bundle, (common ??= bundle.chief), planeZ);
       if (!bundle || !lattice || !common) {
         complete = false;
@@ -278,7 +295,7 @@ interface Weighted {
 }
 
 /** Trace one chart's configuration with diffraction and, when it differs, under the maker's convention. */
-function runConfiguration(lens: LensData, zoomT: number, anchors: Anchor[]): Configuration {
+function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[]): Configuration {
   const L = buildLens(lens);
   const state = prepareRuntimeState(L, 0, zoomT);
   // Sized as the audit sized it: the wide-open iris of this zoom position and the entrance pupil it projects.
@@ -298,15 +315,33 @@ function runConfiguration(lens: LensData, zoomT: number, anchors: Anchor[]): Con
   const maker = lens.maker ?? "Unknown";
   const convention = mtfChartConvention(lens.maker);
   const conventionMethod = ENGINE_METHOD[convention.method];
-  const result = computeMtf(state, options(DIFFRACTION_METHOD));
+  const result = computeMtf(
+    createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: options(DIFFRACTION_METHOD).pupilSemiDiameterMm,
+      currentPhysStopSD: options(DIFFRACTION_METHOD).stopSemiDiameterMm,
+    }),
+    options(DIFFRACTION_METHOD),
+  );
   const conventionResult =
-    conventionMethod === DIFFRACTION_METHOD ? result : computeMtf(state, options(conventionMethod));
+    conventionMethod === DIFFRACTION_METHOD
+      ? result
+      : computeMtf(
+          createAnalysisRequest({
+            preparedState: state,
+            dynamicEFL: 0,
+            currentEPSD: options(conventionMethod).pupilSemiDiameterMm,
+            currentPhysStopSD: options(conventionMethod).stopSemiDiameterMm,
+          }),
+          options(conventionMethod),
+        );
   return {
     key: lens.key,
     zoomT,
     maker,
     convention,
-    corrected: (lens.sourceErrata ?? []).some((erratum) => erratum.status === "corrected"),
+    corrected: correctedSinceAudit(L),
     result,
     samples: anchors.map((anchor) => {
       const fieldIndex = fieldFractions.indexOf(anchor.fieldFraction);
@@ -493,12 +528,13 @@ function renderReport(configurations: Configuration[]): string {
   lines.push(
     "## Per Configuration",
     "",
-    "`Label f/` is the aperture printed on the chart; `Traced f/` is the working f-number of the simulated axial",
-    "beam, and `Limited by` the surface that bounds it. Focus shift is the best axial focus plane relative to the",
-    "authored image plane, in mm. Each comparison lists mean signed and mean absolute delta.",
+    "`Label f/` is the aperture printed on the chart, which the stop rule sizes the iris for; `Vignetted by` names the",
+    "surface that clips the axial marginal ray, as the Summary's working f-number reports it. Focus shift is the best",
+    "axial focus plane relative to the authored image plane, in mm. Each comparison lists mean signed and mean",
+    "absolute delta.",
     "",
-    "| Lens | zoomT | Maker | Chart convention | Label f/ | Traced f/ | Limited by | Focus shift | Diffraction: signed | absolute | Convention: signed | absolute |",
-    "|---|---:|---|---|---:|---:|---|---:|---:|---:|---:|---:|",
+    "| Lens | zoomT | Maker | Chart convention | Label f/ | Vignetted by | Focus shift | Diffraction: signed | absolute | Convention: signed | absolute |",
+    "|---|---:|---|---|---:|---|---:|---:|---:|---:|---:|",
   );
   for (const { key, zoomT, maker, convention, result, samples: own } of configurations)
     lines.push(
@@ -508,8 +544,9 @@ function renderReport(configurations: Configuration[]): string {
         maker,
         `${convention.method} (${convention.basis})`,
         fixed(own[0].anchor.apertureLabel, 2),
-        result.aperture ? fixed(result.aperture.tracedFNumber, 2) : "n/a",
-        result.aperture ? (result.aperture.limitingSurfaceLabel ?? "iris") : "n/a",
+        result.axialVignetting
+          ? `${result.axialVignetting.surfaceLabel}${result.axialVignetting.beforeStop ? " (before stop)" : ""}`
+          : "—",
         result.focus ? signed(result.focus.appliedShiftMm) : "n/a",
         ...deltaCells(own, DIFFRACTION).slice(0, 2),
         ...deltaCells(own, MAKER_CONVENTION).slice(0, 2),
@@ -526,7 +563,7 @@ function renderReport(configurations: Configuration[]): string {
     "## Estimator Cross-Check",
     "",
     "The diffraction estimate is computed from where the rays land. As a check that shares only the ray trace, the",
-    "same bundles are traced with their optical path and the complex pupil is autocorrelated on the launch lattice",
+    "same bundles are traced with their optical path and the complex pupil is autocorrelated on the stop lattice",
     "(`waveLatticeOtf`). Both are summed over the photopic lines on the best axial focus plane at a",
     `${CROSS_CHECK_GRID} pupil grid, and compared at ${CROSS_CHECK_FREQUENCIES.join(" and ")} lp/mm on both cuts. The optical-path route is only`,
     `valid where its phase turns by less than ${CROSS_CHECK_PHASE_STEP_WAVES} wave from one lattice cell to the next, so a field enters`,

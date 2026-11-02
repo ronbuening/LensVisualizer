@@ -30,3 +30,7 @@ Patent: US 4,303,314, Embodiment 3 / Claim 4
 
 - L1/L2 intentionally remain Abbe-only unresolved `620586` entries until a coefficient-backed glass source is added.
 - L4 uses a code-based dense-flint label with line-index backfill rather than claiming a verified Nikon/SCHOTT procurement source.
+
+## 2026-10-29 — F-mount shape and fresh glass review
+
+Re-read original `patents/US4303314.pdf`, shared Fig.1 (PDF p2), Embodiment3/claim4 tables (p5). Correct L3 νd29.52→29.5 to the repeated source value; every nd and the other source Abbe values are retained. Removed six unsourced catalog C/F/g values; S-TIH1 and SF56A now provide qualified compatible curves. L1/L2 retain unresolved1.62041/58.6 with Abbe fallback. A focused primary-vendor search for exact pair/code620586 returned no row; no forced match or catalog tolerance change. The common schematic gives≈9.33 native px/mm for the scaled model from ~707px /75.7512mm vertex span. S6’s measuredq≈.75±.010 (181native-pixel outer radius) establishes a land; preserve20.52mm clear cap and extend only its opaque outline to21.6mm (adoptedq.95). S2 follows a full continuous curve, clear SD25.515→25.785mm to the common L1 rim. Surface/circle and f/2.8 aperture checks pass; nine actual SVG states are finite with zero hidden trim. The source R/d, scaling, focus, stop and tolerances are unchanged.

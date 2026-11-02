@@ -7,7 +7,6 @@
 **Filed:** January 9, 1979
 **Granted:** September 23, 1980
 **Title:** Semi-Wide Angle Photographic Lens Having Short Overall Length
-**Embodiment analyzed:** Example 2
 
 The prescription transcribes **Example 2** of the patent. The identification of this embodiment with the production Pentax-110 24mm f/2.8 lens rests on the following convergent evidence:
 

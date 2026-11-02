@@ -9,8 +9,7 @@
 **Published:** September 16, 2021\
 **Inventors:** Taiga Noda; Ryosuke Nagami\
 **Assignee:** FUJIFILM Corporation\
-**Title:** *Zoom Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Example 6
+**Title:** *Zoom Lens and Imaging Apparatus*
 
 The prescription modeled here is Example 6 of US 2021/0286156 A1. The patent does not name the production lens. The
 association with the **FUJIFILM FUJINON XF 70-300mm f/4-5.6 R LM OIS WR** is therefore a fixed production correlation,

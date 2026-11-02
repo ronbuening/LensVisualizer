@@ -7,7 +7,7 @@
 **Inventor:** Albrecht Wilhelm Tronnier<br>
 **Assignee:** Voigtländer & Sohn Aktiengesellschaft<br>
 **Title:** *Gauss Type Photographic Objective Having Two Lens Systems on Opposite Sides of a Diaphragm*<br>
-**Embodiment analyzed:** Example 1 — the sole Numerical Example associated with Figure 2
+**Example details:** the sole Numerical Example associated with Figure 2
 
 The selected prescription is the patent's only worked numerical example. Figure 2 shows its cemented form: the first
 opposite-power pair and the first rear pair use equal-radius junctions and are cemented, rather than separated by the

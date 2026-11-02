@@ -10,7 +10,7 @@
 **Applicant:** Sigma Corporation (株式会社シグマ)  
 **Title:** Optical System (光学系)  
 **Classification:** G02B 13/00; G02B 13/18  
-**Embodiment analyzed:** Numerical Example 1 (実施例1, Fig. 1)
+**Example details:** 実施例1, Fig. 1
 
 JP 2015-114366 A discloses a large-aperture standard photographic lens. Numerical Example 1 is the prescription that most directly corresponds to the Sigma 50mm F1.4 DG HSM | Art, product code A014.
 
@@ -213,3 +213,5 @@ The re-review changed the interpretation of the close-focus BF value: the 47.699
 - Sigma Corporation, official product specification for the 50mm F1.4 DG HSM | Art, product code A014. Used for manufacturer-priority values: marketed focal length, nominal F-number, lens construction, full-frame DG format, angle of view, mounts, minimum focusing distance, maximum magnification, aperture blades, filter size, and special-element presentation.
 - HOYA Group Optics Division, Glass Cross Reference Index, Glass Polished Lenses, Glass Lenses Pressed Blanks, and Glass Molded Lenses material lists. Used for current HOYA glass names and six-digit code cross-checking.
 - OHARA, SCHOTT, HIKARI, SUMITA, and CDGM catalog cross-references. Used only as equivalence-class checks where the patent does not identify a vendor.
+
+The fresh exact-publication [original Figure1 image](https://patentimages.storage.googleapis.com/9b/db/d2/7c60653d9aca10/2015114366-4.png) supplements missing strokes in PDFp.27. The L2 body uses a common28.5mm outer radius; its rear concave cap ends at23.0026mm through an inferred11.5mm axial cut. The source suggests about23±0.5mm clear and30±0.5mm outer radii; the smaller adopted body respects the literal sphere domain. Full-beam and published258mm front-vertex finite-point checks clear the cut with margin. All13 glass curves remain qualified spectral proxies, with no source C/F/g or partial-ratio data or production-melt identity.

@@ -7,7 +7,7 @@
 **Inventor:** Ju Yeon Jo\
 **Assignee:** Samyang Optics Co., Ltd.\
 **Title:** Lens Optical System and Imaging Apparatus Using the Same\
-**Embodiment analyzed:** Example 1 / first embodiment
+**Example details:** first embodiment
 
 This analysis follows the prescription stored in `SamyangAF24mmf18FE.data.ts`, which transcribes Example 1 of US 2024/0151940 A1 without uniform scaling. The structured data identifies the modeled production lens as the **SAMYANG AF 24mm f/1.8 FE**, with a marketed focal length of 24 mm and maximum aperture of f/1.8 kept separate from the patent design values of 24.8004 mm and f/1.86.
 

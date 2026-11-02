@@ -85,5 +85,12 @@ describe("patents index page", () => {
         .some((link) => link.getAttribute("href") === `/lens/${patent.lenses[0].key}/`),
     ).toBe(true);
     expect(PATENTS.length).toBeGreaterThan(PATENT_COUNTRY_GROUPS.length);
+
+    const multiExample = PATENTS.find((record) => record.lenses.length > 1 && record.lenses[0].example);
+    expect(multiExample).toBeDefined();
+    const exampleLens = multiExample!.lenses[0];
+    const exampleLinks = [...document.querySelectorAll(`a[href="/lens/${exampleLens.key}/"]`)];
+    expect(exampleLinks.length).toBeGreaterThan(0);
+    for (const link of exampleLinks) expect(link.textContent?.startsWith(exampleLens.example!.label)).toBe(true);
   });
 });

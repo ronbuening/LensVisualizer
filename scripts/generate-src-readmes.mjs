@@ -6,8 +6,11 @@ const repoRoot = process.cwd();
 const srcRoot = path.join(repoRoot, "src");
 const generatedDocNames = new Set(["readme.md", "improvementsuggestions.md"]);
 const skippedDocSubtrees = new Set(["src/generated", "src/lens-data", "src/mounts"]);
-const largeFileWarningExcludedFiles = new Set(["src/optics/glassCatalogData.ts", "src/utils/content/changelogData.ts"]);
-const largeFileWarningExcludedSubtrees = new Set(["src/optics/glassCatalogEntries"]);
+const largeFileWarningExcludedFiles = new Set([
+  "src/optics/chromatic/glassCatalogData.ts",
+  "src/utils/content/changelogData.ts",
+]);
+const largeFileWarningExcludedSubtrees = new Set(["src/optics/chromatic/glassCatalogEntries"]);
 const sourceExtensions = new Set([".ts", ".tsx", ".json", ".md", ".template"]);
 const codeExtensions = new Set([".ts", ".tsx"]);
 const moduleExtensions = [".ts", ".tsx", ".d.ts", ".json", ".md"];
@@ -72,28 +75,50 @@ const folderRoleOverrides = new Map([
   ],
   [
     "src/lens-data",
-    "auto-discovered lens prescription data, companion analysis notes, audit notes, authoring specs, and shared lens-data defaults",
+    "auto-discovered lens prescription data, companion analysis notes, audit notes, and authoring specs",
   ],
   ["src/mounts", "mount interface data specs and schema consumed by the pure mount renderer and mount pages"],
   [
     "src/optics",
     "pure optical engine, runtime-lens construction, tracing, analysis, projection, glass, mount rendering, and diagram geometry",
   ],
-  ["src/optics/aberration", "engine-native aberration analysis primitives and shared aberration types"],
+  ["src/optics/analysis/bokeh", "request-based bokeh previews, field footprints and density reductions"],
+  [
+    "src/optics/analysis/mtf",
+    "computes the simulated MTF from pupil samples that are positions on the real aperture stop, evenly spaced and equally weighted as in OpticStudio with ray aiming and in CODE V, aimed per wavelength through the shared stop lattice. A vignetted beam spans fewer cells of that lattice than of the old launch-plane grid, so outer fields of fast lenses can need the default 256-cell cap to converge; a field launched from the bounding sphere keeps launch-plane footprint sampling and says so",
+  ],
+  [
+    "src/optics/analysis/pupils",
+    "holds the shared aimed pupil launch, whose pupil coordinates are positions on the real stop, the stop lattice the vignetting tab and the MTF sample, and pupil aberration",
+  ],
+  [
+    "src/optics/analysis/vignetting",
+    "computes OpticStudio's vignetting (the share of a stop lattice's rays transmitted, geometric) and relative illumination (Rimmer's projected solid angle of the exit pupil in direction-cosine space, with transmission, relative to the axis)",
+  ],
+  ["src/optics/analysis/aberration", "request-based spherical and best-focus analysis with shared aberration leaves"],
   ["src/optics/analysis", "prepared-state analysis adapters and grouped analysis facades"],
   ["src/optics/chromatic", "chromatic channel, trace, dispersion, and quality helpers"],
   ["src/optics/diagram", "pure SVG-ready diagram geometry helpers used by React diagram layers"],
+  ["src/optics/diagnostics", "bounded diagnostic snapshots keyed by compiled prescription identity"],
   ["src/optics/field", "engine-native field geometry, chief-ray solving, projection, and launch helpers"],
   [
     "src/optics/first-order",
     "first-order optical calculations for cardinals, pupils, f-number, focus breathing, and system matrices",
   ],
-  ["src/optics/internal", "private exact surface-tracing implementation details for the optics engine"],
-  ["src/optics/math", "low-level vector, numerical, paraxial, surface profile, and intersection math"],
+  [
+    "src/optics/geometry",
+    "the single implementation of surface sag, slope, and profiles, with the profile normal, conic domain, and slope bound, and the ray-surface intersection kernel with its roundoff envelopes and plane landings",
+  ],
+  ["src/optics/math", "low-level vector, numerical, and paraxial math"],
   ["src/optics/mount", "pure mount-diagram geometry, SVG document emission, validation, styling, and JSON helpers"],
   [
     "src/optics/prescription",
-    "lens prescription normalization, variable gaps, labels, groups, dispersion, interactions, and aspheric helpers",
+    "canonical prescription ingest, compilation, composition, identity ownership, and control helpers",
+  ],
+  ["src/optics/prescription/v1", "converter-only V1 ingest, printers, and source-path mapping"],
+  [
+    "src/optics/prescription/validate",
+    "authored shape, canonical facts, diagnostic paths, and compiled geometry validation",
   ],
   ["src/optics/state", "engine-native prepared optical state and cache helpers"],
   [

@@ -7,7 +7,7 @@
 **Inventor:** Werner Wagner\
 **Assignee:** Jos. Schneider & Co., Optische Werke\
 **Title:** Varifocal Optical Objective\
-**Embodiment analyzed:** Table I, the patent's sole worked numerical prescription; designated Example 1 by the project job card
+**Example details:** Table I, the patent's sole worked numerical prescription; designated Example 1 by the project job card
 
 The implemented prescription is the single numerical example in Table I of US 3,482,900. The patent describes a five-component varifocal objective for small still cameras, specifically including 24 × 36 mm film, with a nominal relative aperture of 1:2.8. Its worked zoom states are 48, 72, 85, and 96 mm. The patent also gives a common back focal length of 48.2 linear units and 14 physical glass elements arranged as ten air-spaced lens members. The data file preserves those design quantities without scaling. (US 3,482,900, pp. 3–5; Table I on p. 4.)
 
@@ -219,3 +219,6 @@ The period Schneider catalog, [*Schneider Interchangeable Lenses*, p. 9](https:/
 The catalog, printed page 9, lists interchangeable production sockets for Pentax/Praktica (M42), Exakta, Praktina, Minolta SR, Miranda, Konica F, Canonflex (Canon R), C, D, Nikon F and Leicaflex. These are the documented sockets represented by canonical ids, not a claim of exhaustive compatibility; the separately listed Bolex H8 Reflex and Exakta Real sockets remain unrepresented. Cine sockets do not change the authored 35mm image format or establish a new production prescription. [Manufacturer source](https://www.pacificrimcamera.com/rl/00068/00068.pdf).
 
 `lensMounts` records the correlated production installation; it does not establish that the patent example is the exact factory prescription or certify every body’s mechanical, metering or rangefinder compatibility.
+
+
+The fresh F-mount review retains the constrained front/rear height differences of the S18–S20 compound. Figure 1's square outline does not supply a safe larger powered cemented interface, and an opaque interface land would misrepresent the joint. Oblique bevels at other concave ends are not modeled as flat annuli. The centered corner trace is clear at the four published zoom stations; it does not supply an unpublished finite-focus law. Thirteen compatible spectral proxies remain, with L11 unresolved and no historical supplier identity inferred.

@@ -6,8 +6,7 @@
 **Granted:** July 12, 1904<br>
 **Inventor:** Carl August Hans Harting (printed as “Hans Harting”)<br>
 **Assignee:** None named in the selected patent<br>
-**Title:** Lens<br>
-**Embodiment analyzed:** The patent's only worked numerical example
+**Title:** Lens
 
 The data file transcribes the fixed job-card correlation between Harting's worked example and the Voigtländer Dynar f/6. The identification rests on convergent evidence rather than an explicit cross-reference in a manufacturer publication. The grant prints the inventor as “Hans Harting”; the structured metadata uses his established complete name, Carl August Hans Harting. It names no assignee.
 

@@ -11,7 +11,7 @@
 **Applicant:** Minoru Murayama (Tokyo, JP)
 **Assignee:** Ricoh Co., Ltd. (assignment recorded on the filing date)
 **Title:** Imaging Lens System and Imaging Apparatus Incorporating the Same
-**Embodiment analyzed:** Example 1 (FIG. 1, FIG. 31)
+**Example details:** FIG. 1, FIG. 31
 
 The patent discloses five numerical examples of a fast standard lens having back focal length sufficient for a single-lens reflex camera, an F-value of approximately 1.4, and an angle of view of approximately 45° (¶0003, ¶0174). Example 1 is the embodiment transcribed in the paired prescription file.
 

@@ -9,7 +9,7 @@
 **Published:** June 20, 2002
 **Assignee:** Fuji Photo Optical Co., Ltd. (assignment recorded on the filing date)
 **Title:** Inner-Focus-Type Lens
-**Embodiment analyzed:** Embodiment 1 (Table 1, FIG. 1)
+**Example details:** Table 1, FIG. 1
 
 **US 2002/0075570 A1**, "Inner-Focus-Type Lens." Inventor: Hiromitsu Yamakawa (Saitama City, Japan). Filed September 13, 2001; published June 20, 2002. Priority: JP 2000-293710, filed September 27, 2000. The prescription used is **Embodiment 1** (Table 1, FIG. 1, aberration plots FIGS. 3A–3H).
 

@@ -22,6 +22,7 @@ interface RelationshipMapProps {
   selectedPatentId: string | null;
   onSelectPatent: (patentId: string | null) => void;
   onFocusParty: (ref: PartyRef) => void;
+  active?: boolean;
 }
 
 const PATENT_R = 10;
@@ -47,10 +48,11 @@ export default function RelationshipMap({
   selectedPatentId,
   onSelectPatent,
   onFocusParty,
+  active = true,
 }: RelationshipMapProps) {
   const layout = useMemo(() => layoutRelationshipGraph(graph), [graph]);
   const svgRef = useRef<SVGSVGElement>(null);
-  const zoom = useViewBoxZoom(layout.width, layout.height, true, svgRef);
+  const zoom = useViewBoxZoom(layout.width, layout.height, active, svgRef);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
 
   const patentById = useMemo(() => new Map(graph.patents.map((p) => [p.id, p])), [graph.patents]);

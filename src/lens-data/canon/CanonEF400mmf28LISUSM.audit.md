@@ -26,3 +26,122 @@ Patent: US 6,115,188 A, Numerical Example 25
 - Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
   axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
   corner.
+
+## 2026-10-12 — Semi-diameter pass for the stated axial beam (historical)
+
+- Original Numerical Example 25, PDF p. 79 col. 34 and Fig. 88, PDF p. 59 were inspected. At that runtime,
+  S7 at 53.3 mm clipped the stated beam at 55.490 mm and traced f/3.010 instead of f/2.9. S7 and S8 were
+  raised to 55.5 mm; the then-supported renderer did not yet represent the visible S8 outer shoulder.
+- The guard changed from default 0.90 to 0.97 on that date. S6–S7 retain 0.097669 mm physical air at
+  55.5 mm, while 0.96 refused the 2.582331 mm intrusion across D6 = 2.68 mm. No source R/d, pair,
+  stop or aperture target changed. This review does not repeat or expand that historical guard change.
+- Native source was 2320 × 3408 at 300 ppi, about 6.14 px/mm. Historical front rims were measured as
+  HG 68.8, L1a 67.5, L1b-P 56.8, L1b-N 55.2, L1c-P 49.1, L1c-N 41.0 and L2 32.6 mm.
+- The historical infinity/field/renderer checks passed, and a composed 2× extender was checked then.
+  Finite-focus axial clearance remained limited at S7; the other oversized rims were left open under
+  the then-applied raise-only rule. Historical stop/field/vignetting outputs are not current guarantees.
+  The original analysis was not synchronized then; the 2026-10-30 review below supersedes current
+  shape and spectral-reference conclusions while preserving this actual review date and decisions.
+
+## 2026-10-30 — Original shape and glass review
+
+Original Fig. 88 is on PDF p. 59, sheet 57. The native embedded raster is 2320 × 3408 px at 300 ppi.
+The rotated 2420 × 1000 optical crop is unresampled; its roughly 2285 px first-vertex-to-image span over
+372.207 mm gives about 6.14 px/mm. A pixel is about 0.163 mm; practical rim uncertainty is ±0.8 mm
+because of stroke width and cap/shoulder junctions. The 4× rear crop is a reading enlargement only.
+
+| Surfaces                       | Adopted clear sd (mm) | Resolved outer sd (mm), where different |
+| ------------------------------ | --------------------- | --------------------------------------- |
+| 1–2, HG                        | 69                    | —                                       |
+| 3–4, L1a                       | 68.1                  | —                                       |
+| 5–6, L1b-P                     | 57.5                  | —                                       |
+| 7 / 8, L1b-N                   | 55.5 / 52.0           | S8: 55.5                                |
+| 9–10, L1c-P                    | 49.5                  | —                                       |
+| 11 / 12, L1c-N                 | 41.4 / 36.5           | S12: 41.4                               |
+| 13 / 14 / 15, L2               | 33 / 33 / 30.8        | S15: 33                                 |
+| 17–19, L3a                     | 20                    | —                                       |
+| 20 / 21 / 22, first L3b pair   | 18.8 / 18.8 / 16.8    | S22: 18.8                               |
+| 23 / 24, separate L3b negative | 16.8 / 17.8           | S23: 17.8                               |
+| 25–29, L3c                     | 20                    | —                                       |
+| 30–31, FL                      | 25                    | —                                       |
+
+The 28 cap changes and five `rimExtensionSd` shoulders preserve connected optical contours without
+opaque bonded lands. S7 and S23 keep their existing clear caps. The front and rear shoulder choices
+follow visible optical edge strokes; no bracket, leader, ray or mechanical flange is counted.
+The actual generated SVG was compared at approximately the native figure scale, including every
+concave end, the four cemented interfaces, protection glass and filter. It preserves the source
+hierarchy while replacing oversized rims and continuous concave caps with the resolved shoulders.
+
+Rejected trials are retained as constraints: clear S7 = 57.4 mm needs 2.76 mm sag intrusion across
+D6 = 2.68 mm, beyond both the physical gap and unchanged 2.5996 mm guard allowance. Continuing both
+S22/S23 caps to the blank heights needs 5.68 mm across D22 = 5.65 mm, beyond the 5.4805 mm allowance.
+Their cap-plus-shoulder model is retained. Initial smaller S11/S12 and S8 trials newly clipped the
+finite pupil; 41.4/36.5 and 52.0 mm remain within the figure-reading uncertainty and avoid adding
+restricted focus states. No cut, source R/d change, stop adjustment or guard increase was used.
+
+A 201-position focus sweep produces 17 finite closed connected contours with zero renderer trimming.
+The source infinity state passes surface, image-circle, 3% aperture and ≥99% corner-field checks.
+A separate 101-focus × three-field × 97-pupil census traces 29,391 rays using stop-centered aiming
+and actual Gaussian conjugates. It has no seed/aim failures, no trace failures and clear chiefs at
+every sampled field. Infinity passes all 97 axial samples. The baseline and revised model both
+restrict the axial outer ring in 49/101 states, focus 0.52–1.00. In the revised source-height model,
+S7 limits focus 0.52–0.72; S5 limits 0.73–1.00 (closest sampled height 58.309972 mm versus clear 57.5).
+This is a retained finite-focus reconstruction limitation, not full finite axial clearance.
+
+The actual reconstructed close conjugate is 3000.749128 mm from the physical image plane. The
+0.749128 mm difference from nominal 3.0 m is the filter’s physical versus air-equivalent track;
+the existing focus cam and +0.016884094 mm rear normalization remain unchanged. Finite field heights
+use Gaussian magnification and do not certify a production focus map. Only centered IS is represented;
+transverse actuator travel, displaced-state clearance and attached teleconverter combinations are
+not established by this review. Source fidelity, sampled runtime behavior and product correlation
+are separate conclusions.
+
+### Original source and glass disposition
+
+- Exact original: `patents/US6115188.pdf`, US 6,115,188 A, Numerical Example 25, PDF p. 79 col. 34;
+  Table 3 PDF pp. 79–80 cols. 34–35; matching Fig. 88 PDF p. 59 sheet 57; Fig. 92 PDF p. 61.
+  The original third-embodiment prose on PDF pp. 76–78 and certificate on PDF pp. 82–83 were inspected.
+  The certificate does not amend Example 25.
+- All 31 modeled source R/d rows, 17 N/ν pairs, focus-adjacent source gaps, source HG/FL plates and
+  existing focus/stop/aperture controls are retained. Printed D29 = 15.00 mm keeps its documented
+  existing +0.016884094 mm focus normalization; D31+D32 = 54.23 mm remains behind the physical FL.
+- PDF p. 78 col. 32 defines Ni/νi without a material reference wavelength. All 17 media now use
+  `Unmatched` plus `indexReferenceNote`; 17 catalog curves are disabled. No unsupported per-lens
+  spectral override was present. The d/C/F/g plot labels supply no per-element line indices or
+  reference anchor. No partial-dispersion or APD evidence is published for this example.
+- Approximate d-reference tracing, coordinate plausibility and prior production fluorite/UD associations
+  do not establish a source wavelength, historical chemistry, supplier or melt. No hybrid/resin or
+  separate cement medium is modeled. No inferred cuts require a cut-beam exemption.
+
+- Catalog metadata now counts all 17 source media / 13 groups, including HG and required drawn FL,
+  consistent with the retained maker count. The old FL exclusion is superseded. Source c-7 (PDF p. 78,
+  col. 32) describes alternative integral front optical members, not optional/removable accessories;
+  the selected numerical rows and Fig. 88 explicitly include HG. Geometry and controls are unchanged.
+
+## 2026-10-31 — d-line inferred from printed coordinates
+
+Scope: reference-line classification and catalog curves only. No source pair, geometry, rim, stop or control changed, and no new whole-lens review is claimed.
+
+The patent names no spectral line for its index and Abbe columns, and the 2026-10-30 review marked every medium `Unmatched` for that reason. Under the coordinate test in `src/lens-data/LENS_DATA_SPEC.md`, 17 of 17 printed pairs match a catalog nd/νd within |Δn| ≤ 6e-5 and |Δν| ≤ 0.15, and none matches a catalog ne/νe. The table is therefore read as d-line, and the per-element `indexReferenceNote` fields are removed.
+
+17 media carry qualified catalog curves. Rows keep the earlier selection where it is still an exact match. Catalog-copied C/F/g indices and dPgF stay removed. Supplier, melt and chemistry stay unspecified.
+
+| Element | Printed n / ν | Curve | Δn | Δν |
+| --- | --- | --- | --- | --- |
+| Protection glass | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| L1a positive | 1.496999 / 81.5 | S-FPL51 | +0.000000 | +0.046 |
+| L1b positive | 1.496999 / 81.5 | S-FPL51 | +0.000000 | +0.046 |
+| L1b negative | 1.834807 / 42.7 | TAFD5G | -0.000000 | +0.021 |
+| L1c positive | 1.43387 / 95.1 | CaF2 | -0.000021 | -0.104 |
+| L1c negative | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+| L2 positive | 1.805181 / 25.4 | S-TIH6 | -0.000000 | +0.025 |
+| L2 negative | 1.804 / 46.6 | H-ZLaF50D | -0.000000 | -0.025 |
+| L3a negative | 1.846658 / 23.9 | PBH53 | -0.000000 | -0.014 |
+| L3a positive | 1.772499 / 49.6 | E-LASF016 | +0.000000 | +0.008 |
+| L3b positive | 1.846658 / 23.9 | PBH53 | -0.000000 | -0.014 |
+| L3b negative 1 | 1.622992 / 58.2 | S-BSM15 | -0.000000 | -0.034 |
+| L3b negative 2 | 1.804 / 46.6 | H-ZLaF50D | -0.000000 | -0.025 |
+| L3c positive 1 | 1.622992 / 58.2 | S-BSM15 | -0.000000 | -0.034 |
+| L3c positive 2 | 1.6779 / 55.3 | S-LAL12 | -0.000000 | +0.041 |
+| L3c negative | 1.882997 / 40.8 | S-LAH58 | -0.000000 | -0.035 |
+| Drop-in filter FL | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |

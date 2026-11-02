@@ -1,9 +1,10 @@
+import { analysisRequestForLens } from "./testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   computeGroupMovementProfile,
   getGroupMovementAvailability,
   inferLensMovementGroups,
-} from "../../../src/optics/groupMovement.js";
+} from "../../../src/optics/analysis/summary/groupMovement.js";
 import NikonAfpDx70300Raw from "../../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.js";
 import NikonZ100400Raw from "../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
 import { build, buildVariableStopGapLens, sharedSonnar50f15 } from "./testLensFixtures.js";
@@ -29,7 +30,7 @@ describe("group movement optics helpers", () => {
 
   it("uses fixed-image-plane anchoring so unit focus translates the optical block", () => {
     const L = sharedSonnar50f15();
-    const profile = computeGroupMovementProfile(L, "focus", { focusT: 1, zoomT: 0 });
+    const profile = computeGroupMovementProfile(analysisRequestForLens(L, 1, 0), "focus");
 
     expect(getGroupMovementAvailability(L).focus).toBe(true);
     for (const series of profile.series) {
@@ -43,7 +44,7 @@ describe("group movement optics helpers", () => {
   it("detects zoom-only group motion without modeled focus travel", () => {
     const L = build(NikonAfpDx70300Raw);
     const availability = getGroupMovementAvailability(L);
-    const profile = computeGroupMovementProfile(L, "zoom", { focusT: 0, zoomT: 1 });
+    const profile = computeGroupMovementProfile(analysisRequestForLens(L, 0, 1), "zoom");
 
     expect(availability).toEqual({ focus: false, zoom: true, combined: false });
     expect(profile.series.length).toBeGreaterThan(1);
@@ -53,7 +54,7 @@ describe("group movement optics helpers", () => {
   it("detects combined motion when zoom and focus travel are both modeled", () => {
     const L = build(NikonZ100400Raw);
     const availability = getGroupMovementAvailability(L);
-    const profile = computeGroupMovementProfile(L, "combined", { focusT: 0.5, zoomT: 1 });
+    const profile = computeGroupMovementProfile(analysisRequestForLens(L, 0.5, 1), "combined");
 
     expect(availability).toEqual({ focus: true, zoom: true, combined: true });
     expect(profile.series.some((series) => series.secondarySamples && series.secondarySamples.length > 0)).toBe(true);

@@ -4,7 +4,6 @@
  * Pathname-based comparison URLs and page metadata for the compare route.
  */
 
-import type { LensData } from "../types/optics.js";
 import type { BuildURLSliders } from "../utils/state/parseComparisonParams.js";
 import { encodeSliderParams } from "../utils/state/parseComparisonParams.js";
 import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
@@ -26,12 +25,12 @@ export function buildComparePath(slugA: string, slugB: string, sliders: BuildURL
 }
 
 /** Title for a comparison page. */
-export function comparePageTitle(lensA: LensData, lensB: LensData): string {
+export function comparePageTitle(lensA: { name: string }, lensB: { name: string }): string {
   return `${lensA.name} vs ${lensB.name} — Lens Comparison | ${SITE_NAME}`;
 }
 
 /** Meta description for a comparison page. */
-export function comparePageDescription(lensA: LensData, lensB: LensData): string {
+export function comparePageDescription(lensA: { name: string }, lensB: { name: string }): string {
   const base = `Compare ${lensA.name} and ${lensB.name} side by side. Interactive ray tracing, aperture, focus, and chromatic aberration comparison.`;
   return base.length > 160 ? base.slice(0, 157) + "..." : base;
 }

@@ -4,6 +4,8 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import ChromaticFieldCurvaturePlot from "../../../../../src/components/display/analysis/ChromaticFieldCurvaturePlot.js";
 import FieldCurvatureMeanPlot from "../../../../../src/components/display/analysis/FieldCurvatureMeanPlot.js";
+import FieldCurvaturePlot from "../../../../../src/components/display/analysis/FieldCurvaturePlot.js";
+import AstigmatismPlot from "../../../../../src/components/display/analysis/AstigmatismPlot.js";
 import VignettingChart from "../../../../../src/components/display/analysis/VignettingChart.js";
 import LocaInsetWidget from "../../../../../src/components/diagram/LocaInsetWidget.js";
 import ChromaticOverlayContent from "../../../../../src/components/diagram/ChromaticOverlayContent.js";
@@ -17,9 +19,9 @@ import {
   symmetricDomain,
 } from "../../../../../src/components/display/analysis/charts/chartMath.js";
 import themes from "../../../../../src/utils/theme/themes.js";
-import type { FieldCurvatureResult } from "../../../../../src/optics/aberrationAnalysis.js";
-import type { FieldCurvatureFieldResult } from "../../../../../src/optics/aberration/types.js";
-import type { VignettingSample } from "../../../../../src/optics/vignetteAnalysis.js";
+import type { FieldCurvatureResult } from "../../../../../src/optics/analysis/aberration/types.js";
+import type { FieldCurvatureFieldResult } from "../../../../../src/optics/analysis/aberration/types.js";
+import type { VignettingSample } from "../../../../../src/optics/analysis/vignetting/vignetting.js";
 
 function field(
   fieldFraction: number,
@@ -66,10 +68,30 @@ function fieldCurvatureResult(fields: ReturnType<typeof field>[]): FieldCurvatur
   };
 }
 
+function vignettingSample(
+  fieldAngleDeg: number,
+  unvignettedFraction: number | null,
+  relativeIllumination: number | null,
+): VignettingSample {
+  return {
+    fieldAngleDeg,
+    fieldFraction: fieldAngleDeg / 20,
+    unvignettedFraction,
+    relativeIllumination,
+    sampleCount: 3216,
+    transmittedCount: 0,
+    blockedCount: 0,
+    unaimedCount: 0,
+    failedCount: 0,
+    unavailableReason: unvignettedFraction === null ? "too-many-unaimed" : null,
+    relativeIlluminationReason: relativeIllumination === null ? "cosine-map-folds" : null,
+  };
+}
+
 const vignetteSamples: VignettingSample[] = [
-  { fieldAngleDeg: 0, geometricTransmission: 1, relativeIllumination: 1 },
-  { fieldAngleDeg: 10, geometricTransmission: 0.82, relativeIllumination: 0.76 },
-  { fieldAngleDeg: 20, geometricTransmission: 0.55, relativeIllumination: 0.43 },
+  vignettingSample(0, 1, 1),
+  vignettingSample(10, 0.82, 0.76),
+  vignettingSample(20, 0.55, 0.43),
 ];
 
 describe("analysis chart coverage", () => {
@@ -100,6 +122,29 @@ describe("analysis chart coverage", () => {
     expect(screen.getByText("Current image plane")).toBeTruthy();
     expect(container.querySelector("polyline")).toBeNull();
     expect(container.querySelector("polygon")).toBeNull();
+  });
+
+  it("leaves a field without a real-ray focus out of the real-ray plots", () => {
+    const measured = (sample: FieldCurvatureFieldResult): FieldCurvatureFieldResult => ({
+      ...sample,
+      diagnosticTangentialShiftMm: 0.01,
+      diagnosticSagittalShiftMm: -0.01,
+      diagnosticAstigmaticDifferenceMm: -0.02,
+    });
+    const all = fieldCurvatureResult([measured(field(0, 0, 0)), measured(field(0.5, 0, 5)), measured(field(1, 0, 10))]);
+    const partial = fieldCurvatureResult([measured(field(0, 0, 0)), measured(field(0.5, 0, 5)), field(1, 0, 10)]);
+    const circles = (element: React.ReactElement) => {
+      const { container } = render(element);
+      const count = container.querySelectorAll("circle").length;
+      cleanup();
+      return count;
+    };
+    expect(circles(<FieldCurvaturePlot result={partial} t={themes.dark} />)).toBe(
+      circles(<FieldCurvaturePlot result={all} t={themes.dark} />) - 1,
+    );
+    expect(circles(<AstigmatismPlot result={partial} t={themes.dark} mode="realRay" />)).toBe(
+      circles(<AstigmatismPlot result={all} t={themes.dark} mode="realRay" />) - 1,
+    );
   });
 
   it("renders violet values in chromatic field-curvature traces", () => {
@@ -133,12 +178,37 @@ describe("analysis chart coverage", () => {
     );
 
     expect(container.querySelector("svg")?.getAttribute("viewBox")).toBe("0 0 420 260");
-    expect(screen.getByText("Geometric")).toBeTruthy();
-    expect(screen.getByText("Relative (cos⁴)")).toBeTruthy();
+    expect(screen.getByText("Unvignetted")).toBeTruthy();
+    expect(screen.getByText("Relative")).toBeTruthy();
     expect(screen.getByText("20°")).toBeTruthy();
     expect(screen.getByText("Field angle (°)")).toBeTruthy();
     expect(container.querySelectorAll("path")).toHaveLength(2);
     expect(container.querySelectorAll("circle")).toHaveLength(6);
+  });
+
+  it("extends the axis above 1 when a field is brighter than the axis", () => {
+    const { container } = render(
+      <VignettingChart samples={[vignettingSample(0, 0.9, 1), vignettingSample(40, 0.8, 1.6)]} t={themes.dark} />,
+    );
+
+    expect(screen.getByText("1.50")).toBeTruthy();
+    const circles = [...container.querySelectorAll("circle")].map((circle) => Number(circle.getAttribute("cy")));
+    // Every dot stays inside the plot: the highest is the edge's illumination, below the frame's top margin.
+    expect(Math.min(...circles)).toBeGreaterThan(0);
+  });
+
+  it("breaks a curve at a field without a figure instead of drawing through it", () => {
+    const { container } = render(
+      <VignettingChart
+        samples={[vignettingSample(0, 1, 1), vignettingSample(10, 0.9, null), vignettingSample(20, 0.7, 0.5)]}
+        t={themes.dark}
+      />,
+    );
+
+    const [unvignetted, illumination] = [...container.querySelectorAll("path")].map((path) => path.getAttribute("d")!);
+    expect(unvignetted.match(/M/g)).toHaveLength(1);
+    expect(illumination.match(/M/g)).toHaveLength(2);
+    expect(container.querySelectorAll("circle")).toHaveLength(5);
   });
 
   it("renders LoCA inset channels, formatting, custom placement, and click handling", () => {

@@ -11,7 +11,7 @@
 **Title:** ズームレンズ系 (Zoom Lens System)
 **Classification:** Int. Cl.³ G02B 15/14, G02B 13/04
 **Worked examples:** 3
-**Embodiment analyzed:** Example 1 (実施例1)
+**Example details:** 実施例1
 
 The publication claims a two-component wide-angle zoom consisting of a negative front group I and a positive rear group II, zoomed by changing the air space between them, with a fixed ten-lens order and five conditional expressions (claim, printed pp. 1–2; restated pp. 3–4). Three numerical examples share the table header f = 35〜24, FNo = 3.5, 2ω = 63°〜84° (printed pp. 7–9). Example 1 is transcribed here [1]. The inventor's name is printed in Japanese only; the romanization follows the same inventor name on Minolta's contemporaneous US 4,258,985 [9] and is a reading-consistent inference rather than a statement in this publication.
 

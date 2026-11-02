@@ -248,3 +248,11 @@ Screenshots of `/lens/nikon-af-zoom-nikkor-80-200mm-f28-ed/?v=1&zoom=80` (the wi
 - Figure 1 is Example 1's section. No section of Example 3 exists in the patent, so rim shapes and drawn heights are read at the level of the shared configuration.
 - Figure differences on surfaces that do not clip remain as the section above lists them: G1, L44, L43 and the rim of D2.
 - The stop position and the authored `STO` semi-diameter remain as recorded in the 2026-10-07 entry.
+
+## 2026-10-30 — Fresh shape and glass reinspection
+
+The 2026-10-30 review directly inspected local `JP_S62108218_A.pdf`: Figure 1 on PDF page 10 at 600 dpi and native raster resolution; Table 3 on page 6; the d-line (587.6 nm) definition and shared-configuration statement on page 5; and the appended amendment on page 18. Figure 1 is the shared configuration illustrated for Example 1, not a separately dimensioned Example 3 section. All convex/concave faces and cemented steps were checked. The curves reach their body rims without a resolved additional exposed land, so no new cut or extension is justified. The existing 0.92 shared-gap check, all clear apertures, source radii/spacings, amended S17 thickness, fixed iris and focus/zoom controls are retained.
+
+All sixteen source nd/νd pairs remain exact. All sixteen current catalog curves are available and explicitly qualified as spectral proxies, including H-ZF7LA at the three previously labeled unresolved 805255 positions. No supplier, melt, C/F/g index, or partial-dispersion value is published. The three ED-role flags remain inferred production correlations, not source APD evidence. Current tracing gives iris-limited f/2.880000 and f/2.880021 at the two endpoints, with a 14.759220 mm fixed physical iris. The interpolated middle close state is not a published conjugate.
+
+Surface/circle checks pass; all four catalog stations reach at least 99% of the format corner; nine actual SVG states have sixteen finite paths and zero trim. Full-iris axial sampling at the two published close endpoint conjugates passes 25/25 each; the interpolated middle also passes. All source/catalog checks and shared glass suites pass (94 tests).

@@ -8,7 +8,7 @@
 **Inventor:** Teruyoshi Tsunashima
 **Assignee:** Nippon Kogaku K.K., Tokyo, Japan
 **Title:** Wide-Angle Photographic Objective
-**Embodiment analyzed:** Embodiment III / Claim 4
+**Example details:** Claim 4
 
 US 4,163,603 discloses a large-aperture inverted-telephoto wide-angle objective with ten optical components, eleven glass elements, an 84° angle of view, and a relative aperture of 1:2.0. The numerical examples are normalized to $f = 100$ mm. For the production 24 mm lens rendering, the prescription is scaled by $0.24$, giving a computed design focal length of 24.0305 mm.
 
@@ -32,6 +32,8 @@ The patent describes ten components in object-to-image order: L1 positive menisc
 The aperture stop is not tabulated as a separate surface in the patent. The cross-section places the diaphragm in the air space between L5 and L6, corresponding to $d_{10}$ in the numerical table. In the data file, this air gap is split to insert an explicit `STO` surface near L6 while preserving the patent total $d_{10} = 8.98$ mm at patent scale.
 
 Nikon's later historical description divides the production lens, for explanatory convenience, into a first four-element front group and a seven-element rear group. The patent's own condition set treats L5 as a separate negative meniscus whose air gap to L6 is a sensitive aberration-control lever, so the analytical front/rear boundary is best understood as a gradual retrofocus transition rather than a sharply separated two-group lens.
+
+Figure 1 is explicitly the first embodiment’s representative architecture, rather than a separate third-embodiment drawing. Its source-visible L2 rear concave land guides a qualified rendering inference for the stored third embodiment: S3’s continuous front cap/outer rim is 17.3 mm and S4 retains its original 11.0 mm clear cap with a land to 17.3 mm. The attempted full L3 outline would require reducing that neighboring S4 clear cap for cross-gap clearance; the equivalent numeric cut fails the complete beam margin. That entire L3 enlargement is therefore rejected, with its original S5/S6 caps of 10.9/10.3 mm retained. A separate source-scaled S6 endpoint of 10.7 mm also exceeds the next-gap authoring allowance. Other concave ends, the source-omitted stop position, and cemented diameter steps do not support additional independent lands. Source R/d and infinity-only focus remain unchanged.
 
 ## Element-by-Element Analysis
 
@@ -114,6 +116,8 @@ The patent gives refractive index and Abbe number, not vendor glass names. The i
 | L7 | 1.56384 | 60.8 | N-SK11 (Schott) / BACD11 (Hoya) | High | Exact or essentially exact public catalog match. |
 | L8a, L9 | 1.74443 | 49.4 | 743494 lanthanum flint class; S-LAM60 close | Moderate | S-LAM60 is close but not exact; treated as a class match. |
 | L8b | 1.80518 | 25.5 | S-TIH6 (Ohara), SF6 class | High | Dense flint; main dispersion partner in L8. |
+
+All eleven physical elements have compatible current coefficient curves. S-LAM7 at L6 (ν 35.28 versus source 35.0) and S-LAM60 at L8a/L9 (catalog nd about 1.743 versus source 1.74443) remain nonidentical proxies; their compatibility is not proof of production supplier or melt identity. The patent defines n and ν without printing a reference wavelength. Its coordinate families support the stored d-line interpretation, but no C/F/g indices, θgF values, ED/APD claim, or numerical spectral overrides are supplied.
 
 The glass palette is economical for an 11-element fast retrofocus lens. Two barium-crown-class elements are reused at L1 and L4; S-LAL14-class glass appears at L3, L5, and L10; and the L8a/L9 class is reused in the rear group. No ED or aspherical elements are present in the Nikon production specification.
 

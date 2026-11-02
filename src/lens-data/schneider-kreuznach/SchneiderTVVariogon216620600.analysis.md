@@ -10,13 +10,15 @@
 **Inventor:** Karl Macher<br>
 **Assignee:** Jos. Schneider & Co., Optische Werke<br>
 **Title:** *High-Speed Varifocal Objective with Large Focal Range*<br>
-**Embodiment analyzed:** Example 1, FIG. 1, TABLE I, TABLE IA, TABLE IB
+**Example details:** FIG. 1, TABLE IA, TABLE IB
 
 The prescription is the first numerical embodiment of Macher's seven-component 30× varifocal objective. The patent describes a substantially fixed positive first component, movable negative second and third components, a fixed positive fourth component containing the diaphragm, movable negative fifth and sixth components, and a fixed positive seventh component, followed by a plane-parallel prism P. Example 1 contains 31 lenses L1-L31. Its cementing topology yields 22 air-separated lens members/groups, while the prism is a separate optical block and is not counted among the 31 lenses. [US 3,912,373, PDF pp. 8-10 (printed cols. 1-6), FIG. 1 and TABLE I.]
 
 The production-lens identification is a strong correlation rather than a manufacturer-supplied patent-number attribution. Schneider-Kreuznach's historical Variogon material identifies the optical structure of the **TV-Variogon 2.1-6.6 / 20-600 mm** at the shortest focal length and infinity focus, describes 31 lenses in 22 lens members, and gives the same eight operational subcomponents: fixed 1.2, 4, and 7; movable 2, 3, 5, and 6; and focusing unit 1.1. It also describes the two zoom pairs as being driven reciprocally through a differential mechanism. The manufacturer page does not identify US 3,912,373 by number, so the correspondence is based on this convergent optical and mechanical evidence rather than an explicit manufacturer patent citation. [Schneider-Kreuznach, “What is a VARIOGON lens?”, Fig. 4 and “Zoom lenses for television.”]
 
 The modeled production correlation applies a uniform scale of **20×** to every patent length. Thus TABLE IB's 1.0-29.6 mm source stations become 20-592 mm model stations. The marketed 20-600 mm range remains a separate product specification; 592 mm is the scaled source endpoint, not a redefinition of the marketed 600 mm endpoint. No radius, spacing, or refractive index is tuned to make the rounded patent table reproduce the marketed endpoint.
+
+`catalog.focalLengthMm.design` records the stated source range, 20–592 mm; the computed EFL range remains 19.833–613.643 mm, as tabulated below, and is not substituted for the source labels.
 
 ## Optical Architecture
 

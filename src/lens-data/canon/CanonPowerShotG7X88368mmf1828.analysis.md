@@ -8,7 +8,7 @@
 **Inventor:** Takahiro Hatada  
 **Applicant:** Canon Kabushiki Kaisha  
 **Title:** Zoom Lens and Image Pickup Apparatus Including the Same  
-**Embodiment analyzed:** Numerical Example 1 (¶0070)
+**Example details:** ¶0070
 
 The patent discloses three worked examples of a positive-lead inner-focus zoom lens for compact image-pickup apparatuses. Numerical Example 1 is the closest disclosed formula for the Canon PowerShot G7 X 8.8–36.8 mm f/1.8–2.8 lens.
 

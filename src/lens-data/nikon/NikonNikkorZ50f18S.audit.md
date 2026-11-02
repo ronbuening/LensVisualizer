@@ -95,3 +95,98 @@ Source follow-up: national grant JP7131609B2 (Google Patents original, stored lo
 - Paraxial check against the previous data: EFL identical; defocus unchanged at infinity and close focus (the old fold
   was computed exactly). Physical track grows by 0.545 mm to the patent's 92.330 mm total length, so `closeFocusM` returns
   from the D0-preserving 0.399455 m to the source's 0.4 m object-to-image distance (D0 = 307.67 mm is unchanged).
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 17 (PDF p. 154, native 300 ppi CCITT raster, axis vertical) was read element by element on the leader-free half
+and checked on the other, for flat lands square to the axis at the rims of concave faces. Scale 0.0454 mm/px (L13 rear
+to L23 rear vertex, 48.767 mm over 1074 px).
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 11 (L16 rear, R 20.990) | 0.855 (271.5/318 px; 274.5/320.5) | 3.77 mm | 12.00 mm | 13.5 (was 12.0) | 11.68 mm |
+| 14 (L21 front, R −23.418) | 0.888 (237.5/267.5 px; 240/270.5) | 3.02 mm | 11.50 mm | 12.3 (was 11.5) | 10.84 mm |
+| 23 (L33 front, R −50.208) | 0.952 (391.5/411 px; 393.5/413.5) | 3.01 mm | 17.12 mm | 18.0 | 3.85 mm |
+
+- 11 and 14: earlier passes (issue #290; the 2026-09-08 rim review) had put each `sd` at the cap end, below the
+  partner face (S10 13.5, S15 12.3 mm), while the figure draws L16 and L21 with a square edge at constant height
+  (14.4 and 12.2 mm on the figure) and a land at constant axial position down to the cap. Each `sd` now equals the
+  partner's and the cut sits at the old `sd`; the depths are rounded up, so the clear radius of 11 goes from the old
+  12.0 mm rim to the 12.0023 mm cut radius, where the beams reach 11.4807 mm, and that of 14 from 11.5 to 11.5032 mm,
+  where they reach 11.37 mm. The figure's own cap ends, q × sd = 11.54 and 10.92 mm, would clip the stated axial ray
+  on 11 and clear it by only 0.08 mm on 14, so the caps keep their old ends and the drawn lands are narrower than the
+  figure's. The lands hold the close-focus spacing the reduced rims protected: 1.40 mm ahead of and 2.10 mm behind
+  the stop plane.
+- 23: `sd` is the element edge (plano rear 24 also 18.0), so the cut is q × sd. The figure ends the cap level with
+  L32's drawn edge, and the land runs from there to L33's edge.
+- Concave faces with no land: 1, 3, 4, 8, 15, 18 and 20 meet their element edges in a sharp corner. The steps at the
+  cemented junctions 2 (L11 above L12), 10 (L15 above L16) and 21 (L32 above L31) are junction steps, not lands.
+- No cap reaches the stop plane at either focus end (closest: the 11 land 1.40 mm, the 14 land 2.10 mm).
+- The aperture audit is unchanged: f/1.85 stated, f/1.88 traced, limiter 10, with no rim, trace or rim-cut limiter.
+  The cuts on 11, 14 and 23 clear every traced ray of the wide-open beams by their margins and clip none of them
+  (beam rule below).
+- The cut on 23 becomes the engine's half-field limiter: the estimate drops from 25.03° to 24.63° (off-axis display
+  fan 15.02° → 14.78°), still above the stated 22.9°. The cuts on 11 and 14 alone leave it unchanged.
+
+The beam rule (`validateRimCutBeams`) asks an inferred cut to clear the furthest traced ray of the wide-open beams by
+the larger of 0.05 mm and 0.3 % of its radius, at every field, zoom and focus state, traced through the lens without
+its inferred cuts. The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current search,
+which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. All three cuts pass at their figure-review positions:
+
+- Surface 11: cut radius 12.0023 mm. The beams reach 11.4807 mm there (at infinity, 0.09°), a clearance of
+  0.5216 mm against a 0.05 mm margin, 0.4716 mm spare.
+- Surface 14: cut radius 11.5032 mm. The beams reach 11.37 mm there (focusT 0.05, 10.50°), a clearance of 0.1332 mm
+  against a 0.05 mm margin, 0.0832 mm spare.
+- Surface 23: cut radius 17.1228 mm. The beams reach 16.7591 mm there (focusT 0.15, 25.03°), a clearance of
+  0.3636 mm against a 0.0514 mm margin, 0.3123 mm spare.
+
+The surface audit and the beam rule pass.
+
+Figure scale and land length: Figure 17's 0.0454 mm/px, from the L13 rear to L23 rear vertex span above (1074 px for
+48.767 mm), is 22.023 native px per lens mm. One native pixel at the cap end and at the edge moves q by
+±(1 + q) / (edge px).
+
+- 11: figure q 0.855 at a 297.3 px edge (13.5 mm), range 0.849–0.861; the figure draws the edge at 318–320.5 px
+  (14.4 mm). The cut sits at the old 12.0 mm rim, 0.889 of `sd`, outside the cap end the figure draws (above). Land
+  1.4977 mm, over the 0.1 mm minimum.
+- 14: figure q 0.888 at a 270.9 px edge (12.3 mm), range 0.881–0.895. The cut sits at the old 11.5 mm rim, 0.935 of
+  `sd`, outside the cap end the figure draws (above). Land 0.7968 mm, over the minimum.
+- 23: figure q 0.952 at a 396.4 px edge (18.0 mm), range 0.947–0.957; the figure draws the edge at 411–413.5 px
+  (18.7 mm). The cut sits at 0.951 of `sd`. Land 0.8772 mm, over the minimum.
+
+
+## 2026-10-29 — Patent rim-extension review
+
+Directly re-read `patents/WO2019220618A1.pdf`, PDF p. 154, Figure 17 / Example 9, including a 600 dpi crop of the complete section. Native scale remains 22.023 px/mm from the 1074 px L13-rear to L23-rear vertex span / 48.767 mm.
+
+No data change is supported. All three resolved concave lands, surfaces 11, 14 and 23, already carry cuts that pass the inferred-beam rule; they keep the cap ends and drawn rims recorded above. The other concave air faces reach their corners. The visible steps at 2, 10 and 21 are cemented junctions, where an air-face rim extension is not valid. No additional resolved flat land needs `rimExtensionSd`, and no new clear-aperture clipping was added.
+
+Validation: `audit:surface` and `audit:image-circle` pass on the retained data. Parent records full gates with the three-lens commit.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Fresh direct review: `patents/WO2019220618A1.pdf`, Example 9 / Table 9, PDF pp. 51–52. Prescription table images were rendered and read again for this pass; earlier audit notes were used only to locate them. Checked every stored medium against the source's d-line nd/νd columns, including bonded layers and rear plates separately. All source indices and Abbe numbers are retained.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy | Verdict |
+|---|---|---|---|
+| L11 | 1.67270 / 32.2 | S-TIM25 | source pair retained; compatible proxy |
+| L12 | 1.94595 / 18 | FDS18 | source pair retained; compatible proxy |
+| L13 | 1.72916 / 54.6 | S-LAL18 | source pair retained; compatible proxy |
+| L14a | 1.56093 / 36.6 | none | unresolved; Abbe approximation |
+| L14 | 1.80400 / 46.6 | S-LAH65V | source pair retained; compatible proxy |
+| L15 | 1.59319 / 67.9 | J-PSKH1 | source pair retained; compatible proxy |
+| L16 | 1.64769 / 33.7 | S-TIM22 | source pair retained; compatible proxy |
+| L21 | 1.64769 / 33.7 | S-TIM22 | source pair retained; compatible proxy |
+| L22 | 1.77377 / 47.2 | M-TAF401 | source pair retained; compatible proxy |
+| L23 | 1.49782 / 82.6 | J-FKH1 | source pair retained; compatible proxy |
+| L31 | 1.94595 / 18 | FDS18 | source pair retained; compatible proxy |
+| L32 | 1.64769 / 33.7 | S-TIM22 | source pair retained; compatible proxy |
+| L33 | 1.64769 / 33.7 | S-TIM22 | source pair retained; compatible proxy |
+
+Coverage: 12 physical lens elements, 13 authored media, 12 modeled media resolving to dispersion curves; 1 rear plate(s) checked separately (FL 1.51680/64.1, J-BK7A). Compatible curves are spectral proxies, not evidence of the production supplier, melt or material chemistry.
+
+All twelve physical lens-glass pairs and the additional 0.1 mm bonded medium match the source. Two broad proxy labels were improved using already available coordinate-matched curves: L15 S-FPM2/FCD505 → J-PSKH1 (1.59319/67.9), and L23 S-FPL51/FCD1 → J-FKH1 (1.49782/82.6). These improve spectral-coordinate agreement without identifying production suppliers or chemistry. L15/L23 APD tags remain inferred; this source table publishes no θgF. L22 already resolves to M-TAF401 and its stale public unresolved wording was corrected. Twelve of thirteen modeled media resolve to curves; only the source-listed bonded medium 1.56093/36.6 stays unresolved and uses Abbe approximation. No per-lens spectral overrides were added, and geometry remains unchanged.
+
+Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.

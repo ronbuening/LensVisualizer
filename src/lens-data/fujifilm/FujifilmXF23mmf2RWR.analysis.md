@@ -8,7 +8,7 @@
 **Inventor:** Daiki Kawamura
 **Assignee:** Fujifilm Corporation, Tokyo (JP)
 **Title:** Imaging Lens and Imaging Apparatus
-**Embodiment analyzed:** Example 1 (Table 1, Table 2, Table 3; FIG. 1, FIG. 7, FIG. 8)
+**Example details:** Table 1, Table 2, Table 3; FIG. 1, FIG. 7, FIG. 8
 
 US 2017/0351051 A1 discloses a three-group inner-focusing imaging lens in which the first lens group G1 and third lens group G3 remain fixed while the single-element negative second group G2 moves toward the image during close focusing. The patent's Example 1 is the closest prescription match for the Fujifilm Fujinon XF23mmF2 R WR.
 

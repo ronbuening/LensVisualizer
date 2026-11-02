@@ -3,7 +3,7 @@
  *
  * A catalog entry's optional `PgF` is the vendor's own partial dispersion (rule in src/optics/glassCatalogTypes.ts).
  * Vendors publish a deviation ΔPgF beside it, each measured from its own normal line, so a field rebuilt as the
- * engine's line (`normalLinePgF` in src/optics/dispersion.ts) plus a vendor's ΔPgF is wrong by the gap between the
+ * engine's line (`normalLinePgF` in src/optics/chromatic.ts) plus a vendor's ΔPgF is wrong by the gap between the
  * two lines. Rows marked `line gap` have that difference.
  *
  * The check is a screen, not a ruling: where a vendor's line runs close to the engine's the gap is small and nearly
@@ -24,8 +24,8 @@ import { pathToFileURL } from "node:url";
 const ROOT = join(import.meta.dirname, "..");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
-const { allEntries, evaluateSellmeier, LINE_NM } = await load("src/optics/glassCatalog.ts");
-const { normalLinePgF } = await load("src/optics/dispersion.ts");
+const { allEntries, evaluateSellmeier } = await load("src/optics/glassCatalog.ts");
+const { normalLinePgF, LINE_NM } = await load("src/optics/chromatic.ts");
 
 const args = process.argv.slice(2);
 const flag = (name) => args.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3);

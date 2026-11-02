@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * CANON EF 24mm f/1.4 L USM
@@ -7,7 +7,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * The prescription is retained at patent scale; no 24.6-to-24.0 mm rescaling is applied.
  *
  * Patent-table emendations used here:
- *   - L7: νd = 28.4606 from the published d/C/F indices (the table prints 28.64).
+ *   - L7: printed νd = 28.64 is retained literally. Its printed d/C/F indices imply
+ *     28.4606065; this inconsistency is unresolved, not silently normalized.
  *   - L10: nd = 1.603112 (the table prints the spectrally impossible 1.613112).
  *     The emended value reproduces νd = 60.6997, the 603/607 glass class, and the
  *     patent's own f2b/f = 1.47 correspondence value.
@@ -19,6 +20,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * -1.48493e-13, EFL agrees with the printed 24.6 mm, but the image plane
  * remains 1.666626 mm before paraxial focus. No rear plate is listed.
  *
+ * Original-PDF shape and glass review: 2026-10-30. Published d/C/F/g indices are
+ * retained; no catalog-derived spectral override is introduced. Figure 7 shoulders
+ * preserve distinct optical caps and drawn outer heights.
+ *
  * Semi-diameters are inferred because the patent publishes none. They were constrained
  * by the f/1.45 entrance-pupil trace, the 41.35° half-field, the production 77 mm filter
  * diameter, element edge thickness, front/rear SD ratio <= 1.25, sd/|R| < 0.90, and
@@ -29,29 +34,53 @@ import type { LensDataInput } from "../../types/optics.js";
  * metadata, but no unsupported finite-focus variable gaps are synthesized.
  */
 const LENS_DATA = {
+  schema: 2,
   key: "canon-ef-24mm-f14-l-usm",
   maker: "Canon",
   name: "CANON EF 24mm f/1.4 L USM",
   subtitle: "JP 1999-030743 A Numerical Example 6 — Canon / Makoto Misaka",
-  specs: [
-    "11 ELEMENTS / 9 GROUPS",
-    "PATENT f = 24.6 mm, F/1.45, 2ω = 82.7°",
-    "1 UD ELEMENT / 1 GROUND ASPHERICAL ELEMENT",
-    "FLOATING REAR FOCUS (PRODUCTION)",
-  ],
 
-  focalLengthMarketing: 24,
-  focalLengthDesign: 24.5994023367,
-  apertureMarketing: 1.4,
-  apertureDesign: 1.45,
-  lensMounts: ["canon-ef"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP 1999-030743 A",
-  patentAuthors: ["Makoto Misaka"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 1999,
-  elementCount: 11,
-  groupCount: 9,
+  catalog: {
+    lensMounts: ["canon-ef"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "11 ELEMENTS / 9 GROUPS",
+      "PATENT f = 24.6 mm, F/1.45, 2ω = 82.7°",
+      "1 UD ELEMENT / 1 GROUND ASPHERICAL ELEMENT",
+      "FLOATING REAR FOCUS (PRODUCTION)",
+    ],
+    elementCount: 11,
+    groupCount: 9,
+    focalLengthMm: { marketing: 24, design: 24.6 },
+    fNumber: { marketing: 1.4, design: 1.45 },
+  },
+
+  source: {
+    patentNumber: "JP 1999-030743 A",
+    example: { label: "Numerical Example 6", id: "6" },
+    patentYear: 1999,
+    authors: ["Makoto Misaka"],
+    assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "corrected",
+        surface: "19",
+        field: "nd",
+        printed: 1.613112,
+        applied: 1.603112,
+        evidence: ["source-summary", "aberration-figure"],
+        note: "Table 6 p10: applied nd reproduces source f = 24.6 mm and f2b/f=1.47 (p11). Fig.14 p16 has near-axis longitudinal color spread about 0.10–0.13 mm; printed C/F/g plus applied d give 0.099819 mm, whereas printed d gives 0.598914 mm. Catalog matching is not counted as source evidence.",
+      },
+      {
+        status: "unresolved",
+        note: "Table 6 L7 prints vd 28.64, while its printed d/C/F indices give 28.460607. The genuinely printed vd 28.64 is restored, preserving every original line index; a second independent source evidence kind has not been established. Sibling Tables 1–5/7 do not reuse this medium; no formal corrected-vd assertion is made.",
+      },
+      {
+        status: "unresolved",
+        note: "Table 6 final gap 36.467 mm is retained. Corrected source prescription gives Gaussian BFL 38.133626 mm, a 1.666626 mm source-plane offset; no plate or further isolated source correction resolves it.",
+      },
+    ],
+  },
 
   elements: [
     {
@@ -61,12 +90,13 @@ const LENS_DATA = {
       type: "Negative Meniscus, convex to object",
       nd: 1.696797,
       vd: 55.53,
-      fl: -86.617598,
+      focalLengthMm: -86.617598,
+      indexReference: "d",
       glass: "S-LAL14 (OHARA; 697/555 class equivalent)",
+      role: "First negative meniscus of the fixed retrofocus front group.",
       nC: 1.692973,
       nF: 1.705521,
       ng: 1.712337,
-      role: "First negative meniscus of the fixed retrofocus front group.",
     },
     {
       id: 2,
@@ -75,12 +105,13 @@ const LENS_DATA = {
       type: "Negative Meniscus, convex to object",
       nd: 1.696797,
       vd: 55.53,
-      fl: -114.839016,
+      focalLengthMm: -114.839016,
+      indexReference: "d",
       glass: "S-LAL14 (OHARA; 697/555 class equivalent)",
+      role: "Second negative meniscus of the negative-only front component.",
       nC: 1.692973,
       nF: 1.705521,
       ng: 1.712337,
-      role: "Second negative meniscus of the negative-only front component.",
     },
     {
       id: 3,
@@ -89,12 +120,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.712995,
       vd: 53.84,
-      fl: 97.418903,
+      focalLengthMm: 97.418903,
+      indexReference: "d",
       glass: "N-LAK8 (SCHOTT; 713/538 class equivalent)",
+      role: "Positive component completing the negative front group and balancing distortion and lateral color.",
       nC: 1.708975,
       nF: 1.722217,
       ng: 1.729441,
-      role: "Positive component completing the negative front group and balancing distortion and lateral color.",
     },
     {
       id: 4,
@@ -103,13 +135,14 @@ const LENS_DATA = {
       type: "Positive Meniscus, convex to object",
       nd: 1.84666,
       vd: 23.78,
-      fl: 98.343147,
+      focalLengthMm: 98.343147,
+      indexReference: "d",
       glass: "S-TIH53 (OHARA; 847/238 dense-flint class equivalent)",
+      role: "High-index positive member of the front cemented pair in B2a.",
+      cemented: "D1",
       nC: 1.836491,
       nF: 1.872096,
       ng: 1.894187,
-      role: "High-index positive member of the front cemented pair in B2a.",
-      cemented: "D1",
     },
     {
       id: 5,
@@ -118,16 +151,18 @@ const LENS_DATA = {
       type: "Negative Meniscus, convex to object",
       nd: 1.496999,
       vd: 81.61,
-      fl: -47.578153,
-      glass: "S-FPL51 (OHARA; 497/816 fluorophosphate ED class)",
+      focalLengthMm: -47.578153,
+      indexReference: "d",
+      glass:
+        "S-FPL51 (qualified spectral proxy for published anomalous medium; historical supplier and chemistry unconfirmed)",
       apd: "patent",
       apdNote: "Patent line indices give ΔPgF = +0.03107065.",
+      role: "UD negative member governed by conditions (4)-(6), placed ahead of the stop for lateral-color control.",
+      cemented: "D1",
       dPgF: 0.0310706473,
       nC: 1.495138,
       nF: 1.501228,
       ng: 1.504502,
-      role: "UD negative member governed by conditions (4)-(6), placed ahead of the stop for lateral-color control.",
-      cemented: "D1",
     },
     {
       id: 6,
@@ -136,12 +171,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.804,
       vd: 46.58,
-      fl: 25.926901,
+      focalLengthMm: 25.926901,
+      indexReference: "d",
       glass: "S-LAH65V (OHARA; 804/466 dense lanthanum-flint class equivalent)",
+      role: "Strong positive element supplying most of B2a's converging power.",
       nC: 1.798817,
       nF: 1.816079,
       ng: 1.825695,
-      role: "Strong positive element supplying most of B2a's converging power.",
     },
     {
       id: 7,
@@ -149,13 +185,16 @@ const LENS_DATA = {
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.72825,
-      vd: 28.460607,
-      fl: -48.914494,
-      glass: "S-TIH10 (OHARA; corrected 728/285 dense-flint class)",
+      // Literal Table 6 value; printed d/C/F indices imply 28.4606065 (unresolved source inconsistency).
+      vd: 28.64,
+      focalLengthMm: -48.914494,
+      indexReference: "d",
+      glass:
+        "S-TIH10 (approximate spectral proxy to printed 1.728250/28.64; published C/F/g retained; supplier unconfirmed)",
+      role: "Negative element completing B2a immediately ahead of the stop gap.",
       nC: 1.720865,
       nF: 1.746453,
       ng: 1.762002,
-      role: "Negative element completing B2a immediately ahead of the stop gap.",
     },
     {
       id: 8,
@@ -164,13 +203,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.805181,
       vd: 25.42,
-      fl: -20.160927,
+      focalLengthMm: -20.160927,
+      indexReference: "d",
       glass: "S-TIH6 (OHARA; 805/254 SF6-class equivalent)",
+      role: "Strong negative member of the post-stop cemented pair.",
+      cemented: "D2",
       nC: 1.796106,
       nF: 1.827775,
       ng: 1.847285,
-      role: "Strong negative member of the post-stop cemented pair.",
-      cemented: "D2",
     },
     {
       id: 9,
@@ -179,28 +219,31 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.834807,
       vd: 42.72,
-      fl: 42.45076,
+      focalLengthMm: 42.45076,
+      indexReference: "d",
       glass: "S-LAH55V (OHARA; 835/427 dense lanthanum-flint class equivalent)",
+      role: "Positive aspherical member of the post-stop cemented pair.",
+      cemented: "D2",
       nC: 1.828977,
       nF: 1.848517,
       ng: 1.85953,
-      role: "Positive aspherical member of the post-stop cemented pair.",
-      cemented: "D2",
     },
     {
       id: 10,
       name: "L10",
       label: "Element 10",
       type: "Positive Meniscus, convex to image",
+      // Table 6 prints 1.613112; source summary and Fig.14 color spread support this correction.
       nd: 1.603112,
       vd: 60.699678,
-      fl: 43.604265,
-      glass: "S-BSM14 (OHARA; J-SK14 603/607 class; patent nd emended)",
+      focalLengthMm: 43.604265,
+      indexReference: "d",
+      glass: "J-SK14 (HIKARI catalog curve; qualified full-spectrum proxy; source nd emendation retained; historical supplier, melt and chemistry unspecified)",
+      role: "Low-dispersion positive rear meniscus; satisfies optional conditions (10) and (11), but not (12).",
       dPgF: -0.0008410863,
       nC: 1.600082,
       nF: 1.610018,
       ng: 1.615392,
-      role: "Low-dispersion positive rear meniscus; satisfies optional conditions (10) and (11), but not (12).",
     },
     {
       id: 11,
@@ -209,54 +252,73 @@ const LENS_DATA = {
       type: "Positive Meniscus, convex to image",
       nd: 1.772499,
       vd: 49.6,
-      fl: 56.797678,
-      glass: "S-LAH66N (OHARA; 773/496 lanthanum-flint class equivalent)",
+      focalLengthMm: 56.797678,
+      indexReference: "d",
+      glass: "S-LAH66 (qualified OHARA 773/496 spectral proxy; historical supplier unconfirmed)",
+      role: "Final positive meniscus providing rear-group power and SLR back clearance.",
       nC: 1.767798,
       nF: 1.783373,
       ng: 1.791962,
-      role: "Final positive meniscus providing rear-group power and SLR back clearance.",
     },
   ],
 
   surfaces: [
-    { label: "1", R: 62.718, d: 2.8, nd: 1.696797, elemId: 1, sd: 26.2 },
-    { label: "2", R: 30.193, d: 6.05, nd: 1.0, elemId: 0, sd: 21.0 },
-    { label: "3", R: 57.228, d: 2.3, nd: 1.696797, elemId: 2, sd: 21.0 },
-    { label: "4", R: 32.815, d: 6.591, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "5", R: 212.09, d: 4.834, nd: 1.712995, elemId: 3, sd: 20.5 },
-    { label: "6", R: -102.305, d: 3.588, nd: 1.0, elemId: 0, sd: 20.5 },
-    { label: "7", R: 79.693, d: 2.923, nd: 1.84666, elemId: 4, sd: 16.2 },
-    { label: "8", R: 1827.319, d: 1.7, nd: 1.496999, elemId: 5, sd: 15.8 },
-    { label: "9", R: 23.337, d: 7.0, nd: 1.0, elemId: 0, sd: 13.2 },
-    { label: "C", R: 1e15, d: 4.759, nd: 1.0, elemId: 0, sd: 11.8 },
-    { label: "11", R: 30.725, d: 7.2, nd: 1.804, elemId: 6, sd: 14.2 },
-    { label: "12", R: -58.056, d: 0.15, nd: 1.0, elemId: 0, sd: 14.2 },
-    { label: "13", R: -448.592, d: 1.605, nd: 1.72825, elemId: 7, sd: 13.2 },
-    { label: "14", R: 38.753, d: 5.098, nd: 1.0, elemId: 0, sd: 12.5 },
-    { label: "STO", R: 1e15, d: 7.843, nd: 1.0, elemId: 0, sd: 11.5174 },
-    { label: "16", R: -16.295, d: 1.5, nd: 1.805181, elemId: 8, sd: 14.0 },
-    { label: "17", R: 4455.645, d: 3.649, nd: 1.834807, elemId: 9, sd: 14.7 },
-    { label: "18A", R: -35.709, d: 0.15, nd: 1.0, elemId: 0, sd: 15.7 },
-    { label: "19", R: -199.304, d: 6.939, nd: 1.603112, elemId: 10, sd: 16.7 },
-    { label: "20", R: -23.537, d: 0.15, nd: 1.0, elemId: 0, sd: 16.7 },
-    { label: "21", R: -85.475, d: 5.342, nd: 1.772499, elemId: 11, sd: 19.1 },
-    { label: "22", R: -29.783, d: 36.467, nd: 1.0, elemId: 0, sd: 19.1 },
+    { label: "1", R: 62.718, d: 2.8, sd: 26.2, medium: 1 },
+    { label: "2", R: 30.193, d: 6.05, sd: 22.4, rimExtensionSd: 26.2 },
+    { label: "3", R: 57.228, d: 2.3, sd: 23.0, medium: 2 },
+    { label: "4", R: 32.815, d: 6.591, sd: 20.0, rimExtensionSd: 23.0 },
+    { label: "5", R: 212.09, d: 4.834, sd: 20.5, medium: 3 },
+    { label: "6", R: -102.305, d: 3.588, sd: 20.5 },
+    { label: "7", R: 79.693, d: 2.923, sd: 16.2, medium: 4 },
+    { label: "8", R: 1827.319, d: 1.7, sd: 15.8, medium: 5 },
+    { label: "9", R: 23.337, d: 7.0, sd: 12.4, rimExtensionSd: 15.8 },
+    { label: "C", R: "flat", d: 4.759, sd: 11.8 },
+    { label: "11", R: 30.725, d: 7.2, sd: 14.2, medium: 6 },
+    { label: "12", R: -58.056, d: 0.15, sd: 14.2 },
+    { label: "13", R: -448.592, d: 1.605, sd: 13.2, medium: 7 },
+    { label: "14", R: 38.753, d: 5.098, sd: 13.2 },
+    { label: "STO", R: "flat", d: 7.843 },
+    {
+      label: "16",
+      R: -16.295,
+      d: 1.5,
+      sd: 12.0,
+      rimExtensionSd: 14.7,
+      medium: 8,
+    },
+    { label: "17", R: 4455.645, d: 3.649, sd: 14.7, medium: 9 },
+    {
+      label: "18A",
+      R: -35.709,
+      d: 0.15,
+      sd: 15.7,
+      asphere: {
+        K: 0,
+        A4: 2.04769e-5,
+        A6: 2.22129e-8,
+        A8: -2.10838e-11,
+        A10: -1.48493e-13,
+        A12: 2.10282e-16,
+      },
+    },
+    { label: "19", R: -199.304, d: 6.939, sd: 16.7, medium: 10 },
+    { label: "20", R: -23.537, d: 0.15, sd: 16.7 },
+    { label: "21", R: -85.475, d: 5.342, sd: 19.1, medium: 11 },
+    { label: "22", R: -29.783, d: 36.467, sd: 19.1 },
   ],
 
-  asph: {
-    "18A": {
-      K: 0,
-      A4: 2.04769e-5,
-      A6: 2.22129e-8,
-      A8: -2.10838e-11,
-      A10: -1.48493e-13,
-      A12: 2.10282e-16,
-      A14: 0,
-    },
+  focus: {
+    closeFocusM: 0.25,
+    description:
+      "Production floating rear focus. Patent ¶0039 prefers fixed B1 with B2a and B2b moving objectward while approaching one another; finite-focus spacings are not published and are not modeled.",
   },
 
-  var: {},
-  varLabels: [],
+  aperture: {
+    nominalFNumber: 1.45,
+    fStops: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    blades: 7,
+  },
 
   groups: [
     { text: "B1", fromSurface: "1", toSurface: "6" },
@@ -268,16 +330,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "16", toSurface: "18A" },
   ],
 
-  closeFocusM: 0.25,
-  focusDescription:
-    "Production floating rear focus. Patent ¶0039 prefers fixed B1 with B2a and B2b moving objectward while approaching one another; finite-focus spacings are not published and are not modeled.",
-
-  nominalFno: 1.45,
-  apertureBlades: 7,
-  maxFstop: 22,
-  fstopSeries: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
-
-  yScFill: 0.55,
-} satisfies LensDataInput;
+  layout: { yScFill: 0.55 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

@@ -1,6 +1,6 @@
 import { AberrationValueDisplay } from "../analysisUi.js";
 import AstigmatismPlot from "../AstigmatismPlot.js";
-import type { FieldCurvatureResult } from "../../../../optics/aberrationAnalysis.js";
+import type { FieldCurvatureResult } from "../../../../optics/analysis.js";
 import type { Theme } from "../../../../types/theme.js";
 import { formatSignedUm } from "./format.js";
 import SectionHeader from "./SectionHeader.js";

@@ -88,3 +88,13 @@ now lies inside the primary perforation, as the data-file header and patent Fig.
 
 - Re-check the 2026-06-05 note about ~8 mm LoCA from the outer annular marginal ray; it was measured on the
   mis-laid-out model.
+
+## 2026-10-30 — Fresh folded figure and glass reinspection
+
+Direct source: `patents/US3507556.pdf`, PDF p.1 FIG.1/3 (600 dpi/native 300 dpi), p.3 Embodiment 1 table and p.4 repeated Claim 1 table/d-line definition, both600 dpi. All 10 physical powered faces including both Mangin double passes reviewed.
+
+Geometry retained: exposed concave faces are continuous arcs to their body rims; no independently resolved radial flat supports new cap cuts/height extensions. Primary perforation, synthetic stop/OBS and outline SDs remain inferred, not patent dimensions. Correct folded intervals147 mm after exitingR3 and 150 mm after exitingR5 remain intact; all mirror curvature signs, actual hit order and image plane are preserved.
+
+All 5 printed nd/νd pairs retained. Source explicitly uses the d line for Embodiment 1; the A′/C/d index table on p.4 belongs to Embodiment 3 and must not be transferred here. No numeric partials/C/F/g for selected Embodiment 1 or material-specific APD claim is supplied. All 5 actual curves are qualified spectral proxies: E-C3,E-FEL2,E-FEL1,H-K9L,E-FD13, with source/catalog coordinates and unspecified supplier.
+
+Canonical/full guard and surface pass; ordinary circle/aperture/field checks correctly skip folded systems. Nine actual SVG states inspected using annular even-odd fill,zero hidden trim. Generalized folded trace:96/96 sampled unobstructed-annulus axial rays reach the image; source±1.23° collimated fields89/96,seven clipped atM1R. Counts are sampled rays,not flux/production illumination. Existing folded/annular analysis limitations and absence of source finite-focus law remain explicit.

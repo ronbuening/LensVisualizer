@@ -47,3 +47,10 @@ source or established chemistry, so both remain explicitly unresolved.
 **Assignee:** the exact patent front page lists 株式会社ニコン, already represented by the canonical Nikon Corporation.
 The catalog keeps Nippon Kogaku K.K. as the historically distinct predecessor linked to the same corporate family;
 no duplicate assignee spelling in this batch requires consolidation.
+
+## 2026-10-29 — Original-figure height/land and fresh glass reinspection
+
+- Directly inspected local `patents/JP2011221421A.pdf`, Example4 Figure7/PDF25 at600dpi plus native300dpi raster, Table13/PDF19–20, d-line convention/PDF12, and native Figure8/PDF25. All18 source nd/vd pairs retained;16 actual resolver curves are qualified spectral proxies, two1.53610/41.42 thin regions remain unresolved without guessed chemistry. No CFg/partial fields invented; existing L33 inferred ED role remains a qualified correlation.
+- S6A/S7 continuous caps12.8→14.6mm and S8 cap10.2→11.0mm with outer14.6 land restore the connected L21 hybrid body. Native first/last span~570px/85.88mm⇒6.64px/mm; body/cap radii~97/73px give q≈.75±.018, adopted.753. Every convex/concave face and bonded boundary was checked; no additional independently resolved exposed land warrants clipping. Broad front blank, surface leaders, and brackets are excluded. ActualSVG verifies no detached wing. Source S6A coefficients unchanged; new14.6mm departure−.262016111mm, rimangle5.86419°, synchronized publicly.
+- Fresh Figure8 confirms FNO3.50/5.00/5.78, retaining the explicit Table13 3.60/5.80 discrepancy and existing plot calibration. No focus/control/prescription/tolerance changes.
+- Surface/circle pass; three axial aperture stations iris-limited within3%; three formatcorners>=99%. Nine actualSVG states have18finite paths/zero trim and finalraster inspected. All18 sourcepairs/catalog checks pass; shared dispersion/parity/partial tests3files94pass.

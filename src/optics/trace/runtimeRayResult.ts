@@ -4,10 +4,11 @@
  * Preserves y/u and x/y/ux/uy result contracts while exact tracing records richer hit diagnostics internally.
  */
 
-import type { RayTraceResult, RuntimeLens } from "../../types/optics.js";
-import type { Vec3 } from "../types.js";
+import type { RayTraceResult } from "../../types/optics.js";
+import type { CompiledLens, Vec3 } from "../types.js";
+import { rimLandPoint } from "../geometry/rimCut.js";
 import { bulkTransmissionForTrace } from "./bulkAbsorption.js";
-import type { EngineTraceResult } from "./types.js";
+import type { EngineTraceResult, TraceCapture } from "./types.js";
 
 /** Runtime-compatible skew ray result using image-plane coordinates and slopes. */
 export interface RuntimeSkewRayTraceResult {
@@ -32,11 +33,11 @@ export function engineTraceToRuntimeRayResult(
   result: EngineTraceResult,
   leadPoint: [number, number],
   ghost: boolean,
-  L: RuntimeLens,
+  L: CompiledLens,
 ): RayTraceResult {
   const pts: number[][] = [leadPoint];
   const ghostPts: number[][] = [];
-  appendTracePoints(result, pts, ghostPts, ghost);
+  appendTracePoints(result, pts, ghostPts, ghost, L);
   appendImagePlanePoint(result, pts);
   return {
     pts,
@@ -56,7 +57,10 @@ export function engineTraceToRuntimeRayResult(
  * @param result - engine exact trace result
  * @returns final x/y coordinates, slopes, and clipping state
  */
-export function engineTraceToRuntimeSkewResult(result: EngineTraceResult, L: RuntimeLens): RuntimeSkewRayTraceResult {
+export function engineTraceToRuntimeSkewResult(
+  result: EngineTraceResult<TraceCapture>,
+  L: CompiledLens,
+): RuntimeSkewRayTraceResult {
   return {
     x: result.x,
     y: result.y,
@@ -87,14 +91,21 @@ export function vectorLeadPoint(
   return Number.isFinite(z) && Number.isFinite(y) ? [z, y] : [input.origin[2], input.origin[1]];
 }
 
-function appendTracePoints(result: EngineTraceResult, pts: number[][], ghostPts: number[][], ghost: boolean): void {
+function appendTracePoints(
+  result: EngineTraceResult,
+  pts: number[][],
+  ghostPts: number[][],
+  ghost: boolean,
+  L: CompiledLens,
+): void {
   for (const hit of result.hits) {
     const point = [hit.point[2], hit.point[1]];
     if (!Number.isFinite(point[0]) || !Number.isFinite(point[1])) continue;
     if (hit.clipped) {
       // Intersection misses terminate before adding a hit; ghost points here
-      // are only real clipped surface hits.
-      if (ghost) ghostPts.push(point);
+      // are only real clipped surface hits. A rim land's clip is drawn on its land.
+      const land = rimLandPoint(L.surfaces[hit.surfaceIndex], hit);
+      if (ghost) ghostPts.push(land ? [land[2], land[1]] : point);
     } else {
       pts.push(point);
     }

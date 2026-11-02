@@ -9,8 +9,7 @@
 **Published:** 2018-03-22\
 **Inventor:** Akira Sawamoto\
 **Applicant:** Nittoh Inc.\
-**Title:** Optical System for Image Capturing and Image Capturing Device\
-**Embodiment analyzed:** Example 1
+**Title:** Optical System for Image Capturing and Image Capturing Device
 
 The prescription modeled here is Example 1 of WO 2018/052113 A1. The production correlation is the Hasselblad XCD 30mm f/3.5 (marketed as XCD 3,5/30). The patent does not name Hasselblad, so the correlation is an inference rather than a manufacturer-confirmed identification.
 

@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔════════════════════════════════════════════════════════════════════════════╗
@@ -18,6 +18,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  +2.04161e-9 is reconstructed from Example 1 and dimensional sanity;     ║
  * ║  it is not a literal complete transcription of the damaged line.         ║
  * ║                                                                            ║
+ * ║  Original-PDF review 2026-10-30: Numerical Example 2, PDF page 6,     ║
+ * ║  and Fig. 4, PDF page 7. The patent names no spectral line. 14 of 14       ║
+ * ║  printed pairs match catalog d-line coordinates and none match the         ║
+ * ║  e-line, so the table is read as d-line. 14 media use catalog curves as    ║
+ * ║  spectral proxies; supplier, melt and chemistry stay unspecified. No       ║
+ * ║  catalog C/F/g copies are authored. S2/S4/S6/S8 retain their optical caps  ║
+ * ║  and gain the resolved rear shoulders via rimExtensionSd.                  ║
+ * ║                                                                            ║
  * ║  Semi-diameters are not patent-listed. These are renderer estimates      ║
  * ║  proportioned against the Example 2 section drawing, then checked for    ║
  * ║  clearance, edge thickness, surface slope, SD ratio, and signed          ║
@@ -31,37 +39,35 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "canon-ef-14mm-f28-l",
   maker: "Canon",
   name: "CANON EF 14mm f/2.8 L USM",
   subtitle: "JP H05-034592 A EXAMPLE 2 — CANON / HIDEKI OGAWA",
-  specs: [
-    "14 ELEMENTS / 10 GROUPS",
-    "f = 14.201 mm",
-    "F/2.8 (DESIGN 1:2.892)",
-    "FIELD: 2×56.72° (HEADING 113.4°)",
-    "1 ASPHERICAL SURFACE",
-    "REAR FOCUS",
-  ],
 
-  focalLengthMarketing: 14,
-  focalLengthDesign: 14.201254,
-  apertureMarketing: 2.8,
-  apertureDesign: 2.892,
-  lensMounts: ["canon-ef"],
-  imageFormat: "135-full-frame",
-  patentNumber: "JP H05-034592 A",
-  patentAuthors: ["Hideki Ogawa"],
-  patentAssignees: ["Canon Inc."],
-  patentYear: 1993,
-  elementCount: 14,
-  groupCount: 10,
+  catalog: {
+    lensMounts: ["canon-ef"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "14 ELEMENTS / 10 GROUPS",
+      "PATENT f = 14.2 mm / MODELED EFL 14.201 mm",
+      "F/2.8 (DESIGN 1:2.892)",
+      "FIELD: 2×56.72° (HEADING 113.4°)",
+      "1 ASPHERICAL SURFACE",
+      "REAR FOCUS",
+    ],
+    elementCount: 14,
+    groupCount: 10,
+    focalLengthMm: { marketing: 14, design: 14.2 },
+    fNumber: { marketing: 2.8, design: 2.892 },
+  },
 
-  projection: {
-    kind: "rectilinear",
-    // Figs. 5–6 print w = 56.72°. The Example 2 heading rounds the corresponding full field to 113.4°.
-    fullFieldDeg: 113.44,
-    maxTraceFieldDeg: 56.72,
+  source: {
+    patentNumber: "JP H05-034592 A",
+    example: { label: "Numerical Example 2", id: "2" },
+    patentYear: 1993,
+    authors: ["Hideki Ogawa"],
+    assignees: ["Canon Inc."],
   },
 
   /* ── Elements ── */
@@ -73,11 +79,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.5,
-      fl: -97.290202,
-      glass: "S-LAL14 (OHARA)",
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
+      focalLengthMm: -97.290202,
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "First image-facing negative meniscus in the distributed fixed front group.",
     },
     {
@@ -87,11 +91,9 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.60311,
       vd: 60.7,
-      fl: -1210.999554,
-      glass: "S-BSM14 (OHARA)",
-      nC: 1.60008,
-      nF: 1.61002,
-      ng: 1.61541,
+      focalLengthMm: -1210.999554,
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Weak negative meniscus whose object-side asphere corrects extreme-field distortion.",
     },
     {
@@ -101,11 +103,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.5,
-      fl: -51.444873,
-      glass: "S-LAL14 (OHARA)",
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
+      focalLengthMm: -51.444873,
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Third image-facing negative meniscus; increases front-group divergence progressively.",
     },
     {
@@ -115,11 +115,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: -47.79789,
-      glass: "S-LAH66 (OHARA)",
-      nC: 1.7678,
-      nF: 1.78337,
-      ng: 1.79197,
+      focalLengthMm: -47.79789,
+      glass:
+        "S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "High-index fourth negative meniscus in the fixed front group.",
     },
     {
@@ -129,11 +127,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.5,
-      fl: -24.41362,
-      glass: "S-LAL14 (OHARA)",
-      nC: 1.69297,
-      nF: 1.70552,
-      ng: 1.71234,
+      focalLengthMm: -24.41362,
+      glass:
+        "S-LAL14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Fifth negative meniscus; cemented to L6 for zonal and higher-order spherical correction.",
       cemented: "J1",
     },
@@ -144,11 +140,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59551,
       vd: 39.2,
-      fl: 21.052217,
-      glass: "S-TIM8 (OHARA)",
-      nC: 1.59103,
-      nF: 1.60621,
-      ng: 1.61501,
+      focalLengthMm: 21.052217,
+      glass:
+        "S-TIM8 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive rear component of the net-positive J1 cemented pair.",
       cemented: "J1",
     },
@@ -159,11 +153,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.56732,
       vd: 42.8,
-      fl: 16.494741,
-      glass: "S-TIL26 (OHARA)",
-      nC: 1.56339,
-      nF: 1.57664,
-      ng: 1.58423,
+      focalLengthMm: 16.494741,
+      glass:
+        "S-TIL26 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive front component of the first rear-group cemented pair.",
       cemented: "J2",
     },
@@ -174,11 +166,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: -63.632718,
-      glass: "S-LAH66 (OHARA)",
-      nC: 1.7678,
-      nF: 1.78337,
-      ng: 1.79197,
+      focalLengthMm: -63.632718,
+      glass:
+        "S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Object-facing negative meniscus cemented behind L7; J2 remains net positive.",
       cemented: "J2",
     },
@@ -189,11 +179,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      fl: -30.293081,
-      glass: "S-LAH66 (OHARA)",
-      nC: 1.7678,
-      nF: 1.78337,
-      ng: 1.79197,
+      focalLengthMm: -30.293081,
+      glass:
+        "S-LAH66 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Second object-facing negative meniscus immediately before the aperture stop.",
     },
     {
@@ -203,11 +191,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60311,
       vd: 60.7,
-      fl: 65.166257,
-      glass: "S-BSM14 (OHARA)",
-      nC: 1.60008,
-      nF: 1.61002,
-      ng: 1.61541,
+      focalLengthMm: 65.166257,
+      glass:
+        "S-BSM14 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Positive front component of the weakly negative post-stop J3 pair.",
       cemented: "J3",
     },
@@ -218,11 +204,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7432,
       vd: 49.3,
-      fl: -48.570574,
-      glass: "S-LAM60 (OHARA)",
-      nC: 1.73865,
-      nF: 1.75372,
-      ng: 1.76205,
+      focalLengthMm: -48.570574,
+      glass:
+        "S-LAM60 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Negative rear component that makes J3 net negative and bounds the corrective air lens.",
       cemented: "J3",
     },
@@ -233,8 +217,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.92286,
       vd: 21.3,
-      fl: -29.223516,
-      glass: "PBH71 (OHARA historical exact catalog equivalent; patent vendor unspecified)",
+      focalLengthMm: -29.223516,
+      glass:
+        "PBH71 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Very-high-index, high-dispersion negative component of the chromatically active J4 pair.",
       cemented: "J4",
     },
@@ -245,11 +230,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.2,
-      fl: 24.92255,
-      glass: "S-FSL5 (OHARA)",
-      nC: 1.48534,
-      nF: 1.49228,
-      ng: 1.49596,
+      focalLengthMm: 24.92255,
+      glass:
+        "S-FSL5 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Low-dispersion positive partner in J4; the cemented pair is net positive.",
       cemented: "J4",
     },
@@ -260,64 +243,68 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.804,
       vd: 46.6,
-      fl: 42.572843,
-      glass: "S-LAH65V (OHARA)",
-      nC: 1.79882,
-      nF: 1.81608,
-      ng: 1.82569,
+      focalLengthMm: 42.572843,
+      glass:
+        "S-LAH65V (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified)",
       role: "Final positive element; shares rear positive power and moderates spherical undercorrection.",
     },
   ],
 
   /* ── Surfaces ── */
   surfaces: [
-    { label: "1", R: 44.219, d: 3.1, nd: 1.6968, elemId: 1, sd: 31.9 },
-    { label: "2", R: 25.992, d: 11.3, nd: 1.0, elemId: 0, sd: 24.4 },
-    { label: "3A", R: 58.892, d: 5.83, nd: 1.60311, elemId: 2, sd: 22.5 },
-    { label: "4", R: 52.468, d: 0.15, nd: 1.0, elemId: 0, sd: 21.1 },
-    { label: "5", R: 36.687, d: 1.7, nd: 1.6968, elemId: 3, sd: 18.4 },
-    { label: "6", R: 17.786, d: 6.43, nd: 1.0, elemId: 0, sd: 14.6 },
-    { label: "7", R: 48.285, d: 1.3, nd: 1.7725, elemId: 4, sd: 13.6 },
-    { label: "8", R: 20.678, d: 8.28, nd: 1.0, elemId: 0, sd: 12.0 },
-    { label: "9", R: 205.374, d: 1.5, nd: 1.6968, elemId: 5, sd: 9.8 },
-    { label: "10", R: 15.663, d: 10.13, nd: 1.59551, elemId: 6, sd: 8.8 },
-    { label: "11", R: -47.65, d: 3.25, nd: 1.0, elemId: 0, sd: 8.0 },
-    { label: "12", R: 57.504, d: 8.21, nd: 1.56732, elemId: 7, sd: 7.0 },
-    { label: "13", R: -10.599, d: 1.5, nd: 1.7725, elemId: 8, sd: 6.4 },
-    { label: "14", R: -14.346, d: 0.83, nd: 1.0, elemId: 0, sd: 6.4 },
-    { label: "15", R: -14.99, d: 0.9, nd: 1.7725, elemId: 9, sd: 6.3 },
-    { label: "16", R: -42.795, d: 0.5, nd: 1.0, elemId: 0, sd: 6.3 },
-    { label: "STO", R: 1e15, d: 1.4, nd: 1.0, elemId: 0, sd: 6.149168 },
-    { label: "18", R: 86.92, d: 8.53, nd: 1.60311, elemId: 10, sd: 6.5 },
-    { label: "19", R: -69.093, d: 4.0, nd: 1.7432, elemId: 11, sd: 6.7 },
-    { label: "20", R: 77.455, d: 0.69, nd: 1.0, elemId: 0, sd: 6.8 },
-    { label: "21", R: -172.305, d: 0.8, nd: 1.92286, elemId: 12, sd: 6.8 },
-    { label: "22", R: 32.045, d: 5.85, nd: 1.48749, elemId: 13, sd: 6.9 },
-    { label: "23", R: -18.398, d: 0.15, nd: 1.0, elemId: 0, sd: 8.4 },
-    { label: "24", R: 333.594, d: 3.3, nd: 1.804, elemId: 14, sd: 9.9 },
-    { label: "25", R: -37.974, d: 38.72581151, nd: 1.0, elemId: 0, sd: 10.1 },
-  ],
-
-  asph: {
-    "3A": {
-      K: 0,
-      A4: 9.62849e-6,
-      A6: 2.04161e-9,
-      A8: -8.992e-12,
-      A10: 1.9629e-14,
-      A12: 0,
-      A14: 0,
+    { label: "1", R: 44.219, d: 3.1, sd: 31.9, medium: 1 },
+    { label: "2", R: 25.992, d: 11.3, sd: 24.4, rimExtensionSd: 31.9 },
+    {
+      label: "3A",
+      R: 58.892,
+      d: 5.83,
+      sd: 22.5,
+      medium: 2,
+      asphere: { K: 0, A4: 9.62849e-6, A6: 2.04161e-9, A8: -8.992e-12, A10: 1.9629e-14 },
     },
+    { label: "4", R: 52.468, d: 0.15, sd: 21.1, rimExtensionSd: 22.5 },
+    { label: "5", R: 36.687, d: 1.7, sd: 18.4, medium: 3 },
+    { label: "6", R: 17.786, d: 6.43, sd: 14.6, rimExtensionSd: 18.4 },
+    { label: "7", R: 48.285, d: 1.3, sd: 13.6, medium: 4 },
+    { label: "8", R: 20.678, d: 8.28, sd: 12.0, rimExtensionSd: 13.6 },
+    { label: "9", R: 205.374, d: 1.5, sd: 9.8, medium: 5 },
+    { label: "10", R: 15.663, d: 10.13, sd: 8.8, medium: 6 },
+    { label: "11", R: -47.65, sd: 8.0 },
+    { label: "12", R: 57.504, d: 8.21, sd: 7.0, medium: 7 },
+    { label: "13", R: -10.599, d: 1.5, sd: 6.4, medium: 8 },
+    { label: "14", R: -14.346, d: 0.83, sd: 6.4 },
+    { label: "15", R: -14.99, d: 0.9, sd: 6.3, medium: 9 },
+    { label: "16", R: -42.795, d: 0.5, sd: 6.3 },
+    { label: "STO", R: "flat", d: 1.4 },
+    { label: "18", R: 86.92, d: 8.53, sd: 6.5, medium: 10 },
+    { label: "19", R: -69.093, d: 4.0, sd: 6.7, medium: 11 },
+    { label: "20", R: 77.455, d: 0.69, sd: 6.8 },
+    { label: "21", R: -172.305, d: 0.8, sd: 6.8, medium: 12 },
+    { label: "22", R: 32.045, d: 5.85, sd: 6.9, medium: 13 },
+    { label: "23", R: -18.398, d: 0.15, sd: 8.4 },
+    { label: "24", R: 333.594, d: 3.3, sd: 9.9, medium: 14 },
+    { label: "25", R: -37.974, sd: 10.1 },
+  ],
+
+  focus: {
+    closeFocusM: 0.25,
+    description:
+      "Rear focus: fixed negative Group I; complete positive Group II translates objectward. The close endpoint is inferred from Canon's 0.25 m / 0.10× production specification; the patent publishes only infinity/25 cm aberration plots, not a spacing table.",
   },
 
-  var: {
-    "11": [3.25, 1.101053981],
-    "25": [38.72581151, 40.87475753],
+  gaps: {
+    "11": { label: "D11", values: [[3.25, 1.101053981]] },
+    "25": { label: "BF", values: [[38.72581151, 40.87475753]] },
   },
-  varLabels: [
-    ["11", "D11"],
-    ["25", "BF"],
-  ],
+
+  aperture: { nominalFNumber: 2.892, fStops: [2.892, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 5 },
+
+  projection: {
+    kind: "rectilinear",
+    // Figs. 5–6 print w = 56.72°. The Example 2 heading rounds the corresponding full field to 113.4°.
+    fullFieldDeg: 113.44,
+    maxTraceFieldDeg: 56.72,
+  },
 
   groups: [
     { text: "GROUP I — FIXED NEGATIVE", fromSurface: "1", toSurface: "11" },
@@ -330,18 +317,10 @@ const LENS_DATA = {
     { text: "J4", fromSurface: "21", toSurface: "23" },
   ],
 
-  focusDescription:
-    "Rear focus: fixed negative Group I; complete positive Group II translates objectward. The close endpoint is inferred from Canon's 0.25 m / 0.10× production specification; the patent publishes only infinity/25 cm aberration plots, not a spacing table.",
-  closeFocusM: 0.25,
-  nominalFno: 2.892,
-  fstopSeries: [2.892, 4, 5.6, 8, 11, 16, 22],
-  apertureBlades: 5,
-  maxFstop: 22,
+  layout: { scFill: 0.55, yScFill: 0.45 },
 
   // Surface 2, the rear of the L1 meniscus, runs to a 69.8° rim to pass the chief ray at the patent's w = 56.72°.
-  maxRimAngleDeg: 72,
-  scFill: 0.55,
-  yScFill: 0.45,
-} satisfies LensDataInput;
+  checks: { maxRimAngleDeg: 72 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

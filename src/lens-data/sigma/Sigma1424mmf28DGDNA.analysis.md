@@ -9,7 +9,6 @@
 **Inventor:** Ryo Shioda  
 **Applicant:** Sigma Corporation  
 **Title:** Wide-angle lens system  
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription is the native first numerical example of the cited Japanese application.
 The supplied PDF includes an English PAJ abstract ahead of the Japanese publication;

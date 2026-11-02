@@ -8,9 +8,9 @@
  */
 import { useMemo } from "react";
 import { traceRay } from "../../optics/optics.js";
-import { tracePerspectiveDiagramFan } from "../../optics/perspective/diagramFan.js";
-import type { PerspectiveTraceContext } from "../../optics/perspective/index.js";
-import { obstructionAwareRayFractionsForDensity } from "../../optics/raySampling.js";
+import { tracePerspectiveDiagramFan } from "../../optics/perspective.js";
+import type { PerspectiveTraceContext } from "../../optics/perspective.js";
+import { obstructionAwareRayFractionsForDensity } from "../../optics/optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { RayDensity } from "../../types/state.js";
 import { compileRaySegment } from "./raySegmentUtils.js";

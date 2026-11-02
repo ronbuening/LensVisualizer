@@ -1,4 +1,4 @@
-import type { PerspectiveFocusAnalysis, PerspectiveFocusFieldSample } from "../../../../optics/perspective/index.js";
+import type { PerspectiveFocusAnalysis, PerspectiveFocusFieldSample } from "../../../../optics/perspective.js";
 import type { Theme } from "../../../../types/theme.js";
 import { AnalysisMetricRow } from "../analysisUi.js";
 import {

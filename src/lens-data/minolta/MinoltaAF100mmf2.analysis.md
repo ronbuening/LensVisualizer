@@ -7,7 +7,6 @@
 **Inventors:** Naoshi Okada; Hisashi Tokumaru<br>
 **Applicant:** Minolta Camera Co., Ltd.<br>
 **Title:** 中望遠レンズ (Medium Telephoto Lens)<br>
-**Embodiment analyzed:** Example 2<br>
 **Lens:** MINOLTA AF 100mm f/2
 
 The prescription is Example 2 of Minolta Camera Co., Ltd.'s Japanese publication JP S62-244010 A. The numerical example publishes a nominal focal length of 100.0 mm, an f-number of 2.0, seven glass elements, and the focus-variable spacing used in this model. The production correlation adopted for this entry is the Minolta AF 100mm f/2. It is a technical correlation rather than a manufacturer statement that the patent is the production prescription.

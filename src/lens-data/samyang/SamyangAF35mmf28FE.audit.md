@@ -25,3 +25,14 @@ The surface sum to S14 is 27.13860705; the printed physical image track is 47.00
 **Cause/action:** omitted filter plus contradictory source image-distance conventions. Restore Table 10 physical path, preserve all published powered values and document competing Table 12 quantities. Offset **−0.190103 → +0.500018 mm**; Section E row deleted despite remaining census inclusion. Changelog records restored filter/image path.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-10-08 — Elements e-referenced with five catalog glasses
+
+KR 10-2127451 B1 Table 10 heads its index column nd but prints e-line indices with d-line Abbe numbers. Five of the seven equal a HOYA catalog glass at the e line to all five printed decimals, each with that glass's exact νd: L1 E-FD10 (1.73432 / 28.32), L3 E-F2 (1.62408 / 36.30), L4 E-FDS1 (1.93323 / 20.88), L5 TAFD5F (1.83945 / 42.72) and L6 E-FD2 (1.65222 / 33.84). The two moulded aspheres are close but not equal: L2 is 0.00020 above the 773496 class (1.77621) and L7 is 0.00030 below the 689312 class (1.69415).
+
+The file had kept the printed values d-referenced and every element Unmatched, because naming only some e-line glasses mixed reference lines between elements. The dispersion tiers now trace e-referenced elements at C′/e/F′/g whether or not they resolve, so the same switch made on the ZEISS Batis 40mm f/2 CF applies here.
+
+- All seven elements set to `indexReference: "e"` with the printed index and Abbe number unchanged, and an `indexReferenceNote` on each stating that the Abbe slot holds the printed d-line value.
+- L1, L3, L4, L5 and L6 labelled with their HOYA names; they trace on catalog curves anchored to the printed index. L2 and L7 stay Unmatched on the Abbe estimate.
+- The filter plate prints the d-line 1.51680 / 64.20, stays d-referenced and is labelled BSC7 (HOYA) as a coordinate equivalent.
+- Focal length, f-number and the reference trace are unchanged (EFL 35.1828 mm). Paraxial focus against green moved from R +25, B −12, V +22 µm (all on the Abbe estimate) to R +32, B +9, V +60 µm.

@@ -7,7 +7,7 @@
 **Inventors:** Kitada Takahiro (北田 高博), Kudo Yuka (工藤 有華), Sueyoshi Masafumi (末吉 正史), Li Jindong (李 金東).
 **Filed:** 15 May 2020 (令和2年5月15日), Application No. 2020-85568.
 **Published:** 18 November 2021 (令和3年11月18日).
-**Embodiment analyzed:** Numerical Example 2 (数値実施例2), corresponding to Embodiment 2 (実施の形態2), illustrated in Figs. 3–4.
+**Example details:** 数値実施例2, corresponding to Embodiment 2 (実施の形態2), illustrated in Figs. 3–4.
 
 The following convergent evidence identifies Example 2 as the production design for the LUMIX S 20–60mm F3.5–5.6 (model S-R2060):
 

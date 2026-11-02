@@ -28,3 +28,7 @@
 # 404.html with a 404 status until 2026-09-16. `/` is never rewritten by Pages and
 # never matches `/compare/*`, so this rule cannot loop.
 /compare/* / 200
+
+# Client-only experimental editor; works when its feature flag is enabled.
+/lens-builder / 200
+/lens-builder/* / 200

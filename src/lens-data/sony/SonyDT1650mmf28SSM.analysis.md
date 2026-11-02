@@ -8,7 +8,7 @@
 **Inventors:** Hideki Kai; Makoto Kanai\
 **Assignee:** Sony Corporation\
 **Title:** *Zoom Lens and Imaging Apparatus*\
-**Embodiment analyzed:** Numerical Value Embodiment 1 / Example 1
+**Example details:** Example 1
 
 The modeled prescription is the unscaled Example 1 design from US 2012/0307129 A1, correlated in this project to the **SONY DT 16-50mm f/2.8 SSM** (SAL1650). The correlation is treated as the fixed lens/patent pairing for this analysis, not as a claim that Sony has publicly identified the production lens as this exact patent embodiment.
 

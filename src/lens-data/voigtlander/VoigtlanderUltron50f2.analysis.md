@@ -14,7 +14,7 @@
 
 **Granted:** February 3, 1953
 
-**Embodiment analyzed:** Example II, Figure 3
+**Example details:** Figure 3
 
 The normalized source has f=1 and aperture1:2. It is scaled50× for the catalog's50mm Ultron association. The source's useful full field is55°; the displayed46.8° is the approximate diagonal field of the modeled35mm format, a smaller crop. Neither matching architecture nor this scaling establishes a measured production prescription.
 

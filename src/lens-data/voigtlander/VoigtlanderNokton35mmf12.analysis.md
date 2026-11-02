@@ -5,7 +5,7 @@
 **Published:** April 2, 2004 (Heisei 16)
 **Inventor:** Yoshihisa Yomogida (蓬田 祥寿)
 **Applicant:** Cosina Co., Ltd. (株式会社コシナ), Nagano Prefecture, Japan
-**Embodiment analyzed:** Example 2, Table 3 / Table 4 (Fig. 3; aberrations Fig. 4)
+**Example details:** Table 3 / Table 4 (Fig. 3; aberrations Fig. 4)
 
 ---
 

@@ -8,7 +8,7 @@
 **Filed:** 6 February 2023 (PCT/JP2023/003793)
 **Published:** 28 September 2023
 **Priority:** JP 2022-046233, filed 23 March 2022
-**Embodiment analyzed:** Example 4 (第4実施例), Figure 40, Tables 16–20
+**Example details:** 第4実施例, Figure 40, Tables 16–20
 
 The identification of Example 4 as the production embodiment rests on the following convergent evidence:
 

@@ -9,7 +9,7 @@
 **Inventor:** Nozomu Mishima
 **Applicant:** Cosina Co., Ltd.
 **Title:** 光学レンズ系 (*Optical Lens System*)
-**Embodiment analyzed:** Example 3 / 第3実施形態
+**Example details:** 第3実施形態
 
 The prescription transcribes Example 3 of JP 2026-121744 A at the patent's original scale. The patent does not identify a commercial product, so the association with the production VOIGTLÄNDER COLOR-SKOPAR 35mm f/3.5 ASPHERICAL remains a production-correlation inference rather than a manufacturer-confirmed statement.
 

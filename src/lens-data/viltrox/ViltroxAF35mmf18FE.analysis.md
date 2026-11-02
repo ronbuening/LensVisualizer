@@ -6,8 +6,7 @@
 **Granted / Published:** 2020-11-17\
 **Inventors:** 刘瑞军; 陈宝锋\
 **Assignee:** 深圳市雷影光电科技有限公司\
-**Title:** 内合焦式成像镜头 (*Internal-focusing imaging lens*)\
-**Embodiment analyzed:** Example 1
+**Title:** 内合焦式成像镜头 (*Internal-focusing imaging lens*)
 
 This prescription transcribes Example 1 of CN 211955963 U and is correlated to the legacy **VILTROX AF 35mm f/1.8 FE** for Sony E mount. The correlation is fixed for this record; it is a model identification based on convergent optical and product evidence, not a claim that Viltrox has published a patent-to-product cross-reference.
 

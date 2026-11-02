@@ -8,6 +8,7 @@ import { replaceTextForTranslation } from "../../translationTestUtils.js";
 import { buildSimplePositiveElementLens, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
 import themes from "../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
+import type { ParaxialWorkingFNumberResult } from "../../../src/optics/optics.js";
 import { computeAperturePair } from "../../../src/comparison/comparisonSliders.js";
 import type {
   AperturePairResult,
@@ -65,8 +66,8 @@ function renderSharedSliders({
   showEffectiveAperture = false,
   dynamicEflA = 52,
   dynamicEflB = 50,
-  effectiveFNumA = 2.1,
-  effectiveFNumB = 2.2,
+  paraxialWorkingFNumA = { status: "computed", value: 2.1 },
+  paraxialWorkingFNumB = { status: "computed", value: 2.2 },
   onSharedFocusChange = vi.fn(),
   onSharedStopdownChange = vi.fn(),
   onSharedZoomChange = vi.fn(),
@@ -93,8 +94,8 @@ function renderSharedSliders({
   showEffectiveAperture?: boolean;
   dynamicEflA?: number;
   dynamicEflB?: number;
-  effectiveFNumA?: number;
-  effectiveFNumB?: number;
+  paraxialWorkingFNumA?: ParaxialWorkingFNumberResult;
+  paraxialWorkingFNumB?: ParaxialWorkingFNumberResult;
   onSharedFocusChange?: (value: number) => void;
   onSharedStopdownChange?: (value: number) => void;
   onSharedZoomChange?: (value: number) => void;
@@ -130,8 +131,8 @@ function renderSharedSliders({
       movementPair={movementPair}
       dynamicEflA={dynamicEflA}
       dynamicEflB={dynamicEflB}
-      effectiveFNumA={effectiveFNumA}
-      effectiveFNumB={effectiveFNumB}
+      paraxialWorkingFNumA={paraxialWorkingFNumA}
+      paraxialWorkingFNumB={paraxialWorkingFNumB}
       showEffectiveFocalLength={showEffectiveFocalLength}
       onToggleEffectiveFocalLength={onToggleEffectiveFocalLength}
       showEffectiveAperture={showEffectiveAperture}
@@ -163,7 +164,7 @@ function renderSharedSliders({
 describe("SharedSlidersBar", () => {
   afterEach(() => cleanup());
 
-  it.each([true, false])("updates translated A/B captions and effective readouts (wide: %s)", (isWide) => {
+  it.each([true, false])("updates translated A/B captions and paraxial working readouts (wide: %s)", (isWide) => {
     const { container, rerender, element } = renderSharedSliders({ isWide });
     expect(replaceTextForTranslation(container)).toBeGreaterThan(0);
     rerender(
@@ -171,19 +172,19 @@ describe("SharedSlidersBar", () => {
         {...element.props}
         aperturePair={{ ...aperturePair, fNumberA: 8, fNumberB: 9.18 }}
         showEffectiveAperture
-        effectiveFNumA={10}
-        effectiveFNumB={12}
+        paraxialWorkingFNumA={{ status: "computed", value: 10 }}
+        paraxialWorkingFNumB={{ status: "computed", value: 12 }}
       />,
     );
     expect(screen.getByText("A: f/8.0")).toBeTruthy();
     expect(screen.getByText("B: f/9.18")).toBeTruthy();
     expect(screen.queryByText("A: f/2.1")).toBeNull();
-    expect(screen.getByText("A eff. f/10")).toBeTruthy();
-    expect(screen.getByText("B eff. f/12")).toBeTruthy();
+    expect(screen.getByText("A paraxial working f/10")).toBeTruthy();
+    expect(screen.getByText("B paraxial working f/12")).toBeTruthy();
     replaceTextForTranslation(container);
     rerender(element);
     expect(screen.getByText("A: f/2.1")).toBeTruthy();
-    expect(screen.queryByText("A eff. f/10")).toBeNull();
+    expect(screen.queryByText("A paraxial working f/10")).toBeNull();
   });
 
   it("lets presets and keyboard changes pass a sticky limit while drags still stop", () => {
@@ -238,13 +239,13 @@ describe("SharedSlidersBar", () => {
       currentAperturePair: computeAperturePair(sharedStopdownT, LA, LB, 1, 1),
       zoomPair: { zoomA: 1, zoomB: 1, showZoom: true },
       showEffectiveAperture: false,
-      effectiveFNumA: 8,
-      effectiveFNumB: 9.18,
+      paraxialWorkingFNumA: { status: "computed", value: 8 },
+      paraxialWorkingFNumB: { status: "computed", value: 9.18 },
     });
     expect(screen.getByText("Requested f/8.0")).toBeTruthy();
     expect(screen.getByText("A: f/8.0")).toBeTruthy();
     expect(screen.getByText("B: f/9.18")).toBeTruthy();
-    expect(screen.queryByText(/A eff\./)).toBeNull();
+    expect(screen.queryByText(/^A paraxial working/)).toBeNull();
   });
 
   it("does not present a zoom limit as a close-focus effective-aperture correction", () => {
@@ -255,12 +256,12 @@ describe("SharedSlidersBar", () => {
       LB,
       sharedStopdownT: 0,
       currentAperturePair: computeAperturePair(0, LA, LB),
-      effectiveFNumA: 2,
-      effectiveFNumB: 4,
+      paraxialWorkingFNumA: { status: "computed", value: 2 },
+      paraxialWorkingFNumB: { status: "computed", value: 4 },
       showEffectiveAperture: true,
     });
     expect(screen.getByText("B: f/4.0")).toBeTruthy();
-    expect(screen.queryByText(/A eff\./)).toBeNull();
+    expect(screen.queryByText(/^A paraxial working/)).toBeNull();
   });
 
   it("shows one aperture when both lenses can reach the request", () => {
@@ -441,19 +442,29 @@ describe("SharedSlidersBar", () => {
     expect(onSliderPointerUp).toHaveBeenCalledTimes(1);
   });
 
-  it("renders and toggles effective aperture readouts", () => {
+  it("renders and toggles paraxial working f-number readouts", () => {
     const onToggleEffectiveAperture = vi.fn();
     renderSharedSliders({
       showEffectiveAperture: true,
-      effectiveFNumA: 3.2,
-      effectiveFNumB: 3.6,
+      paraxialWorkingFNumA: { status: "computed", value: 3.2 },
+      paraxialWorkingFNumB: { status: "computed", value: 3.6 },
       onToggleEffectiveAperture,
     });
 
-    expect(screen.getByText("A eff. f/3.2")).toBeTruthy();
-    expect(screen.getByText("B eff. f/3.6")).toBeTruthy();
+    expect(screen.getByText("A paraxial working f/3.2")).toBeTruthy();
+    expect(screen.getByText("B paraxial working f/3.6")).toBeTruthy();
 
-    fireEvent.click(screen.getByText(/Show effective aperture/i));
+    cleanup();
+    // A folded path has none: the readout says so instead of repeating the marked f-number.
+    renderSharedSliders({
+      showEffectiveAperture: true,
+      paraxialWorkingFNumA: { status: "unavailable", reason: "folded-path" },
+      paraxialWorkingFNumB: { status: "computed", value: 2 },
+      onToggleEffectiveAperture,
+    });
+    expect(screen.getByText("A paraxial working f/# unavailable (not defined on a folded path)")).toBeTruthy();
+
+    fireEvent.click(screen.getByText(/Show paraxial working f-number/i));
     expect(onToggleEffectiveAperture).toHaveBeenCalledTimes(1);
   });
 

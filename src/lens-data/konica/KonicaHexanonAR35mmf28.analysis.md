@@ -8,7 +8,6 @@
 **Inventor:** Toshiko Shimokura
 **Assignee:** Konishiroku Photo Industry Co., Ltd., Tokyo, Japan
 **Title:** Retro Focus Type Wide Angle Lens
-**Embodiment analyzed:** Example 1
 
 US 4,170,403 describes a compact five-group retrofocus wide-angle lens. Example 1 is the embodiment used here. The patent normalizes the prescription to $f = 1$ and lists $F/2.8$, $2\omega = 64°$, and $f_B = 1.116$. The associated aberration diagram for Example 1 labels the maximum image height as $Y = 0.6094$; at the 35 mm scale used in the data file, this is 21.329 mm, consistent with the 135-format diagonal field after normal patent rounding.
 

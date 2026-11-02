@@ -40,3 +40,9 @@ for L32, L51, and L52, not as supplier or melt provenance.
 
 - Confirmed Nikon's `f/3.5-4.5G` production designation spacing was already correct.
 - Updated the companion analysis with the refined rim, catalog proxies, and inferred ED-role discipline.
+
+## 2026-10-29 — Original-figure shape and fresh glass reinspection
+
+- Directly viewed `patents/US20050068636A1.pdf`: Figure 2, PDF page 3 at 600 dpi; Table 1 and d-line definitions, pages 30–31. All convex/concave faces and cemented boundaries were inspected. S8 retains clear SD=8.5 mm and gains `rimExtensionSd=11.5` mm, matching its exposed rear land at the existing common outer rim. Original raster: 300 dpi, ≈20.7 native px/mm; edge ≈145 native px, q≈0.715±0.012. Adopted q=0.739 preserves the larger current cap. Other boundaries do not resolve another defensible exposed land; the S21/S22 0.28 mm gap retains 7.2 mm caps. Cemented steps are unchanged.
+- All sixteen source d-line `nd`/`νd` pairs are exact and retained. Fifteen actual resolver curves receive qualified spectral-proxy labels (J-SF03, S-BSM81, LAC8, H-ZLaF50D, J-LAFH3, J-LASF013, J-FKH1, N-FK5, J-LASF05, N-SF6 with repetitions). The hybrid resin remains unresolved. No source line-index or partial-dispersion table exists; none is invented. Three inferred ED-role flags remain qualified production correlations, with supplier/melt/APD measurement unspecified.
+- Focused surface/image-circle audits pass; W/M/T apertures are iris-limited at source f/3.6/4.2/4.6. Nine actual zoom/focus SVG states have sixteen finite paths and zero render trim; the exposed land draws without a resin wing. Source-coordinate/catalog checks and shared dispersion/parity/partial tests pass (3 files, 94 tests). Source spacings, reconstructed focus, controls, and tolerances are unchanged.

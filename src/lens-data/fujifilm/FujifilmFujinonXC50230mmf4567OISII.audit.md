@@ -210,7 +210,7 @@ above; source assertions refer to the cited raw evidence, not a model-derived pr
 | Image-plane offsets | Recomputed 2026-10-06 (supersedes the source_image_* comparisons) | Preserved source image plane, no numerical focus repair |
 | Authored and runtime stop radii/schedule | sourceModel.states[*].pupilInference; runtime.summary | F-number-dependent calibration |
 | Minimum thickness, gap margin and maximum rim angle | facts.geometryExtrema | 501-point geometry scans at nine zoom samples |
-| Zero actual renderer trim | actual_render_trim | prepareRuntimeState + computeElementRenderDiagnosticsForState2 |
+| Zero actual renderer trim | actual_render_trim | prepareRuntimeState + the historical element-render diagnostic helper |
 | 480 rays, 28 exterior clips, 6 default-off-axis / 22 source-field | runtime.rays and actual_default_ray_sampling | Current default fractions and explicit separate source fields |
 | Runtime half-fields | runtime.summary.halfFieldsDeg | Real runtime, not substituted for source fields |
 

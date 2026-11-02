@@ -7,11 +7,16 @@
 
 import { memo } from "react";
 import type { CSSProperties } from "react";
-import type { ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
+import type {
+  ChromaticChannel,
+  ChromaticRayFanSpread,
+  ChromaticRayFanSpreadByAxis,
+  RefractiveIndexReferenceLine,
+} from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
-import type { DispersionQuality } from "../../optics/dispersion.js";
-import { CHROMATIC_CHANNEL_METADATA } from "../../optics/chromatic/channels.js";
-import { formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
+import type { DispersionQuality } from "../../optics/chromatic.js";
+import { chromaticChannelDescription, chromaticChannelWavelengthLabel } from "../../optics/chromatic.js";
+import { formatChromaticZone, formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
 import LocaInsetWidget from "./LocaInsetWidget.js";
 import ChromaticFanSpreadWidget from "./ChromaticFanSpreadWidget.js";
 import { textRun } from "../../utils/text.js";
@@ -23,6 +28,8 @@ interface ChromaticOverlayContentProps {
   IMG_MM: number;
   t: Theme;
   dispersionQuality?: DispersionQuality;
+  /** Lines the lens's channels are traced at; "e" names C′/e/F′ in the caption. */
+  channelReference?: RefractiveIndexReferenceLine;
 }
 
 const SINGLE_SVG_W = 340;
@@ -48,7 +55,10 @@ const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
   IMG_MM,
   t,
   dispersionQuality,
+  channelReference = "d",
 }: ChromaticOverlayContentProps) {
+  const channelName = (channel: ChromaticChannel): string =>
+    `${chromaticChannelDescription(channel, channelReference)} (${chromaticChannelWavelengthLabel(channel, channelReference)})`;
   const onAxisSpread = chromaticRayFanSpreads ? chromaticRayFanSpreads.onAxis : chromaticRayFanSpread;
   const offAxisSpread = chromaticRayFanSpreads?.offAxis ?? null;
   const svgW = SINGLE_SVG_W;
@@ -115,7 +125,7 @@ const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
             </svg>
             <div style={{ ...CHART_CAPTION_STYLE, color: t.muted }}>
               This follows the displayed off-axis marginal fan and reports wavelength endpoint spread at the image
-              plane.
+              plane, at the outermost fan fraction (of the entrance-pupil radius, EP) every selected channel passes.
             </div>
           </div>
         )}
@@ -138,12 +148,19 @@ const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
               {textRun(
                 "LoCA / AXIAL COLOR ",
                 formatSpreadUmFromMm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm),
+                " · ",
+                formatChromaticZone(chromaticRayFanSpreads.onAxis),
               )}
             </span>
           )}
           {chromaticRayFanSpreads?.offAxis && (
             <span>
-              {textRun("OFF-AXIS FAN ", formatSpreadUmFromMm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm))}
+              {textRun(
+                "OFF-AXIS FAN ",
+                formatSpreadUmFromMm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm),
+                " · ",
+                formatChromaticZone(chromaticRayFanSpreads.offAxis, "EP"),
+              )}
             </span>
           )}
         </div>
@@ -158,27 +175,23 @@ const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
         }}
       >
         <strong>LoCA / axial color</strong>
-        <span>{" shows where the active on-axis marginal wavelengths focus along the optical axis. "}</span>
+        <span>
+          {
+            " shows where the active on-axis marginal wavelengths focus along the optical axis: a real-ray zonal figure, each wavelength aimed at the outermost stop zone (a fraction of the stop radius R) every selected channel passes. If none passes them all, the first zone two pass is compared and the channels left out are named. OpticStudio's single axial-color figure, its Chromatic Focal Shift plot, is paraxial; its real-ray counterpart is the longitudinal aberration curve across zones. "
+          }
+        </span>
         <strong>Off-axis fan</strong>
         <span>
           {textRun(
-            " shows where the displayed off-axis marginal fan lands at the image plane. Both charts use the same selected spectral channels: ",
-            CHROMATIC_CHANNEL_METADATA.R.description,
-            " (",
-            CHROMATIC_CHANNEL_METADATA.R.wavelengthLabel,
-            "), ",
-            CHROMATIC_CHANNEL_METADATA.G.description,
-            " (",
-            CHROMATIC_CHANNEL_METADATA.G.wavelengthLabel,
-            "), ",
-            CHROMATIC_CHANNEL_METADATA.B.description,
-            " (",
-            CHROMATIC_CHANNEL_METADATA.B.wavelengthLabel,
-            "), and, when enabled, ",
-            CHROMATIC_CHANNEL_METADATA.V.description,
-            " (",
-            CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel,
-            "). These are geometric marginal-ray diagnostics for the displayed fan traces; lateral color/TCA remains a separate chief-ray image-height metric in the chromatic analysis drawer.",
+            " shows where the displayed off-axis marginal fan lands at the image plane, by the same rule: the outermost fan fraction every selected channel passes, else the first two pass, with the channels left out named. Both charts use the same selected spectral channels: ",
+            channelName("R"),
+            ", ",
+            channelName("G"),
+            ", ",
+            channelName("B"),
+            ", and, when enabled, ",
+            channelName("V"),
+            ". These are geometric marginal-ray diagnostics for the displayed fan traces; lateral color/TCA remains a separate chief-ray image-height metric in the chromatic analysis drawer.",
           )}
         </span>
       </p>

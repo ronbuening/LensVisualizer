@@ -9,7 +9,7 @@
 **Inventor:** Iain A. Neil
 **Assignee:** ACM Projektentwicklung GmbH
 **Title:** Objective Lens System
-**Embodiment analyzed:** Third Embodiment / Example 3, Table 5
+**Example details:** Example 3, Table 5
 
 The implemented prescription is the Third Embodiment of US 8,508,864 B2. The numerical source is Table 5 on PDF
 pp. 30–31 (printed pp. 19–22), with the corresponding layout in Fig. 15, focus states in Figs. 16a–c, and performance

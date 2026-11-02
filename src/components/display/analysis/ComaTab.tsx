@@ -6,11 +6,12 @@
  */
 
 import { useMemo, useState } from "react";
+import { createAnalysisComputationContext } from "../../../optics/analysis.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
-import type { AnalysisComputationContext } from "../../../optics/compat.js";
-import type { FieldGeometryState } from "../../../optics/optics.js";
+import type { AnalysisComputationContext } from "../../../optics/analysis.js";
+import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import ComaPreviewSection from "./aberrations/ComaPreviewSection.js";
 import MeridionalComaSection from "./aberrations/MeridionalComaSection.js";
 import SagittalComaSection from "./aberrations/SagittalComaSection.js";
@@ -44,12 +45,16 @@ interface ComaTabProps {
 
 export default function ComaTab(props: ComaTabProps) {
   const { analysisContext, t } = props;
+  const perspectiveRequest = analysisContext?.request;
   const perspectiveResult = useMemo(
-    () => (analysisContext?.movementActive ? analysisContext.computePerspectiveFieldAberrations() : null),
-    [analysisContext],
+    () =>
+      perspectiveRequest?.pose?.active
+        ? createAnalysisComputationContext(perspectiveRequest).computePerspectiveFieldAberrations()
+        : null,
+    [perspectiveRequest],
   );
 
-  if (analysisContext?.movementActive) {
+  if (perspectiveRequest?.pose?.active) {
     return (
       <div style={{ padding: "8px 0" }}>
         {perspectiveResult ? (

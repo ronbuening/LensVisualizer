@@ -10,7 +10,7 @@
 **Inventor:** Takashi Okada (Osaka, Japan)
 **Assignee:** Minolta Camera Kabushiki Kaisha (Osaka, Japan)
 **Title:** Camera System Including Catadioptric Lens and Catadioptric Lens System Used Therein
-**Embodiment analyzed:** Embodiment 1, first approach, Table 1 — $f = 496.0$ mm, $F_{NO} = 7.0$
+**Example details:** first approach, Table 1 — $f = 496.0$ mm, $F_{NO} = 7.0$
 
 This prescription transcribes the first numerical embodiment of US 4,951,078. The patent is not merely a generic mirror-lens design; it is directed to making a catadioptric lens compatible with a phase-difference autofocus module by controlling the annular exit pupil so that the AF module's two sampled pupil regions receive light.
 

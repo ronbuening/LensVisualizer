@@ -63,6 +63,133 @@ Verification: probe counts recorded in the PR for all three interactions; if sim
 `npm run benchmark:optics-rendering` before/after shows no regression; gate passes.
 Out of scope: changing `doLayout` or `anchorLayoutToCamera`. Rollback: revert the branch.
 
+P8–P10 investigate measured solver costs. Historical counts below compare `20827483` → `facf1888`;
+they are context, not a runnable benchmark gate. Reproduce counts on the current catalog with temporary
+instrumentation, covering every lens at default, close-focus and stopped-close states, plus the named PC-Nikkor
+and Olympus cases. Never commit counters. Compare before/after counts with identical states, target lists and sampling.
+For timing, run `npm run benchmark:optics-rendering -- --heavy` separately on the before and after revisions on the
+same maintainer machine, with the same Node version, warmups and iterations. Record CPU/OS and raw samples, statuses,
+grids, convergence and completed work; pass only if no completed heavy case's median regresses. Interpretation and
+output policy live in `agent_docs/benchmarks/README.md`. Accuracy follows the 2026-08-04 refactor gate and the
+2026-10-20 engine-result-change decision in `agent_docs/decisions.md`.
+
+### P8. Investigate scalar-root evaluation cost on PC-Nikkor stopped-close
+
+- [ ] Effort: investigate first · Risk: high (root selection) · Expected impact: profile-dependent
+
+Target: median `solveScalarRoot` evaluations per call ≤ 12. The historical catalog capture met it (40 → 9), but the
+PC-Nikkor 19mm stopped-close profile missed (93 → 90). Calls fell 39,795 → 15,510 and total
+evaluations 3,440,310 → 1,377,345; the remaining per-call cost needs attribution before any change.
+
+- **Files to touch** — **modified**, if investigation supports a change:
+  `src/optics/math/rootSolve.ts`, `src/optics/perspective/sensorTarget.ts`,
+  `src/optics/perspective/chiefRay.ts`, `__tests__/src/optics/math/rootSolve.test.ts`.
+- **Reference to mimic** — `solveScalarRoot` in `math/rootSolve.ts`: outward adjacent-grid scans,
+  null-domain splitting, then safeguarded Brent refinement; see the optics-engine architecture.
+- **Data-type contract** — `ScalarRootSolveOptions` → `ScalarRootSolveResult` in `math/rootSolve.ts`;
+  callback returns a residual or unavailable value, result carries status, nullable root/residual,
+  bracket and evaluation count. Preserve caller tolerances and unavailable-domain semantics.
+- **Steps** — (1) attribute evaluations by caller and phase (outward scan versus Brent iterations),
+  including nested solves; inspect meridional sensor lock (`scanSamples: 12`, `maxExpansions: 5`)
+  and posed chief stop solve (`bracketScanSamples: 32`); (2) propose only an evidence-backed change
+  using the accuracy decision above; (3) verify counts, accuracy and before/after timing, then remove probes.
+- **Gotchas** — `agent_docs/gotchas.md`, "field-launch … conventions": retain the shared
+  projection/trace path. Neighbor-based warm starts were rejected (`agent_docs/decisions.md`): seeding changed
+  statuses and landings. Do not reintroduce them as an equivalent optimization.
+- **Constraints** — use the shared P8–P10 timing method; algorithm replacements follow the accuracy decisions above.
+- **Verification / done when** — shared commands and accuracy gates pass; the stopped-close median
+  is ≤ 12 and the current catalog sweep stays ≤ 12, with caller/phase counts and unchanged sampling reported. If the
+  target cannot be reached within the contract, document the evidence and remaining miss explicitly.
+- **Out of scope** — fewer analysis samples, looser tolerances, or neighbor warm starts without
+  new evidence (see the 2026-10-20 warm-start decision in `agent_docs/decisions.md`). **Rollback** — revert the implementation branch; discard temporary probes.
+
+### P9. Reduce fresh centered-chief bracket-scan cost on PC-Nikkor
+
+- [ ] Effort: investigate first · Risk: high (multi-root selection) · Expected impact: fresh analyses
+
+Target: median stop traces per centered chief solve ≤ 8. The historical catalog capture met it (22 → 6), as did warmed
+PC-Nikkor analyses (6); a fresh PC-Nikkor 19mm default analysis missed (73 → 56). Its initial
+`[seed - half, seed + half]` bracket fails, so the legacy 96-sample expanding scan runs before
+Illinois refinement. The centered chief solver retains that bracket choice to preserve roots.
+
+- **Files to touch** — **modified**: `src/optics/field/chiefRaySolve.ts`,
+  `__tests__/src/optics/chiefRaySolver.test.ts`.
+- **Reference to mimic** — `refineChiefRayBracket` in `field/chiefRaySolve.ts`, which retains
+  the legacy first midpoint and fallback replay; preserve the architecture's launch-path dispatch.
+- **Data-type contract** — `PreparedGeometry` (`src/optics/types.ts`) plus field/options →
+  `ChiefRaySolveResult` (`field/chiefRaySolve.ts`): launch height, status, iterations, launch
+  surface and optional vector launch. Stop residual acceptance stays `< 1e-7 mm`.
+- **Steps** — (1) reproduce the fresh bracket failure and separate scan/refinement traces;
+  (2) evaluate bracket-search alternatives against multi-root fixtures and the corpus;
+  (3) implement only with the required accuracy evidence, then measure fresh and warmed runs.
+- **Gotchas** — `agent_docs/gotchas.md`, "field-launch … conventions": preserve object-plane
+  and bounding-sphere dispatch. Use fresh prepared geometry for cold counts; resetting diagnostics
+  does not clear chief-solve caches (see `agent_docs/architecture/optics-engine.md`).
+- **Constraints** — any scan change can select a different root in multi-root cases: treat it as
+  a result change under the accuracy decision above.
+  Use the shared P8–P10 measurement method and benchmark evidence policy.
+- **Verification / done when** — shared commands and accuracy gates pass; the fresh default median is
+  ≤ 8, with the current catalog sweep and warmed PC-Nikkor still ≤ 8; report selected-root/status differences and
+  completed work alongside timing. An unresolved miss stays explicit.
+- **Out of scope** — changing optical sampling, projection policy or stop tolerance.
+  **Rollback** — revert the implementation branch; discard temporary probes.
+
+### P10. Avoid wasted image-height inversion work at unreachable field limits
+
+- [ ] Effort: investigate first · Risk: high (fallback behavior) · Expected impact: failed targets
+
+Target: ≤ 6 chief solves per image-height inversion target. Medians met it (historical catalog capture 11 → 2;
+PC-Nikkor default 10 → 3), but three non-converging Olympus Zuiko 18mm f/3.5 targets at 21.65 mm
+each take 48 calls: eight secant evaluations followed by the exact legacy 40-step bisection replay.
+Image-height inversion keeps that replay so their fallback results remain bit-identical.
+
+- **Files to touch** — **modified**: `src/optics/field/imageHeight.ts`,
+  `__tests__/src/optics/chiefRaySolver.test.ts`.
+- **Reference to mimic** — `solveFieldAngleForImageHeightLookup` and its legacy replay in
+  `field/imageHeight.ts`; retain per-target validation in `invertChiefRayImageHeights`.
+- **Data-type contract** — the lookup solver takes a target height in mm and
+  `AccurateFieldHeightLookup` (angles, heights and trace callbacks), returning degrees or `null`;
+  `ImageHeightInversionResult` in the same file distinguishes reached/unreachable with a reason.
+  Example target: `21.65` mm; success still requires image-height error `< 1e-4 mm`.
+- **Steps** — (1) reproduce the three 48-call cases and identify the unbracketable jump;
+  (2) evaluate detecting it earlier without excluding later valid brackets; (3) verify fallback
+  values/statuses and per-target counts, then measure before/after timing with unchanged target lists.
+- **Gotchas** — `agent_docs/gotchas.md`, "Never treat the blocked central chief ray as a
+  valid off-axis field solve": preserve failure semantics. The architecture's Distortion section
+  also requires independent target validation; an earlier height jump cannot reject a later field.
+- **Constraints** — use the shared P8–P10 measurement method and accuracy decisions above.
+- **Verification / done when** — shared commands and accuracy gates pass; each of the three
+  targets uses ≤ 6 chief solves, the current catalog sweep and PC-Nikkor medians remain ≤ 6, and later valid targets
+  still converge. Report per-target failures/fallbacks, not just medians; retain any unresolved miss.
+- **Out of scope** — fewer targets, relaxed success tolerance or a changed physical model.
+  **Rollback** — revert the implementation branch; discard temporary probes.
+
+### P12. Share the per-field aimed model between the vignetting and MTF tabs
+
+- [ ] Effort: medium · Risk: medium (determinism) · Expected impact: the slowest vignetting curves (2.7–2.8 s settled)
+
+The vignetting tab (#931) launches a 64-across stop lattice through `prepareAimedPupilLaunch` at each of its fields. It
+costs 1.1–3.1× the old launch-plane tab, 2.8 s settled on the Fujinon XC 13-33 and 2.7 s on the Canon RF 14/1.4. Once
+PR 3 moves the MTF lattice onto the same launch, both tabs build an aimed field model and aim a stop lattice per field.
+
+- **Files to touch** — **modified**: `src/optics/analysis/vignetting/vignetting.ts`,
+  `src/optics/analysis/pupils/aimedPupil.ts`, the MTF lattice's launch.
+- **Reference to mimic** — the per-state field-model cache in `aimedPupil.ts` (`fieldModelsByState`), keyed by every
+  number a launch frame is built from.
+- **Steps** — (1) after PR 3, list where the two tabs' fields and stop radii coincide; (2) share the field model, and
+  the aimed rays where the lattices coincide, without changing a ray's bits; (3) then look at the samples that run to
+  the 24-trace cap on vignetted wide-angle edges.
+- **Constraints** — keep the lattice at 64 cells across; no dependence on call order (a cache hit returns the bits a
+  fresh build would); no relaxed tolerances.
+- **Verification / done when** — the shared gate passes, both tabs' results are bit-identical before and after, and
+  the settled vignetting curve on the XC 13-33 and RF 14 is measured back to back against the current branch.
+- **Out of scope** — a coarser lattice, fewer fields, or a different pupil convention.
+
+### P11. Interactive latency measurement
+
+- [ ] Add a browser drag/settle benchmark only if interactive feel regresses; Node timings do not cover that latency.
+  Keep it report-only and retain identical ray/sampling workloads.
+
 ### B2. Bundle & load follow-ups
 
 Baseline after B1 (gzip, measured 2026-07-07): every page ships ~87 KB (entry + react + router +

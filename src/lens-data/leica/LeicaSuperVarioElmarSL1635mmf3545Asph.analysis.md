@@ -9,7 +9,7 @@
 **Inventor:** Yoshihito Souma (相馬 祥人)  
 **Applicant:** Konica Minolta, Inc.  
 **Title:** ズームレンズ，撮像光学装置及びデジタル機器  
-**Embodiment analyzed:** Example 1 (実施例1 / EX1)
+**Example details:** 実施例1 / EX1
 
 The prescription modeled here is Example 1 of JP 2018-087903 A. The patent describes a wide-angle zoom for an imaging device, built around four optical zoom groups with negative-positive-positive-negative power sequence and a positive sub-group inside the second group that translates for closer focus (¶¶0019–0024, 0050–0054). Example 1 is tabulated in ¶¶0066–0069, with condition data in Tables 1 and 2 on printed page 24.
 

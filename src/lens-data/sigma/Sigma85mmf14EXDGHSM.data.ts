@@ -1,0 +1,293 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+/**
+ * Sigma 85mm F1.4 EX DG HSM (2010, the original EX version; not the later Art or DG DN designs).
+ * Source: JP 2011-170128 A, Numerical Example 5 (Figure 21). The match to the production lens is by
+ * construction (11 elements / 8 groups, SLD first element, aspherical sixth element, rear focus, 0.85 m
+ * near state); the production prescription and glass suppliers are not confirmed.
+ *
+ * Printed in the patent and transcribed unchanged and unscaled: all 20 surface rows (R, d, nd, vd), the
+ * stop at surface 14, the single asphere on surface 10 (patent kappa = K, A4-A12) and d6 at infinity and
+ * 0.85 m (15.2520 / 4.8554 mm). The patent states f = 83.58 mm, F/1.46 and Y = 21.63 mm; these design
+ * values stay distinct from the marketed 85 mm f/1.4. No rear plate is listed.
+ *
+ * Derived, not printed: the table shows only "B.F." without a value. The infinity image distance is the
+ * paraxial back focus of the printed table, 39.512078 mm. Group L1 and the image plane are fixed and
+ * group L2, with the iris, moves 10.3966 mm toward the object, so the image gap at 0.85 m is 49.908678 mm.
+ * That finite-conjugate distance is not the near configuration's infinity-conjugate BFD (40.667238 mm).
+ * Positions between the two printed states are linear interpolation.
+ *
+ * Elements are named E1-E11 because the patent uses L1 and L2 (with L2a / L2b) for its lens groups; Figure 21
+ * labels only the four rear elements, G2b1-G2b4 (E8-E11 here).
+ *
+ * Semi-diameters and the stop radius are inferred, not factory dimensions. The stop radius is the height
+ * of the real marginal ray for F/1.46 at infinity; the same iris gives a working F-number of 1.704 at
+ * 0.85 m against the F1.71 printed in Figure 23 (compared, not fitted).
+ *
+ * The front-group rims (surfaces 1-6) are measured on Figure 21 (0.182 mm/px; 19 vertices and the image
+ * plane fit): E1 35.7 mm, E2 31.0 mm, E3 front 26.4 mm, and surface 6 at 22.5 mm, where the figure ends the
+ * concave curve at a flat annulus. The rims from surface 7 rearward are estimates that agree with the
+ * figure within 3 % (doublet D1 is drawn 21.6 mm high against 21 mm here). Figure 21 also draws E6 and E7
+ * with flat rim annuli (the curves of S11, S12 and S13 end at 16.4, 16.4 and 15.8 mm); the model takes
+ * S11/S12 optical caps at the curve ends; new S11 extension and guarded S13 cut are described below. In D1 the figure
+ * cuts the thin E4 shell back above 19.4 mm, leaving a small notch ahead of E5; the model keeps S7-S9 at
+ * one height. All rims are floor-checked by real-ray trace: the axial marginal ray
+ * and the corner chief ray (Y = 21.63 mm) clear every rim at infinity and at 0.85 m, and at 0.85 m the
+ * moving doublet sits behind the rear cup of E3 with at least 4.10 mm between S6 and S7.
+ *
+ * gapSagFrac 0.96: the S11/S12 rims (16.2 / 16.1 mm) clear the full-aperture axial marginal ray
+ * (16.133 / 16.078 mm) by only 0.07 / 0.02 mm, and at the shared 16.1 mm radius the two faces take up
+ * 95.91 % of the 5.5771 mm air gap (0.228 mm of clearance remains). The default 0.90 allowance cannot
+ * pass without clipping the axial bundle; 0.96 is the smallest two-decimal value that admits these rims.
+ * With the front rims at the Figure 21 heights the model still vignettes off axis: the corner bundle
+ * fills 56 % of the meridional stop diameter at infinity and 79 % at 0.85 m, limited by S5 and S20.
+ *
+ * Fresh2026-10-30 review: original JP2011170128A PDF18-19 Example5 media/asphere, PDF13 d-line definition,
+ * PDF29 Fig21 native and600dpi. All11 source pairs retained. Remove40 catalog-only C/F/g/dPgF copies;
+ * At that checkpoint ten entries retained qualified curves and E6 remained unresolved. No source partials.
+ * Scoped 2026-10-31 catalog follow-up selects D-ZK3A-25 as an E6 spectral proxy; historical material,
+ * supplier, melt and process remain unknown. All source numeric fields and geometry remain unchanged.
+ * Explicit S6/S11 lands retain caps22.5/16.2 to outer26.4/19; guarded source-supported S2/S13 cuts.
+ * Full S12 land remains constrained by the unchanged0.96 gap allowance. No R/d/asphere/control changes.
+
+ */
+const LENS_DATA = {
+  schema: 2,
+  key: "sigma-85mm-f14-ex-dg-hsm",
+  maker: "Sigma",
+  name: "SIGMA 85mm f/1.4 EX DG HSM",
+  subtitle: "JP 2011-170128 A, Example 5 — construction-based production correlation",
+
+  catalog: {
+    lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a"],
+    imageFormat: "135-full-frame",
+    specs: ["11 ELEMENTS / 8 GROUPS", "DESIGN f = 83.58 mm", "DESIGN F/1.46", "1 ASPHERICAL SURFACE / 1 ELEMENT"],
+    elementCount: 11,
+    groupCount: 8,
+    focalLengthMm: { marketing: 85, design: 83.58292184593547 },
+    fNumber: { marketing: 1.4, design: 1.46 },
+  },
+
+  source: {
+    patentNumber: "JP 2011-170128 A",
+    example: { label: "Numerical Example 5", id: "5" },
+    patentYear: 2011,
+    authors: ["Yukihiro Yamamoto"],
+    assignees: ["Sigma Corporation"],
+  },
+
+  elements: [
+    {
+      id: 1,
+      name: "E1",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.497,
+      vd: 81.61,
+      indexReference: "d",
+      focalLengthMm: 345.9780356360224,
+      glass: "FCD1 (qualified spectral proxy; HOYA, coordinate equivalent)",
+      apd: "inferred",
+      apdNote:
+        "Sigma's construction diagram marks the first element as SLD glass. The patent gives nd/vd 1.49700 / 81.61 (an FCD1-class fluor crown) and calls it only the low-dispersion medium GL of condition (7); paragraph 0069 prefers an anomalous-dispersion medium without saying this example uses one.",
+      role: "Weak positive front meniscus of the fixed front group; the lowest-dispersion glass in the design.",
+      diagramLabel: "1",
+    },
+    {
+      id: 2,
+      name: "E2",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      nd: 1.72916,
+      vd: 54.67,
+      indexReference: "d",
+      focalLengthMm: 75.41760619106837,
+      glass: "TAC8 (qualified spectral proxy; HOYA, coordinate equivalent)",
+      role: "Strongest positive element of the fixed front group.",
+      diagramLabel: "2",
+    },
+    {
+      id: 3,
+      name: "E3",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      nd: 1.60342,
+      vd: 38.01,
+      indexReference: "d",
+      focalLengthMm: -67.18473836468984,
+      glass: "E-F5 (qualified spectral proxy; HOYA, coordinate equivalent)",
+      role: "Negative meniscus closing the fixed front group; its concave rear surface faces the focusing gap d6.",
+      diagramLabel: "3",
+    },
+    {
+      id: 4,
+      name: "E4",
+      label: "Element 4",
+      type: "Negative Meniscus",
+      nd: 1.72825,
+      vd: 28.32,
+      indexReference: "d",
+      focalLengthMm: -152.458838271359,
+      glass: "E-FD10 (qualified spectral proxy; HOYA, coordinate equivalent)",
+      role: "Negative front member of cemented doublet D1, which leads the moving rear group ahead of the iris.",
+      diagramLabel: "4",
+      cemented: "D1",
+    },
+    {
+      id: 5,
+      name: "E5",
+      label: "Element 5",
+      type: "Positive Meniscus",
+      nd: 1.83481,
+      vd: 42.72,
+      indexReference: "d",
+      focalLengthMm: 42.74099213468551,
+      glass: "TAFD5G (qualified spectral proxy; HOYA, coordinate equivalent)",
+      role: "Positive rear member of cemented doublet D1; makes the doublet net positive (f about +61 mm).",
+      diagramLabel: "5",
+      cemented: "D1",
+    },
+    {
+      id: 6,
+      name: "E6",
+      label: "Element 6",
+      type: "Negative Meniscus (Aspheric)",
+      nd: 1.58763,
+      vd: 61.08,
+      indexReference: "d",
+      focalLengthMm: -95.60916006954619,
+      glass: "D-ZK3A-25 (CDGM compatible spectral proxy; historical material, supplier, melt and process unspecified)",
+      role: "Negative meniscus ahead of the iris; its object-side surface S10 is the only asphere.",
+      diagramLabel: "6",
+    },
+    {
+      id: 7,
+      name: "E7",
+      label: "Element 7",
+      type: "Biconcave Negative",
+      nd: 1.6727,
+      vd: 32.17,
+      indexReference: "d",
+      focalLengthMm: -52.19545168748249,
+      glass: "E-FD5 (qualified spectral proxy; HOYA, coordinate equivalent)",
+      role: "Biconcave negative element directly ahead of the iris; last element of the pre-stop subgroup L2a.",
+      diagramLabel: "7",
+    },
+    {
+      id: 8,
+      name: "E8",
+      label: "Element 8 (G2b1)",
+      type: "Negative Meniscus",
+      nd: 1.72825,
+      vd: 28.32,
+      indexReference: "d",
+      focalLengthMm: -71.52746009902586,
+      glass: "E-FD10 (qualified spectral proxy; HOYA, coordinate equivalent)",
+      role: "Negative front member of cemented doublet D2, the first component behind the iris.",
+      diagramLabel: "8",
+      cemented: "D2",
+    },
+    {
+      id: 9,
+      name: "E9",
+      label: "Element 9 (G2b2)",
+      type: "Biconvex Positive",
+      nd: 1.883,
+      vd: 40.81,
+      indexReference: "d",
+      focalLengthMm: 43.2610408194826,
+      glass: "TAFD30 (qualified spectral proxy; HOYA, coordinate equivalent)",
+      role: "High-index positive member of cemented doublet D2 behind the iris.",
+      diagramLabel: "9",
+      cemented: "D2",
+    },
+    {
+      id: 10,
+      name: "E10",
+      label: "Element 10 (G2b3)",
+      type: "Biconvex Positive",
+      nd: 1.883,
+      vd: 40.81,
+      indexReference: "d",
+      focalLengthMm: 35.92823534803339,
+      glass: "TAFD30 (qualified spectral proxy; HOYA, coordinate equivalent)",
+      role: "High-index positive front member of the final cemented doublet D3.",
+      diagramLabel: "10",
+      cemented: "D3",
+    },
+    {
+      id: 11,
+      name: "E11",
+      label: "Element 11 (G2b4)",
+      type: "Negative Meniscus",
+      nd: 1.6398,
+      vd: 34.57,
+      indexReference: "d",
+      focalLengthMm: -76.76229199397928,
+      glass: "E-FD7 (qualified spectral proxy; HOYA, coordinate equivalent)",
+      role: "Negative rear member of cemented doublet D3; last element of the moving rear group.",
+      diagramLabel: "11",
+      cemented: "D3",
+    },
+  ],
+
+  surfaces: [
+    { label: "1", R: 77.1278, d: 5.9572, sd: 35.7, medium: 1 },
+    { label: "2", R: 136.2759, d: 4.4241, sd: 35.7, rimCutDepthMm: 4.62 },
+    { label: "3", R: 49.2495, d: 10.753, sd: 31, medium: 2 },
+    { label: "4", R: 428.2395, d: 3.6308, sd: 31 },
+    { label: "5", R: 831.2882, d: 1.9, sd: 26.4, medium: 3 },
+    { label: "6", R: 38.6222, sd: 22.5, rimExtensionSd: 26.4 },
+    { label: "7", R: 43.2002, d: 1.4, sd: 21, medium: 4 },
+    { label: "8", R: 30.6749, d: 7.9685, sd: 21, medium: 5 },
+    { label: "9", R: 192.8074, d: 0.6824, sd: 21 },
+    {
+      label: "10A",
+      R: 82.8291,
+      d: 1.8,
+      sd: 19,
+      medium: 6,
+      asphere: { K: 0, A4: -4.06305e-6, A6: -1.62462e-9, A8: 1.4199e-12, A10: -8.95411e-16, A12: 0, A14: 0 },
+    },
+    { label: "11", R: 33.2068, d: 5.5771, sd: 16.2, rimExtensionSd: 19 },
+    { label: "12", R: -109.9496, d: 1.1, sd: 16.1, medium: 7 },
+    { label: "13", R: 51.793, d: 4.4081, sd: 17, rimCutDepthMm: 2.36 },
+    { label: "STO", R: "flat", d: 1.4608 },
+    { label: "15", R: 233.908, d: 1.0, sd: 18, medium: 8 },
+    { label: "16", R: 42.5258, d: 12.5388, sd: 18, medium: 9 },
+    { label: "17", R: -323.569, d: 0.4192, sd: 18 },
+    { label: "18", R: 262.3712, d: 8.4689, sd: 18, medium: 10 },
+    { label: "19", R: -35.542, d: 1.0, sd: 18, medium: 11 },
+    { label: "20", R: -130.0407, sd: 18 },
+  ],
+
+  focus: {
+    closeFocusM: 0.85,
+    description:
+      "PUBLISHED focus gap, derived image distance: rear focus with the front group L1 and the image plane fixed. The patent prints d6 at infinity and at 0.85 m (15.2520 → 4.8554 mm) but no back focus, so the infinity image distance is the paraxial back focus of the printed table (39.512 mm). The rear group L2, with the iris, advances 10.3966 mm toward the object, giving 849.998 mm object-to-image at 1:8.64 (marketed 0.85 m, 1:8.6). Positions between the two printed states are linearly interpolated.",
+    published: [1],
+  },
+
+  gaps: {
+    "6": { label: "D6", values: [[15.252, 4.8554]] },
+    "20": { label: "Derived image gap", values: [[39.51207750611788, 49.90867750611788]] },
+  },
+
+  aperture: { nominalFNumber: 1.46, fStops: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16], maxFNumber: 16, blades: 9 },
+
+  groups: [
+    { text: "L1 FIXED", fromSurface: "1", toSurface: "6" },
+    { text: "L2a FOCUS", fromSurface: "7", toSurface: "13" },
+    { text: "L2b FOCUS", fromSurface: "15", toSurface: "20" },
+  ],
+  doublets: [
+    { text: "D1", fromSurface: "7", toSurface: "9" },
+    { text: "D2", fromSurface: "15", toSurface: "17" },
+    { text: "D3", fromSurface: "18", toSurface: "20" },
+  ],
+
+  layout: { scFill: 0.6, yScFill: 0.6 },
+
+  checks: { gapSagFrac: 0.96 },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;

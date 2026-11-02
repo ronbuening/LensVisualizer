@@ -4,7 +4,7 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import BokehPreviewGrid from "../../../../../src/components/display/analysis/BokehPreviewGrid.js";
 import themes from "../../../../../src/utils/theme/themes.js";
-import type { BokehPreviewResult } from "../../../../../src/optics/aberrationAnalysis.js";
+import type { BokehPreviewResult } from "../../../../../src/optics/analysis/aberration/types.js";
 
 function field(overrides: Partial<BokehPreviewResult["fields"][number]> = {}): BokehPreviewResult["fields"][number] {
   return {
@@ -13,6 +13,8 @@ function field(overrides: Partial<BokehPreviewResult["fields"][number]> = {}): B
     fieldAngleDeg: 0,
     totalRays: 1,
     passedRays: 1,
+    unaimedRays: 0,
+    blockedRays: 0,
     usable: true,
     points: [],
     centroidSagittal: 0,

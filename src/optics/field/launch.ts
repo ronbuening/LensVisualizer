@@ -5,12 +5,11 @@
  * fisheye or past-cap fields safely.
  */
 
-import type { RuntimeLens } from "../../types/optics.js";
-import type { Vec3 } from "../types.js";
-import { boundingSphereLaunchVector2 } from "./projection.js";
+import type { PreparedGeometry, Vec3 } from "../types.js";
+import { boundingSphereLaunchVector } from "./projection.js";
 
 /** Current field-geometry ratios used to seed chief-ray and vector field launches. */
-export interface FieldGeometryState2 {
+export interface FieldGeometryState {
   halfFieldDeg: number;
   yRatio: number;
   b: number;
@@ -18,7 +17,7 @@ export interface FieldGeometryState2 {
 }
 
 /** Bounding-sphere vector launch plus pupil basis vectors for off-axis sampling. */
-export interface VectorFieldRayLaunch2 {
+export interface VectorFieldRayLaunch {
   origin: Vec3;
   direction: Vec3;
   launchBoundT: number;
@@ -32,7 +31,7 @@ export interface VectorFieldRayLaunch2 {
 }
 
 /** A pupil-offset vector ray derived from a field launch. */
-export interface OffsetVectorFieldRay2 {
+export interface OffsetVectorFieldRay {
   origin: Vec3;
   direction: Vec3;
   launchBoundT: number;
@@ -41,16 +40,18 @@ export interface OffsetVectorFieldRay2 {
 /**
  * Choose a sphere large enough to start vector field rays outside the lens envelope.
  *
- * @param L - runtime lens prescription
+ * @param state - prepared geometry; launch bounds retain baseline prescription thicknesses
  * @param chiefB - current chief-ray/pupil axial reference in mm
  * @returns launch radius in mm, including margin beyond glass and stop geometry
  */
-export function computeBoundingSphereLaunchRadiusMm2(L: RuntimeLens, chiefB: number): number {
+export function computeBoundingSphereLaunchRadiusMm(state: PreparedGeometry, chiefB: number): number {
   let totalThickness = 0;
   let maxSD = 0;
-  for (const surface of L.S) {
+  for (let i = 0; i < state.lens.constructionSurfaces.length; i++) {
+    const surface = state.lens.constructionSurfaces[i];
+    const sd = state.lens.surfaces[i].sd;
     totalThickness += Math.abs(surface.d ?? 0);
-    if (surface.sd && surface.sd > maxSD) maxSD = surface.sd;
+    if (sd && sd > maxSD) maxSD = sd;
   }
   return Math.max(2 * maxSD, totalThickness + Math.abs(chiefB) + 5);
 }
@@ -58,23 +59,22 @@ export function computeBoundingSphereLaunchRadiusMm2(L: RuntimeLens, chiefB: num
 /**
  * Build a vector launch for a 2D field angle using the bounding-sphere convention.
  *
- * @param L - runtime lens prescription
+ * @param state - prepared geometry; launch bounds retain baseline prescription thicknesses
  * @param geometry - current field geometry and entrance-pupil reference
  * @param fieldAngleXDeg - sagittal field angle in degrees
  * @param fieldAngleYDeg - meridional field angle in degrees
- * @param aberrationT - reserved for callers whose current state also varies by aberration control
  * @returns vector launch metadata, or null when the launch is outside the numeric domain
  */
-export function computeBoundingSphereVectorFieldLaunch2(
-  L: RuntimeLens,
-  geometry: FieldGeometryState2,
-  fieldAngleXDeg: number,
-  fieldAngleYDeg: number,
-  aberrationT = 0,
-): VectorFieldRayLaunch2 | null {
-  void aberrationT;
-  const launchRadius = computeBoundingSphereLaunchRadiusMm2(L, geometry.b);
-  const launch = boundingSphereLaunchVector2(geometry.epRatio, fieldAngleXDeg, fieldAngleYDeg, launchRadius);
+export function computeBoundingSphereVectorFieldLaunch(
+  state: PreparedGeometry,
+  {
+    geometry,
+    fieldAngleXDeg,
+    fieldAngleYDeg,
+  }: { geometry: FieldGeometryState; fieldAngleXDeg: number; fieldAngleYDeg: number },
+): VectorFieldRayLaunch | null {
+  const launchRadius = computeBoundingSphereLaunchRadiusMm(state, geometry.b);
+  const launch = boundingSphereLaunchVector(geometry.epRatio, fieldAngleXDeg, fieldAngleYDeg, launchRadius);
   if (launch.status !== "ok") return null;
 
   const axes = vectorFieldAxes(fieldAngleXDeg, fieldAngleYDeg);
@@ -101,12 +101,12 @@ export function computeBoundingSphereVectorFieldLaunch2(
  * @param radialDirectionDelta - optional direction perturbation along the radial pupil axis
  * @returns origin/direction pair ready for exact vector tracing
  */
-export function offsetVectorFieldRay2(
-  launch: VectorFieldRayLaunch2,
+export function offsetVectorFieldRay(
+  launch: VectorFieldRayLaunch,
   sagittalOffsetMm: number,
   radialOffsetMm: number,
   radialDirectionDelta = 0,
-): OffsetVectorFieldRay2 {
+): OffsetVectorFieldRay {
   let origin = addScaledVector(launch.origin, launch.sagittalPupilAxis, sagittalOffsetMm);
   origin = addScaledVector(origin, launch.radialPupilAxis, radialOffsetMm);
   const direction =

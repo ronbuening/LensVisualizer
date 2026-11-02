@@ -9,7 +9,7 @@
 **Assignee:** Carl Zeiss, Heidenheim (Brenz), Germany
 **Title:** Asymmetrical Photographic Objective
 **Classification:** Cl. 88–57
-**Embodiment analyzed:** Sole numerical example; the patent gives one worked prescription at $f = 1$
+**Example details:** the patent gives one worked prescription at $f = 1$
 
 The numerical example in US 3,038,380 is a seven-element, four-component retrofocus wide-angle objective. It corresponds to the Carl Zeiss B-Distagon 1:4 f=35 mm for the Zeiss Ikon Contarex system. The identification rests on several converging points.
 

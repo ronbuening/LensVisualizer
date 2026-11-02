@@ -43,7 +43,7 @@
   physical track through plate P. D27 close 3.394493514 / 7.221740926 / 15.469690819 → 3.400517907 / 7.239460293 /
   15.52269395 mm; D29 close 14.530506486 / 9.953259074 / 15.970309181 → 14.524482093 / 9.935539707 / 15.91730605 mm.
   G4 travel is now 1.600518 / 4.619460 / 13.722694 mm. These remain reconstructions, not patent values.
-- Method: paraxial y–u trace of the `expandRearPlates` surfaces from an axial object 300 mm before the image plane,
+- Method: paraxial y–u trace of the rear-plate-expanded surfaces from an axial object 300 mm before the image plane,
   bisecting G4 travel with d27 + d29 conserved and the infinity gaps untouched. The old gaps left that object's paraxial
   image 0.012 / 0.048 / 0.174 mm off the image plane (wide / middle / tele).
 - Close-focus defocus is now at most 4.4e-10 mm; infinity EFL (25.002987 / 50.142962 / 100.568809 mm) and the infinity

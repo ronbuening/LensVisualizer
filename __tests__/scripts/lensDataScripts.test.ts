@@ -1,6 +1,19 @@
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { afterEach, describe, expect, it } from "vitest";
 import {
   MAKER_PREFIXES,
@@ -10,12 +23,19 @@ import {
   deriveMakerSlug,
   organizeRootLensFiles,
 } from "../../scripts/lens-data-lib.mjs";
+import { evaluateLensDataSource } from "../../scripts/lens-data-ast.mjs";
+import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
+import { PRIME_MEMBERS, v1LensFile } from "./convertLensDataFixtures.js";
 import runtimeMakerPrefixes from "../../src/generated/maker-prefixes.json";
 
 function createTempLensDataDir() {
   const rootDir = mkdtempSync(join(tmpdir(), "lens-data-scripts-"));
   const lensDataDir = join(rootDir, "src", "lens-data");
   mkdirSync(lensDataDir, { recursive: true });
+  for (const directory of ["types", "optics", "utils"]) {
+    symlinkSync(fileURLToPath(new URL(`../../src/${directory}`, import.meta.url)), join(rootDir, "src", directory));
+  }
+  symlinkSync(fileURLToPath(new URL("../../node_modules", import.meta.url)), join(rootDir, "node_modules"));
   return { rootDir, lensDataDir };
 }
 
@@ -23,26 +43,24 @@ function writeLensDataFile(
   filePath: string,
   { key, name, maker }: { key: string; name: string; maker?: string | null },
 ) {
-  writeFileSync(
-    filePath,
-    [
-      'import type { LensDataInput } from "../types/optics.js";',
-      "",
-      "const LENS_DATA = {",
-      `  key: "${key}",`,
-      maker === null ? "  maker: null," : maker ? `  maker: "${maker}",` : null,
-      `  name: "${name}",`,
-      "  surfaces: [],",
-      "  elements: [],",
-      "} satisfies LensDataInput;",
-      "",
-      "export default LENS_DATA;",
-      "",
-    ]
-      .filter((line): line is string => Boolean(line))
-      .join("\n"),
-    "utf-8",
+  const members = PRIME_MEMBERS.replace('key: "fixture-prime"', `key: "${key}"`).replace(
+    'name: "Fixture 50mm f/2"',
+    `name: "${name}"`,
   );
+  const source = v1LensFile(`${members}\n  maker: ${JSON.stringify(maker)},`);
+  writeFileSync(filePath, source.replace("../../types/", "../types/"), "utf-8");
+}
+
+/** Run the actual entry point against an isolated catalog, keeping its helpers in the repository. */
+function runScript(rootDir: string, entry: string) {
+  const scripts = join(rootDir, "scripts");
+  mkdirSync(scripts, { recursive: true });
+  for (const name of readdirSync(fileURLToPath(new URL("../../scripts/", import.meta.url)))) {
+    const source = fileURLToPath(new URL(`../../scripts/${name}`, import.meta.url));
+    if (name === entry) copyFileSync(source, join(scripts, name));
+    else symlinkSync(source, join(scripts, name));
+  }
+  return spawnSync("node", [join(scripts, entry)], { encoding: "utf8", timeout: 60_000 });
 }
 
 const tempRoots: string[] = [];
@@ -95,6 +113,67 @@ describe("lens-data scripts", () => {
     expect(deriveMakerSlug("Acme Prototype 50 mm")).toBe("acme");
   });
 
+  it("reduces an unsafe maker or name to one plain folder segment", () => {
+    expect(deriveMakerSlug("Lens", "../../../escaped")).toBe("escaped");
+    expect(deriveMakerSlug("../../../escaped Lens")).toBe("escaped");
+    expect(deriveMakerSlug("Lens", "..")).toBe("unattributed");
+    expect(deriveMakerSlug(".hidden Lens")).toBe("hidden");
+    expect(deriveMakerSlug("a\\b/c Lens")).toBe("a-b-c");
+  });
+
+  it.each([
+    ["maker", { maker: "../../../escaped", name: "Escape Test" }],
+    ["name-derived fallback", { name: "../../../escaped Lens" }],
+  ])("files a lens whose %s climbs out of the tree inside it instead", async (_case, identity) => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    writeLensDataFile(join(lensDataDir, "Escape.data.ts"), { key: "escape-test", ...identity });
+
+    const [plannedMove] = collectRootLensMovePlan(lensDataDir);
+    expect(plannedMove.targetDir).toBe(join(lensDataDir, "escaped"));
+    await organizeRootLensFiles(lensDataDir, { log: () => undefined });
+    expect(existsSync(join(lensDataDir, "escaped", "Escape.data.ts"))).toBe(true);
+    expect(existsSync(join(lensDataDir, "../../../escaped", "Escape.data.ts"))).toBe(false);
+  });
+
+  it.each([
+    ["destination folder", (lensDataDir: string, outside: string) => symlinkSync(outside, join(lensDataDir, "canon"))],
+    [
+      "source file",
+      (lensDataDir: string, outside: string) => {
+        renameSync(join(lensDataDir, "Escape.data.ts"), join(outside, "Escape.data.ts"));
+        symlinkSync(join(outside, "Escape.data.ts"), join(lensDataDir, "Escape.data.ts"));
+      },
+    ],
+  ])("refuses a %s that a symlink points outside the tree, before changing anything", async (_case, link) => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    const outside = join(rootDir, "outside");
+    mkdirSync(outside);
+    writeLensDataFile(join(lensDataDir, "Escape.data.ts"), { key: "escape-test", maker: "Canon", name: "Canon Test" });
+    link(lensDataDir, outside);
+    const before = { inside: readdirSync(lensDataDir), outside: readdirSync(outside) };
+    const source = readFileSync(join(lensDataDir, "Escape.data.ts"), "utf-8");
+
+    await expect(organizeRootLensFiles(lensDataDir, { log: () => undefined })).rejects.toThrow(/resolves outside/);
+    expect({ inside: readdirSync(lensDataDir), outside: readdirSync(outside) }).toEqual(before);
+    expect(readFileSync(join(lensDataDir, "Escape.data.ts"), "utf-8")).toBe(source);
+  });
+
+  it("reports the move plan on a dry run and changes nothing", async () => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    writeLensDataFile(join(lensDataDir, "TestLens.data.ts"), { key: "test-lens", maker: "Canon", name: "CANON TEST" });
+    const before = readFileSync(join(lensDataDir, "TestLens.data.ts"), "utf-8");
+    const lines: string[] = [];
+
+    const result = await organizeRootLensFiles(lensDataDir, { log: (line: string) => lines.push(line), dryRun: true });
+    expect(result.movedFileCount).toBe(0);
+    expect(lines.join("\n")).toContain(join(lensDataDir, "canon", "TestLens.data.ts"));
+    expect(readdirSync(lensDataDir)).toEqual(["TestLens.data.ts"]);
+    expect(readFileSync(join(lensDataDir, "TestLens.data.ts"), "utf-8")).toBe(before);
+  });
+
   it("plans paired data and analysis moves into canonical maker folders", () => {
     const { rootDir, lensDataDir } = createTempLensDataDir();
     tempRoots.push(rootDir);
@@ -131,7 +210,7 @@ describe("lens-data scripts", () => {
     expect(movePlan[0].data.to).toBe(join(lensDataDir, "canon", "CanonDemo.data.ts"));
   });
 
-  it("moves paired root-level lens files and then becomes a clean no-op", () => {
+  it("converts and files a root-level V1 lens with its analysis, then becomes a clean no-op", async () => {
     const { rootDir, lensDataDir } = createTempLensDataDir();
     tempRoots.push(rootDir);
 
@@ -142,22 +221,22 @@ describe("lens-data scripts", () => {
     });
     writeFileSync(join(lensDataDir, "TestLens.analysis.md"), "# Test lens analysis\n", "utf-8");
 
-    const firstRun = organizeRootLensFiles(lensDataDir, { log: () => undefined });
+    const firstRun = await organizeRootLensFiles(lensDataDir, { log: () => undefined });
     expect(firstRun.movedLensCount).toBe(1);
     expect(firstRun.movedFileCount).toBe(2);
     expect(existsSync(join(lensDataDir, "canon", "TestLens.data.ts"))).toBe(true);
     expect(existsSync(join(lensDataDir, "canon", "TestLens.analysis.md"))).toBe(true);
     expect(existsSync(join(lensDataDir, "TestLens.data.ts"))).toBe(false);
     expect(readFileSync(join(lensDataDir, "canon", "TestLens.data.ts"), "utf-8")).toContain(
-      'from "../../types/optics.js";',
+      'from "../../types/lensDataV2.js";',
     );
 
-    const secondRun = organizeRootLensFiles(lensDataDir, { log: () => undefined });
+    const secondRun = await organizeRootLensFiles(lensDataDir, { log: () => undefined });
     expect(secondRun.movedLensCount).toBe(0);
     expect(secondRun.movedFileCount).toBe(0);
   });
 
-  it("refuses to overwrite an existing destination file", () => {
+  it("refuses to overwrite an existing destination file", async () => {
     const { rootDir, lensDataDir } = createTempLensDataDir();
     tempRoots.push(rootDir);
 
@@ -173,7 +252,121 @@ describe("lens-data scripts", () => {
       name: "CANON EXISTING TEST LENS",
     });
 
-    expect(() => organizeRootLensFiles(lensDataDir, { log: () => undefined })).toThrow(/destination already exists/);
+    await expect(organizeRootLensFiles(lensDataDir, { log: () => undefined })).rejects.toThrow(
+      /destination already exists/,
+    );
+  });
+
+  it.each(["lens", "teleconverter"] as const)("converts a V1 %s already under a maker folder in place", (kind) => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    mkdirSync(join(lensDataDir, "fixture"));
+    const pair = FIXTURE_PAIRS.find((candidate) => candidate.kind === kind)!;
+    const suffix = kind === "lens" ? "data" : "teleconverter";
+    const type = kind === "lens" ? "LensDataInput" : "TeleconverterData";
+    const path = join(lensDataDir, "fixture", `Fixture.${suffix}.ts`);
+    writeFileSync(
+      path,
+      `import type { ${type} } from "../../types/optics.js";\nconst DATA = ${JSON.stringify(pair.v1)} satisfies ${type};\nexport default DATA;\n`,
+    );
+    const result = runScript(rootDir, "organize-lens-data.mjs");
+    expect(result.status, result.stderr).toBe(0);
+    expect(evaluateLensDataSource(readFileSync(path, "utf8"))).toEqual(pair.v2);
+    expect(result.stderr).toContain(`Fixture.${suffix}.ts`);
+    if (kind === "lens") expect(result.stdout).toContain(`Fixture.${suffix}.ts`);
+  });
+
+  it("converts and files a root-level V1 teleconverter", () => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    const pair = FIXTURE_PAIRS.find((candidate) => candidate.kind === "teleconverter")!;
+    const path = join(lensDataDir, "Fixture.teleconverter.ts");
+    writeFileSync(
+      path,
+      `import type { TeleconverterData } from "../types/optics.js";\nconst DATA = ${JSON.stringify(pair.v1)} satisfies TeleconverterData;\nexport default DATA;\n`,
+    );
+    const result = runScript(rootDir, "organize-lens-data.mjs");
+    expect(result.status, result.stderr).toBe(0);
+    const filed = join(lensDataDir, deriveMakerSlug(pair.v1.name, pair.v1.maker), "Fixture.teleconverter.ts");
+    expect(evaluateLensDataSource(readFileSync(filed, "utf8"))).toEqual(pair.v2);
+    expect(readFileSync(filed, "utf8")).toContain('from "../../types/lensDataV2.js";');
+    expect(existsSync(path)).toBe(false);
+  });
+
+  it.each(["lens", "teleconverter"] as const)(
+    "converts an archived root-level V1 %s with unchanged maker-folder imports",
+    (kind) => {
+      const { rootDir, lensDataDir } = createTempLensDataDir();
+      tempRoots.push(rootDir);
+      const pair = FIXTURE_PAIRS.find((candidate) => candidate.kind === kind)!;
+      const suffix = kind === "lens" ? "data" : "teleconverter";
+      const type = kind === "lens" ? "LensDataInput" : "TeleconverterData";
+      const path = join(lensDataDir, `Archived.${suffix}.ts`);
+      writeFileSync(
+        path,
+        `import type { ${type} } from "../../types/optics.js";\nconst DATA = ${JSON.stringify(pair.v1)} satisfies ${type};\nexport default DATA;\n`,
+      );
+      const result = runScript(rootDir, "organize-lens-data.mjs");
+      expect(result.status, result.stderr).toBe(0);
+      const filed = join(lensDataDir, deriveMakerSlug(pair.v1.name, pair.v1.maker), `Archived.${suffix}.ts`);
+      const converted = readFileSync(filed, "utf8");
+      expect(evaluateLensDataSource(converted)).toEqual(pair.v2);
+      expect(converted).toContain('from "../../types/lensDataV2.js";');
+      expect(existsSync(path)).toBe(false);
+    },
+  );
+
+  it("leaves archived root files byte-identical when one conversion is refused", () => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    const path = join(lensDataDir, "Refused.data.ts");
+    const source = v1LensFile(PRIME_MEMBERS + '\n  unknownField: "refuse me",');
+    writeFileSync(path, source);
+    const acceptedPath = join(lensDataDir, "Accepted.data.ts");
+    const acceptedSource = v1LensFile(PRIME_MEMBERS);
+    writeFileSync(acceptedPath, acceptedSource);
+    const result = runScript(rootDir, "organize-lens-data.mjs");
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toMatch(/Refused.data.ts/);
+    expect(result.stderr).toMatch(/unknownField/);
+    expect(readFileSync(path, "utf8")).toBe(source);
+    expect(readFileSync(acceptedPath, "utf8")).toBe(acceptedSource);
+    expect(result.stderr).toContain("1 would convert to V2");
+    expect(existsSync(join(lensDataDir, "fixture"))).toBe(false);
+  });
+
+  it("leaves a V2 catalog byte-identical", () => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    mkdirSync(join(lensDataDir, "fixture"));
+    const paths = FIXTURE_PAIRS.map((pair, index) => {
+      const path = join(lensDataDir, "fixture", `${index}.${pair.kind === "lens" ? "data" : "teleconverter"}.ts`);
+      const text = `export default ${JSON.stringify(pair.v2)};\n`;
+      writeFileSync(path, text);
+      return { path, text };
+    });
+    const result = runScript(rootDir, "organize-lens-data.mjs");
+    expect(result.status, result.stderr).toBe(0);
+    for (const { path, text } of paths) expect(readFileSync(path, "utf8")).toBe(text);
+  });
+
+  it.each(["data", "teleconverter"])("metadata refuses a V1 .%s.ts without writing inputs or outputs", (suffix) => {
+    const { rootDir, lensDataDir } = createTempLensDataDir();
+    tempRoots.push(rootDir);
+    const path = join(lensDataDir, `Archived.${suffix}.ts`);
+    const source = 'export default { key: "archived", name: "Archived" };\n';
+    writeFileSync(path, source);
+    const generated = join(rootDir, "src", "generated");
+    mkdirSync(generated);
+    const sentinel = join(generated, "maker-prefixes.json");
+    writeFileSync(sentinel, "unchanged\n");
+    const result = runScript(rootDir, "generate-build-metadata.mjs");
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toContain(`Archived.${suffix}.ts is V1`);
+    expect(result.stderr).toContain("npm run organize:lens-data");
+    expect(readFileSync(path, "utf8")).toBe(source);
+    expect(readFileSync(sentinel, "utf8")).toBe("unchanged\n");
+    expect(readdirSync(generated)).toEqual(["maker-prefixes.json"]);
   });
 
   it("collects quoted TypeScript metadata keys in both build collectors", async () => {
@@ -183,10 +376,11 @@ describe("lens-data scripts", () => {
     writeFileSync(
       dataPath,
       `const LENS_DATA = {
-      "key": "quoted-lens", "name": "CANON QUOTED", "maker": "Canon",
-      "lensMounts": ["canon-ef"], "imageFormat": "135-full-frame",
+      "schema": 2, "key": "quoted-lens", "name": "CANON QUOTED", "maker": "Canon",
+      "catalog": { "lensMounts": ["canon-ef"], "imageFormat": "135-full-frame" },
       "publishedAt": "2026-10-03T01:00:00Z", "visible": false
-    };`,
+    };
+    export default LENS_DATA;`,
     );
     const options = {
       rootDir,
@@ -216,7 +410,8 @@ describe("lens-data scripts", () => {
     const writePublication = (timestamp: string) =>
       writeFileSync(
         dataPath,
-        `const LENS_DATA = { key: "replacement", name: "TEST REPLACEMENT", publishedAt: "${timestamp}" };`,
+        `const LENS_DATA = { key: "replacement", name: "TEST REPLACEMENT", publishedAt: "${timestamp}" };\n` +
+          "export default LENS_DATA;",
       );
     writePublication("2026-09-14T12:06:25Z");
     const options = {

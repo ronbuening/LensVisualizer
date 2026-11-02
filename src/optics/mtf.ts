@@ -1,10 +1,25 @@
-/** Stable public MTF entry points for workers and UI. */
+/** Public mtf seam; implementations live in the focused engine subdirectories. */
+export { computeMtf, computeMtfSteps, resolveMtfGeometry } from "./analysis/mtf/mtf.js";
+export type { MtfJobCache } from "./analysis/mtf/mtf.js";
+export { MTF_ESTIMATED_DISPERSION_MAX_VD, MTF_FIELDS, MTF_FREQUENCIES } from "./analysis/mtf/mtfConstants.js";
+export { assessMtfDataLimitations } from "./analysis/mtf/mtfDataLimitations.js";
+export type { MtfDataLimitationInput } from "./analysis/mtf/mtfDataLimitations.js";
+export { mtfImagePlaneOffset } from "./analysis/mtf/mtfFocus.js";
+export { combineOtfs, otfMagnitude } from "./analysis/mtf/mtfMath.js";
+export type { ComplexOtf, MtfSpot } from "./analysis/mtf/mtfMath.js";
+export { shearedOtf } from "./analysis/mtf/mtfShearedOtf.js";
 export {
-  assessMtfSupport,
-  MTF_FIELDS,
-  MTF_FREQUENCIES,
   MTF_PHOTOPIC_LINES,
+  assessMtfSpectralData,
+  assessMtfSupport,
   resolveMtfSpectrum,
-} from "./analysis/mtfSupport.js";
-export { computeMtf, computeMtfSteps, resolveMtfGeometry, type MtfJobCache } from "./analysis/mtf.js";
-export { assessMtfDataLimitations, type MtfDataLimitationInput } from "./analysis/mtfDataLimitations.js";
+} from "./analysis/mtf/mtfSupport.js";
+export {
+  aimMtfStopLattice,
+  findMtfFieldFootprint,
+  prepareMtfFieldLaunch,
+  traceMtfStopBundle,
+  traceMtfLattice,
+  traceMtfLaunchPlaneBundle,
+} from "./analysis/mtf/mtfTracing.js";
+export { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "./analysis/mtf/mtfWavefront.js";

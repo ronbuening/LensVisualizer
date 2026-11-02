@@ -1,6 +1,7 @@
 /** Representative routes, not every catalog entry or state combination. */
 export const TRANSLATION_ROUTES = [
   { pattern: "/", url: "/", coverage: "theme and route navigation" },
+  { pattern: "/lens-builder", url: "/lens-builder", coverage: "editor chrome, theme and route removal" },
   { pattern: "/search", url: "/search?q=nikon", coverage: "query, counts, empty/results transitions" },
   { pattern: "/lenses", url: "/lenses", coverage: "filter, grouping and count changes" },
   { pattern: "/lens/:slug", url: "/lens/nikkor-85f14g", coverage: "navigation, controls, inspector, ten drawers" },

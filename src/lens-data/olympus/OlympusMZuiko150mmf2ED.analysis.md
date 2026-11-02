@@ -11,7 +11,7 @@
 **Inventor:** Takeshi Hosoya  
 **Assignee:** Olympus Corporation, Tokyo  
 **Title:** Telephoto Lens, Telephoto Lens System, and Imaging System Incorporating the Same  
-**Embodiment analyzed:** Example 1 (FIGS. 1A/1B), the patent's lead embodiment
+**Example details:** FIGS. 1A/1B, the patent's lead embodiment
 
 The prescription transcribed here is Example 1 of US 7,408,719 B2. The production lens corresponding to the design family is the Four Thirds **ZUIKO DIGITAL ED 150mm f/2.0**, not a Micro Four Thirds M.ZUIKO lens. The output file stem follows the requested name, but the optical and catalog identification in the analysis and data file use the production system name.
 

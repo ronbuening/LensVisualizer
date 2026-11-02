@@ -9,7 +9,7 @@
 **Inventors:** Sakai Takahiko (Tamron) and Hosoi Masaharu (Sony)  
 **Applicants:** Sony Corporation and Tamron Co., Ltd.  
 **Title:** Inner-focus lens (インナーフォーカス式レンズ)  
-**Embodiment analyzed:** Example 1 (第1実施例), Fig. 1 and paragraphs 0048-0062.
+**Example details:** 第1実施例, Fig. 1 and paragraphs 0048-0062.
 
 JP 2012-159613 A describes a compact inner-focus lens formed from a positive first group, a negative second group, and a positive third group. During focusing, only the negative second group moves; the first and third groups remain fixed. The patent frames this structure as a way to combine a wide field, compact barrel, and low focus-group mass for video cameras and electronic still cameras.
 

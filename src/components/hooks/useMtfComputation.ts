@@ -1,6 +1,7 @@
 /** Debounced, cancellable MTF worker requests with progress and stale-while-revalidate results. */
 import { useEffect, useMemo, useState } from "react";
-import type { MtfResult } from "../../types/mtf.js";
+import type { AnalysisRequest } from "../../optics/analysis.js";
+import type { MtfRequestOptions, MtfResult } from "../../types/mtf.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { MtfWorkerClient, type MtfJob } from "./mtfWorkerClient.js";
 
@@ -22,13 +23,35 @@ const IDLE: MtfComputation = { result: null, stale: false, running: false, error
  * Run MTF requests for one lens in a background worker.
  *
  * @param L - runtime lens; a new lens starts a new worker and clears earlier results
- * @param job - request to compute, or null when the state is unsupported
+ * @param request - analysis snapshot, or null when the state is unsupported
+ * @param options - MTF method, spectrum, focus and sampling
  * @returns the latest result and request status
  */
-export function useMtfComputation(L: RuntimeLens, job: MtfJob | null): MtfComputation {
-  const client = useMemo(
+export function useMtfComputation(
+  L: RuntimeLens,
+  request: AnalysisRequest | null,
+  options: MtfRequestOptions,
+): MtfComputation {
+  // Serialize controls only: compiled geometry and owned solve caches stay on their thread.
+  const job: MtfJob | null = useMemo(
     () =>
-      new MtfWorkerClient(L.data, () => new Worker(new URL("./mtf.worker.ts", import.meta.url), { type: "module" })),
+      request
+        ? {
+            focusT: request.preparedGeometry.focusT,
+            zoomT: request.preparedGeometry.zoomT,
+            aberrationT: request.preparedGeometry.aberrationT,
+            options: {
+              ...options,
+              pupilSemiDiameterMm: request.aperture.entrancePupilSemiDiameterMm,
+              stopSemiDiameterMm: request.aperture.stopSemiDiameterMm,
+              movementActive: request.pose?.active ?? options.movementActive,
+            },
+          }
+        : null,
+    [request, options],
+  );
+  const client = useMemo(
+    () => new MtfWorkerClient(L, () => new Worker(new URL("./mtf.worker.ts", import.meta.url), { type: "module" })),
     [L],
   );
   const [state, setState] = useState<{ client: MtfWorkerClient; value: MtfComputation }>({ client, value: IDLE });

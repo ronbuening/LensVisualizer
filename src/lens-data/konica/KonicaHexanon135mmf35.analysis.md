@@ -8,8 +8,7 @@
 **Published:** 1955-12-26\
 **Inventors:** Tomokazu Kazamaki; Fumio Kondo\
 **Applicants:** Tomokazu Kazamaki; Fumio Kondo (inventor-applicants; no organization named, so `patentAssignees` is empty)\
-**Title:** 望遠写真レンズ (Telephoto photographic lens)\
-**Embodiment analyzed:** Example 1
+**Title:** 望遠写真レンズ (Telephoto photographic lens)
 
 JP 1955-009472 B Example 1 is the fixed prescription source for this model. The patent gives a four-element,
 four-group, all-spherical objective with a complete focal length of 100 mm. Its aberration plots are labeled for

@@ -138,3 +138,78 @@ Retained rims inside 15 % of Fig. 9: L4 14.8 (stored 14.0/14.2), L5 13.9 (13.8/1
 - Close-focus G5/G6 positions and the iris schedule are calculated or inferred, not published. Rims other than those
   measured from Fig. 9 remain estimates. No effective diameters are published.
 - The engine's paraxial wide half-field (40.0°) is below the patent's 43.38°.
+
+## 2026-10-27 — Rim-cut figure review
+
+Fig. 9 (PDF p. 109, sheet 17/46, native 300 dpi CCITT raster, axis vertical, object at the bottom, 0.06743 mm/px) was
+read element by element on the half without leader lines, with the leader half checked wherever a land showed, for
+flat lands square to the axis at the rims of concave faces. The raster draws curves in steps of about 3.5 px, so each
+candidate's last drawn step was compared with the face's computed sag at the drawn edge.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 5 (L3 rear, R 21.486) | 0.80 (cap end 236 px, edge 296.5 px) | 7.37 mm | 16.20 mm | 20.1 (was 16.2) | 8.25 mm |
+
+- Surface 5: the 2026-09-23 pass put `sd` at the cap end (16.2 mm) while L3's front and the figure's edge run to
+  20.1 mm. The drawn land sits within 1 px (0.07 mm) of the S5 sag at 16.2 mm, so `sd` was raised to the surface 4A
+  value and the cut placed at the old `sd`. The clear radius goes from the old 16.2 mm rim to the 16.1984 mm cut
+  radius; the beams reach 14.4375 mm there (beam rule below).
+- Surface 22 (L12 front, R −28.1) also draws a short land on both halves: the cap's last drawn step sits about 6 px
+  (0.4 mm) short of its sag at the drawn edge, q ≈ 0.94 (0.92–0.96 within the drawing step). A cut at q × sd =
+  12.34 mm (depth 2.85 mm) clears the stated axial ray (9.36 mm) but raises the full-field side vignetting at
+  surface 22 from 7 % to 30 % (23 % even at q = 0.955), past the 15-point limit, so it was not authored.
+- Concave faces 3, 6, 7, 10, 14, 16, 21, 26 and 30 run to their element edges at the computed sag within one drawing
+  step. Surface 28A's last step ends about 3 px inside its edge, below what the figure resolves; no cut.
+- The flat steps on L1's rear beyond L2 and on L10's rear beyond L11 belong to cemented junctions 2 and 20, not to
+  faces that bend into air; no cut.
+- No cap reaches the stop plane: the stop's neighbours 11 and 13A both bend away from it, with vertex clearances of
+  2.37 mm (11, tele) and 0.88 mm (13A).
+- `audit:aperture` is unchanged: both stations trace within 3 % of f/4.00 and f/4.12, with no rim, trace or failed
+  rows. The surface validator and the image-circle check pass. The wide-end render now ends L3's rear cap in a flat
+  land and a square edge, as Fig. 9 draws it; no other element moved.
+
+The beam rule (`validateRimCutBeams`) asks an inferred cut to clear the furthest traced ray of the wide-open beams by
+the larger of 0.05 mm and 0.3 % of its radius, at every field, zoom and focus state, traced through the lens without
+its inferred cuts. The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current search,
+which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. Surface 5's cut radius is 16.1984 mm. The beams reach 14.4375 mm there (wide, 24.7 mm, at the 0.35 m
+close focus, 43.84°), a clearance of 1.7609 mm against a 0.0500 mm margin, 1.7109 mm spare. The cut clips none of
+their rays.
+
+Figure scale and land length: Fig. 9's 0.06743 mm/px, from the 117.40 mm S1–S30 vertex span, is 14.830 native px per
+lens mm. One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px).
+
+- 5: figure q 0.796 (236 / 296.5 px) at a 298.1 px edge (20.1 mm), range 0.790–0.802. The cut sits at the old 16.2 mm
+  rim, 0.806 of `sd`, within one pixel of the drawn land. Land 3.9016 mm, over the 0.1 mm minimum.
+
+
+## 2026-10-29 — Rim-extension recheck
+
+Re-read local `patents/WO2022259649A1.pdf`, Example 5 / Figure 9, PDF p. 109, at 600 dpi, rotated
+object-left. The S1–S30 span gives 117.40 mm at 0.06743 mm/native px, or 14.83 px/mm. Both halves of
+all 16 elements were checked. The large L3 rear land at 5 already ends its cap at 16.1984 mm within the
+20.1 mm square outer edge, so its existing cut is retained.
+
+The short L12 front land at 22 lies inside the current optical cap and would require extra clipping, as the
+2026-10-27 beam review records. Its present outer rim already represents the figure's element edge, so an
+extension beyond it would add unsupported height. Steps at 2 and 20 are cemented junctions. No other
+resolved air-face land calls for an extension or additional cut.
+
+No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
+rule, and `audit:image-circle` reports 0 undersized / 0 skipped.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/WO2022259649A1.pdf`, Example 5 / Table 5, PDF pp. 51–52 (printed pp. 49–50).
+All 16 physical elements retain the printed d-line nd/νd values and existing coordinate-compatible catalog
+curves. In particular, repeated L3/L15 1.77503/47.31 remains M-TAF401; L7 1.59306/66.97 remains a
+qualified J-PSKH4 proxy; L12 1.78472/25.64 remains S-TIH11; L14 1.55332/71.67 remains M-FCD500.
+L1–L16 were checked, not only these formerly discussed rows.
+
+All sixteen media resolve to coefficient-backed curves. Table 5 supplies no C/F/g or partial-dispersion column;
+the four ED/APD flags remain inferred from material class/manufacturer correlation. No source spectrum or
+production supplier is inferred from a catalog match. No glass-data or analysis correction was required.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).

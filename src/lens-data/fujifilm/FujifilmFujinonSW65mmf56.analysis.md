@@ -8,7 +8,7 @@
 **Applicant:** Fuji Photo Optical Co., Ltd. (富士写真光機株式会社)
 **Title:** Wide-Angle Lens (広角レンズ)
 **Classification:** G02B 9/58
-**Embodiment analyzed:** Example 1 (実施例1, Table 1)
+**Example details:** 実施例1, Table 1
 **Worked examples:** 4 numerical examples: Examples 1–2 at 2ω = 75°, Examples 3–4 at 2ω = 70°
 
 The patent describes a six-element, four-group, all-spherical wide-angle lens for f/5.6 and a 70°–75° full field. Example 1 is the embodiment transcribed here. It is the strongest patent match for the EBC Fujinon SW 65mm f/5.6 fixed lens used on the Fujica/Fuji GSW690-series cameras.

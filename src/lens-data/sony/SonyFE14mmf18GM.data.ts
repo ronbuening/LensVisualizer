@@ -1,4 +1,4 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
@@ -9,11 +9,29 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  aspherical surfaces, and inner focusing by the L8-L13 subgroup.   ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent Table 1 lists full effective diameters; surface `sd`      ║
- * ║    values below are half of those diameters. The stop-row patent    ║
- * ║    effective diameter is a ray-clearance diameter, not the iris     ║
- * ║    opening. The STO `sd` is therefore derived from the verified     ║
- * ║    design focal length and F/1.85 entrance pupil geometry.          ║
+ * ║    Patent Table 1 lists full effective diameters; surface `sd`     ║
+ * ║    values below are half of those diameters. The stop-row patent   ║
+ * ║    effective diameter is a ray-clearance diameter, not the iris    ║
+ * ║    opening. The stop radius is derived from the design f-number    ║
+ * ║    using the verified design focal length and F/1.85 entrance      ║
+ * ║    pupil geometry.                                                 ║
+ * ║                                                                    ║
+ * ║  NOTE ON THE INDEX COLUMN:                                         ║
+ * ║    Table 1 heads the column nd and paragraph 0114 states the d     ║
+ * ║    line (587.6 nm), but the printed values are e-line indices      ║
+ * ║    paired with d-line Abbe numbers. All fourteen match a HOYA      ║
+ * ║    catalog glass at the e line (thirteen to all five decimals,     ║
+ * ║    L4 to 0.00001) with that glass's vd at the printed one          ║
+ * ║    decimal: M-BACD12, TAC8, FCD515, E-FD8, TAFD25, NBFD29,         ║
+ * ║    M-TAF101, FCD100, FCD1, NBFD25 (L10 and L12), E-FDS1,           ║
+ * ║    M-TAFD305 and PCD40. None matches a catalog row at the d        ║
+ * ║    line. M-BACD12 also has the specific gravity 3.01 that          ║
+ * ║    Table 51 gives for L1. The printed values are stored            ║
+ * ║    unchanged and all fourteen elements are indexReference "e",     ║
+ * ║    traced on their catalog curves anchored to the printed index.   ║
+ * ║    The vd slot keeps the printed d-line Abbe number (catalog ve    ║
+ * ║    is 0.2 to 0.4 lower). The names select dispersion curves;       ║
+ * ║    Sony's supplier is unconfirmed. No source-listed rear plates.   ║
  * ║                                                                    ║
  * ║  Verification: paraxial EFL = 14.4219367 mm; BFD = 15.44 mm        ║
  * ║  from total optical length 114.70 mm. Table 2 field-height and      ║
@@ -22,32 +40,35 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
+  schema: 2,
   key: "sony-fe-14mm-f18-gm",
   maker: "Sony",
   name: "SONY FE 14mm f/1.8 GM",
   subtitle: "WO 2021/199923 A1 — Numerical Example 1",
-  specs: [
-    "14 elements / 11 groups",
-    "f = 14.42 mm design",
-    "F/1.85 design (marketed F/1.8)",
-    "114° official diagonal angle",
-    "6 aspherical surfaces",
-  ],
 
-  focalLengthMarketing: 14,
-  focalLengthDesign: 14.4219366746,
-  apertureMarketing: 1.8,
-  apertureDesign: 1.85,
-  lensMounts: ["sony-fe"],
-  imageFormat: "135-full-frame",
-  patentNumber: "WO 2021/199923 A1",
-  patentAuthors: ["Takumu Yamada", "Dai Matsuoka"],
-  patentAssignees: ["Sony Group Corporation"],
-  patentYear: 2021,
-  elementCount: 14,
-  groupCount: 11,
-  apertureBlades: 9,
-  apertureBladeRoundedness: 1,
+  catalog: {
+    lensMounts: ["sony-fe"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "14 elements / 11 groups",
+      "f = 14.42 mm design",
+      "F/1.85 design (marketed F/1.8)",
+      "114° official diagonal angle",
+      "6 aspherical surfaces",
+    ],
+    elementCount: 14,
+    groupCount: 11,
+    focalLengthMm: { marketing: 14, design: 14.4219366746 },
+    fNumber: { marketing: 1.8, design: 1.85 },
+  },
+
+  source: {
+    patentNumber: "WO 2021/199923 A1",
+    example: { label: "Numerical Example 1", id: "1" },
+    patentYear: 2021,
+    authors: ["Takumu Yamada", "Dai Matsuoka"],
+    assignees: ["Sony Group Corporation"],
+  },
 
   elements: [
     {
@@ -57,8 +78,11 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.58547,
       vd: 59.5,
-      fl: -50.3116,
-      glass: "S-BAL42-class (OHARA; patent index aligns with catalog ne, 585/595)",
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: -50.3116,
+      glass: "M-BACD12 (HOYA; catalog ne 1.58547 as printed, vd 59.46 printed as 59.5; supplier unconfirmed)",
       role: "Low-density high-curvature front negative meniscus for retrofocus field expansion and sagittal-coma control.",
     },
     {
@@ -69,8 +93,10 @@ const LENS_DATA = {
       nd: 1.73234,
       vd: 54.7,
       indexReference: "e",
-      fl: -49.2208,
-      glass: "Unmatched (732547 patent e-line value; no verified d-line catalog identity)",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: -49.2208,
+      glass: "TAC8 (HOYA; catalog ne 1.73234 as printed, vd 54.67 printed as 54.7; supplier unconfirmed)",
       role: "Shares the front negative power with L1 while using higher index to reduce surface curvature.",
     },
     {
@@ -80,10 +106,14 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.59489,
       vd: 68.6,
-      fl: -34.07,
-      glass: "S-FPM2-class ED fluorophosphate (OHARA; soft match, 595/686)",
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: -34.07,
+      glass: "FCD515 (HOYA; catalog ne 1.59489 as printed, vd 68.62 printed as 68.6; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class from patent nd/vd and production ED count; patent gives no dPgF table.",
+      apdNote:
+        "ED fluorophosphate class from the printed index and Abbe number and production ED count; patent gives no dPgF table.",
       role: "Low-dispersion negative element at high chief-ray height for lateral-color correction.",
     },
     {
@@ -93,33 +123,42 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.69416,
       vd: 31.2,
-      fl: 29.1009,
-      glass: "694312 - short flint (Sony patent nd=1.69416, vd=31.2; no exact public catalog match)",
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: 29.1009,
+      glass: "E-FD8 (HOYA; catalog ne 1.69415 for the printed 1.69416, vd 31.16 printed as 31.2; supplier unconfirmed)",
       role: "Positive high-dispersion partner after the zero air gap from L3; begins the positive recovery section of G1.",
     },
     {
       id: 5,
       name: "L5",
       label: "LN front element",
-      type: "Negative Meniscus",
+      type: "Biconcave Negative",
       nd: 1.91048,
       vd: 31.3,
-      fl: -12.5008,
-      glass: "910313 - dense lanthanum flint (Sony patent nd=1.91048, vd=31.3; no exact public catalog match)",
-      cemented: "LN",
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: -12.5008,
+      glass: "TAFD25 (HOYA; catalog ne 1.91048 as printed, vd 31.32 printed as 31.3; supplier unconfirmed)",
       role: "Strong high-index negative element of the cemented LN unit before the stop.",
+      cemented: "LN",
     },
     {
       id: 6,
       name: "L6",
       label: "LN rear element",
-      type: "Positive Meniscus",
+      type: "Biconvex Positive",
       nd: 1.7766,
       vd: 29.7,
-      fl: 22.1391,
-      glass: "Unmatched (777/297 dense short flint; no close OHARA public-catalog match)",
-      cemented: "LN",
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: 22.1391,
+      glass: "NBFD29 (HOYA; catalog ne 1.77660 as printed, vd 29.74 printed as 29.7; supplier unconfirmed)",
       role: "Positive cemented partner in LN; with L5 gives the unit a verified focal length of -31.20 mm.",
+      cemented: "LN",
     },
     {
       id: 7,
@@ -128,8 +167,11 @@ const LENS_DATA = {
       type: "Biconvex Positive (2× Asph)",
       nd: 1.77173,
       vd: 49.2,
-      fl: 27.7553,
-      glass: "S-LAH66-class dense lanthanum flint (OHARA; soft match, 772/492)",
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: 27.7553,
+      glass: "M-TAF101 (HOYA; catalog ne 1.77173 as printed, vd 49.24 printed as 49.2; supplier unconfirmed)",
       role: "Strong positive aspherical lens immediately before the stop; the patent's LP element.",
     },
     {
@@ -139,11 +181,14 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.4381,
       vd: 95.1,
-      fl: 34.0183,
-      glass: "S-FPL53/S-FPL55-class super-ED fluorophosphate (OHARA; soft match, 438/951)",
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: 34.0183,
+      glass: "FCD100 (HOYA; catalog ne 1.43810 as printed, vd 95.10 printed as 95.1; supplier unconfirmed)",
       apd: "inferred",
       apdNote:
-        "Super-ED fluorophosphate class from patent nd/vd and production Super ED count; patent gives no dPgF table.",
+        "Super-ED fluorophosphate class from the printed index and Abbe number and production Super ED count; patent gives no dPgF table.",
       role: "Low-dispersion positive element at the entrance of the moving G2F focus group.",
     },
     {
@@ -153,12 +198,15 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49845,
       vd: 81.6,
-      fl: 31.1897,
-      glass: "S-FPL51-class ED fluorophosphate (OHARA; patent index aligns with catalog ne, 498/816)",
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: 31.1897,
+      glass: "FCD1 (HOYA; catalog ne 1.49845 as printed, vd 81.61 printed as 81.6; supplier unconfirmed)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate class from patent nd/vd; patent gives no dPgF table.",
-      cemented: "D2",
+      apdNote: "ED fluorophosphate class from the printed index and Abbe number; patent gives no dPgF table.",
       role: "ED crown element in the rear cemented doublet.",
+      cemented: "D2",
     },
     {
       id: 10,
@@ -167,10 +215,13 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.86252,
       vd: 25.2,
-      fl: -15.5537,
-      glass: "863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)",
-      cemented: "D2",
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: -15.5537,
+      glass: "NBFD25 (HOYA; catalog ne 1.86252 as printed, vd 25.15 printed as 25.2; supplier unconfirmed)",
       role: "Dense flint cemented partner to L9; the doublet focal length verifies as -32.55 mm.",
+      cemented: "D2",
     },
     {
       id: 11,
@@ -179,8 +230,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.93323,
       vd: 20.9,
-      fl: 21.165,
-      glass: "Unmatched (933/209 ultra-high-index short flint)",
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: 21.165,
+      glass: "E-FDS1 (HOYA; catalog ne 1.93323 as printed, vd 20.88 printed as 20.9; supplier unconfirmed)",
       role: "Very-high-index positive relay element that supplies strong rear-group power with moderated Petzval contribution.",
     },
     {
@@ -190,8 +244,11 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.86252,
       vd: 25.2,
-      fl: -36.1899,
-      glass: "863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)",
+      indexReference: "e",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: -36.1899,
+      glass: "NBFD25 (HOYA; catalog ne 1.86252 as printed, vd 25.15 printed as 25.2; supplier unconfirmed)",
       role: "Negative element before the patent's strongest negative air lens LA.",
     },
     {
@@ -202,8 +259,10 @@ const LENS_DATA = {
       nd: 1.85639,
       vd: 40.1,
       indexReference: "e",
-      fl: -218.1765,
-      glass: "Unmatched (856401 patent e-line value; no verified d-line catalog identity)",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: -218.1765,
+      glass: "M-TAFD305 (HOYA; catalog ne 1.85639 as printed, vd 40.10 printed as 40.1; supplier unconfirmed)",
       role: "Weak-base-power rear asphere for field-dependent correction behind the LA air lens.",
     },
     {
@@ -214,107 +273,99 @@ const LENS_DATA = {
       nd: 1.62228,
       vd: 63.9,
       indexReference: "e",
-      fl: 166.8523,
-      glass: "Unmatched (622639 patent e-line value; no verified d-line catalog identity)",
+      indexReferenceNote:
+        "Patent heads this column nd and states the d line, but all fourteen of its indices match HOYA catalog e-line values; traced at the e line with the printed d-line Abbe numbers.",
+      focalLengthMm: 166.8523,
+      glass: "PCD40 (HOYA; catalog ne 1.62228 as printed, vd 63.88 printed as 63.9; supplier unconfirmed)",
       role: "Stationary weak positive rear meniscus for final field and chief-ray-angle trim.",
     },
   ],
 
   surfaces: [
-    { label: "1A", R: 32.125, d: 1.87, nd: 1.58547, elemId: 1, sd: 26.39 },
-    { label: "2A", R: 15.036, d: 11.07, nd: 1, elemId: 0, sd: 19.365 },
-    { label: "3", R: 36.239, d: 1.5, nd: 1.73234, elemId: 2, sd: 18.41 },
-    { label: "4", R: 17.755, d: 11.66, nd: 1, elemId: 0, sd: 14.735 },
-    { label: "5", R: -57.581, d: 1.5, nd: 1.59489, elemId: 3, sd: 13.57 },
-    { label: "6", R: 31.581, d: 0, nd: 1, elemId: 0, sd: 12.465 },
-    { label: "7", R: 30.073, d: 7.9, nd: 1.69416, elemId: 4, sd: 12.46 },
-    { label: "8", R: -54.912, d: 2.58, nd: 1, elemId: 0, sd: 11.595 },
-    { label: "9", R: -27.601, d: 1.2, nd: 1.91048, elemId: 5, sd: 10.49 },
-    { label: "10", R: 19.77, d: 6, nd: 1.7766, elemId: 6, sd: 10.18 },
-    { label: "11", R: -114.412, d: 0.6, nd: 1, elemId: 0, sd: 10.15 },
-    { label: "12A", R: 36.344, d: 8, nd: 1.77173, elemId: 7, sd: 11.365 },
-    { label: "13A", R: -47.16, d: 5.71, nd: 1, elemId: 0, sd: 11.855 },
-    { label: "STO", R: 1e15, d: 6.35, nd: 1, elemId: 0, sd: 10.8026 },
-    { label: "15", R: 24.591, d: 6.96, nd: 1.4381, elemId: 8, sd: 11.425 },
-    { label: "16", R: -34.569, d: 0.2, nd: 1, elemId: 0, sd: 11.02 },
-    { label: "17", R: 106.589, d: 5.92, nd: 1.49845, elemId: 9, sd: 10.98 },
-    { label: "18", R: -17.865, d: 1.2, nd: 1.86252, elemId: 10, sd: 10.905 },
-    { label: "19", R: 55.538, d: 0.75, nd: 1, elemId: 0, sd: 11.58 },
-    { label: "20", R: 32.194, d: 6.1, nd: 1.93323, elemId: 11, sd: 12.485 },
-    { label: "21", R: -46.433, d: 0.2, nd: 1, elemId: 0, sd: 12.465 },
-    { label: "22", R: -123.478, d: 0.9, nd: 1.86252, elemId: 12, sd: 12.055 },
-    { label: "23", R: 41.916, d: 2.81, nd: 1, elemId: 0, sd: 11.7 },
-    { label: "24A", R: -500, d: 1.4, nd: 1.85639, elemId: 13, sd: 11.715 },
-    { label: "25A", R: 298.71, d: 4.78, nd: 1, elemId: 0, sd: 11.99 },
-    { label: "26", R: -418.53, d: 2.1, nd: 1.62228, elemId: 14, sd: 14.65 },
-    { label: "27", R: -83.351, d: 15.44, nd: 1, elemId: 0, sd: 14.96 },
+    {
+      label: "1A",
+      R: 32.125,
+      d: 1.87,
+      sd: 26.39,
+      medium: 1,
+      asphere: { K: 0, A4: -3.2157e-7, A6: -8.9102e-9, A8: 7.2086e-12, A10: -4.2574e-15, A12: -2.1368e-19 },
+    },
+    {
+      label: "2A",
+      R: 15.036,
+      d: 11.07,
+      sd: 19.365,
+      asphere: { K: -5.94e-1, A4: 5.9716e-6, A6: -2.5549e-9, A8: -4.95e-11, A10: 8.1327e-14, A12: -3.5142e-16 },
+    },
+    { label: "3", R: 36.239, d: 1.5, sd: 18.41, medium: 2 },
+    { label: "4", R: 17.755, d: 11.66, sd: 14.735 },
+    { label: "5", R: -57.581, d: 1.5, sd: 13.57, medium: 3 },
+    { label: "6", R: 31.581, d: 0, sd: 12.465 },
+    { label: "7", R: 30.073, d: 7.9, sd: 12.46, medium: 4 },
+    { label: "8", R: -54.912, d: 2.58, sd: 11.595 },
+    { label: "9", R: -27.601, d: 1.2, sd: 10.49, medium: 5 },
+    { label: "10", R: 19.77, d: 6, sd: 10.18, medium: 6 },
+    { label: "11", R: -114.412, d: 0.6, sd: 10.15 },
+    {
+      label: "12A",
+      R: 36.344,
+      d: 8,
+      sd: 11.365,
+      medium: 7,
+      asphere: { K: 0, A4: -6.7796e-6, A6: -1.9157e-8, A8: 9.9948e-11, A10: -9.2684e-13, A12: 2.2031e-15 },
+    },
+    {
+      label: "13A",
+      R: -47.16,
+      d: 5.71,
+      sd: 11.855,
+      asphere: { K: 0, A4: 2.4694e-6, A6: -2.2906e-8, A8: 1.266e-10, A10: -9.188e-13, A12: 1.9071e-15 },
+    },
+    // Patent Table 1 prints a 23.33 mm effective diameter at the stop (row 14).
+    { label: "STO", R: "flat" },
+    { label: "15", R: 24.591, d: 6.96, sd: 11.425, medium: 8 },
+    { label: "16", R: -34.569, d: 0.2, sd: 11.02 },
+    { label: "17", R: 106.589, d: 5.92, sd: 10.98, medium: 9 },
+    { label: "18", R: -17.865, d: 1.2, sd: 10.905, medium: 10 },
+    { label: "19", R: 55.538, d: 0.75, sd: 11.58 },
+    { label: "20", R: 32.194, d: 6.1, sd: 12.485, medium: 11 },
+    { label: "21", R: -46.433, d: 0.2, sd: 12.465 },
+    { label: "22", R: -123.478, d: 0.9, sd: 12.055, medium: 12 },
+    { label: "23", R: 41.916, d: 2.81, sd: 11.7 },
+    {
+      label: "24A",
+      R: -500,
+      d: 1.4,
+      sd: 11.715,
+      medium: 13,
+      asphere: { K: 0, A4: -7.4318e-5, A6: 2.573e-7, A8: 3.0021e-9, A10: -2.8311e-11, A12: 6.5427e-14 },
+    },
+    {
+      label: "25A",
+      R: 298.71,
+      sd: 11.99,
+      asphere: { K: 0, A4: -3.0668e-5, A6: 3.5429e-7, A8: 2.3165e-9, A10: -2.1595e-11, A12: 4.6042e-14 },
+    },
+    { label: "26", R: -418.53, d: 2.1, sd: 14.65, medium: 14 },
+    { label: "27", R: -83.351, d: 15.44, sd: 14.96 },
   ],
 
-  asph: {
-    "1A": {
-      K: 0,
-      A4: -3.2157e-7,
-      A6: -8.9102e-9,
-      A8: 7.2086e-12,
-      A10: -4.2574e-15,
-      A12: -2.1368e-19,
-      A14: 0,
-    },
-    "2A": {
-      K: -5.94e-1,
-      A4: 5.9716e-6,
-      A6: -2.5549e-9,
-      A8: -4.95e-11,
-      A10: 8.1327e-14,
-      A12: -3.5142e-16,
-      A14: 0,
-    },
-    "12A": {
-      K: 0,
-      A4: -6.7796e-6,
-      A6: -1.9157e-8,
-      A8: 9.9948e-11,
-      A10: -9.2684e-13,
-      A12: 2.2031e-15,
-      A14: 0,
-    },
-    "13A": {
-      K: 0,
-      A4: 2.4694e-6,
-      A6: -2.2906e-8,
-      A8: 1.266e-10,
-      A10: -9.188e-13,
-      A12: 1.9071e-15,
-      A14: 0,
-    },
-    "24A": {
-      K: 0,
-      A4: -7.4318e-5,
-      A6: 2.573e-7,
-      A8: 3.0021e-9,
-      A10: -2.8311e-11,
-      A12: 6.5427e-14,
-      A14: 0,
-    },
-    "25A": {
-      K: 0,
-      A4: -3.0668e-5,
-      A6: 3.5429e-7,
-      A8: 2.3165e-9,
-      A10: -2.1595e-11,
-      A12: 4.6042e-14,
-      A14: 0,
-    },
+  focus: {
+    closeFocusM: 0.25,
+    description: "Inner focus: L8-L13 (G2F) moves objectward by 1.69 mm; G1 and L14 remain fixed.",
+    // (moved from publishedStations) The close-focus row is source-tabulated.
+    published: [1],
   },
 
-  var: {
-    STO: [6.35, 4.66],
-    "25A": [4.78, 6.47],
+  gaps: { STO: { label: "D14", values: [[6.35, 4.66]] }, "25A": { label: "D25", values: [[4.78, 6.47]] } },
+
+  aperture: {
+    nominalFNumber: 1.85,
+    fStops: [1.85, 2, 2.8, 4, 5.6, 8, 11, 16],
+    maxFNumber: 16,
+    blades: 9,
+    bladeRoundedness: 1,
   },
-  varLabels: [
-    ["STO", "D14"],
-    ["25A", "D25"],
-  ],
 
   groups: [
     { text: "G1", fromSurface: "1A", toSurface: "13A" },
@@ -325,17 +376,7 @@ const LENS_DATA = {
     { text: "D2", fromSurface: "17", toSurface: "19" },
   ],
 
-  closeFocusM: 0.25,
-  // The close-focus row is source-tabulated.
-  publishedStations: { focus: [1] },
-  focusDescription: "Inner focus: L8-L13 (G2F) moves objectward by 1.69 mm; G1 and L14 remain fixed.",
-
-  nominalFno: 1.85,
-  fstopSeries: [1.85, 2, 2.8, 4, 5.6, 8, 11, 16],
-  maxFstop: 16,
-
-  scFill: 0.56,
-  yScFill: 0.58,
-} satisfies LensDataInput;
+  layout: { scFill: 0.56, yScFill: 0.58 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

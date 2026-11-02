@@ -10,7 +10,7 @@
 **Inventors:** Hiroki Saito; Shunsuke Miyagishima  
 **Applicant:** FUJIFILM Corporation, Tokyo, Japan  
 **Title:** Imaging Lens and Imaging Apparatus  
-**Embodiment analyzed:** Example 1, Tables 1–4 and Fig. 1
+**Example details:** Tables 1–4 and Fig. 1
 
 Example 1 is the closest public patent embodiment found for the Fujinon GF23mmF4 R LM WR. The identification should be treated as a strong production-candidate match rather than a literal production prescription, because the patent example has 14 glass elements in 11 air-separated groups while Fujifilm's production specification lists 15 elements in 12 groups.[^fuji-spec] The prescription is nevertheless highly convergent with the production lens.
 

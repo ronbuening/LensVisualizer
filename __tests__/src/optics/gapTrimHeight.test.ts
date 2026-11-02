@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { gapTrimHeight, renderSag } from "../../../src/optics/optics.js";
+import { gapTrimHeight, renderSag } from "../../../src/optics/diagram/runtimeSurface.js";
 import type { RuntimeLens, AsphericCoefficients } from "../../../src/types/optics.js";
 
 /**

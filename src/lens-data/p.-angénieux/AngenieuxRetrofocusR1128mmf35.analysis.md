@@ -8,7 +8,7 @@
 **Inventor:** Pierre Angénieux
 **Applicant:** Pierre Angénieux (inventor-applicant; no organization named, so `patentAssignees` is empty)
 **Title:** *Improvements in Wide-Angle Objectives*
-**Embodiment analyzed:** Sole numerical example, designated Example 1 in the data set
+**Example details:** designated Example 1 in the data set
 
 The prescription is correlated to the P. Angénieux Retrofocus Type R11 28mm f/3.5 selected in the job card. The patent does not use the commercial designation “Type R11,” so the correlation is not presented as an explicit manufacturer assignment within the patent. It rests on convergent evidence: the 1952–1954 filing history, the six-element wide-angle construction, the deliberately extended rear clearance, the 28mm production focal length, and Angénieux’s own historical identification of a 28mm f/3.5 Retrofocus introduced in 1953 with a published 75° field [1, pp. 1–5; 2].
 

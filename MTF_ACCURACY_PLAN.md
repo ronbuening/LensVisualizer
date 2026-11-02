@@ -48,14 +48,14 @@ investigation and are replaced by regenerated ones as stages land.
 
 | Assumption | Where |
 |---|---|
-| Uniform object-space launch lattice, equal flux per cell (exact for a collimated beam) | `src/optics/analysis/mtfTracing.ts` |
-| Geometric OTF as a weighted Fourier sum of landing points | `src/optics/analysis/mtfMath.ts` |
-| Sagittal = frequency along image x, tangential = along image y; same as optiland and every maker's S/M | `src/optics/analysis/mtf.ts` |
-| Complex OTFs summed across wavelengths before the modulus, one reference point | `src/optics/analysis/mtfMath.ts` |
-| Footprint traced through the real clear apertures | `src/optics/analysis/mtfFootprint.ts` |
-| Field as a fraction of the format half-diagonal in real chief-ray height | `src/optics/analysis/mtfFields.ts` |
-| Sampling convergence (128 → 256 changes ≤ 0.01) and the best-axial search (its optimum in 52 of 52) | `src/optics/analysis/mtfFocus.ts` |
-| Photopic five-line spectrum: monochromatic, C/d/F and broad white all fit charts worse | `src/optics/analysis/mtfSupport.ts` |
+| Uniform object-space launch lattice, equal flux per cell (exact for a collimated beam) | `src/optics/analysis/mtf/mtfTracing.ts` |
+| Geometric OTF as a weighted Fourier sum of landing points | `src/optics/analysis/mtf/mtfMath.ts` |
+| Sagittal = frequency along image x, tangential = along image y; same as optiland and every maker's S/M | `src/optics/analysis/mtf/mtf.ts` |
+| Complex OTFs summed across wavelengths before the modulus, one reference point | `src/optics/analysis/mtf/mtfMath.ts` |
+| Footprint traced through the real clear apertures | `src/optics/analysis/mtf/mtfFootprint.ts` |
+| Field as a fraction of the format half-diagonal in real chief-ray height | `src/optics/analysis/mtf/mtfFields.ts` |
+| Sampling convergence (128 → 256 changes ≤ 0.01) and the best-axial search (its optimum in 52 of 52) | `src/optics/analysis/mtf/mtfFocus.ts` |
+| Photopic five-line spectrum: monochromatic, C/d/F and broad white all fit charts worse | `src/optics/analysis/mtf/mtfSupport.ts` |
 
 ### Wrong or unvalidated
 
@@ -67,7 +67,6 @@ investigation and are replaced by regenerated ones as stages land.
 | H | Clear apertures inferred from drawings, undisclosed | −5 % semi-diameter ≈ +0.02 / +0.04 off axis | 8 |
 | I | One axial focus plane; field foci sit 20–125 µm away | 0.005 mean; up to 0.28 at 30 lp/mm tangential on four lenses | 8 |
 | K | 125 lenses trace more than 3 % from their label on axis: a rim on 116, a trace failure or the iris itself on the rest (`npm run audit:aperture`) | Traced aperture differs from the label | queue |
-| M | Stop-down scales the iris radius linearly with 1/N instead of re-tracing the marginal ray | Median 1.35 % too open at f/8 | deferred |
 | L | No external validation of a real lens | — | optional tool |
 
 ### Cannot be known — surface, never fit

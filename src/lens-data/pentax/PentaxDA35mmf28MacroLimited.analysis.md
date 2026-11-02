@@ -10,7 +10,7 @@
 **Inventor:** Koji Kato  
 **Assignee:** Hoya Corporation  
 **Title:** Macro Lens System  
-**Embodiment analyzed:** Example 1 (Table 1; FIG. 1)
+**Example details:** Table 1; FIG. 1
 
 The prescription transcribed here is Example 1 of US 7,715,118 B2, a Hoya-assigned family of compact macro lenses for digital single-lens-reflex cameras. The patent states the design problem directly: a digital SLR can use a film-era SLR mount and therefore still needs a long flange-back distance, while the smaller digital image format calls for a shorter focal length; the lens must also reach approximately 1:1 magnification while controlling spherical aberration and distortion from infinity to close focus.
 

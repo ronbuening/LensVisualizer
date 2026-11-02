@@ -41,3 +41,79 @@ Follow-up validation: typecheck, formatting, lint and all 2,717 tests in 276 fil
   (1.55671 / 58.68), both coordinate-compatible; no θgF is printed.
 - Paraxial check against the previous data: EFL identical and defocus unchanged (max difference 7e-15 mm) at all three
   zoom states, since the old 1.668975685986314 mm fold was computed exactly. Physical track grows by 0.281 mm.
+
+## 2026-10-27 — Rimmer localization audit (asphere data)
+
+Patent: local US 2013/0314585 A1, Example 3. Read PDF page 22, Tables 9–12 at 220 dpi,
+Table 10 again at 400 dpi; page 19, paragraphs 0059–0061 at 300 dpi; page 10, Figure 9
+and pages 11–13, Figures 10–12 at 220 dpi, with the GR2/GR3 rims enlarged at 400 dpi.
+
+| Field / location | Before | After | Evidence / decision |
+|---|---|---|---|
+| All numerical prescription fields and semi-diameters | Existing values | Unchanged | Tables 9/10/12 match; no rim violates the turnover or on-axis-beam rules. |
+| Data header | No localization qualification | Published fields, remaining failure and mask caveat recorded | Table 11 and paragraph 0102, PDF p. 22; exact-ray probes. |
+| Analysis | Coefficient/SD tables and general source-plot description | Added field-boundary, localization and source-plot comparison section | Source and model evidence kept separate. |
+
+### Printed prescription and asphere review
+
+- Table 10 rows 1, 2, 6, 7, 12, 13, 14 and 15: every sign, mantissa, exponent and K
+  matches the data and analysis coefficient tables. All K values are zero; only A4, A6,
+  A8 and A10 are printed. Paragraphs 0060–0061 use the standard `(1+K)` sag equation,
+  ordinary even powers and no normalization; there is no missing odd term or refit.
+- Table 9 rows 1–20: every stored R/d/nd/νd agrees. Row 5 is the omitted inactive
+  zero-thickness flat air plane; row 11 is STO, with D10=2.590 and D11=0.650 mm at wide.
+  Rows 16–19 retain both SG plates and their physical gaps; row 20 is IMG.
+- Table 12: D4=25.677/11.421/2.700, D11=0.650/1.952/1.070,
+  D13=5.953/14.438/29.463 and D15=5.065/4.371/3.625 mm all agree.
+- Table 11: f=11.007/19.615/35.426 mm and Fno=1.860/3.469/5.070 agree.
+  The source half-fields are 32.979/21.631/12.525 degrees, whereas the format-based tab
+  reaches 41.63/22.76/12.77 degrees. No separate image-height, back-focus or total-track
+  summary is printed in Tables 9–12; plate-to-image and physical track follow Table 9.
+
+### Rims and ray behavior
+
+Figure 9 publishes no effective-diameter column or mask opening. The existing front
+12/10 and 11/11 mm rims retain the earlier flange-excluding figure audit. The GR2/GR3
+optical outlines support retaining the present approximate rims; no greater-than-25%
+figure discrepancy was established. Triage finds 1A's turnover near 14.27 mm beyond its
+12.0 mm rim and 15A's near 10.35 mm beyond its 9.8 mm rim. Other aspheres have no detected
+turnover within the scanned range. The 6A rim slope is 53.2 degrees at 8.6 mm; no cap is
+required. The on-axis beam clears the authored rims at all published zoom stations.
+
+At field 29.74 degrees, upper meridional pupil fractions 0.80/0.85/0.90/0.95/1.00 give
+image-plane errors 0.278/0.483/0.762/1.117/1.544 mm. This is smooth peripheral growth,
+without a turnover crossing. The final ray reaches 6A at 8.13 mm and 13A at 2.66 mm.
+The on-axis marginal ray needs 13A radius 3.44 mm, so a smaller centered circular mask
+would sacrifice the stated f/1.86 beam. The undimensioned mask in paragraph 0102 remains
+omitted and is not claimed as a demonstrated fix.
+
+### Source plots and localization result
+
+Figures 10–12 use ±0.2 mm spherical/field-curvature axes and ±15% distortion axes.
+Relative marginal on-axis LSA is −0.024/+0.066/+0.091 mm at wide/middle/tele, with the
+same sign and scale as the d-line plots. At the published half-fields the traced
+T/S shifts are −0.027/+0.010, −0.227/−0.097 and −0.240/−0.182 mm; distortion is
+−11.80/−3.24/−1.14%. The plot trends agree qualitatively, but Figure 10's approximate
+edge T/S values (−0.15/−0.02 mm) are not quantitatively reproduced. The format-corner
+wide field gives T=−0.859 mm and distortion −18.88%, outside Figure 10's plotted scales.
+This evidence does not isolate a printed coefficient error or a unique replacement.
+
+The tab result is unchanged: wide fields 29.7 and 32.7 degrees refuse RI, with maxDev
+0.0601 and 0.0551. All other sampled wide fields have RI figures, including the more
+strongly vignetted outer fields. A diagnostic frozen-wide copy capped to Table 11's
+32.979 degrees still refuses RI at 26.983/29.981/32.979 degrees, maxDev
+0.05017/0.06099/0.05207. Capping the field is therefore not a localization repair.
+All sampled middle and telephoto fields have RI figures; their maximum deviations are
+below 0.0007. Surface validation accepts the retained geometry, the aperture audit finds
+no clipped stated on-axis beam, and the image-circle audit finds no undersized surface.
+Those checks do not establish localization or patent-edge performance.
+
+### Follow-ups
+
+Verdict: model limitation, with the in-field localization cause unresolved. Preserve the
+printed prescription and estimated rims. A zoom-aware source-field boundary needs shared
+schema/analysis work: rectilinear projection bounds currently accept only single values,
+so setting the wide angle globally would overextend the other zoom stations. Investigate
+ray aiming/localization and the source's wide field/plot conventions; obtain independent
+mask dimensions before modeling a blocker. No source erratum is asserted or corrected,
+and no queue or shared engine file was edited in this lens-scoped assignment.

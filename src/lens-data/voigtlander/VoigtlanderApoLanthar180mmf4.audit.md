@@ -1,24 +1,17 @@
-# Audit Log - Voigtlander APO-LANTHAR 180mm f/4 SL Close Focus
+# Audit Log — Voigtländer APO-LANTHAR 180mm f/4 SL Close Focus
 
-Patent: JP 2003-270529 A
+Patent: JP 2003-270529 A, Example 1 / Table 1 / Figure 1.
 
-## 2026-06-23 - Full Voigtländer local-patent sweep
+## Retained source decisions
 
-- Local patent source: `patents/JP_2003270529_A.pdf` (untracked local file).
-- Re-rendered the image-only PDF and visually rechecked Example 1, Table 1. The stored R, d, nd, and vd values match the patent table.
-- The patent table does not publish semidiameters or dPgF/line-index rows. Existing SDs therefore remain program-derived display apertures rather than patent-published clear apertures.
-- No data prescription changes were needed. Synced the stale data comment and analysis text from the prior `S-LAH51` / `S-TIH4` labels to the already-audited `S-LAH53` / `S-TIH10` glass labels.
+- The selected example has nine elements, seven air-separated groups and three functional groups, with two cemented doublets and no aspheres. All R/d, source d-line coordinates and group/stop interpretation remain unchanged. The inferred stop divides the printed 19.04 mm gap into 9.50/9.54 mm. Source glass names are absent. Earlier coordinate corrections selected S-LAH60 for 1.834/37.3, S-LAH53 for 1.8061/40.7 and S-TIH10 for 1.72825/28.3; these remain compatible coefficient proxies.
+- Example 1 is retained at literal patent scale. Paragraph 0012 prints f = 197 mm, F4 and half-field 6.2°; the rounded prescription computes about 197.9 mm. Existing numeric focal metadata remains unchanged, with this residual explicit. Example 2 at 178 mm is distinct and may correlate more closely to the retail 180 mm lens. No dimensions or media are transplanted from that embodiment.
+- The close BF 130.39 mm is an inferred unit-focus endpoint based on the marketed 1.2 m distance, not a published finite spacing. Literal R/d and current focus, aperture, group and tolerance controls remain unchanged. No source finite-conjugate certification is asserted.
 
-## 2026-05-20 - Glass relabel pass
+## 2026-10-30 — Fresh F-mount source, rim and glass review
 
-- Opened the data, analysis, and local patent PDF `patents/JP_2003270529_A.pdf`; local text confirms the queued nd/vd rows.
-- Updated surfaces 10 and 15 from `S-LAH51 (OHARA)` to `S-LAH53 (OHARA)` for nd=1.80610, vd=40.70.
-- Updated surface 11 to `S-TIH10 (OHARA)` for nd=1.72825, vd=28.30.
-- The lens is now fully covered by trusted Sellmeier data.
-
-## 2026-07-29 - Remaining catalog-coordinate correction
-
-- Rechecked Example 1 / Table 1 in local `patents/JP_2003270529_A.pdf`; S7 remains 1.83400 / 37.30 and its
-  R/d values are unchanged.
-- S7 `S-LAH55 (OHARA)` -> `S-LAH60 (OHARA)`, the exact same-vendor coordinate family. Synchronized the L21
-  element text, cemented-pair discussion, glass table, Petzval discussion, and source list.
+- Reopened `patents/JP_2003270529_A.pdf` (SHA-256 `b610fce1971b78061652db9b9a529f693324ee32edfba883568b893fafc71698`). Table 1 on PDF p.2 confirms all nine nd/νd pairs; paragraph 0011 on p.3 explicitly defines d587.6 nm. Figure 1 on p.4 was inspected as its native 200 dpi raster and at 600 dpi. No source C/F/g indices, actual partial ratio or named supplier.
+- All nine compatible OHARA coefficient curves remain qualified spectral proxies. Paragraph 0008 and Claim 2 specify ultra-low-dispersion glass with Abbe ≥70 in the front group; they do not supply actual anomalous partial ratios. Three APD flags remain inferred. Remove unsupported exact catalog ΔPgF notes and qualify supplier/melt identity throughout the current glass description.
+- Baseline 23 mm front caps clip the stated F4 beam by 6.5%. The beam diagnostic requires S1/S2 ≥24.5, S3/S4 ≥23.1 and S6 ≥20.1 mm. Figure 1's native first-to-last vertex span is about 334 pixels over the literal 69.98 mm track, giving 4.77 px/mm. Front-body half-heights around 129/121/111 pixels imply about 27.0/25.3/23.3 mm, with roughly 0.3–0.5 mm drawing uncertainty. Adopt conservative continuous paired caps S1/S2 =25, S3/S4 =24 and S5/S6 =23 mm, preserving all literal sphere and gap constraints. These source-model dimensions cannot be certified as clearance through the retail lens's 49 mm filter.
+- Other heights remain. Short compound-end steps lack reliable native endpoint evidence for numeric cuts; no opaque internal land or resin wing is added. Canonical surface and full inferred-cut checks pass. Nine actual focus/zoom SVG views were inspected: connected compounds, finite paths and zero hidden trim. Native F4 is now iris-limited; image-circle finds zero undersized surfaces and the centered format chief clears.
+- Matched 16-point stop-lattice samples retain 6,720 transmitted rays, lose 0 and gain 1,020. These are finite sample counts, not flux or a continuum guarantee. All R/d, nd/νd, references, stop, focus, aperture and tolerances are invariant. Source/retail correlation, inferred rims/iris/focus and historical spectrum remain qualified.

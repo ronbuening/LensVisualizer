@@ -156,3 +156,37 @@ it. Group spacing at 71.4 mm follows the figure.
   for the figure-based semi-diameter audit.
 - The authored `STO` semi-diameter is 16.59 mm, while the engine's wide-open fixed iris is 17.3607 mm. The `STO` row
   and the sentence in the analysis note that describes the 16.59 mm derivation are as they were.
+
+## 2026-10-29 — F-mount surface and glass reinspection
+
+Direct original-source review: `patents/US8416506.pdf`, Example6 Figure26 on PDF page28 (600dpi rotated full/cropped details), Table6 on page52 with continuation on page53; d-line definitions page46. Inspected all21elements and five cemented boundaries. Figure raster is300dpi; approximately2943px across the192.488mm first-to-last vertex span gives15.29px/mm at600dpi,7.64nativepx/mm.
+
+S9/L21 has a small resolved rear concave seat: source cap/edge radial spans approximately283/305px at600dpi, q≈0.927±0.013, with153native edge pixels (one-pixel q bound±(1+q)/edge). On the existing20.4mm outer cap, measuredq suggests18.91mm cap; trial depth5.91mm gives18.908843mm. Full sampled wide-open beams reach20.400000mm at zoom0/focus0.30/field20.32758°. Even moving the cut outward requires at least20.4+0.0612=20.4612mm to preserve the margin, beyond the existing20.4mm outer radius. The cut is rejected. Extending the land instead to S8’s existing25mm height would overstate the source’s approximately20mm outer rim; none is invented. Other concave faces have no resolved cap-end seat. The source L25 step is cemented and cannot use an air-face feature. Optical SDs, source R/d, focus/zoom/aperture and existing gapSagFrac0.96 stay unchanged.
+
+All21 source nd/νd pairs agree with Table6 and retain d-line587.6nm. The printed table headers transpose nd/νd, but the general definitions and numerical columns unambiguously place Abbe values fourth and indices fifth. No source partial-dispersion or extra spectral-index table is published. Seven ED/APD annotations retain their qualified inference from catalog class. Current21/21curve coverage is confirmed, including J-LAFH3: removed its obsolete ‘coefficients unavailable’ label and synchronized all current public occurrences. Supplier/melt identity stays unspecified. Catalog θgF0.5386 for J-FKH1 implies about+0.03360 under the runtime normal line at sourceν82.52; no vendor-baseline departure is copied as an override. Public prose also replaces the absent literal16.59mm STO and legacy asph-object claims with current runtime semantics.
+
+| Medium | Source nd / νd | Current coefficient-backed proxy |
+|---|---|---|
+| L11 | 1.795041 / 28.69 | J-LAFH3 |
+| L12 | 1.497820 / 82.52 | J-FKH1 |
+| L13 | 1.497820 / 82.52 | J-FKH1 |
+| L14 | 1.497820 / 82.52 | J-FKH1 |
+| L21 | 1.816000 / 46.62 | S-LAH59 |
+| L22 | 1.487490 / 70.41 | N-FK5 |
+| L23 | 1.846660 / 23.78 | S-TIH53 |
+| L24 | 1.805181 / 25.43 | S-TIH6 |
+| L25 | 1.816000 / 46.62 | S-LAH59 |
+| L31 | 1.743997 / 44.78 | S-LAM2 |
+| L32 | 1.846660 / 23.78 | S-TIH53 |
+| L33 | 1.603001 / 65.46 | S-PHM53 |
+| L41 | 1.846660 / 23.78 | S-TIH53 |
+| L51 | 1.497820 / 82.52 | J-FKH1 |
+| L52 | 1.497820 / 82.52 | J-FKH1 |
+| L53 | 1.728250 / 28.46 | S-TIH10 |
+| L54 | 1.579570 / 53.71 | N-BALF4 |
+| L55 | 1.804400 / 39.57 | S-LAH63 |
+| L56 | 1.497820 / 82.52 | J-FKH1 |
+| L57 | 1.497820 / 82.52 | J-FKH1 |
+| L58 | 1.850260 / 32.35 | J-LASF021 |
+
+Selected coefficient curves remain unchanged and qualified spectral proxies; source indices and actual source partial dispersion remain authoritative. No tolerance was relaxed. Absolute-path candidate surface, image-circle and aperture audits pass; resolver/`assertCatalogConsistent()` pass. Nine actual native SVG focus/zoom states were rendered and visually inspected, with zero hidden rim trim. Shared dispersion/partial-dispersion suites passed2files/93tests for this wave. Coordinator records full gates and commit integration.

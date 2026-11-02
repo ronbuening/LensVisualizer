@@ -10,11 +10,14 @@
  *                     it — watch for the slope changing sign, which is the
  *                     surface turning over. Never take an `sd` past that height.
  *
- *   --sd <label>=<mm> Run the full validator with those semi-diameters
- *                     substituted (edge thickness, SD ratio, rim slope, conic
- *                     height, cross-gap sag intrusion) without touching the file.
+ *   --sd <label>=<mm> Run the full validator and canonical ingest, as buildLens
+ *                     runs them, with those semi-diameters substituted (edge
+ *                     thickness, SD ratio, rim slope, conic height, cross-gap
+ *                     sag intrusion) without touching the file.
  *
- * With no flags it validates the file as stored.
+ * With no flags it validates the V2 file as stored through canonical ingest. A file that validates is then
+ * traced for the rim-cut beam rule: an inferred cut may not stop any ray of the wide-open beam.
+ * A file ingest refuses prints the refusal's issues as ERR lines and exits 1.
  *
  * Usage:
  *   node --import ./scripts/ts-js-specifier-hook-register.mjs \
@@ -24,15 +27,30 @@
  * with a ".js" specifier, which plain Node cannot resolve to the ".ts" source.
  */
 
-import { join, resolve } from "node:path";
+import { join, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
-const { conicPolySag, sag, sagSlopeRaw } = await import(
-  pathToFileURL(join(ROOT, "src/optics/internal/surfaceMath.ts")).href
+const { conicPolySag, sag, sagSlopeRaw } = await import(pathToFileURL(join(ROOT, "src/optics/geometry.ts")).href);
+const { validateCanonicalLens, validateRimCutBeams } = await import(
+  pathToFileURL(join(ROOT, "src/optics/validation.ts")).href
 );
-const validateLensData = (await import(pathToFileURL(join(ROOT, "src/optics/validateLensData.ts")).href)).default;
-const LENS_DEFAULTS = (await import(pathToFileURL(join(ROOT, "src/lens-data/defaults.ts")).href)).default;
+const { default: buildLens, ingestLens } = await import(pathToFileURL(join(ROOT, "src/optics/buildLens.ts")).href);
+const { ASPHERIC_COEFFICIENT_SCHEMA } = await import(pathToFileURL(join(ROOT, "src/types/asphericSchema.ts")).href);
+
+/**
+ * The coefficients the engine traces for a canonical asphere. The canonical form is sparse (a zero term, K
+ * included, is absent), so each required term it leaves out is 0, as the engine's construction data fills it.
+ */
+function denseAsphere(sparse) {
+  if (!sparse) return undefined;
+  return Object.fromEntries(
+    ASPHERIC_COEFFICIENT_SCHEMA.flatMap(({ key, required }) => {
+      const value = sparse[key] ?? (required ? 0 : undefined);
+      return value === undefined ? [] : [[key, value]];
+    }),
+  );
+}
 
 const argv = process.argv.slice(2);
 const dataFile = argv[0];
@@ -44,25 +62,65 @@ if (!dataFile) {
 }
 const lens = (await import(pathToFileURL(resolve(dataFile)).href)).default;
 
+/** Print each error as an ERR line and set the exit code: 1 when there is any. */
+function report(errors) {
+  if (!errors.length) console.log("OK — no validation errors");
+  else for (const error of errors) console.log(`ERR ${error}`);
+  process.exitCode = errors.length ? 1 : 0;
+}
+
+/**
+ * Canonical prescription of a V2 file, with schema defaults. A refusal is returned as its issues.
+ */
+function ingestView(file) {
+  try {
+    return {
+      view: ingestLens(file, {
+        path: relative(join(import.meta.dirname, ".."), resolve(dataFile)).replaceAll("\\", "/"),
+      }).prescription,
+      errors: [],
+    };
+  } catch (error) {
+    if (!Array.isArray(error?.issues)) throw error;
+    return { view: null, errors: error.issues };
+  }
+}
+
+/* Ingest first: a file ingest refuses has nothing to scan or validate. */
+const stored = ingestView(lens);
+if (!stored.view) {
+  report(stored.errors);
+  process.exit();
+}
+
 /* ── --scan: how far can this surface be drawn? ── */
 const scanIndex = argv.indexOf("--scan");
 if (scanIndex >= 0) {
   const label = argv[scanIndex + 1];
-  const surface = lens.surfaces.find((candidate) => candidate.label === label);
+  const view = stored.view;
+  const surface = view.surfaces.find((candidate) => candidate.label === label);
   if (!surface) throw new Error(`no surface labelled "${label}"`);
-  const asphere = lens.asph?.[label];
-  const maxHeight = Number(argv[scanIndex + 2] ?? surface.sd * 2);
+  const asphere = denseAsphere(surface.asphere);
+  const radius = surface.R === "flat" ? 1e15 : surface.R;
+  const given = argv[scanIndex + 2];
+  /* A derived stop stores no radius: unless a height is given, its scan runs to twice the radius the engine derives. */
+  const derived =
+    surface.sd === undefined && given === undefined
+      ? buildLens(view).S.find((candidate) => candidate.label === label).sd
+      : undefined;
+  const maxHeight = Number(given ?? (surface.sd ?? derived) * 2);
+  const storedSd = surface.sd ?? (derived === undefined ? "none" : `none, derived ${derived.toFixed(3)}`);
 
   console.log(
-    `${lens.name}  surface ${label}  R=${surface.R}  sd(stored)=${surface.sd}  ${asphere ? "aspheric" : "spherical"}`,
+    `${view.name}  surface ${label}  R=${radius}  sd(stored)=${storedSd}  ${asphere ? "aspheric" : "spherical"}`,
   );
   console.log("     h      sag(mm)   departure(µm)     slope   angle°");
   let previousSlope = null;
   for (let step = 1; step <= 20; step++) {
     const height = (maxHeight * step) / 20;
-    const surfaceSag = conicPolySag(height, surface.R, asphere);
-    const departure = (surfaceSag - sag(height, surface.R)) * 1000;
-    const slope = sagSlopeRaw(height, surface.R, asphere);
+    const surfaceSag = conicPolySag(height, radius, asphere);
+    const departure = (surfaceSag - sag(height, radius)) * 1000;
+    const slope = sagSlopeRaw(height, radius, asphere);
     const turnedOver = previousSlope !== null && Math.sign(slope) !== Math.sign(previousSlope);
     previousSlope = slope;
     console.log(
@@ -91,14 +149,21 @@ for (let index = 0; index < argv.length; index++) {
   }
 }
 
-const candidate = structuredClone({ ...LENS_DEFAULTS, ...lens });
+/* Check the substituted semi-diameters through V2 ingest and canonical validation, as buildLens does. */
+const candidate = structuredClone(lens);
 for (const surface of candidate.surfaces) if (overrides.has(surface.label)) surface.sd = overrides.get(surface.label);
 for (const label of overrides.keys()) {
   if (!candidate.surfaces.some((surface) => surface.label === label)) console.log(`!! no surface labelled "${label}"`);
 }
 
-const errors = validateLensData(candidate);
+const { view, errors: refused } = ingestView(candidate);
+const ingested = view
+  ? ingestLens(candidate, {
+      path: relative(join(import.meta.dirname, ".."), resolve(dataFile)).replaceAll("\\", "/"),
+    })
+  : null;
+const errors = ingested ? validateCanonicalLens(ingested) : refused;
+/* An inferred rim cut is traced against every wide-open beam once the file validates. */
+if (ingested && errors.length === 0) errors.push(...validateRimCutBeams(buildLens(ingested.prescription)));
 if (overrides.size) console.log(`validating with ${[...overrides].map(([l, v]) => `${l}=${v}`).join(" ")}`);
-if (!errors.length) console.log("OK — no validation errors");
-else for (const error of errors) console.log(`ERR ${error}`);
-process.exitCode = errors.length ? 1 : 0;
+report(errors);

@@ -7,7 +7,7 @@ import useOffAxisRays from "../../../../src/components/hooks/useOffAxisRays.js";
 import useOnAxisRays from "../../../../src/components/hooks/useOnAxisRays.js";
 import useRayTracing from "../../../../src/components/hooks/useRayTracing.js";
 import type { PerspectiveDiagramFan } from "../../../../src/optics/perspective/diagramFan.js";
-import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/index.js";
+import type { PerspectiveTraceContext } from "../../../../src/optics/perspective/trace.js";
 import type { ChromaticChannel, RuntimeLens } from "../../../../src/types/optics.js";
 
 const mocks = vi.hoisted(() => ({
@@ -15,7 +15,7 @@ const mocks = vi.hoisted(() => ({
   offAxisGeometry: vi.fn(),
 }));
 
-vi.mock("../../../../src/optics/perspective/diagramFan.js", async (importOriginal) => {
+vi.mock("../../../../src/optics/perspective.js", async (importOriginal) => {
   const actual = await importOriginal<typeof import("../../../../src/optics/perspective/diagramFan.js")>();
   return { ...actual, tracePerspectiveDiagramFan: mocks.traceFan };
 });
@@ -24,9 +24,14 @@ vi.mock("../../../../src/components/hooks/offAxisRayUtils.js", () => ({
   computeOffAxisTraceGeometry: mocks.offAxisGeometry,
 }));
 
+vi.mock("../../../../src/optics/analysis.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/optics/analysis.js")>();
+  return { ...actual, computeLongitudinalChromaticFocus: () => null, stateWithZ: (state: unknown) => state };
+});
+
 vi.mock("../../../../src/optics/optics.js", async (importOriginal) => {
   const actual = await importOriginal<typeof import("../../../../src/optics/optics.js")>();
-  return { ...actual, computeLongitudinalChromaticFocus: () => null };
+  return { ...actual, prepareRuntimeState: () => ({ z: [0], lens: {} }), stateWithZ: (state: unknown) => state };
 });
 
 const lens = {
@@ -173,8 +178,9 @@ describe("perspective-control diagram ray hooks", () => {
       }),
     );
 
-    expect(mocks.traceFan).toHaveBeenCalledTimes(4);
-    expect(mocks.traceFan.mock.calls.map(([request]) => request.channel)).toEqual(["R", "B", "R", "B"]);
+    // Off axis, the hidden channels are traced too, for the fan's fraction; only the shown ones are drawn.
+    expect(mocks.traceFan).toHaveBeenCalledTimes(6);
+    expect(mocks.traceFan.mock.calls.map(([request]) => request.channel)).toEqual(["R", "B", "R", "G", "B", "V"]);
     expect(mocks.traceFan.mock.calls[0]?.[0].sceneDirectionCamera).toEqual([0, 0, 1]);
     expect(result.current.chromaticRays.filter((ray) => ray.axis === "onAxis")).toHaveLength(
       lens.rayFractions.length * 2,

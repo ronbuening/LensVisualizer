@@ -1,15 +1,48 @@
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import {
+  existsSync,
+  lstatSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  realpathSync,
+  renameSync,
+  writeFileSync,
+} from "node:fs";
+import { basename, dirname, isAbsolute, join, relative, sep } from "node:path";
 import {
   combineFreshnessEntries,
   getFirstGitFileFreshness,
   getFirstGitFileFreshnessAsync,
   mapLimit,
 } from "./build-metadata-lib.mjs";
+import { evaluateLensDataSource, readLensIdentity } from "./lens-data-ast.mjs";
+import { runConversion } from "./lens-data-convert/cli.mjs";
+import { loadPrescriptionIngest } from "./lens-summaries.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 
-/** Derive a URL-safe maker slug from a maker field or lens display name. */
+/**
+ * A maker slug names a folder under src/lens-data/ and a /makers/ route, so it must be one path segment: it starts
+ * with a letter or digit, holds only letters, marks, digits, ".", "-" and "_", and never contains "..".
+ */
+const SAFE_MAKER_SLUG = /^[\p{L}\p{N}][\p{L}\p{M}\p{N}._-]{0,79}$/u;
+
+function isSafeMakerSlug(slug) {
+  return SAFE_MAKER_SLUG.test(slug) && !slug.includes("..");
+}
+
+/** Keep a safe first word as it is; reduce anything else to its letters and digits joined by "-". */
+function safeMakerSlug(word) {
+  if (isSafeMakerSlug(word)) return word;
+  const cleaned = word
+    .replace(/[^\p{L}\p{M}\p{N}]+/gu, "-")
+    .replace(/^[-\p{M}]+/u, "")
+    .slice(0, 80)
+    .replace(/-+$/, "");
+  return isSafeMakerSlug(cleaned) ? cleaned : "unattributed";
+}
+
+/** Derive a URL-safe, single-segment maker slug from a maker field or lens display name. */
 function deriveMakerSlug(nameOrMaker, makerField) {
   if (makerField === null) return "unattributed";
   nameOrMaker = makerField || nameOrMaker;
@@ -17,29 +50,19 @@ function deriveMakerSlug(nameOrMaker, makerField) {
   for (const { prefix, slug } of MAKER_PREFIXES) {
     if (upper.startsWith(prefix)) return slug;
   }
-  return nameOrMaker.split(/\s+/)[0].toLowerCase();
+  return safeMakerSlug(nameOrMaker.split(/\s+/)[0].toLowerCase());
 }
 
-/** Extract the `key`/`name`/`maker` tuple from a lens data file using regexes. */
-function extractLensIdentityContent(content) {
-  const keyMatch = content.match(/(?:\bkey|"key"|'key')\s*:\s*"([^"]+)"/);
-  const publishedAtMatch = content.match(/(?:\bpublishedAt|"publishedAt"|'publishedAt')\s*:\s*"([^"]+)"/);
-  const nameMatch = content.match(/(?:\bname|"name"|'name')\s*:\s*"([^"]+)"/);
-  const makerMatch = content.match(/(?:\bmaker|"maker"|'maker')\s*:\s*"([^"]+)"/);
-  const visibleFalseMatch = content.match(/(?:\bvisible|"visible"|'visible')\s*:\s*false\b/);
-  const lensMountsMatch = content.match(/(?:\blensMounts|"lensMounts"|'lensMounts')\s*:\s*\[([^\]]*)\]/m);
-  const imageFormatMatch = content.match(/(?:\bimageFormat|"imageFormat"|'imageFormat')\s*:\s*"([^"]+)"/);
-  const lensMountIds = lensMountsMatch ? [...lensMountsMatch[1].matchAll(/"([^"]+)"/g)].map((match) => match[1]) : [];
-
-  return {
-    key: keyMatch ? keyMatch[1] : null,
-    publishedAt: publishedAtMatch ? publishedAtMatch[1] : null,
-    name: nameMatch ? nameMatch[1] : null,
-    maker: makerMatch ? makerMatch[1] : /(?:\bmaker|"maker"|'maker')\s*:\s*null\b/.test(content) ? null : undefined,
-    lensMountIds,
-    imageFormatId: imageFormatMatch ? imageFormatMatch[1] : null,
-    visible: visibleFalseMatch ? false : true,
-  };
+/**
+ * Read the identity fields of a V2 lens data file from its source, without running it.
+ *
+ * @param {string} content - the file's text
+ * @param {string} [fileName] - its path, for messages
+ * @returns the identity fields; every one empty when the file exports nothing by default
+ * @throws when the file's default export uses a form outside the lens-data literal subset
+ */
+function extractLensIdentityContent(content, fileName) {
+  return readLensIdentity(evaluateLensDataSource(content, fileName));
 }
 
 /** Explicit publication timestamps distinguish replacement models from inherited file history. */
@@ -64,9 +87,9 @@ function applyPublicationDate(freshness, publishedAt) {
   return result;
 }
 
-/** Extract the key/name/maker tuple from a lens data file on disk. */
+/** Read the identity fields of a lens data file on disk. */
 function extractLensIdentity(filePath, { readFile = readFileSync } = {}) {
-  return extractLensIdentityContent(readFile(filePath, "utf-8"));
+  return extractLensIdentityContent(readFile(filePath, "utf-8"), filePath);
 }
 
 /** Convert a relative `*.data.ts` path to the matching `*.analysis.md` path. */
@@ -74,12 +97,22 @@ function analysisRelativePathForDataPath(relativeDataPath) {
   return relativeDataPath.replace(/\.data\.ts$/, ".analysis.md");
 }
 
-/** Rewrite the LensDataInput import to match a file's location under src/lens-data. */
+/**
+ * Normalize type imports for organizer arrivals, including archived V1 files before conversion.
+ */
+function normalizeLensDataTypesImport(content, filePath) {
+  const relativeDepth = filePath.split("/src/lens-data/")[1]?.split("/").length ?? 1;
+  const typesDir = relativeDepth > 1 ? "../../types" : "../types";
+  return content.replace(
+    /from "\.\.\/(?:\.\.\/)?types\/(optics|lensDataV2)\.js";/g,
+    (_match, module) => `from "${typesDir}/${module}.js";`,
+  );
+}
+
+/** Apply the same import normalization after filing an accepted conversion in its destination folder. */
 function rewriteLensDataTypesImport(filePath, { readFile = readFileSync, writeFile = writeFileSync } = {}) {
   const content = readFile(filePath, "utf-8");
-  const relativeDepth = filePath.split("/src/lens-data/")[1]?.split("/").length ?? 1;
-  const expectedImport = relativeDepth > 1 ? "../../types/optics.js" : "../types/optics.js";
-  const updatedContent = content.replace(/from "\.\.\/(?:\.\.\/)?types\/optics\.js";/, `from "${expectedImport}";`);
+  const updatedContent = normalizeLensDataTypesImport(content, filePath);
 
   if (updatedContent !== content) {
     writeFile(filePath, updatedContent, "utf-8");
@@ -112,7 +145,13 @@ function collectTrackedLensRecordsByKey({
         cwd: rootDir,
         encoding: "utf-8",
       });
-      const { key } = extractLensIdentityContent(content);
+      let key;
+      try {
+        ({ key } = extractLensIdentityContent(content, repoPath));
+      } catch {
+        /* A committed file the reader cannot evaluate has no key to carry dates for. */
+        continue;
+      }
       if (!key || byKey[key]) continue;
 
       const relativeDataPath = repoPath.replace(/^src\/lens-data\//, "");
@@ -233,10 +272,27 @@ async function collectLensDataAsync({
   return lenses.filter(Boolean);
 }
 
+/** Reject an unconverted catalog before metadata creates or writes any output. */
+async function assertV2Catalog(lensDataDir) {
+  const { lensDataVersion } = await loadPrescriptionIngest();
+  const files = readdirSync(lensDataDir, { recursive: true })
+    .filter((file) => typeof file === "string" && /\.(data|teleconverter)\.ts$/.test(file))
+    .sort();
+  for (const file of files) {
+    const path = join(lensDataDir, file);
+    const version = lensDataVersion(evaluateLensDataSource(readFileSync(path, "utf-8"), path));
+    if (version !== 2) {
+      throw new Error(
+        `Catalog file ${path} is ${version === 1 ? "V1" : "an unsupported schema"}; run npm run organize:lens-data and review the conversion report.`,
+      );
+    }
+  }
+}
+
 /** Build the planned move set for any root-level lens data files that still need maker folders. */
 function collectRootLensMovePlan(lensDataDir, { exists = existsSync, readdir = readdirSync } = {}) {
   const rootFiles = readdir(lensDataDir)
-    .filter((file) => typeof file === "string" && file.endsWith(".data.ts"))
+    .filter((file) => typeof file === "string" && /\.(data|teleconverter)\.ts$/.test(file))
     .sort();
 
   return rootFiles.map((dataFile) => {
@@ -255,18 +311,78 @@ function collectRootLensMovePlan(lensDataDir, { exists = existsSync, readdir = r
         from: fromDataPath,
         to: join(targetDir, dataFile),
       },
-      analysis: exists(fromAnalysisPath)
-        ? {
-            from: fromAnalysisPath,
-            to: join(targetDir, analysisFile),
-          }
-        : null,
+      analysis:
+        dataFile.endsWith(".data.ts") && exists(fromAnalysisPath)
+          ? {
+              from: fromAnalysisPath,
+              to: join(targetDir, analysisFile),
+            }
+          : null,
     };
   });
 }
 
-/** Move any root-level lens files into their maker folders. */
-function organizeRootLensFiles(
+/** Whether anything, a dangling symlink included, sits at a path. */
+function pathEntryExists(path, lstat) {
+  try {
+    lstat(path);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Resolve a path through every symlink in its existing part. The part that does not exist yet is appended as written,
+ * so a destination folder the organizer has still to create resolves under its real parent.
+ */
+function resolveExistingPrefix(path, { realpath, lstat }) {
+  const pending = [];
+  let existing = path;
+  while (!pathEntryExists(existing, lstat)) {
+    const parent = dirname(existing);
+    if (parent === existing) break;
+    pending.unshift(basename(existing));
+    existing = parent;
+  }
+  return join(realpath(existing), ...pending);
+}
+
+/**
+ * Refuse a move plan unless each maker folder is one plain segment and every source and destination resolves inside
+ * the lens-data folder, symlinks included. The organizer runs this before it changes anything.
+ */
+function assertMovePlanContained(lensDataDir, movePlan, { realpath = realpathSync, lstat = lstatSync } = {}) {
+  const root = realpath(lensDataDir);
+  const isInside = (path) => {
+    const rel = relative(root, path);
+    return rel !== "" && rel !== ".." && !rel.startsWith(`..${sep}`) && !isAbsolute(rel);
+  };
+  for (const plannedMove of movePlan) {
+    if (!isSafeMakerSlug(plannedMove.makerSlug) || plannedMove.targetDir !== join(lensDataDir, plannedMove.makerSlug)) {
+      throw new Error(`Lens-data organizer: unsafe maker folder ${JSON.stringify(plannedMove.makerSlug)}`);
+    }
+    for (const move of [plannedMove.data, plannedMove.analysis]) {
+      if (!move) continue;
+      for (const path of [move.from, move.to]) {
+        let resolved;
+        try {
+          resolved = resolveExistingPrefix(path, { realpath, lstat });
+        } catch {
+          throw new Error(`Lens-data organizer: cannot resolve ${path}; refusing to move it`);
+        }
+        if (!isInside(resolved)) {
+          throw new Error(
+            `Lens-data organizer: ${path} resolves outside ${lensDataDir} (${resolved}); refusing to move it`,
+          );
+        }
+      }
+    }
+  }
+}
+
+/** Convert archived V1 files before moving root-level lenses and converters into their maker folders. */
+async function organizeRootLensFiles(
   lensDataDir,
   {
     exists = existsSync,
@@ -274,14 +390,13 @@ function organizeRootLensFiles(
     rename = renameSync,
     log = console.log,
     rewriteImport = rewriteLensDataTypesImport,
+    stdout = process.stdout,
+    stderr = process.stderr,
+    dryRun = false,
   } = {},
 ) {
   const movePlan = collectRootLensMovePlan(lensDataDir, { exists });
-
-  if (movePlan.length === 0) {
-    log("Lens-data organizer: no root-level lens files to move.");
-    return { movePlan, movedLensCount: 0, movedFileCount: 0 };
-  }
+  assertMovePlanContained(lensDataDir, movePlan);
 
   for (const plannedMove of movePlan) {
     if (exists(plannedMove.data.to)) {
@@ -290,6 +405,30 @@ function organizeRootLensFiles(
     if (plannedMove.analysis && exists(plannedMove.analysis.to)) {
       throw new Error(`Lens-data organizer collision: destination already exists: ${plannedMove.analysis.to}`);
     }
+  }
+
+  if (dryRun) {
+    for (const plannedMove of movePlan) {
+      for (const move of [plannedMove.data, plannedMove.analysis]) {
+        if (move) log(`Lens-data organizer (dry run): would move ${move.from} -> ${move.to}`);
+      }
+    }
+    log(`Lens-data organizer (dry run): ${movePlan.length} root-level lens files would move; nothing changed.`);
+    return { movePlan, movedLensCount: 0, movedFileCount: 0 };
+  }
+
+  const code = await runConversion({
+    argv: ["--input", lensDataDir, "--write"],
+    stdout,
+    stderr,
+    // Archived maker-folder imports must resolve at the arrival location before conversion can be accepted.
+    normalizeSource: normalizeLensDataTypesImport,
+  });
+  if (code !== 0) throw new Error("Lens-data organizer: conversion refused; see the converter diagnostics above.");
+
+  if (movePlan.length === 0) {
+    log("Lens-data organizer: no root-level lens files to move.");
+    return { movePlan, movedLensCount: 0, movedFileCount: 0 };
   }
 
   let movedFileCount = 0;
@@ -312,6 +451,8 @@ function organizeRootLensFiles(
 
 export {
   MAKER_PREFIXES,
+  assertMovePlanContained,
+  assertV2Catalog,
   analysisRelativePathForDataPath,
   collectLensData,
   collectLensDataAsync,

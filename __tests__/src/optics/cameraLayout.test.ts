@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { anchorLayoutToCamera } from "../../../src/optics/cameraLayout.js";
+import { anchorLayoutToCamera } from "../../../src/optics/state/cameraLayout.js";
 import type { LayoutResult } from "../../../src/types/optics.js";
 
 describe("camera-anchored layout", () => {

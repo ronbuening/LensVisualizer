@@ -38,3 +38,10 @@ Patent: JP H04-238311 A, Example 5
 - Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
   axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
   corner.
+
+## 2026-10-29 — Fresh shape and glass reinspection
+
+- Directly viewed local `patents/JP_H04238311_A.pdf`: Example 5 table on PDF page 6 and Figure 9 on page 10, including a 600 dpi optical-section crop. Inspected all 16 active lens faces and the rear filter faces. Exposed concave arcs meet their rims; the visible S10 shoulder is cemented. No independently resolved exposed cap-end land supports a new cut or extension, so geometry is retained.
+- Rechecked all 9 active lens media and the source-listed rear filter against the printed d-line nd/νd table. Retained all coordinates and compatible catalog curves; qualified the rear-filter J-BK7A label and removed unsupported fluorophosphate chemistry from the public analysis. The source supplies no C/F/g indices or partial dispersion; none are authored. ED-position flags remain inferred, not APD measurements.
+- Surface and image-circle audits pass; the infinity aperture remains iris-limited at f/4.110000. Actual renderer output at 3 focus x 3 secondary-control states has 10 finite element paths and zero trim diagnostics per state; inspected the SVG raster. Four cardinal full-iris marginal rays clear at infinity and the authored 6.0 m endpoint using the fixed physical iris.
+- Existing front-plate omission, corrected rear focus-table gap, and constrained production-distance focus endpoint remain disclosed. Shared dispersion, glass-resolution-parity, and partial-dispersion tests pass (3 files / 94 tests for this triad); catalog consistency passes.

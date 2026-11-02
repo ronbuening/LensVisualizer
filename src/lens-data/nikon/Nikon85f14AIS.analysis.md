@@ -14,7 +14,7 @@
 
 **Granted:** August 2, 1983
 
-**Embodiment analyzed:** Embodiment 1, Figure 1, numerical tables in columns4–5.
+**Example details:** Figure 1, numerical tables in columns4–5.
 
 The source is normalized to f=1 and uniformly scaled85× for the catalog's85mm association. It has seven elements in five air-separated components, aperture1:1.4 and field28.5°. This identifies the reproduced patent design and scale, not a measured production prescription or supplier list.
 
@@ -94,7 +94,7 @@ Independent paraxial propagation reproduces approximately85.01119mm infinity EFL
 
 ## Diagram Dimensions and Modeling Limits
 
-Figure1 was inspected from the original PDF at600dpi. Its inferred front radius is approximately33.5mm and final radius19.5mm; these replace32/31mm and22/21.5mm respectively. The remaining conservative apertures are retained where figure-sized trials violated positive edge thickness or the narrow S4–S5 air gap. A29.4mm L2 trial crossed its own surfaces, and a29mm adjoining-rim trial exceeded the allowed gap intrusion. These are recorded figure-versus-clear-aperture limitations.
+Figure1 was inspected from the original PDF at600dpi. Its inferred front radius is approximately33.5mm and final radius19.5mm; these replace32/31mm and22/21.5mm respectively. The 2026-10-29 reinspection raises only L2 rear surface 4 from 25 to 28 mm, following the continuous curved source face to the existing front-face height. This is an increase of inferred optical aperture, rather than an invented flat seat. L3b rear surface 7 retains its 20.5 mm optical cap and gains an opaque land to the approximately 22 mm source seat; the connecting edge keeps a beveled outline between that 22 mm rear seat and the existing 24.3 mm modeled front. Other conservative apertures remain where simultaneous figure-sized trials violated positive edge thickness or the narrow S4–S5 gap. The previous 29.4 mm whole-L2 and 29 mm adjoining-rim failures do not apply to the accepted S4-only change. The smaller L3 body and the beveled front of L4 remain figure-versus-model limitations; no flat land is invented across a source bevel.
 
 The stop is not separately dimensioned. Its existing approximate65% split of D7 remains an inference from the schematic, not a published axial location. Source rays and label leaders are excluded from optical-rim measurements. Adopted rims render without hidden trimming and pass surface/image-circle checks.
 

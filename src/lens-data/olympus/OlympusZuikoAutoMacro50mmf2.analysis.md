@@ -1,7 +1,7 @@
 # Olympus Zuiko Auto-Macro 50mm f/2 — Optical Analysis
 
 **Patent:** US 4,708,445 — *Large Aperture Ratio Photographic Lens System*
-**Example:** Embodiment 6 (Figures 29–33)
+**Example details:** Figures 29–33
 **Inventor:** Hisashi Goto (Olympus Optical Co., Ltd.)
 **Filed:** October 29, 1984 (Japanese priority: November 7, 1983)
 **Granted:** November 24, 1987

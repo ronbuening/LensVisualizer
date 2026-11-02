@@ -6,7 +6,6 @@
 **Inventor:** Yoshinobu Asakura
 **Applicant:** Minolta Co., Ltd.
 **Title:** Large-Aperture Wide-Angle Zoom Lens (大口径広角ズームレンズ)
-**Embodiment analyzed:** Example 1
 
 The analyzed prescription is Example 1 of JP 1994-082698 A, assigned in this catalog to the
 MINOLTA AF 28-70mm f/2.8 G. The patent does not identify that production lens by name, so the

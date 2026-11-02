@@ -15,7 +15,6 @@
 **Assignee:** Nikon Corporation
 
 **Title:** *Ultra Wide Angle Zoom Lens*
-**Embodiment analyzed:** Example 1
 
 The prescription is the Example 1 design selected for correlation with the production **NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8 D IF**. The correlation is treated as the fixed identification for this model; it is not presented as an explicit Nikon statement that the production lens was manufactured directly from this patent example.
 
@@ -57,6 +56,8 @@ When the group positions are normalized to the fixed image plane, G1 moves 4.895
 The patent supplies the diaphragm symbol **S** between G2 and G3 but no numerical axial coordinate or clear diameter. Figure 1 places S within the D13 air space after L22 and before L31. The data model therefore inserts one neutral `STO` plane at a disclosed figure-based position **45% of the way from surface 13 toward surface 14**, leaving 55% of D13 after the stop. The split is applied proportionally at every published zoom state and preserves the original total D13 exactly. This is a modeling inference, not a patent-published diaphragm coordinate or a claim about the production cam path.
 
 The patent also publishes no surface semi-diameters. The semi-diameters in the data model are inferred clear apertures derived from exact spherical/aspherical ray tracing across all three zoom states, the 36×24 mm frame diagonal, the F/2.89 pupil requirement, axial marginal rays, and off-axis bundles. They are therefore modeling quantities rather than source dimensions. No layout control is used to conceal a geometric conflict.
+
+Figure 1 (PDF page 2) clearly ends L11's concave rear curve below its outer edge. Surface 2 retains its 16.5 mm clear cap and now draws a flat opaque land to the 21.2 mm outer radius. The illustrated cap/edge ratio is about 0.70; the adopted ratio is 0.778 because the existing traced clear cap is retained. This is a qualified silhouette correction, not a patent-published aperture or an enlargement of the optical cap. The remaining convex, concave, and cemented faces were rechecked; no other distinct land was resolved.
 
 ## Element-by-Element Analysis
 

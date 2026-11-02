@@ -8,7 +8,7 @@
 **Inventors:** Taiga Noda; Ryoko Tomioka
 **Assignee:** FUJIFILM Corporation
 **Title:** Imaging Lens and Imaging Apparatus
-**Embodiment analyzed:** Example 7, Tables 25-28, Figure 14, Figure 15, and Table 49
+**Example details:** Tables 25-28, Figure 14, Figure 15, and Table 49
 
 Example 7 is the production-relevant embodiment for the Fujinon XF 23mm F1.4 R LM WR. The identification rests on convergent, independently checked features rather than on focal length alone:
 

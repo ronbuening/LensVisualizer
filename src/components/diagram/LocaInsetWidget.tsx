@@ -6,12 +6,14 @@
  * lenses with worse CA show wider bars and well-corrected lenses show narrower
  * bars.  Accepts optional width/height for reuse in a future larger overlay.
  */
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic.js";
 import { memo } from "react";
 import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
-import type { DispersionQuality } from "../../optics/dispersion.js";
-import { computeLocaBarOffsets } from "../../optics/chromaticRayFanScaling.js";
+import type { DispersionQuality } from "../../optics/chromatic.js";
+import { computeLocaBarOffsets } from "../../optics/analysis.js";
 import { ChromaticQualityBadge } from "./ChromaticQualityBadge.js";
+import { formatChromaticZone, formatOmittedChannels } from "../display/analysis/chromaticChartUtils.js";
 
 function referenceIntercept(axialIntercepts: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
   if (axialIntercepts.G !== undefined) return axialIntercepts.G;
@@ -70,9 +72,9 @@ const LocaInsetWidget = memo(function LocaInsetWidget({
     viewWidthPx,
     effectiveSC,
   );
-  const activeChans = (["R", "G", "B", "V"] as ChromaticChannel[]).filter(
-    (ch) => chromaticRayFanSpread.axialIntercepts[ch] !== undefined,
-  );
+  const activeChans = CHROMATIC_CHANNEL_ORDER.filter((ch) => chromaticRayFanSpread.axialIntercepts[ch] !== undefined);
+  // A selected channel the zone leaves out is named on the inset, never dropped silently.
+  const omitted = formatOmittedChannels(chromaticRayFanSpread.omittedChannels);
 
   let insetX: number;
   let insetY: number;
@@ -117,6 +119,7 @@ const LocaInsetWidget = memo(function LocaInsetWidget({
       }
       style={onClick ? { cursor: "pointer" } : undefined}
     >
+      <title>{`LoCA at ${formatChromaticZone(chromaticRayFanSpread)}`}</title>
       <rect
         x={insetX}
         y={insetY}
@@ -184,6 +187,7 @@ const LocaInsetWidget = memo(function LocaInsetWidget({
       <text x={midX} y={yMagScale} textAnchor="middle" fill={t.muted} fontSize={fs(7.5)} fontFamily="inherit">
         {Math.round(mag)}
         {"\u00d7"}
+        {omitted ? ` \u00b7 ${omitted}` : null}
       </text>
       <ChromaticQualityBadge
         dispersionQuality={dispersionQuality}

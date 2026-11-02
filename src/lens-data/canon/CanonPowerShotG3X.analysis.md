@@ -8,7 +8,7 @@
 **Inventor:** Takashi Okada\
 **Applicant:** Canon Inc.\
 **Title:** Zoom lens and imaging device having the same\
-**Embodiment analyzed:** Numerical Example 6 (実施例6)
+**Example details:** 実施例6
 
 The prescription transcribed here is Numerical Example 6 of JP 2016-148731 A. The patent describes a positive-lead zoom formed by six kinematic lens groups B1 through B6, with a positive-negative-positive-negative-positive-negative power sequence and B6 serving as the focus group (¶¶0017, 0026). The LensVisualizer data retains the Example 6 dimensions without uniform scaling.
 

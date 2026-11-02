@@ -12,6 +12,7 @@ build metadata.
 | --- | --- | --- |
 | `router.tsx` | `src/` | Browser router created from `routeManifest.tsx`. |
 | `routeManifest.tsx` | `src/routes/` | Shared React route patterns used by the client router and SSR entry. |
+| `RouteLayout.tsx` | `src/routes/` | Shared route layout: scrolls new pages to the top and honors fragment targets after commit. |
 | `entry-server.tsx` | `src/` | SSR render function and manifest path export for static prerendering. |
 | `HomePage.tsx` | `src/pages/` | Homepage shell with hero, navigation cards, articles, recent lenses, and legacy redirect handling. |
 | `SearchPage.tsx` | `src/pages/` | Lightweight catalog search at `/search` for lens names, patent numbers, and authors. |
@@ -21,13 +22,14 @@ build metadata.
 | `MakersIndexPage.tsx` | `src/pages/` | Maker index at `/makers`, lists makers with counts. |
 | `AuthorPage.tsx` | `src/pages/` | Author page at `/authors/:author`, grouping related patents by assignee or co-author. |
 | `AuthorsIndexPage.tsx` | `src/pages/` | Author index at `/authors`, listing represented patent authors with patent/lens counts, persisted name/count sorting, and assignee-company strata/filtering. |
-| `PatentsIndexPage.tsx` | `src/pages/` | Patent-number index at `/patents`, grouping unique source patents by publication country/jurisdiction and then assignee. |
+| `PatentsIndexPage.tsx` | `src/pages/` | Patent-number index at `/patents`, grouping unique source patents by publication country/jurisdiction and then assignee; each patent lists its lenses in `source.example` order with the example label. |
 | `MountPage.tsx` | `src/pages/` | Mount page at `/mounts/:mountId`, lists lenses for one mount. |
 | `MountsIndexPage.tsx` | `src/pages/` | Mount index at `/mounts`, lists represented mounts with counts. |
 | `FormatPage.tsx` | `src/pages/` | Image-format page at `/formats/:formatId`, lists lenses for one format. |
 | `FormatsIndexPage.tsx` | `src/pages/` | Image-format index at `/formats`, lists represented formats with counts. |
 | `TeleconverterPage.tsx` | `src/pages/` | Teleconverter page at `/teleconverters/:teleconverterKey`: specs, patent, and the lenses it can mount on. No diagram; each lens link opens the viewer with `?v=1&tc=<key>`. |
 | `TeleconvertersIndexPage.tsx` | `src/pages/` | Teleconverter index at `/teleconverters`. |
+| `LensBuilderPage.tsx` | `src/pages/` | Flagged client-only editor at `/lens-builder/`; noindex/nofollow, excluded from metadata/sitemap, linked from the homepage cards. |
 | `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB` with SEO fallback content plus client-only `LensViewer`. |
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
@@ -64,8 +66,21 @@ can become stale when Back interrupts a concurrent navigation. Changed selection
 reselecting the same node can recenter without another history entry. Search and detail navigation carry pending camera
 intent, consumed only when the corresponding URL commits. Direct SVG selection and closing details preserve the camera.
 Reload and Back/Forward restore selection, details, and readable framing; absent, malformed, or unknown targets restore
-the overview. Query text, pan/zoom, emphasis, and overview visibility remain local. Unrelated URL parameters are preserved,
-and the canonical URL remains `/relationships/universal/`. Component interactions are documented in
+the overview. The same fragment also stores `view=trace|affiliations` (absent means Network, except that a phone visit
+naming neither `view` nor `node` opens Neighborhoods and then writes `view=network` explicitly), validated `from` and `to`
+trace endpoints, and `corporate=0` when corporate history is excluded. Additional universal view ids are `bridge`,
+`matrix`, `chords`, and `evidence`. View and endpoint changes push history without
+changing the original network camera; the Network renderer mounts on first use, then stays mounted with gestures and
+focus handling suspended while hidden. Query text, pan/zoom, emphasis, overview visibility, and affiliation filters remain local. Unrelated URL parameters are preserved,
+and the canonical URL remains `/relationships/universal/`.
+`relationshipViewUrl.ts` patches only the supplied fragment fields and validates inventor view ids (`assignees`,
+`timeline`, `co-inventors`, `evidence`; absent or unknown means Relationships). The same focus remains selected across
+these options. New comparison controls share `left`/`right` assignee ids, `inventor`, selected `companies`, matrix
+`measure`/`sort`/`q`/`singles`/`cell`/`page`, chord `minimum`, timeline `year`, and collaborator `limit`/`cross` through
+the fragment through `useRelationshipViewParams`; each view validates ids and bounds against its data. Slider, playback, and typing updates replace history,
+while discrete choices push history. Legacy focus-query normalization retains filters and unrelated query parameters.
+Selected patent state on the focused page belongs to its focus id, so Back to another person cannot show stale details.
+Component interactions are documented in
 [UI components](ui-components.md#relationship-map-components).
 
 ## Static Page Shells
@@ -75,12 +90,17 @@ and the canonical URL remains `/relationships/universal/`. Component interaction
 - `StaticPageShell.tsx` wraps static pages that need shared breadcrumbs, page theme state, and `PAGE_BASE_STYLE`.
 - `src/utils/style/pageStyles.ts` exports shared static page base styles and fallback link styles.
 - Lens index-specific filter/results styles live under `src/pages/lensIndex/`, but reuse shared base styles where possible.
+- `TeleconvertersIndexPage.tsx` uses `teleconverterIndex.ts` for maker, inventor, assignee, mount, format, and patent-decade
+  grouping. The `group` query selects the view; named-party grouping, catalog collation, anchors, and sidebar UI are shared
+  with the lens library. Format grouping reads each converter's declared `catalog.imageFormat`.
 
 ## SSR And Prerender Flow
 
 The app uses React Router 8 with client-side routing plus static prerendering for SEO:
 
 - `main.tsx` mounts `RouterProvider` with the browser router.
+- `RouteLayout.tsx` wraps the routes in both browser and SSR trees. Its client effect scrolls pathname changes to the top,
+  or scrolls to a decoded fragment after the destination commits. Query-only state changes keep their scroll position.
 - `router.tsx` assigns `RouteErrorBoundary` to every browser route so render, effect, and lazy-chunk failures use the
   shared stack-aware error display and prefilled GitHub issue flow instead of React Router's generic fallback.
 - `entry-server.tsx` exports `render(url): { html, helmet }` using `StaticRouter`. With React 19,
@@ -180,10 +200,24 @@ See [`../adding_an_article.md`](../adding_an_article.md) for frontmatter and aut
 
 Metadata generation is split across:
 
-- `scripts/lens-data-lib.mjs` - lens data scanning, root-file organization helpers, maker slug derivation.
+- `scripts/lens-data-lib.mjs` - lens data scanning, root-file organization helpers, maker slug derivation. Identity
+  fields come from `scripts/lens-data-ast.mjs`, which evaluates a file's default export from its source with the
+  TypeScript compiler API, never running it, and reads V2 identity fields (mounts
+  and format live in `catalog`). Before filing root-level lenses and converters, the organizer converts V1 files anywhere
+  in the catalog through the converter runner, prints its report, and stops on a refusal. It rewrites a filed V2
+  file's `types/lensDataV2.js` import. Maker slugs are one safe path segment (an unsafe first word is reduced to its
+  letters and digits), and `assertMovePlanContained` refuses, before anything changes, a move whose source or
+  destination resolves outside `src/lens-data/` through `realpath`. `--dry-run` prints the checked plan only.
+  The converter (`scripts/lens-data-convert/`) reads through the same module, which also shows it the syntax behind
+  each value (`walkLensDataSource`).
+- `scripts/lens-summaries.mjs` - lens and teleconverter display summaries, selected from canonical prescriptions
+  through `src/optics/buildLens.ts` ingest. Metadata stops on V1 through `assertV2Catalog` before summarizing.
+  Only `scripts/lens-data-convert/load.mjs` loads `src/optics/lensDataConversion.ts`; the organizer reaches that
+  loader through the converter runner.
 - `scripts/build-metadata-lib.mjs` - git freshness helpers, bounded concurrency, route freshness aggregation.
 - `scripts/generate-build-metadata.mjs` - top-level metadata orchestration, concrete route enumeration, generated route
-  freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh. It also writes
+  freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh. Before writing, it
+  rejects V1 catalog files with the command `npm run organize:lens-data`. It also writes
   `src/generated/teleconverter-summaries.json`: each `*.teleconverter.ts` summary plus `compatibleLensKeys`, resolved
   by importing the import-free fit predicate (`src/optics/prescription/teleconverterCompatibility.ts`) under plain Node
   so the page lists and the viewer cannot disagree. Hidden converters (`visible: false`) keep a summary but get no
@@ -197,6 +231,10 @@ concurrency for the git calls. It records the committer timestamp and hash for t
 a generated `publicationOrder` shared by page lists and RSS feeds. Keep generated route and freshness artifacts stable
 unless a content change intentionally updates them.
 
+The modified date skips format-only lens-data conversion commits (`isFormatOnlyCommit` in `build-metadata-lib.mjs`),
+so converting a file to V2 moves no page date. Recognition and fallback rules are recorded in
+[Decisions](../decisions.md) (format-only page freshness).
+
 ## Route Change Checklist
 
 When adding a route pattern:
@@ -206,3 +244,7 @@ When adding a route pattern:
    `CLIENT_ONLY_PATTERNS` in `scripts/prerender.mjs` if it is intentionally not prerendered.
 3. Update `buildRouteFreshness()` and sitemap priority logic if the route should appear in generated SEO artifacts.
 4. Add page smoke tests plus route-sync, SEO, and structured-data tests that apply.
+
+The `/lens-builder` manifest path is conditional on `ENABLE_LENS_BUILDER` (on). Like comparison paths, it is
+listed in `CLIENT_ONLY_PATTERNS` and has app-shell 200 fallbacks in `public/_redirects`. The viewer mounts inside
+`ClientOnly`, so importing the page during SSR does not access browser APIs.

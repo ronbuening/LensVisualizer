@@ -98,3 +98,69 @@ Added the explicitly inferred zoom iris schedule from source station f-numbers; 
 - Paraxial check against the previous data: EFL and defocus identical at wide/tele infinity and close focus (worst
   |Δ| 5e-15). Physical track grows by 0.545 mm (1.6 × (1 − 1/1.5168)) and now matches the 284.590 mm mechanical sum
   at tele; the rounded 0.98 m close-focus distance is unchanged.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 1(a) (PDF p. 26, native 410 ppi raster) was read element by element for flat lands square to the axis at the
+rims of concave faces, the shape `rimCutDepthMm` draws.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 7 (L4 rear, R 57.457) | 0.963 | 7.23 mm | 27.90 mm | 29.0 | 22.86 mm |
+| 12 (L7 rear, R 47.996) | 0.87 | 4.37 mm | 20.01 mm | 23.0 | 14.72 mm |
+
+- Every other concave face (8, 13, 16, 24, 27, 30, 38, 41, 44) runs to its element edge in the figure; no cut.
+- No cap reaches the stop plane at any zoom or focus state (surface 25 clears it by 2.72 mm, surface 27 by 10.69 mm).
+- Both stations still trace the stated f/4.58 and f/5.76. Each cut clears every traced ray of the wide-open beams by
+  its margin and clips none of them (beam rule below).
+
+The beam rule (`validateRimCutBeams`) asks an inferred cut to clear the furthest traced ray of the wide-open beams by
+the larger of 0.05 mm and 0.3 % of its radius, at every field, zoom and focus state, traced through the lens without
+its inferred cuts. The beams are traced on the paraxial stops of #933 (EPD = F/N) with the rule's current search,
+which follows each beam to the field where it vanishes, seeds from the stop and refines near cuts on the full
+measurement. Both cuts pass at their figure positions:
+
+- Surface 7: cut radius 27.9026 mm. The beams reach 25.1755 mm there (zoomT 0.15, focusT 0.6, 9.73°), a clearance
+  of 2.7271 mm against a 0.0837 mm margin, 2.6434 mm spare.
+- Surface 12: cut radius 20.0097 mm. The beams reach 17.7714 mm there (103.09 mm, focusT 0.75, 13.94°), a clearance
+  of 2.2383 mm against a 0.0600 mm margin, 2.1783 mm spare.
+
+Figure scale and land length: Figure 1(a) draws the wide end at infinity. Its S1–S46 vertex span is 1113 native px
+for 203.369 mm, 5.473 px per lens mm. One native pixel at the cap end and at the edge moves q by ±(1 + q) / (edge px).
+
+- 7: q 0.963 at a 158.7 px edge (29.0 mm), range 0.951–0.975. Land 1.0974 mm, over the 0.1 mm minimum.
+- 12: q 0.87 at a 125.9 px edge (23.0 mm), range 0.855–0.885. Land 2.9903 mm, over the 0.1 mm minimum.
+
+
+## 2026-10-29 — Rim-extension recheck
+
+Re-read local `patents/JP2022092388A.pdf`, Figure 1(a), Example 1 wide/infinity, PDF p. 26, at 600 dpi,
+rotated object-left. The published vertex span gives 5.473 native px/mm (1113 px / 203.369 mm). All
+25 drawn glass elements, their shared boundaries and both halves were checked for a cap ending in an axial-normal
+land. Faces 7 and 12 already carry the two resolved concave lands; the remaining curves run into their outer
+edges. Small differences among estimated partner radii alone do not establish a land. No further extension or
+cut is supported, and no clear aperture was widened to equalize element heights.
+
+No prescription or drawing parameter changed. `audit:surface` passes, including the retained inferred-cut beam
+rule; `audit:image-circle` reports 0 undersized / 0 skipped.
+
+
+## 2026-10-29 — Glass-only reinspection
+
+Re-read `patents/JP2022092388A.pdf`, Example 1 / Table 1, PDF pp. 14–15, including ¶0102's
+explicit d-line (587.6 nm) convention. All 25 physical lens elements and the FL plate retain the printed nd.
+The table contains no νd or partial-dispersion column: every retained νd is still a catalog/code inference,
+not a new patent confirmation. No source C/F/g indices or APD measurements were manufactured.
+
+| Media | Fresh verdict |
+|---|---|
+| L1–L18, L20–L24; FL | Printed nd retained; coordinate-compatible catalog spectral proxies retained (23/25 lens media plus FL) |
+| L19 / source 34 | nd 1.603420 confirmed; inferred νd 56.4 and unresolved `603564` retained |
+| L25 / source 45 | nd 1.738000 confirmed; inferred νd 49.3 and unresolved `738493` retained |
+
+The two unresolved ordinary glasses have no coordinate-compatible row in the current catalog; similar nd alone
+cannot justify changing νd or assigning a supplier. Existing ED/APD cautions and proxy wording remain accurate.
+No lens-data or analysis correction was required.
+
+Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
+The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).

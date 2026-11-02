@@ -7,7 +7,6 @@
 **Inventor:** Günter Klemt
 **Assignee:** Jos. Schneider & Co., Optische Werke (the title page abbreviates this as Jos. Schneider & Co.)
 **Title:** *Wide-Angle Photographic and Cinematographic Objective*
-**Embodiment analyzed:** Example 1, the single preferred numerical embodiment
 
 US 2,824,495 describes a seven-element wide-angle objective whose numerical example is normalized to a focal length of 100, an aperture ratio of 1:4, and an angle of view of about 75°. The prescription is printed twice in the patent and is the source for the optical model. [US 2,824,495, PDF p. 2 (printed p. 2), numerical table; repeated on PDF p. 3 (printed p. 4).]
 

@@ -6,18 +6,18 @@
  */
 
 import { useMemo } from "react";
-import { analysisJobsForState2 } from "../../../optics/compat.js";
+import { createAnalysisRequest, createAnalysisComputationContext } from "../../../optics/analysis.js";
 import { probe } from "../../../utils/perfProbe.js";
-import { eflAtZoom } from "../../../optics/optics.js";
+import { eflAtZoomClamped as eflAtZoom } from "../../../optics/optics.js";
 import DistortionChart from "./DistortionChart.js";
 import DistortionFieldGrid from "./DistortionFieldGrid.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
-import type { AnalysisComputationContext } from "../../../optics/compat.js";
+import type { AnalysisComputationContext, AnalysisRequest } from "../../../optics/analysis.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
-import type { FieldGeometryState } from "../../../optics/optics.js";
+import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import PerspectiveDistortionView from "./perspective/PerspectiveDistortionView.js";
 
 interface DistortionTabProps {
@@ -46,8 +46,9 @@ export default function DistortionTab({
   analysisContext,
 }: DistortionTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
-  if (analysisContext?.movementActive) {
-    return <MovedDistortionContent analysisContext={analysisContext} t={t} />;
+  const perspectiveRequest = analysisContext?.request;
+  if (perspectiveRequest?.pose?.active) {
+    return <MovedDistortionContent request={perspectiveRequest} t={t} />;
   }
   return (
     <CenteredDistortionContent
@@ -63,9 +64,12 @@ export default function DistortionTab({
   );
 }
 
-function MovedDistortionContent({ analysisContext, t }: { analysisContext: AnalysisComputationContext; t: Theme }) {
-  const analysis = useMemo(() => analysisContext.computePerspectiveDistortionAnalysis(), [analysisContext]);
-  const context = analysisContext.perspectiveTraceContext;
+function MovedDistortionContent({ request, t }: { request: AnalysisRequest; t: Theme }) {
+  const analysis = useMemo(
+    () => createAnalysisComputationContext(request).computePerspectiveDistortionAnalysis(),
+    [request],
+  );
+  const context = request.perspectiveTraceContext;
   if (!context) {
     return <div style={{ color: t.muted, fontSize: 10, padding: "8px 0" }}>Perspective trace context unavailable.</div>;
   }
@@ -93,40 +97,33 @@ function CenteredDistortionContent({
   preparedState,
   analysisContext,
 }: CenteredDistortionContentProps) {
-  const samples = useMemo(
+  const request = useMemo(
     () =>
-      probe(
-        "computeDistortionCurve",
-        () =>
-          analysisContext?.computeDistortionCurve() ??
-          analysisJobsForState2.computeDistortionCurve(
-            preparedState,
-            dynamicEFL,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-          ),
-      ),
-    [analysisContext, preparedState, dynamicEFL, currentPhysStopSD, fieldGeometry],
+      analysisContext?.request ??
+      createAnalysisRequest({
+        preparedState,
+        dynamicEFL,
+        currentEPSD: L.EP.epSD,
+        currentPhysStopSD,
+        fieldGeometry,
+      }),
+    [analysisContext, preparedState, dynamicEFL, L, currentPhysStopSD, fieldGeometry],
   );
+  const context = useMemo(() => createAnalysisComputationContext(request), [request]);
+  const result = useMemo(() => probe("computeDistortionCurve", () => context.computeDistortionCurve()), [context]);
   const fieldGrid = useMemo(
-    () =>
-      probe(
-        "computeDistortionFieldGrid",
-        () =>
-          analysisContext?.computeDistortionFieldGrid() ??
-          analysisJobsForState2.computeDistortionFieldGrid(
-            preparedState,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-          ),
-      ),
-    [analysisContext, preparedState, currentPhysStopSD, fieldGeometry],
+    () => probe("computeDistortionFieldGrid", () => context.computeDistortionFieldGrid()),
+    [context],
   );
 
+  const { samples, corner } = result;
+  const cornerAvailable = corner.status === "reached" || corner.reason === "field-limit";
   if (samples.length < 2) {
     return (
       <div style={{ color: t.muted, fontSize: 10, padding: "8px 0", transition: "color 0.3s" }}>
-        Unable to compute distortion curve for this lens state.
+        {cornerAvailable
+          ? "Unable to compute distortion curve for this lens state."
+          : `Corner distortion unavailable — ${corner.reason === "trace-failure" ? "chief-ray trace failed" : "chief ray missed its target height"} at the corner.`}
       </div>
     );
   }
@@ -134,15 +131,16 @@ function CenteredDistortionContent({
   const edgeSample = samples[samples.length - 1];
   const isProjectionResidual =
     edgeSample.referenceKind === "fisheye-equidistant" || edgeSample.referenceKind === "fisheye-equisolid";
+  /* Positive (real − ideal) is pincushion, negative is barrel; keep in step with DistortionChart. */
   const directionLabel =
     edgeSample.distortionPercent > 0.01
       ? isProjectionResidual
         ? "outward residual"
-        : "barrel"
+        : "pincushion"
       : edgeSample.distortionPercent < -0.01
         ? isProjectionResidual
           ? "inward residual"
-          : "pincushion"
+          : "barrel"
         : "negligible";
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   const breathingPercent = Math.abs(infinityEFL) > 1e-9 ? (100 * (dynamicEFL - infinityEFL)) / infinityEFL : 0;
@@ -158,10 +156,10 @@ function CenteredDistortionContent({
         <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
           {isProjectionResidual
             ? "Computed against the declared equidistant fisheye projection at fixed image height. The curve reports residual mapping error rather than treating the intended fisheye projection as rectilinear barrel distortion."
-            : "Computed against a near-axis rectilinear reference at fixed image height. The curve stays 1D, while the field grid below now traces real chief-ray image positions across the current image circle against that same rectilinear reference. Focus breathing is reported separately from distortion."}
+            : "Computed against a near-axis rectilinear reference at fixed image height; at finite focus that reference is the paraxial image of each chief ray's object point. The curve stays 1D, while the field grid below now traces real chief-ray image positions across the current image circle against that same rectilinear reference. Focus breathing is reported separately from distortion."}
         </span>
       </div>
-      <DistortionChart samples={samples} t={t} />
+      <DistortionChart partial={!cornerAvailable} samples={samples} t={t} />
       <div style={{ marginTop: 12, display: "grid", gap: 4 }}>
         <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
           Traced field grid
@@ -183,12 +181,26 @@ function CenteredDistortionContent({
         }}
       >
         <AnalysisMetricRow
-          label="Edge"
-          value={`${edgeSample.distortionPercent >= 0 ? "+" : ""}${edgeSample.distortionPercent.toFixed(2)}%`}
-          note={`(${directionLabel})`}
+          label={cornerAvailable ? "Edge" : "Corner"}
+          value={
+            cornerAvailable
+              ? `${edgeSample.distortionPercent >= 0 ? "+" : ""}${edgeSample.distortionPercent.toFixed(2)}%`
+              : "Unavailable"
+          }
+          note={
+            cornerAvailable
+              ? `(${directionLabel})`
+              : corner.reason === "trace-failure"
+                ? "No complete chief ray reaches the corner"
+                : "Chief ray missed its target height at the corner"
+          }
           t={t}
         />
-        <AnalysisMetricRow label="Height" value={`${Math.abs(edgeSample.imageHeight).toFixed(1)} mm`} t={t} />
+        <AnalysisMetricRow
+          label={cornerAvailable ? "Height" : "Last traced height"}
+          value={`${Math.abs(edgeSample.imageHeight).toFixed(1)} mm`}
+          t={t}
+        />
         <AnalysisMetricRow label="Angle" value={`${edgeSample.fieldAngleDeg.toFixed(1)}°`} t={t} />
         <AnalysisMetricRow
           label="Breathing"

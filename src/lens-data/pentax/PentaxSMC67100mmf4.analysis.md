@@ -9,7 +9,7 @@
 **Inventor:** Shuji Yoneyama  
 **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha, Tokyo, Japan  
 **Title:** Close-Up Attachment Lens  
-**Embodiment analyzed:** Embodiment 1, Table 1 and Figs. 1-4; main lens LM, surfaces 7-16
+**Example details:** Table 1 and Figs. 1-4; main lens LM, surfaces 7-16
 
 The patent is formally directed to a three-element close-up attachment lens, LA, mounted on the object side of a photographic main lens. Table 1 nevertheless gives a full prescription for the main lens LM as well as for the attachment. The data file accompanying this analysis transcribes the main lens only, retaining the patent's surface labels 7-16 for traceability.
 

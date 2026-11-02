@@ -60,3 +60,56 @@ Batch21–30 full gates and commit pending; source-summary contradictions remain
 - Added one `unresolved` entry; no `R`, `d`, `nd` or `νd` changed. This turns the 2026-09-08 note "source-summary
   contradictions remain follow-up" into a recorded, still-open contradiction; the isolation work is the Nikkor Z 85
   row in `agent_docs/sd-audit-queue.md` Section G.
+
+## 2026-10-27 — Rim-cut figure review
+
+Figure 3 (EX3, PDF p. 20, native 300 ppi CCITT raster 993 × 1228, measured 1:1 on a 300 dpi page render) was read
+element by element, both halves, for flat lands square to the axis at the rims of concave faces. Scale 0.1435 mm/px
+from the 97.291 mm vertex span; every drawn element edge matches its stored `sd` within 1 px.
+
+| Surface | Figure land (cap end ÷ element edge) | Cut depth | Cut radius | sd | Largest stated axial ray |
+|---|---|---|---|---|---|
+| 16 (L42 rear, R 64.869) | 0.937 (0.939 / 0.935); dropped (see the beam rule) | 1.85 mm | 15.38 mm | 16.4 | 9.91 mm |
+
+- Lands seen but not cut, because each adds more than 15 points of full-field side vignetting at its own surface
+  (clearap, Y = 21.6 mm, infinity):
+  - 4 (L12 rear): q 0.889, would be depth 1.80 / radius 21.33 mm (axial 20.37); 43 % → 59 %.
+  - 7 (L14 rear): q 0.849, depth 2.15 / radius 18.68 mm (axial 17.59); 23 % → 45 %.
+  - 10 (L22 rear): q 0.854, depth 4.18 / radius 15.29 mm (axial 14.40); 0 % → 19 %.
+  - 20 (L45 front): q 0.907, depth 4.58 / radius 17.42 mm (axial 3.85); 0 % → 25 %. It would also shrink the engine's
+    half-field estimate from 17.85° to 16.81°.
+- On the engine's vignetting curve at infinity, 10 and 20 alone would leave transmission unchanged and 7 would lower
+  it by 1 point at full field (3 points at mid-field), because surfaces 1–2 and 13 already trim those sides of the
+  bundle more; 4 alone would take full-field transmission from 0.577 to 0.493.
+- Surface 19 (L44 rear, R 130.583) runs to its edge: its rim is nearly square to the axis, and no land departs from the
+  curve by a resolvable pixel.
+- No cap reaches the stop plane: surface 10 clears it by 3.53 mm at the closest state (0.8 m focus, D10 9.445).
+- The cut on 16 was dropped under the beam rule below: the wide-open beams reach its 16.4 mm rim, so no land is left
+  to draw. Surface 16 runs uncut to 16.4 mm, and the side vignetting (25 % → 35 % at infinity, 0 % → 8 % at 0.8 m)
+  and the engine transmission drop (0.577 → 0.546, 0.779 → 0.766) measured here for the cut no longer apply.
+
+## 2026-10-27 — Rim-cut beam rule
+
+An inferred rim cut must clear every traced ray of the wide-open beams by the larger of 0.05 mm and 0.3 % of its
+radius, at every field, zoom and focus state, traced through the lens without its inferred cuts (`validateRimCutBeams`,
+set in the #928 review). Traced against that rule, these cuts from the figure review above were changed:
+
+- Surface 16: the beams reached 16.37 mm there, within 0.1 mm of the 16.4 mm rim, so no land was left to draw, and the
+  cut was removed. On the paraxial stop (#933), with the rule's current search, which follows each beam to the field
+  where it vanishes, they reach the 16.4 mm rim itself (focusT 0.80, 15.33°).
+
+The lens carries no cut, and the surface audit and the beam rule pass.
+
+## 2026-10-29 — Surface-height and concave-rim reinspection
+
+Reopened `patents/JP2020173366A.pdf`, Example 3, Figure 3 (PDF p. 20, lower-left EX3 panel), and inspected every element at 600 dpi. The 97.291 mm first-to-last-vertex span gives about 6.97 native px/mm. The figure's element edges continue to agree with the stored rims; its short concave lands on 4, 7, 10, 16 and 20 would reduce existing clear apertures. No separate taller air-side edge can be added while preserving those caps. The earlier full-beam checks remain the reason those inferred cuts are excluded, especially 16 where the beam reaches the 16.4 mm rim. The almost-flat face 19 does not resolve a land.
+
+No geometry changed. `audit:surface` passes; `audit:image-circle` reports 0 undersized and 0 skipped. The source-summary contradiction and the existing optical apertures remain explicitly qualified; no speculative prescription correction or clipping change was made.
+
+## 2026-10-29 — Glass-only reinspection
+
+Freshly rendered and inspected `patents/JP2020173366A.pdf`, Example 3 (¶0069–¶0070), PDF pp. 16–17. All 12 lens-element nd/νd pairs and the PT rear plate match the d-line table; Example 2's different rows on the top of p. 16 were excluded. L14 is 1.85025/30.05, L43 1.84850/43.79 and PT 1.51680/64.20 as stored.
+
+Each annotation resolves compatibly: L11 S-LAH66, L12 FCD705, L13 S-FPL51, L14 H-ZLaF76, L21 PBH21, L22/L44 J-F5, L31 J-PSKH4, L41 TAFD35, L42 H-ZF2, L43 J-LASFH22, L45 SF2, and PT J-BK7A. All 12 lens elements plus PT have coefficient-backed catalog curves. No source line-index or partial-dispersion measurement supports restoring the former L12/L13 APD claims; their false flags and qualified analysis remain correct. Exact-coordinate or compatible matches do not establish production material chemistry or suppliers.
+
+No change was required. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). Geometry and the separately documented source-summary contradiction are unchanged.

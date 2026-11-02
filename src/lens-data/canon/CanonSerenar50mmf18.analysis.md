@@ -5,7 +5,7 @@
 **Assignee:** Canon Camera Company, Ltd.  
 **Filed:** June 29, 1951 (priority: Japan, November 7, 1950)  
 **Granted:** June 22, 1954  
-**Embodiment analyzed:** Sole numerical example (description table, repeated verbatim in claim 3)  
+**Example details:** description table, repeated verbatim in claim 3  
 **Marketed:** November 1951 (Canon Camera Museum)
 
 ---

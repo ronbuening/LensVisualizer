@@ -8,7 +8,7 @@
 **Applicant:** Ernst Leitz G.m.b.H., Wetzlar  
 **Title:** Fotografisches Objektiv  
 **Classification:** Int. Kl. G02b; Deutsche Kl. 42h-4/04  
-**Embodiment analyzed:** The single worked prescription tabulated in the claim, normalized to f = 1.0 and f:4.
+**Example details:** tabulated in the claim, normalized to f = 1.0 and f:4.
 
 ## Patent Reference and Design Identification
 

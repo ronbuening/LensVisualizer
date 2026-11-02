@@ -5,7 +5,7 @@
  */
 
 import type { PreparedOpticalState } from "../types.js";
-import { traceParaxialSurfaces2 } from "../math/paraxial.js";
+import { traceParaxialSurfaces } from "../math/paraxial.js";
 
 /**
  * First-order ABCD matrix and surrounding media indices for a prepared system.
@@ -32,9 +32,9 @@ export interface FirstOrderSystemMatrix {
  * @param state - prepared optical state for current focus/zoom/aberration sliders
  * @returns ABCD matrix and object/image-side refractive indices
  */
-export function computeSystemMatrix2(state: PreparedOpticalState): FirstOrderSystemMatrix {
-  const marginal = traceParaxialSurfaces2(state.surfaces, 1, 0, { skipLastTransfer: true });
-  const chief = traceParaxialSurfaces2(state.surfaces, 0, 1, { skipLastTransfer: true });
+export function computeSystemMatrix(state: PreparedOpticalState): FirstOrderSystemMatrix {
+  const marginal = traceParaxialSurfaces(state.surfaces, 1, 0, { skipLastTransfer: true });
+  const chief = traceParaxialSurfaces(state.surfaces, 0, 1, { skipLastTransfer: true });
   const objectIndex = 1;
   const imageIndex = marginal.n;
   return {

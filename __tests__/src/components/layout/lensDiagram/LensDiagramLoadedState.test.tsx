@@ -112,7 +112,7 @@ function baseProps(overrides: Partial<LensDiagramLoadedStateProps> = {}): LensDi
       varReadouts: [],
       aberrationReadouts: [],
       dynamicEFL: 50,
-      effectiveFNum: 2,
+      paraxialWorkingFNum: { status: "computed", value: 2 },
       info: null,
       act: null,
       sel: null,

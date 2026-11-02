@@ -20,9 +20,9 @@ import { useMemo, useCallback } from "react";
 import { useNavigate } from "react-router";
 
 import {
-  LENS_CATALOG,
   CATALOG_KEYS,
   COMPARISON_CATALOG_KEYS,
+  lensNameForKey,
   opticalConfigurationOptionsForKey,
 } from "../../utils/catalog/lensCatalog.js";
 import { resolveTeleconverterKey, teleconverterOptionsForLens } from "../../utils/catalog/teleconverterCatalog.js";
@@ -247,9 +247,9 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const holiday = useActiveHoliday();
   const t = resolveActiveTheme(themeModeFromDarkPreference(dark), resolvedDark, highContrast, holiday);
 
-  /* ── Catalog names map for TopBar (avoids passing full LENS_CATALOG) ── */
+  /* ── Catalog names map for TopBar, read from the files as authored so it ingests no lens ── */
   const catalogNames = useMemo(
-    () => Object.fromEntries(viewerCatalogKeys.map((k) => [k, LENS_CATALOG[k].name])),
+    () => Object.fromEntries(viewerCatalogKeys.map((k) => [k, lensNameForKey(k)])),
     [viewerCatalogKeys],
   );
 

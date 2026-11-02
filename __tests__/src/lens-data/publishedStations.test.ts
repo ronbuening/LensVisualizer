@@ -1,13 +1,22 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "../optics/constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
-import { thick } from "../../../src/optics/layout.js";
+import { buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
+import { isV1File } from "../../../src/optics/prescription/ingestV2.js";
+import { ingestLens } from "../../../src/optics/lensDataConversion.js";
+import { toLensData } from "../../../src/optics/prescription/v1/toLensData.js";
+import { thick } from "../../../src/optics/state/layout.js";
 import {
   isOnPublishedStation,
   nearestPublishedStation,
   publishedFocusStations,
   publishedZoomStations,
-} from "../../../src/optics/publishedStations.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+} from "../../../src/optics/state/publishedStations.js";
+import type { LensDataInput } from "../../../src/types/optics.js";
+
+/* Every lens file as authored, either version. */
+const AUTHORED = Object.values(
+  import.meta.glob<{ default: LensDataInput }>("../../../src/lens-data/**/*.data.ts", { eager: true }),
+).map(({ default: data }) => data);
 
 /**
  * Data contract for source-published stations.
@@ -20,19 +29,32 @@ import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 /** Authored zoom stations above which a lens must declare its published ones. */
 const MAX_UNDECLARED_ZOOM_STATIONS = 3;
+/** The source path of a station's authored `published` flag, as V2 ingest records it. */
+const PUBLISHED_FLAG = /^zoom\.stations\[\d+\]\.published$/;
 
 describe("published stations", () => {
   it("requires a zoom with a dense station list to declare its source rows", () => {
-    const undeclared = Object.values(LENS_CATALOG)
-      .filter((data) => (data.zoomPositions?.length ?? 0) > MAX_UNDECLARED_ZOOM_STATIONS)
-      .filter((data) => data.publishedStations?.zoom === undefined)
-      .map((data) => `${data.key}: ${data.zoomPositions!.length} zoom stations without publishedStations.zoom`);
+    /*
+     * Read from the canonical prescription. A V1 zoom answers with `publishedStations.zoom`, as its V1 view gives it; a
+     * V2 zoom answers by writing `published` on its stations, which ingest records in the source paths. Focus lists
+     * alone answer in neither version: `publishedStations.focus` in V1, the stations' `publishedFocus` in V2.
+     */
+    const undeclared = AUTHORED.flatMap((data) => {
+      const isV1 = isV1File(data);
+      const ingested = ingestLens(data, isV1 ? undefined : { sources: true });
+      const stations = ingested.prescription.zoom?.stations.length ?? 0;
+      if (stations <= MAX_UNDECLARED_ZOOM_STATIONS) return [];
+      const answered = isV1
+        ? toLensData(ingested).publishedStations?.zoom !== undefined
+        : Object.keys(ingested.provenance.sources?.heldBy ?? {}).some((path) => PUBLISHED_FLAG.test(path));
+      return answered ? [] : [`${data.key}: ${stations} zoom stations, none of them marked published or not`];
+    });
 
     expect(undeclared).toEqual([]);
   });
 
   it("lands every declared station on its authored gap row", () => {
-    const declared = Object.values(LENS_CATALOG).filter(
+    const declared = Object.values(CATALOG_CONSTRUCTION_FIXTURES).filter(
       (data) => data.publishedStations !== undefined || data.finiteConjugates !== undefined,
     );
     expect(declared.length).toBeGreaterThan(0);

@@ -7,7 +7,7 @@
 **Inventor:** Yasuo Takahashi\
 **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha\
 **Title:** Highly Corrected Wide Band Lens System\
-**Embodiment analyzed:** Sole numerical example, $f = 100\ \mathrm{mm}$, 1:4.5, half-field angle $16^\circ$
+**Example details:** $f = 100\ \mathrm{mm}$, 1:4.5, half-field angle $16^\circ$
 
 The numerical example is identified as the normalized optical formula of the PENTAX Ultra-Achromatic-Takumar 85mm f/4.5. The identification rests on several independent correspondences:
 

@@ -35,3 +35,32 @@ Catalog version: local working tree, 2026-06-25
 - Local live check and batch gates pending.
 - Local infinity, close, midpoint and f16 checked: BF24.18/27.34/25.76; stop diameter1.89 at f16; all three groups move objectward3.16mm, zoom disabled. Shared movement chart clips long labels (also seen on XF50); fix required before batch commit. No visible element overlap. Source assembly sum is30.1mm; earlier29.1 measurement note corrected (focus calculation already summed the correct prescription).
 - SK16 label removed after direct catalog check: N-SK16 has nd1.62041 versus patent1.6185; no exact historical identity established. L1 now unmatched crown medium. Tests authored; batch execution pending.
+
+## 2026-10-27 — Inferred stop plane behind r₆'s clear cap
+
+The patent gives no stop position; the inferred plane sat 2.5 mm behind r₆, inside r₆'s cap: r₆ (R 11.85 mm, rim 8.25 mm) sags 3.344 mm, so L4's glass filled that plane beyond 7.28 mm, inside the 7.41 mm f/2 iris that F/N sizes there (`__tests__/src/lens-data/irisInAir.test.ts` flagged it). The sequential trace steps back to such a plane, but no iris can close there.
+
+| Field | Before | After | Basis |
+|---|---:|---:|---|
+| Surface 6 `d` | 2.5 mm | 3.4 mm | r₆ sag 3.344 mm at its 8.25 mm rim, rounded up to 0.1 mm |
+| `STO` `d` | 5.0 mm | 4.1 mm | Preserves the sourced 7.5 mm gap |
+
+This is the construction used for the Vivitar Series 1 zoom (#774): the plane sits at the preceding surface's sag at its retained clear radius, rounded up to the next 0.1 mm, and the vertex-to-vertex air gap is preserved. Splitting a neutral air transfer leaves EFL, BFD and every power unchanged. The plane is a sequential-model choice, not a measured blade position. r₇ (R 100 mm) curves away from the stop, so its cap never comes forward of its vertex.
+
+Result: the iris is in air over its whole stroke, at least 0.88 mm clear of r₆'s cap and 4.10 mm of r₇. The derived iris is 7.305 mm (7.405 mm at the old plane: F/N fixes the paraxial entrance pupil, and the paraxial marginal ray is lower 0.9 mm further into the converging beam), and the analysis half field is 23.38° (was 23.45°). The beam the iris admits is then clipped at the L3/L4 junction (surface 5): the on-axis ray to the iris rim, launched at 12.226 mm, meets it at 9.662 mm, above its 9.5 mm rim (`audit:aperture --raise`).
+
+## 2026-10-27 — Junction rim raised to the beam the f/2 iris admits
+
+LSA is ordinary (+0.140 / −0.172 / −0.230 / −0.164 mm at pupil 1 / 0.85 / 0.7 / 0.5), so the rim, not the prescription, is short. It rises to the ray's height plus 1 %, rounded up to 0.1 mm, so a small change of the stated beam cannot clip it.
+
+| Surface | Before | After | Ray | Margin | Basis |
+|---|---:|---:|---:|---:|---|
+| 5 (L3/L4 junction) | 9.5 | 9.8 | 9.662 | 1.4 % | ray to the f/2 iris rim; L4's faces already differ (junction / r₆ 8.25) |
+
+No other rim is within 11 % of the ray (r₆, 8.25 against 7.387 mm, 11.7 %). The raise over the original estimate is 3.2 %.
+
+Figure check (Fig. 1 of US 1,998,704, PDF page 1, rendered at 200 dpi, read by hand; 30.10 mm of glass over about 308 px): L4's flat-topped junction rim is drawn at about 11.1 mm, below L2/L3's tips, so 9.8 mm stays inside the drawing. `audit:patent-figure` could not settle the crop (leader lines and labels pulled its axis), so the hand reading stands.
+
+Result: f/2 traces f/2.00, iris-limited (`audit:aperture`). `audit:image-circle` reports nothing undersized; `audit:field-coverage` reaches the format corner at 23.38°. The rendered section was compared with Fig. 1: L4's junction sits below the L2/L3 tips as drawn, and the stop clears L4's concave tips.
+
+Why the inferred rim was short. It was estimated while the stop plane sat inside r₆'s cap, where the traced f/2 marginal ray could not reach the stop above the f/2.08 beam. The junction was sized against that smaller beam, and no audit traced the stated beam past the stop until the plane moved. It is derived here on the stops sized by paraxial EPD = F/N (#933), against the ray to the iris rim.

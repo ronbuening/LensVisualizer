@@ -13,15 +13,21 @@
 import { forwardRef, memo } from "react";
 import InventorLinks from "../content/InventorLinks.js";
 import PatentNumberLink from "../content/PatentNumberLink.js";
-import { eflAtZoom, formatDist, formatFNumber } from "../../optics/optics.js";
+import { eflAtZoomClamped as eflAtZoom, formatDist, formatFNumber } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/style/styles.js";
 import CollapseButton from "./CollapseButton.js";
+import LensTaxonomyBadges from "./LensTaxonomyBadges.js";
 import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
+import { lensChromaticReference } from "../../optics/chromatic.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
-import { lensDisplaySubtitle, lensPatentAttribution } from "../../utils/catalog/lensPatentMetadata.js";
+import {
+  lensDisplaySubtitle,
+  lensPatentAttribution,
+  patentExampleSuffix,
+} from "../../utils/catalog/lensPatentMetadata.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
@@ -79,6 +85,8 @@ interface DiagramHeaderProps {
   minHeaderHeight?: number;
   /** Independent desktop comparison disclosure; mobile keeps its existing preference. */
   comparisonDetails?: { expanded: boolean; onChange: (expanded: boolean) => void };
+  /** The lens builder's drafts have no production lens to photograph, so it hides the Flickr search link. */
+  showPhotoSearch?: boolean;
 }
 
 const DiagramHeader = memo(
@@ -135,21 +143,28 @@ const DiagramHeader = memo(
       onHeaderInfoExpandedChange,
       minHeaderHeight,
       comparisonDetails,
+      showPhotoSearch = true,
     },
     ref,
   ) {
     const projection = L.projection ?? { kind: "rectilinear" };
-    const displaySubtitle = lensDisplaySubtitle(L.data);
-    const patentAttribution = lensPatentAttribution(L.data);
+    const displaySubtitle = lensDisplaySubtitle(L.source);
+    const patentAttribution = lensPatentAttribution(L.source);
     /* With a converter attached the title names the whole system; photo searches and the second patent line
-       still need the two parts separately. A converter covered by the lens's own patent is not repeated. */
-    const teleconverter = L.data.attachedTeleconverter;
-    const photoSearchName = teleconverter?.hostName ?? L.data.name;
+       still need the two parts separately. A converter covered by the lens's own patent example is not repeated. */
+    const teleconverter = L.attachedTeleconverter;
+    const photoSearchName = teleconverter?.hostName ?? L.source.name;
+    const hostExample = L.source.source.example;
     const teleconverterPatent =
-      teleconverter?.patentNumber && teleconverter.patentNumber !== L.data.patentNumber
+      teleconverter?.patentNumber &&
+      (teleconverter.patentNumber !== L.source.source.patentNumber ||
+        (teleconverter.patentExample && hostExample && teleconverter.patentExample.label !== hostExample.label))
         ? lensPatentAttribution({
-            patentNumber: teleconverter.patentNumber,
-            patentAuthors: teleconverter.patentAuthors ?? [],
+            source: {
+              patentNumber: teleconverter.patentNumber,
+              example: teleconverter.patentExample,
+              authors: teleconverter.patentAuthors ?? [],
+            },
           })
         : null;
     const compactFocalReadout = isFisheyeProjection(projection)
@@ -182,9 +197,9 @@ const DiagramHeader = memo(
                   transition: "color 0.3s",
                 }}
               >
-                {L.data.name}
+                {L.source.name}
               </h1>
-              {!compact && (
+              {!compact && showPhotoSearch && (
                 <a
                   href={`https://www.flickr.com/search/?text=${encodeURIComponent(photoSearchName)}`}
                   target="_blank"
@@ -203,6 +218,13 @@ const DiagramHeader = memo(
                   flickr ↗
                 </a>
               )}
+              <LensTaxonomyBadges
+                key={L.source.key}
+                lensMounts={L.source.catalog.lensMounts}
+                imageFormat={L.source.catalog.imageFormat}
+                t={t}
+                compact={compact}
+              />
             </div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: compact ? 2 : 3 }}>
               {displaySubtitle && (
@@ -217,6 +239,7 @@ const DiagramHeader = memo(
                   {patentAttribution ? (
                     <span>
                       <PatentNumberLink patentNumber={patentAttribution.patentNumber} color={t.descLinkColor} />
+                      <span>{patentExampleSuffix(patentAttribution.example)}</span>
                       {patentAttribution.authors.length > 0 && (
                         <span>
                           {" — "}
@@ -239,6 +262,7 @@ const DiagramHeader = memo(
                     <span>
                       <span>{" · TC "}</span>
                       <PatentNumberLink patentNumber={teleconverterPatent.patentNumber} color={t.descLinkColor} />
+                      <span>{patentExampleSuffix(teleconverterPatent.example)}</span>
                       {teleconverterPatent.authors.length > 0 && (
                         <span>
                           {" — "}
@@ -283,7 +307,7 @@ const DiagramHeader = memo(
                   flexWrap: "wrap",
                 }}
               >
-                {L.data.specs?.map((s, i) => (
+                {L.source.catalog.specs?.map((s, i) => (
                   <span key={i}>{s}</span>
                 ))}
               </div>
@@ -415,6 +439,7 @@ const DiagramHeader = memo(
                   onChromGChange={onChromGChange}
                   onChromBChange={onChromBChange}
                   onChromVChange={onChromVChange}
+                  channelReference={lensChromaticReference(L.elements)}
                 />
               </div>
             </div>

@@ -6,8 +6,7 @@
 **Published:** 1976-03-04\
 **Inventor:** Toshiko Shimokura\
 **Applicant:** Konishiroku Photo Industry Co., Ltd.\
-**Title:** 近距離撮影時の収差補正手段をもったレトロフォーカス型レンズ系 — retrofocus-type lens system with aberration-correction means for close-distance photography\
-**Embodiment analyzed:** Example 1
+**Title:** 近距離撮影時の収差補正手段をもったレトロフォーカス型レンズ系 — retrofocus-type lens system with aberration-correction means for close-distance photography
 
 The prescription is the selected production correlation for the **KONICA UC HEXANON AR 28mm f/1.8**. The patent is the numerical authority for the optical design, while surviving Konica product literature supplies the marketed identity and specifications. The available manufacturer literature does not state that Example 1 is the released production prescription, so the correlation is treated as the fixed project identification rather than as manufacturer-confirmed identity.
 

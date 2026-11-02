@@ -7,7 +7,6 @@
 **Inventor:** Yuki Shibata  
 **Applicant:** Cosina Co., Ltd.  
 **Title:** Imaging Lens  
-**Embodiment analyzed:** Example 1
 
 The prescription is a direct, unscaled transcription of Example 1. The production correlation is fixed to the
 VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs; it is a technical correlation, not a statement that Cosina has
@@ -274,3 +273,5 @@ These checks establish internal model validity; they do not convert the inferred
 - Official optical-glass catalogs and cross-reference data from OHARA, HOYA, SCHOTT, HIKARI, Sumita, and CDGM, as
   summarized in the accompanying glass audit. Catalog matches are class-level equivalents and do not identify the
   production supplier.
+
+Fresh Figure 1 inspection adds exposed flat shoulders at the rear of L1 and front of L2: an S4 land to 10 mm at unchanged 7.8 mm clear radius, and an S9 land to 7.6 mm at unchanged 7.2 mm clear radius. All published spheres, aspheres, spacings and focus states remain. Ln1’s Abbe number stays unresolved; its inferred d-line index supplies a constant-index medium, while six compatible coefficient curves remain qualified spectral proxies for the other elements.

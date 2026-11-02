@@ -9,7 +9,7 @@
 **Inventors:** Hirokazu Shimada; Yasuyuki Sugano
 **Applicant:** Cosina Co., Ltd.
 **Title:** Large-aperture lens (大口径レンズ)
-**Embodiment analyzed:** Example 3 (第3実施例), Figure 5, Tables 5–6
+**Example details:** 第3実施例, Figure 5, Tables 5–6
 
 The prescription is an unscaled transcription of Example 3. The production lens is marketed as 75 mm f/1.5, whereas the patent example gives 74.5 mm and f/1.54; the independently recomputed effective focal length is 74.502507 mm. These values are kept separate in the data file as marketing and design quantities.
 

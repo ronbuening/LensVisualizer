@@ -10,7 +10,6 @@
 **Inventor:** Takashi Suzuki
 **Assignee:** Fujifilm Corporation, Tokyo (JP)
 **Title:** Small-Size Wide Angle Lens and Camera Including the Lens
-**Embodiment analyzed:** Example 1
 
 Example 1 is identified as the production optical formula for the Fujinon 23mm f/2 lens integrated into the Fujifilm X100 series (X100, X100S, X100T, X100F) based on the following convergent evidence:
 

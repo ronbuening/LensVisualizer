@@ -10,7 +10,6 @@
 **Applicant:** Optische Werke G. Rodenstock, 8000 München
 **Title:** Fotografisches Aufnahmeobjektiv für Großformat
 **Classification:** G 02 B 9/16
-**Embodiment analyzed:** Sole numerical example
 
 DE 28 18 394 B1 discloses a three-element photographic taking lens for large-format work. The claim describes two positive collecting lenses, one intervening negative lens, and a diaphragm between the two rear lenses. The numerical example is normalized to $f' = 100$ at $1{:}6.8$, and the patent text states that the preferred objective can have a focal length of 210 mm.
 

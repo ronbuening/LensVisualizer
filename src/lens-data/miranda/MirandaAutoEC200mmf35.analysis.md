@@ -8,8 +8,7 @@
 **Published:** 1976-10-09\
 **Inventor:** Kunio Shimada (島田 邦夫)\
 **Applicant:** ミランダカメラ株式会社\
-**Title:** 小型軽量の大口径超望遠レンズ\
-**Embodiment analyzed:** Example 1
+**Title:** 小型軽量の大口径超望遠レンズ
 
 The prescription is based on Example 1 of JP1976-114926. The patent gives a six-element, five-group, all-spherical telephoto design normalized to `f = 100`, with back focus 28.98, total optical track 78.94, aperture ratio approximately 1:3.5, and approximately ±6° field. Figure 1 shows three separated elements ahead of the diaphragm, one separated element behind it, and a cemented two-element rear group. The numerical prescription appears on PDF page 4 / printed page 184, while the section drawing is Figure 1 on PDF page 5 / printed page 185. [1]
 

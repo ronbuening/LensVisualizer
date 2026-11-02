@@ -9,7 +9,7 @@
 **Inventors:** Hisashi Tokumaru (得丸祥); Mitsuo Yasukuni (安国光雄)
 **Applicant:** Minolta Camera Co., Ltd.
 **Title:** ズームレンズ系 (Zoom lens system)
-**Embodiment analyzed:** Example 1 (実施例1)
+**Example details:** 実施例1
 
 The implemented prescription is Example 1 of JP S56-150717 A. The patent gives a 77–146 mm zoom with a design F-number of 4.1, twelve elements in eight air-spaced groups, and a four-part power sequence consisting of a positive focusing group F, a negative variator V, a positive compensator C, and a master group M. The numerical prescription is printed on PDF pages 2–3 of the supplied publication; Figure 1 on PDF page 5 shows the same F/V/C/M layout. The final data file preserves that prescription without uniform scaling.
 

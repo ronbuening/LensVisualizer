@@ -8,7 +8,7 @@
 **Inventors:** Kota Omiya; Tetsuichiro Okumura  
 **Applicant:** Sony Corporation  
 **Title:** *Optical System and Imaging Device*  
-**Embodiment analyzed:** Numerical Example 2, Configuration 2 (Fig. 4; Tables 5-8)
+**Example details:** Configuration 2 (Fig. 4; Tables 5-8)
 
 Numerical Example 2 is a high-confidence match to the Sony FE 20mm f/1.8 G (SEL20F18G), although the patent does not identify a commercial product. The association rests on convergent evidence:
 

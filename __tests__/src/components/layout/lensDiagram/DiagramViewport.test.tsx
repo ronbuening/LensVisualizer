@@ -3,7 +3,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import DiagramViewport from "../../../../../src/components/layout/lensDiagram/DiagramViewport.js";
-import type { CardinalElements } from "../../../../../src/optics/cardinalElements.js";
+import type { CardinalElements } from "../../../../../src/optics/first-order/cardinals.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import type { Theme } from "../../../../../src/types/theme.js";
 
@@ -51,7 +51,7 @@ vi.mock("../../../../../src/components/diagram/PetzvalOverlayContent.js", () => 
 }));
 
 const baseProps = {
-  L: { N: 2 } as RuntimeLens,
+  L: { N: 2, elements: [] } as unknown as RuntimeLens,
   t: {
     toggleBg: "#000",
     toggleBorder: "#333",

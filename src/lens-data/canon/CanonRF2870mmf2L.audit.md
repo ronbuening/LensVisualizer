@@ -6,14 +6,14 @@ Patent: JP 2020-118807 A, Example A
 
 ### Phase 1 - Glass corrections
 
-| Element / surface | Field | Before | After | Justification |
-|---|---|---|---|---|
-| L4 / S6A | `glass` | `S-LAM54 (OHARA)` | `769493 - MC-TAF101-100 (HOYA)` | Patent nd/vd is 1.76902 / 49.3; refractiveindex.info/HOYA gives exact code 769493. |
-| L8 / S12 | `glass` | `S-LAH60 (OHARA)` | `TAFD30 (HOYA)` | Patent nd/vd is 1.88300 / 40.8; TAFD30 is exact. |
-| L11 / S19 | `glass` | `S-NBH8 (OHARA)` | `S-NBH53V (OHARA)` | Patent nd/vd is 1.73800 / 32.3; S-NBH53V is catalog-consistent. |
-| L16 / S27 | `glass` | `S-NBH56 (OHARA)` | `NBFD15 (HOYA)` | Patent nd/vd is 1.80610 / 33.3; refractiveindex.info/HOYA gives exact code 806333. |
-| L17 / S29A | `glass` | `S-LAH66 (OHARA)` | `L-LAH85V (OHARA)` | Patent nd/vd is 1.85400 / 40.4; Ohara L-LAH85V is exact via refractiveindex.info. |
-| L19 / S32 | `glass` | `S-NPH2 (OHARA)` | `TAFD55 (HOYA)` | Patent nd/vd is 2.00100 / 29.1; TAFD55 is exact. |
+| Element / surface | Field   | Before            | After                           | Justification                                                                      |
+| ----------------- | ------- | ----------------- | ------------------------------- | ---------------------------------------------------------------------------------- |
+| L4 / S6A          | `glass` | `S-LAM54 (OHARA)` | `769493 - MC-TAF101-100 (HOYA)` | Patent nd/vd is 1.76902 / 49.3; refractiveindex.info/HOYA gives exact code 769493. |
+| L8 / S12          | `glass` | `S-LAH60 (OHARA)` | `TAFD30 (HOYA)`                 | Patent nd/vd is 1.88300 / 40.8; TAFD30 is exact.                                   |
+| L11 / S19         | `glass` | `S-NBH8 (OHARA)`  | `S-NBH53V (OHARA)`              | Patent nd/vd is 1.73800 / 32.3; S-NBH53V is catalog-consistent.                    |
+| L16 / S27         | `glass` | `S-NBH56 (OHARA)` | `NBFD15 (HOYA)`                 | Patent nd/vd is 1.80610 / 33.3; refractiveindex.info/HOYA gives exact code 806333. |
+| L17 / S29A        | `glass` | `S-LAH66 (OHARA)` | `L-LAH85V (OHARA)`              | Patent nd/vd is 1.85400 / 40.4; Ohara L-LAH85V is exact via refractiveindex.info.  |
+| L19 / S32         | `glass` | `S-NPH2 (OHARA)`  | `TAFD55 (HOYA)`                 | Patent nd/vd is 2.00100 / 29.1; TAFD55 is exact.                                   |
 
 ### Phase 2 - Retained-information audit
 
@@ -37,9 +37,9 @@ Patent: JP 2020-118807 A, Example A
 
 ### Glass corrections
 
-| Element / surface | Before | After | Disposition |
-|---|---|---|---|
-| L5 / S8 | `M-TAFD305 (HOYA)` | `S-LAH96 (OHARA, 764485)` | Exact catalog match for nd = 1.76385, vd = 48.5. |
+| Element / surface | Before             | After                     | Disposition                                      |
+| ----------------- | ------------------ | ------------------------- | ------------------------------------------------ |
+| L5 / S8           | `M-TAFD305 (HOYA)` | `S-LAH96 (OHARA, 764485)` | Exact catalog match for nd = 1.76385, vd = 48.5. |
 
 ### Analysis sync
 
@@ -65,10 +65,10 @@ Patent: JP 2020-118807 A, Example A
 
 ### Re-verified and retained
 
-- All 34 surface rows (R, d, nd, νd), the stop at S14, the AP flare-cut plane S22 (d = −2.59 mm, folded into d21), and
+- All 34 surface rows (R, d, nd, νd), the stop at S14, the AP flare-cut plane S22 (d = −2.59 mm, folded into d 21), and
   all five asphere coefficient sets match the patent. The printed formula uses the standard (1 + K) conic with an A2
   term; every K = 0 and no A2 is listed, so there is no K/κ ambiguity and the surfaces are spherical-base polynomials.
-- Zoom gaps d5 / d13 / d21 match the patent table at all three stations (d21 stored as patent − 2.59).
+- Zoom gaps d 5 / d 13 / d 21 match the patent table at all three stations (d 21 stored as patent − 2.59).
 - Computed EFL 28.898 / 50.009 / 67.921 mm against the patent's 28.90 / 50.00 / 67.90 mm. Group focal lengths agree with
   the published +104.99 / −19.17 / +47.05 / +44.67 mm.
 - Patent metadata (number, kind code, author, assignee, year), element count, group count, mount and format ids are
@@ -77,28 +77,28 @@ Patent: JP 2020-118807 A, Example A
 
 ### Changes
 
-| Item | Before | After | Evidence |
-|---|---|---|---|
-| Rear gap (var "34", was "33") | 19.71 / 28.93 / 34.37 (physical CG + d36 added) | 19.04 / 28.26 / 33.70 | Repo convention folds the CG as t/n: d34 + 1.96/1.51633 + 2.75. Paraxial defocus drops from +0.66 mm to −0.01 / −0.02 / −0.03 mm; lens length now 157.50 / 170.59 / 179.04 against the patent's 157.51 / 170.61 / 179.07. |
-| Surface labels after the AP | "22"–"33", "29A", "30A" (patent − 1) | "23"–"34", "30A", "31A" | Patent numbering; the analysis already cited S30/S31 for L17. `var`, `varLabels`, `groups`, `doublets` and `asph` keys follow. |
-| `nominalFno` | 2.0 | 2.06 | Patent FNO 2.06 at all stations. |
-| Aperture model | fixed iris | `zoomApertureModel: "from-nominal-fno"` | The stop moves with G3 and FNO is constant, so the iris must change; no iris diameters are published. Inferred iris radii 13.55 / 15.55 / 16.91 mm. |
-| `fstopSeries` / `maxFstop` | [2, …, 22] / default 16 | [2.06, 2.8, …, 22] / 22 | Series starts at the reachable nominal f-number; production minimum aperture f/22. |
-| STO sd | 16.0 | 17.0 | Tele f/2.06 real-ray iris radius is 16.9 mm; 16.0 was undersized. |
-| S15 / S16 sd | 17.0 / 18.0 | 18.9 / 18.9 | Were CLIPS-AXIAL (tele axial beam 18.16 / 18.26 mm); Fig. 1 shows L9 at 18.9 mm. |
-| S1 / S2 sd | 44.5 / 44.0 | 39.3 / 36.1 | Fig. 1: front doublet rim 39.2 mm, cemented junction 36.1 mm (S2 was 22 % over the figure; S1 moved with it for a coherent L1). Wide chief ray at S1 is 35.5–36.2 mm. |
-| S7 sd | 18.5 | 16.0 | Fig. 1 reads 15.1 mm (stored was 23 % over). Set 0.9 mm above the figure so the engine's paraxial wide half-field stays at 37.1° (15.1 would cut it to 35.5°, below the patent's 36.82°). |
-| S20 sd | 19.2 | 15.9 | Fig. 1 D4 junction 15.9 mm (−17 %); tele axial beam is 15.68 mm. |
-| L13 S23 / S24 sd | 19.2 / 20.0 | 16.9 / 16.9 | Fig. 1 rim 16.9 mm (−14 % / −18 %). |
-| L14 S25 / S26 sd | 20.0 / 18.45 | 16.5 / 16.5 | Fig. 1 rim 16.5 mm (−21 % / −12 %). |
-| D5 S27 / S28 / S29 sd | 18.6 / 17.8 / 17.2 | 15.5 / 15.5 / 13.8 | Fig. 1 outer rim 15.5 mm, S29 edge 13.8 mm (−20 % / −15 % / −25 %). |
-| D6 S32 / S33 / S34 sd | 18.6 / 19.8 / 20.8 | 15.4 / 18.4 / 18.4 | Fig. 1: S32 edge 14.8 mm (−26 %), L19 rim 18.4 mm. S32 set 0.6 mm above the figure to keep the paraxial half-field above 36.82°. |
-| Element `fl` | thin-lens values (e.g. L3 121.5, L7 71.5, L10 35.8) | thick-lens values from the prescription (L3 117.3, L7 66.1, L10 37.0; all 19 updated) | Paraxial thick-lens trace of each element. |
-| L17 `type` | Neg. Meniscus (2× Asph) | Biconcave Neg. (2× Asph) | R1 = −1000, R2 = +119.129: both surfaces concave. |
-| `apd` L12 / L13 / L15 | "patent" | "inferred" | The patent never labels any element UD or anomalous; the class is inferred from the catalog glass. |
-| `apd` L19 | "inferred" ("heavy phosphate flint") | false | TAFD55 is a lanthanum dense flint; catalog θgF 0.5986 sits only ≈ +0.004 above the normal line. |
-| Focus description / G3 naming | "Inner focusing via Group 3 (probable)" | Focusing group not identified in the patent | Claim 16 and ¶0039 mention the main system's focusing lens only generically; the former "paragraph 16" citation was claim 16 and did not identify G3. |
-| Header / analysis group motion | "G1 fixed; all groups move rearward" | G1 +21.6 mm, G2 ≈ −4 mm (slight reversal), G3 +9.6 mm, G4 +14.7 mm toward the object | Derived from the gap table with the image fixed; matches the Fig. 1 arrows (L1, L3, L4 toward the object, L2 toward the image). |
+| Item                           | Before                                              | After                                                                                 | Evidence                                                                                                                                                                                                                   |
+| ------------------------------ | --------------------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rear gap (var "34", was "33")  | 19.71 / 28.93 / 34.37 (physical CG + d 36 added)    | 19.04 / 28.26 / 33.70                                                                 | Repo convention folds the CG as t/n: d 34 + 1.96/1.51633 + 2.75. Paraxial defocus drops from +0.66 mm to −0.01 / −0.02 / −0.03 mm; lens length now 157.50 / 170.59 / 179.04 against the patent's 157.51 / 170.61 / 179.07. |
+| Surface labels after the AP    | "22"–"33", "29A", "30A" (patent − 1)                | "23"–"34", "30A", "31A"                                                               | Patent numbering; the analysis already cited S30/S31 for L17. `var`, `varLabels`, `groups`, `doublets` and `asph` keys follow.                                                                                             |
+| `nominalFno`                   | 2.0                                                 | 2.06                                                                                  | Patent FNO 2.06 at all stations.                                                                                                                                                                                           |
+| Aperture model                 | fixed iris                                          | `zoomApertureModel: "from-nominal-fno"`                                               | The stop moves with G3 and FNO is constant, so the iris must change; no iris diameters are published. Inferred iris radii 13.55 / 15.55 / 16.91 mm.                                                                        |
+| `fstopSeries` / `maxFstop`     | [2, …, 22] / default 16                             | [2.06, 2.8, …, 22] / 22                                                               | Series starts at the reachable nominal f-number; production minimum aperture f/22.                                                                                                                                         |
+| STO sd                         | 16.0                                                | 17.0                                                                                  | Tele f/2.06 real-ray iris radius is 16.9 mm; 16.0 was undersized.                                                                                                                                                          |
+| S15 / S16 sd                   | 17.0 / 18.0                                         | 18.9 / 18.9                                                                           | Were CLIPS-AXIAL (tele axial beam 18.16 / 18.26 mm); Fig. 1 shows L9 at 18.9 mm.                                                                                                                                           |
+| S1 / S2 sd                     | 44.5 / 44.0                                         | 39.3 / 36.1                                                                           | Fig. 1: front doublet rim 39.2 mm, cemented junction 36.1 mm (S2 was 22 % over the figure; S1 moved with it for a coherent L1). Wide chief ray at S1 is 35.5–36.2 mm.                                                      |
+| S7 sd                          | 18.5                                                | 16.0                                                                                  | Fig. 1 reads 15.1 mm (stored was 23 % over). Set 0.9 mm above the figure so the engine's paraxial wide half-field stays at 37.1° (15.1 would cut it to 35.5°, below the patent's 36.82°).                                  |
+| S20 sd                         | 19.2                                                | 15.9                                                                                  | Fig. 1 D4 junction 15.9 mm (−17 %); tele axial beam is 15.68 mm.                                                                                                                                                           |
+| L13 S23 / S24 sd               | 19.2 / 20.0                                         | 16.9 / 16.9                                                                           | Fig. 1 rim 16.9 mm (−14 % / −18 %).                                                                                                                                                                                        |
+| L14 S25 / S26 sd               | 20.0 / 18.45                                        | 16.5 / 16.5                                                                           | Fig. 1 rim 16.5 mm (−21 % / −12 %).                                                                                                                                                                                        |
+| D5 S27 / S28 / S29 sd          | 18.6 / 17.8 / 17.2                                  | 15.5 / 15.5 / 13.8                                                                    | Fig. 1 outer rim 15.5 mm, S29 edge 13.8 mm (−20 % / −15 % / −25 %).                                                                                                                                                        |
+| D6 S32 / S33 / S34 sd          | 18.6 / 19.8 / 20.8                                  | 15.4 / 18.4 / 18.4                                                                    | Fig. 1: S32 edge 14.8 mm (−26 %), L19 rim 18.4 mm. S32 set 0.6 mm above the figure to keep the paraxial half-field above 36.82°.                                                                                           |
+| Element `fl`                   | thin-lens values (e.g. L3 121.5, L7 71.5, L10 35.8) | thick-lens values from the prescription (L3 117.3, L7 66.1, L10 37.0; all 19 updated) | Paraxial thick-lens trace of each element.                                                                                                                                                                                 |
+| L17 `type`                     | Neg. Meniscus (2× Asph)                             | Biconcave Neg. (2× Asph)                                                              | R1 = −1000, R2 = +119.129: both surfaces concave.                                                                                                                                                                          |
+| `apd` L12 / L13 / L15          | "patent"                                            | "inferred"                                                                            | The patent never labels any element UD or anomalous; the class is inferred from the catalog glass.                                                                                                                         |
+| `apd` L19                      | "inferred" ("heavy phosphate flint")                | false                                                                                 | TAFD55 is a lanthanum dense flint; catalog θgF 0.5986 sits only ≈ +0.004 above the normal line.                                                                                                                            |
+| Focus description / G3 naming  | "Inner focusing via Group 3 (probable)"             | Focusing group not identified in the patent                                           | Claim 16 and ¶0039 mention the main system's focusing lens only generically; the former "paragraph 16" citation was claim 16 and did not identify G3.                                                                      |
+| Header / analysis group motion | "G1 fixed; all groups move rearward"                | G1 +21.6 mm, G2 ≈ −4 mm (slight reversal), G3 +9.6 mm, G4 +14.7 mm toward the object  | Derived from the gap table with the image fixed; matches the Fig. 1 arrows (L1, L3, L4 toward the object, L2 toward the image).                                                                                            |
 
 Figure method: Fig. 1 (axis vertical, object at the bottom) profiled at 400 dpi (native raster); scale 8.70 px/mm from
 the S1–S34 wide-angle vertex spacing (138.46 mm = 1205 px), confirmed by the drawn axial beam at SP (13.8 mm against a
@@ -131,8 +131,40 @@ the AP position ("near the primary image plane" was wrong), and the last-surface
 ## 2026-09-23 — Cover glass modeled as `rearPlates`
 
 - Replaced the air-equivalent fold with the patent's physical rear stack: D34 = 15.00 / 24.22 / 29.66 mm (Example A
-  table), then `rearPlates` CG 1.96 mm, nd 1.51633, νd 64.1 (S-BSL7 class), and d36 = 2.75 mm. The plate is traced by
+  table), then `rearPlates` CG 1.96 mm, nd 1.51633, νd 64.1 (S-BSL7 class), and d 36 = 2.75 mm. The plate is traced by
   every analysis and hidden from the diagram and element lists.
 - Paraxial check against the previous data: EFL identical; defocus changes by +0.0026 mm at every station, which is the
   rounding in the old stored 19.04 / 28.26 / 33.70 mm (exact fold 19.0426 / 28.2626 / 33.7026 mm). Physical track grows
   by 1.96 × (1 − 1/1.51633) = 0.667 mm plus that rounding.
+
+## 2026-10-30 — Native cap/shoulder follow-up and complete medium qualification
+
+Preserved completed 2026-09-23 original shape/glass/physical-CG coverage and the actual 2026-05-19/05-31/07-29 material dates. Reopened reproducible cap/shoulder defects and prior paraxial-estimator allowances against the same `patents/JP2020118807A.pdf`, Example A main optical system (not converter Examples 1–5). Direct original source: definitions at ¶0090, PDF p. 15, equation at ¶0094–0096, p. 16, source rows/aspheres/general data pp. 16–18, Fig. 1/Fig. 2, p. 29. All 36 original planes accounted for: 33 authored rows, physical CG 35–36 via rearPlates, mechanical AP 22 omitted with its −2.59 gap folded into D21. Every source R/d, five aspheres, source station and disabled-focus control stays unchanged.
+
+| Inferred clear cap | Before mm | Adopted mm |
+| ------------------ | --------: | ---------: |
+| 3                  |        38 |       39.3 |
+| 4                  |        32 |       33.4 |
+| 5                  |      30.8 |       33.4 |
+| 6A                 |      22.8 |         21 |
+| 7                  |        16 |       15.1 |
+| 9                  |      16.1 |      15.15 |
+| 10                 |      16.5 |      15.15 |
+| 11                 |      16.7 |      15.75 |
+| 12                 |     16.25 |      14.25 |
+| 13A                |      16.8 |      15.75 |
+| 19                 |        19 |       17.5 |
+| 21                 |      18.8 |       17.5 |
+| 32                 |      15.4 |       14.8 |
+
+Free-end shoulders: S7 clear 15.1/outer 21.0, S29 clear 13.8/outer 15.5, S32 clear 14.8/outer 18.4. These resolve native free-air steps; no bonded interface land or disconnected wing is invented. S7/S32 no longer retain the old paraxial-estimator allowances; actual source-height chiefs still clear. Fig. 1 is 1182×1796 at native 400 ppi; about 1205 px / 138.46 mm gives 8.70 px/mm, practical ±0.6 mm uncertainty. Vector-table renders 180 dpi are reading aids, not higher native figure resolution. Excluded rays, leaders, brackets and mechanical stop/image-plane ink. Small ambiguous caps remain retained.
+
+Rejected drawing-height L17 clear 15.5/15.5 trial: S29–S30A intrusion 4.209 exceeds physical 3.840 and guard 3.456; S31A–S32 intrusion 3.253 exceeds guard 3.078 in physical 3.420 mm. Keep prior L17 clear 13.7/14.5 with its contour constraint. No unsupported aspheric shoulder is added. Rejected S8 clear 15.15 trial: S7 land 8.962 exceeds guard 8.604 in physical 9.560; keep 14.8 within native uncertainty. All guards and source R/d remain unchanged. Unequal curved bonded caps do not reproduce every flat blank margin; no opaque interfaces/equal-height blocks are introduced.
+
+All 20 media checked (19 drawn elements plus physical CG): explicit d reference at 587.56 nm, F 486.13/C 656.27/g 435.84. Every numerical pair and all 20 compatible curves are unchanged and publicly qualified as proxies; supplier/melt/chemistry/process unspecified. No source individual line indices/partials or active overrides exist; zero numeric override removal. APD stays inferred, not patent-designated. CG remains 1.96 mm at 1.51633/64.1 with post-air 2.75 and physical pre-gaps 15/24.22/29.66. Its unreported aperture remains generated non-clipping; no production plate-edge claim. AP flare vignetting is unmodeled.
+
+The native Eq. 1 raster prints numerator 1/R without H², plus A2H². No selected coefficient list on pp. 17–18 publishes A2, and prose defines A4 onward. Retain the existing standard H²/R base and absent-A2-as-zero convention; source dimensions, zero vertex displacement and independently matching group powers support that qualified interpretation. No nonzero A2, R/K/coefficient correction or optical fit is made. The printed-equation issue is separately recorded in source.errata, superseding the old literal-standard-equation claim without re-dating its history.
+
+Surface/image-circle checks pass; 65/65 infinity aperture/field checks pass. Geometry-identical clone difference 0; all 1,365 contour states have 19 connected/closed/finite paths, zero renderer trim. Actual final SVGs compared with native Fig. 1; physical CG traced/hidden. Focus 0→1 has zero position/iris change, so no actual finite-focus coverage is claimed. Current iris 13.202218/14.889121/15.968497 gives paraxial F2.06; real collimated 2.110866/2.144038/2.166898 is distinct from old nominal-input stop heights 13.545413/15.554651/16.905398.
+
+Collimated 65 × 3 × 97 grid: 18,915 rays, axial/chief clear, 2,779 ordinary clips, 659 bounded cap misses (609 first/50 next), zero seed/unexplained/unaimed failures. Source 21.64 endpoint grid: 873 rays, axial/chief clear, 131 clips, 28 bounded misses (24 first/four next). Worst illustrative post-CG infinity residual −0.451194 mm at zoom 0.265625 retained. Source fidelity, sampled runtime and production correlation remain separate; L17/bonded-margin, AP/CG-aperture, finite-focus and material limitations are public in the [analysis](CanonRF2870mmf2L.analysis.md).

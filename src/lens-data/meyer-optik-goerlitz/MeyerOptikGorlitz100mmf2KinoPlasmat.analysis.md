@@ -3,8 +3,7 @@
 **Patent:** DE 401630 — *Photographisches Objektiv*\
 **Patent effective from:** 31 December 1922\
 **Published:** 6 September 1924\
-**Inventor:** Paul Rudolph\
-**Embodiment analyzed:** Example III
+**Inventor:** Paul Rudolph
 
 The modeled prescription is Example III of DE 401630. The patent gives this example a relative aperture of 1:2 and a
 whole-objective focal length of 100 mm, and describes it as hemisymmetrical: the two halves separated by stop B have the

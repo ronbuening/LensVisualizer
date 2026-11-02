@@ -7,7 +7,6 @@
 **Inventor:** Daichi Tanoue
 **Applicant:** Sigma Corporation
 **Title:** Image Forming Optical System
-**Embodiment analyzed:** Numerical Example 1
 
 The prescription represents the selected numerical example in the supplied Japanese publication.
 The supplied PDF includes a PAJ abstract cover, so PDF pages 10–11 correspond to printed patent pages 9–10.

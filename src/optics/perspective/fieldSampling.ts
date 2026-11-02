@@ -7,11 +7,8 @@
 
 import { normalize } from "../math/vector.js";
 import type { Vec3 } from "../types.js";
-import {
-  solvePerspectiveChiefRay,
-  type PerspectiveChiefRayOptions,
-  type PerspectiveChiefRayResult,
-} from "./chiefRay.js";
+import { solvePerspectiveChiefRay } from "./chiefRay.js";
+import type { PerspectiveChiefRayOptions, PerspectiveChiefRayResult } from "./chiefRay.js";
 import {
   createFieldPlaneFrame,
   directionForIdealCoordinates,
@@ -26,10 +23,8 @@ import {
   resolvePerspectiveFocalLength,
   sensorUvForPoint,
   sensorUvInsideFormat,
-  type FieldPlaneFrame,
-  type PerspectiveProjectionReference,
-  type SensorUv,
 } from "./fieldGeometry.js";
+import type { FieldPlaneFrame, PerspectiveProjectionReference, SensorUv } from "./fieldGeometry.js";
 import { boundedFieldStatus, unavailableFieldSample } from "./fieldResults.js";
 import type {
   FieldSample,
@@ -37,8 +32,10 @@ import type {
   PerspectiveFieldRequest,
   PerspectiveFieldSamplingOptions,
 } from "./fieldTypes.js";
-import { pupilBundleForRequest, type PerspectivePupilBundleRequest } from "./pupilBundle.js";
-import { solveChiefToSensorPoint, type PerspectiveSensorLockSolveResult } from "./sensorTarget.js";
+import { pupilBundleForRequest } from "./pupilBundle.js";
+import type { PerspectivePupilBundleRequest } from "./pupilBundle.js";
+import { solveChiefToSensorPoint } from "./sensorTarget.js";
+import type { PerspectiveSensorLockSolveResult } from "./sensorTarget.js";
 import type { PerspectiveTraceContext } from "./trace.js";
 
 export { PerspectiveFieldSamplingError } from "./fieldGeometry.js";
@@ -61,6 +58,7 @@ export type {
 } from "./fieldTypes.js";
 
 /** Sample one or more scene- or sensor-locked requests without reordering failures. */
+// Unlike centered uniformFieldFraction sweeps, these explicit scene/sensor targets retain caller order and failures.
 export function samplePerspectiveFields(
   context: PerspectiveTraceContext,
   requests: readonly PerspectiveFieldRequest[],
@@ -231,15 +229,34 @@ function sampleSensorLocked(
     });
   }
 
-  const solved = solveChiefToSensorPoint(
-    context,
-    sensorPoint,
-    sensorFrame,
-    intrinsicFrame,
-    projection,
-    seedDirectionLens,
-    chiefOptionsForSampling(options),
+  const chiefOptions = chiefOptionsForSampling(options);
+  // The context fixes both frames and the pose inversion. Keep the focal scale
+  // and every chief option exact: a rounded key can violate bitwise parity.
+  const solveKey = JSON.stringify(
+    [
+      sensorPoint,
+      projection.kind,
+      projection.focalScaleMm,
+      Object.entries(chiefOptions ?? {})
+        .filter(([, value]) => value !== undefined)
+        .sort(([a], [b]) => a.localeCompare(b)),
+    ],
+    (_key, value: unknown) =>
+      Object.is(value, -0) ? "-0" : typeof value === "number" && !Number.isFinite(value) ? String(value) : value,
   );
+  let solved = context.sensorChiefSolves.get(solveKey);
+  if (!solved) {
+    solved = solveChiefToSensorPoint(
+      context,
+      sensorPoint,
+      sensorFrame,
+      intrinsicFrame,
+      projection,
+      seedDirectionLens,
+      chiefOptions,
+    );
+    context.sensorChiefSolves.set(solveKey, solved);
+  }
   if (!solved.chief) {
     return unavailableFieldSample({
       domain: "sensor-locked",
@@ -304,7 +321,8 @@ function sampleFromChief({
   sensorSolve = null,
 }: SampleFromChiefParams): FieldSample {
   const sensorSolveConverged = sensorSolve === null || sensorSolve.status === "converged";
-  const pupilBundle = sensorSolveConverged && pupilRequest ? pupilBundleForRequest(context, chief, pupilRequest) : null;
+  const pupilBundle =
+    sensorSolveConverged && pupilRequest ? pupilBundleForRequest(context, chief, pupilRequest, domain) : null;
   const actualSensorIntercept = chief.chiefTrace?.sensorIntersection?.point ?? null;
   const status = sensorSolveConverged
     ? boundedFieldStatus(domain, chief.status, sensorFrame, poseIdealSensorIntercept, actualSensorIntercept)

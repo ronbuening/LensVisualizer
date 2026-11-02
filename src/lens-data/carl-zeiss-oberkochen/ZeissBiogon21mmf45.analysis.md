@@ -5,7 +5,7 @@
 **Assignee:** None printed on the patent
 **Filed:** July 5, 1952 (Swiss priority July 12, 1951)
 **Granted:** October 25, 1955
-**Example analyzed:** Example 2 (f/4.5 variant)
+**Example details:** f/4.5 variant
 **Production lens represented:** Carl Zeiss Biogon 21mm f/4.5 (Contax rangefinder mount, 1954–1961)
 
 ---

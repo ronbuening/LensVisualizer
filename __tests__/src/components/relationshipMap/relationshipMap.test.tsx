@@ -140,7 +140,7 @@ describe("RelationshipMap", () => {
 });
 
 describe("PatentDetailCard", () => {
-  it("renders lens links and recenters non-center inventors", () => {
+  it("renders example-labelled lens links and recenters non-center inventors", () => {
     const graph = findConnectedGraph();
     const centerRef = graph.center.ref;
     const patent =
@@ -160,8 +160,10 @@ describe("PatentDetailCard", () => {
       />,
     );
 
+    const firstLens = patent.lenses[0];
     const lensLink = container.querySelector(`a[href^="/lens/"]`);
-    expect(lensLink).not.toBeNull();
+    expect(lensLink?.getAttribute("href")).toBe(`/lens/${firstLens.key}/`);
+    expect(lensLink?.textContent?.startsWith(firstLens.example?.label ?? firstLens.name)).toBe(true);
     const patentLink = getByRole("link", {
       name: `${patent.patentNumber} in Espacenet (opens in a new tab)`,
     });

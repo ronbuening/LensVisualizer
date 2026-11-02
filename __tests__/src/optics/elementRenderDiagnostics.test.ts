@@ -1,9 +1,10 @@
+import { CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeometry.js";
-import buildLens from "../../../src/optics/buildLens.js";
-import { sharedMaterialBand } from "../../../src/optics/internal/apertureBands.js";
-import { doLayout, renderSag } from "../../../src/optics/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { computeElementRenderDiagnostics } from "../../../src/optics/diagram/runtimeDiagramAdapter.js";
+import { buildFixtureLens as buildLens } from "./constructionFixtures.js";
+import { sharedMaterialBand } from "../../../src/optics/geometry/apertureBands.js";
+import { doLayoutForRuntimeLens as doLayout, prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import { surfaceSag } from "../../../src/optics/diagram/surfaceOutline.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 const MATERIAL_TRIM_TOLERANCE_MM = 0.25;
@@ -21,7 +22,7 @@ const catalogDiagnosticsByKey = new Map<string, CatalogDiagnostics>();
 function catalogDiagnostics(key: string): CatalogDiagnostics {
   let entry = catalogDiagnosticsByKey.get(key);
   if (!entry) {
-    const L = buildLens(LENS_CATALOG[key]);
+    const L = buildLens(CATALOG_CONSTRUCTION_FIXTURES[key]);
     const layout = doLayout(0, 0, L);
     entry = { L, diagnostics: computeElementRenderDiagnostics(L, layout.z) };
     catalogDiagnosticsByKey.set(key, entry);
@@ -38,6 +39,8 @@ describe("element render diagnostics", () => {
         [diagnostic.rear.surfaceIndex, diagnostic.rear],
       ]),
     );
+    /* The drawn outline: a rim cut's land replaces the cap beyond its radius. */
+    const surfaces = prepareRuntimeState(L, 0, 0).surfaces;
     let maxOverlap = 0;
 
     for (let i = 0; i < L.N - 1; i++) {
@@ -54,7 +57,7 @@ describe("element render diagnostics", () => {
       );
       if (!sharedBand) continue;
 
-      const intrusion = renderSag(sharedBand.outer, i, L) - renderSag(sharedBand.outer, i + 1, L);
+      const intrusion = surfaceSag(surfaces[i], sharedBand.outer) - surfaceSag(surfaces[i + 1], sharedBand.outer);
       maxOverlap = Math.max(maxOverlap, intrusion - curr.d);
     }
 
@@ -67,7 +70,7 @@ describe("element render diagnostics", () => {
   it("does not hide material production-lens semi-diameter trims", () => {
     const offenders: string[] = [];
 
-    for (const key of Object.keys(LENS_CATALOG)) {
+    for (const key of Object.keys(CATALOG_CONSTRUCTION_FIXTURES)) {
       const { diagnostics } = catalogDiagnostics(key);
       for (const diagnostic of diagnostics) {
         for (const surface of [diagnostic.front, diagnostic.rear]) {
@@ -87,7 +90,7 @@ describe("element render diagnostics", () => {
   it("does not leave rendered cross-gap collisions in production lenses", () => {
     const offenders: string[] = [];
 
-    for (const key of Object.keys(LENS_CATALOG)) {
+    for (const key of Object.keys(CATALOG_CONSTRUCTION_FIXTURES)) {
       const overlap = maxRenderedGapOverlapMm(key);
       if (overlap > 1e-6) offenders.push(`${key}: ${overlap.toFixed(6)} mm`);
     }

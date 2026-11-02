@@ -10,7 +10,7 @@
 **Inventors:** Nobuyuki Adachi; Takuya Imaoka
 **Assignee:** Panasonic Corporation
 **Title:** Imaging Optical System, Interchangeable Lens Apparatus and Camera System
-**Embodiment analyzed:** Embodiment 4 / Numerical Example 4, Tables 7 and 8
+**Example details:** Numerical Example 4, Tables 7 and 8
 
 Numerical Example 4 is the strongest match to the Panasonic Lumix G Fisheye 8mm f/3.5 (H-F008). The identification is based on a convergence of prescription and product data, not on a patent statement naming the commercial lens. The patent describes the Embodiment 4 layout in ¶0050 and prints the Numerical Example 4 prescription in Tables 7 and 8.
 

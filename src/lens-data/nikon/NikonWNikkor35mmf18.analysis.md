@@ -6,7 +6,7 @@
 **Inventor:** Hideo Azuma
 **Assignee:** Nippon Kogaku K.K., Tokyo, Japan
 **Title:** High Aperture Wide-Angle Objective Lens
-**Embodiment analyzed:** Sole numerical example, Claim 3 prescription
+**Example details:** Claim 3 prescription
 
 US 2,896,506 gives a single numerical prescription for a high-aperture wide-angle photographic objective normalized to $f = 1$, $F:1.8$, and a full field angle of $63°$. The prescription is the seven-element, five-component design associated with the production Nikon W-Nikkor 3.5cm f/1.8, scaled here to the marketed 35 mm focal length.
 

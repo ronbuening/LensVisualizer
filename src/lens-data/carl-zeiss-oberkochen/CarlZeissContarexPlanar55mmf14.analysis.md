@@ -8,7 +8,7 @@
 **Applicant:** Fa. Carl Zeiss, Heidenheim/Brenz
 **Inventors:** Johannes Berger; Dr. Günther Lange
 **Design type:** Modified asymmetric double-Gauss ("Planar")
-**Example:** Single numerical example (the only one in the patent; the production design)
+**Example details:** the only one in the patent; the production design
 
 ## Production History
 

@@ -10,7 +10,7 @@
 **Applicant:** Voigtländer Aktiengesellschaft\
 **Inventor:** No individual inventor is named on the French publication\
 **Title:** *Téléobjectif photographique*\
-**Embodiment analyzed:** Example 1 (`EXEMPLE CHIFFRÉ`), corresponding to the Fig. 3 form
+**Example details:** `EXEMPLE CHIFFRÉ`, corresponding to the Fig. 3 form
 
 The modeled prescription is the user-selected correlation between FR 1,045,076 Example 1 and the production VOIGTLÄNDER TELOMAR 180mm f/5.5. The French publication itself does not state that this example became the 180 mm Telomar, so the correlation should be understood as a source-supported project identification rather than a manufacturer confirmation.
 

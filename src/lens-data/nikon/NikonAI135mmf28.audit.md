@@ -104,3 +104,11 @@ against 0.519 (Ex. 2), 0.558 (Ex. 1) and 0.431 (Ex. 3).
   clears the f/2.8 axial beam by 0.05 mm.
 - Which of the three examples was produced is not documented; Example 2 remains the file's stated assumption.
 - Glass names are catalog equivalents; SF3 (Schott, 740282) and SF58 are not in the project catalog.
+
+## 2026-10-30 — Fresh shape and glass reinspection
+
+The 2026-10-30 review directly inspected local `US4057330.pdf`: shared Figure 1 on PDF page 2 at 600 dpi and native 300 dpi; Example 2's five-media table and the d/g-line correction context on pages 4–5. Every exposed face and the cemented S6 boundary were checked. S4 retains clear SD19.2 mm and gains a flat land to the existing 22.0 mm front rim; S7 retains clear SD16.5 mm and gains a land to the existing 19.2 mm doublet rim. Native Figure 1 gives q≈0.81±0.008 for S4 (body half-height≈226 pixels) and q≈0.74±0.010 for S7 (≈183 pixels). Adopted q=0.873/0.859 preserves the larger existing caps, with less aggressive trimming than the schematic. The corresponding inferred land depths are about 2.25/5.77 mm. S6 remains a continuous cemented interface. No extra inferred cap cut is justified.
+
+All five source nd/νd pairs are exact and retained, with five available S-BSM16 (twice), SF56A, FD3 and E-FD10 curves explicitly qualified as spectral proxies. The source supplies no C/F/g indices or partial dispersion. Its g-line aberration discussion and nd/νd inequalities do not establish APD or a production glass identity; no catalog spectral indices are copied into source data. The inferred stop, ×1.35 scale and calculated focus travel remain unchanged. Current f/2.8 runtime iris is 13.328008 mm, superseding the older 13.52 mm scratch estimate.
+
+Surface/circle checks pass and the infinity format corner reaches at least 99%; the axial aperture is iris-limited at f/2.800000. Nine actual SVG states have five finite, untrimmed paths. At calculated close D0=1156.0018 mm the full iris passes 25/25 aimed axial samples. Source/catalog checks and shared glass suites pass (94 tests).

@@ -1,4 +1,4 @@
-# Optical Analysis: Nikon AF-S NIKKOR 70-200mm f/2.8E FL ED VR
+# Optical Analysis: Nikon AF-S NIKKOR 70-200 mm f/2.8E FL ED VR
 
 ## Patent WO 2019/097669 A1 — Example 1
 
@@ -12,7 +12,7 @@
 
 ## 1. Identification and Provenance
 
-This patent describes the optical architecture of the Nikon AF-S NIKKOR 70-200mm f/2.8E FL ED VR, Nikon's third-generation professional telephoto zoom lens, announced October 19, 2016. The production lens is specified at 22 elements in 18 groups, incorporating 6 ED (Extra-low Dispersion) glass elements, 1 fluorite (FL) element, and 1 HRI (High Refractive Index, nd > 2.0) element.
+This patent describes the optical architecture of the Nikon AF-S NIKKOR 70-200 mm f/2.8E FL ED VR, Nikon's third-generation professional telephoto zoom lens, announced October 19, 2016. The production lens is specified at 22 elements in 18 groups, incorporating 6 ED (Extra-low Dispersion) glass elements, 1 fluorite (FL) element, and 1 HRI (High Refractive Index, nd > 2.0) element.
 
 Example 1 of the patent (Table 1, paragraph [0060]) presents a complete numerical prescription of 41 optical surfaces spanning 22 glass elements arranged in five zoom groups. It is the only one of the patent's nine examples with the production 22-element / 18-group layout — the section figures of Examples 2–9 show 19 or 20 elements — so it is the right example to model. A paraxial ray trace of this prescription reproduces the patent's stated focal lengths to within ±0.005 mm at all three zoom positions (wide, mid, tele), confirming transcription accuracy.
 
@@ -80,7 +80,7 @@ The VR system uses a subgroup within G5 consisting of the L52+L53 cemented doubl
 
 Example 1 contains no aspherical surfaces. There are no asterisk-marked surfaces in the prescription table, and no aspherical surface data section appears in the patent for this example.
 
-This is consistent with the production AF-S NIKKOR 70-200mm f/2.8E FL ED VR, which does not list aspherical elements in its specifications — Nikon highlights ED, fluorite, and HRI elements but does not reference aspherical surfaces. The all-spherical design achieves its aberration correction through the strategic deployment of special glass types (ED, fluorite, HRI) and careful power distribution among 22 elements.
+This is consistent with the production AF-S NIKKOR 70-200 mm f/2.8E FL ED VR, which does not list aspherical elements in its specifications — Nikon highlights ED, fluorite, and HRI elements but does not reference aspherical surfaces. The all-spherical design achieves its aberration correction through the strategic deployment of special glass types (ED, fluorite, HRI) and careful power distribution among 22 elements.
 
 For reference, Example 3 in the same patent does include one aspherical surface (its surface 15, with κ = 1, C4 = −1.26980 × 10⁻⁶, C6 = −9.34669 × 10⁻¹¹; Table 3), demonstrating that the patent covers both spherical and aspherical variants of the architecture.
 
@@ -92,40 +92,40 @@ The design uses 14 unique glass types across 22 elements. The glass selection is
 
 ### Glass Identification Table
 
-The patent lists only nd and νd. The catalog names below are equivalents chosen by matching those two values, with Hikari (Nikon's usual supplier) preferred where it has an exact match. The patent does not name any glass.
+The source lists only nd and νd; no θgF or C/F/g index anchors are printed for these media. Each of the 22 current curves is a qualified spectral proxy. Native coordinate agreement does not identify a production supplier, melt or material composition. In particular, the CaF₂ proxy’s native νd 95.1 differs from the source 95.25; this remains an accepted nonidentical proxy.
 
-| Element | nd | νd | Catalog equivalent | Match | APD flag |
-|---|---|---|---|---|---|
-| L11 | 1.950000 | 29.37 | Hikari J-LASFH15 | Exact | No |
-| L12 | 1.497820 | 82.57 | Hikari J-FKH1 | Exact | Inferred (ED) |
-| L13 | 1.433852 | 95.25 | Calcium fluoride (CaF₂) | nd exact, νd 95.25 vs 95.00 | Inferred (fluorite) |
-| L21 | 1.719990 | 50.27 | Hikari J-LAK10 | Exact | No |
-| L22 | 1.618000 | 63.34 | OHARA S-PHM52 | Nearest (νd 63.33) | No |
-| L23 | 1.846660 | 23.83 | Hikari J-SF03 | Nearest (νd 23.80) | No |
-| L24 | 1.603000 | 65.44 | Hikari J-PSK03 | Exact | No |
-| L31 | 1.834810 | 42.73 | OHARA S-LAH55V | Exact | No |
-| L32 | 1.593190 | 67.90 | Hikari J-PSKH1 | Exact | Inferred (ED) |
-| L33 | 1.497820 | 82.57 | Hikari J-FKH1 | Exact | Inferred (ED) |
-| L34 | 2.001000 | 29.12 | HOYA TAFD55 | Nearest (νd 29.13) | No (HRI) |
-| L35 | 1.902650 | 35.73 | Hikari J-LASFH9 | Exact | No |
-| L36 | 1.581440 | 40.98 | Hikari J-LF5 | Exact | No |
-| L41 | 1.497820 | 82.57 | Hikari J-FKH1 | Exact | Inferred (ED) |
-| L42 | 1.950000 | 29.37 | Hikari J-LASFH15 | Exact | No |
-| L43 | 1.593190 | 67.90 | Hikari J-PSKH1 | Exact | Inferred (ED) |
-| L51 | 1.804000 | 46.60 | Hikari J-LASF015 | Exact | No |
-| L52 | 1.846660 | 23.83 | Hikari J-SF03 | Nearest (νd 23.80) | No |
-| L53 | 1.719990 | 50.27 | Hikari J-LAK10 | Exact | No |
-| L54 | 1.953750 | 32.33 | Hikari J-LASFH21 | Exact | No |
-| L55 | 1.593190 | 67.90 | Hikari J-PSKH1 | Exact | Inferred (ED) |
-| L56 | 1.719990 | 50.27 | Hikari J-LAK10 | Exact | No |
+| Element | Source nd / νd | Current catalog curve (native nd / νd) | Status |
+|---|---:|---|---|
+| L11 | 1.950000 / 29.37 | J-LASFH15 (Hikari; 1.950000 / 29.370000) | Qualified spectral proxy |
+| L12 | 1.497820 / 82.57 | J-FKH1 (Hikari; 1.497820 / 82.570000) | Qualified spectral proxy |
+| L13 | 1.433852 / 95.25 | CaF2 (Special; 1.433850 / 95.100000) | Qualified spectral proxy |
+| L21 | 1.719990 / 50.27 | J-LAK10 (Hikari; 1.719990 / 50.270000) | Qualified spectral proxy |
+| L22 | 1.618000 / 63.34 | S-PHM52 (Ohara; 1.618000 / 63.333500) | Qualified spectral proxy |
+| L23 | 1.846660 / 23.83 | J-SF03 (Hikari; 1.846660 / 23.800000) | Qualified spectral proxy |
+| L24 | 1.603000 / 65.44 | J-PSK03 (Hikari; 1.603000 / 65.441311) | Qualified spectral proxy |
+| L31 | 1.834810 / 42.73 | S-LAH55V (Ohara; 1.834807 / 42.725300) | Qualified spectral proxy |
+| L32 | 1.593190 / 67.9 | J-PSKH1 (Hikari; 1.593190 / 67.900555) | Qualified spectral proxy |
+| L33 | 1.497820 / 82.57 | J-FKH1 (Hikari; 1.497820 / 82.570000) | Qualified spectral proxy |
+| L34 | 2.001000 / 29.12 | TAFD55 (Hoya; 2.001000 / 29.130000) | Qualified spectral proxy |
+| L35 | 1.902650 / 35.73 | J-LASFH9 (Hikari; 1.902650 / 35.725382) | Qualified spectral proxy |
+| L36 | 1.581440 / 40.98 | J-LF5 (Hikari; 1.581440 / 40.980000) | Qualified spectral proxy |
+| L41 | 1.497820 / 82.57 | J-FKH1 (Hikari; 1.497820 / 82.570000) | Qualified spectral proxy |
+| L42 | 1.950000 / 29.37 | J-LASFH15 (Hikari; 1.950000 / 29.370000) | Qualified spectral proxy |
+| L43 | 1.593190 / 67.9 | J-PSKH1 (Hikari; 1.593190 / 67.900555) | Qualified spectral proxy |
+| L51 | 1.804000 / 46.6 | J-LASF015 (Hikari; 1.804000 / 46.600000) | Qualified spectral proxy |
+| L52 | 1.846660 / 23.83 | J-SF03 (Hikari; 1.846660 / 23.800000) | Qualified spectral proxy |
+| L53 | 1.719990 / 50.27 | J-LAK10 (Hikari; 1.719990 / 50.270000) | Qualified spectral proxy |
+| L54 | 1.953750 / 32.33 | J-LASFH21 (Hikari; 1.953750 / 32.330000) | Qualified spectral proxy |
+| L55 | 1.593190 / 67.9 | J-PSKH1 (Hikari; 1.593190 / 67.900555) | Qualified spectral proxy |
+| L56 | 1.719990 / 50.27 | J-LAK10 (Hikari; 1.719990 / 50.270000) | Qualified spectral proxy |
 
 ### Special Glass Summary
 
-The patent never says which elements are ED, fluorite or high-index glass, and it gives no partial-dispersion (θgF) data. The assignments below come from matching the nd/νd values to Nikon's published count of 6 ED, 1 fluorite and 1 HRI element, and there is exactly one way to make that count fit.
+The patent never says which elements are ED, fluorite or high-index glass, and it gives no partial-dispersion (θgF) data. The assignments below come from matching the nd/νd values to Nikon's published count of 6 ED, 1 fluorite and 1 HRI element, as a qualified production correlation; nd/νd alone does not measure anomalous partial dispersion.
 
-**Fluorite (CaF₂) — L13**: nd = 1.433852 and νd = 95.25 are the coordinates of calcium fluoride, and no other element in the prescription is close. It is the only candidate for Nikon's single fluorite element. It sits in G1, where the axial marginal ray is highest (about 34 mm at the tele end), so it has the most effect on secondary spectrum. Fluorite is also less dense than the optical glass it replaces, which helps explain the production lens's lower weight compared with its predecessor.
+**Fluorite (CaF₂) — L13**: nd = 1.433852 and νd = 95.25 support the calcium-fluoride proxy and the inferred FL position, although the native catalog νd is 95.1. It is the only candidate for Nikon's single fluorite element. It sits in G1, where the axial marginal ray is highest (about 34 mm at the tele end), so it has the most effect on secondary spectrum. Fluorite is also less dense than the optical glass it replaces, which helps explain the production lens's lower weight compared with its predecessor.
 
-**ED (Extra-low Dispersion) elements — L12, L33, L41 and L32, L43, L55**: Three elements (L12, L33, L41) have exactly the coordinates of Hikari J-FKH1, a fluor-crown (1.497820 / 82.57). Three more (L32, L43, L55) match Hikari J-PSKH1, a phosphate crown (1.593190 / 67.90). Together these are the six low-dispersion positive elements that Nikon's ED count requires. The APD flags on all six are marked inferred, because the patent does not call any of them ED.
+**ED (Extra-low Dispersion) elements — L12, L33, L41 and L32, L43, L55**: Three elements (L12, L33, L41) have coordinates compatible with the J-FKH1 curve (1.497820 / 82.57). Three more (L32, L43, L55) match Hikari J-PSKH1, a phosphate crown (1.593190 / 67.90). Together these are the six low-dispersion positive elements that Nikon's ED count requires. The APD flags on all six are marked inferred, because the patent does not call any of them ED.
 
 **HRI (High Refractive Index) — L34**: Element L34 has nd = 2.001000 and νd = 29.12. The closest catalog glass is HOYA TAFD55 (29.13). It is the only element with nd above 2.0, so it matches Nikon's single HRI element. At that index, a given power needs gentler surface curvatures, which reduces higher-order aberrations at each surface. The high-index dense flints L11/L42 (J-LASFH15, nd = 1.950) and L54 (J-LASFH21, nd = 1.954) are close to that index but do not exceed 2.0.
 
@@ -169,7 +169,7 @@ G3 follows the aperture stop and relays the image while providing positive power
 
 **L34 (Biconcave negative) — HRI element**: nd = 2.001000, νd = 29.12 (nearest catalog glass TAFD55), f = −70.1 mm. This is the only element with nd above 2.0, so it matches the High Refractive Index element in Nikon's marketing. With nd exceeding 2.0, the surface curvatures required for a given power are much gentler than with conventional glass, dramatically reducing higher-order aberrations (spherical, coma) at each surface. Positioned after two positive ED elements, L34 provides strong negative power for Petzval sum flattening and chromatic aberration control. Its high dispersion (νd = 29.12) is deliberately paired against the preceding low-dispersion elements.
 
-**L35 + L36 (Cemented negative doublet)**: L35 is a biconvex positive element (nd = 1.902650, νd = 35.73, f = +47.5 mm) cemented to L36, a biconcave negative (nd = 1.581440, νd = 40.98, f = −44.0 mm). The patent text [0049] describes this pair as 接合負レンズ (cemented negative lens), confirming a net negative focal length of approximately −1420 mm — very weak combined power, functioning primarily as a field-flattening corrector at the exit of G3. L35 matches Hikari J-LASFH9 and L36 matches Hikari J-LF5 exactly.
+**L35 + L36 (Cemented negative doublet)**: L35 is a biconvex positive element (nd = 1.902650, νd = 35.73, f = +47.5 mm) cemented to L36, a biconcave negative (nd = 1.581440, νd = 40.98, f = −44.0 mm). The patent text [0049] describes this pair as 接合負レンズ (cemented negative lens), confirming a net negative focal length of approximately −1420 mm — very weak combined power, functioning primarily as a field-flattening corrector at the exit of G3. J-LASFH9 and J-LF5 provide the current qualified spectral curves for L35 and L36; supplier and melt are unconfirmed.
 
 ### Group 4 — Focusing Group (f = +58.20 mm, moves during zoom and focus)
 
@@ -202,7 +202,7 @@ The patent publishes no clear apertures. The rims in the data file are measured 
 - **G1**: FIG. 1 draws the L11+L12 doublet rim at about 36.8 mm and L13 at about 34.4 mm, so the stored 36.5 / 35.0 mm are kept. They fit inside the production 77 mm filter thread. At the tele end the axial f/2.86 beam is about 34.3 mm high at the front surface, so it is not clipped. A full-field bundle would need about 56 mm, so the image corner is mechanically vignetted by roughly 60 % on one side, as is normal for this class of lens.
 - **G2**: The earlier L23 rear and L24 front rims (18.2 mm) clipped the f/2.85 axial beam, which needs about 18.8 mm there. L24 is now 20.4 mm, matching the figure. L23 is 20.1 mm at the front and 19.0 mm at the rear, where its edge meets L24's front edge. L22 was 21.0 / 22.5 mm against a figure rim of 19.3 mm and is now 19.5 mm.
 - **G3**: The L33 rear and L34 front rims (18.4 mm) also clipped the axial beam, which needs about 19.0 mm. L34 is now 20.0 mm (figure 20.0), and L33 is 20.3 mm at the front and 19.2 mm at the rear (figure rim 20.3). In FIG. 1 the edges of L23/L24 and of L33/L34 touch, so the data file allows 97 % of those air gaps for rim sag (`gapSagFrac` 0.97) rather than the default 90 %.
-- **Stop**: stored at 19.5 mm, the 19.48 mm fixed iris radius to one decimal place (see Aperture above). FIG. 1 draws S at about 20.5 mm.
+- **Stop**: the current runtime derives the fixed iris from the wide design f-number and holds it through zoom (see Aperture above); 19.5 mm is not a separately authored stop value. FIG. 1 draws S at about 20.5 mm.
 - **G4 / G5**: The stored rims are within about 12 % of the figure (L41 17.7, the L42+L43 doublet 16.8, L51 16.1, the L52+L53 doublet 14.7, L55 17.4, L56 18.7 mm measured) and are kept. The flat front of L54 was 13.7 mm against a drawn 16.1 mm and is now 16.0 mm, the same as its rear. The rear of the L52+L53 doublet stays at 13.7 mm, because at a larger radius its steep R = 42.059 mm surface would reach into the 2.583 mm gap in front of L54.
 
 Every surface passes the repository's edge-thickness, rim-slope and gap-intrusion checks at all three zoom positions. No surface clips the axial beam or blocks the full-field chief ray, at infinity or at the near state.
@@ -264,6 +264,12 @@ Note on condition (8) and the 2ω row: Table 1 prints 2ω = 22.4 / 41.1 / 57.9 a
 ## 8. References
 
 1. **WO 2019/097669 A1** — ITO Tomoki (Nikon Corporation), "Variable Magnification Optical System, Optical Device, and Method for Manufacturing Variable Magnification Optical System," published May 23, 2019.
-2. **Nikon product page**: AF-S NIKKOR 70-200mm f/2.8E FL ED VR, https://imaging.nikon.com/imaging/lineup/lens/f-mount/zoom/telephotozoom/af-s_70-200mmf_28e_fl_ed_vr/
+2. **Nikon product page**: AF-S NIKKOR 70-200 mm f/2.8E FL ED VR, https://imaging.nikon.com/imaging/lineup/lens/f-mount/zoom/telephotozoom/af-s_70-200mmf_28e_fl_ed_vr/
 3. **HOYA Glass Cross Reference Index**: https://www.hoya-opticalworld.com/english/products/crossreference.html
 4. **OHARA Optical Glass Pocket Catalog**, May 2023 edition.
+
+## Surface-outline reinspection (2026-10-30)
+
+Fig. 1’s concave end lands are now explicit at S7 (cap 21, drawn rim24 mm), S25 (20/20.4 mm) and S32 (17/17.5 mm). These preserve the existing working optical caps and use the partner’s working outer height; they are not exact measurements of the source cap endpoints. S27 andS41 grow continuously to 18.8 and 17.5 mm. This improves the drawn ends while retaining the source prescription.
+
+The short gaps around S11/S12, S20/S21 andS35/S36 prevent the full source-like continuous cap trials. Cap-preserving full lands at S11 andS20 also intersect the neighboring profile. The L42/L43 junction cannot grow to 18.5 mm without negative edge thickness. Those shapes remain qualified limitations; no invented cement-interface feature or excessive S35 land has been added. The existing gap fraction and all source distances, curvatures and controls are retained.

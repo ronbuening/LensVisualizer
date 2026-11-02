@@ -5,6 +5,8 @@
  * and the mobile toggle between diagram and description.
  */
 
+import type { ReactNode } from "react";
+import type { RuntimeLens } from "../../types/optics.js";
 import LensDiagramPanel from "./LensDiagramPanel.js";
 import DescriptionPanel from "./DescriptionPanel.js";
 import { ENABLE_ANALYSIS_VIEW } from "../../utils/featureFlags.js";
@@ -20,6 +22,14 @@ interface SingleLensContentProps {
   lensKey: string;
   teleconverterKey?: string | null;
   markdown: string | null | undefined;
+  sidePanel?: ReactNode;
+  runtimeLens?: RuntimeLens;
+  /** Passed to the diagram header; false hides the Flickr search link. */
+  showPhotoSearch?: boolean;
+  /** Element to highlight as if hovered, for a side panel that points at elements (the lens builder). */
+  highlightElementId?: number | null;
+  /** Constant id error reports use in place of `lensKey`, for a private draft (the lens builder). */
+  telemetryId?: string;
 }
 
 export default function SingleLensContent({
@@ -30,11 +40,17 @@ export default function SingleLensContent({
   lensKey,
   teleconverterKey = null,
   markdown,
+  sidePanel,
+  runtimeLens,
+  showPhotoSearch,
+  highlightElementId,
+  telemetryId,
 }: SingleLensContentProps) {
-  const resolvedDesktopView = ENABLE_ANALYSIS_VIEW ? effectiveDesktopView : "diagram";
+  const resolvedDesktopView = sidePanel ? "both" : ENABLE_ANALYSIS_VIEW ? effectiveDesktopView : "diagram";
   const singleDiagramContent = (
     <LensDiagramPanel
       lensKey={lensKey}
+      runtimeLens={runtimeLens}
       teleconverterKey={teleconverterKey}
       scaleRatio={null}
       panelId="main"
@@ -42,10 +58,13 @@ export default function SingleLensContent({
       showControls={true}
       sideLayoutEnabled={isWide && resolvedDesktopView === "diagram"}
       fillAvailableHeight={isWide}
+      showPhotoSearch={showPhotoSearch}
+      highlightElementId={highlightElementId}
+      telemetryId={telemetryId}
     />
   );
 
-  const descriptionContent = (
+  const descriptionContent = sidePanel ?? (
     <div
       style={{
         height: isWide ? "100%" : undefined,
@@ -73,6 +92,7 @@ export default function SingleLensContent({
           style={{
             flex: "0 0 35%",
             minHeight: 0,
+            minWidth: 0,
             borderLeft: `1px solid ${t.descBorder}`,
             overflowY: "auto",
           }}
@@ -82,6 +102,14 @@ export default function SingleLensContent({
       </div>
     );
   }
+
+  if (sidePanel)
+    return (
+      <div>
+        {singleDiagramContent}
+        {sidePanel}
+      </div>
+    );
 
   /* Mobile: toggle between views */
   if (!ENABLE_ANALYSIS_VIEW || mobileView === "diagram") {

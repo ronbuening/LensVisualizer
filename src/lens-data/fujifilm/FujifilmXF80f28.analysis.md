@@ -14,7 +14,7 @@
 
 **Published:** 2018-08-30
 
-**Embodiment analyzed:** Example 1, Tables 1–4 and Figure 1
+**Example details:** Tables 1–4 and Figure 1
 
 The diagram uses the 16-element, 12-component macro example associated with the XF80. Its prescription remains at the patent scale, 78.79 mm f/2.88; the 80mm f/2.8 product name is separate. This correspondence does not establish identical production glass, coatings, stabilization effectiveness or actuators.
 

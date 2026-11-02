@@ -11,7 +11,7 @@
 **Title:** 大口径広角レンズ ("Large-aperture wide-angle lens")
 **Classification:** IPC G02B 13/04, G02B 13/18
 **Worked examples:** 6 (実施例1–6)
-**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Example details:** 数値実施例1
 
 JP 2018-205527 A discloses a fast wide-angle mirrorless lens whose stated purpose is to keep the optical system compact, cover a comparatively large imaging sensor, and make the focus group light enough for smooth contrast autofocus (¶0003–0012). Numerical Example 1 is the closest match to the production Sigma 16mm F1.4 DC DN | Contemporary.
 
@@ -253,7 +253,7 @@ The revised transcription was checked with an independent paraxial y-ν matrix t
 - The patent's physical front-vertex-to-image length is 109.00 mm including the plane-parallel plate, which the data file now reproduces; the air-equivalent (plate-folded) track is 108.318 mm.
 - The MFD endpoint in the data file is the solved β = -1/9.9 state: d23 = 1.6098 mm and d25 = 3.7863 mm. This keeps d23 + d25 constant and gives a sensor-to-object distance of about 250.97 mm physically (250.288 mm air-equivalent) in the same paraxial model.
 - Petzval sum = 4.2266 × 10⁻³ mm⁻¹, Petzval radius ≈ 236.6 mm, P · f = 0.0695.
-- The inferred semi-diameters pass the project constraints used for this data file: sd/|R| < 0.90, front/rear element SD ratio ≤ 1.25, edge thickness ≥ 0.5 mm at the checked rim, and cross-gap sag intrusion ≤ 90% of the relevant air gap.
+- The inferred semi-diameters pass the project constraints used for this data file: sd/|R| < 0.90 (on surface 4 at its rim cut's radius, 14.40 mm; the flat land beyond runs to sd 16.0), front/rear element SD ratio ≤ 1.25, edge thickness ≥ 0.5 mm at the checked rim, and cross-gap sag intrusion ≤ 90% of the relevant air gap.
 
 ## Sources
 
@@ -261,3 +261,5 @@ The revised transcription was checked with an independent paraxial y-ν matrix t
 - Sigma Corporation, "16mm F1.4 DC DN | Contemporary," official product page. Current product specifications list the available mounts, APS-C DC format, 16 elements in 13 groups, 3 FLD elements, 2 SLD elements, 2 molded glass aspherical elements, 9 rounded diaphragm blades, F16 minimum aperture, 0.25 m minimum focus distance, 1:9.9 maximum magnification, and 67 mm filter size.
 - HOYA Optical Glass Catalogue and HOYA glass cross-reference resources, used for six-digit glass-code interpretation and HOYA-class matches such as FCD100, TAFD55, and M-BACD5N.
 - OHARA optical glass catalog and Schott optical glass data resources, used as cross-checks for common crown/flint and dense-flint class naming. Where the patent's nd/νd values do not uniquely identify a vendor, the analysis uses class language rather than an exclusive catalog assertion.
+
+The 2026-10-29 source reinspection records the current outline decisions and per-medium glass coverage in the accompanying audit. The final rear concave face now has a drawn rim extension to 11.2 mm while its 10.45 mm optical cap remains unchanged. The proposed front-asphere land failed gap clearance and was rejected.

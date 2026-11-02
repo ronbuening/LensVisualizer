@@ -14,10 +14,8 @@ function makeState(overrides: Partial<LensState> = {}): LensState {
   return { ...createInitialState({}, {}, true, CATALOG_KEYS), ...overrides };
 }
 
-const zoomLensKey = CATALOG_KEYS.find(
-  (key) => Array.isArray(LENS_CATALOG[key].zoomPositions) && LENS_CATALOG[key].zoomPositions!.length >= 2,
-)!;
-const zoomLensPositions = LENS_CATALOG[zoomLensKey].zoomPositions!;
+const zoomLensKey = CATALOG_KEYS.find((key) => (LENS_CATALOG[key].zoom?.stations.length ?? 0) >= 2)!;
+const zoomLensPositions = LENS_CATALOG[zoomLensKey].zoom!.stations.map((station) => station.focalLengthMm);
 const canonicalConfigurationKey = "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr";
 const alternateConfigurationKey = `${canonicalConfigurationKey}-tc-in`;
 /* Catalog-aware converter validation needs a real pair; resolve it from the catalogs rather than naming a lens.

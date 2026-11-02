@@ -35,3 +35,18 @@ needed for this lens.
 - A finite-conjugate paraxial solve changes only final BF: 37.005824101 mm at infinity to 43.853986686 mm at 0.6 m, an
   inferred extension of 6.848162585 mm.
 - The data and analysis explicitly label this state **inferred unit focus**.
+
+## 2026-10-30 — Fresh original-figure and glass reinspection
+
+- Directly viewed all three pages of `patents/JPB 1966017177-000000.pdf`: original sole prescription with all seven media on PDF 2; d-line definition/prose PDF 1; Figure 1 and paired f/1.4 plot PDF 3, optical figure cropped at 600 dpi. Source pairs (including L1ν41.3) are retained, with R/d scaled exactly×58. The source has no numeric C/F/g anchors or θgF. It labels n as d-line without a numerical wavelength; no e-line reinterpretation is introduced.
+- Figure 1 resolves shortened concave ends at S8/S9. Native352×353ppi scan, local scale≈20.6 nativepx/mm from the54.404 mm first/last vertex span. Measured q≈.680±.0045 (S8, native edge≈381px) and .780±.006 (S9,≈318px), using ±(1+q)/edgePx. Source endpoints alone clip the final f/1.4 beams; adopted cuts move outward under the authoring rule:
+
+| Face | Outer sd | Depth | Adopted cap / q | Beam reach | Cap minus reach | Required margin |
+|---|---:|---:|---:|---:|---:|---:|
+| S8 |19.0|6.52|13.297458 / .699866|13.241300|.056158|.050|
+| S9 |15.8|4.27|12.865878 / .814296|12.810713|.055165|.050|
+
+- Every full-focus/field inferred-cut guard passes with 0 untraced fields; depths 6.51/4.26 each fail. Both lands exceed.1 mm, and their depths clear the unchanged inferred iris spacings7.26856/6.70944 mm. No source-depth flag or tolerance exemption.
+- The old S8 cap 12.5 limited the stated aperture to aboutf/1.50. Source-f/1.4 minimum rim floors, with continuous common outlines, now give S1/2=21.2, S3/4=20.5, S5/6/7=19, S9/10/11=15.8 and S12/13=15.4 mm. Largest growth3.4% versus the old figure envelope; this is explicitly a source-FNO beam adjustment, not a one-pixel measurement claim. Both cut guards were rerun after the final openings. No radius, spacing, stop or aperture control changed.
+- All seven source pairs and current catalog curves remain unchanged, with complete coefficient coverage. L1’s S-TIL27 remains deliberately nonidentical (native 1.575006/41.505207 versus source 1.5750/41.3). Data labels now name actual qualified current proxies rather than an inconsistent575415 source-code implication. No supplier, melt or source-measured APD is inferred.
+- Focused surface/image-circle/aperture/field checks pass, including f/1.4 and centered FX field≥99%; nine actual SVG states have zero automatic trim. Catalog consistency passes7/7; all source R/d, every nd/νd pair/APD flag and the original inferred rigid-unit focus/stop controls remain unchanged.

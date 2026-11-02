@@ -1,6 +1,8 @@
-import type { LensDataInput } from "../../types/optics.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
+ * Fresh 2026-10-30 source figure/table review: exposed flat lands are separate from clear caps;
+ * catalog glass curves are qualified spectral proxies, never production supplier identities.
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — NIKON AF-S NIKKOR 16-35mm f/4G ED VR                    ║
  * ╠══════════════════════════════════════════════════════════════════════╣
@@ -31,9 +33,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                      ║
  * ║  NOTE ON APERTURE:                                                   ║
  * ║    FNO 4.1 at W/M/T with the stop riding in G3. No iris diameters    ║
- * ║    are published; the iris schedule is inferred from the nominal     ║
- * ║    f-number (zoomApertureModel). STO sd records the largest (tele)   ║
- * ║    inferred iris radius, ≈ 9.0 mm.                                   ║
+ * ║    are published; the stop radius is derived from the design         ║
+ * ║    f-number at each zoom station, reaching                           ║
+ * ║    ≈ 9.0 mm at tele.                                                 ║
  * ║                                                                      ║
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
  * ║    Patent provides no clear apertures. Values are measured from      ║
@@ -51,33 +53,38 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
+  schema: 2,
   key: "nikkor-afs-16-35f4-vr",
-  visible: true,
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 16-35mm f/4 G ED VR",
   subtitle: "US 2010/0238560 A1 EXAMPLE 1 — NIKON / FUJIMOTO",
-  specs: [
-    "17 ELEMENTS / 11 GROUPS (+ RESIN LAYER)",
-    "f = 16.48–33.94 mm",
-    "F/4.1 CONSTANT",
-    "2ω = 108°–63°",
-    "4 ASPHERICAL SURFACES / 3 ELEMENTS",
-    "2 ED-CLASS ELEMENTS (νd 82.5)",
-  ],
+  visible: true,
 
-  /* ── Explicit metadata ── */
-  focalLengthMarketing: [16, 35] as [number, number],
-  focalLengthDesign: [16.48, 33.94] as [number, number],
-  apertureMarketing: 4,
-  apertureDesign: 4.1,
-  lensMounts: ["nikon-f"],
-  imageFormat: "135-full-frame",
-  patentNumber: "US 2010/0238560 A1",
-  patentAuthors: ["Makoto Fujimoto"],
-  patentAssignees: ["Nikon Corporation"],
-  patentYear: 2010,
-  elementCount: 17,
-  groupCount: 11,
+  catalog: {
+    lensMounts: ["nikon-f"],
+    imageFormat: "135-full-frame",
+    specs: [
+      "17 ELEMENTS / 11 GROUPS (+ RESIN LAYER)",
+      "f = 16.48–33.94 mm",
+      "F/4.1 CONSTANT",
+      "2ω = 108°–63°",
+      "4 ASPHERICAL SURFACES / 3 ELEMENTS",
+      "2 ED-CLASS ELEMENTS (νd 82.5)",
+    ],
+    elementCount: 17,
+    groupCount: 11,
+    /* ── Explicit metadata ── */
+    focalLengthMm: { marketing: [16, 35], design: [16.48, 33.94] },
+    fNumber: { marketing: 4, design: 4.1 },
+  },
+
+  source: {
+    patentNumber: "US 2010/0238560 A1",
+    example: { label: "Example 1", id: "1" },
+    patentYear: 2010,
+    authors: ["Makoto Fujimoto"],
+    assignees: ["Nikon Corporation"],
+  },
 
   /* ── Elements ── */
   elements: [
@@ -89,8 +96,8 @@ const LENS_DATA = {
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.7669,
       vd: 46.85,
-      fl: -25.3,
-      glass: "J-LASFH2 (HIKARI nearest catalog equivalent; patent 1.76690/46.85, catalog 1.76684/46.78)",
+      focalLengthMm: -25.3,
+      glass: "J-LASFH2 (catalog-compatible spectral proxy; patent 1.7669/46.85, catalog 1.76684/46.78; production supplier unspecified)",
       apd: false,
       role: "Front negative meniscus; both surfaces aspherical. Controls distortion and oblique SA at extreme field angles.",
     },
@@ -101,8 +108,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.883,
       vd: 40.76,
-      fl: -92.4,
-      glass: "S-LAH58 (OHARA)",
+      focalLengthMm: -92.4,
+      glass: "S-LAH58 (catalog-compatible spectral proxy; patent 1.883/40.76, catalog 1.882997/40.7651; production supplier unspecified)",
       apd: false,
       role: "Supplementary negative power in G1.",
     },
@@ -113,8 +120,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.883,
       vd: 40.76,
-      fl: -30.9,
-      glass: "S-LAH58 (OHARA)",
+      focalLengthMm: -30.9,
+      glass: "S-LAH58 (catalog-compatible spectral proxy; patent 1.883/40.76, catalog 1.882997/40.7651; production supplier unspecified)",
       apd: false,
       role: "Strong negative power; glass body of hybrid compound aspherical element.",
       cemented: "H1",
@@ -126,8 +133,8 @@ const LENS_DATA = {
       type: "Asph. Resin Layer (1× Asph)",
       nd: 1.55389,
       vd: 38.09,
-      fl: 209.9,
-      glass: "UV-cure resin",
+      focalLengthMm: 209.9,
+      glass: "UV-cure resin layer (inferred; patent nd=1.55389, vd=38.09; material identity unspecified)",
       apd: false,
       role: "Thin resin layer bonded to L13 rear; aspherical outer surface corrects higher-order field curvature and coma.",
       cemented: "H1",
@@ -139,8 +146,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.69895,
       vd: 30.13,
-      fl: 37.7,
-      glass: "S-TIM35 (OHARA)",
+      focalLengthMm: 37.7,
+      glass: "S-TIM35 (catalog-compatible spectral proxy; patent 1.69895/30.13, catalog 1.698947/30.127865; production supplier unspecified)",
       apd: false,
       role: "Positive element in G1; high-dispersion flint provides lateral color correction paired with L12/L13.",
     },
@@ -152,8 +159,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      fl: -50.3,
-      glass: "S-TIH53 (OHARA)",
+      focalLengthMm: -50.3,
+      glass: "S-TIH53 (catalog-compatible spectral proxy; patent 1.84666/23.78, catalog 1.84666/23.7779; production supplier unspecified)",
       apd: false,
       role: "Chromatic corrector in CL21 (focusing doublet).",
       cemented: "CL21",
@@ -165,8 +172,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.60342,
       vd: 38.01,
-      fl: 28.0,
-      glass: "S-TIM5 (OHARA)",
+      focalLengthMm: 28.0,
+      glass: "S-TIM5 (catalog-compatible spectral proxy; patent 1.60342/38.01, catalog 1.60342/38.03; production supplier unspecified)",
       apd: false,
       role: "Primary positive power in CL21; focusing element translates axially for IF.",
       cemented: "CL21",
@@ -178,8 +185,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51823,
       vd: 58.93,
-      fl: 63.5,
-      glass: "S-NSL3 (OHARA)",
+      focalLengthMm: 63.5,
+      glass: "S-NSL3 (catalog-compatible spectral proxy; patent 1.51823/58.93, catalog 1.518229/58.902057; production supplier unspecified)",
       apd: false,
       role: "Fixed positive singlet; supplementary converging power in G2.",
     },
@@ -191,8 +198,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.70154,
       vd: 41.17,
-      fl: 58.5,
-      glass: "S-BAH27 (OHARA)",
+      focalLengthMm: 58.5,
+      glass: "S-BAH27 (catalog-compatible spectral proxy; patent 1.70154/41.17, catalog 1.701536/41.23944; production supplier unspecified)",
       apd: false,
       role: "Chromatic corrector in CL31 (G3a); concave surface faces object.",
       cemented: "CL31",
@@ -204,8 +211,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.883,
       vd: 40.76,
-      fl: -18.8,
-      glass: "S-LAH58 (OHARA)",
+      focalLengthMm: -18.8,
+      glass: "S-LAH58 (catalog-compatible spectral proxy; patent 1.883/40.76, catalog 1.882997/40.7651; production supplier unspecified)",
       apd: false,
       role: "Primary negative power in G3a; cemented surface concave toward stop for chromatic field curvature correction.",
       cemented: "CL31",
@@ -217,8 +224,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.883,
       vd: 40.76,
-      fl: -72.8,
-      glass: "S-LAH58 (OHARA)",
+      focalLengthMm: -72.8,
+      glass: "S-LAH58 (catalog-compatible spectral proxy; patent 1.883/40.76, catalog 1.882997/40.7651; production supplier unspecified)",
       apd: false,
       role: "G3b: negative meniscus with concave surface facing G3a; biconvex air lens between L32 and L33 is key to wide-angle VR.",
     },
@@ -229,8 +236,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84666,
       vd: 23.78,
-      fl: 40.2,
-      glass: "S-TIH53 (OHARA)",
+      focalLengthMm: 40.2,
+      glass: "S-TIH53 (catalog-compatible spectral proxy; patent 1.84666/23.78, catalog 1.84666/23.7779; production supplier unspecified)",
       apd: false,
       role: "G3c: biconvex positive; prevents G4 diameter from growing excessively.",
     },
@@ -242,8 +249,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.51,
-      fl: 36.8,
-      glass: "J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)",
+      focalLengthMm: 36.8,
+      glass: "J-FKH1 (catalog-compatible spectral proxy; patent 1.49782/82.51, catalog 1.49782/82.57; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "Patent nd/νd 1.49782/82.51 matches the J-FKH1 fluorophosphate ED class; the patent itself does not call the glass anomalous.",
@@ -257,8 +264,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.834,
       vd: 37.16,
-      fl: -32.9,
-      glass: "S-LAH60 (OHARA)",
+      focalLengthMm: -32.9,
+      glass: "S-LAH60 (catalog-compatible spectral proxy; patent 1.834/37.16, catalog 1.834/37.16; production supplier unspecified)",
       apd: false,
       role: "High-index negative element sandwiched between ED glass elements in CL41.",
       cemented: "CL41",
@@ -270,8 +277,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.49782,
       vd: 82.51,
-      fl: 59.3,
-      glass: "J-FKH1 (HIKARI catalog equivalent; S-FPL51-class ED fluorophosphate, vendor unspecified)",
+      focalLengthMm: 59.3,
+      glass: "J-FKH1 (catalog-compatible spectral proxy; patent 1.49782/82.51, catalog 1.49782/82.57; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "Patent nd/νd 1.49782/82.51 matches the J-FKH1 fluorophosphate ED class; the patent itself does not call the glass anomalous.",
@@ -285,8 +292,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.883,
       vd: 40.76,
-      fl: -49.2,
-      glass: "S-LAH58 (OHARA)",
+      focalLengthMm: -49.2,
+      glass: "S-LAH58 (catalog-compatible spectral proxy; patent 1.883/40.76, catalog 1.882997/40.7651; production supplier unspecified)",
       apd: false,
       role: "Front negative meniscus of CL42 triplet.",
       cemented: "CL42",
@@ -298,8 +305,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.41,
-      fl: 29.8,
-      glass: "S-FSL5 (OHARA)",
+      focalLengthMm: 29.8,
+      glass: "S-FSL5 (catalog-compatible spectral proxy; patent 1.48749/70.41, catalog 1.48749/70.2363; production supplier unspecified)",
       apd: false,
       role: "Central positive element in CL42 field-flattening triplet.",
       cemented: "CL42",
@@ -311,8 +318,8 @@ const LENS_DATA = {
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.8061,
       vd: 40.77,
-      fl: -113.4,
-      glass: "S-LAH53 family (OHARA)",
+      focalLengthMm: -113.4,
+      glass: "S-LAH53 (catalog-compatible spectral proxy; patent 1.8061/40.77, catalog 1.806098/40.926; production supplier unspecified)",
       apd: false,
       role: "Rear aspherical surface (oblate ellipsoid) for final field-flattening correction, especially at wide-angle end.",
       cemented: "CL42",
@@ -323,119 +330,120 @@ const LENS_DATA = {
    *  R, d, nd from Table 1 (Example 1). Semi-diameters: see NOTE ON SEMI-DIAMETERS above
    *  (FIG. 1 measurement + exact real-ray check; the patent publishes no clear apertures).
    */
+  /* (moved from asph) ── Aspherical coefficients ── */
   surfaces: [
     // ── G1: Front negative group ──
-    { label: "1A", R: 64.361, d: 3.0, nd: 1.7669, elemId: 1, sd: 24.0 },
-    { label: "2A", R: 14.627, d: 11.25, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "3", R: -118.914, d: 1.55, nd: 1.883, elemId: 2, sd: 17.3 },
-    { label: "4", R: 261.338, d: 2.85, nd: 1.0, elemId: 0, sd: 17.3 },
-    { label: "5", R: -57.268, d: 1.5, nd: 1.883, elemId: 3, sd: 15.0 },
-    { label: "6", R: 52.742, d: 0.4, nd: 1.55389, elemId: 4, sd: 17.0 },
-    { label: "7A", R: 96.287, d: 1.5, nd: 1.0, elemId: 0, sd: 14.0 },
-    { label: "8", R: 42.407, d: 6.4, nd: 1.69895, elemId: 5, sd: 15.3 },
-    { label: "9", R: -65.202, d: 28.97, nd: 1.0, elemId: 0, sd: 15.3 },
+    {
+      label: "1A",
+      R: 64.361,
+      d: 3.0,
+      sd: 24.0,
+      medium: 1,
+      asphere: {
+        K: 0,
+        A4: -8.262e-6,
+        A6: 1.472e-8,
+        A8: -1.057e-11,
+        A10: 7.575e-15,
+        A12: -2.361e-18,
+      },
+    },
+    { label: "2A", R: 14.627, d: 11.25, sd: 16.0, rimExtensionSd: 24, asphere: { K: -0.983, A4: -6.389e-6, A6: -3.01e-8, A8: 8.699e-11 } },
+    { label: "3", R: -118.914, d: 1.55, sd: 17.3, medium: 2 },
+    { label: "4", R: 261.338, d: 2.85, sd: 17.3 },
+    { label: "5", R: -57.268, d: 1.5, sd: 15.0, rimExtensionSd: 17, medium: 3 },
+    { label: "6", R: 52.742, d: 0.4, sd: 17.0, medium: 4 },
+    { label: "7A", R: 96.287, d: 1.5, sd: 14.0, asphere: { K: 7.352, A4: 1.862e-5, A6: 1.672e-8, A8: -3.678e-11 } },
+    { label: "8", R: 42.407, d: 6.4, sd: 15.3, medium: 5 },
+    { label: "9", R: -65.202, sd: 15.3 },
 
     // ── G2: Positive focusing group ──
-    { label: "10", R: 36.176, d: 1.05, nd: 1.84666, elemId: 6, sd: 10.6 },
-    { label: "11", R: 19.297, d: 4.95, nd: 1.60342, elemId: 7, sd: 10.6 },
-    { label: "12", R: -121.274, d: 4.7, nd: 1.0, elemId: 0, sd: 10.6 },
-    { label: "13", R: 65.31, d: 3.1, nd: 1.51823, elemId: 8, sd: 10.6 },
-    { label: "14", R: -65.31, d: 3.26, nd: 1.0, elemId: 0, sd: 10.6 },
+    { label: "10", R: 36.176, d: 1.05, sd: 10.6, medium: 6 },
+    { label: "11", R: 19.297, d: 4.95, sd: 10.6, medium: 7 },
+    { label: "12", R: -121.274, d: 4.7, sd: 10.6 },
+    { label: "13", R: 65.31, d: 3.1, sd: 10.6, medium: 8 },
+    { label: "14", R: -65.31, sd: 10.6 },
 
     // ── G3: VR group ──
-    { label: "STO", R: 1e15, d: 3.26, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "16", R: -137.621, d: 2.1, nd: 1.70154, elemId: 9, sd: 10.5 },
-    { label: "17", R: -31.799, d: 1.0, nd: 1.883, elemId: 10, sd: 10.5 },
-    { label: "18", R: 35.395, d: 2.9, nd: 1.0, elemId: 0, sd: 8.58 },
-    { label: "19", R: -24.463, d: 0.8, nd: 1.883, elemId: 11, sd: 8.7 },
-    { label: "20", R: -40.108, d: 0.15, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "21", R: 75.282, d: 2.7, nd: 1.84666, elemId: 12, sd: 10.3 },
-    { label: "22", R: -61.234, d: 12.46, nd: 1.0, elemId: 0, sd: 10.3 },
+    { label: "STO", R: "flat", d: 3.26 },
+    { label: "16", R: -137.621, d: 2.1, sd: 10.5, medium: 9 },
+    { label: "17", R: -31.799, d: 1.0, sd: 10.5, medium: 10 },
+    { label: "18", R: 35.395, d: 2.9, sd: 8.58 },
+    { label: "19", R: -24.463, d: 0.8, sd: 8.7, medium: 11 },
+    { label: "20", R: -40.108, d: 0.15, sd: 10.5 },
+    { label: "21", R: 75.282, d: 2.7, sd: 10.3, medium: 12 },
+    { label: "22", R: -61.234, sd: 10.3 },
 
     // ── G4: Rear positive group ──
-    { label: "23", R: 29.863, d: 8.0, nd: 1.49782, elemId: 13, sd: 16.0 },
-    { label: "24", R: -43.301, d: 1.1, nd: 1.834, elemId: 14, sd: 16.0 },
-    { label: "25", R: 75.908, d: 5.95, nd: 1.49782, elemId: 15, sd: 16.0 },
-    { label: "26", R: -47.092, d: 0.15, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "27", R: 39.817, d: 1.1, nd: 1.883, elemId: 16, sd: 16.5 },
-    { label: "28", R: 20.5, d: 12.15, nd: 1.48749, elemId: 17, sd: 16.0 },
-    { label: "29", R: -40.025, d: 1.6, nd: 1.8061, elemId: 18, sd: 16.0 },
-    { label: "30A", R: -72.448, d: 38.6, nd: 1.0, elemId: 0, sd: 15.8 },
+    { label: "23", R: 29.863, d: 8.0, sd: 16.0, medium: 13 },
+    { label: "24", R: -43.301, d: 1.1, sd: 16.0, medium: 14 },
+    { label: "25", R: 75.908, d: 5.95, sd: 16.0, medium: 15 },
+    { label: "26", R: -47.092, d: 0.15, sd: 16.0 },
+    { label: "27", R: 39.817, d: 1.1, sd: 16.5, medium: 16 },
+    { label: "28", R: 20.5, d: 12.15, sd: 16.0, medium: 17 },
+    { label: "29", R: -40.025, d: 1.6, sd: 16.0, medium: 18 },
+    {
+      label: "30A",
+      R: -72.448,
+      sd: 15.8,
+      asphere: { K: 11.401, A4: 1.208e-5, A6: 1.539e-8, A8: -2.918e-11, A10: 1.594e-13, A12: 4.038e-18 },
+    },
   ],
 
-  /* ── Aspherical coefficients ── */
-  asph: {
-    "1A": {
-      K: 0.0,
-      A4: -8.262e-6,
-      A6: 1.472e-8,
-      A8: -1.057e-11,
-      A10: 7.575e-15,
-      A12: -2.361e-18,
-      A14: 0,
+  zoom: {
+    /* (moved from zoomPositions) ── Variable air spacings (Table 1 W / M / T, infinity focus only — no close-focus data published) ── */
+    stations: [
+      { focalLengthMm: 16.48, label: "Wide" },
+      { focalLengthMm: 24.0 },
+      { focalLengthMm: 33.94, label: "Tele" },
+    ],
+    step: 0.004,
+  },
+
+  /* ── Focus configuration ── */
+  focus: {
+    closeFocusM: 0.29,
+    description:
+      "Internal focusing by axial movement of cemented lens CL21 (L21+L22) inside G2 (¶0060). The patent tabulates no close-focus gaps, so focus travel is not modeled; 0.29 m is Nikon's published minimum focus distance.",
+  },
+
+  gaps: {
+    "9": {
+      label: "D9",
+      values: [
+        [28.97, 28.97],
+        [11.94, 11.94],
+        [2.09, 2.09],
+      ],
     },
-    "2A": {
-      K: -0.983,
-      A4: -6.389e-6,
-      A6: -3.01e-8,
-      A8: 8.699e-11,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+    "14": {
+      label: "D14",
+      values: [
+        [3.26, 3.26],
+        [6.0, 6.0],
+        [8.5, 8.5],
+      ],
     },
-    "7A": {
-      K: 7.352,
-      A4: 1.862e-5,
-      A6: 1.672e-8,
-      A8: -3.678e-11,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+    "22": {
+      label: "D22",
+      values: [
+        [12.46, 12.46],
+        [5.96, 5.96],
+        [1.21, 1.21],
+      ],
     },
     "30A": {
-      K: 11.401,
-      A4: 1.208e-5,
-      A6: 1.539e-8,
-      A8: -2.918e-11,
-      A10: 1.594e-13,
-      A12: 4.038e-18,
-      A14: 0,
+      label: "BF",
+      values: [
+        [38.6, 38.6],
+        [50.93, 50.93],
+        [67.55, 67.55],
+      ],
     },
   },
 
-  /* ── Variable air spacings (Table 1 W / M / T, infinity focus only — no close-focus data published) ── */
-  zoomPositions: [16.48, 24.0, 33.94],
-  zoomStep: 0.004,
-  zoomLabels: ["Wide", "Tele"],
-
-  var: {
-    "9": [
-      [28.97, 28.97],
-      [11.94, 11.94],
-      [2.09, 2.09],
-    ],
-    "14": [
-      [3.26, 3.26],
-      [6.0, 6.0],
-      [8.5, 8.5],
-    ],
-    "22": [
-      [12.46, 12.46],
-      [5.96, 5.96],
-      [1.21, 1.21],
-    ],
-    "30A": [
-      [38.6, 38.6],
-      [50.93, 50.93],
-      [67.55, 67.55],
-    ],
-  },
-  varLabels: [
-    ["9", "D9"],
-    ["14", "D14"],
-    ["22", "D22"],
-    ["30A", "BF"],
-  ],
+  /* ── Aperture configuration ── */
+  aperture: { nominalFNumber: 4.1, fStops: [4.1, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -444,7 +452,6 @@ const LENS_DATA = {
     { text: "G3 (−) VR", fromSurface: "STO", toSurface: "22" },
     { text: "G4 (+)", fromSurface: "23", toSurface: "30A" },
   ],
-
   doublets: [
     { text: "H1", fromSurface: "5", toSurface: "7A" },
     { text: "CL21", fromSurface: "10", toSurface: "12" },
@@ -453,20 +460,8 @@ const LENS_DATA = {
     { text: "CL42", fromSurface: "27", toSurface: "30A" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.29,
-  focusDescription:
-    "Internal focusing by axial movement of cemented lens CL21 (L21+L22) inside G2 (¶0060). The patent tabulates no close-focus gaps, so focus travel is not modeled; 0.29 m is Nikon's published minimum focus distance.",
-
-  /* ── Aperture configuration ── */
-  nominalFno: 4.1,
-  zoomApertureModel: "from-nominal-fno",
-  fstopSeries: [4.1, 5.6, 8, 11, 16, 22],
-  maxFstop: 22,
-
   /* ── Layout tuning ── */
-  scFill: 0.42,
-  yScFill: 0.35,
-} satisfies LensDataInput;
+  layout: { scFill: 0.42, yScFill: 0.35 },
+} satisfies LensDataV2Input;
 
 export default LENS_DATA;

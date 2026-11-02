@@ -13,6 +13,7 @@ flowchart LR
     n_src_src_comparison["comparison/"]
     n_src_src_components["components/"]
     n_src_src_content["content/"]
+    n_src_src_lensBuilder["lensBuilder/"]
     n_src_src_optics["optics/"]
     n_src_src_pages["pages/"]
     n_src_src_routes["routes/"]
@@ -28,6 +29,8 @@ flowchart LR
   n_external_pkg_react_helmet_async["pkg:react-helmet-async"]
   n_src_src_main_tsx --> |3| n_src_src_components
   n_src_src_entry_server_tsx --> |2| n_external_pkg_react_router
+  n_src_src_entry_server_tsx --> |2| n_src_src_routes
+  n_src_src_router_tsx --> |2| n_src_src_routes
   n_src_src_entry_server_tsx --> n_external_pkg_react_dom
   n_src_src_main_tsx --> n_external_pkg_react_dom
   n_src_src_entry_server_tsx --> n_external_pkg_react_helmet_async
@@ -37,8 +40,6 @@ flowchart LR
   n_src_src_entry_server_tsx --> n_src_src_components
   n_src_src_router_tsx --> n_src_src_components
   n_src_src_main_tsx --> n_src_src_router_tsx
-  n_src_src_entry_server_tsx --> n_src_src_routes
-  n_src_src_router_tsx --> n_src_src_routes
   n_src_src_entry_server_tsx --> n_src_src_utils
   n_src_src_main_tsx --> n_src_src_utils
   n_src_src_router_tsx --> n_src_src_utils
@@ -47,8 +48,8 @@ flowchart LR
 ## Directory Overview
 
 - Direct source files: 4
-- Direct subfolders: 9
-- Main outbound areas: package:react-router (4), src/components/errors (3), package:react-dom (2), package:react-helmet-async (2), src/routes (2), src/components/HolidayFavicon.tsx, src/components/PrerenderedHeadCleanup.tsx, src/router.tsx, +3 more
+- Direct subfolders: 10
+- Main outbound areas: package:react-router (4), src/routes (4), src/components/errors (3), package:react-dom (2), package:react-helmet-async (2), src/components/HolidayFavicon.tsx, src/components/PrerenderedHeadCleanup.tsx, src/router.tsx, +3 more
 - External consumers: none
 - Skipped documentation subtrees: `src/generated/` (build output), `src/lens-data/`, `src/mounts/`
 
@@ -60,6 +61,7 @@ flowchart LR
 | [comparison/](comparison/readme.md) | comparison-mode state, shared sliders, URL metadata, and two-lens layout composition |
 | [components/](components/readme.md) | React UI component root for page chrome, controls, SVG diagrams, analysis display, markdown, hooks, mount diagrams, and error boundaries |
 | [content/](content/readme.md) | auto-discovered markdown articles and static site content |
+| [lensBuilder/](lensBuilder/readme.md) | src/lensBuilder source folder |
 | [optics/](optics/readme.md) | pure optical engine, runtime-lens construction, tracing, analysis, projection, glass, mount rendering, and diagram geometry |
 | [pages/](pages/readme.md) | route-level React pages and page-specific lens-index feature module |
 | [routes/](routes/readme.md) | shared route manifest used by browser routing, SSR, prerender, and sitemap coverage |
@@ -70,7 +72,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `entry-server.tsx` | React component module | package:react-router (2), package:react-dom, package:react-helmet-async, src/components/errors, src/routes, +1 more | none | manifestPaths, RenderResult, render |
+| `entry-server.tsx` | React component module | package:react-router (2), src/routes (2), package:react-dom, package:react-helmet-async, src/components/errors, +1 more | none | manifestPaths, RenderResult, render |
 | `main.tsx` | React component module | package:react-dom, package:react-helmet-async, package:react-router, src/components/errors, src/components/HolidayFavicon.tsx, +3 more | none | none |
-| `router.tsx` | React component module | package:react-router, src/components/errors, src/routes, src/utils/chunkLoadRetry.ts | src/main.tsx | default |
+| `router.tsx` | React component module | src/routes (2), package:react-router, src/components/errors, src/utils/chunkLoadRetry.ts | src/main.tsx | default |
 | `vite-env.d.ts` | Ambient/type declaration surface | none | none | none |

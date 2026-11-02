@@ -14,32 +14,29 @@
 
 import { useMemo, useRef } from "react";
 import { resolveLensSystemData } from "../../utils/catalog/teleconverterCatalog.js";
-import { wideOpenStopAtZoom } from "../../optics/apertureStop.js";
-import { fNumberAtStopdown } from "../../optics/aperture.js";
-import buildLens from "../../optics/buildLens.js";
-import { computeCardinalElementsAtState, type CardinalElements } from "../../optics/cardinalElements.js";
+import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../../optics/optics.js";
+import { fNumberAtStopdown } from "../../optics/optics.js";
+import { buildLens } from "../../optics/buildLens.js";
+import type { CardinalElements } from "../../optics/analysis.js";
+import { computeCardinalElements, computeFocusEFL, createAnalysisRequest } from "../../optics/analysis.js";
 import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
-import { clampLensMovement, createLensMovementTransform } from "../../optics/lensMovement.js";
-import { prepareRuntimeState } from "../../optics/compat.js";
+import { clampLensMovement, createLensMovementTransform } from "../../optics/perspective.js";
+import { prepareRuntimeState } from "../../optics/optics.js";
 import { nearestPublishedStation } from "../../optics/publishedStations.js";
-import {
-  computePerspectiveMovementViewportExtent,
-  createPerspectiveTraceContext,
-  type PerspectiveTraceContext,
-} from "../../optics/perspective/index.js";
+import { computePerspectiveMovementViewportExtent, createPerspectiveTraceContext } from "../../optics/perspective.js";
+import type { PerspectiveTraceContext } from "../../optics/perspective.js";
+import type { ParaxialWorkingFNumberResult } from "../../optics/optics.js";
 import {
   anchorLayoutToCamera,
-  computeAnalysisFieldGeometryAtState,
-  doLayout,
-  effectiveFNumber,
-  eflAtFocus,
-  entrancePupilAtState,
-  fopenAtZoom,
-  thick,
+  doLayoutForRuntimeLens as doLayout,
+  fopenAtZoomClamped as fopenAtZoom,
+  paraxialWorkingFNumberForRuntimeLens,
+  thickOrZero as thick,
 } from "../../optics/optics.js";
+import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../../optics/fieldGeometry.js";
 import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
-import type { LensMovementTransform, ResolvedLensMovement } from "../../optics/lensMovement.js";
-import type { FieldGeometryState } from "../../optics/optics.js";
+import type { LensMovementTransform, ResolvedLensMovement } from "../../optics/perspective.js";
+import type { FieldGeometryState } from "../../optics/fieldGeometry.js";
 
 interface UseLensComputationParams {
   lensKey: string;
@@ -97,7 +94,8 @@ interface UseLensComputationResult {
   varReadouts: VarReadout[];
   aberrationReadouts: VarReadout[];
   dynamicEFL: number;
-  effectiveFNum: number;
+  /** Paraxial working f-number at the current object distance, or why the state has none. */
+  paraxialWorkingFNum: ParaxialWorkingFNumberResult;
   filterId: string;
 }
 
@@ -165,6 +163,19 @@ export default function useLensComputation({
     () => (L ? prepareRuntimeState(L, focusT, zoomT, aberrationT) : null),
     [L, focusT, zoomT, aberrationT],
   );
+  // First-order jobs read geometry; constants fill the unused aperture/EFL request fields.
+  const firstOrderRequest = useMemo(
+    () =>
+      preparedState && L
+        ? createAnalysisRequest({
+            preparedState,
+            dynamicEFL: L.EFL,
+            currentEPSD: L.EP.epSD,
+            currentPhysStopSD: L.stopPhysSD,
+          })
+        : null,
+    [preparedState, L],
+  );
   const perspectiveTraceContext = useMemo(
     () =>
       preparedState
@@ -188,8 +199,8 @@ export default function useLensComputation({
   );
 
   const cardinalElements = useMemo(
-    () => (L ? computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT) : null),
-    [L, focusT, zoomT, zPos, IMG_MM, aberrationT],
+    () => (firstOrderRequest ? computeCardinalElements(firstOrderRequest, { zPos, imagePlaneZ: IMG_MM }) : null),
+    [firstOrderRequest, zPos, IMG_MM],
   );
 
   const cardinalZExtent = useMemo(() => {
@@ -270,20 +281,21 @@ export default function useLensComputation({
   const shapeError = shapesResult.error;
 
   /* ── Aperture ──
-   * Compute the current f-number and physical stop/entrance-pupil diameters
+   * Compute the current marked f-number and physical stop/entrance-pupil diameters
    * from the stopdown slider position. Uses a logarithmic mapping so
-   * equal slider increments produce equal f-stop steps. */
+   * equal slider increments produce equal f-stop steps. The stop follows the
+   * f-number rule (paraxial EPD = F/N at infinity focus of this zoom position). */
   const stopZ = L ? zPos[L.stopIdx] : 0;
   /* Zoom-aware wide-open f-number (varies for variable-aperture zooms) */
   const currentFOPEN = L ? fopenAtZoom(zoomT, L) : 1;
   const fNumber = L ? fNumberAtStopdown(stopdownT, zoomT, L) : 1;
-  // Stop-down is relative to this zoom state: its wide-open marking retains the full iris.
   const wideOpenStopSD = L ? wideOpenStopAtZoom(zoomT, L) : 0;
-  const currentPhysStopSD = L ? (wideOpenStopSD * currentFOPEN) / fNumber : 0;
-  /* Use the current focus/zoom front-group magnification for pupil-dependent analyses. */
+  const currentPhysStopSD = L ? stopSemiDiameterForFNumber(fNumber, zoomT, L) : 0;
+  /* Paraxial entrance pupils of the current focus/zoom state, for pupil-dependent analyses. */
   const baseEPSD =
     L && fieldGeometry ? entrancePupilAtState(wideOpenStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
-  const currentEPSD = L ? (baseEPSD * currentFOPEN) / fNumber : 0;
+  const currentEPSD =
+    L && fieldGeometry ? entrancePupilAtState(currentPhysStopSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
 
   /* ── Variable gap readouts ── */
   const varReadouts: VarReadout[] = L
@@ -303,15 +315,15 @@ export default function useLensComputation({
     : [];
 
   /* ── Dynamic EFL (changes with focus for internal-focusing lenses) ── */
-  const dynamicEFL = useMemo(
-    () => (L ? eflAtFocus(focusT, zoomT, L, aberrationT) : 0),
-    [L, focusT, zoomT, aberrationT],
-  );
+  const dynamicEFL = useMemo(() => (firstOrderRequest ? computeFocusEFL(firstOrderRequest) : 0), [firstOrderRequest]);
 
-  /* ── Effective f-number (bellows factor correction at close focus) ── */
-  const effectiveFNum = useMemo(
-    () => (L ? effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT) : fNumber),
-    [L, fNumber, focusT, zoomT, aberrationT],
+  /* ── Paraxial working f-number at the current object distance ── */
+  const paraxialWorkingFNum = useMemo<ParaxialWorkingFNumberResult>(
+    () =>
+      L
+        ? paraxialWorkingFNumberForRuntimeLens(currentPhysStopSD, focusT, zoomT, L, aberrationT)
+        : { status: "unavailable", reason: "no-stop" },
+    [L, currentPhysStopSD, focusT, zoomT, aberrationT],
   );
 
   const filterId = `gl-${panelId}`;
@@ -348,7 +360,7 @@ export default function useLensComputation({
     varReadouts,
     aberrationReadouts,
     dynamicEFL,
-    effectiveFNum,
+    paraxialWorkingFNum,
     filterId,
   };
 }

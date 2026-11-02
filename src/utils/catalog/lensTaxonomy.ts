@@ -25,6 +25,7 @@ export const LENS_MOUNTS = [
   { id: "canon-fl", label: "Canon FL", sortOrder: 115 },
   { id: "canon-r", label: "Canon R", sortOrder: 120 },
   { id: "canon-rf", label: "Canon RF", sortOrder: 125 },
+  { id: "canon-7-bayonet", label: "Canon 7 bayonet", sortOrder: 127 },
   { id: "contax-645", label: "Contax 645", sortOrder: 150 },
   { id: "contax-g", label: "Contax G", sortOrder: 160 },
   { id: "contax-n", label: "Contax N", sortOrder: 170 },
@@ -47,6 +48,7 @@ export const LENS_MOUNTS = [
   { id: "konica-f", label: "Konica F", sortOrder: 290 },
   { id: "leica-ltm", label: "Leica LTM / M39", sortOrder: 300 },
   { id: "leica-m", label: "Leica M", sortOrder: 310 },
+  { id: "leica-visoflex", label: "Leica Visoflex", sortOrder: 315 },
   { id: "leica-r", label: "Leica R", sortOrder: 320 },
   { id: "leica-s", label: "Leica S", sortOrder: 330 },
   { id: "l-mount", label: "L-Mount", sortOrder: 340 },
@@ -63,6 +65,7 @@ export const LENS_MOUNTS = [
   { id: "miranda-bayonet", label: "Miranda Bayonet", sortOrder: 420 },
   { id: "nikon-1", label: "Nikon 1", sortOrder: 490 },
   { id: "nikon-f", label: "Nikon F", sortOrder: 500 },
+  { id: "nikon-ix", label: "Nikon IX", sortOrder: 502 },
   { id: "nikonos", label: "Nikonos", sortOrder: 503 },
   { id: "nikonos-rs", label: "Nikonos RS", sortOrder: 504 },
   { id: "nikon-s", label: "Nikon S", sortOrder: 505 },
@@ -92,6 +95,7 @@ export const LENS_MOUNTS = [
   { id: "bronica-sq", label: "Zenza Bronica SQ", sortOrder: 870 },
   { id: "contax-yashica", label: "Contax / Yashica", sortOrder: 880 },
   { id: "large-format-lens-board", label: "Large-format Lens Board", sortOrder: 895 },
+  { id: "projection-lens", label: "Projection", sortOrder: 896 },
   { id: "enlarging-lens", label: "Enlarging Lens", sortOrder: 897 },
   { id: "fixed-lens-camera", label: "Fixed-lens Camera", sortOrder: 900 },
 ] as const;
@@ -104,13 +108,25 @@ export interface LensMountMetadata {
   sortOrder: number;
 }
 
-export const LENS_MOUNT_BY_ID = Object.fromEntries(LENS_MOUNTS.map((mount) => [mount.id, mount])) as Record<
-  LensMountId,
-  LensMountMetadata
->;
+/**
+ * Index taxonomy rows by id in a null-prototype table. Ids reach these tables from lens data and URLs, so an
+ * inherited name such as `constructor` or `__proto__` must miss like any other unknown id.
+ */
+function idTable<Row extends { id: string }>(rows: readonly Row[]): Record<string, Row> {
+  const table = Object.create(null) as Record<string, Row>;
+  for (const row of rows) table[row.id] = row;
+  return table;
+}
+
+export const LENS_MOUNT_BY_ID = idTable<LensMountMetadata>(LENS_MOUNTS) as Record<LensMountId, LensMountMetadata>;
 
 export function isLensMountId(value: unknown): value is LensMountId {
-  return typeof value === "string" && value in LENS_MOUNT_BY_ID;
+  return typeof value === "string" && Object.hasOwn(LENS_MOUNT_BY_ID, value);
+}
+
+/** Mount metadata for a canonical id; undefined for anything else, so callers can skip it. */
+export function lensMountMetadata(value: unknown): LensMountMetadata | undefined {
+  return isLensMountId(value) ? LENS_MOUNT_BY_ID[value] : undefined;
 }
 
 export const IMAGE_FORMATS = [
@@ -425,7 +441,7 @@ export interface ImageFormatMetadata {
   sortOrder: number;
 }
 
-export const IMAGE_FORMAT_BY_ID = Object.fromEntries(IMAGE_FORMATS.map((format) => [format.id, format])) as Record<
+export const IMAGE_FORMAT_BY_ID = idTable<ImageFormatMetadata>(IMAGE_FORMATS) as Record<
   ImageFormatId,
   ImageFormatMetadata
 >;
@@ -433,9 +449,14 @@ export const IMAGE_FORMAT_BY_ID = Object.fromEntries(IMAGE_FORMATS.map((format) 
 export const DEFAULT_IMAGE_FORMAT_ID: ImageFormatId = "135-full-frame";
 
 export function isImageFormatId(value: unknown): value is ImageFormatId {
-  return typeof value === "string" && value in IMAGE_FORMAT_BY_ID;
+  return typeof value === "string" && Object.hasOwn(IMAGE_FORMAT_BY_ID, value);
+}
+
+/** Format metadata for a canonical id; undefined for anything else, so callers can skip it. */
+export function imageFormatMetadata(value: unknown): ImageFormatMetadata | undefined {
+  return isImageFormatId(value) ? IMAGE_FORMAT_BY_ID[value] : undefined;
 }
 
 export function resolveImageFormatMetadata(value: unknown): ImageFormatMetadata {
-  return isImageFormatId(value) ? IMAGE_FORMAT_BY_ID[value] : IMAGE_FORMAT_BY_ID[DEFAULT_IMAGE_FORMAT_ID];
+  return imageFormatMetadata(value) ?? IMAGE_FORMAT_BY_ID[DEFAULT_IMAGE_FORMAT_ID];
 }

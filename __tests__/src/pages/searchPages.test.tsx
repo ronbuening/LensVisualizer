@@ -130,6 +130,9 @@ describe("search, author, and patent pages", () => {
     });
     expect(patentLinks[0].getAttribute("href")).toBe(espacenetPatentUrl(patent.patentNumber));
     expect(patentLinks[0].getAttribute("target")).toBe("_blank");
+    const firstLens = patent.lenses[0];
+    const firstLensLink = document.querySelector(`a[href="/lens/${firstLens.key}/"]`);
+    expect(firstLensLink?.textContent?.startsWith(firstLens.example?.label ?? firstLens.name)).toBe(true);
     expect(screen.getByRole("navigation", { name: "Assignee sections" })).toBeTruthy();
 
     fireEvent.click(screen.getByRole("button", { name: "Co-authors" }));

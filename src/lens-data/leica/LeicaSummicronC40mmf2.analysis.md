@@ -8,7 +8,7 @@
 **Inventors:** Georg Knetsch; Hermann Desch; Heinz Marquardt; Walter Watz
 **Applicant:** Ernst Leitz GmbH, 6330 Wetzlar
 **Title:** *Photographisches Objektiv*
-**Embodiment analyzed:** Example 3 = A1 Anspruch 4; the same prescription is renumbered as claim 3 in DE 2 222 892 C3
+**Example details:** A1 Anspruch 4; the same prescription is renumbered as claim 3 in DE 2 222 892 C3
 
 The A1 publication describes a six-lens Gauss-type photographic objective intended for the 24 × 36 mm format, with a
 published aperture ratio of 1:2 and a half image angle of ±28.4°. Its numerical prescriptions are normalized to

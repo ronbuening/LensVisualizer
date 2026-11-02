@@ -5,15 +5,18 @@
  * reference. The chart matches the LoCA inset visual language, but it plots
  * the displayed marginal fan's endpoint spread instead of chief-ray TCA.
  */
+import { CHROMATIC_CHANNEL_ORDER } from "../../optics/chromatic.js";
 import { memo } from "react";
 import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
-import type { DispersionQuality } from "../../optics/dispersion.js";
+import type { DispersionQuality } from "../../optics/chromatic.js";
+import { computeChromaticBarOffsets, REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM } from "../../optics/analysis.js";
 import {
-  computeChromaticBarOffsets,
-  REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM,
-} from "../../optics/chromaticRayFanScaling.js";
-import { chromaticChannelColor, formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
+  chromaticChannelColor,
+  formatChromaticZone,
+  formatOmittedChannels,
+  formatSpreadUmFromMm,
+} from "../display/analysis/chromaticChartUtils.js";
 import { ChromaticQualityBadge, chromaticQualityBadgeLabel } from "./ChromaticQualityBadge.js";
 
 function referenceHeight(imagePlaneHeights: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
@@ -57,9 +60,9 @@ const ChromaticFanSpreadWidget = memo(function ChromaticFanSpreadWidget({
     effectiveSC,
     REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM,
   );
-  const activeChans = (["R", "G", "B", "V"] as ChromaticChannel[]).filter(
-    (ch) => chromaticRayFanSpread.imagePlaneHeights[ch] !== undefined,
-  );
+  const activeChans = CHROMATIC_CHANNEL_ORDER.filter((ch) => chromaticRayFanSpread.imagePlaneHeights[ch] !== undefined);
+  // A selected channel the fraction leaves out is named on the widget, never dropped silently.
+  const omitted = formatOmittedChannels(chromaticRayFanSpread.omittedChannels);
   const qualityLabel = chromaticQualityBadgeLabel(dispersionQuality);
   const midX = originX + insetW / 2;
   const fs = (base: number) => base * fontScale;
@@ -75,6 +78,7 @@ const ChromaticFanSpreadWidget = memo(function ChromaticFanSpreadWidget({
 
   return (
     <g>
+      <title>{`Fan at ${formatChromaticZone(chromaticRayFanSpread, "EP")}`}</title>
       <rect
         x={originX}
         y={originY}
@@ -147,6 +151,7 @@ const ChromaticFanSpreadWidget = memo(function ChromaticFanSpreadWidget({
       <text x={midX} y={yMagScale} textAnchor="middle" fill={t.muted} fontSize={fs(7.5)} fontFamily="inherit">
         {Math.round(mag)}
         {"\u00d7"}
+        {omitted ? ` \u00b7 ${omitted}` : null}
       </text>
     </g>
   );

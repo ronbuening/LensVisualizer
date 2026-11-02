@@ -1,6 +1,6 @@
 # Audit Log - Mamiya-Sekor C 55mm f/2.8 N
 
-Patent: JP S55-45883 B2, Example 1
+Patent: JP S54-107336 A, Example 1 (laid-open publication; the examined publication is JP S55-45883 B2)
 Catalog version: local working tree, 2026-08-07
 
 ## 2026-08-07 - Diagram, glass, and source audit

@@ -6,7 +6,7 @@
 **JP Priority:** November 27, 1979 (JP 54-153258)  
 **Filed:** November 24, 1980  
 **Granted:** December 21, 1982  
-**Embodiment analyzed:** Example 1 — normalised to f = 100 mm (production scale k = 0.500 → f = 50 mm)  
+**Example details:** normalised to f = 100 mm (production scale k = 0.500 → f = 50 mm)  
 **Lens construction:** 8 elements / 6 groups, 1 aspherical surface  
 **Optical class:** Modified Double-Gauss with aspherical correction
 

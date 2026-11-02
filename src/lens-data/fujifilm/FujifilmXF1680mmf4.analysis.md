@@ -6,7 +6,6 @@
 **Priority:** JP 2018-221597, November 27, 2018
 **Filed:** November 20, 2019
 **Published:** May 28, 2020
-**Embodiment analyzed:** Example 11
 
 Example 11 has 16 elements in 12 groups and four elements with aspherical surfaces, one of which is also the ED element. It has a constant f/4 aperture across the zoom range (FNo 4.12 at wide, 4.13 at tele), a focal range of 16.497–77.751 mm that corresponds to the marketed 16–80 mm, and a positive‑negative‑positive‑negative‑positive five‑group layout. It is not the only embodiment that fits the shipping lens, though. Examples 1 and 4 have the same 28‑surface, 16/12 layout, the same aspheric elements (L21, L31, L34, L53) and the same constant FNo 4.12–4.13 over about 16.5–77.8 mm. The patent does not say which example is the production design. One point favours Example 11, though it is an inference rather than a patent statement. Its double‑sided aspheric OIS lens L34 uses nd/νd = 1.49710/81.56, which exactly matches HOYA's moldable ED glass M‑FCD1. Examples 1 and 4 use νd = 81.61 for that lens.
 

@@ -23,7 +23,7 @@
  */
 
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import { join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
   assertFreshnessDiversity,
@@ -34,7 +34,8 @@ import {
   projectClientMetadata,
   getGitFileFreshnessAsync,
 } from "./build-metadata-lib.mjs";
-import { collectLensDataAsync } from "./lens-data-lib.mjs";
+import { assertV2Catalog, collectLensDataAsync } from "./lens-data-lib.mjs";
+import { lensSummary, teleconverterSummary, canonicalPrescription } from "./lens-summaries.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 import { buildAuthorMetadata, buildAssigneeMetadata } from "./author-metadata.mjs";
 import { assertPatentAssigneeValidity } from "./patent-assignee-validity.mjs";
@@ -57,28 +58,10 @@ const GIT_FRESHNESS_CONCURRENCY = 8;
 
 /* ── Lens summaries ───────────────────────────────────────────────────── */
 
-/* Fields consumed by non-viewer pages (lens index, maker/mount/format pages,
- * updates, homepage cards). Keep in sync with the LensSummary type in
- * src/utils/catalog/lensSummaries.ts. */
-const SUMMARY_FIELDS = [
-  "key",
-  "name",
-  "maker",
-  "specs",
-  "focalLengthMarketing",
-  "apertureMarketing",
-  "apertureDesign",
-  "nominalFno",
-  "patentNumber",
-  "patentAuthors",
-  "patentAssignees",
-  "patentYear",
-  "lensMounts",
-  "imageFormat",
-  "opticalConfiguration",
-];
-
-/** Evaluate every default-exported data module under src/lens-data whose file name ends with `suffix`. */
+/**
+ * Evaluate every default-exported data module under src/lens-data whose file name ends with `suffix`, as canonical
+ * prescriptions.
+ */
 async function importDataModules(suffix) {
   const dataFiles = readdirSync(LENS_DATA_DIR, { recursive: true })
     .filter((file) => typeof file === "string" && file.endsWith(suffix))
@@ -88,8 +71,13 @@ async function importDataModules(suffix) {
   const modules = [];
   for (const relativePath of dataFiles) {
     const filePath = join(LENS_DATA_DIR, relativePath);
-    const data = (await import(pathToFileURL(filePath).href))?.default;
-    if (data?.key) modules.push({ data, filePath });
+    const file = (await import(pathToFileURL(filePath).href))?.default;
+    if (!file?.key) continue;
+    const kind = suffix === ".data.ts" ? "lens" : "teleconverter";
+    modules.push({
+      data: await canonicalPrescription(file, kind, relative(ROOT, filePath).replaceAll("\\", "/")),
+      filePath,
+    });
   }
   return modules;
 }
@@ -99,45 +87,18 @@ async function importDataModules(suffix) {
  *
  * Lens `*.data.ts` files only have type-only imports, so Node's native type
  * stripping can import them directly — no bundler needed. The resulting JSON
- * lets index-style pages render without shipping full prescriptions. The raw
- * modules are returned too, because teleconverter fit needs full prescriptions.
+ * lets index-style pages render without shipping full prescriptions. The
+ * modules are returned too, as canonical prescriptions, because teleconverter fit needs
+ * full prescriptions.
  */
 async function collectLensSummaries() {
   const lensModules = await importDataModules(".data.ts");
-  const summaries = lensModules.map(({ data }) => {
-    const summary = {};
-    for (const field of SUMMARY_FIELDS) {
-      if (data[field] !== undefined) summary[field] = data[field];
-    }
-    /* Mirror the runtime defaults merge for the one summary-relevant default */
-    summary.visible = data.visible !== false;
-    return summary;
-  });
+  const summaries = lensModules.map(({ data }) => lensSummary(data));
   /* Match the catalog's display ordering (sorted by name) */
   return { lensModules, lensSummaries: summaries.sort((a, b) => a.name.localeCompare(b.name)) };
 }
 
 /* ── Teleconverter summaries ──────────────────────────────────────────── */
-
-/* Fields consumed by the teleconverter pages and search. Keep in sync with the
- * TeleconverterSummary type in src/utils/catalog/teleconverterSummaries.ts. */
-const TELECONVERTER_SUMMARY_FIELDS = [
-  "key",
-  "name",
-  "maker",
-  "subtitle",
-  "specs",
-  "magnification",
-  "lensMounts",
-  "universal",
-  "minHostFno",
-  "patentNumber",
-  "patentAuthors",
-  "patentAssignees",
-  "patentYear",
-  "elementCount",
-  "groupCount",
-];
 
 /**
  * Evaluate every teleconverter module and pair it with the visible lenses it can mount on.
@@ -155,14 +116,7 @@ async function collectTeleconverters(lensModules, fallbackDate) {
 
   const teleconverters = [];
   for (const { data, filePath } of await importDataModules(".teleconverter.ts")) {
-    const summary = {};
-    for (const field of TELECONVERTER_SUMMARY_FIELDS) {
-      if (data[field] !== undefined) summary[field] = data[field];
-    }
-    summary.visible = data.visible !== false;
-    summary.compatibleLensKeys = visibleLenses
-      .filter((lens) => teleconverterCompatibility(lens, data).ok)
-      .map((lens) => lens.key);
+    const summary = teleconverterSummary(data, visibleLenses, teleconverterCompatibility);
     teleconverters.push({
       key: data.key,
       summary,
@@ -207,6 +161,7 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, author
 /* ── Main ─────────────────────────────────────────────────────────────── */
 
 async function main() {
+  await assertV2Catalog(LENS_DATA_DIR);
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
   assertFullGitHistory({ cwd: ROOT });
   const fallbackDate = new Date().toISOString().slice(0, 10);

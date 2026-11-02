@@ -9,15 +9,15 @@
 **Inventor:** Susumu Sato
 **Applicant:** Nikon Corporation
 **Title:** 大口径比内焦式望遠ズームレンズ (“Large-aperture-ratio internal-focusing telephoto zoom lens”)
-**Embodiment analyzed:** Example 1 / 第1実施例
+**Example details:** 第1実施例
 
 The selected prescription is Example 1 of JP 2000-19398 A. The project treats this embodiment as the fixed production correlation for the NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED. The patent itself does not identify a commercial product, so the correlation is not presented as manufacturer confirmation.
 
-The identification rests on several convergent facts. Example 1 is an 18-element, 14-air-spaced-group, positive-negative-positive-positive zoom with a split first group; the rear part of the first group alone performs internal focusing, while the second and third groups perform zooming and the fourth group remains fixed. The prescription contains five elements at the same very-low-dispersion optical position, `nd = 1.497820`, `νd = 82.52`. Its verified design range is approximately 81.55–196.00 mm at a modeled f/2.88. Nikon's production archive lists the commercial lens as an 80–200 mm f/2.8 FX/35 mm lens with 18 elements in 14 groups, five ED elements, and nine diaphragm blades. Nikon's historical design account also describes the production lens as a positive-negative-positive-positive four-group afocal zoom whose first group is divided so that its rear portion performs internal focusing.
+The identification rests on several convergent facts. Example 1 is an 18-element, 14-air-spaced-group, positive-negative-positive-positive zoom with a split first group; the rear part of the first group alone performs internal focusing, while the second and third groups perform zooming and the fourth group remains fixed. The prescription contains five elements at the same very-low-dispersion optical position, `nd = 1.497820`, `νd = 82.52`. Its computed EFL range is approximately 81.55–196.00 mm at a modeled f/2.88. Nikon's production archive lists the commercial lens as an 80–200 mm f/2.8 FX/35 mm lens with 18 elements in 14 groups, five ED elements, and nine diaphragm blades. Nikon's historical design account also describes the production lens as a positive-negative-positive-positive four-group afocal zoom whose first group is divided so that its rear portion performs internal focusing.
 
 Nikon's retrospective dates the commercial release to December 1998 and identifies Susumu Sato among the optical designers. That timing and design attribution are consistent with the 1998 filing and with Susumu Sato as the named patent inventor. These facts support the production correlation, but they do not constitute an explicit Nikon statement that Example 1 is the production prescription.
 
-The marketed and modeled quantities are therefore kept separate. The production specification is 80–200 mm f/2.8, while the data model carries a verified design EFL range of `81.549920824–195.999955682 mm` and a modeled maximum aperture of f/2.88. The patent's telephoto control column is printed as `194.0000 mm`, but the exact spacings in that column independently evaluate to `195.999955682 mm`; the raw control heading is retained for source traceability while the computed design EFL is reported separately.
+The marketed range is 80–200 mm. Table 1 states 81.55–194.00 mm, which is retained in the catalog design range and station headings. The prescription independently calculates to 81.549920824–195.999955682 mm at infinity. The 194.0000 mm tele heading therefore contradicts the published prescription; its cause remains unresolved.
 
 ## Optical Architecture
 
@@ -46,7 +46,7 @@ The aperture location is source-published, but its physical semi-diameter is not
 
 Patent Table 1 publishes effective diameters only at source surfaces 1, 6, 10, and 17. Those four values are preserved directly as semi-diameters `35.75`, `28.00`, `17.40`, and `18.40 mm`. The remaining semi-diameters are modeling values constrained by the Example 1 optical section and the validated geometry of the final data file; they are not patent measurements.
 
-Thirteen of those modeling values (surfaces 7, 8, 9, 11, 12, 13, 14, 15, 16, 21, 23, 24, and 26) stand at the greatest height the f/2.88 on-axis ray reaches on them at any control state, rounded up to 0.1 mm: `27.0`, `27.0`, `26.5`, `16.2`, `16.2`, `17.1`, `17.1`, `17.1`, `17.6`, `19.1`, `19.4`, `19.2`, and `18.2 mm`. Each face takes its own ray height; none is squared to the other face of its element. Two facing pairs nearly meet at the rim, as the patent's Figure 1 draws them. Surfaces 7 and 8 at `27.0 mm` close 97.2% of the `1.81 mm` air gap between L4 and L5 and stand `0.05 mm` apart; surfaces 14 and 15 at `17.1 mm` close 92.8% of the `2.11 mm` air gap between L8 and L9 and stand `0.15 mm` apart. The facing spheres would touch at `27.29 mm` and `17.74 mm`. The model's default cross-gap rule keeps 10% of an air gap clear at the rim; the data file sets `gapSagFrac: 0.98` for these two pairs.
+Thirteen of those modeling values (surfaces 7, 8, 9, 11, 12, 13, 14, 15, 16, 21, 23, 24, and 26) stand at the greatest height the f/2.88 on-axis ray reaches on them at any control state, rounded up to 0.1 mm: `27.0`, `27.0`, `26.5`, `16.2`, `16.2`, `17.1`, `17.1`, `17.1`, `17.6`, `19.1`, `19.4`, `19.2`, and `18.2 mm`. These remain clear caps. Figure-supported lands now extend S7 from 27.0 to 28.0 mm, S11 from 16.2 to 17.4 mm, S12 from 16.2 to 17.1 mm, and S15 from 17.1 to 17.6 mm, completing the stepped outer rims without changing those optical apertures. Two facing pairs nearly meet at the rim, as the patent's Figure 1 draws them. Surfaces 7 and 8 at `27.0 mm` close 97.2% of the `1.81 mm` air gap between L4 and L5 and stand `0.05 mm` apart; surfaces 14 and 15 at `17.1 mm` close 92.8% of the `2.11 mm` air gap between L8 and L9 and stand `0.15 mm` apart. The facing spheres would touch at `27.29 mm` and `17.74 mm`. The model's default cross-gap rule keeps 10% of an air gap clear at the rim; the data file sets `gapSagFrac: 0.98` for these two pairs.
 
 ## Element-by-Element Analysis
 
@@ -162,7 +162,9 @@ L18 is the final positive element before the fixed back-focus space. Together wi
 
 ## Glass Identification and Selection
 
-The selected patent publishes only d-line refractive index and Abbe number. It does not name the historical glass manufacturer or catalog glass for any element. The final data file retains the patent coordinates and uses compatible coefficient-backed catalog equivalents where available, without treating those equivalents as production-supplier evidence.
+The fresh Figure 1 review also adds the source-visible concave-end land on S27: an 18.2 mm outer radius and 3.91 mm inferred axial cut retain a **16.858624 mm** curved cap. The drawing measures approximately 16.0 mm at that cap, but moving the cut outward is required by full wide-open beams reaching **16.802815 mm**; the adopted cap clears them by **0.055809 mm**, exceeding the required **0.050576 mm**. This is a beam-adjusted inference, not a source-published cut depth.
+
+The selected patent publishes only d-line refractive index and Abbe number. It does not name the historical glass manufacturer or catalog glass for any element. The final data file retains the patent coordinates and uses compatible coefficient-backed catalog equivalents where available, without treating those equivalents as production-supplier evidence. All 18 elements resolve currently. In particular, L6/L9 retain explicitly nonidentical J-LASF017 curves (catalog 1.79500/45.31 versus source 1.796681/45.37), and L18 resolves to nonidentical M-TAF1 (1.7725/49.46 versus 1.772789/49.45); compatibility is not coordinate identity.
 
 | Optical-position annotation | `nd` | `νd` | Elements | Authored interpretation |
 |---|---:|---:|---|---|
@@ -238,7 +240,7 @@ Independent sequential height/reduced-angle tracing and an ABCD calculation agre
 | 135 | 134.999788354 mm | 57.019785346 mm | 250.829600 mm |
 | 194 source column | 195.999955682 mm | 57.020259556 mm | 250.829610 mm |
 
-The wide and middle states reproduce the patent headings to source precision. The final column exposes a source contradiction: the patent prints `194.0000 mm`, while the same published spacings calculate to essentially `196.0000 mm`. The data file retains `194` as the interpolation control heading and reports the independently calculated tele design EFL separately.
+The wide and middle states reproduce the patent headings to source precision. The final column exposes a source contradiction: the patent prints `194.0000 mm`, while the same published spacings calculate to essentially `196.0000 mm`. The station heading and catalog design endpoint retain the source-stated 194 mm; the calculated 195.999955682 mm EFL is reported separately, with the source contradiction marked unresolved.
 
 The surface-by-surface Petzval sum, using `φ/(n·n′)` at every refracting surface, is `+0.00137533239976616 mm⁻¹`. This is a first-order surface-power diagnostic and is not presented as a measured or optimized best-focus field-curvature radius.
 

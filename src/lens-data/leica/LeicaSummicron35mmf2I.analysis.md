@@ -6,7 +6,7 @@
 **Granted:** October 31, 1961  
 **Inventor:** Walter Mandler  
 **Assignee:** Ernst Leitz Canada Limited  
-**Embodiment analyzed:** Example II, Figure 2
+**Example details:** Figure 2
 
 US 3,006,249 describes a high-speed wide-angle objective with two four-element halves arranged on opposite sides of a diaphragm. Example II is the numerical prescription used here. The patent gives a normalized focal length of 100 mm, a nominal aperture of F:2, and a 62° angular field; Figure 2 shows the eight elements and diaphragm 10, while the Example II table and claim 2 provide the prescription. The patent explicitly defines `N_D` as refractive index at the sodium D line and `V` as the Abbe number. [US 3,006,249, PDF pp. 1–3, especially Fig. 2, Example II, and claim 2.](https://patents.google.com/patent/US3006249A/en)
 

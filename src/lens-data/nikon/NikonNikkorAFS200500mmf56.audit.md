@@ -148,3 +148,11 @@ of these are within 15 %, so they were left unchanged.
   uses edge bevels or flats there.
 - Semi-diameters remain ray-envelope and figure estimates; the patent publishes no effective diameters.
 - The diagram models the patent's wide-open FNo 4.62–5.78, not the production constant f/5.6 maximum.
+
+## 2026-10-30 — Fresh figure, concave-end and glass reinspection
+
+Direct source: `patents/JP2014209144A.pdf`, PDF p. 15 FIG. 5 (600 dpi/native figure), pp. 10–11 ¶0042–0045 Example 2 prescription and finite gaps; p. 9 ¶0036 d-line definition; p. 15 FIGS. 6–8 FNO/field labels. Reviewed every one of the32 surfaces and all doublet boundaries.
+
+- Geometry retained. FIG. 5 draws the exposed concave faces as continuous caps to their rims; the small apparent steps are cemented boundaries/leader strokes, without an independently resolved radial flat land. No new cuts or height extensions are justified. In particular the source≈19.3 mm L2B outline cannot simply replace S11/S12 rims: their printed2 mm gap would overlap; the inherited17.4/17.7 caps and existing `gapSagFrac:0.96` are retained without further relaxation.
+- All19 media nd/vd pairs freshly match ¶0043, with d=587.6 nm explicitly defined. No C/F/g indices, partial dispersion or material-specific APD claim is supplied. All19 currently resolve to qualified catalog-compatible curves. Labels state source/catalog coordinates and unspecified supplier. E6's actual resolver is J-KF6; E12 is N-FK5; E13 is FCD1 (not a two-name production identification); E14 remains exact-coordinate NBFD10. The three ED/APD badges remain inferred.
+- Canonical/full cut validation, surface, image-circle, all three format corners and all three nominal apertures pass. Nine actual SVG states show zero trimming. At the printed2.2m object distances D0=1890/1858.1924/1814.6227 mm, the unchanged runtime iris passes25/25 axial pupil samples at each zoom; these are discrete counts, not flux percentages. R/d, focus/zoom gaps, fixed iris and source design FNO4.62/5.24/5.78 are preserved.

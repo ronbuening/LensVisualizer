@@ -1,19 +1,26 @@
 /**
  * Sequential exact tracer — left-to-right real-ray traversal for ordinary refractive lenses.
  *
- * Uses prepared state and surface profiles for the default optical path while delegating
- * folded systems to the generalized tracer.
+ * Uses indexed trace geometry and surface profiles for the ordinary optical path.
+ * Geometry construction selects generalized traversal for folded systems.
  */
 
-import type { FoldedPathClipEvent } from "../../types/optics.js";
-import { FLAT_R_THRESHOLD } from "../constants.js";
-import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
+import { FLAT_R_THRESHOLD } from "../geometry/surfaceProfile.js";
+import type { Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
-import { pushClipEvent } from "./foldedDiagnostics.js";
+import { createTraceRecorder } from "./capture.js";
+import type { TraceRecorder } from "./capture.js";
 import { interactRefractiveSurface } from "./interactions.js";
 import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
-import { intersectStateSurface, sequentialSurfaceMaxT, sequentialSurfaceMinT } from "./pathPlanner.js";
-import type { EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
+import { intersectSequentialSurface, sequentialSurfaceMaxT, sequentialSurfaceMinT } from "./pathPlanner.js";
+import type {
+  TraceGeometry,
+  EngineTraceResult,
+  TraceFailureReason,
+  TraceCapture,
+  TraceHit,
+  TraceOptions,
+} from "./types.js";
 import {
   clampTraceCount,
   finalizeTraceResult,
@@ -26,18 +33,21 @@ import {
  * Trace a ray through ordinary sequential surface order.
  *
  * Each surface hit is solved against its exact sag profile, then refracted with
- * vector Snell's law. Folded systems use generalizedTrace instead.
+ * vector Snell's law. A surface that lies behind the last hit is met by a step
+ * backwards along the ray (`intersectSequentialSurface`). Folded systems use
+ * generalizedTrace instead.
  *
- * @param state - prepared optical state
+ * @param geometry - indexed trace geometry
  * @param input - ray origin and direction
  * @param options - stop, aperture, ghost, and chromatic trace controls
  * @returns engine trace result with hits, clipping, and terminal ray state
  */
-export function traceSequential(
-  state: PreparedOpticalState,
+export function traceSequential<C extends TraceCapture = "diagnostics">(
+  geometry: TraceGeometry,
   input: Ray3,
-  options: TraceOptions = {},
-): EngineTraceResult {
+  options: TraceOptions<C> = {},
+): EngineTraceResult<C> {
+  const capture = createTraceRecorder(geometry, options.capture, true);
   const direction0 = options.directionNormalized ? input.direction : normalizeTraceDirection(input.direction);
   if (
     !direction0 ||
@@ -45,7 +55,7 @@ export function traceSequential(
     !Number.isFinite(direction0[1]) ||
     !Number.isFinite(direction0[2])
   ) {
-    return failedBeforeHit(state, input, "invalidDirection");
+    return failedBeforeHit<C>(geometry, input, "invalidDirection", capture);
   }
 
   const {
@@ -61,11 +71,9 @@ export function traceSequential(
     wavelengthNm = DEFAULT_PHASE_WAVELENGTH_NM,
   } = options;
 
-  const total = state.surfaces.length;
+  const total = geometry.surfaces.length;
   const tracedCount = clampTraceCount(stopAt ?? total, total);
   const heights: number[] | null = recordHeights ? [] : null;
-  const hits: TraceHit[] = [];
-  const clipEvents: FoldedPathClipEvent[] = [];
   let origin: Vec3 = [input.origin[0], input.origin[1], input.origin[2]];
   let direction: Vec3 = direction0;
   let n = 1;
@@ -76,21 +84,22 @@ export function traceSequential(
   let failureReason: TraceFailureReason | null = null;
 
   for (let i = 0; i < tracedCount; i++) {
-    const surface = state.surfaces[i];
-    const minT = sequentialSurfaceMinT(state, i, origin, direction);
-    const maxT = Math.max(minT, sequentialSurfaceMaxT(state, i, origin, direction, launchBoundT));
-    const hit = intersectStateSurface({ origin, direction }, state, i, { minT, maxT, refractiveIndex: n });
+    const surface = geometry.surfaces[i];
+    const minT = sequentialSurfaceMinT(geometry, i, origin, direction);
+    const maxT = Math.max(minT, sequentialSurfaceMaxT(geometry, i, origin, direction, launchBoundT));
+    const hit = intersectSequentialSurface(geometry, i, origin, direction, { minT, maxT, refractiveIndex: n });
 
     if (!hit.ok) {
       // A miss is terminal even in ghost mode: prior hits still display, while
       // fabricated fallback points can create unbounded SVG paths.
       clipped = true;
       failureReason = hit.failureReason;
-      pushClipEvent(clipEvents, state, i, "intersection-failure", hit.failureReason);
+      capture.clip(i, "intersection-failure", hit.failureReason);
       break;
     }
 
     const point = hit.point;
+    // A step backwards to a surface behind the last hit has a negative length, and is charged with its sign.
     if (options.recordOpticalPath) opticalPathLengthMm += hit.opticalPathLength ?? n * hit.segmentLength;
     const normal = hit.normal;
     const radius = hit.radius;
@@ -100,33 +109,17 @@ export function traceSequential(
       heights!.push(projectCoordinateToZ(point[1], point[2], direction[1], direction[2], surface.z));
     }
 
-    const incidentDirection: Vec3 = [direction[0], direction[1], direction[2]];
-    const aperture = evaluateAperture(state, surface, radius, stopSemiDiameter);
+    const aperture = evaluateAperture(geometry, surface, radius, stopSemiDiameter);
     let clipReason: TraceHit["clipReason"] | undefined;
     if (checkSemiDiameter && aperture.state !== "inside") {
       clipped = true;
       clipReason = aperture.state === "inside-hole" ? "inner-hole" : "semi-diameter";
-      pushClipEvent(clipEvents, state, i, clipReason);
+      capture.clip(i, clipReason);
     }
 
     const hitClipped = clipped;
-    const traceHit: TraceHit = {
-      surfaceIndex: i,
-      surfaceLabel: surface.label,
-      point,
-      normal,
-      incidentDirection,
-      radius,
-      clipped: hitClipped,
-      fallback: false,
-      failureReason: null,
-      clipReason,
-    };
-
-    if (hitClipped && stopOnClip && !ghost) {
-      hits.push(traceHit);
-      break;
-    }
+    capture.hit(i, hit, direction, hitClipped, clipReason);
+    if (hitClipped && stopOnClip && !ghost) break;
 
     /* Chromatic traces replace the physical d-line nd with channel-specific
      * n(lambda), while air stays exactly 1. */
@@ -140,10 +133,8 @@ export function traceSequential(
         if (interaction.failure) {
           clipped = true;
           failureReason = interaction.failure.failureReason;
-          pushClipEvent(clipEvents, state, i, interaction.failure.clipReason, failureReason);
-          traceHit.clipped = true;
-          traceHit.failureReason = failureReason;
-          traceHit.clipReason = interaction.failure.clipReason;
+          capture.clip(i, interaction.failure.clipReason, failureReason);
+          capture.failure(failureReason, interaction.failure.clipReason);
           stopAfterHit = !ghost;
         } else {
           direction = interaction.direction;
@@ -152,17 +143,16 @@ export function traceSequential(
     }
 
     n = nn;
-    traceHit.outgoingDirection = [direction[0], direction[1], direction[2]];
-    hits.push(traceHit);
+    capture.outgoing(direction);
     if (stopAfterHit) break;
     origin = point;
   }
 
   const returnVertexIndex = resolveReturnVertexIndex(stopAt, skipLastTransfer, terminalSurfaceIndex, total);
-  const result = finalizeTraceResult({
-    state,
+  const result = finalizeTraceResult<C>({
+    geometry,
     input: { origin: input.origin, direction: direction0 },
-    hits,
+    capture,
     heights,
     terminalPoint,
     terminalDirection: direction,
@@ -173,23 +163,22 @@ export function traceSequential(
     failureReason,
     reachedImagePlane: false,
     terminationReason: "sequential-return",
-    clipEvents,
-    autoSteps: [],
     loopKey: null,
   });
   return options.recordOpticalPath ? { ...result, opticalPathLengthMm } : result;
 }
 
-function failedBeforeHit(
-  state: PreparedOpticalState,
+function failedBeforeHit<C extends TraceCapture>(
+  geometry: TraceGeometry,
   input: Ray3,
   failureReason: TraceFailureReason,
-): EngineTraceResult {
+  capture: TraceRecorder,
+): EngineTraceResult<C> {
   const direction: Vec3 = [input.direction[0], input.direction[1], input.direction[2]];
-  return finalizeTraceResult({
-    state,
+  return finalizeTraceResult<C>({
+    geometry,
     input,
-    hits: [],
+    capture,
     heights: null,
     terminalPoint: input.origin,
     terminalDirection: direction,
@@ -200,8 +189,6 @@ function failedBeforeHit(
     failureReason,
     reachedImagePlane: false,
     terminationReason: "trace-failure",
-    clipEvents: [],
-    autoSteps: [],
     loopKey: null,
   });
 }

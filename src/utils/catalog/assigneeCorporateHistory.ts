@@ -20,6 +20,7 @@ type AuthoredCorporateRelationships = Partial<AssigneeCorporateRelationships>;
 const SOURCES = {
   agfaHistory: "https://www.historisches-lexikon-bayerns.de/Lexikon/Agfa_AG",
   canonHistory: "https://global.canon/en/c-museum/history/story04.html",
+  cwSonderopticOwnership: "https://www.fdtimes.com/pdfs/articles/leica/Leica_Report_10-10HighRezPrint.pdf",
   cosinaHistory: "https://www.cosina.co.jp/company/",
   fujifilmHistory: "https://global.fujifilm.com/en/about/corporate/history",
   fujifilmOverview: "https://global.fujifilm.com/en/about/corporate/overview",
@@ -28,6 +29,7 @@ const SOURCES = {
   hoyaHistory: "https://www.hoya.com/en/company/history/",
   hoyaPentaxMerger: "https://www.hoya.com/en/news/20111001/",
   jenoptikHistory: "https://de.wikipedia.org/wiki/Jenoptik",
+  kenkoTokinaHistory: "https://kenkoglobal.com/company/history/",
   konicaMinoltaAnnual2013:
     "https://www.konicaminolta.com/global-en/investors/ir_library/ar/ar2013/Konica_Minolta_AR2013_E.pdf",
   konicaMinoltaHistory: "https://www.konicaminolta.com/global-en/corporate/history-timeline04.html",
@@ -40,10 +42,12 @@ const SOURCES = {
   leicaHistory: "https://leica-camera.com/en-US/press/four-generations-leitz-company-management-1869-1986",
   leitzCanadaHistory: "https://gmpphoto.blogspot.com/2019/05/a-very-important-part-of-leica-history.html",
   leitzCanadaSale: "https://phsc.ca/camera/once-upon-a-time-in-canada/",
+  leitzCineRename: "https://theasc.com/articles/leica-unveils-ernst-leitz-wetzlar-gmbh",
   mamiyaHistory: "https://www.mamiya-op.co.jp/en/company/history/",
   nikonHistory: "https://www.nikon.com/company/corporate/history/",
   nittohHistory: "https://www.nittohkogaku.co.jp/en/company/history.html",
   olympusFounding: "https://www.olympus-global.com/company/milestones/founding.html?page=company",
+  olympusImagingTransfer: "https://www.olympus-global.com/news/2021/nr02010.html",
   olympusImaging: "https://www.olympus-global.com/company/milestones/history/05.html?page=company",
   olympusAnnual2016: "https://www.olympus-global.com/ir/data/integratedreport/pdf/ar2016e_A3.pdf",
   pentaconHistory: "https://de.wikipedia.org/wiki/Pentacon",
@@ -57,8 +61,10 @@ const SOURCES = {
   samsungElectroMechanicsHistory: "https://www.samsungsem.com/global/newsroom/news/view.do?id=613",
   samsungMerger: "https://www.samsung.com/global/ir/reports-disclosures/public-disclosure-view.70398/",
   schneiderHistory: "https://schneiderkreuznach.com/en/company/about-us/history",
+  sigmaHistory: "https://www.sigma-global.com/en/history/",
   sonyReorganization: "https://www.sony.com/en/SonyInfo/News/Press/202005/20-039E/",
   sonyStructure: "https://www.sony.com/en/SonyInfo/News/Press/202011/20-093E/",
+  tokinaHistory: "https://tokinalens.com/reviews/the_history_of_tokina_1950_2020/",
   tamronHistory: "https://www.tamron.com/global/company/tamron_history.html",
   viltroxRename: "https://patents.google.com/patent/CN218630458U/zh",
   viltroxRegistration: "https://m.shuidi.cn/company-67c4590220744b2c488f83aa38029142.html",
@@ -203,6 +209,32 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
+  "Ernst Leitz Wetzlar GmbH": {
+    successorOf: [
+      {
+        organization: "CW Sonderoptic GmbH",
+        effectiveDate: "2018-06",
+        sourceUrl: SOURCES.leitzCineRename,
+        note: "The Wetzlar cinema-lens company founded in 2008 as CW Sonderoptic GmbH was renamed Ernst Leitz Wetzlar GmbH, trading as Leitz Cine Wetzlar, in June 2018; it is the proprietor of record of the Summilux-C patent EP 2 321 688 B1, whose US counterpart names ACM Projektentwicklung GmbH.",
+      },
+    ],
+    subsidiaryOf: [
+      {
+        organization: "ACM Projektentwicklung GmbH",
+        effectiveFrom: "2010",
+        sourceUrl: SOURCES.cwSonderopticOwnership,
+        note: "Reported in October 2010, under its earlier name CW Sonderoptic, as a wholly owned subsidiary of ACM Projektentwicklung GmbH, the holding company that is also the majority shareholder of Leica Camera AG.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Leitz–Leica lineage",
+        effectiveFrom: "2018-06",
+        sourceUrl: SOURCES.leitzCineRename,
+        note: "Sister company of Leica Camera AG, owned by Andreas Kaufmann.",
+      },
+    ],
+  },
   "Fuji Photo Film Co., Ltd.": {
     corporateFamily: [
       {
@@ -315,6 +347,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
+  "Jos. Schneider Optische Werke GmbH": {
+    corporateFamily: [
+      {
+        family: "Schneider-Kreuznach",
+        effectiveFrom: "1913",
+        sourceUrl: SOURCES.schneiderHistory,
+        note: "The date marks the documented company lineage, not the first use of this exact legal style.",
+      },
+    ],
+  },
   "Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG": {
     corporateFamily: [
       {
@@ -324,6 +366,23 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         note: "The date marks the documented company lineage, not the first use of this exact legal style.",
       },
     ],
+  },
+  "Kenko Tokina Co., Ltd.": {
+    successorOf: [
+      {
+        organization: "Tokina Optical Co., Ltd.",
+        effectiveDate: "2011",
+        sourceUrl: SOURCES.kenkoTokinaHistory,
+        note: "Tokina merged with Kenko Co., Ltd. in 2011 and the merged company was named Kenko Tokina Co., Ltd.; the lens maker's patents of the 1970s name it Tokina Optical Co., Ltd.",
+      },
+      {
+        organization: "Kenko Co., Ltd.",
+        effectiveDate: "2011",
+        sourceUrl: SOURCES.kenkoTokinaHistory,
+        note: "Kenko Co., Ltd., founded in 1957, merged with Tokina in 2011 and the company name was changed to Kenko Tokina Co., Ltd.",
+      },
+    ],
+    corporateFamily: [{ family: "Kenko Tokina", effectiveFrom: "2011", sourceUrl: SOURCES.kenkoTokinaHistory }],
   },
   "Konishiroku Photo Industry Co., Ltd.": {
     corporateFamily: [
@@ -410,6 +469,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     ],
     corporateFamily: [
       { family: "Konica Minolta", effectiveFrom: "2003-08-05", sourceUrl: SOURCES.konicaMinoltaHistory },
+    ],
+  },
+  "Kyocera Corporation": {
+    corporateFamily: [
+      {
+        family: "Yashica–Kyocera",
+        effectiveFrom: "1983-10",
+        sourceUrl: SOURCES.yashicaHistory,
+        note: "The window starts with Kyocera's acquisition of Yashica Co., Ltd.; Kyocera's own Yashica-branded lens patents follow from it.",
+      },
     ],
   },
   "Leica Camera GmbH": {
@@ -555,6 +624,24 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveFrom: "1917-07-25",
         effectiveTo: "1988-04-01",
         sourceUrl: SOURCES.nikonHistory,
+      },
+    ],
+  },
+  "OM Digital Solutions Corporation": {
+    successorOf: [
+      {
+        organization: "Olympus Corporation",
+        effectiveDate: "2021-01-01",
+        sourceUrl: SOURCES.olympusImagingTransfer,
+        note: "Took over Olympus's imaging business. Most of its shares passed to a Japan Industrial Partners holding company, so it is not an Olympus subsidiary.",
+      },
+    ],
+    corporateFamily: [
+      {
+        family: "Olympus",
+        effectiveFrom: "2021-01-01",
+        sourceUrl: SOURCES.olympusImagingTransfer,
+        note: "Continues the Olympus imaging business (OM SYSTEM cameras and M.Zuiko lenses) as a separate company.",
       },
     ],
   },
@@ -819,6 +906,17 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     ],
     corporateFamily: [{ family: "Viltrox", effectiveFrom: "2025-04-18", sourceUrl: SOURCES.viltroxRename }],
   },
+  "Sigma Corporation": {
+    successorOf: [
+      {
+        organization: "Sigma Research Institute Co., Ltd.",
+        effectiveDate: "1970-11",
+        sourceUrl: SOURCES.sigmaHistory,
+        note: "The official history records the November 1970 company-name change to Sigma Corporation.",
+      },
+    ],
+    corporateFamily: [{ family: "Sigma", effectiveFrom: "1961-09", sourceUrl: SOURCES.sigmaHistory }],
+  },
   "Sony Corporation": {
     subsidiaryOf: [
       {
@@ -914,6 +1012,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveTo: "1991",
         sourceUrl: SOURCES.zeissLocations,
         note: "East German branch of the divided ZEISS lineage.",
+      },
+    ],
+  },
+  "Tokina Optical Co., Ltd.": {
+    corporateFamily: [
+      {
+        family: "Kenko Tokina",
+        effectiveFrom: "1950-05-31",
+        sourceUrl: SOURCES.tokinaHistory,
+        note: "The date marks the business lineage: founded as Tokyo Koki Seisakusho in 1950, the company took the Tokina Optical name in 1971 and merged with Kenko in 2011.",
       },
     ],
   },
