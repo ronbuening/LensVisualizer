@@ -50,7 +50,7 @@ const LENS_DATA = {
       dPgF: 0.016290469999999946,
       apdNote:
         "Source absolute theta_g,F=0.620; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "S-TIH53WN (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -248.7592081731603,
       role: "Example1 motion group G1; centered infinity configuration",
     },
@@ -65,7 +65,7 @@ const LENS_DATA = {
       dPgF: 0.005895682000000013,
       apdNote:
         "Source absolute theta_g,F=0.537; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "PCD51 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 220.9724257703225,
       role: "Example1 motion group G1; centered infinity configuration",
     },
@@ -80,7 +80,7 @@ const LENS_DATA = {
       dPgF: -0.0068215120000000296,
       apdNote:
         "Source absolute theta_g,F=0.545; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "S-LAL18 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 133.8250723147713,
       role: "Example1 motion group G1; centered infinity configuration",
     },
@@ -95,7 +95,7 @@ const LENS_DATA = {
       dPgF: -0.008376163999999964,
       apdNote:
         "Source absolute theta_g,F=0.552; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -32.9128856304071,
       role: "Example1 motion group G2; centered infinity configuration",
     },
@@ -110,7 +110,7 @@ const LENS_DATA = {
       dPgF: -0.008376163999999964,
       apdNote:
         "Source absolute theta_g,F=0.552; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -68.14928460034133,
       role: "Example1 motion group G2; centered infinity configuration",
     },
@@ -125,7 +125,7 @@ const LENS_DATA = {
       dPgF: 0.004594018000000033,
       apdNote:
         "Source absolute theta_g,F=0.541; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "L-BSL7 (OHARA; moulding glass, coordinate proxy; production supplier unspecified)",
       focalLengthMm: 209.67097534041727,
       role: "Example1 motion group G2; centered infinity configuration",
     },
@@ -140,7 +140,7 @@ const LENS_DATA = {
       dPgF: 0.03798475400000001,
       apdNote:
         "Source absolute theta_g,F=0.650; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "S-NPH2 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 64.22702337252524,
       role: "Example1 motion group G2; centered infinity configuration",
     },
@@ -155,7 +155,7 @@ const LENS_DATA = {
       dPgF: -0.007462532000000022,
       apdNote:
         "Source absolute theta_g,F=0.558; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "H-ZLaF50E (CDGM catalog equivalent; production supplier unspecified)",
       focalLengthMm: -70.42943005127047,
       role: "Example1 motion group G2; centered infinity configuration",
     },
@@ -170,7 +170,7 @@ const LENS_DATA = {
       dPgF: 0.00015845799999991694,
       apdNote:
         "Source absolute theta_g,F=0.588; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -39.78776618140857,
       role: "Example1 motion group G3; centered infinity configuration",
       cemented: "D1",
@@ -186,7 +186,7 @@ const LENS_DATA = {
       dPgF: 0.011834239999999885,
       apdNote:
         "Source absolute theta_g,F=0.608; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "H-ZF4A (CDGM catalog equivalent; production supplier unspecified)",
       focalLengthMm: 65.13532464930508,
       role: "Example1 motion group G3; centered infinity configuration",
       cemented: "D1",
@@ -202,7 +202,7 @@ const LENS_DATA = {
       dPgF: 0.029170306000000035,
       apdNote:
         "Source absolute theta_g,F=0.536; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "MC-FCD1-M20 (HOYA; moulding glass; production supplier unspecified)",
       focalLengthMm: 45.558213286196136,
       role: "Example1 motion group G3; centered infinity configuration",
     },
@@ -217,7 +217,7 @@ const LENS_DATA = {
       dPgF: 0.041378444000000014,
       apdNote:
         "Source absolute theta_g,F=0.655; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "H-ZF88 (CDGM catalog equivalent; production supplier unspecified)",
       focalLengthMm: -79.49669644272953,
       role: "Example1 motion group G3; centered infinity configuration",
       cemented: "D2",
@@ -233,7 +233,7 @@ const LENS_DATA = {
       dPgF: 0.008524139999999902,
       apdNote:
         "Source absolute theta_g,F=0.593; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "S-FTM16 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 78.23190111037513,
       role: "Example1 motion group G3; centered infinity configuration",
       cemented: "D2",
@@ -249,7 +249,7 @@ const LENS_DATA = {
       dPgF: 0.00015845799999991694,
       apdNote:
         "Source absolute theta_g,F=0.588; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 102.26679216282582,
       role: "Example1 motion group G3; centered infinity configuration",
     },
@@ -264,7 +264,7 @@ const LENS_DATA = {
       dPgF: -0.0024556760000000732,
       apdNote:
         "Source absolute theta_g,F=0.582; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "S-NBH51 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -34.78865477852428,
       role: "Example1 motion group G3; centered infinity configuration",
       cemented: "D3",
@@ -280,7 +280,7 @@ const LENS_DATA = {
       dPgF: 0.004335270000000002,
       apdNote:
         "Source absolute theta_g,F=0.530; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 54.03627782227786,
       role: "Example1 motion group G3; centered infinity configuration",
       cemented: "D3",
@@ -296,7 +296,7 @@ const LENS_DATA = {
       dPgF: -0.009486079999999952,
       apdNote:
         "Source absolute theta_g,F=0.556; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "S-LAH65 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 53.046371890111104,
       role: "Example1 motion group G3; centered infinity configuration",
     },
@@ -311,7 +311,7 @@ const LENS_DATA = {
       dPgF: -0.005532895999999954,
       apdNote:
         "Source absolute theta_g,F=0.549; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "L-LAL13 (OHARA; moulding glass, coordinate proxy; production supplier unspecified)",
       focalLengthMm: -36.99969149080229,
       role: "Example1 motion group G4; centered infinity configuration",
     },
@@ -326,7 +326,7 @@ const LENS_DATA = {
       dPgF: 0.00459934399999995,
       apdNote:
         "Source absolute theta_g,F=0.530; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "N-FK5 (Schott catalog equivalent; production supplier unspecified)",
       focalLengthMm: -116.82844776303104,
       role: "Example1 motion group G4; centered infinity configuration",
       cemented: "D4",
@@ -342,7 +342,7 @@ const LENS_DATA = {
       dPgF: 0.041378444000000014,
       apdNote:
         "Source absolute theta_g,F=0.655; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "H-ZF88 (CDGM catalog equivalent; production supplier unspecified)",
       focalLengthMm: 64.6603943125958,
       role: "Example1 motion group G4; centered infinity configuration",
       cemented: "D4",
@@ -358,7 +358,7 @@ const LENS_DATA = {
       dPgF: 0.03137382799999999,
       apdNote:
         "Source absolute theta_g,F=0.538; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 66.46023659895279,
       role: "Example1 motion group G5; centered infinity configuration",
     },
@@ -373,7 +373,7 @@ const LENS_DATA = {
       dPgF: 0.0052033879999999755,
       apdNote:
         "Source absolute theta_g,F=0.600; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -55.70389765343103,
       role: "Example1 motion group G5; centered infinity configuration",
       cemented: "D5",
@@ -389,7 +389,7 @@ const LENS_DATA = {
       dPgF: 0.0011810359999999687,
       apdNote:
         "Source absolute theta_g,F=0.537; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "H-K9L (CDGM catalog equivalent; production supplier unspecified)",
       focalLengthMm: 47.2347084839213,
       role: "Example1 motion group G5; centered infinity configuration",
       cemented: "D5",
@@ -405,7 +405,7 @@ const LENS_DATA = {
       dPgF: 0.03137382799999999,
       apdNote:
         "Source absolute theta_g,F=0.538; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 88.89750694089209,
       role: "Example1 motion group G5; centered infinity configuration",
       cemented: "D6",
@@ -421,7 +421,7 @@ const LENS_DATA = {
       dPgF: 0.01603381199999998,
       apdNote:
         "Source absolute theta_g,F=0.617; converted to engine normal-line deviation. No separate C/F/g indices are printed.",
-      glass: "Unmatched (literal patent nd/vd/theta_gF; supplier and full dispersion unresolved)",
+      glass: "TAFD40 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -37.03695821012505,
       role: "Example1 motion group G5; centered infinity configuration",
       cemented: "D6",

@@ -14,7 +14,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "nikon-af-s-vr-200mm-f2g-if-ed",
   "maker": "Nikon",
-  "name": "NIKON NIKKOR AF-S VR 200mm f/2 G IF-ED",
+  "name": "NIKON AF-S VR NIKKOR 200mm f/2 G IF-ED",
   "subtitle": "US 7,411,745 B2 Example 3; Grade B probable family, literal 195mm f/1.84 reconstruction",
   "catalog": {
     "lensMounts": [
@@ -62,7 +62,7 @@ const LENS_DATA = {
       "vd": 82.6,
       "ng": 1.50526,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 181.28751241372768,
       "role": "Front group G1"
     },
@@ -76,7 +76,7 @@ const LENS_DATA = {
       "vd": 82.6,
       "ng": 1.50526,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 136.79073059164915,
       "role": "Front group G1",
       "cemented": "D1"
@@ -91,7 +91,7 @@ const LENS_DATA = {
       "vd": 52.3,
       "ng": 1.76589,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "E-LAKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -115.80066885493916,
       "role": "Front group G1",
       "cemented": "D1"
@@ -106,7 +106,7 @@ const LENS_DATA = {
       "vd": 91.0,
       "ng": 1.45282,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "Unmatched (Super ED glass; no public catalog row)",
       "focalLengthMm": 264.58105701813776,
       "role": "Front group G1"
     },
@@ -120,7 +120,7 @@ const LENS_DATA = {
       "vd": 52.3,
       "ng": 1.76589,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "E-LAKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -87.44483815990162,
       "role": "Front group G1",
       "cemented": "D2"
@@ -135,7 +135,7 @@ const LENS_DATA = {
       "vd": 82.6,
       "ng": 1.50526,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 89.04146620611697,
       "role": "Front group G1",
       "cemented": "D2"
@@ -150,7 +150,7 @@ const LENS_DATA = {
       "vd": 39.6,
       "ng": 1.8305,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "NBFD3 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 138.6539455513488,
       "role": "Focusing group G2, frozen at infinity",
       "cemented": "D3"
@@ -165,7 +165,7 @@ const LENS_DATA = {
       "vd": 54.6,
       "ng": 1.52632,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "KF3 (SUMITA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -68.99141746086191,
       "role": "Focusing group G2, frozen at infinity",
       "cemented": "D3"
@@ -180,7 +180,7 @@ const LENS_DATA = {
       "vd": 33.9,
       "ng": 1.83464,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "E-LAFH2 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 117.70049267462053,
       "role": "Focusing group G2, frozen at infinity",
       "cemented": "D4"
@@ -195,7 +195,7 @@ const LENS_DATA = {
       "vd": 57.0,
       "ng": 1.63639,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "S-BSM10 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -42.42029459716117,
       "role": "Focusing group G2, frozen at infinity",
       "cemented": "D4"
@@ -210,7 +210,7 @@ const LENS_DATA = {
       "vd": 52.3,
       "ng": 1.76589,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "E-LAKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 78.30280447872047,
       "role": "VR group G3, centered only"
     },
@@ -224,7 +224,7 @@ const LENS_DATA = {
       "vd": 28.5,
       "ng": 1.762,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "S-TIH10 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -129.8292663189814,
       "role": "VR group G3, centered only"
     },
@@ -238,7 +238,7 @@ const LENS_DATA = {
       "vd": 60.1,
       "ng": 1.65311,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent nd/vd/ng; vendor and full dispersion unproved)",
+      "glass": "S-BSM81 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 93.01030938766219,
       "role": "VR group G3, centered only"
     }

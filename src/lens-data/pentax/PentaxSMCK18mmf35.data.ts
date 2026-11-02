@@ -6,9 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   "schema": 2,
-  "key": "pentax-smc-k-18mm-f35-patent",
+  "key": "pentax-smc-18mm-f35",
   "maker": "Pentax",
-  "name": "PENTAX SMC PENTAX 18mm f/3.5 (patent reconstruction; filter unmodeled)",
+  "name": "PENTAX SMC PENTAX 18mm f/3.5",
   "subtitle": "US 3,841,736 Table III x0.18; probable family reconstruction. Factory built-in filter unmodeled; iris and clear apertures inferred. Infinity only.",
   "catalog": {
     "imageFormat": "135-full-frame",
@@ -56,7 +56,7 @@ const LENS_DATA = {
       "nd": 1.64,
       "vd": 60.2,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line coordinates; supplier unverified)",
+      "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Source-prescribed spherical refractive element; production identity unproven"
     },
     {
@@ -67,7 +67,7 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line coordinates; supplier unverified)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Source-prescribed spherical refractive element; production identity unproven"
     },
     {
@@ -78,7 +78,7 @@ const LENS_DATA = {
       "nd": 1.64,
       "vd": 60.2,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line coordinates; supplier unverified)",
+      "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Source-prescribed spherical refractive element; production identity unproven"
     },
     {
@@ -89,7 +89,7 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line coordinates; supplier unverified)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Source-prescribed spherical refractive element; production identity unproven"
     },
     {
@@ -100,7 +100,7 @@ const LENS_DATA = {
       "nd": 1.64,
       "vd": 60.2,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line coordinates; supplier unverified)",
+      "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Source-prescribed spherical refractive element; production identity unproven"
     },
     {
@@ -111,7 +111,7 @@ const LENS_DATA = {
       "nd": 1.62588,
       "vd": 35.7,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line coordinates; supplier unverified)",
+      "glass": "F1 (SUMITA catalog equivalent; production supplier unspecified)",
       "role": "Source-prescribed spherical refractive element; production identity unproven"
     },
     {
@@ -122,7 +122,7 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line coordinates; supplier unverified)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Source-prescribed spherical refractive element; production identity unproven",
       "cemented": "D1"
     },
@@ -134,7 +134,7 @@ const LENS_DATA = {
       "nd": 1.834,
       "vd": 37.2,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line coordinates; supplier unverified)",
+      "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Source-prescribed spherical refractive element; production identity unproven",
       "cemented": "D1"
     },
@@ -146,7 +146,7 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.1,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line coordinates; supplier unverified)",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Source-prescribed spherical refractive element; production identity unproven"
     },
     {
@@ -157,7 +157,7 @@ const LENS_DATA = {
       "nd": 1.80518,
       "vd": 25.4,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line coordinates; supplier unverified)",
+      "glass": "SF6 (Schott catalog equivalent; production supplier unspecified)",
       "role": "Source-prescribed spherical refractive element; production identity unproven"
     },
     {
@@ -168,7 +168,7 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line coordinates; supplier unverified)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Source-prescribed spherical refractive element; production identity unproven"
     }
   ],

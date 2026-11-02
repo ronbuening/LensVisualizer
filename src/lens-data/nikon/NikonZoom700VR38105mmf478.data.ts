@@ -67,7 +67,7 @@ const LENS_DATA = {
       "nd": 1.80384,
       "vd": 33.9,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "E-LAFH2 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -32.49834248292522,
       "role": "Zoom group G1"
     },
@@ -79,7 +79,7 @@ const LENS_DATA = {
       "nd": 1.6172,
       "vd": 54.0,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "K-SSK1 (SUMITA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 32.48607565003863,
       "role": "Zoom group G1"
     },
@@ -91,7 +91,7 @@ const LENS_DATA = {
       "nd": 1.62041,
       "vd": 60.1,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "J-SK16 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 80.10450061692084,
       "role": "Zoom group G1"
     },
@@ -103,7 +103,7 @@ const LENS_DATA = {
       "nd": 1.80411,
       "vd": 46.5,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "TAF3D (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -10.454554158658768,
       "role": "Front subgroup G2F",
       "cemented": "D1"
@@ -116,7 +116,7 @@ const LENS_DATA = {
       "nd": 1.74,
       "vd": 28.2,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "FD3 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 16.11894297452266,
       "role": "Front subgroup G2F",
       "cemented": "D1"
@@ -129,7 +129,7 @@ const LENS_DATA = {
       "nd": 1.5168,
       "vd": 64.1,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "N-BK7 (Schott catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 38.35191832239908,
       "role": "Front subgroup G2F"
     },
@@ -141,7 +141,7 @@ const LENS_DATA = {
       "nd": 1.5186,
       "vd": 69.9,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "J-PKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 34.673115378631344,
       "role": "Centered stabilizing subgroup G2R",
       "cemented": "D2"
@@ -154,7 +154,7 @@ const LENS_DATA = {
       "nd": 1.86074,
       "vd": 23.0,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "J-SFH2 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -35.7685112984275,
       "role": "Centered stabilizing subgroup G2R",
       "cemented": "D2"
@@ -167,7 +167,7 @@ const LENS_DATA = {
       "nd": 1.5186,
       "vd": 69.9,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "J-PKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 37.37215087052252,
       "role": "Centered stabilizing subgroup G2R"
     },
@@ -179,7 +179,7 @@ const LENS_DATA = {
       "nd": 1.7552,
       "vd": 27.6,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "SF4 (Schott catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 39.827842884483545,
       "role": "Rear group G3, infinity-only focus state"
     },
@@ -191,7 +191,7 @@ const LENS_DATA = {
       "nd": 1.84042,
       "vd": 43.3,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "Unmatched (840433 lanthanum flint; no public catalog row)",
       "focalLengthMm": -24.835845391431647,
       "role": "Rear group G3, infinity-only focus state"
     },
@@ -203,7 +203,7 @@ const LENS_DATA = {
       "nd": 1.6968,
       "vd": 55.6,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unresolved)",
+      "glass": "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -38.630349638329314,
       "role": "Rear group G3, infinity-only focus state"
     }
