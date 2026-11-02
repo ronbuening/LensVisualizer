@@ -47,7 +47,7 @@ Strongest element of the first group, 9.70 mm thick on axis. Its rear face and L
 
 ### L4 — Negative Meniscus
 
-nd = 1.75550, νd = 25.10. Glass: Unmatched (no catalog row at these coordinates). f = −41.97 mm in air.
+nd = 1.75550, νd = 25.10. Glass: TPH55 (OHARA catalog equivalent). f = −41.97 mm in air.
 
 Negative meniscus closing the first group, 9.00 mm in front of the stop. Its concave rear face balances the spherical aberration of L1 to L3.
 
@@ -77,7 +77,7 @@ Thick biconvex member of the rear doublet, which has f = +67.74 mm as a pair. Ce
 
 ## Glass Identification and Selection
 
-The patent names no commercial glass. Seven of the eight printed pairs match catalog rows, and the model traces those rows. They are catalog equivalents, not production identifications. L4's pair has no row in the repo catalog, so the model traces it from nd and νd, with ΔPgF +0.0190 from the published P_g,F of OHARA TPH55, the catalogue glass at these coordinates.
+The patent names no commercial glass. All eight printed pairs match catalog rows, and the model traces those rows. They are catalog equivalents, not production identifications.
 
 The table names no spectral line for N and ν. The patent's plots use the d and g lines and the catalog rows match at nd and νd, so the pairs are read at the d line.
 
@@ -86,10 +86,10 @@ The table names no spectral line for N and ν. The patent's plots use the d and 
 | L1, L6 | 1.55962 | 61.20 | S-BAL50 (OHARA) |
 | L2 | 1.65160 | 58.50 | S-LAL7 (OHARA) |
 | L3, L8 | 1.78590 | 44.20 | S-LAH51 (OHARA) |
-| L4 | 1.75550 | 25.10 | Unmatched |
+| L4 | 1.75550 | 25.10 | TPH55 (OHARA) |
 | L5, L7 | 1.80518 | 25.40 | SF6 (Schott) |
 
-The model's g-line focus agrees with Fig. 4 within about 0.03 mm. At infinity g−d is −0.03 mm paraxially and +0.18 mm at the top of the pupil, against about 0 and +0.20 mm in the plot; at 1 m it is +0.07 and +0.45 mm against about +0.09 and +0.45 mm.
+The model's g-line focus agrees with Fig. 4 within about 0.03 mm. At infinity g−d is −0.01 mm paraxially and +0.20 mm at the top of the pupil, against about 0 and +0.20 mm in the plot; at 1 m it is +0.10 and +0.48 mm against about +0.09 and +0.45 mm.
 
 ## Focus Mechanism
 

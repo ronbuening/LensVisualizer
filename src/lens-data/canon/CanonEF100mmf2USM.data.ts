@@ -96,14 +96,11 @@ const LENS_DATA = {
       nd: 1.7555,
       vd: 25.1,
       indexReference: "d",
-      glass: "Unmatched (patent nd=1.7555, νd=25.1; no catalog row at these coordinates)",
+      glass: "TPH55 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -41.9715899568247,
       role: "Negative meniscus closing group 1; its concave rear face balances the spherical aberration of L1 to L3.",
       indexReferenceNote:
         "The table names no spectral line for N and ν; the patent's d-line aberration plots support reading them as nd and νd.",
-      dPgF: 0.018978,
-      apdNote:
-        "dPgF comes from the published P_g,F of 0.62056 for OHARA TPH55, the catalogue glass at these coordinates; the repo catalog has no row for it.",
     },
     {
       id: 5,
