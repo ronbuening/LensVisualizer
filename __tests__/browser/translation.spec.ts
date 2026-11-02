@@ -683,7 +683,7 @@ test("translated mount profiles preserve both views and refresh the feature lege
   await healthy(page);
 });
 
-test("translated relationship pickers and details follow the current selection", async ({ page }) => {
+test("translated relationship pickers and details follow the current selection", async ({ page }, testInfo) => {
   await page.goto("/relationships");
   const picker = page.getByRole("searchbox", { name: "Search inventors and assignees", exact: true });
   await translate(page);
@@ -709,9 +709,12 @@ test("translated relationship pickers and details follow the current selection",
       name,
     );
     await search.press("Enter");
-    // Phones show the selection in a collapsed sheet; the full card mounts once it is expanded.
-    const collapsedSheet = page.getByRole("button", { name: "Details", exact: true, expanded: false });
-    if (await collapsedSheet.count()) await collapsedSheet.click();
+    if (testInfo.project.name === "compact") {
+      // Phones show the selection in a sheet; the full card mounts once it is expanded (it stays expanded).
+      const sheetToggle = page.getByRole("button", { name: "Details", exact: true });
+      await expect(sheetToggle).toBeVisible();
+      if ((await sheetToggle.getAttribute("aria-expanded")) === "false") await sheetToggle.click();
+    }
     await expect(card.getByRole("heading", { level: 3 })).toHaveText(name);
     await expect(search).toHaveValue("");
     await healthy(page);
