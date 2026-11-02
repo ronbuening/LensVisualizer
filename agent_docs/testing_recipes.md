@@ -70,35 +70,28 @@ rather than creating a parallel one.
 - `replaceTextForTranslation(root)` **replaces**, rather than moves, each HTML Text node with nested
   `<font dir="auto" style="vertical-align: inherit">` wrappers, the markup Google's translator leaves. It skips already
   simulated text, form options, scripts and SVG text, and includes HTML inside `foreignObject`.
-- `auditDetachedReactText(root)` walks React's fiber tree from the root container and returns `{ detached,
-  staleWrites }`: React-owned Text nodes outside the document, and those React has rewritten since the audit first saw
-  them detached. Call it right after each replacement to record values, then after interactions and expect
-  `staleWrites: 0`. It covers components the lint rule cannot see. It reads React internals (`__reactContainer$…`,
-  HostText tag 6), so revisit it on a React major upgrade.
+- `auditDetachedReactText(root)` finds the React-owned Text nodes outside the document and gives each one an
+  instance-level `nodeValue`/`data` setter, so every later React write into it counts in `staleWrites`. Call it right
+  after each replacement, then after interactions and expect `staleWrites: 0`. It reads React internals
+  (`__reactContainer$…`, HostText tag 6), so revisit it on a React major upgrade.
 
-After replacing text, update props or interact, then assert current visible values, absence of old values,
-removal/reinsertion, and that unaffected translated text or focus survives; absence of an exception alone misses stale
-text.
+Owned text (a single primitive child) cannot go stale, and the audit catches text that is not owned wherever it
+renders, so translation tests do not compare readouts with clean-page values. Tests are layered:
 
-The browser suite is `__tests__/browser/translation.spec.ts`; its `translate()` records and its `healthy()` asserts the
-audit at every check. The route inventory is `__tests__/translationCoverage.ts`; its unit test compares the route
-manifest and analysis tab list, requiring an explicit coverage decision when either grows. Route checks cover
-representative catalog entries, theme rerenders and route removal. Interaction checks cover lens
-navigation/inspector/modes, ten drawers (including the MTF worker result), comparison aperture/details, search, catalog
-grouping and filters, author filters, and primer/about dialogs at desktop and compact widths, plus perspective movement,
-representative folded analysis, comparison layout changes at 1200/900/899/390/1440px with a short viewport, overlays,
-mount profiles and relationship pickers. Readout tests capture clean-page values, then repeat focus/aperture changes
-after replacement. SVG-only bokeh/glass/mount readouts are checked after HTML replacement, without mutating SVG text.
-
-Tests tagged `@smoke` (lens navigation and modes, the primer level switch, the summary readout, comparison captions,
-catalog filters) gate every pull request through Quality Checks, desktop only. `.github/workflows/translation-browser.yml`
-runs the full matrix at both widths nightly, on demand, and on pull requests that touch rendered UI or this harness.
-Both upload failure screenshots/traces.
+- `translation/owned-text` lint is the first guard; its rule test lints synthetic cases in a throwaway TypeScript
+  project.
+- Unit tests cover the shared contracts lint cannot see: `textRun`, `rehypeOwnedText` through `ThemedMarkdown`,
+  `AnalysisMetricRow` plus the audit's own self-test, `PatentPartyList`, and one panel-level check
+  (`LensDiagramTranslation.test.tsx`). Do not add per-component translation tests.
+- `__tests__/browser/translation.spec.ts` replaces text before each step of real flows and asserts the audit in
+  `healthy()`. It visits every route in `__tests__/translationCoverage.ts` (whose unit test fails when the route manifest
+  gains a route without a sample), and runs lens flows through every analysis tab, primers and overlays, comparison
+  and width changes, and catalog/relationship controls at desktop and compact widths. It gates pull requests through
+  Quality Checks.
 
 ```sh
 npx playwright install chromium
-npm run test:browser:smoke   # the gating subset
-npm run test:browser         # the full matrix
+npm run test:browser
 # Use an already running development or production-preview server/system browser:
 PLAYWRIGHT_BASE_URL=http://127.0.0.1:5173 \
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:browser

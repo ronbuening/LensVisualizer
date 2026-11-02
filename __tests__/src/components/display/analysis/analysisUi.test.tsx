@@ -13,18 +13,19 @@ import { textRun } from "../../../../../src/utils/text.js";
 afterEach(cleanup);
 
 describe("translated analysis values", () => {
-  it("audits React text rewritten after a translator detached it", () => {
+  it("counts every React write into text a translator detached, even when the value changes back", () => {
     const mixed = (value: number) => <span>A: {value}</span>;
     const owned = (value: number) => <span>{textRun("A: ", value)}</span>;
-    for (const [view, staleWrites] of [
-      [mixed, 1],
+    for (const [view, writes] of [
+      [mixed, 2],
       [owned, 0],
     ] as const) {
       const { container, rerender, unmount } = render(view(1));
       replaceTextForTranslation(container);
       expect(auditDetachedReactText(container)).toEqual({ detached: view === mixed ? 2 : 0, staleWrites: 0 });
       rerender(view(2));
-      expect(auditDetachedReactText(container).staleWrites).toBe(staleWrites);
+      rerender(view(1));
+      expect(auditDetachedReactText(container).staleWrites).toBe(writes);
       unmount();
     }
   });

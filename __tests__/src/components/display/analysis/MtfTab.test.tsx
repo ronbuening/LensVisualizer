@@ -4,7 +4,6 @@ import { createAnalysisComputationContext } from "../../../../../src/optics/anal
 import { mtfInputs } from "../../../optics/testLensFixtures.js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
-import { replaceTextForTranslation } from "../../../../translationTestUtils.js";
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
 import { installMatchMediaMock, mockTheme } from "../../../../testUtils.js";
@@ -101,31 +100,6 @@ afterEach(() => {
 });
 
 describe("MTF tab", () => {
-  it("switches translated image-plane explanations as worker results change", async () => {
-    stubWorker();
-    const { container, unmount } = render(
-      <MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />,
-    );
-    await screen.findByRole("figure", { name: /image height/ });
-    expect(screen.getByText(/own prescription's paraxial focus/).closest("p")!.textContent).toContain(
-      "best axial focus",
-    );
-    replaceTextForTranslation(container);
-    fireEvent.change(screen.getByRole("combobox", { name: "MTF image plane" }), { target: { value: "design" } });
-    await screen.findByRole("button", { name: "Refocus automatically" });
-    replaceTextForTranslation(container);
-    fireEvent.change(screen.getByRole("combobox", { name: "MTF image plane" }), { target: { value: "best-axial" } });
-    await screen.findByText(/These curves use best axial focus/);
-    replaceTextForTranslation(container);
-    fireEvent.change(screen.getByRole("combobox", { name: "MTF image plane" }), { target: { value: "design" } });
-    await screen.findByRole("button", { name: "Refocus automatically" });
-    replaceTextForTranslation(container);
-    fireEvent.click(screen.getByRole("button", { name: "Refocus automatically" }));
-    await screen.findByText(/These curves use best axial focus/);
-    expect(screen.queryByRole("button", { name: "Refocus automatically" })).toBeNull();
-    replaceTextForTranslation(container);
-    unmount();
-  });
   it("blocks moved optics without starting background work", () => {
     const worker = vi.fn();
     vi.stubGlobal("Worker", worker);
@@ -176,7 +150,7 @@ describe("MTF tab", () => {
     expect(screen.getByText("Dispersion of one glass is estimated from nd and νd.")).toBeTruthy();
     expect(screen.queryByText(/own prescription's paraxial focus/)).toBeNull();
   });
-  it("names the surface that vignettes the axial beam, but not while the result belongs to an earlier request, including after translation", async () => {
+  it("names the surface that vignettes the axial beam, but not while the result belongs to an earlier request", async () => {
     // Element rims of 6 mm behind an iris of 8 mm or more clip the axial marginal ray at surface 1.
     const rimmedL = build({
       ...constructionFixtureData(focusedL),
@@ -197,15 +171,11 @@ describe("MTF tab", () => {
         focalLengthMm={49.2}
       />
     );
-    const { container, rerender } = render(tab(2.8, 8));
-    const oldHeader = (await screen.findByText(/^f\/2\.8 \(axial beam vignetted at surface 1\) · 49\.2 mm/))
-      .textContent!;
-    replaceTextForTranslation(container);
+    const { rerender } = render(tab(2.8, 8));
+    await screen.findByText(/^f\/2\.8 \(axial beam vignetted at surface 1\) · 49\.2 mm/);
     // The new label must not carry the previous request's state.
     rerender(tab(2.5, 9));
     expect(screen.getByText(/^f\/2\.5 · 49\.2 mm/)).toBeTruthy();
-    expect(screen.queryByText(oldHeader)).toBeNull();
-    replaceTextForTranslation(container);
     expect(await screen.findByText(/^f\/2\.5 \(axial beam vignetted at surface 1\) · 49\.2 mm/)).toBeTruthy();
   });
   it("explains each dropdown's options in a tooltip", async () => {
@@ -424,11 +394,10 @@ describe("MTF export and aperture comparison", () => {
   });
   it("overlays the lens stopped down to f/8 only when the working aperture is faster", async () => {
     const { calls } = stubWorker();
-    const { container, unmount } = render(
+    const { unmount } = render(
       <MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={2.8} />,
     );
     await screen.findByRole("figure", { name: /image height/ });
-    replaceTextForTranslation(container);
     fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
     // The f/8 stop comes from the stop rule, not from the current stop, and the iris limits its beam: no note.
     expect(await screen.findByText(/^f\/8 \(thin lines\)$/)).toBeTruthy();
@@ -437,10 +406,6 @@ describe("MTF export and aperture comparison", () => {
     expect(stopped.stopSemiDiameterMm).toBe(f8Stop);
     // The current request's pupil-to-stop ratio (1 : 1 here) carries over to the f/8 stop.
     expect(stopped.pupilSemiDiameterMm).toBeCloseTo(f8Stop, 12);
-    replaceTextForTranslation(container);
-    fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
-    expect(screen.queryByText(/thin lines/)).toBeNull();
-    replaceTextForTranslation(container);
     unmount();
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={8} />);
     expect(screen.queryByRole("button", { name: "Compare f/8" })).toBeNull();

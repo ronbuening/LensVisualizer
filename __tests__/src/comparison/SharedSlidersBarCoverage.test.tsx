@@ -4,7 +4,6 @@ import { cleanup, fireEvent, render, renderHook, screen, within } from "@testing
 import { afterEach, describe, expect, it, vi } from "vitest";
 import useStickySliders from "../../../src/comparison/useStickySliders.js";
 import SharedSlidersBar from "../../../src/comparison/SharedSlidersBar.js";
-import { replaceTextForTranslation } from "../../translationTestUtils.js";
 import { buildSimplePositiveElementLens, buildVariableStopGapLens } from "../optics/testLensFixtures.js";
 import themes from "../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
@@ -108,43 +107,41 @@ function renderSharedSliders({
   onToggleEffectiveAperture?: () => void;
   onOpenGroupMovement?: (mode: "focus" | "zoom" | "combined") => void;
 } = {}) {
-  const element = (
-    <SharedSlidersBar
-      LA={LA}
-      LB={LB}
-      sharedFocusT={0.25}
-      sharedStopdownT={sharedStopdownT}
-      sharedZoomT={sharedZoomT}
-      sharedShiftMm={sharedShiftMm}
-      sharedTiltDeg={sharedTiltDeg}
-      onSharedFocusChange={onSharedFocusChange}
-      onSharedStopdownChange={onSharedStopdownChange}
-      onSharedZoomChange={onSharedZoomChange}
-      onSharedShiftChange={onSharedShiftChange}
-      onSharedTiltChange={onSharedTiltChange}
-      onFocusPointerDown={onFocusPointerDown}
-      onAperturePointerDown={onAperturePointerDown}
-      onSliderPointerUp={onSliderPointerUp}
-      focusPair={focusPair}
-      aperturePair={currentAperturePair}
-      zoomPair={zoomPair}
-      movementPair={movementPair}
-      dynamicEflA={dynamicEflA}
-      dynamicEflB={dynamicEflB}
-      paraxialWorkingFNumA={paraxialWorkingFNumA}
-      paraxialWorkingFNumB={paraxialWorkingFNumB}
-      showEffectiveFocalLength={showEffectiveFocalLength}
-      onToggleEffectiveFocalLength={onToggleEffectiveFocalLength}
-      showEffectiveAperture={showEffectiveAperture}
-      onToggleEffectiveAperture={onToggleEffectiveAperture}
-      onOpenGroupMovement={onOpenGroupMovement}
-      theme={themes.dark}
-      isWide={isWide}
-    />
-  );
   return {
-    ...render(element),
-    element,
+    ...render(
+      <SharedSlidersBar
+        LA={LA}
+        LB={LB}
+        sharedFocusT={0.25}
+        sharedStopdownT={sharedStopdownT}
+        sharedZoomT={sharedZoomT}
+        sharedShiftMm={sharedShiftMm}
+        sharedTiltDeg={sharedTiltDeg}
+        onSharedFocusChange={onSharedFocusChange}
+        onSharedStopdownChange={onSharedStopdownChange}
+        onSharedZoomChange={onSharedZoomChange}
+        onSharedShiftChange={onSharedShiftChange}
+        onSharedTiltChange={onSharedTiltChange}
+        onFocusPointerDown={onFocusPointerDown}
+        onAperturePointerDown={onAperturePointerDown}
+        onSliderPointerUp={onSliderPointerUp}
+        focusPair={focusPair}
+        aperturePair={currentAperturePair}
+        zoomPair={zoomPair}
+        movementPair={movementPair}
+        dynamicEflA={dynamicEflA}
+        dynamicEflB={dynamicEflB}
+        paraxialWorkingFNumA={paraxialWorkingFNumA}
+        paraxialWorkingFNumB={paraxialWorkingFNumB}
+        showEffectiveFocalLength={showEffectiveFocalLength}
+        onToggleEffectiveFocalLength={onToggleEffectiveFocalLength}
+        showEffectiveAperture={showEffectiveAperture}
+        onToggleEffectiveAperture={onToggleEffectiveAperture}
+        onOpenGroupMovement={onOpenGroupMovement}
+        theme={themes.dark}
+        isWide={isWide}
+      />,
+    ),
     callbacks: {
       onSharedFocusChange,
       onSharedStopdownChange,
@@ -163,29 +160,6 @@ function renderSharedSliders({
 
 describe("SharedSlidersBar", () => {
   afterEach(() => cleanup());
-
-  it.each([true, false])("updates translated A/B captions and paraxial working readouts (wide: %s)", (isWide) => {
-    const { container, rerender, element } = renderSharedSliders({ isWide });
-    expect(replaceTextForTranslation(container)).toBeGreaterThan(0);
-    rerender(
-      <SharedSlidersBar
-        {...element.props}
-        aperturePair={{ ...aperturePair, fNumberA: 8, fNumberB: 9.18 }}
-        showEffectiveAperture
-        paraxialWorkingFNumA={{ status: "computed", value: 10 }}
-        paraxialWorkingFNumB={{ status: "computed", value: 12 }}
-      />,
-    );
-    expect(screen.getByText("A: f/8.0")).toBeTruthy();
-    expect(screen.getByText("B: f/9.18")).toBeTruthy();
-    expect(screen.queryByText("A: f/2.1")).toBeNull();
-    expect(screen.getByText("A paraxial working f/10")).toBeTruthy();
-    expect(screen.getByText("B paraxial working f/12")).toBeTruthy();
-    replaceTextForTranslation(container);
-    rerender(element);
-    expect(screen.getByText("A: f/2.1")).toBeTruthy();
-    expect(screen.queryByText("A paraxial working f/10")).toBeNull();
-  });
 
   it("lets presets and keyboard changes pass a sticky limit while drags still stop", () => {
     const dispatch = vi.fn();

@@ -33,7 +33,6 @@ npm run test
 npm run test:coverage
 npm run test:tooling               # Benchmark-harness and audit-script tests excluded from npm test
 npm run test:browser               # Chromium translation DOM-replacement route and interaction coverage
-npm run test:browser:smoke         # The @smoke subset of test:browser that gates pull requests (desktop only)
 npm run generate:reports           # Every report generator in reports/ (rewrites agent_docs/generated/)
 npm run generate:glass-reports
 npm run generate:mirror-reports

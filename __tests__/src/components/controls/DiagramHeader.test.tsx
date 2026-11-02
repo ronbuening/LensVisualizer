@@ -6,7 +6,6 @@ import { cleanup, fireEvent, render, screen, within } from "@testing-library/rea
 import type { ComponentProps } from "react";
 import { MemoryRouter } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { replaceTextForTranslation } from "../../../translationTestUtils.js";
 import DiagramHeader from "../../../../src/components/controls/DiagramHeader.js";
 import { authorPathForName } from "../../../../src/utils/catalog/authorCatalog.js";
 import { espacenetPatentUrl } from "../../../../src/utils/catalog/patentCatalog.js";
@@ -78,80 +77,14 @@ function renderHeader(overrides: Partial<ComponentProps<typeof DiagramHeader>> =
     headerInfoExpanded: false,
     ...overrides,
   };
-  return {
-    ...render(
-      <MemoryRouter>
-        <DiagramHeader {...props} />
-      </MemoryRouter>,
-    ),
-    props,
-  };
+  return render(
+    <MemoryRouter>
+      <DiagramHeader {...props} />
+    </MemoryRouter>,
+  );
 }
 
 describe("DiagramHeader", () => {
-  it("switches translated subtitles, author lists and converter credits without detached-text errors", () => {
-    const baseLens = lens();
-    const view = (fields: Record<string, unknown>) =>
-      ({ ...baseLens, ...runtimeFixtureView({ ...constructionFixtureData(baseLens), ...fields }) }) as RuntimeLens;
-    const converter = {
-      key: "test-converter",
-      name: "Test Converter",
-      magnification: 1.4,
-      hostKey: "test-diagram-header",
-      hostName: "Header Test Lens",
-      firstSurfaceLabel: "TC1",
-      lastSurfaceLabel: "TC2",
-      firstElementId: 2,
-      patentNumber: "US 5,123,456 A",
-      patentAuthors: ["Aiko Example"],
-    };
-    const states: [RuntimeLens, string, boolean][] = [
-      [view({ subtitle: "Legacy description" }), "Legacy description", false],
-      [
-        view({
-          patentNumber: "US 10,571,651 B2",
-          patentExample: { label: "Example 6", id: "6" },
-          patentAuthors: ["Hideki Sakai", "Aiko Example"],
-        }),
-        "US 10,571,651 B2↗, Example 6 — ",
-        false,
-      ],
-      [view({ patentNumber: "US 5,123,456 A", patentAuthors: [] }), "US 5,123,456 A", false],
-      [
-        view({ patentNumber: "US 10,571,651 B2", patentAuthors: ["Hideki Sakai"], attachedTeleconverter: converter }),
-        "US 10,571,651 B2",
-        true,
-      ],
-      [view({ subtitle: "Legacy description" }), "Legacy description", false],
-    ];
-    const { container, rerender, props, unmount } = renderHeader();
-    for (const [L, expected, hasConverter] of states) {
-      expect(replaceTextForTranslation(container)).toBeGreaterThan(0);
-      rerender(
-        <MemoryRouter>
-          <DiagramHeader {...props} L={L} />
-        </MemoryRouter>,
-      );
-      expect(container.textContent).toContain(expected);
-      expect(container.textContent?.includes(" · TC ")).toBe(hasConverter);
-      expect(container.querySelectorAll("font")).not.toHaveLength(0);
-    }
-    replaceTextForTranslation(container);
-    unmount();
-  });
-
-  it("keeps compact aperture readouts current after translation", () => {
-    const { container, rerender, props } = renderHeader({ compact: true });
-    replaceTextForTranslation(container);
-    rerender(
-      <MemoryRouter>
-        <DiagramHeader {...props} fNumber={8} />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("f/8.0")).toBeTruthy();
-    expect(container.textContent).not.toContain("f/2.0");
-  });
-
   it("places taxonomy-labelled mount and format links after Flickr with canonical paths", () => {
     renderHeader({ L: lensWithCatalog({ lensMounts: ["leica-m"], imageFormat: "135-full-frame" }) });
 
@@ -264,7 +197,7 @@ describe("DiagramHeader", () => {
     expect(authorLink.getAttribute("href")).toBe(authorPathForName("Hideki Sakai"));
     expect(patentLink.getAttribute("href")).toBe(espacenetPatentUrl("US 10,571,651 B2"));
     expect(patentLink.getAttribute("target")).toBe("_blank");
-    expect(patentLink.parentElement?.textContent).toBe("US 10,571,651 B2↗ — Hideki Sakai, Aiko Example");
+    expect(authorLink.parentElement?.parentElement?.textContent).toBe("US 10,571,651 B2↗ — Hideki Sakai, Aiko Example");
     expect(screen.queryByRole("link", { name: "Aiko Example" })).toBeNull();
     expect(screen.queryByText("legacy subtitle")).toBeNull();
   });
