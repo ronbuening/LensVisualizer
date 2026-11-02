@@ -96,7 +96,7 @@ const LENS_DATA = {
       nd: 1.6727,
       vd: 32.1,
       indexReference: "d",
-      glass: "E-FD5 (HOYA catalog equivalent; production supplier unspecified)",
+      glass: "PBM25 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -25.29924944292772,
       role: "Biconcave negative single behind the stop; shares spherical aberration and coma correction.",
     },

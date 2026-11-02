@@ -39,7 +39,7 @@ Negative member of HL1, cemented to L2; its different index and dispersion contr
 
 ### L4 — Biconcave Negative
 
-nd = 1.67270, νd = 32.10. Glass: E-FD5 (HOYA) catalog equivalent. In-air f = -25.299 mm.
+nd = 1.67270, νd = 32.10. Glass: PBM25 (OHARA) catalog equivalent. In-air f = -25.299 mm.
 
 Rear biconcave negative single. The patent assigns rear negative components a share of spherical aberration and coma correction.
 
@@ -65,14 +65,14 @@ Positive final single, separated by the printed 0.10 mm air space. The patent fa
 
 The patent names no commercial glass and prints no partial-dispersion data. The labels below are catalog equivalents for the printed N and ν, not production identifications.
 
-The table names no spectral line, but Figures 4 to 6 plot the d and g lines and all seven pairs reproduce catalog nd/νd values, which places N and ν at the d line. With these labels the paraxial g-line focus lies +0.002 mm from the d-line focus and the top-of-pupil g ray +0.169 mm from it, against about 0 and +0.156 mm read from Figure 4.
+The table names no spectral line, but Figures 4 to 6 plot the d and g lines and all seven pairs reproduce catalog nd/νd values, which places N and ν at the d line. With these labels the paraxial g-line focus lies within 0.001 mm of the d-line focus and the top-of-pupil g ray +0.167 mm from it, against about 0 and +0.156 mm read from Figure 4.
 
 | Element | nd | νd | Catalog equivalent |
 | --- | ---: | ---: | --- |
 | L1 | 1.58913 | 61.20 | BACD5 (HOYA) |
 | L2 | 1.80610 | 40.90 | S-LAH53 (OHARA) |
 | L3 | 1.64769 | 33.80 | E-FD2 (HOYA) |
-| L4 | 1.67270 | 32.10 | E-FD5 (HOYA) |
+| L4 | 1.67270 | 32.10 | PBM25 (OHARA) |
 | L5 | 1.78472 | 25.70 | S-TIH11 (OHARA) |
 | L6 | 1.77250 | 49.60 | S-LAH66 (OHARA) |
 | L7 | 1.77250 | 49.60 | S-LAH66 (OHARA) |

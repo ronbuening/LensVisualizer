@@ -22,7 +22,7 @@ Maker diagram: Canon's section at about 3.2 px/mm, checked against its 67.4 × 4
 
 Fields changed: S8 `sd` 9.0 → 9.05, the largest value inside the default S8→S9 gap limit, which clears the axial beam at the stop's 9.05 mm marginal height (`vig.mjs` 100.0% on axis; corner 36.7% unchanged). `closeFocusM` 1e15 → 0.25, static, because neither the patent nor Canon's page states a focus motion. `subtitle`, `specs`, header comment, element roles and `diagramLabel` L1–L7 reworded or added; the "tentative" inventor line is removed, leaving Tsunefumi Tanaka as the corpus form. The US 4,629,294 name-comparator reference is dropped from the analysis.
 
-L4 label: S-TIM25 (νd 32.10) gives paraxial g−d +0.011 mm and top-of-pupil g−d +0.291 mm; E-FD5 (νd 32.17, inside the 0.25 window) gives +0.002 and +0.279 mm; Figure 4 reads about 0 and +0.266 mm. E-FD5 is closer, by less than the ±0.02 mm plot-reading error. PBM25, the exact period row, is not in the repo catalog.
+L4 label: S-TIM25 (νd 32.10) gives paraxial g−d +0.011 mm and top-of-pupil g−d +0.291 mm; E-FD5 (νd 32.17, inside the 0.25 window) gives +0.002 and +0.279 mm; Figure 4 reads about 0 and +0.266 mm. E-FD5 is closer, by less than the ±0.02 mm plot-reading error. PBM25, the exact period row, is not in the repo catalog. 2026-11-02: PBM25 (1.67270 / 32.10, PgF 0.5922) is now a catalog row and L4 uses it, giving paraxial g−d 0.000 mm and top-of-pupil g−d +0.276 mm.
 
 Open: unit extension of +8.13 mm (last gap 45.96 mm) gives 0.229× at 250 mm, matching retail 0.25 m and 0.23×, but no source states the mechanism, so it is not authored. (Rims closed 2026-11-02: refitted to Figure 1 in the section below.)
 
