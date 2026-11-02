@@ -29,9 +29,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Table 7 prints m = 0, −0.02 and −0.25. The infinity and closest rows are authored; the −0.02 row is not, so
  * positions between them are interpolated. Traced at the closest row, object to image is 1400 mm at m = −0.2445.
  *
- * Indices are d-line. Glass labels on L13, L21, L32 and L41 are nearest-catalog proxies, because those printed pairs
- * match no catalog row and recur in no other embodiment; the labels on L11, L12, L22 and L31 are catalog equivalents,
- * and the supplier is not established.
+ * Indices are d-line. L13, L21, L32 and L41 are Unmatched, because those printed pairs match no catalog row and recur in
+ * no other embodiment, so they trace the printed nd and νd with normal-line partial dispersion. The nearest rows sit up
+ * to 2.2 % away in νd, which puts the g-line focus 0.41 mm off Figure 20B; the printed pairs land within 0.06 mm of
+ * Figures 20B and 21B. The labels on L11, L12, L22 and L31 are catalog equivalents, and the supplier is not established.
  * fStops run to the f/32 Ricoh lists; the stop opens to the design F/4.1.
  */
 const LENS_DATA = {
@@ -106,7 +107,7 @@ const LENS_DATA = {
       vd: 44.1,
       focalLengthMm: -223.37,
       indexReference: "d",
-      glass: "NBFD14 (HOYA coordinate proxy; patent 1.80000/44.1 is not a catalog coordinate)",
+      glass: "Unmatched (lanthanum flint; patent 1.80000/44.1 is a design value with no catalog row)",
       role: "Negative element closing the first group",
     },
     {
@@ -119,7 +120,7 @@ const LENS_DATA = {
       vd: 41.3,
       focalLengthMm: -107.25,
       indexReference: "d",
-      glass: "S-LAH52 (OHARA coordinate proxy; patent νd 41.3 versus catalog 42.2)",
+      glass: "Unmatched (lanthanum flint; patent 1.79952/41.3 is a design value with no catalog row)",
       role: "Negative meniscus leading the fixed second-group doublet",
       cemented: "C1",
     },
@@ -164,7 +165,7 @@ const LENS_DATA = {
       vd: 44.4,
       focalLengthMm: -29.88,
       indexReference: "d",
-      glass: "LAF2 (HOYA coordinate proxy; patent 1.74260/44.4 is not a catalog coordinate)",
+      glass: "Unmatched (lanthanum flint; patent 1.74260/44.4 is a design value with no catalog row)",
       role: "Negative element setting the focusing doublet's power",
       cemented: "C2",
     },
@@ -178,7 +179,7 @@ const LENS_DATA = {
       vd: 29.6,
       focalLengthMm: 332.35,
       indexReference: "d",
-      glass: "E-FD15 (HOYA coordinate proxy; patent 1.69883/29.6 is not a catalog coordinate)",
+      glass: "Unmatched (dense flint; patent 1.69883/29.6 is a design value with no catalog row)",
       role: "Weak positive rear meniscus, the whole fixed fourth group",
     },
   ],

@@ -65,15 +65,15 @@ L12 carries most of G1's positive power. It is the patent's second lens element 
 
 ### L13 — Biconcave Negative
 
-nd = 1.80000, νd = 44.1. Glass: NBFD14 (HOYA) coordinate proxy. f = −223.37 mm.
+nd = 1.80000, νd = 44.1. Glass: Unmatched (lanthanum flint; printed design value, no catalog row). f = −223.37 mm.
 
 L13 closes G1 and precedes the 54.85 mm air space to C1. Its printed pair matches no catalog row.
 
 ### L21 — Negative Meniscus in C1
 
-nd = 1.79952, νd = 41.3. Glass: S-LAH52 (OHARA) coordinate proxy. f = −107.25 mm.
+nd = 1.79952, νd = 41.3. Glass: Unmatched (lanthanum flint; printed design value, no catalog row). f = −107.25 mm.
 
-L21 leads C1 and shares surface 8 with L22. Its nd is the S-LAH52 value, but its printed νd is 0.9 below that glass.
+L21 leads C1 and shares surface 8 with L22. Its nd is the S-LAH52 value, but its printed νd is 0.9 below that glass, which is too far to borrow that glass's dispersion.
 
 ### L22 — Positive Meniscus in C1
 
@@ -89,13 +89,13 @@ L31 leads the focusing doublet just behind the stop and shares surface 11 with L
 
 ### L32 — Biconcave Negative in C2
 
-nd = 1.74260, νd = 44.4. Glass: LAF2 (HOYA) coordinate proxy. f = −29.88 mm.
+nd = 1.74260, νd = 44.4. Glass: Unmatched (lanthanum flint; printed design value, no catalog row). f = −29.88 mm.
 
 L32 gives C2 its net negative power. Its printed pair matches no catalog row.
 
 ### L41 — Positive Meniscus
 
-nd = 1.69883, νd = 29.6. Glass: E-FD15 (HOYA) coordinate proxy. f = +332.35 mm.
+nd = 1.69883, νd = 29.6. Glass: Unmatched (dense flint; printed design value, no catalog row). f = +332.35 mm.
 
 L41 is the only element of G4, a weak meniscus concave to the object. The patent ties that orientation to correcting both distortion and spherical aberration with a single element, and condition (4) bounds its object-side radius (col. 5). Its printed pair matches no catalog row.
 
@@ -105,14 +105,25 @@ L41 is the only element of G4, a weak meniscus concave to the object. The patent
 | --- | --- | --- | --- | --- |
 | L11 | 1.48749 / 70.2 | S-FSL5 (OHARA) | 1.48749 / 70.24 | Equivalent |
 | L12 | 1.43875 / 95.0 | S-FPL53 (OHARA) | 1.43875 / 94.95 | Equivalent; special low-dispersion glass (col. 6) |
-| L13 | 1.80000 / 44.1 | NBFD14 (HOYA) | 1.80170 / 44.32 | Coordinate proxy |
-| L21 | 1.79952 / 41.3 | S-LAH52 (OHARA) | 1.79952 / 42.23 | Coordinate proxy |
+| L13 | 1.80000 / 44.1 | Unmatched | Nearest NBFD14 (HOYA): 1.80170 / 44.32 | Printed pair traced |
+| L21 | 1.79952 / 41.3 | Unmatched | Nearest S-LAH52 (OHARA): 1.79952 / 42.23 | Printed pair traced |
 | L22 | 1.49700 / 81.6 | FCD1 (HOYA) | 1.49700 / 81.61 | Equivalent; special low-dispersion glass (col. 6) |
 | L31 | 1.80518 / 25.4 | S-TIH6 (OHARA) | 1.80518 / 25.43 | Equivalent |
-| L32 | 1.74260 / 44.4 | LAF2 (HOYA) | 1.74400 / 44.90 | Coordinate proxy |
-| L41 | 1.69883 / 29.6 | E-FD15 (HOYA) | 1.69895 / 30.05 | Coordinate proxy |
+| L32 | 1.74260 / 44.4 | Unmatched | Nearest LAF2 (HOYA): 1.74400 / 44.90 | Printed pair traced |
+| L41 | 1.69883 / 29.6 | Unmatched | Nearest E-FD15 (HOYA): 1.69895 / 30.05 | Printed pair traced |
 
-The patent defines Nd at the d-line (col. 6), and the model traces the printed indices. L11, L12, L22 and L31 match catalog rows, so their names are equivalents; the supplier is not established. The pairs on L13, L21, L32 and L41 match no exact catalog row. Those labels are nearest-coordinate proxies, and their dispersion away from the d-line is the proxy glass's, not a known property of the patent glass. The patent prints only Nd and ν, with no glass name or other line index. Embodiment 6 prints catalog pairs at the same positions: 1.79952/42.2 on L13 and L21, 1.74400/44.8 on L32 and 1.68893/31.1 on L41. None of Embodiment 7's four pairs appears in another embodiment. Only L21's index recurs, in Embodiment 6, and embodiments 1, 3 and 5 hold similar one-off pairs in the same positions, so these read as design values rather than stocked melts.
+The patent defines Nd at the d-line (col. 6), and the model traces the printed indices. L11, L12, L22 and L31 match catalog rows, so their names are equivalents; the supplier is not established. The pairs on L13, L21, L32 and L41 match no catalog row, so the model traces them as printed, with normal-line partial dispersion. The patent prints only Nd and ν, with no glass name or other line index. Embodiment 6 prints catalog pairs at the same positions: 1.79952/42.2 on L13 and L21, 1.74400/44.8 on L32 and 1.68893/31.1 on L41. None of Embodiment 7's four pairs appears in another embodiment. Only L21's index recurs, in Embodiment 6, and embodiments 1, 3 and 5 hold similar one-off pairs in the same positions, so these read as design values rather than stocked melts.
+
+Figures 20 and 21 settle that choice. The elements' powers nearly cancel here: L31 and L32 alone contribute about ±8 mm to the focus difference between C and F, so a 1 % change in one element's νd can move the F focus by about 0.08 mm. The nearest catalog rows sit 0.5 to 2.2 % from the printed νd, and borrowing their dispersion put the g-line focus on the wrong side of d. The printed pairs follow the patent's plots. These are paraxial offsets from the d-line focus, in mm:
+
+| Focus state | Line | Figures 20B and 21B | Printed pairs (model) | Nearest catalog rows |
+| --- | --- | ---: | ---: | ---: |
+| Infinity | C | +0.05 | +0.07 | +0.10 |
+| Infinity | g | +0.13 | +0.19 | −0.28 |
+| Closest | C | +0.10 | +0.11 | +0.14 |
+| Closest | g | +0.19 | +0.24 | −0.25 |
+
+The remaining g-line offset of about 0.05 mm is the same at both focus states. At closest focus and y = 21.64 mm, lateral color traces to −14.9 µm at C and +3.1 µm at g, where Figure 21C reads about −15 and +3 µm.
 
 The patent names the glass class without naming a melt. Col. 6 uses a special low-dispersion glass satisfying conditions (5) and (6) for elements 12 and 22 to correct axial and lateral chromatic aberration. Those conditions bound only νd, and the patent prints no partial dispersion, so the anomalous partial dispersion of L12 and L22 stays inferred from Ricoh's ED statement and the printed pairs. Catalog dPgF is +0.0503 for S-FPL53 and +0.0323 for FCD1. The patent uses one such element in each of G1 and G2, rather than two in the larger G1, to lower cost while keeping chromatic correction (col. 6). Table 8 prints condition (6) as 81.2 for every embodiment, while every table prints 81.6 at element 5; the model uses the table value, and both satisfy the condition.
 

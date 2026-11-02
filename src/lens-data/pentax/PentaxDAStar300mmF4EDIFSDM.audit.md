@@ -100,3 +100,36 @@ The pairs that recur are catalog glasses (1.80440/39.6, 1.79952/42.2, 1.74400/44
 Before and after: engine half-field 5.67°, F/4.1, stop radius 16.06 mm and EFL 290.991 mm are unchanged. The surface validator passes, no surface falls under the image-circle floor, the APS-C corner traces in full, and the clearance tool shows no axial clip or blocked chief ray.
 
 Limitations: `glass` labels and generated glass reports keyed by element name are outside this review; any report quoting L1–L8 for this lens refreshes with the next generation.
+
+## 2026-11-02 — Chromatic check against Figures 20 and 21
+
+Reported from the site: the color spreads looked wrong. They were. The four proxy labels of the first glass pass passed the runtime window (Δn ≤ 0.003, Δν ≤ 2), so the Sellmeier tier borrowed each row's dispersion and ignored the printed νd. This lens cannot absorb that. At infinity an element's share of F − C focus runs up to ±8.5 mm (L31 −7.0, L32 +8.5, L13 +6.6, L21 +5.4), so a 1 % error in one νd moves the focus about 0.08 mm, and F − C came out 0.25 mm with g on the wrong side of d. Catalog νd against printed: S-LAH52 +0.93 (2.2 %), E-FD15 +0.45 (1.5 %), LAF2 +0.50 (1.1 %), NBFD14 +0.22 (0.5 %). Neither earlier review compared C or g with Figures 20 and 21.
+
+Figure readings: 7112 px wide native raster, Figure 20B at 452 px/mm, Figure 21B at 489 px/mm, Figure 21C at 4763 px/mm, each from the printed ±0.5 or ±0.05 ticks, with zero at their midpoint. The patent plots d, g and C only, so F is not checked. All values in mm from the d-line paraxial focus, except lateral color.
+
+| Quantity | Figure | Nearest rows (before) | Printed pairs (after) |
+| --- | ---: | ---: | ---: |
+| Infinity, paraxial C | +0.053 | +0.101 | +0.072 |
+| Infinity, paraxial g | +0.128 | −0.283 | +0.188 |
+| Infinity, F/4.12 marginal d | +0.06 | +0.065 | +0.065 |
+| Infinity, F/4.12 marginal C | +0.17 | +0.226 | +0.194 |
+| Infinity, F/4.12 marginal g | −0.13 | −0.595 | −0.070 |
+| Closest, paraxial C | +0.100 | +0.140 | +0.107 |
+| Closest, paraxial g | +0.192 | −0.246 | +0.242 |
+| Closest, FE 4.63 marginal d | +0.16 | +0.161 | +0.161 |
+| Closest, FE 4.63 marginal C | +0.18 | +0.261 | +0.225 |
+| Closest, FE 4.63 marginal g | +0.50 | +0.048 | +0.592 |
+| Infinity, y = 21.64 lateral C, µm | about −10 | −10.4 | −10.3 |
+| Infinity, y = 21.64 lateral g, µm | about −10 | −6.8 | −12.4 |
+| Closest, y = 21.64 lateral C, µm | −14.9 | −14.9 | −14.9 |
+| Closest, y = 21.64 lateral g, µm | +2.9 | +6.2 | +3.1 |
+
+The closest-focus trace uses the object 1171.79 mm ahead of surface 1 and the d-line entry height that fills the infinity stop. Marginal readings come from the top of each plot, measured from the local axis line because the scans tilt, and hold to about 0.02 mm.
+
+Change: `glass` on L13, L21, L32 and L41 is now `Unmatched (...)`, so they take the Abbe tier with the printed nd and νd. No other field changed. The spec already prefers `Unmatched` to a speculative match. L21, L32 and L13 carry the change: released one at a time they give g −0.081, −0.121 and −0.175 at infinity. L41 alone changes almost nothing, and its label goes for the same reason.
+
+The g-line residual is +0.05 to +0.09 mm in all four paraxial and marginal comparisons, always on the same side, so it reads as an offset and not a shape error. Catalog dPgF on those four elements gives g +0.026 at infinity, which overshoots the figure the other way. No `dPgF` is authored: the patent prints no partial dispersion, and a value chosen to close that offset would be a fit.
+
+Sellmeier coverage gives up these four elements. That is the right trade here, because the coverage figure counts how a surface is resolved and says nothing about whether the dispersion matches the prescription.
+
+Correction to the second review above: the file carries `apd: "patent"` on L12 and L22, not `"inferred"`. The paragraph there records the reasoning against; the tag was set to `patent` on col. 6's "special low-dispersion glass", and the PR flags it for the owner.

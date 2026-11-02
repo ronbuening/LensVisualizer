@@ -128,3 +128,22 @@ Movement: the table prints d8 7.247–25.603, d11 10.753–3.410 and d13 14.075�
 Labels: Fig. 1 brackets 10 over r1–r8, 20 over r9–r11, 30 over r12–r13 and 40 over r14–r15, the file's four `groups`. `C1` brackets S9 to S11, and no bracket collides with the `d8b`, `d11` or `d13` labels. Every `type` agrees with the signs of R, every `role` holds, and all eight elements carry `focalLengthMm`. There is no aspheric surface and no `A` suffix. The stop sits between 18 and 24. On `focus=1` the `30 FOCUS` bracket packs to a second row and stays readable. No `apd` is warranted: the patent asks only for "relatively small dispersion" at 12 and the "smallest possible dispersion" at 32, which is ordinary low dispersion, and the maker's drawing marks nothing.
 
 Open limitations: element 18's top edge still leans across the flat, up to 0.8 mm off, and element 32's edge is a slant, as above. The renderer would need a sloped land to draw either.
+
+## 2026-11-02 — Chromatic check of the C line
+
+The deployment pass compared only g−d with Figs. 2 and 3. A color-spread query on the site prompted a fuller check, at f = 100, from the 600 dpi page raster (297 and 298 px per unit between the ±0.50 ticks). The patent plots d, g and C only, so F is not checked.
+
+| Quantity | Figure | Model |
+| --- | ---: | ---: |
+| Fig. 2, paraxial C − d | +0.15 | +0.130 |
+| Fig. 2, paraxial g − d | +0.07 | +0.068 |
+| Fig. 2, F/2.8 marginal d | +0.01 | +0.012 |
+| Fig. 2, F/2.8 marginal C | +0.12 | +0.119 |
+| Fig. 2, F/2.8 marginal g | +0.26 | +0.251 |
+| Fig. 3, paraxial C − d | +0.14 | +0.112 |
+| Fig. 3, paraxial g − d | +0.46 | +0.452 |
+| Fig. 3, marginal d | −0.31 | −0.276 |
+| Fig. 3, marginal C | −0.25 | −0.215 |
+| Fig. 3, marginal g | +0.53 | +0.553 |
+
+The model follows both figures within about 0.03. The Fig. 3 marginal row uses the entry height that fills the infinity stop at the 599.2 mm object distance. Seven of the eight elements sit within 0.2 % of the catalog νd; element 18 sits 3.6 % away by design, on the erratum recorded above, and the C and g curves support that reading. No field changed.
