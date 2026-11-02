@@ -65,7 +65,7 @@ const LENS_DATA = {
       glass: "J-LASF08A (Hikari catalog equivalent; production supplier unspecified)",
       focalLengthMm: 24.685983095981147,
       role: "Source-prescribed spherical element; no factory-exact identity claim",
-      cemented: "D2",
+      cemented: "C1",
     },
     {
       id: 3,
@@ -78,7 +78,7 @@ const LENS_DATA = {
       glass: "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -15.188238916069011,
       role: "Source-prescribed spherical element; no factory-exact identity claim",
-      cemented: "D2",
+      cemented: "C1",
     },
     {
       id: 4,
@@ -118,7 +118,7 @@ const LENS_DATA = {
       glass: "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -11.97112742133673,
       role: "Source-prescribed spherical element; no factory-exact identity claim",
-      cemented: "D5",
+      cemented: "C2",
     },
     {
       id: 7,
@@ -131,7 +131,7 @@ const LENS_DATA = {
       glass: "J-LASF08A (Hikari catalog equivalent; production supplier unspecified)",
       focalLengthMm: 15.298206544031704,
       role: "Source-prescribed spherical element; no factory-exact identity claim",
-      cemented: "D5",
+      cemented: "C2",
     },
     {
       id: 8,
@@ -241,20 +241,30 @@ const LENS_DATA = {
     {
       label: "15",
       R: -112.557,
-      d: 15.879,
       sd: 12.7,
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.2989,
     description:
-      "Static infinity only; Grade B probable original X-mount family. Source 34.45 mm/F1.23 and BF15.879 mm are preserved. Clear apertures and iris opening inferred; stop position is printed. Source near endpoint and retail0.3 m do not define a modeled continuous cam.",
+      "Unit focusing: the whole optical assembly extends toward the object, as Cosina states, and only the back gap changes. The close endpoint is the patent's printed state (Table 1: magnification 0.1436, ZD0 = 240.11 mm from surface 1, BF 20.826 mm, 298.886 mm object-to-image); the production specification is 0.3 m at 1:6.7.",
+    published: [1],
   },
+  gaps: { "15": { label: "BF", values: [[15.879, 20.826]] } },
   aperture: {
     nominalFNumber: 1.23,
     fStops: [1.23, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
     maxFNumber: 16,
+    blades: 12,
   },
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "7" },
+    { text: "G2", fromSurface: "9", toSurface: "15" },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "5" },
+    { text: "C2", fromSurface: "11", toSurface: "13" },
+  ],
   layout: {
     yScFill: 0.43,
   },
