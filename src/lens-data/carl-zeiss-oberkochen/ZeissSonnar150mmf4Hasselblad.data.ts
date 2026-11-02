@@ -11,11 +11,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * imply 51–55 %, and the figure is kept.
  * Semi-diameters are estimated from Fig. 3 at 11.05 px/mm along the axis and floor-checked by real-ray trace: S1/S2 22.6,
  * S3/S4 19.2, S6 15.1, S7 16.5, S8 19.7. Arc fits of S1, S3, S5 and S7 give 10.65 px/mm across the axis, which leaves
- * S1/S2, S3/S4, S7 and S8 up to 3.3 % under the figure, inside the reading noise. S5 is 12.771 mm, inside the figure's
- * 12.1–12.9 mm band; the f/4 axial ray reaches 12.59 mm there, the tightest margin in the lens. The figure's flat lands are
- * drawn with rimExtensionSd, which leaves the clear apertures unchanged: S5 out to the 19.2 mm rim, S6 out to 16.5 mm, where
- * L4 is cut square. The figure's chamfers are not drawn: L3 keeps a square corner, and a cemented face takes no land, so one
- * straight edge joins the S7 and S8 rims.
+ * S1/S2, S3/S4, S7 and S8 up to 3.3 % under the figure, inside the reading noise. S5 is 12.771 mm, at the top of the
+ * figure's 11.6–12.9 mm band, because the f/4 axial ray reaches 12.59 mm there, the tightest margin in the lens. The figure's
+ * flat lands are drawn with rimExtensionSd, which leaves the clear apertures and the light unchanged: S5 out to the 19.2 mm
+ * rim, S6 out to 16.5 mm, where LIV is cut square. The figure's chamfers are not drawn: LIII keeps a square corner, and a
+ * cemented face takes no land, so one straight edge joins the S7 and S8 rims.
+ * Element names LI to LV, surface numbers r1 to r8 and the front, middle and rear components are the patent's own.
  * closeFocusM is the retail 1.4 m. The patent prints no focus data, so the geometry stays at infinity.
  */
 const LENS_DATA = {
@@ -64,8 +65,9 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "LI",
       "label": "Element 1",
+      "diagramLabel": "LI",
       "type": "Positive Meniscus",
       "nd": 1.66672,
       "vd": 48.4,
@@ -76,8 +78,9 @@ const LENS_DATA = {
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "LII",
       "label": "Element 2",
+      "diagramLabel": "LII",
       "type": "Biconvex Positive",
       "nd": 1.62041,
       "vd": 60.3,
@@ -89,21 +92,23 @@ const LENS_DATA = {
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "LIII",
       "label": "Element 3",
+      "diagramLabel": "LIII",
       "type": "Biconcave Negative",
       "nd": 1.72342,
       "vd": 38.0,
       "indexReference": "d",
-      "glass": "S-BAH28 (OHARA catalog equivalent; production supplier unspecified)",
+      "glass": "BASF8 (SUMITA, coordinate equivalent)",
       "focalLengthMm": -31.802792588468563,
       "cemented": "C1",
       "role": "Negative member of the middle component, concave toward the stop"
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "LIV",
       "label": "Element 4",
+      "diagramLabel": "LIV",
       "type": "Biconvex Positive",
       "nd": 1.70154,
       "vd": 41.1,
@@ -115,8 +120,9 @@ const LENS_DATA = {
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "LV",
       "label": "Element 5",
+      "diagramLabel": "LV",
       "type": "Negative Meniscus",
       "nd": 1.6014,
       "vd": 38.3,

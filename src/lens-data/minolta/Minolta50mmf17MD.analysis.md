@@ -55,13 +55,13 @@ S5–S6 form the negative element ahead of the stop. The modeled clear radii are
 
 `nd = 1.62590, νd = 35.70. Glass: S-TIM1 (OHARA catalog equivalent; production supplier unspecified). f = −21.74 mm` (standalone in air).
 
-S7–S8 form the negative front member of the cemented pair, with a center thickness of 0.88 mm. The modeled clear radii are 10.8/11.7 mm, and a land carries S7 out to the 11.7 mm flat top. S7 reaches forward toward the stop.
+S7–S8 form the negative front member of the cemented pair, with a center thickness of 0.88 mm. The modeled clear radii are 10.8/11.9 mm, and a land carries S7 out to the 11.9 mm flat top. S7 reaches forward toward the stop.
 
 ### L5 — Biconvex Positive, Rear Member of Cemented Pair C1
 
 `nd = 1.69350, νd = 53.39. Glass: LAC13 (HOYA, coordinate equivalent). f = +26.02 mm` (standalone in air).
 
-S8–S9 form the positive rear member, sharing S8 with L4. The modeled clear radii are 11.7/12.3 mm. S8 is the tightest surface for the axial beam, which reaches 11.34 mm there at infinity and 11.69 mm at closest focus. Figure 2 steps L5 about 0.4 mm past L4 at S8; one rim on the cemented face cannot show that step. Together L4 and L5 have f = −569.4 mm in air, so the pair adds little net power.
+S8–S9 form the positive rear member, sharing S8 with L4. The modeled clear radii are 11.9/12.3 mm. The axial beam reaches 11.34 mm at S8 at infinity and 11.69 mm at closest focus. Figure 2 steps L5 about 0.4 mm past L4 at S8; one rim on the cemented face cannot show that step, so a short slanted edge joins the two rims. Together L4 and L5 have f = −569.4 mm in air, so the pair adds little net power.
 
 ### L6 — Biconvex Positive
 

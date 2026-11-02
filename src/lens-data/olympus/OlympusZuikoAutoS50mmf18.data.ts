@@ -14,9 +14,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: neither printed nor drawn, placed at the midpoint of the 13.0 mm D5 air space, z = 19.04 mm from S1.
  * sd: inferred. S1 is 1.10 times the paraxial entrance-pupil radius; the other faces follow the Figure 3 ratios. At
  * the figures' scale across the axis, 19.0 px/mm at 300 dpi against 18.5 along it, the rims sit about 2 % under the
- * drawn heights. S5 and S6 stay smaller than their element bodies, as the chamfers in Figure 3 show. S7 takes S8's
- * height because Figure 3 draws L5 square-cut with R7 reaching its flat; L4's flat sits about 0.5 mm lower, a step one
- * cemented surface cannot show. No rim was enlarged to pass off-axis light, so the vignetting stays.
+ * drawn heights. S5 and S6 stay smaller than their element bodies: Figure 3 chamfers L3 and L4 at about 47 degrees from
+ * the pointed curve ends back to flat tops, which one straight rim edge cannot follow. rimExtensionSd 10.6 mm on S5 and
+ * 11 mm on S6 add short lands outside the clear apertures to stand in for that corner glass; no ray changes. S7 takes
+ * S8's height because Figure 3 draws L5 square-cut with R7 reaching its flat; L4's flat sits about 0.5 mm lower, a step
+ * one cemented surface cannot show. No rim was enlarged to pass off-axis light, so the vignetting stays.
  * Focus: unit focus. The near gap, 45.60 mm, is solved paraxially for 0.45 m object to image; it is not printed.
  * Iris: f/1.86 is the patent's value; slower stops follow the paraxial stop rule.
  *
@@ -172,7 +174,8 @@ const LENS_DATA = {
       "label": "5",
       "R": 14.989,
       "d": 6.5,
-      "sd": 9.887
+      "sd": 9.887,
+      "rimExtensionSd": 10.6
     },
     {
       "label": "STO",
@@ -184,6 +187,7 @@ const LENS_DATA = {
       "R": -15.134,
       "d": 1.65,
       "sd": 10.332,
+      "rimExtensionSd": 11,
       "medium": 4
     },
     {

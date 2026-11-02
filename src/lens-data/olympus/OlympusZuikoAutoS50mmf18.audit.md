@@ -171,3 +171,87 @@ The chamfers on L3 and L4 stay chords from the S4 and S7 rims to the S5 and S6 t
 drawn corner glass undrawn at the widest point. Figure 3 draws a slanted stroke of about 50° there, not a stroke square to the
 axis, so neither `rimExtensionSd` nor `rimCutDepthMm` matches it, and a vertical land would blunt the drawn tip. The live page
 shows L5 square-cut at infinity and at 0.45 m.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+### What was compared
+
+The local page at infinity and at 0.45 m against Figures 1, 2 and 3 of `patents/US4728179.pdf` (PDF page 2, 300 dpi raster) and the
+public MC section. The figures were re-read from scratch in a frame fitted to each drawn axis (0.87°, 0.79°, 0.89° on the page), and
+the table was re-read from the images of PDF page 9. Every entry matches the file, including R9 = +246.577 and R10 = -48.685.
+
+### Rim readings
+
+Half-heights in native px, Figure 3 / 1 / 2 where read: L1 flat 297.0 / 302.6, C1 flat 249.8 / 252.6, L4 flat 228.2 / 231.5, L5 flat
+238.0, L6 flat 247.3, S5 tip 191.3 / 194.1 / 190.5, S6 tip 199.8 / 201.5 (the Figure 2 leader spoils that reading). A separate
+across-axis scale from single printed-radius points on R1, R5, R6, R8 and R10 gives 18.8 to 19.7 px/mm, centre about 19.2, so the
+earlier 19.0 holds within 1 %. At 19.0 to 19.2 px/mm the stored rims sit 1 to 2 % under the drawn heights.
+
+Drawn edge lengths give a second check that does not depend on the height scale. At 18.5 px/mm L1's edge is 1.9 mm against 1.72 in the
+model, L5's 1.4 against 1.58, L6's 1.05 against 1.20. Those edges imply rims of about 14.9, 12.6 and 13.2 mm against 15.33, 12.34 and
+12.78 stored, so L1 reads under the model where its height reads over, and neither check justifies a raise. L1 and L6 therefore stay
+at 15.329 and 12.784 mm: square-cut as drawn, in the drawn order (L6 at 0.990 of C1 drawn, 0.989 stored), and inside the noise band.
+
+The MC section spans S1 to S10 in 305 px, 8.43 px/mm. It gives L1 15.4, C1 12.8, L4 10.6, L5 11.1 and L6 11.8 mm: the front agrees with
+the model and the rear reads about 10 % smaller than Figure 3. The barrel's stepped bore lies along those rear edges and may mask
+them. Its L4 and L5 flats differ by 5 px, about 0.6 mm, so the step the first pass could not resolve is there and agrees with the
+patent's 0.5 mm. Cutting S9 and S10 to 11.9 mm alone would lose 6.4 points at 14.4°, past the 3-point budget, and the patent figure
+governs, so the rear stays at the figure.
+
+### Lands and cuts
+
+No face sits below its package value, so there are no cuts. `rimcost.mjs` against `.lens-work/base1102/OlympusZuiko50mmf18.data.ts`
+gives a worst loss of 0.0 points at every field. Transmission wide open at infinity is 100.0, 98.8, 96.2, 90.1, 82.0, 71.9, 60.1, 46.9
+and 33.0 % at 0 to 23.0°, the same on baseline rims, on the first-pass file and on the final file.
+
+| Face | Item | Figure reading | Baseline | Final | Points of light | Verdict |
+|---|---|---:|---:|---:|---:|---|
+| S5 | new `rimExtensionSd` | tip 10.08, chamfer to flat 13.1 | 9.887, no land | `sd` 9.887, land to 10.6 | 0.0 | keep: slight, redraws corner only |
+| S6 | new `rimExtensionSd` | tip 10.54, chamfer to flat 12.0 | 10.332, no land | `sd` 10.332, land to 11 | 0.0 | keep: slight, redraws corner only |
+| S7 | raised above baseline, not a cut | L5 flat 12.52, L4 flat 12.04 | 11.849 | 12.34 | 0.0 | keep: L5 square-cut as drawn |
+
+The chamfers run from each curve's pointed end at about 47° on L3 (2.95 mm along by 3.15 mm across) and 45° on L4 (1.84 by 1.63). The first pass
+left them as chords and judged that a vertical land would blunt the tip. The new lands do blunt it, by 0.7 mm, so the trade was measured.
+Between the element's rim and tip, comparing the rendered edge with the drawn flat and chamfer:
+
+| Element | Edge | Mismatch area, mm² | Most glass missing, mm | Most glass added, mm |
+|---|---|---:|---:|---:|
+| L3 | chord | 3.11 | 1.30 | 0 |
+| L3 | land to 10.6 | 2.22 | 1.00 | 0.71 |
+| L3 | S5 land matched to S4, 12.922 | 4.14 | 0 | 3.03 |
+| L4 | chord | 2.26 | 0.91 | 0.51 |
+| L4 | land to 11 | 1.41 | 0.44 | 0.67 |
+| L4 | S6 land matched to S7, 12.34 | 4.05 | 0 | 2.01 |
+
+The area minimum is near 10.8 mm on S5 and 11.0 mm on S6. S5 takes 10.6 because it gets within 2 % of that minimum with a shorter
+stub. Full-height matched rims are worse than the chords here, because the chamfers are too large to fill: they would draw L3 and L4
+as square blocks. A cemented face takes no land, so S4 and S7 cannot carry the corner. A `rimCutDepthMm` at the tip would draw the same vertical
+stroke with a beam margin to hold: a trial on S5 at 3.72 mm, radius 9.883 mm, was refused by 0.004 mm. An extension leaves the clear
+aperture alone and passes the validator at default limits, so `checks.gapSagFrac` stays absent. The rim is still not the drawn outline: a vertical stroke plus a straight edge
+stands for a flat plus a chamfer, and the L4/L5 step stays undrawn.
+
+### Clearance after the lands
+
+Engine half-field 27.51° and F/1.86 before and after, stop radius 9.542 mm, stop housing 9.887 mm. The surface validator, the image-circle
+check and the aperture check pass; the traced corner reaches 21.65 mm at 23.0°. No axial or chief-ray clip. S5 stays the tightest
+axial rim, 9.66 against 9.887 mm. The 0.45 m marginal heights in the section above do not depend on the lands.
+
+### Labels, types and tags
+
+Surface labels 1 to 10 are the patent's R1 to R10, and thicknesses D1 to D9 map one to one, with D5 split 6.5 + 6.5 around the stop.
+The lower-case r and d of Figures 1 and 2 belong to the converters. Media follow N1 to N6 and V1 to V6. The patent names no element or
+group of the master, so sequential L1 to L6 stands and there is no `groups` block. C1 brackets S3 to S5, C2 brackets S6 to S8, both
+cemented in Figures 1 to 3. `BF` is the only gap label beside the slider, so nothing collides.
+
+`type` agrees with R on all six. L5 (-490.538 / -20.316) is a meniscus convex to the image, close to plano-convex, and L6 (+246.577 /
+-48.685) is biconvex. Inspectors for L3, L4 and L5 show type, indices, FL, glass, role and the DOUBLET C1 or C2 tag; all element focal
+lengths are present and match the thick-lens values. No aspheric marks, as the table is all spherical. No `apd` tags: the patent
+designates no special glass and the MC section marks none. The stop sits between L3 and L4, and neither the figures nor the patent's
+text layer mention a stop or diaphragm.
+
+### Movement
+
+There is no zoom. The patent's text layer has no word on focus, so the description's "prints no focus travel" is exact. `gaps` "10"
+lists 37.856 then 45.60 mm, infinity first. The focus overlay moves all four groups 7.74 mm toward the object with the image plane
+fixed, with nothing moving relative to anything else. The probe gives 449.99 mm object to image and 0.1494×. The slider's far label
+reads 45 cm, BF reads 37.86 and 45.60, and the aperture ticks run f/1.86, 2.8, 4, 5.6, 8, 11, 16.

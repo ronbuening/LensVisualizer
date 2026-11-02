@@ -29,9 +29,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * circles on the front page, so rims are read as ranges. L1 is square-cut at 16.4 mm and L2 at 14.0 mm, as drawn. S5 =
  * 12.7 mm and S7 = 10.8 mm keep the paraxial marginal height at f/1.73 × 1.10, rounded up to 0.1 mm, and S6 = 11.0 mm
  * follows the drawn rim. The rear rims clear the axial beam at closest focus, where the fixed iris sends it wider than at
- * infinity: 11.69 mm at S8, 12.18 mm at S9, 12.21 mm at S10 and 12.20 mm at S11, giving S8 = 11.7 mm and S9–S11 = 12.3 mm.
- * The figure's flat tops on L3 and L4 are drawn with rimExtensionSd, which leaves the clear apertures unchanged: S6 out to
- * 12.7 mm and S7 out to 11.7 mm. The figure's chamfers are not drawn, and a cemented face takes no land, so one straight
+ * infinity: 11.69 mm at S8, 12.18 mm at S9, 12.21 mm at S10 and 12.20 mm at S11, giving S9–S11 = 12.3 mm. S8 = 11.9 mm is
+ * L4's drawn top, which clears that beam by 0.2 mm. The figure's flat tops on L3 and L4 are drawn with rimExtensionSd,
+ * which leaves the clear apertures unchanged: S6 out to 12.7 mm and S7 out to 11.9 mm. The figure's chamfers are not
+ * drawn, and a cemented face takes no land, so one straight
  * edge joins the S8 and S9 rims where the figure steps L5 about 0.4 mm past L4. These are modeled clear radii, not
  * production values.
  *
@@ -209,14 +210,14 @@ const LENS_DATA = {
       "R": -17.213,
       "d": 0.88,
       "sd": 10.8,
-      "rimExtensionSd": 11.7,
+      "rimExtensionSd": 11.9,
       "medium": 4
     },
     {
       "label": "8",
       "R": 66.165,
       "d": 6.41,
-      "sd": 11.7,
+      "sd": 11.9,
       "medium": 5
     },
     {

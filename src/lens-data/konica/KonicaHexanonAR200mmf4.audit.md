@@ -126,5 +126,72 @@ of the file.
 rims run 1.6 to 1.8 mm past the drawn ones on L1 to L3 and about 1.1 mm on L4 and L5, with no element out of step. The local
 page at infinity and at `focus=1` shows the same silhouette, as the geometry is static.
 
-Open: the Fig. 2 fans trace to an L1 rim near 25.2 mm. That value passes the validator and the F/4 beam, but costs 6.7
-points at 5° and 6° and moves L2/L1 to 0.905 against the drawn 0.839, so it was not made.
+Closed 2026-11-02: the Fig. 2 fans trace to an L1 rim near 25.2 mm. That value passes the validator and the F/4 beam, but
+costs 6.7 points at 5° and 6° and moves L2/L1 to 0.905 against the drawn 0.839. It fails the 3-point rule, so L1 stays at
+27 mm, as the second review below records.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+**Compared.** The local page at infinity and at `focus=1`, the five element inspectors and the group-movement dialog, against
+Fig. 1 and the full text of JP S54-55424 A (printed pages 147 to 151) and the Konica/Berkey sheet's section.
+
+**Silhouette.** Nothing differs visibly. Both show L1 tallest with a thin rim, L2 a square block a little taller than L3, L3
+wrapping forward at the rim with its front edge clear of L2, and L5 a little taller than L4, with each element at one height
+on both faces. The one defect was missing brackets, below.
+
+**Re-measurement.** Outer ink at 694 dpi, read as the flat rim line against a fitted axis (−1.61°): L1 333, L2 281, L3 271,
+L4 165 (top rim only, leaders cross the bottom one) and L5 175 px half-height, within 1% of the first pass. At 13.28 px/mm that is 25.1, 21.1, 20.4, 12.4 and 13.2 mm;
+ratios 1, 0.843, 0.813, 0.496, 0.526. A separate read of the Konica/Berkey section, 106, 91, 86, 51 and 56 sheet pixels over
+213.5 px of vertex length, gives 27.2, 23.3, 22.1, 13.1 and 14.4 mm, ratios 1, 0.858, 0.811, 0.481, 0.528, at 0.26 mm per
+pixel. The fan ends also check: a straight ray from the pupil 111 mm behind surface 1 meets surface 1 at about 25.0 mm for
+6.12° at 0.54 of the pupil, and 25.4 mm for 3.09° at 0.785.
+
+**Rims.** No cut or land exists; every face is at its package value, so the table lists the drawn value as a proposed cut.
+
+| Element | Fig. 1 mm | Baseline mm | Final mm | Above figure | Drawn value alone costs, points | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| L1 | 25.2 | 27.0 | 27.0 | 7.1% | 6.7 at 5° and 6° | not cut: fails |
+| L2 | 21.2 | 22.815 | 22.815 | 7.6% | 3.2 at 2° | not cut: fails |
+| L3 | 20.5 | 22.113 | 22.113 | 7.9% | 2.0 at 2° | not cut: alone it breaks the L2-L3 step |
+| L4 | 12.5 | 13.581 | 13.581 | 8.6% | 7.8 at 6° | not cut: fails |
+| L5 | 13.3 | 14.445 | 14.445 | 8.6% | 8.8 at 6° | not cut: fails |
+
+**Step order within 3 points.** The file already has it, at no cost. Its steps are L1−L2 4.19, L2−L3 0.70 and L5−L4 0.86 mm
+against 4.0, 0.7 and 0.8 drawn, and its ratios are within 1.4% of the figure's.
+
+| Set | L1 / L2 / L3 / L4 / L5 mm | Ratios to L1 | Worst loss, points | Transmission at 6° |
+| --- | --- | --- | --- | --- |
+| File | 27 / 22.815 / 22.113 / 13.581 / 14.445 | 0.845, 0.819, 0.503, 0.535 | 0 | 77.0% |
+| Fig. 1 | 25.2 / 21.2 / 20.5 / 12.5 / 13.3 | 0.841, 0.813, 0.496, 0.528 | 15.4 at 6° | 61.5% |
+| Exact drawn ratios, ×1.062 of Fig. 1 | 26.77 / 22.52 / 21.77 / 13.28 / 14.13 | 0.841, 0.813, 0.496, 0.528 | 2.9 at 6° | 74.0% |
+| File ratios, ×0.985 | 26.58 / 22.46 / 21.77 / 13.37 / 14.22 | 0.845, 0.819, 0.503, 0.535 | 3.0 at 6° | 74.0% |
+| Front three ×0.972 | 26.24 / 22.17 / 21.49 / 13.581 / 14.445 | 0.845, 0.819, 0.518, 0.550 | 3.0 at 5° | 74.4% |
+| Rear two ×0.970 | 27 / 22.815 / 22.113 / 13.18 / 14.01 | 0.845, 0.819, 0.488, 0.519 | 3.0 at 6° | 74.0% |
+| L1 alone | 26.24 / 22.815 / 22.113 / 13.581 / 14.445 | 0.869, 0.843, 0.518, 0.550 | 3.0 at 5° | 74.4% |
+
+The exact-ratio row passes the validator, clips neither the F/4 beam nor the chief ray, and is the closest figure-true set the
+budget reaches. It stays 6.2% above Fig. 1, closing 13 to 28% of the gap. It moves all ten faces by 0.23 to 0.34 mm, about 1 px
+on the page, and spends the whole budget at 6°. A 1 to 2% move is no more than the 2% spread between the figure's two scales,
+so the set was not applied; the rule permits it, and nothing requires it. The Konica/Berkey section also sits at the file's
+size, within 0.5 mm on every element.
+The file's rims stay 7.1 to 8.6% above Fig. 1, as recorded above.
+
+Final worst loss against baseline from `rimcost.mjs`: 0.0 points. Engine transmission 0° to 6°: 100, 100, 99.3, 95.4, 90.6,
+85.7, 77.0, before and after.
+
+**Labels.** `groups` was absent. Added FRONT on surfaces 1 to 6 and REAR on 7 to 10, the corpus form used by the Pentax-A 200
+and the Zuiko 400 of this batch. The patent's 前群 is L1 to L3 and its 後群 is L4 and L5 (printed pages 148 and 149). Both
+labels sit clear of the element numbers on the page. No `doublets`: nothing is cemented. Names L1 to L5 are the patent's own.
+All five `type` strings agree with the signs of R and the claim wording, every `role` is true to the text, and the five
+inspectors show their focal lengths; these match a thick-lens calculation in air (116.01, −135.21, 170.82, −56.09, 104.74 mm)
+and the printed f1 and f5. There are no aspheres and no `apd` tags: the patent stresses ordinary optical glass, and the
+Konica/Berkey section marks no special element. The stop stays 30 mm behind surface 6, between L3 and L4, as the Seidel caption
+prints it; Fig. 1 draws none.
+
+**Movement.** The patent has no focus text. Its only object-distance statement is the Seidel caption, 「物体距離を無限遠」,
+and it names no focusing group or direction. `focus.description` says the geometry is static, keyframes are absent, and the
+page shows "Not modeled" on the slider and no group movement in the dialog, which counts 2 groups. There is no zoom.
+
+**Clearance.** Engine half-field 6°, f-number 4, stop radius 13.562 mm, before and after. Surface validator clean, image
+circle 0 undersized, coverage 98% (21.19 of 21.65 mm), no axial clip or chief-ray block. `R`, `d`, `nd`, `vd` and `sd` are
+unchanged from the package file.

@@ -8,7 +8,7 @@
 **Granted:** 1985-11-05  
 **Priority:** 1982-05-13, Japanese application 57-80799  
 **Inventor:** Satoru Tachihara  
-**Assignee:** Asahi Optical Co., Ltd.  
+**Assignee:** Asahi Kogaku Kogyo Co., Ltd., as Asahi Optical Co., Ltd.  
 **Example details:** Printed column 4 (PDF p. 7), repeated in claim 3 (PDF pp. 8–9); Fig. 1 and Fig. 2 on PDF p. 2. The patent's f = 100 is scaled ×2.
 
 The prescription is Example 1 of US 4,550,987, associated here with the **PENTAX SMC A 200mm f/4**. The patent names no product and the maker has not published a prescription, so this is a patent design linked to the lens by correlation, not a confirmed factory prescription. The evidence converges as follows:
@@ -26,11 +26,11 @@ One discrepancy remains. At ×2, S1 sits 115.0 mm from the K flange, but the lis
 
 Six separate spherical singlets form a telephoto with a positive–negative–positive–positive front group and a negative–positive rear group. The front group's combined focal length is 0.506f (101.2 mm at this scale) and the rear group's is −0.406f (−81.2 mm), which brings the track to 160.46 mm, 0.80 of the focal length. There are no cemented interfaces or aspherical surfaces, and no cover plate is modeled.
 
-The patent's aim is a shorter lens with better low-frequency contrast than JP 53-27422. It keeps L1 weak and L2 close behind it so that aberrations are corrected as early as possible (col. 2). Example 1 meets all six conditions: $f_{1,2,3}$ = 0.667f, $f_{1,2,3,4}$ = 0.506f, $f_1$ = 0.730f, $d_2$ = 0.0101f, $|f_{5,6}|$ = 0.406f and $n_5 - n_6$ = 0.096. Element roles below follow the patent where cited and are otherwise a paraxial reading of the prescription.
+The patent's aim is a shorter lens with better low-frequency contrast than JP 53-27422. It keeps L1's power relatively small and L2 close behind it so that aberrations are corrected as early as possible (col. 2). Example 1 meets all six conditions: $f_{1,2,3}$ = 0.667f, $f_{1,2,3,4}$ = 0.506f, $f_1$ = 0.730f, $d_2$ = 0.0101f, $|f_{5,6}|$ = 0.406f and $n_5 - n_6$ = 0.096. Element roles below follow the patent where cited and are otherwise a paraxial reading of the prescription.
 
 The patent neither tabulates nor draws a stop; the mark in d6 on Fig. 1 is a dimension leader. The maker's section draws the diaphragm just behind L4, and the model places it 2.128 mm behind surface 8, 67.81 mm behind S1, which splits the scaled d8 of 21.28 mm into 2.128 + 19.152 mm. The exact distance is inferred. A trace of Example 1 supports it: the meridional field curve of Fig. 2 places the stop about 56 to 70 mm behind S1 at this scale, and a stop at mid-d8 falls outside that range.
 
-The patent prints no clear apertures. The semi-diameters are estimated from Fig. 1 at its own scale, with one height per element as drawn, and they are inferred, not factory apertures. From L1 to L6, Fig. 1 reads about 25.9, 25.8, 25.5, 15.4, 11.7 and 12.9 mm, outline widths in the maker's section read about 26.0, 25.7, 25.7, 14.7, 11.6 and 12.9 mm, and the model uses 26.5, 26.0, 25.5, 15.4, 11.9 and 13.3 mm. L1, L2, L5 and L6 stay above the figure because taking them down to it would lower corner illumination from about 75 % to about 71 %.
+The patent prints no clear apertures. The semi-diameters are estimated from Fig. 1 at its own scale, with one height per element as drawn, and they are inferred, not factory apertures. From L1 to L6, Fig. 1 reads about 25.9, 25.8, 25.5, 15.4, 11.7 and 12.9 mm, outline widths in the maker's section read about 26.0, 25.7, 25.7, 14.7, 11.6 and 12.9 mm, and the model uses 26.49, 25.94, 25.5, 15.4, 11.9 and 13.3 mm. L1, L2, L5 and L6 stay above the figure because taking them down to it would lower corner illumination from about 75 % to about 71 %.
 
 ## Element-by-Element Analysis
 

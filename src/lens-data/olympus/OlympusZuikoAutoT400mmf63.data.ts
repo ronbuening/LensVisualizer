@@ -25,6 +25,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Focus: unit focus, inferred. The patent prints no focus travel. Its Fig. 5 curves at 1/10× are reproduced
  * by extending the whole lens; the near gap is solved for 5.0 m object to image, the catalogue minimum focus.
+ * The catalogue's straight helicoid fits this but does not say which elements move.
  *
  * Construction: one 1973 catalogue page prints 6 elements in 5 groups but draws five separate elements,
  * which this model matches; other listings say 5 elements in 5 groups. The model has five. No redesign
@@ -85,7 +86,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 120.1030150490764,
-      "role": "Positive crown of the front group; carries most of its power"
+      "role": "Positive crown; the front group's only positive element"
     },
     {
       "id": 2,
@@ -103,7 +104,7 @@ const LENS_DATA = {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Plano-concave Negative",
+      "type": "Plano-Concave Negative",
       "nd": 1.5927,
       "vd": 35.6,
       "indexReference": "d",
@@ -209,7 +210,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 5,
-    "description": "Unit focus: the whole lens moves forward and only the back focus changes, by 39.99 mm at the 5 m minimum focus. The patent prints no focus travel; the motion is inferred from its Fig. 5 curves at 1/10× magnification, which extending Example 1 as a unit reproduces. At the 400 mm scale that magnification falls at 5.0 m object to image, the catalogue minimum focus. The infinity back focus is the computed paraxial value; the patent prints none."
+    "description": "Unit focus: the whole lens moves forward and only the back focus changes, by 39.99 mm at the 5 m minimum focus. The patent prints no focus travel; the motion is inferred from its Fig. 5 curves at 1/10× magnification, which extending Example 1 as a unit reproduces. At the 400 mm scale that magnification falls at 5.0 m object to image, the catalogue minimum focus. The same catalogue lists a straight helicoid for focusing, which fits unit movement without proving it. The infinity back focus is the computed paraxial value; the patent prints none."
   },
   "gaps": {
     "10": {
@@ -236,12 +237,12 @@ const LENS_DATA = {
   },
   "groups": [
     {
-      "text": "FRONT",
+      "text": "F (+)",
       "fromSurface": "1",
       "toSurface": "6"
     },
     {
-      "text": "REAR",
+      "text": "R (−)",
       "fromSurface": "7",
       "toSurface": "10"
     }

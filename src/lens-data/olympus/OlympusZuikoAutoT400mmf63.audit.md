@@ -57,7 +57,7 @@ This pass: header comment, `subtitle`, `catalog.specs`, element `role`, `focus.d
 
 - Open: the catalogue's "6 elements in 5 groups" is not explained. No redesign is claimed.
 - The Early catalogue (printed p. 54: 5 elements in 5 groups, 1400 g, 255 mm) and the OM-10 FC manual table (printed p. 41: Zuiko MC 400mm F6.3, 5-5, 1300 g, 256 mm) were read from their page images. Retail 5/5 comes from search listings.
-- Open: the production focusing mechanism is undocumented. Unit focus is inferred from Fig. 5, and the 5 m state is not a certified conjugate, so no `conjugates` or `published` rows were added.
+- Open: which elements the production helicoid carries is not printed. The Late 0173 page gives "Focusing: Straight helicoid", so the mechanism is documented and fits the unit focus inferred from Fig. 5, but it does not prove it, and the 5 m state is not a certified conjugate, so no `conjugates` or `published` rows were added.
 
 ## 2026-11-01 — Semi-diameter pass against the patent figure
 
@@ -115,3 +115,63 @@ Read from that image, L1 is 33.3 to 33.9 mm with a sharp edge, in keeping with t
 ### Live check
 
 The local page rendered at infinity and at 5 m focus, with five separate elements, L1 proud of L2 and L3, square-cut L4 and L5, and the whole lens moving forward by 39.99 mm.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+Compared the local page at infinity, at 5 m, with the focus overlay and with all five element inspectors, against Fig. 1 (`patents/US3864027.pdf` page 2, native 2320 × 3408 px), the separately drawn copy on the front page (PDF page 1), Table 1, the claim 2 repeat, columns 1 to 4, and the supplied image of the Late 0173 catalogue page. Earlier numbers were recomputed here, not copied. Every R, d, n and ν in Table 1 and claim 2, multiplied by 400, equals the file.
+
+### Changes
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| Front `groups` text | FRONT | F (+) | Fig. 1 and Table 1 label the group F. Paraxial focal length +251.2 mm from Table 1. |
+| Rear `groups` text | REAR | R (−) | Fig. 1 and Table 1 label the group R, and column 3 says L4 and L5 form a negative lens as a whole. Paraxial focal length −257.3 mm. |
+| L3 `type` | Plano-concave Negative | Plano-Concave Negative | Casing only, to match the catalogue's 93 uses. The shape was right: r5 = −1.72402, r6 = ∞. |
+| L1 `role`, analysis sentence | Carries most of the front group's power | The front group's only positive element | L2 and L3 are negative, so "most" understated it. |
+| `focus.description`, header, analysis, audit `Open:` line | Mechanism undocumented | Straight helicoid recorded | The catalogue page prints "Focusing: Straight helicoid". It fits unit focus without proving it. |
+
+No `sd`, `rimExtensionSd`, `rimCutDepthMm` or `checks` value changed.
+
+### Rims
+
+Positions are stroke centres and each height is half the top-to-bottom distance. In Fig. 1, S1 at x = 453.5 and M at 1804.8 over 300.36 mm give 4.50 px/mm, with the axis tilted 0.42°. On the front page, S1 at 536 and M at 1804 give 4.22 px/mm.
+
+| Element | File (mm) | Fig. 1 half-height (px) | Fig. 1 (mm) | Front page half-height (px) | Front page (mm) |
+| --- | --- | --- | --- | --- | --- |
+| L1 | 34.29 | 154.1 | 34.25 | 143.75 | 34.05 |
+| L2 | 30.00 | 136.25 | 30.28 | 126.8 | 30.03 |
+| L3 | 30.00 | 136.25 | 30.28 | 127.0 | 30.08 |
+| L4 | 18.21 | 82.0 | 18.23 | 76.5 | 18.12 |
+| L5 | 18.21 | 82.0 | 18.23 | 76.0 | 18.00 |
+
+Every reading is within 1.2 % of the file, so every height stays. Both drawings show L1 above L2 and L3, which are equal, then L4 and L5, also equal, and the site draws the same order. An overlay of the model outline on Fig. 1 lies on the drawn strokes at every rim.
+
+The file has no cuts and no lands. S1 to S9 equal the package baseline and S10 sits above it:
+
+| Face | Figure reading (mm) | Baseline (mm) | Final (mm) | Points of light | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| S10 | 18.2 Fig. 1, 18.0 front page | 16.59 | 18.21 | 0.0 | Raise kept: both drawings carry L5's edge at one height |
+
+The final `rimcost.mjs` worst loss against baseline rims is 0.0 points at every field, and undoing the S10 raise wins back 0.0.
+
+Three silhouette differences remain, none a rim error. L1's land is 1.48 mm against 3.3 mm drawn in Fig. 1 and 4.3 mm on the front page. Taking L1 to 33.1 mm would widen it only to 2.21 mm, cost 3.0 points at 2.6°, and leave the corner at 72.0 %. That is a new cut against drawings that read 34.05 to 34.25 mm, so it was not added. L4's edge is 7.06 mm against 8.1 mm drawn and L5's is 3.16 mm against 2.7 mm. Both follow from the printed radii, which Fig. 1 does not draw to scale.
+
+### Labels, tags and stop
+
+Bracket ends agree with Fig. 1 and the Table 1 margin: F runs S1 to S6 (L1 to L3) and R runs S7 to S10 (L4 and L5). The patent also braces components I, II and III. They are not drawn, because III equals R and only one bracket level is shown; F and R are what the patent calls groups. No cemented bracket applies, since column 3 says each of the pairs L2, L3 and L4, L5 is slightly spaced apart.
+
+Types agree with the printed signs. L1 is +/− and biconvex. L2 is −/− with the stronger face in front, a negative meniscus. L3 is −/∞, plano-concave. L4 is −/+ and biconcave: r8 is +5.90492 in both Table 1 and claim 2, about 46 times r7, and Fig. 1 draws that face straight. L5 is +/− and biconvex. Each `role` agrees with columns 3 and 4.
+
+L1 to L5 are the patent's designations, and surfaces 1 to 10 are its r1 to r10. No asphere is printed or tagged. D's centre measures 0.684 of d6 in Fig. 1 against the model's 0.68, between L3 and L4. No `apd` tag belongs here: the patent prints no anomalous-dispersion glass for this design, and the catalogue page marks no special glass. The inspector shows a focal length for all five: +120.1, −243.24, −1163.5, −77.55 and +134.82 mm.
+
+The catalogue page prints 6 elements in 5 groups and draws five separate elements, as recorded above. It marks nothing aspherical.
+
+### Movement
+
+This is a prime, so there is no zoom. Keyframe 0 is infinity at 96.6325 mm and the last is the closest state at 136.619 mm. The patent's only close-range statement is use at 1/10×, in column 2; it names no focusing group and Fig. 1 carries no arrows. A matrix calculation from Table 1, separate from the repo engine, gives EFL 399.98 mm, back focus 96.6325 mm and, at the near gap, m = −0.09997, S1 to object 4659.66 mm and object to image 5000.0 mm. The focus overlay moves F and R forward by the same 39.99 mm with nothing fixed, and the slider ends read ∞ and 5.00 m.
+
+### Clearance
+
+Before and after are identical. Engine half-field is 3.08°, f-number 6.30 and stop radius 13.84 mm. The `clearap2.mjs` trace reaches 21.65 mm at ω = 3.09° at infinity and 2.49° at 5 m, with no clip or block flag. Transmission at 0.0, 0.5, 1.0, 1.5, 2.1, 2.6 and 3.1° is 100.0, 99.8, 95.7, 90.7, 85.7, 80.5 and 74.8 %, equal to the baseline rims. The surface validator, image-circle check and field-coverage check pass, the last at 21.62 of 21.65 mm. The rim trials above reproduce: L1 open gives 75.2 % at the corner, L2 open 91.8 % at 1.5° and 75.1 %, both open 94.0 % and 79.2 %, and L3 open changes nothing.
+
+After the edits the local page shows the F (+) and R (−) brackets, the same labels in the movement overlay, the corrected L3 type and the helicoid sentence.

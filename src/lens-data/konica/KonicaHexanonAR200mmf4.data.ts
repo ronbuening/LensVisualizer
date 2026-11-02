@@ -18,6 +18,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the Seidel table's caption prints the stop 0.15 behind surface 6, so the printed d6 = 0.335 (67 mm) is split into
  * 30 + 37 mm. Its radius is not printed and follows from the design F/4.
  *
+ * Groups: the FRONT and REAR brackets are the patent's 前群 (L1 to L3) and 後群 (L4, L5); the five groups in the catalog
+ * count are the air-separated singlets.
+ *
  * Semi-diameters: not printed, so all are inferred. L1 is 27 mm, the 25 mm entrance-pupil radius plus 8%. The others
  * follow outline ratios measured from Fig. 1 (1, 0.845, 0.819, 0.503, 0.535), one value for both faces of each element.
  * Fig. 1 draws the same ratios about 8% smaller (25.2, 21.2, 20.5, 12.5, 13.3 mm at a scale fitted to its arcs), and the
@@ -225,6 +228,18 @@ const LENS_DATA = {
     "fullFieldDeg": 12,
     "maxTraceFieldDeg": 6
   },
+  "groups": [
+    {
+      "text": "FRONT",
+      "fromSurface": "1",
+      "toSurface": "6"
+    },
+    {
+      "text": "REAR",
+      "fromSurface": "7",
+      "toSurface": "10"
+    }
+  ],
   "layout": {
     "yScFill": 0.38
   }

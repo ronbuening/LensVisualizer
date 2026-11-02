@@ -21,7 +21,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * sd: the patent prints none. Estimated from Fig. 1 at 10.42 px/mm and floor-checked by real-ray trace, with one height
  * per element as drawn. Fig. 1 reads L1 25.9, L2 25.8, L3 25.5, L4 15.4, L5 11.65 and L6 12.9 mm. L3 and L4 sit at those
- * readings. L1, L2, L5 and L6 sit 0.2 to 0.6 mm above them, because taking them to the figure would lower corner
+ * readings. L1, L2, L5 and L6 sit 0.1 to 0.6 mm above them, because taking them to the figure would lower corner
  * illumination from 75 % to 71 %. They are inferred, not factory apertures.
  *
  * Focus: the patent prints no focus mechanism or close-focus data. Geometry is static at infinity; closeFocusM is the
@@ -72,7 +72,7 @@ const LENS_DATA = {
       "Satoru Tachihara"
     ],
     "assignees": [
-      "Asahi Optical Co., Ltd."
+      "Asahi Kogaku Kogyo Co., Ltd."
     ]
   },
   "elements": [
@@ -86,7 +86,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 145.92203627488792,
-      "role": "Weak positive front element; the patent keeps its power low to limit aberrations at the start of the system."
+      "role": "Front positive element with a nearly flat rear face; the patent keeps its power relatively small to limit aberrations at the start of the system."
     },
     {
       "id": 2,
@@ -154,27 +154,27 @@ const LENS_DATA = {
       "label": "1",
       "R": 71.812,
       "d": 6.32,
-      "sd": 26.5,
+      "sd": 26.49,
       "medium": 1
     },
     {
       "label": "2",
       "R": 1486.004,
       "d": 2.02,
-      "sd": 26.5
+      "sd": 26.49
     },
     {
       "label": "3",
       "R": -391.918,
       "d": 2.26,
-      "sd": 26.0,
+      "sd": 25.94,
       "medium": 2
     },
     {
       "label": "4",
       "R": 230.806,
       "d": 0.1,
-      "sd": 26.0
+      "sd": 25.94
     },
     {
       "label": "5",

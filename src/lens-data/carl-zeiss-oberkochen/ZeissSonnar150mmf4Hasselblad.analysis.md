@@ -39,19 +39,19 @@ Third-party listings date the C version to 1957, T* coating to 1973–74, the CF
 
 ## Optical Architecture
 
-Example III is a Sonnar form of five spherical elements in three components. The patent specifies an uncemented collective meniscus convex to the object, a dispersive middle component concave to the diaphragm, and a collective rear component. The middle and rear components are each a cemented pair of opposite powers. There are no aspherical surfaces.
+Example III is a Sonnar form of five spherical elements in three components. The patent specifies an uncemented collective meniscus convex to the object, a dispersive middle component concave to the diaphragm, and a collective rear component. The middle and rear components are each a cemented pair of opposite powers. There are no aspherical surfaces. The element names LI to LV are the patent's own, from its tables and drawings.
 
 | Component | Elements | In-air f (mm) | Role |
 | --- | --- | --- | --- |
-| Front | L1 | +160.77 | Positive meniscus, 0.25 mm ahead of the middle component |
-| Middle | L2 + L3 | −169.56 | Negative meniscus, 30.93 mm ahead of the rear component |
-| Rear | L4 + L5 | +149.65 | Positive pair with a collective cement surface |
+| Front | LI | +160.77 | Positive meniscus, 0.25 mm ahead of the middle component |
+| Middle | LII + LIII | −169.56 | Negative meniscus, 30.93 mm ahead of the rear component |
+| Rear | LIV + LV | +149.65 | Positive pair with a collective cement surface |
 
 The total length from first vertex to image is 162.84 mm, 1.08 times the focal length, so the design is not a telephoto in the strict sense.
 
-The patent prints no stop position. It requires the diaphragm directly behind the middle component, and Fig. 3 draws it in the air space l2 at 60.2 % of the way from L3 to L4 (z 48.07 mm). The model places it at 60 %, z 47.99 mm. The sheet pupils imply a stop nearer 51–55 % of l2 (z 45.2–46.4 mm). This is a further sign that production differs from the example, but the figure is kept.
+The patent prints no stop position. It requires the diaphragm directly behind the middle component, and Fig. 3 draws it in the air space l2 at 60.2 % of the way from LIII to LIV (z 48.07 mm). The model places it at 60 %, z 47.99 mm. The sheet pupils imply a stop nearer 51–55 % of l2 (z 45.2–46.4 mm). This is a further sign that production differs from the example, but the figure is kept.
 
-The patent prints no clear apertures. The semi-diameters are estimated from Fig. 3: S1/S2 22.6, S3/S4 19.2, S6 15.1, S7 16.5 and S8 19.7 mm. The figure's arcs give a scale 3.6 % smaller across the axis than along it, which leaves S1/S2, S3/S4, S7 and S8 up to 3.3 % under the drawing, within the reading noise. S5 is 12.771 mm, inside the figure's 12.1–12.9 mm band.
+The patent prints no clear apertures. The semi-diameters are estimated from Fig. 3: S1/S2 22.6, S3/S4 19.2, S6 15.1, S7 16.5 and S8 19.7 mm. The figure's arcs give a scale 3.6 % smaller across the axis than along it, which leaves S1/S2, S3/S4, S7 and S8 up to 3.3 % under the drawing, within the reading noise. S5 is 12.771 mm, at the top of the figure's 11.6–12.9 mm band, because the f/4 beam needs that height.
 
 At f/4 the axial beam passes every rim. S5 is the tight point: the marginal ray reaches 12.59 mm there, a margin of 0.18 mm. The next smallest margin is 1.82 mm at S3.
 
@@ -73,35 +73,35 @@ Claim 1 sets three conditions, which the patent ties to reducing coma and astigm
 
 ## Element-by-Element Analysis
 
-### L1 — Positive Meniscus, convex to object
+### LI — Positive Meniscus, convex to object
 
 nd = 1.66672, νd = 48.4. Glass: BAF11 (Sumita, coordinate equivalent; supplier not established). f = +160.77 mm.
 
-L1 is the uncemented front component the patent requires. Its rear face lies 0.25 mm from L2, so the two nearly touch. Fig. 3 draws both faces running to a square rim.
+LI is the uncemented front component the patent requires. Its rear face lies 0.25 mm from LII, so the two nearly touch. Fig. 3 draws both faces running to a square rim.
 
-### L2 — Biconvex Positive, Middle Cemented Pair
+### LII — Biconvex Positive, Middle Cemented Pair
 
 nd = 1.62041, νd = 60.3. Glass: SK16 (Schott, coordinate equivalent; supplier not established). f = +52.04 mm.
 
-L2 is the thick crown of the middle component. Its junction with L3 is almost flat (R −433 mm) and carries the smallest printed power, Δn/r = −0.036/f. The junction therefore separates the two glasses with little refraction of its own.
+LII is the thick crown of the middle component. Its junction with LIII is almost flat (R −433 mm) and carries the smallest printed power, Δn/r = −0.036/f. The junction therefore separates the two glasses with little refraction of its own.
 
-### L3 — Biconcave Negative, Middle Cemented Pair
+### LIII — Biconcave Negative, Middle Cemented Pair
 
-nd = 1.72342, νd = 38.0. Glass: S-BAH28 (Ohara catalog equivalent; production supplier unspecified). f = −31.80 mm.
+nd = 1.72342, νd = 38.0. Glass: BASF8 (Sumita, coordinate equivalent; supplier not established). f = −31.80 mm.
 
 The rear face S5 (R 24.35 mm) carries the strongest printed power, Δn/r = −4.492/f, and makes the middle component a dispersive meniscus concave to the stop. Fig. 3 ends the curved face at a flat rim land. The model draws it at z 33.05 mm, from the 12.77 mm clear radius out to the 19.2 mm rim, and leaves out the figure's small chamfer at the outer corner.
 
-### L4 — Biconvex Positive, Rear Cemented Pair
+### LIV — Biconvex Positive, Rear Cemented Pair
 
 nd = 1.70154, νd = 41.1. Glass: BASF7 (Sumita, coordinate equivalent; supplier not established). f = +35.59 mm.
 
-L4 has a nearly flat front face (R +530 mm) and a strongly curved rear face. That rear face is the cement surface the claims govern: collective and concave to the diaphragm, with Δn/r = +0.583/f. Fig. 3 cuts L4 square, with a slightly rounded front corner. S6 clears 15.1 mm, and a flat land carries the face out to the 16.5 mm rim of S7.
+LIV has a nearly flat front face (R +530 mm) and a strongly curved rear face. That rear face is the cement surface the claims govern: collective and concave to the diaphragm, with Δn/r = +0.583/f. Fig. 3 cuts LIV square, with a slightly rounded front corner. S6 clears 15.1 mm, and a flat land carries the face out to the 16.5 mm rim of S7.
 
-### L5 — Negative Meniscus, Rear Cemented Pair
+### LV — Negative Meniscus, Rear Cemented Pair
 
 nd = 1.60140, νd = 38.3. Glass: F5 as a coordinate proxy; no catalog row sits at the printed values. f = −46.94 mm.
 
-L5 closes the rear component with a nearly flat rear face (R −375 mm) and is the larger element of the pair. The cement surface works mainly through the index step of 0.100, since νd is 41.1 on one side and 38.3 on the other. L5's focal length assumes air on both faces, as do the other cemented elements' values. Fig. 3 draws a 45° chamfer from the L4 rim up to a flat 19.7 mm rim. A cemented face takes no land in the model, so one straight edge joins the S7 and S8 rims and falls up to 2.7 mm under the drawn outline at the top of the chamfer.
+LV closes the rear component with a nearly flat rear face (R −375 mm) and is the larger element of the pair. The cement surface works mainly through the index step of 0.100, since νd is 41.1 on one side and 38.3 on the other. LV's focal length assumes air on both faces, as do the other cemented elements' values. Fig. 3 draws a 45° chamfer from the LIV rim up to a flat 19.7 mm rim. A cemented face takes no land in the model, so one straight edge joins the S7 and S8 rims and falls up to 2.7 mm under the drawn outline at the top of the chamfer.
 
 ## Glass Identification and Selection
 
@@ -109,13 +109,13 @@ The patent prints nd at the d-line and V, with no glass names. The catalog names
 
 | Element | nd | νd | Catalog equivalent |
 | --- | --- | --- | --- |
-| L1 | 1.66672 | 48.4 | BAF11 (Sumita) |
-| L2 | 1.62041 | 60.3 | SK16 (Schott) |
-| L3 | 1.72342 | 38.0 | S-BAH28 (Ohara) |
-| L4 | 1.70154 | 41.1 | BASF7 (Sumita) |
-| L5 | 1.60140 | 38.3 | F5 (Schott), coordinate proxy |
+| LI | 1.66672 | 48.4 | BAF11 (Sumita) |
+| LII | 1.62041 | 60.3 | SK16 (Schott) |
+| LIII | 1.72342 | 38.0 | BASF8 (Sumita) |
+| LIV | 1.70154 | 41.1 | BASF7 (Sumita) |
+| LV | 1.60140 | 38.3 | F5 (Schott), coordinate proxy |
 
-The nearest catalog glass to L5 is F5, at 1.60342/38.03, which Example II uses in this position. The coordinate in Example III is not a misprinted F5: the printed Δn/r values at r7 and r8 (+0.582802 and +0.242493) recompute exactly from 1.60140. The model therefore keeps the printed index and borrows F5's dispersion curve as a proxy.
+The nearest catalog glass to LV is F5, at 1.60342/38.03, which Example II uses in this position. The coordinate in Example III is not a misprinted F5: the printed Δn/r values at r7 and r8 (+0.582802 and +0.242493) recompute exactly from 1.60140. The model therefore keeps the printed index and borrows F5's dispersion curve as a proxy.
 
 ## Focus Mechanism
 

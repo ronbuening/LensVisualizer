@@ -107,3 +107,78 @@ was fitted to it. The live page shows the flat S5 land, the square L4 and the sl
 
 Open: the L5 chamfer and flat rim need a land on a cemented face, which the validator refuses. The model draws them only if the
 engine gains that.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+Compared: the local page at 1× and 3× device scale, at infinity and with `focus=1`, against `patents/US2720140.pdf` page 1,
+Fig. 3, rendered at 3× native, with the Sonnar T* section on the Zeiss sheet as a check. The sections above use L1 to L5 for
+the elements now named LI to LV.
+
+Prescription: Example III in col. 2 and claim 4 were re-read, and all 8 radii, 7 spacings and 5 nd/V pairs agree at ×151.2. A
+separate spherical trace written from the printed table gives EFL 151.1992 mm, back focus 81.0194 mm, the five element focal
+lengths and the component values +160.77 / −169.56 / +149.65 mm. All match the file.
+
+Figure, re-measured in native pixels at ink centres with the axis at row 2145.5. Vertex columns are S1 816.5, S2 878.5, S3 886,
+S4 972, S5 986, S6 1152 and S8 1268.4, which gives 5.523 px/mm over the track. The stop ticks sit at column 1086.75, 60.7 % of
+l2, within about a pixel of the figure value already quoted and of the model's 60 %. The drawn S2–S3 gap is 1.4 mm against
+0.25 mm, so the middle component sits about 1.3 mm right of the model; no rim is involved. S1 and S3 rim sags give 5.2 px/mm
+across the axis, a little under the first pass's arc fit of 5.33. At those scales 22.6 and 19.2 mm sit 3–5 % under the drawing,
+inside the reading noise.
+
+Every rim, against the baseline `.lens-work/base1102/ZeissSonnar150mmf4_S5Alternative.data.ts`. No face sits below baseline, so
+there are no cuts to judge. The cost column is the light lost against baseline at the worst field.
+
+| Face | Figure, px | At 5.52 / 5.33 px/mm | Baseline | Final | Cost, points | Verdict |
+| --- | --- | --- | ---: | ---: | ---: | --- |
+| S1/S2 | 124.5 | 22.5 / 23.4 | 20.79 | 22.6 | 0.0 | Raise stays: figure |
+| S3/S4 | 105 | 19.0 / 19.7 | 17.46 | 19.2 | 0.0 | Raise stays: figure |
+| S5 cap | 62–66 high | 11.2–12.0 / 11.6–12.4 | 12.771 | 12.771 | 0.0 | At baseline, above the figure |
+| S5 land | 105 at the rim | 19.0 / 19.7 | none | 19.2 | 0.0 | Keep: slight |
+| S6 cap | 80–85 | 14.5–15.4 / 15.0–15.9 | 13.93 | 15.1 | 0.0 | Raise stays: figure |
+| S6 land | 89 at the rim | 16.1 / 16.7 | none | 16.5 | 0.0 | Keep: slight |
+| S7 | 89 | 16.1 / 16.7 | 14.55 | 16.5 | 0.0 | Raise stays: figure |
+| S8 | 108.75 | 19.7 / 20.4 | 17.88 | 19.7 | 0.0 | Raise stays: figure |
+
+S5: the land stands 18.5 ± 1 px behind the vertex, a sag of 3.35 mm and a cap end of 12.0–12.6 mm by that route, against the
+first pass's 19.3 px and 12.2–12.9 mm. The two readings together span 11.6–12.9 mm, and the header and analysis now quote that
+band. The value stays 12.771 mm: it is the baseline, the f/4 ray reaches 12.59 mm, and the remaining gap is reading noise.
+
+Light: `rimcost.mjs` gives 100.0 / 93.1 / 86.0 / 78.6 / 68.3 / 55.1 / 40.0 % on baseline rims and 100.0 / 96.3 / 91.3 / 86.5 /
+80.0 / 70.3 / 57.3 % on the file, at 0 / 2.3 / 4.7 / 7 / 9.3 / 11.7 / 14°. The worst loss is 0.0 points and the best gain 17.3
+points at 14°. Taking both lands off changes none of the seven values, so they only redraw the rims and cost nothing. S6 at
+16.5 mm with no land would give 59.3 % at 14°, but the figure ends the straight S6 at 15.9 mm at most, so that gain was not taken.
+Opening S1 alone gives 60.2 %, S6 alone 59.3 %, S3 or S5 alone nothing, S1 with S3 66.1 % and S1, S3 and S5 together 83.5 %.
+Opening S7 to 17.5 mm or S8 to 23 mm changes nothing. Raising S5 alone clears 2.3° to 100.0 %. The separate trace puts 3.0 % of
+the 14° bundle past the S7 rim. The analysis's limiter statements stand.
+
+Silhouette: no `sd` changed. The rendered and drawn heights agree in order and proportion, LI, LV, middle, LIV at 1 / 0.872 /
+0.850 / 0.730 against 1 / 0.873 / 0.843 / 0.715, and the overlay at the axial scale runs on the drawn rims of LI, the middle
+pair, LIV and LV. The S5 land reads like Fig. 3 except for the 2.2 × 1.6 mm chamfer at its outer corner: the drawn rim runs
+flat for 70 px of its 82 px, so the flat rim to 19.2 mm is the better fit of the two shapes the engine offers. LIV is square,
+without the figure's corner radius of about 1 mm. LV keeps the one visible difference: the figure rises 45° from the LIV rim to
+19.7 mm at column 1192 and then runs flat, and the model's straight edge is 2.7 mm under at that point. `rimExtensionSd` is
+refused on a cemented interface, and raising S7 would lift LIV over its drawn rim, so the Open line above stands.
+
+Maker drawing, viewed as a check: same order and counts, no aspherical surface or special glass marked, and the same S5 land and
+LV chamfer. Its taller LII with a step at the cement is not in Fig. 3, which governs. No `apd` tag is warranted: the patent prints
+no special glass and the sheet marks none.
+
+Labels:
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| Element `name` | L1 to L5 | LI to LV | Patent tables, claims ("LI to LV refer to the lens elements") and Fig. 3 |
+| Element `diagramLabel` | none, so 1 to 5 | LI to LV | Same; matches `ZeissTeleTessar500mmf8C` |
+
+Checked and left: `groups` FRONT 1–2, MIDDLE 3–5, REAR 6–8 are the patent's front, middle and rear components. `doublets` C1 3–5
+and C2 6–8 hold the cements r4 and r7, and no bracket collides with the patent's d1 to d5. Surface labels 1 to 8 are r1 to r8.
+`elementCount` 5 and `groupCount` 3 match "five lenses … combined into 3 components". Every `type` agrees with the signs of R,
+every `role` is true, the stop sits in l2 between LIII and LIV, and all five `focalLengthMm` values show in the inspector.
+
+Movement: the patent has no zoom and no paragraph on focusing, so there is nothing to quote and `focus.description` rightly says
+it prints no focus data. The slider is disabled, reads ∞ with a "Not modeled" far end, and a URL with `focus=1` leaves the diagram
+and the readout at infinity. The movement dialog says the lens has no modeled focus or zoom group movement.
+
+Engine half field 14°, f/4.00 and stop radius 11.915 mm are unchanged. `audit:surface` prints OK, the image-circle audit reports
+nothing undersized, field coverage stays 96 % at the declared 14°, and the trace shows no axial clip or blocked chief ray. All five
+`glass` labels resolve; the patent gives only nd and V, so LV's proxy can gain nothing further from it.

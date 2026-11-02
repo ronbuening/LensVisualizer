@@ -41,7 +41,7 @@ The patent's aim is a telephoto ratio of 0.75 from common glass. It notes that C
 
 nd = 1.48749, νd = 70.1. Glass: S-FSL5 (OHARA, catalog equivalent; the patent names FK5). f = +120.1 mm.
 
-The biconvex first component carries most of the front group's positive power, with its stronger curvature facing the object. The air lens between r2 and L2's r3 is the subject of condition (1), which the patent ties to chromatic aberration and meridional field curvature. The width of that air space, d2, is condition (3), which governs spherical aberration.
+The biconvex first component is the front group's only positive element, with its stronger curvature facing the object. The air lens between r2 and L2's r3 is the subject of condition (1), which the patent ties to chromatic aberration and meridional field curvature. The width of that air space, d2, is condition (3), which governs spherical aberration.
 
 ### L2 — Negative Meniscus
 
@@ -49,7 +49,7 @@ nd = 1.7495, νd = 35.2. Glass: J-LAF7 (HIKARI, catalog equivalent; the patent n
 
 This high-index negative meniscus is concave to the object. Strengthening L1 leaves spherical aberration undercorrected, and the patent answers that through condition (5): keeping |f3| greater than |f2| raises L2's diverging power, which corrects it.
 
-### L3 — Plano-concave Negative
+### L3 — Plano-Concave Negative
 
 nd = 1.5927, νd = 35.6. Glass: FF5 (HOYA, catalog equivalent; the patent names F16). f = −1163.5 mm.
 
@@ -85,7 +85,7 @@ Every equivalent matches the printed index. L3 has the largest νd difference, 0
 
 ## Focus Mechanism
 
-The model uses unit focus: the whole lens moves forward and only the back focus changes, with the stop fixed in the lens. The patent prints no focus travel and does not describe the focusing method. It gives aberration curves at 1/10× in Figs. 5a–5c, and extending Example 1 as a unit reproduces them, so unit focus is inferred from that agreement.
+The model uses unit focus: the whole lens moves forward and only the back focus changes, with the stop fixed in the lens. The patent prints no focus travel and does not describe the focusing method. It gives aberration curves at 1/10× in Figs. 5a–5c, and extending Example 1 as a unit reproduces them, so unit focus is inferred from that agreement. The 1973 catalogue page gives the focusing as a straight helicoid, which fits a lens that extends as a unit but does not say which elements move.
 
 | At 1/10× | Fig. 5 (read from plot) | Traced, unit focus |
 | --- | --- | --- |

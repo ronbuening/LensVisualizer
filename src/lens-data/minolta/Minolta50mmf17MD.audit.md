@@ -110,3 +110,84 @@ Read at 12.6 px/mm from its S1–S11 span, at which its stop marks give about 10
 ### Limits
 
 The chamfers on L3 and L4 are drawn as square corners. S8 is a cemented face and takes no land, so one straight edge joins the S8 and S9 rims, where the figure has L5 stepped about 0.4 mm past L4.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+Compared the local page at infinity and at 0.45 m, the focus motion overlay and all six element inspectors with `patents/JPS60111215A.pdf`: Figure 2 and Figure 1 (PDF p. 6), the taking-lens table (PDF p. 4) and the text (PDF pp. 2 and 5). Figure 1 is a schematic of the master lens and converter, so Figure 2 is the only section of the master. The numbers below were re-measured from the 347 dpi page and do not reuse the earlier readings.
+
+### Figure 2, re-measured
+
+Eleven radii, ten spacings, six N/ν pairs, φM, FNo, 2ω and dM were re-read from a 300 dpi crop and match the file, including r11 = −43.293. The axial span S1–S11 runs from x = 699 to 1189 px, or 14.34 px/mm. Arc fits with the axial scale fixed give 13.2, 13.5, 13.65, 13.9, 13.7 and 13.55 px/mm radially on S1, S3, S6, S7, S9 and S11, mean 13.6, with residuals of 0.3–0.8 px. Both agree with the earlier section. Heights are half the distance between the top and bottom line centres, read at 14.0–13.6 px/mm.
+
+| Feature | Half height, px | Reading, mm | Model, mm |
+|---|---|---|---|
+| L1 top | 220.5 | 15.75–16.21 | 16.4 |
+| L2 top | 190.5 | 13.61–14.01 | 14.0 |
+| L3 top | 174.5 | 12.46–12.83 | 12.7 |
+| S6 curve end | 150 | 10.71–11.03 | 11.0 |
+| S7 curve end | 145 | 10.36–10.66 | 10.8 |
+| L4 top | 164 | 11.71–12.06 | 11.9 |
+| L5 top | 170.25 | 12.16–12.52 | 12.3 |
+| L6 top | 168.5 | 12.04–12.39 | 12.3 |
+
+Edge widths, which need only the axial scale, read L1 16.4–16.75 mm (20.5 px), L2 14.2–14.4 mm, L5 12.0–12.6 mm and L6 12.0–12.6 mm. L1's 16.4 mm sits between its height and width readings, and the arc fit local to S1 (13.2 px/mm) reads 16.7 mm, so L1 stays. The drawn height order L1 > L2 > L3 > L5 > L6 > L4 > S6 > S7 is kept, with L5 and L6 equal at 12.3 mm where the figure separates them by 1.75 px; L6 cannot drop to 12.2 mm because S10 needs 12.21 mm at closest focus.
+
+The iris marks are centred at x = 961.5 px, z = 18.36 mm, with inner and outer edges at 138.5 and 151 px, or 9.9–11.1 mm. The model's z = 18.4 mm and 10.355 mm fit, between S6 and S7.
+
+### Change
+
+| Face | Field | Before | After | Evidence |
+|---|---|---|---|---|
+| S8 | `sd` | 11.7 | 11.9 | L4's drawn top, 164 px |
+| S7 | `rimExtensionSd` | 11.7 | 11.9 | The same flat top, kept level with S8 |
+
+At the 13.6 px/mm the arcs give, every other rim lies within 2 % of the figure and L4 at 11.7 mm lay 3.0 % under it, drawn low with the L5 step at 0.6 mm against the drawn 0.45 mm. At 11.9 mm the step is 0.4 mm and the overlay puts L4's flat top on the drawn line. Transmission moves only at 2.9°, from 99.8 % to 99.9 %, so no light drove the change. S7's clear radius is unchanged. The validator passes with no `gapSagFrac` change.
+
+### Lands and cuts
+
+The file holds two cuts and two lands against the package baseline, and no `rimCutDepthMm`. Costs are against baseline rims, wide open at infinity, with each item restored in turn.
+
+| Face | Kind | Figure 2 | Baseline | Final | Light it costs | Verdict |
+|---|---|---|---|---|---|---|
+| S3 | Cut | 13.6–14.0 | 15.6 | 14.0 | 0.0 points at every field | Keep: slight |
+| S6 | Cut | 10.7–11.0 | 12.1 | 11.0 | 0.0 points at every field | Keep: slight |
+| S6 | Land | 12.5–12.8 | none | 12.7 | 0.0 points, no trace effect | Keep: slight |
+| S7 | Land | 11.7–12.1 | none | 11.9 | 0.0 points, no trace effect | Keep: slight |
+
+Restoring S3 and S6 together and removing both lands leaves the curve unchanged to 0.1 point. Neither restore is refused by the validator, so none of the four rests on spacing. S7's own clear radius is the baseline's 10.8 mm, so that land carries no cut under it.
+
+| Transmission % at | 0° | 2.9° | 5.7° | 8.6° | 11.4° | 14.3° | 17.1° | 19.9° | 22.8° |
+|---|---|---|---|---|---|---|---|---|---|
+| Baseline rims | 95.2 | 95.0 | 91.0 | 84.0 | 75.1 | 66.3 | 55.5 | 44.4 | 32.2 |
+| Before this review | 100.0 | 99.8 | 96.1 | 89.3 | 81.2 | 71.6 | 60.6 | 48.9 | 36.2 |
+| Final | 100.0 | 99.9 | 96.1 | 89.3 | 81.2 | 71.6 | 60.6 | 48.9 | 36.2 |
+
+The final `rimcost.mjs` worst loss is −4.0 points at 22.8°: the file beats the baseline at every field, by 4.0–6.1 points. Trial rims show S1 and S11 as the only corner limiters: 1 mm more on S1 adds 2.3 points at 22.8° and on S11 adds 1.1, and no other face adds any. S2, S4 and S8–S11 stay above baseline on figure support, and S9–S11 need it for the axial beam at closest focus.
+
+### Closest focus at f/1.73
+
+A plain Snell trace of the printed table, outside the engine, and the engine's own state agree to 0.001 mm. The ray to the 10.355 mm iris rim, from the axial object 371.45 mm ahead of S1:
+
+| Surface | S7 | S8 | S9 | S10 | S11 |
+|---|---|---|---|---|---|
+| Ray height, mm | 10.308 | 11.692 | 12.176 | 12.211 | 12.204 |
+| Rim, mm | 10.8 | 11.9 | 12.3 | 12.3 | 12.3 |
+| Margin, mm | 0.492 | 0.208 | 0.124 | 0.089 | 0.096 |
+
+The earlier 0.008 mm at S8 was a real clearance, not a clip: the engine's lattice passed 100.0 % on axis at 11.7 mm too. The margin is now 0.208 mm and S10 is the tightest face. The engine reads 100.0 % on axis at focus 0, 0.5, 0.9 and 1, and 46.3 % at 20.5° at closest focus. The app's on-axis fan stops at ±0.83 of the pupil, so its drawn rays never reach these rims. A launch at the full infinity pupil with the focus-tracking slope lands outside the iris at closest focus, so the rim ray above is the right test.
+
+### Labels, tags and text found correct
+
+The master lens has no L designations of its own. PDF p. 6 and Figure 3 use L1–L5 for the converter's groups, and Figure 2 labels only r and d, so the file's sequential L1–L6 follow N1–N6 with no clash inside the modeled lens. Site elements 1–6 map to r1–r2, r3–r4, r5–r6, r7–r8, r8–r9 and r10–r11, and surface labels 1–11 equal r1–r11 with STO added inside d6. C1 runs S7–S9, the pair the table joins with no air gap at r8 and Figure 2 draws in contact; the inspector shows DOUBLET C1 on L4 and L5, and the bracket text sits over the pair. The patent names no groups for the master, so `groups` stays absent.
+
+`type` agrees with R on all six. L1 (+38.987, +286.604), L2 (+21.179, +36.272) and L3 (+64.979, +15.531) are menisci convex to the object, the first two positive at +62.18 and +66.52 mm and L3 negative at −30.70 mm. L4 (−17.213, +66.165) is biconcave; L5 (+66.165, −23.831) and L6 (+374.955, −43.293) are biconvex. Every element shows a focal length in the inspector, and all six match the probe. Every `role` is true.
+
+There are no aspheric surfaces and no `apd` tags, which is correct. The patent names no special glass. The Lens QA Works section marks none either: its yellow fills the right half of every element, and it is a third-party drawing with the same six elements in the same order. L6's Unmatched label has no further identification available: PDF p. 4 prints only N6 = 1.7810 and ν6 = 44.55, with no name, other line index or partial dispersion.
+
+### Movement
+
+Unit focus is right in order, direction and amount. `gaps["11"]` lists 36.883734 mm for infinity first and 44.533734 mm for closest focus last, a difference of the printed dM = 7.65 mm (PDF p. 4). PDF p. 2 calls the taking lens 全体繰り出しタイプ, and PDF p. 5 defines dM as its extension; Figure 1(b) draws M moved toward the object by dM with F fixed. On the page, all five air-spaced units move 7.65 mm in parallel away from the fixed image plane, BF reads 36.88 then 44.53, and the far slider label and the readout at focus = 1 both read 45 cm. The probe gives 450.17 mm object to image at 1:6.73. EFL 51.498 mm, f/1.73, half-field 22.8°, stop radius 10.355 mm and tracing half-field 27.96° are unchanged, and the image-circle, field-coverage and aperture audits pass as before.
+
+### Limits
+
+The renderer's land is vertical, so the chamfers on L3 and L4 stay square corners, about 1.1–1.9 mm on L3 and 0.8–1.5 mm on L4 in the figure. L5's flat top remains a slanted edge, 0.4 mm of rise over 1.9 mm, because S8 is cemented. S7 stays 1–4 % above its curve-end reading at the baseline 10.8 mm. A trial at 10.5 mm costs no light and passes the validator, but the gap is inside the measurement noise, so no new cut was added.
