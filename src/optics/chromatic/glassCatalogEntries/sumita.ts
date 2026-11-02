@@ -275,6 +275,15 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for BASF7.",
   },
   {
+    name: "BASF8",
+    vendor: "Sumita",
+    polynomial: [2.889701, -0.01208184, 0.02566377, 0.001430391, -0.00009480902, 0.00000875721],
+    nd: 1.72342,
+    vd: 38.0,
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for BASF8.",
+  },
+  {
     name: "SK5",
     vendor: "Sumita",
     polynomial: [2.487388, -0.01016267, 0.01379582, 0.0001800715, -0.000002130549, 0.0000005629257],
