@@ -94,7 +94,23 @@ jobs:
           node-version: "24.15.0"
           cache: npm
       - run: npm ci
-      - run: npm run test -- --project "${{ matrix.first }}" --project "${{ matrix.second }}"
+      # Every lens's beam search depends only on its own data and the code it imports. A pull request that changes
+      # neither (Vitest's --changed follows the import graph, including the catalog glob) skips the corpus; pushes,
+      # and pull requests touching dependencies, configs or this workflow, which that graph does not see, run all of it.
+      - name: Run the rim-cut corpus
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.base_ref }}
+          FIRST: ${{ matrix.first }}
+          SECOND: ${{ matrix.second }}
+        run: |
+          args=(--project "$FIRST" --project "$SECOND")
+          if [ "$EVENT" = pull_request ]; then
+            changed=$(git diff --name-only "origin/$BASE...HEAD")
+            unseen='^(package(-lock)?\.json|vite\.config\.js|vitest\.[a-z]+\.config\.js|tsconfig[^/]*\.json|\.github/workflows/quality\.yml)$'
+            if ! grep -qE "$unseen" <<<"$changed"; then args+=(--changed "origin/$BASE" --passWithNoTests); fi
+          fi
+          npm run test -- "${args[@]}"
 
   test-tooling:
     runs-on: ubuntu-latest
@@ -136,9 +152,9 @@ jobs:
       - run: npm ci
       - run: npm run audit:dependencies
 
+  # Runs beside the checks rather than after them: deploy.yml already waits for this whole workflow to pass on main.
   build:
     runs-on: ubuntu-latest
-    needs: [lint-format, typecheck, test, audit]
     steps:
       - uses: actions/checkout@v4
         with:
