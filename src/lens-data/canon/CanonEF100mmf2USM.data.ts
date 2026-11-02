@@ -276,7 +276,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.9,
     description:
-      "Inner focus, which Canon calls rear focusing: group 2 moves toward the image while the stop and groups 1 and 3 stay put. The patent prints D9 and D12 only at infinity (2.66 and 24.99 mm). The near gaps here are solved, not printed: at Canon's 0.9 m minimum focus, D9 is 16.487 mm and D12 is 11.163 mm, a 13.83 mm stroke at 0.139× (Canon states 0.14×). The same solve at 1 m, measured from the image plane, gives f/2.27 and +2.8% distortion at 12°, against f/2.3 and about +2.8% in the patent's Fig. 4(B).",
+      "Inner focus, which Canon calls rear focusing: group 2 moves toward the image while the stop and groups 1 and 3 stay put. The patent prints D9 and D12 only at infinity (2.66 and 24.99 mm). The near gaps here are solved, not printed: at Canon's 0.9 m minimum focus, D9 is 16.487 mm and D12 is 11.163 mm, a 13.83 mm stroke at 0.139× (Canon states 0.14×). The same solve at 1 m, measured from the image plane, gives f/2.27 and +2.8% distortion at 21.3 mm image height, against f/2.3 and about +2.8% at the top of the patent's Fig. 4(B).",
   },
   gaps: {
     STO: { label: "D9", values: [[2.66, 16.487]] },

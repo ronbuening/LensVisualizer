@@ -68,3 +68,59 @@ Surface 11 is a cemented junction, which takes no land or extension, so L6's dra
 **Maker drawing.** Canon Camera Museum section, 276×251 px, about 2.47 px/mm: 8 elements, 6 groups, same order, negative-first rear doublet; L1 28.5, L2 25.2, L3 22.3, L4 19.2 to 20.6 (stepped), land start 15.8, L5 14.8, L6 13.7, L7 and L8 about 17.8 mm. It agrees with the patent on L5 above L6 and on a land near 16 mm. It disagrees on group 3, about 1.4 mm taller than Fig. 1 with no step, and it draws a stepped L4 rim the patent does not. It marks no special glass or aspherical element. The stored rims of L1, L3 and L4 lie between the two drawings; L2 is above both. Rims were not fitted to it.
 
 **Limitations.** The rims of L1 to L4 and of the rear doublet stay 0.65 to 1.06 mm outside the figure; moving every rim to the figure costs 9.3 points at 10.1°. The overlay and the live renders at infinity and 0.9 m match the figure in order and proportion.
+
+## 2026-11-02 — Second review: diagram, labels and movement
+
+**Compared.** The local page at infinity and 0.9 m, both `mv=focus` overlays and the inspector for L4 and L6, against the table (pp. 3–4), ¶0008 to ¶0022, Fig. 1 (p. 5), Fig. 4 (p. 6), the front page and Canon's section. The table reads as stored, 15 R, 14 D, 8 N, 8 ν. Front page: Hiroshi Endo, Canon, filed 1991-02-07, published 1992-09-10.
+
+**Rims.** No rim changed. Re-measured from the raw 2866×3895 raster at 8.546 px/mm, half the distance between top and bottom stroke centres: L1 26.80, L2 24.69, L3 21.56, L4 19.07, L5 14.71, L6 14.07, L7 16.18, L8 16.50 mm, within 0.06 mm of the first pass.
+
+| Surface | Kind | Fig. 1 | Baseline | Final | Light it costs, points | Verdict |
+| --- | --- | ---: | ---: | ---: | --- | --- |
+| 10, 11 | cut | 14.71 | 15.50 | 14.70 | with 12: 0.0 at infinity and mid focus, 0.2 at 8.6° at 0.9 m | keep: slight |
+| 12 | cut | 14.07 | 15.50 | 14.10 | counted with 10 and 11 | keep: slight |
+| 13 | cut | 16.18 | 17.25 | 17.00 | 0.7 at 8.1° at infinity, 0.3 at 9.3° mid focus, 0.0 at 0.9 m | keep: slight |
+| 8 | land, cut radius | 16.48 | 19.27 | 16.58 | 0.0 at all three states, against no land and against depth 9.0 | keep: slight, and both drawings show it |
+
+The final `rimcost.mjs` worst loss is 0.7 points at 8.1° at infinity, against a budget of 3; the worst at 0.9 m is 0.2. Corners at infinity, 8.1° / 10.1° / 12.2°, stay 86.7 / 68.5 / 46.0% against baseline 87.5 / 68.6 / 46.0%.
+
+**Surface 8 land.** It is not held by a spacing refusal. The surface validator accepts the file with the land deleted, and the iris sweep reads only the radii the iris reaches, up to 14.68 mm. Without the land the cap passes the stop plane by 0.585 mm above radius 19.27 mm. The land stays because it costs no light and Fig. 1 and Canon's section both draw it. The cap end reads 136 px on these strokes against 137 in the first pass, one native pixel, 16.48 against 16.57 mm, so depth 6.24 holds.
+
+**Rims above the figure.** Gaps are L1 +0.70, L2 +1.06, L3 +0.69, L4 +0.68, L7 +0.82, L8 +0.75 mm, at most 5.1%. Each step toward the figure costs light at once: 0.25 mm off L1, L2, L3 or L4 gives a worst loss of 1.1, 1.8, 0.9 or 0.7 points, and off the rear doublet 2.2, all counting surface 13's 0.7. The remaining 2.3 points stay unspent: order and proportions already match, and the gaps sit inside the noise a repaint needs to clear.
+
+**Cemented steps.** `elementShapes.ts` joins an element's front and rear rims with one edge, and a cemented face takes one height and no land. L6's flat top at 14.07 mm therefore renders as a slope from 14.70 to 14.10, and L7's as a slope from 17.00 to 17.25. Surface 11 at 14.1 would slope L5's square block; an extension on surface 12 would raise L6 level with L5 and lose the drawn order. Neither improves the picture.
+
+**Labels.** G1, G2 and G3 bracket surfaces 1–8, 10–12 and 13–15, the patent's groups 1, 2 and 3; the G avoids a clash with the element numbers under the diagram. C1 and C2 bracket the two cemented pairs and do not collide with D9 or D12, which appear only beside the slider. The patent has no L designators, only ordinals, so sequential L1 to L8 and the diagram's 1 to 8 agree without `diagramLabel`. All eight `type` strings follow the signs of R; all eight `role` strings are true against ¶0010 to ¶0014, and every `focalLengthMm` matches `probe.mjs`. The stop sits between L4 and L5 at the printed position. There are no aspheres. No `apd` tag is due: neither the patent nor Canon's section marks special glass.
+
+**Movement.** ¶0009 and the arrow under group 2 in Fig. 1, repeated on the front page, move group 2 toward the image from infinity to near. Keyframe 0 is the printed 2.66 and 24.99 mm, the last the solved 16.487 and 11.163 mm. D9 + D12 is 27.65 mm at both ends, so groups 1 and 3 stay fixed, and the stroke is 13.83 mm. `probe.mjs` gives 900.00 mm object to image at −0.1393×. The slider's far end reads 90 cm. The stop is fixed in the model and on the page; ¶0022 prefers one moving with group 2, but that gives an iris-limited f/1.91 at 1 m against the printed 2.3.
+
+**Colour.** The patent prints d and g only. Model values come from a separate exact trace at the paraxial pupil edge, 25.0 mm; plot values come from the raster at 227.5 px/mm from the local axis line, reading error about 0.02 mm. The model's C and F sit +0.142 and −0.128 mm from d paraxially at infinity, with nothing printed to compare.
+
+| State | Pupil | d, plot / model | g, plot / model | g−d, plot / model |
+| --- | ---: | --- | --- | --- |
+| Infinity | paraxial | 0 / 0 | about 0 / −0.012 | about 0 / −0.012 |
+| Infinity | 0.7 | −0.066 / −0.069 | about +0.01 / +0.011 | about +0.08 / +0.081 |
+| Infinity | top | +0.03 / +0.040 | +0.21 / +0.238 | +0.18 / +0.199 |
+| 1 m | paraxial | 0 / 0 | +0.09 / +0.098 | +0.09 / +0.098 |
+| 1 m | 0.7 | −0.20 / −0.198 | +0.062 / +0.061 | +0.26 / +0.258 |
+| 1 m | top | −0.17 / −0.173 | +0.30 / +0.295 | +0.475 / +0.468 |
+
+The worst difference is 0.03 mm, so TPH55 on L4 holds and no line needs an element named. The first pass's +0.481 and +0.45 at the top at 1 m came from another pupil edge and a coarser reading; the analysis now quotes +0.47 against +0.47.
+
+**Astigmatism and distortion.** Plot (A) reads by object angle and plot (B) by image height, top 21.26 mm.
+
+| Plot | Field | ΔS, plot / model | ΔM, plot / model | Distortion %, plot / model |
+| --- | ---: | --- | --- | --- |
+| A | 8° | −0.07 / −0.064 | −0.07 / −0.066 | +0.31 / +0.31 |
+| A | 10.5° | −0.042 / −0.040 | −0.108 / −0.056 | +0.46 / +0.47 |
+| A | 12° | +0.02 / +0.021 | −0.12 / −0.027 | +0.60 / +0.54 |
+| B | 0.5 | −0.09 / −0.082 | −0.146 / −0.140 | +0.73 / +0.70 |
+| B | 0.7 | −0.12 / −0.122 | −0.205 / −0.202 | +1.39 / +1.38 |
+| B | 0.9 | −0.116 / −0.109 | −0.172 / −0.166 | +2.30 / +2.27 |
+| B | top | −0.06 / −0.063 | −0.07 / −0.072 | +2.8 / +2.80 |
+
+Only ΔM in (A) past 10° differs, and it is not a data fault. At 12° surfaces 1 and 15 limit the bundle to stop heights −10.5 to +4.5 mm, and a ray at the middle of that, −3.0 mm, gives ΔM −0.127 and ΔS +0.01 mm, as plotted; the stop-centre chief ray gives the model's −0.027. The patent appears to plot the vignetted bundle's centre. In (B) a true 12° object angle gives +3.88% at 25.1 mm, off the plot, so "+2.8% at 12°" in `focus.description` and the analysis now reads at 21.3 mm image height.
+
+**Results.** Engine half-field 12.20° and f/2.000 before and after. The surface validator, image-circle floor and field coverage (100%) pass, with no `CLIPS-AXIAL` or `BLOCKS-CHIEF`. All eight glass labels resolve. The live page at infinity and 0.9 m matches Fig. 1 in order and proportion; the overlay and renders are in the session scratch folder, r2/canon100.
+
+**Limitations.** The cemented steps stay slopes. L1 to L4 and the rear doublet stay at the gaps above; Canon's section lies above Fig. 1 at L1, L3, L4 and the rear doublet, so those rims sit between the two drawings, while L2 stands above both. The near gaps remain solved, not printed. The vignetted-bundle reading of Fig. 4(A) is an inference from one field.

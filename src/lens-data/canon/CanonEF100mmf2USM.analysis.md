@@ -89,7 +89,7 @@ The table names no spectral line for N and ν. The patent's plots use the d and 
 | L4 | 1.75550 | 25.10 | TPH55 (OHARA) |
 | L5, L7 | 1.80518 | 25.40 | SF6 (Schott) |
 
-The model's g-line focus agrees with Fig. 4 within about 0.03 mm. At infinity g−d is −0.01 mm paraxially and +0.20 mm at the top of the pupil, against about 0 and +0.20 mm in the plot; at 1 m it is +0.10 and +0.48 mm against about +0.09 and +0.45 mm.
+The model's g-line focus agrees with Fig. 4 within about 0.03 mm. At infinity g−d is −0.01 mm paraxially and +0.20 mm at the top of the pupil, against about 0 and +0.20 mm in the plot; at 1 m it is +0.10 and +0.47 mm against about +0.09 and +0.47 mm.
 
 ## Focus Mechanism
 
@@ -104,7 +104,7 @@ The table marks D9 and D12 variable but prints only their infinity values. The n
 
 The stroke is 13.83 mm, and Canon states 0.14×. Positions between the two states are interpolated.
 
-Fig. 4(B) shows this example at an object distance of 1 m. The same solve, measured from the image plane, gives f/2.27, +2.81% distortion at 12° and a spherical-aberration peak of −0.22 mm; the plot reads f/2.3, about +2.8% and about −0.22 mm. ¶0022 also allows a stop that moves with group 2, but that would give about f/1.84 at 1 m, so the plot fits a fixed stop.
+Fig. 4(B) shows this example at an object distance of 1 m. Its field axis keeps the 12° label but follows image height: the top is 21.3 mm, about 10.3° of object angle at that distance. The same solve, measured from the image plane, gives f/2.27, +2.8% distortion at 21.3 mm and a spherical-aberration peak of −0.22 mm; the plot reads f/2.3, about +2.8% and about −0.22 mm. ¶0022 also allows a stop that moves with group 2, but that would give about f/1.84 at 1 m, so the plot fits a fixed stop.
 
 ## Geometry, Aperture and Image Plane
 
