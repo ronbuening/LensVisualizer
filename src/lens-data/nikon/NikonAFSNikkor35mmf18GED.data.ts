@@ -66,7 +66,7 @@ const LENS_DATA = {
       glass: "J-SF11 (Hikari catalog equivalent; production supplier unspecified)",
       focalLengthMm: 180.18072010024656,
       role: "Literal representative prescription; positive isolated-in-air paraxial power.",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 3,
@@ -79,7 +79,7 @@ const LENS_DATA = {
       glass: "J-SK5 (Hikari catalog equivalent; production supplier unspecified)",
       focalLengthMm: -62.56599013921317,
       role: "Literal representative prescription; negative isolated-in-air paraxial power.",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 4,
@@ -116,7 +116,7 @@ const LENS_DATA = {
       glass: "J-PSKH1 (Hikari catalog equivalent; production supplier unspecified)",
       focalLengthMm: 63.65859418459475,
       role: "Literal representative prescription; positive isolated-in-air paraxial power.",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 7,
@@ -129,7 +129,7 @@ const LENS_DATA = {
       glass: "E-FD5 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -25.82310894108929,
       role: "Literal representative prescription; negative isolated-in-air paraxial power.",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 8,
@@ -142,7 +142,7 @@ const LENS_DATA = {
       glass: "J-SF2 (Hikari catalog equivalent; production supplier unspecified)",
       focalLengthMm: -22.878779444239456,
       role: "Literal representative prescription; negative isolated-in-air paraxial power.",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 9,
@@ -155,7 +155,7 @@ const LENS_DATA = {
       glass: "J-LAK14 (Hikari catalog equivalent; production supplier unspecified)",
       focalLengthMm: 85.42911211146172,
       role: "Literal representative prescription; positive isolated-in-air paraxial power.",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 10,
@@ -240,7 +240,6 @@ const LENS_DATA = {
     {
       label: "7",
       R: -74.8089,
-      d: 9.215,
       sd: 17.75,
     },
     {
@@ -338,23 +337,22 @@ const LENS_DATA = {
     {
       label: "21",
       R: -44.4932,
-      d: 38.42,
       sd: 14.5,
     },
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "10",
       toSurface: "12",
     },
     {
-      text: "D3",
+      text: "C3",
       fromSurface: "14",
       toSurface: "16",
     },
@@ -365,9 +363,15 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.25,
+    keyframes: [0, 0.22032, 1],
     description:
-      "Source near beta=-1/30 and D7=8.063 mm refer to object D0=1019.325 mm, not retail0.25m. Rear-group motion would change the final gap at fixed sensor. This bounded file authors infinity D7=9.215 and printedBf38.42 only.",
+      "G1 stays fixed; G2 and the stop move objectward as one unit. Printed near state (β = −1/30): D0 = 1019.325 mm from the first surface, 1.135 m object-to-image, D7 = 8.063 mm; its BF of 39.572 mm is derived with G1 fixed to the image plane. The 0.25 m end is derived, not printed: rigid G2 moved 8.239 mm (D7 0.976 mm, BF 46.659 mm), modeled β = −0.240 against Nikon's 0.24×.",
+    published: [1],
+  },
+  gaps: {
+    "7": { label: "D7", values: [[9.215, 8.063, 0.976]] },
+    "21": { label: "BF", values: [[38.42, 39.572, 46.659]] },
   },
   aperture: {
     nominalFNumber: 1.86,
@@ -390,7 +394,7 @@ const LENS_DATA = {
       toSurface: "7",
     },
     {
-      text: "G2 at infinity",
+      text: "G2",
       fromSurface: "8",
       toSurface: "21",
     },
