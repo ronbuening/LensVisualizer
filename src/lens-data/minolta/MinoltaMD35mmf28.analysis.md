@@ -1,81 +1,86 @@
 ## Patent Reference and Design Identification
 
-**Patent:** US 3, 936, 153  
+**Patent:** US 3,936,153  
 **Filed:** 11 March 1974  
 **Granted:** 3 February 1976  
 **Priority:** 12 March 1973  
 **Inventor:** Toshinobu Ogura  
 **Assignee:** Minolta Camera Co., Ltd.  
 **Title:** Retrofocus Type Objective Lens System  
-**Example details:** First specific embodiment, Table I, repeated claim 2 and Figure 1. Literal normalized lengths are uniformly scaled ×35.
+**Example details:** First embodiment, Table I, repeated in claim 2 and drawn in Figure 1. The table is normalized to f = 1.0; all lengths here are scaled ×35.
 
-A manufacturer Minolta system guide lists the MD 35 mm f/2.8 as five elements in five groups, with a 63° full field, 0.3 m minimum focus, 49 mm filter thread and f/2.8–22 diaphragm. Construction and optical class correlate with the patent, whose Table I gives 64° full field. Exact commercial revision and prescription pairing are unproved. The source 32° half-field is retained separately from the maker 31.5° half-angle and from the native 135-format reference corner.
+The patent describes a light five-lens retrofocus objective meant to equal the conventional designs of six or seven lenses. Table I gives f/2.8 and 2ω = 64°. Minolta's specification table lists the 35mm f/2.8 MD as five elements in five groups, with a 63° angle of view, 1 ft (0.3 m) minimum focus, f/22 minimum aperture and 49 mm filter. Construction, focal length, aperture and timing support the association, but this is a patent design associated with the product, not a confirmed factory prescription.
+
+The production version is also open. The earlier HG lenses used seven elements in six groups, while the 1977 MD W.Rokkor took a 55 mm filter, the 1978 revision a 49 mm filter, and the later MD kept 49 mm. No Minolta section drawing was found to separate them. Table III describes a second embodiment with the same f, aperture and field; Table I is used as the first embodiment, and its glass pairs fall closer to catalog types.
 
 ## Optical Architecture
 
-Five separate spherical singlets form a retrofocus sequence: negative meniscus, biconvex positive, biconcave negative, positive meniscus and final biconvex positive. The front negative singlet provides divergence and a back focus longer than the 35 mm nominal focal length. The second positive element is separated from the central negative element by a long air gap. No converter, cover plate or aspheric term is added.
+Five separate spherical singlets form a retrofocus sequence: negative meniscus, biconvex positive, biconcave negative, positive meniscus and final biconvex positive. The front negative singlet provides divergence and a back focus longer than the 35 mm nominal focal length. The second positive element is separated from the central negative element by a long air gap, which the patent requires to exceed the combined length of everything behind it (d4 = 0.3182 against 0.2041). The design has no aspheric surface, and no converter or cover plate is added.
 
 ## Element-by-Element Analysis
 
-The nd/νd notation below follows the model schema. The source prints N/v without identifying the spectral line; d-line tracing is an explicit approximate convention.
+Table I prints N and v without naming a spectral line; the Glass section gives the basis for reading them as nd and νd.
 
-Element focal lengths below are isolated thick-element calculations in air. Values for cemented elements are not their in-assembly contributions.
+Element focal lengths below are isolated thick-element calculations in air.
 
 ### L1 — Negative Meniscus
 
-nd = 1.57140, νd = 53. Glass: Unmatched literal source coordinate; vendor unresolved. Isolated f = -36.408 mm.
+nd = 1.57140, νd = 53.0. Glass: S-BAL3 (Ohara catalog equivalent; production supplier unspecified). f = −36.41 mm.
 
-The negative front meniscus supplies retrofocus divergence. Its two clear faces have different inferred radii, 12.6/10.4 mm, following the source outline rather than one body-envelope diameter.
+The negative front meniscus supplies retrofocus divergence. Its faces carry different inferred rims, 14.4 and 11.8 mm, following the beveled outline in Figure 1.
 
 ### L2 — Biconvex Positive
 
-nd = 1.65830, νd = 58.5. Glass: Unmatched literal source coordinate; vendor unresolved. Isolated f = +25.914 mm.
+nd = 1.65830, νd = 58.5. Glass: K-LaK11 spectral proxy (Sumita; patent νd 58.5 retained versus catalog 57.3; supplier unconfirmed). f = +25.91 mm.
 
-The thick biconvex singlet supplies substantial positive power after the large first air gap. Both clear semi-diameters are 9.0 mm in the frozen nominal hypothesis.
+The thick biconvex singlet supplies substantial positive power after the large first air gap. The patent gives it the correction of the coma, distortion and lateral color left by L1, and holds its thickness between 0.7 and 1.3 times d4. Both faces carry the square 10.3 mm rim of Figure 1.
 
 ### L3 — Biconcave Negative
 
-nd = 1.68890, νd = 31.2. Glass: Unmatched literal source coordinate; vendor unresolved. Isolated f = -17.360 mm.
+nd = 1.68890, νd = 31.2. Glass: J-SF8 (Hikari catalog equivalent; production supplier unspecified). f = −17.36 mm.
 
-The strongly dispersive biconcave member sits behind the inferred iris region. Its inferred 5.9/6.6 mm faces can vignette even axial marginal rays; this clipping is retained.
+The strongly dispersive biconcave member sits just behind the stop. Its front face has the largest negative spherical and Petzval contributions in Table II, and the patent's requirement that N1 stay below N3 keeps the Petzval sum small. Its inferred rims are 6.8 and 7.5 mm, clear of the f/2.8 axial beam.
 
 ### L4 — Positive Meniscus
 
-nd = 1.72000, νd = 50.3. Glass: Unmatched literal source coordinate; vendor unresolved. Isolated f = +30.732 mm.
+nd = 1.72000, νd = 50.3. Glass: K-LaK10 (Sumita catalog equivalent; production supplier unspecified). f = +30.73 mm.
 
-The positive meniscus has stronger image-side curvature. Its following air gap is only 0.1015 mm and is preserved without an artificial spacer.
+The positive meniscus has stronger image-side curvature. Its following air gap is 0.1015 mm as printed. Both faces carry a square 8.0 mm rim.
 
 ### L5 — Biconvex Positive
 
-nd = 1.62040, νd = 60.3. Glass: Unmatched literal source coordinate; vendor unresolved. Isolated f = +45.299 mm.
+nd = 1.62040, νd = 60.3. Glass: S-BSM16 (Ohara catalog equivalent; production supplier unspecified). f = +45.30 mm.
 
-The rear biconvex singlet precedes the printed 37.1 mm image gap. Its unequal 8.6/8.3 mm clear semi-diameters follow the nominal full-figure hypothesis.
+The rear biconvex singlet precedes the printed 37.1 mm image gap. Both faces carry a square 10.0 mm rim.
 
 ## Glass Identification and Selection
 
-Table I does not explicitly identify its index-reference line. Approximate d-line use is disclosed in each element indexReferenceNote. Reference-wavelength calculations use 587.5618 nm and the literal indices. Unmatched labels prevent accidental assignment to a modern glass whose coefficients do not belong to the source. Abbe numbers alone do not establish full or anomalous dispersion, historical melt identity or measured chromatic correction. No coating, polarization, sensor or full-spectrum performance is validated.
+Table I does not name its spectral line, but its values establish the d line: four of the five pairs reproduce catalog nd and νd values and none reproduces catalog e-line values. L1 sits at S-BAL3 (1.57135/52.95), L3 at J-SF8 (1.68893/31.16), L4 at K-LaK10 (1.72000/50.30) and L5 at S-BSM16 (1.62041/60.29). L2's 1.6583 is the K-LaK11 index, but its νd of 58.5 is kept against a catalog 57.3, so K-LaK11 is a spectral proxy; the same coordinate recurs in other Minolta prescriptions.
+
+These names are catalog equivalents, and the supplier is not established. L3 is the only flint, with the positive power carried by crowns and lanthanum crowns. No element is identified as anomalous-dispersion glass.
 
 ## Focus Mechanism and Image Plane
 
-The source infinity configuration is the only supported focus state. The manufacturer 0.3 m minimum distance is metadata; it supplies neither a finite spacing nor a calibrated motion law. The printed scaled back focus 37.1 mm remains the final image gap, giving image z = 79.107 mm. The separately computed paraxial BFL37.106134 mm is a diagnostic and does not replace the printed gap. No best-focus adjustment is applied. The June 8, 1976 correction concerns claim inequalities rather than the transcribed Table I radii or spacings.
+The patent gives the infinity state only, so the model is static: no group moves and no finite spacing is authored. The 0.3 m minimum focus is Minolta's figure, and the patent gives no focusing method.
 
-The canonical infinity-only control state keeps finite focusing unavailable. Neither a retail minimum-focus label nor a calculated conjugate is presented as source-certified motion.
+The printed back focus of 1.06 scales to 37.1 mm and remains the final gap, placing the image plane 79.107 mm behind the first vertex. The paraxial back focus computes to 37.106 mm; the printed value is not adjusted to it. The certificate of correction of June 8, 1976 changes the inequalities of claim 1, not the Table I radii or spacings.
 
 ## Stop and Clear-Aperture Assumptions
 
-The source has no recognized iris mark or numerical stop. The retained nominal hypothesis places the stop at the midpoint of central d4: z = 29.295 mm, splitting the 11.137 mm scaled gap into 5.5685+5.5685 mm without changing its total. Existing bounded stop-position controls at 26.51075/32.07925 mm remain research evidence, not selectable factory settings. Native nominal f/2.8 iris radius is 6.964187580690937 mm. The operating disk clears both adjacent finite caps; this does not prove blade mechanics. Advertised aperture selections extend to the maker-supported f/22.
+Figure 1 draws no iris and Table I has no stop row, but Table II fixes the position. Its coma, astigmatism and distortion coefficients depend on where the chief ray crosses the axis, and they agree with the prescription to about 0.001 with the stop 0.1639 f behind r4. Scaled, that places the stop at z = 29.463 mm and splits the 11.137 mm gap d4 into 5.7365 + 5.4005 mm. The iris radius at f/2.8 is 6.937 mm by the paraxial stop rule, and the aperture scale runs to Minolta's f/22.
 
-The original initial aperture proportions were rejected after a complete Figure 1 audit and are not used here. The retained nominal S1–S10 clear-radius vector is [12.6, 10.4, 9, 9, 5.9, 6.6, 6.9, 6.9, 8.6, 8.3]mm. All ten source-face proportions, beveled edges and rounded/obscured rims were considered. The dimensional anchor and schematic proportions are inferred; they are not factory clear apertures or confidence bounds. Nominal and ±10% nonanchor controls were frozen before prior traces. No later clipping loss is repaired by enlarging these values.
+The rims are not printed. They are read from Figure 1, whose vertex positions match the table to about 0.2 mm, so the drawing can be read at its own scale. The S1–S10 values are [14.4, 11.8, 10.3, 10.3, 6.8, 7.5, 8.0, 8.0, 10.0, 10.0] mm. S6 stays at 7.5 mm against about 7.6 mm drawn, because the L3 and L4 faces nearly touch there. These are inferred glass outlines, not factory clear apertures.
 
-## Modeled Diffraction and Coverage
+## Coverage and Illumination
 
-The displayed diffraction result is the native scalar sheared-pupil estimate from traced ray landings and the actual surviving pupil. Numerical sampling checks do not establish independent pupil-phase or factory validation. No measured-production MTF or absolute illumination is claimed.
+At f/2.8 the iris alone sets the axial beam, and the traced f-number is f/2.80. Off axis the inferred rims vignette the pupil: about 93 % of the axial pupil remains at 16° and 54 % at the patent's 32° edge. These are geometric pupil fractions from inferred rims, not measured illumination, and simulated MTF carries the same limit.
 
-Retained nominal wide-open 215-ray diagnostics transmit 183/145/45 at 0°/16°/32°. These are sampled pupil counts, not calibrated illumination. The outer field can remain strongly clipped or become unavailable when the aperture changes; unavailable source-cone or pupil states must stay unavailable rather than being repaired by tuning. Existing native wide-open refinements converge through the sampled 50 lp/mm range at the printed image plane.
-
-The format taxonomy uses 21.65 mm as its rounded 135 reference radius; the exact 36 × 24 mm rectangle corner is 21.633307652783937 mm. Source half-field angles remain separate from both. The native format-reference fields can extend beyond the patent half-field: these remain computed extrapolations of the frozen optical model, not source-certified coverage. Sampled ray fractions, conditional scalar references and a small set of field/frequency checks are not continuum error bounds.
+The patent's 32° half-field reaches an image height of 21.56 mm, just short of the 21.63 mm corner of the 36 × 24 mm frame. The frame corner lies at 32.1°, slightly outside the stated field, and Minolta lists 63° rather than the patent's 64°.
 
 ## Sources
 
-- [US3936153](https://patents.google.com/patent/US3936153), Table I, claim 2 and Figure 1, plus the source correction.
-- [Minolta SLR system guide](https://minolta.suaudeau.eu/ressources_iconographiques/system_SLR_MD1.pdf), manufacturer-authored product specification.
+- [US 3,936,153](https://patents.google.com/patent/US3936153), Tables I–III, claim 2, Figure 1 and the certificate of correction.
+- [Minolta specification table](https://pacificrimcamera.com/rl/00052/00052.pdf), p. 12.
+- [Minolta SLR system guide](https://minolta.suaudeau.eu/ressources_iconographiques/system_SLR_MD1.pdf).
+- [The Rokkor Files: Lens History](https://www.rokkorfiles.com/Lens%20History.html) and [35mm Shoot-out](https://www.rokkorfiles.com/35mm%20Page%201.htm).
+- [My Favourite Lens: Minolta MC W.Rokkor-HG 35mm f/2.8](https://www.myfavouritelens.com/minolta-mc-rokkor-hg-35mm-f2-8-lens-review/), version dates and filter sizes.

@@ -1,87 +1,130 @@
+# SMC Pentax-M 40mm f/2.8
+
 ## Patent Reference and Design Identification
 
 **Patent:** US 4,154,509 A  
+**Filed:** 1977-09-07  
 **Granted:** 1979-05-15  
 **Priority:** 1976-09-09  
 **Inventor:** Yasuo Takahashi  
 **Assignee:** Asahi Kogaku Kogyo Co., Ltd.  
 **Title:** Miniaturized semi-wide-angle photographic lens  
-**Example details:** Sole unnumbered numerical prescription and repeated claim on PDF4; Figure1 on PDF2. All source lengths uniformly scaled by0.4 from nominal100 to40mm.
+**Example details:** Sole numerical example, repeated in claim 1; section in Fig. 1, aberration plots in Fig. 2. The patent is normalized to F = 100; all lengths are multiplied by exactly 0.4 for f = 40.0 mm.
 
-This is a patent-derived reconstruction associated with the SMC PENTAX-M40mmf/2.8, not an identified factory prescription. The existing source audit found the maker manual's five elements/four groups and40mmf/2.8 consistent with the patent topology. The maker's57degree full angle differs from the patent's56degree full angle. Product0.60m minimum focus, dimensions, filter and weight do not establish factory radii, clear apertures or an iris location. The source worker visually checked the patent table, repeated claim, figure and title; this integration worker used its verified handoff and does not claim new primary-pixel inspection.
+This is a patent design associated with the SMC Pentax-M 40mm f/2.8, not a confirmed factory prescription. The association rests on four points:
 
-The literal signed radii, thicknesses and d-line indices/Abbe numbers are unchanged. The uniform0.4scale is an inferred dimensional normalization, not a fit to computed focal length or MTF. The original version3 source, data, nominal/sensitivity results, raw failures and rejected stop remain archived separately. This current-main pair is the documented nominal midpoint hypothesis, selected before current viewer performance checks and without contrast selection.
+1. The patent's five lenses in four components, with the third and fourth cemented, match the retail construction of five elements in four groups.
+2. At the 0.4 scale the example is a 40.0 mm f/2.8, and its 56° full field is close to the roughly 57° listed for the retail lens.
+3. The patent's stated aim is a short semi-wide-angle lens for single-lens reflex cameras. Its length from first to last vertex is 16.648 mm at this scale, and the retail lens is about 18 mm long.
+4. The September 1976 priority date falls in the lens's first production year. It was made from 1976 to 1984 for the Pentax K mount.
+
+The retail 49 mm filter, 110 g weight, f/2.8 to f/22 range and 0.6 m minimum focus fit a lens of this kind, but none of them fixes the radii, clear apertures or iris position.
+
+Pentax's *Lenses and Accessories* catalog prints the section of this lens in mirror order, with the thin meniscus on the left where Fig. 1 has L1. The shapes and sequence are otherwise those of Fig. 1, and no stop is marked. Reversed, the prescription keeps its focal length but has a back focus of 28.8 mm, which would put the rear vertex 16.7 mm inside the 45.46 mm K-mount flange distance, in the path of the reflex mirror. A K-mount SLR cannot accept that, so the drawing is read as flipped art of the same design.
 
 ## Optical Architecture
 
-Five spherical elements form four air-separated groups: positive L1, negative L2, a cemented negative/positive L3/L4 pair, and positive meniscus L5. Nine powered interfaces include the shared cemented surface. There are no aspheric terms, cover plates, coatings or catalog-glass substitutions. The short powered track is16.648mm. A0.096mm axial gap between the cemented pair and rear meniscus is retained literally; no spacing is enlarged for rendering.
+Five spherical elements form four air-spaced groups: positive L1, negative L2, the cemented negative-positive doublet L3 + L4, and the thin positive meniscus L5. There are no aspheric surfaces and no cover plates. In outline this is a triplet with a divided rear member.
+
+L1 and L2 together are weakly negative, with a composite focal length of −131.96 mm, and the doublet (f = +61.96 mm) and L5 supply the positive power. That distribution gives a back focus of 0.919F from a lens only 0.416F long, or 36.76 mm and 16.648 mm at this scale. The patent's conditions (7), (9) and (10) bound that length, the L1–L2 spacing and the first four spacings for this reason. L4 and L5 are only 0.096 mm apart on the axis.
 
 ## Element-by-Element Analysis
 
 ### L1 — Biconvex Positive
 
-Literal nd1.883, Vd41.00. Its positive power begins the converging assembly. Both inferred face semi-diameters are7.9mm. Historical melt and full dispersion are unmatched; no individual-element focal-length result is newly computed here.
+nd = 1.88300, νd = 41.0. Glass: TAFD30 (HOYA) equivalent. f = +28.05 mm.
+
+The main collector, with its stronger curve toward the object. Condition (1) asks for an index above 1.75: the patent says coma at the wide field deteriorates markedly below that. Condition (6) bounds r1 and condition (3) bounds the element's focal length, which the patent ties to the power of the second surface and to chromatic balance.
 
 ### L2 — Biconcave Negative
 
-Literal nd1.68893, Vd31.10. This negative singlet follows the first air gap and precedes the hypothesized iris space. Both face semi-diameters remain6.7mm. Its relative dispersion and negative power permit correction against neighboring positives, without a measured achromatism claim.
+nd = 1.68893, νd = 31.1. Glass: S-TIM28 (OHARA) equivalent. f = −19.17 mm.
+
+The strongest negative element. Condition (2) keeps its index below 1.82 to hold the Petzval sum, and condition (5) bounds r3, which the patent uses to manage spherical aberration against the rest of the system. Condition (4), on the composite focal length of L1 and L2, is the one the patent calls most important for the Petzval sum and chromatic correction.
 
 ### L3 — Biconcave Negative, cemented to L4
 
-Literal nd1.69895, Vd30.10. The front negative member of the cemented pair shares surface6 with L4. Its7.3mm face radius is an inferred aperture, not an explicit patent dimension.
+nd = 1.69895, νd = 30.1. Glass: SF15 (SUMITA) equivalent. f = −31.97 mm.
+
+The negative member of doublet C1, sharing surface 6 with L4. Condition (2) requires an index above 1.65. Its negative r5 matters: the patent warns that making r5 or r8 positive to relieve surfaces 7 and 9 increases negative distortion and worsens outer coma.
 
 ### L4 — Biconvex Positive, cemented to L3
 
-Literal nd1.81600, Vd46.80. The positive member of the pair follows the same physical shared interface; it is not separated by an added air gap. The common group rim remains7.3mm.
+nd = 1.81600, νd = 46.8. Glass: TAF5 (HOYA) equivalent, catalog νd 46.6. f = +22.36 mm.
+
+The strongest positive element and the main power behind the stop. Condition (1) applies here too: the patent says that with n4 or n5 below 1.75 spherical aberration deteriorates at f/2.8, and lowering n3 to compensate upsets coma and reduces the Petzval sum.
 
 ### L5 — Positive Meniscus
 
-Literal nd1.80400, Vd46.60. The rear positive meniscus follows the literal0.096mm axial gap and ends the powered train. Both face semi-diameters are7.3mm. It retains the source's positive group role and original signed radii; no rear-surface or image-plane adjustment is applied.
+nd = 1.80400, νd = 46.6. Glass: S-LAH65 (OHARA) equivalent. f = +50.00 mm.
+
+Concave to the object, with its stronger curve toward the image. Condition (8) requires |r8| above 2F, here 212.57 at F = 100: the patent says a short positive r8 raises negative distortion and inside coma, while a short negative r8 overloads surface 9 and leaves spherical aberration undercompensated. It is the tallest element in Fig. 1 and in Pentax's catalog drawing, and the patent's condition (7) notes that a longer system would need still larger front or rear elements to keep peripheral light.
 
 ## Glass Identification and Reference Convention
 
-The source explicitly defines d-line indices. The saved native runs use literal indices at587.5618nm with reference-spectrum mode. Abbe values do not establish a historical melt, Sellmeier curve, partial dispersion or full-spectrum performance. Every glass remains unmatched, and chromatic proxies in general viewer controls are outside this monochromatic source validation. The scalar MTF is a simulated prescription estimate, not manufacturer measurement, calibrated transmission or illumination.
+Column 2 of the patent defines the index as d-line (587.6 nm). The table gives catalog equivalents by index and Abbe number; the supplier of the production glass is not established.
 
-## Focus Mechanism and Source Image Plane
+| Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Role |
+|---|---|---|---|---|
+| L1 | 1.88300 / 41.0 | TAFD30 (HOYA) | 1.88300 / 40.82 | High-index front positive |
+| L2 | 1.68893 / 31.1 | S-TIM28 (OHARA) | 1.68893 / 31.08 | Dense flint negative |
+| L3 | 1.69895 / 30.1 | SF15 (SUMITA) | 1.69895 / 30.05 | Dense flint negative |
+| L4 | 1.81600 / 46.8 | TAF5 (HOYA) | 1.81600 / 46.57 | High-index positive |
+| L5 | 1.80400 / 46.6 | S-LAH65 (OHARA) | 1.80400 / 46.57 | High-index positive |
 
-Only the fixed infinity prescription is authored. The printed back focal length91.90 at normalizedf100 supports the uniformly scaled36.760mm final gap and imagez53.408mm. It is a source-derived gap, not a refit to computed paraxial focus. Source rounding residuals and low authored-plane axial MTF remain; no explanation is silently promoted to a source correction.
+The palette is simple: both negatives are flints near νd 30, and all three positives are high-index glasses near νd 41 to 47. That high index on every positive is what lets a lens this short keep its curves moderate.
 
-The earlier native axial diagnostic shift−0.116278600mm would evaluate at53.291721400mm. It is an analysis-only sensitivity and is not authored. The nominal design-plane axial30/50lpmm values0.1229/0.0834 remain, rather than being replaced by the much larger diagnostic-focus values0.8131/0.6966. Diagnostic axial focus also worsens sagittal response at the patent edge. It supplies no finite-object conjugate, group motion, manufacturing defect inference or factory focus calibration.
+## Focus Mechanism and Image Plane
 
-Current main's existing finite closeFocusM=1e15 infinity-only convention and no varying gaps keep the focus control static. Retail0.60m remains descriptive context only. No finite motion law, finite performance or interpolation is asserted. Existing rawfocus1 SUMMARY huge-distance/BREATHING sentinel-chart behavior is a separately documented shared main quirk; no new UI patch is required.
+The patent prints the infinity state only, with no focus movement or close-distance data, so no gap varies and the focus control stays at infinity. The 0.6 m minimum focus is the retail specification and is not traced.
 
-## Inferred Apertures and Stop Hypotheses
+The final gap of 36.760 mm is the patent's printed back focus of 91.90 at F = 100, and it places the image plane 53.408 mm behind S1. This is the paraxial focus: the computed paraxial value is 36.7637 mm, and the 0.0037 mm difference is rounding in the printed table.
 
-The frozen clear-aperture vector is7.9/7.9,6.7/6.7,7.3/7.3/7.3,7.3/7.3mm across the nine faces. These were initialized from the prior axial paraxial entrance-pupil envelope with10percent clearance and common group rims, rounded outward to0.1mm. Schematic outlines supply uncertain sanity information, not calibrated factory clear radii. No face is enlarged or reduced after MTF to favor performance.
+The spherical aberration in Fig. 2 explains why axial contrast at f/2.8 is low at that plane. The curve is undercorrected through the middle of the pupil and turns overcorrected at the rim. Traced values are −0.109, −0.150, −0.110 and +0.083 mm at 0.5, 0.7, 0.85 and 1.0 of the pupil, or −0.27, −0.38, −0.27 and +0.21 on the patent's F = 100 scale, which agrees with the plot. Most of the beam therefore crosses the axis in front of the paraxial plane, and best axial focus lies about 0.12 mm in front of it. The model keeps the printed plane, with no diagnostic refocus.
 
-The nominal iris lies atz9.682mm, splitting the2.572mm S4–S5 air gap into1.286+1.286mm. Its f/2.8 radius is native F/N-derived, approximately6.021186101mm; the opening is not manually authored. Exact spherical-cap checks passed over this operating disk. That establishes modeled disk clearance, not blade/mount fit or historical identity.
+## Aperture Stop and Clear Apertures
 
-The original forwardz9.039mm case remains sensitivity evidence, with approximately0.130575mm minimum S4 disk clearance and unproven blade mechanics. The rearz10.325mm case intersects glass and remains rejected; it is not installed or retraced. Small forward/midpoint MTF differences below the native0.01 convergence criterion do not discriminate historical iris placement. Neither hypothesis is selected by contrast.
+The patent draws no stop in Fig. 1, its text does not mention one, and Pentax's drawing marks none, so the position is inferred. Fig. 2 is the only evidence, because its astigmatism and distortion curves depend on where the chief ray crosses the axis. Tracing candidate positions, the curves fit best with that crossing about 7 mm behind S1, inside L2, where no iris can sit.
 
-## Native Validation, Field Mapping and Retained Losses
+The model takes the forward position in the air gap between L2 and L3: 9.039 mm behind S1, which divides the printed 2.572 mm spacing into 0.643 + 1.929 mm. On the F = 100 scale the rms fit to the ΔS and ΔM curves is 0.18 and 0.17 here, against 0.03 and 0.04 for the crossing inside L2. At 28° the model gives ΔS +0.88, ΔM −1.07 and distortion −0.54 %, where Fig. 2 plots about +0.45, −0.9 and −0.66 %. The field edge therefore departs somewhat from the patent's plots; axial behavior is unaffected.
 
-Saved nominal native diffraction results use infinity, reference587.5618nm, the source image plane, and exact source0/28degree fields. The midpoint edge chief height21.15904mm maps to the native21.65mm format reference through an explicitly recorded fraction; the native format corner, physical36x24mm corner and maker57degree full field remain separate. Exact28degree input is recovered by native field inversion. No source coverage or physical reference is inferred for untested format extensions.
+At f/2.8 the stop radius is 5.99 mm, set by the paraxial entrance pupil of 14.29 mm (F/N). The open iris clears S4 by 0.13 mm and S5 by 1.22 mm, and it stays in air at every smaller setting.
 
-At the authored plane, the nominal axial S/T magnitudes are0.8176/0.1229/0.0834 at10/30/50lpmm, converged at64cells. Exact28degree S/T values are0.2788/0.2364,0.1511/0.0753,0.1138/0.0363, converged at128cells. These are sampled, transmitted-pupil-normalized estimates; weak contrast is retained and is not itself a geometry or source-transcription failure. Earlier coarse unconverged results and all diagnostic-focus/forward branches remain evidence rather than replacement prescriptions.
+The patent prints no semi-diameters, so all are inferred:
 
-The saved128cell nominal edge has6406valid,6478blocked and8unaimed logical samples. Native unknown/unresolved in-beam flux is zero: isolated unaimed samples touch no transmitted cell under the unchanged native acceptance policy. This does not claim every raw ray succeeds. A separate64cell midpoint edge witness retains1598valid traces,1502clips,126raw S1 noBracket misses and2unaimed cells. Across both fixed stop witnesses, all234misses,3050clips and2unaimed outcomes remain. The native estimator separately classifies provable clear-cap misses as blocked. These labels and raw traces are preserved without resizing optics, changing tolerances, suppressing losses or equating raw failures with unresolved in-beam flux.
+| Element | Model sd (mm) | Fig. 1 reading (mm) | Basis |
+|---|---|---|---|
+| L1 | 7.7 | 7.5 | Reduced toward the figure as far as corner light allows |
+| L2 | 6.7 | 6.65 | Axial beam plus 10 % |
+| L3, L4 | 7.3 | 7.2 | Axial beam plus 10 %, one rim for the doublet |
+| L5 | 8.0 | 8.0 | Fig. 1 and Pentax's drawing, the tallest element |
 
-The version3 comparison's source and diagnostic planes use identical optical rays; only downstream analysis projection differs. It reported normal native convergence through the sampled frequencies, not continuous-frequency accuracy, a coordinate-correct independent OPL reference, production performance or a complete pupil-boundary proof. Current integration/build/viewer outcomes are recorded separately; no source/research calculation is gratuitously rerun.
+Fig. 1 is scaled by its own axial length, so its readings are schematic. With these rims about 55 % of the f/2.8 beam passes at 28°.
 
-## Sources and Reproducibility
+## Model Scope and Limitations
 
-- Primary [US4154509A](https://patents.google.com/patent/US4154509A/en), exact source table, repeated claim and PDF retained in the verified private packet.
-- Maker manual printed34/PDF37 and1976–77catalog PDF4/printed14, reviewed in the retained source handoff. These establish product context and5/4 topology, not exact prescription or stop identity.
-- [Verified version3 archive](https://drive.google.com/file/d/1p59_vr7Vir0plgBgJdCtyCtooTA8qbll/view),2193758bytes,SHA2561a4179fd0c8c045f7002cd9b195b57ec271a960b54d6e0e81995302c374dfdcd. Original data, sourceplane, nominal/forward/rejected branches, failed helper receipt, native convergence and raw outcomes remain unchanged.
-- [Bounded readable integration packet](https://drive.google.com/file/d/1KJdFZnX3GD_GpAiF8JqEPH6L4-Qpak84/view),704571bytes,SHA256b1b9e4edf37327983aaddbd3d6fed81f1f6715e4e9000c8c1271206773911659,all42payloadhashes verified here. The larger raw-log readable remains separately preserved; this worker does not claim to have downloaded it.
-- Current-main private integration changes only import/presentation/state metadata and this analysis. All R/d/n/V, frozen SDs, midpoint stop, native iris rule, sourceplane and authored aperture menu2.8–22 remain unchanged. No commit, PR, publication, merge, deploy or source retuning is authorized here.
+| Quantity | Patent, F = 100 | Patent × 0.4 | Model |
+|---|---|---|---|
+| Focal length | 100 | 40.0 | 40.000 |
+| Back focus | 91.90 | 36.760 | 36.764 paraxial |
+| S1 to S9 | 41.62 | 16.648 | 16.648 |
+| F1 | 70.13 | 28.05 | 28.05 |
+| F1,2 | −329.93 | −131.97 | −131.96 |
+| Petzval sum | 0.240 | | 0.240 |
 
+The example satisfies all ten of the patent's conditions, and the printed group values reproduce to rounding.
 
-### Current native field reference
+- The prescription is the patent's, not a confirmed factory one.
+- Stop position and all semi-diameters are inferred.
+- The image plane is the printed paraxial focus, not best focus.
+- The model is static at infinity and says nothing about performance at 0.6 m.
+- The ±28° edge reaches 21.15 mm of image height, 0.50 mm short of the 21.65 mm format corner at 28.5°. Rays beyond 28° extend past the patent's stated field.
+- The patent gives d-line indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents.
 
-The unchanged prescription with the declared catalog format uses native reference radius 21.650000 mm. Its chart corner inverts to 28.528320312 degrees, distinct from the source half-field 28.000000000 degrees. The exact source-edge chief height is 21.159038055 mm, or fraction 0.977322774 of this native axis. The final format-corner chart field extends beyond the tested patent edge; it is a model extension and receives no transferred source-field or factory validation. Mapping uses the normal current-main chief-field resolver without MTF/OTF evaluation, optical retuning or source-field substitution.
+## Sources
 
-
-### Assignee spelling normalization
-
-The source prints “Asahi Kogaku Kogyo Kabushiki Kaisha”. The current corpus uses “Asahi Kogaku Kogyo Co., Ltd.” for the same company. This metadata descendant keeps the original attribution in preserved inputs and records the initial corpus refusal; no numerical prescription value changes.
+- [US 4,154,509 A](https://patents.google.com/patent/US4154509A/en), text, claim and figures.
+- Asahi Pentax, [*Lenses and Accessories*](https://cameramanuals.org/pentax_pdf/Asahi_Pentax_Lenses.pdf), p. 5.
+- [Cine Lens Wiki, Pentax-M 40mm f/2.8](https://cinelenswiki.com/lens:pen-msmc40mmf2.8), construction and retail specifications.
+- [Collection Appareils, smc PENTAX-M lenses](https://collection-appareils.fr/objectifs/html/lens-298-Pentax_smc%20PENTAX-M.html), retail specifications.
+- [Lens-DB, smc Pentax-M 40mm F/2.8](https://lens-db.com/smc-pentax-m-40mm-f28-1976), angle of view.

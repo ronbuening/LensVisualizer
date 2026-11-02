@@ -1,23 +1,30 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** US3936153 first embodiment/TableI, literal dimensions uniformly scaled35.
- * Five spherical singlets. Printed BFL37.1mm and imagez79.107mm retained, no refocus.
- * Existing nominal full Figure1 SDvector and midpointstopz29.295mm are hypotheses,
- * frozen before prior traces. Rejected initialSDs and full sensitivity history preserved.
- * Table N/v wavelength is unspecified; approximate d-line convention is qualified.
- * Source full64deg differs correlated maker63deg. Clipping is retained, not factoryvignetting.
- * NO_INTERNAL_RECONSTRUCTION: closeFocusM1e15; manufacturer0.3m is metadata only.
- * Native diffraction estimate only; do not revive withdrawn fixed-row/column OPL claims.
+/** US 3,936,153 (Ogura, Minolta), first embodiment: Table I, repeated in claim 2 and drawn in Figure 1.
+ * The table is normalized to f = 1.0; every R and d here is the printed value times 35 exactly (paraxial EFL 35.005 mm).
+ * Five air-spaced spherical singlets; no aspheres, cover plate or converter.
+ * Back focus: the printed 1.06 scales to 37.1 mm and stays as the last gap, so the image plane is at z = 79.107 mm.
+ * The computed paraxial value is 37.106 mm; no refocus is applied.
+ * Stop: Figure 1 draws no iris and Table I has no stop row. Table II's coefficients place it 0.1639 f behind r4, so d4
+ * (11.137 mm) splits 5.7365 + 5.4005 mm and the stop is at z = 29.463 mm. Its radius follows the paraxial stop rule.
+ * Semi-diameters are not printed. They are read from Figure 1 at the drawing's own scale, set by its vertex positions.
+ * L2, L4 and L5 keep the drawn square rims. S6 stays at 7.5 mm, against about 7.6 mm drawn, to clear the L3-L4 gap limit.
+ * Table I prints N and v without naming a wavelength. Four of its five pairs reproduce catalog nd/vd and none a catalog
+ * ne/ve, which establishes the d line by the coordinate test in LENS_DATA_SPEC.md.
+ * The patent gives 2w = 64 deg; Minolta lists 63 deg. The 135-format corner, 32.1 deg, is just outside the patent's 32 deg.
+ * The patent has an infinity state only: no focus motion is modeled, and closeFocusM is Minolta's stated 0.3 m.
+ * This is a patent design associated with the MD 35mm f/2.8, not a confirmed factory prescription.
  */
 const LENS_DATA = {
   schema: 2,
   key: "minolta-md-35mm-f28",
   maker: "Minolta",
   name: "MINOLTA MD 35mm f/2.8",
-  subtitle: "US 3,936,153 Table I; Figure 1 aperture hypothesis and inferred midpoint iris",
+  subtitle: "US 3,936,153, Table I — five-element retrofocus design associated with the MD 35mm f/2.8",
   catalog: {
     lensMounts: ["minolta-sr"],
     imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 5 GROUPS", "DESIGN f = 35.00 mm", "DESIGN F/2.8", "ALL SPHERICAL"],
     elementCount: 5,
     groupCount: 5,
     focalLengthMm: {
@@ -44,12 +51,11 @@ const LENS_DATA = {
       id: 1,
       name: "L1",
       label: "Element 1",
+      role: "Front diverging element that creates the long back focus",
       type: "Negative Meniscus",
       nd: 1.5714,
       vd: 53.0,
       indexReference: "d",
-      indexReferenceNote:
-        "Table I prints N/v without explicit wavelength subscript. d-line reference is convention/inference, not a printed wavelength claim.",
       focalLengthMm: -36.40841537550411,
       glass: "S-BAL3 (OHARA catalog equivalent; production supplier unspecified)",
     },
@@ -57,12 +63,11 @@ const LENS_DATA = {
       id: 2,
       name: "L2",
       label: "Element 2",
+      role: "Thick element ahead of the stop, correcting L1's coma, distortion and lateral color",
       type: "Biconvex Positive",
       nd: 1.6583,
       vd: 58.5,
       indexReference: "d",
-      indexReferenceNote:
-        "Table I prints N/v without explicit wavelength subscript. d-line reference is convention/inference, not a printed wavelength claim.",
       focalLengthMm: 25.91416494122884,
       glass: "K-LaK11 spectral proxy (Sumita; lanthanum crown; patent vd 58.5 retained versus catalog 57.3; supplier unconfirmed)",
     },
@@ -70,12 +75,11 @@ const LENS_DATA = {
       id: 3,
       name: "L3",
       label: "Element 3",
+      role: "High-dispersion negative behind the stop, the main spherical and Petzval corrector",
       type: "Biconcave Negative",
       nd: 1.6889,
       vd: 31.2,
       indexReference: "d",
-      indexReferenceNote:
-        "Table I prints N/v without explicit wavelength subscript. d-line reference is convention/inference, not a printed wavelength claim.",
       focalLengthMm: -17.36048337037693,
       glass: "J-SF8 (HIKARI catalog equivalent; production supplier unspecified)",
     },
@@ -83,12 +87,11 @@ const LENS_DATA = {
       id: 4,
       name: "L4",
       label: "Element 4",
+      role: "High-index meniscus, convex to the image, carrying the rear group's strongest positive power",
       type: "Positive Meniscus",
       nd: 1.72,
       vd: 50.3,
       indexReference: "d",
-      indexReferenceNote:
-        "Table I prints N/v without explicit wavelength subscript. d-line reference is convention/inference, not a printed wavelength claim.",
       focalLengthMm: 30.73201073078851,
       glass: "K-LaK10 (SUMITA catalog equivalent; production supplier unspecified)",
     },
@@ -96,12 +99,11 @@ const LENS_DATA = {
       id: 5,
       name: "L5",
       label: "Element 5",
+      role: "Rear crown sharing the positive power of the rear group",
       type: "Biconvex Positive",
       nd: 1.6204,
       vd: 60.3,
       indexReference: "d",
-      indexReferenceNote:
-        "Table I prints N/v without explicit wavelength subscript. d-line reference is convention/inference, not a printed wavelength claim.",
       focalLengthMm: 45.298700202055215,
       glass: "S-BSM16 (OHARA catalog equivalent; production supplier unspecified)",
     },

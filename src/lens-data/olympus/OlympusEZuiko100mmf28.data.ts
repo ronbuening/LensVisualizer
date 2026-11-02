@@ -1,27 +1,44 @@
-// Current-main private integration descendant: canonical infinity state; source optics unchanged.
-// Private row1140 research candidate; no catalog installation or publication.
-// US3749478A Example 2: all R and published d uniformly x100; literal n/v retained.
-// S10 d is independently derived infinity BFL, NOT printed patent data. No retuning.
-// Stop at z=34.53 mm is a long-gap hypothesis; native ordinary-prime F/2.8 iris rule.
-// SDs are EP-based 10% axial-envelope inferences frozen before performance checks.
-// Reference wavelength convention is assumed. Finite focus/full spectrum unvalidated.
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/**
+ * OLYMPUS E.ZUIKO AUTO-T 100mm f/2.8
+ *
+ * Source: US 3,749,478 (Nakagawa, Nakamura; Olympus Optical Co., Ltd.), Example 2, repeated in claim 3. This is a
+ * patent design associated with the production lens, not a confirmed factory prescription.
+ *
+ * Scale: the patent is normalized to f = 1.0. Every R and printed d is multiplied by exactly 100 with no retuning, so
+ * the computed EFL is 100.047 mm. n and v are the printed values. The patent prints plain n, and all five pairs match
+ * catalog nd/vd, so n is read at the d line.
+ *
+ * Derived, not printed: the back focus. S10 d is the paraxial infinity value, 42.869 mm, which puts the image plane
+ * 92.839 mm from S1.
+ *
+ * Stop: the patent marks none. Fig. 3b's astigmatism curves place it 30.4 mm from S1, 8.76 mm behind S8, and Olympus's
+ * section drawing shows the break in the axis about there. Printed d8 = 25.78 mm is split 8.76 + 17.02 mm. The iris
+ * radius follows from the paraxial EPD at f/2.8.
+ *
+ * Semi-diameters: none are printed. L1 to L4 are 1.10 times the paraxial axial marginal height at f/2.8, rounded up to
+ * 0.01 mm, and shared by both faces. L5 is raised to 11.0 mm toward Olympus's section drawing, which reads about
+ * 13.4 mm at its axial scale. Patent Fig. 1 is drawn at Example 1's spacing.
+ *
+ * Focus: static at infinity. The patent prints no close state; 1 m is Olympus's catalog figure.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "olympus-e-zuiko-auto-t-100mm-f28",
   maker: "Olympus",
   name: "OLYMPUS E.ZUIKO AUTO-T 100mm f/2.8",
-  subtitle: "US 3,749,478 Example 2 — private infinity reconstruction; retail pairing unproven",
+  subtitle: "US 3,749,478, Example 2 — five-singlet telephoto associated with the production lens",
   visible: true,
   catalog: {
     lensMounts: ["olympus-om"],
     imageFormat: "135-full-frame",
     specs: [
-      "PRIVATE PATENT CANDIDATE",
       "5 ELEMENTS / 5 GROUPS",
-      "INFINITY / REFERENCE INDEX ONLY",
-      "STOP AND CLEAR APERTURES INFERRED",
+      "DESIGN f = 100 mm (PATENT f = 1.0 × 100)",
+      "DESIGN F/2.8",
+      "ALL SPHERICAL",
+      "BACK FOCUS DERIVED, NOT PRINTED",
     ],
     elementCount: 5,
     groupCount: 5,
@@ -53,11 +70,9 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.11,
       indexReference: "d",
-      indexReferenceNote:
-        "Literal patent n used as native reference index; d-line convention assumed, not explicit table nd; production glass and full dispersion unverified.",
       focalLengthMm: 81.54926370413664,
       glass: "S-BAL35 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Converging spherical singlet",
+      role: "Front positive meniscus, the strongest of the three collector elements",
     },
     {
       id: 2,
@@ -67,11 +82,9 @@ const LENS_DATA = {
       nd: 1.56873,
       vd: 63.16,
       indexReference: "d",
-      indexReferenceNote:
-        "Literal patent n used as native reference index; d-line convention assumed, not explicit table nd; production glass and full dispersion unverified.",
       focalLengthMm: 147.22221465471762,
       glass: "BAL22 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Converging spherical singlet",
+      role: "Second positive meniscus of the front collector, in the lowest-dispersion glass",
     },
     {
       id: 3,
@@ -81,11 +94,9 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.1,
       indexReference: "d",
-      indexReferenceNote:
-        "Literal patent n used as native reference index; d-line convention assumed, not explicit table nd; production glass and full dispersion unverified.",
       focalLengthMm: 198.6514566165605,
       glass: "BASF7 (SUMITA catalog equivalent; production supplier unspecified)",
-      role: "Converging spherical singlet",
+      role: "Thick, weak positive meniscus closing the collector; its low Abbe number aids color correction",
     },
     {
       id: 4,
@@ -95,11 +106,9 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.22,
       indexReference: "d",
-      indexReferenceNote:
-        "Literal patent n used as native reference index; d-line convention assumed, not explicit table nd; production glass and full dispersion unverified.",
       focalLengthMm: -33.40129153305743,
       glass: "PBH23 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Diverging telephoto element",
+      role: "Strong negative meniscus behind the collector, giving the telephoto action",
     },
     {
       id: 5,
@@ -109,11 +118,9 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.22,
       indexReference: "d",
-      indexReferenceNote:
-        "Literal patent n used as native reference index; d-line convention assumed, not explicit table nd; production glass and full dispersion unverified.",
       focalLengthMm: 127.99034219283872,
       glass: "PBH23 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Converging spherical singlet",
+      role: "Thin rear positive meniscus across the long air space",
     },
   ],
   surfaces: [
@@ -191,7 +198,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1,
     description:
-      "Modeled at infinity only: the lens focuses to 1 m with an automatic close-distance correction mechanism, and the patent prints no close-focus data.",
+      "Static at infinity. The patent prints no close state, so the model carries no focus motion. Olympus's catalog gives a 1 m minimum focus and an automatic correction mechanism for close distances, which the model does not include.",
   },
   aperture: {
     nominalFNumber: 2.8,

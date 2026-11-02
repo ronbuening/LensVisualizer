@@ -1,24 +1,36 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** US4793698 Example1, literal normalized f100 prescription uniformly scaled1.35.
- * Correlated Pentax-F135/2.8 [IF], not an identified factory prescription.
- * Infinity slice of the previously frozen lower figure-informed L8 SD17.238mm branch;
- * all R/N/v, infinity gaps, otherSDs and derived lastgap46.38522359437118mm preserved.
- * Stop z30.7101375mm is an unmarked75%-of-d8 hypothesis. No iris-attachment or finite
- * conjugate is certified. Patent focus endpoints/retail0.7m are discussed, not simulated.
- * Source d-line, half-field9.4deg; brochure18deg full retained separately in analysis.
- * NO_INTERNAL_RECONSTRUCTION: closeFocusM1e15 is the canonical infinity-only control state.
- * Native monochromatic diffraction is an estimate; old1DOPL reference interpretation withdrawn.
+/** US 4,793,698 (Asahi Kogaku; Hirano), Example 1. A patent design associated with the smc PENTAX-F 135mm F2.8 [IF],
+ * not a confirmed factory prescription; the later FA 135mm F2.8 [IF] shares those optics by report only.
+ * Scale: every R and d is the printed f = 100 value × 1.35, giving EFL 135.007 mm.
+ * Printed: R, d, Nd and νd at the d line, F2.8, half-field 9.4°, and d8, d11 and d13 at infinity and 1/4 magnification.
+ * Derived: last gap 46.38522359437118 mm, the paraxial back focus at infinity, which puts the image plane 125.800 mm
+ * from S1 at both focus states. The patent prints no object distance; the near state computes to 725 mm object to
+ * image, about 3.6 % over the retail minimum focus used for closeFocusM.
+ * Stop: the patent marks none. The iris is a fixed plane 75 % through the infinity d8, 30.7101375 mm from S1, sized
+ * by paraxial EPD = F/N. The 75 % position is inferred; the field curves of Fig. 3 fit a fixed iris there and do
+ * not fit one moving with unit 20.
+ * sd: inferred, not measured. L1, L2, L3, S8, L7 and L8 are read from Fig. 1 at its axial scale; S7 and unit 20 keep
+ * earlier values within 3 % of that figure. S8 sits below S7 because the figure chamfers L4's rear rim.
+ * Erratum: the table and claim 7 print νd 27.5 for L4, where nd 1.76182 is SF14 class at 26.5 and Figs. 2 and 3
+ * fit 26.5. vd keeps the printed value and S-TIH14 catalog dispersion traces it at 26.5; see source.errata.
  */
 const LENS_DATA = {
   schema: 2,
   key: "pentax-f-135mm-f28-if",
   maker: "Pentax",
   name: "PENTAX SMC F 135mm f/2.8 [IF]",
-  subtitle: "US 4,793,698 Example 1; inferred iris and figure-based apertures; infinity configuration",
+  subtitle: "US 4,793,698, Example 1 — associated with the smc PENTAX-F 135mm F2.8 [IF]",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "135-full-frame",
+    specs: [
+      "8 ELEMENTS / 7 GROUPS",
+      "DESIGN f = 135 mm (PATENT f = 100, SCALED ×1.35)",
+      "DESIGN F/2.8",
+      "ALL SPHERICAL",
+      "FOCUS TO 1/4× (PATENT)",
+    ],
     elementCount: 8,
     groupCount: 7,
     focalLengthMm: {
@@ -42,7 +54,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "The table and claim 7 print νd 27.5 for L4 (i = 7), but nd 1.76182 is the SF14 class at 26.5, and Figs. 2 and 3 fit 26.5: their paraxial g-line offsets read +0.07 and +0.45 at f = 100; S-TIH14 traces +0.07 and +0.45, while νd 27.5 gives −0.17 and +0.14. Among Examples 2–5 only Example 4 uses this glass, and it prints 26.5; Examples 2 and 5 print 1.78470/26.2 and Example 3 prints 1.80518/25.4 for the same element. This file keeps the printed vd 27.5, and S-TIH14 catalog dispersion traces it at 26.5.",
+        note: "The table and claim 7 print νd 27.5 for L4 (i = 7), but nd 1.76182 is the SF14 class at 26.5, and Figs. 2 and 3 fit 26.5: their paraxial g-line offsets read +0.07 and +0.45 at f = 100; S-TIH14 traces +0.07 and +0.45, while νd 27.5 gives −0.16 and +0.14. Among Examples 2–5 only Example 4 uses this glass, and it prints 26.5; Examples 2 and 5 print 1.78470/26.2 and Example 3 prints 1.80518/25.4 for the same element. This file keeps the printed vd 27.5, and S-TIH14 catalog dispersion traces it at 26.5.",
       },
     ],
   },
@@ -57,7 +69,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 165.38620994641423,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Fixed front unit 10",
+      role: "Low-dispersion positive front meniscus of fixed unit 10",
     },
     {
       id: 2,
@@ -69,7 +81,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 126.65958621482311,
       glass: "S-BAL35 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Fixed front unit 10",
+      role: "Second positive meniscus of fixed unit 10",
     },
     {
       id: 3,
@@ -81,7 +93,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 87.37968763004585,
       glass: "S-LAL8 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Fixed front unit 10",
+      role: "Third and strongest positive meniscus of fixed unit 10",
     },
     {
       id: 4,
@@ -93,7 +105,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -45.0252130367558,
       glass: "S-TIH14 (OHARA, SF14 class; patent prints νd 27.5 where this index is 26.5)",
-      role: "Fixed front unit 10",
+      role: "Negative meniscus closing fixed unit 10, just ahead of the iris",
     },
     {
       id: 5,
@@ -105,8 +117,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -54.06471997450982,
       glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Source inner-focus unit 20; infinity state",
-      cemented: "D1",
+      role: "Negative member of the cemented focusing unit 20",
+      cemented: "C1",
     },
     {
       id: 6,
@@ -118,8 +130,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 110.57789341393003,
       glass: "S-TIH13 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Source inner-focus unit 20; infinity state",
-      cemented: "D1",
+      role: "Positive member of the cemented focusing unit 20",
+      cemented: "C1",
     },
     {
       id: 7,
@@ -131,7 +143,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -287.7257967910607,
       glass: "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Source floating unit 30; infinity state",
+      role: "Weak negative meniscus forming focusing unit 30",
     },
     {
       id: 8,
@@ -143,7 +155,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 96.9881887753813,
       glass: "LLF6 (SUMITA catalog equivalent; production supplier unspecified)",
-      role: "Fixed rear unit 40",
+      role: "Biconvex rear element forming fixed unit 40",
     },
   ],
   surfaces: [
@@ -252,10 +264,10 @@ const LENS_DATA = {
     closeFocusM: 0.7,
     published: [1],
     description:
-      "Internal focus: units 20 and 30 move toward the image by different amounts while units 10 and 40 and the iris stay fixed, ending at the patent's printed 1/4-magnification gaps.",
+      "PUBLISHED infinity and 1/4-magnification gaps. Units 20 and 30 move toward the image, by 24.78 mm and 14.87 mm, while units 10 and 40 and the iris stay fixed. At the printed 1/4 state the object-to-image distance computes to 725 mm, about 3.6 % over the retail 0.7 m minimum focus.",
   },
   gaps: {
-    STO: { label: "d8", values: [[2.4458625000000005, 27.2264625]] },
+    STO: { label: "d8b", values: [[2.4458625000000005, 27.2264625]] },
     "11": { label: "d11", values: [[14.51655, 4.6035]] },
     "13": { label: "d13", values: [[19.00125, 4.13235]] },
   },
@@ -271,12 +283,12 @@ const LENS_DATA = {
       toSurface: "8",
     },
     {
-      text: "20 INNER UNIT",
+      text: "20 FOCUS",
       fromSurface: "9",
       toSurface: "11",
     },
     {
-      text: "30 FLOATING UNIT",
+      text: "30 FOCUS",
       fromSurface: "12",
       toSurface: "13",
     },
@@ -288,7 +300,7 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "9",
       toSurface: "11",
     },

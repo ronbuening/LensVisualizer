@@ -1,88 +1,129 @@
+# PENTAX SMC M 50mm f/1.7 — Patent Optical Analysis
+
 ## Patent Reference and Design Identification
 
-**Patent:** US 3, 817, 603  
+**Patent:** US 3,817,603  
 **Filed:** 18 May 1972  
 **Granted:** 18 June 1974  
-**Priority:** 24 May 1971  
+**Priority:** 24 May 1971 (Japan, 46-35396)  
 **Inventor:** Yasuo Takahashi  
 **Assignee:** Asahi Kogaku Kogyo Co., Ltd.  
 **Title:** Photographic Objective Having Glass of a High Index of Refraction  
-**Example details:** Sole numerical example, Table 1 and repeated sole claim; Figure 1 and specific f/1.7/22.7° aberration legends. Uniform dimensional scale ×0.5.
+**Example details:** Sole numerical example, Table 1, repeated in the claim; Table 2 Seidel coefficients; Figure 1 and Figures 2A–2D at f/1.7 and 22.7° half-field. All lengths scaled ×0.5 from nominal F = 100 mm.
 
-A manufacturer Pentax manual lists the SMC Pentax-M 50 mm f/1.7 as six elements in five groups, 47° full field, 0.45 m minimum focus, 49 mm filter and f/22 minimum aperture. This supports a product and topology correlation, not exact patent-to-factory identity. The specific patent figures use f/1.7 and 22.7° half-field, despite generic f/1.8 prose; the specific example is retained. Its 45.4° full field is distinct from the maker 47° value.
+The sole example is associated here with the SMC Pentax-M 50mm f/1.7, and the match is moderate. No Pentax document named here cites the patent or publishes a prescription, so this is a patent design associated with the product, not a confirmed factory prescription. The association rests on four points:
+
+1. **Construction.** Pentax's Lenses and Accessories catalog draws six elements in five groups. Its L1 to L6, the stop gap between L3 and L4, and the L4/L5 doublet agree with Figure 1 and with this model. The drawing is schematic and cannot confirm radii.
+2. **Specification.** A Pentax camera manual lists six elements in five groups, f/1.7 to f/22, 47° full field, 0.45 m minimum focus and a 49 mm filter. The patent's figures read 1:1.7 and 22.7°, so its 45.4° full field falls short of the maker's 47°. A field of 22.7° reaches the 135 format corner at about 52 mm, which suits a 50 mm lens better than a 55 mm one.
+3. **Timing.** The 1971 priority date comes about five years before the lens appeared with the ME and MX bodies around 1976–77. Public references list 50mm f/1.4, 55mm f/1.8 and 55mm f/2 normals in the K series and no 50mm f/1.7.
+4. **Attribution.** A third-party survey of Pentax designers lists US 3,817,603 against the M 50mm f/1.7 under Takahashi's name. It is not a maker source.
+
+The patent's prose mentions a standard objective of 1:1.8 or so, but its example figures are specific to f/1.7, and the file follows them. Pentax's later A, F and FA 50mm f/1.7 lenses share the six-element, five-group count; whether any production version follows this prescription exactly is not established.
 
 ## Optical Architecture
 
-Six spherical elements in five air-separated groups form a broadly Gaussian normal lens. The sequence is biconvex positive, positive meniscus, negative meniscus, biconcave negative, cemented biconvex positive and final biconvex positive. L4/L5 share the S8 glass/glass interface. The very large negative R2 is retained as a finite signed radius, rather than flattened. No asphere, plate or extra dummy surface is added.
+Six spherical elements in five air-separated groups form a Gaussian normal lens: positive L1 and L2, negative meniscus L3, the stop gap, the cemented L4/L5 doublet and positive L6. L4 and L5 share surface 8. Four of the six elements use the high index of 1.816, the feature the title names, and Table 2 gives a Petzval sum of +0.170.
+
+The patent's distinguishing choice is a slightly negative rear radius on L1 (r2 = −16328.50 at F = 100, or −8164.25 mm here), kept as a finite signed radius rather than flattened. The patent notes that such a radius usually narrows the field and aggravates coma, and accepts it to reduce distortion, leaving the other conditions below to compensate. Figure 2C shows about −0.44% at 22.7°, which the model reproduces.
+
+## Conditional Expressions
+
+The patent states six conditions in column 2. The file satisfies each, here with F = 100 and the corrected r4.
+
+| Condition | Patent limit | This prescription |
+| --- | --- | --- |
+| (1) | n1, n2, n5, n6 > 1.77 | all 1.816 |
+| (2) | (ν1 + ν2 + ν3)/3 > 38 | 40.6 |
+| (3) | F/1.7 < F1,2 < F/1.45 | 58.8 < 62.06 < 69.0 |
+| (4) | R2 < 0, 5F < \|R2\| < ∞ | R2 = −16328.50 |
+| (5) | 0.2 > n5 − n4 > 0.1 | 0.149 |
+| (6) | 0.7F < R4 < 1.5F | 0.94F |
+
+Per the patent, conditions 1 and 3 hold down the Petzval sum, condition 4 limits distortion, condition 5 corrects coma through the cemented junction, and condition 6 balances coma and other aberrations against condition 4.
 
 ## Element-by-Element Analysis
 
-Element focal lengths below are isolated thick-element calculations in air. Values for cemented elements are not their in-assembly contributions.
+Element focal lengths below are thick-element calculations in air. Values for cemented elements are not their in-assembly contributions.
 
 ### L1 — Biconvex Positive
 
-nd = 1.81600, νd = 46.8. Glass: Unmatched literal source coordinate; vendor unresolved. Isolated f = +84.637 mm.
+nd = 1.81600, νd = 46.8. Glass: TAF5 (HOYA) equivalent. f = +84.637 mm.
 
-The biconvex front element has a nearly flat but finite negative rear radius. Its high source index is retained without assigning a modern catalog glass.
+The biconvex front element has a nearly flat rear face with the slight negative radius of condition 4.
 
 ### L2 — Positive Meniscus
 
-nd = 1.81600, νd = 46.8. Glass: Unmatched literal source coordinate; vendor unresolved. Isolated f = +48.904 mm.
+nd = 1.81600, νd = 46.8. Glass: TAF5 (HOYA) equivalent. f = +48.904 mm.
 
-The positive meniscus supplies positive power ahead of the two central negative members. Its rear radius carries the one source correction: r4 = 94.39, not the 94.93 the US patent prints. Its clear front/rear semi-diameters 14.9/14.4 mm follow the figure hypothesis.
+The positive meniscus supplies positive power ahead of the two central negative members. Together with L1 it forms the front pair of condition 3. Its rear radius carries the one source correction: r4 = 94.39, not the 94.93 the US patent prints.
 
 ### L3 — Negative Meniscus
 
-nd = 1.72825, νd = 28.3. Glass: Unmatched literal source coordinate; vendor unresolved. Isolated f = -29.132 mm.
+nd = 1.72825, νd = 28.3. Glass: SF10 (SCHOTT) equivalent. f = −29.132 mm.
 
-The negative meniscus has lower Abbe number than the positive elements and supplies negative power ahead of the iris region. Its beveled rear face remains smaller than its front face.
+The negative meniscus has a lower Abbe number than the positive elements and supplies negative power ahead of the stop. The patent explains that large ν values in L1 and L2 spare this element from an exceedingly low ν, so its index need not be particularly high, which also helps the Petzval sum. Figure 1 draws its rear rim beveled, smaller than its front rim.
 
 ### L4 — Biconcave Negative
 
-nd = 1.66680, νd = 33.1. Glass: Unmatched literal source coordinate; vendor unresolved. Isolated f = -27.263 mm.
+nd = 1.66680, νd = 33.1. Glass: S-TIM39 (OHARA) equivalent. f = −27.263 mm.
 
-The biconcave negative member opens the rear cemented doublet. It shares S8 with L5; no air gap is inserted at that interface.
+The biconcave negative member opens the rear cemented doublet. It shares surface 8 with L5, with no air gap at that interface.
 
 ### L5 — Biconvex Positive
 
-nd = 1.81600, νd = 46.8. Glass: Unmatched literal source coordinate; vendor unresolved. Isolated f = +30.339 mm.
+nd = 1.81600, νd = 46.8. Glass: TAF5 (HOYA) equivalent. f = +30.339 mm.
 
-The positive member of the cemented doublet repeats the source 1.816/46.8 coordinate used in the other positive elements. This is a literal material coordinate, not a supplier identification.
+The positive member of the cemented doublet returns to the 1.816 glass, and the step of 0.149 from L4 at the junction is the subject of condition 5.
 
 ### L6 — Biconvex Positive
 
-nd = 1.81600, νd = 46.8. Glass: Unmatched literal source coordinate; vendor unresolved. Isolated f = +54.280 mm.
+nd = 1.81600, νd = 46.8. Glass: TAF5 (HOYA) equivalent. f = +54.280 mm.
 
-The final positive singlet ends the powered train at z 31.8 mm and precedes the computed image gap. Its clear semi-diameters 12.7/12.5 mm remain inferred.
+The final positive singlet ends the lens at z = 31.8 mm, ahead of the computed image gap. Its nearly flat front face leaves most of its power to the rear radius.
 
 ## Glass Identification and Selection
 
-The source explicitly defines its index at the d-line. Reference-wavelength calculations use 587.5618 nm and the literal indices. Unmatched labels prevent accidental assignment to a modern glass whose coefficients do not belong to the source. Abbe numbers alone do not establish full or anomalous dispersion, historical melt identity or measured chromatic correction. No coating, polarization, sensor or full-spectrum performance is validated.
+The patent defines its index at the d-line and prints n and ν only. The glasses named here are catalog equivalents chosen from those two values. The supplier Asahi used is not established.
+
+| Catalog equivalent | Catalog nd / νd | Patent n / ν | Elements | Role |
+| --- | --- | --- | --- | --- |
+| TAF5 (HOYA) | 1.81600 / 46.6 | 1.81600 / 46.8 | L1, L2, L5, L6 | High-index positive elements |
+| SF10 (SCHOTT) | 1.72825 / 28.4 | 1.72825 / 28.3 | L3 | Flint of the front group |
+| S-TIM39 (OHARA) | 1.66680 / 33.05 | 1.66680 / 33.1 | L4 | Lower-index flint of the doublet |
+
+Patent and catalog agree in nd. The small Abbe differences are within period catalog rounding or melt changes, and the historical melts themselves are not known.
 
 ## Focus Mechanism and Image Plane
 
-Only the assumed infinity configuration is supported. The manufacturer 0.45 m distance is not a sourced finite conjugate or whole-lens extension law. The source supplies no final image gap. The model retains the independently derived scaled BFL 35.96558439057599 mm and image z = 67.765584390576 mm, with zero applied refocus. These are computed quantities, not printed source distances.
+The patent publishes the infinity state only and gives no close-focus spacing, so the model is static and no element moves. The 0.45 m in the data file is Pentax's stated minimum focus; the production lens's focus travel is not modeled.
 
-The US table and repeated claim agree with each other, but both print r4 = 94.93, a transposition of the 94.39 that the German family publication DE 2224723 A1 carries. As printed, the table gives normalized EFL 99.724 and first-two-element focal length F12 = 61.892 against the stated 100 and 62.12. With 94.39 they become 99.971 and 62.056. The correction also brings the model onto the patent's own full-aperture spherical aberration and 22.7° distortion plots, and onto its Seidel table. F12 stays 0.10% short of the printed value, which the German print repeats, and that residual remains recorded as unresolved in source.errata. Every other radius, spacing and index is literal, and the scale is not fitted. At ×0.5 the system EFL is 49.98568604629769 mm.
+The patent prints no back focus. The last gap of 35.966 mm is the paraxial back focus of the corrected prescription, which puts the image plane 67.766 mm behind the first vertex with no refocus.
 
-The canonical infinity-only control state keeps finite focusing unavailable. Neither a retail minimum-focus label nor a calculated conjugate is presented as source-certified motion.
+## Source Correction at r4
 
-## Stop and Clear-Aperture Assumptions
+The US table and the repeated claim agree with each other, but both print r4 = 94.93, a transposition of the 94.39 that the German family publication DE 2224723 A1 carries in Google's text of its table. As printed, the table gives normalized EFL 99.724 and first-two-element focal length F1,2 = 61.892 against the stated 100 and 62.12. With 94.39 they become 99.971 and 62.056. The correction also brings the model onto the patent's full-aperture spherical aberration in Figure 2A, its 22.7° distortion in Figure 2C and the 54 Seidel cells of Table 2. Table 2's Petzval column implies a normalizing F of about 99.97, so the patent's 100 is nominal.
 
-The patent supplies no recognized stop mark or clear diameters. The retained midpoint iris is z = 17.28 mm in the 9.49 mm scaled central air gap, split 4.745+4.745 mm. It is a mechanical hypothesis, not a factory coordinate. Full native iris-disk/cap and zero-hidden-trim checks passed for this branch. The inferred eleven-face clear-radius vector is [16.2, 16.2, 14.9, 14.4, 13.5, 11.5, 11.1, 12.9, 12.9, 12.7, 12.5]mm.
+F1,2 stays 0.10% short of the printed value, which the German text repeats, and no single cell of the table explains that. It remains recorded as unresolved. Every other radius, spacing and index is as printed, and the scale is not fitted. At ×0.5 the system EFL is 49.986 mm.
 
-The front 16.2 mm anchor comes from scaled printed 50/(2×1.7) plus 10% clearance and rounding; the remaining faces use the full approximate Figure 1 outline, including the smaller beveled S6/S7 faces. Unknown schematic distortion remains. No filter-thread diameter is treated as a clear optical radius, no clipped surface is enlarged to improve contrast, and advertised stops through f/22 remain modeled with the ordinary native iris rule.
+The US Table 2 also prints the surface 5 S1 value as −0.0162 where the German text gives −1.162. That misprint is confined to the Seidel table and does not touch the model.
 
-## Modeled Diffraction and Coverage
+## Stop and Clear Apertures
 
-The displayed diffraction result is the native scalar sheared-pupil estimate from traced ray landings and the actual surviving pupil. Numerical sampling checks do not establish independent pupil-phase or factory validation. No measured-production MTF or absolute illumination is claimed.
+The patent marks no stop and prints no clear diameters. The stop is inferred at the midpoint of the 18.98 mm air gap, 9.49 mm at this scale, split 4.745 + 4.745 mm, at z = 17.28 mm. Pentax's drawing places a stop gap between L3 and L4 and does not fix the position further. At f/1.7 the paraxial entrance pupil is 29.40 mm across and the stop radius traces to 10.35 mm.
 
-The native wide-open estimates converged at 0°/11.35°/22.7° through the sampled 50 lp/mm range when run on the uncorrected r4 value. Separate two-dimensional studies of the saved 22.7° edge, also run before the correction, use conditional uniform launch-plane power and a scalar E² detector, with source and angular meshes checked separately. They support bounded numerical sensitivity only; their illumination assumptions are not historical lens measurements or a gold-standard reference.
+The inferred semi-diameters are 16.2, 16.2, 14.9, 14.4, 13.5, 11.5, 11.1, 12.9, 12.9, 12.7 and 12.5 mm. Surface 1 is the f/1.7 beam plus 10%. The others follow the proportions of Figure 1, about 7% larger than the figure at its own axial scale, including the smaller beveled rims at surfaces 6 and 7. At that scale the figure's surface 7 rim would touch the f/1.7 axial beam. Pentax's catalog drawing agrees with the file's rims within 0.6 mm.
 
-The format taxonomy uses 21.65 mm as its rounded 135 reference radius; the exact 36 × 24 mm rectangle corner is 21.633307652783937 mm. Source half-field angles remain separate from both. The native format-reference fields can extend beyond the patent half-field: these remain computed extrapolations of the frozen optical model, not source-certified coverage. Sampled ray fractions, conditional scalar references and a small set of field/frequency checks are not continuum error bounds.
+## Model Scope and Limitations
+
+- The prescription is the patent's, with one corrected radius. It is not a confirmed factory prescription.
+- Rims and the stop position are inferred, and the image plane is computed.
+- Focus is static at infinity.
+- Rays are traced to the patent's 22.7° half-field, which reaches 20.82 mm of image height, 96% of the 21.65 mm format corner. The corner itself lies beyond the field the patent covers.
 
 ## Sources
 
-- [US3817603A](https://patents.google.com/patent/US3817603A/en), sole Table 1, repeated claim and Figure 1/2 legends.
-- [DE2224723A1](https://patents.google.com/patent/DE2224723A1/de), German family publication; r4 = 94,39 in Google's text of the table.
-- Manufacturer Pentax-A camera manual, LIST OF SMC PENTAX LENSES, printed 34/PDF37; product correlation and f/22 endpoint.
+- [US 3,817,603](https://patents.google.com/patent/US3817603A/en), Tables 1 and 2, the claim, and Figures 1 and 2A–2D.
+- [DE 2224723 A1](https://patents.google.com/patent/DE2224723A1/de), German family publication; r4 = 94,39 in Google's text of the table.
+- [Asahi Pentax Lenses and Accessories catalog](https://cameramanuals.org/pentax_pdf/Asahi_Pentax_Lenses.pdf), p. 5, section drawing.
+- Pentax-A camera manual, List of SMC Pentax Lenses, printed p. 34, specifications.
+- [Known and Unknown Pentax lens designers and their lenses](https://douglasviewfinder.blogspot.com/p/known-pentax-lens-designs-and-designers.html), third-party survey.

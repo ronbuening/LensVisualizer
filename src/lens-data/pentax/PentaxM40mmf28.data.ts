@@ -1,18 +1,22 @@
-// Current-main private integration descendant: canonical infinity state; source optics unchanged.
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * PRIVATE row1166 integration descendant; original research remains separately archived.
- * US 4,154,509 sole example, literal R/d/nd/Vd uniformly scaled x0.4.
- * Retail Pentax-M 40mm association is a topology/field correlation, not factory proof.
- * Source PDF pixels inspected by source worker; this builder received textual handoff.
- * SD: fixed pre-trace paraxial axial EP envelope +10%, common group rims, up to 0.1mm.
- * Figure outlines are uncertain schematic sanity estimates, not calibrated clear radii.
- * STO plane is an explicit unproven hypothesis; opening is native F/N-derived.
- * Final gap 36.760mm is printed BFL scaled; NOT refitted to computed paraxial focus.
- * INFINITY ONLY. closeFocusM=1e15 uses the existing convention; retail0.60m is descriptive.
- * No gaps vary, no source motion law or finite conjugate is authored.
- * No spectral validation: literal d-line indices; Abbe values are not full-dispersion proof.
+ * US 4,154,509 (Takahashi, Asahi Kogaku Kogyo), sole example, associated with the SMC Pentax-M 40mm f/2.8.
+ * The association rests on construction, focal length, aperture and field; this is a patent design, not a
+ * confirmed factory prescription.
+ *
+ * Scale: the patent is normalized to F = 100. Every printed R and d is multiplied by exactly 0.4 for f = 40.0 mm.
+ * Printed: R, d, d-line n, Abbe number, F/2.8, half-field 28 degrees, back focus 91.90 (36.760 mm here).
+ * Image plane: the final gap keeps the printed back focus, which is the paraxial focus (computed 36.7637 mm).
+ * It is not moved to best axial focus, which lies about 0.12 mm in front of it because of the spherical aberration
+ * plotted in Fig. 2.
+ * Stop: the patent neither prints nor draws one. The printed d4 of 2.572 mm is split 0.643 + 1.929 mm, placing the
+ * stop 9.039 mm behind S1 in the air between L2 and L3. Fig. 2 points to a chief-ray crossing inside L2, about 7 mm
+ * behind S1, where no iris can sit. The stop radius follows the paraxial entrance pupil, F/N.
+ * Semi-diameters are inferred, none is printed. L2 and L3-L4 follow the axial beam with 10 % clearance and a common
+ * rim per element. L5 is 8.0 mm from Fig. 1 and Pentax's catalog drawing, where it is the tallest element. L1 is
+ * reduced toward the 7.5 mm of Fig. 1 only as far as corner illumination allows.
+ * Focus: the patent prints the infinity state only, so no gap varies; closeFocusM is the retail minimum focus.
  */
 
 const LENS_DATA = {
@@ -20,11 +24,12 @@ const LENS_DATA = {
   key: "pentax-m-40mm-f28",
   maker: "Pentax",
   name: "PENTAX SMC M 40mm f/2.8",
-  subtitle: "US 4,154,509 \u2014 sole example; STOP HYPOTHESIS 9.682 mm",
+  subtitle: "US 4,154,509, sole example \u2014 miniaturized semi-wide-angle lens",
   visible: true,
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "135-full-frame",
+    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN f = 40.0 mm", "DESIGN F/2.8", "ALL SPHERICAL"],
     elementCount: 5,
     groupCount: 4,
     focalLengthMm: {
@@ -55,7 +60,9 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 41,
       indexReference: "d",
+      focalLengthMm: 28.05,
       glass: "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "High-index positive front element, stronger curve toward the object; the main collector.",
     },
     {
       id: 2,
@@ -65,7 +72,9 @@ const LENS_DATA = {
       nd: 1.68893,
       vd: 31.1,
       indexReference: "d",
+      focalLengthMm: -19.17,
       glass: "S-TIM28 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Strong negative flint; offsets L1 to set the Petzval sum and color correction.",
     },
     {
       id: 3,
@@ -75,8 +84,10 @@ const LENS_DATA = {
       nd: 1.69895,
       vd: 30.1,
       indexReference: "d",
+      focalLengthMm: -31.97,
       glass: "SF15 (SUMITA catalog equivalent; production supplier unspecified)",
-      cemented: "D1",
+      role: "Negative flint member of the cemented doublet behind the stop.",
+      cemented: "C1",
     },
     {
       id: 4,
@@ -86,8 +97,10 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.8,
       indexReference: "d",
+      focalLengthMm: 22.36,
       glass: "TAF5 (HOYA coordinate equivalent; patent νd 46.8 versus catalog 46.6)",
-      cemented: "D1",
+      role: "High-index positive member of the cemented doublet; carries most of the rear power.",
+      cemented: "C1",
     },
     {
       id: 5,
@@ -97,7 +110,9 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       indexReference: "d",
+      focalLengthMm: 50,
       glass: "S-LAH65 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Thin positive meniscus, concave to the object; the tallest element, closing the rear group.",
     },
   ],
   surfaces: [
@@ -181,6 +196,13 @@ const LENS_DATA = {
     fullFieldDeg: 56,
     maxTraceFieldDeg: 28,
   },
+  doublets: [
+    {
+      text: "C1",
+      fromSurface: "5",
+      toSurface: "7",
+    },
+  ],
   layout: {
     yScFill: 0.4,
   },
