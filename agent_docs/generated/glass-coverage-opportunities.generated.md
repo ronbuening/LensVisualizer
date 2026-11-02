@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1044** lenses scanned (**1029** visible)
-- **11195 / 12021** non-air surfaces use strict catalog Sellmeier data (93.1%)
-- **11209 / 12021** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
+- **1050** lenses scanned (**1035** visible)
+- **11227 / 12054** non-air surfaces use strict catalog Sellmeier data (93.1%)
+- **11241 / 12054** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **285** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **152** self-recording explicit dispositions, **0** dispositions missing any review record
+- **286** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **153** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **20** Tier A proprietary backfill rows in Sweep 3
 
@@ -112,6 +112,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [SONY ZEISS VARIO-SONNAR T* 14.3-71.5mm f/2.8-4.8 (Sony Cyber-shot DSC-R1)](../../src/lens-data/sony/ZeissVarioSonnarT143715mmf2848SonyDCSR1.data.ts) | US 2008/0218875 A1 | [PDF](../../patents/US20080218875A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 6 [glass] (G3 composite asphere layer: `Unmatched (composite asphere layer; bulk-glass supplier unresolved)`)<br>10A [glass] (G5 composite asphere layer: `Unmatched (composite asphere layer; bulk-glass supplier unresolved)`) | abbe: 2 |
 | [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) | US 3,737,214 | [PDF](../../patents/US3737214.pdf) | 84.6% (11/13) | 84.6% (11/13) | 2 | 11 [glass] (Source internal filter: `Unmatched (source filter nd=1.51823; Abbe number not published)`)<br>15 [glass] (Element 7: `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)`) | abbe: 1, constant: 1 |
 | [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) | JP 1978-066222 A | Missing from untracked local patents/ references (JP1978066222A, JP1978066222, 1978066222, JPA1978066222000000) | 83.3% (5/6) | 83.3% (5/6) | 1 | 3 [glass] (Element 2: `Unmatched (nd=1.69480, νd=55.5; nearest public 697555 lanthanum-crown family)`) | abbe: 1 |
+| [MINOLTA MD 50mm f/1.7](../../src/lens-data/minolta/Minolta50mmf17MD.data.ts) | JP S60-111215 A | [PDF](../../patents/JPS60111215A.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 10 [glass] (Element 6: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | US 6,028,720 | [PDF](../../patents/US6028720.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (phosphate crown class, ne=1.5223, ve=69.5; no public catalog match — possible special melt or discontinued glass)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | US 5,870,234 | [PDF](../../patents/US5870234.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Schott KF9; patent e-line ne=1.52583, ve=51.25 stored as nd/vd)`) | abbe: 1 |
 | [RUSSAR-21 60mm f/18](../../src/lens-data/unattributed/Russar21.data.ts) | US 2,516,724 A | [PDF](../../patents/US2516724.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Lenzos L-67; nd=1.6395, vd=43.3; reference wavelength unstated)`) | abbe: 1 |
