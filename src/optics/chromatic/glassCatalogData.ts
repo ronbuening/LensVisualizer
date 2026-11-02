@@ -693,6 +693,8 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "LAL8",
   "PBH1",
   "PBH6",
+  "PBM28",
+  "PBM39",
   "LAH66",
   "LAH53",
   "E-FD1L",
