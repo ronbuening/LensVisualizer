@@ -105,14 +105,14 @@ const LENS_DATA = {
       label: "1",
       R: 30.628,
       d: 4.064,
-      sd: 7.9,
+      sd: 7.7,
       medium: 1,
     },
     {
       label: "2",
       R: -121.36,
       d: 2.696,
-      sd: 7.9,
+      sd: 7.7,
     },
     {
       label: "3",
@@ -124,13 +124,13 @@ const LENS_DATA = {
     {
       label: "4",
       R: 35.224,
-      d: 1.286,
+      d: 0.643,
       sd: 6.7,
     },
     {
       label: "STO",
       R: "flat",
-      d: 1.286,
+      d: 1.929,
     },
     {
       label: "5",
@@ -156,20 +156,20 @@ const LENS_DATA = {
       label: "8",
       R: -85.028,
       d: 1.732,
-      sd: 7.3,
+      sd: 8,
       medium: 5,
     },
     {
       label: "9",
       R: -27.544,
       d: 36.76,
-      sd: 7.3,
+      sd: 8,
     },
   ],
   focus: {
-    closeFocusM: 1e15,
+    closeFocusM: 0.6,
     description:
-      "Infinity-only US4154509 sole-example reconstruction, literal uniform x0.4 scale, with inferred clear apertures and unproven midpoint stop z9.682 mm. The rejected rear stop intersects glass and is not used. The printed scaled BFL36.760 mm fixes image z53.408 mm; no diagnostic refocus is authored. The low design-plane axial MTF, edge weakness, clipping and native witness misses/unaimed cells remain explicit. Native MTF accepts provable blocked/out-of-beam samples under unchanged flux rules; this does not mean every raw ray succeeds. Source half-field28 degrees differs from the native21.65 mm format corner and retail57-degree full field. Retail0.60 m minimum focus is descriptive only; no finite motion or conjugate is modeled. Factory identity and full dispersion are unproven; native monochromatic MTF is a simulation.",
+      "The patent prints the infinity state only, so the lens is modeled at infinity with no focus movement; 0.6 m is the retail minimum focus.",
   },
   aperture: {
     nominalFNumber: 2.8,
