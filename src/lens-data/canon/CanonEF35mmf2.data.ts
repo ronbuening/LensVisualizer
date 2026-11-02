@@ -28,7 +28,6 @@ const LENS_DATA = {
     specs: [
       "PATENT RECONSTRUCTION; CLEAR APERTURES AND IRIS OPENING INFERRED",
       "MODELED AXIAL CLIPPING: 40 OF 3,228 SAMPLES AT S8; NOT FACTORY PERFORMANCE",
-      "Inventor romanization tentative; primary name 田中 常文",
       "7 ELEMENTS / 5 GROUPS",
       "GRADE B PROBABLE FAMILY; REPRESENTATIVE EMBODIMENT",
       "INFINITY CONFIGURATION ONLY",
@@ -97,7 +96,7 @@ const LENS_DATA = {
       nd: 1.6727,
       vd: 32.1,
       indexReference: "d",
-      glass: "S-TIM25 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "E-FD5 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -25.29924944292772,
       role: "Literal representative prescription; negative isolated-in-air paraxial power.",
       indexReferenceNote:
@@ -198,7 +197,7 @@ const LENS_DATA = {
       label: "8",
       R: 45.81,
       d: 2.0,
-      sd: 9.0,
+      sd: 9.05,
     },
     {
       label: "9",
@@ -247,9 +246,9 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.25,
     description:
-      "No finite-focus gaps or image distance are supplied. Only the hypothetical infinity configuration is authored; retail 0.25 m is not a source conjugate.",
+      "The patent gives only the infinity state and no focus travel, so all spacings stay fixed and the production lens's 0.25 m close focus is not modeled.",
   },
   aperture: {
     nominalFNumber: 2,
