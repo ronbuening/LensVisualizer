@@ -114,6 +114,13 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     description:
       "Prominent standard lenses such as the Ultron 2/50 and Nokton 1.5/50 use a quick-change bayonet around the body shutter. Other system optics have different mechanical arrangements: the Telomar telephoto uses a dedicated reflex housing. The catalog groups their complete Prominent installations without implying that every lens attaches like a standard 50mm unit.",
   },
+  werra: {
+    era: "Carl Zeiss Jena Werra 35 mm rangefinders with interchangeable lenses, from 1958",
+    formatNotes: "35 mm film rangefinder",
+    summary: "The twist-locked bayonet of the East German Werra rangefinders, for a three-lens system.",
+    description:
+      "From the Werra III of 1958, VEB Carl Zeiss Jena fitted its Werra rangefinders with a bayonet: the lens pushes on from the front and a ring on the camera locks it. Museum and collector sources call it the Werra bayonet or a screw bayonet. The aperture ring stays on the camera while the iris and helicoid sit in the lens, so the two work together. The system stayed small, with the Flektogon 2.8/35, Tessar 2.8/50 and Cardinar 4/100. No public source gives a flange distance or throat diameter.",
+  },
   "canon-ef": {
     era: "Canon EOS SLR and DSLR mount, introduced in 1987",
     formatNotes:

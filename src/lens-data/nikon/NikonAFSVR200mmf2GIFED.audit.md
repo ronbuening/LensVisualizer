@@ -1,0 +1,3 @@
+# Nikon AF-S VR 200mm f/2 G — private construction audit
+
+Initial aperture inference was rejected at S9 before any native ray entry. The bounded geometry branch changes only four inferred caps; all literal optical and image-plane inputs remain unchanged. Exact input/figure/source hashes, initial rejection, analytic solid-rim constraints and per-surface pupil outcomes are preserved in the private reproducibility package. Native geometry passes with zero trim. Native monochromatic MTF records 27 converged fields across nine apertures at six sampled frequencies; current integration and compiled-viewer receipts are preserved separately in the private evidence; this is not a release or factory-accuracy claim.
