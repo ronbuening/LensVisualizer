@@ -23,8 +23,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Table I, recomputes from Table III with the pupil 5.36 behind r12 at F = 100, so the stop sits 0.965 mm after r12. Its
  * radius follows from F/3.5.
  *
- * All `sd` values are estimates read from Fig. 3 by fitting Table III's arcs (vertical scale 1.04 × axial). Rims follow
- * the figure at the front; from L5 back they stop 0.8 to 1.8 mm above it to keep corner light, which is 48.1 % at 51°.
+ * All `sd` values are estimates read from Fig. 3 by fitting Table III's arcs (vertical scale 1.04 × axial), each height
+ * being half the drawn span across the axis. L1 to L3 follow the figure within 0.5 mm; from L4 back the rims stand 0.8 to
+ * 2 mm above it to keep corner light, which is 52.5 % at 51°.
  *
  * The patent's 51° half field lands at 21.15 mm, so the model covers 98 % of the 21.65 mm full-frame corner. `projection`
  * declares that field because the paraxial chief-ray estimate undercounts it. Pentax quotes 100°.
@@ -223,7 +224,7 @@ const LENS_DATA = {
       "label": "2",
       "R": 17.0208,
       "d": 8.5626,
-      "sd": 13.8
+      "sd": 14.3
     },
     {
       "label": "3",
@@ -281,14 +282,14 @@ const LENS_DATA = {
       "label": "11",
       "R": 32.598,
       "d": 4.571999999999999,
-      "sd": 6.9,
+      "sd": 7.1,
       "medium": 6
     },
     {
       "label": "12",
       "R": -17.238599999999998,
       "d": 0.965,
-      "sd": 6.9
+      "sd": 7.1
     },
     {
       "label": "STO",
@@ -332,27 +333,27 @@ const LENS_DATA = {
       "label": "18",
       "R": 58.377599999999994,
       "d": 1.0404,
-      "sd": 8.2,
+      "sd": 8,
       "medium": 10
     },
     {
       "label": "19",
       "R": 21.9132,
       "d": 1.9458,
-      "sd": 8.4
+      "sd": 8
     },
     {
       "label": "20",
       "R": 187.76520000000002,
       "d": 3.4056,
-      "sd": 9.1,
+      "sd": 8.7,
       "medium": 11
     },
     {
       "label": "21",
       "R": -19.213199999999997,
       "d": 35.946,
-      "sd": 9.1
+      "sd": 8.7
     }
   ],
   "doublets": [

@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * US 5,530,593, Embodiment 1 (Table 1, Figure 3): a patent design associated with the Nikon Zoom 700 VR, also sold
+ * US 5,530,593, Embodiment 1 (Table 1, Figure 3): a patent design associated with the Nikon Zoom 700VR, also sold
  * as the Zoom-Touch 105 VR, not a confirmed factory prescription. Nikon does not link the patent to the camera.
  * Kept at the patent's scale, f = 39-102 mm, F/4.08-8.05, H = 21.6 mm, with no scaling to the marketed 38-105mm f/4-7.8.
  * 12 spherical elements in 10 groups: G1 three singlets; G2 is GF (cemented L4 + L5, then L6), the stop and GR
@@ -16,10 +16,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Table 1 prints wide 2ω = 58.20°, but the model gives 57.19° at H = 21.6 mm and Embodiments 2-5 agree with their own
  * tables within 0.04°, so 58.20 is probably a misprint of 57.20. The printed KT/Z = 0.363 also looks misprinted
  * (model 0.670).
- * The patent prints no clear apertures: sd values follow Figure 3, which is isotropic within about 3 %, with flat
+ * The patent prints no clear apertures: sd values follow Figure 3, which is isotropic within about 1 %, with flat
  * lands on S2, S20 and S22 as drawn. Cemented faces take no land, so the L4 and L8 edges slant where the figure steps.
- * S21 stays 0.2 mm under the drawing to keep the air gap to S22 open, and S22 sits 0.2 mm over it to clear the image
- * circle.
+ * S22 sits 0.2 mm over the drawing to clear the image circle. L11 and L12 nearly touch at that rim, as drawn, so
+ * gapSagFrac is 0.96 for the S21-S22 air gap, which stays open by about 0.17 mm.
  * Focus is static at infinity: the patent moves G3 toward the image but prints no close state, and closeFocusM rests
  * on a single hobby reference page. GR is centered, with no decentering modeled. The fixed flare stopper SF has no
  * data and is not modeled.
@@ -28,7 +28,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "nikon-zoom-700-vr-38-105mm-f4-78",
   "maker": "Nikon",
-  "name": "NIKON 38-105mm f/4-7.8 (Nikon Zoom 700 VR)",
+  "name": "NIKON 38-105mm f/4-7.8 (Nikon Zoom 700VR)",
   "subtitle": "US 5,530,593, Embodiment 1 — design 39-102 mm F/4.08-8.05 for the marketed 38-105 mm f/4-7.8",
   "catalog": {
     "lensMounts": [
@@ -352,13 +352,13 @@ const LENS_DATA = {
       "d": 1.3,
       "medium": 11,
       "sd": 9.7,
-      "rimExtensionSd": 11.0
+      "rimExtensionSd": 11.3
     },
     {
       "label": "21",
       "R": -124.763,
       "d": 4.0,
-      "sd": 11.0
+      "sd": 11.3
     },
     {
       "label": "22",
@@ -639,6 +639,9 @@ const LENS_DATA = {
   ],
   "layout": {
     "yScFill": 0.76
+  },
+  "checks": {
+    "gapSagFrac": 0.96
   }
 } satisfies LensDataV2Input;
 

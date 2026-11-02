@@ -1,4 +1,4 @@
-# Nikon Zoom 700 VR 38-105mm f/4-7.8
+# Nikon Zoom 700VR 38-105mm f/4-7.8
 
 ## Patent Reference and Design Identification
 
@@ -11,7 +11,7 @@
 **Title:** Zoom Lens  
 **Example details:** Table 1, Figure 3. Kept at the patent's scale, f = 39–102 mm.
 
-This is a patent design associated with the Nikon Zoom 700 VR, also sold as the Zoom-Touch 105 VR, not a confirmed factory prescription; Nikon does not link the patent to the camera. The embodiment's f = 39–102 mm and F/4.08–8.05 differ from the marketed 38–105 mm f/4–7.8, and the file keeps the patent's values. The front page spells the second inventor "Susumo Sato"; the patent's recorded assignment reads SATO, SUSUMU, the spelling used across this catalog.
+This is a patent design associated with the Nikon Zoom 700VR, also sold as the Zoom-Touch 105 VR, not a confirmed factory prescription; Nikon does not link the patent to the camera. The embodiment's f = 39–102 mm and F/4.08–8.05 differ from the marketed 38–105 mm f/4–7.8, and the file keeps the patent's values. The front page spells the second inventor "Susumo Sato"; the patent's recorded assignment reads SATO, SUSUMU, the spelling used across this catalog.
 
 1. **Construction.** Embodiment 1 has 12 elements in 10 groups, as do Embodiments 3 and 5; Embodiments 2 and 4 have 13 in 11. Nikon's history pages give no count. One hobby reference page lists twelve elements in ten groups for the camera.
 2. **Range.** Embodiment 1 is the closest 12-element match, at 39–102 mm against 40–90 mm for Embodiment 3 and 36.3–77.9 mm for Embodiment 5. Embodiment 2 covers nearly the same range at F/3.92–8.14 with one more element. No embodiment reaches 38–105 mm.
@@ -169,12 +169,12 @@ Table 1 prints F = 4.08–8.05 and no middle value. The printed ends imply stop 
 
 Table 1 prints 2ω = 58.20°–23.32° at H = 21.6 mm. The tele value reproduces: a chief ray at 11.66° lands at 21.60 mm. The wide value does not: the model reaches H = 21.6 mm at 28.59°, so 2ω = 57.19°, and a chief ray at the printed half-field lands at 22.07 mm. Embodiments 2–5 reproduce their printed wide values within 0.04°, so 58.20 is probably a misprint of 57.20. The model reaches the 24 × 36 mm corner, 21.65 mm, at every station.
 
-The patent prints no clear apertures. The semi-diameters are inferred from Figure 3, whose arcs show it isotropic within about 3 %, with flat lands on S2, S20 and S22 as drawn. Three differences remain. Cemented faces take no land here, so the edges of L4 and L8 slant where the figure steps. S21 stays at 11.0 mm against about 11.2 mm drawn, to keep the air gap to S22 open. S22 sits at 11.3 mm against about 11.1 mm drawn, to clear the image circle. Wide open, corner light is about 54 % at wide, 62 % at middle and 53 % at tele; these figures describe the inferred rims, not a measured camera.
+The patent prints no clear apertures. The semi-diameters are inferred from Figure 3, whose arcs show it isotropic within about 1 %, with flat lands on S2, S20 and S22 as drawn. Two differences remain. Cemented faces take no land here, so the edges of L4 and L8 slant where the figure steps. S22 sits at 11.3 mm against about 11.1 mm drawn, to clear the image circle, so it stands level with L11's 11.3 mm rim instead of just below it; the two faces stay about 0.17 mm apart there. Wide open, corner light is about 54 % at wide, 62 % at middle and 53 % at tele; these figures describe the inferred rims, not a measured camera.
 
 ## Sources
 
 - [US 5,530,593](https://patents.google.com/patent/US5530593A/en), Embodiment 1, Table 1 and Figure 3, with Embodiments 2–5 for comparison.
 - [Nikon 1990s camera history](https://imaging.nikon.com/imaging/information/products_history/1990/): camera name, 1994, 38-105mm f/4-7.8 lens.
 - [NIKKOR - The Thousand and One Nights No. 35](https://imaging.nikon.com/history/story/0035/index.htm): April 1994 introduction and lens-shift VR.
-- [Camera-wiki: Nikon Zoom 700 VR / Zoom-Touch 105 VR](https://camera-wiki.org/wiki/Nikon_Zoom_700_VR/Zoom-Touch_105_VR): lens name and alternative camera name.
+- [Camera-wiki: Nikon Zoom 700VR / Zoom-Touch 105 VR](https://camera-wiki.org/wiki/Nikon_Zoom_700_VR/Zoom-Touch_105_VR): lens name and alternative camera name.
 - [filmphotography.eu: Nikon Zoom 700VR](https://filmphotography.eu/en/camera/nikon-zoom-700vr/): hobby reference page, the single source for the camera's 12 elements in 10 groups and 75 cm closest distance.

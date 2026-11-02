@@ -11,8 +11,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * D10, D16 and BF are the printed infinity and closest-distance spacings. The patent prints β = −0.1258 and no
  * distance; those spacings compute to about 1.897 m object to image, and closeFocusM is Nikon's 1.9 m.
  * The infinity image plane is the printed BF, 59.4575 mm; the paraxial back focus computes to 59.461 mm.
- * The patent prints no clear apertures: sd values are inferred from the entrance pupil, Figure 7 and element
- * edge thickness. Element 1 (patent L11) is square-cut at 53.5 mm on both faces, as Figure 7 draws it.
+ * The patent prints no clear apertures: sd values are estimated from Figure 7 at 0.0954 mm/px and floor-checked by
+ * real-ray trace at both printed focus states. Where Figure 7 ends a curved face short of the element edge, sd is the
+ * end of the curve and rimExtensionSd the flat land beyond it, on surfaces 5, 7, 10, 13 and 16. Element 1 (patent L11)
+ * is square-cut at 53.5 mm on both faces, as Figure 7 draws it; the short ends of the Figures 8A and 9A coma fans trace
+ * to the same rim. Element 13 (patent L33) is 21.5 mm, above the 20.4 mm Figure 7 draws, to hold the corner light.
+ * Element 5 (patent L15) has a flat rear land outside its cemented joint in Figure 7; a cemented face cannot carry one.
  * Nikon's protective meniscus and drop-in filter are not in the patent and are not modeled.
  * VR decentering of G3 is not modeled.
  */
@@ -278,72 +282,76 @@ const LENS_DATA = {
       "R": 88.701,
       "d": 21.0,
       "medium": 2,
-      "sd": 50.0
+      "sd": 48.1
     },
     {
       "label": "4",
       "R": -270.095,
       "d": 4.0,
       "medium": 3,
-      "sd": 46.0
+      "sd": 47.1
     },
     {
       "label": "5",
       "R": 128.345,
       "d": 15.39,
-      "sd": 44.5
+      "sd": 42.2,
+      "rimExtensionSd": 47.1
     },
     {
       "label": "6",
       "R": 71.441,
       "d": 8.0,
       "medium": 4,
-      "sd": 39.0
+      "sd": 37.3
     },
     {
       "label": "7",
       "R": 174.32,
       "d": 1.0,
-      "sd": 36.5
+      "sd": 35.8,
+      "rimExtensionSd": 37.3
     },
     {
       "label": "8",
       "R": 74.005,
       "d": 3.0,
       "medium": 5,
-      "sd": 36.0
+      "sd": 34.4
     },
     {
       "label": "9",
       "R": 34.121,
       "d": 15.0,
       "medium": 6,
-      "sd": 30.0
+      "sd": 29.4
     },
     {
       "label": "10",
       "R": 126.546,
-      "sd": 28.5
+      "sd": 28.5,
+      "rimExtensionSd": 29.4
     },
     {
       "label": "11",
       "R": -957.711,
       "d": 4.8,
       "medium": 7,
-      "sd": 26.0
+      "sd": 25.5
     },
     {
       "label": "12",
       "R": -100.138,
       "d": 3.0,
       "medium": 8,
-      "sd": 24.5
+      "sd": 24.9
     },
     {
       "label": "13",
       "R": 55.554,
       "d": 8.0,
-      "sd": 23.5
+      "sd": 20.8,
+      "rimExtensionSd": 24.9
     },
     {
       "label": "14",
@@ -357,12 +365,13 @@ const LENS_DATA = {
       "R": -51.923,
       "d": 3.0,
       "medium": 10,
-      "sd": 20.5
+      "sd": 20.9
     },
     {
       "label": "16",
       "R": 54.98,
-      "sd": 20.5
+      "sd": 19.0,
+      "rimExtensionSd": 20.9
     },
     {
       "label": "STO",
@@ -374,20 +383,20 @@ const LENS_DATA = {
       "R": 111.154,
       "d": 4.5,
       "medium": 11,
-      "sd": 20.5
+      "sd": 19.5
     },
     {
       "label": "19",
       "R": -121.699,
       "d": 2.7,
-      "sd": 20.0
+      "sd": 19.5
     },
     {
       "label": "20",
       "R": -49.128,
       "d": 3.0,
       "medium": 12,
-      "sd": 19.0
+      "sd": 19.3
     },
     {
       "label": "21",

@@ -15,8 +15,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * The patent prints no iris position, and its Table 2 Seidel coefficients reproduce with the pupil at r1, so they do not
  * fix one. The stop is inferred at the midpoint of the 20.0 gap between L3 and L4, and its radius follows from F/4. All
- * `sd` values are estimates: about 10% above the paraxial F/4 ray at the front faces of L1 to L4, and about 0.36 of the
- * front rim for the rear pair, a proportion taken from Fig. 1.
+ * `sd` values are estimates from Fig. 1, a small sketch that keeps its axial spacings to scale but not its curvatures.
+ * At the axial scale its L1 to L4 rims fall 8 to 10% inside the F/4 ray, so L1 to L3 are read at 12% more height, the
+ * least that clears that ray. L4 is within reading error of that scale. The rear pair stays about 10% above it, because
+ * a rear rim at the drawn height would cost about 9 points of corner light.
  *
  * Focus is static at infinity. The patent's 7f near plots come with no spacings; closeFocusM is the 12 m in Pentax's
  * table. The abstract reverses the condition n5 < n6; the detailed text, Table 1 and the claim's table govern.
@@ -109,7 +111,7 @@ const LENS_DATA = {
       "nd": 1.53256,
       "vd": 46.0,
       "indexReference": "d",
-      "glass": "FTM8 (OHARA catalog equivalent; production supplier unspecified)",
+      "glass": "LLF8 (SUMITA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 649.502,
       "role": "Isolated positive singlet; adds front-section power, and its rear face supplies higher-order spherical aberration"
     },
@@ -145,40 +147,40 @@ const LENS_DATA = {
       "label": "1",
       "R": 225.28199999999998,
       "d": 21.0,
-      "sd": 82.5,
+      "sd": 76.9,
       "medium": 1
     },
     {
       "label": "2",
       "R": -2402.4539999999997,
       "d": 9.0,
-      "sd": 82.5
+      "sd": 76.9
     },
     {
       "label": "3",
       "R": -468.168,
       "d": 6.0,
-      "sd": 78.03,
+      "sd": 74.5,
       "medium": 2
     },
     {
       "label": "4",
       "R": 1318.968,
       "d": 9.0,
-      "sd": 78.03
+      "sd": 74.5
     },
     {
       "label": "5",
       "R": 168.546,
       "d": 19.200000000000003,
-      "sd": 78.38,
+      "sd": 72.7,
       "medium": 3
     },
     {
       "label": "6",
       "R": 1047.498,
       "d": 59.999999999999986,
-      "sd": 78.38
+      "sd": 72.7
     },
     {
       "label": "STO",

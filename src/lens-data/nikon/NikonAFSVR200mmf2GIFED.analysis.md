@@ -149,9 +149,23 @@ The printed infinity spacings put the image plane 217.3714 mm behind surface 1. 
 
 Surface 17 is the printed aperture stop, 133.5139 mm behind surface 1 and 1.20 mm ahead of surface 18. Its radius of 18.207 mm follows from F/1.84.
 
-The patent prints no clear apertures. The semi-diameters are inferred from the entrance pupil, Figure 7 and element edge thickness, and they are model values, not production measurements. L1 is square-cut at 53.5 mm on both faces, the height Figure 7 draws, which leaves about 0.5 mm over the 52.99 mm entrance-pupil radius.
+The patent prints no clear apertures. The semi-diameters are estimated from Figure 7 and checked by real-ray trace at both printed focus states; they are model values, not production measurements. L1 is square-cut at 53.5 mm on both faces, the height Figure 7 draws, which leaves about 0.5 mm over the 52.99 mm entrance-pupil radius. The patent's ray data arrive at the same rim: the short ends of the coma fans in Figures 8A and 9A trace back to 52 to 53.5 mm at surface 1, and the printed NA of 0.25 at the closest distance reaches 53.15 mm there.
 
-With these rims the model passes about 47% of the full pupil at the 6.3° corner at F/1.84. That figure follows from the inferred rims and is not measured production vignetting.
+Figure 7 ends several curved faces short of the element edge and finishes them with flat lands, and the model draws those lands:
+
+| Surface | Curve ends | Land reaches |
+|---|---:|---:|
+| 5 (L3 rear) | 42.2 mm | 47.1 mm |
+| 7 (L4 rear) | 35.8 mm | 37.3 mm |
+| 10 (L6 rear) | 28.5 mm | 29.4 mm |
+| 13 (L8 rear) | 20.8 mm | 24.9 mm |
+| 16 (L10 rear) | 19.0 mm | 20.9 mm |
+
+Each curve end sits just outside the on-axis beam of the tighter focus state: 0.14 mm at surface 7 at the closest distance, and 0.19 mm at surface 13 at infinity. L5 also has a flat rear land in the figure, outside its cemented joint with L6; a cemented face cannot carry one in the model, so L5's rear edge is drawn as a straight line from 34.4 mm to 29.4 mm.
+
+L13 is 21.5 mm on both faces, above the 20.4 mm Figure 7 draws, because the drawn rim would take 3.6 points from the corner. The long ends of the Figures 8A and 9A coma fans trace to about 18.7 mm at L13, smaller than the figure's own rim, so the patent's corner is darker than the model's.
+
+With these rims the model passes about 47% of the full pupil at the 6.3° corner at F/1.84, and about 37% with L13 at the 18.7 mm the fans imply. Those figures follow from the inferred rims and are not measured production vignetting.
 
 The patent's half-field is 6.31°, and Figure 8A gives Y = 21.6 mm. The model reaches 21.60 mm, just short of the 21.65 mm full-frame corner reference.
 

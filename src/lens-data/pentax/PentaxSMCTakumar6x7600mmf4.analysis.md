@@ -51,7 +51,7 @@ A forward-convex meniscus that closes the front section. Its front face r5 is th
 
 ### L4 — Biconvex Positive
 
-nd = 1.53256, νd = 46.00. Glass: FTM8 (OHARA) catalog equivalent, close but not an exact row; supplier not established. f = +649.5 mm.
+nd = 1.53256, νd = 46.00. Glass: LLF8 (SUMITA) catalog equivalent, a legacy lead light flint at the printed coordinates; supplier not established. f = +649.5 mm.
 
 A thin singlet with a 120 mm air space ahead of it and 63 mm behind it. It brings the front power to F1234 < f/1.9, condition (3). The patent gives its rear face a specific job: with |r8| < 3f, that surface produces an under-corrected higher-order aberration (+6.186 spherical in Table 2) that shapes the reversed spherical curve.
 
@@ -76,11 +76,11 @@ Table 1 prints d-line indices and Abbe numbers and names no glass. The labels in
 | L1 | 1.51633 / 64.1 | S-BSL7 (OHARA) | 1.51633 / 64.14 |
 | L2 | 1.76182 / 26.5 | S-TIH14 (OHARA) | 1.76182 / 26.52 |
 | L3 | 1.51276 / 59.76 | Unmatched (512598 crown) | none |
-| L4 | 1.53256 / 46.00 | FTM8 (OHARA) | 1.53257 / 45.91 |
+| L4 | 1.53256 / 46.00 | LLF8 (SUMITA) | 1.53256 / 46.00 |
 | L5 | 1.59270 / 35.8 | FF5 (HOYA) | 1.59270 / 35.45 |
 | L6 | 1.67000 / 57.3 | S-LAL52 (OHARA) | 1.67000 / 57.33 |
 
-L4 and L5 are close but not exact rows; FF5 is 0.35 from the printed νd. The model keeps every printed nd. Its chromatic calculations take dispersion from the catalog row where a label resolves, so L5 follows νd 35.45 rather than 35.8, and L3 uses its printed νd.
+L5 is close but not an exact row: FF5 is 0.35 from the printed νd. The model keeps every printed nd. Its chromatic calculations take dispersion from the catalog row where a label resolves, so L5 follows νd 35.45 rather than 35.8, and L3 uses its printed νd.
 
 Neither the patent nor Pentax's table names ED or anomalous-dispersion glass, and the highest νd is L1's 64.1. The Abbe numbers do not establish partial dispersion or apochromatic correction.
 
@@ -96,7 +96,7 @@ The patent prints no iris position, and Fig. 1 draws none. Its Table 2 Seidel co
 
 The model's stop is therefore an inferred position at the midpoint of the 20.0 gap (l3) between L3 and L4, 124.2 mm behind the first vertex. Nothing in the patent favours this plane over another in the gap, and it does not establish room for the blades. Its 54.5 mm radius follows from the 150 mm paraxial entrance pupil at F/4. Pentax's table gives f/45 as the smallest stop.
 
-Clear apertures are not printed either. All semi-diameters are estimates: L1 to L4 sit about 10% above the paraxial F/4 ray at their front faces, and the rear pair takes about 0.36 of the front rim, a proportion from Fig. 1. They are not factory clear apertures, and the off-axis vignetting the model shows at the rear pair depends on them.
+Clear apertures are not printed either. All semi-diameters are estimates from Fig. 1, a small sketch that keeps its axial spacings to scale but not its curvatures. At the axial scale its rims of L1 to L4 fall 8 to 10% inside the F/4 ray, so the heights are read at a scale 12% larger, the least that clears that ray: 76.9 mm at L1, 74.5 mm at L2 and 72.7 mm at L3. L4 at 46.0 mm is within reading error of that scale. The rear pair at 29.7 mm stays about 10% above it, because a rear rim at the drawn height would cost about 9 points of corner light. These are not factory clear apertures, and the off-axis vignetting the model shows, most of it at the rear pair, depends on them. At the format corner the model passes 86.7% of the on-axis light.
 
 The image plane is the printed L × 6: 445.2 mm from the first vertex, which leaves a last gap of 174.0 mm. The patent prints no back focus. The computed EFL is 599.97 mm and the computed paraxial back focus is 173.80 mm, 0.20 mm short of that plane. This difference is rounding of the printed L: Table 1 computes to L = 74.166, which prints as 74.2, and one printed decimal spans ±0.30 mm at this scale. No dimension is adjusted to remove it.
 

@@ -9,8 +9,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * surfaces 46 and 47, modeled as a rear plate with the 0.991 mm gap to the image plane. That plane stays fixed at
  * 248.034 mm from surface 1, and no refocus is applied. The six aspherical faces keep the patent's KA form as
  * K = KA - 1 and every A3-A16 term, including the odd terms.
- * Each lens `sd` is half the printed maximum effective diameter, not a proven clear rim. gapSagFrac 0.9134 admits
- * those rims at S8-S9 and S14-S15, which keep positive clearance. No rim was changed for aperture or performance.
+ * Each lens `sd` is half the printed maximum effective diameter, not a proven clear rim, and nothing is added for
+ * aperture or performance. Each `rimExtensionSd` is the square element edge drawn in Figures 2 and 3, kept as an opaque
+ * land that passes no light. The sheets are stretched 4.4% along the axis against height, so those edges are read at
+ * 14.78 px/mm on Figure 3 and 6.36 px/mm on Figure 2, the height scales that arc fits to the printed radii give.
+ * Cemented joints carry no land, so each doublet's edge dips to its joint's printed radius where the figures draw it
+ * straight. gapSagFrac 0.95 admits the facing L21 and L22 lands at S8-S9 and the rims at S14-S15, which keep positive
+ * clearance; the printed radii alone would need 0.92.
  *
  * Derived: the stop position is printed at surface 17, and its radius comes from the paraxial stop rule at F/3.19.
  * It stays constant through zoom, following conditional expression (36). Seven inferred stations are solved to hold
@@ -445,6 +450,7 @@ const LENS_DATA = {
       R: 123.1147,
       d: 2.22,
       sd: 43.424,
+      rimExtensionSd: 44,
       medium: 1,
     },
     {
@@ -452,12 +458,14 @@ const LENS_DATA = {
       R: 77.0546,
       d: 1.98,
       sd: 40.5825,
+      rimExtensionSd: 44,
     },
     {
       label: "3",
       R: 83.5431,
       d: 8.07,
       sd: 40.319,
+      rimExtensionSd: 41.1,
       medium: 2,
     },
     {
@@ -465,24 +473,28 @@ const LENS_DATA = {
       R: 221.8839,
       d: 0.23,
       sd: 39.7905,
+      rimExtensionSd: 41.1,
     },
     {
       label: "5",
       R: 78.0065,
       d: 8.79,
       sd: 36.5485,
+      rimExtensionSd: 37.5,
       medium: 3,
     },
     {
       label: "6",
       R: 370.4098,
       sd: 36.014,
+      rimExtensionSd: 37.5,
     },
     {
       label: "7",
       R: 157.9373,
       d: 0.98,
       sd: 22.2865,
+      rimExtensionSd: 23.8,
       medium: 4,
     },
     {
@@ -490,12 +502,14 @@ const LENS_DATA = {
       R: 21.8405,
       d: 10.611,
       sd: 16.8455,
+      rimExtensionSd: 23.8,
     },
     {
       label: "9",
       R: -67.3444,
       d: 0.75,
       sd: 16.5765,
+      rimExtensionSd: 17.5,
       medium: 5,
     },
     {
@@ -503,12 +517,14 @@ const LENS_DATA = {
       R: 242.3673,
       d: 0.5,
       sd: 16.2095,
+      rimExtensionSd: 17.5,
     },
     {
       label: "11A",
       R: 87.2762,
       d: 2.99,
       sd: 16.0095,
+      rimExtensionSd: 16.4,
       asphere: {
         A3: 0.0,
         A4: 1.0146441588e-5,
@@ -533,6 +549,7 @@ const LENS_DATA = {
       R: 444.2815,
       d: 0.3,
       sd: 15.7935,
+      rimExtensionSd: 16.4,
       asphere: {
         A3: 0.0,
         A4: 3.6438032149e-6,
@@ -556,6 +573,7 @@ const LENS_DATA = {
       R: 205.3276,
       d: 3.34,
       sd: 15.693,
+      rimExtensionSd: 16.3,
       medium: 7,
     },
     {
@@ -563,18 +581,21 @@ const LENS_DATA = {
       R: -82.6762,
       d: 1.6695,
       sd: 15.505,
+      rimExtensionSd: 16.3,
     },
     {
       label: "15",
       R: -41.4675,
       d: 0.86,
       sd: 15.415,
+      rimExtensionSd: 15.9,
       medium: 8,
     },
     {
       label: "16",
       R: -156.3431,
       sd: 15.229,
+      rimExtensionSd: 15.9,
     },
     {
       label: "STO",
@@ -586,6 +607,7 @@ const LENS_DATA = {
       R: 256.3637,
       d: 1.76,
       sd: 12.8225,
+      rimExtensionSd: 14.4,
       medium: 9,
     },
     {
@@ -600,12 +622,14 @@ const LENS_DATA = {
       R: 67.2343,
       d: 0.58,
       sd: 13.5785,
+      rimExtensionSd: 14.4,
     },
     {
       label: "21A",
       R: 52.1736,
       d: 6.86,
       sd: 14.0285,
+      rimExtensionSd: 14.8,
       asphere: {
         A3: 0.0,
         A4: -2.6856662043e-6,
@@ -630,6 +654,7 @@ const LENS_DATA = {
       R: -38.2221,
       d: 2.1784,
       sd: 14.4465,
+      rimExtensionSd: 14.8,
       asphere: {
         A3: 5.9009734714e-8,
         A4: 9.55154034e-7,
@@ -653,6 +678,7 @@ const LENS_DATA = {
       R: "flat",
       d: 1.03,
       sd: 15.967,
+      rimExtensionSd: 16.6,
       medium: 12,
     },
     {
@@ -667,12 +693,14 @@ const LENS_DATA = {
       R: -118.4665,
       d: 0.11,
       sd: 16.2795,
+      rimExtensionSd: 16.7,
     },
     {
       label: "26",
       R: 357.5599,
       d: 3.03,
       sd: 16.46,
+      rimExtensionSd: 17.7,
       medium: 14,
     },
     {
@@ -680,12 +708,14 @@ const LENS_DATA = {
       R: -106.7334,
       d: 5.3476,
       sd: 16.5155,
+      rimExtensionSd: 17.7,
     },
     {
       label: "28",
       R: -35.5914,
       d: 2.13,
       sd: 15.377,
+      rimExtensionSd: 17.9,
       medium: 15,
     },
     {
@@ -700,24 +730,28 @@ const LENS_DATA = {
       R: -34.8489,
       d: 0.11,
       sd: 17.042,
+      rimExtensionSd: 17.9,
     },
     {
       label: "31",
       R: 227.4149,
       d: 5.21,
       sd: 17.5365,
+      rimExtensionSd: 18.3,
       medium: 17,
     },
     {
       label: "32",
       R: -51.958,
       sd: 17.562,
+      rimExtensionSd: 18.3,
     },
     {
       label: "33A",
       R: -34.9718,
       d: 1.86,
       sd: 15.8505,
+      rimExtensionSd: 16.6,
       asphere: {
         A3: -3.2767361939e-8,
         A4: 6.0659513412e-5,
@@ -742,6 +776,7 @@ const LENS_DATA = {
       R: 97.9734,
       d: 7.65,
       sd: 16.104,
+      rimExtensionSd: 16.6,
       asphere: {
         A3: 0.0,
         A4: 6.8546757067e-5,
@@ -765,6 +800,7 @@ const LENS_DATA = {
       R: -56.9527,
       d: 1.58,
       sd: 17.182,
+      rimExtensionSd: 19.8,
       medium: 19,
     },
     {
@@ -778,12 +814,14 @@ const LENS_DATA = {
       label: "37",
       R: -61.1655,
       sd: 19.185,
+      rimExtensionSd: 19.8,
     },
     {
       label: "38",
       R: 54.0802,
       d: 12.33,
       sd: 25.142,
+      rimExtensionSd: 25.6,
       medium: 21,
     },
     {
@@ -791,12 +829,14 @@ const LENS_DATA = {
       R: -78.4389,
       d: 1.5,
       sd: 25.045,
+      rimExtensionSd: 25.6,
     },
     {
       label: "40",
       R: 68.031,
       d: 1.92,
       sd: 22.6015,
+      rimExtensionSd: 22.8,
       medium: 22,
     },
     {
@@ -811,12 +851,14 @@ const LENS_DATA = {
       R: -109.3154,
       d: 1.37,
       sd: 20.396,
+      rimExtensionSd: 21.3,
     },
     {
       label: "43",
       R: -75.3207,
       d: 7.34,
       sd: 20.232,
+      rimExtensionSd: 21.1,
       medium: 24,
     },
     {
@@ -831,6 +873,7 @@ const LENS_DATA = {
       R: -131.2716,
       d: 31.4994,
       sd: 21.3215,
+      rimExtensionSd: 23,
     },
   ],
   rearPlates: [
@@ -1003,7 +1046,7 @@ const LENS_DATA = {
     yScFill: 0.76,
   },
   checks: {
-    gapSagFrac: 0.9134,
+    gapSagFrac: 0.95,
   },
   source: {
     patentNumber: "JP 2026-091132 A",
