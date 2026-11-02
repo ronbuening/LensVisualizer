@@ -1826,7 +1826,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 19 | L27 resin layer | abbe | `Unmatched (patent resin layer, nd=1.5361, νd=41.21; chemistry and supplier unspecified)` | Explicit unmatched/proprietary annotation |
+| 19A | L27 resin layer | abbe | `Unmatched (patent resin layer, nd=1.5361, νd=41.21; chemistry and supplier unspecified)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON AI AF ZOOM-NIKKOR 18-35mm f/3.5-4.5 D IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor1835mmf3545DIFED.data.ts) - 91.7% trusted (11/12); 91.7% Sellmeier (11/12) - US 2001/0030812 A1
 
@@ -2363,7 +2363,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 4 | Element 3 | abbe | `Unmatched (patent nd=1.5995, νd=35.2; no catalog row at these coordinates)` | Explicit unmatched/proprietary annotation |
+| 4 | Element III | abbe | `Unmatched (patent nd=1.5995, νd=35.2; no catalog row at these coordinates)` | Explicit unmatched/proprietary annotation |
 
 ### [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) - 83.3% trusted (5/6); 83.3% Sellmeier (5/6) - JP 1978-066222 A
 
