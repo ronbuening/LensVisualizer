@@ -83,28 +83,28 @@ The patent gives only the infinity state and no focus travel, and Canon's page d
 
 ## Geometry, Aperture and Image Plane
 
-All clear radii are inferred from Figure 1 and Canon's section, not printed. Group ratios of about 1.27, 1, 0.82, 0.85 and 0.98 are anchored to an 11.5 mm front-doublet radius, about 8.8% above its mean paraxial marginal height. The first meniscus takes 14.5 mm and 14 mm to respect its bevel and steep rear face; other values are rounded to 0.25 mm. Drawing distortion is unknown, so these are not factory apertures.
+All clear radii are inferred from Figure 1, not printed. Fitting the printed radii to the drawn arcs shows the figure about 3.7% wider across the axis than along it, at 11.71 px/mm against 11.29 px/mm. On that scale its stop ticks sit at 9.48 mm, against the derived 9.461 mm, and the element edges read 15.1 mm for L1, 9.9 mm for L4, 10.5 mm for HL2 and 12.0 mm for L7. The front doublet reads 11.9 mm and is set at 11.5 mm, just clear of the marginal ray at S3. Drawing distortion is unknown, so these are not factory apertures. Canon's section reverses the rear step, drawing L4's rim wider than HL2.
 
-S8 is the limiting rim: its 9.05 mm radius equals the axial marginal height there at the wide-open stop, and the facing curves of S8 and S9 close across the 2.00 mm air gap near 9.5 mm.
+Figure 1 ends three curves short of their element edges with flat lands. S2's concave face stops at 13.0 mm, about 6.8 mm behind its vertex, and its land runs out to L1's edge. The facing curves of S8 and S9 close across the 2.00 mm air space and stop at 9.5 mm, 0.02 mm apart; their lands run out to 9.9 mm on L4 and 10.5 mm on HL2. The iris limits the axial beam, which reaches 9.05 mm at S8. A ray entering at the full 8.88 mm paraxial pupil radius would cross S8 and S9 at 9.49 and 9.50 mm, so the curves clear it too.
 
 The patent prints no back focus or image distance. The image plane, 85.228 mm from the first vertex, is the computed paraxial infinity focus, with EFL 35.508 mm and back focus 37.828 mm. No best-focus shift is applied.
 
 The wide-open iris radius of 9.461 mm is derived. The adjacent surfaces clear the iris disk by 3.09 mm in front and 1.86 mm behind; this says nothing about blade mechanics.
 
-| Surface | Inferred clear SD, mm |
-| --- | ---: |
-| 1 | 14.50 |
-| 2 | 14.00 |
-| 3 | 11.50 |
-| 4 | 11.50 |
-| 5 | 11.50 |
-| 7 | 9.50 |
-| 8 | 9.05 |
-| 9 | 9.75 |
-| 10 | 9.75 |
-| 11 | 9.75 |
-| 12 | 11.25 |
-| 13 | 11.25 |
+| Surface | Inferred clear SD, mm | Drawn edge, mm |
+| --- | ---: | ---: |
+| 1 | 15.10 | 15.10 |
+| 2 | 13.00 | 15.10 |
+| 3 | 11.50 | 11.50 |
+| 4 | 11.50 | 11.50 |
+| 5 | 11.50 | 11.50 |
+| 7 | 9.90 | 9.90 |
+| 8 | 9.50 | 9.90 |
+| 9 | 9.50 | 10.50 |
+| 10 | 10.50 | 10.50 |
+| 11 | 10.50 | 10.50 |
+| 12 | 12.00 | 12.00 |
+| 13 | 12.00 | 12.00 |
 
 ## Model Scope and Limitations
 

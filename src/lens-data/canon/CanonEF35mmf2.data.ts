@@ -4,7 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * JP H04-015611 A, Numerical Example 1; the exact production prescription is unproved.
  * R, d, N, ν and the stop position are as printed. Back focus and the image plane are computed; the patent prints neither.
  * N and ν are read at the d line: all seven pairs reproduce catalog nd/νd, and Figures 4 to 6 plot the d and g lines.
- * Clear semi-diameters are inferred from Figure 1 and Canon's section; the wide-open iris radius is derived.
+ * Clear semi-diameters are estimated from Figure 1 and checked by real-ray trace; the wide-open iris radius is derived.
+ * Figure 1 runs 11.71 px/mm across the axis and 11.29 px/mm along it; S2, S8 and S9 carry its flat lands.
+ * S8 and S9 close to 0.02 mm at their 9.5 mm rims, where Figure 1 draws them meeting, so gapSagFrac is 1.
  * The patent gives no focus motion, so the model is static at the retail 0.25 m close focus.
  */
 const LENS_DATA = {
@@ -146,13 +148,14 @@ const LENS_DATA = {
       R: 28.25,
       d: 1.5,
       medium: 1,
-      sd: 14.5,
+      sd: 15.1,
     },
     {
       label: "2",
       R: 15.79,
       d: 15.28,
-      sd: 14,
+      sd: 13,
+      rimExtensionSd: 15.1,
     },
     {
       label: "3",
@@ -184,46 +187,48 @@ const LENS_DATA = {
       R: -27.54,
       d: 1.94,
       medium: 4,
-      sd: 9.5,
+      sd: 9.9,
     },
     {
       label: "8",
       R: 45.81,
       d: 2.0,
-      sd: 9.05,
+      sd: 9.5,
+      rimExtensionSd: 9.9,
     },
     {
       label: "9",
       R: -46.16,
       d: 1.1,
       medium: 5,
-      sd: 9.75,
+      sd: 9.5,
+      rimExtensionSd: 10.5,
     },
     {
       label: "10",
       R: 276.83,
       d: 3.58,
       medium: 6,
-      sd: 9.75,
+      sd: 10.5,
     },
     {
       label: "11",
       R: -24.15,
       d: 0.1,
-      sd: 9.75,
+      sd: 10.5,
     },
     {
       label: "12",
       R: 134.67,
       d: 3.2,
       medium: 7,
-      sd: 11.25,
+      sd: 12,
     },
     {
       label: "13",
       R: -46.19,
       d: 37.827796312164644,
-      sd: 11.25,
+      sd: 12,
     },
   ],
   doublets: [
@@ -257,6 +262,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.78,
   },
+  checks: { gapSagFrac: 1 },
   groups: [
     {
       text: "I",
