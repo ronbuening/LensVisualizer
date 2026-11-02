@@ -65,7 +65,7 @@ The negative meniscus has a lower Abbe number than the positive elements and sup
 
 ### L4 — Biconcave Negative
 
-nd = 1.66680, νd = 33.1. Glass: S-TIM39 (OHARA) equivalent. f = −27.263 mm.
+nd = 1.66680, νd = 33.1. Glass: PBM39 (OHARA, discontinued lead flint) equivalent. f = −27.263 mm.
 
 The biconcave negative member opens the rear cemented doublet. It shares surface 8 with L5, with no air gap at that interface.
 
@@ -89,7 +89,7 @@ The patent defines its index at the d-line and prints n and ν only. The glasses
 | --- | --- | --- | --- | --- |
 | TAF5 (HOYA) | 1.81600 / 46.6 | 1.81600 / 46.8 | L1, L2, L5, L6 | High-index positive elements |
 | SF10 (SCHOTT) | 1.72825 / 28.4 | 1.72825 / 28.3 | L3 | Flint of the front group |
-| S-TIM39 (OHARA) | 1.66680 / 33.05 | 1.66680 / 33.1 | L4 | Lower-index flint of the doublet |
+| PBM39 (OHARA) | 1.66680 / 33.05 | 1.66680 / 33.1 | L4 | Lower-index flint of the doublet |
 
 Patent and catalog agree in nd. The small Abbe differences are within period catalog rounding or melt changes, and the historical melts themselves are not known.
 
@@ -111,7 +111,9 @@ The US Table 2 also prints the surface 5 S1 value as −0.0162 where the German 
 
 The patent marks no stop and prints no clear diameters. The stop is inferred at the midpoint of the 18.98 mm air gap, 9.49 mm at this scale, split 4.745 + 4.745 mm, at z = 17.28 mm. Pentax's drawing places a stop gap between L3 and L4 and does not fix the position further. At f/1.7 the paraxial entrance pupil is 29.40 mm across and the stop radius traces to 10.35 mm.
 
-The inferred semi-diameters are 16.2, 16.2, 14.9, 14.4, 13.5, 11.5, 11.1, 12.9, 12.9, 12.7 and 12.5 mm. Surface 1 is the f/1.7 beam plus 10%. The others follow the proportions of Figure 1, about 7% larger than the figure at its own axial scale, including the smaller beveled rims at surfaces 6 and 7. At that scale the figure's surface 7 rim would touch the f/1.7 axial beam. Pentax's catalog drawing agrees with the file's rims within 0.6 mm.
+The inferred semi-diameters are 16.2, 16.2, 14.9, 14.4, 13.5, 10.7, 10.6, 12.9, 12.9, 12.5 and 12.5 mm. Surface 1 is the f/1.7 beam plus 10%. The others follow the proportions of Figure 1. The figure's arcs fit about 24.7 px/mm across the axis against 25.3 px/mm along it, a stretch of about 2.5%, and at the across-axis scale the outer rims run about 5% above the drawing.
+
+Surfaces 6 and 7 end where the drawn curves end, just outside the f/1.7 axial beam at 10.57 and 10.33 mm. Figure 1 bevels from those points out to the flat rims of L3 and L4. The model draws the flats as lands to 13.5 and 12.9 mm, square where the figure bevels, and the lands take no rays. L6 is cut square, so its two faces share one height. Pentax's catalog drawing agrees with the file's rims within 0.5 mm.
 
 ## Model Scope and Limitations
 

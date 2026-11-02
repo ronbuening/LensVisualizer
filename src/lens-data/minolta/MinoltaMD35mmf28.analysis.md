@@ -27,7 +27,7 @@ Element focal lengths below are isolated thick-element calculations in air.
 
 nd = 1.57140, νd = 53.0. Glass: S-BAL3 (Ohara catalog equivalent; production supplier unspecified). f = −36.41 mm.
 
-The negative front meniscus supplies retrofocus divergence. Its faces carry different inferred rims, 14.4 and 11.8 mm, following the beveled outline in Figure 1.
+The negative front meniscus supplies retrofocus divergence. Its front face carries an inferred 14.4 mm rim and its rear curve ends at 11.8 mm. Figure 1 bevels the edge between them, drawn here as a flat land on the rear face out to 14.4 mm.
 
 ### L2 — Biconvex Positive
 
@@ -37,9 +37,9 @@ The thick biconvex singlet supplies substantial positive power after the large f
 
 ### L3 — Biconcave Negative
 
-nd = 1.68890, νd = 31.2. Glass: J-SF8 (Hikari catalog equivalent; production supplier unspecified). f = −17.36 mm.
+nd = 1.68890, νd = 31.2. Glass: PBM28 (OHARA, discontinued lead flint; production supplier unspecified). f = −17.36 mm.
 
-The strongly dispersive biconcave member sits just behind the stop. Its front face has the largest negative spherical and Petzval contributions in Table II, and the patent's requirement that N1 stay below N3 keeps the Petzval sum small. Its inferred rims are 6.8 and 7.5 mm, clear of the f/2.8 axial beam.
+The strongly dispersive biconcave member sits just behind the stop. Its front face has the largest negative spherical and Petzval contributions in Table II, and the patent's requirement that N1 stay below N3 keeps the Petzval sum small. Its inferred rims are 6.8 and 7.5 mm, clear of the f/2.8 axial beam, and a flat land on the front face stands in for Figure 1's short bevel out to the 7.5 mm edge.
 
 ### L4 — Positive Meniscus
 
@@ -55,7 +55,7 @@ The rear biconvex singlet precedes the printed 37.1 mm image gap. Both faces car
 
 ## Glass Identification and Selection
 
-Table I does not name its spectral line, but its values establish the d line: four of the five pairs reproduce catalog nd and νd values and none reproduces catalog e-line values. L1 sits at S-BAL3 (1.57135/52.95), L3 at J-SF8 (1.68893/31.16), L4 at K-LaK10 (1.72000/50.30) and L5 at S-BSM16 (1.62041/60.29). L2's 1.6583 is the K-LaK11 index, but its νd of 58.5 is kept against a catalog 57.3, so K-LaK11 is a spectral proxy; the same coordinate recurs in other Minolta prescriptions.
+Table I does not name its spectral line, but its values establish the d line: four of the five pairs reproduce catalog nd and νd values and none reproduces catalog e-line values. L1 sits at S-BAL3 (1.57135/52.95), L3 at PBM28 (1.68893/31.08), L4 at K-LaK10 (1.72000/50.30) and L5 at S-BSM16 (1.62041/60.29). L2's 1.6583 is the K-LaK11 index, but its νd of 58.5 is kept against a catalog 57.3, so K-LaK11 is a spectral proxy; the same coordinate recurs in other Minolta prescriptions.
 
 These names are catalog equivalents, and the supplier is not established. L3 is the only flint, with the positive power carried by crowns and lanthanum crowns. No element is identified as anomalous-dispersion glass.
 
@@ -69,7 +69,7 @@ The printed back focus of 1.06 scales to 37.1 mm and remains the final gap, plac
 
 Figure 1 draws no iris and Table I has no stop row, but Table II fixes the position. Its coma, astigmatism and distortion coefficients depend on where the chief ray crosses the axis, and they agree with the prescription to about 0.001 with the stop 0.1639 f behind r4. Scaled, that places the stop at z = 29.463 mm and splits the 11.137 mm gap d4 into 5.7365 + 5.4005 mm. The iris radius at f/2.8 is 6.937 mm by the paraxial stop rule, and the aperture scale runs to Minolta's f/22.
 
-The rims are not printed. They are read from Figure 1, whose vertex positions match the table to about 0.2 mm, so the drawing can be read at its own scale. The S1–S10 values are [14.4, 11.8, 10.3, 10.3, 6.8, 7.5, 8.0, 8.0, 10.0, 10.0] mm. S6 stays at 7.5 mm against about 7.6 mm drawn, because the L3 and L4 faces nearly touch there. These are inferred glass outlines, not factory clear apertures.
+The rims are not printed. They are read from Figure 1, whose vertex positions match the table to about 0.2 mm, so the drawing can be read at its own scale, and arc fits to its surfaces give the same scale across the axis. The S1–S10 values are [14.4, 11.8, 10.3, 10.3, 6.8, 7.5, 8.0, 8.0, 10.0, 10.0] mm. The lands on S2 and S5 only complete the outline: rays end at those faces' rims. S6 lies inside the 7.4–7.8 mm that Figure 1 draws below and above the axis, and the L3 and L4 faces close at that rim, as the drawing shows them. These are inferred glass outlines, not factory clear apertures.
 
 ## Coverage and Illumination
 

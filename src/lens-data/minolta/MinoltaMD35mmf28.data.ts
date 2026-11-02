@@ -7,8 +7,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The computed paraxial value is 37.106 mm; no refocus is applied.
  * Stop: Figure 1 draws no iris and Table I has no stop row. Table II's coefficients place it 0.1639 f behind r4, so d4
  * (11.137 mm) splits 5.7365 + 5.4005 mm and the stop is at z = 29.463 mm. Its radius follows the paraxial stop rule.
- * Semi-diameters are not printed. They are read from Figure 1 at the drawing's own scale, set by its vertex positions.
- * L2, L4 and L5 keep the drawn square rims. S6 stays at 7.5 mm, against about 7.6 mm drawn, to clear the L3-L4 gap limit.
+ * Semi-diameters are not printed. They are read from Figure 1 at 21.5 px/mm, set by its vertex positions; arc fits give
+ * the same scale across the axis, so the drawing is not stretched.
+ * L2, L4 and L5 keep the drawn square rims. S6 is 7.5 mm inside the 7.4-7.8 mm drawn below and above the axis, and L3
+ * and L4 close at that rim as drawn. rimExtensionSd on S2 and S5 draws the flat L1 and L3 edges; each land stands in
+ * for a drawn bevel and carries no light.
  * Table I prints N and v without naming a wavelength. Four of its five pairs reproduce catalog nd/vd and none a catalog
  * ne/ve, which establishes the d line by the coordinate test in LENS_DATA_SPEC.md.
  * The patent gives 2w = 64 deg; Minolta lists 63 deg. The 135-format corner, 32.1 deg, is just outside the patent's 32 deg.
@@ -24,7 +27,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["minolta-sr"],
     imageFormat: "135-full-frame",
-    specs: ["5 ELEMENTS / 5 GROUPS", "DESIGN f = 35.00 mm", "DESIGN F/2.8", "ALL SPHERICAL"],
+    specs: ["5 ELEMENTS / 5 GROUPS", "DESIGN f = 35 mm", "DESIGN F/2.8", "ALL SPHERICAL", "PATENT f = 1 SCALED × 35"],
     elementCount: 5,
     groupCount: 5,
     focalLengthMm: {
@@ -81,7 +84,7 @@ const LENS_DATA = {
       vd: 31.2,
       indexReference: "d",
       focalLengthMm: -17.36048337037693,
-      glass: "J-SF8 (HIKARI catalog equivalent; production supplier unspecified)",
+      glass: "PBM28 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 4,
@@ -121,6 +124,7 @@ const LENS_DATA = {
       R: 16.4815,
       d: 12.383,
       sd: 11.8,
+      rimExtensionSd: 14.4,
     },
     {
       label: "3",
@@ -145,6 +149,7 @@ const LENS_DATA = {
       R: -14.042,
       d: 1.3265,
       sd: 6.8,
+      rimExtensionSd: 7.5,
       medium: 3,
     },
     {

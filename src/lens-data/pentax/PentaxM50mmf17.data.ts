@@ -9,7 +9,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent prints no back focus. The last gap is the paraxial back focus of the corrected
  * prescription, which puts the image plane 67.7656 mm behind surface 1, with no refocus.
  * Semi-diameters are inferred: surface 1 is the f/1.7 beam plus 10 %, the others follow the
- * proportions of Figure 1. The patent marks no stop; it sits at the midpoint of the
+ * proportions of Figure 1 and clear the f/1.7 axial ray. Figure 1's arcs fit 24.7 px/mm across
+ * the axis against 25.3 px/mm along it; at 24.7 the outer rims run about 5 % above the drawing.
+ * Surfaces 6 and 7 end where the drawn curves end. Their rimExtensionSd lands draw the flat rims
+ * of L3 and L4 in place of the drawn bevels and take no rays. L6 is drawn square-cut, so
+ * surfaces 10 and 11 share one height. The patent marks no stop; it sits at the midpoint of the
  * 18.98 mm gap, z = 17.28 mm, with its radius solved from the paraxial f/1.7 pupil.
  * Infinity state only: closeFocusM is Pentax's stated 0.45 m and no focus travel is modeled.
  * The patent field is 45.4 degrees full against Pentax's 47 degrees. This is a patent design
@@ -24,7 +28,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "135-full-frame",
-    specs: ["6 ELEMENTS / 5 GROUPS", "DESIGN f = 50 mm", "DESIGN F/1.7", "ALL SPHERICAL"],
+    specs: ["6 ELEMENTS / 5 GROUPS", "DESIGN f = 50 mm", "DESIGN F/1.7", "ALL SPHERICAL", "PATENT f = 100 SCALED × 0.5"],
     elementCount: 6,
     groupCount: 5,
     focalLengthMm: {
@@ -107,7 +111,7 @@ const LENS_DATA = {
       nd: 1.6668,
       vd: 33.1,
       indexReference: "d",
-      glass: "S-TIM39 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "PBM39 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -27.262866221612676,
     },
     {
@@ -173,7 +177,8 @@ const LENS_DATA = {
       label: "6",
       R: 17.415,
       d: 4.745,
-      sd: 11.5,
+      sd: 10.7,
+      rimExtensionSd: 13.5,
     },
     {
       label: "STO",
@@ -184,7 +189,8 @@ const LENS_DATA = {
       label: "7",
       R: -19.185,
       d: 2.41,
-      sd: 11.1,
+      sd: 10.6,
+      rimExtensionSd: 12.9,
       medium: 4,
     },
     {
@@ -204,7 +210,7 @@ const LENS_DATA = {
       label: "10",
       R: 230.105,
       d: 2.765,
-      sd: 12.7,
+      sd: 12.5,
       medium: 6,
     },
     {

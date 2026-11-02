@@ -13,9 +13,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the patent neither prints nor draws one. The printed d4 of 2.572 mm is split 0.643 + 1.929 mm, placing the
  * stop 9.039 mm behind S1 in the air between L2 and L3. Fig. 2 points to a chief-ray crossing inside L2, about 7 mm
  * behind S1, where no iris can sit. The stop radius follows the paraxial entrance pupil, F/N.
- * Semi-diameters are inferred, none is printed. L2 and L3-L4 follow the axial beam with 10 % clearance and a common
- * rim per element. L5 is 8.0 mm from Fig. 1 and Pentax's catalog drawing, where it is the tallest element. L1 is
- * reduced toward the 7.5 mm of Fig. 1 only as far as corner illumination allows.
+ * Semi-diameters are inferred, none is printed. Fig. 1 at its axial scale reads L1 7.5, L2 6.65, L3-L4 7.2 and L5
+ * 8.0 mm, and each element keeps one rim, floor-checked by real-ray trace: L2 and L3-L4 clear the axial beam by about
+ * 7 %. L5 is the tallest element in Fig. 1 and in Pentax's catalog drawing. L2 stops at 6.7 mm, where the S4 rim meets
+ * the stop plane. L1 stays above the figure, at 7.7 mm, because a lower rim costs corner illumination.
  * Focus: the patent prints the infinity state only, so no gap varies; closeFocusM is the retail minimum focus.
  */
 
@@ -29,7 +30,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "135-full-frame",
-    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN f = 40.0 mm", "DESIGN F/2.8", "ALL SPHERICAL"],
+    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN f = 40 mm", "DESIGN F/2.8", "ALL SPHERICAL", "PATENT f = 100 SCALED × 0.4"],
     elementCount: 5,
     groupCount: 4,
     focalLengthMm: {
@@ -73,7 +74,7 @@ const LENS_DATA = {
       vd: 31.1,
       indexReference: "d",
       focalLengthMm: -19.17,
-      glass: "S-TIM28 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "PBM28 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Strong negative flint; offsets L1 to set the Petzval sum and color correction.",
     },
     {

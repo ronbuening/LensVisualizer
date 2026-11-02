@@ -10,8 +10,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the patent marks none. The iris is a fixed plane 75 % through the infinity d8, 30.7101375 mm from S1, sized
  * by paraxial EPD = F/N. The 75 % position is inferred; the field curves of Fig. 3 fit a fixed iris there and do
  * not fit one moving with unit 20.
- * sd: inferred, not measured. L1, L2, L3, S8, L7 and L8 are read from Fig. 1 at its axial scale; S7 and unit 20 keep
- * earlier values within 3 % of that figure. S8 sits below S7 because the figure chamfers L4's rear rim.
+ * sd: inferred, not measured. L1, L2, S5, S6, S8, S11, L7 and L8 are read from Fig. 1 at its axial scale; S7, S9 and
+ * S10 keep earlier values within 4 % of that figure. The figure chamfers the rear rims of L3, L4 and L6, so S6, S8 and
+ * S11 stop at the drawn cap ends, clear of every traced beam at both focus states. S8's rimExtensionSd 16.6 stands in
+ * for L4's flat rim and chamfer, which one rim edge cannot draw, and keeps the land ahead of the iris plane.
  * Erratum: the table and claim 7 print νd 27.5 for L4, where nd 1.76182 is SF14 class at 26.5 and Figs. 2 and 3
  * fit 26.5. vd keeps the printed value and S-TIH14 catalog dispersion traces it at 26.5; see source.errata.
  */
@@ -26,10 +28,10 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "8 ELEMENTS / 7 GROUPS",
-      "DESIGN f = 135 mm (PATENT f = 100, SCALED ×1.35)",
+      "DESIGN f = 135 mm",
       "DESIGN F/2.8",
       "ALL SPHERICAL",
-      "FOCUS TO 1/4× (PATENT)",
+      "PATENT f = 100 SCALED × 1.35",
     ],
     elementCount: 8,
     groupCount: 7,
@@ -195,7 +197,7 @@ const LENS_DATA = {
     {
       label: "6",
       R: 54.73305,
-      sd: 21.37,
+      sd: 19.7,
       d: 2.80395,
     },
     {
@@ -208,7 +210,8 @@ const LENS_DATA = {
     {
       label: "8",
       R: 21.0141,
-      sd: 16.1,
+      sd: 15.7,
+      rimExtensionSd: 16.6,
       d: 7.3375875,
     },
     {
@@ -232,7 +235,7 @@ const LENS_DATA = {
     {
       label: "11",
       R: 40.99005,
-      sd: 14.85,
+      sd: 13,
     },
     {
       label: "12",

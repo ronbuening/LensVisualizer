@@ -38,7 +38,7 @@ The main collector, with its stronger curve toward the object. Condition (1) ask
 
 ### L2 — Biconcave Negative
 
-nd = 1.68893, νd = 31.1. Glass: S-TIM28 (OHARA) equivalent. f = −19.17 mm.
+nd = 1.68893, νd = 31.1. Glass: PBM28 (OHARA, discontinued lead flint) equivalent. f = −19.17 mm.
 
 The strongest negative element. Condition (2) keeps its index below 1.82 to hold the Petzval sum, and condition (5) bounds r3, which the patent uses to manage spherical aberration against the rest of the system. Condition (4), on the composite focal length of L1 and L2, is the one the patent calls most important for the Petzval sum and chromatic correction.
 
@@ -67,7 +67,7 @@ Column 2 of the patent defines the index as d-line (587.6 nm). The table gives c
 | Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Role |
 |---|---|---|---|---|
 | L1 | 1.88300 / 41.0 | TAFD30 (HOYA) | 1.88300 / 40.82 | High-index front positive |
-| L2 | 1.68893 / 31.1 | S-TIM28 (OHARA) | 1.68893 / 31.08 | Dense flint negative |
+| L2 | 1.68893 / 31.1 | PBM28 (OHARA) | 1.68893 / 31.08 | Dense flint negative |
 | L3 | 1.69895 / 30.1 | SF15 (SUMITA) | 1.69895 / 30.05 | Dense flint negative |
 | L4 | 1.81600 / 46.8 | TAF5 (HOYA) | 1.81600 / 46.57 | High-index positive |
 | L5 | 1.80400 / 46.6 | S-LAH65 (OHARA) | 1.80400 / 46.57 | High-index positive |
@@ -94,12 +94,12 @@ The patent prints no semi-diameters, so all are inferred:
 
 | Element | Model sd (mm) | Fig. 1 reading (mm) | Basis |
 |---|---|---|---|
-| L1 | 7.7 | 7.5 | Reduced toward the figure as far as corner light allows |
-| L2 | 6.7 | 6.65 | Axial beam plus 10 % |
-| L3, L4 | 7.3 | 7.2 | Axial beam plus 10 %, one rim for the doublet |
-| L5 | 8.0 | 8.0 | Fig. 1 and Pentax's drawing, the tallest element |
+| L1 | 7.7 | 7.5 | Fig. 1, held above it for corner light |
+| L2 | 6.7 | 6.65 | Fig. 1; about 7 % over the axial beam, and the height where the rim of S4 meets the stop plane |
+| L3, L4 | 7.3 | 7.2 | Fig. 1, one rim for the doublet, about 7 % over the axial beam |
+| L5 | 8.0 | 8.0 | Fig. 1; the tallest element there and in Pentax's drawing |
 
-Fig. 1 is scaled by its own axial length, so its readings are schematic. With these rims about 55 % of the f/2.8 beam passes at 28°.
+Fig. 1 is scaled by its own axial length, and the patent calls it a simplified view, so its readings are schematic. With these rims about 55 % of the f/2.8 beam passes at 28°.
 
 ## Model Scope and Limitations
 

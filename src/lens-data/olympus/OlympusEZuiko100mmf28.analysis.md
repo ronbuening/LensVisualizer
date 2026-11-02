@@ -59,7 +59,7 @@ The strongly curved rear surface, R = +19.60 mm, makes L4 negative and bows towa
 
 nd = 1.7847, νd = 26.22. Glass: PBH23 (OHARA) equivalent. f = +128.0 mm.
 
-L5 uses the same glass pair as L4 but has positive power. It sits behind the printed 25.78 mm air gap that holds the stop. Its rim is the one semi-diameter raised toward Olympus's section drawing, as described under Stop Position and Clear Apertures.
+L5 uses the same glass pair as L4 but has positive power. It sits behind the printed 25.78 mm air gap that holds the stop. Its rim follows Olympus's section drawing, as described under Stop Position and Clear Apertures.
 
 ## Glass Identification
 
@@ -90,11 +90,17 @@ The patent marks no stop: Fig. 1 draws none and the text gives no position. Fig.
 
 At 12°10′ the model puts the tangential focus at +0.053 mm and the sagittal focus at +0.003 mm, against about +0.06 mm and about zero in Fig. 3b. The iris radius of 9.93 mm follows from the paraxial entrance pupil at f/2.8.
 
-No semi-diameters are printed. L1 to L4 use 1.10 times the paraxial axial marginal height at f/2.8, rounded up to 0.01 mm and shared by both faces of each element: 19.66, 18.70, 17.38 and 13.37 mm. Olympus's drawing reads L1 : L2 : L3 as 1 : 0.95 : 0.90, against 1 : 0.95 : 0.88 here. It draws L4 larger, at 0.77 of L1 against 0.68 here.
+No semi-diameters are printed, and the patent has no drawing of Example 2. Its Fig. 1 is drawn at Example 1's spacing, with that example's thinner L5, so Olympus's section drawing is the shape reference here. At its axial scale of 10.16 px/mm it reads 19.0, 17.8, 16.8, 14.5 and 13.3 mm for L1 to L5.
 
-L5 is raised to 11.0 mm toward Olympus's section drawing, which reads it at about 71 % of L1, or about 13.4 mm at the drawing's axial scale. The patent's Fig. 1 is drawn at Example 1's spacing, with that example's thinner L5, so it is not a guide to this rim. The model stays below the drawn height: a drawn outline shows the glass rather than the clear aperture, and 13.4 mm would pass L4's 13.37 mm and reverse the step the drawing shows.
+L1 to L3 use 1.10 times the paraxial axial marginal height at f/2.8, rounded up to 0.01 mm and shared by both faces of each element: 19.66, 18.70 and 17.38 mm. These sit within about 5 % of the drawing, and L1 : L2 : L3 is 1 : 0.95 : 0.88 here against 1 : 0.94 : 0.89 drawn.
 
-With these rims at f/2.8, the transmitted share of the off-axis bundle is 93.8 % at 6.0°, 81.4 % at 8.1°, 65.3 % at 10.1° and 47.5 % at the 12.1° format corner, with L5 and L1 setting the limit. Example 2's 12°10′ edge lands at 21.82 mm, 0.17 mm beyond the 21.65 mm corner used for this comparison.
+L4 and L5 take the drawn heights, 14.5 and 13.4 mm, square-cut with both faces at one height. They are 0.74 and 0.68 of L1 here, against 0.76 and 0.70 drawn, and L5 keeps the drawn 0.92 of L4. Patent Fig. 1 reads L4 at 0.73 of L1, which supports that rim. It is no guide to L5: that element belongs to the other example, and the figure draws S7 as a straight line and S10 far more curved than printed.
+
+Olympus's curves are flatter than Example 2's printed radii, so the drawing's height scale has no independent proof. The f/2.8 axial beam, 17.87 mm at L1, limits any vertical stretch to about 6 %, which would read L4 and L5 at 13.7 and 12.6 mm and leave the ratios between rims as they are.
+
+Both drawings end S8's concave cap short of the element's edge. Olympus's stops at about 10.7 mm and continues as a flat land. The model carries that land 3.46 mm behind the vertex, where the cap ends at 11.12 mm, because the wide-open beams reach 11.07 mm on this face. The land stops no light and gives L4 a 6.1 mm edge, against about 6.15 mm drawn. The drawing's corner chamfers on L3 and L4 are not modeled.
+
+With these rims at f/2.8, the transmitted share of the off-axis bundle is 94.7 % at 6.0°, 89.4 % at 8.1°, 82.0 % at 10.1° and 67.0 % at the 12.1° format corner, with L5 and L1 setting the limit. Example 2's 12°10′ edge lands at 21.82 mm, 0.17 mm beyond the 21.65 mm corner used for this comparison.
 
 ## Conditional Expressions
 

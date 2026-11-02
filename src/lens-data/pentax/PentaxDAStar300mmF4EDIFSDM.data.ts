@@ -17,6 +17,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The stop radius is derived from the design f-number (paraxial EPD = F/N); the patent prints no stop diameter.
  *
  * The patent prints no clear apertures. All 14 lens semi-diameters are estimates from Figure 19, not factory values.
+ * Their rim heights keep the figure's proportions and sit about 3 % above it at 5.83 px/mm in both directions. Figure 19
+ * ends surface 12 at 0.82 of the element's rim and draws a vertical land from there, so that face has sd = 13.1 mm
+ * (clear of the 12.65 mm axial ray at F/4.1 at both focus states) and rimExtensionSd = 15.8 mm.
  * The last gap is the printed fB, which puts the image plane 228.21 mm from surface 1.
  *
  * Table 7 prints m = 0, −0.02 and −0.25. The infinity and closest rows are authored; the −0.02 row is not, so
@@ -247,7 +250,8 @@ const LENS_DATA = {
     {
       label: "12",
       R: 32.934,
-      sd: 15.8,
+      sd: 13.1,
+      rimExtensionSd: 15.8,
     },
     {
       label: "13",

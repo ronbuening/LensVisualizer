@@ -17,9 +17,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * section drawing shows the break in the axis about there. Printed d8 = 25.78 mm is split 8.76 + 17.02 mm. The iris
  * radius follows from the paraxial EPD at f/2.8.
  *
- * Semi-diameters: none are printed. L1 to L4 are 1.10 times the paraxial axial marginal height at f/2.8, rounded up to
- * 0.01 mm, and shared by both faces. L5 is raised to 11.0 mm toward Olympus's section drawing, which reads about
- * 13.4 mm at its axial scale. Patent Fig. 1 is drawn at Example 1's spacing.
+ * Semi-diameters: none are printed, and no drawing of Example 2 exists in the patent: Fig. 1 is drawn at Example 1's
+ * spacing. Olympus's section drawing, at Example 2's spacing, is the shape reference. L1 to L3 are 1.10 times the
+ * paraxial axial marginal height at f/2.8, rounded up to 0.01 mm and shared by both faces, and agree with that
+ * drawing within its noise. L4 (14.5 mm) and L5 (13.4 mm) are estimated from it at 10.16 px/mm, square-cut like the
+ * drawing, and floor-checked by real-ray trace. S8's flat land at 3.46 mm is inferred: the drawing ends the cap at
+ * about 10.7 mm, and the wide-open beams keep it out to 11.12 mm.
  *
  * Focus: static at infinity. The patent prints no close state; 1 m is Olympus's catalog figure.
  */
@@ -35,10 +38,10 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "5 ELEMENTS / 5 GROUPS",
-      "DESIGN f = 100 mm (PATENT f = 1.0 × 100)",
+      "DESIGN f = 100 mm",
       "DESIGN F/2.8",
       "ALL SPHERICAL",
-      "BACK FOCUS DERIVED, NOT PRINTED",
+      "PATENT f = 1 SCALED × 100",
     ],
     elementCount: 5,
     groupCount: 5,
@@ -167,14 +170,15 @@ const LENS_DATA = {
       label: "7",
       R: 84.5,
       d: 3.89,
-      sd: 13.37,
+      sd: 14.5,
       medium: 4,
     },
     {
       label: "8",
       R: 19.6,
       d: 8.76,
-      sd: 13.37,
+      sd: 14.5,
+      rimCutDepthMm: 3.46,
     },
     {
       label: "STO",
@@ -185,14 +189,14 @@ const LENS_DATA = {
       label: "9",
       R: 64.86,
       d: 2.55,
-      sd: 11,
+      sd: 13.4,
       medium: 5,
     },
     {
       label: "10",
       R: 179.95,
       d: 42.86911164332392,
-      sd: 11,
+      sd: 13.4,
     },
   ],
   focus: {
