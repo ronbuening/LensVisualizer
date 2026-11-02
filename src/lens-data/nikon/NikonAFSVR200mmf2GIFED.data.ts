@@ -1,21 +1,27 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** US7411745B2 Example 3, Table 3/Figure 7. Grade B probable product-family correlation.
- * Literal 195mm f/1.84 and printed infinity BFL59.4575mm; no retail scaling or refocus.
- * 13 spherical powered elements/9 components; four cemented pairs. Manufacturer protective
- * glass is absent from the table and is not fabricated. Literal nd/vd/ng retained.
- * Clear semi-diameters are a bounded EP/figure/solid-geometry inference. The rejected initial
- * S9 estimate and all raw clipping/failure records remain in private evidence. No contrast tuning.
- * Source stop S17 is explicit at z133.5139mm; canonical infinity-only closeFocusM1e15.
- * Source near spacings and retail1.9m do not certify finite conjugates or VR decentering.
- * Native diffraction is a qualified scalar estimate, not an independent phase/factory reference.
+/**
+ * US 7,411,745 B2, Example 3 (Table 3, Figure 7): a patent design associated with the Nikon AF-S VR Nikkor
+ * 200mm f/2G IF-ED, not a confirmed factory prescription. Example 3 is the only example in the patent with
+ * 13 elements in 9 groups and three νd 82.6 plus one νd 91.0 elements, matching Nikon's three ED and one Super ED.
+ * Kept at the patent's scale, f = 195 mm, F/1.84, 2ω = 12.62°, with no scaling to the marketed 200 mm f/2.
+ * 13 spherical elements in 9 groups, four of them cemented pairs: G1 six elements, G2 four, G3 three.
+ * R, d, nd, νd and ng are printed values.
+ * Printed stop: surface 17, 133.5139 mm behind surface 1; its radius follows from F/1.84.
+ * D10, D16 and BF are the printed infinity and closest-distance spacings. The patent prints β = −0.1258 and no
+ * distance; those spacings compute to about 1.897 m object to image, and closeFocusM is Nikon's 1.9 m.
+ * The infinity image plane is the printed BF, 59.4575 mm; the paraxial back focus computes to 59.461 mm.
+ * The patent prints no clear apertures: sd values are inferred from the entrance pupil, Figure 7 and element
+ * edge thickness. Element 1 (patent L11) is square-cut at 53.5 mm on both faces, as Figure 7 draws it.
+ * Nikon's protective meniscus and drop-in filter are not in the patent and are not modeled.
+ * VR decentering of G3 is not modeled.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "nikon-af-s-vr-200mm-f2g-if-ed",
   "maker": "Nikon",
   "name": "NIKON AF-S VR NIKKOR 200mm f/2 G IF-ED",
-  "subtitle": "US 7,411,745 B2 Example 3; Grade B probable family, literal 195mm f/1.84 reconstruction",
+  "subtitle": "US 7,411,745 B2, Example 3 — design f = 195 mm F/1.84 for the marketed 200 mm f/2",
   "catalog": {
     "lensMounts": [
       "nikon-f"
@@ -32,9 +38,11 @@ const LENS_DATA = {
       "design": 1.84
     },
     "specs": [
-      "Grade B probable optical family; exact factory prescription unproven",
-      "Literal195mm f/1.84; marketed200mm f/2",
-      "Infinity-only; inferred clear apertures; source clipping retained"
+      "13 ELEMENTS / 9 GROUPS",
+      "DESIGN f = 195 mm",
+      "DESIGN F/1.84",
+      "ALL SPHERICAL",
+      "3 ED + 1 SUPER ED ELEMENTS"
     ]
   },
   "source": {
@@ -64,7 +72,9 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 181.28751241372768,
-      "role": "Front group G1"
+      "apd": "inferred",
+      "apdNote": "Nikon's construction drawing marks this position ED; the patent prints νd 82.6 and does not designate the glass as anomalous.",
+      "role": "Biconvex front collector of fixed group G1"
     },
     {
       "id": 2,
@@ -78,8 +88,10 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 136.79073059164915,
-      "role": "Front group G1",
-      "cemented": "D1"
+      "apd": "inferred",
+      "apdNote": "Nikon's construction drawing marks this position ED; the patent prints νd 82.6 and does not designate the glass as anomalous.",
+      "role": "Positive member of G1's first cemented pair",
+      "cemented": "C1"
     },
     {
       "id": 3,
@@ -93,8 +105,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "E-LAKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -115.80066885493916,
-      "role": "Front group G1",
-      "cemented": "D1"
+      "role": "Negative member of G1's first cemented pair",
+      "cemented": "C1"
     },
     {
       "id": 4,
@@ -108,7 +120,9 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "Unmatched (Super ED glass; no public catalog row)",
       "focalLengthMm": 264.58105701813776,
-      "role": "Front group G1"
+      "apd": "inferred",
+      "apdNote": "Nikon's construction drawing marks this position Super ED; the patent prints νd 91.0 and does not designate the glass as anomalous.",
+      "role": "Positive meniscus of G1 between its two cemented pairs"
     },
     {
       "id": 5,
@@ -122,8 +136,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "E-LAKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -87.44483815990162,
-      "role": "Front group G1",
-      "cemented": "D2"
+      "role": "Negative member of G1's second cemented pair",
+      "cemented": "C2"
     },
     {
       "id": 6,
@@ -137,8 +151,10 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "J-FKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 89.04146620611697,
-      "role": "Front group G1",
-      "cemented": "D2"
+      "apd": "inferred",
+      "apdNote": "Nikon's construction drawing marks this position ED; the patent prints νd 82.6 and does not designate the glass as anomalous.",
+      "role": "Positive rear member of G1's second cemented pair",
+      "cemented": "C2"
     },
     {
       "id": 7,
@@ -152,8 +168,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "NBFD3 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 138.6539455513488,
-      "role": "Focusing group G2, frozen at infinity",
-      "cemented": "D3"
+      "role": "Positive member of focusing group G2's first cemented pair",
+      "cemented": "C3"
     },
     {
       "id": 8,
@@ -167,8 +183,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "KF3 (SUMITA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -68.99141746086191,
-      "role": "Focusing group G2, frozen at infinity",
-      "cemented": "D3"
+      "role": "Negative member of focusing group G2's first cemented pair",
+      "cemented": "C3"
     },
     {
       "id": 9,
@@ -182,8 +198,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "E-LAFH2 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 117.70049267462053,
-      "role": "Focusing group G2, frozen at infinity",
-      "cemented": "D4"
+      "role": "Positive member of focusing group G2's second cemented pair",
+      "cemented": "C4"
     },
     {
       "id": 10,
@@ -197,8 +213,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-BSM10 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -42.42029459716117,
-      "role": "Focusing group G2, frozen at infinity",
-      "cemented": "D4"
+      "role": "Negative member of focusing group G2's second cemented pair",
+      "cemented": "C4"
     },
     {
       "id": 11,
@@ -212,7 +228,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "E-LAKH1 (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 78.30280447872047,
-      "role": "VR group G3, centered only"
+      "role": "Biconvex front singlet of vibration-reduction group G3"
     },
     {
       "id": 12,
@@ -226,7 +242,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-TIH10 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -129.8292663189814,
-      "role": "VR group G3, centered only"
+      "role": "Negative meniscus of vibration-reduction group G3"
     },
     {
       "id": 13,
@@ -240,7 +256,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-BSM81 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 93.01030938766219,
-      "role": "VR group G3, centered only"
+      "role": "Biconvex rear singlet of vibration-reduction group G3"
     }
   ],
   "surfaces": [
@@ -394,7 +410,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1.9,
-    "description": "Internal focus: the negative second group moves toward the image, and the patent's closest state (β = −0.1258) falls at about 1.9 m.",
+    "description": "PUBLISHED internal-focus states from US 7,411,745 B2 Example 3: G2 moves 9.5995 mm toward the image, with D10 5.5000→15.0995 mm, D16 15.5239→5.9244 mm and BF 59.4575→59.4386 mm. The patent prints β = −0.1258 and no distance; these spacings compute to about 1.897 m object to image, against Nikon's 1.9 m minimum focus.",
     "published": [
       1
     ]
@@ -449,6 +465,45 @@ const LENS_DATA = {
     "fullFieldDeg": 12.62,
     "maxTraceFieldDeg": 6.31
   },
+  "groups": [
+    {
+      "text": "G1 (+) / FIXED",
+      "fromSurface": "1",
+      "toSurface": "10"
+    },
+    {
+      "text": "G2 (−) / FOCUS → IMG",
+      "fromSurface": "11",
+      "toSurface": "16"
+    },
+    {
+      "text": "G3 (+) / VR",
+      "fromSurface": "18",
+      "toSurface": "23"
+    }
+  ],
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "3",
+      "toSurface": "5"
+    },
+    {
+      "text": "C2",
+      "fromSurface": "8",
+      "toSurface": "10"
+    },
+    {
+      "text": "C3",
+      "fromSurface": "11",
+      "toSurface": "13"
+    },
+    {
+      "text": "C4",
+      "fromSurface": "14",
+      "toSurface": "16"
+    }
+  ],
   "layout": {
     "yScFill": 0.78
   }
