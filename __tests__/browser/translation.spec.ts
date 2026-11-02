@@ -7,6 +7,10 @@ const lensUrl = "/lens/nikkor-85f14g";
 
 /** Replace text as a translator would, then record the React text nodes that replacement detached. */
 async function translate(page: Page) {
+  // src/main.tsx creates the root only after the router initializes; translate React-owned content, not the shell.
+  await page.waitForFunction(() =>
+    Object.keys(document.getElementById("root") ?? {}).some((key) => key.startsWith("__reactContainer$")),
+  );
   const replaced = await page.locator("body").evaluate(replaceTextForTranslation);
   await page.locator("body").evaluate(auditDetachedReactText);
   return replaced;
@@ -700,8 +704,14 @@ test("translated relationship pickers and details follow the current selection",
   for (const name of ["Koichi Wakamiya", "Nikon Corporation"]) {
     await translate(page);
     await search.fill(name);
-    await expect(page.getByRole("option").first()).toContainText(name);
+    // Scope to the search results: the page's view selects also expose <option>s.
+    await expect(page.getByRole("listbox", { name: "Map search results" }).getByRole("option").first()).toContainText(
+      name,
+    );
     await search.press("Enter");
+    // Phones show the selection in a collapsed sheet; the full card mounts once it is expanded.
+    const collapsedSheet = page.getByRole("button", { name: "Details", exact: true, expanded: false });
+    if (await collapsedSheet.count()) await collapsedSheet.click();
     await expect(card.getByRole("heading", { level: 3 })).toHaveText(name);
     await expect(search).toHaveValue("");
     await healthy(page);
