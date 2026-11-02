@@ -166,32 +166,32 @@ const LENS_DATA = {
     {
       label: "8",
       R: 19.6,
-      d: 12.89,
+      d: 8.76,
       sd: 13.37,
     },
     {
       label: "STO",
       R: "flat",
-      d: 12.89,
+      d: 17.02,
     },
     {
       label: "9",
       R: 64.86,
       d: 2.55,
-      sd: 8.76,
+      sd: 11,
       medium: 5,
     },
     {
       label: "10",
       R: 179.95,
       d: 42.86911164332392,
-      sd: 8.76,
+      sd: 11,
     },
   ],
   focus: {
-    closeFocusM: 1e15,
+    closeFocusM: 1,
     description:
-      "Infinity-only patent Example2 reconstruction, uniform x100 scaling without EFL retuning. Clear apertures and stop z34.53 mm are hypotheses; the native F/N rule defines the iris. The fixed image z92.8391116433 mm is a computed infinity plane, not a printed BFL. Native reference587.5618 nm/d-line interpretation is assumed because table n has no explicit wavelength subscript. Retail1 m minimum focus is descriptive; no finite prescription or motion is modeled. Exact patent12deg10min half-field differs from the native21.65 mm format corner. Source residuals and substantial modeled clipping remain. Native scalar diffraction estimates are numerically converged simulations; the earlier line-based OPL comparison was withdrawn as coordinate-correct validation, including axial cases. No production-estimator bug or per-curve physical error is established. Factory identity and full spectrum remain unvalidated.",
+      "Modeled at infinity only: the lens focuses to 1 m with an automatic close-distance correction mechanism, and the patent prints no close-focus data.",
   },
   aperture: {
     nominalFNumber: 2.8,
