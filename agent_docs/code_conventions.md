@@ -49,21 +49,27 @@ subdirectories and import lower-level owners directly, avoiding public-barrel cy
 
 ## Translator-Safe Display Text
 
-Page translators can replace a Text node with nested elements, leaving React's Text reference detached.
-Keep each changing HTML text run in a React-owned element with **one primitive child**:
-`<span>{textRun("A: f/", formatFNumber(value))}</span>` (or one template string).
-`<span>A: f/{value}</span>` still creates multiple children and can leave stale text. For mixed rich content,
-give the text run its own span beside links, buttons or styled suffixes. Preserve the existing whitespace.
-The shared `textRun` utility only accepts primitive display parts; it must not stringify `ReactNode`.
-Shared numeric/readout components should accept `string | number` values and own their text element.
+Page translators (Chrome's built-in Google Translate among them) replace each Text node with new `<font>` wrappers
+and remove the original that React still owns. React then throws `NotFoundError` when it removes or inserts beside
+that node, or writes updates nobody sees. Keep each changing HTML text run in a React-owned element with **one
+primitive child**, which React updates through `textContent`:
 
-`translation/owned-text` flags this known JSX pattern across source views, including router links.
-The shared Markdown renderer applies the same ownership rule to mixed text in its parsed tree, because
-JSX lint cannot inspect generated Markdown. The guard deliberately does not prove opaque `ReactNode`
-props, other third-party renderers, SVG, or pre-hydration DOM safe. Do not disable translation,
-patch DOM prototypes, swallow rendering exceptions, rewrite the DOM with an observer, or remount entire
-views to hide failures. Behavioral regressions and browser coverage are described in
-`agent_docs/testing_recipes.md` under "Translation DOM Replacement".
+- `<span>{textRun("A: f/", formatFNumber(value))}</span>`, not `<span>A: f/{value}</span>` (two Text nodes). Use a
+  template string when every part is a non-null string or number, and `textRun` when a part can be `null`,
+  `undefined` or `boolean` (it drops them as React does). Preserve the existing whitespace. `textRun` takes only
+  primitives; never stringify a `ReactNode`.
+- Beside links, buttons, conditional elements or styled suffixes, give each text run its own `<span>`.
+- Join a list of strings into one string (`names.join(", ")`) or render each item in its own element; a bare
+  `{names}` renders one Text node per item.
+- Shared numeric/readout components take `string | number` values and own their text element.
+
+`translation/owned-text` (`scripts/translation-text-rule.mjs`) flags these JSX patterns, including router links, and
+reports itself when type information is missing. The shared Markdown renderer applies the same ownership to its parsed
+tree (`rehypeOwnedText`), because lint cannot see generated Markdown. Opaque `ReactNode` props, components that return
+bare strings and third-party renderers are outside the rule; the detached-text audit in `agent_docs/testing_recipes.md`
+("Translation DOM Replacement") catches them at runtime. SVG text is outside the rule (`agent_docs/decisions.md`).
+Do not disable translation, patch DOM prototypes, swallow rendering exceptions, rewrite the DOM with an observer, or
+remount views to hide failures; own the text instead (`agent_docs/decisions.md`, Rejected approaches).
 
 ## Commenting
 

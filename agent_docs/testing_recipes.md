@@ -64,52 +64,59 @@ rather than creating a parallel one.
 
 ## Translation DOM Replacement
 
-Use `replaceTextForTranslation` from `__tests__/translationTestUtils.ts` after rendering, then update
-props or interact with the view. The helper **replaces**, rather than moves, Text nodes with nested
-`font` elements. It skips already simulated text, form options, scripts and SVG text, and includes
-HTML inside `foreignObject`. It is closure-free so the same function runs through Playwright's
-`locator.evaluate`. Assert current visible values, absence of old values, removal/reinsertion, and
-preservation of unaffected translated text or focus; absence of an exception alone misses stale text.
-The quality workflow runs the browser suite before its build job and uploads failure screenshots/traces.
+`__tests__/translationTestUtils.ts` holds two closure-free helpers that run in Vitest and through Playwright's
+`locator.evaluate`:
 
-The browser inventory is `__tests__/translationCoverage.ts`; its unit test compares the route manifest
-and analysis tab list, requiring an explicit coverage decision when either grows. Browser route checks
-cover representative catalog entries, theme rerenders and route removal. Interaction checks separately
-cover lens navigation/inspector/modes, ten drawers (including the MTF worker result), comparison
-aperture/details, search, catalog grouping and filters, author filters, and primer/about dialogs at
-desktop and compact widths. Additional cases cover perspective movement, representative folded
-analysis, and comparison layout changes at 1200/900/899/390/1440px with a short viewport.
-Readout tests capture clean-page values, then repeat focus/aperture changes after replacement: one
-representative value per regular tab (including the real MTF worker), perspective readout changes and
-restoration, and current inspector glass. Overlay cases cover glass labels, chromatic close/change/reopen,
-Petzval lifecycle, aspheric mode/exaggeration/zoom and group-motion modes. Mount profiles exercise both
-views and the legend; relationship tests exercise focused headings, search selection and detail changes.
-SVG-only bokeh/glass/mount readouts are checked after HTML replacement, without mutating SVG text.
-Universal map search exercises its supported Enter selection.
-MTF integration checks cover translated blocking/informational warning titles and counts, stale traced-aperture
-notes, and comparison labels. Browser checks migrate legacy method preferences and compare both method tables
-with clean baselines; marketed-aperture notes must disappear and return with aperture changes.
+- `replaceTextForTranslation(root)` **replaces**, rather than moves, each HTML Text node with nested
+  `<font dir="auto" style="vertical-align: inherit">` wrappers, the markup Google's translator leaves. It skips already
+  simulated text, form options, scripts and SVG text, and includes HTML inside `foreignObject`.
+- `auditDetachedReactText(root)` walks React's fiber tree from the root container and returns `{ detached,
+  staleWrites }`: React-owned Text nodes outside the document, and those React has rewritten since the audit first saw
+  them detached. Call it right after each replacement to record values, then after interactions and expect
+  `staleWrites: 0`. It covers components the lint rule cannot see. It reads React internals (`__reactContainer$…`,
+  HostText tag 6), so revisit it on a React major upgrade.
+
+After replacing text, update props or interact, then assert current visible values, absence of old values,
+removal/reinsertion, and that unaffected translated text or focus survives; absence of an exception alone misses stale
+text.
+
+The browser suite is `__tests__/browser/translation.spec.ts`; its `translate()` records and its `healthy()` asserts the
+audit at every check. The route inventory is `__tests__/translationCoverage.ts`; its unit test compares the route
+manifest and analysis tab list, requiring an explicit coverage decision when either grows. Route checks cover
+representative catalog entries, theme rerenders and route removal. Interaction checks cover lens
+navigation/inspector/modes, ten drawers (including the MTF worker result), comparison aperture/details, search, catalog
+grouping and filters, author filters, and primer/about dialogs at desktop and compact widths, plus perspective movement,
+representative folded analysis, comparison layout changes at 1200/900/899/390/1440px with a short viewport, overlays,
+mount profiles and relationship pickers. Readout tests capture clean-page values, then repeat focus/aperture changes
+after replacement. SVG-only bokeh/glass/mount readouts are checked after HTML replacement, without mutating SVG text.
+
+Tests tagged `@smoke` (lens navigation and modes, the primer level switch, the summary readout, comparison captions,
+catalog filters) gate every pull request through Quality Checks, desktop only. `.github/workflows/translation-browser.yml`
+runs the full matrix at both widths nightly, on demand, and on pull requests that touch rendered UI or this harness.
+Both upload failure screenshots/traces.
 
 ```sh
 npx playwright install chromium
-npm run test:browser
+npm run test:browser:smoke   # the gating subset
+npm run test:browser         # the full matrix
 # Use an already running development or production-preview server/system browser:
 PLAYWRIGHT_BASE_URL=http://127.0.0.1:5173 \
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:browser
 ```
 
-These are **scripted DOM-replacement tests in Chromium**, not actual Chrome Translate. They do not
-certify every catalog lens/state combination, SVG translation, translation before hydration, disabled
-feature-flag views, or all third-party renderers. Perspective/folded/unavailable states also need their
-component regressions. If no teleconverter is published, that detail-route browser check explicitly
-annotates its unknown-key-only coverage. A successful build/prerender does not exercise translation
-before hydration. Updating source text may replace its translated copy with source-language text until
-the translator processes it again; unchanged translated text must remain intact.
+These are scripted replacements in Chromium. They do not certify every catalog lens/state combination, disabled
+feature-flag views, Firefox's or Safari's translators, or all third-party renderers. Updating source text replaces
+its translated copy with source-language text until the translator processes it again; unchanged translated text must
+remain intact.
 
-When Chrome's translation service is available, manually translate the lens and comparison routes,
-change lenses, hover/select elements, adjust focus/aperture, cycle drawer tabs and MTF modes, close and
-reopen drawers, switch display modes, and repeat at compact width. Record the actual browser/service
-capability separately from simulated results; service/network failures are unrun coverage, not passes.
+**Real-translator check.** Chrome's built-in translate UI cannot be driven headlessly, but Google's website
+translator makes the same `<font>` rewrite and `<html class="translated-ltr" lang="…">` marks. On a dev page, define a
+callback that runs `new google.translate.TranslateElement({ pageLanguage: "en" }, "<host element id>")`, load
+`https://translate.googleapis.com/translate_a/element.js?cb=<callback>`, then set `select.goog-te-combo` to a
+language and dispatch `change`. It needs `translate.googleapis.com` and `translate-pa.googleapis.com`. It also
+translates `aria-label`, so tag elements (a `data-*` attribute) before translating instead of selecting them by
+accessible name. Without text ownership, translating a lens page, opening the Optics primer and choosing "Want more
+detail?" crashed the route every time. Record service or network failures as unrun coverage, not passes.
 
 ## Recipe: Lens-Data Validation Test
 
