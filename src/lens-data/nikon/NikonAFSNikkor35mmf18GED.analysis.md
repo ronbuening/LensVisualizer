@@ -7,132 +7,138 @@
 **Inventors:** Masaki Harada; Kosuke Machida
 **Applicant:** Nikon Corporation
 **Title:** Optical system, optical instrument, and method for manufacturing optical system
-**Example details:** Table1, PDF12–13, Fig.1, PDF31. Literal millimetres, uniform scale1.
+**Example details:** 第1実施例, Table 1, pp. 12–13; Fig. 1 and Fig. 2, p. 31. Dimensions in millimetres, not scaled.
 
-The manufacturer section agrees in eleven/eight construction, the three glass doublets, rear focusing, one ED position and the last hybrid asphere. The source L6 coordinate and position align with the maker ED marking, but its Abbe number alone does not prove an ED material identity. E1 is representative; E4/E5 remain plausible production-family alternatives. The 34.5 mm/F1.86 prescription is not rescaled or opened to marketed35mm/F1.8.
+The patent names no product, so the match to the AF-S NIKKOR 35mm f/1.8G ED is an inference from construction. Example 1 agrees with Nikon's published section and specification in eleven elements in eight groups, three cemented doublets, one ED element at L22, one aspherical element in the rear group and Nikon's RF (rear focusing) designation. Example 1 fits Nikon's drawn axial spacings best, at 0.64 mm rms against 1.32 mm for Example 5. Examples 6 and 7 have twelve glass elements, and Examples 2 and 3 use a different glass at L22. The exact production prescription is not known. The 34.5 mm, F/1.86 prescription is not rescaled or opened to the marketed 35 mm, f/1.8.
 
-The manufacturer lists a 63° full angle of view, while the representative patent prints a 32.68° half-field (65.36° full field). Both are retained; their difference is another reason to preserve the family-level qualification.
+Nikon lists a 63° full angle of view, while Example 1 prints a half-field of 32.68° (65.36° full field). Both values are kept.
 
 ## Optical Architecture
 
-The eleven glass elements form eight air-separated groups, with three glass doublets and a separate0.150 mm resin layer on the last glass element. The front groupG1 contains four glass elements; rear groupG2 contains seven and moves as a unit toward the object for the published near state. Both source group powers are positive; the first single is a negative meniscus.
+The eleven glass elements form eight air-separated groups, with three cemented doublets and a separate 0.150 mm resin layer on the front of L27, so the data file lists 12 media for 11 glass elements. The front group G1 holds L11–L14 and stays fixed. The rear group G2 holds L21–L27 and the stop, and moves toward the object as one unit for close focus. Both group powers are positive in this example (G1 f = +574.104 mm, G2 f = +50.927 mm, as printed); the first element is a negative meniscus.
 
-The table stop is retained at its source axial station. The full clear-aperture table is inferred rather than printed, and is frozen independently of MTF contrast. No camera-side plate or protective glass is invented.
+The stop stays at its printed position between L23 and L24. The patent prints no clear apertures, so every semi-diameter is inferred. The patent lists no camera-side plate or protective glass and the model adds none.
 
 ## Element-by-Element Analysis
 
-### L1 — Negative Meniscus
+Element names follow the patent. The patent has one sign, L27, for the composite last element; the model splits it into L27r (resin) and L27g (glass).
 
-nd = 1.58913, νd = 61.22. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = -50.757 mm.
+### L11 — Negative Meniscus
 
-Negative front meniscus provides field expansion ahead of the remaining G1 elements.
+nd = 1.58913, νd = 61.22. Glass: J-SK5 (Hikari), catalog equivalent. f = -50.757 mm.
 
-### L2 — Positive Meniscus
+Negative front meniscus, convex to the object, that widens the field ahead of the rest of G1.
 
-nd = 1.78472, νd = 25.64. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = +180.181 mm.
+### L12 — Positive Meniscus
 
-Positive meniscus member of the front cemented doublet.
+nd = 1.78472, νd = 25.64. Glass: J-SF11 (Hikari), catalog equivalent. f = +180.181 mm.
 
-### L3 — Biconcave Negative
+Positive meniscus, concave to the object, cemented to L13 in the negative doublet of G1.
 
-nd = 1.58913, νd = 61.22. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = -62.566 mm.
+### L13 — Biconcave Negative
 
-Biconcave negative partner of the front doublet, sharing source surface4.
+nd = 1.58913, νd = 61.22. Glass: J-SK5 (Hikari), catalog equivalent. f = -62.566 mm.
 
-### L4 — Biconvex Positive
+Biconcave negative partner of L12, sharing surface 4.
 
-nd = 1.62299, νd = 58.12. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = +41.494 mm.
+### L14 — Biconvex Positive
 
-Thick biconvex positive single completing the four-glass front group.
+nd = 1.62299, νd = 58.12. Glass: BACD15 (HOYA), catalog equivalent. f = +41.494 mm.
 
-### L5 — Biconvex Positive
+Thick biconvex element completing G1, and the strongest positive lens in that group.
 
-nd = 1.80400, νd = 46.60. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = +37.973 mm.
+### L21 — Biconvex Positive
 
-Positive single at the front of the moving rear blockG2.
+nd = 1.80400, νd = 46.60. Glass: J-LASF015 (Hikari), catalog equivalent. f = +37.973 mm.
 
-### L6 — Biconvex Positive
+Positive element at the front of the moving group G2.
 
-nd = 1.59319, νd = 67.90. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = +63.659 mm.
+### L22 — Biconvex Positive
 
-Positive member of rear-front doublet. The manufacturer ED position aligns here; exact ED material and partial dispersion remain unproved.
+nd = 1.59319, νd = 67.90. Glass: J-PSKH1 (Hikari), catalog equivalent; ED position inferred. f = +63.659 mm.
 
-### L7 — Biconcave Negative
+Positive member of the doublet ahead of the stop. Nikon's section marks this element as ED glass, and its printed nd and νd equal catalog J-PSKH1. The patent does not describe any element as anomalous or extra-low dispersion, so the ED tag is an inference. The production material and its partial dispersion are not known.
 
-nd = 1.67270, νd = 32.18. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = -25.823 mm.
+### L23 — Biconcave Negative
 
-Negative partner of that doublet, sharing surface11.
+nd = 1.67270, νd = 32.18. Glass: E-FD5 (HOYA), catalog equivalent. f = -25.823 mm.
 
-### L8 — Biconcave Negative
+Negative partner of L22, sharing surface 11.
 
-nd = 1.64769, νd = 33.72. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = -22.879 mm.
+### L24 — Biconcave Negative
 
-Negative first member of the post-stop doublet.
+nd = 1.64769, νd = 33.72. Glass: J-SF2 (Hikari), catalog equivalent. f = -22.879 mm.
 
-### L9 — Biconvex Positive
+Negative first member of the doublet behind the stop.
 
-nd = 1.69680, νd = 55.52. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = +85.429 mm.
+### L25 — Biconvex Positive
 
-Positive second member of that doublet, sharing surface15.
+nd = 1.69680, νd = 55.52. Glass: J-LAK14 (Hikari), catalog equivalent. f = +85.429 mm.
 
-### L10 — Biconvex Positive
+Positive second member of that doublet, sharing surface 15.
 
-nd = 1.77250, νd = 49.62. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = +30.380 mm.
+### L26 — Biconvex Positive
 
-Positive single between the post-stop doublet and final hybrid element.
+nd = 1.77250, νd = 49.62. Glass: J-LASF016 (Hikari), catalog equivalent. f = +30.380 mm.
 
-### L11r — Hybrid Aspherical Resin Layer
+Positive element between the rear doublet and L27.
 
-nd = 1.53610, νd = 41.21. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = +419.531 mm.
+### L27r — Hybrid Aspherical Resin Layer
 
-Thin plastic resin layer carrying the source asphere on surface19. Its optical medium is retained separately from the glass substrate.
+nd = 1.53610, νd = 41.21. Glass: Unmatched resin; chemistry and supplier unspecified. f = +419.531 mm.
 
-### L11g — Positive Meniscus
+Thin plastic resin layer carrying the asphere on surface 19 (¶0074). It is a separate optical medium from the glass body.
 
-nd = 1.71300, νd = 53.96. Glass: Unmatched literal source coordinate; supplier unproved. Isolated-in-air paraxial f = +136.224 mm.
+### L27g — Positive Meniscus
 
-Positive glass meniscus under the resin. These last two modeled media form one physical glass/composite element, preserving the maker eleven-element count.
+nd = 1.71300, νd = 53.96. Glass: J-LAK8 (Hikari), catalog equivalent. f = +136.224 mm.
+
+Positive glass meniscus under the resin, concave to the object. L27r and L27g form one physical element, which keeps the count at Nikon's eleven.
 
 ## Glass Identification and Selection
 
-No source commercial-glass designation or complete anomalous-dispersion data is supplied. Literal coordinates are retained and all media are marked Unmatched. Abbe initialization is an estimate; these files do not identify factory glass chemistry or catalog Sellmeier curves.
+The patent prints nd and νd at the d line (587.5620 nm, ¶0061), names no commercial glass and gives no partial-dispersion data. The labels below are catalog equivalents that match the printed values; they do not identify production glass. The resin is a distinct medium with nd = 1.53610, νd = 41.21 and has no catalog match; the glass body L27g is nd = 1.71300, νd = 53.96.
 
-The Nikon table explicitly prints nd and vd; reference calculations use587.5618nm. No extra g/C/F indices or anomalous partial-dispersion coefficient is invented. The resin is a distinct medium with nd1.53610/νd41.21; glass L11 remains nd1.71300/νd53.96.
-
-| Element/medium | Literal index | Literal Abbe number | Disposition |
+| Element/medium | Printed nd | Printed νd | Catalog equivalent |
 | --- | ---: | ---: | --- |
-| L1 | 1.58913 | 61.22 | Unmatched; vendor/dispersion unproved |
-| L2 | 1.78472 | 25.64 | Unmatched; vendor/dispersion unproved |
-| L3 | 1.58913 | 61.22 | Unmatched; vendor/dispersion unproved |
-| L4 | 1.62299 | 58.12 | Unmatched; vendor/dispersion unproved |
-| L5 | 1.80400 | 46.60 | Unmatched; vendor/dispersion unproved |
-| L6 | 1.59319 | 67.90 | Unmatched; vendor/dispersion unproved |
-| L7 | 1.67270 | 32.18 | Unmatched; vendor/dispersion unproved |
-| L8 | 1.64769 | 33.72 | Unmatched; vendor/dispersion unproved |
-| L9 | 1.69680 | 55.52 | Unmatched; vendor/dispersion unproved |
-| L10 | 1.77250 | 49.62 | Unmatched; vendor/dispersion unproved |
-| L11r | 1.53610 | 41.21 | Unmatched; vendor/dispersion unproved |
-| L11g | 1.71300 | 53.96 | Unmatched; vendor/dispersion unproved |
+| L11 | 1.58913 | 61.22 | J-SK5 (Hikari) |
+| L12 | 1.78472 | 25.64 | J-SF11 (Hikari) |
+| L13 | 1.58913 | 61.22 | J-SK5 (Hikari) |
+| L14 | 1.62299 | 58.12 | BACD15 (HOYA) |
+| L21 | 1.80400 | 46.60 | J-LASF015 (Hikari) |
+| L22 | 1.59319 | 67.90 | J-PSKH1 (Hikari); catalog ΔPgF about +0.014 |
+| L23 | 1.67270 | 32.18 | E-FD5 (HOYA) |
+| L24 | 1.64769 | 33.72 | J-SF2 (Hikari) |
+| L25 | 1.69680 | 55.52 | J-LAK14 (Hikari) |
+| L26 | 1.77250 | 49.62 | J-LASF016 (Hikari) |
+| L27r | 1.53610 | 41.21 | Unmatched resin |
+| L27g | 1.71300 | 53.96 | J-LAK8 (Hikari) |
 
 ## Focus Mechanism
 
-Source near beta=-1/30 and D7=8.063 mm refer to object D0=1019.325 mm, not retail0.25m. Rear-group motion would change the final gap at fixed sensor. This bounded file authors infinity D7=9.215 and printedBf38.42 only.
+G1 stays fixed to the image plane, and G2 moves toward the object as one unit with the stop inside it (¶0075). Only D7 and the back focus change, by equal and opposite amounts. The gaps either side of the stop stay at 3.636 mm and 8.575 mm, and the 115.40 mm length from the first surface to the image stays constant.
 
-The file exposes the established infinity-only state. It does not calibrate motion to the marketed minimum distance. The manufacturer focus mechanism and the patent near-state context remain historical/source evidence, distinct from the authored supported conjugate.
+| State | Object distance | D7, mm | BF, mm | β | Status |
+| --- | --- | ---: | ---: | ---: | --- |
+| Infinity | ∞ | 9.215 | 38.42 | 0 | Printed |
+| Patent near | D0 = 1019.325 mm from surface 1 (1.135 m to image) | 8.063 | 39.572 | −1/30 | D0, D7 and β printed; BF derived |
+| Marketed minimum | 0.25 m to image | 0.976 | 46.659 | −0.240 | Derived |
+
+The patent prints no near back focus; 39.572 mm follows from G1 staying fixed. At the printed D0 the model's paraxial β is −1/29.9, with 0.003 mm defocus. The patent prints no state at 0.25 m. That row extends the same rigid motion to Nikon's minimum focus distance, for 8.239 mm of G2 travel, and the modeled β of −0.240 agrees with Nikon's 0.24×. Positions between these states are interpolated.
 
 ## Aspherical Surfaces
 
-Source Eq.(a) places κ directly inside the radical. Therefore standard K=κ−1: sourceκ1.0000 maps to K0. Surface19 is the front of the separate resin layer. All printed coefficients are retained: A4=−1.39304e−5, A6=−6.37142e−9, A8=−3.21874e−11 and A10=0. No aspheric refit is used and scale remains1. The reference surface and physical thicknesses are unchanged.
+Surface 19, the front of the resin layer on L27, is the only asphere. Equation (a) (¶0064) places κ directly inside the radical, so the standard conic constant is K = κ − 1, and the printed κ = 1.0000 means K = 0. All printed coefficients are used: A4 = −1.39304E−05, A6 = −6.37142E−09, A8 = −3.21874E−11 and A10 = 0. The coefficients are not refitted and the prescription is not scaled.
 
 ## Geometry, Aperture and Image Plane
 
-Original Figure1 on PDF31: first/last vertices about351px apart for literal76.98mm track (approximately4.56px/mm). Approximate physical group radial extents [103,83,81,65,59,56,61,66]px give element/group SDs [22.5,18.25,17.75,14.25,13,12.25,13.25,14.5]mm after0.25mm rounding. This source-outline refinement includes front field clearance beyond the axial EP estimate. +/-3px reading plus unknown schematic distortion; no factory clear-aperture claim. Frozen before native rays.
+Semi-diameters are read from Figure 1 (p. 31), scaled from the 76.98 mm first-to-last vertex length and rounded to 0.25 mm. The reading carries about ±0.7 mm plus unknown drawing distortion, so the table below is an inference, not a factory clear aperture. Front values include field clearance beyond the axial beam. Figure 1 also draws lands on m2 and m14 that the model does not.
 
-The fixed image plane is z=115.400000000000mm from the first vertex. printed infinity Bf38.42, no refocus. Independent reduced-angle and physical-slope first-order methods agree on EFL=34.517016316mm and diagnostic BFL=38.417301530mm. No best-focus adjustment changes the authored plane.
+The image plane sits 115.40 mm from the first vertex, using the printed infinity Bf of 38.42 mm with no refocus. The model's EFL is 34.517 mm against the printed 34.5 mm, and its paraxial back focus is 38.417 mm, a 0.003 mm residual.
 
-Native geometry passes with zero render trimming. At the wide-open derived iris radius10.518915573mm, exact adjacent-cap clearances over the operating disk are 1.762487135mm before and 4.810695043mm after the stop. This establishes disk clearance for the modeled caps, not blade mechanics.
+The wide-open iris radius of 10.519 mm is derived from F/1.86, not printed. At that radius the neighbouring surfaces clear the iris plane by 1.762 mm ahead of it and 4.811 mm behind it. This covers axial clearance only, not blade mechanics.
 
-| Source surface | Inferred clear SD, mm |
+| Surface | Inferred semi-diameter, mm |
 | --- | ---: |
 | 1 | 22.50 |
 | 2 | 22.50 |
@@ -155,17 +161,15 @@ Native geometry passes with zero render trimming. At the wide-open derived iris 
 | 20 | 14.50 |
 | 21 | 14.50 |
 
-## Verification Summary
+## Model Scope and Limitations
 
-At all 8 advertised apertures, 24 normal native reference/design diffraction fields converge at six sampled frequencies0/10/20/30/40/50lp/mm. Maximum terminal grid delta is 0.0099676113; maximum grid used is128. Focus applied shift is zero. These are scalar sheared-pupil estimates, not independent optical-path phase validation, a continuous-frequency error bound, or factory measurements.
+The model follows the patent's infinity plots at their scale: spherical aberration of about +0.03 mm at full aperture and −0.04 mm at 0.7 pupil, and distortion of about −2.4% at the 21.6 mm image height.
 
-Source-angle pupils are checked separately at0/16.34/32.68degrees. Native format-reference MTF uses the modeled chief-ray height mapping to the21.65mm API reference, while the exact36×24mm rectangular corner is21.633307653mm. The printed source edge remains distinct, including when the native reference lies slightly beyond it. Exact native angles and refinement histories are preserved in the validation evidence.
+The patent's maximum image height is 21.6 mm, slightly short of the 21.63 mm corner of a 36×24 mm frame.
 
-Raw source pupils contain 0 engine failures, all already certified blocked by aiming, and zero unaimed rays. These overlapping categories are retained rather than added as separate losses. The reference MTF records retain clipping and do not enlarge inferred apertures to pass. Wide-open valid samples at the three source fields are 209/179/81 out of209 each.
-
-The compiled viewer default uses the reference-line fallback, with a bounded best-axial diagnostic shift of -0.027916133 mm. That diagnostic is separate from the zero-shift reference/design results above and does not replace the authored plane.
+Inferred rims clip the off-axis beam, and the clipping is left in place rather than opened up. The patent's coma plots appear to end at narrower ray fans than the model passes (about ±0.73 of the pupil at 10.8 mm image height, against ±0.91), so the model's mid-field vignetting is probably lighter than the design's.
 
 ## Sources and References
 
-1. [Primary publication](https://patents.google.com/patent/JP2015118186A/en), numerical example and figures cited above.
-2. [Manufacturer product and construction](https://imaging.nikon.com/imaging/lineup/lens/f-mount/singlefocal/wide/af-s_35mmf_18g/).
+1. [Primary publication](https://patents.google.com/patent/JP2015118186A/en), Example 1 and the figures cited above.
+2. [Nikon product page and lens construction](https://imaging.nikon.com/imaging/lineup/lens/f-mount/singlefocal/wide/af-s_35mmf_18g/).
