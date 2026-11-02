@@ -108,13 +108,13 @@ Fig. 4(B) shows this example at an object distance of 1 m. The same solve, measu
 
 ## Geometry, Aperture and Image Plane
 
-Clear semi-diameters are inferred, not printed. They are carried by element from a model of Example 2 and checked against Canon's section, where they agree within about 1 mm, and they pass the axial beam at infinity and at 0.9 m. The front rim is 10% above the 25 mm entrance-pupil radius.
+Clear semi-diameters are inferred, not printed. They are estimated from Fig. 1 and pass the axial beam at infinity and at 0.9 m. Group 2 follows the figure within 0.1 mm; elements 1 to 4 and the rear doublet sit 3 to 5% above it, where smaller rims would cost corner light. The front rim is 10% above the 25 mm entrance-pupil radius.
 
 The image plane is 115.66 mm behind surface 1. The patent prints neither this distance nor the back focus; both are computed paraxially from the table, giving f = 100.016 mm and BF = 39.60 mm.
 
-The iris radius of 14.68 mm is sized from the f/2 design value. Surface 8 would reach 0.59 mm past the stop plane at its rim, so a land at 9.00 mm depth, from radius 19.27 mm, keeps it in front. Canon's section draws this land nearer 16 mm. Clearance of the iris opening does not prove blade or mount fit.
+The iris radius of 14.68 mm is sized from the f/2 design value, and the stop tick in Fig. 1 reads 14.7 mm. Surface 8 ends in a flat land at 6.24 mm depth, from radius 16.58 mm out to the rim, as Fig. 1 and Canon's section both draw it. The land sits 2.76 mm in front of the stop plane. Clearance of the iris opening does not prove blade or mount fit.
 
-Inferred clear semi-diameters in millimetres are 1–2: 27.50, 3–4: 25.75, 5–6: 22.25, 7–8: 19.75, 10–12: 15.50, 13–15: 17.25.
+Inferred clear semi-diameters in millimetres are 1–2: 27.50, 3–4: 25.75, 5–6: 22.25, 7–8: 19.75, 10–11: 14.70, 12: 14.10, 13: 17.00, 14–15: 17.25.
 
 ## Model Scope and Limitations
 

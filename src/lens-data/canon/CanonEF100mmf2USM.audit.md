@@ -34,8 +34,37 @@ Representative probable-family prescription; source literal millimetres retained
 
 **Colour.** g−d against Fig. 4 (infinity paraxial, infinity top of pupil, 1 m paraxial, 1 m top): plot about 0, +0.20, +0.09, +0.45 mm; SF6 on L5/L7 −0.120, +0.081, −0.034, +0.332; S-TIH6 −0.120, +0.081, −0.034, +0.333. The two labels are indistinguishable. Both ran about 0.12 mm short while L4 had normal-line ng. L4 now carries `dPgF` +0.018978 from OHARA TPH55 (AGF PgF 0.62056, nd 1.755502, νd 25.066, tagged discontinued; no row in the repo catalog), which gives −0.034, +0.175, +0.071, +0.451 with SF6 and +0.452 at the last point with S-TIH6. `built.mjs` and `probe.mjs` output did not change.
 
-**Rims.** Carried by element from the Example 2 model; within about 1 mm of Canon's section. Surface 8 takes `rimCutDepthMm` 9.0 (cut radius 19.27 mm, beams reach 15.97 mm) because its rim passed the stop plane by 0.59 mm. Field clipping is unchanged in kind: 46% geometric illumination at 12.2° and f/2.
+**Rims.** Carried by element from the Example 2 model; within about 1 mm of Canon's section. Surface 8 takes `rimCutDepthMm` 9.0 (cut radius 19.27 mm, beams reach 15.97 mm) because its rim passed the stop plane by 0.59 mm. Field clipping is unchanged in kind: 46% geometric illumination at 12.2° and f/2. (Superseded: the semi-diameter pass below sets the land and the group 2 and L7 rims.)
 
 **Fields changed in this pass.** Header, `subtitle`, `specs`, element `role` and `indexReferenceNote`, `focus.description` wording; analysis rewritten for Example 1, with "Verification Summary" replaced by "Model Scope and Limitations". `specs` uses INNER FOCUS: the corpus keeps REAR FOCUS for a complete rear group, and this group has group 3 fixed behind it.
 
-Closed: L4's missing partial dispersion; with the TPH55 value g−d agrees with Fig. 4 within about 0.03 mm. Open: Canon's section draws the surface 8 land near radius 16 mm, but the beams need about 16.0 mm plus margin; the figure land is left for the rim pass.
+Closed: L4's missing partial dispersion; with the TPH55 value g−d agrees with Fig. 4 within about 0.03 mm. Closed: Canon's section draws the surface 8 land near radius 16 mm; the land now starts at radius 16.58 mm, 0.61 mm outside the 15.97 mm beam reach (section below).
+
+## 2026-11-02 — Semi-diameter pass against the patent figure
+
+**Source and scale.** `patents/JPH04255813A.pdf`, page 5, Fig. 1 (Example 1 only; Figs. 2 and 3 not read), raster 2866×3895 at 347 ppi, measured at native resolution with stroke centres, each height as half the top-to-bottom distance so the axis offset of about 2 px cancels. No lateral-aberration fans exist: Fig. 4 is spherical aberration, astigmatism and distortion, so the figure is the only rim evidence. Vertex crossings S1 to S15: 650 px for 76.06 mm, 8.546 px/mm; the 14-vertex fit gives 8.504 px/mm, rms 2.0 px (0.24 mm). Height direction: circle fits to the strong surfaces S5, S7, S12, S13 and S14, above and below the axis, give sy/sx 0.968 to 1.034, mean 0.996. The stop tick opening reads 126 px half height, 14.74 mm at 8.546 px/mm, against the 14.68 mm iris, 0.4% apart. The figure is not anamorphic. Weak surfaces S1, S2 and S15 are drawn more curved than printed; that does not touch rim heights.
+
+**Readings and changes.**
+
+| Surface | Stored | Fig. 1 | Figure/stored | Final | Evidence and reason |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 1, 2 | 27.50 | 26.80 | 0.975 | 27.50 | Kept: 2.5%, order right; 26.8 costs 2.2 to 2.4 corner points. |
+| 3, 4 | 25.75 | 24.69 | 0.959 | 25.75 | Kept: 4.1%, order right; 24.7 costs 3.9 to 4.1 points on its own. |
+| 5, 6 | 22.25 | 21.56 | 0.969 | 22.25 | Kept: 3.1%; 21.6 costs 1.9 points. |
+| 7, 8 | 19.75 | 19.10 | 0.967 | 19.75 | Kept: 3.3%; 19.1 costs 1.7 points. |
+| 10, 11 | 15.50 | 14.74 | 0.951 | 14.70 | Moved: L5 stands above L6 in the figure, and the rim is level with the stop tick. Costs 0.0 points at infinity, 0.2 at 0.9 m, with surface 12. |
+| 12 | 15.50 | 14.07 | 0.908 | 14.10 | Moved: 9.2%, and the wrong step order against L5. |
+| 13 | 17.25 | 16.18 | 0.938 | 17.00 | Moved by the drawn step only: L7 stands 0.26 mm below L8. |
+| 14, 15 | 17.25 | 16.44 | 0.953 | 17.25 | Kept: 4.7%. 16.4 with 13 at 16.2 costs up to 7.7 points. |
+
+Surface 8 `rimCutDepthMm` 9.0 becomes 6.24, cut radius 19.27 to 16.58 mm. The curve meets the land stroke at half height 137 px and the edge is 163.25 px, so q = 0.839, range ±0.011 at 8.546 px/mm; q × 19.75 mm gives 16.57 mm. The land stroke centre is at 30.86 mm by the vertex fit, against 31.15 mm in the model, inside the drawn stroke. Reach is 15.97 mm, margin 0.05 mm, clearance 0.61 mm, clipped rays 0 over 21 focus states. Surface 8 keeps `sd` 19.75, so land length is 3.17 mm against 3.07 mm drawn.
+
+Surface 11 is a cemented junction, which takes no land or extension, so L6's drawn step at the junction is rendered as a slope from 14.7 to 14.1 mm; the drawn curve of S11 reaches L5's top, so it keeps L5's rim. `gapSagFrac`, `rimExtensionSd` and the iris are unchanged.
+
+**Clearance.** Exact trace of the iris-limited axial beam, independent of the engine: infinity S1 24.37, S5 21.17, S7 18.75, S8 15.65, S10 14.02, S11 13.71, S12 12.89, S13 10.95 mm; 0.9 m S1 23.25, S5 20.71, S7 18.34, S8 15.50, S10 11.03, S11 10.75, S12 10.24, S13 9.47 mm. All pass at both states. Stated f/2 pupil at infinity: S10 14.41, S11 14.10, S12 13.23 mm, also clear; `lsa.mjs` output is unchanged and no rim rose. No `CLIPS-AXIAL` or `BLOCKS-CHIEF`. The surface validator, image-circle floor, field coverage (100%, 21.65 mm at 12.2°), aperture census and dense cut probe are all clean. Engine half-field 12.20° and f/2.000 before and after.
+
+**Corner light.** Geometric transmission from the app's full-pupil lattice, wide open. Infinity, 8.1° / 10.1° / 12.2°: 87.5 / 68.6 / 46.0% before, 86.7 / 68.5 / 46.0% after. Mid focus, 9.3° / 11.1°: 84.6 / 61.3% before, 84.3 / 61.3% after. 0.9 m, 8.6° / 10.3°: 92.8 / 82.5% before, 92.6 / 82.5% after. Worst loss is 0.7 points, at 8.1° at infinity, from surface 13; the group 2 rims and the land cost 0.0 at infinity. Group 3 already vignettes the top of the bundle hard enough at the fields where group 2 would clip, which is why those rims are free.
+
+**Maker drawing.** Canon Camera Museum section, 276×251 px, about 2.47 px/mm: 8 elements, 6 groups, same order, negative-first rear doublet; L1 28.5, L2 25.2, L3 22.3, L4 19.2 to 20.6 (stepped), land start 15.8, L5 14.8, L6 13.7, L7 and L8 about 17.8 mm. It agrees with the patent on L5 above L6 and on a land near 16 mm. It disagrees on group 3, about 1.4 mm taller than Fig. 1 with no step, and it draws a stepped L4 rim the patent does not. It marks no special glass or aspherical element. The stored rims of L1, L3 and L4 lie between the two drawings; L2 is above both. Rims were not fitted to it.
+
+**Limitations.** The rims of L1 to L4 and of the rear doublet stay 0.65 to 1.06 mm outside the figure; moving every rim to the figure costs 9.3 points at 10.1°. The overlay and the live renders at infinity and 0.9 m match the figure in order and proportion.

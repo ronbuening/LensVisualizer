@@ -2,8 +2,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * JP H04-255813 A, Numerical Example 1 (F = 100, FNO 1:2, 2ω = 24.4°). The exact production prescription is unproved.
- * R, D, N, ν and the stop position are as printed. Semi-diameters and the iris opening are inferred; the land on surface 8
- * keeps that rim in front of the stop plane.
+ * R, D, N, ν and the stop position are as printed. The iris opening is inferred. Semi-diameters are estimated from Fig. 1,
+ * floor-checked by real-ray trace at infinity and 0.9 m: group 2, the L7 to L8 step and the surface 8 land follow the figure,
+ * and elements 1 to 4 and the rear doublet stay 3 to 5% above it, where smaller rims would cost corner light.
  * The patent prints neither back focus nor image plane: BF 39.60 mm and the image plane 115.66 mm behind surface 1 are
  * computed from the table (paraxial, f = 100.016 mm). D9 and D12 are printed at infinity only; the near gaps are solved.
  */
@@ -217,7 +218,7 @@ const LENS_DATA = {
       R: 25.14,
       d: 9.0,
       sd: 19.75,
-      rimCutDepthMm: 9.0,
+      rimCutDepthMm: 6.24,
     },
     {
       label: "STO",
@@ -228,26 +229,26 @@ const LENS_DATA = {
       R: -367.05,
       d: 3.0,
       medium: 5,
-      sd: 15.5,
+      sd: 14.7,
     },
     {
       label: "11",
       R: -106.43,
       d: 1.7,
       medium: 6,
-      sd: 15.5,
+      sd: 14.7,
     },
     {
       label: "12",
       R: 39.92,
-      sd: 15.5,
+      sd: 14.1,
     },
     {
       label: "13",
       R: 81.96,
       d: 2.3,
       medium: 7,
-      sd: 17.25,
+      sd: 17.0,
     },
     {
       label: "14",
