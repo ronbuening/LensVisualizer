@@ -18,8 +18,8 @@ const LENS_DATA = {
       "INFINITY ONLY; STOP / APERTURES INFERRED",
       "PATENT HALF FIELD 51 DEG"
     ],
-    "elementCount": 11,
-    "groupCount": 10,
+    "elementCount": 12,
+    "groupCount": 11,
     "focalLengthMm": {
       "marketing": 18,
       "design": 18.0
@@ -177,7 +177,7 @@ const LENS_DATA = {
       "label": "1",
       "R": 41.3136,
       "d": 1.5552000000000001,
-      "sd": 27.37,
+      "sd": 18.6,
       "medium": 1
     },
     {
@@ -190,134 +190,134 @@ const LENS_DATA = {
       "label": "3",
       "R": "flat",
       "d": 7.1802,
-      "sd": 18.68,
+      "sd": 14.1,
       "medium": 2
     },
     {
       "label": "4",
       "R": -56.2914,
       "d": 0.2916,
-      "sd": 18.68
+      "sd": 14.1
     },
     {
       "label": "5",
       "R": 27.0216,
       "d": 1.7315999999999998,
-      "sd": 14.54,
+      "sd": 9.4,
       "medium": 3
     },
     {
       "label": "6",
       "R": 10.1646,
       "d": 3.4038,
-      "sd": 8
+      "sd": 7.65
     },
     {
       "label": "7",
       "R": 30.2076,
       "d": 1.7315999999999998,
-      "sd": 11.58,
+      "sd": 7.5,
       "medium": 4
     },
     {
       "label": "8",
       "R": 11.7666,
       "d": 2.9195999999999995,
-      "sd": 8
+      "sd": 6.9
     },
     {
       "label": "9",
       "R": 60.03,
       "d": 1.7315999999999998,
-      "sd": 10.26,
+      "sd": 6.95,
       "medium": 5
     },
     {
       "label": "10",
       "R": -196.8696,
       "d": 3.8916,
-      "sd": 10.26
+      "sd": 6.95
     },
     {
       "label": "11",
       "R": 32.598,
       "d": 4.571999999999999,
-      "sd": 8.64,
+      "sd": 6.9,
       "medium": 6
     },
     {
       "label": "12",
       "R": -17.238599999999998,
-      "d": 1.411200000000008,
-      "sd": 8.64
+      "d": 0.965,
+      "sd": 6.9
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 1.4111999999999938
+      "d": 1.8574
     },
     {
       "label": "13",
       "R": 76.3686,
       "d": 4.183199999999999,
-      "sd": 7.5,
+      "sd": 6.7,
       "medium": 7
     },
     {
       "label": "14",
       "R": -10.4706,
       "d": 1.152,
-      "sd": 7.5,
+      "sd": 6.7,
       "medium": 8
     },
     {
       "label": "15",
       "R": 45.6966,
       "d": 1.4597999999999998,
-      "sd": 8.5
+      "sd": 6.7
     },
     {
       "label": "16",
       "R": -270.486,
       "d": 2.6262,
-      "sd": 7.5,
+      "sd": 7.15,
       "medium": 9
     },
     {
       "label": "17",
       "R": -13.0554,
       "d": 0.09720000000000001,
-      "sd": 7.5
+      "sd": 7.35
     },
     {
       "label": "18",
       "R": 58.377599999999994,
       "d": 1.0404,
-      "sd": 11.44,
+      "sd": 8.2,
       "medium": 10
     },
     {
       "label": "19",
       "R": 21.9132,
       "d": 1.9458,
-      "sd": 9
+      "sd": 8.4
     },
     {
       "label": "20",
       "R": 187.76520000000002,
       "d": 3.4056,
-      "sd": 10.2,
+      "sd": 9.1,
       "medium": 11
     },
     {
       "label": "21",
       "R": -19.213199999999997,
       "d": 35.946,
-      "sd": 10.2
+      "sd": 9.1
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 0.25,
     "description": "Static infinity only; Grade B probable family match. Stop and clear apertures inferred. Source TableIII x0.18 omits the factory built-in filter; its thickness/glass are unknown. No retail finite focus is modeled."
   },
   "aperture": {
@@ -332,6 +332,11 @@ const LENS_DATA = {
       22
     ],
     "maxFNumber": 22
+  },
+  "projection": {
+    "kind": "rectilinear",
+    "fullFieldDeg": 102,
+    "maxTraceFieldDeg": 51
   },
   "layout": {
     "yScFill": 0.34
