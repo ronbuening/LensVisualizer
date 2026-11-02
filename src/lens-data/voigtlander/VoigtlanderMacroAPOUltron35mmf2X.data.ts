@@ -9,11 +9,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Front focus: Table 3 prints the near state (magnification 0.50, ZD0 95.58 mm, ZD11 17.62 mm, ZD16 12.49 mm).
  * The patent prints no clear apertures or iris opening, so the engine sizes the iris from F/2.01 and the semi-diameters
  * are estimated from Fig. 1, a true-scale plot (23.61 native px/mm; its arcs fit the printed radii within 1 % both ways)
- * reading 9.00, 8.26, 7.52, 6.46, 8.01 and 9.21 mm for L1, L2, L3/L4, L5/L6, L7/L8 and L9. Rims stand above those readings
- * where the f/2.01 axial ray, the near state's axial and corner chief rays or the corner light need it, floor-checked by
- * real-ray trace at both printed focus states. Fig. 1's size order and square rims are kept. Faces 4, 7 and 15 end at caps
- * of 7.9, 6.6 and 8.7 mm with flat lands out to the element rim, where the figure ends them at 7.8, 6.47 and 8.0 mm.
- * Element names count the glass in order; the patent's signs are L1, L2, L3f, L3r, L4f, L4r, L5f, L5r, L6.
+ * reading 9.00, 8.26, 7.52, 6.46, 8.01 and 9.21 mm for L1, L2, L3, L4, L5 and L6. Rims stand above those readings where
+ * the f/2.01 axial ray, the near state's axial and corner chief rays or the corner light need it, floor-checked by
+ * real-ray trace at both printed focus states and against a finite object at the near state. Fig. 1's size order and
+ * square rims are kept. Faces 4, 7 and 15 end at caps of 8.02, 6.6 and 8.87 mm with flat lands out to the element rim,
+ * where the figure ends them at 7.8, 6.47 and 8.0 mm.
+ * Element names are the patent's own signs (¶0018 to ¶0022): L1, L2, L3f, L3r, L4f, L4r, L5f, L5r, L6, with L3, L4 and L5
+ * the cemented lenses. Groups are the patent's G1A, stop, G1B (together the moving G1) and fixed G2.
  */
 const LENS_DATA = {
   schema: 2,
@@ -50,6 +52,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.7292,
@@ -57,11 +60,12 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 53.91870125499691,
-      role: "Biconvex front element of the moving group G1",
+      role: "Biconvex front element of G1A, the part of moving group G1 ahead of the stop",
     },
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.7292,
@@ -69,11 +73,12 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 39.35568779934719,
-      role: "Positive meniscus ahead of the first cemented pair, convex toward the object",
+      role: "Positive meniscus of G1A ahead of cemented lens L3, convex toward the object",
     },
     {
       id: 3,
-      name: "L3",
+      name: "L3f",
+      diagramLabel: "L3f",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.7408,
@@ -81,12 +86,13 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "E-FD13 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -14.831590121696824,
-      role: "Biconcave negative of the first cemented pair, ahead of the stop",
-      cemented: "C1",
+      role: "Biconcave negative of cemented lens L3, ahead of the stop",
+      cemented: "L3",
     },
     {
       id: 4,
-      name: "L4",
+      name: "L3r",
+      diagramLabel: "L3r",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.9229,
@@ -94,15 +100,16 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "E-FDS1 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 42.57282372017818,
-      role: "Positive meniscus of the first cemented pair, concave toward the stop",
-      cemented: "C1",
+      role: "Positive meniscus of cemented lens L3, concave toward the stop; last element of G1A",
+      cemented: "L3",
       apd: "inferred",
       apdNote:
-        "Cosina's optical section marks L4 as anomalous partial dispersion; catalog-equivalent E-FDS1 has PgF 0.6390 (dPgF +0.0303), and the patent supplies no line indices.",
+        "Cosina's optical section marks this fourth element as anomalous partial dispersion; catalog-equivalent E-FDS1 has PgF 0.6390 (dPgF +0.0303), and the patent supplies no line indices.",
     },
     {
       id: 5,
-      name: "L5",
+      name: "L4f",
+      diagramLabel: "L4f",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.699,
@@ -110,12 +117,13 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-TIM35 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -36.64425822159784,
-      role: "Negative meniscus of the second cemented pair, just behind the stop",
-      cemented: "C2",
+      role: "Negative meniscus of cemented lens L4, first element of G1B behind the stop",
+      cemented: "L4",
     },
     {
       id: 6,
-      name: "L6",
+      name: "L4r",
+      diagramLabel: "L4r",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.7639,
@@ -123,12 +131,13 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH96 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 17.04050846319126,
-      role: "Biconvex positive of the second cemented pair, last element of G1",
-      cemented: "C2",
+      role: "Biconvex positive of cemented lens L4, last element of G1B and of moving group G1",
+      cemented: "L4",
     },
     {
       id: 7,
-      name: "L7",
+      name: "L5f",
+      diagramLabel: "L5f",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 2.001,
@@ -136,12 +145,13 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 13.873706826087934,
-      role: "Positive meniscus of the fixed rear cemented pair, concave toward the object",
-      cemented: "C3",
+      role: "Positive meniscus of the fixed cemented lens L5, concave toward the object",
+      cemented: "L5",
     },
     {
       id: 8,
-      name: "L8",
+      name: "L5r",
+      diagramLabel: "L5r",
       label: "Element 8",
       type: "Negative Meniscus",
       nd: 1.738,
@@ -149,15 +159,16 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-NBH53V (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -19.779072943946478,
-      role: "Negative meniscus closing the fixed rear cemented pair",
-      cemented: "C3",
+      role: "Negative meniscus closing the fixed cemented lens L5",
+      cemented: "L5",
       apd: "inferred",
       apdNote:
-        "Cosina's optical section marks L8 as anomalous partial dispersion; catalog-equivalent S-NBH53V is a short flint with PgF 0.5900, near the normal line (dPgF +0.0006) but about 0.0085 below ordinary flints of similar Abbe number.",
+        "Cosina's optical section marks this eighth element as anomalous partial dispersion; catalog-equivalent S-NBH53V is a short flint with PgF 0.5900, near the normal line (dPgF +0.0006) but about 0.0085 below ordinary flints of similar Abbe number.",
     },
     {
       id: 9,
-      name: "L9",
+      name: "L6",
+      diagramLabel: "L6",
       label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.8081,
@@ -168,7 +179,7 @@ const LENS_DATA = {
       role: "Final negative meniscus of the fixed group G2, concave toward the object",
       apd: "inferred",
       apdNote:
-        "Cosina's optical section marks L9 as anomalous partial dispersion; catalog-equivalent S-NPH1 has PgF 0.6307 (dPgF +0.0252), and the patent supplies no line indices.",
+        "Cosina's optical section marks this ninth element as anomalous partial dispersion; catalog-equivalent S-NPH1 has PgF 0.6307 (dPgF +0.0252), and the patent supplies no line indices.",
     },
   ],
   surfaces: [
@@ -196,7 +207,7 @@ const LENS_DATA = {
       label: "4",
       R: 49.2602,
       d: 1.25,
-      sd: 7.9,
+      sd: 8.02,
       rimExtensionSd: 8.9,
     },
     {
@@ -248,27 +259,27 @@ const LENS_DATA = {
       label: "12",
       R: -107.8291,
       d: 5.42,
-      sd: 8.8,
+      sd: 8.87,
       medium: 7,
     },
     {
       label: "13",
       R: -12.6124,
       d: 0.9,
-      sd: 8.8,
+      sd: 8.87,
       medium: 8,
     },
     {
       label: "14",
       R: -95.5786,
       d: 2.97,
-      sd: 8.8,
+      sd: 8.87,
     },
     {
       label: "15",
       R: -14.556,
       d: 2.37,
-      sd: 8.7,
+      sd: 8.87,
       rimExtensionSd: 10.2,
       medium: 9,
     },
@@ -295,7 +306,7 @@ const LENS_DATA = {
       },
     ],
     description:
-      "PUBLISHED infinity and β = 0.50 states. L1–L6 and the stop move 16.00 mm toward the object while L7–L9 stay fixed, so ZD11 opens from 1.62 to 17.62 mm and the 12.49 mm back gap does not change. The near object sits 95.58 mm from the first surface, 161.94 mm from the image plane; the production lens is rated 0.163 m at 1:2.",
+      "PUBLISHED infinity and β = 0.50 states. G1 (G1A, the stop and G1B, L1–L4r) moves 16.00 mm toward the object while G2 (L5f–L6) stays fixed, so ZD11 opens from 1.62 to 17.62 mm and the 12.49 mm back gap does not change. The near object sits 95.58 mm from the first surface, 161.94 mm from the image plane; the production lens is rated 0.163 m at 1:2.",
   },
   aperture: {
     nominalFNumber: 2.01,
@@ -304,13 +315,14 @@ const LENS_DATA = {
     blades: 10,
   },
   groups: [
-    { text: "G1", fromSurface: "1", toSurface: "11" },
+    { text: "G1A", fromSurface: "1", toSurface: "7" },
+    { text: "G1B", fromSurface: "9", toSurface: "11" },
     { text: "G2", fromSurface: "12", toSurface: "16" },
   ],
   doublets: [
-    { text: "C1", fromSurface: "5", toSurface: "7" },
-    { text: "C2", fromSurface: "9", toSurface: "11" },
-    { text: "C3", fromSurface: "12", toSurface: "14" },
+    { text: "L3", fromSurface: "5", toSurface: "7" },
+    { text: "L4", fromSurface: "9", toSurface: "11" },
+    { text: "L5", fromSurface: "12", toSurface: "14" },
   ],
   layout: {
     yScFill: 0.43,
