@@ -39,6 +39,12 @@ const LENS_DATA = {
     patentYear: 1988,
     authors: ["Hiroyuki Hirano"],
     assignees: ["Asahi Kogaku Kogyo Co., Ltd."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "The table and claim 7 print νd 27.5 for L4 (i = 7), but nd 1.76182 is the SF14 class at 26.5, and Figs. 2 and 3 fit 26.5: their paraxial g-line offsets read +0.07 and +0.45 at f = 100; S-TIH14 traces +0.07 and +0.45, while νd 27.5 gives −0.17 and +0.14. Among Examples 2–5 only Example 4 uses this glass, and it prints 26.5; Examples 2 and 5 print 1.78470/26.2 and Example 3 prints 1.80518/25.4 for the same element. This file keeps the printed vd 27.5, and S-TIH14 catalog dispersion traces it at 26.5.",
+      },
+    ],
   },
   elements: [
     {
@@ -144,40 +150,40 @@ const LENS_DATA = {
     {
       label: "1",
       R: 73.92195,
-      sd: 26.52,
+      sd: 25.15,
       medium: 1,
       d: 5.83605,
     },
     {
       label: "2",
       R: 866.23965,
-      sd: 26.52,
+      sd: 25.15,
       d: 0.1755,
     },
     {
       label: "3",
       R: 43.6725,
-      sd: 25.81,
+      sd: 23.98,
       medium: 2,
       d: 6.04125,
     },
     {
       label: "4",
       R: 99.90405,
-      sd: 25.81,
+      sd: 23.98,
       d: 0.1755,
     },
     {
       label: "5",
       R: 30.52755,
-      sd: 23.81,
+      sd: 21.37,
       medium: 3,
       d: 6.27885,
     },
     {
       label: "6",
       R: 54.73305,
-      sd: 23.81,
+      sd: 21.37,
       d: 2.80395,
     },
     {
@@ -190,13 +196,12 @@ const LENS_DATA = {
     {
       label: "8",
       R: 21.0141,
-      sd: 18.58,
+      sd: 16.1,
       d: 7.3375875,
     },
     {
       label: "STO",
       R: "flat",
-      d: 2.4458625000000005,
     },
     {
       label: "9",
@@ -216,39 +221,43 @@ const LENS_DATA = {
       label: "11",
       R: 40.99005,
       sd: 14.85,
-      d: 14.51655,
     },
     {
       label: "12",
       R: -92.55195,
-      sd: 11.69,
+      sd: 12.27,
       medium: 7,
       d: 2.06145,
     },
     {
       label: "13",
       R: -247.3497,
-      sd: 11.69,
-      d: 19.00125,
+      sd: 12.27,
     },
     {
       label: "14",
       R: 60.93225,
-      sd: 17.238,
+      sd: 18.3,
       medium: 8,
       d: 5.47425,
     },
     {
       label: "15",
       R: -325.188,
-      sd: 17.238,
+      sd: 18.3,
       d: 46.38522359437118,
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.7,
+    published: [1],
     description:
-      "Infinity-only patent reconstruction; exact factory prescription pairing is unproven. The stop and clear apertures are explicit modeling hypotheses; the retained rear-element SD17.238 mm branch is figure-informed, not a contrast-selected factory dimension. The125.8003235944 mm image plane is computed and fixed. Manufacturer0.7 m minimum focus is descriptive only; no finite conjugates, calibrated group motion or iris motion are certified. Native monochromatic diffraction is a scalar estimate. Earlier line-based OPL reference validation is withdrawn, including axial cases; numerical convergence does not establish independent physical or factory validation.",
+      "Internal focus: units 20 and 30 move toward the image by different amounts while units 10 and 40 and the iris stay fixed, ending at the patent's printed 1/4-magnification gaps.",
+  },
+  gaps: {
+    STO: { label: "d8", values: [[2.4458625000000005, 27.2264625]] },
+    "11": { label: "d11", values: [[14.51655, 4.6035]] },
+    "13": { label: "d13", values: [[19.00125, 4.13235]] },
   },
   aperture: {
     nominalFNumber: 2.8,
