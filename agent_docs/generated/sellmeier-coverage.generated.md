@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1050** lenses scanned
-- **1035** visible lenses scanned
-- **716** lenses fully covered by trusted chromatic data
-- **713** visible lenses fully covered by trusted chromatic data
-- **708** lenses fully covered by strict Sellmeier data
-- **705** visible lenses fully covered by strict Sellmeier data
+- **1056** lenses scanned
+- **1041** visible lenses scanned
+- **722** lenses fully covered by trusted chromatic data
+- **719** visible lenses fully covered by trusted chromatic data
+- **714** lenses fully covered by strict Sellmeier data
+- **711** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **11227 / 12054** non-air surfaces use strict catalog Sellmeier data
-- **93.1%** strict Sellmeier surface coverage overall
-- **11241 / 12054** non-air surfaces use trusted chromatic data
+- **11264 / 12091** non-air surfaces use strict catalog Sellmeier data
+- **93.2%** strict Sellmeier surface coverage overall
+- **11278 / 12091** non-air surfaces use trusted chromatic data
 - **93.3%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -804,6 +804,8 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8](../../src/lens-data/olympus/OlympusZuiko24mmf28.data.ts) | 8/8 | 8 | 8/8 |
 | [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8 (US 3,994,574 Design)](../../src/lens-data/olympus/OlympusZuikoAutoW24mmf28.data.ts) | 8/8 | 8 | 8/8 |
 | [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/p.-angénieux/AngenieuxDEM180mmf23APO.data.ts) | 8/8 | 8 | 8/8 |
+| [PENTAX DA* 300mm f/4 ED [IF] SDM](../../src/lens-data/pentax/PentaxDAStar300mmF4EDIFSDM.data.ts) | 8/8 | 8 | 8/8 |
+| [PENTAX SMC F 135mm f/2.8 [IF]](../../src/lens-data/pentax/PentaxF135mmf28IF.data.ts) | 8/8 | 8 | 8/8 |
 | [PENTAX SUPER-TAKUMAR 35mm f/2](../../src/lens-data/pentax/PentaxSuperTakumar35mmf2.data.ts) | 8/8 | 8 | 8/8 |
 | [RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL III)](../../src/lens-data/ricoh/RicohGRDigitalIII60mmF19.data.ts) | 8/8 | 8 | 8/8 |
 | [RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL IV)](../../src/lens-data/ricoh/Ricoh60mmf19VCGRD.data.ts) | 8/8 | 8 | 8/8 |
@@ -931,6 +933,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PENTAX 110 24mm f/2.8](../../src/lens-data/pentax/Pentax11024mmf28.data.ts) | 6/6 | 6 | 6/6 |
 | [PENTAX SMC 67 MACRO 100mm f/4](../../src/lens-data/pentax/PentaxSMC67100mmf4.data.ts) | 6/6 | 6 | 6/6 |
 | [PENTAX SMC A 200mm f/4](../../src/lens-data/pentax/PentaxA200mmf4.data.ts) | 6/6 | 6 | 6/6 |
+| [PENTAX SMC M 50mm f/1.7](../../src/lens-data/pentax/PentaxM50mmf17.data.ts) | 6/6 | 6 | 6/6 |
 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR III)](../../src/lens-data/ricoh/RicohGR328f28.data.ts) | 6/6 | 6 | 6/6 |
 | [RODENSTOCK RODAGON-WA 80mm f/4](../../src/lens-data/rodenstock/RodenstockRodagonWA80mmf4.data.ts) | 6/6 | 6 | 6/6 |
 | [SAMSUNG 20mm f/2.8](../../src/lens-data/samsung/Samsung20mmf28.data.ts) | 6/6 | 6 | 6/6 |
@@ -968,18 +971,21 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [MEYER OPTIK GÖRLITZ LYDITH 30mm f/3.5](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz30mmf35Lydith.data.ts) | 5/5 | 5 | 5/5 |
 | [MEYER OPTIK GÖRLITZ ORESTOR 135mm f/2.8](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz135mmf28Orestor.data.ts) | 5/5 | 5 | 5/5 |
 | [MINOLTA MD 135mm f/2.8](../../src/lens-data/minolta/Minolta135mmf28MD.data.ts) | 5/5 | 5 | 5/5 |
+| [MINOLTA MD 35mm f/2.8](../../src/lens-data/minolta/MinoltaMD35mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [MIRANDA AUTO EC 135mm f/2.8](../../src/lens-data/miranda/MirandaAutoEC135mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [NIKON 35mm f/2.8 (Nikon L35AF)](../../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [NIKON AI NIKKOR 135mm f/2.8](../../src/lens-data/nikon/NikonAI135mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [NIKON LW-NIKKOR 28mm f/2.8](../../src/lens-data/nikon/NikonLWNikkor28mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [NIKON REFLEX-NIKKOR 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) | 5/5 | 5 | 5/5 |
 | [OLYMPUS E.ZUIKO AUTO-T 1000mm f/11](../../src/lens-data/olympus/OlympusEZuiko1000mmf11.data.ts) | 5/5 | 5 | 5/5 |
+| [OLYMPUS E.ZUIKO AUTO-T 100mm f/2.8](../../src/lens-data/olympus/OlympusEZuiko100mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) | 5/5 | 5 | 5/5 |
 | [OLYMPUS ZUIKO AUTO-T 400mm f/6.3](../../src/lens-data/olympus/OlympusZuikoAutoT400mmf63.data.ts) | 5/5 | 5 | 5/5 |
 | [OLYMPUS ZUIKO AUTO-T 85mm f/2](../../src/lens-data/olympus/OlympusZuiko85mmf2.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX 110 50mm f/2.8](../../src/lens-data/pentax/Pentax11050mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX F 85mm f/2.8 Soft](../../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX SMC FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) | 5/5 | 5 | 5/5 |
+| [PENTAX SMC M 40mm f/2.8](../../src/lens-data/pentax/PentaxM40mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX ULTRA-ACHROMATIC-TAKUMAR 85mm f/4.5](../../src/lens-data/pentax/PentaxUltraAchromaticTakumar85mmf45.data.ts) | 5/5 | 5 | 5/5 |
 | [SCHNEIDER-KREUZNACH XENAR 50mm f/2.8](../../src/lens-data/schneider-kreuznach/SchneiderXenar2850.data.ts) | 5/5 | 5 | 5/5 |
