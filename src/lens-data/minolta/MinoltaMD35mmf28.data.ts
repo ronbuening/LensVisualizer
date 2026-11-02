@@ -75,7 +75,7 @@ const LENS_DATA = {
       vd: 58.5,
       indexReference: "d",
       focalLengthMm: 25.91416494122884,
-      glass: "K-LaK11 spectral proxy (Sumita; lanthanum crown; patent vd 58.5 retained versus catalog 57.3; supplier unconfirmed)",
+      glass: "Unmatched (lanthanum crown; printed 1.6583/58.5 recurs in Minolta patents but has no catalog row)",
     },
     {
       id: 3,

@@ -104,3 +104,15 @@ Checked and correct: `type` strings agree with the signs of R on all five elemen
 Movement: the lens is static and `focus.description` says so. The patent says nothing on focusing: no method, no moving group, no object distance. Its nearest wording, "at the time of the diaphragm being released" in column 5, concerns the stop. The printed state is the infinity state by its back focus, s' = 1.06 against a paraxial 1.0602 at f = 1. On the page, `focus=1` is pixel-identical to infinity, the slider's far end reads "Not modeled", and both `mv` overlays report no modeled movement.
 
 After the edits the validator passes at the default limit, the image-circle check lists nothing, no surface clips the axial beam or blocks the chief ray, and the traced f-number stays within 3 % of f/2.8. Engine half-field 32.0° and FOPEN 2.8 are unchanged.
+
+## 2026-11-02 — G2 relabelled Unmatched
+
+`glass` on G2 changes from a K-LaK11 spectral proxy to `Unmatched (...)`. The label said the printed νd 58.5 was retained, but the Sellmeier tier borrows the row's dispersion, so the trace ran at 57.3, 2.1 % from print. The same fault put the DA* 300 0.41 mm off its patent plots; see that lens's audit. G2 now takes the Abbe tier with the printed 1.6583/58.5 and normal-line partial dispersion. No other field changed.
+
+| Paraxial offset from d (mm) | K-LaK11 row | Printed pair |
+| --- | ---: | ---: |
+| C | +0.068 | +0.058 |
+| F | −0.075 | −0.054 |
+| g | −0.058 | −0.020 |
+
+Limitation: this patent has no color evidence. Figures 2 and 3 plot spherical aberration, sine condition, astigmatism and distortion at one wavelength, and Table II has no chromatic column, so neither trace can be checked against the source. The choice rests on the printed νd and on the pair recurring in four other Minolta prescriptions, which makes it a real coordinate rather than a typo. Whether it is a house melt is not established.

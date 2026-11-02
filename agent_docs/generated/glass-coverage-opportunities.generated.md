@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1056** lenses scanned (**1041** visible)
-- **11260 / 12091** non-air surfaces use strict catalog Sellmeier data (93.1%)
-- **11274 / 12091** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
+- **11259 / 12091** non-air surfaces use strict catalog Sellmeier data (93.1%)
+- **11273 / 12091** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **286** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **153** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -123,6 +123,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) | US 2015/0124127 A1 | [PDF](../../patents/US20150124127A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 20A [glass] (Element 10: `684313 — Unmatched exact public catalog identity`)<br>22A [glass] (Element 11: `636239 — Unmatched exact public catalog identity`) | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
 | [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) | US 2,819,651 | [PDF](../../patents/US2819651.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 4 [glass] (Lens III: `KzF4 class (Schott-Jena legacy short flint, 570/481)`) | abbe: 1 |
+| [MINOLTA MD 35mm f/2.8](../../src/lens-data/minolta/MinoltaMD35mmf28.data.ts) | US 3,936,153 | [PDF](../../patents/US3936153.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (lanthanum crown; printed 1.6583/58.5 recurs in Minolta patents but has no catalog row)`) | abbe: 1 |
 | [NIKON AI NIKKOR 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) | US 4,338,001 | [PDF](../../patents/US4338001.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unresolved low-dispersion glass (source 1.50032/81.9; ED class inferred, composition unspecified)`) | abbe: 1 |
 | [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown; vendor unresolved)`) | abbe: 1 |
 | [NIKON NIKKOR 800mm f/8 ED](../../src/lens-data/nikon/NikonNikkor800mmf8ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown / ED-class; vendor unresolved)`) | abbe: 1 |

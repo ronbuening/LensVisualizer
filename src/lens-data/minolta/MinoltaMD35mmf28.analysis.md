@@ -31,7 +31,7 @@ The negative front meniscus supplies retrofocus divergence. Its front face carri
 
 ### G2 — Biconvex Positive
 
-nd = 1.65830, νd = 58.5. Glass: K-LaK11 spectral proxy (Sumita; patent νd 58.5 retained versus catalog 57.3; supplier unconfirmed). f = +25.91 mm.
+nd = 1.65830, νd = 58.5. Glass: Unmatched (lanthanum crown; printed pair, no catalog row). f = +25.91 mm.
 
 The thick biconvex singlet supplies substantial positive power after the large first air gap. The patent gives it the correction of the coma, distortion and lateral color left by G1, and holds its thickness between 0.7 and 1.3 times d4. Both faces carry the square 10.3 mm rim of Figure 1.
 
@@ -55,7 +55,7 @@ The rear biconvex singlet precedes the printed 37.1 mm image gap. Both faces car
 
 ## Glass Identification and Selection
 
-Table I does not name its spectral line, but its values establish the d line: four of the five pairs reproduce catalog nd and νd values and none reproduces catalog e-line values. G1 sits at S-BAL3 (1.57135/52.95), G3 at FD8 (1.68893/31.16), G4 at K-LaK10 (1.72000/50.30) and G5 at S-BSM16 (1.62041/60.29). G2's 1.6583 is the K-LaK11 index, but its νd of 58.5 is kept against a catalog 57.3, so K-LaK11 is a spectral proxy; the same coordinate recurs in other Minolta prescriptions.
+Table I does not name its spectral line, but its values establish the d line: four of the five pairs reproduce catalog nd and νd values and none reproduces catalog e-line values. G1 sits at S-BAL3 (1.57135/52.95), G3 at FD8 (1.68893/31.16), G4 at K-LaK10 (1.72000/50.30) and G5 at S-BSM16 (1.62041/60.29). G2's 1.6583 is the K-LaK11 index, but its νd of 58.5 sits 1.2 above that glass's 57.3, so G2 is Unmatched and the model traces the printed pair; the same coordinate recurs in other Minolta prescriptions.
 
 These names are catalog equivalents, and the supplier is not established. G3 is the only flint, with the positive power carried by crowns and lanthanum crowns. No element is identified as anomalous-dispersion glass.
 
