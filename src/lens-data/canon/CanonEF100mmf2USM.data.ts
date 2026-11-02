@@ -1,18 +1,18 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Representative Grade B probable patent-family reconstruction; exact factory prescription is unproved.
- * Source R/d/N/V and published stop are literal. Clear SDs are frozen figure-informed inferences.
+ * JP H04-255813 A, Numerical Example 1 (F = 100, FNO 1:2, 2ω = 24.4°). The exact production prescription is unproved.
+ * R, D, N, ν and the stop position are as printed. Semi-diameters and the iris opening are inferred; the land on surface 8
+ * keeps that rim in front of the stop plane.
  * The patent prints neither back focus nor image plane: BF 39.60 mm and the image plane 115.66 mm behind surface 1 are
  * computed from the table (paraxial, f = 100.016 mm). D9 and D12 are printed at infinity only; the near gaps are solved.
- * Normal scalar native diffraction estimates are numerical checks, not independent phase or factory validation.
  */
 const LENS_DATA = {
   schema: 2,
   key: "canon-ef-100mm-f2-usm",
   maker: "Canon",
   name: "CANON EF 100mm f/2 USM",
-  subtitle: "JP H04-255813 A; Grade B probable family, representative numerical embodiment",
+  subtitle: "JP H04-255813 A — Example 1; best fit to Canon's published section",
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
@@ -27,10 +27,11 @@ const LENS_DATA = {
       design: 2,
     },
     specs: [
-      "PATENT RECONSTRUCTION; CLEAR APERTURES AND IRIS OPENING INFERRED",
       "8 ELEMENTS / 6 GROUPS",
-      "GRADE B PROBABLE FAMILY; REPRESENTATIVE EMBODIMENT",
-      "INFINITY CONFIGURATION ONLY",
+      "DESIGN f = 100 mm",
+      "DESIGN F/2.0",
+      "ALL SPHERICAL",
+      "INNER FOCUS",
     ],
   },
   source: {
@@ -54,9 +55,9 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-BAL50 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 256.064018348726,
-      role: "Literal representative prescription; positive isolated-in-air paraxial power.",
+      role: "Positive front element of group 1, with a weakly curved rear face.",
       indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+        "The table names no spectral line for N and ν; the patent's d-line aberration plots support reading them as nd and νd.",
     },
     {
       id: 2,
@@ -68,9 +69,9 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAL7 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 138.60699819861784,
-      role: "Literal representative prescription; positive isolated-in-air paraxial power.",
+      role: "Positive meniscus that continues the gradual convergence of the axial beam.",
       indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+        "The table names no spectral line for N and ν; the patent's d-line aberration plots support reading them as nd and νd.",
     },
     {
       id: 3,
@@ -82,9 +83,9 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH51 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 59.11346162229674,
-      role: "Literal representative prescription; positive isolated-in-air paraxial power.",
+      role: "Strongest positive element of group 1; with L4 it bounds the negative air lens that corrects spherical aberration.",
       indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+        "The table names no spectral line for N and ν; the patent's d-line aberration plots support reading them as nd and νd.",
     },
     {
       id: 4,
@@ -96,9 +97,9 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "Unmatched (patent nd=1.7555, νd=25.1; no catalog row at these coordinates)",
       focalLengthMm: -41.9715899568247,
-      role: "Literal representative prescription; negative isolated-in-air paraxial power.",
+      role: "Negative meniscus closing group 1; its concave rear face balances the spherical aberration of L1 to L3.",
       indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+        "The table names no spectral line for N and ν; the patent's d-line aberration plots support reading them as nd and νd.",
     },
     {
       id: 5,
@@ -110,9 +111,9 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "SF6 (Schott catalog equivalent; production supplier unspecified)",
       focalLengthMm: 185.21000932949863,
-      role: "Literal representative prescription; positive isolated-in-air paraxial power.",
+      role: "Weak positive front member of the focusing doublet C1.",
       indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+        "The table names no spectral line for N and ν; the patent's d-line aberration plots support reading them as nd and νd.",
       cemented: "C1",
     },
     {
@@ -125,9 +126,9 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-BAL50 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -51.66093370565275,
-      role: "Literal representative prescription; negative isolated-in-air paraxial power.",
+      role: "Negative member of C1, which gives the focusing group its net negative power.",
       indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+        "The table names no spectral line for N and ν; the patent's d-line aberration plots support reading them as nd and νd.",
       cemented: "C1",
     },
     {
@@ -140,9 +141,9 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "SF6 (Schott catalog equivalent; production supplier unspecified)",
       focalLengthMm: -119.5268407928693,
-      role: "Literal representative prescription; negative isolated-in-air paraxial power.",
+      role: "Thin negative meniscus at the front of the rear doublet C2; high-dispersion partner to L8.",
       indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+        "The table names no spectral line for N and ν; the patent's d-line aberration plots support reading them as nd and νd.",
       cemented: "C2",
     },
     {
@@ -155,9 +156,9 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "S-LAH51 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 43.064730248503025,
-      role: "Literal representative prescription; positive isolated-in-air paraxial power.",
+      role: "Thick biconvex member of C2, supplying the positive power of group 3.",
       indexReferenceNote:
-        "The table prints N and nu without an explicit spectral line; applying the literal pair at d is a qualified modeling convention, not a measured factory material identification.",
+        "The table names no spectral line for N and ν; the patent's d-line aberration plots support reading them as nd and νd.",
       cemented: "C2",
     },
   ],
@@ -274,7 +275,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.9,
     description:
-      "Rear focus: group 2 moves toward the image while the stop and groups 1 and 3 stay put. The patent prints D9 and D12 only at infinity (2.66 and 24.99 mm). The near gaps here are solved, not printed: at Canon's 0.9 m minimum focus, D9 is 16.487 mm and D12 is 11.163 mm, a 13.83 mm stroke at 0.139× (Canon states 0.14×). The same solve at 1 m, measured from the image plane, gives f/2.27 and +2.8% distortion at 12°, against f/2.3 and about +2.8% in the patent's Fig. 4(B).",
+      "Inner focus, which Canon calls rear focusing: group 2 moves toward the image while the stop and groups 1 and 3 stay put. The patent prints D9 and D12 only at infinity (2.66 and 24.99 mm). The near gaps here are solved, not printed: at Canon's 0.9 m minimum focus, D9 is 16.487 mm and D12 is 11.163 mm, a 13.83 mm stroke at 0.139× (Canon states 0.14×). The same solve at 1 m, measured from the image plane, gives f/2.27 and +2.8% distortion at 12°, against f/2.3 and about +2.8% in the patent's Fig. 4(B).",
   },
   gaps: {
     STO: { label: "D9", values: [[2.66, 16.487]] },
