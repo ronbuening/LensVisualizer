@@ -1,22 +1,39 @@
-// Private qualified patent reconstruction. Literal source R/d/nd/vd retained; no optimization.
-// Native patent f100/F4 is uniformly scaled x6 as a modeled interpretation of the600mm family. The printed L74.2 defines the image plane; its source rounding and paraxial residual remain. Maker12m MOD and patent7f near plot do not supply finite spacings.
-// All SDs and midpoint stop are explicit initialization hypotheses; see external evidence.
-// Printed source L=74.2 ×6. Canonical static-infinity convention.
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/**
+ * US 3,502,393 (Asahi Kogaku Kogyo; Kazamaki and Matsumoto), sole example, Table 1: f = 100 mm, 1:4.0, half field 4.1°,
+ * printed whole length L = 74.2. All surfaces are spherical, and no R, d, nd or νd has been adjusted.
+ *
+ * The patent names no product and prints no 600 mm version. All radii and spacings are the printed values × 6; that scale
+ * is inferred from the marketed focal length and is not stated in the patent. nd and νd are as printed. The design is
+ * associated with the SMC Takumar 6x7 600mm f/4 by its architecture (Pentax's table lists 5 groups, 6 elements), by its
+ * designers and by the barrel length. It is not a confirmed factory prescription.
+ *
+ * The image plane is the printed L × 6 = 445.2 mm from the first vertex, which gives the 174.0 mm last gap; the patent
+ * prints no back focus. Table 1 computes to L = 74.166, so the 0.20 mm between this plane and the paraxial focus at
+ * 173.80 mm is rounding of the printed L.
+ *
+ * The patent prints no iris position, and its Table 2 Seidel coefficients reproduce with the pupil at r1, so they do not
+ * fix one. The stop is inferred at the midpoint of the 20.0 gap between L3 and L4, and its radius follows from F/4. All
+ * `sd` values are estimates: about 10% above the paraxial F/4 ray at the front faces of L1 to L4, and about 0.36 of the
+ * front rim for the rear pair, a proportion taken from Fig. 1.
+ *
+ * Focus is static at infinity. The patent's 7f near plots come with no spacings; closeFocusM is the 12 m in Pentax's
+ * table. The abstract reverses the condition n5 < n6; the detailed text, Table 1 and the claim's table govern.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "pentax-smc-takumar-6x7-600mm-f4",
   "maker": "Pentax",
   "name": "PENTAX SMC TAKUMAR 6x7 600mm f/4",
-  "subtitle": "US 3,502,393 sole example x6; probable 600mm family reconstruction. Printed L plane retained; stop and apertures inferred. Infinity only.",
+  "subtitle": "US 3,502,393, sole example — f = 100 mm design scaled 6× to 600 mm; production association",
   "catalog": {
     "imageFormat": "6x7",
     "specs": [
       "6 ELEMENTS / 5 GROUPS",
-      "GRADE B PATENT RECONSTRUCTION",
-      "INFINITY ONLY; STOP / APERTURES INFERRED",
-      "PATENT HALF FIELD 4.1 DEG"
+      "DESIGN f = 100 (NORMALIZED; SCALED 6× TO 600 mm)",
+      "DESIGN F/4",
+      "ALL SPHERICAL"
     ],
     "elementCount": 6,
     "groupCount": 5,
@@ -57,7 +74,8 @@ const LENS_DATA = {
       "vd": 64.1,
       "indexReference": "d",
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": 399.996,
+      "role": "Front crown collector; shares the front section's positive power with L3"
     },
     {
       "id": 2,
@@ -68,7 +86,8 @@ const LENS_DATA = {
       "vd": 26.5,
       "indexReference": "d",
       "glass": "S-TIH14 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": -452.893,
+      "role": "Dense-flint negative between the two front crowns; offsets their spherical aberration and colour"
     },
     {
       "id": 3,
@@ -79,7 +98,8 @@ const LENS_DATA = {
       "vd": 59.76,
       "indexReference": "d",
       "glass": "Unmatched (512598 crown; no public catalog row)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": 388.856,
+      "role": "Forward-convex crown meniscus closing the L1 to L3 front section"
     },
     {
       "id": 4,
@@ -90,7 +110,8 @@ const LENS_DATA = {
       "vd": 46.0,
       "indexReference": "d",
       "glass": "FTM8 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven"
+      "focalLengthMm": 649.502,
+      "role": "Isolated positive singlet; adds front-section power, and its rear face supplies higher-order spherical aberration"
     },
     {
       "id": 5,
@@ -101,7 +122,8 @@ const LENS_DATA = {
       "vd": 35.8,
       "indexReference": "d",
       "glass": "FF5 (HOYA; coordinate proxy; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven",
+      "focalLengthMm": 236.665,
+      "role": "Positive half of the rear cemented meniscus; its lower index reduces Petzval over-correction",
       "cemented": "D1"
     },
     {
@@ -113,7 +135,8 @@ const LENS_DATA = {
       "vd": 57.3,
       "indexReference": "d",
       "glass": "S-LAL52 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Source-prescribed spherical refractive element; production identity unproven",
+      "focalLengthMm": -94.791,
+      "role": "Negative half of the rear cemented meniscus; supplies the telephoto's negative power",
       "cemented": "D1"
     }
   ],
@@ -194,6 +217,13 @@ const LENS_DATA = {
       "R": -878.814,
       "d": 174.0,
       "sd": 29.7
+    }
+  ],
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "9",
+      "toSurface": "11"
     }
   ],
   "focus": {

@@ -1,98 +1,123 @@
+# PENTAX SMC TAKUMAR 6x7 600mm f/4: US 3,502,393, Sole Example
+
 ## Patent Reference and Design Identification
 
 **Patent:** US 3,502,393
+**Priority:** 5 April 1966 (Japan 41/20,964)
 **Filed:** 28 March 1967
 **Granted:** 24 March 1970
 **Inventors:** Tomokazu Kazamaki, Tohru Matsumoto
 **Assignee:** Asahi Kogaku Kogyo Co., Ltd.
 **Title:** Lens System with Large Telephoto Ratio
-**Example details:** Sole specific numerical example, Table1, Fig1–3; printed L74.2. All lengths x6; indices and Abbe numbers unchanged. Earlier secondary3502292 identification is unrelated.
+**Example details:** Sole numerical example, Table 1 (1:4.0, f = 100 mm, L = 74.2), Figs. 1–3, half field 4.1°. All lengths × 6; indices and Abbe numbers unchanged.
 
-This is a Grade B probable design-family reconstruction associated with the named product. It does not establish exact factory prescription identity. Native patent f100/F4 is uniformly scaled x6 as a modeled interpretation of the600mm family. The printed L74.2 defines the image plane; its source rounding and paraxial residual remain. Maker12m MOD and patent7f near plot do not supply finite spacings.
+The patent names no product and prints no 600 mm version. The 6× scale is inferred from the marketed focal length; it is not stated in the patent. This page describes a patent design associated with the SMC Takumar 6×7 600mm f/4, not a confirmed factory prescription. The association rests on three points:
 
-The primary Pentax6×7 dealer notebook identifies the600mm SMCT6×7f/4 and its six-element/five-group arrangement. Its isolated fourth positive singlet and final cemented pair distinguish it from the adjacent800mmf/4, which has six air-separated elements. The source8.2° full field is close to the maker8°15′, but these facts establish probable family correlation rather than an unchanged production prescription. The model scales the patent100mm example by six; that interpretation is not a new patent measurement.
+1. **Architecture.** Pentax's lens table lists the 600mm f/4 with 5 groups and 6 elements, the patent's count at the same f/4. In the same table the 300mm f/4 is 5-5 and the 800mm f/4 is 6-6. The construction count comes from Pentax's table and the layout from the patent figure; no maker section drawing was found.
+2. **Designers.** A published list of Pentax lens designers credits Kazamaki and Matsumoto with the Takumar 600mm f/4 (6:5). Its text misprints the patent number as US3502292, but its link goes to this patent.
+3. **Barrel length.** The printed L × 6 puts the image 445.2 mm behind the first vertex. With the Pentax 67 flange distance of 84.95 mm, the first vertex falls about 360 mm ahead of the flange, close to the 370 mm length in Pentax's table.
+
+The patent's 8.2° full field is close to the 8.5° in Pentax's table, and its 1966 priority precedes the lens's 1969 announcement. The patent's background discusses 35 mm telephotos, and its field would also suit a 300 mm lens on that format, but Asahi's 35 mm 300mm f/4 lenses have other counts: 5 groups, 5 elements for the Super and SMC Takumars and 5 groups, 7 elements for the K-mount lens.
 
 ## Optical Architecture
 
-Six elements in five groups: positive, negative and positive front singlets, an isolated positive fourth element, and a positive/negative rear cemented doublet. All modeled faces are spherical; no aspheric coefficients, reflective path, camera stack or additional filter is introduced.
+Six elements in five groups: positive, negative and positive front singlets, an isolated positive fourth element, and a positive/negative rear cemented doublet. All faces are spherical, and the model adds no filter or cover plate.
 
-The source dimensions use a uniform factor 6; every radius, axial interval and image distance uses the same factor. Indices and Abbe numbers remain literal. The source f-number, rather than the retail label, controls the normal native paraxial entrance-pupil rule.
+The power layout is a telephoto. At this scale L1 to L3 have a combined focal length of +352.9 mm, L1 to L4 +272.7 mm, and the cemented rear pair −151.0 mm in air. The printed whole length gives L/f = 0.742; the patent treats about 0.85 as the practical limit of earlier designs.
+
+The patent describes the design as a development of Kazamaki's five-group, five-lens telephoto (Ser. No. 470,711). The fifth lens becomes a cemented pair whose positive lens has the lower index, which offsets part of the Petzval over-correction that a short telephoto brings. The remaining over-correction is balanced by spherical aberration left in a reversed form (Fig. 2a), with very large ninth-order terms.
+
+Every radius, axial spacing and the image distance use the same factor of 6; indices and Abbe numbers are as printed. The stop radius follows from the patent's 1:4.0, which matches the marketed f/4.
 
 ## Element-by-Element Analysis
 
 ### L1 — Biconvex Positive
 
-nd = 1.51633, νd = 64.1. Glass: Unmatched literal patent d-line coordinates; supplier unverified. Isolated-air focal estimate f = +399.996256mm.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) catalog equivalent; supplier not established. f = +400.0 mm.
 
-This air-separated element retains the source bending and thickness. Its signed paraxial power is a derived interpretation; no element motion or factory glass identity is inferred.
+The first of the three large front singlets. It and L3 carry the positive power of the front section. Table 2 gives its two faces spherical contributions of +4.242 and +2.649, which L2's front face offsets.
 
 ### L2 — Biconcave Negative
 
-nd = 1.76182, νd = 26.5. Glass: Unmatched literal patent d-line coordinates; supplier unverified. Isolated-air focal estimate f = -452.893401mm.
+nd = 1.76182, νd = 26.5. Glass: S-TIH14 (OHARA) catalog equivalent; supplier not established. f = −452.9 mm.
 
-This air-separated element retains the source bending and thickness. Its signed paraxial power is a derived interpretation; no element motion or factory glass identity is inferred.
+A dense flint set between the two front crowns. Its front face has the largest negative spherical contribution in the front section (−9.142 in Table 2). Its role in the section's colour correction is an inference from the glass coordinates; the patent does not discuss colour.
 
 ### L3 — Positive Meniscus
 
-nd = 1.51276, νd = 59.76. Glass: Unmatched literal patent d-line coordinates; supplier unverified. Isolated-air focal estimate f = +388.855802mm.
+nd = 1.51276, νd = 59.76. Glass: Unmatched (512598 crown; no public catalog row). f = +388.9 mm.
 
-This air-separated element retains the source bending and thickness. Its signed paraxial power is a derived interpretation; no element motion or factory glass identity is inferred.
+A forward-convex meniscus that closes the front section. Its front face r5 is the section's strongest radius and has the largest positive Petzval term in Table 2 (+1.206). With L1 and L2 it meets condition (2), F123 < f.
 
 ### L4 — Biconvex Positive
 
-nd = 1.53256, νd = 46. Glass: Unmatched literal patent d-line coordinates; supplier unverified. Isolated-air focal estimate f = +649.501980mm.
+nd = 1.53256, νd = 46.00. Glass: FTM8 (OHARA) catalog equivalent, close but not an exact row; supplier not established. f = +649.5 mm.
 
-This air-separated element retains the source bending and thickness. Its signed paraxial power is a derived interpretation; no element motion or factory glass identity is inferred.
+A thin singlet with a 120 mm air space ahead of it and 63 mm behind it. It brings the front power to F1234 < f/1.9, condition (3). The patent gives its rear face a specific job: with |r8| < 3f, that surface produces an under-corrected higher-order aberration (+6.186 spherical in Table 2) that shapes the reversed spherical curve.
 
 ### L5 — Positive Meniscus
 
-nd = 1.59270, νd = 35.8. Glass: Unmatched literal patent d-line coordinates; supplier unverified. Isolated-air focal estimate f = +236.664624mm.
+nd = 1.59270, νd = 35.8. Glass: FF5 (HOYA) coordinate proxy, close but not an exact row; supplier not established. f = +236.7 mm in air.
 
-This element shares its interface with the adjacent cemented element. Its isolated-air focal estimate describes its two radii and thickness; it is not the in-system power of the cemented group.
+The front half of the cemented rear meniscus, concave to the object. Its front face r9 has the strongest negative Petzval term of any surface (−2.290) and a spherical term of −8.796. Its index below L6's, condition (1), is the patent's means of correcting part of the Petzval over-correction.
 
 ### L6 — Negative Meniscus
 
-nd = 1.67000, νd = 57.3. Glass: Unmatched literal patent d-line coordinates; supplier unverified. Isolated-air focal estimate f = -94.791365mm.
+nd = 1.67000, νd = 57.3. Glass: S-LAL52 (OHARA) catalog equivalent; supplier not established. f = −94.8 mm in air.
 
-This element shares its interface with the adjacent cemented element. Its isolated-air focal estimate describes its two radii and thickness; it is not the in-system power of the cemented group.
+The rear half of the cemented pair, which is −151.0 mm in air and supplies the telephoto's negative power. As in a negative achromat, the negative power sits in the glass with the higher νd; this reading is an inference from the printed coordinates.
 
 ## Glass Identification and Selection
 
-The patent explicitly identifies the reference coordinates as d-line quantities. The native monochromatic calculation uses the literal source indices at587.5618nm and disables resolved catalog dispersion. Glass annotations remain Unmatched because neither supplier nor melt identity is established here. No catalog glass is substituted to improve focus or simulated contrast. Abbe numbers are retained as source data; they do not establish measured full dispersion, anomalous partial dispersion or apochromatic performance.
+Table 1 prints d-line indices and Abbe numbers and names no glass. The labels in the data file are equivalents from later catalogs, chosen on those coordinates. They are not the production melts: the patent was filed in 1967 and the lens dates from 1969, and the supplier is not established.
+
+| Element | Printed nd / νd | Label | Catalog nd / νd |
+| --- | --- | --- | --- |
+| L1 | 1.51633 / 64.1 | S-BSL7 (OHARA) | 1.51633 / 64.14 |
+| L2 | 1.76182 / 26.5 | S-TIH14 (OHARA) | 1.76182 / 26.52 |
+| L3 | 1.51276 / 59.76 | Unmatched (512598 crown) | none |
+| L4 | 1.53256 / 46.00 | FTM8 (OHARA) | 1.53257 / 45.91 |
+| L5 | 1.59270 / 35.8 | FF5 (HOYA) | 1.59270 / 35.45 |
+| L6 | 1.67000 / 57.3 | S-LAL52 (OHARA) | 1.67000 / 57.33 |
+
+L4 and L5 are close but not exact rows; FF5 is 0.35 from the printed νd. The model keeps every printed nd. Its chromatic calculations take dispersion from the catalog row where a label resolves, so L5 follows νd 35.45 rather than 35.8, and L3 uses its printed νd.
+
+Neither the patent nor Pentax's table names ED or anomalous-dispersion glass, and the highest νd is L1's 64.1. The Abbe numbers do not establish partial dispersion or apochromatic correction.
 
 ## Focus Mechanism
 
-The authored prescription is static and infinity only, using the existing closeFocusM=1e15 convention. It has no variable gaps or certified finite conjugates. Source or retail minimum-focus labels do not supply a numerical finite state. The structural check at focus coordinates0,0.5and1 verifies unchanged geometry only; it cannot validate finite performance.
+The model is static at infinity focus and has no variable gaps, because the patent prints no close-focus spacings. Fig. 3 plots aberrations for an object at 7f, which is 4.2 m at this scale, without a spacing table; the patent says only that the aberrations worsen very little at close range.
 
-The manufacturer12m minimum distance is descriptive. The patent’s near-object7f curves are a different test condition and provide no tabulated refocused gap here. Parallel infinity rays are not relabeled as finite rays.
+Pentax's table lists a minimum focus of 12.0 m, which the data file carries as `closeFocusM`, and its lens manual says lenses of 600 mm and longer focus with two knobs at the rear. That distance is a catalog figure, not a modeled state, and the 7f plot is a different condition from it.
 
 ## Stop, Clear Apertures and Image Plane
 
-The stop coordinate and surface clear apertures are not printed. The authored stop is the midpoint of the gap after S6, at z=124.200000000mm. Quarter- and three-quarter-gap planes are sensitivity hypotheses. All three passed normal native geometry and exact spherical-cap clearance across the entire source-f-number iris disk. This does not certify room for blades or a mount. The ordinary-prime stop radius is derived by the engine, not hand-authored.
+The patent prints no iris position, and Fig. 1 draws none. Its Table 2 Seidel coefficients are a useful property of the design: all five sums (spherical −0.313, sine condition 0.122, astigmatism 0.480, Petzval −0.453, distortion −2.894) and every surface value follow from Table 1 when the pupil is placed at r1. That confirms the printed prescription, but it means the coefficients do not fix an iris plane.
 
-The apertures are explicit modeling estimates. Initialization uses the independent paraxial entrance-pupil marginal envelope with10% clearance, plus coarse schematic envelope proportions. Cardinar uses approximate L2/L1=.91, cemented-pair/L1=.78 and rear/L1=.50 proportions. The600mm model retains front near-equal envelopes, an isolated fourth radius about.56 of the front, and rear pair about.36. These are not calibrated factory clear apertures.
+The model's stop is therefore an inferred position at the midpoint of the 20.0 gap (l3) between L3 and L4, 124.2 mm behind the first vertex. Nothing in the patent favours this plane over another in the gap, and it does not establish room for the blades. Its 54.5 mm radius follows from the 150 mm paraxial entrance pupil at F/4. Pentax's table gives f/45 as the smallest stop.
 
-The final per-face SD vector in source-surface order is 82.5, 82.5, 78.03, 78.03, 78.38, 78.38, 45.97, 45.97, 29.7, 29.7, 29.7mm. Hard clipping remains active; neither rim margins nor hidden transparent apertures are added.
+Clear apertures are not printed either. All semi-diameters are estimates: L1 to L4 sit about 10% above the paraxial F/4 ray at their front faces, and the rear pair takes about 0.36 of the front rim, a proportion from Fig. 1. They are not factory clear apertures, and the off-axis vignetting the model shows at the rear pair depends on them.
 
-Image-plane authority: Printed source L=74.2 ×6. The final gap is 174.000000000000mm and the first-vertex-to-image distance is 445.200000000000mm. Independent EFL is 599.972868813097mm, a residual of -0.027131186903mm from the scaled source nominal. The computed paraxial BFL is 173.796683233305mm. No source dimension is tuned to remove these residuals.
+The image plane is the printed L × 6: 445.2 mm from the first vertex, which leaves a last gap of 174.0 mm. The patent prints no back focus. The computed EFL is 599.97 mm and the computed paraxial back focus is 173.80 mm, 0.20 mm short of that plane. This difference is rounding of the printed L: Table 1 computes to L = 74.166, which prints as 74.2, and one printed decimal spans ±0.30 mm at this scale. No dimension is adjusted to remove it.
 
-The source-plane offset from computed paraxial focus is +0.203316766695mm. The printed L=74.2 has only one decimal place before scaling. The normal native image-plane consistency diagnostic can therefore flag this residual and auto mode may apply its reported best-axial shift. The research curves explicitly request design focus and apply zero shift; the authored source plane is retained. A diagnostic refocus is not an authored correction.
+The patent's field ends at 4.1°, or 43.0 mm of image height at this scale. The 6×7 format corner lies at 44.8 mm and 4.23°, just beyond the plotted field.
 
-## Verification Summary and Limits
+## Conditional Expressions
 
-Independent ABCD EFL and native build EFL agree to floating-point precision. Normal native geometry accepts the frozen optical train. The source half field is 4.1°, and research checks use0°, half that angle and the exact edge. Native format-corner fractions are derived from actual chief heights and reported separately; a format corner is not assumed to equal the source angle.
+| Condition | Value at f = 100 |
+| --- | --- |
+| (1) n5 < n6 | 1.59270 < 1.67000 |
+| (2) F123 < f | 58.82 |
+| (3) F1234 < f/1.9 | 45.45 < 52.63 |
+| (4) l4 ≥ 0.07f | 10.5 |
+| (5) \|r8\| < 3f | 80.194 |
 
-At the208-sample initial wide-open pupil check, the source center/half/edge transmitted counts were 208, 208, 186. All retained zero failed, unaimed and unresolved-in-beam samples in that check. This is a finite sampling result, not a continuum guarantee. Clipped samples and the results for all three stop hypotheses are retained, including clipped chief references.
-
-At f/4, the native diffraction fields report 0.0000000°: converged at 128 cells, 2.0499906°: converged at 64 cells, 4.1000000°: converged at 64 cells. Design-plane shift applied: 0mm.
-
-At f/8, the native diffraction fields report 0.0000000°: converged at 32 cells, 2.0499906°: converged at 32 cells, 4.1000000°: converged at 64 cells. Design-plane shift applied: 0mm.
-
-These are normal native sheared-pupil scalar diffraction estimates at the literal reference indices. The existing≤0.01 successive-grid criterion through sampled50lp/mm and≤0.005 unresolved-flux limit are unchanged. Raw snapshots retain grid levels, clipping, failures, unknown flux and unapplied best-focus diagnostics. No withdrawn one-dimensional waveLatticeOtf reference is used, and no independent factory, broadband or continuum certification is claimed.
-
-Integration and compiled-viewer checks are separate gates documented in the private release evidence. The prescription must retain these source and inference qualifications when installed; publication and finite-focus support are not implied.
+The prescription meets all five. The patent's abstract states condition (1) in reverse, with the sixth lens lower in index than the fifth. The detailed description, Table 1 and the table in claim 1 all give n5 < n6, and the model follows them.
 
 ## Sources
 
-1. [US 3,502,393 — Lens System with Large Telephoto Ratio](https://patents.google.com/patent/US3502393A/en), original patent retained in the source packet.
-2. [Primary manufacturer catalog reproduction](https://www.pacificrimcamera.com/rl/01236/01236.pdf), selected original pages retained; full-source hash recorded in the jobcard.
+1. [US 3,502,393 — Lens System with Large Telephoto Ratio](https://patents.google.com/patent/US3502393A/en).
+2. [Pentax 67 lens operating manual, `pentax_6x7_lenses.pdf`](https://www.cameramanuals.org/lenses/pentax_6x7_lenses.pdf): lens table (5 groups, 6 elements, f/45, 12.0 m, 170 × 370 mm, 6,000 g) and focusing notes.
+3. [Known and Unknown Pentax lens designers and their lenses](http://douglasviewfinder.blogspot.com/p/known-pentax-lens-designs-and-designers.html): design credit for the Takumar 600mm f/4.
+4. [Asahi Takumar 6×7 600mm F/4, Lens-DB](https://lens-db.com/asahi-takumar-6x7-600mm-f4-1969/): 1969 announcement.
+5. [PENTAXの写真レンズ製品一覧, Japanese Wikipedia](https://ja.wikipedia.org/wiki/PENTAX%E3%81%AE%E5%86%99%E7%9C%9F%E3%83%AC%E3%83%B3%E3%82%BA%E8%A3%BD%E5%93%81%E4%B8%80%E8%A6%A7): group and element counts of the 35 mm 300mm f/4 lenses.
