@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 import { auditDetachedReactText, replaceTextForTranslation } from "../translationTestUtils.js";
 import { TRANSLATION_ROUTES, TRANSLATION_ANALYSIS_TABS } from "../translationCoverage.js";
 
@@ -14,6 +14,18 @@ async function translate(page: Page) {
   const replaced = await page.locator("body").evaluate(replaceTextForTranslation);
   await page.locator("body").evaluate(auditDetachedReactText);
   return replaced;
+}
+
+/** A readout's text once it has held still for a second; some analyses refine after their first commit. */
+async function settledText(locator: Locator) {
+  let previous = await locator.textContent();
+  for (let stableReads = 0, reads = 0; stableReads < 4 && reads < 60; reads++) {
+    await locator.page().waitForTimeout(250);
+    const current = await locator.textContent();
+    stableReads = current === previous ? stableReads + 1 : 0;
+    previous = current;
+  }
+  return previous;
 }
 
 async function healthy(page: Page) {
@@ -421,11 +433,11 @@ for (const [tab, label] of [
       ? drawer.getByText(label, { exact: true }).locator("xpath=ancestor::div[1]")
       : drawer.getByText(/^Defocus:/).first();
     await expect(value).toContainText(/\d/);
-    const far = await value.textContent();
+    const far = await settledText(value);
     const focus = page.getByRole("slider", { name: "FOCUS", exact: true });
     await focus.press("End");
     await expect(value).not.toHaveText(far!);
-    const near = await value.textContent();
+    const near = await settledText(value);
     await focus.press("Home");
     await expect(value).toHaveText(far!);
     await translate(page);
