@@ -1,18 +1,19 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Literal whole patent embodiment under a disclosed uniform similarity hypothesis.
- * Probable product family, not an identified factory prescription.
- * Every clear semi-diameter and exact stop split is inferred before tracing.
- * No source radii, thicknesses, indices, source precision or frozen image plane retuned.
- * Unqualified source n/Abbe interpreted at d as a hypothesis; no named-glass substitution.
- * Canonical infinity-only state; no finite factory law or independent OPL/phase claim.
+/** US 4,114,992 Embodiment 1 (f = 100), every length scaled uniformly by 1.8 to 180 mm.
+ * Linked to the Zuiko Auto-T 180mm f/2.8 by assignee, the patent's 180-200 mm F2.8 aim and the five-element,
+ * five-group layout; not an identified factory prescription, and Embodiments 2-4 share the same layout.
+ * Radii, thicknesses, indices and the printed back focus are unchanged apart from the scale.
+ * Clear semi-diameters and the stop position (0.53 of d8, read from Fig. 1) are inferred.
+ * The patent names no reference line for its indices; the d line is assumed.
+ * Unit focus to 2.0 m: the close-focus back focus is a derived paraxial solve, not a printed state.
  */
 const LENS_DATA = {
   schema: 2,
   key: "olympus-zuiko-auto-t-180mm-f28",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO AUTO-T 180mm f/2.8",
-  subtitle: "US 4,114,992 Embodiment 1 \u2014 probable family; inferred aperture",
+  subtitle: "US 4,114,992 \u2014 Embodiment 1; patent design matching the production layout",
   catalog: {
     lensMounts: ["olympus-om"],
     imageFormat: "135-full-frame",
@@ -26,7 +27,12 @@ const LENS_DATA = {
       marketing: 2.8,
       design: 2.8,
     },
-    specs: ["5 ELEMENTS / 5 GROUPS", "PROBABLE FAMILY; INFERRED APERTURE", "INFINITY CONFIGURATION ONLY"],
+    specs: [
+      "5 ELEMENTS / 5 GROUPS",
+      "DESIGN f = 100 (NORMALIZED; SCALED 1.8× TO 180 mm)",
+      "DESIGN F/2.8",
+      "ALL SPHERICAL",
+    ],
   },
   source: {
     patentNumber: "US 4,114,992",
@@ -49,9 +55,9 @@ const LENS_DATA = {
       glass: "S-BAH11 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
-        "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
+        "The patent gives refractive index and Abbe number without naming a reference line; the d line is assumed.",
       focalLengthMm: 129.1868233570837,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Front positive meniscus collector, convex to the object, with a weak rear face (condition 1).",
     },
     {
       id: 2,
@@ -63,9 +69,9 @@ const LENS_DATA = {
       glass: "S-BSM15 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
-        "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
+        "The patent gives refractive index and Abbe number without naming a reference line; the d line is assumed.",
       focalLengthMm: 269.67957665656496,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Second of the three closely spaced front positive menisci; its rear face r4 corrects astigmatism from r2.",
     },
     {
       id: 3,
@@ -77,9 +83,9 @@ const LENS_DATA = {
       glass: "S-BSM14 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
-        "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
+        "The patent gives refractive index and Abbe number without naming a reference line; the d line is assumed.",
       focalLengthMm: 361.4488021200887,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Third and thickest front positive meniscus, completing the closely spaced positive front section.",
     },
     {
       id: 4,
@@ -91,9 +97,9 @@ const LENS_DATA = {
       glass: "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
-        "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
+        "The patent gives refractive index and Abbe number without naming a reference line; the d line is assumed.",
       focalLengthMm: -56.971199257004656,
-      role: "Literal source negative element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "High-index negative meniscus; its strong rear face r8 corrects distortion and field curvature and shortens the lens.",
     },
     {
       id: 5,
@@ -105,9 +111,9 @@ const LENS_DATA = {
       glass: "S-TIH14 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
-        "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
+        "The patent gives refractive index and Abbe number without naming a reference line; the d line is assumed.",
       focalLengthMm: 220.7307272858642,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Rear positive meniscus behind the stop and the long d8 airspace; its bending controls astigmatism (conditions 8 and 9).",
     },
   ],
   surfaces: [
@@ -184,7 +190,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 2.0,
     description:
-      "Unit focus: Olympus specifies helicoid focusing to 2.0 m, so the whole optical block moves and only the back focus changes. The patent prints the infinity prescription only; the close-focus back focus is derived (paraxial solve for 2.0 m object to image, about 1:9) and is not a published state.",
+      "Unit focus: Olympus specifies helicoid focusing to 2.0 m, so the whole optical block moves forward and only the back focus changes, by 19.95 mm at 2.0 m. The patent prints the infinity prescription only; the close-focus back focus is derived (paraxial solve for 2.0 m object to image, about 1:9) and is not a published state.",
   },
   gaps: { "10": { label: "BF", values: [[76.8834, 96.831]] } },
   aperture: {

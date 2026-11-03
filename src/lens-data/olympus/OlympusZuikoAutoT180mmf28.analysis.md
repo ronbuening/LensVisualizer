@@ -6,67 +6,67 @@
 **Inventor:** Tadashi Kimura
 **Assignee:** Olympus Optical Co., Ltd.
 **Title:** Variant Ernostar Type Long Focus Lens System
-**Example details:** Complete table PDF6 and claim1; common Fig1 PDF2, E1 plots PDF3. Uniform 1.8× scaling of native f100 is a declared modeling hypothesis.
+**Example details:** Embodiment 1 table in column 3, repeated in claim 1; Fig. 1 (common to Embodiments 1–4); aberration curves in Figs. 2A–2C. Normalized to f = 100 and scaled uniformly by 1.8 to 180 mm.
 
-This is a Grade B probable association with the Olympus OM 180mm f/2.8 family. Five separate menisci, three positive front elements, a negative fourth and an isolated positive rear agree with the MT-1828 manufacturer service-preview components. The source explicitly targets 180–200mm at F2.8. E1 is a representative numerical example: E2–E4 remain serious alternatives, and exact production radii, glass, clear caps and revision are unproved.
+The model is linked to the OLYMPUS ZUIKO AUTO-T 180mm f/2.8 by convergent evidence:
 
-Only four public service-preview page images are preserved, with edition/completeness unestablished; no original full service-manual PDF was obtained. The first title block is hand-corrected, while later printed parts-list headers independently identify 180mm F2.8. The separate manufacturer brochure lists 14° full field; source half-field 6.9° gives derived full 13.8°, retained separately. MIR’s section is secondary corroboration with unproved original provenance. The original US front-page priority date “Dec.29,1975” alongside “51-157983” is an unresolved source mismatch, retained without repair.
+1. The patent, assigned to Olympus Optical, aims at a long-focus lens of 180–200 mm at F2.8 with a telephoto ratio near 0.93; Embodiment 1 gives 0.938.
+2. Five separate menisci in five groups — three positive front elements, a negative fourth and an isolated positive rear element — match the five-element, five-group construction Olympus lists and the components in the MT-1828 service-manual preview.
+3. Timing: the US application was filed in December 1976. Sources differ on the lens's release: 1978 (Kamerastore) or probably 1981–82 (MIR).
+
+Embodiments 2–4 share the same layout and fit the product equally well; production radii, glass and clear apertures are not published. The service-manual preview shows four pages of unestablished edition and completeness; its first title block is hand-corrected, while the printed parts-list headers name the 180mm F2.8. The Olympus lens-system brochure lists a 14° angle of view; the patent's 6.9° half-field gives 13.8°. The US front page prints the priority date Dec. 29, 1975 with Japanese application number 51-157983, an inconsistency (Showa 51 is 1976) left as printed.
 
 ## Optical Architecture
 
-Five spherical singlets form five groups, with positive/positive/positive/negative/positive powers. The closely packed first three positive menisci and fourth negative meniscus precede the wide d8 gap and isolated rear positive. All ten radii are positive as printed.
+A variant Ernostar: five spherical singlets in five groups, with positive/positive/positive/negative/positive powers. The closely packed first three positive menisci and the fourth, negative meniscus precede the wide d8 gap, which holds the stop, and the isolated rear positive element. All ten radii are positive as printed, so every element is a meniscus convex to the object.
 
 ## Element-by-Element Analysis
 
 ### L1 — Positive Meniscus
 
-nd = 1.66672, νd = 48.32. Glass: Unmatched literal source coordinates; supplier unproved. Isolated-in-air paraxial f = +129.187 mm.
+nd = 1.66672, νd = 48.32. Glass: S-BAH11 (OHARA catalog equivalent). f = +129.2 mm.
 
-Front collector; the weak rear curvature and close following gap retain the source Ernostar arrangement. These isolated powers describe individual elements in air; a cemented element’s in-system power is different.
+Front collector. Condition (1), r2 > 1.3f, keeps its rear face weak: a stronger r2 aggravates off-axis spherical aberration and high-order chromatic aberration and lengthens the lens, while the astigmatism r2 produces is corrected at r4 and r6.
 
 ### L2 — Positive Meniscus
 
-nd = 1.62299, νd = 58.14. Glass: Unmatched literal source coordinates; supplier unproved. Isolated-in-air paraxial f = +269.680 mm.
+nd = 1.62299, νd = 58.14. Glass: S-BSM15 (OHARA catalog equivalent). f = +269.7 mm.
 
-Second positive meniscus, close to its neighbors; source conditions jointly constrain the front bending. These isolated powers describe individual elements in air; a cemented element’s in-system power is different.
+Second positive meniscus, 0.12 mm behind L1 and 0.10 mm ahead of L3. Conditions (2) and (3) bound r3 and r4: r4 corrects the astigmatism from r2, and r3 outside its range aggravates either coma and distortion or off-axis spherical aberration.
 
 ### L3 — Positive Meniscus
 
-nd = 1.60311, νd = 60.70. Glass: Unmatched literal source coordinates; supplier unproved. Isolated-in-air paraxial f = +361.449 mm.
+nd = 1.60311, νd = 60.70. Glass: S-BSM14 (OHARA catalog equivalent). f = +361.4 mm.
 
-Third positive meniscus completes the close front positive section. These isolated powers describe individual elements in air; a cemented element’s in-system power is different.
+Third and thickest front meniscus, completing the closely spaced positive section. Conditions (4), (5) and (11) bound r5, r6 and its thickness d5.
 
 ### L4 — Negative Meniscus
 
-nd = 1.78472, νd = 25.71. Glass: Unmatched literal source coordinates; supplier unproved. Isolated-in-air paraxial f = -56.971 mm.
+nd = 1.78472, νd = 25.71. Glass: S-TIH11 (OHARA catalog equivalent). f = −57.0 mm.
 
-High-index negative meniscus; source condition16 and rear curvature address Petzval balance and off-axis aberrations. These isolated powers describe individual elements in air; a cemented element’s in-system power is different.
+High-index negative meniscus. Condition (16), n4 > 1.76, keeps the Petzval sum from turning positive, which would soften the sagittal image at the field edge, and lets r8 stay long enough to avoid off-axis aberration. Conditions (6) and (7) keep r7 and especially r8 short enough to correct distortion and field curvature and to shorten the lens.
 
 ### L5 — Positive Meniscus
 
-nd = 1.76182, νd = 26.55. Glass: Unmatched literal source coordinates; supplier unproved. Isolated-in-air paraxial f = +220.731 mm.
+nd = 1.76182, νd = 26.55. Glass: S-TIH14 (OHARA catalog equivalent). f = +220.7 mm.
 
-Positive rear meniscus after the long airspace; source conditions8/9 constrain its bending. These isolated powers describe individual elements in air; a cemented element’s in-system power is different.
+Positive rear meniscus after the long d8 airspace. Conditions (8) and (9), r9 > 0.5f and r10 > f, are the patent's astigmatism controls; condition (14), d8 > 0.28f, trades a shorter telephoto ratio against distortion, chromatic aberration and coma for marginal upper rays.
 
 ## Glass Identification and Selection
 
-The source defines refractive index and Abbe number without an explicit spectral line. Assigning the literal n values to d587.5618nm is a disclosed hypothesis; d/c/g plot labels do not establish the table’s reference. No modern catalog glass, Sellmeier curve or anomalous partial dispersion is substituted. Abbe-based broadband initialization remains a proxy. The native reference checks use the literal reference indices at the assumed d line.
+The patent gives refractive index and Abbe number without naming the reference line; the model takes them at the d line (587.6 nm). Each pair matches an OHARA catalog glass, nd exactly and νd within 0.06, and the data file uses these as catalog equivalents, not production identifications: S-BAH11 (L1), S-BSM15 (L2) and S-BSM14 (L3) as crowns, S-TIH11 (L4) and S-TIH14 (L5) as dense flints. The three front crowns satisfy condition (15), a mean index of 1.631 against the 1.62 floor, which keeps their radii long enough to control spherical aberration, coma and astigmatism together. The rear positive L5 is also a dense flint. No element is designated extra-low dispersion.
 
 ## Focus Mechanism
 
-Only a hypothetical far-object/infinity configuration is modeled; a literal infinity symbol or finite conjugate law is not supplied. The canonical infinity-only state disables finite focusing. Manufacturer minimum-focus distances and automatic close-focus correction claims do not establish numerical internal motion or a finite image gap.
+Unit focus. Olympus specifications, as reproduced by MIR, list helicoid focusing to 2.0 m and a 32 × 21 cm minimum field. The patent prints only the infinity prescription. The model moves the whole optical block forward: the back focus grows from 76.88 mm to 96.83 mm at 2.0 m object to image. That 19.95 mm extension is derived from a paraxial solve, not printed; it gives a magnification of −0.111 (about 1:9), consistent with the listed field.
 
 ## Geometry, Aperture and Image Plane
 
-Front cap anchor is source EFL/(2FNo) plus10% radial clearance rounded to0.1mm. Other group caps follow whole-figure optical outline ratios, with maker diagram cross-check for200. These inferred clear caps are not filter-thread dimensions or factory-aperture measurements.
+The clear semi-diameters are inferred, not printed. The front rim is the axial f/2.8 beam radius (EFL/2N = 32.1 mm) plus 10 %, rounded to 35.4 mm; at that height L1 keeps an edge of about 0.16 mm, matching the pointed rim Fig. 1 draws, and a 5 % larger rim would give it a negative edge. The other rims follow the element outline ratios of Fig. 1 (1.000, 0.935, 0.867, 0.729, 0.469), read to about ±4 px. They are optical clear apertures, not filter-thread or barrel dimensions.
 
-Original sheet optical axis vertical, object below. Approximate optical endpoints; unequal rim/bevel details are not factory clear-aperture dimensions. Figure common to E1–E4. Ratio localization plus unknown schematic distortion, not statistical intervals.
+The stop sits at 0.53 of d8 behind L4, measured on Fig. 1, 62.23 mm behind the first vertex; d8 itself is unchanged. Its wide-open radius of 17.16 mm follows from f/2.8. The aperture range f/2.8–f/32 is the retail range; the blade count is not modeled.
 
-The frozen front clear radius is 35.4mm; whole-group ratios are 1.000, 0.935, 0.867, 0.729, 0.469. Pixel reading uncertainty is approximately ±4px plus unquantified schematic distortion. Caps use optical outlines, not the filter thread or mechanical body envelope. 2.8–22 is the modeled quick-select range, not a primary-verified factory minimum-aperture claim; blade count omitted.
-
-The stop splits native d8 at inferred fraction 0.53, with predeclared bounds 0.48–0.58; its total source gap is unchanged. Nominal z=62.225838000mm and derived wide-open radius=17.161502305mm follow the ordinary design-f-number rule. Full operating-disk adjacent-cap clearances are 22.748152727mm and 24.319962000mm. This is a disk-clearance check, not blade-mechanics evidence.
-
-Printed BF42.713 native x1.8 plus literal track; computed BF is diagnostic only. Fixed image z=168.899400000000mm. Independent reduced-angle and physical-slope calculations agree: EFL=180.003405420092mm, diagnostic BFL=76.882845440506mm. No applied refocus, optical retuning or retail-EFL normalization is used. Native geometry has zero render trim.
+The infinity back focus is the printed fB = 42.713 (76.883 mm at 180 mm), which places the image plane 168.90 mm behind the first vertex. The computed values agree: EFL 180.003 mm and paraxial back focus 76.883 mm. No refocus or retuning is applied.
 
 | Face | Inferred clear SD, mm |
 | ---- | --------------------: |
@@ -81,29 +81,16 @@ Printed BF42.713 native x1.8 plus literal track; computed BF is diagnostic only.
 | 9    |                  16.6 |
 | 10   |                  16.6 |
 
-## Verification Summary
+## Model Scope and Limitations
 
-The nominal seven advertised aperture settings have 21 native reference/design field cases converged at the six sampled frequencies 0/10/20/30/40/50lp/mm. Maximum terminal delta is 0.0093925432; largest grid is 64. Unknown flux, unblocked failed rays and unaimed rays are zero in these final MTF records. Convergence is a sampled-frequency numerical criterion, not a continuous-frequency bound, independent OPL phase validation or factory accuracy claim.
+The model reproduces the patent's f and fB at the d line. Its on-axis spherical aberration, −0.05 mm at full aperture and −0.10 mm at the 0.7 zone, matches the shape and size of Fig. 2A; at 6.9° astigmatism stays within about 0.0006f and distortion within 0.2 %, as in Figs. 2B and 2C. The 36 × 24 mm corner (21.63 mm) lies at 6.85°, just inside the patent's 6.9° half-field.
 
-Source-angle pupils use exact 0/3.45/6.9° separately, with 209 launch/aim/trace samples in each of 21 bundles. Wide-open valid counts are 209/201/149. All clipping remains in the saved records. 22 raw noBracket engine failures are already aim-certified blocked and overlap those counts; no unblocked failure or unaimed ray is concealed. Losses describe this inferred aperture hypothesis, not demonstrated patent or production performance.
-
-The native API’s 21.65mm format reference maps to 6.853411102°, distinct from exact 36×24mm corner radius 21.633307653mm and source half-field 6.9°. The format calculation is not clamped to the source angle.
-
-### Bounded source-interpretation controls
-
-All controls were fixed before tracing. Stop-low/high retain the same caps. SD-low/high uniformly scale the inferred caps by −5%/+5% at the nominal stop, without changing optical data. Each geometry-valid control has a separate wide-open source-pupil and native-MTF receipt; original nominal convergence is not transferred. These are interpretation controls, not confidence limits or a search for favorable contrast.
-
-| Control   | Native geometry                                 | Wide-open source valid counts | Terminal convergence delta | Maximum MTF change from nominal |
-| --------- | ----------------------------------------------- | ----------------------------- | -------------------------: | ------------------------------: |
-| stop-low  | Pass, zero render trim                          | 209/199/149                   |                0.005955739 |                     0.003938719 |
-| stop-high | Pass, zero render trim                          | 209/197/151                   |                0.005978488 |                     0.006553977 |
-| sd-low    | Pass, zero render trim                          | 209/179/125                   |                0.008954735 |                     0.099915317 |
-| sd-high   | Rejected: negative front-element edge thickness | Not traced                    |                          — |                               — |
-
-The compiled default worker requests photopic and resolves photopic; its diagnostic best-axial shift is -0.129670509mm. This does not move the authored plane. Controlled reference/design checks observe all seven aperture settings and 77 terminal format-field statuses, matching final Worker arrays to CSV exports. Mobile single/comparison checks and full integration receipts accompany the private package.
+Wide open, the inferred rims pass about 73 % of the on-axis light at 6.9°; shrinking every rim by 5 % would lower that to 64 %, so the corner vignetting describes the inferred rims, not measured production performance. Moving the stop between 0.48 and 0.58 of d8 changes the modeled MTF only slightly. With photopic weighting, the best axial focus lies 0.13 mm from the authored image plane, which is not moved. Chromatic results rest on catalog-equivalent glass, not the production melts.
 
 ## Sources and References
 
-1. [US 4,114,992 primary publication](https://patents.google.com/patent/US4114992A/en), complete selected embodiment and own/family Fig1.
-2. [Olympus MT-1828 service preview](https://manualmachine.com/olympus/180mmf28/5873984-service-manual/), four publicly displayed manufacturer page images; full-manual/edition completeness unproved.
-3. [Manufacturer OM lens-system brochure](https://cameramanuals.org/lenses/olympus_om_lens_system.pdf), page2 product table; compact packet preserves that page image.
+1. [US 4,114,992](https://patents.google.com/patent/US4114992A/en), Variant Ernostar Type Long Focus Lens System: Embodiment 1, claim 1, Fig. 1 and Figs. 2A–2C.
+2. [Olympus MT-1828 service-manual preview](https://manualmachine.com/olympus/180mmf28/5873984-service-manual/), four page images; edition and completeness not established.
+3. [Olympus OM lens-system brochure](https://cameramanuals.org/lenses/olympus_om_lens_system.pdf), page 2 product table.
+4. [MIR, Zuiko 180mm f/2.8](http://www.mir.com.my/rb/photography/hardwares/classics/olympusom1n2/shared/zuiko/htmls/180mm1.htm), Olympus specifications (secondary).
+5. [Kamerastore, Olympus 180mm f2.8 Zuiko Auto-T](https://kamerastore.com/products/olympus-180mm-f2-8-zuiko-auto-t-olympus-om), 1978 release date.
