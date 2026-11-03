@@ -4,7 +4,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * R, d, nd, νd and the standard 1+K aspheric terms are as printed.
  * The printed stop position and the infinity and 126 mm interval tables are kept
  * without refocusing; the 2.1 mm plate S19/S20 is a rear plate with BF 1.0 mm behind it.
- * Semi-diameters are inferred from Fig. 6 and edge-thickness and gap limits; the iris
+ * Semi-diameters are estimated from Fig. 6 (31.76 px/mm axially, 32.6 px/mm radially at
+ * 796 dpi) and floor-checked by real-ray trace. Outer edges within about 5% of the figure
+ * are kept; S2 and S4 stay above the figure's curve ends where a cut would cost corner
+ * light. Flat lands on S2, S4, S6, S7, S17 and S18 follow the figure; the L3/L4 rims
+ * meet with 0.14 mm clear, hence checks.gapSagFrac 0.91 for the S6/S7 gap. The
+ * cemented pair stops at L6's edge-thickness limit. The iris
  * radius follows from the printed F/4.09. Only infinity and the printed close state
  * have documented object distances; positions between them use linear gap
  * interpolation. The printed close intervals add 0.0001 mm of track, kept as printed.
@@ -209,7 +214,7 @@ const LENS_DATA = {
       label: "4",
       R: 9.7332,
       d: 3.8782,
-      sd: 8.5,
+      sd: 8.2,
       rimExtensionSd: 12.2,
     },
     {
@@ -223,7 +228,8 @@ const LENS_DATA = {
       label: "6",
       R: 57.9358,
       d: 1.5501,
-      sd: 8.7,
+      sd: 7.6,
+      rimExtensionSd: 8.7,
     },
     {
       label: "7",
@@ -231,25 +237,26 @@ const LENS_DATA = {
       d: 0.9,
       sd: 7.1,
       medium: 4,
+      rimExtensionSd: 7.6,
     },
     {
       label: "8",
       R: -589.8206,
       d: 0.2857,
-      sd: 7.1,
+      sd: 7.6,
     },
     {
       label: "9",
       R: 44.2444,
       d: 4.7305,
-      sd: 7.5,
+      sd: 7.0,
       medium: 5,
     },
     {
       label: "10",
       R: -31.6025,
       d: 3.3115,
-      sd: 7.5,
+      sd: 7.0,
     },
     {
       label: "STO",
@@ -311,7 +318,7 @@ const LENS_DATA = {
       label: "17A",
       R: -80.5127,
       d: 1.25,
-      sd: 11.7,
+      sd: 10.6,
       medium: 9,
       asphere: {
         K: 0.0,
@@ -323,12 +330,13 @@ const LENS_DATA = {
         A14: 0.0,
         A16: 0.0,
       },
+      rimExtensionSd: 11.7,
     },
     {
       label: "18A",
       R: 44.2139,
       d: 20.2943,
-      sd: 11.7,
+      sd: 10.9,
       asphere: {
         K: -0.5,
         A4: 3.82132e-6,
@@ -339,6 +347,7 @@ const LENS_DATA = {
         A14: 4.08417e-16,
         A16: -4.16949e-19,
       },
+      rimExtensionSd: 11.7,
     },
   ],
   focus: {
@@ -369,6 +378,9 @@ const LENS_DATA = {
   },
   layout: {
     yScFill: 0.78,
+  },
+  checks: {
+    gapSagFrac: 0.91,
   },
   rearPlates: [
     {

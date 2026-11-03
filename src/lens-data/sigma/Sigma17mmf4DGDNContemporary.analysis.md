@@ -124,35 +124,35 @@ Departures from the base sphere at the model's semi-diameters, including the con
 | 2    | 11.5            | 100.282        |
 | 15   | 11.3            | 176.945        |
 | 16   | 11.3            | 1385.710       |
-| 17   | 11.7            | -258.158       |
-| 18   | 11.7            | 198.082        |
+| 17   | 10.6            | -173.926       |
+| 18   | 10.9            | 124.646        |
 
 ## Clear Apertures, Stop and Geometry
 
-Fig. 6 draws stepped rims on the rear faces of L1 and L2; the model keeps them as lands (S2 optical 11.5 mm, drawn to 15.5 mm; S4 optical 8.5 mm, drawn to 12.2 mm). All semi-diameters are inferred from Fig. 6 proportions and from edge-thickness and gap limits. L4 is set to 7.1 mm, and the cemented pair to 7.4 mm, where L6's edge is about 0.3 mm thick (it reaches zero near 7.6 mm). The plate has no printed diameter and sets no limit.
+Fig. 6 ends several faces in a flat land short of the element's edge: the rear faces of L1, L2 and L3, the front face of L4 and both faces of L9. The model keeps each as a land beyond the optical semi-diameter (S2 11.5 mm drawn to 15.5 mm; S4 8.2 to 12.2 mm; S6 7.6 to 8.7 mm; S7 7.1 to 7.6 mm; S17 10.6 and S18 10.9 to 11.7 mm). All semi-diameters are inferred from Fig. 6 proportions, real-ray clearance and edge-thickness and gap limits. S2 and S4 sit slightly outside the figure's curve ends (about 11.1 and 8.0 mm), where the corner beam still passes. As drawn, L3, L4 and L5 step down in height toward the stop, and L3 and L4 come within about 0.14 mm of each other at L4's rim. The cemented pair is set to 7.4 mm, where L6's edge is about 0.3 mm thick (it reaches zero near 7.6 mm). The plate has no printed diameter and sets no limit.
 
 The stop position is printed; its radius (3.32 mm) is derived from the printed F/4.09. The axial F/4.09 beam clears every inferred rim. Off-axis rays are trimmed mainly at S14, giving about 73% relative illumination at the 51.8° corner.
 
 | Face | Optical SD (mm)             | Drawn rim (mm) | Authority                                        |
 | ---- | --------------------------- | -------------- | ------------------------------------------------ |
 | 1A   | 15.5                        | —              | Inferred from Fig. 6                             |
-| 2A   | 11.5                        | 15.5           | Inferred from Fig. 6                             |
+| 2A   | 11.5                        | 15.5           | Inferred from Fig. 6; corner beam                |
 | 3    | 12.2                        | —              | Inferred from Fig. 6                             |
-| 4    | 8.5                         | 12.2           | Inferred from Fig. 6                             |
+| 4    | 8.2                         | 12.2           | Inferred from Fig. 6; corner beam                |
 | 5    | 8.7                         | —              | Inferred from Fig. 6                             |
-| 6    | 8.7                         | —              | Inferred from Fig. 6                             |
-| 7    | 7.1                         | —              | Inferred from Fig. 6                             |
-| 8    | 7.1                         | —              | Inferred from Fig. 6                             |
-| 9    | 7.5                         | —              | Inferred from Fig. 6                             |
-| 10   | 7.5                         | —              | Inferred from Fig. 6                             |
+| 6    | 7.6                         | 8.7            | Inferred from Fig. 6                             |
+| 7    | 7.1                         | 7.6            | Inferred from Fig. 6                             |
+| 8    | 7.6                         | —              | Inferred from Fig. 6                             |
+| 9    | 7.0                         | —              | Inferred from Fig. 6                             |
+| 10   | 7.0                         | —              | Inferred from Fig. 6                             |
 | STO  | 3.32 (from F/4.09)          | —              | Printed position; radius derived                 |
 | 12   | 7.4                         | —              | Inferred from Fig. 6                             |
 | 13   | 7.4                         | —              | Inferred from Fig. 6                             |
 | 14   | 7.4                         | —              | Inferred from Fig. 6                             |
 | 15A  | 11.3                        | —              | Inferred from Fig. 6                             |
 | 16A  | 11.3                        | —              | Inferred from Fig. 6                             |
-| 17A  | 11.7                        | —              | Inferred from Fig. 6                             |
-| 18A  | 11.7                        | —              | Inferred from Fig. 6                             |
+| 17A  | 10.6                        | 11.7           | Inferred from Fig. 6                             |
+| 18A  | 10.9                        | 11.7           | Inferred from Fig. 6                             |
 | 19   | Not printed                 | —              | Plate; no rim limit                              |
 | 20   | Not printed                 | —              | Plate; no rim limit                              |
 
