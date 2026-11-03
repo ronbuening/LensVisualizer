@@ -124,7 +124,7 @@ const LENS_DATA = {
       focalLengthMm: 101.01908863808114,
       glass: "S-NPH1 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 7,
@@ -137,7 +137,7 @@ const LENS_DATA = {
       focalLengthMm: -45.31244406253862,
       glass: "S-NBM51 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 8,
@@ -162,7 +162,7 @@ const LENS_DATA = {
       focalLengthMm: 25.79762019026033,
       glass: "S-LAH96 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 10,
@@ -175,7 +175,7 @@ const LENS_DATA = {
       focalLengthMm: -32.39907178480263,
       glass: "NBFD30 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 11,
@@ -188,7 +188,7 @@ const LENS_DATA = {
       focalLengthMm: -46.46659063490977,
       glass: "S-NBH53V (OHARA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 12,
@@ -201,7 +201,7 @@ const LENS_DATA = {
       focalLengthMm: 29.33372570344108,
       glass: "S-LAH96 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 13,
@@ -214,7 +214,7 @@ const LENS_DATA = {
       focalLengthMm: 40.10963418909508,
       glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D4",
+      cemented: "C4",
     },
     {
       id: 14,
@@ -227,7 +227,7 @@ const LENS_DATA = {
       focalLengthMm: -44.17779496380146,
       glass: "S-NBM51 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D4",
+      cemented: "C4",
     },
     {
       id: 15,
@@ -435,7 +435,7 @@ const LENS_DATA = {
     closeFocusM: 0.80001,
     keyframes: [0, 1],
     description:
-      "Infinity and one printed finite endpoint only. Source object-to-first-vertex distance676.0mm; literal object-to-image arithmetic800.0100000mm. Piecewise-linear gap interpolation between endpoints is implementation geometry, not a supplied patent cam law; intermediate finite MTF has no certified conjugate. Retail MFD is not substituted.",
+      "Two inner groups move in opposite directions: G2 and the iris travel 3.72 mm toward the image while G3 travels 2.70 mm toward the object; G1 and G4 stay fixed. The patent's close state (magnification 0.124) places the object 676.0 mm before the first surface, 800.01 mm from the image plane; ZEISS lists a 0.80 m minimum focus (1:8.1). Positions between the two printed states are interpolated linearly.",
     conjugates: [
       {
         zoomStation: 0,
@@ -480,6 +480,28 @@ const LENS_DATA = {
       text: "G4",
       fromSurface: "23",
       toSurface: "27",
+    },
+  ],
+  doublets: [
+    {
+      text: "C1",
+      fromSurface: "11",
+      toSurface: "13",
+    },
+    {
+      text: "C2",
+      fromSurface: "17",
+      toSurface: "19",
+    },
+    {
+      text: "C3",
+      fromSurface: "20",
+      toSurface: "22",
+    },
+    {
+      text: "C4",
+      fromSurface: "23",
+      toSurface: "25",
     },
   ],
   gaps: {
