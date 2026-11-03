@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-11-03",
+    type: "fix",
+    summary: "Corrected the publication dates of the Fujifilm XF 50mm f/1.0 and XF 80mm f/2.8 Macro pages",
+  },
+  {
     date: "2026-11-02",
     type: "fix",
     summary:
