@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 
+import { createRequire } from "node:module";
 import { screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import ThemedMarkdown from "../../../../src/components/markdown/ThemedMarkdown.js";
@@ -130,5 +131,18 @@ describe("ThemedMarkdown article figures", () => {
       return [`${paths[i]}: viewBox="${viewBox}" width="${width}" height="${height}"`];
     });
     expect(offenders).toEqual([]);
+  });
+});
+
+describe("ThemedMarkdown math", () => {
+  /* ThemedMarkdown imports the root package's katex stylesheet, but rehype-katex renders with whichever katex it
+   * resolves. KaTeX renames internal classes between minors (0.18 prefixed base, strut and sizing), so a nested older
+   * copy emits markup the stylesheet no longer styles and sub- and superscripts render at full size. The katex entry
+   * in package.json "overrides" keeps a single copy. */
+  it("renders math with the KaTeX release whose stylesheet it imports", () => {
+    const fromProject = createRequire(import.meta.url);
+    const fromRehypeKatex = createRequire(fromProject.resolve("rehype-katex"));
+    const version = (load: typeof fromProject) => (load("katex/package.json") as { version: string }).version;
+    expect(version(fromRehypeKatex)).toBe(version(fromProject));
   });
 });
