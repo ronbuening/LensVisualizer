@@ -76,7 +76,7 @@ const LENS_DATA = {
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
       dPgF: 0.00665107999999992,
       apdNote:
-        "Source absolute PgF=0.605138; source deltaPgF=0.0053. Converted using source line0.64833-0.0018*vd and engine line0.6438-0.001682*vd; ratio is not supplier identity.",
+        "Patent prints ΔPgF = +0.0053 by its line (PgF + 0.0018·νd − 0.64833), which gives PgF = 0.6051 (derived, not printed); runtime dPgF +0.00665 against the engine normal line.",
     },
     {
       id: 3,
@@ -113,10 +113,10 @@ const LENS_DATA = {
       focalLengthMm: -38.34528083753767,
       glass: "NBFD29 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D1",
+      cemented: "C1",
       dPgF: 0.0013226799999999095,
       apdNote:
-        "Source absolute PgF=0.5951; source deltaPgF=None. Converted using source line0.64833-0.0018*vd and engine line0.6438-0.001682*vd; ratio is not supplier identity.",
+        "Patent prints PgF = 0.5951 (no ΔPgF printed); runtime dPgF +0.00132 against the engine normal line.",
     },
     {
       id: 6,
@@ -129,10 +129,10 @@ const LENS_DATA = {
       focalLengthMm: 25.11218428967409,
       glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D1",
+      cemented: "C1",
       dPgF: 0.015618840000000023,
       apdNote:
-        "Source absolute PgF=0.544; source deltaPgF=None. Converted using source line0.64833-0.0018*vd and engine line0.6438-0.001682*vd; ratio is not supplier identity.",
+        "Patent prints PgF = 0.5440 (no ΔPgF printed); runtime dPgF +0.01562 against the engine normal line. Sigma's construction diagram marks this element SLD.",
     },
     {
       id: 7,
@@ -364,14 +364,14 @@ const LENS_DATA = {
       label: "20",
       R: -30.5871,
       d: 17.8981,
-      sd: 11.0,
+      sd: 11.36,
     },
   ],
   focus: {
     closeFocusM: 1.5174782,
     keyframes: [0, 1],
     description:
-      "Infinity and one printed finite endpoint only. Source object-to-first-vertex distance1438.33mm; literal object-to-image arithmetic1517.4782000mm. Piecewise-linear gap interpolation between endpoints is implementation geometry, not a supplied patent cam law; intermediate finite MTF has no certified conjugate. Retail MFD is not substituted.",
+      "Infinity and the patent's printed close state: object 1438.33 mm before the first surface, 1517.48 mm object to image (the patent heads it 1517 mm). G2 (L7) moves 1.0246 mm toward the image (d12 3.0000 → 4.0246 mm, d14 13.3214 → 12.2968 mm); BF stays 17.8981 mm. Sigma's retail minimum focus is 0.27 m (1:5.7), closer than the patent prints, so the model stops at the printed state. Positions between the two states use linear gap interpolation, not a patent cam.",
     conjugates: [
       {
         zoomStation: 0,
@@ -413,6 +413,7 @@ const LENS_DATA = {
       toSurface: "20",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "9", toSurface: "11" }],
   gaps: {
     STO: {
       label: "d12",
