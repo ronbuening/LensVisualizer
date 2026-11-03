@@ -12,8 +12,10 @@ focused regression coverage.
 
 The application suite has a `unit` project and sixteen `rim-0` through `rim-15` projects. The latter share
 `rimCutBeams.test.ts`, partition its catalog keys deterministically, and declare its synthetic cases only in `rim-0`.
-Every eligible lens still runs its complete beam search once. Collection partitions all catalog keys before constructing
-each worker's assigned lenses, then checks their composed surfaces for cuts. `npm test` runs every project. Focus a lens with
+Every eligible lens still runs its complete beam search once. Collection balances the keys by an estimated search cost
+read from each canonical catalog entry (screened zoom × focus states × surfaces × cuts), heaviest first to the
+least-loaded shard, deals keys without a cut round-robin, and only then constructs each worker's assigned lenses and
+checks their composed surfaces for cuts. `npm test` runs every project. Focus a lens with
 `npm test -- rimCutBeams -t <lens-key>`, or one partition with `npm test -- --project rim-0`.
 
 The tooling suite similarly has a `tooling` project and four `conversion-0` through `conversion-3` projects sharing
