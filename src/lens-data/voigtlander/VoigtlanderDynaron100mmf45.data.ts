@@ -1,16 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Grade B patent-family reconstruction; factory example identity unproved.
- * Literal helium-d prescription retained with explicit uniform scale; fixed infinity plane.
- * Missing clear caps and stop coordinates were frozen from source figures and analytic
- * geometry before tracing. No contrast-driven retuning or finite-focus prescription.
+/** US 2,730,017 (A. W. Tronnier, Voigtländer), Example 1 / Fig. 1: f = 100 mm, 1:4.5, p0′ = 37.203 mm.
+ * The table is printed at f = 100 mm and is used unscaled; the patent figures are drawn at f = 300 mm.
+ * Indices and Abbe numbers are for the helium d line, as the patent states. The image plane sits at the
+ * printed back focus; the computed paraxial back focus is 37.198 mm (+0.005 mm residual, not applied).
+ * The patent prints no field angle, clear apertures or stop position. Semi-diameters follow the
+ * proportions of the section in Voigtländer's Prominent lens booklet, with the front rim 8.9% above the
+ * f/4.5 entrance-pupil radius; the stop sits at 0.55 of the 25.819 mm diaphragm space, close to where
+ * both drawings place it. The 25° full field is the booklet's figure. Infinity prescription only.
  */
 const LENS_DATA = {
   schema: 2,
   key: "voigtlander-dynaron-100mm-f45",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER DYNARON 100mm f/4.5",
-  subtitle: "US 2,730,017 A Example 1; Grade B probable family; inferred iris/caps; static infinity only.",
+  subtitle: "US 2,730,017 A — Example 1; patent design matching the production lens",
   catalog: {
     lensMounts: ["voigtlander-prominent"],
     imageFormat: "135-full-frame",
@@ -25,10 +29,10 @@ const LENS_DATA = {
       design: 4.5,
     },
     specs: [
-      "Patent-based reconstruction; exact factory prescription unproved",
-      "Inferred clear apertures and stop location; clipping conditional on these hypotheses",
-      "Infinity only; no finite-focus law",
-      "Patent field absent; maker approximate full field 25.0° is an external operating-envelope hypothesis",
+      "6 ELEMENTS / 4 GROUPS",
+      "DESIGN f = 100 mm",
+      "DESIGN F/4.5",
+      "ALL SPHERICAL",
     ],
   },
   source: {
@@ -52,7 +56,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "SK5 (SUMITA; nearest catalog row to patent nd 1.58987, νd 61.2; production glass unspecified)",
       focalLengthMm: 27.90997794503012,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Strong biconvex collector of the front member, cemented to L2.",
       cemented: "D1",
     },
     {
@@ -65,7 +69,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "BASF8 (SUMITA; nearest catalog row to patent nd 1.72381, νd 38.0; production glass unspecified)",
       focalLengthMm: -54.25622734098758,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "First of the front member's two diverging lenses, cemented behind L1.",
       cemented: "D1",
     },
     {
@@ -78,7 +82,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "BASF8 (SUMITA; nearest catalog row to patent nd 1.72381, νd 38.0; production glass unspecified)",
       focalLengthMm: -183.89516375769853,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Separate negative meniscus, convex to the object, closing the front member before the diaphragm space.",
     },
     {
       id: 4,
@@ -90,7 +94,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "E-BAF8 (Hikari catalog equivalent; production supplier unspecified)",
       focalLengthMm: 83.08897641868539,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Biconvex positive lens opening the rear member after the diaphragm space.",
     },
     {
       id: 5,
@@ -102,7 +106,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "LF5 (Schott; nearest catalog row to patent nd 1.58192, νd 40.8; production glass unspecified)",
       focalLengthMm: -20.484936257251555,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Negative lens of the rear cemented pair; its steep front face, concave toward L4, carries the rear member's diverging power.",
       cemented: "D2",
     },
     {
@@ -115,7 +119,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "SF4 (Schott catalog equivalent; production supplier unspecified)",
       focalLengthMm: 44.467892282237486,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Dense-flint positive cemented behind L5, completing the rear member.",
       cemented: "D2",
     },
   ],
@@ -192,6 +196,10 @@ const LENS_DATA = {
       sd: 10.4,
     },
   ],
+  groups: [
+    { text: "FRONT (I)", fromSurface: "1", toSurface: "5" },
+    { text: "REAR (II)", fromSurface: "6", toSurface: "10" },
+  ],
   doublets: [
     {
       text: "D1",
@@ -205,9 +213,9 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.9,
     description:
-      "Static infinity only. Fixed image z83.075mm; source and maker focus descriptions do not establish an authored finite law. No retail distance transplanted.",
+      "Static model: the patent tabulates only the infinity state and the Dynaron's internal focusing motion is not published, so no focus travel is modeled. Once mounted, the lens couples to the Prominent's rangefinder and is focused with the camera's rangefinder knob. The 0.9 m close-focus value is where the lens's green meter scale begins in Voigtländer's Prominent lens booklet.",
   },
   aperture: {
     nominalFNumber: 4.5,
