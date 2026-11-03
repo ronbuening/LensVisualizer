@@ -99,7 +99,7 @@ The lens moves 7.14 mm forward between the two states.
 
 ## Aperture and Stop
 
-The patent prints no clear apertures and does not draw the iris; all semi-diameters and the stop position are inferred. The front rim (19.6 mm) is the f/1.4 entrance-pupil radius, 17.86 mm, plus 10%. The other rims follow the proportions of Fig. 1, limited by edge thickness and the air gaps. In surface order they are `[19.6, 19.6, 17.0, 17.0, 14.55, 14.2, 12.5, 14.03, 14.04, 15.35, 16.4, 16.4, 16.4, 16.4]` mm. L3's rear face and L4's front face stay small because their strong curvatures close in on the iris.
+The patent prints no clear apertures and does not draw the iris; all semi-diameters and the stop position are inferred. The front rim (19.6 mm) is the f/1.4 entrance-pupil radius, 17.86 mm, plus 10%. Fig. 1 draws every element at about 95% of the height the f/1.4 marginal ray reaches there. L2's rims (16.3 and 15.4 mm) and L3's rear rim (12.7 mm) sit at or just outside that ray, and L3's rear face still covers the iris radius. L1, L7 and L8 are larger than drawn; trimmed to the f/1.4 marginal ray, they would lower transmission at the 23° field edge from 40% to 28%. In surface order the rims are `[19.6, 19.6, 16.3, 15.4, 14.55, 12.7, 12.5, 14.03, 14.04, 15.35, 16.4, 16.4, 16.4, 16.4]` mm. L3's rear face and L4's front face stay small because their strong curvatures close in on the iris.
 
 The iris sits at the middle of the 12.5 mm air space between L3 and L4, where Asahi's exploded illustration also places it. Its radius follows from the f-number. Positions from about 0.48 to 0.62 of the gap clear both neighboring faces with the f/1.4 iris:
 
@@ -111,7 +111,7 @@ The iris sits at the middle of the 12.5 mm air space between L3 and L4, where As
 | 0.52 | 12.544 | 0.602 / 1.102 | Clear |
 | 0.65 | 12.328 | 2.482 / −0.366 | Iris meets L4 |
 
-Wide open, L5 rather than the iris limits the axial beam. Its faces (r = +110 and −16.5 mm, 8.75 mm apart on axis) meet at a height of 14.05 mm, while the f/1.4 marginal ray would cross them at 14.07 mm. L5's rims stop at 14.03 and 14.04 mm, a knife edge, as Fig. 1 draws it. L3's front face (14.55 mm) and L6's rear face (15.35 mm) are opened just enough for the beam L5 passes. About 96% of the f/1.4 beam passes on axis, an effective f/1.43; the share falls to about 81% at 11.5° and 40% at the 23° field edge.
+Wide open, L5 rather than the iris limits the axial beam. Its faces (r = +110 and −16.5 mm, 8.75 mm apart on axis) meet at a height of 14.05 mm, while the f/1.4 marginal ray would cross them at 14.07 mm. L5's rims stop at 14.03 and 14.04 mm, a knife edge, as Fig. 1 draws it. L3's front face (14.55 mm) and L6's rear face (15.35 mm) are opened just enough for the beam L5 passes. About 96% of the f/1.4 beam passes on axis, an effective f/1.43; the share falls to about 80% at 11.5° and 40% at the 23° field edge.
 
 ## Model Scope and Limitations
 

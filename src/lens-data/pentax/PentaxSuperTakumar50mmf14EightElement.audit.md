@@ -22,3 +22,34 @@ Fields changed, data step:
 Fields changed, wording step: the header comment, `subtitle`, `specs` and element roles. The analysis was rewritten for metadata spacing, the identification evidence, the glass table, focus, aperture and stop, and model scope. Its MTF and pupil-count tables were removed because they described the old rims.
 
 Open: none in the data. The choice of Example 1 over Example 2 cannot be settled from the available sources.
+
+## 2026-11-03 — Semi-diameter pass against the patent figure
+
+Source: the JP S40-28384 B scan, page 4, Fig. 1 (第1図), the publication's only section, read at its native 352 dpi. Fig. 1 is hand drawn and serves both examples; its vertex spacing follows Example 1 at ×0.5.
+
+Scale: along the axis, r1 to the image line is 858 px for 79.56 mm, 10.78 px/mm. At that scale the drawn vertices of r2/r3, r5, r6, r7, r8, r9, r10/r11, r12/r13 and r14 fall within 2 px of the prescription; r4 is drawn 5 px forward. Across the axis, arc fits of r3, r6, r7 and r9 against their printed radii give 10.4–10.9 px/mm, mean 10.55, so the sheet is isotropic to about 2%. Rims were read at the line centre, top and bottom averaged; the drawn axis sits about 2 px above the centre of the elements.
+
+Fig. 1 draws every element at 0.94–0.98 of the height the f/1.4 marginal ray reaches there (mean 0.96). At the sheet's own scale every drawn rim is therefore below the beam, and the beam, the axial marginal ray at f/1.4 from the real-ray trace, is the floor.
+
+| Surface | Before (mm) | Fig. 1 (mm) | f/1.4 marginal ray (mm) | After (mm) | Basis |
+|---|---:|---:|---:|---:|---|
+| 1, 2 | 19.6, 19.6 | 17.3 | 17.86, 17.66 | 19.6, 19.6 | Kept: corner light (below) |
+| 3 | 17.0 | 15.6 | 16.28 | 16.3 | Figure, raised to the beam |
+| 4 | 17.0 | 15.05 | 15.33 | 15.4 | Figure, raised to the beam; the drawn rim steps down from r3 to r4 |
+| 5 | 14.55 | 14.15 | 14.58 | 14.55 | Kept: set earlier today for the beam L5 passes |
+| 6 | 14.2 | 11.8 | 12.40 | 12.7 | Figure; held over the iris radius (below) |
+| 7 | 12.5 | 11.9 | 12.17 | 12.5 | Kept: inside the noise band, level with r6 as drawn |
+| 8, 9 | 14.03, 14.04 | 13.3, 13.2 | 14.07, 14.06 | 14.03, 14.04 | Kept: L5's faces meet at 14.05 mm |
+| 10 | 15.35 | 14.5 | 15.38 | 15.35 | Kept: set earlier today for the beam L5 passes |
+| 11, 12 | 16.4, 16.4 | 14.8 | 15.62, 15.66 | 16.4, 16.4 | Kept: corner light, and L7 stays no smaller than L8 as drawn |
+| 13, 14 | 16.4, 16.4 | 14.35 | 15.03, 14.90 | 16.4, 16.4 | Kept: corner light |
+
+Corner light, against the starting rims at infinity: with every rim at the f/1.4 beam the worst loss is 13.7 points at 17.3°, and the 23° edge falls from 40.2% to 27.9%. Each element cut alone costs L1 7.8 points, L8 6.7, L7 2.4, L2 1.3 and L3's rear face 0. A greedy restore to within 2.9 points leaves L1 at 19.45, L8 at 16.0 and L7 at 15.85 mm: 1–3% trims, inside the noise band, and L7 would fall below L8 against the drawing, so all three keep their starting rims. The final set loses at most 1.3 points (8.6°: 84.8% against 86.1%); the 23° edge stays at 40.2% and the axis at 95.7%. At the derived 0.45 m state the worst loss is 1.1 points at 8.3° and the 22.2° edge stays at 44.2%.
+
+L3's rear face: the beam needs 12.40 mm. At 12.7 mm the face still covers the f/1.4 iris radius at every clear iris position in the analysis's table (12.611 mm at 0.48 of the gap), so those face clearances stand; the rim ends 0.16 mm ahead of the iris plane. The starting 14.2 mm rim reached 2.06 mm behind the iris plane, outside the iris radius.
+
+Clearance: the surface validator reports no errors. The real-ray trace flags only the four surfaces it flagged before (S5, S8, S9 and S10, at most 0.04 mm under the f/1.4 ray, where L5's knife edge already stops the beam), and the aperture audit keeps the lens within 3% of f/1.4. The image-circle check lists nothing, the 23° chief ray still reaches 20.66 mm, and the engine's focal length (49.998 mm), half-field (23°), f-number (1.4) and stop radius (12.577 mm) are unchanged. The page was checked at infinity and at 0.45 m.
+
+Maker drawing: the Product No. 358 service booklet's exploded illustration (page 3; perspective, cut-away elements) gives the order L01 to L08, the L04/L05/L06 assembly and the diaphragm parts between L03 and L04. Measured across the axis line and taken relative to L01, its elements read L02 0.91, L03 0.84, L04 0.79, L05 0.77, L06 0.84 and L08 0.75 (L07 is cut by the page edge); Fig. 1 gives 0.90, 0.82, 0.77, 0.76, 0.84 and 0.83. The two agree except at L8, which the booklet draws smaller. The booklet marks no special glass or aspherical surface.
+
+Open: L1, L7 and L8 stay 12–14% above the drawn heights and L2 is smaller relative to L1 than drawn (0.83 against 0.90), because L1 is held for corner light.
