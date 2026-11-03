@@ -249,7 +249,10 @@ walks expand to current files; generated bundles are checked at their source ent
 - **Tooling tests** for manual-only dev tools (the benchmark harness and its drivers, and the audit-script npm entries) are listed in `TOOLING_TESTS` in `vite.config.js` and run with
   `npm run test:tooling`. CI runs ordinary tests, eight pairs of rim projects and tooling in separate jobs; the
   existing required `test` check succeeds only after every group passes. New pushes cancel superseded quality runs.
-  Each job generates its own metadata. Add a file there only when it guards a tool that neither the build nor the app uses. The one exception is the
+  Only the unit job generates metadata, through `pretest`. The rim corpus and the tooling suite import nothing from
+  `src/generated/`, so their jobs add `--ignore-scripts`, which skips that hook and still runs the script. A rim or
+  tooling test that comes to need generated metadata fails in CI on the missing file; give its job a metadata step then.
+  Add a file to `TOOLING_TESTS` only when it guards a tool that neither the build nor the app uses. The one exception is the
   converter's corpus sweep (`__tests__/scripts/convertLensDataCorpus.test.ts`), which converts every catalog file both
   ways and is listed there so `npm run test` stays fast.
 
