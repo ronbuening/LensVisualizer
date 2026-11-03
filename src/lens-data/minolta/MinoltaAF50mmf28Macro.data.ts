@@ -1,15 +1,21 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole literal patent example; Grade B probable family, not factory-exact.
- * Missing stop/caps are frozen source-informed hypotheses. Derived planes/conjugates are disclosed.
- * Source residuals, clipping and aperture distinctions are retained; no optical tuning.
+/** Minolta AF 50mm f/2.8 Macro from JP S59-228220 A, Embodiment 3 (Minolta Camera; Hisashi Tokumaru).
+ * The patent example is normalized to f = 100; every length (R, d, focus gaps, back focus) is scaled by 0.5.
+ * Printed: radii, spacings, nd/νd, the near-state gaps d6′ = 28.012 and d11′ = 83.903 at β = −0.997, and the
+ * back focus L.B. = 78.058 / L.B.′ = 89.363 (all at f = 100). Derived: the infinity back focus (0.002 mm from
+ * L.B./2), the near object distance and the near image gap solved from β (0.022 mm beyond L.B.′/2).
+ * The patent prints no stop position or clear apertures: the iris sits at the midpoint of d6, the front rim is
+ * the f/2.8 entrance pupil plus 10%, the other rims follow Fig. 3 proportions, and S3–S9 are opened just enough
+ * to pass the f/2.8 axial beam. Source inconsistencies: table FNO 2.8 vs Fig. 6 F2.88; f3/f printed −13.33,
+ * computed −12.94.
  */
 const LENS_DATA = {
   schema: 2,
   key: "minolta-af-50mm-f28-macro",
   maker: "Minolta",
   name: "MINOLTA AF 50mm f/2.8 Macro",
-  subtitle: "JP S59-228220 A Embodiment 3 — probable family; inferred apertures",
+  subtitle: "JP S59-228220 A — Embodiment 3; patent design family of the production lens",
   catalog: {
     lensMounts: ["sony-a"],
     imageFormat: "135-full-frame",
@@ -25,9 +31,10 @@ const LENS_DATA = {
     },
     specs: [
       "7 ELEMENTS / 6 GROUPS",
-      "PROBABLE FAMILY; INFERRED APERTURES",
-      "TABLE F/2.8; SOURCE PLOT F/2.88 DISTINCT",
-      "SOURCE FINITE ENDPOINT; DERIVED CONJUGATE",
+      "DESIGN f = 50.0 mm",
+      "DESIGN F/2.8",
+      "ALL SPHERICAL",
+      "FLOATING FOCUS",
     ],
   },
   source: {
@@ -50,10 +57,8 @@ const LENS_DATA = {
       vd: 50.31,
       indexReference: "d",
       glass: "LAC10 (HOYA catalog equivalent; production supplier unspecified)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 81.8619914462117,
-      role: "Literal whole-source positive element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Weak biconvex front collector of Group I.",
     },
     {
       id: 2,
@@ -64,10 +69,8 @@ const LENS_DATA = {
       vd: 49.77,
       indexReference: "d",
       glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 41.779133379896884,
-      role: "Literal whole-source positive element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Positive meniscus convex to the object; the strongest positive element of Group I.",
     },
     {
       id: 3,
@@ -78,10 +81,8 @@ const LENS_DATA = {
       vd: 38.01,
       indexReference: "d",
       glass: "E-F5 (HOYA catalog equivalent; production supplier unspecified)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -27.951935500993372,
-      role: "Literal whole-source negative element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Thick negative element with a nearly flat front and a deep concave rear; closes Group I ahead of the iris.",
     },
     {
       id: 4,
@@ -92,10 +93,8 @@ const LENS_DATA = {
       vd: 29.25,
       indexReference: "d",
       glass: "Unmatched (patent nd 1.67339, νd 29.25; no catalog row at these coordinates)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -35.73239050268183,
-      role: "Literal whole-source negative element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Dense-flint negative front member of the Group II cemented pair; its strong concave face looks toward the iris.",
       cemented: "CD1",
     },
     {
@@ -107,10 +106,8 @@ const LENS_DATA = {
       vd: 53.93,
       indexReference: "d",
       glass: "LAC8 (HOYA catalog equivalent; production supplier unspecified)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 38.569424083202506,
-      role: "Literal whole-source positive element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Lanthanum-crown positive rear member of the Group II cemented pair, strongly curved toward the image.",
       cemented: "CD1",
     },
     {
@@ -122,10 +119,8 @@ const LENS_DATA = {
       vd: 49.77,
       indexReference: "d",
       glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 62.23589122845941,
-      role: "Literal whole-source positive element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Biconvex positive singlet closing Group II, with its stronger face toward the image.",
     },
     {
       id: 7,
@@ -136,10 +131,8 @@ const LENS_DATA = {
       vd: 57.82,
       indexReference: "d",
       glass: "Unmatched (PMMA-type acrylic, which the patent permits for this element; nd 1.49140, νd 57.82)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -647.2240862935438,
-      role: "Weak negative rear meniscus; source explicitly permits plastic for E3. Polymer identity and factory material are unproved; no catalog glass substituted.",
+      role: "Weak negative meniscus forming Group III. The patent permits plastic here; there is no evidence the production element is plastic.",
     },
   ],
   surfaces: [
@@ -235,7 +228,7 @@ const LENS_DATA = {
     keyframes: [0, 1],
     published: [1],
     description:
-      "JP S59-228220 A Embodiment 3 tabulates finite intergroup gaps and magnification. Object distance is derived by two independently checked paraxial methods, not printed. The near image gap is solved from the printed β = −0.997. L.B. and L.B.′ are the printed back focus: the infinity image gap matches L.B./2 (39.029 mm) within 0.002 mm, and the β-solved near gap sits 0.022 mm beyond L.B.′/2 (44.682 mm). Fixed-sensor registration moves all three groups objectward; global offset is documented. Only endpoints have explicit conjugates; slider interpolation is an implementation approximation, not a published cam law. Physical iris radius is held at the infinity-derived value; near effective F-number is diagnostic, not a replacement nominal aperture.",
+      "PUBLISHED double floating focus: all three groups move toward the object and both intergroup gaps grow. Embodiment 3 prints the near state at β = −0.997 (d6′ = 28.012, d11′ = 83.903 at f = 100), modeled as D6 = 14.006 mm and D11 = 41.95 mm; with the sensor fixed, Groups I, II and III travel 55.39, 47.14 and 5.67 mm. The patent prints no object distance: solving the near image gap from β gives 78.38 mm from the front vertex and 199.9 mm object to image, against Minolta's 0.2 m minimum focus. L.B. and L.B.′ are the printed back focus: the infinity image gap matches L.B./2 (39.029 mm) within 0.002 mm, and the β-solved near gap sits 0.022 mm beyond L.B.′/2 (44.682 mm). The iris stays midway between Groups I and II at its infinity size. Positions between the two endpoints are interpolated, not printed.",
     conjugates: [
       {
         zoomStation: 0,
@@ -243,7 +236,7 @@ const LENS_DATA = {
         objectDistanceMm: 78.3784888276426,
         distanceReference: "first-surface",
         source:
-          "JP S59-228220 A Embodiment 3 tabulates finite intergroup gaps and magnification. Object distance is derived by two independently checked paraxial methods, not printed. Image gap is solved from literal beta=-.997, not undefined LB. Fixed-sensor registration moves all three groups objectward; global offset is documented.",
+          "JP S59-228220 A, Embodiment 3: printed near-state gaps d6′ and d11′ at β = −0.997 (scaled by 0.5). The object distance is derived from those gaps and β, since the patent does not print it; the solved near image gap sits 0.022 mm beyond the printed back focus L.B.′/2.",
       },
     ],
   },
