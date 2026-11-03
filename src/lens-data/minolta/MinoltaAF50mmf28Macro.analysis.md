@@ -84,7 +84,7 @@ Double floating focus: all three groups move toward the object at different rate
 
 The patent prints the near-state gaps (d6′ = 28.012, d11′ = 83.903 at f = 100) and β = −0.997, but no object distance. L.B. = 78.058 and L.B.′ = 89.363 are the printed back focus. The model's paraxial infinity back focus matches L.B./2 within 0.002 mm. Its near image gap, solved from β, sits 0.022 mm beyond L.B.′/2, and L.B.′ − L.B. reproduces the printed group-travel ratios. The solved near state puts the object 78.38 mm from the front vertex and 199.9 mm from the image, close to Minolta's 0.2 m minimum focus. With the image plane fixed, Groups I, II and III travel 55.39, 47.14 and 5.67 mm. Settings between the two endpoints are interpolated, not printed.
 
-The patent does not say where the iris is mounted. The model keeps it midway between Groups I and II at both endpoints, at its infinity size. Fig. 6 labels the β = −1 plot "effective F 5.93"; the model's near working f-number is about 5.2 with the midway iris (5.0 to 5.4 if the iris rides with Group I or Group II), so that figure is not reproduced.
+The patent does not say where the iris is mounted. The model keeps it midway between Groups I and II at both endpoints, at its infinity size. At β = −0.997 the rims, not the iris, set the axial beam: the rear face of L5 limits it first, and the traced working f-number is f/5.77 against the "effective F 5.93" Fig. 6 prints for β = −1. The iris alone would give f/5.22 (f/5.02 or f/5.41 if it rode with Group I or Group II); with the rims the result is f/5.77 wherever the iris sits.
 
 ## Conditional Expressions
 
@@ -102,7 +102,7 @@ The printed f3/f runs about 3% above the thick-lens value in all three embodimen
 
 All lengths are the patent values scaled by 0.5. The model traces to EFL = 50.0006 mm and back focus 39.031 mm. The table gives FNO 2.8, while Fig. 6 is drawn at F2.88; the model uses f/2.8.
 
-The patent prints no clear apertures or iris position. The front rim is the f/2.8 entrance pupil plus 10% (9.8 mm). The other rims follow the Fig. 3 proportions, and S3 to S9 are opened just enough for the full f/2.8 axial beam (8.6, 8.2 and 7.8 mm), within the glass diameters the lens section shows. Each element keeps one height on both faces. The iris sits at the midpoint of d6, inside the gap where the section draws the blades. Corner illumination at f/2.8 is about 39% of the axis at the 21.6 mm format corner.
+The patent prints no clear apertures or iris position. The front rim is the f/2.8 entrance pupil plus 10% (9.8 mm). The other rims follow the Fig. 3 proportions, and S3 to S9 are opened just enough for the full f/2.8 axial beam (8.6, 8.2 and 7.8 mm), a few percent above the heights Fig. 3 draws. Each element keeps one height on both faces. The concave faces either side of the iris end in the short flat lands Fig. 3 draws, at 7.25 mm on L3 and 7.16 mm on L4, outside every traced beam. The iris sits at the midpoint of d6, inside the gap where the section draws the blades. Corner illumination at f/2.8 is about 39% of the axis at the 21.6 mm format corner.
 
 Against Fig. 6, the model's real-ray spherical aberration at infinity is −0.08 mm at full aperture (about −0.06 mm read from the plot at F2.88). At the near state it is about −0.75 mm, matching the plotted undercorrection. At the 21 mm image height, the sagittal curve dips to about −0.17 mm mid-field and returns near zero, and the tangential curve reaches about −0.20 mm. Distortion is +0.2%. All of these follow the plotted shapes.
 

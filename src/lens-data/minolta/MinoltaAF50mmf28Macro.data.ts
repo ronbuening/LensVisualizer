@@ -7,8 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * L.B./2), the near object distance and the near image gap solved from β (0.022 mm beyond L.B.′/2).
  * The patent prints no stop position or clear apertures: the iris sits at the midpoint of d6, the front rim is
  * the f/2.8 entrance pupil plus 10%, the other rims follow Fig. 3 proportions, and S3–S9 are opened just enough
- * to pass the f/2.8 axial beam. Source inconsistencies: table FNO 2.8 vs Fig. 6 F2.88; f3/f printed −13.33,
- * computed −12.94.
+ * to pass the f/2.8 axial beam. The concave faces beside the iris (S6, S7) end in the short lands Fig. 3 draws,
+ * at cut radii 7.25 and 7.16 mm, clear of every traced beam. Source inconsistencies: table FNO 2.8 vs Fig. 6
+ * F2.88; f3/f printed −13.33, computed −12.94.
  */
 const LENS_DATA = {
   schema: 2,
@@ -173,6 +174,7 @@ const LENS_DATA = {
       label: "6",
       R: 17.422,
       sd: 8.2,
+      rimCutDepthMm: 1.58,
     },
     {
       label: "STO",
@@ -183,6 +185,7 @@ const LENS_DATA = {
       R: -17.3265,
       d: 2.629,
       sd: 7.8,
+      rimCutDepthMm: 1.55,
       medium: 4,
     },
     {
