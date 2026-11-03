@@ -146,7 +146,7 @@ The strongly negative A4 on S9 flattens the front face toward the rim: at the 25
 
 ## Clear Apertures, Stop and Geometry
 
-S1 and S27 have half the printed effective diameters, 28.7 mm and 15.9 mm. The other semi-diameters are inferred from Fig. 1 and the f/1.45 axial beam with a small margin, with each cemented pair at one height: S2–S4 30.2, S5–S6 27.9, S7–S8 27.8, S9–S10 25.9, S11–S13 23.5, S14–S15 17.7, S17–S19 15.8, S20–S22 14.1, S23–S25 14.5 and S26 15.9 mm. S2, the rear face of L1, therefore sits 1.5 mm above the printed S1 value, which shows as a small step on L1. The stop position is printed; its 15.46 mm radius is derived from F1.45.
+S1 and S27 have half the printed effective diameters, 28.7 mm and 15.9 mm. The other semi-diameters are measured on Fig. 1, which reproduces both printed values to 0.05 mm, and each element and cemented pair has one height, as the figure draws them: S2 28.7 (L1 square at the printed S1 value), S3–S4 28.0, S5–S6 27.9, S7–S8 27.8, S9–S10 25.9, S11–S13 21.6, S14–S15 16.4, S17–S19 15.4, S20–S22 14.1, S23–S25 14.5 and S26 15.9 mm. The deep rear face of L6r ends at a radius of 17.0 mm on a flat land 6.04 mm behind its vertex, which carries the pair out to its 21.6 mm edge, as in Fig. 1 and ZEISS's section. Two rims sit 0.7 mm outside the figure: L2, drawn at 27.3 mm, whose larger rim keeps the corner light at close and middle focus, and C2, drawn at 14.7 mm, which needs 15.4 mm for the axial beam at the close state. The stop position is printed; its 15.46 mm radius is derived from F1.45, and the drawn rims of L2, C1, L7 and C2 clear the axial beam through that iris by 0.03–0.17 mm at infinity.
 
 ## Model Scope and Limitations
 

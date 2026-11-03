@@ -6,8 +6,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Paraxial trace: EFL 82.446 mm, BF 18.091 mm against the printed 18.10 mm image gap (kept);
  * the gaps sum to 124.01 mm against the 124 mm optical length in Table 1.
  * S1 and S27 semi-diameters are half the printed effective diameters 57.4 / 31.8 mm; the
- * others are inferred from Fig. 1 and the f/1.45 axial and full-field beams. The stop
- * position is printed; the iris radius is derived from F1.45.
+ * others are measured on Fig. 1 (11.81 px/mm both ways at 319 dpi; S1, S27 and the stop
+ * plane check the scale) and floor-checked by real-ray trace. L1 is square-cut at the
+ * printed S1 value. L2 is drawn at 27.3 mm and kept at 28.0 mm so corner light at near
+ * and middle focus stays within 3 points of the authored rims. C2 is drawn at 14.7 mm and
+ * kept at 15.4 mm for the near-state axial beam (15.31 mm on S17). The flat land Fig. 1
+ * draws on S13 is an inferred cut 6.04 mm from the vertex (radius 17.00 mm; the figure
+ * reads 16.8 mm, moved out to clear the wide-open beams). The stop position is printed;
+ * the iris radius is derived from F1.45.
  * Focus: Table 3 prints infinity and β = 0.124 with the object 676.0 mm before S1. G2 and the
  * iris move 3.72 mm toward the image, G3 moves 2.70 mm toward the object, G1 and G4 are fixed.
  * Retail minimum focus is 0.80 m.
@@ -272,20 +278,20 @@ const LENS_DATA = {
       label: "2",
       R: 182.228,
       d: 0.3,
-      sd: 30.2,
+      sd: 28.7,
     },
     {
       label: "3",
       R: 87.959,
       d: 5.71,
-      sd: 30.2,
+      sd: 28.0,
       medium: 2,
     },
     {
       label: "4",
       R: 416.78,
       d: 5.46,
-      sd: 30.2,
+      sd: 28.0,
     },
     {
       label: "5",
@@ -343,34 +349,35 @@ const LENS_DATA = {
       label: "11",
       R: 75.094,
       d: 5.62,
-      sd: 23.5,
+      sd: 21.6,
       medium: 6,
     },
     {
       label: "12",
       R: 906.18,
       d: 1.9,
-      sd: 23.5,
+      sd: 21.6,
       medium: 7,
     },
     {
       label: "13",
       R: 26.946,
       d: 7.98,
-      sd: 23.5,
+      sd: 21.6,
+      rimCutDepthMm: 6.04,
     },
     {
       label: "14",
       R: -1236.778,
       d: 1.6,
-      sd: 17.7,
+      sd: 16.4,
       medium: 8,
     },
     {
       label: "15",
       R: 53.28,
       d: 4.83,
-      sd: 17.7,
+      sd: 16.4,
     },
     {
       label: "STO",
@@ -380,21 +387,21 @@ const LENS_DATA = {
       label: "17",
       R: 79.0,
       d: 9.16,
-      sd: 15.8,
+      sd: 15.4,
       medium: 9,
     },
     {
       label: "18",
       R: -24.936,
       d: 1.4,
-      sd: 15.8,
+      sd: 15.4,
       medium: 10,
     },
     {
       label: "19",
       R: -246.375,
       d: 2.67,
-      sd: 15.8,
+      sd: 15.4,
     },
     {
       label: "20",
