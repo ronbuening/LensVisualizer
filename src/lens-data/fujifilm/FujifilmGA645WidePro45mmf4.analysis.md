@@ -23,7 +23,7 @@ The data file transcribes Embodiment 6 and applies a uniform scale factor of 0.4
 
 The design is a compact quasi-symmetrical wide-angle lens with a central stop:
 
-$$\text{G1}(-)\;—\;\text{G2}(+)\;—\;\text{STO}\;—\;\text{G3}(+)\;—\;\text{G4}(+)\;—\;\text{G5}(-)$$
+$$\text{G1}(-)\;\text{—}\;\text{G2}(+)\;\text{—}\;\text{STO}\;\text{—}\;\text{G3}(+)\;\text{—}\;\text{G4}(+)\;\text{—}\;\text{G5}(-)$$
 
 It is not a retrofocus SLR wide angle. The scaled back focal distance is approximately 27.38 mm from the patent table, giving BFD/EFL $\approx 0.61$, not a long-back-focus retrofocus ratio. Its more important architectural feature is the central leaf-shutter stop placed between two cemented doublets, with strong rear-side correction by the L6-L7 pair.
 

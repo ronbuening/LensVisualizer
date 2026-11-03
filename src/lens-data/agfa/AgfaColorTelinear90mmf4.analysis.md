@@ -30,18 +30,15 @@ The patent does not specify an aperture-stop position. The data file places a fl
 
 ### L1 — Biconvex Positive (Lens I)
 
-$n_d = 1.51633$, $
-u_d = 64.0$. Glass: BK7 class, probable Schott legacy crown. $f = +32.0$ mm.
+$n_d = 1.51633$, $\nu_d = 64.0$. Glass: BK7 class, probable Schott legacy crown. $f = +32.0$ mm.
 
 L1 is the positive crown component of the front cemented doublet. It is bounded by R1 = +0.29731F and R2 = −0.44456F, so both surfaces contribute positive power in the patent's sign convention. Its low dispersion supplies the crown side of the front achromat.
 
-The glass is treated as a BK7-class identification rather than a named production melt. The patent itself gives only $n_d$ and $
-u_d$, not a catalog name.
+The glass is treated as a BK7-class identification rather than a named production melt. The patent itself gives only $n_d$ and $\nu_d$, not a catalog name.
 
 ### L2 — Biconcave Negative (Lens II)
 
-$n_d = 1.62606$, $
-u_d = 39.1$. Glass: BASF1 / BAM21 class, barium flint. $f = -30.2$ mm.
+$n_d = 1.62606$, $\nu_d = 39.1$. Glass: BASF1 / BAM21 class, barium flint. $f = -30.2$ mm.
 
 L2 is the negative flint partner cemented to L1 at R2. The high dispersion, compared with L1, creates the main chromatic split in the front achromat. Its rear surface R3 = +0.40284F exits to air, completing a very weak positive doublet.
 
@@ -49,8 +46,7 @@ The 626/391 code is an exact historical match to BASF1-type tables and a close m
 
 ### L3 — Positive Meniscus, Convex to Object (Lens III)
 
-$n_d = 1.57041$, $
-u_d = 48.1$. Glass: probable Schott-Jena KzF4 / short-flint class. $f = +54.9$ mm.
+$n_d = 1.57041$, $\nu_d = 48.1$. Glass: probable Schott-Jena KzF4 / short-flint class. $f = +54.9$ mm.
 
 L3 is the dominant positive element. The strongly convex first surface R4 = +0.25966F introduces most of the element power, while R5 = +0.95588F is comparatively weak. Its computed focal length, $+0.60965F$, falls within the patent's claimed range of $0.5F$ to $0.7F$.
 
@@ -66,8 +62,7 @@ The 515/547 pair matches SUMITA's discontinued-inclusive KF3 coefficient row (ca
 
 ### L5 — Biconvex Positive (Lens V)
 
-$n_d = 1.60729$, $
-u_d = 49.2$. Glass: BAF5 (HOYA) class, BAM5-type barium flint (catalog equivalent). $f = +24.3$ mm.
+$n_d = 1.60729$, $\nu_d = 49.2$. Glass: BAF5 (HOYA) class, BAM5-type barium flint (catalog equivalent). $f = +24.3$ mm.
 
 L5 is the positive rear element of the negative telephoto doublet. It is cemented to L4 at R7 and exits to air at R8 = −0.28966F. In combination with L4, it moderates the rear group's negative power to $-0.84190F$ while maintaining the required concave-concave outer air-surface geometry.
 
@@ -77,8 +72,7 @@ The 607/492 pair is an exact BAM5-class match in historical and catalog cross-re
 
 The patent publishes only $n_d$ and Abbe number $V$, not glass names, partial-dispersion data, or melt-specific line indices. The revised glass table therefore reports catalog classes and exact $n_d/V$ matches where they exist; it avoids treating a modern equivalent as proof of the original Agfa procurement source.
 
-| Element | $n_d$ | $
-u_d$ | Code | Identification | Optical role |
+| Element | $n_d$ | $\nu_d$ | Code | Identification | Optical role |
 |---|---:|---:|---:|---|---|
 | L1 | 1.51633 | 64.0 | 516/640 | BK7 class, probable Schott legacy crown | Low-dispersion positive element in front doublet |
 | L2 | 1.62606 | 39.1 | 626/391 | BASF1 / BAM21 class barium flint | High-dispersion negative element in front doublet |

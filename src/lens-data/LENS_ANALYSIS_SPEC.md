@@ -18,7 +18,7 @@ The analysis is read by users and other authors. It should be patent-grounded, t
 
 - Analysis files use the same relative stem path as the data file with `.analysis.md` instead of `.data.ts`. Example: `nikon/NikonNikkorZ50f18S.data.ts` → `nikon/NikonNikkorZ50f18S.analysis.md`.
 - Analysis files are optional. A prescription without one shows the viewer's empty-state message (`No description available`). When a prescription does carry an analysis, this spec governs its structure.
-- Markdown is rendered with GitHub-flavored Markdown plus inline math (`$...$` and `$$...$$`). Tables, fenced code blocks, blockquotes, and nested lists are all supported.
+- Markdown is rendered with GitHub-flavored Markdown plus inline math (`$...$` and `$$...$$`). Tables, fenced code blocks, blockquotes, and nested lists are all supported. Math follows the rules in `agent_docs/article_formatting.md` (Math), which the test suite enforces.
 
 ## Required Section Skeleton
 

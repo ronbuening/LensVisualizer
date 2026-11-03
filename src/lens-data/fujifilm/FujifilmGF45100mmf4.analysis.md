@@ -204,7 +204,7 @@ Example 1 uses five aspherical surfaces on three elements: surfaces 6 and 7 on L
 The patent sag formula is:
 
 $$
-Zd = rac{C h^2}{1 + \sqrt{1 - KA \cdot C^2 h^2}} + \sum_m A_m h^m
+Zd = \frac{C h^2}{1 + \sqrt{1 - KA \cdot C^2 h^2}} + \sum_m A_m h^m
 $$
 
 In the standard conic notation used by the data file, $K = KA - 1$. Example 1 gives KA = 1.0000000 for every aspherical surface, so the standard conic constant is K = 0 for all five aspheres; all departure comes from the polynomial terms.

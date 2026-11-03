@@ -26,6 +26,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-11-03",
+    type: "fix",
+    summary: "Fixed formulas that failed to render or showed wrong symbols in 13 lens notes",
+  },
+  {
+    date: "2026-11-03",
+    type: "fix",
+    summary: "Fixed equations that drew superscripts, subscripts and fraction terms at full size",
+  },
+  {
+    date: "2026-11-03",
     type: "lens",
     summary:
       "Added the Minolta MD 35mm f/2.8, Olympus E.Zuiko 100mm f/2.8 and Pentax DA* 300mm f/4, M 40mm f/2.8, M 50mm f/1.7 and F 135mm f/2.8",
