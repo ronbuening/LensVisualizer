@@ -62,7 +62,7 @@ Unit focus. Olympus specifications, as reproduced by MIR, list helicoid focusing
 
 ## Geometry, Aperture and Image Plane
 
-The clear semi-diameters are inferred, not printed. The front rim is the axial f/2.8 beam radius (EFL/2N = 32.1 mm) plus 10 %, rounded to 35.4 mm; at that height L1 keeps an edge of about 0.16 mm, matching the pointed rim Fig. 1 draws, and a 5 % larger rim would give it a negative edge. The other rims follow the element outline ratios of Fig. 1 (1.000, 0.935, 0.867, 0.729, 0.469), read to about ±4 px. They are optical clear apertures, not filter-thread or barrel dimensions.
+The clear semi-diameters are inferred, not printed. The front rim is the axial f/2.8 beam radius (EFL/2N = 32.1 mm) plus 10 %, rounded to 35.4 mm; at that height L1 keeps an edge of about 0.16 mm, matching the pointed rim Fig. 1 draws, and a 5 % larger rim would give it a negative edge. The other rims follow the element outline ratios of Fig. 1 (1.000, 0.935, 0.867, 0.729, 0.469), read to about ±4 px. They are optical clear apertures, not filter-thread or barrel dimensions. Fig. 1 ends the deep concave face r8 of L4 at 0.81 of the element's edge radius, with a flat land square to the axis out to the edge. The model draws that land 7.22 mm behind the r8 vertex: the curved face ends at 20.89 mm and the land runs out to the 25.8 mm edge. The wide-open beams reach 20.81 mm on r8, so the land stops no light.
 
 The stop sits at 0.53 of d8 behind L4, measured on Fig. 1, 62.23 mm behind the first vertex; d8 itself is unchanged. Its wide-open radius of 17.16 mm follows from f/2.8. The aperture range f/2.8–f/32 is the retail range; the blade count is not modeled.
 

@@ -4,7 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Linked to the Zuiko Auto-T 180mm f/2.8 by assignee, the patent's 180-200 mm F2.8 aim and the five-element,
  * five-group layout; not an identified factory prescription, and Embodiments 2-4 share the same layout.
  * Radii, thicknesses, indices and the printed back focus are unchanged apart from the scale.
- * Clear semi-diameters and the stop position (0.53 of d8, read from Fig. 1) are inferred.
+ * Clear semi-diameters and the stop position (0.53 of d8, read from Fig. 1) are inferred; the rims follow the
+ * Fig. 1 outline ratios. The flat land on r8 is drawn in Fig. 1 at 0.807 of the edge radius; the inferred cut
+ * sits at 20.89 mm (depth 7.22 mm), just outside the wide-open beams, which reach 20.81 mm there.
  * The patent names no reference line for its indices; the d line is assumed.
  * Unit focus to 2.0 m: the close-focus back focus is a derived paraxial solve, not a printed state.
  */
@@ -168,6 +170,7 @@ const LENS_DATA = {
       R: 33.8274,
       d: 27.424638,
       sd: 25.8,
+      rimCutDepthMm: 7.22,
     },
     {
       label: "STO",
