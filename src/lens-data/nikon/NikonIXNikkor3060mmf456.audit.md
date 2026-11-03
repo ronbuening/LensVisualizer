@@ -150,3 +150,26 @@ The 600 dpi optical rims of the exact Figure 17 were inspected; relative heights
 The local wide/tele and close-focus diagrams were compared with JP3909533B2 Figure 17 (PDF page 22, rotated). The last element's surfaces 12/13 decrease from 6.3 to 5.6 mm, closer to the roughly 5.26 mm optical-curve estimate. The 5.731 mm facing surfaces 9/10 are retained. The revised last rims preserve the stated axial aperture and APS image-corner chief ray throughout zoom; peripheral vignetting remains modeled.
 
 Two source functional-group brackets replace six fallback movement groups, and the diagram adopts the figure's L11/L12/L21/L22/L23/L24 identifiers. G1 moves objectward for near focus while G2 stays fixed; finite conjugates descend to the reconstructed 350 mm endpoint. During zoom G1 first moves imageward then objectward, while G2 moves objectward. The previously disclosed E4/E5 thickness substitutions and long focal-length result remain. Nikon Corporation, Nikon IX and APS-film metadata are correct.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 2nd existing row (indices 0, 2, …, 64).
+- Focus: kept keyframes [0, 2, 4, 6, 8, 10, 12, 14, 16] of 17, at focus coordinates [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1].
+- Published zoom stations remapped 0 → 0, 32 → 16, 64 → 32; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 65 × 17 = 1105 | 33 × 9 = 297 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0016 mm | 0.0062 mm |
+| worst fixed-plane defocus at infinity | 0.0016 mm | 0.0062 mm |
+| worst focal-length label residual | 0.0021 mm | 0.0084 mm |
+| worst far-focus distance-label error | −6.7 % (116.7 m reads 108.8 m near 41.9 mm) | −21.4 % (116.7 m reads 91.7 m near 41.6 mm) |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0163 mm (0.41 R), half-field ≤ 0.191°, stop radius ≤ 0.000 %, f-number ≤ 0.000 %, variable gaps ≤ 0.006 mm, axial diffraction MTF at 30 lp/mm +0.006 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+The far-focus label error is the infinity defocus expressed as a distance: near the 0.003 focus cutoff a few micrometres of image-side defocus move the in-focus distance by tens or hundreds of metres. Close-focus labels at kept keyframes are unchanged.
+
+Text sync: header: sampled focus error ≤ 0.005 mm → ≤ 0.007 mm at infinity, ≤ 0.017 mm near focus; analysis: seventeen → nine focus keyframes, between-keyframe defocus about 0.004 → 0.016 mm.

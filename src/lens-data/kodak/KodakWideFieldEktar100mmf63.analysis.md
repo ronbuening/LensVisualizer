@@ -91,7 +91,7 @@ All three matches fall within ordinary transcription tolerance for a vintage pat
 
 The patent gives only infinity-focus prescriptions. It does not describe a helicoid, rail movement, internal focusing, floating correction, or close-focus variable spacing.
 
-The data file models focus as unit focus by varying only the final back focal distance. This is an implementation model rather than a patent-published focusing mechanism. At infinity, the computed paraxial BFD is 89.0096 mm. For the data file's nominal 1.0 m close-focus endpoint, measured from the first vertex for the paraxial model, the back focal distance is 99.9604 mm.
+The data file models focus as unit focus by varying only the final back focal distance. This is an implementation model rather than a patent-published focusing mechanism. At infinity, the computed paraxial BFD is 89.0096 mm. For the data file's nominal 1.0 m close-focus endpoint, measured from the first vertex for the paraxial model, the back focal distance is 99.9604 mm; that state is about 1.13 m object to image, the distance the close-focus label reports.
 
 The practical close-focus limit of a large-format lens mounted in a shutter depends on the camera bellows or focusing rail, not on a built-in lens mechanism. The 1.0 m value is therefore only a viewer endpoint for the focus slider.
 

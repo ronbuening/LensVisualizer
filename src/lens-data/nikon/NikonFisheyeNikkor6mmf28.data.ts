@@ -52,6 +52,7 @@ const LENS_DATA = {
     groupCount: 9,
     focalLengthMm: { marketing: 6, design: 6.3 },
     fNumber: { marketing: 2.8, design: 2.8 },
+    closeFocusM: { marketing: 0.25 },
   },
 
   source: {
@@ -250,7 +251,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.25,
+    closeFocusM: 0.401,
     description: "Unit focus; entire optical assembly translates relative to the film plane.",
   },
 

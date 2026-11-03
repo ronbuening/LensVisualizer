@@ -32,3 +32,10 @@ Patent: US 2012/0307375 A1, Embodiment 3 / Figure 9.
   and tele E are stored as 39.661119 / 51.816229 (+0.00003 / +0.00008 mm) to keep the previous Gaussian image plane.
 - Paraxial check against the previous data: EFL identical, and defocus unchanged within 5e-7 mm at every zoom and focus
   state. Physical track grows by 0.478 mm, Σt(1 − 1/n) for the two plates.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.25 → 0.349 m, with per-station `closeFocusM` 0.349 / 0.357 / 0.376 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 50.4 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: close rows were solved for 0.25 m from patent surface 1; Ricoh's 0.25 m is measured from the lens front, a different reference.
+- `catalog.closeFocusM.marketing` 0.25 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

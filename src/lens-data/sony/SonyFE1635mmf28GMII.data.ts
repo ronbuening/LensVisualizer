@@ -26,8 +26,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  NOTE ON FOCUS DISTANCE:                                           ║
  * ║    Variable close-focus spacings are the patent close state at      ║
- * ║    shooting distance 247 mm. closeFocusM uses Sony's production     ║
- * ║    specification, 0.22 m, per project sourcing rules.              ║
+ * ║    shooting distance 247 mm, which the model focuses at 0.25 m      ║
+ * ║    object to image; closeFocusM records that, and                   ║
+ * ║    catalog.closeFocusM keeps Sony's 0.22 m production               ║
+ * ║    specification.                                                   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -53,6 +55,7 @@ const LENS_DATA = {
     groupCount: 12,
     focalLengthMm: { marketing: [16, 35], design: [16.49, 33.95] },
     fNumber: { marketing: 2.8, design: 2.91 },
+    closeFocusM: { marketing: 0.22 },
   },
 
   source: {
@@ -467,9 +470,9 @@ const LENS_DATA = {
   },
 
   focus: {
-    closeFocusM: 0.22,
+    closeFocusM: 0.25,
     description:
-      "Patent Example 1 uses dual floating focus: G4 is the focus lens group and G5 is the floating lens group. The data file's close-focus spacings correspond to the patent close state at 247 mm; the metadata closeFocusM follows Sony's production specification of 0.22 m.",
+      "Patent Example 1 uses dual floating focus: G4 is the focus lens group and G5 is the floating lens group. The data file's close-focus spacings correspond to the patent close state at 247 mm; catalog.closeFocusM keeps Sony's production specification of 0.22 m as marketed metadata.",
   },
 
   gaps: {

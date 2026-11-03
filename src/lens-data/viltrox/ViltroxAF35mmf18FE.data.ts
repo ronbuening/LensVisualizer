@@ -31,10 +31,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   band is also geometry-bound.                                          ║
  * ║                                                                            ║
  * ║ FOCUS / MFD NOTE:                                                         ║
- * ║   closeFocusM=0.3 represents the patent's published nearest-focus row so  ║
- * ║   the modeled endpoint is not mislabeled. The production lens is marketed ║
- * ║   with a 0.4 m minimum focus distance; that marketing value is retained   ║
- * ║   separately in specs/focusDescription and does not alter patent gaps.    ║
+ * ║   The modeled endpoint is the patent's published nearest-focus row,       ║
+ * ║   labeled 0.3 m; traced object to image it focuses at 0.388 m, which      ║
+ * ║   closeFocusM records. The production lens is marketed with a 0.4 m       ║
+ * ║   minimum focus distance; catalog.closeFocusM keeps that marketing value, ║
+ * ║   and it does not alter patent gaps.                                      ║
  * ║                                                                            ║
  * ║ Manufacturer sources:                                                     ║
  * ║   https://viltrox.com/pages/af-35-1-8-fe                                  ║
@@ -70,6 +71,7 @@ const LENS_DATA = {
     groupCount: 8,
     focalLengthMm: { marketing: 35, design: 34.54521692924615 },
     fNumber: { marketing: 1.8, design: 1.8 },
+    closeFocusM: { marketing: 0.4 },
   },
 
   source: {
@@ -251,11 +253,11 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.3,
+    closeFocusM: 0.388,
     description:
       "PUBLISHED patent focus: L31/G3 alone translates 4.92 mm imageward; " +
       "D1 1.00→5.92 mm and D2 8.69→3.77 mm, with D1+D2=9.69 mm. " +
-      "The 0.3 m endpoint is the patent row; the production Viltrox lens is marketed at 0.4 m MFD.",
+      "The endpoint is the patent's 0.3 m row, which focuses at 0.388 m object to image; the production Viltrox lens is marketed at 0.4 m MFD.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

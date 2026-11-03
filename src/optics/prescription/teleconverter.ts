@@ -416,6 +416,12 @@ export function attachTeleconverter(
   });
   if (hostLens.catalog.fNumber?.marketing !== undefined)
     lens.catalog.fNumber!.marketing = round(hostLens.catalog.fNumber?.marketing * magnification, 1);
+  /* The converter lengthens every object-to-image distance, the marketed close focus with the authored one. */
+  const marketedClose = hostLens.catalog.closeFocusM?.marketing;
+  if (marketedClose !== undefined)
+    lens.catalog.closeFocusM!.marketing = Array.isArray(marketedClose)
+      ? [marketedClose[0] + extensionM, marketedClose[1] + extensionM]
+      : marketedClose + extensionM;
   if (hostLens.catalog.fNumber?.design !== undefined)
     lens.catalog.fNumber!.design = hostLens.catalog.fNumber?.design * firstRatio;
   /* Keep the quick-stop filter's rounding and ceiling exactly as on the bare hostLens. */

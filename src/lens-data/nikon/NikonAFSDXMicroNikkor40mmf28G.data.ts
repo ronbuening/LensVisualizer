@@ -18,7 +18,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   runtime uses one linear focus parameter for both gaps, the published MID ║
  * ║   pair is verified separately rather than represented exactly by `var`.     ║
  * ║   The patent CLD object-to-physical-focal-plane distance is 0.15264661 m;  ║
- * ║   closeFocusM retains Nikon's 0.163 m marketed MFD as product metadata.    ║
+ * ║   focus.closeFocusM records it, and catalog.closeFocusM keeps Nikon's      ║
+ * ║   0.163 m marketed MFD.                                                    ║
  * ║                                                                            ║
  * ║ REAR PLATE                                                                 ║
  * ║   Patent surfaces 19–20 are a 2.000 mm low-pass filter P1 (nd=1.51680,     ║
@@ -78,6 +79,7 @@ const LENS_DATA = {
     groupCount: 8,
     focalLengthMm: { marketing: 40, design: 40.00107432241447 },
     fNumber: { marketing: 2.8, design: 2.68 },
+    closeFocusM: { marketing: 0.163 },
   },
 
   source: {
@@ -219,10 +221,10 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.163,
+    closeFocusM: 0.153,
     keyframes: [0, 0.9106579317813288, 1],
     description:
-      "PUBLISHED: Example 1 supplies exact INF, β=-0.5 MID, and β=-1.0 CLD focus keyframes. G1 and G2 move objectward while d1a changes; the stop co-moves with G2, d1b stays 4.00000 mm, and G3 remains fixed to the physical image plane. The modeled CLD conjugate is 0.15264661 m object-to-physical-focal-plane, while closeFocusM retains Nikon's separate 0.163 m marketed minimum-focus specification.",
+      "PUBLISHED: Example 1 supplies exact INF, β=-0.5 MID, and β=-1.0 CLD focus keyframes. G1 and G2 move objectward while d1a changes; the stop co-moves with G2, d1b stays 4.00000 mm, and G3 remains fixed to the physical image plane. The modeled CLD conjugate is 0.15264661 m object-to-physical-focal-plane, which the close-focus label reports; Nikon's separate 0.163 m marketed minimum-focus specification is kept as catalog metadata.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

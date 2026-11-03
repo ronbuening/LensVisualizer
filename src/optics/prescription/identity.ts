@@ -15,6 +15,16 @@ export function canonicalForView(view: object): IngestedPrescription<CanonicalLe
 export function associateRuntime(runtime: RuntimeLens, compiled: CompiledLens): void {
   COMPILED_BY_RUNTIME.set(runtime, compiled);
 }
+/**
+ * Non-throwing lookup, for presentation paths that can fall back when a runtime has no compiled identity.
+ *
+ * @param runtime - runtime lens, possibly hand-built
+ * @returns its compiled lens, or undefined when the canonical compiler did not construct it
+ */
+export function findCompiledLens(runtime: RuntimeLens): CompiledLens | undefined {
+  return COMPILED_BY_RUNTIME.get(runtime);
+}
+
 /** Lookup only: a completed runtime is never a compilation source. */
 export function compiledLensFromRuntime(runtime: RuntimeLens): CompiledLens {
   const compiled = COMPILED_BY_RUNTIME.get(runtime);

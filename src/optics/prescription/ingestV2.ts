@@ -151,6 +151,7 @@ const LENS_CATALOG_FIELDS: Fields<LensCatalogV2Input> = {
   opticalConfiguration: true,
   focalLengthMm: true,
   fNumber: true,
+  closeFocusM: true,
 };
 
 const TELECONVERTER_CATALOG_FIELDS: Fields<TeleconverterDataV2Input["catalog"]> = {
@@ -162,6 +163,7 @@ const TELECONVERTER_CATALOG_FIELDS: Fields<TeleconverterDataV2Input["catalog"]> 
 };
 
 const MARKETING_DESIGN_FIELDS: Fields<{ marketing: unknown; design: unknown }> = { marketing: true, design: true };
+const MARKETING_FIELDS: Fields<{ marketing: unknown }> = { marketing: true };
 
 const SOURCE_FIELDS: Fields<SourceV2Input> = {
   patentNumber: true,
@@ -915,8 +917,14 @@ function ingestLensCatalog(data: Untyped, context: IngestContext): Untyped {
     put(out, field, catalog[field]);
   }
   if (context.sources) recordReads(context.sources, "catalog", "catalog", out, Object.keys(out));
-  for (const field of ["focalLengthMm", "fNumber"]) {
-    const range = nested(catalog, field, "catalog", MARKETING_DESIGN_FIELDS, context);
+  for (const field of ["focalLengthMm", "fNumber", "closeFocusM"]) {
+    const range = nested(
+      catalog,
+      field,
+      "catalog",
+      field === "closeFocusM" ? MARKETING_FIELDS : MARKETING_DESIGN_FIELDS,
+      context,
+    );
     if (!range || (!has(range, "marketing") && !has(range, "design"))) continue;
     const copied: Untyped = {};
     put(copied, "marketing", range.marketing);

@@ -25,6 +25,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - The patent does not publish close-focus spacings. B5 close-focus travel is
  *   a paraxially fitted visualization against Canon's published 0.05 m wide and
  *   0.40 m tele closest-focus distances, with an interpolated 0.20 m mid state.
+ *   The fitted rows focus at 0.129 / 0.281 / 0.499 m object to image, which the
+ *   per-station closeFocusM values record; Canon's figures stay in
+ *   catalog.closeFocusM.
  * - Clear semi-diameters are estimated from multi-state marginal/chief ray
  *   envelopes, then constrained to satisfy sd/|R| < 0.90, element SD ratio <= 1.25,
  *   signed cross-gap sag intrusion <= 90% of the gap, and positive edge thickness.
@@ -59,6 +62,7 @@ const LENS_DATA = {
     groupCount: 11,
     focalLengthMm: { marketing: [12.5, 62.5], design: [12.84, 60.72] },
     fNumber: { marketing: 2.0, design: 2.06 },
+    closeFocusM: { marketing: [0.05, 0.4] },
   },
 
   source: {
@@ -283,15 +287,15 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 12.84, nominalFNumber: 2.0, label: "Wide" },
-      { focalLengthMm: 22.9, nominalFNumber: 3.5, label: "Middle" },
-      { focalLengthMm: 60.72, nominalFNumber: 3.9, label: "Tele" },
+      { focalLengthMm: 12.84, nominalFNumber: 2.0, closeFocusM: 0.129, label: "Wide" },
+      { focalLengthMm: 22.9, nominalFNumber: 3.5, closeFocusM: 0.281, label: "Middle" },
+      { focalLengthMm: 60.72, nominalFNumber: 3.9, closeFocusM: 0.499, label: "Tele" },
     ],
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 0.05,
+    closeFocusM: 0.129,
     description:
       "Inner focus by negative fifth zoom group B5. Patent supplies infinity zoom spacings only; close-focus spacings are paraxially fitted for visualization.",
   },

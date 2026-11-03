@@ -53,3 +53,10 @@ surface 17: the scaled 14.7 mm lies past the sphere's edge and the validator rej
 
 The validator accepts the new value, the traced edge now reaches 27.39 mm at 41.6° with every rim clear, and the
 image-circle floor reports nothing undersized. No aspheric surface changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.2 → 0.252 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 25.9 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: close row was solved for 0.20 m from the first surface; 0.2 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.2 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

@@ -185,6 +185,17 @@ export function conjugateK(state: PreparedGeometry): number {
  */
 export function paraxialObjectVergence(state: PreparedGeometry): number {
   if (state.focusT < FOCUS_INFINITY_CUTOFF || state.lens.flags.isFoldedOptics) return 0;
+  return paraxialInFocusVergence(state);
+}
+
+/**
+ * The same reciprocal distance with no infinity cutoff: at infinity focus it is the authored state's own residual,
+ * which printed image-plane rounding makes slightly nonzero. Sequential paths only.
+ *
+ * @param state - prepared geometry for the current controls
+ * @returns 1/s in 1/mm; negative when the state focuses beyond infinity; 0 when the trace is degenerate
+ */
+export function paraxialInFocusVergence(state: PreparedGeometry): number {
   const imagePlaneTransfer = state.surfaces[state.surfaces.length - 1]?.d ?? 0;
   const parallel = traceParaxialSurfaces(state.surfaces, 1, 0);
   const axial = traceParaxialSurfaces(state.surfaces, 0, 1);

@@ -71,3 +71,10 @@ Preserve completed June 24 and October 29/30 whole source/shape dates. Directly 
 Reuse the prior six-vendor search. Additional NHG 2601 screening covers 182 native coefficient rows; no stronger source-compatible match appears for L1 1.74916/54.67, L5 1.83481/44.72 or L12 1.90366/29.31. Nearest broad candidates require materially different F−C spans: L5 TAFD5 +4.061805%, L12 J-LASFH13 −6.280679% (NHG H-ZLaF70B −6.355652%). They are rejected for source fidelity, not enabled merely by the broad coordinate window. L1's nearest NHG H-LaK3 also misses νd by −3.72. Osaka OKP and Kuraray's published polymer tables provide no compatible coefficient lead; no contact forms or supplier inquiries were sent. The analysis links the primary datasets and distinguishes the bounded search from an exhaustive materials claim.
 
 Coverage remains 13/16; all source numeric/spectral/APD, geometry and control fields remain unchanged. No new curve or shared catalog row is requested. Previous source/rim/runtime constraints remain applicable.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.18 → 0.717 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 298.2 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: patent close rows are a beta = 0.02 check state, not the production endpoint; 0.18 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.18 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

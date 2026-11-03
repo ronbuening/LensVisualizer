@@ -20,3 +20,10 @@ Paired continuous rims rise at S2=23, S7/S8=16.5, S9/S10=17.2 and S11/S12=19 mm.
 All seven source nd/vd pairs were freshly verified. The claim text defines the spectral d line. The seven compatible catalog curves remain unchanged: J-BASF2, S-LAL13, E-FD2, S-TIM35, S-LAL8, LAC12, S-LAL8. E-FD2's Δnd≈−.000620 is an approximate proxy; no production supplier/melt is identified. No partial dispersion or C/F/g values are published, so unflagged APD annotations indicate missing source identification, not proof of normal dispersion. The public obsolete incompatible glass-equivalent table and unsupported procurement/era-based APD claims are corrected.
 
 Surface, image-circle, nominal f/1.4 aperture and direct field checks pass (≥99% field coverage). Dense inferred-cut verification:1zoom×21focus/grid41/.5°,461,454 rays; refined S5 reach 12.5319<cap 12.704015−.05 mm, zero clipped rays/margin failures/unlaunchable fields. All nine actual SVG states were inspected: finite continuous outlines, zero hidden trim. Shared glass suites pass 2 files/93 tests; source-pair/curve invariants and duplicate-key scan pass. Every source R/d/material pair, scaling, stop/focus/image-plane controls and tolerance is unchanged.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.6 → 0.641 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 6.7 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived unit-focus travel; 0.6 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.6 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

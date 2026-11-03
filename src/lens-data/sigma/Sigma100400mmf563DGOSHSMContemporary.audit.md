@@ -231,3 +231,26 @@ Focus moves G4 alone toward the object, as claim 3, ¶0076 and Fig. 1's arrow sa
 **Rejected.** S10 and S20 were not raised to recover mid-field light: no reading supports it. S3, S6, S17, S27 and S28 keep their drawn rims. Their fan limits would need `rimExtensionSd` lands the figure does not draw, up to 0.26 mm off the drawn curve. The values and their corners are in the tables above for a later decision.
 
 Decided: those five apertures stay as drawn, because the figure draws no land there, so the modeled corners stay above the patent's fans by 10 / 15 / 10 points at wide / middle / tele. `checks.gapSagFrac` is removed, and the file passes at the 0.9 default.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: greedy subset of existing rows under the added limits (EFL label ≤ 0.1 %, half-field ≤ 0.1°): [0, 4, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 27, 28, 29, 30, 31, 32, 34, 36, 38, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64].
+- Focus: kept keyframes [0, 4, 6, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18] of 19, at focus coordinates [0, 0.125, 0.25, 0.375, 0.5, 0.5625, 0.625, 0.6875, 0.75, 0.8125, 0.875, 0.9375, 1].
+- Published zoom stations remapped 0 → 0, 32 → 17, 64 → 45; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 65 × 19 = 1235 | 46 × 13 = 598 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0218 mm | 0.0218 mm |
+| worst fixed-plane defocus at infinity | 0.0187 mm | 0.0210 mm |
+| worst focal-length label residual | 0.0318 mm | 0.0943 mm |
+| worst far-focus distance-label error | +11.0 % (533 m reads 592 m near 197.9 mm) | +163 % (533 m reads 1402 m near 116.2 mm) |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0212 mm (0.49 R), half-field ≤ 0.020°, stop radius ≤ 0.015 %, f-number ≤ 0.000 %, variable gaps ≤ 0.003 mm, axial diffraction MTF at 30 lp/mm +0.000 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+The far-focus label error is the infinity defocus expressed as a distance: near the 0.003 focus cutoff a few micrometres of image-side defocus move the in-focus distance by tens or hundreds of metres. Close-focus labels at kept keyframes are unchanged.
+
+Text sync: header: 62 → 43 derived stations, focus error claim 0.022 mm → 0.022 mm at infinity and 0.038 mm between focus keys, 19 → 13 focus keys; analysis: 65 → 46 stations, 0.019 / 0.022 → 0.022 / 0.038 mm, focus key positions.

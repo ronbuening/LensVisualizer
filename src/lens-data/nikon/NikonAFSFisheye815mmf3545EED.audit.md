@@ -27,3 +27,12 @@ Patent: JP 2017-068114 A, Example 1 / Figure 1.
 - Source q≈.57 at S2 would require a roughly 17.4 mm cap. The unchanged sd/|R|=.9 bound allows at most16.33527 mm;16.34 fails. Adopt16.3: rim slope63.9038°, outer thickness5.72066 mm. No tolerance/source-depth bypass. S3A coefficients remain source-exact; at new17.3 mm radius its actual sag2.263033462 mm minus conic sag2.557717590 mm gives departure−294.684128 µm, synchronized publicly. All other G2 caps and preexisting gapSagFrac=1.0 remain unchanged.
 - All eighteen d-line source `nd`/`νd` pairs are exact and retained; all eighteen resolve to qualified catalog spectral proxies. M-PCD51 and FC5 are current curves for previously neutral labels, not production identifications. No source line-index/partial-dispersion table or source APD designation is supplied; no spectral fields are invented and APD remains false.
 - Surface/image-circle audits pass. Three aperture stations are iris-limited within3% of source design FNO. Nine actual SVG states have eighteen finite paths, zero trim, and source-like front bodies. Fresh vector-launch comparison:825 rays/model; all380 baseline passes retained,0 lost,144 gained. All75 finite-object axial samples at the published near distances pass before/after. Extreme field chief-ray bracketing and pupil clipping remain unresolved; no full-field unvignetted claim. Source-coordinate/catalog checks and shared dispersion/parity/partial tests pass (3 files,94 tests).
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.3524603 → 0.35246 m, with per-station `closeFocusM` 0.35246 / 0.461387 / 0.573028 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 62.7 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: patent prints W/M/T object distances 0.352460 / 0.461387 / 0.573028 m from the focal plane; production MFD 0.16 m.
+- `catalog.closeFocusM.marketing` 0.16 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: analysis: per-station closeFocusM values record the three near rows; the 0.16 m MFD is catalog metadata.

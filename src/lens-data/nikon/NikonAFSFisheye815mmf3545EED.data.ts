@@ -64,6 +64,7 @@ const LENS_DATA = {
     // The scalar aperture metadata records the wide-end values; nominalFNumber below
     // carries the exact W/M/T design sequence for the variable-aperture zoom.
     fNumber: { marketing: 3.5, design: 3.56351 },
+    closeFocusM: { marketing: 0.16 },
   },
 
   source: {
@@ -375,15 +376,15 @@ const LENS_DATA = {
     /* (moved from zoomPositions) ── Published zoom and focus states ── */
     // (moved from publishedStations) The close-focus row is source-tabulated.
     stations: [
-      { focalLengthMm: 8.17997, nominalFNumber: 3.56351, label: "WIDE 8.18mm", published: true, publishedFocus: [1] },
-      { focalLengthMm: 11.8498, nominalFNumber: 4.12559, published: true, publishedFocus: [1] },
-      { focalLengthMm: 15.45007, nominalFNumber: 4.67681, label: "TELE 15.45mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 8.17997, nominalFNumber: 3.56351, closeFocusM: 0.35246, label: "WIDE 8.18mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 11.8498, nominalFNumber: 4.12559, closeFocusM: 0.461387, published: true, publishedFocus: [1] },
+      { focalLengthMm: 15.45007, nominalFNumber: 4.67681, closeFocusM: 0.573028, label: "TELE 15.45mm", published: true, publishedFocus: [1] },
     ],
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 0.3524603,
+    closeFocusM: 0.35246,
     description:
       "PUBLISHED: G2A (L21–L24) translates imageward. The patent close rows use β = −0.03333 and " +
       "object distances from the focal plane of 0.352460, 0.461387, and 0.573028 m at W/M/T; they do not " +

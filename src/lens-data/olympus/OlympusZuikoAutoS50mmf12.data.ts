@@ -44,6 +44,7 @@ const LENS_DATA = {
     /* ── Explicit metadata fields ── */
     focalLengthMm: { marketing: 50 },
     fNumber: { marketing: 1.2 },
+    closeFocusM: { marketing: 0.45 },
   },
 
   source: {
@@ -165,7 +166,7 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  focus: { closeFocusM: 0.45, description: "Unit focus — entire optical assembly translates forward." },
+  focus: { closeFocusM: 0.492, description: "Unit focus — entire optical assembly translates forward." },
 
   /* (moved from var) ── Variable air spacings (unit focus) ── */
   gaps: { "13": { label: "BF", values: [[37.31, 43.56]] } },

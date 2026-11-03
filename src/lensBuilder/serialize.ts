@@ -43,6 +43,7 @@ const ORDERS: Record<string, string[]> = {
     "opticalConfiguration",
     "focalLengthMm",
     "fNumber",
+    "closeFocusM",
   ],
   source: ["patentNumber", "example", "patentYear", "authors", "assignees", "errata"],
   elements: [
@@ -124,6 +125,7 @@ const ORDERS: Record<string, string[]> = {
   opticalConfiguration: ["groupKey", "label", "order"],
   focalLengthMm: ["marketing", "design"],
   fNumber: ["marketing", "design"],
+  closeFocusM: ["marketing"],
   example: ["label", "id"],
   projection: ["kind", "focalLengthMm", "fullFieldDeg", "imageCircleMm", "maxTraceFieldDeg"],
   opticalPath: ["mode", "surfaceOrder", "imagePlane", "maxInteractions"],

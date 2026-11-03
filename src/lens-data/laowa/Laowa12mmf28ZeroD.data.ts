@@ -62,6 +62,7 @@ const LENS_DATA = {
     groupCount: 10,
     focalLengthMm: { marketing: 12, design: 12.49993 },
     fNumber: { marketing: 2.8, design: 2.87 },
+    closeFocusM: { marketing: 0.18 },
   },
 
   source: {
@@ -338,7 +339,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.18,
+    closeFocusM: 0.717,
     description:
       "Floating focus: G1 fixed; G2 and G3 move. The patent variable-gaps encode infinity and a beta=0.02x finite-focus check, not the production 0.2x minimum-focus endpoint.",
     // (moved from publishedStations) The close-focus row is source-tabulated.

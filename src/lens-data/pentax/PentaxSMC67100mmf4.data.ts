@@ -15,8 +15,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Focus: Table 1 gives one main-lens variable spacing, d11 =         ║
  * ║  13.30-15.58 mm, for use with the close-up attachment. The patent   ║
  * ║  places the diaphragm 4.00 mm before r12, so d11 is split here as   ║
- * ║  r11→STO = 9.30-11.58 mm and STO→r12 = 4.00 mm. Back focus values   ║
- * ║  are paraxially computed from the prescription.                     ║
+ * ║  r11→STO = 9.30-11.58 mm and STO→r12 = 4.00 mm. At that floated d11 ║
+ * ║  the patent's main lens is still focused at infinity, so the        ║
+ * ║  standalone close focus is reconstructed: the back focus is solved  ║
+ * ║  per row for 7.09 / 1.77 / 0.886 / 0.591 / 0.443 m object to image, ║
+ * ║  with d11 opening in proportion to slider travel (assumed). The     ║
+ * ║  0.443 m row reaches 0.519x, against Pentax's published 0.52x.      ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS: Patent Table 1 does not list clear         ║
  * ║  apertures. SDs were estimated from a paraxial f/4 marginal-ray +   ║
@@ -165,13 +169,19 @@ const LENS_DATA = {
 
   focus: {
     closeFocusM: 0.443,
+    keyframes: [0, 0.0625, 0.25, 0.5, 0.75, 1],
     // Patent read 2026-10-06, no published focus row: Patent Table 1 prints d11 = 13.30~15.58 mm only for the main
     // lens with the close-up attachment (M = -0.455 to -1.087); it gives no standalone 0.443 m spacing or back focus.
+    // Reconstructed 2026-11-03: each row's BF is solved for its object-to-image distance (0.443 m / keyframe),
+    // with d11 opened linearly in the slider coordinate up to the patent's 15.58 mm.
     description:
-      "Patent Table 1 provides only d11 variation for the main lens while used with the close-up attachment. The data file splits d11 around the fixed stop and varies computed back focus; published standalone close focus is 0.443 m.",
+      "Unit helicoid focus with a floating d11, reconstructed. The patent gives d11 only for use with the close-up attachment (13.30 to 15.58 mm) and leaves the main lens focused at infinity there, so the back focus is solved to focus the main lens alone at 7.09, 1.77, 0.89, 0.59 and 0.443 m while d11 opens in proportion to slider travel. At 0.443 m the back focus has grown 51.8 mm and the magnification is 0.52×, matching Pentax's published standalone limit. The d11 schedule and the intermediate rows are derived, not published.",
   },
 
-  gaps: { "11": { label: "r11→STO", values: [[9.3, 11.58]] }, "16": { label: "BF", values: [[77.425842, 76.823842]] } },
+  gaps: {
+    "11": { label: "r11→STO", values: [[9.3, 9.4425, 9.87, 10.44, 11.01, 11.58]] },
+    "16": { label: "BF", values: [[77.425842, 78.840721, 83.675199, 92.078758, 104.613917, 129.208309]] },
+  },
 
   aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 8 },
 

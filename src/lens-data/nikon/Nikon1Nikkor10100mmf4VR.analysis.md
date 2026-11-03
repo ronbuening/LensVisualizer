@@ -209,7 +209,7 @@ The focus group is G3, a cemented L31/L32 doublet. Focusing from infinity to the
 | Middle | 4.974 | 5.899 | 2.743 | 1.818 | -0.068 |
 | Tele | 1.800 | 5.217 | 5.916 | 2.499 | -0.116 |
 
-The data file uses Table 8 for the infinity prescription and uses the matching Table 3 focus offsets for close focus. Manufacturer-published close-focus specifications remain the product-level reference for catalog metadata; the `closeFocusM` field is set to the wide-end minimum focus distance, 0.35 m, because the data format accepts a single scalar value.
+The data file uses Table 8 for the infinity prescription and uses the matching Table 3 focus offsets for close focus. Manufacturer-published close-focus specifications remain the product-level reference for catalog metadata; the catalog keeps the 0.35 m wide-end minimum focus distance as marketed metadata, while the per-station `closeFocusM` values give the object-to-image distance each Table 3 close row focuses at: about 0.40 m (wide), 0.50 m (middle) and 0.70 m (tele).
 
 ## Aspherical Surfaces
 

@@ -255,7 +255,7 @@ The focus status is **PUBLISHED**, not reconstructed. Example 1 designates all o
 
 At each zoom position, the increase in D1 is matched by the decrease in D2 to within 0.00001 mm, preserving the axial position of the stop-side fixed structure. The computed magnifications agree with the patent’s β = −0.03333 to within 3.2×10⁻5.
 
-The data field `closeFocusM = 0.3524603` represents the wide-state near row because the schema requires a single value. It is not the production lens’s marketed minimum focus distance. Nikon specifies 0.16 m from the focal plane and a maximum reproduction ratio of 0.34× for the production lens; those production values are not substituted into this patent model.
+The per-station `closeFocusM` values record the three near rows, 0.352460 / 0.461387 / 0.573028 m from the focal plane at W/M/T. None is the production lens’s marketed minimum focus distance, which the catalog keeps as marketed metadata. Nikon specifies 0.16 m from the focal plane and a maximum reproduction ratio of 0.34× for the production lens; those production values are not substituted into this patent model.
 
 ## Aspherical Surfaces
 

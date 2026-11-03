@@ -299,6 +299,7 @@ const schema = object(
       opticalConfiguration: object({ groupKey: text, label, order: number }, ["groupKey", "label", "order"]),
       focalLengthMm: object({ marketing: either(number, pair), design: either(number, pair) }),
       fNumber: object(numericFields("marketing", "design")),
+      closeFocusM: object({ marketing: either(number, pair) }),
     }),
     source: object({
       patentNumber: text,

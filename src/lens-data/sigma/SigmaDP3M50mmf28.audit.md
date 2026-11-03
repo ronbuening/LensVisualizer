@@ -66,3 +66,12 @@ Patent: JP 2014-126652 A, Example 3
 - Replaced tentative L7 CF6 wording with coefficient-backed HOYA E-F2, an exact 620363 coordinate match.
 - Replaced speculative L10 TACD5 wording with coefficient-backed HOYA MC-NBFD135, an exact 808409 coordinate match.
 - Both labels are catalog spectral equivalents, not production-supplier claims. No geometry or authored patent constants changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.225 → 0.561 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 149.3 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close row states no distance; 0.225 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.225 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: closeFocusM comment: the patent close row, object to image; Sigma's 22.5 cm is catalog metadata.

@@ -43,3 +43,10 @@ Source: local `patents/JP2015041012A.pdf`, Example 1, PDF pp.11–12, paragraphs
 **Cause: source contradiction.** Independent reduced-angle propagation gives EFL 35.948432083 mm (printed 36.06) and BFL 20.500541847 mm (image distance 20.03). Source nd values have only two decimals; precision loss is plausible, but cannot be repaired with unproven glass identities. No single supported misprint resolves the residual. Corrected the analysis table's previous claim of exact computed BFD agreement. Runtime offset **+0.470542 → +0.470542 mm**. Published values retained, Section E row deleted, no numerical change or changelog.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.35 → 0.406 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 16.0 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close row states no distance; 0.35 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.35 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

@@ -84,3 +84,10 @@ telephoto end columns; read from the page image and from the text layer.
   aberration-diagram reference, which may account for the EFL half of the
   image-plane contradiction recorded above; the 0.81-0.91 mm back-focus gap
   is not explained by it. Not re-derived here.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 1 → 1 m, with per-station `closeFocusM` 1 / 1.25 / 1.5 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 50.0 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived close rows approximate Sony's range; 1 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 1 / 1.5 m (wide / tele) keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

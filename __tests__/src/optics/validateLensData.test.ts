@@ -2558,6 +2558,19 @@ describe("zoom source schedules", () => {
       ).some((e) => e.includes("zoomStopSemiDiameters")),
     ).toBe(true);
   });
+  it("accepts a marketed minimum focus distance and refuses malformed ones", () => {
+    const marketed = (overrides: Record<string, unknown>) =>
+      validateLensData(makeValid(overrides)).filter((e) => e.includes("closeFocusMarketing"));
+    expect(marketed({ closeFocusMarketing: 0.3 })).toHaveLength(0);
+    expect(marketed({ zoomPositions: [20, 35, 50], closeFocusMarketing: [0.25, 0.45] })).toHaveLength(0);
+    for (const closeFocusMarketing of [0, -0.3, Infinity, "0.3", [0.25], [0.25, -1]]) {
+      expect(marketed({ zoomPositions: [20, 35, 50], closeFocusMarketing }), String(closeFocusMarketing)).toHaveLength(
+        1,
+      );
+    }
+    // A [wide, tele] pair belongs to a zoom.
+    expect(marketed({ closeFocusMarketing: [0.25, 0.45] })).toHaveLength(1);
+  });
   it("rejects malformed zoom focus endpoints and unknown aperture models", () => {
     for (const zoomCloseFocusM of [[1], [1, -1, 2], [1, Infinity, 2]]) {
       expect(

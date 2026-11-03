@@ -99,3 +99,9 @@ Freshly rendered and inspected `patents/JPWO2020105107A1.pdf`, Example 1, Table 
 All 16 catalog resolutions were individually checked and retained: L11 J-BK7A; L12 F5; L13 J-FK5; L21 J-LASF016; L22/L42 H-ZLaF52A; L23 FDS18; L31 J-FK01A; L32 J-LASF021; L33 E-C3; L34 J-LASFH24; L35 S-LAM2; L36 J-LASF017; L41 H-ZF7LA; L51 J-SK5; L52 H-ZLaF4LA. These are compatible coefficient-backed spectral models, not named production suppliers. L31's APD remains inferred; its high Abbe number does not publish a partial-dispersion measurement. The analysis already reflects the recovered J-LASFH24 curve and the qualified L23/L52 property classes.
 
 No correction was required. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). Geometry is unchanged.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.5 → 0.5 m, with per-station `closeFocusM` 0.5 / 0.553 / 1 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 100.0 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived close rows already follow Nikon's published MFDs; per-station values record them.

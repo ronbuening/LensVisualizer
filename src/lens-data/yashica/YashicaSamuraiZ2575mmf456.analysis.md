@@ -144,7 +144,7 @@ The patent specifies G3 motion toward the image for close focusing, but supplies
 
 The patent prints only the wide and tele infinity prescriptions. Repeated focus values preserve each zoom geometry without implementing near focusing. The approximately 49 mm F4.8 aberration plot does not supply an intermediate prescription.
 
-Between the printed endpoints, the model includes 199 unpublished intermediate positions. D5 varies linearly and D12 remains complementary, preserving D5+D12 = 13.767 mm and the 52.237 mm first-to-last optical spacing. G1 and G3 remain coupled and move objectward; G2 moves independently objectward, with positive gaps throughout. The rear image gap follows first-order focus while retaining interpolated endpoint defocus of −0.1664649454 to −0.0794639516 mm. This motion is an interpolation, not a measured factory cam law. The printed endpoint prescriptions remain unchanged. Aperture variation is also interpolated; at approximately 49 mm, the model gives F5.043 versus the plotted F4.8.
+Between the printed endpoints, the model includes 19 unpublished intermediate positions. D5 varies linearly and D12 remains complementary, preserving D5+D12 = 13.767 mm and the 52.237 mm first-to-last optical spacing. G1 and G3 remain coupled and move objectward; G2 moves independently objectward, with positive gaps throughout. The rear image gap follows first-order focus while retaining interpolated endpoint defocus of −0.1664649454 to −0.0794639516 mm. This motion is an interpolation, not a measured factory cam law. The printed endpoint prescriptions remain unchanged. Aperture variation is also interpolated; at approximately 49 mm, the model gives F5.043 versus the plotted F4.8.
 
 ## Conditional Expressions
 
@@ -182,7 +182,7 @@ The rendered L1 and L4 rims slope where the figure shows a curved face ending in
 
 The chosen radii transmit central axial rays with ordinary off-axis vignetting. The maker's 17 × 24 mm frame is covered by chief rays throughout the modeled zoom range; nominal 18 × 24 mm corners are also reached at every zoom position. Neither cemented interior interface clips the sampled rays. A tele ray can clip at S19. These inferred-rim results do not establish measured pupil transmission, vignetting or MTF.
 
-The inferred surfaces require no rendering trim. Printed surface values, stop location, cemented-interface media and endpoint spacings are retained. Intermediate defocus reaches 0.16603 mm in magnitude; 152 of the 199 interpolated positions exceed 0.1 mm. No MTF optimization is applied. The raised cross-gap allowance above is the only departure from the default geometry checks.
+The inferred surfaces require no rendering trim. Printed surface values, stop location, cemented-interface media and endpoint spacings are retained. Intermediate defocus reaches 0.1621 mm in magnitude at the stations and 0.1664 mm between them; 15 of the 19 interpolated positions exceed 0.1 mm. No MTF optimization is applied. The raised cross-gap allowance above is the only departure from the default geometry checks.
 
 ## Sources
 

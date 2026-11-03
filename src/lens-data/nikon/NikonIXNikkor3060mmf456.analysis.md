@@ -88,7 +88,7 @@ All six bodies now use catalog dispersion curves anchored to the retained patent
 
 Patent ¶0050 states that close focusing can be done by moving the first group toward the object. The model uses that single motion, holds the rear group and image plane fixed at each zoom state, and solves the paraxial conjugate for Nikon's 0.35 m minimum focus distance, taken as object-to-image distance. G1 travels about 4.7–4.8 mm. The patent prints no near-focus spacings, so these are calculated rather than published.
 
-Seventeen focus keyframes, spaced in reciprocal object distance, are interpolated; the largest paraxial defocus found between keyframes is about 0.004 mm. Only the three printed zoom states at infinity are marked as published, and finite-focus MTF is not available for this lens.
+Nine focus keyframes, spaced in reciprocal object distance, are interpolated; the largest paraxial defocus found between keyframes is about 0.016 mm. Only the three printed zoom states at infinity are marked as published, and finite-focus MTF is not available for this lens.
 
 ## Aspherical Surfaces
 

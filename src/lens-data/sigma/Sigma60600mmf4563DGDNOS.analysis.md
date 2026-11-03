@@ -506,9 +506,9 @@ model, d5, d10, d20, d32 and d42 run linearly between published rows, and G6 is 
 re-dividing the paired gaps d34 and d38, whose sum stays linear, so that the paraxial image
 stays on the printed image plane. Every group keeps the direction stated in ¶0134: G1 and
 G4–G7 move toward the object, G2 toward the image, and G3 and G8 stay fixed. The largest
-departure from linear spacing is near 338 mm, where d34 opens to 9.23 mm against about 4.5 mm
-on a straight line. Paraxial defocus stays within 0.029 mm at all 201 stations, the tele row's
-own rounding residual. The 198 solved stations are marked unpublished; their focal lengths are
+departure from linear spacing is near 341 mm, where d34 opens to 9.22 mm against about 4.5 mm
+on a straight line. Paraxial defocus stays within 0.029 mm at all 70 stations and between them, the
+tele row's own rounding residual. The 67 solved stations are marked unpublished; their focal lengths are
 computed EFLs and their f-numbers are interpolated between the printed values. The path is a
 visualization of one consistent motion, not a recovered production cam, and the solved
 intermediate states carry no published aberration data.

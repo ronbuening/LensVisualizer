@@ -683,6 +683,20 @@ EFL (including perspective field scale), f-number and magnification summaries, p
 and the real-ray sensitivity difference `kt - k0` used for conjugate correction. Below the cutoff `conjugateK` is
 zero, matching the pre-optics-2 behavior. The cutoff does not snap interpolated surface gaps.
 
+Focus labels (`formatDist` and `focusLabelDistanceM` in `first-order/format.ts`, which feed the focus readout, breathing,
+the summary and the uncertified patent-station buttons) report `modeledFocusDistanceAt` (`state/fieldAdapters.ts`).
+It anchors each authored row (station × keyframe) at that row's own paraxial in-focus object-to-image distance
+(`paraxialInFocusVergence` plus the total track), reads keyframe 0 as infinity, and interpolates inverse distance
+bilinearly between rows, so a label never inherits an infinity row's printed image-plane residual or the
+hypersensitive in-focus distance of a near-infinity blend. The per-`CompiledLens` table is cached in
+`ROW_FOCUS_VERGENCE`. A row whose spacings equal its infinity row has no distance, and labels then fall back to the
+slider convention `focusDistanceAt` (closeFocus / focusT), as they do on folded paths and for runtimes the canonical
+compiler did not build. `focus.closeFocusM` is the close row's distance (a corpus sweep holds it within 5 %); the
+maker's figure is `catalog.closeFocusM.marketing`, named beside the label by `marketedCloseFocusNote`. Station buttons
+for source-certified conjugates (`PublishedFocusStation.certifiedDistanceM`) show the source's object-to-image
+distance. Zoom-change focus remapping, comparison focus sharing and `PublishedFocusStation.distanceM` still use the
+convention.
+
 `state/preparedGeometry.ts` owns `prepareState()` and the only prepared-control LRU. It retains prepared states for
 the two most recently used compiled lenses (`PREPARED_LENS_CACHE_LIMIT = 2`), so a comparison keeps a full slider
 history for both lenses, and at most 96 immutable states per `CompiledLens` (`PREPARED_STATE_CACHE_LIMIT`).

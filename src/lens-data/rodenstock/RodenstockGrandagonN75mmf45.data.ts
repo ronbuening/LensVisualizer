@@ -177,7 +177,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 1.0,
+    closeFocusM: 1.134,
     description: "Unit focus by bellows or helical extension; no internal focusing groups in the patent.",
   },
 

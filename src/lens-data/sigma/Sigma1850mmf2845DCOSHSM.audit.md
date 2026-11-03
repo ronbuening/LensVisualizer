@@ -201,3 +201,23 @@ L6 moved from L-BAL35 to M-BACD5N. L-BAL35 has no catalog row and resolved to S-
 R1 and R2 stay Unmatched. JP 2019-211703 A Example 2 prints PgF 0.5538 for a 1.51840/52.10 aspherical resin in the same column as the glasses above. That gives `dPgF` −0.002411 against the engine line. Matching coordinates do not prove the same resin, so `apdNote` calls it a proxy. Neither patent for this lens prints a partial.
 
 A corpus resolution diff before and after moved only these elements and Sigma 10-20 L1.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 4th existing row (indices 0, 4, …, 200).
+- Focus: both keyframes kept (no change).
+- Published zoom stations remapped 0 → 0, 100 → 25, 200 → 50; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 201 × 2 = 402 | 51 × 2 = 102 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0003 mm | 0.0047 mm |
+| worst fixed-plane defocus at infinity | 0.0003 mm | 0.0047 mm |
+| worst focal-length label residual | 0.0003 mm | 0.0042 mm |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0047 mm (0.34 R), half-field ≤ 0.047°, stop radius ≤ 0.006 %, f-number ≤ 0.000 %, variable gaps ≤ 0.005 mm, axial diffraction MTF at 30 lp/mm +0.033 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+Text sync: analysis: out of 201 → out of 51 stations.

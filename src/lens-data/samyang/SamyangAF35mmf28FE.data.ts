@@ -80,6 +80,7 @@ const LENS_DATA = {
     groupCount: 6,
     focalLengthMm: { marketing: 35, design: 35.182840213 },
     fNumber: { marketing: 2.8, design: 2.899 },
+    closeFocusM: { marketing: 0.35 },
   },
 
   source: {
@@ -240,7 +241,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.35,
+    closeFocusM: 0.387,
     keyframes: [0, 0.237653048385, 1],
     description:
       "PUBLISHED inner focus: L34 + L44 (G24) translates toward image space while G14/G34 remain fixed. Table 12 D1/D2 states are preserved at infinity, MAG=-1/40, and the raw close row headed TL=0.3m. The close heading is internally inconsistent with D0+OAL≈0.3485m and Samyang's 0.35m sensor-to-object MFD; no spacing is reconstructed.",

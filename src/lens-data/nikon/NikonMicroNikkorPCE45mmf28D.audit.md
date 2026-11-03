@@ -46,3 +46,12 @@ Local patent source: `patents/US7656591.pdf` (untracked local file).
 - L21's former family annotation selected loose FCD1 (1.497/81.61), although current J-FKH1 offers 1.49782/82.57 against source 1.49782/82.56. Use the closer qualified J-FKH1 spectral proxy. All nine media have compatible coefficient coverage; supplier/melt/composition remain unspecified. The inherited inferred APD badge now explicitly refers to the correlated production ED position, not proof of FPL51 family identity or a source-published spectral anomaly. Removed unsupported formulation/secondary-spectrum claims and incorrect exact/rounding labels; no numeric θgF, dPgF or extra spectral-line values are added.
 - Runtime source G index remains exactly 1.49782. Proxy change gives R 1.495960253491→1.495980310932, B 1.502050269818→1.502009281952, V 1.505331886270→1.505256465624; these are modeled curve differences, not patent measurements. Other selected coefficient curves remain unchanged.
 - Focused surface, image-circle, stated aperture and centered source-field checks pass; nine actual SVG focus/zoom-grid views have connected outlines and no automatic rim trim. Catalog consistency passes. The existing 58.6 mm source design-circle versus extreme-shift illumination limitation remains; centered checks do not establish full diagonal-shift throughput.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.253 → 0.225 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to -10.9 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed beta = -0.5 row focuses at 0.225 m; 0.253 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.253 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: closeFocusM comment: the β = −0.50 row, object to image; Nikon's 0.253 m is catalog metadata.

@@ -125,7 +125,10 @@ interface FocusInterpolationSegment {
   fraction: number;
 }
 
-function focusInterpolationSegment(focusPositions: readonly number[], controlT: number): FocusInterpolationSegment {
+export function focusInterpolationSegment(
+  focusPositions: readonly number[],
+  controlT: number,
+): FocusInterpolationSegment {
   if (focusPositions.length <= 1) return { fromIndex: 0, toIndex: 0, fraction: 0 };
 
   let toIndex = 1;

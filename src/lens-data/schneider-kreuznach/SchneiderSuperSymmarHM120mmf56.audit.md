@@ -40,3 +40,11 @@ The patent does not publish clear-aperture diameters. Fig. 1 was therefore measu
 ### Phase 4 — Analysis sync
 
 - Updated the inventor line and source citation to distinguish the canonical catalog identity from the name printed on the patent.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 1 → 1.192 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 19.2 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: focus description: 1.0 m is a modeled UI endpoint, not a manufacturer MFD.
+
+Text sync: focus.description: the 1.0 m object-distance endpoint is about 1.19 m object to image.

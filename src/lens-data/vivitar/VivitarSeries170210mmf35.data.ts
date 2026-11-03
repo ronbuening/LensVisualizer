@@ -311,8 +311,8 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 70, label: "Wide" },
-      { focalLengthMm: 205, label: "Tele" },
+      { focalLengthMm: 70, closeFocusM: 2.009, label: "Wide" },
+      { focalLengthMm: 205, closeFocusM: 0.29, label: "Tele" },
     ],
     apertureModel: "fixed-iris",
     step: 0.004,

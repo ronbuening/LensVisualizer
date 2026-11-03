@@ -48,6 +48,7 @@ const LENS_DATA = {
     groupCount: 6,
     focalLengthMm: { marketing: 20, design: 20.42057 },
     fNumber: { marketing: 2.8, design: 2.89 },
+    closeFocusM: { marketing: 0.2 },
   },
 
   source: {
@@ -198,7 +199,7 @@ const LENS_DATA = {
 
   /* ── Product and viewer configuration ── */
   focus: {
-    closeFocusM: 0.2,
+    closeFocusM: 0.214,
     description: "Rear focus: G4 (L6) moves 1.21 mm imageward from infinity to the patent short-distance state.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],

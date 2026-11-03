@@ -42,3 +42,9 @@ supply a numeric partial dispersion. Do not manufacture dPgF or infer a
 supplier from the rounded coordinates. Leave L41 unresolved and its spectral
 MTF limitation intact. Delete the requested Tier A research row; reopen only
 with new source evidence. The source plate likewise has nd/vd only.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.5 → 0.72 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 44.1 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: the patent's 0.5 m state has no defined reference plane; the row focuses at 0.720 m object to image.

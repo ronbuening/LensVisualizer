@@ -59,6 +59,7 @@ const LENS_DATA = {
     groupCount: 6,
     focalLengthMm: { marketing: 45, design: 46.307118574 },
     fNumber: { marketing: 1.8, design: 1.84 },
+    closeFocusM: { marketing: 0.45 },
   },
 
   source: {
@@ -179,7 +180,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.45,
+    closeFocusM: 0.49,
     description:
       "Focus status PUBLISHED: the single biconcave G2 element moves imageward while D1/D2 change from 2.99/6.81 mm to 7.01/2.78 mm. The source implies 4.02–4.03 mm of travel because the two-decimal gap sums differ by 0.01 mm. No reconstruction replaces the published close row; D0=407.1 mm is not an exact paraxial conjugate with the retained image plane.",
     // (moved from publishedStations) The close-focus row is source-tabulated.

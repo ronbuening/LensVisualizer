@@ -204,3 +204,26 @@ Found correct, not changed:
 
 Open: the 0.9 m wide-end close focus is still not modelled. The earlier sections of this log use G-notation and
 L1–L18 element names; they refer to the same groups and elements as L1–L5 and E1–E18 here.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: greedy subset of existing rows under the added limits (EFL label ≤ 0.1 %, half-field ≤ 0.1°): [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80].
+- Focus: kept keyframes [0, 1, 3, 5, 7, 9, 11, 13, 15, 16] of 17, at focus coordinates [0, 0.0625, 0.1875, 0.3125, 0.4375, 0.5625, 0.6875, 0.8125, 0.9375, 1].
+- Published zoom stations remapped 0 → 0, 40 → 20, 80 → 50; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 81 × 17 = 1377 | 51 × 10 = 510 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0114 mm | 0.0224 mm |
+| worst fixed-plane defocus at infinity | 0.0114 mm | 0.0224 mm |
+| worst focal-length label residual | 0.0276 mm | 0.0303 mm |
+| worst far-focus distance-label error | +24.1 % (500 m reads 620.5 m near 78.7 mm) | +361 % (500 m reads 2305 m near 80.5 mm) |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0224 mm (0.49 R), half-field ≤ 0.002°, stop radius ≤ 0.035 %, f-number ≤ 0.001 %, variable gaps ≤ 0.008 mm, axial diffraction MTF at 30 lp/mm -0.051 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+The far-focus label error is the infinity defocus expressed as a distance: near the 0.003 focus cutoff a few micrometres of image-side defocus move the in-focus distance by tens or hundreds of metres. Close-focus labels at kept keyframes are unchanged.
+
+Text sync: header: 78 → 48 intermediate stations, 17- → 10-keyframe focus law; analysis: 78 → 48 stations, station spacing described, seventeen → ten focus keyframes, "all 81 zoom stations" → "every zoom station".

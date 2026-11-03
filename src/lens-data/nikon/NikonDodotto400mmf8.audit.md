@@ -17,3 +17,12 @@ Patent: JP H9-105860 A, Example 1 / Table 1.
 - All four source n/Abbe pairs directly agree: 1.62280/57.03, 1.75692/31.62, 1.62004/36.27, 1.51680/64.10. Four compatible coefficient curves are retained; explicit proxy labels avoid historical-supplier claims. Corrected unsupported rounding/melt explanations: S-BSM10 νd 57.05 versus 57.03 and E-LAF11 31.591329 versus 31.62 exceed the source's two-decimal rounding interval. No source C/F/g or numeric partial-dispersion data is supplied in the extract, and no anomaly is inferred as a measured zero.
 - Reviewed all six glass faces, including both cemented boundaries. The front doublet's source outline has a common outer height. Restore S3's continuous cap 27.5→28.0 mm, matching the retained S1/S2 inferred height. The source resolves no separate concave cap-end land; no new trim/opaque extension is added. Keep the conservative front aperture, the 18.6 mm rear group and the stated 645 peripheral-illumination limitation rather than force a fully unvignetted front bundle through invalid edge thickness.
 - Source R/d, inferred focus, stop and f/8.13 design/marketing f/8 separation remain unchanged. Focused surface, image-circle, stated-aperture and field checks pass; catalog consistency passes. Nine actual SVG focus/zoom-grid views were inspected with connected compound outlines and no automatic rim trim (zoom columns repeat this fixed-focal-length lens).
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 4.5 → 5.059 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 12.4 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived unit-focus travel; 4.5 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 4.5 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: focus.description: the BFD extension was derived for the 4.5 m MFD and focuses at 5.06 m object to image.

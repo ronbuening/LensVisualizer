@@ -180,7 +180,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.5,
+    closeFocusM: 0.628,
     description: "Unit focus — entire lens moves via view camera bellows/rail. No internal focusing groups.",
   },
 

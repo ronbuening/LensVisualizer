@@ -8,7 +8,7 @@ import DiagramControls from "../../../../src/components/controls/DiagramControls
 import { buildFixtureLens as buildLens } from "../../optics/constructionFixtures.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
-import { formatFNumber } from "../../../../src/optics/optics.js";
+import { formatDist, formatFNumber } from "../../../../src/optics/optics.js";
 import type { ParaxialWorkingFNumberResult } from "../../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
@@ -346,7 +346,8 @@ describe("DiagramControls", () => {
     });
 
     it("replaces the zoom and focus sliders with station buttons and keeps the motion actions", () => {
-      renderControls(steppedZoom(), { patentPositions: true, focusT: 1 });
+      const L = steppedZoom();
+      renderControls(L, { patentPositions: true, focusT: 1 });
 
       expect(screen.queryByRole("slider", { name: "ZOOM" })).toBeNull();
       expect(screen.queryByRole("slider", { name: "FOCUS" })).toBeNull();
@@ -354,7 +355,8 @@ describe("DiagramControls", () => {
       expect(zoom.map((radio) => radio.textContent)).toEqual(["24 mm", "50 mm", "100 mm"]);
       expect(zoom.map((radio) => radio.getAttribute("aria-checked"))).toEqual(["true", "false", "false"]);
       const focus = within(screen.getByRole("radiogroup", { name: "Focus position" })).getAllByRole("radio");
-      expect(focus.map((radio) => radio.textContent)).toEqual(["\u221e", "50 cm"]);
+      // Each focus button reads the focus slider's own label for its keyframe.
+      expect(focus.map((radio) => radio.textContent)).toEqual(["\u221e", formatDist(1, L, 0)]);
       expect(focus.map((radio) => radio.getAttribute("aria-checked"))).toEqual(["false", "true"]);
       expect(screen.getByRole("button", { name: /open zoom group motion chart/i })).toBeTruthy();
       expect(screen.getByRole("button", { name: /open focus group motion chart/i })).toBeTruthy();

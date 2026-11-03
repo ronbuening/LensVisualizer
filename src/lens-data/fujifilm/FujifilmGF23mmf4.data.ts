@@ -323,7 +323,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.25,
+    closeFocusM: 0.379,
     description:
       "Inner focus: positive Group G2 behind the aperture stop moves object-ward from infinity to the patent's 0.25 m closest-point state.",
     // (moved from publishedStations) The close-focus row is source-tabulated.

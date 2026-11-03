@@ -33,7 +33,8 @@ const DATA={
     "fNumber": {
       "marketing": 2.8,
       "design": 2.91
-    }
+    },
+    "closeFocusM": { "marketing": [0.17, 0.29] }
   },
   "source": {
     "patentNumber": "JP 2022-131391 A",

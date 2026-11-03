@@ -147,7 +147,7 @@ Using the rounded refractive indices actually stored in the data, the independen
 
 With the final image plane held fixed at the published close spacing state, the rounded-index paraxial model gives an object conjugate about 625.4 mm in front of surface 1 and lateral magnification about −0.0877. This independently supports using the patent's rounded 0.63 m value as a first-surface-referenced close-distance check and is also consistent in scale with Viltrox's marketed 0.1× maximum magnification.
 
-The 0.63 m value remains the modeled close endpoint because it is the patent's published spacing state. Viltrox markets the production lens at 0.6 m minimum focus distance and specifies an STM plus lead-screw drive. Those manufacturer specifications are retained as product context and are not used to interpolate a new patent focus position.
+The patent's 0.63 m state remains the modeled close endpoint because it is the published spacing state; traced object to image it focuses at about 0.71 m, the distance the close-focus label reports. Viltrox markets the production lens at 0.6 m minimum focus distance and specifies an STM plus lead-screw drive. Those manufacturer specifications are retained as product context and are not used to interpolate a new patent focus position.
 
 ## Chromatic Correction Strategy
 

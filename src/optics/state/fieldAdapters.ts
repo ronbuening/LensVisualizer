@@ -3,8 +3,10 @@
 import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import type { FieldGeometryState, VectorFieldRayLaunch } from "../field/launch.js";
 import { FOCUS_INFINITY_CUTOFF } from "./focusDistance.js";
-import { compiledLensFromRuntime } from "../prescription/identity.js";
-import { prepareState } from "./preparedGeometry.js";
+import { compiledLensFromRuntime, findCompiledLens } from "../prescription/identity.js";
+import { prepareState, prepareStateUncached } from "./preparedGeometry.js";
+import { clampStationControl, focusInterpolationSegment, stationSegment } from "./stationTables.js";
+import type { CompiledLens } from "../types.js";
 import type { PreparedRayTrace } from "../trace/rayAdapters.js";
 import type { ChiefRaySolveResult } from "../field/chiefRaySolve.js";
 import { solveChiefRay, solveChiefRayBoundingSphere } from "../field/chiefRaySolve.js";
@@ -13,6 +15,7 @@ import {
   computeFieldGeometry,
   conjugateK,
   entrancePupil,
+  paraxialInFocusVergence,
   paraxialObjectVergence,
   traceParaxialRay,
 } from "../field/geometry.js";
@@ -387,6 +390,80 @@ export function paraxialObjectVergenceForRuntimeLens(
 ): number {
   if (focusT < FOCUS_INFINITY_CUTOFF) return 0;
   return paraxialObjectVergence(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
+}
+
+/**
+ * Inverse object-to-image distance, in 1/m, at which each authored row focuses: `[station][keyframe]`, keyframe 0
+ * (infinity) included as 0. `null` marks a row whose spacings equal its station's infinity row. Computed once per
+ * compiled lens.
+ */
+const ROW_FOCUS_VERGENCE = new WeakMap<CompiledLens, (number | null)[][]>();
+
+function rowFocusVergences(compiled: CompiledLens): (number | null)[][] {
+  const cached = ROW_FOCUS_VERGENCE.get(compiled);
+  if (cached) return cached;
+  const keyframes = compiled.variables.focusPositions;
+  const stations = compiled.flags.isZoom ? (compiled.source.zoom?.stations.length ?? 1) : 1;
+  const rows = Array.from({ length: stations }, (_, station) => {
+    const zoomT = stations > 1 ? station / (stations - 1) : 0;
+    const infinity = prepareStateUncached(compiled, 0, zoomT, 0);
+    return keyframes.map((focusT, keyframe) => {
+      if (keyframe === 0) return 0;
+      const state = prepareStateUncached(compiled, focusT, zoomT, 0);
+      if (state.surfaces.every((surface, index) => surface.d === infinity.surfaces[index].d)) return null;
+      const vergence = paraxialInFocusVergence(state);
+      // At or beyond infinity a row adds no inverse distance; a real object adds the inverse of its distance.
+      return vergence > 0 ? 1000 / (1 / vergence + state.totalTrack) : 0;
+    });
+  });
+  ROW_FOCUS_VERGENCE.set(compiled, rows);
+  return rows;
+}
+
+/**
+ * Object-to-image distance, in metres, the focus labels report: the distance each authored row actually focuses at,
+ * interpolated in inverse distance between rows.
+ *
+ * The slider convention (`focusDistanceAt`: closeFocus / focusT) interpolates inverse distance too, but anchors every
+ * row at `closeFocusM / keyframe`, which holds only where the spacings were solved for it. Here each row (zoom station
+ * and focus keyframe) is anchored at its own paraxial in-focus distance with the image plane fixed; infinity is
+ * infinity. Between rows, inverse distance follows the same bilinear interpolation as the gaps. Reading the blended
+ * state's own focus instead would carry its interpolation residual: near infinity a few micrometres of defocus move an
+ * in-focus distance by tens of metres, so a label would jump between neighbouring slider steps.
+ *
+ * @param focusT - normalized focus position
+ * @param L - runtime lens prescription
+ * @param zoomT - normalized zoom position
+ * @returns metres; `Infinity` below the infinity cutoff or at or beyond infinity; `null` on a folded path, where the
+ *   focus control moves no gap at the bracketing stations, or for a runtime the canonical compiler did not build, so
+ *   the caller keeps the slider convention
+ */
+export function modeledFocusDistanceAt(focusT: number, L: RuntimeLens, zoomT = 0): number | null {
+  if (focusT < FOCUS_INFINITY_CUTOFF) return Infinity;
+  if (L.isFoldedOptics) return null;
+  const compiled = findCompiledLens(L);
+  if (!compiled) return null;
+  const rows = rowFocusVergences(compiled);
+  const zoom =
+    rows.length > 1
+      ? stationSegment(clampStationControl(zoomT), rows.length)
+      : { fromIndex: 0, toIndex: 0, fraction: 0 };
+  const focus = focusInterpolationSegment(compiled.variables.focusPositions, clampStationControl(focusT));
+  // Bilinear weights of the four bracketing rows; a row with zero weight may lack focus travel without effect.
+  const corners: [number, number, number][] = [
+    [zoom.fromIndex, focus.fromIndex, (1 - zoom.fraction) * (1 - focus.fraction)],
+    [zoom.fromIndex, focus.toIndex, (1 - zoom.fraction) * focus.fraction],
+    [zoom.toIndex, focus.fromIndex, zoom.fraction * (1 - focus.fraction)],
+    [zoom.toIndex, focus.toIndex, zoom.fraction * focus.fraction],
+  ];
+  let inverse = 0;
+  for (const [station, keyframe, weight] of corners) {
+    if (weight === 0) continue;
+    const value = rows[station][keyframe];
+    if (value === null) return null;
+    inverse += weight * value;
+  }
+  return inverse > 0 ? 1 / inverse : Infinity;
 }
 
 export { type ChiefRaySolveResult } from "../field/chiefRaySolve.js";

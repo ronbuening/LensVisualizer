@@ -59,6 +59,7 @@ const LENS_DATA = {
     groupCount: 14,
     focalLengthMm: { marketing: [70, 300], design: [72.099, 292.007] },
     fNumber: { design: 4.49 },
+    closeFocusM: { marketing: 1.2 },
   },
 
   source: {
@@ -337,16 +338,16 @@ const LENS_DATA = {
   zoom: {
     // (moved from publishedStations) The close-focus row is source-tabulated.
     stations: [
-      { focalLengthMm: 72.1, nominalFNumber: 4.49, label: "Wide", published: true, publishedFocus: [1] },
-      { focalLengthMm: 100.0, nominalFNumber: 4.86, label: "Middle", published: true, publishedFocus: [1] },
-      { focalLengthMm: 292.0, nominalFNumber: 5.88, label: "Tele", published: true, publishedFocus: [1] },
+      { focalLengthMm: 72.1, nominalFNumber: 4.49, closeFocusM: 2.289, label: "Wide", published: true, publishedFocus: [1] },
+      { focalLengthMm: 100.0, nominalFNumber: 4.86, closeFocusM: 3.113, label: "Middle", published: true, publishedFocus: [1] },
+      { focalLengthMm: 292.0, nominalFNumber: 5.88, closeFocusM: 8.797, label: "Tele", published: true, publishedFocus: [1] },
     ],
     apertureModel: "fixed-iris",
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 1.2,
+    closeFocusM: 2.289,
     description:
       "Rear internal focus: the negative G4/RN group (L41-L42) translates imageward. Patent short-distance travel is 0.657 mm at wide, 0.820 mm at middle, and 1.719 mm at telephoto; Nikon's production MFD is 1.2 m.",
   },

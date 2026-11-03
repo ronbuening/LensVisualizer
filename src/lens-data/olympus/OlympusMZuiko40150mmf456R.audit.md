@@ -135,3 +135,26 @@ Group focal lengths calculated from the table are +127.84 / −28.10 / +28.71 / 
 Live page after the edits, at WE, ST and TE, each at infinity and closest focus: L9 now stands below L8 and L10 as both drawings show, G3f and G3b label their elements without colliding with G2 or G4, and nothing else moved. The final model outline is overlaid on panel (c) in the review scratch folder.
 
 Limitations: the L3/L4 step cannot be drawn; L4 keeps a slanted upper edge from S5 at 8.9 mm to S6 at 8.0 mm until a cemented land exists. Rims remain inferred from the figure.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 2nd existing row (indices 0, 2, …, 64).
+- Focus: kept keyframes [0, 2, 4, 6, 8, 10, 12, 14, 16] of 17, at focus coordinates [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1].
+- Published zoom stations remapped 0 → 0, 32 → 16, 64 → 32; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 65 × 17 = 1105 | 33 × 9 = 297 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0017 mm | 0.0065 mm |
+| worst fixed-plane defocus at infinity | 0.0018 mm | 0.0066 mm |
+| worst focal-length label residual | 0.0048 mm | 0.0193 mm |
+| worst far-focus distance-label error | +6.5 % (300 m reads 319.5 m near 76.7 mm) | +33.7 % (300 m reads 401.2 m near 75.8 mm) |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0102 mm (0.25 R), half-field ≤ 0.014°, stop radius ≤ 0.012 %, f-number ≤ 0.000 %, variable gaps ≤ 0.005 mm, axial diffraction MTF at 30 lp/mm +0.009 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+The far-focus label error is the infinity defocus expressed as a distance: near the 0.003 focus cutoff a few micrometres of image-side defocus move the in-focus distance by tens or hundreds of metres. Close-focus labels at kept keyframes are unchanged.
+
+Text sync: focus.description: far-focus label error 6.5 % → 34 %; analysis: 17 → 9 focus positions, between-position defocus 0.002 / 0.003 mm → 0.007 / 0.011 mm, label error +6.5 % (320 m) → +34 % (400 m).

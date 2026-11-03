@@ -58,6 +58,7 @@ const LENS_DATA = {
     groupCount: 12,
     focalLengthMm: { marketing: [16, 35], design: [16.48708045, 33.96336323] },
     fNumber: { marketing: 4, design: 4.12 },
+    closeFocusM: { marketing: [0.28, 0.24] },
   },
 
   source: {
@@ -310,10 +311,11 @@ const LENS_DATA = {
   },
 
   /* ── Focus and aperture configuration ── */
-  // Sony's production specification is 0.28 m wide / 0.24 m tele; this scalar records the marketed minimum.
+  // Sony's production specification is 0.28 m wide / 0.24 m tele (catalog.closeFocusM); this scalar is the
+  // object-to-image distance the d0 = 279 mm close rows focus at.
   // The var close rows above remain the patent's independent published d0 = 279 mm state and are not reconstructed.
   focus: {
-    closeFocusM: 0.24,
+    closeFocusM: 0.29,
     description:
       "PUBLISHED internal focus: GR3 moves objectward. Patent Table 23 supplies infinity and d0=279 mm close spacings at all three zoom states; the external d0 reference plane is unresolved, so no reconstruction to the production 0.28 m wide / 0.24 m tele MFD is applied.",
   },

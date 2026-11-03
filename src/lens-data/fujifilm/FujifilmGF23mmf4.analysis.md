@@ -21,7 +21,7 @@ Example 1 is the closest public patent embodiment found for the Fujinon GF23mmF4
 5. **Format.** The field angle and image height correspond to the 44 × 33 mm GFX image format. The patent includes a rear parallel plate PP with $n_d = 1.51680$ and 3.2 mm thickness, modeling the camera-side cover-glass/filter stack rather than a lens element. The data file carries it in `rearPlates`, so every analysis traces it, but it is not drawn.
 6. **Timing.** The January 2017 Japanese priority date precedes the commercial GF23mmF4 R LM WR release window and fits Fujifilm's patent-to-product cadence for the early GFX lens set.
 
-The patent closest-point state is 0.25 m, while Fujifilm's production specification gives a minimum focus distance of 0.38 m.[^fuji-spec] The data file therefore records the patent's 0.25 m focus endpoint because that is the only published variable-spacing state in the prescription. The analysis distinguishes that patent state from the production minimum focus limit.
+The patent closest-point state is 0.25 m, while Fujifilm's production specification gives a minimum focus distance of 0.38 m.[^fuji-spec] The data file therefore uses the patent's 0.25 m closest-point state as its focus endpoint because that is the only published variable-spacing state in the prescription. Traced object to image, that row focuses at about 0.38 m, the distance the close-focus label reports. The analysis distinguishes that patent state from the production minimum focus limit.
 
 ## Optical Architecture
 

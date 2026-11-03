@@ -52,6 +52,7 @@ const LENS_DATA = {
     /* ── Explicit metadata fields ── */
     focalLengthMm: { marketing: 50, design: 48.72 },
     fNumber: { marketing: 2.8, design: 2.91 },
+    closeFocusM: { marketing: 0.225 },
   },
 
   source: {
@@ -248,7 +249,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.225, // Sigma spec: 22.5 cm from front of lens
+    closeFocusM: 0.561, // patent close row, object to image; Sigma spec 22.5 cm from lens front is catalog metadata
     description:
       "Unit focus — G1 (L1–L6 with aperture stop) extends toward the object; G2 and sensor are stationary. Only d11 (L6-rear to L7-front gap) changes during focusing.",
     // (moved from publishedStations) The close-focus row is source-tabulated.

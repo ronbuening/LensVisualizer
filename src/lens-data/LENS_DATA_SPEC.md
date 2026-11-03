@@ -200,6 +200,7 @@ Everything the catalog, header and index read about the product, as opposed to t
 | `opticalConfiguration` | `object` | Links complete prescriptions that are switchable optical states of one catalog lens. See below. |
 | `focalLengthMm` | `{ marketing?, design? }` | Each a number for a prime or `[wide, tele]` for a zoom. `marketing` is the marketed focal length; `design` the source's stated design focal length at the file's scale, which may differ. A sequential rectilinear lens's traced EFL must lie within 0.8 to 1.25 times `design` (its first value on a zoom), or `buildLens()` refuses it ([Validation Rules](#validation-rules)). A folded system takes its EFL from `design` ([Folded Paths](#folded-paths)). |
 | `fNumber` | `{ marketing?, design? }` | `marketing` is the marketed maximum f-number (`1.8` for an "f/1.8" lens), shown beside the wide-open readout when it differs from the design value. `design` is the source's stated design maximum f-number (`1.85`). |
+| `closeFocusM` | `{ marketing? }` | `marketing` is the maker's minimum focus distance in metres, a number or `[wide, tele]` on a zoom. The focus readout names it beside the close-focus label when they differ by more than 2 % (a pair at its own zoom end; between the ends, only when the label leaves the range). It never moves the optics: `focus.closeFocusM` stays where the close row focuses. |
 
 `catalog.fNumber.design` and the f-number the stop opens to must agree: the design f-number on the aperture (or the
 first station's) may not be faster than `catalog.fNumber.design` by more than 0.5%. A corpus sweep enforces this
@@ -876,7 +877,7 @@ Each station:
 | `focalLengthMm` | `number` | Required. The station's focal length in mm. |
 | `nominalFNumber` | `number` | The design f-number at this station, on a variable-aperture zoom. On every station or on none. |
 | `stopSemiDiameter` | `number` | Published physical stop semi-diameter in mm. On every station or on none. |
-| `closeFocusM` | `number` | Object-to-image close distance in metres at this station, overriding `focus.closeFocusM`. On every station or on none. |
+| `closeFocusM` | `number` | Object-to-image distance in metres at which this station's close row focuses, overriding `focus.closeFocusM`. On every station or on none. |
 | `label` | `string` | Station label: on every station, or on the first and last alone. |
 | `published` | `boolean` | Whether the source tabulates this station's infinity row. Default `true`. |
 | `publishedFocus` | `number[]` | Focus keyframe indices (≥ 1) the source tabulates at this station, beyond infinity. Default `[]`. |
@@ -889,9 +890,14 @@ Each station:
   3–5, which is enough.
 - **Station `closeFocusM`** keeps zoom-dependent near-focus conjugates where a source publishes different object
   distances at its zoom stations (for example states at about constant magnification). Distances between stations
-  interpolate in the same zoom coordinate; labels at intermediate focus use inverse-distance interpolation and stay
-  estimates. Source-derived endpoints are identified as calculated in the analysis. Single-lens labels, breathing,
-  the summary, the working f-numbers and comparison focus mapping use the current zoom endpoint.
+  interpolate in the same zoom coordinate. Source-derived endpoints are identified as calculated in the analysis. The
+  working f-numbers, zoom-change focus remapping and comparison focus mapping use the current zoom endpoint.
+- **Focus labels** (the focus readout, breathing and the summary) are anchored at the authored rows: each row
+  (station × keyframe) reads its own paraxial in-focus object-to-image distance, keyframe 0 reads infinity, and the
+  label interpolates inverse distance between rows. It is not `closeFocusM / focusT`. The close row's distance must be
+  the authored close-focus distance within 5 % (`__tests__/src/lens-data/closeFocusEndpoint.test.ts`, which lists its
+  exemptions with reasons); a maker's different figure goes in `catalog.closeFocusM.marketing`. Patent-station
+  buttons for source-certified conjugates show the source's own distance.
 - **Station labels** are compiled into the runtime lens (`L.zoomLabels`). Nothing displays them today; the zoom
   slider shows the station focal lengths.
 - **Computed by `buildLens`**, per station: the EFL (`zoomEFLs`), entrance-pupil semi-diameter (`zoomEPs`),
@@ -910,7 +916,7 @@ focus: {
 
 | Field | Type | Default | Description |
 | --- | --- | --- | --- |
-| `closeFocusM` | `number` | required | Minimum focus distance in metres, object to image. |
+| `closeFocusM` | `number` | required | Close-focus distance in metres, object to image: where the close row (keyframe `1`) is paraxially in focus. A maker's different minimum focus distance goes in `catalog.closeFocusM.marketing`. |
 | `keyframes` | `number[]` | `[0, 1]` | Normalized focus coordinate of each authored thickness: `0` is infinity, `1` is `closeFocusM`. At least two, beginning at `0`, ending at `1`, strictly increasing. |
 | `step` | `number` | `0.004` | Focus slider step. |
 | `description` | `string` | | The focus mechanism, shown in the UI. |
@@ -2054,6 +2060,7 @@ the map below gives each of its fields' V2 paths.
 | `lensMounts`, `imageFormat`, `imageCircleMm`, `specs`, `elementCount`, `groupCount`, `acceptsTeleconverters`, `opticalConfiguration` | `catalog.*`, same names |
 | `focalLengthMarketing`, `focalLengthDesign` | `catalog.focalLengthMm.marketing`, `.design` |
 | `apertureMarketing`, `apertureDesign` | `catalog.fNumber.marketing`, `.design` |
+| `closeFocusMarketing` | `catalog.closeFocusM.marketing` |
 | `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata` | `source.patentNumber`, `.patentYear`, `.authors`, `.assignees`, `.errata` |
 | `surfaces[].nd` + `surfaces[].elemId` | `surfaces[].medium`: the element id, a `media` id, or left out for air (`elemId: 0`, `nd: 1`) |
 | an air surface with `nd ≠ 1` | an entry in `media` |

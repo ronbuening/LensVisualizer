@@ -43,6 +43,7 @@ const LENS_DATA = {
     elementCount: 19,
     groupCount: 12,
     focalLengthMm: { marketing: [10, 100], design: [10.3026, 96.99284] },
+    closeFocusM: { marketing: 0.35 },
   },
 
   source: {
@@ -355,15 +356,15 @@ const LENS_DATA = {
   zoom: {
     // (moved from publishedStations) The close-focus row is source-tabulated.
     stations: [
-      { focalLengthMm: 10.3026, nominalFNumber: 4, label: "Wide", published: true, publishedFocus: [1] },
-      { focalLengthMm: 30, nominalFNumber: 5.6, published: true, publishedFocus: [1] },
-      { focalLengthMm: 96.99284, nominalFNumber: 5.6, label: "Tele", published: true, publishedFocus: [1] },
+      { focalLengthMm: 10.3026, nominalFNumber: 4, closeFocusM: 0.398, label: "Wide", published: true, publishedFocus: [1] },
+      { focalLengthMm: 30, nominalFNumber: 5.6, closeFocusM: 0.498, published: true, publishedFocus: [1] },
+      { focalLengthMm: 96.99284, nominalFNumber: 5.6, closeFocusM: 0.698, label: "Tele", published: true, publishedFocus: [1] },
     ],
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 0.35,
+    closeFocusM: 0.398,
     description:
       "Inner focus by G3 (L31/L32 cemented doublet). Close-focus offsets are taken from the numerically identical Example 3.",
   },
