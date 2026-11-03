@@ -174,7 +174,7 @@ const LENS_DATA = {
       label: "5",
       R: 27.4455,
       d: 6.453000000000001,
-      sd: 22.5,
+      sd: 21.1,
       medium: 3,
     },
     {
@@ -193,7 +193,6 @@ const LENS_DATA = {
     {
       label: "STO",
       R: "flat",
-      d: 1.7447399999999993,
     },
     {
       label: "8",
@@ -212,7 +211,6 @@ const LENS_DATA = {
     {
       label: "10",
       R: 39.9735,
-      d: 33.291000000000004,
       sd: 13.7,
     },
     {
@@ -230,9 +228,14 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 1.5248,
+    published: [1],
     description:
-      "Only source Table3 infinity gaps d7=14.36 and d10=24.66 are modeled. Source beta1/10 motion exists but stop motion and exact retail1m conjugates are not established; no finite state is advertised.",
+      "Internal focusing: the cemented doublet of Unit II moves 7.33 mm toward the image while Units I and III stay fixed. The patent does not say whether the stop moves; it is modelled fixed with Unit I. The near end is the patent's printed β = 1/10 state (d7 = 19.79, d10 = 19.23 at f = 100, scaled ×1.35), at 1.525 m object to image. The retail lens focuses to 1.0 m (0.16×); the patent prints no state that close.",
+  },
+  gaps: {
+    STO: { label: "D7b", values: [[1.74474, 9.07524]] },
+    "10": { label: "D10", values: [[33.291, 25.9605]] },
   },
   aperture: {
     nominalFNumber: 2.8,
@@ -247,6 +250,11 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.78,
   },
+  groups: [
+    { text: "I", fromSurface: "1", toSurface: "7" },
+    { text: "II", fromSurface: "8", toSurface: "10" },
+    { text: "III", fromSurface: "11", toSurface: "12" },
+  ],
   doublets: [
     {
       text: "CD1",
