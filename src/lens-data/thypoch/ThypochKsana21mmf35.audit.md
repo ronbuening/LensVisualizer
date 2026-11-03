@@ -301,3 +301,15 @@ Open limitations: the three bevels listed above; a flat-land rim in the renderer
 
 - `catalog.closeFocusM.marketing` 0.5 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 - Cause, measured: the infinity row is itself out of paraxial focus by −0.48 m⁻¹ (the image plane is conjugate to a virtual object 2.07 m behind the first vertex; about 0.23 mm of image-side defocus). Relative to that row the near row moves the in-focus object by 2.02 m⁻¹, to about 494 mm before the first vertex, which agrees with the source's 500 mm. The near row's absolute distance, 0.70 m object to image, carries the infinity residual, so relabeling to it would label the residual. Review the image-plane residual first.
+
+## 2026-11-03 — Focus rows re-solved for paraxial focus
+
+With the source's two-decimal indices, the printed D15 rows left the image plane 0.227263 mm before paraxial focus at infinity and 0.219432 mm before it at the 500 mm near state. That is about 16 times the ±2λN² Rayleigh depth at f/3.5 (0.0144 mm). The printed near row was in focus for an object 648.46 mm from the first vertex instead of 500 mm, so its close-focus label read 0.70 m.
+
+- `gaps["15A"]` (D15) 16.71 / 17.67 → 16.937263 / 17.889432 mm, solved so each published state is paraxially in focus at its published object distance (infinity; 500 mm from the first vertex). The residual is under 1e-6 mm at both. The unit-focus travel is 0.952170 mm against the printed 0.96 mm.
+- Radii, thicknesses, indices, aspheres, the cover glass, its 0.50 mm gap and the image plane are unchanged; both states stay published, and the certified 500 mm conjugate is unchanged.
+- The infinity track is 53.067263 mm (52.84 printed) and the near track 54.019432 mm. `focus.closeFocusM` 0.5538 → 0.554 m, the near row's object-to-image distance (554.02 mm). The lens leaves the close-endpoint guard's exemption list.
+- Why a re-solve, not a kept residual: LENS_DATA_SPEC lets source-rounded prescriptions keep residual defocus and forbids editing the image distance to improve simulated MTF. That rule targets cosmetic refocusing. This residual instead made the printed near row focus 30 % farther than its published distance, and the spec already treats a rounded source row re-solved for paraxial consistency as published. The change was made on the owner's request.
+- Engine checks: EFL 21.726121 mm unchanged. At infinity, the 21.6 mm image-radius chief is 44.134959° (44.368761° printed) and the 45.31° chief reaches 22.598957 mm (22.396276 mm). The near finite-source figures in the analysis predate the re-solve.
+
+Text sync: header, focus.description, conjugate source note, analysis (Optical Architecture track and ratios, Focus Mechanism table and residual paragraph, TTL/f in Conditional Expressions, field-angle paragraph).

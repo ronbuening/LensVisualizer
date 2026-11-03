@@ -7,10 +7,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Table 1f prints L8 negative; the unchanged numeric prescription has positive
  * standalone L8 power. Paragraph 0091 D15-to-IMAGE/D11 wording is inconsistent
  * with explicit sequential tables; no S11 motion or source-number repair.
- * Source-rounded nd leaves about 0.2273 mm infinity and 0.2194 mm near paraxial
- * defocus. No optimization, glass substitution, image-plane shift or claim that
- * patent aberration performance is reproduced. Production correlation is inferred.
- * PUBLISHED unit focus: all lenses and STO move 0.96 mm; CG and sensor stay fixed.
+ * Source-rounded nd leaves the printed D15 rows (16.71 / 17.67 mm) 0.227263 and
+ * 0.219432 mm short of paraxial focus, so both are re-solved for paraxial focus at
+ * their published object distances (infinity; 500 mm from the first vertex):
+ * D15 16.937263 / 17.889432 mm. R, d, nd, the CG, its gaps and the image plane are
+ * unchanged. No optimization, glass substitution or claim that patent aberration
+ * performance is reproduced. Production correlation is inferred.
+ * PUBLISHED unit focus: all lenses and STO move 0.952 mm (printed 0.96 mm); CG and
+ * sensor stay fixed.
  * finiteConjugates uses published 500 mm object-to-first-vertex only. Manufacturer
  * 500 mm sensor-plane MFD is distinct; interpolation is not a published cam law.
  * Semi-diameters are inferred from source Figure 1 and current real-ray/geometry checks; the stop radius
@@ -186,9 +190,9 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.5538,
+    closeFocusM: 0.554,
     description:
-      "PUBLISHED: unit focus. G1, the stop and G2 move together 0.96 mm toward the object (D15 16.71 to 17.67 mm); the cover glass and image plane stay fixed. The patent's near state is 500 mm from the object to the first lens vertex, which is 0.554 m from object to image with the 53.80 mm near track. The manufacturer's 0.5 m minimum is measured from the sensor plane and is a different reference. Positions between the two published states are interpolated by the app, not a published cam law. The two-decimal source indices leave a small residual defocus at both states.",
+      "PUBLISHED: unit focus. G1, the stop and G2 move together toward the object; the cover glass and image plane stay fixed. The patent prints D15 16.71 to 17.67 mm, but with its two-decimal indices those rows sit about 0.22 mm short of focus, so both are re-solved to focus at the published distances: D15 16.937 to 17.889 mm, a 0.952 mm travel. The patent's near state is 500 mm from the object to the first lens vertex, which is 0.554 m from object to image with the 54.02 mm near track. The manufacturer's 0.5 m minimum is measured from the sensor plane and is a different reference. Positions between the two published states are interpolated by the app, not a published cam law.",
     conjugates: [
       {
         zoomStation: 0,
@@ -196,13 +200,13 @@ const LENS_DATA = {
         objectDistanceMm: 500,
         distanceReference: "first-surface",
         source:
-          "CN118534627A Example1, Table 1a object D0 to S1 and Table1b D0=0.5m/D15=17.67mm, original PDFp8. Source-rounded residual defocus retained.",
+          "CN118534627A Example1, Table 1a object D0 to S1 and Table1b D0=0.5m/D15=17.67mm, original PDFp8. D15 re-solved to 17.889432 mm for paraxial focus at this distance.",
       },
     ],
     published: [1],
   },
 
-  gaps: { "15A": { label: "D15", values: [[16.71, 17.67]] } },
+  gaps: { "15A": { label: "D15", values: [[16.937263, 17.889432]] } },
 
   aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
 

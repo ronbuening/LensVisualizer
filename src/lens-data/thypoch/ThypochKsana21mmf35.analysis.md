@@ -46,13 +46,15 @@ element alone does not justify calling the complete system retrofocus.
 
 The literal rounded prescription gives EFL **21.726121 mm**.
 Its standalone group focal lengths are **G1 +209.300668 mm** and
-**G2 +29.517655 mm**. The physical first-vertex-to-source-image track
-at infinity is **52.84 mm**. Paraxial BFD from the last lens
-vertex, including the source camera plate, is **18.287263 mm**.
-The source image is at 18.06 mm behind that vertex, leaving residual defocus.
+**G2 +29.517655 mm**. Paraxial BFD from the last lens vertex, including the
+source camera plate, is **18.287263 mm**, but the printed spacings place the
+image 18.06 mm behind that vertex (a 52.84 mm infinity track). The model
+re-solves D15 so the image lies at that paraxial focus (see Focus Mechanism),
+giving a first-vertex-to-image track of **53.067263 mm** at infinity.
 
-Track/EFL = 2.432095 and physical BFD/EFL = 0.841718.
-Thus the verified literal model satisfies neither the telephoto track criterion
+Track/EFL = 2.442556 (2.432095 with the printed spacings) and physical
+BFD/EFL = 0.841718.
+Thus the model satisfies neither the telephoto track criterion
 nor BFD > EFL for retrofocus. These ratios refer to the infinity source state.
 They are not mechanical barrel-length ratios.
 
@@ -150,26 +152,32 @@ Example 1 explicitly links G1, G2 and STOP (¶0086). All eight lenses and the
 diaphragm unit translate together toward the object as focus moves closer; the
 camera-side protective plate and sensor remain fixed. No floating group is added.
 
-| Source state | Object-to-first-vertex D0 | Physical S15-to-CG gap D15 | First vertex to source image |
-| ------------ | ------------------------: | -------------------------: | ---------------------------: |
-| Infinity     |                  Infinity |                   16.71 mm |                     52.84 mm |
-| Near         |                    500 mm |                   17.67 mm |                     53.80 mm |
+| Source state | Object-to-first-vertex D0 | Printed D15 | Model D15 (re-solved) | First vertex to image (model) |
+| ------------ | ------------------------: | ----------: | --------------------: | ----------------------------: |
+| Infinity     |                  Infinity |    16.71 mm |          16.937263 mm |                  53.067263 mm |
+| Near         |                    500 mm |    17.67 mm |          17.889432 mm |                  54.019432 mm |
 
-The published unit-focus travel is 0.96 mm. Table 1a then adds 0.85 mm of protective
+The published unit-focus travel is 0.96 mm; the re-solved rows give 0.952170 mm. Table 1a then adds 0.85 mm of protective
 glass and 0.50 mm of air before IMAGE. The model retains these through rearPlates,
 not an air-equivalent replacement. Paragraph ¶0091's loose D15-to-IMAGE wording
 and stray D11 reference do not override the explicit sequential tables.
 
-The near source state is certified as 500 mm from the first surface. Its
-object-to-image distance is 553.80 mm, used for the model's 0.5538 m focus label.
+The near source state is certified as 500 mm from the first surface. With the
+re-solved row its object-to-image distance is 554.02 mm, the model's 0.554 m
+close-focus distance.
 The official product's 500-mm sensor-plane MFD is not silently substituted.
 Intermediate slider states linearly interpolate the published gap endpoints;
 the patent supplies no mechanical cam law for these intermediate positions.
 
-The coarse literal prescription leaves the source image 0.227263 mm before
-paraxial infinity focus and 0.219432 mm before paraxial focus at the source near
-distance. The near image plane's exact paraxial conjugate is instead 648.457648 mm
-from the first vertex. That computed diagnostic does not replace the source label.
+With the two-decimal indices, the printed D15 rows leave the image plane
+0.227263 mm before paraxial infinity focus and 0.219432 mm before paraxial focus
+at the 500 mm near state; with the printed near row the plane is conjugate to an
+object 648.457648 mm from the first vertex instead. That residual is about 16 times
+the ±2λN² Rayleigh depth at f/3.5. Both rows are therefore re-solved for paraxial
+focus at their published object distances, as a rounded source row is elsewhere in
+the catalog: D15 = 16.937263 and 17.889432 mm, leaving under 1e-6 mm. Radii,
+thicknesses, indices, the cover glass and its gaps are unchanged, and both rows
+remain published.
 The source-certified finite ray calculation uses 500 mm; generic UI focus rays
 use their own approximate launch convention and are not identical to it.
 
@@ -210,11 +218,12 @@ not establish the manufacturing method of the aspheric element.
 | Condition | Literal computation | Printed value | Source range |
 | --------- | ------------------: | ------------: | ------------ |
 | TL1/TL2   |            1.586026 |         1.586 | 0.95–1.65    |
-| TTL/f     |            2.432095 |         2.442 | 2.26–2.68    |
+| TTL/f     |            2.442556 |         2.442 | 2.26–2.68    |
 | fG2/f     |            1.358625 |         1.361 | 0.87–1.89    |
 | H/BFL     |            1.181150 |         1.196 | 1.05–1.47    |
 
-All four inequality ranges pass. Differences from rounded printed summary values
+All four inequality ranges pass. TTL/f uses the re-solved infinity track; the
+printed spacings give 2.432095. Differences from rounded printed summary values
 are preserved; a successful range test is not a claim that the printed last digit
 has been reproduced. The computed surface-by-surface Petzval sum is
 **0.004273091181 mm⁻¹**, using φ/(n n′) at each refracting interface.
@@ -227,10 +236,12 @@ They are not a published aperture schedule. Native build, schema and production
 render diagnostics pass at five focus samples, with zero hidden trim. Current
 default slope, conic and 90% shared-gap intrusion limits are retained.
 
-At infinity, a 44.368761° chief reaches the modeled 21.6-mm image radius. At the
-source 500-mm near configuration, the corresponding chief angle is 44.049060°.
-The source 45.31° chief also transmits at both endpoints, reaching 22.396276 mm
-and 22.674066 mm respectively. The difference from the printed field/height pair
+At infinity, a 44.134959° chief reaches the modeled 21.6-mm image radius, and
+the source 45.31° chief reaches 22.598957 mm (44.368761° and 22.396276 mm with the
+printed D15). The source 500-mm near-configuration figures, a 44.049060° chief at
+21.6 mm and 22.674066 mm for the 45.31° chief, were computed on the printed near
+row with the original dossier's finite-source convention and predate the
+re-solve; the source 45.31° chief transmits at both endpoints. The difference from the printed field/height pair
 is disclosed and is not corrected by changing source geometry or materials.
 
 The native audit includes 3,075 generic-state rays and a separate 976-ray check
