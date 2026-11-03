@@ -174,14 +174,16 @@ const LENS_DATA = {
     {
       label: "9",
       R: 104.668,
-      d: 63.98538070550599,
       sd: 17.1,
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 2.5,
     description:
-      "Only the hypothetical infinity configuration is modeled. Neither a finite conjugate nor a focus travel law is supplied; retail MFD is not a modeled state.",
+      "Unit focus: the whole five-element block moves forward on a straight helicoid. The patent prints the infinity state only; the 2.5 m close state (back focus 83.56 mm, about 1:10.2) is derived paraxially for the retail 2.5 m object-to-image distance and is not a published spacing.",
+  },
+  gaps: {
+    "9": { label: "BF", values: [[63.98538070550599, 83.56]] },
   },
   aperture: {
     nominalFNumber: 4,
@@ -196,6 +198,12 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.78,
   },
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "2" },
+    { text: "G2", fromSurface: "3", toSurface: "5" },
+    { text: "G3", fromSurface: "6", toSurface: "7" },
+    { text: "G4", fromSurface: "8", toSurface: "9" },
+  ],
   doublets: [
     {
       text: "CD1",
