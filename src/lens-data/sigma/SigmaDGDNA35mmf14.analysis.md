@@ -401,7 +401,7 @@ $$\mathcal{P} = \sum_{\text{surfaces}} \frac{n' - n}{n \cdot n' \cdot R},$$
 
 yielding **+0.001844 mm⁻¹** for the Example 1 prescription, equivalent to a Petzval radius of **+542.2 mm**. The positive sign indicates that the natural Petzval surface curves **toward** the object; the long radius means the residual field curvature is well-controlled. At the full-field image height of h = 21.63 mm, the natural Petzval sag is
 
-$$z = \frac{h^2}{2 R_{\text{Petz}}} \approx 431 \text{ µm},$$
+$$z = \frac{h^2}{2 R_{\text{Petz}}} \approx 431\ \mu\text{m},$$
 
 which is large enough to be visible on a sensor without correction but is comfortably balanced against opposing astigmatism in the practical lens. The long Petzval radius owes much to two complementary glass choices: in the rear group, **L12** (TAFD45, nd = 1.95375) is the highest-index positive lens in the system, contributing the **smallest Petzval increment per unit power** of any positive element — exactly the lens that should carry strong positive power if the goal is field flatness; in the front group, **L3** (TAFD33, nd = 1.881) plays the same role on the converging side of GFA. Among positive elements, L14 contributes the largest absolute Petzval term simply because of its strong power; L11 and L12 are nearly tied. The negative side is dominated by L13 and L15 (the GRB negatives) plus L9 (the focus group). The system Petzval sum is the small residual after these large competing terms cancel, which is why the radius is long — not because any one element is "the" Petzval contributor.
 

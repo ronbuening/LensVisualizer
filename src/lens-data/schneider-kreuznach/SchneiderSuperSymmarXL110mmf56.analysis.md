@@ -30,7 +30,7 @@ Example 1 (Claim 2) is a related embodiment with the same architecture but diffe
 
 The Super-Symmar XL 110 is a compact wide-angle lens of the negative-positive-positive–stop–positive-negative type. The power sequence across the five members is:
 
-$$\text{L1}^{-} \;—\; \text{L2}^{+} \;—\; \text{L3}^{+} \;—\; [\text{stop}] \;—\; \text{L4}^{+}_{\text{cem}} \;—\; \text{L5}^{-}$$
+$$\text{L1}^{-} \;\text{—}\; \text{L2}^{+} \;\text{—}\; \text{L3}^{+} \;\text{—}\; [\text{stop}] \;\text{—}\; \text{L4}^{+}_{\text{cem}} \;\text{—}\; \text{L5}^{-}$$
 
 The design descends from the Topogon/Biogon lineage of wide-angle objectives, in which a quasi-symmetrical arrangement of negative outer menisci flanking a positive central core suppresses distortion and lateral chromatic aberration across an extreme field of view. However, the Super-Symmar XL departs from strict symmetry in several respects: the front negative member (L1, $f = -53.2$ mm) is weaker than its rear counterpart (L5, $f = -50.6$ mm), the two positive elements ahead of the stop (L2 and L3) differ substantially in power, and the rear positive group is a cemented achromatic doublet rather than a singlet.
 
