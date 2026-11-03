@@ -6,7 +6,7 @@ import {
   universalConnectionDescription,
 } from "../../utils/catalog/universalConnectionPaths.js";
 import { panelCard, toggleBtn } from "../../utils/style/styles.js";
-import { pluralize } from "../../utils/text.js";
+import { pluralize, textRun } from "../../utils/text.js";
 import UniversalMapSearch from "./UniversalMapSearch.js";
 import { truncateLabel } from "./layout.js";
 
@@ -81,7 +81,7 @@ export default function UniversalConnectionTrace({
                 style={{ ...buttonStyle, opacity: selectedNodeId ? 1 : 0.5 }}
                 onClick={() => change(side === "start" ? selectedNodeId : from, side === "end" ? selectedNodeId : to)}
               >
-                Use selection as {side}
+                {textRun("Use selection as ", side)}
               </button>
             </div>
           );
@@ -124,7 +124,7 @@ export default function UniversalConnectionTrace({
               onClick={() => setPathIndex(index)}
               style={{ ...buttonStyle, background: path === result.paths[index] ? t.toggleActiveBg : t.toggleBg }}
             >
-              Path {index + 1}
+              {textRun("Path ", index + 1)}
             </button>
           ))}
         </div>
@@ -199,18 +199,19 @@ export default function UniversalConnectionTrace({
                 const date = edge.effectiveDate ?? edge.effectiveFrom;
                 return (
                   <li key={id} style={{ padding: "0.5rem 0", borderBottom: `1px solid ${t.panelDivider}` }}>
-                    {universalConnectionDescription(edge, names)}
+                    <span>{universalConnectionDescription(edge, names)}</span>
                     {date && (
                       <span style={{ color: t.label }}>
-                        {" "}
-                        · {date}
-                        {edge.effectiveTo ? `–${edge.effectiveTo}` : edge.effectiveFrom ? " onward" : ""}
+                        {textRun(
+                          " · ",
+                          date,
+                          edge.effectiveTo ? `–${edge.effectiveTo}` : edge.effectiveFrom ? " onward" : "",
+                        )}
                       </span>
                     )}
                     {edge.sourceUrl && (
                       <>
-                        {" "}
-                        ·{" "}
+                        <span>{" · "}</span>
                         <a href={edge.sourceUrl} target="_blank" rel="noreferrer" style={{ color: t.descLinkColor }}>
                           Source ↗
                         </a>

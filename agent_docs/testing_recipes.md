@@ -62,6 +62,55 @@ For URL state changes, the standard test is parse→build→parse identity plus 
 dropped without `v=1`). Grep `parseLensViewQuery` in `__tests__/` and extend the existing file
 rather than creating a parallel one.
 
+## Translation DOM Replacement
+
+`__tests__/translationTestUtils.ts` holds two closure-free helpers that run in Vitest and through Playwright's
+`locator.evaluate`:
+
+- `replaceTextForTranslation(root)` **replaces**, rather than moves, each HTML Text node with nested
+  `<font dir="auto" style="vertical-align: inherit">` wrappers, the markup Google's translator leaves. It skips already
+  simulated text, form options, scripts and SVG text, and includes HTML inside `foreignObject`.
+- `auditDetachedReactText(root)` finds the React-owned Text nodes outside the document and gives each one an
+  instance-level `nodeValue`/`data` setter, so every later React write into it counts in `staleWrites`. Call it right
+  after each replacement, then after interactions and expect `staleWrites: 0`. It reads React internals
+  (`__reactContainer$…`, HostText tag 6), so revisit it on a React major upgrade.
+
+Owned text (a single primitive child) cannot go stale, and the audit catches text that is not owned wherever it
+renders, so translation tests do not compare readouts with clean-page values. Tests are layered:
+
+- `translation/owned-text` lint is the first guard; its rule test lints synthetic cases in a throwaway TypeScript
+  project.
+- Unit tests cover the shared contracts lint cannot see: `textRun`, `rehypeOwnedText` through `ThemedMarkdown`,
+  `AnalysisMetricRow` plus the audit's own self-test, `PatentPartyList`, and one panel-level check
+  (`LensDiagramTranslation.test.tsx`). Do not add per-component translation tests.
+- `__tests__/browser/translation.spec.ts` replaces text before each step of real flows and asserts the audit in
+  `healthy()`. It visits every route in `__tests__/translationCoverage.ts` (whose unit test fails when the route manifest
+  gains a route without a sample), and runs lens flows through every analysis tab, primers and overlays, comparison
+  and width changes, and catalog/relationship controls at desktop and compact widths. It gates pull requests through
+  Quality Checks.
+
+```sh
+npx playwright install chromium
+npm run test:browser
+# Use an already running development or production-preview server/system browser:
+PLAYWRIGHT_BASE_URL=http://127.0.0.1:5173 \
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:browser
+```
+
+These are scripted replacements in Chromium. They do not certify every catalog lens/state combination, disabled
+feature-flag views, Firefox's or Safari's translators, or all third-party renderers. Updating source text replaces
+its translated copy with source-language text until the translator processes it again; unchanged translated text must
+remain intact.
+
+**Real-translator check.** Chrome's built-in translate UI cannot be driven headlessly, but Google's website
+translator makes the same `<font>` rewrite and `<html class="translated-ltr" lang="…">` marks. On a dev page, define a
+callback that runs `new google.translate.TranslateElement({ pageLanguage: "en" }, "<host element id>")`, load
+`https://translate.googleapis.com/translate_a/element.js?cb=<callback>`, then set `select.goog-te-combo` to a
+language and dispatch `change`. It needs `translate.googleapis.com` and `translate-pa.googleapis.com`. It also
+translates `aria-label`, so tag elements (a `data-*` attribute) before translating instead of selecting them by
+accessible name. Without text ownership, translating a lens page, opening the Optics primer and choosing "Want more
+detail?" crashed the route every time. Record service or network failures as unrun coverage, not passes.
+
 ## Recipe: Lens-Data Validation Test
 
 Validation failures are tested by passing intentionally broken prescriptions to `buildLens()` and

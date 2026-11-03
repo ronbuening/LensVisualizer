@@ -15,9 +15,9 @@ flowchart LR
   n_external_src_utils_catalog["src/utils/catalog"]
   n_external_pkg_react["pkg:react"]
   n_external_src_types["src/types"]
+  n_external_src_utils_text_ts["src/utils/text.ts"]
   n_external_src_utils_style["src/utils/style"]
   n_external_src_components_hooks["src/components/hooks"]
-  n_external_src_utils_text_ts["src/utils/text.ts"]
   n_external_src_components_content["src/components/content"]
   n_external_pkg_react_router["pkg:react-router"]
   n_external_src_utils_svgCoordinates_ts["src/utils/svgCoordinates.ts"]
@@ -30,9 +30,9 @@ flowchart LR
   n_src_components_relationshipMap_React_components --> |15| n_external_pkg_react
   n_src_components_relationshipMap_React_components --> |13| n_external_src_types
   n_src_components_relationshipMap_TypeScript_modules --> |12| n_external_src_utils_catalog
+  n_src_components_relationshipMap_React_components --> |12| n_external_src_utils_text_ts
   n_src_components_relationshipMap_React_components --> |11| n_external_src_utils_style
   n_src_components_relationshipMap_React_components --> |10| n_external_src_components_hooks
-  n_src_components_relationshipMap_React_components --> |9| n_external_src_utils_text_ts
   n_src_components_relationshipMap_React_components --> |4| n_external_src_components_content
   n_src_components_relationshipMap_TypeScript_modules --> |2| n_external_pkg_react
   n_src_components_relationshipMap_React_components --> |2| n_external_pkg_react_router
@@ -51,7 +51,7 @@ flowchart LR
 
 - Direct source files: 25
 - Direct subfolders: 0
-- Main outbound areas: src/utils/catalog (38), same folder (32), package:react (17), src/types (15), src/utils/style (11), src/components/hooks (10), src/utils/text.ts (9), src/components/content (4), +6 more
+- Main outbound areas: src/utils/catalog (38), same folder (32), package:react (17), src/types (15), src/utils/text.ts (12), src/utils/style (11), src/components/hooks (10), src/components/content (4), +6 more
 - External consumers: src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx
 
 ## Files
@@ -60,7 +60,7 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `coInventorLayout.ts` | Co Inventor Layout helper module | src/utils/catalog | same folder | coInventorLayout |
 | `companyChordLayout.ts` | Company Chord Layout helper module | none | same folder | CompanyChordInput, companyChordLayout |
-| `CompanyRelationshipViews.tsx` | React component module | same folder (4), src/utils/catalog (2), package:react | src/pages/UniversalRelationshipMapPage.tsx | CompanyRelationshipView, default, CompanyRelationshipViews |
+| `CompanyRelationshipViews.tsx` | React component module | same folder (4), src/utils/catalog (2), package:react, src/utils/text.ts | src/pages/UniversalRelationshipMapPage.tsx | CompanyRelationshipView, default, CompanyRelationshipViews |
 | `constellationAffinity.ts` | Constellation Affinity helper module | src/utils/catalog (3) | same folder | ConstellationClusterCandidate, ConstellationAffinity, ConstellationAffinityMap, buildConstellationAffinities, constellationAffinityBetween, compareConstellationClusterPriority, orderConstellationOrbit |
 | `inventorAffiliationLayout.ts` | Inventor Affiliation Layout helper module | src/utils/catalog | same folder | AffiliationPosition, layoutInventorAffiliations |
 | `InventorAffiliationMap.tsx` | React component module | same folder (3), src/components/hooks (2), src/utils/catalog (2), package:react, src/types, +2 more | src/pages/UniversalRelationshipMapPage.tsx | default, InventorAffiliationMap |
@@ -68,9 +68,9 @@ flowchart LR
 | `layout.ts` | Layout helper module | src/utils/catalog | same folder (7) | LayoutNode, LayoutEdge, RelationshipLayout, truncateLabel, layoutRelationshipGraph |
 | `PatentDetailCard.tsx` | React component module | src/components/content (3), src/utils/catalog (3), src/types (2), package:react, src/utils/style | src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | default, PatentDetailCard |
 | `RelationshipEntityPicker.tsx` | React component module | src/utils/catalog (4), package:react, same folder, src/components/hooks, src/types, +2 more | src/pages/RelationshipMapPage.tsx | default, RelationshipEntityPicker |
-| `RelationshipEvidenceLanes.tsx` | React component module | same folder (3), package:react | same folder, src/pages/UniversalRelationshipMapPage.tsx | default, RelationshipEvidenceLanes |
+| `RelationshipEvidenceLanes.tsx` | React component module | same folder (3), package:react, src/utils/text.ts | same folder, src/pages/UniversalRelationshipMapPage.tsx | default, RelationshipEvidenceLanes |
 | `RelationshipMap.tsx` | React component module | package:react, same folder, src/components/hooks, src/types, src/utils/catalog, +2 more | src/pages/RelationshipMapPage.tsx | default, RelationshipMap |
-| `RelationshipViewShared.tsx` | React component module | src/utils/catalog (2), package:react, package:react-router, src/components/controls, src/components/hooks, +2 more | same folder (7), src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | RelationshipViewProps, RetainedMapView, controlRow, viewButton, CompactSection, ViewChoices, ViewPanel, ViewSelect, +7 more |
+| `RelationshipViewShared.tsx` | React component module | src/utils/catalog (2), package:react, package:react-router, src/components/controls, src/components/hooks, +3 more | same folder (7), src/pages/RelationshipMapPage.tsx, src/pages/UniversalRelationshipMapPage.tsx | RelationshipViewProps, RetainedMapView, controlRow, viewButton, CompactSection, ViewChoices, ViewPanel, ViewSelect, +7 more |
 | `roleChip.ts` | Role Chip module with default export | src/types (2), package:react | same folder, src/pages/RelationshipMapPage.tsx | default, roleChip |
 | `UniversalConnectionTrace.tsx` | React component module | same folder (2), src/utils/catalog (2), package:react, src/types, src/utils/style, +1 more | src/pages/UniversalRelationshipMapPage.tsx | default, UniversalConnectionTrace |
 | `UniversalDetailSheet.tsx` | React component module | package:react, same folder, src/types, src/utils/catalog, src/utils/text.ts | src/pages/UniversalRelationshipMapPage.tsx | DETAIL_SHEET_RESERVED_HEIGHT, universalNodeSummary, default, UniversalDetailSheet |

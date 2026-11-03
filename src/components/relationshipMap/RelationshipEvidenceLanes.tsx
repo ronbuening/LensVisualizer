@@ -13,6 +13,7 @@ import {
   ViewSelect,
   type RelationshipViewProps,
 } from "./RelationshipViewShared.js";
+import { textRun } from "../../utils/text.js";
 
 export default function RelationshipEvidenceLanes(
   props: RelationshipViewProps & { inventorId?: string; selectedInventorId?: string | null },
@@ -106,7 +107,11 @@ export default function RelationshipEvidenceLanes(
       </div>
       {links.length > 2 && (
         <p style={{ color: t.muted, fontSize: "0.76rem" }}>
-          Comparing two of {links.length} recorded assignees. Use the selectors to explore the other connections.
+          {textRun(
+            "Comparing two of ",
+            links.length,
+            " recorded assignees. Use the selectors to explore the other connections.",
+          )}
         </p>
       )}
       {!left ? (

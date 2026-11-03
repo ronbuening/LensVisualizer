@@ -13,7 +13,8 @@ export const TOOLING_TESTS = [
 
 const RIM_CUT_TEST = "__tests__/src/optics/rimCutBeams.test.ts";
 const RIM_CUT_PROJECT_COUNT = 16;
-const TEST_EXCLUDES = [...configDefaults.exclude, "**/.claude/**", "tmp/**", ...TOOLING_TESTS];
+/* Playwright translation specs run through `npm run test:browser`, not Vitest. */
+const TEST_EXCLUDES = [...configDefaults.exclude, "**/.claude/**", "tmp/**", "__tests__/browser/**", ...TOOLING_TESTS];
 
 export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],

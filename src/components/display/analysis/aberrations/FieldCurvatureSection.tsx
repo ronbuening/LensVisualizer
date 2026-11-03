@@ -77,12 +77,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
                 <div title="Edge-field parabasal tangential and sagittal shifts relative to the image plane.">
                   <AberrationValueDisplay
                     label="EDGE T / S"
-                    value={
-                      <>
-                        T {formatSignedMm(result.edgeTangentialShiftMm)} / S{" "}
-                        {formatSignedMm(result.edgeSagittalShiftMm)}
-                      </>
-                    }
+                    value={`T ${formatSignedMm(result.edgeTangentialShiftMm)} / S ${formatSignedMm(result.edgeSagittalShiftMm)}`}
                     t={theme}
                   />
                 </div>

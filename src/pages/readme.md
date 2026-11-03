@@ -21,8 +21,8 @@ flowchart LR
   n_external_src_utils_style["src/utils/style"]
   n_external_pkg_react_router["pkg:react-router"]
   n_external_src_components_relationshipMap["src/components/relationshipMap"]
-  n_external_pkg_react["pkg:react"]
   n_external_src_utils_text_ts["src/utils/text.ts"]
+  n_external_pkg_react["pkg:react"]
   n_external_src_utils_state["src/utils/state"]
   n_external_src_utils_content["src/utils/content"]
   n_external_src_components_homepage["src/components/homepage"]
@@ -51,8 +51,8 @@ flowchart LR
   n_src_pages_React_components --> |21| n_external_pkg_react_router
   n_src_pages_React_components --> |20| n_src_pages_src_pages_lensIndex
   n_src_pages_React_components --> |18| n_external_src_components_relationshipMap
+  n_src_pages_React_components --> |17| n_external_src_utils_text_ts
   n_src_pages_React_components --> |13| n_external_pkg_react
-  n_src_pages_React_components --> |12| n_external_src_utils_text_ts
   n_src_pages_React_components --> |8| n_external_src_utils_state
   n_src_pages_React_components --> |7| n_external_src_utils_content
   n_src_pages_React_components --> |6| n_external_src_components_homepage
@@ -94,17 +94,17 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `ArticlePage.tsx` | Route-level React page | package:react (2), package:react-router, src/components/content, src/components/layout, src/components/markdown, +4 more | src/routes | default, ArticlePage |
-| `ArticlesPage.tsx` | Route-level React page | src/components/content (2), src/utils/content (2), package:react, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, ArticlesPage |
+| `ArticlePage.tsx` | Route-level React page | package:react (2), package:react-router, src/components/content, src/components/layout, src/components/markdown, +5 more | src/routes | default, ArticlePage |
+| `ArticlesPage.tsx` | Route-level React page | src/components/content (2), src/utils/content (2), package:react, src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, ArticlesPage |
 | `AuthorPage.tsx` | Route-level React page | src/components/content (5), src/utils/catalog (5), src/utils/style (2), package:react, package:react-router, +6 more | src/routes | default, AuthorPage |
 | `AuthorsIndexPage.tsx` | Route-level React page | src/utils/catalog (5), src/utils/style (2), package:react, package:react-router, src/components/controls, +5 more | src/routes | default, AuthorsIndexPage |
-| `ComparePage.tsx` | Route-level React page | src/utils/catalog (2), package:react-router, src/comparison, src/components/ClientOnly.tsx, src/components/layout, +1 more | src/routes | default, ComparePage |
+| `ComparePage.tsx` | Route-level React page | src/utils/catalog (2), package:react-router, src/comparison, src/components/ClientOnly.tsx, src/components/layout, +2 more | src/routes | default, ComparePage |
 | `FormatPage.tsx` | Route-level React page | src/utils/catalog (3), src/pages/lensIndex (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, FormatPage |
 | `FormatsIndexPage.tsx` | Route-level React page | src/components/content (2), src/utils/catalog (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, FormatsIndexPage |
 | `HomePage.tsx` | Route-level React page | src/components/homepage (6), src/utils/catalog (2), src/utils/seo (2), package:react, package:react-router, +8 more | src/routes | default, HomePage |
 | `LensBuilderPage.tsx` | Route-level React page | src/lensBuilder (5), src/utils/state (4), src/components/lensBuilder (3), src/components/layout (2), src/utils/theme (2), +8 more | src/routes | LensBuilder, default, LensBuilderPage |
-| `LensIndexPage.tsx` | Route-level React page | src/pages/lensIndex (11), src/components/content (2), src/utils/catalog (2), package:react, package:react-router, +5 more | src/routes | default, LensIndexPage |
-| `LensPage.tsx` | Route-level React page | src/utils/catalog (3), package:react-router, src/components/ClientOnly.tsx, src/components/content, src/components/layout, +3 more | src/routes | default, LensPage |
+| `LensIndexPage.tsx` | Route-level React page | src/pages/lensIndex (11), src/components/content (2), src/utils/catalog (2), package:react, package:react-router, +6 more | src/routes | default, LensIndexPage |
+| `LensPage.tsx` | Route-level React page | src/utils/catalog (3), package:react-router, src/components/ClientOnly.tsx, src/components/content, src/components/layout, +4 more | src/routes | default, LensPage |
 | `MakerPage.tsx` | Route-level React page | src/utils/catalog (6), src/components/content (3), package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, MakerPage |
 | `MakersIndexPage.tsx` | Route-level React page | src/utils/catalog (4), src/components/content (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, MakersIndexPage |
 | `MountPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/content (2), src/pages/lensIndex (2), package:react-router, src/components/layout, +6 more | src/routes | default, MountPage |

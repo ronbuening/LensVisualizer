@@ -5,7 +5,8 @@
  * so error rates and offending lens keys become visible in the existing
  * analytics dashboard without new infrastructure. Messages are sanitized
  * (URLs, emails, and long opaque tokens stripped) and truncated before
- * sending. Startup events wait briefly for the async analytics script, and
+ * sending; reports from a machine-translated page are tagged as such. Startup
+ * events wait briefly for the async analytics script, and
  * beacons are deduped and capped per session so a render loop cannot flood
  * analytics.
  */
@@ -64,6 +65,21 @@ export function errorBeaconKey(key: string): string {
 /** The error's class name alone, for reports that must not carry message text. */
 function describeErrorClass(error: unknown): string {
   return error instanceof Error && /^[A-Za-z]{1,40}$/.test(error.name) ? error.name : "Error";
+}
+
+/**
+ * ` [translated:<lang>]` when a page translator has rewritten the document, else `""`. Chrome's translator marks
+ * `<html>` with `translated-ltr`/`translated-rtl` and sets `lang` to the target language; other translators may only
+ * leave `<font style="vertical-align: inherit">` wrappers. Translators replace React-owned text nodes, so this tag
+ * separates their `removeChild`/`insertBefore` NotFoundErrors from application bugs in the dashboard
+ * (`agent_docs/code_conventions.md`, Translator-Safe Display Text).
+ */
+function translationTag(): string {
+  if (typeof document === "undefined") return "";
+  const root = document.documentElement;
+  if (root.classList.contains("translated-ltr") || root.classList.contains("translated-rtl"))
+    return ` [translated:${errorBeaconKey(root.lang || "unknown")}]`;
+  return document.querySelector('font[style*="vertical-align: inherit"]') ? " [translated]" : "";
 }
 
 function describeError(error: unknown): string {
@@ -145,7 +161,9 @@ export function reportErrorBeacon(
 
   const beacon: ErrorBeacon = {
     path,
-    title: sanitizeErrorMessage(`${source}: ${anonymous ? describeErrorClass(error) : describeError(error)}`),
+    title: sanitizeErrorMessage(
+      `${source}${translationTag()}: ${anonymous ? describeErrorClass(error) : describeError(error)}`,
+    ),
     event: true,
   };
   if (sendErrorBeacon(beacon)) {

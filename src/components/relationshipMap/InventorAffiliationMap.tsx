@@ -3,7 +3,7 @@ import type { Theme } from "../../types/theme.js";
 import type { UniversalRelationshipGraph } from "../../utils/catalog/universalRelationshipGraph.js";
 import type { RelationshipInsights } from "../../utils/catalog/relationshipInsights.js";
 import { panelCard, searchInput, toggleBtn } from "../../utils/style/styles.js";
-import { pluralize } from "../../utils/text.js";
+import { pluralize, textRun } from "../../utils/text.js";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import useSvgViewport from "../hooks/useSvgViewport.js";
 import { layoutInventorAffiliations } from "./inventorAffiliationLayout.js";
@@ -138,11 +138,27 @@ export default function InventorAffiliationMap({
         </div>
       </div>
       <p role="status" style={{ color: t.label, fontSize: "0.72rem", lineHeight: 1.6 }}>
-        Showing {records.length} {pluralize(records.length, "inventor")} and {layout.assignees.length}{" "}
-        {pluralize(layout.assignees.length, "assignee")}. The catalog has {multiCount}{" "}
-        {pluralize(multiCount, "inventor")} with multiple assignees; {unassignedCount}{" "}
-        {pluralize(unassignedCount, "inventor")} without a named assignee {unassignedCount === 1 ? "is" : "are"}{" "}
-        excluded from this view.
+        {textRun(
+          "Showing ",
+          records.length,
+          " ",
+          pluralize(records.length, "inventor"),
+          " and ",
+          layout.assignees.length,
+          " ",
+          pluralize(layout.assignees.length, "assignee"),
+          ". The catalog has ",
+          multiCount,
+          " ",
+          pluralize(multiCount, "inventor"),
+          " with multiple assignees; ",
+          unassignedCount,
+          " ",
+          pluralize(unassignedCount, "inventor"),
+          " without a named assignee ",
+          unassignedCount === 1 ? "is" : "are",
+          " excluded from this view.",
+        )}
       </p>
       {hiddenInventor && (
         <p style={{ color: t.label, fontSize: "0.75rem" }}>
@@ -150,7 +166,7 @@ export default function InventorAffiliationMap({
             `${hiddenInventor.inventor.name} has no named assignee in this catalog.`
           ) : (
             <>
-              {hiddenInventor.inventor.name} is hidden by the current filters.{" "}
+              <span>{textRun(hiddenInventor.inventor.name, " is hidden by the current filters. ")}</span>
               <button
                 type="button"
                 onClick={() => {
@@ -308,14 +324,18 @@ export default function InventorAffiliationMap({
       {inspected && (
         <section aria-label="Affiliation evidence" style={{ ...panelCard(t), padding: "1rem", marginTop: "1rem" }}>
           <h3 style={{ color: t.title, fontSize: "0.9rem", margin: "0 0 0.5rem" }}>
-            {inspected.inventor.name}: assignee connections
+            {textRun(inspected.inventor.name, ": assignee connections")}
           </h3>
           <p style={{ color: t.muted, fontSize: "0.72rem", lineHeight: 1.6 }}>
-            Percentages use this inventor’s {inspected.assignedPatentCount} distinct assigned{" "}
-            {pluralize(inspected.assignedPatentCount, "patent")}. A jointly assigned patent counts for each named
-            assignee, so percentages can total more than 100%.
-            {inspected.unassignedPatentCount > 0 &&
-              ` Another ${inspected.unassignedPatentCount} ${pluralize(inspected.unassignedPatentCount, "patent")} ${inspected.unassignedPatentCount === 1 ? "has" : "have"} no named assignee and ${inspected.unassignedPatentCount === 1 ? "is" : "are"} excluded from these percentages.`}
+            {textRun(
+              "Percentages use this inventor’s ",
+              inspected.assignedPatentCount,
+              " distinct assigned ",
+              pluralize(inspected.assignedPatentCount, "patent"),
+              ". A jointly assigned patent counts for each named assignee, so percentages can total more than 100%.",
+              inspected.unassignedPatentCount > 0 &&
+                ` Another ${inspected.unassignedPatentCount} ${pluralize(inspected.unassignedPatentCount, "patent")} ${inspected.unassignedPatentCount === 1 ? "has" : "have"} no named assignee and ${inspected.unassignedPatentCount === 1 ? "is" : "are"} excluded from these percentages.`,
+            )}
           </p>
           {inspected.affiliations.map((link) => (
             <div
@@ -330,8 +350,15 @@ export default function InventorAffiliationMap({
                 {nodes.get(link.assigneeId)!.name}
               </button>
               <span style={{ color: t.label }}>
-                {" "}
-                · {link.patentIds.length} {pluralize(link.patentIds.length, "patent")} · {Math.round(link.share * 100)}%
+                {textRun(
+                  " · ",
+                  link.patentIds.length,
+                  " ",
+                  pluralize(link.patentIds.length, "patent"),
+                  " · ",
+                  Math.round(link.share * 100),
+                  "%",
+                )}
               </span>
               <div style={{ background: t.toggleBg, height: 6, borderRadius: 3, margin: "0.25rem 0 0.5rem" }}>
                 <div

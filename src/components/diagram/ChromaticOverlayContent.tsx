@@ -19,6 +19,7 @@ import { chromaticChannelDescription, chromaticChannelWavelengthLabel } from "..
 import { formatChromaticZone, formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
 import LocaInsetWidget from "./LocaInsetWidget.js";
 import ChromaticFanSpreadWidget from "./ChromaticFanSpreadWidget.js";
+import { textRun } from "../../utils/text.js";
 
 interface ChromaticOverlayContentProps {
   chromaticRayFanSpread: ChromaticRayFanSpread;
@@ -144,14 +145,22 @@ const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
         >
           {chromaticRayFanSpreads?.onAxis && (
             <span>
-              LoCA / AXIAL COLOR {formatSpreadUmFromMm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm)} ·{" "}
-              {formatChromaticZone(chromaticRayFanSpreads.onAxis)}
+              {textRun(
+                "LoCA / AXIAL COLOR ",
+                formatSpreadUmFromMm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm),
+                " · ",
+                formatChromaticZone(chromaticRayFanSpreads.onAxis),
+              )}
             </span>
           )}
           {chromaticRayFanSpreads?.offAxis && (
             <span>
-              OFF-AXIS FAN {formatSpreadUmFromMm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm)} ·{" "}
-              {formatChromaticZone(chromaticRayFanSpreads.offAxis, "EP")}
+              {textRun(
+                "OFF-AXIS FAN ",
+                formatSpreadUmFromMm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm),
+                " · ",
+                formatChromaticZone(chromaticRayFanSpreads.offAxis, "EP"),
+              )}
             </span>
           )}
         </div>
@@ -165,16 +174,26 @@ const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
           fontFamily: "inherit",
         }}
       >
-        <strong>LoCA / axial color</strong> shows where the active on-axis marginal wavelengths focus along the optical
-        axis: a real-ray zonal figure, each wavelength aimed at the outermost stop zone (a fraction of the stop radius
-        R) every selected channel passes. If none passes them all, the first zone two pass is compared and the channels
-        left out are named. OpticStudio&apos;s single axial-color figure, its Chromatic Focal Shift plot, is paraxial;
-        its real-ray counterpart is the longitudinal aberration curve across zones. <strong>Off-axis fan</strong> shows
-        where the displayed off-axis marginal fan lands at the image plane, by the same rule: the outermost fan fraction
-        every selected channel passes, else the first two pass, with the channels left out named. Both charts use the
-        same selected spectral channels: {channelName("R")}, {channelName("G")}, {channelName("B")}, and, when enabled,{" "}
-        {channelName("V")}. These are geometric marginal-ray diagnostics for the displayed fan traces; lateral color/TCA
-        remains a separate chief-ray image-height metric in the chromatic analysis drawer.
+        <strong>LoCA / axial color</strong>
+        <span>
+          {
+            " shows where the active on-axis marginal wavelengths focus along the optical axis: a real-ray zonal figure, each wavelength aimed at the outermost stop zone (a fraction of the stop radius R) every selected channel passes. If none passes them all, the first zone two pass is compared and the channels left out are named. OpticStudio's single axial-color figure, its Chromatic Focal Shift plot, is paraxial; its real-ray counterpart is the longitudinal aberration curve across zones. "
+          }
+        </span>
+        <strong>Off-axis fan</strong>
+        <span>
+          {textRun(
+            " shows where the displayed off-axis marginal fan lands at the image plane, by the same rule: the outermost fan fraction every selected channel passes, else the first two pass, with the channels left out named. Both charts use the same selected spectral channels: ",
+            channelName("R"),
+            ", ",
+            channelName("G"),
+            ", ",
+            channelName("B"),
+            ", and, when enabled, ",
+            channelName("V"),
+            ". These are geometric marginal-ray diagnostics for the displayed fan traces; lateral color/TCA remains a separate chief-ray image-height metric in the chromatic analysis drawer.",
+          )}
+        </span>
       </p>
     </div>
   );
