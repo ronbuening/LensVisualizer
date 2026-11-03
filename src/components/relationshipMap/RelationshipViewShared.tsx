@@ -6,6 +6,7 @@ import type { UniversalPartyNode } from "../../utils/catalog/universalRelationsh
 import { panelCard, toggleBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
 import useBalancedColumns, { balancedItemStyle, balancedRowStyle, widthClass } from "../hooks/useBalancedColumns.js";
+import { textRun } from "../../utils/text.js";
 
 const VIEW_CHOICE_MIN_WIDTH = 150;
 const VIEW_CHOICE_GAP = 12;
@@ -231,7 +232,7 @@ export function ViewSelect({
         maxWidth: "100%",
       }}
     >
-      {label}
+      <span>{label}</span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
@@ -288,9 +289,7 @@ export function PatentEvidence({
       onToggle={(event) => setOpen(event.currentTarget.open)}
       style={{ fontSize: "0.76rem", color: t.body, margin: "0.5rem 0" }}
     >
-      <summary style={{ cursor: "pointer", padding: "8px 0" }}>
-        {label} ({ids.length})
-      </summary>
+      <summary style={{ cursor: "pointer", padding: "8px 0" }}>{textRun(label, " (", ids.length, ")")}</summary>
       {open && (
         <ul style={{ paddingLeft: "1.2rem", margin: 0, maxHeight: "18rem", overflowY: "auto" }}>
           {ids.map((id) => {
@@ -302,8 +301,7 @@ export function PatentEvidence({
                   style={{ ...viewButton(t), border: 0, background: "none", color: t.descLinkColor, textAlign: "left" }}
                   onClick={(event) => onSelectPatent(id, event.detail === 0)}
                 >
-                  {patent.patentNumber}
-                  {patent.patentYear ? ` · ${patent.patentYear}` : " · Year unknown"}
+                  {textRun(patent.patentNumber, patent.patentYear ? ` · ${patent.patentYear}` : " · Year unknown")}
                 </button>
               </li>
             ) : null;

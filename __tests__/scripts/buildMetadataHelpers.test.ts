@@ -1,4 +1,6 @@
+import { execFileSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, readdirSync, statSync, rmSync, writeFileSync } from "node:fs";
+import { env } from "node:process";
 import { fileURLToPath } from "node:url";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -11,16 +13,55 @@ import {
   collectArticles,
   comparePublicationEntries,
   combineFreshnessEntries,
-  getFirstGitFileFreshness,
-  getGitFileFreshness,
+  gitHistory,
   isGeneratedContentDoc,
   mapLimit,
   parseFrontmatterContent,
   parseGitLogDates,
   projectClientMetadata,
+  readTrackedFiles,
 } from "../../scripts/build-metadata-lib.mjs";
+import type { ExecFileSyncLike } from "../../scripts/build-metadata-lib.mjs";
 
 const tempContentRoots: string[] = [];
+
+/* A git hook exports GIT_DIR and friends, which would point the fixture's commands at this repository instead. */
+const FIXTURE_GIT_ENV = Object.fromEntries(Object.entries(env).filter(([name]) => !name.startsWith("GIT_")));
+
+/** Run git as the helpers do, but with the fixture's environment. */
+const fixtureGit: ExecFileSyncLike = (file, args, options) =>
+  execFileSync(file, args, { ...options, env: FIXTURE_GIT_ENV });
+
+/**
+ * Build a throwaway repository. Each `commit` writes its files (null deletes one) and commits them at a fixed UTC
+ * instant, so the dates the helpers read are known.
+ */
+function createTempGitRepo() {
+  const dir = mkdtempSync(join(tmpdir(), "build-metadata-git-"));
+  tempContentRoots.push(dir);
+  const git = (args: string[], at?: string) =>
+    execFileSync("git", ["-c", "user.name=Fixture", "-c", "user.email=fixture@example.com", ...args], {
+      cwd: dir,
+      encoding: "utf8",
+      env: { ...FIXTURE_GIT_ENV, ...(at ? { GIT_AUTHOR_DATE: at, GIT_COMMITTER_DATE: at } : {}) },
+    });
+  git(["init", "-q"]);
+  return {
+    dir,
+    commit(at: string, subject: string, files: Record<string, string | null>) {
+      for (const [file, contents] of Object.entries(files)) {
+        if (contents === null) {
+          git(["rm", "-q", "--", file]);
+          continue;
+        }
+        mkdirSync(join(dir, file, ".."), { recursive: true });
+        writeFileSync(join(dir, file), contents);
+        git(["add", "--", file]);
+      }
+      git(["-c", "commit.gpgsign=false", "commit", "-q", "-m", subject], at);
+    },
+  };
+}
 
 /** Build a throwaway content directory whose files are `[relativePath, contents]` pairs. */
 function createTempContentDir(files: Array<[string, string]>): string {
@@ -275,14 +316,13 @@ describe("build metadata helpers", () => {
   });
 
   it("falls back when git history is unavailable", () => {
-    const dates = getGitFileFreshness("missing-file.ts", {
-      fallbackDate: "2026-03-27",
+    const history = gitHistory({
       execFileImpl: () => {
         throw new Error("git failure");
       },
     });
 
-    expect(dates).toEqual({
+    expect(history.fileFreshness("missing-file.ts", { fallbackDate: "2026-03-27" })).toEqual({
       publishedOn: "2026-03-27",
       publishedAt: "2026-03-27T00:00:00.000Z",
       publishedCommit: null,
@@ -292,51 +332,73 @@ describe("build metadata helpers", () => {
     });
   });
 
-  it("tries alternate history paths before falling back", () => {
-    const dates = getFirstGitFileFreshness(["new-path.md", "old-path.md"], {
-      fallbackDate: "2026-03-27",
-      execFileImpl: (_file, args) => {
-        const filePath = args[args.length - 1];
-        if (filePath === "new-path.md") {
-          throw new Error("missing");
-        }
-        if (filePath === "old-path.md") {
-          return ["2026-03-27T10:00:00-04:00\tcommit-b", "2026-03-19T10:00:00-04:00\tcommit-a"].join("\n");
-        }
-        throw new Error(`unexpected path: ${filePath}`);
-      },
+  it("follows a file's renames but not copies, from one read of the history", () => {
+    /* Enough shared lines that git pairs the edited rename, and would report the copy as one under --follow. */
+    const body = Array.from({ length: 20 }, (_, line) => `Line ${line} of the page.\n`).join("");
+    const repo = createTempGitRepo();
+    repo.commit("2026-01-01T12:00:00Z", "Add the page", { "docs/first name.md": body });
+    repo.commit("2026-02-01T12:00:00Z", "Rename and edit the page", {
+      "docs/first name.md": null,
+      "docs/page.md": `${body}An edit.\n`,
+    });
+    repo.commit("2026-03-01T12:00:00Z", "Start a new page from a copy", { "docs/copy.md": `${body}An edit.\n` });
+    repo.commit("2026-04-01T12:00:00Z", "Edit the new page", { "docs/copy.md": `${body}A different edit.\n` });
+
+    const history = gitHistory({ cwd: repo.dir, execFileImpl: fixtureGit });
+    const subjects = (filePath: string) =>
+      history
+        .log(join(repo.dir, filePath))
+        .split("\n")
+        .map((line) => line.split("\t")[2]);
+    expect(subjects("docs/page.md")).toEqual(["Rename and edit the page", "Add the page"]);
+    /* `git log --follow` reports the copy and dates the new page from 2026-01-01. */
+    expect(subjects("docs/copy.md")).toEqual(["Edit the new page", "Start a new page from a copy"]);
+    expect(history.fileFreshness(join(repo.dir, "docs/copy.md"))).toMatchObject({
+      publishedOn: "2026-03-01",
+      lastModified: "2026-04-01",
     });
 
-    expect(dates).toEqual({
-      publishedOn: "2026-03-19",
-      publishedAt: "2026-03-19T14:00:00.000Z",
-      publishedCommit: "commit-a",
-      lastModified: "2026-03-27",
-      lastModifiedAt: "2026-03-27T14:00:00.000Z",
-      lastModifiedCommit: "commit-b",
-    });
+    /* Paths resolve against cwd however deep in the repository it sits. */
+    const fromDocs = gitHistory({ cwd: join(repo.dir, "docs"), execFileImpl: fixtureGit });
+    expect(fromDocs.fileFreshness("page.md")).toEqual(history.fileFreshness(join(repo.dir, "docs/page.md")));
+    expect(fromDocs.fileFreshness("page.md")).toMatchObject({ publishedOn: "2026-01-01", lastModified: "2026-02-01" });
   });
 
-  it("uses execFile-style arguments by default for git freshness", () => {
-    const calls: unknown[][] = [];
-    const dates = getGitFileFreshness("path with spaces.md", {
-      fallbackDate: "2026-03-27",
-      execFileImpl: (...args: unknown[]) => {
-        calls.push(args);
-        return ["2026-03-27T10:00:00-04:00\tcommit-b", "2026-03-19T10:00:00-04:00\tcommit-a"].join("\n");
-      },
-    });
+  it("dates a file moved in the working tree from its tracked path, and falls back when neither has history", () => {
+    const repo = createTempGitRepo();
+    repo.commit("2026-03-19T14:00:00Z", "Add the page", { "old path.md": "Body\n" });
+    repo.commit("2026-03-27T14:00:00Z", "Edit the page", { "old path.md": "Body, edited\n" });
+    const history = gitHistory({ cwd: repo.dir, execFileImpl: fixtureGit });
 
-    expect(dates).toEqual({
+    expect(history.firstFileFreshness(["new path.md", "old path.md"], { fallbackDate: "2026-04-01" })).toEqual({
       publishedOn: "2026-03-19",
       publishedAt: "2026-03-19T14:00:00.000Z",
-      publishedCommit: "commit-a",
+      publishedCommit: expect.stringMatching(/^[0-9a-f]{40}$/),
       lastModified: "2026-03-27",
       lastModifiedAt: "2026-03-27T14:00:00.000Z",
-      lastModifiedCommit: "commit-b",
+      lastModifiedCommit: expect.stringMatching(/^[0-9a-f]{40}$/),
     });
-    expect(calls[0][0]).toBe("git");
-    expect(calls[0][1]).toEqual(["log", "--follow", "--format=%cI%x09%H%x09%s", "--", "path with spaces.md"]);
+    expect(history.firstFileFreshness(["new path.md"], { fallbackDate: "2026-04-01" })).toMatchObject({
+      publishedOn: "2026-04-01",
+      publishedCommit: null,
+    });
+    expect(history.firstFileFreshness(["new path.md"])).toBeNull();
+  });
+
+  it("reads every committed file of a folder in one batch, by byte size", () => {
+    const repo = createTempGitRepo();
+    /* A multi-byte name and body: ls-tree quotes such names unless -z, and the batch counts bytes, not characters. */
+    repo.commit("2026-03-19T14:00:00Z", "Add pages", {
+      "docs/angénieux.md": "Angénieux — 180 mm\n",
+      "docs/b.md": "B\n",
+      "docs/skip.txt": "Not a page\n",
+      "other/c.md": "Outside the folder\n",
+    });
+
+    expect(readTrackedFiles({ cwd: repo.dir, repoDir: "docs", suffix: ".md", execFileImpl: fixtureGit })).toEqual([
+      { path: "docs/angénieux.md", content: "Angénieux — 180 mm\n" },
+      { path: "docs/b.md", content: "B\n" },
+    ]);
   });
 
   it("maps with bounded concurrency while preserving result order", async () => {

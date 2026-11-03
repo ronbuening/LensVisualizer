@@ -12,6 +12,7 @@ import ClientOnly from "../components/ClientOnly.js";
 import { COMPARISON_CATALOG_KEYS, LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
 import { deriveMaker, lensDisplaySubtitle } from "../utils/catalog/lensMetadata.js";
 import { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../comparison/comparisonURLSync.js";
+import { textRun } from "../utils/text.js";
 
 const CONTENT_STYLE: React.CSSProperties = {
   maxWidth: 960,
@@ -40,8 +41,10 @@ function LensSummary({ lensKey }: { lensKey: string }) {
         <p style={{ fontSize: "0.8rem", color: "#999", marginBottom: "0.5rem" }}>{displaySubtitle}</p>
       )}
       <p style={{ fontSize: "0.8rem", color: "#ccc" }}>
-        {maker.display}
-        {lens.catalog.specs && lens.catalog.specs.length > 0 ? ` — ${lens.catalog.specs.slice(0, 3).join(", ")}` : ""}
+        {textRun(
+          maker.display,
+          lens.catalog.specs && lens.catalog.specs.length > 0 ? ` — ${lens.catalog.specs.slice(0, 3).join(", ")}` : "",
+        )}
       </p>
     </section>
   );
@@ -82,7 +85,7 @@ export default function ComparePage() {
             </nav>
 
             <h1 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: "1rem" }}>
-              {lensA.name} vs {lensB.name}
+              {textRun(lensA.name, " vs ", lensB.name)}
             </h1>
 
             <LensSummary lensKey={slugA} />

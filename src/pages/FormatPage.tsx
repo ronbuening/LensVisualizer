@@ -12,7 +12,7 @@ import { getImageFormatDetails } from "../utils/catalog/imageFormatDetails.js";
 import { H1_STYLE, LENS_LINK_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromFormat } from "./lensIndex/clusterLinks.js";
 import { lensesForImageFormat } from "./lensIndex/catalog.js";
-import { pluralize } from "../utils/text.js";
+import { pluralize, textRun } from "../utils/text.js";
 
 export default function FormatPage() {
   const { formatId } = useParams<{ formatId: string }>();
@@ -54,10 +54,18 @@ export default function FormatPage() {
     >
       {({ theme: t }) => (
         <>
-          <h1 style={H1_STYLE}>{format.label} Lenses</h1>
+          <h1 style={H1_STYLE}>{textRun(format.label, " Lenses")}</h1>
           <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
-            {format.widthMm} x {format.heightMm} mm image area · {lenses.length} interactive lens{" "}
-            {pluralize(lenses.length, "diagram")}
+            {textRun(
+              format.widthMm,
+              " x ",
+              format.heightMm,
+              " mm image area · ",
+              lenses.length,
+              " interactive lens",
+              " ",
+              pluralize(lenses.length, "diagram"),
+            )}
           </p>
 
           {details && (
@@ -82,10 +90,10 @@ export default function FormatPage() {
                 {...lensLinkFromFormat(entry.key, formatId)}
                 style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}
               >
-                {entry.data.name}
+                <span>{entry.data.name}</span>
                 {entry.lensMounts.length > 0 && (
                   <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
-                    — {entry.lensMounts.map((mount) => mount.label).join(", ")}
+                    {textRun("— ", entry.lensMounts.map((mount) => mount.label).join(", "))}
                   </span>
                 )}
               </Link>

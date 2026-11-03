@@ -1,13 +1,38 @@
 // @vitest-environment jsdom
 
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
+import { cleanup, render } from "@testing-library/react";
+import { replaceTextForTranslation } from "../../../translationTestUtils.js";
 import PatentPartyList from "../../../../src/components/content/PatentPartyList.js";
 import InventorLinks from "../../../../src/components/content/InventorLinks.js";
 import { AUTHORS } from "../../../../src/utils/catalog/authorCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import { renderWithRouter } from "../../../testUtils.js";
 
+afterEach(cleanup);
+
 describe("PatentPartyList", () => {
+  it("keeps translated author lists removable when names and link availability change", () => {
+    const view = (names: string[], linked = true) => (
+      <div>
+        <PatentPartyList names={names} renderName={(name) => (linked ? <a href="#author">{name}</a> : name)} />
+      </div>
+    );
+    const { container, rerender, unmount } = render(view(["First", "Second"]));
+    for (const [names, linked] of [
+      [["Third"], true],
+      [["Third"], false],
+      [["Third"], true],
+      [["First", "Second"], true],
+      [[], false],
+    ] as const) {
+      expect(replaceTextForTranslation(container)).toBeGreaterThan(0);
+      rerender(view([...names], linked));
+      expect(container.textContent).toBe(names.join(", "));
+      expect(container.querySelectorAll("a")).toHaveLength(linked ? names.length : 0);
+    }
+    unmount();
+  });
   it("preserves source order while applying the caller's render strategy", () => {
     const { container, getAllByRole } = renderWithRouter(
       <div>

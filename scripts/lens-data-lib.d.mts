@@ -1,3 +1,5 @@
+import type { ExecFileSyncLike } from "./build-metadata-lib.mjs";
+
 export interface LensIdentity {
   publishedAt: string | null;
   key: string | null;
@@ -79,7 +81,7 @@ export function rewriteLensDataTypesImport(
 export function collectTrackedLensRecordsByKey(options?: {
   rootDir?: string;
   lensDataDir?: string;
-  execFile?: (file: string, args: string[], options: { cwd: string; encoding: string }) => string;
+  execFile?: ExecFileSyncLike;
 }): Record<string, TrackedLensRecord>;
 
 export function collectLensData(options?: {

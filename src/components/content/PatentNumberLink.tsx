@@ -16,7 +16,7 @@ interface PatentNumberLinkProps {
 }
 
 export default function PatentNumberLink({ patentNumber, color, linkStyle }: PatentNumberLinkProps) {
-  if (!isPatentPublicationNumber(patentNumber)) return <>{patentNumber}</>;
+  if (!isPatentPublicationNumber(patentNumber)) return <span>{patentNumber}</span>;
 
   return (
     <a
@@ -27,7 +27,7 @@ export default function PatentNumberLink({ patentNumber, color, linkStyle }: Pat
       title={`View ${patentNumber} in Espacenet`}
       style={{ color, textDecoration: "none", ...linkStyle }}
     >
-      {patentNumber}
+      <span>{patentNumber}</span>
       <span aria-hidden="true" style={{ fontSize: "0.72rem", marginLeft: "0.25rem" }}>
         ↗
       </span>

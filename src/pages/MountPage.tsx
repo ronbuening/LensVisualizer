@@ -24,7 +24,7 @@ import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
 import type { LensSummary } from "../utils/catalog/lensSummaries.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
-import { pluralize } from "../utils/text.js";
+import { pluralize, textRun } from "../utils/text.js";
 
 /** Makers (slug + display label) that have lenses for this mount, alphabetically. */
 function makersForMount(lenses: { data: LensSummary }[]): { slug: string; label: string }[] {
@@ -81,9 +81,9 @@ export default function MountPage() {
     >
       {({ theme: t }) => (
         <>
-          <h1 style={H1_STYLE}>{mount.label} Lenses</h1>
+          <h1 style={H1_STYLE}>{textRun(mount.label, " Lenses")}</h1>
           <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
-            {lenses.length} interactive lens {pluralize(lenses.length, "diagram")}
+            {textRun(lenses.length, " interactive lens ", pluralize(lenses.length, "diagram"))}
           </p>
 
           {details && (
@@ -126,10 +126,10 @@ export default function MountPage() {
                   {...lensLinkFromMount(entry.key, mountId)}
                   style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}
                 >
-                  {entry.data.name}
+                  <span>{entry.data.name}</span>
                   {entry.data.specs && entry.data.specs.length > 0 && (
                     <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
-                      — {entry.data.specs.slice(0, 3).join(", ")}
+                      {textRun("— ", entry.data.specs.slice(0, 3).join(", "))}
                     </span>
                   )}
                 </Link>

@@ -33,6 +33,7 @@ import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
+import { textRun } from "../../../utils/text.js";
 
 interface ChromaticTabProps {
   L: RuntimeLens;
@@ -223,13 +224,15 @@ function CenteredChromaticTab({
         <section style={{ ...sectionStyle(t), borderTop: "none", paddingTop: 0 }}>
           <span style={sectionTitleStyle(t)}>Chromatic Analysis</span>
           <span style={sectionCopyStyle(t)}>
-            Geometric traces at {chromaticChannelLineList(channelReference)} spectral lines. These readouts report focus
-            and image-height spread; they do not classify apochromatic correction, diffraction, transmission, flare, or
-            sensor response. Spectral set:{" "}
-            {CHROMATIC_CHANNEL_ORDER.map((channel) => chromaticChannelWavelengthLabel(channel, channelReference)).join(
-              ", ",
+            {textRun(
+              "Geometric traces at ",
+              chromaticChannelLineList(channelReference),
+              " spectral lines. These readouts report focus and image-height spread; they do not classify apochromatic correction, diffraction, transmission, flare, or sensor response. Spectral set: ",
+              CHROMATIC_CHANNEL_ORDER.map((channel) => chromaticChannelWavelengthLabel(channel, channelReference)).join(
+                ", ",
+              ),
+              ".",
             )}
-            .
           </span>
           <div style={metricsStyle}>
             <AnalysisMetricRow

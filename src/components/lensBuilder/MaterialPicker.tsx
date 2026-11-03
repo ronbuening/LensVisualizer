@@ -26,6 +26,7 @@ import DropdownPanel, { type DropdownPanelPos } from "../layout/DropdownPanel.js
 import { builderCaptionStyle, builderInputStyle } from "./CommitInput.js";
 import GlassMap from "./GlassMap.js";
 import { textButton } from "./trainShared.js";
+import { textRun } from "../../utils/text.js";
 
 interface MaterialPickerProps {
   /** Element name used in accessible names, for example "L2". */
@@ -320,7 +321,7 @@ export default function MaterialPicker({
         {material.glass ?? "Custom"}
       </span>
       <span style={{ color: t.body, whiteSpace: "nowrap", flex: "none" }}>
-        {short(material.nd, 5)} · {short(material.vd, 2)}
+        {textRun(short(material.nd, 5), " · ", short(material.vd, 2))}
       </span>
       {/* Phones have room for the name and indices only; the picker and the tooltip still name the vendor. */}
       {vendor && !touch && (
@@ -390,7 +391,7 @@ export default function MaterialPicker({
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-            <span style={{ ...builderCaptionStyle(t), flex: 1 }}>Material for {elementName}</span>
+            <span style={{ ...builderCaptionStyle(t), flex: 1 }}>{textRun("Material for ", elementName)}</span>
             <button type="button" aria-label="Close material picker" style={smallButton} onClick={close}>
               ✕
             </button>

@@ -13,6 +13,7 @@ import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import { panelCard } from "../../utils/style/styles.js";
 import { ENABLE_LENS_BUILDER } from "../../utils/featureFlags.js";
+import { textRun } from "../../utils/text.js";
 
 interface QuickNavCardsProps {
   theme: Theme;
@@ -87,7 +88,7 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
       {cards.map((card) => (
         <Link key={card.to} to={canonicalPagePath(card.to)} style={cardStyle(card)}>
           <div style={{ ...titleStyle, marginBottom: "0.35rem" }}>
-            {card.title}
+            <span>{card.title}</span>
             {card.isNew && (
               <span
                 style={{
@@ -125,7 +126,7 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
         }}
       >
         <span style={titleStyle}>{START_HERE.title}</span>
-        <span style={subtitleStyle}>{START_HERE.subtitle} →</span>
+        <span style={subtitleStyle}>{textRun(START_HERE.subtitle, " →")}</span>
       </Link>
     </section>
   );

@@ -9,6 +9,7 @@ import { useId, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent
 import type { GlassEntry } from "../../optics/glassCatalog.js";
 import type { Theme } from "../../types/theme.js";
 import { builderCaptionStyle, builderInputStyle } from "./CommitInput.js";
+import { textRun } from "../../utils/text.js";
 
 interface GlassMapProps {
   glasses: readonly GlassEntry[];
@@ -165,10 +166,10 @@ export default function GlassMap({ glasses, current, theme: t, label, touch, onP
           }}
           style={{ ...builderInputStyle(t, false, touch), width: "auto", flex: 1, cursor: "pointer" }}
         >
-          <option value="">All vendors ({glasses.length})</option>
+          <option value="">{textRun("All vendors (", glasses.length, ")")}</option>
           {vendors.map(({ v, n }) => (
             <option key={v} value={v}>
-              {v} ({n})
+              {textRun(v, " (", n, ")")}
             </option>
           ))}
         </select>
@@ -257,7 +258,7 @@ export default function GlassMap({ glasses, current, theme: t, label, touch, onP
               border: `1px solid ${t.toggleBorder}`,
             }}
           >
-            Pick {active.name}
+            {textRun("Pick ", active.name)}
           </button>
         )}
       </div>

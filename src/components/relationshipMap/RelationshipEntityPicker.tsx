@@ -16,7 +16,7 @@ import type { Theme } from "../../types/theme.js";
 import type { PartyRef } from "../../utils/catalog/relationshipGraph.js";
 import { panelCard, searchInput, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
 import roleChip from "./roleChip.js";
-import { pluralize } from "../../utils/text.js";
+import { pluralize, textRun } from "../../utils/text.js";
 import useDismissableDropdown from "../hooks/useDismissableDropdown.js";
 
 interface RelationshipEntityPickerProps {
@@ -146,7 +146,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
                     fontSize: "0.78rem",
                   }}
                 >
-                  {option.ref.name}
+                  <span>{option.ref.name}</span>
                   <span style={roleChip(t, option.ref.role)}>{option.ref.role}</span>
                 </button>
               </li>
@@ -192,19 +192,26 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
             }}
           >
             <span style={{ color: t.descLinkColor, fontSize: "0.85rem", fontWeight: 600 }}>
-              {option.ref.name}
+              <span>{option.ref.name}</span>
               <span style={roleChip(t, option.ref.role)}>{option.ref.role}</span>
             </span>
             <span style={{ display: "block", color: t.label, fontSize: "0.7rem", marginTop: "0.3rem" }}>
-              {option.patentCount} {pluralize(option.patentCount, "patent")} · {option.lensCount}{" "}
-              {pluralize(option.lensCount, "lens")}
+              {textRun(
+                option.patentCount,
+                " ",
+                pluralize(option.patentCount, "patent"),
+                " · ",
+                option.lensCount,
+                " ",
+                pluralize(option.lensCount, "lens"),
+              )}
             </span>
           </button>
         ))}
       </div>
       {filtered.length > limit && (
         <p style={{ color: t.muted, fontSize: "0.72rem", marginTop: "0.75rem" }}>
-          Showing {limit} of {filtered.length} — type to narrow.
+          {textRun("Showing ", limit, " of ", filtered.length, " — type to narrow.")}
         </p>
       )}
     </div>

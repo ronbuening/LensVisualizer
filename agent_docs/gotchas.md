@@ -83,3 +83,7 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
 - Mount and image-format ids are single `:param` route segments (`/mounts/:mountId`, `/formats/:formatId`). An id with a
   `/` never matches, so the prerender emits a noindex Page Not Found and `seo-audit` reports a missing canonical. The
   slug rule lives in `src/utils/catalog/lensTaxonomy.ts` and is guarded by `lensTaxonomy.test.ts`.
+- Browser translators replace React-owned Text nodes, so a changing text run that shares its element with other
+  children crashes on removal or freezes on update in a translated page. Keep it in its own element
+  (`code_conventions.md`, Translator-Safe Display Text); `translation/owned-text` and the browser suite's detached-text
+  audit enforce it.

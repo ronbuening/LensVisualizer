@@ -9,6 +9,7 @@ import { ENABLE_REAL_RAY_LSA_DIAGNOSTIC } from "../../../../utils/featureFlags.j
 import SADiagram from "./SADiagram.js";
 import { formatSaUm } from "./format.js";
 import SectionHeader from "./SectionHeader.js";
+import { textRun } from "../../../../utils/text.js";
 
 interface SphericalAberrationSectionProps {
   result: SphericalAberrationResult | null;
@@ -132,7 +133,13 @@ export default function SphericalAberrationSection({
         </span>
         {result ? (
           <span style={{ fontSize: 9, color: theme.muted, transition: "color 0.3s" }}>
-            (peak {formatSaUm(result.bestFocusPeakUm)}, shift {result.bestFocusShiftMm.toFixed(2)} mm)
+            {textRun(
+              "(peak ",
+              formatSaUm(result.bestFocusPeakUm),
+              ", shift ",
+              result.bestFocusShiftMm.toFixed(2),
+              " mm)",
+            )}
           </span>
         ) : null}
       </div>
