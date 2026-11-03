@@ -1,35 +1,32 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole selected patent embodiment; probable product family, not factory exact.
- * Literal source-native R/d/nd/vd and conventional1+K coefficients are unscaled.
- * Printed stops and source infinity/finite intervals are retained without refocus.
- * Missing optical caps were selected from source figures, first-order envelopes
- * and conic/polynomial geometry before tracing; rejected hypotheses are retained.
- * Only infinity and the source finite endpoint have documented conjugates.
- * Linear gap interpolation is implementation geometry, not a patent cam law;
- * intermediate finite MTF is unavailable. Retail MFD is descriptive only.
- * The companion analysis distinguishes finite angular and image-height probes.
+/** JP 2026-093473 A (Cosina Co., Ltd.; Yuki Shibata), Example 1, Tables 1–4, at patent scale:
+ * f = 82.45 mm, F1.45, ω = 14.84°. R, d, nd, νd and the S9/S10 aspheric terms are as printed;
+ * the aspheres use the standard (1+K) conic form and Table 4 prints terms through A10.
+ * Paraxial trace: EFL 82.446 mm, BF 18.091 mm against the printed 18.10 mm image gap (kept);
+ * the gaps sum to 124.01 mm against the 124 mm optical length in Table 1.
+ * S1 and S27 semi-diameters are half the printed effective diameters 57.4 / 31.8 mm; the
+ * others are inferred from Fig. 1 and the f/1.45 axial and full-field beams. The stop
+ * position is printed; the iris radius is derived from F1.45.
+ * Focus: Table 3 prints infinity and β = 0.124 with the object 676.0 mm before S1. G2 and the
+ * iris move 3.72 mm toward the image, G3 moves 2.70 mm toward the object, G1 and G4 are fixed.
+ * Retail minimum focus is 0.80 m.
  */
 const LENS_DATA = {
   schema: 2,
   key: "zeiss-otus-ml-85mm-f14",
   maker: "Carl Zeiss Oberkochen",
   name: "ZEISS OTUS ML 85mm f/1.4",
-  subtitle: "JP 2026-093473 A — whole Example 1; probable family reconstruction",
+  subtitle: "JP 2026-093473 A — Example 1; patent design matching the production layout",
   catalog: {
     lensMounts: ["sony-fe", "nikon-z", "canon-rf"],
     imageFormat: "135-full-frame",
     specs: [
-      "Grade B probable patent family; exact factory prescription unproved",
-      "Printed stop position; inferred optical caps and F/N-derived iris",
-      "Printed infinity and finite endpoint; linear gap interpolation is implementation only; intermediate MTF unavailable",
-      "SOURCE f=82.45mm / F1.45 / full field29.68deg",
-      "Printed first/last surface effective diameters57.4/31.8mm retained; not iris diameters",
-      "Unprinted asphere terms beyondA10 omitted as implementation truncation",
-      "Finite conjugate uses printed object-to-first-vertex distance; source heading/track discrepancies retained",
-      "Source magnification0.124 at ZD0=676mm; source800.01mm object-to-image arithmetic, no retail cam claim",
-      "Retail minimum focus0.80m; modeled source endpoint0.8000100m, not a retail cam law",
-      "Finite angle datum and21.63mm image-height window are separate qualifications",
+      "15 ELEMENTS / 11 GROUPS",
+      "DESIGN f = 82.45 mm",
+      "DESIGN F/1.45",
+      "2 ASPHERICAL SURFACES / 1 ELEMENT",
+      "INNER FOCUS",
     ],
     elementCount: 15,
     groupCount: 11,
@@ -63,7 +60,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 343.1686484497593,
       glass: "J-PKH1 (Hikari catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Weak positive front meniscus of the fixed first group G1.",
+      diagramLabel: "L1",
     },
     {
       id: 2,
@@ -75,7 +73,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 201.3462236691571,
       glass: "FCD705 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Positive meniscus of G1 in low-dispersion crown.",
+      diagramLabel: "L2",
     },
     {
       id: 3,
@@ -87,7 +86,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -76.6720145901564,
       glass: "S-NBH8 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Negative element of G1; its object-side concave face reduces close-focus coma.",
+      diagramLabel: "L3",
     },
     {
       id: 4,
@@ -99,7 +99,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 68.2763070343403,
       glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Thick biconvex element, the strongest positive member of G1.",
+      diagramLabel: "L4",
     },
     {
       id: 5,
@@ -111,11 +112,12 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 110.0001391283826,
       glass: "L-LAH91 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Rear positive meniscus of G1, aspherical on both faces.",
+      diagramLabel: "L5",
     },
     {
       id: 6,
-      name: "L6",
+      name: "L6f",
       label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.80809,
@@ -123,12 +125,13 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 101.01908863808114,
       glass: "S-NPH1 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "High-dispersion positive meniscus at the front of the G2 cemented pair.",
+      diagramLabel: "L6f",
       cemented: "C1",
     },
     {
       id: 7,
-      name: "L7",
+      name: "L6r",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.6134,
@@ -136,12 +139,13 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -45.31244406253862,
       glass: "S-NBM51 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Negative meniscus of the G2 cemented pair; G2 moves toward the image for close focus.",
+      diagramLabel: "L6r",
       cemented: "C1",
     },
     {
       id: 8,
-      name: "L8",
+      name: "L7",
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.55298,
@@ -149,11 +153,12 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -92.33057789492734,
       glass: "J-KZFH4 (Hikari catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Biconcave negative at the rear of focus group G2, just ahead of the iris.",
+      diagramLabel: "L7",
     },
     {
       id: 9,
-      name: "L9",
+      name: "L8f",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.76385,
@@ -161,12 +166,13 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 25.79762019026033,
       glass: "S-LAH96 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Strong biconvex front of the first G3 pair, whose joint is concave to the object.",
+      diagramLabel: "L8f",
       cemented: "C2",
     },
     {
       id: 10,
-      name: "L10",
+      name: "L8r",
       label: "Element 10",
       type: "Negative Meniscus",
       nd: 1.85883,
@@ -174,12 +180,13 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -32.39907178480263,
       glass: "NBFD30 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Dense-flint negative meniscus completing the first G3 cemented pair.",
+      diagramLabel: "L8r",
       cemented: "C2",
     },
     {
       id: 11,
-      name: "L11",
+      name: "L9f",
       label: "Element 11",
       type: "Negative Meniscus",
       nd: 1.738,
@@ -187,12 +194,13 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -46.46659063490977,
       glass: "S-NBH53V (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Negative meniscus at the front of the second G3 cemented pair.",
+      diagramLabel: "L9f",
       cemented: "C3",
     },
     {
       id: 12,
-      name: "L12",
+      name: "L9r",
       label: "Element 12",
       type: "Biconvex Positive",
       nd: 1.76385,
@@ -200,12 +208,13 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 29.33372570344108,
       glass: "S-LAH96 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Biconvex rear of the second G3 pair; G3 moves toward the object for close focus.",
+      diagramLabel: "L9r",
       cemented: "C3",
     },
     {
       id: 13,
-      name: "L13",
+      name: "L10f",
       label: "Element 13",
       type: "Positive Meniscus",
       nd: 2.001,
@@ -213,12 +222,13 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 40.10963418909508,
       glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "High-index (nd 2.001) positive meniscus of the fixed rear group G4.",
+      diagramLabel: "L10f",
       cemented: "C4",
     },
     {
       id: 14,
-      name: "L14",
+      name: "L10r",
       label: "Element 14",
       type: "Biconcave Negative",
       nd: 1.6134,
@@ -226,12 +236,13 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -44.17779496380146,
       glass: "S-NBM51 (OHARA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Biconcave negative of the G4 cemented pair.",
+      diagramLabel: "L10r",
       cemented: "C4",
     },
     {
       id: 15,
-      name: "L15",
+      name: "L11",
       label: "Element 15",
       type: "Negative Meniscus",
       nd: 1.55298,
@@ -239,7 +250,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -83.01860666120977,
       glass: "J-KZFH4 (Hikari catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Rear negative meniscus of G4, concave to the object; its 31.8 mm effective diameter is printed.",
+      diagramLabel: "L11",
     },
   ],
   surfaces: [
@@ -443,7 +455,7 @@ const LENS_DATA = {
         objectDistanceMm: 676.0,
         distanceReference: "first-surface",
         source:
-          "JP 2026-093473 A whole Example1 Table3; printed d0/ZD0 before first surface plus exact listed focus spacings. Preserve source residuals and image-plane conventions.",
+          "JP 2026-093473 A, Example 1, Table 3: object 676.0 mm before the first surface (ZD0) with the printed close-focus spacings; the printed 18.10 mm image gap is kept.",
       },
     ],
     published: [1],
