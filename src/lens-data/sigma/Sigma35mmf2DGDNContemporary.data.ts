@@ -1,33 +1,28 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole selected patent embodiment; probable product family, not factory exact.
- * Literal source-native R/d/nd/vd and conventional1+K coefficients are unscaled.
- * Printed stops and source infinity/finite intervals are retained without refocus.
- * Missing optical caps were selected from source figures, first-order envelopes
- * and conic/polynomial geometry before tracing; rejected hypotheses are retained.
- * Only infinity and the source finite endpoint have documented conjugates.
- * Linear gap interpolation is implementation geometry, not a patent cam law;
- * intermediate finite MTF is unavailable. Retail MFD is descriptive only.
- * The companion analysis distinguishes finite angular and image-height probes.
+/** JP 2021-165807 A (Sigma), Example 2, unscaled millimetres.
+ * R, d, nd and νd are as printed; the aspheres use the patent's 1+K conic form
+ * (K = 0 on all six faces) through A14. The stop position is printed; its radius
+ * follows the design F/2.07. Semi-diameters are inferred from Fig. 6 and ray
+ * clearance; S20 is set so the 21.63 mm corner chief ray passes.
+ * Focus: infinity and the printed 1517 mm state (d0 = 1438.33 mm; d0 plus the
+ * 79.1482 mm track gives 1517.48 mm). G2 moves; BF stays 17.8981 mm.
  */
 const LENS_DATA = {
   schema: 2,
   key: "sigma-35mm-f2-dg-dn-contemporary",
   maker: "Sigma",
   name: "SIGMA 35mm f/2 DG DN | Contemporary",
-  subtitle: "JP 2021-165807 A — whole Example 2; probable family reconstruction",
+  subtitle: "JP 2021-165807 A — Example 2; Sigma design with the production lens's layout",
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],
     imageFormat: "135-full-frame",
     specs: [
-      "Grade B probable patent family; exact factory prescription unproved",
-      "Printed stop position; inferred optical caps and F/N-derived iris",
-      "Printed infinity and finite endpoint; linear gap interpolation is implementation only; intermediate MTF unavailable",
-      "SOURCE f=35.99mm / F2.07 / full field63.53deg",
-      "Finite conjugate uses printed object-to-first-vertex distance; source heading/track discrepancies retained",
-      "Source1517mm heading versus literal1517.4782mm object-to-image arithmetic; BF unchanged",
-      "Retail minimum focus0.27m; modeled source endpoint1.5174782m, not a retail cam law",
-      "Finite angle datum and21.63mm image-height window are separate qualifications",
+      "10 ELEMENTS / 9 GROUPS",
+      "DESIGN f = 35.99 mm",
+      "DESIGN F/2.07",
+      "6 ASPHERICAL SURFACES / 3 ELEMENTS",
+      "INTERNAL FOCUS",
     ],
     elementCount: 10,
     groupCount: 9,
@@ -61,7 +56,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -34.563579497150535,
       glass: "E-C3 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Biconcave front element of the fixed group G1; its object-side concave face aids field-curvature correction (¶0020).",
     },
     {
       id: 2,
@@ -73,7 +68,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 44.294036219431916,
       glass: "TAFD65 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Positive element 1p of G1; conditions (9)–(10) set its low νd and raised ΔPgF to correct the secondary spectrum of lateral colour (¶0053).",
       dPgF: 0.00665107999999992,
       apdNote:
         "Patent prints ΔPgF = +0.0053 by its line (PgF + 0.0018·νd − 0.64833), which gives PgF = 0.6051 (derived, not printed); runtime dPgF +0.00665 against the engine normal line.",
@@ -88,7 +83,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -31.51643775799788,
       glass: "FF5 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Biconcave negative element of G1.",
     },
     {
       id: 4,
@@ -100,7 +95,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 25.108767026095983,
       glass: "M-TAF105 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Double-aspheric glass-molded positive element of G1.",
     },
     {
       id: 5,
@@ -112,7 +107,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -38.34528083753767,
       glass: "NBFD29 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Negative meniscus of the cemented pair C1, convex to the object.",
       cemented: "C1",
       dPgF: 0.0013226799999999095,
       apdNote:
@@ -128,7 +123,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 25.11218428967409,
       glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "SLD positive element of the cemented pair C1; conditions (4)–(5) govern the pair's axial colour and its secondary spectrum (¶0033–0037).",
       cemented: "C1",
       dPgF: 0.015618840000000023,
       apdNote:
@@ -144,7 +139,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -76.30906524527705,
       glass: "M-LAC130 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Double-aspheric single-element focusing group G2; moves toward the image for close focus (¶0057).",
     },
     {
       id: 8,
@@ -156,7 +151,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 31.367294664714045,
       glass: "M-TAF105 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Double-aspheric glass-molded positive element leading the fixed rear group G3.",
     },
     {
       id: 9,
@@ -168,7 +163,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -67.90812277243916,
       glass: "FF5 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Negative meniscus of G3, convex to the object.",
     },
     {
       id: 10,
@@ -180,7 +175,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -119.2988280156144,
       glass: "E-F5 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Rear negative meniscus of G3, concave to the object.",
     },
   ],
   surfaces: [
@@ -379,7 +374,7 @@ const LENS_DATA = {
         objectDistanceMm: 1438.33,
         distanceReference: "first-surface",
         source:
-          "JP 2021-165807 A whole Example2 variable interval table; printed d0/ZD0 before first surface plus exact listed focus spacings. Preserve source residuals and image-plane conventions.",
+          "JP 2021-165807 A, Example 2 variable-interval table: printed d0 = 1438.33 mm before the first surface, with the printed d12 and d14.",
       },
     ],
     published: [1],
