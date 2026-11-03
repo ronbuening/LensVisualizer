@@ -119,13 +119,14 @@ there; check them against the patent figure.
 
 ## Section E — MTF image-plane census
 
-These lenses place their image plane away from their own prescription's paraxial focus at infinity, by more than
+These lens stations place their image plane away from their own prescription's paraxial focus at infinity, by more than
 `MTF_IMAGE_PLANE_DEPTHS` (10) diffraction depths of focus (2λN² at the d line and the open f-number). At the authored
 plane their MTF collapses; the MTF tab's default best axial focus (and its "Design plane (auto)" option) refocuses
 them and says why. Where diagnosed, the
 source's printed back focus contradicts its prescription; undiagnosed rows may be transcription errors. Folding a listed plate to its air-equivalent, or
 modeling it in `rearPlates`, leaves paraxial defocus unchanged, so plates alone rarely explain these offsets.
-Regenerate (about three minutes):
+Regenerate (seconds; every zoom station, hidden configuration members and lenses the MTF cannot trace are included,
+and `--min-depths=N` lowers the threshold):
 
 ```bash
 node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --focus
