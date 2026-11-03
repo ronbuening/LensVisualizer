@@ -178,19 +178,19 @@ const LENS_DATA = {
     {
       label: "10",
       R: 206.2872,
-      d: 76.88340000000002,
       sd: 16.6,
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 2.0,
     description:
-      "Only the hypothetical infinity configuration is modeled. Neither a finite conjugate nor a focus travel law is supplied; retail MFD is not a modeled state.",
+      "Unit focus: Olympus specifies helicoid focusing to 2.0 m, so the whole optical block moves and only the back focus changes. The patent prints the infinity prescription only; the close-focus back focus is derived (paraxial solve for 2.0 m object to image, about 1:9) and is not a published state.",
   },
+  gaps: { "10": { label: "BF", values: [[76.8834, 96.831]] } },
   aperture: {
     nominalFNumber: 2.8,
-    fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
-    maxFNumber: 22,
+    fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32],
+    maxFNumber: 32,
   },
   projection: {
     kind: "rectilinear",
