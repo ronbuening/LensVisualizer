@@ -122,7 +122,7 @@ const LENS_DATA = {
       focalLengthMm: 16.333275556723635,
       glass: "FCD705 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 7,
@@ -135,7 +135,7 @@ const LENS_DATA = {
       focalLengthMm: -16.622915692862627,
       glass: "NBFD32 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 8,
@@ -344,7 +344,7 @@ const LENS_DATA = {
     closeFocusM: 0.1260001,
     keyframes: [0, 1],
     description:
-      "Infinity and one printed finite endpoint only. Source object-to-first-vertex distance58.5mm; literal object-to-image arithmetic126.0001000mm. Piecewise-linear gap interpolation between endpoints is implementation geometry, not a supplied patent cam law; intermediate finite MTF has no certified conjugate. Retail MFD is not substituted.",
+      "Infinity and the patent's printed 126 mm close-focus state (object to image; object 58.5 mm before the first surface). G2 moves about 1.655 mm toward the object while G1, the stop and G3 stay fixed; magnification at the printed state is about 1:3.9. Sigma lists a 0.12 m minimum focus and 1:3.6 maximum magnification; the printed patent state is used instead. Positions between the two printed states use linear gap interpolation.",
     conjugates: [
       {
         zoomStation: 0,
@@ -395,6 +395,13 @@ const LENS_DATA = {
       text: "G3",
       fromSurface: "17A",
       toSurface: "18A",
+    },
+  ],
+  doublets: [
+    {
+      text: "C1",
+      fromSurface: "12",
+      toSurface: "14",
     },
   ],
   gaps: {
