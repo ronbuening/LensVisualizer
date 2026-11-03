@@ -47,7 +47,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6127,
       vd: 58.5,
-      glass: "Unmatched (literal source Nd/nu-d; supplier unproved)",
+      glass: "BACD4 (HOYA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
@@ -61,7 +61,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6127,
       vd: 58.5,
-      glass: "Unmatched (literal source Nd/nu-d; supplier unproved)",
+      glass: "BACD4 (HOYA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
@@ -75,7 +75,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.671,
       vd: 51.7,
-      glass: "Unmatched (literal source Nd/nu-d; supplier unproved)",
+      glass: "Unmatched (patent nd 1.6710, νd 51.7; no catalog row at these coordinates)",
       indexReference: "d",
       indexReferenceNote:
         "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
@@ -90,7 +90,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.7552,
       vd: 27.5,
-      glass: "Unmatched (literal source Nd/nu-d; supplier unproved)",
+      glass: "S-TIH4 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
@@ -105,7 +105,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8052,
       vd: 25.4,
-      glass: "Unmatched (literal source Nd/nu-d; supplier unproved)",
+      glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
@@ -120,7 +120,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6584,
       vd: 50.9,
-      glass: "Unmatched (literal source Nd/nu-d; supplier unproved)",
+      glass: "S-BSM25 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
@@ -135,7 +135,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.1,
-      glass: "Unmatched (literal source Nd/nu-d; supplier unproved)",
+      glass: "N-BK7 (Schott catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",

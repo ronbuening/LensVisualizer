@@ -11,7 +11,7 @@ const LENS_DATA = {
   schema: 2,
   key: "olympus-zuiko-auto-t-180mm-f28",
   maker: "Olympus",
-  name: "OLYMPUS OM-SYSTEM ZUIKO MC AUTO-T 180mm f/2.8",
+  name: "OLYMPUS ZUIKO AUTO-T 180mm f/2.8",
   subtitle: "US 4,114,992 Embodiment 1 \u2014 probable family; inferred aperture",
   catalog: {
     lensMounts: ["olympus-om"],
@@ -46,7 +46,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.66672,
       vd: 48.32,
-      glass: "Unmatched (literal unqualified n/Abbe; d-line hypothesis)",
+      glass: "S-BAH11 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
@@ -60,7 +60,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.62299,
       vd: 58.14,
-      glass: "Unmatched (literal unqualified n/Abbe; d-line hypothesis)",
+      glass: "S-BSM15 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
@@ -74,7 +74,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.60311,
       vd: 60.7,
-      glass: "Unmatched (literal unqualified n/Abbe; d-line hypothesis)",
+      glass: "S-BSM14 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
@@ -88,7 +88,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.78472,
       vd: 25.71,
-      glass: "Unmatched (literal unqualified n/Abbe; d-line hypothesis)",
+      glass: "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
@@ -102,7 +102,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.76182,
       vd: 26.55,
-      glass: "Unmatched (literal unqualified n/Abbe; d-line hypothesis)",
+      glass: "S-TIH14 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",

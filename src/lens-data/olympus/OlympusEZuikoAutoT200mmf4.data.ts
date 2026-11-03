@@ -46,7 +46,7 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.62041,
       vd: 60.2,
-      glass: "Unmatched (literal unqualified n/Abbe; d-line hypothesis)",
+      glass: "S-BSM16 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
@@ -60,7 +60,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 69.8,
-      glass: "Unmatched (literal unqualified n/Abbe; d-line hypothesis)",
+      glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
@@ -75,7 +75,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.76182,
       vd: 26.5,
-      glass: "Unmatched (literal unqualified n/Abbe; d-line hypothesis)",
+      glass: "S-TIH14 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
@@ -90,7 +90,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6779,
       vd: 55.3,
-      glass: "Unmatched (literal unqualified n/Abbe; d-line hypothesis)",
+      glass: "S-LAL12 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
@@ -104,7 +104,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.78472,
       vd: 25.6,
-      glass: "Unmatched (literal unqualified n/Abbe; d-line hypothesis)",
+      glass: "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
