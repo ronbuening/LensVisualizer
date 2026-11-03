@@ -32,6 +32,7 @@ const LENS_DATA = {
       design: 2.8,
     },
     specs: ["7 ELEMENTS / 5 GROUPS", "DESIGN f = 135 mm", "DESIGN F/2.8", "ALL SPHERICAL", "INTERNAL FOCUS"],
+    closeFocusM: { marketing: 1.0 },
   },
   source: {
     patentNumber: "US 4,610,514",
