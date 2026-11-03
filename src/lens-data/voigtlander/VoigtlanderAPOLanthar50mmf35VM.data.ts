@@ -163,7 +163,7 @@ const LENS_DATA = {
       nd: 1.68893,
       vd: 31.16,
       focalLengthMm: -127.948064,
-      glass: "689312 — FD8/SF8/S-TIM28-class dense flint; vendor identity not unique",
+      glass: "689312 — SF8/S-TIM28-class dense flint; vendor identity not unique",
       apd: "inferred",
       apdNote:
         "Cosina's optical section marks L8 as anomalous partial dispersion; the patent supplies no line indices or dPgF.",

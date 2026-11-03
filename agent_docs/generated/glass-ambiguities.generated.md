@@ -12,8 +12,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1056** lenses scanned
-- **12120** glass elements examined
+- **1062** lenses scanned
+- **12157** glass elements examined
 - **2697** elements have multiple coordinate-compatible candidates
 - **491** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
@@ -1966,7 +1966,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `603380 — F5-class flint; vendor identity not unique` | 1.60342 / 38.01 (d) | F5 — direct name evidence outranks six-digit code evidence. | J-F5 (Hikari, code, alternate code row)<br>E-F5 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) L4 |
 | `497816 — FCD1/S-FPL51/N-PK52A-class fluorophosphate crown; vendor identity not unique` | 1.49700 / 81.61 (d) | FCD1 — smallest d-line \|Δn\| (1.6e-7 vs 7.1e-7) | S-FPL51 (Ohara, name)<br>H-FK61 (CDGM, code, alternate code row)<br>M-FCD1 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) L6 |
 | `713539 — LAK8/LAC8-class lanthanum crown; vendor identity not unique` | 1.71300 / 53.94 (d) | LAC8 — direct name evidence outranks six-digit code evidence. | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) L7 |
-| `689312 — FD8/SF8/S-TIM28-class dense flint; vendor identity not unique` | 1.68893 / 31.16 (d) | S-TIM28 — direct name evidence outranks alias evidence. | N-SF8 (Schott, alias)<br>J-SF8 (Hikari, code, alternate code row)<br>M-FD80 (Hoya, code, alternate code row)<br>E-FD8 (Hoya, code, preferred code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) L8 |
+| `689312 — SF8/S-TIM28-class dense flint; vendor identity not unique` | 1.68893 / 31.16 (d) | S-TIM28 — direct name evidence outranks alias evidence. | N-SF8 (Schott, alias)<br>J-SF8 (Hikari, code, alternate code row)<br>M-FD80 (Hoya, code, alternate code row)<br>E-FD8 (Hoya, code, preferred code row) | 1 | [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) L8 |
 | `BACD14 / J-SK14 / K-SK14 class (603607; vendor unresolved)` | 1.60311 / 60.69 (d) | J-SK14 — smallest d-line \|Δn\| (1.1e-8 vs 8.2e-7) | BACD14 (Hoya, name)<br>S-BSM14 (Ohara, code, preferred code row) | 1 | [VOIGTLÄNDER APO-ULTRON 90mm f/2 VM](../../src/lens-data/voigtlander/VoigtlanderAPOUltron90mmf2VM.data.ts) L11 |
 | `FCD1 / N-PK52A / H-FK61 class (497816; vendor unresolved)` | 1.49700 / 81.61 (d) | H-FK61 — smallest d-line \|Δn\| (1.1e-8 vs 1.6e-7) | FCD1 (Hoya, name)<br>S-FPL51 (Ohara, code, preferred code row)<br>M-FCD1 (Hoya, code, alternate code row) | 2 | [VOIGTLÄNDER APO-ULTRON 90mm f/2 VM](../../src/lens-data/voigtlander/VoigtlanderAPOUltron90mmf2VM.data.ts) L12 |
 | `M-FD80 / J-SF8 / H-ZF10 class (689312; vendor unresolved)` | 1.68893 / 31.16 (d) | J-SF8 — smallest d-line \|Δn\| (2.4e-8 vs 1.2e-7) | M-FD80 (Hoya, name)<br>E-FD8 (Hoya, code, preferred code row) | 1 | [VOIGTLÄNDER APO-ULTRON 90mm f/2 VM](../../src/lens-data/voigtlander/VoigtlanderAPOUltron90mmf2VM.data.ts) L14 |
