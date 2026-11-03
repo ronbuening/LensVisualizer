@@ -1,0 +1,227 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/** Grade B patent-family reconstruction; factory example identity unproved.
+ * Literal helium-d prescription retained with explicit uniform scale; fixed infinity plane.
+ * Missing clear caps and stop coordinates were frozen from source figures and analytic
+ * geometry before tracing. No contrast-driven retuning or finite-focus prescription.
+ */
+const LENS_DATA = {
+  schema: 2,
+  key: "voigtlander-dynaron-100mm-f45",
+  maker: "Voigtländer",
+  name: "VOIGTLÄNDER DYNARON 100mm f/4.5",
+  subtitle: "US 2,730,017 A Example 1; Grade B probable family; inferred iris/caps; static infinity only.",
+  catalog: {
+    lensMounts: ["voigtlander-prominent"],
+    imageFormat: "135-full-frame",
+    elementCount: 6,
+    groupCount: 4,
+    focalLengthMm: {
+      marketing: 100.0,
+      design: 100.0,
+    },
+    fNumber: {
+      marketing: 4.5,
+      design: 4.5,
+    },
+    specs: [
+      "Patent-based reconstruction; exact factory prescription unproved",
+      "Inferred clear apertures and stop location; clipping conditional on these hypotheses",
+      "Infinity only; no finite-focus law",
+      "Patent field absent; maker approximate full field 25.0° is an external operating-envelope hypothesis",
+    ],
+  },
+  source: {
+    patentNumber: "US 2,730,017 A",
+    example: {
+      label: "Example 1",
+      id: "1",
+    },
+    patentYear: 1956,
+    authors: ["Albrecht Wilhelm Tronnier"],
+    assignees: ["Voigtländer AG"],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      nd: 1.58987,
+      vd: 61.2,
+      indexReference: "d",
+      glass: "Unmatched (literal patent helium-d index and Abbe number; vendor identity and full dispersion unproved)",
+      focalLengthMm: 27.90997794503012,
+      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      cemented: "D1",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      nd: 1.72381,
+      vd: 38.0,
+      indexReference: "d",
+      glass: "Unmatched (literal patent helium-d index and Abbe number; vendor identity and full dispersion unproved)",
+      focalLengthMm: -54.25622734098758,
+      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      cemented: "D1",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      nd: 1.72381,
+      vd: 38.0,
+      indexReference: "d",
+      glass: "Unmatched (literal patent helium-d index and Abbe number; vendor identity and full dispersion unproved)",
+      focalLengthMm: -183.89516375769853,
+      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Biconvex Positive",
+      nd: 1.62355,
+      vd: 47.0,
+      indexReference: "d",
+      glass: "Unmatched (literal patent helium-d index and Abbe number; vendor identity and full dispersion unproved)",
+      focalLengthMm: 83.08897641868539,
+      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconcave Negative",
+      nd: 1.58192,
+      vd: 40.8,
+      indexReference: "d",
+      glass: "Unmatched (literal patent helium-d index and Abbe number; vendor identity and full dispersion unproved)",
+      focalLengthMm: -20.484936257251555,
+      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      cemented: "D2",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      nd: 1.75512,
+      vd: 27.5,
+      indexReference: "d",
+      glass: "Unmatched (literal patent helium-d index and Abbe number; vendor identity and full dispersion unproved)",
+      focalLengthMm: 44.467892282237486,
+      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      cemented: "D2",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 24.288,
+      d: 5.183,
+      sd: 12.1,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: -47.056,
+      d: 1.382,
+      sd: 12.1,
+      medium: 2,
+    },
+    {
+      label: "3",
+      R: 240.306,
+      d: 0.494,
+      sd: 11.1,
+    },
+    {
+      label: "4",
+      R: 177.947,
+      d: 1.185,
+      sd: 11.1,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: 75.934,
+      d: 14.20045,
+      sd: 11.1,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 11.618549999999999,
+    },
+    {
+      label: "6",
+      R: 92.523,
+      d: 2.814,
+      sd: 9.6,
+      medium: 4,
+    },
+    {
+      label: "7",
+      R: -116.367,
+      d: 4.305,
+      sd: 9.6,
+    },
+    {
+      label: "8",
+      R: -17.229,
+      d: 1.728,
+      sd: 10.4,
+      medium: 5,
+    },
+    {
+      label: "9",
+      R: 40.117,
+      d: 2.962,
+      sd: 10.4,
+      medium: 6,
+    },
+    {
+      label: "10",
+      R: -199.48,
+      d: 37.203,
+      sd: 10.4,
+    },
+  ],
+  doublets: [
+    {
+      text: "D1",
+      fromSurface: "1",
+      toSurface: "3",
+    },
+    {
+      text: "D2",
+      fromSurface: "8",
+      toSurface: "10",
+    },
+  ],
+  focus: {
+    closeFocusM: 1000000000000000.0,
+    description:
+      "Static infinity only. Fixed image z83.075mm; source and maker focus descriptions do not establish an authored finite law. No retail distance transplanted.",
+  },
+  aperture: {
+    nominalFNumber: 4.5,
+    fStops: [4.5, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+  },
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 25.0,
+    maxTraceFieldDeg: 12.5,
+  },
+  layout: {
+    yScFill: 0.78,
+  },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;
