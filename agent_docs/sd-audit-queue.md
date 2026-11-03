@@ -132,10 +132,12 @@ and `--min-depths=N` lowers the threshold):
 node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --focus
 ```
 
-Work each row with [lens-patent-audit.md](lens-patent-audit.md) and the source PDF. Correct transcription errors,
-and model plates the source lists in `rearPlates`. Where the source itself is inconsistent, follow the source-errata
-standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata) (an unresolved contradiction is queued in
-Section G), then delete the row here. Offset is paraxial focus minus the authored plane (positive: the plane sits in front of focus).
+Work each row under [Image-Plane Consistency](../src/lens-data/LENS_DATA_SPEC.md#image-plane-consistency): correct
+transcription errors and model artefacts, re-solve rounded or inconsistent rows back focus first, and keep a deliberate
+best-focus plane (the kept lenses are listed in [decisions.md](decisions.md)). A source contradiction is judged by the
+source-errata standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata); an unresolved one is queued in
+Section G. Delete the row here when it is done. Offset is paraxial focus minus the authored plane (positive: the plane
+sits in front of focus).
 
 | Lens                                    | File                                          | Offset (mm) | Depths | Cause                                                                                        | Status                                                                        |
 | --------------------------------------- | --------------------------------------------- | ----------- | ------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
