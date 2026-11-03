@@ -15,10 +15,12 @@ flowchart LR
   n_external_src_optics_mount["src/optics/mount"]
   n_external_src_types["src/types"]
   n_external_pkg_react["pkg:react"]
+  n_external_src_utils_text_ts["src/utils/text.ts"]
   n_src_components_mount_src_components_mount_MountDiagramPanel_tsx --> |4| n_external_src_optics_mount
   n_src_components_mount_src_components_mount_MountDiagram_tsx --> |3| n_external_src_optics_mount
   n_src_components_mount_src_components_mount_MountDiagramPanel_tsx --> |2| n_external_src_types
   n_src_components_mount_src_components_mount_MountDiagramPanel_tsx --> n_external_pkg_react
+  n_src_components_mount_src_components_mount_MountDiagramPanel_tsx --> n_external_src_utils_text_ts
   n_src_components_mount_src_components_mount_MountDiagramPanel_tsx --> n_src_components_mount_src_components_mount_MountDiagram_tsx
 ```
 
@@ -26,7 +28,7 @@ flowchart LR
 
 - Direct source files: 2
 - Direct subfolders: 0
-- Main outbound areas: src/optics/mount (7), src/types (2), package:react, same folder
+- Main outbound areas: src/optics/mount (7), src/types (2), package:react, same folder, src/utils/text.ts
 - External consumers: src/pages/MountPage.tsx
 
 ## Files
@@ -34,4 +36,4 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `MountDiagram.tsx` | React component module | src/optics/mount (3) | same folder | default, MountDiagram |
-| `MountDiagramPanel.tsx` | React component module | src/optics/mount (4), src/types (2), package:react, same folder | src/pages/MountPage.tsx | default, MountDiagramPanel |
+| `MountDiagramPanel.tsx` | React component module | src/optics/mount (4), src/types (2), package:react, same folder, src/utils/text.ts | src/pages/MountPage.tsx | default, MountDiagramPanel |

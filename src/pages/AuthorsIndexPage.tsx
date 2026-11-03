@@ -31,7 +31,7 @@ import {
   type AuthorSort,
 } from "../utils/state/authorSortPreference.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
-import { pluralize } from "../utils/text.js";
+import { pluralize, textRun } from "../utils/text.js";
 
 const AUTHOR_ASSIGNEE_FILTER_OPTIONS = [
   { key: ALL_AUTHOR_ASSIGNEES, label: `All companies and assignees (${AUTHORS.length} authors)` },
@@ -104,12 +104,17 @@ export default function AuthorsIndexPage() {
         <>
           <h1 style={H1_STYLE}>Lens Patent Authors</h1>
           <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.5, marginBottom: "1.5rem" }}>
-            {AUTHORS.length} named inventors represented in the Surface &amp; Stop catalog. Explore how they connect
-            through shared patents in the{" "}
+            <span>
+              {textRun(
+                AUTHORS.length,
+                " named inventors represented in the Surface & Stop catalog. Explore how they connect through shared patents in the",
+                " ",
+              )}
+            </span>
             <Link to="/relationships/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
               patent relationship map
             </Link>
-            . Profiles with a curated biography are labeled below.
+            <span>{". Profiles with a curated biography are labeled below."}</span>
           </p>
 
           <div
@@ -218,18 +223,25 @@ export default function AuthorsIndexPage() {
                   )}
                 </div>
                 <div style={{ color: t.label, fontSize: "0.7rem", marginTop: "0.3rem" }}>
-                  {author.patentCount} {pluralize(author.patentCount, "patent")} · {author.lensKeys.length}{" "}
-                  {pluralize(author.lensKeys.length, "lens diagram")}
+                  {textRun(
+                    author.patentCount,
+                    " ",
+                    pluralize(author.patentCount, "patent"),
+                    " · ",
+                    author.lensKeys.length,
+                    " ",
+                    pluralize(author.lensKeys.length, "lens diagram"),
+                  )}
                 </div>
                 <div style={{ color: t.muted, fontSize: "0.68rem", lineHeight: 1.5, marginTop: "0.35rem" }}>
                   {assignees.length === 0 ? (
                     "No named patent assignee"
                   ) : (
                     <>
-                      {pluralize(assignees.length, "Assignee")}:{" "}
+                      <span>{textRun(pluralize(assignees.length, "Assignee"), ":", " ")}</span>
                       {assignees.map((assignee, index) => (
                         <span key={assignee.slug}>
-                          {index > 0 && " · "}
+                          <span>{index > 0 && " · "}</span>
                           <Link
                             to={`/relationships/#focus=assignee:${assignee.slug}`}
                             style={{ color: t.descLinkColor, textDecoration: "none" }}

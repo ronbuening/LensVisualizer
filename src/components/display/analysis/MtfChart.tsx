@@ -505,7 +505,7 @@ function LegendItem({
         )}
         {marker ? <Marker shape={marker} x={10} y={5} color={color} ring={t.panelBg} /> : null}
       </svg>
-      {label}
+      <span>{label}</span>
     </span>
   );
 }

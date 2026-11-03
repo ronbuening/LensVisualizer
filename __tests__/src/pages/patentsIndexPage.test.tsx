@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Route, Routes } from "react-router";
 import PatentsIndexPage from "../../../src/pages/PatentsIndexPage.js";
 import { PATENTS, PATENT_COUNTRY_GROUPS, espacenetPatentUrl } from "../../../src/utils/catalog/patentCatalog.js";
-import { clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
+import { CATALOG_RENDER_TIMEOUT_MS, clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
   default: function SEOHead() {
@@ -30,7 +30,8 @@ describe("patents index page", () => {
     vi.restoreAllMocks();
   });
 
-  it("renders patents in Country → Assignee sections with lens links", () => {
+  // Renders every catalog patent card under jsdom, so its cost grows with the patent count.
+  it("renders patents in Country → Assignee sections with lens links", { timeout: CATALOG_RENDER_TIMEOUT_MS }, () => {
     const country = PATENT_COUNTRY_GROUPS[0];
     const assignee = country.assignees[0];
     const patent = assignee.patents[0];

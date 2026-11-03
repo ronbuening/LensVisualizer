@@ -14,6 +14,18 @@ declare module "node:child_process" {
       stdio?: readonly ["ignore", "pipe", "pipe"];
     },
   ): string;
+  /* Without an encoding the output is the bytes. */
+  export function execFileSync(
+    file: string,
+    args: readonly string[],
+    options: {
+      cwd?: string;
+      encoding?: string;
+      env?: Record<string, string | undefined>;
+      input?: string;
+      maxBuffer?: number;
+    },
+  ): string | Uint8Array;
 }
 
 declare module "node:fs" {

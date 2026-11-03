@@ -142,7 +142,7 @@ export default function LinkListSidebar({
                     <span aria-hidden="true" style={{ display: "inline-block", width: 14 }}>
                       {isExpanded ? "▾" : "▸"}
                     </span>
-                    {item.label}
+                    <span>{item.label}</span>
                   </button>
                   <ul
                     id={`sidebar-children-${item.id}`}

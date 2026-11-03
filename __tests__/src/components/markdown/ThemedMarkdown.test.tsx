@@ -6,8 +6,30 @@ import ThemedMarkdown from "../../../../src/components/markdown/ThemedMarkdown.j
 import themes from "../../../../src/utils/theme/themes.js";
 import { ARTICLE_CONTENT } from "../../../../src/utils/content/homepageContent.js";
 import { renderWithRouter } from "../../../testUtils.js";
+import { replaceTextForTranslation } from "../../../translationTestUtils.js";
 
 describe("ThemedMarkdown article links", () => {
+  it.each(["article", "description"] as const)(
+    "updates translated rich %s text without losing links or math",
+    (variant) => {
+      const first = "First **bold** text with [a link](https://example.com).\n\n$ x^2 $";
+      const second = "Changed *emphasis* with [another link](https://example.org).\n\n$ x^3 $";
+      const { container, rerender } = renderWithRouter(
+        <ThemedMarkdown markdown={first} theme={themes.dark} variant={variant} />,
+      );
+      expect(replaceTextForTranslation(container)).toBeGreaterThan(0);
+      rerender(<ThemedMarkdown markdown={second} theme={themes.dark} variant={variant} />);
+      expect(container.textContent).toContain("Changed emphasis with another link.");
+      expect(container.textContent).not.toContain("First bold text");
+      expect(screen.getByRole("link", { name: "another link" }).getAttribute("href")).toBe("https://example.org");
+      expect(container.querySelector(".katex")).not.toBeNull();
+      replaceTextForTranslation(container);
+      rerender(<ThemedMarkdown markdown="Only plain text remains." theme={themes.dark} variant={variant} />);
+      expect(container.textContent).toBe("Only plain text remains.");
+      expect(screen.queryByRole("link", { name: "another link" })).toBeNull();
+    },
+  );
+
   it("preserves article-to-lens referrers while keeping external links private and articles in place", () => {
     renderWithRouter(
       <ThemedMarkdown

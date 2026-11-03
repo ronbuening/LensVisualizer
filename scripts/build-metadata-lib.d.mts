@@ -48,7 +48,12 @@ export interface TeleconverterRouteInput {
   compatibleLensKeys: string[];
 }
 
-export type ExecFileSyncLike = (file: string, args: string[], options: { cwd?: string; encoding: string }) => string;
+/** Runs as `execFileSync` does: a string with `encoding`, the bytes without one. */
+export type ExecFileSyncLike = (
+  file: string,
+  args: string[],
+  options: { cwd?: string; encoding?: string; input?: string; maxBuffer?: number },
+) => string | Uint8Array;
 
 export function assertFullGitHistory(options?: {
   cwd?: string;
@@ -73,39 +78,23 @@ export function parseGitLogDates(
   options?: { isFormatOnly?: (entry: GitLogEntry) => boolean },
 ): FreshnessEntry | null;
 
-export function getGitFileFreshness(
-  filePath: string,
-  options?: {
-    cwd?: string;
-    fallbackDate?: string;
-    execFileImpl?: ExecFileSyncLike;
-  },
-): FreshnessEntry | null;
+export function readTrackedFiles(options: {
+  cwd: string;
+  repoDir: string;
+  suffix: string;
+  execFileImpl?: ExecFileSyncLike;
+}): Array<{ path: string; content: string }>;
 
-export function getGitFileFreshnessAsync(
-  filePath: string,
-  options?: {
-    cwd?: string;
-    fallbackDate?: string;
-  },
-): Promise<FreshnessEntry | null>;
+/** File dates from one read of the repository's history, following renames but not copies. */
+export interface GitHistory {
+  /** The `%cI%x09%H%x09%s` line of each commit in the file's history, newest first. */
+  log(filePath: string): string;
+  fileFreshness(filePath: string, options?: { fallbackDate?: string }): FreshnessEntry | null;
+  /** The dates of the first path that has history, else the fallback date's. */
+  firstFileFreshness(filePaths: string[], options?: { fallbackDate?: string }): FreshnessEntry | null;
+}
 
-export function getFirstGitFileFreshness(
-  filePaths: string[],
-  options?: {
-    cwd?: string;
-    fallbackDate?: string;
-    execFileImpl?: ExecFileSyncLike;
-  },
-): FreshnessEntry | null;
-
-export function getFirstGitFileFreshnessAsync(
-  filePaths: string[],
-  options?: {
-    cwd?: string;
-    fallbackDate?: string;
-  },
-): Promise<FreshnessEntry | null>;
+export function gitHistory(options?: { cwd?: string; execFileImpl?: ExecFileSyncLike }): GitHistory;
 
 export function mapLimit<T, R>(
   items: T[],
@@ -144,6 +133,10 @@ export function collectArticles(options: {
   contentRepoPath?: string;
   concurrency?: number;
   execFileImpl?: ExecFileSyncLike;
+  getFreshness?: (
+    filePaths: string[],
+    options: { cwd: string; fallbackDate: string },
+  ) => FreshnessEntry | null | Promise<FreshnessEntry | null>;
 }): Promise<ArticleMetadata[]>;
 
 export function assertFreshnessDiversity(options: {

@@ -31,8 +31,8 @@ import {
   buildRouteFreshness,
   collectArticles,
   comparePublicationEntries,
+  gitHistory,
   projectClientMetadata,
-  getGitFileFreshnessAsync,
 } from "./build-metadata-lib.mjs";
 import { assertV2Catalog, collectLensDataAsync } from "./lens-data-lib.mjs";
 import { lensSummary, teleconverterSummary, canonicalPrescription } from "./lens-summaries.mjs";
@@ -54,7 +54,6 @@ const LENS_SUMMARIES_FILE = join(OUT_DIR, "lens-summaries.json");
 const TELECONVERTER_SUMMARIES_FILE = join(OUT_DIR, "teleconverter-summaries.json");
 /* The fit predicate is import-free TypeScript, so plain Node's type stripping loads the same code the viewer runs. */
 const TELECONVERTER_COMPATIBILITY_FILE = join(ROOT, "src", "optics", "prescription", "teleconverterCompatibility.ts");
-const GIT_FRESHNESS_CONCURRENCY = 8;
 
 /* ── Lens summaries ───────────────────────────────────────────────────── */
 
@@ -107,7 +106,7 @@ async function collectLensSummaries() {
  * resolved here with the runtime predicate and shipped as `compatibleLensKeys`. Hidden test models keep a summary
  * (`visible: false`) so their page resolves from a hand-typed URL; the caller leaves them out of routes.
  */
-async function collectTeleconverters(lensModules, fallbackDate) {
+async function collectTeleconverters(lensModules, history, fallbackDate) {
   const { teleconverterCompatibility } = await import(pathToFileURL(TELECONVERTER_COMPATIBILITY_FILE).href);
   const visibleLenses = lensModules
     .map(({ data }) => data)
@@ -120,7 +119,7 @@ async function collectTeleconverters(lensModules, fallbackDate) {
     teleconverters.push({
       key: data.key,
       summary,
-      freshness: await getGitFileFreshnessAsync(filePath, { cwd: ROOT, fallbackDate }),
+      freshness: history.fileFreshness(filePath, { fallbackDate }),
     });
   }
   /* Weakest converter first, then by name — the order the runtime catalog uses. */
@@ -164,6 +163,8 @@ async function main() {
   await assertV2Catalog(LENS_DATA_DIR);
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
   assertFullGitHistory({ cwd: ROOT });
+  /* Every dated file is looked up in this one read of the history, made after any unshallowing above. */
+  const history = gitHistory({ cwd: ROOT });
   const fallbackDate = new Date().toISOString().slice(0, 10);
 
   writeFileSync(MAKER_PREFIXES_FILE, JSON.stringify(MAKER_PREFIXES, null, 2) + "\n", "utf-8");
@@ -179,16 +180,16 @@ async function main() {
       rootDir: ROOT,
       lensDataDir: LENS_DATA_DIR,
       fallbackDate,
-      concurrency: GIT_FRESHNESS_CONCURRENCY,
+      getFreshness: history.firstFileFreshness,
     }),
     collectArticles({
       contentDir: CONTENT_DIR,
       cwd: ROOT,
       fallbackDate,
-      concurrency: GIT_FRESHNESS_CONCURRENCY,
+      getFreshness: history.firstFileFreshness,
     }),
-    getGitFileFreshnessAsync(MAKER_DETAILS_FILE, { cwd: ROOT, fallbackDate }),
-    getGitFileFreshnessAsync(ASSIGNEE_CORPORATE_HISTORY_FILE, { cwd: ROOT, fallbackDate }),
+    history.fileFreshness(MAKER_DETAILS_FILE, { fallbackDate }),
+    history.fileFreshness(ASSIGNEE_CORPORATE_HISTORY_FILE, { fallbackDate }),
     collectLensSummaries(),
   ]);
 
@@ -201,7 +202,7 @@ async function main() {
   const formatIds = [...new Set(lenses.flatMap((l) => (l.imageFormatId ? [l.imageFormatId] : [])))].sort();
   const authors = buildAuthorMetadata(lensSummaries);
   const assignees = buildAssigneeMetadata(lensSummaries);
-  const teleconverters = await collectTeleconverters(lensModules, fallbackDate);
+  const teleconverters = await collectTeleconverters(lensModules, history, fallbackDate);
   const publishedTeleconverters = teleconverters.filter((teleconverter) => teleconverter.summary.visible);
   const teleconverterKeys = publishedTeleconverters.map((teleconverter) => teleconverter.key).sort();
   const routes = collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, authors, teleconverterKeys);

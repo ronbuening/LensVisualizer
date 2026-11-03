@@ -32,6 +32,7 @@ npm run preview
 npm run test
 npm run test:coverage
 npm run test:tooling               # Benchmark-harness and audit-script tests excluded from npm test
+npm run test:browser               # Chromium translation DOM-replacement route and interaction coverage
 npm run generate:reports           # Every report generator in reports/ (rewrites agent_docs/generated/)
 npm run generate:glass-reports
 npm run generate:mirror-reports
@@ -75,7 +76,9 @@ npm run lint          # ESLint passes (run npm run lint:fix to auto-fix)
 npm run test          # All tests pass
 ```
 
-CI enforces the same checks via `.github/workflows/quality.yml` — failing them blocks deploy.
+CI enforces the same checks via `.github/workflows/quality.yml` — failing them blocks deploy. Where a job has already
+written `src/generated/`, or its suite never reads it, CI adds `--ignore-scripts` to skip the `pre*` metadata hook
+(`agent_docs/architecture/testing.md`); locally, run the plain commands, whose hooks regenerate it on a fresh clone.
 
 ## Deployment
 

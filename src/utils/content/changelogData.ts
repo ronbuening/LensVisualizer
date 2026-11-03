@@ -25,6 +25,17 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Carl Zeiss Jena Cardinar 100mm f/4 from its factory data sheet, Fujifilm GF 32-90mm T3.5, Nikon AF-S VR 200mm f/2G and Zoom 700VR, SMC Pentax 18mm f/3.5 and SMC Takumar 6x7 600mm f/4, with a new Werra mount page",
   },
   {
+    date: "2026-11-03",
+    type: "fix",
+    summary: "Corrected the publication dates of the Fujifilm XF 50mm f/1.0 and XF 80mm f/2.8 Macro pages",
+  },
+  {
+    date: "2026-11-02",
+    type: "fix",
+    summary:
+      "Fixed page errors and frozen readouts after a browser translated the page, such as Chrome's built-in Translate",
+  },
+  {
     date: "2026-11-02",
     type: "lens",
     summary:

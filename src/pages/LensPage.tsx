@@ -25,6 +25,7 @@ import {
   SITE_URL,
 } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd } from "../utils/seo/structuredData.js";
+import { textRun } from "../utils/text.js";
 
 const CONTENT_STYLE: React.CSSProperties = {
   maxWidth: 960,
@@ -92,15 +93,15 @@ export default function LensPage() {
               <Link to="/" style={NAV_LINK_STYLE}>
                 Home
               </Link>
-              {" / "}
+              <span>{" / "}</span>
               <Link to="/lenses/" style={NAV_LINK_STYLE}>
                 Lenses
               </Link>
-              {" / "}
+              <span>{" / "}</span>
               <Link to={`/makers/${maker.slug}/`} style={NAV_LINK_STYLE}>
                 {maker.display}
               </Link>
-              {` / ${lens.name}`}
+              <span>{` / ${lens.name}`}</span>
             </nav>
 
             <h1 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: "0.5rem" }}>{lens.name}</h1>
@@ -110,8 +111,12 @@ export default function LensPage() {
                 {patentAttribution ? (
                   <>
                     <PatentNumberLink patentNumber={patentAttribution.patentNumber} color="#7ec8e3" />
-                    {patentExampleSuffix(patentAttribution.example)}
-                    {patentAttribution.authors.length > 0 && ` — ${patentAttribution.authors.join(", ")}`}
+                    <span>
+                      {textRun(
+                        patentExampleSuffix(patentAttribution.example),
+                        patentAttribution.authors.length > 0 && ` — ${patentAttribution.authors.join(", ")}`,
+                      )}
+                    </span>
                   </>
                 ) : (
                   displaySubtitle
@@ -141,11 +146,15 @@ export default function LensPage() {
             {lens.elements && lens.elements.length > 0 && (
               <section style={{ marginBottom: "1rem" }}>
                 <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-                  Optical Elements ({lens.catalog.elementCount ?? lens.elements.length} physical
-                  {lens.catalog.elementCount !== undefined && lens.catalog.elementCount !== lens.elements.length
-                    ? `; ${lens.elements.length} modeled media`
-                    : ""}
-                  )
+                  {textRun(
+                    "Optical Elements (",
+                    lens.catalog.elementCount ?? lens.elements.length,
+                    " physical",
+                    lens.catalog.elementCount !== undefined && lens.catalog.elementCount !== lens.elements.length
+                      ? `; ${lens.elements.length} modeled media`
+                      : "",
+                    ")",
+                  )}
                 </h2>
                 <table style={SPEC_TABLE_STYLE}>
                   <thead>
@@ -174,7 +183,7 @@ export default function LensPage() {
                 <p style={{ fontSize: "0.8rem", color: "#ccc", lineHeight: 1.5 }}>
                   {teleconverters.map((teleconverter, index) => (
                     <span key={teleconverter.key}>
-                      {index > 0 && ", "}
+                      <span>{index > 0 && ", "}</span>
                       <Link to={`/teleconverters/${teleconverter.key}/`} style={NAV_LINK_STYLE}>
                         {teleconverter.name}
                       </Link>
