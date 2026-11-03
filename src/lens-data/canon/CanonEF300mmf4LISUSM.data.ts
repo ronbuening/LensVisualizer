@@ -48,7 +48,7 @@ const LENS_DATA = {
       nd: 1.43875,
       vd: 95.0,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-FPL53 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: 206.20905561164957,
@@ -62,7 +62,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: 271.7746026679078,
@@ -76,7 +76,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 41.0,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: -182.26956539339426,
@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.48749,
       vd: 70.2,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: 155.68166220293773,
@@ -104,7 +104,7 @@ const LENS_DATA = {
       nd: 1.6727,
       vd: 32.1,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-TIM25 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: -431.8613740115483,
@@ -118,7 +118,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: 211.1151978990395,
@@ -133,7 +133,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: -89.24491434231194,
@@ -148,7 +148,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.9,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "PBH53 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: -68.86547257842841,
@@ -163,7 +163,7 @@ const LENS_DATA = {
       nd: 1.60323,
       vd: 42.3,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "BAM25 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: 45.32602889408247,
@@ -178,7 +178,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: 47.82813131079045,
@@ -193,7 +193,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: -30.861652100121173,
@@ -208,7 +208,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: -48.96626495747671,
@@ -222,7 +222,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: 32.65886244236024,
@@ -237,7 +237,7 @@ const LENS_DATA = {
       nd: 1.85026,
       vd: 32.3,
       indexReference: "d",
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-LAH71 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source N/Abbe reference line unprinted; literal values at engine d587.5618nm are an explicit hypothesis.",
       focalLengthMm: -75.69012406824619,

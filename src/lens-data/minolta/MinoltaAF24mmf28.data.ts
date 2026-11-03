@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "minolta-af-24mm-f28-original",
+  key: "minolta-af-24mm-f28",
   maker: "Minolta",
   name: "MINOLTA AF 24mm f/2.8",
   subtitle: "US 4,759,619 Embodiment 2 — probable family; inferred apertures",
@@ -48,7 +48,7 @@ const LENS_DATA = {
       nd: 1.7106,
       vd: 43.25,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "Unmatched (patent nd 1.71060, νd 43.25; no catalog row at these coordinates)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 238.58281427176686,
@@ -62,7 +62,7 @@ const LENS_DATA = {
       nd: 1.51112,
       vd: 60.5,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "NSL7 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -69.75318668978854,
@@ -76,7 +76,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "BSC7 (HOYA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -32.20345401386272,
@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.77551,
       vd: 37.9,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "Unmatched (patent nd 1.77551, νd 37.9; no catalog row at these coordinates)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 37.61951606696508,
@@ -104,7 +104,7 @@ const LENS_DATA = {
       nd: 1.741,
       vd: 52.67,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "LAK011 (Hikari catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 36.16777148510904,
@@ -118,7 +118,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.4,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -22.2098439411515,
@@ -132,7 +132,7 @@ const LENS_DATA = {
       nd: 1.62135,
       vd: 61.28,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "Unmatched (patent nd 1.62135, νd 61.28; no catalog row at these coordinates)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 60.203341766476726,
@@ -146,7 +146,7 @@ const LENS_DATA = {
       nd: 1.6583,
       vd: 58.52,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "Unmatched (patent nd 1.65830, νd 58.52; no catalog row at these coordinates)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 35.460797562085475,

@@ -6,9 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "minolta-af-50mm-f28-macro-original",
+  key: "minolta-af-50mm-f28-macro",
   maker: "Minolta",
-  name: "MINOLTA AF 50mm f/2.8 MACRO",
+  name: "MINOLTA AF 50mm f/2.8 Macro",
   subtitle: "JP S59-228220 A Embodiment 3 — probable family; inferred apertures",
   catalog: {
     lensMounts: ["sony-a"],
@@ -49,7 +49,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.31,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "LAC10 (HOYA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 81.8619914462117,
@@ -63,7 +63,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.77,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 41.779133379896884,
@@ -77,7 +77,7 @@ const LENS_DATA = {
       nd: 1.60342,
       vd: 38.01,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "E-F5 (HOYA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -27.951935500993372,
@@ -91,7 +91,7 @@ const LENS_DATA = {
       nd: 1.67339,
       vd: 29.25,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "Unmatched (patent nd 1.67339, νd 29.25; no catalog row at these coordinates)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -35.73239050268183,
@@ -106,7 +106,7 @@ const LENS_DATA = {
       nd: 1.713,
       vd: 53.93,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "LAC8 (HOYA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 38.569424083202506,
@@ -121,7 +121,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.77,
       indexReference: "d",
-      glass: "Unmatched (literal Nd/nu-d; supplier unresolved)",
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 62.23589122845941,
@@ -135,7 +135,7 @@ const LENS_DATA = {
       nd: 1.4914,
       vd: 57.82,
       indexReference: "d",
-      glass: "Unmatched (source polymer-compatible rear medium; n1.49140/v57.82)",
+      glass: "Unmatched (PMMA-type acrylic, which the patent permits for this element; nd 1.49140, νd 57.82)",
       indexReferenceNote:
         "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -647.2240862935438,
