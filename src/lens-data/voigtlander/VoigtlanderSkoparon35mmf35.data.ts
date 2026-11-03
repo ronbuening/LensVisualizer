@@ -145,7 +145,7 @@ const LENS_DATA = {
       label: "6",
       R: 9.9981,
       d: 1.2919725,
-      sd: 5.6,
+      sd: 4.85,
     },
     {
       label: "STO",
@@ -173,6 +173,10 @@ const LENS_DATA = {
       sd: 5.4,
     },
   ],
+  groups: [
+    { text: "I", fromSurface: "1", toSurface: "2" },
+    { text: "II", fromSurface: "3", toSurface: "9" },
+  ],
   doublets: [
     {
       text: "D1",
@@ -181,9 +185,9 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.7,
     description:
-      "Static infinity only. Fixed image z56.5584729194mm; source and maker focus descriptions do not establish an authored finite law. No retail distance transplanted.",
+      "Static model at infinity. The patent prints no close-focus spacing, and no Voigtländer source seen states how the Skoparon focuses (secondary accounts disagree on whether the Prominent body or a ring on the lens sets focus), so no focus movement is drawn. The 0.7 m close-focus distance is a retailer listing figure.",
   },
   aperture: {
     nominalFNumber: 3.4,
