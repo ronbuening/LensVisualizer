@@ -15,6 +15,7 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     elementCount: 14,
     groupCount: 10,
+    acceptsTeleconverters: true, // Canon lists Extender EF1.4x / EF2x compatibility
     focalLengthMm: {
       marketing: 300,
       design: 300.02301,
@@ -314,7 +315,6 @@ const LENS_DATA = {
     {
       label: "STO",
       R: "flat",
-      d: 4.399999999999999,
     },
     {
       label: "11",
@@ -333,7 +333,6 @@ const LENS_DATA = {
     {
       label: "13",
       R: 81.665,
-      d: 25.5,
       sd: 19.6,
     },
     {
@@ -360,14 +359,14 @@ const LENS_DATA = {
       label: "17",
       R: 58.469,
       d: 4.0,
-      sd: 12.7,
+      sd: 15.0,
       medium: 10,
     },
     {
       label: "18",
       R: -109.373,
       d: 1.5,
-      sd: 12.7,
+      sd: 15.0,
       medium: 11,
     },
     {
@@ -375,19 +374,21 @@ const LENS_DATA = {
       R: 26.918,
       d: 5.2,
       sd: 12.7,
+      rimExtensionSd: 15.0,
     },
     {
       label: "20",
       R: -57.599,
       d: 1.5,
       sd: 12.7,
+      rimExtensionSd: 14.5,
       medium: 12,
     },
     {
       label: "21",
       R: 111.442,
       d: 1.5,
-      sd: 12.7,
+      sd: 14.5,
     },
     {
       label: "22",
@@ -411,9 +412,13 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 3.0,
     description:
-      "Only the complete source infinity prescription is modeled. Source near context, if present, does not establish exact iris motion, intermediate cam/conjugates or retail near-focus law.",
+      "Inner focus: the cemented doublet behind the stop (patent unit L2) moves toward the image, as the patent states. The patent prints no near-focus spacings, so the close state here is derived, not published: the doublet moves 11.598 mm to focus an object 3.0 m from the image plane (about ten times the focal length, the near case the patent plots), at about 0.11x. This doublet alone cannot reach Canon's 1.5 m minimum focus and 0.24x maximum magnification, even with the gap behind it closed, so the production lens must move more than this unit or differ from this example.",
+  },
+  gaps: {
+    STO: { label: "D10b", values: [[4.4, 15.997638]] },
+    "13": { label: "D13", values: [[25.5, 13.902362]] },
   },
   aperture: {
     nominalFNumber: 4.1,
