@@ -4,9 +4,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The table is printed at f = 100 mm and is used unscaled; the patent figures are drawn at f = 300 mm.
  * Indices and Abbe numbers are for the helium d line, as the patent states. The image plane sits at the
  * printed back focus; the computed paraxial back focus is 37.198 mm (+0.005 mm residual, not applied).
- * The patent prints no field angle, clear apertures or stop position. Semi-diameters follow the
- * proportions of the section in Voigtländer's Prominent lens booklet, with the front rim 8.9% above the
- * f/4.5 entrance-pupil radius; the stop sits at 0.55 of the 25.819 mm diaphragm space, close to where
+ * The patent prints no field angle, clear apertures or stop position. Fig. 1 is drawn to one scale along
+ * and across the axis (its R1 and R8 arcs fit the printed radii), but every diameter in it is about 0.69
+ * of what f/4.5 needs, so it sets shapes, not sizes. Semi-diameters are inferred: the front rim is 8.9%
+ * above the f/4.5 entrance-pupil radius; R3 ends at 0.95 of the L1/L2 edge and L3's rear face is
+ * chamfered to 10.3 mm, as in Fig. 1, just outside the 10.08 mm f/4.5 marginal ray; L5's front face is
+ * clear to 0.84 of the doublet edge, with a flat land out to the edge, as in both Fig. 1 and the section
+ * in Voigtländer's Prominent lens booklet. L4 and the rear doublet keep the booklet's proportions (0.79
+ * and 0.86 of the front rim); Fig. 1 draws both at 0.70, which the doublet cannot match without a large
+ * loss of corner illumination. The stop sits at 0.55 of the 25.819 mm diaphragm space, close to where
  * both drawings place it. The 25° full field is the booklet's figure. Infinity prescription only.
  */
 const LENS_DATA = {
@@ -142,7 +148,7 @@ const LENS_DATA = {
       label: "3",
       R: 240.306,
       d: 0.494,
-      sd: 11.1,
+      sd: 11.5,
     },
     {
       label: "4",
@@ -155,7 +161,7 @@ const LENS_DATA = {
       label: "5",
       R: 75.934,
       d: 14.20045,
-      sd: 11.1,
+      sd: 10.3,
     },
     {
       label: "STO",
@@ -179,7 +185,8 @@ const LENS_DATA = {
       label: "8",
       R: -17.229,
       d: 1.728,
-      sd: 10.4,
+      sd: 8.7,
+      rimExtensionSd: 10.4,
       medium: 5,
     },
     {

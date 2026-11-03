@@ -80,13 +80,13 @@ The model is static. The patent tabulates only the infinity state and does not d
 
 ## Stop Position and Clear Apertures
 
-The patent prints no clear apertures or stop position, and Fig. 1 is too schematic in diameter to set them. The semi-diameters are inferred: the front rim, 12.1 mm, is 8.9% above the 11.11 mm f/4.5 entrance-pupil radius, and the other rims follow the proportions of the booklet section, in which L4 is about 0.78 and the rear doublet about 0.86 of the front-lens diameter. The stop is placed at 0.55 of the 25.819 mm diaphragm space measured from R5, 22.444 mm behind the first vertex, close to where Fig. 1 and the booklet section both draw it; at f/4.5 its radius is 7.52 mm.
+The patent prints no clear apertures or stop position. Fig. 1 is drawn to a single scale along and across the axis, since its R1 and R8 arcs match the printed radii, but every diameter in it is about 0.69 of what f/4.5 requires, so it fixes the shapes of the elements rather than their sizes. The semi-diameters are inferred. The front rim, 12.1 mm, is 8.9% above the 11.11 mm f/4.5 entrance-pupil radius. In the front member, Fig. 1 ends L2's rear face at 0.95 of the cemented pair's edge and chamfers the rear face of L3; the model follows it with 11.5 mm and 10.3 mm, the second just outside the 10.08 mm f/4.5 marginal ray. Fig. 1 and the booklet section both end L5's concave front face at about 0.84 of the doublet's edge, so that face is clear to 8.7 mm and a flat land carries it out to the 10.4 mm rim. L4 and the rear doublet keep the booklet section's proportions, about 0.79 and 0.86 of the front rim; Fig. 1 draws both at about 0.70, which the doublet cannot match without a large loss of corner illumination. The stop is placed at 0.55 of the 25.819 mm diaphragm space measured from R5, 22.444 mm behind the first vertex, close to where Fig. 1 and the booklet section both draw it; at f/4.5 its radius is 7.52 mm.
 
 ## Model Scope and Limitations
 
 The computed focal length is 99.993 mm and the paraxial back focus 37.198 mm, against the printed 100 mm and 37.203 mm; the 0.005 mm difference is consistent with the rounding of the three-decimal table and is not applied. Radii, thicknesses and indices are as printed.
 
-The patent prints no field angle. The 25° full field is the booklet's figure; a 12.0° chief ray already reaches the 21.65 mm image-circle radius used for the 36 × 24 mm format. At f/4.5 the inferred rims pass the full axial beam, and geometric relative illumination falls to about 94% at 6° and 75% at 12° off axis. Those off-axis figures depend on the inferred rims and stop position, not on factory data.
+The patent prints no field angle. The 25° full field is the booklet's figure; a 12.0° chief ray already reaches the 21.65 mm image-circle radius used for the 36 × 24 mm format. At f/4.5 the inferred rims pass the full axial beam, and geometric relative illumination falls to about 92% at 6° and 73% at 12° off axis. Those off-axis figures depend on the inferred rims and stop position, not on factory data.
 
 ## Sources and References
 
