@@ -3,7 +3,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** US 4,759,619 Embodiment 2 (Table 2, Fig. 4), normalized to f = 100 and scaled uniformly by 0.24 to 24 mm.
  * R, d, nd and νd are as printed; the printed spacings sum to 200.869 against the table's Σd = 200.862, kept as printed.
  * The patent prints no back focus: the image plane is the computed paraxial back focus. The stop position (52% of d8)
- * and all semi-diameters are inferred. The near state uses the printed d4 at β = −0.1; its object distance is derived.
+ * is inferred. Semi-diameters are estimated from Fig. 4 and checked by real-ray trace at both focus states.
+ * The near state uses the printed d4 at β = −0.1; its object distance is derived.
  */
 const LENS_DATA = {
   schema: 2,
@@ -214,27 +215,27 @@ const LENS_DATA = {
       label: "11",
       R: -35.98728,
       d: 2.54064,
-      sd: 7.3,
+      sd: 7,
       medium: 6,
     },
     {
       label: "12",
       R: 36.66647999999999,
       d: 1.75608,
-      sd: 7.3,
+      sd: 7,
     },
     {
       label: "13",
       R: -34.790879999999994,
       d: 1.9512,
-      sd: 7.3,
+      sd: 7.6,
       medium: 7,
     },
     {
       label: "14",
       R: -18.413279999999997,
       d: 0.11688,
-      sd: 7.3,
+      sd: 7.6,
     },
     {
       label: "15",

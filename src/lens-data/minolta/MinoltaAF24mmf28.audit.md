@@ -37,3 +37,54 @@ rewritten in plain sentences; the analysis reworded throughout, glass named as c
 "Model Scope and Limitations", and package process text removed.
 
 Open: none.
+
+## 2026-11-03 — Semi-diameter pass against the patent figure
+
+Source: Fig. 4 of US 4,759,619 (PDF page 3, Sheet 2 of 5), the section of Embodiment 2 at infinity, measured on the scan's native
+1-bit raster (2320 × 3408 px). The dash-dot axis was fitted from 414 points; it runs at 0.88° to the page rows while the near-vertical
+lines (the flat r2 face, the stop tick) are not tilted, so the scan is sheared rather than rotated and heights were read vertically from
+the fitted axis line. Each rim is half the distance between the top and bottom rim lines, because the drawn elements sit 1–3 px above
+the drawn axis line.
+
+Scale: fourteen axial crossings (r2/r3 and r14/r15 merge) fit the prescription at 13.14 px/mm with 0.15 mm rms; the r1-to-r16 span
+alone gives 13.16 (634.5 px for 48.21 mm). Arc fits of r6, r4 and r3 give 13.30, 13.50 and 13.65 px/mm across the axis, 1–4% above
+the axial scale. Rims were read at 13.15 px/mm, the scale at which the twelve unchanged rims agree with the figure to 1%; the arc-fit
+scale would lower every reading by 2–3% alike and changes no decision. The stop tick is drawn at 0.53 of d8, consistent with the
+file's 52%.
+
+| Surface | Starting sd | Figure, px | Figure, mm | New sd | Evidence                                              |
+| ------- | ----------: | ---------: | ---------: | -----: | ----------------------------------------------------- |
+| 1, 2    |        22.0 |      288.8 |      21.96 |   22.0 | square rim; kept                                      |
+| 3       |        15.8 |      206.9 |      15.73 |   15.8 | front corner of the flat land; kept                   |
+| 4       |        12.9 |      170.6 |      12.97 |   12.9 | foot of the bevel; kept                               |
+| 5       |         9.9 |      130.3 |       9.90 |    9.9 | front corner of the flat land; kept                   |
+| 6       |         8.1 |      105.8 |       8.05 |    8.1 | foot of the bevel; kept                               |
+| 7, 8    |         6.9 |       90.7 |       6.90 |    6.9 | square rim; kept                                      |
+| 9, 10   |         6.9 |       90.5 |       6.88 |    6.9 | square rim; kept                                      |
+| 11, 12  |         7.3 |       92.3 |       7.02 |    7.0 | square rim, 1.8 px above L5 and 8.3 px below L7       |
+| 13, 14  |         7.3 |      100.6 |       7.65 |    7.6 | square rim; front corner reaches over the rim of L6   |
+| 15, 16  |         9.0 |      119.3 |       9.07 |    9.0 | square rim; kept                                      |
+
+L6 and L7 are each inside the noise band (−4% and +5%), but the figure draws L7 0.63 mm taller than L6, with its concave front face
+passing over L6's rim corner, where the starting file had both at 7.3 mm. The readings are good to about 1 px (0.08 mm). L7 takes the
+lower rounding of 7.65 mm. Both elements stay square-cut.
+
+Clearance: through the engine stop radius (6.32 mm) the axial marginal ray reaches 6.09 and 6.08 mm at r11 and r12 and 6.17 and
+6.38 mm at r13 and r14 at infinity, and 6.14, 6.15, 6.25 and 6.46 mm in the β = −0.1 state. The surface validator passes; r12 and r13
+are 0.37 mm apart at the edge of L6 (0.25 mm at the former 7.3 mm). Field coverage is unchanged (42.0° reaches 21.15 mm), no
+surface is under the image-circle floor, the aperture audit stays within 3% of f/2.8, and the engine half-field (42.0°), f-number
+(2.800) and stop radius (6.3205 mm) are unchanged.
+
+Corner light at f/2.8 (engine geometric transmission), starting rims against new: at infinity 72.4 to 76.7% at 30°, 57.0 to 62.2%
+at 36° and 32.4 to 36.0% at 42°; in the β = −0.1 state 72.6 to 77.0% at 29.3° and 35.3 to 39.2% at 41.1°. No field loses light. With
+L7 at 7.6 mm, restoring L6 alone to 7.3 mm would add at most 1.3 points (at 21°), so the figure value stands.
+
+Maker drawing: the collector-site barrel section shows eight singlets in eight groups in the same order and shapes. It draws L6 and
+L7 at about the same optical height, with a stepped rear flange making L6 the wider of the two, and the two elements touching at the
+rim. It is not to scale and the patent figure governs; the model follows Fig. 4, where L7 is the taller element.
+
+The rendered section was compared with Fig. 4 at matched scale and on the live page at infinity and at the near state: L7 now steps
+above L6 as drawn, and every other element keeps its outline. The local meridional probe does not find the 42° chief ray for this lens,
+so the chief-ray floor relies on the engine field-coverage trace.
+
+Open: none.

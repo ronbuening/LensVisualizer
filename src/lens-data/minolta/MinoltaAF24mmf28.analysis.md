@@ -85,9 +85,9 @@ The marketed minimum focus is 0.25 m (0.16×), so the modeled near end is the pa
 
 The model's focal length is 24.0007 mm. The image plane sits at the computed paraxial back focus, 36.103 mm behind the last surface, with no best-focus shift.
 
-The stop position, 52% of the way through d8, is inferred from Fig. 4, and the iris diameter follows from f/2.8. All semi-diameters are inferred from the patent figure and the barrel section; the 7.3 mm rims of L6 and L7 are limited by their facing surfaces, which come within 0.25 mm of each other there, as the barrel section draws them.
+The stop position, 52% of the way through d8, is inferred from Fig. 4, and the iris diameter follows from f/2.8. All semi-diameters are estimated from Fig. 4. As the figure draws it, L7 (7.6 mm) stands above L6 (7.0 mm) and its concave front face reaches over the rim of L6; the facing surfaces of the two elements are 0.37 mm apart at the edge of L6.
 
-The 42° half-field reaches 21.15 mm, inside the 21.63 mm frame corner, because of barrel distortion: −2.1% at 42° and about −2.8% at 35–38°, as in Fig. 5c. Spherical aberration (about −0.15 mm at 0.7 of the pupil) and astigmatism also follow Fig. 5. At f/2.8 the 42° bundle keeps about a third of the axial light.
+The 42° half-field reaches 21.15 mm, inside the 21.63 mm frame corner, because of barrel distortion: −2.1% at 42° and about −2.8% at 35–38°, as in Fig. 5c. Spherical aberration (about −0.15 mm at 0.7 of the pupil) and astigmatism also follow Fig. 5. At f/2.8 the 42° bundle keeps about 36% of the axial light.
 
 | Face | Inferred clear SD, mm |
 | ---- | --------------------: |
@@ -101,10 +101,10 @@ The 42° half-field reaches 21.15 mm, inside the 21.63 mm frame corner, because 
 | 8    |                   6.9 |
 | 9    |                   6.9 |
 | 10   |                   6.9 |
-| 11   |                   7.3 |
-| 12   |                   7.3 |
-| 13   |                   7.3 |
-| 14   |                   7.3 |
+| 11   |                   7.0 |
+| 12   |                   7.0 |
+| 13   |                   7.6 |
+| 14   |                   7.6 |
 | 15   |                   9.0 |
 | 16   |                   9.0 |
 
