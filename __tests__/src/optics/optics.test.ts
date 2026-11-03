@@ -6,12 +6,13 @@ import {
   thickOrZero as thick,
   doLayoutForRuntimeLens as doLayout,
   eflAtZoomClamped as eflAtZoom,
+  prepareRuntimeState,
 } from "../../../src/optics/state/runtimeAdapters.js";
 import {
   entrancePupilAtState,
   conjugateKForRuntimeLens as conjugateK,
 } from "../../../src/optics/state/fieldAdapters.js";
-import { formatDist } from "../../../src/optics/first-order/format.js";
+import { focusLabelDistanceM, formatDist, formatDistanceM } from "../../../src/optics/first-order/format.js";
 import { traceRay, traceRayChromatic } from "../../../src/optics/trace/rayAdapters.js";
 import { computeChromaticRayFanSpread } from "../../../src/optics/chromatic/chromaticTrace.js";
 import { FOCUS_INFINITY_CUTOFF } from "../../../src/optics/state/focusDistance.js";
@@ -22,6 +23,7 @@ import { resolveAberrationThickness, resolveVariableThickness } from "../../../s
 
 import {
   buildChromaticPositiveElementLens,
+  buildImageGapFocusLens,
   buildGhostClippingLens,
   buildLayoutLens,
   buildMissAfterFirstHitLens,
@@ -30,22 +32,51 @@ import {
   buildVariableStopGapLens,
 } from "./testLensFixtures.js";
 
-describe("formatDist", () => {
-  const mockL = { closeFocusM: 0.4 } as unknown as RuntimeLens;
+describe("formatDistanceM", () => {
+  it("formats kilometres, metres and centimetres, and infinity", () => {
+    expect(formatDistanceM(Infinity)).toBe("∞");
+    expect(formatDistanceM(25_000)).toBe("25 km");
+    expect(formatDistanceM(1_500)).toBe("1.5 km");
+    expect(formatDistanceM(320)).toBe("320 m");
+    expect(formatDistanceM(12.34)).toBe("12.3 m");
+    expect(formatDistanceM(4)).toBe("4.00 m");
+    expect(formatDistanceM(0.4)).toBe("40 cm");
+  });
+});
 
-  it("returns ∞ for t near zero", () => {
+/*
+ * Focus labels report where the prepared state is in focus. The slider convention (closeFocus / focusT) is exact only
+ * where authored spacings were solved for it, and near infinity a few micrometres of interpolation defocus move the
+ * in-focus distance by tens of metres, so a label built from the convention can be far from what the diagram shows.
+ */
+describe("focus labels", () => {
+  it("returns ∞ below the infinity cutoff without reading the lens", () => {
+    const mockL = { closeFocusM: 0.4 } as unknown as RuntimeLens;
     expect(formatDist(0, mockL)).toBe("∞");
     expect(formatDist(0.001, mockL)).toBe("∞");
   });
 
-  it("formats meters for moderate distances", () => {
-    // t=0.1 → d = 0.4/0.1 = 4.0 m
-    expect(formatDist(0.1, mockL)).toBe("4.00 m");
+  it("reports the distance at which the prepared state is in focus", () => {
+    const L = buildImageGapFocusLens([47.536, 50]);
+    const distanceM = focusLabelDistanceM(0.5, L)!;
+    const state = prepareRuntimeState(L, 0.5, 0);
+    // An axial object at the label distance (object to image) images onto the image plane...
+    const ray = traceParaxialSurfaces(state.surfaces, 1, 1 / (distanceM * 1000 - state.totalTrack));
+    expect(ray.y + state.surfaces[state.surfaces.length - 1].d * ray.u).toBeCloseTo(0, 9);
+    // ...where the slider convention would have labelled this state 1 m.
+    expect(distanceM).not.toBeCloseTo(L.closeFocusM / 0.5, 1);
+    expect(formatDist(0.5, L)).toBe(formatDistanceM(distanceM));
   });
 
-  it("formats cm for close distances", () => {
-    // t=1.0 → d = 0.4/1 = 0.4 m = 40 cm
-    expect(formatDist(1.0, mockL)).toBe("40 cm");
+  it("reads ∞ when the state focuses at or beyond infinity", () => {
+    const L = buildImageGapFocusLens([47.536, 45], "test-image-gap-focus-beyond-infinity");
+    expect(focusLabelDistanceM(0.5, L)).toBe(Infinity);
+    expect(formatDist(0.5, L)).toBe("∞");
+  });
+
+  it("keeps the slider convention where the focus control moves no gap", () => {
+    const L = buildLayoutLens([5, 5, 80]);
+    expect(focusLabelDistanceM(0.5, L)).toBeCloseTo(L.closeFocusM / 0.5, 12);
   });
 });
 

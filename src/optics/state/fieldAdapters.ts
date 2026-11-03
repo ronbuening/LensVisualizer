@@ -3,7 +3,7 @@
 import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import type { FieldGeometryState, VectorFieldRayLaunch } from "../field/launch.js";
 import { FOCUS_INFINITY_CUTOFF } from "./focusDistance.js";
-import { compiledLensFromRuntime } from "../prescription/identity.js";
+import { compiledLensFromRuntime, findCompiledLens } from "../prescription/identity.js";
 import { prepareState } from "./preparedGeometry.js";
 import type { PreparedRayTrace } from "../trace/rayAdapters.js";
 import type { ChiefRaySolveResult } from "../field/chiefRaySolve.js";
@@ -387,6 +387,36 @@ export function paraxialObjectVergenceForRuntimeLens(
 ): number {
   if (focusT < FOCUS_INFINITY_CUTOFF) return 0;
   return paraxialObjectVergence(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
+}
+
+/**
+ * Object-to-image distance, in metres, at which the prepared state is paraxially in focus: the distance focus labels
+ * report.
+ *
+ * The slider convention (`focusDistanceAt`: closeFocus / focusT) holds only where the authored spacings were solved
+ * for it. Between keyframes and zoom stations, and above all near infinity, where a few micrometres of image-side
+ * defocus move the in-focus distance by tens of metres, the state can focus elsewhere; this reads the state itself.
+ *
+ * @param focusT - normalized focus position
+ * @param L - runtime lens prescription
+ * @param zoomT - normalized zoom position
+ * @param aberrationT - normalized aberration control position
+ * @returns metres; `Infinity` below the infinity cutoff or when the state focuses at or beyond infinity; `null` on a
+ *   folded path, where the focus control moves no gap at this zoom, or for a runtime the canonical compiler did not
+ *   build, so the caller keeps the slider convention
+ */
+export function modeledFocusDistanceAt(focusT: number, L: RuntimeLens, zoomT = 0, aberrationT = 0): number | null {
+  if (focusT < FOCUS_INFINITY_CUTOFF) return Infinity;
+  if (L.isFoldedOptics) return null;
+  const compiled = findCompiledLens(L);
+  if (!compiled) return null;
+  const state = prepareState(compiled, focusT, zoomT, aberrationT);
+  const infinity = prepareState(compiled, 0, zoomT, aberrationT);
+  if (state.surfaces.every((surface, index) => surface.d === infinity.surfaces[index].d)) return null;
+  const vergence = paraxialObjectVergence(state);
+  if (!(vergence > 0)) return Infinity;
+  const distanceM = (1 / vergence + state.totalTrack) / 1000;
+  return Number.isFinite(distanceM) && distanceM > 0 ? distanceM : null;
 }
 
 export { type ChiefRaySolveResult } from "../field/chiefRaySolve.js";

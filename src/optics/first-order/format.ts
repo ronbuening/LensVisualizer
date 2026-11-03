@@ -5,6 +5,7 @@
  */
 
 import { focusDistanceAt } from "../state/focusDistance.js";
+import { modeledFocusDistanceAt } from "../state/fieldAdapters.js";
 import type { CanonicalLens } from "../prescription/canonical.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_INFINITY_CUTOFF } from "../state/focusDistance.js";
@@ -81,20 +82,45 @@ export function marketedApertureNote(
 }
 
 /**
+ * The object distance a focus label reports: where the prepared state is paraxially in focus, or the slider
+ * convention (closeFocus / focusT) on a folded path or where the focus control moves no gap.
+ *
+ * @param t - normalized focus slider, 0=infinity and 1=close focus
+ * @param L - runtime lens object
+ * @param zoomT - normalized zoom slider
+ * @returns object-to-image distance in metres; `Infinity` at or beyond infinity; `null` when none is defined
+ */
+export function focusLabelDistanceM(t: number, L: RuntimeLens, zoomT = 0): number | null {
+  if (t < FOCUS_INFINITY_CUTOFF) return Infinity;
+  return modeledFocusDistanceAt(t, L, zoomT) ?? focusDistanceAt(t, L, zoomT);
+}
+
+/**
+ * Format an object distance as a focus label.
+ *
+ * @param distanceM - object-to-image distance in metres; `Infinity` for infinity
+ * @returns compact distance string in kilometres, metres or centimetres, or infinity
+ */
+export function formatDistanceM(distanceM: number): string {
+  if (distanceM === Infinity) return "\u221e";
+  if (distanceM >= 1000) return `${(distanceM / 1000).toFixed(distanceM >= 10_000 ? 0 : 1)} km`;
+  if (distanceM >= 100) return `${Math.round(distanceM)} m`;
+  if (distanceM >= 10) return `${distanceM.toFixed(1)} m`;
+  if (distanceM >= 1) return `${distanceM.toFixed(2)} m`;
+  return `${(distanceM * 100).toFixed(0)} cm`;
+}
+
+/**
  * Format a normalized focus slider as user-facing object distance.
  *
  * @param t - normalized focus slider, 0=infinity and 1=close focus
- * @param L - runtime lens object with close-focus distance
- * @returns compact distance string in meters, centimeters, or infinity
+ * @param L - runtime lens object
+ * @param zoomT - normalized zoom slider
+ * @returns compact distance string, infinity, or a dash when no distance is defined
  */
 export function formatDist(t: number, L: RuntimeLens, zoomT = 0): string {
-  if (t < FOCUS_INFINITY_CUTOFF) return "\u221e";
-  const d = focusDistanceAt(t, L, zoomT);
-  if (d === null) return "\u2014";
-  if (d >= 100) return `${Math.round(d)} m`;
-  if (d >= 10) return `${d.toFixed(1)} m`;
-  if (d >= 1) return `${d.toFixed(2)} m`;
-  return `${(d * 100).toFixed(0)} cm`;
+  const d = focusLabelDistanceM(t, L, zoomT);
+  return d === null ? "\u2014" : formatDistanceM(d);
 }
 
 /**

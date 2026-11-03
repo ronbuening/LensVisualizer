@@ -7,6 +7,7 @@ import {
 } from "../../../../src/components/controls/patentStations.js";
 import { attachFixtureTeleconverter as attachTeleconverter } from "../../optics/constructionFixtures.js";
 import type { ZoomVarRange } from "../../../../src/types/optics.js";
+import { formatDist } from "../../../../src/optics/optics.js";
 import {
   build,
   buildSimplePositiveElementLens,
@@ -43,10 +44,12 @@ describe("patent station labels", () => {
     });
 
     const options = focusStationOptions(L, 0, 0);
+    // Each button reads the focus slider's own label for its keyframe.
+    const label = (focusT: number) => formatDist(focusT, L, 0);
     expect(options.map((option) => [option.id, option.label, option.ariaLabel])).toEqual([
       [0, "∞", "Focus infinity"],
-      [1, "1.00 m", "Focus 1.00 m"],
-      [2, "50 cm", "Focus 50 cm"],
+      [1, label(0.5), `Focus ${label(0.5)}`],
+      [2, label(1), `Focus ${label(1)}`],
     ]);
     expect(options[1].title).toContain("Source-tabulated focus row");
     expect(options[2].title).toBe(`Source-certified conjugate: ${source}`);

@@ -889,9 +889,11 @@ Each station:
   3–5, which is enough.
 - **Station `closeFocusM`** keeps zoom-dependent near-focus conjugates where a source publishes different object
   distances at its zoom stations (for example states at about constant magnification). Distances between stations
-  interpolate in the same zoom coordinate; labels at intermediate focus use inverse-distance interpolation and stay
-  estimates. Source-derived endpoints are identified as calculated in the analysis. Single-lens labels, breathing,
-  the summary, the working f-numbers and comparison focus mapping use the current zoom endpoint.
+  interpolate in the same zoom coordinate. Source-derived endpoints are identified as calculated in the analysis. The
+  working f-numbers, zoom-change focus remapping and comparison focus mapping use the current zoom endpoint.
+- **Focus labels** (the focus readout, breathing, the summary and the patent-station buttons) report the distance at
+  which the prepared state is paraxially in focus, not `closeFocusM / focusT`. A `closeFocusM` that disagrees with the
+  authored focus travel therefore shows up as a different label, most visibly at close focus.
 - **Station labels** are compiled into the runtime lens (`L.zoomLabels`). Nothing displays them today; the zoom
   slider shows the station focal lengths.
 - **Computed by `buildLens`**, per station: the EFL (`zoomEFLs`), entrance-pupil semi-diameter (`zoomEPs`),

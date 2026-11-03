@@ -683,6 +683,15 @@ EFL (including perspective field scale), f-number and magnification summaries, p
 and the real-ray sensitivity difference `kt - k0` used for conjugate correction. Below the cutoff `conjugateK` is
 zero, matching the pre-optics-2 behavior. The cutoff does not snap interpolated surface gaps.
 
+Focus labels (`formatDist` and `focusLabelDistanceM` in `first-order/format.ts`, which feed the focus readout, breathing,
+the summary and the patent-station buttons) report `modeledFocusDistanceAt` (`state/fieldAdapters.ts`): the
+object-to-image distance at which the prepared state is paraxially in focus, from `paraxialObjectVergence` plus the
+total track, and infinity when the state focuses at or beyond infinity. The slider convention `focusDistanceAt`
+(closeFocus / focusT) is exact only where authored spacings were solved for it; near infinity a few micrometres of
+interpolation defocus move the in-focus distance by tens of metres. Labels fall back to the convention on folded paths,
+where the focus control moves no gap, and for runtimes the canonical compiler did not build. Zoom-change focus
+remapping, comparison focus sharing and `PublishedFocusStation.distanceM` still use the convention.
+
 `state/preparedGeometry.ts` owns `prepareState()` and the only prepared-control LRU. It retains prepared states for
 the two most recently used compiled lenses (`PREPARED_LENS_CACHE_LIMIT = 2`), so a comparison keeps a full slider
 history for both lenses, and at most 96 immutable states per `CompiledLens` (`PREPARED_STATE_CACHE_LIMIT`).

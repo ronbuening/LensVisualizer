@@ -158,6 +158,14 @@ export function buildVariableStopGapLens(
   });
 }
 
+/**
+ * The simple singlet focused by its image gap, `[infinity, close]` in mm. Its paraxial back focus is about 47.54 mm, so
+ * a close gap above it focuses on a finite object and one below it focuses beyond infinity.
+ */
+export function buildImageGapFocusLens(range: [number, number], key = "test-image-gap-focus"): RuntimeLens {
+  return buildFixture({ key, surfaces: simplePositiveSurfaces(1, 5, range[0]), var: { "2": range } });
+}
+
 export function buildLayoutLens(thicknesses: readonly [number, number, number]): RuntimeLens {
   return buildFixture({
     key: "test-layout-lens",
