@@ -153,7 +153,7 @@ The focus model is **PUBLISHED**, not reconstructed. CN 211955963 U states that 
 
 The constant 9.69 mm sum shows that the surrounding fixed groups do not move: L31 simply translates **4.92 mm imageward**. The independently traced EFL changes from **34.545216929 mm** at infinity to **32.931776271 mm** at the patent nearest-focus state. This is focus breathing in the first-order optical sense, not a change in the marketed 35 mm product designation.
 
-The patent labels the nearest row as 0.3 m. A paraxial conjugate solve through the patent's original GL/image-plane stack places that row at approximately 295.575 mm from the first lens vertex, consistent with the rounded source label, with transverse magnification **-0.111971808** (`|m| ≈ 0.112×`). The production lens is marketed with a 0.4 m minimum focus distance and 0.1× maximum magnification. The data therefore uses `closeFocusM: 0.3` so that the modeled endpoint remains the actual patent state, while retaining the production values only as marketing context.
+The patent labels the nearest row as 0.3 m. A paraxial conjugate solve through the patent's original GL/image-plane stack places that row at approximately 295.575 mm from the first lens vertex, consistent with the rounded source label, with transverse magnification **-0.111971808** (`|m| ≈ 0.112×`). The production lens is marketed with a 0.4 m minimum focus distance and 0.1× maximum magnification. The modeled endpoint therefore remains the actual patent state, and its close-focus label reports the 0.388 m object-to-image distance that row focuses at, while the production values are retained only as marketing context.
 
 ## Aspherical Surfaces
 

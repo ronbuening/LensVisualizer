@@ -56,3 +56,10 @@ classification. `apd: false` remains appropriate because the patent provides no 
   no designation beyond reference numeral 400) and gapAfter 0.12 mm. Paraxial check against the previous data: EFL
   identical and defocus unchanged (worst difference 9e-16 mm) at both focus keyframes. Physical track grows by
   0.953996 mm to the patent's 68.43 mm.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.45 → 0.49 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 8.8 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed row (D0 = 407.1 mm) focuses at 0.490 m object to image; 0.45 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.45 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

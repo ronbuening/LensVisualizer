@@ -294,3 +294,10 @@ Movement: Table 1b gives D15 = 16.71 mm at infinity and 17.67 mm at 0.5 m, and p
 Engine half-field 40.23° and f/3.50 are as before; the validator reports no errors and the trace shows no axial or chief-ray clip at infinity or the near station.
 
 Open limitations: the three bevels listed above; a flat-land rim in the renderer would remove all of them without changing any semi-diameter.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` stays 0.5538 m. Source near state converts to 0.554 m object to image per its own notes, yet the row focuses at 0.70 m. The close row's modeled label reads within 26.8 % of it, so the close-endpoint corpus guard lists this lens as an exemption.
+
+- `catalog.closeFocusM.marketing` 0.5 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+- Cause, measured: the infinity row is itself out of paraxial focus by −0.48 m⁻¹ (the image plane is conjugate to a virtual object 2.07 m behind the first vertex; about 0.23 mm of image-side defocus). Relative to that row the near row moves the in-focus object by 2.02 m⁻¹, to about 494 mm before the first vertex, which agrees with the source's 500 mm. The near row's absolute distance, 0.70 m object to image, carries the infinity residual, so relabeling to it would label the residual. Review the image-plane residual first.

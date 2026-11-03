@@ -58,3 +58,10 @@ Patent: US 2006/0209426 A1, Example 1
 - Confirmed the high-index elements remain G12/G33 `NBFD15` and G21/G32 `S-TIH6` (nd >= 1.8). These are high-index correction glasses, not additional APD elements.
 - Rendered and reviewed the patent drawing. The SD profile matches the patent telephoto proportions: large G1, very compact translating G2, and smaller rear correction group. No SD edits were made.
 - Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 2.44 → 2.695 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 10.5 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived inner-focus travel; 2.44 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 2.44 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

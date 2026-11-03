@@ -5,7 +5,7 @@
  * Pure and React-free: station provenance comes from `src/optics/publishedStations.ts`; this module only decides
  * how a station reads on a button and where focus lands when the zoom station changes.
  */
-import { formatDist } from "../../optics/optics.js";
+import { formatDist, formatDistanceM } from "../../optics/optics.js";
 import {
   publishedFocusStations,
   publishedStationAvailability,
@@ -38,8 +38,8 @@ export function zoomStationOptions(L: RuntimeLens): StationOption[] {
 /**
  * Build one button per published focus station at a zoom station.
  *
- * The distance shown is the focus slider's own label for that keyframe. Only a certified conjugate is a source
- * distance, so the button title says which kind it is.
+ * A certified conjugate shows the source's own object distance (object to image); any other row shows the focus
+ * slider's label for that keyframe, the distance at which the model is in focus. The button title says which kind it is.
  *
  * @param L - runtime lens object
  * @param zoomIndex - index into `zoomPositions`; 0 for a prime
@@ -48,7 +48,10 @@ export function zoomStationOptions(L: RuntimeLens): StationOption[] {
  */
 export function focusStationOptions(L: RuntimeLens, zoomIndex: number, zoomT: number): StationOption[] {
   return publishedFocusStations(L, zoomIndex).map((station) => {
-    const label = formatDist(station.focusT, L, zoomT);
+    const label =
+      station.certifiedDistanceM !== null
+        ? formatDistanceM(station.certifiedDistanceM)
+        : formatDist(station.focusT, L, zoomT);
     return {
       id: station.index,
       label,
@@ -56,7 +59,7 @@ export function focusStationOptions(L: RuntimeLens, zoomIndex: number, zoomT: nu
       title: station.isInfinity
         ? "Infinity focus"
         : station.conjugate
-          ? `Source-certified conjugate: ${station.conjugate.source}`
+          ? `Source-certified conjugate; the distance is the source's: ${station.conjugate.source}`
           : "Source-tabulated focus row; the distance is the focus slider's label for it",
     };
   });

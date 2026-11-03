@@ -67,6 +67,7 @@ const LENS_DATA = {
     groupCount: 9,
     focalLengthMm: { marketing: [15.7, 55.5], design: [16.146288351807335, 53.84993101953503] },
     fNumber: { marketing: 3.5, design: 3.62 },
+    closeFocusM: { marketing: 0.25 },
   },
 
   source: {
@@ -289,15 +290,15 @@ const LENS_DATA = {
   zoom: {
     /* (moved from zoomPositions) ── Zoom and constrained focus spacings ── */
     stations: [
-      { focalLengthMm: 16.15, nominalFNumber: 3.62, label: "Wide" },
-      { focalLengthMm: 29.49, nominalFNumber: 4.65 },
-      { focalLengthMm: 53.85, nominalFNumber: 5.67, label: "Tele" },
+      { focalLengthMm: 16.15, nominalFNumber: 3.62, closeFocusM: 0.349, label: "Wide" },
+      { focalLengthMm: 29.49, nominalFNumber: 4.65, closeFocusM: 0.357 },
+      { focalLengthMm: 53.85, nominalFNumber: 5.67, closeFocusM: 0.376, label: "Tele" },
     ],
   },
 
   /* ── Focus and aperture ── */
   focus: {
-    closeFocusM: 0.25,
+    closeFocusM: 0.349,
     description:
       "CONSTRAINED_RECONSTRUCTION: only Group III (L6) moves. Close-focus spacings are paraxially solved for a 0.25 m object distance from patent surface 1 with a fixed normalized image plane and exact B+C conservation; Ricoh's marketed 0.25 m MFD is measured from the physical lens front, so this is not a patent-published finite-focus state.",
   },

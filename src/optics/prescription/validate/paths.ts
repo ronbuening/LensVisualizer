@@ -17,6 +17,7 @@ export function authoredMessages(
     finiteConjugates: "focus.conjugates",
     var: "gaps",
     closeFocusM: "focus.closeFocusM",
+    closeFocusMarketing: "catalog.closeFocusM.marketing",
     fstopSeries: "aperture.fStops",
     lensMounts: "catalog.lensMounts",
     imageFormat: "catalog.imageFormat",

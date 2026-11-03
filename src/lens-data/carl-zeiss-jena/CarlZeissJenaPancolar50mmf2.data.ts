@@ -46,6 +46,7 @@ const LENS_DATA = {
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: 50, design: 50.6 },
     fNumber: { marketing: 2.0 },
+    closeFocusM: { marketing: 0.5 },
   },
 
   source: {
@@ -156,7 +157,7 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  focus: { closeFocusM: 0.5, description: "Unit focusing — entire lens translates forward via helicoid." },
+  focus: { closeFocusM: 0.551, description: "Unit focusing — entire lens translates forward via helicoid." },
 
   /* (moved from var) ── Variable air spacings (unit focus) ──
    *  Only the BFD changes during focus. Entire lens translates as a rigid unit.

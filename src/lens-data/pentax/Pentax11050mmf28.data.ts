@@ -52,6 +52,7 @@ const LENS_DATA = {
     groupCount: 5,
     focalLengthMm: { marketing: 50, design: 50.0 },
     fNumber: { marketing: 2.8 },
+    closeFocusM: { marketing: 0.9 },
   },
 
   source: {
@@ -160,7 +161,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.9,
+    closeFocusM: 0.953,
     description: "Unit focus — entire lens assembly translates forward via helicoid barrel. MFD 0.9 m.",
   },
 

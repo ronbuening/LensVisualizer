@@ -50,6 +50,7 @@ const LENS_DATA = {
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: 18.5, design: 19.129 },
     fNumber: { marketing: 2.8, design: 2.88 },
+    closeFocusM: { marketing: 0.1 },
   },
 
   source: {
@@ -286,7 +287,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.1,
+    closeFocusM: 0.127,
     description: "G1 + aperture stop + G2 translate integrally forward; G3 fixed relative to sensor.",
   },
 

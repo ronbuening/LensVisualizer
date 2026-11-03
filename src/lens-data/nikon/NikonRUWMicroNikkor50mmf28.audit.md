@@ -47,3 +47,10 @@ The underwater declaration had stopped the analysis field at 17.5° in air, 74% 
 chief ray reaches the corner at 23.5° with every rim clear, consistent with the analysis note that the frame
 corner is 22.75° image-side and about 16.9° underwater. The `specs` line keeps "35° underwater field". No
 prescription or semi-diameter changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.167 → 0.207 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 23.9 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close row states no distance; 0.167 m is the old value.
+- `catalog.closeFocusM.marketing` 0.167 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

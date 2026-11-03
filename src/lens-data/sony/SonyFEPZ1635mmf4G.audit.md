@@ -31,3 +31,12 @@ The diagram now displays the patent identifiers L11–L14, L21–L23, L31–L32,
 to existing coefficient-backed catalog curves. Because the patent supplies optical coordinates but no commercial glass
 names or spectral-line measurements, the supplier-unresolved class labels remain the most defensible classification;
 no new catalog entry was warranted.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.24 → 0.29 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 21.4 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed d0 = 279 mm rows (reference unresolved); focus description gives production 0.28 m wide / 0.24 m tele.
+- `catalog.closeFocusM.marketing` 0.28 / 0.24 m (wide / tele) keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: focus comment: the scalar is the object-to-image distance of the d0 = 279 mm rows; Sony's 0.28 / 0.24 m is catalog metadata.

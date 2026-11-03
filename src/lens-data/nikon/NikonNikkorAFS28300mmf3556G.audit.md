@@ -110,3 +110,10 @@ L21 (1.76546 / 46.73, aspherical) was labelled Unmatched beside HIKARI J-LASFH2,
 - Rejected the figure-scale front reduction to≈29.5 mm: full beam screening/refinement gives S1 reach 33.419896 mm (z=.05/focus1/field36.15758°), S2 31.000000 mm, S3 30.888570 mm, versus proposed cap 29.5+required margin.0885 mm; no untraced fields. Existing38/31/31 mm front caps remain a working-aperture departure from the figure. Other face endpoints, including the VR doublet, have no separately resolved, admissible additional land; retain their existing caps rather than invent cement-interface features.
 - All 19 resolved curves remain unchanged qualified proxies; L43r alone is unresolved/Abbe-estimated. The source does not identify UV curing: removed that unsupported wording, keeping the hybrid/resin interpretation and unspecified chemistry/cure. Native-coordinate differences remain explicit in the public inventory (including Q-LASFPH2S1.765437/46.75 versus source 1.76546/46.73). Two ED positions remain a production correlation, not source-measured anomalous dispersion or supplier identification.
 - Focused surface/image-circle/aperture checks pass. Full-field census: all 3 stations≥90%,2≥99%; the remaining source-prescription/summary discrepancy is retained. Nine actual SVG states have zero automatic trim. Glass resolver/catalog consistency passes, with 19/20 modeled coefficient curves. Source R/d/aspheres, every nd/νd pair and all controls remain unchanged.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.5 → 3.357 m, with per-station `closeFocusM` 9.011 / 3.357 / 7.446 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 1702.2 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close rows state no distance; 0.5 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.5 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

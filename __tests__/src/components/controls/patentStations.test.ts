@@ -7,7 +7,9 @@ import {
 } from "../../../../src/components/controls/patentStations.js";
 import { attachFixtureTeleconverter as attachTeleconverter } from "../../optics/constructionFixtures.js";
 import type { ZoomVarRange } from "../../../../src/types/optics.js";
-import { formatDist } from "../../../../src/optics/optics.js";
+import { formatDist, formatDistanceM } from "../../../../src/optics/optics.js";
+import { publishedFocusStations } from "../../../../src/optics/publishedStations.js";
+import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import {
   build,
   buildSimplePositiveElementLens,
@@ -36,7 +38,7 @@ describe("patent station labels", () => {
     expect(zoomStationOptions(buildSimplePositiveElementLens("test-labels-prime"))).toEqual([]);
   });
 
-  it("labels focus stations with the slider's distance and names a certified conjugate in the title", () => {
+  it("labels tabulated rows with the slider's distance and certified conjugates with the source's", () => {
     const source = "Synthetic source table";
     const L = buildVariableStopGapLens([1, 2, 3], "test-labels-focus", [0, 0.5, 1], {
       publishedStations: { focus: [1] },
@@ -44,15 +46,27 @@ describe("patent station labels", () => {
     });
 
     const options = focusStationOptions(L, 0, 0);
-    // Each button reads the focus slider's own label for its keyframe.
-    const label = (focusT: number) => formatDist(focusT, L, 0);
+    // A tabulated row reads the focus slider's label; the certified conjugate reads the source's 500 mm.
+    const slider = formatDist(0.5, L, 0);
     expect(options.map((option) => [option.id, option.label, option.ariaLabel])).toEqual([
       [0, "∞", "Focus infinity"],
-      [1, label(0.5), `Focus ${label(0.5)}`],
-      [2, label(1), `Focus ${label(1)}`],
+      [1, slider, `Focus ${slider}`],
+      [2, "50 cm", "Focus 50 cm"],
     ]);
     expect(options[1].title).toContain("Source-tabulated focus row");
-    expect(options[2].title).toBe(`Source-certified conjugate: ${source}`);
+    expect(options[2].title).toBe(`Source-certified conjugate; the distance is the source's: ${source}`);
+  });
+
+  it("adds the total track to a certified distance measured from the first surface", () => {
+    const L = buildVariableStopGapLens([1, 2], "test-labels-first-surface", undefined, {
+      finiteConjugates: [
+        { focusT: 1, zoomT: 0, objectDistanceMm: 500, distanceReference: "first-surface", source: "x" },
+      ],
+    });
+    const station = publishedFocusStations(L, 0)[1];
+    const state = prepareRuntimeState(L, 1, 0);
+    expect(station.certifiedDistanceM).toBeCloseTo((500 + state.imgZ - state.z[0]) / 1000, 12);
+    expect(focusStationOptions(L, 0, 0)[1].label).toBe(formatDistanceM(station.certifiedDistanceM!));
   });
 });
 

@@ -140,7 +140,7 @@ The patent describes imageward G4 focusing and shows aberration curves at 0.9 m,
 
 Fig. 7 supports the object-to-image reading. With the iris held at its infinity size, the calculated near positions give f-numbers of 3.857 / 3.891 / 4.283, against the printed 3.857 / 3.892 / 4.282. Measuring 0.9 m from the first surface instead gives 3.881 / 3.973 / 4.487. The calculated telephoto magnification of 0.164× also agrees with Olympus's 0.16×. This agreement supports the distance convention; it is not a published finite-gap table.
 
-Between the control positions, image defocus stays under 0.007 mm at infinity and under 0.011 mm at finite distances. **Distance labels are still approximate:** the worst relative error is about +34%, where a 300 m label near 76 mm corresponds to a calculated distance of about 400 m. That far-focus error is the small infinity defocus expressed as a distance. Small image defocus and distance-label error are different quantities, and one does not excuse the other.
+Between the control positions, image defocus stays under 0.007 mm at infinity and under 0.011 mm at finite distances. **Distance labels are still approximate:** the worst relative error is about +34%, where a 300 m label near 76 mm corresponds to a calculated distance of about 400 m. That far-focus error is the small infinity defocus expressed as a distance: in inverse distance the gap never exceeds 0.0014 m⁻¹, and nearer than 10 m the labels are within 1 %. Small image defocus and distance-label error are different quantities, and one does not excuse the other.
 
 ## Model Scope and Limitations
 

@@ -112,3 +112,10 @@ This catalog follow-up reuses the unchanged Numerical Example2 source-pair/parti
 The closest partial among coordinate-compatible published candidates is legacy OHARA BAH22 (θgF.58480057, residual+.00240057); SUMITA BASF2 gives.58588979 (+.00348979), Hikari J-BASF2 .58901592 (+.00661592), and CDGM H-ZBaF4 .58949003 (+.00709003). These misses exceed the printed four-decimal θ interval, and their normal-line sign/size does not establish the source glass. No new row is added merely to pass the broad nd/νd window or replace an authoritative published partial with a catalog value.
 
 G9's high-partial source layer remains unresolved in composition with genuine source dPgF retained. G16 repeats the coarse G10 coordinate but has no separately published partial; no G10 θ or finer Abbe precision is borrowed for it. Retain both unresolved material dispositions and all source data, curves, geometry and controls. Source-number fidelity, catalog availability and production identity remain separate conclusions.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.2 → 0.3 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 50.0 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: patent close state is beta = -0.1; 0.2 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.2 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

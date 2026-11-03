@@ -143,7 +143,7 @@ At infinity focus, the gaps around L4 are:
 
 The patent publishes aberration plots at 0.10 m wide and 0.50 m telephoto but does not publish the corresponding close-focus air-gap tables. A direct paraxial solve using only L4 motion gives the following patent-distance estimates: 0.760 mm of objectward L4 travel at 0.10 m wide, and 1.914 mm at 0.50 m telephoto. Those numbers are verification estimates, not transcribed patent spacings.
 
-The data file uses production-endpoint close-focus metadata instead of the patent plot distances: 0.05 m at wide and 0.40 m at telephoto. The intermediate close state is an internal smooth modeling point and is not a published Canon or patent value.
+The close-focus travel was aimed at Canon's production endpoints rather than the patent plot distances: 0.05 m at wide and 0.40 m at telephoto. Traced object to image, the modeled close rows focus at about 0.11 m (wide), 0.26 m (middle) and 0.47 m (tele); the per-station close-focus labels report those distances, and the production figures are kept as marketed metadata. The intermediate close state is an internal smooth modeling point and is not a published Canon or patent value.
 
 | Data-file close model | Target object distance | L4 objectward travel | d15 close | d17 close | Source status |
 |---|---:|---:|---:|---:|---|

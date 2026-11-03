@@ -77,3 +77,9 @@ No R, d, ne, νe, stop, gap, aperture, semi-diameter, or asphere term changed. M
 ### Follow-ups
 
 Retain the missing-asphere qualification and the RI localization refusal. A source defining the actual r9 profile is required for a faithful higher-order model; do not fit coefficients to the current errors or a manufacturer chart. Exact stop placement and the full-aperture clear apertures remain inferred. Any catalog/UI treatment for incomplete prescriptions is a coordinator decision outside this one-lens edit scope.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.7 → 0.642 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to -8.3 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: view-camera bellows focus; the endpoint is not a maker MFD.

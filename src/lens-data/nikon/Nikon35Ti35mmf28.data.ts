@@ -68,6 +68,7 @@ const LENS_DATA = {
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: 35, design: 35.0 },
     fNumber: { marketing: 2.8, design: 2.88 },
+    closeFocusM: { marketing: 0.4 },
   },
 
   source: {
@@ -187,7 +188,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.4,
+    closeFocusM: 0.446,
     description:
       "Unit focus — entire lens assembly moves axially; all inter-element spacings remain fixed during focusing.",
   },

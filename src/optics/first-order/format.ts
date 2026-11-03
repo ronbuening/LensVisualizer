@@ -110,6 +110,42 @@ export function formatDistanceM(distanceM: number): string {
   return `${(distanceM * 100).toFixed(0)} cm`;
 }
 
+/** Share by which the maker's minimum focus distance may differ from the close-focus label before the readout names it. */
+const MARKETED_CLOSE_FOCUS_NOTE_FRACTION = 0.02;
+
+/**
+ * Marketed minimum focus distance to show beside the focus readout at the close end. The label reports where the
+ * model focuses, usually a source state; the maker's production figure can be nearer, so the readout names both.
+ * A `[wide, tele]` figure is compared with its own end at the zoom extremes; between them the readout names the
+ * range only when the label falls outside it.
+ *
+ * @param data - lens data carrying `catalog.closeFocusM.marketing`
+ * @param focusT - current focus slider position
+ * @param labelDistanceM - the close-focus label distance in metres, from `focusLabelDistanceM`
+ * @param zoomT - normalized zoom slider, 0=wide and 1=tele
+ * @returns secondary label, empty away from the close end or when the two agree
+ */
+export function marketedCloseFocusNote(
+  data: Pick<CanonicalLens, "catalog">,
+  focusT: number,
+  labelDistanceM: number | null,
+  zoomT = 0,
+): string {
+  const marketed = data.catalog.closeFocusM?.marketing;
+  if (marketed === undefined || focusT < 1 - 1e-9 || labelDistanceM === null || !Number.isFinite(labelDistanceM))
+    return "";
+  const agrees = (value: number) => Math.abs(value / labelDistanceM - 1) <= MARKETED_CLOSE_FOCUS_NOTE_FRACTION;
+  const note = (value: number) => (agrees(value) ? "" : `marketed ${formatDistanceM(value)}`);
+  if (!Array.isArray(marketed)) return note(marketed);
+  const [wide, tele] = marketed;
+  if (zoomT <= 1e-9) return note(wide);
+  if (zoomT >= 1 - 1e-9) return note(tele);
+  const low = Math.min(wide, tele) * (1 - MARKETED_CLOSE_FOCUS_NOTE_FRACTION);
+  const high = Math.max(wide, tele) * (1 + MARKETED_CLOSE_FOCUS_NOTE_FRACTION);
+  if (labelDistanceM >= low && labelDistanceM <= high) return "";
+  return `marketed ${formatDistanceM(wide)}–${formatDistanceM(tele)}`;
+}
+
 /**
  * Format a normalized focus slider as user-facing object distance.
  *

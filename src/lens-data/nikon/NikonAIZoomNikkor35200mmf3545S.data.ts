@@ -311,7 +311,7 @@ const LENS_DATA = {
   },
 
   focus: {
-    closeFocusM: 0.245,
+    closeFocusM: 0.44,
     description:
       "Normal focusing is by the first lens group. The close-focus endpoint modeled here is the patent telephoto-end macro state at β = -0.25.",
   },

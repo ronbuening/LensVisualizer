@@ -48,6 +48,7 @@ const LENS_DATA = {
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: 24, design: 24.0 },
     fNumber: { marketing: 2.0 },
+    closeFocusM: { marketing: 0.25 },
   },
 
   source: {
@@ -211,7 +212,7 @@ const LENS_DATA = {
 
   /* ── Focus ── */
   focus: {
-    closeFocusM: 0.25,
+    closeFocusM: 0.344,
     description: "Helicoid unit focus with floating correction (components IV+V translate together).",
   },
 

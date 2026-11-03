@@ -29,3 +29,9 @@ L2 and L5 remain non-APD N-BALF5 barium light flints. The patent's environmental
 ### Phase 4 - Analysis sync
 
 - Updated the L3/L4 and glass-strategy prose to use the corrected e-line 522/695 class note for L3 and N-PK51 code 529770 for L4.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.5 → 0.628 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 25.5 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: view-camera bellows focus; the endpoint is not a maker MFD.

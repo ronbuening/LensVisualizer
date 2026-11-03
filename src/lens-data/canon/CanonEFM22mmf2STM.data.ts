@@ -46,6 +46,7 @@ const LENS_DATA = {
     groupCount: 6,
     focalLengthMm: { marketing: 22, design: 21.7907 },
     fNumber: { marketing: 2.0, design: 2.05 },
+    closeFocusM: { marketing: 0.15 },
   },
 
   source: {
@@ -168,7 +169,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.2217,
+    closeFocusM: 0.264,
     description:
       "Patent-tabulated two-gap inner/floating focus from infinity to beta = -0.1x; production 0.15 m MFD is not extrapolated.",
     // (moved from publishedStations) The close-focus row is source-tabulated.

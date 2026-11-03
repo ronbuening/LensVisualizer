@@ -60,6 +60,7 @@ const LENS_DATA = {
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: 16, design: 16.0 },
     fNumber: { marketing: 3.5 },
+    closeFocusM: { marketing: 0.2 },
   },
 
   source: {
@@ -219,7 +220,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.2,
+    closeFocusM: 0.254,
     description:
       "Unit focus (whole-block helicoid). No floating elements identified in patent or production literature.",
   },

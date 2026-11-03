@@ -12,7 +12,12 @@ import {
   entrancePupilAtState,
   conjugateKForRuntimeLens as conjugateK,
 } from "../../../src/optics/state/fieldAdapters.js";
-import { focusLabelDistanceM, formatDist, formatDistanceM } from "../../../src/optics/first-order/format.js";
+import {
+  focusLabelDistanceM,
+  formatDist,
+  formatDistanceM,
+  marketedCloseFocusNote,
+} from "../../../src/optics/first-order/format.js";
 import { traceRay, traceRayChromatic } from "../../../src/optics/trace/rayAdapters.js";
 import { computeChromaticRayFanSpread } from "../../../src/optics/chromatic/chromaticTrace.js";
 import { FOCUS_INFINITY_CUTOFF } from "../../../src/optics/state/focusDistance.js";
@@ -31,6 +36,34 @@ import {
   buildTirLens,
   buildVariableStopGapLens,
 } from "./testLensFixtures.js";
+
+describe("marketedCloseFocusNote", () => {
+  const lens = (marketing?: number | [number, number]) =>
+    ({ catalog: marketing === undefined ? {} : { closeFocusM: { marketing } } }) as Parameters<
+      typeof marketedCloseFocusNote
+    >[0];
+
+  it("names the maker's distance at the close end when it differs from the label", () => {
+    expect(marketedCloseFocusNote(lens(0.1), 1, 1)).toBe("marketed 10 cm");
+  });
+
+  it("compares a [wide, tele] figure with its own end at the zoom extremes and with the range between them", () => {
+    const zoom = lens([0.25, 0.45]);
+    expect(marketedCloseFocusNote(zoom, 1, 0.3, 0)).toBe("marketed 25 cm");
+    expect(marketedCloseFocusNote(zoom, 1, 0.25, 0)).toBe("");
+    expect(marketedCloseFocusNote(zoom, 1, 0.6, 1)).toBe("marketed 45 cm");
+    expect(marketedCloseFocusNote(zoom, 1, 0.45, 1)).toBe("");
+    expect(marketedCloseFocusNote(zoom, 1, 0.35, 0.5)).toBe("");
+    expect(marketedCloseFocusNote(zoom, 1, 0.6, 0.5)).toBe("marketed 25 cm–45 cm");
+  });
+
+  it("stays empty away from the close end, when the two agree, or without a marketed distance", () => {
+    expect(marketedCloseFocusNote(lens(0.1), 0.5, 1)).toBe("");
+    expect(marketedCloseFocusNote(lens(0.45), 1, 0.452)).toBe("");
+    expect(marketedCloseFocusNote(lens(), 1, 1)).toBe("");
+    expect(marketedCloseFocusNote(lens(0.1), 1, null)).toBe("");
+  });
+});
 
 describe("formatDistanceM", () => {
   it("formats kilometres, metres and centimetres, and infinity", () => {
@@ -56,16 +89,28 @@ describe("focus labels", () => {
     expect(formatDist(0.001, mockL)).toBe("∞");
   });
 
-  it("reports the distance at which the prepared state is in focus", () => {
-    const L = buildImageGapFocusLens([47.536, 50]);
-    const distanceM = focusLabelDistanceM(0.5, L)!;
-    const state = prepareRuntimeState(L, 0.5, 0);
-    // An axial object at the label distance (object to image) images onto the image plane...
-    const ray = traceParaxialSurfaces(state.surfaces, 1, 1 / (distanceM * 1000 - state.totalTrack));
+  it("reports where each authored row focuses, interpolating inverse distance between rows", () => {
+    const L = buildImageGapFocusLens([47.5362, 50]);
+    const closeM = focusLabelDistanceM(1, L)!;
+    const state = prepareRuntimeState(L, 1, 0);
+    // An axial object at the close row's label distance (object to image) images onto the image plane...
+    const ray = traceParaxialSurfaces(state.surfaces, 1, 1 / (closeM * 1000 - state.totalTrack));
     expect(ray.y + state.surfaces[state.surfaces.length - 1].d * ray.u).toBeCloseTo(0, 9);
-    // ...where the slider convention would have labelled this state 1 m.
-    expect(distanceM).not.toBeCloseTo(L.closeFocusM / 0.5, 1);
-    expect(formatDist(0.5, L)).toBe(formatDistanceM(distanceM));
+    // ...where the slider convention would have labelled this row 50 cm,
+    expect(closeM).not.toBeCloseTo(L.closeFocusM, 1);
+    // and halfway to infinity the inverse distance is half the close row's.
+    expect(focusLabelDistanceM(0.5, L)).toBeCloseTo(2 * closeM, 12);
+    expect(formatDist(0.5, L)).toBe(formatDistanceM(2 * closeM));
+  });
+
+  it("anchors infinity at infinity, so an infinity-row residual does not move the labels", () => {
+    // The same close row, once over an in-focus infinity gap and once over one 0.1 mm long, as a source table's
+    // rounding leaves it. Read from the blended state, an in-focus distance would differ by about 80 % near infinity.
+    const focused = buildImageGapFocusLens([47.5362, 50.0002], "test-image-gap-focus-in-focus");
+    const rounded = buildImageGapFocusLens([47.6362, 50.0002], "test-image-gap-focus-rounded");
+    for (const focusT of [0.01, 0.5, 1]) {
+      expect(focusLabelDistanceM(focusT, rounded)).toBeCloseTo(focusLabelDistanceM(focusT, focused)!, 12);
+    }
   });
 
   it("reads ∞ when the state focuses at or beyond infinity", () => {

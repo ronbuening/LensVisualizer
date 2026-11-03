@@ -338,7 +338,7 @@ function writeLens(write: Writer, lens: CanonicalLens): Untyped {
     "acceptsTeleconverters",
     "opticalConfiguration",
   ]);
-  for (const range of ["focalLengthMm", "fNumber"] as const) {
+  for (const range of ["focalLengthMm", "fNumber", "closeFocusM"] as const) {
     const values = lens.catalog[range];
     if (!values) continue;
     const record = write.record(catalog, "catalog", range, `catalog.${range}`);

@@ -23,3 +23,11 @@ Patent: US 2,518,719, Example 2 / Fig. 2
 - Fig. 2 shows a wide-field four-element layout with large outer positive menisci, smaller inner negative menisci, and a diaphragm in the long central air space.
 - Stored SDs match that outline: outer elements are 17.4 mm at the front and 14.1 mm at the rear, while the inner menisci narrow to about 11.35-13.5 mm and the stop remains separate at 6.6845 mm.
 - No SD values changed. Current values remain inferred from the patent figure, f/6.3 stop geometry, field ray clearance, edge thickness, and cross-gap sag checks.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 1 → 1.125 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 12.5 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: close focus is a representative BFD extension, not a maker MFD.
+
+Text sync: analysis: the nominal 1.0 m (first-vertex) endpoint is about 1.13 m object to image.

@@ -37,3 +37,10 @@ Catalog version: local working tree, 2026-06-25
 - Rechecked DE 1,089,183's LaF2, PK1, and LaK10 coordinates and assigned N-LAF2, PC1, and J-LAK10 as
   supplier-neutral spectral proxies for five elements.
 - L7 remains unresolved: its LLF7 name and `1.54869 / 45.4` coordinate do not establish one catalog curve.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.9 → 1.004 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 11.6 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived unit-focus travel; 0.9 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.9 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

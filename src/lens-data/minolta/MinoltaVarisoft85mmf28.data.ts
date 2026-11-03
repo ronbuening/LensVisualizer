@@ -65,6 +65,7 @@ const LENS_DATA = {
     groupCount: 5,
     focalLengthMm: { marketing: 85, design: 85.0 },
     fNumber: { marketing: 2.8 },
+    closeFocusM: { marketing: 0.8 },
   },
 
   source: {
@@ -177,7 +178,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.8,
+    closeFocusM: 0.971,
     description:
       "Inner focus — Group AI (L1–L4) moves forward; AII (L5) and B (L6) remain stationary. " +
       "Separate 4-position click-stopped ring varies d_B0 for soft-focus control.",

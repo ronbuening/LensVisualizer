@@ -7,11 +7,14 @@ export {
 export type { ParaxialWorkingFNumberResult, ParaxialWorkingFNumberUnavailableReason } from "./first-order/fNumber.js";
 export { eflAtFocus } from "./first-order/focusBreathing.js";
 export {
+  focusLabelDistanceM,
   formatDist,
+  formatDistanceM,
   formatFNumber,
   formatParaxialWorkingFNumber,
   formatPetzvalRadius,
   marketedApertureNote,
+  marketedCloseFocusNote,
   showsParaxialWorkingFNumber,
 } from "./first-order/format.js";
 export { paraxialTrace, realTraceToStop } from "./first-order/lensConstants.js";

@@ -50,6 +50,7 @@ const LENS_DATA = {
     groupCount: 8,
     focalLengthMm: { marketing: 56, design: 54.4525 },
     fNumber: { marketing: 1.2, design: 1.24 },
+    closeFocusM: { marketing: 0.5 },
   },
 
   source: {
@@ -315,7 +316,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.5,
+    closeFocusM: 0.591,
     description: "Internal unit focus: G2 and the aperture stop translate objectward; G1 and G3 remain fixed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],

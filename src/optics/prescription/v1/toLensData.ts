@@ -69,6 +69,7 @@ export const V1_PRINT_ORDER = {
     "focalLengthDesign",
     "apertureMarketing",
     "apertureDesign",
+    "closeFocusMarketing",
     "lensMounts",
     "imageFormat",
     "imageCircleMm",
@@ -492,6 +493,7 @@ function buildLensView(
   put(out, "focalLengthDesign", catalog.focalLengthMm?.design);
   put(out, "apertureMarketing", catalog.fNumber?.marketing);
   put(out, "apertureDesign", catalog.fNumber?.design);
+  put(out, "closeFocusMarketing", catalog.closeFocusM?.marketing);
   put(out, "lensMounts", catalog.lensMounts);
   put(out, "imageFormat", catalog.imageFormat);
   put(out, "imageCircleMm", catalog.imageCircleMm);

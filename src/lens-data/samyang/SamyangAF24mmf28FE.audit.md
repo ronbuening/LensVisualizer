@@ -13,3 +13,12 @@ L41 uses J-BK7A and L51 S-TIM35 as qualified dispersion proxies, improving cover
 Display name reviewed against the authored manufacturer references and the existing Samyang naming convention: retained the correct AF/XP, focal length, f-number, and FE designation. Canonicalized decimal-aperture keys and patent/inventor metadata without renaming the marketed product.
 
 Validation: `audit:surface` and `audit:image-circle` pass. The project's SVG shape builder was rendered and visually compared with the patent; no surface trimming occurs at infinity. For changed prescriptions, temporary exact-ray comparisons sampled published focus rows plus 0.25/0.5/0.75, on-axis pupil fractions ±1/±0.75/0 and ±0.60 half-field pupil fractions ±0.75/±0.375/0. The retained changes introduce no additional clipping relative to the supplied data. Existing full-edge clipping is not claimed to be repaired. No per-lens snapshot test was retained.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.24 → 0.257 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 6.9 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed TL = 0.2 m row; focus description calls 0.24 m the production specification.
+- `catalog.closeFocusM.marketing` 0.24 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: focus.description and analysis: Samyang's 0.24 m is catalog metadata; the TL=0.2m row focuses at 0.257 m.

@@ -53,6 +53,7 @@ const LENS_DATA = {
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: [24, 70], design: [24.72, 67.9] },
     fNumber: { marketing: 2.8, design: 2.91 },
+    closeFocusM: { marketing: [0.21, 0.3] },
   },
 
   source: {
@@ -443,16 +444,16 @@ const LENS_DATA = {
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps at all three zoom stations are WO 2023/181666 Table 18 rows (beta
     // -0.229/-0.182/-0.292, d0 74.00/171.81/151.21 mm), not solved for the 0.21 m production MFD.
     stations: [
-      { focalLengthMm: 24.72, label: "Wide", published: true, publishedFocus: [1] },
-      { focalLengthMm: 41.46, published: true, publishedFocus: [1] },
-      { focalLengthMm: 67.9, label: "Tele", published: true, publishedFocus: [1] },
+      { focalLengthMm: 24.72, closeFocusM: 0.21, label: "Wide", published: true, publishedFocus: [1] },
+      { focalLengthMm: 41.46, closeFocusM: 0.322, published: true, publishedFocus: [1] },
+      { focalLengthMm: 67.9, closeFocusM: 0.319, label: "Tele", published: true, publishedFocus: [1] },
     ],
     step: 0.004,
   },
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.21, // manufacturer spec: 0.21 m at 24 mm (0.30 m at 70 mm)
+    closeFocusM: 0.21, // nearest station row; Sony spec 0.21 m at 24 mm / 0.30 m at 70 mm is catalog metadata
     description:
       "Dual floating inner focus: Gr5 (negative singlet) and Gr6 (positive singlet) move on independent trajectories, driven by four XD Linear Motors.",
   },
