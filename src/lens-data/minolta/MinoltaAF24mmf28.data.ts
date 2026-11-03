@@ -1,15 +1,16 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole literal patent example; Grade B probable family, not factory-exact.
- * Missing stop/caps are frozen source-informed hypotheses. Derived planes/conjugates are disclosed.
- * Source residuals, clipping and aperture distinctions are retained; no optical tuning.
+/** US 4,759,619 Embodiment 2 (Table 2, Fig. 4), normalized to f = 100 and scaled uniformly by 0.24 to 24 mm.
+ * R, d, nd and νd are as printed; the printed spacings sum to 200.869 against the table's Σd = 200.862, kept as printed.
+ * The patent prints no back focus: the image plane is the computed paraxial back focus. The stop position (52% of d8)
+ * and all semi-diameters are inferred. The near state uses the printed d4 at β = −0.1; its object distance is derived.
  */
 const LENS_DATA = {
   schema: 2,
   key: "minolta-af-24mm-f28",
   maker: "Minolta",
   name: "MINOLTA AF 24mm f/2.8",
-  subtitle: "US 4,759,619 Embodiment 2 — probable family; inferred apertures",
+  subtitle: "US 4,759,619 — Embodiment 2; closest patent match to the production lens",
   catalog: {
     lensMounts: ["sony-a"],
     imageFormat: "135-full-frame",
@@ -25,8 +26,10 @@ const LENS_DATA = {
     },
     specs: [
       "8 ELEMENTS / 8 GROUPS",
-      "PROBABLE FAMILY; INFERRED APERTURES",
-      "SOURCE FINITE ENDPOINT; DERIVED CONJUGATE",
+      "DESIGN f = 24.00 mm",
+      "DESIGN F/2.8",
+      "ALL SPHERICAL",
+      "REAR FOCUS",
     ],
   },
   source: {
@@ -49,10 +52,8 @@ const LENS_DATA = {
       vd: 43.25,
       indexReference: "d",
       glass: "Unmatched (patent nd 1.71060, νd 43.25; no catalog row at these coordinates)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 238.58281427176686,
-      role: "Literal whole-source positive element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Weak positive front meniscus of the fixed front group; offsets the distortion of the negative menisci behind it.",
     },
     {
       id: 2,
@@ -63,10 +64,8 @@ const LENS_DATA = {
       vd: 60.5,
       indexReference: "d",
       glass: "NSL7 (OHARA catalog equivalent; production supplier unspecified)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -69.75318668978854,
-      role: "Literal whole-source negative element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Negative meniscus of the fixed front group, which supplies most of that group's negative power.",
     },
     {
       id: 3,
@@ -77,10 +76,8 @@ const LENS_DATA = {
       vd: 64.2,
       indexReference: "d",
       glass: "BSC7 (HOYA catalog equivalent; production supplier unspecified)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -32.20345401386272,
-      role: "Literal whole-source negative element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Negative meniscus at the front of the moving rear group.",
     },
     {
       id: 4,
@@ -91,10 +88,8 @@ const LENS_DATA = {
       vd: 37.9,
       indexReference: "d",
       glass: "Unmatched (patent nd 1.77551, νd 37.9; no catalog row at these coordinates)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 37.61951606696508,
-      role: "Literal whole-source positive element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Thick biconvex positive element directly ahead of the stop, nearly flat at the rear.",
     },
     {
       id: 5,
@@ -105,10 +100,8 @@ const LENS_DATA = {
       vd: 52.67,
       indexReference: "d",
       glass: "LAK011 (Hikari catalog equivalent; production supplier unspecified)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 36.16777148510904,
-      role: "Literal whole-source positive element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Biconvex positive element directly behind the stop.",
     },
     {
       id: 6,
@@ -119,10 +112,8 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: -22.2098439411515,
-      role: "Literal whole-source negative element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Dense-flint biconcave negative element, the strongest negative power in the lens.",
     },
     {
       id: 7,
@@ -133,10 +124,8 @@ const LENS_DATA = {
       vd: 61.28,
       indexReference: "d",
       glass: "Unmatched (patent nd 1.62135, νd 61.28; no catalog row at these coordinates)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 60.203341766476726,
-      role: "Literal whole-source positive element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Positive meniscus convex to the image in the rear group.",
     },
     {
       id: 8,
@@ -147,10 +136,8 @@ const LENS_DATA = {
       vd: 58.52,
       indexReference: "d",
       glass: "Unmatched (patent nd 1.65830, νd 58.52; no catalog row at these coordinates)",
-      indexReferenceNote:
-        "Source explicitly labels Nd/nu-d; engine d587.5618nm is the conventional implementation reference.",
       focalLengthMm: 35.460797562085475,
-      role: "Literal whole-source positive element. Isolated-in-air focal power is descriptive, not cemented-group power.",
+      role: "Final biconvex positive element with a nearly flat front face.",
     },
   ],
   surfaces: [
@@ -267,7 +254,7 @@ const LENS_DATA = {
     keyframes: [0, 1],
     published: [1],
     description:
-      "US 4,759,619 Embodiment 2 tabulates finite intergroup gaps and magnification. Object distance is derived by two independently checked paraxial methods, not printed. Front group and assumed camera plane fixed; beta residual retained. Only endpoints have explicit conjugates; slider interpolation is an implementation approximation, not a published cam law. Physical iris radius is held at the infinity-derived value; near effective F-number is diagnostic, not a replacement nominal aperture. Retail minimum focus is 0.25 m (maximum magnification 0.16×); the near end here is the patent's printed beta = -0.1 state (d4 38.618 → 27.728 at f = 100; rear group R moves 2.614 mm toward the object), about 0.323 m object to image, not the retail limit.",
+      "PUBLISHED rear focus: the front group F (L1–L2) stays fixed while the rear group R (L3–L8 with the iris) moves 2.614 mm toward the object. US 4,759,619 Embodiment 2 prints the near state: d4 shrinks from 38.618 to 27.728 (f = 100 units) at β = −0.1. The patent prints no object distance; with the image plane fixed, the model derives 238.42 mm from the front vertex (about 0.323 m object to image) and β = −0.1001. Retail minimum focus is 0.25 m (maximum magnification 0.16×), so the near end here is the patent's printed state, not the retail limit. Positions between the two states are linear interpolations, not a published focusing cam. The iris keeps its infinity diameter, so the near working aperture (about f/2.81) is a result, not a new nominal f-number.",
     conjugates: [
       {
         zoomStation: 0,
