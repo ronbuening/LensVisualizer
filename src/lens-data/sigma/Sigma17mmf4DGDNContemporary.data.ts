@@ -1,33 +1,30 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole selected patent embodiment; probable product family, not factory exact.
- * Literal source-native R/d/nd/vd and conventional1+K coefficients are unscaled.
- * Printed stops and source infinity/finite intervals are retained without refocus.
- * Missing optical caps were selected from source figures, first-order envelopes
- * and conic/polynomial geometry before tracing; rejected hypotheses are retained.
- * Only infinity and the source finite endpoint have documented conjugates.
- * Linear gap interpolation is implementation geometry, not a patent cam law;
- * intermediate finite MTF is unavailable. Retail MFD is descriptive only.
- * The companion analysis distinguishes finite angular and image-height probes.
+/** JP 2024-062005 A, Numerical Example 2 (Sigma), entered unscaled in millimetres.
+ * R, d, nd, νd and the standard 1+K aspheric terms are as printed.
+ * The printed stop position and the infinity and 126 mm interval tables are kept
+ * without refocusing; the 2.1 mm plate S19/S20 is a rear plate with BF 1.0 mm behind it.
+ * Semi-diameters are inferred from Fig. 6 and edge-thickness and gap limits; the iris
+ * radius follows from the printed F/4.09. Only infinity and the printed close state
+ * have documented object distances; positions between them use linear gap
+ * interpolation. The printed close intervals add 0.0001 mm of track, kept as printed.
+ * Sigma's retail 0.12 m minimum focus is not modelled.
  */
 const LENS_DATA = {
   schema: 2,
   key: "sigma-17mm-f4-dg-dn-contemporary",
   maker: "Sigma",
   name: "SIGMA 17mm f/4 DG DN | Contemporary",
-  subtitle: "JP 2024-062005 A — whole Example 2; probable family reconstruction",
+  subtitle: "JP 2024-062005 A — Numerical Example 2; construction-based production correlation",
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],
     imageFormat: "135-full-frame",
     specs: [
-      "Grade B probable patent family; exact factory prescription unproved",
-      "Printed stop position; inferred optical caps and F/N-derived iris",
-      "Printed infinity and finite endpoint; linear gap interpolation is implementation only; intermediate MTF unavailable",
-      "SOURCE f=17.5mm / F4.09 / full field103.53deg",
-      "Finite conjugate uses printed object-to-first-vertex distance; source heading/track discrepancies retained",
-      "BF1mm follows source2.1mm plate; literal near track67.5001mm, infinity67.5000mm",
-      "Retail minimum focus0.12m; modeled source endpoint0.1260001m, not a retail cam law",
-      "Finite angle datum and21.63mm image-height window are separate qualifications",
+      "9 ELEMENTS / 8 GROUPS",
+      "DESIGN f = 17.50 mm",
+      "DESIGN F/4.09",
+      "6 ASPHERICAL SURFACES / 3 ELEMENTS",
+      "INTERNAL FOCUS",
     ],
     elementCount: 9,
     groupCount: 8,
@@ -43,7 +40,7 @@ const LENS_DATA = {
   source: {
     patentNumber: "JP 2024-062005 A",
     example: {
-      label: "Example 2",
+      label: "Numerical Example 2",
       id: "2",
     },
     patentYear: 2024,
@@ -61,7 +58,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -45.88007264947076,
       glass: "MP-PCD51-70 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Front negative meniscus of the fixed first group; aspherical on both faces.",
     },
     {
       id: 2,
@@ -73,7 +70,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -25.16970982460611,
       glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Second negative meniscus of the first group; low-dispersion crown.",
     },
     {
       id: 3,
@@ -85,7 +82,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 33.58752995636783,
       glass: "TAFD65 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "High-index positive meniscus of the first group, convex to the object.",
     },
     {
       id: 4,
@@ -97,7 +94,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -30.035140390364102,
       glass: "FDS16-W (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Negative meniscus of the first group, concave to the object.",
     },
     {
       id: 5,
@@ -109,7 +106,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 22.21203692877026,
       glass: "NBFD25 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Biconvex last element of the first group, directly ahead of the stop.",
     },
     {
       id: 6,
@@ -121,7 +118,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 16.333275556723635,
       glass: "FCD705 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Low-dispersion positive meniscus at the front of the focusing group, cemented to L7.",
       cemented: "C1",
     },
     {
@@ -134,7 +131,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -16.622915692862627,
       glass: "NBFD32 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Negative meniscus of the focusing group, cemented behind L6; steadies colour during focusing.",
       cemented: "C1",
     },
     {
@@ -147,7 +144,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 16.592344547771557,
       glass: "M-TAF105 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Main positive element of the focusing group; aspherical on both faces.",
     },
     {
       id: 9,
@@ -159,7 +156,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -35.248200235131684,
       glass: "M-NBFD130 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Whole selected patent embodiment; isolated paraxial element power is descriptive.",
+      role: "Biconcave negative element forming the fixed rear group; aspherical on both faces.",
     },
   ],
   surfaces: [
@@ -344,7 +341,7 @@ const LENS_DATA = {
     closeFocusM: 0.1260001,
     keyframes: [0, 1],
     description:
-      "Infinity and the patent's printed 126 mm close-focus state (object to image; object 58.5 mm before the first surface). G2 moves about 1.655 mm toward the object while G1, the stop and G3 stay fixed; magnification at the printed state is about 1:3.9. Sigma lists a 0.12 m minimum focus and 1:3.6 maximum magnification; the printed patent state is used instead. Positions between the two printed states use linear gap interpolation.",
+      "PUBLISHED infinity and 126 mm close-focus states (object to image; object 58.5 mm before the first surface). G2 moves about 1.655 mm toward the object while G1, the stop and G3 stay fixed; magnification at the printed state is about 1:3.9. Sigma lists a 0.12 m minimum focus and 1:3.6 maximum magnification; the printed patent state is used instead. Positions between the two printed states use linear gap interpolation.",
     conjugates: [
       {
         zoomStation: 0,
@@ -352,7 +349,7 @@ const LENS_DATA = {
         objectDistanceMm: 58.5,
         distanceReference: "first-surface",
         source:
-          "JP 2024-062005 A whole Example2 variable interval table; printed d0/ZD0 before first surface plus exact listed focus spacings. Preserve source residuals and image-plane conventions.",
+          "JP 2024-062005 A, Numerical Example 2 variable-interval table: d0 = 58.5 mm before the first surface, with the printed d11 and d16.",
       },
     ],
     published: [1],
@@ -377,7 +374,7 @@ const LENS_DATA = {
       vd: 64.2,
       gapAfterMm: 1.0,
       source:
-        "JP2024062005A whole Example2 S19/S20; source BF1.0000 is AFTER this plate. No printed plate cap; generated unbounded rim is a model convention.",
+        "JP 2024-062005 A, Numerical Example 2, S19/S20; the printed BF of 1.0 mm lies behind this plate. The patent gives no plate diameter.",
     },
   ],
   groups: [

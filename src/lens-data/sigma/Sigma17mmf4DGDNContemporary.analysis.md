@@ -6,104 +6,104 @@
 **Published:** 2024-05-09\
 **Inventor:** Daichi Tanoue\
 **Applicant:** Sigma Corporation\
-**Example details:** PDF12–13, Figure6 PDF23; near plot Figure8 PDF23; source-native millimetres, uniform scale1.
+**Example details:** 数値実施例2, PDF pages 12–13; section Fig. 6, aberrations Figs. 7–10; unscaled millimetres.
 
-The maker section and whole Example2 share nine elements/eight groups, two leading negative menisci, a stop after five front elements, a rear cemented pair, a positive aspheric element and a negative rear aspheric meniscus. Three aspheric elements and the103.53° source full field agree with the advertised layout and103.7° field. Examples1 and4 remain plausible alternatives. None establishes exact commercial radii or a retail120mm focusing law. This is a Grade B probable-family reconstruction. It makes no claim about factory-exact prescription, commercial design authorship, licensing or a continuous production focus mechanism. Whole Examples1 and4 remain separate alternatives; their aspheres and focus spacings are not mixed into Example2.
+Sigma's published section and Numerical Example 2 share nine elements in eight groups: two leading negative menisci, five elements ahead of the stop, a cemented positive–negative pair at the front of the focusing group, a biconvex aspherical element and a biconcave aspherical rear element. Sigma lists three aspherical and two SLD elements; the example has aspherical L1, L8 and L9 and low-dispersion crowns at L2 and L6, the positions Sigma marks. Numerical Examples 1, 3 and 4 share this layout. Example 3 (f = 15.45 mm) is too short; Examples 1 and 4 (f = 16.98 mm) fit the product as well as Example 2. Sigma's 103.7° angle of view is the nominal 2·atan(21.63/17) and does not separate them. Example 2 is the closest on close-up magnification: about 1:3.9 at its printed state, against about 1:4.0 for Examples 1 and 4 and Sigma's 1:3.6. The application was filed in October 2022; the lens was released in April 2023. The patent does not establish the production radii or the retail 0.12 m focusing.
 
 ## Optical Architecture
 
-A wide-angle retrofocus-like sequence with a weak negative G1, positive focusing G2 and negative G3. Source group focal lengths are−318.16,+16.33 and−35.25mm. The nine powered elements form eight air groups. The source explicitly includes a camera-side2.1mm plane-parallel plate after S18; it is not counted as a powered lens.
+A retrofocus wide-angle layout with a weak negative G1, a positive focusing G2 and a negative G3. The patent gives group focal lengths of −318.16, +16.33 and −35.25 mm. The nine elements form eight air-spaced groups. The patent also lists a 2.1 mm plane-parallel plate on the camera side after S18; it is not counted as a lens element.
 
-The source2.1mm plate has nd1.51680/νd64.20. Source S18.d=20.2943mm leads to it, and BF1.0000mm lies after it. The canonical rearPlates representation retains both flat interfaces at the same coordinates; its unprinted cap is omitted, so the generated plate rim does not clip. This is an unbounded-rim implementation convention, not proof of an infinite real plate.
+The plate has nd = 1.51680, νd = 64.20 (BSC7 class). The 20.2943 mm gap after S18 leads to it, and the printed BF of 1.0000 mm lies behind it. The model traces the plate at its printed position but does not draw it; the patent gives no plate diameter, so the plate sets no aperture limit.
 
 ## Element-by-Element Analysis
 
 ### L1 — Negative Meniscus (2x Asph)
 
-nd = 1.59271, νd = 66.97. Glass: Unmatched (literal source coordinates; supplier unproved). f = -45.8801 mm.
+nd = 1.59271, νd = 66.97. Glass: MP-PCD51-70 (HOYA) catalog equivalent, a moldable crown. f = -45.8801 mm.
 
-Source faces S1/S2 bound this element. Its listed focal length is derived from the literal radii, thickness and index. Its aspheric terms are transcribed below without refitting. A separate per-element aberration sensitivity or glass-melt identification has not been established.
+Surfaces S1 and S2, both aspherical. With L2 it forms the pair of negative menisci convex to the object that ¶0023 credits with sharing the front group's negative power and easing field curvature and astigmatism while keeping G1 small.
 
 ### L2 — Negative Meniscus
 
-nd = 1.49700, νd = 81.61. Glass: Unmatched (literal source coordinates; supplier unproved). f = -25.1697 mm.
+nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA) catalog equivalent — low-dispersion crown. f = -25.1697 mm.
 
-Source faces S3/S4 bound this element. Its listed focal length is derived from the literal radii, thickness and index. A separate per-element aberration sensitivity or glass-melt identification has not been established.
+Surfaces S3 and S4. The stronger of the two front menisci; its position matches the first SLD element in Sigma's section.
 
 ### L3 — Positive Meniscus
 
-nd = 2.05090, νd = 26.94. Glass: Unmatched (literal source coordinates; supplier unproved). f = +33.5875 mm.
+nd = 2.05090, νd = 26.94. Glass: TAFD65 (HOYA) catalog equivalent. f = +33.5875 mm.
 
-Source faces S5/S6 bound this element. Its listed focal length is derived from the literal radii, thickness and index. A separate per-element aberration sensitivity or glass-melt identification has not been established.
+Surfaces S5 and S6. A high-index positive meniscus, convex to the object, following the two negative menisci.
 
 ### L4 — Negative Meniscus
 
-nd = 1.98612, νd = 16.48. Glass: Unmatched (literal source coordinates; supplier unproved). f = -30.0351 mm.
+nd = 1.98612, νd = 16.48. Glass: FDS16-W (HOYA) catalog equivalent. f = -30.0351 mm.
 
-Source faces S7/S8 bound this element. Its listed focal length is derived from the literal radii, thickness and index. A separate per-element aberration sensitivity or glass-melt identification has not been established.
+Surfaces S7 and S8. A negative meniscus concave to the object, separated from L3 by a meniscus-shaped air space.
 
 ### L5 — Biconvex Positive
 
-nd = 1.85451, νd = 25.15. Glass: Unmatched (literal source coordinates; supplier unproved). f = +22.2120 mm.
+nd = 1.85451, νd = 25.15. Glass: NBFD25 (HOYA) catalog equivalent. f = +22.2120 mm.
 
-Source faces S9/S10 bound this element. Its listed focal length is derived from the literal radii, thickness and index. A separate per-element aberration sensitivity or glass-melt identification has not been established.
+Surfaces S9 and S10. The biconvex last element of G1, directly ahead of the stop. Its rear face (R = −31.6025 mm) is the image-side convex surface of condition (3); RG1R/f = −1.81.
 
 ### L6 — Positive Meniscus
 
-nd = 1.55032, νd = 75.50. Glass: Unmatched (literal source coordinates; supplier unproved). f = +16.3333 mm.
+nd = 1.55032, νd = 75.50. Glass: FCD705 (HOYA) catalog equivalent — low-dispersion crown. f = +16.3333 mm.
 
-Source faces S12/S13 bound this element. It shares a cemented interface within D1; the listed focal length is the isolated thick-element result, not the assembled group power. A separate per-element aberration sensitivity or glass-melt identification has not been established.
+Surfaces S12 and S13. Front element of the focusing group, cemented to L7 (doublet C1); the listed focal length is the isolated element's. Its νd is the νd2p value of condition (2), and its position matches the second SLD element in Sigma's section.
 
 ### L7 — Negative Meniscus
 
-nd = 1.73037, νd = 32.23. Glass: Unmatched (literal source coordinates; supplier unproved). f = -16.6229 mm.
+nd = 1.73037, νd = 32.23. Glass: NBFD32 (HOYA) catalog equivalent. f = -16.6229 mm.
 
-Source faces S13/S14 bound this element. It shares a cemented interface within D1; the listed focal length is the isolated thick-element result, not the assembled group power. A separate per-element aberration sensitivity or glass-melt identification has not been established.
+Surfaces S13 and S14. The negative member of doublet C1. ¶0014 gives the single negative lens in G2 the job of limiting the change of axial and lateral colour during focusing.
 
 ### L8 — Biconvex Positive (2x Asph)
 
-nd = 1.77250, νd = 49.50. Glass: Unmatched (literal source coordinates; supplier unproved). f = +16.5923 mm.
+nd = 1.77250, νd = 49.50. Glass: M-TAF105 (HOYA) catalog equivalent, a moldable glass. f = +16.5923 mm.
 
-Source faces S15/S16 bound this element. Its listed focal length is derived from the literal radii, thickness and index. Its aspheric terms are transcribed below without refitting. A separate per-element aberration sensitivity or glass-melt identification has not been established.
+Surfaces S15 and S16, both aspherical. The main positive element of G2; with L6 it shares the group's positive power, which ¶0014 links to correction of spherical aberration and coma.
 
 ### L9 — Biconcave Negative (2x Asph)
 
-nd = 1.80610, νd = 40.73. Glass: Unmatched (literal source coordinates; supplier unproved). f = -35.2482 mm.
+nd = 1.80610, νd = 40.73. Glass: M-NBFD130 (HOYA) catalog equivalent, a moldable glass. f = -35.2482 mm.
 
-Source faces S17/S18 bound this element. Its listed focal length is derived from the literal radii, thickness and index. Its aspheric terms are transcribed below without refitting. A separate per-element aberration sensitivity or glass-melt identification has not been established.
+Surfaces S17 and S18, both aspherical. This biconcave element alone forms the fixed rear group G3 (fG3/f = −2.014, condition (1)). Per ¶0012 its negative power raises focus sensitivity, so G2 needs less travel.
 
 ## Glass Identification and Selection
 
-All indices and Abbe numbers are explicit source d-line coordinates at587.56nm. No catalog glass substitutes for them. The native monochromatic reference convention is587.5618nm with literal reference indices. Vendor identity and full dispersion remain unproved; any Abbe/partial-dispersion spectral estimate is a separate approximation, not measured full-spectrum validation.
+The patent gives nd and νd at the d line (587.56 nm) for every element and names no glass. Each pair matches a HOYA catalog glass exactly; the data file names these as catalog equivalents, not production identifications, and the model uses their catalog dispersion. The three moldable types (MP-PCD51-70, M-TAF105, M-NBFD130) fall on the three aspherical elements, L1, L8 and L9. FCD1 and FCD705 are the low-dispersion crowns at the two positions Sigma marks SLD.
 
-| Element | nd      | νd    | Source partial dispersion                  |
-| ------- | ------- | ----- | ------------------------------------------ |
-| L1      | 1.59271 | 66.97 | Not printed / no anomalous-glass inference |
-| L2      | 1.49700 | 81.61 | Not printed / no anomalous-glass inference |
-| L3      | 2.05090 | 26.94 | Not printed / no anomalous-glass inference |
-| L4      | 1.98612 | 16.48 | Not printed / no anomalous-glass inference |
-| L5      | 1.85451 | 25.15 | Not printed / no anomalous-glass inference |
-| L6      | 1.55032 | 75.50 | Not printed / no anomalous-glass inference |
-| L7      | 1.73037 | 32.23 | Not printed / no anomalous-glass inference |
-| L8      | 1.77250 | 49.50 | Not printed / no anomalous-glass inference |
-| L9      | 1.80610 | 40.73 | Not printed / no anomalous-glass inference |
+| Element | nd      | νd    | Catalog equivalent (HOYA)  |
+| ------- | ------- | ----- | -------------------------- |
+| L1      | 1.59271 | 66.97 | MP-PCD51-70 (moldable)     |
+| L2      | 1.49700 | 81.61 | FCD1 (low dispersion)      |
+| L3      | 2.05090 | 26.94 | TAFD65                     |
+| L4      | 1.98612 | 16.48 | FDS16-W                    |
+| L5      | 1.85451 | 25.15 | NBFD25                     |
+| L6      | 1.55032 | 75.50 | FCD705 (low dispersion)    |
+| L7      | 1.73037 | 32.23 | NBFD32                     |
+| L8      | 1.77250 | 49.50 | M-TAF105 (moldable)        |
+| L9      | 1.80610 | 40.73 | M-NBFD130 (moldable)       |
 
-## Focus Mechanism and Source Endpoint
+## Focus Mechanism and Close-Focus State
 
-G2, S12–S16, moves approximately1.655mm toward the object. The unequal1.6550/1.6551mm interval changes retain a0.0001mm track residual; no gap is adjusted to enforce exact fixed-front/fixed-rear motion. The printed stop is fixed before G2.
+Inner focus: G2 (S12–S16) moves about 1.655 mm toward the object while G1, the stop and G3 stay fixed (¶0049). The printed changes of d11 and d16 differ by 0.0001 mm (1.6550 against 1.6551 mm); the model keeps both as printed, so the track grows by 0.0001 mm at the close state.
 
-| Interval / datum       | Infinity  | Printed finite state |
+| Interval / datum       | Infinity  | Printed close state  |
 | ---------------------- | --------- | -------------------- |
 | d11                    | 4.6855 mm | 3.0305 mm            |
 | d16                    | 2.0679 mm | 3.723 mm             |
-| Object-to-first-vertex | Infinity  | 58.5 mm              |
-| Image z from S1        | 67.5 mm   | 67.5001 mm           |
+| Object to first surface | Infinity | 58.5 mm              |
+| First surface to image  | 67.5 mm  | 67.5001 mm           |
 
-The endpoint conjugate explicitly uses the source first-surface distance, not the retail MFD. The source-plane finite paraxial residual is -0.000102723mm and is not removed. Native small-field magnification is 0.256454470; independent literal-matrix chief magnification agrees within 2.76e-14. The near aberration plot labels F4.24 and half-field51.36°. The physical iris remains the infinity-rule radius; the native paraxial working f-number at the finite plane is 4.233572663. The plot label and this calculated working f-number are retained separately rather than used to adjust the iris. The finite literal track67.5001mm differs from infinity67.5000mm by0.0001mm; post-plate BF remains1mm. A constant final gap does not alone establish a fixed absolute image plane. The camera-frame renderer may translate the whole current layout by−0.0001mm to anchor its sensor; the optical spacings and first-vertex conjugate remain literal. Only the two source states are certified optical configurations. Piecewise-linear interpolation between their gap arrays is an implementation assumption, checked geometrically at0/.25/.5/.75/1. It is not a supplied cam law; intermediate finite MTF is intentionally unavailable.
+The printed close state is the 126 mm object-to-image heading of Figs. 8 and 10: the object lies 58.5 mm before S1, and the paraxial image falls 0.0001 mm behind the printed image plane, with the BF after the plate still 1.0 mm. Paraxial magnification there is −0.2565 (about 1:3.9). The plot gives F4.24 and a half-field of 51.36°; the model's paraxial working f-number at this state is 4.23, with the iris kept at its infinity radius. Sigma states a 0.12 m minimum focus and 1:3.6 maximum magnification, so the production lens focuses somewhat closer than this printed state. Positions between infinity and the printed state use linear interpolation of d11 and d16; the patent gives no focus cam, and only the two printed states have documented object distances.
 
 ## Aspherical Surfaces
 
-The source uses $z=(h^2/R)/(1+\sqrt{1-(1+K)(h/R)^2})+\sum A_n h^n$. The conic is conventional $1+K$; no KA remapping or coefficient rescaling is applied.
+The patent uses $z=(h^2/R)/(1+\sqrt{1-(1+K)(h/R)^2})+\sum A_n h^n$ (¶0093), the standard $1+K$ conic form; K and the coefficients are entered as printed, unscaled.
 
 | Source face | K        | A4           | A6           | A8           | A10          | A12          | A14         | A16          |
 | ----------- | -------- | ------------ | ------------ | ------------ | ------------ | ------------ | ----------- | ------------ |
@@ -114,9 +114,9 @@ The source uses $z=(h^2/R)/(1+\sqrt{1-(1+K)(h/R)^2})+\sum A_n h^n$. The conic is
 | 17          | 0.00000  | -1.37766E-05 | 0.00000E+00  | 0.00000E+00  | 0.00000E+00  | 0.00000E+00  | 0.00000E+00 | 0.00000E+00  |
 | 18          | -0.50000 | 3.82132E-06  | 2.20424E-08  | -1.16183E-09 | 2.58695E-11  | -1.62273E-13 | 4.08417E-16 | -4.16949E-19 |
 
-Every printed zero in the selected table is retained. Unprinted orders are omitted by the sparse implementation convention.
+Printed zero coefficients are kept as zeros.
 
-The following departures are calculated at the data-file optical caps relative to the same-radius sphere, including any conic contribution. They describe the implemented profile, not a manufacturing measurement. No molded/resin/polished process is inferred from the coefficients.
+Departures from the base sphere at the model's semi-diameters, including the conic term, are listed below; they describe the model profile, not a measured part. The three aspherical elements use moldable catalog-equivalent glasses, consistent with glass-molded aspheres, though the patent does not state the process.
 
 | Face | Optical SD (mm) | Departure (µm) |
 | ---- | --------------- | -------------- |
@@ -129,40 +129,40 @@ The following departures are calculated at the data-file optical caps relative t
 
 ## Clear Apertures, Stop and Geometry
 
-Source Fig6 front rear-face lands retained: S2 optical11.5 versus outer15.5, S4 optical8.5 versus outer12.2. Initial seeds violated three gap policies and cemented positive edge thickness. E4caps7.1 and cemented caps7.4 are geometry-selected before native tracing; no prescription changes. Explicit source plate has no printed cap: canonical rearPlates omits sd and its generated rim does not clip; this is not proof of an infinite real plate.
+Fig. 6 draws stepped rims on the rear faces of L1 and L2; the model keeps them as lands (S2 optical 11.5 mm, drawn to 15.5 mm; S4 optical 8.5 mm, drawn to 12.2 mm). All semi-diameters are inferred from Fig. 6 proportions and from edge-thickness and gap limits. L4 is set to 7.1 mm, and the cemented pair to 7.4 mm, where L6's edge is about 0.3 mm thick (it reaches zero near 7.6 mm). The plate has no printed diameter and sets no limit.
 
-The stop coordinate is printed; its missing physical opening follows the ordinary-prime F/N rule. It is not an inferred movable diaphragm. Full operating-disk clearance does not prove blade or mount fit. Nominal and minus5% missing-cap hypotheses passed native geometry with zero hidden render trim; plus5% cases were rejected before MTF. Those rejected cases and initial figure-envelope seeds are retained. No cap was enlarged after tracing or selected for more favorable contrast.
+The stop position is printed; its radius (3.32 mm) is derived from the printed F/4.09. The axial F/4.09 beam clears every inferred rim. Off-axis rays are trimmed mainly at S14, giving about 73% relative illumination at the 51.8° corner.
 
 | Face | Optical SD (mm)             | Drawn rim (mm) | Authority                                        |
 | ---- | --------------------------- | -------------- | ------------------------------------------------ |
-| 1A   | 15.5                        | —              | Inferred cap / drawing                           |
-| 2A   | 11.5                        | 15.5           | Inferred cap / drawing                           |
-| 3    | 12.2                        | —              | Inferred cap / drawing                           |
-| 4    | 8.5                         | 12.2           | Inferred cap / drawing                           |
-| 5    | 8.7                         | —              | Inferred cap / drawing                           |
-| 6    | 8.7                         | —              | Inferred cap / drawing                           |
-| 7    | 7.1                         | —              | Inferred cap / drawing                           |
-| 8    | 7.1                         | —              | Inferred cap / drawing                           |
-| 9    | 7.5                         | —              | Inferred cap / drawing                           |
-| 10   | 7.5                         | —              | Inferred cap / drawing                           |
-| STO  | F/N-derived                 | —              | Printed stop position; opening derived           |
-| 12   | 7.4                         | —              | Inferred cap / drawing                           |
-| 13   | 7.4                         | —              | Inferred cap / drawing                           |
-| 14   | 7.4                         | —              | Inferred cap / drawing                           |
-| 15A  | 11.3                        | —              | Inferred cap / drawing                           |
-| 16A  | 11.3                        | —              | Inferred cap / drawing                           |
-| 17A  | 11.7                        | —              | Inferred cap / drawing                           |
-| 18A  | 11.7                        | —              | Inferred cap / drawing                           |
-| 19   | Unprinted / unbounded plate | —              | Source plate; canonical unbounded rim convention |
-| 20   | Unprinted / unbounded plate | —              | Source plate; canonical unbounded rim convention |
+| 1A   | 15.5                        | —              | Inferred from Fig. 6                             |
+| 2A   | 11.5                        | 15.5           | Inferred from Fig. 6                             |
+| 3    | 12.2                        | —              | Inferred from Fig. 6                             |
+| 4    | 8.5                         | 12.2           | Inferred from Fig. 6                             |
+| 5    | 8.7                         | —              | Inferred from Fig. 6                             |
+| 6    | 8.7                         | —              | Inferred from Fig. 6                             |
+| 7    | 7.1                         | —              | Inferred from Fig. 6                             |
+| 8    | 7.1                         | —              | Inferred from Fig. 6                             |
+| 9    | 7.5                         | —              | Inferred from Fig. 6                             |
+| 10   | 7.5                         | —              | Inferred from Fig. 6                             |
+| STO  | 3.32 (from F/4.09)          | —              | Printed position; radius derived                 |
+| 12   | 7.4                         | —              | Inferred from Fig. 6                             |
+| 13   | 7.4                         | —              | Inferred from Fig. 6                             |
+| 14   | 7.4                         | —              | Inferred from Fig. 6                             |
+| 15A  | 11.3                        | —              | Inferred from Fig. 6                             |
+| 16A  | 11.3                        | —              | Inferred from Fig. 6                             |
+| 17A  | 11.7                        | —              | Inferred from Fig. 6                             |
+| 18A  | 11.7                        | —              | Inferred from Fig. 6                             |
+| 19   | Not printed                 | —              | Plate; no rim limit                              |
+| 20   | Not printed                 | —              | Plate; no rim limit                              |
 
-## Verification Scope and Limitations
+## Model Scope and Limitations
 
-Independent EFL is 17.498939563mm versus source17.5mm. The infinity source plane differs from its computed paraxial plane by -0.000012231mm. Both the literal infinity plane and source finite endpoint are retained. The exact axial aperture audit found the iris, not a rim or trace failure, limiting the stated beam.
+The model's EFL is 17.499 mm against the printed 17.50 mm, and its paraxial infinity focus lies within 0.0001 mm of the printed image plane. The chief ray at the printed 51.765° half-field reaches 21.630 mm, the printed image height; distortion is about −2.6% at the corner (−2.9% near 48°), as in Fig. 7. Full-aperture spherical aberration is about −0.02 mm at infinity and −0.30 mm at the printed close state, in line with Figs. 7 and 8. The iris, not a lens rim, sets the axial beam.
 
-The near plot omega is probed under the runtime first-vertex angular datum; identity with the patent finite angular datum is unproved. A separate21.63mm finite image-height window is an explicitly modeled envelope. These are not interchangeable edge claims. Native format reference21.65mm and physical36×24mm corner21.633307653mm are separate from source angles and image height. Strong clipping remains conditional on the inferred caps.
+At the printed close state, with field angles measured at the first surface, the model reaches the 21.63 mm image height at 56.5°, not at the plot's 51.36°; the patent does not state the angle datum of its close-state plot. Close-state edge contrast depends on the inferred rims.
 
-| State    | Native angle (°) | Image height (mm) | S/T10lp/mm      | S/T30lp/mm      | S/T50lp/mm      |
+| State    | Field angle (°)  | Image height (mm) | S/T10lp/mm      | S/T30lp/mm      | S/T50lp/mm      |
 | -------- | ---------------- | ----------------- | --------------- | --------------- | --------------- |
 | Infinity | 0.00000          | 0.00000           | 0.96810/0.96810 | 0.90054/0.90054 | 0.82928/0.82928 |
 | Infinity | 25.88246         | 8.40990           | 0.96171/0.96122 | 0.85611/0.87350 | 0.72520/0.78062 |
@@ -171,9 +171,9 @@ The near plot omega is probed under the runtime first-vertex angular datum; iden
 | Finite   | 36.33923         | 10.81497          | 0.43697/0.18677 | 0.06526/0.06501 | 0.00259/0.01028 |
 | Finite   | 56.49528         | 21.63000          | 0.12244/0.05748 | 0.02831/0.00900 | 0.02824/0.00387 |
 
-These are normal native scalar sheared-pupil diffraction estimates at literal reference indices and the design image plane. Accepted successive grids agree within0.01MTF through sampled50lp/mm, with zero unknown flux, failed, unaimed or unresolved rays in those MTF results. They are not measured factory curves, independent physical-OPL/phase certification, continuum convergence or full-spectrum validation. Default UI best-focus/spectral diagnostics are separate and do not replace the authored planes.
+These are computed diffraction MTF values for the model at the d line on the printed image planes (sagittal/tangential); they are not Sigma's published or measured curves.
 
 ## Sources
 
-- [Original patent publication](https://patents.google.com/patent/JP2024062005A/en), selected complete embodiment and focus/asphere tables.
-- [Primary manufacturer product and section](https://www.sigma-global.com/en/lenses/c023_17_4/); evidence of product topology and specifications, not exact radii or supplier identity.
+- [Original patent publication](https://patents.google.com/patent/JP2024062005A/en), Numerical Example 2 lens, aspheric and focus tables.
+- [Sigma product page and lens construction](https://www.sigma-global.com/en/lenses/c023_17_4/); construction and specifications, not production radii or glass suppliers.
