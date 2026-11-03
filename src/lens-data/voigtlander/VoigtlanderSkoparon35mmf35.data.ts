@@ -183,7 +183,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.7,
     description:
-      "Static model at infinity. The patent prints no close-focus spacing, and no Voigtländer source seen states how the Skoparon focuses (secondary accounts disagree on whether the Prominent body or a ring on the lens sets focus), so no focus movement is drawn. The 0.7 m close-focus distance is a retailer listing figure.",
+      "Static model at infinity. The patent prints no close-focus spacing. Voigtländer's Prominent lens booklet says the Skoparon couples automatically to the camera's built-in rangefinder, and its distance scale runs to 0.7 m. The booklet does not say which part moves to focus, so no focus movement is drawn.",
   },
   aperture: {
     nominalFNumber: 3.4,

@@ -9,7 +9,7 @@
 **Priority:** Germany, March 5, 1952 (German counterpart DE 1 024 730, published February 20, 1958)\
 **Example details:** Table 2, Fig. 4; normalized to f = 1.000 and scaled ×35. Table 2 states 1:3.4.
 
-Voigtländer's Prominent lens literature names the Skoparon 35 mm f/3.5 as a five-element wide-angle covering about 63° and shows a large negative front meniscus ahead of a compact core. Table 2 is the patent's only five-element, four-group example: Table 1 (Fig. 2) has four single elements at f/4.0, and Figs. 1 and 3 (six and seven elements) have no numerical tables. The match rests on construction, maker, designer and date; the patent does not name the product. Table 2 and the text give 1:3.4, an effective aperture of 0.294 for unit focal length, while Fig. 4 and the production lens are f/3.5; the model's iris opens to the patent's f/3.4. The patent prints no field angle, so the 31.5° half-field is Voigtländer's 63° figure. The German counterpart DE 1 024 730 carries the same Table 2.
+Voigtländer's Prominent lens literature names the Skoparon 35 mm f/3.5 as a five-element wide-angle covering about 63° and shows a large negative front meniscus ahead of a compact core. The section drawing in Voigtländer's Prominent lens booklet matches the model element for element: a meniscus convex to the object, plano-convex L2, biconcave L3, the diaphragm, and a cemented pair with a nearly flat front face, with the rear elements drawn at about 0.4 of the front meniscus diameter. Table 2 is the patent's only five-element, four-group example: Table 1 (Fig. 2) has four single elements at f/4.0, and Figs. 1 and 3 (six and seven elements) have no numerical tables. The match rests on construction, maker, designer and date; the patent does not name the product. Table 2 and the text give 1:3.4, an effective aperture of 0.294 for unit focal length, while Fig. 4 and the production lens are f/3.5; the model's iris opens to the patent's f/3.4. The patent prints no field angle, so the 31.5° half-field is Voigtländer's 63° figure. The German counterpart DE 1 024 730 carries the same Table 2.
 
 All lengths are scaled ×35 from the normalized table. The patent's overall length G = 0.69367 (24.28 mm at this scale) runs from R1 to R9 and excludes the back focus, which the patent does not print; the model's back focus is computed from the prescription. Fig. 4's element proportions guided the inferred semi-diameters but are not dimensioned clear apertures. The later Bessamatic Skoparex 35 mm f/3.4 (US 2,927,506, Determann) describes itself as a further development of this patent but is a different six-element design.
 
@@ -63,7 +63,7 @@ The patent gives mean refractive indices at the yellow helium d line and Abbe nu
 
 ## Focus Mechanism
 
-The model is static at infinity, with the image plane 56.56 mm behind the first vertex. The patent prints no close-focus spacing, and the sources consulted disagree on whether the Prominent body or a focusing ring on the lens sets focus, so no focus movement is drawn. The 0.7 m close-focus distance is a retailer listing figure.
+The model is static at infinity, with the image plane 56.56 mm behind the first vertex. The patent prints no close-focus spacing. Voigtländer's Prominent lens booklet states that the Skoparon couples automatically with the camera's built-in rangefinder once attached. The measured distance is transferred to a green metre scale on the lens to read depth of field, and that scale's yellow figures continue below 1 m to 0.7 m. The booklet does not say which part moves to focus, so no focus movement is drawn.
 
 ## Aperture and Stop
 
@@ -81,7 +81,7 @@ The 31.5° half-field is Voigtländer's 63° coverage, not a patent value. At th
 
 1. [US 2,746,351 A, Photographic objective of the modified triplet type and a meniscus shaped negative member axially separated therefrom](https://patents.google.com/patent/US2746351A/en); Table 2 on page 6, Fig. 4 on sheet 4.
 2. [DE 1 024 730, Photographisches Objektiv vom erweiterten Triplet-Typus](https://patents.google.com/patent/DE1024730B/de); German counterpart, Zahlentafel 2.
-3. [Voigtländer, Gebrauchsanleitung für die Wechselobjektive zur Prominent (35, 100, 150 mm)](https://cameramanuals.org/lenses/voigtlander_lenses-35-100-150mm-german.pdf); Skoparon 1:3.5/35 mm section.
+3. [Voigtländer, Gebrauchsanleitung für die Wechselobjektive zur Prominent (35, 100, 150 mm)](https://cameramanuals.org/lenses/voigtlander_lenses-35-100-150mm-german.pdf); Skoparon 1:3.5/35 mm section: printed p. 2 (section drawing, five elements, about 63°, rangefinder coupling) and p. 5 (distance scale to 0.7 m).
 4. [Voigtländer, The Prominent and its System](https://www.pacificrimcamera.com/rl/00599/00599.pdf) and [1953 Prominent brochure](https://www.pacificrimcamera.com/rl/00702/00702.pdf); five elements, about 63°, availability from the second half of 1953.
 5. [Voigtländer Prominent, Wikipedia](https://en.wikipedia.org/wiki/Voigtl%C3%A4nder_Prominent); Skoparon listed as five elements in four groups after US 2,746,351.
 6. [Kamerastore listing, Voigtländer 35mm f3.5 Skoparon (Prominent)](https://kamerastore.com/en-ca/products/voigtl-nder-35mm-f3-5-skoparon-prominent-t128797); 0.7 m close focus.

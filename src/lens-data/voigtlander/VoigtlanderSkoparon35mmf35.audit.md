@@ -14,7 +14,7 @@ Maker comparison: the Wikipedia Prominent lens table lists the Skoparon 35 mm f/
 
 Fields changed, data step:
 - S6 sd 5.6 → 4.85 mm. The L3 rear face had crossed the stop plane above 4.92 mm. The full bundle needs 4.72 mm, and geometric transmission is unchanged at every field (77.2% at 31.5°).
-- `focus.closeFocusM` 1e15 → 0.7: a retailer figure, static, no gaps, with a new `focus.description`.
+- `focus.closeFocusM` 1e15 → 0.7: static, no gaps, with a new `focus.description`. The value was first taken from a retailer listing and is now confirmed by the maker's distance scale (see below).
 - `groups` added: I (S1–S2) and II (S3–S9). Doublet D1 unchanged.
 - Glass labels were set by the coordinator: FK3, N-SSK5, F5 and J-BAF3 as nearest catalog rows, LAC13 as a catalog equivalent.
 
@@ -26,4 +26,11 @@ Checks after both steps: audit:surface OK; audit:aperture within 3% of f/3.4, wi
 
 Open: Fig. 4 draws the rims about 7–10% smaller than the model (about 13.3 / 5.6 / 5.4 / 4.9 mm). The model rims were kept because the drawn sizes cut edge transmission to about 57%.
 
-Open: the focusing mechanism (Prominent body or a ring on the lens) is unconfirmed. The Voigtländer lens manual would settle whether unit focus to 0.7 m can be authored; derived unit focus would extend the back focus by 1.957 mm.
+Open: the focusing mechanism (Prominent body or a ring on the lens) is unconfirmed. The Voigtländer lens manual would settle whether unit focus to 0.7 m can be authored; derived unit focus would extend the back focus by 1.957 mm. (Closed 2026-11-03: the booklet gives rangefinder coupling and a 0.7 m scale but not which part moves, so the model stays static.)
+
+Maker booklet, read after the wording step: "Gebrauchsanleitung für die Wechselobjektive zur Prominent" (imprint 400 09-12 A/758 Oe; https://cameramanuals.org/lenses/voigtlander_lenses-35-100-150mm-german.pdf).
+- Printed p. 2: a five-element wide-angle covering about 63°, with a quick-change bayonet, coupled automatically with the built-in rangefinder once attached.
+- Printed p. 5: the measured distance is transferred to the green metre scale on the lens to read depth of field. That scale's yellow figures run below 1 m to 0.7 m.
+- The p. 2 section drawing agrees with the model's layout: meniscus convex to the object, plano-convex L2, biconcave L3, stop, and a cemented pair with a nearly flat front face. Its rear-to-front diameter ratio is about 0.4, against 0.38–0.43 in the model.
+- The drawing shows L3 square-edged, without the patent's rear bevel; the S6 cut follows Fig. 4 and the stop clearance.
+- Updated `focus.description` and the analysis focus, identification and source text to cite it.
