@@ -70,6 +70,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -25.16970982460611,
       glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Sigma marks this element SLD; the patent nd/vd (1.49700/81.61) fit an FCD1-class ED glass.",
       role: "Second negative meniscus of the first group; low-dispersion crown.",
     },
     {
@@ -118,6 +120,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 16.333275556723635,
       glass: "FCD705 (HOYA catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Sigma marks this element SLD; the patent nd/vd (1.55032/75.50) fit an FCD705-class ED glass.",
       role: "Low-dispersion positive meniscus at the front of the focusing group, cemented to L7.",
       cemented: "C1",
     },

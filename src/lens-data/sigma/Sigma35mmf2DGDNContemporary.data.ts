@@ -123,6 +123,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 25.11218428967409,
       glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
       role: "SLD positive element of the cemented pair C1; conditions (4)–(5) govern the pair's axial colour and its secondary spectrum (¶0033–0037).",
       cemented: "C1",
       dPgF: 0.015618840000000023,

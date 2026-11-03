@@ -14,7 +14,7 @@ const LENS_DATA = {
   schema: 2,
   key: "canon-ef-300mm-f4l-is-usm",
   maker: "Canon",
-  name: "CANON EF 300mm f/4L IS USM",
+  name: "CANON EF 300mm f/4 L IS USM",
   subtitle: "US 6,618,197 B1 — Numerical Example 2; patent design correlated with the production lens",
   catalog: {
     lensMounts: ["canon-ef"],
@@ -58,6 +58,8 @@ const LENS_DATA = {
       vd: 95.0,
       indexReference: "d",
       glass: "S-FPL53 (OHARA catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "Canon lists UD glass in the second element counting the front protective glass, which is this element; the patent nd/vd (1.43875/95.0) fit a fluorite-class UD glass.",
       focalLengthMm: 206.20905561164957,
       role: "Front positive collector of unit L1, in a fluorite-like low-dispersion crown at the position Canon marks as UD.",
     },
