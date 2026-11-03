@@ -1,18 +1,18 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Literal whole patent embodiment under a disclosed uniform similarity hypothesis.
- * Probable product family, not an identified factory prescription.
- * Every clear semi-diameter and exact stop split is inferred before tracing.
- * No source radii, thicknesses, indices, source precision or frozen image plane retuned.
- * Unqualified source n/Abbe interpreted at d as a hypothesis; no named-glass substitution.
- * Canonical infinity-only state; no finite factory law or independent OPL/phase claim.
+/** US 3,838,911 Embodiment 2 (f = 100, F/4, 2ω = 12°), every length scaled ×2 to f = 200 mm.
+ * Matched to the production lens by specification; not a confirmed factory prescription.
+ * Radii, thicknesses, indices and Abbe numbers are as printed. The back focus is not printed: the image plane is the
+ * paraxial focus, 63.99 mm behind the last surface. Every clear semi-diameter and the stop position (0.75 of d5) are inferred.
+ * The patent does not name a reference line for n and ν; they are read as d-line values.
+ * The patent prints infinity only; the 2.5 m unit-focus state is derived.
  */
 const LENS_DATA = {
   schema: 2,
   key: "olympus-e-zuiko-auto-t-200mm-f4",
   maker: "Olympus",
   name: "OLYMPUS E.ZUIKO AUTO-T 200mm f/4",
-  subtitle: "US 3,838,911 Embodiment 2 \u2014 probable family; inferred aperture",
+  subtitle: "US 3,838,911 \u2014 Embodiment 2; patent design matching the production specifications",
   catalog: {
     lensMounts: ["olympus-om"],
     imageFormat: "135-full-frame",
@@ -26,7 +26,7 @@ const LENS_DATA = {
       marketing: 4,
       design: 4,
     },
-    specs: ["5 ELEMENTS / 4 GROUPS", "PROBABLE FAMILY; INFERRED APERTURE", "INFINITY CONFIGURATION ONLY"],
+    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN f = 200 mm", "DESIGN F/4", "ALL SPHERICAL"],
   },
   source: {
     patentNumber: "US 3,838,911",
@@ -49,9 +49,9 @@ const LENS_DATA = {
       glass: "S-BSM16 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
-        "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
+        "The patent does not name the spectral line of its n and ν values; they are read as d-line values.",
       focalLengthMm: 163.52734482036075,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Positive front collector (G1) with a flat rear face.",
     },
     {
       id: 2,
@@ -63,9 +63,9 @@ const LENS_DATA = {
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
-        "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
+        "The patent does not name the spectral line of its n and ν values; they are read as d-line values.",
       focalLengthMm: 118.37119231990481,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Low-dispersion positive crown of the cemented doublet (G2).",
       cemented: "CD1",
     },
     {
@@ -78,9 +78,9 @@ const LENS_DATA = {
       glass: "S-TIH14 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
-        "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
+        "The patent does not name the spectral line of its n and ν values; they are read as d-line values.",
       focalLengthMm: -154.1287277143533,
-      role: "Literal source negative element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Dense-flint negative partner of the cemented doublet; corrects the front group's colour.",
       cemented: "CD1",
     },
     {
@@ -93,9 +93,9 @@ const LENS_DATA = {
       glass: "S-LAL12 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
-        "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
+        "The patent does not name the spectral line of its n and ν values; they are read as d-line values.",
       focalLengthMm: -79.03144922618742,
-      role: "Literal source negative element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Negative meniscus behind the stop (G3); the main negative member of the telephoto.",
     },
     {
       id: 5,
@@ -107,9 +107,9 @@ const LENS_DATA = {
       glass: "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
-        "Source table and definitions do not assign a spectral line. Literal n at d is a declared modeling hypothesis, not glass identification.",
+        "The patent does not name the spectral line of its n and ν values; they are read as d-line values.",
       focalLengthMm: 205.51881858402413,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Positive rear meniscus (G4); balances lateral colour and off-axis aberrations.",
     },
   ],
   surfaces: [
