@@ -60,6 +60,7 @@ const LENS_DATA = {
     groupCount: 9,
     focalLengthMm: { marketing: [35, 70], design: [36.02194, 68.79028] },
     fNumber: { marketing: 3.5, design: 3.5 },
+    closeFocusM: { marketing: 0.35 },
   },
 
   source: {
@@ -220,14 +221,14 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 36.02194, label: "35 mm" },
-      { focalLengthMm: 68.79028, label: "70 mm" },
+      { focalLengthMm: 36.02194, closeFocusM: 0.234, label: "35 mm" },
+      { focalLengthMm: 68.79028, closeFocusM: 0.344, label: "70 mm" },
     ],
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 0.35,
+    closeFocusM: 0.234,
     description:
       "L11 and L12 move objectward for close focus, with L11 moving farther so D6 increases from 5.7 mm to 6.2 mm; D8 close-focus values are paraxial beta=-0.25 proxy values.",
   },

@@ -63,3 +63,10 @@ Patent: US 4,210,388, Example 1
 - SUMITA's discontinued-inclusive all-glass catalog publishes F4 at code `617366`, nd = 1.61659, νd = 36.6.
 - Relabeled L4a / S7 and L4b / S9 from explicit unmatched annotations to F4 exact catalog equivalents; the production supplier remains unspecified.
 - No prescription, stop, or semi-diameter data changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.2 → 0.267 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 33.6 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived unit-focus travel; 0.2 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.2 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

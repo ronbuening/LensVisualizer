@@ -182,8 +182,8 @@ No measured color or APO claim is made.
 
 Only G4 moves for focusing, objectward from infinity (¶0087). The patent provides
 no finite spacing table, object distance or cam. The marketed 1 m minimum focus is
-a product specification, not a patent-stated optical state. The model uses 65 zoom
-and 33 focus positions from a paraxial calculation. Only the three infinity
+a product specification, not a patent-stated optical state. The model uses 33 zoom
+and 8 focus positions from a paraxial calculation. Only the three infinity
 stations in Table 3 are marked published, and no finite conjugate is declared, so
 **finite-distance MTF stays unavailable**.
 

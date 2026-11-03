@@ -415,3 +415,23 @@ old linear-D8/BF reconstruction; the three literal printed configurations remain
 ## 2026-10-23 — Coordinator follow-up to the second review
 
 Added element `focalLengthMm` values (in-air thick-lens focal length from each element's own faces) so the element inspector shows them; optics unchanged.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 4th existing row (indices 0, 4, …, 256).
+- Focus: both keyframes kept (no change).
+- Published zoom stations remapped 0 → 0, 128 → 32, 256 → 64; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 257 × 2 = 514 | 65 × 2 = 130 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0009 mm | 0.0147 mm |
+| worst fixed-plane defocus at infinity | 0.0092 mm | 0.0223 mm |
+| worst focal-length label residual | 0.0013 mm | 0.0209 mm |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0147 mm (0.37 R), half-field ≤ 0.074°, stop radius ≤ 0.001 %, f-number ≤ 0.000 %, variable gaps ≤ 0.018 mm, axial diffraction MTF at 30 lp/mm +0.021 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+Text sync: header: 257 → 65 zoom positions; analysis: published positions 0/128/256 → 0/32/64, residuals 0.000818 / 0.009108 → 0.0147 / 0.0223 mm.

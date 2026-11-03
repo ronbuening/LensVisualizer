@@ -232,3 +232,23 @@ Every element resolves through `resolveCompatibleGlass`: L1/L10 K-SFLD6 (Sumita)
 The A front page was viewed: publication 特開平2-39116, 8 February 1990; application 昭63-190032, filed 29 July 1988; inventors 松尾 栄樹, 皆川 博幸, 小川 潤; applicant 京セラ株式会社 (Kyocera Corporation). No new bibliographic mismatch was found. The supplied B2 PDF starts with claims rather than a bibliographic cover, so the A page is the direct cover witness for those names and filing details.
 
 Retained limitations outside the permitted edits: the B2 pages 2–3 printed focal lengths differ from calculated EFL by +0.040608/+0.013941 mm and the retained image gaps leave −0.166465/−0.079464 mm paraxial defocus; the approximately 49 mm plot says F4.8 while the interpolated model gives about F5.043 there. The interpolated cam/iris schedule is unmeasured, finite-focus travel remains unknown, L12 exceeds the drawn rim for the already established field floor, and the production-patent association and manufacturing apertures remain unconfirmed. No forbidden integration commands, server operations, downloads or git mutations were performed.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 10th existing row (indices 0, 10, …, 200).
+- Focus: both keyframes kept (no change).
+- Published zoom stations remapped 0 → 0, 200 → 20; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 201 × 2 = 402 | 21 × 2 = 42 |
+| source-published states | 2 | 2 |
+| worst infinity defocus against the solves, between rows | 0.0001 mm | 0.0057 mm |
+| worst fixed-plane defocus at infinity | 0.1665 mm | 0.1665 mm |
+| worst focal-length label residual | 0.0003 mm | 0.0342 mm |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0057 mm (0.19 R), half-field ≤ 0.214°, stop radius ≤ 0.000 %, f-number ≤ 0.000 %, variable gaps ≤ 0.006 mm, axial diffraction MTF at 30 lp/mm +0.003 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+Text sync: analysis: 199 → 19 intermediate positions; intermediate defocus 0.16603 mm, 152 of 199 above 0.1 mm → 0.1621 mm at the stations and 0.1664 mm between them, 15 of 19 above 0.1 mm.

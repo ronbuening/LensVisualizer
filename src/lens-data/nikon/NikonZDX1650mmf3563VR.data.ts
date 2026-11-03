@@ -36,7 +36,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    values are paraxial conjugate solves at the tabulated zoom     ║
  * ║    stations using production MFDs: 0.25 m @ wide, 0.23 m @ 35 mm, ║
  * ║    0.30 m @ tele. The 0.20 m @ 24 mm minimum lies between patent  ║
- * ║    zoom stations; closeFocusM remains scalar for the current UI.  ║
+ * ║    zoom stations and is not modeled; per-station closeFocusM      ║
+ * ║    values record the three solved distances.                      ║
  * ║                                                                    ║
  * ║  CONIC CONVENTION:                                                 ║
  * ║    Patent uses κ where κ = 1 + K (standard). Surface 3A has κ=0  ║
@@ -339,16 +340,16 @@ const LENS_DATA = {
     /* (moved from zoomPositions) ── Zoom lens fields ── */
     /* (moved from nominalFno) ── Aperture configuration ── */
     stations: [
-      { focalLengthMm: 16.46, nominalFNumber: 3.5, label: "Wide" },
-      { focalLengthMm: 35.04, nominalFNumber: 5.3 },
-      { focalLengthMm: 48.5, nominalFNumber: 6.3, label: "Tele" },
+      { focalLengthMm: 16.46, nominalFNumber: 3.5, closeFocusM: 0.25, label: "Wide" },
+      { focalLengthMm: 35.04, nominalFNumber: 5.3, closeFocusM: 0.23 },
+      { focalLengthMm: 48.5, nominalFNumber: 6.3, closeFocusM: 0.3, label: "Tele" },
     ],
     step: 0.004,
   },
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.2,
+    closeFocusM: 0.23,
     description:
       "Inner focus via G3 (L31, single biconcave dual-asphere). G3 moves image-ward for close focus. " +
       "Close-focus gaps are inferred from paraxial conjugate solves because the patent publishes infinity zoom spacings only. " +

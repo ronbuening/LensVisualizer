@@ -249,3 +249,23 @@ Open limitations are the straight-edge renderer's L1 shoulder and L2 bevels, sch
 ## 2026-10-23 — Coordinator follow-up to the second review
 
 Added element `focalLengthMm` values (in-air thick-lens focal length from each element's own faces) so the element inspector shows them; optics unchanged.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 4th existing row (indices 0, 4, …, 128).
+- Focus: both keyframes kept (no change).
+- Published zoom stations remapped 0 → 0, 64 → 16, 128 → 32; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 129 × 2 = 258 | 33 × 2 = 66 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0004 mm | 0.0055 mm |
+| worst fixed-plane defocus at infinity | 0.0159 mm | 0.0159 mm |
+| worst focal-length label residual | 0.0006 mm | 0.0087 mm |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0055 mm (0.36 R), half-field ≤ 0.180°, stop radius ≤ 0.000 %, f-number ≤ 0.000 %, variable gaps ≤ 0.005 mm, axial diffraction MTF at 30 lp/mm -0.033 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+Text sync: analysis: 129 → 33 positions, published 0/64/128 → 0/16/32; the analytic second-derivative bound (0.000356 mm) is not re-derived for the coarser spacing and is replaced by the sampled maximum, 0.0055 mm; "analytically bounded" → "sampled densely". The 0.015858 mm fixed-plane maximum holds.

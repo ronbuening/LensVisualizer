@@ -168,7 +168,7 @@ The computed focal lengths differ slightly from the rounded printed labels, and 
 
 Between wide–middle and middle–tele, the reconstruction linearly interpolates the computed EFL and Gaussian BFD targets, preserving the source's defocus residual. With the fixed A and D matrices and x + y + z = 53.926 mm, the desired unit-input output ray is propagated backward through D. The output-slope equation eliminates the middle variable gap. Multiplying the remaining height equation by the B-cell output slope yields a quadratic in the first gap. Only one branch keeps all gaps positive.
 
-The model linearly interpolates stored spacings, approximating that rational/quadratic law with 257 equally spaced control nodes. Only wide, middle and tele are published; the other 254 nodes are derived. The maximum calculated EFL interpolation residual is about 0.000357405 mm and the BFD interpolation residual about 0.000245953 mm. Maximum fixed-plane defocus remains about 0.059345867 mm.
+The model linearly interpolates stored spacings, approximating that rational/quadratic law with 65 equally spaced control nodes. Only wide, middle and tele are published; the other 62 nodes are derived. The maximum calculated EFL interpolation residual is about 0.0056 mm and the BFD interpolation residual about 0.0039 mm. Maximum fixed-plane defocus remains about 0.0615 mm.
 
 Those interval extrema are double-precision estimates from polynomial/rational critical points, rather than formally bounded values. The continuous zoom path is reconstructed; the factory mechanical cam is unknown. Its small interpolation residual is distinct from the larger inherited source-plane residual.
 

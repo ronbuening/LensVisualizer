@@ -19,3 +19,11 @@ Patent: US 2018/0210178 A1, Example 1
 - Surface 26 now stores the patent's 20.2074 mm, with `rearPlates` PP (N-BK7 class, 1.51680 / 64.2) and gapAfter 0.
   Paraxial check against the previous data: EFL identical; defocus unchanged at infinity and at the 0.25 m state
   (worst difference 6e-16 mm). Physical track grows by 1.090 mm.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.25 → 0.379 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 51.5 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: the patent's 0.25 m closest-point state is not an object-to-image distance; the row focuses at 0.377 m object to image.
+
+Text sync: analysis: the patent's 0.25 m closest-point state focuses at about 0.38 m object to image.

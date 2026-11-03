@@ -128,3 +128,26 @@ Stations ascend wide to tele and all five gap tables list them in that order. d5
 Focus: the first column is infinity and matches Table 3, the last is the 1 m state, d16 falls and d18 rises by equal amounts at every station, and only G4 moves, objectward, as col. 12 says: 1.03 / 2.69 / 6.02 mm. The page shows 1.00 m at the near end. `focus.conjugates` is absent, as recorded.
 
 Open: FIG. 1's notch at the E1/E2 rim sits on a cemented junction and is not modeled. The sagittal fans of Figs. 14A–16A run to the pupil edge at Y′ = ±0.25, while a round clip at S5 stops the sagittal ray at 0.90 at tele (the ray reaches 16.16 mm there), so the patent's plotted pupil is not a pure round clip and the model may be slightly tight in that one direction. G2's interpolated path has a corner at the printed intermediate row (1.21 mm in the first half, 16.885 mm in the second), where FIG. 4 draws a smooth curve; only the three printed rows are sourced. At 1 m, d16 rises from 7.87 mm at 105 mm to 8.28 mm at 154 mm and falls to 8.17 mm at tele. That gap turn exists only in the inferred cam, and G4 still moves objectward at every step. OSS stays centered, so the fans with stabilization on, Figs. 14B–16B, are not reproduced.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 2nd existing row (indices 0, 2, …, 64).
+- Focus: kept keyframes [0, 8, 12, 16, 20, 24, 28, 32] of 33, at focus coordinates [0, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1].
+- Published zoom stations remapped 0 → 0, 32 → 16, 64 → 32; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 65 × 33 = 2145 | 33 × 8 = 264 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0032 mm | 0.0125 mm |
+| worst fixed-plane defocus at infinity | 0.3939 mm | 0.3939 mm |
+| worst focal-length label residual | 0.0060 mm | 0.0240 mm |
+| worst far-focus distance-label error | near-infinity labels already unbounded (135.6 m reads ~474 km near 67.5 mm) | unbounded likewise (106.4 m reads ~778 km near 60.0 mm) |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0152 mm (0.31 R), half-field ≤ 0.002°, stop radius ≤ 0.013 %, f-number ≤ 0.000 %, variable gaps ≤ 0.002 mm, axial diffraction MTF at 30 lp/mm +0.006 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+The far-focus label error is the infinity defocus expressed as a distance: near the 0.003 focus cutoff a few micrometres of image-side defocus move the in-focus distance by tens or hundreds of metres. Close-focus labels at kept keyframes are unchanged.
+
+Text sync: header: 62 → 30 intermediate zoom stations, eight-keyframe focus cam; analysis: 65 zoom / 33 focus → 33 / 8 positions.

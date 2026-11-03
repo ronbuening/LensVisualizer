@@ -30,3 +30,10 @@ Catalog version: local working tree, 2026-06-25
 - The data and analysis explicitly leave the original patent supplier unspecified; no claim is made that HOYA supplied
   the historical melt.
 - No prescription geometry or authored optical constants changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 1 → 1.052 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 5.2 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived unit-focus travel; 1 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 1 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

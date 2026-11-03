@@ -60,6 +60,7 @@ const LENS_DATA = {
     /* ── Explicit metadata fields ── */
     focalLengthMm: { marketing: 21, design: 28.49 },
     fNumber: { marketing: 2.0 },
+    closeFocusM: { marketing: 0.2 },
   },
 
   source: {
@@ -243,7 +244,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.2,
+    closeFocusM: 0.267,
     description: "Unit focus (BFD only). Production lens uses floating elements — not modeled here.",
   },
 

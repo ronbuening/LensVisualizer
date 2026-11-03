@@ -209,6 +209,8 @@ export interface LensCatalogV2Input {
   opticalConfiguration?: OpticalConfigurationData;
   focalLengthMm?: { marketing?: RangeValueV2; design?: RangeValueV2 };
   fNumber?: { marketing?: number; design?: number };
+  /** The maker's minimum focus distance in metres, object to image, where it differs from `focus.closeFocusM`. */
+  closeFocusM?: { marketing?: RangeValueV2 };
 }
 
 export interface SourceV2Input {

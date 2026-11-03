@@ -70,3 +70,9 @@ All 12 element index/Abbe pairs and the rear plate match the rounded source tabl
 Coverage: 10/12 modeled media, representing 12 physical lens elements. Rear plate checked separately: 1.52000/64.2 (unresolved). Compatible catalog curves remain spectral proxies, not production supplier/melt identifications.
 
 Verification: focused surface/inferred-beam and image-circle audits; aperture census for the new cuts; actual native SVG outlines and render diagnostics over nine zoom/focus states; current-label resolver and catalog-coordinate sweep, `assertCatalogConsistent()`, and the shared dispersion/partial-dispersion consistency tests. Full repository gates are recorded by the coordinator at commit time.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` stays 0.12 m. Source gives the nominal 0.12 m endpoint; at 14 mm, gap rounding moves the paraxial distance by several percent; Viltrox markets 0.13 m. The close row's modeled label reads within -7.3 % of it, so the close-endpoint corpus guard lists this lens as an exemption.
+
+- `catalog.closeFocusM.marketing` 0.13 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

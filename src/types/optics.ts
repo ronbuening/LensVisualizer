@@ -427,6 +427,8 @@ export interface LensData {
   focalLengthDesign?: number | [number, number];
   apertureMarketing?: number;
   apertureDesign?: number;
+  /** The maker's minimum focus distance in metres where it differs from `closeFocusM`; `[wide, tele]` on a zoom. */
+  closeFocusMarketing?: number | [number, number];
   lensMounts?: LensMountId[];
   imageFormat?: ImageFormatId;
   /** Published circular image diameter, independent of any assumed projection law. */

@@ -342,3 +342,12 @@ lint, full tests, and production build all pass.
 - Paraxial check against the previous folded data: EFL identical and defocus unchanged (worst difference 4e-15 mm) at
   all three focus keyframes, since 15.44 + 4.20/1.51680 + 0 reproduces the old 18.208987 mm exactly. Physical track grows
   by 1.431013 mm to the Table 2 row sum of 99.00 mm; the patent's 97.57 mm TL is the air-equivalent length.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.34 → 0.424 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 24.7 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed 0.20x row focuses at 0.424 m; focus description calls 0.34 m the manufacturer specification.
+- `catalog.closeFocusM.marketing` 0.34 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: focus.description: the 0.20× row focuses at 0.424 m; the 0.34 m specification is catalog metadata.

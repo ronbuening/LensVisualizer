@@ -35,3 +35,10 @@ Required filter R11/R12 is restored with physical25mm air/1.8mm glass/2.8mm air.
 L2/L3 rear lands preserve clear caps28/15.2 and extend to existing50/28mm body rims. Published rear effective radii30.5/16.5 remain beyond the present spherical guard. Full L1 land to its published106.5mm front rim requires rearcap≥51.071832 versus guard47.25; retained46.7 gives negative edge−11.825mm, so that land is rejected. Every other exposed and cemented face remains source constrained. The previous literal-sign investigation's temporary rear8.1/8.4 raises are unnecessary after correction and removed; original rear8mm rims pass the actual iris beam.
 
 Surface/canonical/inferred-cut and image-circle checks pass. Aperture is iris-limited f2.841874 within the existing3%band; the CLI's coarse --raise iris scan still flags an untraceable bracket, whereas dense actual iris aiming traces25/25 axial samples. Nine actual SVG states were viewed, all finite/zero trim. Projection-aware25-sample fields through75° improve versus the literal-sign baseline; generic chief bracketing still fails85°–110°, so full220° transmission is not asserted. The retained .162mm unit-focus estimate gives a derived .400874m endpoint, not a source-published .25m state. All25 axial samples pass at that estimated endpoint. Golden-value probes use the identical shared-test calls and are persisted in `/tmp/f6fish28-golden-corrected.json`; shared tests are not edited here. Exact source correction/stop exceptions are separately provided to the coordinator.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.25 → 0.401 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 60.3 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived unit-focus travel; 0.25 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.25 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

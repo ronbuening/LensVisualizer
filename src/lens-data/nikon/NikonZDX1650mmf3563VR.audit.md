@@ -135,3 +135,11 @@ The previously omitted source ng column is now preserved for every medium:
 The nine glass-media proxies all resolve compatibly: S-LAH55, PBH21, M-NBFD10, J-LASKH2, S-LAH98 (twice), FCD1, Q-LASFPH3S and M-TAF31. L31's annotation/analysis now identify its already-available M-TAF31 proxy rather than describing it as unresolved. The resin remains without a catalog curve; the source specifies a resin layer, not UV curing, composition or supplier. Removed that unsupported curing claim. L24's APD remains inferred from its catalog counterpart, not a patent-listed PgF value.
 
 Runtime limitation: `buildSpectralIndex` preserves ng without synthesizing C/F, and `makeSurfaceDispersion` does not use ng alone to override its catalog or Abbe curve. The source indices are therefore preserved data, not a claim that the current traced g channel uses them. No unsourced C/F values were added; the analysis states this limit. `assertCatalogConsistent()`, the scoped resolver review and the three shared glass suites pass (94 tests); `audit:surface` passes. No surface geometry changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.2 → 0.23 m, with per-station `closeFocusM` 0.25 / 0.23 / 0.3 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 50.0 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived close rows already follow the production MFDs the focus description lists; per-station values record them.
+
+Text sync: header: "closeFocusM remains scalar" → per-station values record the three solved distances.

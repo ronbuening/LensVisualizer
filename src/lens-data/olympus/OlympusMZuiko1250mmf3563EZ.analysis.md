@@ -103,11 +103,11 @@ both the G3–G4 and G4–G5 spacings widen. Paragraph 0018 has G2 and G4 acting
 together as the compensator, and claim 2 has G2 move first imageward and then
 objectward.
 
-The 198 intermediate positions are an inferred reconstruction built on that
+The 38 intermediate positions are an inferred reconstruction built on that
 description, not the factory cam. G3's position is the zoom coordinate. G2
 follows a smooth law through its three printed positions with a single
 reversal; its peak is placed between the middle and tele stations, 0.15 mm
-beyond the printed middle-station D6 (9.4745 mm against 9.3245 mm). G4 is then
+beyond the printed middle-station D6 (9.4743 mm against 9.3245 mm). G4 is then
 solved paraxially at each position so that infinity focus lands on the fixed
 image plane, holding the 0.003–0.010 mm residual of the printed stations
 interpolated between them. G3 and G4 move objectward throughout, D8 narrows

@@ -160,7 +160,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 1.0,
+    closeFocusM: 1.125,
     description:
       "Unit focus by view-camera bellows; representative 1.0 m object-distance extension is provided for the UI slider.",
   },

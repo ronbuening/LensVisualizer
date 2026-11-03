@@ -3,7 +3,7 @@
  */
 
 import { runtimeView } from "../../prescription/runtimeView.js";
-import { focusDistanceAt } from "../../state/focusDistance.js";
+import { focusLabelDistanceM } from "../../first-order/format.js";
 
 import { eflAtZoom } from "../../state/stationTables.js";
 import { computeCardinalElements } from "./cardinals.js";
@@ -32,6 +32,7 @@ export interface OpticalSummaryMetrics {
   physicalStopDiameterMm: number | null;
   halfFieldDeg: number | null;
   fullFieldDeg: number | null;
+  /** The focus label distance in metres (object to image); null at infinity or when none is defined. */
   focusDistanceM: number | null;
   zoomT: number;
   focusT: number;
@@ -104,7 +105,7 @@ export function computeOpticalSummary(request: AnalysisRequest): OpticalSummaryM
     physicalStopDiameterMm,
     halfFieldDeg,
     fullFieldDeg: halfFieldDeg === null ? null : halfFieldDeg * 2,
-    focusDistanceM: focusDistanceAt(state.focusT, L, state.zoomT),
+    focusDistanceM: finiteOrNull(focusLabelDistanceM(state.focusT, L, state.zoomT)),
     zoomT: state.zoomT,
     focusT: state.focusT,
     aberrationT: state.aberrationT,

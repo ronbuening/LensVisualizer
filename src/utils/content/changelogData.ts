@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-11-03",
     type: "fix",
+    summary: "Fixed focus readouts to show where each lens focuses, naming the marketed minimum alongside",
+  },
+  {
+    date: "2026-11-03",
+    type: "fix",
     summary: "Fixed formulas that failed to render or showed wrong symbols in 13 lens notes",
   },
   {

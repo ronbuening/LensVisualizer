@@ -61,6 +61,7 @@ const LENS_DATA = {
     elementCount: 19,
     groupCount: 14,
     focalLengthMm: { marketing: [28, 300], design: [28.79, 292.0] },
+    closeFocusM: { marketing: 0.5 },
   },
 
   source: {
@@ -398,15 +399,15 @@ const LENS_DATA = {
   zoom: {
     // (moved from publishedStations) The close-focus row is source-tabulated.
     stations: [
-      { focalLengthMm: 28.79, nominalFNumber: 3.57, label: "Wide", published: true, publishedFocus: [1] },
-      { focalLengthMm: 100, nominalFNumber: 5.34, label: "Mid", published: true, publishedFocus: [1] },
-      { focalLengthMm: 292, nominalFNumber: 5.96, label: "Tele", published: true, publishedFocus: [1] },
+      { focalLengthMm: 28.79, nominalFNumber: 3.57, closeFocusM: 9.011, label: "Wide", published: true, publishedFocus: [1] },
+      { focalLengthMm: 100, nominalFNumber: 5.34, closeFocusM: 3.357, label: "Mid", published: true, publishedFocus: [1] },
+      { focalLengthMm: 292, nominalFNumber: 5.96, closeFocusM: 7.446, label: "Tele", published: true, publishedFocus: [1] },
     ],
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 0.5,
+    closeFocusM: 3.357,
     description:
       "Internal focusing by moving the complete second lens group G2 toward the object; d5 decreases while d13A increases by the same amount.",
   },

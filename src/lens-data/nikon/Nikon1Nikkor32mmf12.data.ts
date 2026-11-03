@@ -32,6 +32,7 @@ const LENS_DATA = {
     groupCount: 7,
     focalLengthMm: { marketing: 32, design: 32.4016 },
     fNumber: { marketing: 1.2, design: 1.24 },
+    closeFocusM: { marketing: 0.45 },
   },
 
   source: {
@@ -169,7 +170,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.45,
+    closeFocusM: 0.5,
     keyframes: [0, 0.13423022016389788, 1],
     description:
       "Dual-group floating focus (CRC): all three patent states are exact keyframes; G1 and G2 translate objectward with approximately 2:1 travel. The three-plate filter/sensor stack behind G2 is traced but not drawn.",

@@ -405,9 +405,9 @@ const LENS_DATA = {
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps at W/M/T are WO 2022/264542 A1 Example 1 Table 1 close-distance rows (β
     // = -0.151/-0.147/-0.333; object distance 96.613/280.487/248.897 mm).
     stations: [
-      { focalLengthMm: 18.54, nominalFNumber: 3.5, label: "Wide", published: true, publishedFocus: [1] },
-      { focalLengthMm: 50.034, nominalFNumber: 5.0, published: true, publishedFocus: [1] },
-      { focalLengthMm: 135.845, nominalFNumber: 6.3, label: "Tele", published: true, publishedFocus: [1] },
+      { focalLengthMm: 18.54, nominalFNumber: 3.5, closeFocusM: 0.2, label: "Wide", published: true, publishedFocus: [1] },
+      { focalLengthMm: 50.034, nominalFNumber: 5.0, closeFocusM: 0.4, published: true, publishedFocus: [1] },
+      { focalLengthMm: 135.845, nominalFNumber: 6.3, closeFocusM: 0.4, label: "Tele", published: true, publishedFocus: [1] },
     ],
     step: 0.004,
   },

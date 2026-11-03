@@ -89,3 +89,10 @@ nC 1.53100, nF 1.54060, ng 1.54600, P_g,F 0.56232. L2 now carries `nC` 1.531, `n
 0.01204, with a label that names the source. This rests on the inference that the pair is one material; US
 2023/0367186 A1 itself prints nd and νd only. No catalog row exists for it, so the element counts as line-index data,
 not as catalog Sellmeier data. No radius, thickness, index, Abbe number or semi-diameter changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.095 → 0.2 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 110.5 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close row states no distance; 0.095 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.095 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

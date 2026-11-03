@@ -22,13 +22,14 @@ flowchart LR
     n_src_optics_state_src_optics_state_stationTables_ts["stationTables.ts"]
   end
   n_external_src_optics_field["src/optics/field"]
+  n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_optics_analysis["src/optics/analysis"]
   n_external_src_optics_math["src/optics/math"]
-  n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_trace["src/optics/trace"]
   n_external_src_types["src/types"]
   n_src_optics_state_src_optics_state_fieldAdapters_ts --> |12| n_external_src_optics_field
+  n_src_optics_state_src_optics_state_publishedStations_ts --> |2| n_external_src_optics_prescription
   n_src_optics_state_src_optics_state_preparedGeometry_ts --> |2| n_external_src_optics_types_ts
   n_src_optics_state_src_optics_state_focusDistance_ts --> |2| n_src_optics_state_src_optics_state_stationTables_ts
   n_src_optics_state_src_optics_state_publishedStations_ts --> n_external_src_optics_analysis
@@ -39,11 +40,11 @@ flowchart LR
   n_src_optics_state_src_optics_state_apertureStop_ts --> n_external_src_optics_prescription
   n_src_optics_state_src_optics_state_fieldAdapters_ts --> n_external_src_optics_prescription
   n_src_optics_state_src_optics_state_layout_ts --> n_external_src_optics_prescription
-  n_src_optics_state_src_optics_state_publishedStations_ts --> n_external_src_optics_prescription
   n_src_optics_state_src_optics_state_runtimeAdapters_ts --> n_external_src_optics_prescription
   n_src_optics_state_src_optics_state_fieldAdapters_ts --> n_external_src_optics_trace
   n_src_optics_state_src_optics_state_preparedGeometry_ts --> n_external_src_optics_trace
   n_src_optics_state_src_optics_state_apertureStop_ts --> n_external_src_optics_types_ts
+  n_src_optics_state_src_optics_state_fieldAdapters_ts --> n_external_src_optics_types_ts
   n_src_optics_state_src_optics_state_preparationError_ts --> n_external_src_optics_types_ts
   n_src_optics_state_src_optics_state_runtimeAdapters_ts --> n_external_src_optics_types_ts
   n_src_optics_state_src_optics_state_aperture_ts --> n_external_src_types
@@ -63,7 +64,6 @@ flowchart LR
   n_src_optics_state_src_optics_state_preparedGeometry_ts --> n_src_optics_state_src_optics_state_layout_ts
   n_src_optics_state_src_optics_state_runtimeAdapters_ts --> n_src_optics_state_src_optics_state_layout_ts
   n_src_optics_state_src_optics_state_fieldAdapters_ts --> n_src_optics_state_src_optics_state_preparedGeometry_ts
-  n_src_optics_state_src_optics_state_runtimeAdapters_ts --> n_src_optics_state_src_optics_state_preparedGeometry_ts
   n_src_optics_state_truncated["additional relationships omitted"]
 ```
 
@@ -71,7 +71,7 @@ flowchart LR
 
 - Direct source files: 11
 - Direct subfolders: 0
-- Main outbound areas: same folder (15), src/optics/field (13), src/types (10), src/optics/prescription (5), src/optics/types.ts (5), src/optics/math (3), src/optics/trace (2), src/optics/analysis
+- Main outbound areas: same folder (17), src/optics/field (13), src/types (10), src/optics/prescription (6), src/optics/types.ts (6), src/optics/math (3), src/optics/trace (2), src/optics/analysis
 - External consumers: src/optics/analysis, src/optics/analysis.ts, src/optics/buildLens.ts, src/optics/diagram, src/optics/field, src/optics/fieldGeometry.ts, src/optics/first-order, src/optics/optics.ts, +5 more
 
 ## Files
@@ -81,11 +81,11 @@ flowchart LR
 | `aperture.ts` | Aperture helper module | same folder, src/types | src/optics/optics.ts | fNumberAtStopdown |
 | `apertureStop.ts` | Aperture Stop helper module | same folder (2), src/optics/field, src/optics/math, src/optics/prescription, src/optics/types.ts, +1 more | src/optics/prescription (2), same folder, src/optics/field, src/optics/first-order, src/optics/optics.ts | StopRuleLens, StopRuleGeometry, stopRuleGeometry, fNumberRuleStop, wideOpenStop, stopForFNumber, wideOpenStopAtZoom, stopSemiDiameterForFNumber, +1 more |
 | `cameraLayout.ts` | Camera Layout helper module | src/types | src/optics/analysis, src/optics/optics.ts | CameraAnchoredLayout, anchorLayoutToCamera |
-| `fieldAdapters.ts` | Field Adapters helper module | src/optics/field (12), same folder (2), src/optics/prescription, src/optics/trace, src/types | src/optics/analysis (11), src/optics/prescription (2), src/optics/fieldGeometry.ts | computeFieldGeometryAtState, computeAnalysisFieldGeometryAtState, traceChiefRayAtAngleForRuntimeLens, traceParaxialRayForRuntimeLens, chiefRayImageHeightForRuntimeLens, solveChiefRayForRuntimeLens, solveChiefRayBoundingSphereForRuntimeLens, chiefRayImageHeightAccurateForRuntimeLens, +16 more |
-| `focusDistance.ts` | Focus Distance helper module | same folder (2), src/types | same folder (2), src/optics/analysis (2), src/optics/first-order (2), src/optics/field, src/optics/optics.ts | FOCUS_INFINITY_CUTOFF, focusDistanceAt, remapFocusDistance, closeFocusAtZoom |
+| `fieldAdapters.ts` | Field Adapters helper module | src/optics/field (12), same folder (3), src/optics/prescription, src/optics/trace, src/optics/types.ts, +1 more | src/optics/analysis (11), src/optics/prescription (2), src/optics/fieldGeometry.ts, src/optics/first-order | computeFieldGeometryAtState, computeAnalysisFieldGeometryAtState, traceChiefRayAtAngleForRuntimeLens, traceParaxialRayForRuntimeLens, chiefRayImageHeightForRuntimeLens, solveChiefRayForRuntimeLens, solveChiefRayBoundingSphereForRuntimeLens, chiefRayImageHeightAccurateForRuntimeLens, +17 more |
+| `focusDistance.ts` | Focus Distance helper module | same folder (2), src/types | same folder (2), src/optics/first-order (2), src/optics/analysis, src/optics/field, src/optics/optics.ts | FOCUS_INFINITY_CUTOFF, focusDistanceAt, remapFocusDistance, closeFocusAtZoom |
 | `layout.ts` | Layout helper module | same folder, src/optics/prescription, src/types | src/optics/analysis (9), same folder (3), src/optics/prescription (2), src/optics/first-order, src/optics/optics.ts | resolveControlledThickness, buildStateSurfaces, sumSurfaceThicknesses, buildZPositions, layoutFromPrepared, thick, doLayout, stateSurfaces |
 | `preparationError.ts` | Preparation Error helper module | src/optics/types.ts | src/optics/types.ts | OpticsPreparationError |
-| `preparedGeometry.ts` | Prepared Geometry helper module | same folder (2), src/optics/types.ts (2), src/optics/math, src/optics/trace, src/types | src/optics/analysis (6), same folder (2), src/optics/field (2), src/optics/first-order (2), src/optics/analysis.ts, +4 more | prepareState, prepareStateUncached, stateWithZ |
-| `publishedStations.ts` | Published Stations helper module | same folder (2), src/optics/analysis, src/optics/prescription, src/types | src/optics/publishedStations.ts | STATION_COORDINATE_TOLERANCE, PublishedStationSource, PublishedStationCoordinate, PublishedStationGrid, PublishedZoomStation, PublishedFocusStation, PublishedStationLimitKind, PublishedStationLimit, +8 more |
+| `preparedGeometry.ts` | Prepared Geometry helper module | same folder (2), src/optics/types.ts (2), src/optics/math, src/optics/trace, src/types | src/optics/analysis (6), same folder (3), src/optics/field (2), src/optics/first-order (2), src/optics/analysis.ts, +4 more | prepareState, prepareStateUncached, stateWithZ |
+| `publishedStations.ts` | Published Stations helper module | same folder (3), src/optics/prescription (2), src/optics/analysis, src/types | src/optics/publishedStations.ts | STATION_COORDINATE_TOLERANCE, PublishedStationSource, PublishedStationCoordinate, PublishedStationGrid, PublishedZoomStation, PublishedFocusStation, PublishedStationLimitKind, PublishedStationLimit, +8 more |
 | `runtimeAdapters.ts` | Runtime Adapters helper module | same folder (3), src/optics/prescription, src/optics/types.ts, src/types | src/optics/prescription (2), same folder, src/optics/buildLens.ts, src/optics/optics.ts | prepareRuntimeState, doLayoutForRuntimeLens, thickOrZero, eflAtZoomClamped, epAtZoomClamped, fopenAtZoomClamped |
-| `stationTables.ts` | Station Tables helper module | src/optics/math, src/types | src/optics/analysis (7), same folder (5), src/optics/prescription (4), src/optics/first-order (2), src/optics/field, +2 more | DEFAULT_FOCUS_POSITIONS, clampStationControl, stationSegment, interpolateStationTable, resolveVariableThickness, resolveAberrationThickness, zoomIndexToT, eflAtZoom, +10 more |
+| `stationTables.ts` | Station Tables helper module | src/optics/math, src/types | src/optics/analysis (7), same folder (6), src/optics/prescription (4), src/optics/first-order (2), src/optics/field, +2 more | DEFAULT_FOCUS_POSITIONS, clampStationControl, stationSegment, interpolateStationTable, resolveVariableThickness, resolveAberrationThickness, focusInterpolationSegment, zoomIndexToT, +11 more |

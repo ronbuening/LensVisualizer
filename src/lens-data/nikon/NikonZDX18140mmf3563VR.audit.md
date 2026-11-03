@@ -111,3 +111,9 @@ Freshly rendered and inspected `patents/WO2022264542A1.pdf`, Example 1: Table 1 
 The remaining lens media L11, L13, L21–L24, L31g, L32, L35g, L36, L42 and L51 and plate PP were individually checked and retain their compatible coefficient-backed proxies. All 17 glass lens media plus PP resolve; the two resin media remain explicit spectral approximations. The analysis no longer asserts an older FPL51 melt, numerical ΔPgF ≈ +0.038, UV curing or supplier/chemistry identity from nd/νd alone. Catalog curves remain qualified spectral proxies.
 
 `assertCatalogConsistent()`, the scoped resolver review and the three shared glass suites pass (94 tests); `audit:surface` passes. Source optical coordinates and surface geometry are unchanged.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.2 → 0.2 m, with per-station `closeFocusM` 0.2 / 0.4 / 0.4 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 100.0 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: close rows already reach 0.2 m wide and 0.4 m tele; per-station values record them.

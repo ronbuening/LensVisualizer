@@ -10,6 +10,7 @@ import { createAnalysisRequest } from "../../../src/optics/analysis/request.js";
 import { describe, expect, it } from "vitest";
 import ReferenceNewtonianSideFocusRaw from "../../../src/lens-data/reference/ReferenceNewtonianSideFocus.data.js";
 import { computeOpticalSummary } from "../../../src/optics/analysis/summary/summary.js";
+import { focusLabelDistanceM } from "../../../src/optics/first-order/format.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { computeAnalysisFieldGeometryAtState } from "../../../src/optics/state/fieldAdapters.js";
 import { eflAtFocus } from "../../../src/optics/first-order/focusBreathing.js";
@@ -42,7 +43,8 @@ describe("computeOpticalSummary", () => {
     expect(summary.workingFNumber.status).toMatch(/traced|vignetted/);
     expect(summary.halfFieldDeg).toBeCloseTo(fieldGeometry.halfFieldDeg, 6);
     expect(summary.fullFieldDeg).toBeCloseTo(fieldGeometry.halfFieldDeg * 2, 6);
-    expect(summary.focusDistanceM).toBeCloseTo(L.closeFocusM / focusT, 6);
+    // The summary reports the focus label: where the prepared state is in focus.
+    expect(summary.focusDistanceM).toBeCloseTo(focusLabelDistanceM(focusT, L, zoomT)!, 9);
     expect(summary.imagePlaneZMm).toBeCloseTo(state.imgZ, 6);
     expect(summary.totalTrackMm).toBeCloseTo(state.totalTrack, 6);
     expect(summary.telephotoRatio).toBeCloseTo(state.totalTrack / Math.abs(dynamicEFL), 6);

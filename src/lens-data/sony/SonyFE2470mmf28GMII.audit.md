@@ -48,3 +48,12 @@ Patent: WO 2023/181666 A1, Example 4
   inside the runtime d-line safety window.
 - Relabeled L22 as the MC-TAF101-100 optical equivalent while leaving the production supplier unspecified.
   No prescription, asphere, zoom, focus, aperture, or semi-diameter values changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.21 → 0.21 m, with per-station `closeFocusM` 0.21 / 0.322 / 0.319 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 53.2 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close rows already reach 0.21 m at wide; per-station values record them.
+- `catalog.closeFocusM.marketing` 0.21 / 0.3 m (wide / tele) keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: closeFocusM comment: nearest station row; Sony's 0.21 / 0.30 m is catalog metadata.

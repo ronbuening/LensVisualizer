@@ -57,6 +57,7 @@ const LENS_DATA = {
     /* ── Explicit metadata fields ── */
     focalLengthMm: { marketing: 45, design: 41.2 },
     fNumber: { marketing: 2.8, design: 2.89 },
+    closeFocusM: { marketing: 0.253 },
   },
 
   source: {
@@ -213,7 +214,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.253, // Nikon spec: 0.83 ft ≈ 0.253 m (MFD from focal plane)
+    closeFocusM: 0.225, // patent β = −0.50 row, object to image; Nikon spec 0.83 ft ≈ 0.253 m is catalog metadata
     description:
       "CRC floating focus: G1+G3 move as a linked unit; G2 moves at a different rate. ΔD1 = −ΔD2 ≈ 4.28 mm. Maximum reproduction ratio 1:2 (β = −0.50).",
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus d4 = 5.28 and d9 = 2.21 are US 7,656,591 Table 1's minimum-imaging-distance
