@@ -32,6 +32,7 @@ const LENS_DATA = {
       "ALL SPHERICAL",
       "REAR FOCUS",
     ],
+    closeFocusM: { marketing: 0.25 },
   },
   source: {
     patentNumber: "US 4,759,619",

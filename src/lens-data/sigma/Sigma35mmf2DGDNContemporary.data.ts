@@ -37,6 +37,7 @@ const LENS_DATA = {
       marketing: 2,
       design: 2.07,
     },
+    closeFocusM: { marketing: 0.27 },
   },
   source: {
     patentNumber: "JP 2021-165807 A",

@@ -37,6 +37,7 @@ const LENS_DATA = {
       "ALL SPHERICAL",
       "IMAGE STABILIZER",
     ],
+    closeFocusM: { marketing: 1.5 },
   },
   source: {
     patentNumber: "US 6,618,197 B1",
