@@ -199,9 +199,14 @@ export async function mapLimit(items, limit, mapper) {
 }
 
 /**
- * Combine multiple freshness entries into a single envelope.
+ * Combine multiple freshness entries into a single envelope: the earliest published and the latest modified.
+ *
+ * `modifiedOnly` entries can move the modified side but never the published side. They are for a shared file, such
+ * as one holding every maker's details, whose file-level history cannot say when one page's part of it was added.
+ * Every entry counts toward the modified side too, so the envelope is never modified before it was published. With no
+ * entries, the fallback stands in for both sides whatever `modifiedOnly` holds.
  */
-export function combineFreshnessEntries(entries, fallbackDate) {
+export function combineFreshnessEntries(entries, fallbackDate, { modifiedOnly = [] } = {}) {
   const valid = entries.filter(Boolean);
   if (valid.length === 0) {
     return fallbackFreshness(fallbackDate);
@@ -212,7 +217,7 @@ export function combineFreshnessEntries(entries, fallbackDate) {
     const entryAt = entry.publishedAt ?? entry.publishedOn;
     return entryAt < candidateAt ? entry : candidate;
   }, valid[0]);
-  const latest = valid.reduce((candidate, entry) => {
+  const latest = [...valid, ...modifiedOnly.filter(Boolean)].reduce((candidate, entry) => {
     const candidateAt = candidate.lastModifiedAt ?? candidate.lastModified;
     const entryAt = entry.lastModifiedAt ?? entry.lastModified;
     return entryAt > candidateAt ? entry : candidate;
@@ -513,13 +518,16 @@ export function buildRouteFreshness({
     routeFreshness[`/lens/${lens.key}`] = lens.freshness;
   }
 
+  /*
+   * A maker page exists once the maker has a visible lens, so its lenses date its publication. The shared maker
+   * details file predates most makers, so it can only date the page's modification.
+   */
   for (const slug of makerSlugs) {
     const makerLensFreshness = lenses.filter((lens) => lens.makerSlug === slug).map((lens) => lens.freshness);
 
-    routeFreshness[`/makers/${slug}`] = combineFreshnessEntries(
-      [...makerLensFreshness, makerDetailsFreshness],
-      fallbackDate,
-    );
+    routeFreshness[`/makers/${slug}`] = combineFreshnessEntries(makerLensFreshness, fallbackDate, {
+      modifiedOnly: [makerDetailsFreshness],
+    });
   }
 
   for (const mountId of mountIds) {

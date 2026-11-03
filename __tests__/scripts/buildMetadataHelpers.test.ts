@@ -489,9 +489,14 @@ describe("build metadata helpers", () => {
       publishedOn: "2026-03-18",
       lastModified: "2026-03-24",
     });
+    /* A maker page is published with its first lens; the older shared maker details file can only modify it. */
     expect(routeFreshness["/makers/nikon"]).toEqual({
-      publishedOn: "2026-03-17",
+      publishedOn: "2026-03-19",
       lastModified: "2026-03-26",
+    });
+    expect(routeFreshness["/makers/canon"]).toEqual({
+      publishedOn: "2026-03-21",
+      lastModified: "2026-03-27",
     });
     expect(routeFreshness["/mounts/nikon-z"]).toEqual({
       publishedOn: "2026-03-19",

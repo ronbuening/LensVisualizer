@@ -116,6 +116,10 @@ export function mapLimit<T, R>(
 export function combineFreshnessEntries(
   entries: Array<FreshnessEntry | null | undefined>,
   fallbackDate: string,
+  options?: {
+    /** Entries that can move the modified side but never the published side. */
+    modifiedOnly?: Array<FreshnessEntry | null | undefined>;
+  },
 ): FreshnessEntry;
 
 export function comparePublicationEntries<T extends PublicationEntry>(a: T, b: T): number;

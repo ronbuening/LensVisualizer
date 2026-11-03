@@ -235,6 +235,10 @@ The modified date skips format-only lens-data conversion commits (`isFormatOnlyC
 so converting a file to V2 moves no page date. Recognition and fallback rules are recorded in
 [Decisions](../decisions.md) (format-only page freshness).
 
+A shared file whose history cannot say when one page's part was added joins `combineFreshnessEntries` through
+`modifiedOnly`, which moves only the modified date. A `/makers/<slug>` page is therefore published with its maker's
+first visible lens, and `src/utils/catalog/makerDetails.ts` only modifies it.
+
 ## Route Change Checklist
 
 When adding a route pattern:

@@ -19,6 +19,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-11-03",
+    type: "fix",
+    summary: "Fixed maker pages reporting a publication date earlier than their first lens",
+  },
+  {
     date: "2026-11-02",
     type: "fix",
     summary:
