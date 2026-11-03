@@ -26,8 +26,6 @@ const CLOSE_FOCUS_EXEMPT: Readonly<Record<string, string>> = {
     "source-printed D = 200 mm state; two-decimal gap rounding at 10 mm moves the paraxial distance ~6 %",
   "olympus-zuiko-digital-ed-7-14mm-f4":
     "source-printed 250 mm object-to-image state; the printed +0.069 mm image-plane offset at 7 mm moves it ~8 %",
-  "pentax-smc-67-100mm-f4":
-    "close row is the patent's floating state for use with the close-up attachment; alone it focuses beyond infinity",
   "tamron-a062-20-40mm-f28-di-iii-vxd":
     "source-printed 300 mm state at W/M/T; the stations between them are interpolated and illustrative",
   "viltrox-af-14mm-f4-air":
