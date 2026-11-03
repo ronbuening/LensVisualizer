@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-11-02",
+    type: "fix",
+    summary:
+      "Fixed page errors and frozen readouts after a browser translated the page, such as Chrome's built-in Translate",
+  },
+  {
+    date: "2026-11-02",
     type: "lens",
     summary:
       "Added the Carl Zeiss Sonnar 150mm f/4, Konica Hexanon AR 200mm f/4, Minolta MD 50mm f/1.7, Olympus Zuiko 50mm f/1.8 and 400mm f/6.3, and Pentax-A 200mm f/4",

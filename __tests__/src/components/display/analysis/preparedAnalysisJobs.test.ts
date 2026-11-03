@@ -506,8 +506,8 @@ describe("prepared-state analysis tabs", () => {
     expect(html).toContain("Optical State");
     expect(html).toMatch(
       telephotoRatio === null
-        ? /TELEPHOTO RATIO<\/span><span[^>]*>n\/a<\/span>/
-        : /TELEPHOTO RATIO<\/span><span[^>]*>1\.18<\/span>/,
+        ? /TELEPHOTO RATIO<\/span><span[^>]*><span>n\/a<\/span>/
+        : /TELEPHOTO RATIO<\/span><span[^>]*><span>1\.18<\/span>/,
     );
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
     expect(mockComputeOpticalSummary).toHaveBeenCalledWith(

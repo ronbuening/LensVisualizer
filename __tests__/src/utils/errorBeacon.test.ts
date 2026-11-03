@@ -16,6 +16,9 @@ function installGoatCounterMock() {
 }
 
 afterEach(() => {
+  document.documentElement.className = "";
+  document.documentElement.lang = "";
+  document.body.innerHTML = "";
   vi.useRealTimers();
   vi.unstubAllEnvs();
   resetErrorBeaconSessionForTests();
@@ -63,6 +66,39 @@ describe("reportErrorBeacon", () => {
     expect(count).toHaveBeenCalledWith({
       path: "/_error/canontse90mmf28l",
       title: "lens-diagram-panel: trace failed",
+      event: true,
+    });
+  });
+
+  it("tags reports from a page Chrome has translated with the target language", () => {
+    vi.stubEnv("PROD", true);
+    const count = installGoatCounterMock();
+    document.documentElement.className = "translated-ltr";
+    document.documentElement.lang = "zh-CN";
+
+    reportErrorBeacon(
+      "route-error-boundary",
+      new Error("The node to be removed is not a child of this node."),
+      "/lens",
+    );
+
+    expect(count).toHaveBeenCalledWith({
+      path: "/_error/lens",
+      title: "route-error-boundary [translated:zh-cn]: The node to be removed is not a child of this node.",
+      event: true,
+    });
+  });
+
+  it("tags reports when only a translator's font wrappers mark the page", () => {
+    vi.stubEnv("PROD", true);
+    const count = installGoatCounterMock();
+    document.body.innerHTML = '<p><font style="vertical-align: inherit;">Brennweite</font></p>';
+
+    reportErrorBeacon("lens-diagram-panel", new Error("boom"), "lens-a", { telemetryId: "lens-builder" });
+
+    expect(count).toHaveBeenCalledWith({
+      path: "/_error/lens-builder",
+      title: "lens-diagram-panel [translated]: Error",
       event: true,
     });
   });

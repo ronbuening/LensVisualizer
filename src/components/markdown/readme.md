@@ -10,12 +10,14 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 flowchart LR
   subgraph n_src_components_markdown["src/components/markdown"]
     n_src_components_markdown_src_components_markdown_extractHeadingsFromAst_ts["extractHeadingsFromAst.ts"]
+    n_src_components_markdown_src_components_markdown_rehypeOwnedText_ts["rehypeOwnedText.ts"]
     n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx["ThemedMarkdown.tsx"]
   end
   n_external_src_components_diagram["src/components/diagram"]
   n_external_pkg_react["pkg:react"]
   n_external_pkg_react_markdown["pkg:react-markdown"]
   n_external_pkg_github_slugger["pkg:github-slugger"]
+  n_external_pkg_hast["pkg:hast"]
   n_external_pkg_katex["pkg:katex"]
   n_external_pkg_mdast["pkg:mdast"]
   n_external_pkg_mdast_util_from_markdown["pkg:mdast-util-from-markdown"]
@@ -32,6 +34,7 @@ flowchart LR
   n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx --> |2| n_external_pkg_react
   n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx --> |2| n_external_pkg_react_markdown
   n_src_components_markdown_src_components_markdown_extractHeadingsFromAst_ts --> n_external_pkg_github_slugger
+  n_src_components_markdown_src_components_markdown_rehypeOwnedText_ts --> n_external_pkg_hast
   n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx --> n_external_pkg_katex
   n_src_components_markdown_src_components_markdown_extractHeadingsFromAst_ts --> n_external_pkg_mdast
   n_src_components_markdown_src_components_markdown_extractHeadingsFromAst_ts --> n_external_pkg_mdast_util_from_markdown
@@ -44,13 +47,14 @@ flowchart LR
   n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx --> n_external_pkg_remark_math
   n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx --> n_external_src_types
   n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx --> n_external_src_utils_seo
+  n_src_components_markdown_src_components_markdown_ThemedMarkdown_tsx --> n_src_components_markdown_src_components_markdown_rehypeOwnedText_ts
 ```
 
 ## Directory Overview
 
-- Direct source files: 2
+- Direct source files: 3
 - Direct subfolders: 0
-- Main outbound areas: src/components/diagram (16), package:react (2), package:react-markdown (2), package:github-slugger, package:katex, package:mdast, package:mdast-util-from-markdown, package:mdast-util-gfm, +8 more
+- Main outbound areas: src/components/diagram (16), package:react (2), package:react-markdown (2), package:github-slugger, package:hast, package:katex, package:mdast, package:mdast-util-from-markdown, +10 more
 - External consumers: src/components/content, src/components/layout, src/pages/ArticlePage.tsx
 
 ## Files
@@ -58,4 +62,5 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `extractHeadingsFromAst.ts` | Extract Headings From Ast helper module | package:github-slugger, package:mdast, package:mdast-util-from-markdown, package:mdast-util-gfm, package:micromark-extension-gfm | src/components/content | ASTHeading, extractHeadingsFromAst |
-| `ThemedMarkdown.tsx` | React component module | src/components/diagram (16), package:react (2), package:react-markdown (2), package:katex, package:react-router, +6 more | src/components/layout, src/pages/ArticlePage.tsx | default, ThemedMarkdown |
+| `rehypeOwnedText.ts` | Rehype Owned Text module with default export | package:hast | same folder | default, rehypeOwnedText |
+| `ThemedMarkdown.tsx` | React component module | src/components/diagram (16), package:react (2), package:react-markdown (2), package:katex, package:react-router, +7 more | src/components/layout, src/pages/ArticlePage.tsx | default, ThemedMarkdown |

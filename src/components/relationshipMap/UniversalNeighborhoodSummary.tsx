@@ -10,7 +10,7 @@ import { useId, useLayoutEffect, useMemo, useRef, useState, type CSSProperties }
 import type { Theme } from "../../types/theme.js";
 import type { UniversalRelationshipGraph } from "../../utils/catalog/universalRelationshipGraph.js";
 import { panelCard, searchInput } from "../../utils/style/styles.js";
-import { pluralize } from "../../utils/text.js";
+import { pluralize, textRun } from "../../utils/text.js";
 import useBalancedColumns, { widthClass } from "../hooks/useBalancedColumns.js";
 import { ViewPanel, viewButton } from "./RelationshipViewShared.js";
 import { layoutUniversalRelationshipGraph } from "./universalLayout.js";
@@ -166,14 +166,14 @@ export default function UniversalNeighborhoodSummary({
                     </span>
                     <span id={detailsId} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
                       {match && match !== neighborhood.anchorLabel && (
-                        <span style={{ color: t.label, overflowWrap: "anywhere" }}>Includes {match}</span>
+                        <span style={{ color: t.label, overflowWrap: "anywhere" }}>{textRun("Includes ", match)}</span>
                       )}
                       <span style={{ color: t.muted }}>{countLine(neighborhood)}</span>
                       {groups.length ? (
                         groups.map((group) => (
                           <span key={group.category} style={{ overflowWrap: "anywhere" }}>
-                            <span style={{ color: t.label }}>{BRIDGE_LABELS[group.category]}: </span>
-                            {bridgeLine(group)}
+                            <span style={{ color: t.label }}>{textRun(BRIDGE_LABELS[group.category], ": ")}</span>
+                            <span>{bridgeLine(group)}</span>
                           </span>
                         ))
                       ) : (

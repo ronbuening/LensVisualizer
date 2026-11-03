@@ -14,6 +14,12 @@ import type { Theme } from "../src/types/theme.js";
 /** Frozen copy of the real dark theme for component tests that need a complete Theme. */
 export const mockTheme: Theme = Object.freeze({ ...themes.dark });
 
+/**
+ * Per-test timeout for page tests that render the whole lens or patent catalog under jsdom. Their cost grows with
+ * the catalog (about 1,000 entries rendered several times per test), not with the code under test.
+ */
+export const CATALOG_RENDER_TIMEOUT_MS = 90_000;
+
 export interface MatchMediaController {
   setMatches: (matches: boolean) => void;
   dispatchChange: (matches: boolean) => void;

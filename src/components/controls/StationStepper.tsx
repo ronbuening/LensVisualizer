@@ -10,6 +10,7 @@
 import { useRef, type CSSProperties, type KeyboardEvent } from "react";
 import { toggleBtn, toggleGroup } from "../../utils/style/styles.js";
 import type { Theme } from "../../types/theme.js";
+import { textRun } from "../../utils/text.js";
 
 export interface StationOption {
   /** Stable station id handed back through `onSelect`. */
@@ -82,9 +83,7 @@ export default function StationStepper({
           </button>
           <span aria-live="polite" style={{ ...buttonStyle(true), cursor: "default", gap: 10 }}>
             <span>{stations[shownIndex].label}</span>
-            <span style={{ opacity: 0.7 }}>
-              {shownIndex + 1} / {stations.length}
-            </span>
+            <span style={{ opacity: 0.7 }}>{textRun(shownIndex + 1, " / ", stations.length)}</span>
           </span>
           <button
             type="button"

@@ -86,7 +86,7 @@ function stubWorker({ progress = false, target = state }: { progress?: boolean; 
 }
 
 const legendColor = (label: string) =>
-  within(screen.getByRole("figure")).getByText(label).closest("span")!.querySelector("line")!.getAttribute("stroke");
+  within(screen.getByRole("figure")).getByText(label).parentElement!.querySelector("line")!.getAttribute("stroke");
 
 beforeEach(() => {
   installMatchMediaMock(false);
@@ -238,7 +238,7 @@ describe("MTF tab", () => {
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
     expect(screen.getByText(/· Best axial focus \(/)).toBeTruthy();
-    const note = screen.getByText(/own prescription's paraxial focus/).textContent!;
+    const note = screen.getByText(/own prescription's paraxial focus/).closest("p")!.textContent!;
     expect(note).toContain(`${Math.abs(offsetMm).toFixed(2)} mm behind`);
     expect(note).toContain("These curves use best axial focus");
   });

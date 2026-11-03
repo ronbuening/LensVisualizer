@@ -220,7 +220,8 @@ describe("DiagramHeader", () => {
         }),
       } as RuntimeLens;
       const { unmount } = renderHeader({ L });
-      expect(screen.getByRole("link", { name: "Hideki Sakai" }).parentElement?.parentElement?.textContent).toBe(text);
+      const patentLink = screen.getByRole("link", { name: "US 10,095,009 B2 in Espacenet (opens in a new tab)" });
+      expect(patentLink.parentElement?.textContent).toBe(text);
       unmount();
     }
   });

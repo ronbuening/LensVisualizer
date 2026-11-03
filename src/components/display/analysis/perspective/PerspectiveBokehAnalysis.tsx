@@ -9,6 +9,7 @@ import {
   PerspectiveSection,
   PerspectiveUnavailable,
 } from "./perspectiveAnalysisUi.js";
+import { textRun } from "../../../../utils/text.js";
 
 interface PerspectiveBokehAnalysisProps {
   result: PerspectiveFocusAnalysis;
@@ -25,11 +26,7 @@ export default function PerspectiveBokehAnalysis({ result, t }: PerspectiveBokeh
       first
       title="Fixed-Sensor Bokeh & Blur Footprints"
       copy={
-        <>
-          Each tile traces the same physical pupil into the stationary sensor at a signed format position. Crosshairs
-          mark the requested sensor point; the cloud, blur radius, transmission, and sensor-normal best focus all use
-          the current tilt/shift pose. Top and bottom are kept separate because movement breaks centered symmetry.
-        </>
+        "Each tile traces the same physical pupil into the stationary sensor at a signed format position. Crosshairs mark the requested sensor point; the cloud, blur radius, transmission, and sensor-normal best focus all use the current tilt/shift pose. Top and bottom are kept separate because movement breaks centered symmetry."
       }
       t={t}
     >
@@ -67,8 +64,11 @@ export default function PerspectiveBokehAnalysis({ result, t }: PerspectiveBokeh
         />
       </div>
       <span style={{ color: t.muted, fontSize: 8.5 }}>
-        Shared footprint half-range: ±{(halfRange * 1000).toFixed(1)} um. Brightness includes traced bulk transmission;
-        the mechanical pass fraction is reported separately.
+        {textRun(
+          "Shared footprint half-range: ±",
+          (halfRange * 1000).toFixed(1),
+          " um. Brightness includes traced bulk transmission; the mechanical pass fraction is reported separately.",
+        )}
       </span>
     </PerspectiveSection>
   );
@@ -137,10 +137,15 @@ function BokehTile({ sample, halfRange, t }: { sample: PerspectiveFocusFieldSamp
       </svg>
       {sample.bokeh.usable ? (
         <div style={{ color: t.muted, fontSize: 8, lineHeight: 1.45, fontVariantNumeric: "tabular-nums" }}>
-          <div>Blur RMS {formatUnsignedUm(sample.sensorBlur?.rmsRadiusMm)}</div>
-          <div>Best focus {formatSignedMm(sample.bestFocus?.normalOffsetMm)}</div>
+          <div>{textRun("Blur RMS ", formatUnsignedUm(sample.sensorBlur?.rmsRadiusMm))}</div>
+          <div>{textRun("Best focus ", formatSignedMm(sample.bestFocus?.normalOffsetMm))}</div>
           <div>
-            Mechanical {formatTransmission(sample.bokeh.mechanicalTransmission)} · {sample.bokeh.brightnessCharacter}
+            {textRun(
+              "Mechanical ",
+              formatTransmission(sample.bokeh.mechanicalTransmission),
+              " · ",
+              sample.bokeh.brightnessCharacter,
+            )}
           </div>
         </div>
       ) : (
