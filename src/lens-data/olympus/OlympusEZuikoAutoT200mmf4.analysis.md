@@ -31,7 +31,7 @@ Positive front collector with a flat image-side face; it carries the largest cle
 
 ### L2 — Biconvex Positive
 
-nd = 1.48749, νd = 69.8. Glass: S-FSL5 (OHARA catalog equivalent). f = +118.4 mm in air.
+nd = 1.48749, νd = 69.8. Glass: traced at the printed pair (S-FSL5 matches nd but not νd). f = +118.4 mm in air.
 
 Low-dispersion positive front member of the cemented pair. The doublet as a whole is weakly positive (f = +412.5 mm).
 
@@ -55,7 +55,7 @@ Positive meniscus, convex to the object. Patent condition (3), 0.25f < 1.3r8 < r
 
 ## Glass Identification and Selection
 
-The patent lists refractive index and Abbe number without naming a spectral line. Read as d-line values, every pair matches an OHARA catalog glass in nd: S-BSM16 (L1), S-FSL5 (L2), S-TIH14 (L3), S-LAL12 (L4) and S-TIH11 (L5). The data file uses them as catalog equivalents for dispersion; they are not a production identification, and the original supplier is not known. S-FSL5's catalog νd (70.2) is slightly above the printed 69.8. The doublet pairs a low-dispersion crown (νd 69.8) with a dense flint (νd 26.5), and the rear meniscus L5 is a second dense flint. No anomalous partial dispersion is claimed.
+The patent lists refractive index and Abbe number without naming a spectral line. Read as d-line values, every pair matches an OHARA catalog glass in nd: S-BSM16 (L1), S-FSL5 (L2), S-TIH14 (L3), S-LAL12 (L4) and S-TIH11 (L5). The data file uses four of them as catalog equivalents for dispersion; they are not a production identification, and the original supplier is not known. S-FSL5's catalog νd (70.2) is 0.44 above the printed 69.8, enough to move the colour correction of a 200 mm telephoto, so L2 traces at the printed pair instead. The doublet pairs a low-dispersion crown (νd 69.8) with a dense flint (νd 26.5), and the rear meniscus L5 is a second dense flint. No anomalous partial dispersion is claimed.
 
 ## Focus Mechanism
 

@@ -10,7 +10,7 @@ const LENS_DATA = {
   schema: 2,
   key: "pentax-super-takumar-50mm-f14-eight-element",
   maker: "Pentax",
-  name: "PENTAX SUPER-TAKUMAR 50mm f/1.4 (Eight-Element)",
+  name: "PENTAX SUPER-TAKUMAR 50mm f/1.4 (8-element)",
   subtitle: "JP S40-028384 B — Example 1; patent design of the eight-element production lens (Example 2 fits equally)",
   catalog: {
     lensMounts: ["m42"],

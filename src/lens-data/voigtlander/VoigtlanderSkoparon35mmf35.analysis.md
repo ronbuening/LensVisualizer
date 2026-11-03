@@ -21,25 +21,25 @@ Five elements in four groups form a compact wide-angle retrofocus arrangement: a
 
 ### L1 — Negative Meniscus
 
-nd = 1.46522, νd = 65.2. Glass: FK3 (Schott), nearest catalog row. f = −203.6 mm (thick lens in air, at the 35 mm scale).
+nd = 1.46522, νd = 65.2. Glass: no catalog row within 0.25 in νd; traced at the printed pair. f = −203.6 mm (thick lens in air, at the 35 mm scale).
 
 A broad low-index negative meniscus forms the front member and is separated from the compact positive principal section by air space A. The patent calls its material a fluorine-crown glass of very low refractive power; it is not crystalline fluorite. The patent credits this glass with letting the front member be a single lens.
 
 ### L2 — Plano-Convex Positive
 
-nd = 1.65770, νd = 51.2. Glass: N-SSK5 (Schott), nearest catalog row. f = +16.0 mm.
+nd = 1.65770, νd = 51.2. Glass: no catalog row within 0.25 in νd; traced at the printed pair. f = +16.0 mm.
 
 The high-index plano-convex element starts the principal section after the large front air space; its convex face R3 is the image-side boundary of air space A.
 
 ### L3 — Biconcave Negative
 
-nd = 1.60266, νd = 38.4. Glass: F5 (Schott), nearest catalog row. f = −11.5 mm.
+nd = 1.60266, νd = 38.4. Glass: no catalog row within 0.25 in νd; traced at the printed pair. f = −11.5 mm.
 
 The compact negative member opposes L2 and lies immediately before the diaphragm space.
 
 ### L4 — Biconcave Negative
 
-nd = 1.58360, νd = 46.2. Glass: J-BAF3 (Hikari), nearest catalog row. f = −17.3 mm.
+nd = 1.58360, νd = 46.2. Glass: S-BAM3 (OHARA), nearest catalog row. f = −17.3 mm.
 
 The negative member of the rear cemented pair precedes the strongly converging shared interface.
 
@@ -51,14 +51,14 @@ The positive rear component completes the cemented principal member; the cemente
 
 ## Glass Identification and Selection
 
-The patent gives mean refractive indices at the yellow helium d line and Abbe numbers, but no glass names. For dispersion, the data file resolves each element to a modern catalog glass. FK3, N-SSK5, F5 and J-BAF3 are the nearest catalog rows to the patent's nd/νd pairs, within about 0.001 in nd. LAC13 matches L5 as a catalog equivalent. None of these identifies the glass used in production. The patent pairs the very low-index L1 with a high-index L2 across air space A, and says the large index difference keeps part II simple at high aperture.
+The patent gives mean refractive indices at the yellow helium d line and Abbe numbers, but no glass names. For dispersion, the data file uses a modern catalog glass only where one lies within about 0.25 of the printed νd: S-BAM3 is the nearest row to L4 (0.001 lower in nd), and LAC13 matches L5 as a catalog equivalent. L1, L2 and L3 have no row that close, so they trace at the printed nd/νd. None of these identifies the glass used in production. The patent pairs the very low-index L1 with a high-index L2 across air space A, and says the large index difference keeps part II simple at high aperture.
 
 | Element | nd | νd | Catalog glass |
 |---|---:|---:|---|
-| L1 | 1.46522 | 65.2 | FK3 (Schott), nearest row |
-| L2 | 1.65770 | 51.2 | N-SSK5 (Schott), nearest row |
-| L3 | 1.60266 | 38.4 | F5 (Schott), nearest row |
-| L4 | 1.58360 | 46.2 | J-BAF3 (Hikari), nearest row |
+| L1 | 1.46522 | 65.2 | none within 0.25 in νd |
+| L2 | 1.65770 | 51.2 | none within 0.25 in νd |
+| L3 | 1.60266 | 38.4 | none within 0.25 in νd |
+| L4 | 1.58360 | 46.2 | S-BAM3 (OHARA), nearest row |
 | L5 | 1.69347 | 53.5 | LAC13 (HOYA), equivalent |
 
 ## Focus Mechanism
