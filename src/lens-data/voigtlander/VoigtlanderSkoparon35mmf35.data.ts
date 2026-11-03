@@ -5,8 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Table 2 states 1:3.4 (effective aperture 0.294 f); Fig. 4 and the production lens are f/3.5. The iris opens to f/3.4.
  * The patent prints no back focus, field angle, stop position or semi-diameters. Back focus (32.28 mm) is computed from
  * the prescription; the 63° full field is Voigtländer's figure; the stop sits 65% of the way through the diaphragm
- * space a3, as drawn in Fig. 4; semi-diameters are inferred from Fig. 4 proportions, with the L3 rear face cut to
- * 4.85 mm so it stays in front of the stop plane. No close-focus spacing is printed, so the model is static.
+ * space a3, as drawn in Fig. 4; semi-diameters are inferred from Fig. 4 proportions and floor-checked by real-ray
+ * trace. The L1 rear face (13.3 mm) and L4 front face (4.8 mm) end where Fig. 4 bevels them, and the L3 rear face is
+ * cut to 4.85 mm so it stays in front of the stop plane. No close-focus spacing is printed, so the model is static.
  */
 const LENS_DATA = {
   schema: 2,
@@ -115,7 +116,7 @@ const LENS_DATA = {
       label: "2",
       R: 21.84315,
       d: 13.29895,
-      sd: 14.2,
+      sd: 13.3,
     },
     {
       label: "3",
@@ -152,7 +153,7 @@ const LENS_DATA = {
       label: "7",
       R: -84.5159,
       d: 0.4732,
-      sd: 5.4,
+      sd: 4.8,
       medium: 4,
     },
     {

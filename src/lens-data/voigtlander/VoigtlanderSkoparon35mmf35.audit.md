@@ -24,7 +24,7 @@ Fields changed, wording step:
 
 Checks after both steps: audit:surface OK; audit:aperture within 3% of f/3.4, with no rim or iris failures; clearap shows no axial clipping or chief-ray blocking; image circle 0 undersized; field coverage 98%, limited by the declared field.
 
-Open: Fig. 4 draws the rims about 7–10% smaller than the model (about 13.3 / 5.6 / 5.4 / 4.9 mm). The model rims were kept because the drawn sizes cut edge transmission to about 57%.
+Open: Fig. 4 draws the rims about 7–10% smaller than the model (about 13.3 / 5.6 / 5.4 / 4.9 mm). The model rims were kept because the drawn sizes cut edge transmission to about 57%. (Closed 2026-11-03: the semi-diameter pass below re-measured Fig. 4, kept the element edges under the corner-light rule and added the two zero-cost bevels.)
 
 Open: the focusing mechanism (Prominent body or a ring on the lens) is unconfirmed. The Voigtländer lens manual would settle whether unit focus to 0.7 m can be authored; derived unit focus would extend the back focus by 1.957 mm. (Closed 2026-11-03: the booklet gives rangefinder coupling and a 0.7 m scale but not which part moves, so the model stays static.)
 
@@ -34,3 +34,35 @@ Maker booklet, read after the wording step: "Gebrauchsanleitung für die Wechsel
 - The p. 2 section drawing agrees with the model's layout: meniscus convex to the object, plano-convex L2, biconcave L3, stop, and a cemented pair with a nearly flat front face. Its rear-to-front diameter ratio is about 0.4, against 0.38–0.43 in the model.
 - The drawing shows L3 square-edged, without the patent's rear bevel; the S6 cut follows Fig. 4 and the stop clearance.
 - Updated `focus.description` and the analysis focus, identification and source text to cite it.
+
+## 2026-11-03 — Semi-diameter pass against the patent figure
+
+Source: `patents/US2746351.pdf`, PDF page 4 (drawing sheet 4), Fig. 4, which is the Table 2 example. The sheet is a 1-bit scan at 2320 × 3408 px; every reading was taken at that native resolution. The scan is skewed 0.48°, so heights were taken perpendicular to a least-squares fit of the dash-dot axis (625 samples, rms 0.38 px). The drawn axis sits 3–10 px above the element centres, so each radius below is half the element's full top-to-bottom height between line centres.
+
+Scale: line-centre vertex crossings R1 to R9 span 1132.5 px for the 24.28 mm R1–R9 length, 0.02144 mm/px. Two sub-spans agree: R1–R3 gives 0.02139 and R3–R9 0.02154 mm/px. Vertical scale: fitting both L1 faces with their printed radii gives a best vertical scale near 0.0217 mm/px, within 1.5% of the axial one, so the figure is not anamorphic. The rear-group arcs are drawn about 20% flatter than printed and do not refine it. The heights below use 0.02144 mm/px; 0.0217 would add about 1%.
+
+| Surface | Before | Fig. 4 reading | After | Evidence |
+|---|---:|---|---:|---|
+| 1 | 14.2 | 13.3 (L1 edge; the front face meets a flat land) | 14.2 | 5–7% under, inside noise. 13.3 costs 3.2 corner points and would lift L2/L1 above the drawn 0.42. |
+| 2 | 14.2 | 12.4 (the face ends at a rear chamfer, 0.938 of L1's edge) | 13.3 | The same fraction of the model edge, 0.938 × 14.2. Costs no light: the full bundle reaches 13.22 mm here. |
+| 3, 4 | 6.1 | 5.6 (square edge) | 6.1 | 8% under, inside noise. 5.6 costs 11.6 points and 6.0 costs 2.5. |
+| 5 | 5.6 | 5.3 | 5.6 | 5% under. 5.3 would also put L3 below the 5.4 mm doublet, against the drawn order. |
+| 6 | 4.85 | 3.9 (the face ends at a deep bevel) | 4.85 | Below the 4.67 mm axial ray and the 4.72 mm bundle; the stop-plane cut stays. |
+| 7 | 5.4 | 4.4 (the face ends at a 45° chamfer, 0.88 of the doublet edge) | 4.8 | 0.88 × 5.4 = 4.75, the f/3.4 axial ray height here, rounded up. Costs no light. |
+| 8, 9 | 5.4 | 4.9 (the doublet edge; both faces reach it) | 5.4 | 9% under. The axial ray needs 4.90 and 4.93 mm; 5.0 costs 6.6 points and 5.2 costs 3.2. |
+
+The proportions agree: relative to L1, Fig. 4 draws L2, L3 and the doublet at 0.423, 0.400 and 0.370, and the file has 0.430, 0.394 and 0.380, with the same L2 > L3 > doublet order. The model is the drawing scaled by about 1.07 throughout, which keeps the light. The drawn diaphragm bars sit 68% of the way through a3 (the model uses 65%) and leave an opening of 3.6 mm radius, against the 4.57 mm f/3.4 iris (4.44 mm at f/3.5). The rear group is drawn for that narrower beam, which is why the L3 rear face and the L4 front face read below the f/3.4 axial ray.
+
+Corner light, measured against the base file for the final rims: 77.2% at 31.5° before and after, and no field changes (0.0 points); restoring either new value wins back nothing. The drawn sizes (13.3/12.4, 5.6, 5.3/4.85, 4.9) would give 57.4%. The model is static, so there is no near state to check. The patent has no aberration plots, so no fan ends constrain the rims. LSA (+0.866 / −0.040 / −0.271 / −0.230 mm at pupil 1 / 0.85 / 0.7 / 0.5) is as before; no rim was raised.
+
+Clearance after the edit: audit:surface reports no validation errors; the image-circle check finds 0 undersized surfaces; field coverage is 98%, limited by the declared 31.5° field (21.19 of 21.65 mm, corner 32.1° clear); the real-ray trace shows no axial clipping or chief-ray blocking, with the axial marginal ray at 4.75 mm on the 4.8 mm L4 front face; audit:aperture is within 3% of f/3.4 with no rim or iris failures. Engine half-field 31.5°, f/3.4, stop radius 4.571 mm and tracing half-field 36.18° are unchanged. Surface 2's own field limit moves from 38.7° to 36.9°, still outside surface 1's 36.2°. The drawn stop housing follows the smaller neighbour, now 4.8 mm (was 4.85).
+
+The diagram joins an element's two faces with one straight edge, so the L1 and L4 bevels appear as a taper across the edge rather than a flat land with a short chamfer. The local page at infinity and at closest focus (identical, static model) renders without errors and shows both bevels.
+
+Maker drawing (Voigtländer Prominent lens booklet, printed p. 2, not to scale): five elements in four groups in the same order, with the rear elements about 0.4 of the front meniscus. It draws L1, L3 and the doublet with square corners; Fig. 4 bevels the L1 rear, L3 rear and L4 front rims. The patent figure governs. Neither source marks an aspherical or special-dispersion element.
+
+Front page seen: US 2,746,351, patented May 22, 1956; Albrecht Wilhelm Tronnier, Göttingen, assignor to Voigtländer A.G., Braunschweig; application March 3, 1953, Serial No. 339,953. These match the data file.
+
+## 2026-11-03 — Glass labels revisited
+
+L1, L2 and L3 now trace their printed nd/νd as `Unmatched`, because their nearest catalog rows (FK3, N-SSK5/S-BSM25, F5/E-F5) are 0.32–0.57 off in νd and would replace the printed dispersion; L4 moves from J-BAF3 (0.28 off) to S-BAM3 (0.22 off, 0.001 lower in nd). LAC13 stays on L5. This supersedes the glass labels listed in the data-step bullet above.

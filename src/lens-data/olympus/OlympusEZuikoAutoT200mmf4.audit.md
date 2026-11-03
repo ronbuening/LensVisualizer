@@ -45,3 +45,7 @@ Patent: US 3,838,911, Embodiment 2
 - The binder lists a 55 mm filter. Faces 1–2 at 27.5 mm meet that bound with no margin. Pulling them to 26.5 mm would cost 3.4 points at 6°, and the to-scale maker section draws 27.6 mm, so they stay.
 - Live page checked at infinity and 2.5 m: five elements in the drawn order, with the L3 and L4 image-side rims stepped down as in both drawings.
 - Limitations: no patent drawing of Embodiment 2 exists, and the patent prints no ray fans. The maker's section is a production catalog drawing, matched to Embodiment 2 by spacing, not confirmed as the same prescription.
+
+## 2026-11-03 — Glass labels revisited
+
+L2 now traces its printed 1.48749/69.8 as `Unmatched`: S-FSL5 matches nd but is 0.44 off in νd, enough to move the colour correction of a 200 mm telephoto. The other four elements keep their OHARA catalog equivalents.
