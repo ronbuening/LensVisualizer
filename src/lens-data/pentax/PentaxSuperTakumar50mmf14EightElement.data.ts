@@ -175,7 +175,7 @@ const LENS_DATA = {
       label: "5",
       R: 42.5,
       d: 1.25,
-      sd: 14.2,
+      sd: 14.55,
       medium: 3,
     },
     {
@@ -200,21 +200,21 @@ const LENS_DATA = {
       label: "8",
       R: 110.0,
       d: 8.75,
-      sd: 12.8,
+      sd: 14.03,
       medium: 5,
     },
     {
       label: "9",
       R: -16.5,
       d: 1.25,
-      sd: 12.8,
+      sd: 14.04,
       medium: 6,
     },
     {
       label: "10",
       R: -36.4595,
       d: 0.05,
-      sd: 12.8,
+      sd: 15.35,
     },
     {
       label: "11",
@@ -239,22 +239,15 @@ const LENS_DATA = {
     {
       label: "14",
       R: -99.2345,
-      d: 37.71,
       sd: 16.4,
     },
   ],
-  doublets: [
-    {
-      text: "T1",
-      fromSurface: "7",
-      toSurface: "10",
-    },
-  ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.45,
     description:
-      "Static infinity only. Fixed image z79.56mm; source and maker focus descriptions do not establish an authored finite law. No retail distance transplanted.",
+      "Unit focus: the whole optical unit moves forward on the helicoid, so only the back focus changes. The patent publishes the infinity state alone. The 0.45 m close state (object to image, the maker's minimum focus distance) is derived paraxially and is not a patent state: back focus 37.71 to 44.847 mm (7.14 mm extension), magnification -0.143x.",
   },
+  gaps: { "14": { label: "BF", values: [[37.71, 44.8472]] } },
   aperture: {
     nominalFNumber: 1.4,
     fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
@@ -265,6 +258,21 @@ const LENS_DATA = {
     fullFieldDeg: 46.0,
     maxTraceFieldDeg: 23.0,
   },
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "2" },
+    { text: "G2", fromSurface: "3", toSurface: "4" },
+    { text: "G3", fromSurface: "5", toSurface: "6" },
+    { text: "G4", fromSurface: "7", toSurface: "10" },
+    { text: "G5", fromSurface: "11", toSurface: "12" },
+    { text: "G6", fromSurface: "13", toSurface: "14" },
+  ],
+  doublets: [
+    {
+      text: "T1",
+      fromSurface: "7",
+      toSurface: "10",
+    },
+  ],
   layout: {
     yScFill: 0.78,
   },
