@@ -1,136 +1,126 @@
 ## Patent Reference and Design Identification
 
 **Patent:** JP S40-028384 B\
-**Filed:** May29,1963\
-**Published:** December16,1965 (examined application publication)\
+**Filed:** May 29, 1963\
+**Published:** December 16, 1965 (examined application publication)\
 **Inventors:** Tomokazu Kazamaki; Yasuo Takahashi\
 **Applicant:** Asahi Kogaku Kogyo Co., Ltd.\
 **Title:** Large-aperture lens with long back focus (バックフォーカスの長い大口径レンズ)\
-**Priority / application context:** Application昭38-27523 / JP1963-027523\
-**Example details:** Example1 (第1実施例), original PDFpage2; all lengths, including printedBF75.42, uniformly scaled0.5×.
+**Application Number:** 昭38-27523 (JP 1963-027523)\
+**Example details:** Example 1 (第1実施例), page 2; F = 100, 1:1.4, 46° full field. All lengths, including the printed back focus of 75.42, are scaled by 0.5 to f = 50 mm.
 
-The original Asahi Product358 service booklet identifies the50mm/F1.4 Super-Takumar and lists eight physical glass pieces, including the distinctive L04/L05/L06 triplet assembly, matching this patent’s eight-element/six-group layout. The patent’s F1.4 and46° full field also fit the product family. The0.5× interpretation of nativef100 is explicit; the primary service drawing does not select uniquely between the patent’s examples. This is a Grade B probable family match. Product378 is the separate seven-element version and is excluded, as are secondary Beam42 model assumptions.
+The patent names no product. Its link to the original Super-Takumar 50mm f/1.4 rests on converging evidence:
 
-The original names are風巻友一 and高橋泰夫. Structured Latin display uses the existing corpus spellings Tomokazu Kazamaki and Yasuo Takahashi; the selected Japanese page itself does not print those romanizations. Applicant representative松本三郎 is not substituted as inventor. This is the examined publication JP S40-028384 B, not an assertion that a separately listed later registration was inspected. Example2’s separately verified R6+33.228 remains separate; Example1 R6+32.577 is unchanged. The8/6 factory association does not identify the table as a measured factory prescription.
+1. Asahi's service parts list for Product No. 358, the Super-Takumar 1:1.4 50mm, lists eight lenses, L01 to L08, and supplies L04, L05 and L06 as one "4th lens assembly". Its exploded illustration places the iris between L03 and L04. The patent has eight elements in six groups, with a cemented triplet behind the stop.
+2. The patent's 1:1.4 aperture, 46° field and back focus above 70% of the focal length fit a 50 mm f/1.4 normal lens for a single-lens reflex.
+3. The applicant is Asahi, and the 1963 filing precedes the lens's 1964 release.
+
+Example 2 fits the product equally well. It has the same layout and differs mainly in L7, which is biconvex (r11 = +1020.000) rather than a meniscus, and in the glass of L5 to L8. Neither the service booklet nor public specifications separate the two examples; Example 1 is modeled as the first worked example. The match is one of layout and specification: the table is a patent example, not a published factory prescription. The later seven-element Super-Takumar 50mm f/1.4 (Product No. 378) is a different design.
+
+The publication prints the inventors as 風巻友一 and 高橋泰夫. The romanized names follow Kazamaki and Takahashi's later US 3,451,745.
 
 ## Optical Architecture
 
-Eight spherical elements in six air groups form an asymmetric high-speed normal-lens arrangement. Three front singlets precede the central diaphragm space. The rear member begins with a cemented L4/L5/L6 triplet, followed by two separate positive rear elements. The triplet and long back focus distinguish this candidate from the later seven-element production version.
+Eight spherical elements in six groups form an asymmetric high-speed normal lens. Three front singlets, two positive menisci and a negative meniscus, precede the 12.5 mm air space that holds the iris. Behind it sit a cemented L4/L5/L6 triplet, weakly negative as a whole (f = −103.2 mm), and two separate positive elements. The patent's stated aim is a back focus above 70% of the focal length at 1:1.4 and 46°, where conventional 50 mm designs of the time stopped at about 35 mm; this example gives 37.71 mm, 75% of f. The triplet and long back focus distinguish this design from the later seven-element version.
 
 ## Element-by-Element Analysis
 
 ### L1 — Positive Meniscus
 
-nd = 1.80610, νd = 40.7. Glass: Unmatched literal patent glass. f = +90.90865mm (isolated paraxial element at the model scale).
+nd = 1.80610, νd = 40.7. Glass: NBFD13 (HOYA), catalog equivalent. f = +90.91 mm.
 
-A high-index positive front meniscus collects the wide-aperture bundle.
+A high-index positive front meniscus, convex to the object, collects the wide-aperture bundle.
 
 ### L2 — Positive Meniscus
 
-nd = 1.80610, νd = 40.7. Glass: Unmatched literal patent glass. f = +59.79264mm (isolated paraxial element at the model scale).
+nd = 1.80610, νd = 40.7. Glass: NBFD13 (HOYA), catalog equivalent. f = +59.79 mm.
 
 A second high-index positive meniscus provides substantial convergence before the front negative member.
 
 ### L3 — Negative Meniscus
 
-nd = 1.74077, νd = 27.7. Glass: Unmatched literal patent glass. f = -36.39141mm (isolated paraxial element at the model scale).
+nd = 1.74077, νd = 27.7. Glass: E-FD13 (HOYA), catalog equivalent. f = −36.39 mm.
 
-The lower-Abbe negative meniscus faces the broad central gap and redistributes the front member’s convergence. Its strongly curved rear surface limits geometrically usable cap size.
+The lower-Abbe negative meniscus faces the broad central gap and redistributes the front member's convergence. Its strongly curved rear face (r = 16.29 mm) limits how large its rim and the neighboring iris can be.
 
 ### L4 — Biconcave Negative
 
-nd = 1.74077, νd = 27.7. Glass: Unmatched literal patent glass. f = -21.20924mm (isolated paraxial element at the model scale).
+nd = 1.74077, νd = 27.7. Glass: E-FD13 (HOYA), catalog equivalent. f = −21.21 mm.
 
 The front negative component of the cemented triplet opposes the central positive component.
 
 ### L5 — Biconvex Positive
 
-nd = 1.78590, νd = 44. Glass: Unmatched literal patent glass. f = +18.82971mm (isolated paraxial element at the model scale).
+nd = 1.78590, νd = 44.0. Glass: NBFD11 (HOYA), catalog equivalent. f = +18.83 mm.
 
-The thick positive triplet core uses high-index, larger-Abbe glass than its first neighbor and supplies substantial rear-member power.
+The thick positive triplet core uses high-index, larger-Abbe glass than its first neighbor and carries the strongest positive power in the lens. Its two faces meet at a height of 14.05 mm, which limits the axial beam wide open (see Aperture and Stop).
 
 ### L6 — Negative Meniscus
 
-nd = 1.70154, νd = 41.1. Glass: Unmatched literal patent glass. f = -44.10154mm (isolated paraxial element at the model scale).
+nd = 1.70154, νd = 41.1. Glass: BAFD7 (HOYA), catalog equivalent. f = −44.10 mm.
 
-The rear negative triplet component completes the three-glass assembly; isolated element powers are descriptive and are not cemented-group focal lengths.
+The rear negative member, convex to the image, completes the three-glass assembly. The element focal lengths are those of each element alone in air; the cemented triplet as a whole is f = −103.2 mm.
 
 ### L7 — Positive Meniscus
 
-nd = 1.78590, νd = 44. Glass: Unmatched literal patent glass. f = +64.16044mm (isolated paraxial element at the model scale).
+nd = 1.78590, νd = 44.0. Glass: NBFD11 (HOYA), catalog equivalent. f = +64.16 mm.
 
 The separate high-index positive rear meniscus adds convergence after the triplet.
 
 ### L8 — Biconvex Positive
 
-nd = 1.78590, νd = 44. Glass: Unmatched literal patent glass. f = +95.14523mm (isolated paraxial element at the model scale).
+nd = 1.78590, νd = 44.0. Glass: NBFD11 (HOYA), catalog equivalent. f = +95.15 mm.
 
-The final positive biconvex element completes the rear member while preserving the long source back focus.
+The final positive biconvex element completes the rear member while preserving the long back focus.
 
 ## Glass Identification and Selection
 
-The publication explicitly defines the mean refractive index at the yellow helium d line and gives Abbe numbers. The authored values remain literal, with `indexReference: "d"`. No vendor identity, Sellmeier coefficients, measured secondary spectrum, anomalous-dispersion or APO certification is inferred. The index/Abbe palette supports a qualitative chromatic balancing discussion; the validation below is monochromatic.
+The publication gives refractive indices at the d line and Abbe numbers. Each pair matches a current HOYA catalog glass, which the model uses for dispersion. These are catalog equivalents; the 1960s production melts and their supplier are not identified. No anomalous partial dispersion is claimed.
 
-| Element | nd | νd | Glass identity |
+| Elements | nd | νd | Catalog equivalent |
 |---|---:|---:|---|
-| L1 | 1.80610 | 40.7 | Unmatched literal source |
-| L2 | 1.80610 | 40.7 | Unmatched literal source |
-| L3 | 1.74077 | 27.7 | Unmatched literal source |
-| L4 | 1.74077 | 27.7 | Unmatched literal source |
-| L5 | 1.78590 | 44 | Unmatched literal source |
-| L6 | 1.70154 | 41.1 | Unmatched literal source |
-| L7 | 1.78590 | 44 | Unmatched literal source |
-| L8 | 1.78590 | 44 | Unmatched literal source |
+| L1, L2 | 1.80610 | 40.7 | NBFD13 (HOYA), dense lanthanum flint |
+| L3, L4 | 1.74077 | 27.7 | E-FD13 (HOYA), dense flint (SF13 type) |
+| L5, L7, L8 | 1.78590 | 44.0 | NBFD11 (HOYA), dense lanthanum flint |
+| L6 | 1.70154 | 41.1 | BAFD7 (HOYA), dense barium flint |
+
+The patent's condition 0.5 ≤ V4/V5 ≤ 0.75 governs the triplet's front pair; here V4/V5 = 27.7/44.0 = 0.63. The patent ties it to avoiding g-line overcorrection of the marginal rays under its condition on r9, the L5/L6 junction.
 
 ## Focus Mechanism
 
-This authored model is static infinity only. The canonical infinity state uses `closeFocusM: 1e15`; it does not define a near conjugate, interpolate a cam or transplant a retail focusing distance. The fixed absolute image plane is z79.560000000000mm after S1. No finite-conjugate or full-spectrum performance is claimed.
+The production lens focuses by helicoid: the whole optical unit moves forward, to a minimum distance of 0.45 m. The patent publishes the infinity state only. The model's close state is derived paraxially for 0.45 m from object to image plane and is not a patent state. All internal spacings stay fixed; only the back focus changes.
 
-## Aperture and Stop Reconstruction
+| State | Back focus (mm) | Magnification |
+|---|---:|---:|
+| Infinity (patent) | 37.71 | 0 |
+| 0.45 m (derived) | 44.847 | −0.143× |
 
-EP17.8571mm times1.10 gives19.6429mm first anchor, rounded19.6. Fig1 approximate middle/rear ratios.86/.79/.82/.83/.81 are refined BEFORE tracing for exact cap slope, positive edge thickness and source cross-gap clearance. L3cap14.2 and triplet front12.5 are smaller than schematic envelopes because the strong source curvatures would otherwise overlap; optical-clear-cap versus physical envelope ambiguity retained. L7/L8cap16.4. No performance-selected change.
+The lens moves 7.14 mm forward between the two states.
 
-The physical-surface SD vector in source order is `[19.6, 19.6, 17.0, 17.0, 14.2, 14.2, 12.5, 12.8, 12.8, 12.8, 16.4, 16.4, 16.4, 16.4]`mm. The virtual STO has no authored radius: the normal ordinary-prime EFL/F-number rule sets the physical iris. The nominal stop divides the entire12.5mm source gap after S6 at fraction0.5, preserving its total. Source figures support the gap, not an exact calibrated station or blade fit. The nominal position was selected from source and exact geometry before any real-ray or MTF calculation.
+## Aperture and Stop
 
-| Gap fraction | Stop z mm | f/1.4 iris radius mm | Before / after disk clearance mm | Decision |
-|---:|---:|---:|---:|---|
-| 0.35 | 16.87500000 | 12.82674631 | -1.87408711 / 3.22722204 | Rejected: intersects glass |
-| 0.48 | 18.50000000 | 12.61067669 | 0.02101336 / 1.60222204 | Feasible hypothesis |
-| 0.5 | 18.75000000 | 12.57743521 | 0.31154135 / 1.35222204 | Feasible hypothesis (nominal) |
-| 0.52 | 19.00000000 | 12.54419372 | 0.60180491 / 1.10222204 | Feasible hypothesis |
-| 0.65 | 20.62500000 | 12.32812410 | 2.48227797 / -0.36566780 | Rejected: intersects glass |
+The patent prints no clear apertures and does not draw the iris; all semi-diameters and the stop position are inferred. The front rim (19.6 mm) is the f/1.4 entrance-pupil radius, 17.86 mm, plus 10%. The other rims follow the proportions of Fig. 1, limited by edge thickness and the air gaps. In surface order they are `[19.6, 19.6, 17.0, 17.0, 14.55, 14.2, 12.5, 14.03, 14.04, 15.35, 16.4, 16.4, 16.4, 16.4]` mm. L3's rear face and L4's front face stay small because their strong curvatures close in on the iris.
 
-The full operating disk was checked against both exact neighboring caps at every advertised aperture. Invalid proposals were retained and excluded from tracing. Feasible cases pass the normal native geometry and render checks with zero hidden trim. No SD was enlarged after tracing.
+The iris sits at the middle of the 12.5 mm air space between L3 and L4, where Asahi's exploded illustration also places it. Its radius follows from the f-number. Positions from about 0.48 to 0.62 of the gap clear both neighboring faces with the f/1.4 iris:
 
-## Infinity Validation
+| Position in gap | Iris radius at f/1.4 (mm) | Clearance to L3 / L4 (mm) | Result |
+|---:|---:|---:|---|
+| 0.35 | 12.827 | −1.874 / 3.227 | Iris meets L3 |
+| 0.48 | 12.611 | 0.021 / 1.602 | Clear |
+| 0.50 | 12.577 | 0.312 / 1.352 | Clear (modeled) |
+| 0.52 | 12.544 | 0.602 / 1.102 | Clear |
+| 0.65 | 12.328 | 2.482 / −0.366 | Iris meets L4 |
 
-Independent reduced-angle matrix and physical-slope propagation give EFL49.997881077977mm and paraxial BFL37.707809308501mm. The printed BFL is retained. The adopted final gap is37.710000000000mm; fixed-plane minus computed paraxial-plane residual is+0.002190691499mm, unapplied. Source radii, thicknesses and glass values were not retuned.
+Wide open, L5 rather than the iris limits the axial beam. Its faces (r = +110 and −16.5 mm, 8.75 mm apart on axis) meet at a height of 14.05 mm, while the f/1.4 marginal ray would cross them at 14.07 mm. L5's rims stop at 14.03 and 14.04 mm, a knife edge, as Fig. 1 draws it. L3's front face (14.55 mm) and L6's rear face (15.35 mm) are opened just enough for the beam L5 passes. About 96% of the f/1.4 beam passes on axis, an effective f/1.43; the share falls to about 81% at 11.5° and 40% at the 23° field edge.
 
-The normal native scalar sheared-pupil diffraction estimator used literal reference indices at587.5618nm, reference spectrum, design focus and zero applied image shift. These are conditional model curves and native sampling-convergence results; they are not an independent physical-OPL reference, continuum error bound or measurement of a factory lens. No withdrawn1D OPL workflow is used. All sampled frequencies0/10/20/30/40/50lp/mm and prior-grid arrays are retained in the evidence.
+## Model Scope and Limitations
 
-Fields0/11.5/23° are the exact patent angles. They were mapped by actual native chief heights, with a private metadata-only coordinate window where necessary. That window is not delivered as a factory image-circle claim. The generic full-frame native reference radius is21.65mm; the physical36×24mm corner is√468≈21.63330765mm. Neither is assumed equal to the source/hypothesized field edge.
+The model's focal length is 49.998 mm and its paraxial back focus 37.708 mm, against the patent's 50.00 and 37.71 mm at this scale. The image plane uses the printed back focus, 0.002 mm behind paraxial focus. The patent tabulates Seidel coefficients for each surface of Example 1: spherical aberration, coma, astigmatism, Petzval sum and distortion. The transcribed prescription reproduces them to the printed four decimals. The patent computed them with the pupil at the first surface, so they do not locate the iris. Distortion at 23° is −2.7%, matching Fig. 2, and the zonal spherical aberration of about −0.07 mm matches the enlarged plot of Fig. 5.
 
-| f-number | Angle deg | Height / native21.65 fraction | Grid | Max consecutive Δ | S/T10 | S/T30 | S/T50 |
-|---:|---:|---:|---:|---:|---:|---:|---:|
-| 1.4 | 0.000000 | 0.000000 / 0.000000 | 128 | 0.004636408 | 0.798368 / 0.798368 | 0.047802 / 0.047802 | 0.097611 / 0.097611 |
-| 1.4 | 11.499973 | 10.101956 / 0.466603 | 256 | 0.004240682 | 0.583055 / 0.492158 | 0.322169 / 0.334328 | 0.100806 / 0.268713 |
-| 1.4 | 23.000000 | 20.657043 / 0.954136 | 128 | 0.007508567 | 0.159743 / 0.433584 | 0.043854 / 0.210000 | 0.014882 / 0.112465 |
-| 8 | 0.000000 | 0.000000 / 0.000000 | 32 | 0.007017805 | 0.940611 / 0.940611 | 0.821455 / 0.821455 | 0.702457 / 0.702457 |
-| 8 | 11.499973 | 10.101956 / 0.466603 | 32 | 0.006232764 | 0.931771 / 0.936424 | 0.768200 / 0.800150 | 0.605849 / 0.663660 |
-| 8 | 23.000000 | 20.657043 / 0.954136 | 32 | 0.009820079 | 0.892564 / 0.812653 | 0.570519 / 0.238916 | 0.314066 / 0.060625 |
-
-Across this trio, all36 source/envelope-field results across each lens’s three feasible stop hypotheses and the nominal f/8 comparison converged through50lp/mm under the unchanged0.01 native grid criterion, with zero final failed/unaimed/unresolved-in-beam/unknown-flux counts. That does not mean loss-free transmission. The nominal16-cell pupil has:
-
-| Angle deg | Valid / blocked of208 | Unaimed / unresolved | Raw failures (overlap) |
-|---:|---:|---:|---:|
-| 0 | 148 / 60 | 0 / 0 | 0 |
-| 11.5 | 132 / 76 | 0 / 0 | 0 |
-| 23 | 66 / 142 | 0 / 0 | 26 |
-
-Across the three lenses,104 retained raw noBracket traces were separately resolved from their saved outgoing/launch states by an analytical sphere-quadratic witness: every correct-branch intersection misses the frozen finite cap (or the sphere has no forward intersection). Original native failures and clipEvents remain unchanged. This is conditional finite-cap evidence, not proof of a factory rim. Stop sensitivity changes losses and curves; the nominal stop was not selected by contrast. In particular, the eight-element Takumar has substantial axial and edge losses at f/1.4 under its inferred caps. No finite-focus or full-spectrum inference follows from these tests.
+The patent's 46° full field is the coverage modeled. At 23° the chief ray reaches an image height of 20.66 mm, slightly inside the 21.63 mm half-diagonal of the 36 × 24 mm frame. The rims, the iris position and the close-focus state are inferred, as described above, and are not factory data.
 
 ## Sources and References
 
-1. [JP S40-028384 B, Large-aperture lens with long back focus (バックフォーカスの長い大口径レンズ)](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S40-028384/12/en); complete acquired primary PDF, literal table and original figure retained in the private evidence.
-2. Original Asahi Product358 service parts booklet, selected cover and PDFpages3/4; retained primary scans. Original Honeywell1965 catalog chronology is corroboration only.
-3. Current repository authoring specifications, source packet hashes, exact first-order/geometry/pupil/MTF arrays, independent analytical failure witnesses and all rebuild scripts accompany the audit package.
+1. [JP S40-028384 B, Large-aperture lens with long back focus (バックフォーカスの長い大口径レンズ)](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S40-028384/12/en), Examples 1 and 2, Seidel coefficient tables, Figs. 1–6.
+2. Asahi Optical Co., Product No. 358 Super-Takumar 1:1.4 50mm, service parts booklet: exploded illustration and list of service parts. A 1965 Honeywell catalog supports the production dates.
+3. [Cinelenswiki, Super-Takumar 50mm f/1.4 (version 1)](https://cinelenswiki.com/_export/xhtml/lens:penm42supertak50mmf1.4ver1): 8 elements in 6 groups, 0.45 m minimum focus, 49 mm filter, M42 mount.

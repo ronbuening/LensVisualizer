@@ -1,16 +1,17 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Grade B patent-family reconstruction; factory example identity unproved.
- * Literal helium-d prescription retained with explicit uniform scale; fixed infinity plane.
- * Missing clear caps and stop coordinates were frozen from source figures and analytic
- * geometry before tracing. No contrast-driven retuning or finite-focus prescription.
+/** JP S40-028384 B, Example 1 (F = 100, 1:1.4, 46° full field), scaled uniformly by 0.5 to f = 50 mm.
+ * Radii, thicknesses, d-line indices, Abbe numbers and the printed back focus (75.42, here 37.71 mm) are as published.
+ * Semi-diameters and the iris position are inferred; the iris sits at the middle of the 12.5 mm L3–L4 air space.
+ * L5's faces meet at a height of 14.05 mm, so wide open the rims pass the axial beam to about f/1.43.
+ * The patent gives the infinity state only; the 0.45 m unit-focus state is derived.
  */
 const LENS_DATA = {
   schema: 2,
   key: "pentax-super-takumar-50mm-f14-eight-element",
   maker: "Pentax",
   name: "PENTAX SUPER-TAKUMAR 50mm f/1.4 (Eight-Element)",
-  subtitle: "JP S40-028384 B Example 1; Grade B probable family; inferred iris/caps; static infinity only.",
+  subtitle: "JP S40-028384 B — Example 1; patent design of the eight-element production lens (Example 2 fits equally)",
   catalog: {
     lensMounts: ["m42"],
     imageFormat: "135-full-frame",
@@ -25,12 +26,10 @@ const LENS_DATA = {
       design: 1.4,
     },
     specs: [
-      "Patent-based reconstruction; exact factory prescription unproved",
-      "Inferred clear apertures and stop location; clipping conditional on these hypotheses",
-      "Infinity only; no finite-focus law",
-      "Patent full field46°",
-      "Original Product358 eight-element/six-group candidate; Example1 selector nonunique",
-      "Uniform0.5× model; E2 correction and seven-elementProduct378 excluded",
+      "8 ELEMENTS / 6 GROUPS",
+      "DESIGN f = 50 mm",
+      "DESIGN F/1.4",
+      "ALL SPHERICAL",
     ],
   },
   source: {
@@ -54,7 +53,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "NBFD13 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 90.90865447475143,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Weak positive front meniscus, convex to the object.",
     },
     {
       id: 2,
@@ -66,7 +65,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "NBFD13 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 59.79264418661443,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Stronger positive meniscus; with L1 it converges the full-aperture beam.",
     },
     {
       id: 3,
@@ -78,7 +77,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "E-FD13 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -36.39140622756343,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Negative meniscus whose strongly curved rear face faces the iris.",
     },
     {
       id: 4,
@@ -90,7 +89,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "E-FD13 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -21.209241903042184,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Biconcave front element of the cemented triplet behind the iris.",
       cemented: "T1",
     },
     {
@@ -103,7 +102,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "NBFD11 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 18.8297083053042,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Thick biconvex core of the triplet; its faces meet at 14.05 mm, which sets the wide-open axial limit.",
       cemented: "T1",
     },
     {
@@ -116,7 +115,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "BAFD7 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -44.10153734174763,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Negative meniscus rear element of the triplet, convex to the image.",
       cemented: "T1",
     },
     {
@@ -129,7 +128,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "NBFD11 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 64.16043592288995,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Positive meniscus with its stronger convex face toward the image.",
     },
     {
       id: 8,
@@ -141,7 +140,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "NBFD11 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 95.14522510118854,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Biconvex rear element, stronger face toward the image; ends the long back focus.",
     },
   ],
   surfaces: [
