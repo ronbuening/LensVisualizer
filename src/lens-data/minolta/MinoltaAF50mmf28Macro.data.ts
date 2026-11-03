@@ -160,26 +160,26 @@ const LENS_DATA = {
       label: "3",
       R: 20.74,
       d: 2.461,
-      sd: 8.4,
+      sd: 8.6,
       medium: 2,
     },
     {
       label: "4",
       R: 55.0315,
       d: 1.015,
-      sd: 8.4,
+      sd: 8.6,
     },
     {
       label: "5",
       R: -572.108,
       d: 3.7505,
-      sd: 8,
+      sd: 8.2,
       medium: 3,
     },
     {
       label: "6",
       R: 17.422,
-      sd: 8,
+      sd: 8.2,
     },
     {
       label: "STO",
@@ -189,21 +189,21 @@ const LENS_DATA = {
       label: "7",
       R: -17.3265,
       d: 2.629,
-      sd: 7.5,
+      sd: 7.8,
       medium: 4,
     },
     {
       label: "8",
       R: -65.678,
       d: 3.449,
-      sd: 7.5,
+      sd: 7.8,
       medium: 5,
     },
     {
       label: "9",
       R: -19.8075,
       d: 0.1455,
-      sd: 7.5,
+      sd: 7.8,
     },
     {
       label: "10",
@@ -235,7 +235,7 @@ const LENS_DATA = {
     keyframes: [0, 1],
     published: [1],
     description:
-      "JP S59-228220 A Embodiment 3 tabulates finite intergroup gaps and magnification. Object distance is derived by two independently checked paraxial methods, not printed. Image gap is solved from literal beta=-.997, not undefined LB. Fixed-sensor registration moves all three groups objectward; global offset is documented. Only endpoints have explicit conjugates; slider interpolation is an implementation approximation, not a published cam law. Physical iris radius is held at the infinity-derived value; near effective F-number is diagnostic, not a replacement nominal aperture.",
+      "JP S59-228220 A Embodiment 3 tabulates finite intergroup gaps and magnification. Object distance is derived by two independently checked paraxial methods, not printed. The near image gap is solved from the printed β = −0.997. L.B. and L.B.′ are the printed back focus: the infinity image gap matches L.B./2 (39.029 mm) within 0.002 mm, and the β-solved near gap sits 0.022 mm beyond L.B.′/2 (44.682 mm). Fixed-sensor registration moves all three groups objectward; global offset is documented. Only endpoints have explicit conjugates; slider interpolation is an implementation approximation, not a published cam law. Physical iris radius is held at the infinity-derived value; near effective F-number is diagnostic, not a replacement nominal aperture.",
     conjugates: [
       {
         zoomStation: 0,
