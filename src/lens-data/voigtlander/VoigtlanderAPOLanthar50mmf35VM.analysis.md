@@ -86,7 +86,7 @@ L7 is the principal positive collector at the rear of the partially symmetric co
 
 ### L8 — Negative Meniscus, convex to image
 
-`nd = 1.68893`, `νd = 31.16`. Glass: `689312 — FD8/SF8/S-TIM28-class dense flint; vendor identity not unique`. Standalone `f = −127.948 mm`.
+`nd = 1.68893`, `νd = 31.16`. Glass: `689312 — SF8/S-TIM28-class dense flint; vendor identity not unique`. Standalone `f = −127.948 mm`.
 
 L8 is the image-side outer negative meniscus. It is substantially weaker than the central positive elements and has a longer-magnitude focal length than L1. The patent treats L1 and L8 as the outer negative pair that moderates Petzval and distance-dependent behavior around the central core (¶0027–0029).
 
@@ -105,7 +105,7 @@ The patent identifies the optical materials only by d-line index and Abbe number
 | L5 | 1.56732 | 42.84 | 567428 FL6/S-TIL26-class light flint | Negative member of cemented L5/L6 pair |
 | L6 | 1.49700 | 81.61 | 497816 fluorophosphate crown class | Positive member of cemented L5/L6 pair |
 | L7 | 1.71300 | 53.94 | 713539 LAK8/LAC8-class lanthanum crown | Rear-core positive collector |
-| L8 | 1.68893 | 31.16 | 689312 FD8/SF8/S-TIM28-class dense flint | Rear outer negative meniscus |
+| L8 | 1.68893 | 31.16 | 689312 SF8/S-TIM28-class dense flint | Rear outer negative meniscus |
 
 The commercial `APO-LANTHAR` designation is part of the production lens name. It is not treated here as a quantitative apochromatic-performance result. Cosina's section identifies four special-dispersion elements, but the selected patent does not publish `nC`, `nF`, `ng`, `Pg,F`, or `dPgF`, and no unique catalog glass was selected solely to obtain a Sellmeier model. The available data therefore supports only Abbe-based chromatic tracing.
 

@@ -667,6 +667,16 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for discontinued TAF4.",
   },
   {
+    name: "FD8",
+    vendor: "Hoya",
+    polynomial: [2.757781, -0.008616038, 0.0305392, 0.001049287, -1.17465e-6, 6.31118e-6],
+    nd: 1.688931,
+    vd: 31.158857,
+    PgF: 0.5945,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, FD8 NM/CD row; vendor formula-1 polynomial. It shares a six-digit code with E-FD8, so code6 is omitted.",
+  },
+  {
     name: "FD140",
     vendor: "Hoya",
     polynomial: [2.9851294, -0.014237988, 0.035496437, 0.0028457557, -0.00019006799, 0.000024309252],
