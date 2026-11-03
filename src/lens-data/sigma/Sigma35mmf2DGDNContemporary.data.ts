@@ -3,8 +3,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** JP 2021-165807 A (Sigma), Example 2, unscaled millimetres.
  * R, d, nd and νd are as printed; the aspheres use the patent's 1+K conic form
  * (K = 0 on all six faces) through A14. The stop position is printed; its radius
- * follows the design F/2.07. Semi-diameters are inferred from Fig. 6 and ray
- * clearance; S20 is set so the 21.63 mm corner chief ray passes.
+ * follows the design F/2.07. Semi-diameters are inferred from Fig. 6 and
+ * checked against the Fig. 9 fan ends. L9's rear and L10's front caps end at
+ * 11.5 mm, just inside the 11.65 mm height where the two faces meet, with the
+ * flat lands Fig. 6 draws out to 12.5 and 13.4 mm; gapSagFrac 0.98 admits that
+ * pair (surfaces 18 and 19).
  * Focus: infinity and the printed 1517 mm state (d0 = 1438.33 mm; d0 plus the
  * 79.1482 mm track gives 1517.48 mm). G2 moves; BF stays 17.8981 mm.
  */
@@ -340,27 +343,29 @@ const LENS_DATA = {
       label: "17",
       R: 71.2299,
       d: 0.9,
-      sd: 11.0,
+      sd: 12.5,
       medium: 9,
     },
     {
       label: "18",
       R: 25.5964,
       d: 6.2888,
-      sd: 11.0,
+      sd: 11.5,
+      rimExtensionSd: 12.5,
     },
     {
       label: "19",
       R: -21.2285,
       d: 0.9,
-      sd: 11.0,
+      sd: 11.5,
+      rimExtensionSd: 13.4,
       medium: 10,
     },
     {
       label: "20",
       R: -30.5871,
       d: 17.8981,
-      sd: 11.36,
+      sd: 13.4,
     },
   ],
   focus: {
@@ -392,6 +397,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.78,
   },
+  checks: { gapSagFrac: 0.98 },
   groups: [
     {
       text: "G1",

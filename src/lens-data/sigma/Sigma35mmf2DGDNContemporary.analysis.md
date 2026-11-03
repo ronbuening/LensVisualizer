@@ -140,7 +140,7 @@ The patent prints coefficients through A14 for every face, with zeros where a te
 
 The patent prints no clear apertures. The model's semi-diameters follow the element proportions of Fig. 6; the L1 rear face has a 13.8 mm optical zone and the drawn land out to 16.5 mm. The stop position is printed, and its radius (10.14 mm) is set by the design F/2.07.
 
-The rear pair limits the corner. L9's rear face and L10's front face meet near 11.6 mm height, so surfaces 17–19 stay at 11.0 mm, below the taller blanks Fig. 6 draws there. Surface 20 is 11.36 mm, the height at which the chief ray to the 21.63 mm corner (11.35 mm) just passes; the upper half of the corner beam is cut at that surface at every aperture.
+The rear pair limits the corner. L9's rear face and L10's front face meet at 11.65 mm height, so both optical faces end at 11.5 mm. Beyond them the flat lands Fig. 6 draws carry L9 out to its 12.5 mm edge and L10 out to 13.4 mm, where L10's rear face also ends; L9's front face runs to 12.5 mm. The upper half of the wide-open beam at 90–100% field is cut at surface 19, and the chief ray to the 21.63 mm corner crosses it at 10.62 mm.
 
 | Faces        | Semi-diameter (mm) |
 | ------------ | ------------------ |
@@ -153,14 +153,16 @@ The rear pair limits the corner. L9's rear face and L10's front face meet near 1
 | STO          | 10.14 (F/2.07)     |
 | 13A, 14A     | 10.6               |
 | 15A, 16A     | 12.4               |
-| 17–19        | 11.0               |
-| 20           | 11.36              |
+| 17           | 12.5               |
+| 18           | 11.5 (land 12.5)   |
+| 19           | 11.5 (land 13.4)   |
+| 20           | 13.4               |
 
 ## Model Scope and Limitations
 
 The model gives EFL = 35.993 mm against the patent's 35.99 mm, and a paraxial back focus 0.0005 mm longer than the printed 17.8981 mm; the image plane stays at the printed BF. On-axis spherical aberration (−0.01 mm at full aperture), astigmatism at ω = 31.77° (sagittal −0.14 mm, meridional −0.34 mm) and distortion (−2.95%) agree with the patent's Fig. 7.
 
-The corner vignetting comes from the inferred rims. With them, the meridional beam at full field is narrower than the patent's Fig. 9 fans on the side clipped at surface 20, and the geometric corner illumination at f/2.07 is about 36%. The production lens's rims, and the detail differences between the patent and Sigma's drawing, are not known.
+The corner vignetting comes from the inferred rims. Geometric corner illumination at f/2.07 is about 53% at infinity and 55% at the printed close state. At full field the meridional beam reaches the same upper limit as the patent's Fig. 9 fans (+0.25 of the pupil radius); at 50–90% field and on the lower side it is a little wider than the fans. The fan ends point to clear radii of about 10.6 mm at surface 15 and 12.5 mm at surface 8, inside the 12.1 mm and 13.8 mm that Fig. 6 draws there; the model keeps the drawn sizes. The production lens's rims, and the detail differences between the patent and Sigma's drawing, are not known.
 
 ## Sources
 
