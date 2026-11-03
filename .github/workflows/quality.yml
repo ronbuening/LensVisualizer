@@ -39,7 +39,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run generate:metadata
-      - run: npm run typecheck
+      # generate:metadata has just written src/generated/, so skip the pretypecheck hook that would write it again.
+      # --ignore-scripts skips only pre/post hooks; the typecheck script itself still runs.
+      - run: npm run typecheck --ignore-scripts
 
   test-unit:
     runs-on: ubuntu-latest
@@ -97,6 +99,9 @@ jobs:
       # Every lens's beam search depends only on its own data and the code it imports. A pull request that changes
       # neither (Vitest's --changed follows the import graph, including the catalog glob) skips the corpus; pushes,
       # and pull requests touching dependencies, configs or this workflow, which that graph does not see, run all of it.
+      # The rim corpus imports nothing from src/generated/, so --ignore-scripts skips the pretest metadata hook. An
+      # import added later would fail on the missing file here rather than pass silently, since src/generated/ is not
+      # committed.
       - name: Run the rim-cut corpus
         env:
           EVENT: ${{ github.event_name }}
@@ -110,7 +115,7 @@ jobs:
             unseen='^(package(-lock)?\.json|vite\.config\.js|vitest\.[a-z]+\.config\.js|tsconfig[^/]*\.json|\.github/workflows/quality\.yml)$'
             if ! grep -qE "$unseen" <<<"$changed"; then args+=(--changed "origin/$BASE" --passWithNoTests); fi
           fi
-          npm run test -- "${args[@]}"
+          npm run test --ignore-scripts -- "${args[@]}"
 
   test-tooling:
     runs-on: ubuntu-latest
@@ -123,9 +128,10 @@ jobs:
           node-version: "24.15.0"
           cache: npm
       - run: npm ci
-      - run: npm run test:tooling
+      # Like the rim corpus, the tooling suite and the scripts it runs import nothing from src/generated/.
+      - run: npm run test:tooling --ignore-scripts
 
-  # Keep the existing required check name; every partition must pass before the build can start.
+  # Keep the existing required check name; it passes only when every test partition does.
   test:
     if: always()
     needs: [test-unit, test-rims, test-tooling]

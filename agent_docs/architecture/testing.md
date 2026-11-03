@@ -255,7 +255,10 @@ walks expand to current files; generated bundles are checked at their source ent
   (the catalog glob included) reaches skips the corpus; a diff touching `package.json`, the lockfile, Vite/Vitest or
   TypeScript configs or `quality.yml`, which that graph cannot see, and every push run all of it. `build` runs beside
   the checks; `deploy.yml` waits for the whole workflow.
-  Each job generates its own metadata. Add a file there only when it guards a tool that neither the build nor the app uses. The one exception is the
+  Only the unit job generates metadata, through `pretest`. The rim corpus and the tooling suite import nothing from
+  `src/generated/`, so their jobs add `--ignore-scripts`, which skips that hook and still runs the script. A rim or
+  tooling test that comes to need generated metadata fails in CI on the missing file; give its job a metadata step then.
+  Add a file to `TOOLING_TESTS` only when it guards a tool that neither the build nor the app uses. The one exception is the
   converter's corpus sweep (`__tests__/scripts/convertLensDataCorpus.test.ts`), which converts every catalog file both
   ways and is listed there so `npm run test` stays fast.
 
