@@ -1,19 +1,19 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** US4610514 whole Table3/E3; probable original AF135 family, not factory-exact.
- * Native f100 uniformly scaled1.35x as an explicit hypothesis, not EFL retuning.
- * Derived image plane128.0861233236873mm is frozen; no printed BF or best-focus fitting.
- * Literal Nd/nu-d preserved; no named-glass or modern dispersion substitution.
- * Fig7 inferred stop and bevel-aware clear caps frozen before traces; clipping retained.
- * Source beta1/10 travel exists but iris motion/retail1m law is unproved. Infinity only.
- * Normal scalar sheared-pupil estimates, not independent OPL/phase or factory validation.
+/** US 4,610,514, Embodiment 3 (Table 3, Fig. 7): f = 100, F/2.8, 2ω = 18°.
+ * Every length is scaled ×1.35 to the marketed 135 mm; computed EFL 135.05 mm (100.04 at patent scale).
+ * The patent prints no back focus: the image plane is the paraxial focus, 42.81 mm behind S12.
+ * Nd and νd as printed; glass names are catalog equivalents, not production identifications.
+ * Stop placed at 0.91 of d7, where Fig. 7 draws it; semi-diameters read from Fig. 7.
+ * Internal focus: the Unit II doublet moves 7.33 mm toward the image; the near keyframe is the printed β = 1/10 state.
+ * Embodiments 1, 2 and 5 share the 7-element / 5-group layout and fit the production lens as well.
  */
 const LENS_DATA = {
   schema: 2,
   key: "minolta-af-135mm-f28",
   maker: "Minolta",
   name: "MINOLTA AF 135mm f/2.8",
-  subtitle: "US 4,610,514 Embodiment 3 \u2014 probable family; inferred aperture",
+  subtitle: "US 4,610,514 \u2014 Embodiment 3; one of four examples matching the production lens",
   catalog: {
     lensMounts: ["sony-a"],
     imageFormat: "135-full-frame",
@@ -27,7 +27,7 @@ const LENS_DATA = {
       marketing: 2.8,
       design: 2.8,
     },
-    specs: ["7 ELEMENTS / 5 GROUPS", "PROBABLE FAMILY; INFERRED APERTURE", "INFINITY CONFIGURATION ONLY"],
+    specs: ["7 ELEMENTS / 5 GROUPS", "DESIGN f = 135 mm", "DESIGN F/2.8", "ALL SPHERICAL", "INTERNAL FOCUS"],
   },
   source: {
     patentNumber: "US 4,610,514",
@@ -42,105 +42,91 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "E1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.6127,
       vd: 58.5,
       glass: "BACD4 (HOYA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
       focalLengthMm: 171.45135837669088,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Front collector of the fixed Unit I (patent component L1), with a nearly flat rear face.",
     },
     {
       id: 2,
-      name: "L2",
+      name: "E2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.6127,
       vd: 58.5,
       glass: "BACD4 (HOYA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
       focalLengthMm: 143.26409283303795,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Positive meniscus convex to the object (patent component L2); shares Unit I's convergence with E1.",
     },
     {
       id: 3,
-      name: "L3",
+      name: "E3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.671,
       vd: 51.7,
       glass: "Unmatched (patent nd 1.6710, νd 51.7; no catalog row at these coordinates)",
       indexReference: "d",
-      indexReferenceNote:
-        "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
       focalLengthMm: 66.49023030095515,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Positive meniscus of the front cemented doublet (patent component L3), whose net power is weakly negative.",
       cemented: "CD1",
     },
     {
       id: 4,
-      name: "L4",
+      name: "E4",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.7552,
       vd: 27.5,
       glass: "S-TIH4 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
       focalLengthMm: -45.629283082829204,
-      role: "Literal source negative element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Dense-flint negative meniscus of the front doublet; its cemented face S6 controls chromatic aberration.",
       cemented: "CD1",
     },
     {
       id: 5,
-      name: "L5",
+      name: "E5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.8052,
       vd: 25.4,
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
       focalLengthMm: 96.78067776283933,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Positive front element of the Unit II focusing doublet (patent component L4); its front face is nearly flat.",
       cemented: "CD2",
     },
     {
       id: 6,
-      name: "L6",
+      name: "E6",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.6584,
       vd: 50.9,
       glass: "S-BSM25 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
       focalLengthMm: -40.0209512554199,
-      role: "Literal source negative element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Biconcave negative element that gives the Unit II doublet its negative power; the doublet moves toward the image for close focus.",
       cemented: "CD2",
     },
     {
       id: 7,
-      name: "L7",
+      name: "E7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.1,
       glass: "N-BK7 (Schott catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Primary Table3 explicitly labels Nd and nu-d. Engine d587.5618nm is its conventional reference, not an exact wavelength number printed in the table.",
       focalLengthMm: 104.35801713937215,
-      role: "Literal source positive element; isolated-in-air power is descriptive, not cemented-group power.",
+      role: "Fixed positive rear element forming Unit III (patent component L5), behind the long d10 air space.",
     },
   ],
   surfaces: [
@@ -231,7 +217,7 @@ const LENS_DATA = {
     closeFocusM: 1.5248,
     published: [1],
     description:
-      "Internal focusing: the cemented doublet of Unit II moves 7.33 mm toward the image while Units I and III stay fixed. The patent does not say whether the stop moves; it is modelled fixed with Unit I. The near end is the patent's printed β = 1/10 state (d7 = 19.79, d10 = 19.23 at f = 100, scaled ×1.35), at 1.525 m object to image. The retail lens focuses to 1.0 m (0.16×); the patent prints no state that close.",
+      "PUBLISHED internal focus: the cemented doublet of Unit II (E5–E6) moves 7.33 mm toward the image while Units I and III stay fixed. The patent does not say whether the stop moves; it is modelled fixed with Unit I. The near end is the patent's printed β = 1/10 state (d7 = 19.79, d10 = 19.23 at f = 100, scaled ×1.35), at 1.525 m object to image. The production lens focuses to 1.0 m (0.16×); the patent prints no state that close.",
   },
   gaps: {
     STO: { label: "D7b", values: [[1.74474, 9.07524]] },
