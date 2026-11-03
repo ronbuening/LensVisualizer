@@ -267,7 +267,7 @@ const LENS_DATA = {
     keyframes: [0, 1],
     published: [1],
     description:
-      "US 4,759,619 Embodiment 2 tabulates finite intergroup gaps and magnification. Object distance is derived by two independently checked paraxial methods, not printed. Front group and assumed camera plane fixed; beta residual retained. Only endpoints have explicit conjugates; slider interpolation is an implementation approximation, not a published cam law. Physical iris radius is held at the infinity-derived value; near effective F-number is diagnostic, not a replacement nominal aperture.",
+      "US 4,759,619 Embodiment 2 tabulates finite intergroup gaps and magnification. Object distance is derived by two independently checked paraxial methods, not printed. Front group and assumed camera plane fixed; beta residual retained. Only endpoints have explicit conjugates; slider interpolation is an implementation approximation, not a published cam law. Physical iris radius is held at the infinity-derived value; near effective F-number is diagnostic, not a replacement nominal aperture. Retail minimum focus is 0.25 m (maximum magnification 0.16×); the near end here is the patent's printed beta = -0.1 state (d4 38.618 → 27.728 at f = 100; rear group R moves 2.614 mm toward the object), about 0.323 m object to image, not the retail limit.",
     conjugates: [
       {
         zoomStation: 0,
