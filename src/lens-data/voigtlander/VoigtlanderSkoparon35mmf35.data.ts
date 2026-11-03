@@ -1,16 +1,19 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Grade B patent-family reconstruction; factory example identity unproved.
- * Literal helium-d prescription retained with explicit uniform scale; fixed infinity plane.
- * Missing clear caps and stop coordinates were frozen from source figures and analytic
- * geometry before tracing. No contrast-driven retuning or finite-focus prescription.
+/** VOIGTLÄNDER SKOPARON 35mm f/3.5 (Prominent): US 2,746,351 A, Table 2 / Fig. 4 (A. W. Tronnier).
+ * Table 2 is normalized to f = 1.000; every length is scaled ×35. Indices are the patent's helium d-line values.
+ * Table 2 states 1:3.4 (effective aperture 0.294 f); Fig. 4 and the production lens are f/3.5. The iris opens to f/3.4.
+ * The patent prints no back focus, field angle, stop position or semi-diameters. Back focus (32.28 mm) is computed from
+ * the prescription; the 63° full field is Voigtländer's figure; the stop sits 65% of the way through the diaphragm
+ * space a3, as drawn in Fig. 4; semi-diameters are inferred from Fig. 4 proportions, with the L3 rear face cut to
+ * 4.85 mm so it stays in front of the stop plane. No close-focus spacing is printed, so the model is static.
  */
 const LENS_DATA = {
   schema: 2,
   key: "voigtlander-skoparon-35mm-f35",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER SKOPARON 35mm f/3.5",
-  subtitle: "US 2,746,351 A Table 2; Grade B probable family; inferred iris/caps; static infinity only.",
+  subtitle: "US 2,746,351 A — Table 2; patent design matching the Prominent Skoparon",
   catalog: {
     lensMounts: ["voigtlander-prominent"],
     imageFormat: "135-full-frame",
@@ -24,14 +27,7 @@ const LENS_DATA = {
       marketing: 3.5,
       design: 3.4,
     },
-    specs: [
-      "Patent-based reconstruction; exact factory prescription unproved",
-      "Inferred clear apertures and stop location; clipping conditional on these hypotheses",
-      "Infinity only; no finite-focus law",
-      "Patent field absent; maker approximate full field 63.0° is an external operating-envelope hypothesis",
-      "Table2 F3.4 retained versus figure/retailF3.5; uniform35× model",
-      "Image plane independently derived; no printed back focus",
-    ],
+    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN f = 35 mm", "DESIGN F/3.4", "ALL SPHERICAL"],
   },
   source: {
     patentNumber: "US 2,746,351 A",
@@ -54,7 +50,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "FK3 (Schott; nearest catalog row to patent nd 1.46522, νd 65.2; production glass unspecified)",
       focalLengthMm: -203.58475365320373,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Low-index fluor-crown negative front meniscus (member I), separated from the converging group by the long air space A.",
     },
     {
       id: 2,
@@ -66,7 +62,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "N-SSK5 (Schott; nearest catalog row to patent nd 1.65770, νd 51.2; production glass unspecified)",
       focalLengthMm: 16.003573057625058,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "High-index plano-convex front element of the converging group II; its convex face closes the air space A.",
     },
     {
       id: 3,
@@ -78,7 +74,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "F5 (Schott; nearest catalog row to patent nd 1.60266, νd 38.4; production glass unspecified)",
       focalLengthMm: -11.528292048655821,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Biconcave negative element of group II, directly ahead of the diaphragm.",
     },
     {
       id: 4,
@@ -90,7 +86,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "J-BAF3 (Hikari; nearest catalog row to patent nd 1.58360, νd 46.2; production glass unspecified)",
       focalLengthMm: -17.34563237078953,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Biconcave negative front element of the rear cemented doublet, behind the diaphragm.",
       cemented: "D1",
     },
     {
@@ -103,7 +99,7 @@ const LENS_DATA = {
       indexReference: "d",
       glass: "LAC13 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 9.921142686918285,
-      role: "Literal patent element; isolated paraxial power is descriptive, not an independently removable cemented-group power.",
+      role: "Biconvex positive rear element of the cemented doublet and the strongest positive element in the lens.",
       cemented: "D1",
     },
   ],
