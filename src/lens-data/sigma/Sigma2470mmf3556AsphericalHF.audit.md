@@ -16,3 +16,23 @@ Original pages and selectedFigure 5 reopened at native/page resolution and 600 d
 Independently resolved rear flat lands S 2/S 13 extend existing clear caps 14.5/8.3 to outer 20/11 mm, following sourceL 1/L 6 blanks. These replace simplified bevels. All other air faces/compound rims inspected; current continuous L 2/resin 15, L 7 8.6 andG 3 10 mm retained. S 2 land does not enlarge clear aperture past the narrow S 2/S 3 gap; no resin wing or opaque interface land. No inferred cut introduced.
 
 Canonical/surface checks pass; image-circle zero undersized; all 201 centered corner and aperture stations clear/within 3%. Actual 9-stateSVG inspected,1203 source/intermediate control states finite with zero hidden trim. Common-field 16×16 lattice at 3 focus×3 zoom×5 fields:8706 retained/0 lost/0 gained, sampled counts not flux. R/d/asphere/stop/aperture/focus/zoom/tolerances unchanged. Source schematicG 1 remains taller than the feasible prescription; this limitation is retained instead of forced glass/coating geometry.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 2nd existing row (indices 0, 2, …, 200).
+- Focus: both keyframes kept (no change).
+- Published zoom stations remapped 0 → 0, 100 → 50, 200 → 100; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 201 × 2 = 402 | 101 × 2 = 202 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0011 mm | 0.0043 mm |
+| worst fixed-plane defocus at infinity | 0.0456 mm | 0.0458 mm |
+| worst focal-length label residual | 0.0012 mm | 0.0046 mm |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0043 mm (0.15 R), half-field ≤ 0.066°, stop radius ≤ 0.000 %, f-number ≤ 0.000 %, variable gaps ≤ 0.004 mm, axial diffraction MTF at 30 lp/mm -0.020 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+Text sync: no count or residual claims outside this log (the < 0.05 mm residuals quoted are at the printed stations).

@@ -136,11 +136,11 @@ The printed nd/νd pairs alone identify no supplier, coating or anomalous-disper
 
 ## Focus Mechanism and Distance-Label Limits
 
-The patent describes imageward G4 focusing and shows aberration curves at 0.9 m, but gives **no finite spacing table**. Olympus also specifies 0.9 m as the closest focus. Finite travel here is calculated for a 0.9 m object-to-image distance, with 17 focus positions spaced in inverse distance, and none of it is printed. The calculated shifts toward the image are 1.395 / 3.798 / 6.380 mm at WE / ST / TE. Only d20 and d24 change for focus, by equal and opposite amounts; the cover plate and image plane stay fixed. Finite MTF is unavailable because the patent publishes no finite configuration.
+The patent describes imageward G4 focusing and shows aberration curves at 0.9 m, but gives **no finite spacing table**. Olympus also specifies 0.9 m as the closest focus. Finite travel here is calculated for a 0.9 m object-to-image distance, with 9 focus positions spaced in inverse distance, and none of it is printed. The calculated shifts toward the image are 1.395 / 3.798 / 6.380 mm at WE / ST / TE. Only d20 and d24 change for focus, by equal and opposite amounts; the cover plate and image plane stay fixed. Finite MTF is unavailable because the patent publishes no finite configuration.
 
 Fig. 7 supports the object-to-image reading. With the iris held at its infinity size, the calculated near positions give f-numbers of 3.857 / 3.891 / 4.283, against the printed 3.857 / 3.892 / 4.282. Measuring 0.9 m from the first surface instead gives 3.881 / 3.973 / 4.487. The calculated telephoto magnification of 0.164× also agrees with Olympus's 0.16×. This agreement supports the distance convention; it is not a published finite-gap table.
 
-Between the control positions, image defocus stays under 0.002 mm at infinity and under 0.003 mm at finite distances. **Distance labels are still approximate:** the worst relative error is about +6.5%, where a 300 m label near 77 mm corresponds to a calculated distance of about 320 m. Small image defocus and distance-label error are different quantities, and one does not excuse the other.
+Between the control positions, image defocus stays under 0.007 mm at infinity and under 0.011 mm at finite distances. **Distance labels are still approximate:** the worst relative error is about +34%, where a 300 m label near 76 mm corresponds to a calculated distance of about 400 m. That far-focus error is the small infinity defocus expressed as a distance. Small image defocus and distance-label error are different quantities, and one does not excuse the other.
 
 ## Model Scope and Limitations
 

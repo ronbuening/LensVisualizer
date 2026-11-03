@@ -47,7 +47,7 @@ The model keeps every printed radius, thickness, index and gap, and the printed 
 
 The derived cam keeps d5, d15 and BF linear between the printed positions, and keeps d25 + d32 linear so G2 holds its printed position. Only the split between d25 and d32 is solved, which moves G4 to hold paraxial infinity focus. The focal lengths between printed positions are calculated results, not a chosen schedule. This is an inferred cam, not Sigma's factory cam. The gap d25 turns once, at the printed middle position, and no other gap reverses.
 
-The model carries 65 zoom stations, of which three are printed. Gaps interpolate linearly between stations, so the focus error peaks just short of the tele position, where G4 moves fastest: 0.019 mm at infinity and 0.022 mm in the worst focus state, against a depth of focus of ±2λN² = ±0.050 mm at F/6.5. At the stations themselves the error stays within the printed tele residual of 0.003 mm.
+The model carries 46 zoom stations, of which three are printed. Gaps interpolate linearly between stations, so the focus error peaks just short of the tele position, where G4 moves fastest: 0.022 mm at infinity and 0.038 mm in the worst focus state, against a depth of focus of ±2λN² = ±0.050 mm at F/6.5. At the stations themselves the error stays within the printed tele residual of 0.003 mm.
 
 ## Element-by-Element Analysis
 
@@ -219,7 +219,7 @@ Claim 3 and ¶0043 and ¶0076 state that **G4 alone (S26–S32) moves toward the
 | Middle        |              4.051992 |              −0.132508 |
 | Tele          |             12.449161 |              −0.262167 |
 
-The tele magnification of 1:3.81 is close to Sigma's 1:3.8, which supports this reading without proving it. The 19 focus keys sit at 0, 0.004, 0.016 and steps of 1/16, and each key focuses paraxially on its nominal object distance at every zoom station. Between stations the focus error stays within the ±0.050 mm depth given above. **Finite MTF is unavailable** because the patent publishes no finite conjugate.
+The tele magnification of 1:3.81 is close to Sigma's 1:3.8, which supports this reading without proving it. The 13 focus keys sit at 0, steps of 1/8 to 1/2 and steps of 1/16 beyond, and each key focuses paraxially on its nominal object distance at every zoom station. Between stations the focus error stays within the ±0.050 mm depth given above. **Finite MTF is unavailable** because the patent publishes no finite conjugate.
 
 ## Image Stabilization
 

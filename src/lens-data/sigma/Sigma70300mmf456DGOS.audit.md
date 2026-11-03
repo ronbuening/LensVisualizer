@@ -16,3 +16,26 @@ Patent: JP 2010-217838 A, Example 1.
 - Accepted S26 `rimExtensionSd: 12.8` around unchanged clear cap 10.5 mm. Figure 1 independently resolves this front flat shoulder inside the rear C5 blank. Native scale is about 7.10 px/mm at 300 dpi, with roughly 0.2–0.3 mm outline uncertainty. The outer height follows the existing shared interface and rear height, preserving compound connection.
 - S8/S9 are continuous source curves rather than flat lands at the constrained 11.3 mm caps. Their growth to the schematic box would cross powered faces; no invented cuts, interface lands or resin wings. All remaining rims retained, no inferred depth/source exemption introduced.
 - Canonical/surface checks pass, image-circle zero undersized, all 81 infinity stations reach the centered frame corner and all axial aperture stations are within 3%. Actual 9-view production SVG inspected; 3,059 control/half-station render states including every source/derived focus keyframe have finite paths and zero hidden trim. Common-field 16×16 lattice across all 19 focus keyframes, three zoom positions and five field fractions: 50,176 retained, 0 lost, 0 gained rays. Counts are samples, not flux or continuous coverage. Literal R/d/media, stop/aperture/focus/zoom controls and tolerances unchanged.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 2nd existing row (indices 0, 2, …, 80).
+- Focus: kept keyframes [0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] of 19, at focus coordinates [0, 0.0625, 0.125, 0.1875, 0.2419, 0.3125, 0.375, 0.4375, 0.4808, 0.5, 0.5625, 0.625, 0.6875, 0.75, 0.8125, 0.875, 0.9375, 1].
+- Published zoom stations remapped 0 → 0, 40 → 20, 80 → 40; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 81 × 19 = 1539 | 41 × 18 = 738 |
+| source-published states | 6 | 6 |
+| worst infinity defocus against the solves, between rows | 0.0042 mm | 0.0168 mm |
+| worst fixed-plane defocus at infinity | 0.0042 mm | 0.0168 mm |
+| worst focal-length label residual | 0.0055 mm | 0.0219 mm |
+| worst far-focus distance-label error | +3.6 % (500 m reads 518.1 m near 180.6 mm) | +22.1 % (500 m reads 610.5 m near 182.4 mm) |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0171 mm (0.46 R), half-field ≤ 0.022°, stop radius ≤ 0.017 %, f-number ≤ 0.005 %, variable gaps ≤ 0.009 mm, axial diffraction MTF at 30 lp/mm +0.051 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+The far-focus label error is the infinity defocus expressed as a distance: near the 0.003 focus cutoff a few micrometres of image-side defocus move the in-focus distance by tens or hundreds of metres. Close-focus labels at kept keyframes are unchanged.
+
+Text sync: header: 81 → 41 zoom stations; analysis: eighty-one → forty-one zoom stations, nineteen → eighteen focus positions.
