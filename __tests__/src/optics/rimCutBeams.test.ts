@@ -9,9 +9,7 @@ import {
 } from "./testLensFixtures.js";
 import { buildFixtureLens, CATALOG_CONSTRUCTION_FIXTURES } from "./constructionFixtures.js";
 import { getChiefRayDiagnostics, resetChiefRayDiagnostics } from "../../../src/optics/diagnostics/chiefRay.js";
-import type { CanonicalLens } from "../../../src/optics/buildLens.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 declare module "vitest" {
   export interface ProvidedContext {
@@ -197,53 +195,10 @@ if (corpusShard.index === 0) {
   });
 }
 
-/** States the rule screens along one control: its 0.05 steps plus any station or keyframe off that grid. */
-function screenedStates(nodes: readonly number[]): number {
-  if (nodes.length < 2) return 1;
-  const low = Math.min(...nodes);
-  const high = Math.max(...nodes);
-  const offGrid = nodes.filter((node) => Math.abs(node / 0.05 - Math.round(node / 0.05)) > 1e-6).length;
-  return Math.round((high - low) / 0.05) + 1 + offGrid;
-}
-
-/**
- * The rule's cost, estimated from the catalog entry without constructing the lens: it screens every zoom × focus
- * state and traces every surface for each cut. A few long zooms take most of the corpus time, so splitting the
- * sorted keys evenly left one shard with several of them. Read against measured times, this estimate is only a
- * relative weight.
- */
-function rimCutCost(lens: CanonicalLens): number {
-  const cuts = lens.surfaces.filter((surface) => surface.rimCutDepthMm !== undefined).length;
-  if (!cuts) return 0;
-  const stations = lens.zoom?.stations.length ?? 1;
-  const zooms = screenedStates(Array.from({ length: stations }, (_, k) => (stations > 1 ? k / (stations - 1) : 0)));
-  return zooms * screenedStates(lens.focus.keyframes) * lens.surfaces.length * cuts;
-}
-
-/**
- * Each catalog key's shard, the same in every worker: keys with a cut go heaviest first to the least-loaded shard,
- * the rest round-robin. Whether a lens runs is still decided by its constructed data below, so a key whose entry and
- * construction disagree still runs exactly once.
- */
-function rimCutShards(count: number): Map<string, number> {
-  const keys = Object.keys(LENS_CATALOG).sort();
-  const cost = new Map(keys.map((key) => [key, rimCutCost(LENS_CATALOG[key])]));
-  const loads = Array<number>(count).fill(0);
-  const shards = new Map<string, number>();
-  for (const key of keys.filter((k) => cost.get(k)! > 0).sort((a, b) => cost.get(b)! - cost.get(a)!)) {
-    const shard = loads.indexOf(Math.min(...loads));
-    loads[shard] += cost.get(key)!;
-    shards.set(key, shard);
-  }
-  keys.filter((key) => cost.get(key) === 0).forEach((key, index) => shards.set(key, index % count));
-  return shards;
-}
-
 /* One case per lens: the rule screens every field, zoom and focus state in steps of 0.05, so a long zoom takes seconds. */
-const SHARDS = rimCutShards(corpusShard.count);
 const CUT_LENSES = Object.keys(CATALOG_CONSTRUCTION_FIXTURES)
   .sort()
-  .filter((key) => SHARDS.get(key) === corpusShard.index)
+  .filter((_, index) => index % corpusShard.count === corpusShard.index)
   .map((key) => [key, CATALOG_CONSTRUCTION_FIXTURES[key]] as const)
   .filter(([, data]) => data.surfaces.some((surface) => surface.rimCutDepthMm !== undefined));
 
