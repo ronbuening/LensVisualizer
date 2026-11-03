@@ -3,7 +3,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** US 3,838,911 Embodiment 2 (f = 100, F/4, 2ω = 12°), every length scaled ×2 to f = 200 mm.
  * Matched to the production lens by specification; not a confirmed factory prescription.
  * Radii, thicknesses, indices and Abbe numbers are as printed. The back focus is not printed: the image plane is the
- * paraxial focus, 63.99 mm behind the last surface. Every clear semi-diameter and the stop position (0.75 of d5) are inferred.
+ * paraxial focus, 63.99 mm behind the last surface. The stop position (0.75 of d5) is inferred. Clear semi-diameters
+ * are inferred: the front rim from the f/4 pupil, the others from the outline ratios of Fig. 1 and of the Olympus
+ * dealer-binder section, which is drawn to this example's scale. Faces 5 and 7 end short of their front faces, at the
+ * chamfers both drawings show on the image-side rims of L3 and L4. All rims are floor-checked by real-ray trace.
  * The patent does not name a reference line for n and ν; they are read as d-line values.
  * The patent prints infinity only; the 2.5 m unit-focus state is derived.
  */
@@ -144,7 +147,7 @@ const LENS_DATA = {
       label: "5",
       R: 131.644,
       d: 28.875,
-      sd: 24.2,
+      sd: 22.6,
     },
     {
       label: "STO",
@@ -162,7 +165,7 @@ const LENS_DATA = {
       label: "7",
       R: 34.742,
       d: 26.84,
-      sd: 14.9,
+      sd: 13.2,
     },
     {
       label: "8",

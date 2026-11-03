@@ -68,7 +68,7 @@ Unit focus: the whole five-element block moves forward on a straight helicoid to
 
 ## Geometry, Aperture and Image Plane
 
-The patent gives no clear apertures. The front semi-diameter (27.5 mm) is the f/4 entrance-pupil radius plus 10%, rounded to 0.1 mm. The other groups follow the outline ratios of Fig. 1 (1.00 : 0.88 : 0.54 : 0.62), close to the roughly 1 : 0.85 : 0.49 : 0.63 of the maker's section. These are inferred clear apertures, not filter-thread or barrel dimensions.
+The patent gives no clear apertures. The front semi-diameter (27.5 mm) is the f/4 entrance-pupil radius plus 10%, rounded to 0.1 mm. The four groups stand at 1.00 : 0.88 : 0.54 : 0.62, between the outline ratios of Fig. 1 (1 : 0.88 : 0.57 : 0.63) and of the maker's section (1 : 0.87 : 0.51 : 0.63). Fig. 1 is drawn to Embodiment 1's spacing. The maker's section matches Embodiment 2's spacing and radii, and its rims fall within 0.9 mm of the model's. Both drawings chamfer the image-side rims of L3 and L4, so faces 5 and 7 end short of their elements' front faces. These are inferred clear apertures, not filter-thread or barrel dimensions.
 
 The stop is placed at 0.75 of d5 behind the doublet (61.06 mm from the front vertex), read from the stop mark in Fig. 1; the total gap is unchanged. Its wide-open radius, 13.37 mm, follows from the f/4 design aperture. The maker lists f/4–32; the blade count is not known.
 
@@ -80,9 +80,9 @@ The back focus is not printed. The image plane is the paraxial focus, 63.99 mm b
 | 2    |                  27.5 |
 | 3    |                  24.2 |
 | 4    |                  24.2 |
-| 5    |                  24.2 |
+| 5    |                  22.6 |
 | 6    |                  14.9 |
-| 7    |                  14.9 |
+| 7    |                  13.2 |
 | 8    |                  17.1 |
 | 9    |                  17.1 |
 
