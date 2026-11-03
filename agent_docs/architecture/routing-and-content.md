@@ -214,7 +214,8 @@ Metadata generation is split across:
   through `src/optics/buildLens.ts` ingest. Metadata stops on V1 through `assertV2Catalog` before summarizing.
   Only `scripts/lens-data-convert/load.mjs` loads `src/optics/lensDataConversion.ts`; the organizer reaches that
   loader through the converter runner.
-- `scripts/build-metadata-lib.mjs` - git freshness helpers, bounded concurrency, route freshness aggregation.
+- `scripts/build-metadata-lib.mjs` - git history index and freshness lookups, batched reads of committed files, route
+  freshness aggregation.
 - `scripts/generate-build-metadata.mjs` - top-level metadata orchestration, concrete route enumeration, generated route
   freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh. Before writing, it
   rejects V1 catalog files with the command `npm run organize:lens-data`. It also writes
@@ -226,10 +227,13 @@ Metadata generation is split across:
 - `scripts/maker-prefixes.mjs` - single source of truth for maker prefixes, emitted to
   `src/generated/maker-prefixes.json`.
 
-Freshness collection uses `execFile`/`execFileSync` argument arrays rather than shell strings and bounded async
-concurrency for the git calls. It records the committer timestamp and hash for the first and latest commits, then assigns
-a generated `publicationOrder` shared by page lists and RSS feeds. Keep generated route and freshness artifacts stable
-unless a content change intentionally updates them.
+Freshness collection reads the whole history once (`gitHistory`): one `git log -M --name-status` over every commit, indexed
+by path, answers each file's lookup, and a file's history continues under its old path across a rename but not across a
+copy. The committed contents that map moved lenses and articles to their tracked paths come from one
+`git cat-file --batch` (`readTrackedFiles`). Git runs through `execFile`/`execFileSync` argument arrays, never shell
+strings. Freshness records the committer timestamp and hash for the first and latest commits, then assigns a generated
+`publicationOrder` shared by page lists and RSS feeds. Keep generated route and freshness artifacts stable unless a
+content change intentionally updates them.
 
 The modified date skips format-only lens-data conversion commits (`isFormatOnlyCommit` in `build-metadata-lib.mjs`),
 so converting a file to V2 moves no page date. Recognition and fallback rules are recorded in

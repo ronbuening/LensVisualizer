@@ -36,6 +36,7 @@ import {
   textButton,
   type TrainCtx,
 } from "./trainShared.js";
+import { textRun } from "../../utils/text.js";
 
 interface GroupCardProps {
   ctx: TrainCtx;
@@ -303,9 +304,8 @@ export default function GroupCard({ ctx, group, index, count, selected }: GroupC
         style={{ ...noteStyle(t), color: t.elemType }}
         title={custom ? `Stored type: "${e.type}" (kept because it differs from the computed shape)` : undefined}
       >
-        {shape ? `${sentenceCase(shape)} · ` : ""}
-        {formatFocal(f)}
-        {custom && <span style={{ color: t.muted }}> · type “{e.type}”</span>}
+        <span>{textRun(shape ? `${sentenceCase(shape)} · ` : "", formatFocal(f))}</span>
+        {custom && <span style={{ color: t.muted }}>{textRun(" · type “", e.type, "”")}</span>}
       </p>
     );
   };
@@ -541,8 +541,8 @@ export default function GroupCard({ ctx, group, index, count, selected }: GroupC
             <span style={{ ...builderCaptionStyle(t), color: t.cementText, fontWeight: 700 }}>
               {n === 2 ? "Cemented doublet" : n === 3 ? "Cemented triplet" : `Cemented ×${n}`}
             </span>
-            {group.cementName && <span style={{ color: t.muted }}> · {group.cementName}</span>}
-            <span style={{ color: t.elemType }}> · {formatFocal(groupFocal)}</span>
+            {group.cementName && <span style={{ color: t.muted }}>{textRun(" · ", group.cementName)}</span>}
+            <span style={{ color: t.elemType }}>{textRun(" · ", formatFocal(groupFocal))}</span>
           </span>
           {moveButtons(groupName)}
         </div>

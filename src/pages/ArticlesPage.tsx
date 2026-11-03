@@ -15,6 +15,7 @@ import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredDat
 import { ARTICLES, ARTICLE_SERIES } from "../utils/content/homepageContent.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { ARTICLE_FEED_PATH } from "../utils/content/feedMetadata.js";
+import { textRun } from "../utils/text.js";
 
 export default function ArticlesPage() {
   const seoDescription = `${ARTICLES.length} articles and guides about optical design, lens aberrations, and how camera lenses work.`;
@@ -54,7 +55,9 @@ export default function ArticlesPage() {
         <>
           <h1 style={H1_STYLE}>All Articles</h1>
           <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "2rem" }}>
-            {ARTICLES.length} articles and guides about optical design and lens engineering.{" "}
+            <span>
+              {textRun(ARTICLES.length, " articles and guides about optical design and lens engineering.", " ")}
+            </span>
             <a
               href={ARTICLE_FEED_PATH}
               type="application/rss+xml"

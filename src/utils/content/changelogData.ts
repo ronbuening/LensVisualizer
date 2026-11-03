@@ -25,6 +25,17 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Minolta MD 35mm f/2.8, Olympus E.Zuiko 100mm f/2.8 and Pentax DA* 300mm f/4, M 40mm f/2.8, M 50mm f/1.7 and F 135mm f/2.8",
   },
   {
+    date: "2026-11-03",
+    type: "fix",
+    summary: "Corrected the publication dates of the Fujifilm XF 50mm f/1.0 and XF 80mm f/2.8 Macro pages",
+  },
+  {
+    date: "2026-11-02",
+    type: "fix",
+    summary:
+      "Fixed page errors and frozen readouts after a browser translated the page, such as Chrome's built-in Translate",
+  },
+  {
     date: "2026-11-02",
     type: "lens",
     summary:

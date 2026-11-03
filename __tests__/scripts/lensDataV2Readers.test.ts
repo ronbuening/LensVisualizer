@@ -15,7 +15,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import { exactValue } from "../exactValue.js";
 import {
   combineFreshnessEntries,
-  getGitFileFreshness,
+  gitHistory,
   isFormatOnlyCommit,
   parseGitLogDates,
 } from "../../scripts/build-metadata-lib.mjs";
@@ -249,15 +249,13 @@ describe("page dates skip format-only conversion commits", () => {
   });
 
   it("reads a teleconverter file's history the same way", () => {
-    const calls: string[][] = [];
-    const freshness = getGitFileFreshness("src/lens-data/nikon/NikonTC14.teleconverter.ts", {
-      execFileImpl: (_file, args) => {
-        calls.push(args);
-        return log(CONVERTED, CONTENT_ADDED);
-      },
-    });
-    expect(calls[0]).toContain("--format=%cI%x09%H%x09%s");
-    expect(freshness).toMatchObject({ lastModified: "2026-03-01", lastModifiedCommit: "added" });
+    const path = "src/lens-data/nikon/NikonTC14.teleconverter.ts";
+    /* `git log --name-status -z` output: each commit's fields, then the status and path of each file it touched. */
+    const touched = (fields: [string, string, string], status: string) =>
+      `\x1e${fields.join("\t")}\0\n${status}\0${path}\0`;
+    const historyLog = touched(CONVERTED, "M") + touched(CONTENT_ADDED, "A");
+    const history = gitHistory({ execFileImpl: (_file, args) => (args[0] === "rev-parse" ? "\n" : historyLog) });
+    expect(history.fileFreshness(path)).toMatchObject({ lastModified: "2026-03-01", lastModifiedCommit: "added" });
   });
 
   it("still takes a newer analysis sidecar's date", () => {

@@ -18,7 +18,7 @@ import { TELECONVERTER_SUMMARY_LIST } from "../utils/catalog/teleconverterSummar
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { H1_STYLE, SECTION_HEADING_BASE_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
 import { countSuffix } from "../utils/style/styles.js";
-import { pluralize } from "../utils/text.js";
+import { pluralize, textRun } from "../utils/text.js";
 import { groupTeleconverters, parseTeleconverterGroupMode, TELECONVERTER_GROUP_OPTIONS } from "./teleconverterIndex.js";
 
 const SEO_DESCRIPTION =
@@ -73,8 +73,12 @@ export default function TeleconvertersIndexPage() {
           )}
 
           <p style={{ fontSize: "0.875rem", color: t.muted }}>
-            {TELECONVERTER_SUMMARY_LIST.length} published{" "}
-            {pluralize(TELECONVERTER_SUMMARY_LIST.length, "teleconverter")}.
+            {textRun(
+              TELECONVERTER_SUMMARY_LIST.length,
+              " published ",
+              pluralize(TELECONVERTER_SUMMARY_LIST.length, "teleconverter"),
+              ".",
+            )}
           </p>
           <div
             role="group"
@@ -113,8 +117,7 @@ export default function TeleconvertersIndexPage() {
                     fontWeight: active ? 600 : 400,
                   }}
                 >
-                  {label}
-                  {isYear && active ? (groupMode === "year-asc" ? " ↑" : " ↓") : ""}
+                  {textRun(label, isYear && active ? (groupMode === "year-asc" ? " ↑" : " ↓") : "")}
                 </button>
               );
             })}
@@ -137,8 +140,8 @@ export default function TeleconvertersIndexPage() {
             {groups.map((group) => (
               <section key={group.id} id={group.id} style={{ scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}>
                 <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${t.panelBorder}` }}>
-                  {group.label}
-                  <span style={countSuffix(t)}>({group.items.length})</span>
+                  <span>{group.label}</span>
+                  <span style={countSuffix(t)}>{textRun("(", group.items.length, ")")}</span>
                 </h2>
                 {group.items.map((teleconverter) => {
                   const hostCount = teleconverter.compatibleLensKeys.length;
@@ -164,14 +167,17 @@ export default function TeleconvertersIndexPage() {
                         {teleconverter.name}
                       </Link>
                       <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-                        ({hostCount} compatible {pluralize(hostCount, "lens")})
+                        {textRun("(", hostCount, " compatible ", pluralize(hostCount, "lens"), ")")}
                       </span>
                       <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
-                        {teleconverter.magnification}× ·{" "}
-                        {teleconverter.lensMounts.map((mountId) => LENS_MOUNT_BY_ID[mountId].label).join(", ")}
-                        {teleconverter.imageFormat ? ` · ${IMAGE_FORMAT_BY_ID[teleconverter.imageFormat].label}` : ""}
-                        {teleconverter.patentYear !== undefined ? ` · ${teleconverter.patentYear}` : ""}
-                        {teleconverter.universal ? " · universal" : ""}
+                        {textRun(
+                          teleconverter.magnification,
+                          "× · ",
+                          teleconverter.lensMounts.map((mountId) => LENS_MOUNT_BY_ID[mountId].label).join(", "),
+                          teleconverter.imageFormat ? ` · ${IMAGE_FORMAT_BY_ID[teleconverter.imageFormat].label}` : "",
+                          teleconverter.patentYear !== undefined ? ` · ${teleconverter.patentYear}` : "",
+                          teleconverter.universal ? " · universal" : "",
+                        )}
                       </p>
                     </div>
                   );

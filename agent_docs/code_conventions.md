@@ -47,6 +47,30 @@ subdirectories and import lower-level owners directly, avoiding public-barrel cy
 - **Monospace font stack** for UI: `'JetBrains Mono','SF Mono','Fira Code'`
 - **Theme color tokens** prefixed with `_` are internal to the `createTheme()` factory — update all 4 themes when changing colors
 
+## Translator-Safe Display Text
+
+Page translators (Chrome's built-in Google Translate among them) replace each Text node with new `<font>` wrappers
+and remove the original that React still owns. React then throws `NotFoundError` when it removes or inserts beside
+that node, or writes updates nobody sees. Keep each changing HTML text run in a React-owned element with **one
+primitive child**, which React updates through `textContent`:
+
+- `<span>{textRun("A: f/", formatFNumber(value))}</span>`, not `<span>A: f/{value}</span>` (two Text nodes). Use a
+  template string when every part is a non-null string or number, and `textRun` when a part can be `null`,
+  `undefined` or `boolean` (it drops them as React does). Preserve the existing whitespace. `textRun` takes only
+  primitives; never stringify a `ReactNode`.
+- Beside links, buttons, conditional elements or styled suffixes, give each text run its own `<span>`.
+- Join a list of strings into one string (`names.join(", ")`) or render each item in its own element; a bare
+  `{names}` renders one Text node per item.
+- Shared numeric/readout components take `string | number` values and own their text element.
+
+`translation/owned-text` (`scripts/translation-text-rule.mjs`) flags these JSX patterns, including router links, and
+reports itself when type information is missing. The shared Markdown renderer applies the same ownership to its parsed
+tree (`rehypeOwnedText`), because lint cannot see generated Markdown. Opaque `ReactNode` props, components that return
+bare strings and third-party renderers are outside the rule; the detached-text audit in `agent_docs/testing_recipes.md`
+("Translation DOM Replacement") catches them at runtime. SVG text is outside the rule (`agent_docs/decisions.md`).
+Do not disable translation, patch DOM prototypes, swallow rendering exceptions, rewrite the DOM with an observer, or
+remount views to hide failures; own the text instead (`agent_docs/decisions.md`, Rejected approaches).
+
 ## Commenting
 
 See `agent_docs/commenting_guide.md` for full commenting standards. Key rule: **comment the WHY, not the WHAT.**

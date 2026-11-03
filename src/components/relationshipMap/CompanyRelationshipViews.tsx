@@ -17,6 +17,7 @@ import {
   viewButton,
   type RelationshipViewProps,
 } from "./RelationshipViewShared.js";
+import { textRun } from "../../utils/text.js";
 
 export type CompanyRelationshipView = "bridge" | "matrix" | "chords";
 
@@ -25,7 +26,9 @@ function CompanyFilter(props: RelationshipViewProps & { selected: string[] }) {
   const { onParamsChange } = useRelationshipViewParams();
   return (
     <details style={{ color: t.body, fontSize: "0.78rem", margin: "1rem 0" }}>
-      <summary style={{ cursor: "pointer", padding: "8px 0" }}>Choose assignees ({selected.length}/8)</summary>
+      <summary style={{ cursor: "pointer", padding: "8px 0" }}>
+        {textRun("Choose assignees (", selected.length, "/8)")}
+      </summary>
       <fieldset
         style={{
           border: `1px solid ${t.panelBorder}`,
@@ -55,7 +58,7 @@ function CompanyFilter(props: RelationshipViewProps & { selected: string[] }) {
                 })
               }
             />
-            {company.name}
+            <span>{company.name}</span>
           </label>
         ))}
       </fieldset>
@@ -127,10 +130,13 @@ function CompanyBridge(props: RelationshipViewProps) {
         />
       </div>
       <p role="status" style={{ color: t.body, fontSize: "0.8rem" }}>
-        {rows.length} shared inventor records
-        {rows.length
-          ? ` · Showing ${page * 12 + 1}–${Math.min(rows.length, (page + 1) * 12)}`
-          : " in the represented patents."}
+        {textRun(
+          rows.length,
+          " shared inventor records",
+          rows.length
+            ? ` · Showing ${page * 12 + 1}–${Math.min(rows.length, (page + 1) * 12)}`
+            : " in the represented patents.",
+        )}
       </p>
       {rows.length > 0 && (
         <>
@@ -231,8 +237,12 @@ function CompanyBridge(props: RelationshipViewProps) {
                 <InventorLink inventor={record.record.inventor} theme={t} left={left.id} right={right!.id} />
               </h3>
               <p style={{ color: t.body, fontSize: "0.78rem" }}>
-                {record.record.assignedPatentCount} distinct assigned patents · {record.jointPatentIds.length} jointly
-                assigned to this pair
+                {textRun(
+                  record.record.assignedPatentCount,
+                  " distinct assigned patents · ",
+                  record.jointPatentIds.length,
+                  " jointly assigned to this pair",
+                )}
               </p>
               <div
                 style={{
@@ -244,8 +254,14 @@ function CompanyBridge(props: RelationshipViewProps) {
                 {record.record.affiliations.map((link) => (
                   <div key={link.assigneeId}>
                     <strong style={{ color: t.title, fontSize: "0.8rem" }}>
-                      {insights.assigneeById.get(link.assigneeId)?.name} · {link.patentIds.length} (
-                      {Math.round(link.share * 100)}%)
+                      {textRun(
+                        insights.assigneeById.get(link.assigneeId)?.name,
+                        " · ",
+                        link.patentIds.length,
+                        " (",
+                        Math.round(link.share * 100),
+                        "%)",
+                      )}
                     </strong>
                     <PatentEvidence {...props} ids={link.patentIds} />
                   </div>
@@ -368,10 +384,15 @@ function AffiliationMatrix(props: RelationshipViewProps) {
         </label>
       </div>
       <p role="status" style={{ color: t.body, fontSize: "0.78rem" }}>
-        {records.length} inventor records · {companies.length} assignees
-        {records.length > 0
-          ? ` · Rows ${page * 25 + 1}–${Math.min(records.length, (page + 1) * 25)}`
-          : " · Choose assignees or adjust the filters."}
+        {textRun(
+          records.length,
+          " inventor records · ",
+          companies.length,
+          " assignees",
+          records.length > 0
+            ? ` · Rows ${page * 25 + 1}–${Math.min(records.length, (page + 1) * 25)}`
+            : " · Choose assignees or adjust the filters.",
+        )}
       </p>
       {companies.length > 0 && (
         <div
@@ -384,8 +405,10 @@ function AffiliationMatrix(props: RelationshipViewProps) {
             style={{ borderCollapse: "separate", borderSpacing: 3, width: "100%", fontSize: "0.76rem", color: t.body }}
           >
             <caption style={{ textAlign: "left", padding: "8px 0", color: t.muted }}>
-              {percent ? "Share of each inventor’s assigned patents" : "Distinct patents by inventor and assignee"} ·
-              Stronger shading indicates a larger value
+              {textRun(
+                percent ? "Share of each inventor’s assigned patents" : "Distinct patents by inventor and assignee",
+                " · Stronger shading indicates a larger value",
+              )}
             </caption>
             <thead>
               <tr>
@@ -439,10 +462,7 @@ function AffiliationMatrix(props: RelationshipViewProps) {
                                 opacity: 0.1 + 0.45 * (percent ? link.share : link.patentIds.length / max),
                               }}
                             />
-                            <span style={{ position: "relative" }}>
-                              {value}
-                              {percent ? "%" : ""}
-                            </span>
+                            <span style={{ position: "relative" }}>{textRun(value, percent ? "%" : "")}</span>
                           </button>
                         ) : (
                           <span aria-label="No recorded patents">—</span>
@@ -479,12 +499,18 @@ function AffiliationMatrix(props: RelationshipViewProps) {
       {selected && selectedLink && (
         <section aria-label="Matrix cell evidence" style={{ marginTop: 16 }}>
           <h3 style={{ fontSize: "0.9rem", color: t.title }}>
-            <InventorLink inventor={selected.inventor} theme={t} /> ·{" "}
-            {insights.assigneeById.get(selectedLink.assigneeId)?.name}
+            <InventorLink inventor={selected.inventor} theme={t} />
+            <span>{textRun(" · ", insights.assigneeById.get(selectedLink.assigneeId)?.name)}</span>
           </h3>
           <p style={{ color: t.body, fontSize: "0.78rem" }}>
-            {selectedLink.patentIds.length} of {selected.assignedPatentCount} assigned patents (
-            {Math.round(selectedLink.share * 100)}%)
+            {textRun(
+              selectedLink.patentIds.length,
+              " of ",
+              selected.assignedPatentCount,
+              " assigned patents (",
+              Math.round(selectedLink.share * 100),
+              "%)",
+            )}
           </p>
           <PatentEvidence {...props} ids={selectedLink.patentIds} />
         </section>
@@ -539,7 +565,7 @@ function CompanyChords(props: RelationshipViewProps) {
         </ViewSelect>
       </div>
       <p role="status" style={{ color: t.body, fontSize: "0.78rem" }}>
-        {pairs.length} company pairs match the filter.
+        {textRun(pairs.length, " company pairs match the filter.")}
       </p>
       {pairs.length > 0 && (
         <ChartFrame label="Shared inventor chords" height={630}>
@@ -634,7 +660,7 @@ function CompanyChords(props: RelationshipViewProps) {
                     }}
                     onClick={() => onParamsChange({ left: pair.left, right: pair.right })}
                   >
-                    {name(pair.left)} ↔ {name(pair.right)}
+                    {textRun(name(pair.left), " ↔ ", name(pair.right))}
                   </button>
                 </td>
                 <td>{pair.inventorIds.length}</td>
@@ -646,7 +672,7 @@ function CompanyChords(props: RelationshipViewProps) {
       {selected && (
         <section aria-label="Chord evidence">
           <h3 style={{ color: t.title, fontSize: "0.9rem" }}>
-            {name(selected.left)} ↔ {name(selected.right)}
+            {textRun(name(selected.left), " ↔ ", name(selected.right))}
           </h3>
           <p style={{ color: t.body, fontSize: "0.78rem" }}>
             Each inventor below has a recorded patent connection to both assignees.

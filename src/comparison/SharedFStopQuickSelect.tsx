@@ -7,6 +7,7 @@
  */
 
 import type { CSSProperties } from "react";
+import { textRun } from "../utils/text.js";
 
 interface SharedFStopQuickSelectProps {
   fstopSeriesA: number[];
@@ -49,7 +50,7 @@ export default function SharedFStopQuickSelect({
             transition: "opacity 0.15s",
           }}
         >
-          f/{value}
+          {textRun("f/", value)}
         </button>
       ))}
     </div>

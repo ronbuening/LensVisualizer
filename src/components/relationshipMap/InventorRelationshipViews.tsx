@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRelationshipViewParams } from "./useRelationshipViewParams.js";
-import { pluralize } from "../../utils/text.js";
+import { pluralize, textRun } from "../../utils/text.js";
 import { inventorCollaborators } from "../../utils/catalog/relationshipInsights.js";
 import type { InventorRelationshipView } from "../../utils/state/relationshipViewUrl.js";
 import { truncateLabel } from "./layout.js";
@@ -37,9 +37,20 @@ function InventorAssignees(props: InventorViewProps) {
     >
       {record && (
         <p style={{ color: t.body, fontSize: "0.8rem" }}>
-          {record.assignedPatentCount} assigned {pluralize(record.assignedPatentCount, "patent")} · {links.length}{" "}
-          {pluralize(links.length, "assignee")} · {record.unassignedPatentCount}{" "}
-          {pluralize(record.unassignedPatentCount, "patent")} without a named assignee
+          {textRun(
+            record.assignedPatentCount,
+            " assigned ",
+            pluralize(record.assignedPatentCount, "patent"),
+            " · ",
+            links.length,
+            " ",
+            pluralize(links.length, "assignee"),
+            " · ",
+            record.unassignedPatentCount,
+            " ",
+            pluralize(record.unassignedPatentCount, "patent"),
+            " without a named assignee",
+          )}
         </p>
       )}
       {links.length > 0 ? (
@@ -84,8 +95,14 @@ function InventorAssignees(props: InventorViewProps) {
             style={{ padding: "0.75rem 0", borderTop: `1px solid ${t.panelDivider}` }}
           >
             <h3 style={{ color: t.title, fontSize: "0.9rem", margin: "0 0 0.4rem" }}>
-              {insights.assigneeById.get(link.assigneeId)!.name} · {link.patentIds.length} patents (
-              {Math.round(link.share * 100)}%)
+              {textRun(
+                insights.assigneeById.get(link.assigneeId)!.name,
+                " · ",
+                link.patentIds.length,
+                " patents (",
+                Math.round(link.share * 100),
+                "%)",
+              )}
             </h3>
             <PatentEvidence {...props} ids={link.patentIds} />
             <button
@@ -196,7 +213,7 @@ function InventorTimeline(props: InventorViewProps) {
         <>
           <div style={controlRow}>
             <label style={{ color: t.body, fontSize: "0.8rem", display: "grid", gap: 8, flex: "1 1 260px" }}>
-              Through year: {cutoff}
+              <span>{textRun("Through year: ", cutoff)}</span>
               <input
                 aria-label="Timeline through year"
                 type="range"
@@ -236,8 +253,16 @@ function InventorTimeline(props: InventorViewProps) {
             </button>
           </div>
           <p role="status" style={{ color: t.body, fontSize: "0.78rem" }}>
-            {visibleCount} distinct dated {pluralize(visibleCount, "patent")} through {cutoff} · {unknown.length} with
-            no recorded year
+            {textRun(
+              visibleCount,
+              " distinct dated ",
+              pluralize(visibleCount, "patent"),
+              " through ",
+              cutoff,
+              " · ",
+              unknown.length,
+              " with no recorded year",
+            )}
           </p>
           <ChartFrame label="Inventor patent timeline" height={laneCursor + 45}>
             {ticks.map((year) => (
@@ -350,7 +375,7 @@ function InventorCoauthors(props: InventorViewProps) {
         >
           {[6, 12, 24].map((count) => (
             <option key={count} value={count}>
-              Up to {count}
+              {textRun("Up to ", count)}
             </option>
           ))}
         </ViewSelect>
@@ -366,8 +391,14 @@ function InventorCoauthors(props: InventorViewProps) {
         </label>
       </div>
       <p role="status" style={{ color: t.body, fontSize: "0.78rem" }}>
-        {network.collaborators.length} direct collaborators · {shown.length} in the diagram · {edges.length}{" "}
-        coauthorship links displayed
+        {textRun(
+          network.collaborators.length,
+          " direct collaborators · ",
+          shown.length,
+          " in the diagram · ",
+          edges.length,
+          " coauthorship links displayed",
+        )}
       </p>
       {network.collaborators.length > 0 ? (
         <>
@@ -476,7 +507,7 @@ function InventorCoauthors(props: InventorViewProps) {
                   aria-hidden="true"
                   style={{ width: 12, height: 12, borderRadius: "50%", background: color(id), display: "inline-block" }}
                 />
-                {companyName(id)}
+                <span>{companyName(id)}</span>
               </span>
             ))}
           </div>
@@ -494,7 +525,14 @@ function InventorCoauthors(props: InventorViewProps) {
               {person.affiliations.map((link) => (
                 <div key={link.assigneeId} style={{ color: t.body, fontSize: "0.78rem" }}>
                   <strong>
-                    {companyName(link.assigneeId)} · {link.patentIds.length} ({Math.round(link.share * 100)}%)
+                    {textRun(
+                      companyName(link.assigneeId),
+                      " · ",
+                      link.patentIds.length,
+                      " (",
+                      Math.round(link.share * 100),
+                      "%)",
+                    )}
                   </strong>
                   <PatentEvidence {...props} ids={link.patentIds} />
                 </div>
@@ -504,7 +542,11 @@ function InventorCoauthors(props: InventorViewProps) {
           {evidence && (
             <section aria-label="Coauthorship evidence">
               <h3 style={{ color: t.title, fontSize: "0.9rem" }}>
-                {points.get(evidence.from)!.record.inventor.name} ↔ {points.get(evidence.to)!.record.inventor.name}
+                {textRun(
+                  points.get(evidence.from)!.record.inventor.name,
+                  " ↔ ",
+                  points.get(evidence.to)!.record.inventor.name,
+                )}
               </h3>
               <PatentEvidence {...props} ids={evidence.patentIds} label="Jointly authored patents" />
             </section>
@@ -515,12 +557,12 @@ function InventorCoauthors(props: InventorViewProps) {
       )}
       <details style={{ color: t.body, fontSize: "0.8rem", marginTop: 16 }}>
         <summary style={{ padding: "8px 0", cursor: "pointer" }}>
-          All direct collaborators ({network.collaborators.length})
+          {textRun("All direct collaborators (", network.collaborators.length, ")")}
         </summary>
         {network.collaborators.map(({ record, patentIds }) => (
           <div key={record.inventor.id} style={{ borderTop: `1px solid ${t.panelDivider}`, padding: "8px 0" }}>
-            <InventorLink inventor={record.inventor} theme={t} view="co-inventors" /> · {patentIds.length} shared
-            patents
+            <InventorLink inventor={record.inventor} theme={t} view="co-inventors" />
+            <span>{textRun(" · ", patentIds.length, " shared patents")}</span>
             <PatentEvidence {...props} ids={patentIds} label="Jointly authored patents" />
           </div>
         ))}

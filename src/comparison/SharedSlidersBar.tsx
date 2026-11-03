@@ -48,6 +48,7 @@ import type { GroupMovementMode } from "../types/groupMovement.js";
 import SharedSliderSection from "./SharedSliderSection.js";
 import SharedFStopQuickSelect from "./SharedFStopQuickSelect.js";
 import SliderResetButton from "../components/controls/SliderResetButton.js";
+import { textRun } from "../utils/text.js";
 
 interface SharedSlidersBarProps {
   LA: RuntimeLens;
@@ -245,8 +246,8 @@ export default function SharedSlidersBar({
             action={movementAvailabilityA.zoom || movementAvailabilityB.zoom ? motionButton("zoom", "zoom") : undefined}
             readouts={
               <>
-                <span>A: {zoomReadoutA}</span>
-                <span>B: {zoomReadoutB}</span>
+                <span>{textRun("A: ", zoomReadoutA)}</span>
+                <span>{textRun("B: ", zoomReadoutB)}</span>
               </>
             }
             footer={
@@ -268,7 +269,7 @@ export default function SharedSlidersBar({
                 }}
               >
                 <span style={{ opacity: showEffectiveFocalLength ? 1 : 0.5 }}>
-                  {showEffectiveFocalLength ? "\u2611" : "\u2610"} Show effective focal length
+                  {textRun(showEffectiveFocalLength ? "\u2611" : "\u2610", " Show effective focal length")}
                 </span>
               </button>
             }
@@ -294,16 +295,20 @@ export default function SharedSlidersBar({
             readouts={
               <>
                 <span>
-                  A:{" "}
-                  {LA.perspectiveControl && isMovementAxisEnabled(LA.perspectiveControl.shiftRangeMm)
-                    ? signed(movementPair.shiftA, 1, "mm")
-                    : "n/a"}
+                  {textRun(
+                    "A: ",
+                    LA.perspectiveControl && isMovementAxisEnabled(LA.perspectiveControl.shiftRangeMm)
+                      ? signed(movementPair.shiftA, 1, "mm")
+                      : "n/a",
+                  )}
                 </span>
                 <span>
-                  B:{" "}
-                  {LB.perspectiveControl && isMovementAxisEnabled(LB.perspectiveControl.shiftRangeMm)
-                    ? signed(movementPair.shiftB, 1, "mm")
-                    : "n/a"}
+                  {textRun(
+                    "B: ",
+                    LB.perspectiveControl && isMovementAxisEnabled(LB.perspectiveControl.shiftRangeMm)
+                      ? signed(movementPair.shiftB, 1, "mm")
+                      : "n/a",
+                  )}
                 </span>
               </>
             }
@@ -327,16 +332,20 @@ export default function SharedSlidersBar({
             readouts={
               <>
                 <span>
-                  A:{" "}
-                  {LA.perspectiveControl && isMovementAxisEnabled(LA.perspectiveControl.tiltRangeDeg)
-                    ? signed(movementPair.tiltA, 1, "deg")
-                    : "n/a"}
+                  {textRun(
+                    "A: ",
+                    LA.perspectiveControl && isMovementAxisEnabled(LA.perspectiveControl.tiltRangeDeg)
+                      ? signed(movementPair.tiltA, 1, "deg")
+                      : "n/a",
+                  )}
                 </span>
                 <span>
-                  B:{" "}
-                  {LB.perspectiveControl && isMovementAxisEnabled(LB.perspectiveControl.tiltRangeDeg)
-                    ? signed(movementPair.tiltB, 1, "deg")
-                    : "n/a"}
+                  {textRun(
+                    "B: ",
+                    LB.perspectiveControl && isMovementAxisEnabled(LB.perspectiveControl.tiltRangeDeg)
+                      ? signed(movementPair.tiltB, 1, "deg")
+                      : "n/a",
+                  )}
                 </span>
               </>
             }
@@ -364,15 +373,25 @@ export default function SharedSlidersBar({
           readouts={
             <>
               <span>
-                A: {movementAvailabilityA.focus ? formatDist(focusPair.focusA, LA, zoomPair?.zoomA) : "Not modeled"}
+                <span>
+                  {textRun(
+                    "A: ",
+                    movementAvailabilityA.focus ? formatDist(focusPair.focusA, LA, zoomPair?.zoomA) : "Not modeled",
+                  )}
+                </span>
                 {movementAvailabilityA.focus && focusPair.focusA > FOCUS_INFINITY_CUTOFF && focusedEflDiffersA && (
-                  <span style={{ opacity: 0.7 }}> ({dynamicEflA.toFixed(1)} mm)</span>
+                  <span style={{ opacity: 0.7 }}>{textRun(" (", dynamicEflA.toFixed(1), " mm)")}</span>
                 )}
               </span>
               <span>
-                B: {movementAvailabilityB.focus ? formatDist(focusPair.focusB, LB, zoomPair?.zoomB) : "Not modeled"}
+                <span>
+                  {textRun(
+                    "B: ",
+                    movementAvailabilityB.focus ? formatDist(focusPair.focusB, LB, zoomPair?.zoomB) : "Not modeled",
+                  )}
+                </span>
                 {movementAvailabilityB.focus && focusPair.focusB > FOCUS_INFINITY_CUTOFF && focusedEflDiffersB && (
-                  <span style={{ opacity: 0.7 }}> ({dynamicEflB.toFixed(1)} mm)</span>
+                  <span style={{ opacity: 0.7 }}>{textRun(" (", dynamicEflB.toFixed(1), " mm)")}</span>
                 )}
               </span>
             </>
@@ -396,8 +415,8 @@ export default function SharedSlidersBar({
             <div>
               {apertureLimited && (
                 <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-                  <span>A: f/{formatFNumber(fNumberA)}</span>
-                  <span>B: f/{formatFNumber(fNumberB)}</span>
+                  <span>{textRun("A: f/", formatFNumber(fNumberA))}</span>
+                  <span>{textRun("B: f/", formatFNumber(fNumberB))}</span>
                 </div>
               )}
               <SharedFStopQuickSelect
@@ -416,8 +435,8 @@ export default function SharedSlidersBar({
                 (showsParaxialWorkingFNumber(paraxialWorkingFNumA, fNumberA) ||
                   showsParaxialWorkingFNumber(paraxialWorkingFNumB, fNumberB)) && (
                   <div style={{ marginTop: 6, display: "flex", gap: 16, fontSize: 9, color: t.spacingVal }}>
-                    <span>A paraxial working {formatParaxialWorkingFNumber(paraxialWorkingFNumA)}</span>
-                    <span>B paraxial working {formatParaxialWorkingFNumber(paraxialWorkingFNumB)}</span>
+                    <span>{textRun("A paraxial working ", formatParaxialWorkingFNumber(paraxialWorkingFNumA))}</span>
+                    <span>{textRun("B paraxial working ", formatParaxialWorkingFNumber(paraxialWorkingFNumB))}</span>
                   </div>
                 )}
               <button
@@ -438,7 +457,7 @@ export default function SharedSlidersBar({
                 }}
               >
                 <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
-                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show paraxial working f-number
+                  {textRun(showEffectiveAperture ? "\u2611" : "\u2610", " Show paraxial working f-number")}
                 </span>
               </button>
             </>

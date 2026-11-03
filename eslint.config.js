@@ -4,6 +4,7 @@ import reactHooksPlugin from "eslint-plugin-react-hooks";
 import globals from "globals";
 import prettierConfig from "eslint-config-prettier";
 import tseslint from "typescript-eslint";
+import translationTextRule from "./scripts/translation-text-rule.mjs";
 
 export default [
   {
@@ -27,6 +28,7 @@ export default [
       "@typescript-eslint": tseslint.plugin,
       react: reactPlugin,
       "react-hooks": reactHooksPlugin,
+      translation: { rules: { "owned-text": translationTextRule } },
     },
     languageOptions: {
       parser: tseslint.parser,
@@ -76,6 +78,7 @@ export default [
       "react/jsx-no-duplicate-props": "error",
       "react/no-direct-mutation-state": "error",
       "react/react-in-jsx-scope": "off",
+      "translation/owned-text": "error",
 
       "no-console": "off",
 
