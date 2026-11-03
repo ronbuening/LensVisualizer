@@ -58,6 +58,7 @@ const LENS_DATA = {
     /* Manufacturer marketing metadata: LK Samyang AF 24mm F2.8 FE product page. */
     focalLengthMm: { marketing: 24, design: 25.026319 },
     fNumber: { marketing: 2.8, design: 2.892 },
+    closeFocusM: { marketing: 0.24 },
   },
 
   source: {
@@ -196,7 +197,7 @@ const LENS_DATA = {
 
   /* Production MFD is 0.24 m; the patent's close row is labeled TL=0.2m. */
   focus: {
-    closeFocusM: 0.24,
+    closeFocusM: 0.257,
     /*
      * Published focus states: infinity, MAG=-1/40, TL=0.2m.
      * The middle focusT is the normalized published G21 travel fraction
@@ -206,8 +207,9 @@ const LENS_DATA = {
     keyframes: [0, 0.208443029, 1],
     description:
       "Published internal focus: G21 (L51–L61) translates 1.08634 mm objectward from infinity to the patent TL=0.2m row; " +
-      "D1 and D2 preserve all three published spacing states. closeFocusM=0.24 m is the production specification and is " +
-      "not asserted to share the patent's ambiguous D0/TL reference plane.",
+      "D1 and D2 preserve all three published spacing states. Samyang's 0.24 m production specification is kept as catalog metadata and is " +
+      "not asserted to share the patent's ambiguous D0/TL reference plane. The TL=0.2m row focuses at 0.257 m object to image, " +
+      "the distance the close-focus label reports.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

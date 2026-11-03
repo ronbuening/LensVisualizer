@@ -16,7 +16,7 @@ These matches make the correlation strong, but Panasonic has not confirmed this 
 
 The model keeps all 25 numbered surfaces. The aperture stop is S13, between L7 and L8, with the printed distances on both sides. The 14 elements fall in 10 air-separated groups: L1, L2+L3, L4+L5, L6, L7, L8+L9, L10+L11, L12, L13 and L14.
 
-The patent prints spacings at three zoom positions, and the model's 201 zoom stations keep them unchanged at stations 0, 100 and 200. The 198 stations between them are inferred and are not a recovered factory cam. Radii, glass coordinates and fixed distances are as printed. The overall length holds during zoom, as reviewers report for the lens: d5+d10 stays at 27.7518 mm and d19+d21+d23 at 27.7018–27.7019 mm, for a total length of 107.5266–107.5269 mm. The iris radius is set from the f-number at each station: 7.43 mm, 5.86 mm and 5.23 mm at the three printed positions, with f-numbers interpolated between them. The patent prints no stop diameter.
+The patent prints spacings at three zoom positions, and the model's 51 zoom stations keep them unchanged at stations 0, 25 and 50. The 48 stations between them are inferred and are not a recovered factory cam. Radii, glass coordinates and fixed distances are as printed. The overall length holds during zoom, as reviewers report for the lens: d5+d10 stays at 27.7518 mm and d19+d21+d23 at 27.7018–27.7019 mm, for a total length of 107.5266–107.5269 mm. The iris radius is set from the f-number at each station: 7.43 mm, 5.86 mm and 5.23 mm at the three printed positions, with f-numbers interpolated between them. The patent prints no stop diameter.
 
 ### Model assumptions
 

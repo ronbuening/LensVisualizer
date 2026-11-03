@@ -38,3 +38,10 @@ Fresh glass review confirms all seventeen source nd/νd pairs, grouped by the te
 Example1 prints no θgF, ΔPgF or individual C/F/g indices. Remove the two catalog-derived `dPgF:0.0135` overrides and six catalog-only line-index fields on L12/L34; retain their qualified inferred APD classification. These media now use the compatible J-PSKH1 curve anchored to source nd. The runtime branch changes from explicit line indices to Sellmeier, with PgF0.54395604 → 0.54399727; no source dispersion is discarded.
 
 Focused `audit:surface` and `audit:image-circle` pass. Actual SVG paths at focus/zoom 0, 0.5 and 1 are finite with zero hidden trimming; rendered montages were inspected. The shared dispersion and glass-resolution parity suites pass (2 files / 93 tests). A temporary source-coordinate/resolver check confirms all 45 media in this triad, 44 compatible catalog curves and the one deliberately unresolved L12; `assertCatalogConsistent` passes. No R/d, aspheric coefficient, gap, focus, zoom or iris control was changed. Aperture evaluation is within 3% at all three zoom stations with no rim limiter or failed beam. The source focus-spacing inconsistency and product-correlation limits remain disclosed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.45 → 0.844 m, with per-station `closeFocusM` 0.844 / 1.448 / 3.409 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 657.6 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed rows are a shallow characterization state; focus description gives the production 0.45 m MFD.
+- `catalog.closeFocusM.marketing` 0.45 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

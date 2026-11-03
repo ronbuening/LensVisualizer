@@ -194,9 +194,9 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 1.0,
+    closeFocusM: 1.192,
     description:
-      "Unit focus by moving the complete shutter-mounted lens with the view-camera bellows; 1.0 m is a modeled UI endpoint, not a fixed manufacturer MFD.",
+      "Unit focus by moving the complete shutter-mounted lens with the view-camera bellows; the 1.0 m object-distance endpoint (about 1.19 m object to image) is a modeled UI endpoint, not a fixed manufacturer MFD.",
   },
 
   /* (moved from var) ── Unit-focus bellows extension ── */

@@ -292,7 +292,7 @@ describe("attachTeleconverter", () => {
 
   it("rescales the first-order metadata buildLens and the controls rely on", () => {
     const hostData = teleconverterHostData({
-      overrides: { focalLengthDesign: 49, focalLengthMarketing: 50, apertureMarketing: 2 },
+      overrides: { focalLengthDesign: 49, focalLengthMarketing: 50, apertureMarketing: 2, closeFocusMarketing: 0.45 },
     });
     const composedData = constructionFixtureData(attachTeleconverter(hostData, tc));
     const composed = build(composedData);
@@ -305,6 +305,8 @@ describe("attachTeleconverter", () => {
     expect(composedData.focalLengthMarketing).toBe(70);
     expect(composedData.apertureMarketing).toBe(2.8);
     expect(composedData.closeFocusM).toBeCloseTo(0.5 + extensionM, 12);
+    // The converter lengthens the marketed object-to-image close distance with the authored one.
+    expect(composedData.closeFocusMarketing).toBeCloseTo(0.45 + extensionM, 12);
     expect(composedData.elementCount).toBe(2);
     expect(composedData.acceptsTeleconverters).toBeUndefined();
     expect(

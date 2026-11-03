@@ -47,6 +47,7 @@ const LENS_DATA = {
     groupCount: 5,
     focalLengthMm: { marketing: 35, design: 36.06 },
     fNumber: { marketing: 2.8, design: 2.884 },
+    closeFocusM: { marketing: 0.35 },
   },
 
   source: {
@@ -211,7 +212,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.35,
+    closeFocusM: 0.406,
     description: "Inner focus — single negative element (L121/G2) moves object→image. Linear AF motor.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],

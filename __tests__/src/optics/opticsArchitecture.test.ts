@@ -251,6 +251,12 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     capacity: 128,
     limit: "STOP_RULE_CACHE_LIMIT",
   },
+  "src/optics/state/fieldAdapters.ts#ROW_FOCUS_VERGENCE": {
+    kind: "weak-owner",
+    owner: "CompiledLens",
+    key: "owner identity",
+    perOwner: "one station-by-keyframe table of row in-focus inverse distances, built once",
+  },
   "src/optics/state/preparedGeometry.ts#PREPARED_STATE_BY_LENS": {
     kind: "bounded",
     owner: "module",

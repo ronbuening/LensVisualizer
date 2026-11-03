@@ -51,6 +51,7 @@ const LENS_DATA = {
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: 50 },
     fNumber: { marketing: 1.4 },
+    closeFocusM: { marketing: 0.45 },
   },
 
   source: {
@@ -174,7 +175,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.45,
+    closeFocusM: 0.493,
     description: "Unit focus — entire 7-element optical assembly translates forward on a helicoid barrel.",
   },
 

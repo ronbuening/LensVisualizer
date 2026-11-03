@@ -184,3 +184,23 @@ The G4 turn at station 121 and the matching d21 turn at station 139 are the one 
 Focus: ¶0017 and ¶0029 name G4 and G5 as the focusing groups and say both move imageward from infinity to a near object, and the Figure 1 arrows on G4(−) and G5(−) point imageward. `focus.description` says the same, and the patent prints infinity spacings only, so the focus control stays inert and shows "Not modeled". The focus choice in the movement overlay is disabled, so that overlay falls back to zoom.
 
 Open limitation: the exact axial ray at the printed f-numbers reaches the stop at 8.00, 6.10 and 5.40 mm, close to the figure's stop ticks at 7.97, 6.05 and 5.27 mm. The engine's paraxial iris radius is 7.43, 5.86 and 5.23 mm. The stop is outside this review's edit list, so this is logged and unchanged.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 4th existing row (indices 0, 4, …, 200).
+- Focus: both keyframes kept (no change).
+- Published zoom stations remapped 0 → 0, 100 → 25, 200 → 50; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 201 × 2 = 402 | 51 × 2 = 102 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0011 mm | 0.0183 mm |
+| worst fixed-plane defocus at infinity | 0.0042 mm | 0.0143 mm |
+| worst focal-length label residual | 0.0018 mm | 0.0288 mm |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0183 mm (0.46 R), half-field ≤ 0.001°, stop radius ≤ 0.018 %, f-number ≤ 0.000 %, variable gaps ≤ 0.004 mm, axial diffraction MTF at 30 lp/mm -0.029 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+Text sync: analysis: 201 stations with printed rows at 0/100/200 → 51 stations at 0/25/50, 198 → 48 inferred.

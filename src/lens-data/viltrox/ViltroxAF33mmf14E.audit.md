@@ -17,3 +17,10 @@ Source: local `patents/CN211826699U.pdf`, Example 1 Tables 1–2, PDF pp.7–8, 
 **Tier A:** L14/source S7 is 1.51/81.59. The patent labels L14/L23 anomalous-dispersion glass, but supplies no numeric θgF, ΔPgF, nC/nF/ng or vendor identity. F/d/C wavelengths in the aberration discussion are not indices. Removed the completed Tier A patent-search row while retaining the missing spectral-data limitation and existing glass uncertainty.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.4 → 0.467 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 16.8 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: the published 0.4 m state is not an object-to-image distance; the row focuses at 0.467 m object to image.
+- `catalog.closeFocusM.marketing` 0.4 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

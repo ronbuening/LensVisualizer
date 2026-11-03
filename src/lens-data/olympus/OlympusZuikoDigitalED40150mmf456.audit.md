@@ -161,3 +161,26 @@ After the edits:
 - The re-shot page shows the C1–C3 brackets and "DOUBLET C3" in the L8 inspector, with D3 / D10 / D22 beside the slider and no overlaps at any zoom or focus state.
 
 Open: the G2 turning point is placed exactly at ST by the interpolation. The patent prints only WE, ST and TE and draws no movement arrows.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 2nd existing row (indices 0, 2, …, 64).
+- Focus: kept keyframes [0, 1, 2, 3, 4, 5, 6, 7, 9, 11, 13, 15, 17] of 18, at focus coordinates [0, 0.003, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.5, 0.625, 0.75, 0.875, 1].
+- Published zoom stations remapped 0 → 0, 32 → 16, 64 → 32; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 65 × 18 = 1170 | 33 × 13 = 429 |
+| source-published states | 6 | 6 |
+| worst infinity defocus against the solves, between rows | 0.0023 mm | 0.0092 mm |
+| worst fixed-plane defocus at infinity | 0.0324 mm | 0.0343 mm |
+| worst focal-length label residual | 0.0084 mm | 0.0334 mm |
+| worst far-focus distance-label error | +12.4 % (300 m reads 337.3 m near 76.6 mm) | +72.8 % (300 m reads 518.4 m near 75.6 mm) |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0192 mm (0.48 R), half-field ≤ 0.187°, stop radius ≤ 0.014 %, f-number ≤ 0.000 %, variable gaps ≤ 0.005 mm, axial diffraction MTF at 30 lp/mm -0.045 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+The far-focus label error is the infinity defocus expressed as a distance: near the 0.003 focus cutoff a few micrometres of image-side defocus move the in-focus distance by tens or hundreds of metres. Close-focus labels at kept keyframes are unchanged.
+
+Text sync: header: 62 → 30 intermediate zoom stations, 16 → 11 intermediate focus keyframes, ST is zoom.stations[32] → [16]; analysis: 65 / 18 → 33 / 13 positions and their spacing, the stale "225 m reads 246 m (+9.4 %)" sentence replaced by the measured far-focus error, interpolation residual 0.008 → 0.009 mm at infinity and 0.019 mm across focus.

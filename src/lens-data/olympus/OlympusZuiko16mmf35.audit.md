@@ -49,3 +49,10 @@ Patent: US 3,850,509, Example 1
 Display name changed from `OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye` to `OLYMPUS ZUIKO AUTO-FISHEYE 16mm f/3.5`, the name
 the lens carries (Zuiko Auto-Fisheye 16mm 1:3.5) and the form already used for the 8mm entry. The lens key is
 unchanged.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.2 → 0.254 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 26.9 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived unit-focus travel; 0.2 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.2 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

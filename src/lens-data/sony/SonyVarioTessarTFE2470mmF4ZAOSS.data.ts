@@ -43,6 +43,7 @@ const LENS_DATA = {
     groupCount: 10,
     focalLengthMm: { marketing: [24, 70], design: [24.712006381004198, 67.8583392197399] },
     fNumber: { marketing: 4, design: 4.1 },
+    closeFocusM: { marketing: 0.4 },
   },
 
   source: {
@@ -280,7 +281,7 @@ const LENS_DATA = {
   ],
 
   zoom: {
-    stations: [{ focalLengthMm: 24.72 }, { focalLengthMm: 47 }, { focalLengthMm: 67.9 }],
+    stations: [{ focalLengthMm: 24.72, closeFocusM: 0.421 }, { focalLengthMm: 47, closeFocusM: 0.406 }, { focalLengthMm: 67.9, closeFocusM: 0.4 }],
     apertureModel: "from-nominal-fno",
   },
 

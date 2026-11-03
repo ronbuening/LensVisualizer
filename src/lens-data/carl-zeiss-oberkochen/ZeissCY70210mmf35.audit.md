@@ -185,3 +185,23 @@ Open limitations retained: figure-derived free rims; 14 nominal axial clips; inf
 Added element `focalLengthMm` values (in-air thick-lens focal length from each element's own faces) so the element inspector shows them; optics unchanged.
 
 The Zeiss glass labels for elements 3, 8, 9 and 15 now say the printed nd/νd equal legacy Schott KF9 / SF8 / SK4 / SSK4 (the patent prints coordinates only, no glass names); resolution unchanged.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 4th existing row (indices 0, 4, …, 256).
+- Focus: both keyframes kept (no change).
+- Published zoom stations remapped 0 → 0, 128 → 32, 256 → 64; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 257 × 2 = 514 | 65 × 2 = 130 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0002 mm | 0.0039 mm |
+| worst fixed-plane defocus at infinity | 0.0593 mm | 0.0615 mm |
+| worst focal-length label residual | 0.0004 mm | 0.0056 mm |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0039 mm (0.27 R), half-field ≤ 0.065°, stop radius ≤ 0.000 %, f-number ≤ 0.000 %, variable gaps ≤ 0.008 mm, axial diffraction MTF at 30 lp/mm +0.029 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+Text sync: analysis: 257 → 65 nodes (254 → 62 derived), EFL / BFD residuals 0.000357 / 0.000246 → 0.0056 / 0.0039 mm, fixed-plane defocus 0.05935 → 0.0615 mm.

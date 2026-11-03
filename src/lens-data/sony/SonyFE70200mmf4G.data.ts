@@ -59,6 +59,7 @@ const LENS_DATA = {
     groupCount: 15,
     focalLengthMm: { marketing: [70, 200], design: [72.0974, 193.9726] },
     fNumber: { marketing: 4, design: 4.1474 },
+    closeFocusM: { marketing: [1, 1.5] },
   },
 
   source: {
@@ -382,15 +383,15 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 72.0974, nominalFNumber: 4.1474, label: "Wide" },
-      { focalLengthMm: 122.948, nominalFNumber: 4.0559, label: "Middle" },
-      { focalLengthMm: 193.9726, nominalFNumber: 4.1269, label: "Telephoto" },
+      { focalLengthMm: 72.0974, nominalFNumber: 4.1474, closeFocusM: 1, label: "Wide" },
+      { focalLengthMm: 122.948, nominalFNumber: 4.0559, closeFocusM: 1.25, label: "Middle" },
+      { focalLengthMm: 193.9726, nominalFNumber: 4.1269, closeFocusM: 1.5, label: "Telephoto" },
     ],
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 1.0,
+    closeFocusM: 1,
     description:
       "Internal focusing by G42, a compact cemented positive/negative doublet. Close-focus values approximate Sony's published AF close-focus range across the zoom.",
   },

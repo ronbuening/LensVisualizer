@@ -78,3 +78,10 @@ Patent: US 4,124,276A, Embodiment 3
 - Visually rechecked Table 6 in local `patents/US4124276.pdf`, PDF page 23. L3 is printed at `nd = 1.54072`, `νd = 46.8`, code `541468`.
 - The current OHARA S-TIL2 curve evaluates to `1.540720 / 47.227`, making it an exact index and close-Abbe spectral proxy (`Δnd = 0.000000`, `Δνd = +0.427`).
 - Relabeled L3 as an S-TIL2 catalog equivalent while retaining the patent coordinates and leaving Minolta's production supplier unspecified. L1 `749501` and L4 `720521` remain unresolved; no geometry or APD metadata changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.8 → 0.971 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 21.3 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close row states no distance; 0.8 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.8 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

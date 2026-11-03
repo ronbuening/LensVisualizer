@@ -51,6 +51,7 @@ const LENS_DATA = {
     groupCount: 10,
     focalLengthMm: { marketing: [20, 35], design: [20.6008, 33.9845] },
     fNumber: { marketing: 4, design: 4.11 },
+    closeFocusM: { marketing: 0.35 },
   },
 
   source: {
@@ -407,15 +408,15 @@ const LENS_DATA = {
   zoom: {
     // (moved from publishedStations) Source-tabulated focus rows differ by zoom station.
     stations: [
-      { focalLengthMm: 20.6, label: "20.6 mm", published: true, publishedFocus: [1] },
-      { focalLengthMm: 28.03, published: true },
-      { focalLengthMm: 33.99, label: "34.0 mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 20.6, closeFocusM: 0.319, label: "20.6 mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 28.03, closeFocusM: 0.381, published: true },
+      { focalLengthMm: 33.99, closeFocusM: 0.458, label: "34.0 mm", published: true, publishedFocus: [1] },
     ],
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 0.35,
+    closeFocusM: 0.319,
     description:
       "Inner focus by entire G2 (L21-L22). Patent Table 29 gives beta=-0.1 focus spacings at wide and tele; middle close-focus spacing is interpolated for the viewer.",
   },

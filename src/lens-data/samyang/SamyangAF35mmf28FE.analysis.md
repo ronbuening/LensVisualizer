@@ -142,7 +142,7 @@ The infinity-to-close G24 translation is **2.638416687 mm toward the image side*
 
 The intermediate data-file focus coordinate `focusT = 0.237653048385` is a normalized UI mapping derived from the current LensVisualizer distance convention. It is not a patent-published mechanical coordinate. The underlying D1/D2 values themselves are published.
 
-The patent's close column is internally inconsistent in its distance label. It is headed `TL=0.3m`, but the same row gives D0 = 302.0219835 mm and OAL = 46.500 mm, summing to 348.5219835 mm. Samyang defines minimum focusing distance from image sensor to object and specifies 0.35 m for the production lens. The final model therefore retains the patent's published spacing row while using `closeFocusM: 0.35`; it does not rewrite or reconstruct the patent spacings.
+The patent's close column is internally inconsistent in its distance label. It is headed `TL=0.3m`, but the same row gives D0 = 302.0219835 mm and OAL = 46.500 mm, summing to 348.5219835 mm. Samyang defines minimum focusing distance from image sensor to object and specifies 0.35 m for the production lens. The final model therefore retains the patent's published spacing row, labels its close endpoint with the 0.387 m object-to-image distance that row focuses at, and keeps the 0.35 m production figure as marketed metadata; it does not rewrite or reconstruct the patent spacings.
 
 ## Aspherical Surfaces
 

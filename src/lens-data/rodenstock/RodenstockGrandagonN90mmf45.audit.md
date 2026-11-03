@@ -25,3 +25,9 @@ Patent: DE 2444954 A1, Patentanspruch 2
   with an independently reproduced native e-line coordinate.
 - Relabeled L4 as an FEL3 catalog equivalent while leaving the historical production supplier unspecified. No
   prescription or semi-diameter values changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 1 → 1.135 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 13.5 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: bellows focus; the 1 m endpoint is a UI extension, not a maker MFD.

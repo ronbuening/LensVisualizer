@@ -99,3 +99,10 @@ analysis departure table now quotes 3A at 17.4 mm (+882.139 µm) and 4A at 14.3 
 | L42 | 81.61 | Row 20: θgF 0.53887; minus the engine line = +0.032338 | 0.03234 | 0.03234 (unchanged) |
 | L43 | 53.20 | Row 22: θgF 0.54661; minus the engine line = −0.007708 | −0.00771 | −0.00771 (unchanged) |
 | L51 | 40.73 | Row 24: θgF 0.56825; minus the engine line = −0.007042 | −0.00704 | −0.00704 (unchanged) |
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.35 → 0.319 m, with per-station `closeFocusM` 0.319 / 0.381 / 0.458 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 30.8 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: patent close rows are beta = -0.1 states; 0.35 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.35 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

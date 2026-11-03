@@ -26,3 +26,11 @@ Patent: US 2025/0231383 A1, embodiment 100-3
 - The analysis had added the OAL row to the MOD D0 values and reported sensor-to-subject distances of 0.314 / 0.496 /
   0.810 m. With the physical track the distances are 0.330 / 0.527 / 0.849 m, which match the production 0.33 m / 0.85 m
   (FE) at wide and tele. Corrected in the analysis; the OAL definition is noted in the header.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.33 → 0.331 m, with per-station `closeFocusM` 0.331 / 0.528 / 0.848 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 156.9 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close rows already reach 0.33 m at wide; per-station values record them.
+
+Text sync: analysis: per-station closeFocusM values are the printed close rows (0.331 m at wide, matching the FE figure).

@@ -52,3 +52,12 @@ Patent: JP 2022-030896 A, Example 1 / FIG. 1
 - Left: nothing. The other eight elements carry no `dPgF` and none was added (the patent's `ΔPgF` column is blank on
   their rows); no element authors `nC`/`nF`/`ng` or uses `indexReference: "e"`. No `nd`, `νd`, glass label, `apd`
   tag or surface changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.18 → 0.255 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 41.5 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed row (0.18 m in the source's own reference) focuses at 0.254 m object to image; 0.18 m is the production figure.
+- `catalog.closeFocusM.marketing` 0.18 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: focus.description: "to 0.18 m" → "to the patent's 0.18 m state (measured from the first surface)".

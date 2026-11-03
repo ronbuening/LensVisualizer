@@ -10,7 +10,7 @@ import {
   sharedFNumber,
   snapToCommon,
 } from "../../../src/comparison/comparisonSliders.js";
-import { formatDist } from "../../../src/optics/first-order/format.js";
+import { focusDistanceAt } from "../../../src/optics/state/focusDistance.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 import { build, buildVariableStopGapLens, buildSimplePositiveElementLens } from "../optics/testLensFixtures.js";
@@ -374,7 +374,7 @@ describe("zoom-dependent focus distance", () => {
     expect(comparisonFocusAfterZoom(0.5, 0, 1, zoom, fixed)).toBe(1);
     expect(comparisonFocusAfterZoom(0.5, 0, 1, fixed, fixed)).toBe(0);
   });
-  it("uses the current zoom endpoint for labels and comparison clamping", () => {
+  it("uses the current zoom endpoint for the distance convention and comparison clamping", () => {
     const zoom = build({
       ...constructionFixtureData(
         buildVariableStopGapLens([
@@ -386,9 +386,10 @@ describe("zoom-dependent focus distance", () => {
       zoomCloseFocusM: [0.5, 1, 2],
     });
     const prime = { ...lensB, closeFocusM: 1 } as RuntimeLens;
-    expect(formatDist(1, zoom, 0)).toBe("50 cm");
-    expect(formatDist(1, zoom, 0.5)).toBe("1.00 m");
-    expect(formatDist(1, zoom, 1)).toBe("2.00 m");
+    // Remapping and clamping use the slider convention; labels report the modeled distance instead.
+    expect(focusDistanceAt(1, zoom, 0)).toBe(0.5);
+    expect(focusDistanceAt(1, zoom, 0.5)).toBe(1);
+    expect(focusDistanceAt(1, zoom, 1)).toBe(2);
     const pair = computeFocusPair(0.5, zoom, prime, 1, 0);
     expect(pair.focusA).toBe(1);
     expect(pair.focusB).toBe(0.5);

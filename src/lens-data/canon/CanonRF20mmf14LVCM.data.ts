@@ -60,6 +60,7 @@ const LENS_DATA = {
       marketing: 1.4,
       design: 1.46,
     },
+    closeFocusM: { marketing: 0.2 },
   },
   source: {
     patentNumber: "US 2025/0389929 A1",
@@ -523,7 +524,7 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 0.2,
+    closeFocusM: 0.3,
     description: "Inner focus by positive L2; patent tabulates 1.61 mm objectward travel from infinity to β=-0.1.",
     published: [1],
   },

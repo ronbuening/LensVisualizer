@@ -47,6 +47,7 @@ const LENS_DATA = {
     /* ── Metadata ── */
     focalLengthMm: { marketing: 24.2, design: 24.1472 },
     fNumber: { marketing: 2.8, design: 2.9129 },
+    closeFocusM: { marketing: 0.28 },
   },
 
   source: {
@@ -178,7 +179,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.28,
+    closeFocusM: 0.343,
     description:
       "Rear focus: G2 (L7) translates toward object for close focus, shortening D12 while BF increases. G1 (including stop and doublet G1b) is mechanically fixed.",
   },

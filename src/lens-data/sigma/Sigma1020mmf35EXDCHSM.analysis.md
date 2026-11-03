@@ -127,7 +127,7 @@ The patent names no glasses. Twelve catalog labels, on thirteen elements, are as
 
 ## Zoom, Aperture and Focus
 
-The model has 129 zoom nodes, and the three the patent prints are exact. Between them, G1–G3 image-relative positions are interpolated linearly and G4 is solved to hold focus on the interpolated image plane. This cam is inferred. The printed gaps are monotone: D9 falls, D15 rises, D18 falls and Bf rises. Between the printed stations the image plane stays 0.011–0.025 mm behind paraxial focus.
+The model has 33 zoom nodes, and the three the patent prints are exact. Between them, G1–G3 image-relative positions are interpolated linearly and G4 is solved to hold focus on the interpolated image plane. This cam is inferred. The printed gaps are monotone: D9 falls, D15 rises, D18 falls and Bf rises. Between the printed stations the image plane stays 0.011–0.028 mm behind paraxial focus.
 
 G1 moves imageward from wide to middle and objectward from middle to long; G2–G4 move objectward throughout. The printed total lengths of 134.257, 130.547 and 131.577 mm require the G1 reversal. The model places it at the middle station as a corner, not a recovered smooth factory cam.
 

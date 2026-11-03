@@ -87,3 +87,9 @@ Added an `unresolved` `source.errata` entry, a header disclosure, and a Section 
 - Remove45catalog-only C/F/gcopies from15glass; source d-line pairs unchanged.15compatible currentcurves remain qualified proxies, not productionSUMITA/HIKARI/OHARA identity. Three1.48749/70.0 media resolve loose J-FK5νd≈70.31879; source70.0 is neither silently replaced nor claimed exactcatalogrounding. No measuredAPD/chemistry invented. Currentpublicglassing/references synchronized.
   -144405samecollimated samplelaunches:121409retained,0lost/0gained,22996bothblocked;countsnotflux. Stop1.2mm abstraction/full49.846gap,BFD40.003152±.011916 residual,originalEFLunresolvederratum, sourceversusreconstructedfocuslimits allretained.
 - Focused surface and image-circle checks pass (0 errors/undersized). Aperture audit:5/5 stored-design stations within3%, no rim/iris/trace failures. Field audit:4/5stations≥99%;35–85wide retains75% (16.28/21.65mm, S9limit), explicitly unresolved.27actualSVG zoom/focusstates viewed,0renderertrim and connected compounds.94shared dispersion/resolver/partial-line tests pass. Source R/d/nd/vd/stop/focus/zoom/tolerances and existing normalizations/errata invariant. No live/shared engine/catalog/test/report edits.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.29 → 0.29 m, with per-station `closeFocusM` 2.009 / 0.29 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 592.9 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: wide-end unit focus reaches about 2 m and the tele macro 0.29 m; per-station values record both.

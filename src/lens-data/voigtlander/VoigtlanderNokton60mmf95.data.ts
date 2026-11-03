@@ -57,6 +57,7 @@ const LENS_DATA = {
     groupCount: 8,
     focalLengthMm: { marketing: 60, design: 58.145372162408336 },
     fNumber: { marketing: 0.95, design: 0.93 },
+    closeFocusM: { marketing: 0.34 },
   },
 
   source: {
@@ -234,10 +235,10 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.34,
+    closeFocusM: 0.424,
     keyframes: [0, 0.4792059482960617, 1],
     description:
-      "PUBLISHED two-unit floating focus: G1+G2 move together while STO+G3 move independently. The infinity, 0.10×, and 0.20× patent rows are exact focus keyframes. closeFocusM=0.34 m is the manufacturer product specification; no 0.25× internal state is reconstructed.",
+      "PUBLISHED two-unit floating focus: G1+G2 move together while STO+G3 move independently. The infinity, 0.10×, and 0.20× patent rows are exact focus keyframes. The 0.20× row focuses at 0.424 m object to image; the 0.34 m manufacturer product specification is kept as catalog metadata, and no 0.25× internal state is reconstructed.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

@@ -38,3 +38,12 @@ Patent: US 2011/0170195 A1, Example 1
 - Reviewed all 18 active faces plus the low-pass plate. The 300 dpi source has an approximately 1328-render-pixel first-to-last-powered-vertex span at 600 dpi over 47.1024 mm, about 14.1 native px/mm; ray/leader ink is excluded. Native edge heights for S2/S7/S8/S10 are approximately152/120/120/125 px. Measured cap shares are q≈0.86±0.013 /0.88±0.016 /0.89±0.016 /0.86±0.015, using ±(1+q)/edge.
 - Kept optical SDs on S2/S8/S10 at 10.5/9.4/8.3 mm and added outer extensions 11.3/10.0/9.4 mm. Adopted cap shares 0.929/0.940/0.883 are farther out than the measured ends, retaining the existing clear caps. At S7, the initial figure-derived 1.02 mm cut (radius 8.999 mm) failed the full beam guard: at the β=-1 keyframe, field 7.50°, reach 9.0956 mm requires radius>=9.1456 mm. Adopted inferred depth 1.06 mm / radius 9.171841 mm / outer 10.0 mm (q 0.917); full inferred-cut validation passes without a source-depth flag or tolerance change. No other land is resolved; S14A/clear 9.0 mm and its existing departure remain unchanged.
 - Surface/image-circle audits pass. Infinity remains iris-limited f/2.680; all published finite keyframes are included in geometry/beam checks. Nine actual SVG states include INF/MID/CLD focus controls 0/0.91065793/1, with 9 finite paths and zero trim diagnostics; raster inspected. Source-coordinate and catalog-consistency checks pass. Existing source Bf/reference-plane normalization remains disclosed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.163 → 0.153 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to -6.3 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed beta = -1 row focuses at 0.1526 m; focus description gives the marketed 0.163 m.
+- `catalog.closeFocusM.marketing` 0.163 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: header and focus.description: focus.closeFocusM is the 0.15264661 m CLD conjugate; Nikon's 0.163 m is catalog metadata.

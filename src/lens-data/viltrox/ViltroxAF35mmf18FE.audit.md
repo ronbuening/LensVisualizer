@@ -49,3 +49,12 @@ The F/d/C wavelength labels on aberration figures are not refractive indices.
 Deleted the completed patent-search row without fabricating spectral data; the
 spectral-data-unavailable limitation remains. No supplier identity was inferred.
 Focused runtime checks passed; full corpus validation follows at the batch checkpoint.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.3 → 0.388 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 29.4 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: the patent's 0.3 m row focuses at 0.388 m object to image; focus description gives the marketed 0.4 m.
+- `catalog.closeFocusM.marketing` 0.4 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: header, focus.description and analysis: the patent's 0.3 m row focuses at 0.388 m; the 0.4 m MFD is catalog metadata.

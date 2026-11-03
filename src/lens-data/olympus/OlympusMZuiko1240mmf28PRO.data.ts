@@ -68,6 +68,7 @@ const LENS_DATA = {
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: [12, 40], design: [12.25, 39.1] },
     fNumber: { marketing: 2.8, design: 2.88 },
+    closeFocusM: { marketing: 0.2 },
   },
 
   source: {
@@ -354,7 +355,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.2,
+    closeFocusM: 0.25,
     description:
       "Inner focus via G4 (cemented negative doublet L11+L12). G4 translates toward the image side for close focus. " +
       "All other groups stationary during focus. Supports wobbling for video CDAF.",

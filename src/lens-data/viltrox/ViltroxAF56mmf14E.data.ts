@@ -71,6 +71,7 @@ const LENS_DATA = {
     groupCount: 9,
     focalLengthMm: { marketing: 56, design: 55.9 },
     fNumber: { marketing: 1.4, design: 1.4 },
+    closeFocusM: { marketing: 0.6 },
   },
 
   source: {
@@ -252,7 +253,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.63,
+    closeFocusM: 0.711,
     description:
       "PUBLISHED inner focus: L31/G3 translates 4.01 mm imageward; D1 1.00→5.01 mm and D2 7.86→3.85 mm. " +
       "The modeled close endpoint is the patent's 0.63 m state; Viltrox markets the production lens at 0.6 m MFD.",

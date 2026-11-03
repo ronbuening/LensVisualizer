@@ -68,3 +68,10 @@ Read against US 2019/0353880 A1, First Example, Table 1 (PDF page 45, printed pa
 - The S11/S12 strokes suggest q≈0.95, but their figure-sized cap endpoints require lands 2.46+2.57=5.03 mm in the source 4.30 mm gap (allowed 3.87 mm). Rejected that trial without relaxing the policy; the original smaller caps and taper remain. Other faces show no independently resolved additional exposed land; cemented steps are retained.
 - Surface and image-circle checks pass. Nine actual SVG focus/zoom states have 18 finite paths and zero trim diagnostics; raster inspected. All three infinity stations remain iris-limited (f/4.490/4.863/5.868; baseline parity), with no inferred axial-rim raise needed. Published short-distance gaps and their disclosed mismatch to the production 1.2 m focus label remain unchanged. Catalog consistency and explicit source-coordinate validation pass.
 - Shared dispersion, glass-resolution-parity and partial-dispersion tests pass (3 files / 94 tests for this triad).
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 1.2 → 2.289 m, with per-station `closeFocusM` 2.289 / 3.113 / 8.797 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 633.1 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed rows are the patent short-distance state; focus description gives the production 1.2 m MFD.
+- `catalog.closeFocusM.marketing` 1.2 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

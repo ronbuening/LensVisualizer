@@ -291,3 +291,9 @@ Every source medium nd/νd pair was checked directly and retained, with d-line c
 Coverage: 12/12 modeled media, representing 12 physical lens elements. Rear plate(s) checked separately: 1.51680/64.17. Catalog-compatible spectra are qualified proxies, not production supplier/melt identifications. No catalog tolerance is relaxed.
 
 Verification: focused surface/inferred-beam and image-circle audits, aperture census after added cuts, actual native SVG outlines and render diagnostics over nine zoom/focus states; current-label glass resolver/coordinate compatibility and the shared dispersion/partial-dispersion consistency suites. Full repository gates are recorded by the coordinator at commit time.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` stays 0.3 m. Source prints the 300 mm state at W/M/T, which the printed stations reproduce; the interpolated stations are described as illustrative. The close row's modeled label reads within -11.3 % of it, so the close-endpoint corpus guard lists this lens as an exemption.
+
+- `catalog.closeFocusM.marketing` 0.17 / 0.29 m (wide / tele) keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

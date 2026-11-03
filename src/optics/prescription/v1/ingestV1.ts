@@ -99,6 +99,7 @@ const LENS_FIELDS: Readonly<Record<keyof LensDataInput, true>> = {
   focalLengthDesign: true,
   apertureMarketing: true,
   apertureDesign: true,
+  closeFocusMarketing: true,
   lensMounts: true,
   imageFormat: true,
   imageCircleMm: true,
@@ -959,6 +960,7 @@ export function ingestLensV1(input: LensDataInput, request?: IngestRequest): Ing
     put(fNumber, "design", data.apertureDesign);
     catalog.fNumber = fNumber;
   }
+  if (has(data, "closeFocusMarketing")) catalog.closeFocusM = { marketing: data.closeFocusMarketing };
 
   const aperture: Untyped = {};
   if (!Array.isArray(data.nominalFno)) put(aperture, "nominalFNumber", data.nominalFno);
@@ -1012,6 +1014,7 @@ export function ingestLensV1(input: LensDataInput, request?: IngestRequest): Ing
 const V1_NAMES = {
   focalLengthMm: { marketing: "focalLengthMarketing", design: "focalLengthDesign" },
   fNumber: { marketing: "apertureMarketing", design: "apertureDesign" },
+  closeFocusM: { marketing: "closeFocusMarketing" },
   source: { example: "patentExample", authors: "patentAuthors", assignees: "patentAssignees", errata: "sourceErrata" },
   focus: { closeFocusM: "closeFocusM", description: "focusDescription" },
   aperture: {
@@ -1040,7 +1043,7 @@ function recordLensReads(sources: SourcePaths, lens: Untyped): void {
     "acceptsTeleconverters",
     "opticalConfiguration",
   ]);
-  for (const range of ["focalLengthMm", "fNumber"] as const) {
+  for (const range of ["focalLengthMm", "fNumber", "closeFocusM"] as const) {
     if (!catalog[range]) continue;
     recordReads(sources, `catalog.${range}`, "", catalog[range] as Untyped, ["marketing", "design"], V1_NAMES[range]);
   }

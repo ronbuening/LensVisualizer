@@ -332,18 +332,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 25.133542579270635,
-        "nominalFNumber": 3.6343
-      },
-      {
-        "published": false,
         "focalLengthMm": 25.258522359948945,
         "nominalFNumber": 3.6486
-      },
-      {
-        "published": false,
-        "focalLengthMm": 25.384761112575884,
-        "nominalFNumber": 3.6629
       },
       {
         "published": false,
@@ -352,18 +342,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 25.641092396156477,
-        "nominalFNumber": 3.6915
-      },
-      {
-        "published": false,
         "focalLengthMm": 25.771224340973415,
         "nominalFNumber": 3.7058
-      },
-      {
-        "published": false,
-        "focalLengthMm": 25.90269410566812,
-        "nominalFNumber": 3.7201
       },
       {
         "published": false,
@@ -372,18 +352,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 26.169730467670814,
-        "nominalFNumber": 3.7487
-      },
-      {
-        "published": false,
         "focalLengthMm": 26.30533983958,
         "nominalFNumber": 3.763
-      },
-      {
-        "published": false,
-        "focalLengthMm": 26.442372603410206,
-        "nominalFNumber": 3.7773
       },
       {
         "published": false,
@@ -392,18 +362,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 26.720798894477856,
-        "nominalFNumber": 3.8059
-      },
-      {
-        "published": false,
         "focalLengthMm": 26.8622389230224,
         "nominalFNumber": 3.8202
-      },
-      {
-        "published": false,
-        "focalLengthMm": 27.005195371992567,
-        "nominalFNumber": 3.8345
       },
       {
         "published": false,
@@ -412,18 +372,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 27.295756131086762,
-        "nominalFNumber": 3.8631
-      },
-      {
-        "published": false,
         "focalLengthMm": 27.44341108407401,
         "nominalFNumber": 3.8774
-      },
-      {
-        "published": false,
-        "focalLengthMm": 27.592683772638523,
-        "nominalFNumber": 3.8917
       },
       {
         "published": false,
@@ -432,18 +382,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 27.896189874362346,
-        "nominalFNumber": 3.9203
-      },
-      {
-        "published": false,
         "focalLengthMm": 28.05047854346298,
         "nominalFNumber": 3.9346000000000005
-      },
-      {
-        "published": false,
-        "focalLengthMm": 28.206495493559732,
-        "nominalFNumber": 3.9489
       },
       {
         "published": false,
@@ -452,18 +392,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 28.523831704041104,
-        "nominalFNumber": 3.9775
-      },
-      {
-        "published": false,
         "focalLengthMm": 28.68521137088054,
         "nominalFNumber": 3.9917999999999996
-      },
-      {
-        "published": false,
-        "focalLengthMm": 28.848440169958888,
-        "nominalFNumber": 4.0061
       },
       {
         "published": false,
@@ -472,18 +402,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 29.18057375954686,
-        "nominalFNumber": 4.0347
-      },
-      {
-        "published": false,
         "focalLengthMm": 29.3495447213782,
         "nominalFNumber": 4.0489999999999995
-      },
-      {
-        "published": false,
-        "focalLengthMm": 29.52049720204173,
-        "nominalFNumber": 4.0633
       },
       {
         "published": false,
@@ -492,18 +412,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 29.868487791372992,
-        "nominalFNumber": 4.0919
-      },
-      {
-        "published": false,
         "focalLengthMm": 30.04559854065604,
         "nominalFNumber": 4.106199999999999
-      },
-      {
-        "published": false,
-        "focalLengthMm": 30.224836140552803,
-        "nominalFNumber": 4.1205
       },
       {
         "published": false,
@@ -512,18 +422,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 30.589846991079188,
-        "nominalFNumber": 4.1491
-      },
-      {
-        "published": false,
         "focalLengthMm": 30.77570016190905,
         "nominalFNumber": 4.1634
-      },
-      {
-        "published": false,
-        "focalLengthMm": 30.963840082090513,
-        "nominalFNumber": 4.1777
       },
       {
         "published": false,
@@ -532,18 +432,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 31.347151084481418,
-        "nominalFNumber": 4.206300000000001
-      },
-      {
-        "published": false,
         "focalLengthMm": 31.542410301666965,
         "nominalFNumber": 4.2206
-      },
-      {
-        "published": false,
-        "focalLengthMm": 31.74013260571636,
-        "nominalFNumber": 4.2349
       },
       {
         "published": false,
@@ -552,18 +442,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 32.14315527166247,
-        "nominalFNumber": 4.2635000000000005
-      },
-      {
-        "published": false,
         "focalLengthMm": 32.3485530664517,
         "nominalFNumber": 4.2778
-      },
-      {
-        "published": false,
-        "focalLengthMm": 32.556608892419256,
-        "nominalFNumber": 4.2921
       },
       {
         "published": false,
@@ -572,18 +452,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 32.98090371985232,
-        "nominalFNumber": 4.3207
-      },
-      {
-        "published": false,
         "focalLengthMm": 33.19725071125908,
         "nominalFNumber": 4.335
-      },
-      {
-        "published": false,
-        "focalLengthMm": 33.41647180536016,
-        "nominalFNumber": 4.3492999999999995
       },
       {
         "published": false,
@@ -592,18 +462,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 33.86376846731854,
-        "nominalFNumber": 4.3779
-      },
-      {
-        "published": false,
         "focalLengthMm": 34.091964051573925,
         "nominalFNumber": 4.3922
-      },
-      {
-        "published": false,
-        "focalLengthMm": 34.32327387868099,
-        "nominalFNumber": 4.4065
       },
       {
         "published": false,
@@ -612,18 +472,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 34.79549478637193,
-        "nominalFNumber": 4.4351
-      },
-      {
-        "published": false,
         "focalLengthMm": 35.036539631629346,
         "nominalFNumber": 4.4494
-      },
-      {
-        "published": false,
-        "focalLengthMm": 35.2809663754153,
-        "nominalFNumber": 4.4637
       },
       {
         "published": false,
@@ -632,18 +482,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 35.78025429221567,
-        "nominalFNumber": 4.4923
-      },
-      {
-        "published": false,
         "focalLengthMm": 36.03526500447372,
         "nominalFNumber": 4.5066
-      },
-      {
-        "published": false,
-        "focalLengthMm": 36.2939568430729,
-        "nominalFNumber": 4.520899999999999
       },
       {
         "published": false,
@@ -652,18 +492,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 36.822707385895704,
-        "nominalFNumber": 4.5495
-      },
-      {
-        "published": false,
         "focalLengthMm": 37.092933799413466,
         "nominalFNumber": 4.5638000000000005
-      },
-      {
-        "published": false,
-        "focalLengthMm": 37.36717693521624,
-        "nominalFNumber": 4.5781
       },
       {
         "published": false,
@@ -672,18 +502,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 37.92807700303353,
-        "nominalFNumber": 4.6067
-      },
-      {
-        "published": false,
         "focalLengthMm": 38.21492265997502,
         "nominalFNumber": 4.621
-      },
-      {
-        "published": false,
-        "focalLengthMm": 38.50616270077552,
-        "nominalFNumber": 4.6353
       },
       {
         "published": false,
@@ -692,18 +512,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 39.10223613081539,
-        "nominalFNumber": 4.6639
-      },
-      {
-        "published": false,
         "focalLengthMm": 39.40728265813304,
         "nominalFNumber": 4.6781999999999995
-      },
-      {
-        "published": false,
-        "focalLengthMm": 39.71715009957515,
-        "nominalFNumber": 4.6925
       },
       {
         "published": false,
@@ -712,18 +522,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 40.351812188362054,
-        "nominalFNumber": 4.7211
-      },
-      {
-        "published": false,
         "focalLengthMm": 40.676848465429835,
         "nominalFNumber": 4.7354
-      },
-      {
-        "published": false,
-        "focalLengthMm": 41.00718922280403,
-        "nominalFNumber": 4.7497
       },
       {
         "published": false,
@@ -732,18 +532,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 41.684312187173546,
-        "nominalFNumber": 4.778300000000001
-      },
-      {
-        "published": false,
         "focalLengthMm": 42.0313694397035,
         "nominalFNumber": 4.7926
-      },
-      {
-        "published": false,
-        "focalLengthMm": 42.38428163613615,
-        "nominalFNumber": 4.8069
       },
       {
         "published": false,
@@ -752,18 +542,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 43.10827366367218,
-        "nominalFNumber": 4.8355
-      },
-      {
-        "published": false,
         "focalLengthMm": 43.4796679378006,
         "nominalFNumber": 4.8498
-      },
-      {
-        "published": false,
-        "focalLengthMm": 43.8575464972656,
-        "nominalFNumber": 4.8641
       },
       {
         "published": false,
@@ -772,18 +552,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 44.63344779513327,
-        "nominalFNumber": 4.8927
-      },
-      {
-        "published": false,
         "focalLengthMm": 45.0318316879592,
         "nominalFNumber": 4.907
-      },
-      {
-        "published": false,
-        "focalLengthMm": 45.437422735523455,
-        "nominalFNumber": 4.9213000000000005
       },
       {
         "published": false,
@@ -792,18 +562,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 46.27102300023563,
-        "nominalFNumber": 4.9499
-      },
-      {
-        "published": false,
         "focalLengthMm": 46.69944908873329,
         "nominalFNumber": 4.9642
-      },
-      {
-        "published": false,
-        "focalLengthMm": 47.13591676985068,
-        "nominalFNumber": 4.9784999999999995
       },
       {
         "published": false,
@@ -812,18 +572,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 48.033899866142775,
-        "nominalFNumber": 5.007099999999999
-      },
-      {
-        "published": false,
         "focalLengthMm": 48.495899041339214,
         "nominalFNumber": 5.0214
-      },
-      {
-        "published": false,
-        "focalLengthMm": 48.96690819827637,
-        "nominalFNumber": 5.035699999999999
       },
       {
         "focalLengthMm": 49.4,
@@ -832,18 +582,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 49.57998384163444,
-        "nominalFNumber": 5.0573999999999995
-      },
-      {
-        "published": false,
         "focalLengthMm": 49.71349527057689,
         "nominalFNumber": 5.0648
-      },
-      {
-        "published": false,
-        "focalLengthMm": 49.847733675194505,
-        "nominalFNumber": 5.0722
       },
       {
         "published": false,
@@ -852,18 +592,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 50.11841529036292,
-        "nominalFNumber": 5.087
-      },
-      {
-        "published": false,
         "focalLengthMm": 50.25487060422192,
         "nominalFNumber": 5.0944
-      },
-      {
-        "published": false,
-        "focalLengthMm": 50.3920771021766,
-        "nominalFNumber": 5.1018
       },
       {
         "published": false,
@@ -872,18 +602,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 50.668768597599396,
-        "nominalFNumber": 5.1166
-      },
-      {
-        "published": false,
         "focalLengthMm": 50.8082662417662,
         "nominalFNumber": 5.124
-      },
-      {
-        "published": false,
-        "focalLengthMm": 50.94854036535284,
-        "nominalFNumber": 5.1314
       },
       {
         "published": false,
@@ -892,18 +612,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 51.23144412674968,
-        "nominalFNumber": 5.146199999999999
-      },
-      {
-        "published": false,
         "focalLengthMm": 51.374086985489456,
         "nominalFNumber": 5.153599999999999
-      },
-      {
-        "published": false,
-        "focalLengthMm": 51.51753276756779,
-        "nominalFNumber": 5.161
       },
       {
         "published": false,
@@ -912,18 +622,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 51.806860371006984,
-        "nominalFNumber": 5.1758
-      },
-      {
-        "published": false,
         "focalLengthMm": 51.952756020493155,
         "nominalFNumber": 5.183199999999999
-      },
-      {
-        "published": false,
-        "focalLengthMm": 52.09948225177154,
-        "nominalFNumber": 5.1906
       },
       {
         "published": false,
@@ -932,18 +632,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 52.39545499132352,
-        "nominalFNumber": 5.2054
-      },
-      {
-        "published": false,
         "focalLengthMm": 52.544715970180185,
         "nominalFNumber": 5.2128
-      },
-      {
-        "published": false,
-        "focalLengthMm": 52.69483647435369,
-        "nominalFNumber": 5.2202
       },
       {
         "published": false,
@@ -952,18 +642,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 52.99768592652055,
-        "nominalFNumber": 5.234999999999999
-      },
-      {
-        "published": false,
         "focalLengthMm": 53.1504300253031,
         "nominalFNumber": 5.2424
-      },
-      {
-        "published": false,
-        "focalLengthMm": 53.30406395350728,
-        "nominalFNumber": 5.2498
       },
       {
         "published": false,
@@ -972,18 +652,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 53.61403258145306,
-        "nominalFNumber": 5.2646
-      },
-      {
-        "published": false,
         "focalLengthMm": 53.77038315263118,
         "nominalFNumber": 5.272
-      },
-      {
-        "published": false,
-        "focalLengthMm": 53.92765529881306,
-        "nominalFNumber": 5.2794
       },
       {
         "published": false,
@@ -992,18 +662,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 54.244997099708456,
-        "nominalFNumber": 5.2942
-      },
-      {
-        "published": false,
         "focalLengthMm": 54.40508338986721,
         "nominalFNumber": 5.3016
-      },
-      {
-        "published": false,
-        "focalLengthMm": 54.566124528826954,
-        "nominalFNumber": 5.308999999999999
       },
       {
         "published": false,
@@ -1012,18 +672,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 54.89110572794039,
-        "nominalFNumber": 5.3238
-      },
-      {
-        "published": false,
         "focalLengthMm": 55.05506323407812,
         "nominalFNumber": 5.331199999999999
-      },
-      {
-        "published": false,
-        "focalLengthMm": 55.22001048410685,
-        "nominalFNumber": 5.3386
       },
       {
         "published": false,
@@ -1032,18 +682,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 55.55291027962864,
-        "nominalFNumber": 5.3534
-      },
-      {
-        "published": false,
         "focalLengthMm": 55.72088113161722,
         "nominalFNumber": 5.360799999999999
-      },
-      {
-        "published": false,
-        "focalLengthMm": 55.88987834384298,
-        "nominalFNumber": 5.3682
       },
       {
         "published": false,
@@ -1052,18 +692,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 56.230989706821624,
-        "nominalFNumber": 5.383
-      },
-      {
-        "published": false,
         "focalLengthMm": 56.403123078296815,
         "nominalFNumber": 5.3904
-      },
-      {
-        "published": false,
-        "focalLengthMm": 56.57632125506412,
-        "nominalFNumber": 5.3978
       },
       {
         "published": false,
@@ -1072,18 +702,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 56.92595178927132,
-        "nominalFNumber": 5.412599999999999
-      },
-      {
-        "published": false,
         "focalLengthMm": 57.10240433945095,
         "nominalFNumber": 5.42
-      },
-      {
-        "published": false,
-        "focalLengthMm": 57.27996208428924,
-        "nominalFNumber": 5.4274000000000004
       },
       {
         "published": false,
@@ -1092,18 +712,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 57.63843495131998,
-        "nominalFNumber": 5.4422
-      },
-      {
-        "published": false,
         "focalLengthMm": 57.81937130049887,
         "nominalFNumber": 5.4496
-      },
-      {
-        "published": false,
-        "focalLengthMm": 58.00145530249994,
-        "nominalFNumber": 5.457
       },
       {
         "published": false,
@@ -1112,18 +722,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 58.369110217951786,
-        "nominalFNumber": 5.4718
-      },
-      {
-        "published": false,
         "focalLengthMm": 58.55470345970884,
         "nominalFNumber": 5.4792000000000005
-      },
-      {
-        "published": false,
-        "focalLengthMm": 58.741489015420356,
-        "nominalFNumber": 5.4866
       },
       {
         "published": false,
@@ -1132,18 +732,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 59.11868332261014,
-        "nominalFNumber": 5.5014
-      },
-      {
-        "published": false,
         "focalLengthMm": 59.30911557607461,
         "nominalFNumber": 5.5088
-      },
-      {
-        "published": false,
-        "focalLengthMm": 59.5007871523472,
-        "nominalFNumber": 5.5161999999999995
       },
       {
         "published": false,
@@ -1152,18 +742,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 59.88789698069522,
-        "nominalFNumber": 5.531
-      },
-      {
-        "published": false,
         "focalLengthMm": 60.08335998657838,
         "nominalFNumber": 5.5384
-      },
-      {
-        "published": false,
-        "focalLengthMm": 60.280111828161516,
-        "nominalFNumber": 5.5458
       },
       {
         "published": false,
@@ -1172,18 +752,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 60.67753334413788,
-        "nominalFNumber": 5.5606
-      },
-      {
-        "published": false,
         "focalLengthMm": 60.87822910862889,
         "nominalFNumber": 5.568
-      },
-      {
-        "published": false,
-        "focalLengthMm": 61.08026589472501,
-        "nominalFNumber": 5.5754
       },
       {
         "published": false,
@@ -1192,18 +762,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 61.4884166541031,
-        "nominalFNumber": 5.5902
-      },
-      {
-        "published": false,
         "focalLengthMm": 61.69455814517448,
         "nominalFNumber": 5.5976
-      },
-      {
-        "published": false,
-        "focalLengthMm": 61.90209569961415,
-        "nominalFNumber": 5.605
       },
       {
         "published": false,
@@ -1212,18 +772,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 62.32141611073397,
-        "nominalFNumber": 5.619800000000001
-      },
-      {
-        "published": false,
         "focalLengthMm": 62.53322801190225,
         "nominalFNumber": 5.6272
-      },
-      {
-        "published": false,
-        "focalLengthMm": 62.74649407212117,
-        "nominalFNumber": 5.634600000000001
       },
       {
         "published": false,
@@ -1232,18 +782,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 63.177448980940376,
-        "nominalFNumber": 5.6494
-      },
-      {
-        "published": false,
         "focalLengthMm": 63.395168508089554,
         "nominalFNumber": 5.6568000000000005
-      },
-      {
-        "published": false,
-        "focalLengthMm": 63.61440355866692,
-        "nominalFNumber": 5.6642
       },
       {
         "published": false,
@@ -1252,18 +792,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 64.05748396759428,
-        "nominalFNumber": 5.679
-      },
-      {
-        "published": false,
         "focalLengthMm": 64.28136175510447,
         "nominalFNumber": 5.686400000000001
-      },
-      {
-        "published": false,
-        "focalLengthMm": 64.50681993227539,
-        "nominalFNumber": 5.6938
       },
       {
         "published": false,
@@ -1272,18 +802,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 64.96254486614502,
-        "nominalFNumber": 5.7086
-      },
-      {
-        "published": false,
         "focalLengthMm": 65.19284592928575,
         "nominalFNumber": 5.716
-      },
-      {
-        "published": false,
-        "focalLengthMm": 65.42479600358028,
-        "nominalFNumber": 5.7234
       },
       {
         "published": false,
@@ -1292,18 +812,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 65.89371453767697,
-        "nominalFNumber": 5.7382
-      },
-      {
-        "published": false,
         "focalLengthMm": 66.13071931903302,
         "nominalFNumber": 5.7456
-      },
-      {
-        "published": false,
-        "focalLengthMm": 66.36944576402924,
-        "nominalFNumber": 5.753
       },
       {
         "published": false,
@@ -1312,18 +822,8 @@ const LENS_DATA = {
       },
       {
         "published": false,
-        "focalLengthMm": 66.85213923082297,
-        "nominalFNumber": 5.7678
-      },
-      {
-        "published": false,
         "focalLengthMm": 67.09614473944,
         "nominalFNumber": 5.7752
-      },
-      {
-        "published": false,
-        "focalLengthMm": 67.34194889556589,
-        "nominalFNumber": 5.7826
       },
       {
         "focalLengthMm": 67.6,
@@ -1349,800 +849,400 @@ const LENS_DATA = {
           31.97
         ],
         [
-          31.728164999999997,
-          31.728164999999997
-        ],
-        [
           31.486329999999995,
           31.486329999999995
-        ],
-        [
-          31.244495,
-          31.244495
         ],
         [
           31.00266,
           31.00266
         ],
         [
-          30.760824999999997,
-          30.760824999999997
-        ],
-        [
           30.518989999999995,
           30.518989999999995
-        ],
-        [
-          30.277154999999997,
-          30.277154999999997
         ],
         [
           30.035320000000002,
           30.035320000000002
         ],
         [
-          29.793485,
-          29.793485
-        ],
-        [
           29.55165,
           29.55165
-        ],
-        [
-          29.309815,
-          29.309815
         ],
         [
           29.06798,
           29.06798
         ],
         [
-          28.826145,
-          28.826145
-        ],
-        [
           28.58431,
           28.58431
-        ],
-        [
-          28.342474999999997,
-          28.342474999999997
         ],
         [
           28.10064,
           28.10064
         ],
         [
-          27.858804999999997,
-          27.858804999999997
-        ],
-        [
           27.616970000000002,
           27.616970000000002
-        ],
-        [
-          27.375135,
-          27.375135
         ],
         [
           27.133300000000002,
           27.133300000000002
         ],
         [
-          26.891465,
-          26.891465
-        ],
-        [
           26.64963,
           26.64963
-        ],
-        [
-          26.407795,
-          26.407795
         ],
         [
           26.16596,
           26.16596
         ],
         [
-          25.924125,
-          25.924125
-        ],
-        [
           25.68229,
           25.68229
-        ],
-        [
-          25.440454999999996,
-          25.440454999999996
         ],
         [
           25.19862,
           25.19862
         ],
         [
-          24.956785,
-          24.956785
-        ],
-        [
           24.714949999999998,
           24.714949999999998
-        ],
-        [
-          24.473114999999996,
-          24.473114999999996
         ],
         [
           24.231279999999995,
           24.231279999999995
         ],
         [
-          23.989445,
-          23.989445
-        ],
-        [
           23.747609999999998,
           23.747609999999998
-        ],
-        [
-          23.505775,
-          23.505775
         ],
         [
           23.263939999999998,
           23.263939999999998
         ],
         [
-          23.022104999999996,
-          23.022104999999996
-        ],
-        [
           22.78027,
           22.78027
-        ],
-        [
-          22.538435,
-          22.538435
         ],
         [
           22.296599999999998,
           22.296599999999998
         ],
         [
-          22.054765,
-          22.054765
-        ],
-        [
           21.81293,
           21.81293
-        ],
-        [
-          21.571095000000003,
-          21.571095000000003
         ],
         [
           21.32926,
           21.32926
         ],
         [
-          21.087425,
-          21.087425
-        ],
-        [
           20.84559,
           20.84559
-        ],
-        [
-          20.603755,
-          20.603755
         ],
         [
           20.36192,
           20.36192
         ],
         [
-          20.120085,
-          20.120085
-        ],
-        [
           19.87825,
           19.87825
-        ],
-        [
-          19.636415,
-          19.636415
         ],
         [
           19.394579999999998,
           19.394579999999998
         ],
         [
-          19.152745,
-          19.152745
-        ],
-        [
           18.91091,
           18.91091
-        ],
-        [
-          18.669075,
-          18.669075
         ],
         [
           18.427239999999998,
           18.427239999999998
         ],
         [
-          18.185405000000003,
-          18.185405000000003
-        ],
-        [
           17.94357,
           17.94357
-        ],
-        [
-          17.701735,
-          17.701735
         ],
         [
           17.4599,
           17.4599
         ],
         [
-          17.218065,
-          17.218065
-        ],
-        [
           16.97623,
           16.97623
-        ],
-        [
-          16.734395,
-          16.734395
         ],
         [
           16.49256,
           16.49256
         ],
         [
-          16.250725,
-          16.250725
-        ],
-        [
           16.008889999999997,
           16.008889999999997
-        ],
-        [
-          15.767055,
-          15.767055
         ],
         [
           15.525219999999997,
           15.525219999999997
         ],
         [
-          15.283385000000003,
-          15.283385000000003
-        ],
-        [
           15.04155,
           15.04155
-        ],
-        [
-          14.799714999999999,
-          14.799714999999999
         ],
         [
           14.55788,
           14.55788
         ],
         [
-          14.316044999999999,
-          14.316044999999999
-        ],
-        [
           14.07421,
           14.07421
-        ],
-        [
-          13.832374999999999,
-          13.832374999999999
         ],
         [
           13.59054,
           13.59054
         ],
         [
-          13.348704999999999,
-          13.348704999999999
-        ],
-        [
           13.106869999999999,
           13.106869999999999
-        ],
-        [
-          12.865034999999999,
-          12.865034999999999
         ],
         [
           12.623199999999999,
           12.623199999999999
         ],
         [
-          12.381364999999999,
-          12.381364999999999
-        ],
-        [
           12.13953,
           12.13953
-        ],
-        [
-          11.897695,
-          11.897695
         ],
         [
           11.65586,
           11.65586
         ],
         [
-          11.414025,
-          11.414025
-        ],
-        [
           11.17219,
           11.17219
-        ],
-        [
-          10.930355,
-          10.930355
         ],
         [
           10.68852,
           10.68852
         ],
         [
-          10.446684999999999,
-          10.446684999999999
-        ],
-        [
           10.20485,
           10.20485
-        ],
-        [
-          9.963014999999999,
-          9.963014999999999
         ],
         [
           9.721179999999999,
           9.721179999999999
         ],
         [
-          9.479344999999999,
-          9.479344999999999
-        ],
-        [
           9.237510000000002,
           9.237510000000002
-        ],
-        [
-          8.995675000000002,
-          8.995675000000002
         ],
         [
           8.75384,
           8.75384
         ],
         [
-          8.512005,
-          8.512005
-        ],
-        [
           8.27017,
           8.27017
-        ],
-        [
-          8.028335,
-          8.028335
         ],
         [
           7.7865,
           7.7865
         ],
         [
-          7.738408,
-          7.738408
-        ],
-        [
           7.690316,
           7.690316
-        ],
-        [
-          7.642224,
-          7.642224
         ],
         [
           7.594132,
           7.594132
         ],
         [
-          7.54604,
-          7.54604
-        ],
-        [
           7.497948,
           7.497948
-        ],
-        [
-          7.449856,
-          7.449856
         ],
         [
           7.401764,
           7.401764
         ],
         [
-          7.3536719999999995,
-          7.3536719999999995
-        ],
-        [
           7.30558,
           7.30558
-        ],
-        [
-          7.2574879999999995,
-          7.2574879999999995
         ],
         [
           7.209396,
           7.209396
         ],
         [
-          7.161304,
-          7.161304
-        ],
-        [
           7.113212000000001,
           7.113212000000001
-        ],
-        [
-          7.06512,
-          7.06512
         ],
         [
           7.017028000000001,
           7.017028000000001
         ],
         [
-          6.968936,
-          6.968936
-        ],
-        [
           6.920844000000001,
           6.920844000000001
-        ],
-        [
-          6.872752,
-          6.872752
         ],
         [
           6.824660000000001,
           6.824660000000001
         ],
         [
-          6.776568,
-          6.776568
-        ],
-        [
           6.728476000000001,
           6.728476000000001
-        ],
-        [
-          6.680384,
-          6.680384
         ],
         [
           6.6322920000000005,
           6.6322920000000005
         ],
         [
-          6.5842,
-          6.5842
-        ],
-        [
           6.5361080000000005,
           6.5361080000000005
-        ],
-        [
-          6.488016,
-          6.488016
         ],
         [
           6.4399239999999995,
           6.4399239999999995
         ],
         [
-          6.391832,
-          6.391832
-        ],
-        [
           6.34374,
           6.34374
-        ],
-        [
-          6.295648,
-          6.295648
         ],
         [
           6.247555999999999,
           6.247555999999999
         ],
         [
-          6.199464,
-          6.199464
-        ],
-        [
           6.151372,
           6.151372
-        ],
-        [
-          6.10328,
-          6.10328
         ],
         [
           6.055187999999999,
           6.055187999999999
         ],
         [
-          6.007096,
-          6.007096
-        ],
-        [
           5.959004,
           5.959004
-        ],
-        [
-          5.910912000000001,
-          5.910912000000001
         ],
         [
           5.862820000000001,
           5.862820000000001
         ],
         [
-          5.814728000000001,
-          5.814728000000001
-        ],
-        [
           5.766636,
           5.766636
-        ],
-        [
-          5.7185440000000005,
-          5.7185440000000005
         ],
         [
           5.670452000000001,
           5.670452000000001
         ],
         [
-          5.6223600000000005,
-          5.6223600000000005
-        ],
-        [
           5.574268,
           5.574268
-        ],
-        [
-          5.526176,
-          5.526176
         ],
         [
           5.478084,
           5.478084
         ],
         [
-          5.429992,
-          5.429992
-        ],
-        [
           5.3819,
           5.3819
-        ],
-        [
-          5.333808,
-          5.333808
         ],
         [
           5.285716,
           5.285716
         ],
         [
-          5.237624,
-          5.237624
-        ],
-        [
           5.189532,
           5.189532
-        ],
-        [
-          5.141439999999999,
-          5.141439999999999
         ],
         [
           5.093348,
           5.093348
         ],
         [
-          5.045256,
-          5.045256
-        ],
-        [
           4.997164,
           4.997164
-        ],
-        [
-          4.949071999999999,
-          4.949071999999999
         ],
         [
           4.90098,
           4.90098
         ],
         [
-          4.852888,
-          4.852888
-        ],
-        [
           4.804796,
           4.804796
-        ],
-        [
-          4.756704000000001,
-          4.756704000000001
         ],
         [
           4.7086120000000005,
           4.7086120000000005
         ],
         [
-          4.660520000000001,
-          4.660520000000001
-        ],
-        [
           4.612428,
           4.612428
-        ],
-        [
-          4.564336000000001,
-          4.564336000000001
         ],
         [
           4.516244,
           4.516244
         ],
         [
-          4.468152,
-          4.468152
-        ],
-        [
           4.42006,
           4.42006
-        ],
-        [
-          4.371968000000001,
-          4.371968000000001
         ],
         [
           4.323876,
           4.323876
         ],
         [
-          4.275784,
-          4.275784
-        ],
-        [
           4.227692,
           4.227692
-        ],
-        [
-          4.179600000000001,
-          4.179600000000001
         ],
         [
           4.131508,
           4.131508
         ],
         [
-          4.083416,
-          4.083416
-        ],
-        [
           4.035324,
           4.035324
-        ],
-        [
-          3.987232,
-          3.987232
         ],
         [
           3.9391399999999996,
           3.9391399999999996
         ],
         [
-          3.8910479999999996,
-          3.8910479999999996
-        ],
-        [
           3.8429559999999996,
           3.8429559999999996
-        ],
-        [
-          3.7948639999999996,
-          3.7948639999999996
         ],
         [
           3.7467719999999995,
           3.7467719999999995
         ],
         [
-          3.6986799999999995,
-          3.6986799999999995
-        ],
-        [
           3.6505879999999995,
           3.6505879999999995
-        ],
-        [
-          3.6024959999999995,
-          3.6024959999999995
         ],
         [
           3.554404000000001,
           3.554404000000001
         ],
         [
-          3.5063120000000008,
-          3.5063120000000008
-        ],
-        [
           3.4582200000000007,
           3.4582200000000007
-        ],
-        [
-          3.4101280000000003,
-          3.4101280000000003
         ],
         [
           3.3620360000000002,
           3.3620360000000002
         ],
         [
-          3.3139440000000002,
-          3.3139440000000002
-        ],
-        [
           3.265852,
           3.265852
-        ],
-        [
-          3.21776,
-          3.21776
         ],
         [
           3.169668,
           3.169668
         ],
         [
-          3.121576,
-          3.121576
-        ],
-        [
           3.073484,
           3.073484
-        ],
-        [
-          3.025392,
-          3.025392
         ],
         [
           2.9773,
@@ -2158,800 +1258,400 @@ const LENS_DATA = {
           0.8
         ],
         [
-          0.860244,
-          0.860244
-        ],
-        [
           0.920488,
           0.920488
-        ],
-        [
-          0.980732,
-          0.980732
         ],
         [
           1.0409760000000001,
           1.0409760000000001
         ],
         [
-          1.10122,
-          1.10122
-        ],
-        [
           1.161464,
           1.161464
-        ],
-        [
-          1.221708,
-          1.221708
         ],
         [
           1.281952,
           1.281952
         ],
         [
-          1.342196,
-          1.342196
-        ],
-        [
           1.4024400000000001,
           1.4024400000000001
-        ],
-        [
-          1.462684,
-          1.462684
         ],
         [
           1.522928,
           1.522928
         ],
         [
-          1.583172,
-          1.583172
-        ],
-        [
           1.6434160000000002,
           1.6434160000000002
-        ],
-        [
-          1.7036600000000002,
-          1.7036600000000002
         ],
         [
           1.7639040000000001,
           1.7639040000000001
         ],
         [
-          1.824148,
-          1.824148
-        ],
-        [
           1.884392,
           1.884392
-        ],
-        [
-          1.944636,
-          1.944636
         ],
         [
           2.00488,
           2.00488
         ],
         [
-          2.065124,
-          2.065124
-        ],
-        [
           2.125368,
           2.125368
-        ],
-        [
-          2.185612,
-          2.185612
         ],
         [
           2.245856,
           2.245856
         ],
         [
-          2.3061,
-          2.3061
-        ],
-        [
           2.366344,
           2.366344
-        ],
-        [
-          2.426588,
-          2.426588
         ],
         [
           2.486832,
           2.486832
         ],
         [
-          2.5470759999999997,
-          2.5470759999999997
-        ],
-        [
           2.60732,
           2.60732
-        ],
-        [
-          2.667564,
-          2.667564
         ],
         [
           2.727808,
           2.727808
         ],
         [
-          2.788052,
-          2.788052
-        ],
-        [
           2.848296,
           2.848296
-        ],
-        [
-          2.90854,
-          2.90854
         ],
         [
           2.968784,
           2.968784
         ],
         [
-          3.029028,
-          3.029028
-        ],
-        [
           3.089272,
           3.089272
-        ],
-        [
-          3.149516,
-          3.149516
         ],
         [
           3.20976,
           3.20976
         ],
         [
-          3.2700039999999997,
-          3.2700039999999997
-        ],
-        [
           3.3302479999999997,
           3.3302479999999997
-        ],
-        [
-          3.3904919999999996,
-          3.3904919999999996
         ],
         [
           3.450736,
           3.450736
         ],
         [
-          3.51098,
-          3.51098
-        ],
-        [
           3.571224,
           3.571224
-        ],
-        [
-          3.6314679999999995,
-          3.6314679999999995
         ],
         [
           3.691712,
           3.691712
         ],
         [
-          3.751956,
-          3.751956
-        ],
-        [
           3.8122,
           3.8122
-        ],
-        [
-          3.8724439999999998,
-          3.8724439999999998
         ],
         [
           3.9326879999999997,
           3.9326879999999997
         ],
         [
-          3.992932,
-          3.992932
-        ],
-        [
           4.053176000000001,
           4.053176000000001
-        ],
-        [
-          4.1134200000000005,
-          4.1134200000000005
         ],
         [
           4.1736640000000005,
           4.1736640000000005
         ],
         [
-          4.233908,
-          4.233908
-        ],
-        [
           4.2941519999999995,
           4.2941519999999995
-        ],
-        [
-          4.354396,
-          4.354396
         ],
         [
           4.41464,
           4.41464
         ],
         [
-          4.474884,
-          4.474884
-        ],
-        [
           4.535128,
           4.535128
-        ],
-        [
-          4.595372,
-          4.595372
         ],
         [
           4.655616,
           4.655616
         ],
         [
-          4.71586,
-          4.71586
-        ],
-        [
           4.776104,
           4.776104
-        ],
-        [
-          4.836348,
-          4.836348
         ],
         [
           4.896592,
           4.896592
         ],
         [
-          4.956836,
-          4.956836
-        ],
-        [
           5.01708,
           5.01708
-        ],
-        [
-          5.077324,
-          5.077324
         ],
         [
           5.137568,
           5.137568
         ],
         [
-          5.197812,
-          5.197812
-        ],
-        [
           5.258056,
           5.258056
-        ],
-        [
-          5.3183,
-          5.3183
         ],
         [
           5.378544,
           5.378544
         ],
         [
-          5.438788,
-          5.438788
-        ],
-        [
           5.499032000000001,
           5.499032000000001
-        ],
-        [
-          5.5592760000000006,
-          5.5592760000000006
         ],
         [
           5.6195200000000005,
           5.6195200000000005
         ],
         [
-          5.6797640000000005,
-          5.6797640000000005
-        ],
-        [
           5.7400079999999996,
           5.7400079999999996
-        ],
-        [
-          5.8002519999999995,
-          5.8002519999999995
         ],
         [
           5.8604959999999995,
           5.8604959999999995
         ],
         [
-          5.9207399999999994,
-          5.9207399999999994
-        ],
-        [
           5.980983999999999,
           5.980983999999999
-        ],
-        [
-          6.041228,
-          6.041228
         ],
         [
           6.101472,
           6.101472
         ],
         [
-          6.161716,
-          6.161716
-        ],
-        [
           6.22196,
           6.22196
-        ],
-        [
-          6.282204,
-          6.282204
         ],
         [
           6.342448,
           6.342448
         ],
         [
-          6.402692,
-          6.402692
-        ],
-        [
           6.462935999999999,
           6.462935999999999
-        ],
-        [
-          6.52318,
-          6.52318
         ],
         [
           6.583424,
           6.583424
         ],
         [
-          6.643668,
-          6.643668
-        ],
-        [
           6.703912,
           6.703912
-        ],
-        [
-          6.764156,
-          6.764156
         ],
         [
           6.8244,
           6.8244
         ],
         [
-          6.859156,
-          6.859156
-        ],
-        [
           6.893912,
           6.893912
-        ],
-        [
-          6.928668,
-          6.928668
         ],
         [
           6.963424000000001,
           6.963424000000001
         ],
         [
-          6.9981800000000005,
-          6.9981800000000005
-        ],
-        [
           7.032935999999999,
           7.032935999999999
-        ],
-        [
-          7.067692,
-          7.067692
         ],
         [
           7.102448,
           7.102448
         ],
         [
-          7.1372040000000005,
-          7.1372040000000005
-        ],
-        [
           7.17196,
           7.17196
-        ],
-        [
-          7.206716,
-          7.206716
         ],
         [
           7.241472,
           7.241472
         ],
         [
-          7.276228,
-          7.276228
-        ],
-        [
           7.3109839999999995,
           7.3109839999999995
-        ],
-        [
-          7.345739999999999,
-          7.345739999999999
         ],
         [
           7.380495999999999,
           7.380495999999999
         ],
         [
-          7.415252,
-          7.415252
-        ],
-        [
           7.4500079999999995,
           7.4500079999999995
-        ],
-        [
-          7.484764,
-          7.484764
         ],
         [
           7.51952,
           7.51952
         ],
         [
-          7.554276,
-          7.554276
-        ],
-        [
           7.5890320000000004,
           7.5890320000000004
-        ],
-        [
-          7.623787999999999,
-          7.623787999999999
         ],
         [
           7.658543999999999,
           7.658543999999999
         ],
         [
-          7.6933,
-          7.6933
-        ],
-        [
           7.7280560000000005,
           7.7280560000000005
-        ],
-        [
-          7.762812,
-          7.762812
         ],
         [
           7.797568,
           7.797568
         ],
         [
-          7.832324,
-          7.832324
-        ],
-        [
           7.8670800000000005,
           7.8670800000000005
-        ],
-        [
-          7.901836000000001,
-          7.901836000000001
         ],
         [
           7.936592000000001,
           7.936592000000001
         ],
         [
-          7.971348,
-          7.971348
-        ],
-        [
           8.006104,
           8.006104
-        ],
-        [
-          8.04086,
-          8.04086
         ],
         [
           8.075616,
           8.075616
         ],
         [
-          8.110372,
-          8.110372
-        ],
-        [
           8.145128,
           8.145128
-        ],
-        [
-          8.179884000000001,
-          8.179884000000001
         ],
         [
           8.21464,
           8.21464
         ],
         [
-          8.249396,
-          8.249396
-        ],
-        [
           8.284152,
           8.284152
-        ],
-        [
-          8.318908,
-          8.318908
         ],
         [
           8.353664,
           8.353664
         ],
         [
-          8.38842,
-          8.38842
-        ],
-        [
           8.423176,
           8.423176
-        ],
-        [
-          8.457932,
-          8.457932
         ],
         [
           8.492688,
           8.492688
         ],
         [
-          8.527444000000001,
-          8.527444000000001
-        ],
-        [
           8.5622,
           8.5622
-        ],
-        [
-          8.596956,
-          8.596956
         ],
         [
           8.631712,
           8.631712
         ],
         [
-          8.666468,
-          8.666468
-        ],
-        [
           8.701224,
           8.701224
-        ],
-        [
-          8.735980000000001,
-          8.735980000000001
         ],
         [
           8.770736,
           8.770736
         ],
         [
-          8.805492000000001,
-          8.805492000000001
-        ],
-        [
           8.840248,
           8.840248
-        ],
-        [
-          8.875004,
-          8.875004
         ],
         [
           8.90976,
           8.90976
         ],
         [
-          8.944516,
-          8.944516
-        ],
-        [
           8.979272000000002,
           8.979272000000002
-        ],
-        [
-          9.014028,
-          9.014028
         ],
         [
           9.048784000000001,
           9.048784000000001
         ],
         [
-          9.08354,
-          9.08354
-        ],
-        [
           9.118296,
           9.118296
-        ],
-        [
-          9.153052,
-          9.153052
         ],
         [
           9.187808,
           9.187808
         ],
         [
-          9.222564,
-          9.222564
-        ],
-        [
           9.25732,
           9.25732
-        ],
-        [
-          9.292076,
-          9.292076
         ],
         [
           9.326832,
           9.326832
         ],
         [
-          9.361588000000001,
-          9.361588000000001
-        ],
-        [
           9.396344000000001,
           9.396344000000001
-        ],
-        [
-          9.4311,
-          9.4311
         ],
         [
           9.465856,
           9.465856
         ],
         [
-          9.500612,
-          9.500612
-        ],
-        [
           9.535368,
           9.535368
-        ],
-        [
-          9.570124,
-          9.570124
         ],
         [
           9.60488,
           9.60488
         ],
         [
-          9.639636000000001,
-          9.639636000000001
-        ],
-        [
           9.674392000000001,
           9.674392000000001
-        ],
-        [
-          9.709148,
-          9.709148
         ],
         [
           9.743904,
           9.743904
         ],
         [
-          9.77866,
-          9.77866
-        ],
-        [
           9.813416000000002,
           9.813416000000002
-        ],
-        [
-          9.848172000000002,
-          9.848172000000002
         ],
         [
           9.882928000000001,
           9.882928000000001
         ],
         [
-          9.917684000000001,
-          9.917684000000001
-        ],
-        [
           9.95244,
           9.95244
-        ],
-        [
-          9.987195999999999,
-          9.987195999999999
         ],
         [
           10.021951999999999,
           10.021951999999999
         ],
         [
-          10.056708,
-          10.056708
-        ],
-        [
           10.091464,
           10.091464
-        ],
-        [
-          10.12622,
-          10.12622
         ],
         [
           10.160976,
           10.160976
         ],
         [
-          10.195732,
-          10.195732
-        ],
-        [
           10.230488000000001,
           10.230488000000001
-        ],
-        [
-          10.265244000000001,
-          10.265244000000001
         ],
         [
           10.3,
@@ -2967,800 +1667,400 @@ const LENS_DATA = {
           39.11
         ],
         [
-          39.16348119519874,
-          39.16348119519874
-        ],
-        [
           39.218126253793834,
           39.218126253793834
-        ],
-        [
-          39.27395268836313,
-          39.27395268836313
         ],
         [
           39.330978366083365,
           39.330978366083365
         ],
         [
-          39.38922151775007,
-          39.38922151775007
-        ],
-        [
           39.44870074707522,
           39.44870074707522
-        ],
-        [
-          39.509435040270695,
-          39.509435040270695
         ],
         [
           39.57144377592941,
           39.57144377592941
         ],
         [
-          39.63474673521396,
-          39.63474673521396
-        ],
-        [
           39.699364112365,
           39.699364112365
-        ],
-        [
-          39.765316525539404,
-          39.765316525539404
         ],
         [
           39.83262502799296,
           39.83262502799296
         ],
         [
-          39.90131111961756,
-          39.90131111961756
-        ],
-        [
           39.971396758848286,
           39.971396758848286
-        ],
-        [
-          40.04290437495327,
-          40.04290437495327
         ],
         [
           40.115856880720564,
           40.115856880720564
         ],
         [
-          40.190277685558186,
-          40.190277685558186
-        ],
-        [
           40.26619070902169,
           40.26619070902169
-        ],
-        [
-          40.343620394786925,
-          40.343620394786925
         ],
         [
           40.422591725084,
           40.422591725084
         ],
         [
-          40.5031302356114,
-          40.5031302356114
-        ],
-        [
           40.5852620309481,
           40.5852620309481
-        ],
-        [
-          40.66901380048389,
-          40.66901380048389
         ],
         [
           40.75441283488783,
           40.75441283488783
         ],
         [
-          40.84148704313628,
-          40.84148704313628
-        ],
-        [
           40.930264970123304,
           40.930264970123304
-        ],
-        [
-          41.0207758148757,
-          41.0207758148757
         ],
         [
           41.11304944939869,
           41.11304944939869
         ],
         [
-          41.20711643817604,
-          41.20711643817604
-        ],
-        [
           41.3030080583527,
           41.3030080583527
-        ],
-        [
-          41.40075632062708,
-          41.40075632062708
         ],
         [
           41.5003939908833,
           41.5003939908833
         ],
         [
-          41.60195461259234,
-          41.60195461259234
-        ],
-        [
           41.70547253001681,
           41.70547253001681
-        ],
-        [
-          41.81098291225042,
-          41.81098291225042
         ],
         [
           41.91852177812919,
           41.91852177812919
         ],
         [
-          42.02812602205112,
-          42.02812602205112
-        ],
-        [
           42.139833440742855,
           42.139833440742855
-        ],
-        [
-          42.25368276101416,
-          42.25368276101416
         ],
         [
           42.369713668543596,
           42.369713668543596
         ],
         [
-          42.48796683773962,
-          42.48796683773962
-        ],
-        [
           42.60848396272475,
           42.60848396272475
-        ],
-        [
-          42.73130778949184,
-          42.73130778949184
         ],
         [
           42.85648214928578,
           42.85648214928578
         ],
         [
-          42.98405199326374,
-          42.98405199326374
-        ],
-        [
           43.114063428492614,
           43.114063428492614
-        ],
-        [
-          43.246563755343985,
-          43.246563755343985
         ],
         [
           43.38160150635019,
           43.38160150635019
         ],
         [
-          43.51922648658886,
-          43.51922648658886
-        ],
-        [
           43.65948981566564,
           43.65948981566564
-        ],
-        [
-          43.80244397137074,
-          43.80244397137074
         ],
         [
           43.94814283508651,
           43.94814283508651
         ],
         [
-          44.09664173902935,
-          44.09664173902935
-        ],
-        [
           44.24799751541201,
           44.24799751541201
-        ],
-        [
-          44.40226854761938,
-          44.40226854761938
         ],
         [
           44.559514823493345,
           44.559514823493345
         ],
         [
-          44.71979799082934,
-          44.71979799082934
-        ],
-        [
           44.883181415192595,
           44.883181415192595
-        ],
-        [
-          45.049730240167996,
-          45.049730240167996
         ],
         [
           45.21951145016304,
           45.21951145016304
         ],
         [
-          45.3925939358925,
-          45.3925939358925
-        ],
-        [
           45.56904856267828,
           45.56904856267828
-        ],
-        [
-          45.74894824170682,
-          45.74894824170682
         ],
         [
           45.93236800439459,
           45.93236800439459
         ],
         [
-          46.11938508002153,
-          46.11938508002153
-        ],
-        [
           46.31007897680025,
           46.31007897680025
-        ],
-        [
-          46.50453156656081,
-          46.50453156656081
         ],
         [
           46.70282717323913,
           46.70282717323913
         ],
         [
-          46.90505266537198,
-          46.90505266537198
-        ],
-        [
           47.111297552809496,
           47.111297552809496
-        ],
-        [
-          47.321654087872716,
-          47.321654087872716
         ],
         [
           47.5362173711962,
           47.5362173711962
         ],
         [
-          47.75508546251056,
-          47.75508546251056
-        ],
-        [
           47.97835949663569,
           47.97835949663569
-        ],
-        [
-          48.20614380497396,
-          48.20614380497396
         ],
         [
           48.43854604280849,
           48.43854604280849
         ],
         [
-          48.67567732273443,
-          48.67567732273443
-        ],
-        [
           48.917652354569334,
           48.917652354569334
-        ],
-        [
-          49.16458959211353,
-          49.16458959211353
         ],
         [
           49.41661138715444,
           49.41661138715444
         ],
         [
-          49.673844151135796,
-          49.673844151135796
-        ],
-        [
           49.936418524940954,
           49.936418524940954
-        ],
-        [
-          50.204469557267494,
-          50.204469557267494
         ],
         [
           50.47813689210806,
           50.47813689210806
         ],
         [
-          50.757564965880526,
-          50.757564965880526
-        ],
-        [
           51.0429032147951,
           51.0429032147951
-        ],
-        [
-          51.33430629308219,
-          51.33430629308219
         ],
         [
           51.63193430275081,
           51.63193430275081
         ],
         [
-          51.93595303559541,
-          51.93595303559541
-        ],
-        [
           52.24653422821875,
           52.24653422821875
-        ],
-        [
-          52.56385583089532,
-          52.56385583089532
         ],
         [
           52.88810229116014,
           52.88810229116014
         ],
         [
-          53.21946485307119,
-          53.21946485307119
-        ],
-        [
           53.55814187316759,
           53.55814187316759
-        ],
-        [
-          53.904339154218,
-          53.904339154218
         ],
         [
           54.25827029794107,
           54.25827029794107
         ],
         [
-          54.620157077966475,
-          54.620157077966475
-        ],
-        [
           54.99022983440651,
           54.99022983440651
-        ],
-        [
-          55.36872789151123,
-          55.36872789151123
         ],
         [
           55.7559,
           55.7559
         ],
         [
-          55.844746561956036,
-          55.844746561956036
-        ],
-        [
           55.9342657453182,
           55.9342657453182
-        ],
-        [
-          56.02446303049652,
-          56.02446303049652
         ],
         [
           56.11534395774341,
           56.11534395774341
         ],
         [
-          56.20691412797257,
-          56.20691412797257
-        ],
-        [
           56.2991792035913,
           56.2991792035913
-        ],
-        [
-          56.39214490934698,
-          56.39214490934698
         ],
         [
           56.48581703318736,
           56.48581703318736
         ],
         [
-          56.58020142713475,
-          56.58020142713475
-        ],
-        [
           56.67530400817547,
           56.67530400817547
-        ],
-        [
-          56.7711307591637,
-          56.7711307591637
         ],
         [
           56.86768772974081,
           56.86768772974081
         ],
         [
-          56.96498103726921,
-          56.96498103726921
-        ],
-        [
           57.06301686778354,
           57.06301686778354
-        ],
-        [
-          57.161801476956185,
-          57.161801476956185
         ],
         [
           57.26134119108025,
           57.26134119108025
         ],
         [
-          57.36164240806917,
-          57.36164240806917
-        ],
-        [
           57.462711598472495,
           57.462711598472495
-        ],
-        [
-          57.564555306510336,
-          57.564555306510336
         ],
         [
           57.66718015112413,
           57.66718015112413
         ],
         [
-          57.77059282704662,
-          57.77059282704662
-        ],
-        [
           57.87480010588931,
           57.87480010588931
-        ],
-        [
-          57.97980883724998,
-          57.97980883724998
         ],
         [
           58.085625949837635,
           58.085625949837635
         ],
         [
-          58.19225845261839,
-          58.19225845261839
-        ],
-        [
           58.299713435980955,
           58.299713435980955
-        ],
-        [
-          58.40799807292221,
-          58.40799807292221
         ],
         [
           58.51711962025409,
           58.51711962025409
         ],
         [
-          58.627085419830834,
-          58.627085419830834
-        ],
-        [
           58.7379028997987,
           58.7379028997987
-        ],
-        [
-          58.84957957586771,
-          58.84957957586771
         ],
         [
           58.96212305260512,
           58.96212305260512
         ],
         [
-          59.075541024752994,
-          59.075541024752994
-        ],
-        [
           59.18984127856844,
           59.18984127856844
-        ],
-        [
-          59.30503169318837,
-          59.30503169318837
         ],
         [
           59.42112024201852,
           59.42112024201852
         ],
         [
-          59.538114994147165,
-          59.538114994147165
-        ],
-        [
           59.65602411578535,
           59.65602411578535
-        ],
-        [
-          59.774855871732065,
-          59.774855871732065
         ],
         [
           59.89461862686614,
           59.89461862686614
         ],
         [
-          60.01532084766665,
-          60.01532084766665
-        ],
-        [
           60.13697110375943,
           60.13697110375943
-        ],
-        [
-          60.25957806949275,
-          60.25957806949275
         ],
         [
           60.38315052554214,
           60.38315052554214
         ],
         [
-          60.507697360544114,
-          60.507697360544114
-        ],
-        [
           60.63322757276076,
           60.63322757276076
-        ],
-        [
-          60.75975027177523,
-          60.75975027177523
         ],
         [
           60.88727468021801,
           60.88727468021801
         ],
         [
-          61.015810135526614,
-          61.015810135526614
-        ],
-        [
           61.145366091737,
           61.145366091737
-        ],
-        [
-          61.27595212130932,
-          61.27595212130932
         ],
         [
           61.40757791698865,
           61.40757791698865
         ],
         [
-          61.54025329369938,
-          61.54025329369938
-        ],
-        [
           61.673988190476734,
           61.673988190476734
-        ],
-        [
-          61.80879267243529,
-          61.80879267243529
         ],
         [
           61.94467693277322,
           61.94467693277322
         ],
         [
-          62.08165129481767,
-          62.08165129481767
-        ],
-        [
           62.21972621410674,
           62.21972621410674
-        ],
-        [
-          62.35891228051354,
-          62.35891228051354
         ],
         [
           62.499220220410294,
           62.499220220410294
         ],
         [
-          62.64066089887469,
-          62.64066089887469
-        ],
-        [
           62.78324532193926,
           62.78324532193926
-        ],
-        [
-          62.92698463888457,
-          62.92698463888457
         ],
         [
           63.07189014457722,
           63.07189014457722
         ],
         [
-          63.21797328185417,
-          63.21797328185417
-        ],
-        [
           63.36524564395346,
           63.36524564395346
-        ],
-        [
-          63.51371897699377,
-          63.51371897699377
         ],
         [
           63.66340518250259,
           63.66340518250259
         ],
         [
-          63.81431631999484,
-          63.81431631999484
-        ],
-        [
           63.96646460960319,
           63.96646460960319
-        ],
-        [
-          64.11986243476095,
-          64.11986243476095
         ],
         [
           64.27452234493906,
           64.27452234493906
         ],
         [
-          64.43045705843835,
-          64.43045705843835
-        ],
-        [
           64.58767946523776,
           64.58767946523776
-        ],
-        [
-          64.74620262990146,
-          64.74620262990146
         ],
         [
           64.9060397945441,
           64.9060397945441
         ],
         [
-          65.06720438185752,
-          65.06720438185752
-        ],
-        [
           65.2297099981995,
           65.2297099981995
-        ],
-        [
-          65.39357043674562,
-          65.39357043674562
         ],
         [
           65.55879968070685,
           65.55879968070685
         ],
         [
-          65.72541190661337,
-          65.72541190661337
-        ],
-        [
           65.8934214876672,
           65.8934214876672
-        ],
-        [
-          66.06284299716424,
-          66.06284299716424
         ],
         [
           66.23369121198888,
           66.23369121198888
         ],
         [
-          66.405981116181,
-          66.405981116181
-        ],
-        [
           66.57972790457923,
           66.57972790457923
-        ],
-        [
-          66.75494698654099,
-          66.75494698654099
         ],
         [
           66.93165398974115,
           66.93165398974115
         ],
         [
-          67.1098647640529,
-          67.1098647640529
-        ],
-        [
           67.28959538550951,
           67.28959538550951
-        ],
-        [
-          67.47086216035427,
-          67.47086216035427
         ],
         [
           67.65368162917486,
           67.65368162917486
         ],
         [
-          67.83807057112868,
-          67.83807057112868
-        ],
-        [
           68.02404600825939,
           68.02404600825939
-        ],
-        [
-          68.21162520990866,
-          68.21162520990866
         ],
         [
           68.40082569722188,
           68.40082569722188
         ],
         [
-          68.59166524775557,
-          68.59166524775557
-        ],
-        [
           68.78416190018459,
           68.78416190018459
-        ],
-        [
-          68.97833395911476,
-          68.97833395911476
         ],
         [
           69.1742,
@@ -3776,800 +2076,400 @@ const LENS_DATA = {
           10.6
         ],
         [
-          10.539756,
-          10.539756
-        ],
-        [
           10.479512,
           10.479512
-        ],
-        [
-          10.419268,
-          10.419268
         ],
         [
           10.359024,
           10.359024
         ],
         [
-          10.298779999999999,
-          10.298779999999999
-        ],
-        [
           10.238535999999998,
           10.238535999999998
-        ],
-        [
-          10.178291999999999,
-          10.178291999999999
         ],
         [
           10.118048,
           10.118048
         ],
         [
-          10.057804,
-          10.057804
-        ],
-        [
           9.99756,
           9.99756
-        ],
-        [
-          9.937316,
-          9.937316
         ],
         [
           9.877072,
           9.877072
         ],
         [
-          9.816828,
-          9.816828
-        ],
-        [
           9.756584,
           9.756584
-        ],
-        [
-          9.69634,
-          9.69634
         ],
         [
           9.636096,
           9.636096
         ],
         [
-          9.575852,
-          9.575852
-        ],
-        [
           9.515608,
           9.515608
-        ],
-        [
-          9.455364,
-          9.455364
         ],
         [
           9.39512,
           9.39512
         ],
         [
-          9.334876000000001,
-          9.334876000000001
-        ],
-        [
           9.274632,
           9.274632
-        ],
-        [
-          9.214388,
-          9.214388
         ],
         [
           9.154143999999999,
           9.154143999999999
         ],
         [
-          9.0939,
-          9.0939
-        ],
-        [
           9.033655999999999,
           9.033655999999999
-        ],
-        [
-          8.973412,
-          8.973412
         ],
         [
           8.913167999999999,
           8.913167999999999
         ],
         [
-          8.852924,
-          8.852924
-        ],
-        [
           8.792679999999999,
           8.792679999999999
-        ],
-        [
-          8.732436,
-          8.732436
         ],
         [
           8.672191999999999,
           8.672191999999999
         ],
         [
-          8.611948,
-          8.611948
-        ],
-        [
           8.551703999999999,
           8.551703999999999
-        ],
-        [
-          8.49146,
-          8.49146
         ],
         [
           8.431216,
           8.431216
         ],
         [
-          8.370972,
-          8.370972
-        ],
-        [
           8.310728,
           8.310728
-        ],
-        [
-          8.250484,
-          8.250484
         ],
         [
           8.19024,
           8.19024
         ],
         [
-          8.129996,
-          8.129996
-        ],
-        [
           8.069752000000001,
           8.069752000000001
-        ],
-        [
-          8.009508,
-          8.009508
         ],
         [
           7.949263999999999,
           7.949263999999999
         ],
         [
-          7.88902,
-          7.88902
-        ],
-        [
           7.8287759999999995,
           7.8287759999999995
-        ],
-        [
-          7.768532,
-          7.768532
         ],
         [
           7.708288,
           7.708288
         ],
         [
-          7.648044,
-          7.648044
-        ],
-        [
           7.5878,
           7.5878
-        ],
-        [
-          7.527556,
-          7.527556
         ],
         [
           7.467312,
           7.467312
         ],
         [
-          7.407067999999999,
-          7.407067999999999
-        ],
-        [
           7.346824,
           7.346824
-        ],
-        [
-          7.286579999999999,
-          7.286579999999999
         ],
         [
           7.226336,
           7.226336
         ],
         [
-          7.166092000000001,
-          7.166092000000001
-        ],
-        [
           7.105848,
           7.105848
-        ],
-        [
-          7.045603999999999,
-          7.045603999999999
         ],
         [
           6.98536,
           6.98536
         ],
         [
-          6.925116,
-          6.925116
-        ],
-        [
           6.864871999999999,
           6.864871999999999
-        ],
-        [
-          6.804627999999999,
-          6.804627999999999
         ],
         [
           6.744384,
           6.744384
         ],
         [
-          6.684139999999999,
-          6.684139999999999
-        ],
-        [
           6.623896,
           6.623896
-        ],
-        [
-          6.563651999999999,
-          6.563651999999999
         ],
         [
           6.503407999999999,
           6.503407999999999
         ],
         [
-          6.4431639999999994,
-          6.4431639999999994
-        ],
-        [
           6.38292,
           6.38292
-        ],
-        [
-          6.3226759999999995,
-          6.3226759999999995
         ],
         [
           6.2624319999999996,
           6.2624319999999996
         ],
         [
-          6.202188,
-          6.202188
-        ],
-        [
           6.141944,
           6.141944
-        ],
-        [
-          6.0817,
-          6.0817
         ],
         [
           6.021456,
           6.021456
         ],
         [
-          5.961212,
-          5.961212
-        ],
-        [
           5.900968,
           5.900968
-        ],
-        [
-          5.840724,
-          5.840724
         ],
         [
           5.780479999999999,
           5.780479999999999
         ],
         [
-          5.720236,
-          5.720236
-        ],
-        [
           5.659992,
           5.659992
-        ],
-        [
-          5.599748,
-          5.599748
         ],
         [
           5.539503999999999,
           5.539503999999999
         ],
         [
-          5.47926,
-          5.47926
-        ],
-        [
           5.419015999999999,
           5.419015999999999
-        ],
-        [
-          5.358771999999999,
-          5.358771999999999
         ],
         [
           5.298528,
           5.298528
         ],
         [
-          5.238284,
-          5.238284
-        ],
-        [
           5.178039999999999,
           5.178039999999999
-        ],
-        [
-          5.117795999999999,
-          5.117795999999999
         ],
         [
           5.057551999999999,
           5.057551999999999
         ],
         [
-          4.997307999999999,
-          4.997307999999999
-        ],
-        [
           4.9370639999999995,
           4.9370639999999995
-        ],
-        [
-          4.8768199999999995,
-          4.8768199999999995
         ],
         [
           4.8165759999999995,
           4.8165759999999995
         ],
         [
-          4.7563320000000004,
-          4.7563320000000004
-        ],
-        [
           4.696088,
           4.696088
-        ],
-        [
-          4.635844,
-          4.635844
         ],
         [
           4.5756,
           4.5756
         ],
         [
-          4.540844,
-          4.540844
-        ],
-        [
           4.506088,
           4.506088
-        ],
-        [
-          4.471332,
-          4.471332
         ],
         [
           4.436576,
           4.436576
         ],
         [
-          4.401819999999999,
-          4.401819999999999
-        ],
-        [
           4.367063999999999,
           4.367063999999999
-        ],
-        [
-          4.332307999999999,
-          4.332307999999999
         ],
         [
           4.297552,
           4.297552
         ],
         [
-          4.262796,
-          4.262796
-        ],
-        [
           4.22804,
           4.22804
-        ],
-        [
-          4.193283999999999,
-          4.193283999999999
         ],
         [
           4.158527999999999,
           4.158527999999999
         ],
         [
-          4.123772,
-          4.123772
-        ],
-        [
           4.089016,
           4.089016
-        ],
-        [
-          4.05426,
-          4.05426
         ],
         [
           4.019504,
           4.019504
         ],
         [
-          3.9847479999999997,
-          3.9847479999999997
-        ],
-        [
           3.949992,
           3.949992
-        ],
-        [
-          3.915236,
-          3.915236
         ],
         [
           3.8804799999999995,
           3.8804799999999995
         ],
         [
-          3.8457239999999997,
-          3.8457239999999997
-        ],
-        [
           3.810968,
           3.810968
-        ],
-        [
-          3.776212,
-          3.776212
         ],
         [
           3.7414559999999994,
           3.7414559999999994
         ],
         [
-          3.7066999999999997,
-          3.7066999999999997
-        ],
-        [
           3.671944,
           3.671944
-        ],
-        [
-          3.6371879999999996,
-          3.6371879999999996
         ],
         [
           3.6024319999999994,
           3.6024319999999994
         ],
         [
-          3.5676759999999996,
-          3.5676759999999996
-        ],
-        [
           3.53292,
           3.53292
-        ],
-        [
-          3.4981639999999996,
-          3.4981639999999996
         ],
         [
           3.4634079999999994,
           3.4634079999999994
         ],
         [
-          3.4286519999999996,
-          3.4286519999999996
-        ],
-        [
           3.3938959999999994,
           3.3938959999999994
-        ],
-        [
-          3.3591399999999996,
-          3.3591399999999996
         ],
         [
           3.3243839999999993,
           3.3243839999999993
         ],
         [
-          3.2896279999999996,
-          3.2896279999999996
-        ],
-        [
           3.2548719999999998,
           3.2548719999999998
-        ],
-        [
-          3.220116,
-          3.220116
         ],
         [
           3.18536,
           3.18536
         ],
         [
-          3.1506040000000004,
-          3.1506040000000004
-        ],
-        [
           3.1158479999999997,
           3.1158479999999997
-        ],
-        [
-          3.081092,
-          3.081092
         ],
         [
           3.046336,
           3.046336
         ],
         [
-          3.01158,
-          3.01158
-        ],
-        [
           2.9768239999999997,
           2.9768239999999997
-        ],
-        [
-          2.942068,
-          2.942068
         ],
         [
           2.907312,
           2.907312
         ],
         [
-          2.872556,
-          2.872556
-        ],
-        [
           2.8377999999999997,
           2.8377999999999997
-        ],
-        [
-          2.803044,
-          2.803044
         ],
         [
           2.7682879999999996,
           2.7682879999999996
         ],
         [
-          2.733532,
-          2.733532
-        ],
-        [
           2.6987759999999996,
           2.6987759999999996
-        ],
-        [
-          2.66402,
-          2.66402
         ],
         [
           2.6292639999999996,
           2.6292639999999996
         ],
         [
-          2.594508,
-          2.594508
-        ],
-        [
           2.5597519999999996,
           2.5597519999999996
-        ],
-        [
-          2.524996,
-          2.524996
         ],
         [
           2.4902399999999996,
           2.4902399999999996
         ],
         [
-          2.4554839999999998,
-          2.4554839999999998
-        ],
-        [
           2.4207279999999995,
           2.4207279999999995
-        ],
-        [
-          2.385972,
-          2.385972
         ],
         [
           2.351216,
           2.351216
         ],
         [
-          2.31646,
-          2.31646
-        ],
-        [
           2.2817040000000004,
           2.2817040000000004
-        ],
-        [
-          2.246948,
-          2.246948
         ],
         [
           2.212192,
           2.212192
         ],
         [
-          2.177436,
-          2.177436
-        ],
-        [
           2.1426800000000004,
           2.1426800000000004
-        ],
-        [
-          2.107924,
-          2.107924
         ],
         [
           2.073168,
           2.073168
         ],
         [
-          2.038412,
-          2.038412
-        ],
-        [
           2.0036560000000003,
           2.0036560000000003
-        ],
-        [
-          1.9689,
-          1.9689
         ],
         [
           1.9341439999999999,
           1.9341439999999999
         ],
         [
-          1.899388,
-          1.899388
-        ],
-        [
           1.8646319999999998,
           1.8646319999999998
-        ],
-        [
-          1.8298759999999998,
-          1.8298759999999998
         ],
         [
           1.7951199999999998,
           1.7951199999999998
         ],
         [
-          1.7603639999999998,
-          1.7603639999999998
-        ],
-        [
           1.7256079999999998,
           1.7256079999999998
-        ],
-        [
-          1.6908519999999998,
-          1.6908519999999998
         ],
         [
           1.6560959999999998,
           1.6560959999999998
         ],
         [
-          1.6213399999999996,
-          1.6213399999999996
-        ],
-        [
           1.5865839999999998,
           1.5865839999999998
-        ],
-        [
-          1.5518279999999995,
-          1.5518279999999995
         ],
         [
           1.5170720000000004,
           1.5170720000000004
         ],
         [
-          1.4823160000000004,
-          1.4823160000000004
-        ],
-        [
           1.4475600000000004,
           1.4475600000000004
-        ],
-        [
-          1.4128040000000002,
-          1.4128040000000002
         ],
         [
           1.3780480000000004,
           1.3780480000000004
         ],
         [
-          1.3432920000000002,
-          1.3432920000000002
-        ],
-        [
           1.3085360000000001,
           1.3085360000000001
-        ],
-        [
-          1.2737800000000001,
-          1.2737800000000001
         ],
         [
           1.2390240000000001,
           1.2390240000000001
         ],
         [
-          1.2042680000000001,
-          1.2042680000000001
-        ],
-        [
           1.169512,
           1.169512
-        ],
-        [
-          1.134756,
-          1.134756
         ],
         [
           1.1,

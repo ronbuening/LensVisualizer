@@ -45,6 +45,7 @@ const LENS_DATA = {
     groupCount: 8,
     focalLengthMm: { marketing: 35, design: 34.8463 },
     fNumber: { marketing: 4, design: 4.12 },
+    closeFocusM: { marketing: 0.2 },
   },
 
   source: {
@@ -295,7 +296,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.2,
+    closeFocusM: 0.252,
     description:
       "First-group unit focus: G1 (L11-L17 plus the stop) moves objectward while G2 remains fixed. The close-focus dF value is a paraxial estimate for a 0.20 m object distance from the first surface; the patent tabulates only the infinity position.",
   },

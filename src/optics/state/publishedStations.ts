@@ -14,6 +14,8 @@ import type { FiniteConjugate, PublishedStations, RuntimeLens } from "../../type
 import { focusDistanceAt } from "./focusDistance.js";
 import { getGroupMovementAvailability } from "../analysis/summary/groupMovement.js";
 import { DEFAULT_FOCUS_POSITIONS, zoomIndexToT } from "./stationTables.js";
+import { prepareState } from "./preparedGeometry.js";
+import { compiledLensFromRuntime } from "../prescription/identity.js";
 
 /** Slider-coordinate tolerance for "on a station"; matches the finite-conjugate station match in MTF. */
 export const STATION_COORDINATE_TOLERANCE = 1e-8;
@@ -71,6 +73,11 @@ export interface PublishedFocusStation {
   distanceM: number | null;
   /** Source-certified conjugate at this station, when the lens declares one. */
   conjugate: FiniteConjugate | null;
+  /**
+   * The certified conjugate's object-to-image distance in metres, whichever reference the source states it from; a
+   * source claim. Null without a conjugate.
+   */
+  certifiedDistanceM: number | null;
 }
 
 export type PublishedStationLimitKind =
@@ -244,26 +251,36 @@ export function publishedZoomStations(L: RuntimeLens): PublishedZoomStation[] {
 export function publishedFocusStations(L: RuntimeLens, zoomStationIndex = 0): PublishedFocusStation[] {
   const grid = publishedStationGrid(L.source);
   const zoomT = zoomIndexToT(zoomStationIndex, grid.zoomCount);
-  return (grid.focusByZoomIndex[zoomStationIndex] ?? []).map(({ index, focusT }) => ({
-    index,
-    focusT,
-    isInfinity: index === 0,
-    distanceM: index === 0 ? null : focusDistanceAt(focusT, L, zoomT),
-    conjugate: (() => {
-      const conjugate = L.source.focus.conjugates?.find(
-        (c) => c.keyframe === index && c.zoomStation === zoomStationIndex,
-      );
-      return conjugate
-        ? {
-            focusT,
-            zoomT,
-            objectDistanceMm: conjugate.objectDistanceMm,
-            distanceReference: conjugate.distanceReference,
-            source: conjugate.source,
-          }
-        : null;
-    })(),
-  }));
+  return (grid.focusByZoomIndex[zoomStationIndex] ?? []).map(({ index, focusT }) => {
+    const source = L.source.focus.conjugates?.find((c) => c.keyframe === index && c.zoomStation === zoomStationIndex);
+    const conjugate: FiniteConjugate | null = source
+      ? {
+          focusT,
+          zoomT,
+          objectDistanceMm: source.objectDistanceMm,
+          distanceReference: source.distanceReference,
+          source: source.source,
+        }
+      : null;
+    return {
+      index,
+      focusT,
+      isInfinity: index === 0,
+      distanceM: index === 0 ? null : focusDistanceAt(focusT, L, zoomT),
+      conjugate,
+      certifiedDistanceM: conjugate ? certifiedObjectToImageM(L, conjugate) : null,
+    };
+  });
+}
+
+/**
+ * Object-to-image distance of a certified conjugate, in metres. A first-surface distance adds the prepared state's
+ * total track, the same placement the MTF object point uses.
+ */
+function certifiedObjectToImageM(L: RuntimeLens, conjugate: FiniteConjugate): number {
+  if (conjugate.distanceReference === "image-plane") return conjugate.objectDistanceMm / 1000;
+  const state = prepareState(compiledLensFromRuntime(L), conjugate.focusT, conjugate.zoomT);
+  return (conjugate.objectDistanceMm + state.imgZ - state.z[0]) / 1000;
 }
 
 /**

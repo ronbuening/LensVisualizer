@@ -221,3 +221,23 @@ L1 moved from L-LAL13 to M-LAC130. Both sit 0.0025 above the printed 1.691, and 
 L2 stays on MC-TAF101-100, whose nd rounds to the printed 1.769. Its νd of 49.29 misses the printed 49.428 by more than this lens's other rows miss theirs, so the row is a coordinate choice rather than a pin. MC-TAF115 sits closer in νd, 49.46, but 0.0015 off in index, and neither is decisive.
 
 H1 and H2 stay Unmatched. JP 2019-211703 A Example 2, a Sigma filing, prints PgF 0.5538 for a 1.51840/52.10 aspherical resin, which gives `dPgF` −0.002376 against the engine line. Matching coordinates do not prove the same resin, so `apdNote` calls it a proxy. JP 2010-243737 A prints no partial.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: every 4th existing row (indices 0, 4, …, 128).
+- Focus: both keyframes kept (no change).
+- Published zoom stations remapped 0 → 0, 64 → 16, 128 → 32; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 129 × 2 = 258 | 33 × 2 = 66 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0004 mm | 0.0054 mm |
+| worst fixed-plane defocus at infinity | 0.0249 mm | 0.0278 mm |
+| worst focal-length label residual | 0.0002 mm | 0.0027 mm |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0054 mm (0.35 R), half-field ≤ 0.028°, stop radius ≤ 0.007 %, f-number ≤ 0.000 %, variable gaps ≤ 0.006 mm, axial diffraction MTF at 30 lp/mm -0.038 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+Text sync: header and analysis: 129 → 33 nodes; analysis: image plane 0.011–0.025 → 0.011–0.028 mm behind paraxial focus between printed stations.

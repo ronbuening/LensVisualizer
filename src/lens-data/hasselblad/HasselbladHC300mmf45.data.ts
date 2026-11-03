@@ -40,6 +40,7 @@ const LENS_DATA = {
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: 300, design: 291.96 },
     fNumber: { marketing: 4.5, design: 4.66 },
+    closeFocusM: { marketing: 2.44 },
   },
 
   source: {
@@ -193,7 +194,7 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  focus: { closeFocusM: 2.44, description: "Inner focus — Group 20 (G21+G22 cemented doublet) translates rearward." },
+  focus: { closeFocusM: 2.695, description: "Inner focus — Group 20 (G21+G22 cemented doublet) translates rearward." },
 
   /* (moved from var) ── Variable air spacings (inner focus) ──
    *  Group 20 translates rearward for close focus.

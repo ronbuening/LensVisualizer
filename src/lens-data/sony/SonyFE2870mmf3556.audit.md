@@ -18,3 +18,9 @@ Patent: US 2015/0077859 A1, Numerical Example 4
 - Surface 18 now stores the patent's 30.521 mm, with `rearPlates` FL (N-BK7 class for 1.51680 / 64.2) and gapAfter
   1.000 mm. Paraxial check against the previous data: EFL identical at all three zoom stations; defocus unchanged
   (worst difference 2.5e-7 mm). Physical track grows by 0.852 mm, the filter's t(1 − 1/n).
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.3 → 0.3 m, with per-station `closeFocusM` 0.3 / 0.359 / 0.45 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 50.0 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived close rows already follow the official endpoint MFDs; per-station values record them.

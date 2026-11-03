@@ -55,6 +55,7 @@ const LENS_DATA = {
     groupCount: 13,
     focalLengthMm: { marketing: [24, 120], design: [24.7, 116.39] },
     fNumber: { marketing: 4, design: 4.13 },
+    closeFocusM: { marketing: 0.45 },
   },
 
   source: {
@@ -347,15 +348,15 @@ const LENS_DATA = {
   zoom: {
     // (moved from publishedStations) The close-focus row is source-tabulated.
     stations: [
-      { focalLengthMm: 24.7, label: "24 mm", published: true, publishedFocus: [1] },
-      { focalLengthMm: 45.75, label: "46 mm", published: true, publishedFocus: [1] },
-      { focalLengthMm: 116.39, label: "120 mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 24.7, closeFocusM: 0.844, label: "24 mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 45.75, closeFocusM: 1.448, label: "46 mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 116.39, closeFocusM: 3.409, label: "120 mm", published: true, publishedFocus: [1] },
     ],
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 0.45,
+    closeFocusM: 0.844,
     step: 0.004,
     description:
       "Inner focus by rigid object-side translation of G2. Nikon's product MFD is 0.45 m; the patent close-range table is a shallow finite-conjugate aberration-characterization state.",

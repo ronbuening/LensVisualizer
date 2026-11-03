@@ -598,3 +598,10 @@ paraxial focus): sagittal / tangential at the field edge −0.28 / −0.14 mm at
 corner, against the patent's 42.42.
 
 Open: L4/L5 stay about 15 % shorter than drawn and L3 still wraps L4 (see above).
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.4 → 0.4 m, with per-station `closeFocusM` 0.421 / 0.406 / 0.4 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 5.1 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived close rows aimed at Sony's 0.4 m MFD the focus description names.
+- `catalog.closeFocusM.marketing` 0.4 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

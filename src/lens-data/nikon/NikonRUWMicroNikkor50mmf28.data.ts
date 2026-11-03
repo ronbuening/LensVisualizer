@@ -57,6 +57,7 @@ const LENS_DATA = {
     groupCount: 9,
     focalLengthMm: { marketing: 50, design: 51.603 },
     fNumber: { marketing: 2.8 },
+    closeFocusM: { marketing: 0.167 },
   },
 
   source: {
@@ -216,7 +217,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.167,
+    closeFocusM: 0.207,
     keyframes: [0, 0.6967361668974719, 1],
     description: "Inner focus: G2 + G3 translate toward the object; D2 decreases while D15 increases.",
     // (moved from publishedStations) Every focus keyframe is a source row.

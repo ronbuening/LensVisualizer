@@ -12,11 +12,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                                ║
  * ║  Zoom variable gaps: d3, d9, d10/STO, d15, d17, d21/BF.                       ║
  * ║  Focus variable gaps: d15 and d17 only. Close-focus values are paraxial       ║
- * ║  estimates, not patent-published finite-distance spacing tables. The wide    ║
- * ║  and tele close states use the production MFD endpoints (0.05 m wide,        ║
- * ║  0.40 m tele); the intermediate close state is only a smooth internal        ║
- * ║  modeling point. The patent itself publishes aberration plots at 0.10 m      ║
- * ║  wide and 0.50 m tele but no corresponding d15/d17 table.                    ║
+ * ║  estimates, not patent-published finite-distance spacing tables. They were   ║
+ * ║  aimed at Canon's production MFDs (0.05 m wide, 0.40 m tele), but the        ║
+ * ║  modeled close rows focus at 0.109 / 0.259 / 0.468 m object to image, which  ║
+ * ║  the per-station closeFocusM values record; the marketed figures stay in     ║
+ * ║  catalog.closeFocusM. The intermediate close state is only a smooth internal ║
+ * ║  modeling point. The patent itself publishes aberration plots at 0.10 m wide ║
+ * ║  and 0.50 m tele but no corresponding d15/d17 table.                         ║
  * ║                                                                                ║
  * ║  NOTE ON SCALING:                                                             ║
  * ║  The patent prescription is left unscaled. The patent EFL range is            ║
@@ -61,6 +63,7 @@ const LENS_DATA = {
     groupCount: 9,
     focalLengthMm: { marketing: [8.8, 36.8], design: [9.06, 35.69] },
     fNumber: { marketing: 1.8, design: 1.85 },
+    closeFocusM: { marketing: [0.05, 0.4] },
   },
 
   source: {
@@ -271,17 +274,17 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 9.06, nominalFNumber: 1.8, label: "Wide" },
-      { focalLengthMm: 16.39, nominalFNumber: 2.54 },
-      { focalLengthMm: 35.69, nominalFNumber: 2.8, label: "Tele" },
+      { focalLengthMm: 9.06, nominalFNumber: 1.8, closeFocusM: 0.109, label: "Wide" },
+      { focalLengthMm: 16.39, nominalFNumber: 2.54, closeFocusM: 0.259 },
+      { focalLengthMm: 35.69, nominalFNumber: 2.8, closeFocusM: 0.468, label: "Tele" },
     ],
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 0.05,
+    closeFocusM: 0.109,
     description:
-      "Single-element L4 inner focus; close endpoints use paraxial L4 travel estimates. Patent close plots are 0.10 m wide / 0.50 m tele; data close endpoints follow production 0.05 m wide / 0.40 m tele MFD metadata.",
+      "Single-element L4 inner focus; close endpoints use paraxial L4 travel estimates aimed at the production 0.05 m wide / 0.40 m tele MFDs, which focus at 0.109 / 0.259 / 0.468 m object to image. Patent close plots are 0.10 m wide / 0.50 m tele.",
   },
 
   gaps: {
