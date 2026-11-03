@@ -10,12 +10,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { basename, dirname, isAbsolute, join, relative, sep } from "node:path";
-import {
-  combineFreshnessEntries,
-  getFirstGitFileFreshness,
-  getFirstGitFileFreshnessAsync,
-  mapLimit,
-} from "./build-metadata-lib.mjs";
+import { combineFreshnessEntries, gitHistory, mapLimit, readTrackedFiles } from "./build-metadata-lib.mjs";
 import { evaluateLensDataSource, readLensIdentity } from "./lens-data-ast.mjs";
 import { runConversion } from "./lens-data-convert/cli.mjs";
 import { loadPrescriptionIngest } from "./lens-summaries.mjs";
@@ -129,22 +124,13 @@ function collectTrackedLensRecordsByKey({
   execFile = execFileSync,
 } = {}) {
   try {
-    const trackedFilesRaw = execFile("git", ["ls-tree", "-r", "--name-only", "HEAD", "--", "src/lens-data"], {
-      cwd: rootDir,
-      encoding: "utf-8",
-    }).trim();
-
-    if (!trackedFilesRaw) return {};
-
     const byKey = {};
-    for (const repoPath of trackedFilesRaw
-      .split("\n")
-      .map((file) => file.trim())
-      .filter((file) => file.endsWith(".data.ts"))) {
-      const content = execFile("git", ["show", `HEAD:${repoPath}`], {
-        cwd: rootDir,
-        encoding: "utf-8",
-      });
+    for (const { path: repoPath, content } of readTrackedFiles({
+      cwd: rootDir,
+      repoDir: "src/lens-data",
+      suffix: ".data.ts",
+      execFileImpl: execFile,
+    })) {
       let key;
       try {
         ({ key } = extractLensIdentityContent(content, repoPath));
@@ -179,7 +165,7 @@ function collectLensData({
   trackedLensRecordsByKey = collectTrackedLensRecordsByKey({ rootDir, lensDataDir }),
   readdir = readdirSync,
   exists = existsSync,
-  getFreshness = getFirstGitFileFreshness,
+  getFreshness = gitHistory({ cwd: rootDir }).firstFileFreshness,
   combineFreshness = combineFreshnessEntries,
 } = {}) {
   const dataFiles = readdir(lensDataDir, { recursive: true })
@@ -229,7 +215,7 @@ async function collectLensDataAsync({
   trackedLensRecordsByKey = collectTrackedLensRecordsByKey({ rootDir, lensDataDir }),
   readdir = readdirSync,
   exists = existsSync,
-  getFreshness = getFirstGitFileFreshnessAsync,
+  getFreshness = gitHistory({ cwd: rootDir }).firstFileFreshness,
   combineFreshness = combineFreshnessEntries,
   concurrency = 8,
 } = {}) {

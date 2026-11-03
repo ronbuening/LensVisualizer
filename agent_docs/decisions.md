@@ -42,6 +42,7 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 
 ### Catalog, metadata, and build
 
+- 2026-11-03 — Page freshness follows renames, not copies: `gitHistory` in `scripts/build-metadata-lib.mjs` reads one `git log -M` over the whole history. Do not go back to a `git log --follow` per file. That took about 140 s of a 158 s metadata run, and its copy detection gave a new file the history of the file it was authored from, dating the Fujifilm XF 50mm f/1.0 and XF 80mm f/2.8 Macro from the Nokton 50mm f/1 and Nikon Z 26mm. The two agree on the other 2,151 of 2,161 dated files. (CI metadata PR)
 - 2026-08-04 — CI git-history protection (`assertFullGitHistory`, `assertFreshnessDiversity` in `scripts/build-metadata-lib.mjs`, `fetch-depth: 0` in both workflows) is complete; leave it alone. (code-health plan)
 - 2026-07-06 — `scripts/` has no copy-pasted helpers: `deriveMakerSlug` lives once in `lens-data-lib.mjs` and `build-metadata-lib.mjs` consumes the precomputed `makerSlug`. (efficiency plan E6/P7)
 - 2026-07-07 — Vendor chunk groups in `vite.config.js` apply to the client build only; the SSR build keeps default chunking on purpose. Prerendered lens pages never contained the analysis markdown body, so lazy-loading `*.analysis.md` does not change SSR output. (efficiency plan B1)

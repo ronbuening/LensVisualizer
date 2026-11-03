@@ -1,13 +1,33 @@
-import { execFile, execFileSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
-import { join } from "node:path";
-import { promisify } from "node:util";
+import { isAbsolute, join, relative, resolve, sep } from "node:path";
 import { FORMAT_ONLY_COMMITS } from "./format-only-commits.mjs";
 
-const execFileAsync = promisify(execFile);
-
 /* `git log` fields of one commit: committer date, id and subject. */
-const GIT_LOG_FORMAT = "--format=%cI%x09%H%x09%s";
+const GIT_LOG_FIELDS = "%cI%x09%H%x09%s";
+
+/*
+ * The whole history in one pass: a record separator and the fields of each commit, then every path it touched, with
+ * renames paired. -l0 keeps rename detection exhaustive however many files one commit moves. The rest pins output
+ * that user config could otherwise change (paths relative to a subfolder, colour, signature lines); the config
+ * override rather than --no-relative, which needs git 2.28, keeps older build images working.
+ */
+const GIT_HISTORY_ARGS = [
+  "-c",
+  "diff.relative=false",
+  "log",
+  "-M",
+  "-l0",
+  "--name-status",
+  "-z",
+  "--no-color",
+  "--no-show-signature",
+  `--format=%x1e${GIT_LOG_FIELDS}`,
+  "HEAD",
+];
+
+/* The whole history of a large repository is several megabytes of output. */
+const GIT_HISTORY_MAX_BUFFER = 1 << 30;
 
 /**
  * The subject of a format-only lens-data conversion commit begins with a conversion step's ID and a space
@@ -129,58 +149,171 @@ function fallbackFreshness(fallbackDate) {
 }
 
 /**
- * Read published + modified dates for a file from git history.
+ * Read the committed text of every file under a repository folder whose name ends with `suffix`, in one
+ * `git cat-file --batch` rather than a `git show` per file.
  *
- * Always execFile, so file paths are passed as arguments rather than
- * interpolated into a shell command.
+ * @param {{ cwd: string, repoDir: string, suffix: string, execFileImpl?: Function }} options - the top-level
+ *   directory, the folder to list, the file-name ending to keep and the `execFileSync`-compatible runner
+ * @returns {{ path: string, content: string }[]} each file's repository path and UTF-8 text, in `ls-tree` order
+ * @throws when git fails, as `git show` did; callers treat that as no tracked files
  */
-export function getGitFileFreshness(filePath, { cwd, fallbackDate, execFileImpl = execFileSync } = {}) {
-  try {
-    const raw = execFileImpl("git", ["log", "--follow", GIT_LOG_FORMAT, "--", filePath], {
-      cwd,
-      encoding: "utf-8",
-    }).trim();
-    return parseGitLogDates(raw) ?? fallbackFreshness(fallbackDate);
-  } catch {
-    return fallbackFreshness(fallbackDate);
+export function readTrackedFiles({ cwd, repoDir, suffix, execFileImpl = execFileSync }) {
+  const options = { cwd, maxBuffer: GIT_HISTORY_MAX_BUFFER };
+  const listing = execFileImpl("git", ["ls-tree", "-r", "-z", "HEAD", "--", repoDir], {
+    ...options,
+    encoding: "utf-8",
+  });
+  const blobs = [];
+  for (const entry of listing.split("\0")) {
+    const tab = entry.indexOf("\t");
+    if (tab < 0) continue;
+    const [, type, oid] = entry.slice(0, tab).split(" ");
+    const path = entry.slice(tab + 1);
+    if (type === "blob" && path.endsWith(suffix)) blobs.push({ oid, path });
   }
-}
+  if (blobs.length === 0) return [];
 
-export async function getGitFileFreshnessAsync(filePath, { cwd, fallbackDate } = {}) {
-  try {
-    const { stdout } = await execFileAsync("git", ["log", "--follow", GIT_LOG_FORMAT, "--", filePath], {
-      cwd,
-      encoding: "utf-8",
-    });
-    return parseGitLogDates(stdout.trim()) ?? fallbackFreshness(fallbackDate);
-  } catch {
-    return fallbackFreshness(fallbackDate);
+  const batch = execFileImpl("git", ["cat-file", "--batch"], {
+    ...options,
+    input: blobs.map(({ oid }) => oid).join("\n") + "\n",
+  });
+  /*
+   * Each object is an "<oid> blob <size>" line, its content and a newline. Sizes count bytes, so slice the bytes.
+   * A byte-order mark stays in the text, as it did when `git show` output was decoded.
+   */
+  const decoder = new TextDecoder("utf-8", { ignoreBOM: true });
+  const files = [];
+  let offset = 0;
+  for (const { path } of blobs) {
+    const headerEnd = batch.indexOf(0x0a, offset);
+    if (headerEnd < 0) break;
+    const size = Number(decoder.decode(batch.subarray(offset, headerEnd)).split(" ")[2]);
+    offset = headerEnd + 1;
+    /* A missing object prints only its header line. */
+    if (!Number.isInteger(size)) continue;
+    files.push({ path, content: decoder.decode(batch.subarray(offset, offset + size)) });
+    offset += size + 1;
   }
+  return files;
 }
 
 /**
- * Return the first git-backed freshness entry from a list of candidate paths.
- *
- * This is useful when content has been moved in the working tree but the rename
- * has not been committed yet: the new path has no git history, while the old
- * tracked path still carries the original publication date.
+ * Index `git log` history output by path. Each path lists the commits that touched it, newest first, and an entry
+ * where a rename created the path names the path it came from.
  */
-export function getFirstGitFileFreshness(filePaths, { cwd, fallbackDate, execFileImpl = execFileSync } = {}) {
-  for (const filePath of filePaths) {
-    const freshness = getGitFileFreshness(filePath, { cwd, execFileImpl });
-    if (freshness) return freshness;
-  }
+function indexGitHistory(raw) {
+  const commits = [];
+  const touches = new Map();
+  const touch = (path, entry) => {
+    const entries = touches.get(path);
+    if (entries) entries.push(entry);
+    else touches.set(path, [entry]);
+  };
 
-  return fallbackFreshness(fallbackDate);
+  /* With -z, NUL ends every field; a commit's first path also carries the newline that ends its header. */
+  const tokens = raw.split("\0");
+  for (let i = 0; i < tokens.length; i++) {
+    const token = tokens[i].startsWith("\n") ? tokens[i].slice(1) : tokens[i];
+    if (token.startsWith("\x1e")) {
+      commits.push(token.slice(1));
+      continue;
+    }
+    if (token === "" || commits.length === 0) continue;
+    const commit = commits.length - 1;
+    if (token[0] === "R") {
+      touch(tokens[i + 1], { commit });
+      touch(tokens[i + 2], { commit, renamedFrom: tokens[i + 1] });
+      i += 2;
+    } else if (token[0] === "C") {
+      /* -M never reports copies; should one appear, its source is unchanged and its destination starts anew. */
+      touch(tokens[i + 2], { commit });
+      i += 2;
+    } else {
+      touch(tokens[i + 1], { commit });
+      i += 1;
+    }
+  }
+  return { commits, touches };
 }
 
-export async function getFirstGitFileFreshnessAsync(filePaths, { cwd, fallbackDate } = {}) {
-  for (const filePath of filePaths) {
-    const freshness = await getGitFileFreshnessAsync(filePath, { cwd });
-    if (freshness) return freshness;
-  }
+/**
+ * Read the repository's history once, on the first lookup, and date files from it.
+ *
+ * One `git log` over every commit replaces a `git log --follow` per file, which walked the whole history again for
+ * each file and ran copy detection against every file in the tree at its addition. A lookup lists the same commits
+ * that `--follow` printed for a file, newest first, with the history before a rename continuing under the old path.
+ * It does not follow copies: a new file that resembles an existing one starts its own history, where `--follow` gave
+ * it the other file's (see agent_docs/decisions.md, page freshness).
+ *
+ * A directory that is not a repository, or a git failure, leaves the history empty, so every file falls back.
+ *
+ * @param {{ cwd?: string, execFileImpl?: Function }} [options] - the directory file paths resolve against, inside the
+ *   repository, and the `execFileSync`-compatible runner
+ * @returns {{
+ *   log: (filePath: string) => string,
+ *   fileFreshness: (filePath: string, options?: { fallbackDate?: string }) => object | null,
+ *   firstFileFreshness: (filePaths: string[], options?: { fallbackDate?: string }) => object | null,
+ * }} `log` gives the `%cI%x09%H%x09%s` lines `parseGitLogDates` reads; the freshness lookups are those dates, or the
+ *   fallback date's when no path has history
+ */
+export function gitHistory({ cwd = process.cwd(), execFileImpl = execFileSync } = {}) {
+  let index;
+  const read = () => {
+    try {
+      const run = (args) => execFileImpl("git", args, { cwd, encoding: "utf-8", maxBuffer: GIT_HISTORY_MAX_BUFFER });
+      /* Logged paths are relative to the top level; this is where `cwd` sits below it. */
+      const prefix = run(["rev-parse", "--show-prefix"]).trim();
+      return { prefix, ...indexGitHistory(run(GIT_HISTORY_ARGS)) };
+    } catch {
+      return { prefix: "", commits: [], touches: new Map() };
+    }
+  };
 
-  return fallbackFreshness(fallbackDate);
+  const repoPath = (filePath, prefix) => {
+    const fromCwd = relative(cwd, resolve(cwd, filePath));
+    if (fromCwd === ".." || fromCwd.startsWith(`..${sep}`) || isAbsolute(fromCwd)) return null;
+    return prefix + fromCwd.split(sep).join("/");
+  };
+
+  const log = (filePath) => {
+    index ??= read();
+    const { prefix, commits, touches } = index;
+    const lines = [];
+    let path = repoPath(filePath, prefix);
+    /* Walk order is newest first, so the history before a rename is the old path's commits after the renaming one. */
+    let after = -1;
+    while (path !== null) {
+      const entries = touches.get(path) ?? [];
+      path = null;
+      for (const { commit, renamedFrom } of entries) {
+        if (commit <= after) continue;
+        lines.push(commits[commit]);
+        if (renamedFrom !== undefined) {
+          path = renamedFrom;
+          after = commit;
+          break;
+        }
+      }
+    }
+    return lines.join("\n");
+  };
+
+  const fileFreshness = (filePath, { fallbackDate } = {}) =>
+    parseGitLogDates(log(filePath)) ?? fallbackFreshness(fallbackDate);
+
+  /*
+   * The first path with history wins. A file moved in the working tree but not yet committed has none at its new path,
+   * so its old tracked path still carries the original publication date.
+   */
+  const firstFileFreshness = (filePaths, { fallbackDate } = {}) => {
+    for (const filePath of filePaths) {
+      const freshness = parseGitLogDates(log(filePath));
+      if (freshness) return freshness;
+    }
+    return fallbackFreshness(fallbackDate);
+  };
+
+  return { log, fileFreshness, firstFileFreshness };
 }
 
 export async function mapLimit(items, limit, mapper) {
@@ -363,22 +496,13 @@ function assertArticleFrontmatter(invalid) {
  */
 function collectTrackedArticlePathsBySlug({ cwd, contentRepoPath, execFileImpl = execFileSync }) {
   try {
-    const trackedFilesRaw = execFileImpl("git", ["ls-tree", "-r", "--name-only", "HEAD", "--", contentRepoPath], {
-      cwd,
-      encoding: "utf-8",
-    }).trim();
-
-    if (!trackedFilesRaw) return {};
-
     const bySlug = {};
-    for (const repoPath of trackedFilesRaw
-      .split("\n")
-      .map((file) => file.trim())
-      .filter((file) => file.endsWith(".md"))) {
-      const content = execFileImpl("git", ["show", `HEAD:${repoPath}`], {
-        cwd,
-        encoding: "utf-8",
-      });
+    for (const { path: repoPath, content } of readTrackedFiles({
+      cwd,
+      repoDir: contentRepoPath,
+      suffix: ".md",
+      execFileImpl,
+    })) {
       const meta = parseFrontmatterContent(content);
       if (!meta?.slug || bySlug[meta.slug]) continue;
       bySlug[meta.slug] = join(cwd, repoPath);
@@ -392,7 +516,8 @@ function collectTrackedArticlePathsBySlug({ cwd, contentRepoPath, execFileImpl =
 
 /**
  * Collect publishable article metadata from a content directory, throwing when
- * a non-generated markdown file cannot publish.
+ * a non-generated markdown file cannot publish. `getFreshness` lets a caller
+ * share one `gitHistory` across collectors; by default the collector reads its own.
  */
 export async function collectArticles({
   contentDir,
@@ -401,6 +526,7 @@ export async function collectArticles({
   contentRepoPath = "src/content",
   concurrency = 8,
   execFileImpl = execFileSync,
+  getFreshness = gitHistory({ cwd, execFileImpl }).firstFileFreshness,
 }) {
   const mdFiles = readdirSync(contentDir, { recursive: true })
     .filter((f) => typeof f === "string" && f.endsWith(".md"))
@@ -424,7 +550,7 @@ export async function collectArticles({
   const articles = await mapLimit(parsed, concurrency, async ({ file, meta }) => {
     const filePath = join(contentDir, file);
     const trackedPath = trackedArticlePathsBySlug[meta.slug];
-    const freshness = await getFirstGitFileFreshnessAsync(
+    const freshness = await getFreshness(
       trackedPath && trackedPath !== filePath ? [filePath, trackedPath] : [filePath],
       { cwd, fallbackDate },
     );
