@@ -89,7 +89,7 @@ Both states are published keyframes. The object distance of the close state is c
 
 ## Geometry, Aperture and Image Plane
 
-The patent prints no semi-diameters; all are read from Fig. 7 and are not manufacturer dimensions. The front radius, 26.5 mm, is about 10% above the f/2.8 entrance-pupil radius of 24.1 mm. E3 and E4 meet at a thin edge at 21.1 mm, and E4's rear face is bevelled to 17.3 mm, as the figure draws them. The collector-hosted section shows a somewhat larger E4 rear face.
+The patent prints no semi-diameters; all are estimated from Fig. 7 and are not manufacturer dimensions. E1, E2, the Unit II doublet and E7 are about 6% larger than drawn; the drawn E1 and E7 rims would vignette the outer field further. The front radius, 26.5 mm, is about 10% above the f/2.8 entrance-pupil radius of 24.1 mm. E3 and E4 meet at a thin edge at 21.1 mm. E4's concave rear face ends at 16.5 mm on a flat land that runs out to the element's 19.9 mm edge, where Fig. 7 draws a bevel. The collector-hosted section draws the same bevelled E4 rim.
 
 Fig. 7 draws the iris near the rear of d7. The stop sits at 0.91 of the 19.39 mm infinity gap, 1.74 mm in front of S8, with a radius of 12.59 mm at f/2.8.
 
@@ -97,7 +97,7 @@ The patent prints no back focus. The image plane is the paraxial focus, 42.81 mm
 
 ## Model Scope and Limitations
 
-The model reproduces the patent's aberration plots for this example (Fig. 8) in sign and size. Spherical aberration is undercorrected by about 0.05 at patent scale near 0.7 of the pupil and returns to zero at f/2.8. Distortion is about +0.6% pincushion at 9°. At f/2.8 the rear element vignettes the field edge, leaving about 67% relative illumination at the 9° corner. Corner illumination does not depend on the inferred E3 rim. A stop placed closer to S8 would bring the tangential field at 9° nearer the plot's value. The semi-diameters, the stop position and the close-focus object distance are inferred, and Embodiments 1, 2 and 5 are equally plausible prescriptions for the production lens.
+The model reproduces the patent's aberration plots for this example (Fig. 8) in sign and size. Spherical aberration is undercorrected by about 0.05 at patent scale near 0.7 of the pupil and returns to zero at f/2.8. Distortion is about +0.6% pincushion at 9°. At f/2.8 the front element vignettes the field from about 3° outward and the rear element at the edge, leaving about 67% relative illumination at the 9° corner. Corner illumination does not depend on the inferred E3 rim. A stop placed closer to S8 would bring the tangential field at 9° nearer the plot's value. The semi-diameters, the stop position and the close-focus object distance are inferred, and Embodiments 1, 2 and 5 are equally plausible prescriptions for the production lens.
 
 ## Sources and References
 

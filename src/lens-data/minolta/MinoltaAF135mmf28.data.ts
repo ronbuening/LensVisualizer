@@ -4,7 +4,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Every length is scaled ×1.35 to the marketed 135 mm; computed EFL 135.05 mm (100.04 at patent scale).
  * The patent prints no back focus: the image plane is the paraxial focus, 42.81 mm behind S12.
  * Nd and νd as printed; glass names are catalog equivalents, not production identifications.
- * Stop placed at 0.91 of d7, where Fig. 7 draws it; semi-diameters read from Fig. 7.
+ * Stop placed at 0.91 of d7, where Fig. 7 draws it.
+ * Semi-diameters estimated from Fig. 7 (same scale along and across the axis) and floor-checked by real-ray trace.
+ * E1, E2, Unit II and E7 sit about 6% above the drawn rims, which at E1 and E7 would cost up to 6 and 8.5 points
+ * of field illumination.
+ * E4's rear cap ends at 16.5 mm on an inferred flat land out to its 19.9 mm edge, where Fig. 7 draws a bevel.
  * Internal focus: the Unit II doublet moves 7.33 mm toward the image; the near keyframe is the printed β = 1/10 state.
  * Embodiments 1, 2 and 5 share the 7-element / 5-group layout and fit the production lens as well.
  */
@@ -174,7 +178,8 @@ const LENS_DATA = {
       label: "7",
       R: 22.167000000000005,
       d: 17.64126,
-      sd: 17.3,
+      sd: 19.9,
+      rimCutDepthMm: 7.39,
     },
     {
       label: "STO",
