@@ -34,7 +34,7 @@ The community has independently noted this correspondence (see DPReview forum th
 
 The design is a three-group inner-focus prime with positive–negative–positive power distribution:
 
-$$G1(+) \;\;—\;\; \text{STO} \;\;—\;\; G2(-) \;\;—\;\; G3(+)$$
+$$G1(+) \;\;\text{—}\;\; \text{STO} \;\;\text{—}\;\; G2(-) \;\;\text{—}\;\; G3(+)$$
 
 The group focal lengths are: $f_\text{G1} = +52.9\;\text{mm}$, $f_\text{G2} = -37.1\;\text{mm}$, $f_\text{G3} = +56.8\;\text{mm}$.
 

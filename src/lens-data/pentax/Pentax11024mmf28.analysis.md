@@ -127,11 +127,11 @@ The patent defines five conditional expressions governing the design. All are sa
 
 | Condition | Inequality | Example 2 Value | Range | Status |
 |-----------|-----------|-----------------|-------|--------|
-| (1) | $F/1.7 < F_{1,2} < F/1.1$ | $F_{1,2} = 71.35$ | $58.82 – 90.91$ | Satisfied |
-| (2) | $0.005 F < d_2 < 0.1 F$ | $d_2 = 2.49$ | $0.50 – 10.00$ | Satisfied |
+| (1) | $F/1.7 < F_{1,2} < F/1.1$ | $F_{1,2} = 71.35$ | $58.82\text{–}90.91$ | Satisfied |
+| (2) | $0.005 F < d_2 < 0.1 F$ | $d_2 = 2.49$ | $0.50\text{–}10.00$ | Satisfied |
 | (3) | $\|F_{1,2,3}\| > F/0.3$ | $\|F_{1,2,3}\| = 426.99$ | $> 333.33$ | Satisfied |
-| (4) | $0.05 F < d_4 < 0.15 F$ | $d_4 = 6.20$ | $5.00 – 15.00$ | Satisfied |
-| (5) | $0.4 F < \Sigma d < 0.7 F$ | $\Sigma d = 50.62$ | $40.00 – 70.00$ | Satisfied |
+| (4) | $0.05 F < d_4 < 0.15 F$ | $d_4 = 6.20$ | $5.00\text{–}15.00$ | Satisfied |
+| (5) | $0.4 F < \Sigma d < 0.7 F$ | $\Sigma d = 50.62$ | $40.00\text{–}70.00$ | Satisfied |
 
 Condition (1) governs the combined power of the front two components and controls the balance between back focal distance and coma/distortion correction. Example 2's value of $F/1.40$ sits near the stronger (lower) end of the range, reflecting the design's priority on achieving the longest possible BFD within the compact form.
 

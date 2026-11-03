@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-11-03",
     type: "fix",
+    summary: "Fixed formulas that failed to render or showed wrong symbols in 13 lens notes",
+  },
+  {
+    date: "2026-11-03",
+    type: "fix",
     summary: "Fixed equations that drew superscripts, subscripts and fraction terms at full size",
   },
   {

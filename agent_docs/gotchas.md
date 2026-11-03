@@ -87,3 +87,7 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
   children crashes on removal or freezes on update in a translated page. Keep it in its own element
   (`code_conventions.md`, Translator-Safe Display Text); `translation/owned-text` and the browser suite's detached-text
   audit enforce it.
+- Writing markdown through a string that evaluates backslash escapes (a JS or Python literal, `echo -e`) turns `\nu`,
+  `\tan`, `\frac` and `\approx` into a line break, tab, form feed and BEL. The first two still render, as the wrong
+  letters (`u_d`, `an`). Write files from raw text; the strict math check in `ThemedMarkdown.test.tsx` catches all four
+  (`article_formatting.md`, Math).

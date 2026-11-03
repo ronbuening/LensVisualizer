@@ -14,7 +14,7 @@ The best-supported production match is **Embodiment 1**, not Embodiment 2. The p
 
 1. Olympus's OM System lens brochure specifies the Zuiko 18mm f/3.5 as **11 elements in 9 groups**, with a **floating-element design**, a **100° angle of view**, and a **0.25 m minimum focus distance**.
 2. Embodiment 1 contains **11 elements in 9 air-separated components** and focuses by keeping its first two components fixed while advancing components 3-9 toward them. Claim 6 repeats that structure.
-3. The patent evaluates Embodiment 1 at **f/3.5**, image height $y=118$, and half-field $\theta=50°24′$. Uniform 0.18 scaling gives a 21.24 mm image height, close to the 21.63 mm half-diagonal of the 36 × 24 mm frame.
+3. The patent evaluates Embodiment 1 at **f/3.5**, image height $y=118$, and half-field $\theta=50°24'$. Uniform 0.18 scaling gives a 21.24 mm image height, close to the 21.63 mm half-diagonal of the 36 × 24 mm frame.
 4. Embodiment 2 contains 12 elements in 10 groups. It is an alternate example in the same patent but does not match Olympus's manufacturer-published production element/group count. The supplied evidence does not establish it as a documented production or prototype version of the commercial lens.
 
 The prescription is uniformly scaled by **0.18**, converting the patent's nominal $f=100$ scale to the production 18 mm focal length. All radii, thicknesses, air gaps, back focus, focus travel, and modeled semi-diameters use that scale. Because the tabulated prescription computes to $f=100.181$ rather than exactly 100, its scaled paraxial EFL is **18.0326 mm**.
