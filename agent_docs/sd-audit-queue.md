@@ -143,6 +143,7 @@ sits in front of focus).
 | --------------------------------------- | --------------------------------------------- | ----------- | ------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | +0.220      | 24     | Water interface is already traced; several existing source emendations remain unverified     | partial (rear plate migrated; source reconstruction unresolved)               |
 | NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S | `nikon/NikonAIZoomNikkor35105mmf3545.data.ts` | +0.942 / +1.330 / +1.677 | 66 / 71 / 71 | Table 7's d9 = 1.0 against 3.5 in Tables 4–6 leaves EFL 3.4 % long and the plane off at every station; with 3.5 the remainder is sibling-sized. Decide d9 (Sections F and G), then re-solve BF per station (52.607839 / 65.652104 / 78.807634 with d9 = 3.5) | blocked (d9 ruling) |
+| PENTAX SMC TAKUMAR 6x7 600mm f/4         | `pentax/PentaxSMCTakumar6x7600mmf4.data.ts`   | −0.203      | 11     | Added after this census pass (#949). The header puts the plane at the printed whole length L × 6 and calls the 0.20 mm rounding of L (no printed back focus); real-ray best focus (+0.288 mm) lies on the other side of the plane. Classify it under Image-Plane Consistency | todo |
 
 ## Section F — traced field coverage below 90%
 
