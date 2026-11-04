@@ -17,7 +17,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: at surface 10 as printed; its radius follows the F/1.46 rule.
  * Glass: catalog equivalents matched on nd/νd; the six printed θgF values agree with catalog PgF within 0.0001.
  * Semi-diameters are inferred from Fig. 9 and Canon's construction diagram; none is printed. S7/S8 are 18.75 mm so
- * the f/1.46 axial beam (18.70/18.64 mm) clears the near-touching L4/L5 rims, with checks.gapSagFrac 0.92.
+ * the f/1.46 axial beam (18.70/18.64 mm) clears the near-touching L4/L5 rims; checks.gapSagFrac 0.99 also admits the drawn L13/L14 rims at 19.0 mm.
+ * Fig. 9 lands (7.459 px/mm): L4 is square-cut, its S7 cap ending at L5's rim (rimExtensionSd 25 on S7, cap sd
+ * 18.75); L5 is square-cut at 18.75 mm with a land on S9 at q 0.91 (rimCutDepthMm 6.25, cut radius 17.03 mm);
+ * L6 has a short land on S11 at q 0.96 (rimCutDepthMm 4.35, cut radius 16.13 mm). The cuts clear every beam.
  * Focus: U2 (surfaces 11–17) moves 8.44 mm toward the object; U1, the stop, U3 and the image plane stay fixed. The
  * patent prints both gap states but not the near object distance; at the fixed image plane the near gaps focus at
  * 632.8 mm from S1 (749.9 mm object to image, −0.1265×), in line with Canon's 0.75 m and 0.12×. Intermediate
@@ -106,7 +109,7 @@ const LENS_DATA = {
       "role": "UD positive meniscus at the front of the U1 cemented doublet.",
       "apd": "inferred",
       "apdNote": "Canon's construction diagram marks this position as the lens's UD element, and its nd 1.497 / νd 81.7 is a fluorophosphate UD-class glass (catalog PgF 0.5371).",
-      "cemented": "CD1"
+      "cemented": "D1"
     },
     {
       "id": 4,
@@ -118,8 +121,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "NBFD29 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -68.08358315744466,
-      "role": "Negative meniscus cemented to L3; one of the two U1 negatives that set the patent's partial-dispersion condition.",
-      "cemented": "CD1"
+      "role": "Negative meniscus cemented to L3 (the patent's L1n1); one of the two U1 negatives that set the patent's partial-dispersion condition.",
+      "cemented": "D1"
     },
     {
       "id": 5,
@@ -131,7 +134,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "NBFD29 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -64.8603514791716,
-      "role": "Negative meniscus closing U1 just ahead of the stop; the second of the two partial-dispersion-controlled negatives."
+      "role": "Negative meniscus closing U1 just ahead of the stop (the patent's L1n2); the second of the two partial-dispersion-controlled negatives."
     },
     {
       "id": 6,
@@ -143,7 +146,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-NBM51 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -42.54415585557427,
-      "role": "Biconcave negative leading the moving focus group U2, directly behind the stop."
+      "role": "Biconcave negative leading the moving focus group U2, directly behind the stop (the patent's L2n1)."
     },
     {
       "id": 7,
@@ -167,8 +170,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-NBM51 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -54.375554383658745,
-      "role": "Negative meniscus front half of the U2 cemented doublet.",
-      "cemented": "CD2"
+      "role": "Negative meniscus front half of the U2 cemented doublet (the patent's L2n2).",
+      "cemented": "D2"
     },
     {
       "id": 9,
@@ -181,7 +184,7 @@ const LENS_DATA = {
       "glass": "S-FPM2 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 31.7808144787309,
       "role": "Biconvex positive rear half of the U2 doublet and the strongest positive element of the focus group.",
-      "cemented": "CD2"
+      "cemented": "D2"
     },
     {
       "id": 10,
@@ -194,7 +197,7 @@ const LENS_DATA = {
       "glass": "BAFD8 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -33.47446923207749,
       "role": "Biconcave negative front half of the first cemented doublet in the fixed rear group U3.",
-      "cemented": "CD3"
+      "cemented": "D3"
     },
     {
       "id": 11,
@@ -207,7 +210,7 @@ const LENS_DATA = {
       "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 109.13649148863125,
       "role": "Weak positive meniscus cemented to L10, in a low-index crown.",
-      "cemented": "CD3"
+      "cemented": "D3"
     },
     {
       "id": 12,
@@ -220,7 +223,7 @@ const LENS_DATA = {
       "glass": "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 23.2834672119154,
       "role": "Strong biconvex positive in nd 2.0 glass, front half of the second U3 cemented doublet.",
-      "cemented": "CD4"
+      "cemented": "D4"
     },
     {
       "id": 13,
@@ -232,8 +235,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-FTM16 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -45.97055447440384,
-      "role": "Biconcave negative cemented to L12; the second-to-last negative, which the patent uses for g-line lateral color.",
-      "cemented": "CD4"
+      "role": "Biconcave negative cemented to L12 (the patent's L3nF); the second-to-last negative, which the patent uses for g-line lateral color.",
+      "cemented": "D4"
     },
     {
       "id": 14,
@@ -245,7 +248,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "S-FTM16 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -112.97907957002039,
-      "role": "Rear negative meniscus, concave to the object, closing U3; the patent's last-lens lateral-color corrector."
+      "role": "Rear negative meniscus, concave to the object, closing U3 (the patent's L3nR); the patent's last-lens lateral-color corrector."
     }
   ],
   "surfaces": [
@@ -293,7 +296,8 @@ const LENS_DATA = {
       "label": "7",
       "R": 40.094,
       "d": 1.6,
-      "sd": 18.75
+      "sd": 18.75,
+      "rimExtensionSd": 25
     },
     {
       "label": "8",
@@ -306,7 +310,8 @@ const LENS_DATA = {
       "label": "9",
       "R": 26.318,
       "d": 8.98,
-      "sd": 20.5
+      "sd": 18.75,
+      "rimCutDepthMm": 6.25
     },
     {
       "label": "STO",
@@ -317,6 +322,7 @@ const LENS_DATA = {
       "R": -32.079,
       "d": 1.0,
       "sd": 16.8,
+      "rimCutDepthMm": 4.35,
       "medium": 6
     },
     {
@@ -411,13 +417,13 @@ const LENS_DATA = {
       "label": "23",
       "R": 105.461,
       "d": 5.8,
-      "sd": 18.0
+      "sd": 19.0
     },
     {
       "label": "24",
       "R": -47.15,
       "d": 1.3,
-      "sd": 18.0,
+      "sd": 19.0,
       "medium": 14
     },
     {
@@ -507,26 +513,26 @@ const LENS_DATA = {
     }
   ],
   "checks": {
-    "gapSagFrac": 0.92
+    "gapSagFrac": 0.99
   },
   "doublets": [
     {
-      "text": "CD1",
+      "text": "D1",
       "fromSurface": "5",
       "toSurface": "7"
     },
     {
-      "text": "CD2",
+      "text": "D2",
       "fromSurface": "15",
       "toSurface": "17"
     },
     {
-      "text": "CD3",
+      "text": "D3",
       "fromSurface": "18",
       "toSurface": "20"
     },
     {
-      "text": "CD4",
+      "text": "D4",
       "fromSurface": "21",
       "toSurface": "23"
     }

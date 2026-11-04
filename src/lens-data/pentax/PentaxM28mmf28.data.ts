@@ -15,9 +15,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The stop sits at the midpoint of d6 (4.6424 + 4.6424 mm), 11.656 mm behind S1, with its radius set by the paraxial
  * entrance pupil, F/N.
  * Semi-diameters are inferred, none is printed. The front rims follow the proportions of Fig. 5 with L1 at 12.04 mm.
- * S6 stops at 8.47 mm, near the rim-slope limit for its 9.43 mm radius, and S10 and S11 share 7.084 mm, near the
- * air-gap limit between them. S12 (7.75 mm) and both faces of L7 (9.15 mm) are Fig. 5 read at its axial scale
- * (7.78 and 9.17 mm); they pass the chief ray to the 21.65 mm format corner at 38.1 degrees.
+ * S6 (7.4 mm) is the tip of L3's rear bowl in Fig. 5 (7.37 mm, level with L4), which keeps the cap 1.06 mm ahead of
+ * the stop plane. L5 is drawn square-cut, so S9 matches S10 at 7.084 mm, the air-gap limit with S11. L6 is drawn
+ * with both faces meeting at one height, so S11 and S12 share 7.75 mm; both faces of L7 are 9.15 mm. These are
+ * Fig. 5 read at its axial scale (7.78 and 9.17 mm) and pass the chief ray to the 21.65 mm corner at 38.1 degrees.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies.
  * The 0.3 m minimum focus is Pentax's retail figure and is not modeled.
  */
@@ -65,7 +66,7 @@ const LENS_DATA = {
       vd: 66.8,
       indexReference: "d",
       focalLengthMm: -329.425209,
-      glass: "Unmatched (crown, nd 1.49782 / νd 66.8; no catalog row within tolerance)",
+      glass: "N-BK10 (SCHOTT catalog equivalent; production supplier unspecified)",
       role: "Weak negative front meniscus, convex to the object; opens the negative front group.",
     },
     {
@@ -179,7 +180,7 @@ const LENS_DATA = {
       label: "6",
       R: 9.4304,
       d: 4.6424,
-      sd: 8.47,
+      sd: 7.4,
     },
     {
       label: "STO",
@@ -203,7 +204,7 @@ const LENS_DATA = {
       label: "9",
       R: -47.2948,
       d: 1.1788,
-      sd: 7.224,
+      sd: 7.084,
       medium: 5,
     },
     {
@@ -216,7 +217,7 @@ const LENS_DATA = {
       label: "11",
       R: -74.2672,
       d: 2.8784,
-      sd: 7.084,
+      sd: 7.75,
       medium: 6,
     },
     {

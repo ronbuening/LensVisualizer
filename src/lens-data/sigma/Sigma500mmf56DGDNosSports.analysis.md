@@ -42,7 +42,7 @@ The second positive meniscus, convex to the object (surfaces 3–4). Its fluorop
 
 nd = 1.77250, νd = 49.63. Glass: TAF1 (HOYA catalog equivalent). f = −237.90 mm.
 
-A weak negative meniscus, convex to the object (surfaces 5–6), between the first two FLD elements. It is one of three TAF1-equivalent negative elements in G1.
+A weak negative meniscus, convex to the object (surfaces 5–6), between the first two FLD elements. It is one of three TAF1-equivalent negative elements in G1. Fig. 1 draws it with a square edge, and its deep concave rear face stops short of that edge at a flat land; the model draws the land as a rim cut at 37.17 mm.
 
 ### L4 — Positive Meniscus
 
@@ -54,7 +54,7 @@ The third positive meniscus (surfaces 7–8) and the second FLD element. An 18.5
 
 nd = 1.77250, νd = 49.63. Glass: TAF1 (HOYA catalog equivalent). f = −94.28 mm.
 
-A biconcave negative singlet (surfaces 9–10), the strongest negative element among G1's singlets.
+A biconcave negative singlet (surfaces 9–10), the strongest negative element among G1's singlets. As with L3, Fig. 1 ends its concave rear face at a flat land below the square edge; the model's rim cut there is at 29.59 mm.
 
 ### L6 — Biconvex Positive
 
@@ -84,7 +84,7 @@ A nearly plano-convex positive meniscus (surfaces 16–17) at the front of the c
 
 nd = 1.77250, νd = 49.63. Glass: TAF1 (HOYA catalog equivalent). f = −65.06 mm.
 
-A negative meniscus, convex to the object (surfaces 17–18), completing G2. The doublet is negative overall (−126.77 mm) and moves 16.83 mm toward the image for close focus. Fig. 1 and Sigma's drawing show L10 as tall as L9, and the model gives both the same 16.096 mm rim.
+A negative meniscus, convex to the object (surfaces 17–18), completing G2. The doublet is negative overall (−126.77 mm) and moves 16.83 mm toward the image for close focus. Fig. 1 and Sigma's drawing show L10 as tall as L9, and the model gives both the same 16.096 mm rim. Both drawings also step L10's concave rear face down to a flat land; the model's rim cut there is at 14.24 mm, just outside the F5.8 axial bundle.
 
 ### L11 — Biconvex Positive
 
@@ -114,7 +114,7 @@ A biconvex singlet (surfaces 25–26) at the front of the fixed rear unit RU.
 
 nd = 1.94594, νd = 17.98. Glass: FDS18 (HOYA catalog equivalent). f = −21.10 mm.
 
-The biconcave front element (surfaces 27–28) of the cemented L15–L16 doublet. This high-dispersion, high-PgF glass (PgF 0.6546) is the negative lens behind the stop that satisfies conditions (9) and (10). [1, ¶0061–0067]
+The biconcave front element (surfaces 27–28) of the cemented L15–L16 doublet. This high-dispersion, high-PgF glass (PgF 0.6546) is the negative lens behind the stop that satisfies conditions (9) and (10). Claim 10 makes that partial-dispersion excess a requirement, so L15 carries the diagram's patent-listed APD tag; Sigma's FLD and SLD elements are tagged as inferred because the patent text does not single them out. [1, claim 10, ¶0061–0067]
 
 ### L16 — Positive Meniscus
 
@@ -193,7 +193,7 @@ The IU (L11–L13) moves perpendicular to the axis to reduce image blur. [1, ¶0
 
 The patent does not print the iris diameter. The stop radius, 9.621 mm, follows from the F5.80 design f-number at infinity; the stop lies 144.084 mm behind the first vertex. The iris is modelled as a circle.
 
-Semi-diameters are estimated from Fig. 1 and Sigma's section drawing. The front pair is 45.99 mm, about 1.10 times the entrance-pupil radius F/(2N), and the other elements follow relative envelopes read from the two figures (L1 = 1): 1, 0.95, 0.87, 0.81, 0.67, 0.66, 0.44, 0.44, 0.35, 0.35, 0.27, 0.30, 0.30, 0.31, 0.32, 0.30, 0.32, 0.32, 0.32, 0.32. In surface order they are 45.99, 45.99, 43.691, 43.691, 40.011, 40.011, 37.252, 37.252, 30.813, 30.813, 30.353, 30.353, 20.236, 20.236, 20.236, 16.096, 16.096, 16.096, iris, 12.417, 13.797, 13.797, 13.797, 13.797, 14.257, 14.257, 14.717, 13.797, 13.797, 14.717, 14.717, 14.717, 14.717, 14.717 and 14.717 mm. Both figures draw L10 as tall as L9, so S17 and S18 share S16's 16.096 mm; smaller rims there would cut the F5.8 axial bundle. Cemented faces share one radius. These are estimates, not measured production apertures, and none was fitted to trace results.
+Semi-diameters are estimated from Fig. 1 and Sigma's section drawing. The front pair is 45.99 mm, about 1.10 times the entrance-pupil radius F/(2N), and the other elements follow relative envelopes read from the two figures (L1 = 1): 1, 0.95, 0.87, 0.81, 0.67, 0.66, 0.44, 0.44, 0.35, 0.35, 0.24, 0.24, 0.24, 0.31, 0.30, 0.30, 0.32, 0.32, 0.32, 0.32. In surface order they are 45.99, 45.99, 43.691, 43.691, 40.011, 40.011, 37.252, 37.252, 30.813, 30.813, 30.353, 30.353, 20.236, 20.236, 20.236, 16.096, 16.096, 16.096, iris, 11.0, 11.0, 11.0, 11.0, 11.0, 14.257, 14.257, 13.797, 13.797, 13.797, 14.717, 14.717, 14.717, 14.717, 14.717 and 14.717 mm. Both figures draw L10 as tall as L9, so S17 and S18 share S16's 16.096 mm; smaller rims there would cut the F5.8 axial bundle. Both also draw the stabilizing unit L11–L13 as square-cut elements clearly smaller than the rear unit, and the L15–L16 doublet as one square block. Fig. 1 ends the concave rear faces of L3, L5 and L10 at flat lands; the model draws them as rim cuts at 37.17, 29.59 and 14.24 mm, a little outside the figure's cap ends because a drawn land may not clip the wide-open beams. Cemented faces share one radius. These are estimates, not measured production apertures. None was widened to improve trace results, and the cuts and the smaller rear rims pass no less light than the package's original rims.
 
 The lens is modelled at the patent's scale, with no aspherical surfaces, rear camera plates or converter elements. No marketing value replaces a source quantity.
 

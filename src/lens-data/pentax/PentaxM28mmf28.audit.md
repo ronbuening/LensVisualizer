@@ -23,3 +23,47 @@ Rims: the 38.1° chief ray to the 21.65 mm format corner was blocked at S12 to S
 Glass (catalog minus patent): L2 LACL9 (HOYA) Δnd 0, Δνd −0.15. L3 S-BSM16 (OHARA) Δnd +0.000001, Δνd −0.010. L4 S-LAH63 (OHARA) Δnd −0.000002, Δνd −0.014; J-LASF013 (Hikari, νd 39.61) matches equally at the printed precision, and OHARA was kept for consistency with the rest of the lens. L5 PBH53 (OHARA) Δnd −0.000002, Δνd −0.014; SFLDN3 (Sumita, 23.90) and S-NPH53 (OHARA, 23.884) also match at the printed precision, and the closest OHARA row was kept. L6 and L7 PCD4 (HOYA) Δnd 0, Δνd 0; K-PSKn2 (Sumita) is also exact, and the nearest OHARA row, S-PHM52 (63.33), lies outside the printed precision. L1 stays Unmatched: the nearest row, BSC3 (HOYA, 1.49831 / 65.13), is 0.00049 and 1.67 away. The patent prints no partial dispersions, so no PgF comparison applies; the three L5 candidates differ in catalog PgF (PBH53 0.6161, SFLDN3 0.6211, S-NPH53 0.6218).
 
 Open: the retail figures (five blades, 0.3 m, 49 mm filter, the reported second formula of about 1982) have no cited source in the analysis. Fig. 5 draws the S6 rim at about 7.6 mm against 8.47 mm in the model, and L6 with both faces meeting at one height, where the model keeps S11 at 7.084 mm; S11 at 7.75 mm passes the surface audit and adds 1.3 points of transmission at 37.5°. `focus.closeFocusM` keeps the infinity-only placeholder.
+
+## 2026-11-04 — Final diagram, rim and label review
+
+Compared the local page (infinity, closest-focus slider, focus overlay, element inspectors) with Fig. 5 of US 4,143,945
+A (PDF p. 3, native 300 ppi raster). Axis row 1947.5 px; S1 vertex at x 859 and S14 at x 1506.5, 647.5 px for 124.32
+patent units, so 5.21 px per patent unit (18.6 px per lens mm at the 0.28 scale). Readings are outer ink edges,
+averaged over the upper and lower halves. No maker construction diagram could be viewed: the one search found the
+first-version diagram only as an image on a review page, so the patent figure governs.
+
+| Surface | Before (mm) | After (mm) | Evidence |
+|---|---|---|---|
+| S6 | 8.47 | 7.40 | Tip of L3's rear bowl at 136.5 px (top) and 138 px (bottom), 7.37 mm, level with L4 (137.5 px). At 8.47 mm the cap ran 0.64 mm behind the stop plane; at 7.40 mm it ends 1.06 mm ahead of it, and the rim slope falls to 51.7°. |
+| S9 | 7.224 | 7.084 | L5 is drawn square-cut at one height, 132.5 / 126.5 px (6.96 mm); S9 now matches S10, which stays at the S10–S11 air-gap limit. |
+| S11 | 7.084 | 7.75 | L6's two faces meet at one height, 146.5 / 145 px (7.83 mm); S11 now matches S12. L6 stays taller than L5 and shorter than L7, as drawn. |
+
+Light, against the package baseline (rims scaled by 0.28), wide open at infinity, 0 to 37.5°: the S6 and S9 cuts
+cost 0.0 points at every field (restoring either wins back nothing), and the file is never below the baseline (worst
+loss 0.0 points; gain up to 13.7 points at 37.5°). Transmission before and after this pass: 99.3 → 99.6 % at 2.9°,
+78.3 → 79.1 % at 17.3°, 57.9 → 59.5 % at 28.8°, 41.1 → 42.4 % at 37.5°; the gain comes from the S11 raise. Squaring
+L5 the other way, S10 at 7.224 mm, is refused by the surface validator (combined sag 1.25 mm against 1.230 mm allowed
+of the 1.366 mm gap), so no policy field is needed. The S6 face was checked at 6.29 to 7.40 mm: no turnover.
+
+After the edits the surface audit reports no errors, the aperture audit puts the lens within 3 % of f/2.8, the image
+circle is not undersized, and the real-ray trace shows no axial clip or chief-ray block at 37.5° (21.19 mm) or at the
+21.65 mm corner (38.06°). At S6 the axial marginal ray is 4.63 mm and the full 38.06° bundle 6.49 mm, under the 7.40 mm
+rim. Engine values are unchanged: EFL 27.993 mm, half-field 37.5°, f/2.800, stop radius 5.596 mm, paraxial BFD
+36.193 mm. Field coverage stays at 98 %, set by the declared 37.5° field. The drawn stop housing follows S6 to 7.40 mm.
+
+Glass: L1 stays Unmatched. SCHOTT N-BK10 (nd 1.49782, νd 66.95) matches the printed nd exactly and νd within 0.15,
+but the site's catalog has no N-BK10 row, so the label now names that fit. The nearest catalog rows remain BSC3 and
+BSL3 (1.49831 / 65.1). The patent prints only d-line indices and Abbe numbers, so no partial dispersion or line index
+can be transcribed. The other five labels resolve: LACL9, S-BSM16, S-LAH63, PBH53, and PCD4 for L6 and L7.
+
+Checked and found correct: element types against the signs of R (L1–L3 menisci convex to the object, L4 biconvex, L5
+biconcave, L6 and L7 menisci concave to the object); roles; the Front (S1–S6) and Rear (S7–S14) brackets, which are
+the patent's own "front lens group" and "rear lens group" with no symbols; no doublets, aspheric markers or `apd`
+tags. The patent mentions extremely low-dispersion glass for L6 and L7 only as a rejected alternative, so no tag
+applies. Movement: none is modeled. The patent prints the infinity state only, and the focus overlay reports no
+modeled focus or zoom group movement.
+
+Open: L1 and L2 are drawn with a flat top and a chamfered rear corner (S2 at about 11.5 mm, S4 at about 10.2 mm),
+and L3 with a flat land before the chamfer to the S6 tip. The model keeps square tops on L1 and L2 and a single
+bevel on L3, which leaves fewer rims changed. Fig. 5 is a schematic, so readings carry about 2 px (0.1 mm) of noise.
+- 2026-11-04 coordinator change: L1 relabelled N-BK10 (SCHOTT). The row (Sellmeier from the SCHOTT Zemax catalog 2017-01-20b; nd 1.49782, νd 66.95, PgF 0.5303, code 498670) was added to the repo glass catalog; Δnd 0, Δνd +0.15.

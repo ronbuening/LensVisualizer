@@ -11,9 +11,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * D12 + 1.31 and the stop gap = 1.31 + D14, which keeps every printed spacing.
  * The terminal gap (37.537 mm) is the computed paraxial back focus at infinity; the patent prints no back focus.
  * The image plane stays there for the printed −1.0× spacings, giving 199.86 mm object to image at −0.9997×.
- * All semi-diameters are inferred: S1/S2 sit about 10 % above the 10.70 mm entrance-pupil radius and the rest
- * follow Fig. 2's relative outlines. On 2026-11-04 the rims of S6–S12 and S15–S19 were raised so that the
- * iris, not a rim, limits the f/2.92 axial beam; S9/S10 sit at the 0.9 gap-sag limit.
+ * All semi-diameters are inferred from Fig. 2 (A), read at its own scale (5.30 px/mm at 400 dpi from the S1–S22
+ * vertex span and the S1–image track): L1 16.5, L2/L3 13.5 (Fig. 2 draws 14.0; L2's edge thickness reaches zero
+ * at 13.7), L4 11.4 and G3/G4 10.5 mm, all square-cut. G2 keeps the rims that clear the f/2.92 axial beam
+ * (Fig. 2 draws it about 7.9 mm high); S9/S10 sit at the 0.9 gap-sag limit, where Fig. 2 draws the two faces meeting.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -85,7 +86,7 @@ const LENS_DATA = {
       "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 35.84399704026983,
       "role": "Low-dispersion crown front element of the first group's cemented doublet; the strongest positive element of the fixed group.",
-      "cemented": "CD1"
+      "cemented": "D1"
     },
     {
       "id": 3,
@@ -98,7 +99,7 @@ const LENS_DATA = {
       "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -28.954400173894683,
       "role": "High-index biconcave rear element of the first group's cemented doublet; corrects the fixed group's axial colour.",
-      "cemented": "CD1"
+      "cemented": "D1"
     },
     {
       "id": 4,
@@ -135,7 +136,7 @@ const LENS_DATA = {
       "glass": "S-NSL36 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -21.388695574721588,
       "role": "Biconcave crown-flint front element of the second group's cemented doublet; with Element 5 it supplies the group's negative power.",
-      "cemented": "CD2"
+      "cemented": "D2"
     },
     {
       "id": 7,
@@ -148,7 +149,7 @@ const LENS_DATA = {
       "glass": "SFLDN3 (SUMITA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 20.207857430047824,
       "role": "Dense-flint, nearly plano-convex rear element of the second group's cemented doublet; its high dispersion corrects the colour of the negative group.",
-      "cemented": "CD2"
+      "cemented": "D2"
     },
     {
       "id": 8,
@@ -173,7 +174,7 @@ const LENS_DATA = {
       "glass": "S-LAH65 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 17.49311880982752,
       "role": "High-index biconvex front element of the third group's cemented doublet; the strongest positive element in the lens.",
-      "cemented": "CD3"
+      "cemented": "D3"
     },
     {
       "id": 10,
@@ -186,7 +187,7 @@ const LENS_DATA = {
       "glass": "SFLDN3 (SUMITA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -21.740322402968186,
       "role": "Dense-flint, nearly plano-concave rear element of the third group's cemented doublet; corrects the colour of the positive group.",
-      "cemented": "CD3"
+      "cemented": "D3"
     },
     {
       "id": 11,
@@ -199,7 +200,7 @@ const LENS_DATA = {
       "glass": "SFLDN3 (SUMITA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 21.64017393762428,
       "role": "Dense-flint positive meniscus, concave to the object, at the front of the rear group's cemented doublet.",
-      "cemented": "CD4"
+      "cemented": "D4"
     },
     {
       "id": 12,
@@ -212,7 +213,7 @@ const LENS_DATA = {
       "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -14.954825296418655,
       "role": "High-index biconcave rear element; gives the rear group its negative power (about −44 mm) ahead of the image.",
-      "cemented": "CD4"
+      "cemented": "D4"
     }
   ],
   "surfaces": [
@@ -220,46 +221,46 @@ const LENS_DATA = {
       "label": "1",
       "R": 62.45449,
       "d": 4.9,
-      "sd": 11.8,
+      "sd": 16.5,
       "medium": 1
     },
     {
       "label": "2",
       "R": -85.7887,
       "d": 0.16,
-      "sd": 11.8
+      "sd": 16.5
     },
     {
       "label": "3",
       "R": 28.44829,
       "d": 5.8,
-      "sd": 9.8,
+      "sd": 13.5,
       "medium": 2
     },
     {
       "label": "4",
       "R": -42.2681,
       "d": 1.12,
-      "sd": 9.8,
+      "sd": 13.5,
       "medium": 3
     },
     {
       "label": "5",
       "R": 57.00774,
       "d": 0.14,
-      "sd": 9.8
+      "sd": 13.5
     },
     {
       "label": "6",
       "R": 29.50571,
       "d": 3.33,
-      "sd": 8.6,
+      "sd": 11.4,
       "medium": 4
     },
     {
       "label": "7",
       "R": -410.445,
-      "sd": 8.6
+      "sd": 11.4
     },
     {
       "label": "8",
@@ -301,52 +302,52 @@ const LENS_DATA = {
       "label": "15",
       "R": 171.6845,
       "d": 3.61,
-      "sd": 9.7,
+      "sd": 10.5,
       "medium": 8
     },
     {
       "label": "16",
       "R": -31.8663,
       "d": 0.88,
-      "sd": 9.7
+      "sd": 10.5
     },
     {
       "label": "17",
       "R": 50.42967,
       "d": 5.4,
-      "sd": 9.0,
+      "sd": 10.5,
       "medium": 9
     },
     {
       "label": "18",
       "R": -18.5732,
       "d": 0.97,
-      "sd": 9.0,
+      "sd": 10.5,
       "medium": 10
     },
     {
       "label": "19",
       "R": 2101.954,
-      "sd": 9.0
+      "sd": 10.5
     },
     {
       "label": "20",
       "R": -55.4377,
       "d": 3.88,
-      "sd": 7.6,
+      "sd": 10.5,
       "medium": 11
     },
     {
       "label": "21",
       "R": -14.2126,
       "d": 1.0,
-      "sd": 7.6,
+      "sd": 10.5,
       "medium": 12
     },
     {
       "label": "22",
       "R": 105.1189,
-      "sd": 7.6
+      "sd": 10.5
     }
   ],
   "focus": {
@@ -462,22 +463,22 @@ const LENS_DATA = {
   ],
   "doublets": [
     {
-      "text": "CD1",
+      "text": "D1",
       "fromSurface": "3",
       "toSurface": "5"
     },
     {
-      "text": "CD2",
+      "text": "D2",
       "fromSurface": "10",
       "toSurface": "12"
     },
     {
-      "text": "CD3",
+      "text": "D3",
       "fromSurface": "17",
       "toSurface": "19"
     },
     {
-      "text": "CD4",
+      "text": "D4",
       "fromSurface": "20",
       "toSurface": "22"
     }

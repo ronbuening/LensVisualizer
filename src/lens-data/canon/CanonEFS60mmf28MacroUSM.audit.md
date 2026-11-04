@@ -26,3 +26,32 @@ Analysis: element prose corrected from the data and Table 2 (L5 is an air-spaced
 Validators after the pass: audit:surface OK; image-circle 0 undersized; field coverage 96 % (declared 12.3°, 13.61 mm of 14.18 mm, corner 12.8° clear); audit:aperture traces f/2.920 with the iris as limiter; clearap shows no BLOCKS-CHIEF. Clearap flags CLIPS-AXIAL on S3, S6, S8–S12 and S15–S17 by at most 0.24 mm, unchanged by this pass: it launches the axial ray at the full 10.70 mm pupil height (stop height 9.08 mm), while the engine's f/2.92 stop is 8.82 mm.
 
 Open: condition (3) is printed as 3.4 < |f4|/f tan ω < 3.9; read as |f4|/(f·tan ω) it gives 3.25 for Example 2, outside the range, so the reading is uncertain and the analysis does not cite it.
+
+## 2026-11-04 — Final diagram, rim and label review
+
+Compared: the local page at infinity, at the −1.0× state and in the focus-motion view, against JP 2006-153942 A Fig. 2 (A) and (B) (p. 10) and Canon's construction diagram (Camera Museum, ef386, viewed only). Fig. 2 (A) was profiled at 400 dpi (the native raster) and 1200 dpi. Scale: S1 vertex at x = 751 px and S22 vertex at 1125 px give 374 px for 70.61 mm, and S1 to the image line (1324.5 px) gives 573.5 px for 108.147 mm, both 5.30 px/mm (15.9 px/mm at 1200 dpi). The interior vertices land within 3 px of the prescription (S12 887 against 884, S15 1025 against 1024). The stop lines start 43 px from the axis (8.1 mm against the engine's 8.82 mm stop).
+
+Drawn rim heights, outer ink less half the line width (1200 dpi readings over 400 dpi): L1 16.5 mm (262.5 px); L2/L3 14.0 mm (222 px), with L2 drawn pointed against L3's flat land; L4 11.35 mm (180.5 px); group 2 7.9 mm (125.5 px), a square block in which S9 and S10 meet at the rim; L8, the L9/L10 doublet and the L11/L12 doublet all 10.5 mm (167.5 px), as equal-height square blocks. Canon's diagram shows the same profile: L1 tallest, a descending front group, group 2 about at the iris height, and groups 3 and 4 level with L4.
+
+Differences on the page before this review: the whole front group was drawn about 29 % shorter than Fig. 2 (L1 11.8, L2/L3 9.8, L4 8.6 mm), so L1 stood only 1.5 times as high as group 2 (Fig. 2: 2.1 times); L8 (9.7) stood above the L9/L10 doublet (9.0); and group 4 (7.6) was much shorter than group 3, where Fig. 2 draws them level.
+
+| Faces | Before (mm) | After (mm) | Fig. 2 (mm) | Evidence |
+| ----- | ----------: | ---------: | ----------: | -------- |
+| S1, S2 (L1) | 11.8 | 16.5 | 16.5 | L1 edge thickness 1.03 mm; Fig. 2 draws a short flat edge |
+| S3–S5 (L2/L3) | 9.8 | 13.5 | 14.0 | L2's edge reaches zero at 13.7 (validator refuses 13.9 with −0.178 mm); 13.5 keeps 0.18 mm |
+| S6, S7 (L4) | 8.6 | 11.4 | 11.35 | edge 0.88 mm |
+| S15, S16 (L8) | 9.7 | 10.5 | 10.5 | level with the doublets, as drawn |
+| S17–S19 (L9/L10) | 9.0 | 10.5 | 10.5 | square block |
+| S20–S22 (L11/L12) | 7.6 | 10.5 | 10.5 | L11 edge 0.25 mm; Fig. 2's S20 rim sag (1.1 mm) and S22 rim sag (0.4 mm) match 10.5 mm |
+
+Group 2 is unchanged (S8 7.8, S9 7.3, S10 7.4, S11/S12 8.1 mm, within 8 % of the drawn 7.9 mm). It cannot be drawn as one square block: S8 and S11/S12 sit at the heights the f/2.92 axial beam needs, and S9/S10 at 7.8 mm would cross (combined sag 3.40 mm in the 3.34 mm gap). S9/S10 at 7.7 mm, where Fig. 2 draws them meeting, needs `gapSagFrac` 0.99 (the validator's 0.9 limit allows 3.006 mm against 3.30 mm of sag); the vignetting curve is identical with or without it, so it was left as is.
+
+Light: every changed face rose, so no face sits below the package baseline and no cut or land exists. Engine vignetting, wide open at infinity, at 0 / 2.0 / 4.1 / 6.2 / 8.2 / 10.3 / 12.3°: before 100 / 86.7 / 72.6 / 57.9 / 42.2 / 26.7 / 12.1 %, after 100 / 92.9 / 84.9 / 74.7 / 63.9 / 52.9 / 41.1 % (package baseline 49.1 / 47.9 / 40.6 / 32.7 / 24.8 / 16.7 / 8.9 %). Restoring one element at a time to its value in the package baseline: L1, L2/L3 and L11/L12 each change the light by 0 points, so their raises are fidelity only; the gain comes from L4 (6.9 points at 2°), L8 (19.1 at 12.3°) and L9/L10 (19.6 at 12.3°). The rims follow the figure; the light gain is a consequence, and the 41 % corner keeps real off-axis vignetting, since the unvignetted 12.3° bundle needs 21 mm at L1 and 12–13 mm in groups 3 and 4.
+
+After the change the engine is unchanged at EFL 62.482 mm, f/2.92 (iris-limited, `audit:aperture` within 3 %), half-field 12.3° and track 108.147 mm; the internal tracing field rose from 12.9° to 17.5° and does not alter the drawn field. `audit:surface` OK; image circle 0 undersized; field coverage 96 % (declared 12.3°, corner 12.8° clear), as before. Clearap now flags CLIPS-AXIAL only on S8–S12 by at most 0.24 mm, the known difference between its 9.08 mm launch stop and the engine's 8.82 mm (S3, S6 and S15–S17 no longer flag).
+
+Labels: the doublet brackets and element `cemented` values became D1–D4 (corpus convention) from CD1–CD4; the brackets cover S3–S5, S10–S12, S17–S19 and S20–S22, the four cemented pairs of Table 2 and Canon's diagram. Groups G1 (S1–S7, "G1 fixed"), G2 (S8–S12), G3 (S15–S19) and G4 (S20–S22) follow the patent's notation (¶0033), and the stop sits between G2 and G3 as Fig. 2 draws SP. Element types agree with the signs of R (L5 and L11 menisci with negative and positive power), roles are true, there are no aspheric surfaces and no asphere markers, and no `apd` tag is warranted (no patent designation, no maker UD/fluorite, highest νd 70.23). All twelve glass labels resolve in the catalog and show in the inspector (checked for L1, L5, L7, L9 and L12).
+
+Focus: Table 2 (p. 7) prints D7 0.87 → 11.31, D12 12.16 → 1.72, D14 11.65 → 1.22 and D19 3.28 → 13.72 mm, and the file's keyframe 0 is infinity and keyframe 1 the −1.0× state. G1 and the iris stay fixed; G2 moves 10.44 mm toward the image, G3 10.43 mm toward the object, and G4 0.01 mm toward the image. The motion view shows the G2 centre moving from about −88 to −77 mm from the image plane, G3 from about −51 to −62 mm, and G1 and G4 fixed, with 10.44 mm maximum travel; the close-focus page matches Fig. 2 (B), with G2 and G3 closing on the iris from both sides. The slider runs from ∞ to 20 cm.
+
+Remaining limitations: L2 and L11 have thin edges (0.18 mm and 0.25 mm) because Fig. 2 draws their cemented faces shallower than the printed radii; group 2 stays stepped, as described above.

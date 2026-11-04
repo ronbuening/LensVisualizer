@@ -26,6 +26,8 @@ The lens is a three-group inner-focus design: a positive first group U1 (patent 
 
 U1 opens with two positive menisci convex to the object, followed by a cemented UD meniscus doublet and a free negative meniscus whose deep rear face looks at the stop. U2 begins with a negative lens directly behind the stop, then the double-aspherical L7 and a cemented doublet. With the negative meniscus ahead of the stop and the negative lens behind it, the U1–U2 core reads as a modified double-Gauss; U3 adds two cemented doublets and a rear negative meniscus that flatten the field and set lateral color. The total length is 117.10 mm, 1.42 times the focal length, with a 15.09 mm back focus.
 
+Fig. 9 labels only the negative lenses named in the conditions: L1n1 and L1n2 (here L4 and L5), L2n1 and L2n2 (L6 and L8), and L3nF and L3nR (L13 and L14). This page numbers all fourteen elements L1–L14 from the front.
+
 ## Element-by-Element Analysis
 
 ### L1 — Positive Meniscus
@@ -156,6 +158,8 @@ Both surfaces depart from their spheres in the direction that weakens the elemen
 ## Model Scope and Limitations
 
 - The patent prints no clear apertures. The semi-diameters follow Fig. 9 and Canon's construction diagram; the 31.1 mm front rim is about 10 % above the 28.25 mm entrance-pupil radius. The rear face of L4 and the front face of L5 nearly touch at the rim, so S7 and S8 are set at 18.75 mm, just above the 18.70 and 18.64 mm heights of the f/1.46 axial beam.
+- Both drawings show L4 and L5 square-cut with flat lands, and the model draws them the same way. L4's rear face ends at L5's rim, and a land carries L4 out to its 25 mm edge. L5 is 18.75 mm high front and rear, and its concave rear face ends at 17.0 mm with a land out to the edge, well ahead of the stop. L6's front face has a short land from 16.1 mm. None of these lands clips any traced beam.
+- Fig. 9 and Canon's diagram draw L13 and L14 meeting at the rim, at the height of the L12–L13 doublet. In the prescription their facing surfaces cross at 19.1 mm, so the model sets those faces to 19.0 mm (0.08 mm apart at the rim, with the validator's gap-sag fraction at 0.99) against 20.5 mm for the other faces of the two elements; both elements keep a slight bevel.
 - The stop sits at the printed surface 10; its radius follows the F/1.46 rule.
 - The last gap keeps the printed back focus of 15.09 mm, an air-equivalent length, without a cover glass. The paraxial back focus computes 15.080 mm and the d-line EFL 82.494 mm; neither difference is applied.
 - The printed image height of 21.63 mm equals f·tan 14.69°. A real chief ray at 14.69° lands at 21.86 mm because of about +1.1 % pincushion distortion, which matches the roughly +1 % shown in Fig. 10; in the model the 21.65 mm full-frame corner is reached at 14.6°.

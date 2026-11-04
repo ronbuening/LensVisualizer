@@ -19,10 +19,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * F3.7; the difference is unresolved.
  * Stop: the patent tabulates the stop position but not its diameter; the stop radius follows F/N.
  * Semi-diameters are inferred, none is printed. S1/S2 at 30 mm sit about 15 % above the 26.2 mm first-order height of
- * the edge-of-field beam; the others narrow toward the rear as in Fig. 10 and the maker's section. S4 is held at
- * 17 mm, since 22.8 mm (matching S3) would exceed its 21.25 mm radius, and S6 at 13.95 mm, since 17.4 mm would exceed
- * the rim-slope limit; at 14 mm the S6 and S7 sags would fill 0.904 of their 7.9 mm gap, above the 0.9 default.
- * These rims are not measured factory apertures.
+ * the edge-of-field beam; the others narrow toward the rear as in Fig. 10 and the maker's section, mostly 4–7 % above
+ * Fig. 10's heights (L1 28.2 mm at 13.99 px/mm) and close to Ricoh's (L1 29.5 mm). The S4 cap ends at 17 mm, since
+ * 22.8 mm would exceed its 21.25 mm radius, and the S6 cap at 13.95 mm, since 17.4 mm would exceed the rim-slope
+ * limit; at 14 mm the S6 and S7 sags would fill 0.904 of their 7.9 mm gap, above the 0.9 default. Both drawings end
+ * these caps with a flat land, so S4 and S6 carry rimExtensionSd out to their front faces (22.8 and 17.0 mm). L4 is
+ * drawn square: S8 matches S7 at 13.95 mm. S13 has a 2.5 mm rim cut (cut radius 6.57 mm): Fig. 10 ends that cap at
+ * 0.78 of the rim, and 6.57 mm is the closest radius that clears the wide-open beams. These rims are not measured
+ * factory apertures.
  */
 const LENS_DATA = {
   schema: 2,
@@ -60,7 +64,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "The near-focus F-number is printed as F3.0 in Table 4 but F3.7 on the Fig. 12A/B aberration plots; the discrepancy is unresolved, so close-focus performance is not certified.",
+        note: "The near-focus F-number is printed as F3.0 in Table 4 but F3.7 on the Fig. 12A/B aberration plots. The gap is systematic across the patent (Figs. 3A and 6A print F4.3 against 3.6, Fig. 9A F3.7 against 3.0), so it is a labelling convention rather than a misprint; the model keeps the table geometry and does not certify close-focus performance.",
       },
     ],
   },
@@ -124,7 +128,7 @@ const LENS_DATA = {
       focalLengthMm: 27.89967153228327,
       glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Biconvex crown front member of the cemented doublet that opens the moving negative group G2.",
-      cemented: "CD5",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -137,7 +141,7 @@ const LENS_DATA = {
       focalLengthMm: -129.28254445497404,
       glass: "S-LAL9 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative meniscus rear member of the G2 cemented doublet, concave to the object.",
-      cemented: "CD5",
+      cemented: "D1",
     },
     {
       id: 7,
@@ -241,6 +245,7 @@ const LENS_DATA = {
       R: 21.25,
       d: 5.67,
       sd: 17.0,
+      rimExtensionSd: 22.8,
     },
     {
       label: "5",
@@ -254,6 +259,7 @@ const LENS_DATA = {
       R: 18.0,
       d: 7.9,
       sd: 13.95,
+      rimExtensionSd: 17.0,
     },
     {
       label: "7",
@@ -265,7 +271,7 @@ const LENS_DATA = {
     {
       label: "8",
       R: -46.738,
-      sd: 14.7,
+      sd: 13.95,
     },
     {
       label: "9",
@@ -299,6 +305,7 @@ const LENS_DATA = {
       R: 9.896,
       d: 2.57,
       sd: 7.8,
+      rimCutDepthMm: 2.5,
     },
     {
       label: "14",
@@ -409,6 +416,7 @@ const LENS_DATA = {
       toSurface: "23",
     },
   ],
+  doublets: [{ text: "D1", fromSurface: "9", toSurface: "11" }],
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

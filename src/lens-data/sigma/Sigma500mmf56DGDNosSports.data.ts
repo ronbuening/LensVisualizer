@@ -17,9 +17,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The aperture stop is surface 19. Its diameter is not printed; the radius follows the F5.80 stop rule.
  * Semi-diameters are estimated from Fig. 1 and Sigma's section drawing. The front pair is 45.99 mm, about
  * 1.10 × F/(2N); the other elements follow relative envelopes read from the figures (element order, L1 = 1):
- * 1, .95, .87, .81, .67, .66, .44, .44, .35, .35, .27, .30, .30, .31, .32, .30, .32, .32, .32, .32.
+ * 1, .95, .87, .81, .67, .66, .44, .44, .35, .35, .24, .24, .24, .31, .30, .30, .32, .32, .32, .32.
  * L10 (S17/S18) is 16.096 mm, equal to S16, because both figures draw L10 as tall as L9; smaller rims cut
- * the F5.8 axial bundle. Cemented faces share one radius. No rim was fitted to trace results.
+ * the F5.8 axial bundle. The IU (S20–S24, 11.0 mm) and the L15–L16 doublet (13.797 mm) are square-cut at
+ * the heights both figures draw. Fig. 1 draws flat lands on the concave rear faces of L3, L5 and L10, so
+ * S6, S10 and S18 carry inferred rim cuts; their cut radii (37.17, 29.59, 14.24 mm) sit outside the figure's
+ * cap ends (q 0.90, 0.90, 0.83) because inferred cuts must clear the wide-open beams. Cemented faces share
+ * one radius. No rim was widened to improve trace results.
  */
 const LENS_DATA = {
   schema: 2,
@@ -157,7 +161,7 @@ const LENS_DATA = {
       focalLengthMm: -56.77774476400016,
       glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative front element of the first group's rear cemented doublet",
-      cemented: "CD7",
+      cemented: "D1",
     },
     {
       id: 8,
@@ -170,7 +174,7 @@ const LENS_DATA = {
       focalLengthMm: 60.07446257072426,
       glass: "E-FL6 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive rear element of the first group's rear cemented doublet",
-      cemented: "CD7",
+      cemented: "D1",
     },
     {
       id: 9,
@@ -183,7 +187,7 @@ const LENS_DATA = {
       focalLengthMm: 138.7192711742903,
       glass: "E-FD5 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive front element of the cemented focusing doublet (G2)",
-      cemented: "CD9",
+      cemented: "D2",
     },
     {
       id: 10,
@@ -196,7 +200,7 @@ const LENS_DATA = {
       focalLengthMm: -65.06458584013336,
       glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative rear element of the cemented focusing doublet (G2)",
-      cemented: "CD9",
+      cemented: "D2",
     },
     {
       id: 11,
@@ -209,7 +213,7 @@ const LENS_DATA = {
       focalLengthMm: 42.85215269030586,
       glass: "E-FD5 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive front element of the stabilizing unit's cemented doublet",
-      cemented: "CD11",
+      cemented: "D3",
     },
     {
       id: 12,
@@ -225,7 +229,7 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote:
         "HOYA FCD515 coordinate match (νd 68.62, patent PgF 0.5440); Sigma's construction diagram marks this position as one of its two SLD elements.",
-      cemented: "CD11",
+      cemented: "D3",
     },
     {
       id: 13,
@@ -262,7 +266,10 @@ const LENS_DATA = {
       focalLengthMm: -21.10098176797739,
       glass: "FDS18 (HOYA catalog equivalent; production supplier unspecified)",
       role: "High-dispersion negative front element of the rear unit's cemented doublet",
-      cemented: "CD15",
+      apd: "patent",
+      apdNote:
+        "Claim 10 requires a negative lens behind the stop with 10 < νd < 30 and 0.020 < PgF + 0.0018νd − 0.6483 < 0.080, a partial-dispersion excess over the line 0.6483 − 0.0018νd; this element gives νd 17.98 and 0.039 (printed PgF 0.6546), and is the only one that does. HOYA FDS18 coordinate match.",
+      cemented: "D4",
     },
     {
       id: 16,
@@ -275,7 +282,7 @@ const LENS_DATA = {
       focalLengthMm: 34.64591822717076,
       glass: "E-FD15 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive rear element of the rear unit's cemented doublet",
-      cemented: "CD15",
+      cemented: "D4",
     },
     {
       id: 17,
@@ -288,7 +295,7 @@ const LENS_DATA = {
       focalLengthMm: 20.806045682208108,
       glass: "E-FD4 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive front element of the rear cemented triplet",
-      cemented: "CD17",
+      cemented: "T1",
     },
     {
       id: 18,
@@ -301,7 +308,7 @@ const LENS_DATA = {
       focalLengthMm: -14.852664226271218,
       glass: "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative middle element of the rear cemented triplet",
-      cemented: "CD17",
+      cemented: "T1",
     },
     {
       id: 19,
@@ -314,7 +321,7 @@ const LENS_DATA = {
       focalLengthMm: 31.72349192618244,
       glass: "NBFD29 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive rear element of the rear cemented triplet",
-      cemented: "CD17",
+      cemented: "T1",
     },
     {
       id: 20,
@@ -368,6 +375,7 @@ const LENS_DATA = {
       R: 57.9504,
       d: 3.3543,
       sd: 40.011,
+      rimCutDepthMm: 13.49,
     },
     {
       label: "7",
@@ -394,6 +402,7 @@ const LENS_DATA = {
       R: 93.3984,
       d: 0.3617,
       sd: 30.813,
+      rimCutDepthMm: 4.81,
     },
     {
       label: "11",
@@ -445,6 +454,7 @@ const LENS_DATA = {
       label: "18",
       R: 49.7976,
       sd: 16.096,
+      rimCutDepthMm: 2.08,
     },
     {
       label: "STO",
@@ -455,34 +465,34 @@ const LENS_DATA = {
       label: "20",
       R: 115.6881,
       d: 3.1058,
-      sd: 12.417,
+      sd: 11.0,
       medium: 11,
     },
     {
       label: "21",
       R: -37.9788,
       d: 1.0,
-      sd: 13.797,
+      sd: 11.0,
       medium: 12,
     },
     {
       label: "22",
       R: 70.0614,
       d: 2.1219,
-      sd: 13.797,
+      sd: 11.0,
     },
     {
       label: "23",
       R: -243.6318,
       d: 0.9,
-      sd: 13.797,
+      sd: 11.0,
       medium: 13,
     },
     {
       label: "24",
       R: 47.2089,
       d: 5.8618,
-      sd: 13.797,
+      sd: 11.0,
     },
     {
       label: "25",
@@ -501,7 +511,7 @@ const LENS_DATA = {
       label: "27",
       R: -357.0678,
       d: 1.0,
-      sd: 14.717,
+      sd: 13.797,
       medium: 15,
     },
     {
@@ -596,6 +606,33 @@ const LENS_DATA = {
       text: "G3 incl. IU (OS)",
       fromSurface: "20",
       toSurface: "35",
+    },
+  ],
+  doublets: [
+    {
+      text: "D1",
+      fromSurface: "13",
+      toSurface: "15",
+    },
+    {
+      text: "D2",
+      fromSurface: "16",
+      toSurface: "18",
+    },
+    {
+      text: "D3",
+      fromSurface: "20",
+      toSurface: "22",
+    },
+    {
+      text: "D4",
+      fromSurface: "27",
+      toSurface: "29",
+    },
+    {
+      text: "T1",
+      fromSurface: "30",
+      toSurface: "33",
     },
   ],
 } satisfies LensDataV2Input;

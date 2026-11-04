@@ -43,7 +43,7 @@ The patent explains that a shorter d6 would force stronger front negatives to ke
 
 ### L1 — Negative Meniscus
 
-nd = 1.49782, νd = 66.8. Glass: Unmatched (crown; no catalog row within tolerance). f = −329.4 mm.
+nd = 1.49782, νd = 66.8. Glass: N-BK10 (SCHOTT catalog equivalent), a borosilicate crown (catalog 1.49782 / 66.95). f = −329.4 mm.
 
 The weakest element, convex to the object, with its stronger curve (R2 = 24.62 mm) toward the image as the claims require of the first and third lenses. It is the largest element, at 12.04 mm semi-diameter.
 
@@ -89,14 +89,14 @@ The patent defines n as the d-line index. The table gives catalog equivalents by
 
 | Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Type |
 |---|---|---|---|---|
-| L1 | 1.49782 / 66.8 | Unmatched | — | Crown |
+| L1 | 1.49782 / 66.8 | N-BK10 (SCHOTT) | 1.49782 / 66.95 | Borosilicate crown |
 | L2 | 1.67790 / 50.7 | LACL9 (HOYA) | 1.67790 / 50.55 | Lanthanum crown |
 | L3 | 1.62041 / 60.3 | S-BSM16 (OHARA) | 1.62041 / 60.29 | Dense barium crown |
 | L4 | 1.80440 / 39.6 | S-LAH63 (OHARA) | 1.80440 / 39.59 | High-index lanthanum glass |
 | L5 | 1.84666 / 23.9 | PBH53 (OHARA) | 1.84666 / 23.89 | Dense flint |
 | L6, L7 | 1.61800 / 63.4 | PCD4 (HOYA) | 1.61800 / 63.40 | Dense phosphate crown |
 
-No catalog row lies within 0.0001 in nd and 0.25 in νd of L1, so it traces with its printed pair. The patent prints no partial dispersions. The palette is conventional: crowns in the front group, one high-index positive and one dense flint behind the stop, and two phosphate crowns at the rear.
+L1 matches SCHOTT N-BK10 in nd exactly, with νd 0.15 higher; that row was added to the site's glass catalog for this lens, so all seven elements trace on catalog dispersion curves. The patent prints no partial dispersions. The palette is conventional: crowns in the front group, one high-index positive and one dense flint behind the stop, and two phosphate crowns at the rear.
 
 ## Focus Mechanism and Image Plane
 
@@ -114,13 +114,13 @@ The patent prints no semi-diameters, so all are inferred. Fig. 5 read at its own
 |---|---|---|---|
 | L1 | 12.04 | 12.3 | Proportions of Fig. 5 |
 | L2 | 11.20 | 11.0 | Proportions of Fig. 5 |
-| L3 | 9.87 / 8.47 | 9.6 / 7.6 | S5 from the proportions of Fig. 5; S6 capped near the rim-slope limit of its 9.43 mm radius |
+| L3 | 9.87 / 7.40 | 9.6 / 7.37 | S5 from the proportions of Fig. 5; S6 at the tip of the rear bowl, level with L4, 1.06 mm ahead of the stop plane |
 | L4 | 7.46 | 7.27 | Proportions of Fig. 5 |
-| L5 | 7.22 / 7.08 | 6.93 | S9 from the proportions of Fig. 5; S10 capped near the air-gap limit with S11 |
-| L6 | 7.08 / 7.75 | 7.78 | S11 at the S10 height; S12 from Fig. 5, clearing the corner chief ray |
+| L5 | 7.08 | 6.93 | Drawn square-cut; both faces at the air-gap limit between S10 and S11 |
+| L6 | 7.75 | 7.78 | Both faces meet at one height in Fig. 5; clears the corner chief ray |
 | L7 | 9.15 | 9.17 | Fig. 5, one height for both faces, clearing the corner chief ray |
 
-The figure is a patent schematic, so these readings are approximate. At the model's rims the chief ray reaches the 21.65 mm format corner at 38.1°, and about 41 % of the f/2.8 beam passes at the patent's 37.5° edge.
+The figure is a patent schematic, so these readings are approximate. At the model's rims the chief ray reaches the 21.65 mm format corner at 38.1°, and about 42 % of the f/2.8 beam passes at the patent's 37.5° edge.
 
 ## Model Scope and Limitations
 

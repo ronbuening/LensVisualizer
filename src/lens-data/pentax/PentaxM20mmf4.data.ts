@@ -16,10 +16,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Image plane: the final gap keeps the printed back focus. The paraxial focus is 36.1535 mm, 0.0005 mm in front of it.
  * Stop: the patent puts diaphragm 80 between L4 and L5 and prints no position. The model splits d8 (1.9514 mm) at its
  * midpoint, and the stop radius follows F/4 from the paraxial entrance pupil.
- * Semi-diameters are inferred from Fig. 3; none is printed. L1 is 16 mm, inside the 14.8 to 17.2 mm the figure
- * supports at its axial scale. Fig. 3 draws L2 with a stepped rim, so S3 (10.7 mm) stands well above S4. S4 is
- * 7.06 mm, the least that passes the chief ray to the 21.65 mm format corner (47.7°); Fig. 3 draws that face to about
- * 7.6 mm, and the rim-slope limit for its 7.884 mm radius is 7.10 mm. The other rims follow the figure's outlines.
+ * Semi-diameters are inferred from Fig. 3 (38.25 px/mm at 600 dpi over the S1 to S16 vertex span); none is printed.
+ * L1 is 16 mm, inside the 14.8 to 17.2 mm the figure supports. S4 is 7.06 mm, the least that passes the chief ray to
+ * the 21.65 mm format corner (47.7°); Fig. 3 draws that face to about 7.4 to 7.7 mm, past the 7.10 mm rim-slope limit
+ * for its 7.884 mm radius, then a flat rear land square to the axis out to L2's edge: `rimExtensionSd` 10.7 mm on S4,
+ * level with S3, draws it. S6 is 5.6 mm, where Fig. 3 ends that face and bevels L3 up to its 6.7 mm front rim, clear
+ * of L4's front corner. The other rims follow the figure's outlines.
  * Field: `projection` declares the patent's 94°. The 47° chief ray lands at 20.98 mm, 97 % of the format corner.
  * Focus: the patent prints the infinity state only, so no gap varies and the model stays at infinity; the 0.25 m
  * maker's minimum focus is catalog metadata only.
@@ -193,7 +195,8 @@ const LENS_DATA = {
       "label": "4",
       "R": 7.8842,
       "d": 4.9758,
-      "sd": 7.06
+      "sd": 7.06,
+      "rimExtensionSd": 10.7
     },
     {
       "label": "5",
@@ -206,7 +209,7 @@ const LENS_DATA = {
       "label": "6",
       "R": 8.018,
       "d": 1.9514,
-      "sd": 6.7
+      "sd": 5.6
     },
     {
       "label": "7",
@@ -304,19 +307,19 @@ const LENS_DATA = {
   },
   "groups": [
     {
-      "text": "Front",
+      "text": "G1–G4 (−)",
       "fromSurface": "1",
-      "toSurface": "6"
-    },
-    {
-      "text": "L4",
-      "fromSurface": "7",
       "toSurface": "8"
     },
     {
-      "text": "Rear",
+      "text": "G5–G7 (+)",
       "fromSurface": "9",
       "toSurface": "16"
+    },
+    {
+      "text": "G6",
+      "fromSurface": "11",
+      "toSurface": "14"
     }
   ]
 } satisfies LensDataV2Input;

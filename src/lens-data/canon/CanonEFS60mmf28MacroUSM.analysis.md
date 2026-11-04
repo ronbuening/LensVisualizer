@@ -132,30 +132,30 @@ No scale factor is applied, and all surfaces are spherical. R, d, nd and νd fol
 
 The patent places the stop SP between groups 2 and 3 (¶0027) and tabulates it as two flat air planes, rows 13 and 14, 2.62 mm apart, without saying which is the iris. The model drops both planes and places the iris midway between them, so gap 12 is D12 + 1.31 mm and the gap after the iris is 1.31 mm + D14; every printed spacing is kept. The iris position is an inference, not a factory value.
 
-All clear semi-diameters are inferred. S1 and S2 (11.8 mm) sit about 10 % above the 10.70 mm entrance-pupil radius at f/2.92 (62.48/(2 × 2.92)); Fig. 2's relative outlines set the rest. The rims of S6 to S12 and S15 to S19 were raised so that the iris, not a rim, limits the f/2.92 axial beam; read at its own track scale, Fig. 2 draws group 2 about 8.0 mm high and groups 3 and 4 about 10.7 mm, so every value stays inside the drawn rims. S9 and S10 face each other across the 3.34 mm air gap at the 0.9 gap-sag limit. None of these values is a factory clear aperture.
+All clear semi-diameters are inferred from Fig. 2 (A), read at its own scale: the drawn S1 to S22 vertex span and the S1 to image track both give 5.30 px/mm at the figure's 400 dpi. Fig. 2 draws L1 tallest at about 16.5 mm, the L2/L3 doublet 14.0 mm, L4 11.35 mm, group 2 about 7.9 mm, and groups 3 and 4 as square blocks of one height, 10.5 mm; Canon's construction diagram shows the same descending front group and equal-height rear groups. The model follows those heights, except that L2's edge thickness falls to zero at 13.7 mm, so the L2/L3 doublet stops at 13.5 mm. Group 2 keeps the rims that let the iris, not a rim, limit the f/2.92 axial beam; S9 and S10 face each other across the 3.34 mm air gap at the 0.9 gap-sag limit, where Fig. 2 draws the two faces meeting at the rim. None of these values is a factory clear aperture.
 
 | Source face | Inferred clear SD, mm |
 | ----------- | --------------------: |
-| 1           |                  11.8 |
-| 2           |                  11.8 |
-| 3           |                   9.8 |
-| 4           |                   9.8 |
-| 5           |                   9.8 |
-| 6           |                   8.6 |
-| 7           |                   8.6 |
+| 1           |                  16.5 |
+| 2           |                  16.5 |
+| 3           |                  13.5 |
+| 4           |                  13.5 |
+| 5           |                  13.5 |
+| 6           |                  11.4 |
+| 7           |                  11.4 |
 | 8           |                   7.8 |
 | 9           |                   7.3 |
 | 10          |                   7.4 |
 | 11          |                   8.1 |
 | 12          |                   8.1 |
-| 15          |                   9.7 |
-| 16          |                   9.7 |
-| 17          |                   9.0 |
-| 18          |                   9.0 |
-| 19          |                   9.0 |
-| 20          |                   7.6 |
-| 21          |                   7.6 |
-| 22          |                   7.6 |
+| 15          |                  10.5 |
+| 16          |                  10.5 |
+| 17          |                  10.5 |
+| 18          |                  10.5 |
+| 19          |                  10.5 |
+| 20          |                  10.5 |
+| 21          |                  10.5 |
+| 22          |                  10.5 |
 
 ## Model Scope and Limitations
 

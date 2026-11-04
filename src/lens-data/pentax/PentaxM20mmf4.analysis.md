@@ -27,7 +27,7 @@ The US cover prints the assignee as Asahi Kogaku Kogyo Kabushiki Kaisha, the sam
 
 Eight spherical, air-spaced singlets form a retrofocus wide-angle lens: a weak positive front meniscus, two negative menisci convex to the object, a very thick biconvex fourth element, the diaphragm, then a positive meniscus, a separated negative-positive pair and a closing positive meniscus. There are no aspheric surfaces and no cover plates.
 
-L1 to L3 together are strongly negative, with a composite focal length of −11.61 mm, and L1 to L4 remain negative at −48.13 mm. Everything behind the diaphragm supplies the positive power. This split gives a back focus of 1.81 f (36.15 mm at this scale) from a lens whose glass occupies only 34.59 mm. The patent's four conditions set the strength of these partial systems and the balance of lengths ahead of and behind the diaphragm, which it ties to the back focus, aberration balance and overall size.
+L1 to L3 together are strongly negative, with a composite focal length of −11.61 mm, and L1 to L4 remain negative at −48.13 mm. Everything behind the diaphragm supplies the positive power. This split gives a back focus of 1.81 f (36.15 mm at this scale) from a lens whose glass occupies only 34.59 mm. The patent counts seven groups, one element each except the sixth (L6 and L7, numeral 60 in Fig. 3), with the diaphragm between the fourth and fifth; the diagram labels G1–G4 ahead of the diaphragm (negative together), G5–G7 behind it, and G6. The patent's four conditions set the strength of these partial systems and the balance of lengths ahead of and behind the diaphragm, which it ties to the back focus, aberration balance and overall size.
 
 ## Element-by-Element Analysis
 
@@ -41,7 +41,7 @@ Weak front meniscus, convex to the object, and the largest element at 16 mm semi
 
 nd = 1.62041, νd = 60.3. Glass: S-BSM16 (OHARA) equivalent. f = −22.79 mm.
 
-First negative meniscus, convex to the object. Its rear face S4 (R = 7.884 mm) is the most strongly curved surface in the lens. Fig. 3 draws L2 with a stepped rim, the S4 face ending well inside the outer land of S3.
+First negative meniscus, convex to the object. Its rear face S4 (R = 7.884 mm) is the most strongly curved surface in the lens. Fig. 3 ends the S4 face well inside L2's edge and closes the element with a flat rear land square to the axis; the diagram draws that land from S4's 7.06 mm clear edge out to the 10.7 mm rim of S3.
 
 ### L3 — Negative Meniscus
 
@@ -110,15 +110,16 @@ The patent prints no semi-diameters, so all are inferred from Fig. 3:
 | Surfaces | Model sd (mm) | Basis |
 |---|---|---|
 | S1, S2 | 16.0 | Fig. 3 at its axial scale supports about 14.8 to 17.2 mm |
-| S3 | 10.7 | Outer land of L2's stepped rim |
-| S4 | 7.06 | Least height that passes the chief ray to the format corner; Fig. 3 draws this face to about 7.6 mm |
-| S5, S6 | 6.7 | Fig. 3 outline |
+| S3 | 10.7 | L2's outer edge in Fig. 3 |
+| S4 | 7.06 | Least height that passes the chief ray to the format corner; Fig. 3 draws this face to about 7.4 to 7.7 mm, then a flat land out to L2's edge, drawn to 10.7 mm |
+| S5 | 6.7 | Fig. 3 outline |
+| S6 | 5.6 | Where Fig. 3 ends this face; L3 is bevelled from here up to the S5 rim, clear of L4 |
 | S7, S8 | 5.1 | Fig. 3 outline |
 | S9 to S12 | 5.1 | Fig. 3 outline |
 | S13, S14 | 6.6 | Fig. 3 outline |
 | S15, S16 | 7.1 | Fig. 3 outline |
 
-S4 cannot follow the figure all the way: for its 7.884 mm radius the rim-slope limit is 7.10 mm. Fig. 3 is a schematic drawing, so its millimetre readings are approximate.
+S4 cannot follow the figure all the way: for its 7.884 mm radius the rim-slope limit is 7.10 mm. Its land is drawn only and passes no light. Fig. 3 is a schematic drawing, so its millimetre readings are approximate.
 
 ## Conditional Expressions
 
