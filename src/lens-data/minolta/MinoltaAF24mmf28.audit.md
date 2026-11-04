@@ -88,3 +88,62 @@ above L6 as drawn, and every other element keeps its outline. The local meridion
 so the chief-ray floor relies on the engine field-coverage trace.
 
 Open: none.
+
+## 2026-11-03 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity and in the β = −0.1 state, the focus-movement overlay and the inspectors of L1, L4,
+L6, L7 and L8, against Fig. 4 (PDF page 3, native 1-bit raster), the text of columns 3–6, Table 2, Figs. 5–6 and the
+collector-site barrel section.
+
+Fig. 4 re-measured independently: the dash-dot axis fits at 0.884° from 424 points and heights were read vertically
+from it; fourteen vertex crossings place r1 and r16 634.5 px apart for 48.21 mm, 13.16 px/mm. Rims, as half the distance
+between the top and bottom rim-line centres: L1 288.5 px (21.94 mm), L2 front land 207.3 (15.76), L3 front land 130.5
+(9.92), L4 90.8 (6.90), L5 90.5 (6.88), L6 92.3 (7.02), L7 100.3–100.5 (7.62–7.64), L8 119.3 (9.07); bevel feet L2
+rear 170 (12.93) and L3 rear 107.5 (8.17). Every stored rim is within 1% of these readings, and the drawn height order
+L4 ≈ L5 < L6 < L7 < L8 is kept. The stop tick sits at 0.52 of d8. No rim changes.
+
+| Surface | Figure, mm | Baseline sd | Final sd | Verdict                            | Points of light it costs                                          |
+| ------- | ---------: | ----------: | -------: | ---------------------------------- | ----------------------------------------------------------------- |
+| 11, 12  |       7.02 |         7.3 |      7.0 | cut, keep: improved                | none against baseline; restoring L6 alone wins back ≤ 1.3 (21°)   |
+| 13, 14  |  7.62–7.64 |         7.3 |      7.6 | raise, figure-supported            | none; gains up to 5.2 points (36° and 39°)                        |
+
+The lens has no lands (`rimExtensionSd`, `rimCutDepthMm`) and no `checks.gapSagFrac`. With L7 at baseline the L6 cut
+costs 0.0 points, because L7 then limits the beam. Final worst loss against baseline rims at f/2.8, infinity: 0.0
+points at every field sample. Corner light: at 42°, infinity, 32.4% at baseline and 36.0% now. In the β = −0.1 state,
+traced from a real object point 238.42 mm before S1 to the 21.15 mm image height (object 220.3 mm off axis), 38.5% at
+baseline and 42.7% now; at the 21.63 mm frame corner, 35.6% and 39.5%. Restoring L6 there would add at most 1.4 points
+(9.1 mm image height). Engine half-field 42.0°, f-number 2.800 and stop radius 6.3205 mm are unchanged; the surface
+validator passes, no surface is below the image-circle floor, field coverage stays 98% (42° reaches 21.15 mm) and the
+real-ray clearance trace shows no axial clip at either focus state.
+
+Maker drawing: eight singlets in eight groups, in the patent's order and shapes. It draws L6 with a front face
+narrower than L5 (about 0.86×) and a stepped rear about 1.14× L5, with L7 about level with L5, the reverse of the step
+Fig. 4 draws between L6 and L7. The drawing is not to scale and Fig. 4 governs, so the rims follow Fig. 4.
+
+Labels and tags: element names L1–L8 follow the patent, which names L1–L3 in Fig. 4 and the text and numbers the rest
+by ordinal (column 5); the diagram shows the ids 1–8, which match. Groups F (surfaces 1–4) and R (5–16) are the patent's
+own. Embodiment 2 has no cemented component (d10 is an air space), so there are no doublet brackets. The stop sits
+between L4 and L5, as the text's sequence "fourth biconvex lens, a diaphragm aperture, a fifth biconvex lens" places
+it. Every element type agrees with its radii and with column 5; every element carries a focal length, which the
+inspector shows. All surfaces are spherical, and the file carries no `apd` tags: the patent names no special glass and
+the maker drawing marks none.
+
+Movement: keyframe 0 is infinity (D4 9.268 mm, 38.618 × 0.24) and keyframe 1 the printed β = −0.1 state (D4 6.655 mm,
+27.728 × 0.24); BF grows from 36.103 to 38.716 mm and D4 + BF stays 45.371 mm, so F and the image plane are fixed while
+R moves 2.614 mm toward the object, as the arrow over R in Fig. 4 and column 3 describe. The overlay shows R leaving its
+start circle toward the object with F stationary, and the slider's far end reads 32 cm (0.3227 m object to image).
+
+Aberrations: Figs. 5 and 6 print the d line only, so there is no colour comparison. At infinity the model gives
+longitudinal spherical aberration −0.62 at 0.7 of the pupil and +0.03 at full aperture (f = 100 units), sagittal field
+−1.16 at 33° and +0.48 at 42°, meridional about −1.0 from 36° to 42°, and distortion −2.78% at 36° and −2.11% at 42°,
+as Fig. 5 draws. In the β = −0.1 state with the real object the sagittal field reaches −1.43 and returns to −0.16 at
+the corner while the meridional field runs to −0.82 and then +2.6 at the corner, the shapes of Fig. 6b.
+
+Glass: L1, L4, L7 and L8 stay Unmatched. Table 2 (PDF pages 9–10) prints only Nd and νd, with no glass names, further
+line indices or partial dispersions. The nearest catalog rows miss by 0.0021 in nd (L1, HOYA LAFL4), 0.006 in nd
+(L4), 0.93 in νd (L7, 1.62041 glasses) and 1.22 in νd (L8, Sumita K-LaK11).
+
+Text: the analysis no longer says L7's front face nests against L6; the two concave faces bound an air space that is
+thickest on the axis.
+
+Open: none.

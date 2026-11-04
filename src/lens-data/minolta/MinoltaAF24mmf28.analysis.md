@@ -63,7 +63,7 @@ Dense-flint biconcave negative element, with the lowest νd and the strongest ne
 
 nd = 1.62135, νd = 61.28. Glass: Unmatched (no catalog row at these coordinates). f = +60.20 mm in air.
 
-Positive meniscus convex to the image. Its concave front face nests against the concave rear face of L6.
+Positive meniscus convex to the image. Its concave front face faces the concave rear face of L6, so the air space between them is thickest on the axis (1.76 mm) and narrows toward the rims.
 
 ### L8 — Biconvex Positive
 
