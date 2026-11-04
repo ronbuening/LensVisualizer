@@ -118,7 +118,20 @@ Patent Table 1 gives only one variable main-lens spacing: d11, the separation be
 | Short-distance patent state with attachment | 15.58 | 11.58 | 4.00 | 100.9706 | 76.8238 |
 | Change | +2.28 | +2.28 | 0.00 | +1.0019 | -0.6020 |
 
-The patent's variable data are for the main lens as used with the close-up attachment; they are not a complete standalone focusing cam law for the production master lens from infinity to 0.443 m. The production lens is published as focusing to 0.443 m and 0.52x without the life-size adapter, but the patent does not provide enough standalone spacing data to reconstruct that full movement. The data file therefore models only the documented patent movement and records the published close-focus distance as catalog metadata.
+The short-distance BFD is the main lens's own infinity back focus at the floated d11: in that state the main lens is still focused at infinity, and the attachment supplies the near focus. Used as the close row on its own, it would leave the focus control moving d11 without ever focusing closer.
+
+The patent's variable data are for the main lens as used with the close-up attachment; they are not a complete standalone focusing cam law for the production master lens from infinity to 0.443 m. The production lens is published as focusing to 0.443 m and 0.52x without the life-size adapter, but the patent does not print the standalone spacings for that movement. The data file therefore reconstructs the standalone focus. It keeps the patent's floated d11 at the close end, opens r11-to-STO in proportion to slider travel (an assumption; the patent gives no standalone schedule), and solves the back focus at each row so the main lens alone focuses at the row's object-to-image distance, 0.443 m divided by its keyframe coordinate:
+
+| Keyframe | Object to image (m) | r11-to-STO (mm) | BF (mm) |
+|---:|---:|---:|---:|
+| 0 | ∞ | 9.3000 | 77.425842 |
+| 0.0625 | 7.088 | 9.4425 | 78.840721 |
+| 0.25 | 1.772 | 9.8700 | 83.675199 |
+| 0.5 | 0.886 | 10.4400 | 92.078758 |
+| 0.75 | 0.591 | 11.0100 | 104.613917 |
+| 1 | 0.443 | 11.5800 | 129.208309 |
+
+At 0.443 m the back focus has grown 51.78 mm, 52.38 mm beyond the floated-d11 infinity BFD, and Newton's relation gives a magnification of −0.519, against the published 0.52×; with d11 held at 13.30 mm the same distance would give −0.510. The f/4 axial beam passes every surface unclipped at the 0.886, 0.591 and 0.443 m rows. The rows between infinity and 0.443 m are derived so the focus label, which interpolates inverse distance between rows, stays within 3.3 % of the distance each slider position focuses at; two rows alone left a 57 % gap at mid-travel.
 
 The focus type should not be overstated. The patent's simplified numerical table shows a single changing internal separation. Published descriptions may call the production lens a floating-focus macro design, but the patent table alone supports only a two-group separation change for the main lens in the attachment configuration.
 

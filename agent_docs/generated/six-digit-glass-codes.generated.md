@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1062** lenses scanned
-- **1661** total code-only elements found
-- **1661** elements in this report
-- **270** distinct lens files affected
+- **1068** lenses scanned
+- **1663** total code-only elements found
+- **1663** elements in this report
+- **272** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -144,6 +144,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 805396 | 3 | 3 | patents/US20210132345A1.pdf<br>patents/JP2020086133A.pdf<br>patents/US10545321.pdf | No review-record hit |
 | 808409 | 3 | 3 | patents/US20100194930A1.pdf<br>patents/JP2020118738A.pdf<br>patents/WO2020230915A1.pdf | No review-record hit |
 | 835430 | 3 | 1 | patents/US20070229969A1.pdf | No review-record hit |
+| 840433 | 3 | 3 | patents/JPA 1994235857-000000.pdf<br>patents/US5530593.pdf<br>patents/US5528428.pdf | All rows have review records |
 | 841433 | 3 | 2 | patents/JP_S4871634_A.pdf<br>patents/US3771853.pdf | All rows explicitly disposed |
 | 855248 | 3 | 3 | patents/US20190113711A1.pdf<br>patents/US20210033835A1.pdf<br>patents/US20200073096A1.pdf | No review-record hit |
 | 859300 | 3 | 3 | patents/JP2021179551A.pdf<br>patents/US20210132345A1.pdf<br>patents/US20240295723A1.pdf | 1/3 rows have review records |
@@ -220,7 +221,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 815233 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 819287 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 830427 | 2 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
-| 840433 | 2 | 2 | patents/JPA 1994235857-000000.pdf<br>patents/US5528428.pdf | All rows have review records |
 | 840434 | 2 | 1 | patents/US5734508.pdf | All rows explicitly disposed |
 | 850323 | 2 | 1 | patents/JPWO2017221949A1.pdf | No review-record hit |
 | 882372 | 2 | 1 | Missing from untracked local patents/ references (US20150085165A1, US20150085165, 20150085165) | No review-record hit |
@@ -234,6 +234,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 489701 | 1 | 1 | patents/US2186621.pdf | All rows have review records |
 | 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 510619 | 1 | 1 | patents/DE_1980417_U.pdf | All rows explicitly disposed |
+| 512598 | 1 | 1 | patents/US3502393.pdf | All rows explicitly disposed |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 515500 | 1 | 1 | patents/US8169718.pdf | All rows explicitly disposed |
 | 516499 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
@@ -1713,6 +1714,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `Unmatched (840433-class; no compatible catalog curve)` | 1.84042 / 43.30 | No catalog entry | abbe | patents/JPA 1994235857-000000.pdf | Explicit disposition in data |
 
+### [NIKON 38-105mm f/4-7.8 (Nikon Zoom 700VR)](../../src/lens-data/nikon/NikonZoom700VR38105mmf478.data.ts) - US 5,530,593
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (Element 11) | 20 | `Unmatched (840433 lanthanum flint; no public catalog row)` | 1.84042 / 43.30 | No catalog entry | abbe | patents/US5530593.pdf | Explicit disposition in data |
+
 ### [NIKON AF NIKKOR 35mm f/2 D](../../src/lens-data/nikon/NikonAFNikkor35mmf2D.data.ts) - JP 2021-36283 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -2546,6 +2553,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L41 (L41) | 17 | `Unmatched (nd=1.64118, vd=58.9; code position 641589)` | 1.64118 / 58.90 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
 | L42 (L42) | 19 | `Unmatched (nd=1.51601, vd=50.6; code position 516506)` | 1.51601 / 50.60 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
 | L43 (L43) | 20 | `756288 class (nearest current dense-flint family 755275/276; patent vendor unspecified)` | 1.75589 / 28.80 | H-ZF6 (trusted Sellmeier) | sellmeier | patents/US7307794.pdf | No review-record hit |
+
+### [PENTAX SMC TAKUMAR 6x7 600mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7600mmf4.data.ts) - US 3,502,393
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 5 | `Unmatched (512598 crown; no public catalog row)` | 1.51276 / 59.76 | No catalog entry | abbe | patents/US3502393.pdf | Explicit disposition in data |
 
 ### [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) - US 3,459,469
 

@@ -208,9 +208,9 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 28.82, nominalFNumber: 3.5, label: "28mm" },
-      { focalLengthMm: 44.26, nominalFNumber: 4.5 },
-      { focalLengthMm: 67.9, nominalFNumber: 5.6, label: "70mm" },
+      { focalLengthMm: 28.82, nominalFNumber: 3.5, closeFocusM: 0.3, label: "28mm" },
+      { focalLengthMm: 44.26, nominalFNumber: 4.5, closeFocusM: 0.359 },
+      { focalLengthMm: 67.9, nominalFNumber: 5.6, closeFocusM: 0.45, label: "70mm" },
     ],
     step: 0.004,
   },

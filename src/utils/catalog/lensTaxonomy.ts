@@ -90,6 +90,7 @@ export const LENS_MOUNTS = [
   { id: "sony-a", label: "Sony A", sortOrder: 800 },
   { id: "sony-fe", label: "Sony E", sortOrder: 810 },
   { id: "voigtlander-prominent", label: "Voigtländer Prominent", sortOrder: 830 },
+  { id: "werra", label: "Werra", sortOrder: 840 },
   { id: "bronica-etr", label: "Zenza Bronica ETR", sortOrder: 850 },
   { id: "bronica-gs", label: "Zenza Bronica GS", sortOrder: 860 },
   { id: "bronica-sq", label: "Zenza Bronica SQ", sortOrder: 870 },

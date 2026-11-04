@@ -104,9 +104,13 @@ $$
 ```
 
 - Use `$...$` for inline math.
-- Use `$$...$$` display blocks for equations that need their own line.
+- Use `$$...$$` display blocks for equations that need their own line, with each `$$` on its own line. A one-line
+  `$$...$$` inside a paragraph is inline math, where `\tag{n}` is a parse error.
 - Do not use unsupported LaTeX features such as `\label`, `\ref`, or `align` environments.
 - Escape literal currency dollars as `\$`.
+- Every formula must parse under KaTeX's strict mode, and inline math stays on one line;
+  `__tests__/src/components/markdown/ThemedMarkdown.test.tsx` checks every article and lens note. Write `\nu`,
+  `\mu\text{m}` and `'` rather than Unicode ν, µ and ′, and wrap dashes as `\text{–}` or `\text{—}`.
 
 ### Images And Diagrams
 

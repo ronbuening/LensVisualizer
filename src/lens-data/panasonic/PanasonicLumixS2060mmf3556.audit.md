@@ -104,3 +104,9 @@ meniscus), is unchanged. The wide analysis field now runs to 47.4° (20.08 mm, 9
 | Surface | Before | After | Justification |
 |---|---|---|---|
 | 3 | 14.5 | 15.4 | wide chief ray at the printed ω crosses it at 14.89 mm + clearance (Fig. 3(a) ≈ 17.3) |
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.15 → 0.15 m, with per-station `closeFocusM` 0.15 / 0.213 / 0.4 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 166.7 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived close rows already follow the production 0.15 m / 0.40 m MFDs; per-station values record them.

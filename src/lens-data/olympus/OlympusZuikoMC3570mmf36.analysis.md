@@ -37,7 +37,7 @@ The scaled printed intercell gaps are 43.17740, 18.47125 and 0.49490 mm. The sca
 
 The intercell gap g(t) interpolates the three printed values piecewise linearly at t = 0, 0.5 and 1. Because the two cells are rigid, the matrix coefficients A(g) and C(g) are affine in g, and the exact Gaussian BFD is the rational function −A(g)/C(g). The reconstructed compensation subtracts the piecewise-linear interpolation of the three Gaussian-minus-printed BFD residuals. It therefore passes through all three printed image-plane positions while retaining their small defocus.
 
-The model represents that continuous law with 129 equally spaced zoom positions; only positions 0, 64 and 128 are published. Every other position is reconstructed. A pole-free second-derivative bound over every complete interval limits BFD interpolation error to 0.000355514 mm; the maximum sampled difference from the defined law is 0.000352187 mm. Maximum image-plane defocus relative to Gaussian focus remains 0.015857641 mm, inherited from the source. The continuous optical compensation does not establish the factory zoom cam.
+The model represents that continuous law with 33 equally spaced zoom positions; only positions 0, 16 and 32 are published. Every other position is reconstructed. Linear interpolation between positions leaves a maximum sampled BFD difference from the defined law of 0.0055 mm. Maximum image-plane defocus relative to Gaussian focus remains 0.015857641 mm, inherited from the source. The continuous optical compensation does not establish the factory zoom cam.
 
 Relative to a fixed image plane, the first vertex moves from −137.4254 through −120.9495 to −114.2848 mm. The rear cell's first vertex moves from −70.1750 through −78.40525 to −89.7169 mm. These derived positions describe opposing cell travel under the stated law. They are not mechanical measurements of the production helicoid or barrel.
 
@@ -127,7 +127,7 @@ The prescription satisfies all nine dimensionless patent conditions. In the sour
 
 ## Model Scope and Limitations
 
-The model is rotationally symmetric and describes infinity focus only. Its compensation interpolation error is analytically bounded throughout every interval; off-axis transmission and MTF are sampled calculations. Surviving rays remain inside the modeled glass boundaries. Total internal reflection at wider diagnostic fields and ordinary vignetting limit transmission.
+The model is rotationally symmetric and describes infinity focus only. Its compensation interpolation error is sampled densely across every interval; off-axis transmission and MTF are sampled calculations. Surviving rays remain inside the modeled glass boundaries. Total internal reflection at wider diagnostic fields and ordinary vignetting limit transmission.
 
 The patent gives half-fields 31°, 23° and 18°, or full fields 62°, 46° and 36°. The manufacturer specifies 64° and 34° endpoints. These fields, the 135-format corner and the viewer's wider heuristic fields are distinct references. Interpolated source/manufacturer fields are estimates rather than additional published values. Wide-open off-axis clipping decreases on stopping down, but sampled transmission does not establish radiometric throughput, coating losses or measured image quality.
 

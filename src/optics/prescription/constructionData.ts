@@ -33,7 +33,7 @@ export function canonicalConstructionData(lens: CanonicalLens): LensConstruction
     ? stationLabels.filter((label): label is string => label !== undefined)
     : undefined;
   const control = lens.aberrationControl;
-  const { focalLengthMm: _focalLength, fNumber: _fNumber, ...catalogFields } = catalog;
+  const { focalLengthMm: _focalLength, fNumber: _fNumber, closeFocusM: _closeFocus, ...catalogFields } = catalog;
   const surfaces: SurfaceData[] = lens.surfaces.map((surface) => {
     const { medium, asphere: _asphere, R, ...fields } = surface;
     const nd =
@@ -62,6 +62,7 @@ export function canonicalConstructionData(lens: CanonicalLens): LensConstruction
     focalLengthDesign: catalog.focalLengthMm?.design,
     apertureMarketing: catalog.fNumber?.marketing,
     apertureDesign: catalog.fNumber?.design,
+    closeFocusMarketing: catalog.closeFocusM?.marketing,
     patentNumber: source.patentNumber,
     patentExample: source.example,
     patentYear: source.patentYear,

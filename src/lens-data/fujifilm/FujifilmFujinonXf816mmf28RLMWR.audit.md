@@ -98,3 +98,9 @@ The interpolated midpoint has an unavailable outer 52.9-degree sample (maxDev 0.
 ### Follow-ups
 
 Retain the refusal of RI for non-localized fields. Numerical clear apertures are absent, so possible additional clipping or outer-zone polynomial validity remains unproved. A further independent trace or additional source aperture evidence is needed before changing coefficients or rims. No source.errata entry was added because the inspected summary and aberration figures do not establish a contradiction in the printed values. The coordinator may queue this as unresolved model/clear-aperture behavior; this pass does not edit a shared queue.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` stays 0.5 m. Source prints a 500 mm-from-image-plane state; at 8 mm, two-decimal gap rounding moves the paraxial distance by several percent. The close row's modeled label reads within -5.8 % of it, so the close-endpoint corpus guard lists this lens as an exemption.
+
+- `catalog.closeFocusM.marketing` 0.25 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

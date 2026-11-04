@@ -250,12 +250,29 @@ E5 is a negative biconcave element followed by positive, high-dispersion E6. E14
 
 The patent's principal conditions are:
 
-$$3.0<|f_{g1}|/f_w<6.1 \tag{1}$$
-$$1.9<R_2/f_w<3.0 \tag{2}$$
-$$8.0<L_w/f_w<20.0 \tag{3}$$
-$$3.0<|f_{g2}|/f_w<10.0 \tag{4}$$
-$$1.5<R_3/f_w<4.5 \tag{5}$$
-$$10.0<|f_{g12}|/f_w<40.0 \tag{6}$$
+$$
+3.0<|f_{g1}|/f_w<6.1 \tag{1}
+$$
+
+$$
+1.9<R_2/f_w<3.0 \tag{2}
+$$
+
+$$
+8.0<L_w/f_w<20.0 \tag{3}
+$$
+
+$$
+3.0<|f_{g2}|/f_w<10.0 \tag{4}
+$$
+
+$$
+1.5<R_3/f_w<4.5 \tag{5}
+$$
+
+$$
+10.0<|f_{g12}|/f_w<40.0 \tag{6}
+$$
 
 The preferred ranges in ¶¶0041 and 0053 are 4.0–5.8, 2.00–2.95, 10.0–17.0, 3.5–9.5, 2.0–4.0, and 12.0–30.0 respectively.
 

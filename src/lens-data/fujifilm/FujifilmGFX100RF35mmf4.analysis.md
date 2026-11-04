@@ -256,11 +256,11 @@ The following values were independently recomputed from the transcribed prescrip
 
 | Expression | Formula | Recomputed | Patent Table 22 | Note |
 |---|---|---:|---:|---|
-| (1) | $TL/(f 	an ω)$ | 1.593 | 1.569 | mismatch if Table 14 $2ω=83.0°$ is used |
+| (1) | $TL/(f \tan ω)$ | 1.593 | 1.569 | mismatch if Table 14 $2ω=83.0°$ is used |
 | (2) | $Bf/f$ | 0.155 | 0.155 | matches |
 | (3) | $FNo \times TL/f$ | 5.807 | 5.808 | matches |
-| (4) | $dG1/(f 	an ω)$ | 0.629 | 0.628 | matches within rounding |
-| (5) | $dF/(f 	an ω)$ | 0.195 | 0.194 | matches within rounding |
+| (4) | $dG1/(f \tan ω)$ | 0.629 | 0.628 | matches within rounding |
+| (5) | $dF/(f \tan ω)$ | 0.195 | 0.194 | matches within rounding |
 | (6) | $fG1f/fG1$ | 4.013 | 4.013 | matches |
 | (7) | $fG1f/f$ | 2.560 | 2.560 | matches |
 | (8) | $fG2/f$ | -1.252 | -1.252 | matches |

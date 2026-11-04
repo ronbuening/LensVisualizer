@@ -52,6 +52,7 @@ const LENS_DATA = {
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: 45 },
     fNumber: { marketing: 2 },
+    closeFocusM: { marketing: 0.6 },
   },
 
   source: {
@@ -184,7 +185,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.6,
+    closeFocusM: 0.646,
     description: "Unit focus — entire optical assembly translates forward along the optical axis.",
   },
 

@@ -62,3 +62,10 @@ Patent: US 5,717,527, seventh embodiment, Table 8.
 - Table8 and all3aberrationplots consistentlyprintFNO4.14/5.10/5.73. Correct designstations4.5/5.3/5.6→4.14/5.10/5.73, addcatalogmarketing4.5/design4.14, retainname/userstopchoices. S2 continuous cap24→27.8mm plus exposedland toexistingouter29.5. Nativeq≈.94±.007 atedge≈292px;adopted.942. Allotherexposed/convex/concave/cementedfaces inspected; no furtherindependentland. No source radius/gap/focus/coefficient/tolerance changes.
 - Literal tele f5.73 beam remains S20/S21-limited:current12.8caps tracef5.89647 (+2.905%, inside existing3%auditband). Minimumrounded13.2both trial givescombinedsag2.750mm vsunchanged2.610mm budget in2.900mm sourcegap;commoncap bound12.852515mm. Trial rejected;no toleranceweakening/source-depthbypass. Wide4.14/mid5.10 iris-limited. Existingteleclip alsooccurred underoldf5.6.
 - Surface/circle pass;3formatcorners>=99%,9actualSVGstates18finitepaths/zero trim, rasterinspected. SourcecloseR391.9mm fulliris discreteaxialsamples25/25W,25/25M,13/25T(outerringS20clip). Counts are notflux or measuredproductionvignetting. Production.37m controllabel/sourcefocus/TL discrepancy retained. Source/catalog checks and3sharedglassfiles94testspass.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.37 → 0.392 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 5.9 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close rows state no distance; 0.37 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.37 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

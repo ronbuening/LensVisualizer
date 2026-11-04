@@ -56,6 +56,7 @@ const LENS_DATA = {
     groupCount: 14,
     focalLengthMm: { marketing: [70, 180], design: [82.401, 194.001] },
     fNumber: { marketing: 4.5, design: 4.14 },
+    closeFocusM: { marketing: 0.37 },
   },
 
   source: {
@@ -321,7 +322,7 @@ const LENS_DATA = {
   },
 
   focus: {
-    closeFocusM: 0.37,
+    closeFocusM: 0.392,
     description: "Front negative group G1 moves object-ward; d10 increases by 38.65 mm at the closest setting.",
   },
 

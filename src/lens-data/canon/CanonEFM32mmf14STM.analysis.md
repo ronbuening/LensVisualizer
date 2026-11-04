@@ -165,7 +165,7 @@ Example 1 uses **first-group focusing**. From infinity to the patent close state
 
 The fixed rear group L2 begins at surface 21 and remains stationary relative to the image plane in Example 1. The aperture stop is inside L1, so it follows the same trajectory as the moving optical group.
 
-A paraxial conjugate calculation with d20 = 9.71 mm gives β = −0.1878, matching the patent's close-state magnification of −0.188. Canon's production specification gives 0.23 m closest focusing distance and 0.25× maximum magnification, so the patent close state is not treated as the production mechanical close-focus endpoint. The data file uses the production 0.23 m value for the metadata field `closeFocusM`, but the optical slider uses the patent-published d20 range because it is the only published group-motion prescription.
+A paraxial conjugate calculation with d20 = 9.71 mm gives β = −0.1878, matching the patent's close-state magnification of −0.188. Canon's production specification gives 0.23 m closest focusing distance and 0.25× maximum magnification, so the patent close state is not treated as the production mechanical close-focus endpoint. The data file keeps the production 0.23 m value as marketed metadata (`catalog.closeFocusM`), while the optical slider uses the patent-published d20 range because it is the only published group-motion prescription; its close-focus label reports the 0.27 m object-to-image distance that row focuses at.
 
 ## Aspherical Surfaces
 

@@ -39,6 +39,7 @@ const LENS_DATA = {
     groupCount: 6,
     focalLengthMm: { marketing: 35, design: 35 },
     fNumber: { marketing: 1.9, design: 1.9 },
+    closeFocusM: { marketing: 0.4 },
   },
 
   source: {
@@ -171,7 +172,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.4,
+    closeFocusM: 0.455,
     description:
       "Unit focus; patent publishes only the infinity prescription, so close-focus travel is approximated from the 0.40 m production minimum-focus specification.",
   },

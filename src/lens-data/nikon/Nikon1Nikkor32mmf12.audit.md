@@ -33,3 +33,10 @@ Reviewed local untracked patent file `patents/WO2014061226A1.pdf`, Example 1 / T
   over the printed d17.
 - Paraxial check against the previous data: EFL identical; defocus unchanged (max |Δ| 1.3e-6 mm at all three focus
   keyframes). Physical track grows by Σt(1 − 1/n) = 0.951 mm and now matches the patent's TL = 52.60 mm to 0.0017 mm.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.45 → 0.5 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 11.0 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close row states no distance; 0.45 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.45 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

@@ -36,3 +36,12 @@ Patent: JP 2002-090622 A, Example 2
 ### Analysis sync
 
 - Updated the L47 element paragraph and glass table.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.38 → 0.414 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 8.8 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close row states no distance; 0.38 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.38 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: gap comment: the 1:1 row focuses at 0.414 m object to image (Voigtländer quotes 0.38 m).

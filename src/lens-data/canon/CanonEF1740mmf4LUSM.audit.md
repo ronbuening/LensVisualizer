@@ -128,3 +128,26 @@ Positive source: [SUMITA official downloads](https://www.sumita-opt.co.jp/en/dow
 At the engine reference lines, K-SKLD120-M evaluates to nd 1.58400660/νd 59.457625/PgF 0.537944: source residuals +0.00027660/+0.057625, with no published source PgF residual available. Existing L-BAL42 is compatible and has residuals −0.00060442/−0.014306; the new choice improves nd while modestly worsening Abbe. Rejected K-SKLD200(M) improves nd further (−0.00017750) but worsens Abbe to −0.568637. Current OHARA/Nikon-Hikari/SUMITA AGF tables and OHARA's molded BAL42 table supply no uniquely identified source medium; L-BAL42's molded nd 1.58033 is farther away. No source pair or spectrum is modified to force a catalog match.
 
 Only E1's proxy label, source-reference annotations and process-qualified role change in data. All source numerical fields, surfaces, rims, resin layers, stops, zoom/focus controls and existing eleven curve choices remain fixed. The Oct 30 unmatched-E1 disposition above is historical; the current disposition is twelve compatible glass proxies plus two unresolved resins. Curve selection expands estimated spectral coverage, not source-shape coverage or production verification.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: greedy subset of existing rows under the added limits (EFL label ≤ 0.1 %, half-field ≤ 0.1°): [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 64].
+- Focus: kept keyframes [0, 1, 2, 3, 4, 5, 6, 7, 8] of 9, at focus coordinates [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1].
+- Published zoom stations remapped 0 → 0, 25 → 13, 31 → 16, 64 → 33; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 65 × 9 = 585 | 34 × 9 = 306 |
+| source-published states | 4 | 4 |
+| worst infinity defocus against the solves, between rows | 0.0022 mm | 0.0085 mm |
+| worst fixed-plane defocus at infinity | 0.0022 mm | 0.0085 mm |
+| worst focal-length label residual | 0.0016 mm | 0.0063 mm |
+| worst far-focus distance-label error | −29.2 % (93.3 m reads 66.1 m near 17.6 mm) | −59.5 % (93.3 m reads 37.8 m near 17.7 mm) |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0089 mm (0.45 R), half-field ≤ 0.001°, stop radius ≤ 0.006 %, f-number ≤ 0.000 %, variable gaps ≤ 0.005 mm, axial diffraction MTF at 30 lp/mm -0.050 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+The far-focus label error is the infinity defocus expressed as a distance: near the 0.003 focus cutoff a few micrometres of image-side defocus move the in-focus distance by tens or hundreds of metres. Close-focus labels at kept keyframes are unchanged.
+
+Text sync: header: 61 → 30 interpolated stations; analysis: 65 geometric stations → 34 (every second geometric point plus the four published states), interpolation defocus 0.002 → 0.009 mm.

@@ -167,7 +167,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 1.0,
+    closeFocusM: 1.135,
     description:
       "Unit focus by camera bellows; no internal focus groups. The focus slider varies only the final back-focus gap.",
   },

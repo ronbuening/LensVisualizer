@@ -383,6 +383,18 @@ export function validateTopLevel(data: UntrustedLensData, errors: string[]): voi
       errors.push('"zoomCloseFocusM" values must be positive finite distances');
     }
   }
+  if (data.closeFocusMarketing !== undefined) {
+    const marketed = data.closeFocusMarketing;
+    const values = Array.isArray(marketed) ? marketed : [marketed];
+    if (
+      values.length !== (Array.isArray(marketed) ? 2 : 1) ||
+      values.some((v) => typeof v !== "number" || !(v > 0) || !Number.isFinite(v))
+    ) {
+      errors.push('"closeFocusMarketing" must be a positive finite distance, or a [wide, tele] pair of them');
+    } else if (Array.isArray(marketed) && !(Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2)) {
+      errors.push('"closeFocusMarketing" is a [wide, tele] pair only on a zoom');
+    }
+  }
 
   /* ── nominalFno: required, number or number[] (for variable-aperture zooms) ── */
   if (typeof data.nominalFno === "number") {

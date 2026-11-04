@@ -30,3 +30,10 @@ Catalog version: local working tree, 2026-06-25
 - Assigned the existing N-LAK8 curve to L_II as a coefficient-backed equivalent in the historical LAK8 family;
   the production supplier remains unspecified. The outer SF6 rows were already resolved.
 - No prescription or geometry value changed.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.2 → 0.218 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 9.0 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived unit-focus travel; 0.2 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.2 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

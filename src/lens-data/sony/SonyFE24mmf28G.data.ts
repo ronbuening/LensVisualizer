@@ -63,6 +63,7 @@ const LENS_DATA = {
     groupCount: 7,
     focalLengthMm: { marketing: 24, design: 24.709 },
     fNumber: { marketing: 2.8, design: 2.884 },
+    closeFocusM: { marketing: 0.18 },
   },
 
   source: {
@@ -237,9 +238,9 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.18,
+    closeFocusM: 0.255,
     description:
-      "Inner focus: G2 translates 1.542 mm toward the object from infinity to 0.18 m; G1 and G3 remain fixed.",
+      "Inner focus: G2 translates 1.542 mm toward the object from infinity to the patent's 0.18 m state (measured from the first surface); G1 and G3 remain fixed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

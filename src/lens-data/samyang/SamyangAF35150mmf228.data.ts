@@ -437,16 +437,16 @@ const LENS_DATA = {
     /* (moved from zoomPositions) ── Zoom and focus ── */
     // (moved from publishedStations) The close-focus row is source-tabulated.
     stations: [
-      { focalLengthMm: 35.989, nominalFNumber: 2, label: "35mm", published: true, publishedFocus: [1] },
-      { focalLengthMm: 73.438, nominalFNumber: 2.5, published: true, publishedFocus: [1] },
-      { focalLengthMm: 146.969, nominalFNumber: 2.8, label: "150mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 35.989, nominalFNumber: 2, closeFocusM: 0.331, label: "35mm", published: true, publishedFocus: [1] },
+      { focalLengthMm: 73.438, nominalFNumber: 2.5, closeFocusM: 0.528, published: true, publishedFocus: [1] },
+      { focalLengthMm: 146.969, nominalFNumber: 2.8, closeFocusM: 0.848, label: "150mm", published: true, publishedFocus: [1] },
     ],
     step: 0.002,
   },
 
   /* ── UI / controls ── */
   focus: {
-    closeFocusM: 0.33,
+    closeFocusM: 0.331,
     description: "Internal focusing by single negative group Gm3 (L17); D31 increases and D33 decreases.",
   },
 

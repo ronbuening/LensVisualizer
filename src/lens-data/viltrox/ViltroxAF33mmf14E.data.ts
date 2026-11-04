@@ -78,6 +78,7 @@ const LENS_DATA = {
     groupCount: 9,
     focalLengthMm: { marketing: 33, design: 33.7540057914589 },
     fNumber: { marketing: 1.4, design: 1.4 },
+    closeFocusM: { marketing: 0.4 },
   },
 
   source: {
@@ -229,7 +230,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.4,
+    closeFocusM: 0.467,
     description:
       "PUBLISHED — single-element internal focus: negative G3/L31 moves 3.94 mm toward the image side from infinity " +
       "to the published 0.4 m state (D1 1.00→4.94 mm; D2 6.24→2.29 mm). The source's 0.01 mm D1+D2 rounding " +

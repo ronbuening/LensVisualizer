@@ -66,3 +66,9 @@ The approved proposal independently reproduced infinity EFLs of 36.227839 / 194.
 - Set S7 outer sd from 11.5 to 12.0 mm and `rimCutDepthMm: 2.64`, giving cap 10.85585556 mm, q = 0.904655 and land 1.14414444 mm. The measured endpoint would clip beams, so the cut is moved outward to the most inward passing 0.01 mm depth. Full guard reach is 10.79180672 mm at zoom/focus 0.8/0.8 and field 15.790911°; required margin 0.05 mm, actual clearance 0.06404884 mm, no untraced states. Other caps/lands are retained without speculative extra clipping.
 - All 17 media resolve to compatible current coefficient curves; native/source differences remain qualified. L2's J-FKH1 label no longer asserts fluorophosphate composition or APD from its high Abbe number. Catalog-only partial-dispersion or line-index overrides are not added. Public text now reflects the actual retained stop and qualified proxies.
 - Focused surface/cut, image-circle and field checks pass. Aperture remains the pre-existing tele rim limitation: source f/4.5 traces f/5.14 at S19; wide passes. A minimal ten-cap continuous opening trial requires up to 15.5% growth and fails unchanged gaps 10→11 (2.48 mm intrusion versus 2.43 allowed) and 17→18 (0.75 versus 0.72). Rejected that trial without changing source gaps, stop or tolerances. Nine actual SVG zoom/focus states were viewed; no automatic rim trimming. Catalog consistency passes.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.245 → 0.44 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 79.5 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: close row is the patent tele-end beta = -0.25 macro state; the old 0.245 m is not described as a production figure.

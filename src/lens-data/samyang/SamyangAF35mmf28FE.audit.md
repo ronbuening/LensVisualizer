@@ -36,3 +36,12 @@ The file had kept the printed values d-referenced and every element Unmatched, b
 - L1, L3, L4, L5 and L6 labelled with their HOYA names; they trace on catalog curves anchored to the printed index. L2 and L7 stay Unmatched on the Abbe estimate.
 - The filter plate prints the d-line 1.51680 / 64.20, stays d-referenced and is labelled BSC7 (HOYA) as a coordinate equivalent.
 - Focal length, f-number and the reference trace are unchanged (EFL 35.1828 mm). Paraxial focus against green moved from R +25, B −12, V +22 µm (all on the Abbe estimate) to R +32, B +9, V +60 µm.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.35 → 0.387 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 10.4 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed TL = 0.3 m row is internally inconsistent; focus description gives the 0.35 m MFD.
+- `catalog.closeFocusM.marketing` 0.35 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: analysis: the close endpoint is labelled 0.387 m; the 0.35 m production figure is marketed metadata.

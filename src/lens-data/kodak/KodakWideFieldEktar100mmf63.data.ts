@@ -133,7 +133,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 1.0,
+    closeFocusM: 1.125,
     description: "Unit-focus model. Patent gives infinity data only; close focus is represented by BFD extension.",
   },
 

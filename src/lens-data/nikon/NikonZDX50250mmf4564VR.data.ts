@@ -274,9 +274,9 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 51.5, nominalFNumber: 4.5, label: "Wide" },
-      { focalLengthMm: 86.28, nominalFNumber: 5.1 },
-      { focalLengthMm: 242.8, nominalFNumber: 6.3, label: "Tele" },
+      { focalLengthMm: 51.5, nominalFNumber: 4.5, closeFocusM: 0.5, label: "Wide" },
+      { focalLengthMm: 86.28, nominalFNumber: 5.1, closeFocusM: 0.553 },
+      { focalLengthMm: 242.8, nominalFNumber: 6.3, closeFocusM: 1, label: "Tele" },
     ],
   },
 

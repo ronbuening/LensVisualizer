@@ -52,8 +52,7 @@ In isolation L111 is strongly negative. In the cemented pair, it is partly offse
 
 $n_d = 1.835$, $\nu_d = 42.722$. Glass: **TAFD5G / TAFD5F / S-LAH55VS class** (835/427 lanthanum dense flint class). $f \approx +21.55$ mm.
 
-L112 is the positive partner in the front cemented doublet. The patent gives $n_d = 1.835$ and $
-u_d = 42.722$; HOYA's cross-reference assigns the corresponding 835/427 code to TAFD5G / TAFD5F and to the S-LAH55VS class. This is a lanthanum dense-flint class rather than a conventional crown.
+L112 is the positive partner in the front cemented doublet. The patent gives $n_d = 1.835$ and $\nu_d = 42.722$; HOYA's cross-reference assigns the corresponding 835/427 code to TAFD5G / TAFD5F and to the S-LAH55VS class. This is a lanthanum dense-flint class rather than a conventional crown.
 
 The element recovers part of L111's negative power and supplies a higher-Abbe partner across the cemented interface. The Abbe-number separation between L111 and L112 is about 16.1, enough to make the pair a useful first-order achromat even though its net power remains negative.
 
@@ -69,8 +68,7 @@ The data file models this resin as a separate optical medium so that the refract
 
 $n_d = 1.911$, $\nu_d = 35.250$. Glass: **TAFD35L / TAFD35 class** (HOYA 911/353 or closely equivalent high-index lanthanum flint class). $f \approx +25.67$ mm.
 
-Public cross-reference data place $n_d pprox 1.91082$, $
-u_d pprox 35.25$ in the HOYA TAFD35L / TAFD35 family, with CDGM H-ZLaF4LA and Sumita K-LaSFn23 as close equivalents. OHARA S-LAH93 is a nearby cross-reference but has a lower catalog index and should be treated as a near class reference rather than an exact identity.
+Public cross-reference data place $n_d \approx 1.91082$, $\nu_d \approx 35.25$ in the HOYA TAFD35L / TAFD35 family, with CDGM H-ZLaF4LA and Sumita K-LaSFn23 as close equivalents. OHARA S-LAH93 is a nearby cross-reference but has a lower catalog index and should be treated as a near class reference rather than an exact identity.
 
 L113g supplies nearly all of G11's positive power. Treating the resin and glass together, the L113 hybrid element has $f \approx +24.6$ mm. The object-side asphere weakens the marginal refraction relative to the spherical base and is the primary front-group spherical-aberration correction surface.
 

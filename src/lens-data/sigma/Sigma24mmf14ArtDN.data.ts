@@ -64,6 +64,7 @@ const LENS_DATA = {
     groupCount: 14,
     focalLengthMm: { marketing: 24, design: 23.86 },
     fNumber: { marketing: 1.4, design: 1.46 },
+    closeFocusM: { marketing: 0.25 },
   },
 
   source: {
@@ -401,7 +402,7 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.25,
+    closeFocusM: 0.182,
     description:
       "Internal focus by the single positive G2 element; d10 increases and d12 decreases by 5.5797 mm from infinity to the patent close-focus state.",
     // (moved from publishedStations) The close-focus row is source-tabulated.

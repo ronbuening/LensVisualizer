@@ -269,3 +269,23 @@ fixed. Every moving group is monotonic over the 201 stations, matching ¶0134 an
 stations ascend 62 → 580 mm and every gap array follows that order. Focus: ¶0134 names G5 as the focusing group,
 moving objectward for near focus, which the description states; both focus keyframes repeat the infinity gaps, the
 slider's far end reads "Not modeled", and the movement drawer offers zoom only, which suits infinity-only data.
+
+## 2026-11-03 — Zoom/focus station thinning
+
+Removed derived zoom stations and focus keyframes that the solves did not need; no row was re-solved and no printed value changed. Kept rows are the existing rows, selected so the bilinear blend between them stays within 0.5 of the Rayleigh depth (±2λN², λ = 587.56 nm, station wide-open N) of the earlier model at every earlier row and between rows.
+
+- Zoom: greedy subset of existing rows under the added limits (EFL label ≤ 0.1 %, half-field ≤ 0.1°): [0, 7, 11, 15, 21, 25, 29, 33, 37, 41, 45, 49, 53, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96, 98, 100, 107, 111, 119, 123, 127, 131, 135, 139, 143, 145, 147, 149, 151, 153, 155, 157, 159, 161, 163, 165, 167, 169, 171, 173, 175, 177, 179, 181, 183, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200].
+- Focus: both keyframes kept (no change).
+- Published zoom stations remapped 0 → 0, 100 → 24, 200 → 69; publishedFocus and conjugate indices remapped to the same rows.
+
+| Quantity | Before | After |
+|---|---|---|
+| zoom stations × focus keyframes | 201 × 2 = 402 | 70 × 2 = 140 |
+| source-published states | 3 | 3 |
+| worst infinity defocus against the solves, between rows | 0.0092 mm | 0.0224 mm |
+| worst fixed-plane defocus at infinity | 0.0291 mm | 0.0291 mm |
+| worst focal-length label residual | 0.0415 mm | 0.1855 mm |
+
+Against the earlier model at the same slider position and object: added defocus ≤ 0.0224 mm (0.47 R), half-field ≤ 0.007°, stop radius ≤ 0.026 %, f-number ≤ 0.000 %, variable gaps ≤ 0.005 mm, axial diffraction MTF at 30 lp/mm -0.008 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
+
+Text sync: header: printed rows at stations 0/100/200 → 0/24/69, 198 → 67 solved; analysis: d34 peak near 338 mm / 9.23 mm → near 341 mm / 9.22 mm, 201 → 70 stations, 198 → 67 solved. The 0.029 mm defocus bound holds at and between stations.

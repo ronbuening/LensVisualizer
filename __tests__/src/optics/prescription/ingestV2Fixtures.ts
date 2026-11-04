@@ -199,6 +199,7 @@ export const FIXTURE_PAIRS: readonly FixturePair[] = [
       focalLengthDesign: 48.4,
       apertureMarketing: 2,
       apertureDesign: 2.05,
+      closeFocusMarketing: 0.45,
       lensMounts: ["nikon-z"],
       imageFormat: "135-full-frame",
       patentNumber: "JP 2000-000001 A",
@@ -228,6 +229,7 @@ export const FIXTURE_PAIRS: readonly FixturePair[] = [
         groupCount: 1,
         focalLengthMm: { marketing: 50, design: 48.4 },
         fNumber: { marketing: 2, design: 2.05 },
+        closeFocusM: { marketing: 0.45 },
       },
       source: {
         patentNumber: "JP 2000-000001 A",

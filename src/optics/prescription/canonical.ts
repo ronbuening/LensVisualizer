@@ -288,6 +288,8 @@ export interface CanonicalLensCatalog {
   opticalConfiguration?: OpticalConfigurationData;
   focalLengthMm?: { marketing?: CanonicalRangeValue; design?: CanonicalRangeValue };
   fNumber?: { marketing?: number; design?: number };
+  /** The maker's minimum focus distance in metres, object to image, where it differs from `focus.closeFocusM`. */
+  closeFocusM?: { marketing?: CanonicalRangeValue };
 }
 
 export interface CanonicalSource {

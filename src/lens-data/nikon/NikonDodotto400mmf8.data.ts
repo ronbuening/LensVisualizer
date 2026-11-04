@@ -51,6 +51,7 @@ const LENS_DATA = {
     groupCount: 2,
     focalLengthMm: { marketing: 400, design: 390.008 },
     fNumber: { marketing: 8, design: 8.13 },
+    closeFocusM: { marketing: 4.5 },
   },
 
   source: {
@@ -127,9 +128,9 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 4.5,
+    closeFocusM: 5.059,
     description:
-      "Unit focus; the whole optical assembly translates, modeled by increasing the final BFD gap from 174.594 mm to 211.603 mm at 4.5 m.",
+      "Unit focus; the whole optical assembly translates, modeled by increasing the final BFD gap from 174.594 mm to 211.603 mm, derived for the 4.5 m production MFD; that state focuses at 5.06 m object to image.",
   },
 
   gaps: { "7": { label: "BF", values: [[174.594, 211.603]] } },

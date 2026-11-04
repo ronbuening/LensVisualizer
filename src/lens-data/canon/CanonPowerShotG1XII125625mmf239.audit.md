@@ -33,3 +33,12 @@ Independent trace gives wide EFL 12.571053012 versus 12.84 and air BFL 7.9628840
 **Cause/action:** source contradiction; retain prescription, plate and image gaps. Runtime offset **+0.220679 → +0.220679 mm**; Section E row deleted. No numerical change/changelog.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.05 → 0.129 m, with per-station `closeFocusM` 0.129 / 0.281 / 0.499 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 897.2 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: close rows are paraxial fits that focus at 0.129 / 0.281 / 0.499 m object to image; Canon publishes 0.05 m wide / 0.40 m tele.
+- `catalog.closeFocusM.marketing` 0.05 / 0.4 m (wide / tele) keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: header and analysis: the fitted close rows focus at 0.129 / 0.281 / 0.499 m; Canon's 5 cm / 40 cm figures are marketed metadata.

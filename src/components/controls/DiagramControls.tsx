@@ -10,10 +10,12 @@
 import { useCallback, useEffect, useMemo } from "react";
 import {
   eflAtZoomClamped as eflAtZoom,
+  focusLabelDistanceM,
   formatDist,
   formatFNumber,
   formatParaxialWorkingFNumber,
   marketedApertureNote,
+  marketedCloseFocusNote,
   showsParaxialWorkingFNumber,
 } from "../../optics/optics.js";
 import type { ParaxialWorkingFNumberResult } from "../../optics/optics.js";
@@ -360,6 +362,11 @@ export default function DiagramControls({
           labelMinWidth={85}
           /* A lens with no modeled focus travel stays at infinity whatever focusT a shared URL carries. */
           displayValue={groupMovementAvailability.focus ? formatDist(focusT, L, zoomT) : "\u221e"}
+          displayNote={
+            groupMovementAvailability.focus
+              ? marketedCloseFocusNote(L.source, focusT, focusLabelDistanceM(focusT, L, zoomT), zoomT)
+              : undefined
+          }
           displayValueStyle={{ whiteSpace: "nowrap" }}
           value={focusT}
           step={L.focusStep}

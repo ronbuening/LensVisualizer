@@ -56,6 +56,7 @@ const LENS_DATA = {
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: 125, design: 125.0 },
     fNumber: { marketing: 2.5, design: 2.53 },
+    closeFocusM: { marketing: 0.38 },
   },
 
   source: {
@@ -231,7 +232,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.38,
+    closeFocusM: 0.414,
     description:
       "Floating two-group inner focus. Groups 1 and 2 extend forward on a helicoid; Group 3 fixed. Manual focus, no AF motor. 9 rounded aperture blades.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
@@ -242,7 +243,8 @@ const LENS_DATA = {
    *  Groups 1 and 2 extend forward; Group 3 is fixed.
    *  D13: Group 1 rear → Group 2 front (dominant extension, +61.0 mm travel at ×1.25)
    *  D15: Group 2 rear → Group 3 front (differential compensator, +6.7 mm travel)
-   *  Close focus values at 1:1 magnification (MFD = 0.38 m).
+   *  Close focus values at 1:1 magnification; the row focuses at 0.414 m object to image
+   *  (Voigtländer quotes 0.38 m).
    */
   gaps: { "13": { label: "D13", values: [[4.95, 65.975]] }, "15": { label: "BF", values: [[6.0375, 12.775]] } },
 

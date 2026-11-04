@@ -58,6 +58,13 @@ declare module "node:fs" {
   export function writeSync(descriptor: number, data: string | Uint8Array): number;
 }
 
+declare module "node:module" {
+  export function createRequire(path: string | URL): {
+    (id: string): unknown;
+    resolve(id: string): string;
+  };
+}
+
 declare module "node:os" {
   export function tmpdir(): string;
 }

@@ -31,3 +31,12 @@ measurement was used.
 The validator accepts the new values, all three zoom stations now reach the 7.93 mm corner (100%) with every rim
 clear, and the image-circle floor still reports nothing undersized. The analysis file quotes no L21 rim values, so it
 is unchanged.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.35 → 0.398 m, with per-station `closeFocusM` 0.398 / 0.498 / 0.698 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 99.5 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: printed close offsets (Example 3) state no distance; 0.35 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.35 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+Text sync: analysis: the 0.35 m wide-end figure is marketed metadata; per-station values give the Table 3 close rows.

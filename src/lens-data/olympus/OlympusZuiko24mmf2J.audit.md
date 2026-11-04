@@ -17,3 +17,10 @@ Display name changed from `OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2` to `OLYMPUS J.ZU
 of this ten-element lens carry the J prefix on the nameplate and later ones do not, so the prefix is kept; it is
 written without a space, as on the H.ZUIKO and G.ZUIKO entries, and the OM token other OM-mount entries omit is
 dropped. The lens key is unchanged.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.25 → 0.344 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 37.5 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived travel; 0.25 m is the old (production) value.
+- `catalog.closeFocusM.marketing` 0.25 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.

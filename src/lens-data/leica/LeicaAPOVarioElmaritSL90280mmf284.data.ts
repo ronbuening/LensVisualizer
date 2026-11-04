@@ -59,6 +59,7 @@ const LENS_DATA = {
     /* ── Explicit metadata fields ── */
     focalLengthMm: { marketing: [90, 280], design: [92.29, 272.9] },
     fNumber: { marketing: 2.8, design: 2.91 },
+    closeFocusM: { marketing: 1.2 },
   },
 
   source: {
@@ -463,7 +464,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 1.2, // Patent Example 1 close-focus object distance (1200 mm)
+    closeFocusM: 1.457, // Example 1 Data 3 rows (1200 mm object distance), object to image
     description:
       "Dual inner focus (Leica 'Dual Syncro Drive'): G5 (neg cemented doublet L19–L20) moves image-side; " +
       "G6 (pos singlet L21) moves object-side. Opposing motion cancels field curvature during focus.",

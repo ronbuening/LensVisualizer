@@ -19,3 +19,9 @@ Patent: US 10,191,246 B2, Example 1
 - Paraxial check against the previous data: EFL identical and defocus unchanged at every zoom station and focus
   keyframe (worst difference 3e-11 mm), because the legacy value was the exact fold 25.8035 + 3.25/1.5168. Physical
   track grows by 3.25(1 − 1/1.5168) = 1.107 mm.
+
+## 2026-11-03 — Close-focus endpoint relabel
+
+`focus.closeFocusM` 0.5 → 0.5 m, with per-station `closeFocusM` 0.5 / 0.55 / 0.6 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 20.0 % from that row. No gap, keyframe, published flag or other optical value changed.
+
+- Why the old value differed: derived close rows already reach 0.5 m at wide; per-station values replace the single figure.

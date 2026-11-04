@@ -288,9 +288,9 @@ const LENS_DATA = {
     /* (moved from zoomPositions) ── Zoom positions ── */
     /* (moved from nominalFno) ── Aperture configuration ── */
     stations: [
-      { focalLengthMm: 20.8053, nominalFNumber: 3.57, label: "Wide" },
-      { focalLengthMm: 34.6272, nominalFNumber: 4.51 },
-      { focalLengthMm: 57.6301, nominalFNumber: 5.81, label: "Tele" },
+      { focalLengthMm: 20.8053, nominalFNumber: 3.57, closeFocusM: 0.15, label: "Wide" },
+      { focalLengthMm: 34.6272, nominalFNumber: 4.51, closeFocusM: 0.213 },
+      { focalLengthMm: 57.6301, nominalFNumber: 5.81, closeFocusM: 0.4, label: "Tele" },
     ],
     step: 0.004,
   },
