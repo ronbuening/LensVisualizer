@@ -14,10 +14,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * paraxial back focus computes to 38.518 mm and is not applied. The image lies 72.372 mm behind S1, against the
  * rounded printed L of 72.37 mm.
  * Stop: the patent tabulates the stop position but not its diameter; the stop radius follows F/N.
- * Semi-diameters are inferred, none is printed. S1 sits about 10 % above the entrance-pupil radius; the other rims
- * follow Fig. 10 and the maker's section, limited by edge clearance across the air gaps. S4/S5 stand at 11.75 mm,
- * with checks.gapSagFrac 0.94, so the f/1.8 axial beam clears the L2/L3 rims; Fig. 10 draws both faces at about
- * this height.
+ * Semi-diameters are inferred, none is printed. Fig. 10 draws each rim close to the f/1.8 axial beam; the model's rims
+ * are 7–13 % larger, within 4 % of the maker's section, and keep Fig. 10's height order. S1 sits about 10 % above the
+ * entrance-pupil radius. S4 stays at 11.75 mm so the axial beam clears it, with checks.gapSagFrac 0.94, and
+ * rimExtensionSd 13.75 draws Fig. 10's flat land out to L2's edge. L3 is square at the doublet's 13.0 mm. Fig. 10's
+ * lands on S6 and S8 are rim cuts at 0.860 and 0.857 of the edge (cut radii 11.18 and 11.14 mm), clear of every
+ * wide-open beam.
  * Focus: the patent prints the infinity state only and names no focusing group, so no gap varies and
  * focus.closeFocusM stays at infinity; the retail 0.45 m minimum focus is catalog data.
  */
@@ -103,7 +105,7 @@ const LENS_DATA = {
       glass: "FD140 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Dense-flint negative meniscus behind the stop, concave to the object; front member of the cemented doublet.",
       focalLengthMm: -30.33673016401732,
-      cemented: "CD1",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -116,7 +118,7 @@ const LENS_DATA = {
       glass: "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       role: "High-index positive meniscus, convex to the image; rear member of the weakly negative cemented doublet.",
       focalLengthMm: 37.35933926202443,
-      cemented: "CD1",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -157,19 +159,21 @@ const LENS_DATA = {
       R: 39.19,
       d: 1.682,
       sd: 11.75,
+      rimExtensionSd: 13.75,
     },
     {
       label: "5",
       R: 290.94,
       d: 2.3,
-      sd: 11.75,
+      sd: 13.0,
       medium: 3,
     },
     {
       label: "6",
       R: 18.454,
       d: 4.145,
-      sd: 11.5,
+      sd: 13.0,
+      rimCutDepthMm: 3.77,
     },
     {
       label: "STO",
@@ -180,7 +184,8 @@ const LENS_DATA = {
       label: "8",
       R: -17.128,
       d: 1.5,
-      sd: 11.5,
+      sd: 13.0,
+      rimCutDepthMm: 4.12,
       medium: 4,
     },
     {
@@ -227,19 +232,19 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Front",
+      text: "GF (+)",
       fromSurface: "1",
       toSurface: "6",
     },
     {
-      text: "Rear",
+      text: "GR (+)",
       fromSurface: "8",
       toSurface: "12",
     },
   ],
   doublets: [
     {
-      text: "CD1",
+      text: "D1",
       fromSurface: "8",
       toSurface: "10",
     },

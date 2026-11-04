@@ -146,9 +146,9 @@ G3b (L10–L12, printed f = −39.20 mm) moves approximately perpendicular to th
 
 ## Clear Apertures and Stop
 
-The patent prints no clear apertures. Each semi-diameter is inferred from the Figure 1 section, the first-order entrance pupil and the repository's edge-thickness and gap rules; they are not factory values, and none was tuned for image quality. Enlarging them by 5 % would break those geometry rules. The values are 64 mm for L1, 57 mm for L2–L3, 35 mm for G1b, 29.5 mm for G2, 18 mm for G3a and G3c, and 13.4 mm for G3b.
+The patent prints no clear apertures. Each semi-diameter is inferred from the Figure 1 section, the first-order entrance pupil and the repository's edge-thickness and gap rules; they are not factory values, and none was tuned for image quality. Enlarging them by 5 % would break those geometry rules. The values are 64 mm for L1, 57 mm for L2–L3, 35 mm for G1b, 29.5 mm for G2, 18 mm for G3a and G3c, and 14.0 mm for G3b (with the validator's gap-sag fraction set to 0.98, because Figure 1 and Sigma's section draw the L11–L12 rims nearly touching).
 
-The filter's 17.5 mm semi-diameter is sized by ray trace: the largest ray height on the plate over both focus states, the aperture settings and the field, plus 5 %, rounded up to 0.5 mm.
+The filter's 18.5 mm semi-diameter follows Figure 1, which draws the plate slightly taller than G3a and G3c. It clears the largest traced ray height on the plate (16.55 mm over both focus states, the aperture settings and the field), so it limits no ray. G3b's 13.4 mm is held by the air-gap rule between L11 and L12, about 10 % below the height Figure 1 draws.
 
 The stop diameter is not printed. Its radius is set from the design F/4.11 and stays fixed with focus.
 

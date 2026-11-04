@@ -15,9 +15,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // and BFL reproduce the patent, so no radius is changed.
 //
 // APERTURE: the patent states f/1.9 (catalog.fNumber.design). The production lens is f/2.5, and the inferred clear
-// apertures below do not pass the full f/1.9 axial beam at surfaces 5, 8 and 9; surface 5 cannot be enlarged
-// because L2 and L3 nearly touch at that height. The stop radius is therefore derived from f/2.5
-// (aperture.nominalFNumber), as for other lenses that open only to their marketed aperture.
+// apertures below do not pass the full f/1.9 axial beam at surfaces 5 and 8-11 or inside the lands on surfaces 6
+// and 7; surface 5 cannot be enlarged because L2 and L3 nearly touch at that height. The stop radius is therefore
+// derived from f/2.5 (aperture.nominalFNumber), as for other lenses that open only to their marketed aperture.
 //
 // FOCUS: L1-L6 and the stop move objectward as one unit; the L7/L8 corrector stays fixed to the film plane. The
 // patent prints D11 = 0.3 (infinity) and 44.76 mm, "for focusing from infinity to 404.6mm", with a magnification
@@ -28,9 +28,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // STOP: the patent marks the aperture stop A in the 12.635 mm R6-R7 airspace but gives no station. It is placed at
 // the midpoint (6.3175 + 6.3175 mm, inferred) and moves with the front unit.
 //
-// NOTE ON SEMI-DIAMETERS: the patent publishes no clear apertures. All semi-diameters are inferred from the FIG. 10
-// section proportions and the first-order beam; they are not factory clear apertures. Surface 5 was reduced from
-// 20.5 to 17.5 mm so that L2 and L3 do not overlap at the rim. Off-axis bundles are mechanically vignetted.
+// NOTE ON SEMI-DIAMETERS: the patent publishes no clear apertures. All semi-diameters are inferred from FIG. 10,
+// measured at its axial scale (9.57 px/mm), and floor-checked by real-ray trace; they are not factory clear
+// apertures. L2 and L6-L8 are at their drawn heights and L4/L5 (17.0 mm, drawn 17.7) are kept; L1 (drawn 23.3 mm)
+// is held at 24.8 mm so the corner light stays within 3 points of the package rims. Surface 5 stays at 17.5 mm
+// (drawn 18.3) so that L2 and L3 do not overlap at the rim, and L3 is square-cut at that height. FIG. 10 draws flat
+// lands on L3's rear (R6) and L4's front (R7) beside the stop: rim cuts at 4.20 and 3.98 mm (cut radii 15.02 and
+// 14.41 mm, q = 0.858 and 0.848). The corner bundle at f/2.5 is mechanically vignetted by about 3 %.
 //
 const LENS_DATA = {
   schema: 2,
@@ -118,7 +122,7 @@ const LENS_DATA = {
       glass: "S-TIL27 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative front half of the cemented doublet behind the stop (Group III).",
       focalLengthMm: -35.114801649775245,
-      cemented: "CD1",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -131,7 +135,7 @@ const LENS_DATA = {
       glass: "N-LAK9 (SCHOTT catalog equivalent; production supplier unspecified)",
       role: "Positive rear half of the cemented doublet behind the stop (Group III).",
       focalLengthMm: 38.63982976362425,
-      cemented: "CD1",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -175,27 +179,27 @@ const LENS_DATA = {
       label: "1",
       R: 85.85,
       d: 5,
-      sd: 26.5,
+      sd: 24.8,
       medium: 1,
     },
     {
       label: "2",
       R: "flat",
       d: 0.234,
-      sd: 26.5,
+      sd: 24.8,
     },
     {
       label: "3",
       R: 42.15,
       d: 14.847,
-      sd: 25,
+      sd: 22.3,
       medium: 2,
     },
     {
       label: "4",
       R: 95.62,
       d: 1.4,
-      sd: 25,
+      sd: 22.3,
     },
     {
       label: "5",
@@ -208,7 +212,8 @@ const LENS_DATA = {
       label: "6",
       R: 28.95,
       d: 6.3175,
-      sd: 20.5,
+      sd: 17.5,
+      rimCutDepthMm: 4.2,
     },
     {
       label: "STO",
@@ -220,6 +225,7 @@ const LENS_DATA = {
       R: -28.07,
       d: 3,
       sd: 17,
+      rimCutDepthMm: 3.98,
       medium: 4,
     },
     {
@@ -239,39 +245,39 @@ const LENS_DATA = {
       label: "10",
       R: 200.43,
       d: 3.605,
-      sd: 19.5,
+      sd: 17.5,
       medium: 6,
     },
     {
       label: "11",
       R: -84.63,
-      sd: 19.5,
+      sd: 17.5,
     },
     {
       label: "12",
       R: -279.43,
       d: 15.192,
-      sd: 21,
+      sd: 18.3,
       medium: 7,
     },
     {
       label: "13",
       R: -61.78,
       d: 7.954,
-      sd: 21,
+      sd: 18.3,
     },
     {
       label: "14",
       R: -48.45,
       d: 3.6,
-      sd: 21.5,
+      sd: 18.4,
       medium: 8,
     },
     {
       label: "15",
       R: -176.73,
       d: 40.5,
-      sd: 21.5,
+      sd: 18.4,
     },
   ],
   focus: {
@@ -304,7 +310,7 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "FRONT UNIT (L1–L6)",
+      text: "OBJECTIVE (L1–L6)",
       fromSurface: "1",
       toSurface: "11",
     },
@@ -316,7 +322,7 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "CD1",
+      text: "D1",
       fromSurface: "7",
       toSurface: "9",
     },

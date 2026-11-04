@@ -108,7 +108,7 @@ No scale factor is applied, and all surfaces are spherical. R, d, N and ν follo
 
 The infinity image plane lies 38.907 mm behind R18, 78.577 mm from the first vertex. This is the computed paraxial back focus; the patent prints no back focus.
 
-The front semi-diameters (11.1 mm) sit about 10% above the 10.06 mm entrance-pupil radius at f/2.5 (50.3/(2 × 2.5)). Canon's construction diagram sets the relative outlines of the other groups; none of these values is a factory clear aperture. L4 and the cemented pair are 10.5 mm, except S9 and S10, which face each other across the tight 1.35 mm air gap and are 8.4 mm. The rear menisci follow the diagram's ratio of about 1.23 to the front element. S5 is 9.2 mm, the smallest 0.1 mm step that passes the f/2.5 axial beam; with S4 at the same height, the two sags take 0.556 mm of the 0.600 mm air gap and leave 0.044 mm clearance. At f/2.5 the axial beam passes every surface unclipped.
+The front semi-diameters (11.1 mm) sit about 10% above the 10.06 mm entrance-pupil radius at f/2.5 (50.3/(2 × 2.5)). Canon's construction diagram sets the relative outlines of the other groups; none of these values is a factory clear aperture. L4 and the cemented pair are 10.5 mm. S9 and S10 face each other across a tight 1.35 mm air gap, so S10's clear aperture ends at 8.4 mm and a flat land carries L5 out to the 10.5 mm cemented rim; the patent's Example 1 drawing has the same land on this face, and Canon's diagram draws L4 and L5 square-cut and almost touching. L3 is square-cut at 9.2 mm. The rear menisci follow the diagram's ratio of about 1.23 to the front element. S5 is 9.2 mm, the smallest 0.1 mm step that passes the f/2.5 axial beam; with S4 at the same height, the two sags take 0.556 mm of the 0.600 mm air gap and leave 0.044 mm clearance. At f/2.5 the axial beam passes every surface unclipped.
 
 | Source face | Inferred clear SD, mm |
 | ----------- | --------------------: |
@@ -117,10 +117,10 @@ The front semi-diameters (11.1 mm) sit about 10% above the 10.06 mm entrance-pup
 | 3           |                  10.5 |
 | 4           |                  10.5 |
 | 5           |                   9.2 |
-| 6           |                    10 |
+| 6           |                   9.2 |
 | 8           |                  10.5 |
-| 9           |                   8.4 |
-| 10          |                   8.4 |
+| 9           |                  10.5 |
+| 10          |    8.4 (land to 10.5) |
 | 11          |                  10.5 |
 | 12          |                  10.5 |
 | 13          |                  11.1 |

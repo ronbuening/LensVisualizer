@@ -13,8 +13,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * keeps that size at every focus distance. Intermediate focus positions interpolate the two printed gap
  * sets linearly; the patent gives no focus cam. The G3b stabilizing group (surfaces 17–21) is centred.
  * Semi-diameters are not printed. They are inferred from Figure 1, the first-order pupil and the
- * repository's edge-thickness and gap rules; the filter's 17.5 mm is sized by ray trace (see the audit
- * log). Off-axis bundles are partly vignetted by these inferred rims.
+ * repository's edge-thickness and gap rules. The filter's 18.5 mm follows Figure 1, which draws the plate
+ * slightly taller than G3a and G3c; its largest traced ray height is 16.55 mm. G3b's 13.4 mm is held by
+ * the L11–L12 air-gap rule (Figure 1 draws about 15 mm). Off-axis bundles are partly vignetted by
+ * these inferred rims; see the audit log.
  * Glass labels name the HOYA catalog rows whose nd and νd match the printed values; the θgF values implied
  * by the patent's conditions (8), (9), (11) and (12) agree with those rows within 0.0002. They are catalog
  * equivalents; the production supplier is not established. L5's νd is 68.62 in the table and 68.63 in
@@ -116,7 +118,7 @@ const LENS_DATA = {
       glass: "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative front element of the cemented G1b doublet.",
       focalLengthMm: -153.05595708106688,
-      cemented: "CD1",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -132,7 +134,7 @@ const LENS_DATA = {
       apdNote:
         "Conditions (10) and (11) require this G1b positive to have νd > 65 and a partial-dispersion excess above 0.015 (θgF 0.5441); HOYA FCD515 coordinate match, and Sigma marks this position as its SLD element.",
       focalLengthMm: 102.49269338267062,
-      cemented: "CD1",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -145,7 +147,7 @@ const LENS_DATA = {
       glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive element of the cemented G2 focusing doublet, which moves toward the image for near focus.",
       focalLengthMm: 227.1832828673316,
-      cemented: "CD2",
+      cemented: "D2",
     },
     {
       id: 7,
@@ -158,7 +160,7 @@ const LENS_DATA = {
       glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative element of the cemented G2 focusing doublet; it gives the group its negative power.",
       focalLengthMm: -101.60560418909864,
-      cemented: "CD2",
+      cemented: "D2",
     },
     {
       id: 8,
@@ -171,7 +173,7 @@ const LENS_DATA = {
       glass: "BACED5 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive element of the cemented G3a doublet just behind the stop.",
       focalLengthMm: 77.0561188058848,
-      cemented: "CD3",
+      cemented: "D3",
     },
     {
       id: 9,
@@ -184,7 +186,7 @@ const LENS_DATA = {
       glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative meniscus, convex to the image, completing the G3a doublet.",
       focalLengthMm: -119.72159002608515,
-      cemented: "CD3",
+      cemented: "D3",
     },
     {
       id: 10,
@@ -197,7 +199,7 @@ const LENS_DATA = {
       glass: "E-FD4 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive element of the cemented doublet in the G3b stabilizing group.",
       focalLengthMm: 58.197498812211805,
-      cemented: "CD4",
+      cemented: "D4",
     },
     {
       id: 11,
@@ -210,7 +212,7 @@ const LENS_DATA = {
       glass: "PCD51 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative element of the cemented doublet in the G3b stabilizing group.",
       focalLengthMm: -39.5484998479417,
-      cemented: "CD4",
+      cemented: "D4",
     },
     {
       id: 12,
@@ -247,7 +249,7 @@ const LENS_DATA = {
       glass: "E-FL6 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive element of the cemented G3c doublet.",
       focalLengthMm: 59.42213936755182,
-      cemented: "CD5",
+      cemented: "D5",
     },
     {
       id: 15,
@@ -260,7 +262,7 @@ const LENS_DATA = {
       glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative element of the cemented G3c doublet; the last powered element.",
       focalLengthMm: -67.45340972334161,
-      cemented: "CD5",
+      cemented: "D5",
     },
     {
       id: 16,
@@ -381,34 +383,34 @@ const LENS_DATA = {
       label: "17",
       R: 83.7235,
       d: 3.3809,
-      sd: 13.4,
+      sd: 14.0,
       medium: 10,
     },
     {
       label: "18",
       R: -90.9109,
       d: 0.9,
-      sd: 13.4,
+      sd: 14.0,
       medium: 11,
     },
     {
       label: "19",
       R: 31.7574,
       d: 4.798,
-      sd: 13.4,
+      sd: 14.0,
     },
     {
       label: "20",
       R: -70.4267,
       d: 0.7,
-      sd: 13.4,
+      sd: 14.0,
       medium: 12,
     },
     {
       label: "21",
       R: 98.5304,
       d: 5.5023,
-      sd: 13.4,
+      sd: 14.0,
     },
     {
       label: "22",
@@ -447,14 +449,14 @@ const LENS_DATA = {
       label: "27",
       R: "flat",
       d: 1.3,
-      sd: 17.5,
+      sd: 18.5,
       medium: 16,
     },
     {
       label: "28",
       R: "flat",
       d: 75.5375,
-      sd: 17.5,
+      sd: 18.5,
     },
   ],
   focus: {
@@ -495,12 +497,17 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "G1",
+      text: "G1a",
       fromSurface: "1",
+      toSurface: "6",
+    },
+    {
+      text: "G1b",
+      fromSurface: "7",
       toSurface: "9",
     },
     {
-      text: "G2",
+      text: "G2 focus",
       fromSurface: "10",
       toSurface: "12",
     },
@@ -522,31 +529,32 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "CD1",
+      text: "D1",
       fromSurface: "7",
       toSurface: "9",
     },
     {
-      text: "CD2",
+      text: "D2",
       fromSurface: "10",
       toSurface: "12",
     },
     {
-      text: "CD3",
+      text: "D3",
       fromSurface: "14",
       toSurface: "16",
     },
     {
-      text: "CD4",
+      text: "D4",
       fromSurface: "17",
       toSurface: "19",
     },
     {
-      text: "CD5",
+      text: "D5",
       fromSurface: "24",
       toSurface: "26",
     },
   ],
+  checks: { gapSagFrac: 0.98 },
   layout: {
     yScFill: 0.78,
   },

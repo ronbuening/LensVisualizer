@@ -67,21 +67,21 @@ All lengths are scaled uniformly ×5 from the patent's f = 100.0; n, ν and surf
 
 The image plane is fixed by the printed L = 65.767 (front vertex to focal plane), 328.835 mm at ×5. The last gap, 125.600 mm, is L minus the axial track and is not a separately printed back focus. The computed paraxial BFD is 125.444 mm, so the printed plane lies 0.156 mm behind paraxial focus. This patent-internal inconsistency is kept; the plane is not moved to best focus.
 
-The patent prints no clear diameters or stop position. Fig. 3 draws the three front elements with roughly equal outlines and the rear doublet at about 0.40 of their height. The front semi-diameters are the nominal F/5.6 entrance-pupil radius at f = 500 plus 8 %, 48.2 mm; the rear doublet's are 19.3 mm. Fig. 3 places the iris at about 0.51 of the long gap d6; the model puts it at the midpoint, keeping the whole printed gap.
+The patent prints no clear diameters or stop position. The semi-diameters are measured from Fig. 3, scaled by its first-to-last vertex span (0.198 mm per pixel at the scan's 347 dpi); the iris opening drawn there, 24.2 mm, agrees with the model's 24.5 mm stop radius. Fig. 3 draws L1 at 44.4 mm, L2 and L3 at 43.0 mm and the cemented rear doublet as a square block at 17.3 mm. L2 and L3 use the drawn 43.0 mm. L1 is held at 46.5 mm and the doublet at 18.2 mm, the smallest rims that keep corner transmission within 3 points of the wider rims first assigned (48.2 mm and 19.3 mm); L1's 93 mm clear diameter also fits inside the 95 mm filter thread Canon lists. Fig. 3 places the iris at about 0.51 of the long gap d6; the model puts it at the midpoint, keeping the whole printed gap.
 
-At F/5.6 the axial bundle passes every surface unclipped. The real image-space working f-number is 5.75, against the nominal paraxial F/5.6.
+At F/5.6 the axial bundle passes every surface unclipped; the F/5.6 marginal ray is 44.6 mm high at L1. Wide open, geometric transmission is 98.4 % at 1.6° and 95.3 % at the 2.5° corner. The real image-space working f-number is 5.75, against the nominal paraxial F/5.6.
 
 | Source face | Inferred clear SD, mm |
 | ----------- | --------------------: |
-| 1           |                  48.2 |
-| 2           |                  48.2 |
-| 3           |                  48.2 |
-| 4           |                  48.2 |
-| 5           |                  48.2 |
-| 6           |                  48.2 |
-| 7           |                  19.3 |
-| 8           |                  19.3 |
-| 9           |                  19.3 |
+| 1           |                  46.5 |
+| 2           |                  46.5 |
+| 3           |                  43.0 |
+| 4           |                  43.0 |
+| 5           |                  43.0 |
+| 6           |                  43.0 |
+| 7           |                  18.2 |
+| 8           |                  18.2 |
+| 9           |                  18.2 |
 
 ## Model Scope and Limitations
 

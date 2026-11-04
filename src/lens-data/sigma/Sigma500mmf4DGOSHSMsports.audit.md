@@ -38,3 +38,39 @@ In the analysis, process wording (grades, gates, native/receipt vocabulary, test
 
 Open: none.
 - 2026-11-04 coordinator note: L1, L3 and L5 changed from `apd: "inferred"` to `apd: "patent"`, because claim 5 and conditions (7)/(8) and (10)/(11) designate their anomalous partial dispersion directly.
+
+## 2026-11-04 — Final diagram, rim and label review
+
+Compared the local page (infinity, 3.5 m and the focus-motion overlay, 3× screenshots) with the native Figure 1 raster (PDF p. 26, 1069 × 687 px at 399 ppi) and with Sigma's construction diagram (viewed only, not stored in the repository).
+
+Figure scale. Axially Figure 1 is 0.466 mm/px: surface 1 to the image plane is 868 px for 404.50 mm, surface 1 to surface 7 is 370 px for 172.35 mm (0.4658) and surface 1 to surface 28 is 706 px for 328.96 mm (0.4660). It is drawn at infinity (d9 is 16 px, 7.5 mm). Radially it is drawn about 8 % taller. At 0.466 mm/px, L1's 148 px rim would be 69.0 mm, beyond the 65.0 mm where L1's two sags (7.66 + 7.28 mm) use up its 14.99 mm thickness. The drawn sags of surfaces 1 and 2 (15 px each) put the L1 rim at 62–64 mm, and those of L3 put it at 54–55 mm. The stored rims divided by the drawn heights give a nearly constant 0.41–0.44 mm/px: L1 0.432, L2/L3 0.432, G1b 0.412, G2 0.434, G3a 0.424, L13 0.439, L14/L15 0.429. The outliers are G3b at 0.383 and the filter at 0.402. The maker diagram is close to isotropic at 0.370 mm/px (surface 1 to the filter is 885 px for 327.66 mm; its stop tick falls at 259.3 mm, where the prescription puts the stop).
+
+| Element    | Figure 1 px | Figure 1 at 0.43 mm/px | Maker diagram (mm)   | sd before | sd after |
+| ---------- | ----------- | ---------------------- | -------------------- | --------- | -------- |
+| L1         | 148         | 63.6                   | 60.7                 | 64        | 64       |
+| L2 / L3    | 132 / 132   | 56.8 / 56.8            | 56.6 / 54.6          | 57        | 57       |
+| G1b L4–L5  | 85          | 36.6                   | 36.6 / 33.7          | 35        | 35       |
+| G2 L6–L7   | 68          | 29.2                   | 27.8                 | 29.5      | 29.5     |
+| G3a L8–L9  | 42.5        | 18.3                   | 18.5                 | 18        | 18       |
+| G3b L10–12 | 35          | 15.1                   | 14.3 (doublet), 15.2 | 13.4      | 13.4     |
+| L13        | 41          | 17.6                   | 17.0                 | 18        | 18       |
+| L14–L15    | 42          | 18.1                   | 18.0                 | 18        | 18       |
+| Filter L16 | 43.5        | 18.7                   | 21.6                 | 17.5      | 18.5     |
+
+Change 1, filter plate surfaces 27–28 from 17.5 to 18.5 mm. Both diagrams draw the plate as the tallest item behind the stop (Figure 1: 43.5 px against 42.5 px for G3a and 42 px for L14–L15; maker: 21.6 mm against 18.0–18.5 mm). At 17.5 mm the site drew it below G3a and G3c. At 18.5 mm it is the drawn ratio to G3a (43.5/42.5 × 18 = 18.4 mm), the smallest step that restores the drawn order. The plate limits no ray at either value: geometric transmission at infinity, wide open, is 100.0/99.9/93.1/84.1/74.1/64.3/54.0 % at 0/0.4/0.8/1.3/1.7/2.1/2.5° before and after. At 17.0 mm the corner would drop to 53.7 %, so 17.5 mm was only just clear. The surface validator reports no errors, and the clear-aperture trace shows no axial clip or blocked chief ray.
+
+Change 2, group brackets: "G1" (surfaces 1–9) became "G1a" (1–6) and "G1b" (7–9), and "G2" became "G2 focus". The patent's group-data table (PDF p. 18) and Figure 1 name G1a and G1b at the same level as G3a, G3b and G3c, which the file already used. The renderer staggers "G1b" and "G2 focus" onto separate rows, so the labels do not collide.
+
+Lands and cuts: none. The file had no rim below the package baseline and no `rimExtensionSd` or `rimCutDepthMm`; rim-cost against the baseline is 0.0 points at every field, before and after. Candidate flat lands in Figure 1 were left unauthored. L2's concave front ends in an 8-row vertical run at column 245, beside a regular 1-px-per-5-row slope (q ≈ 0.97, at the resolution limit). L4's step at column 547 sits at the cemented junction. No other concave face shows a perpendicular segment.
+
+G3b kept at 13.4 mm, about 10 % below both diagrams. The air gap between surfaces 19 and 20 limits it. At 13.6 mm the validator reports "combined surface sag (4.39 mm) exceeds allowed gap intrusion (4.318 mm of 4.798 mm)", and at 14.0 mm the sag is 4.66 mm. With the cross-gap limit raised in a scratch copy, 14.0 mm on surfaces 17–21 fails at 0.97 (4.654 mm allowed) and passes at 0.98. The faces would then be 0.14 mm apart at the rim; Figure 1 draws L11 and L12 touching there. That trial raises corner transmission from 54.0 to 57.6 % (0.8°: 93.1 to 94.7 %). This policy field was not edited.
+
+Other rims agree with Figure 1 at its radial scale within 0–4 %. L1 (65.0 mm knife edge) and G1b (L5 edge 1.0 mm at 35 mm) are near their physical limits. The maker diagram draws L1, L3, G2 and L13 3–6 % smaller and L4 above L5 with a stepped flange. Those are production differences; the patent example governs.
+
+Checked and found correct: element types against the signs of R and the ¶0075–0079 descriptions (L2 and L9 negative menisci convex to the image, L4 and L5 menisci convex to the object, L7, L11, L12 and L15 biconcave); roles; five cemented brackets CD1–CD5 on surfaces 7–9, 10–12, 14–16, 17–19 and 24–26; no aspheric markers (none printed); stop between G2 and G3a (¶0077). The `apd: "patent"` tags on L1, L3 and L5 follow claims 2, 3 and 5. Claim 5 requires two G1a positives meeting conditions (7) and (8), and Example 1's G1a has exactly two (L1, L3); claim 3's conditions (10) and (11) apply to G1b's single positive, L5. L2 and L4 meet the below-normal conditions (9) and (12) and stay untagged. All 16 glass labels resolve to HOYA catalog rows (FCD100, NBFD13, TAC8, FCD515, FDS90, TAF1, BACED5, E-FD4, PCD51, E-FL6, BSC7), and the inspector shows them for L1, L2, L3, L5, L10 and L16. Focus: index 0 is infinity and index 1 the 3500 mm state; G2 moves 20.1058 mm toward the image (d9 7.5520 to 27.6578 mm, d12 59.6448 to 39.5390 mm, PDF p. 18), as ¶0076 states. Every other group and the image plane stay fixed. The motion overlay shows G2 alone moving rearward. The slider runs from ∞ to 3.50 m.
+
+Before and after: EFL 487.0037 mm, f/4.11, half-field 2.53°, stop radius 17.0165 mm, all unchanged. The engine's internal tracing half-field moved from 4.248° to 4.278° with the larger plate. Image-circle and field-coverage (100 %) checks pass, and the aperture check is within 3 % of f/4.11.
+
+Open: G3b sits about 10 % under both diagrams unless the cross-gap limit is raised to 0.98. The stop is drawn at the engine's 17.02 mm radius (housing 18 mm), while Figure 1's S ticks sit about 50 px out and the maker tick about 22.6 mm.
+- 2026-11-04 coordinator change: G3b surfaces 17–21 raised 13.4 → 14.0 mm with `checks.gapSagFrac: 0.98` (the smallest two-decimal value that admits it; 0.97 fails). Figure 1 and Sigma's section both draw G3b about 15 mm, and the L11–L12 faces stay 0.14 mm apart at the rim. Corner transmission at 2.53° rises from 54.0 % to 57.6 %.
+- 2026-11-04 coordinator note: doublet labels renamed from the CD series to D1… (corpus convention).

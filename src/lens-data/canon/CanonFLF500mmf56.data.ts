@@ -12,8 +12,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * L minus the axial track (125.600 mm). Paraxial BFD is 125.444 mm: the printed plane sits 0.156 mm behind paraxial
  * focus, a patent-internal inconsistency kept as printed. Computed EFL is 499.57 mm against the scaled f = 500.0.
  * No clear diameters or stop position are printed. The stop sits at the middle of d6 (Fig. 3 draws it at about 0.51
- * of the gap); the front sd of 48.2 mm is the F/5.6 axial beam at f = 500 plus 8 %, and the rear doublet's 19.3 mm
- * keeps Fig. 3's rear-to-front outline ratio of about 0.40.
+ * of the gap). Semi-diameters are measured from Fig. 3 at 0.198 mm/px (first-to-last vertex span; the drawn iris
+ * opening, 24.2 mm, agrees with the 24.5 mm engine stop): L2 (square-cut) and L3 at the drawn 43.0 mm; L1 drawn at
+ * 44.4 mm is held at 46.5 mm and the cemented doublet drawn at 17.3 mm at 18.2 mm, the smallest rims that keep corner
+ * light within 3 points of the package rims (48.2 / 19.3 mm). L1 stays above the 44.6 mm F/5.6 axial beam.
  * Infinity focus only; the patent prints no close-focus state.
  */
 const LENS_DATA = {
@@ -107,7 +109,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -45.22075259995423,
       role: "Negative front member of the cemented rear doublet, which gives the rear group its negative telephoto power.",
-      cemented: "CD1",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -120,7 +122,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 83.45540747803705,
       role: "Positive rear member of the cemented rear doublet.",
-      cemented: "CD1",
+      cemented: "D1",
     },
   ],
   surfaces: [
@@ -128,40 +130,40 @@ const LENS_DATA = {
       label: "1",
       R: 123.765,
       d: 15.415000000000001,
-      sd: 48.2,
+      sd: 46.5,
       medium: 1,
     },
     {
       label: "2",
       R: -228.95499999999998,
       d: 16.025,
-      sd: 48.2,
+      sd: 46.5,
     },
     {
       label: "3",
       R: -183.46499999999997,
       d: 4.82,
-      sd: 48.2,
+      sd: 43.0,
       medium: 2,
     },
     {
       label: "4",
       R: 944.9250000000001,
       d: 3.37,
-      sd: 48.2,
+      sd: 43.0,
     },
     {
       label: "5",
       R: 109.17,
       d: 11.565000000000001,
-      sd: 48.2,
+      sd: 43.0,
       medium: 3,
     },
     {
       label: "6",
       R: 2500.31,
       d: 63.4875,
-      sd: 48.2,
+      sd: 43.0,
     },
     {
       label: "STO",
@@ -172,21 +174,21 @@ const LENS_DATA = {
       label: "7",
       R: -55.175,
       d: 7.4350000000000005,
-      sd: 19.3,
+      sd: 18.2,
       medium: 4,
     },
     {
       label: "8",
       R: 81.92500000000001,
       d: 17.63,
-      sd: 19.3,
+      sd: 18.2,
       medium: 5,
     },
     {
       label: "9",
       R: -114.84,
       d: 125.6,
-      sd: 19.3,
+      sd: 18.2,
     },
   ],
   focus: {
@@ -218,7 +220,7 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "CD1",
+      text: "D1",
       fromSurface: "7",
       toSurface: "9",
     },

@@ -9,7 +9,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * track, 0.026 mm shorter than the paraxial back focus.
  * The patent prints no stop coordinate or clear apertures. Fig. 4 draws the stop at about 0.70 of d7 between the r7 and
  * r8 vertices; the model places it at 0.70 (59.8248 / 25.6392 mm). Front sd 28.9 mm = entrance-pupil radius + 8 %; rear sd 13.3 mm follows the
- * Fig. 4 rear/front outline ratio (0.459).
+ * Fig. 4 rear/front outline ratio (0.459). A 347 dpi re-reading of Fig. 4 gives front rims of 25.9–26.6 mm,
+ * under the 26.79 mm axial floor at r1, and a rear/front ratio of 0.44–0.45. The rims are kept: L1 below about
+ * 28.1 mm or L6 below about 12.85 mm costs more than 3 points of corner illumination, and the rest of the
+ * difference is within the reading noise.
  * L1 and L2 are labelled CaF2 in the patent and use the catalog CaF2 curve; L3–L6 use coordinate-equal catalog
  * equivalents (SF56A, J-LASF013, S-LAM60, FF5) for dispersion; the production melts are unidentified.
  * Infinity focus only: the patent prints no close-focus state.
@@ -96,7 +99,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 345.34846160563654,
       role: "Dense-flint positive meniscus, concave to the object, cemented to L4; the pair is the negative rear component of the front group.",
-      cemented: "CD1",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -108,8 +111,8 @@ const LENS_DATA = {
       glass: "J-LASF013 (HIKARI catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       focalLengthMm: -84.20133605539667,
-      role: "Biconcave lanthanum-flint element of the cemented pair; its strongly curved rear face, toward the image, carries the front group's negative power.",
-      cemented: "CD1",
+      role: "Biconcave lanthanum-flint element of the cemented pair; its strongly curved rear face, toward the image, carries most of the pair's negative power.",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -245,7 +248,7 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "CD1",
+      text: "D1",
       fromSurface: "5",
       toSurface: "7",
     },

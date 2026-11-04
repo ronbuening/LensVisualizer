@@ -12,7 +12,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The stop position (row 7, D6 = 4.00, D7 = 3.10) is printed; every semi-diameter is inferred, since
  * the only section drawing (Fig. 1) shows Example 1. S5 = 9.2 mm is the smallest 0.1 mm step that
  * passes the f/2.5 axial beam; at that height S4 and S5 leave 0.044 mm clearance in the 0.60 mm
- * gap, hence gapSagFrac 0.925935.
+ * gap, hence gapSagFrac 0.925935. L3 is square-cut at S5's 9.2 mm and L4 at 10.5 mm. S10's clear
+ * aperture ends at 8.4 mm, where it would cross S9 in the 1.35 mm gap; a flat land (rimExtensionSd)
+ * carries L5 out to the 10.5 mm cemented rim, as Fig. 1 draws on the same face of Example 1 and
+ * Canon's diagram shows. These drawn rims leave the clear apertures and the light unchanged.
  */
 const LENS_DATA = {
   schema: 2,
@@ -114,7 +117,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -16.56395949737902,
       role: "Dense-flint negative front element of the cemented pair; its strongly curved front face, concave to the stop, is the main negative surface behind the stop.",
-      cemented: "CD1",
+      cemented: "D1",
     },
     {
       id: 6,
@@ -127,7 +130,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 26.377815409965656,
       role: "High-index biconvex rear element of the cemented pair; the dispersion step across the cemented face helps correct axial colour.",
-      cemented: "CD1",
+      cemented: "D1",
     },
     {
       id: 7,
@@ -204,7 +207,7 @@ const LENS_DATA = {
       label: "6",
       R: 16.17,
       d: 4.0,
-      sd: 10,
+      sd: 9.2,
     },
     {
       label: "STO",
@@ -222,13 +225,14 @@ const LENS_DATA = {
       label: "9",
       R: -25.26,
       d: 1.35,
-      sd: 8.4,
+      sd: 10.5,
     },
     {
       label: "10",
       R: -14.66,
       d: 1.87,
       sd: 8.4,
+      rimExtensionSd: 10.5,
       medium: 5,
     },
     {
@@ -324,7 +328,7 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "CD1",
+      text: "D1",
       fromSurface: "10",
       toSurface: "12",
     },
