@@ -73,3 +73,27 @@ Follow-ups:
   `src/lens-data/leica/LeitzNoctilux50mmf12.data.ts` does.
 - Then re-census the infinity plane and choose between keeping it as a best-focus plane and re-solving 15.d. The
   coordinator queues this in Section G of `agent_docs/sd-audit-queue.md`.
+
+## 2026-11-03 — Asphere refit to the chord law; image plane kept as a best-focus plane
+
+Source: US 5,161,060 A col. 3 (PDF p. 6): p(s)=ΣK(n)(s²/2)^n, "The chord s is the separation of a point on the lens
+surface from the lens vertex"; K(1)…K(6) for surfaces 4 and 13 as printed in the coefficient table on the same page.
+
+| Surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| 4A | asphere | K −1, A4–A12 = K(n)/2^n (radial-height reading) | K −1, A4–A20 least-squares fit to the implicit chord law over h ≤ 12.6 | col. 3 defines s as the chord; residual < 1e-5 µm |
+| 13A | asphere | K −1, A4–A12 = K(n)/2^n | K −1, A4–A20 fit over h ≤ 14.2 | same; residual < 1e-6 µm |
+
+- R stays 1/K(1). Rim sag 4A 2.464 → 2.546 mm, 13A 1.462 → 1.476 mm (old model off by up to 82.5 and 13.4 µm).
+  The surface scans are monotone with no turnover inside either clear radius; aperture, image-circle, field-coverage
+  and surface-probe audits are unchanged.
+- Real-ray axial best focus (MTF, reference line): +1.269 → −0.045 mm; the design-plane score rises 0.030 → 0.348.
+  Paraxial offset unchanged at +0.041496 mm (18 depths); EFL 35.411722 mm unchanged.
+- Image-plane class C (kept): FIG. 2 (sheet 2) plots the on-axis 546 nm transverse aberration with a small positive
+  rise that crosses zero at a quarter to a third of the plotted aperture. Traced on the refitted model, that curve
+  crosses at 26 % of the pupil at the printed 19.595 mm plane, at 60 % at real-ray best focus and not at all at
+  paraxial focus, so the patent evaluates at (or within about 0.01 mm of) the printed intercept. 15.d stays 19.595.
+- Header, aspherical-surface section, image-plane passages of the analysis, Section E/G rows and the decisions list
+  are updated.
+
+Follow-ups: none.

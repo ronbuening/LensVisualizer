@@ -134,7 +134,8 @@ One dated bullet per decision with a source pointer; delete a bullet only when t
 ## Checked and excluded (lens data)
 
 - 2026-11-03 — An infinity image plane out of its own paraxial focus is worked, not kept (Ron's ruling, replacing the earlier "source-rounded prescriptions may keep residual defocus" rule). Rows the source rounds or contradicts are re-solved, back focus first. Published rows stay published, R, glass, plates and the image plane are unchanged, and the threshold is 10 depths at every station. The rule is in `src/lens-data/LENS_DATA_SPEC.md`, Image-Plane Consistency. Kept as deliberate best-focus planes (the source evaluates there, or real-ray axial best focus lies within 10 depths at every station); leave them alone:
-  - Leica Summilux-C 18, 40 and 100 mm T1.4 and Summilux-SL 50 mm f/1.4 ASPH;
+  - Leica Summilux-C 18, 40 and 100 mm T1.4, Summilux-SL 50 mm f/1.4 ASPH and Summilux-M 35 mm f/1.4 ASPHERICAL
+    (FIG. 2 is drawn at its printed intercept, after the chord-law asphere refit);
   - Voigtländer Nokton 50 mm f/1.5 II VM and Schneider Variogon 8–40 mm;
   - Sony E 50 mm f/1.8 OSS, FE 12–24 mm GM and FE 16–35 mm GM;
   - Tamron SP A009 and Viltrox AF 27 mm f/1.2;

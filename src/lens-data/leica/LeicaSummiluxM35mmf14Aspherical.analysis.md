@@ -58,8 +58,11 @@ neither “telephoto” (`TL/EFL = 1.31143`, not below 1) nor “retrofocus” (
 
 The patent gives 19 mm in prose for the intercept distance but tabulates **19.595 mm** from surface 15 to image plane 16
 and explicitly defines that row as the image-plane separation. The implemented model follows the tabulated 19.595 mm.
-The approximately 0.0415 mm difference between that source plane and the calculated Gaussian BFD is consistent with the
-limited precision of the patent's three-decimal refractive indices; it is not removed by changing the rear spacing.
+The plane sits 0.0415 mm in front of the calculated Gaussian BFD and 0.045 mm behind the real-ray axial best focus, so it
+is a compromise plane between the two. FIG. 2 is drawn near it: the on-axis 546 nm transverse aberration rises slightly
+and crosses zero at a quarter to a third of the plotted aperture. The model crosses at 26 % of the pupil at 19.595 mm,
+at 60 % at real-ray best focus, and never at paraxial focus.
+The image plane is therefore kept as the patent's evaluation plane (`LENS_DATA_SPEC.md`, Image-Plane Consistency).
 
 ## Element-by-Element Analysis
 
@@ -201,25 +204,33 @@ $$
 
 and explicitly states that $K(1)$ is the reciprocal of the vertex radius. [US 5,161,060, PDF p. 6, printed p. 3.]
 
-LensVisualizer's authored asphere form has no independent $A_2$ term. The exact representation therefore uses the
-standard conic carrier with **K = −1**, for which the base sag becomes exactly $h^2/(2R)$, together with
-$R=1/K(1)$ and $A_{2n}=K(n)/2^n$ for $n\ge2$. The `K = -1` values in the data are algebraic carriers for the patent's
-direct polynomial; they are not a claim that Leica specified paraboloidal physical surfaces.
+Here $s$ is the chord from the vertex to the surface point, "the separation of a point on the lens surface from the lens
+vertex" (col. 3), so $s^2 = h^2 + p^2$ and the law is implicit in the sag. With $K(1)$ alone it is an exact sphere of
+radius $1/K(1)$. LensVisualizer has no chord-form surface, so each asphere is stored as $R=1/K(1)$ with a **K = −1**
+carrier plus $A_4$–$A_{20}$ fitted by least squares to the implicit law over the clear radius, the method used for the
+Leitz Noctilux 50 mm. The stored sag matches the patent equation to better than $10^{-5}$ µm within each semi-diameter.
+The `K = −1` values are carriers, not a claim of paraboloidal physical surfaces, and the A-terms are derived, not printed.
 
-The final mapped coefficients are:
+Until 2026-11-03 the file read $s$ as the radial height ($A_{2n}=K(n)/2^n$), a different surface: its rim sag was
+2.464 mm on 4A and 1.462 mm on 13A against the chord law's 2.546 and 1.476 mm. That error left the on-axis marginal rays
+focusing about 1.2 mm behind the image plane.
 
-| Surface | Vertex radius R (mm) | Carrier K | A4 | A6 | A8 | A10 | A12 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 4A | 28.3462781337 | −1 | −9.7585e−6 | −3.925875e−8 | +3.2073125e−10 | −2.1098125e−12 | +4.71109375e−15 |
-| 13A | 60.0276127018 | −1 | −5.85875e−6 | +4.007375e−9 | +1.285e−11 | −1.7418125e−13 | +3.7078125e−16 |
+| Coefficient | 4A ($K(n)$ printed) | 13A ($K(n)$ printed) |
+|---|---:|---:|
+| $K(1)$ | 0.35278e−1 | 0.16659e−1 |
+| $K(2)$ | −0.39034e−4 | −0.23435e−4 |
+| $K(3)$ | −0.31407e−6 | 0.32059e−7 |
+| $K(4)$ | 0.51317e−8 | 0.20560e−9 |
+| $K(5)$ | −0.67514e−10 | −0.55738e−11 |
+| $K(6)$ | 0.30151e−12 | 0.23730e−13 |
 
 The source construction table prints radii 28.346 mm and 60.026 mm. Those are slightly rounded relative to the radii
 implied by the published $K(1)$ values. The final data uses the equation-consistent radii above while the raw printed
 values remain preserved in the evidence record.
 
-At the modeled semi-diameters of **12.6 mm** on 4A and **14.2 mm** on 13A, the mapped sag equation is algebraically
-identical to the source polynomial within floating-point precision. Relative to same-radius spherical vertex carriers,
-the modeled departures are approximately **−0.49061 mm** and **−0.24143 mm**, respectively. These departures are quoted
+At the modeled semi-diameters of **12.6 mm** on 4A and **14.2 mm** on 13A, the chord-law sags are **2.54624 mm** and
+**1.47574 mm**. Relative to same-radius spherical vertex carriers, the departures are approximately **−0.40808 mm** and
+**−0.22800 mm**, respectively. These departures are quoted
 only at the modeled apertures; the patent does not publish those clear semi-diameters.
 
 The patent argues that its two convex aspherical surfaces permit the desired marginal-image correction without resorting
@@ -271,11 +282,11 @@ no air-equivalent rear-plate conversion.
 7. **HIKARI GLASS CO., LTD.**, current optical-glass catalog, used for native-e coordinate-neighbor/candidate checks:
    https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf
 
-## Image-plane source audit (2026-09-25)
+## Image plane
 
-MTF source audit: the e-line prescription gives BFL 19.636496 against
-published S15-to-image 19.595 mm (offset +0.041496), EFL 35.411722
-against nominal 35. The source discusses best focusing and −0.07 mm
-defocus for field curvature, but does not tie those to the S15 spacing.
-Retain the equation-consistent aspheres and published image plane; do not
-interpret this small offset as a proven designer optimum.
+The e-line prescription gives a Gaussian BFL of 19.636496 mm against the published 19.595 mm intercept (offset
++0.041496 mm, 18 depths of focus at f/1.4), and EFL 35.411722 mm against the nominal 35 mm. With the chord-law
+aspheres the real-ray axial best focus lies 0.045 mm in front of the plane, and the best-focus RMS spot is about 4 µm,
+matching the patent's "less than 7 µm in the best focusing plane". FIG. 2's on-axis curve is drawn near the published
+plane, so it is kept as the patent's evaluation plane rather than re-solved to paraxial focus. The patent's −0.07 mm
+defocus for meridional field flatness is a separate statement and is not modeled.
