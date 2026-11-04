@@ -1,15 +1,26 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole selected source; inferred caps and iris were frozen before MTF.
- * Source/factory identity, wavelength, fixed-plane and finite-conjugate qualifications
- * are in the paired analysis/audit. No optical fitting or continuous cam claim.
+/** JP 2006-153942 A, Numerical Example 2 (Canon Inc.; Yoshiyuki Taki): f = 62.5 mm, Fno. 2.92, ω = 12.3°,
+ * all spherical, 12 elements / 8 groups. No scale factor is applied. Probable production correlation with the
+ * March 2005 EF-S 60mm f/2.8 Macro USM (Canon: 12/8, inner focus, 1:1); not a factory prescription.
+ * R, d, nd and νd follow the printed Table 2 without alteration, including R19 = 2101.954 as printed (an
+ * earlier transcription in the source package read 201.954). The patent prints nd and νd and plots the d, g,
+ * C and F lines.
+ * Rows 13 and 14 are flat air planes 2.62 mm apart, drawn as the stop SP between groups 2 and 3 (¶0027); the
+ * table does not say which plane is the iris, so both are dropped and the iris is placed midway: gap 12 =
+ * D12 + 1.31 and the stop gap = 1.31 + D14, which keeps every printed spacing.
+ * The terminal gap (37.537 mm) is the computed paraxial back focus at infinity; the patent prints no back focus.
+ * The image plane stays there for the printed −1.0× spacings, giving 199.86 mm object to image at −0.9997×.
+ * All semi-diameters are inferred: S1/S2 sit about 10 % above the 10.70 mm entrance-pupil radius and the rest
+ * follow Fig. 2's relative outlines. On 2026-11-04 the rims of S6–S12 and S15–S19 were raised so that the
+ * iris, not a rim, limits the f/2.92 axial beam; S9/S10 sit at the 0.9 gap-sag limit.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "canon-ef-s-60mm-f28-macro-usm",
   "maker": "Canon",
   "name": "CANON EF-S 60mm f/2.8 Macro USM",
-  "subtitle": "JP 2006-153942 A — whole Example 2; qualified representative reconstruction",
+  "subtitle": "JP 2006-153942 A, Example 2 — probable production correlation",
   "catalog": {
     "lensMounts": [
       "canon-ef-s"
@@ -17,6 +28,9 @@ const LENS_DATA = {
     "imageFormat": "aps-c",
     "elementCount": 12,
     "groupCount": 8,
+    "closeFocusM": {
+      "marketing": 0.2
+    },
     "focalLengthMm": {
       "marketing": 60,
       "design": 62.5
@@ -26,10 +40,11 @@ const LENS_DATA = {
       "design": 2.92
     },
     "specs": [
-      "Grade B representative family; exact factory prescription unproved",
-      "Literal whole source, fixed plane, inferred caps/iris; clipping retained",
-      "Explicit finite endpoint with calculated conjugate; no continuous source cam law",
-      "Scalar implementation estimates; no physical OPL or factory certification"
+      "12 ELEMENTS / 8 GROUPS",
+      "DESIGN f = 62.5 mm",
+      "DESIGN F/2.92",
+      "ALL SPHERICAL",
+      "INNER FOCUS; 1.0× MAX"
     ]
   },
   "source": {
@@ -55,10 +70,9 @@ const LENS_DATA = {
       "nd": 1.603112,
       "vd": 60.64,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-BSM14 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 60.681382003520106,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power."
+      "role": "Biconvex front element of the fixed first group; begins converging the axial beam."
     },
     {
       "id": 2,
@@ -68,10 +82,9 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.23,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 35.84399704026983,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "Low-dispersion crown front element of the first group's cemented doublet; the strongest positive element of the fixed group.",
       "cemented": "CD1"
     },
     {
@@ -82,10 +95,9 @@ const LENS_DATA = {
       "nd": 1.834,
       "vd": 37.16,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -28.954400173894683,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "High-index biconcave rear element of the first group's cemented doublet; corrects the fixed group's axial colour.",
       "cemented": "CD1"
     },
     {
@@ -96,10 +108,9 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.23,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 56.60697429958351,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power."
+      "role": "Low-dispersion crown biconvex element closing the fixed first group, ahead of the variable gap D7."
     },
     {
       "id": 5,
@@ -109,10 +120,9 @@ const LENS_DATA = {
       "nd": 1.749497,
       "vd": 35.28,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-LAM7 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -20.23413915251053,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power."
+      "role": "Negative meniscus, convex to the object, at the front of the second (negative) group, which moves 10.44 mm toward the image when focusing close."
     },
     {
       "id": 6,
@@ -122,10 +132,9 @@ const LENS_DATA = {
       "nd": 1.517417,
       "vd": 52.43,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-NSL36 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -21.388695574721588,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "Biconcave crown-flint front element of the second group's cemented doublet; with Element 5 it supplies the group's negative power.",
       "cemented": "CD2"
     },
     {
@@ -136,10 +145,9 @@ const LENS_DATA = {
       "nd": 1.84666,
       "vd": 23.93,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "SFLDN3 (SUMITA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 20.207857430047824,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "Dense-flint, nearly plano-convex rear element of the second group's cemented doublet; its high dispersion corrects the colour of the negative group.",
       "cemented": "CD2"
     },
     {
@@ -150,10 +158,9 @@ const LENS_DATA = {
       "nd": 1.696797,
       "vd": 55.53,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 38.85600863024,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power."
+      "role": "Biconvex element at the front of the third (positive) group, just behind the iris; the group moves 10.43 mm toward the object when focusing close."
     },
     {
       "id": 9,
@@ -163,10 +170,9 @@ const LENS_DATA = {
       "nd": 1.804,
       "vd": 46.57,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-LAH65 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 17.49311880982752,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "High-index biconvex front element of the third group's cemented doublet; the strongest positive element in the lens.",
       "cemented": "CD3"
     },
     {
@@ -177,10 +183,9 @@ const LENS_DATA = {
       "nd": 1.84666,
       "vd": 23.93,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "SFLDN3 (SUMITA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -21.740322402968186,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "Dense-flint, nearly plano-concave rear element of the third group's cemented doublet; corrects the colour of the positive group.",
       "cemented": "CD3"
     },
     {
@@ -191,10 +196,9 @@ const LENS_DATA = {
       "nd": 1.84666,
       "vd": 23.93,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "SFLDN3 (SUMITA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 21.64017393762428,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "Dense-flint positive meniscus, concave to the object, at the front of the rear group's cemented doublet.",
       "cemented": "CD4"
     },
     {
@@ -205,10 +209,9 @@ const LENS_DATA = {
       "nd": 1.834,
       "vd": 37.16,
       "indexReference": "d",
-      "indexReferenceNote": "Source nd/νd and d-line plot convention; canonical d-line implementation, not measured dispersion.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -14.954825296418655,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "High-index biconcave rear element; gives the rear group its negative power (about −44 mm) ahead of the image.",
       "cemented": "CD4"
     }
   ],
@@ -355,14 +358,14 @@ const LENS_DATA = {
     "published": [
       1
     ],
-    "description": "Whole corrected E2 source infinity/−1x endpoints. G1 fixed; G2 imageward10.44mm, G3 objectward10.43mm, G4 imageward0.01mm from literal rounded gaps. Fixed derived infinity plane retained, near final gap37.5270607164624mm. Near object conjugate is calculated, not printed retail0.2m. Passive source airplanes13/14 r0/n1 separated2.62mm remain in source mapping; midpoint iris hypothesis uses exact declared gap decomposition. Piecewise-linear geometry is software interpolation, not a patent cam law; intermediate finite MTF unavailable.",
+    "description": "PUBLISHED inner focus: JP 2006-153942 A, Example 2 prints D7, D12, D14 and D19 at infinity and at −1.0× (D7 0.87 → 11.31, D12 12.16 → 1.72, D14 11.65 → 1.22, D19 3.28 → 13.72 mm). The first group and the iris stay fixed; the second group moves 10.44 mm toward the image, the third group 10.43 mm toward the object, and the rear group only 0.01 mm. No back focus or object distance is printed: with the image plane held at the computed infinity back focus (37.537 mm), the −1.0× spacings give 199.86 mm object to image at −0.9997×, in line with Canon's 0.20 m minimum focus and 1:1. Intermediate positions interpolate the gaps linearly. The iris keeps its infinity f/2.92 diameter.",
     "conjugates": [
       {
         "zoomStation": 0,
         "keyframe": 1,
         "objectDistanceMm": 91.71443639234121,
         "distanceReference": "first-surface",
-        "source": "JP 2006-153942 A whole Numerical Example 2 literal near spacings; object conjugate independently computed at frozen image plane, with fixed-front registration. Source object distance unprinted; see paired analysis."
+        "source": "The −1.0× spacings (D7 = 11.31, D12 = 1.72, D14 = 1.22, D19 = 13.72 mm) are printed; the object distance is derived with the first group and the image plane fixed at the computed infinity back focus (37.537 mm) and is not printed. The computed magnification is −0.9997× against the patent's −1.0×."
       }
     ]
   },
@@ -426,7 +429,7 @@ const LENS_DATA = {
       ]
     },
     "22": {
-      "label": "BF (derived, fixed film)",
+      "label": "BF (computed)",
       "values": [
         [
           37.537060716462385,

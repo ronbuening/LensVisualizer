@@ -1,25 +1,47 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Source E1/20 elements/14 components, centered OS only. Native485/F5.80 and BF37.1732 remain literal; no plate or marketing rescale. Explicit d587.56nm n/V/PgF; the native reference is587.5618nm. No complete dispersion or factory identity certification. Literal INF/20m/3.2m gap and d0 data retained in the evidence, but unresolved distance-label datum prevents finite-performance certification or a continuous cam. Maker3.2m is not substituted.
- * Front46mm approximates F/(2N)×1.10 (45.99 exact selected seed). Relative group envelopes from own inspected original Fig1 and maker section:1,.95,.87,.81,.67,.66,.44,.44,.35,.27,.27,.30,.30,.31,.32,.30,.32,.32,.32,.32. These are schematic envelope/EP hypotheses, not factory clear caps; cemented faces use the shared interface. No post-trace adjustment.
+/**
+ * JP 2025-071886 A, Numerical Example 1, at the patent's own scale (no scale factor): f = 485.00 mm, F5.80,
+ * 2ω 5.06°; 20 elements in 14 groups, all spherical. The prescription lists no cover plate, filter or converter.
+ * BF 37.1732 mm is kept as printed (paraxial back focus 37.1682 mm, a 5 µm residual); the printed total
+ * length 252.34 mm is the rounded sum of the rows, 252.3368 mm.
+ * PUBLISHED focus states: infinity, "20 m" and "3.2 m". Only G2 (cemented L9–L10, surfaces 16–18) moves:
+ * d15 = 5.1467 / 7.4232 / 21.9757 mm and d18 = 28.9503 / 26.6738 / 12.1213 mm; BF is constant. The printed
+ * object distances (d0 = 19410.1882 and 2898.0257 mm before surface 1) give 19.66 m and 3.150 m object to
+ * image, at magnifications 1:40 and 1:6, so focus.closeFocusM is 3.1504 m and Sigma's 3.2 m minimum focus
+ * distance is catalog.closeFocusM.marketing. The 20 m keyframe is 3.1504 / 19.6625 = 0.16022.
+ * The patent prints nd (587.56 nm), νd and PgF. Every glass is an exact HOYA nd/νd pair, and the labels name
+ * that HOYA row as a catalog equivalent (production supplier unspecified); catalog PgF is within 0.0007 of the
+ * printed values. Sigma's construction diagram marks FLD at L2/L4/L6 and SLD at L1/L12.
+ * The image stabilizer is the patent's IU (L11–L13, surfaces 20–24), the front part of G3.
+ * The aperture stop is surface 19. Its diameter is not printed; the radius follows the F5.80 stop rule.
+ * Semi-diameters are estimated from Fig. 1 and Sigma's section drawing. The front pair is 45.99 mm, about
+ * 1.10 × F/(2N); the other elements follow relative envelopes read from the figures (element order, L1 = 1):
+ * 1, .95, .87, .81, .67, .66, .44, .44, .35, .35, .27, .30, .30, .31, .32, .30, .32, .32, .32, .32.
+ * L10 (S17/S18) is 16.096 mm, equal to S16, because both figures draw L10 as tall as L9; smaller rims cut
+ * the F5.8 axial bundle. Cemented faces share one radius. No rim was fitted to trace results.
  */
 const LENS_DATA = {
   schema: 2,
   key: "sigma-500mm-f56-dg-dn-os-sports",
   maker: "Sigma",
-  name: "SIGMA 500mm f/5.6 DG DN OS SPORTS",
-  subtitle: "JP 2025-071886 A Numerical Example 1 — probable-family infinity reconstruction",
+  name: "SIGMA 500mm f/5.6 DG DN OS | Sports",
+  subtitle: "JP 2025-071886 A, Example 1 — probable production correlation",
   catalog: {
     lensMounts: ["sony-fe", "l-mount"],
     imageFormat: "135-full-frame",
     specs: [
-      "Grade B probable patent family; exact factory identity and unique embodiment unproved",
-      "Native 485mm/F5.8; fixed source plane; no retail rescale",
-      "Inferred clear apertures; explicit source stop; native F/N iris; clipping retained",
-      "Infinity-only performance scope; finite source limitations retained in notes",
+      "20 ELEMENTS / 14 GROUPS",
+      "DESIGN f = 485.00 mm",
+      "DESIGN F/5.80",
+      "ALL SPHERICAL",
+      "3 FLD / 2 SLD ELEMENTS",
     ],
     elementCount: 20,
     groupCount: 14,
+    closeFocusM: {
+      marketing: 3.2,
+    },
     focalLengthMm: {
       marketing: 500,
       design: 485,
@@ -38,12 +60,6 @@ const LENS_DATA = {
     patentYear: 2025,
     authors: ["Ken Asakura", "Noriyuki Ogasawara"],
     assignees: ["Sigma Corporation"],
-    errata: [
-      {
-        status: "unresolved",
-        note: "Finite20m/3.2m label datum versus literal d0/track is unresolved; no finite performance certification. Source track252.34 versus literal252.3368 retained.",
-      },
-    ],
   },
   elements: [
     {
@@ -55,10 +71,11 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       focalLengthMm: 277.6200154459668,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.03236801999999994,
-      apdNote: "Literal PgF 0.5389 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Front positive meniscus of the fixed first group",
+      apd: "inferred",
+      apdNote:
+        "HOYA FCD1 coordinate match (νd 81.61, patent PgF 0.5389); Sigma's construction diagram marks this position as one of its two SLD elements.",
     },
     {
       id: 2,
@@ -69,10 +86,11 @@ const LENS_DATA = {
       vd: 95.1,
       indexReference: "d",
       focalLengthMm: 258.2561465364245,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.04975819999999992,
-      apdNote: "Literal PgF 0.5336 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "FCD100 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Second positive meniscus of the first group",
+      apd: "inferred",
+      apdNote:
+        "HOYA FCD100 coordinate match (νd 95.10, patent PgF 0.5336); Sigma's construction diagram marks this position as one of its three FLD elements.",
     },
     {
       id: 3,
@@ -83,10 +101,8 @@ const LENS_DATA = {
       vd: 49.63,
       indexReference: "d",
       focalLengthMm: -237.90183121632714,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: -0.00992234000000003,
-      apdNote: "Literal PgF 0.5504 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative meniscus between L2 and L4 in the first group",
     },
     {
       id: 4,
@@ -97,10 +113,11 @@ const LENS_DATA = {
       vd: 95.1,
       indexReference: "d",
       focalLengthMm: 199.8270398454989,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.04975819999999992,
-      apdNote: "Literal PgF 0.5336 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "FCD100 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Third positive meniscus of the first group",
+      apd: "inferred",
+      apdNote:
+        "HOYA FCD100 coordinate match (νd 95.10, patent PgF 0.5336); Sigma's construction diagram marks this position as one of its three FLD elements.",
     },
     {
       id: 5,
@@ -111,10 +128,8 @@ const LENS_DATA = {
       vd: 49.63,
       indexReference: "d",
       focalLengthMm: -94.27871815679084,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: -0.00992234000000003,
-      apdNote: "Literal PgF 0.5504 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Biconcave negative singlet of the first group",
     },
     {
       id: 6,
@@ -125,10 +140,11 @@ const LENS_DATA = {
       vd: 95.1,
       indexReference: "d",
       focalLengthMm: 131.98954097794143,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.04975819999999992,
-      apdNote: "Literal PgF 0.5336 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "FCD100 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Biconvex positive singlet ahead of the first group's cemented doublet",
+      apd: "inferred",
+      apdNote:
+        "HOYA FCD100 coordinate match (νd 95.10, patent PgF 0.5336); Sigma's construction diagram marks this position as one of its three FLD elements.",
     },
     {
       id: 7,
@@ -139,10 +155,8 @@ const LENS_DATA = {
       vd: 49.63,
       indexReference: "d",
       focalLengthMm: -56.77774476400016,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: -0.00992234000000003,
-      apdNote: "Literal PgF 0.5504 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative front element of the first group's rear cemented doublet",
       cemented: "CD7",
     },
     {
@@ -154,10 +168,8 @@ const LENS_DATA = {
       vd: 42.84,
       indexReference: "d",
       focalLengthMm: 60.07446257072426,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.0026568799999999726,
-      apdNote: "Literal PgF 0.5744 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "E-FL6 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive rear element of the first group's rear cemented doublet",
       cemented: "CD7",
     },
     {
@@ -169,10 +181,8 @@ const LENS_DATA = {
       vd: 32.17,
       indexReference: "d",
       focalLengthMm: 138.7192711742903,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.006609940000000036,
-      apdNote: "Literal PgF 0.5963 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "E-FD5 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive front element of the cemented focusing doublet (G2)",
       cemented: "CD9",
     },
     {
@@ -184,10 +194,8 @@ const LENS_DATA = {
       vd: 49.63,
       indexReference: "d",
       focalLengthMm: -65.06458584013336,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: -0.00992234000000003,
-      apdNote: "Literal PgF 0.5504 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative rear element of the cemented focusing doublet (G2)",
       cemented: "CD9",
     },
     {
@@ -199,10 +207,8 @@ const LENS_DATA = {
       vd: 32.17,
       indexReference: "d",
       focalLengthMm: 42.85215269030586,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.006609940000000036,
-      apdNote: "Literal PgF 0.5963 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "E-FD5 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive front element of the stabilizing unit's cemented doublet",
       cemented: "CD11",
     },
     {
@@ -214,10 +220,11 @@ const LENS_DATA = {
       vd: 68.62,
       indexReference: "d",
       focalLengthMm: -41.40171327277659,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.015618840000000023,
-      apdNote: "Literal PgF 0.544 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative rear element of the stabilizing unit's cemented doublet",
+      apd: "inferred",
+      apdNote:
+        "HOYA FCD515 coordinate match (νd 68.62, patent PgF 0.5440); Sigma's construction diagram marks this position as one of its two SLD elements.",
       cemented: "CD11",
     },
     {
@@ -229,10 +236,8 @@ const LENS_DATA = {
       vd: 40.81,
       indexReference: "d",
       focalLengthMm: -44.721073688746095,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: -0.009557580000000065,
-      apdNote: "Literal PgF 0.5656 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative singlet at the rear of the stabilizing unit (IU)",
     },
     {
       id: 14,
@@ -243,10 +248,8 @@ const LENS_DATA = {
       vd: 31.14,
       indexReference: "d",
       focalLengthMm: 40.02510336000667,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.011677479999999907,
-      apdNote: "Literal PgF 0.6031 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "E-FD80 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive front singlet of the fixed rear unit",
     },
     {
       id: 15,
@@ -257,10 +260,8 @@ const LENS_DATA = {
       vd: 17.98,
       indexReference: "d",
       focalLengthMm: -21.10098176797739,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.041042359999999944,
-      apdNote: "Literal PgF 0.6546 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "FDS18 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "High-dispersion negative front element of the rear unit's cemented doublet",
       cemented: "CD15",
     },
     {
@@ -272,10 +273,8 @@ const LENS_DATA = {
       vd: 30.05,
       indexReference: "d",
       focalLengthMm: 34.64591822717076,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.009544099999999944,
-      apdNote: "Literal PgF 0.6028 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "E-FD15 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive rear element of the rear unit's cemented doublet",
       cemented: "CD15",
     },
     {
@@ -287,10 +286,8 @@ const LENS_DATA = {
       vd: 27.53,
       indexReference: "d",
       focalLengthMm: 20.806045682208108,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.01230545999999999,
-      apdNote: "Literal PgF 0.6098 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "E-FD4 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive front element of the rear cemented triplet",
       cemented: "CD17",
     },
     {
@@ -302,10 +299,8 @@ const LENS_DATA = {
       vd: 40.81,
       indexReference: "d",
       focalLengthMm: -14.852664226271218,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: -0.009557580000000065,
-      apdNote: "Literal PgF 0.5656 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative middle element of the rear cemented triplet",
       cemented: "CD17",
     },
     {
@@ -317,10 +312,8 @@ const LENS_DATA = {
       vd: 29.74,
       indexReference: "d",
       focalLengthMm: 31.72349192618244,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: 0.0013226799999999095,
-      apdNote: "Literal PgF 0.5951 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "NBFD29 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive rear element of the rear cemented triplet",
       cemented: "CD17",
     },
     {
@@ -332,10 +325,8 @@ const LENS_DATA = {
       vd: 37.37,
       indexReference: "d",
       focalLengthMm: -63.0748700892604,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
-      dPgF: -0.0042436600000000935,
-      apdNote: "Literal PgF 0.5767 converted to native normal-line deviation; no measured full dispersion.",
+      glass: "TAFD37 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Rearmost negative meniscus, concave to the object (the patent's Ln)",
     },
   ],
   surfaces: [
@@ -434,7 +425,6 @@ const LENS_DATA = {
     {
       label: "15",
       R: 614.677,
-      d: 5.1467,
       sd: 20.236,
     },
     {
@@ -454,7 +444,6 @@ const LENS_DATA = {
     {
       label: "18",
       R: 49.7976,
-      d: 28.9503,
       sd: 16.096,
     },
     {
@@ -570,9 +559,15 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 3.1504,
+    keyframes: [0, 0.16022, 1],
+    published: [1, 2],
     description:
-      "Source E1/20 elements/14 components, centered OS only. Native485/F5.80 and BF37.1732 remain literal; no plate or marketing rescale. Explicit d587.56nm n/V/PgF; the native reference is587.5618nm. No complete dispersion or factory identity certification. Literal INF/20m/3.2m gap and d0 data retained in the evidence, but unresolved distance-label datum prevents finite-performance certification or a continuous cam. Maker3.2m is not substituted.",
+      "PUBLISHED: Inner focus. Only G2, the cemented L9–L10 doublet ahead of the stop, moves, travelling 16.83 mm toward the image between infinity and close focus; G1, the stop and G3 stay fixed and the back focus does not change. The patent prints the infinity, 20 m and 3.2 m states. Its printed object distances place the near states 19.66 m and 3.150 m from the image (magnifications 1:40 and 1:6), so the close state is about 5 cm inside Sigma's 3.2 m minimum focus distance. Positions between the printed states are interpolated, and the iris stays at its infinity size.",
+  },
+  gaps: {
+    "15": { label: "D15", values: [[5.1467, 7.4232, 21.9757]] },
+    "18": { label: "D18", values: [[28.9503, 26.6738, 12.1213]] },
   },
   aperture: {
     nominalFNumber: 5.8,
@@ -598,7 +593,7 @@ const LENS_DATA = {
       toSurface: "18",
     },
     {
-      text: "G3 centered OS",
+      text: "G3 incl. IU (OS)",
       fromSurface: "20",
       toSurface: "35",
     },

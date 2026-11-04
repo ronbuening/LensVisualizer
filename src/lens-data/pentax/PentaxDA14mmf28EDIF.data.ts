@@ -1,23 +1,39 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole Embodiment4/Table4. Native14.38/F2.9, source fixed image111.91 and BF36.98 retained. Source stop exactly2mm afterS17. Finite d8=2.16 and BF39.25 are retained as geometry evidence; table F3.0 versus near figure F3.7 remains unresolved, so no finite aperture/performance or retail0.17m/0.19x claim. Explicit d-line n/V with numerical587.5618nm a native convention, no measured full dispersion.
- * Front30mm hypothesis brackets first-order edge envelope26.191mm by~14.5%, with Fig10/maker leading-to-rear envelope reduction. Initial equal22.8mm L2 rim exceeded the sphere and initial17.4mm L3 rear violated slope. Source geometry selects boundary caps17mm and13.95mm, preserving larger opposite faces where viable. S6/S7 cap14mm gave gap intrusion.904408>default.9;13.95mm selected before any native/MTF. Other nominal sizes remain frozen; caps are not measured factory apertures.
+/**
+ * US 7,116,499 B2 (Jun Hirakawa, PENTAX Corporation), Embodiment 4 (Table 4, Fig. 10), associated with the
+ * smc PENTAX-DA 14mm F2.8 ED [IF]. Ricoh's construction diagram matches the embodiment element by element: 12 elements
+ * in 11 groups, all spherical, with G1 fixed and G2 + G3 moving to focus. This is a patent design, not a confirmed
+ * factory prescription.
+ *
+ * Scale: none. The patent's millimetre values are used as printed; f = 14.38 mm is not rescaled to the retail 14 mm.
+ * Printed: R, d, d-line n and Abbe number for 23 surfaces, F/2.9–3.0, f = 14.38–14.80, fB = 36.98–39.25 and the
+ * stop position, 2.0 mm behind surface 17 (the printed d17 of 6.35 mm is split into 2.0 mm before the stop and 4.35 mm
+ * after it). There are no aspheric surfaces and no cover glass or filter. The patent names no glass supplier and
+ * prints no partial dispersion; the glass labels are catalog equivalents matched on nd and νd.
+ * Image plane: the last gap is the printed back focus, 36.98 mm at infinity; the paraxial back focus computes to
+ * 36.978 mm and is not applied. The image lies 111.91 mm behind S1 in both focus states.
+ * Focus: Table 4 prints both states. G2 and G3 move 2.27 mm toward the object with the stop while G1 stays fixed:
+ * D8 4.43 → 2.16 mm and BF 36.98 → 39.25 mm. The near state focuses at about 0.200 m object to image (m −0.137);
+ * the retail minimum focus is 0.17 m (0.19×). Table 4 gives F/3.0 for the near state, while Figs. 12A–B are labelled
+ * F3.7; the difference is unresolved.
+ * Stop: the patent tabulates the stop position but not its diameter; the stop radius follows F/N.
+ * Semi-diameters are inferred, none is printed. S1/S2 at 30 mm sit about 15 % above the 26.2 mm first-order height of
+ * the edge-of-field beam; the others narrow toward the rear as in Fig. 10 and the maker's section. S4 is held at
+ * 17 mm, since 22.8 mm (matching S3) would exceed its 21.25 mm radius, and S6 at 13.95 mm, since 17.4 mm would exceed
+ * the rim-slope limit; at 14 mm the S6 and S7 sags would fill 0.904 of their 7.9 mm gap, above the 0.9 default.
+ * These rims are not measured factory apertures.
  */
 const LENS_DATA = {
   schema: 2,
   key: "pentax-smc-da-14mm-f28-ed-if",
   maker: "Pentax",
   name: "PENTAX DA 14mm f/2.8 ED [IF]",
-  subtitle: "US 7,116,499 B2 Embodiment 4 — probable-family infinity reconstruction",
+  subtitle: "US 7,116,499 B2, Embodiment 4 — probable production correlation",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "aps-c",
-    specs: [
-      "Grade B probable patent family; exact factory identity and unique embodiment unproved",
-      "Native 14.38mm/F2.9; fixed source plane; no retail rescale",
-      "Inferred clear apertures; explicit source stop; native F/N iris; clipping retained",
-      "Infinity-only performance scope; finite source limitations retained in notes",
-    ],
+    specs: ["12 ELEMENTS / 11 GROUPS", "DESIGN f = 14.38 mm", "DESIGN F/2.9", "ALL SPHERICAL"],
     elementCount: 12,
     groupCount: 11,
     focalLengthMm: {
@@ -27,6 +43,9 @@ const LENS_DATA = {
     fNumber: {
       marketing: 2.8,
       design: 2.9,
+    },
+    closeFocusM: {
+      marketing: 0.17,
     },
   },
   source: {
@@ -41,7 +60,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "Near Table4 F3.0 versus Figs12A/B F3.7 unresolved; finite performance not certified.",
+        note: "The near-focus F-number is printed as F3.0 in Table 4 but F3.7 on the Fig. 12A/B aberration plots; the discrepancy is unresolved, so close-focus performance is not certified.",
       },
     ],
   },
@@ -55,8 +74,8 @@ const LENS_DATA = {
       vd: 55.5,
       indexReference: "d",
       focalLengthMm: 432.4666795439312,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Weak positive front meniscus of the fixed first group G1, convex to the object; Embodiment 4 adds it ahead of the two negative menisci.",
     },
     {
       id: 2,
@@ -67,8 +86,8 @@ const LENS_DATA = {
       vd: 54.7,
       indexReference: "d",
       focalLengthMm: -50.21655297234499,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "S-LAL18 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "First negative meniscus of G1, convex to the object; the maker's diagram marks it as high-index, low-dispersion glass, not an anomalous-dispersion type.",
     },
     {
       id: 3,
@@ -79,8 +98,8 @@ const LENS_DATA = {
       vd: 44.2,
       indexReference: "d",
       focalLengthMm: -40.679888998051,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "S-LAH51 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Second negative meniscus of G1, convex to the object; shares the strong negative power of the retrofocus front.",
     },
     {
       id: 4,
@@ -91,8 +110,8 @@ const LENS_DATA = {
       vd: 23.8,
       indexReference: "d",
       focalLengthMm: 69.81876147361649,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "High-index, high-dispersion positive meniscus closing G1, convex to the image; gathers the diverging beam from the two menisci and corrects their astigmatism and lateral colour.",
     },
     {
       id: 5,
@@ -103,8 +122,8 @@ const LENS_DATA = {
       vd: 70.2,
       indexReference: "d",
       focalLengthMm: 27.89967153228327,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Biconvex crown front member of the cemented doublet that opens the moving negative group G2.",
       cemented: "CD5",
     },
     {
@@ -116,8 +135,8 @@ const LENS_DATA = {
       vd: 54.8,
       indexReference: "d",
       focalLengthMm: -129.28254445497404,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "S-LAL9 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Negative meniscus rear member of the G2 cemented doublet, concave to the object.",
       cemented: "CD5",
     },
     {
@@ -129,8 +148,8 @@ const LENS_DATA = {
       vd: 46.6,
       indexReference: "d",
       focalLengthMm: -17.253043983793376,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Negative meniscus closing G2, convex to the object; the strongest negative element in the lens.",
     },
     {
       id: 8,
@@ -141,8 +160,8 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: 35.154522537860814,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Dense-flint positive meniscus opening the positive group G3; nearly plano-convex, convex to the object.",
     },
     {
       id: 9,
@@ -153,8 +172,8 @@ const LENS_DATA = {
       vd: 70.2,
       indexReference: "d",
       focalLengthMm: 184.20145175499562,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Weak positive meniscus just ahead of the stop, convex to the image.",
     },
     {
       id: 10,
@@ -165,8 +184,8 @@ const LENS_DATA = {
       vd: 25.7,
       indexReference: "d",
       focalLengthMm: -28.15380955503919,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "S-TIH11 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Dense-flint biconcave negative element just behind the stop; the only negative element of G3.",
     },
     {
       id: 11,
@@ -177,8 +196,11 @@ const LENS_DATA = {
       vd: 81.6,
       indexReference: "d",
       focalLengthMm: 26.77290211259693,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "Ricoh's construction diagram marks this position as the lens's ED element; the patent prints no partial dispersion, and FCD1 is a catalog equivalent, not a production-supplier claim.",
+      role: "ED biconvex positive element behind the stop; with L12 it forms the low-dispersion rear pair that controls lateral colour.",
     },
     {
       id: 12,
@@ -189,8 +211,8 @@ const LENS_DATA = {
       vd: 70.2,
       indexReference: "d",
       focalLengthMm: 45.91449202357047,
-      glass: "Unmatched (literal source d-line pair; exact supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air element focal length is descriptive.",
+      glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Biconvex crown last element; second member of the low-dispersion rear pair.",
     },
   ],
   surfaces: [
@@ -243,7 +265,6 @@ const LENS_DATA = {
     {
       label: "8",
       R: -46.738,
-      d: 4.43,
       sd: 14.7,
     },
     {
@@ -346,14 +367,18 @@ const LENS_DATA = {
     {
       label: "23",
       R: -30.134,
-      d: 36.98,
       sd: 8.4,
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.2,
     description:
-      "Whole Embodiment4/Table4. Native14.38/F2.9, source fixed image111.91 and BF36.98 retained. Source stop exactly2mm afterS17. Finite d8=2.16 and BF39.25 are retained as geometry evidence; table F3.0 versus near figure F3.7 remains unresolved, so no finite aperture/performance or retail0.17m/0.19x claim. Explicit d-line n/V with numerical587.5618nm a native convention, no measured full dispersion.",
+      "PUBLISHED inner focus: G2 and G3 move together 2.27 mm toward the object, carrying the stop, while G1 stays fixed. D8 closes from 4.43 to 2.16 mm and the back focus grows from 36.98 to 39.25 mm; both states are printed in Table 4. The patent gives the near state's magnification (−0.137) but not its distance; it is in focus at about 0.20 m object to image, while the production lens focuses to 0.17 m (0.19×). Table 4 gives F/3.0 for the near state, but its aberration plots are labelled F3.7; the difference is unresolved.",
+    published: [1],
+  },
+  gaps: {
+    "8": { label: "D8", values: [[4.43, 2.16]] },
+    "23": { label: "BF", values: [[36.98, 39.25]] },
   },
   aperture: {
     nominalFNumber: 2.9,

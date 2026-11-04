@@ -1,199 +1,205 @@
 ## Patent Identification and Product Correspondence
 
-**Patent:** JP 2025-071886 A.
-**Filed:** 2023-10-24.
-**Published:** 2025-05-09.
-**Inventors:** Ken Asakura, Noriyuki Ogasawara.
-**Applicant:** Sigma Corporation.
-**Title:** Image formation optical system.
-**Example details:** Numerical Example1, original Japanese pp16–17 (printed15–16), Fig1; US20250130410A1 is a retained counterpart, not an additional discovery.
+**Patent:** JP 2025-071886 A  
+**Filed:** 2023-10-24  
+**Published:** 2025-05-09  
+**Inventors:** Ken Asakura, Noriyuki Ogasawara  
+**Applicant:** Sigma Corporation  
+**Title:** Image formation optical system  
+**Example details:** 数値実施例1, printed pp. 15–16; Fig. 1 (construction) and Fig. 2 (longitudinal aberrations at infinity), p. 22; US 2025/0130410 A1 is the US family member.
 
-The maker20/14 construction, front six singlets, two doublets about the focusing unit, small post-stop OS assembly and rear triplet agree in order with Fig1. E1 has a front positive meniscus; E2/E3 remain alternatives. The product association is probable and no unique factory example is identified.
+The data file transcribes Numerical Example 1 at the patent's own scale. It is correlated with the SIGMA 500mm F5.6 DG DN OS | Sports by the following observations:
 
-This GradeB reconstruction preserves one complete literal source embodiment. Native source dimensions, ratings, materials and source image gaps are not tuned to marketed focal length, chart contrast or a simulated best-focus plane. All initial/rejected geometry and later metadata history are retained. Historical source recovery is not a new patent discovery.
+1. Both have 20 elements in 14 groups, and the order of Sigma's section drawing (six front singlets, a cemented doublet, the cemented focusing doublet, the stop, a small stabilizing unit and a rear unit ending in a triplet and a meniscus) matches Fig. 1.
+2. Sigma's construction diagram marks three FLD elements at L2, L4 and L6 and two SLD elements at L1 and L12. The example puts the 1.43700/95.10 fluorophosphate coordinate at L2, L4 and L6, and low-dispersion crowns of 1.49700/81.61 at L1 and 1.59282/68.62 at L12.
+3. The design values f = 485.00 mm, F5.80 and 2ω = 5.06° are close to the marketed 500 mm, f/5.6 and 5.0° angle of view.
+4. The patent labels its near state 3.2 m, Sigma's minimum focus distance, and that state's magnification, 1:6, is Sigma's maximum magnification.
+5. The patent describes a transversely moving image-stabilizing unit, and the production lens has optical stabilization. [1, 3]
+
+Examples 2 and 3 also have 20 elements but tabulate their near states at 3.3 m and 3.1 m. The association is probable: Sigma has not confirmed that the production radii, spacings or glasses are those of Example 1.
 
 ## Optical Architecture
 
-Twenty spherical elements form fourteen air-separated components. G1 is positive, G2 is the moving focus group and G3 contains the centered stabilization and rear relay assemblies. The first six elements are singlets; cemented pairs and a rear triplet remain literal. No extra cover plate or lens-owned filter is supplied.
+Twenty spherical elements form fourteen air-separated groups arranged in three functional groups of positive, negative and negative power; the patent's group table gives +171.54, −126.77 and −78.05 mm. G1 (L1–L8) is fixed: six singlets followed by the cemented L7–L8 doublet. G2, the cemented L9–L10 doublet, is the focusing group, and the aperture stop follows it. G3 consists of the image-stabilizing unit IU (the cemented L11–L12 doublet and L13, −44.51 mm), which moves perpendicular to the axis, and the fixed rear unit RU (L14, the cemented L15–L16 doublet, the cemented L17–L19 triplet and L20, +65.16 mm). [1, ¶0076–0081]
+
+The total length of 252.34 mm is 0.52 times the focal length (condition (3)), a compact telephoto ratio for a 500 mm lens. The prescription lists no cover plate or lens-owned filter.
 
 ## Element-by-Element Analysis
 
 ### L1 — Positive Meniscus
 
-nd = 1.49700, νd = 81.61. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = +277.62002mm.
+nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA catalog equivalent) — SLD position on Sigma's diagram. f = +277.62 mm.
 
-This element spans source surfaces1–2. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It remains a separate singlet.
+L1 is the front positive meniscus, convex to the object (surfaces 1–2), and the largest element. Its low-dispersion crown, printed PgF 0.5389, is the first of Sigma's two SLD elements.
 
 ### L2 — Positive Meniscus
 
-nd = 1.43700, νd = 95.10. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = +258.25615mm.
+nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA catalog equivalent) — FLD position on Sigma's diagram. f = +258.26 mm.
 
-This element spans source surfaces3–4. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It remains a separate singlet.
+The second positive meniscus, convex to the object (surfaces 3–4). Its fluorophosphate coordinate, printed PgF 0.5336, is the first of the three FLD elements.
 
 ### L3 — Negative Meniscus
 
-nd = 1.77250, νd = 49.63. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = -237.90183mm.
+nd = 1.77250, νd = 49.63. Glass: TAF1 (HOYA catalog equivalent). f = −237.90 mm.
 
-This element spans source surfaces5–6. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It remains a separate singlet.
+A weak negative meniscus, convex to the object (surfaces 5–6), between the first two FLD elements. It is one of three TAF1-equivalent negative elements in G1.
 
 ### L4 — Positive Meniscus
 
-nd = 1.43700, νd = 95.10. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = +199.82704mm.
+nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA catalog equivalent) — FLD position on Sigma's diagram. f = +199.83 mm.
 
-This element spans source surfaces7–8. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It remains a separate singlet.
+The third positive meniscus (surfaces 7–8) and the second FLD element. An 18.56 mm air space follows it.
 
 ### L5 — Biconcave Negative
 
-nd = 1.77250, νd = 49.63. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = -94.27872mm.
+nd = 1.77250, νd = 49.63. Glass: TAF1 (HOYA catalog equivalent). f = −94.28 mm.
 
-This element spans source surfaces9–10. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It remains a separate singlet.
+A biconcave negative singlet (surfaces 9–10), the strongest negative element among G1's singlets.
 
 ### L6 — Biconvex Positive
 
-nd = 1.43700, νd = 95.10. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = +131.98954mm.
+nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA catalog equivalent) — FLD position on Sigma's diagram. f = +131.99 mm.
 
-This element spans source surfaces11–12. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It remains a separate singlet.
+A biconvex singlet (surfaces 11–12), the strongest positive element of the front singlets and the third FLD element. The 29.82 mm air space behind it is the longest in G1.
 
 ### L7 — Negative Meniscus
 
-nd = 1.77250, νd = 49.63. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = -56.77774mm.
+nd = 1.77250, νd = 49.63. Glass: TAF1 (HOYA catalog equivalent). f = −56.78 mm.
 
-This element spans source surfaces13–14. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It belongs to cemented componentCD7; the shared interface remains literal.
+A negative meniscus, convex to the object (surfaces 13–14), at the front of the cemented L7–L8 doublet that closes G1.
 
 ### L8 — Positive Meniscus
 
-nd = 1.56732, νd = 42.84. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = +60.07446mm.
+nd = 1.56732, νd = 42.84. Glass: E-FL6 (HOYA catalog equivalent). f = +60.07 mm.
 
-This element spans source surfaces14–15. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It belongs to cemented componentCD7; the shared interface remains literal.
+A positive meniscus (surfaces 14–15) completing the L7–L8 doublet. The cemented face runs from high to low index, so it has negative power.
 
 ### L9 — Positive Meniscus
 
-nd = 1.67270, νd = 32.17. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = +138.71927mm.
+nd = 1.67270, νd = 32.17. Glass: E-FD5 (HOYA catalog equivalent). f = +138.72 mm.
 
-This element spans source surfaces16–17. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It belongs to cemented componentCD9; the shared interface remains literal.
+A nearly plano-convex positive meniscus (surfaces 16–17) at the front of the cemented focusing doublet G2.
 
 ### L10 — Negative Meniscus
 
-nd = 1.77250, νd = 49.63. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = -65.06459mm.
+nd = 1.77250, νd = 49.63. Glass: TAF1 (HOYA catalog equivalent). f = −65.06 mm.
 
-This element spans source surfaces17–18. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It belongs to cemented componentCD9; the shared interface remains literal.
+A negative meniscus, convex to the object (surfaces 17–18), completing G2. The doublet is negative overall (−126.77 mm) and moves 16.83 mm toward the image for close focus. Fig. 1 and Sigma's drawing show L10 as tall as L9, and the model gives both the same 16.096 mm rim.
 
 ### L11 — Biconvex Positive
 
-nd = 1.67270, νd = 32.17. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = +42.85215mm.
+nd = 1.67270, νd = 32.17. Glass: E-FD5 (HOYA catalog equivalent). f = +42.85 mm.
 
-This element spans source surfaces20–21. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It belongs to cemented componentCD11; the shared interface remains literal.
+The biconvex front element (surfaces 20–21) of the cemented L11–L12 doublet that opens the stabilizing unit IU.
 
 ### L12 — Biconcave Negative
 
-nd = 1.59282, νd = 68.62. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = -41.40171mm.
+nd = 1.59282, νd = 68.62. Glass: FCD515 (HOYA catalog equivalent) — SLD position on Sigma's diagram. f = −41.40 mm.
 
-This element spans source surfaces21–22. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It belongs to cemented componentCD11; the shared interface remains literal.
+The biconcave rear element of the IU doublet (surfaces 21–22). Its low-dispersion crown, printed PgF 0.5440, is Sigma's second SLD element. A positive and a negative element inside the IU let the unit correct its own color while it shifts. [1, ¶0045–0046]
 
 ### L13 — Biconcave Negative
 
-nd = 1.88300, νd = 40.81. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = -44.72107mm.
+nd = 1.88300, νd = 40.81. Glass: TAFD30 (HOYA catalog equivalent). f = −44.72 mm.
 
-This element spans source surfaces23–24. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It remains a separate singlet.
+A biconcave singlet (surfaces 23–24) that completes the negative IU (−44.51 mm).
 
 ### L14 — Biconvex Positive
 
-nd = 1.68960, νd = 31.14. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = +40.02510mm.
+nd = 1.68960, νd = 31.14. Glass: E-FD80 (HOYA catalog equivalent). f = +40.03 mm.
 
-This element spans source surfaces25–26. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It remains a separate singlet.
+A biconvex singlet (surfaces 25–26) at the front of the fixed rear unit RU.
 
 ### L15 — Biconcave Negative
 
-nd = 1.94594, νd = 17.98. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = -21.10098mm.
+nd = 1.94594, νd = 17.98. Glass: FDS18 (HOYA catalog equivalent). f = −21.10 mm.
 
-This element spans source surfaces27–28. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It belongs to cemented componentCD15; the shared interface remains literal.
+The biconcave front element (surfaces 27–28) of the cemented L15–L16 doublet. This high-dispersion, high-PgF glass (PgF 0.6546) is the negative lens behind the stop that satisfies conditions (9) and (10). [1, ¶0061–0067]
 
 ### L16 — Positive Meniscus
 
-nd = 1.69895, νd = 30.05. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = +34.64592mm.
+nd = 1.69895, νd = 30.05. Glass: E-FD15 (HOYA catalog equivalent). f = +34.65 mm.
 
-This element spans source surfaces28–29. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It belongs to cemented componentCD15; the shared interface remains literal.
+A positive meniscus, convex to the object (surfaces 28–29), completing the L15–L16 doublet.
 
 ### L17 — Biconvex Positive
 
-nd = 1.75520, νd = 27.53. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = +20.80605mm.
+nd = 1.75520, νd = 27.53. Glass: E-FD4 (HOYA catalog equivalent). f = +20.81 mm.
 
-This element spans source surfaces30–31. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It belongs to cemented componentCD17; the shared interface remains literal.
+The biconvex front element (surfaces 30–31) of the cemented L17–L19 triplet.
 
 ### L18 — Biconcave Negative
 
-nd = 1.88300, νd = 40.81. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = -14.85266mm.
+nd = 1.88300, νd = 40.81. Glass: TAFD30 (HOYA catalog equivalent). f = −14.85 mm.
 
-This element spans source surfaces31–32. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It belongs to cemented componentCD17; the shared interface remains literal.
+The biconcave middle element of the triplet (surfaces 31–32) and the strongest negative element in the lens.
 
 ### L19 — Biconvex Positive
 
-nd = 1.77047, νd = 29.74. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = +31.72349mm.
+nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA catalog equivalent). f = +31.72 mm.
 
-This element spans source surfaces32–33. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It belongs to cemented componentCD17; the shared interface remains literal.
+The biconvex rear element of the triplet (surfaces 32–33).
 
 ### L20 — Negative Meniscus
 
-nd = 1.90043, νd = 37.37. Glass: Unmatched source coordinates; exact supplier unproved. Isolated-in-air f = -63.07487mm.
+nd = 1.90043, νd = 37.37. Glass: TAFD37 (HOYA catalog equivalent). f = −63.07 mm.
 
-This element spans source surfaces34–35. Its numerical power follows the whole selected prescription; an isolated focal length does not establish its installed aberration contribution. It remains a separate singlet.
+A negative meniscus, concave to the object (surfaces 34–35), at the rear of the lens. The patent calls it Ln; condition (4) gives Φ_Ln/Φ = −7.69. [1, ¶0081]
 
 ## Glass Identification / Selection
 
-Explicit source d-line n/V; native reference587.5618nm (source prints587.56nm; native rounded-line difference .0018nm). Full spectral response remains approximate; no exact catalog identity.
+The patent prints nd at 587.56 nm, νd and the absolute partial-dispersion ratio PgF = (ng − nF)/(nF − nC) for every element. [1, ¶0061 and Example 1 table] All 13 distinct pairs are exact HOYA catalog coordinates, and each element is labelled with that row:
 
-No glass-catalog identity is inferred from a matching index/Abbe pair. All Unmatched elements preserve the printed n/V coordinates; default broadband calculations use the native material interpolation and do not certify measured full dispersion, coatings or a manufactured melt.
+| Source nd / νd | Printed PgF | Elements | Catalog row | Catalog PgF |
+|---|---|---|---|---|
+| 1.43700 / 95.10 | 0.5336 | L2, L4, L6 | HOYA FCD100 | 0.5336 |
+| 1.49700 / 81.61 | 0.5389 | L1 | HOYA FCD1 | 0.5389 |
+| 1.56732 / 42.84 | 0.5744 | L8 | HOYA E-FL6 | 0.5743 |
+| 1.59282 / 68.62 | 0.5440 | L12 | HOYA FCD515 | 0.5441 |
+| 1.67270 / 32.17 | 0.5963 | L9, L11 | HOYA E-FD5 | 0.5963 |
+| 1.68960 / 31.14 | 0.6031 | L14 | HOYA E-FD80 | 0.6032 |
+| 1.69895 / 30.05 | 0.6028 | L16 | HOYA E-FD15 | 0.6029 |
+| 1.75520 / 27.53 | 0.6098 | L17 | HOYA E-FD4 | 0.6091 |
+| 1.77047 / 29.74 | 0.5951 | L19 | HOYA NBFD29 | 0.5951 |
+| 1.77250 / 49.63 | 0.5504 | L3, L5, L7, L10 | HOYA TAF1 | 0.5504 |
+| 1.88300 / 40.81 | 0.5656 | L13, L18 | HOYA TAFD30 | 0.5657 |
+| 1.90043 / 37.37 | 0.5767 | L20 | HOYA TAFD37 | 0.5772 |
+| 1.94594 / 17.98 | 0.6546 | L15 | HOYA FDS18 | 0.6546 |
 
-The source defines n at d587.56nm, Abbe νd and absolute PgF. Every printed PgF is retained in the literal model and converted to dPgF=PgF−(0.6438−0.001682νd), matching the current native normal-line definition. PgF is not an Abbe number. This coordinate conversion does not provide a full spectral curve. US cover Ken Asakura supplies the retained English spelling; the PAJ abstract transliterates that name differently.
+Catalog PgF is computed from each row's dispersion formula. HOYA lists FDS18 at nd 1.94595, FCD515 at νd 68.63 and TAFD30 at νd 40.80, within the printed rounding. Catalog PgF agrees with the printed value within 0.0001 except E-FD4 (−0.0007) and TAFD37 (+0.0005). The model traces every element on these catalog curves. They are coordinate equivalents, not supplier identifications. [4]
+
+Sigma's three FLD elements and its first SLD element sit in G1, where the axial marginal ray is highest; in a long telephoto that is where low-dispersion crowns with anomalous partial dispersion act most strongly on secondary spectrum. The second SLD element is the negative half of the IU doublet. Behind the stop, the patent requires a negative lens with 10 < νd < 30 and 0.020 < PgF + 0.0018νd − 0.6483 < 0.080; L15 gives 17.98 and 0.039. [1, ¶0061–0067] With the catalog curves, the model's paraxial C and g foci lie within 1 µm and 7 µm of the d focus at infinity, and F within 27 µm, in line with Fig. 2, where the d, g and C curves start together at the axis.
 
 ## Focus Mechanism and Image Plane
 
-Literal variable rows preserve INF/20m/3.2m: d0 infinity/19410.1882/2898.0257mm; d15 5.1467/7.4232/21.9757mm; d18 28.9503/26.6738/12.1213mm; BF37.1732mm throughout. The constant first-vertex image coordinate252.3368mm differs from rounded252.34mm. G2 shifts imageward while G1, stop and G3 remain fixed. These spacings survive in the evidence, but the labeled shooting-distance datum does not reconcile with literal d0 plus track. No retail3.2m substitution, finite-performance certification or continuous cam is supplied.
+Inner focus: only G2, the cemented L9–L10 doublet, moves along the axis toward the image as the object approaches, while G1, the stop and G3 stay fixed. [1, ¶0077–0078] The patent prints three states, labelled INF, 20 m and 3.2 m, all of which the data file carries:
 
-Independent reduced-angle matrix calculation gives EFL484.968299808018mm and infinity Gaussian BF37.168151085357mm. Printed BF37.1732mm stays authored. Computed-minus-printed BF-0.005048914643mm is an unapplied source residual. Canonical infinity-only metadata uses closeFocusM=1e15 with no authored conjugate or motion arrays. Source finite spacings, when supplied, are not erased by that bounded performance scope.
+| Interval | INF | 20 m | 3.2 m |
+|---|---:|---:|---:|
+| d0 (object to surface 1) | ∞ | 19410.1882 mm | 2898.0257 mm |
+| d15 | 5.1467 mm | 7.4232 mm | 21.9757 mm |
+| d18 | 28.9503 mm | 26.6738 mm | 12.1213 mm |
+| BF | 37.1732 mm | 37.1732 mm | 37.1732 mm |
 
-## Apertures, Stop and Geometry Qualifications
+G2 travels 16.83 mm, and the back focus and 252.34 mm total length do not change. The printed object distances plus that length place the near states 19.66 m and 3.150 m from the image, at magnifications of 1:40 and 1:6; the model focuses at these distances, with EFL 429.87 and 258.31 mm against the printed 429.90 and 258.32 mm. The 20 m and 3.2 m figures are therefore nominal labels. The model's close-focus distance is 3.150 m, and Sigma's 3.2 m minimum focus distance is shown as the marketed figure. Positions between the printed states are interpolated.
 
-Front46mm approximates F/(2N)×1.10 (45.99 exact selected seed). Relative group envelopes from own inspected original Fig1 and maker section:1,.95,.87,.81,.67,.66,.44,.44,.35,.27,.27,.30,.30,.31,.32,.30,.32,.32,.32,.32. These are schematic envelope/EP hypotheses, not factory clear caps; cemented faces use the shared interface. No post-trace adjustment.
+At infinity the paraxial EFL is 484.97 mm and the paraxial back focus 37.168 mm. The printed BF of 37.1732 mm is kept, a 5 µm residual. The iris keeps its infinity size at every focus position; the patent prints F5.95 at the 3.2 m state.
 
-The nominal ordinary-prime F/N rule gives physical infinity iris radius9.621371249980mm atF5.8; iris diameter is unprinted and no stop.sd is hand-authored. The stop center is z144.083700000000mm. Circular numerical aperture does not certify blade or mount fit. Exact cap clearance over the operating disk was checked at every advertised aperture.
+## Image Stabilization
 
-Nominal and−5% clear-cap variants pass normal native geometry and rendering, with zero hidden trim. The +5% variant is rejected and saved. M28 additionally retains the pre-MTF forward/rear stop hypotheses; nominal midpoint remains selected regardless of contrast. No source radius, thickness, image gap, material, native engine, tolerance or gap-sag override changed after tracing.
+The IU (L11–L13) moves perpendicular to the axis to reduce image blur. [1, ¶0079] Its strong negative power, |Φ_OS/Φ| = 10.90 (condition (6)), is balanced by the positive RU, so G3 keeps its power while the image shift per unit of IU travel increases. [1, ¶0039–0042] Placing the stop between G2 and G3 lets both moving groups sit where the off-axis bundles are low, keeping them and their actuators small. [1, ¶0049–0050] Fig. 6 shows the lateral aberrations with 0.3° of stabilization at infinity. The model is centered and does not simulate a shifted IU.
 
-Nominal clear semi-diameters in authored row order are 45.99, 45.99, 43.691, 43.691, 40.011, 40.011, 37.252, 37.252, 30.813, 30.813, 30.353, 30.353, 20.236, 20.236, 20.236, 16.096, 12.417, 12.417, native iris, 12.417, 13.797, 13.797, 13.797, 13.797, 14.257, 14.257, 14.717, 13.797, 13.797, 14.717, 14.717, 14.717, 14.717, 14.717, 14.717mm. These hard caps are hypotheses, not measured factory apertures or transparent rims.
+## Model Scope and Limitations
 
-## Native Numerical Validation
+The patent does not print the iris diameter. The stop radius, 9.621 mm, follows from the F5.80 design f-number at infinity; the stop lies 144.084 mm behind the first vertex. The iris is modelled as a circle.
 
-The method is the normal monochromatic native scalar sheared-pupil diffraction estimator at literal reference indices and587.5618nm, focus:design, with zero applied shift. It is not geometric MTF, the withdrawn one-dimensional OPL method, independent physical-OPL validation, a continuum proof or measured factory performance. Every normal16/32/64/128/256 refinement snapshot, full raw pupil record and failed attempt is retained. Native convergence is assessed through sampled10/20/30/40/50lp/mm with unchanged0.01 threshold and unknown-flux checks. Source angles are separately mapped to native chief heights and native-format fractions; format corner is not substituted for a patent edge. A larger private metadata coordinate window, where needed, changes only field coordinates and not optics or claimed factory coverage.
+Semi-diameters are estimated from Fig. 1 and Sigma's section drawing. The front pair is 45.99 mm, about 1.10 times the entrance-pupil radius F/(2N), and the other elements follow relative envelopes read from the two figures (L1 = 1): 1, 0.95, 0.87, 0.81, 0.67, 0.66, 0.44, 0.44, 0.35, 0.35, 0.27, 0.30, 0.30, 0.31, 0.32, 0.30, 0.32, 0.32, 0.32, 0.32. In surface order they are 45.99, 45.99, 43.691, 43.691, 40.011, 40.011, 37.252, 37.252, 30.813, 30.813, 30.353, 30.353, 20.236, 20.236, 20.236, 16.096, 16.096, 16.096, iris, 12.417, 13.797, 13.797, 13.797, 13.797, 14.257, 14.257, 14.717, 13.797, 13.797, 14.717, 14.717, 14.717, 14.717, 14.717 and 14.717 mm. Both figures draw L10 as tall as L9, so S17 and S18 share S16's 16.096 mm; smaller rims there would cut the F5.8 axial bundle. Cemented faces share one radius. These are estimates, not measured production apertures, and none was fitted to trace results.
 
-| Caps / aperture | Requested source angle | Actual angle | Height (mm) | Native format fraction | Status / grid  |  Max delta | S30 / T30           | S50 / T50           |
-| --------------- | ---------------------: | -----------: | ----------: | ---------------------: | -------------- | ---------: | ------------------- | ------------------- |
-| nominal / f/5.8 |                     0° |  0.00000000° |  0.00000000 |             0.00000000 | converged / 32 | 0.00285837 | 0.852573 / 0.852573 | 0.754010 / 0.754010 |
-| nominal / f/5.8 |                 1.265° |  1.26499972° | 10.73934887 |             0.49604383 | converged / 64 | 0.00107897 | 0.849223 / 0.841372 | 0.750832 / 0.736565 |
-| nominal / f/5.8 |                  2.53° |  2.52999940° | 21.63730507 |             0.99941363 | converged / 32 | 0.00788372 | 0.830090 / 0.796946 | 0.719211 / 0.661650 |
-| nominal / f/8   |                     0° |  0.00000000° |  0.00000000 |             0.00000000 | converged / 32 | 0.00693020 | 0.819894 / 0.819895 | 0.699795 / 0.699795 |
-| nominal / f/8   |                 1.265° |  1.26499972° | 10.73934887 |             0.49604383 | converged / 64 | 0.00099648 | 0.820214 / 0.811780 | 0.702464 / 0.688577 |
-| nominal / f/8   |                  2.53° |  2.52999940° | 21.63730507 |             0.99941363 | converged / 32 | 0.00388934 | 0.819899 / 0.750684 | 0.700097 / 0.587723 |
-| sd-low / f/5.8  |                     0° |  0.00000000° |  0.00000000 |             0.00000000 | converged / 32 | 0.00459640 | 0.845635 / 0.845635 | 0.742539 / 0.742539 |
-| sd-low / f/5.8  |                 1.265° |  1.26499972° | 10.73934886 |             0.49604383 | converged / 64 | 0.00583599 | 0.844502 / 0.835680 | 0.741471 / 0.728825 |
-| sd-low / f/5.8  |                  2.53° |  2.52999940° | 21.63730506 |             0.99941363 | converged / 64 | 0.00430005 | 0.827599 / 0.787672 | 0.715029 / 0.648926 |
-
-## Pupil Clipping and Failed-Ray Evidence
-
-| Caps / stop | Source angle | Valid /208 | Blocked | Raw intersection failures | Unaimed / unresolved |
-| ----------- | -----------: | ---------: | ------: | ------------------------: | -------------------- |
-| nominal     |           0° |        156 |      52 |                         0 | 0 / 0                |
-| nominal     |       1.265° |        152 |      56 |                        20 | 0 / 0                |
-| nominal     |        2.53° |        124 |      84 |                        68 | 0 / 0                |
-| sd-low      |           0° |        148 |      60 |                         0 | 0 / 0                |
-| sd-low      |       1.265° |        142 |      66 |                        30 | 0 / 0                |
-| sd-low      |        2.53° |        116 |      92 |                        78 | 0 / 0                |
-
-Raw failures overlap the blocked counts and must not be added to them. The original noBracket records and intersection-failure clipEvents are retained. Separate analytical line/sphere witnesses, using each saved outgoing state and correct sphere branch, certify the234 raw failures across this trio as misses of the authored finite caps. The clipEvent alone was not used as independent proof. This classification is conditional on inferred geometry and is not proof of factory rim clipping or loss-free optics. Launch positions, full hits, outgoing directions and diagnostic OPL arrays support reproducibility, not a physicalOPL certification.
+The lens is modelled at the patent's scale, with no aspherical surfaces, rear camera plates or converter elements. No marketing value replaces a source quantity.
 
 ## Sources
 
-1. [Primary publication](https://patents.google.com/patent/JP2025071886A/en), complete original retained in the private source packet.
-2. [Primary publication](https://patents.google.com/patent/US20250130410A1/en), complete original retained in the private source packet.
-
-Original maker sections/catalog excerpts, source table transcriptions, all alternatives, exact hashes and custody links accompany the private research package. No claim is made that an excerpt is the complete maker catalog. Compiled-viewer, browser/mobile/comparison, integration and regression results are recorded separately from the scientific source-angle evidence.
+1. Sigma Corporation, Ken Asakura, Noriyuki Ogasawara. [JP 2025-071886 A, Image formation optical system](https://patents.google.com/patent/JP2025071886A/en), published 2025-05-09. Numerical Example 1, printed pp. 15–16; construction ¶0076–0081; conditions ¶0039–0067 and the condition table, p. 22; Figs. 1–2, p. 22, and Fig. 6.
+2. [US 2025/0130410 A1](https://patents.google.com/patent/US20250130410A1/en), the US family member, which gives the English spelling of the inventors' names.
+3. Sigma. 500mm F5.6 DG DN OS | Sports specifications and [construction diagram](https://www.sigma-global.com/lenses/500_56_dgdnos_s024_specification_01_01.png): 20 elements in 14 groups with 3 FLD and 2 SLD elements, 5.0° angle of view, minimum aperture F32, minimum focus distance 3.2 m, maximum magnification 1:6.
+4. HOYA. [Optical Glass Catalog 20260707, including obsolete entries](https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf). Catalog coordinates are not supplier identification.

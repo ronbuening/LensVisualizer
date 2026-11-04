@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-11-04",
     type: "lens",
     summary:
+      "Added the Canon RF 85mm f/1.4 L VCM and EF-S 60mm f/2.8 Macro, Pentax DA 14mm f/2.8, M 20mm f/4 and M 28mm f/2.8, and Sigma 500mm f/5.6 Sports",
+  },
+  {
+    date: "2026-11-04",
+    type: "lens",
+    summary:
       "Added the Carl Zeiss Jena Cardinar 100mm f/4 from its factory data sheet, Fujifilm GF 32-90mm T3.5, Nikon AF-S VR 200mm f/2G and Zoom 700VR, SMC Pentax 18mm f/3.5 and SMC Takumar 6x7 600mm f/4, with a new Werra mount page",
   },
   {

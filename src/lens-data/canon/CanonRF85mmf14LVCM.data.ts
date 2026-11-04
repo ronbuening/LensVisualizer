@@ -1,15 +1,34 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole selected source; inferred caps and iris were frozen before MTF.
- * Source/factory identity, wavelength, fixed-plane and finite-conjugate qualifications
- * are in the paired analysis/audit. No optical fitting or continuous cam claim.
+/**
+ * JP 2026-094892 A, Numerical Example 5 (Canon Inc.; inventor Fumihiro Shinobu); US family member
+ * US 2026/0153708 A1. Prescription table pp. 24–25, section Fig. 9, aberration plots Fig. 10. Associated with the
+ * Canon RF 85mm F1.4 L VCM by construction: 14 elements in 10 groups, a UD third element cemented to a negative
+ * meniscus, a double-aspherical biconvex L7 in the four-element focus group, and a near state at 0.75 m. Example 12
+ * of the same patent fits the public evidence equally well; this is a patent design, not a confirmed factory
+ * prescription.
+ *
+ * Scale: none; the patent is printed at f = 82.50 mm (computed d-line EFL 82.494 mm).
+ * Printed: R, d, d-line n, Abbe number, θgF for L4, L5, L6, L8, L13 and L14, K and A4–A12 on surfaces 13 and 14,
+ * f 82.50, F/1.46, half-field 14.69°, image height 21.63, BF 15.09, total length 117.10, and the infinity and near
+ * values of d10 and d17.
+ * Image plane: the last gap keeps the printed BF of 15.09 mm, an air-equivalent length; no cover glass is modeled.
+ * The paraxial back focus computes 15.080 mm, 0.010 mm shorter; the difference is not applied.
+ * Stop: at surface 10 as printed; its radius follows the F/1.46 rule.
+ * Glass: catalog equivalents matched on nd/νd; the six printed θgF values agree with catalog PgF within 0.0001.
+ * Semi-diameters are inferred from Fig. 9 and Canon's construction diagram; none is printed. S7/S8 are 18.75 mm so
+ * the f/1.46 axial beam (18.70/18.64 mm) clears the near-touching L4/L5 rims, with checks.gapSagFrac 0.92.
+ * Focus: U2 (surfaces 11–17) moves 8.44 mm toward the object; U1, the stop, U3 and the image plane stay fixed. The
+ * patent prints both gap states but not the near object distance; at the fixed image plane the near gaps focus at
+ * 632.8 mm from S1 (749.9 mm object to image, −0.1265×), in line with Canon's 0.75 m and 0.12×. Intermediate
+ * positions are interpolated.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "canon-rf-85mm-f14-l-vcm",
   "maker": "Canon",
   "name": "CANON RF 85mm f/1.4 L VCM",
-  "subtitle": "JP 2026-094892 A — whole Example 5; qualified representative reconstruction",
+  "subtitle": "JP 2026-094892 A, Example 5 — construction correlation with the production lens",
   "catalog": {
     "lensMounts": [
       "canon-rf"
@@ -25,11 +44,14 @@ const LENS_DATA = {
       "marketing": 1.4,
       "design": 1.46
     },
+    "closeFocusM": {
+      "marketing": 0.75
+    },
     "specs": [
-      "Grade B representative family; exact factory prescription unproved",
-      "Literal whole source, fixed plane, inferred caps/iris; clipping retained",
-      "Explicit finite endpoint with calculated conjugate; no continuous source cam law",
-      "Scalar implementation estimates; no physical OPL or factory certification"
+      "14 ELEMENTS / 10 GROUPS",
+      "DESIGN f = 82.5 mm",
+      "DESIGN F/1.46",
+      "2 ASPHERICAL SURFACES / 1 ELEMENT"
     ]
   },
   "source": {
@@ -55,10 +77,9 @@ const LENS_DATA = {
       "nd": 1.84666,
       "vd": 23.9,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-NPH53 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 199.6036168956127,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power."
+      "role": "High-index, high-dispersion positive front meniscus of the fixed first group U1."
     },
     {
       "id": 2,
@@ -68,10 +89,9 @@ const LENS_DATA = {
       "nd": 1.59522,
       "vd": 67.7,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-FPM2 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 95.79447364443064,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power."
+      "role": "Second positive meniscus of U1, in a low-dispersion crown."
     },
     {
       "id": 3,
@@ -81,10 +101,11 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.7,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "J-FK01A (HIKARI catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 94.16754741418556,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "UD positive meniscus at the front of the U1 cemented doublet.",
+      "apd": "inferred",
+      "apdNote": "Canon's construction diagram marks this position as the lens's UD element, and its nd 1.497 / νd 81.7 is a fluorophosphate UD-class glass (catalog PgF 0.5371).",
       "cemented": "CD1"
     },
     {
@@ -95,12 +116,9 @@ const LENS_DATA = {
       "nd": 1.77047,
       "vd": 29.7,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "NBFD29 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -68.08358315744466,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
-      "dPgF": 0.0012553999999999066,
-      "apdNote": "Source absolute θgF=0.5951; dPgF is derived against runtime normal line0.6438−0.001682νd. Not an Abbe number or complete measured dispersion.",
+      "role": "Negative meniscus cemented to L3; one of the two U1 negatives that set the patent's partial-dispersion condition.",
       "cemented": "CD1"
     },
     {
@@ -111,12 +129,9 @@ const LENS_DATA = {
       "nd": 1.77047,
       "vd": 29.7,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "NBFD29 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -64.8603514791716,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
-      "dPgF": 0.0012553999999999066,
-      "apdNote": "Source absolute θgF=0.5951; dPgF is derived against runtime normal line0.6438−0.001682νd. Not an Abbe number or complete measured dispersion."
+      "role": "Negative meniscus closing U1 just ahead of the stop; the second of the two partial-dispersion-controlled negatives."
     },
     {
       "id": 6,
@@ -126,12 +141,9 @@ const LENS_DATA = {
       "nd": 1.6134,
       "vd": 44.3,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-NBM51 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -42.54415585557427,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
-      "dPgF": -0.005987400000000087,
-      "apdNote": "Source absolute θgF=0.5633; dPgF is derived against runtime normal line0.6438−0.001682νd. Not an Abbe number or complete measured dispersion."
+      "role": "Biconcave negative leading the moving focus group U2, directly behind the stop."
     },
     {
       "id": 7,
@@ -141,10 +153,9 @@ const LENS_DATA = {
       "nd": 1.804,
       "vd": 46.5,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-LAH65VS (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 36.62964152966834,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power."
+      "role": "Double-aspherical biconvex positive element of U2; the lens's one aspherical element."
     },
     {
       "id": 8,
@@ -154,12 +165,9 @@ const LENS_DATA = {
       "nd": 1.6134,
       "vd": 44.3,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-NBM51 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -54.375554383658745,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
-      "dPgF": -0.005987400000000087,
-      "apdNote": "Source absolute θgF=0.5633; dPgF is derived against runtime normal line0.6438−0.001682νd. Not an Abbe number or complete measured dispersion.",
+      "role": "Negative meniscus front half of the U2 cemented doublet.",
       "cemented": "CD2"
     },
     {
@@ -170,10 +178,9 @@ const LENS_DATA = {
       "nd": 1.59522,
       "vd": 67.7,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-FPM2 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 31.7808144787309,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "Biconvex positive rear half of the U2 doublet and the strongest positive element of the focus group.",
       "cemented": "CD2"
     },
     {
@@ -184,10 +191,9 @@ const LENS_DATA = {
       "nd": 1.72342,
       "vd": 38.0,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "BAFD8 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -33.47446923207749,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "Biconcave negative front half of the first cemented doublet in the fixed rear group U3.",
       "cemented": "CD3"
     },
     {
@@ -198,10 +204,9 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.2,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 109.13649148863125,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "Weak positive meniscus cemented to L10, in a low-index crown.",
       "cemented": "CD3"
     },
     {
@@ -212,10 +217,9 @@ const LENS_DATA = {
       "nd": 2.001,
       "vd": 29.1,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 23.2834672119154,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
+      "role": "Strong biconvex positive in nd 2.0 glass, front half of the second U3 cemented doublet.",
       "cemented": "CD4"
     },
     {
@@ -226,12 +230,9 @@ const LENS_DATA = {
       "nd": 1.5927,
       "vd": 35.3,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-FTM16 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -45.97055447440384,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
-      "dPgF": 0.008874599999999955,
-      "apdNote": "Source absolute θgF=0.5933; dPgF is derived against runtime normal line0.6438−0.001682νd. Not an Abbe number or complete measured dispersion.",
+      "role": "Biconcave negative cemented to L12; the second-to-last negative, which the patent uses for g-line lateral color.",
       "cemented": "CD4"
     },
     {
@@ -242,12 +243,9 @@ const LENS_DATA = {
       "nd": 1.5927,
       "vd": 35.3,
       "indexReference": "d",
-      "indexReferenceNote": "Explicit source d-line indices; full dispersion/supplier unknown.",
-      "glass": "Unmatched (literal patent coordinates; supplier and full dispersion unproved)",
+      "glass": "S-FTM16 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -112.97907957002039,
-      "role": "Whole selected embodiment. Isolated-in-air focal length is descriptive, not installed cemented-group power.",
-      "dPgF": 0.008874599999999955,
-      "apdNote": "Source absolute θgF=0.5933; dPgF is derived against runtime normal line0.6438−0.001682νd. Not an Abbe number or complete measured dispersion."
+      "role": "Rear negative meniscus, concave to the object, closing U3; the patent's last-lens lateral-color corrector."
     }
   ],
   "surfaces": [
@@ -438,14 +436,14 @@ const LENS_DATA = {
     "published": [
       1
     ],
-    "description": "Whole source infinity and near gap endpoints. Calculated conjugate at fixed source plane; U2 surfaces11–17 moves objectward8.44mm, front/stop/rear/film fixed. Source near distance/magnification unprinted; derived values are conditional, not retail calibration. No continuous cam law; intermediate finite MTF unsupported.",
+    "description": "PUBLISHED: The four-element focus group U2 (L6–L9, surfaces 11–17) moves 8.44 mm toward the object from infinity to the near state; U1, the stop, U3 and the image plane stay fixed. Canon drives this group with a voice-coil motor. Both gap states are printed in the patent, but its near object distance and magnification are not: at the fixed image plane the near gaps focus at about 750 mm object to image (−0.126×), matching Canon's 0.75 m minimum focus and 0.12× maximum magnification. Intermediate positions are interpolated.",
     "conjugates": [
       {
         "zoomStation": 0,
         "keyframe": 1,
         "objectDistanceMm": 632.7810590009544,
         "distanceReference": "first-surface",
-        "source": "JP 2026-094892 A whole Numerical Example 5 literal near spacings; object conjugate independently computed at frozen image plane, with fixed-front registration. Source object distance unprinted; see paired analysis."
+        "source": "JP 2026-094892 A, Numerical Example 5 near spacings (d10 7.54 mm, d17 10.54 mm); the patent prints no object distance, so it is computed paraxially at the fixed image plane."
       }
     ]
   },

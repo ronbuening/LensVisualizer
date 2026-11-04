@@ -1,173 +1,168 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP 2006-153942 A.
-**Filed:** 2004-11-25 (JP2004-340376).
-**Published:** 2006-06-15.
-**Inventor:** Yoshiyuki Taki (滝 慶行; normalized corpus transliteration, not printed Latin spelling).
-**Applicant:** Canon Inc..
-**Title:** 撮影レンズ (Photographic lens; translation).
-**Example details:** Corrected whole Table2, official PDF7; Fig2; source stop-region planes13/14.
+**Patent:** JP 2006-153942 A
+**Application Number:** JP 2004-340376
+**Filed:** 2004-11-25
+**Published:** 2006-06-15
+**Inventor:** Yoshiyuki Taki (滝 慶行)
+**Applicant:** Canon Inc.
+**Title:** 撮影レンズ (Photographic lens)
+**Example details:** 数値実施例2; Table 2 (p. 7); lens section Fig. 2; aberration curves Fig. 6.
 
-The maker section corroborates 12/8 topology, the ordered cemented pairs and the inner/floating macro focus architecture. Whole corrected E2 is representative; E3 is a plausible alternative. E1 has missing rear rows and is not spliced into this file. Native62.5 mm/F2.92/full24.6° differs from retail60 mm/F2.8. Correct R19=2101.954 mm is read from both original sources; the old201.954 transcription is preserved only in superseded history and never supplies build data. JP2006153942A already occurs as prior-art citation in two unrelated Laowa analyses; those occurrences are not an implemented EF-S60 prescription or evidence of a newly unseen publication.
+Example 2 is a probable production correlation with the EF-S 60mm f/2.8 Macro USM, which Canon released in March 2005, four months after the filing. The evidence converges on several points:
+
+1. Canon gives 12 elements in 8 groups; Example 2 has the same count.
+2. Canon's construction diagram shows the same element order and the same four cemented pairs.
+3. Canon describes inner focus with the first group fixed and the groups behind it moving to 1:1; the patent fixes group 1, moves groups 2 and 3 in opposite directions, lets group 4 move in Examples 1 to 3 (¶0018), and plots its near state at −1.0×.
+4. The patent prints f = 62.5 mm, Fno. 2.92 and ω = 12.3° (24.6° full field), close to the marketed 60 mm f/2.8, and aims at digital SLRs with an image smaller than film (¶0008).
+
+Example 3 shares the layout and is not excluded; Example 1's table prints only rows 1 to 19, and Example 4 keeps group 4 fixed. The factory radii and production revision are not established. R19 is used as printed, 2101.954 mm; an earlier transcription in the source package read 201.954.
 
 ## Optical Architecture
 
-Twelve spherical elements in eight air groups. The fixed front G1 contains L1–4; G2 L5–7 moves imageward, G3 L8–10 moves objectward and rear G4 L11–12 also moves. Four cemented doublets remain literal. Passive flat air-coordinate rows13/14 are not additional glass elements or inferred baffles.
+Twelve spherical elements in eight air-spaced groups form four groups of positive–negative–positive–negative power (claim 1). Computed paraxially at infinity, group 1 has f = +34.9 mm, group 2 −22.3 mm, group 3 +25.7 mm and group 4 −44.2 mm. The fixed group 1 holds a biconvex singlet, a cemented positive/negative doublet and a second biconvex singlet. Group 2 is a negative meniscus followed by a cemented negative/positive doublet. The stop sits between groups 2 and 3 (¶0027). Group 3 is a biconvex singlet followed by a cemented positive/negative doublet, and group 4 is a single cemented positive/negative doublet. Rows 13 and 14 of the table are flat air planes 2.62 mm apart, drawn as the stop SP; they are not elements.
+
+The patent's aim is a compact inner-focus macro lens whose overall length does not change while focusing (¶0007, ¶0009). Its conditions govern the power behind the stop. Example 2 gives sk/f = 0.60 against 0.58 < sk/f < 0.70 (condition 1, with the upper limit from the abstract), where sk is the shortest back focus over the focus range; f34/f = 0.67 against 0.65 < f34/f < 0.72 (condition 2); and f34/|f4| = 0.95 against condition (4), 0.8 to 1.0. A weaker rear group lengthens the lens and worsens off-axis aberrations; a stronger one makes the required back focus hard to keep (¶0022, ¶0026).
 
 ## Element-by-Element Analysis
 
 ### L1 — Biconvex Positive
 
-nd = 1.60311, νd = 60.64. Glass: Unmatched literal source coordinates; supplier unproved. f = +60.681382 mm, isolated in air.
+nd = 1.60311, νd = 60.64. Glass: S-BSM14 (OHARA catalog equivalent). f = +60.7 mm.
 
-Front positive singlet in fixed first group G1. The individual air focal length is descriptive and does not isolate in-system aberration correction.
+Weak biconvex front element of fixed group 1; it begins converging the axial beam, about 21.4 mm across at f/2.92.
 
 ### L2 — Biconvex Positive
 
-nd = 1.48749, νd = 70.23. Glass: Unmatched literal source coordinates; supplier unproved. f = +35.843997 mm, isolated in air.
+nd = 1.48749, νd = 70.23. Glass: S-FSL5 (OHARA catalog equivalent). f = +35.8 mm.
 
-Positive member of the first cemented doublet in fixed G1. The individual air focal length is descriptive and does not isolate in-system aberration correction.
+Fluor-crown front element of group 1's cemented doublet and the strongest positive element of the fixed group.
 
 ### L3 — Biconcave Negative
 
-nd = 1.83400, νd = 37.16. Glass: Unmatched literal source coordinates; supplier unproved. f = -28.954400 mm, isolated in air.
+nd = 1.83400, νd = 37.16. Glass: S-LAH60 (OHARA catalog equivalent). f = −29.0 mm.
 
-Negative partner sharing source S4 with L2. The individual air focal length is descriptive and does not isolate in-system aberration correction.
+High-index rear element of the doublet, cemented to L2 at S4. The step from νd 70.23 to 37.16 across the cemented face corrects the axial colour of the fixed group.
 
 ### L4 — Biconvex Positive
 
-nd = 1.48749, νd = 70.23. Glass: Unmatched literal source coordinates; supplier unproved. f = +56.606974 mm, isolated in air.
+nd = 1.48749, νd = 70.23. Glass: S-FSL5 (OHARA catalog equivalent). f = +56.6 mm.
 
-Final positive singlet in fixed G1, before variable D7. The individual air focal length is descriptive and does not isolate in-system aberration correction.
+Second fluor-crown biconvex element, closing group 1 ahead of the variable gap D7. Group 1 as a whole has f = +34.9 mm.
 
 ### L5 — Negative Meniscus
 
-nd = 1.74950, νd = 35.28. Glass: Unmatched literal source coordinates; supplier unproved. f = -20.234139 mm, isolated in air.
+nd = 1.74950, νd = 35.28. Glass: S-LAM7 (OHARA catalog equivalent). f = −20.2 mm.
 
-Negative member of moving G2, cemented to L6 at S9. The individual air focal length is descriptive and does not isolate in-system aberration correction.
+Air-spaced negative meniscus, convex to the object, at the front of group 2. Its strongly curved rear face (R9 = 13.81 mm) faces the cemented doublet across a 3.34 mm air gap. Group 2 moves 10.44 mm toward the image when focusing from infinity to 1:1.
 
 ### L6 — Biconcave Negative
 
-nd = 1.51742, νd = 52.43. Glass: Unmatched literal source coordinates; supplier unproved. f = -21.388696 mm, isolated in air.
+nd = 1.51742, νd = 52.43. Glass: S-NSL36 (OHARA catalog equivalent). f = −21.4 mm.
 
-Positive cemented partner in moving G2. The individual air focal length is descriptive and does not isolate in-system aberration correction.
+Crown-flint front element of group 2's cemented doublet; with L5 it supplies the group's negative power (group f = −22.3 mm).
 
 ### L7 — Biconvex Positive
 
-nd = 1.84666, νd = 23.93. Glass: Unmatched literal source coordinates; supplier unproved. f = +20.207857 mm, isolated in air.
+nd = 1.84666, νd = 23.93. Glass: SFLDN3 (SUMITA catalog equivalent). f = +20.2 mm.
 
-Negative singlet completing G2, before source air-coordinate planes 13/14. The individual air focal length is descriptive and does not isolate in-system aberration correction.
+Dense-flint, nearly plano-convex rear element of the doublet (R12 = −1913.77 mm), cemented to L6 at S11. As a positive high-dispersion element in a negative group, it corrects the colour that L5 and L6 introduce. It is the last element ahead of the stop.
 
 ### L8 — Biconvex Positive
 
-nd = 1.69680, νd = 55.53. Glass: Unmatched literal source coordinates; supplier unproved. f = +38.856009 mm, isolated in air.
+nd = 1.69680, νd = 55.53. Glass: S-LAL14 (OHARA catalog equivalent). f = +38.9 mm.
 
-Negative member of G3, cemented to L9 at source S16. The individual air focal length is descriptive and does not isolate in-system aberration correction.
+Lanthanum-crown singlet at the front of group 3, just behind the stop. Group 3 moves 10.43 mm toward the object when focusing close.
 
 ### L9 — Biconvex Positive
 
-nd = 1.80400, νd = 46.57. Glass: Unmatched literal source coordinates; supplier unproved. f = +17.493119 mm, isolated in air.
+nd = 1.80400, νd = 46.57. Glass: S-LAH65 (OHARA catalog equivalent). f = +17.5 mm.
 
-Positive partner of L8 in G3. The individual air focal length is descriptive and does not isolate in-system aberration correction.
+High-index front element of group 3's cemented doublet and the strongest positive element in the lens.
 
 ### L10 — Biconcave Negative
 
-nd = 1.84666, νd = 23.93. Glass: Unmatched literal source coordinates; supplier unproved. f = -21.740322 mm, isolated in air.
+nd = 1.84666, νd = 23.93. Glass: SFLDN3 (SUMITA catalog equivalent). f = −21.7 mm.
 
-Negative singlet completing G3, before variable D19. The individual air focal length is descriptive and does not isolate in-system aberration correction.
+Dense-flint, nearly plano-concave rear element of the doublet (R19 = 2101.954 mm), cemented to L9 at S18. It corrects the colour of positive group 3 (group f = +25.7 mm) and faces the variable gap D19.
 
 ### L11 — Positive Meniscus
 
-nd = 1.84666, νd = 23.93. Glass: Unmatched literal source coordinates; supplier unproved. f = +21.640174 mm, isolated in air.
+nd = 1.84666, νd = 23.93. Glass: SFLDN3 (SUMITA catalog equivalent). f = +21.6 mm.
 
-Positive member of rear G4, cemented to L12 at source S21. The individual air focal length is descriptive and does not isolate in-system aberration correction.
+Dense-flint positive meniscus, concave to the object, at the front of group 4's cemented doublet.
 
 ### L12 — Biconcave Negative
 
-nd = 1.83400, νd = 37.16. Glass: Unmatched literal source coordinates; supplier unproved. f = -14.954825 mm, isolated in air.
+nd = 1.83400, νd = 37.16. Glass: S-LAH60 (OHARA catalog equivalent). f = −15.0 mm.
 
-Negative partner completing G4; the terminal image gap is calculated, not printed. The individual air focal length is descriptive and does not isolate in-system aberration correction.
-
+High-index negative rear element, cemented to L11 at S21. The pair gives group 4 its negative power (f = −44.2 mm), which condition (4) relates to the combined power of groups 3 and 4. In Example 2 the printed spacings move group 4 only 0.01 mm.
 
 ## Glass Identification and Selection
 
-| Element | nd | νd | Identity |
-| --- | ---: | ---: | --- |
-| L1 | 1.60311 | 60.64 | Literal source; supplier unproved |
-| L2 | 1.48749 | 70.23 | Literal source; supplier unproved |
-| L3 | 1.83400 | 37.16 | Literal source; supplier unproved |
-| L4 | 1.48749 | 70.23 | Literal source; supplier unproved |
-| L5 | 1.74950 | 35.28 | Literal source; supplier unproved |
-| L6 | 1.51742 | 52.43 | Literal source; supplier unproved |
-| L7 | 1.84666 | 23.93 | Literal source; supplier unproved |
-| L8 | 1.69680 | 55.53 | Literal source; supplier unproved |
-| L9 | 1.80400 | 46.57 | Literal source; supplier unproved |
-| L10 | 1.84666 | 23.93 | Literal source; supplier unproved |
-| L11 | 1.84666 | 23.93 | Literal source; supplier unproved |
-| L12 | 1.83400 | 37.16 | Literal source; supplier unproved |
+The patent names no glasses and prints nd and νd, some to six decimals, with aberration curves for the d, g, C and F lines (¶0019). Every pair coincides with a d-line catalog glass within printed precision. The labels below are catalog equivalents chosen by closest match, with OHARA preferred where rows match equally; Canon's actual suppliers and melts are not known, and the patent prints no partial dispersions.
 
-Literal nd/νd values are retained without a named supplier or modern glass substitute. The source plots identify d/g/C/F conventions; the numerical587.5618 nm runtime reference and approximate viewer dispersion remain implementation choices rather than a measured spectral reconstruction. The Japanese source prints 滝 慶行; Yoshiyuki Taki is the established corpus normalization supported by the separate Canon17–40 analysis linking that Japanese name. No claim is made that this primary JP document supplies official Latin spelling.
+| Element       | nd / νd          | Catalog equivalent | Class                 |
+| ------------- | ---------------- | ------------------ | --------------------- |
+| L1            | 1.603112 / 60.64 | S-BSM14 (OHARA)    | dense crown           |
+| L2, L4        | 1.48749 / 70.23  | S-FSL5 (OHARA)     | fluor crown           |
+| L3, L12       | 1.83400 / 37.16  | S-LAH60 (OHARA)    | lanthanum dense flint |
+| L5            | 1.749497 / 35.28 | S-LAM7 (OHARA)     | lanthanum flint       |
+| L6            | 1.517417 / 52.43 | S-NSL36 (OHARA)    | crown flint           |
+| L7, L10, L11  | 1.84666 / 23.93  | SFLDN3 (SUMITA)    | dense flint           |
+| L8            | 1.696797 / 55.53 | S-LAL14 (OHARA)    | lanthanum crown       |
+| L9            | 1.80400 / 46.57  | S-LAH65 (OHARA)    | lanthanum dense flint |
+
+Each of the four groups carries one cemented doublet that pairs a high-dispersion glass with a lower-dispersion one: fluor crown against lanthanum dense flint in group 1, crown flint against dense flint in group 2, lanthanum dense flint against dense flint in group 3, and dense flint against lanthanum dense flint in group 4. The same νd 23.93 dense flint appears three times. No ED or fluorite element is used; the highest νd in the design is 70.23.
 
 ## Focus Mechanism
 
-All four printed endpoints are retained: D7=.87→11.31, D12=12.16→1.72, D14=11.65→1.22 and D19=3.28→13.72 mm. With G1 fixed, G2 moves imageward10.44 mm, G3 objectward10.43 mm and G4 imageward0.01 mm from the literal rounded table. No terminal gap is printed. The independently derived infinity BF37.5370607164624 mm fixes imageZ108.147060716462 mm before tracing. The same film coordinate gives near lastgap37.5270607164624 mm, U91.7144363923412 mm, object-to-image199.861497109 mm and beta−0.999678736, compared with the source−1x label. These are derived conditional conjugates; neither exact retail0.2 m nor an exact−1 fitted state is asserted.
+The lens focuses internally. The patent prints four variable gaps at infinity and at −1.0×. Group 1 stays fixed; group 2 moves 10.44 mm toward the image and group 3 moves 10.43 mm toward the object, so the two groups close on the stop from both sides. The flat planes 13 and 14, and with them the iris, stay fixed. Group 4 moves only 0.01 mm in the printed spacings, although ¶0018 calls it movable in Examples 1 to 3. The patent prefers this arrangement because moving the front group needs long travel and high drive torque, which slows autofocus, whereas inner focus keeps the overall length constant (¶0007). Canon drives the focusing groups with a USM motor.
 
-Only the two explicit endpoints have finite-MTF conjugates. Linear gap interpolation supplies software geometry between them, not a patent cam law; intermediate finite MTF remains guarded. Source-published gap states are retained even though their object distances are calculated. The physical iris holds its infinity-derived opening at the near state.
+| State   | D7 (mm) | D12 (mm) | D14 (mm) | D19 (mm) | Back focus (mm) | Object from S1 (mm) | Object to image (mm) | Magnification |
+| ------- | ------: | -------: | -------: | -------: | --------------: | ------------------: | -------------------: | ------------: |
+| ∞       |    0.87 |    12.16 |    11.65 |     3.28 |          37.537 |                   ∞ |                    ∞ |             0 |
+| −1.0×   |   11.31 |     1.72 |     1.22 |    13.72 |          37.527 |               91.71 |               199.86 |       −0.9997 |
 
-## Apertures, Stop and Geometry Qualifications
+No back focus or object distance is printed. The model holds the image plane at the computed infinity back focus and derives the near conjugate from the printed −1.0× spacings; the resulting 199.86 mm object to image and −0.9997× agree with Canon's 0.20 m minimum focus distance and 1:1. Intermediate focus positions interpolate the gaps linearly. The iris keeps its infinity f/2.92 diameter at the near state.
 
-The11.8 mm front semi-diameter is about10% above the nominal entrance-pupil radius, with Fig2 relative optical outlines informing the remaining caps. Source rows13/14 are literal R0/n1 planes separated2.62 mm; the authoring scope omits these passive bookkeeping planes from active tracing. Their coordinates survive through an explicitly inferred iris halfway between them: authored gap12=D12+1.31 and the following iris gap=1.31+D14. Subtracting the fixed offsets recovers all literal source endpoints. No unprinted clipped baffle is assigned to either plane. The full2.62 mm separation and all refracting faces remain unchanged. Separate25%/75% stop-position controls and±5% clear-cap controls are geometry-valid and sampled at full opening; none is selected by favorable MTF. No unique factory iris position is proved.
+## Geometry, Aperture and Image Plane
 
-| Face | Inferred clear semi-diameter (mm) |
-| --- | ---: |
-| 1 | 11.8 |
-| 2 | 11.8 |
-| 3 | 9.8 |
-| 4 | 9.8 |
-| 5 | 9.8 |
-| 6 | 8.1 |
-| 7 | 8.1 |
-| 8 | 5.7 |
-| 9 | 5.7 |
-| 10 | 5.7 |
-| 11 | 5.7 |
-| 12 | 5.7 |
-| STO | native F/N iris |
-| 15 | 7.6 |
-| 16 | 7.6 |
-| 17 | 7.6 |
-| 18 | 7.6 |
-| 19 | 7.6 |
-| 20 | 7.6 |
-| 21 | 7.6 |
-| 22 | 7.6 |
+No scale factor is applied, and all surfaces are spherical. R, d, nd and νd follow the printed Table 2. The first-order focal length is 62.482 mm against the printed 62.5 mm. The vertices span 70.61 mm at infinity, and the infinity image plane lies 37.537 mm behind S22, 108.147 mm from the first vertex; this is the computed paraxial back focus, since the patent prints none.
 
-All accepted native geometry states have zero hidden render trim and use the unchanged normal checks, including gapSagFrac0.9. Full operating-disk checks over the adjacent finite cap surfaces retain positive clearance at every advertised aperture; optical clipping elsewhere remains possible. Aperture sensitivity is a modeling dependence, not a factory confidence interval or proof of physically unsampled rays.
+The patent places the stop SP between groups 2 and 3 (¶0027) and tabulates it as two flat air planes, rows 13 and 14, 2.62 mm apart, without saying which is the iris. The model drops both planes and places the iris midway between them, so gap 12 is D12 + 1.31 mm and the gap after the iris is 1.31 mm + D14; every printed spacing is kept. The iris position is an inference, not a factory value.
 
-## Fixed Image Plane and Source Residuals
+All clear semi-diameters are inferred. S1 and S2 (11.8 mm) sit about 10 % above the 10.70 mm entrance-pupil radius at f/2.92 (62.48/(2 × 2.92)); Fig. 2's relative outlines set the rest. The rims of S6 to S12 and S15 to S19 were raised so that the iris, not a rim, limits the f/2.92 axial beam; read at its own track scale, Fig. 2 draws group 2 about 8.0 mm high and groups 3 and 4 about 10.7 mm, so every value stays inside the drawn rims. S9 and S10 face each other across the 3.34 mm air gap at the 0.9 gap-sag limit. None of these values is a factory clear aperture.
 
-Independent reduced-angle matrices and physical-slope propagation agree within 2.13e-14. Source EFL62.50000000 mm compares with computed62.482155111139 mm. Powered track70.610000000000 mm and authored last gap37.537060716462 mm give frozen infinity imageZ108.147060716462 mm. Gaussian BF37.537060716462 mm differs from the authored gap by +0.000000000000 mm. The last gap and image plane are explicitly calculated model hypotheses because neither is printed; they are frozen before traces. No radius, glass, spacing, scale or best-focus adjustment hides these residuals.
+| Source face | Inferred clear SD, mm |
+| ----------- | --------------------: |
+| 1           |                  11.8 |
+| 2           |                  11.8 |
+| 3           |                   9.8 |
+| 4           |                   9.8 |
+| 5           |                   9.8 |
+| 6           |                   8.6 |
+| 7           |                   8.6 |
+| 8           |                   7.8 |
+| 9           |                   7.3 |
+| 10          |                   7.4 |
+| 11          |                   8.1 |
+| 12          |                   8.1 |
+| 15          |                   9.7 |
+| 16          |                   9.7 |
+| 17          |                   9.0 |
+| 18          |                   9.0 |
+| 19          |                   9.0 |
+| 20          |                   7.6 |
+| 21          |                   7.6 |
+| 22          |                   7.6 |
 
-## Native Numerical Validation
+## Model Scope and Limitations
 
-The normal native method is monochromatic scalar sheared-pupil diffraction estimation, reference-index spectrum at587.5618 nm, focus:design, zero applied shift. It is not geometric-only MTF, the withdrawn one-dimensional OPL workflow, independent physical OPL/phase validation, a continuum bound or measured factory performance. Six sampled frequencies0/10/20/30/40/50 lp/mm and successive grids up to256 use the normal0.01 contrast and unknown-flux gates. Raw prior-grid arrays are preserved. Numerical agreement at these frequencies does not establish continuous-frequency or physical accuracy.
+The semi-diameters and the iris position are inferred. The glass labels are catalog equivalents matched on the printed nd and νd, so dispersion away from the d-line follows catalog curves rather than patent data. Only infinity and the printed −1.0× state are patent spacings; the near object distance is derived, and intermediate focus is a linear interpolation of the gaps. The model traces the patent's ω = 12.3° (about 13.6 mm image height at infinity); the 14.18 mm APS-C corner needs 12.8°, just beyond the patent's field.
 
-Nominal calls across all8 advertised apertures and both endpoints contain48/48 converged native fields, maximum delta0.0089454715 and maximum unknown-flux fraction0. All48 nominal fields converge; source infinity angles0/6.15/12.3° remain separate from the finite native-format height convention. The native APS-C reference14.175 mm is not silently identified with the source edge13.607695336 mm.
+## Sources and References
 
-| State / full opening | Native angle (°) | Height (mm) | Grid / status | S/T10 | S/T30 | S/T50 |
-| --- | ---: | ---: | --- | --- | --- | --- |
-| infinity | 0.000000000 | 0.000000000 | 64 / converged | 0.967063/0.967063 | 0.902001/0.902001 | 0.837413/0.837413 |
-| infinity | 6.149969826 | 6.728324445 | 32 / converged | 0.961802/0.948692 | 0.867337/0.828575 | 0.759359/0.700354 |
-| infinity | 12.299999845 | 13.607695336 | 128 / converged | 0.940424/0.867823 | 0.774952/0.621126 | 0.592197/0.403088 |
-| near | 0.000000000 | 0.000000000 | 64 / converged | 0.911446/0.911446 | 0.581674/0.581674 | 0.291771/0.291771 |
-| near | 4.414386181 | 7.087500000 | 64 / converged | 0.902231/0.906418 | 0.536484/0.595633 | 0.269535/0.352662 |
-| near | 8.750584030 | 14.175000000 | 32 / converged | 0.939467/0.904449 | 0.793170/0.674991 | 0.646276/0.482108 |
-
-The separate209-sample aimed-pupil audit retains48 nominal bundles/10032 launch records, including0 raw noBracket failures, all already aim-classified blocked, and0 unaimed samples. This overlap is preserved explicitly; zero unresolved flux is not zero raw failure or loss-free transmission. Full launch/hit/direction records and raw statuses, per-surface clipping, rejected hypotheses and sensitivity results accompany the private research package. These caps are inferred, so loss is not attributed to factory hardware.
-
-The native working-F-number witness is vignetted rather than a valid numeric effective-F estimate at full opening; no effective aperture is fabricated. Default compiled UI Auto/photopic calculations and any applied focus shifts are separate implementation diagnostics, never written back into the prescription. Compiled-viewer and corpus receipts are reported separately; this analysis does not predeclare an integration pass.
-
-## Sources
-
-1. [Controlling complete official-source patent](https://patents.google.com/patent/JP2006153942A/en).
-2. [Canon Camera Museum product and section](https://global.canon/en/c-museum/product/ef386.html).
+1. [JP 2006-153942 A](https://patents.google.com/patent/JP2006153942A/en), claims, conditions, numerical Example 2, Fig. 2 and aberration curves.
+2. [Canon Camera Museum, EF-S 60mm f/2.8 Macro USM](https://global.canon/en/c-museum/product/ef386.html), release date, construction, focusing system, minimum focus distance, magnification, blades and minimum aperture.
+3. [Canon Camera Museum lens construction diagram](https://global.canon/ja/c-museum/wp-content/uploads/2015/05/ef386-lens-construction.gif), element order and cemented pairs.
