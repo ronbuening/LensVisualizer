@@ -1,27 +1,42 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole primary embodiment; literal R/d/n/v and source image planes retained.
- * Inferred caps/iris are source-figure and geometry hypotheses frozen before MTF.
- * Source-native apertures and fields differ from retail/format metadata.
- * Finite conjugates are explicit endpoints only; no continuous patent cam is claimed.
- * See paired analysis/audit for residuals, clipping, and DP1 full-field hold.
+/**
+ * JP 2017-032809 A, Numerical Example 1 (table ¶0126, PDF pp. 17–18; Figure 1, PDF p. 26), at the patent's
+ * own scale (no scale factor): f = 487.00 mm, F/4.11, 28 surfaces, all spherical. R, d, nd and νd are the
+ * printed values, with no radius, spacing, glass or image-plane retuning.
+ * Surfaces 27–28 are the patent's optical filter FL (1.3 mm, nd 1.51680), drawn as a plane-parallel plate:
+ * the production lens's rear drop-in filter, which Sigma's 16-element / 11-group count includes.
+ * PUBLISHED focus states: infinity and 3500 mm object-to-image (d0 = 3095.498 mm from the first surface).
+ * The printed back focus of 75.5375 mm is kept at both states; the paraxial d-line focus lies 0.006 mm
+ * beyond it at infinity and 0.007 mm at 3.5 m (source rounding).
+ * The stop (surface 13) diameter is not printed; its radius is set from the design F/4.11, and the iris
+ * keeps that size at every focus distance. Intermediate focus positions interpolate the two printed gap
+ * sets linearly; the patent gives no focus cam. The G3b stabilizing group (surfaces 17–21) is centred.
+ * Semi-diameters are not printed. They are inferred from Figure 1, the first-order pupil and the
+ * repository's edge-thickness and gap rules; the filter's 17.5 mm is sized by ray trace (see the audit
+ * log). Off-axis bundles are partly vignetted by these inferred rims.
+ * Glass labels name the HOYA catalog rows whose nd and νd match the printed values; the θgF values implied
+ * by the patent's conditions (8), (9), (11) and (12) agree with those rows within 0.0002. They are catalog
+ * equivalents; the production supplier is not established. L5's νd is 68.62 in the table and 68.63 in
+ * condition (10); the table value is used.
+ * The design focal length and F-number differ from the marketed 500 mm and f/4. The patent-to-production
+ * match is a construction correlation, not a confirmed factory prescription.
  */
 const LENS_DATA = {
   schema: 2,
   key: "sigma-500mm-f4-dg-os-hsm-sports",
   maker: "Sigma",
   name: "SIGMA 500mm f/4 DG OS HSM | Sports",
-  subtitle: "JP 2017-032809 A — whole Example 1; probable family reconstruction",
+  subtitle: "JP 2017-032809 A, Example 1 — construction correlation with the S016 production lens",
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sigma-sa"],
     imageFormat: "135-full-frame",
     specs: [
-      "Grade B probable patent family; factory prescription unproved",
-      "Inferred clear caps and F/N-derived circular iris; clipping retained",
-      "Literal infinity and3500mm source endpoint; centeredOS only",
-      "Required1.3mm filter retained; inferred17.5mm clear radius from pre-MTF ray-envelope calibration",
-      "Explicit finite endpoint only; intermediate geometry is implementation interpolation",
-      "Native scalar estimates; no factory-exact or physical OPL certification",
+      "16 ELEMENTS / 11 GROUPS",
+      "DESIGN f = 487.00 mm",
+      "DESIGN F/4.11",
+      "ALL SPHERICAL",
+      "2 FLD / 1 SLD ELEMENTS",
     ],
     elementCount: 16,
     groupCount: 11,
@@ -32,6 +47,9 @@ const LENS_DATA = {
     fNumber: {
       marketing: 4,
       design: 4.11,
+    },
+    closeFocusM: {
+      marketing: 3.5,
     },
   },
   source: {
@@ -53,8 +71,11 @@ const LENS_DATA = {
       nd: 1.437,
       vd: 95.1,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "FCD100 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Front positive element of the fixed front subgroup G1a.",
+      apd: "patent",
+      apdNote:
+        "Claim 5 requires this G1a positive to meet conditions (7) νd > 80 and (8), a positive partial-dispersion excess (θgF 0.5334); HOYA FCD100 coordinate match, and Sigma marks this position as one of its two FLD elements.",
       focalLengthMm: 330.5027029747011,
     },
     {
@@ -65,8 +86,8 @@ const LENS_DATA = {
       nd: 1.80611,
       vd: 40.73,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "NBFD13 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative meniscus, convex to the image, between the two positive elements of G1a.",
       focalLengthMm: -317.64575659318706,
     },
     {
@@ -77,8 +98,11 @@ const LENS_DATA = {
       nd: 1.437,
       vd: 95.1,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "FCD100 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Rear positive element of G1a, ahead of the 100.6 mm air space to G1b.",
+      apd: "patent",
+      apdNote:
+        "Claim 5 requires this G1a positive to meet conditions (7) νd > 80 and (8), a positive partial-dispersion excess (θgF 0.5334); HOYA FCD100 coordinate match, and Sigma marks this position as its second FLD element.",
       focalLengthMm: 308.2282450820636,
     },
     {
@@ -89,8 +113,8 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.67,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative front element of the cemented G1b doublet.",
       focalLengthMm: -153.05595708106688,
       cemented: "CD1",
     },
@@ -102,8 +126,11 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.62,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive rear element of the cemented G1b doublet.",
+      apd: "patent",
+      apdNote:
+        "Conditions (10) and (11) require this G1b positive to have νd > 65 and a partial-dispersion excess above 0.015 (θgF 0.5441); HOYA FCD515 coordinate match, and Sigma marks this position as its SLD element.",
       focalLengthMm: 102.49269338267062,
       cemented: "CD1",
     },
@@ -115,8 +142,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive element of the cemented G2 focusing doublet, which moves toward the image for near focus.",
       focalLengthMm: 227.1832828673316,
       cemented: "CD2",
     },
@@ -128,8 +155,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.62,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative element of the cemented G2 focusing doublet; it gives the group its negative power.",
       focalLengthMm: -101.60560418909864,
       cemented: "CD2",
     },
@@ -141,8 +168,8 @@ const LENS_DATA = {
       nd: 1.65844,
       vd: 50.85,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "BACED5 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive element of the cemented G3a doublet just behind the stop.",
       focalLengthMm: 77.0561188058848,
       cemented: "CD3",
     },
@@ -154,8 +181,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative meniscus, convex to the image, completing the G3a doublet.",
       focalLengthMm: -119.72159002608515,
       cemented: "CD3",
     },
@@ -167,8 +194,8 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.53,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "E-FD4 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive element of the cemented doublet in the G3b stabilizing group.",
       focalLengthMm: 58.197498812211805,
       cemented: "CD4",
     },
@@ -180,8 +207,8 @@ const LENS_DATA = {
       nd: 1.59349,
       vd: 67,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "PCD51 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative element of the cemented doublet in the G3b stabilizing group.",
       focalLengthMm: -39.5484998479417,
       cemented: "CD4",
     },
@@ -193,8 +220,8 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.67,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative singlet completing the G3b stabilizing group, which shifts across the axis for OS.",
       focalLengthMm: -56.227687571661306,
     },
     {
@@ -205,8 +232,8 @@ const LENS_DATA = {
       nd: 1.56732,
       vd: 42.84,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "E-FL6 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive singlet at the front of the rear group G3c.",
       focalLengthMm: 75.42520202128182,
     },
     {
@@ -217,8 +244,8 @@ const LENS_DATA = {
       nd: 1.56732,
       vd: 42.84,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "E-FL6 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive element of the cemented G3c doublet.",
       focalLengthMm: 59.42213936755182,
       cemented: "CD5",
     },
@@ -230,8 +257,8 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative element of the cemented G3c doublet; the last powered element.",
       focalLengthMm: -67.45340972334161,
       cemented: "CD5",
     },
@@ -243,8 +270,8 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       indexReference: "d",
-      glass: "Unmatched (literal source coordinates; supplier and full dispersion unproved)",
-      role: "Whole selected source embodiment; isolated-in-air power is descriptive.",
+      glass: "BSC7 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Flat filter plate in the lens's rear drop-in filter holder; the patent's optical filter FL.",
     },
   ],
   surfaces: [
@@ -431,18 +458,17 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 3.5000001000000003,
+    closeFocusM: 3.5,
     keyframes: [0, 1],
     description:
-      "Printed source geometry at two endpoints only. Linear gap interpolation is software geometry, not a source cam law; intermediate finite MTF is unsupported. G2 S10–S12 moves imageward20.1058mm; front,stop,OS,rear/filter/film stay fixed. d0=3095.498mm is printed object-to-first-vertex, total3500.0001mm; literal image404.5021mm kept with residual defocus. Physical iris holds its infinity-derived radius; finite working f-number is independently checked.",
+      "PUBLISHED inner focus: the cemented G2 doublet (surfaces 10–12) moves 20.1058 mm toward the image between infinity and the patent's 3500 mm state, where the object is 3095.498 mm ahead of the first surface (magnification −0.154). d9 grows from 7.552 to 27.6578 mm and d12 shrinks from 59.6448 to 39.539 mm. The front group, stop, stabilizing group, rear group, filter and image plane stay fixed, and the iris keeps its infinity size. The near state matches Sigma's 3.5 m minimum focus distance. Intermediate positions are linearly interpolated.",
     conjugates: [
       {
         zoomStation: 0,
         keyframe: 1,
         objectDistanceMm: 3095.498,
         distanceReference: "first-surface",
-        source:
-          "JP 2017-032809 A Example 1 explicit near gap endpoint; printed d0 object-to-first-surface convention; rounding residual retained",
+        source: "JP 2017-032809 A Example 1, variable-gap table: d0 = 3095.4980 mm at the 3500 mm state",
       },
     ],
     published: [1],

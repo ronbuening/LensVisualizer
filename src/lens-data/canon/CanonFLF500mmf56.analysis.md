@@ -1,81 +1,75 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP S47-8109 B (normalized source access identifier JP 1972-008109 B)
+**Patent:** JP S47-8109 B (JP 1972-008109 B)
 **Application Number:** JP1968-005844
 **Filed:** 1968-01-31
 **Published:** 1972-03-08
-**Inventors:** Michiyoshi Suwa; Shuji Koyanagi (諏訪道美; 小柳修爾)
+**Inventors:** Michiyoshi Suwa; Shuji Koyanagi (諏訪通美; 小柳修爾)
 **Assignee:** Canon Inc.
 **Title:** Short-total-length high-performance telephoto lens (全長の短い高写力望遠レンズ)
-**Example details:** 実施例1; Complete numerical table PDF 4; corresponding Fig 3 PDF 10. L/e definitions PDF 1–3 and Figs 1–2 PDF 9.
+**Example details:** 実施例1 (f = 100.0, 1:5.6, 画角 5°): numerical table p. 4, section Fig. 3 (p. 10), aberration curves Fig. 8 (p. 11). All lengths scaled ×5 to f = 500.
 
-Grade B probable 1969 FL-F500 mm f/5.6 family. Example 1 agrees with source F/5.6/full 5°, one front fluorite and the cemented rear correction pair. Uniform5× similarity scaling of native f100 is a model hypothesis. Source five powered elements/four groups differs from maker six/five by an unprescribed thin front item. Its protective role is inferred; it is omitted without assigning flatness or zero power. Example 2 remains a same-family alternative. Exact production radii, materials and revision are unproved.
+Example 1 is a probable match for the Canon FL-F 500 mm f/5.6 of June 1969, not a confirmed factory prescription. It agrees with the production lens on F/5.6, a 5° full field at 500 mm, one fluorite front element and a cemented rear correction pair. Canon lists six elements in five groups; the example has five elements in four groups. The difference is an unprescribed thin front element, read here as a protective glass; it is omitted rather than modelled as a flat or zero-power plate. Exact production radii, materials and revision are unconfirmed.
 
-Michiyoshi Suwa follows accepted companion source normalization; Shuji Koyanagi is an explicitly disclosed conventional transliteration of 小柳修爾, not a primary-verified official Latin spelling. Both original Japanese names and order remain.
+The romanizations Michiyoshi Suwa and Shuji Koyanagi are conventional readings of 諏訪通美 and 小柳修爾; the gazette prints only the Japanese names.
 
-The detailed Canon technical brochure0469B05 shows a cemented rear pair and states six elements/five components including one fluorite; it controls the family section comparison. The1970 dealer section instead separates the rear elements. That primary schematic conflict is retained and is not interpreted as a proved redesign or copied into the literal prescription. Canon identifies ONE fluorite element, not two. No foreign patent family is asserted.
+Canon's FL-F technical brochure 0469B05 shows a cemented rear pair and states six elements in five components, one of them fluorite. The 1970 dealer catalog's section instead draws the rear elements separated. That conflict between Canon's own drawings is left open; it is not read as a redesign and does not change the prescription. No foreign patent family is known.
 
 ## Optical Architecture
 
-A positive front fluorite singlet, negative singlet and positive singlet form the front unit. A long airgap containing the inferred stop precedes a cemented negative/positive rear doublet. Five powered spherical elements in four groups produce nine refracting interfaces. Literal R6=500.062 source units is finite, not a plane.
+A telephoto of positive-negative form with the patent's telephoto ratio L/f = 0.658. The front group is a biconvex fluorite singlet, a biconcave negative singlet and a positive meniscus (patent f1 = +222.6 mm at ×5); a long air space containing the stop leads to a cemented negative-positive rear doublet (f2 = −122.0 mm). Five spherical elements in four groups give nine refracting surfaces. R6 = 2500.31 mm (500.062 in patent units) is a weak curve, not a plane.
 
 ## Element-by-Element Analysis
 
 ### L1 — Biconvex Positive
 
-Literal N=1.43387, Abbe ν=95.10; implemented as nd/νd under the stated spectral hypothesis. Unmatched (literal CaF2; unqualified N/Abbe; d-line hypothesis). Isolated-in-air focal length +187.646 mm.
+nd = 1.43387, νd = 95.1. Glass: CaF2 (fluorite crystal), named CaF2 in the patent table. f = +187.6 mm.
 
-Explicit fluorite positive front collector. This isolated power is descriptive and does not equal the cemented in-system contribution.
+Fluorite front collector and the strongest positive element of the front group. Its low dispersion and anomalous partial dispersion are the basis of the lens's reduced secondary spectrum; the catalog CaF2 curve stands in for the production crystal.
 
 ### L2 — Biconcave Negative
 
-Literal N=1.79952, Abbe ν=42.30; implemented as nd/νd under the stated spectral hypothesis. Unmatched (literal LaSF02; unqualified N/Abbe; d-line hypothesis). Isolated-in-air focal length -191.796 mm.
+nd = 1.79952, νd = 42.3. Glass: S-LAH52 (Ohara) catalog equivalent; patent label LaSF02. f = −191.8 mm.
 
-Negative front correction singlet. This isolated power is descriptive and does not equal the cemented in-system contribution.
+High-index lanthanum-flint negative of the front group, set against the fluorite for color and spherical-aberration balance.
 
 ### L3 — Positive Meniscus
 
-Literal N=1.48749, Abbe ν=70.00; implemented as nd/νd under the stated spectral hypothesis. Unmatched (literal FK5; unqualified N/Abbe; d-line hypothesis). Isolated-in-air focal length +233.797 mm.
+nd = 1.48749, νd = 70.0. Glass: Unmatched (fluor crown; patent label FK5). f = +233.8 mm.
 
-Positive front-unit singlet before the long gap. This isolated power is descriptive and does not equal the cemented in-system contribution.
+Positive meniscus closing the front group ahead of the long air space to the stop.
 
 ### L4 — Biconcave Negative
 
-Literal N=1.71300, Abbe ν=53.90; implemented as nd/νd under the stated spectral hypothesis. Unmatched (literal LaK8; unqualified N/Abbe; d-line hypothesis). Isolated-in-air focal length -45.221 mm.
+nd = 1.71300, νd = 53.9. Glass: S-LAL8 (Ohara) catalog equivalent; patent label LaK8. f = −45.2 mm.
 
-Negative member of the rear cemented doublet. This isolated power is descriptive and does not equal the cemented in-system contribution.
+Negative front member of the cemented rear doublet and the source of the rear group's negative telephoto power.
 
 ### L5 — Biconvex Positive
 
-Literal N=1.59270, Abbe ν=35.40; implemented as nd/νd under the stated spectral hypothesis. Unmatched (literal F16; unqualified N/Abbe; d-line hypothesis). Isolated-in-air focal length +83.455 mm.
+nd = 1.59270, νd = 35.4. Glass: S-FTM16 (Ohara) catalog equivalent; patent label F16. f = +83.5 mm.
 
-Positive partner at the shared rear interface. This isolated power is descriptive and does not equal the cemented in-system contribution.
+Positive partner at the cemented interface. A positive flint behind a negative lanthanum crown achromatizes the negative rear group.
 
 ## Glass Identification and Selection
 
-The source explicitly calls the first element CaF2, N=1.43387/V=95.1. Remaining literal labels LaSF02, FK5, LaK8 and F16 are not replaced by modern glass names or dispersion coefficients.
+The patent prints n and ν without naming the line; all five indices match catalog d-line values, so the table is read as d-line. L1 is CaF2 in the patent table and uses the catalog fluorite curve. The patent's LaSF02, LaK8 and F16 use Ohara S-LAH52, S-LAL8 and S-FTM16, whose nd matches and whose νd lies within 0.1 of the printed value. FK5 (L3) stays Unmatched: catalog rows at nd 1.48749 have νd 70.24–70.45 against the printed 70.0, and the closest, S-FSL5, moves the g-line focus away from the patent's curves, so L3's dispersion is estimated from nd and νd. The catalog curves are dispersion proxies; the 1969 production melts are unidentified.
 
-All literal indices are assigned to conventional d587.5618 nm for the reference calculation as a disclosed hypothesis: the primary tables print N/Abbe without an explicit reference-line subscript. CSV column names are not primary wavelength evidence. Full anomalous dispersion and exact factory melts are unresolved. Abbe-based broadband initialization is a proxy, so the reference checks establish no apochromatic or white-light factory accuracy.
+Fig. 8 plots spherical aberration in d, C, F and g. Read at the axis and scaled ×5, the paraxial C, F and g foci lie +0.18, −0.05 and +0.12 mm from d; the model gives +0.23, −0.09 and +0.28 mm. The source of the remaining g-line difference is not identified.
 
 ## Focus Mechanism
 
-No finite-conjugate table, numerical extension or continuous focus law is disclosed. Canonical infinity-only metadata is retained; retail 10m is not a source focus endpoint.
+The patent prints the infinity state only, with no close-focus spacing or focusing method. The model is infinity-only; Canon's 10 m minimum focus is listed as metadata and is not modelled.
 
 ## Geometry, Aperture and Image Plane
 
-Uniform dimensional scale 5 is used without changing N/Abbe or shape. Independent first-order EFL=499.572304707925 mm, residual from scaled printed f=-0.427695292075 mm. The residual is retained without an unsupported rounding explanation. All faces are spherical.
+All lengths are scaled uniformly ×5 from the patent's f = 100.0; n, ν and surface shapes are unchanged. The computed EFL is 499.572 mm, 0.428 mm short of the scaled 500.0; the patent gives no rounding note and the difference is kept. All surfaces are spherical.
 
-Frozen infinity image plane z=328.835000000000 mm; terminal gap 125.600000000000 mm. Printed L fixes the first-vertex image coordinate. The terminal gap is derived as L minus literal axial track and is not separately printed BFL.
+The image plane is fixed by the printed L = 65.767 (front vertex to focal plane), 328.835 mm at ×5. The last gap, 125.600 mm, is L minus the axial track and is not a separately printed back focus. The computed paraxial BFD is 125.444 mm, so the printed plane lies 0.156 mm behind paraxial focus. This patent-internal inconsistency is kept; the plane is not moved to best focus.
 
-Independent Gaussian BFL=125.444316810062 mm; computed BFL minus frozen terminal gap=-0.155683189938 mm. The native design-focus calculations apply zero refocus. Any diagnostic or default UI best-axial shift is separate and does not rewrite this source plane.
+The patent prints no clear diameters or stop position. Fig. 3 draws the three front elements with roughly equal outlines and the rear doublet at about 0.40 of their height. The front semi-diameters are the nominal F/5.6 entrance-pupil radius at f = 500 plus 8 %, 48.2 mm; the rear doublet's are 19.3 mm. Fig. 3 places the iris at about 0.51 of the long gap d6; the model puts it at the midpoint, keeping the whole printed gap.
 
-Front three powered elements have approximately equal schematic optical outlines; rear/front ratio.40. Front nominal EP+8% gives48.21 mm, frozen48.2; rear19.3. Source iris at about.51 of long gap, frozen.50 with.45/.55 bounds. Front extra maker element is unprescribed and omitted; no zero-power protector assumed. Source L65.767 at 5x fixes328.835, not Gaussian best focus.
-
-The inferred stop lies at fraction0.50 of literal D6, with source-informed bounded controls0.45/0.55. The split preserves the whole printed gap. SD±5% controls and stop controls are interpretation sensitivities, not confidence intervals; no favorable-contrast selection is made.
-
-At canonical nominalF5.6, exact four cardinal source-iris rim rays and the center are clear. The real image-space working f-number is 5.751016361580; this measured value is distinct from the nominal paraxial design f-number.
-
-Wide-open full operating-iris-disk clearances to adjacent finite caps are 63.367641784 mm and 60.001866653 mm. Native nominal geometry has zero render trim. Optical disk clearance is not blade-mechanics proof.
+At F/5.6 the axial bundle passes every surface unclipped. The real image-space working f-number is 5.75, against the nominal paraxial F/5.6.
 
 | Source face | Inferred clear SD, mm |
 | ----------- | --------------------: |
@@ -89,21 +83,12 @@ Wide-open full operating-iris-disk clearances to adjacent finite caps are 63.367
 | 8           |                  19.3 |
 | 9           |                  19.3 |
 
-The +5% SD control is geometry-rejected and is not traced. Valid lower-SD and, for the FL pair, stop-position controls retain clipping and their separate MTF differences; they are not substituted for the nominal branch.
+## Model Scope and Limitations
 
-## Verification Summary
-
-At infinity, 15/15 normal native fields converge across all 5 advertised apertures, maximum terminal sampled contrast delta 0.0098088099, grids [32, 64]. Method: current native scalar sheared-pupil diffraction estimate, reference spectrum and design focus, frequencies0/10/20/30/40/50 lp/mm. This is neither an independent OPL/phase reference nor a continuous-frequency error bound or factory validation.
-
-Exact source-angle pupil probes0/1.25/2.5° have wide-open valid counts 209/209/203 of 209 each. Across all infinity source probes there are 3135 saved samples, 0 raw engine failures and 0 unaimed samples. Per-face raw clipping remains in the saved records.
-
-Native MTF format-reference height 21.65 mm is distinct from the exact36×24 mm corner21.633307653 mm and the patent field. Source coverage is not clamped or silently extended to the format corner. Default viewer spectrum/best-axial focus is recorded separately from controlled reference/design results.
-
-Compiled viewer receipts contain 5 advertised aperture/state checks with final Worker arrays, eleven terminal field statuses per check and CSV comparisons. Mobile diagrams, pair comparison and finite-interpolation guard records accompany the private package. Numerical convergence is reported per field, including any actual unconverged result.
+The model is computed at infinity only. Contrast figures are diffraction estimates from the scaled patent prescription with catalog dispersion proxies (L3 from nd and νd alone); they are not production measurements. The patent's 2.5° half-field just covers the 21.63 mm half-diagonal of the 36 × 24 mm frame, and the field is not extended beyond it.
 
 ## Sources and References
 
-1. [JP 1972-008109 B original primary publication](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S47-008109/12/en), complete selected numerical example and its own figures.
-2. [Canon Museum product evidence](https://global.canon/en/c-museum/product/fl119.html), maker counts and product specifications retained separately from patent inputs.
-3. [Original Canon FL-F technical brochure0469B05](https://www.pacificrimcamera.com/rl/00020/00020.pdf) and [1970 dealer catalog](https://www.pacificrimcamera.com/rl/00082/00082.pdf), source originals and page provenance retained.
-4. Verified private source packets contain full PDFs, original maker material, literal CSVs, source review, figure measurements and prebuild dedup. No new patent discovery was performed during construction.
+1. [JP S47-8109 B (J-PlatPat)](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S47-008109/12/en), numerical example 1, Fig. 3 and Fig. 8.
+2. [Canon Camera Museum, FL-F 500mm f/5.6](https://global.canon/en/c-museum/product/fl119.html), release date, element count, minimum focus and other product specifications.
+3. [Canon FL-F technical brochure 0469B05](https://www.pacificrimcamera.com/rl/00020/00020.pdf) and [1970 dealer catalog](https://www.pacificrimcamera.com/rl/00082/00082.pdf), section drawings and element count.

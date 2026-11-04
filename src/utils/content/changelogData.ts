@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-11-04",
     type: "lens",
     summary:
+      "Added the Canon EF 50mm f/2.5 Compact Macro, FL-F 300mm f/5.6 and FL-F 500mm f/5.6, Pentax DA 50mm f/1.8, Sigma 500mm f/4 Sports and Vivitar Series 1 90mm f/2.5 Macro",
+  },
+  {
+    date: "2026-11-04",
+    type: "lens",
+    summary:
       "Added the Carl Zeiss Jena Cardinar 100mm f/4 from its factory data sheet, Fujifilm GF 32-90mm T3.5, Nikon AF-S VR 200mm f/2G and Zoom 700VR, SMC Pentax 18mm f/3.5 and SMC Takumar 6x7 600mm f/4, with a new Werra mount page",
   },
   {

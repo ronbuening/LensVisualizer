@@ -4,101 +4,96 @@
 **Inventor:** Koji Kato (加藤 浩司).
 **Applicant:** Ricoh Imaging Company, Ltd.
 **Title:** Large-aperture lens system.
-**Example details:** Application Tables 7–8, Figures 10–12, Numerical Example 4; byte-transcribed values also match grant numerical Example 2. Grant reference Example 4 is a different design. Native millimetres, no rescaling.
+**Example details:** 数値実施例4, Tables 7–8, Figs. 10–12. The same values are numerical Example 2 of the granted JP 5966728 B2, whose Example 4 is a different design. Native millimetres, no scaling.
 
 ## Patent Identification and Product Correspondence
 
-This is a representative patent reconstruction associated with the original smc PENTAX-DA 50mm F1.8. The exact factory prescription is unproved. The source contains seven whole alternatives; none has been spliced into this file. All selected radii, thicknesses, source stop distances, d-line indices and Abbe numbers remain literal.
+This prescription is a patent design associated with the smc PENTAX-DA 50mm F1.8, not a confirmed factory prescription. The patent gives seven numerical examples of the same six-element Gauss type; Example 4 is used unchanged, with its radii, thicknesses, stop gaps, d-line indices and Abbe numbers as printed. The association rests on three points:
 
-The maker confirms six elements in five groups, with three separate front elements, a diaphragm, a cemented rear pair and a final singlet. Its section is compatible with the selected example, without uniquely identifying that example as the product. Nominal retail 50mm has not replaced the source 51.50mm. Maker APS-C coverage, Pentax K mount, seven blades and f/22 limit are descriptive product metadata.
+1. Ricoh lists six elements in five groups, and its section shows three separate front elements, the diaphragm, a cemented meniscus doublet and a biconvex rear element. That is the construction of every example in the patent.
+2. Example 4 is a 51.50 mm f/1.8 design with a 15.5° half-field and a 14.24 mm image height, which fits a 50 mm f/1.8 for the APS-C Pentax K-mount format.
+3. Ricoh previewed the lens on 2012-02-08 and announced it on 2012-05-29, with availability planned for late July; the application was filed on 2012-07-30.
 
-The maker preview on 2012-02-08 and announcement on 2012-05-29 precede filing on 2012-07-30; planned availability was late July. This chronology is retained without a legal inference or an invented exact retail date. Historical inventory Primes:927 already identified Example04P. This is source recovery, not a new patent discovery.
+The maker's section fits Examples 3, 4 and 5 equally well, so it does not single out Example 4. Example 4 is used because it is also a numerical example of the granted patent, its Example 2. The retail 50 mm is not substituted for the design's 51.50 mm. The seven-blade iris, f/22 minimum aperture and 0.45 m (0.15×) minimum focus are retail data.
 
 ## Optical Architecture
 
-Six spherical elements form five components in the sequence positive, positive, negative, negative, positive, positive. L4/L5 share source surface9; the stop is the explicitly tabulated nonrefracting row7. The front and rear assemblies form a modified double-Gauss arrangement. There are eleven refracting faces and no aspheres, additional filter plate or sensor stack.
+Six spherical elements in five groups form a Gauss type, which the patent names as such (¶0021): a positive front group of positive L1, positive L2 and negative L3, the stop, and a positive rear group of negative L4 cemented to positive L5, then positive L6. L4 and L5 share surface 9, and the stop is the patent's surface 7. There are eleven refracting faces, no aspheres and no filter or cover plate. The rear group carries most of the power: the front group alone has f ≈ +196 mm, the rear group f ≈ +43 mm.
+
+The patent's aim (¶0022) is to correct coma flare, astigmatism and spherical aberration at f/1.8 without an asphere, by setting the power of L2 and of the air lens between L2 and L3. Cementing L4 to L5 corrects spherical and chromatic aberration (¶0021) and removes the sensitive air gap behind the stop that the patent criticizes in one cited prior design (¶0006).
 
 ## Element-by-Element Analysis
 
 ### L1 — Positive Meniscus
 
-nd = 1.80610, νd = 40.9. Glass: Unmatched literal patent coordinates; supplier unproved. Isolated-in-air f = +47.553206mm.
+nd = 1.80610, νd = 40.9. Glass: S-LAH53 (OHARA) equivalent. f = +47.55 mm.
 
-The positive front meniscus introduces front-group power. Its source radii differ strongly, so the very shallow rear face remains literal rather than being flattened.
+The front collector, convex to the object, with a nearly flat rear face (R 599.014). Condition (3) bounds its shape factor (r2 + r1)/(r2 − r1) between 1.0 and 1.45; Example 4 gives 1.13. Above the limit axial spherical aberration is overcorrected, and below it the Petzval sum grows and field curvature becomes hard to correct (¶0025).
 
 ### L2 — Positive Meniscus
 
-nd = 1.78590, νd = 44.2. Glass: Unmatched literal patent coordinates; supplier unproved. Isolated-in-air f = +92.190819mm.
+nd = 1.78590, νd = 44.2. Glass: S-LAH51 (OHARA) equivalent. f = +92.19 mm.
 
-The second positive meniscus contributes front-group convergence. Its image-side face borders the source1.682mm air gap; inferred clear radii there are constrained by exact sag clearance.
+The second positive meniscus, also convex to the object and about half as strong as L1. Condition (1) sets its focal length at 1.03 to 1.83 times that of the system; Example 4 sits near the upper limit at 1.79. A weaker L2 leaves coma flare uncorrected, a stronger one astigmatism (¶0023).
 
 ### L3 — Negative Meniscus
 
-nd = 1.74077, νd = 27.8. Glass: Unmatched literal patent coordinates; supplier unproved. Isolated-in-air f = -26.694951mm.
+nd = 1.74077, νd = 27.8. Glass: S-TIH13 (OHARA) equivalent. f = −26.69 mm.
 
-The front negative meniscus has a strongly curved image-side face toward the stop. The source4.145mm gap to the iris remains fixed.
+The negative meniscus ahead of the stop, with its strongly curved concave face (R 18.454) toward the stop. Its nearly flat front face (R 290.94) and the rear face of L2 (R 39.19) bound the diverging air lens of condition (2): (r5 − r4)/(r5 + r4) = 0.763, against limits of 0.3 and 0.8. Too strong an air lens overcorrects axial spherical aberration and upsets astigmatism; too weak a one strengthens the action of L3 and L4, the negative lenses either side of the stop, and coma flare grows (¶0024).
 
 ### L4 — Negative Meniscus
 
-nd = 1.76182, νd = 26.6. Glass: Unmatched literal patent coordinates; supplier unproved. Isolated-in-air f = -30.336730mm.
+nd = 1.76182, νd = 26.6. Glass: FD140 (HOYA) equivalent. f = −30.34 mm.
 
-The negative rear meniscus is cemented to L5. Its object-side concavity and source6.087mm distance from the stop are preserved.
+The negative meniscus behind the stop, concave to the object and cemented to L5. Condition (5) pairs its front face with the rear face of L3 across the stop: r6/r7 = −1.08, inside −1.2 to −0.85. A more deeply concave L4 face makes the rear group too strongly positive and leaves spherical aberration and coma hard to correct; a shallower one leaves spherical aberration undercorrected and field curvature hard to correct (¶0027).
 
 ### L5 — Positive Meniscus
 
-nd = 1.80610, νd = 40.9. Glass: Unmatched literal patent coordinates; supplier unproved. Isolated-in-air f = +37.359339mm.
+nd = 1.80610, νd = 40.9. Glass: S-LAH53 (OHARA) equivalent. f = +37.36 mm.
 
-The positive cemented partner shares the source−68.666mm boundary with L4. Individual focal lengths below describe isolated-in-air elements, not the installed power of the cemented pair.
+The positive meniscus, convex to the image, completes the doublet with L4 on the shared surface 9 (R −68.666). Condition (4) bounds the pair's combined focal length at −21 to −4 times f; Example 4 gives −11.86, a weakly negative doublet of about −611 mm. Too strong a pair makes coma flare and astigmatism hard to correct, too weak a pair leaves spherical aberration undercorrected (¶0026). The focal lengths given for L4 and L5 are for each element alone in air.
 
 ### L6 — Biconvex Positive
 
-nd = 1.77250, νd = 49.6. Glass: Unmatched literal patent coordinates; supplier unproved. Isolated-in-air f = +47.188383mm.
+nd = 1.77250, νd = 49.6. Glass: S-LAH66 (OHARA) equivalent. f = +47.19 mm.
 
-The final biconvex positive singlet completes the rear group. Its following source BF is air-equivalent image distance, not a claimed mechanical flange or a measured camera stack.
+The biconvex rear element, 0.10 mm behind L5, supplies most of the rear group's positive power. The printed back focus behind it, 38.52 mm, is an air-equivalent distance from this face to the image (¶0029).
 
 ## Glass Identification / Selection
 
-The six Nd/νd pairs are source d-line values. No supplier names, full dispersion coefficients or independent g/C indices are supplied. The authored Unmatched labels avoid claiming catalog identities from an index/Abbe match. Native reference-index calculations use587.5618nm. Default viewer photopic calculations use the application's material interpolation and are a separate implementation estimate, not measured broadband performance or a certified spectral match.
+The patent prints d-line indices and Abbe numbers only (¶0029), with no supplier and no partial dispersion. The equivalents below match both printed values; the supplier of the production glass is not established.
+
+| Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Role |
+|---|---|---|---|---|
+| L1, L5 | 1.80610 / 40.9 | S-LAH53 (OHARA) | 1.80610 / 40.93 | High-index lanthanum positive |
+| L2 | 1.78590 / 44.2 | S-LAH51 (OHARA) | 1.78590 / 44.20 | High-index lanthanum positive |
+| L3 | 1.74077 / 27.8 | S-TIH13 (OHARA) | 1.74077 / 27.79 | Dense flint negative |
+| L4 | 1.76182 / 26.6 | FD140 (HOYA) | 1.76182 / 26.61 | Dense flint negative |
+| L6 | 1.77250 / 49.6 | S-LAH66 (OHARA) | 1.77250 / 49.60 | High-index lanthanum positive |
+
+Both negatives are dense flints near νd 27, and all four positives are high-index lanthanum glasses. Condition (6) asks for a mean d-line index of the four positives between 1.75 and 1.82; Example 4 gives 1.79. The patent ties the upper limit to axial colour, especially a g-line error that shows as purple fringing next to bright areas, and the lower limit to the Petzval sum and field curvature (¶0028).
 
 ## Focus Mechanism and Image Plane
 
-Only the selected infinity prescription is supplied. Supported infinity-only metadata uses closeFocusM=1e15 and no conjugates or motion arrays. Maker closest-focus0.45m and0.15× magnification are descriptive; they do not authorize a finite prescription or interpolated cam law. No finite optical performance is claimed.
+The patent tabulates the infinity state only and names no focusing group, so the model has no focus movement. The production lens focuses to 0.45 m (0.15×); how its optics move is not published, and no close-focus state is reconstructed.
 
-The separately printed air-equivalent BF38.52mm is represented as air after the last powered face, with no invented filter. Powered track33.852mm plus BF gives fixed image coordinate72.372mm, versus rounded header72.37mm. Independent ABCD gives EFL51.500142181064mm and Gaussian BF38.518476689584mm. The computed-minus-source BF residual−0.001523310416mm remains; neither the source gap nor focus was optimized.
+The printed fB of 38.52 mm is an air-equivalent distance (¶0029) and is modeled as air, with no filter or cover glass. The element track is 33.852 mm, so the image lies 72.372 mm behind surface 1, against the rounded printed L of 72.37 mm. The computed EFL is 51.500 mm and the paraxial back focus 38.518 mm, so the image plane sits 0.0015 mm behind paraxial focus; the printed back focus is kept.
 
 ## Aspherical Surfaces
 
-None. The source explicitly describes all seven examples as spherical. No aspheric coefficient or alternative-example correction is introduced.
+None. The patent states that no example uses an aspheric lens (¶0029), and gives avoiding the cost of a molded asphere and the temperature drift of a resin one as advantages of the design (¶0022).
 
-## Apertures, Stop and Geometry Qualifications
+## Stop and Clear Apertures
 
-Stop row7 is source-backed, at z17.191mm, with literal adjacent gaps4.145/6.087mm. Its physical radius is unprinted. The ordinary native F/N rule gives infinity iris radius10.059853576mm atF1.8; no stop.sd was hand-authored. The circular numerical iris is distinct from the maker's seven-blade description. Exact operating-disk clearance was checked at every advertised aperture; blades and mount fit are not proved.
+The patent tabulates the stop as surface 7, 17.191 mm behind surface 1, 4.145 mm behind L3 and 6.087 mm ahead of L4, but prints no diameter. The stop radius follows from the f-number: 10.06 mm at f/1.8. The model's iris is circular; the production lens has seven blades.
 
-All powered-face clear radii are inferred. The front15.75mm seed is about10.1% above the entrance-pupil radius51.5/(2×1.8); maker section proportions inform the remaining13–13.75mm envelope seeds. Schematics depict envelopes, not calibrated clear apertures. Exact cap geometry rejected equal13.75mm boundaries at sourceS4/S5 and13mm atS6/S8. Before any native tracing or MTF, those boundaries were conservatively set to11.25mm and11.5mm respectively. Final S1–S12 clear radii are15.75,15.75,13.75,11.25,11.25,11.5,unprinted iris,11.5,13,13,13,13mm. Source R/d/material values did not change.
-
-Nominal and−5% cap sensitivities pass normal native geometry with zero hidden render trim. The +5% sensitivity fails normal air-gap checks and remains rejected. No check/tolerance override was used. Valid sensitivity curves describe inferred-cap dependence; caps were not chosen by their MTF.
-
-## Native Numerical Validation
-
-The saved normal native method is monochromatic scalar sheared-pupil diffraction estimation at literal reference indices, focus:design, zero applied image shift. It is not geometric MTF, the withdrawn one-dimensional OPL workflow, independent physical OPL validation, a continuum proof or measured factory performance. Three calls test nominalF1.8, nominalF8 and−5% caps atF1.8, each at exact source angles0°,7.75°,15.5°. All nine fields converge through sampled50lp/mm within the normal0.01 MTF criterion, with zero unknown flux. Every refinement snapshot is retained. Source angles and native format fractions are independently mapped; the sourceY14.24mm and format corner are not assumed identical.
-
-| Caps / aperture | Source angle | Native chief height (mm) | Native format fraction | Grid |  Max delta | S30 / T30           | S50 / T50           |
-| --------------- | -----------: | -----------------------: | ---------------------: | ---: | ---------: | ------------------- | ------------------- |
-| nominal / f/1.8 |           0° |               0.00000000 |             0.00000000 |   64 | 0.00932619 | 0.153424 / 0.153424 | 0.114678 / 0.114678 |
-| nominal / f/1.8 |        7.75° |               6.99981962 |             0.49381444 |   64 | 0.00911992 | 0.145475 / 0.237162 | 0.063986 / 0.058892 |
-| nominal / f/1.8 |        15.5° |              14.20151058 |             1.00187023 |  128 | 0.00494424 | 0.415889 / 0.140605 | 0.201739 / 0.151663 |
-| nominal / f/8   |           0° |               0.00000000 |             0.00000000 |   32 | 0.00695827 | 0.821103 / 0.821103 | 0.701956 / 0.701956 |
-| nominal / f/8   |        7.75° |               6.99981962 |             0.49381444 |   32 | 0.00461982 | 0.787173 / 0.784634 | 0.640709 / 0.636727 |
-| nominal / f/8   |        15.5° |              14.20151058 |             1.00187023 |   32 | 0.00702072 | 0.759124 / 0.531539 | 0.591183 / 0.250176 |
-| sd-low / f/1.8  |           0° |               0.00000000 |             0.00000000 |  128 | 0.00205537 | 0.154764 / 0.154764 | 0.152675 / 0.152675 |
-| sd-low / f/1.8  |        7.75° |               6.99981962 |             0.49381444 |   64 | 0.00705837 | 0.143439 / 0.278663 | 0.087970 / 0.058313 |
-| sd-low / f/1.8  |        15.5° |              14.20151058 |             1.00187023 |   64 | 0.00997052 | 0.494299 / 0.135236 | 0.240013 / 0.156937 |
-
-The separate16-cell aimed-pupil audit retains all launch/hit/direction/OPL diagnostic records. On nominal caps, valid/208 counts are188 axial,182 half-field and146 edge. The remaining20/26/62 samples are clipped on authored finite caps. All six nominal/low-cap field cases have zero raw failure, unaimed and unresolved counts. This is conditional transmission through inferred clear apertures, not evidence of factory rim loss or loss-free optics. Full raw arrays, loss-by-surface counts and failed pretrace hypotheses are preserved privately.
+No clear aperture is printed, so every semi-diameter is inferred. The front element's 15.75 mm is about 10 % above the 14.31 mm entrance-pupil radius (51.5 / 3.6). The other rims follow the proportions of Fig. 10 and the maker's section, limited by edge clearance across the air gaps: 13.75 and 11.75 mm on L2, 11.75 and 11.5 mm on L3, 11.5 and 13.0 mm on the L4–L5 doublet, and 13.0 mm on L6. The rear face of L2 and the front face of L3 stand at 11.75 mm so that the f/1.8 axial beam passes them unclipped. At that height the difference in their sags takes up about 93 % of the 1.682 mm air gap between them, leaving 0.12 mm at the rim; that is above the default limit of 90 %, and the file's `gapSagFrac` of 0.94 permits it. Fig. 10 draws both faces at about this height. Off-axis beams at full aperture are partly vignetted by the front and rear rims, and the rims were not widened to remove that.
 
 ## Sources
 
-1. JP2014026184A complete original, Tables7–8/Figs10–12: https://patents.google.com/patent/JP2014026184A/en
-2. JP5966728B2 complete original, corresponding numerical Example2: https://patents.google.com/patent/JP5966728B2/en
-3. Ricoh original product page and optical section: https://www.ricoh-imaging.co.jp/english/products/lens/k/telephoto/smcpentax-da50/
-4. Original maker catalog page8 extraction, explicitly retained as an excerpt; complete-catalog custody and source hashes accompany the research archive.
+1. JP 2014-026184 A, Tables 7–8, Figs. 10–12: https://patents.google.com/patent/JP2014026184A/en
+2. JP 5966728 B2, numerical Example 2: https://patents.google.com/patent/JP5966728B2/en
+3. Ricoh Imaging, smc PENTAX-DA 50mm F1.8 product page and optical section: https://www.ricoh-imaging.co.jp/english/products/lens/k/telephoto/smcpentax-da50/
+4. Ricoh Imaging, smc PENTAX-DA 50mm F1.8 lens-construction diagram (Japanese site): https://www.ricoh-imaging.co.jp/japan/products/lens/img/img-smcpentax-da50_02.gif
+5. Ricoh Imaging product catalog, page 8 (construction and specifications).

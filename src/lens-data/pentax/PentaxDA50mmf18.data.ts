@@ -1,25 +1,36 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole application NumericalExample4 = grantNumericalExample2, not grantExample4.
- * Literal sourceR/d/Nd/vd, source stop and BF38.52 retained. Missingclearcaps
- * are sourcefigure/EP/geometry hypotheses frozen beforetracing. SourceF51.50
- * is notretuned to retail50. Infinityonly; no measuredfulldispersion/factoryidentity claim.
+/**
+ * JP 2014-026184 A (Koji Kato, Ricoh Imaging), Numerical Example 4, associated with the smc PENTAX-DA 50mm F1.8.
+ * The same prescription is numerical Example 2 of the granted JP 5966728 B2; the grant's Example 4 is a different
+ * design. The association rests on construction, focal length, aperture and field; this is a patent design, not a
+ * confirmed factory prescription.
+ *
+ * Scale: none. The patent's millimetre values are used as printed; f = 51.50 mm is not rescaled to the retail 50 mm.
+ * Printed: R, d, d-line n, Abbe number, the stop row (surface 7) with its gaps, F/1.8, f = 51.50, W = 15.5°,
+ * Y = 14.24, fB = 38.52 and L = 72.37. The patent names no glass supplier and prints no partial dispersion; the glass
+ * labels are catalog equivalents matched on nd and νd.
+ * Image plane: the last gap is the printed air-equivalent back focus, 38.52 mm, with no filter or cover plate. The
+ * paraxial back focus computes to 38.518 mm and is not applied. The image lies 72.372 mm behind S1, against the
+ * rounded printed L of 72.37 mm.
+ * Stop: the patent tabulates the stop position but not its diameter; the stop radius follows F/N.
+ * Semi-diameters are inferred, none is printed. S1 sits about 10 % above the entrance-pupil radius; the other rims
+ * follow Fig. 10 and the maker's section, limited by edge clearance across the air gaps. S4/S5 stand at 11.75 mm,
+ * with checks.gapSagFrac 0.94, so the f/1.8 axial beam clears the L2/L3 rims; Fig. 10 draws both faces at about
+ * this height.
+ * Focus: the patent prints the infinity state only and names no focusing group, so no gap varies and
+ * focus.closeFocusM stays at infinity; the retail 0.45 m minimum focus is catalog data.
  */
 const LENS_DATA = {
   schema: 2,
   key: "pentax-smc-da-50mm-f18",
   maker: "Pentax",
   name: "PENTAX DA 50mm f/1.8",
-  subtitle: "JP 2014-026184 A Numerical Example 4 \u2014 representative infinity reconstruction",
+  subtitle: "JP 2014-026184 A, Example 4 \u2014 probable production correlation",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "aps-c",
-    specs: [
-      "Probable family/representative example; exact factory identity unproved",
-      "Literal51.50mm/F1.8/BF38.52mm; no rescaling or optimizedimageplane",
-      "Inferred clear apertures and nativeF/N circular iris; clipping retained",
-      "Infinity-only; retail0.45m/0.15x descriptive, no finite prescription",
-    ],
+    specs: ["6 ELEMENTS / 5 GROUPS", "DESIGN f = 51.5 mm", "DESIGN F/1.8", "ALL SPHERICAL"],
     elementCount: 6,
     groupCount: 5,
     focalLengthMm: {
@@ -29,6 +40,9 @@ const LENS_DATA = {
     fNumber: {
       marketing: 1.8,
       design: 1.8,
+    },
+    closeFocusM: {
+      marketing: 0.45,
     },
   },
   source: {
@@ -50,8 +64,8 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.9,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line coordinates; supplier/full dispersion unproved)",
-      role: "Whole selected spherical embodiment; isolated-in-air focal length is descriptive.",
+      glass: "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "High-index positive front meniscus, convex to the object; the main collector of the front group.",
       focalLengthMm: 47.55320610892602,
     },
     {
@@ -62,8 +76,8 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 44.2,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line coordinates; supplier/full dispersion unproved)",
-      role: "Whole selected spherical embodiment; isolated-in-air focal length is descriptive.",
+      glass: "S-LAH51 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Weaker second positive meniscus; its power is set to balance coma flare against astigmatism.",
       focalLengthMm: 92.1908193999333,
     },
     {
@@ -74,8 +88,8 @@ const LENS_DATA = {
       nd: 1.74077,
       vd: 27.8,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line coordinates; supplier/full dispersion unproved)",
-      role: "Whole selected spherical embodiment; isolated-in-air focal length is descriptive.",
+      glass: "S-TIH13 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Dense-flint negative meniscus ahead of the stop; with L2 it bounds the diverging air lens.",
       focalLengthMm: -26.69495093740918,
     },
     {
@@ -86,8 +100,8 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.6,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line coordinates; supplier/full dispersion unproved)",
-      role: "Whole selected spherical embodiment; isolated-in-air focal length is descriptive.",
+      glass: "FD140 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Dense-flint negative meniscus behind the stop, concave to the object; front member of the cemented doublet.",
       focalLengthMm: -30.33673016401732,
       cemented: "CD1",
     },
@@ -99,8 +113,8 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.9,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line coordinates; supplier/full dispersion unproved)",
-      role: "Whole selected spherical embodiment; isolated-in-air focal length is descriptive.",
+      glass: "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "High-index positive meniscus, convex to the image; rear member of the weakly negative cemented doublet.",
       focalLengthMm: 37.35933926202443,
       cemented: "CD1",
     },
@@ -112,8 +126,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line coordinates; supplier/full dispersion unproved)",
-      role: "Whole selected spherical embodiment; isolated-in-air focal length is descriptive.",
+      glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "High-index biconvex rear element; supplies most of the rear group's positive power.",
       focalLengthMm: 47.188383256772205,
     },
   ],
@@ -199,7 +213,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000000000.0,
     description:
-      "Infinity-only spherical patent prescription. No sourcefinite spacing, conjugate or motion law. Maker0.45m/0.15x remains descriptive only. Grant numericalExample2 equals this applicationExample4. Fixed printed air-equivalent BF38.52mm is modeled as air; source plane72.372mm retained, header72.37mm rounding residual. No inferred filter stack.",
+      "Infinity only. The patent tabulates the infinity state alone and names no focusing group, so close focus is not modeled and every air gap stays fixed. The last gap is the printed air-equivalent back focus of 38.52 mm, with no filter or cover glass. The production lens focuses to 0.45 m (0.15×); how its optics move is not published.",
   },
   aperture: {
     nominalFNumber: 1.8,

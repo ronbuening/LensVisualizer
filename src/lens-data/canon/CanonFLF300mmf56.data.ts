@@ -1,16 +1,25 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole literal patent example; Grade B probable family, not factory-exact.
- * Clear caps and unprinted iris data are disclosed hypotheses; source planes remain fixed.
- * Maker extra front item is unprescribed and omitted. Source L controls the image plane.
- * Unqualified source N/Abbe use an explicit d587.5618nm reference hypothesis.
+/** JP S47-8749 B, Example 2 (f = 100, 1:5.6, 2ω = 8.2°), every R and d scaled uniformly ×3 to f = 300 mm; N and V
+ * as printed. The printed N/V carry no line subscript; the CaF2 and SFS3 values match catalog d-line indices, so they
+ * are used as nd/νd. The association with the FL-F 300 mm f/5.6 is probable, not a factory prescription.
+ * The example has six elements in five groups. Canon lists seven elements in six groups; its section drawing adds a
+ * thin front protective meniscus that the patent does not list, so it is not modelled and the counts follow the patent.
+ * Image plane: printed L = 69.042 × 3 = 207.126 mm from the first vertex; the last gap (83.193 mm) is L minus the axial
+ * track, 0.026 mm shorter than the paraxial back focus.
+ * The patent prints no stop coordinate or clear apertures. Fig. 4 draws the stop at about 0.70 of d7 between the r7 and
+ * r8 vertices; the model places it at 0.70 (59.8248 / 25.6392 mm). Front sd 28.9 mm = entrance-pupil radius + 8 %; rear sd 13.3 mm follows the
+ * Fig. 4 rear/front outline ratio (0.459).
+ * L1 and L2 are labelled CaF2 in the patent and use the catalog CaF2 curve; L3–L6 use coordinate-equal catalog
+ * equivalents (SF56A, J-LASF013, S-LAM60, FF5) for dispersion; the production melts are unidentified.
+ * Infinity focus only: the patent prints no close-focus state.
  */
 const LENS_DATA = {
   schema: 2,
   key: "canon-fl-f-300mm-f56",
   maker: "Canon",
   name: "CANON FL-F 300mm f/5.6",
-  subtitle: "JP S47-8749 B Example 2 — probable family; inferred apertures",
+  subtitle: "JP S47-8749 B, Example 2 — probable production correlation, front protective glass omitted",
   catalog: {
     lensMounts: ["canon-fl"],
     imageFormat: "135-full-frame",
@@ -24,11 +33,15 @@ const LENS_DATA = {
       marketing: 5.6,
       design: 5.6,
     },
+    closeFocusM: {
+      marketing: 3.5,
+    },
     specs: [
-      "6 POWERED ELEMENTS / 5 GROUPS",
-      "PROBABLE FAMILY; INFERRED APERTURES",
-      "INFINITY BASELINE",
-      "MAKER EXTRA FRONT ELEMENT UNPRESCRIBED; OMITTED",
+      "6 ELEMENTS / 5 GROUPS (CANON 7/6 INCL. FRONT PROTECTOR)",
+      "DESIGN f = 300 mm",
+      "DESIGN F/5.6",
+      "2 FLUORITE ELEMENTS",
+      "PATENT f = 100 SCALED × 3",
     ],
   },
   source: {
@@ -49,12 +62,13 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43387,
       vd: 95.1,
-      glass: "Unmatched (literal CaF2; unqualified N/Abbe; d-line hypothesis)",
+      glass: "CaF2 (fluorite crystal)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
+      apd: "inferred",
+      apdNote:
+        "Canon identifies two fluorite elements in this lens and the patent labels L1 CaF2; the dispersion curve is the catalog CaF2 fit, not measured production material.",
       focalLengthMm: 128.68635382982097,
-      role: "Source CaF2 positive element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Biconvex fluorite front element; its strongly curved front face toward the object limits spherical aberration.",
     },
     {
       id: 2,
@@ -63,12 +77,13 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.43387,
       vd: 95.1,
-      glass: "Unmatched (literal CaF2; unqualified N/Abbe; d-line hypothesis)",
+      glass: "CaF2 (fluorite crystal)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
+      apd: "inferred",
+      apdNote:
+        "Canon identifies two fluorite elements in this lens and the patent labels L2 CaF2; the dispersion curve is the catalog CaF2 fit, not measured production material.",
       focalLengthMm: 182.08966946254128,
-      role: "Source CaF2 positive element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Fluorite positive meniscus, convex to the object; shares the front group's positive power and moves its principal point forward.",
     },
     {
       id: 3,
@@ -77,12 +92,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7847,
       vd: 26.1,
-      glass: "Unmatched (literal SFS3; unqualified N/Abbe; d-line hypothesis)",
+      glass: "SF56A (SCHOTT catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: 345.34846160563654,
-      role: "Source SFS3 positive element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Dense-flint positive meniscus, concave to the object, cemented to L4; the pair is the negative rear component of the front group.",
       cemented: "CD1",
     },
     {
@@ -92,12 +105,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8044,
       vd: 39.6,
-      glass: "Unmatched (literal LaSFo13; unqualified N/Abbe; d-line hypothesis)",
+      glass: "J-LASF013 (HIKARI catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: -84.20133605539667,
-      role: "Source LaSFo13 negative element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Biconcave lanthanum-flint element of the cemented pair; its strongly curved rear face, toward the image, carries the front group's negative power.",
       cemented: "CD1",
     },
     {
@@ -107,12 +118,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7432,
       vd: 49.3,
-      glass: "Unmatched (literal LaFo10; unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-LAM60 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: -41.803556975448735,
-      role: "Source LaFo10 negative element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Negative element of the rear group, placed on the stop side with its strongly curved face toward the object.",
     },
     {
       id: 6,
@@ -121,12 +130,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.5927,
       vd: 35.4,
-      glass: "Unmatched (literal F16; unqualified N/Abbe; d-line hypothesis)",
+      glass: "FF5 (HOYA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: 71.49156035175966,
-      role: "Source F16 positive element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Positive rear element with its strongly curved face toward the image; with L5 it gives the rear group its net negative power.",
     },
   ],
   surfaces: [
@@ -211,12 +218,13 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000000000.0,
     description:
-      "Frozen source infinity baseline; finite source motion is assessed separately where tabulated. No retail minimum-focus law or unprinted cam interpolation is asserted.",
+      "Patent infinity state only; the production lens focuses to 3.5 m. The patent prints no close-focus spacing, so no element moves.",
   },
   aperture: {
     nominalFNumber: 5.6,
     fStops: [5.6, 8, 11, 16, 22],
     maxFNumber: 22,
+    blades: 8,
   },
   projection: {
     kind: "rectilinear",

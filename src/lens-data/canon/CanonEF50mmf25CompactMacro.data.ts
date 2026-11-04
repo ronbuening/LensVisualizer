@@ -1,22 +1,33 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole literal patent example; Grade B probable family, not factory-exact.
- * Clear caps and unprinted iris data are disclosed hypotheses; source planes remain fixed.
- * S4/S5 retain positive0.0444391mm physical clearance; minimal gapSagFrac0.925935
- * admits the source-F2.5 axial beam at S5 SD9.2mm. No source R/d/index was altered.
- * Unqualified source N/Abbe use an explicit d587.5618nm reference hypothesis.
+/** JP S63-179308 A, Example 2 (Canon Inc.; Takashi Matsushita): F = 50.3 mm, FNo 1:2.5, 2ω = 46°,
+ * all spherical, 9 elements / 8 groups. No scale factor is applied. Probable production correlation
+ * with the December 1987 EF 50mm f/2.5 Compact Macro (Canon: 9/8, floating focus, 0.5×); not a
+ * factory prescription.
+ * R, d, N and ν follow the printed table without alteration; R18 uses the printed 1441.23, correcting
+ * a transcription error in the source package. The terminal gap (38.907158 mm) is the
+ * computed paraxial back focus at infinity; the patent prints no back focus.
+ * The patent prints N and ν without naming a spectral line; they are read as d-line, and all nine
+ * pairs coincide with d-line catalog glasses.
+ * The stop position (row 7, D6 = 4.00, D7 = 3.10) is printed; every semi-diameter is inferred, since
+ * the only section drawing (Fig. 1) shows Example 1. S5 = 9.2 mm is the smallest 0.1 mm step that
+ * passes the f/2.5 axial beam; at that height S4 and S5 leave 0.044 mm clearance in the 0.60 mm
+ * gap, hence gapSagFrac 0.925935.
  */
 const LENS_DATA = {
   schema: 2,
   key: "canon-ef-50mm-f25-compact-macro",
   maker: "Canon",
   name: "CANON EF 50mm f/2.5 Compact Macro",
-  subtitle: "JP S63-179308 A Numerical Example 2 — probable family; inferred apertures",
+  subtitle: "JP S63-179308 A, Example 2 — probable production correlation",
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",
     elementCount: 9,
     groupCount: 8,
+    closeFocusM: {
+      marketing: 0.23,
+    },
     focalLengthMm: {
       marketing: 50,
       design: 50.3,
@@ -26,9 +37,11 @@ const LENS_DATA = {
       design: 2.5,
     },
     specs: [
-      "9 POWERED ELEMENTS / 8 GROUPS",
-      "PROBABLE FAMILY; INFERRED APERTURES",
-      "SOURCE FINITE SPACING; DERIVED CONJUGATE",
+      "9 ELEMENTS / 8 GROUPS",
+      "DESIGN f = 50.3 mm",
+      "DESIGN F/2.5",
+      "ALL SPHERICAL",
+      "FLOATING FOCUS; 0.5× MAX",
     ],
   },
   source: {
@@ -49,12 +62,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.72,
       vd: 50.2,
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-LAL10 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: 73.91359215522337,
-      role: "Source positive element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Weak biconvex front element of the moving first group; begins converging the axial beam.",
     },
     {
       id: 2,
@@ -63,12 +74,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.8061,
       vd: 40.9,
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: 48.43047757002394,
-      role: "Source positive element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "High-index positive meniscus, convex to the object; the strongest positive element ahead of the stop.",
     },
     {
       id: 3,
@@ -77,12 +86,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.60717,
       vd: 40.3,
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "BAFD3 (HOYA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: -27.67386070617443,
-      role: "Source negative element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Negative meniscus just ahead of the stop; its deeply curved rear face, concave to the stop, supplies the main negative power ahead of the stop.",
     },
     {
       id: 4,
@@ -91,12 +98,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.69895,
       vd: 30.1,
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-TIM35 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: 95.97179628769526,
-      role: "Source positive element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Weak positive meniscus just behind the stop, convex to the image (the patent's lens B); limits the change of astigmatism at intermediate distances.",
     },
     {
       id: 5,
@@ -105,12 +110,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.80518,
       vd: 25.4,
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: -16.56395949737902,
-      role: "Source negative element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Dense-flint negative front element of the cemented pair; its strongly curved front face, concave to the stop, is the main negative surface behind the stop.",
       cemented: "CD1",
     },
     {
@@ -120,12 +123,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.834,
       vd: 37.2,
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-LAH60V (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: 26.377815409965656,
-      role: "Source positive element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "High-index biconvex rear element of the cemented pair; the dispersion step across the cemented face helps correct axial colour.",
       cemented: "CD1",
     },
     {
@@ -135,12 +136,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: 43.46771845183897,
-      role: "Source positive element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Positive meniscus, concave to the object, closing the moving first group.",
     },
     {
       id: 8,
@@ -149,12 +148,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.66672,
       vd: 48.3,
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-BAH11 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: -116.38728602870907,
-      role: "Source negative element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Weak negative meniscus, convex to the object, at the front of the fixed rear group; with Element 9 it bounds the negative air lens that corrects close-range coma.",
     },
     {
       id: 9,
@@ -163,12 +160,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.58144,
       vd: 40.7,
-      glass: "Unmatched (literal unqualified N/Abbe; d-line hypothesis)",
+      glass: "S-TIL25 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
-      indexReferenceNote:
-        "Printed N/Abbe reference line is unspecified. Literal indices are implemented at d587.5618nm as an explicit hypothesis; supplier/full dispersion unresolved.",
       focalLengthMm: 115.92,
-      role: "Source positive element. Isolated-in-air power is descriptive, not cemented in-system power.",
+      role: "Nearly plano-convex rear element; its power almost cancels Element 8's, leaving the fixed rear group nearly afocal.",
     },
   ],
   surfaces: [
@@ -293,7 +288,7 @@ const LENS_DATA = {
     keyframes: [0, 1],
     published: [1],
     description:
-      "JP S63-179308 A Numerical Example2 prints D14=1.7 to26.9mm and describes front-group objectward motion. This constrained endpoint reconstruction holds the rear two elements and image plane fixed; the front seven plus literal stop therefore translate25.2mm objectward. Object distance is calculated from literal geometry and independently derived frozen infinity BFL, not a printed object-distance datum or retail230mm calibration. Source0.5x beta residual remains. Only the explicit endpoint has a finite conjugate; intermediate gap interpolation is an implementation approximation, not a published cam. Physical iris follows the infinity f-number rule; source effectiveF3.5 is compared separately.",
+      "PUBLISHED floating focus: JP S63-179308 A, Example 2 prints D14 = 1.7 mm at infinity and 26.9 mm at 0.5×. Group I (the front seven elements and the stop) moves 25.2 mm toward the object while the rear two elements and the image plane stay fixed. The near object distance is derived from the printed gaps and the computed infinity back focus: 228.5 mm object to image at −0.499×, close to Canon's 0.23 m and 0.5×. Intermediate positions interpolate D14 linearly. The iris keeps its infinity f/2.5 diameter; the patent labels its 0.5× curves effective F/3.5.",
     conjugates: [
       {
         zoomStation: 0,
@@ -301,7 +296,7 @@ const LENS_DATA = {
         objectDistanceMm: 124.77058004778468,
         distanceReference: "first-surface",
         source:
-          "JP S63-179308 A Numerical Example2 prints D14=1.7 to26.9mm and describes front-group objectward motion. This constrained endpoint reconstruction holds the rear two elements and image plane fixed; the front seven plus literal stop therefore translate25.2mm objectward. Object distance is calculated from literal geometry and independently derived frozen infinity BFL, not a printed object-distance datum or retail230mm calibration. Source0.5x beta residual remains.",
+          "D14 = 26.9 mm is printed for 0.5×; the object distance is derived with the rear group and image plane fixed at the computed infinity back focus (38.907 mm). It is not printed. The computed magnification is −0.4993× against the patent's 0.5×.",
       },
     ],
   },
