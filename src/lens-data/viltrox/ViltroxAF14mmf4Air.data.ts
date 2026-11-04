@@ -10,15 +10,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                            ║
  * ║ CONSTRAINED RECONSTRUCTION: Table 3 prints D2(close)=4.65 mm, but the    ║
  * ║ stated single moving G2 requires D1+D2 to remain 8.31 mm. The modeled    ║
- * ║ close state therefore uses D1=3.75 mm and D2=4.56 mm.                    ║
+ * ║ close state keeps D1+D2 = 8.31 mm (printed D1=3.75 mm; see re-solve).    ║
  * ║                                                                            ║
- * ║ REAR FILTER: Source S23-S24 is traced through rearPlates.               ║
- * ║ S22 retains 12.49 mm physical air; PP is 2.85 mm, nd=1.52, vd=64.2,    ║
- * ║ followed by 1.00 mm air. This preserves the source image plane.         ║
- * ║ Source contradiction: the physical BFL computes to 15.267563 mm,       ║
- * ║ vs the printed path's 16.34 mm; EFL 14.192130 vs stated 14.3 mm.        ║
- * ║ Unfolding the filter leaves the -1.072437 mm focus offset unchanged.    ║
- * ║ No additional transcription error explains it; keep source values.     ║
+ * ║ REAR FILTER: Source S23-S24 is traced through rearPlates:               ║
+ * ║ PP is 2.85 mm, nd=1.52, vd=64.2, followed by 1.00 mm air.              ║
+ * ║ IMAGE-PLANE RE-SOLVE (2026-11-03): the two-decimal indices put the     ║
+ * ║ printed rows' paraxial focus 1.072437 mm in front of the image plane.  ║
+ * ║ S22 12.49 → 11.417563 mm; close row re-solved by G2 for 0.12 m object  ║
+ * ║ to image: D1 3.75 → 3.608419, D2 4.56 → 4.701581 mm. EFL 14.192130 mm  ║
+ * ║ (stated 14.3 mm) is unchanged.                                          ║
  * ║                                                                            ║
  * ║ APERTURE NOTE: ¶0135 prints f/1.47, but independent exact meridional     ║
  * ║ tracing shows that its paraxial entrance pupil cannot traverse the       ║
@@ -320,21 +320,24 @@ const LENS_DATA = {
       asphere: { K: 0.190226, A4: 2.196878e-4, A6: 4.087407e-6, A8: -3.032095e-8, A10: 3.8656e-11, A12: 3.112743e-13, A14: 0 },
     },
     { label: "21", R: 47.039, d: 3.38, sd: 13.3, medium: 12 },
-    { label: "22", R: -1352.722, d: 12.49, sd: 13.3 },
+    { label: "22", R: -1352.722, d: 11.417563, sd: 13.3 }, // printed 12.49; re-solved for paraxial focus
   ],
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.12, // patent Table 3 close row; Viltrox markets 0.13 m
+    closeFocusM: 0.12, // patent Table 3 close row, object to image; Viltrox markets 0.13 m
     description:
-      "Internal focus: G2 (L7-L9) translates 1.10 mm objectward from infinity to the patent's nominal 0.12 m endpoint. The modeled close state uses D1=3.75 mm and mechanism-constrained D2=4.56 mm (printed D2=4.65 mm). The close-focus distance is the patent's 0.12 m; Viltrox markets 0.13 m.",
-    // (moved from publishedStations) Patent read 2026-10-06: Close row is CN 121091494 A Table 3 at 0.12 m (D1 3.75, D2 printed 4.65); D2 is authored
-    // as 4.56, a 0.09 mm transposition fix keeping D1+D2 = 8.31 mm.
+      "Internal focus: G2 (L7-L9) translates 1.241581 mm objectward (printed 1.10 mm) from infinity to the patent's 0.12 m endpoint, read as object to image. The close row is re-solved for paraxial focus at 0.12 m with D1+D2 kept at 8.31 mm: D1=3.608419 mm, D2=4.701581 mm (printed 3.75 / 4.65 mm). Viltrox markets 0.13 m.",
+    // (moved from publishedStations) Patent read 2026-10-06: Close row is CN 121091494 A Table 3 at 0.12 m (D1 3.75, D2 printed 4.65); D2 was authored
+    // as 4.56 to keep D1+D2 = 8.31 mm, and the row was re-solved for paraxial focus on 2026-11-03.
     published: [1],
   },
 
   /* (moved from var) ── Variable air spacings (focus) ── */
-  gaps: { STO: { label: "D1", values: [[4.85, 3.75]] }, "16": { label: "D2", values: [[3.46, 4.56]] } },
+  gaps: {
+    STO: { label: "D1", values: [[4.85, 3.608419]] }, // printed 4.85 / 3.75; close row re-solved for paraxial focus
+    "16": { label: "D2", values: [[3.46, 4.701581]] }, // printed 3.46 / 4.65 (4.56 kept D1+D2); close row re-solved for paraxial focus
+  },
 
   /* ── Aperture configuration ── */
   aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16], blades: 7 },

@@ -24,3 +24,27 @@ Table 10 ends with S27 gap 13.929, plane GL S28 thickness 2.800, nd=1.517/vd=64.
 Independent EFL 27.706644932 mm agrees with printed 27.7. Air-only BFL 16.299375117 plus the plate correction 0.954251813 gives physical BFL 17.253626930 mm. Offset **+0.024626930 → +0.024626930 mm**, above the 0.016921780 mm limit. No further miscopied prescription value was found. The source's aberration plots and good-imaging statement do not specify how its image plane was selected. With the restored plate, the reference-index axial geometric diagnostic (732 surviving rays, pupil grid 32, 10/20/40 lp/mm) selects +0.010873129 mm, score 0.921189 → 0.987091. A finite-aperture compromise is plausible but remains an interpretation. Retain the physical source plane; delete the completed Section E row and add a changelog entry for restoring the plate.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (kept as best-focus plane)
+
+Source: CN 115840281 A Example 4, Tables 10–12 (PDF pp. 13–14); Examples 1 and 2 focus tables on PDF pp. 8 and 10.
+The image plane is kept under LENS_DATA_SPEC Image-Plane Consistency: the real-ray axial best focus lies within 10
+depths of the authored plane.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| Header | "Preserve the source plane and document the residual." | Best-focus-plane line with the offset, best focus and rounding spread | Spec rule for a kept plane |
+| Optical values | — | unchanged | Class C: no gap, keyframe or `closeFocusM` change |
+
+- Residual: paraxial infinity offset +0.024627 mm (14.6 depths at f/1.2); real-ray axial best focus +0.010873 mm
+  from the plane (6.4 depths). The indices are printed to three decimals. A ±0.0005 rounding of each index spreads
+  paraxial focus by σ ≈ 0.045 mm, so the offset is within rounding.
+- Close focus: Table 11's "最近(0.158m)" is boilerplate. Examples 1, 2 and 4 all print 0.158 m with different
+  spacings, and no reference reproduces it. The printed near row focuses 173.4 mm from the first vertex, 225.4 mm
+  from the front principal point, 196.8 mm from the front focal point and 282.5 mm object to image (EFL 28.608 mm
+  against the printed 28.6). With the infinity residual removed by back focus, the printed rows focus at 0.2813 m
+  object to image, matching Viltrox's 0.28 m. `closeFocusM` stays 0.28 (label 0.2825).
+- Travel (5.09 mm) and EFL (27.706645 mm) are unchanged. Aperture, image-circle, field-coverage and surface-probe
+  audits are unchanged.
+
+Follow-ups: none.
