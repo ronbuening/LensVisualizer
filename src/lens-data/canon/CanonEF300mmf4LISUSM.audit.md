@@ -52,3 +52,40 @@ Clearance and light, unchanged: half-field 4.20°, F/4.1, the traced chief ray r
 Maker check: the Canon Camera Museum section draws 15/11 with a flat front protective glass larger than E1, UD at its 2nd and 5th elements (E1 and E4 here), the iris between E5 and L2, and the same cemented pairs. Rim heights relative to E1 agree with Fig. 4A and the file to about 0.03 (E4 0.74, E5 0.66, L3 0.44, E10/E11 0.40), except that the museum drawing shows L5 at 0.49 against 0.46 in Fig. 4A and the file; it is not drawn to scale, and the patent figure governs.
 
 Fig. 4A draws the thin cemented members 0.3 to 1.4 mm thicker than printed (E7, E8, E11, E14), a drafting effect; the front vertices of E4, L2, L3, L4 and L5 sit within 0.25 mm of the table.
+
+## 2026-11-03 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity, at the 3.0 m close state, with the focus-movement overlay and with the Extender EF 2x, against Fig. 4A and Fig. 4B (PDF p. 5, native 72 dpi raster) and the Canon Camera Museum section. Each rim was re-measured as half the top-to-bottom ink extent over the element's columns, at 5.618 px/mm (S1 vertex to the image-plane line, 1404 px for 250.004 mm).
+
+| Element | Fig. 4A, mm | sd | Ratio | Ratio to E1, figure / file |
+| --- | ---: | ---: | ---: | --- |
+| E1 | 36.6 | 37.5 | 0.98 | 1 / 1 |
+| E2 | 34.5 | 35.6 | 0.97 | 0.944 / 0.949 |
+| E3 | 33.9 | 35.6 | 0.95 | 0.927 / 0.949 |
+| E4 | 27.3 | 27.8 | 0.98 | 0.747 / 0.741 |
+| E5 | 25.0 | 26.0 | 0.96 | 0.684 / 0.693 |
+| L2 (E6/E7) | 19.9 | 19.6 | 1.02 | 0.545 / 0.523 |
+| L3 (E8/E9) | 15.6 | 16.0 | 0.97 | 0.426 / 0.427 |
+| E10/E11 | 14.8 | 15.0 | 0.98 | 0.404 / 0.400 |
+| E12 | 14.15 | 14.5 | 0.98 | 0.387 / 0.387 |
+| L5 (E13/E14) | 16.6 | 17.3 | 0.96 | 0.455 / 0.461 |
+
+Every element is within 4 % of the figure's proportions and the height order matches; E1 and E2 are drawn pointed with a narrow land, E3 to L5 square, as on the page. The S19 and S20 face lines meet in the figure near 13.0 mm, above the 12.7 mm clear radius and below the square edges at 14.8 and 14.15 mm. No rim changed.
+
+| Face | Kind | Baseline | Final | Figure | Light vs baseline | Verdict |
+| --- | --- | ---: | ---: | --- | ---: | --- |
+| All faces | cut | as baseline | unchanged | — | 0.0 pts | no cuts |
+| S19 | land 15.0 over sd 12.7 | 12.7 + 15.0 | unchanged | edge 14.8, faces meet near 13.0 | 0.0 pts | keep: spacing |
+| S20 | land 14.5 over sd 12.7 | 12.7 + 14.5 | unchanged | edge 14.15 | 0.0 pts | keep: spacing |
+
+Removing either land wins back nothing. The 12.7 mm clear radius under them is the spacing limit: at 13.0 mm the validator refuses the 19→20 gap (combined sag 4.83 mm against 4.68 mm allowed of 5.20 mm), 12.8 mm is the last passing value and gains 0.4 points at 4.1°, and the Fig. 6A fan already ends slightly inside the model's on the S20 side, so the rim stays. Final worst loss against baseline: 0.0 points at every field.
+
+Clearance and light: half-field 4.20° and F/4.1 before and after; validator, image-circle floor and corner coverage pass; no surface clips the axial beam or the chief ray at infinity or at 3.0 m. Wide open at infinity the corner (4.1°) passes 69.6 %. With a real object point 3.0 m from the image plane imaging to 21.63 mm (object height 195 mm), the corner passes 79.4 %, unchanged.
+
+Labels: groups L1 (S1–S10), L2 (S11–S13), L3 (S14–S16), L4 (S17–S21) and L5 (S22–S24) are the patent's units with the right ranges; cemented brackets CD1–CD4 cover the four cemented pairs and do not clash with the D10b and D13 gap labels. Elements are E1–E14 because the patent uses L for units. Every `type` agrees with the signs of R, every element shows a focal length in the inspector, and there are no aspheric faces, as in the patent. The iris sits between E5 and E6 at 0.80 of D10; the museum section puts it at about 0.81. E1 carries the inferred APD tag at Canon's first UD position, and the inspector shows S-FPL53 and APD (INFERRED). E4 stays untagged: Canon marks it UD, but the modeled 1.48749/70.2 is an FK5-class crown.
+
+Movement: the patent (cols. 3–4) focuses by moving L2 toward the image along arrow LF, and Fig. 4B shows it. The overlay shows only L2 moving, 11.60 mm toward the image, with keyframe 0 at infinity and the far end labelled 3.00 m. Fig. 4B measures 33.1 mm from S10 to S11 and 13.1 mm from S13 to S14, a travel of 11.4 to 12.0 mm against the derived 11.598 mm.
+
+Colour and field against Fig. 5A: the d-line curve agrees (paraxial 0, 0.7 zone −0.053 plotted and −0.055 modeled, full aperture −0.031 and −0.026 mm). The model's g-line focus lies about 0.04 mm farther back than plotted in every zone (paraxial +0.148 against +0.11, full aperture +0.085 against +0.044 mm), beyond the 0.01 mm reading error. Every glass label resolves to a catalog curve within 0.07 of the printed νd, and the patent prints no partial dispersions, so no label stands out; the g focus is most sensitive to E3 and E8 (about +0.009 mm per +0.001 of θgF) and to E9 and E10 (about −0.007 mm). Distortion at 4.15° is +1.24 % modeled and about +1.28 % plotted; ΔS and ΔM are −0.009 and −0.025 mm modeled, inside the plot's line width around zero.
+
+Open: the 0.04 mm g-line offset against Fig. 5A is unexplained by the printed data.
