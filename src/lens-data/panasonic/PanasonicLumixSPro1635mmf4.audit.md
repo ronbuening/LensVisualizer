@@ -94,3 +94,46 @@ The tab's wide endpoint (55.85°) exceeds the source's 53.5677°, but both faile
 Coordinator follow-up: retain the localization issue as open; investigate source-supported effective apertures or the
 peripheral trace/aiming model before claiming RI. Do not apply a static 16A/17A turnover cap that loses the stated
 aperture. Full gates and any shared-engine or queue changes remain coordinator work under this assignment's scope.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Scope: the image-plane census (`scripts/audit-mtf.mjs --focus`) flagged 29 of the 33 zoom stations at infinity. The
+three patent anchors (stations 0, 16, 32) focus as printed (−0.0002 mm). The 30 derived stations had their D9, D17, D20
+and BF rows interpolated linearly between the anchors, and a linear spacing path is not an in-focus cam. Under the
+Image-Plane Consistency rule the BF (zoom-only gap 23) is re-solved per derived station for paraxial focus at
+infinity, carried into the close row, and G3 (D17 +, D20 −) is then re-solved at the 0.25 m sensor-plane conjugate.
+
+| Station (EFL) | BF before → after | D17 close before → after | D20 close before → after |
+| --- | --- | --- | --- |
+| 1 (16.88 mm) | 18.03864187 → 17.871081 | 2.617221019 → 2.775723 | 6.470510231 → 6.312008 |
+| 5 (18.35 mm) | 20.15556937 → 19.488326 | 2.331437139 → 2.905379 | 6.896019111 → 6.322077 |
+| 9 (20.10 mm) | 22.27249688 → 21.435608 | 2.407179248 → 3.065275 | 6.960002002 → 6.301906 |
+| 13 (22.21 mm) | 24.38942438 → 23.816893 | 2.852470485 → 3.265120 | 6.654435765 → 6.241786 |
+| 15 (23.45 mm) | 25.44788812 → 25.215381 | 3.223834762 → 3.384298 | 6.352933988 → 6.192470 |
+| 17 (24.56 mm) | 26.70757 → 26.505076 | 3.309143242 → 3.442087 | 6.344725508 → 6.211782 |
+| 21 (26.53 mm) | 29.62937 → 28.830900 | 2.959328013 → 3.429540 | 6.863215737 → 6.393004 |
+| 25 (28.81 mm) | 32.55117 → 31.561249 | 2.926531906 → 3.451393 | 7.064686844 → 6.539826 |
+| 29 (31.51 mm) | 35.47297 → 34.805055 | 3.198777176 → 3.517922 | 6.961116574 → 6.641972 |
+| 31 (33.05 mm) | 36.93387 → 36.664783 | 3.450395508 → 3.572393 | 6.793835742 → 6.671838 |
+
+The other 20 derived stations follow the same rule (full values in the data file). Justification for every row:
+app-derived sampled station, re-solved for paraxial focus; the infinity D17/D20 rows, D9 and the anchors are unchanged.
+
+- Residual before: derived infinity rows −0.168 mm (station 1) to −0.990 mm (station 25), i.e. the image short of the
+  plane by up to 49.7 depths at f/4.11; the infinity end focused 0.45–4 m away. The real-ray axial MTF best focus
+  tracked the offset (for example −0.873 against −0.837 mm at station 9), so it is not a best-focus plane. After:
+  0.0000 mm at every derived station; anchors −0.0002 mm. Between knots the infinity image stays within 0.31 depths
+  and the close row within 0.256 mm of 250 mm (0.246 mm before).
+- Travel: G3 close travel now rises monotonically 1.747 → 2.520 → 3.455 mm (wide → middle → tele anchors); before it
+  dipped to 1.343 mm at station 6 and 2.273 mm at station 21. Station EFLs are unchanged (internal spacings kept); the
+  first-vertex-to-image track at the derived stations shortens by the BF change, up to 0.990 mm.
+- Close focus: `focus.closeFocusM` stays 0.25 (every close row focuses at 0.2500 m object to image), Panasonic's
+  figure, so no `catalog.closeFocusM.marketing` is needed.
+- Why BF rather than G3 at the infinity rows: moving G3 alone for infinity would change the station EFLs and close D17
+  to 0.028 mm at station 24 and below zero (−0.004 mm) at station 25.
+- Clearance: D17 minimum 0.151 mm (tele anchor, infinity), D20 minimum 5.369 mm (middle anchor, close, at the rim),
+  BF minimum 16.643 mm (wide anchor); all at unchanged anchor rows.
+- Audits before and after: aperture (33 of 33 stations within 3 % of the stated f-number), image circle (not
+  undersized), field coverage (≥ 99 % at all 33 stations) and the surface probe (no validation errors) are unchanged.
+
+Follow-ups: none for the image plane. A re-solve claims no misprint, so `source.errata` is unchanged.

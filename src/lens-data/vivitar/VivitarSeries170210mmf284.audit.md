@@ -112,3 +112,40 @@ An independent check of this entry on the same day. No semi-diameter or other da
 - The rendered section at 134.911 mm and at 203.786 mm was compared with FIG. 4 again: same element order, same relative sizes, the G2 pinch between S8 and S9 in the same place.
 - Analysis note, "Aperture Stop": the paragraph said one stop semi-diameter corresponds to f/2.89 at the wide end and f/4.01 at the telephoto end, and named only G1 and G2 ahead of the stop. It now names G3a as well, gives the paraxial reading of the printed column (a 14.9 mm stop gives f/2.90 / 3.48 / 4.01), the fixed iris of 15.92 mm with f/2.89 and f/3.46 traced on it, and the telephoto limit at S8/S9 (15.62 mm needed, surfaces meet at 15.26 mm, f/4.11 ceiling, f/4.36 traced at the 14.45 mm rims).
 - Data-file header: the semi-diameter note described every surface as cleared by 8-10 %, which S8/S9 are not. The S8/S9 exception and a NOTE ON APERTURE with the traced f-numbers were added, and the box borders, which did not line up, were aligned at 75 columns.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Scope: the image-plane census (`scripts/audit-mtf.mjs --focus`) flagged the mid and tele infinity rows. Under the
+Image-Plane Consistency rule every row of the lens was worked: back focus first, then the derived close rows.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| BF (S24), wide | 38.997 | 39.063135 | Table IV print; re-solved for paraxial focus at infinity |
+| BF (S24), mid | 52.352 | 52.575201 | as above |
+| BF (S24), tele | 64.025 | 64.847396 | as above |
+| D1 (S5) close, wide | 10.069 | 10.007476 | derived 0.9 m row, re-solved after the BF change |
+| D1 (S5) close, mid | 18.259 | 18.201373 | as above |
+| D1 (S5) close, tele | 22.071 | 21.984461 | as above |
+
+- Residual before: paraxial focus +0.066 / +0.223 / +0.822 mm behind the plane at wide / mid / tele (6.7 / 15.6 / 43.5
+  depths at f/2.89 / 3.49 / 4.01). Real-ray axial MTF best focus +0.26 mm (mid) and +0.99 mm (tele): same side and
+  larger, so not a best-focus plane. After: 0.0000 mm at every station; close rows focus at 0.9000 m object to image.
+- G1 close travel 7.569 / 7.567 / 7.603 → 7.507 / 7.509 / 7.516 mm. EFL unchanged (72.004 / 134.993 / 205.008 mm).
+  First-vertex-to-image track at infinity 182.533 / 182.537 / 182.539 → 182.599 / 182.760 / 183.361 mm.
+  `focus.closeFocusM` stays 0.9 (the production MFD the close rows are solved for).
+- Evidence: Table IV (PDF p. 9, 220 dpi render) matches every radius, thickness, index and zoom row in the file except
+  the documented D2 wide correction (3.490 → 37.490). Raising only the five printed 1.487 indices to 1.48749 moves the
+  image to −0.29 / −0.48 / −0.44 mm, so the three-decimal indices account for the residual. Re-solving D1 instead
+  (+0.062 / +0.059 / +0.095 mm) would bring the EFLs to 72.063 / 134.906 / 203.928 mm against the printed
+  72.132 / 134.911 / 203.786 mm; the rule moves the back focus first, so the printed D1 rows are kept. No single value
+  is isolated; a re-solve claims no misprint, so `source.errata` is unchanged.
+- Clearance: D1 minimum 1.330 mm (wide, infinity row, at the S5/S6 rim), unchanged; BF minimum 39.063 mm.
+- Audits before and after: aperture (3 of 3 stations within 3 % of the stated f-number), image circle (not
+  undersized), field coverage (≥ 99 % at all 3 stations) and the surface probe (no validation errors) are unchanged.
+
+Follow-ups:
+
+- The wide-position D2 correction (3.490 → 37.490) has no `corrected` entry in `source.errata`; it should be recorded
+  there with its two kinds of evidence (stated EFL, total-track conservation across Table IV and Table III's same slip).
+- The analysis's 1.6 m wide-end minimum focus claim contradicts a front unit-focus group fixed during zoom, which focuses
+  the same object distance at every focal length; it needs a source or removal.

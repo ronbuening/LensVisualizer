@@ -22,6 +22,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the image stays 0.66-1.40 mm behind the stated plane. No single printed value is isolated, so the printed values
  * are kept.
  *
+ * Image plane kept (LENS_DATA_SPEC Image-Plane Consistency): the printed Table IB rows stay as printed. Their paraxial
+ * focus drifts +1.41 mm (20 mm) to +14.19 mm (592 mm) behind the plane, against claim 1's invariable image plane and the
+ * single 0.162 back focus, and no rounding-sized gap change removes it; the unresolved erratum records it.
+ *
  * STO: the patent places diaphragm D inside d28 but gives neither a split nor physical diameter. The 2.4 mm scaled
  * gap is split 1.2 + 1.2 mm at the figure midpoint. The stop radius is derived from the design f-number: a
  * dependent calibration, not independent evidence of the physical iris diameter. The wide-open iris is the radius
