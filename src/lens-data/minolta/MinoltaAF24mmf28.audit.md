@@ -147,3 +147,7 @@ Text: the analysis no longer says L7's front face nests against L6; the two conc
 thickest on the axis.
 
 Open: none.
+
+## 2026-11-04 — L1 glass label
+
+L1's printed 1.71060/43.25 has no exact catalog row. HOYA LAFL4 (1.71270/43.30) is 0.002 higher in nd and 0.05 off in νd, inside the 0.25 νd limit for a nearest-row proxy, so L1 now takes its dispersion curve; the trace keeps the printed nd. The patent prints d-line curves only, so there is no colour check. L4, L7 and L8 have no row within 0.003 in nd and 0.25 in νd.

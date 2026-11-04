@@ -53,7 +53,7 @@ const LENS_DATA = {
       nd: 1.7106,
       vd: 43.25,
       indexReference: "d",
-      glass: "Unmatched (patent nd 1.71060, νd 43.25; no catalog row at these coordinates)",
+      glass: "LAFL4 (HOYA; nearest catalog row to patent nd 1.71060, νd 43.25; production glass unspecified)",
       focalLengthMm: 238.58281427176686,
       role: "Weak positive front meniscus of the fixed front group; offsets the distortion of the negative menisci behind it.",
     },

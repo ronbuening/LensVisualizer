@@ -25,7 +25,7 @@ The design is an inverted telephoto of eight singlets: a fixed negative front gr
 
 ### L1 — Positive Meniscus
 
-nd = 1.71060, νd = 43.25. Glass: Unmatched (no catalog row at these coordinates). f = +238.58 mm in air.
+nd = 1.71060, νd = 43.25. Glass: LAFL4 (HOYA), nearest catalog row (0.002 higher in nd, νd within 0.05). f = +238.58 mm in air.
 
 Weak positive meniscus convex to the object. Condition (2) (r1/r2 = 0.28) bounds its power, which offsets the negative distortion of L2 and L3.
 
@@ -73,7 +73,7 @@ Final biconvex positive element with a nearly flat front face, 0.117 mm behind L
 
 ## Glass Identification and Selection
 
-Table 2 heads its columns Nd and νd. Four pairs match catalog glasses, named as catalog equivalents rather than production identifications: L2 OHARA NSL7, L3 HOYA BSC7, L5 Hikari LAK011 and L6 OHARA S-TIH6. L1, L4, L7 and L8 have no catalog row and stay Unmatched, so their dispersion beyond νd is approximate.
+Table 2 heads its columns Nd and νd. Four pairs match catalog glasses, named as catalog equivalents rather than production identifications: L2 OHARA NSL7, L3 HOYA BSC7, L5 Hikari LAK011 and L6 OHARA S-TIH6. L1 takes HOYA LAFL4 as its nearest catalog row for dispersion (0.002 higher in nd, νd within 0.05). L4, L7 and L8 have no row within 0.25 in νd and stay Unmatched, so their dispersion beyond νd is approximate.
 
 ## Focus Mechanism
 
