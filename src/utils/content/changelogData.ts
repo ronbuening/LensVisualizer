@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-11-04",
+    type: "lens",
+    summary:
+      "Added the Carl Zeiss Jena Cardinar 100mm f/4 from its factory data sheet, Fujifilm GF 32-90mm T3.5, Nikon AF-S VR 200mm f/2G and Zoom 700VR, SMC Pentax 18mm f/3.5 and SMC Takumar 6x7 600mm f/4, with a new Werra mount page",
+  },
+  {
     date: "2026-11-03",
     type: "fix",
     summary: "Fixed focus readouts to show where each lens focuses, naming the marketed minimum alongside",
