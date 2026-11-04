@@ -25,6 +25,12 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Canon EF 300mm f/4L IS, Minolta AF 24mm f/2.8 and AF 50mm f/2.8 Macro, Sigma 17mm f/4 and 35mm f/2 DG DN, and ZEISS Otus ML 85mm f/1.4",
   },
   {
+    date: "2026-11-04",
+    type: "lens",
+    summary:
+      "Added the Carl Zeiss Jena Cardinar 100mm f/4 from its factory data sheet, Fujifilm GF 32-90mm T3.5, Nikon AF-S VR 200mm f/2G and Zoom 700VR, SMC Pentax 18mm f/3.5 and SMC Takumar 6x7 600mm f/4, with a new Werra mount page",
+  },
+  {
     date: "2026-11-03",
     type: "fix",
     summary: "Fixed focus readouts to show where each lens focuses, naming the marketed minimum alongside",
