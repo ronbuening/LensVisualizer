@@ -35,3 +35,23 @@ The only plate is the front L1 (3 mm S-BSL7 plus 2 mm air before S3). Its omissi
 The text evaluates polychromatic diffraction MTF at full aperture, multiple fields and focus states (Fig. 14), without identifying the listed plane as Gaussian focus or describing a best-focus selection. An on-axis reference-index geometric diagnostic (812 rays, grid 32, 10/20/40 lp/mm) selects −0.009391372 mm, score 0.950786 → 0.991177. This supports retaining the small design-plane difference but does not prove the designer's intent. Offset **−0.038387028 mm remains unchanged** (limit 0.023032423 mm); retain the published plane, delete the completed Section E row, and add no changelog entry.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (kept as best-focus plane)
+
+Policy: LENS_DATA_SPEC § Image-Plane Consistency. The F1 plane stays at the printed 44.800 mm, and no value changes.
+The only edit is a header line.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| Header note | "Keep its published distance." | best-focus plane line | Deliberate best-focus plane; real-ray best focus within 10 depths |
+
+- Residual kept: paraxial focus −0.038 mm from the plane (16.7 depths at f/1.4). Real-ray axial best focus is
+  −0.010 mm (about 4 depths).
+- Travel (G2 6.190 mm toward the object), EFL (39.026 mm) and close focus (0.39925 m; label 0.3987 m) are unchanged.
+- Evidence:
+  - Named catalog glass codes rule out index rounding.
+  - The designer prints the same 44.800 mm F1 plane in Examples 2 and 3 of US 8,508,864 B2 and in EP 2 321 688 B1
+    Embodiment 1, whose ray fans (Figs. 10a/10b) balance at it.
+  - The source's finite 1,000,010 mm "infinity" accounts for only 0.0015 mm.
+
+Follow-ups: none.

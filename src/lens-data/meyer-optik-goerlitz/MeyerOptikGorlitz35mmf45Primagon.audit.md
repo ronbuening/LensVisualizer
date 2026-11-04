@@ -30,3 +30,27 @@ Existing display name retained; product correlation remains qualified in the ana
 ### Local diagram follow-up
 
 Rechecked the local-site SVG against the exact patent figure cited above, including optical rims, element order, labels and glass colors. Retained the reviewed SDs: the optical silhouette is consistent within drawing/measurement uncertainty, excluding bevels, leaders and mechanical extensions. All elements are spherical; there is no source evidence for ED or anomalous-dispersion tags. The focus control is disabled and no focal-length zoom slider is present. This fixed prescription supplies no focus/zoom endpoints whose direction could be reversed. User-facing focus text now states the modeling limit in plain language.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Policy: LENS_DATA_SPEC § Image-Plane Consistency (back focus first; a prime with no focus travel solves its final gap
+once).
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| Surface 8 `d` (back focus) | 35.35 | 34.854758 | Paraxial focus at infinity; printed s′ 101 × 0.35 |
+
+- Residual: −0.495242 mm (20.8 depths of focus at f/4.5) → 0.000000 mm. The first-vertex-to-image track is now
+  74.755 mm (75.250 before).
+- EFL is unchanged at 34.574906 mm. There is no focus travel and no close row; `closeFocusM` 0.4 m stays the maker's
+  figure from the 1957 brochure.
+- Not a best-focus plane: real-ray axial best focus was −0.636 mm from the printed plane, beyond the −0.495 mm
+  paraxial focus. After the re-solve it lies about −0.14 mm from the plane.
+- Evidence for the cause (source rounding, class B):
+  - Claim 4's table (PDF p. 5) matches the file; Σd = 114 checks.
+  - The radii, printed in half units, trace to f 98.79 and s′ 99.59 against the printed 100 and 101.
+  - A ±0.25 rounding Monte Carlo lands within 0.5 of both printed values in 16 % of draws.
+  - Single moves of 0.27–0.39 units on r3, r6 or r8 each restore both. Several candidates fit equally, so no
+    single value is isolated and there is no erratum.
+
+Follow-ups: none.

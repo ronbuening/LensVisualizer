@@ -16,7 +16,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ FOCUS STATUS: PUBLISHED. The printed Example-1 d8/d12 endpoints are         ║
  * ║ preserved. G2 (L5-L6) translates 4.800 native units = 14.423077 mm          ║
  * ║ imageward. The Table-1 close-distance heading "700" conflicts with the      ║
- * ║ published spacings; the source values are not swapped or silently fixed.    ║
+ * ║ published spacings; it is kept as an unresolved source.errata entry, and    ║
+ * ║ the source values are not swapped or silently fixed.                        ║
  * ║                                                                              ║
  * ║ STOP MODEL: the patent draws diaphragm D inside d12 but gives neither its   ║
  * ║ exact axial coordinate nor diameter. Figure 1 places it at about 66% of     ║
@@ -38,11 +39,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ the elements; the prescription nd/νd remains the patent's rounded data.     ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  *
- * Infinity image-plane source limit: Table 1 prints fb = 32.14 at f = 99.84.
- * Its rounded-index prescription instead gives native EFL 99.270917 and
- * BFL 31.798654. At the retained scale, BFL is 95.548840 vs the authored
- * 96.574519 mm, offset -1.025679 mm. All table entries match; preserve
- * published values without tuning indices or image distance (see audit).
+ * Image-plane re-solve (2026-11-03): Table 1 prints fb = 32.14 at f = 99.84
+ * (96.574519 mm at scale), but its three-decimal-index prescription focuses
+ * paraxially 1.025679 mm nearer the lens (native EFL 99.270917, BFL
+ * 31.798654). Surface 16's back focus is re-solved 96.574519 -> 95.548840 mm;
+ * the printed d8/d12 rows are unchanged, so the close row carries the same
+ * change and focuses at 3.027 m object to image (2.951 m before).
  */
 
 const LENS_DATA = {
@@ -61,6 +63,7 @@ const LENS_DATA = {
     groupCount: 8,
     focalLengthMm: { marketing: 300, design: 300 },
     fNumber: { marketing: 4.5, design: 4.63 },
+    closeFocusM: { marketing: 3.0 },
   },
 
   source: {
@@ -69,6 +72,12 @@ const LENS_DATA = {
     patentYear: 1998,
     authors: ["Hideyuki Suga"],
     assignees: ["Mamiya-OP Co., Ltd."],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Table 1 heads the close column with an object distance of 700 from the image plane (about 7f, as ¶0024 defines the near state), but its printed d8 = 13.238 / d12 = 15.707 focus near 1000 (about 3.03 m at scale, with catalog-class indices), not 700 (2.103 m at scale).",
+      },
+    ],
   },
 
   /* ── Elements ── */
@@ -225,13 +234,13 @@ const LENS_DATA = {
     { label: "13", R: 216.054688, d: 5.138221, sd: 19.080529, medium: 7 },
     { label: "14", R: -95.378606, d: 40.354567, sd: 19.080529 },
     { label: "15", R: -68.227163, d: 3.082933, sd: 15.024038, medium: 8 },
-    { label: "16", R: -335.976562, d: 96.574519, sd: 15.024038 },
+    { label: "16", R: -335.976562, d: 95.548840, sd: 15.024038 }, // printed fb 32.14 (96.574519 at scale); re-solved for paraxial focus
   ],
 
   focus: {
-    closeFocusM: 3.0,
+    closeFocusM: 3.027,
     description:
-      "PUBLISHED inner focus: negative G2 (L5–L6) translates 14.423 mm imageward. The printed Example-1 d8/d12 endpoints are preserved; the patent's '700' close-distance label conflicts with those spacings and is not corrected.",
+      "PUBLISHED inner focus: negative G2 (L5–L6) translates 14.423 mm imageward. The printed Example-1 d8/d12 endpoints are preserved; the back focus is re-solved for paraxial focus at infinity, and the close row, carrying that change, focuses at 3.027 m object to image. The patent's '700' close-distance heading conflicts with those spacings and is kept as an unresolved erratum.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

@@ -41,3 +41,35 @@ For the small-offset inquiry, column 4 explicitly mentions a best focusing plane
 **Cause/action:** source numerical inconsistency with explicit but non-identical best-focus discussion; preserve published values and equation convention. Offset **+0.041496 → +0.041496 mm**; Section E row deleted, no numerical change/changelog.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (deferred: chord-law asphere finding)
+
+Policy: LENS_DATA_SPEC § Image-Plane Consistency. No data change in this pass, because the image-plane decision
+waits for an asphere refit.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| (none) | — | — | Real-ray focus is not trustworthy until surfaces 4A and 13A follow the patent's chord law |
+
+- Paraxial residual: +0.041496 mm (18 depths at f/1.4). It fits the three-decimal e-line indices: a ±0.0005 index
+  Monte Carlo gives a BF spread of 0.039 mm (1σ). The census real-ray best focus of +1.267 mm is a modeling artefact.
+- Finding:
+  - Col. 3 (PDF p. 6) defines the sag p as a function of the chord s, "the separation of a point on the lens surface
+    from the lens vertex", so p(s)=ΣK(n)(s²/2)^n with s² = h² + p². With K(1) alone that law is an exact sphere of
+    radius 1/K(1).
+  - The file treats s as the radial height (K = −1 carrier, A2n = K(n)/2^n), which is a different surface. At the rim
+    the sag is 2.464 against 2.546 mm on 4A (h = 12.6) and 1.462 against 1.476 mm on 13A (h = 14.2).
+- Independent on-axis trace at the e line:
+  - Height law (as authored): the marginal rays focus about 1.2 mm behind the plane, the geometric 10/20/40 lp/mm
+    best focus is +1.264 mm (reproducing the census +1.262 / +1.267 mm) and the best-focus RMS spot is 57 µm.
+  - Chord law: the zonal intercepts lie −0.03 to −0.06 mm from the plane, the best focus is −0.044 mm and the RMS spot
+    is 3.7 µm. That agrees with cols. 3–4: aberration below 20 µm, and under 7 µm in the best focusing plane.
+- Consequence: with the chord law, the printed 19.595 mm plane sits between paraxial focus (+0.041) and real-ray best
+  focus (−0.044). Re-solving the last gap to the paraxial 19.636496 mm would put the plane 0.085 mm from best focus,
+  so the image-plane class is decided after the refit.
+
+Follow-ups:
+- Refit 4A and 13A to the chord law as `K = -1` plus A-terms over the stored clear radius, as
+  `src/lens-data/leica/LeitzNoctilux50mmf12.data.ts` does.
+- Then re-census the infinity plane and choose between keeping it as a best-focus plane and re-solving 15.d. The
+  coordinator queues this in Section G of `agent_docs/sd-audit-queue.md`.

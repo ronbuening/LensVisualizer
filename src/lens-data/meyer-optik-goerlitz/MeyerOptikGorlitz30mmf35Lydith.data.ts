@@ -11,9 +11,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Scaling: the patent example is normalized to f′ = 100. Every source      ║
  * ║  length is scaled uniformly ×0.3 for the 30 mm production target. The     ║
  * ║  rounded patent table traces to EFL = 30.57984526 mm, so marketing 30 mm  ║
- * ║  and design EFL remain separate. The final d = 36.75 mm preserves the     ║
- * ║  published scaled s′o = 122.5 × 0.3 rather than replacing it with the     ║
- * ║  rounded-table paraxial BFD of 37.70284110 mm.                            ║
+ * ║  and design EFL remain separate.                                          ║
+ * ║  Image-plane re-solve (2026-11-03): the printed s′o = 122.5 (36.75 mm at  ║
+ * ║  scale) left the plane 0.952841 mm before the integer-radius table's      ║
+ * ║  paraxial focus; the final d is re-solved 36.75 -> 37.702841 mm.          ║
  * ║                                                                            ║
  * ║  Stop: the patent places the diaphragm between L4 and L5 but gives no     ║
  * ║  dimensioned axial coordinate or physical diameter. The undimensioned     ║
@@ -146,7 +147,7 @@ const LENS_DATA = {
     { label: "8", R: 16.8, d: 1.395, sd: 6.1 },
     { label: "STO", R: "flat", d: 1.395 },
     { label: "9", R: 138.3, d: 4.38, sd: 6.8, medium: 5 },
-    { label: "10", R: -15, d: 36.75, sd: 6.8 },
+    { label: "10", R: -15, d: 37.702841, sd: 6.8 }, // printed s′o 122.5 (36.75 at scale); re-solved for paraxial focus
   ],
 
   focus: {

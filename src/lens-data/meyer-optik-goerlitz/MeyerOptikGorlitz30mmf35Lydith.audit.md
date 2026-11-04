@@ -38,3 +38,27 @@ Canonical maker is Meyer Optik Görlitz. The source explicitly records registrat
 ### Local diagram follow-up
 
 Rechecked the local-site SVG against the exact patent figure cited above, including optical rims, element order, labels and glass colors. Retained the reviewed SDs: the optical silhouette is consistent within drawing/measurement uncertainty, excluding bevels, leaders and mechanical extensions. All elements are spherical; there is no source evidence for ED or anomalous-dispersion tags. The focus control is disabled and no focal-length zoom slider is present. This fixed prescription supplies no focus/zoom endpoints whose direction could be reversed. User-facing focus text now states the modeling limit in plain language.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Policy: LENS_DATA_SPEC § Image-Plane Consistency (back focus first; a prime with no focus travel solves its final gap
+once).
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| Surface 10 `d` (back focus) | 36.75 | 37.702841 | Paraxial focus at infinity; printed s′o 122.5 × 0.3 |
+
+- Residual: +0.952841 mm (66.2 depths of focus at f/3.5) → 0.000000 mm. The first-vertex-to-image track is now
+  77.573 mm (76.620 before).
+- EFL is unchanged at 30.579845 mm. There is no focus travel and no close row; `closeFocusM` 0.33 m stays the maker's
+  figure for the preselection variant.
+- Not a best-focus plane: real-ray axial best focus was +1.019 mm from the printed plane, beside the +0.953 mm
+  paraxial focus. After the re-solve it lies about +0.07 mm from the plane.
+- Evidence for the cause (source rounding, class B):
+  - The Zahlenbeispiel is printed twice identically (PDF pp. 4–5), and the file matches it.
+  - The whole-number radii trace to f′ 101.93 and BFD 125.68 against the printed 100 and 122.5.
+  - Monte Carlo over ±0.5 radius rounding (and ±0.05 on thicknesses) gives a 1σ spread of 1.22 on f′ and 1.82 on BFD.
+    The misses are 1.6σ and 1.75σ, and 4 % of draws land within 0.5 of both printed values.
+  - No single radius change within ±0.5 restores both values, so there is no isolated misprint and no erratum.
+
+Follow-ups: none.
