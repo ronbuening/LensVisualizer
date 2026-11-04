@@ -49,3 +49,27 @@ Patent: US 3,838,911, Embodiment 2
 ## 2026-11-03 — Glass labels revisited
 
 L2 now traces its printed 1.48749/69.8 as `Unmatched`: S-FSL5 matches nd but is 0.44 off in νd, enough to move the colour correction of a 200 mm telephoto. The other four elements keep their OHARA catalog equivalents.
+
+## 2026-11-04 — Second review: diagram, labels and movement
+
+- Compared the local page at infinity and 2.5 m, the focus-movement overlay and all five element inspectors with Fig. 1 of `patents/US3838911.pdf` (PDF page 2, shapes and ratios only, since it is drawn to Embodiment 1's spacing) and with the Olympus dealer-binder section (object at the right, to Embodiment 2's scale). The binder lists 5 elements / 4 groups and marks no special glass or aspheric surface.
+- Fresh column scans of the binder section, 0.1971 mm/px from the 535 px first-to-last vertex span: L1 27.6, doublet flat top 24.0, L3 rear curve end 22.7 (corner rows 203.5 and 433.5 px), L4 flat top 14.0, L4 rear curve end 12.5, L5 17.4 mm. The model's 27.5 / 24.2 / 22.6 / 14.9 / 13.2 / 17.1 stays within 6% of each reading, and the L4 pair keeps the drawn 0.89 step from front to rear.
+- The only visible difference is the image-side corner of L3 and L4: both drawings show a flat top and a short 45° chamfer, and the renderer joins the two rims with one sloped edge. A `rimExtensionSd` land would draw a vertical step, which neither drawing shows, so no land is added.
+
+| Face | Kind | Figure reading, mm | Baseline | Final | Light cost at 6°, points | Verdict |
+| ---- | ---- | -----------------: | -------: | ----: | -----------------------: | ------- |
+| 5 | cut | 22.7 (maker curve end) | 24.2 | 22.6 | 0.0 | keep: slight |
+| 7 | cut | 12.5 (maker curve end) | 14.9 | 13.2 | 0.0 | keep: slight |
+
+- No lands. The rim cost tool's worst loss against the baseline rims is 0.0 points at every field (83.5% at 6° for both). With a real object 2.5 m from the image plane, the corner at 21.3 mm image height (5.3° at the front vertex) keeps 92.4% of the axial light with the cut rims and with the baseline rims alike.
+- No `sd` value changed. The surface validator passes, the image-circle and field-coverage checks are unchanged (6.0°, 21.31 of 21.65 mm), and the real-ray trace shows no axial clip or blocked chief ray at 6° in either focus state. Engine half-field 6.0°, f/4.000 and stop radius 13.37 mm are unchanged.
+- Labels: the patent names no elements, so L1–L5 follow the sequence and the diagram shows the ids. G1–G4 are the patent's first to fourth lenses, and CD1 brackets faces 3–5. The stop sits in d5 between the doublet and the negative meniscus, as the patent text places it. Every `type` agrees with the signs of R, `role` text holds, there are no aspheres, and no element carries an `apd` tag; the patent names no special glass.
+- Movement: focus keyframe 0 is infinity (BF 63.99 mm) and the last is 2.5 m (BF 83.56 mm, 2500.00 mm object to image, β −0.098). The overlay moves all four groups 19.57 mm toward the object together, and the slider's far end reads 2.50 m. The binder's 36 × 24 cm minimum field (1:10) agrees.
+- Close-range correction: the binder copy says an automatic correction mechanism compensates for aberrations at close focusing distances. The patent prints one fixed prescription, with no variable spacing and no text on close range, and the MIR lens notes list a straight helicoid. Olympus used similar wording for the floating group of its 50mm f/3.5 Auto-Macro. No readable source shows a floating group for this lens, so the unit-focus model stays.
+- Colour: Fig. 3a plots d and g. Read at the plot's own axis and ticks (177 px per unit at f = 100), the g focus lies 0.071 short of d near the axis and 0.127 beyond the d curve at full aperture, ±0.009. The model gives −0.089 and +0.115 with L2 at the printed 1.48749/69.8, and −0.080 and +0.125 with the S-FSL5 curve. The d curve matches: zonal −0.02 at 0.7 of the pupil, −0.003 at the rim.
+- Fig. 3c draws both field curves within 0 to +0.06 of the image plane at 6°; the model gives tangential +0.024 and sagittal −0.032. Fig. 3d plots +1.21% distortion at 6°; the model gives +1.36%, and moving the stop between 0.5 and 1.0 of d5 changes it by less than 0.01%.
+- Limitations: Fig. 1 is not a drawing of Embodiment 2, and the binder section is a catalog drawing matched to Embodiment 2 by spacing. The patent prints no C or F curves, so only the g line can test the L2 dispersion.
+
+## 2026-11-04 — L2 glass restored to S-FSL5
+
+The second review read Fig. 3a's g-line curve relative to d: −0.071 near the axis and +0.127 at the rim (f = 100, reading error ±0.009). The model gives −0.089 / +0.115 with L2 at its printed 1.48749/69.8 and −0.080 / +0.125 with S-FSL5's catalog curve. The patent's own plot favours the S-FSL5 dispersion, so L2 returns to S-FSL5 as a catalog equivalent, reversing the earlier revert made on the νd difference alone.

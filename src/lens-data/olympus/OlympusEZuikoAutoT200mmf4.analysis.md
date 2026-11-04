@@ -31,7 +31,7 @@ Positive front collector with a flat image-side face; it carries the largest cle
 
 ### L2 — Biconvex Positive
 
-nd = 1.48749, νd = 69.8. Glass: traced at the printed pair (S-FSL5 matches nd but not νd). f = +118.4 mm in air.
+nd = 1.48749, νd = 69.8. Glass: S-FSL5 (OHARA catalog equivalent). f = +118.4 mm in air.
 
 Low-dispersion positive front member of the cemented pair. The doublet as a whole is weakly positive (f = +412.5 mm).
 
@@ -55,7 +55,7 @@ Positive meniscus, convex to the object. Patent condition (3), 0.25f < 1.3r8 < r
 
 ## Glass Identification and Selection
 
-The patent lists refractive index and Abbe number without naming a spectral line. Read as d-line values, every pair matches an OHARA catalog glass in nd: S-BSM16 (L1), S-FSL5 (L2), S-TIH14 (L3), S-LAL12 (L4) and S-TIH11 (L5). The data file uses four of them as catalog equivalents for dispersion; they are not a production identification, and the original supplier is not known. S-FSL5's catalog νd (70.2) is 0.44 above the printed 69.8, enough to move the colour correction of a 200 mm telephoto, so L2 traces at the printed pair instead. The doublet pairs a low-dispersion crown (νd 69.8) with a dense flint (νd 26.5), and the rear meniscus L5 is a second dense flint. No anomalous partial dispersion is claimed.
+The patent lists refractive index and Abbe number without naming a spectral line. Read as d-line values, every pair matches an OHARA catalog glass in nd: S-BSM16 (L1), S-FSL5 (L2), S-TIH14 (L3), S-LAL12 (L4) and S-TIH11 (L5). The data file uses them as catalog equivalents for dispersion; they are not a production identification, and the original supplier is not known. S-FSL5's catalog νd (70.2) is 0.44 above the printed 69.8, but the patent's own g-line curve (Fig. 3a) fits the S-FSL5 dispersion better than the printed pair: relative to the d focus it plots −0.071 near the axis and +0.127 at the rim (f = 100), against −0.080 / +0.125 with S-FSL5 and −0.089 / +0.115 with the printed νd. The doublet pairs a low-dispersion crown (νd 69.8) with a dense flint (νd 26.5), and the rear meniscus L5 is a second dense flint. No anomalous partial dispersion is claimed.
 
 ## Focus Mechanism
 
@@ -88,7 +88,7 @@ The back focus is not printed. The image plane is the paraxial focus, 63.99 mm b
 
 ## Model Scope and Limitations
 
-At the paraxial image plane the prescription reproduces the patent's plots for Embodiment 2: longitudinal spherical aberration stays within 0.05 mm at f/4 (Fig. 3a shows it near zero), the sagittal and tangential fields stay within 0.08 mm of the image plane to 6° (Fig. 3c), and distortion reaches +1.4% pincushion at 6° (Fig. 3d).
+At the paraxial image plane the prescription reproduces the patent's plots for Embodiment 2: longitudinal spherical aberration stays within 0.05 mm at f/4 (Fig. 3a shows it near zero), the sagittal and tangential fields stay within 0.08 mm of the image plane to 6° (Fig. 3c), and distortion reaches +1.4% pincushion at 6°, a little above the +1.2% that Fig. 3d plots.
 
 The patent's 6° half-field reaches an image height of 21.3 mm, slightly short of the 21.6 mm corner of the 36 × 24 mm frame. With the inferred rims, the 6° field keeps about 84% of the on-axis light. Rims, stop position and the close-focus state are inferred or derived, as described above; they are not production measurements.
 

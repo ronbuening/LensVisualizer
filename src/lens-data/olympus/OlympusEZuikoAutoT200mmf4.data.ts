@@ -63,7 +63,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 69.8,
-      glass: "Unmatched (patent nd 1.48749, νd 69.8; S-FSL5 matches nd but is 0.44 off in νd)",
+      glass: "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
       indexReference: "d",
       indexReferenceNote:
         "The patent does not name the spectral line of its n and ν values; they are read as d-line values.",
