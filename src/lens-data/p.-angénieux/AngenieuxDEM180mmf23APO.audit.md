@@ -46,3 +46,35 @@ Validation: focused runtime/paraxial check; full corpus gates at the ten-lens ch
 - Native and 600 dpi Figures 1a/1b show L2's weak concave rear cap continuing to its full body. Restore S4 from 32 to 38.5 mm; this is a continuous cap, not a flat land. Common L3 rims S5/S6 grow from 32 to 32.6 mm, retaining square connectivity and the native f/2.3 beam. Other visible outer corners are oblique bevels, which do not establish flat lands or axial cut depths; no such fields are added.
 - All R/d, source media, stop, focus/aperture controls and tolerances remain unchanged. Canonical validation and the full inferred-cut guard pass. Actual buildLens/computeElementShapes SVGs inspected at nine focus/zoom samples have finite paths and zero hidden trim. Image-circle: zero undersized; format-corner chief clears; exact native f/2.3 is iris-limited.
 - Matched 16-point stop-lattice samples at focus/zoom 0/.5/1 and five common field fractions retain 7,746 previous passing samples, lose zero and gain 240. These sampled counts are not flux. Printed BF residual, rounded coordinate residual and inferred stop split remain limitations; the model is not factory-glass identification.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+US 4,726,669 Example 1 (PDF p. 7, col. 3) matches the file at ×1.8. Its printed BF = 44.79 (80.622 mm scaled)
+disagrees with the rounded prescription's native BFL 44.708683 (EFL 99.959464 against F = 100). That left the image
+plane 0.146370 mm behind paraxial focus (23.5 depths at f/2.3). The real-ray axial best focus was −0.140 mm, at the
+paraxial focus, so the plane was not a best-focus plane. No misprint is isolated (audit 2026-09-25), so this is a
+re-solve under LENS_DATA_SPEC Image-Plane Consistency. Back focus comes first. The change is carried to the β = −0.12
+row, and that row is then focused with the patent's own Component II/IV motion, weighted by the printed travels
+(D2 −2.574, D6 +2.556, D11 −17.406, BF +17.424, normalised to BF). The weights sum to zero, so the track is held.
+The β = −0.12 object distance, 1603.701 mm from the first surface, was found by paraxial iteration; the re-solved row
+traces β = −0.119987.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| BF, infinity | 80.622 | 80.47563 | Computed BFL; printed 44.79 × 1.8 |
+| D2, close | 0.432 | 0.425294 | Weighted II/IV move at 1603.701 mm |
+| D6, close | 29.538 | 29.544659 | Same move |
+| D11, close | 0.576 | 0.53065 | Same move |
+| BF, close | 98.046 (our completion) | 97.945026 | Carried −0.146370, then the same move |
+| `focus.closeFocusM` | 1.7886507000747824 | 1.7947 | Close row object to image 1794.715 mm |
+
+- Residual: infinity −0.146370 → 0 mm. Close row: before, it focused 1597.49 mm from the first surface (β −0.120513);
+  now it focuses at 1603.701 mm (β −0.119987).
+- Travel: D2 −2.580706, D6 +2.562659, D11 −17.451350, BF +17.469396 mm (printed −2.574 / +2.556 / −17.406 / +17.424).
+  The 0.018 mm Component III residual from the printed D2 + D6 totals is unchanged. Track 191.160 → 191.013630 mm.
+- EFL unchanged at infinity (179.927035 mm); close-state EFL 172.358930 mm.
+- Minimum clearance of the moved gaps at the close row: D2 0.425 mm, D6 28.050 mm, D11 0.531 mm (each at the
+  vertex or rim, none closing). Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+- Evidence: the 2026-09-25 census numbers above; paraxial checks of the edited file (residual 0 at both rows).
+
+Follow-ups: none; the maker's minimum focus distance is not recorded in `catalog.closeFocusM.marketing`.

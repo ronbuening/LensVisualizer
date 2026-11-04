@@ -40,3 +40,27 @@ Retained all station labels, marketing values, prescription geometry and image d
 The approved proposal independently reproduced infinity EFLs of 11.735474477 / 28.031359056 / 66.962358248 mm; those traced results remain documented separately. Both endpoint comparisons in the historical zoom-metadata check now have zero difference. This is a metadata correction, not a source-prescription correction.
 
 Added an `unresolved` `source.errata` entry, a header disclosure, and a Section G queue row. US 4,437,733, First Embodiment, PDF p. 13, states FW/FM/FT = 11.5/28.0/69.0 mm. The modeled prescription traces to 11.735474/28.031359/66.962358 mm with the separately documented middle D12 = 5.99 mm correction. The endpoint discrepancy is unaffected by that correction; its cause is unresolved. Printed focal-length metadata is retained.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+US 4,437,733 First Embodiment (PDF p. 13, image-only scan, viewed rendered) prints Bf = 16.54 mm, and every R, d and
+index in the file matches it (apart from the documented middle D12 5.99 mm correction). The rounded prescription's
+paraxial back focus from r26 is 16.638774 / 16.637279 / 16.628655 mm at W/M/T. The near-constant shortfall sits in
+the fixed G4–prism–G5 relay. Printed group focal lengths f1–f5 (63.3/−15.0/−40.5/24.8/34.3) reproduce as
+63.33/−15.02/−40.55/24.88/34.29 mm. No single G4 value gives both f4 = 24.80 and Bf = 16.54, so no misprint is isolated.
+This is a source-rounding / internal inconsistency, re-solved under LENS_DATA_SPEC Image-Plane Consistency. The zoom
+models no focus travel and its back focus is one fixed value, so one value is solved, at the middle station.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| r26 `d` (Bf) | 16.54 | 16.637279 | Middle-station paraxial back focus; one value serves all stations |
+
+- Residual (paraxial focus − plane): W +0.098774 → +0.001495 mm (58.4 → 0.9 depths), M +0.097279 → 0 mm
+  (57.5 → 0), T +0.088655 → −0.008624 mm (52.4 → 5.1 depths).
+- EFL unchanged (11.735474 / 28.031359 / 66.962358 mm). Track 152.53/152.53/152.54 → 152.627/152.627/152.637 mm.
+  There is no focus travel; `closeFocusM` stays 0.93 m (patent prose, datum unspecified).
+- Real-ray axial best focus before the change: +0.039 / +0.016 / +0.121 mm, not a consistent best-focus plane.
+- The `unresolved` errata entry stays; it covers the 11.5/69.0 mm endpoint EFLs, not the back focus.
+- Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+
+Follow-ups: the endpoint focal-length discrepancy remains queued in Section G.

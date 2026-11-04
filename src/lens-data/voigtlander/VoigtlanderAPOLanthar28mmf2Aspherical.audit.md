@@ -1,314 +1,72 @@
 # VoigtlanderAPOLanthar28mmf2Aspherical — Stage 4 Independent Audit
 
-> Superseded numerical baseline: the 2026-09-25 audit below found two S17 transcription errors. Earlier calculations and source-precision trials used those errors; use the latest section and current analysis for corrected results.
-
-
-## Job Card and Scope
-
-- **Patent:** JP 2026-98935 A / JP2026098935A
-- **Lens:** Voigtländer APO-LANTHAR 28mm f/2 Aspherical
-- **Fixed embodiment:** Example 2 (第2実施形態; Fig. 3, Tables 5–8)
-- **Output stem:** `VoigtlanderAPOLanthar28mmf2Aspherical`
-- **Audit boundary:** fresh adversarial audit of the supplied `.data.ts` / `.analysis.md` pair; no batch metadata generation, full corpus testing, Git operation, or publication work
-
-The patent and embodiment were not substituted. The VM production correlation was retained because Example 2 publishes a 0.5 m-class endpoint, while the official Sony E- and Nikon Z-mount versions publish 0.28 m minimum focus distances. This is a correlation judgment, not a claim that the production prescription is numerically identical to the patent example.
-
-## Independence Statement
-
-The first-pass extraction and calculation were completed before the conclusions in the supplied prior audit were consulted. The following were independently re-entered from rendered patent pages:
-
-- Table 5 summary values on patent p. 14;
-- the complete Table 6 prescription on p. 15;
-- Table 7 focus spacings and Table 8 asphere coefficients on p. 17;
-- the Example 2 section drawing, Fig. 3, on p. 24;
-- the d-line, radius-sign, spacing, anomalous-partial-dispersion, and standard-conic conventions in ¶0060–¶0070.
-
-The fresh calculation used both height/reduced-angle (`y–ν`) and conventional height/angle ABCD matrices. A later secondary run of the supplied verification script reproduced the fresh numerical results, but it was not used to establish the first-pass conclusions.
-
-## Fresh Source Extraction
-
-### Table 5 summary
-
-| Quantity | Patent value |
-|---|---:|
-| Overall focal length | 28.84 mm |
-| F-number | 2.06 |
-| Half field | 37.02° |
-| TL | 71.19 mm |
-| TLab | 10.47 mm |
-| f1 | 58.33 mm |
-| f1ab | −29.83 mm |
-| f2 | 53.75 mm |
-| f2abal | −47.89 mm |
-| f2abalm | −12.67 mm |
-| f2b | 20.63 mm |
-| X1 | 1.61 mm |
-| X2 | 2.08 mm |
-
-### Table 6 active prescription
-
-| Surface | Asph. | R (mm) | D∞ (mm) | Dclose (mm) | nd after | νd | ΔPgF |
-|---:|:---:|---:|---:|---:|---:|---:|---:|
-| 1 | yes | 120.686 | 1.20 | 1.20 | 1.51680 | 64.20 | +0.0031 |
-| 2 | yes | 18.667 | 5.17 | 5.17 | 1.00000 | — | — |
-| 3 |  | −26.163 | 3.10 | 3.10 | 1.85150 | 40.78 | −0.0054 |
-| 4 |  | −17.394 | 1.00 | 1.00 | 1.78880 | 28.43 | +0.0037 |
-| 5 |  | −45.310 | 0.30 | 0.30 | 1.00000 | — | — |
-| 6 |  | 35.585 | 3.33 | 3.33 | 2.00100 | 29.13 | +0.0036 |
-| 7 |  | −500.000 | 0.31 | 0.31 | 1.00000 | — | — |
-| 8 |  | 51.264 | 3.86 | 3.86 | 1.90043 | 37.37 | −0.0044 |
-| 9 |  | −51.262 | 1.00 | 1.00 | 1.85451 | 25.15 | +0.0072 |
-| 10 |  | 98.206 | 3.84 | 3.84 | 1.00000 | — | — |
-| STO |  | ∞ | 3.83 | 3.36 | 1.00000 | — | — |
-| 12 |  | −19.549 | 1.00 | 1.00 | 1.72047 | 34.71 | −0.0025 |
-| 13 |  | 17.500 | 5.84 | 5.84 | 1.62846 | 59.17 | +0.0139 |
-| 14 |  | −34.531 | 0.30 | 0.30 | 1.00000 | — | — |
-| 15 |  | 36.135 | 4.92 | 4.92 | 1.90525 | 35.04 | −0.0005 |
-| 16 |  | −36.135 | 0.15 | 0.15 | 1.00000 | — | — |
-| 17 (corrected 2026-09-25) |  | 580.403 | 5.45 | 5.45 | 1.55032 | 75.50 | +0.0277 |
-| 18 |  | −19.000 | 1.00 | 1.00 | 1.72047 | 34.71 | −0.0025 |
-| 19 |  | 161.504 | 5.64 | 5.64 | 1.00000 | — | — |
-| 20 | yes | −116.659 | 2.10 | 2.10 | 1.80610 | 40.73 | −0.0056 |
-| 21 | yes | 1000.000 | 18.21 | 20.28 | 1.00000 | — | — |
-
-The active model contains 12 glass elements in 8 air-spaced groups, exactly one `STO`, four aspherical surfaces, and no sensor cover, filter, inactive dummy plane, flare cutter, folded-path surface, or synthetic cement layer. Surface number 11 is intentionally absent because the virtual stop row carries D11.
-
-### Table 8 aspheres and convention
-
-The patent uses the standard conic constant `K` in `sqrt(1 − (1+K)c²h²)`; no `κ` conversion or coefficient scaling is required.
-
-| Surface | K | A4 | A6 | A8 | A10 | A12 | A14 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 1A | 0 | 1.5630E−05 | −2.0081E−07 | 1.7924E−09 | −8.9064E−12 | 1.8450E−14 | 0 |
-| 2A | 1.111 | −2.4287E−06 | −3.6870E−07 | 2.3518E−09 | −1.5366E−11 | 0 | 0 |
-| 20A | 52.843 | −3.2860E−05 | 0 | 0 | 0 | 0 | 0 |
-| 21A | 0 | 4.4019E−06 | 4.5548E−08 | −6.0419E−11 | 1.0810E−12 | −4.5187E−15 | 0 |
-
-## Independent Optical Verification
-
-### System cardinal points and cross-check
-
-| Quantity | Fresh result | Patent comparator |
-|---|---:|---:|
-| EFL | 29.126006271204 mm | 28.84 mm summary |
-| BFL from S21 vertex | 18.582765364142 mm | D21 = 18.21 mm |
-| Front principal plane from S1 | +21.435577439021 mm | not tabulated |
-| Rear principal plane from S21 | −10.543240907062 mm | not tabulated |
-| S1-to-IMG track | 71.250000000000 mm | TL = 71.19 mm |
-| Matrix determinant | 1.000000000000 | air-to-air expectation 1 |
-| y–ν / θ-ABCD maximum difference | 3.553E−15 | numerical roundoff |
-
-The patent summary focal length and printed final image gap are not reproduced by the raw prescription. A 50,000-sample uniform half-last-digit perturbation gave:
-
-| Quantity | Minimum | Maximum |
-|---|---:|---:|
-| EFL | 29.092811 mm | 29.160213 mm |
-| BFL | 18.539654 mm | 18.627580 mm |
-| Track | 71.197327 mm | 71.303881 mm |
-| Published close-state matrix B | 5.406118 mm | 6.757974 mm |
-
-Thus 28.84 mm, 18.21 mm as a paraxial BFL, and zero close-state B all remain outside the source-precision ranges. The prescription is preserved; no summary value is substituted into the optical arrays.
-
-### Standalone, cemented, and functional powers
-
-| Unit | EFL (mm) | Classification |
-|---|---:|---|
-| L9 | −42.901440 | standalone element |
-| L10f | +52.423822 | standalone element |
-| L10r | −36.365402 | standalone element |
-| L10 | −98.936654 | cemented net air-to-air unit |
-| L11 | +33.291042 | standalone element |
-| L12f | +28.982846 | standalone element |
-| L12r | −39.294469 | standalone element |
-| L12 | +98.774343 | cemented net air-to-air unit |
-| G1a+G1b | −29.801877 | combined air-to-air subsystem |
-| G1 | +58.393064 | functional macro-group |
-| L13f | −12.673277 | standalone element |
-| L13r | +19.316970 | standalone element |
-| L13 | −47.894535 | cemented net air-to-air unit |
-| L14 | +20.625740 | standalone element / G2b |
-| L15f | +33.532749 | standalone element |
-| L15r | −23.541155 | standalone element |
-| L15 | −80.346997 | cemented net air-to-air unit |
-| L16 | −129.492431 | standalone element |
-| G2 | +54.220839 | functional macro-group |
-
-No isolated subassembly value is described as an in-situ power. The analysis now distinguishes standalone element, cemented net, combined subsystem, and functional macro-group results.
-
-### Petzval, pupil, and classification
-
-The surface-by-surface Petzval sum, computed as `φ/(n·n′)`, is `+0.002241700126495 mm⁻¹`, giving a paraxial Petzval radius of `446.089995794 mm`. The complete surface table is retained in the calculation results JSON.
-
-The patent omits the physical stop diameter. The inferred `STO.sd = 7.914161325747 mm` gives an entrance-pupil semi-diameter of `7.069418997865 mm` and exactly reproduces F/2.06 against the independently computed EFL. This remains a modeling inference rather than a source dimension.
-
-- `TL/EFL = 2.446267413`; the design is not telephoto under `TL/EFL < 1`.
-- `D21/EFL = 0.625214450`; the design is not retrofocus under `BFD > EFL`.
-
-### Focus movement and published contradiction
-
-| Quantity | Result |
-|---|---:|
-| ΔD11 | −0.47 mm |
-| ΔD21 | +2.07 mm |
-| X1 encoded by gaps | 1.60 mm |
-| X2 encoded by gaps | 2.07 mm |
-| Published object-to-image distance | 500.85 mm |
-| Published close-state matrix B | +6.097173982880 mm |
-| Required D0 if D11 and D21 are held | 539.855548332 mm |
-| Required D21 if D0 and D11 are held | 20.700829433 mm |
-
-The two published endpoint gaps remain `PUBLISHED`. No reconstructed endpoint is adopted. The discrepancy is disclosed in the data header, `focusDescription`, analysis, audit, and results JSON.
-
-## Geometry, Asphere, and Ray Gate
-
-The stored semi-diameters are inferred, because the patent provides no clear apertures. Two 2026-08-01 passes measured the exact Example 2 Fig. 3 section at high resolution. Leader lines make the whole-figure automated radial peak unreliable, so element rims were measured by hand and normalized to L9 under the SD-audit runbook. Comparing the first revision with the supplied rendered diagram showed that L11/L12 remained too large, L14/L15 remained too small, and terminal L16 remained too tall. The final sequence below follows the patent's relative element heights.
-
-| Surfaces | Pre-pass SD | Final SD | Figure interpretation |
-|---|---:|---:|---|
-| 3–5 (L10) | 9.7 mm | 9.5 mm | About 0.83 of L9's rim height |
-| 6–7 (L11) | 9.6 / 9.3 mm | 8.5 mm | About 0.74 of L9's rim height |
-| 8–10 (L12) | 9.3 / 9.1 / 8.9 mm | 8.6 mm | About 0.75 of L9's rim height |
-| 12–14 (L13) | 9.0 mm | 9.0 mm | About 0.78 of L9's rim height; retained |
-| 15–16 (L14) | 8.6 mm | 10.4 mm | About 0.90 of L9's rim height |
-| 17–19 (L15) | 9.7 mm | 10.6 mm | About 0.92 of L9's rim height |
-| 20A–21A (L16) | 12.8 / 13.5 mm | 12.0 mm | About 1.04 of L9's rim height; equal-rim terminal element |
-
-The final values pass the surface validator and image-circle floor audit at both focus states. The terminal asphere departures were recomputed at the revised 12.0 mm semi-diameter.
-
-Asphere departures from the same-radius sphere at the stored semi-diameters are:
-
-| Surface | Semi-diameter | Departure |
-|---|---:|---:|
-| 1A | 11.50 mm | +0.095581763 mm |
-| 2A | 9.66 mm | +0.067685693 mm |
-| 20A | 12.00 mm | −0.807967259 mm |
-| 21A | 12.00 mm | +0.227947821 mm |
-
-The final file passes the repository's edge-thickness, rim-slope, conic-domain, shared-gap, and image-circle-floor checks. The locally rendered silhouette was visually compared with patent Fig. 3 and retains the same element order, stop location, and corrected group proportions.
-
-## Glass Audit
-
-The patent names no glass vendors. It publishes `nd`, `νd`, and `ΔPgF`; qualified catalog names are therefore equivalence results, not source identities. All stored line indices satisfy `nC < nd < nF < ng`. The largest line-index-derived `ΔPgF` residual is `+0.000441765` for L10r; this remains within the disclosed catalog-equivalence limitations and does not alter the patent-stored `ΔPgF`.
-
-The most relevant adjudications are:
-
-- **L9:** official CDGM H-K9LGT data reproduce the 517642 tuple and provide an exact coefficient-backed curve. The label remains an equivalent because the patent does not establish the production supplier.
-- **L10f / L10r / L13f / L14:** official OHARA catalog entries reproduce the stored `nd`/`νd` pairs for S-LAH89, S-NBH58, S-NBH8, and S-LAH93, respectively. They remain explicitly labeled as equivalents.
-- **L13r:** HIKARI J-PSKH8 reproduces the 628592 `nd`/`νd` tuple and remains an equivalent.
-- **L16:** no audited public catalog candidate matches `nd = 1.80610`, `νd = 40.73`, and patent `ΔPgF = −0.0056` jointly. HIKARI Q-LASF03S is a close 806407-class line-index proxy, while HOYA NBFD13 better matches `nd`/`νd` but not the patent `ΔPgF`. The element remains explicitly `Unmatched`.
-
-No catalog label is represented as a proven production melt. The manufacturer’s section marks six anomalous-partial-dispersion positions. Mapping its matching topology to Example 2 identifies L10r, L12r, L13f, L13r, L15f, and L15r; those six flags are recorded as `inferred`, while all twelve patent-published `ΔPgF` values remain numeric spectral data.
-
-## Corrections Applied
-
-| No. | Old value or wording | Corrected value or wording | Source location | Independent evidence | Downstream consequences |
-|---:|---|---|---|---|---|
-| 1 | L9 used H-K9LGT only as a line-index proxy because that exact catalog row was absent | Added the official CDGM H-K9LGT Sellmeier row and labeled L9 `H-K9LGT (CDGM) equivalent — 517642` | CDGM Optical Glass Data Sheet, June 2022, H-K9LGT p. 79; patent Table 6 | Vendor coefficients and d-code exactly reproduce the patent's 1.51680 / 64.20 tuple; `equivalent` still avoids claiming the production melt | L9 now has strict coefficient-backed dispersion without changing its authored patent constants |
-| 2 | L16 label disclosed an unmatched 806407 class and Q-LASF03S proxy but did not state why it remained unmatched | Added `no joint nd/νd/ΔPgF match` to the data and analysis | Patent Table 6, p. 15; L16 data/analysis entries | Q-LASF03S is close on class and partial dispersion; NBFD13 is closer on nd/νd; neither matches all three patent quantities jointly | No optical-number change. Glass uncertainty is now explicit to readers and mismatch tooling |
-| 3 | Analysis used `in-situ EFL` for G1a+G1b and cemented L10/L12/L13 calculations | Replaced with `combined air-to-air EFL` or `net air-to-air EFL` | Analysis Optical Architecture and L10/L12/L13 sections | Fresh isolated-subsystem matrices were evaluated between air reference planes; they are not powers measured inside the complete lens | No numerical change. The analysis now distinguishes standalone, cemented net, subsystem, and functional-group quantities |
-| 4 | All twelve elements were labeled `apd: "patent"`, conflating published `ΔPgF` numbers with the production APD classification | Mapped Cosina's six marked production positions to L10r, L12r, L13f, L13r, L15f, and L15r as `inferred`; left all twelve patent `dPgF` values intact | Official Cosina optical section; JP 2026-98935 A Example 2 topology and Table 6 | The production drawing gives a direct six-position pattern, while Table 6 independently publishes partial-dispersion deviations for every glass | Corrects the UI classification without discarding patent spectral data |
-| 5 | Inferred element apertures did not reproduce Fig. 3's relative rim-height sequence | Revised L10–L16 to 9.5 / 8.5 / 8.6 / 9.0 / 10.4 / 10.6 / 12.0 mm group envelopes | Patent Fig. 3, p. 24; supplied current diagram | High-resolution hand measurements normalized to L9; surface and image-circle validators pass | Diagram proportions now follow the patent section more closely; first-order optics are unchanged; 20A/21A departures were recomputed |
-| 6 | Clean analysis contained `Stage 2` and repository-availability process notes | Removed process-history wording while retaining the model limitations and quantitative disclosures | Analysis Aspherical Surfaces and Verification Summary; current analysis specification | Process notes belong in audit/manifest artifacts, not the reader-facing analysis | No quantitative or interpretive optical change. Clean analysis now conforms to the required scholarly form |
-| 7 | Inventor metadata used the Japanese-script name `三島 望` | Matched the existing repository identity `Nozomu Mishima` | Patent metadata and existing Cosina inventor record | Same kanji identity as the existing COLOR-SKOPAR record | Patent pages and author aggregation now share one romanized inventor identity |
-
-No correction was required to any patent radius, spacing, index, Abbe number, `ΔPgF`, asphere coefficient, conic constant, variable gap, cemented-junction `elemId`, element/group count, stop label, patent number, mount, or format metadata. Only inferred semi-diameters, classification metadata, and the romanized inventor identity changed.
-
-## Targeted Final Gate
-
-| Check | Result | Scope |
-|---|---|---|
-| Fresh Table 6–8 transcription comparison | PASS | every active surface, infinity/close spacing, medium index, element tuple, and asphere coefficient |
-| y–ν / θ-ABCD agreement | PASS | maximum difference 3.553E−15 |
-| Source-precision perturbation | PASS | 50,000 samples; discrepancies remain outside ranges |
-| Local schema and authoring invariants | PASS | exactly one STO, unique labels, valid element references, canonical mount/format, var/base consistency |
-| TypeScript syntax and local schema-derived typecheck | PASS | `tsc 5.8.3`; local stub, not repository `LensDataInput` |
-| Infinity and close geometry | PASS | edge, slope, conic, gap, and local trim checks |
-| Exact targeted meridional rays | PASS | on-axis, 0.60 field, full-field chief, finite D0 close rays, and vignetting scan |
-| Glass line ordering and residual audit | PASS | all twelve elements |
-| All nineteen patent conditions | PASS | recomputed from authored arrays and powers |
-| Analysis structure and data consistency | PASS | required H2 order, metadata, quantitative claims, terminology, and process-note check |
-| Prettier | NOT RUN | executable unavailable; supplied `.prettierrc.json` retained as the formatting reference |
-| Repository `buildLens()` / `validateLensData()` | NOT RUN | LensVisualizer repository and node_modules unavailable |
-| Repository render diagnostics / glass report / same-stem tests | NOT RUN | LensVisualizer repository unavailable |
-
-The repository-dependent checks are deferred to the normal batch integration environment and are not claimed here. No local defect remains that blocks that batch gate.
-
-## Sources
-
-- Cosina Co., Ltd., JP 2026-98935 A, Example 2, especially Fig. 3, Tables 5–8, and ¶0047–¶0071.
-- Cosina, VOIGTLÄNDER APO-LANTHAR 28mm F2 Aspherical VM: https://www.cosina.co.jp/voigtlander/en/vm-mount/apo-lanthar-28mm-f2-aspherical/
-- Cosina, Japanese VM product page and release specification: https://www.cosina.co.jp/voigtlander/vm-mount/apo-lanthar-28mm-f2-aspherical/
-- Cosina, release-date notice: https://www.cosina.co.jp/news/%E3%83%95%E3%82%A9%E3%82%AF%E3%83%88%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BCapo-lanthar-28mm-f2-aspherical-vm-%E7%99%BA%E5%A3%B2%E6%97%A5%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B/
-- Cosina, Sony E and Nikon Z product pages, consulted only to delimit the VM focus-state correlation.
-- OHARA optical-glass catalog: https://www.ohara-inc.co.jp/en/product/catalog/
-- HOYA optical-glass data: https://www.hoya-opticalworld.com/english/
-- HIKARI optical-glass catalog: https://www.hikari-g.co.jp/optical_glass/catalog/document/HIKARI_Catalog.pdf
-- CDGM H-K9LGT data sheet: https://www.cdgmgd.com/webapp/pdf/H-K9LGT.pdf
-
-## Stage Gate
-
-Local Stage 4 audit: **PASS**. Repository-specific integration checks remain for the batch environment.
-
-**READY_FOR_BATCH**
-
-## 2026-08-01 Repository Integration Gate
-
-This final integration gate supersedes the earlier environment-availability notes. The stored prescription passes the repository surface and image-circle audits; refreshed glass reports show 11/12 strict and 12/12 trusted chromatic coverage with zero catalog mismatches. Typecheck, format check, all 2,528 tests in 213 files, and the 990-route production build pass. Lint reports only the repository's three pre-existing type-assertion warnings and no errors.
-
-## 2026-09-25 — MTF image-plane census
-
-Source reopened: local `patents/JPA 2026098935-000000.pdf`, Example 2 Tables 5–8, PDF pp.14–17, Fig.4 p.24. Compared all 21 R/d rows, twelve nd/νd/ΔPgF tuples, both infinity/close spacing rows and all four K/A4–A14 blocks visually. Native scale and standard K; no plate is present.
-
-**Cause: transcription errors plus remaining source inconsistency.** Table 6 S17 clearly prints **R=580.403, D=5.45**, not 580.103/5.15 in the old data and earlier audit's extraction. Corrected both. Other source values match. Recomputed EFL 28.942108012 (source 28.84), BFL 18.144591739 (D21=18.21), and physical TL 71.55 (summary 71.19). Runtime offset **+0.372765 → -0.065408 mm**, still above the 0.049868 mm threshold. The source is not fully self-consistent and no additional single supported correction was found.
-
-Checked the small residual against Fig.4 and a 32-grid, d-line axial MTF diagnostic at 10/20/40 lp/mm: the retained plane is not the sampled best focus (best shift about -0.087 mm; score 0.434→0.964 before the minor stop recalibration). This does not establish designer intent or a whole-field optimum; preserve D21. Do not relabel the residual as proven best focus.
-
-Updated dependent EFL, L15f power, group/track/Petzval/close-conjugate calculations and the inferred stop calibration (7.864192220 mm to retain source f/2.06). The close object-to-image matrix B is now -0.647619051 mm, not +6.097174; its source endpoint is retained. **Earlier extraction, source-precision trials and quantitative conclusions in this historical audit are superseded wherever they depend on S17.** The erroneous source-table row below is corrected and labeled. Section E row deleted; changelog records the material data correction.
-
-Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
-
-## 2026-10-08 - dPgF moved to the engine's normal line
-
-- Patent formula: `ΔPgF = PgF − 0.64833 + 0.00180·νd` with `PgF = (ng − nF)/(nF − nC)` — Example 2 note ¶0061 (local
-  `patents/JPA 2026098935-000000.pdf` p. 15); the same definition closes claims 6–9 (pp. 3–4) and ¶0011–¶0014
-  (pp. 5–6). The patent's normal line is therefore `0.64833 − 0.00180·νd`; the engine's is `0.6438 − 0.001682·νd`.
-  The two differ by `0.00453 − 0.000118·νd`.
-- Printed partial dispersion: Table 6 (p. 15, an image; read on the page rendered at 200 dpi) has the columns R, D,
-  Nd, νd and ΔPgF. It prints the patent's deviation for all twelve glasses and no absolute PgF. ¶0063–¶0066
-  (pp. 16–17) repeat the L13f/L13r/L14/L15f/L15r figures in text.
-- All twelve elements stored the Table 6 deviation directly as `dPgF`. Each value was converted through the patent's
-  own line: `PgF = ΔPgF + 0.64833 − 0.00180·νd`, then `dPgF = PgF − (0.6438 − 0.001682·νd)`, using the stored `νd`.
-  Nine values moved by more than 0.0003 and were rewritten to six decimals; three were already within 0.0003 of the
-  engine-line value and stay exactly as stored.
-- Every element authors `nC`, `nF` and `ng`, so the trace uses those indices and `dPgF` is an annotation; no ray
-  result changes. The recovered PgF agrees with each element's own line indices and, where the label resolves, with
-  the catalog curve to within 0.0005 (largest gap: L10r, 0.600856 against 0.6013 from the authored indices).
-
-| Element | νd | Source figure (Table 6 ΔPgF, patent's line) | Recovered PgF | Stored before | Stored after |
-|---|---:|---:|---:|---:|---:|
-| L9 | 64.20 | +0.0031 | 0.535870 | 0.0031 | 0.000054 |
-| L10f | 40.78 | −0.0054 | 0.569526 | −0.0054 | −0.0054 (kept; engine-line value −0.005682) |
-| L10r | 28.43 | +0.0037 | 0.600856 | 0.0037 | 0.004875 |
-| L11 | 29.13 | +0.0036 | 0.599496 | 0.0036 | 0.004693 |
-| L12f | 37.37 | −0.0044 | 0.576664 | −0.0044 | −0.0044 (kept; engine-line value −0.004280) |
-| L12r | 25.15 | +0.0072 | 0.610260 | 0.0072 | 0.008762 |
-| L13f | 34.71 | −0.0025 | 0.583352 | −0.0025 | −0.002066 |
-| L13r | 59.17 | +0.0139 | 0.555724 | 0.0139 | 0.011448 |
-| L14 | 35.04 | −0.0005 | 0.584758 | −0.0005 | −0.000105 |
-| L15f | 75.50 | +0.0277 | 0.540130 | 0.0277 | 0.023321 |
-| L15r | 34.71 | −0.0025 | 0.583352 | −0.0025 | −0.002066 |
-| L16 | 40.73 | −0.0056 | 0.569416 | −0.0056 | −0.0056 (kept; engine-line value −0.005876) |
-
-- The nine rewritten `apdNote` strings now quote the patent's ΔPgF, the patent's line, the implied PgF and the
-  runtime value. The data-file header replaces "Patent dPgF is retained directly" with a note that `dPgF` is PgF
-  minus the engine line and names the patent's formula. `nd`, `νd`, `nC`/`nF`/`ng`, glass labels and `apd` tags are
-  unchanged; the file still builds and validates.
-- Left: L10f (−0.0054), L12f (−0.0044) and L16 (−0.0056). The line gap at their Abbe numbers is 0.000282, 0.000120
-  and 0.000276, under the 0.0003 keep-as-is tolerance, so the printed four-decimal figure stands and their `apdNote`
-  strings are untouched. L16's label does not resolve to a catalog curve, which does not matter here because the
-  patent prints its deviation.
-- Analysis: the conditional-expression table keeps the patent's ΔPgF in rows 10, 13, 16, 17 and 19, now labelled
-  "(patent)" with a sentence naming the patent's formula, and the element notes still quote the patent's ΔPgF. The
-  four statements that said the file stores or retains the patent's ΔPgF were corrected, the glass section states
-  both lines, and the glass table column is headed "Patent ΔPgF". Statements in earlier sections of this log that
-  the patent `ΔPgF` values are stored unchanged are superseded by this section.
+## Historical audits prior to 2026-11-03
+
+Squashed on 2026-11-03. Source throughout: Cosina, JP 2026-98935 A (local `patents/JPA 2026098935-000000.pdf`),
+Example 2 (第2実施形態): Table 5 summary p. 14, Table 6 prescription p. 15, Table 7 focus spacings and Table 8
+aspheres p. 17, Fig. 3 section p. 24, conventions ¶0060–¶0070, ΔPgF definition ¶0061 and claims 6–9 (pp. 3–6).
+
+### Stage 4 independent audit (2026-08-01) and integration gate
+
+- Scope: VM production correlation kept because Example 2 publishes a 0.5 m-class endpoint; the Sony E and Nikon Z
+  versions publish 0.28 m and are out of scope. Independent re-entry of Tables 5–8 and Fig. 3, cross-checked with y–ν
+  and θ-ABCD matrices (difference 3.553E−15).
+- Table 5: f 28.84, F 2.06, ω 37.02°, TL 71.19, TLab 10.47, f1 58.33, f1ab −29.83, f2 53.75, f2abal −47.89,
+  f2abalm −12.67, f2b 20.63, X1 1.61, X2 2.08 mm. Printed D11 3.83 → 3.36 and D21 18.21 → 20.28 mm; close D0 428.00 mm.
+  Table 8 uses the standard conic K (1A K 0; 2A K 1.111; 20A K 52.843; 21A K 0). 12 elements / 8 groups, one STO
+  (surface 11 is the stop row), four aspheres, no plate.
+- The Stage 4 numbers (EFL 29.126006, BFL 18.582765, track 71.25, close B +6.097174, the 50,000-sample rounding
+  ranges) used a miscopied S17 and are superseded by the 2026-09-25 entry.
+- Semi-diameters from hand measurements of Fig. 3 normalised to L9: L10 9.5, L11 8.5, L12 8.6, L13 9.0, L14 10.4,
+  L15 10.6, L16 12.0 mm (pre-pass 9.7 / 9.6–9.3 / 9.3–8.9 / 9.0 / 8.6 / 9.7 / 12.8–13.5).
+- Glass: L9 H-K9LGT (CDGM row added, exact 517642), L10f S-LAH89, L10r S-NBH58, L13f S-NBH8, L14 S-LAH93, L13r
+  J-PSKH8, all as equivalents; L16 Unmatched (no joint nd/νd/ΔPgF match; Q-LASF03S line proxy, NBFD13 closer on
+  nd/νd). Cosina's section marks six APD positions, mapped to L10r, L12r, L13f, L13r, L15f, L15r as `inferred`.
+  Inventor romanised as Nozomu Mishima. No patent R, d, index, ΔPgF or asphere value was changed in that audit.
+- Integration gate 2026-08-01: surface and image-circle audits pass; glass reports 11/12 strict, 12/12 trusted.
+
+### 2026-09-25 — MTF image-plane census
+
+Visually rechecked PDF pp. 14–17 and the p. 24 section figure. Table 6 S17 prints R = 580.403, D = 5.45, not 580.103 / 5.15:
+both corrected (a transcription error). Recomputed EFL 28.942108 (source 28.84), BFL 18.144592 (D21 = 18.21), track
+71.55 (TL 71.19); offset +0.372765 → −0.065408 mm. The stop was recalibrated to 7.864192 mm for F/2.06. The close
+matrix B became −0.647619 mm (holding the printed gaps needs D0 = 418.763 mm). A d-line axial MTF diagnostic put
+best focus about −0.087 mm from the plane, so the plane is not a best-focus plane. No further single correction was
+found.
+
+### 2026-10-08 — dPgF moved to the engine's normal line
+
+Table 6 prints the patent's ΔPgF = PgF − 0.64833 + 0.00180·νd (¶0061) and no absolute PgF. Each value was converted
+through that line to PgF and re-expressed as dPgF = PgF − (0.6438 − 0.001682·νd). Before → after: L9 0.0031 →
+0.000054, L10r 0.0037 → 0.004875, L11 0.0036 → 0.004693, L12r 0.0072 → 0.008762, L13f and L15r −0.0025 → −0.002066,
+L13r 0.0139 → 0.011448, L14 −0.0005 → −0.000105, L15f 0.0277 → 0.023321. L10f −0.0054, L12f −0.0044 and L16 −0.0056
+stay (line gap under 0.0003). Every element authors nC/nF/ng, so no ray result changed. The analysis keeps the patent's
+ΔPgF in condition rows 10, 13, 16, 17 and 19.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+With the S17 correction the file matches Table 6 throughout. The rounded rows still miss paraxial focus. At infinity,
+D21 = 18.21 mm leaves the plane 0.065408 mm behind the computed BFL (13.1 depths at f/2.06), and real-ray best focus
+was −0.087 mm. At the close state, the printed gaps with D0 = 428.00 mm give B = −0.647619 mm. No misprint is
+isolated, so this is a re-solve under LENS_DATA_SPEC Image-Plane Consistency. Back focus comes first. The change is
+carried to the close row, which is then focused with the patent's G1/G2 travel ratio (D11 −0.47 : D21 +2.07, weights
+−0.227053 : 1) at the printed D0 = 428.00 mm from the first surface.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| D21 (BF), infinity | 18.21 | 18.144592 | Computed BFL |
+| D11, close | 3.36 | 3.354995 | Weighted G1/G2 move at D0 = 428.00 mm |
+| D21 (BF), close | 20.28 | 20.236636 | Carried −0.065408, then the same move |
+| `focus.closeFocusM` | 0.5 | 0.5011 | Close row object to image 501.102 mm |
+| `catalog.closeFocusM.marketing` | absent | 0.5 | Cosina VM minimum focus (analysis, manufacturer values) |
+
+- Residual: infinity −0.065408 → 0 mm; close row in focus at D0 = 428.00 mm (before, at 418.763 mm).
+- Travel: D11 −0.475005, D21 +2.092044 mm (printed −0.47 / +2.07); G1 1.617 and G2 2.092 mm against X1 1.61 and
+  X2 2.08. Track 71.55 → 71.484592 mm at infinity, 73.15 → 73.101631 mm at close.
+- EFL unchanged at infinity (28.942108 mm); close-state EFL 28.815882 mm, Gaussian magnification −0.068569.
+- Minimum clearance of D11 (STO → S12): 1.635 mm at infinity, 1.160 mm at close. Aperture (pre-existing rim +3.9 %),
+  image-circle, field-coverage and surface-probe audits are unchanged.
+- Analysis: TL/EFL 2.4699, conditions 1, 2 and 5 now 0.4750 / 2.46991 / 0.146465 from the model arrays, and the focus
+  section rewritten.
+
+Follow-ups: the Table 5 EFL (28.84 mm) and TL (71.19 mm) remain unreconciled with the prescription.

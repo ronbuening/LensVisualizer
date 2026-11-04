@@ -40,6 +40,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // 11.5 / 28.0 / 69.0 mm values (US 4,437,733, PDF p. 13). The modeled prescription
 // traces to 11.735474 / 28.031359 / 66.962358 mm; the cause of that discrepancy is
 // unresolved. No endpoint prescription correction is applied.
+// Image-plane re-solve (2026-11-03): the fixed Bf after r26 is 16.54 -> 16.637279 mm, the middle station's
+// paraxial back focus; infinity offsets +0.099/+0.097/+0.089 -> +0.0015/0/-0.0086 mm (W/M/T).
 const LENS_DATA = {
   schema: 2,
   key: "nikon-tv-nikkor-115-69-f12-s100",
@@ -310,7 +312,7 @@ const LENS_DATA = {
     { label: "23", R: 17.591, d: 6.0, sd: 10.5, medium: 14 },
     { label: "24", R: -52.016, d: 0.2, sd: 10.5 },
     { label: "25", R: 19.77, d: 4.0, sd: 10.0, medium: 15 },
-    { label: "26", R: 136.874, d: 16.54, sd: 10.0 },
+    { label: "26", R: 136.874, d: 16.637279, sd: 10.0 }, // printed Bf 16.54; re-solved for paraxial focus
   ],
 
   zoom: {
