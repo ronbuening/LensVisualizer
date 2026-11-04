@@ -20,7 +20,7 @@ Example 1 has the same layout, with only one aspheric face on L7, but f = 33.81 
 
 ## Optical Architecture
 
-Ten elements in nine groups form a positive–negative–positive inner-focus prime: a fixed positive front group G1 (L1–L6, f = 31.17 mm), the stop (surface 12), a single negative focusing meniscus G2 (L7, f = −76.31 mm) and a fixed positive rear group G3 (L8–L10, f = 95.57 mm). The group focal lengths are the patent's own. G1 opens with a negative–positive–negative row of singlets ahead of the aspheric L4 and the cemented pair C1; G3 ends in two negative menisci with a biconvex air space between them. The 17.90 mm back focus suits a short-flange mirrorless mount (condition (1), Y/Bf = 1.21), and the total length is 79.15 mm.
+Ten elements in nine groups form a positive–negative–positive inner-focus prime: a fixed positive front group G1 (L1–L6, f = 31.17 mm), the stop (surface 12), a single negative focusing meniscus G2 (L7, f = −76.31 mm) and a fixed positive rear group G3 (L8–L10, f = 95.57 mm). The group focal lengths are the patent's own. The patent names the three groups L1, L2 and L3; this page calls them G1–G3 and keeps L1–L10 for the elements. G1 opens with a negative–positive–negative row of singlets ahead of the aspheric L4 and the cemented pair C1; G3 ends in two negative menisci with a biconvex air space between them. The 17.90 mm back focus suits a short-flange mirrorless mount (condition (1), Y/Bf = 1.21), and the total length is 79.15 mm.
 
 ## Element-by-Element Analysis
 
@@ -34,7 +34,7 @@ The front element is concave on both sides. Claim 1 requires the most object-sid
 
 nd = 2.05090, νd = 26.94. Glass: TAFD65 (HOYA catalog equivalent). f = +44.29 mm.
 
-This is the patent's positive element 1p, the first positive lens of G1. Conditions (9) and (10) require νd < 35 and ΔPgF > 0.004 so that it corrects the secondary spectrum of lateral colour (¶0052–0053); Example 2 prints νd = 26.94 and ΔPgF = 0.0053.
+This is the patent's positive element 1p, the first positive lens of G1. Conditions (9) and (10) require νd < 35 and ΔPgF > 0.004 so that it corrects the secondary spectrum of lateral colour (¶0052–0053); Example 2 prints νd = 26.94 and ΔPgF = 0.0053. Claim 6 and ¶0051 define that ΔPgF as the element's anomalous dispersion, so the diagram marks L2 as the patent's anomalous-dispersion element.
 
 ### L3 — Biconcave Negative
 
@@ -86,7 +86,7 @@ The last element, a weak negative meniscus concave to the object, 17.90 mm ahead
 
 ## Glass Identification and Selection
 
-The patent prints d-line indices (587.56 nm) and Abbe numbers. Every pair matches a HOYA catalog glass to the printed precision; these names are catalog equivalents, not a production supplier identification. The two moldable types (M-TAF105 and M-LAC130) sit on the three aspherical elements, and FCD515 at L6 is the SLD position in Sigma's diagram. The patent prints θgF for the C1 pair and ΔPgF for L2 by its own normal line (ΔPgF = θgF + 0.0018·νd − 0.64833); the data file restates them against the Schott normal line (θgF = 0.6438 − 0.001682·νd).
+The patent prints d-line indices (587.56 nm) and Abbe numbers. Every pair matches a HOYA catalog glass to the printed precision; these names are catalog equivalents, not a production supplier identification. The two moldable types (M-TAF105 and M-LAC130) sit on the three aspherical elements, and FCD515 at L6 is the SLD position in Sigma's diagram. L2's TAFD65 is the high-dispersion glass the patent requires to have anomalous partial dispersion (condition (10)). The patent prints θgF for the C1 pair and ΔPgF for L2 by its own normal line (ΔPgF = θgF + 0.0018·νd − 0.64833); the data file restates them against the Schott normal line (θgF = 0.6438 − 0.001682·νd).
 
 | Element  | Glass (HOYA equivalent) | nd      | νd    | Printed partial dispersion | Role                      |
 | -------- | ----------------------- | ------- | ----- | -------------------------- | ------------------------- |
@@ -160,7 +160,7 @@ The rear pair limits the corner. L9's rear face and L10's front face meet at 11.
 
 ## Model Scope and Limitations
 
-The model gives EFL = 35.993 mm against the patent's 35.99 mm, and a paraxial back focus 0.0005 mm longer than the printed 17.8981 mm; the image plane stays at the printed BF. On-axis spherical aberration (−0.01 mm at full aperture), astigmatism at ω = 31.77° (sagittal −0.14 mm, meridional −0.34 mm) and distortion (−2.95%) agree with the patent's Fig. 7.
+The model gives EFL = 35.993 mm against the patent's 35.99 mm, and a paraxial back focus 0.0005 mm longer than the printed 17.8981 mm; the image plane stays at the printed BF. On-axis spherical aberration (−0.01 mm at full aperture), astigmatism at ω = 31.77° (sagittal −0.14 mm, meridional −0.34 mm) and distortion (−2.95%) agree with the patent's Fig. 7. Near the axis the C and g lines focus about 0.04 and 0.03 mm behind the d line, as Fig. 7 plots them to within its 0.01 mm reading.
 
 The corner vignetting comes from the inferred rims. Geometric corner illumination at f/2.07 is about 53% at infinity and 55% at the printed close state. At full field the meridional beam reaches the same upper limit as the patent's Fig. 9 fans (+0.25 of the pupil radius); at 50–90% field and on the lower side it is a little wider than the fans. The fan ends point to clear radii of about 10.6 mm at surface 15 and 12.5 mm at surface 8, inside the 12.1 mm and 13.8 mm that Fig. 6 draws there; the model keeps the drawn sizes. The production lens's rims, and the detail differences between the patent and Sigma's drawing, are not known.
 

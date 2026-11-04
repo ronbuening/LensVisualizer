@@ -4,12 +4,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * R, d, nd and νd are as printed; the aspheres use the patent's 1+K conic form
  * (K = 0 on all six faces) through A14. The stop position is printed; its radius
  * follows the design F/2.07. Semi-diameters are inferred from Fig. 6 and
- * checked against the Fig. 9 fan ends. L9's rear and L10's front caps end at
+ * checked against the Fig. 9 fan ends. L1's rear cap ends at 13.8 mm with the
+ * stepped land Fig. 6 draws out to 16.5 mm. L9's rear and L10's front caps end at
  * 11.5 mm, just inside the 11.65 mm height where the two faces meet, with the
  * flat lands Fig. 6 draws out to 12.5 and 13.4 mm; gapSagFrac 0.98 admits that
  * pair (surfaces 18 and 19).
  * Focus: infinity and the printed 1517 mm state (d0 = 1438.33 mm; d0 plus the
- * 79.1482 mm track gives 1517.48 mm). G2 moves; BF stays 17.8981 mm.
+ * 79.1482 mm track gives 1517.48 mm). G2 moves 1.0246 mm toward the image;
+ * BF stays 17.8981 mm. The patent names the groups L1–L3; the file calls them
+ * G1–G3 so that L1–L10 can name the elements.
  */
 const LENS_DATA = {
   schema: 2,
@@ -72,10 +75,11 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 44.294036219431916,
       glass: "TAFD65 (HOYA catalog equivalent; production supplier unspecified)",
+      apd: "patent",
       role: "Positive element 1p of G1; conditions (9)–(10) set its low νd and raised ΔPgF to correct the secondary spectrum of lateral colour (¶0053).",
       dPgF: 0.00665107999999992,
       apdNote:
-        "Patent prints ΔPgF = +0.0053 by its line (PgF + 0.0018·νd − 0.64833), which gives PgF = 0.6051 (derived, not printed); runtime dPgF +0.00665 against the engine normal line.",
+        "Claim 6 and ¶0051 define ΔPgF as this element's anomalous dispersion and require more than 0.004. Patent prints ΔPgF = +0.0053 by its line (PgF + 0.0018·νd − 0.64833), which gives PgF = 0.6051 (derived, not printed); runtime dPgF +0.00665 against the engine normal line.",
     },
     {
       id: 3,
@@ -144,7 +148,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -76.30906524527705,
       glass: "M-LAC130 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Double-aspheric single-element focusing group G2; moves toward the image for close focus (¶0057).",
+      role: "Double-aspheric single-element focusing group G2; moves toward the image for close focus (claim 1, ¶0072), and a single lens keeps the moving mass low (¶0057).",
     },
     {
       id: 8,
