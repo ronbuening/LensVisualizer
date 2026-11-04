@@ -64,3 +64,7 @@ These agree within the 5 % reading noise and keep the drawn height order (L1 > L
 **Movement.** No group moves: the patent prints the infinity state only, the movement overlay reports no focus or zoom movement, and the focus slider shows infinity with "Not modeled".
 
 **Open.** Following Fig. 3's S4 cap end needs a steeper rim than the default 64.2° limit allows. With `checks.maxRimAngleDeg` 70 as a trial, S4 at 7.4 mm (69.8°) validates and moves the land to 9.85 mm, nearer the figure's 10.7 mm, but it also adds light: 72.1, 60.8 and 46.2 % at 41.1, 44.1 and 47.0°, against 71.8, 55.6 and 36.2 %. That is a policy change, so it is left to the owner. L8 reads 5 % taller in the figure than the model; within noise, so unchanged.
+
+## 2026-11-04 — S4 rim slope
+
+At the owner's request, S4 was raised from 7.06 mm (the least height passing the 47.7° corner chief ray) to 7.4 mm, where Fig. 3 ends the face, with `checks.maxRimAngleDeg` 70 for the resulting 69.8° rim slope on R = 7.884 mm (default about 64.2°). `audit:surface` stays OK and the f-number, EFL and stop are unchanged. Wide-open transmission at infinity, before → after: 71.8 → 72.1 % at 41.1°, 55.6 → 60.8 % at 44.1°, 36.2 → 46.2 % at 47.0°; every field inside 38° is unchanged. The engine's tracing half-field rises from 36.72° to 38.02°.

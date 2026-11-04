@@ -17,10 +17,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the patent puts diaphragm 80 between L4 and L5 and prints no position. The model splits d8 (1.9514 mm) at its
  * midpoint, and the stop radius follows F/4 from the paraxial entrance pupil.
  * Semi-diameters are inferred from Fig. 3 (38.25 px/mm at 600 dpi over the S1 to S16 vertex span); none is printed.
- * L1 is 16 mm, inside the 14.8 to 17.2 mm the figure supports. S4 is 7.06 mm, the least that passes the chief ray to
- * the 21.65 mm format corner (47.7°); Fig. 3 draws that face to about 7.4 to 7.7 mm, past the 7.10 mm rim-slope limit
- * for its 7.884 mm radius, then a flat rear land square to the axis out to L2's edge: `rimExtensionSd` 10.7 mm on S4,
- * level with S3, draws it. S6 is 5.6 mm, where Fig. 3 ends that face and bevels L3 up to its 6.7 mm front rim, clear
+ * L1 is 16 mm, inside the 14.8 to 17.2 mm the figure supports. S4 is 7.4 mm, where Fig. 3 ends that face (about 7.4
+ * to 7.7 mm); for its 7.884 mm radius that is a 69.8° rim slope, so checks.maxRimAngleDeg is 70 (default ≈ 64.2°).
+ * A flat rear land square to the axis then runs out to L2's edge: `rimExtensionSd` 10.7 mm on S4, level with S3,
+ * draws it. S6 is 5.6 mm, where Fig. 3 ends that face and bevels L3 up to its 6.7 mm front rim, clear
  * of L4's front corner. The other rims follow the figure's outlines.
  * Field: `projection` declares the patent's 94°. The 47° chief ray lands at 20.98 mm, 97 % of the format corner.
  * Focus: the patent prints the infinity state only, so no gap varies and the model stays at infinity; the 0.25 m
@@ -71,6 +71,9 @@ const LENS_DATA = {
     "assignees": [
       "Asahi Kogaku Kogyo Co., Ltd."
     ]
+  },
+  "checks": {
+    "maxRimAngleDeg": 70
   },
   "elements": [
     {
@@ -195,7 +198,7 @@ const LENS_DATA = {
       "label": "4",
       "R": 7.8842,
       "d": 4.9758,
-      "sd": 7.06,
+      "sd": 7.4,
       "rimExtensionSd": 10.7
     },
     {
