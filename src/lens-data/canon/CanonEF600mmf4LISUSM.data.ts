@@ -19,7 +19,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * S12 retains clear sd 45.0 and adds native-resolved rimExtensionSd 47.5, anchored to its
  * own front S11 cap. No opaque cemented-interface land or inferred cut. The retained
  * gapSagFrac 0.96 applies to the narrow R6-R7 source air gap; no tolerance is changed.
- * FL keeps physical t 2.00, N 1.516330, nu 64.4, D29=12.00 and D31+D32=103.78 mm.
+ * FL keeps physical t 2.00, N 1.516330, nu 64.4, D29=12.00 and printed D31+D32=103.78 mm (re-solved below).
  * It has no published aperture; existing sd 17.5 is a qualified beam estimate, supported
  * by a new maximum sampled transmitted height 16.194553 mm including diagram field.
  * The taller undimensioned FL blank does not establish a larger optical clear aperture.
@@ -33,14 +33,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * APD value is supplied. No historical supplier, melt, chemistry, cement or
  * manufacturing identity is established.
  *
- * FOCUS: source L2 moves imageward but gives no finite table. Retain reconstructed
- * +18.829163964 mm travel to the correlated 5.5 m endpoint; linear intermediate motion
+ * FOCUS: source L2 moves imageward but gives no finite table. The reconstructed close row
+ * moves L2 +18.969647 mm to the correlated 5.5 m endpoint; linear intermediate motion
  * is illustrative and not continuously focus preserving. Transverse IS has no numeric
  * source decenter schedule and remains centered. Existing near-focus clipping remains.
  *
- * SOURCE LIMIT: printed physical distance R29-to-IP=117.78 mm versus modeled paraxial
- * BF 117.286743 mm leaves -0.493257 mm defocus. Preserve all printed R/d/N/nu; cause is
- * not isolated. Formalized as unresolved source.errata without numeric correction.
+ * Image-plane re-solve (2026-11-03): the printed R29-to-IP path 117.78 mm sat 0.493257 mm
+ * beyond paraxial focus (117.286743 mm), so the final gap S31 is 103.78 -> 103.286743 mm and
+ * the reconstructed close row's L2 gaps are re-solved for 5.5 m (D12 64.689164 -> 64.829647,
+ * D15 80.080836 -> 79.940353 mm). All printed R/d/N/nu are otherwise preserved.
  */
 
 const LENS_DATA = {
@@ -75,12 +76,6 @@ const LENS_DATA = {
     patentYear: 2000,
     authors: ["Akihiro Nishio", "Hideki Ogawa", "Makoto Misaka"],
     assignees: ["Canon Inc."],
-    errata: [
-      {
-        status: "unresolved",
-        note: "Numerical Example 22 printed R29-to-image physical distance is 12.00+2.00+64.77+39.01=117.78 mm, while literal R/d/N/nu arrays give paraxial physical BFL 117.286743145 mm (retained defocus -0.493256855 mm). No single source-backed misprint is isolated; preserve every printed value. Original source/image-plane audit date 2026-09-25; structured qualification added 2026-10-30.",
-      },
-    ],
   },
 
   /* ── Elements ── */
@@ -375,18 +370,18 @@ const LENS_DATA = {
     // Its sd is a ray-trace estimate (the source lists none).
     // Gap to the image: D31 + D32 to the image, inactive FC plane R32 omitted
     { label: "30", R: "flat", d: 2.0, sd: 17.5, medium: 17 },
-    { label: "31", R: "flat", d: 103.78, sd: 17.5 }, // drop-in filter → image plane
+    { label: "31", R: "flat", d: 103.286743, sd: 17.5 }, // drop-in filter → image plane; printed 64.77 + 39.01 = 103.78; re-solved for paraxial focus
   ],
 
   focus: {
     closeFocusM: 5.5,
     description:
-      "CONSTRAINED_RECONSTRUCTION: the source specifies imageward motion of cemented L2 but gives no finite spacing table. The existing 5.5 m reconstruction moves it 18.829163964 mm with equal D12/D15 changes. Intermediate motion is illustrative; L3b transverse IS has no numeric source schedule or authored axial state.",
+      "CONSTRAINED_RECONSTRUCTION: the source specifies imageward motion of cemented L2 but gives no finite spacing table. The 5.5 m reconstruction, solved after the final gap was re-solved for infinity focus, moves it 18.969647 mm with equal D12/D15 changes. Intermediate motion is illustrative; L3b transverse IS has no numeric source schedule or authored axial state.",
   },
 
   gaps: {
-    "12": { label: "L2 front gap", values: [[45.86, 64.689163964]] },
-    "15": { label: "L2 rear gap", values: [[98.91, 80.080836036]] },
+    "12": { label: "L2 front gap", values: [[45.86, 64.829647]] }, // close row was 64.689164 (reconstructed); re-solved for 5.5 m after the final-gap re-solve
+    "15": { label: "L2 rear gap", values: [[98.91, 79.940353]] }, // close row was 80.080836 (reconstructed); re-solved for 5.5 m after the final-gap re-solve
   },
 
   aperture: { nominalFNumber: 4.12, fStops: [4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 8 },

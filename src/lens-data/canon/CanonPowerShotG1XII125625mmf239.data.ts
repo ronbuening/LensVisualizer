@@ -25,19 +25,24 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - The patent does not publish close-focus spacings. B5 close-focus travel is
  *   a paraxially fitted visualization against Canon's published 0.05 m wide and
  *   0.40 m tele closest-focus distances, with an interpolated 0.20 m mid state.
- *   The fitted rows focus at 0.129 / 0.281 / 0.499 m object to image, which the
- *   per-station closeFocusM values record; Canon's figures stay in
- *   catalog.closeFocusM.
+ *   The fitted rows focus 50 / 200 / 400 mm from the first surface, i.e. 0.1315 /
+ *   0.2833 / 0.5008 m object to image, which the per-station closeFocusM values
+ *   record; Canon's front-of-lens figures stay in catalog.closeFocusM. They were
+ *   re-solved after the S15 erratum (2026-11-03).
  * - Clear semi-diameters are estimated from multi-state marginal/chief ray
  *   envelopes, then constrained to satisfy sd/|R| < 0.90, element SD ratio <= 1.25,
  *   signed cross-gap sag intrusion <= 90% of the gap, and positive edge thickness.
  *
- * MTF source audit: Numerical Example 2 (PDF pp. 30–31) matches the stored
- * prescription, including all six aspheres and the rear sensor block. At wide
- * infinity, EFL 12.571053 differs from printed 12.84; air BFL 7.962884
- * differs from printed BF 7.75 and rear reduced path 7.742205 mm.
- * Paragraph 0085 explicitly calls BF paraxial. Preserve the source values
- * and residual +0.220679 mm offset; this is not established designer best focus.
+ * SOURCE ERRATUM (corrected 2026-11-03): S15 d printed 2.30 -> applied 4.50 mm.
+ *   The printed table omits about 2.20 mm of air between B3 and the stop. With the
+ *   printed 2.30 mm the stored data trace to EFL 12.571 / 22.807 / 62.196 mm (printed
+ *   12.84 / 22.90 / 60.72), air BF 7.963 / 12.589 / 14.238 mm (printed 7.75 / 12.57 /
+ *   13.86, which ¶0085 defines as paraxial) and track 79.31 / 81.11 / 98.62 mm
+ *   (printed total lens length 81.50 / 83.31 / 100.81), although every group focal
+ *   length matches the printed group table. With 4.50 mm: EFL 12.841 / 22.905 /
+ *   60.724 mm, track 81.51 / 83.31 / 100.82 mm, infinity focus within one depth.
+ *   Numerical Example 3 has the same deficit and the same fix; FIG. 3 places the stop
+ *   SP about 4.5 mm behind B3, not 2.3 mm. Evidence: source-summary, sibling-example.
  */
 
 const LENS_DATA = {
@@ -53,7 +58,7 @@ const LENS_DATA = {
     specs: [
       "14 elements / 11 groups",
       "Patent table f = 12.84-60.72 mm",
-      "Gaussian paraxial EFL = 12.57-62.20 mm",
+      "Gaussian paraxial EFL = 12.84-60.72 mm (S15 erratum applied)",
       "f/2.0-3.9 marketed; patent Fno = 2.06-4.02",
       "6 aspherical surfaces on 3 double-sided aspherical elements",
       "1.5-inch-type fixed-lens camera format",
@@ -71,6 +76,17 @@ const LENS_DATA = {
     patentYear: 2015,
     authors: ["Shuichi Mogi"],
     assignees: ["Canon Inc."],
+    errata: [
+      {
+        status: "corrected",
+        surface: "15",
+        field: "d",
+        printed: 2.3,
+        applied: 4.5,
+        evidence: ["source-summary", "sibling-example"],
+        note: "Numerical Example 2 (PDF pp. 30–31): with d15 = 2.30 the table traces to f 12.571/22.807/62.196 mm, air BF 7.963/12.589/14.238 mm and track 79.31/81.11/98.62 mm against the printed f 12.84/22.90/60.72, paraxial BF 7.75/12.57/13.86 and total length 81.50/83.31/100.81, while every group focal length matches the printed group table; 4.50 mm gives f 12.841/22.905/60.724, track 81.51/83.31/100.82 and focus within one depth. Example 3 (p. 31) shows the same deficit and the same +2.20 mm fix. FIG. 3 (p. 4) draws SP about 4.5 mm behind B3.",
+      },
+    ],
   },
 
   elements: [
@@ -255,7 +271,7 @@ const LENS_DATA = {
     { label: "12A", R: -179.132, d: 0.1, sd: 9.6, asphere: { K: 0, A4: 1.47762e-6, A6: 4.3006e-8, A8: 0 } },
     { label: "13", R: 12.449, d: 3.15, sd: 9.6, medium: 7 },
     { label: "14", R: 23.216, d: 0.55, sd: 9.6, medium: 8 },
-    { label: "15", R: 11.276, d: 2.3, sd: 8.2 },
+    { label: "15", R: 11.276, d: 4.5, sd: 8.2 }, // printed 2.30; corrected to 4.50 (source erratum: summary f/BF/length, Example 3)
     { label: "STO", R: "flat" },
     {
       label: "17A",
@@ -287,15 +303,15 @@ const LENS_DATA = {
 
   zoom: {
     stations: [
-      { focalLengthMm: 12.84, nominalFNumber: 2.0, closeFocusM: 0.129, label: "Wide" },
-      { focalLengthMm: 22.9, nominalFNumber: 3.5, closeFocusM: 0.281, label: "Middle" },
-      { focalLengthMm: 60.72, nominalFNumber: 3.9, closeFocusM: 0.499, label: "Tele" },
+      { focalLengthMm: 12.84, nominalFNumber: 2.0, closeFocusM: 0.1315, label: "Wide" },
+      { focalLengthMm: 22.9, nominalFNumber: 3.5, closeFocusM: 0.2833, label: "Middle" },
+      { focalLengthMm: 60.72, nominalFNumber: 3.9, closeFocusM: 0.5008, label: "Tele" },
     ],
     step: 0.004,
   },
 
   focus: {
-    closeFocusM: 0.129,
+    closeFocusM: 0.1315,
     description:
       "Inner focus by negative fifth zoom group B5. Patent supplies infinity zoom spacings only; close-focus spacings are paraxially fitted for visualization.",
   },
@@ -325,20 +341,22 @@ const LENS_DATA = {
         [2.76, 2.76],
       ],
     },
+    // Close rows (reconstructed) were 4.531551 / 5.738717 / 16.1186; re-solved after the S15 erratum for 50 / 200 / 400 mm.
     "22": {
       label: "B4-B5",
       values: [
-        [1.6, 4.531551],
-        [3.74, 5.738717],
-        [10.36, 16.1186],
+        [1.6, 4.392898],
+        [3.74, 5.738455],
+        [10.36, 15.540648],
       ],
     },
+    // Close rows (reconstructed) were 1.558449 / 2.801283 / 7.0914; re-solved after the S15 erratum for 50 / 200 / 400 mm.
     "26A": {
       label: "B5-B6",
       values: [
-        [4.49, 1.558449],
-        [4.8, 2.801283],
-        [12.85, 7.0914],
+        [4.49, 1.697102],
+        [4.8, 2.801545],
+        [12.85, 7.669352],
       ],
     },
     "28": {

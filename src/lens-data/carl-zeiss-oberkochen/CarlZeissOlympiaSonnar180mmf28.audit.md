@@ -43,3 +43,23 @@ As a diagnostic, the reference-index axial geometric MTF calculation (32 pupil g
 **Cause/action:** small source image-distance discrepancy of unresolved design/rounding origin; preserve the printed prescription and document the limit of attribution. Offset **+0.099782 → +0.099782 mm**; Section E row deleted. No numerical change/changelog.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (kept as best-focus plane)
+
+No optical value changed; only the data-file header gains the best-focus note.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| Infinity BF gap "8" | 74.268 mm | unchanged | Real-ray axial best focus within 10 depths of the plane |
+| Close BF gap "8" | 96.67 mm | unchanged | Same plane; no re-solve under the kept-plane rule |
+
+- Paraxial offset +0.099782 mm (10.8 depths at f/2.8, depth 2λN² = 0.0092 mm). The real-ray axial MTF best focus
+  lies 0.074 mm behind the authored plane (8.0 depths), inside the 10-depth window of LENS_DATA_SPEC Image-Plane
+  Consistency, so the printed Schnittweite stays as a best-focus plane.
+- Classification evidence: Table II / claim 2 of `patents/DE_1268404_B.pdf` match at ×180 (audit of 2026-09-25). The
+  residual is rounding-sized: the normalized f = 1 data carry four decimals, and a 0.00009 change in d3 or d4 alone
+  moves focus 0.1 mm at 180 mm scale; EFL is 1.000307 normalized.
+- The close row keeps its 1.806 m object-to-image label against `closeFocusM` 1.8 m (0.35%), inside the 5% endpoint
+  guard. Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+
+Follow-ups: none.

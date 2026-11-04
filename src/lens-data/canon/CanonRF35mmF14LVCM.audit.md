@@ -108,3 +108,23 @@ Validation: canonical surface pass; image-circle 1 lens/0 undersized; wide-open 
 Retain the Oct 30 complete source-shape/glass review and all older actual dates. Direct exact `patents/US20240302626A1.pdf`: ¶0078/PDF p. 15 explicitly defines d 587.6 nm index/Abbe and F 486.1/C 656.3 nm; Example 2 ¶0083/Table 3 p. 16 supplies 14 pairs, with asphere Table 4 pp. 16–17. No numerical per-glass C/F/g or partial is printed. Native Fig. 4 p. 4/sheet 3 and source table/definition pages are 2560×3300/300 ppi; reading renders at 170 dpi do not create source detail. Connected source interfaces remain unchanged.
 
 Remove exactly 14 whitelisted identical positive `indexReferenceNote` citations and retain all explicit d fields. Citation text is preserved in data header/analysis; no genuine unknown-reference, precision or source-errata note is removed. This corrects the Inspector label from n(source)/ν(source) to the known nd/νd. Every numerical/source/spectral/APD/geometry/control field, all 14 curve identities and every C/d/F/g runtime channel are equal. Nine layout/SVG/diagnostic parity samples add no new finite-focus clearance claim. The source flare apertures, retained S26/iris conflicts and previous limitations remain as documented; no complete review count is added.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S28 d (final gap) | 15.444 mm | 15.360904 mm | Paraxial infinity focus; LENS_DATA_SPEC Image-Plane Consistency |
+| `source.errata` entry 1 | f, BF and track | f only | BF residual re-solved; the track differs only in the last printed digit |
+
+- Residual: −0.083096 mm (33.2 depths at f/1.46) before, 0 after. EFL 33.942092 mm unchanged (printed f 34.0 stays an
+  unresolved erratum). First-vertex-to-image track 118.546 → 118.463 mm. Infinity-only: no focus travel or close row;
+  `closeFocusM` 0.28 m (production) unchanged.
+- Evidence: Example 2 Tables 3/4 (`patents/US20240302626A1.pdf`, PDF pp. 16–17) as audited 2026-09-25; ¶0079 defines
+  BF as paraxial, so the printed 15.444 is the source's own paraxial claim, and the three-decimal nd column can account
+  for the residual: one index changed by about 0.0016 (L9) reconciles both f and BF, and fourteen indices rounded to
+  ±0.0005 scatter BF by about 0.09 mm. No single value is isolated. Real-ray axial best focus sat 0.092 mm ahead of the
+  printed plane, 0.009 mm from paraxial, so the printed plane was not a best-focus plane.
+- The published 30.5° chief now reaches 18.730 mm (18.752 mm before); the 21.65 mm corner is reached near 34.9°.
+  Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+
+Follow-ups: none.
