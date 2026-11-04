@@ -33,6 +33,7 @@ while the catalog is being backfilled, but when present it must be a non-empty a
 | `pentacon-six` | Pentacon Six / Praktisix | The medium-format bayonet shared by Praktisix and Pentacon six lenses. |
 | `praktica-b` | Praktica B | The Praktica B bayonet used by PRAKTICAR lenses. |
 | `voigtlander-prominent` | Voigtländer Prominent | Voigtländer’s interchangeable lens system for the postwar Prominent rangefinder. |
+| `werra` | Werra | Carl Zeiss Jena Werra rangefinder bayonet, from the Werra III of 1958; usually pairs with `135-full-frame`. |
 | `canon-ef` | Canon EF | Canon EF SLR mount. |
 | `canon-ef-s` | Canon EF-S | Canon EF-derived APS-C DSLR mount; pairs with `aps-c`. |
 | `canon-ef-m` | Canon EF-M | Canon EF-M APS-C mirrorless mount; usually pairs with `aps-c`. |
