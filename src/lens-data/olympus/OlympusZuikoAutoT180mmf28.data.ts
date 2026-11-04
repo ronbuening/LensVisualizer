@@ -5,8 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * five-group layout; not an identified factory prescription, and Embodiments 2-4 share the same layout.
  * Radii, thicknesses, indices and the printed back focus are unchanged apart from the scale.
  * Clear semi-diameters and the stop position (0.53 of d8, read from Fig. 1) are inferred; the rims follow the
- * Fig. 1 outline ratios. The flat land on r8 is drawn in Fig. 1 at 0.807 of the edge radius; the inferred cut
- * sits at 20.89 mm (depth 7.22 mm), just outside the wide-open beams, which reach 20.81 mm there.
+ * Fig. 1 outline ratios, about 4 % fuller than drawn. Fig. 1 ends the concave r8 about 21 mm from the axis (0.85 of
+ * its drawn edge) and runs a flat land out to the edge; the inferred cut sits at 20.89 mm (depth 7.22 mm), just
+ * outside the wide-open beams, which reach 20.81 mm there at infinity and at 2.0 m.
  * The patent names no reference line for its indices; the d line is assumed.
  * Unit focus to 2.0 m: the close-focus back focus is a derived paraxial solve, not a printed state.
  */
