@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1056** lenses scanned
-- **1661** total code-only elements found
-- **286** elements in this report
-- **121** distinct lens files affected
+- **1062** lenses scanned
+- **1663** total code-only elements found
+- **288** elements in this report
+- **123** distinct lens files affected
 - **27** active unreviewed elements have no review-record hit or explicit disposition
-- **153** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **155** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -64,6 +64,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 684313 | 3 | 2 | patents/US20150124127A1.pdf | All rows explicitly disposed |
 | 720521 | 3 | 3 | patents/US_4786152_A.pdf<br>patents/US4444473.pdf<br>patents/US4124276.pdf | All rows have review records |
 | 781446 | 3 | 3 | patents/JPA 1987244010-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPS60111215A.pdf | All rows have review records |
+| 840433 | 3 | 3 | patents/JPA 1994235857-000000.pdf<br>patents/US5530593.pdf<br>patents/US5528428.pdf | All rows have review records |
 | 841433 | 3 | 2 | patents/JP_S4871634_A.pdf<br>patents/US3771853.pdf | All rows explicitly disposed |
 | 460658 | 2 | 2 | patents/DE3907928C2.pdf<br>patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All rows have review records |
@@ -101,7 +102,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 819287 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 830427 | 2 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 835427 | 2 | 1 | patents/CN114755806A.pdf | All rows explicitly disposed |
-| 840433 | 2 | 2 | patents/JPA 1994235857-000000.pdf<br>patents/US5528428.pdf | All rows have review records |
 | 840434 | 2 | 1 | patents/US5734508.pdf | All rows explicitly disposed |
 | 446672 | 1 | 1 | patents/US3771853.pdf | All rows explicitly disposed |
 | 448672 | 1 | 1 | patents/JP_S4871634_A.pdf | All rows explicitly disposed |
@@ -111,6 +111,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 497816 | 1 | 1 | patents/CN211955963U.pdf | All rows explicitly disposed |
 | 507589 | 1 | 1 | patents/JPA 1999231209-000000.pdf | All rows have review records |
 | 510619 | 1 | 1 | patents/DE_1980417_U.pdf | All rows explicitly disposed |
+| 512598 | 1 | 1 | patents/US3502393.pdf | All rows explicitly disposed |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 515500 | 1 | 1 | patents/US8169718.pdf | All rows explicitly disposed |
 | 516499 | 1 | 1 | patents/US7307794.pdf | All rows explicitly disposed |
@@ -701,6 +702,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `Unmatched (840433-class; no compatible catalog curve)` | 1.84042 / 43.30 | No catalog entry | abbe | patents/JPA 1994235857-000000.pdf | Explicit disposition in data |
 
+### [NIKON 38-105mm f/4-7.8 (Nikon Zoom 700VR)](../../src/lens-data/nikon/NikonZoom700VR38105mmf478.data.ts) - US 5,530,593
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (Element 11) | 20 | `Unmatched (840433 lanthanum flint; no public catalog row)` | 1.84042 / 43.30 | No catalog entry | abbe | patents/US5530593.pdf | Explicit disposition in data |
+
 ### [NIKON AF NIKKOR 35mm f/2 D](../../src/lens-data/nikon/NikonAFNikkor35mmf2D.data.ts) - JP 2021-36283 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -982,6 +989,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L23 (L23) | 12 | `Unmatched (nd=1.84333, vd=24.2; code position 843242)` | 1.84333 / 24.20 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
 | L41 (L41) | 17 | `Unmatched (nd=1.64118, vd=58.9; code position 641589)` | 1.64118 / 58.90 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
 | L42 (L42) | 19 | `Unmatched (nd=1.51601, vd=50.6; code position 516506)` | 1.51601 / 50.60 | No catalog entry | abbe | patents/US7307794.pdf | Explicit disposition in data |
+
+### [PENTAX SMC TAKUMAR 6x7 600mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7600mmf4.data.ts) - US 3,502,393
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 5 | `Unmatched (512598 crown; no public catalog row)` | 1.51276 / 59.76 | No catalog entry | abbe | patents/US3502393.pdf | Explicit disposition in data |
 
 ### [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) - DE 3,907,928 C2
 
