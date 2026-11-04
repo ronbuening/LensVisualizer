@@ -77,7 +77,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.671,
       vd: 51.7,
-      glass: "Unmatched (patent nd 1.6710, νd 51.7; no catalog row at these coordinates)",
+      glass: "H-LaK67 (CDGM; nearest catalog row to patent nd 1.6710, νd 51.7; production glass unspecified)",
       indexReference: "d",
       focalLengthMm: 66.49023030095515,
       role: "Positive meniscus of the front cemented doublet (patent component L3), whose net power is weakly negative.",

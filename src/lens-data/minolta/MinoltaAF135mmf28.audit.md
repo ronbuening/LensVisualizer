@@ -148,3 +148,7 @@ s and m near −0.025 at mid-field and near zero at 9°; the model gives −0.02
 
 **Limitations.** Fig. 7's bevel from E4's top to the cap end is drawn as a square land. The earlier limitation, E4's
 top running from 21.1 mm to the land, no longer applies.
+
+## 2026-11-04 — E3 glass label
+
+E3's printed 1.6710/51.7 has no exact catalog row. CDGM H-LaK67 (1.6700/51.7) is 0.001 lower in nd with the same νd, inside the 0.25 νd limit for a nearest-row proxy, so E3 now takes its dispersion curve; the trace keeps the printed nd. The patent prints no colour curves to check it against.

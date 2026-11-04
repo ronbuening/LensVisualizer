@@ -33,7 +33,7 @@ Second positive member of Unit I (patent L2), sharing the front convergence with
 
 ### E3 — Positive Meniscus, convex to object
 
-nd = 1.67100, νd = 51.7. Glass: Unmatched (no catalog row at these coordinates). f = +66.49 mm.
+nd = 1.67100, νd = 51.7. Glass: H-LaK67 (CDGM), nearest catalog row (0.001 lower in nd, same νd). f = +66.49 mm.
 
 Positive member of the front cemented doublet (patent L3). Its strongly curved front face runs out to a thin edge at 21.1 mm, standing above E4's 19.9 mm edge where the cemented face S6 ends, as Fig. 7 draws it.
 
@@ -63,12 +63,12 @@ Fixed rear positive element (patent L5) behind the long d10 air space.
 
 ## Glass Identification and Selection
 
-Table 3 prints Nd and νd only; the patent names the d-line as its design wavelength. Six of the seven pairs match catalog glasses, which the data file uses as catalog equivalents, not as production identifications:
+Table 3 prints Nd and νd only; the patent names the d-line as its design wavelength. Six of the seven pairs match catalog glasses and E3 takes its nearest catalog row; the data file uses them for dispersion, not as production identifications:
 
 | Glass (vendor) | nd / νd | Elements | Role |
 | --- | --- | --- | --- |
 | BACD4 (HOYA), SK4 type | 1.6127 / 58.5 | E1, E2 | Front positive crowns |
-| Unmatched | 1.6710 / 51.7 | E3 | Positive member of the front doublet |
+| H-LaK67 (CDGM), nearest row | 1.6710 / 51.7 | E3 | Positive member of the front doublet |
 | S-TIH4 (OHARA), SF4 type | 1.7552 / 27.5 | E4 | Dense flint of the front doublet |
 | S-TIH6 (OHARA), SF6 type | 1.8052 / 25.4 | E5 | Dense flint of the focusing doublet |
 | S-BSM25 (OHARA), SSK5 type | 1.6584 / 50.9 | E6 | Negative crown of the focusing doublet |
