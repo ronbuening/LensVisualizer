@@ -14,10 +14,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                            ║
  * ║  SOURCE NUMERICS: The ten printed d rows sum to 61.050, while the patent   ║
  * ║  separately prints Σd=61.060. The row values are retained unchanged, so    ║
- * ║  the scaled S1→S11 length is 30.525 mm. The published fB=69.999 is         ║
- * ║  retained as S11→IMG = 34.9995 mm even though the scaled prescription      ║
- * ║  independently computes BFD=35.379606 mm. The computed Gaussian EFL is     ║
- * ║  50.248647 mm; marketed focal length remains 50mm.                         ║
+ * ║  the scaled S1→S11 length is 30.525 mm. The published fB=69.999 would      ║
+ * ║  give S11→IMG = 34.9995 mm, but the scaled prescription computes           ║
+ * ║  BFD=35.379606 mm; the final gap is re-solved to it (note below). The      ║
+ * ║  computed Gaussian EFL is 50.248647 mm; marketed focal length is 50mm.     ║
  * ║                                                                            ║
  * ║  FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION:                                ║
  * ║  The patent publishes one infinity state and no focus kinematics. The      ║
@@ -46,8 +46,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * 2026-09-25 source recheck: Example 1 d4 prints 2.43, not 2.45 mm;
  * corrected the half-scale gap to 1.215 mm. Source row sum is 61.050
- * versus header 61.060. Remaining EFL/Bf discrepancy is retained,
- * with runtime offset +0.380106 mm; see audit for the original scan.
+ * versus header 61.060. The source's f=100 / fB=69.999 summary does not
+ * reproduce from its own table; see audit for the original scan.
+ * Image-plane re-solve (LENS_DATA_SPEC Image-Plane Consistency, 2026-11-03):
+ * S11 d 34.9995 → 35.379606 mm puts the infinity row in paraxial focus
+ * (was +0.380106 mm, 99.8 depths at f/1.8).
  */
 
 const LENS_DATA = {
@@ -166,8 +169,8 @@ const LENS_DATA = {
     { label: "8", R: 38.389, d: 6.135, sd: 11.5, medium: 5 },
     { label: "9", R: -22.7035, d: 0.095, sd: 11.5 },
     { label: "10", R: 99.883, d: 2.725, sd: 11.8, medium: 6 },
-    // Published fB=69.999 scaled ×0.5; retained despite the prescription's paraxial BFD discrepancy.
-    { label: "11", R: -57.009, d: 34.9995, sd: 11.8 },
+    // Published fB=69.999 scaled ×0.5 is 34.9995 mm, short of the prescription's paraxial BFD.
+    { label: "11", R: -57.009, d: 35.379606, sd: 11.8 }, // printed 34.9995 (fB 69.999 ×0.5); re-solved for paraxial focus
   ],
 
   focus: {

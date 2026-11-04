@@ -30,7 +30,7 @@ The central air space between the third and fourth groups contains the aperture 
 
 The patent does not publish clear-aperture semi-diameters. Every non-stop `sd` in the data file is consequently a modeling quantity constrained by exact d-line ray envelopes, the published 23° half-field and scaled 21.3 mm edge-image-height anchor, the Figure 2 silhouette, and the current edge-thickness/rim-slope/cross-gap geometry rules. These dimensions are not presented as measured production clear apertures.
 
-After correcting the miscopied d4 from 2.45 to 2.43 at patent scale, two internal numerical mismatches in the published example are retained rather than silently tuned. First, the ten printed Example 1 axial spacings sum to **61.050** at patent scale, while the example header separately prints `Σd = 61.060`. Second, paraxial calculation from the printed prescription gives `f = 100.497294` and BFD `= 70.759212`, whereas the example header separately states `f = 100` and `fB = 69.999`. After scaling, the data file therefore keeps the source-derived S11→image distance of **34.9995 mm**, while the printed rows compute a paraxial BFD of **35.379606 mm**.
+After correcting the miscopied d4 from 2.45 to 2.43 at patent scale, two internal numerical mismatches in the published example remain. First, the ten printed Example 1 axial spacings sum to **61.050** at patent scale, while the example header separately prints `Σd = 61.060`. Second, paraxial calculation from the printed prescription gives `f = 100.497294` and BFD `= 70.759212`, whereas the example header separately states `f = 100` and `fB = 69.999`. After scaling, the source's fB gives an S11→image distance of **34.9995 mm**, while the printed rows compute a paraxial BFD of **35.379606 mm**, 0.380106 mm (about 100 depths of focus at f/1.8) further back. No single value isolates the mismatch, so the model re-solves the final gap to **35.379606 mm** and keeps every printed radius, spacing and index.
 
 No sensor cover glass, filter, inactive dummy plane, flare-cutter plane, or mechanical surface occurs in the selected Example 1 prescription. None is inserted into the model, and no omitted plate requires an air-equivalent rear-spacing correction.
 
@@ -132,7 +132,7 @@ These conditions are source facts in form and computed results in their Example 
 
 Independent sequential height/reduced-angle tracing of the final data arrays gives **EFL = 50.248647 mm** and **BFD = 35.379606 mm**. A fresh reduced-angle trace after the source d4 correction gives the figures above; the previously reported numerical baseline is superseded.
 
-The modeled source-retained axial track is **65.5245 mm** from S1 to the image plane. Its track/EFL ratio is **1.30401**, so the design is not telephoto under the strict `TL/EFL < 1` definition. Its BFD/EFL ratio is **0.70409**, so it is not retrofocus under the strict `BFD > EFL` definition.
+The modeled axial track is **65.904606 mm** from S1 to the image plane (65.5245 mm with the source fB). Its track/EFL ratio is **1.31157**, so the design is not telephoto under the strict `TL/EFL < 1` definition. Its BFD/EFL ratio is **0.70409**, so it is not retrofocus under the strict `BFD > EFL` definition.
 
 Surface-by-surface Petzval evaluation using `φ/(n·n′)` sums to **+0.004321420810 mm⁻¹** in the scaled model. The source-derived scaled edge-height anchor remains 21.3 mm; the inferred apertures are unchanged after correcting d4.
 
@@ -149,9 +149,11 @@ The geometry checks used for the inferred clear apertures retain positive elemen
 7. **OHARA, S-TIM25 datasheet**, <https://oharacorp.com/wp-content/uploads/datasheets/estim25.pdf>. Current catalog coordinates for code 673321.
 8. **OHARA, S-LAM glass types**, <https://oharacorp.com/glass-type/s-lam/>. Current catalog coordinates for S-LAM52 (720437).
 
-## Image-plane source audit (2026-09-25)
+## Image-plane consistency (2026-11-03)
 
-2026-09-25 source recheck: Example 1 d4 prints 2.43, not 2.45 mm;
-corrected the half-scale gap to 1.215 mm. Source row sum is 61.050
-versus header 61.060. Remaining EFL/Bf discrepancy is retained,
-with runtime offset +0.380106 mm; see audit for the original scan.
+The 2026-09-25 source recheck corrected d4 to the printed 2.43 mm (1.215 mm at half scale). The table still does not
+reproduce its own summary: the rows compute f = 100.497 and BFD 70.759 against the printed f = 100 and fB = 69.999,
+and they sum to 61.050 against the printed Σd = 61.060. A single-value scan finds no plausible misprint that gives
+both summary values. With the source fB the image plane sat 0.380106 mm in front of paraxial focus; the real-ray axial
+best focus (+0.348 mm) lies close to paraxial focus, so fB is not a best-focus plane. The final gap is re-solved from
+34.9995 to 35.379606 mm; EFL stays 50.248647 mm.

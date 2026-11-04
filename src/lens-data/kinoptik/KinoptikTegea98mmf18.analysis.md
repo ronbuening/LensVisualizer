@@ -42,8 +42,9 @@ for the unusually large field. [1, patent description, PDF p. 4] Example 2 chang
 and uses a substantially more complex third system than Example 1. [1, PDF p. 5]
 
 The final model has a Gaussian EFL of 9.784 mm and a Gaussian back focal distance of 22.377889324 mm from the final optical
-surface. Because BFD/EFL = 2.287, the design satisfies the project's retrofocus criterion `BFD > EFL`. The published image
-plane, however, remains at 21.841 mm behind the last surface; it is not silently moved to the Gaussian paraxial focus.
+surface. Because BFD/EFL = 2.287, the design satisfies the project's retrofocus criterion `BFD > EFL`. The patent prints
+the image plane 21.841 mm behind the last surface, 0.536889 mm short of that focus; the model re-solves the final gap to the
+Gaussian focus (see Image-plane consistency below).
 
 The large first negative system is separated from the L8-L9 cemented pair by 59.09 mm. A second 43.46 mm air space then
 separates that pair from system III. The diaphragm lies within system III's internal air space: 3.00 mm behind L12 and
@@ -111,9 +112,8 @@ claimed from `nd/νd` alone.
 
 `nd = 1.51350, νd = 59.0. Glass: NSL7-class (coordinate-compatible spectral proxy; supplier unproven). Standalone f = +41.282 mm.`
 
-L15 is the final positive element of system III. The source image plane is retained 21.841 mm behind its rear surface. The
-Gaussian paraxial BFD computed from the same final prescription is 22.378 mm, so those two distances are kept explicitly
-separate rather than being treated as interchangeable definitions of back focus.
+L15 is the final positive element of system III. The patent prints the image plane 21.841 mm behind its rear surface; the
+Gaussian paraxial BFD computed from the same final prescription is 22.378 mm, and the model places the image plane there.
 
 The complete L10-L15 system III has a computed isolated focal length of +39.097 mm. The patent prose gives +38.64 mm; as
 with system II, the difference is retained as a source-versus-rounded-table discrepancy rather than hidden by adjustment.
@@ -206,13 +206,15 @@ field-curvature specification.
 
 The [manufacturer brochure, page 2](https://www.pacificrimcamera.com/rl/00030/00030.pdf) specifies 108° on 16 × 22 mm and 130° on 24 × 36 mm with slight vignetting. The authored cinema format requires a 27.20 mm diagonal. The 43.27 mm full-frame diagonal is qualified, vignetted coverage, not the default analysis format or a measured clear image-circle boundary.
 
-## Image-plane source audit (2026-09-25)
+## Image-plane consistency (2026-11-03)
 
-MTF source audit: Table 2 matches all prescription entries, including
-the R=15, K=-1 paraboloid and the split 5.97 mm stop gap. The source
-prints EFL 9.759 and image distance 21.841 mm; independent values are
-9.784067 and 22.377889 mm. Retain this source contradiction (+0.536889
-mm defocus); no supported single misprint resolves it. See audit.
+Table 2 matches all prescription entries, including the R=15, K=-1 paraboloid and the split 5.97 mm stop gap. The source
+prints EFL 9.759 and image distance 21.841 mm; independent values are 9.784067 and 22.377889 mm, and the printed system
+focal lengths (−22.109 / 87.87 / 38.64 mm) differ from the computed −21.691 / 86.667 / 39.097 mm by 1–2 % in mixed
+directions, so no single misprint explains the gap. The printed plane sat 0.536889 mm in front of paraxial focus, about
+114 depths of focus at f/2, and the real-ray axial best focus (+0.433 mm) lies close to paraxial focus, so the printed
+distance is not a best-focus plane. The final gap is re-solved to 22.377889 mm; radii, thicknesses, indices and the
+paraboloid are unchanged, and EFL stays 9.784067 mm.
 
 
 ## Production mount assignment
