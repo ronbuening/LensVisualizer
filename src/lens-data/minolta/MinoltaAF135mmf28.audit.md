@@ -93,3 +93,58 @@ prescription. It marks no aspherical surface.
 
 **Limitations.** The model cannot draw Fig. 7's bevel or the step where E4's 19.9 mm top meets r6 below E3's edge: the
 cemented face carries one rim, so E4's top runs from 21.1 mm to the land.
+
+## 2026-11-03 — Second review: diagram, labels and movement
+
+**Compared.** The local page at infinity, at the β = 1/10 state, with the focus-movement overlay and with the element
+inspector open on E3, E4 and E6, against Fig. 7 (PDF page 4, Sheet 3 of 6) at its native 72 ppi and against the
+collector-hosted Minolta section. Re-measured from the native scan: S1 and S12 vertices at columns 841 and 1647.5 give
+0.10574 mm/px for 85.28 mm; S1 to S7 (220.5 px) and S1 to S11 (748.5 px) give 0.1063 and 0.1059. Half top-to-bottom
+spans: E1 235.75 px (24.9 mm), E2 224 px (23.7), E3's tip about 21.3 after line width, E4's flat top 188.5 px (19.9),
+the r7 cap end 155.75 px (16.5, q = 0.826 ± 0.010 of the edge), Unit II 122.25 px (12.9), E7 163.5 px (17.3). These
+agree with the semi-diameter pass within a pixel. Fig. 7 draws E3's tip standing about 1.4 mm above a flat-topped E4;
+the page drew E4's top as a slope from E3's tip at 21.1 mm down to the land, because the cemented face S6 carried E3's
+rim.
+
+| Surface | Kind | Baseline | Fig. 7 | Final | Light against baseline | Verdict |
+| --- | --- | ---: | --- | ---: | --- | --- |
+| 6 (cemented E3–E4) | cut | 21.1 | 19.9, E4's top and the end of the joint | 19.9 | 0.8 points at 3° at infinity; 0.7 at 2.7° at β = 1/10; 0.6 at 10.8 mm image height with a real object | keep: slight |
+| 7 (E4 rear) | land, `rimCutDepthMm` 7.39, cut radius 16.52 | 17.3, no land | cap end 16.5, edge 19.9 | 19.9 | 0.0 at every field, at infinity and with a real object at β = 1/10 | keep: costs nothing, drawn by the figure |
+
+With S6 at 19.9 both faces of E4 sit at its drawn 19.9 mm edge, so E4 renders square-topped below E3's 21.1 mm thin
+edge, as Fig. 7 and the collector section draw it; the validator accepts the set, and the f/2.8 axial marginal ray
+reaches 19.14 mm there. The furthest wide-open ray at S7 stays between 16.3 and 16.52 mm at both states, so the land
+is unchanged. Final `rimcost.mjs` worst loss against the baseline rims: 0.8 points at 3.0°.
+
+**Kept above the figure.** E1, E2, Unit II and E7 stay about 6% above Fig. 7, as baseline. Drawn heights would cost
+5.9 points at 7.5° (E1), 2.9 at 4.5° (E2, whose ratio to E1 would fall from the drawn 0.95 to 0.89) and 8.6 at 9° (E7). Unit II at 12.9 costs
+nothing, but at the drawn height it would fall to 0.49 of E1 and 0.70 of E7, against 0.52 and 0.75 in Fig. 7 and
+about 0.51–0.53 of E1 in the collector section; at 13.7 it keeps both ratios.
+
+**Light and clearance.** Wide-open transmission at infinity at 0, 1.5, 3, 4.5, 6, 7.5 and 9° is 100.0, 100.0, 98.9,
+96.0, 91.9, 86.7 and 67.4% (baseline 100.0, 100.0, 99.8, 96.4, 92.1, 86.7, 67.4). At β = 1/10 the engine's curve at
+0 to 8.2° is 100.0, 100.0, 99.3, 97.1, 93.5, 89.1 and 84.3% (baseline 100.0, 100.0, 100.0, 97.4, 93.6, 89.2, 84.3).
+A real-object trace at 1.525 m object to image puts 81.2% through at the 21.52 mm corner before and 81.1% after
+(80.5% at 21.63 mm both). No axial clip or blocked chief ray; the corner chief ray reaches 21.52 of 21.65 mm at 9°.
+Engine half-field 9.00°, f/2.8 and stop radius 12.593 mm are unchanged; field coverage reads 99%.
+
+**Labels, tags and stop.** Groups I (S1–S7), II (S8–S10) and III (S11–S12) are the patent's units and bracket the
+right surfaces; CD1 (S5–S7) and CD2 (S8–S10) mark the two cemented components and do not collide with the D7b and D10
+gap labels. Elements are E1–E7 because the patent's L1–L5 name components. Every `type` agrees with the signs of R,
+every role is true, and each element shows its focal length in the inspector. All surfaces are spherical, as Table 3
+prints. The stop sits between E4 and E5, where Fig. 7 draws the iris. No element carries an `apd` tag; Table 3 (PDF
+page 11) prints Nd and νd only, and the collector section marks no special glass.
+
+**Movement.** Table 3 gives d7 14.36 → 19.79 and d10 24.66 → 19.23 at β = 1/10; at ×1.35 the file's D7b runs
+1.745 → 9.075 and D10 33.291 → 25.961, so Unit II moves 7.33 mm toward the image while Units I and III stay fixed,
+as the arrow over II in Fig. 7 and the text (col. 2) say. Keyframe 0 is infinity and keyframe 1 the β = 1/10 state;
+the overlay shows only II moving, 7.33 mm toward the focus plane, and the slider's far end reads 1.52 m.
+
+**Aberration plots.** Figs. 8A and 9A print one spherical-aberration curve and no C, F or g line, so there is no
+colour comparison. Fig. 8C reads about +0.85% at 9°; the model gives +0.61%, and moving the stop within d7 changes
+that by under 0.01%. At β = 1/10, Fig. 9C reads about +1.56% and the model +1.65% at 9° in object space. Fig. 8B puts
+s and m near −0.025 at mid-field and near zero at 9°; the model gives −0.026 and −0.027 at 6° and +0.005 (s) and
++0.026 (m) at 9°, at patent scale.
+
+**Limitations.** Fig. 7's bevel from E4's top to the cap end is drawn as a square land. The earlier limitation, E4's
+top running from 21.1 mm to the land, no longer applies.

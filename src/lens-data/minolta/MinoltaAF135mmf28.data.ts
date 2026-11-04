@@ -8,7 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters estimated from Fig. 7 (same scale along and across the axis) and floor-checked by real-ray trace.
  * E1, E2, Unit II and E7 sit about 6% above the drawn rims, which at E1 and E7 would cost up to 6 and 8.5 points
  * of field illumination.
- * E4's rear cap ends at 16.5 mm on an inferred flat land out to its 19.9 mm edge, where Fig. 7 draws a bevel.
+ * E3's thin edge reaches 21.1 mm; the cemented face and E4 end at E4's drawn 19.9 mm edge, so E4 is square-topped.
+ * E4's rear cap ends at 16.5 mm on an inferred flat land out to that edge, where Fig. 7 draws a bevel.
  * Internal focus: the Unit II doublet moves 7.33 mm toward the image; the near keyframe is the printed β = 1/10 state.
  * Embodiments 1, 2 and 5 share the 7-element / 5-group layout and fit the production lens as well.
  */
@@ -172,7 +173,7 @@ const LENS_DATA = {
       label: "6",
       R: 64.584,
       d: 2.0250000000000004,
-      sd: 21.1,
+      sd: 19.9,
       medium: 4,
     },
     {
