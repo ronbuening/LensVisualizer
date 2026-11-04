@@ -21,7 +21,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-11-03",
     type: "fix",
-    summary: "Fixed infinity focus in 39 lens models and the close-focus distances it had skewed",
+    summary: "Fixed infinity focus in 40 lens models and the close-focus distances it had skewed",
   },
   {
     date: "2026-11-03",
