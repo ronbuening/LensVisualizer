@@ -7,8 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * L.B./2), the near object distance and the near image gap solved from β (0.022 mm beyond L.B.′/2).
  * The patent prints no stop position or clear apertures: the iris sits at the midpoint of d6, the front rim is
  * the f/2.8 entrance pupil plus 10%, the other rims follow Fig. 3 proportions, and S3–S9 are opened just enough
- * to pass the f/2.8 axial beam. The concave faces beside the iris (S6, S7) end in the short lands Fig. 3 draws,
- * at cut radii 7.25 and 7.16 mm, clear of every traced beam. Source inconsistencies: table FNO 2.8 vs Fig. 6
+ * to pass the f/2.8 axial beam. The concave faces beside the iris (S6, S7) end in short flat lands where Fig. 3
+ * draws a small chamfer, at cut radii 7.25 and 7.16 mm, clear of every traced beam including the 1:1 beam from a
+ * real object point. Source inconsistencies: table FNO 2.8 vs Fig. 6
  * F2.88; f3/f printed −13.33, computed −12.94.
  */
 const LENS_DATA = {
@@ -231,7 +232,7 @@ const LENS_DATA = {
     keyframes: [0, 1],
     published: [1],
     description:
-      "PUBLISHED double floating focus: all three groups move toward the object and both intergroup gaps grow. Embodiment 3 prints the near state at β = −0.997 (d6′ = 28.012, d11′ = 83.903 at f = 100), modeled as D6 = 14.006 mm and D11 = 41.95 mm; with the sensor fixed, Groups I, II and III travel 55.39, 47.14 and 5.67 mm. The patent prints no object distance: solving the near image gap from β gives 78.38 mm from the front vertex and 199.9 mm object to image, against Minolta's 0.2 m minimum focus. L.B. and L.B.′ are the printed back focus: the infinity image gap matches L.B./2 (39.029 mm) within 0.002 mm, and the β-solved near gap sits 0.022 mm beyond L.B.′/2 (44.682 mm). The iris stays midway between Groups I and II at its infinity size. Positions between the two endpoints are interpolated, not printed.",
+      "PUBLISHED double floating focus: all three groups move toward the object and both intergroup gaps grow. Embodiment 3 prints the near state at β = −0.997 (d6′ = 28.012, d11′ = 83.903 at f = 100), modeled as D6 = 14.006 mm (D6a + D6b, either side of the iris) and D11 = 41.95 mm; with the sensor fixed, Groups I, II and III travel 55.39, 47.14 and 5.67 mm. The patent prints no object distance: solving the near image gap from β gives 78.38 mm from the front vertex and 199.9 mm object to image, against Minolta's 0.2 m minimum focus. L.B. and L.B.′ are the printed back focus: the infinity image gap matches L.B./2 (39.029 mm) within 0.002 mm, and the β-solved near gap sits 0.022 mm beyond L.B.′/2 (44.682 mm). The iris stays midway between Groups I and II at its infinity size. Positions between the two endpoints are interpolated, not printed.",
     conjugates: [
       {
         zoomStation: 0,
@@ -282,11 +283,11 @@ const LENS_DATA = {
   ],
   gaps: {
     "6": {
-      label: "D6",
+      label: "D6a",
       values: [[2.87975, 7.003]],
     },
     STO: {
-      label: "DSTO",
+      label: "D6b",
       values: [[2.87975, 7.003]],
     },
     "11": {
