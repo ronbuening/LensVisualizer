@@ -8,8 +8,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * S1 and S27 semi-diameters are half the printed effective diameters 57.4 / 31.8 mm; the
  * others are measured on Fig. 1 (11.81 px/mm both ways at 319 dpi; S1, S27 and the stop
  * plane check the scale) and floor-checked by real-ray trace. L1 is square-cut at the
- * printed S1 value. L2 is drawn at 27.3 mm and kept at 28.0 mm so corner light at near
- * and middle focus stays within 3 points of the authored rims. C2 is drawn at 14.7 mm and
+ * printed S1 value. L2 is drawn at 27.3 mm, just inside the 27.37 mm close-focus axial
+ * beam, and kept at 28.0 mm: near the axis at close focus it then trims 0.6 points of light
+ * from a real object (2.3 in the collimated vignetting curve), and it stays above L3 and L4
+ * as in ZEISS's section. C2 is drawn at 14.7 mm and
  * kept at 15.4 mm for the near-state axial beam (15.31 mm on S17). The flat land Fig. 1
  * draws on S13 is an inferred cut 6.04 mm from the vertex (radius 17.00 mm; the figure
  * reads 16.8 mm, moved out to clear the wide-open beams). The stop position is printed;
@@ -192,6 +194,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -32.39907178480263,
       glass: "NBFD30 (HOYA catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ZEISS shades this element as special-dispersion glass in its section; the patent nd/vd (1.85883/30.00) match NBFD30, whose catalog ΔPgF is only about +0.005, so the tag rests on the maker's marking.",
       role: "Dense-flint negative meniscus completing the first G3 cemented pair.",
       diagramLabel: "L8r",
       cemented: "C2",
@@ -234,6 +238,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 40.10963418909508,
       glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
+      apdNote: "ZEISS shades this element as special-dispersion glass in its section; the patent nd/vd (2.00100/29.13) match TAFD55, whose catalog ΔPgF is only about +0.005, so the tag rests on the maker's marking.",
       role: "High-index (nd 2.001) positive meniscus of the fixed rear group G4.",
       diagramLabel: "L10f",
       cemented: "C4",
