@@ -254,8 +254,10 @@ const LENS_DATA = {
   },
 
   /* (moved from var) ── Focus: constrained unit-focus reconstruction ── */
-  // printed 26.88 (Fig. 2 d17); re-solved for paraxial focus. The close value is the 0.40 m reconstruction.
-  gaps: { "17": { label: "BF", values: [[27.051018, 34.14911367855676]] } },
+  gaps: {
+    // printed 26.88 (Fig. 2 d17); re-solved for paraxial focus. The close value is the 0.40 m reconstruction.
+    "17": { label: "BF", values: [[27.051018, 34.14911367855676]] },
+  },
 
   // WO 2017/221949 A1 Fig. 2 table prints stop De = 14.20 mm; use its independently modeled pupil-derived
   // f-number, from which the stop radius is derived.

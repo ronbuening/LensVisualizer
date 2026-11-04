@@ -260,8 +260,10 @@ const LENS_DATA = {
     published: [1, 2],
   },
 
-  // printed 1.00 / 3.02 / 14.46; near rows re-solved for paraxial focus at 2400 / 400 mm from S1
-  gaps: { "12": { label: "BF", values: [[1.0, 3.022850, 14.273641]] } },
+  gaps: {
+    // printed 1.00 / 3.02 / 14.46; near rows re-solved for paraxial focus at 2400 / 400 mm from S1
+    "12": { label: "BF", values: [[1.0, 3.02285, 14.273641]] },
+  },
 
   /* ── Aperture configuration ── */
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32] },
