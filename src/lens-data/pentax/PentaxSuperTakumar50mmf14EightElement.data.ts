@@ -4,7 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, d-line indices, Abbe numbers and the printed back focus (75.42, here 37.71 mm) are as published.
  * Semi-diameters and the iris position are inferred; the iris sits at the middle of the 12.5 mm L3–L4 air space.
  * Fig. 1 draws each element at about 95% of the f/1.4 marginal-ray height; L2 and L3's rear face follow it, at or just
- * outside that ray, with L3's rear face over the iris radius. L1, L7 and L8 stay larger than drawn for corner light.
+ * outside that ray, with L3's rear face over the iris radius. L2 is square-cut as drawn, both faces at its front-face
+ * ray. L1, L7 and L8 stay larger than drawn for corner light.
  * L5's faces meet at a height of 14.05 mm, so wide open the rims pass the axial beam to about f/1.43.
  * The patent gives the infinity state only; the 0.45 m unit-focus state is derived.
  */
@@ -170,7 +171,7 @@ const LENS_DATA = {
       label: "4",
       R: 37.9305,
       d: 1.9,
-      sd: 15.4,
+      sd: 16.3,
     },
     {
       label: "5",
