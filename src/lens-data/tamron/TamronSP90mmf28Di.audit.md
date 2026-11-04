@@ -28,3 +28,36 @@ S5continuouscap20.5→22.5mm extends to its established doubletbody. S10/S11pres
 All14nd/νd exact from original d-linetable, noactualadditionalindices/partialratio. Remove28catalog-onlyC/F/g/dPgF fields on7glasses; all14labels now resolvecompatiblecoefficients directly. Existing XLD/LDtagsremain inferred; FCD515 chemistry corrected to qualifiedfluorophosphateproxy, production supplier/melt unproved. The2026-10-06 historicalclaim authoredindices drive tracing is superseded. Preserve all R/d/sourceconjugates and+.293897mm paraxialimage residual, dummyairreference normalization and sourceR4/derivedtable contradiction. Identical-launch shape counts73335retained/0lost/495gained/70575bothblocked.
 
 Verification: all52 modeled nd/νd pairs freshly source-checked(48physical glass substrates+4explicit hybrid layers); source R/d/asphere coefficients/focus/stop positions/tolerances invariant. Focused surface/image-circle/field/aperture pass:17stations≥99% source-format corner, all17apertures within3%; full shared inferred-cut guard0errors/no untracedfields. Actual nine-state SVGs per lens rasterized and viewed: connected compounds, max hidden trim0. Existing dispersion/resolver/partial-line3suites94tests pass. Exact identical collimated sample comparisons use144405rays/lens and the same baseline iris to isolate shape; not flux or a finite-conjugate transmission certificate. Updated B028 aperture is independently checked by its source-FNO guard/aperture run.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Source: local `patents/US9063253.pdf`, Embodiment 7 prescription and focus rows (PDF pages 84–85): infinity, 1:2 and
+1:1 states, D26 = 44.5749 mm plus dummy-plane D27 = 2.1644 / 2.2044 / 2.1892 mm. LENS_DATA_SPEC § Image-Plane
+Consistency: an inconsistency no single value isolates, so the air gaps are re-solved, back focus first.
+
+| Field | Before | After | Justification |
+|---|---|---|---|
+| `gaps["26"]` (BF), ∞ / 1:2 / 1:1 | 46.7393 / 46.7793 / 46.7641 | 47.033197 / 47.073197 / 47.057997 | Paraxial focus at infinity; +0.293897 mm carried to the near rows |
+| `gaps["7"]` 1:2 / 1:1 | 9.8415 / 19.2488 | 9.881766 / 19.171708 | G2, G3 and G4 moved together in the printed ∞→1:1 proportions until in focus at −0.5× / −1.0× |
+| `gaps["13"]` 1:2 / 1:1 | 11.4085 / 2.0012 | 11.368234 / 2.078292 | Same move (D7 + D13 stays 21.25) |
+| `gaps.STO` (D14) 1:2 / 1:1 | 9.2987 / 1.7 | 9.271259 / 1.752537 | Same move |
+| `gaps["16"]` 1:2 / 1:1 | 1.0992 / 1.4506 | 1.087444 / 1.473108 | Same move |
+| `gaps["19"]` 1:2 / 1:1 | 12.1217 / 19.369 | 12.160896 / 19.293956 | Same move |
+| `focus.closeFocusM` | 0.3 | 0.2997 | Object-to-image distance of the re-solved 1:1 row (299.66 mm) |
+| `focus.keyframes[1]` | 0.7976078358456278 | 0.8002367013116379 | 0.2997 / 0.374514 m, the re-solved 1:2 row's distance |
+| `catalog.closeFocusM.marketing` | — | 0.3 | Tamron's figure, now distinct from the model value |
+
+- Residual: infinity +0.293897 → 0 mm (32 depths at F2.89). The printed 1:2 row traced to −0.49428× and the 1:1 row
+  to −1.00033×; the re-solved rows trace to −0.50000× and −1.00000× in paraxial focus.
+- Travel ∞→1:1: G2 18.0488 → 17.971708 mm, G3 12.3000 → 12.247463 mm, G4 17.5694 → 17.494356 mm. EFL at infinity
+  unchanged at 92.5564 mm (printed 92.74); 1:2 81.7477 → 81.6877 mm (printed 81.62); 1:1 64.9771 → 65.1489 mm
+  (printed 64.66).
+- Close focus: 0.3 → 0.2997 m; marketing 0.30 m added (0.1 % apart, so the readout does not name it).
+- Evidence for the class: EFL 92.556 vs 92.74 mm and track 158.7349 vs 158.72 mm with every cell matching; trying the
+  Tables 1–2 Rn1 = −92.2729 mm for R4 moves the offset to −0.389 mm and EFL to 92.25 mm, so it is not the fix. The
+  real-ray axial best focus (+0.389 mm) lay beyond paraxial focus, so the printed plane was not a best-focus plane.
+- Rim clearance: the smallest moved gap is D16 at 1:2, 1.087 mm at the vertex; D14 at 1:1 is 1.753 mm.
+
+Follow-ups:
+
+- The R4 / Rn1 contradiction stays open as before; the re-solve does not depend on it.

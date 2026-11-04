@@ -10,7 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 8A stays at 10.95 mm, the largest value the default cross-gap limit admits in the 1.79 mm gap 8A-9
  * (the figure draws 11.0).
  * The L5/L6 doublet (surfaces 10, 11) shares 12.6 mm with L7 because the figure draws the two level.
- * Source summary residuals and rounded optics are preserved without optimization.
+ * Source summary residuals and rounded indices are preserved without optimization; only two air gaps are re-solved.
+ * Image plane re-solved for paraxial focus (LENS_DATA_SPEC Image-Plane Consistency): S15 d 25.55 -> 25.292661 mm
+ * (offset -0.257339 -> 0); near D11 9.71 -> 9.585506 at D0 = 370 mm; closeFocusM 0.44811 -> 0.4477 m.
  * CN118244463A controls; B grant changes summaries but not surfaces. D0 is first-surface distance.
  */
 
@@ -29,6 +31,7 @@ const LENS_DATA = {
     groupCount: 6,
     focalLengthMm: { marketing: 50, design: 51.763364556639296 },
     fNumber: { marketing: 1.4, design: 1.45 },
+    closeFocusM: { marketing: 0.45 },
   },
 
   source: {
@@ -172,14 +175,14 @@ const LENS_DATA = {
     { label: "12", R: -140.3, d: 1.19, sd: 12.6, medium: 7 },
     { label: "13", R: 43.19, d: 1.04, sd: 12.6 },
     { label: "14", R: 58.41, d: 3.65, sd: 13.5, medium: 8 },
-    { label: "15", R: -116.61, d: 25.55, sd: 13.5 },
+    { label: "15", R: -116.61, d: 25.292661, sd: 13.5 }, // printed 25.55; re-solved for paraxial focus
   ],
 
   focus: {
-    closeFocusM: 0.44811,
+    closeFocusM: 0.4477,
     keyframes: [0, 1],
     description:
-      "Floating focus: G1 (L1-L6 with the stop) moves 9.32 mm toward the object while G2 (L7, L8) stays fixed to the image plane, so D11 opens from 0.39 mm at infinity to 9.71 mm at the patent's near state (object 370 mm in front of the first surface, about 0.45 m from the image plane). Only these two states are published; intermediate positions are interpolated, not a measured cam law. The patent's rounded values leave a small residual defocus at the near state.",
+      "Floating focus: G1 (L1-L6 with the stop) moves 9.195506 mm toward the object while G2 (L7, L8) stays fixed to the image plane, so D11 opens from 0.39 mm at infinity to 9.585506 mm at the patent's near state (object 370 mm in front of the first surface, 0.4477 m from the image plane). The patent prints D11 = 9.71 mm (9.32 mm travel); with its two-decimal indices that row is out of focus, so the back focus and the near D11 are re-solved for paraxial focus. Only these two states are published; intermediate positions are interpolated, not a measured cam law.",
     conjugates: [
       {
         zoomStation: 0,
@@ -187,13 +190,13 @@ const LENS_DATA = {
         objectDistanceMm: 370,
         distanceReference: "first-surface",
         source:
-          "CN118244463A Example1 Tables1a/1b PDF7–8: D0=0.37m, D11=9.71mm; rounded-source residual defocus retained at native image plane.",
+          "CN118244463A Example1 Tables1a/1b PDF7–8: D0=0.37m; printed D11=9.71mm, re-solved to 9.585506mm (and S15 d 25.55 to 25.292661mm) so the row is in paraxial focus at the printed distance.",
       },
     ],
     published: [1],
   },
 
-  gaps: { "11": { label: "D11", values: [[0.39, 9.71]] } },
+  gaps: { "11": { label: "D11", values: [[0.39, 9.585506]] } }, // printed 0.39 / 9.71; near row re-solved for paraxial focus
 
   aperture: { nominalFNumber: 1.45, fStops: [1.45, 2, 2.8, 4, 5.6, 8, 11, 16], maxFNumber: 16, blades: 14 },
 

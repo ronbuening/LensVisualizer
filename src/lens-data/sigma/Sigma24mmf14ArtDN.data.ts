@@ -7,14 +7,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Data source: JP 2023-074094 A, Example 1 (Sigma / R. Shioda).    ║
  * ║  Five-group fast full-frame wide-angle: N-P-P-N-P, stop after G3. ║
  * ║  17 elements / 14 groups, 8 aspherical surfaces on 4 elements.    ║
- * ║  Focus: G2 only; d10 and d12 exchange 5.5797 mm of spacing.       ║
+ * ║  Focus: G2 only; d10 and d12 exchange 3.9656 mm (printed 5.5797). ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
  * ║    Prescription is unscaled from the patent. Patent lists f=23.86 ║
  * ║    mm and F1.46; a d-line spherical-base paraxial trace gives     ║
  * ║    EFL=24.0037 mm and paraxial BFD=21.9873 mm while reproducing   ║
- * ║    the published group focal lengths. The data table preserves the║
- * ║    patent's BF=23.0355 mm image-plane spacing.                    ║
+ * ║    the published group focal lengths. BF is re-solved to that      ║
+ * ║    paraxial focus (printed 23.0355 mm; see below).                 ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent omits clear apertures. SD values are estimated from a   ║
@@ -38,9 +38,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  *
  * Source contradiction (Example 1, PDF pp.14-16): all table entries match,
- * yet EFL is 24.003700 vs printed 23.86 mm and BFL is 21.987349 vs
- * printed BF 23.0355 mm (offset -1.048151 mm). No listed plate explains
- * this mismatch. Keep source values; see the audit sidecar.
+ * yet EFL is 24.003700 vs printed 23.86 mm, the track 116.762 vs printed
+ * lens length 113.95 mm, and the printed G2 travel is longer than the
+ * 136.5 mm near state needs (source.errata, unresolved; Example 2 fails
+ * the same way). No listed plate explains it.
+ * Image plane re-solved for paraxial focus (LENS_DATA_SPEC Image-Plane
+ * Consistency): BF 23.0355 -> 21.987349 mm (offset -1.048151 -> 0);
+ * near row d10/d12 9.2968/2.5835 -> 7.682694/4.197606 at d0 = 136.5 mm;
+ * closeFocusM 0.182 -> 0.2522 m. See the audit sidecar.
  */
 
 const LENS_DATA = {
@@ -73,6 +78,12 @@ const LENS_DATA = {
     patentYear: 2023,
     authors: ["Ryo Shioda"],
     assignees: ["Sigma Corporation"],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Example 1 traces to f = 24.0037 mm against the stated 23.86 mm, a 116.762 mm track against the stated 113.95 mm lens length, and a printed G2 travel (d10 3.7171 -> 9.2968 mm) about 40 % longer than the 136.5 mm near state needs; no single R, d or nd isolates it, and Example 2 fails the same way (f 27.28 vs 27.50 mm, track 110.69 vs 113.50 mm).",
+      },
+    ],
   },
 
   elements: [
@@ -395,23 +406,23 @@ const LENS_DATA = {
     {
       label: "32A",
       R: 240.0,
-      d: 23.0355,
+      d: 21.987349, // printed BF 23.0355; re-solved for paraxial focus
       sd: 13.0,
       asphere: { K: 0, A4: -1.43072e-6, A6: 1.49542e-7, A8: -7.26583e-10, A10: 1.86133e-12, A12: -2.03497e-15, A14: 0, A16: 0 },
     },
   ],
 
   focus: {
-    closeFocusM: 0.182,
+    closeFocusM: 0.2522,
     description:
-      "Internal focus by the single positive G2 element; d10 increases and d12 decreases by 5.5797 mm from infinity to the patent close-focus state.",
+      "Internal focus by the single positive G2 element; d10 increases and d12 decreases by 3.965594 mm from infinity to the patent close-focus state (object 136.5 mm from the first surface). The near row is re-solved for paraxial focus; the patent prints 5.5797 mm of travel.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },
 
   gaps: {
-    "10A": { label: "d10 (G1-G2)", values: [[3.7171, 9.2968]] },
-    "12": { label: "d12 (G2-G3)", values: [[8.1632, 2.5835]] },
+    "10A": { label: "d10 (G1-G2)", values: [[3.7171, 7.682694]] }, // printed 3.7171 / 9.2968; near row re-solved for paraxial focus
+    "12": { label: "d12 (G2-G3)", values: [[8.1632, 4.197606]] }, // printed 8.1632 / 2.5835; near row re-solved for paraxial focus
   },
 
   aperture: { nominalFNumber: 1.46, fStops: [1.46, 2, 2.8, 4, 5.6, 8, 11, 16], maxFNumber: 16, blades: 11 },

@@ -29,9 +29,9 @@ The design is a compact three-group inner-focus wide-angle prime of the form pos
 
 In terms of air-separated groups — the conventional optics industry count — G1 splits into two groups at the stop, giving five total groups. Sony's published specification of 7 elements / 5 groups aligns with this count.
 
-The overall power distribution places the majority of positive power in G1 ($f_{\text{G1}} \approx +21.4$ mm) and G3 ($f_{\text{G3}} \approx +62.5$ mm), with G2 contributing negative power ($f_{\text{G2}} \approx -27.8$ mm; patent states $f_2 = -27.55$ mm at ¶0084). The total optical track from the first vertex to the image plane is 47.58 mm, yielding a track-to-focal-length ratio of approximately 1.32 — remarkably compact for a 35 mm full-frame lens.
+The overall power distribution places the majority of positive power in G1 ($f_{\text{G1}} \approx +21.4$ mm) and G3 ($f_{\text{G3}} \approx +62.5$ mm), with G2 contributing negative power ($f_{\text{G2}} \approx -27.8$ mm; patent states $f_2 = -27.55$ mm at ¶0084). The total optical track from the first vertex to the image plane is 47.58 mm as printed and 48.05 mm in the model, whose back focus is re-solved to paraxial focus, yielding a track-to-focal-length ratio of approximately 1.32–1.34 — remarkably compact for a 35 mm full-frame lens.
 
-The back focal distance of 20.03 mm exceeds the Sony E-mount flange distance of 18.0 mm, providing adequate mechanical clearance without requiring a retrofocus (inverted telephoto) configuration. The ratio $\text{BFD}/\text{EFL} = 0.556$ confirms that this is not a retrofocus design; the back focus is shorter than the focal length.
+The back focal distance, 20.03 mm printed and 20.50 mm traced to paraxial focus, exceeds the Sony E-mount flange distance of 18.0 mm, providing adequate mechanical clearance without requiring a retrofocus (inverted telephoto) configuration. The ratio $\text{BFD}/\text{EFL} \approx 0.56$ confirms that this is not a retrofocus design; the back focus is shorter than the focal length.
 
 The system Petzval sum is $0.00258\;\text{mm}^{-1}$, corresponding to a Petzval radius of approximately $388$ mm — well-corrected for a 35 mm f/2.8 prime. The dominant field-flattening contribution comes from L133: its front surface (r12, $R = -10.55$ mm) contributes $-0.0384\;\text{mm}^{-1}$ to the Petzval sum, the largest single-surface contribution in the system. Without L133, the Petzval sum of the preceding twelve surfaces would be approximately $+0.012\;\text{mm}^{-1}$ (radius ~$80$ mm), which would produce pronounced inward field curvature. L133's role as a Petzval flattener is thus essential to the design's ability to cover the full 43 mm image circle with acceptable field flatness.
 
@@ -81,7 +81,7 @@ The aspherical surfaces on L121 are critical for maintaining image quality acros
 
 L-BAL42 is a useful low-softening PGM comparison, but the patent rounds the index to two decimal places and does not identify a supplier. The stored row therefore remains unmatched rather than borrowing L-BAL42's spectral model.
 
-During focusing from infinity to the close-focus distance of 350 mm, L121 moves 1.64 mm toward the image plane. The air gap D(6) ahead of L121 increases from 1.49 mm to 3.13 mm, while the air gap D(8) behind it decreases from 5.53 mm to 3.89 mm, conserving the total gap sum at 7.02 mm.
+During focusing from infinity to the close-focus distance of 350 mm, L121 moves 1.64 mm toward the image plane in the patent table. The air gap D(6) ahead of L121 increases from 1.49 mm to 3.13 mm, while the air gap D(8) behind it decreases from 5.53 mm to 3.89 mm, conserving the total gap sum at 7.02 mm. The model re-solves the near row for paraxial focus at 350 mm object to image (Verification Summary): D(6) = 3.228268 mm and D(8) = 3.791732 mm, a travel of 1.738268 mm.
 
 ### L131 — Biconvex Positive (Cemented Front of G3 Doublet)
 
@@ -133,15 +133,15 @@ The glass selection reflects a design philosophy of pragmatic cost and manufactu
 
 The lens uses inner focus with a single moving element (G2 = L121), as described in ¶0024 and ¶0074. Groups G1 and G3 are fixed on the optical axis.
 
-| Parameter | Infinity | Close (350 mm) | Change |
-|-----------|----------|---------------|--------|
-| D(6) — gap ahead of L121 | 1.49 mm | 3.13 mm | +1.64 mm |
-| D(8) — gap behind L121 | 5.53 mm | 3.89 mm | −1.64 mm |
-| Sum D(6)+D(8) | 7.02 mm | 7.02 mm | 0.00 mm |
+| Parameter | Infinity | Close (350 mm), printed | Close, model | Change (printed / model) |
+|-----------|----------|---------------|--------------|--------|
+| D(6) — gap ahead of L121 | 1.49 mm | 3.13 mm | 3.228268 mm | +1.64 / +1.738268 mm |
+| D(8) — gap behind L121 | 5.53 mm | 3.89 mm | 3.791732 mm | −1.64 / −1.738268 mm |
+| Sum D(6)+D(8) | 7.02 mm | 7.02 mm | 7.02 mm | 0.00 mm |
 
 The gap sum is conserved (7.02 mm at both extremes), confirming that only L121 moves and the overall length of the lens remains constant — a requirement for the internal-focus architecture.
 
-The total focus travel of 1.64 mm is extremely short, consistent with the patent's emphasis on fast, low-inertia focusing for video wobbling (¶0037–0038). The production lens uses a linear autofocus motor to drive this movement.
+The total focus travel of 1.64 mm (1.74 mm in the re-solved model) is extremely short, consistent with the patent's emphasis on fast, low-inertia focusing for video wobbling (¶0037–0038). The production lens uses a linear autofocus motor to drive this movement.
 
 The focus element moves from object toward image for near-focus, which is the standard direction for a negative inner-focus group: as the object distance decreases, the diverging G2 must shift rearward to increase the divergence presented to G3, thereby lengthening the effective back focus.
 
@@ -214,13 +214,15 @@ Independent paraxial ray trace (y-nu method, all 13 surfaces) yields:
 |-----------|----------|----------------|-----------|
 | EFL | 35.95 mm | 36.06 mm | 0.11 mm (0.3%) |
 | Half-field angle $\omega$ | 31.0° | 31.28° | 0.28° |
-| BFD / source image distance | 20.500542 mm | 20.03 mm | +0.470542 mm |
+| BFD / source image distance | 20.500542 mm | 20.03 mm | +0.470542 mm (model d13 re-solved to 20.500542) |
 | $L_1$ (G1 vertex length) | 7.52 mm | 7.52 mm | Exact |
 | $L$ (total vertex length) | 27.55 mm | 27.55 mm | Exact |
 | Gap sum conservation | 7.02 mm (both) | — | Perfect |
 | G2 focal length | −27.81 mm | −27.55 mm (¶0084) | 0.26 mm (0.9%) |
 
 The 0.3% EFL discrepancy and 0.9% G2 focal length discrepancy are within the range attributable to the patent's two-decimal truncation of refractive indices.
+
+The same rounding left the printed image plane 0.470542 mm in front of paraxial focus, about 48 times the ±2λN² depth at F2.884; the real-ray axial best focus (+0.387 mm) sat near paraxial focus, so the printed plane was not a best-focus plane. The infinity row focused beyond infinity, and the printed near row focused an object 0.406 m from the image. The model therefore re-solves the air gaps for paraxial focus: d13 = 20.500542 mm (printed 20.03; track 48.051 mm), and the near row's D(6)/D(8) = 3.228268/3.791732 mm, which focuses the printed 350 mm object, read as object to image plane (¶0079 gives no reference; this reading matches Sony's 0.35 m minimum focus distance). Radii, thicknesses and indices are unchanged; EFL stays 35.948 mm.
 
 ## Design Heritage and Context
 
@@ -243,4 +245,5 @@ MTF audit: JP2015041012A Example 1, paragraphs 0077–0080, matches
 every radius, gap, index and all six K/A4–A10 rows at native scale.
 Printed d13=20.03 mm precedes the image directly (no plate). EFL
 35.948432 / BFL 20.500542 do not reproduce source 36.06 / 20.03 mm.
-Retain the source contradiction and +0.470542 mm offset; see audit.
+Superseded 2026-11-03: d13 and the near row are re-solved for paraxial
+focus (Verification Summary; audit).

@@ -29,8 +29,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * MTF source audit: Example 2 ¶0057–0059 matches all radii/gaps/glass values.
  * CG already preserves 5 + 2 mm glass (nd1.5168) + 9.15 mm physical path.
  * EFL 51.299977 matches 51.30, but paraxial focus is +0.045653 mm beyond
- * the published image plane. Finite-aperture best focus is closer to it;
- * designer intent is unproven, so preserve the printed gaps.
+ * the published image plane.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane Consistency): paraxial offset +0.046 mm
+ * (11.4 depths at f/1.85); real-ray axial best focus +0.021 mm (5.2 depths; axial RMS spot +0.009 mm).
  */
 
 const LENS_DATA = {
