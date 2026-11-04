@@ -66,3 +66,30 @@ Front page seen: US 2,746,351, patented May 22, 1956; Albrecht Wilhelm Tronnier,
 ## 2026-11-03 — Glass labels revisited
 
 L1, L2 and L3 now trace their printed nd/νd as `Unmatched`, because their nearest catalog rows (FK3, N-SSK5/S-BSM25, F5/E-F5) are 0.32–0.57 off in νd and would replace the printed dispersion; L4 moves from J-BAF3 (0.28 off) to S-BAM3 (0.22 off, 0.001 lower in nd). LAC13 stays on L5. This supersedes the glass labels listed in the data-step bullet above.
+
+## 2026-11-03 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity, at `focus=1` and with the focus-movement overlay, against Fig. 4 (PDF page 4, the Table 2 example) at the scan's native 2320 × 3408 px, and against the Voigtländer booklet drawing (printed p. 2). Fig. 4 was re-measured independently. The nine vertex crossings of the axis span 1134 px for the 24.279 mm R1–R9 length, 0.02141 mm/px; R1–R3 gives 0.02137 and R3–R9 0.02148. Heights are half the full top-to-bottom distance between line centres, which removes the axis offset. Element edges: L1 618.75 px (13.25 mm), L2 261.75 px (5.60 mm), L3 247.5 px (5.30 mm), doublet 229 px (4.90 mm). Bevel ends: R2 at 12.43 mm (0.939 of the L1 edge), R6 at 4.07 mm (0.769 of the L3 edge), R7 at 4.25 mm (0.867 of the doublet edge). The diaphragm bars leave a 3.59 mm radius opening, 67% of the way through a3.
+
+Cuts and lands against the base rims (no `rimExtensionSd` or `rimCutDepthMm` in the file):
+
+| Surface | Base | Fig. 4 reading | Final | Light cost | Verdict |
+|---|---:|---|---:|---:|---|
+| 2 (L1 rear) | 14.2 | 12.43 at the chamfer, 0.939 of the edge | 13.3 | 0.0 pts | keep: no loss. 13.3 is 0.937 of the 14.2 edge, as drawn. |
+| 7 (L4 front) | 5.4 | 4.25 at the chamfer, 0.867 of the edge | 4.8 | 0.0 pts | keep: no loss. 0.867 × 5.4 = 4.68 is below the 4.75 mm f/3.4 axial ray, so 4.8 is the lowest value at 0.1 mm steps. |
+| 6 (L3 rear) | 4.85 | 4.07 at the bevel | 4.85 | — | base value, not a cut. The face crosses the stop plane above 4.92 mm and the full bundle needs 4.72 mm. |
+
+The final rim cost against the base is 0.0 points at every field; restoring either cut wins back nothing. Corner transmission is 77.2% at 31.5° wide open before and after. The model is static, so there is no near state.
+
+Silhouette differences on the page, none changed. The model is Fig. 4 scaled by about 1.07 to 1.10, and its proportions to L1 (0.430, 0.394, 0.380) are within 3% of the drawn 0.423, 0.400 and 0.370, with the same L2 > L3 > doublet order. The renderer draws L1's land and chamfer as one taper from 14.2 to 13.3 mm, and L3's land and bevel as one taper from 5.6 to 4.85 mm. At the model's scale L2 and L5 come out nearly knife-edged at the rim, with 0.23 and 0.11 mm edges. Fig. 4 draws about 0.9 and 0.8 mm, because it draws the rear arcs flatter than printed. Moving toward the drawing costs light: L2 at 6.0 mm costs 2.5 points, and the doublet at 5.3 mm costs 1.6 points. Both are inside measurement noise for proportions, so the rims stay. The drawn sizes would cost about 20 points at the corner.
+
+Checked and found correct:
+- Groups I (S1–S2) and II (S3–S9, with the diaphragm) follow the patent's member notation in Fig. 4 and in the column 5 ranges. Doublet D1 spans S7–S9.
+- Element names L1–L5 are Fig. 4's designations, and the diagram's ids 1–5 coincide with them. Each type agrees with the signs of R. The thick-lens focal lengths −203.6, +16.0, −11.5, −17.3 and +9.9 mm recompute from the prescription, and the inspector shows them. The roles are true.
+- The model has no aspheric surface and no `A` labels, as the patent prints none. The stop sits between L3 and L4, where Fig. 4 draws B.
+- No `apd` tags. The patent calls L1 "fluorine-crown glass of very low refractive power" (column 3), which describes its index, not anomalous dispersion. The maker drawing marks no special element.
+- Movement: the model is static. The overlay reports no modeled focus or zoom movement, the slider's far end reads "Not modeled", and `focus.description` matches booklet pp. 2 and 5.
+- Colour: the patent prints no aberration curves.
+- Glass: Table 2 prints only the helium-d index and ν for each element, with no glass names, other line indices or partial dispersions. LAC13 is 0.16 off in νd and S-BAM3 0.22.
+
+Engine half-field 31.5°, f/3.4 and stop radius 4.571 mm are unchanged. The analysis now quotes the drawn proportions (1 : 0.42 : 0.40 : 0.37) rather than the model's.
