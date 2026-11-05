@@ -25,6 +25,12 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Canon RF 85mm f/1.4 L VCM and EF-S 60mm f/2.8 Macro, Pentax DA 14mm f/2.8, M 20mm f/4 and M 28mm f/2.8, and Sigma 500mm f/5.6 Sports",
   },
   {
+    date: "2026-11-05",
+    type: "lens",
+    summary:
+      "Added the Canon EF 35mm f/2 and 100mm f/2 USM, Carl Zeiss Jena MC Pancolar 50mm f/1.8, Nikon AF-S 35mm f/1.8 G ED, and Voigtländer Nokton 35mm f/1.2 and Macro APO-Ultron 35mm f/2",
+  },
+  {
     date: "2026-11-04",
     type: "lens",
     summary:
