@@ -1,0 +1,118 @@
+## Patent Reference and Design Identification
+
+**Patent:** JP H04-015611 A
+**Application Number:** JP1990-119216
+**Filed:** 1990-05-09
+**Published:** 1992-01-21
+**Inventor:** Tsunefumi Tanaka
+**Applicant:** Canon Inc.
+**Title:** Photographic lens
+**Example details:** Numerical Example 1, PDF p. 3; Figure 1, PDF p. 4. Values are in millimetres at scale 1.
+
+Canon's published section agrees in its seven elements in five groups, two cemented doublets, negative front meniscus and 1–2 / stop / 1–2–1 sequence. The May 1990 filing precedes the October 1990 product introduction. Example 1 is the best fit to Canon's section by axial spacing, with Example 3 close and Example 2 further off. The exact production prescription is unproved: Canon draws S3 steeper and S5 flat, which none of the three examples does.
+
+## Optical Architecture
+
+An asymmetric wide-angle design with a negative front meniscus and two positive-power functional blocks around the stop. Its seven elements form five air-separated groups. The first cemented pair and long front air space are characteristic; the rear block combines a negative single, a second cemented pair and a positive final single.
+
+The stop stays at its printed axial position. All clear apertures are inferred rather than printed. The patent lists no camera-side plate or protective glass, and none is added.
+
+## Element-by-Element Analysis
+
+### L1 — Negative Meniscus
+
+nd = 1.58913, νd = 61.20. Glass: BACD5 (HOYA) catalog equivalent. In-air f = -63.606 mm.
+
+Negative front meniscus expands the field and helps obtain back focus longer than the stated focal length.
+
+### L2 — Biconvex Positive
+
+nd = 1.80610, νd = 40.90. Glass: S-LAH53 (OHARA) catalog equivalent. In-air f = +17.541 mm.
+
+Positive member of front doublet HL1; the patent associates the shared refracting interface with coma and astigmatism correction.
+
+### L3 — Negative Meniscus
+
+nd = 1.64769, νd = 33.80. Glass: E-FD2 (HOYA) catalog equivalent. In-air f = -35.634 mm.
+
+Negative member of HL1, cemented to L2; its different index and dispersion contribute to the front pair correction.
+
+### L4 — Biconcave Negative
+
+nd = 1.67270, νd = 32.10. Glass: PBM25 (OHARA) catalog equivalent. In-air f = -25.299 mm.
+
+Rear biconcave negative single. The patent assigns rear negative components a share of spherical aberration and coma correction.
+
+### L5 — Biconcave Negative
+
+nd = 1.78472, νd = 25.70. Glass: S-TIH11 (OHARA) catalog equivalent. In-air f = -50.341 mm.
+
+Negative front member of rear pair HL2; its strong flint dispersion contrasts with the positive partner.
+
+### L6 — Biconvex Positive
+
+nd = 1.77250, νd = 49.60. Glass: S-LAH66 (OHARA) catalog equivalent. In-air f = +28.904 mm.
+
+Positive rear member of HL2, with a strongly curved rear face. The pair supplies convergence after the negative components.
+
+### L7 — Biconvex Positive
+
+nd = 1.77250, νd = 49.60. Glass: S-LAH66 (OHARA) catalog equivalent. In-air f = +44.868 mm.
+
+Positive final single, separated by the printed 0.10 mm air space. The patent favors an Abbe number above 45 here.
+
+## Glass Identification and Selection
+
+The patent names no commercial glass and prints no partial-dispersion data. The labels below are catalog equivalents for the printed N and ν, not production identifications.
+
+The table names no spectral line, but Figures 4 to 6 plot the d and g lines and all seven pairs reproduce catalog nd/νd values, which places N and ν at the d line. With these labels the paraxial g-line focus lies within 0.001 mm of the d-line focus. Figure 4's curves end at the iris-limited top of the beam, 8.53 mm above the axis at entry, where the g ray lands +0.167 mm from the d-line focus, against about 0 and +0.16 mm read from the plot. The patent plots no C or F line.
+
+| Element | nd | νd | Catalog equivalent |
+| --- | ---: | ---: | --- |
+| L1 | 1.58913 | 61.20 | BACD5 (HOYA) |
+| L2 | 1.80610 | 40.90 | S-LAH53 (OHARA) |
+| L3 | 1.64769 | 33.80 | E-FD2 (HOYA) |
+| L4 | 1.67270 | 32.10 | PBM25 (OHARA) |
+| L5 | 1.78472 | 25.70 | S-TIH11 (OHARA) |
+| L6 | 1.77250 | 49.60 | S-LAH66 (OHARA) |
+| L7 | 1.77250 | 49.60 | S-LAH66 (OHARA) |
+
+## Focus Mechanism
+
+The patent gives only the infinity state and no focus travel, and Canon's page does not state the focus mechanism. The model is static: all spacings stay fixed, and the 0.25 m end of the focus range is Canon's retail close-focus distance, not a modeled state.
+
+## Geometry, Aperture and Image Plane
+
+All clear radii are inferred from Figure 1, not printed. Fitting the printed radii to the drawn arcs shows the figure about 3.7% wider across the axis than along it, at 11.71 px/mm against 11.29 px/mm. On that scale its stop ticks sit at 9.48 mm, against the derived 9.461 mm, and the element edges read 15.1 mm for L1, 11.8 mm for HL1, 9.9 mm for L4, 10.5 mm for HL2 and 12.0 mm for L7. Drawing distortion is unknown, so these are not factory apertures. Canon's section reverses the rear step, drawing L4's rim wider than HL2.
+
+Figure 1 ends three curves short of their element edges with flat lands. S2's concave face stops at 13.0 mm, about 6.8 mm behind its vertex, and its land runs out to L1's edge. The facing curves of S8 and S9 close across the 2.00 mm air space and stop at 9.5 mm, 0.02 mm apart; their lands run out to 9.9 mm on L4 and 10.5 mm on HL2. The iris limits the axial beam, which reaches 9.05 mm at S8. A ray entering at the full 8.88 mm paraxial pupil radius would cross S8 and S9 at 9.49 and 9.50 mm, so the curves clear it too.
+
+The patent prints no back focus or image distance. The image plane, 85.228 mm from the first vertex, is the computed paraxial infinity focus, with EFL 35.508 mm and back focus 37.828 mm. No best-focus shift is applied.
+
+The wide-open iris radius of 9.461 mm is derived. The adjacent surfaces clear the iris disk by 3.09 mm in front and 1.86 mm behind; this says nothing about blade mechanics.
+
+| Surface | Inferred clear SD, mm | Drawn edge, mm |
+| --- | ---: | ---: |
+| 1 | 15.10 | 15.10 |
+| 2 | 13.00 | 15.10 |
+| 3 | 11.80 | 11.80 |
+| 4 | 11.80 | 11.80 |
+| 5 | 11.80 | 11.80 |
+| 7 | 9.90 | 9.90 |
+| 8 | 9.50 | 9.90 |
+| 9 | 9.50 | 10.50 |
+| 10 | 10.50 | 10.50 |
+| 11 | 10.50 | 10.50 |
+| 12 | 12.00 | 12.00 |
+| 13 | 12.00 | 12.00 |
+
+## Model Scope and Limitations
+
+The model is Example 1 at infinity. Back focus, the image plane, the clear apertures and the iris radius are computed or inferred rather than printed, and the exact production prescription is unproved.
+
+The model's d-line spherical aberration of about -0.11 mm at the iris-limited top of the beam and its distortion of -1.9% at full field agree with Figure 4. Its ΔS and ΔM stay within about 0.02 mm of the plot out to 30° and reach +0.20 and -0.39 mm at full field, against +0.23 and -0.36 mm read where the curves run steepest. The printed 2ω of 62.7° gives a half-field of 31.35°; with that distortion the chief ray lands 21.22 mm off axis, short of the 21.63 mm format corner.
+
+## Sources and References
+
+1. [Primary publication](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-H04-015611/11/ja), numerical example and figures cited above.
+2. [Manufacturer product and construction](https://global.canon/en/c-museum/product/ef293.html).
