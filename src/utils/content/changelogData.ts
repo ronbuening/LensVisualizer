@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-11-05",
+    type: "fix",
+    summary: "Fixed infinity focus in 40 lens models and the close-focus distances it had skewed",
+  },
+  {
+    date: "2026-11-05",
     type: "lens",
     summary:
       "Added the Canon EF 35mm f/2 and 100mm f/2 USM, Carl Zeiss Jena MC Pancolar 50mm f/1.8, Nikon AF-S 35mm f/1.8 G ED, and Voigtländer Nokton 35mm f/1.2 and Macro APO-Ultron 35mm f/2",
@@ -29,11 +34,6 @@ export const CHANGELOG: ChangelogEntry[] = [
     type: "lens",
     summary:
       "Added the Carl Zeiss Jena Cardinar 100mm f/4 from its factory data sheet, Fujifilm GF 32-90mm T3.5, Nikon AF-S VR 200mm f/2G and Zoom 700VR, SMC Pentax 18mm f/3.5 and SMC Takumar 6x7 600mm f/4, with a new Werra mount page",
-  },
-  {
-    date: "2026-11-03",
-    type: "fix",
-    summary: "Fixed infinity focus in 40 lens models and the close-focus distances it had skewed",
   },
   {
     date: "2026-11-03",
