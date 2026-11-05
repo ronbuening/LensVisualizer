@@ -17,12 +17,15 @@ elements match Example 1's four 1.43700/95.10 and three 1.49700/81.54 glasses.
 
 ### Rim fixes
 
-The inferred clear radii clipped the printed F5.76 on-axis bundle at wide open, in both focus states, so the stop no
-longer set the aperture: S12–S18 needed 21.3–22.4 mm against 20.8, and S24–S25 needed 12.6 and 12.4 against 12.0.
-Fig. 1, scaled from L11 = 39.1 mm, draws G3 (L31–L34) at about 23.5 mm and the L51/L52 focus doublet as wide as the
-stop, about 13.9 mm. S12–S18 are set to 23.5 and S24–S26 to 13.9. `clearap --Y 14.2` now reports no axial clip or
-chief-ray block at either focus state, and `audit:surface` passes. The MTF tables in the analysis were computed with
-the old rims.
+The inferred clear radii clipped the on-axis bundle at wide open, in both focus states, so the stop no longer set the
+aperture: G3 (S12–S18) sat at 20.8 mm and the front of the L51/L52 focus doublet at 12.0. Following the least-change
+rim rule, only the clipping surfaces rise, to the height `audit:aperture --raise` gives for the engine's iris, and each
+element keeps the square rim Fig. 1 draws: S12/S13 22.2, S14/S15 22.1, S16/S17 21.7, S18 21.3, S24/S25 12.5 and S26
+12.3 mm. Fig. 1, scaled from L11 = 39.1 mm, draws G3 at about 23.5 mm and the doublet as wide as the stop, about
+13.9 mm, so both stay at or inside the drawn size. `audit:aperture` now finds no surface below the on-axis ray,
+`audit:surface` passes and field coverage is 100 % at both stations. The nominal F5.76 cone is slightly wider than the
+iris the file derives (13.79 against 13.96 mm), so `clearap` at that cone still grazes S12–S16 and S24 by under
+0.2 mm. The MTF tables in the analysis were computed with the old rims.
 
 ### Labels
 
