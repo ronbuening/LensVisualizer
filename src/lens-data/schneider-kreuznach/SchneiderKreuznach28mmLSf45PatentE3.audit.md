@@ -13,3 +13,32 @@ Pupil and native reference results:5normal16-cell aimed bundles/1040independent 
 Infinity only. No numerical travel/conjugate follows from0.35m plots or GR2 motion. The private delivery's integration and compiledviewer receipts define software readiness; none changes the optical qualifications above. No deployment or public mutation is part of this audit.
 
 Compiled viewer:7apertures/77native-format design-reference fields,75converged; F22edge unconverged delta0.0507709114 at256, F32edge outside-modeled-field unavailable. All7mobileapertures and mixedcomparison checked with analysis hidden and visible source/identity/infinity/inference chips. Shared current-main focus=1 SUMMARY sentinel/working-f-number issue independently reproduced on existing Cinegon; normal focus0Infinity and finite-MTF guard pass. Static BREATHING still visible as baseline UI limitation, no finite law added. Complete regression receipts accompany final report; no claim every viewer field passed.
+
+## 2026-11-05 — Deployment check against JP 2006-300972 A
+
+### Transcription
+
+All 25 surfaces (R, d, nd, νd), the stop at surface 15, the four cemented interfaces, the S3 conic and A2–A10, and FB
+were checked against renders of pp. 8, 10 and 11. No mismatch. `K = A0 − 1 = 15.2359` is right for the repo's
+(1 + K) sag. EFL is 28.479 mm against the printed 28.5, F/4.60 as printed, BF 63.921 against 63.9. The 51.2° chief
+lands at 34.876 mm, the 645 corner. |Fgr1/F| 4.045 and Fgr2/F 1.889 reproduce the printed 4.05 and 1.89.
+
+### Product
+
+Phase One's 2021 flyer for the Schneider-Kreuznach 28mm LS f/4.5 gives 14 elements / 10 groups, f/4.5–32, 102.7°,
+0.35 m and a leaf shutter. Its 21 axial vertex lines fit Example 3 at 0.10 mm RMS, against 1.81 mm for Example 2 and
+2.81 mm for Example 1, so Example 2 is not a close alternative. The flyer marks L2's front face, where the asphere is,
+and draws L13 with a flat front, as Example 3's R23 = ∞. Its thin rear plate is not in the patent and is not modeled.
+
+### Rim fix
+
+S2's inferred 28 mm blocked the chief ray at the printed 51.2° half-field: `audit:field-coverage` reached 33.55 of
+34.85 mm. Following the least-change rim rule, only S2 rises, to 28.7 mm, the smallest value that clears the corner;
+field coverage is now 100 % and `audit:surface` passes. Fig. 7 draws S2 at about 31–33 mm and the flyer's S2/S1 ratio
+gives about 31.8, so the rim stays inside the drawn size. The S2-clipping results quoted above and in the analysis
+predate this change.
+
+### Maker
+
+`maker` and `name` used "Schneider Kreuznach"; the other 23 Schneider lenses use "Schneider-Kreuznach", so the lens
+would have opened a second maker page. Both now use the hyphen.

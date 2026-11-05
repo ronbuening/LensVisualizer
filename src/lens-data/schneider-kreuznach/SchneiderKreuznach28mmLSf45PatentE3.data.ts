@@ -26,8 +26,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   "schema": 2,
   "key": "schneider-kreuznach-28mm-ls-f45-mamiya-patent",
-  "maker": "Schneider Kreuznach",
-  "name": "SCHNEIDER KREUZNACH 28mm LS f/4.5",
+  "maker": "Schneider-Kreuznach",
+  "name": "SCHNEIDER-KREUZNACH 28mm LS f/4.5",
   "subtitle": "Mamiya-origin patent E3 reconstruction; probable later 28LS family; inferred apertures; infinity only; factory identity unproven",
   "catalog": {
     "lensMounts": [
@@ -243,7 +243,7 @@ const LENS_DATA = {
       "label": "2",
       "R": 42.0674,
       "d": 6.2028,
-      "sd": 28
+      "sd": 28.7
     },
     {
       "label": "3A",
