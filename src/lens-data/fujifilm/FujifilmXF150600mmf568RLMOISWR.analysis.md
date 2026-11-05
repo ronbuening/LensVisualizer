@@ -220,6 +220,5 @@ Source field angles and the actual native format reference/corner are separate. 
 
 ## Sources
 
-- [Controlling patent](https://patents.google.com/patent/JP2023020586A/en), original complete PDF, figures, tables and accepted source card in the private evidence archive.
+- [Controlling patent](https://patents.google.com/patent/JP2023020586A/en): JP 2023-020586 A, Numerical Example 1.
 - Original manufacturer section/specifications retained in the source archive; they support a qualified family association, not factory radii or physical clear caps.
-- [Private source transport index](https://drive.google.com/file/d/1y_dv-eCR6KJSeQqT9Ay5PXUyjikO3Z7S/view), all44parts and157source payloads verified on this consumer.
