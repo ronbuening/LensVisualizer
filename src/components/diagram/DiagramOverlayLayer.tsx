@@ -22,8 +22,10 @@ import ElementAnnotations from "./ElementAnnotations.js";
 import ImagePlaneOverlay from "./ImagePlaneOverlay.js";
 import LocaInsetWidget from "./LocaInsetWidget.js";
 import PetzvalSumBadge from "./PetzvalSumBadge.js";
+import ImageSectionBadge from "./ImageSectionBadge.js";
 import type { RuntimeLens, ElementShape, ChromaticRayFanSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { ImageSectionControl } from "./ImageSectionBadge.js";
 import type { DispersionQuality } from "../../optics/chromatic.js";
 import type { CardinalElements } from "../../optics/analysis.js";
 
@@ -64,6 +66,8 @@ interface DiagramOverlayLayerProps {
   flashFading: boolean;
   onLocaInsetClick?: () => void;
   onPetzvalBadgeClick?: () => void;
+  /** Viewed section of a cylindrical image surface; the chip shows only when this is given. */
+  imageSection?: ImageSectionControl;
 }
 
 const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
@@ -103,6 +107,7 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
   flashFading,
   onLocaInsetClick,
   onPetzvalBadgeClick,
+  imageSection,
 }: DiagramOverlayLayerProps) {
   const reducedMotion = usePrefersReducedMotion();
   const stopInnerBlockedSD = stopInnerBlockedSemiDiameter(L);
@@ -394,6 +399,9 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
       ) : null}
 
       <PetzvalSumBadge L={L} t={t} onClick={onPetzvalBadgeClick} />
+      {imageSection && L.imageSurface?.kind === "cylindrical" ? (
+        <ImageSectionBadge t={t} section={imageSection.section} onSelect={imageSection.select} />
+      ) : null}
 
       {flashVisible && (
         <rect

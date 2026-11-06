@@ -2,7 +2,7 @@
 import type { ElementData, SurfaceData } from "../../types/optics.js";
 import type { LensConstructionData } from "../types.js";
 import type { CanonicalElement, CanonicalLens, CanonicalProvenance } from "./canonical.js";
-import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
+import { expandAsphericCoefficients } from "../../types/asphericSchema.js";
 
 /** Display metadata preserves whether the source supplied a reference line or APD claim. */
 export function elementDisplayData(
@@ -72,6 +72,7 @@ export function canonicalConstructionData(lens: CanonicalLens): LensConstruction
     elements: lens.elements.map((element) => elementDisplayData(element, 0)),
     surfaces,
     rearPlates: lens.rearPlates,
+    imageSurface: lens.imageSurface,
     projection: lens.projection,
     opticalPath: lens.opticalPath,
     perspectiveControl: lens.perspectiveControl,
@@ -114,19 +115,7 @@ export function canonicalConstructionData(lens: CanonicalLens): LensConstruction
     varLabels: labels(lens.gaps),
     asph: Object.fromEntries(
       lens.surfaces.flatMap((surface) =>
-        surface.asphere
-          ? [
-              [
-                surface.label,
-                Object.fromEntries(
-                  ASPHERIC_COEFFICIENT_SCHEMA.flatMap(({ key, required }) => {
-                    const value = surface.asphere![key] ?? (required ? 0 : undefined);
-                    return value === undefined ? [] : [[key, value]];
-                  }),
-                ),
-              ],
-            ]
-          : [],
+        surface.asphere ? [[surface.label, expandAsphericCoefficients(surface.asphere)]] : [],
       ),
     ) as LensConstructionData["asph"],
     aberrationControl: control

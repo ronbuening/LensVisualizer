@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-11-06",
+    type: "feature",
+    summary:
+      "Added curved image surfaces: a lens with a curved sensor, film gate or focal sphere draws it, ends its rays on it, and measures every analysis there; cylindrical film gates are measured on the unrolled film, along the frame's long edge, short edge or corner",
+  },
+  {
+    date: "2026-11-06",
     type: "lens",
     summary:
       "Added the Minolta AF 135mm f/2.8, Olympus Zuiko 180mm f/2.8 and E.Zuiko 200mm f/4, Pentax Super-Takumar 50mm f/1.4 (8-element), and Voigtländer Dynaron 100mm f/4.5 and Skoparon 35mm f/3.5",

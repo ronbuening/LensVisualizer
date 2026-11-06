@@ -16,7 +16,7 @@ import { useMemo, useRef } from "react";
 import { resolveLensSystemData } from "../../utils/catalog/teleconverterCatalog.js";
 import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../../optics/optics.js";
 import { fNumberAtStopdown } from "../../optics/optics.js";
-import { buildLens } from "../../optics/buildLens.js";
+import { buildLens, withImageSurfaceSection } from "../../optics/buildLens.js";
 import type { CardinalElements } from "../../optics/analysis.js";
 import { computeCardinalElements, computeFocusEFL, createAnalysisRequest } from "../../optics/analysis.js";
 import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
@@ -34,7 +34,7 @@ import {
   thickOrZero as thick,
 } from "../../optics/optics.js";
 import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../../optics/fieldGeometry.js";
-import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
+import type { RuntimeLens, ElementShape, CoordinateTransforms, ImageSurfaceSection } from "../../types/optics.js";
 import type { LensMovementTransform, ResolvedLensMovement } from "../../optics/perspective.js";
 import type { FieldGeometryState } from "../../optics/fieldGeometry.js";
 
@@ -54,6 +54,8 @@ interface UseLensComputationParams {
   includeCardinalExtents?: boolean;
   /** Patent-positions mode: land on the nearest published station, wide open, aberration control neutral. */
   snapToPublishedStations?: boolean;
+  /** Frame direction a cylindrical image surface is drawn and analysed along; ignored with `runtimeLens`. */
+  imageSection?: ImageSurfaceSection;
 }
 
 interface VarReadout {
@@ -113,16 +115,18 @@ export default function useLensComputation({
   panelId,
   includeCardinalExtents = false,
   snapToPublishedStations = false,
+  imageSection = "long",
 }: UseLensComputationParams): UseLensComputationResult {
   /* ── Build lens from catalog ── */
   const buildResult = useMemo((): { L: RuntimeLens; error?: undefined } | { L?: undefined; error: unknown } => {
     if (runtimeLens) return { L: runtimeLens };
     try {
-      return { L: buildLens(resolveLensSystemData(lensKey, teleconverterKey)) };
+      const system = resolveLensSystemData(lensKey, teleconverterKey);
+      return { L: buildLens(withImageSurfaceSection(system, imageSection)) };
     } catch (e) {
       return { error: e };
     }
-  }, [lensKey, teleconverterKey, runtimeLens]);
+  }, [lensKey, teleconverterKey, runtimeLens, imageSection]);
 
   const L = buildResult.L;
   const buildError = buildResult.error;
@@ -253,6 +257,7 @@ export default function useLensComputation({
             scaleRatio,
             zExtent: coordinateZExtent,
             yExtent: movementViewportExtent?.y,
+            imageSurface: L.isFoldedOptics ? null : L.imageSurface,
           })
         : {
             sx: (_z: number) => 0,

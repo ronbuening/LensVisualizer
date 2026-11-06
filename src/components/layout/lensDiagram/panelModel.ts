@@ -12,6 +12,7 @@ import type {
 } from "../../../types/optics.js";
 import type { AnalysisTabId, OffAxisMode } from "../../../types/state.js";
 import type { Theme } from "../../../types/theme.js";
+import type { ImageSectionControl } from "../../diagram/ImageSectionBadge.js";
 import type { ChromaticRaySegment } from "../../hooks/useChromaticRays.js";
 import type { RaySegment } from "../../hooks/useOnAxisRays.js";
 
@@ -124,6 +125,8 @@ export interface PanelDisplayFlagsModel {
 export interface PanelOverlaysModel {
   showChromaticOverlay: boolean;
   showPetzvalOverlay: boolean;
+  /** The frame direction a cylindrical image surface is viewed along, and its setter; absent in comparison panes. */
+  imageSection?: ImageSectionControl;
   showAbbeDiagram: boolean;
   closeChromaticOverlay: () => void;
   closePetzvalOverlay: () => void;

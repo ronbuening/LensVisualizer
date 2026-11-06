@@ -9,6 +9,7 @@ import {
   RIMMER_MAX_UNRESOLVED_SHARE,
   computeVignettingCurve,
   computeVignettingField,
+  exitPupilZ,
   referenceSphere,
   referredDirection,
   vignettingStopLattice,
@@ -221,6 +222,104 @@ describe("vignettingStopLattice", () => {
 });
 
 describe("computeVignettingCurve", () => {
+  it("keeps axial illumination and raises off-axis illumination on a sphere centred on the exit pupil", () => {
+    // A slow, thin element makes the pupil's finite size and aberration negligible. At fixed pupil distance a
+    // concentric sensor sees its projected pupil area fall as cos(theta), rather than the flat sensor's cos^4(theta).
+    const surfaces: SurfaceData[] = [
+      { label: "STO", R: 1e15, nd: 1, sd: 3, d: 0.001, elemId: 0 },
+      { label: "1", R: 100, nd: 1.5168, sd: 1, d: 0.05, elemId: 1 },
+      { label: "2", R: -100, nd: 1, sd: 1, d: 96.7, elemId: 0 },
+    ];
+    const flat = lensWith("test-vignetting-flat-sensor", surfaces);
+    const fields = { ...computeAnalysisFieldGeometryAtState(0, 0, flat, 0), halfFieldDeg: 12 };
+    const options = {
+      currentEPSD: 0.25,
+      currentPhysStopSD: 0.25,
+      fieldGeometry: fields,
+      sampling: { vignettingFieldSampleCount: 3 },
+    };
+    const flatRequest = analysisRequestAt(flat, options);
+    const pupilZ = exitPupilZ(flatRequest, fields)!;
+    const R = pupilZ - flatRequest.preparedGeometry.imgZ;
+    const curved = lensWith("test-vignetting-concentric-sensor", surfaces, { imageSurface: { R, sd: 30 } });
+    const curvedRequest = analysisRequestAt(curved, options);
+    const flatAxis = computeVignettingField(flatRequest, 0);
+    const curvedAxis = computeVignettingField(curvedRequest, 0);
+    expect(curvedAxis.rimmerSum).not.toBeNull();
+    expect(curvedAxis.rimmerSum!).toBeCloseTo(flatAxis.rimmerSum!, 14);
+    const flatCurve = computeVignettingCurve(flatRequest);
+    const curvedCurve = computeVignettingCurve(curvedRequest);
+    expect(curvedCurve.available).toBe(true);
+    expect(curvedCurve.samples[0].relativeIllumination).toBe(1);
+    curvedCurve.samples.slice(1).forEach((sample, i) => {
+      expect(sample.relativeIlluminationReason).toBeNull();
+      expect(sample.relativeIllumination!).toBeGreaterThan(flatCurve.samples[i + 1].relativeIllumination!);
+      expect(sample.relativeIllumination!).toBeCloseTo(Math.cos(radians(sample.fieldAngleDeg)), 3);
+    });
+
+    const geometry = computeOffAxisFieldGeometry(curvedRequest.preparedGeometry, 1, fields) as OffAxisFieldGeometry;
+    const launch = prepareAimedStopLattice(curvedRequest, 16, geometry)!;
+    const sphere = referenceSphere(curvedRequest.preparedGeometry, launch, geometry, pupilZ)!;
+    expect(sphere.center[2]).toBeLessThan(geometry.imagePlaneZ);
+    expect(Math.hypot(sphere.center[0], sphere.center[1], sphere.center[2] - pupilZ)).toBeCloseTo(-R, 10);
+    const normal = curved.imageSurface!.normalAt(sphere.center[0], sphere.center[1]);
+    expect(sphere.tangentFrame!.t1).toEqual([1, 0, 0]);
+    expect(sphere.tangentFrame!.t2[1]).toBeCloseTo(normal[2], 14);
+    expect(sphere.tangentFrame!.t2[2]).toBeCloseTo(-normal[1], 14);
+    const field = computeVignettingField(curvedRequest, 1, 16, fields);
+    const trace = prepareAimedPupilTrace(curvedRequest.preparedGeometry, launch);
+    // Pupil aberration moves this chief's pupil-plane crossing slightly away from the near-axis exit pupil.
+    const chief = trace.engine(launch.chief as Parameters<typeof trace.engine>[0]);
+    const toPupil = (pupilZ - chief.terminalPoint[2]) / chief.terminalDirection[2];
+    expect(sphere.radius).toBeCloseTo(
+      Math.hypot(
+        chief.terminalPoint[0] + toPupil * chief.terminalDirection[0] - sphere.center[0],
+        chief.terminalPoint[1] + toPupil * chief.terminalDirection[1] - sphere.center[1],
+        pupilZ - sphere.center[2],
+      ),
+      12,
+    );
+    for (const cell of field.cells.filter((cell) => cell.transmitted)) {
+      const ray = trace.engine(cell.ray as Parameters<typeof trace.engine>[0]);
+      const unit = referredDirection(sphere, ray.terminalPoint, ray.terminalDirection)!;
+      expect(cell.referredDirectionCosines![0]).toBeCloseTo(unit[0], 12);
+      expect(cell.referredDirectionCosines![1]).toBeCloseTo(unit[1] * normal[2] - unit[2] * normal[1], 12);
+    }
+    const flatGeometry = computeOffAxisFieldGeometry(flatRequest.preparedGeometry, 1, fields) as OffAxisFieldGeometry;
+    expect(
+      referenceSphere(
+        flatRequest.preparedGeometry,
+        prepareAimedStopLattice(flatRequest, 16, flatGeometry)!,
+        flatGeometry,
+        pupilZ,
+      ),
+    ).not.toHaveProperty("tangentFrame");
+  });
+
+  it.each([-1e7, 1e7])("approaches flat relative illumination within 1e-6 at image radius %s mm", (R) => {
+    const flat = stopBehindLens();
+    const curved = build({
+      ...constructionFixtureData(flat),
+      key: "test-vignetting-nearly-flat-sensor",
+      imageSurface: { R, sd: 30 },
+    });
+    const options = {
+      currentEPSD: 0.25,
+      currentPhysStopSD: 0.25,
+      fieldGeometry: { ...computeAnalysisFieldGeometryAtState(0, 0, flat, 0), halfFieldDeg: 12 },
+      sampling: { vignettingPupilSampleCount: 32, vignettingFieldSampleCount: 3 },
+    };
+    const flatCurve = computeVignettingCurve(analysisRequestAt(flat, options));
+    const curvedCurve = computeVignettingCurve(analysisRequestAt(curved, options));
+    expect(curvedCurve.available).toBe(true);
+    curvedCurve.samples.forEach((sample, i) => {
+      expect(sample.relativeIlluminationReason).toBeNull();
+      expect(flatCurve.samples[i].relativeIlluminationReason).toBeNull();
+      expect(Math.abs(sample.relativeIllumination! - flatCurve.samples[i].relativeIllumination!)).toBeLessThan(1e-6);
+      expect(sample.unvignettedFraction).toBe(flatCurve.samples[i].unvignettedFraction);
+    });
+  });
+
   it("reads exactly 1 at every field no aperture vignettes", () => {
     const L = stopBehindLens();
     const curve = computeVignettingCurve(analysisRequestAt(L, { currentEPSD: 3, currentPhysStopSD: 2 }));

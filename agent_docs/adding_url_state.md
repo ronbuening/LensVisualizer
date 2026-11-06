@@ -30,7 +30,7 @@ Every new field touches exactly these three places. Using `myOverlayOpen` → pa
    `parseBooleanParam(params, "myo")` and assign only when not `undefined`; in `buildLensViewQuery()` destructure the
    option, `params.set("myo", "1")` when true, and add it to the `usesV1ViewState` disjunction; in
    `buildLensViewQueryFromState()` read `state.panels.myOverlayOpen`. Pick a short, unused param key — existing keys:
-   `el`, `a_el`, `b_el`, `gm`, `chr`, `ptz`, `ad`, `tab`, `mv`, `cfg`, `tc`, `a_tc`, `b_tc`, `pp`.
+   `el`, `a_el`, `b_el`, `gm`, `chr`, `ptz`, `ad`, `tab`, `mv`, `cfg`, `tc`, `a_tc`, `b_tc`, `pp`, `ims`.
 
 ### Custom-Encoded Fields
 

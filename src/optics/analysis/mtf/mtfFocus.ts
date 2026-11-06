@@ -3,7 +3,7 @@
  *
  * Source prescriptions can keep a paraxial or rounded image distance that sits well off the
  * design's best focus (e.g. older patents). Re-projecting the already-traced axial bundle onto
- * shifted planes needs no retrace, so the offset is cheap to report as a diagnostic and to apply
+ * translated image surfaces needs no retrace, so the offset is cheap to report as a diagnostic and to apply
  * as an optional single refocus for all fields, like a camera focused at the image center.
  */
 
@@ -16,6 +16,7 @@ import type { PreparedGeometry } from "../../types.js";
 import { MTF_IMAGE_PLANE_DEPTHS } from "./mtfConstants.js";
 import { combineOtfs, geometricOtf, otfMagnitude } from "./mtfMath.js";
 import type { MtfSpot } from "./mtfMath.js";
+import { mtfCurvedLanding } from "./mtfTracing.js";
 import type { MtfBundle } from "./mtfTracing.js";
 
 /** One wavelength's traced axial bundle and its incident weight. */
@@ -75,16 +76,17 @@ const MAX_SEARCH_SHIFT_MM = 10;
 const REACH_SAMPLES = 32;
 
 /**
- * Axial position of the rearmost point of the last surface inside its clear aperture.
+ * Nearest image vertex that clears the last surface inside its clear aperture.
  *
  * A ray cannot land on a plane it has already passed, so no image plane may sit in front of this
- * position: some prescriptions leave only hundredths of a millimetre between the last surface and
- * the image.
+ * position, with curved image sag also cleared over the axial bundle: some prescriptions leave
+ * only hundredths of a millimetre between the last surface and the image.
  *
  * @param state - prepared optical state
+ * @param bundles - axial rays bounding the curved image footprint; otherwise use the image drawing extent
  * @returns nearest usable image-plane position in mm, never behind the authored plane
  */
-export function mtfNearestImagePlaneZ(state: PreparedGeometry): number {
+export function mtfNearestImagePlaneZ(state: PreparedGeometry, bundles?: readonly MtfFocusBundle[]): number {
   const last = state.surfaces.at(-1);
   if (!last) return -Infinity;
   let sag = 0;
@@ -92,7 +94,23 @@ export function mtfNearestImagePlaneZ(state: PreparedGeometry): number {
     const value = last.profile.sag((last.sd * i) / REACH_SAMPLES);
     if (Number.isFinite(value)) sag = Math.max(sag, value);
   }
-  return Math.min(last.z + sag, state.imgZ);
+  const shape = state.lens.imageSurface;
+  if (shape === null) return Math.min(last.z + sag, state.imgZ);
+  /* The radial distance bounds a cylinder's curved coordinate too, so the profile's sag over it is a safe bound. */
+  let radius = bundles ? 0 : shape.semiDiameter;
+  for (const { bundle } of bundles ?? [])
+    for (const ray of bundle.rays) {
+      const p = ray.trace.terminalPoint;
+      const [x, y] = shape.fromImageCoordinates(ray.x, ray.y);
+      radius = Math.max(radius, Math.hypot(p[0], p[1]), Math.hypot(x, y));
+    }
+  // Keep even the most objectward image sag behind the last cap's rearmost point.
+  let imageSag = 0;
+  for (let i = 1; i <= REACH_SAMPLES; i++) {
+    const value = shape.profile.sag((radius * i) / REACH_SAMPLES);
+    if (Number.isFinite(value)) imageSag = Math.min(imageSag, value);
+  }
+  return Math.min(last.z + sag - imageSag, state.imgZ);
 }
 
 /**
@@ -115,15 +133,18 @@ export function findAxialBestFocus(
   const score = (shift: number) => {
     const reference = landingPoints(bundles[0].bundle, imagePlaneZ + shift);
     const center = centroid(reference);
+    let missingLanding = false;
     const otfs = bundles.map(({ bundle, weight }, i) => {
       const points = (i === 0 ? reference : landingPoints(bundle, imagePlaneZ + shift)).map((p) => ({
         x: p.x - center.x,
         y: p.y - center.y,
         weight: p.weight,
       }));
+      if (bundle.imageSurface && points.length !== bundle.rays.length) missingLanding = true;
       const transmitted = points.reduce((sum, p) => sum + p.weight, 0);
       return { otf: geometricOtf(points, scored, "x"), weight: weight * transmitted };
     });
+    if (missingLanding) return -Infinity;
     const values = otfMagnitude(combineOtfs(otfs));
     return values.reduce((sum, v) => sum + v, 0) / values.length;
   };
@@ -170,8 +191,23 @@ export function findAxialBestFocus(
     : { shiftMm: 0, designScore, bestScore: designScore };
 }
 
-/** Landing points of a traced bundle on a shifted axial plane. */
+/**
+ * Re-land stored rays on an axial image surface translated to a new vertex, without retracing.
+ * @param bundle - traced rays and optional curved image shape
+ * @param planeZ - translated vertex position in mm
+ * @returns projected x/y points, or an empty array if any curved landing is missing or behind its ray
+ */
 export function landingPoints(bundle: MtfBundle, planeZ: number): MtfSpot[] {
+  const shape = bundle.imageSurface ?? null;
+  if (shape !== null) {
+    const points: MtfSpot[] = [];
+    for (const ray of bundle.rays) {
+      const landing = mtfCurvedLanding(shape, ray.trace, planeZ);
+      if (!landing) return [];
+      points.push({ x: landing[0], y: landing[1], weight: ray.weight });
+    }
+    return points;
+  }
   return bundle.rays.map((ray) => {
     const { terminalPoint: p, terminalDirection: d } = ray.trace;
     const transfer = (planeZ - p[2]) / d[2];
@@ -211,7 +247,15 @@ function searchRange(bundles: readonly MtfFocusBundle[], imagePlaneZ: number): {
       // Axial rays are meridional: the path to the axis crossing is radius over the inward speed.
       const inward = -(p[0] * d[0] + p[1] * d[1]) / radius;
       if (!(Math.abs(inward) > 1e-9)) continue;
-      const offset = p[2] + (radius / inward) * d[2] - imagePlaneZ;
+      const shape = bundle.imageSurface ?? null;
+      // At an axial crossing sag is zero; a skew ray instead uses the sag at its closest approach.
+      const offset =
+        shape === null
+          ? p[2] + (radius / inward) * d[2] - imagePlaneZ
+          : p[2] +
+            (radius / inward) * d[2] -
+            shape.sagAt(p[0] + (radius / inward) * d[0], p[1] + (radius / inward) * d[1]) -
+            imagePlaneZ;
       if (Number.isFinite(offset)) crossings.push({ offset, weight: weight * ray.weight });
     }
   crossings.sort((a, b) => a.offset - b.offset);

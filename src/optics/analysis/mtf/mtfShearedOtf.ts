@@ -14,10 +14,10 @@
  * the launch plane for a bounding-sphere field), so vignetting shape and throughput carry in, cell
  * edges stay sharp and nothing can fold. Amplitude √weight and landing error are interpolated
  * linearly along the lattice line, which integrates the overlap of each row exactly. The shear is
- * fixed in direction cosine, not in lattice cells: each pair opens by the cells that λν spans at its
- * own centre, because the lattice maps onto the exit pupil unevenly at a wide-angle corner (one lag
- * for the whole pupil read a 43° corner 0.005 high). No optical path, reference
- * sphere or validity gate is involved, and the estimate tends to the geometric OTF as ν → 0. What
+ * fixed in direction cosine along the image axes, not in lattice cells: each pair opens by the cells
+ * that λν spans at its own centre, because the lattice maps onto the exit pupil unevenly at a
+ * wide-angle corner (one lag for the whole pupil read a 43° corner 0.005 high). No optical path,
+ * reference sphere or validity gate is involved, and the estimate tends to the geometric OTF as ν → 0. What
  * limits it is sampling: the landing error must change slowly from one lattice cell to the next,
  * which grid refinement checks. The per-pair lag is a first-order correction: the five rays stay
  * evenly spaced in cells and the pair carries no Jacobian, and a finer grid does not remove what
@@ -32,8 +32,10 @@
  * arc of rays transmits beside the main beam, and `straddling` reports how much of the overlap
  * that is.
  */
+import { dot } from "../../math/vector.js";
+import type { Vec3 } from "../../types.js";
 import type { ComplexOtf, MtfSpot } from "./mtfMath.js";
-import type { MtfBundle } from "./mtfTracing.js";
+import type { MtfBundle, MtfPupilRay } from "./mtfTracing.js";
 
 export interface MtfShearedOtf {
   sagittal: ComplexOtf;
@@ -61,11 +63,25 @@ interface ShearLattice {
   amplitude: Float64Array;
   /** Landing error along the shear axis in mm; meaningful where amplitude is positive. */
   error: Float64Array;
-  /** Lattice cells that one unit of image-space direction cosine spans at each cell, along the shear. */
+  /** Lattice cells per unit of index-scaled direction cosine along the reference image tangent. */
   cellsPerCosine: Float64Array;
   /** First and last transmitted cell of each line, in padded indices; first > last when the line is empty. */
   first: Int32Array;
   last: Int32Array;
+}
+
+/**
+ * Project a pupil ray onto an image-coordinate tangent, keeping the flat-plane arithmetic.
+ *
+ * @param ray - transmitted pupil sample
+ * @param component - image axis, 0 for x and 1 for y
+ * @param tangents - surface derivatives at the OTF reference in image coordinates; null for a flat image
+ * @returns image-axis direction cosine scaled by the final medium's index (NA units)
+ */
+export function mtfImageAxisCosine(ray: MtfPupilRay, component: 0 | 1, tangents: readonly [Vec3, Vec3] | null): number {
+  return tangents === null
+    ? ray.trace.finalMedium * ray.trace.terminalDirection[component]
+    : ray.trace.finalMedium * dot(ray.trace.terminalDirection, tangents[component]);
 }
 
 /**
@@ -78,12 +94,13 @@ interface ShearLattice {
  * @returns complex OTF and aberration-free response per axis
  */
 export function shearedOtf(
-  bundle: Pick<MtfBundle, "rays"> & { columns?: number; mirrored?: boolean },
+  bundle: Pick<MtfBundle, "rays" | "imageSurface"> & { columns?: number; mirrored?: boolean },
   reference: MtfSpot,
   wavelengthMm: number,
   frequencies: readonly number[],
 ): MtfShearedOtf {
   const rays = bundle.rays;
+  const tangents = bundle.imageSurface?.imageTangentsAt(reference.x, reference.y) ?? null;
   let columns = bundle.columns ?? 1,
     rows = 1,
     energy = 0;
@@ -92,17 +109,17 @@ export function shearedOtf(
     rows = Math.max(rows, ray.row + 1);
     energy += ray.weight;
   }
-  // Image-space direction cosines, scaled by the image-space index, span the pupil in NA units.
-  const slopeX = latticeCosineSlope(rays, "column", 0);
-  const slopeY = latticeCosineSlope(rays, "row", 1);
+  // Image-coordinate tangents at the reference set the pupil's NA scale for frequencies on that surface.
+  const slopeX = latticeCosineSlope(rays, "column", 0, tangents);
+  const slopeY = latticeCosineSlope(rays, "row", 1, tangents);
   // A beam one cell thin on an axis has no slope of its own there. Lattice cells are square, so the other axis's
   // scale stands in: the pair then closes within one cell, as a slit that thin does, instead of never shearing.
   const stepX = slopeX > 0 ? slopeX : slopeY;
   const stepY = slopeY > 0 ? slopeY : slopeX;
   // A meridional field of an x-symmetric lens is traced as one half pupil and its mirror image about the grid's centre.
   const half = bundle.mirrored && bundle.columns === columns && columns % 2 === 0 ? columns / 2 : 0;
-  const acrossRows = shearLattice(rays, "x", rows, columns, stepX);
-  const acrossColumns = shearLattice(rays, "y", columns, rows, stepY);
+  const acrossRows = shearLattice(rays, "x", rows, columns, stepX, tangents);
+  const acrossColumns = shearLattice(rays, "y", columns, rows, stepY, tangents);
   // Mirrored cells contribute complex conjugates along x and equal terms along y.
   const sagittal = shearCut(acrossRows, energy, wavelengthMm, frequencies, reference.x, 0, half, half > 0);
   const tangential = shearCut(acrossColumns, energy, wavelengthMm, frequencies, reference.y, half, 0, false);
@@ -125,6 +142,7 @@ const MIN_PITCH_SHARE = 1 / 8;
  * @param lines - lattice lines across the shear
  * @param cells - lattice cells along the shear
  * @param slope - fitted direction cosine per lattice cell along the shear
+ * @param tangents - image-coordinate surface derivatives at the OTF reference; null for a flat image
  * @returns padded amplitude, landing-error and local-scale lattice
  */
 function shearLattice(
@@ -133,6 +151,7 @@ function shearLattice(
   lines: number,
   cells: number,
   slope: number,
+  tangents: readonly [Vec3, Vec3] | null,
 ): ShearLattice {
   const stride = cells + 2;
   const amplitude = new Float64Array(lines * stride);
@@ -146,7 +165,7 @@ function shearLattice(
     const cell = (axis === "x" ? ray.column : ray.row) + 1;
     amplitude[line * stride + cell] = Math.sqrt(ray.weight);
     error[line * stride + cell] = ray[axis];
-    cosine[line * stride + cell] = ray.trace.finalMedium * ray.trace.terminalDirection[component];
+    cosine[line * stride + cell] = mtfImageAxisCosine(ray, component, tangents);
     first[line] = Math.min(first[line], cell);
     last[line] = Math.max(last[line], cell);
   }
@@ -278,21 +297,31 @@ function shearCut(
 }
 
 /**
- * Flux-weighted least-squares slope of an image-space direction cosine against a lattice index.
+ * Flux-weighted least-squares slope of an image-axis direction cosine against a lattice index.
  *
  * @param rays - transmitted pupil samples
  * @param index - lattice index along the axis
  * @param component - direction-cosine component, 0 for x and 1 for y
+ * @param tangents - image-coordinate surface derivatives at the OTF reference; null for a flat image
  * @returns cosine per lattice cell, 0 when the index does not vary
  */
-export function latticeCosineSlope(rays: MtfBundle["rays"], index: "column" | "row", component: 0 | 1): number {
+export function latticeCosineSlope(
+  rays: MtfBundle["rays"],
+  index: "column" | "row",
+  component: 0 | 1,
+  tangents: readonly [Vec3, Vec3] | null = null,
+): number {
   let weight = 0,
     meanIndex = 0,
     meanCosine = 0;
   for (const ray of rays) {
     weight += ray.weight;
     meanIndex += ray.weight * ray[index];
-    meanCosine += ray.weight * ray.trace.finalMedium * ray.trace.terminalDirection[component];
+    // Keep the flat branch's multiplication order: weighting an already-scaled cosine can round differently.
+    meanCosine +=
+      tangents === null
+        ? ray.weight * ray.trace.finalMedium * ray.trace.terminalDirection[component]
+        : ray.weight * mtfImageAxisCosine(ray, component, tangents);
   }
   if (!(weight > 0)) return 0;
   meanIndex /= weight;
@@ -301,7 +330,7 @@ export function latticeCosineSlope(rays: MtfBundle["rays"], index: "column" | "r
     variance = 0;
   for (const ray of rays) {
     const offset = ray[index] - meanIndex;
-    covariance += ray.weight * offset * (ray.trace.finalMedium * ray.trace.terminalDirection[component] - meanCosine);
+    covariance += ray.weight * offset * (mtfImageAxisCosine(ray, component, tangents) - meanCosine);
     variance += ray.weight * offset * offset;
   }
   return variance > 0 ? Math.abs(covariance / variance) : 0;

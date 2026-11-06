@@ -144,6 +144,7 @@ export default function LensDiagramPanel({
     glassMapOpen,
     chromaticOverlayOpen,
     petzvalOverlayOpen,
+    imageSection,
     showEffectiveFocalLength,
     showEffectiveAperture,
     aberrationsExpanded,
@@ -247,6 +248,7 @@ export default function LensDiagramPanel({
     panelId,
     includeCardinalExtents: ENABLE_CARDINAL_ELEMENTS && (showCardinals || showCardinalDimensions),
     snapToPublishedStations: patentPositionsActive,
+    imageSection: lens.comparing ? "long" : imageSection,
   });
   const resolvedMovement = movement ?? { shiftMm: 0, tiltDeg: 0, active: false };
   const foldedHitOrderLabels = useMemo(
@@ -274,13 +276,17 @@ export default function LensDiagramPanel({
     }
   }, [L, dispatch, selectedElementPanelId, sel]);
 
-  const { onGlassMapOpenChange, onChromaticOverlayChange, onPetzvalOverlayChange } = adapters;
+  const { onGlassMapOpenChange, onChromaticOverlayChange, onPetzvalOverlayChange, onImageSectionChange } = adapters;
   const openAbbeDiagram = useCallback(() => onGlassMapOpenChange(true), [onGlassMapOpenChange]);
   const closeAbbeDiagram = useCallback(() => onGlassMapOpenChange(false), [onGlassMapOpenChange]);
   const openChromaticOverlay = useCallback(() => onChromaticOverlayChange(true), [onChromaticOverlayChange]);
   const closeChromaticOverlay = useCallback(() => onChromaticOverlayChange(false), [onChromaticOverlayChange]);
   const openPetzvalOverlay = useCallback(() => onPetzvalOverlayChange(true), [onPetzvalOverlayChange]);
   const closePetzvalOverlay = useCallback(() => onPetzvalOverlayChange(false), [onPetzvalOverlayChange]);
+  const imageSectionControl = useMemo(
+    () => ({ section: imageSection, select: onImageSectionChange }),
+    [imageSection, onImageSectionChange],
+  );
   const panelOverlays = useMemo(
     () => ({
       ...overlays,
@@ -293,6 +299,7 @@ export default function LensDiagramPanel({
       showPetzvalOverlay: petzvalOverlayOpen,
       openPetzvalOverlay,
       closePetzvalOverlay,
+      imageSection: lens.comparing ? undefined : imageSectionControl,
     }),
     [
       overlays,
@@ -305,6 +312,8 @@ export default function LensDiagramPanel({
       closeChromaticOverlay,
       openPetzvalOverlay,
       closePetzvalOverlay,
+      lens.comparing,
+      imageSectionControl,
     ],
   );
 
