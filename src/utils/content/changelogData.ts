@@ -25,6 +25,12 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Canon RF 85mm f/1.4 L VCM and EF-S 60mm f/2.8 Macro, Pentax DA 14mm f/2.8, M 20mm f/4 and M 28mm f/2.8, and Sigma 500mm f/5.6 Sports",
   },
   {
+    date: "2026-11-06",
+    type: "lens",
+    summary:
+      "Added the Minolta AF 135mm f/2.8, Olympus Zuiko 180mm f/2.8 and E.Zuiko 200mm f/4, Pentax Super-Takumar 50mm f/1.4 (8-element), and Voigtländer Dynaron 100mm f/4.5 and Skoparon 35mm f/3.5",
+  },
+  {
     date: "2026-11-05",
     type: "lens",
     summary:
