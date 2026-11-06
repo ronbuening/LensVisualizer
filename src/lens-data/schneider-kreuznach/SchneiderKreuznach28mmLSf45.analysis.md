@@ -30,93 +30,93 @@ Each focal length below is for the element alone in air, from its two radii, thi
 
 ### L1 — Negative Meniscus
 
-nd = 1.83481, νd = 42.7. Glass: Unmatched. f = −135.8976 mm.
+nd = 1.83481, νd = 42.7. Glass: Ohara S-LAH55V equivalent. f = −135.8976 mm.
 
 Front negative meniscus, convex to the object so that the steep incoming field meets it near minimum deviation (¶0010). It takes the first share of GR1's divergence.
 
 ### L2 — Negative Meniscus (Aspheric)
 
-nd = 1.43875, νd = 90.9. Glass: Unmatched. f = −70.9272 mm.
+nd = 1.43875, νd = 90.9. Glass: unmatched (no catalog glass at 1.43875 / 90.9). f = −70.9272 mm.
 
 Second negative meniscus. Its convex object face carries the lens's only asphere, placed where the beams of different field angles are still narrow and well separated (¶0012). Its νd 90.9 glass is the Vn > 62 front negative of condition (5) (¶0052).
 
 ### L3 — Negative Meniscus
 
-nd = 1.83481, νd = 42.7. Glass: Unmatched. f = −78.3741 mm.
+nd = 1.83481, νd = 42.7. Glass: Ohara S-LAH55V equivalent. f = −78.3741 mm.
 
 Third negative meniscus, convex to the object, continuing the front divergence. Its inferred rear clear radius (15.45 mm) is limited by the air gap to L4.
 
 ### L4 — Negative Meniscus
 
-nd = 1.80809, νd = 22.6. Glass: Unmatched. f = −124.3659 mm.
+nd = 1.80809, νd = 22.6. Glass: Ohara S-NPH1 equivalent. f = −124.3659 mm.
 
 Fourth negative meniscus, turned concave to the object (¶0029); the patent notes that this orientation also helps correct lateral color (¶0013).
 
 ### L5 — Biconvex Positive
 
-nd = 1.76182, νd = 26.5. Glass: Unmatched. f = +22.8209 mm.
+nd = 1.76182, νd = 26.5. Glass: Ohara S-TIH14 equivalent. f = +22.8209 mm.
 
 Positive member of the cemented pair that ends GR1. The pair is positive overall, f = +46.86 mm.
 
 ### L6 — Negative Meniscus
 
-nd = 1.80518, νd = 25.4. Glass: Unmatched. f = −43.1344 mm.
+nd = 1.80518, νd = 25.4. Glass: Ohara S-TIH6 equivalent. f = −43.1344 mm.
 
 Negative meniscus cemented to L5. Their shared surface 10 is concave to the object and has negative power, the cemented-surface form the patent uses to correct lateral color (¶0009, ¶0013).
 
 ### L7 — Positive Meniscus
 
-nd = 1.56732, νd = 42.7. Glass: Unmatched. f = +44.1484 mm.
+nd = 1.56732, νd = 42.7. Glass: Ohara S-TIL26 equivalent. f = +44.1484 mm.
 
 Positive front member of the smaller cemented pair that opens GR2 ahead of the stop.
 
 ### L8 — Negative Meniscus
 
-nd = 1.78800, νd = 47.4. Glass: Unmatched. f = −23.6222 mm.
+nd = 1.78800, νd = 47.4. Glass: Ohara S-LAH64 equivalent. f = −23.6222 mm.
 
 Negative member of that pair, sharing surface 13; the pair is negative overall, f = −60.56 mm.
 
 ### L9 — Biconvex Positive
 
-nd = 1.48749, νd = 70.1. Glass: Unmatched. f = +31.4880 mm.
+nd = 1.48749, νd = 70.1. Glass: Ohara S-FSL5 equivalent. f = +31.4880 mm.
 
 Positive singlet directly behind the stop, one of the Vp > 62 positives of condition (4) (¶0052).
 
 ### L10 — Biconcave Negative
 
-nd = 1.83481, νd = 42.7. Glass: Unmatched. f = −17.2749 mm.
+nd = 1.83481, νd = 42.7. Glass: Ohara S-LAH55V equivalent. f = −17.2749 mm.
 
 High-index negative member of the cemented pair behind L9.
 
 ### L11 — Biconvex Positive
 
-nd = 1.57099, νd = 50.7. Glass: Unmatched. f = +25.0994 mm.
+nd = 1.57099, νd = 50.7. Glass: Ohara S-BAL2 equivalent. f = +25.0994 mm.
 
 Positive member of that pair, sharing surface 19; the pair is weakly negative, f = −135.40 mm.
 
 ### L12 — Positive Meniscus
 
-nd = 1.43875, νd = 90.9. Glass: Unmatched. f = +78.5499 mm.
+nd = 1.43875, νd = 90.9. Glass: unmatched (no catalog glass at 1.43875 / 90.9). f = +78.5499 mm.
 
 Rear positive meniscus with a weakly curved front face; its νd 90.9 glass gives Example 3's second Vp value (¶0052).
 
 ### L13 — Plano-Convex Positive
 
-nd = 1.48749, νd = 70.1. Glass: Unmatched. f = +42.2364 mm.
+nd = 1.48749, νd = 70.1. Glass: Ohara S-FSL5 equivalent. f = +42.2364 mm.
 
 Plano-convex positive member of the final pair; its flat front is surface 23. Like L9, it uses νd 70.1 glass, meeting Vp > 62.
 
 ### L14 — Negative Meniscus
 
-nd = 1.83481, νd = 42.7. Glass: Unmatched. f = −36.3125 mm.
+nd = 1.83481, νd = 42.7. Glass: Ohara S-LAH55V equivalent. f = −36.3125 mm.
 
 Negative member of the final pair, sharing surface 24; the pair is weakly negative, f = −239.01 mm.
 
 ## Glass Identification and Spectral Scope
 
-The patent defines N(I) as the index after each surface at the **d line** and V(I) as its Abbe number (¶0032). It prints no wavelength value, glass names or partial-dispersion data, so the model uses the printed nd/νd exactly, with the conventional d-line wavelength of 587.5618 nm, which the patent does not state.
+The patent defines N(I) as the index after each surface at the **d line** and V(I) as its Abbe number (¶0032). It prints no wavelength value, glass names or partial-dispersion data, so the model uses the printed nd/νd exactly, with the conventional d-line wavelength of 587.5618 nm, which the patent does not state. Twelve of the fourteen pairs coincide with Ohara catalog glasses within 0.16 in νd, and the model names them as coordinate equivalents (supplier unconfirmed), so their color follows catalog dispersion. L2 and L12 (1.43875 / 90.9) match no catalog glass: 1.43875 is the S-FPL53 index, but that glass has νd 94.9, so they stay unmatched and are traced from nd and νd alone.
 
-Conditions (4) and (5) govern the color correction (¶0022–0024): at least one positive lens behind the stop with Vp > 62, and at least one of the four front negative menisci with Vn > 62. The patent describes such glasses as having high partial dispersion, so that blue rays are deflected more strongly and lateral color is corrected efficiently. Example 3 meets both with L9 and L13 (νd 70.1) and L12 (νd 90.9) behind the stop, and L2 (νd 90.9) in front (¶0052). Because the model has only nd and νd, its color curves are Abbe-number estimates that cannot show that partial-dispersion effect; they are not measured data.
+Conditions (4) and (5) govern the color correction (¶0022–0024): at least one positive lens behind the stop with Vp > 62, and at least one of the four front negative menisci with Vn > 62. The patent describes such glasses as having high partial dispersion, so that blue rays are deflected more strongly and lateral color is corrected efficiently. Example 3 meets both with L9 and L13 (νd 70.1) and L12 (νd 90.9) behind the stop, and L2 (νd 90.9) in front (¶0052). L9 and L13 follow the S-FSL5 catalog curve, a fluor crown with a small positive partial-dispersion deviation, but L2 and L12 carry only nd and νd, so the model's color curves show that effect only in part; they are not measured data.
 
 ## Focus and Image Plane
 

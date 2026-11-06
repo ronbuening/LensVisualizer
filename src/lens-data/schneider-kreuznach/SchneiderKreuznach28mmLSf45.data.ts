@@ -30,7 +30,8 @@
  * infinity).
  * The source gives d-line N and V but no numerical wavelength or full
  * dispersion; the 587.5618 nm reference and Abbe-number dispersion are
- * modeling assumptions. Unmatched glasses claim no vendor or melt identity.
+ * modeling assumptions. Twelve glasses are labelled with Ohara coordinate
+ * equivalents (supplier unconfirmed); L2 and L12 match no catalog glass.
  * Infinity only: the source's 0.35 m aberration plots come with no focus
  * travel or distance datum.
  */
@@ -38,9 +39,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   "schema": 2,
-  "key": "schneider-kreuznach-28mm-ls-f45-mamiya-patent",
+  "key": "schneider-kreuznach-28mm-ls-f45",
   "maker": "Schneider-Kreuznach",
-  "name": "SCHNEIDER-KREUZNACH 28mm LS f/4.5",
+  "name": "SCHNEIDER-KREUZNACH 28mm LS f/4.5 ASPHERICAL",
   "subtitle": "JP 2006-300972 A, Example 3 — probable production design (Mamiya-OP patent)",
   "catalog": {
     "lensMounts": [
@@ -88,7 +89,7 @@ const LENS_DATA = {
       "nd": 1.83481,
       "vd": 42.7,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.83481 / vd 42.7; no glass identity)",
+      "glass": "S-LAH55V (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "First of the four front negative menisci that share the fixed first group's divergence."
     },
@@ -100,7 +101,7 @@ const LENS_DATA = {
       "nd": 1.43875,
       "vd": 90.9,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.43875 / vd 90.9; no glass identity)",
+      "glass": "Unmatched (patent nd 1.43875 / νd 90.9; no catalog match)",
       "apd": "patent",
       "apdNote": "Meets condition (5), νd > 62 for a front negative meniscus (¶0052: Vn = 90.9); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
       "role": "Second front negative meniscus, in low-dispersion glass; its aspheric convex front face corrects distortion."
@@ -113,7 +114,7 @@ const LENS_DATA = {
       "nd": 1.83481,
       "vd": 42.7,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.83481 / vd 42.7; no glass identity)",
+      "glass": "S-LAH55V (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Third front negative meniscus, convex to the object."
     },
@@ -125,7 +126,7 @@ const LENS_DATA = {
       "nd": 1.80809,
       "vd": 22.6,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.80809 / vd 22.6; no glass identity)",
+      "glass": "S-NPH1 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Fourth front negative meniscus, turned concave to the object, which also helps correct lateral color."
     },
@@ -137,7 +138,7 @@ const LENS_DATA = {
       "nd": 1.76182,
       "vd": 26.5,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.76182 / vd 26.5; no glass identity)",
+      "glass": "S-TIH14 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Biconvex positive of the cemented doublet that ends the first group.",
       "cemented": "D1"
@@ -150,7 +151,7 @@ const LENS_DATA = {
       "nd": 1.80518,
       "vd": 25.4,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.80518 / vd 25.4; no glass identity)",
+      "glass": "S-TIH6 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Negative meniscus of the first group's doublet; the object-concave cemented face corrects lateral color.",
       "cemented": "D1"
@@ -163,7 +164,7 @@ const LENS_DATA = {
       "nd": 1.56732,
       "vd": 42.7,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.56732 / vd 42.7; no glass identity)",
+      "glass": "S-TIL26 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Positive meniscus, front of the cemented doublet that opens the rear group ahead of the stop.",
       "cemented": "D2"
@@ -176,7 +177,7 @@ const LENS_DATA = {
       "nd": 1.788,
       "vd": 47.4,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.78800 / vd 47.4; no glass identity)",
+      "glass": "S-LAH64 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Negative meniscus, rear of the doublet just ahead of the stop.",
       "cemented": "D2"
@@ -189,7 +190,7 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.1,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.48749 / vd 70.1; no glass identity)",
+      "glass": "S-FSL5 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": "patent",
       "apdNote": "Meets condition (4), νd > 62 for a positive lens behind the stop (¶0052: Vp = 70.1); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
       "role": "Biconvex crown positive directly behind the stop."
@@ -202,7 +203,7 @@ const LENS_DATA = {
       "nd": 1.83481,
       "vd": 42.7,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.83481 / vd 42.7; no glass identity)",
+      "glass": "S-LAH55V (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "High-index biconcave negative, front of the doublet behind L9.",
       "cemented": "D3"
@@ -215,7 +216,7 @@ const LENS_DATA = {
       "nd": 1.57099,
       "vd": 50.7,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.57099 / vd 50.7; no glass identity)",
+      "glass": "S-BAL2 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Biconvex positive, rear of the doublet behind L9.",
       "cemented": "D3"
@@ -228,7 +229,7 @@ const LENS_DATA = {
       "nd": 1.43875,
       "vd": 90.9,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.43875 / vd 90.9; no glass identity)",
+      "glass": "Unmatched (patent nd 1.43875 / νd 90.9; no catalog match)",
       "apd": "patent",
       "apdNote": "Meets condition (4), νd > 62 for a positive lens behind the stop (¶0052: Vp = 90.9); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
       "role": "Low-dispersion positive meniscus, concave to the object, in the rear group."
@@ -241,7 +242,7 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.1,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.48749 / vd 70.1; no glass identity)",
+      "glass": "S-FSL5 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": "patent",
       "apdNote": "Meets condition (4), νd > 62 for a positive lens behind the stop (¶0052: Vp = 70.1); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
       "role": "Plano-convex crown positive with a flat front, front of the last doublet.",
@@ -255,7 +256,7 @@ const LENS_DATA = {
       "nd": 1.83481,
       "vd": 42.7,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.83481 / vd 42.7; no glass identity)",
+      "glass": "S-LAH55V (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Negative meniscus that closes the last doublet and the lens.",
       "cemented": "D4"
@@ -438,8 +439,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Infinity only. The patent focuses by moving the rear group, with the stop, toward the object and plots aberrations at 0.35 m, the production lens's minimum focus, but prints no close-focus spacings, so close focus is not modeled."
+    "closeFocusM": 0.35,
+    "description": "Infinity only. The patent focuses by moving the rear group, with the stop, toward the object and plots aberrations at 0.35 m, the production lens's minimum focus, but prints no close-focus spacings, so close focus is not modeled. The 0.35 m close-focus distance is the production lens's published minimum, not a patent state."
   },
   "aperture": {
     "nominalFNumber": 4.6,
