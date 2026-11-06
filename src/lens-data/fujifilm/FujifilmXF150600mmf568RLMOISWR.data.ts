@@ -1,19 +1,38 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole JP2023020586A Example1, GradeB probable XF150–600 family; other examples remain alternatives, no exact factory prescription. Native154.611–582.420/F5.76–8.19. Four literal W/T infinity/2.4m image-referenced states preserve fixed image325.037mm, camera-side2.85mm plate and final1mm gap. Inferred clear caps and native F/N zoom-dependent iris; source does not print physical iris schedule. Source finiteF5.85/9.48 retained as a comparison, not a second iris schedule. Zoom/focus interpolation is implementation only; finite MTF restricted to explicit endpoint conjugates. D-line n/V/theta_gF, no catalog or measured full dispersion. Centered OIS only, no OIS displacement law. Finite-aperture qualification remains unresolved: unchanged native inferred iris yields paraxial wide/tele nearF5.844315/9.591046 versus source5.85/9.48, and real tele nearF9.639929. No fit, iris schedule, mechanical iris constancy or nominal/effective explanation is asserted as a patent fact. Finite curves describe this stated aperture hypothesis; they do not certify the printed teleF9.48. */
+/**
+ * JP 2023-020586 A (Fujifilm; Kawamura, Ori), Example 1, Tables 1A, 1B and 2, in the patent's own units (no scaling).
+ * Example 1 is a probable match for the XF150-600mm (24 elements / 17 groups; four νd 95.10 and three νd 81.54
+ * elements against Fujifilm's four Super ED and three ED); other examples in the patent remain alternatives, and the
+ * file is not claimed as the factory prescription. Design f = 154.611–582.420 mm, F/5.76–8.19 at infinity.
+ *
+ * The four printed states (wide and tele, at infinity and at 2.4 m measured from the image plane) keep the fixed
+ * 325.037 mm total length, the 2.85 mm camera-side plate (S43–S44, in rearPlates) and the final 1.000 mm gap.
+ * DD6, DD11, DD18 and DD22 change with zoom only; DD23 and DD26 change with focus. Intermediate zoom and focus
+ * positions are interpolated, not patent cam positions, and finite-distance MTF is limited to the printed endpoints.
+ *
+ * The patent prints no clear apertures: every sd is inferred, and the G3 and focus-doublet rims were raised only as
+ * far as the wide-open on-axis beam needs. The stop sits at the printed S23 position; the engine derives a
+ * zoom-dependent iris from the infinity F-numbers because the patent prints no iris schedule. At 2.4 m the patent
+ * prints F5.85 / F9.48; the same iris gives paraxial F5.84 / F9.59 (real-ray tele F9.64), so the printed tele near
+ * F-number is not reproduced, and no iris schedule or nominal/effective F-number explanation is fitted to it.
+ * Dispersion is d-line nd/νd plus the printed θgF stored as dPgF; no catalog or measured full dispersion is claimed.
+ * The stabilization group (S30–S34) is modeled centered; the patent gives no decentering law.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "fujifilm-fujinon-xf-150-600mm-f56-8-r-lm-ois-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 150-600mm f/5.6-8 R LM OIS WR",
-  subtitle: "JP 2023-020586 A Example 1 — qualified representative reconstruction",
+  subtitle: "JP 2023-020586 A, Example 1 — probable production design",
   catalog: {
     lensMounts: ["fujifilm-x"],
     specs: [
-      "Grade B probable patent family; representative embodiment, factory identity unproved",
-      "Inferred clear apertures; printed stop position; native F/N iris; losses preserved",
-      "Whole JP2023020586A Example1, GradeB probable XF150–600 family; other examples remain alternatives, no exact factory prescription. Native154.611–582.420/F5.76–8.19. Four literal W/T infinity/2.4m image-referenced states preserve fixed image325.037mm, camera-side2.85mm plate and final1mm gap. Inferred clear caps and native F/N zoom-dependent iris; source does not print physical iris schedule. Source finiteF5.85/9.48 retained as a comparison, not a second iris schedule. Zoom/focus interpolation is implementation only; finite MTF restricted to explicit endpoint conjugates. D-line n/V/theta_gF, no catalog or measured full dispersion. Centered OIS only, no OIS displacement law.",
-      "Finite-aperture qualification remains unresolved: unchanged native inferred iris yields paraxial wide/tele nearF5.844315/9.591046 versus source5.85/9.48, and real tele nearF9.639929. No fit, iris schedule, mechanical iris constancy or nominal/effective explanation is asserted as a patent fact. Finite curves describe this stated aperture hypothesis; they do not certify the printed teleF9.48.",
+      "24 ELEMENTS / 17 GROUPS",
+      "DESIGN f = 154.6–582.4 mm",
+      "DESIGN F/5.76–8.19",
+      "ALL SPHERICAL",
+      "4 SUPER ED / 3 ED ELEMENTS",
     ],
     elementCount: 24,
     groupCount: 17,
@@ -46,12 +65,11 @@ const LENS_DATA = {
       nd: 1.62005,
       vd: 36.35,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.62005 / νd 36.35; supplier not disclosed)",
+      role: "Front negative meniscus of the fixed positive first group G1, convex to the object.",
       focalLengthMm: -332.2143553725908,
       dPgF: 0.0033606999999999942,
-      apdNote:
-        "Literal PgF/theta_gF=0.58602 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.58602, stored as dPgF against the normal line.",
     },
     {
       id: 2,
@@ -61,12 +79,13 @@ const LENS_DATA = {
       nd: 1.437,
       vd: 95.1,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.43700 / νd 95.10; supplier not disclosed)",
+      role: "Super ED-class biconvex positive element of G1.",
       focalLengthMm: 230.72063748999813,
       dPgF: 0.04979819999999996,
+      apd: "inferred",
       apdNote:
-        "Literal PgF/theta_gF=0.53364 converted to deviation from native normal line; no full dispersion identity.",
+        "One of four νd 95.10 elements, matching Fujifilm's four Super ED elements; patent θgF 0.53364, stored as dPgF against the normal line.",
     },
     {
       id: 3,
@@ -76,12 +95,13 @@ const LENS_DATA = {
       nd: 1.437,
       vd: 95.1,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.43700 / νd 95.10; supplier not disclosed)",
+      role: "Super ED-class plano-convex positive element closing G1, convex to the object.",
       focalLengthMm: 239.2140503432494,
       dPgF: 0.04979819999999996,
+      apd: "inferred",
       apdNote:
-        "Literal PgF/theta_gF=0.53364 converted to deviation from native normal line; no full dispersion identity.",
+        "One of four νd 95.10 elements, matching Fujifilm's four Super ED elements; patent θgF 0.53364, stored as dPgF against the normal line.",
     },
     {
       id: 4,
@@ -91,12 +111,11 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.53,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.69680 / νd 55.53; supplier not disclosed)",
+      role: "Biconcave front element of the negative zooming group G2.",
       focalLengthMm: -68.92964556964571,
       dPgF: -0.006358540000000024,
-      apdNote:
-        "Literal PgF/theta_gF=0.54404 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.54404, stored as dPgF against the normal line.",
     },
     {
       id: 5,
@@ -106,12 +125,13 @@ const LENS_DATA = {
       nd: 1.437,
       vd: 95.1,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.43700 / νd 95.10; supplier not disclosed)",
+      role: "Super ED-class biconcave negative element of G2, cemented to L6.",
       focalLengthMm: -85.69892493530288,
       dPgF: 0.04979819999999996,
+      apd: "inferred",
       apdNote:
-        "Literal PgF/theta_gF=0.53364 converted to deviation from native normal line; no full dispersion identity.",
+        "One of four νd 95.10 elements, matching Fujifilm's four Super ED elements; patent θgF 0.53364, stored as dPgF against the normal line.",
       cemented: "CD5",
     },
     {
@@ -122,12 +142,11 @@ const LENS_DATA = {
       nd: 1.85896,
       vd: 22.73,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.85896 / νd 22.73; supplier not disclosed)",
+      role: "High-dispersion positive meniscus cemented behind L5, convex to the object.",
       focalLengthMm: 127.72777352379903,
       dPgF: 0.022871859999999966,
-      apdNote:
-        "Literal PgF/theta_gF=0.62844 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.62844, stored as dPgF against the normal line.",
       cemented: "CD5",
     },
     {
@@ -138,12 +157,13 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.54,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.49700 / νd 81.54; supplier not disclosed)",
+      role: "ED-class plano-convex element opening the positive zooming group G3, convex to the image.",
       focalLengthMm: 156.0033400402414,
       dPgF: 0.030830279999999988,
+      apd: "inferred",
       apdNote:
-        "Literal PgF/theta_gF=0.53748 converted to deviation from native normal line; no full dispersion identity.",
+        "One of three νd 81.54 elements, matching Fujifilm's three ED elements; patent θgF 0.53748, stored as dPgF against the normal line.",
     },
     {
       id: 8,
@@ -153,12 +173,13 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.54,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.49700 / νd 81.54; supplier not disclosed)",
+      role: "ED-class plano-convex positive element of G3, convex to the object.",
       focalLengthMm: 249.19828973843053,
       dPgF: 0.030830279999999988,
+      apd: "inferred",
       apdNote:
-        "Literal PgF/theta_gF=0.53748 converted to deviation from native normal line; no full dispersion identity.",
+        "One of three νd 81.54 elements, matching Fujifilm's three ED elements; patent θgF 0.53748, stored as dPgF against the normal line.",
     },
     {
       id: 9,
@@ -168,12 +189,13 @@ const LENS_DATA = {
       nd: 1.437,
       vd: 95.1,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.43700 / νd 95.10; supplier not disclosed)",
+      role: "Super ED-class biconvex positive element of G3, cemented to L10.",
       focalLengthMm: 110.75129227814648,
       dPgF: 0.04979819999999996,
+      apd: "inferred",
       apdNote:
-        "Literal PgF/theta_gF=0.53364 converted to deviation from native normal line; no full dispersion identity.",
+        "One of four νd 95.10 elements, matching Fujifilm's four Super ED elements; patent θgF 0.53364, stored as dPgF against the normal line.",
       cemented: "CD9",
     },
     {
@@ -184,12 +206,11 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.25,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.91082 / νd 35.25; supplier not disclosed)",
+      role: "High-index plano-concave negative element cemented behind L9.",
       focalLengthMm: -123.01416306185637,
       dPgF: -0.0022695000000000354,
-      apdNote:
-        "Literal PgF/theta_gF=0.58224 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.58224, stored as dPgF against the normal line.",
       cemented: "CD9",
     },
     {
@@ -200,12 +221,11 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 44.2,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.78590 / νd 44.20; supplier not disclosed)",
+      role: "Negative meniscus opening the positive zooming group G4, convex to the object.",
       focalLengthMm: -113.7292884200274,
       dPgF: -0.006285600000000113,
-      apdNote:
-        "Literal PgF/theta_gF=0.56317 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.56317, stored as dPgF against the normal line.",
     },
     {
       id: 12,
@@ -215,12 +235,13 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.54,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.49700 / νd 81.54; supplier not disclosed)",
+      role: "ED-class biconvex positive element closing G4.",
       focalLengthMm: 61.6089556516673,
       dPgF: 0.030830279999999988,
+      apd: "inferred",
       apdNote:
-        "Literal PgF/theta_gF=0.53748 converted to deviation from native normal line; no full dispersion identity.",
+        "One of three νd 81.54 elements, matching Fujifilm's three ED elements; patent θgF 0.53748, stored as dPgF against the normal line.",
     },
     {
       id: 13,
@@ -230,12 +251,11 @@ const LENS_DATA = {
       nd: 1.738,
       vd: 32.33,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.73800 / νd 32.33; supplier not disclosed)",
+      role: "Positive meniscus of the focus doublet (S24–S26), which moves toward the image for close focus.",
       focalLengthMm: 57.52936839863973,
       dPgF: 0.0006290599999999591,
-      apdNote:
-        "Literal PgF/theta_gF=0.59005 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.59005, stored as dPgF against the normal line.",
       cemented: "CD13",
     },
     {
@@ -246,12 +266,11 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.53,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.69680 / νd 55.53; supplier not disclosed)",
+      role: "Biconcave negative element of the focus doublet; it gives the doublet its negative power.",
       focalLengthMm: -33.14381793191222,
       dPgF: -0.006358540000000024,
-      apdNote:
-        "Literal PgF/theta_gF=0.54404 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.54404, stored as dPgF against the normal line.",
       cemented: "CD13",
     },
     {
@@ -262,12 +281,11 @@ const LENS_DATA = {
       nd: 1.54814,
       vd: 45.78,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.54814 / νd 45.78; supplier not disclosed)",
+      role: "Biconvex positive element of the fixed doublet between the focus and stabilization groups.",
       focalLengthMm: 39.195038086563045,
       dPgF: 0.0017919600000000369,
-      apdNote:
-        "Literal PgF/theta_gF=0.56859 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.56859, stored as dPgF against the normal line.",
       cemented: "CD15",
     },
     {
@@ -278,12 +296,11 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.46,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 2.00069 / νd 25.46; supplier not disclosed)",
+      role: "High-index negative meniscus cemented behind L15, convex to the image.",
       focalLengthMm: -72.64059916287702,
       dPgF: 0.012663719999999934,
-      apdNote:
-        "Literal PgF/theta_gF=0.61364 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.61364, stored as dPgF against the normal line.",
       cemented: "CD15",
     },
     {
@@ -294,12 +311,11 @@ const LENS_DATA = {
       nd: 1.80519,
       vd: 25.48,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.80519 / νd 25.48; supplier not disclosed)",
+      role: "Biconvex positive element of the stabilization group (S30–S34), cemented to L18.",
       focalLengthMm: 32.1821184025565,
       dPgF: 0.01259735999999989,
-      apdNote:
-        "Literal PgF/theta_gF=0.61354 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.61354, stored as dPgF against the normal line.",
       cemented: "CD17",
     },
     {
@@ -310,12 +326,11 @@ const LENS_DATA = {
       nd: 1.72915,
       vd: 54.64,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.72915 / νd 54.64; supplier not disclosed)",
+      role: "Biconcave negative element cemented behind L17 in the stabilization group.",
       focalLengthMm: -23.863305203532857,
       dPgF: -0.007015520000000053,
-      apdNote:
-        "Literal PgF/theta_gF=0.54488 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.54488, stored as dPgF against the normal line.",
       cemented: "CD17",
     },
     {
@@ -326,12 +341,11 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.54,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.81600 / νd 46.54; supplier not disclosed)",
+      role: "Biconcave negative singlet closing the stabilization group.",
       focalLengthMm: -36.050408224889104,
       dPgF: -0.010199720000000023,
-      apdNote:
-        "Literal PgF/theta_gF=0.55532 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.55532, stored as dPgF against the normal line.",
     },
     {
       id: 20,
@@ -341,12 +355,11 @@ const LENS_DATA = {
       nd: 1.673,
       vd: 38.26,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.67300 / νd 38.26; supplier not disclosed)",
+      role: "Biconvex positive front element of the cemented triplet in the fixed rear subgroup Gk.",
       focalLengthMm: 19.694702242208532,
       dPgF: -0.0036466800000000132,
-      apdNote:
-        "Literal PgF/theta_gF=0.5758 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.57580, stored as dPgF against the normal line.",
       cemented: "CD21",
     },
     {
@@ -357,12 +370,11 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.46,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 2.00069 / νd 25.46; supplier not disclosed)",
+      role: "High-index biconcave negative center of the cemented triplet.",
       focalLengthMm: -13.283017329476515,
       dPgF: 0.012663719999999934,
-      apdNote:
-        "Literal PgF/theta_gF=0.61364 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.61364, stored as dPgF against the normal line.",
       cemented: "CD21",
     },
     {
@@ -373,12 +385,11 @@ const LENS_DATA = {
       nd: 1.738,
       vd: 32.33,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.73800 / νd 32.33; supplier not disclosed)",
+      role: "Biconvex positive rear element of the cemented triplet.",
       focalLengthMm: 31.628494709197774,
       dPgF: 0.0006290599999999591,
-      apdNote:
-        "Literal PgF/theta_gF=0.59005 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.59005, stored as dPgF against the normal line.",
       cemented: "CD21",
     },
     {
@@ -389,12 +400,11 @@ const LENS_DATA = {
       nd: 1.60342,
       vd: 38.03,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.60342 / νd 38.03; supplier not disclosed)",
+      role: "Biconvex positive singlet of the fixed rear subgroup.",
       focalLengthMm: 30.984946272177012,
       dPgF: 0.003726459999999876,
-      apdNote:
-        "Literal PgF/theta_gF=0.58356 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.58356, stored as dPgF against the normal line.",
     },
     {
       id: 24,
@@ -404,12 +414,11 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.37,
       indexReference: "d",
-      glass: "Unmatched (literal source reference-index/Abbe pair; exact glass identity unproved)",
-      role: "Whole literal selected source embodiment; element power is isolated-in-air descriptive arithmetic.",
+      glass: "Unmatched (patent nd 1.62041 / νd 60.37; supplier not disclosed)",
+      role: "Biconcave negative last element of the lens, in the fixed rear subgroup.",
       focalLengthMm: -31.353553053792666,
       dPgF: 0.00014233999999990754,
-      apdNote:
-        "Literal PgF/theta_gF=0.5424 converted to deviation from native normal line; no full dispersion identity.",
+      apdNote: "Patent θgF 0.54240, stored as dPgF against the normal line.",
     },
   ],
   surfaces: [
@@ -686,7 +695,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 2.4,
     description:
-      "Whole JP2023020586A Example1, GradeB probable XF150–600 family; other examples remain alternatives, no exact factory prescription. Native154.611–582.420/F5.76–8.19. Four literal W/T infinity/2.4m image-referenced states preserve fixed image325.037mm, camera-side2.85mm plate and final1mm gap. Inferred clear caps and native F/N zoom-dependent iris; source does not print physical iris schedule. Source finiteF5.85/9.48 retained as a comparison, not a second iris schedule. Zoom/focus interpolation is implementation only; finite MTF restricted to explicit endpoint conjugates. D-line n/V/theta_gF, no catalog or measured full dispersion. Centered OIS only, no OIS displacement law. Finite-aperture qualification remains unresolved: unchanged native inferred iris yields paraxial wide/tele nearF5.844315/9.591046 versus source5.85/9.48, and real tele nearF9.639929. No fit, iris schedule, mechanical iris constancy or nominal/effective explanation is asserted as a patent fact. Finite curves describe this stated aperture hypothesis; they do not certify the printed teleF9.48.",
+      "PUBLISHED inner focus: the negative L13–L14 doublet (S24–S26, the patent's focus group L51–L52) moves toward the image from infinity to 2.4 m, by 1.447 mm at the wide end and 21.651 mm at the tele end. DD23 grows and DD26 shrinks by the same amount; all other gaps keep their zoom values. Table 2 prints both zoom ends at infinity and at 2.4 m, measured from the image plane. Intermediate focus and zoom positions are interpolated, not patent cam positions.",
     conjugates: [
       {
         zoomStation: 0,
@@ -694,7 +703,7 @@ const LENS_DATA = {
         objectDistanceMm: 2400,
         distanceReference: "image-plane",
         source:
-          "JP2023020586A Example1 Table2 and paragraph0166:2.4m measured from image plane; four literal endpoint rows, source plane325.037.",
+          "JP 2023-020586 A, Example 1, Table 2 and ¶0166: 2.4 m object distance measured from the image plane (image plane 325.037 mm behind S1).",
       },
       {
         zoomStation: 1,
@@ -702,7 +711,7 @@ const LENS_DATA = {
         objectDistanceMm: 2400,
         distanceReference: "image-plane",
         source:
-          "JP2023020586A Example1 Table2 and paragraph0166:2.4m measured from image plane; four literal endpoint rows, source plane325.037.",
+          "JP 2023-020586 A, Example 1, Table 2 and ¶0166: 2.4 m object distance measured from the image plane (image plane 325.037 mm behind S1).",
       },
     ],
   },
@@ -726,7 +735,7 @@ const LENS_DATA = {
       dPgF: -0.0015156000000000613,
       gapAfterMm: 1,
       source:
-        "JP2023020586A Example1 Table1B S43/44; no numerical plate clear cap supplied, default non-clipping generated rim.",
+        "JP 2023-020586 A, Example 1, Table 1B S43–S44. The patent gives no clear aperture for the plate; the model uses a default rim that does not clip.",
     },
   ],
   zoom: {
@@ -775,7 +784,7 @@ const LENS_DATA = {
       ],
     },
     STO: {
-      label: "DDSTO",
+      label: "DD23",
       values: [
         [5.239, 6.686],
         [5.239, 26.89],

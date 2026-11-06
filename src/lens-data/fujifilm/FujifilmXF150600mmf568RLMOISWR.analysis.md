@@ -6,219 +6,200 @@
 
 **Assignee:** Fujifilm Corporation
 
-**Published:** 2023
+**Filed:** 2021-07-30 (application 2021-126036)
 
-**Example details:** Whole Example 1. Native dimensions; no rescaling or image-plane optimization.
+**Published:** 2023-02-09
+
+**Example details:** 実施例1, Tables 1A, 1B and 2, Fig. 1; patent units, no scaling.
 
 ## Patent-to-Product Correlation
 
-Whole JP2023020586A Example1, GradeB probable XF150–600 family; other examples remain alternatives, no exact factory prescription. Native154.611–582.420/F5.76–8.19. Four literal W/T infinity/2.4m image-referenced states preserve fixed image325.037mm, camera-side2.85mm plate and final1mm gap. Inferred clear caps and native F/N zoom-dependent iris; source does not print physical iris schedule. Source finiteF5.85/9.48 retained as a comparison, not a second iris schedule. Zoom/focus interpolation is implementation only; finite MTF restricted to explicit endpoint conjugates. D-line n/V/theta_gF, no catalog or measured full dispersion. Centered OIS only, no OIS displacement law. Finite-aperture qualification remains unresolved: unchanged native inferred iris yields paraxial wide/tele nearF5.844315/9.591046 versus source5.85/9.48, and real tele nearF9.639929. No fit, iris schedule, mechanical iris constancy or nominal/effective explanation is asserted as a patent fact. Finite curves describe this stated aperture hypothesis; they do not certify the printed teleF9.48.
+Example 1 is a probable match for the Fujifilm XF150-600mm F5.6-8 R LM OIS WR, not a published factory prescription;
+the patent's other examples remain alternatives. The identification rests on:
 
-Original Fig1 and maker manual support24powered elements/17groups,4SuperED/3ED positions and focus/IS arrangement. Original Japanese inventor order河村大樹/小里哲也 controls; Latin spellings are metadata conventions. Other source embodiments remain serious alternatives.
+1. **Construction.** 24 elements in 17 groups, the count Fujifilm publishes for the lens.
+2. **Special glass.** The only glasses above νd 80 are four elements at nd 1.43700 / νd 95.10 and three at
+   1.49700 / 81.54, against Fujifilm's four Super ED and three ED elements. Fujifilm's lens-configuration diagram
+   marks them in the same positions: Super ED at L2, L3, L5 and L9, ED at L7, L8 and L12.
+3. **Focal length and aperture.** f = 154.611–582.420 mm and F/5.76–8.19 at infinity (Table 2), a 3.77× zoom,
+   against the marketed 150–600 mm f/5.6–8.
+4. **Focus and stabilization.** A two-element negative focus group and a three-element negative stabilization group
+   sit inside the last group, which stays fixed during zoom (¶0162).
+
+The inventors are listed in the patent's order, 河村大樹 (Hiroki Kawamura) and 小里哲也 (Tetsuya Ori).
 
 ## Optical Architecture
 
-Five functional groups G1–G5 contain3+3+4+2+12powered elements. G1/G5 stay fixed to image; G2/G3/G4 move with zoom. Negative focus doubletS24–26 moves withinG5; ISdoublet plus singletS30–34 remains centered. Source camera-side plate is traced in rearPlates and omitted from drawn element count.
+Example 1 is a five-group positive-negative-positive-positive-negative telephoto zoom (¶0076–0080; signs from the
+group column of Tables 1A and 1B). In the patent's terms G3 and G4 form the intermediate group GM and G5 is the last
+group GE. The data file numbers the elements L1–L24 front to rear; the patent numbers them by group (L11–L13, L21–L23,
+L31–L34, L41–L42, L51–L62). Group focal lengths below are computed from Tables 1A and 1B at infinity focus.
+
+| Group | Elements (patent labels) | Surfaces | Power, computed f | Zoom motion, wide → tele |
+| --- | --- | --- | --- | --- |
+| G1 | L1–L3 (L11–L13) | S1–S6 | positive, +183.1 mm | fixed |
+| G2 | L4–L6 (L21–L23) | S7–S11 | negative, −53.6 mm | 72.505 mm toward the image |
+| G3 | L7–L10 (L31–L34) | S12–S18 | positive, +85.4 mm | net 3.575 mm toward the object |
+| G4 | L11–L12 (L41–L42) | S19–S22 | positive, +131.6 mm | net 6.641 mm toward the image |
+| G5 | stop, L13–L24 (L51–L62) | S23–S42 | negative, −38.0 mm | fixed |
+
+With G1 and G5 fixed, the total length stays 325.037 mm in every state; the patent credits a fixed G1 with a steadier
+center of gravity (¶0081) and a fixed G5 with a simpler mechanism (¶0083). Only the G3 and G4 end positions are
+printed; Fig. 1 draws curved paths between them. G5 carries the stop at its front (¶0091), then the focus doublet
+L13–L14 (S24–S26), a fixed doublet L15–L16, the stabilization group L17–L19 (S30–S34) and the fixed subgroup Gk,
+L20–L24 (¶0122). The 2.85 mm camera-side plate (S43–S44, nd 1.51680) is traced but not counted as an element.
 
 ## Element-by-Element Analysis
 
-### L1 — Negative Meniscus
+Element focal lengths are in-air values computed from each element's own radii, thickness and nd. Every glass is
+Unmatched: the patent names no supplier (see Glass Identification).
 
-nd = 1.62005, νd = 36.35. Glass: Unmatched source reference pair. f = -332.214mm (isolated-in-air descriptive calculation).
+### G1: L1, L2, L3
 
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. This medium is separated from the next component by source air.
+- **L1** — Negative Meniscus, convex to the object. nd = 1.62005, νd = 36.35. Glass: Unmatched. f = −332.2 mm.
+- **L2** — Biconvex Positive. nd = 1.43700, νd = 95.10. Glass: Unmatched, Super ED class. f = +230.7 mm.
+- **L3** — Plano-Convex Positive, convex to the object. nd = 1.43700, νd = 95.10. Glass: Unmatched, Super ED class.
+  f = +239.2 mm.
 
-### L2 — Biconvex Positive
+The fixed front group is a weak negative meniscus followed by two Super ED-class positives, where the axial beam is
+widest (entrance-pupil semi-diameter 35.6 mm at the tele end). L2 and L3 meet the patent's conditions on G1's
+positive lenses, νd between 81.7 and 105 and Δθ between 0.03 and 0.06 (conditions 5–8; both have Δθ = 0.046), which
+¶0104–0108 tie to primary and secondary axial color. L1's index sits in the 1.55–1.8 range condition 13 gives for G1's negative lens,
+which ¶0113 links to weight.
 
-nd = 1.437, νd = 95.1. Glass: Unmatched source reference pair. f = 230.721mm (isolated-in-air descriptive calculation).
+### G2: L4, L5 + L6
 
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. This medium is separated from the next component by source air.
+- **L4** — Biconcave Negative. nd = 1.69680, νd = 55.53. Glass: Unmatched. f = −68.9 mm.
+- **L5** — Biconcave Negative, cemented to L6. nd = 1.43700, νd = 95.10. Glass: Unmatched, Super ED class.
+  f = −85.7 mm.
+- **L6** — Positive Meniscus, convex to the object. nd = 1.85896, νd = 22.73. Glass: Unmatched. f = +127.7 mm.
 
-### L3 — Plano-Convex Positive
+G2 is the main variator, travelling 72.505 mm toward the image from wide to tele. The Super ED-class negative L5
+matches conditions 16–17 (negative lens with high νd and positive anomalous dispersion), which ¶0116–0117 tie to
+lateral color and its secondary spectrum. The low-Abbe positive L6 matches conditions 14–15 (νd 15–25 with positive
+anomalous dispersion), tied to axial color and its secondary spectrum (¶0114–0115).
 
-nd = 1.437, νd = 95.1. Glass: Unmatched source reference pair. f = 239.214mm (isolated-in-air descriptive calculation).
+### G3: L7, L8, L9 + L10
 
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. This medium is separated from the next component by source air.
+- **L7** — Plano-Convex Positive, convex to the image. nd = 1.49700, νd = 81.54. Glass: Unmatched, ED class.
+  f = +156.0 mm.
+- **L8** — Plano-Convex Positive, convex to the object. nd = 1.49700, νd = 81.54. Glass: Unmatched, ED class.
+  f = +249.2 mm.
+- **L9** — Biconvex Positive, cemented to L10. nd = 1.43700, νd = 95.10. Glass: Unmatched, Super ED class.
+  f = +110.8 mm.
+- **L10** — Plano-Concave Negative. nd = 1.91082, νd = 35.25. Glass: Unmatched. f = −123.0 mm.
 
-### L4 — Biconcave Negative
+G3 is the patent's PA group, the first and strongest positive group of GM (¶0089–0090). Its three positives and one
+negative are the make-up ¶0087 prefers for axial color. Conditions 9–12 ask its positive lenses for high νd and
+positive anomalous dispersion to hold axial color steady through the zoom (¶0109–0112). L9 meets the single-lens Abbe
+condition; L7 and L8, at νd 81.54, sit just under its 81.7 limit but bring the group's mean to νd 86.1, inside
+condition 10.
 
-nd = 1.6968, νd = 55.53. Glass: Unmatched source reference pair. f = -68.9296mm (isolated-in-air descriptive calculation).
+### G4: L11, L12
 
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. This medium is separated from the next component by source air.
+- **L11** — Negative Meniscus, convex to the object. nd = 1.78590, νd = 44.20. Glass: Unmatched. f = −113.7 mm.
+- **L12** — Biconvex Positive. nd = 1.49700, νd = 81.54. Glass: Unmatched, ED class. f = +61.6 mm.
 
-### L5 — Biconcave Negative
+G4, the second positive group of GM, is an air-spaced negative-positive pair whose facing radii (34.623 and
+34.608 mm, 1.500 mm apart) are nearly equal, forming a thin meniscus-shaped air lens. It carries the third ED-class
+element and moves a net 6.641 mm toward the image from wide to tele.
 
-nd = 1.437, νd = 95.1. Glass: Unmatched source reference pair. f = -85.6989mm (isolated-in-air descriptive calculation).
+### G5 focus doublet: L13 + L14 (S24–S26)
 
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
+- **L13** — Positive Meniscus, concave to the object. nd = 1.73800, νd = 32.33. Glass: Unmatched. f = +57.5 mm.
+- **L14** — Biconcave Negative. nd = 1.69680, νd = 55.53. Glass: Unmatched. f = −33.1 mm.
 
-### L6 — Positive Meniscus
+The patent's focus group (L51–L52), negative overall (computed f = −78.0 mm). ¶0093 prefers a focus group of two
+lenses or fewer, and notes that a negative one receives a more converged beam, so it can be smaller and lighter. See
+Focus Mechanism.
 
-nd = 1.85896, νd = 22.73. Glass: Unmatched source reference pair. f = 127.728mm (isolated-in-air descriptive calculation).
+### G5 fixed doublet: L15 + L16
 
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
+- **L15** — Biconvex Positive. nd = 1.54814, νd = 45.78. Glass: Unmatched. f = +39.2 mm.
+- **L16** — Negative Meniscus, convex to the image. nd = 2.00069, νd = 25.46. Glass: Unmatched. f = −72.6 mm.
 
-### L7 — Plano-Convex Positive
+A positive cemented doublet (computed f = +87.2 mm) that stays fixed between the focus and stabilization groups.
 
-nd = 1.497, νd = 81.54. Glass: Unmatched source reference pair. f = 156.003mm (isolated-in-air descriptive calculation).
+### G5 stabilization group: L17 + L18, L19 (S30–S34)
 
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. This medium is separated from the next component by source air.
+- **L17** — Biconvex Positive. nd = 1.80519, νd = 25.48. Glass: Unmatched. f = +32.2 mm.
+- **L18** — Biconcave Negative. nd = 1.72915, νd = 54.64. Glass: Unmatched. f = −23.9 mm.
+- **L19** — Biconcave Negative. nd = 1.81600, νd = 46.54. Glass: Unmatched. f = −36.1 mm.
 
-### L8 — Plano-Convex Positive
+The patent's stabilization group (L55–L57): a cemented positive-negative doublet and a negative singlet. See Image
+Stabilization.
 
-nd = 1.497, νd = 81.54. Glass: Unmatched source reference pair. f = 249.198mm (isolated-in-air descriptive calculation).
+### G5 fixed subgroup Gk: L20 + L21 + L22, L23, L24
 
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. This medium is separated from the next component by source air.
+- **L20** — Biconvex Positive. nd = 1.67300, νd = 38.26. Glass: Unmatched. f = +19.7 mm.
+- **L21** — Biconcave Negative. nd = 2.00069, νd = 25.46. Glass: Unmatched. f = −13.3 mm.
+- **L22** — Biconvex Positive. nd = 1.73800, νd = 32.33. Glass: Unmatched. f = +31.6 mm.
+- **L23** — Biconvex Positive. nd = 1.60342, νd = 38.03. Glass: Unmatched. f = +31.0 mm.
+- **L24** — Biconcave Negative. nd = 1.62041, νd = 60.37. Glass: Unmatched. f = −31.4 mm.
 
-### L9 — Biconvex Positive
-
-nd = 1.437, νd = 95.1. Glass: Unmatched source reference pair. f = 110.751mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
-
-### L10 — Plano-Concave Negative
-
-nd = 1.91082, νd = 35.25. Glass: Unmatched source reference pair. f = -123.014mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
-
-### L11 — Negative Meniscus
-
-nd = 1.7859, νd = 44.2. Glass: Unmatched source reference pair. f = -113.729mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. This medium is separated from the next component by source air.
-
-### L12 — Biconvex Positive
-
-nd = 1.497, νd = 81.54. Glass: Unmatched source reference pair. f = 61.609mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. This medium is separated from the next component by source air.
-
-### L13 — Positive Meniscus
-
-nd = 1.738, νd = 32.33. Glass: Unmatched source reference pair. f = 57.5294mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
-
-### L14 — Biconcave Negative
-
-nd = 1.6968, νd = 55.53. Glass: Unmatched source reference pair. f = -33.1438mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
-
-### L15 — Biconvex Positive
-
-nd = 1.54814, νd = 45.78. Glass: Unmatched source reference pair. f = 39.195mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
-
-### L16 — Negative Meniscus
-
-nd = 2.00069, νd = 25.46. Glass: Unmatched source reference pair. f = -72.6406mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
-
-### L17 — Biconvex Positive
-
-nd = 1.80519, νd = 25.48. Glass: Unmatched source reference pair. f = 32.1821mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
-
-### L18 — Biconcave Negative
-
-nd = 1.72915, νd = 54.64. Glass: Unmatched source reference pair. f = -23.8633mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
-
-### L19 — Biconcave Negative
-
-nd = 1.816, νd = 46.54. Glass: Unmatched source reference pair. f = -36.0504mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. This medium is separated from the next component by source air.
-
-### L20 — Biconvex Positive
-
-nd = 1.673, νd = 38.26. Glass: Unmatched source reference pair. f = 19.6947mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
-
-### L21 — Biconcave Negative
-
-nd = 2.00069, νd = 25.46. Glass: Unmatched source reference pair. f = -13.283mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
-
-### L22 — Biconvex Positive
-
-nd = 1.738, νd = 32.33. Glass: Unmatched source reference pair. f = 31.6285mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. The cemented interface is shared with its adjacent medium.
-
-### L23 — Biconvex Positive
-
-nd = 1.60342, νd = 38.03. Glass: Unmatched source reference pair. f = 30.9849mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. This medium is separated from the next component by source air.
-
-### L24 — Biconcave Negative
-
-nd = 1.62041, νd = 60.37. Glass: Unmatched source reference pair. f = -31.3536mm (isolated-in-air descriptive calculation).
-
-Position follows the complete source table; no catalog-glass substitution or independently quantified element-specific aberration attribution. This medium is separated from the next component by source air.
+Gk (patent L58–L62) is positive (computed f = +51.5 mm), opposite in sign to the stabilization group as ¶0121 prefers,
+and stays fixed during zoom and focus. It opens with the lens's only cemented triplet and ends with the negative L24,
+53.922 mm ahead of the camera-side plate.
 
 ## Glass Identification / Selection
 
-Literal indices and Abbe numbers remain unchanged. D-line reference is retained; Sigma explicitly prints587.56nm, while Fuji names the d-line. Native reference587.5618nm is disclosed. No exact supplier, melt, coatings or measured complete dispersion is established. PgF/theta_gF, where printed, is converted to the native normal-line deviation using ΔPgF=PgF−(0.6438−0.001682νd); it is not an extra Abbe number.
+The patent prints nd, νd and θgF for every element at the d-line (587.56 nm, ¶0107) but names no supplier, so every
+glass stays Unmatched and the model stores the printed θgF as dPgF against the normal line 0.6438 − 0.001682·νd. The
+patent measures anomalous dispersion on its own line, Δθ = θgF + 0.00162·νd − 0.64159 (¶0106).
+
+| Printed nd / νd / θgF | Elements | Fujifilm class (inferred) | Δθ, patent formula | Catalog coincidence (observation) |
+| --- | --- | --- | ---: | --- |
+| 1.43700 / 95.10 / 0.53364 | L2, L3, L5, L9 | Super ED | 0.046 | FCD100 class (Hoya FCD100, θgF 0.5336) |
+| 1.49700 / 81.54 / 0.53748 | L7, L8, L12 | ED | 0.028 | S-FPL51 / FCD1 class (Ohara S-FPL51, θgF 0.5375) |
+
+The catalog column records only that the printed values coincide with those classes; the patent does not name a
+supplier and the model does not assign one. The class split follows the counts: these are the only glasses above
+νd 80, four and three of them. The low-dispersion elements sit in G1 (two), G2 (one), G3 (three) and G4 (one); G5 has
+none and uses ordinary and high-index glasses, including two elements at nd 2.00069 (L16, L21).
 
 ## Focus Mechanism
 
-| Source state  | EFL computed mm | Fixed image z mm | Literal final gap mm | Finite distance convention |
-| ------------- | --------------: | ---------------: | -------------------: | -------------------------- |
-| wide_infinity |  154.6008434689 |      325.0370000 |                  1.0 | Infinity                   |
-| tele_infinity |  582.3965086246 |      325.0370000 |                  1.0 | Infinity                   |
-| wide_near     |  140.2266690128 |      325.0370000 |                  1.0 | 2400mm image-plane         |
-| tele_near     |  241.5569685919 |      325.0370000 |                  1.0 | 2400mm image-plane         |
+Inner focus by the negative L13–L14 doublet (S24–S26), which moves toward the image from infinity to 2.4 m (¶0094);
+the patent measures the distance from the image plane (¶0166). Only DD23 and DD26 change, and their sum stays
+32.123 mm. Travel is 1.447 mm at the wide end and 21.651 mm at the tele end.
 
-Finite-aperture qualification remains unresolved: unchanged native inferred iris yields paraxial wide/tele nearF5.844315/9.591046 versus source5.85/9.48, and real tele nearF9.639929. No fit, iris schedule, mechanical iris constancy or nominal/effective explanation is asserted as a patent fact. Finite curves describe this stated aperture hypothesis; they do not certify the printed teleF9.48. Finite source rays are isotropic point-source rays; no parallel-ray finite surrogate. Interpolated gaps are implementation geometry, not a patent cam. Intermediate finite MTF requires a distinct documented conjugate and remains guarded.
+| State (Table 2) | DD23 mm | DD26 mm | Printed f mm | Printed FNo. | Printed 2ω | Model EFL mm |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Wide, infinity | 5.239 | 26.884 | 154.611 | 5.76 | 10.4° | 154.601 |
+| Tele, infinity | 5.239 | 26.884 | 582.420 | 8.19 | 2.8° | 582.397 |
+| Wide, 2.4 m | 6.686 | 25.437 | — | 5.85 | 10.2° | 140.227 |
+| Tele, 2.4 m | 26.890 | 5.233 | — | 9.48 | 2.4° | 241.557 |
 
-## Apertures, Stop and Numerical Validation
+The model's 2.4 m states place the object 2400.3 mm (wide) and 2400.0 mm (tele) from the image plane, at
+magnifications −0.071 and −0.243. The patent does not describe the focus drive. Intermediate focus positions are
+interpolated, not patent cam positions.
 
-Clear radii were frozen from schematic/EP hypotheses and geometry-only reductions before scientific traces. Initial seeds, all reductions and rejected+5% alternatives remain in evidence. No rim cuts, source retuning or gap-sag override; native geometry reports zero hidden trim. Blades/mount fit is unproved.
+## Image Stabilization
 
-Normal scalar sheared-pupil diffraction uses design focus, unchanged image planes, ordinary16/32/64/128/256 refinement, unknown-flux checks and sampled frequencies0/10/20/30/40/50lp/mm. It is not geometric MTF, withdrawn1DwaveLattice validation, independently validated physical OPL, continuum certification or measured factory performance. 36 source-angle fields converged through sampled50lp/mm. All best-focus diagnostics remain unapplied.
+The stabilization group is L17–L19 (S30–S34), negative overall (computed f = −27.3 mm). A negative group receives a
+more converged beam and can be small (¶0095); one positive and two negative lenses in that order is the patent's
+preferred form for limiting aberration change during stabilization (¶0158). The positive Gk behind it (f = +51.5 mm)
+gives |fis/fisr| ≈ 0.53, inside the 0.32–1.1 range of condition 21 (¶0121). The patent gives no decentering amount,
+so the model traces the group centered only.
 
-The separate16-cell pupil histories total 4146 transmitted and 846 blocked samples; 74 raw intersection failures overlap the native blocked classification. These raw failures are preserved; a clipEvent alone is not independent analytical proof of a cap miss. Native unresolved/unaimed totals are 0/0. Zero unresolved does not mean loss-free. Finite back-projections and all launches/hits/directions/diagnosticOPL are archived.
+## Aperture, Stop and Model Scope
 
-| Case            | Angle/native first-vertex degrees | Image height mm | Grid | Δ through50 | S10/T10           | S30/T30           | S50/T50           |
-| --------------- | --------------------------------: | --------------: | ---: | ----------: | ----------------- | ----------------- | ----------------- |
-| z0/focus0/f5.76 |                        0.00000000 |      0.00000000 |   64 |  0.00250194 | 0.945267/0.945267 | 0.800225/0.800225 | 0.642870/0.642870 |
-| z0/focus0/f5.76 |                        2.59999896 |      7.03221558 |   32 |  0.00998317 | 0.947627/0.943371 | 0.816799/0.808004 | 0.677289/0.671767 |
-| z0/focus0/f5.76 |                        5.19999643 |     14.15700734 |   64 |  0.00306449 | 0.941771/0.903562 | 0.800127/0.666893 | 0.665838/0.475885 |
-| z0/focus0/f8    |                        0.00000000 |      0.00000000 |   32 |  0.00371125 | 0.933788/0.933788 | 0.784565/0.784565 | 0.641583/0.641583 |
-| z0/focus0/f8    |                        2.59999896 |      7.03221558 |   32 |  0.00538948 | 0.935938/0.936235 | 0.797474/0.800998 | 0.663513/0.670969 |
-| z0/focus0/f8    |                        5.19999643 |     14.15700734 |   32 |  0.00843779 | 0.935238/0.910457 | 0.796391/0.699123 | 0.663164/0.526621 |
-| z1/focus0/f8.19 |                        0.00000000 |      0.00000000 |   32 |  0.00585014 | 0.936366/0.936366 | 0.803963/0.803963 | 0.674599/0.674599 |
-| z1/focus0/f8.19 |                        0.69999996 |      7.14057035 |   32 |  0.00695694 | 0.935888/0.931190 | 0.809103/0.791670 | 0.683461/0.655096 |
-| z1/focus0/f8.19 |                        1.39999984 |     14.42809446 |   32 |  0.00609122 | 0.934795/0.891517 | 0.799934/0.605918 | 0.663778/0.371406 |
-| z1/focus0/f11   |                        0.00000000 |      0.00000000 |   32 |  0.00692973 | 0.917421/0.917421 | 0.751854/0.751854 | 0.593630/0.593630 |
-| z1/focus0/f11   |                        0.69999996 |      7.14057035 |   32 |  0.00702606 | 0.917323/0.916333 | 0.751395/0.746090 | 0.592498/0.583861 |
-| z1/focus0/f11   |                        1.39999984 |     14.42809446 |   32 |  0.00652239 | 0.916355/0.882439 | 0.748680/0.581688 | 0.588629/0.356801 |
-| z0/focus1/f5.76 |                        0.00000000 |      0.00000000 |   64 |  0.00280146 | 0.950236/0.950236 | 0.843181/0.843181 | 0.732182/0.732182 |
-| z0/focus1/f5.76 |                        2.54999467 |      6.55938910 |   64 |  0.00357769 | 0.945794/0.931987 | 0.810932/0.731199 | 0.665273/0.531358 |
-| z0/focus1/f5.76 |                        5.09998228 |     13.19935354 |   64 |  0.00301717 | 0.923745/0.797828 | 0.687673/0.291551 | 0.469361/0.165279 |
-| z0/focus1/f8    |                        0.00000000 |      0.00000000 |   32 |  0.00589855 | 0.936257/0.936257 | 0.799723/0.799723 | 0.665212/0.665212 |
-| z0/focus1/f8    |                        2.54999467 |      6.55938910 |   32 |  0.00450766 | 0.934087/0.927830 | 0.787493/0.754804 | 0.644800/0.594517 |
-| z0/focus1/f8    |                        5.09998228 |     13.19935354 |   32 |  0.00605851 | 0.924264/0.824743 | 0.734947/0.365560 | 0.562163/0.193318 |
-| z1/focus1/f8.19 |                        0.00000000 |      0.00000000 |   32 |  0.00168400 | 0.918611/0.918611 | 0.741131/0.741131 | 0.583611/0.583611 |
-| z1/focus1/f8.19 |                        0.59999920 |      5.28067440 |   32 |  0.00321604 | 0.919873/0.920792 | 0.747191/0.751055 | 0.592259/0.597391 |
-| z1/focus1/f8.19 |                        1.19999708 |     10.61377465 |   32 |  0.00533934 | 0.922384/0.922612 | 0.759029/0.757838 | 0.608592/0.603856 |
-| z1/focus1/f11   |                        0.00000000 |      0.00000000 |   32 |  0.00598715 | 0.901917/0.901917 | 0.704844/0.704844 | 0.523163/0.523163 |
-| z1/focus1/f11   |                        0.59999920 |      5.28067440 |   32 |  0.00619037 | 0.902075/0.901851 | 0.705585/0.704902 | 0.523875/0.522860 |
-| z1/focus1/f11   |                        1.19999708 |     10.61377465 |   32 |  0.00638820 | 0.902174/0.900367 | 0.706228/0.699404 | 0.524082/0.514736 |
+The patent prints the stop position (S23, at the front of G5) but no clear apertures and no iris diameter, so every
+semi-diameter in the model is inferred. The G3 rims (S12–S18) and the focus-doublet rims (S24–S26) were raised only as
+far as the wide-open on-axis beam needs, and both stay at or inside the sizes Fig. 1 draws; at both zoom ends the
+iris, not a lens rim, limits the wide-open on-axis beam.
 
-Source field angles and the actual native format reference/corner are separate. UI default best-axial focus with a photopic preference (reference fallback when spectral data is insufficient) is not this fixed design-plane/reference-index research; actual compiled-viewer receipts are separately retained.
+The iris is derived from the printed infinity F-numbers, F/5.76 at wide and F/8.19 at tele, because the patent gives
+no iris schedule. With the same iris, the 2.4 m states give paraxial F/5.84 and F/9.59 against the printed 5.85 and
+9.48; the tele near value is not reproduced, and no iris schedule is fitted to it.
+
+Other limits: dispersion comes from the printed nd, νd and θgF only; intermediate zoom and focus positions are
+interpolated; finite-distance MTF is available only at the two printed 2.4 m states; and the stabilization group is
+traced centered.
 
 ## Sources
 
-- [Controlling patent](https://patents.google.com/patent/JP2023020586A/en): JP 2023-020586 A, Numerical Example 1.
-- Original manufacturer section/specifications retained in the source archive; they support a qualified family association, not factory radii or physical clear caps.
+- [JP 2023-020586 A](https://patents.google.com/patent/JP2023020586A/en): Example 1 (Tables 1A, 1B and 2; Fig. 1).
+- [Fujifilm, XF150-600mm F5.6-8 R LM OIS WR specifications](https://www.fujifilm-x.com/global/products/lenses/xf150-600mmf56-8-r-lm-ois-wr/specifications/):
+  24 elements in 17 groups, including four Super ED and three ED elements, with the lens-configuration diagram that
+  marks their positions.
