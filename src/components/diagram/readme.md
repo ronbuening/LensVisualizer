@@ -10,7 +10,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 flowchart LR
   subgraph n_src_components_diagram["src/components/diagram"]
     n_src_components_diagram_src_components_diagram_sphericalAberration["sphericalAberration/"]
-    n_src_components_diagram_React_components["React components (24)"]
+    n_src_components_diagram_React_components["React components (25)"]
     n_src_components_diagram_TypeScript_modules["TypeScript modules (1)"]
   end
   n_external_src_types["src/types"]
@@ -25,8 +25,8 @@ flowchart LR
   n_external_src_optics_perspective_ts["src/optics/perspective.ts"]
   n_external_src_optics_teleconverter_ts["src/optics/teleconverter.ts"]
   n_external_src_utils_text_ts["src/utils/text.ts"]
-  n_src_components_diagram_React_components --> |31| n_external_src_types
-  n_src_components_diagram_React_components --> |24| n_external_pkg_react
+  n_src_components_diagram_React_components --> |33| n_external_src_types
+  n_src_components_diagram_React_components --> |25| n_external_pkg_react
   n_src_components_diagram_React_components --> |10| n_external_src_optics_chromatic_ts
   n_src_components_diagram_React_components --> |5| n_external_src_optics_analysis_ts
   n_src_components_diagram_React_components --> |4| n_external_src_optics_optics_ts
@@ -43,9 +43,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 25
+- Direct source files: 26
 - Direct subfolders: 1
-- Main outbound areas: src/types (32), package:react (24), same folder (19), src/optics/chromatic.ts (10), src/optics/analysis.ts (5), src/optics/optics.ts (4), src/components/display (3), src/optics/diagramGeometry.ts (2), +5 more
+- Main outbound areas: src/types (34), package:react (25), same folder (20), src/optics/chromatic.ts (10), src/optics/analysis.ts (5), src/optics/optics.ts (4), src/components/display (3), src/optics/diagramGeometry.ts (2), +5 more
 - External consumers: src/benchmarks, src/components/layout, src/components/markdown
 
 ## Subfolders
@@ -66,7 +66,7 @@ flowchart LR
 | `DiagramDefs.tsx` | React component module | package:react, src/types, src/utils/featureFlags.ts | same folder | default |
 | `DiagramElementLayer.tsx` | React component module | src/types (2), package:react, src/utils/featureFlags.ts | same folder | default |
 | `DiagramGridAxisLayer.tsx` | React component module | src/types (2), package:react | same folder | default |
-| `DiagramOverlayLayer.tsx` | React component module | same folder (6), src/optics/optics.ts (2), src/types (2), package:react, src/optics/analysis.ts, +2 more | same folder | default |
+| `DiagramOverlayLayer.tsx` | React component module | same folder (7), src/optics/optics.ts (2), src/types (2), package:react, src/optics/analysis.ts, +2 more | same folder | default |
 | `DiagramRayLayers.tsx` | React component module | src/types (3), same folder (2), package:react | same folder | default |
 | `DiagramSVG.tsx` | React component module | same folder (6), src/types (3), package:react, src/optics/analysis.ts, src/optics/chromatic.ts, +3 more | src/benchmarks, src/components/layout | default |
 | `diagramSvgTypes.ts` | Diagram Svg Types helper module | src/types | same folder (3) | RaySegment, ChromaticRaySegment |
@@ -74,6 +74,7 @@ flowchart LR
 | `EntrancePupilDiagram.tsx` | React component module | package:react | src/components/markdown | default |
 | `ExitPupilDiagram.tsx` | React component module | package:react | src/components/markdown | default |
 | `ImagePlaneOverlay.tsx` | React component module | src/types (2), package:react, src/optics/diagramGeometry.ts | same folder | default |
+| `ImageSectionBadge.tsx` | React component module | src/types (2), package:react | same folder | default |
 | `LocaDiagram.tsx` | React component module | package:react | src/components/markdown | default |
 | `LocaInsetWidget.tsx` | React component module | src/optics/chromatic.ts (2), src/types (2), package:react, same folder, src/components/display, +1 more | same folder (2) | default |
 | `MTFDiagram.tsx` | React component module | package:react | src/components/markdown | default |

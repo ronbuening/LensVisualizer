@@ -26,7 +26,7 @@ flowchart LR
   end
   n_external_src_types["src/types"]
   n_src_optics_TypeScript_modules --> |62| n_src_optics_src_optics_analysis
-  n_src_optics_TypeScript_modules --> |27| n_src_optics_src_optics_prescription
+  n_src_optics_TypeScript_modules --> |28| n_src_optics_src_optics_prescription
   n_src_optics_TypeScript_modules --> |18| n_src_optics_src_optics_chromatic
   n_src_optics_TypeScript_modules --> |16| n_src_optics_src_optics_state
   n_src_optics_TypeScript_modules --> |15| n_src_optics_src_optics_perspective
@@ -44,7 +44,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 13
-- Main outbound areas: src/optics/analysis (62), src/optics/prescription (27), src/optics/chromatic (18), src/optics/state (16), src/optics/perspective (15), src/optics/diagram (10), src/optics/first-order (8), src/optics/trace (8), +6 more
+- Main outbound areas: src/optics/analysis (62), src/optics/prescription (28), src/optics/chromatic (18), src/optics/state (16), src/optics/perspective (15), src/optics/diagram (10), src/optics/first-order (8), src/optics/trace (8), +6 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/components/lensBuilder, +16 more
 
 ## Subfolders
@@ -70,7 +70,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `analysis.ts` | Analysis helper module | src/optics/analysis (50), src/optics/first-order (2), src/optics/state | src/components/display (39), src/components/diagram (5), src/components/hooks (5), src/comparison (3), src/components/layout (3), +2 more | computeBestFocusZ, computeImagePlaneZAtFocus, computeComaAnalysis, computeComaPointCloudPreview, computeComaPreview, computeMeridionalComa, computeSagittalComa, computeFieldCurvature, +211 more |
-| `buildLens.ts` | Build Lens module with default export | src/optics/prescription (8), src/optics/state | src/utils/catalog (4), src/components/hooks (3), src/benchmarks, src/comparison, src/lensBuilder | compileLens, canonicalInput, CanonicalTeleconverter, buildCanonicalLens, buildLens, CanonicalLens, IngestedPrescription, canonicalLensFromRuntime, +6 more |
+| `buildLens.ts` | Build Lens module with default export | src/optics/prescription (9), src/optics/state | src/utils/catalog (4), src/components/hooks (3), src/benchmarks, src/comparison, src/lensBuilder | compileLens, canonicalInput, CanonicalTeleconverter, buildCanonicalLens, buildLens, withImageSurfaceMeridian, CanonicalLens, IngestedPrescription, +7 more |
 | `chromatic.ts` | Chromatic helper module | src/optics/chromatic (11), src/types | src/components/diagram (7), src/components/display (5), src/components/controls (2), src/components/hooks (2), src/components/layout (2), +2 more | CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_ORDER, CHROMATIC_CHANNEL_WAVELENGTH_NM, chromaticChannelDescription, chromaticChannelIndexLabel, chromaticChannelLineList, chromaticChannelWavelengthLabel, lensChromaticReference, +31 more |
 | `diagramGeometry.ts` | Diagram Geometry helper module | src/optics/diagram (10) | src/components/diagram (2), src/benchmarks, src/components/hooks, src/components/layout | createCoordinateTransforms, computeElementShapesForState, foldedHitOrderLabelsForDisplay, imageSurfacePathD, imageSurfacePoint, ImageSurfacePlacement, computeElementRenderDiagnosticsForState, computeElementRenderDiagnostics, +10 more |
 | `fieldGeometry.ts` | Field Geometry helper module | src/optics/field (5), src/optics/diagnostics (2), src/optics/state | src/components/display (9), src/components/hooks (5), src/components/layout (2), src/benchmarks | getChiefRayDiagnostics, resetChiefRayDiagnostics, ChiefRayDiagnostics, ChiefRayStatus, ChiefRaySolveResult, EntrancePupilState, ImageHeightInversionResult, offsetVectorFieldRay, +20 more |

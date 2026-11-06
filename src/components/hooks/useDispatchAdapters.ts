@@ -75,6 +75,7 @@ export interface DispatchAdapters {
   onGlassMapOpenChange: (v: boolean) => void;
   onChromaticOverlayChange: (v: boolean) => void;
   onPetzvalOverlayChange: (v: boolean) => void;
+  onImageFlatMeridianChange: (v: boolean) => void;
 }
 
 export default function useDispatchAdapters(): DispatchAdapters {
@@ -150,6 +151,8 @@ export default function useDispatchAdapters(): DispatchAdapters {
         dispatch({ type: SET_PANEL_EXPANDED, panel: "chromaticOverlayOpen", expanded: v }),
       onPetzvalOverlayChange: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "petzvalOverlayOpen", expanded: v }),
+      onImageFlatMeridianChange: (v: boolean) =>
+        dispatch({ type: SET_PANEL_EXPANDED, panel: "imageFlatMeridian", expanded: v }),
     }),
     [dispatch, updateURLWithSliders],
   );

@@ -137,6 +137,7 @@ export type PanelField =
   | "glassMapOpen"
   | "chromaticOverlayOpen"
   | "petzvalOverlayOpen"
+  | "imageFlatMeridian"
   | "showEffectiveFocalLength"
   | "showEffectiveAperture"
   | "aberrationsExpanded"
@@ -154,6 +155,8 @@ export interface PanelsSlice {
   glassMapOpen: boolean;
   chromaticOverlayOpen: boolean;
   petzvalOverlayOpen: boolean;
+  /** Single-lens view: show a cylindrical image surface turned a quarter turn, its straight section drawn. */
+  imageFlatMeridian: boolean;
   showEffectiveFocalLength: boolean;
   showEffectiveAperture: boolean;
   aberrationsExpanded: boolean;
@@ -290,6 +293,7 @@ export interface URLState {
   glassMapOpen?: boolean;
   chromaticOverlayOpen?: boolean;
   petzvalOverlayOpen?: boolean;
+  imageFlatMeridian?: boolean;
   analysisDrawerOpen?: boolean;
   analysisDrawerTab?: AnalysisTabId;
   groupMovementOpen?: boolean;

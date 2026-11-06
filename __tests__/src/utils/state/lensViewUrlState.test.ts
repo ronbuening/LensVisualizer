@@ -288,6 +288,7 @@ describe("lensViewUrlState", () => {
       glassMapOpen: true,
       chromaticOverlayOpen: true,
       petzvalOverlayOpen: true,
+      imageFlatMeridian: true,
       analysisDrawerOpen: true,
       analysisDrawerTab: "distortion",
       groupMovementOpen: true,
@@ -311,6 +312,15 @@ describe("lensViewUrlState", () => {
     expect(comparing.selectedElementIdB).toBe(fixture.selectedElementIdB);
     expect(comparing.selectedElementId).toBeUndefined();
     expect(comparing.patentPositions).toBeUndefined();
+    expect(comparing.imageFlatMeridian).toBeFalsy();
+  });
+
+  it("round-trips the straight image section as a single-lens view flag", () => {
+    expect(buildLensViewQuery({ imageFlatMeridian: true }).toString()).toBe("v=1&imf=1");
+    expect(buildLensViewQuery({ imageFlatMeridian: false }).toString()).toBe("");
+    expect(buildLensViewQuery({ imageFlatMeridian: true, comparing: true }).toString()).toBe("");
+    expect(parseLensViewQuery("?v=1&imf=1").imageFlatMeridian).toBe(true);
+    expect(parseLensViewQuery("?v=2&imf=1").imageFlatMeridian).toBeFalsy();
   });
 
   it("round-trips patent-positions mode as a tri-state v1 flag that never defaults", () => {

@@ -98,6 +98,7 @@ const PANEL_FIELDS = new Set([
   "glassMapOpen",
   "chromaticOverlayOpen",
   "petzvalOverlayOpen",
+  "imageFlatMeridian",
   "showEffectiveFocalLength",
   "showEffectiveAperture",
   "aberrationsExpanded",
@@ -186,6 +187,7 @@ export function createInitialState(
       glassMapOpen: urlState.glassMapOpen ?? false,
       chromaticOverlayOpen: urlState.chromaticOverlayOpen ?? false,
       petzvalOverlayOpen: urlState.petzvalOverlayOpen ?? false,
+      imageFlatMeridian: urlState.imageFlatMeridian ?? false,
       showEffectiveFocalLength: prefs.showEffectiveFocalLength ?? false,
       showEffectiveAperture: prefs.showEffectiveAperture ?? false,
       aberrationsExpanded: prefs.aberrationsExpanded ?? true,
@@ -238,6 +240,7 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
           glassMapOpen: false,
           chromaticOverlayOpen: false,
           petzvalOverlayOpen: false,
+          imageFlatMeridian: false,
           selectedElementId: null,
         };
       } else {

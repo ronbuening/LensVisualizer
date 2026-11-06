@@ -194,6 +194,7 @@ export default function LensDiagramLoadedState({
             onClosePetzvalOverlay={overlays.closePetzvalOverlay}
             onOpenChromaticOverlay={overlays.openChromaticOverlay}
             onOpenPetzvalOverlay={overlays.openPetzvalOverlay}
+            onImageSectionToggle={overlays.toggleImageSection}
             analysisDrawerOpen={analysisDrawerOpen}
             onAnalysisDrawerToggle={adapters.onAnalysisDrawerToggle}
             analysisDrawerTab={analysisDrawerTab}

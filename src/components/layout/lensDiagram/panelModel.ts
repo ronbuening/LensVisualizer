@@ -124,6 +124,8 @@ export interface PanelDisplayFlagsModel {
 export interface PanelOverlaysModel {
   showChromaticOverlay: boolean;
   showPetzvalOverlay: boolean;
+  /** Switches a cylindrical image surface's drawn section; absent in comparison panes. */
+  toggleImageSection?: () => void;
   showAbbeDiagram: boolean;
   closeChromaticOverlay: () => void;
   closePetzvalOverlay: () => void;

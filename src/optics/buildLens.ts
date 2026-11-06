@@ -3,6 +3,7 @@ export { compileLens } from "./prescription/compile.js";
 export { canonicalInput } from "./prescription/canonicalInput.js";
 export type { CanonicalTeleconverter } from "./prescription/canonical.js";
 export { buildCanonicalLens, buildLens } from "./prescription/buildRuntimeLens.js";
+export { withImageSurfaceMeridian } from "./prescription/imageSurfaceMeridian.js";
 export type { CanonicalLens, IngestedPrescription } from "./prescription/canonical.js";
 export { canonicalLensFromRuntime, compiledLensFromRuntime } from "./prescription/identity.js";
 export { ingestLens, ingestTeleconverter, lensDataVersion } from "./prescription/ingestV2.js";

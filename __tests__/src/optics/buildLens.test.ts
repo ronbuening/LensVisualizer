@@ -15,7 +15,8 @@ import { wideOpenStopAtZoom } from "../../../src/optics/state/apertureStop.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
-import { analysisRequestForLens } from "./testLensFixtures.js";
+import { analysisRequestForLens, buildCurvedImageLens } from "./testLensFixtures.js";
+import { buildLens as buildCanonical, withImageSurfaceMeridian } from "../../../src/optics/buildLens.js";
 import { computeFieldGeometryAtState } from "../../../src/optics/state/fieldAdapters.js";
 import { expandCanonicalRearPlates } from "../../../src/optics/prescription/rearPlates.js";
 import {
@@ -922,5 +923,24 @@ describe("buildLens — rear plates", () => {
 
     expect(close.z[plated.N - 2] - close.z[plated.lastLensSurfaceIdx]).toBeCloseTo(49, 10);
     expect(paraxialDefocus(plated, 1).defocus).toBeCloseTo(paraxialDefocus(folded, 1).defocus, 10);
+  });
+});
+
+describe("withImageSurfaceMeridian", () => {
+  it("turns only a cylindrical image surface, as an independent canonical copy", () => {
+    const cylinder = buildCurvedImageLens({ R: -60, cylindrical: true, sd: 20 }, "test-cylindrical-image");
+    const sphere = buildCurvedImageLens({ R: -60, sd: 20 }, "test-spherical-image");
+    expect(withImageSurfaceMeridian(sphere.source, "flat")).toBe(sphere.source);
+    expect(withImageSurfaceMeridian(cylinder.source, "curved")).toBe(cylinder.source);
+
+    const turned = withImageSurfaceMeridian(cylinder.source, "flat");
+    expect(turned).not.toBe(cylinder.source);
+    expect(cylinder.source.imageSurface?.meridian).toBeUndefined();
+    expect(cylinder.imageSurface?.cylinderAxis).toBe("x");
+    const L = buildCanonical(turned);
+    expect(L.imageSurface?.cylinderAxis).toBe("y");
+    /* The drawn meridian is now the straight one. */
+    expect(L.imageSurface?.sagAt(0, 10)).toBeCloseTo(0, 12);
+    expect(L.imageSurface?.sagAt(10, 0)).toBeLessThan(0);
   });
 });

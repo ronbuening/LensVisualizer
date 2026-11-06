@@ -16,7 +16,7 @@ import { useMemo, useRef } from "react";
 import { resolveLensSystemData } from "../../utils/catalog/teleconverterCatalog.js";
 import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../../optics/optics.js";
 import { fNumberAtStopdown } from "../../optics/optics.js";
-import { buildLens } from "../../optics/buildLens.js";
+import { buildLens, withImageSurfaceMeridian } from "../../optics/buildLens.js";
 import type { CardinalElements } from "../../optics/analysis.js";
 import { computeCardinalElements, computeFocusEFL, createAnalysisRequest } from "../../optics/analysis.js";
 import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
@@ -54,6 +54,8 @@ interface UseLensComputationParams {
   includeCardinalExtents?: boolean;
   /** Patent-positions mode: land on the nearest published station, wide open, aberration control neutral. */
   snapToPublishedStations?: boolean;
+  /** Turn a cylindrical image surface so its straight section is drawn and analysed; ignored with `runtimeLens`. */
+  imageFlatMeridian?: boolean;
 }
 
 interface VarReadout {
@@ -113,16 +115,18 @@ export default function useLensComputation({
   panelId,
   includeCardinalExtents = false,
   snapToPublishedStations = false,
+  imageFlatMeridian = false,
 }: UseLensComputationParams): UseLensComputationResult {
   /* ── Build lens from catalog ── */
   const buildResult = useMemo((): { L: RuntimeLens; error?: undefined } | { L?: undefined; error: unknown } => {
     if (runtimeLens) return { L: runtimeLens };
     try {
-      return { L: buildLens(resolveLensSystemData(lensKey, teleconverterKey)) };
+      const system = resolveLensSystemData(lensKey, teleconverterKey);
+      return { L: buildLens(withImageSurfaceMeridian(system, imageFlatMeridian ? "flat" : "curved")) };
     } catch (e) {
       return { error: e };
     }
-  }, [lensKey, teleconverterKey, runtimeLens]);
+  }, [lensKey, teleconverterKey, runtimeLens, imageFlatMeridian]);
 
   const L = buildResult.L;
   const buildError = buildResult.error;

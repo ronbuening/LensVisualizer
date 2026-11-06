@@ -79,6 +79,7 @@ interface DiagramSVGProps {
   flashFading: boolean;
   onLocaInsetClick?: () => void;
   onPetzvalBadgeClick?: () => void;
+  onImageSectionToggle?: () => void;
   /** Override the default viewBox for zoom/pan mode */
   viewBoxOverride?: string;
   /** When true, disable element hover/click and show grab cursor */
@@ -148,6 +149,7 @@ const DiagramSVG = memo(function DiagramSVG({
   flashFading,
   onLocaInsetClick,
   onPetzvalBadgeClick,
+  onImageSectionToggle,
   viewBoxOverride,
   zoomPanActive,
   onSvgWheel,
@@ -292,6 +294,7 @@ const DiagramSVG = memo(function DiagramSVG({
         flashFading={flashFading}
         onLocaInsetClick={onLocaInsetClick}
         onPetzvalBadgeClick={onPetzvalBadgeClick}
+        onImageSectionToggle={onImageSectionToggle}
       />
     </svg>
   );

@@ -30,6 +30,7 @@ type LensViewQueryKey =
   | "glassMapOpen"
   | "chromaticOverlayOpen"
   | "petzvalOverlayOpen"
+  | "imageFlatMeridian"
   | "analysisDrawerOpen"
   | "analysisDrawerTab"
   | "groupMovementOpen"
@@ -59,6 +60,7 @@ export const VIEW_STATE_FIELDS = [
   { key: "glassMapOpen", default: false },
   { key: "chromaticOverlayOpen", default: false },
   { key: "petzvalOverlayOpen", default: false },
+  { key: "imageFlatMeridian", default: false },
   { key: "analysisDrawerOpen", default: false },
   { key: "groupMovementOpen", default: false },
 ] as const;
@@ -79,6 +81,7 @@ const DEFAULT_URL_STATE: Partial<URLState> = {
   glassMapOpen: false,
   chromaticOverlayOpen: false,
   petzvalOverlayOpen: false,
+  imageFlatMeridian: false,
   analysisDrawerOpen: false,
   analysisDrawerTab: "aberrations",
   groupMovementOpen: false,
@@ -156,6 +159,7 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   const glassMapOpen = parseBooleanParam(params, "gm");
   const chromaticOverlayOpen = parseBooleanParam(params, "chr");
   const petzvalOverlayOpen = parseBooleanParam(params, "ptz");
+  const imageFlatMeridian = parseBooleanParam(params, "imf");
   const analysisDrawerOpen = parseBooleanParam(params, "ad");
   const movementMode = params.get("mv");
   const tab = params.get("tab");
@@ -170,6 +174,7 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   if (glassMapOpen !== undefined) state.glassMapOpen = glassMapOpen;
   if (chromaticOverlayOpen !== undefined) state.chromaticOverlayOpen = chromaticOverlayOpen;
   if (petzvalOverlayOpen !== undefined) state.petzvalOverlayOpen = petzvalOverlayOpen;
+  if (imageFlatMeridian !== undefined) state.imageFlatMeridian = imageFlatMeridian;
   if (analysisDrawerOpen !== undefined) state.analysisDrawerOpen = analysisDrawerOpen;
   if (configurationKey) state.configurationKey = configurationKey;
   if (teleconverterKey) state.teleconverterKey = teleconverterKey;
@@ -207,6 +212,7 @@ export function buildLensViewQuery({
   glassMapOpen,
   chromaticOverlayOpen,
   petzvalOverlayOpen,
+  imageFlatMeridian,
   analysisDrawerOpen,
   analysisDrawerTab,
   groupMovementOpen,
@@ -218,6 +224,7 @@ export function buildLensViewQuery({
     Boolean(glassMapOpen) ||
     Boolean(chromaticOverlayOpen) ||
     Boolean(petzvalOverlayOpen) ||
+    (!comparing && Boolean(imageFlatMeridian)) ||
     Boolean(analysisDrawerOpen) ||
     Boolean(groupMovementOpen) ||
     (!comparing && Boolean(patentPositions)) ||
@@ -250,6 +257,7 @@ export function buildLensViewQuery({
   if (glassMapOpen) params.set("gm", "1");
   if (chromaticOverlayOpen) params.set("chr", "1");
   if (petzvalOverlayOpen) params.set("ptz", "1");
+  if (!comparing && imageFlatMeridian) params.set("imf", "1");
   if (analysisDrawerOpen) params.set("ad", "1");
   if (analysisDrawerOpen && analysisDrawerTab && analysisDrawerTab !== "aberrations") {
     params.set("tab", analysisDrawerTab);
@@ -294,6 +302,7 @@ export function buildLensViewQueryFromState(state: LensState, zoom: number | nul
     glassMapOpen: state.panels.glassMapOpen,
     chromaticOverlayOpen: state.panels.chromaticOverlayOpen,
     petzvalOverlayOpen: state.panels.petzvalOverlayOpen,
+    imageFlatMeridian: state.panels.imageFlatMeridian,
     analysisDrawerOpen: state.panels.analysisDrawerOpen,
     analysisDrawerTab: state.panels.analysisDrawerTab,
     groupMovementOpen: state.panels.groupMovementOpen,
