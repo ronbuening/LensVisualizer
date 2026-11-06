@@ -44,20 +44,22 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "STO", R: "flat", d: 4 },
-    { label: "1", R: -20, d: 2.5, sd: 3.5, medium: 1 },
-    { label: "2", R: -9.5, d: 33.766, sd: 4 },
+    { label: "1", R: -20, d: 2.5, sd: 5, medium: 1 },
+    { label: "2", R: -9.5, d: 33.766, sd: 5.5 },
   ],
 
   imageSurface: { R: -90, cylindrical: true, sd: 22, source: "Synthetic: a film gate curved along the long side" },
 
   focus: { closeFocusM: 1.5 },
 
+  projection: { kind: "rectilinear", fullFieldDeg: 67.4, maxTraceFieldDeg: 33.7 },
+
   aperture: { nominalFNumber: 11, fStops: [11, 16], maxFNumber: 16 },
 
   groups: [{ text: "L1", fromSurface: "1", toSurface: "2" }],
   doublets: [],
 
-  layout: { scFill: 0.6, yScFill: 0.5 },
+  layout: { scFill: 0.6, yScFill: 0.18 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

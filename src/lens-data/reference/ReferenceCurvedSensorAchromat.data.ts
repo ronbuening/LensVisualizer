@@ -56,14 +56,16 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "STO", R: "flat", d: 6 },
-    { label: "1", R: 25.74, d: 5, sd: 7.5, medium: 1 },
-    { label: "2", R: -25.74, d: 2, sd: 7.5, medium: 2 },
-    { label: "3", R: -112.5, d: 46.053, sd: 7.5 },
+    { label: "1", R: 25.74, d: 5, sd: 10, medium: 1 },
+    { label: "2", R: -25.74, d: 2, sd: 10, medium: 2 },
+    { label: "3", R: -112.5, d: 46.053, sd: 10 },
   ],
 
   imageSurface: { R: -69.3, sd: 15.5, source: "Synthetic: the doublet's Petzval radius, −1 / 0.014424 mm" },
 
   focus: { closeFocusM: 2 },
+
+  projection: { kind: "rectilinear", fullFieldDeg: 33.4, maxTraceFieldDeg: 16.7 },
 
   aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11], maxFNumber: 11 },
 
