@@ -2,7 +2,7 @@
 
 **Title:** Zoom Lens and Imaging Apparatus
 
-**Inventors:** Hiroki Kawamura, Tetsuya Ori
+**Inventors:** Daiki Kawamura, Tetsuya Ori
 
 **Assignee:** Fujifilm Corporation
 
@@ -26,7 +26,7 @@ the patent's other examples remain alternatives. The identification rests on:
 4. **Focus and stabilization.** A two-element negative focus group and a three-element negative stabilization group
    sit inside the last group, which stays fixed during zoom (¶0162).
 
-The inventors are listed in the patent's order, 河村大樹 (Hiroki Kawamura) and 小里哲也 (Tetsuya Ori).
+The inventors are listed in the patent's order, 河村大樹 (Daiki Kawamura, the romanization used for his other Fujifilm patents in this catalog) and 小里哲也 (Tetsuya Ori).
 
 ## Optical Architecture
 
@@ -51,14 +51,14 @@ L20–L24 (¶0122). The 2.85 mm camera-side plate (S43–S44, nd 1.51680) is tra
 
 ## Element-by-Element Analysis
 
-Element focal lengths are in-air values computed from each element's own radii, thickness and nd. Every glass is
-Unmatched: the patent names no supplier (see Glass Identification).
+Element focal lengths are in-air values computed from each element's own radii, thickness and nd. The patent names no glass supplier; each element is modelled as the catalog glass
+whose printed values it reproduces (see Glass Identification).
 
 ### G1: L1, L2, L3
 
-- **L1** — Negative Meniscus, convex to the object. nd = 1.62005, νd = 36.35. Glass: Unmatched. f = −332.2 mm.
-- **L2** — Biconvex Positive. nd = 1.43700, νd = 95.10. Glass: Unmatched, Super ED class. f = +230.7 mm.
-- **L3** — Plano-Convex Positive, convex to the object. nd = 1.43700, νd = 95.10. Glass: Unmatched, Super ED class.
+- **L1** — Negative Meniscus, convex to the object. nd = 1.62005, νd = 36.35. Glass: Hoya E-F2 equivalent. f = −332.2 mm.
+- **L2** — Biconvex Positive. nd = 1.43700, νd = 95.10. Glass: Hoya FCD100 equivalent, Super ED. f = +230.7 mm.
+- **L3** — Plano-Convex Positive, convex to the object. nd = 1.43700, νd = 95.10. Glass: Hoya FCD100 equivalent, Super ED.
   f = +239.2 mm.
 
 The fixed front group is a weak negative meniscus followed by two Super ED-class positives, where the axial beam is
@@ -69,10 +69,10 @@ which ¶0113 links to weight.
 
 ### G2: L4, L5 + L6
 
-- **L4** — Biconcave Negative. nd = 1.69680, νd = 55.53. Glass: Unmatched. f = −68.9 mm.
-- **L5** — Biconcave Negative, cemented to L6. nd = 1.43700, νd = 95.10. Glass: Unmatched, Super ED class.
+- **L4** — Biconcave Negative. nd = 1.69680, νd = 55.53. Glass: Ohara S-LAL14 equivalent. f = −68.9 mm.
+- **L5** — Biconcave Negative, cemented to L6. nd = 1.43700, νd = 95.10. Glass: Hoya FCD100 equivalent, Super ED.
   f = −85.7 mm.
-- **L6** — Positive Meniscus, convex to the object. nd = 1.85896, νd = 22.73. Glass: Unmatched. f = +127.7 mm.
+- **L6** — Positive Meniscus, convex to the object. nd = 1.85896, νd = 22.73. Glass: Ohara S-NPH5 equivalent. f = +127.7 mm.
 
 G2 is the main variator, travelling 72.505 mm toward the image from wide to tele. The Super ED-class negative L5
 matches conditions 16–17 (negative lens with high νd and positive anomalous dispersion), which ¶0116–0117 tie to
@@ -81,13 +81,13 @@ anomalous dispersion), tied to axial color and its secondary spectrum (¶0114–
 
 ### G3: L7, L8, L9 + L10
 
-- **L7** — Plano-Convex Positive, convex to the image. nd = 1.49700, νd = 81.54. Glass: Unmatched, ED class.
+- **L7** — Plano-Convex Positive, convex to the image. nd = 1.49700, νd = 81.54. Glass: Ohara S-FPL51 equivalent, ED.
   f = +156.0 mm.
-- **L8** — Plano-Convex Positive, convex to the object. nd = 1.49700, νd = 81.54. Glass: Unmatched, ED class.
+- **L8** — Plano-Convex Positive, convex to the object. nd = 1.49700, νd = 81.54. Glass: Ohara S-FPL51 equivalent, ED.
   f = +249.2 mm.
-- **L9** — Biconvex Positive, cemented to L10. nd = 1.43700, νd = 95.10. Glass: Unmatched, Super ED class.
+- **L9** — Biconvex Positive, cemented to L10. nd = 1.43700, νd = 95.10. Glass: Hoya FCD100 equivalent, Super ED.
   f = +110.8 mm.
-- **L10** — Plano-Concave Negative. nd = 1.91082, νd = 35.25. Glass: Unmatched. f = −123.0 mm.
+- **L10** — Plano-Concave Negative. nd = 1.91082, νd = 35.25. Glass: Hoya TAFD35 equivalent. f = −123.0 mm.
 
 G3 is the patent's PA group, the first and strongest positive group of GM (¶0089–0090). Its three positives and one
 negative are the make-up ¶0087 prefers for axial color. Conditions 9–12 ask its positive lenses for high νd and
@@ -97,8 +97,8 @@ condition 10.
 
 ### G4: L11, L12
 
-- **L11** — Negative Meniscus, convex to the object. nd = 1.78590, νd = 44.20. Glass: Unmatched. f = −113.7 mm.
-- **L12** — Biconvex Positive. nd = 1.49700, νd = 81.54. Glass: Unmatched, ED class. f = +61.6 mm.
+- **L11** — Negative Meniscus, convex to the object. nd = 1.78590, νd = 44.20. Glass: Ohara S-LAH51 equivalent. f = −113.7 mm.
+- **L12** — Biconvex Positive. nd = 1.49700, νd = 81.54. Glass: Ohara S-FPL51 equivalent, ED. f = +61.6 mm.
 
 G4, the second positive group of GM, is an air-spaced negative-positive pair whose facing radii (34.623 and
 34.608 mm, 1.500 mm apart) are nearly equal, forming a thin meniscus-shaped air lens. It carries the third ED-class
@@ -106,8 +106,8 @@ element and moves a net 6.641 mm toward the image from wide to tele.
 
 ### G5 focus doublet: L13 + L14 (S24–S26)
 
-- **L13** — Positive Meniscus, concave to the object. nd = 1.73800, νd = 32.33. Glass: Unmatched. f = +57.5 mm.
-- **L14** — Biconcave Negative. nd = 1.69680, νd = 55.53. Glass: Unmatched. f = −33.1 mm.
+- **L13** — Positive Meniscus, concave to the object. nd = 1.73800, νd = 32.33. Glass: Ohara S-NBH53V equivalent. f = +57.5 mm.
+- **L14** — Biconcave Negative. nd = 1.69680, νd = 55.53. Glass: Ohara S-LAL14 equivalent. f = −33.1 mm.
 
 The patent's focus group (L51–L52), negative overall (computed f = −78.0 mm). ¶0093 prefers a focus group of two
 lenses or fewer, and notes that a negative one receives a more converged beam, so it can be smaller and lighter. See
@@ -115,27 +115,27 @@ Focus Mechanism.
 
 ### G5 fixed doublet: L15 + L16
 
-- **L15** — Biconvex Positive. nd = 1.54814, νd = 45.78. Glass: Unmatched. f = +39.2 mm.
-- **L16** — Negative Meniscus, convex to the image. nd = 2.00069, νd = 25.46. Glass: Unmatched. f = −72.6 mm.
+- **L15** — Biconvex Positive. nd = 1.54814, νd = 45.78. Glass: Ohara S-TIL1 equivalent. f = +39.2 mm.
+- **L16** — Negative Meniscus, convex to the image. nd = 2.00069, νd = 25.46. Glass: Hoya TAFD40 equivalent. f = −72.6 mm.
 
 A positive cemented doublet (computed f = +87.2 mm) that stays fixed between the focus and stabilization groups.
 
 ### G5 stabilization group: L17 + L18, L19 (S30–S34)
 
-- **L17** — Biconvex Positive. nd = 1.80519, νd = 25.48. Glass: Unmatched. f = +32.2 mm.
-- **L18** — Biconcave Negative. nd = 1.72915, νd = 54.64. Glass: Unmatched. f = −23.9 mm.
-- **L19** — Biconcave Negative. nd = 1.81600, νd = 46.54. Glass: Unmatched. f = −36.1 mm.
+- **L17** — Biconvex Positive. nd = 1.80519, νd = 25.48. Glass: Hoya FD60 equivalent. f = +32.2 mm.
+- **L18** — Biconcave Negative. nd = 1.72915, νd = 54.64. Glass: Ohara S-LAL18 equivalent. f = −23.9 mm.
+- **L19** — Biconcave Negative. nd = 1.81600, νd = 46.54. Glass: Hoya TAF5 equivalent. f = −36.1 mm.
 
 The patent's stabilization group (L55–L57): a cemented positive-negative doublet and a negative singlet. See Image
 Stabilization.
 
 ### G5 fixed subgroup Gk: L20 + L21 + L22, L23, L24
 
-- **L20** — Biconvex Positive. nd = 1.67300, νd = 38.26. Glass: Unmatched. f = +19.7 mm.
-- **L21** — Biconcave Negative. nd = 2.00069, νd = 25.46. Glass: Unmatched. f = −13.3 mm.
-- **L22** — Biconvex Positive. nd = 1.73800, νd = 32.33. Glass: Unmatched. f = +31.6 mm.
-- **L23** — Biconvex Positive. nd = 1.60342, νd = 38.03. Glass: Unmatched. f = +31.0 mm.
-- **L24** — Biconcave Negative. nd = 1.62041, νd = 60.37. Glass: Unmatched. f = −31.4 mm.
+- **L20** — Biconvex Positive. nd = 1.67300, νd = 38.26. Glass: Ohara S-NBH52V equivalent. f = +19.7 mm.
+- **L21** — Biconcave Negative. nd = 2.00069, νd = 25.46. Glass: Hoya TAFD40 equivalent. f = −13.3 mm.
+- **L22** — Biconvex Positive. nd = 1.73800, νd = 32.33. Glass: Ohara S-NBH53V equivalent. f = +31.6 mm.
+- **L23** — Biconvex Positive. nd = 1.60342, νd = 38.03. Glass: Ohara S-TIM5 equivalent. f = +31.0 mm.
+- **L24** — Biconcave Negative. nd = 1.62041, νd = 60.37. Glass: Ohara S-BSM16 equivalent. f = −31.4 mm.
 
 Gk (patent L58–L62) is positive (computed f = +51.5 mm), opposite in sign to the stabilization group as ¶0121 prefers,
 and stays fixed during zoom and focus. It opens with the lens's only cemented triplet and ends with the negative L24,
@@ -143,8 +143,9 @@ and stays fixed during zoom and focus. It opens with the lens's only cemented tr
 
 ## Glass Identification / Selection
 
-The patent prints nd, νd and θgF for every element at the d-line (587.56 nm, ¶0107) but names no supplier, so every
-glass stays Unmatched and the model stores the printed θgF as dPgF against the normal line 0.6438 − 0.001682·νd. The
+The patent prints nd, νd and θgF for every element at the d-line (587.56 nm, ¶0107) but names no supplier. Every pair
+coincides with an Ohara or Hoya catalog glass, which the model names as a coordinate equivalent (supplier unconfirmed),
+and it keeps the printed θgF as dPgF against the normal line 0.6438 − 0.001682·νd, so the g-line follows the patent. The
 patent measures anomalous dispersion on its own line, Δθ = θgF + 0.00162·νd − 0.64159 (¶0106).
 
 | Printed nd / νd / θgF | Elements | Fujifilm class (inferred) | Δθ, patent formula | Catalog coincidence (observation) |
@@ -152,8 +153,8 @@ patent measures anomalous dispersion on its own line, Δθ = θgF + 0.00162·νd
 | 1.43700 / 95.10 / 0.53364 | L2, L3, L5, L9 | Super ED | 0.046 | FCD100 class (Hoya FCD100, θgF 0.5336) |
 | 1.49700 / 81.54 / 0.53748 | L7, L8, L12 | ED | 0.028 | S-FPL51 / FCD1 class (Ohara S-FPL51, θgF 0.5375) |
 
-The catalog column records only that the printed values coincide with those classes; the patent does not name a
-supplier and the model does not assign one. The class split follows the counts: these are the only glasses above
+For 20 of the 24 elements the catalog glass also reproduces the printed θgF within 0.0006; the exceptions are L1
+(E-F2, +0.0013), L15 (S-TIL1, catalog θgF not tabulated), L17 (FD60, +0.0022) and L19 (TAF5, +0.0009). The class split follows the counts: these are the only glasses above
 νd 80, four and three of them. The low-dispersion elements sit in G1 (two), G2 (one), G3 (three) and G4 (one); G5 has
 none and uses ordinary and high-index glasses, including two elements at nd 2.00069 (L16, L21).
 
