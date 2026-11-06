@@ -1,4 +1,5 @@
 import { constructionFixtureData } from "./constructionFixtures.js";
+import { buildCurvedImageLens } from "./testLensFixtures.js";
 import { analysisRequestForLens } from "./testLensFixtures.js";
 import { analysisRequestAt } from "./testLensFixtures.js";
 import { registerRuntimeFixture } from "./testLensFixtures.js";
@@ -1774,6 +1775,31 @@ describe("computeSagittalComa", () => {
 });
 
 describe("computeFieldCurvature", () => {
+  it("measures shifts from a curved image surface where the chief ray lands", () => {
+    const flat = buildCurvedImageLens(null);
+    const curved = buildCurvedImageLens({ R: -1 / flat.petzvalSum, sd: 30 });
+    /* One field sweep for both: on the curved surface a field's lateral height is smaller, which would move the
+     * format-limited half-field. */
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, flat);
+    const flatResult = computeFieldCurvature(analysisRequestAt(flat, { fieldGeometry }))!;
+    const curvedResult = computeFieldCurvature(analysisRequestAt(curved, { fieldGeometry }))!;
+    expect(flatResult.fields.every((field) => field.imageSurfaceSagMm === undefined)).toBe(true);
+
+    const fields = curvedResult.fields.filter((field) => field.usable && field.fieldFraction > 0);
+    expect(fields.length).toBeGreaterThan(1);
+    for (const field of fields) {
+      const twin = flatResult.fields.find((candidate) => candidate.fieldFraction === field.fieldFraction)!;
+      const sag = field.imageSurfaceSagMm!;
+      /* The same rays focus at the same z; only the surface they are measured from moves, by its sag there. */
+      expect(sag).toBeLessThan(0);
+      expect(field.tangentialBestFocusZ).toBeCloseTo(twin.tangentialBestFocusZ, 9);
+      expect(field.tangentialShiftMm).toBeCloseTo(twin.tangentialShiftMm - sag, 9);
+      expect(field.sagittalShiftMm).toBeCloseTo(twin.sagittalShiftMm - sag, 9);
+      /* A sensor curved to the Petzval radius lies on the Petzval surface. */
+      expect(Math.abs(field.petzvalShiftMm)).toBeLessThan(1e-9);
+    }
+  });
+
   it("returns an ordered field sweep for a representative prime lens", () => {
     const L = sharedSonnar50f15();
     const { z: zPos } = doLayout(0, 0, L);

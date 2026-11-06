@@ -10,7 +10,7 @@ import type {
   FoldedPathTraceTermination,
 } from "../../types/optics.js";
 import type { SurfaceIntersectionFailureReason } from "../geometry/intersectTypes.js";
-import type { CompiledStateSurface, PathSpec, Plane3, Ray3, Vec3 } from "../types.js";
+import type { CompiledStateSurface, ImageSurfaceShape, PathSpec, Plane3, Ray3, Vec3 } from "../types.js";
 
 /** Failure reason emitted by exact tracing after intersection and interaction steps. */
 export type TraceFailureReason =
@@ -117,6 +117,8 @@ export interface TraceGeometry {
   readonly z: readonly number[];
   readonly stopSurfaceIndex: number;
   readonly imagePlane: Plane3;
+  /** Curved image surface with its vertex at `imagePlane.point`; null for a flat image. */
+  readonly imageSurface: ImageSurfaceShape | null;
   readonly pathPlan: PathSpec;
   readonly traversal: Readonly<{
     kind: "sequential" | "generalized";

@@ -53,6 +53,7 @@ flowchart LR
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> n_external_pkg_react
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts --> n_external_pkg_react
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDock_tsx --> n_external_src_components_controls
+  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_panelModel_ts --> n_external_src_components_diagram
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_components_display
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_external_src_components_display
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_LensDiagramErrorState_tsx --> n_external_src_components_errors
@@ -69,7 +70,6 @@ flowchart LR
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDrawerContent_tsx --> n_external_src_optics_projection_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_analysisTabRenderers_tsx --> n_external_src_optics_types_ts
   n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_external_src_utils_text_ts
-  n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_DiagramViewport_tsx --> n_src_components_layout_lensDiagram_src_components_layout_lensDiagram_AnalysisDock_tsx
   n_src_components_layout_lensDiagram_truncated["additional relationships omitted"]
 ```
 
@@ -77,7 +77,7 @@ flowchart LR
 
 - Direct source files: 8
 - Direct subfolders: 0
-- Main outbound areas: src/components/display (14), src/types (14), src/components/layout (12), package:react (6), src/optics/analysis.ts (6), src/components/diagram (3), src/components/hooks (2), src/optics/chromatic.ts (2), +8 more
+- Main outbound areas: src/components/display (14), src/types (14), src/components/layout (12), package:react (6), src/optics/analysis.ts (6), src/components/diagram (4), src/components/hooks (2), src/optics/chromatic.ts (2), +8 more
 - External consumers: src/comparison, src/components/layout
 
 ## Files
@@ -91,4 +91,4 @@ flowchart LR
 | `DiagramViewport.tsx` | React component module | src/components/layout (5), src/components/diagram (3), package:react (2), src/optics/chromatic.ts (2), src/types (2), +2 more | src/components/layout | default, DiagramViewport |
 | `LensDiagramErrorState.tsx` | React component module | src/components/errors | src/components/layout | default, LensDiagramErrorState |
 | `LensDiagramLoadedState.tsx` | React component module | src/components/layout (4), src/components/display (2) | src/components/layout | default, LensDiagramLoadedState |
-| `panelModel.ts` | Panel Model helper module | src/types (4), src/components/hooks (2), package:react, src/optics/analysis.ts, src/optics/optics.ts, +1 more | src/components/layout (2) | AnalysisControlsMode, VarReadout, PanelComputedModel, PanelRayDataModel, PanelDisplayFlagsModel, PanelOverlaysModel, PanelAdaptersModel, PanelZoomHookModel, +2 more |
+| `panelModel.ts` | Panel Model helper module | src/types (4), src/components/hooks (2), package:react, src/components/diagram, src/optics/analysis.ts, +2 more | src/components/layout (2) | AnalysisControlsMode, VarReadout, PanelComputedModel, PanelRayDataModel, PanelDisplayFlagsModel, PanelOverlaysModel, PanelAdaptersModel, PanelZoomHookModel, +2 more |

@@ -10,6 +10,7 @@ import type { AnalysisComputationContext, WorkingFNumberResult } from "../../../
 import type { FieldGeometryState } from "../../../optics/fieldGeometry.js";
 import type { RuntimeLens, TiltPivot } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
+import { describeImageSurface } from "../imageSurfaceText.js";
 
 interface OpticalSummaryTabProps {
   L: RuntimeLens;
@@ -158,6 +159,14 @@ export default function OpticalSummaryTab({
           note={perspectiveContext ? "camera frame" : undefined}
           t={t}
         />
+        {L.imageSurface && (
+          <AnalysisMetricRow
+            label="Image surface"
+            value={describeImageSurface(L.imageSurface)}
+            note="heights are lateral"
+            t={t}
+          />
+        )}
         <AnalysisMetricRow
           label="Cardinal EFL"
           value={formatMm(summary.cardinalEFLMm)}

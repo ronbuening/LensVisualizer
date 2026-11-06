@@ -12,6 +12,7 @@ flowchart LR
     n_src_optics_diagram_src_optics_diagram_coordinateTransforms_ts["coordinateTransforms.ts"]
     n_src_optics_diagram_src_optics_diagram_elementShapes_ts["elementShapes.ts"]
     n_src_optics_diagram_src_optics_diagram_foldedPathDisplay_ts["foldedPathDisplay.ts"]
+    n_src_optics_diagram_src_optics_diagram_imageSurfaceOutline_ts["imageSurfaceOutline.ts"]
     n_src_optics_diagram_src_optics_diagram_renderDiagnostics_ts["renderDiagnostics.ts"]
     n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts["runtimeDiagramAdapter.ts"]
     n_src_optics_diagram_src_optics_diagram_runtimeSurface_ts["runtimeSurface.ts"]
@@ -27,11 +28,14 @@ flowchart LR
   n_src_optics_diagram_src_optics_diagram_foldedPathDisplay_ts --> |2| n_external_src_optics_trace
   n_src_optics_diagram_src_optics_diagram_elementShapes_ts --> |2| n_src_optics_diagram_src_optics_diagram_surfaceOutline_ts
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> |2| n_src_optics_diagram_src_optics_diagram_surfaceOutline_ts
+  n_src_optics_diagram_src_optics_diagram_coordinateTransforms_ts --> n_external_src_optics_geometry
   n_src_optics_diagram_src_optics_diagram_runtimeSurface_ts --> n_external_src_optics_geometry
   n_src_optics_diagram_src_optics_diagram_surfaceOutline_ts --> n_external_src_optics_geometry
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> n_external_src_optics_prescription
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> n_external_src_optics_state
+  n_src_optics_diagram_src_optics_diagram_coordinateTransforms_ts --> n_external_src_optics_types_ts
   n_src_optics_diagram_src_optics_diagram_elementShapes_ts --> n_external_src_optics_types_ts
+  n_src_optics_diagram_src_optics_diagram_imageSurfaceOutline_ts --> n_external_src_optics_types_ts
   n_src_optics_diagram_src_optics_diagram_renderDiagnostics_ts --> n_external_src_optics_types_ts
   n_src_optics_diagram_src_optics_diagram_runtimeDiagramAdapter_ts --> n_external_src_optics_types_ts
   n_src_optics_diagram_src_optics_diagram_surfaceOutline_ts --> n_external_src_optics_types_ts
@@ -50,18 +54,19 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 7
+- Direct source files: 8
 - Direct subfolders: 0
-- Main outbound areas: same folder (9), src/types (6), src/optics/geometry (5), src/optics/types.ts (4), src/optics/trace (2), src/optics/prescription, src/optics/state
+- Main outbound areas: same folder (9), src/optics/geometry (6), src/optics/types.ts (6), src/types (6), src/optics/trace (2), src/optics/prescription, src/optics/state
 - External consumers: src/optics/diagramGeometry.ts
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `coordinateTransforms.ts` | Coordinate Transforms helper module | src/types | same folder, src/optics/diagramGeometry.ts | createCoordinateTransforms |
+| `coordinateTransforms.ts` | Coordinate Transforms helper module | src/optics/geometry, src/optics/types.ts, src/types | same folder, src/optics/diagramGeometry.ts | createCoordinateTransforms |
 | `elementShapes.ts` | Element Shapes helper module | same folder (3), src/optics/types.ts, src/types | same folder, src/optics/diagramGeometry.ts | computeElementShapesForState |
 | `foldedPathDisplay.ts` | Folded Path Display helper module | src/optics/trace (2), src/types | src/optics/diagramGeometry.ts | foldedHitOrderLabelsForDisplay |
+| `imageSurfaceOutline.ts` | Image Surface Outline helper module | src/optics/types.ts | src/optics/diagramGeometry.ts | ImageSurfacePlacement, imageSurfacePoint, imageSurfacePathD |
 | `renderDiagnostics.ts` | Render Diagnostics helper module | src/optics/geometry (3), same folder, src/optics/types.ts, src/types | same folder (2), src/optics/diagramGeometry.ts | computeElementRenderDiagnosticsForState |
 | `runtimeDiagramAdapter.ts` | Runtime Diagram Adapter helper module | same folder (5), src/optics/prescription, src/optics/state, src/optics/types.ts, src/types | src/optics/diagramGeometry.ts | createCoordinateTransforms, computeElementRenderDiagnostics, computeElementShapes, stateForRuntimeDiagram, computeStandaloneMirrorPaths |
 | `runtimeSurface.ts` | Runtime Surface helper module | src/optics/geometry, src/types | src/optics/diagramGeometry.ts | renderSag, sagSlope, gapTrimHeight, slopeTrimHeight |

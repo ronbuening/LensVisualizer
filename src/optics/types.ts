@@ -43,6 +43,54 @@ export interface Plane3 {
   label: string;
 }
 
+/**
+ * A curved image surface in its local frame: vertex at the origin, local z along the image-plane normal, local x
+ * along global x. Every shape is mirror-symmetric in x and in y. A flat image is `null`, never a shape.
+ */
+export interface ImageSurfaceShape {
+  readonly kind: "spherical" | "aspheric" | "cylindrical";
+  /** Signed vertex radius in mm, as authored. */
+  readonly radius: number;
+  /** Vertex curvature 1/R in 1/mm. */
+  readonly curvature: number;
+  /** Conic constant K; 0 for a sphere or a cylinder. */
+  readonly conic: number;
+  /**
+   * Angle in radians from the drawn (y) meridian to a cylinder's curved direction: 0 when the drawn section is curved,
+   * π/2 when it is straight, between for a frame corner. Null when radial.
+   */
+  readonly cylinderAngle: number | null;
+  /** False only for a cylinder turned obliquely, whose landings are not mirror images across the drawn meridian. */
+  readonly xSymmetric: boolean;
+  /**
+   * A cylinder's frame half-length along the drawn meridian for its viewed section, in mm: the field sweeps end there
+   * instead of at the image-circle radius. Null when radial or without a declared format.
+   */
+  readonly fieldExtentMm: number | null;
+  /** The same half-length as a lateral height, where the drawn section ends. Null when radial or without a format. */
+  readonly drawnExtentMm: number | null;
+  /** Half-height in mm of the drawn and validated surface. */
+  readonly semiDiameter: number;
+  /** Sag and slope along the curved direction: r = hypot(x, y), or the curved coordinate of a cylinder. */
+  readonly profile: SurfaceProfile;
+  /** Local z of the surface at lateral (x, y) in mm; NaN where it is not single-valued. */
+  sagAt(x: number, y: number): number;
+  /** Unit normal at lateral (x, y), on the +z side. */
+  normalAt(x: number, y: number): Vec3;
+  /**
+   * Image coordinates of a landing at lateral (x, y): unchanged on a radial surface, which does not unroll; on a
+   * cylinder, distances along the unrolled film, as the print shows them. NaN past the cylinder's edge.
+   */
+  toImageCoordinates(x: number, y: number): readonly [number, number];
+  /** Lateral (x, y) of the point at image coordinates (u, v); the inverse of `toImageCoordinates`. */
+  fromImageCoordinates(u: number, v: number): readonly [number, number];
+  /**
+   * Derivatives of the local surface point with respect to image coordinates u and v at (u, v): a direction's dot
+   * product with each is its direction cosine along that image axis, the scale diffraction frequencies are measured in.
+   */
+  imageTangentsAt(u: number, v: number): readonly [Vec3, Vec3];
+}
+
 /** Sag in mm and radial slope dz/dr of a surface profile at one radius. */
 export interface SagSlope {
   sag: number;
@@ -256,6 +304,7 @@ export type LensConstants = Omit<
   | "aberrationControl"
   | "projection"
   | "opticalPath"
+  | "imageSurface"
   | "stopIdx"
   | "labelIdx"
 >;
@@ -277,6 +326,8 @@ export interface CompiledPrescription {
   lastLensSurfaceIndex: number;
   displayElementSpans: RuntimeLens["ES"];
   hasExplicitImagePlane: boolean;
+  /** Curved image surface; null for a flat image. */
+  imageSurface: ImageSurfaceShape | null;
   surfaces: readonly CompiledSurface[];
   elements: readonly CompiledElement[];
   labelToSurfaceIndex: Readonly<Record<string, number>>;

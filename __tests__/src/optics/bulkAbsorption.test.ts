@@ -160,7 +160,7 @@ describe("chief-relative plate transmission", () => {
     expect(ray.ux).toBe(0);
     expect(ray.uy).toBeCloseTo(slope, 12);
     expect(ray.transmission).toBeCloseTo(Math.exp(-alpha * 5 * Math.sqrt(1 + glassSlope ** 2)), 12);
-    const image = skewImagePlaneIntercept(ray.x, ray.y, ray.ux, ray.uy, 6, 26);
+    const image = skewImagePlaneIntercept(ray.x, ray.y, ray.ux, ray.uy, 6, 26, null);
     expect(image!.y).toBeCloseTo(ray.y + 20 * slope, 12);
     for (const ghost of [false, true]) {
       for (const offset of [-1e-5, 1e-5]) {
