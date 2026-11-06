@@ -86,6 +86,9 @@ a glass pass could label them. The package's own transcription of Table 7 gives 
 computed from Table 1 (the other eight agree); Table 7 was not re-read here. The iris position and the filter
 identification are inferences; Fig. 3 and Ricoh's construction image were not viewed.
 
+(Glass part closed 2026-11-06: L3–L9 and the filter now carry OHARA coordinate-equivalent labels, and all ten elements
+resolve in the glass catalog within Δνd 0.06. The Table 7 and inference items stay open.)
+
 ## 2026-11-06 — Semi-diameter pass against the patent figure
 
 Source: the local JP H06-138385 A front page, whose representative drawing is Fig. 1, Example 1 at infinity. It was
@@ -122,3 +125,68 @@ infinity, 76.1 % at 3.77° at mid travel and 90.0 % at 3.42° at the close state
 
 Rendered check. The page at infinity and at the close state draws both lands. An overlay of the model outline on Fig. 1
 shows the starting rear corners of L3 and L7 running past the drawn strokes and the cut outline following them.
+
+## 2026-11-06 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity and at the close state, its focus-movement overlay and the inspectors of L1, L5, L7
+and F, against Fig. 1 of the local front page (Example 1 at infinity), measured on its native 630 × 459 px, 200 ppi
+bitmap. Fig. 2 (aberration curves) and Fig. 3 (the 500 state) are not in the local copy, so no colour, astigmatism or
+distortion comparison and no close-state figure comparison was made. No maker image was viewed; counts and ED positions
+are Ricoh's catalog as recorded above (10 elements / 7 groups, thin ED glass in elements 1 and 2).
+
+Silhouette, measured afresh. Vertex crossings 4 px above the axis (axis centre row 203.6): r1 at 66.5 px and r17 at
+532.5 px over 70.33 native mm give 6.626 px per native mm (2.209 px per model mm); r9 and r13 fall at 315.0 and 487.5
+px against 315.0 and 487.6 predicted, and d9 spans 23.5 px (3.55 native mm), so the drawing is the infinity state. Rims,
+line centre to line centre over the full diameter, in model mm (file value in brackets): L1 54.67 (54.5), L2 50.6
+(50.5), L3 47.09 (47.1), G2 31.81 (31.7), G3 25.47 (25.4), G4 19.51 (19.4), filter 19.81 (20.5, the drop-in ray rule).
+Every lens rim agrees within 0.6 %, the filter within 3.5 %; the drawn height order L1 > L2 > L3 > G2 > G3 > filter ≥ G4
+holds on the page, and every element is one height on both faces, as drawn. L2's drawn edge is about 7 px against the
+model's 2.86 mm (6.3 px), and G2's cemented r8 meets the top edge 2 px ahead of r9's rim in both. No `sd` changed.
+
+| Cut or land | Figure reading | Baseline | Final | Light cost | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| r6 (L3 rear) land | arc meets the square stroke at 94.9–97 px of a 104 px rim, q 0.91–0.93, 43.0–44.0 mm | `sd` 47.1, no land | `sd` 47.1, `rimCutDepthMm` 5.32 (cut radius 44.05 mm) | 0.0 points at every field, both focus ends | keep: drawn, costs no light |
+| r12 (L7 rear) land | arc meets the stroke at 47.5 ± 1 px of a 56.25 px rim, q 0.84, 21.5 ± 0.45 mm | `sd` 25.4, no land | `sd` 25.4, `rimCutDepthMm` 4.87 (cut radius 21.99 mm) | 0.0 points | keep: drawn, costs no light |
+
+No face sits below its baseline `sd`; the rim-cost comparison against the baseline file finds a worst loss of 0.0
+points. The lands were costed on their own by removing both: the engine's wide-open curves are identical with and
+without them at focus 0, 0.5 and 1 (infinity 100, 100, 97.8, 89.5, 79.3, 68.6 and 57.6 % from 0° to 4.12°; mid travel
+76.1 % at 3.77°; close state 90.0 % at 3.42°). At the close state with a real object point 1500 mm from the image (an
+independent all-spherical trace through a 241 × 241 grid on S1), the corner (image height 21.63 mm, object height 84.8 mm)
+transmits 83.4 % with and without the lands and the axis 100 %; the same trace at infinity gives 58.5 % at 4.12° both
+ways, against the engine's 57.6 %. The figure draws r6's stroke about 2 px (0.9 mm) ahead of the arc's continuation, as
+the model's 0.77 mm land step does. r12's cut sits 0.5 mm outside the figure reading because the widest F/2.8 beam
+reaches 21.91 mm there (rim-cut probe, 30 focus states), so the beam sets that value.
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `cemented` on L4–L9 | D1, D2, D3 | C1, C2, C3 | "D" repeated the patent's d1–d16 spacing names and the D9 / D12 gap labels; the inspector badge now reads DOUBLET C1 to C3 |
+| `doublets` | none | C1 surfaces 7–9, C2 10–12, C3 13–15 | one bracket per cemented component; the abstract makes G2, G3 and G4 cemented pairs |
+| `diagramLabel` of F | none (the diagram drew "10") | F | matches the element's name and label |
+
+Checked and found correct. Group brackets G1 1–6, G2 7–9, G3 10–12 and G4 13–15 match Fig. 1's brackets 1 to 4 (bracket
+4 spans r13–r15 and leaves the plate out) and the abstract's powers +, +, −, +. Fig. 1 prints no element numbers, so
+sequential L1–L9 stand. Every `type` agrees with the signs of R; thick-lens focal lengths recomputed for L1 (+253.47 mm)
+and L7 (−59.74 mm) match the file. No surface is aspheric and none is marked. The stop is drawn in d9 between L5 and L6.
+L1 and L2 carry `apd: "inferred"` on Ricoh's ED positions with the patent's 1.49700 / 81.6; no other element is tagged.
+All ten glass labels resolve (Δνd ≤ 0.06). Roles quote conditions (5), (7), (8) and (9) with values that recompute
+from the prescription (0.153, 0.197, 0.234, 0.500).
+
+Movement. Only G3 moves. Keyframe 0 is infinity and keyframe 10 the printed close state: the iris-to-G3 gap runs 5.38 to
+31.45 mm and d12 58.80 to 32.73 mm in ten equal steps with a constant sum of 64.18 mm. With the fixed 5.6 mm from r9 to
+the iris, d9 is 10.98 to 37.05 mm, Table 2's 3.66 to 12.35 times 3; d12 is 19.60 to 10.91 times 3. G3 travels 26.07 mm
+toward the image while G1, G2, the iris, G4 and the filter stay fixed, as the overlay shows. The close keyframe focuses at
+1500.00 mm object to image with M −0.2528 and EFL 233.50 mm, and the slider's far end reads 1.50 m.
+
+Stop. The iris stays the aperture stop at both focus ends: the axial bundle that fills its 25.80 mm radius passes every
+rim, tightest at S7 (30.41 of 31.70 mm at infinity, 29.65 mm at the close state with a real object) and at the r12 and r6
+lands (21.22 of 21.99 mm and 41.93 of 44.05 mm at infinity). The iris sits 4.96 mm behind r9 at its own radius and 4.70 mm
+ahead of r10's rim at infinity (30.77 mm at the close state). The aperture audit reports the stated f-number and no rim
+limit.
+
+Engine figures unchanged by this review: EFL 299.995 mm, half-field 6.32°, FOPEN 2.8, stop radius 25.80 mm. The surface
+validator reports no errors, the image-circle check nothing undersized, traced corner coverage 100 %, no clipped axial
+or blocked chief ray, and the rim-cut probe clears both lands.
+
+Open: Fig. 2 and Fig. 3 are not in the local copy, so the colour, astigmatism and distortion curves and the close-state
+section remain uncompared.

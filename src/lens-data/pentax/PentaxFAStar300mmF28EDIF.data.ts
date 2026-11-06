@@ -115,7 +115,7 @@ const LENS_DATA = {
       vd: 44.2,
       glass: "S-LAH51 (OHARA; coordinate equivalent, supplier unconfirmed)",
       focalLengthMm: -117.08,
-      cemented: "D1",
+      cemented: "C1",
       role: "High-index negative of the group 2 doublet; its index step to L5 (condition 7) overcorrects spherical aberration to hold close-range sharpness.",
     },
     {
@@ -127,7 +127,7 @@ const LENS_DATA = {
       vd: 61.2,
       glass: "S-BAL35 (OHARA; coordinate equivalent, supplier unconfirmed)",
       focalLengthMm: 80.65,
-      cemented: "D1",
+      cemented: "C1",
       role: "Crown positive of the fixed group 2 doublet, just ahead of the iris.",
     },
     {
@@ -139,7 +139,7 @@ const LENS_DATA = {
       vd: 25.4,
       glass: "S-TIH6 (OHARA; coordinate equivalent, supplier unconfirmed)",
       focalLengthMm: 158.44,
-      cemented: "D2",
+      cemented: "C2",
       role: "Dense-flint positive of the negative focusing doublet (group 3); moves toward the image for close focus.",
     },
     {
@@ -151,7 +151,7 @@ const LENS_DATA = {
       vd: 50.8,
       glass: "S-BAL2 (OHARA; coordinate equivalent, supplier unconfirmed)",
       focalLengthMm: -59.74,
-      cemented: "D2",
+      cemented: "C2",
       role: "Negative half of the focusing doublet; its Abbe ratio to L6 (condition 9) keeps color steady as the group moves.",
     },
     {
@@ -163,7 +163,7 @@ const LENS_DATA = {
       vd: 53.2,
       glass: "S-LAL13 (OHARA; coordinate equivalent, supplier unconfirmed)",
       focalLengthMm: 63.87,
-      cemented: "D3",
+      cemented: "C3",
       role: "Positive of the fixed rear doublet (group 4).",
     },
     {
@@ -175,13 +175,14 @@ const LENS_DATA = {
       vd: 47.2,
       glass: "S-TIL2 (OHARA; coordinate equivalent, supplier unconfirmed)",
       focalLengthMm: -86.88,
-      cemented: "D3",
+      cemented: "C3",
       role: "Negative of the rear doublet; its index step to L8 (condition 5) lets distortion and spherical aberration be corrected without overcorrecting the field.",
     },
     {
       id: 10,
       name: "F",
       label: "Rear filter F",
+      diagramLabel: "F",
       type: "Plane-Parallel Plate",
       nd: 1.51633,
       vd: 64.1,
@@ -249,6 +250,11 @@ const LENS_DATA = {
     { text: "G2 (+)", fromSurface: "7", toSurface: "9" },
     { text: "G3 (−)", fromSurface: "10", toSurface: "12" },
     { text: "G4 (+)", fromSurface: "13", toSurface: "15" },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "7", toSurface: "9" },
+    { text: "C2", fromSurface: "10", toSurface: "12" },
+    { text: "C3", fromSurface: "13", toSurface: "15" },
   ],
 } satisfies LensDataV2Input;
 
