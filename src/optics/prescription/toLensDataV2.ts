@@ -291,6 +291,7 @@ export const V2_GROUP_STARTS: readonly string[] = [
   "opticalPath",
   "perspectiveControl",
   "rearPlates",
+  "imageSurface",
   "groups",
   "layout",
   "rays",
@@ -407,7 +408,7 @@ function writeLens(write: Writer, lens: CanonicalLens): Untyped {
 
   write.copy(out, "", lens, "", ["projection", "opticalPath", "perspectiveControl"]);
   writeRearPlates(write, out, lens.rearPlates);
-  write.copy(out, "", lens, "", ["groups", "doublets"]);
+  write.copy(out, "", lens, "", ["imageSurface", "groups", "doublets"]);
 
   for (const [group, fields] of [
     ["layout", ["svgW", "svgH", "scFill", "yScFill", "maxAspectRatio", "lensShiftFrac"]],

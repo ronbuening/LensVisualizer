@@ -2,6 +2,8 @@
 export { createCoordinateTransforms } from "./diagram/coordinateTransforms.js";
 export { computeElementShapesForState } from "./diagram/elementShapes.js";
 export { foldedHitOrderLabelsForDisplay } from "./diagram/foldedPathDisplay.js";
+export { imageSurfacePathD, imageSurfacePoint } from "./diagram/imageSurfaceOutline.js";
+export type { ImageSurfacePlacement } from "./diagram/imageSurfaceOutline.js";
 export { computeElementRenderDiagnosticsForState } from "./diagram/renderDiagnostics.js";
 export {
   computeElementRenderDiagnostics,

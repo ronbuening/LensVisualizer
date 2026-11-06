@@ -46,6 +46,7 @@ export function runtimeView(lens: CompiledLens): RuntimeLens {
       : null,
     projection: lens.projection.config,
     opticalPath: lens.opticalPath,
+    imageSurface: lens.imageSurface,
     stopIdx: lens.stop.surfaceIndex,
     labelIdx: lens.labelToSurfaceIndex,
     ...lens.constants,

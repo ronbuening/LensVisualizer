@@ -165,11 +165,12 @@ function buildPupilFootprint(samples: readonly BokehPupilSample[], totalRays: nu
  *
  * Traces a dense circular pupil bundle through the lens at `traceFocusT` optics,
  * then re-intercepts each surviving ray at `sensorZ` — the absolute Z position
- * of the sensor plane. This avoids reliance on `geometry.imagePlaneZ` (which
+ * of the sensor vertex. A curved sensor retains its shape and translates as a
+ * whole to that vertex. This avoids reliance on `geometry.imagePlaneZ` (which
  * uses the nominal last-gap thickness and is wrong when that gap is variable).
  *
  * @param traceFocusT Focus setting at which rays are traced (defines variable gaps)
- * @param sensorZ     Absolute Z position of the sensor (image plane at current focus)
+ * @param sensorZ     Absolute Z position of the sensor vertex (image plane at current focus)
  */
 function computeBokehFieldFootprintFromContext(
   L: RuntimeLens,
@@ -198,6 +199,7 @@ function computeBokehFieldFootprintFromContext(
     bundle.chiefRay.trace.uy,
     geometry.lastSurfZ,
     sensorZ,
+    L.imageSurface,
   );
   if (chiefDefocused === null) return null;
 
@@ -222,6 +224,7 @@ function computeBokehFieldFootprintFromContext(
       sample.trace.uy,
       geometry.lastSurfZ,
       sensorZ,
+      L.imageSurface,
     );
     if (intercept === null) continue;
 
@@ -306,7 +309,7 @@ function computeBokehFieldFootprintFromContext(
  * @param request - trace focus/zoom/aberration and aperture snapshot; field geometry
  *   is recomputed at that focus, with default pupil sampling as before
  * @param fieldFraction - fraction of half field in `[0, 1]`
- * @param sensorZ - defocused intercept plane z coordinate in mm
+ * @param sensorZ - defocused sensor vertex z coordinate in mm; curved shape is retained
  * @returns bokeh footprint for the field, or null when tracing is unusable
  */
 export function computeBokehFieldFootprint(
@@ -387,6 +390,7 @@ function computeBokehPreviewFromContext(
   label: string,
   sampling: AnalysisSamplingOptions = {},
 ): BokehPreviewResult | null {
+  // Defocus is the vertex translation; re-landing accounts for the retained curved sag profile.
   const defocusDelta = sensorZ - context.layout.imgZ;
   const fieldFractions = sampling.bokehFieldFractions ?? BOKEH_PREVIEW_FIELD_FRACTIONS;
 
@@ -430,12 +434,12 @@ export function describeBokehDefocusSide(defocusDeltaMm: number): string {
  * Compute one bokeh preview grid (e.g., infinity-source or near-source).
  *
  * Rays are traced through the lens at the request focus and intercepted at the
- * supplied `sensorZ` — the absolute Z position of the intercept plane. The
+ * supplied `sensorZ` — the absolute Z position of the sensor vertex. The
  * caller is responsible for computing a sensorZ that produces the correct
  * defocus for both unit-focus and internal-focus lens types.
  *
  * @param request - trace focus/zoom/aberration, apertures and preview sampling
- * @param sensorZ - absolute Z position of the intercept plane in mm
+ * @param sensorZ - absolute Z position of the sensor vertex in mm; curved shape is retained
  * @param label - display label for the grid ("Infinity" or "Near Focus")
  * @returns preview grid, or null when no fields are usable
  */
@@ -464,9 +468,11 @@ export function computeBokehPreview(
  *
  * Each grid traces through its reference optical configuration (fT=0 for
  * infinity, fT=1 for near) to maintain consistent SA and vignetting. The
- * intercept plane (sensorZ) is computed to give physically correct defocus
+ * sensor vertex (sensorZ) is computed to give physically correct defocus
  * for both unit-focusing lenses (total track changes) and internal-focus
  * lenses (constant total track, variable EFL).
+ * Best focus is axial, where image sag is zero; the same vertex arithmetic
+ * therefore translates a curved sensor without a field-dependent correction.
  *
  * **Infinity grid** sensorZ combines layout shift and convergence shift:
  *   `sensorZ = imgZ(view) + conv(0) − conv(view)`

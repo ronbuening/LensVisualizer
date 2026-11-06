@@ -158,6 +158,7 @@ export default function useURLSync(
     panels.groupMovementOpen,
     panels.groupMovementMode,
     panels.patentPositions,
+    panels.imageSection,
     isLensPage,
     isComparePage,
     updateURLWithSliders,

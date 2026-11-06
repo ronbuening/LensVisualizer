@@ -22,6 +22,9 @@ Non-obvious constraints and failure modes: one trap per bullet, with the full ru
 - Centrally obstructed reflex lenses need annular stop/field reasoning through the shared `stopInnerBlockedSemiDiameter()`
   helper. Never treat the blocked central chief ray as a valid off-axis field solve; on the Nikon Reflex-Nikkor 1000mm
   f/11 that collapses field geometry to zero.
+- Never reach the image with `y + u·d` or a bare `skewImagePlaneIntercept` transfer in new code: pass the lens's
+  `imageSurface` (null when flat) so a curved sensor lands rays on its surface, and keep the flat branch verbatim
+  (`architecture/optics-engine.md`, Image Surface).
 - Sign conventions: field-curvature shift is positive aft (toward the sensor) and negative fore; the Petzval shift is
   negated relative to geometric sag so it matches the T/S direction for converging systems; coma spot diagrams put
   sagittal on the horizontal axis and tangential on the vertical.

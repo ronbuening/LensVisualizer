@@ -11,6 +11,7 @@ import { validateStop, validatePairedInnerSdConsistency } from "./aperture.js";
 import { validateTiltedMirrorBackingNormals, validateFoldedImagePlaneReachability } from "./folded.js";
 import { authoredMessages } from "./paths.js";
 import { validateGeometry } from "./geometry.js";
+import { validateImageSurface } from "./imageSurface.js";
 import { validatePatentMetadata } from "./patent.js";
 
 /** Restore ignored source facts only for diagnostics; optical construction always uses canonical values. */
@@ -48,6 +49,7 @@ function validate(data: UntrustedLensData): string[] {
   validateControls(data, surfaceLabels, labelToIdx, isZoom, focusPositionCount, errors);
   validateAnnotations(data, surfaceLabels, errors);
   validateGeometry(data, labelToIdx, explicitSpans, isZoom, errors, data.gapSagFrac, data.maxRimAngleDeg);
+  validateImageSurface(data, labelToIdx, errors);
   return errors;
 }
 

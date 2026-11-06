@@ -57,6 +57,18 @@ export default function FieldCurvaturePlot({ result, t, variant = "diagnostic" }
     (field) => xScale(field.fieldFraction),
     (field) => yScale(field.petzvalShiftMm),
   );
+  /* Shifts on a curved image surface are measured from it; a flat plane at its vertex sits at −sag. */
+  const curvedFields = plotFields.filter((field) => field.imageSurfaceSagMm !== undefined);
+  const curved = curvedFields.length > 0;
+  const flatPlanePoints = curved
+    ? svgPoints(
+        [{ fieldFraction: 0, imageSurfaceSagMm: 0 }, ...curvedFields],
+        (field) => xScale(field.fieldFraction),
+        (field) => yScale(-(field.imageSurfaceSagMm ?? 0)),
+      )
+    : null;
+  const zeroLabel = curved ? "Image surface" : "Current image plane";
+  const shiftAxisLabel = curved ? "Focus shift from image surface (mm)" : "Focus shift from image plane (mm)";
   const title =
     variant === "diagnostic"
       ? "Real-ray field curves. The solid tangential trace and dashed sagittal trace show where each off-axis ray bundle reaches best focus relative to the image plane."
@@ -78,8 +90,23 @@ export default function FieldCurvaturePlot({ result, t, variant = "diagnostic" }
 
       <line x1={ML} y1={zeroY} x2={ML + PW} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
       <text x={ML + PW - 4} y={zeroY - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Current image plane
+        {zeroLabel}
       </text>
+      {flatPlanePoints ? (
+        <g>
+          <polyline
+            points={flatPlanePoints}
+            fill="none"
+            stroke={t.muted}
+            strokeWidth={0.9}
+            strokeDasharray="1.5,2.5"
+            opacity={0.7}
+          />
+          <text x={ML + 4} y={MT + PH - 5} fill={t.muted} fontSize={7.5} fontFamily="inherit" opacity={0.85}>
+            Dotted: a flat plane at the vertex
+          </text>
+        </g>
+      ) : null}
 
       {tickValues.map((tick) => {
         const y = yScale(tick);
@@ -112,7 +139,7 @@ export default function FieldCurvaturePlot({ result, t, variant = "diagnostic" }
         fontFamily="inherit"
         transform={`rotate(-90) translate(${-(MT + PH / 2)}, 12)`}
       >
-        Focus shift from image plane (mm)
+        {shiftAxisLabel}
       </text>
       <text x={ML + PW - 4} y={MT - 6} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
         Toward sensor
