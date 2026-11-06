@@ -1299,9 +1299,11 @@ frame: vertex at the origin, local z along the image-plane normal (+z on every s
 x. Spheres, aspheres and a cylinder viewed along a frame edge are mirror-symmetric in x and in y, so pupil and field
 mirroring stay exact; a cylinder turned toward the frame corner is not (`xSymmetric`).
 
-- **Landing.** `landImageSurfaceLine()` takes a signed line parameter and the root on the sheet through the vertex, so
-  a ray reported at the last vertex can land behind it. The sequential tracer is unchanged: it reports x/y at the last
-  vertex and every caller lands from there. Skew rays use `skewImagePlaneIntercept(…, imageSurface)` in
+- **Landing.** `landImageSurfaceLine()` lands on the sheet through the vertex. A signed transfer takes the root nearest
+  the vertex, so a ray reported at the last vertex can land behind it; a forward ray (the generalized tracer, the MTF
+  landings) passes `minT` and takes its first crossing past it. A polynomial asphere refines its base conic's root and
+  falls back to the lens surfaces' bracketed solver (`intersectSurfaceProfile`) when the conic misses or Newton fails.
+  The sequential tracer is unchanged: it reports x/y at the last vertex and every caller lands from there. Skew rays use `skewImagePlaneIntercept(…, imageSurface)` in
   `trace/rayAdapters.ts`, which returns `z` only when curved; meridional rays use `landImageSurfaceMeridional()`. The
   generalized tracer ends on the surface through `intersectImagePlane` (`pathPlanner.ts`), in the plane's local frame.
 - **Flat stays bit-identical.** Every branch is `shape === null ? <old expression> : <landing>`, each caller keeps its
@@ -1318,7 +1320,8 @@ mirroring stay exact; a cylinder turned toward the frame corner is not (`xSymmet
   character, bokeh `sensorZ` and the MTF best-focus search re-land each ray on the translated surface without
   retracing.
 - **MTF and illumination.** The MTF lands on the surface, takes the chief landing as its wavefront reference, and adds a
-  limitation note (frequencies in the image's x/y projection). Relative illumination centres the Rimmer reference
+  limitation note (frequencies in image coordinates). Its diffraction estimates measure pupil cosines along the image
+  axes at the reference (`imageTangentsAt()`), so their frequencies are in the same coordinates as the spots. Relative illumination centres the Rimmer reference
   sphere on the chief landing and refers cosines to the surface's local tangent frame, so it is irradiance on the
   curved sensor.
 - **Unchanged.** Paraxial and axial quantities (`paraxialInFocusVergence`, `realK`, cardinals, BFD, total track to the
@@ -1327,8 +1330,11 @@ mirroring stay exact; a cylinder turned toward the frame corner is not (`xSymmet
   data names the side it curves along (`curvedAlong`) and needs `imageFormat`; `withImageSurfaceSection()`
   (`prescription/imageSurfaceSection.ts`) picks the long edge, short edge or corner before `buildLens()`, the way a
   converter is attached. The compiled shape turns the cylinder by `cylinderAngle` so that direction lies in the drawn
-  meridian, and `fieldExtentMm` (the frame's half-length along it) replaces the image-circle radius as the sweep limit
-  in the analysis field, the distortion corner and the MTF reference height. A corner view is not x-symmetric:
+  meridian (toward the film's own corner: a curved side of arc length s spans R·sin(s/R) laterally), and
+  `fieldExtentMm` (the frame's half-length along it on the film) replaces the image-circle radius as the sweep limit
+  in the analysis field, the distortion corner and the MTF reference height. `drawnExtentMm` is the same length as a
+  lateral height, where the diagram ends the section. Validation checks clearance against the least sag over the
+  film at each radius, which on a cylinder bending away from the lens is its straight direction. A corner view is not x-symmetric:
   `imageMirrorSymmetricAboutMeridian()` (`trace/symmetry.ts`) turns MTF and vignetting mirroring off for it.
 - **Scope.** Validation rejects `imageSurface` with `perspectiveControl`. Folded paths trace and draw the surface; their
   guarded analysis tabs stay guarded.

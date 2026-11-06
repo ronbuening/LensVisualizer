@@ -1,15 +1,18 @@
 import { constructionFixtureData } from "./constructionFixtures.js";
 import { describe, expect, it } from "vitest";
-import { build, buildSimplePositiveElementLens, mtfInputs } from "./testLensFixtures.js";
+import { build, buildCurvedImageLens, buildSimplePositiveElementLens, mtfInputs } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
 import {
   launchPhaseMm,
   mtfWaveLattice,
   rayOpticalPathToImageMm,
+  waveLatticeOtf,
 } from "../../../src/optics/analysis/mtf/mtfWavefront.js";
+import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import { assessMtfSupport } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import type { MtfBundle, MtfPupilRay } from "../../../src/optics/analysis/mtf/mtfTracing.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 import type { Ray3 } from "../../../src/optics/types.js";
 
@@ -65,6 +68,47 @@ describe("sequential optical path capture", () => {
 });
 
 describe("curved MTF wavefront reference", () => {
+  it("sets the cylindrical diffraction cutoff from cosines along the unrolled image axes", () => {
+    const shape = buildCurvedImageLens({ R: 20, sd: 18, cylindrical: true }).imageSurface!;
+    const [x, y] = shape.toImageCoordinates(0, 15);
+    const reference = { x, y, weight: 1 };
+    const rays: MtfPupilRay[] = [];
+    for (let row = 0; row < 3; row++)
+      for (let column = 0; column < 3; column++) {
+        const dx = (column - 1) * 0.05;
+        const dy = 0.35 + row * 0.1;
+        rays.push({
+          ...reference,
+          column,
+          row,
+          trace: {
+            input: { origin: [0, 0, 0], direction: [0, 0, 1] },
+            terminalPoint: [0, 15, shape.sagAt(0, 15)],
+            terminalDirection: [dx, dy, Math.sqrt(1 - dx * dx - dy * dy)],
+            finalMedium: 1,
+            opticalPathLengthMm: 0,
+          },
+        });
+      }
+    const flat = { rays, columns: 3, rows: 3, mirrored: false } as unknown as MtfBundle;
+    const curved = { ...flat, imageSurface: shape };
+    const wavelengthMm = 0.00055;
+    const frequencies = [0, 250];
+    const flatLimit = shearedOtf(flat, reference, wavelengthMm, frequencies).limit;
+    const curvedLimit = shearedOtf(curved, reference, wavelengthMm, frequencies).limit;
+    expect(flatLimit.tangential[1]).toBeGreaterThan(0.2);
+    expect(curvedLimit.tangential).toEqual([1, 0]);
+    expect(curvedLimit.sagittal).toEqual(flatLimit.sagittal);
+    const lattice = mtfWaveLattice(curved, reference, 0)!;
+    // At lateral y/R = 3/4, the unrolled y tangent is (0, √7/4, 3/4).
+    rays.forEach((ray, cell) => {
+      const [dx, dy, dz] = ray.trace.terminalDirection;
+      expect(lattice.cosineX[cell]).toBe(dx);
+      expect(lattice.cosineY[cell]).toBeCloseTo((Math.sqrt(7) / 4) * dy + 0.75 * dz, 14);
+    });
+    expect(waveLatticeOtf(lattice, wavelengthMm, frequencies).tangential.real).toEqual([1, 0]);
+  });
+
   it.each([undefined, true] as const)(
     "uses the chief's surface sag at each translated vertex (cylinder: %s)",
     (cylindrical) => {

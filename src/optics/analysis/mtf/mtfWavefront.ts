@@ -11,6 +11,7 @@
 import type { Vec3 } from "../../types.js";
 import type { ComplexOtf, MtfSpot } from "./mtfMath.js";
 import type { MtfBundle, MtfPupilRay } from "./mtfTracing.js";
+import { mtfImageAxisCosine } from "./mtfShearedOtf.js";
 
 /**
  * Phase of the incident wave at a ray's launch point, as a path length.
@@ -56,7 +57,7 @@ export interface MtfWaveLattice {
   amplitude: Float64Array;
   /** Optical path difference from the reference ray in mm; meaningful where amplitude is positive. */
   pathMm: Float64Array;
-  /** Image-space direction cosines of each cell's ray along x and y; meaningful where amplitude is positive. */
+  /** Index-scaled cosines along the reference's image-coordinate tangents; meaningful where amplitude is positive. */
   cosineX: Float64Array;
   cosineY: Float64Array;
 }
@@ -71,6 +72,7 @@ export interface MtfWaveLattice {
  */
 export function mtfWaveLattice(bundle: MtfBundle, reference: MtfSpot, imagePlaneZ: number): MtfWaveLattice | null {
   const shape = bundle.imageSurface ?? null;
+  const tangents = shape === null ? null : shape.imageTangentsAt(reference.x, reference.y);
   /* A curved reference is given in image coordinates; the wavefront is measured from the point on the surface. */
   const lateral = shape === null ? null : shape.fromImageCoordinates(reference.x, reference.y);
   const image: Vec3 =
@@ -97,8 +99,8 @@ export function mtfWaveLattice(bundle: MtfBundle, reference: MtfSpot, imagePlane
     const cell = ray.row * columns + ray.column;
     lattice.amplitude[cell] = Math.sqrt(ray.weight);
     lattice.pathMm[cell] = path - datum;
-    lattice.cosineX[cell] = ray.trace.finalMedium * ray.trace.terminalDirection[0];
-    lattice.cosineY[cell] = ray.trace.finalMedium * ray.trace.terminalDirection[1];
+    lattice.cosineX[cell] = mtfImageAxisCosine(ray, 0, tangents);
+    lattice.cosineY[cell] = mtfImageAxisCosine(ray, 1, tangents);
   }
   return lattice;
 }

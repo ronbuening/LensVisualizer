@@ -13,10 +13,10 @@ import { computeCardinalElementsFromState } from "../../first-order/cardinals.js
 import { fopenAtZoom } from "../../state/stationTables.js";
 import { LINE_NM } from "../../chromatic/spectralLines.js";
 import type { PreparedGeometry } from "../../types.js";
-import { landImageSurfaceLine } from "../../geometry/imageSurface.js";
 import { MTF_IMAGE_PLANE_DEPTHS } from "./mtfConstants.js";
 import { combineOtfs, geometricOtf, otfMagnitude } from "./mtfMath.js";
 import type { MtfSpot } from "./mtfMath.js";
+import { mtfCurvedLanding } from "./mtfTracing.js";
 import type { MtfBundle } from "./mtfTracing.js";
 
 /** One wavelength's traced axial bundle and its incident weight. */
@@ -202,12 +202,9 @@ export function landingPoints(bundle: MtfBundle, planeZ: number): MtfSpot[] {
   if (shape !== null) {
     const points: MtfSpot[] = [];
     for (const ray of bundle.rays) {
-      const { terminalPoint: p, terminalDirection: d } = ray.trace;
-      const hit = landImageSurfaceLine(shape, [p[0], p[1], p[2] - planeZ], d);
-      if (!hit || hit.t < -1e-9) return [];
-      const [x, y] = shape.toImageCoordinates(hit.point[0], hit.point[1]);
-      if (!Number.isFinite(x) || !Number.isFinite(y)) return [];
-      points.push({ x, y, weight: ray.weight });
+      const landing = mtfCurvedLanding(shape, ray.trace, planeZ);
+      if (!landing) return [];
+      points.push({ x: landing[0], y: landing[1], weight: ray.weight });
     }
     return points;
   }

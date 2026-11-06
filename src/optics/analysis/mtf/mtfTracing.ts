@@ -132,13 +132,29 @@ function mtfFlatImagePoint(state: PreparedGeometry, trace: EngineTraceResult, im
 
 function mtfCurvedImagePoint(state: PreparedGeometry, trace: EngineTraceResult, imagePlaneZ: number): MtfSpot | null {
   if (trace.status !== "ok") return null;
+  const landing = mtfCurvedLanding(state.lens.imageSurface!, trace, imagePlaneZ);
+  return landing && { x: landing[0], y: landing[1], weight: bulkTransmissionForTrace(state.lens, trace.hits) };
+}
+
+/**
+ * Land a ray's final segment ahead of it on a curved image surface with its vertex at `vertexZ`; a zero-length
+ * transfer is a landing, as on the flat plane.
+ *
+ * @param shape - curved image surface
+ * @param trace - exact trace ending after the last surface
+ * @param vertexZ - axial image-surface vertex in mm
+ * @returns image coordinates of the landing, or null when the surface is not ahead of the ray
+ */
+export function mtfCurvedLanding(
+  shape: ImageSurfaceShape,
+  trace: Pick<EngineTraceResult, "terminalPoint" | "terminalDirection">,
+  vertexZ: number,
+): readonly [number, number] | null {
   const p = trace.terminalPoint;
-  const shape = state.lens.imageSurface!;
-  const hit = landImageSurfaceLine(shape, [p[0], p[1], p[2] - imagePlaneZ], trace.terminalDirection);
-  if (!hit || hit.t < -1e-9) return null;
+  const hit = landImageSurfaceLine(shape, [p[0], p[1], p[2] - vertexZ], trace.terminalDirection, -1e-9);
+  if (!hit) return null;
   const [x, y] = shape.toImageCoordinates(hit.point[0], hit.point[1]);
-  if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
-  return { x, y, weight: bulkTransmissionForTrace(state.lens, trace.hits) };
+  return Number.isFinite(x) && Number.isFinite(y) ? [x, y] : null;
 }
 
 // Keep several complete spectral grids warm without retaining an arbitrary wavelength history.
