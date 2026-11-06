@@ -8,17 +8,27 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * The four printed states (wide and tele, at infinity and at 2.4 m measured from the image plane) keep the fixed
  * 325.037 mm total length, the 2.85 mm camera-side plate (S43–S44, in rearPlates) and the final 1.000 mm gap.
- * DD6, DD11, DD18 and DD22 change with zoom only; DD23 and DD26 change with focus. Intermediate zoom and focus
- * positions are interpolated, not patent cam positions, and finite-distance MTF is limited to the printed endpoints.
+ * DD6, DD11, DD18 and DD22 change with zoom only; DD23 and DD26 change with focus.
+ *
+ * Zoom stations 0 and 17 are the printed wide and tele rows. Stations 1–16 (EFL 172.5–553.7 mm) are solved, not
+ * printed: G2 and G3 sit where Fig. 1's movement loci put them at drawn fractions s of the wide-to-tele path (each
+ * locus scaled to its printed end travel; s spaced so the defocus between neighbours is about equal), G4 is solved
+ * paraxially so the infinity image falls on the fixed image plane, and the focus doublet is solved to focus 2400 mm
+ * from the image plane. The solved G4 stays within 0.61 mm of its own drawn locus. Positions between stations are
+ * interpolated, which keeps the paraxial infinity image within 0.28 mm of the image plane and the 2.4 m rows at
+ * 2398–2431 mm object-to-image; finite-distance MTF is limited to the printed endpoints.
  *
  * The patent prints no clear apertures. Every sd is estimated from Fig. 1 (wide end), whose transverse scale (0.2235 mm
  * per px at 381 dpi, from arc sags) is about 8 % coarser than its axial scale (0.2065 mm per px, from vertex spacing);
  * at that scale the drawn stop is 13.97 mm, the F/5.76 stop radius. G1 sits 1.2 mm above the drawing with its drawn
  * steps kept (39.1 / 37.7 / 37.1 mm) to hold tele corner light, and L24's front curve ends at 9.0 mm. Flat lands
  * (rimExtensionSd) draw the S8/S9 and S32/S33 rim contacts and L24's flange as Fig. 1 does. Every rim clears the
- * wide-open on-axis beam and the corner chief ray at all four printed states. The stop sits at the printed S23
- * position; the engine derives a zoom-dependent iris from the infinity F-numbers because the patent prints no iris
- * schedule. At 2.4 m the patent prints F5.85 / F9.48; the same iris gives paraxial F5.84 / F9.59 (real-ray tele
+ * wide-open on-axis beam and the corner chief ray at every zoom station, printed or solved. The stop sits at the
+ * printed S23 position; the engine derives a zoom-dependent iris from the infinity F-numbers because the patent prints
+ * no iris schedule. The stop is in the fixed rear group, so one iris radius would give F/5.76 at every zoom; the
+ * printed F/8.19 needs the radius to close from 13.79 to 9.70 mm. The solved stations' F-numbers (5.83–7.97) assume
+ * that radius changes linearly with focal length, an inference, not a patent value.
+ * At 2.4 m the patent prints F5.85 / F9.48; the same iris gives paraxial F5.84 / F9.59 (real-ray tele
  * F9.64), so the printed tele near F-number is not reproduced, and no iris schedule or nominal/effective F-number
  * explanation is fitted to it.
  * Dispersion is d-line nd/νd plus the printed θgF stored as dPgF; no catalog or measured full dispersion is claimed.
@@ -705,7 +715,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 2.4,
     description:
-      "PUBLISHED inner focus: the negative L13–L14 doublet (S24–S26, the patent's focus group L51–L52) moves toward the image from infinity to 2.4 m, by 1.447 mm at the wide end and 21.651 mm at the tele end. DD23 grows and DD26 shrinks by the same amount; all other gaps keep their zoom values. Table 2 prints both zoom ends at infinity and at 2.4 m, measured from the image plane. Intermediate focus and zoom positions are interpolated, not patent cam positions.",
+      "PUBLISHED inner focus: the negative L13–L14 doublet (S24–S26, the patent's focus group L51–L52) moves toward the image from infinity to 2.4 m, by 1.447 mm at the wide end and 21.651 mm at the tele end. DD23 grows and DD26 shrinks by the same amount; all other gaps keep their zoom values. Table 2 prints both zoom ends at infinity and at 2.4 m, measured from the image plane. The sixteen zoom stations between them are calculated, not printed; at each, the doublet's 2.4 m position is calculated too, from 1.789 mm of travel at 172.5 mm to 19.317 mm at 553.7 mm. Focus and zoom positions between these states are interpolated.",
     conjugates: [
       {
         zoomStation: 0,
@@ -716,7 +726,7 @@ const LENS_DATA = {
           "JP 2023-020586 A, Example 1, Table 2 and ¶0166: 2.4 m object distance measured from the image plane (image plane 325.037 mm behind S1).",
       },
       {
-        zoomStation: 1,
+        zoomStation: 17,
         keyframe: 1,
         objectDistanceMm: 2400,
         distanceReference: "image-plane",
@@ -753,12 +763,110 @@ const LENS_DATA = {
       {
         focalLengthMm: 154.611,
         nominalFNumber: 5.76,
+        published: true,
         publishedFocus: [1],
         label: "Wide",
       },
       {
+        focalLengthMm: 172.487,
+        nominalFNumber: 5.83,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 191.883,
+        nominalFNumber: 5.91,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 212.493,
+        nominalFNumber: 6,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 234.538,
+        nominalFNumber: 6.1,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 257.58,
+        nominalFNumber: 6.2,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 281.736,
+        nominalFNumber: 6.32,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 306.668,
+        nominalFNumber: 6.44,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 332.317,
+        nominalFNumber: 6.57,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 358.599,
+        nominalFNumber: 6.71,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 385.407,
+        nominalFNumber: 6.86,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 412.634,
+        nominalFNumber: 7.02,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 440.117,
+        nominalFNumber: 7.18,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 468.294,
+        nominalFNumber: 7.36,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 496.518,
+        nominalFNumber: 7.55,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 524.544,
+        nominalFNumber: 7.75,
+        published: false,
+        publishedFocus: [],
+      },
+      {
+        focalLengthMm: 553.675,
+        nominalFNumber: 7.97,
+        published: false,
+        publishedFocus: [],
+      },
+      {
         focalLengthMm: 582.42,
         nominalFNumber: 8.19,
+        published: true,
         publishedFocus: [1],
         label: "Tele",
       },
@@ -769,6 +877,22 @@ const LENS_DATA = {
       label: "DD6",
       values: [
         [24.897, 24.897],
+        [34.293, 34.293],
+        [42.771, 42.771],
+        [50.274, 50.274],
+        [56.975, 56.975],
+        [62.847, 62.847],
+        [68.032, 68.032],
+        [72.573, 72.573],
+        [76.567, 76.567],
+        [80.091, 80.091],
+        [83.21, 83.21],
+        [85.973, 85.973],
+        [88.425, 88.425],
+        [90.645, 90.645],
+        [92.615, 92.615],
+        [94.36, 94.36],
+        [95.977, 95.977],
         [97.402, 97.402],
       ],
     },
@@ -776,6 +900,22 @@ const LENS_DATA = {
       label: "DD11",
       values: [
         [79.546, 79.546],
+        [73.246, 73.246],
+        [67.455, 67.455],
+        [62.119, 62.119],
+        [57.055, 57.055],
+        [52.258, 52.258],
+        [47.623, 47.623],
+        [43.146, 43.146],
+        [38.787, 38.787],
+        [34.523, 34.523],
+        [30.344, 30.344],
+        [26.253, 26.253],
+        [22.257, 22.257],
+        [18.286, 18.286],
+        [14.437, 14.437],
+        [10.73, 10.73],
+        [7.008, 7.008],
         [3.466, 3.466],
       ],
     },
@@ -783,6 +923,22 @@ const LENS_DATA = {
       label: "DD18",
       values: [
         [20.998, 20.998],
+        [15.983, 15.983],
+        [11.838, 11.838],
+        [8.64, 8.64],
+        [6.334, 6.334],
+        [4.917, 4.917],
+        [4.309, 4.309],
+        [4.437, 4.437],
+        [5.216, 5.216],
+        [6.571, 6.571],
+        [8.431, 8.431],
+        [10.731, 10.731],
+        [13.406, 13.406],
+        [16.463, 16.463],
+        [19.792, 19.792],
+        [23.33, 23.33],
+        [27.211, 27.211],
         [31.214, 31.214],
       ],
     },
@@ -790,6 +946,22 @@ const LENS_DATA = {
       label: "DD22",
       values: [
         [11.323, 11.323],
+        [13.242, 13.242],
+        [14.7, 14.7],
+        [15.731, 15.731],
+        [16.4, 16.4],
+        [16.742, 16.742],
+        [16.8, 16.8],
+        [16.608, 16.608],
+        [16.194, 16.194],
+        [15.579, 15.579],
+        [14.779, 14.779],
+        [13.807, 13.807],
+        [12.676, 12.676],
+        [11.37, 11.37],
+        [9.92, 9.92],
+        [8.344, 8.344],
+        [6.568, 6.568],
         [4.682, 4.682],
       ],
     },
@@ -797,6 +969,22 @@ const LENS_DATA = {
       label: "DD23",
       values: [
         [5.239, 6.686],
+        [5.239, 7.028],
+        [5.239, 7.44],
+        [5.239, 7.924],
+        [5.239, 8.496],
+        [5.239, 9.156],
+        [5.239, 9.918],
+        [5.239, 10.783],
+        [5.239, 11.76],
+        [5.239, 12.857],
+        [5.239, 14.081],
+        [5.239, 15.439],
+        [5.239, 16.933],
+        [5.239, 18.6],
+        [5.239, 20.414],
+        [5.239, 22.365],
+        [5.239, 24.556],
         [5.239, 26.89],
       ],
     },
@@ -804,6 +992,22 @@ const LENS_DATA = {
       label: "DD26",
       values: [
         [26.884, 25.437],
+        [26.884, 25.095],
+        [26.884, 24.683],
+        [26.884, 24.199],
+        [26.884, 23.627],
+        [26.884, 22.967],
+        [26.884, 22.205],
+        [26.884, 21.34],
+        [26.884, 20.363],
+        [26.884, 19.266],
+        [26.884, 18.042],
+        [26.884, 16.684],
+        [26.884, 15.19],
+        [26.884, 13.523],
+        [26.884, 11.709],
+        [26.884, 9.758],
+        [26.884, 7.567],
         [26.884, 5.233],
       ],
     },

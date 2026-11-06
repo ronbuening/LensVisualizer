@@ -39,15 +39,22 @@ L31–L34, L41–L42, L51–L62). Group focal lengths below are computed from Ta
 | --- | --- | --- | --- | --- |
 | G1 | L1–L3 (L11–L13) | S1–S6 | positive, +183.1 mm | fixed |
 | G2 | L4–L6 (L21–L23) | S7–S11 | negative, −53.6 mm | 72.505 mm toward the image |
-| G3 | L7–L10 (L31–L34) | S12–S18 | positive, +85.4 mm | net 3.575 mm toward the object |
-| G4 | L11–L12 (L41–L42) | S19–S22 | positive, +131.6 mm | net 6.641 mm toward the image |
+| G3 | L7–L10 (L31–L34) | S12–S18 | positive, +85.4 mm | out about 11.3 mm toward the image and back; net 3.575 mm toward the object |
+| G4 | L11–L12 (L41–L42) | S19–S22 | positive, +131.6 mm | back about 5.5 mm toward the object, then forward; net 6.641 mm toward the image |
 | G5 | stop, L13–L24 (L51–L62) | S23–S42 | negative, −38.0 mm | fixed |
 
 With G1 and G5 fixed, the total length stays 325.037 mm in every state; the patent credits a fixed G1 with a steadier
-center of gravity (¶0081) and a fixed G5 with a simpler mechanism (¶0083). Only the G3 and G4 end positions are
-printed; Fig. 1 draws curved paths between them. G5 carries the stop at its front (¶0091), then the focus doublet
-L13–L14 (S24–S26), a fixed doublet L15–L16, the stabilization group L17–L19 (S30–S34) and the fixed subgroup Gk,
-L20–L24 (¶0122). The 2.85 mm camera-side plate (S43–S44, nd 1.51680) is traced but not counted as an element.
+center of gravity (¶0081) and a fixed G5 with a simpler mechanism (¶0083). Table 2 prints only the wide and tele
+spacings; Fig. 1 draws the paths between them, at the section's own axial scale (the drawn end travels match the
+printed ones within 2 %). G2 moves toward the image throughout, fastest near the wide end. G3 moves about 11.3 mm
+toward the image by f ≈ 300 mm, then turns back to finish 3.575 mm on the object side of its wide position. G4 first
+retreats about 5.5 mm toward the object, to f ≈ 270 mm, then moves forward to finish 6.641 mm toward the image; in the
+model it is the group that holds the image on the fixed plane. The model's sixteen intermediate zoom stations take G2
+and G3 from the drawn paths and calculate G4's position, which stays within 0.6 mm of the drawn G4 path (see
+Aperture, Stop and Model Scope).
+
+G5 carries the stop at its front (¶0091), then the focus doublet L13–L14 (S24–S26), a fixed doublet L15–L16, the
+stabilization group L17–L19 (S30–S34) and the fixed subgroup Gk, L20–L24 (¶0122). The 2.85 mm camera-side plate (S43–S44, nd 1.51680) is traced but not counted as an element.
 
 ## Element-by-Element Analysis
 
@@ -172,8 +179,9 @@ the patent measures the distance from the image plane (¶0166). Only DD23 and DD
 | Tele, 2.4 m | 26.890 | 5.233 | — | 9.48 | 2.4° | 241.557 |
 
 The model's 2.4 m states place the object 2400.3 mm (wide) and 2400.0 mm (tele) from the image plane, at
-magnifications −0.071 and −0.243. The patent does not describe the focus drive. Intermediate focus positions are
-interpolated, not patent cam positions.
+magnifications −0.071 and −0.243. The patent does not describe the focus drive. At the model's sixteen calculated zoom
+stations (172.5–553.7 mm) the doublet's 2.4 m position is calculated as well; its travel rises from 1.789 to
+19.317 mm. Focus positions between these rows are interpolated, not patent cam positions.
 
 ## Image Stabilization
 
@@ -190,14 +198,46 @@ semi-diameter in the model is inferred from Fig. 1. The drawing is not to one sc
 smaller than along it, and at that transverse scale its stop is 13.97 mm in radius, the F/5.76 stop. G3 (about
 23.3 mm), the focus doublet (14.0 mm) and the small rear group (9.2–10.5 mm) are modeled at the drawn sizes. The front
 group is modeled 1.2 mm larger than drawn, with the drawn steps between its three elements, because the drawn size
-would cut corner light at the tele end. At both zoom ends the iris, not a lens rim, limits the wide-open on-axis beam.
+would cut corner light at the tele end. At every zoom station, printed or calculated, the iris, not a lens rim, limits
+the wide-open on-axis beam, and no rim blocks the corner chief ray.
 
 The iris is derived from the printed infinity F-numbers, F/5.76 at wide and F/8.19 at tele, because the patent gives
 no iris schedule. With the same iris, the 2.4 m states give paraxial F/5.84 and F/9.59 against the printed 5.85 and
-9.48; the tele near value is not reproduced, and no iris schedule is fitted to it.
+9.48; the tele near value is not reproduced, and no iris schedule is fitted to it. Because the stop sits in the fixed
+G5, one iris radius gives the same image-space F-number at every zoom position, so the printed rise from F/5.76 to
+F/8.19 means the iris closes from 13.79 to 9.70 mm in radius toward tele. The F-numbers of the calculated stations
+assume that this radius changes linearly with focal length; that is a modeling inference, not a patent value or
+Fujifilm's aperture schedule.
 
-Other limits: dispersion comes from the printed nd, νd and θgF only; intermediate zoom and focus positions are
-interpolated; finite-distance MTF is available only at the two printed 2.4 m states; and the stabilization group is
+| Zoom station | Model EFL mm | F-number | Source |
+| --- | ---: | ---: | --- |
+| 0, wide | 154.601 | 5.76 | Table 2 |
+| 1 | 172.487 | 5.83 | calculated, Fig. 1 at s = 0.071 |
+| 2 | 191.883 | 5.91 | calculated, s = 0.144 |
+| 3 | 212.493 | 6.00 | calculated, s = 0.217 |
+| 4 | 234.538 | 6.10 | calculated, s = 0.290 |
+| 5 | 257.580 | 6.20 | calculated, s = 0.361 |
+| 6 | 281.736 | 6.32 | calculated, s = 0.430 |
+| 7 | 306.668 | 6.44 | calculated, s = 0.496 |
+| 8 | 332.317 | 6.57 | calculated, s = 0.559 |
+| 9 | 358.599 | 6.71 | calculated, s = 0.619 |
+| 10 | 385.407 | 6.86 | calculated, s = 0.676 |
+| 11 | 412.634 | 7.02 | calculated, s = 0.730 |
+| 12 | 440.117 | 7.18 | calculated, s = 0.781 |
+| 13 | 468.294 | 7.36 | calculated, s = 0.830 |
+| 14 | 496.518 | 7.55 | calculated, s = 0.876 |
+| 15 | 524.544 | 7.75 | calculated, s = 0.919 |
+| 16 | 553.675 | 7.97 | calculated, s = 0.961 |
+| 17, tele | 582.397 | 8.19 | Table 2 |
+
+Here s is the fraction of Fig. 1's wide-to-tele locus length at which G2 and G3 are read; each locus is scaled so its
+ends match the printed travel. G4 and the focus doublet are calculated paraxially, G4 so that the infinity image lies
+on the fixed image plane and the doublet so that the close row focuses 2.4 m from the image plane. Only stations 0 and
+17 are patent states.
+
+Other limits: dispersion comes from the printed nd, νd and θgF only; zoom and focus positions between the stations are
+interpolated, which keeps the infinity image within 0.28 mm of the image plane and the 2.4 m rows between 2398 and
+2431 mm from it; finite-distance MTF is available only at the two printed 2.4 m states; and the stabilization group is
 traced centered.
 
 ## Sources

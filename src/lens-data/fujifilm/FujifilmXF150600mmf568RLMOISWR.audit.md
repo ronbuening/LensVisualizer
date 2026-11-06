@@ -142,3 +142,77 @@ ED on elements 7, 8 and 12, and shows no aspherical element.
 **Limits.** L21, the middle of the cemented triplet, is drawn 10.3 mm, larger than both partners; its faces are both
 junctions, which end at the smaller partner, so the model draws it at 9.2–9.7 mm. L18's 10.45 mm rim shows only through
 its S32 land, for the same reason at S31. G1 stays 1.2 mm above the drawing for corner light.
+
+## 2026-11-06 — Solved intermediate zoom stations
+
+**Reason.** Linear interpolation between the two printed stations alone is not a zoom path: at zoomT 0.5 it gives
+EFL 836.9 mm, the paraxial image 207.6 mm behind the sensor and 14.5 % on-axis light. Intermediate stations are
+therefore solved.
+
+**Fig. 1 loci.** PDF p. 81 rendered at 400 dpi. Under the section (page horizontal = zoom, wide at the left; page
+vertical = axial position) G1 and Gk are straight hatched lines and G2, G3 and G4 are curves that all start at the same
+column and end in arrow tips at the same column, 347 px later. Centre lines are ink-weighted run centroids per column
+over the clean 315 px before the arrowheads, plus the arrow tip, fitted with a degree-6 polynomial in the drawn
+fraction s (rms 0.11–0.16 px; degrees 4–8 move the solved stations by under 0.05 mm). Drawn end travel against the
+section's axial scale (0.1967 mm/px at 400 dpi, from the 0.2065 mm/px at 381 dpi above): G2 +72.66, G3 −3.53, G4 +6.52
+mm against the printed +72.505, −3.575, +6.641, so the loci are drawn to scale. Each locus is scaled by its own end
+ratio (G2 0.1963, G3 0.1993, G4 0.2004 mm/px) so its ends match the printed travel exactly. Read this way, G3 swings
+11.31 mm toward the image (peak at s = 0.47) and returns; G4 dips 5.58 mm toward the object (s ≈ 0.40) and then
+rises.
+
+**Method.** At each s, G2 and G3 take their drawn positions; G4 is solved paraxially so the infinity image lands
+1.000 mm behind the plate (the printed last gap); the focus doublet keeps its printed infinity position (DD23 5.239,
+DD26 26.884 at both printed ends) and is solved so the close row focuses 2400 mm from the image plane. DD6 + DD11 +
+DD18 + DD22 stays 136.764 and DD23 + DD26 32.123 mm. Displacements are rounded to 0.001 mm before the gaps are
+written; residual infinity defocus at the solved stations is under 0.004 mm and close-row object-to-image distances
+are 2399.6–2400.3 mm. No R, fixed d, n or ν changed.
+
+**G4 agreement.** Over s = 0–1 the solved G4 runs rms 0.29 mm from its drawn locus, at most 0.61 mm (s = 0.85, f ≈
+480 mm), about 3 px on the figure; solved minimum −5.49 mm at s = 0.41 against the drawn −5.58. The figure's G2/G3
+loci and a focus solve therefore reproduce its G4 locus, and the stations use G2 and G3 from the figure as drawn.
+
+**Stations.** Sixteen solved stations, spaced in s so the worst interpolated infinity defocus is about equal in every
+segment and stays under 0.30 mm, roughly the depth of focus at f/8 (fifteen would sit at the limit). Displacements are
+from the wide end, positive toward the image.
+
+| Station | s | x2 | x3 | x4 (drawn − solved) | EFL | F/N | Close DD23 / DD26 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 (printed) | 0 | 0 | 0 | 0 | 154.601 | 5.76 | 6.686 / 25.437 |
+| 1 | 0.071 | 9.396 | 3.096 | −1.919 (+0.17) | 172.487 | 5.83 | 7.028 / 25.095 |
+| 2 | 0.144 | 17.874 | 5.783 | −3.377 (+0.17) | 191.883 | 5.91 | 7.440 / 24.683 |
+| 3 | 0.217 | 25.377 | 7.950 | −4.408 (+0.09) | 212.493 | 6.00 | 7.924 / 24.199 |
+| 4 | 0.290 | 32.078 | 9.587 | −5.077 (0.00) | 234.538 | 6.10 | 8.496 / 23.627 |
+| 5 | 0.361 | 37.950 | 10.662 | −5.419 (−0.07) | 257.580 | 6.20 | 9.156 / 22.967 |
+| 6 | 0.430 | 43.135 | 11.212 | −5.477 (−0.09) | 281.736 | 6.32 | 9.918 / 22.205 |
+| 7 | 0.496 | 47.676 | 11.276 | −5.285 (−0.06) | 306.668 | 6.44 | 10.783 / 21.340 |
+| 8 | 0.559 | 51.670 | 10.911 | −4.871 (+0.03) | 332.317 | 6.57 | 11.760 / 20.363 |
+| 9 | 0.619 | 55.194 | 10.171 | −4.256 (+0.15) | 358.599 | 6.71 | 12.857 / 19.266 |
+| 10 | 0.676 | 58.313 | 9.111 | −3.456 (+0.29) | 385.407 | 6.86 | 14.081 / 18.042 |
+| 11 | 0.730 | 61.076 | 7.783 | −2.484 (+0.43) | 412.634 | 7.02 | 15.439 / 16.684 |
+| 12 | 0.781 | 63.528 | 6.239 | −1.353 (+0.54) | 440.117 | 7.18 | 16.933 / 15.190 |
+| 13 | 0.830 | 65.748 | 4.488 | −0.047 (+0.61) | 468.294 | 7.36 | 18.600 / 13.523 |
+| 14 | 0.876 | 67.718 | 2.609 | 1.403 (+0.60) | 496.518 | 7.55 | 20.414 / 11.709 |
+| 15 | 0.919 | 69.463 | 0.647 | 2.979 (+0.51) | 524.544 | 7.75 | 22.365 / 9.758 |
+| 16 | 0.961 | 71.080 | −1.458 | 4.755 (+0.31) | 553.675 | 7.97 | 24.556 / 7.567 |
+| 17 (printed) | 1 | 72.505 | −3.575 | 6.641 | 582.397 | 8.19 | 26.890 / 5.233 |
+
+Stations 0 and 17 keep the printed spacings, `published: true` and `publishedFocus: [1]`; 1–16 are
+`published: false` with `publishedFocus: []`. The tele 2.4 m conjugate points at station 17.
+
+**F-number (inference).** The derived stop radius is 13.786 mm at wide (F/5.76) and 9.696 mm at tele (F/8.19), 29.7 %
+apart, so the iris is not constant. Because the stop sits in fixed G5 and the image plane is fixed, EFL × (marginal
+height at the stop) is the same at every zoom position, and one radius gives the same F-number everywhere (13.786 mm
+gives F/5.761 at every solved station). The solved stations therefore take a radius interpolated linearly in EFL
+between the two derived ends, and F/N = 5.76 × 13.786 / r, rounded to 0.01. This is a modeling inference; the patent
+prints no intermediate F-number and Fujifilm's aperture schedule was not used. `aperture.fStops` is unchanged.
+
+**Checks.** `probe.mjs`: every station's EFL matches its `focalLengthMm`, infinity defocus ≤ 0.004 mm at solved
+stations, close rows 2399.6–2400.3 mm from the image plane. Fine scan of the engine's linear interpolation (zoomT
+steps of 0.01 and 0.0005): the paraxial infinity image stays within 0.273 mm of the plane (worst at zoomT 0.912,
+between stations 15 and 16); the 2.4 m rows midway between stations focus 2431 mm (first segment) down to 2401 mm
+(last), 2398.4–2431.2 mm over the whole range. `vig.mjs` at all 18 stations and 17 midpoints: on-axis 100.0 %
+everywhere; corner light where sampled runs 74.5 % (wide), 74–79 % in between, 73.5 % (tele). `clearap2 --Y 14.2` at
+infinity and 2.4 m: no stored rim below the axial marginal ray or the chief ray at any station (largest G3 marginal
+22.39 against 23.4 mm). `audit:aperture`: 18 stations within 3 % of the stated F-number, no rim, trace or iris limit.
+`audit:surface`: OK. No rim changed. Targeted tests: closeFocusEndpoint, publishedStations, focusKeyframes,
+zoomApertureModel, irisInAir, duplicatedValues and schemaVersion pass.
