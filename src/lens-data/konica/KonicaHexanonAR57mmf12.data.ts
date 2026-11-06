@@ -23,16 +23,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * position is inferred. The radius follows from the design F/1.2. The Seidel table's stop at the first surface is a
  * calculation convention, not the iris.
  *
- * Semi-diameters: not printed, so all are inferred from Fig. 1, which is drawn to scale along the axis (its vertex
- * crossings agree with the prescription within about 3 px at 950.7 px per f-unit, 300 dpi). The drawn rims are L1
- * 0.454, L2 front 0.394, L3 top edge 0.354 with its concave rear face ending near 0.28, L4 front face near 0.28, L4/L5
- * 0.334, L6 0.322 and L7 0.314 (f-units). The model's 26.13 (L1), 22.63 (S3), 15.96 (S6, S7), 18.81 (L4/L5),
- * 18.38 (L6) and 17.96 mm (L7) are the earlier f = 1 estimates scaled by s and rounded to 0.01 mm; they agree with
- * the drawing within about 1%. L2's rear face (S4) and L3's front face (S5) are raised from 17.96 to 18.98 and
- * 18.97 mm, the heights of the F/1.2 axial beam, which the earlier rims clipped (f/1.26 traced). Across their
- * 1.14 mm air gap those two faces would touch at 19.13 mm; Fig. 1 draws them meeting at the rim, so gapSagFrac is
- * 0.99 for that pair (intrusion 0.982 of the gap) and about 0.02 mm of air remains at the rim. L2's front face keeps
- * its larger drawn rim, so L2 is stepped.
+ * Semi-diameters: not printed, so all are inferred from Fig. 1 (printed page 244). Its scan carries 1117 px per f-unit
+ * along the axis, where the vertex crossings agree with the prescription within about 3 px, and 1094 px per f-unit
+ * across it, from circle fits to r3, r6 and r7 and from the axial positions of the r6 and r7 cap ends. Half the drawn
+ * diameters are, in f-units, L1 0.440, L2 front 0.379 and rear 0.363, L3 front 0.340, the r6 cap 0.272 with its land
+ * to 0.291, the r7 cap 0.261 with its land to 0.283, L4/L5 0.320, L6 0.307 and L7 0.302. The model's rims stand a
+ * uniform 3-5% above these, which keeps the drawn proportions: L1 26.13 mm, L2 22.63 mm front and 21.6 mm rear (the
+ * drawn rear-to-front ratio, so L2 keeps its small step), the cemented pair 18.81 mm, L6 18.38 mm and L7 17.96 mm.
+ * L3's front face is 19.0 mm, just above the 18.99 mm height of the F/1.2 axial beam; it and L2's rear face would
+ * touch at 19.13 mm across their 1.14 mm air gap, and Fig. 1 draws them meeting, so gapSagFrac is 0.99 for that pair
+ * (intrusion 0.985 of the gap at 19.0 mm, 0.017 mm of air at the rim). Fig. 1 ends both concave faces around the stop
+ * in short flat lands: L3's rear cap ends at 15.8 mm, just ahead of the stop plane, with a land to 17.3 mm, and L4's
+ * front cap ends at 15.6 mm with a land to 16.9 mm (rimExtensionSd; the lands stop no ray).
  *
  * Focus: the patent prints the infinity state only. closeFocusM is the production 0.45 m; the geometry is static.
  */
@@ -191,20 +193,21 @@ const LENS_DATA = {
       "label": "4",
       "R": 57.0072,
       "d": 1.140144,
-      "sd": 18.98
+      "sd": 21.6
     },
     {
       "label": "5",
       "R": 85.56210648,
       "d": 2.280288,
-      "sd": 18.97,
+      "sd": 19.0,
       "medium": 3
     },
     {
       "label": "6",
       "R": 19.4679588,
       "d": 8.123526,
-      "sd": 15.96
+      "sd": 15.8,
+      "rimExtensionSd": 17.3
     },
     {
       "label": "STO",
@@ -215,7 +218,8 @@ const LENS_DATA = {
       "label": "7",
       "R": -23.7149952,
       "d": 1.710216,
-      "sd": 15.96,
+      "sd": 15.6,
+      "rimExtensionSd": 16.9,
       "medium": 4
     },
     {

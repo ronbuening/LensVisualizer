@@ -31,3 +31,33 @@ Fields changed: key `konica-hexanon-ar-57mm-f12-native-f1` → `konica-hexanon-a
 Production evidence: buhla.de and allphotolenses.com give 7 elements / 6 groups, 0.45 m, f/1.2–16; buhla.de gives 42° and places the lens in the late 1960s. A Kamerastore listing gives 6 elements / 4 groups (seen in a search result; the page itself answered HTTP 429), against the other sources and the earlier-recorded 1980 Konica catalog. audit:surface OK; audit:aperture no rim limit; audit:image-circle 0 undersized; audit:field-coverage 97% (stopped by the declared 41° projection, corner 21.1° clear).
 
 Open: the 1980 Konica catalog (cat. no. 703-212) was not re-read in this pass. Glass labels remain `Unmatched`; no catalog match was attempted. No source dates the lens's release precisely.
+
+## 2026-11-06 — Semi-diameter pass against the patent figure
+
+Source: JP S47-19025 Y1 (local PDF), PDF page 6 (printed 244), Fig. 1, the section of the sole example. The page is a 2912 × 3958 px bilevel scan that the PDF stretches to A4 (352 × 338 ppi), so it was measured in native scan pixels, not in a uniform-dpi render. No maker construction drawing was available, so none was compared; Fig. 1 shows seven elements in six groups with L4/L5 cemented, as the file has.
+
+Scale. The drawn axis fits a line of slope 0.01377 (the scan is turned 0.79°; rms 0.5 px), and all heights are taken square to it. Along the axis, r1 at 966.2 px and r13 at 1988.8 px over the printed 0.9151 f give 1117 px per f-unit, and the other vertex crossings sit within about 3 px of the prescription. Across it, circle fits with the printed radii to r3, r6 and r7 (both halves, axis offset free) give 1104, 1099 and 1091 px per f-unit, and the axial positions of the r6 and r7 cap ends, which fix their heights through the sag alone (15.55 and 15.03 mm), give 1089 and 1085. The adopted height scale is 1094 ± 7 px per f-unit, so the drawing is close to isotropic in scan pixels. (A uniform 300-dpi render read with the axial scale, as in the deployment fix above, puts 1073 native px on an f-unit vertically and reads heights about 2% high.) The upper half reads 3–10 px taller than the lower, so each rim below is the mean of both halves, at the line centre.
+
+Readings and values (mm at the model scale; "× 1.044" is the figure scaled by the median model-to-figure ratio of the five square-cut rims, 1.032–1.050):
+
+| Surface | Before | Fig. 1 | Fig. 1 × 1.044 | After | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| 1, 2 (L1) | 26.13 | 25.06 | 26.17 | 26.13 | kept; drawn proportion |
+| 3 (L2 front) | 22.63 | 21.61 | 22.56 | 22.63 | kept; drawn proportion |
+| 4 (L2 rear) | 18.98 | 20.69 | 21.60 | 21.6 | Fig. 1 draws L2's rear at 0.957 of its front; the file had 0.839 |
+| 5 (L3 front) | 18.97 | 19.41 | 20.26 | 19.0 | F/1.2 axial beam 18.99 mm (clearap); the faces of r4 and r5 meet at 19.13 mm |
+| 6 (L3 rear cap) | 15.96 | 15.48 | 16.16 | 15.8 | cap end kept ahead of the stop plane so the drawn land fits; axial beam 15.12 mm |
+| 6 land (`rimExtensionSd`) | none | 16.57 | 17.30 | 17.3 | vertical land drawn on r6 |
+| 7 (L4 front cap) | 15.96 | 14.90 | 15.56 | 15.6 | drawn cap end lower than L3's; axial beam 14.56 mm |
+| 7 land (`rimExtensionSd`) | none | 16.15 | 16.86 | 16.9 | vertical land drawn on r7 |
+| 8, 9 (L4/L5) | 18.81 | 18.23 | 19.03 | 18.81 | kept; drawn proportion |
+| 10, 11 (L6) | 18.38 | 17.51 | 18.28 | 18.38 | kept; drawn proportion |
+| 12, 13 (L7) | 17.96 | 17.21 | 17.97 | 17.96 | kept; drawn proportion |
+
+The square-cut rims stand a uniform 3–5% above the figure's absolute heights and within 1.2% of its proportions, so they are kept; taking them to the absolute readings would cost up to 3.6 corner points (17.6°, rimcost.mjs). S4 follows the drawn rear-to-front ratio of L2, so L2 keeps the small step Fig. 1 draws instead of a 3.65 mm one; S4 then stands above L3's front rim, as drawn, and the validator compares the pair over the shared band only. Fig. 1 ends r6 and r7 in short square lands, then a chamfer up to each element's flat top; the lands are modeled with `rimExtensionSd` and the chamfer and flat top fall to the straight connecting edge. A land on r6 at 15.96 mm sat 0.196 mm past the stop plane (sag 8.320 against 8.124 mm) and the validator refused it; at 15.8 mm the cap ends 0.030 mm ahead of the plane. Fig. 1 also draws r7's cap ending 0.5 mm lower than r6's, which 15.6 mm keeps. `checks.gapSagFrac` stays 0.99 for the r4/r5 pair: at the shared 19.0 mm rim the intrusion is 0.985 of the 1.140 mm gap, 0.017 mm of air.
+
+Clearance and engine results after the edit: audit:surface OK; audit:aperture f/1.20 within 3%, no rim limit; audit:image-circle 0 undersized; audit:field-coverage 97% (declared 20.5°, corner 21.1° clear); rim-cut probe none; clearap at F/1.2 shows no CLIPS-AXIAL or BLOCKS-CHIEF (axial marginal 19.00 at S4, 18.99 at S5, 15.12 at S6, 14.56 at S7). built.mjs: EFL 57.000 mm, F/1.2, half-field 20.5°, stop radius 14.97 mm, all unchanged. Geometric transmission wide open at 0 / 2.9 / 5.9 / 8.8 / 11.7 / 14.6 / 17.6 / 20.5°: 100 / 98.5 / 95.8 / 90.2 / 81.5 / 69.9 / 56.4 / 40.5% before and 100 / 98.6 / 96.0 / 90.4 / 81.7 / 69.9 / 56.4 / 40.5% after; rimcost.mjs against the starting rims loses nothing at any field, and restoring any one element wins nothing back. LSA as filed −0.022 mm at the full pupil (lsa.mjs), so no misprint is suspected. The page at focus 0 and 1 (static geometry) shows L2 near-square with a small rear step and L3 and L4 ending in lands at the iris, as Fig. 1 draws them.
+
+Fan ends. Fig. 3 (printed 245, f = 100) ends its meridional fans at about +37.3/−37.8 (5°), +32.2/−32.7 (10°), +25.6/−25.3 (15°) and +16.6/−15.9 (20.5°) against a 41.7 full-aperture pupil radius. Traced in the model, the lower-end rays at 5°, 10° and 15° cross L1's front face at 24.2, 24.2 and 23.4 mm, and the upper-end rays reach 16.3–16.8 mm in L6 and L7; the model's own meridional fans run to +42.0/−39.2, +36.7/−36.2, +28.9/−30.4 and +17.2/−22.6. Those radii sit 3–7% under the figure's absolute heights, and the figure's proportions do not single out L1 or the rear group, so they are recorded and not applied.
+
+Limitations: the model's heights stand about 4% above the drawing as a whole; L3's front face cannot reach its drawn 19.4 mm top edge because r4 and r5 meet at 19.13 mm; the flat tops and chamfers of L3 and L4/L5 are drawn as straight edges; the r6 land sits 0.34 mm behind its drawn axial position because its cap keeps the model's height scale.
