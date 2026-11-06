@@ -303,6 +303,7 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     C: [0.00736272269, 0.0253765327, 103.502909],
     nd: 1.62278,
     vd: 56.98,
+    PgF: 0.5474,
     source: "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data.",
   },
   {
