@@ -1,32 +1,62 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole literal sole example; source-native numerical scale is an explicit hypothesis.
- * Retail identity is a probable family association only. Plane, stop and caps are
- * declared assumptions; no finite source state, optical retuning or applied refocus.
+/**
+ * NIKON EL-NIKKOR 50mm f/2.8 (first version, 6 elements / 4 groups)
+ *
+ * Data source: US 2,906,174, sole numerical example (Zenji Wakimoto / Nippon Kogaku K.K.;
+ * filed 31 July 1957, granted 29 September 1959), printed at f = 100.0, F/2.5. Nikon credits the
+ * original EL-Nikkor 50mm f/2.8 to Wakimoto, and its published section shows the same 6/4 layout;
+ * the example is a probable production correlation, not a confirmed factory prescription.
+ *
+ * NOTE ON SCALING:
+ *   Every length (R, d, sd and the back focus) is the patent value x 0.5, taking the f = 100 design
+ *   to the 50 mm production focal length. All surfaces are spherical, so nothing else is transformed.
+ *   R, d, nd and vd are otherwise as printed; the description table and the claim table agree.
+ *   Computed EFL 49.997 mm (patent f = 100.0 scaled to 50.0); computed F/2.500 at the design F/2.5.
+ *
+ * NOTE ON BACK FOCUS:
+ *   The patent prints no back focus. The last gap is the paraxial back focus of the scaled table,
+ *   so the image plane sits at the computed infinity focus.
+ *
+ * NOTE ON STOP POSITION:
+ *   The patent gives only the air space l2 = 12.89 between L3 and L4 and places the diaphragm in it.
+ *   Its figure draws the diaphragm about 65 % of the way from r5 to r6, so the scaled l2 = 6.445 mm
+ *   is split 4.19 + 2.255 mm. The stop radius follows from the design F/2.5.
+ *
+ * NOTE ON SEMI-DIAMETERS:
+ *   The patent prints no clear apertures. All rims are measured from the patent figure (its vertex
+ *   spacing matches the table) and scaled x 0.5: L1 13.5; L2/L3 11.2, with the r5 curve ending at
+ *   7.0 where the figure draws a flat land and bevel; L4 7.7 on both faces (square rim); L5/L6 7.25
+ *   at r8 (land and bevel beyond it), 11.1 at r9 and r10. Every rim clears the axial F/2.5 beam;
+ *   off-axis vignetting is kept as these rims give it.
+ *
+ * GLASSES: the printed d-line nd / vd pairs are kept as unmatched coordinates; the patent names no
+ *   glass maker.
+ *
+ * FOCUS: the patent tabulates only the infinity state. As an enlarging lens it focuses as a unit;
+ *   no finite conjugate is modeled.
  */
+
 const LENS_DATA = {
   "schema": 2,
-  "key": "nikon-el-nikkor-50mm-f28-wakimoto-native-f100",
+  "key": "nikon-el-nikkor-50mm-f28",
   "maker": "Nikon",
-  "name": "NIKON EL-NIKKOR 50mm f/2.8 (Wakimoto)",
-  "subtitle": "US 2,906,174 sole example — source-native hypothetical reconstruction; retail family association descriptive",
+  "name": "NIKON EL-NIKKOR 50mm f/2.8",
+  "subtitle": "US 2,906,174 — f = 100 design scaled 0.5×; probable first-version EL-Nikkor 50mm f/2.8",
   "catalog": {
+    "lensMounts": ["enlarging-lens"],
+    "imageFormat": "135-full-frame",
     "elementCount": 6,
     "groupCount": 4,
     "focalLengthMm": {
-      "design": 100.0
+      "marketing": 50,
+      "design": 50
     },
     "fNumber": {
+      "marketing": 2.8,
       "design": 2.5
     },
-    "specs": [
-      "SOURCE NATIVE f=100/F2.5; retail50mm/F2.8 is descriptive only",
-      "Grade B probable historical family; exact factory prescription unproved",
-      "Assumed one source unit per runtime mm; frequencies belong to this hypothetical scale",
-      "Computed infinity plane; inferred stop and clear apertures; clipping retained",
-      "No numerical finite endpoint or focus law; infinity only",
-      "No source field or format; displayed cap-limited coverage is diagnostic only"
-    ]
+    "specs": ["6 ELEMENTS / 4 GROUPS", "DESIGN f = 100 mm (SCALED 0.5× TO 50 mm)", "DESIGN F/2.5", "ALL SPHERICAL"]
   },
   "source": {
     "patentNumber": "US 2,906,174",
@@ -35,12 +65,8 @@ const LENS_DATA = {
       "id": null
     },
     "patentYear": 1959,
-    "authors": [
-      "Zenji Wakimoto"
-    ],
-    "assignees": [
-      "Nippon Kogaku K.K."
-    ]
+    "authors": ["Zenji Wakimoto"],
+    "assignees": ["Nippon Kogaku K.K."]
   },
   "elements": [
     {
@@ -52,8 +78,8 @@ const LENS_DATA = {
       "vd": 54.0,
       "indexReference": "d",
       "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": 133.07197854358733,
-      "role": "The positive front meniscus is component I. The source describes its role jointly with the front Gauss-type pair rather than assigning an independently measured aberration contribution."
+      "focalLengthMm": 66.53598927179367,
+      "role": "Component I: front positive meniscus, convex to the object and concave toward the stop; the first collector of the Gauss-type front pair."
     },
     {
       "id": 2,
@@ -64,8 +90,8 @@ const LENS_DATA = {
       "vd": 56.9,
       "indexReference": "d",
       "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": 53.88015905383547,
-      "role": "The positive front cemented member starts component II. Its shallow shared rear face remains−889.55; the source drawing and both printed tables control over the withdrawn low-resolution suspicion.",
+      "focalLengthMm": 26.940079526917735,
+      "role": "Positive front member of cemented component II; its strong front face carries most of the front pair's positive power.",
       "cemented": "CD1"
     },
     {
@@ -77,8 +103,8 @@ const LENS_DATA = {
       "vd": 38.0,
       "indexReference": "d",
       "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": -35.85162903363418,
-      "role": "The negative cemented partner completes component II at surface4. Source prose mislabels the third component single lens as L3 in one passage; the table and drawing consistently place this element in the front doublet.",
+      "focalLengthMm": -17.92581451681709,
+      "role": "Flint negative member of component II, nearly plano-concave; its deep rear face, concave to the stop, is the main negative surface ahead of the diaphragm.",
       "cemented": "CD1"
     },
     {
@@ -90,8 +116,8 @@ const LENS_DATA = {
       "vd": 60.3,
       "indexReference": "d",
       "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": 86.97119892460752,
-      "role": "The positive meniscus is the single-element component III after the diaphragm. The source attributes separate sagittal/meridional field-curvature and astigmatism balancing to its surfaces."
+      "focalLengthMm": 43.48559946230376,
+      "role": "Component III: thick positive meniscus concave to the stop; the patent credits its two faces with separating the sagittal and meridional fields to correct field curvature and astigmatism."
     },
     {
       "id": 5,
@@ -102,8 +128,8 @@ const LENS_DATA = {
       "vd": 45.4,
       "indexReference": "d",
       "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": -34.32390433090559,
-      "role": "The negative rear cemented member starts component IV. Its common surface9 is not an air gap; no modern EL-Nikkor-N redesign is substituted.",
+      "focalLengthMm": -17.161952165452795,
+      "role": "Negative front member of cemented component IV; its front face, concave to the stop, bounds the diverging air space after L4.",
       "cemented": "CD2"
     },
     {
@@ -115,98 +141,93 @@ const LENS_DATA = {
       "vd": 55.5,
       "indexReference": "d",
       "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": 41.58999357425166,
-      "role": "The final positive cemented member completes component IV. The rear doublet and preceding positive meniscus give the asymmetric rear arrangement described by Wakimoto.",
+      "focalLengthMm": 20.79499678712583,
+      "role": "Positive rear member of component IV and the strongest positive element; it closes the asymmetric wide-angle-type rear pair.",
       "cemented": "CD2"
     }
   ],
   "surfaces": [
     {
       "label": "1",
-      "R": 59.35,
-      "d": 7.46,
-      "sd": 22.0,
+      "R": 29.675,
+      "d": 3.73,
+      "sd": 13.5,
       "medium": 1
     },
     {
       "label": "2",
-      "R": 203.7,
-      "d": 0.58,
-      "sd": 22.0
+      "R": 101.85,
+      "d": 0.29,
+      "sd": 13.5
     },
     {
       "label": "3",
-      "R": 34.69,
-      "d": 12.1,
-      "sd": 17.6,
+      "R": 17.345,
+      "d": 6.05,
+      "sd": 11.2,
       "medium": 2
     },
     {
       "label": "4",
-      "R": -889.55,
-      "d": 3.6,
-      "sd": 17.6,
+      "R": -444.775,
+      "d": 1.8,
+      "sd": 11.2,
       "medium": 3
     },
     {
       "label": "5",
-      "R": 22.85,
-      "d": 6.445,
-      "sd": 12.8
+      "R": 11.425,
+      "d": 4.19,
+      "sd": 7.0
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 6.445
+      "d": 2.255
     },
     {
       "label": "6",
-      "R": -70.74,
-      "d": 11.53,
-      "sd": 12.3,
+      "R": -35.37,
+      "d": 5.765,
+      "sd": 7.7,
       "medium": 4
     },
     {
       "label": "7",
-      "R": -32.52,
-      "d": 2.33,
-      "sd": 12.3
+      "R": -16.26,
+      "d": 1.165,
+      "sd": 7.7
     },
     {
       "label": "8",
-      "R": -22.91,
-      "d": 2.71,
-      "sd": 14.5,
+      "R": -11.455,
+      "d": 1.355,
+      "sd": 7.25,
       "medium": 5
     },
     {
       "label": "9",
-      "R": 110.27,
-      "d": 14.25,
-      "sd": 17.8,
+      "R": 55.135,
+      "d": 7.125,
+      "sd": 11.1,
       "medium": 6
     },
     {
       "label": "10",
-      "R": -33.22,
-      "d": 64.32543062444235,
-      "sd": 16.3
+      "R": -16.61,
+      "d": 32.162715312221175,
+      "sd": 11.1
     }
   ],
+  // Enlarger use, following the Rogonar-S 50mm f/2.8 file: 0.055 m is the approximate negative-side conjugate at 10×,
+  // not a camera minimum-focus distance. No gap varies, so it moves nothing and the focus control stays inactive.
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Hypothetical collimated input only. No numerical finite conjugate or motion law is supplied. The computed Gaussian plane is fixed before tracing, with no applied refocus. Whole f100/F2.5 source coordinates remain unchanged. Source units are unnamed; one numerical source unit is represented by1 runtime millimetre as an explicit implementation hypothesis, not proof of physical dimensions. Retail50mm/F2.8 is descriptive family evidence, with no dimensional or lp/mm mapping."
+    "closeFocusM": 0.055,
+    "description": "Unit focusing as an enlarging lens: the enlarger sets the distances to negative and easel. The patent tabulates only the infinity state and no internal variable air gap; the image plane is the computed paraxial focus."
   },
   "aperture": {
     "nominalFNumber": 2.5,
-    "fStops": [
-      2.5,
-      4,
-      5.6,
-      8,
-      11,
-      16
-    ],
+    "fStops": [2.5, 4, 5.6, 8, 11, 16],
     "maxFNumber": 16
   },
   "layout": {
