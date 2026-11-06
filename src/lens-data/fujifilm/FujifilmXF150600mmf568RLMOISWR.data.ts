@@ -11,11 +11,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * DD6, DD11, DD18 and DD22 change with zoom only; DD23 and DD26 change with focus. Intermediate zoom and focus
  * positions are interpolated, not patent cam positions, and finite-distance MTF is limited to the printed endpoints.
  *
- * The patent prints no clear apertures: every sd is inferred, and the G3 and focus-doublet rims were raised only as
- * far as the wide-open on-axis beam needs. The stop sits at the printed S23 position; the engine derives a
- * zoom-dependent iris from the infinity F-numbers because the patent prints no iris schedule. At 2.4 m the patent
- * prints F5.85 / F9.48; the same iris gives paraxial F5.84 / F9.59 (real-ray tele F9.64), so the printed tele near
- * F-number is not reproduced, and no iris schedule or nominal/effective F-number explanation is fitted to it.
+ * The patent prints no clear apertures. Every sd is estimated from Fig. 1 (wide end), whose transverse scale (0.2235 mm
+ * per px at 381 dpi, from arc sags) is about 8 % coarser than its axial scale (0.2065 mm per px, from vertex spacing);
+ * at that scale the drawn stop is 13.97 mm, the F/5.76 stop radius. G1 sits 1.2 mm above the drawing with its drawn
+ * steps kept (39.1 / 37.7 / 37.1 mm) to hold tele corner light, and L24's front curve ends at 9.0 mm. Flat lands
+ * (rimExtensionSd) draw the S8/S9 and S32/S33 rim contacts and L24's flange as Fig. 1 does. Every rim clears the
+ * wide-open on-axis beam and the corner chief ray at all four printed states. The stop sits at the printed S23
+ * position; the engine derives a zoom-dependent iris from the infinity F-numbers because the patent prints no iris
+ * schedule. At 2.4 m the patent prints F5.85 / F9.48; the same iris gives paraxial F5.84 / F9.59 (real-ray tele
+ * F9.64), so the printed tele near F-number is not reproduced, and no iris schedule or nominal/effective F-number
+ * explanation is fitted to it.
  * Dispersion is d-line nd/νd plus the printed θgF stored as dPgF; no catalog or measured full dispersion is claimed.
  * The stabilization group (S30–S34) is modeled centered; the patent gives no decentering law.
  */
@@ -439,32 +444,32 @@ const LENS_DATA = {
       label: "3",
       R: 107.10239,
       d: 8.084,
-      sd: 39.1,
+      sd: 37.7,
       medium: 2,
     },
     {
       label: "4",
       R: -1680.72811,
       d: 0.2,
-      sd: 39.1,
+      sd: 37.7,
     },
     {
       label: "5",
       R: 104.53654,
       d: 7.587,
-      sd: 39.04,
+      sd: 37.1,
       medium: 3,
     },
     {
       label: "6",
       R: "flat",
-      sd: 39.04,
+      sd: 37.1,
     },
     {
       label: "7",
       R: -189.34115,
       d: 2.156,
-      sd: 16,
+      sd: 17.7,
       medium: 4,
     },
     {
@@ -472,70 +477,72 @@ const LENS_DATA = {
       R: 64.65608,
       d: 3.911,
       sd: 15.42,
+      rimExtensionSd: 17.7,
     },
     {
       label: "9",
       R: -72.79432,
       d: 1.424,
       sd: 15.42,
+      rimExtensionSd: 17.7,
       medium: 5,
     },
     {
       label: "10",
       R: 77.59181,
       d: 3.22,
-      sd: 16,
+      sd: 16.9,
       medium: 6,
     },
     {
       label: "11",
       R: 259.94009,
-      sd: 16,
+      sd: 16.9,
     },
     {
       label: "12",
       R: "flat",
       d: 4.886,
-      sd: 22.2,
+      sd: 23.4,
       medium: 7,
     },
     {
       label: "13",
       R: -77.53366,
       d: 0.394,
-      sd: 22.2,
+      sd: 23.4,
     },
     {
       label: "14",
       R: 123.85155,
       d: 3.51,
-      sd: 22.1,
+      sd: 23.4,
       medium: 8,
     },
     {
       label: "15",
       R: "flat",
       d: 0.1,
-      sd: 22.1,
+      sd: 23.4,
     },
     {
       label: "16",
       R: 83.54384,
       d: 7.171,
-      sd: 21.7,
+      sd: 23.1,
       medium: 9,
     },
     {
       label: "17",
       R: -112.04376,
       d: 1.836,
-      sd: 21.7,
+      sd: 23.1,
       medium: 10,
     },
     {
       label: "18",
       R: "flat",
-      sd: 21.3,
+      sd: 23.1,
     },
     {
       label: "19",
@@ -554,13 +561,13 @@ const LENS_DATA = {
       label: "21",
       R: 34.60758,
       d: 8.297,
-      sd: 20.8,
+      sd: 19.7,
       medium: 12,
     },
     {
       label: "22",
       R: -244.56997,
-      sd: 20.8,
+      sd: 19.7,
     },
     {
       label: "STO",
@@ -570,53 +577,53 @@ const LENS_DATA = {
       label: "24",
       R: -279.12302,
       d: 3.447,
-      sd: 12.5,
+      sd: 14,
       medium: 13,
     },
     {
       label: "25",
       R: -37.04456,
       d: 1.148,
-      sd: 12.5,
+      sd: 14,
       medium: 14,
     },
     {
       label: "26",
       R: 62.109,
-      sd: 12.3,
+      sd: 14,
     },
     {
       label: "27",
       R: 434.57118,
       d: 3.68,
-      sd: 12,
+      sd: 10.2,
       medium: 15,
     },
     {
       label: "28",
       R: -22.53399,
       d: 0.827,
-      sd: 12,
+      sd: 10.2,
       medium: 16,
     },
     {
       label: "29",
       R: -33.25735,
       d: 2.5,
-      sd: 12,
+      sd: 10.2,
     },
     {
       label: "30",
       R: 51.14499,
       d: 3.011,
-      sd: 12,
+      sd: 10,
       medium: 17,
     },
     {
       label: "31",
       R: -51.14499,
       d: 0.839,
-      sd: 12,
+      sd: 10,
       medium: 18,
     },
     {
@@ -624,72 +631,75 @@ const LENS_DATA = {
       R: 26.55426,
       d: 1.993,
       sd: 8.54,
+      rimExtensionSd: 10.5,
     },
     {
       label: "33",
       R: -96.45008,
       d: 0.666,
       sd: 8.54,
+      rimExtensionSd: 10.5,
       medium: 19,
     },
     {
       label: "34",
       R: 42.45805,
       d: 2.614,
-      sd: 12,
+      sd: 10.5,
     },
     {
       label: "35",
       R: 30.17232,
       d: 4.692,
-      sd: 10.65,
+      sd: 9.2,
       medium: 20,
     },
     {
       label: "36",
       R: -22.16027,
       d: 0.81,
-      sd: 10.65,
+      sd: 9.2,
       medium: 21,
     },
     {
       label: "37",
       R: 33.8228,
       d: 3.126,
-      sd: 11.82,
+      sd: 9.7,
       medium: 22,
     },
     {
       label: "38",
       R: -72.36949,
       d: 1.252,
-      sd: 11.82,
+      sd: 9.7,
     },
     {
       label: "39",
       R: 49.39686,
       d: 4.043,
-      sd: 11.94,
+      sd: 10.3,
       medium: 23,
     },
     {
       label: "40",
       R: -29.15715,
       d: 5.6,
-      sd: 11.94,
+      sd: 10.3,
     },
     {
       label: "41",
       R: -23.02408,
       d: 0.657,
-      sd: 12,
+      sd: 9,
+      rimExtensionSd: 10.5,
       medium: 24,
     },
     {
       label: "42",
       R: 126.75141,
       d: 53.922,
-      sd: 12,
+      sd: 10.5,
     },
   ],
   focus: {

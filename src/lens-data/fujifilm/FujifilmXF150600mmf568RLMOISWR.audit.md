@@ -71,3 +71,74 @@ Closed: Fujifilm's lens-configuration diagram on the XF150-600 specifications pa
 third elements of the front group, the middle element of the second group and the front element of the third group's
 cemented pair (L2, L3, L5, L9), and ED on the first two elements of the third group and the rear element of the fourth
 group (L7, L8, L12). That matches the `apd: "inferred"` tags exactly.
+
+## 2026-11-06 — Semi-diameter pass against the patent figure
+
+**Source.** JP 2023-020586 A, Fig. 1 on PDF p. 81 (Example 1, a single wide-end panel with movement loci; optical
+axis vertical, object at the bottom), measured from a 381 dpi render, the native resolution of the embedded raster.
+Fig. 1 is CAD-drawn with clean square rim edges, and both halves agree to within 1 px.
+
+**Scale.** Axial: 0.2065 mm/px from the vertex crossings beside the axis at the wide-infinity spacings, S1 to the image
+plane (1574 px for 325.037 mm), checked on S1–S12 (0.2065) and S1–S42 (0.2064). Transverse: 0.2235 mm/px from the sags
+of drawn arcs of known radius at 75–165 px from the axis (S1 0.2229, S3 0.2236, S5 0.2244, S13 0.227, S21 0.2235;
+S2 0.219). The drawing is anamorphic, about 8 % coarser across the axis than along it. At the transverse scale the
+drawn stop (62.5 px) is 13.97 mm, the 13.96 mm stop radius of the F/5.76 cone, which confirms it. Rim heights below
+are edge-line centres from both sides, ±0.5 px (±0.11 mm).
+
+**Rims.**
+
+| Surfaces | Element | Before | Fig. 1 | After | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| S1, S2 | L1 | 39.1 | 169.5 px, 37.9 | 39.1 | Within 3 %; kept so the drawn L1–L2 step survives the light floor below |
+| S3, S4 | L2 | 39.1 | 163.5 px, 36.5 | 37.7 | Drawn step order; lowest value meeting the corner-light rule |
+| S5, S6 | L3 | 39.04 | 160.5 px, 35.9 | 37.1 | Same; the old rim was a 0.00 mm knife edge, the figure draws a 1 mm edge |
+| S7 | L4 | 16.0 | 79.0 px, 17.7 | 17.7 | Figure, +11 % |
+| S8, S9 | L4 rear, L5 front | 15.42 | curves merge near 15 mm and run flat to 17.7 | 15.42, land to 17.7 | Faces would meet at 16.25 mm; Fig. 1 draws a flat rim contact |
+| S10 | L5–L6 junction | 16.0 | L5 17.7, L6 16.9 | 16.9 | Junction ends at the smaller element |
+| S11 | L6 | 16.0 | 75.5 px, 16.9 | 16.9 | Figure; keeps the drawn L5 > L6 step |
+| S12–S15 | L7, L8 | 22.2, 22.1 | 104.5 px, 23.4 | 23.4 | Figure; G3 drawn clearly larger than G4 |
+| S16–S18 | L9–L10 | 21.7, 21.3 | 103.5 px, 23.1 | 23.1 | Figure; square doublet edge as drawn |
+| S19, S20 | L11 | 20.8 | 91.5 px, 20.45 | 20.8 | Within 2 %, kept |
+| S21, S22 | L12 | 20.8 | 88.0 px, 19.7 | 19.7 | Drawn L11 > L12 step; no light cost |
+| S24–S26 | L13–L14 | 12.5, 12.5, 12.3 | 62.5 px, 13.97 | 14.0 | Figure, +12–14 %; as wide as the drawn stop |
+| S27–S29 | L15–L16 | 12.0 | 45.5 px, 10.2 | 10.2 | Figure, −15 % |
+| S30 | L17 | 12.0 | 44.5 px, 9.95 | 10.0 | Figure |
+| S31 | L17–L18 junction | 12.0 | L17 9.95, L18 10.45 | 10.0 | Junction ends at the smaller element |
+| S32, S33 | L18 rear, L19 front | 8.54 | L18's curve meets L19 near 7.8 mm, then one line to 10.45 | 8.54, land to 10.5 | Faces would meet at 9.0 mm; drawn rim contact |
+| S34 | L19 | 12.0 | 46.75 px, 10.45 | 10.5 | Figure |
+| S35 | L20 | 10.65 | 41.25 px, 9.2 | 9.2 | Figure; old edge 0.02 mm, now 1.25 mm |
+| S36 | L20–L21 junction | 10.65 | L20 9.2, L21 10.3 | 9.2 | Junction ends at the smaller element |
+| S37 | L21–L22 junction | 11.82 | L21 10.3, L22 9.7 | 9.7 | Same |
+| S38 | L22 | 11.82 | 43.5 px, 9.7 | 9.7 | Figure; old edge 0.03 mm |
+| S39, S40 | L23 | 11.94 | 46.0 px, 10.3 | 10.3 | Figure; old edge 0.01 mm |
+| S41 | L24 front | 12.0 | curve ends at 39 px (8.7), flange to 47.0 px (10.5) | 9.0, land to 10.5 | 8.7 costs 1.3 points at tele, 8.9 costs 0.3, 9.0 costs none |
+| S42 | L24 rear | 12.0 | 47.0 px, 10.5 | 10.5 | Figure |
+
+The stop `sd` is unchanged. The lands are `rimExtensionSd` on S8, S9, S32, S33 and S41; they stay at the starting
+`checks.gapSagFrac` (default 0.9).
+
+**Corner light.** With every other rim final, the drawn G1 sizes (37.9 / 36.5 / 35.9) cost the tele corner 5.7 points
+at infinity and 5.4 at 2.4 m against the starting rims. Lowering L2 or L3 below 37.7 / 37.1 breaks the 3-point line; L1 could go to 38.1 at
+the same cost but would compress the drawn 1.4 mm L1–L2 step to 0.4 mm, so it keeps 39.1. All three now sit 1.2 mm
+above the drawing with its steps. Engine vignetting, wide open, final rims against the starting rims: wide infinity
+corner (5.2°) 72.6 → 74.5 %, with mid-field gains up to 4.8 points; wide 2.4 m corner (5.1°) 75.8 → 77.8 %; tele
+infinity corner (1.4°) 76.3 → 73.5 %, worst loss 2.9 points there; tele 2.4 m corner (1.2°) 81.1 → 78.7 %, worst loss
+2.5 points at 1.0°. On their own the G5 rear rims cost at most 1.1 points (wide corner), mostly at the triplet, and
+the G2, G3 and focus-doublet rims win more than that back at the wide end.
+
+**Clearance.** Real-ray trace at Y = 14.2 mm, both stations, infinity and 2.4 m: no surface clips the on-axis beam or
+blocks the corner chief ray, and the slight graze of the nominal F/5.76 cone at S12–S16 and S24 noted on 2026-11-05 is
+gone. The aperture check finds both stations within 3 % of the stated F-number with no rim limit; the validator
+passes; the image-circle floor shows nothing undersized; traced field coverage is 100 % at both stations. The engine
+still gives EFL 154.60 mm, half-field 5.2° at both ends, F/5.76 and F/8.19 and stop radii 13.79 / 9.70 mm. The
+on-axis spherical aberration at full pupil (0.008 / −0.032 mm, wide / tele) shows no prescription misprint. No
+aspheres, so no departure figures move.
+
+**Maker comparison.** Fujifilm's lens-configuration image agrees with Fig. 1 in order, grouping and proportions within
+its resolution: G1 descends L1 > L2 > L3, G3 is about 1.3 times G2 and G4 about 0.9 times G3, the iris and the focus
+doublet are about 0.6 times G3, and the rear group about 0.45 times G3. It marks Super ED on elements 2, 3, 5 and 9 and
+ED on elements 7, 8 and 12, and shows no aspherical element.
+
+**Limits.** L21, the middle of the cemented triplet, is drawn 10.3 mm, larger than both partners; its faces are both
+junctions, which end at the smaller partner, so the model draws it at 9.2–9.7 mm. L18's 10.45 mm rim shows only through
+its S32 land, for the same reason at S31. G1 stays 1.2 mm above the drawing for corner light.

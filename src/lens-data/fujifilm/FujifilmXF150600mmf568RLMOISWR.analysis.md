@@ -185,9 +185,11 @@ so the model traces the group centered only.
 ## Aperture, Stop and Model Scope
 
 The patent prints the stop position (S23, at the front of G5) but no clear apertures and no iris diameter, so every
-semi-diameter in the model is inferred. The G3 rims (S12–S18) and the focus-doublet rims (S24–S26) were raised only as
-far as the wide-open on-axis beam needs, and both stay at or inside the sizes Fig. 1 draws; at both zoom ends the
-iris, not a lens rim, limits the wide-open on-axis beam.
+semi-diameter in the model is inferred from Fig. 1. The drawing is not to one scale: across the axis it is about 8 %
+smaller than along it, and at that transverse scale its stop is 13.97 mm in radius, the F/5.76 stop. G3 (about
+23.3 mm), the focus doublet (14.0 mm) and the small rear group (9.2–10.5 mm) are modeled at the drawn sizes. The front
+group is modeled 1.2 mm larger than drawn, with the drawn steps between its three elements, because the drawn size
+would cut corner light at the tele end. At both zoom ends the iris, not a lens rim, limits the wide-open on-axis beam.
 
 The iris is derived from the printed infinity F-numbers, F/5.76 at wide and F/8.19 at tele, because the patent gives
 no iris schedule. With the same iris, the 2.4 m states give paraxial F/5.84 and F/9.59 against the printed 5.85 and
