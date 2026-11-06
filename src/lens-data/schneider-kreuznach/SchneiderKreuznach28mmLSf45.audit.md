@@ -159,3 +159,107 @@ to 7.73 mm, so the model now sits about 0.9 mm outside the patent's own reading;
 transmission relative to the axis, 7.7 → 8.6 mm: 83.3 → 92.9 % at 31.3°, 67.7 → 78.4 % at 39.8°, 53.6 → 64.6 % at
 45.5°, 20.5 → 31.2 % at 51.2°. Half-field 45.03°, F/4.600 and the 7.058 mm stop unchanged; the surface and aperture
 audits pass with no rim limit.
+
+## 2026-11-06 — Second review: diagram, labels and movement
+
+Compared: the local page (one infinity state; the lens is static) with Fig. 7 (PDF p. 13, measured at 600 dpi) and
+with Phase One's flyer section (p. 2, the render made earlier today); the Fig. 8 infinity plots for colour,
+astigmatism and distortion; and the patent text (¶0014, ¶0024, ¶0028–0031, ¶0048, ¶0052, ¶0055).
+
+### Silhouette
+
+Re-measured on the clean side of Fig. 7. The S1 and S25 vertices (page rows 5683 and 4240) give 0.0815 mm per px along
+the axis. The flat lands of L1 and L2 (rows 5460 and 5326) meet their concave faces 404 and 264.5 px from the axis;
+read through the S2 and S4 sags from their vertices, those give 0.0771 and 0.0768 mm per px across the axis (L3's
+land gives 0.081). Outer rims: L1 486, L2 387, L3 248, L4 211, L5/L6 195, L7/L8 111, L9 119, L10/L11 165, L12 185,
+L13/L14 229 px. Proportions that need no scale, against the flyer section (L1 rim 246 px there):
+
+| Proportion | Fig. 7 | Flyer | Before | After |
+|---|---|---|---|---|
+| L1: S2 land start / S1 rim | 0.831 | 0.824 | 0.797 | 0.832 |
+| L2: S4 land start / S3 rim | 0.683 | 0.699 | 0.712 | 0.688 |
+| L3: S6 land start / S5 rim | 0.817 | 0.837 | 0.773 | 0.809 |
+| L2 rim / L1 rim | 0.795 | 0.785 | 0.756 | 0.789 |
+| L3 rim / L1 rim | 0.511 | 0.512 | 0.513 | 0.511 |
+
+Both drawings put L1 and L3 about 4.5 % lower against L2, L4 and L5/L6 than the model had them, and end L2's concave
+face 3 % nearer the axis; at 0.077 mm per px the readings are 37.4, 19.1 and 20.3–20.4 mm. L4 (16.2 drawn, 16.1) and
+L5/L6 (15.0, 14.9) already agreed.
+
+Cuts and lands against the baseline rims, with S18 held at the owner's 8.6 mm. Points are the worst loss of wide-open
+transmission at any field sample from that change alone (`rimcost.mjs --loo`):
+
+| Surface | Baseline | Fig. 7 | Final | Points | Verdict |
+|---|---|---|---|---|---|
+| 1 | 39 | 37.4 | 37.4 | 0.0 | new cut, kept: costs no light, drawn rim |
+| 2 land | none | 37.4 | 37.4 | 0.0 | kept: drawn annulus, costs no light (was 39) |
+| 4 | 21 | 20.3 | 20.3 | 0.0 | new cut, kept: costs no light |
+| 4 land | none | 29.8 | 29.5 | 0.0 | kept |
+| 5 | 20 | 19.1 | 19.1 | 0.0 | new cut, kept: costs no light |
+| 6 land | none | 19.1 | 19.1 | 0.0 | kept: drawn annulus (was 20) |
+| 7, 8 | 17 | 16.1 | 16.1 | 0.0 | kept: costs no light; 17 is refused by the S6/S7 gap check |
+| 9–11 | 16 | 15.0 | 14.9 | 0.0 | kept |
+| 18 | 13 | 7.3 | 8.6 | 15.4 at 45.5° | owner's decision, unchanged |
+| 18 land | none | 12.7 | 13 | part of S18 | kept |
+| 23, 25 | 18 | 17.6 | 16.9 | 0.0 | kept: L13 thins to zero at 17.04 |
+
+S2 (28.7 → 31.1), S14 (8.5 → 9) and S24 (16 → 16.9) sit above baseline and are not cuts. Final `rimcost.mjs` worst
+loss against baseline: 15.4 points at 45.5°, all of it S18; every other cut and land wins back 0.0 when restored.
+
+Kept above Fig. 7: S12–S14 at 9.0 mm against 8.5 drawn, because 8.6 costs a further 4.9 points at 45.5° and 8.5 a
+further 6.0. L9 at 9.5 mm against 9.15 drawn: trimming costs nothing, but Fig. 7 draws L9 7 % taller than L7/L8,
+which light holds at 9.0, so L9 stays above it. L10/L11 (12.7 drawn, 13) and L12 (14.2, 14.5) are within 3 %.
+`checks.gapSagFrac` stays 0.93; 0.92 is refused (11.08 mm combined sag against 10.97 allowed at 16.1 mm).
+
+S18 and the new L1 rim: Phase One's section starts L10's land 0.217 of L1's rim from the axis. With S1 at 37.4 mm the
+model's 8.6 mm is 0.23 of it; the same proportion held against the new rim would be 8.1 mm. S18 stays at 8.6 as
+decided, and the header says so.
+
+After the edits: the surface validator passes; the image-circle check finds nothing undersized; field coverage is
+100 % (51.2° to 34.85 mm, corner clear); the aperture check is within 3 % of F/4.6 with no rim limit; the real-ray
+trace shows no axial clip and no chief-ray block (axial marginal 3.10 mm at S1; the chief ray at 48.9° crosses S1,
+S4 and S5 at 32.5, 18.2 and 16.5 mm). Engine half-field 45.03° before and after, F/4.600, EFL 28.479 mm and the
+7.058 mm stop unchanged; only the drawing's largest radius moves, 39 → 37.4 mm. Wide-open transmission is unchanged
+at every field: 92.9 % at 31.3°, 78.4 % at 39.8°, 64.6 % at 45.5°, 31.2 % at 51.2°. There is no near state to trace.
+
+### Labels, tags and brackets
+
+- Groups added: GR1 (−), S1–S11, and GR2 (+), S12–S25 with the stop, the patent's own notation (¶0028; Fig. 7
+  brackets GR1 and GR2, and its FOCUS bracket spans GR2). The movement panel now reads two groups and no modeled travel.
+- Cemented brackets added: C1 (S9–S11, L5/L6), C2 (S12–S14, L7/L8), C3 (S18–S20, L10/L11), C4 (S23–S25, L13/L14).
+  The elements' `cemented` names move from D1–D4 to C1–C4 to match, since the patent's D(I) is a spacing.
+- Element focal lengths added to all 14 elements (thick lens in air, the values the analysis quotes); the inspector
+  showed "FL = —" before and now shows, for example, −70.93 mm on L2 and +42.24 mm on L13.
+- Names stay L1–L14. The patent numbers parts in one series with the lens, groups and stop (2–5, 7, 8, 10, 11, 13,
+  15–17, and cemented lens 18 with unnumbered members; ¶0055), so it gives no complete element designation; the
+  analysis now maps the numerals to L1–L14.
+- Types agree with the signs of R for all 14 elements, roles are true, the stop sits between L8 and L9 at surface 15,
+  and only S3 (label 3A, "凸レンズ面3a", ¶0048) is aspheric; the inspector shows ASPH on L2 alone.
+- `apd: "patent"` on L2, L9, L12 and L13 reads right: ¶0024 calls the glasses that meet conditions (4) and (5) high in
+  partial dispersion, and ¶0052 gives Vp = 70.1 and 90.9 (L9, L13; L12) and Vn = 90.9 (L2). The inspector shows
+  APD (PATENT) and the condition note on all four. The flyer marks only L2's front face, with no legend, so no
+  inferred tag is due.
+- Analysis: the element section no longer says every element is listed as unmatched.
+
+### Movement
+
+Static. `focus.description` matches ¶0014 and ¶0028 (GR1 fixed, GR2 with the stop moving toward the object) and Fig. 9
+(0.35 m, no spacings printed). The focus slider reads "∞" to "Not modeled".
+
+### Colour, astigmatism and distortion against Fig. 8
+
+Spherical aberration in d and g (scale 0.2 mm = 106.5 px), relative to the d paraxial focus, at pupil 0 / 0.5 / 0.7 /
+0.85 / 1.0: d plotted 0 / −0.069 / −0.124 / −0.143 / −0.148 mm, model 0 / −0.073 / −0.120 / −0.146 / −0.152; g plotted
+−0.064 / −0.113 / −0.135 / −0.130 / −0.099, model −0.060 / −0.109 / −0.131 / −0.127 / −0.092. In both, the curves
+touch near 0.75 of the pupil and g turns back. Every line is within reading error (about 0.005 mm), so no glass label
+is suspect. Distortion at 0.25 / 0.5 / 0.7 / 1.0 of the image height: plotted −0.45 / −1.19 / −1.47 / −1.56 %, model
+−0.47 / −1.21 / −1.50 / −1.52 %. Astigmatism: S reaches about −0.32 mm near 0.55 in both; M runs −0.28 at 0.5 to
++0.20 at the corner in the plot and −0.29 to +0.32 in the model; S ends at +0.37 plotted and +0.33 modeled. All agree
+within 0.05 mm except M at the corner (0.12 mm).
+
+Glass: for L2 and L12 (Unmatched) the patent prints only d-line N and V (¶0032) and ¶0024's qualitative remark, with no
+glass name, other line index or partial-dispersion value. The twelve catalog labels sit within 0.16 of the printed νd.
+
+Limits: the rear group (L7–L12) stays 2–7 % taller against L1 than Fig. 7 draws it, held by light or by step order;
+L13/L14 stays 0.7 mm inside the drawn rim. The overlay of the final outlines on Fig. 7 is kept with the session renders,
+not in the repo.

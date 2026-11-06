@@ -20,13 +20,13 @@ The model keeps the patent's scale: f = 28.5 mm, F/4.6 and a 102.4° full field.
 
 ## Optical Architecture
 
-Example 3 is a two-group retrofocus design, negative GR1 then positive GR2, built for a back focus of at least twice the focal length (¶0008). Its 14 elements form 10 air-separated groups: four negative singlets, a positive/negative cemented pair, a smaller positive/negative pair before the stop, an isolated positive, a negative/positive pair, a positive meniscus, and a final positive/negative pair. The four front negative menisci share the strong divergence a retrofocus wide angle needs, which keeps each surface's aberrations down (¶0010); the rear positive assembly provides the long back focus. GR1 holds the first six elements; GR2 holds the remaining eight and the stop, which is surface 15, with d14 = 8.5441 mm and d15 = 2.2231 mm. The printed conditions give |Fgr1/F| = 4.05 and Fgr2/F = 1.89 (¶0052), inside the claimed ranges of 2.3–5.3 and 1.5–2.4.
+Example 3 is a two-group retrofocus design, negative GR1 then positive GR2, built for a back focus of at least twice the focal length (¶0008). Its 14 elements form 10 air-separated groups: four negative singlets, a positive/negative cemented pair, a smaller positive/negative pair before the stop, an isolated positive, a negative/positive pair, a positive meniscus, and a final positive/negative pair. The four front negative menisci share the strong divergence a retrofocus wide angle needs, which keeps each surface's aberrations down (¶0010); the rear positive assembly provides the long back focus. GR1 holds the first six elements; GR2 holds the remaining eight and the stop, which is surface 15, with d14 = 8.5441 mm and d15 = 2.2231 mm. Fig. 7 marks the parts with reference numerals rather than L numbers: 2–5 are L1–L4, cemented lens 6 (7 and 8) is L5/L6, 9 (10 and 11) is L7/L8, 12 is the stop, 13 is L9, 14 (15 and 16) is L10/L11, 17 is L12, and cemented lens 18 is L13/L14 (¶0029, ¶0031, ¶0055). The diagram brackets the four cemented pairs as C1–C4. The printed conditions give |Fgr1/F| = 4.05 and Fgr2/F = 1.89 (¶0052), inside the claimed ranges of 2.3–5.3 and 1.5–2.4.
 
 Phase One's section adds a thin plate behind the last element that the patent does not list. Its glass, thickness and position are unknown, so it is not modeled. The section also highlights L2's front face in blue, but carries no legend, so it does not on its own show that the production lens has an asphere there.
 
 ## Element-by-Element Analysis
 
-Each focal length below is for the element alone in air, from its two radii, thickness and printed index; for cemented elements it is a reference value, not the element's power in place. The patent names no glasses, so every element is listed as unmatched.
+Each focal length below is for the element alone in air, from its two radii, thickness and printed index; for cemented elements it is a reference value, not the element's power in place. The patent names no glasses: twelve elements carry Ohara coordinate equivalents and L2 and L12 stay unmatched (see Glass Identification and Spectral Scope).
 
 ### L1 — Negative Meniscus
 

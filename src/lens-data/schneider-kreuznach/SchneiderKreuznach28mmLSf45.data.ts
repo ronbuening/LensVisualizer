@@ -19,12 +19,16 @@
  * along the axis (vertex fit) and 0.077 mm across it (arc and rim fits: the
  * figure is about 5 % narrower than its axial scale), and checked by
  * real-ray trace. S18 = 8.6 mm follows Phase One's section, which ends L10's
- * concave front at a flat land about 0.22 of L1's rim from the axis; Fig. 7
- * draws that land from about 7.4 mm and the full-field lateral-aberration fan
- * of Fig. 8 ends at 7.7 mm, so S18 sits about 0.9 mm outside the patent's own
- * reading. The loss it brings toward the edge of the field is kept. S2 = 31.1 mm is
- * the drawn end of L1's concave face. S6 is held at 15.45 mm by the gap to
- * S7. S23-S25 share 16.9 mm, just inside the 17.04 mm height where L13's
+ * concave front at a flat land about 0.22 of L1's rim from the axis (0.23
+ * here); Fig. 7 draws that land from about 7.4 mm and the full-field
+ * lateral-aberration fan of Fig. 8 ends at 7.7 mm, so S18 sits about 0.9 mm
+ * outside the patent's own reading. The loss it brings toward the edge of the
+ * field is kept. S2 = 31.1 mm, S4 = 20.3 mm and S6 are the drawn ends of the
+ * concave faces of L1, L2 and L3; S1 = 37.4 mm and S5 = 19.1 mm are their
+ * drawn rims, which keep the land proportions that Fig. 7 and Phase One's
+ * section share. S6 is held at 15.45 mm by the gap to S7. S12-S14 stay at
+ * 9.0 mm against a drawn 8.5 mm, which would cost about 5 points of light at
+ * 45 deg. S23-S25 share 16.9 mm, just inside the 17.04 mm height where L13's
  * edge thins to zero, as Fig. 7 draws it. The rimExtensionSd lands on S2,
  * S4, S6 and S18 follow the flat annuli of Fig. 7; gapSagFrac 0.93 admits
  * the S6 land beside L4's rim (0.85 mm apart at 16.1 mm).
@@ -91,6 +95,7 @@ const LENS_DATA = {
       "nd": 1.83481,
       "vd": 42.7,
       "indexReference": "d",
+      "focalLengthMm": -135.8976,
       "glass": "S-LAH55V (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "First of the four front negative menisci that share the fixed first group's divergence."
@@ -103,6 +108,7 @@ const LENS_DATA = {
       "nd": 1.43875,
       "vd": 90.9,
       "indexReference": "d",
+      "focalLengthMm": -70.9272,
       "glass": "Unmatched (patent nd 1.43875 / νd 90.9; no catalog match)",
       "apd": "patent",
       "apdNote": "Meets condition (5), νd > 62 for a front negative meniscus (¶0052: Vn = 90.9); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
@@ -116,6 +122,7 @@ const LENS_DATA = {
       "nd": 1.83481,
       "vd": 42.7,
       "indexReference": "d",
+      "focalLengthMm": -78.3741,
       "glass": "S-LAH55V (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Third front negative meniscus, convex to the object."
@@ -128,6 +135,7 @@ const LENS_DATA = {
       "nd": 1.80809,
       "vd": 22.6,
       "indexReference": "d",
+      "focalLengthMm": -124.3659,
       "glass": "S-NPH1 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Fourth front negative meniscus, turned concave to the object, which also helps correct lateral color."
@@ -140,10 +148,11 @@ const LENS_DATA = {
       "nd": 1.76182,
       "vd": 26.5,
       "indexReference": "d",
+      "focalLengthMm": 22.8209,
       "glass": "S-TIH14 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Biconvex positive of the cemented doublet that ends the first group.",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 6,
@@ -153,10 +162,11 @@ const LENS_DATA = {
       "nd": 1.80518,
       "vd": 25.4,
       "indexReference": "d",
+      "focalLengthMm": -43.1344,
       "glass": "S-TIH6 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Negative meniscus of the first group's doublet; the object-concave cemented face corrects lateral color.",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 7,
@@ -166,10 +176,11 @@ const LENS_DATA = {
       "nd": 1.56732,
       "vd": 42.7,
       "indexReference": "d",
+      "focalLengthMm": 44.1484,
       "glass": "S-TIL26 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Positive meniscus, front of the cemented doublet that opens the rear group ahead of the stop.",
-      "cemented": "D2"
+      "cemented": "C2"
     },
     {
       "id": 8,
@@ -179,10 +190,11 @@ const LENS_DATA = {
       "nd": 1.788,
       "vd": 47.4,
       "indexReference": "d",
+      "focalLengthMm": -23.6222,
       "glass": "S-LAH64 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Negative meniscus, rear of the doublet just ahead of the stop.",
-      "cemented": "D2"
+      "cemented": "C2"
     },
     {
       "id": 9,
@@ -192,6 +204,7 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.1,
       "indexReference": "d",
+      "focalLengthMm": 31.488,
       "glass": "S-FSL5 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": "patent",
       "apdNote": "Meets condition (4), νd > 62 for a positive lens behind the stop (¶0052: Vp = 70.1); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
@@ -205,10 +218,11 @@ const LENS_DATA = {
       "nd": 1.83481,
       "vd": 42.7,
       "indexReference": "d",
+      "focalLengthMm": -17.2749,
       "glass": "S-LAH55V (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "High-index biconcave negative, front of the doublet behind L9.",
-      "cemented": "D3"
+      "cemented": "C3"
     },
     {
       "id": 11,
@@ -218,10 +232,11 @@ const LENS_DATA = {
       "nd": 1.57099,
       "vd": 50.7,
       "indexReference": "d",
+      "focalLengthMm": 25.0994,
       "glass": "S-BAL2 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Biconvex positive, rear of the doublet behind L9.",
-      "cemented": "D3"
+      "cemented": "C3"
     },
     {
       "id": 12,
@@ -231,6 +246,7 @@ const LENS_DATA = {
       "nd": 1.43875,
       "vd": 90.9,
       "indexReference": "d",
+      "focalLengthMm": 78.5499,
       "glass": "Unmatched (patent nd 1.43875 / νd 90.9; no catalog match)",
       "apd": "patent",
       "apdNote": "Meets condition (4), νd > 62 for a positive lens behind the stop (¶0052: Vp = 90.9); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
@@ -244,11 +260,12 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.1,
       "indexReference": "d",
+      "focalLengthMm": 42.2364,
       "glass": "S-FSL5 (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": "patent",
       "apdNote": "Meets condition (4), νd > 62 for a positive lens behind the stop (¶0052: Vp = 70.1); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
       "role": "Plano-convex crown positive with a flat front, front of the last doublet.",
-      "cemented": "D4"
+      "cemented": "C4"
     },
     {
       "id": 14,
@@ -258,10 +275,11 @@ const LENS_DATA = {
       "nd": 1.83481,
       "vd": 42.7,
       "indexReference": "d",
+      "focalLengthMm": -36.3125,
       "glass": "S-LAH55V (OHARA; coordinate equivalent, supplier unconfirmed)",
       "apd": false,
       "role": "Negative meniscus that closes the last doublet and the lens.",
-      "cemented": "D4"
+      "cemented": "C4"
     }
   ],
   "surfaces": [
@@ -269,7 +287,7 @@ const LENS_DATA = {
       "label": "1",
       "R": 70.1132,
       "d": 4.5,
-      "sd": 39,
+      "sd": 37.4,
       "medium": 1
     },
     {
@@ -277,7 +295,7 @@ const LENS_DATA = {
       "R": 42.0674,
       "d": 6.2028,
       "sd": 31.1,
-      "rimExtensionSd": 39
+      "rimExtensionSd": 37.4
     },
     {
       "label": "3A",
@@ -297,14 +315,14 @@ const LENS_DATA = {
       "label": "4",
       "R": 24.4604,
       "d": 5.9466,
-      "sd": 21,
+      "sd": 20.3,
       "rimExtensionSd": 29.5
     },
     {
       "label": "5",
       "R": 31.9807,
       "d": 2.5,
-      "sd": 20,
+      "sd": 19.1,
       "medium": 3
     },
     {
@@ -312,7 +330,7 @@ const LENS_DATA = {
       "R": 20.7169,
       "d": 11.9233,
       "sd": 15.45,
-      "rimExtensionSd": 20
+      "rimExtensionSd": 19.1
     },
     {
       "label": "7",
@@ -457,6 +475,40 @@ const LENS_DATA = {
     ],
     "maxFNumber": 32
   },
+  "groups": [
+    {
+      "text": "GR1 (−)",
+      "fromSurface": "1",
+      "toSurface": "11"
+    },
+    {
+      "text": "GR2 (+)",
+      "fromSurface": "12",
+      "toSurface": "25"
+    }
+  ],
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "9",
+      "toSurface": "11"
+    },
+    {
+      "text": "C2",
+      "fromSurface": "12",
+      "toSurface": "14"
+    },
+    {
+      "text": "C3",
+      "fromSurface": "18",
+      "toSurface": "20"
+    },
+    {
+      "text": "C4",
+      "fromSurface": "23",
+      "toSurface": "25"
+    }
+  ],
   "layout": {
     "yScFill": 0.8
   },
