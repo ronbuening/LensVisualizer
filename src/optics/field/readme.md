@@ -35,6 +35,7 @@ flowchart LR
   n_src_optics_field_src_optics_field_chiefRaySolve_ts --> n_external_src_optics_chromatic
   n_src_optics_field_src_optics_field_chiefRaySolve_ts --> n_external_src_optics_diagnostics
   n_src_optics_field_src_optics_field_geometry_ts --> n_external_src_optics_geometry
+  n_src_optics_field_src_optics_field_imageHeight_ts --> n_external_src_optics_geometry
   n_src_optics_field_src_optics_field_geometry_ts --> n_external_src_optics_math
   n_src_optics_field_src_optics_field_imageHeight_ts --> n_external_src_optics_state
   n_src_optics_field_src_optics_field_projection_ts --> n_external_src_optics_state
@@ -65,7 +66,7 @@ flowchart LR
 
 - Direct source files: 6
 - Direct subfolders: 0
-- Main outbound areas: same folder (16), src/optics/trace (9), src/optics/state (5), src/optics/types.ts (5), src/types (5), src/optics/chromatic, src/optics/diagnostics, src/optics/geometry, +2 more
+- Main outbound areas: same folder (16), src/optics/trace (9), src/optics/state (5), src/optics/types.ts (5), src/types (5), src/optics/geometry (2), src/optics/chromatic, src/optics/diagnostics, +2 more
 - External consumers: src/optics/analysis, src/optics/diagnostics, src/optics/fieldGeometry.ts, src/optics/first-order, src/optics/perspective, src/optics/prescription, src/optics/projection.ts, src/optics/state
 
 ## Files
@@ -75,6 +76,6 @@ flowchart LR
 | `chiefRayCache.ts` | Chief Ray Cache helper module | same folder (2), src/optics/types.ts, src/types | same folder | chiefRayCacheKey, getCachedChiefRaySolve, setCachedChiefRaySolve |
 | `chiefRaySolve.ts` | Chief Ray Solve helper module | same folder (6), src/optics/trace (3), src/optics/chromatic, src/optics/diagnostics, src/optics/types.ts, +1 more | same folder (2), src/optics/analysis, src/optics/diagnostics, src/optics/fieldGeometry.ts, src/optics/prescription, +1 more | ChiefRaySolveResult, solveChiefRay, solveChiefRayBoundingSphere, computeChiefRaySolve, solveChiefRayFromSeed, solvesChiefRay, ChiefRayRequest |
 | `geometry.ts` | Geometry helper module | src/optics/trace (4), src/optics/state (3), same folder (2), src/optics/geometry, src/optics/math, +2 more | same folder (2), src/optics/analysis, src/optics/fieldGeometry.ts, src/optics/first-order, src/optics/state | EntrancePupilState, computeFieldGeometry, traceParaxialRay, entrancePupil, conjugateK, paraxialObjectVergence, paraxialInFocusVergence, prepareStateSurfacesReal |
-| `imageHeight.ts` | Image Height helper module | same folder (5), src/optics/trace (2), src/optics/state, src/optics/types.ts, src/types, +1 more | src/optics/analysis, src/optics/fieldGeometry.ts, src/optics/state | ImageHeightInversionResult, computeAnalysisFieldGeometry, traceChiefRayAtAngle, chiefRayImageHeight, chiefRayImageHeightAccurate, solveFieldAngleForImageHeightAccurate, solveFieldAnglesForImageHeightsAccurate, invertChiefRayImageHeights, +1 more |
+| `imageHeight.ts` | Image Height helper module | same folder (5), src/optics/trace (2), src/optics/geometry, src/optics/state, src/optics/types.ts, +2 more | src/optics/analysis, src/optics/fieldGeometry.ts, src/optics/state | ImageHeightInversionResult, computeAnalysisFieldGeometry, traceChiefRayAtAngle, chiefRayImageHeight, chiefRayImageHeightAccurate, solveFieldAngleForImageHeightAccurate, solveFieldAnglesForImageHeightsAccurate, invertChiefRayImageHeights, +1 more |
 | `launch.ts` | Launch helper module | same folder, src/optics/types.ts | src/optics/analysis (9), same folder (3), src/optics/fieldGeometry.ts, src/optics/state | FieldGeometryState, VectorFieldRayLaunch, OffsetVectorFieldRay, computeBoundingSphereLaunchRadiusMm, computeBoundingSphereVectorFieldLaunch, offsetVectorFieldRay |
 | `projection.ts` | Projection helper module | src/optics/state, src/types | src/optics/analysis (7), same folder (5), src/optics/prescription (3), src/optics/perspective (2), src/optics/first-order, +2 more | ProjectionReferenceKind, ProjectionReference, ProjectionFieldSlopes, ProjectionLaunchSlope, ProjectionAngularLaunch, BoundingSphereLaunch, MAX_FIELD_LAUNCH_DEG, ABSOLUTE_HALF_FIELD_CEILING, +17 more |

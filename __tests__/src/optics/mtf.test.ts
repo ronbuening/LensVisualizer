@@ -22,6 +22,7 @@ import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
 import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import {
   findMtfFieldFootprint,
+  mtfImagePoint,
   prepareMtfFieldLaunch,
   traceMtfFieldPupil,
   traceMtfLaunchPlaneBundle,
@@ -40,6 +41,7 @@ import {
 import { computeWorkingFNumber } from "../../../src/optics/analysis/summary/fNumbers.js";
 import {
   findAxialBestFocus,
+  landingPoints,
   mtfImagePlaneOffset,
   mtfNearestImagePlaneZ,
 } from "../../../src/optics/analysis/mtf/mtfFocus.js";
@@ -48,6 +50,7 @@ import type { TraceRayClass } from "../../../src/optics/trace/rayClassification.
 import { MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtf/mtfConstants.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
+import { createImageSurfaceShape } from "../../../src/optics/geometry/imageSurface.js";
 
 /*
  * Stop-lattice cells the aimed launch returns unaimed, by normalised stop position: the real aim leaves no cell inside
@@ -116,6 +119,127 @@ export const mtfTestOptions: MtfOptions = {
   frequenciesPerMm: [0, 10, 20, 40],
   maxGridSize: 32,
 };
+
+describe("MTF on curved image surfaces", () => {
+  const base = buildSimplePositiveElementLens();
+  const original = prepareRuntimeState(base, 0, 0);
+  const offset = mtfImagePlaneOffset(original, assessMtfSupport(...mtfInputs(original, mtfTestOptions)))!.offsetMm;
+  const focusedData = {
+    ...constructionFixtureData(base),
+    imageCircleMm: 20,
+    surfaces: constructionFixtureData(base).surfaces.map((s, i) => (i === 2 ? { ...s, d: s.d + offset } : s)),
+  };
+  const options = { ...mtfTestOptions, fieldFractions: [0, 0.5], maxGridSize: 64 as const };
+  const stateFor = (R?: number, cylindrical?: true) =>
+    prepareRuntimeState(
+      build({
+        ...focusedData,
+        ...(R === undefined ? {} : { imageSurface: { R, sd: 10, cylindrical } }),
+        /* A cylinder's sections follow the frame; a 1-inch frame keeps it inside the 10 mm drawn half-height. */
+        ...(cylindrical ? { imageFormat: "1-inch-type" } : {}),
+      }),
+      0,
+      0,
+    );
+
+  it.each([
+    [-1e7, "geometric"],
+    [1e7, "geometric"],
+    [-1e7, "diffraction"],
+    [1e7, "diffraction"],
+  ] as const)("approaches the flat MTF for radius %s mm (%s)", (R, method) => {
+    const request = { ...options, method, fieldFractions: [0, 0.2] };
+    const flat = computeMtf(...mtfInputs(stateFor(), request));
+    const curved = computeMtf(...mtfInputs(stateFor(R), request));
+    expect(curved.support.available).toBe(true);
+    curved.fields.forEach((field, i) => {
+      expect(field.sagittal).not.toHaveLength(0);
+      field.sagittal.forEach((value, j) => expect(Math.abs(value - flat.fields[i].sagittal[j])).toBeLessThan(1e-6));
+      field.tangential.forEach((value, j) => expect(Math.abs(value - flat.fields[i].tangential[j])).toBeLessThan(1e-6));
+    });
+  });
+
+  it("improves off-axis MTF on a Petzval-matched singlet at the same vertex", () => {
+    // Petzval radius is negative for the positive singlet in the imageward +z convention.
+    const flat = computeMtf(...mtfInputs(stateFor(), options));
+    const curved = computeMtf(...mtfInputs(stateFor(-1 / base.petzvalSum), options));
+    expect(curved.focus!.appliedShiftMm).toBe(0);
+    expect(flat.focus!.appliedShiftMm).toBe(0);
+    expect(curved.fields[1].sagittal[2]).toBeGreaterThan(flat.fields[1].sagittal[2]);
+    expect(curved.fields[1].tangential[2]).toBeGreaterThan(flat.fields[1].tangential[2]);
+    expect(Math.abs(curved.fields[1].imageHeightMm! - 5)).toBeLessThan(1e-4);
+  });
+
+  it.each([undefined, true] as const)(
+    "re-lands best-focus rays on the translated surface (cylinder: %s)",
+    (cylinder) => {
+      const state = stateFor(-1 / base.petzvalSum, cylinder);
+      const support = assessMtfSupport(...mtfInputs(state, options));
+      const bundle = traceMtfFieldPupil(state, options, support, 0, 64, support.spectralLines[0])!;
+      const bundles = [{ bundle, weight: 1 }];
+      const best = findAxialBestFocus(
+        bundles,
+        state.imgZ,
+        [10, 20, 30, 40, 50],
+        mtfNearestImagePlaneZ(state, bundles),
+      )!;
+      expect(Math.abs(best.shiftMm)).toBeGreaterThan(1e-6);
+      const vertexZ = state.imgZ + best.shiftMm;
+      const offAxis = traceMtfFieldPupil(state, options, support, 5, 32, support.spectralLines[0])!;
+      // Off-axis sag is appreciable, so projecting onto the vertex plane cannot pass this residual check.
+      expect(Math.abs(state.lens.imageSurface!.sagAt(offAxis.chief.x, offAxis.chief.y))).toBeGreaterThan(0.01);
+      for (const field of [bundle, offAxis]) {
+        const points = landingPoints(field, vertexZ);
+        expect(points).toHaveLength(field.rays.length);
+        points.forEach((point, i) => {
+          const { terminalPoint: p, terminalDirection: d } = field.rays[i].trace;
+          /* Landings are image coordinates; on a cylinder they lie along the unrolled film. */
+          const [x, y] = state.lens.imageSurface!.fromImageCoordinates(point.x, point.y);
+          const t = Math.abs(d[0]) > Math.abs(d[1]) ? (x - p[0]) / d[0] : (y - p[1]) / d[1];
+          const z = p[2] + t * d[2];
+          expect(Math.abs(z - vertexZ - state.lens.imageSurface!.sagAt(x, y))).toBeLessThan(1e-9);
+        });
+      }
+      const result = computeMtf(...mtfInputs(state, { ...options, focus: "best-axial" }));
+      expect(result.focus!.appliedShiftMm).toBeCloseTo(best.shiftMm, 5);
+      expect(result.support.limitations.join(" ")).toContain(
+        cylinder ? "measured on the unrolled film" : "field heights are lateral heights",
+      );
+    },
+  );
+
+  it("accounts for both sags when keeping the translated image behind the last cap", () => {
+    const state = prepareRuntimeState(
+      build({
+        ...focusedData,
+        imageSurface: { R: -30, sd: 10 },
+        surfaces: focusedData.surfaces.map((s, i) => (i === 2 ? { ...s, R: 100 } : s)),
+      }),
+      0,
+      0,
+    );
+    const shape = state.lens.imageSurface!;
+    const last = state.surfaces.at(-1)!;
+    const ray = { x: 0, y: 4, trace: { terminalPoint: [0, 4, last.z] } };
+    const bundle = { rays: [ray], imageSurface: shape } as unknown as MtfBundle;
+    const nearest = mtfNearestImagePlaneZ(state, [{ bundle, weight: 1 }]);
+    expect(nearest + shape.sagAt(0, 4)).toBeCloseTo(last.z + last.profile.sag(last.sd), 12);
+    expect(nearest).toBeGreaterThan(last.z + last.profile.sag(last.sd));
+  });
+
+  it("rejects backward curved landings and leaves flat bundle records unchanged", () => {
+    const state = stateFor(-30);
+    const trace = traceEngineRay(state, { origin: [0, 0, -10], direction: [0, 0, 1] });
+    expect(mtfImagePoint(state, trace, trace.terminalPoint[2] - 2e-9)).toBeNull();
+    expect(mtfImagePoint(state, trace, trace.terminalPoint[2] - 0.5e-9)).not.toBeNull();
+    const flatState = stateFor();
+    const support = assessMtfSupport(...mtfInputs(flatState, options));
+    const bundle = traceMtfFieldPupil(flatState, options, support, 0, 16, support.spectralLines[0])!;
+    expect(bundle).not.toHaveProperty("imageSurface");
+    expect(support.limitations.join(" ")).not.toContain("Curved image surface");
+    expect(landingPoints({ ...bundle, imageSurface: createImageSurfaceShape({ R: -30, sd: 10 }) }, -100)).toEqual([]);
+  });
+});
 
 describe("MTF support", () => {
   const L = buildSimplePositiveElementLens();

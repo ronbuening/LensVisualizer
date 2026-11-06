@@ -20,6 +20,7 @@ import type {
   AnnotationData,
   DiffractivePhaseSurface,
   FiniteConjugate,
+  ImageSurfaceData,
   LensProjectionConfig,
   OpticalConfigurationData,
   OpticalPathData,
@@ -278,6 +279,8 @@ export interface LensDataV2Input {
   opticalPath?: OpticalPathData;
   perspectiveControl?: PerspectiveControlConfig;
   rearPlates?: RearPlateData[];
+  /** A curved image surface; left out, the image is flat. */
+  imageSurface?: ImageSurfaceData;
   groups?: AnnotationData[];
   doublets?: AnnotationData[];
   layout: LayoutV2Input;

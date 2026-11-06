@@ -17,6 +17,7 @@ import type {
   SphericalAberrationBlurCharacterSample,
   SphericalAberrationResult,
 } from "./types.js";
+import type { ImageSurfaceShape } from "../../types.js";
 import { BOKEH_CIRCULAR_PUPIL_RING_SAMPLES } from "./types.js";
 import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "./radialProfile.js";
 import { computeOffAxisFieldGeometryScalar, traceOffAxisBundleFromSamples } from "./offAxis.js";
@@ -89,11 +90,11 @@ export function computeSphericalAberration(request: AnalysisRequest): SphericalA
 
   if (hits.length < 4) return null;
 
-  const currentPlaneRmsMm = rmsAtPlane(hits, lastSurfZ, imagePlaneZ);
-  const currentPlanePeakMm = peakAtPlane(hits, lastSurfZ, imagePlaneZ);
+  const currentPlaneRmsMm = rmsAtPlane(hits, lastSurfZ, imagePlaneZ, L.imageSurface);
+  const currentPlanePeakMm = peakAtPlane(hits, lastSurfZ, imagePlaneZ, L.imageSurface);
   const bestFocusZ = bestFocusPlane(hits, lastSurfZ);
-  const bestFocusRmsMm = rmsAtPlane(hits, lastSurfZ, bestFocusZ);
-  const bestFocusPeakMm = peakAtPlane(hits, lastSurfZ, bestFocusZ);
+  const bestFocusRmsMm = rmsAtPlane(hits, lastSurfZ, bestFocusZ, L.imageSurface);
+  const bestFocusPeakMm = peakAtPlane(hits, lastSurfZ, bestFocusZ, L.imageSurface);
   const longitudinalSaMm = marginalSample.intercept - nearAxisSample.intercept;
 
   return {
@@ -158,7 +159,7 @@ export function computeSAProfile(request: AnalysisRequest): SAProfilePoint[] {
   const nearAxisPlusHit = hits.find((hit) => hit.signedFraction === NEAR_AXIS_REAL_FRAC) ?? null;
   if (nearAxisPlusHit === null) return [];
 
-  const nearAxisHeightAtBestFocus = transverseCoordinateAtPlane(nearAxisPlusHit, lastSurfZ, bestFocusZ);
+  const nearAxisHeightAtBestFocus = transverseCoordinateAtPlane(nearAxisPlusHit, lastSurfZ, bestFocusZ, L.imageSurface);
   const points: SAProfilePoint[] = [];
 
   for (const fraction of PROFILE_FRACS) {
@@ -167,7 +168,8 @@ export function computeSAProfile(request: AnalysisRequest): SAProfilePoint[] {
 
     points.push({
       fraction,
-      transverseSaMm: transverseCoordinateAtPlane(plusHit, lastSurfZ, bestFocusZ) - nearAxisHeightAtBestFocus,
+      transverseSaMm:
+        transverseCoordinateAtPlane(plusHit, lastSurfZ, bestFocusZ, L.imageSurface) - nearAxisHeightAtBestFocus,
     });
   }
 
@@ -177,6 +179,7 @@ export function computeSAProfile(request: AnalysisRequest): SAProfilePoint[] {
 function computeOnAxisBlurCharacterAtPlane(
   bundle: OffAxisBundle,
   planeZ: number,
+  imageSurface: ImageSurfaceShape | null,
 ): SphericalAberrationBlurCharacterSample | null {
   if (!isFinite(planeZ) || bundle.validSampleCount < SA_BLUR_CHARACTER_MIN_VALID_SAMPLES) return null;
   const { geometry } = bundle;
@@ -188,6 +191,7 @@ function computeOnAxisBlurCharacterAtPlane(
     bundle.chiefRay.trace.uy,
     geometry.lastSurfZ,
     planeZ,
+    imageSurface,
   );
   if (chiefPoint === null) return null;
 
@@ -199,6 +203,7 @@ function computeOnAxisBlurCharacterAtPlane(
       sample.trace.uy,
       geometry.lastSurfZ,
       planeZ,
+      imageSurface,
     );
     if (imagePoint === null) return [];
 
@@ -272,8 +277,17 @@ export function computeSphericalAberrationBlurCharacter(
   );
   if (bundle === null || bundle.validSampleCount < SA_BLUR_CHARACTER_MIN_VALID_SAMPLES) return null;
 
-  const frontDefocus = computeOnAxisBlurCharacterAtPlane(bundle, resolvedBase.bestFocusZ - defocusOffsetMm);
-  const rearDefocus = computeOnAxisBlurCharacterAtPlane(bundle, resolvedBase.bestFocusZ + defocusOffsetMm);
+  const imageSurface = request.preparedGeometry.lens.imageSurface;
+  const frontDefocus = computeOnAxisBlurCharacterAtPlane(
+    bundle,
+    resolvedBase.bestFocusZ - defocusOffsetMm,
+    imageSurface,
+  );
+  const rearDefocus = computeOnAxisBlurCharacterAtPlane(
+    bundle,
+    resolvedBase.bestFocusZ + defocusOffsetMm,
+    imageSurface,
+  );
   if (frontDefocus === null || rearDefocus === null) return null;
 
   return {

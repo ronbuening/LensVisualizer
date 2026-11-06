@@ -28,6 +28,7 @@ import type {
   PatentExample,
   PerspectiveControlConfig,
   RefractiveIndexReferenceLine,
+  ResolvedImageSurfaceData,
   SourceErratum,
   SurfaceInteraction,
 } from "../../types/optics.js";
@@ -348,6 +349,7 @@ export interface CanonicalLens {
   opticalPath?: OpticalPathData;
   perspectiveControl?: PerspectiveControlConfig;
   rearPlates?: CanonicalRearPlate[];
+  imageSurface?: ResolvedImageSurfaceData;
   groups?: AnnotationData[];
   doublets?: AnnotationData[];
   layout: CanonicalLayout;

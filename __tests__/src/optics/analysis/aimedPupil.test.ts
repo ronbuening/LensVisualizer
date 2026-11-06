@@ -568,7 +568,7 @@ describe("tabs trace the exported rays", () => {
     coma.samples.forEach((sample, index) => {
       const ray = traces[index];
       const point =
-        ray && skewImagePlaneIntercept(ray.x, ray.y, ray.ux, ray.uy, geometry.lastSurfZ, geometry.imagePlaneZ);
+        ray && skewImagePlaneIntercept(ray.x, ray.y, ray.ux, ray.uy, geometry.lastSurfZ, geometry.imagePlaneZ, null);
       expect(sample.imageHeight).toBe(point?.y ?? null);
     });
   });
@@ -592,10 +592,18 @@ describe("tabs trace the exported rays", () => {
       fieldFraction,
     );
     const chief = traceOffAxisChiefRay(request, geometry)!.trace;
-    const chiefPoint = skewImagePlaneIntercept(chief.x, chief.y, chief.ux, chief.uy, geometry.lastSurfZ, sensorZ)!;
+    const chiefPoint = skewImagePlaneIntercept(
+      chief.x,
+      chief.y,
+      chief.ux,
+      chief.uy,
+      geometry.lastSurfZ,
+      sensorZ,
+      null,
+    )!;
     const points = traces.flatMap((ray) => {
       if (!ray) return [];
-      const point = skewImagePlaneIntercept(ray.x, ray.y, ray.ux, ray.uy, geometry.lastSurfZ, sensorZ)!;
+      const point = skewImagePlaneIntercept(ray.x, ray.y, ray.ux, ray.uy, geometry.lastSurfZ, sensorZ, null)!;
       return [{ sagittal: point.x - chiefPoint.x, tangential: point.y - chiefPoint.y }];
     });
     expect(tile.points.map((point) => [point.sagittalOffset, point.tangentialOffset])).toEqual(

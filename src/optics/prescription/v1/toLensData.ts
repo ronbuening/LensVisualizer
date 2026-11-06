@@ -87,6 +87,7 @@ export const V1_PRINT_ORDER = {
     "perspectiveControl",
     "projection",
     "opticalPath",
+    "imageSurface",
     "aberrationControl",
     "nominalFno",
     "closeFocusM",
@@ -511,6 +512,7 @@ function buildLensView(
   put(out, "perspectiveControl", lens.perspectiveControl);
   put(out, "projection", lens.projection);
   put(out, "opticalPath", lens.opticalPath);
+  put(out, "imageSurface", lens.imageSurface);
   put(out, "aberrationControl", aberrationControlView(lens, view));
 
   put(

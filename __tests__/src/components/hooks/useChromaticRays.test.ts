@@ -66,6 +66,65 @@ function expectedDisplayLocaFractions(L: RuntimeLens): number[] {
 }
 
 describe("useChromaticRays", () => {
+  it("records reached folded rays at their terminal curved-surface z on both axes", () => {
+    const data = catalogLensData({
+      schema: 2,
+      key: "synthetic-folded-chromatic-hook",
+      name: "Synthetic folded surface",
+      elements: [{ id: 1, name: "M1", type: "Concave First-Surface Mirror", nd: 1, vd: 0 }],
+      surfaces: [
+        { label: "STO", R: "flat", d: 200, sd: 12.5 },
+        {
+          label: "M1",
+          R: -200,
+          d: 2,
+          sd: 32,
+          medium: 1,
+          interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" },
+        },
+        { label: "M1B", R: "flat", d: 0, sd: 32 },
+      ],
+      imageSurface: { R: -100, sd: 10 },
+      opticalPath: { surfaceOrder: ["STO", "M1"], imagePlane: { z: 100 }, maxInteractions: 3 },
+      focus: { closeFocusM: 10 },
+      aperture: { nominalFNumber: 4, fStops: [4, 8] },
+      projection: { kind: "rectilinear", fullFieldDeg: 10, maxTraceFieldDeg: 5 },
+      layout: { yScFill: 0.5 },
+    });
+    const fixture = buildTestFixture(0, 0, data);
+    const { result } = renderHook(() =>
+      useChromaticRays({
+        ...fixture,
+        sx: (z) => z,
+        sy: (y) => y,
+        focusT: 0,
+        zoomT: 0,
+        rayDensity: "normal",
+        rayTracksF: false,
+        focusK: 0,
+        showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "trueAngle",
+        chromR: true,
+        chromG: true,
+        chromB: true,
+        chromV: false,
+        lensKey: data.key,
+      }),
+    );
+    expect(result.current.error).toBeNull();
+    for (const axis of ["onAxis", "offAxis"] as const) {
+      const rays = result.current.chromaticRays.filter((ray) => ray.axis === axis && !ray.clipped);
+      expect(rays.length).toBeGreaterThan(0);
+      for (const ray of rays) {
+        expect(ray.reachedImagePlane).toBe(true);
+        expect(ray.z).toBe(ray.sp.at(-1)![0]);
+        expect(Math.abs(ray.z! - fixture.IMG_MM - fixture.L.imageSurface!.sagAt(0, ray.y))).toBeLessThan(1e-9);
+      }
+      expect(rays.some((ray) => Math.abs(ray.z! - fixture.IMG_MM) > 1e-12)).toBe(true);
+    }
+  });
+
   it("returns empty when showChromatic is false", () => {
     const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
     const { result } = renderHook(() =>
@@ -194,6 +253,7 @@ describe("useChromaticRays", () => {
       expect(typeof seg.y).toBe("number");
       expect(typeof seg.u).toBe("number");
       expect(typeof seg.clipped).toBe("boolean");
+      expect(seg).not.toHaveProperty("reachedImagePlane");
     }
   });
 

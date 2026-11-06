@@ -50,7 +50,7 @@ describe("traceSkewRay", () => {
 
   it("projects finite skew axialIntercepts to the image plane", () => {
     const skew = traceSkewRay(2, 1, 0.02, -0.03, 0, 0, 15, false, L);
-    const intercept = skewImagePlaneIntercept(skew.x, skew.y, skew.ux, skew.uy, lastSurfZ, imagePlaneZ);
+    const intercept = skewImagePlaneIntercept(skew.x, skew.y, skew.ux, skew.uy, lastSurfZ, imagePlaneZ, null);
 
     expect(intercept).not.toBeNull();
     expect(isFinite(intercept!.x)).toBe(true);
@@ -124,13 +124,13 @@ describe("skew pupil sampling helpers", () => {
 
 describe("skewImagePlaneIntercept edge cases", () => {
   it("returns null for infinite slopes", () => {
-    expect(skewImagePlaneIntercept(0, 0, Infinity, 0, 5, 85)).toBeNull();
-    expect(skewImagePlaneIntercept(0, 0, 0, Infinity, 5, 85)).toBeNull();
+    expect(skewImagePlaneIntercept(0, 0, Infinity, 0, 5, 85, null)).toBeNull();
+    expect(skewImagePlaneIntercept(0, 0, 0, Infinity, 5, 85, null)).toBeNull();
   });
 
   it("returns null for NaN inputs", () => {
-    expect(skewImagePlaneIntercept(NaN, 0, 0, 0, 5, 85)).toBeNull();
-    expect(skewImagePlaneIntercept(0, 0, NaN, 0, 5, 85)).toBeNull();
+    expect(skewImagePlaneIntercept(NaN, 0, 0, 0, 5, 85, null)).toBeNull();
+    expect(skewImagePlaneIntercept(0, 0, NaN, 0, 5, 85, null)).toBeNull();
   });
 });
 

@@ -527,7 +527,12 @@ function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): Mt
     if (!bundle) return focus;
     bundles.push({ bundle, weight: line.weight });
   }
-  const best = findAxialBestFocus(bundles, state.imgZ, MTF_FOCUS_FREQUENCIES, mtfNearestImagePlaneZ(state));
+  const best = findAxialBestFocus(
+    bundles,
+    state.imgZ,
+    MTF_FOCUS_FREQUENCIES,
+    state.lens.imageSurface === null ? mtfNearestImagePlaneZ(state) : mtfNearestImagePlaneZ(state, bundles),
+  );
   if (!best) return focus;
   focus.bestAxialShiftMm = best.shiftMm;
   focus.designScore = best.designScore;

@@ -14,6 +14,7 @@ import type {
   ChromaticChannelOmissionReason,
   ChromaticRayFanSpread,
 } from "../../types/optics.js";
+import type { ImageSurfaceShape } from "../types.js";
 import { CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 import { computeChromaticRayFanSpread } from "./chromaticTrace.js";
 
@@ -83,6 +84,7 @@ export interface ChromaticFanRay {
   y: number;
   u: number;
   z?: number;
+  reachedImagePlane?: boolean;
   clipped: boolean;
 }
 
@@ -96,6 +98,7 @@ export interface ChromaticFanRay {
  * @param channels - requested channels in R/G/B/V order, whose spread is reported
  * @param imagePlaneZ - image-plane z in mm
  * @param lastSurfaceZ - last surface vertex z in mm, the default reference for rays without z
+ * @param imageSurface - local image shape at imagePlaneZ, or null for a flat plane
  * @returns spread at the chosen fraction with its compared and omitted channels, or null when no fraction has two
  */
 export function chromaticSpreadFromRays(
@@ -103,13 +106,16 @@ export function chromaticSpreadFromRays(
   channels: readonly ChromaticChannel[],
   imagePlaneZ: number,
   lastSurfaceZ: number,
+  imageSurface: ImageSurfaceShape | null = null,
 ): ChromaticRayFanSpread | null {
   const fractions = Array.from(new Set(rays.map((ray) => ray.fraction))).sort((a, b) => {
     const absDelta = Math.abs(b) - Math.abs(a);
     return Math.abs(absDelta) > 1e-12 ? absDelta : b - a;
   });
 
-  type MarginalRays = Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>>;
+  type MarginalRays = Partial<
+    Record<ChromaticChannel, { y: number; u: number; z?: number; reachedImagePlane?: boolean; clipped: boolean }>
+  >;
   function* zones() {
     for (const fraction of fractions) {
       const marginalRays: MarginalRays = {};
@@ -118,7 +124,14 @@ export function chromaticSpreadFromRays(
         const ray = rays.find((r) => r.channel === channel && Math.abs(r.fraction - fraction) < 1e-12);
         const omission = ray ? chromaticRayOmission(ray) : "untraced";
         if (omission) omittedChannels.push({ channel, reason: omission });
-        else if (ray) marginalRays[channel] = { y: ray.y, u: ray.u, z: ray.z, clipped: false };
+        else if (ray)
+          marginalRays[channel] = {
+            y: ray.y,
+            u: ray.u,
+            z: ray.z,
+            clipped: false,
+            ...(imageSurface === null ? {} : { reachedImagePlane: ray.reachedImagePlane }),
+          };
       }
       yield { fraction, marginalRays, omittedChannels };
     }
@@ -130,7 +143,7 @@ export function chromaticSpreadFromRays(
   const compared = Object.keys(marginalRays) as ChromaticChannel[];
   if (compared.length < 2) return null;
   return {
-    ...computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ),
+    ...computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ, imageSurface),
     fraction: chosen.fraction,
     channels: compared,
     omittedChannels,

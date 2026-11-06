@@ -190,6 +190,7 @@ describe("element model V2 mapping", () => {
     const unfinished = createTemplate();
     unfinished.surfaces.at(-1)!.medium = 3;
     malformed.push([unfinished, /contiguous|end at/i]);
+    malformed.push([{ ...createTemplate(), imageSurface: { R: -80, sd: 22 } }, /curved image surface/i]);
     for (const [draft, reason] of malformed) {
       const result = toElementModel(draft);
       expect(result.ok).toBe(false);

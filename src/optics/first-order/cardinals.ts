@@ -209,6 +209,7 @@ export function computeCardinalElementsWithLayout(
       surfaces,
       z,
       imagePlane: state.imagePlane,
+      imageSurface: state.lens.imageSurface,
       stopSurfaceIndex: state.lens.stop.surfaceIndex,
       pathPlan: state.lens.opticalPath,
       isFoldedOptics: state.lens.flags.isFoldedOptics,
