@@ -68,7 +68,7 @@ flowchart LR
 
 - Direct source files: 8
 - Direct subfolders: 0
-- Main outbound areas: src/optics/analysis (44), src/optics/state (9), src/optics/trace (7), src/optics/field (6), src/optics/prescription (6), src/types (6), src/optics/chromatic, src/optics/types.ts
+- Main outbound areas: src/optics/analysis (44), src/optics/state (9), src/optics/trace (7), src/optics/field (6), src/optics/prescription (6), src/types (6), src/optics/types.ts (2), src/optics/chromatic
 - External consumers: src/optics/analysis, src/optics/analysis.ts, src/optics/perspective
 
 ## Files
@@ -81,5 +81,5 @@ flowchart LR
 | `offAxis.ts` | Off Axis helper module | src/optics/analysis (7), src/optics/trace (5), src/optics/field (4), src/optics/state (3), src/optics/prescription, +2 more | src/optics/analysis (7), src/optics/analysis.ts | OffAxisFanOrientation, OffAxisDirection, OffAxisFieldGeometry, OffAxisVectorFieldGeometry, ProjectionAwareOffAxisFieldGeometry, OffAxisChiefRaySample, OffAxisTracedSample, OffAxisUnaimedSample, +12 more |
 | `radialProfile.ts` | Radial Profile helper module | src/optics/analysis (2) | src/optics/analysis (2), src/optics/analysis.ts, src/optics/perspective | emptyRadialProfile, buildBokehRadialProfile, classifyBokehBrightnessCharacter |
 | `shared.ts` | Shared helper module | src/optics/analysis (4), src/optics/prescription, src/types | src/optics/analysis (6) | MARGINAL_FRACS, PROFILE_FRACS, SymmetricRealSample, TransverseFocusHit, RealRayHit, axialIntercept, imagePlaneIntercept, meridionalImagePlaneCoordinate, +12 more |
-| `spherical.ts` | Spherical helper module | src/optics/analysis (9), src/optics/state (2), src/optics/prescription, src/optics/trace | src/optics/analysis, src/optics/analysis.ts | computeSphericalAberration, computeSAProfile, computeSphericalAberrationBlurCharacter |
+| `spherical.ts` | Spherical helper module | src/optics/analysis (9), src/optics/state (2), src/optics/prescription, src/optics/trace, src/optics/types.ts | src/optics/analysis, src/optics/analysis.ts | computeSphericalAberration, computeSAProfile, computeSphericalAberrationBlurCharacter |
 | `types.ts` | Shared TypeScript types | src/optics/analysis (2), src/types | src/optics/analysis (5), src/optics/perspective (2), src/optics/analysis.ts | SAProfilePoint, SphericalAberrationBlurCharacterSample, SphericalAberrationBlurCharacterResult, SphericalAberrationResult, MeridionalComaSample, MeridionalComaResult, SagittalComaSample, SagittalComaResult, +35 more |

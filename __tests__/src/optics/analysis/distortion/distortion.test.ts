@@ -759,6 +759,7 @@ describe("computeDistortionFieldGrid", () => {
       trace.uy,
       lastSurfZ,
       lastSurfZ + thick(L.N - 1, focusT, zoomT, L),
+      null,
     );
     const staleImage = skewImagePlaneIntercept(
       trace.x,
@@ -767,6 +768,7 @@ describe("computeDistortionFieldGrid", () => {
       trace.uy,
       lastSurfZ,
       lastSurfZ + L.S[L.N - 1].d,
+      null,
     );
 
     expect(currentImage).not.toBeNull();

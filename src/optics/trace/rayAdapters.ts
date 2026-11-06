@@ -8,7 +8,8 @@ import type { ChromaticChannel, RayTraceResult, RuntimeLens } from "../../types/
 import { directionFromMeridionalSlope, directionFromSkewSlope } from "../math/vector.js";
 import { compiledLensFromRuntime } from "../prescription/identity.js";
 import { prepareState, stateWithZ } from "../state/preparedGeometry.js";
-import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
+import type { ImageSurfaceShape, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
+import { landImageSurfaceSkew } from "../geometry/imageSurface.js";
 import { transmissionTraceCapture } from "./bulkAbsorption.js";
 import { engineTraceToRuntimeRayResult, engineTraceToRuntimeSkewResult, vectorLeadPoint } from "./runtimeRayResult.js";
 import type { RuntimeSkewRayTraceResult } from "./runtimeRayResult.js";
@@ -577,22 +578,25 @@ function stateForRuntimeLens(L: RuntimeLens, focusT: number, zoomT: number, aber
   return prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT);
 }
 
-/** Image-plane intercept for a skew ray in sagittal/meridional millimeters. */
+/** Image intercept for a skew ray in sagittal/meridional millimeters; `z` only on a curved image surface. */
 export interface SkewImagePlaneIntercept {
   x: number;
   y: number;
+  z?: number;
 }
 
 /**
- * Project a skew ray from the last surface to the image plane.
+ * Project a skew ray from the last surface to the image plane, or land it on the curved image surface whose vertex
+ * sits there. A flat image keeps the straight transfer.
  *
  * @param x - sagittal coordinate at the last surface in mm
  * @param y - meridional coordinate at the last surface in mm
  * @param ux - sagittal slope dx/dz
  * @param uy - meridional slope dy/dz
  * @param lastSurfZ - last surface vertex z coordinate in mm
- * @param imagePlaneZ - image-plane z coordinate in mm
- * @returns image-plane intercept, or null for non-finite projection
+ * @param imagePlaneZ - image-plane (vertex) z coordinate in mm
+ * @param imageSurface - curved image surface, or null for a flat image
+ * @returns image intercept, or null for a non-finite projection or a miss
  */
 export function skewImagePlaneIntercept(
   x: number,
@@ -601,7 +605,12 @@ export function skewImagePlaneIntercept(
   uy: number,
   lastSurfZ: number,
   imagePlaneZ: number,
+  imageSurface: ImageSurfaceShape | null,
 ): SkewImagePlaneIntercept | null {
+  if (imageSurface !== null) {
+    const point = landImageSurfaceSkew(imageSurface, x, y, ux, uy, lastSurfZ, imagePlaneZ);
+    return point ? { x: point[0], y: point[1], z: point[2] } : null;
+  }
   const dz = imagePlaneZ - lastSurfZ;
   const imagePoint = {
     x: x + ux * dz,

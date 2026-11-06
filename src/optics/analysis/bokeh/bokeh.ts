@@ -198,6 +198,7 @@ function computeBokehFieldFootprintFromContext(
     bundle.chiefRay.trace.uy,
     geometry.lastSurfZ,
     sensorZ,
+    L.imageSurface,
   );
   if (chiefDefocused === null) return null;
 
@@ -222,6 +223,7 @@ function computeBokehFieldFootprintFromContext(
       sample.trace.uy,
       geometry.lastSurfZ,
       sensorZ,
+      L.imageSurface,
     );
     if (intercept === null) continue;
 

@@ -590,6 +590,7 @@ function traceDistortionGridPoint(
     trace.uy,
     reference.lastSurfZ,
     reference.imagePlaneZ,
+    request.preparedGeometry.lens.imageSurface,
   );
 
   return {
