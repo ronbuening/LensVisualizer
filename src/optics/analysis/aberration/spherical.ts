@@ -90,11 +90,11 @@ export function computeSphericalAberration(request: AnalysisRequest): SphericalA
 
   if (hits.length < 4) return null;
 
-  const currentPlaneRmsMm = rmsAtPlane(hits, lastSurfZ, imagePlaneZ);
-  const currentPlanePeakMm = peakAtPlane(hits, lastSurfZ, imagePlaneZ);
+  const currentPlaneRmsMm = rmsAtPlane(hits, lastSurfZ, imagePlaneZ, L.imageSurface);
+  const currentPlanePeakMm = peakAtPlane(hits, lastSurfZ, imagePlaneZ, L.imageSurface);
   const bestFocusZ = bestFocusPlane(hits, lastSurfZ);
-  const bestFocusRmsMm = rmsAtPlane(hits, lastSurfZ, bestFocusZ);
-  const bestFocusPeakMm = peakAtPlane(hits, lastSurfZ, bestFocusZ);
+  const bestFocusRmsMm = rmsAtPlane(hits, lastSurfZ, bestFocusZ, L.imageSurface);
+  const bestFocusPeakMm = peakAtPlane(hits, lastSurfZ, bestFocusZ, L.imageSurface);
   const longitudinalSaMm = marginalSample.intercept - nearAxisSample.intercept;
 
   return {
@@ -159,7 +159,7 @@ export function computeSAProfile(request: AnalysisRequest): SAProfilePoint[] {
   const nearAxisPlusHit = hits.find((hit) => hit.signedFraction === NEAR_AXIS_REAL_FRAC) ?? null;
   if (nearAxisPlusHit === null) return [];
 
-  const nearAxisHeightAtBestFocus = transverseCoordinateAtPlane(nearAxisPlusHit, lastSurfZ, bestFocusZ);
+  const nearAxisHeightAtBestFocus = transverseCoordinateAtPlane(nearAxisPlusHit, lastSurfZ, bestFocusZ, L.imageSurface);
   const points: SAProfilePoint[] = [];
 
   for (const fraction of PROFILE_FRACS) {
@@ -168,7 +168,8 @@ export function computeSAProfile(request: AnalysisRequest): SAProfilePoint[] {
 
     points.push({
       fraction,
-      transverseSaMm: transverseCoordinateAtPlane(plusHit, lastSurfZ, bestFocusZ) - nearAxisHeightAtBestFocus,
+      transverseSaMm:
+        transverseCoordinateAtPlane(plusHit, lastSurfZ, bestFocusZ, L.imageSurface) - nearAxisHeightAtBestFocus,
     });
   }
 

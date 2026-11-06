@@ -6,6 +6,7 @@
 
 import type { RayTraceResult } from "../../types/optics.js";
 import { resolveImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
+import { landImageSurfaceMeridional } from "../geometry/imageSurface.js";
 import { stateWithZ } from "../state/preparedGeometry.js";
 import { prepareRayTraceForState } from "../trace/rayAdapters.js";
 import type { PreparedRayTrace } from "../trace/rayAdapters.js";
@@ -144,7 +145,10 @@ function realChiefRayFieldLimit(
     seed = solve;
     const trace = traceChief(solve.yLaunch, solve.uField);
     if (!Number.isFinite(trace.y) || !Number.isFinite(trace.u)) return null;
-    return { clears: !trace.clipped, height: Math.abs(trace.y + trace.u * imageTransfer) };
+    return {
+      clears: !trace.clipped,
+      height: Math.abs(imageHeightAfterTransfer(state, trace.y, trace.u, imageTransfer)),
+    };
   };
   const clears = (sample: RealChiefRayProbe | null): sample is RealChiefRayProbe => sample?.clears === true;
 
@@ -298,7 +302,7 @@ export function chiefRayImageHeight(
   const trace = traceChiefRayAtAngle(state, { fieldAngleDeg, zPos, geometry, prepared });
   if (state.lens.flags.isFoldedOptics && trace.reachedImagePlane)
     return foldedRayImagePlaneCoordinate(state, { trace });
-  return trace.y + trace.u * lastThicknessAtState(state);
+  return imageHeightAfterTransfer(state, trace.y, trace.u, lastThicknessAtState(state));
 }
 
 /**
@@ -359,7 +363,7 @@ function chiefRayImageHeightAccurateWithTransfer(
     if (trace.clipped) return NaN;
     if (state.lens.flags.isFoldedOptics && trace.reachedImagePlane)
       return foldedRayImagePlaneCoordinate(state, { trace });
-    return trace.y + trace.u * imagePlaneTransfer;
+    return imageHeightAfterTransfer(state, trace.y, trace.u, imagePlaneTransfer);
   }
   const trace = prepared
     ? prepared.ray(solve.yLaunch, launch.uField)
@@ -372,7 +376,7 @@ function chiefRayImageHeightAccurateWithTransfer(
   }
   if (state.lens.flags.isFoldedOptics && trace.reachedImagePlane)
     return foldedRayImagePlaneCoordinate(state, { trace });
-  return trace.y + trace.u * imagePlaneTransfer;
+  return imageHeightAfterTransfer(state, trace.y, trace.u, imagePlaneTransfer);
 }
 
 /**
@@ -685,6 +689,21 @@ export function solveFieldAngleForImageHeight(
     else hi = mid;
   }
   return (lo + hi) / 2;
+}
+
+/**
+ * Lateral image height of a meridional ray reported at the last vertex and carried `transfer` mm to the image vertex:
+ * a straight transfer to a flat image, a landing on a curved one.
+ *
+ * @param state - prepared geometry carrying the image surface
+ * @param y - ray height at the last vertex in mm
+ * @param u - meridional slope dy/dz
+ * @param transfer - distance from the last vertex to the image vertex in mm
+ * @returns lateral image height in mm, or NaN when the ray misses a curved surface
+ */
+function imageHeightAfterTransfer(state: PreparedGeometry, y: number, u: number, transfer: number): number {
+  const shape = state.lens.imageSurface;
+  return shape === null ? y + u * transfer : (landImageSurfaceMeridional(shape, y, u, 0, transfer)?.y ?? NaN);
 }
 
 function foldedRayImagePlaneCoordinate(state: PreparedGeometry, { trace }: { trace: RayTraceResult }): number {

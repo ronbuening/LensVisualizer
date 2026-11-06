@@ -52,14 +52,14 @@ flowchart LR
 - Direct source files: 9
 - Direct subfolders: 0
 - Main outbound areas: src/optics/math (10), same folder (9), src/optics/types.ts (8), src/types (5)
-- External consumers: src/optics/analysis, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/geometry.ts, src/optics/math, src/optics/perspective, src/optics/prescription, +2 more
+- External consumers: src/optics/analysis, src/optics/chromatic, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/geometry.ts, src/optics/math, src/optics/optics.ts, +4 more
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `apertureBands.ts` | Aperture Bands helper module | none | src/optics/prescription (3), src/optics/diagram | ApertureBandSurface, ApertureBand, materialBandForSurface, sharedMaterialBand, centralOpeningSemiDiameter, surfaceFitsInsideCentralOpening |
-| `imageSurface.ts` | Image Surface helper module | src/optics/math (2), src/types (2), same folder, src/optics/types.ts | src/optics/prescription (2), src/optics/trace (2) | createImageSurfaceShape, landImageSurfaceLine, landImageSurfaceSkew, landImageSurfaceMeridional, imageSurfaceLocalFrame, intersectImageSurface |
+| `imageSurface.ts` | Image Surface helper module | src/optics/math (2), src/types (2), same folder, src/optics/types.ts | src/optics/analysis (4), src/optics/prescription (2), src/optics/trace (2), src/optics/chromatic, src/optics/diagram, +2 more | createImageSurfaceShape, landImageSurfaceLine, landImageSurfaceSkew, landImageSurfaceMeridional, imageSurfaceLocalFrame, intersectImageSurface |
 | `intersect.ts` | Intersect helper module | same folder (5), src/optics/math (3), src/optics/types.ts | src/optics/trace | ClosedFormFallbackReason, SeedRefusal, SurfaceIntersectionFailure, SurfaceIntersectionFailureReason, SurfaceIntersectionOptions, SurfaceIntersectionResult, SurfaceIntersectionSuccess, intersectSurfaceProfile, +1 more |
 | `intersectConic.ts` | Intersect Conic helper module | same folder (2), src/optics/math, src/optics/types.ts | same folder | MAX_ROOT_MOVE, MAX_NORMAL_MOVE, intersectConicClosedForm, baseConicRoot |
 | `intersectPlane.ts` | Intersect Plane helper module | src/optics/math (2), same folder, src/optics/types.ts | src/optics/perspective (3), src/optics/trace | RayPlaneIntersection, RayPlaneIntersectionOptions, intersectRayPlane |

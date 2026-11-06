@@ -331,6 +331,7 @@ export function resolveMtfFieldTargets(
   const inside = solvable.filter((target) => target.targetImageHeightMm <= geometry.chiefEdgeHeightMm + edgeTolerance);
   if (inside.length) {
     // The inversion scans its geometry's half field; widen it to the traced edge.
+    // It shares the curved image landing, so targets remain lateral heights at the authored vertex.
     const L = runtimeView(state.lens);
     const shared = computeFieldGeometryAtState(state.focusT, state.zoomT, L, state.aberrationT);
     const angles = solveFieldAnglesForImageHeightsAccurateForRuntimeLens(
@@ -370,7 +371,7 @@ export function resolveMtfFieldTargets(
  * @param options - MTF request
  * @param support - support record, including any finite conjugate
  * @param checkApertures - false to trace the chief through every surface regardless of its rim
- * @returns radial chief height in mm, or NaN when the chief cannot be established or clips
+ * @returns lateral radial chief height on the image surface in mm, or NaN when the chief cannot be established or clips
  */
 export function mtfChiefHeight(
   state: PreparedGeometry,

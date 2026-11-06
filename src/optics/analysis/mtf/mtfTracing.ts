@@ -10,7 +10,8 @@
 
 import { runtimeView } from "../../prescription/runtimeView.js";
 import type { MtfOptions, MtfSpectralLine, MtfSupport } from "../../../types/mtf.js";
-import type { PreparedGeometry, Ray3, Vec3 } from "../../types.js";
+import type { ImageSurfaceShape, PreparedGeometry, Ray3, Vec3 } from "../../types.js";
+import { landImageSurfaceLine } from "../../geometry/imageSurface.js";
 import type { EngineTraceResult, TraceOptions } from "../../trace/types.js";
 import { solveChiefRayForRuntimeLens } from "../../state/fieldAdapters.js";
 import { solveScalarRoot } from "../../math/rootSolve.js";
@@ -47,6 +48,8 @@ export interface MtfOpenBorders {
 export type MtfPupilSampling = "stop" | "launch-plane";
 
 export interface MtfBundle {
+  /** Curved image shape translated by the requested image-plane vertex; absent for a flat image. */
+  imageSurface?: ImageSurfaceShape;
   sampling: MtfPupilSampling;
   rays: MtfPupilRay[];
   /** Samples a rim, total internal reflection or a proven aperture miss stops, on either side of the stop. */
@@ -95,7 +98,7 @@ export interface MtfFieldLaunch {
 }
 
 /**
- * Intersect a trace's final segment with the axial image plane.
+ * Intersect a trace's final segment with the axial image surface, returning projected x/y.
  *
  * A zero-length transfer is a landing: some prescriptions put the last plate surface on the
  * image plane itself.
@@ -110,6 +113,12 @@ export function mtfImagePoint(
   trace: EngineTraceResult,
   imagePlaneZ = state.imgZ,
 ): MtfSpot | null {
+  return state.lens.imageSurface === null
+    ? mtfFlatImagePoint(state, trace, imagePlaneZ)
+    : mtfCurvedImagePoint(state, trace, imagePlaneZ);
+}
+
+function mtfFlatImagePoint(state: PreparedGeometry, trace: EngineTraceResult, imagePlaneZ: number): MtfSpot | null {
   if (trace.status !== "ok" || Math.abs(trace.terminalDirection[2]) < 1e-12) return null;
   const distance = (imagePlaneZ - trace.terminalPoint[2]) / trace.terminalDirection[2];
   if (!(distance >= -1e-9)) return null;
@@ -119,6 +128,14 @@ export function mtfImagePoint(
     y: trace.terminalPoint[1] + transfer * trace.terminalDirection[1],
     weight: bulkTransmissionForTrace(state.lens, trace.hits),
   };
+}
+
+function mtfCurvedImagePoint(state: PreparedGeometry, trace: EngineTraceResult, imagePlaneZ: number): MtfSpot | null {
+  if (trace.status !== "ok") return null;
+  const p = trace.terminalPoint;
+  const hit = landImageSurfaceLine(state.lens.imageSurface!, [p[0], p[1], p[2] - imagePlaneZ], trace.terminalDirection);
+  if (!hit || hit.t < -1e-9) return null;
+  return { x: hit.point[0], y: hit.point[1], weight: bulkTransmissionForTrace(state.lens, trace.hits) };
 }
 
 // Keep several complete spectral grids warm without retaining an arbitrary wavelength history.
@@ -478,13 +495,14 @@ export function traceMtfLattice(
     launchBoundT: lattice.launchBoundT,
   };
   const traceRay = prepareEngineTrace(state, traceOptions);
+  const imagePoint = state.lens.imageSurface === null ? mtfFlatImagePoint : mtfCurvedImagePoint;
   // The chief is a geometric reference, not a pupil sample: trace it through every surface even when an aperture clips
   // it, and record the clipping separately. Where this wavelength's aim cannot reach the stop centre, the field's own
   // chief ray, the one that places its image height, stands in.
   const chief: Ray3 = lattice.chief.status === "aimed" ? lattice.chief : mtfLaunchRay(launch, 0, 0);
   const chiefTrace = traceEngineRay(state, chief, { ...traceOptions, checkSemiDiameter: false, stopOnClip: false });
   // A clipped chief runs over surface zones beyond their rims, where another wavelength can lose it.
-  const chiefPoint = mtfImagePoint(state, chiefTrace, imagePlaneZ) ?? extras.reference;
+  const chiefPoint = imagePoint(state, chiefTrace, imagePlaneZ) ?? extras.reference;
   if (!chiefPoint) return null;
   const chiefClipped = traceRayClassification(traceRay(chief), state, lattice.clipSemiDiameterMm) !== "valid";
   const n = lattice.cellsAcross;
@@ -510,6 +528,7 @@ export function traceMtfLattice(
     openBorders: { x: false, y0: false, y1: false },
     lattice,
   };
+  if (state.lens.imageSurface !== null) bundle.imageSurface = state.lens.imageSurface;
   // Cell outcomes on the full lattice, for finding unresolved cells beside the beam.
   const outcome = new Uint8Array(n * n);
   const mark = (row: number, column: number, value: number) => {
@@ -538,7 +557,7 @@ export function traceMtfLattice(
       bundle.blocked += samples;
       return;
     }
-    const point = classification === "valid" ? mtfImagePoint(state, trace, imagePlaneZ) : null;
+    const point = classification === "valid" ? imagePoint(state, trace, imagePlaneZ) : null;
     if (!point) {
       bundle.failed += samples;
       bundle.unresolvedWeight += samples;
@@ -629,12 +648,13 @@ export function traceMtfLaunchPlaneBundle(
 ): MtfBundle | null {
   const traceOptions = mtfTraceOptions(state, options, support, line, extras.opticalPath);
   const traceRay = prepareEngineTrace(state, traceOptions);
+  const imagePoint = state.lens.imageSurface === null ? mtfFlatImagePoint : mtfCurvedImagePoint;
   // The chief is a geometric reference, not a pupil sample: trace it through every surface even
   // when an aperture clips it, and record the clipping separately.
   const chiefRay = mtfLaunchRay(launch, 0, 0);
   const chiefTrace = traceEngineRay(state, chiefRay, { ...traceOptions, checkSemiDiameter: false, stopOnClip: false });
   // A clipped chief runs over surface zones beyond their rims, where another wavelength can lose it.
-  const chiefPoint = mtfImagePoint(state, chiefTrace, imagePlaneZ) ?? extras.reference;
+  const chiefPoint = imagePoint(state, chiefTrace, imagePlaneZ) ?? extras.reference;
   if (!chiefPoint) return null;
   const chiefClipped = traceRayClassification(traceRay(chiefRay), state, options.stopSemiDiameterMm) !== "valid";
   const grid = mtfLaunchGrid(footprint, gridSize);
@@ -658,6 +678,7 @@ export function traceMtfLaunchPlaneBundle(
     objectPoint: launch.objectPoint,
     openBorders: { x: false, y0: false, y1: false },
   };
+  if (state.lens.imageSurface !== null) bundle.imageSurface = state.lens.imageSurface;
   const source = launch.objectPoint;
   const chiefDistance = source ? Math.hypot(...chiefTrace.input.origin.map((v, i) => v - source[i])) : 0;
   const firstColumn = mirror ? grid.columns / 2 : 0;
@@ -684,7 +705,7 @@ export function traceMtfLaunchPlaneBundle(
         bundle.blocked += samples;
         continue;
       }
-      const point = classification === "valid" ? mtfImagePoint(state, trace, imagePlaneZ) : null;
+      const point = classification === "valid" ? imagePoint(state, trace, imagePlaneZ) : null;
       if (!point) {
         bundle.failed += samples;
         bundle.unresolvedWeight += samples * launchWeight;

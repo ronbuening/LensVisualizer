@@ -159,6 +159,7 @@ function currentImagePlaneZ(state: PreparedGeometry): number | null {
   const aberrationT = state.aberrationT;
 
   if (L.N < 1) return null;
+  if (L.imageSurface !== null) return isFinite(state.imgZ) ? state.imgZ : null;
   const lastSurfaceZ = zPos[L.N - 1];
   if (L.isFoldedOptics) return isFinite(L.imagePlane.z) ? L.imagePlane.z : null;
   const imagePlaneZ = lastSurfaceZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
@@ -204,7 +205,7 @@ export function computeLongitudinalChromaticFocus(
   const zonesByChannel = new Map(
     CHROMATIC_ZONE_CHANNELS.map((channel) => [channel, prepareAxialZoneLaunch(request, fractions, channel)]),
   );
-  type MarginalRay = { y: number; u: number; z?: number; clipped: boolean };
+  type MarginalRay = { y: number; u: number; z?: number; reachedImagePlane?: boolean; clipped: boolean };
   const zoneRays = (marginalFraction: number) => {
     const marginalRays: Partial<Record<ChromaticChannel, MarginalRay>> = {};
     const clippedByChannel: Partial<Record<ChromaticChannel, boolean>> = {};
@@ -225,7 +226,15 @@ export function computeLongitudinalChromaticFocus(
         marginalRays[channel] = {
           y: ray.y,
           u: ray.u,
-          z: ray.reachedImagePlane ? imagePlaneZ : lastSurfaceZ,
+          z:
+            L.imageSurface === null
+              ? ray.reachedImagePlane
+                ? imagePlaneZ
+                : lastSurfaceZ
+              : ray.reachedImagePlane
+                ? ray.pts.at(-1)![0]
+                : lastSurfaceZ,
+          ...(L.imageSurface === null ? {} : { reachedImagePlane: ray.reachedImagePlane }),
           clipped: false,
         };
       }
@@ -253,7 +262,7 @@ export function computeLongitudinalChromaticFocus(
     const { marginalRays, omittedChannels } = requested;
     const validChannels = Object.keys(marginalRays) as ChromaticChannel[];
 
-    const spread = computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ);
+    const spread = computeChromaticRayFanSpread(marginalRays, imagePlaneZ, lastSurfaceZ, L.imageSurface);
     const referenceChannel = referenceChannelFor(channels);
     const referenceFocusZ = spread.axialIntercepts[referenceChannel] ?? null;
     const referenceImageHeight = spread.imagePlaneHeights[referenceChannel] ?? null;
@@ -387,7 +396,7 @@ function computeLateralColorField(
  * Compute lateral color as chromatic chief-ray image-height spread across field.
  *
  * Lateral color is evaluated independently from the axial LoCA ray. It measures
- * chromatic magnification change at the image plane rather than focus shift.
+ * chromatic magnification change on the image surface rather than focus shift.
  *
  * @param request - current geometry, apertures and optional solved field geometry
  * @param options - optional channels and field fractions

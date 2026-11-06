@@ -226,6 +226,13 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
       "Numerical convergence does not establish the accuracy of the source prescription.",
     ],
   };
+  const shape = lens.imageSurface;
+  if (shape !== null) {
+    support.limitations.push(
+      `Curved image surface (R = ${shape.radius} mm): field heights are lateral heights and frequencies are measured in the image's x/y projection.` +
+        (shape.kind === "cylindrical" ? " Sagittal/tangential results describe the curved meridian's fields." : ""),
+    );
+  }
   const reject = (reason: MtfUnavailableReason, message: string): MtfSupport => ({
     ...support,
     available: false,

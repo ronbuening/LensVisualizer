@@ -2,7 +2,7 @@
  * Chromatic ray fans — request-facing ray-trace summaries at the outermost fraction all four channels pass.
  */
 
-import type { PreparedGeometry } from "../../types.js";
+import type { ImageSurfaceShape, PreparedGeometry } from "../../types.js";
 
 import { runtimeView } from "../../prescription/runtimeView.js";
 import { computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
@@ -79,6 +79,7 @@ function currentImagePlaneZ(state: PreparedGeometry): number | null {
   const aberrationT = state.aberrationT;
 
   if (L.N < 1) return null;
+  if (L.imageSurface !== null) return isFinite(state.imgZ) ? state.imgZ : null;
   if (L.isFoldedOptics) {
     // Match the trace's plane: an inferred folded image plane follows the current focus spacing.
     const imagePlaneZ = prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT).imgZ;
@@ -92,6 +93,7 @@ interface FanRay {
   y: number;
   u: number;
   z?: number;
+  reachedImagePlane?: boolean;
   clipped: boolean;
   unaimed: boolean;
   /** Why no ray could be aimed; null for an aimed ray, or when the channel has no launch at all. */
@@ -126,6 +128,7 @@ function computeSpreadFromFractions(
   lastSurfaceZ: number,
   axis: "onAxis" | "offAxis",
   trace: (fraction: number, channel: ChromaticChannel) => FanRay,
+  imageSurface: ImageSurfaceShape | null,
 ): {
   spread: ChromaticRayFanSpread | null;
   searchEndedBy: ChromaticZoneSearchEnd | null;
@@ -138,7 +141,9 @@ function computeSpreadFromFractions(
   let blockedRayCount = 0;
   let searchEndedBy: ChromaticZoneSearchEnd | null = null;
 
-  type MarginalRays = Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>>;
+  type MarginalRays = Partial<
+    Record<ChromaticChannel, { y: number; u: number; z?: number; reachedImagePlane?: boolean; clipped: boolean }>
+  >;
   function* zones() {
     for (const fraction of fractions) {
       const marginalRays: MarginalRays = {};
@@ -156,7 +161,14 @@ function computeSpreadFromFractions(
         }
         const omission = chromaticRayOmission(ray);
         if (omission) omittedChannels.push({ channel, reason: omission });
-        else marginalRays[channel] = { y: ray.y, u: ray.u, z: ray.z, clipped: false };
+        else
+          marginalRays[channel] = {
+            y: ray.y,
+            u: ray.u,
+            z: ray.z,
+            clipped: false,
+            ...(imageSurface === null ? {} : { reachedImagePlane: ray.reachedImagePlane }),
+          };
       }
       yield { fraction, marginalRays, omittedChannels };
     }
@@ -168,7 +180,7 @@ function computeSpreadFromFractions(
   const spread: ChromaticRayFanSpread | null =
     chosen && requested && compared.length >= 2
       ? {
-          ...computeChromaticRayFanSpread(requested.marginalRays, imagePlaneZ, lastSurfaceZ),
+          ...computeChromaticRayFanSpread(requested.marginalRays, imagePlaneZ, lastSurfaceZ, imageSurface),
           axis,
           fraction: chosen.fraction,
           channels: compared,
@@ -231,8 +243,22 @@ export function computeChromaticRayFanAnalysis(
     "onAxis",
     aimedFanTracer(onAxisZones, onAxisFractions, (trace, aimed) => {
       const ray = trace.meridional(aimed);
-      return { y: ray.y, u: ray.u, z: ray.reachedImagePlane ? imagePlaneZ : lastSurfaceZ, clipped: ray.clipped };
+      return {
+        y: ray.y,
+        u: ray.u,
+        z:
+          L.imageSurface === null
+            ? ray.reachedImagePlane
+              ? imagePlaneZ
+              : lastSurfaceZ
+            : ray.reachedImagePlane
+              ? ray.pts.at(-1)![0]
+              : lastSurfaceZ,
+        clipped: ray.clipped,
+        ...(L.imageSurface === null ? {} : { reachedImagePlane: ray.reachedImagePlane }),
+      };
     }),
+    L.imageSurface,
   );
 
   const offAxisFieldFraction = Math.max(0, Math.min(1, options.offAxisFieldFraction ?? L.offAxisFieldFrac));
@@ -258,10 +284,22 @@ export function computeChromaticRayFanAnalysis(
             ),
             offAxisFractions,
             (trace, aimed) => {
+              if (L.imageSurface !== null) {
+                // The skew adapter omits terminal z; the engine retains folded surface landings.
+                const ray = trace.engine(aimed);
+                return {
+                  y: ray.y,
+                  u: ray.uy,
+                  z: ray.reachedImagePlane ? ray.terminalPoint[2] : lastSurfaceZ,
+                  reachedImagePlane: ray.reachedImagePlane,
+                  clipped: ray.status !== "ok",
+                };
+              }
               const ray = trace.skew(aimed);
               return { y: ray.y, u: ray.uy, z: L.isFoldedOptics ? imagePlaneZ : undefined, clipped: ray.clipped };
             },
           ),
+          L.imageSurface,
         );
 
   return {

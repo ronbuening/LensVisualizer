@@ -26,6 +26,7 @@ flowchart LR
   n_external_src_optics_diagramGeometry_ts["src/optics/diagramGeometry.ts"]
   n_external_src_optics_projection_ts["src/optics/projection.ts"]
   n_external_src_optics_publishedStations_ts["src/optics/publishedStations.ts"]
+  n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_utils_svgCoordinates_ts["src/utils/svgCoordinates.ts"]
   n_src_components_hooks_TypeScript_modules --> |23| n_external_pkg_react
   n_src_components_hooks_TypeScript_modules --> |22| n_external_src_types
@@ -42,6 +43,7 @@ flowchart LR
   n_src_components_hooks_TypeScript_modules --> n_external_src_optics_diagramGeometry_ts
   n_src_components_hooks_TypeScript_modules --> n_external_src_optics_projection_ts
   n_src_components_hooks_TypeScript_modules --> n_external_src_optics_publishedStations_ts
+  n_src_components_hooks_TypeScript_modules --> n_external_src_optics_types_ts
   n_src_components_hooks_TypeScript_modules --> n_external_src_utils_svgCoordinates_ts
 ```
 
@@ -49,7 +51,7 @@ flowchart LR
 
 - Direct source files: 25
 - Direct subfolders: 0
-- Main outbound areas: package:react (23), src/types (22), same folder (15), src/optics/optics.ts (15), src/optics/perspective.ts (12), src/optics/analysis.ts (7), src/optics/fieldGeometry.ts (6), src/utils/state (5), +9 more
+- Main outbound areas: package:react (23), src/types (22), same folder (15), src/optics/optics.ts (15), src/optics/perspective.ts (12), src/optics/analysis.ts (7), src/optics/fieldGeometry.ts (6), src/utils/state (5), +10 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search, src/pages/UniversalRelationshipMapPage.tsx
 
 ## Files
@@ -61,7 +63,7 @@ flowchart LR
 | `offAxisRayUtils.ts` | Off Axis Ray Utils helper module | src/types (2), src/optics/analysis.ts, src/optics/fieldGeometry.ts, src/optics/optics.ts, src/optics/projection.ts, +1 more | same folder (2), src/benchmarks | OffAxisTraceGeometry, computeOffAxisTraceGeometry |
 | `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/optics/chromatic.ts, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
 | `useBalancedColumns.ts` | React hook module | package:react | src/components/relationshipMap (3), src/pages/UniversalRelationshipMapPage.tsx | balancedColumns, WidthClass, widthClass, balancedRowStyle, balancedItemStyle, default, useBalancedColumns |
-| `useChromaticRays.ts` | React hook module | src/optics/optics.ts (4), same folder (3), src/optics/chromatic.ts (3), src/optics/perspective.ts (3), src/optics/analysis.ts (2), +3 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
+| `useChromaticRays.ts` | React hook module | src/optics/optics.ts (4), same folder (3), src/optics/chromatic.ts (3), src/optics/perspective.ts (3), src/optics/analysis.ts (2), +4 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
 | `useDismissableDropdown.ts` | React hook module | package:react | src/components/layout, src/components/relationshipMap, src/components/search | default, useDismissableDropdown |
 | `useDispatchAdapters.ts` | React hook module | src/types (2), src/utils/state (2), package:react | src/comparison, src/components/layout | DispatchAdapters, default, useDispatchAdapters |
 | `useFlashOverlay.ts` | React hook module | package:react | src/components/layout | default, useFlashOverlay |

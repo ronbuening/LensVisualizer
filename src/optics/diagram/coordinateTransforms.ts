@@ -5,6 +5,8 @@
  */
 
 import type { CoordinateTransforms } from "../../types/optics.js";
+import { landImageSurfaceMeridional } from "../geometry/imageSurface.js";
+import type { ImageSurfaceShape } from "../types.js";
 
 interface CoordTransformParams {
   svgW: number;
@@ -16,6 +18,8 @@ interface CoordTransformParams {
   scaleRatio: number | null;
   zExtent?: { min: number; max: number } | null;
   yExtent?: { min: number; max: number } | null;
+  /** Curved image surface on an axial image plane; ray ends land on it at the target z. */
+  imageSurface?: ImageSurfaceShape | null;
 }
 
 /**
@@ -25,7 +29,7 @@ interface CoordTransformParams {
  * y positive downward in the rendered SVG convention. The returned scale may be
  * reduced from `SC` so the requested z extent stays inside horizontal margins.
  *
- * @param params - viewport dimensions, optical scale, image-plane span, and optional z extent
+ * @param params - viewport dimensions, optical scale, image-plane span, optional z extent and image surface
  * @returns SVG transform callbacks plus effective scale and viewport anchors
  */
 export function createCoordinateTransforms({
@@ -38,6 +42,7 @@ export function createCoordinateTransforms({
   scaleRatio,
   zExtent,
   yExtent,
+  imageSurface = null,
 }: CoordTransformParams): CoordinateTransforms {
   const rawSC = scaleRatio != null ? SC * scaleRatio : SC;
   const rawYSC = scaleRatio != null ? YSC * scaleRatio : YSC;
@@ -67,7 +72,7 @@ export function createCoordinateTransforms({
   const sy = (y: number): number => CY + y * effectiveYSC;
   const yViewMax = (svgH / 2 - 10) / effectiveYSC;
 
-  const clampedRayEnd = (lastZ: number, lastY: number, u: number, targetZ: number): [number, number] => {
+  const planeRayEnd = (lastZ: number, lastY: number, u: number, targetZ: number): [number, number] => {
     const yImg = lastY + (targetZ - lastZ) * u;
     const yClamped = Math.max(-yViewMax, Math.min(yViewMax, yImg));
     if (yClamped !== yImg && Math.abs(u) > 1e-9) {
@@ -76,6 +81,16 @@ export function createCoordinateTransforms({
     }
     return [sx(targetZ), sy(yImg)];
   };
+  /* A curved image surface takes the ray to its landing; one that misses it or leaves the view ends as a plane would. */
+  const clampedRayEnd =
+    imageSurface === null
+      ? planeRayEnd
+      : (lastZ: number, lastY: number, u: number, targetZ: number): [number, number] => {
+          const landing = landImageSurfaceMeridional(imageSurface, lastY, u, lastZ, targetZ);
+          return landing && Math.abs(landing.y) <= yViewMax
+            ? [sx(landing.z), sy(landing.y)]
+            : planeRayEnd(lastZ, lastY, u, targetZ);
+        };
 
   return { sx, sy, clampedRayEnd, yViewMax, CX, IX, effectiveSC };
 }

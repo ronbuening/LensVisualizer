@@ -70,7 +70,12 @@ export interface MtfWaveLattice {
  * @returns lattice pupil, or null when a ray carries no optical path
  */
 export function mtfWaveLattice(bundle: MtfBundle, reference: MtfSpot, imagePlaneZ: number): MtfWaveLattice | null {
-  const image: Vec3 = [reference.x, reference.y, imagePlaneZ];
+  const shape = bundle.imageSurface ?? null;
+  const image: Vec3 =
+    shape === null
+      ? [reference.x, reference.y, imagePlaneZ]
+      : [reference.x, reference.y, imagePlaneZ + shape.sagAt(reference.x, reference.y)];
+  if (shape !== null && !image.every(Number.isFinite)) return null;
   const { columns, rows } = bundle;
   const cells = columns * rows;
   const lattice: MtfWaveLattice = {

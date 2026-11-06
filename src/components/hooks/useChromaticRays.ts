@@ -7,6 +7,7 @@
  * off-axis rays feed the fan-spread readout using the same state-aware
  * field geometry as the monochrome off-axis fan.
  */
+import type { ImageSurfaceShape } from "../../optics/types.js";
 import { useMemo } from "react";
 import { createAnalysisRequest, computeLongitudinalChromaticFocus } from "../../optics/analysis.js";
 import { stateWithZ } from "../../optics/optics.js";
@@ -39,6 +40,7 @@ export interface ChromaticRaySegment extends RaySegment {
   y: number;
   u: number;
   z?: number;
+  reachedImagePlane?: boolean;
   clipped: boolean;
 }
 
@@ -95,9 +97,10 @@ function spreadForAxis(
   channels: readonly ChromaticChannel[],
   IMG_MM: number,
   lastSurfaceZ: number,
+  imageSurface: ImageSurfaceShape | null,
 ): ChromaticRayFanSpread | null {
   if (zoneRays.length === 0) return null;
-  const spread = chromaticSpreadFromRays(zoneRays, channels, IMG_MM, lastSurfaceZ);
+  const spread = chromaticSpreadFromRays(zoneRays, channels, IMG_MM, lastSurfaceZ, imageSurface);
   return spread && { ...spread, axis };
 }
 
@@ -237,7 +240,15 @@ export default function useChromaticRays({
                 fraction: f,
                 y: result.y,
                 u: result.u,
-                z: result.reachedImagePlane ? IMG_MM : zPos[L.N - 1],
+                z:
+                  L.imageSurface === null
+                    ? result.reachedImagePlane
+                      ? IMG_MM
+                      : zPos[L.N - 1]
+                    : result.reachedImagePlane
+                      ? result.pts.at(-1)![0]
+                      : zPos[L.N - 1],
+                ...(L.imageSurface === null ? {} : { reachedImagePlane: result.reachedImagePlane }),
                 clipped: result.clipped,
               });
             }
@@ -327,7 +338,15 @@ export default function useChromaticRays({
                   fraction: f,
                   y: result.y,
                   u: result.u,
-                  z: result.reachedImagePlane ? IMG_MM : zPos[L.N - 1],
+                  z:
+                    L.imageSurface === null
+                      ? result.reachedImagePlane
+                        ? IMG_MM
+                        : zPos[L.N - 1]
+                      : result.reachedImagePlane
+                        ? result.pts.at(-1)![0]
+                        : zPos[L.N - 1],
+                  ...(L.imageSurface === null ? {} : { reachedImagePlane: result.reachedImagePlane }),
                   clipped: result.clipped,
                 };
                 offAxisZoneRays.push(zoneRay);
@@ -425,7 +444,7 @@ export default function useChromaticRays({
     if (summarizeDispersionQuality(L) === "constant") return null;
     const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length < 2) return null;
-    return spreadForAxis(chromaticResult.offAxisZoneRays, "offAxis", channels, IMG_MM, zPos[L.N - 1]);
+    return spreadForAxis(chromaticResult.offAxisZoneRays, "offAxis", channels, IMG_MM, zPos[L.N - 1], L.imageSurface);
   }, [
     showChromatic,
     chromR,

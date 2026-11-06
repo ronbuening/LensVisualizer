@@ -73,6 +73,7 @@ interface StandardizedFieldFocus {
   sagittalShiftMm: number;
   astigmaticDifferenceMm: number;
   astigmaticDifferenceUm: number;
+  imageSurfaceSagMm?: number;
 }
 
 interface DiagnosticFieldFocus {
@@ -240,8 +241,10 @@ function computeStandardizedFieldFocus(
   const sagittalBestFocusZ = focusPlaneFromRelativeHits(sagittalHits, sagittalReferenceHit, geometry.lastSurfZ);
   if (tangentialBestFocusZ === null || sagittalBestFocusZ === null) return null;
 
-  const tangentialShiftMm = tangentialBestFocusZ - geometry.imagePlaneZ;
-  const sagittalShiftMm = sagittalBestFocusZ - geometry.imagePlaneZ;
+  /* On a curved image surface the shifts are measured from it where the chief ray lands. */
+  const imageZ = chiefRay.imagePoint.z ?? geometry.imagePlaneZ;
+  const tangentialShiftMm = tangentialBestFocusZ - imageZ;
+  const sagittalShiftMm = sagittalBestFocusZ - imageZ;
   const astigmaticDifferenceMm = sagittalBestFocusZ - tangentialBestFocusZ;
   const validSampleCount = tangentialHits.length + sagittalHits.length;
 
@@ -256,6 +259,7 @@ function computeStandardizedFieldFocus(
     sagittalShiftMm,
     astigmaticDifferenceMm,
     astigmaticDifferenceUm: astigmaticDifferenceMm * 1000,
+    ...(chiefRay.imagePoint.z === undefined ? {} : { imageSurfaceSagMm: chiefRay.imagePoint.z - geometry.imagePlaneZ }),
   };
 }
 
@@ -292,8 +296,9 @@ function computeDiagnosticFieldFocus(
 
   const tangentialBestFocusZ = bestFocusPlaneForDirection(tangentialBundle, "tangential");
   const sagittalBestFocusZ = bestFocusPlaneForDirection(sagittalBundle, "sagittal");
-  const tangentialShiftMm = tangentialBestFocusZ - geometry.imagePlaneZ;
-  const sagittalShiftMm = sagittalBestFocusZ - geometry.imagePlaneZ;
+  const imageZ = tangentialBundle.chiefRay.imagePoint.z ?? geometry.imagePlaneZ;
+  const tangentialShiftMm = tangentialBestFocusZ - imageZ;
+  const sagittalShiftMm = sagittalBestFocusZ - imageZ;
   const astigmaticDifferenceMm = sagittalBestFocusZ - tangentialBestFocusZ;
   const validSampleCount = Math.min(tangentialBundle.validSampleCount, sagittalBundle.validSampleCount);
 
@@ -351,8 +356,10 @@ function computeFieldCurvatureField(
   const diagnostic = computeDiagnosticFieldFocus(request, geometry, sampling.fieldCurvatureDiagnosticSampleCount);
   const diagnosticFieldFocus = typeof diagnostic === "string" ? null : diagnostic;
   const chiefImageHeight = standardizedFieldFocus.chiefImageHeight;
-  const petzvalShiftMm = petzvalShiftAtImageHeight(chiefImageHeight, L.petzvalSum) ?? 0;
-  const petzvalBestFocusZ = geometry.imagePlaneZ + petzvalShiftMm;
+  const petzvalSagMm = petzvalShiftAtImageHeight(chiefImageHeight, L.petzvalSum) ?? 0;
+  const imageSurfaceSagMm = standardizedFieldFocus.imageSurfaceSagMm;
+  const petzvalShiftMm = imageSurfaceSagMm === undefined ? petzvalSagMm : petzvalSagMm - imageSurfaceSagMm;
+  const petzvalBestFocusZ = geometry.imagePlaneZ + petzvalSagMm;
 
   return {
     fieldFraction: meta.fieldFraction,
@@ -370,6 +377,7 @@ function computeFieldCurvatureField(
     petzvalShiftMm,
     astigmaticDifferenceMm: standardizedFieldFocus.astigmaticDifferenceMm,
     astigmaticDifferenceUm: standardizedFieldFocus.astigmaticDifferenceUm,
+    ...(imageSurfaceSagMm === undefined ? {} : { imageSurfaceSagMm }),
     diagnosticTangentialBestFocusZ: diagnosticFieldFocus?.tangentialBestFocusZ,
     diagnosticSagittalBestFocusZ: diagnosticFieldFocus?.sagittalBestFocusZ,
     diagnosticTangentialShiftMm: diagnosticFieldFocus?.tangentialShiftMm,
@@ -406,6 +414,7 @@ function buildFieldCurvatureResult(
         Math.abs(field.petzvalShiftMm),
         Math.abs(field.diagnosticTangentialShiftMm ?? 0),
         Math.abs(field.diagnosticSagittalShiftMm ?? 0),
+        Math.abs(field.imageSurfaceSagMm ?? 0),
       ),
     ),
   );

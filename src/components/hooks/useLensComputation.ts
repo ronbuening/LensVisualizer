@@ -253,6 +253,7 @@ export default function useLensComputation({
             scaleRatio,
             zExtent: coordinateZExtent,
             yExtent: movementViewportExtent?.y,
+            imageSurface: L.isFoldedOptics ? null : L.imageSurface,
           })
         : {
             sx: (_z: number) => 0,
