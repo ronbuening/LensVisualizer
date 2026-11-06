@@ -31,8 +31,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   lands are drawn to 8.8 (r5) and 9.0 (r8) as rimExtensionSd and pass no light. Every rim clears
  *   the axial F/2.5 beam; off-axis vignetting is kept as these rims give it.
  *
- * GLASSES: the printed d-line nd / vd pairs are kept as unmatched coordinates; the patent names no
- *   glass maker.
+ * GLASSES: the patent names no glass maker. Each printed d-line nd / vd pair is labelled with the
+ *   catalog glass it coincides with (Δνd ≤ 0.09), marked as a coordinate equivalent.
  *
  * FOCUS: the patent tabulates only the infinity state. As an enlarging lens it focuses as a unit;
  *   no finite conjugate is modeled.
@@ -78,7 +78,7 @@ const LENS_DATA = {
       "nd": 1.6172,
       "vd": 54.0,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
+      "glass": "K-SSK1 (SUMITA; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": 66.53598927179367,
       "role": "Component I: front positive meniscus, convex to the object and concave toward the stop; the first collector of the Gauss-type front pair."
     },
@@ -90,7 +90,7 @@ const LENS_DATA = {
       "nd": 1.6228,
       "vd": 56.9,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
+      "glass": "N-SK10 (SCHOTT; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": 26.940079526917735,
       "role": "Positive front member of cemented component II; its strong front face carries most of the front pair's positive power.",
       "cemented": "CD1"
@@ -103,7 +103,7 @@ const LENS_DATA = {
       "nd": 1.62045,
       "vd": 38.0,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
+      "glass": "F9 (HOYA; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": -17.92581451681709,
       "role": "Flint negative member of component II, nearly plano-concave; its deep rear face, concave to the stop, is the main negative surface ahead of the diaphragm.",
       "cemented": "CD1"
@@ -116,7 +116,7 @@ const LENS_DATA = {
       "nd": 1.62041,
       "vd": 60.3,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
+      "glass": "N-SK16 (SCHOTT; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": 43.48559946230376,
       "role": "Component III: thick positive meniscus concave to the stop; the patent credits its two faces with separating the sagittal and meridional fields to correct field curvature and astigmatism."
     },
@@ -128,7 +128,7 @@ const LENS_DATA = {
       "nd": 1.54869,
       "vd": 45.4,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
+      "glass": "LLF7 (SUMITA; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": -17.161952165452796,
       "role": "Negative front member of cemented component IV; its front face, concave to the stop, bounds the diverging air space after L4.",
       "cemented": "CD2"
@@ -141,7 +141,7 @@ const LENS_DATA = {
       "nd": 1.63854,
       "vd": 55.5,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
+      "glass": "K-SK18 (SUMITA; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": 20.79499678712583,
       "role": "Positive rear member of component IV and the strongest positive element; it closes the asymmetric wide-angle-type rear pair.",
       "cemented": "CD2"

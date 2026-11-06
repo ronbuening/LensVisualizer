@@ -64,8 +64,8 @@ f/2.5 design. The first-to-last vertex length is 33.73 mm and the computed back 
 
 ### L1 — Positive Meniscus (Component I)
 
-nd = 1.61720, νd = 54.0. Glass: unmatched in the data file; the pair coincides with the SSK1 class (Hoya BACED1,
-Sumita K-SSK1). f = +66.5 mm.
+nd = 1.61720, νd = 54.0. Glass: modelled as Sumita K-SSK1, the SSK1-class coordinate equivalent (also
+Hoya BACED1). f = +66.5 mm.
 
 L1 is a thin meniscus, convex to the object and concave toward the stop. It is a weak front collector that begins
 the convergence of the axial beam and leaves most of the front pair's power to the strong front surface of L2. It is
@@ -73,8 +73,8 @@ the largest element in both the patent figure and the maker's section.
 
 ### L2 — Biconvex Positive (Component II, front)
 
-nd = 1.62280, νd = 56.9. Glass: unmatched in the data file; the pair coincides with SK10 (Schott N-SK10, Ohara
-S-BSM10). f = +26.9 mm.
+nd = 1.62280, νd = 56.9. Glass: modelled as Schott N-SK10, the SK10 coordinate equivalent (also
+Ohara S-BSM10). f = +26.9 mm.
 
 L2 is the positive crown of the front doublet. Its front radius, 17.35 mm, is the strongest positive surface ahead of
 the stop; its rear face, cemented to L3, is almost flat (R = −444.8 mm). L2 is the thickest element of the front
@@ -82,7 +82,7 @@ pair (6.05 mm).
 
 ### L3 — Biconcave Negative (Component II, rear)
 
-nd = 1.62045, νd = 38.0. Glass: unmatched in the data file; the pair coincides with F9 (Hoya F9). f = −17.9 mm.
+nd = 1.62045, νd = 38.0. Glass: modelled as Hoya F9, the F9 coordinate equivalent. f = −17.9 mm.
 
 L3 is the flint of the front doublet and nearly plano-concave. Its rear face (R = 11.43 mm) is, with the front face of
 L5, one of the two most strongly curved surfaces in the lens, and faces the stop across the large central air space.
@@ -92,8 +92,8 @@ front pair. The figure draws a flat land and bevel beyond the optical edge of th
 
 ### L4 — Positive Meniscus (Component III)
 
-nd = 1.62041, νd = 60.3. Glass: unmatched in the data file; the pair coincides with SK16 (Schott N-SK16, Ohara
-S-BSM16). f = +43.5 mm.
+nd = 1.62041, νd = 60.3. Glass: modelled as Schott N-SK16, the SK16 coordinate equivalent (also
+Ohara S-BSM16). f = +43.5 mm.
 
 L4 is the thick single meniscus just behind the stop, concave to the diaphragm. The patent assigns it a specific
 task: its outer and inner surfaces shift the sagittal and meridional image fields separately, so the component
@@ -102,7 +102,7 @@ show.
 
 ### L5 — Biconcave Negative (Component IV, front)
 
-nd = 1.54869, νd = 45.4. Glass: unmatched in the data file; the pair coincides with LLF7 (Sumita LLF7). f = −17.2 mm.
+nd = 1.54869, νd = 45.4. Glass: modelled as Sumita LLF7, the LLF7 coordinate equivalent. f = −17.2 mm.
 
 L5 is the light-flint negative of the rear doublet. Its front face (R = −11.46 mm), concave to the stop, faces the
 rear of L4 across the thin diverging air space. Like L3, it has a land and bevel beyond its optical edge in the
@@ -110,8 +110,8 @@ figure.
 
 ### L6 — Biconvex Positive (Component IV, rear)
 
-nd = 1.63854, νd = 55.5. Glass: unmatched in the data file; the pair coincides with SK18 (Sumita K-SK18, Ohara
-S-BSM18). f = +20.8 mm.
+nd = 1.63854, νd = 55.5. Glass: modelled as Sumita K-SK18, the SK18 coordinate equivalent (also
+Ohara S-BSM18). f = +20.8 mm.
 
 L6 is the strongest positive element. Cemented to L5, it leaves component IV nearly afocal (+634.6 mm): the rear
 doublet adds almost no power, and its strongly curved outer faces act mainly as correctors behind the stop, in the
@@ -119,19 +119,19 @@ author's reading of the prescription.
 
 ## Glass Identification / Selection
 
-| Element | nd | νd | Coinciding catalog type | Role |
+| Element | nd | νd | Modelled catalog equivalent | Role |
 | --- | ---: | ---: | --- | --- |
-| L1 | 1.61720 | 54.0 | SSK1 class | Front collector |
-| L2 | 1.62280 | 56.9 | SK10 | Crown of front doublet |
-| L3 | 1.62045 | 38.0 | F9 | Flint of front doublet |
-| L4 | 1.62041 | 60.3 | SK16 | Field and astigmatism corrector |
-| L5 | 1.54869 | 45.4 | LLF7 | Light flint of rear doublet |
-| L6 | 1.63854 | 55.5 | SK18 | Crown of rear doublet |
+| L1 | 1.61720 | 54.0 | K-SSK1 (Sumita), SSK1 class | Front collector |
+| L2 | 1.62280 | 56.9 | N-SK10 (Schott) | Crown of front doublet |
+| L3 | 1.62045 | 38.0 | F9 (Hoya) | Flint of front doublet |
+| L4 | 1.62041 | 60.3 | N-SK16 (Schott) | Field and astigmatism corrector |
+| L5 | 1.54869 | 45.4 | LLF7 (Sumita) | Light flint of rear doublet |
+| L6 | 1.63854 | 55.5 | K-SK18 (Sumita) | Crown of rear doublet |
 
 The patent prints d-line indices and Abbe numbers and names no glass maker. Every pair coincides with a classic dense
-crown or flint, and all indices fall between 1.548 and 1.639. The data file keeps them as unmatched
-coordinates, so chromatic results come from the Abbe-number dispersion model rather than catalog curves; the
-matches above are the author's reading of the printed pairs, not a statement of the melts Nippon Kogaku used.
+crown or flint, and all indices fall between 1.548 and 1.639. The model labels each element with the
+catalog equivalent above, so chromatic results follow those catalog dispersion curves; the equivalents are the
+author's reading of the printed pairs, not a statement of the melts Nippon Kogaku used.
 
 The patent says the objective needs no glass of any special nature and so absorbs less short-wavelength light. The
 absence of dense flints and of any very high-index glass agrees with that statement; its relevance to printing on
