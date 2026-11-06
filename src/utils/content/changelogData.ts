@@ -25,6 +25,12 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Canon EF 300mm f/4L IS, Minolta AF 24mm f/2.8 and AF 50mm f/2.8 Macro, Sigma 17mm f/4 and 35mm f/2 DG DN, and ZEISS Otus ML 85mm f/1.4",
   },
   {
+    date: "2026-11-06",
+    type: "lens",
+    summary:
+      "Added the Minolta AF 135mm f/2.8, Olympus Zuiko 180mm f/2.8 and E.Zuiko 200mm f/4, Pentax Super-Takumar 50mm f/1.4 (8-element), and Voigtländer Dynaron 100mm f/4.5 and Skoparon 35mm f/3.5",
+  },
+  {
     date: "2026-11-05",
     type: "lens",
     summary:
