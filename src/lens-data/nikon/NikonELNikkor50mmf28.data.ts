@@ -26,9 +26,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * NOTE ON SEMI-DIAMETERS:
  *   The patent prints no clear apertures. All rims are measured from the patent figure (its vertex
  *   spacing matches the table) and scaled x 0.5: L1 13.5; L2/L3 11.2, with the r5 curve ending at
- *   7.0 where the figure draws a flat land and bevel; L4 7.7 on both faces (square rim); L5/L6 7.25
- *   at r8 (land and bevel beyond it), 11.1 at r9 and r10. Every rim clears the axial F/2.5 beam;
- *   off-axis vignetting is kept as these rims give it.
+ *   7.0; L4 7.7 on both faces (square rim); L5/L6 7.25 at r8, 11.1 at r9 and r10. Beyond the r5 and
+ *   r8 curves the figure draws a flat land square to the axis, then a bevel to the element edge; the
+ *   lands are drawn to 8.8 (r5) and 9.0 (r8) as rimExtensionSd and pass no light. Every rim clears
+ *   the axial F/2.5 beam; off-axis vignetting is kept as these rims give it.
  *
  * GLASSES: the printed d-line nd / vd pairs are kept as unmatched coordinates; the patent names no
  *   glass maker.
@@ -178,7 +179,8 @@ const LENS_DATA = {
       "label": "5",
       "R": 11.425,
       "d": 4.19,
-      "sd": 7.0
+      "sd": 7.0,
+      "rimExtensionSd": 8.8
     },
     {
       "label": "STO",
@@ -203,6 +205,7 @@ const LENS_DATA = {
       "R": -11.455,
       "d": 1.355,
       "sd": 7.25,
+      "rimExtensionSd": 9.0,
       "medium": 5
     },
     {

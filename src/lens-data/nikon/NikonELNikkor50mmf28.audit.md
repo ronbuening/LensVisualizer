@@ -100,3 +100,65 @@ Wide-open geometric transmission at infinity, before: 85.4 % on axis (the F/2.5 
   object-to-image definition (about 0.6 m at 10×). With no variable gap it has no optical effect.
 - Open: the patent states no design conjugate; the model is infinity only, and enlarging magnifications are not
   modeled.
+
+## 2026-11-06 — Semi-diameter pass against the patent figure
+
+### Figure and scale
+
+US 2,906,174 page 1, the sole figure of the sole example: a 300 dpi CCITT scan with no usable text layer, read at its
+native resolution through column and row ink profiles and 600–900 dpi zooms. Heights are line centres, and every
+surface was read above and below the axis.
+
+The dash-dot axis is not level: it falls from y = 1650.5 px at x = 825 to y = 1644.5 px at x = 1430 (slope −0.0099,
+the sheet is turned 0.57°), so each height is taken from the local axis and the two sides are averaged. Vertex
+crossings at 300 dpi: r1 860.5, r2 918.5, r3 927, r4 1022, r5 1048, r6 1155.5, r7 1247, r8 1265.5, r9 1283.5, r10
+1398 px. The r1–r10 span, 537.5 px for 67.45 patent units, gives 7.97 px per patent unit (15.94 px per model mm);
+the sub-spans r1–r5, r1–r6 and r6–r10 give 7.90, 8.05 and 7.87. Arc fits of the drawn r1, r5 and r10 outlines to the
+printed radii give a vertical scale of 8.25, 8.1–8.2 and 7.75 px per unit, so the figure is isotropic within about
+3 % and heights use 7.97.
+
+### Rims
+
+| Surface | Stored sd (mm) | Figure, top / bottom (px) | Figure (mm) | Ratio | Result |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 1, 2 | 13.5 | 214.5 / 218.5 | 13.58 | 1.01 | Kept; pointed edge with a short cap |
+| 3, 4 | 11.2 | 176.5 / 177.5 | 11.10 | 0.99 | Kept; r3 meets the flat edge |
+| 5 (cap end) | 7.0 | 116 / 115 | 7.25 | 1.04 | Kept; the land's axial position gives 7.15–7.28 |
+| 5 (land top) | — | 141 / 138 | 8.75 | — | `rimExtensionSd` 8.8 added |
+| 6, 7 | 7.7 | 119 / 121.9 | 7.56 | 0.98 | Kept; square rim |
+| 8 (cap end) | 7.25 | 124 / 120.5 | 7.67 | 1.06 | Kept; see below |
+| 8 (land top) | — | 143 / 143 | 8.97 | — | `rimExtensionSd` 9.0 added |
+| 9, 10 | 11.1 | 174.6 / 175.5 | 10.98 | 0.99 | Kept; r10 meets the flat edge |
+
+Every stored rim agrees with the figure within 6 %, so no `sd` changes. Beyond the r5 and r8 curves the figure draws,
+on both sides of the axis, a short stroke square to the axis and then a 45° bevel to the doublet's flat edge; the
+maker's section draws flat shoulders in the same two places. Those strokes are now `rimExtensionSd` lands at 8.8 mm
+(r5) and 9.0 mm (r8), with `sd` unchanged. The section joins each land to the element edge with one straight
+chamfer, which stands in for the figure's bevel and short flat.
+
+The r8 cap end is the one uncertain reading. Its height above the axis is 7.67 mm, at a rounded corner good to about
+0.1 mm, but the land's axial position (41.6 px ahead of the drawn r8 vertex) puts the end of the r8 sphere at
+7.07–7.28 mm, depending on whether the drawn or the scaled-table vertex is used. The figure draws that corner level
+with the L4 rim (+0.1 ± 0.2 mm), where the model has it 0.45 mm lower; the maker's section draws it below the L4 rim
+(about 13 against 16.5 source px from the axis), as the model does. Raising r8 to 7.7 mm would add 4.4 points of
+corner light (55.5 % to 59.9 % at 23.4°) on a reading inside the noise band that the second drawing contradicts, so
+r8 stays at 7.25 mm.
+
+### Clearance and light
+
+Surface audit: OK, no validation errors. Image circle: no undersized surface. Field coverage: the 23.4° chief ray
+reaches the 21.65 mm corner, clear. Aperture audit: within 3 % of F/2.5, no rim limit; the rim-cut probe finds no
+inferred cut. The real-ray trace at Y = 21.63 mm (ω = 23.36°) shows no axial clip and no blocked chief ray; the F/2.5
+marginal ray reaches 10.00 mm at r1, 6.82 mm at r5, 6.45 and 6.50 mm at r6 and r7 and 6.32 mm at r8. Engine
+half-field 29.99° and F/2.500, unchanged. Wide-open geometric transmission at infinity, unchanged by the lands: 100,
+98.8, 95.6, 90.4, 84.8, 78.1, 68.1 and 55.5 % at 0, 5.8, 8.8, 11.7, 14.6, 17.5, 20.5 and 23.4°; against the starting
+rims the lands cost 0.0 points at every field. No gap varies, so the closest-focus render matches infinity; the
+local page shows both lands at both states.
+
+### Maker section
+
+The Nital reproduction of the Nippon Kogaku sheet (322 × 433 px; viewed in the browser and its pixels read through a
+canvas, nothing saved) draws six elements in four groups in the patent's order and marks no special glass or
+aspherical surface. With the front doublet's half-width (24 source px) as reference, L4 reads 0.69 of it (patent
+figure 0.68), the r5 cap end about 0.51 (0.65) and the r8 cap end about 0.54 (0.69): the maker draws both concave
+caps shorter and their shoulders wider than the patent figure does. The patent figure governs.

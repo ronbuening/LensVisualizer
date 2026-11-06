@@ -155,7 +155,9 @@ radius at this scale, is close to it. The patent's F/2.5 is the wide-open value;
 The patent prints no clear apertures. All rims are measured from the patent figure, whose vertex spacing matches the
 table, and scaled with the prescription: L1 13.5 mm; the front doublet 11.2 mm, with the deep rear face of L3 ending
 at 7.0 mm; L4 7.7 mm; and the rear doublet 7.25 mm at its front face and 11.1 mm behind. Each rim passes the full
-F/2.5 axial beam; the closest is the rear face of L3, where the marginal ray reaches 6.82 mm.
+F/2.5 axial beam; the closest is the rear face of L3, where the marginal ray reaches 6.82 mm. Beyond the rear face of
+L3 and the front face of L5 the figure draws a flat land square to the axis, then a bevel to the element edge; the
+section draws these lands out to 8.8 mm and 9.0 mm, and they pass no light.
 
 Wide open at infinity, the computed geometric transmission is 90 % at 11.7°, 78 % at 17.5° and 56 % at 23.4°, the
 corner of the 24 × 36 mm frame. This vignetting comes from the drawn rims and is kept as modeled.
