@@ -89,9 +89,9 @@ const LENS_DATA = {
       "nd": 1.7739,
       "vd": 50.6,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.77390 / νd 50.6; supplier not disclosed)",
+      "glass": "LASKN3 (SUMITA; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": 91.95,
-      "role": "Front positive collector with a nearly flat rear face; first of two weak positive menisci convex to the object."
+      "role": "Front positive collector with a nearly flat rear face; the first of the two positive menisci convex to the object, a slight air gap ahead of L2."
     },
     {
       "id": 2,

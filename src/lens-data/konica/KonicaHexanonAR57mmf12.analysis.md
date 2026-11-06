@@ -35,7 +35,7 @@ At this scale the lens is 52.17 mm from first to last vertex and 86.19 mm from f
 
 ### L1 — Positive Meniscus
 
-nd = 1.77390, νd = 50.6. Glass: unmatched; no catalog glass sits at this pair (the nearest, Sumita LASKN3, is 1.0 × 10⁻⁴ higher in nd). f = +91.95 mm.
+nd = 1.77390, νd = 50.6. Glass: modelled as Sumita LASKN3 (1.77400 / 50.50), a coordinate equivalent 1.0 × 10⁻⁴ higher in nd. f = +91.95 mm.
 
 A weak front collector with a nearly flat rear face (R = 1709 mm, 30 f). Its index sits in the patent's 1.75–1.85 band for n1, n2 and n5, which holds down the Petzval sum and reduces astigmatism and field curvature. Fig. 1 draws L1 the largest element, and its 26.13 mm rim leaves 2.4 mm beyond the entrance-pupil radius.
 
@@ -75,7 +75,7 @@ The last element, with its stronger face toward the object (R12 = 1.43 f); the c
 
 ## Glass Selection
 
-The patent prints d-line nd and νd only and names no glass supplier. Five of the seven pairs coincide with Hoya catalog glasses within 0.13 in νd (NBFD1, FD3, E-FD13, TAC8, TAC6), and the model labels them as coordinate equivalents so their color follows catalog dispersion; L1 (1.77390 / 50.6) and L5 (1.83060 / 36.5) match no catalog glass and stay unmatched, traced from nd and νd alone. By their place on the nd–νd map the palette is uniformly high in index: three lanthanum flints at 1.774–1.831 (νd 36–51) for L1, L2 and L5, two dense flints at 1.740–1.741 (νd 28) for L3 and L4, and two lanthanum crowns at 1.729–1.755 (νd 52–55) for L6 and L7. The mean index is 1.765. High index is the patent's main tool for holding the Petzval sum down while r6 and r7 are weakened.
+The patent prints d-line nd and νd only and names no glass supplier. Six of the seven pairs coincide with catalog glasses (Sumita LASKN3 for L1; Hoya NBFD1, FD3, E-FD13, TAC8 and TAC6 for L2–L4, L6 and L7), within 1.0 × 10⁻⁴ in nd and 0.13 in νd, and the model labels them as coordinate equivalents so their color follows catalog dispersion; L5 (1.83060 / 36.5) matches no catalog glass and stays unmatched, traced from nd and νd alone. By their place on the nd–νd map the palette is uniformly high in index: three lanthanum flints at 1.774–1.831 (νd 36–51) for L1, L2 and L5, two dense flints at 1.740–1.741 (νd 28) for L3 and L4, and two lanthanum crowns at 1.729–1.755 (νd 52–55) for L6 and L7. The mean index is 1.765. High index is the patent's main tool for holding the Petzval sum down while r6 and r7 are weakened.
 
 ## Conditional Expressions
 
