@@ -38,6 +38,7 @@ flowchart LR
   n_src_optics_geometry_src_optics_geometry_intersectTypes_ts --> n_external_src_optics_types_ts
   n_src_optics_geometry_src_optics_geometry_rimCut_ts --> n_external_src_optics_types_ts
   n_src_optics_geometry_src_optics_geometry_surfaceProfile_ts --> n_external_src_optics_types_ts
+  n_src_optics_geometry_src_optics_geometry_imageSurface_ts --> n_src_optics_geometry_src_optics_geometry_intersect_ts
   n_src_optics_geometry_src_optics_geometry_intersect_ts --> n_src_optics_geometry_src_optics_geometry_intersectConic_ts
   n_src_optics_geometry_src_optics_geometry_intersect_ts --> n_src_optics_geometry_src_optics_geometry_intersectTolerance_ts
   n_src_optics_geometry_src_optics_geometry_intersectPlane_ts --> n_src_optics_geometry_src_optics_geometry_intersectTolerance_ts
@@ -51,7 +52,7 @@ flowchart LR
 
 - Direct source files: 9
 - Direct subfolders: 0
-- Main outbound areas: src/optics/math (10), same folder (9), src/optics/types.ts (8), src/types (5)
+- Main outbound areas: same folder (10), src/optics/math (10), src/optics/types.ts (8), src/types (5)
 - External consumers: src/optics/analysis, src/optics/chromatic, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/geometry.ts, src/optics/math, src/optics/optics.ts, +4 more
 
 ## Files
@@ -59,8 +60,8 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `apertureBands.ts` | Aperture Bands helper module | none | src/optics/prescription (3), src/optics/diagram | ApertureBandSurface, ApertureBand, materialBandForSurface, sharedMaterialBand, centralOpeningSemiDiameter, surfaceFitsInsideCentralOpening |
-| `imageSurface.ts` | Image Surface helper module | src/optics/math (2), src/types (2), same folder, src/optics/types.ts | src/optics/analysis (4), src/optics/prescription (2), src/optics/trace (2), src/optics/chromatic, src/optics/diagram, +2 more | ImageFrameSize, createImageSurfaceShape, landImageSurfaceLine, landImageSurfaceSkew, landImageSurfaceMeridional, imageSurfaceLocalFrame, intersectImageSurface, meridionalImageHeight |
-| `intersect.ts` | Intersect helper module | same folder (5), src/optics/math (3), src/optics/types.ts | src/optics/trace | ClosedFormFallbackReason, SeedRefusal, SurfaceIntersectionFailure, SurfaceIntersectionFailureReason, SurfaceIntersectionOptions, SurfaceIntersectionResult, SurfaceIntersectionSuccess, intersectSurfaceProfile, +1 more |
+| `imageSurface.ts` | Image Surface helper module | same folder (2), src/optics/math (2), src/types (2), src/optics/types.ts | src/optics/analysis (4), src/optics/prescription (2), src/optics/trace (2), src/optics/chromatic, src/optics/diagram, +2 more | ImageFrameSize, createImageSurfaceShape, landImageSurfaceLine, landImageSurfaceSkew, landImageSurfaceMeridional, imageSurfaceLocalFrame, intersectImageSurface, meridionalImageHeight |
+| `intersect.ts` | Intersect helper module | same folder (5), src/optics/math (3), src/optics/types.ts | same folder, src/optics/trace | ClosedFormFallbackReason, SeedRefusal, SurfaceIntersectionFailure, SurfaceIntersectionFailureReason, SurfaceIntersectionOptions, SurfaceIntersectionResult, SurfaceIntersectionSuccess, intersectSurfaceProfile, +1 more |
 | `intersectConic.ts` | Intersect Conic helper module | same folder (2), src/optics/math, src/optics/types.ts | same folder | MAX_ROOT_MOVE, MAX_NORMAL_MOVE, intersectConicClosedForm, baseConicRoot |
 | `intersectPlane.ts` | Intersect Plane helper module | src/optics/math (2), same folder, src/optics/types.ts | src/optics/perspective (3), src/optics/trace | RayPlaneIntersection, RayPlaneIntersectionOptions, intersectRayPlane |
 | `intersectTolerance.ts` | Intersect Tolerance helper module | src/optics/types.ts | same folder (2) | capCoordinateTolerance, sagResidualRoundoff, planeResidualRoundoff |

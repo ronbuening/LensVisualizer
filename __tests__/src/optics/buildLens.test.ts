@@ -946,7 +946,8 @@ describe("withImageSurfaceSection", () => {
     expect(short.imageSurface?.sagAt(10, 0)).toBeLessThan(0);
 
     const corner = buildCanonical(withImageSurfaceSection(cylinder.source, "corner"));
-    expect(corner.imageSurface?.cylinderAngle).toBeCloseTo(Math.atan2(24, 36), 15);
+    /* Toward the film's corner, whose curved 18 mm half-side spans 60·sin(18/60) laterally. */
+    expect(corner.imageSurface?.cylinderAngle).toBeCloseTo(Math.atan2(12, 60 * Math.sin(18 / 60)), 15);
     expect(corner.imageSurface?.xSymmetric).toBe(false);
     expect(corner.imageSurface?.fieldExtentMm).toBeCloseTo(Math.hypot(36, 24) / 2, 12);
   });

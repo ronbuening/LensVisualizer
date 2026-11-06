@@ -45,7 +45,7 @@ const ImagePlaneOverlay = memo(function ImagePlaneOverlay({
   const surface = L.imageSurface;
   const placement = { z: imagePlaneZ, y: imagePlaneY, normal: imageNormal };
   /* A cylinder is drawn to the frame's edge along the viewed section; other surfaces over their authored half-height. */
-  const drawnHalfHeight = surface ? (surface.fieldExtentMm ?? surface.semiDiameter) : 0;
+  const drawnHalfHeight = surface ? (surface.drawnExtentMm ?? surface.semiDiameter) : 0;
   /* The label keeps its gap beyond the drawn end; on a curved surface that end has moved along the normal. */
   const surfaceEnd = surface && imageSurfacePoint(surface, placement, -Math.sign(L.lyImgLabel) * drawnHalfHeight);
   const labelGap = Math.abs(L.lyImgLabel) - Math.abs(L.lyImgLine);

@@ -67,6 +67,8 @@ export interface ImageSurfaceShape {
    * instead of at the image-circle radius. Null when radial or without a declared format.
    */
   readonly fieldExtentMm: number | null;
+  /** The same half-length as a lateral height, where the drawn section ends. Null when radial or without a format. */
+  readonly drawnExtentMm: number | null;
   /** Half-height in mm of the drawn and validated surface. */
   readonly semiDiameter: number;
   /** Sag and slope along the curved direction: r = hypot(x, y), or the curved coordinate of a cylinder. */
@@ -82,6 +84,11 @@ export interface ImageSurfaceShape {
   toImageCoordinates(x: number, y: number): readonly [number, number];
   /** Lateral (x, y) of the point at image coordinates (u, v); the inverse of `toImageCoordinates`. */
   fromImageCoordinates(u: number, v: number): readonly [number, number];
+  /**
+   * Derivatives of the local surface point with respect to image coordinates u and v at (u, v): a direction's dot
+   * product with each is its direction cosine along that image axis, the scale diffraction frequencies are measured in.
+   */
+  imageTangentsAt(u: number, v: number): readonly [Vec3, Vec3];
 }
 
 /** Sag in mm and radial slope dz/dr of a surface profile at one radius. */

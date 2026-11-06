@@ -649,6 +649,19 @@ describe("validateLensData", () => {
     );
     expect(has(errorsFor({ surfaces, imageSurface: { R: -30, sd: 20 } }), 'the surface meets "2"')).toBe(true);
     expect(has(errorsFor({ surfaces, imageSurface: { R: 30, sd: 20 } }), "the surface meets")).toBe(false);
+    /* A rear face bulging 0.77 mm toward the image at its 5.5 mm rim clears a sphere bending away with it, but not a
+     * cylinder's straight direction, which has no sag. */
+    const bulging = (makeValid().surfaces as Record<string, unknown>[]).map((surface, i, all) =>
+      i === all.length - 1 ? { ...surface, R: 20, d: 0.4, sd: 5.5 } : surface,
+    );
+    const convex = { R: 20, sd: 19 };
+    expect(has(errorsFor({ surfaces: bulging, imageSurface: convex }), "the surface meets")).toBe(false);
+    expect(
+      has(
+        errorsFor({ surfaces: bulging, imageSurface: { ...convex, cylindrical: true }, imageFormat: "135-full-frame" }),
+        'the surface meets "2"',
+      ),
+    ).toBe(true);
   });
 
   it("reserves synthetic markers and rear-plate labels for the engine", () => {

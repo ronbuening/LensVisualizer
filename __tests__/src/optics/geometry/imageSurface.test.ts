@@ -138,6 +138,34 @@ describe("curved image shape", () => {
     expect(shape.sagAt(2, 10)).toBe(before);
   });
 
+  it("searches the full sag of an asphere whose base conic the line misses", () => {
+    const shape = createImageSurfaceShape({ R: 10, sd: 6, asphere: { A4: -0.01 } });
+    const sag = (x: number, y: number): number => sphereSag(Math.hypot(x, y), 10) - 0.01 * (x * x + y * y) ** 2;
+    const [origin, direction]: [Vec3, Vec3] = [
+      [0, 0, -5],
+      [0, 1, 1],
+    ];
+    /* The base sphere lies wholly beyond this line; the A4 term bends the surface back across it at y ≈ 3.75. */
+    expect(landImageSurfaceLine(createImageSurfaceShape({ R: 10, sd: 6 }), origin, direction)).toBeNull();
+    const t = bisect(sag, origin, direction, 3, 4.5);
+    for (const minT of [undefined, 0]) {
+      const hit = landImageSurfaceLine(shape, origin, direction, minT);
+      expect(hit!.t).toBeCloseTo(t, 9);
+      expect(Math.abs(hit!.point[2] - sag(hit!.point[0], hit!.point[1]))).toBeLessThanOrEqual(1e-9);
+    }
+  });
+
+  it("lands a forward ray at its first crossing past minT, not the one nearest the vertex", () => {
+    const shape = createImageSurfaceShape({ R: 10, sd: 6 });
+    /* From behind the sheet, nearly along it: crossings at t = −4.32 (nearer the vertex) and t = +4.12. */
+    expect(landImageSurfaceLine(shape, [0, 1, 1], [0, 1, 0.1])!.t).toBeLessThan(0);
+    const forward = landImageSurfaceLine(shape, [0, 1, 1], [0, 1, 0.1], 0)!;
+    expect(forward.t).toBeGreaterThan(0);
+    expect(Math.abs(forward.point[2] - shape.sagAt(forward.point[0], forward.point[1]))).toBeLessThanOrEqual(1e-12);
+    const plane: Plane3 = { point: [0, 0, 0], normal: [0, 0, 1], label: "axial" };
+    expect(intersectImageSurface(shape, plane, { origin: [0, 1, 1], direction: [0, 1, 0.1] })?.t).toBe(forward.t);
+  });
+
   it("returns null when a polynomial has no real landing", () => {
     const shape = createImageSurfaceShape({ R: -50, sd: 20, asphere: { K: -1, A4: 1 } });
     expect(landImageSurfaceLine(shape, [0, 0, -1], [1, 0, 0])).toBeNull();
@@ -159,8 +187,12 @@ describe("curved image shape", () => {
 
   it("turns a cylinder obliquely toward the frame corner and lands on it", () => {
     const shape = createImageSurfaceShape({ R: -40, sd: 20, cylindrical: true, section: "corner" }, frame);
-    const angle = Math.atan2(24, 36);
+    /* Toward the film's corner: the 18 mm curved half-side spans 40·sin(18/40) laterally. */
+    const angle = Math.atan2(12, 40 * Math.sin(18 / 40));
     expect(shape.cylinderAngle).toBeCloseTo(angle, 15);
+    expect(meridionalImageHeight(shape, shape.drawnExtentMm!)).toBeCloseTo(shape.fieldExtentMm!, 12);
+    const [cornerU, cornerV] = shape.toImageCoordinates(0, shape.drawnExtentMm!);
+    expect(Math.abs(cornerU * Math.sin(angle) + cornerV * Math.cos(angle))).toBeCloseTo(18, 12);
     expect(shape.xSymmetric).toBe(false);
     const curved = (x: number, y: number) => x * Math.sin(angle) + y * Math.cos(angle);
     expect(shape.sagAt(6, 8)).toBeCloseTo(sphereSag(curved(6, 8), -40), 13);
@@ -197,6 +229,10 @@ describe("curved image shape", () => {
     expect(along("long").fieldExtentMm).toBe(18);
     expect(along("short").fieldExtentMm).toBe(12);
     expect(along("corner").fieldExtentMm).toBeCloseTo(Math.hypot(36, 24) / 2, 12);
+    /* Drawn as lateral heights: the curved side foreshortens to R·sin(s/R), the straight one does not. */
+    expect(along("long").drawnExtentMm).toBeCloseTo(90 * Math.sin(18 / 90), 12);
+    expect(along("short").drawnExtentMm).toBe(12);
+    expect(along("short", "short").drawnExtentMm).toBeCloseTo(90 * Math.sin(12 / 90), 12);
     /* A gate curved along the short side is curved in the short section and straight in the long one. */
     expect(along("short", "short").cylinderAngle).toBe(0);
     expect(along("long", "short").cylinderAngle).toBe(Math.PI / 2);

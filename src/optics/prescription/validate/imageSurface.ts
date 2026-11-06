@@ -89,10 +89,12 @@ export function validateImageSurface(
 
   /* A cylinder's curved coordinate spans only the frame side it curves along; elsewhere sd covers the image circle. */
   const format = imageFormatMetadata(data.imageFormat);
-  const curvedSide =
-    cylindrical && format
-      ? (surface.curvedAlong === "short" ? Math.min : Math.max)(format.widthMm, format.heightMm) / 2
-      : null;
+  const halfSides = cylindrical && format ? [format.widthMm / 2, format.heightMm / 2].sort((a, b) => b - a) : null;
+  const [curvedSide, straightSide] = !halfSides
+    ? [null, null]
+    : surface.curvedAlong === "short"
+      ? [halfSides[1], halfSides[0]]
+      : [halfSides[0], halfSides[1]];
   const imageCircleRadius = finite(data.imageCircleMm) ? data.imageCircleMm / 2 : (format?.diagonalMm ?? NaN) / 2;
   if (curvedSide !== null && sd < curvedSide - 1e-9) {
     errors.push(
@@ -103,7 +105,19 @@ export function validateImageSurface(
   }
 
   if (data.opticalPath !== undefined || !Array.isArray(data.surfaces) || data.surfaces.length === 0) return;
-  validateImageSurfaceClearance(data, labelToIdx, imageSag, sd, errors);
+  /* At radius h the film's curved coordinate runs from √(h² − straight²) to min(h, sd); a cylinder's sag is monotone
+   * along it, so its least sag over the film is at one of those ends. */
+  const leastSag =
+    straightSide === null
+      ? imageSag
+      : (h: number) => Math.min(imageSag(Math.min(h, sd)), imageSag(Math.sqrt(Math.max(0, h * h - straightSide ** 2))));
+  validateImageSurfaceClearance(
+    data,
+    labelToIdx,
+    leastSag,
+    straightSide === null ? sd : Math.hypot(sd, straightSide),
+    errors,
+  );
 }
 
 /**
@@ -111,15 +125,15 @@ export function validateImageSurface(
  *
  * @param data - untrusted numeric-column lens data
  * @param labelToIdx - surface label to index
- * @param imageSag - image-surface sag along its curved meridian
- * @param sd - image-surface semi-diameter in mm
+ * @param imageSag - least image-surface sag at each radius
+ * @param extent - radius in mm the image surface reaches
  * @param errors - error accumulator (mutated)
  */
 function validateImageSurfaceClearance(
   data: UntrustedLensData,
   labelToIdx: Record<string, number>,
   imageSag: (h: number) => number,
-  sd: number,
+  extent: number,
   errors: string[],
 ): void {
   const plates = Array.isArray(data.rearPlates) ? data.rearPlates : [];
@@ -131,7 +145,7 @@ function validateImageSurfaceClearance(
   if (lastPlate) {
     if (!finite(lastPlate.gapAfterMm)) return;
     faceSag = () => 0;
-    faceSd = finite(lastPlate.sd) ? lastPlate.sd : sd;
+    faceSd = finite(lastPlate.sd) ? lastPlate.sd : extent;
     gaps = [lastPlate.gapAfterMm];
     faceLabel = `rear plate ${plates.length}`;
   } else {
@@ -144,7 +158,7 @@ function validateImageSurfaceClearance(
     gaps = [last.d, ...(Array.isArray(range) ? range.flat() : [])].filter(finite);
     faceLabel = `"${last.label}"`;
   }
-  const reach = Math.min(sd, faceSd);
+  const reach = Math.min(extent, faceSd);
   for (const gap of gaps) {
     for (let k = 0; k <= CLEARANCE_SAMPLES; k++) {
       const h = (reach * k) / CLEARANCE_SAMPLES;
