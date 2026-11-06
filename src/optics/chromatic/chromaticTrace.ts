@@ -4,7 +4,7 @@
  * Converts prepared-state dispersion resolvers into RGB/V ray traces and channel spread summaries for UI displays.
  */
 
-import { landImageSurfaceMeridional } from "../geometry/imageSurface.js";
+import { landImageSurfaceMeridional, meridionalImageHeight } from "../geometry/imageSurface.js";
 import type { ImageSurfaceShape } from "../types.js";
 import { CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 import type { ChromaticChannel, ChromaticRayFanSpread, RayTraceResult, RuntimeLens } from "../../types/optics.js";
@@ -62,10 +62,11 @@ export function computeChromaticRayFanSpread(
       imagePlaneHeights[ch] = ray.y + dz * ray.u;
     } else {
       // Folded traces already end on the placed surface, whose normal need not be axial.
-      const height = ray.reachedImagePlane
+      const lateral = ray.reachedImagePlane
         ? ray.y
         : landImageSurfaceMeridional(imageSurface, ray.y, ray.u, rayZ, imgZ)?.y;
-      if (height !== undefined) imagePlaneHeights[ch] = height;
+      const height = lateral === undefined ? NaN : meridionalImageHeight(imageSurface, lateral);
+      if (Number.isFinite(height)) imagePlaneHeights[ch] = height;
     }
   }
 

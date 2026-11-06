@@ -1296,8 +1296,8 @@ each tab has fixture-backed validation.
 image would. `createImageSurfaceShape()` (`geometry/imageSurface.ts`) compiles it to an `ImageSurfaceShape` on
 `CompiledLens`, `RuntimeLens` and `TraceGeometry`. A flat image is `null`, never a shape. The shape lives in a local
 frame: vertex at the origin, local z along the image-plane normal (+z on every sequential lens), local x along global
-x; every kind (sphere, conic/polynomial asphere, circular cylinder) is mirror-symmetric in x and in y, so pupil and
-field mirroring stay exact.
+x. Spheres, aspheres and a cylinder viewed along a frame edge are mirror-symmetric in x and in y, so pupil and field
+mirroring stay exact; a cylinder turned toward the frame corner is not (`xSymmetric`).
 
 - **Landing.** `landImageSurfaceLine()` takes a signed line parameter and the root on the sheet through the vertex, so
   a ray reported at the last vertex can land behind it. The sequential tracer is unchanged: it reports x/y at the last
@@ -1307,7 +1307,10 @@ field mirroring stay exact.
 - **Flat stays bit-identical.** Every branch is `shape === null ? <old expression> : <landing>`, each caller keeps its
   own image-vertex z, and a new result field (`imageSurfaceSagMm`, an intercept's `z`, a bundle's `imageSurface`) is
   absent on a flat image.
-- **Heights and shifts.** Image height on the surface is the lateral height of the landing point (owner's decision).
+- **Heights and shifts.** Reported image coordinates come from `shape.toImageCoordinates()`: the lateral position of
+  the landing on a sphere or asphere (owner's decision), the position on the unrolled film on a cylinder, which is
+  developable. `skewImagePlaneIntercept`, `meridionalImageHeight()` and the MTF landings return them; the diagram, sag,
+  the reference sphere and the Petzval comparison use the lateral point (`fromImageCoordinates()` inverts).
   Field-curvature and astigmatic shifts are z-measured from the surface at the chief ray's landing, keeping the "positive
   aft" sign; the Petzval shift is the Petzval sag less the surface's there. Focus locators (`bestFocusPlane`,
   `bestRelativeFocusPlane`) stay planar: they locate where a bundle converges, which the sensor does not change.
@@ -1320,9 +1323,13 @@ field mirroring stay exact.
   curved sensor.
 - **Unchanged.** Paraxial and axial quantities (`paraxialInFocusVergence`, `realK`, cardinals, BFD, total track to the
   vertex, f-numbers, conjugates, LoCA axial focus, pupils, breathing) read the vertex plane, where sag(0) = 0.
-- **Cylinders.** A cylinder keeps both mirror symmetries but not azimuthal equivalence: every 1-D y-field result is the
-  drawn meridian's. `withImageSurfaceMeridian()` (`prescription/imageSurfaceMeridian.ts`) turns it a quarter turn before
-  `buildLens()`, the way a converter is attached, so the viewer's section toggle needs nothing from the engine.
+- **Cylinders.** A cylinder is not azimuthally equivalent, so its 1-D y-field results follow one frame direction. The
+  data names the side it curves along (`curvedAlong`) and needs `imageFormat`; `withImageSurfaceSection()`
+  (`prescription/imageSurfaceSection.ts`) picks the long edge, short edge or corner before `buildLens()`, the way a
+  converter is attached. The compiled shape turns the cylinder by `cylinderAngle` so that direction lies in the drawn
+  meridian, and `fieldExtentMm` (the frame's half-length along it) replaces the image-circle radius as the sweep limit
+  in the analysis field, the distortion corner and the MTF reference height. A corner view is not x-symmetric:
+  `imageMirrorSymmetricAboutMeridian()` (`trace/symmetry.ts`) turns MTF and vignetting mirroring off for it.
 - **Scope.** Validation rejects `imageSurface` with `perspectiveControl`. Folded paths trace and draw the surface; their
   guarded analysis tabs stay guarded.
 

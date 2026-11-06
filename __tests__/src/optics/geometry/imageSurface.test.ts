@@ -8,6 +8,7 @@ import {
   landImageSurfaceLine,
   landImageSurfaceMeridional,
   landImageSurfaceSkew,
+  meridionalImageHeight,
 } from "../../../../src/optics/geometry/imageSurface.js";
 import type { ImageSurfaceShape, Plane3, Vec3 } from "../../../../src/optics/types.js";
 import type { ResolvedImageSurfaceData } from "../../../../src/types/optics.js";
@@ -53,6 +54,7 @@ function expectLanding(
 
 describe("curved image shape", () => {
   const sphere = createImageSurfaceShape({ R: -50, sd: 20 });
+  const frame = { widthMm: 36, heightMm: 24 };
 
   it("freezes authored geometry and matches the analytic sphere sag and positive-z normal", () => {
     expect(Object.isFrozen(sphere)).toBe(true);
@@ -62,7 +64,8 @@ describe("curved image shape", () => {
       curvature: -0.02,
       conic: 0,
       semiDiameter: 20,
-      cylinderAxis: null,
+      cylinderAngle: null,
+      xSymmetric: true,
     });
     const [x, y] = [6, 8];
     const z = sphereSag(10, -50);
@@ -140,10 +143,10 @@ describe("curved image shape", () => {
     expect(landImageSurfaceLine(shape, [0, 0, -1], [1, 0, 0])).toBeNull();
   });
 
-  it.each(["curved", "flat"] as const)("lands skew rays on a cylinder in its %s meridian", (meridian) => {
-    const shape = createImageSurfaceShape({ R: -40, sd: 20, cylindrical: true, meridian });
-    const flat = meridian === "flat";
-    expect(shape).toMatchObject({ kind: "cylindrical", conic: 0, cylinderAxis: flat ? "y" : "x" });
+  it.each(["long", "short"] as const)("lands skew rays on a cylinder viewed along its %s section", (section) => {
+    const shape = createImageSurfaceShape({ R: -40, sd: 20, cylindrical: true, section });
+    const flat = section === "short";
+    expect(shape).toMatchObject({ kind: "cylindrical", conic: 0, cylinderAngle: flat ? Math.PI / 2 : 0 });
     expect(shape.sagAt(flat ? 0 : 15, flat ? 15 : 0)).toBeCloseTo(0, 15);
     expect(shape.sagAt(flat ? 15 : 0, flat ? 0 : 15)).toBeCloseTo(sphereSag(15, -40), 14);
     const normal = shape.normalAt(6, 8);
@@ -154,11 +157,58 @@ describe("curved image shape", () => {
     expect(Number.isFinite(shape.sagAt(flat ? 1 : 1000, flat ? 1000 : 1))).toBe(true);
   });
 
+  it("turns a cylinder obliquely toward the frame corner and lands on it", () => {
+    const shape = createImageSurfaceShape({ R: -40, sd: 20, cylindrical: true, section: "corner" }, frame);
+    const angle = Math.atan2(24, 36);
+    expect(shape.cylinderAngle).toBeCloseTo(angle, 15);
+    expect(shape.xSymmetric).toBe(false);
+    const curved = (x: number, y: number) => x * Math.sin(angle) + y * Math.cos(angle);
+    expect(shape.sagAt(6, 8)).toBeCloseTo(sphereSag(curved(6, 8), -40), 13);
+    expect(shape.sagAt(6, 8)).not.toBeCloseTo(shape.sagAt(-6, 8), 6);
+    expectLanding(shape, [4, 10, -30], [0.1, -0.04, 1], (x, y) => sphereSag(curved(x, y), -40));
+  });
+
+  it("gives image coordinates along the unrolled film of a cylinder, and lateral ones otherwise", () => {
+    expect(sphere.toImageCoordinates(6, 8)).toEqual([6, 8]);
+    expect(sphere.fromImageCoordinates(6, 8)).toEqual([6, 8]);
+    const gate = createImageSurfaceShape({ R: -90, sd: 22, cylindrical: true }, frame);
+    /* Arc length across the curve, R·asin(y/R); unchanged along the straight direction. */
+    const [u, v] = gate.toImageCoordinates(5, 18);
+    expect(u).toBe(5);
+    expect(v).toBeCloseTo(-90 * Math.asin(18 / -90), 13);
+    expect(v).toBeGreaterThan(18);
+    expect(meridionalImageHeight(gate, 18)).toBe(v);
+    for (const section of ["long", "short", "corner"] as const) {
+      const shape = createImageSurfaceShape({ R: -90, sd: 22, cylindrical: true, section }, frame);
+      const [back0, back1] = shape.fromImageCoordinates(...shape.toImageCoordinates(7, -11));
+      expect(back0).toBeCloseTo(7, 12);
+      expect(back1).toBeCloseTo(-11, 12);
+    }
+    /* Viewed toward the corner, a meridional landing unrolls off the meridian; its height is its distance on film. */
+    const corner = createImageSurfaceShape({ R: -90, sd: 22, cylindrical: true, section: "corner" }, frame);
+    const [cu, cv] = corner.toImageCoordinates(0, 18);
+    expect(cu).not.toBe(0);
+    expect(meridionalImageHeight(corner, 18)).toBeCloseTo(Math.hypot(cu, cv), 13);
+  });
+
+  it("sets a cylinder's field extent from the frame half-length along the viewed section", () => {
+    const along = (section: "long" | "short" | "corner", curvedAlong?: "long" | "short") =>
+      createImageSurfaceShape({ R: -90, sd: 22, cylindrical: true, section, curvedAlong }, frame);
+    expect(along("long").fieldExtentMm).toBe(18);
+    expect(along("short").fieldExtentMm).toBe(12);
+    expect(along("corner").fieldExtentMm).toBeCloseTo(Math.hypot(36, 24) / 2, 12);
+    /* A gate curved along the short side is curved in the short section and straight in the long one. */
+    expect(along("short", "short").cylinderAngle).toBe(0);
+    expect(along("long", "short").cylinderAngle).toBe(Math.PI / 2);
+    expect(createImageSurfaceShape({ R: -90, sd: 22, cylindrical: true }).fieldExtentMm).toBeNull();
+    expect(sphere.fieldExtentMm).toBeNull();
+  });
+
   const symmetricData: ResolvedImageSurfaceData[] = [
     { R: -50, sd: 20 },
     { R: -50, sd: 20, asphere: { K: -1, A4: 2e-6, A3: 1e-7 } },
     { R: -40, sd: 20, cylindrical: true },
-    { R: -40, sd: 20, cylindrical: true, meridian: "flat" },
+    { R: -40, sd: 20, cylindrical: true, section: "short" },
   ];
   it.each(symmetricData)("preserves bitwise x/y mirror symmetry: %j", (data) => {
     const shape = createImageSurfaceShape(data);
@@ -179,7 +229,7 @@ describe("curved image shape", () => {
     [{ R: -50, sd: 20, asphere: { K: 3 } }, [0, 26]],
     [{ R: -40, sd: 20, cylindrical: true }, [0, 40]],
     [{ R: -40, sd: 20, cylindrical: true }, [0, 41]],
-    [{ R: -40, sd: 20, cylindrical: true, meridian: "flat" }, [41, 0]],
+    [{ R: -40, sd: 20, cylindrical: true, section: "short" }, [41, 0]],
   ] satisfies [ResolvedImageSurfaceData, [number, number]][])(
     "rejects the domain edge and beyond: %j at %j",
     (data, [x, y]) => {

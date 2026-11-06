@@ -96,19 +96,18 @@ export function mtfNearestImagePlaneZ(state: PreparedGeometry, bundles?: readonl
   }
   const shape = state.lens.imageSurface;
   if (shape === null) return Math.min(last.z + sag, state.imgZ);
+  /* The radial distance bounds a cylinder's curved coordinate too, so the profile's sag over it is a safe bound. */
   let radius = bundles ? 0 : shape.semiDiameter;
-  const radiusAt = (x: number, y: number) =>
-    shape.cylinderAxis === "x" ? Math.abs(y) : shape.cylinderAxis === "y" ? Math.abs(x) : Math.hypot(x, y);
   for (const { bundle } of bundles ?? [])
     for (const ray of bundle.rays) {
       const p = ray.trace.terminalPoint;
-      radius = Math.max(radius, radiusAt(p[0], p[1]), radiusAt(ray.x, ray.y));
+      const [x, y] = shape.fromImageCoordinates(ray.x, ray.y);
+      radius = Math.max(radius, Math.hypot(p[0], p[1]), Math.hypot(x, y));
     }
   // Keep even the most objectward image sag behind the last cap's rearmost point.
   let imageSag = 0;
   for (let i = 1; i <= REACH_SAMPLES; i++) {
-    const r = (radius * i) / REACH_SAMPLES;
-    const value = shape.cylinderAxis === "y" ? shape.sagAt(r, 0) : shape.sagAt(0, r);
+    const value = shape.profile.sag((radius * i) / REACH_SAMPLES);
     if (Number.isFinite(value)) imageSag = Math.min(imageSag, value);
   }
   return Math.min(last.z + sag - imageSag, state.imgZ);
@@ -206,7 +205,9 @@ export function landingPoints(bundle: MtfBundle, planeZ: number): MtfSpot[] {
       const { terminalPoint: p, terminalDirection: d } = ray.trace;
       const hit = landImageSurfaceLine(shape, [p[0], p[1], p[2] - planeZ], d);
       if (!hit || hit.t < -1e-9) return [];
-      points.push({ x: hit.point[0], y: hit.point[1], weight: ray.weight });
+      const [x, y] = shape.toImageCoordinates(hit.point[0], hit.point[1]);
+      if (!Number.isFinite(x) || !Number.isFinite(y)) return [];
+      points.push({ x, y, weight: ray.weight });
     }
     return points;
   }

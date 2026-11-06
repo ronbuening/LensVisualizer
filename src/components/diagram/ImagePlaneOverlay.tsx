@@ -4,7 +4,8 @@
  * Perspective-control movement changes the lens assembly relative to the
  * camera. This component intentionally accepts no lens movement transform so
  * the sensor remains in its authored camera-space position. A curved image
- * surface is drawn as its section over its authored half-height.
+ * surface is drawn as its section: a cylinder to the frame's edge along the
+ * viewed section, any other surface over its authored half-height.
  */
 import { memo } from "react";
 import { imageSurfacePathD, imageSurfacePoint } from "../../optics/diagramGeometry.js";
@@ -43,8 +44,10 @@ const ImagePlaneOverlay = memo(function ImagePlaneOverlay({
   );
   const surface = L.imageSurface;
   const placement = { z: imagePlaneZ, y: imagePlaneY, normal: imageNormal };
+  /* A cylinder is drawn to the frame's edge along the viewed section; other surfaces over their authored half-height. */
+  const drawnHalfHeight = surface ? (surface.fieldExtentMm ?? surface.semiDiameter) : 0;
   /* The label keeps its gap beyond the drawn end; on a curved surface that end has moved along the normal. */
-  const surfaceEnd = surface && imageSurfacePoint(surface, placement, -Math.sign(L.lyImgLabel) * surface.semiDiameter);
+  const surfaceEnd = surface && imageSurfacePoint(surface, placement, -Math.sign(L.lyImgLabel) * drawnHalfHeight);
   const labelGap = Math.abs(L.lyImgLabel) - Math.abs(L.lyImgLine);
   const imageLabel =
     surface && surfaceEnd
@@ -58,7 +61,7 @@ const ImagePlaneOverlay = memo(function ImagePlaneOverlay({
     <>
       {surface ? (
         <path
-          d={imageSurfacePathD(surface, placement, surface.semiDiameter, sx, sy)}
+          d={imageSurfacePathD(surface, placement, drawnHalfHeight, sx, sy)}
           fill="none"
           stroke={t.imgLine}
           strokeWidth={t.imgLineWidth}

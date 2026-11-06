@@ -16,17 +16,17 @@ flowchart LR
   n_external_src_types["src/types"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_optics_geometry["src/optics/geometry"]
-  n_external_src_optics_math["src/optics/math"]
   n_external_src_utils_catalog["src/utils/catalog"]
+  n_external_src_optics_math["src/optics/math"]
   n_external_src_optics_state["src/optics/state"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
   n_external_src_optics_field["src/optics/field"]
   n_external_src_optics_first_order["src/optics/first-order"]
-  n_src_optics_prescription_TypeScript_modules --> |34| n_external_src_types
+  n_src_optics_prescription_TypeScript_modules --> |35| n_external_src_types
   n_src_optics_prescription_TypeScript_modules --> |10| n_external_src_optics_types_ts
-  n_src_optics_prescription_TypeScript_modules --> |6| n_external_src_optics_geometry
+  n_src_optics_prescription_TypeScript_modules --> |7| n_external_src_optics_geometry
+  n_src_optics_prescription_TypeScript_modules --> |4| n_external_src_utils_catalog
   n_src_optics_prescription_TypeScript_modules --> |3| n_external_src_optics_math
-  n_src_optics_prescription_TypeScript_modules --> |3| n_external_src_utils_catalog
   n_src_optics_prescription_TypeScript_modules --> |2| n_external_src_optics_state
   n_src_optics_prescription_TypeScript_modules --> n_external_src_optics_chromatic
   n_src_optics_prescription_TypeScript_modules --> n_external_src_optics_field
@@ -38,7 +38,7 @@ flowchart LR
 
 - Direct source files: 25
 - Direct subfolders: 2
-- Main outbound areas: same folder (68), src/types (34), src/optics/types.ts (10), src/optics/geometry (6), src/optics/math (3), src/utils/catalog (3), src/optics/state (2), src/optics/chromatic, +2 more
+- Main outbound areas: same folder (68), src/types (35), src/optics/types.ts (10), src/optics/geometry (7), src/utils/catalog (4), src/optics/math (3), src/optics/state (2), src/optics/chromatic, +2 more
 - External consumers: src/optics/analysis, src/optics/buildLens.ts, src/optics/chromatic, src/optics/diagram, src/optics/first-order, src/optics/lensDataConversion.ts, src/optics/perspective, src/optics/prescription, +4 more
 
 ## Subfolders
@@ -57,7 +57,7 @@ flowchart LR
 | `canonicalInput.ts` | Canonical Input helper module | same folder (3), src/types (2) | same folder (3), src/optics/buildLens.ts | assertValidLensData, canonicalInput |
 | `compile.ts` | Compile helper module | same folder (6), src/optics/types.ts, src/types | same folder, src/optics/buildLens.ts, src/optics/state | compiledLensFromRuntime, compileLens, compileLensData |
 | `compileAspheres.ts` | Compile Aspheres helper module | same folder, src/types | same folder (3) | compileAspheres, buildAsphereIndex |
-| `compileCanonical.ts` | Compile Canonical helper module | same folder (5), src/optics/first-order, src/optics/geometry, src/optics/types.ts, src/types | same folder (3) | compileCanonicalUncached, compilePrescription, completeCompilation |
+| `compileCanonical.ts` | Compile Canonical helper module | same folder (5), src/optics/geometry (2), src/optics/first-order, src/optics/types.ts, src/types, +1 more | same folder (3) | compileCanonicalUncached, compilePrescription, completeCompilation |
 | `compileConstruction.ts` | Compile Construction helper module | same folder (6), src/types (2), src/optics/chromatic, src/optics/types.ts | same folder | compileConstruction, LensConstruction |
 | `compileControls.ts` | Compile Controls helper module | same folder, src/types | same folder (3) | compileVariableGaps, compileVariableLabels, buildVarIndex, firstInfinityThickness |
 | `compileGroups.ts` | Compile Groups helper module | same folder, src/optics/types.ts, src/types | same folder | compileElements, compileAnnotations |
@@ -66,7 +66,7 @@ flowchart LR
 | `constructionData.ts` | Construction Data helper module | src/types (2), same folder, src/optics/types.ts | same folder (4) | elementDisplayData, canonicalConstructionData |
 | `defaults.ts` | Defaults helper module | src/optics/geometry, src/types | same folder (5) | SchemaDefault, LENS_SCHEMA_DEFAULTS, ELEMENT_SCHEMA_DEFAULTS, REAR_PLATE_SCHEMA_DEFAULTS, takesDefault, defaultValue, v1CatalogDefaults |
 | `identity.ts` | Identity helper module | same folder, src/optics/types.ts, src/types | same folder (10), src/optics/state (4), src/optics/analysis (3), src/optics/chromatic (2), src/optics/first-order (2), +3 more | associateCanonical, canonicalForView, associateRuntime, findCompiledLens, compiledLensFromRuntime, canonicalLensFromRuntime |
-| `imageSurfaceMeridian.ts` | Image Surface Meridian helper module | same folder (3) | src/optics/buildLens.ts | withImageSurfaceMeridian |
+| `imageSurfaceSection.ts` | Image Surface Section helper module | same folder (3), src/types | src/optics/buildLens.ts | withImageSurfaceSection |
 | `ingestCommon.ts` | Ingest Common helper module | same folder (5), src/types (2) | same folder (2) | Untyped, IngestContext, sourcePathsFor, recordReads, copy, has, put, isNumberList, +8 more |
 | `ingestV2.ts` | Ingest V2 helper module | same folder (8), src/optics/geometry, src/types | same folder (4), src/optics/buildLens.ts, src/optics/lensDataConversion.ts | LENS_DATA_V2_SCHEMA, ingestLensV2, ingestTeleconverterV2, isV1File, lensDataVersion, ingestLens, ingestTeleconverter |
 | `interactions.ts` | Interactions helper module | src/optics/math, src/optics/types.ts, src/types | same folder (3), src/optics/first-order | yzNormalToVec3, compileSurfaceInteraction, resolvedImagePlaneToPlane3, imagePlaneDataToPlane3 |

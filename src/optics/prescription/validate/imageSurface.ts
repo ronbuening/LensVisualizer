@@ -4,7 +4,7 @@ import { imageFormatMetadata } from "../../../utils/catalog/lensTaxonomy.js";
 import { FLAT_R_THRESHOLD, conicFiniteRadiusLimit, conicPolySag, sag } from "../../geometry/surfaceProfile.js";
 import type { UntrustedLensData } from "./context.js";
 
-const IMAGE_SURFACE_FIELDS = new Set(["R", "asphere", "cylindrical", "sd", "source", "meridian"]);
+const IMAGE_SURFACE_FIELDS = new Set(["R", "asphere", "cylindrical", "curvedAlong", "sd", "source", "section"]);
 const ASPHERIC_KEYS = new Set<string>(ASPHERIC_COEFFICIENT_SCHEMA.map((descriptor) => descriptor.key));
 
 /** Radial samples when checking the surface against the face in front of it. */
@@ -43,8 +43,17 @@ export function validateImageSurface(
   }
   if (!finite(sd) || sd <= 0) errors.push(`imageSurface.sd must be a finite semi-diameter > 0`);
   if (cylindrical !== undefined && cylindrical !== true) errors.push(`imageSurface.cylindrical must be true when set`);
-  if (surface.meridian !== undefined && surface.meridian !== "curved" && surface.meridian !== "flat") {
-    errors.push(`imageSurface.meridian must be "curved" or "flat"`);
+  if (surface.curvedAlong !== undefined && surface.curvedAlong !== "long" && surface.curvedAlong !== "short") {
+    errors.push(`imageSurface.curvedAlong must be "long" or "short"`);
+  }
+  if (surface.curvedAlong !== undefined && !cylindrical) {
+    errors.push(`imageSurface.curvedAlong applies only to a cylindrical surface`);
+  }
+  if (cylindrical && data.imageFormat === undefined) {
+    errors.push(`a cylindrical imageSurface needs "imageFormat": its sections follow the frame's sides`);
+  }
+  if (surface.section !== undefined && !["long", "short", "corner"].includes(surface.section)) {
+    errors.push(`imageSurface.section must be "long", "short" or "corner"`);
   }
   if (surface.source !== undefined && (typeof surface.source !== "string" || !surface.source)) {
     errors.push(`imageSurface.source must be a non-empty string when provided`);
@@ -78,10 +87,18 @@ export function validateImageSurface(
     return;
   }
 
-  const imageCircleRadius = finite(data.imageCircleMm)
-    ? data.imageCircleMm / 2
-    : (imageFormatMetadata(data.imageFormat)?.diagonalMm ?? NaN) / 2;
-  if (finite(imageCircleRadius) && sd < imageCircleRadius - 1e-9) {
+  /* A cylinder's curved coordinate spans only the frame side it curves along; elsewhere sd covers the image circle. */
+  const format = imageFormatMetadata(data.imageFormat);
+  const curvedSide =
+    cylindrical && format
+      ? (surface.curvedAlong === "short" ? Math.min : Math.max)(format.widthMm, format.heightMm) / 2
+      : null;
+  const imageCircleRadius = finite(data.imageCircleMm) ? data.imageCircleMm / 2 : (format?.diagonalMm ?? NaN) / 2;
+  if (curvedSide !== null && sd < curvedSide - 1e-9) {
+    errors.push(
+      `imageSurface.sd ${sd} mm does not cover the ${curvedSide.toFixed(2)} mm half-side the cylinder curves along`,
+    );
+  } else if (curvedSide === null && finite(imageCircleRadius) && sd < imageCircleRadius - 1e-9) {
     errors.push(`imageSurface.sd ${sd} mm does not cover the ${imageCircleRadius.toFixed(2)} mm image-circle radius`);
   }
 

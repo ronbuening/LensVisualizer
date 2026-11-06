@@ -6,7 +6,7 @@
 
 import type { RayTraceResult } from "../../types/optics.js";
 import { resolveImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
-import { landImageSurfaceMeridional } from "../geometry/imageSurface.js";
+import { landImageSurfaceMeridional, meridionalImageHeight } from "../geometry/imageSurface.js";
 import { stateWithZ } from "../state/preparedGeometry.js";
 import { prepareRayTraceForState } from "../trace/rayAdapters.js";
 import type { PreparedRayTrace } from "../trace/rayAdapters.js";
@@ -79,7 +79,9 @@ export function computeAnalysisFieldGeometry(state: PreparedGeometry): FieldGeom
     return geometry;
 
   const format = resolveImageFormatMetadata(state.lens.source?.catalog.imageFormat);
-  const maxImageHeight = (state.lens.source?.catalog.imageCircleMm ?? format.diagonalMm) / 2;
+  /* A cylindrical image surface's sweep ends at the frame's edge along the viewed section, on the unrolled film. */
+  const maxImageHeight =
+    state.lens.imageSurface?.fieldExtentMm ?? (state.lens.source?.catalog.imageCircleMm ?? format.diagonalMm) / 2;
   if (!Number.isFinite(maxImageHeight) || maxImageHeight <= 0) return geometry;
 
   const followsRealChiefRay =
@@ -692,18 +694,20 @@ export function solveFieldAngleForImageHeight(
 }
 
 /**
- * Lateral image height of a meridional ray reported at the last vertex and carried `transfer` mm to the image vertex:
- * a straight transfer to a flat image, a landing on a curved one.
+ * Image height of a meridional ray reported at the last vertex and carried `transfer` mm to the image vertex: a
+ * straight transfer to a flat image, a landing on a curved one (lateral, or along the unrolled film of a cylinder).
  *
  * @param state - prepared geometry carrying the image surface
  * @param y - ray height at the last vertex in mm
  * @param u - meridional slope dy/dz
  * @param transfer - distance from the last vertex to the image vertex in mm
- * @returns lateral image height in mm, or NaN when the ray misses a curved surface
+ * @returns image height in mm, or NaN when the ray misses a curved surface
  */
 function imageHeightAfterTransfer(state: PreparedGeometry, y: number, u: number, transfer: number): number {
   const shape = state.lens.imageSurface;
-  return shape === null ? y + u * transfer : (landImageSurfaceMeridional(shape, y, u, 0, transfer)?.y ?? NaN);
+  if (shape === null) return y + u * transfer;
+  const landing = landImageSurfaceMeridional(shape, y, u, 0, transfer);
+  return landing ? meridionalImageHeight(shape, landing.y) : NaN;
 }
 
 function foldedRayImagePlaneCoordinate(state: PreparedGeometry, { trace }: { trace: RayTraceResult }): number {

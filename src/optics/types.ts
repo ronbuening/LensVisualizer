@@ -55,8 +55,18 @@ export interface ImageSurfaceShape {
   readonly curvature: number;
   /** Conic constant K; 0 for a sphere or a cylinder. */
   readonly conic: number;
-  /** A cylinder's straight direction: `"x"` curves the drawn y–z meridian, `"y"` the x–z one. Null when radial. */
-  readonly cylinderAxis: "x" | "y" | null;
+  /**
+   * Angle in radians from the drawn (y) meridian to a cylinder's curved direction: 0 when the drawn section is curved,
+   * π/2 when it is straight, between for a frame corner. Null when radial.
+   */
+  readonly cylinderAngle: number | null;
+  /** False only for a cylinder turned obliquely, whose landings are not mirror images across the drawn meridian. */
+  readonly xSymmetric: boolean;
+  /**
+   * A cylinder's frame half-length along the drawn meridian for its viewed section, in mm: the field sweeps end there
+   * instead of at the image-circle radius. Null when radial or without a declared format.
+   */
+  readonly fieldExtentMm: number | null;
   /** Half-height in mm of the drawn and validated surface. */
   readonly semiDiameter: number;
   /** Sag and slope along the curved direction: r = hypot(x, y), or the curved coordinate of a cylinder. */
@@ -65,6 +75,13 @@ export interface ImageSurfaceShape {
   sagAt(x: number, y: number): number;
   /** Unit normal at lateral (x, y), on the +z side. */
   normalAt(x: number, y: number): Vec3;
+  /**
+   * Image coordinates of a landing at lateral (x, y): unchanged on a radial surface, which does not unroll; on a
+   * cylinder, distances along the unrolled film, as the print shows them. NaN past the cylinder's edge.
+   */
+  toImageCoordinates(x: number, y: number): readonly [number, number];
+  /** Lateral (x, y) of the point at image coordinates (u, v); the inverse of `toImageCoordinates`. */
+  fromImageCoordinates(u: number, v: number): readonly [number, number];
 }
 
 /** Sag in mm and radial slope dz/dr of a surface profile at one radius. */

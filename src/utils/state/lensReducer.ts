@@ -22,6 +22,7 @@ import {
   type URLState,
 } from "../../types/state.js";
 import { isGroupMovementMode } from "../../types/groupMovement.js";
+import { isImageSurfaceSection } from "../../types/imageSurfaceSection.js";
 import comparisonReducer from "../../comparison/comparisonReducer.js";
 import { VIEW_STATE_FIELDS } from "./lensViewUrlState.js";
 
@@ -48,6 +49,7 @@ export const SET_PATENT_STATION = "SET_PATENT_STATION";
 export const SET_PANEL_EXPANDED = "SET_PANEL_EXPANDED";
 export const SET_ANALYSIS_TAB = "SET_ANALYSIS_TAB";
 export const SET_GROUP_MOVEMENT = "SET_GROUP_MOVEMENT";
+export const SET_IMAGE_SECTION = "SET_IMAGE_SECTION";
 export const SET_SELECTED_ELEMENT = "SET_SELECTED_ELEMENT";
 export const APPLY_URL_VIEW_STATE = "APPLY_URL_VIEW_STATE";
 export const SET_OVERLAY = "SET_OVERLAY";
@@ -98,7 +100,6 @@ const PANEL_FIELDS = new Set([
   "glassMapOpen",
   "chromaticOverlayOpen",
   "petzvalOverlayOpen",
-  "imageFlatMeridian",
   "showEffectiveFocalLength",
   "showEffectiveAperture",
   "aberrationsExpanded",
@@ -187,7 +188,7 @@ export function createInitialState(
       glassMapOpen: urlState.glassMapOpen ?? false,
       chromaticOverlayOpen: urlState.chromaticOverlayOpen ?? false,
       petzvalOverlayOpen: urlState.petzvalOverlayOpen ?? false,
-      imageFlatMeridian: urlState.imageFlatMeridian ?? false,
+      imageSection: urlState.imageSection ?? "long",
       showEffectiveFocalLength: prefs.showEffectiveFocalLength ?? false,
       showEffectiveAperture: prefs.showEffectiveAperture ?? false,
       aberrationsExpanded: prefs.aberrationsExpanded ?? true,
@@ -240,7 +241,7 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
           glassMapOpen: false,
           chromaticOverlayOpen: false,
           petzvalOverlayOpen: false,
-          imageFlatMeridian: false,
+          imageSection: "long",
           selectedElementId: null,
         };
       } else {
@@ -349,6 +350,10 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       if (!isAnalysisTabId(action.tab)) return state;
       return { ...state, panels: { ...state.panels, analysisDrawerTab: action.tab } };
 
+    case SET_IMAGE_SECTION:
+      if (!isImageSurfaceSection(action.section)) return state;
+      return { ...state, panels: { ...state.panels, imageSection: action.section } };
+
     case SET_GROUP_MOVEMENT:
       if (action.mode !== undefined && !isGroupMovementMode(action.mode)) return state;
       return {
@@ -387,6 +392,7 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       if (urlState.groupMovementMode && isGroupMovementMode(urlState.groupMovementMode)) {
         panels.groupMovementMode = urlState.groupMovementMode;
       }
+      if (isImageSurfaceSection(urlState.imageSection)) panels.imageSection = urlState.imageSection;
       /* Preference-backed: only an explicit `pp` value changes it, so history entries without one leave it alone. */
       if (!state.lens.comparing && typeof urlState.patentPositions === "boolean") {
         panels.patentPositions = urlState.patentPositions;

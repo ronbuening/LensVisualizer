@@ -27,7 +27,7 @@ is `prescription/teleconverterCompatibility.ts`; `mount/` is outside this bounda
 
 | Module in `src/optics/` | Public surface |
 | --- | --- |
-| `buildLens.ts` | `buildLens` (named/default), canonical ingest, `canonicalInput`, `compileLens`, `buildCanonicalLens`, `canonicalLensFromRuntime`, `compiledLensFromRuntime`, `lensDataVersion`, `prepareRuntimeState`, `withImageSurfaceMeridian` |
+| `buildLens.ts` | `buildLens` (named/default), canonical ingest, `canonicalInput`, `compileLens`, `buildCanonicalLens`, `canonicalLensFromRuntime`, `compiledLensFromRuntime`, `lensDataVersion`, `prepareRuntimeState`, `withImageSurfaceSection` |
 | `teleconverter.ts` | Converter composition, compatibility, geometry and labels |
 | `optics.ts` | Layout and station values, RuntimeLens state adapters, exact ray adapters, focus/aperture controls, the stop rule (`stopSemiDiameterForFNumber`, `fNumberRuleStopSemiDiameter`, `wideOpenStopAtZoom`, `stopRuleGeometry`, which also takes a compiled lens), the paraxial f-numbers (`imageSpaceFNumber`, `paraxialWorkingFNumber`, `paraxialWorkingFNumberForRuntimeLens` with its unavailable reason), pupil-ray density and display formatting (`formatParaxialWorkingFNumber`, `showsParaxialWorkingFNumber`), and the meridional curved-image landing (`landImageSurfaceMeridional`) |
 | `fieldGeometry.ts` | Field and pupil geometry, image-height inversion, RuntimeLens chief-ray adapters and bounded chief-ray diagnostic snapshots |

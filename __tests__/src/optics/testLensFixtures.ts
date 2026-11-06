@@ -137,7 +137,13 @@ export function buildCurvedImageLens(
   imageSurface: import("../../../src/types/optics.js").ResolvedImageSurfaceData | null,
   key = imageSurface ? "test-curved-image" : "test-curved-image-flat",
 ): RuntimeLens {
-  return buildFixture({ key, surfaces: simplePositiveSurfaces(1, 5, 47.4), ...(imageSurface ? { imageSurface } : {}) });
+  /* A cylinder's sections follow the frame, so it carries a format. */
+  return buildFixture({
+    key,
+    surfaces: simplePositiveSurfaces(1, 5, 47.4),
+    ...(imageSurface ? { imageSurface } : {}),
+    ...(imageSurface?.cylindrical ? { imageFormat: "135-full-frame" as const } : {}),
+  });
 }
 
 export function buildChromaticPositiveElementLens(

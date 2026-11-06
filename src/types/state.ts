@@ -4,6 +4,7 @@
 
 import type { SharedSlidersSlice, ComparisonAction } from "../comparison/comparisonTypes.js";
 import type { GroupMovementMode } from "./groupMovement.js";
+import type { ImageSurfaceSection } from "./optics.js";
 
 /* Re-export comparison types for backward compatibility */
 export type { SharedSlidersSlice, ComparisonAction } from "../comparison/comparisonTypes.js";
@@ -137,7 +138,6 @@ export type PanelField =
   | "glassMapOpen"
   | "chromaticOverlayOpen"
   | "petzvalOverlayOpen"
-  | "imageFlatMeridian"
   | "showEffectiveFocalLength"
   | "showEffectiveAperture"
   | "aberrationsExpanded"
@@ -155,8 +155,8 @@ export interface PanelsSlice {
   glassMapOpen: boolean;
   chromaticOverlayOpen: boolean;
   petzvalOverlayOpen: boolean;
-  /** Single-lens view: show a cylindrical image surface turned a quarter turn, its straight section drawn. */
-  imageFlatMeridian: boolean;
+  /** Single-lens view: the frame direction a cylindrical image surface is drawn and analysed along. */
+  imageSection: ImageSurfaceSection;
   showEffectiveFocalLength: boolean;
   showEffectiveAperture: boolean;
   aberrationsExpanded: boolean;
@@ -219,6 +219,7 @@ export type LensAction =
   | { type: "SET_PANEL_EXPANDED"; panel: PanelField; expanded: boolean }
   | { type: "SET_ANALYSIS_TAB"; tab: AnalysisTabId }
   | { type: "SET_GROUP_MOVEMENT"; open: boolean; mode?: GroupMovementMode }
+  | { type: "SET_IMAGE_SECTION"; section: ImageSurfaceSection }
   | { type: "SET_SELECTED_ELEMENT"; panelId: "main" | "a" | "b"; elementId: number | null }
   | { type: "APPLY_URL_VIEW_STATE"; state: Partial<URLState> }
   | { type: "SET_OVERLAY"; overlay: OverlayField; visible: boolean }
@@ -293,7 +294,7 @@ export interface URLState {
   glassMapOpen?: boolean;
   chromaticOverlayOpen?: boolean;
   petzvalOverlayOpen?: boolean;
-  imageFlatMeridian?: boolean;
+  imageSection?: ImageSurfaceSection;
   analysisDrawerOpen?: boolean;
   analysisDrawerTab?: AnalysisTabId;
   groupMovementOpen?: boolean;

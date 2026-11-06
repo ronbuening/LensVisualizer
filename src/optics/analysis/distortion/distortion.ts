@@ -236,6 +236,7 @@ export function computeDistortionCurve(request: AnalysisRequest): DistortionCurv
   const L = runtimeView(state.lens);
   const zPos = state.z as number[];
   const cornerImageHeight =
+    L.imageSurface?.fieldExtentMm ??
     (L.source?.catalog.imageCircleMm ?? resolveImageFormatMetadata(L.source?.catalog.imageFormat).diagonalMm) / 2;
   const reference = computeDistortionReference(request, !L.isFoldedOptics);
   if (reference === null)

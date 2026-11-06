@@ -25,7 +25,9 @@ describe("bokeh analysis requests", () => {
     "pairs previews at their own source focus layouts and preserves sampling overrides with image shape %j",
     (imageSurface) => {
       const base = buildSimplePositiveElementLens("test-bokeh-request");
-      const lens = imageSurface === null ? base : build({ ...constructionFixtureData(base), imageSurface });
+      /* A cylinder's sections follow the frame, so it needs a format. */
+      const format = imageSurface && "cylindrical" in imageSurface ? { imageFormat: "135-full-frame" } : {};
+      const lens = imageSurface === null ? base : build({ ...constructionFixtureData(base), imageSurface, ...format });
       const focusT = 0.15;
       const requestAt = (focusT: number) =>
         analysisRequestAt(lens, {

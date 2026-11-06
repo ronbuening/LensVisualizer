@@ -71,10 +71,12 @@ export interface MtfWaveLattice {
  */
 export function mtfWaveLattice(bundle: MtfBundle, reference: MtfSpot, imagePlaneZ: number): MtfWaveLattice | null {
   const shape = bundle.imageSurface ?? null;
+  /* A curved reference is given in image coordinates; the wavefront is measured from the point on the surface. */
+  const lateral = shape === null ? null : shape.fromImageCoordinates(reference.x, reference.y);
   const image: Vec3 =
-    shape === null
+    lateral === null
       ? [reference.x, reference.y, imagePlaneZ]
-      : [reference.x, reference.y, imagePlaneZ + shape.sagAt(reference.x, reference.y)];
+      : [lateral[0], lateral[1], imagePlaneZ + shape!.sagAt(lateral[0], lateral[1])];
   if (shape !== null && !image.every(Number.isFinite)) return null;
   const { columns, rows } = bundle;
   const cells = columns * rows;

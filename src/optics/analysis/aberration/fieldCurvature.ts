@@ -74,6 +74,8 @@ interface StandardizedFieldFocus {
   astigmaticDifferenceMm: number;
   astigmaticDifferenceUm: number;
   imageSurfaceSagMm?: number;
+  /** On a curved image surface, the chief landing's distance from the axis on the surface, where its sag is read. */
+  chiefLateralHeightMm?: number;
 }
 
 interface DiagnosticFieldFocus {
@@ -259,7 +261,14 @@ function computeStandardizedFieldFocus(
     sagittalShiftMm,
     astigmaticDifferenceMm,
     astigmaticDifferenceUm: astigmaticDifferenceMm * 1000,
-    ...(chiefRay.imagePoint.z === undefined ? {} : { imageSurfaceSagMm: chiefRay.imagePoint.z - geometry.imagePlaneZ }),
+    ...(chiefRay.imagePoint.z === undefined
+      ? {}
+      : {
+          imageSurfaceSagMm: chiefRay.imagePoint.z - geometry.imagePlaneZ,
+          chiefLateralHeightMm: Math.hypot(
+            ...L.imageSurface!.fromImageCoordinates(chiefRay.imagePoint.x, chiefRay.imagePoint.y),
+          ),
+        }),
   };
 }
 
@@ -356,7 +365,9 @@ function computeFieldCurvatureField(
   const diagnostic = computeDiagnosticFieldFocus(request, geometry, sampling.fieldCurvatureDiagnosticSampleCount);
   const diagnosticFieldFocus = typeof diagnostic === "string" ? null : diagnostic;
   const chiefImageHeight = standardizedFieldFocus.chiefImageHeight;
-  const petzvalSagMm = petzvalShiftAtImageHeight(chiefImageHeight, L.petzvalSum) ?? 0;
+  /* The Petzval sphere and the image surface are compared at the same point, where the chief lands on the surface. */
+  const petzvalSagMm =
+    petzvalShiftAtImageHeight(standardizedFieldFocus.chiefLateralHeightMm ?? chiefImageHeight, L.petzvalSum) ?? 0;
   const imageSurfaceSagMm = standardizedFieldFocus.imageSurfaceSagMm;
   const petzvalShiftMm = imageSurfaceSagMm === undefined ? petzvalSagMm : petzvalSagMm - imageSurfaceSagMm;
   const petzvalBestFocusZ = geometry.imagePlaneZ + petzvalSagMm;

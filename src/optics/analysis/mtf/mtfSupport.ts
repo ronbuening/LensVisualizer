@@ -229,8 +229,9 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
   const shape = lens.imageSurface;
   if (shape !== null) {
     support.limitations.push(
-      `Curved image surface (R = ${shape.radius} mm): field heights are lateral heights and frequencies are measured in the image's x/y projection.` +
-        (shape.kind === "cylindrical" ? " Sagittal/tangential results describe the curved meridian's fields." : ""),
+      shape.kind === "cylindrical"
+        ? `Cylindrical image surface (R = ${shape.radius} mm): field heights and frequencies are measured on the unrolled film, along the viewed frame direction.`
+        : `Curved image surface (R = ${shape.radius} mm): field heights are lateral heights and frequencies are measured in the image's x/y projection.`,
     );
   }
   const reject = (reason: MtfUnavailableReason, message: string): MtfSupport => ({

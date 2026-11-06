@@ -52,7 +52,7 @@ import { launchSurfaceForFieldDeg } from "../../field/projection.js";
 import { bulkTransmissionForTrace } from "../../trace/bulkAbsorption.js";
 import { prepareEngineTrace } from "../../trace/rayAdapters.js";
 import { traceRayClassification } from "../../trace/rayClassification.js";
-import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
+import { imageMirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
 import { mtfAxialImagePlane, mtfSequentialRefractivePath } from "../mtf/mtfSupport.js";
 import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../aberration/offAxis.js";
 import { prepareAimedPupilLaunch, prepareAimedPupilTrace, prepareAimedStopLattice } from "../pupils/aimedPupil.js";
@@ -286,7 +286,7 @@ function vignettingField(
   if (!scalar || !launch) return unavailableField(base, "no-field-launch");
 
   // The launch mirrors a meridional field's −px samples exactly; their traces are mirrored the same way.
-  const mirrored = mirrorSymmetricAboutMeridian(state);
+  const mirrored = imageMirrorSymmetricAboutMeridian(state);
   const tracer = prepareAimedPupilTrace(state, launch);
   const reference = referenceSphere(state, launch, scalar, xpZ);
   const cells = traceLattice(state, lattice, launch, tracer.engine, n, mirrored, reference);

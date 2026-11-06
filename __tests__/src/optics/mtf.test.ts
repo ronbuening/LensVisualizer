@@ -132,7 +132,12 @@ describe("MTF on curved image surfaces", () => {
   const options = { ...mtfTestOptions, fieldFractions: [0, 0.5], maxGridSize: 64 as const };
   const stateFor = (R?: number, cylindrical?: true) =>
     prepareRuntimeState(
-      build({ ...focusedData, ...(R === undefined ? {} : { imageSurface: { R, sd: 10, cylindrical } }) }),
+      build({
+        ...focusedData,
+        ...(R === undefined ? {} : { imageSurface: { R, sd: 10, cylindrical } }),
+        /* A cylinder's sections follow the frame; a 1-inch frame keeps it inside the 10 mm drawn half-height. */
+        ...(cylindrical ? { imageFormat: "1-inch-type" } : {}),
+      }),
       0,
       0,
     );
@@ -188,15 +193,18 @@ describe("MTF on curved image surfaces", () => {
         expect(points).toHaveLength(field.rays.length);
         points.forEach((point, i) => {
           const { terminalPoint: p, terminalDirection: d } = field.rays[i].trace;
-          const t = Math.abs(d[0]) > Math.abs(d[1]) ? (point.x - p[0]) / d[0] : (point.y - p[1]) / d[1];
+          /* Landings are image coordinates; on a cylinder they lie along the unrolled film. */
+          const [x, y] = state.lens.imageSurface!.fromImageCoordinates(point.x, point.y);
+          const t = Math.abs(d[0]) > Math.abs(d[1]) ? (x - p[0]) / d[0] : (y - p[1]) / d[1];
           const z = p[2] + t * d[2];
-          expect(Math.abs(z - vertexZ - state.lens.imageSurface!.sagAt(point.x, point.y))).toBeLessThan(1e-9);
+          expect(Math.abs(z - vertexZ - state.lens.imageSurface!.sagAt(x, y))).toBeLessThan(1e-9);
         });
       }
       const result = computeMtf(...mtfInputs(state, { ...options, focus: "best-axial" }));
       expect(result.focus!.appliedShiftMm).toBeCloseTo(best.shiftMm, 5);
-      expect(result.support.limitations.join(" ")).toContain("field heights are lateral heights");
-      expect(result.support.limitations.join(" ").includes("curved meridian's fields")).toBe(cylinder === true);
+      expect(result.support.limitations.join(" ")).toContain(
+        cylinder ? "measured on the unrolled film" : "field heights are lateral heights",
+      );
     },
   );
 

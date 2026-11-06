@@ -18,6 +18,8 @@ import { compileConstruction } from "./compileConstruction.js";
 import type { LensConstruction } from "./compileConstruction.js";
 import { resolvedImagePlaneToPlane3 } from "./interactions.js";
 import { createImageSurfaceShape } from "../geometry/imageSurface.js";
+import type { ImageFrameSize } from "../geometry/imageSurface.js";
+import { imageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
 
 export function compileCanonicalUncached(
   prescription: CanonicalLens,
@@ -74,7 +76,7 @@ export function compilePrescription(
     lastLensSurfaceIndex: input.lastLensSurfaceIdx,
     displayElementSpans: input.ES,
     hasExplicitImagePlane: data.opticalPath?.imagePlane !== undefined,
-    imageSurface: data.imageSurface ? createImageSurfaceShape(data.imageSurface) : null,
+    imageSurface: data.imageSurface ? createImageSurfaceShape(data.imageSurface, frameSize(data.imageFormat)) : null,
     surfaces,
     elements: input.elements,
     labelToSurfaceIndex: input.labelIdx,
@@ -176,4 +178,10 @@ function compileFlags(input: LensConstruction): CompiledLensFlags {
     hasPerspectiveControl: input.data.perspectiveControl != null,
     hasAberrationControl: input.aberrationControl !== null,
   });
+}
+
+/** Frame size of a declared format, which places a cylindrical image surface's sections. */
+function frameSize(imageFormat: unknown): ImageFrameSize | null {
+  const format = imageFormatMetadata(imageFormat);
+  return format ? { widthMm: format.widthMm, heightMm: format.heightMm } : null;
 }

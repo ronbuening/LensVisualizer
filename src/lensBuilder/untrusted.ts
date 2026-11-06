@@ -420,6 +420,7 @@ const schema = object(
         ...numericFields("R", "sd"),
         asphere: object(numericFields(...ASPHERIC_COEFFICIENT_SCHEMA.map((c) => c.key))),
         cylindrical: literal(true),
+        curvedAlong: literal("long", "short"),
         source: freeText,
       },
       ["R", "sd"],

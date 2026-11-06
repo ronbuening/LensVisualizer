@@ -48,7 +48,13 @@ const LENS_DATA = {
     { label: "2", R: -9.5, d: 33.766, sd: 5.5 },
   ],
 
-  imageSurface: { R: -90, cylindrical: true, sd: 22, source: "Synthetic: a film gate curved along the long side" },
+  imageSurface: {
+    R: -90,
+    cylindrical: true,
+    curvedAlong: "long",
+    sd: 22,
+    source: "Synthetic: a film gate curved along the long side",
+  },
 
   focus: { closeFocusM: 1.5 },
 

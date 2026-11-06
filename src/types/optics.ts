@@ -124,8 +124,10 @@ export interface ImageSurfaceData {
   R: number;
   /** Conic and polynomial terms, as on a surface. Not with `cylindrical`. */
   asphere?: Partial<AsphericCoefficients>;
-  /** A circular cylinder, curved in the drawn (y–z) meridian and straight along x. */
+  /** A circular cylinder: curved across one side of the frame, straight along the other. Needs `catalog.imageFormat`. */
   cylindrical?: true;
+  /** The frame side a cylinder curves along; `"long"` when left out, as film gates curve along the film. */
+  curvedAlong?: "long" | "short";
   /** Half-height in mm the surface is drawn and validated over; analyses do not clip at it. */
   sd: number;
   /** Source citation, e.g. "JP 2019-000000 A, Table 1 image surface". */
@@ -133,12 +135,15 @@ export interface ImageSurfaceData {
 }
 
 /**
- * An image surface as the engine receives it. `meridian: "flat"` turns a cylinder a quarter turn about the axis, so
- * the drawn meridian is its straight one; written only by `withImageSurfaceMeridian()`, never authored.
+ * An image surface as the engine receives it. `section` names the frame direction a cylinder is drawn and analysed
+ * along (`"long"` when left out); written only by `withImageSurfaceSection()`, never authored.
  */
 export interface ResolvedImageSurfaceData extends ImageSurfaceData {
-  meridian?: "curved" | "flat";
+  section?: ImageSurfaceSection;
 }
+
+/** A frame direction a cylindrical image surface can be viewed along. */
+export type ImageSurfaceSection = "long" | "short" | "corner";
 
 export interface OpticalPathData {
   mode?: "sequential" | "auto";

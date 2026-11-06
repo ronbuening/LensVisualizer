@@ -288,7 +288,7 @@ describe("lensViewUrlState", () => {
       glassMapOpen: true,
       chromaticOverlayOpen: true,
       petzvalOverlayOpen: true,
-      imageFlatMeridian: true,
+      imageSection: "corner",
       analysisDrawerOpen: true,
       analysisDrawerTab: "distortion",
       groupMovementOpen: true,
@@ -312,15 +312,18 @@ describe("lensViewUrlState", () => {
     expect(comparing.selectedElementIdB).toBe(fixture.selectedElementIdB);
     expect(comparing.selectedElementId).toBeUndefined();
     expect(comparing.patentPositions).toBeUndefined();
-    expect(comparing.imageFlatMeridian).toBeFalsy();
+    expect(comparing.imageSection).toBeUndefined();
   });
 
-  it("round-trips the straight image section as a single-lens view flag", () => {
-    expect(buildLensViewQuery({ imageFlatMeridian: true }).toString()).toBe("v=1&imf=1");
-    expect(buildLensViewQuery({ imageFlatMeridian: false }).toString()).toBe("");
-    expect(buildLensViewQuery({ imageFlatMeridian: true, comparing: true }).toString()).toBe("");
-    expect(parseLensViewQuery("?v=1&imf=1").imageFlatMeridian).toBe(true);
-    expect(parseLensViewQuery("?v=2&imf=1").imageFlatMeridian).toBeFalsy();
+  it("round-trips a cylinder's viewed section as a validated single-lens view field", () => {
+    expect(buildLensViewQuery({ imageSection: "short" }).toString()).toBe("v=1&ims=short");
+    expect(buildLensViewQuery({ imageSection: "corner" }).toString()).toBe("v=1&ims=corner");
+    expect(buildLensViewQuery({ imageSection: "long" }).toString()).toBe("");
+    expect(buildLensViewQuery({ imageSection: "short", comparing: true }).toString()).toBe("");
+    expect(parseLensViewQuery("?v=1&ims=corner").imageSection).toBe("corner");
+    for (const search of ["?v=1&ims=diagonal", "?v=2&ims=short"]) {
+      expect(parseLensViewQuery(search)).not.toHaveProperty("imageSection");
+    }
   });
 
   it("round-trips patent-positions mode as a tri-state v1 flag that never defaults", () => {

@@ -34,26 +34,87 @@ function conicSeed(origin: Vec3, direction: Vec3, c: number, K: number): number 
 }
 
 /**
- * Prepare an immutable image shape; its semi-diameter describes drawing extent, never a landing clip.
- * @param data - signed radius, sparse coefficients or cylinder orientation, and half-height in mm
- * @returns frozen local sag and positive-z normal evaluators
+ * Sine and cosine of a cylinder's angle, exact at the two axis-aligned angles so x-mirror symmetry and straight
+ * sections hold bitwise there; zeros for a radial shape.
  */
-export function createImageSurfaceShape(data: ResolvedImageSurfaceData): ImageSurfaceShape {
-  const cylinderAxis = data.cylindrical ? (data.meridian === "flat" ? "y" : "x") : null;
-  const asphere = !cylinderAxis && data.asphere ? Object.freeze(expandAsphericCoefficients(data.asphere)) : undefined;
+function cylinderComponents(angle: number | null): readonly [number, number] {
+  if (angle === null) return [0, 0];
+  if (angle === 0) return [0, 1];
+  if (angle === Math.PI / 2) return [1, 0];
+  return [Math.sin(angle), Math.cos(angle)];
+}
+
+/** Frame dimensions in mm, any orientation. */
+export interface ImageFrameSize {
+  widthMm: number;
+  heightMm: number;
+}
+
+/**
+ * Where a cylinder sits for the viewed frame direction: the angle from the drawn meridian to its curved direction,
+ * and the frame's half-length along the drawn meridian.
+ *
+ * The lens is rotationally symmetric, so viewing a frame direction is turning the frame, cylinder and all, until that
+ * direction lies in the drawn meridian. Without a frame the corner is taken at 45°.
+ */
+function cylinderPlacement(
+  data: ResolvedImageSurfaceData,
+  frame: ImageFrameSize | null,
+): { angle: number; fieldExtentMm: number | null } {
+  const long = frame ? Math.max(frame.widthMm, frame.heightMm) : null;
+  const short = frame ? Math.min(frame.widthMm, frame.heightMm) : null;
+  const section = data.section ?? "long";
+  const viewAngle =
+    section === "short"
+      ? Math.PI / 2
+      : section === "corner"
+        ? long && short
+          ? Math.atan2(short, long)
+          : Math.PI / 4
+        : 0;
+  const curvedAngle = data.curvedAlong === "short" ? Math.PI / 2 : 0;
+  const fieldExtentMm =
+    long === null || short === null
+      ? null
+      : (section === "short" ? short : section === "corner" ? Math.hypot(long, short) : long) / 2;
+  return { angle: Math.abs(curvedAngle - viewAngle), fieldExtentMm };
+}
+
+/**
+ * Prepare an immutable image shape; its semi-diameter describes drawing extent, never a landing clip.
+ *
+ * A cylinder's curved coordinate is c = x·sin φ + y·cos φ for its angle φ from the drawn meridian; along it the
+ * profile is a circle, across it straight. A cylinder unrolls without stretching, so its image coordinates are
+ * distances along the unrolled film: R·asin(c/R) across the curve, unchanged along it.
+ *
+ * @param data - signed radius, sparse coefficients or cylinder orientation and viewed section, and half-height in mm
+ * @param frame - frame size placing a cylinder's sections; null without a declared format
+ * @returns frozen local sag, positive-z normal and image-coordinate evaluators
+ */
+export function createImageSurfaceShape(
+  data: ResolvedImageSurfaceData,
+  frame: ImageFrameSize | null = null,
+): ImageSurfaceShape {
+  const placement = data.cylindrical ? cylinderPlacement(data, frame) : null;
+  const angle = placement?.angle ?? null;
+  const [sin, cos] = cylinderComponents(angle);
+  const asphere = angle === null && data.asphere ? Object.freeze(expandAsphericCoefficients(data.asphere)) : undefined;
   const profile = createSurfaceProfile({ R: data.R }, asphere);
-  const radiusAt = (x: number, y: number): number =>
-    cylinderAxis === "x" ? Math.abs(y) : cylinderAxis === "y" ? Math.abs(x) : Math.hypot(x, y);
+  const curvedAt = (x: number, y: number): number => x * sin + y * cos;
+  const radiusAt = (x: number, y: number): number => (angle === null ? Math.hypot(x, y) : Math.abs(curvedAt(x, y)));
   const inDomain = (x: number, y: number, r: number): boolean =>
     Number.isFinite(x) &&
     Number.isFinite(y) &&
     1 - (1 + profile.conic) * profile.curvature * profile.curvature * (r * r) > 0;
+  const R = data.R;
   return Object.freeze({
-    kind: cylinderAxis ? "cylindrical" : asphere ? "aspheric" : "spherical",
-    radius: data.R,
-    curvature: 1 / data.R,
+    kind: angle !== null ? "cylindrical" : asphere ? "aspheric" : "spherical",
+    radius: R,
+    curvature: 1 / R,
     conic: asphere?.K ?? 0,
-    cylinderAxis,
+    cylinderAngle: angle,
+    xSymmetric: angle === null || sin === 0 || cos === 0,
+    fieldExtentMm: placement?.fieldExtentMm ?? null,
     semiDiameter: data.sd,
     profile,
     sagAt: (x: number, y: number): number => {
@@ -63,7 +124,23 @@ export function createImageSurfaceShape(data: ResolvedImageSurfaceData): ImageSu
     normalAt: (x: number, y: number): Vec3 => {
       const r = radiusAt(x, y);
       if (!inDomain(x, y, r)) return [NaN, NaN, NaN];
-      return normalFromSlope(cylinderAxis === "x" ? 0 : x, cylinderAxis === "y" ? 0 : y, r, profile.slope(r));
+      if (angle === null) return normalFromSlope(x, y, r, profile.slope(r));
+      const c = curvedAt(x, y);
+      return normalFromSlope(c * sin, c * cos, r, profile.slope(r));
+    },
+    toImageCoordinates: (x: number, y: number): readonly [number, number] => {
+      if (angle === null) return [x, y];
+      const c = curvedAt(x, y);
+      const t = x * cos - y * sin;
+      const unrolled = R * Math.asin(c / R);
+      return [t * cos + unrolled * sin, -t * sin + unrolled * cos];
+    },
+    fromImageCoordinates: (u: number, v: number): readonly [number, number] => {
+      if (angle === null) return [u, v];
+      const unrolled = u * sin + v * cos;
+      const t = u * cos - v * sin;
+      const c = R * Math.sin(unrolled / R);
+      return [t * cos + c * sin, -t * sin + c * cos];
     },
   });
 }
@@ -83,8 +160,9 @@ export function landImageSurfaceLine(
 ): { point: Vec3; t: number } | null {
   if (!origin.every(Number.isFinite) || !direction.every(Number.isFinite) || direction.every((v) => v === 0))
     return null;
-  const project = (v: Vec3): Vec3 =>
-    shape.cylinderAxis === "x" ? [0, v[1], v[2]] : shape.cylinderAxis === "y" ? [v[0], 0, v[2]] : v;
+  const angle = shape.cylinderAngle;
+  const [sin, cos] = cylinderComponents(angle);
+  const project = (v: Vec3): Vec3 => (angle === null ? v : [0, v[0] * sin + v[1] * cos, v[2]]);
   const profile = shape.profile;
   // Dropping a cylinder's straight coordinate preserves t while reducing it to the same conic quadratic.
   const seed = conicSeed(project(origin), project(direction), profile.curvature, shape.conic);
@@ -194,4 +272,17 @@ export function intersectImageSurface(
   const point = add(plane.point, toGlobal(hit.point));
   const normal = normalize(toGlobal(shape.normalAt(hit.point[0], hit.point[1])));
   return normal && point.every(Number.isFinite) ? { point, t: hit.t, normal } : null;
+}
+
+/**
+ * Signed image height of a landing at lateral height y in the drawn meridian: y itself on a radial surface; on a
+ * cylinder, the distance from the axis on the unrolled film, which an oblique cylinder moves off the meridian.
+ *
+ * @param shape - curved image surface
+ * @param y - lateral height of the landing in the drawn meridian, in mm
+ * @returns signed image height in mm, NaN past a cylinder's edge
+ */
+export function meridionalImageHeight(shape: ImageSurfaceShape, y: number): number {
+  const [u, v] = shape.toImageCoordinates(0, y);
+  return u === 0 ? v : Math.sign(v) * Math.hypot(u, v);
 }

@@ -130,7 +130,7 @@ const ORDERS: Record<string, string[]> = {
   example: ["label", "id"],
   projection: ["kind", "focalLengthMm", "fullFieldDeg", "imageCircleMm", "maxTraceFieldDeg"],
   opticalPath: ["mode", "surfaceOrder", "imagePlane", "maxInteractions"],
-  imageSurface: ["R", "asphere", "cylindrical", "sd", "source"],
+  imageSurface: ["R", "asphere", "cylindrical", "curvedAlong", "sd", "source"],
   groups: ["text", "fromSurface", "toSurface"],
   doublets: ["text", "fromSurface", "toSurface"],
   layout: ["svgW", "svgH", "scFill", "yScFill", "maxAspectRatio", "lensShiftFrac"],

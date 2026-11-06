@@ -71,6 +71,7 @@ describe("curved MTF wavefront reference", () => {
       const lens = build({
         ...constructionFixtureData(buildSimplePositiveElementLens()),
         imageSurface: { R: -70, sd: 15, cylindrical },
+        ...(cylindrical ? { imageFormat: "1-inch-type" } : {}),
       });
       const state = prepareRuntimeState(lens, 0, 0);
       const options: MtfOptions = {
@@ -88,12 +89,12 @@ describe("curved MTF wavefront reference", () => {
         const vertexZ = state.imgZ + shift;
         const bundle = traceMtfFieldPupil(state, options, support, 5, 16, support.spectralLines[0], vertexZ, true)!;
         const reference = bundle.chief;
-        const sag = lens.imageSurface!.sagAt(reference.x, reference.y);
+        /* The chief is in image coordinates; the wavefront reference is the point on the surface. */
+        const [x, y] = lens.imageSurface!.fromImageCoordinates(reference.x, reference.y);
+        const sag = lens.imageSurface!.sagAt(x, y);
         expect(Math.abs(sag)).toBeGreaterThan(0.01);
         const wave = mtfWaveLattice(bundle, reference, vertexZ)!;
-        const paths = bundle.rays.map((ray) =>
-          rayOpticalPathToImageMm(ray.trace, [reference.x, reference.y, vertexZ + sag]),
-        );
+        const paths = bundle.rays.map((ray) => rayOpticalPathToImageMm(ray.trace, [x, y, vertexZ + sag]));
         bundle.rays.forEach((ray, i) => {
           expect(wave.pathMm[ray.row * bundle.columns + ray.column]).toBeCloseTo(paths[i]! - paths[0]!, 12);
         });

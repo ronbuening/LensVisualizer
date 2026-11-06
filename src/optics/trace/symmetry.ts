@@ -15,3 +15,14 @@ const X_SYMMETRIC_PROFILES = new Set(["flat", "spherical", "aspheric", "tilted-p
 export function mirrorSymmetricAboutMeridian(state: PreparedGeometry): boolean {
   return state.surfaces.every((surface) => X_SYMMETRIC_PROFILES.has(surface.profile.kind));
 }
+
+/**
+ * True when mirrored rays also land as mirror images: the lens is mirror-symmetric and so is its image surface. Only a
+ * cylinder turned obliquely, to view a frame corner, is not.
+ *
+ * @param state - prepared optical state
+ * @returns whether mirroring image landings across the meridian is exact
+ */
+export function imageMirrorSymmetricAboutMeridian(state: PreparedGeometry): boolean {
+  return mirrorSymmetricAboutMeridian(state) && state.lens.imageSurface?.xSymmetric !== false;
+}

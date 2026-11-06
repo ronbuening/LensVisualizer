@@ -23,7 +23,7 @@ import { mtfFiniteObjectPoint } from "./mtfConjugates.js";
 import { findMtfFootprint } from "./mtfFootprint.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
 import { traceRayClassification } from "../../trace/rayClassification.js";
-import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
+import { imageMirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
 import { launchSurfaceForFieldDeg } from "../../field/projection.js";
 import { prepareAimedStopLatticeForState } from "../pupils/aimedPupil.js";
 import type { AimedPupilFieldGeometry, AimedPupilSpectrum, AimedStopLattice } from "../pupils/aimedPupil.js";
@@ -133,9 +133,12 @@ function mtfFlatImagePoint(state: PreparedGeometry, trace: EngineTraceResult, im
 function mtfCurvedImagePoint(state: PreparedGeometry, trace: EngineTraceResult, imagePlaneZ: number): MtfSpot | null {
   if (trace.status !== "ok") return null;
   const p = trace.terminalPoint;
-  const hit = landImageSurfaceLine(state.lens.imageSurface!, [p[0], p[1], p[2] - imagePlaneZ], trace.terminalDirection);
+  const shape = state.lens.imageSurface!;
+  const hit = landImageSurfaceLine(shape, [p[0], p[1], p[2] - imagePlaneZ], trace.terminalDirection);
   if (!hit || hit.t < -1e-9) return null;
-  return { x: hit.point[0], y: hit.point[1], weight: bulkTransmissionForTrace(state.lens, trace.hits) };
+  const [x, y] = shape.toImageCoordinates(hit.point[0], hit.point[1]);
+  if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
+  return { x, y, weight: bulkTransmissionForTrace(state.lens, trace.hits) };
 }
 
 // Keep several complete spectral grids warm without retaining an arbitrary wavelength history.
@@ -374,7 +377,7 @@ export function mtfLaunchGrid(footprint: MtfFootprint, gridSize: number): MtfLau
  * @returns whether mirrored half-pupil tracing is exact
  */
 export function mtfMirrorSymmetric(state: PreparedGeometry): boolean {
-  return mirrorSymmetricAboutMeridian(state);
+  return imageMirrorSymmetricAboutMeridian(state);
 }
 
 /**

@@ -578,7 +578,10 @@ function stateForRuntimeLens(L: RuntimeLens, focusT: number, zoomT: number, aber
   return prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT);
 }
 
-/** Image intercept for a skew ray in sagittal/meridional millimeters; `z` only on a curved image surface. */
+/**
+ * Image intercept for a skew ray in sagittal/meridional millimeters: image coordinates (on a cylinder, along the
+ * unrolled film), and the landing's `z` only on a curved image surface.
+ */
 export interface SkewImagePlaneIntercept {
   x: number;
   y: number;
@@ -609,7 +612,9 @@ export function skewImagePlaneIntercept(
 ): SkewImagePlaneIntercept | null {
   if (imageSurface !== null) {
     const point = landImageSurfaceSkew(imageSurface, x, y, ux, uy, lastSurfZ, imagePlaneZ);
-    return point ? { x: point[0], y: point[1], z: point[2] } : null;
+    if (!point) return null;
+    const [u, v] = imageSurface.toImageCoordinates(point[0], point[1]);
+    return Number.isFinite(u) && Number.isFinite(v) ? { x: u, y: v, z: point[2] } : null;
   }
   const dz = imagePlaneZ - lastSurfZ;
   const imagePoint = {

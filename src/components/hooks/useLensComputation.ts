@@ -16,7 +16,7 @@ import { useMemo, useRef } from "react";
 import { resolveLensSystemData } from "../../utils/catalog/teleconverterCatalog.js";
 import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../../optics/optics.js";
 import { fNumberAtStopdown } from "../../optics/optics.js";
-import { buildLens, withImageSurfaceMeridian } from "../../optics/buildLens.js";
+import { buildLens, withImageSurfaceSection } from "../../optics/buildLens.js";
 import type { CardinalElements } from "../../optics/analysis.js";
 import { computeCardinalElements, computeFocusEFL, createAnalysisRequest } from "../../optics/analysis.js";
 import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
@@ -34,7 +34,7 @@ import {
   thickOrZero as thick,
 } from "../../optics/optics.js";
 import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../../optics/fieldGeometry.js";
-import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
+import type { RuntimeLens, ElementShape, CoordinateTransforms, ImageSurfaceSection } from "../../types/optics.js";
 import type { LensMovementTransform, ResolvedLensMovement } from "../../optics/perspective.js";
 import type { FieldGeometryState } from "../../optics/fieldGeometry.js";
 
@@ -54,8 +54,8 @@ interface UseLensComputationParams {
   includeCardinalExtents?: boolean;
   /** Patent-positions mode: land on the nearest published station, wide open, aberration control neutral. */
   snapToPublishedStations?: boolean;
-  /** Turn a cylindrical image surface so its straight section is drawn and analysed; ignored with `runtimeLens`. */
-  imageFlatMeridian?: boolean;
+  /** Frame direction a cylindrical image surface is drawn and analysed along; ignored with `runtimeLens`. */
+  imageSection?: ImageSurfaceSection;
 }
 
 interface VarReadout {
@@ -115,18 +115,18 @@ export default function useLensComputation({
   panelId,
   includeCardinalExtents = false,
   snapToPublishedStations = false,
-  imageFlatMeridian = false,
+  imageSection = "long",
 }: UseLensComputationParams): UseLensComputationResult {
   /* ── Build lens from catalog ── */
   const buildResult = useMemo((): { L: RuntimeLens; error?: undefined } | { L?: undefined; error: unknown } => {
     if (runtimeLens) return { L: runtimeLens };
     try {
       const system = resolveLensSystemData(lensKey, teleconverterKey);
-      return { L: buildLens(withImageSurfaceMeridian(system, imageFlatMeridian ? "flat" : "curved")) };
+      return { L: buildLens(withImageSurfaceSection(system, imageSection)) };
     } catch (e) {
       return { error: e };
     }
-  }, [lensKey, teleconverterKey, runtimeLens, imageFlatMeridian]);
+  }, [lensKey, teleconverterKey, runtimeLens, imageSection]);
 
   const L = buildResult.L;
   const buildError = buildResult.error;

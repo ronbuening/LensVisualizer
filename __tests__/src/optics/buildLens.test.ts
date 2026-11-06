@@ -16,7 +16,11 @@ import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/ru
 import { traceRay } from "../../../src/optics/trace/rayAdapters.js";
 import { computeCardinalElements } from "../../../src/optics/analysis/summary/cardinals.js";
 import { analysisRequestForLens, buildCurvedImageLens } from "./testLensFixtures.js";
-import { buildLens as buildCanonical, withImageSurfaceMeridian } from "../../../src/optics/buildLens.js";
+import { buildLens as buildCanonical, withImageSurfaceSection } from "../../../src/optics/buildLens.js";
+import { imageMirrorSymmetricAboutMeridian } from "../../../src/optics/trace/symmetry.js";
+import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
+import { declaredFormatRadiusMm } from "../../../src/optics/analysis/mtf/mtfFields.js";
+import { computeDistortionCurve } from "../../../src/optics/analysis/distortion/distortion.js";
 import { computeFieldGeometryAtState } from "../../../src/optics/state/fieldAdapters.js";
 import { expandCanonicalRearPlates } from "../../../src/optics/prescription/rearPlates.js";
 import {
@@ -926,21 +930,39 @@ describe("buildLens — rear plates", () => {
   });
 });
 
-describe("withImageSurfaceMeridian", () => {
-  it("turns only a cylindrical image surface, as an independent canonical copy", () => {
+describe("withImageSurfaceSection", () => {
+  it("turns only a cylindrical image surface to a frame direction, as an independent canonical copy", () => {
     const cylinder = buildCurvedImageLens({ R: -60, cylindrical: true, sd: 20 }, "test-cylindrical-image");
     const sphere = buildCurvedImageLens({ R: -60, sd: 20 }, "test-spherical-image");
-    expect(withImageSurfaceMeridian(sphere.source, "flat")).toBe(sphere.source);
-    expect(withImageSurfaceMeridian(cylinder.source, "curved")).toBe(cylinder.source);
+    expect(withImageSurfaceSection(sphere.source, "short")).toBe(sphere.source);
+    expect(withImageSurfaceSection(cylinder.source, "long")).toBe(cylinder.source);
+    /* On 135 film, curved along the long side: the long edge is the drawn, curved section. */
+    expect(cylinder.imageSurface).toMatchObject({ cylinderAngle: 0, xSymmetric: true, fieldExtentMm: 18 });
 
-    const turned = withImageSurfaceMeridian(cylinder.source, "flat");
-    expect(turned).not.toBe(cylinder.source);
-    expect(cylinder.source.imageSurface?.meridian).toBeUndefined();
-    expect(cylinder.imageSurface?.cylinderAxis).toBe("x");
-    const L = buildCanonical(turned);
-    expect(L.imageSurface?.cylinderAxis).toBe("y");
-    /* The drawn meridian is now the straight one. */
-    expect(L.imageSurface?.sagAt(0, 10)).toBeCloseTo(0, 12);
-    expect(L.imageSurface?.sagAt(10, 0)).toBeLessThan(0);
+    const short = buildCanonical(withImageSurfaceSection(cylinder.source, "short"));
+    expect(cylinder.source.imageSurface?.section).toBeUndefined();
+    expect(short.imageSurface).toMatchObject({ cylinderAngle: Math.PI / 2, xSymmetric: true, fieldExtentMm: 12 });
+    expect(short.imageSurface?.sagAt(0, 10)).toBeCloseTo(0, 12);
+    expect(short.imageSurface?.sagAt(10, 0)).toBeLessThan(0);
+
+    const corner = buildCanonical(withImageSurfaceSection(cylinder.source, "corner"));
+    expect(corner.imageSurface?.cylinderAngle).toBeCloseTo(Math.atan2(24, 36), 15);
+    expect(corner.imageSurface?.xSymmetric).toBe(false);
+    expect(corner.imageSurface?.fieldExtentMm).toBeCloseTo(Math.hypot(36, 24) / 2, 12);
+  });
+
+  it("sweeps a section to the frame's edge and stops mirroring landings for the corner", () => {
+    const cylinder = buildCurvedImageLens({ R: -60, cylindrical: true, sd: 20 }, "test-cylindrical-image");
+    for (const [section, extent, mirrored] of [
+      ["long", 18, true],
+      ["short", 12, true],
+      ["corner", Math.hypot(36, 24) / 2, false],
+    ] as const) {
+      const L = buildCanonical(withImageSurfaceSection(cylinder.source, section));
+      const state = prepareRuntimeState(L, 0, 0);
+      expect(imageMirrorSymmetricAboutMeridian(state)).toBe(mirrored);
+      expect(declaredFormatRadiusMm(state)).toBeCloseTo(extent, 12);
+      expect(computeDistortionCurve(analysisRequestForLens(L)).cornerImageHeight).toBeCloseTo(extent, 12);
+    }
   });
 });

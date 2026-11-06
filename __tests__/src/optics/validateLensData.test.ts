@@ -615,7 +615,13 @@ describe("validateLensData", () => {
     const curved = { R: -60, sd: 20 };
 
     expect(errorsFor({ imageSurface: curved })).toEqual([]);
-    expect(errorsFor({ imageSurface: { ...curved, cylindrical: true } })).toEqual([]);
+    expect(errorsFor({ imageSurface: { ...curved, cylindrical: true }, imageFormat: "135-full-frame" })).toEqual([]);
+    expect(
+      errorsFor({
+        imageSurface: { ...curved, cylindrical: true, curvedAlong: "short" },
+        imageFormat: "135-full-frame",
+      }),
+    ).toEqual([]);
     expect(errorsFor({ imageSurface: { ...curved, asphere: { K: -0.5, A4: 1e-7 } } })).toEqual([]);
     for (const [imageSurface, text] of [
       [{ ...curved, R: 0 }, "imageSurface.R must be"],
@@ -624,6 +630,8 @@ describe("validateLensData", () => {
       [{ ...curved, cylindrical: false }, "imageSurface.cylindrical must be true"],
       [{ ...curved, cylindrical: true, asphere: { K: 0 } }, "cannot be combined with a cylindrical"],
       [{ ...curved, asphere: { B4: 1 } }, "imageSurface.asphere.B4 is not an aspheric coefficient"],
+      [{ ...curved, cylindrical: true }, 'a cylindrical imageSurface needs "imageFormat"'],
+      [{ ...curved, curvedAlong: "long" }, "curvedAlong applies only to a cylindrical surface"],
       [{ ...curved, sd: 70 }, "reaches the edge of the surface"],
     ] as const) {
       expect(has(errorsFor({ imageSurface }), text)).toBe(true);

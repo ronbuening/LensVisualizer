@@ -1478,16 +1478,19 @@ imageSurface: {
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `R` | `number` | ✓ | Signed vertex radius in mm, with the surface sign convention along the image-plane normal: the centre of curvature lies at vertex + R·n̂. On an ordinary lens n̂ is +z, so a sensor concave toward the lens (the Petzval-matching case) has `R < 0`. |
-| `sd` | `number` | ✓ | Half-height in mm the surface is drawn and validated over. It must cover the image circle; analyses never clip at it. |
+| `sd` | `number` | ✓ | Half-height in mm the surface is drawn and validated over. It must cover the image circle (a cylinder: half the frame side it curves along); analyses never clip at it. |
 | `asphere` | object | | `K` and polynomial terms, with the same meaning and keys as a surface's `asphere`. |
-| `cylindrical` | `true` | | A circular cylinder, curved in the drawn (y–z) meridian and straight along x: a film gate curved along the frame's long side. Not with `asphere`. |
+| `cylindrical` | `true` | | A circular cylinder: a film gate, curved across one side of the frame and straight along the other. Needs `catalog.imageFormat`. Not with `asphere`. |
+| `curvedAlong` | `"long"` \| `"short"` | | The frame side a cylinder curves along; `"long"` when left out, as film gates curve along the film. |
 | `source` | `string` | | Source citation. |
 
-- Rays land on the surface everywhere: the diagram, every analysis tab and the MTF. Image heights on it are lateral
-  heights, the distance of the landing point from the axis, as design software tabulates them; field-curvature and
-  focus shifts are measured along z from the surface at the chief ray's landing.
-- On a cylinder every 1-D field result (field curvature, lateral colour, relative illumination, distortion and MTF
-  against field) is the curved meridian's. The viewer can turn the cylinder a quarter turn to show the straight one.
+- Rays land on the surface everywhere: the diagram, every analysis tab and the MTF. Image heights on a sphere or
+  asphere are lateral heights, the distance of the landing point from the axis, as design software tabulates them. A
+  cylinder unrolls flat, so its heights are distances along the unrolled film, as the print shows them. Field-curvature
+  and focus shifts are measured along z from the surface at the chief ray's landing.
+- On a cylinder the 1-D field results (field curvature, lateral colour, relative illumination, distortion and MTF
+  against field) follow one frame direction, out to the frame's edge in that direction: the long edge by default, and
+  the short edge or the corner in the viewer.
 - Not with `perspectiveControl`. With `rearPlates`, the surface follows the last plate. On a folded path the trace ends
   on the surface and the diagram draws it; folded analysis tabs stay guarded as for a flat plane.
 - A source that gives only a flat image with a field-flattener, or only a Petzval radius, has no image surface: do not

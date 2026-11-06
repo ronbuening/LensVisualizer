@@ -9,6 +9,7 @@ import {
   imageSurfaceLocalFrame,
   landImageSurfaceLine,
   landImageSurfaceMeridional,
+  meridionalImageHeight,
 } from "../../geometry/imageSurface.js";
 import type { ImageSurfaceShape, Vec3 } from "../../types.js";
 import type { AnalysisRequest } from "../request.js";
@@ -138,7 +139,8 @@ export function imagePlaneCoordinate(
     const { ey, ez } = frame;
     const local = (v: Vec3): Vec3 => [v[0], v[1] * ey[1] + v[2] * ey[2], v[1] * ez[1] + v[2] * ez[2]];
     const hit = landImageSurfaceLine(L.imageSurface, local([0, y - imageY, referenceZ - planeZ]), local([0, u, 1]));
-    return hit && Number.isFinite(hit.point[1]) ? hit.point[1] : null;
+    const height = hit ? meridionalImageHeight(L.imageSurface, hit.point[1]) : NaN;
+    return Number.isFinite(height) ? height : null;
   }
   const normalY = normal.y;
   const normalZ = normal.z;
@@ -318,7 +320,7 @@ export function transverseCoordinateAtPlane(
       hit.referenceZ ?? lastSurfZ,
       planeZ,
     );
-    return landing?.y ?? NaN;
+    return landing ? meridionalImageHeight(imageSurface, landing.y) : NaN;
   }
   return hit.coordinate + hit.slope * (planeZ - (hit.referenceZ ?? lastSurfZ));
 }

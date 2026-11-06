@@ -29,7 +29,7 @@ flowchart LR
   n_external_src_optics_types_ts["src/optics/types.ts"]
   n_external_src_utils_svgCoordinates_ts["src/utils/svgCoordinates.ts"]
   n_src_components_hooks_TypeScript_modules --> |23| n_external_pkg_react
-  n_src_components_hooks_TypeScript_modules --> |22| n_external_src_types
+  n_src_components_hooks_TypeScript_modules --> |23| n_external_src_types
   n_src_components_hooks_TypeScript_modules --> |15| n_external_src_optics_optics_ts
   n_src_components_hooks_TypeScript_modules --> |12| n_external_src_optics_perspective_ts
   n_src_components_hooks_TypeScript_modules --> |7| n_external_src_optics_analysis_ts
@@ -51,7 +51,7 @@ flowchart LR
 
 - Direct source files: 25
 - Direct subfolders: 0
-- Main outbound areas: package:react (23), src/types (22), same folder (15), src/optics/optics.ts (15), src/optics/perspective.ts (12), src/optics/analysis.ts (7), src/optics/fieldGeometry.ts (6), src/utils/state (5), +10 more
+- Main outbound areas: package:react (23), src/types (23), same folder (15), src/optics/optics.ts (15), src/optics/perspective.ts (12), src/optics/analysis.ts (7), src/optics/fieldGeometry.ts (6), src/utils/state (5), +10 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search, src/pages/UniversalRelationshipMapPage.tsx
 
 ## Files
@@ -65,7 +65,7 @@ flowchart LR
 | `useBalancedColumns.ts` | React hook module | package:react | src/components/relationshipMap (3), src/pages/UniversalRelationshipMapPage.tsx | balancedColumns, WidthClass, widthClass, balancedRowStyle, balancedItemStyle, default, useBalancedColumns |
 | `useChromaticRays.ts` | React hook module | src/optics/optics.ts (4), same folder (3), src/optics/chromatic.ts (3), src/optics/perspective.ts (3), src/optics/analysis.ts (2), +4 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
 | `useDismissableDropdown.ts` | React hook module | package:react | src/components/layout, src/components/relationshipMap, src/components/search | default, useDismissableDropdown |
-| `useDispatchAdapters.ts` | React hook module | src/types (2), src/utils/state (2), package:react | src/comparison, src/components/layout | DispatchAdapters, default, useDispatchAdapters |
+| `useDispatchAdapters.ts` | React hook module | src/types (3), src/utils/state (2), package:react | src/comparison, src/components/layout | DispatchAdapters, default, useDispatchAdapters |
 | `useFlashOverlay.ts` | React hook module | package:react | src/components/layout | default, useFlashOverlay |
 | `useHeaderHeight.ts` | React hook module | package:react (2) | src/components/layout | default, useHeaderHeight |
 | `useInteractionSignal.ts` | React hook module | package:react | src/components/controls | InteractionSignal, default, useInteractionSignal |

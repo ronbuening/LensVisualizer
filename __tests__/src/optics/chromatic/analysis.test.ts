@@ -352,8 +352,13 @@ describe("chromatic analysis on curved image surfaces", () => {
     { R: -100, sd: 20, asphere: { K: -0.5, A4: 1e-7 } },
   ];
 
+  /* A cylinder's sections follow the frame, so it needs a format. */
   const curvedLens = (imageSurface: ImageSurfaceData) =>
-    build({ ...constructionFixtureData(buildChromaticPositiveElementLens()), imageSurface });
+    build({
+      ...constructionFixtureData(buildChromaticPositiveElementLens()),
+      imageSurface,
+      ...(imageSurface.cylindrical ? { imageFormat: "135-full-frame" } : {}),
+    });
 
   it.each(shapes)("uses each channel's chief landing for lateral colour on %j", (imageSurface) => {
     const L = curvedLens(imageSurface);
@@ -371,11 +376,9 @@ describe("chromatic analysis on curved image surfaces", () => {
         )!;
         const chief = traceOffAxisChiefRay(request, geometry, sample.channel)!;
         expect(sample.imageHeightMm).toBe(chief.imagePoint.y);
-        expect(
-          Math.abs(
-            chief.imagePoint.z! - geometry.imagePlaneZ - L.imageSurface!.sagAt(chief.imagePoint.x, chief.imagePoint.y),
-          ),
-        ).toBeLessThan(1e-9);
+        /* Image coordinates; on a cylinder they lie along the unrolled film. */
+        const [x, y] = L.imageSurface!.fromImageCoordinates(chief.imagePoint.x, chief.imagePoint.y);
+        expect(Math.abs(chief.imagePoint.z! - geometry.imagePlaneZ - L.imageSurface!.sagAt(x, y))).toBeLessThan(1e-9);
       }
     }
   });
@@ -444,7 +447,8 @@ describe("chromatic analysis on curved image surfaces", () => {
         ["offAxis", offAxisRay],
       ] as const) {
         expect(ray.status).toBe("ok");
-        const height = fans.spreads[axis]!.imagePlaneHeights[channel]!;
+        /* Image heights; on a cylinder they lie along the unrolled film. */
+        const height = L.imageSurface!.fromImageCoordinates(0, fans.spreads[axis]!.imagePlaneHeights[channel]!)[1];
         // Reconstruct z from the outgoing physical line independently of the landing primitive.
         const z = ray.terminalPoint[2] + (height - ray.terminalPoint[1]) / ray.uy;
         expect(Math.abs(z - state.imgZ - L.imageSurface!.sagAt(0, height))).toBeLessThan(1e-9);
