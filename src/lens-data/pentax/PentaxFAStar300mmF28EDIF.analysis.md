@@ -69,34 +69,34 @@ The second ED crown splits the front convergence with L1, which keeps the spheri
 
 ### L3 — Plano-Concave Negative
 
-nd = 1.72047, νd = 34.7. Glass: not identified. f = −256.8 mm.
+nd = 1.72047, νd = 34.7. Glass: S-NBH8 (OHARA) coordinate equivalent, a short flint. f = −256.8 mm.
 
 A flat front and concave rear close G1. This flint is the achromatizing partner of the two ED crowns; with them it sets G1's residual color before the long air space to G2.
 
 ### L4 / L5 — Cemented Doublet (G2)
 
-- **L4**, Negative Meniscus: nd = 1.78590, νd = 44.2. Glass: not identified. f = −117.1 mm.
-- **L5**, Positive Meniscus: nd = 1.58913, νd = 61.2. Glass: not identified. f = +80.7 mm.
+- **L4**, Negative Meniscus: nd = 1.78590, νd = 44.2. Glass: S-LAH51 (OHARA) coordinate equivalent. f = −117.1 mm.
+- **L5**, Positive Meniscus: nd = 1.58913, νd = 61.2. Glass: S-BAL35 (OHARA) coordinate equivalent. f = +80.7 mm.
 
 The doublet is positive and converges the beam onto the focusing group. Condition (7) asks for an index step of more than 0.13 at the cemented face (0.197 here). The patent explains that the step gives the interface an overcorrecting spherical aberration, which offsets the change at close range so the lens stays sharp wide open at its shortest distance.
 
 ### L6 / L7 — Cemented Focusing Doublet (G3)
 
-- **L6**, Positive Meniscus, concave to object: nd = 1.80518, νd = 25.4. Glass: not identified. f = +158.4 mm.
-- **L7**, Biconcave Negative: nd = 1.57099, νd = 50.8. Glass: not identified. f = −59.7 mm.
+- **L6**, Positive Meniscus, concave to object: nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA) coordinate equivalent. f = +158.4 mm.
+- **L7**, Biconcave Negative: nd = 1.57099, νd = 50.8. Glass: S-BAL2 (OHARA) coordinate equivalent. f = −59.7 mm.
 
 The only moving group. Its cemented face carries an undercorrecting spherical aberration (condition 8), so the group's own spherical aberration is small and moving it disturbs the correction little. The Abbe ratio ν10/ν11 = 0.500 (condition 9) keeps axial and lateral color steady through the focus travel.
 
 ### L8 / L9 — Cemented Rear Doublet (G4)
 
-- **L8**, Biconvex Positive: nd = 1.69350, νd = 53.2. Glass: not identified. f = +63.9 mm.
-- **L9**, Biconcave Negative: nd = 1.54072, νd = 47.2. Glass: not identified. f = −86.9 mm.
+- **L8**, Biconvex Positive: nd = 1.69350, νd = 53.2. Glass: S-LAL13 (OHARA) coordinate equivalent. f = +63.9 mm.
+- **L9**, Biconcave Negative: nd = 1.54072, νd = 47.2. Glass: S-TIL2 (OHARA) coordinate equivalent. f = −86.9 mm.
 
 The fixed rear doublet forms the final image. Condition (5) bounds its index step: too small and distortion and spherical aberration cannot be corrected together, too large and the Petzval sum turns negative and the field is overcorrected.
 
 ### F — Plane-Parallel Plate (rear filter)
 
-nd = 1.51633, νd = 64.1. Glass: not identified (borosilicate-crown coordinates). Thickness 2.01 mm.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) coordinate equivalent, a borosilicate crown. Thickness 2.01 mm.
 
 The patent lists the plate as surfaces 16–17 without naming it, and the design is computed with it in place. It sits 9.0 mm behind G4 and 74.58 mm ahead of the image. Ricoh's 10-element count and 43 mm filter identify it, by inference, as the lens's rear filter, so the model draws and traces it as an element.
 
@@ -105,16 +105,16 @@ The patent lists the plate as surfaces 16–17 without naming it, and the design
 | Elements | nd | νd | Glass (model) | Role |
 | --- | --- | --- | --- | --- |
 | L1, L2 | 1.49700 | 81.6 | FCD1 (HOYA) / S-FPL51 class, ED | Positive crowns of G1 |
-| L3 | 1.72047 | 34.7 | not identified | G1 flint |
-| L4 | 1.78590 | 44.2 | not identified | G2 negative, high index |
-| L5 | 1.58913 | 61.2 | not identified | G2 positive |
-| L6 | 1.80518 | 25.4 | not identified | G3 positive, dense flint |
-| L7 | 1.57099 | 50.8 | not identified | G3 negative |
-| L8 | 1.69350 | 53.2 | not identified | G4 positive |
-| L9 | 1.54072 | 47.2 | not identified | G4 negative |
-| F | 1.51633 | 64.1 | not identified | Rear filter |
+| L3 | 1.72047 | 34.7 | S-NBH8 (OHARA) equivalent, short flint | G1 flint |
+| L4 | 1.78590 | 44.2 | S-LAH51 (OHARA) equivalent | G2 negative, high index |
+| L5 | 1.58913 | 61.2 | S-BAL35 (OHARA) equivalent | G2 positive |
+| L6 | 1.80518 | 25.4 | S-TIH6 (OHARA) equivalent | G3 positive, dense flint |
+| L7 | 1.57099 | 50.8 | S-BAL2 (OHARA) equivalent | G3 negative |
+| L8 | 1.69350 | 53.2 | S-LAL13 (OHARA) equivalent | G4 positive |
+| L9 | 1.54072 | 47.2 | S-TIL2 (OHARA) equivalent | G4 negative |
+| F | 1.51633 | 64.1 | S-BSL7 (OHARA) equivalent | Rear filter |
 
-The patent gives n at the d-line (588 nm) and ν only. Every pair coincides with a catalog glass, but the patent names none. The model labels only L1 and L2, the two elements Ricoh identifies as ED; their anomalous partial dispersion is inferred from the catalog fluorophosphate, not printed by the patent. The other eight pairs are traced from nd/νd alone.
+The patent gives n at the d-line (588 nm) and ν only. Every pair coincides with a catalog glass, but the patent names none, so the model labels each element with a catalog equivalent (supplier unconfirmed) and traces its color from that glass's dispersion curve. L1 and L2 are the two elements Ricoh identifies as ED; their anomalous partial dispersion comes from the catalog fluorophosphate, not from the patent. L3's coordinates are those of a short flint (S-NBH8, Schott N-KZFS8), whose own partial-dispersion deviation is likewise a catalog property, not a printed one.
 
 G3 pairs a dense-flint positive (νd 25.4) with a lighter negative (νd 50.8), the usual arrangement for a negative achromat. By thin-lens arithmetic its residual color equals that of a single negative lens of νd ≈ 129, so moving it shifts the color balance little, which is what condition (9) asks.
 
