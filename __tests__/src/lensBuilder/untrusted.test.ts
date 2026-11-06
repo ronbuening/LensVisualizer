@@ -335,6 +335,7 @@ describe("builder untrusted input gate", () => {
         source: "Source",
       },
     ];
+    draft.imageSurface = { R: -80, asphere: { K: -0.5, A4: 1e-7 }, cylindrical: true, sd: 22, source: "Source" };
     draft.groups = [{ text: "Front", fromSurface: "1", toSurface: "2" }];
     draft.doublets = draft.groups;
     draft.layout = { svgW: 600, svgH: 400, scFill: 0.7, yScFill: 0.5, maxAspectRatio: 2, lensShiftFrac: 0 };

@@ -17,6 +17,7 @@ import { expandedConstruction } from "./rearPlates.js";
 import { compileConstruction } from "./compileConstruction.js";
 import type { LensConstruction } from "./compileConstruction.js";
 import { resolvedImagePlaneToPlane3 } from "./interactions.js";
+import { createImageSurfaceShape } from "../geometry/imageSurface.js";
 
 export function compileCanonicalUncached(
   prescription: CanonicalLens,
@@ -73,6 +74,7 @@ export function compilePrescription(
     lastLensSurfaceIndex: input.lastLensSurfaceIdx,
     displayElementSpans: input.ES,
     hasExplicitImagePlane: data.opticalPath?.imagePlane !== undefined,
+    imageSurface: data.imageSurface ? createImageSurfaceShape(data.imageSurface) : null,
     surfaces,
     elements: input.elements,
     labelToSurfaceIndex: input.labelIdx,

@@ -24,7 +24,7 @@ flowchart LR
   n_external_src_optics_first_order["src/optics/first-order"]
   n_src_optics_prescription_TypeScript_modules --> |34| n_external_src_types
   n_src_optics_prescription_TypeScript_modules --> |10| n_external_src_optics_types_ts
-  n_src_optics_prescription_TypeScript_modules --> |5| n_external_src_optics_geometry
+  n_src_optics_prescription_TypeScript_modules --> |6| n_external_src_optics_geometry
   n_src_optics_prescription_TypeScript_modules --> |3| n_external_src_optics_math
   n_src_optics_prescription_TypeScript_modules --> |3| n_external_src_utils_catalog
   n_src_optics_prescription_TypeScript_modules --> |2| n_external_src_optics_state
@@ -38,7 +38,7 @@ flowchart LR
 
 - Direct source files: 24
 - Direct subfolders: 2
-- Main outbound areas: same folder (65), src/types (34), src/optics/types.ts (10), src/optics/geometry (5), src/optics/math (3), src/utils/catalog (3), src/optics/state (2), src/optics/chromatic, +2 more
+- Main outbound areas: same folder (65), src/types (34), src/optics/types.ts (10), src/optics/geometry (6), src/optics/math (3), src/utils/catalog (3), src/optics/state (2), src/optics/chromatic, +2 more
 - External consumers: src/optics/analysis, src/optics/buildLens.ts, src/optics/chromatic, src/optics/diagram, src/optics/first-order, src/optics/lensDataConversion.ts, src/optics/perspective, src/optics/prescription, +4 more
 
 ## Subfolders
@@ -57,7 +57,7 @@ flowchart LR
 | `canonicalInput.ts` | Canonical Input helper module | same folder (3), src/types (2) | same folder (2), src/optics/buildLens.ts | assertValidLensData, canonicalInput |
 | `compile.ts` | Compile helper module | same folder (6), src/optics/types.ts, src/types | same folder, src/optics/buildLens.ts, src/optics/state | compiledLensFromRuntime, compileLens, compileLensData |
 | `compileAspheres.ts` | Compile Aspheres helper module | same folder, src/types | same folder (3) | compileAspheres, buildAsphereIndex |
-| `compileCanonical.ts` | Compile Canonical helper module | same folder (5), src/optics/first-order, src/optics/types.ts, src/types | same folder (3) | compileCanonicalUncached, compilePrescription, completeCompilation |
+| `compileCanonical.ts` | Compile Canonical helper module | same folder (5), src/optics/first-order, src/optics/geometry, src/optics/types.ts, src/types | same folder (3) | compileCanonicalUncached, compilePrescription, completeCompilation |
 | `compileConstruction.ts` | Compile Construction helper module | same folder (6), src/types (2), src/optics/chromatic, src/optics/types.ts | same folder | compileConstruction, LensConstruction |
 | `compileControls.ts` | Compile Controls helper module | same folder, src/types | same folder (3) | compileVariableGaps, compileVariableLabels, buildVarIndex, firstInfinityThickness |
 | `compileGroups.ts` | Compile Groups helper module | same folder, src/optics/types.ts, src/types | same folder | compileElements, compileAnnotations |

@@ -26,6 +26,7 @@ const ORDERS: Record<string, string[]> = {
     "opticalPath",
     "perspectiveControl",
     "rearPlates",
+    "imageSurface",
     "groups",
     "doublets",
     "layout",
@@ -129,6 +130,7 @@ const ORDERS: Record<string, string[]> = {
   example: ["label", "id"],
   projection: ["kind", "focalLengthMm", "fullFieldDeg", "imageCircleMm", "maxTraceFieldDeg"],
   opticalPath: ["mode", "surfaceOrder", "imagePlane", "maxInteractions"],
+  imageSurface: ["R", "asphere", "cylindrical", "sd", "source"],
   groups: ["text", "fromSurface", "toSurface"],
   doublets: ["text", "fromSurface", "toSurface"],
   layout: ["svgW", "svgH", "scFill", "yScFill", "maxAspectRatio", "lensShiftFrac"],
@@ -147,6 +149,7 @@ const GROUP_STARTS = new Set([
   "opticalPath",
   "perspectiveControl",
   "rearPlates",
+  "imageSurface",
   "groups",
   "layout",
 ]);

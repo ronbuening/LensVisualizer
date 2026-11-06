@@ -115,6 +115,31 @@ export interface ResolvedImagePlane {
   label: string;
 }
 
+/**
+ * Shape of a curved image surface: a curved sensor, film gate or focal surface. The shape alone; the vertex sits where
+ * a flat image plane would (the last gap, or `opticalPath.imagePlane`). See LENS_DATA_SPEC.md, Image Surface.
+ */
+export interface ImageSurfaceData {
+  /** Signed vertex radius in mm; the centre of curvature lies at vertex + R·n̂ along the image-plane normal. */
+  R: number;
+  /** Conic and polynomial terms, as on a surface. Not with `cylindrical`. */
+  asphere?: Partial<AsphericCoefficients>;
+  /** A circular cylinder, curved in the drawn (y–z) meridian and straight along x. */
+  cylindrical?: true;
+  /** Half-height in mm the surface is drawn and validated over; analyses do not clip at it. */
+  sd: number;
+  /** Source citation, e.g. "JP 2019-000000 A, Table 1 image surface". */
+  source?: string;
+}
+
+/**
+ * An image surface as the engine receives it. `meridian: "flat"` turns a cylinder a quarter turn about the axis, so
+ * the drawn meridian is its straight one; written only by `withImageSurfaceMeridian()`, never authored.
+ */
+export interface ResolvedImageSurfaceData extends ImageSurfaceData {
+  meridian?: "curved" | "flat";
+}
+
 export interface OpticalPathData {
   mode?: "sequential" | "auto";
   surfaceOrder?: string[];
@@ -475,6 +500,8 @@ export interface LensData {
   surfaces: SurfaceData[];
   /** Source-documented rear plates, ordered lens → image; see `RearPlateData`. */
   rearPlates?: RearPlateData[];
+  /** Curved image surface; absent for a flat image. */
+  imageSurface?: ResolvedImageSurfaceData;
   asph?: Record<string, AsphericCoefficients>;
   var?: Record<string, VarRange>;
   varLabels?: [string, string][];
@@ -585,6 +612,8 @@ export interface RuntimeLens {
   readonly projection: LensProjectionConfig;
   readonly opticalPath: ResolvedOpticalPath;
   readonly imagePlane: ResolvedImagePlane;
+  /** Curved image surface at the image plane; null for a flat image. */
+  readonly imageSurface: import("../optics/types.js").ImageSurfaceShape | null;
   readonly isFoldedOptics: boolean;
   readonly stopIdx: number;
   readonly stopPhysSD: number;

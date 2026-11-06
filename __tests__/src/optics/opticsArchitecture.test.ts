@@ -240,6 +240,8 @@ const CACHE_REGISTRY: Readonly<Record<string, CacheRecord>> = {
     perOwner: "one weak reference to the frozen derived RuntimeLens; live callers share it",
   },
   "src/optics/prescription/sourcePaths.ts#LABEL_KEYED": { kind: "constant" },
+  "src/optics/prescription/validate/imageSurface.ts#ASPHERIC_KEYS": { kind: "constant" },
+  "src/optics/prescription/validate/imageSurface.ts#IMAGE_SURFACE_FIELDS": { kind: "constant" },
   "src/optics/prescription/validate/references.ts#KNOWN_ASPHERIC_COEFFICIENTS": { kind: "constant" },
   "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_EVIDENCE": { kind: "constant" },
   "src/optics/prescription/validate/references.ts#SOURCE_ERRATUM_SURFACE_FIELDS": { kind: "constant" },

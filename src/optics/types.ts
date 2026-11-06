@@ -43,6 +43,30 @@ export interface Plane3 {
   label: string;
 }
 
+/**
+ * A curved image surface in its local frame: vertex at the origin, local z along the image-plane normal, local x
+ * along global x. Every shape is mirror-symmetric in x and in y. A flat image is `null`, never a shape.
+ */
+export interface ImageSurfaceShape {
+  readonly kind: "spherical" | "aspheric" | "cylindrical";
+  /** Signed vertex radius in mm, as authored. */
+  readonly radius: number;
+  /** Vertex curvature 1/R in 1/mm. */
+  readonly curvature: number;
+  /** Conic constant K; 0 for a sphere or a cylinder. */
+  readonly conic: number;
+  /** A cylinder's straight direction: `"x"` curves the drawn y–z meridian, `"y"` the x–z one. Null when radial. */
+  readonly cylinderAxis: "x" | "y" | null;
+  /** Half-height in mm of the drawn and validated surface. */
+  readonly semiDiameter: number;
+  /** Sag and slope along the curved direction: r = hypot(x, y), or the curved coordinate of a cylinder. */
+  readonly profile: SurfaceProfile;
+  /** Local z of the surface at lateral (x, y) in mm; NaN where it is not single-valued. */
+  sagAt(x: number, y: number): number;
+  /** Unit normal at lateral (x, y), on the +z side. */
+  normalAt(x: number, y: number): Vec3;
+}
+
 /** Sag in mm and radial slope dz/dr of a surface profile at one radius. */
 export interface SagSlope {
   sag: number;
@@ -256,6 +280,7 @@ export type LensConstants = Omit<
   | "aberrationControl"
   | "projection"
   | "opticalPath"
+  | "imageSurface"
   | "stopIdx"
   | "labelIdx"
 >;
@@ -277,6 +302,8 @@ export interface CompiledPrescription {
   lastLensSurfaceIndex: number;
   displayElementSpans: RuntimeLens["ES"];
   hasExplicitImagePlane: boolean;
+  /** Curved image surface; null for a flat image. */
+  imageSurface: ImageSurfaceShape | null;
   surfaces: readonly CompiledSurface[];
   elements: readonly CompiledElement[];
   labelToSurfaceIndex: Readonly<Record<string, number>>;

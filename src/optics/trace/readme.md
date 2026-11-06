@@ -36,7 +36,7 @@ flowchart LR
   n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_state["src/optics/state"]
   n_external_src_optics_types_ts["src/optics/types.ts"]
-  n_src_optics_trace_src_optics_trace_pathPlanner_ts --> |4| n_external_src_optics_geometry
+  n_src_optics_trace_src_optics_trace_pathPlanner_ts --> |5| n_external_src_optics_geometry
   n_src_optics_trace_src_optics_trace_interactions_ts --> |2| n_external_src_optics_math
   n_src_optics_trace_src_optics_trace_raySampling_ts --> |2| n_external_src_types
   n_src_optics_trace_src_optics_trace_sequentialTrace_ts --> |2| n_src_optics_trace_src_optics_trace_capture_ts
@@ -79,7 +79,7 @@ flowchart LR
 
 - Direct source files: 19
 - Direct subfolders: 0
-- Main outbound areas: same folder (43), src/optics/types.ts (14), src/types (13), src/optics/geometry (9), src/optics/math (6), src/optics/chromatic, src/optics/prescription, src/optics/state
+- Main outbound areas: same folder (43), src/optics/types.ts (14), src/types (13), src/optics/geometry (10), src/optics/math (6), src/optics/chromatic, src/optics/prescription, src/optics/state
 - External consumers: src/optics/analysis, src/optics/chromatic, src/optics/diagram, src/optics/field, src/optics/first-order, src/optics/optics.ts, src/optics/perspective, src/optics/prescription, +2 more
 
 ## Files
@@ -94,7 +94,7 @@ flowchart LR
 | `generalizedTrace.ts` | Generalized Trace helper module | same folder (6), src/optics/math, src/optics/types.ts, src/types | same folder (2) | traceGeneralized |
 | `geometry.ts` | Geometry helper module | same folder (3) | src/optics/first-order (2), src/optics/prescription, src/optics/state | createTraceGeometry |
 | `interactions.ts` | Interactions helper module | src/optics/math (2), src/optics/types.ts, src/types | same folder (3) | IncidentSide, incidentSideFor, isSurfaceSideActive, reflectedDirection, refractedDirection, phaseRefractedDirection, RefractiveInteractionFailure, RefractiveInteractionResult, +5 more |
-| `pathPlanner.ts` | Path Planner helper module | same folder (4), src/optics/geometry (4), src/optics/types.ts, src/types | same folder (3) | SurfaceHitCandidate, ImagePlaneIntersection, sequentialSurfaceMaxT, sequentialSurfaceMinT, sequentialSurfaceBackT, BACKWARD_SECOND_CROSSING_GAP, intersectSequentialSurface, targetedSurfaceMaxT, +5 more |
+| `pathPlanner.ts` | Path Planner helper module | src/optics/geometry (5), same folder (4), src/optics/types.ts, src/types | same folder (3) | SurfaceHitCandidate, ImagePlaneIntersection, sequentialSurfaceMaxT, sequentialSurfaceMinT, sequentialSurfaceBackT, BACKWARD_SECOND_CROSSING_GAP, intersectSequentialSurface, targetedSurfaceMaxT, +5 more |
 | `rayAdapters.ts` | Ray Adapters helper module | same folder (4), src/optics/chromatic, src/optics/math, src/optics/prescription, src/optics/state, +2 more | src/optics/analysis (9), src/optics/field (3), src/optics/prescription (2), same folder, src/optics/chromatic, +5 more | VectorRayTraceInput, traceEngineRay, prepareEngineTrace, traceRay, traceRayChromatic, traceSkewRay, traceSkewRayChromatic, traceRayVector, +9 more |
 | `rayClassification.ts` | Ray Classification helper module | same folder (3), src/optics/types.ts | src/optics/analysis (5) | TraceRayClass, traceRayClassification, provesApertureMiss |
 | `raySampling.ts` | Ray Sampling helper module | src/types (2), same folder | src/optics/analysis, src/optics/diagram, src/optics/field, src/optics/optics.ts | isHeavyLensForRayWork, rayFractionsForDensity, obstructionAwareRayFractionsForDensity, raySampleCountForDensity |

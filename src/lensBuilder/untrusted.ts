@@ -415,6 +415,15 @@ const schema = object(
       ),
       10,
     ),
+    imageSurface: object(
+      {
+        ...numericFields("R", "sd"),
+        asphere: object(numericFields(...ASPHERIC_COEFFICIENT_SCHEMA.map((c) => c.key))),
+        cylindrical: literal(true),
+        source: freeText,
+      },
+      ["R", "sd"],
+    ),
     groups: array(annotation, 250),
     doublets: array(annotation, 250),
     // Diagram scale drives per-render work (the grid draws 15 / scFill lines). The catalog spans scFill 0.35–0.92,
