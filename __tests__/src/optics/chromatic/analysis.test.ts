@@ -1,5 +1,8 @@
 import { createImageSurfaceShape } from "../../../../src/optics/geometry/imageSurface.js";
-import { computeChromaticRayFanSpread } from "../../../../src/optics/chromatic/chromaticTrace.js";
+import {
+  chromaticMeridionalEndpoint,
+  computeChromaticRayFanSpread,
+} from "../../../../src/optics/chromatic/chromaticTrace.js";
 import { prepareAxialZoneLaunch } from "../../../../src/optics/analysis/aberration/shared.js";
 import { prepareAimedPupilLaunch, prepareAimedPupilTrace } from "../../../../src/optics/analysis/pupils/aimedPupil.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
@@ -513,6 +516,18 @@ describe("chromatic analysis on curved image surfaces", () => {
     expect(green.imageHeightMm).toBe(axialRay.terminalPoint[1]);
     expect(green.focusShiftMm).toBe(axialRay.terminalPoint[2] - axialRay.y / axialRay.uy - state.imgZ);
   });
+
+  it.each([false, undefined])(
+    "keeps unreached endpoints at the last surface with reached = %s",
+    (reachedImagePlane) => {
+      const shape = createImageSurfaceShape({ R: -60, sd: 20 });
+      expect(chromaticMeridionalEndpoint(null, reachedImagePlane, 50, 49, 40)).toStrictEqual({ z: 40 });
+      expect(chromaticMeridionalEndpoint(shape, reachedImagePlane, 50, 49, 40)).toStrictEqual({
+        z: 40,
+        reachedImagePlane,
+      });
+    },
+  );
 
   it("lands raw and zone-selected fans on the curve while retaining reached folded landings", () => {
     const shape = createImageSurfaceShape({ R: -60, sd: 20 });

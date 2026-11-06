@@ -19,7 +19,7 @@ import { prepareAxialZoneLaunch } from "../aberration/shared.js";
 import { computeAnalysisFieldGeometryAtState } from "../../state/fieldAdapters.js";
 import type { FieldGeometryState } from "../../field/launch.js";
 import { thick } from "../../state/layout.js";
-import { computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
+import { chromaticMeridionalEndpoint, computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
 import {
   CHROMATIC_ZONE_CHANNELS,
   chromaticRayOmission,
@@ -226,15 +226,13 @@ export function computeLongitudinalChromaticFocus(
         marginalRays[channel] = {
           y: ray.y,
           u: ray.u,
-          z:
-            L.imageSurface === null
-              ? ray.reachedImagePlane
-                ? imagePlaneZ
-                : lastSurfaceZ
-              : ray.reachedImagePlane
-                ? ray.pts.at(-1)![0]
-                : lastSurfaceZ,
-          ...(L.imageSurface === null ? {} : { reachedImagePlane: ray.reachedImagePlane }),
+          ...chromaticMeridionalEndpoint(
+            L.imageSurface,
+            ray.reachedImagePlane,
+            imagePlaneZ,
+            ray.pts.at(-1)![0],
+            lastSurfaceZ,
+          ),
           clipped: false,
         };
       }

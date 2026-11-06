@@ -24,6 +24,28 @@ interface MarginalRayData {
   reachedImagePlane?: boolean;
 }
 
+/**
+ * Where a meridional chromatic ray ends: on the image when it reached it (the plane's z when flat, its own landing on a
+ * curved surface), else at the last surface. Only a curved surface carries the reached flag.
+ *
+ * @param imageSurface - local image shape, or null for a flat plane
+ * @param reachedImagePlane - whether the trace reached the image surface
+ * @param imagePlaneZ - caller's flat image-plane z coordinate in mm
+ * @param terminalZ - trace's terminal z coordinate in mm, used for reached curved landings
+ * @param lastSurfaceZ - final surface vertex z coordinate in mm
+ * @returns endpoint z in mm, with the reached flag only for curved surfaces
+ */
+export function chromaticMeridionalEndpoint(
+  imageSurface: ImageSurfaceShape | null,
+  reachedImagePlane: boolean | undefined,
+  imagePlaneZ: number,
+  terminalZ: number,
+  lastSurfaceZ: number,
+): { z: number; reachedImagePlane?: boolean } {
+  if (imageSurface === null) return { z: reachedImagePlane ? imagePlaneZ : lastSurfaceZ };
+  return { z: reachedImagePlane ? terminalZ : lastSurfaceZ, reachedImagePlane };
+}
+
 function spanOf(values: number[]): number {
   if (values.length < 2) return 0;
   return Math.max(...values) - Math.min(...values);

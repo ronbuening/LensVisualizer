@@ -14,7 +14,11 @@ import { stateWithZ } from "../../optics/optics.js";
 import { prepareRuntimeState } from "../../optics/optics.js";
 import { summarizeDispersionQuality } from "../../optics/chromatic.js";
 import { MARGINAL_PUPIL_FRACTIONS } from "../../optics/analysis.js";
-import { CHROMATIC_ZONE_CHANNELS, chromaticSpreadFromRays } from "../../optics/chromatic.js";
+import {
+  CHROMATIC_ZONE_CHANNELS,
+  chromaticMeridionalEndpoint,
+  chromaticSpreadFromRays,
+} from "../../optics/chromatic.js";
 import type { ChromaticFanRay } from "../../optics/chromatic.js";
 import { offsetVectorFieldRay } from "../../optics/fieldGeometry.js";
 import { traceRayChromatic, traceRayVectorChromatic } from "../../optics/optics.js";
@@ -240,15 +244,13 @@ export default function useChromaticRays({
                 fraction: f,
                 y: result.y,
                 u: result.u,
-                z:
-                  L.imageSurface === null
-                    ? result.reachedImagePlane
-                      ? IMG_MM
-                      : zPos[L.N - 1]
-                    : result.reachedImagePlane
-                      ? result.pts.at(-1)![0]
-                      : zPos[L.N - 1],
-                ...(L.imageSurface === null ? {} : { reachedImagePlane: result.reachedImagePlane }),
+                ...chromaticMeridionalEndpoint(
+                  L.imageSurface,
+                  result.reachedImagePlane,
+                  IMG_MM,
+                  result.pts.at(-1)![0],
+                  zPos[L.N - 1],
+                ),
                 clipped: result.clipped,
               });
             }
@@ -338,15 +340,13 @@ export default function useChromaticRays({
                   fraction: f,
                   y: result.y,
                   u: result.u,
-                  z:
-                    L.imageSurface === null
-                      ? result.reachedImagePlane
-                        ? IMG_MM
-                        : zPos[L.N - 1]
-                      : result.reachedImagePlane
-                        ? result.pts.at(-1)![0]
-                        : zPos[L.N - 1],
-                  ...(L.imageSurface === null ? {} : { reachedImagePlane: result.reachedImagePlane }),
+                  ...chromaticMeridionalEndpoint(
+                    L.imageSurface,
+                    result.reachedImagePlane,
+                    IMG_MM,
+                    result.pts.at(-1)![0],
+                    zPos[L.N - 1],
+                  ),
                   clipped: result.clipped,
                 };
                 offAxisZoneRays.push(zoneRay);

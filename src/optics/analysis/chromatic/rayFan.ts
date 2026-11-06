@@ -5,7 +5,7 @@
 import type { ImageSurfaceShape, PreparedGeometry } from "../../types.js";
 
 import { runtimeView } from "../../prescription/runtimeView.js";
-import { computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
+import { chromaticMeridionalEndpoint, computeChromaticRayFanSpread } from "../../chromatic/chromaticTrace.js";
 import {
   CHROMATIC_ZONE_CHANNELS,
   chromaticRayOmission,
@@ -246,16 +246,14 @@ export function computeChromaticRayFanAnalysis(
       return {
         y: ray.y,
         u: ray.u,
-        z:
-          L.imageSurface === null
-            ? ray.reachedImagePlane
-              ? imagePlaneZ
-              : lastSurfaceZ
-            : ray.reachedImagePlane
-              ? ray.pts.at(-1)![0]
-              : lastSurfaceZ,
+        ...chromaticMeridionalEndpoint(
+          L.imageSurface,
+          ray.reachedImagePlane,
+          imagePlaneZ,
+          ray.pts.at(-1)![0],
+          lastSurfaceZ,
+        ),
         clipped: ray.clipped,
-        ...(L.imageSurface === null ? {} : { reachedImagePlane: ray.reachedImagePlane }),
       };
     }),
     L.imageSurface,
@@ -290,8 +288,13 @@ export function computeChromaticRayFanAnalysis(
                 return {
                   y: ray.y,
                   u: ray.uy,
-                  z: ray.reachedImagePlane ? ray.terminalPoint[2] : lastSurfaceZ,
-                  reachedImagePlane: ray.reachedImagePlane,
+                  ...chromaticMeridionalEndpoint(
+                    L.imageSurface,
+                    ray.reachedImagePlane,
+                    imagePlaneZ,
+                    ray.terminalPoint[2],
+                    lastSurfaceZ,
+                  ),
                   clipped: ray.status !== "ok",
                 };
               }
