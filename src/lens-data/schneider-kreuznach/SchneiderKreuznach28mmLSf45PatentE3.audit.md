@@ -42,3 +42,35 @@ predate this change.
 
 `maker` and `name` used "Schneider Kreuznach"; the other 23 Schneider lenses use "Schneider-Kreuznach", so the lens
 would have opened a second maker page. Both now use the hyphen.
+
+## 2026-11-06 — Deployment validation and wording pass
+
+Source re-read. Tables 3A/3B (PDF pp. 10–11) against the file: all 25 rows of R, D, N and V, the stop at surface 15,
+the four cemented interfaces, the S3 coefficients A0–A10 and FB match, with no mismatch. Example 3 has no variable
+gaps to check: only the infinity state is tabulated, and the 0.35 m plots (¶0053) come without spacings. A0 = 16.2359
+is above 1, an oblate-ellipsoid base (¶0021), and maps to K = A0 − 1 = 15.2359.
+
+First order, patent against model. EFL 28.4792 mm against F = 28.5; F/4.600 against Fno = 4.6; paraxial back focus
+63.9209 mm against FB = 63.9 (the last gap stays 63.9); the 51.2° chief ray lands at 34.876 mm against the 34.85 mm
+645 half-diagonal (2W = 102.4°). |Fgr1/F| = 4.05, Fgr2/F = 1.89, A0 = 16.2, Vp = 70.1 and 90.9 and Vn = 90.9
+reproduce ¶0052. Stop radius 7.058 mm, paraxial entrance-pupil radius 3.096 mm. With the 28.7 mm S2 rim, wide-open
+geometric transmission is 99.3 % at 31.3°, 90.4 % at 39.8°, 80.0 % at 45.5° and 32.2 % at 51.2°; field coverage
+100 %.
+
+Maker diagram. Retail listings for the Schneider-Kreuznach 28mm LS f/4.5 Aspherical (Phase One / Mamiya 645AF) give
+14 elements in 10 groups, about 102° and 0.35 m minimum focus, matching the model and the patent's near plots. Phase
+One's section fits Example 3 closely (axial vertex lines 0.10 mm RMS) and Examples 2 and 1 worse (1.81 and 2.81 mm).
+The patent is Mamiya-OP's; the Schneider-Kreuznach branding is not evidence that Schneider designed the lens.
+
+Changes in this pass. Data file: header comment rewritten in plain words with every fact kept and the S2 change
+added; subtitle, specs (14/10, design f = 28.5 mm, F/4.6, one asphere, 2ω = 102.4°) and focus description replaced;
+roles added to all 14 elements. No optical value, glass string or `apd` field changed; engine output before and after
+is identical and the surface validator passes. Analysis: identification rewritten, withdrawing "E2 remains a serious
+alternative" on the section fit and dropping the remark about an earlier public attribution; spacing fixed
+throughout; the S2-era pupil-sample counts, MTF table, viewer-convergence notes and UI remarks removed; "Native
+Numerical Validation and Limits" and "Compiled Viewer Limits" replaced by "Aperture and Clear Radii" and "Model Scope
+and Limitations", with the vignetting above re-derived on the current file.
+
+Closed: ¶0024 calls the Vp/Vn > 62 glasses (L2, L9, L12, L13 here) high in partial dispersion, so those four now
+carry `apd: "patent"` with notes citing conditions (4)/(5), ¶0024 and ¶0052. No partial-dispersion values are added;
+the patent prints none.

@@ -1,25 +1,33 @@
 /**
- * JP 2006-300972 A, whole Example 3; JP 4717493 B2 corroboration.
- * Probable later named Schneider Kreuznach 28mm LS family; Mamiya-origin
- * patent, not Schneider design authorship or an exact factory prescription.
- * Native scale x1: F=28.5, Fno=4.6, full2W=102.4deg. No retail rescale.
- * All25source surfaces and literal R/d/nd/vd retained. Source D25 is blank;
- * last d=63.9 adopts separately printed FB as rear-vertex air-image gap.
- * Fixed image181.5806; computedBFL63.9208651356 remains unapplied.
- * S3 sourceA0=.16235900E+02 maps K=15.2359; A2=.00000000E+00;
- * A4=.73817775E-05, A6=-.41918163E-08, A8=.30834735E-11,
- * A10=-.24494941E-15. No other-example borrowing or extra rear plate.
- * NOTE ON SEMI-DIAMETERS: every clear radius is inferred from Fig7
- * envelopes/cap ends and geometry/axial-pupil bounds, not source dimensions.
- * Initial S6cap18.5 crossedS7; before optical construction it was restricted
- * to15.45 by the default90% gap-sag bound. No override or ray/MTF fitting.
- * Final caps were frozen before pupil/MTF runs. Preserve strong source-edge
- * clipping and unavailable lower-cap sensitivity; no loss-free field claim.
- * Ordinary-prime iris derives from sourceF4.6 (7.05809570223mm at infinity).
- * Source names d-lineN/V but no numerical wavelength or full dispersion;
- * conventional native587.5618nm reference and Abbe dispersion are modeling
- * assumptions. Unmatched glasses do not assert vendor/melt identity.
- * Infinity only: source0.35m plots lack numeric travel/distance datum.
+ * JP 2006-300972 A, Example 3 in full; the grant JP 4717493 B2 prints the
+ * same prescription. Probably the later Schneider-Kreuznach 28mm LS f/4.5.
+ * The patent is Mamiya-OP's: this is neither evidence that Schneider designed
+ * the lens nor an exact factory prescription.
+ * Patent scale (x1): F = 28.5, Fno = 4.6, 2W = 102.4 deg. Not rescaled to the
+ * retail specification.
+ * All 25 source surfaces are kept with their printed R, d, nd and vd. Source
+ * D25 is blank; the last d = 63.9 is the separately printed FB, taken as the
+ * air gap from the rear vertex to the image. The image plane is fixed at
+ * 181.5806 mm from S1; the computed BFL of 63.9208651356 is not applied.
+ * S3 asphere: source A0 = .16235900E+02 (A0 > 1 is an oblate-ellipsoid base,
+ * ¶0021) maps to K = A0 - 1 = 15.2359; A2 = .00000000E+00;
+ * A4 = .73817775E-05, A6 = -.41918163E-08, A8 = .30834735E-11,
+ * A10 = -.24494941E-15. No value is borrowed from another example, and no
+ * rear plate is added.
+ * NOTE ON SEMI-DIAMETERS: the source prints no clear radii. All are inferred
+ * from the Fig. 7 element outlines and from geometry and axial-pupil bounds.
+ * S6, first estimated at 18.5 mm, crossed S7 and was limited to 15.45 mm by
+ * the default 90 % gap-sag bound (no override). S2 was later raised from 28
+ * to 28.7 mm, the smallest value that passes the chief ray at the 645 corner.
+ * No other rim was fitted to ray or MTF results. The strong vignetting at the
+ * edge of the field is kept; the field is not claimed to be free of losses.
+ * Ordinary prime iris sized from the source F/4.6 (radius 7.05809570223 mm at
+ * infinity).
+ * The source gives d-line N and V but no numerical wavelength or full
+ * dispersion; the 587.5618 nm reference and Abbe-number dispersion are
+ * modeling assumptions. Unmatched glasses claim no vendor or melt identity.
+ * Infinity only: the source's 0.35 m aberration plots come with no focus
+ * travel or distance datum.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
@@ -28,19 +36,18 @@ const LENS_DATA = {
   "key": "schneider-kreuznach-28mm-ls-f45-mamiya-patent",
   "maker": "Schneider-Kreuznach",
   "name": "SCHNEIDER-KREUZNACH 28mm LS f/4.5",
-  "subtitle": "Mamiya-origin patent E3 reconstruction; probable later 28LS family; inferred apertures; infinity only; factory identity unproven",
+  "subtitle": "JP 2006-300972 A, Example 3 — probable production design (Mamiya-OP patent)",
   "catalog": {
     "lensMounts": [
       "mamiya-645"
     ],
     "imageFormat": "645",
     "specs": [
-      "PATENT E3 RECONSTRUCTION",
-      "PROBABLE 28LS FAMILY / MAMIYA ORIGIN",
-      "FACTORY IDENTITY UNPROVEN",
-      "INFINITY ONLY",
-      "INFERRED IRIS / CLEAR APERTURES",
-      "NATIVE 28.5mm F/4.6"
+      "14 ELEMENTS / 10 GROUPS",
+      "DESIGN f = 28.5 mm",
+      "DESIGN F/4.6",
+      "1 ASPHERICAL SURFACE / 1 ELEMENT",
+      "DESIGN 2ω = 102.4°"
     ],
     "elementCount": 14,
     "groupCount": 10,
@@ -77,7 +84,8 @@ const LENS_DATA = {
       "vd": 42.7,
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.83481 / vd 42.7; no glass identity)",
-      "apd": false
+      "apd": false,
+      "role": "First of the four front negative menisci that share the fixed first group's divergence."
     },
     {
       "id": 2,
@@ -88,7 +96,9 @@ const LENS_DATA = {
       "vd": 90.9,
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.43875 / vd 90.9; no glass identity)",
-      "apd": false
+      "apd": "patent",
+      "apdNote": "Meets condition (5), νd > 62 for a front negative meniscus (¶0052: Vn = 90.9); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
+      "role": "Second front negative meniscus, in low-dispersion glass; its aspheric convex front face corrects distortion."
     },
     {
       "id": 3,
@@ -99,7 +109,8 @@ const LENS_DATA = {
       "vd": 42.7,
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.83481 / vd 42.7; no glass identity)",
-      "apd": false
+      "apd": false,
+      "role": "Third front negative meniscus, convex to the object."
     },
     {
       "id": 4,
@@ -110,7 +121,8 @@ const LENS_DATA = {
       "vd": 22.6,
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.80809 / vd 22.6; no glass identity)",
-      "apd": false
+      "apd": false,
+      "role": "Fourth front negative meniscus, turned concave to the object, which also helps correct lateral color."
     },
     {
       "id": 5,
@@ -122,6 +134,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.76182 / vd 26.5; no glass identity)",
       "apd": false,
+      "role": "Biconvex positive of the cemented doublet that ends the first group.",
       "cemented": "D1"
     },
     {
@@ -134,6 +147,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.80518 / vd 25.4; no glass identity)",
       "apd": false,
+      "role": "Negative meniscus of the first group's doublet; the object-concave cemented face corrects lateral color.",
       "cemented": "D1"
     },
     {
@@ -146,6 +160,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.56732 / vd 42.7; no glass identity)",
       "apd": false,
+      "role": "Positive meniscus, front of the cemented doublet that opens the rear group ahead of the stop.",
       "cemented": "D2"
     },
     {
@@ -158,6 +173,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.78800 / vd 47.4; no glass identity)",
       "apd": false,
+      "role": "Negative meniscus, rear of the doublet just ahead of the stop.",
       "cemented": "D2"
     },
     {
@@ -169,7 +185,9 @@ const LENS_DATA = {
       "vd": 70.1,
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.48749 / vd 70.1; no glass identity)",
-      "apd": false
+      "apd": "patent",
+      "apdNote": "Meets condition (4), νd > 62 for a positive lens behind the stop (¶0052: Vp = 70.1); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
+      "role": "Biconvex crown positive directly behind the stop."
     },
     {
       "id": 10,
@@ -181,6 +199,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.83481 / vd 42.7; no glass identity)",
       "apd": false,
+      "role": "High-index biconcave negative, front of the doublet behind L9.",
       "cemented": "D3"
     },
     {
@@ -193,6 +212,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.57099 / vd 50.7; no glass identity)",
       "apd": false,
+      "role": "Biconvex positive, rear of the doublet behind L9.",
       "cemented": "D3"
     },
     {
@@ -204,7 +224,9 @@ const LENS_DATA = {
       "vd": 90.9,
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.43875 / vd 90.9; no glass identity)",
-      "apd": false
+      "apd": "patent",
+      "apdNote": "Meets condition (4), νd > 62 for a positive lens behind the stop (¶0052: Vp = 90.9); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
+      "role": "Low-dispersion positive meniscus, concave to the object, in the rear group."
     },
     {
       "id": 13,
@@ -215,7 +237,9 @@ const LENS_DATA = {
       "vd": 70.1,
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.48749 / vd 70.1; no glass identity)",
-      "apd": false,
+      "apd": "patent",
+      "apdNote": "Meets condition (4), νd > 62 for a positive lens behind the stop (¶0052: Vp = 70.1); ¶0024 calls for high-partial-dispersion glass there to correct lateral color. The patent prints no partial-dispersion values.",
+      "role": "Plano-convex crown positive with a flat front, front of the last doublet.",
       "cemented": "D4"
     },
     {
@@ -228,6 +252,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "glass": "Unmatched (patent nd 1.83481 / vd 42.7; no glass identity)",
       "apd": false,
+      "role": "Negative meniscus that closes the last doublet and the lens.",
       "cemented": "D4"
     }
   ],
@@ -405,7 +430,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity-only patent E3 reconstruction. No numeric near travel, finite conjugate or cam law is supplied; retail0.35m is not a modeled endpoint."
+    "description": "Infinity only. The patent focuses by moving the rear group, with the stop, toward the object and plots aberrations at 0.35 m, the production lens's minimum focus, but prints no close-focus spacings, so close focus is not modeled."
   },
   "aperture": {
     "nominalFNumber": 4.6,
