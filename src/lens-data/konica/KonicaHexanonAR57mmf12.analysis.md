@@ -1,117 +1,107 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP S47-019025 Y1 (JPS4719025Y1), examined utility-model announcement.
-**Application Number:** 実願昭43-045827.
-**Filed:** 1968-06-03.
-**Published:** 1972-06-29 announcement; exact registration date is not supplied.
-**Inventor:** Saburo Kinoshita (木下三郎).
-**Applicant:** Konishiroku Photo Industry Co., Ltd. (小西六写真工業株式会社).
-**Title:** 大口径比写真レンズ (Large-aperture-ratio photographic lens; translation).
-**Example details:** Sole unnumbered table, PDF3/printed241; physical section Fig.1 PDF6.
+**Patent:** JP S47-19025 Y1 (実公昭47-19025), examined utility model  
+**Application Number:** 実願昭43-45827  
+**Filed:** 1968-06-03  
+**Published:** 1972-06-29  
+**Inventor:** Saburo Kinoshita (木下三郎)  
+**Applicant:** Konishiroku Photo Industry Co., Ltd. (小西六写真工業株式会社)  
+**Title:** 大口径比写真レンズ (large-aperture photographic lens)  
+**Example details:** 実施例, the single unnumbered table on printed page 241, normalized to f = 1 and 1:1.2. Seidel coefficients on page 242; Fig. 1 section and Fig. 2 aberration curves (plotted at f = 100) on page 244. All lengths scaled by 57.0072.
 
-The normalized f=1/F1.2 seven-element/six-group source is a probable historical-family association with the Konica Hexanon AR57mm f/1.2. The retained1980 maker catalog excerpt identifies a57mm f/1.2, seven-element/six-group product,42° full field and0.45m closest focus. It does not establish a unique1968-to-1980 production generation or exact factory radii. Source41° and maker42° remain distinct.
+The publication contains one numerical example, a seven-element, six-group lens of aperture ratio 1:1.2 for a field of 41° or more. The utility model names no product. The association with the KONICA HEXANON AR 57mm f/1.2 rests on converging evidence, and the model is a probable production correlation, not a confirmed factory prescription.
 
-The whole native f=1 prescription is preserved. One source length unit is represented by one runtime millimetre solely as an explicit hypothetical computational convention. No57mm scaling, factory dimensions or retail lp/mm interpretation is claimed. The computed20.5° chief height0.3683069999117482 is retained only as a private validation reference. No catalog image circle or format is authored. The automatic cap-limited viewer window may exceed the source angle; those extra fields are conditional model diagnostics, not source coverage. No retail mount or format is assigned at this scale. Source aberration Figures2–4 are explicitly evaluated at f=100; their curves do not validate this f=1 diffraction model.
+1. **Construction.** Konica's 1980 lens catalog, buhla.de and allphotolenses.com give seven elements in six groups, the count the claim describes. One dealer listing (Kamerastore) gives six elements in four groups; it disagrees with the maker's figure and with the other sources, and is not followed.
+2. **Aperture and focal length.** The example is 1:1.2, and Konica's f/1.2 standard lens for the AR mount is the 57 mm. The printed radii trace to f = 0.999873, so the scale that gives 57 mm is 57.0072, and the model's EFL is 56.99998 mm.
+3. **Field.** The patent claims 41° or more, and Fig. 2 plots to a 20.5° half-field, 21.31 mm of image height at 57 mm. Konica gives 42°; the 35 mm frame diagonal subtends 41.6° at this focal length.
+4. **Back focus.** The patent text says a standard lens for a single-lens reflex needs a back focus of about 0.6 f. The example's paraxial back focus is 0.597 f, 34.02 mm at this scale.
+5. **Timing.** The application was filed in June 1968. buhla.de places the lens in the late 1960s, alongside the Autoreflex T; other collector sources date it to about 1970, and no maker document dating its release was found.
+
+The patent sets its design against an earlier F1.2 standard lens, the example of JP S42-25212 B, whose transverse aberrations it plots as Fig. 4 beside its own in Fig. 3. Its stated gain is mid-field coma flare reduced to the level of an F2 lens, for good contrast at full aperture.
 
 ## Optical Architecture
 
-Seven spherical elements form six air-spaced groups, with L4/L5 cemented at surface8. The front positive-positive-negative sequence and negative-positive-positive-positive rear sequence are a modified Gaussian arrangement. The ordinary physical iris lies between L3 and L4 within source t6=0.285. The first-surface tangent stop used for the source Seidel calculation is a different calculation datum and is not substituted for the physical iris. No aspheres, additional plates or hidden sensor stack are supplied.
+Seven spherical elements form a modified Gauss: positive menisci L1 and L2 and the negative meniscus L3 ahead of the stop, then the cemented L4/L5 pair, the positive meniscus L6 and the biconvex L7 behind it. The front group runs positive-positive-negative and the rear group negative-positive-positive-positive. L1 and L2 are separated by 0.097 mm of air, L2 and L3 by 1.14 mm, and L5, L6 and L7 by 0.097 mm each, so the six groups sit in two close-packed assemblies either side of a 16.25 mm stop space.
+
+The patent traces mid-field coma flare in fast Gauss lenses mainly to the two strong concave faces around the stop, r6 and r7. It weakens both and recovers what that costs with three further measures: high indices throughout to hold down the Petzval sum, an overcorrecting L2/L3 air lens (r5 weaker than r4) to free r7, and a strongly convex r9 balanced by a weak r11 for higher-order spherical aberration.
+
+The patent's text places the diaphragm between L3 and L4 but prints neither its position nor its diameter, and Fig. 1 draws none; the Seidel table puts its calculation stop at the first surface, a convention rather than the iris. The model splits the 16.25 mm space at its midpoint, 8.12 mm from each vertex. That position is inferred. The stop radius, 14.97 mm, follows from the design F/1.2 (a 47.50 mm entrance pupil), and the iris clears both neighbouring faces by 1.10 and 2.80 mm at full aperture.
+
+Semi-diameters are not printed. Fig. 1 is drawn to scale along the axis, its vertex crossings agreeing with the prescription within about 3 px at 950.7 px per f-unit, and its rims set the model's clear apertures: 26.13 mm for L1, 22.63 mm for L2's front face, 15.96 mm for L3's concave rear face and L4's front face, 18.81 mm for the cemented pair, 18.38 mm for L6 and 17.96 mm for L7, all within about 1% of the drawing. L2's rear face and L3's front face are set to 18.98 and 18.97 mm, the heights of the F/1.2 axial beam. Those two faces would touch at 19.13 mm across their 1.14 mm air gap, and Fig. 1 draws them meeting at the rim, so about 0.02 mm of air remains there. Geometric transmission at full aperture is 100% on axis, 81.5% at 11.7° and 40.5% at the 20.5° field edge.
+
+At this scale the lens is 52.17 mm from first to last vertex and 86.19 mm from first vertex to image. The Petzval sum, normalized to f = 1, is 0.2104 against the printed ΣIV of 0.2102.
 
 ## Element-by-Element Analysis
 
 ### L1 — Positive Meniscus
 
-nd = 1.77390, νd = 50.6. Glass: Unmatched literal source coordinates; supplier unproved. f = +1.612902784 runtime mm, isolated in air at the assumed numerical scale.
+nd = 1.77390, νd = 50.6. Glass: unmatched; the patent prints d-line nd and νd only. f = +91.95 mm.
 
-The first positive meniscus begins the converging front group. Its nearly flat rear face remains the literal finite radius29.987; it has not been flattened. The isolated focal length is descriptive, including for cemented members, and is not an isolated in-system aberration attribution.
+A weak front collector with a nearly flat rear face (R = 1709 mm, 30 f). Its index sits in the patent's 1.75–1.85 band for n1, n2 and n5, which holds down the Petzval sum and reduces astigmatism and field curvature. Fig. 1 draws L1 the largest element, and its 26.13 mm rim leaves 2.4 mm beyond the entrance-pupil radius.
 
 ### L2 — Positive Meniscus
 
-nd = 1.78900, νd = 42.7. Glass: Unmatched literal source coordinates; supplier unproved. f = +1.085044660 runtime mm, isolated in air at the assumed numerical scale.
+nd = 1.78900, νd = 42.7. Glass: unmatched; the patent prints d-line nd and νd only. f = +61.86 mm.
 
-The second positive meniscus supplies substantial front power. Its boundary with L3 is separated by the literal thin0.02 gap, which constrains the inferred optical caps. The isolated focal length is descriptive, including for cemented members, and is not an isolated in-system aberration attribution.
+The strongest positive element of the front group. Its rear face, r4, and L3's weaker front face, r5, form a thin air lens whose ratio the patent keeps between 1.3 and 1.7 (here 1.501): with r5 weaker than r4 the pair generates overcorrected spherical aberration (a net −0.348 in the Seidel table), which lets r7 stay weak. Above the range coma grows quickly and the meridional field bends strongly negative. The gap itself is kept below 0.025 f (here 0.02 f) because high-index glasses of low dispersion were not available for L1 and L2, and lateral color from oblique rays builds up in that space.
 
 ### L3 — Negative Meniscus
 
-nd = 1.74000, νd = 28.2. Glass: Unmatched literal source coordinates; supplier unproved. f = -0.606313057 runtime mm, isolated in air at the assumed numerical scale.
+nd = 1.74000, νd = 28.2. Glass: unmatched; the patent prints d-line nd and νd only. f = −34.56 mm.
 
-The negative meniscus presents a steep image-side concavity toward the diaphragm. The source discusses this inner curvature as part of coma and field-curvature balancing. The isolated focal length is descriptive, including for cemented members, and is not an isolated in-system aberration attribution.
+The front group's negative flint, with its steep concave face toward the stop. The patent keeps that face, r6, between 0.31 f and 0.37 f (here 0.3415 f): stronger and coma flare grows, weaker and the Petzval sum, astigmatism and field curvature can no longer be corrected. The surface carries the lens's largest single Petzval and distortion terms (−1.245 and −2.055). The 1.70–1.81 index band for n3 and n4 raises the power of r6 and r7 without steepening them.
 
-### L4 — Biconcave Negative
+### L4 / L5 — Cemented Doublet
 
-nd = 1.74077, νd = 27.7. Glass: Unmatched literal source coordinates; supplier unproved. f = -0.388221832 runtime mm, isolated in air at the assumed numerical scale.
+L4: nd = 1.74077, νd = 27.7. Glass: unmatched; the patent prints d-line nd and νd only. f = −22.13 mm (biconcave).
 
-The negative cemented member faces the diaphragm. It shares surface8 with L5; its isolated-in-air focal length is not the installed power of the cemented component. The isolated focal length is descriptive, including for cemented members, and is not an isolated in-system aberration attribution.
+L5: nd = 1.83060, νd = 36.5. Glass: unmatched; the patent prints d-line nd and νd only. f = +26.09 mm (biconvex).
 
-### L5 — Biconvex Positive
+L4's concave front face, r7, mirrors r6 across the stop space and is held between 0.38 f and 0.45 f (here 0.416 f). It contributes the largest spherical-aberration term in the Seidel table, −1.129, and almost no coma (−0.010), and the patent warns that a face this weak tends to leave spherical aberration strongly undercorrected unless the other conditions compensate. The cemented interface r8 carries little power, and the pair together is nearly afocal (f ≈ +1377 mm). The patent keeps ν6 and ν7 above 47 because making up the rear crowns' color at r8 would bring overcorrected higher-order color there and spoil axial color.
 
-nd = 1.83060, νd = 36.5. Glass: Unmatched literal source coordinates; supplier unproved. f = +0.457697927 runtime mm, isolated in air at the assumed numerical scale.
-
-The positive cemented partner balances L4 across the literal common surface8. Its high index and lower Abbe number remain source coordinates, without a named supplier. The isolated focal length is descriptive, including for cemented members, and is not an isolated in-system aberration attribution.
+L5's strong convex rear face, r9, is held between 0.52 f and 0.60 f (here 0.5758 f) to remove higher-order spherical aberration and further reduce mid-field coma flare. Below the range the higher-order spherical aberration and field curvature grow too large; above it distortion and coma flare can no longer be corrected.
 
 ### L6 — Positive Meniscus
 
-nd = 1.72916, νd = 54.8. Glass: Unmatched literal source coordinates; supplier unproved. f = +2.625307582 runtime mm, isolated in air at the assumed numerical scale.
+nd = 1.72916, νd = 54.8. Glass: unmatched; the patent prints d-line nd and νd only. f = +149.66 mm.
 
-The rear positive meniscus is separated from the cemented pair and final singlet by the two literal0.0017 gaps. The patent discusses rear glass indices and Abbe numbers in the correction conditions. The isolated focal length is descriptive, including for cemented members, and is not an isolated in-system aberration attribution.
+A weak meniscus convex to the image. The patent keeps the rear face r11 weak, between f and 2 f (here 1.651 f), because r9's strong curvature pushes spherical aberration toward undercorrection; a stronger r11 adds to it, a weaker one overcorrects it and leaves distortion uncorrected. With L7 it forms the pair of high-index crowns (1.7–1.8, νd > 47) that hold down the Petzval sum, help correct undercorrected spherical aberration and keep the color of the whole lens in balance.
 
 ### L7 — Biconvex Positive
 
-nd = 1.75500, νd = 52.4. Glass: Unmatched literal source coordinates; supplier unproved. f = +1.592044072 runtime mm, isolated in air at the assumed numerical scale.
+nd = 1.75500, νd = 52.4. Glass: unmatched; the patent prints d-line nd and νd only. f = +90.76 mm.
 
-The final positive singlet completes the rear assembly. The primary prose allows a biconvex or meniscus member; the selected literal radii define the biconvex form. The isolated focal length is descriptive, including for cemented members, and is not an isolated in-system aberration attribution.
+The last element, with its stronger face toward the object (R12 = 1.43 f); the claim allows either a biconvex lens or a positive meniscus here, and the example is biconvex (R13 = −7.43 f).
 
-## Glass Identification / Selection
+## Glass Selection
 
-| Element | nd | νd | Identification |
-| --- | ---: | ---: | --- |
-| L1 | 1.77390 | 50.6 | Unmatched literal coordinates |
-| L2 | 1.78900 | 42.7 | Unmatched literal coordinates |
-| L3 | 1.74000 | 28.2 | Unmatched literal coordinates |
-| L4 | 1.74077 | 27.7 | Unmatched literal coordinates |
-| L5 | 1.83060 | 36.5 | Unmatched literal coordinates |
-| L6 | 1.72916 | 54.8 | Unmatched literal coordinates |
-| L7 | 1.75500 | 52.4 | Unmatched literal coordinates |
+The patent prints d-line nd and νd only and names no glass supplier, and the data file leaves all seven glasses unmatched. By their place on the nd–νd map the palette is uniformly high in index: three lanthanum flints at 1.774–1.831 (νd 36–51) for L1, L2 and L5, two dense flints at 1.740–1.741 (νd 28) for L3 and L4, and two lanthanum crowns at 1.729–1.755 (νd 52–55) for L6 and L7. The mean index is 1.765. High index is the patent's main tool for holding the Petzval sum down while r6 and r7 are weakened.
 
-Both the source d-line refractive indices and Abbe numbers remain literal. The numerical wavelength is unprinted;587.5618nm is an explicit implementation convention. No supplier, melt, full dispersion, anomalous partial dispersion or coating is established. Native reference-index runs hold the literal indices. Default photopic viewer interpolation is a separate approximate spectral model and does not establish broadband factory accuracy.
+## Conditional Expressions
 
-## Focus Mechanism and Image Plane
+| Condition | Example (f = 1) | Met |
+| --- | --- | --- |
+| 0.31 f < r6 < 0.37 f | 0.3415 | yes |
+| 0.38 f < \|r7\| < 0.45 f | 0.4160 | yes |
+| 1.75 < n1, n2, n5 < 1.85 | 1.7739, 1.7890, 1.8306 | yes |
+| 1.70 < n3, n4 < 1.81 | 1.7400, 1.74077 | yes |
+| 1.70 < n6, n7 < 1.80 | 1.72916, 1.7550 | yes |
+| ν6, ν7 > 47 | 54.8, 52.4 | yes |
+| t4 < 0.025 f | 0.020 | yes |
+| 1.3 < r5/r4 < 1.7 | 1.501 | yes |
+| 0.52 f < \|r9\| < 0.60 f | 0.5758 | yes |
+| f < \|r11\| < 2 f | 1.6507 | yes |
 
-No numerical finite endpoint, conjugate, image gap or cam law is supplied. Only a hypothetical collimated-input state is authored, using canonical infinity-only metadata. The source values produce EFL0.999873301914, versus printed f1; the residual-0.000126698086 remains unapplied and is not assigned an unsupported rounding explanation. Two independent first-order propagations agree within2.22e-16.
+The description on printed page 240 gives the r11 lower bound as 1.2 f; the discussion on page 241 and the claim give f. The example meets both.
 
-The derived Gaussian BFL0.596781816458 plus literal powered track0.915100000000 fixes image coordinate1.511881816458 in the declared runtime units. These are computed assumptions, not printed distances. All native reference/design calculations apply zero focus shift. Best-focus and Auto viewer diagnostics, where present, remain separately recorded and do not replace the authored plane. No retail near-limit or enlarger finite performance is inferred.
+## Focus Mechanism
 
-## Aperture, Stop and Geometry Qualifications
-
-The physical stop plane is inferred at the midpoint of the printed gap, z0.464200000000; its two modeled intervals are0.1425/0.1425, preserving the source gap total. Its diameter is unprinted. The ordinary native F/N rule gives nominal circular iris radius0.262626379804. This is an assumed operating opening, not a source measurement or blade model. Exact full-disk cap clearances are0.019287962635/0.049119566411. Clearance does not prove blade or mount fit.
-
-The entrance-pupil radius1/(2×1.2) with10% front clearance gives0.458333333333. The Figure1 outlines inform approximate body/clear-face proportions, with bevel ambiguity and unquantified schematic distortion. All initial caps and geometry-only rejections remain archived. The thin S4/S5 gap required inferred caps0.315/0.315. Normal rendering then exposed S6/S7 trim; exact gap geometry bounds their common clear radius near0.28092135535, so0.28/0.28 was frozen before any MTF. Source radii, intervals and glasses never changed.
-
-The−5% cap and60%-gap stop controls pass normal geometry. The+5% cap branch fails normal element/gap checks, and40%-gap stop has negative full-disk clearance; both are rejected before performance work. No tolerance override, rim transmission or after-trace aperture enlargement was used.
-
-Final powered-face clear semi-diameters, in source order at the declared runtime scale: 0.458333333333, 0.458333333333, 0.397, 0.315, 0.315, 0.28, 0.28, 0.33, 0.33, 0.3225, 0.3225, 0.315, 0.315. The admitted branch has zero hidden render trim at all advertised apertures.
-
-## Native Numerical Validation
-
-Native fields0°,10.25°,20.5° are the literal source-axis/half-edge/edge interpretation. The native viewer uses an automatic cap-limited window, separately qualified wherever it exceeds the source angle. No computed diameter is placed in the published-image-circle catalog field. Source-angle single-field requests retain exact input angles, separately from the viewer field-fraction inversion tolerance.
-
-All27 nominal source/diagnostic angle-aperture cases converge through the six sampled frequencies0/10/20/30/40/50lp per runtime mm, with maximum successive-grid delta0.0092765979. This is normal monochromatic scalar sheared-pupil diffraction estimation at literal indices, assumed587.5618nm, focus:design and maxGrid256. Every prior grid and exact result array is retained. It is not geometric MTF, independent physical-OPL/phase validation, measured factory performance or a continuous-frequency error bound. The withdrawn one-dimensional reference is not used.
-
-| Wide-open field (°) | Grid | S/T10 | S/T30 | S/T50 |
-| ---: | ---: | --- | --- | --- |
-| 0.000000000 | 32 | 0.990746/0.990746 | 0.972103/0.972103 | 0.953284/0.953284 |
-| 10.250000000 | 32 | 0.989639/0.988614 | 0.967034/0.963666 | 0.943148/0.937473 |
-| 20.500000000 | 64 | 0.979971/0.977140 | 0.901776/0.927703 | 0.802884/0.874779 |
-
-Separate16-cell aimed-pupil bundles contain209 lattice/center samples each. Wide-open valid counts are181/163/81; clipping by every recorded surface is retained. Zero unresolved flux does not mean loss-free optics. There are zero nominal raw trace failures. There are zero unaimed samples. Sensitivity results, rejected hypotheses, and raw aimed-launch and terminal-state diagnostics remain in private reproducibility evidence. These coarse records contain no OPL or per-surface path arrays; their terminal point is at the last traced surface, with reachedImagePlane=false. Normal MTF propagation to the fixed design plane is a separate calculation. No independent optical-path phase validation is claimed.
-
-## Literal Source Disagreements and Provenance
-
-The descriptive r11 bound1.2f versus the claim f lower bound, and the printed n3/n4 upper-bound variations1.8/1.81, are retained as source disagreements. Figure d labels versus prose t labels are notation differences. The rounded Seidel column sums differ from the printed sums by up to0.00001; no source number is repaired or fitted. The physical iris and Seidel first-surface calculation stop remain distinct. Complete seven-page utility-model custody and local primary table/figure/claim pixel inspection are recorded; the1980 catalog is a page12 excerpt with prior complete-catalog custody separately identified.
-
-Compiled-viewer completion, mobile/comparison and corpus receipts are separate integration evidence in the final private report; this analysis does not predeclare their outcome.
+The patent prints the infinity state only and says nothing about focusing. The production lens focuses to 0.45 m, which the model carries as catalog data; its geometry is static, and no close-focus state is computed. The image plane is the paraxial back focus of the scaled prescription, 34.02 mm behind the last surface, since the patent prints none.
 
 ## Sources
 
-1. [J-PlatPat JPS4719025Y1 original](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S47-019025/22/ja), complete seven-page source retained.
-2. Original Konica1980 catalog, page12 excerpt,57mm f/1.2 Cat703-212; excerpt and prior complete-catalog custody retained in the source archive.
+1. JP S47-19025 Y1, 大口径比写真レンズ, Konishiroku Photo Industry Co., Ltd., published 1972-06-29. [J-PlatPat](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S47-019025/22/ja)
+2. Konica lens catalog (1980), p. 12, 57mm f/1.2, cat. no. 703-212: seven elements in six groups, 42°, 0.45 m.
+3. Konica Hexanon AR 57 mm / F1.2: construction, angle of view, minimum focus, versions. [buhla.de](https://buhla.de/Foto/Konica/Objektive/e57_12.html)
+4. Konica Hexanon AR 57mm f/1.2: construction, minimum focus, aperture range. [allphotolenses.com](https://allphotolenses.com/lenses/item/c_2503.html)
+5. Konica 57mm f1.2 Hexanon AR dealer listing, giving six elements in four groups. [Kamerastore](https://kamerastore.com/en-ca/products/konica-57mm-f1-2-hexanon-ar)

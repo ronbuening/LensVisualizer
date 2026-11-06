@@ -1,35 +1,71 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole literal sole example; source-native numerical scale is an explicit hypothesis.
- * Retail identity is a probable family association only. Plane, stop and caps are
- * declared assumptions; no finite source state, optical retuning or applied refocus.
+/**
+ * KONICA HEXANON AR 57mm f/1.2, from JP S47-19025 Y1, the sole numerical example (examined utility model; application
+ * 実願昭43-45827 filed 1968-06-03, published 1972-06-29; inventor Saburo Kinoshita; applicant Konishiroku Photo
+ * Industry Co., Ltd.). Seven spherical elements in six groups, L4 and L5 cemented; the table is on printed page 241
+ * and the section is Fig. 1.
+ *
+ * Association: the patent names no product. Konica's 57mm f/1.2 Hexanon AR has the same seven elements in six groups,
+ * the same aperture and a 42° angle of view against the patent's "41° or more", and collector sources place its
+ * release in the late 1960s or about 1970, after the 1968 filing. This is a probable production correlation, not a
+ * confirmed factory prescription.
+ *
+ * Scale: the patent normalizes the example to f = 1, and its printed radii trace to EFL 0.999873. Every R, d, sd and
+ * the back focus is multiplied by s = 57.0072 (57 / 0.999873, rounded to four decimals), which gives EFL 56.99998 mm.
+ * R and d are the exact products. Indices and Abbe numbers are unchanged; there are no aspheres.
+ *
+ * Image plane: the patent prints no back focus. The last gap is the paraxial back focus of the printed prescription,
+ * 0.596782 at f = 1 and 34.02086 mm at this scale (rounded to 0.00001 mm).
+ *
+ * Stop: the text places the diaphragm between L3 and L4 (第3レンズと第4レンズの中間) but prints no position or
+ * diameter, and Fig. 1 draws none. The model splits t6 = 0.285 (16.2471 mm) at its midpoint, 8.1235 + 8.1235 mm; the
+ * position is inferred. The radius follows from the design F/1.2. The Seidel table's stop at the first surface is a
+ * calculation convention, not the iris.
+ *
+ * Semi-diameters: not printed, so all are inferred from Fig. 1, which is drawn to scale along the axis (its vertex
+ * crossings agree with the prescription within about 3 px at 950.7 px per f-unit, 300 dpi). The drawn rims are L1
+ * 0.454, L2 front 0.394, L3 top edge 0.354 with its concave rear face ending near 0.28, L4 front face near 0.28, L4/L5
+ * 0.334, L6 0.322 and L7 0.314 (f-units). The model's 26.13 (L1), 22.63 (S3), 15.96 (S6, S7), 18.81 (L4/L5),
+ * 18.38 (L6) and 17.96 mm (L7) are the earlier f = 1 estimates scaled by s and rounded to 0.01 mm; they agree with
+ * the drawing within about 1%. L2's rear face (S4) and L3's front face (S5) are raised from 17.96 to 18.98 and
+ * 18.97 mm, the heights of the F/1.2 axial beam, which the earlier rims clipped (f/1.26 traced). Across their
+ * 1.14 mm air gap those two faces would touch at 19.13 mm; Fig. 1 draws them meeting at the rim, so gapSagFrac is
+ * 0.99 for that pair (intrusion 0.982 of the gap) and about 0.02 mm of air remains at the rim. L2's front face keeps
+ * its larger drawn rim, so L2 is stepped.
+ *
+ * Focus: the patent prints the infinity state only. closeFocusM is the production 0.45 m; the geometry is static.
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "konica-hexanon-ar-57mm-f12-native-f1",
+  "key": "konica-hexanon-ar-57mm-f12",
   "maker": "Konica",
   "name": "KONICA HEXANON AR 57mm f/1.2",
-  "subtitle": "JP S47-019025 Y1 sole example — source-native hypothetical reconstruction; retail family association descriptive",
+  "subtitle": "JP S47-19025 Y1, Sole example — probable production correlation, f = 1 scaled to 57 mm",
   "catalog": {
+    "lensMounts": [
+      "konica-ar"
+    ],
+    "imageFormat": "135-full-frame",
+    "specs": [
+      "7 ELEMENTS / 6 GROUPS",
+      "DESIGN f = 57.00 mm",
+      "DESIGN F/1.2",
+      "ALL SPHERICAL"
+    ],
     "elementCount": 7,
     "groupCount": 6,
     "focalLengthMm": {
-      "design": 1
+      "marketing": 57,
+      "design": 57
     },
     "fNumber": {
+      "marketing": 1.2,
       "design": 1.2
-    },
-    "specs": [
-      "SOURCE NATIVE f=1/F1.2; retail57mm is descriptive only",
-      "Grade B probable historical family; exact factory prescription unproved",
-      "Assumed one source unit per runtime mm; frequencies belong to this hypothetical scale",
-      "Computed infinity plane; inferred stop and clear apertures; clipping retained",
-      "No numerical finite endpoint or focus law; infinity only",
-      "Source41° differs from maker42°; automatic cap-limited viewer fields are diagnostic"
-    ]
+    }
   },
   "source": {
-    "patentNumber": "JP S47-019025 Y1",
+    "patentNumber": "JP S47-19025 Y1",
     "example": {
       "label": "Sole example",
       "id": null
@@ -51,9 +87,9 @@ const LENS_DATA = {
       "nd": 1.7739,
       "vd": 50.6,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": 1.6129027837033316,
-      "role": "The first positive meniscus begins the converging front group. Its nearly flat rear face remains the literal finite radius29.987; it has not been flattened."
+      "glass": "Unmatched (patent nd 1.77390 / νd 50.6; supplier not disclosed)",
+      "focalLengthMm": 91.95,
+      "role": "Front positive collector with a nearly flat rear face; first of two weak positive menisci convex to the object."
     },
     {
       "id": 2,
@@ -63,9 +99,9 @@ const LENS_DATA = {
       "nd": 1.789,
       "vd": 42.7,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": 1.0850446595510366,
-      "role": "The second positive meniscus supplies substantial front power. Its boundary with L3 is separated by the literal thin0.02 gap, which constrains the inferred optical caps."
+      "glass": "Unmatched (patent nd 1.78900 / νd 42.7; supplier not disclosed)",
+      "focalLengthMm": 61.86,
+      "role": "Main positive power of the front group; its rear face nearly meets L3 at the rim across a 1.14 mm air gap."
     },
     {
       "id": 3,
@@ -75,9 +111,9 @@ const LENS_DATA = {
       "nd": 1.74,
       "vd": 28.2,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": -0.6063130573207013,
-      "role": "The negative meniscus presents a steep image-side concavity toward the diaphragm. The source discusses this inner curvature as part of coma and field-curvature balancing."
+      "glass": "Unmatched (patent nd 1.74000 / νd 28.2; supplier not disclosed)",
+      "focalLengthMm": -34.56,
+      "role": "Front-group negative meniscus; its steep concave rear face toward the stop is held in a narrow range to limit coma flare."
     },
     {
       "id": 4,
@@ -87,10 +123,10 @@ const LENS_DATA = {
       "nd": 1.74077,
       "vd": 27.7,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": -0.3882218316323836,
-      "role": "The negative cemented member faces the diaphragm. It shares surface8 with L5; its isolated-in-air focal length is not the installed power of the cemented component.",
-      "cemented": "CD1"
+      "glass": "Unmatched (patent nd 1.74077 / νd 27.7; supplier not disclosed)",
+      "focalLengthMm": -22.13,
+      "role": "Negative flint of the rear cemented doublet; its concave front face mirrors L3's across the stop space.",
+      "cemented": "D1"
     },
     {
       "id": 5,
@@ -100,10 +136,10 @@ const LENS_DATA = {
       "nd": 1.8306,
       "vd": 36.5,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": 0.45769792684492105,
-      "role": "The positive cemented partner balances L4 across the literal common surface8. Its high index and lower Abbe number remain source coordinates, without a named supplier.",
-      "cemented": "CD1"
+      "glass": "Unmatched (patent nd 1.83060 / νd 36.5; supplier not disclosed)",
+      "focalLengthMm": 26.09,
+      "role": "High-index positive of the cemented doublet; its strong convex rear face corrects higher-order spherical aberration.",
+      "cemented": "D1"
     },
     {
       "id": 6,
@@ -113,9 +149,9 @@ const LENS_DATA = {
       "nd": 1.72916,
       "vd": 54.8,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": 2.6253075822404335,
-      "role": "The rear positive meniscus is separated from the cemented pair and final singlet by the two literal0.0017 gaps. The patent discusses rear glass indices and Abbe numbers in the correction conditions."
+      "glass": "Unmatched (patent nd 1.72916 / νd 54.8; supplier not disclosed)",
+      "focalLengthMm": 149.66,
+      "role": "Weak positive meniscus convex to the image; first of the two rear high-index crowns that hold down the Petzval sum."
     },
     {
       "id": 7,
@@ -125,106 +161,106 @@ const LENS_DATA = {
       "nd": 1.755,
       "vd": 52.4,
       "indexReference": "d",
-      "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": 1.5920440716962245,
-      "role": "The final positive singlet completes the rear assembly. The primary prose allows a biconvex or meniscus member; the selected literal radii define the biconvex form."
+      "glass": "Unmatched (patent nd 1.75500 / νd 52.4; supplier not disclosed)",
+      "focalLengthMm": 90.76,
+      "role": "Last positive element, stronger face to the object; second of the two rear high-index crowns."
     }
   ],
   "surfaces": [
     {
       "label": "1",
-      "R": 1.2,
-      "d": 0.095,
-      "sd": 0.45833333333333337,
+      "R": 68.40864,
+      "d": 5.415684,
+      "sd": 26.13,
       "medium": 1
     },
     {
       "label": "2",
-      "R": 29.987,
-      "d": 0.0017,
-      "sd": 0.45833333333333337
+      "R": 1709.4749064,
+      "d": 0.09691224,
+      "sd": 26.13
     },
     {
       "label": "3",
-      "R": 0.4948,
-      "d": 0.165,
-      "sd": 0.397,
+      "R": 28.20716256,
+      "d": 9.406188,
+      "sd": 22.63,
       "medium": 2
     },
     {
       "label": "4",
-      "R": 1,
-      "d": 0.02,
-      "sd": 0.315
+      "R": 57.0072,
+      "d": 1.140144,
+      "sd": 18.98
     },
     {
       "label": "5",
-      "R": 1.5009,
-      "d": 0.04,
-      "sd": 0.315,
+      "R": 85.56210648,
+      "d": 2.280288,
+      "sd": 18.97,
       "medium": 3
     },
     {
       "label": "6",
-      "R": 0.3415,
-      "d": 0.1425,
-      "sd": 0.28
+      "R": 19.4679588,
+      "d": 8.123526,
+      "sd": 15.96
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 0.1425
+      "d": 8.123526
     },
     {
       "label": "7",
-      "R": -0.416,
-      "d": 0.03,
-      "sd": 0.28,
+      "R": -23.7149952,
+      "d": 1.710216,
+      "sd": 15.96,
       "medium": 4
     },
     {
       "label": "8",
-      "R": 0.9602,
-      "d": 0.18,
-      "sd": 0.33,
+      "R": 54.73831344,
+      "d": 10.261296,
+      "sd": 18.81,
       "medium": 5
     },
     {
       "label": "9",
-      "R": -0.5758,
-      "d": 0.0017,
-      "sd": 0.33
+      "R": -32.82474576,
+      "d": 0.09691224,
+      "sd": 18.81
     },
     {
       "label": "10",
-      "R": -11.851,
-      "d": 0.045,
-      "sd": 0.3225,
+      "R": -675.5923272,
+      "d": 2.565324,
+      "sd": 18.38,
       "medium": 6
     },
     {
       "label": "11",
-      "R": -1.6507,
-      "d": 0.0017,
-      "sd": 0.3225
+      "R": -94.10178504,
+      "d": 0.09691224,
+      "sd": 18.38
     },
     {
       "label": "12",
-      "R": 1.43,
-      "d": 0.05,
-      "sd": 0.315,
+      "R": 81.520296,
+      "d": 2.85036,
+      "sd": 17.96,
       "medium": 7
     },
     {
       "label": "13",
-      "R": -7.4252,
-      "d": 0.5967818164579419,
-      "sd": 0.315
+      "R": -423.28986144,
+      "d": 34.02086,
+      "sd": 17.96
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000,
-    "description": "Hypothetical collimated input only. No numerical finite conjugate or motion law is supplied. The computed Gaussian plane is fixed before tracing, with no applied refocus. Whole normalized f1 remains numerically unchanged. One source length unit is represented by1 runtime millimetre ONLY as an explicit hypothetical computational convention; physical factory dimensions and retail57mm mapping are unknown. Spatial frequencies apply only to this assumed f1 model. Figures2/3 are separately stated atf100 and are not an f1 MTF validation oracle."
+    "closeFocusM": 0.45,
+    "description": "The patent prints the infinity state only, so the geometry is static and no focus motion is modeled. The 0.45 m close-focus distance is the production lens's published figure, not a patent state. The image plane is the paraxial back focus of the scaled prescription, 34.02 mm behind the last surface, since the patent prints none. Semi-diameters are inferred from the patent figure; the stop position between L3 and L4 is inferred and its radius follows from F/1.2."
   },
   "aperture": {
     "nominalFNumber": 1.2,
@@ -244,25 +280,28 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.78
   },
+  "checks": {
+    "gapSagFrac": 0.99
+  },
   "projection": {
     "kind": "rectilinear",
     "fullFieldDeg": 41
   },
   "groups": [
     {
-      "text": "Front",
+      "text": "FRONT",
       "fromSurface": "1",
       "toSurface": "6"
     },
     {
-      "text": "Rear",
+      "text": "REAR",
       "fromSurface": "7",
       "toSurface": "13"
     }
   ],
   "doublets": [
     {
-      "text": "CD1",
+      "text": "D1",
       "fromSurface": "7",
       "toSurface": "9"
     }
