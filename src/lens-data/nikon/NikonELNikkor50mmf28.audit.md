@@ -95,7 +95,8 @@ Wide-open geometric transmission at infinity, before: 85.4 % on axis (the F/2.5 
 
 - Open: all six printed glass pairs coincide with catalog types (SSK1 class: Hoya BACED1 / Sumita K-SSK1; N-SK10 /
   S-BSM10; Hoya F9; N-SK16 / S-BSM16; Sumita LLF7; Sumita K-SK18 / S-BSM18). The file keeps them "Unmatched";
-  relabeling would change the chromatic results and the glass reports, so it is left for a glass pass.
+  relabeling would change the chromatic results and the glass reports, so it is left for a glass pass. (Closed
+  2026-11-06: all six now carry these catalog equivalents, each within 0.09 in νd of its catalog entry.)
 - Open: `closeFocusM` 0.055 follows the Rogonar-S value (negative-side conjugate at 10×), not the spec's
   object-to-image definition (about 0.6 m at 10×). With no variable gap it has no optical effect.
 - Open: the patent states no design conjugate; the model is infinity only, and enlarging magnifications are not
@@ -162,3 +163,80 @@ canvas, nothing saved) draws six elements in four groups in the patent's order a
 aspherical surface. With the front doublet's half-width (24 source px) as reference, L4 reads 0.69 of it (patent
 figure 0.68), the r5 cap end about 0.51 (0.65) and the r8 cap end about 0.54 (0.69): the maker draws both concave
 caps shorter and their shoulders wider than the patent figure does. The patent figure governs.
+
+## 2026-11-06 — Second review: diagram, labels and movement
+
+### What was compared
+
+The local page at infinity, at the far end of the focus slider and with each element's inspector open, against the
+sole figure of US 2,906,174 (page 1, the 300 dpi CCITT scan) and the Nippon Kogaku section reproduced by Nital
+(322 × 433 px, viewed, nothing kept). Every rim below was re-read independently from the page raster: line centres
+from row and column ink runs, each height taken from the local dash-dot axis (y = 1650.5 px at x = 830, 1644 px at
+x = 1430, so the sheet is turned 0.62°) on both sides of the axis. Vertex crossings r1 860, r4 1022, r5 1048, r6 1156,
+r7 1247, r8 1265, r10 1398 px; r1 to r10 is 537.5 px for 33.725 mm, 15.94 px per mm.
+
+### Rims and lands
+
+| Surface | Stored (mm) | Figure, top / bottom (px) | Figure (mm) | Ratio | Result |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 1, 2 | 13.5 | 215.5 / 216.5 | 13.55 | 1.00 | Kept |
+| 3, 4 | 11.2 | 176.6 / 176.9 | 11.09 | 0.99 | Kept |
+| 5, cap end | 7.0 | 113.7 / 115.3 | 7.18 | 1.03 | Kept; the land 40.5 px behind the r5 vertex gives 7.18 as well |
+| 5, land top (`rimExtensionSd`) | 8.8 | 142.7 / 139.3 | 8.85 | 1.01 | Kept |
+| 6, 7 | 7.7 | 118.6 / 122.4 | 7.56 | 0.98 | Kept; square rim |
+| 8, cap end | 7.25 | 123.3 / 121.8 | 7.69 | 0.94 | Kept; see below |
+| 8, land top (`rimExtensionSd`) | 9.0 | 144.3 / 143.8 | 9.04 | 1.00 | Kept |
+| 9, 10 | 11.1 | 174.5 / 176.5 | 11.01 | 0.99 | Kept; r10 meets the flat edge at a corner |
+
+No `sd` is below its value in the baseline file, so there is no cut to judge. The two lands cost no light: restoring
+either to its baseline (no land) wins back 0.0 points at every field, and the whole lens loses 0.0 points against the
+baseline rims at 0 to 23.4°. Both lands stay as the figure draws them.
+
+The r8 cap end is the one reading the figure cannot settle. Its drawn height is 7.69 mm (7.74 above, 7.64 below), level
+with the drawn L4 rim. Its drawn axial position, 43.5 px ahead of the drawn r8 vertex (40.9 px ahead of the vertex the
+table places), gives 7.23 to 7.42 mm on the printed radius. The drawn r8 arc explains the conflict: sampled from the
+vertex to the land and corrected for the sheet's turn, it fits a radius of 198 to 200 px against the printed 182.6 px
+(11.455 mm), so it is drawn about 9 % flatter than the prescription, where the r5 arc fits 178 to 180 px against
+182.1 px. The gap between the L4 corner and the r8 land, 0.16 mm above and 0.38 mm below, would put the cap end at 7.5
+to 7.7 mm. The spread straddles the stored 7.25 mm within the noise band, and the maker's section is too coarse to
+decide it (0.45 mm is under one source pixel there), so 7.25 stays. The drawn r10 arc is likewise flatter near its rim
+than R = 16.61 mm, so its drawn height, which meets the flat edge, governs r10 rather than its axial position.
+
+### Shoulders the section cannot draw
+
+Both cemented components carry a flat cylindrical edge, a 45° bevel and a short land in the figure. Behind the front
+doublet the edge runs 2.0 mm past the interface at 11.09 mm, the bevel falls 2.14 mm over 2.29 mm to the land top at
+8.85 mm, and the land meets the r5 cap 2.54 mm behind its vertex. In front of the rear doublet the land rises to
+9.04 mm, the bevel rises 1.95 mm over 1.66 mm, and the flat edge runs 3.4 mm to the interface. The maker's section
+draws the same: long edges, a rounded shoulder behind the front doublet and 45° bevels in front of the rear one. The
+renderer joins each land top to the cemented interface's rim with one straight chamfer (4.3 mm long on L3, 5.1 mm on
+L5), so on the site L3 and L5 show long sloping shoulders where both drawings show mostly flat edge. No `sd` or land
+height reproduces a flat-plus-bevel edge; raising a land toward the edge height trades the drawn land and bevel
+corner for a tall land, so the lands stay at the drawn land tops.
+
+### Labels, tags and movement
+
+- Elements L1 to L6 use the patent's own lens designations; the components are I to IV. `type` agrees with the signs of
+  R for all six (L1 and L4 menisci, L2 and L6 biconvex, L3 and L5 biconcave), every element carries a focal length, and
+  the roles match the patent text, including component III's separate shifting of the sagittal and meridional fields.
+- Group brackets "Front I–II" (surfaces 1–5) and "Rear III–IV" (6–10) follow the patent's front Gauss-type pair and rear
+  wide-angle-type pair; cemented brackets CD1 (3–5) and CD2 (8–10) cover components II and IV. No bracket collides with
+  another label on the page.
+- The stop sits between L3 and L4. The drawn iris is 0.64 of the way from the r5 vertex to the r6 vertex (the file
+  uses 0.65), and its inner edge is 7.1 mm from the axis.
+- No surface is aspheric and none is marked; no element carries an `apd` tag, and neither the patent, which states that
+  no special glass is needed, nor the maker's section marks one.
+- The inspector shows, for L3, "Biconcave Negative", nd 1.62045, νd 38, FL −17.93 mm, F9 (HOYA); for L5, "Biconcave
+  Negative", nd 1.54869, νd 45.4, FL −17.16 mm, LLF7 (SUMITA). The six labels lie within 0.09 in νd and 0.00002 in nd
+  of their catalog entries, which answers the glass `Open:` line above. The patent prints only nd and νd and no
+  aberration curves, so no colour, astigmatism or distortion plot is available for comparison.
+- Movement: no gap varies. The focus description says the lens focuses as a unit in the enlarger; the slider reads ∞
+  at both ends with "Not modeled" at the far end, and the movement overlay reports no modeled focus or zoom movement.
+  There is no near state to trace with a finite object.
+
+### Clearance and light
+
+Surface audit: OK, no validation errors. Image circle: no undersized surface. Field coverage: the 23.4° chief ray
+reaches the 21.65 mm corner, clear. The real-ray trace at Y = 21.63 mm (ω = 23.36°) shows no axial clip and no blocked
+chief ray. Engine half-field 29.99° and F/2.500, wide-open transmission 100, 98.8, 95.6, 90.4, 84.8, 78.1, 68.1 and
+55.5 % at 0, 5.8, 8.8, 11.7, 14.6, 17.5, 20.5 and 23.4°: all unchanged, as no value in the data file changed.
