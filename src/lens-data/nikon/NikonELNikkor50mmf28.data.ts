@@ -128,7 +128,7 @@ const LENS_DATA = {
       "vd": 45.4,
       "indexReference": "d",
       "glass": "Unmatched (literal source d-line coordinates; supplier and full dispersion unproved)",
-      "focalLengthMm": -17.161952165452795,
+      "focalLengthMm": -17.161952165452796,
       "role": "Negative front member of cemented component IV; its front face, concave to the stop, bounds the diverging air space after L4.",
       "cemented": "CD2"
     },
@@ -215,7 +215,7 @@ const LENS_DATA = {
     {
       "label": "10",
       "R": -16.61,
-      "d": 32.162715312221175,
+      "d": 32.162715312221174,
       "sd": 11.1
     }
   ],
