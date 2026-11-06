@@ -25,8 +25,8 @@ flowchart LR
     n_src_utils_state_src_utils_state_useURLSync_ts["useURLSync.ts"]
     n_src_utils_state_src_utils_state_zoomConversion_ts["zoomConversion.ts"]
   end
-  n_external_src_comparison["src/comparison"]
   n_external_src_types["src/types"]
+  n_external_src_comparison["src/comparison"]
   n_external_src_utils_catalog["src/utils/catalog"]
   n_external_pkg_react["pkg:react"]
   n_external_src_optics_optics_ts["src/optics/optics.ts"]
@@ -37,10 +37,10 @@ flowchart LR
   n_external_src_utils_seo["src/utils/seo"]
   n_external_src_utils_theme["src/utils/theme"]
   n_external_src_utils_useMediaQuery_ts["src/utils/useMediaQuery.ts"]
+  n_src_utils_state_src_utils_state_lensReducer_ts --> |3| n_external_src_types
+  n_src_utils_state_src_utils_state_lensViewUrlState_ts --> |3| n_external_src_types
   n_src_utils_state_src_utils_state_lensReducer_ts --> |2| n_external_src_comparison
   n_src_utils_state_src_utils_state_LensContext_ts --> |2| n_external_src_types
-  n_src_utils_state_src_utils_state_lensReducer_ts --> |2| n_external_src_types
-  n_src_utils_state_src_utils_state_lensViewUrlState_ts --> |2| n_external_src_types
   n_src_utils_state_src_utils_state_lensViewUrlSync_ts --> |2| n_external_src_types
   n_src_utils_state_src_utils_state_useLensState_ts --> |2| n_external_src_utils_catalog
   n_src_utils_state_src_utils_state_useURLSync_ts --> |2| n_external_src_utils_catalog
@@ -80,7 +80,7 @@ flowchart LR
 
 - Direct source files: 15
 - Direct subfolders: 0
-- Main outbound areas: same folder (15), src/types (14), src/utils/catalog (5), package:react (4), src/comparison (3), src/optics/optics.ts, src/optics/perspective.ts, src/optics/validation.ts, +5 more
+- Main outbound areas: src/types (16), same folder (15), src/utils/catalog (5), package:react (4), src/comparison (3), src/optics/optics.ts, src/optics/perspective.ts, src/optics/validation.ts, +5 more
 - External consumers: src/comparison, src/components/display, src/components/HolidayFavicon.tsx, src/components/hooks, src/components/layout, src/components/relationshipMap, src/pages/AuthorsIndexPage.tsx, src/pages/LensBuilderPage.tsx, +3 more
 
 ## Files
@@ -89,8 +89,8 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `authorSortPreference.ts` | Author Sort Preference helper module | none | src/pages/AuthorsIndexPage.tsx | AuthorSort, AUTHOR_SORT_PREFERENCE_KEY, DEFAULT_AUTHOR_SORT, loadAuthorSortPreference, saveAuthorSortPreference |
 | `LensContext.ts` | Lens Context helper module | src/types (2), package:react | src/components/layout (3), src/comparison, src/components/hooks, src/pages/LensBuilderPage.tsx | LensCtxValue, LensStateContext, LensDispatchContext, useLensCtx, useLensDispatch, PanelStateContext, usePanelCtx |
-| `lensReducer.ts` | Lens Reducer module with default export | src/comparison (2), src/types (2), same folder, src/utils/appConfig.ts, src/utils/featureFlags.ts, +1 more | src/components/layout (5), same folder (3), src/components/hooks (2), src/comparison, src/pages/LensBuilderPage.tsx | SET_LENS_A, SET_LENS_B, SET_OPTICAL_CONFIGURATION, SET_TELECONVERTER, SWAP_LENSES, SET_DARK, SET_HIGH_CONTRAST, SET_MOBILE_VIEW, +29 more |
-| `lensViewUrlState.ts` | Lens View Url State helper module | src/types (2), src/optics/perspective.ts, src/optics/validation.ts | same folder (5), src/comparison | LensViewQueryState, BuildLensViewQueryOptions, VIEW_STATE_FIELDS, ViewStateField, ViewStateFieldKey, parseLensViewQuery, buildLensViewQuery, buildLensViewQueryFromState, +1 more |
+| `lensReducer.ts` | Lens Reducer module with default export | src/types (3), src/comparison (2), same folder, src/utils/appConfig.ts, src/utils/featureFlags.ts, +1 more | src/components/layout (5), same folder (3), src/components/hooks (2), src/comparison, src/pages/LensBuilderPage.tsx | SET_LENS_A, SET_LENS_B, SET_OPTICAL_CONFIGURATION, SET_TELECONVERTER, SWAP_LENSES, SET_DARK, SET_HIGH_CONTRAST, SET_MOBILE_VIEW, +30 more |
+| `lensViewUrlState.ts` | Lens View Url State helper module | src/types (3), src/optics/perspective.ts, src/optics/validation.ts | same folder (5), src/comparison | LensViewQueryState, BuildLensViewQueryOptions, VIEW_STATE_FIELDS, ViewStateField, ViewStateFieldKey, parseLensViewQuery, buildLensViewQuery, buildLensViewQueryFromState, +1 more |
 | `lensViewUrlSync.ts` | Lens View Url Sync helper module | same folder (4), src/types (2), src/utils/catalog, src/utils/seo | same folder | ComparisonLenses, ComparisonError, ComparisonLensesParam, getComparisonZoomLens, getCatalogZoomLens, getUrlZoomLens, getStateZoom, buildLensViewSearch, +4 more |
 | `mtfDataWarnings.ts` | Mtf Data Warnings helper module | src/types | src/components/hooks | noMtfDataWarningsDismissed, getDismissedMtfDataWarnings, dismissMtfDataWarnings, subscribeMtfDataWarnings, resetMtfDataWarnings |
 | `mtfPreferences.ts` | Mtf Preferences helper module | src/types | src/components/display (4), src/components/hooks | MtfChartView, MTF_FIELD_STEPS, MtfFieldStepPercent, MTF_CHART_FREQUENCIES, MtfChartFrequency, MtfPreferences, MTF_PREFERENCES_KEY, DEFAULT_MTF_PREFERENCES, +7 more |

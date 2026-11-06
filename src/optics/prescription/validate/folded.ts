@@ -1,7 +1,14 @@
 /** Path declarations, mirror normals and conservative compiled-geometry probes. */
 import { buildZPositions } from "../../state/layout.js";
 import type { UntrustedLensData, ExplicitElementSpan } from "./context.js";
-import type { AsphericCoefficients, ImagePlaneData, SurfaceData } from "../../../types/optics.js";
+import type {
+  AsphericCoefficients,
+  ImagePlaneData,
+  ResolvedImageSurfaceData,
+  SurfaceData,
+} from "../../../types/optics.js";
+import type { ImageSurfaceShape } from "../../types.js";
+import { createImageSurfaceShape } from "../../geometry/imageSurface.js";
 import { FLAT_R_THRESHOLD } from "../../geometry/surfaceProfile.js";
 import { buildAsphereIndex } from "../compileAspheres.js";
 import { compileSurfaces } from "../surfaces.js";
@@ -151,6 +158,15 @@ export function validateTiltedMirrorBackingNormals(
   }
 }
 
+/** The authored image surface for probing, or null when it is absent or too malformed to compile. */
+function probeImageSurface(value: unknown): ImageSurfaceShape | null {
+  if (!value || typeof value !== "object") return null;
+  const { R, sd } = value as Record<string, unknown>;
+  const finitePositive = (n: unknown): n is number => typeof n === "number" && Number.isFinite(n) && n !== 0;
+  if (!finitePositive(R) || !finitePositive(sd) || sd < 0 || Math.abs(R) > FLAT_R_THRESHOLD) return null;
+  return createImageSurfaceShape(value as ResolvedImageSurfaceData);
+}
+
 export function validateFoldedImagePlaneReachability(
   data: UntrustedLensData,
   S: UntrustedLensData[],
@@ -216,6 +232,7 @@ export function validateFoldedImagePlaneReachability(
       normal,
       label: typeof imagePlaneData.label === "string" ? imagePlaneData.label : "IMG",
     }),
+    imageSurface: probeImageSurface(data.imageSurface),
     isFoldedOptics: true,
   });
 

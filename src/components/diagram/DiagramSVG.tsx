@@ -23,6 +23,7 @@ import type { DispersionQuality } from "../../optics/chromatic.js";
 import type { LensMovementTransform } from "../../optics/perspective.js";
 import type { CardinalElements } from "../../optics/analysis.js";
 import type { Theme } from "../../types/theme.js";
+import type { ImageSectionControl } from "./ImageSectionBadge.js";
 import type { ChromaticRaySegment, RaySegment } from "./diagramSvgTypes.js";
 import type { OffAxisMode } from "../../types/state.js";
 
@@ -79,6 +80,8 @@ interface DiagramSVGProps {
   flashFading: boolean;
   onLocaInsetClick?: () => void;
   onPetzvalBadgeClick?: () => void;
+  /** Viewed section of a cylindrical image surface; the chip shows only when this is given. */
+  imageSection?: ImageSectionControl;
   /** Override the default viewBox for zoom/pan mode */
   viewBoxOverride?: string;
   /** When true, disable element hover/click and show grab cursor */
@@ -148,6 +151,7 @@ const DiagramSVG = memo(function DiagramSVG({
   flashFading,
   onLocaInsetClick,
   onPetzvalBadgeClick,
+  imageSection,
   viewBoxOverride,
   zoomPanActive,
   onSvgWheel,
@@ -292,6 +296,7 @@ const DiagramSVG = memo(function DiagramSVG({
         flashFading={flashFading}
         onLocaInsetClick={onLocaInsetClick}
         onPetzvalBadgeClick={onPetzvalBadgeClick}
+        imageSection={imageSection}
       />
     </svg>
   );

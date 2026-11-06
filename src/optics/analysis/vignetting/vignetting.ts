@@ -15,11 +15,12 @@
  *     times its area in image-space direction cosines (L, M) times its bulk transmission, and a field's sum over its
  *     beam is divided by the axis's. Each ray is referred to the image point through the reference sphere (Rimmer's
  *     Eq. 3): (L, M) are the direction cosines of the segment from the ray's crossing of a sphere centred on the chief
- *     ray's image-plane point, through the state's exit pupil, to that point. Without aberration this is the ray's
+ *     ray's image-surface point, through the state's exit pupil, to that point. Without aberration this is the ray's
  *     own direction; with it, the cone is the exit pupil as seen from the image point, not from where each ray happens
  *     to focus. A cell's cosine-space area is |det J| times its stop area, J the Jacobian of the lattice's map from
  *     stop coordinates to (L, M), by finite differences between lit cells. The chief ray that names the image point is
- *     traced without aperture checks, so a field whose chief ray is vignetted keeps its image point.
+ *     traced without aperture checks, so a field whose chief ray is vignetted keeps its image point. On a curved
+ *     sensor the cosines use its tangent frame at that point, giving irradiance per local sensor area.
  *
  * Edge cells: a transmitted cell counts its whole cell in both figures (the midpoint rule). Each derivative of its
  * Jacobian is a central difference where both lattice neighbours along that axis transmit, one-sided where one does,
@@ -51,7 +52,7 @@ import { launchSurfaceForFieldDeg } from "../../field/projection.js";
 import { bulkTransmissionForTrace } from "../../trace/bulkAbsorption.js";
 import { prepareEngineTrace } from "../../trace/rayAdapters.js";
 import { traceRayClassification } from "../../trace/rayClassification.js";
-import { mirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
+import { imageMirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
 import { mtfAxialImagePlane, mtfSequentialRefractivePath } from "../mtf/mtfSupport.js";
 import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../aberration/offAxis.js";
 import { prepareAimedPupilLaunch, prepareAimedPupilTrace, prepareAimedStopLattice } from "../pupils/aimedPupil.js";
@@ -62,6 +63,8 @@ import type { FieldGeometryState } from "../../field/launch.js";
 import type { OffAxisFieldGeometry } from "../aberration/offAxis.js";
 import type { PreparedGeometry, Vec3 } from "../../types.js";
 import { runtimeView } from "../../prescription/runtimeView.js";
+import { imageSurfaceLocalFrame, landImageSurfaceSkew } from "../../geometry/imageSurface.js";
+import { dot } from "../../math/vector.js";
 import type { AnalysisRequest } from "../request.js";
 
 /** Lattice cells across the stop's diameter. */
@@ -160,7 +163,7 @@ export interface VignettingFieldResult {
   cellArea: number;
   /** True when the −px half is the mirror image of the traced +px half. */
   mirrored: boolean;
-  /** Chief ray's image-plane point, the reference sphere's centre, or null. */
+  /** Chief ray's image-surface point, the reference sphere's centre, or null. */
   imagePoint: Vec3 | null;
   /** Reference-sphere radius in mm (Infinity for an image-space telecentric state), or null. */
   referenceRadiusMm: number | null;
@@ -283,7 +286,7 @@ function vignettingField(
   if (!scalar || !launch) return unavailableField(base, "no-field-launch");
 
   // The launch mirrors a meridional field's −px samples exactly; their traces are mirrored the same way.
-  const mirrored = mirrorSymmetricAboutMeridian(state);
+  const mirrored = imageMirrorSymmetricAboutMeridian(state);
   const tracer = prepareAimedPupilTrace(state, launch);
   const reference = referenceSphere(state, launch, scalar, xpZ);
   const cells = traceLattice(state, lattice, launch, tracer.engine, n, mirrored, reference);
@@ -349,6 +352,7 @@ export function computeVignettingCurve(request: AnalysisRequest): VignettingCurv
   if (!(request.aperture.stopSemiDiameterMm > 0) || L.N < 1) return none("invalid-state");
   // One method per curve: a state the beam model refuses gets no curve rather than another method's.
   if (!mtfSequentialRefractivePath(state)) return none("unsupported-path");
+  // Curved images still need an axial vertex frame; referenceSphere handles their tilted local tangents.
   if (!mtfAxialImagePlane(state)) return none("tilted-image-plane");
 
   const geometry = analysisFieldGeometry(request);
@@ -654,13 +658,15 @@ function integrateCosineAreas(
   return { sum, reason: null };
 }
 
-/** Rimmer's reference sphere: centred on the chief ray's image-plane point, through the state's exit pupil. */
+/** Rimmer's reference sphere: centred on the chief ray's image-surface point, through the state's exit pupil. */
 export interface ReferenceSphere {
   center: Vec3;
   /** Radius in mm; Infinity where the exit pupil is at infinity (image-space telecentric). */
   radius: number;
   /** Unit vector from the centre toward the exit pupil, which picks the sphere's pupil-side crossing. */
   towardPupil: Vec3;
+  /** Curved sensor's tangent axes at the chief landing; absent or null keeps the flat image's global cosines. */
+  tangentFrame?: { t1: Vec3; t2: Vec3 } | null;
 }
 
 /** Fraction of the half field whose real chief ray locates the current state's exit pupil. */
@@ -703,16 +709,16 @@ export function exitPupilZ(request: AnalysisRequest, fields: FieldGeometryState)
 }
 
 /**
- * The field's reference sphere, or null without a chief ray to the image plane.
+ * The field's reference sphere, or null without a chief ray landing on the image surface.
  *
  * The chief ray is the launch's (0, 0) ray traced without aperture checks: it names the image point whether or not a
  * rim vignettes it. The sphere passes through the chief ray's crossing of the exit-pupil plane.
  *
  * @param state - prepared geometry
  * @param launch - the field's aimed pupil launch
- * @param geometry - the field's scalar geometry, for the image plane
+ * @param geometry - the field's scalar geometry, for the image vertex
  * @param xpZ - the state's exit pupil z (`exitPupilZ`)
- * @returns the sphere, with radius Infinity for an image-space telecentric state, or null
+ * @returns the sphere, with a local tangent frame only for a curved image, radius Infinity when telecentric, or null
  */
 export function referenceSphere(
   state: PreparedGeometry,
@@ -725,6 +731,25 @@ export function referenceSphere(
   const result = uncheckedTrace(state, launch.launchBoundT)(chief);
   const [p, d] = [result.terminalPoint, result.terminalDirection];
   if (result.status === "failed" || !(d[2] > 0)) return null;
+  const shape = state.lens.imageSurface;
+  if (shape !== null) {
+    const center = landImageSurfaceSkew(shape, p[0], p[1], d[0] / d[2], d[1] / d[2], p[2], geometry.imagePlaneZ);
+    if (!center) return null;
+    const frame = imageSurfaceLocalFrame({
+      point: center,
+      normal: shape.normalAt(center[0], center[1]),
+      label: state.imagePlane.label,
+    });
+    if (!frame) return null;
+    // Projected solid angle in this tangent frame is irradiance per area of the curved sensor element.
+    const tangentFrame = { t1: frame.ex, t2: frame.ey };
+    if (!isFinite(xpZ)) return { center, radius: Infinity, towardPupil: [-d[0], -d[1], -d[2]], tangentFrame };
+    const toPupil = (xpZ - p[2]) / d[2];
+    const offset: Vec3 = [p[0] + d[0] * toPupil - center[0], p[1] + d[1] * toPupil - center[1], xpZ - center[2]];
+    const radius = Math.hypot(...offset);
+    if (!(radius > 0)) return null;
+    return { center, radius, towardPupil: [offset[0] / radius, offset[1] / radius, offset[2] / radius], tangentFrame };
+  }
   const toImage = (geometry.imagePlaneZ - p[2]) / d[2];
   const center: Vec3 = [p[0] + d[0] * toImage, p[1] + d[1] * toImage, geometry.imagePlaneZ];
   if (!isFinite(xpZ)) return { center, radius: Infinity, towardPupil: [-d[0], -d[1], -d[2]] };
@@ -744,8 +769,9 @@ function referred(
 ): Pick<VignettingCellResult, "referredDirectionCosines" | "referredDeviation"> {
   const unit = sphere && referredDirection(sphere, point, direction);
   if (!unit) return { referredDirectionCosines: null, referredDeviation: null };
+  const frame = sphere?.tangentFrame ?? null;
   return {
-    referredDirectionCosines: [unit[0], unit[1]],
+    referredDirectionCosines: frame === null ? [unit[0], unit[1]] : [dot(unit, frame.t1), dot(unit, frame.t2)],
     referredDeviation: Math.hypot(unit[0] - direction[0], unit[1] - direction[1], unit[2] - direction[2]),
   };
 }

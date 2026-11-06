@@ -93,6 +93,9 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 - Folded-system complex analysis stays guarded until the specific path is mirror-safe: the drawer guards coma,
   distortion, vignetting, and pupils, and field curvature/astigmatism stays section-guarded inside the Aberrations tab.
   Details in `agent_docs/architecture/optics-engine.md`.
+- A curved sensor, film gate or focal surface is `LensDataV2Input.imageSurface` (shape only; flat is `null`). Reach the
+  image through `skewImagePlaneIntercept(..., imageSurface)` or `landImageSurface*`, never `y + u·d`, and keep the flat
+  branch verbatim (`agent_docs/architecture/optics-engine.md`, Image Surface).
 - Source-listed camera-side cover glass / filter plates go in `LensDataV2Input.rearPlates` with the source's physical gaps;
   never fold t/n into the last gap by hand. `buildLens()` traces them everywhere and hides them from drawing via
   `synthetic`. A required drop-in filter in the lens's own holder is a drawn `Plane-Parallel Plate` element instead.

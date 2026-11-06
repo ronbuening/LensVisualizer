@@ -408,6 +408,7 @@ export function traceOffAxisChiefRay(
       trace.uy,
       geometry.lastSurfZ,
       geometry.imagePlaneZ,
+      request.preparedGeometry.lens.imageSurface,
     );
     if (imagePoint === null) return null;
 
@@ -432,6 +433,7 @@ export function traceOffAxisChiefRay(
     trace.uy,
     geometry.lastSurfZ,
     geometry.imagePlaneZ,
+    request.preparedGeometry.lens.imageSurface,
   );
   if (imagePoint === null) return null;
 
@@ -479,6 +481,7 @@ export function traceOffAxisBundleFromSamples(
     chiefTrace.uy,
     geometry.lastSurfZ,
     geometry.imagePlaneZ,
+    L.imageSurface,
   );
   if (chiefImagePoint === null) return null;
   const chiefRay: OffAxisChiefRaySample = { trace: chiefTrace, imagePoint: chiefImagePoint };
@@ -506,6 +509,7 @@ export function traceOffAxisBundleFromSamples(
       trace.uy,
       geometry.lastSurfZ,
       geometry.imagePlaneZ,
+      L.imageSurface,
     );
     if (imagePoint === null) return [];
 

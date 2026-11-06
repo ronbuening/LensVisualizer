@@ -47,6 +47,7 @@ const LENS_ONLY_FIELDS = [
   "aberrationControl",
   "opticalPath",
   "perspectiveControl",
+  "imageSurface",
   "projection",
   "nominalFno",
   "acceptsTeleconverters",

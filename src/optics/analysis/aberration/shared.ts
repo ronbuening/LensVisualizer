@@ -5,6 +5,13 @@
  */
 
 import { runtimeView } from "../../prescription/runtimeView.js";
+import {
+  imageSurfaceLocalFrame,
+  landImageSurfaceLine,
+  landImageSurfaceMeridional,
+  meridionalImageHeight,
+} from "../../geometry/imageSurface.js";
+import type { ImageSurfaceShape, Vec3 } from "../../types.js";
 import type { AnalysisRequest } from "../request.js";
 
 import { MARGINAL_PUPIL_FRACTIONS } from "../sampling.js";
@@ -106,7 +113,9 @@ export function meridionalImagePlaneCoordinate(
  * Intersect a meridional ray with the lens image plane and return plane coordinate.
  *
  * Handles tilted folded image planes by solving the line/plane equation in the
- * y/z meridional section, then measuring along the plane tangent.
+ * y/z meridional section, then measuring along the plane tangent. On a curved image
+ * surface the ray lands on the surface whose vertex sits on that plane instead, and the
+ * coordinate is its lateral height along the same tangent.
  *
  * @param y - ray height at `referenceZ` in mm
  * @param u - meridional slope dy/dz
@@ -124,6 +133,15 @@ export function imagePlaneCoordinate(
 ): number | null {
   const normal = L.imagePlane?.normal ?? { z: 1, y: 0 };
   const imageY = L.imagePlane?.y ?? 0;
+  if (L.imageSurface) {
+    const frame = imageSurfaceLocalFrame({ point: [0, imageY, planeZ], normal: [0, normal.y, normal.z], label: "" });
+    if (frame === null) return null;
+    const { ey, ez } = frame;
+    const local = (v: Vec3): Vec3 => [v[0], v[1] * ey[1] + v[2] * ey[2], v[1] * ez[1] + v[2] * ez[2]];
+    const hit = landImageSurfaceLine(L.imageSurface, local([0, y - imageY, referenceZ - planeZ]), local([0, u, 1]));
+    const height = hit ? meridionalImageHeight(L.imageSurface, hit.point[1]) : NaN;
+    return Number.isFinite(height) ? height : null;
+  }
   const normalY = normal.y;
   const normalZ = normal.z;
   const numer = normalY * (y - imageY) + normalZ * (referenceZ - planeZ);
@@ -279,14 +297,31 @@ export function computeSymmetricRealSample(
 }
 
 /**
- * Evaluate a traced transverse coordinate at an arbitrary plane.
+ * Evaluate a traced transverse coordinate at an arbitrary plane, or on the curved image surface moved so its vertex
+ * sits there.
  *
  * @param hit - transverse hit coordinate/slope
  * @param lastSurfZ - fallback reference z coordinate in mm
- * @param planeZ - target plane z coordinate in mm
- * @returns coordinate in mm at the target plane
+ * @param planeZ - target plane (vertex) z coordinate in mm
+ * @param imageSurface - curved image surface, or null for a plane
+ * @returns coordinate in mm at the target plane; NaN when the ray misses a curved surface
  */
-export function transverseCoordinateAtPlane(hit: TransverseFocusHit, lastSurfZ: number, planeZ: number): number {
+export function transverseCoordinateAtPlane(
+  hit: TransverseFocusHit,
+  lastSurfZ: number,
+  planeZ: number,
+  imageSurface: ImageSurfaceShape | null,
+): number {
+  if (imageSurface !== null) {
+    const landing = landImageSurfaceMeridional(
+      imageSurface,
+      hit.coordinate,
+      hit.slope,
+      hit.referenceZ ?? lastSurfZ,
+      planeZ,
+    );
+    return landing ? meridionalImageHeight(imageSurface, landing.y) : NaN;
+  }
   return hit.coordinate + hit.slope * (planeZ - (hit.referenceZ ?? lastSurfZ));
 }
 
@@ -295,13 +330,19 @@ export function transverseCoordinateAtPlane(hit: TransverseFocusHit, lastSurfZ: 
  *
  * @param hits - traced transverse hits
  * @param lastSurfZ - fallback reference z coordinate in mm
- * @param planeZ - target plane z coordinate in mm
+ * @param planeZ - target plane (vertex) z coordinate in mm
+ * @param imageSurface - curved image surface, or null for a plane
  * @returns RMS coordinate magnitude in mm
  */
-export function rmsAtPlane(hits: TransverseFocusHit[], lastSurfZ: number, planeZ: number): number {
+export function rmsAtPlane(
+  hits: TransverseFocusHit[],
+  lastSurfZ: number,
+  planeZ: number,
+  imageSurface: ImageSurfaceShape | null,
+): number {
   return Math.sqrt(
     hits.reduce((sum, hit) => {
-      const imageHeight = transverseCoordinateAtPlane(hit, lastSurfZ, planeZ);
+      const imageHeight = transverseCoordinateAtPlane(hit, lastSurfZ, planeZ, imageSurface);
       return sum + imageHeight * imageHeight;
     }, 0) / hits.length,
   );
@@ -312,18 +353,25 @@ export function rmsAtPlane(hits: TransverseFocusHit[], lastSurfZ: number, planeZ
  *
  * @param hits - traced transverse hits
  * @param lastSurfZ - fallback reference z coordinate in mm
- * @param planeZ - target plane z coordinate in mm
+ * @param planeZ - target plane (vertex) z coordinate in mm
+ * @param imageSurface - curved image surface, or null for a plane
  * @returns maximum absolute coordinate in mm
  */
-export function peakAtPlane(hits: TransverseFocusHit[], lastSurfZ: number, planeZ: number): number {
-  return Math.max(...hits.map((hit) => Math.abs(transverseCoordinateAtPlane(hit, lastSurfZ, planeZ))));
+export function peakAtPlane(
+  hits: TransverseFocusHit[],
+  lastSurfZ: number,
+  planeZ: number,
+  imageSurface: ImageSurfaceShape | null,
+): number {
+  return Math.max(...hits.map((hit) => Math.abs(transverseCoordinateAtPlane(hit, lastSurfZ, planeZ, imageSurface))));
 }
 
 /**
  * Least-squares best-focus plane for a set of transverse ray hits.
  *
  * Minimizes the sum of squared transverse coordinates after propagating each
- * ray linearly to a common z plane.
+ * ray linearly to a common z plane. A curved image surface is located by the
+ * same plane: its vertex goes there, off by about u·r²/2|R| from its own best.
  *
  * @param hits - traced transverse hits
  * @param lastSurfZ - fallback reference z coordinate in mm

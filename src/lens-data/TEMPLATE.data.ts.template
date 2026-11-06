@@ -244,6 +244,10 @@ const LENS_DATA = {
   //   { label: "CG", thicknessMm: 0.0, nd: 1.5168, vd: 64.2, glass: "N-BK7", gapAfterMm: 0.0, source: "..." },
   // ],
 
+  /* ── Image surface ── only when the source gives the image surface a radius (curved sensor, curved film gate,
+   *    Schmidt focal sphere). Shape only; the last gap still places it. See LENS_DATA_SPEC.md § Image Surface. */
+  // imageSurface: { R: -120.0, sd: 21.7, source: "..." },
+
   /* ── Group and doublet annotations ── brackets on the diagram; fromSurface/toSurface are surface labels. Authored
    *    groups are also the moving groups of the group-movement analysis: author the source's mechanical groups.
    *    See LENS_DATA_SPEC.md § Annotations. */

@@ -117,6 +117,7 @@ const LENS_FIELDS: Readonly<Record<keyof LensDataInput, true>> = {
   perspectiveControl: true,
   projection: true,
   opticalPath: true,
+  imageSurface: true,
   aberrationControl: true,
   nominalFno: true,
   closeFocusM: true,
@@ -999,7 +1000,8 @@ export function ingestLensV1(input: LensDataInput, request?: IngestRequest): Ing
   if (has(data, "aberrationControl")) {
     lens.aberrationControl = ingestAberrationControl(data.aberrationControl as Untyped, labelIndex, context);
   }
-  for (const field of ["projection", "opticalPath", "perspectiveControl"]) put(lens, field, data[field]);
+  for (const field of ["projection", "opticalPath", "perspectiveControl", "imageSurface"])
+    put(lens, field, data[field]);
   if (has(data, "rearPlates")) lens.rearPlates = ingestRearPlates(data.rearPlates, context);
   put(lens, "groups", data.groups);
   put(lens, "doublets", data.doublets);
@@ -1032,7 +1034,14 @@ function recordLensReads(sources: SourcePaths, lens: Untyped): void {
   sources.records.elements = "elements";
   sources.records.surfaces = "surfaces";
   recordReads(sources, "", "", lens, ["key", "maker", "name", "subtitle", "publishedAt"]);
-  recordReads(sources, "", "", lens, ["projection", "opticalPath", "perspectiveControl", "groups", "doublets"]);
+  recordReads(sources, "", "", lens, [
+    "projection",
+    "opticalPath",
+    "perspectiveControl",
+    "imageSurface",
+    "groups",
+    "doublets",
+  ]);
   recordReads(sources, "catalog", "", catalog, [
     "lensMounts",
     "imageFormat",

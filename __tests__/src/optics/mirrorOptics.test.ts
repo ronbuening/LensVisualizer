@@ -266,6 +266,28 @@ describe("mirror optics support", () => {
     expect(positiveHeight).toBeCloseTo(-negativeHeight, 8);
   });
 
+  it("lands chief rays on the focal sphere of a mirror concentric with its stop", () => {
+    /* With the stop at the centre of curvature every chief meets the mirror at normal incidence and returns through
+     * the centre, so it lands on the sphere of radius f about it, at height f·sin θ. */
+    const concentric = structuredClone(mirrorData);
+    concentric.surfaces[0].d = 200;
+    concentric.opticalPath = { ...concentric.opticalPath!, imagePlane: { z: 100, label: "IMG" } };
+    concentric.imageSurface = { R: -100, sd: 10 };
+    expect(validateLensData(concentric)).toEqual([]);
+    const L = buildLens(concentric);
+    const layout = doLayout(0, 0, L);
+
+    for (const fieldDeg of [1, 3, -3]) {
+      const solve = solveChiefRay(fieldDeg, 0, 0, L);
+      const trace = traceRay(solve.yLaunch, solve.uField, layout.z, 0, 0, L.stopPhysSD, true, L);
+      const [z, y] = trace.pts[trace.pts.length - 1];
+
+      expect(trace.reachedImagePlane).toBe(true);
+      expect(Math.hypot(z, y)).toBeCloseTo(100, 6);
+      expect(Math.abs(y)).toBeCloseTo(100 * Math.sin((Math.abs(fieldDeg) * Math.PI) / 180), 4);
+    }
+  });
+
   it("clips central rays on an obstruction while sampling the usable annular pupil", () => {
     const L = buildLens(annularData);
     const layout = doLayout(0, 0, L);

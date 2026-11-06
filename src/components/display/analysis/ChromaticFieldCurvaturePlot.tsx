@@ -38,6 +38,7 @@ const PH = VB_H - MT - MB;
 
 export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFieldCurvaturePlotProps) {
   const markerFields = result.fields.filter(hasUsableChromaticShifts);
+  const curved = result.fields.some((field) => field.imageSurfaceSagMm !== undefined);
   const curveFields = result.curveFields.filter(hasUsableChromaticShifts);
   const plotFields = curveFields.length > 0 ? curveFields : markerFields;
   if (plotFields.length < 2) return null;
@@ -83,7 +84,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
 
       <line x1={ML} y1={zeroY} x2={ML + PW} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
       <text x={ML + PW - 4} y={zeroY - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Current image plane
+        {curved ? "Image surface" : "Current image plane"}
       </text>
 
       {tickValues.map((tick) => {
@@ -117,7 +118,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
         fontFamily="inherit"
         transform={`rotate(-90) translate(${-(MT + PH / 2)}, 12)`}
       >
-        Focus shift from image plane (mm)
+        {curved ? "Focus shift from image surface (mm)" : "Focus shift from image plane (mm)"}
       </text>
       <text x={ML + PW - 4} y={MT - 6} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
         Toward sensor

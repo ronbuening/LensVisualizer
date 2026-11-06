@@ -3,9 +3,12 @@
  *
  * Perspective-control movement changes the lens assembly relative to the
  * camera. This component intentionally accepts no lens movement transform so
- * the sensor remains in its authored camera-space position.
+ * the sensor remains in its authored camera-space position. A curved image
+ * surface is drawn as its section: a cylinder to the frame's edge along the
+ * viewed section, any other surface over its authored half-height.
  */
 import { memo } from "react";
+import { imageSurfacePathD, imageSurfacePoint } from "../../optics/diagramGeometry.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -39,22 +42,42 @@ const ImagePlaneOverlay = memo(function ImagePlaneOverlay({
     imagePlaneZ + imageTangent.z * L.lyImgLine,
     imagePlaneY + imageTangent.y * L.lyImgLine,
   );
-  const imageLabel = screenPoint(
-    imagePlaneZ + imageTangent.z * L.lyImgLabel,
-    imagePlaneY + imageTangent.y * L.lyImgLabel,
-  );
+  const surface = L.imageSurface;
+  const placement = { z: imagePlaneZ, y: imagePlaneY, normal: imageNormal };
+  /* A cylinder is drawn to the frame's edge along the viewed section; other surfaces over their authored half-height. */
+  const drawnHalfHeight = surface ? (surface.drawnExtentMm ?? surface.semiDiameter) : 0;
+  /* The label keeps its gap beyond the drawn end; on a curved surface that end has moved along the normal. */
+  const surfaceEnd = surface && imageSurfacePoint(surface, placement, -Math.sign(L.lyImgLabel) * drawnHalfHeight);
+  const labelGap = Math.abs(L.lyImgLabel) - Math.abs(L.lyImgLine);
+  const imageLabel =
+    surface && surfaceEnd
+      ? screenPoint(
+          surfaceEnd[0] + imageTangent.z * Math.sign(L.lyImgLabel) * labelGap,
+          surfaceEnd[1] + imageTangent.y * Math.sign(L.lyImgLabel) * labelGap,
+        )
+      : screenPoint(imagePlaneZ + imageTangent.z * L.lyImgLabel, imagePlaneY + imageTangent.y * L.lyImgLabel);
 
   return (
     <>
-      <line
-        x1={imageLineStart[0]}
-        y1={imageLineStart[1]}
-        x2={imageLineEnd[0]}
-        y2={imageLineEnd[1]}
-        stroke={t.imgLine}
-        strokeWidth={t.imgLineWidth}
-        strokeDasharray="4,3"
-      />
+      {surface ? (
+        <path
+          d={imageSurfacePathD(surface, placement, drawnHalfHeight, sx, sy)}
+          fill="none"
+          stroke={t.imgLine}
+          strokeWidth={t.imgLineWidth}
+          strokeDasharray="4,3"
+        />
+      ) : (
+        <line
+          x1={imageLineStart[0]}
+          y1={imageLineStart[1]}
+          x2={imageLineEnd[0]}
+          y2={imageLineEnd[1]}
+          stroke={t.imgLine}
+          strokeWidth={t.imgLineWidth}
+          strokeDasharray="4,3"
+        />
+      )}
       <text
         x={imageLabel[0]}
         y={imageLabel[1]}
