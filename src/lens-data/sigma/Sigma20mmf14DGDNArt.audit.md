@@ -114,3 +114,69 @@ coverage are clean (100 %, corner clear), and the page renders with the Fig. 1 s
   schedule is not published, so only the printed state is modeled.
 - Open: the patent's condition (4) names L15 (E-FDS1 coordinates, ΔPgF +0.028) as a high-anomaly positive; it is not
   tagged `apd`, because Sigma's drawing does not mark it as special glass.
+
+## 2026-11-06 — Semi-diameter pass against the patent figure
+
+### Source and scale
+
+JP 2023-167728 A, Fig. 1 (PDF p. 31), the Numerical Example 1 section at infinity, rendered at 800 dpi (the page
+raster is about 800 ppi). The drawing carries no rays; the axis is level across the figure, and the top and bottom
+halves agree to 1 px. Along the axis every vertex crossing falls within about 1 px of the prescription at 16.30 px/mm
+(surface 1 to the image plane, 2103 px for 129.04 mm; surface 1 to surface 33, 1772 px for 108.66 mm), the 8.153 px/mm
+of the earlier pass at 400 dpi. Across the axis the figure is drawn about 2.4 % taller: circle fits to the outer zones
+of eight strongly curved spherical faces (S4, S6, S7, S13, S23, S26, S28, S31), with sag read at the axial scale, give
+16.6–16.8 px/mm, mean about 16.70. The stop tick's inner end, 222.5 px from the axis, reads 13.3 mm at that scale,
+the height of the real F1.46 marginal ray at the stop (13.34 mm). Heights below are stroke centres at 16.70 px/mm.
+
+### Rims
+
+| Surface | sd (kept) | Fig. 1 px | Fig. 1 mm | sd / figure |
+| --- | ---: | ---: | ---: | ---: |
+| 1A (L1 edge; also S2 land) | 31.6 | 516 | 30.9 | 1.02 |
+| 2A, curve end | 23.5 | 387 | 23.2 | 1.01 |
+| 3 (L2 edge; also S4 land) | 24.8 | 405 | 24.3 | 1.02 |
+| 4, curve end | 20.2 | 345 | 20.7 | 0.98 |
+| 5, 6 | 21.6 | 352.5 | 21.1 | 1.02 |
+| 7, curve end | 19.5 | 319.5 | 19.1 | 1.02 |
+| 8 (L4 edge; also S7 land) | 20.4 | 332 | 19.9 | 1.03 |
+| 9, 10 | 20.2 | 331 | 19.8 | 1.02 |
+| 11, curve end | 14.7 | 242 | 14.5 | 1.01 |
+| 12 (L6 edge; also S11 land) | 16.4 | 266 | 15.9 | 1.03 |
+| 13, 14 | 17.6 | 287.5 | 17.2 | 1.02 |
+| 15A, 16A | 17.1 | 279.5 | 16.7 | 1.02 |
+| 17 (L9 edge; also S18 land) | 16.25 | 264.5 | 15.8 | 1.03 |
+| 18, curve end | 15.0 | 242 | 14.5 | 1.04 |
+| 19, 20 | 15.45 | 252.5 | 15.1 | 1.02 |
+| 22–24 | 14.4 | 234.5 | 14.0 | 1.03 |
+| 25–27 | 14.5 | 236.5 | 14.2 | 1.02 |
+| 28, 29 | 15.8 | 258.5 | 15.5 | 1.02 |
+| 30, 33A (also S31, S32A lands) | 15.15 | 248.5 | 14.9 | 1.02 |
+| 31, 32A, curve ends | 13.0 | 227 | 13.6 | 0.96 |
+
+No value changed. Every rim sits 1–4 % above the drawing's own scale, which is the earlier pass's use of the axial
+scale for heights; that is inside measurement noise, and lowering the rims would only take corner light. The two rims
+the cross-gap rule holds under the figure are inside noise too: S4 at 20.2 mm against 20.7 mm, and S31 and S32 at
+13.0 mm against 13.6 mm, where Fig. 1 ends both curves on the shared land at the height the printed faces cross
+(13.7 mm). Admitting the figure readings would take `checks.gapSagFrac` 0.93 (S4 at 20.6 mm) and 0.97 (S31 and S32
+at 13.5 mm); neither is set. The step order across every air gap matches the drawing (L1 > L2 > L3 > L4 ≈ L5;
+L7 > L8 > L6 ≈ L9 > L10; L11–L12 ≈ L13–L14 < L15 > L16 = L17), and the lands sit where Fig. 1 draws them. Fig. 1 also
+ends L13's rear at a land about 12.9 mm high while L14's convex front runs on in air to the 14.2 mm edge; a cemented
+junction cannot carry a land, so S26 runs to the doublet's edge.
+
+### Clearance and light
+
+The F1.46 on-axis beam passes every surface at infinity, mid focus and the 226 mm state (100 % on axis at each). The
+real axial marginal ray comes closest to S11 (13.89 mm against 14.7) and S18 (14.10 against 15.0); the real chief ray
+reaches the 21.63 mm corner at 48.23°. The surface validator passes, the aperture audit reports no rim limit, and the
+image-circle and field-coverage checks are clean. No aspheric turnover inside any clear radius; the rim departures
+quoted in the analysis stand. Engine half-field 48.23°, F1.46 and stop radius 12.73 mm are unchanged. Wide-open
+geometric transmission at the 48.2° corner is 28.8 % at infinity, 32.1 % at mid focus and 34.5 % at the close state,
+unchanged.
+
+### Maker's drawing
+
+Sigma's A022 construction drawing has the same 17 elements in 15 groups in the same order, aspherical elements 1, 8
+and 17, SLD elements 10 and 11, and the stepped rears of L1 and L2. It is not drawn to Fig. 1's proportions: scaled to
+L1, its G3A elements grow toward the stop (L6 about 17.5 mm to L10 about 18.7 mm) where Fig. 1 shrinks them (L7
+17.2 mm to L10 15.1 mm), and it draws L12 taller than L11 with a step where Fig. 1 draws the doublet square. The patent
+figure of the modeled example governs.
