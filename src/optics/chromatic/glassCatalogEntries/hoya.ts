@@ -1145,6 +1145,17 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; NBFD11 page (formula 3 polynomial).",
   },
   {
+    name: "NBFD1",
+    vendor: "Hoya",
+    polynomial: [3.1163806, -0.013242646, 0.028648452, 0.0006823535, -7.2522372e-6, 2.7432993e-6],
+    nd: 1.789004,
+    vd: 42.757634,
+    PgF: 0.5641,
+    code6: "789428",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, NBFD1 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-11-06).",
+  },
+  {
     name: "TAFD25",
     vendor: "Hoya",
     polynomial: [3.4905528, -0.016325771, 0.041146322, 0.0027169124, -0.00018260518, 0.000020641862],

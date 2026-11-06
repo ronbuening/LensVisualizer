@@ -35,27 +35,27 @@ At this scale the lens is 52.17 mm from first to last vertex and 86.19 mm from f
 
 ### L1 — Positive Meniscus
 
-nd = 1.77390, νd = 50.6. Glass: unmatched; the patent prints d-line nd and νd only. f = +91.95 mm.
+nd = 1.77390, νd = 50.6. Glass: unmatched; no catalog glass sits at this pair (the nearest, Sumita LASKN3, is 1.0 × 10⁻⁴ higher in nd). f = +91.95 mm.
 
 A weak front collector with a nearly flat rear face (R = 1709 mm, 30 f). Its index sits in the patent's 1.75–1.85 band for n1, n2 and n5, which holds down the Petzval sum and reduces astigmatism and field curvature. Fig. 1 draws L1 the largest element, and its 26.13 mm rim leaves 2.4 mm beyond the entrance-pupil radius.
 
 ### L2 — Positive Meniscus
 
-nd = 1.78900, νd = 42.7. Glass: unmatched; the patent prints d-line nd and νd only. f = +61.86 mm.
+nd = 1.78900, νd = 42.7. Glass: modelled as Hoya NBFD1 (1.78900 / 42.76), a coordinate equivalent. f = +61.86 mm.
 
 The strongest positive element of the front group. Its rear face, r4, and L3's weaker front face, r5, form a thin air lens whose ratio the patent keeps between 1.3 and 1.7 (here 1.501): with r5 weaker than r4 the pair generates overcorrected spherical aberration (a net −0.348 in the Seidel table), which lets r7 stay weak. Above the range coma grows quickly and the meridional field bends strongly negative. The gap itself is kept below 0.025 f (here 0.02 f) because high-index glasses of low dispersion were not available for L1 and L2, and lateral color from oblique rays builds up in that space.
 
 ### L3 — Negative Meniscus
 
-nd = 1.74000, νd = 28.2. Glass: unmatched; the patent prints d-line nd and νd only. f = −34.56 mm.
+nd = 1.74000, νd = 28.2. Glass: modelled as Hoya FD3 (1.74000 / 28.25), a coordinate equivalent. f = −34.56 mm.
 
 The front group's negative flint, with its steep concave face toward the stop. The patent keeps that face, r6, between 0.31 f and 0.37 f (here 0.3415 f): stronger and coma flare grows, weaker and the Petzval sum, astigmatism and field curvature can no longer be corrected. The surface carries the lens's largest single Petzval and distortion terms (−1.245 and −2.055). The 1.70–1.81 index band for n3 and n4 raises the power of r6 and r7 without steepening them.
 
 ### L4 / L5 — Cemented Doublet
 
-L4: nd = 1.74077, νd = 27.7. Glass: unmatched; the patent prints d-line nd and νd only. f = −22.13 mm (biconcave).
+L4: nd = 1.74077, νd = 27.7. Glass: modelled as Hoya E-FD13 (SF13 class), a coordinate equivalent. f = −22.13 mm (biconcave).
 
-L5: nd = 1.83060, νd = 36.5. Glass: unmatched; the patent prints d-line nd and νd only. f = +26.09 mm (biconvex).
+L5: nd = 1.83060, νd = 36.5. Glass: unmatched; no catalog glass sits at this pair. f = +26.09 mm (biconvex).
 
 L4's concave front face, r7, mirrors r6 across the stop space and is held between 0.38 f and 0.45 f (here 0.416 f). It contributes the largest spherical-aberration term in the Seidel table, −1.129, and almost no coma (−0.010), and the patent warns that a face this weak tends to leave spherical aberration strongly undercorrected unless the other conditions compensate. The cemented interface r8 carries little power, and the pair together is nearly afocal (f ≈ +1377 mm). The patent keeps ν6 and ν7 above 47 because making up the rear crowns' color at r8 would bring overcorrected higher-order color there and spoil axial color.
 
@@ -63,19 +63,19 @@ L5's strong convex rear face, r9, is held between 0.52 f and 0.60 f (here 0.5758
 
 ### L6 — Positive Meniscus
 
-nd = 1.72916, νd = 54.8. Glass: unmatched; the patent prints d-line nd and νd only. f = +149.66 mm.
+nd = 1.72916, νd = 54.8. Glass: modelled as Hoya TAC8 (1.72916 / 54.67), a coordinate equivalent. f = +149.66 mm.
 
 A weak meniscus convex to the image. The patent keeps the rear face r11 weak, between f and 2 f (here 1.651 f), because r9's strong curvature pushes spherical aberration toward undercorrection; a stronger r11 adds to it, a weaker one overcorrects it and leaves distortion uncorrected. With L7 it forms the pair of high-index crowns (1.7–1.8, νd > 47) that hold down the Petzval sum, help correct undercorrected spherical aberration and keep the color of the whole lens in balance.
 
 ### L7 — Biconvex Positive
 
-nd = 1.75500, νd = 52.4. Glass: unmatched; the patent prints d-line nd and νd only. f = +90.76 mm.
+nd = 1.75500, νd = 52.4. Glass: modelled as Hoya TAC6 (1.75500 / 52.32), a coordinate equivalent. f = +90.76 mm.
 
 The last element, with its stronger face toward the object (R12 = 1.43 f); the claim allows either a biconvex lens or a positive meniscus here, and the example is biconvex (R13 = −7.43 f).
 
 ## Glass Selection
 
-The patent prints d-line nd and νd only and names no glass supplier, and the data file leaves all seven glasses unmatched. By their place on the nd–νd map the palette is uniformly high in index: three lanthanum flints at 1.774–1.831 (νd 36–51) for L1, L2 and L5, two dense flints at 1.740–1.741 (νd 28) for L3 and L4, and two lanthanum crowns at 1.729–1.755 (νd 52–55) for L6 and L7. The mean index is 1.765. High index is the patent's main tool for holding the Petzval sum down while r6 and r7 are weakened.
+The patent prints d-line nd and νd only and names no glass supplier. Five of the seven pairs coincide with Hoya catalog glasses within 0.13 in νd (NBFD1, FD3, E-FD13, TAC8, TAC6), and the model labels them as coordinate equivalents so their color follows catalog dispersion; L1 (1.77390 / 50.6) and L5 (1.83060 / 36.5) match no catalog glass and stay unmatched, traced from nd and νd alone. By their place on the nd–νd map the palette is uniformly high in index: three lanthanum flints at 1.774–1.831 (νd 36–51) for L1, L2 and L5, two dense flints at 1.740–1.741 (νd 28) for L3 and L4, and two lanthanum crowns at 1.729–1.755 (νd 52–55) for L6 and L7. The mean index is 1.765. High index is the patent's main tool for holding the Petzval sum down while r6 and r7 are weakened.
 
 ## Conditional Expressions
 

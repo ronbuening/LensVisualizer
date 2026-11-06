@@ -101,7 +101,7 @@ const LENS_DATA = {
       "nd": 1.789,
       "vd": 42.7,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.78900 / νd 42.7; supplier not disclosed)",
+      "glass": "NBFD1 (HOYA; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": 61.86,
       "role": "Main positive power of the front group; its rear face nearly meets L3 at the rim across a 1.14 mm air gap."
     },
@@ -113,7 +113,7 @@ const LENS_DATA = {
       "nd": 1.74,
       "vd": 28.2,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.74000 / νd 28.2; supplier not disclosed)",
+      "glass": "FD3 (HOYA; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": -34.56,
       "role": "Front-group negative meniscus; its steep concave rear face toward the stop is held in a narrow range to limit coma flare."
     },
@@ -125,7 +125,7 @@ const LENS_DATA = {
       "nd": 1.74077,
       "vd": 27.7,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.74077 / νd 27.7; supplier not disclosed)",
+      "glass": "E-FD13 (HOYA; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": -22.13,
       "role": "Negative flint of the rear cemented doublet; its concave front face mirrors L3's across the stop space.",
       "cemented": "D1"
@@ -151,7 +151,7 @@ const LENS_DATA = {
       "nd": 1.72916,
       "vd": 54.8,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.72916 / νd 54.8; supplier not disclosed)",
+      "glass": "TAC8 (HOYA; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": 149.66,
       "role": "Weak positive meniscus convex to the image; first of the two rear high-index crowns that hold down the Petzval sum."
     },
@@ -163,7 +163,7 @@ const LENS_DATA = {
       "nd": 1.755,
       "vd": 52.4,
       "indexReference": "d",
-      "glass": "Unmatched (patent nd 1.75500 / νd 52.4; supplier not disclosed)",
+      "glass": "TAC6 (HOYA; coordinate equivalent, supplier unconfirmed)",
       "focalLengthMm": 90.76,
       "role": "Last positive element, stronger face to the object; second of the two rear high-index crowns."
     }
