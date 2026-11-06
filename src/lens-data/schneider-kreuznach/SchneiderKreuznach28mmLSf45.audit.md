@@ -150,3 +150,12 @@ Limits. S1 and S5 stay about 4 % above Fig. 7 (both drawings put L2/L1 at 0.79, 
 0.1 mm under the fan's 15.56 mm, held by the gap to S7. The L13/L14 rim is 0.7 mm inside the drawn 17.6 mm because
 L13's edge reaches zero at 17.04 mm. Overlay of model outlines on Fig. 7 (starting rims dashed) kept with the session
 renders, not in the repo.
+
+## 2026-11-06 — S18 set to the maker section's proportion
+
+The owner chose S18 = 8.6 mm (from 7.7 mm), the radius at which Phase One's section ends L10's concave front at its flat
+land (about 0.22 of L1's rim, against 0.20 in Fig. 7). Fig. 7 reads about 7.4 mm and the full-field fan of Fig. 8 traces
+to 7.73 mm, so the model now sits about 0.9 mm outside the patent's own reading; the land to 13 mm is unchanged. Wide-open
+transmission relative to the axis, 7.7 → 8.6 mm: 83.3 → 92.9 % at 31.3°, 67.7 → 78.4 % at 39.8°, 53.6 → 64.6 % at
+45.5°, 20.5 → 31.2 % at 51.2°. Half-field 45.03°, F/4.600 and the 7.058 mm stop unchanged; the surface and aperture
+audits pass with no rim limit.

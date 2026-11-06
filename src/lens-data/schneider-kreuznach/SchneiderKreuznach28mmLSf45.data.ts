@@ -18,9 +18,11 @@
  * estimated from the Fig. 7 outlines, read at 0.0812 mm per 600 dpi pixel
  * along the axis (vertex fit) and 0.077 mm across it (arc and rim fits: the
  * figure is about 5 % narrower than its axial scale), and checked by
- * real-ray trace. S18 = 7.7 mm is where Fig. 7 ends L10's concave front with
- * a flat land and where the full-field lateral-aberration fan of Fig. 8 ends;
- * the loss it brings toward the edge of the field is kept. S2 = 31.1 mm is
+ * real-ray trace. S18 = 8.6 mm follows Phase One's section, which ends L10's
+ * concave front at a flat land about 0.22 of L1's rim from the axis; Fig. 7
+ * draws that land from about 7.4 mm and the full-field lateral-aberration fan
+ * of Fig. 8 ends at 7.7 mm, so S18 sits about 0.9 mm outside the patent's own
+ * reading. The loss it brings toward the edge of the field is kept. S2 = 31.1 mm is
  * the drawn end of L1's concave face. S6 is held at 15.45 mm by the gap to
  * S7. S23-S25 share 16.9 mm, just inside the 17.04 mm height where L13's
  * edge thins to zero, as Fig. 7 draws it. The rimExtensionSd lands on S2,
@@ -387,7 +389,7 @@ const LENS_DATA = {
       "label": "18",
       "R": -23.4942,
       "d": 3.6149,
-      "sd": 7.7,
+      "sd": 8.6,
       "rimExtensionSd": 13,
       "medium": 10
     },
