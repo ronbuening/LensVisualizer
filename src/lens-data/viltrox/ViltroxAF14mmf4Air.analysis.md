@@ -36,7 +36,7 @@ At infinity, the complete powered prescription computes to an effective focal le
 
 The stop location itself is published in the prescription between S10 and S12. Its semi-diameter is not published. The model's `STO.sd = 3.451627 mm` is an inferred f/4 aperture derived from the final optical model rather than a patent clear-aperture value.
 
-The patent inserts a plane-parallel filter after L12 (¶0121 and Table 1, S23-S24). The physical rear path is 12.49 mm air, 2.85 mm of nd=1.52 / vd=64.2 plate, and 1.00 mm air. It is traced through `rearPlates` and hidden from the diagram. Its 15.365 mm air-equivalent distance is unchanged from the former folded representation. The computed physical paraxial BFL is 15.267563 mm, whereas the source image plane is 16.34 mm behind S22: the −1.072437 mm offset persists after unfolding. Every source prescription entry matches, and no single transcription error explains the discrepancy; retain the published path and its rounded indices. No focal-length scaling is applied.
+The patent inserts a plane-parallel filter after L12 (¶0121 and Table 1, S23-S24). The printed physical rear path is 12.49 mm air, 2.85 mm of nd=1.52 / vd=64.2 plate, and 1.00 mm air, placing the image 16.34 mm behind S22. The plate is traced through `rearPlates` and hidden from the diagram. With the patent's two-decimal indices, the computed physical paraxial BFL is 15.267563 mm, so the printed path left paraxial infinity focus 1.072437 mm in front of the image plane. Every source prescription entry matches, and no single transcription error explains the discrepancy; a ±0.005 rounding of each index alone gives a spread of about ±0.6 mm in this focus. The model therefore re-solves the S22 air gap for paraxial focus, 12.49 → 11.417563 mm, keeping the plate and its 1.00 mm air; the S22-to-image distance is 15.267563 mm. No focal-length scaling is applied.
 
 ## Element-by-Element Analysis
 
@@ -160,16 +160,16 @@ The patent uses internal focus. G1 and G3 remain fixed relative to the image pla
 
 The final data uses a constrained reconstruction because the printed close-focus spacing row conflicts with the stated one-group mechanism. At infinity, Table 3 gives `D1 = 4.85 mm` and `D2 = 3.46 mm`, so the two air gaps surrounding G2 sum to 8.31 mm. At the patent's nominal 0.12 m endpoint, Table 3 prints `D1 = 3.75 mm` and `D2 = 4.65 mm`, which would increase the sum to 8.40 mm even though the adjacent groups remain fixed.
 
-The modeled close state preserves the published D1 motion and the required fixed total track: `D1 = 3.75 mm`, `D2 = 4.56 mm`. G2 therefore translates 1.10 mm toward the object, and `D1 + D2` remains 8.31 mm in both modeled states.
+The modeled close state keeps the required fixed total track, `D1 + D2 = 8.31 mm`. With the printed rows (`D1 = 3.75 mm`, `D2 = 4.56 mm` after the conservation fix) the rounded prescription focused that state at 0.111 m object to image. After the S22 re-solve described above, the close row is re-solved by moving G2 alone so that it is in paraxial focus at 0.12 m object to image: `D1 = 3.608419 mm`, `D2 = 4.701581 mm`. G2 therefore translates 1.241581 mm toward the object, against the printed 1.10 mm.
 
-| Quantity | Infinity | Constrained close state |
+| Quantity | Infinity | Re-solved close state |
 |---|---:|---:|
-| D1 after STO | 4.85 mm | 3.75 mm |
-| D2 after S16 | 3.46 mm | 4.56 mm |
+| D1 after STO | 4.85 mm | 3.608419 mm (printed 3.75) |
+| D2 after S16 | 3.46 mm | 4.701581 mm (printed 4.65) |
 | D1 + D2 | 8.31 mm | 8.31 mm |
-| Computed EFL | 14.192130 mm | 13.615918 mm |
+| Computed EFL | 14.192130 mm | 13.545261 mm |
 
-The computed focal-length change is -4.060% from infinity to the constrained close state. The UI field `closeFocusM = 0.12 m` is the patent's nominal distance for this spacing row, so the close-focus label matches the state it describes. Viltrox markets a 0.13 m minimum focus distance; neither source states its distance reference plane, so the two figures are not reconciled here.
+The computed focal-length change is -4.558% from infinity to the close state (the patent prints 14.3 → 13.7 mm, -4.2%). The patent does not state the reference plane of its 0.12 m object distance. The model reads it as object to image: with the infinity residual removed, the printed 1.10 mm of G2 travel focuses at 0.128 m object to image, while the first-vertex reading would need only about 0.57 mm of travel. `closeFocusM = 0.12 m` is that distance. Viltrox markets a 0.13 m minimum focus distance, kept as the catalog marketing figure.
 
 ## Aspherical Surfaces
 
@@ -212,11 +212,11 @@ The patent gives eight design conditions, of which conditions (1)-(5), (7), and 
 | (7) `1.5 ≤ TTL/D ≤ 2` | 1.64261 | Pass |
 | (8) `4 ≤ TTL/F ≤ 6` | 4.96993 | Pass |
 
-For condition (7), the evaluation uses the source physical S1-to-image track of 71.07 mm and the 43.2666 mm diagonal of the production full-frame format. The patent does not independently print a numerical target-size `D` in Example 1, so the format substitution is a production-correlation inference. For condition (8), the same 71.07 mm source physical track is divided by the patent's printed 14.3 mm focal length. The active model now retains that 71.07 mm physical track; its air-equivalent track remains 70.095 mm.
+For condition (7), the evaluation uses the source physical S1-to-image track of 71.07 mm and the 43.2666 mm diagonal of the production full-frame format. The patent does not independently print a numerical target-size `D` in Example 1, so the format substitution is a production-correlation inference. For condition (8), the same 71.07 mm source physical track is divided by the patent's printed 14.3 mm focal length. After the S22 re-solve the model's physical track is 69.997563 mm (air-equivalent 69.022563 mm); the conditions above keep the printed 71.07 mm.
 
 ## Verification Summary
 
-The final data file's load-bearing first-order values were recomputed directly from its TypeScript surface and focus arrays using sequential height/reduced-angle tracing and an independent ABCD construction. The two methods agree to machine precision. At infinity, the model gives EFL 14.192130 mm, air-equivalent Gaussian BFD 14.292563 mm (physical BFD 15.267563 mm through the filter), and a Petzval sum of +0.009564851 mm⁻¹ when each refracting surface is accumulated as `φ/(n·n′)`.
+The final data file's load-bearing first-order values were recomputed directly from its TypeScript surface and focus arrays using sequential height/reduced-angle tracing and an independent ABCD construction. The two methods agree to machine precision. At infinity, the model gives EFL 14.192130 mm, air-equivalent Gaussian BFD 14.292563 mm (physical BFD 15.267563 mm through the filter, now equal to the authored S22-to-image distance), and a Petzval sum of +0.009564851 mm⁻¹ when each refracting surface is accumulated as `φ/(n·n′)`.
 
 The authored semi-diameters are inferred optical rims measured from Figure 1 at 600 dpi, with the unchanged f/4 stop. The 54.73 mm glass span yields 14.75 µm/px. The optical caps exclude the opaque rear seats of L1 and L2; explicit rim extensions now draw those seats without enlarging either optical aperture. L11 retains the original 7.2/7.7 mm radii because surface 20A turns over near 7.8 mm, before the drawn rim. Other apertures are enlarged from the original ray-envelope estimates. Surface validation, aspheric slope scans, image-circle checks, and production render diagnostics pass.
 

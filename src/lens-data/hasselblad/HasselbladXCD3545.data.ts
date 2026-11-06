@@ -4,17 +4,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — HASSELBLAD XCD 45mm f/3.5                                             ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: WO 2017/221949 A1, Example 1; transcription checked against the Japanese   ║
- * ║ republication JP WO2017/221949 A1, Fig. 2 / Fig. 3 and ¶¶0015–0028.               ║
+ * ║ Source: WO 2017/221949 A1, Example 1 (Fig. 2 / Fig. 3, ¶¶0015–0028); every R, d,  ║
+ * ║ De, nd and νd cell re-checked against the WO original on 2026-11-03.               ║
  * ║ Production correlation: strong but not explicit patent attribution. Hasselblad     ║
  * ║ publishes 45.0 mm, f/3.5, 9 elements / 7 groups, full focusing, 0.40 m MFD, and   ║
  * ║ X-system compatibility.                                                            ║
  * ║                                                                                     ║
  * ║ Prescription policy: raw Fig. 2 d-line nd/νd values are retained without repair.  ║
- * ║ The patent states f = 45.027 mm at d-line, but the stored Fig. 2 prescription      ║
- * ║ independently recomputes to EFL = 45.1191604368 mm. Fig. 3 focal values are also  ║
- * ║ internally inconsistent with the printed nd table. No source value is silently     ║
- * ║ altered; focalLengthDesign and element fl values below describe the stored arrays.  ║
+ * ║ ¶0018 says focal values are d-line, but the ¶0020 f = 45.027 mm and the Fig. 3     ║
+ * ║ focal lengths are e-line values: catalog Ohara dispersion scaled to the printed nd ║
+ * ║ gives e-line EFL 45.029 mm (d-line 45.1191604368 mm) and reproduces Fig. 3.        ║
+ * ║ focalLengthDesign and element fl values below describe the stored d-line arrays.   ║
  * ║                                                                                     ║
  * ║ Stop / f-number policy: the Fig. 2 table prints stop effective diameter             ║
  * ║ De = 14.20 mm. A paraxial calculation with that diameter gave entrance-pupil        ║
@@ -23,11 +23,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ a 7.368 mm radius from that f-number, rather than the printed De/2 = 7.10 mm.       ║
  * ║                                                                                     ║
  * ║ Focus status: CONSTRAINED_RECONSTRUCTION. Patent ¶0017 publishes rigid full-system ║
- * ║ focusing but no close-focus spacing row. The source infinity row retains d17 =      ║
- * ║ 26.88 mm even though the raw d-line model computes BFL = 27.0510181548 mm. The      ║
- * ║ close state changes only the rear image gap and solves the unit-focus mechanism      ║
- * ║ against Hasselblad's 0.40 m object-to-image-plane MFD: 34.1491136786 mm. No         ║
- * ║ internal gap or source infinity spacing is silently repaired.                       ║
+ * ║ focusing but no close-focus spacing row. Image plane (2026-11-03): the printed      ║
+ * ║ d17 = 26.88 mm BF sits 0.171 mm short of d-line paraxial focus and 0.073 mm short  ║
+ * ║ of e-line paraxial focus, so it matches neither line; d17 is re-solved for d-line  ║
+ * ║ paraxial focus, 26.88 -> 27.051018 mm (LENS_DATA_SPEC Image-Plane Consistency).    ║
+ * ║ The close state changes only the rear image gap and solves the unit-focus mechanism ║
+ * ║ against Hasselblad's 0.40 m object-to-image-plane MFD: 34.1491136786 mm.           ║
  * ║                                                                                     ║
  * ║ Non-stop semi-diameters use patent Fig. 2 effective diameters directly as sd=De/2.  ║
  * ║ Two air gaps exceed the shared default gapSagFrac=0.90 by very small amounts        ║
@@ -63,7 +64,7 @@ const LENS_DATA = {
     specs: [
       "9 ELEMENTS / 7 GROUPS",
       "45.0 mm f/3.5 (MARKETING)",
-      "RAW d-LINE MODEL EFL ≈ 45.119 mm",
+      "RAW d-LINE MODEL EFL ≈ 45.119 mm (e-LINE 45.03)",
       "MODELED f/3.416 FROM PATENT STOP De",
       "56 mm IMAGE CIRCLE",
       "FULL / UNIT FOCUS",
@@ -72,7 +73,7 @@ const LENS_DATA = {
     groupCount: 7,
     focalLengthMm: {
       marketing: 45,
-      // Patent ¶0020 prints f = 45.027 mm; the raw Fig. 2 d-line prescription stored below recomputes to this EFL.
+      // Patent ¶0020 prints f = 45.027 mm, an e-line value; the raw Fig. 2 d-line prescription recomputes to this EFL.
       design: 45.11916043675047,
     },
     fNumber: {
@@ -246,14 +247,17 @@ const LENS_DATA = {
     closeFocusM: 0.4,
     description:
       "CONSTRAINED_RECONSTRUCTION: the patent publishes rigid full-system focusing but no close-focus row. " +
-      "The source infinity row keeps BF = 26.88 mm even though the retained raw d-line prescription computes " +
-      "BFL = 27.0510181548 mm. The close state changes only the rear image gap, solving the published unit-focus " +
-      "mechanism against Hasselblad's 0.40 m object-to-image-plane MFD at BF = 34.1491136786 mm; no internal " +
-      "spacing or source infinity spacing is silently repaired.",
+      "The printed infinity BF of 26.88 mm sits 0.171 mm short of the prescription's d-line paraxial focus, so it is " +
+      "re-solved to 27.051018 mm. The close state changes only the rear image gap, solving the published unit-focus " +
+      "mechanism against Hasselblad's 0.40 m object-to-image-plane MFD at BF = 34.1491136786 mm, a 7.098 mm unit " +
+      "travel; no internal spacing changes.",
   },
 
   /* (moved from var) ── Focus: constrained unit-focus reconstruction ── */
-  gaps: { "17": { label: "BF", values: [[26.88, 34.14911367855676]] } },
+  gaps: {
+    // printed 26.88 (Fig. 2 d17); re-solved for paraxial focus. The close value is the 0.40 m reconstruction.
+    "17": { label: "BF", values: [[27.051018, 34.14911367855676]] },
+  },
 
   // WO 2017/221949 A1 Fig. 2 table prints stop De = 14.20 mm; use its independently modeled pupil-derived
   // f-number, from which the stop radius is derived.

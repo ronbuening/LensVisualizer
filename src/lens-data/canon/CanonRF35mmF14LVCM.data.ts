@@ -28,7 +28,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Paragraph 0079 defines infinity paraxial quantities. Literal data give
  * EFL 33.942091880 vs 34.0, BFL 15.360904237 vs 15.444 and track 103.102 vs 103.101.
  * Source Phi(STO)=27.298 also differs from the primary iris inferred from F1.46.
- * These unresolved source/model discrepancies are not fitted away. Source Y20.03
+ * The f and iris discrepancies are not fitted away. Image-plane re-solve (2026-11-03):
+ * S28 d 15.444 -> 15.360904 mm, the paraxial BF; the printed plane sat 0.083096 mm
+ * beyond focus, a residual the source's three-decimal indices can account for. Source Y20.03
  * and half-angle 30.5 are distinct from the generic full-frame21.65 mm corner .
  * No numerical close-focus travel is published; all focus probes are identical
  * infinity geometries. Production0.28m is metadata, not a reconstructed state.
@@ -70,7 +72,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "Example 2 Tables 3/4 PDF pp 16–17, with the more precise aspheric radii, trace to EFL 33.942091880/BFL 15.360904237/optical track 103.102 mm versus printed 34.0/15.444/103.101. Paragraph 0079 defines infinity paraxial quantities; no unique source-supported correction or source camera plate is established. Preserve literal R/d/nd/aspheres.",
+        note: "Example 2 Tables 3/4 PDF pp 16–17, with the more precise aspheric radii, trace to EFL 33.942091880 mm versus printed f 34.0 (paragraph 0079 defines it as the infinity paraxial focal length). No unique source-supported correction is established; the three-decimal nd column is a possible contributor. Preserve literal R/d/nd/aspheres.",
       },
       {
         status: "unresolved",
@@ -310,7 +312,7 @@ const LENS_DATA = {
     { label: "25", R: -58.895, d: 1.1, sd: 18.831, medium: 13 },
     { label: "26", R: 34.256, d: 6.839, sd: 16.85 },
     { label: "27", R: -83.829, d: 1.5, sd: 17.1115, medium: 14 },
-    { label: "28", R: -262.53, d: 15.444, sd: 17.45 },
+    { label: "28", R: -262.53, d: 15.360904, sd: 17.45 }, // printed 15.444; re-solved for paraxial focus
   ],
 
   /* (moved from var) Infinity-only prescription: no numerical close-focus state is published . */

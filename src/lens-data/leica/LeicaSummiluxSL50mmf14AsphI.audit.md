@@ -57,3 +57,24 @@ The small-offset designer-focus possibility was checked: ¶0056 describes aberra
 **Cause/action:** source image-plane/paraxial discrepancy, potentially finite-aperture design convention but unproven; preserve the printed path. Offset **+0.075274 → +0.075274 mm**; Section E row deleted, no numerical change/changelog.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (kept as best-focus plane)
+
+Policy: LENS_DATA_SPEC § Image-Plane Consistency. The printed path stays, and no value changes. The header box line
+and the MTF-audit note now cite the source evidence.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| Header note | "No … explicit designer best-focus convention found" | best-focus plane line citing Figs. 5A/5D/5G | The source evaluates at the printed plane |
+
+- Residual kept: paraxial focus +0.0753 / +0.0834 / +0.0846 mm behind the plane at POS1 / POS2 / POS3 (30.9 depths at
+  f/1.44 at infinity). Real-ray axial best focus is +0.024 mm (about 10 depths).
+- Travel, EFL (51.963 mm) and close focus (0.6 m; label 0.6074 m) are unchanged.
+- Evidence (aberration-figure): EP 3 136 147 A1 Figs. 5A, 5D and 5G (PDF p. 22, read on a 300 dpi crop) draw the
+  d-line spherical aberration meeting the pupil axis at about +0.077, +0.084 and +0.087 mm. The patent's plots are
+  therefore referenced to the printed plane and reproduce the model offsets at all three states. ¶0056's "paraxial
+  image surface" names that design image surface.
+- The previous wording ("No source-supported correction or explicit designer best-focus convention found") is
+  superseded.
+
+Follow-ups: the analysis's residual paragraph could cite the Fig. 5 intercepts (not edited in this pass).

@@ -33,3 +33,22 @@ Independent EFL=51.299977306 agrees with source 51.30. Air BFL=15.514218449 vers
 **Cause/action:** small published-image/paraxial discrepancy; document uncertainty and preserve source values. Offset **+0.045653 → +0.045653 mm**; Section E row deleted, no numerical change/changelog.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (kept as best-focus plane)
+
+Source: local `patents/JP2012242690A.pdf` (text layer), Example 2 ¶0057–0059: every r/d/nd, CG d19 = 2 (1.5168),
+d20 = 9.15, and the D12/D14 rows at infinity, 0.025× and 0.142× still match; f = 51.30 reproduces (51.299977).
+LENS_DATA_SPEC § Image-Plane Consistency: the real-ray axial best focus lies within 10 depths of the plane.
+
+| Field | Before | After | Justification |
+|---|---|---|---|
+| Header | "designer intent is unproven, so preserve the printed gaps" | best-focus-plane line | Paraxial +0.046 mm (11.4 depths at f/1.85); real-ray axial best focus +0.021 mm (5.2 depths), axial RMS spot +0.009 mm |
+
+- No gap, plate, keyframe or `closeFocusM` changed. The three-decimal gaps cannot produce 0.046 mm, and the plane
+  sits at the spherical-aberration best focus, so it is kept.
+- For the record, a paraxial re-solve by magnification would need D12 +0.030 / +0.033 / +0.097 mm at infinity /
+  0.025× / 0.142×, so the printed rows do not share one plane shift either way.
+
+Follow-ups:
+
+- None.

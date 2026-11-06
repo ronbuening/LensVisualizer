@@ -51,7 +51,8 @@ reproduce those quantities. Native Figure 14’s near-axis relative chromatic BF
 0.598914 mm. The structured corrected entry identifies source-summary and aberration-figure. Its source-derived
 νd = 60.6996779 is consistent with the printed rounded 60.70.
 
-The absolute final image-plane offset remains unresolved. No radius, spacing or asphere is tuned to fit the drawing.
+The printed final spacing is not this example's back focus (see Source Consistency below); the image plane is re-solved to
+paraxial focus. No radius, glass, asphere or other spacing is tuned to fit the drawing.
 
 ## Optical Architecture
 
@@ -336,9 +337,9 @@ $\mathrm{EFL}=-1/C$ and $\mathrm{BFL}=-A/C$.
 
 Correcting the transcribed S2 gap from 5.050 to the printed 6.050 mm reproduces the stated 24.6 mm EFL within 0.000598 mm with the justified material emendation. S18's A10 also changes from −1.46493e−13 to the printed −1.48493e−13; this higher-order coefficient does not change paraxial focus. The literal L10 index cannot represent a physically consistent glass and fails the patent's condition-(9) correspondence, so the corrected material value is retained.
 
-The 1.666626 mm BFL/image-plane difference remains a source inconsistency after those corrections. The source lists no rear plate and no further supported transcription change resolves it. The data preserves the printed final spacing $d_{22}=36.467\ \mathrm{mm}$ rather than tuning it to focus.
+After those corrections the printed final spacing $d_{22}=36.467\ \mathrm{mm}$ still sits 1.666626 mm short of the Gaussian BFL. The source lists no rear plate, and the printed value is not an example-specific back focus: Tables 1, 5, 6 and 7 (PDF pp. 5, 9, 10, 11) all print the same final 36.467 mm, while their own paraxial BFLs differ (Example 5 38.279, Example 6 38.134, Example 7 37.884 mm, each with EFL 24.599 mm). The model therefore re-solves $d_{22}$ to $38.133626\ \mathrm{mm}$, placing the image plane at paraxial focus; radii, glass and the asphere are unchanged.
 
-The axial track is 82.171 mm from surface 1 to surface 22 and 118.638 mm from surface 1 to the printed image plane.
+The axial track is 82.171 mm from surface 1 to surface 22 and 120.305 mm from surface 1 to the image plane (118.638 mm with the printed final spacing).
 
 ### Petzval curvature
 
@@ -367,12 +368,12 @@ limits.
 - A 49-point stop-aimed sample passes all 49 axial rays. The 0.6-field and source-edge samples pass 36 and 17 rays;
   every chief clears and no sample is unaimed. This records substantial peripheral vignetting, including some first clips
   at bonded S17, without inventing an opaque interface feature.
-- Source half-field 41.35° reaches approximately 20.922 mm on the retained printed image plane, 96.7% of the format
-  half-diagonal. The runtime's separate full-frame corner solve reaches 21.65 mm near 42.3°. A passing corner solve
-  does not remove the source plane's 1.666626 mm paraxial defocus.
+- Source half-field 41.35° reaches approximately 21.275 mm on the re-solved image plane, 98.3% of the format
+  half-diagonal (20.922 mm on the printed plane). The runtime's separate full-frame corner solve reaches 21.65 mm near
+  41.8°.
 - The first S2 cap trial of 22.5 mm with its shoulder exceeded the existing 90% gap guard: 5.451 mm versus 5.445 mm
   allowed across 6.050 mm. The adopted 22.4 mm cap fits the native reading uncertainty and retains the unchanged guard.
-  No source radius, spacing, coefficient or image plane is tuned to fit the drawing.
+  No source radius, spacing or coefficient is tuned to fit the drawing.
 
 These semi-diameters are engineering reconstructions, not patent-published dimensions. The native Figure 7 raster
 is 677 × 461 pixels at about 201 × 199 dpi; the local scale is approximately 7 px/mm with roughly ±0.5 mm reading

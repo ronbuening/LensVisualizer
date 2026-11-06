@@ -7,12 +7,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Data source: JP 2026-98935 A, Example 2 (Cosina Co., Ltd.).        ║
  * ║ 12 elements / 8 groups; four aspherical surfaces.                  ║
  * ║ Focus status: PUBLISHED. G1 and G2 move independently toward the   ║
- * ║ object; D11 (STO→S12) is 3.83→3.36 mm and D21 (S21→IMG) is        ║
- * ║ 18.21→20.28 mm. No close-focus reconstruction is introduced.       ║
+ * ║ object; printed D11 (STO→S12) is 3.83→3.36 mm and D21 (S21→IMG)    ║
+ * ║ is 18.21→20.28 mm. No close-focus reconstruction is introduced.    ║
  * ║                                                                    ║
- * ║ SOURCE DISCREPANCY: the printed close endpoint (D0 = 428.00 mm)    ║
- * ║ has first-order matrix B = -0.647619 mm rather than zero. The      ║
- * ║ published endpoint is retained without repair.                     ║
+ * ║ IMAGE-PLANE RE-SOLVE (2026-11-03): D21 18.21 → 18.144592 mm at     ║
+ * ║ infinity (offset −0.065408 → 0); the change is carried to the close║
+ * ║ row, which is then re-solved with the G1/G2 travel ratio at the    ║
+ * ║ printed D0 = 428.00 mm: D11 3.36 → 3.354995, D21 20.28 → 20.236636.║
  * ║                                                                    ║
  * ║ SCALING: none. Radii, spacings, and asphere coefficients remain    ║
  * ║ at patent scale. The patent uses standard conic K.                 ║
@@ -45,10 +46,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * 2026-09-25 source recheck: Table 6 S17 is R=580.403, d=5.45 mm,
  * correcting 580.103/5.15. Updated EFL is 28.942108 mm; BFL 18.144592
- * versus printed D21=18.21, so offset is now -0.065408 mm. Source TL
- * 71.19 also disagrees with the 71.55 mm sum. Retain the remaining source
- * contradiction; the earlier audit's S17 transcription and calculations
- * are superseded. No focus-fitting or inferred plate is introduced.
+ * versus printed D21=18.21, so offset was -0.065408 mm (re-solved
+ * 2026-11-03, above). Source TL 71.19 also disagrees with the printed
+ * 71.55 mm sum; the earlier audit's S17 transcription and calculations
+ * are superseded. No inferred plate is introduced.
  */
 
 const LENS_DATA = {
@@ -74,6 +75,7 @@ const LENS_DATA = {
     groupCount: 8,
     focalLengthMm: { marketing: 28, design: 28.94210801178852 },
     fNumber: { marketing: 2, design: 2.06 },
+    closeFocusM: { marketing: 0.5 },
   },
 
   source: {
@@ -354,16 +356,20 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.5,
+    closeFocusM: 0.5011,
     description:
       "PUBLISHED double-floating endpoints: G1 and G2 move independently toward the object; " +
-      "D11 3.83→3.36 mm and BF 18.21→20.28 mm. The printed endpoint is preserved although " +
-      "its first-order object-to-image matrix has B = -0.648 mm.",
+      "printed D11 3.83→3.36 mm and BF 18.21→20.28 mm. The BF is re-solved for paraxial focus at infinity " +
+      "(18.144592 mm), and the close row is re-solved with the G1/G2 travel ratio to focus at the printed " +
+      "D0 = 428.00 mm (D11 3.354995 mm, BF 20.236636 mm), 0.5011 m from object to image.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },
 
-  gaps: { STO: { label: "D11", values: [[3.83, 3.36]] }, "21A": { label: "BF", values: [[18.21, 20.28]] } },
+  gaps: {
+    STO: { label: "D11", values: [[3.83, 3.354995]] }, // printed 3.83/3.36; close row re-solved for paraxial focus
+    "21A": { label: "BF", values: [[18.144592, 20.236636]] }, // printed 18.21/20.28; re-solved for paraxial focus
+  },
 
   aperture: { nominalFNumber: 2.06, fStops: [2.06, 2.8, 4, 5.6, 8, 11, 16], blades: 12 },
 

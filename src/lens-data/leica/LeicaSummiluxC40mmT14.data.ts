@@ -51,7 +51,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * prescription gives paraxial BFL 44.761613 mm (offset -0.038387 mm).
  * The front 3 mm filter has no infinity-focus power; no rear plate is listed.
  * The source evaluates polychromatic finite-aperture MTF, but does not define
- * the tabulated plane as paraxial or best focus. Keep its published distance.
+ * the tabulated plane as paraxial or best focus.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane
+ * Consistency): paraxial offset -0.038 mm (16.7 depths); real-ray axial best
+ * focus -0.010 mm; source evidence: the designer prints the same 44.800 mm F1
+ * plane in all three Summilux-C examples (US 8,508,864 B2 Examples 2 and 3,
+ * EP 2 321 688 B1), and the EP ray fans (Figs. 10a/10b) balance at it.
  */
 
 const LENS_DATA = {

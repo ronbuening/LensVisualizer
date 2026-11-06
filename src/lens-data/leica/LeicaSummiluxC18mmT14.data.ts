@@ -42,6 +42,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * for one relative-illumination entry (the trace gives 75.1) and 79.1 for the F2 entry at
  * normalized height 0.65 (the trace gives 71.9). The model uses Table 1 throughout, so these are
  * kept here and in the analysis, not in sourceErrata, which is for contradictions in the table.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane Consistency): paraxial
+ * offset +0.044 mm (21.7 depths); real-ray axial best focus +0.007 mm; source evidence: the
+ * Figure 10a/10b ray fans balance at the printed 44.800 mm plane (paraxial focus 44.868 mm at C
+ * to 44.796 mm at F), Figures 11a–11c's MTF is reproduced there within 1 µm of focus, and the
+ * designer prints the same F1 plane in US 8,508,864 B2 Examples 2 and 3.
  */
 
 const LENS_DATA = {

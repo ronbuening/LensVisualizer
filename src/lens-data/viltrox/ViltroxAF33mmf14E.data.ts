@@ -16,14 +16,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ consistent with the claims/prose, Fig. 1, and condition (3). This file      ║
  * ║ therefore labels source row 9 as the sole STO and retains row 11 as “11”.   ║
  * ║                                                                            ║
- * ║ REAR FILTER: GL is traced in rearPlates: 17.01 mm before, 2.00 mm      ║
- * ║ at nd=1.52/vd=64.2, and 1.00 mm after. Physical image gap=20.01 mm.    ║
+ * ║ REAR FILTER: GL is traced in rearPlates: 17.375898 mm before (printed  ║
+ * ║ 17.01), 2.00 mm at nd=1.52/vd=64.2, and 1.00 mm after.                 ║
  * ║                                                                            ║
  * ║ FOCUS STATES:                                                               ║
  * ║ Infinity: D1 = 1.00 mm, D2 = 6.24 mm.                                      ║
- * ║ 0.4 m:    D1 = 4.94 mm, D2 = 2.29 mm.                                      ║
- * ║ The published D1+D2 sum differs by 0.01 mm between endpoints; the raw       ║
- * ║ published values are preserved rather than mechanism-normalized.            ║
+ * ║ 0.4 m:    D1 = 4.94 mm, D2 = 2.29 mm (printed; re-solved, see below).      ║
+ * ║ The published D1+D2 sum differs by 0.01 mm between endpoints; that          ║
+ * ║ difference is kept rather than mechanism-normalized.                        ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS / APERTURE:                                                  ║
  * ║ The patent publishes no clear semi-diameters or stop diameter. The stop     ║
@@ -46,8 +46,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * MTF audit: all Example 1 source rows match; GL is restored via
  * rearPlates at its physical gaps. EFL 33.754006 differs from printed
- * 33.21 mm; physical BFL 20.375898 differs from image distance 20.01.
- * The +0.365898 mm source contradiction remains. Tier A source search
+ * 33.21 mm, but Table 9's F1a/F and F1b/F reproduce with 33.754 mm.
+ * IMAGE-PLANE RE-SOLVE (2026-11-03): S20 17.01 → 17.375898 mm for paraxial
+ * infinity focus (residual +0.365898 mm); the 0.4 m row, object to image,
+ * is re-solved by G3: D1 4.94 → 5.220467, D2 2.29 → 2.009533 mm. Tier A source search
  * is exhausted: no theta-gF, delta-PgF or line indices for L14; see audit.
  */
 
@@ -226,21 +228,24 @@ const LENS_DATA = {
     { label: "17", R: 36.49, d: 7.23, sd: 12.4, medium: 9 },
     { label: "18", R: -26.54, d: 0.1, sd: 12.3 },
     { label: "19", R: -27.77, d: 1.0, sd: 12.2, medium: 10 },
-    { label: "20", R: -287.72, d: 17.01, sd: 12.0 },
+    { label: "20", R: -287.72, d: 17.375898, sd: 12.0 }, // printed 17.01; re-solved for paraxial focus
   ],
 
   focus: {
-    closeFocusM: 0.467,
+    closeFocusM: 0.4,
     description:
-      "PUBLISHED — single-element internal focus: negative G3/L31 moves 3.94 mm toward the image side from infinity " +
-      "to the published 0.4 m state (D1 1.00→4.94 mm; D2 6.24→2.29 mm). The source's 0.01 mm D1+D2 rounding " +
-      "difference is retained.",
+      "PUBLISHED — single-element internal focus: negative G3/L31 moves 4.220467 mm toward the image side from " +
+      "infinity to the published 0.4 m state, object to image (D1 1.00→5.220467 mm; D2 6.24→2.009533 mm, re-solved " +
+      "for paraxial focus; printed 4.94 / 2.29 mm). The source's 0.01 mm D1+D2 rounding difference is retained.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },
 
   /* (moved from var) ── Published internal-focus spacings ── */
-  gaps: { "14": { label: "D1", values: [[1.0, 4.94]] }, "16": { label: "D2", values: [[6.24, 2.29]] } },
+  gaps: {
+    "14": { label: "D1", values: [[1.0, 5.220467]] }, // printed 1.00 / 4.94; 0.4 m row re-solved for paraxial focus
+    "16": { label: "D2", values: [[6.24, 2.009533]] }, // printed 6.24 / 2.29; 0.4 m row re-solved for paraxial focus
+  },
 
   aperture: { nominalFNumber: 1.4, fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 9 },
 

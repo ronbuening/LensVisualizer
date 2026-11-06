@@ -12,7 +12,7 @@
 **Title:** Zoom Lens and Optical Apparatus  
 **Example details:** Tables 1–3 and FIG. 1
 
-Numerical Example 1 is the closest patent prescription for the Sony FE 70-200mm F4 G OSS (SEL70200G). The patent example is a 21-element, 15-group full-frame telephoto zoom whose computed focal-length range is 72.16–193.91 mm by independent paraxial trace, matching the patent-stated 72.0974–193.9726 mm range within 0.07 mm at all three zoom positions. Sony's production specification gives a 70–200 mm focal-length range, f/4 maximum aperture, 15 groups / 21 elements, Sony E mount, 35 mm full-frame coverage, Optical SteadyShot, a 72 mm filter thread, and a 1.0–1.5 m autofocus close-focus range.
+Numerical Example 1 is the closest patent prescription for the Sony FE 70-200mm F4 G OSS (SEL70200G). The patent example is a 21-element, 15-group full-frame telephoto zoom whose printed prescription traces to 72.16–193.91 mm by independent paraxial trace, matching the patent-stated 72.0974–193.9726 mm range within 0.07 mm at all three zoom positions. The model, whose infinity G42 positions are re-solved for paraxial focus (see Verification Summary), traces to 72.83–195.76 mm. Sony's production specification gives a 70–200 mm focal-length range, f/4 maximum aperture, 15 groups / 21 elements, Sony E mount, 35 mm full-frame coverage, Optical SteadyShot, a 72 mm filter thread, and a 1.0–1.5 m autofocus close-focus range.
 
 The patent also matches the production lens mechanically and functionally. Its four main groups follow a positive-negative-positive-positive power sequence. G1, G41, and G43 are stationary relative to the image plane during zooming; G2, G3, and G42 move axially; and G42 also performs focusing from infinity to close range. G43A, the front cemented doublet of G43, is explicitly identified as the image-blur correction group. The patent's Numerical Example 1 contains three aspherical surfaces, one Super-ED class positive element in G1, two ED-class positive elements, and an optical-stabilization subgroup, which agrees with the production lens's published feature set.
 
@@ -31,9 +31,9 @@ Independent paraxial group powers from the transcribed surface data are:
 | G42 | -47.3 | Moving negative focus / zoom-assist group |
 | G43 | +263.6 | Rear relay, IS support, exit-pupil control |
 
-The patent track length is 190.0000 mm at all three zoom positions. At the telephoto end, the track-length-to-EFL ratio is approximately 0.98, so the telephoto end is just inside the strict telephoto condition. At the wide end, the same lens is not telephoto in the strict first-order sense; it is better described as the wide end of an internal-zoom telephoto lens.
+The patent track length is 190.0000 mm at all three zoom positions. At the telephoto end, the track-length-to-EFL ratio is approximately 0.98 (0.97 in the re-solved model), so the telephoto end is just inside the strict telephoto condition. At the wide end, the same lens is not telephoto in the strict first-order sense; it is better described as the wide end of an internal-zoom telephoto lens.
 
-During zooming from wide to telephoto, d5 increases from 1.5000 to 32.3677 mm as G2 moves away from G1, d12 decreases from 24.0067 to 1.1000 mm as G2 approaches G3, d17 reverses through the middle position, d25 decreases from 4.5426 to 2.8188 mm, and d28 changes correspondingly behind G42. This split zoom action allows G4 to contribute a modest zoom ratio while keeping the total optical track fixed.
+During zooming from wide to telephoto, d5 increases from 1.5000 to 32.3677 mm as G2 moves away from G1, d12 decreases from 24.0067 to 1.1000 mm as G2 approaches G3, d17 reverses through the middle position, d25 decreases from 4.5426 to 2.8188 mm as printed (4.3636 to 2.6341 mm in the re-solved model), and d28 changes correspondingly behind G42. This split zoom action allows G4 to contribute a modest zoom ratio while keeping the total optical track fixed.
 
 ## Element-by-Element Analysis
 
@@ -200,9 +200,11 @@ The patent does not publish close-focus spacing values. The data file therefore 
 
 | Zoom state | Close distance modeled | d25 infinity | d25 close | d28 infinity | d28 close | G42 shift |
 |---|---:|---:|---:|---:|---:|---:|
-| Wide | 1.00 m | 4.5426 | 5.7312 | 7.0924 | 5.9038 | 1.1886 |
-| Middle | 1.25 m | 2.4692 | 5.1836 | 9.1658 | 6.4514 | 2.7144 |
-| Telephoto | 1.50 m | 2.8188 | 8.6472 | 8.8162 | 2.9878 | 5.8284 |
+| Wide | 1.00 m | 4.3636 | 5.7312 | 7.2714 | 5.9038 | 1.3676 |
+| Middle | 1.25 m | 2.2740 | 5.1836 | 9.3610 | 6.4514 | 2.9096 |
+| Telephoto | 1.50 m | 2.6341 | 8.6472 | 9.0009 | 2.9878 | 6.0131 |
+
+The infinity columns are the re-solved model values; Table 3 prints d25 = 4.5426 / 2.4692 / 2.8188 mm and d28 = 7.0924 / 9.1658 / 8.8162 mm (see Verification Summary). The close columns were solved against the same fixed image plane and are unchanged.
 
 Because the close-focus model is reconstructed from first-order conjugates rather than a patent table, it should not be treated as a manufacturer service prescription. It is included to make the LensVisualizer focus slider move the correct group in the correct first-order direction.
 
@@ -248,13 +250,13 @@ The independent trace gives G43 = 263.6 mm from the literal prescription, while 
 
 The transcribed prescription was independently checked with a paraxial y/nu trace and surface-by-surface power calculation.
 
-| Zoom position | Patent EFL | Computed EFL | Difference | Patent Fno |
-|---|---:|---:|---:|---:|
-| Wide | 72.0974 mm | 72.1602 mm | +0.0628 mm | 4.1474 |
-| Middle | 122.9480 mm | 122.9747 mm | +0.0267 mm | 4.0559 |
-| Telephoto | 193.9726 mm | 193.9119 mm | -0.0607 mm | 4.1269 |
+| Zoom position | Patent EFL | Computed EFL (printed gaps) | Difference | Model EFL (re-solved G42) | Patent Fno |
+|---|---:|---:|---:|---:|---:|
+| Wide | 72.0974 mm | 72.1602 mm | +0.0628 mm | 72.825 mm | 4.1474 |
+| Middle | 122.9480 mm | 122.9747 mm | +0.0267 mm | 124.215 mm | 4.0559 |
+| Telephoto | 193.9726 mm | 193.9119 mm | -0.0607 mm | 195.761 mm | 4.1269 |
 
-The back-focus distance implied by the 190.0000 mm total lens length is 42.9273 mm at all zoom positions. The wide-infinity prescription instead gives paraxial BFL 42.115294 mm, placing focus 0.812006 mm in front of that authored image plane. Every R/d/nd/vd row, asphere coefficient and infinity zoom spacing matches Tables 1–3, and no rear plate is listed. The source track and its residual contradiction are retained without fitting BF or attributing the mismatch to an unverified misprint. The patent prints no stop diameter, so the wide-open iris is traced at each zoom position from the Table 3 f-number with a real marginal ray: radius 12.6067 mm at wide (f/4.1474), 12.5997 mm at the middle position (f/4.0559), and 12.4248 mm at telephoto (f/4.1269). The three radii differ by 1.45 %, so no single iris radius gives all three printed f-numbers; wide and middle agree to 0.06 % and the telephoto position needs the smaller opening. The stop limits the axial beam at all three positions and no element rim clips it, so each position traces at its printed f-number. The 12.25 mm semi-diameter stored on the stop surface does not size the wide-open iris. Estimated semi-diameters were checked for edge thickness and cross-gap intrusion; the tightest edge thickness is 0.404 mm at element 10, and the largest same-element semi-diameter ratio is 1.25.
+The back-focus distance implied by the 190.0000 mm total lens length is 42.9273 mm at all zoom positions. With the printed infinity spacings the prescription gives paraxial BFL 42.115294 mm at the wide end, placing focus 0.812006 mm in front of that image plane; the middle and telephoto positions sit 0.906 mm and 0.855 mm in front, 40–47 times the ±2λN² depth, and the real-ray axial best focus lay at the same place, so the plane was not a best-focus plane. Every R/d/nd/vd row, asphere coefficient and infinity zoom spacing matches Tables 1–3, and no rear plate is listed. Numerical Example 2 of the same patent misses its own 180.0000 mm total length in the same way (paraxial BFL 0.65–0.73 mm short), so no single misprint is isolated. Because the back focus is one fixed value across the zoom, the model keeps the 190.0000 mm track and image plane and moves the focus group G42 at each infinity row until it is in paraxial focus: d25/d28 = 4.363607/7.271393 mm (wide), 2.273991/9.361009 mm (middle) and 2.634107/9.000893 mm (telephoto). The close rows already focus 1.0 / 1.25 / 1.5 m on that plane and are unchanged. Radii, thicknesses, indices and aspheres are unchanged; EFL moves to 72.825 / 124.215 / 195.761 mm. The patent prints no stop diameter, so the wide-open iris is traced at each zoom position from the Table 3 f-number with a real marginal ray: radius 12.6067 mm at wide (f/4.1474), 12.5997 mm at the middle position (f/4.0559), and 12.4248 mm at telephoto (f/4.1269). The three radii differ by 1.45 %, so no single iris radius gives all three printed f-numbers; wide and middle agree to 0.06 % and the telephoto position needs the smaller opening. The stop limits the axial beam at all three positions and no element rim clips it, so each position traces at its printed f-number. The 12.25 mm semi-diameter stored on the stop surface does not size the wide-open iris. Estimated semi-diameters were checked for edge thickness and cross-gap intrusion; the tightest edge thickness is 0.404 mm at element 10, and the largest same-element semi-diameter ratio is 1.25.
 
 ## Sources
 

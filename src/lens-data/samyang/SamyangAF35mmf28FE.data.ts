@@ -15,10 +15,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Focus status: PUBLISHED. G24 (L3+L4) translates; G14 and G34 are fixed.                 ║
  * ║ D1/D2 preserve all three Table 12 states and D1+D2 is constant to printed precision. ║
  * ║                                                                                      ║
- * FILTER / REAR PLANE: Table 10's physical rear path is preserved: d14=16.862,
- * Filter t=2.500, nd=1.51680, vd=64.20, d16=0.500 mm, modeled in rearPlates.
- * Table 12's “in Air”=19.70032771 and OAL=46.500 contradict this path and
- * the computed image plane. See the companion audit; do not tune the gaps.
+ * FILTER / REAR PLANE: Table 10's rear path d14=16.862, Filter t=2.500,
+ * nd=1.51680, vd=64.20 is modeled in rearPlates. CORRECTED d16 (filter to
+ * image) 0.500 -> 1.000 mm (2026-11-03): with the printed 0.500 the plane sat
+ * 0.500 mm before paraxial focus; with 1.000 the printed D1/D2 rows focus at
+ * Table 12's own D0 (∞, 1426.235, 302.022 mm) [source-summary], and Fig. 8's
+ * axial ray fan (HFOV 32.37°) is flat on a ±0.05 mm scale, which a 0.5 mm
+ * defocus at F/2.9 (about ±0.086 mm) rules out [aberration-figure]. OAL 46.500
+ * is first vertex to the filter rear face, so it supports d14 as printed.
+ * source.errata cannot name a rear-plate gap, so the correction is recorded
+ * here, on the value and in the audit only. Table 12's “in Air”=19.70032771
+ * remains unexplained.
  *
  * INDEX / GLASS NOTE: Table 10 labels its index column nd, but the seven printed values are
  * e-line indices paired with d-line Abbe numbers: five equal a HOYA catalog ne to five decimals
@@ -51,11 +58,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════════════════════╝
  *
  * MTF source audit: all powered radii, gaps, raw index/Abbe pairs and three
- * K/A4–A10 sets match Tables 10–12. Restoring the printed physical filter path
- * changes offset −0.190103 to +0.500018 mm because the previously used “in Air”
- * row is not the air equivalent of that path. EFL 35.182840 vs 35.179406;
- * air BFL 19.510225 vs physical path reduced to 19.010207 mm. Source conflict
- * retained explicitly; no invented gap reconciles the competing printed values.
+ * K/A4–A10 sets match Tables 10–12. EFL 35.182840 vs 35.179406; air BFL
+ * 19.510225 vs the reduced rear path 19.010207 mm with the printed d16 and
+ * 19.510207 mm with the corrected d16 = 1.000 (offset +0.500018 -> +0.000018).
  */
 
 const LENS_DATA = {
@@ -241,10 +246,10 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.387,
-    keyframes: [0, 0.237653048385, 1],
+    closeFocusM: 0.3495,
+    keyframes: [0, 0.237152, 1],
     description:
-      "PUBLISHED inner focus: L34 + L44 (G24) translates toward image space while G14/G34 remain fixed. Table 12 D1/D2 states are preserved at infinity, MAG=-1/40, and the raw close row headed TL=0.3m. The close heading is internally inconsistent with D0+OAL≈0.3485m and Samyang's 0.35m sensor-to-object MFD; no spacing is reconstructed.",
+      "PUBLISHED inner focus: L34 + L44 (G24) translates toward image space while G14/G34 remain fixed. Table 12 D1/D2 states are kept as printed at infinity, MAG=-1/40 (D0 1426.235 mm) and the close row headed TL=0.3m (D0 302.022 mm); with the corrected 1.000 mm filter-to-image gap each focuses at its printed D0. The close row is 0.3495 m from object to image, matching Samyang's 0.35 m MFD; the TL=0.3m heading does not match its own D0.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },
@@ -263,8 +268,8 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       glass: "BSC7 (HOYA coordinate equivalent; filter material unconfirmed)",
-      gapAfterMm: 0.5,
-      source: "KR 10-2127451 B1 Example 4 Table 10 surfaces 15–16",
+      gapAfterMm: 1.0, // printed d16 0.500; corrected (source-summary: Table 12 D0 rows; aberration-figure: Fig. 8 axial fan)
+      source: "KR 10-2127451 B1 Example 4 Table 10 surfaces 15–16; d16 corrected 0.500 -> 1.000 mm, see header",
     },
   ],
 

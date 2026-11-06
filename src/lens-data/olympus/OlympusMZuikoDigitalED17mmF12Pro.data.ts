@@ -6,8 +6,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * prescription. 15 lens elements / 11 groups; six aspherical surfaces on L2,
  * L11 and L12. Patent millimetres and d-line indices; scale 1. The patent's
  * sag equation uses (1 + k), so K and A4–A8 are used as printed.
- * PUBLISHED focus: the three tabulated states (INF, CL1, CL2) are kept with
- * their printed, rounded gaps; only G3 (L13–L14) moves.
+ * PUBLISHED focus: the three tabulated states (INF, CL1, CL2) are kept;
+ * only G3 (L13–L14) moves.
+ * IMAGE-PLANE RE-SOLVE (2026-11-03): the rounded table left the plane
+ * 0.022282 mm before paraxial infinity focus. The S27 gap ahead of the
+ * plate is re-solved 11.00 -> 11.022282 mm; then G3 is re-solved at the
+ * printed CL1/CL2 distances: d22 2.34/4.65 -> 2.335907/4.641371,
+ * d25 7.21/4.91 -> 7.214093/4.918629. Radii, indices, plate unchanged.
  * The camera plate C is traced through rearPlates at the printed distances,
  * not folded into an air-equivalent gap.
  * SEMI-DIAMETERS: estimated from Figure 4 optical curve endpoints (300 dpi,
@@ -25,7 +30,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * GLASS: each element names the catalog glass at the patent's nd/νd, which
  * supplies its dispersion curve; supplier and melt are not identified.
  * SOURCE CONFLICTS: S17 νd = 95.10 versus 94.93 in the condition table; small
- * EFL, near-magnification and 0.01 mm gap-sum residuals are kept as printed.
+ * EFL, near-magnification and 0.01 mm gap-sum residuals remain.
  * The printed INF field / image-height pair is not reproduced together by
  * the chief ray through the stop centre; see sourceErrata. The 2ω in specs is
  * the patent's statement, not a field the model reproduces.
@@ -66,7 +71,7 @@ const LENS_DATA = {
       },
       {
         status: "unresolved",
-        note: "The printed CL2 focal length (16.39 mm) and magnification (−0.15) differ slightly from the values computed from the prescription (16.397 mm, −0.1446). The printed gaps and object distances are kept; the CL2 sum d22 + d25 differs from the INF sum by 0.01 mm.",
+        note: "The printed CL2 focal length (16.39 mm) and magnification (−0.15) differ slightly from the values computed from the prescription (16.398 mm, −0.1446). The printed object distances are kept; the CL1/CL2 G3 gaps are re-solved for paraxial focus at them, and the CL2 sum d22 + d25 still differs from the INF sum by 0.01 mm as printed.",
       },
       {
         status: "unresolved",
@@ -350,34 +355,37 @@ const LENS_DATA = {
     { label: "24", R: -99.447, d: 1, sd: 10.9, medium: 14 },
     { label: "25", R: 19.8, sd: 9.5 },
     { label: "26", R: 29.883, d: 5.18, sd: 11.6, medium: 15 },
-    { label: "27", R: -53.477, d: 11, sd: 11.6 },
+    { label: "27", R: -53.477, d: 11.022282, sd: 11.6 }, // printed 11.00; re-solved for paraxial focus
   ],
 
   focus: {
-    closeFocusM: 0.19999,
-    keyframes: [0, 0.21777574510252307, 1],
+    closeFocusM: 0.2,
+    keyframes: [0, 0.217781, 1],
     description:
-      "PUBLISHED infinity, CL1 and CL2 states (patent Example 4, Various data). Inner focus: only the negative cemented group G3 (L13–L14) moves, 2.67 mm toward the image by the printed d22 (2.66 mm by d25, a rounding difference in the patent); G1, the stop, G2 and G4 stay fixed. CL1 and CL2 place the object 813.34 mm and 94.99 mm in front of the first surface; CL2 is 199.99 mm from the image, matching the marketed 0.2 m minimum focus distance. Positions between the three printed states are interpolated, so intermediate distance readings are estimates.",
+      "PUBLISHED infinity, CL1 and CL2 states (patent Example 4, Various data). Inner focus: only the negative cemented group G3 (L13–L14) moves, 2.661 mm toward the image by d22 (2.651 mm by d25; printed 2.67/2.66 mm, a rounding difference in the patent); G1, the stop, G2 and G4 stay fixed. CL1 and CL2 place the object 813.34 mm and 94.99 mm in front of the first surface; the back-focus gap and the CL1/CL2 G3 gaps are re-solved for paraxial focus at those distances. CL2 is 200.01 mm from the image, matching the marketed 0.2 m minimum focus distance. Positions between the three printed states are interpolated, so intermediate distance readings are estimates.",
     conjugates: [
       {
         zoomStation: 0,
         keyframe: 1,
         objectDistanceMm: 813.34,
         distanceReference: "first-surface",
-        source: "US 10,073,255 B2, Example 4, PDF page 30, Various data CL1 object distance d0 and d22/d25.",
+        source: "US 10,073,255 B2, Example 4, PDF page 30, Various data CL1 object distance d0 and d22/d25 (printed 2.34/7.21; re-solved for paraxial focus at d0).",
       },
       {
         zoomStation: 0,
         keyframe: 2,
         objectDistanceMm: 94.99,
         distanceReference: "first-surface",
-        source: "US 10,073,255 B2, Example 4, PDF page 30, Various data CL2 object distance d0 and d22/d25.",
+        source: "US 10,073,255 B2, Example 4, PDF page 30, Various data CL2 object distance d0 and d22/d25 (printed 4.65/4.91; re-solved for paraxial focus at d0).",
       },
     ],
     published: [1, 2],
   },
 
-  gaps: { "22A": { label: "d22", values: [[1.98, 2.34, 4.65]] }, "25": { label: "d25", values: [[7.57, 7.21, 4.91]] } },
+  gaps: {
+    "22A": { label: "d22", values: [[1.98, 2.335907, 4.641371]] }, // printed 1.98/2.34/4.65; CL1/CL2 re-solved for paraxial focus
+    "25": { label: "d25", values: [[7.57, 7.214093, 4.918629]] }, // printed 7.57/7.21/4.91; CL1/CL2 re-solved for paraxial focus
+  },
 
   aperture: {
     nominalFNumber: 1.2399077975009851,

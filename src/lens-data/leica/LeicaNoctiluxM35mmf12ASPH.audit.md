@@ -138,3 +138,24 @@ Clearance and engine values are unchanged: surface validator no errors, image-ci
 
 Open: the L10/L9 height difference (drawing 4 %) remains while the cross-gap rule holds; the rear-asphere rim beyond
 its 9.33 mm sag extremum stays unsourced.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S16A `d` (image distance) | 15.4 | 15.096398 | Re-solved for paraxial infinity focus; printed 0.44 × 35 kept in the inline comment |
+| `source.errata[0]` (unresolved) | EFL and last-gap residual | EFL vs f = 35 only | The back-focus residual is now re-solved; the f mismatch remains |
+
+- Residual: −0.303602 → 0 mm (168 depths at f/1.24 before). EFL 34.745964 mm unchanged; track 70.700 → 70.396 mm,
+  normalized 2.011 against the printed SO′ = 2.01. The paraxial entrance pupil now lies 52.36 mm ahead of the image
+  plane, 24.56 mm in front of the bayonet (Leica: 24.5 mm). No focus travel is modeled; closeFocusM 0.5 unchanged.
+- Evidence: the thicknesses are printed to two decimals at f = 1 (±0.175 mm at 35×). The source's own total length
+  SO′ = 2.01 (printed page 5) matches the Gaussian focus (2.011) and not the printed gap (2.02). The census real-ray
+  axial best focus, −0.337 mm, sits next to paraxial focus, so the printed gap is not a best-focus plane.
+- The erratum stays `unresolved` for the f = 35 against EFL 34.746 mismatch, reworded to say only the final gap is
+  re-solved.
+- Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+- Text sync: header, errata note, inline comment, analysis (track paragraph, Model Scope residual paragraph, best-focus
+  sentence, entrance-pupil sentence). The geometric MTF figures quoted in the analysis were not re-measured.
+
+Follow-ups: none.

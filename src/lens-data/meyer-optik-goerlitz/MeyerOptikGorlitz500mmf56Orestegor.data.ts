@@ -8,6 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Werk Görlitz). The patent works at f' = 100 mm; all prescription lengths  ║
  * ║ are uniformly scaled ×5 for the production-correlation model.             ║
  * ║ Computed design EFL is 497.7868 mm; 500 mm remains the marketed value.    ║
+ * ║ Image plane: S8 d 90 → 90.923433 mm, re-solved for paraxial focus (the     ║
+ * ║ source's whole-mm s' = 18 left the plane 0.923 mm short; 2026-11-03).      ║
  * ║                                                                            ║
  * ║ Four air-separated spherical elements / four groups.                      ║
  * ║ Focus: NO_INTERNAL_RECONSTRUCTION. The 6.0 m value is the manufacturer    ║
@@ -136,7 +138,7 @@ const LENS_DATA = {
     { label: "5", R: 110, d: 8, sd: 29.0, medium: 3 },
     { label: "6", R: "flat", d: 6, sd: 29.0 },
     { label: "7", R: -185, d: 6, sd: 29.0, medium: 4 },
-    { label: "8", R: 130, d: 90, sd: 29.0 },
+    { label: "8", R: 130, d: 90.923433, sd: 29.0 }, // printed 90 (s' = 18 ×5); re-solved for paraxial focus
   ],
 
   focus: {

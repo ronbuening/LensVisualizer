@@ -9,9 +9,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * MTF census: Table 1 / ¶0035 explicitly defines ZD18 as last lens to image.
  * At infinity ZD18=18.40; computed d-line BFL=18.469147 and EFL=28.579770
- * versus printed 28.50. All radii/gaps/indices match. Preserve the source
- * image distance and documented malformed A6; no evidence establishes a
- * designer best-focus plane or supplies parameters for the depicted filter.
+ * versus printed 28.50. All radii/gaps/indices match. Keep the documented
+ * malformed A6; no evidence establishes a designer best-focus plane or
+ * supplies parameters for the depicted filter.
+ * Image-plane re-solve (2026-11-03): ZD18 18.40 -> 18.469147 mm at infinity
+ * (offset +0.069147 -> 0) and 20.33 -> 20.407945 mm at the printed ZD0 = 430 mm
+ * (close distance 0.5098 -> 0.4922 m). No misprint is claimed.
  */
 
 const LENS_DATA = {
@@ -225,9 +228,9 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.4921574,
+    closeFocusM: 0.4922,
     description:
-      "Source near station: ZD0=430 mm plus LT=60.2274 mm and 1.93 mm extension gives 49.22 cm. All lenses and stop move together. The rounded prescription instead computes about 50.98 cm; this source discrepancy remains unresolved.",
+      "Source near station: ZD0=430 mm from the first surface. All lenses and stop move together. The printed ZD18 rows (18.40/20.33 mm) are re-solved for paraxial focus at infinity and at ZD0 (18.469147/20.407945 mm, extension 1.938798 mm), which puts the near station 49.22 cm from object to image.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },
@@ -235,9 +238,9 @@ const LENS_DATA = {
   /* (moved from var) ── Variable air spacings (unit focus) ──
    *  Entire lens translates as a unit; only the BFD changes.
    *  ZD 0 = object distance from S1: ∞ → 430.00 mm (m = 0.0676).
-   *  ZD 18 = BFD: 18.40 → 20.33 mm (focus extension 1.93 mm).
+   *  ZD 18 = BFD: printed 18.40 → 20.33 mm (focus extension 1.93 mm).
    */
-  gaps: { "18A": { label: "BF", values: [[18.4, 20.33]] } },
+  gaps: { "18A": { label: "BF", values: [[18.469147, 20.407945]] } }, // printed 18.40/20.33; re-solved for paraxial focus
 
   /* ── Aperture configuration ── */
   aperture: { nominalFNumber: 2.0, fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

@@ -16,3 +16,23 @@ Patent: US8,867,144B2 Example1.
 - Full source-outline trials rejected: S15landto20.1 causes3.544>3.160mm intrusion;S27to18.6 causes2.049>1.809;S33to14.9 causes2.123>1.831. FrontD1 commoncap38.4 trial makes L2edge−.281mm. Retain these constrained outlines; no arbitrary shortland/unsupportedadjacentcut/tolerance or radius change. Weak nearplanar and cemented endpoint marks do not support new cuts.
   -144405same collimated launches:114775retained,0lost,181gained,29449bothblocked; samplecountsnotflux. Existing source finite spacings preserved; no new inwardcap is introduced.
 - Four focused audits pass:0 surface errors/undersized apertures,9/9 stations≥99% field corner and within3% FNO, no rim/iris/trace failures.27 actual SVG zoom/focus states viewed with0trim and connected compounds.94 shared dispersion/resolver/partial-line tests pass. Source R/d/asphere coefficients/nd/vd/stop/zoom/focus/normalization/tolerances invariant. No live/shared engine/catalog/report/test changes.
+
+## 2026-11-03 — Image-plane consistency (kept as best-focus plane)
+
+Source: local `patents/US8867144.pdf`, Example 1 tables: f 71.80 / 118.00 / 194.50 (reproduced exactly), bf 57.0050 at
+every state, d0 = 1065.7 mm from the first surface at the close states. LENS_DATA_SPEC § Image-Plane Consistency: the
+real-ray axial best focus lies within 10 depths of the plane at every station.
+
+| Field | Before | After | Justification |
+|---|---|---|---|
+| Header | — | best-focus-plane line | Paraxial +0.073 / −0.100 / +0.095 mm (7.4 / 10.1 / 9.7 depths at f/2.90); real-ray axial best focus −0.006 / −0.062 / −0.008 mm |
+
+- No gap, keyframe or `closeFocusM` changed. An axial RMS-spot trace (all-spherical prescription) agrees:
+  −0.0055 / −0.0545 / −0.0075 mm.
+- Close rows: at d0 = 1065.7 mm the paraxial image lies 0.12 / 0.13 / 0.36 mm beyond the plane, but the axial RMS best
+  focus lies at −0.03 / +0.03 / +0.10 mm, so these rows follow the same best-focus convention. Their labels read
+  1.333 / 1.315 / 1.323 m against the 1.2993 m source state, inside the 5 % guard.
+
+Follow-ups:
+
+- None.

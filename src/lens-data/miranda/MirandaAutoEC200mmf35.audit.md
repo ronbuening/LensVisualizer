@@ -32,3 +32,22 @@ Surface geometry and image-circle floors pass with no undersized or skipped entr
 ### Second live-diagram review — retained geometry and metadata
 
 The local silhouette and cemented L5/L6 rims agree with Fig. 1 within its measurement uncertainty; SDs are retained. Labels now read L1–L6. The L5 inspector explicitly qualifies K-LaK14 as a proxy for the existing inferred index correction, not the printed source value; this limitation remains unresolved. Other compatible catalog labels and ordinary index colors are retained, with no unsupported APD tag. The focus control correctly reads “Not modeled” and zoom is absent. The source applicant remains consolidated under Miranda Camera Co., Ltd.
+
+## 2026-11-03 — Image-plane consistency (kept as best-focus plane)
+
+Source: `patents/JPA 1976114926-000000.pdf`, sole example on PDF p. 4 (printed p. 184), checked visually (no text
+layer). Every R and D matches the table ×2, and the printed total length 78.94 equals the spacings plus the printed back
+focus 28.98. With the disclosed N5 = 1.69680 correction hypothesis the prescription's paraxial back focus is 29.055
+(EFL 100.138) at f = 100; no N5 value reproduces both the printed back focus and f = 100, so the remaining 0.075 is
+table rounding.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S11 `d` (last vertex to image) | 57.96 | 57.96 (unchanged) | Real-ray axial best focus within 10 depths of the plane (LENS_DATA_SPEC Image-Plane Consistency) |
+
+- Paraxial offset +0.150048 mm (10.4 depths at f/3.5); real-ray axial best focus +0.115 mm (8.0 depths). The plane is
+  kept and the header says so; no data value changed.
+- EFL, track and the 2.5 m close-focus metadata are unchanged.
+
+Follow-ups: the N5 correction hypothesis is recorded in the header, analysis and this log but has no `source.errata`
+entry in the data file.

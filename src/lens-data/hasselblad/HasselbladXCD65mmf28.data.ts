@@ -17,9 +17,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON COVER GLASS:                                              ║
  * ║    Patent Fig. 2 surfaces 18–20 list two cemented COVER plates     ║
  * ║    (0.80 mm nd 1.53741 νd 61.81; 1.00 mm nd 1.52312 νd 54.36).     ║
- * ║    S20 has no distance, so the image plane sits on the rear face   ║
- * ║    (gap after 0). Modeled in `rearPlates` (traced, not drawn);     ║
- * ║    S17 keeps the patent's 20.73 mm gap to the cover glass.         ║
+ * ║    S20 prints no distance; the image plane sits 0.232471 mm behind ║
+ * ║    it (see the image-plane note below). Modeled in `rearPlates`    ║
+ * ║    (traced, not drawn); S17 keeps the patent's 20.73 mm gap.       ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -28,10 +28,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╚══════════════════════════════════════════════════════════════════════╝
  *
  * MTF source audit: US20200319427A1 Fig. 2–3 values match at infinity.
- * The printed cover stack ends at S20 (image plane in Fig. 1); paraxial
- * focus falls 0.232471 mm beyond it. EFL 65.015872 agrees with 65.02,
- * but the air-equivalent rear path 21.906903 does not equal BFL 22.139374.
- * Retain the source rearPlates and physical image plane; no focus tuning.
+ * EFL 65.015872 agrees with 65.02. The printed cover stack ends at S20 with
+ * no distance, but the air-equivalent rear path 21.906903 falls short of the
+ * BFL 22.139374: with the image on S20, paraxial focus lies 0.232471 mm behind
+ * it and the printed d12 rows focus at 2756 mm and 402 mm from S1.
+ * Image-plane structure fix (LENS_DATA_SPEC Image-Plane Consistency,
+ * 2026-11-03): the image plane sits 0.232471 mm behind S20 (rearPlates[1]
+ * gapAfterMm 0 → 0.232471), unprinted air the table omits. With it the
+ * printed rows agree: infinity in focus, 2400 mm → 2403 mm and 400 mm →
+ * 395 mm from S1. Example 2 of the same patent (Fig. 8–9) shows the same
+ * omission: its rows agree only with the plane 2.427 mm behind its S20
+ * (2398 / 407 mm against printed 2400 / 410 mm). The two near rows are then
+ * re-solved on d12 to their printed distances: 3.02 → 3.022850 and
+ * 14.46 → 14.273641; infinity stays at the printed 1.00.
  */
 
 const LENS_DATA = {
@@ -237,19 +246,24 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.5,
+    // Re-solved close row: 400 mm from S1 + 105.236 mm track = 0.5052 m object to image (Hasselblad: 0.5 m).
+    closeFocusM: 0.5052,
     /* ── Variable air spacings (focus) ──
      *  Single variable gap: G1+Stop+G2 move as unit toward object; G3 fixed.
      *  Patent Fig. 3: d12 = 1.00 (infinity) → 14.46 (400 mm from S1, ≈ 0.50 m MFD from image plane).
      */
-    keyframes: [0, 0.1758096778953822, 1],
+    // Middle keyframe = closeFocusM / the 2400 mm row's object-to-image distance (0.505236 / 2.493985 m).
+    keyframes: [0, 0.202582, 1],
     description:
-      "Front-group focus: G1, stop, and G2 move as a unit toward the object while G3 remains fixed. The patent's infinity, 2400 mm, and 400 mm object-distance states are represented exactly.",
+      "Front-group focus: G1, stop, and G2 move as a unit toward the object while G3 remains fixed. The patent's infinity, 2400 mm, and 400 mm (from the first surface) states are modeled with the printed d12 = 1.00 at infinity and the two near rows re-solved for paraxial focus at their printed distances (3.02 → 3.022850, 14.46 → 14.273641 mm), on an image plane 0.232471 mm behind the cover glass.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },
 
-  gaps: { "12": { label: "BF", values: [[1.0, 3.02, 14.46]] } },
+  gaps: {
+    // printed 1.00 / 3.02 / 14.46; near rows re-solved for paraxial focus at 2400 / 400 mm from S1
+    "12": { label: "BF", values: [[1.0, 3.02285, 14.273641]] },
+  },
 
   /* ── Aperture configuration ── */
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32] },
@@ -269,8 +283,10 @@ const LENS_DATA = {
       thicknessMm: 1.0,
       nd: 1.52312,
       vd: 54.36,
-      gapAfterMm: 0,
-      source: "US 2020/0319427 A1, Example 1 Fig. 2 surfaces 19–20 (S20 = image plane, no distance printed)",
+      // printed: none after S20; the printed d12 rows focus on a plane 0.232471 mm behind it (structure fix)
+      gapAfterMm: 0.232471,
+      source:
+        "US 2020/0319427 A1, Example 1 Fig. 2 surfaces 19–20; no distance printed after S20, image plane placed where the printed Fig. 3 rows focus (Example 2 Fig. 8–9 omits the same distance)",
     },
   ],
 

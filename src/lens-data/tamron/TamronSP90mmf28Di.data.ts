@@ -35,7 +35,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * all stored prescription values but not its own printed infinity focal length.
  * EFL = 92.556419 mm versus 92.74; paraxial BFL = 47.033197 mm versus
  * the published air path 44.5749 + 2.1644 = 46.7393 mm (offset +0.293897 mm).
- * Surface 27 is a dummy air plane, not a plate. Preserve the source image plane.
+ * Surface 27 is a dummy air plane, not a plate.
+ * Image plane re-solved for paraxial focus (LENS_DATA_SPEC Image-Plane
+ * Consistency): BF 46.7393 -> 47.033197 mm (offset +0.293897 -> 0), carried
+ * to the near rows; the 1:2 and 1:1 rows re-solved at beta -0.5 / -1.0 with
+ * the three focus groups in their printed proportions; closeFocusM 0.3 ->
+ * 0.2997 m.
  */
 
 /* 2026-10-30 fresh original review: Figure25/PDF27 and all14 media PDF84/85.
@@ -68,6 +73,7 @@ const LENS_DATA = {
     groupCount: 11,
     focalLengthMm: { marketing: 90, design: 92.556419 },
     fNumber: { marketing: 2.8, design: 2.89 },
+    closeFocusM: { marketing: 0.3 },
   },
 
   source: {
@@ -282,25 +288,25 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 0.3,
+    closeFocusM: 0.2997,
     /* ── Three-group floating inner focus ──
      * Values are [infinity, 1:2, 1:1].
      * STO is the axial D(14) spacing after the fixed stop, not stop diameter.
      */
-    keyframes: [0, 0.7976078358456278, 1],
+    keyframes: [0, 0.8002367013116379, 1], // 0.2997 / 0.374514 m; was 0.7976078358456278 before the 1:2 row was re-solved
     description:
-      "Three-group floating inner focus. G2 translates 18.049 mm imageward; G3 and G4 translate 12.300 mm and 17.570 mm objectward from infinity to 1:1. The infinity, 1:2, and 1:1 patent rows are exact focus keyframes.",
+      "Three-group floating inner focus. G2 translates 17.972 mm imageward; G3 and G4 translate 12.247 mm and 17.494 mm objectward from infinity to 1:1 (printed 18.049 / 12.300 / 17.570 mm). The infinity, 1:2, and 1:1 patent rows are the focus keyframes, re-solved for paraxial focus at the printed magnifications.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },
 
   gaps: {
-    "7": { label: "D7", values: [[1.2, 9.8415, 19.2488]] },
-    "13": { label: "D13", values: [[20.05, 11.4085, 2.0012]] },
-    STO: { label: "D14", values: [[14.0, 9.2987, 1.7]] },
-    "16": { label: "D16", values: [[6.7201, 1.0992, 1.4506]] },
-    "19": { label: "D19", values: [[1.7996, 12.1217, 19.369]] },
-    "26": { label: "BF", values: [[46.7393, 46.7793, 46.7641]] },
+    "7": { label: "D7", values: [[1.2, 9.881766, 19.171708]] }, // printed 1.2 / 9.8415 / 19.2488; near rows re-solved for paraxial focus
+    "13": { label: "D13", values: [[20.05, 11.368234, 2.078292]] }, // printed 20.05 / 11.4085 / 2.0012; near rows re-solved
+    STO: { label: "D14", values: [[14.0, 9.271259, 1.752537]] }, // printed 14.0 / 9.2987 / 1.7; near rows re-solved
+    "16": { label: "D16", values: [[6.7201, 1.087444, 1.473108]] }, // printed 6.7201 / 1.0992 / 1.4506; near rows re-solved
+    "19": { label: "D19", values: [[1.7996, 12.160896, 19.293956]] }, // printed 1.7996 / 12.1217 / 19.369; near rows re-solved
+    "26": { label: "BF", values: [[47.033197, 47.073197, 47.057997]] }, // printed 46.7393 / 46.7793 / 46.7641; re-solved for paraxial focus, +0.293897 carried to the near rows
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
