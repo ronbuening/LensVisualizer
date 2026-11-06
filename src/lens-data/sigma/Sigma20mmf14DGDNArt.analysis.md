@@ -109,7 +109,7 @@ L14 is the strongest single positive element of the lens. Its junction (R = +20.
 
 **L15 — Biconvex positive.** nd = 1.92286, νd = 20.88. Glass: E-FDS1 (HOYA). f = +28.9 mm.
 
-The last element of G3B, and the subject of conditions (3) and (4): a positive lens with nd above 1.75 and positive anomalous partial dispersion (1.92 and +0.028 here). ¶0038–0039 explain that a high-index, high-anomaly positive at this position, where off-axis rays pass far from the axis, corrects lateral color and color flare without the field-curvature penalty of the usual low-index ED crowns.
+The last element of G3B, and the subject of conditions (3) and (4): a positive lens with nd above 1.75 and positive anomalous partial dispersion (1.92 and +0.028 here). ¶0038–0039 explain that a high-index, high-anomaly positive at this position, where off-axis rays pass far from the axis, corrects lateral color and color flare without the field-curvature penalty of the usual low-index ED crowns. Because the patent itself calls for an anomalous-partial-dispersion material here, the model tags L15 as patent-designated APD; Sigma's drawing does not count it among its SLD elements.
 
 ### G3C — L16 and L17
 
@@ -182,7 +182,7 @@ Departures from the vertex sphere at the model's clear radii:
 - **Surface 1** (31.6 mm): +2.33 mm, the front face steepening toward the rim; much the largest asphere in the lens, consistent with Sigma's description of a large double-sided aspheric front element.
 - **Surface 2** (23.5 mm): −0.21 mm from the 32.16 mm sphere. The paraboloidal base alone would fall about 1.6 mm short of the sphere there; the polynomial restores most of that.
 - **Surfaces 15 and 16** (17.1 mm): −0.42 mm and +0.29 mm, both flattening L8 toward its rim.
-- **Surfaces 32 and 33** (13.0 and 15.15 mm): −0.58 mm and +0.48 mm, both deepening L17's concave faces, so its negative power grows toward the edge.
+- **Surfaces 32 and 33** (13.5 and 15.15 mm): −0.68 mm and +0.48 mm, both deepening L17's concave faces, so its negative power grows toward the edge.
 
 ## Conditional Expressions
 
@@ -204,15 +204,15 @@ The table values are the patent's correspondence table for Example 1 (¶0132); t
 
 ## Aperture and Clear Radii
 
-The patent prints no iris diameter or clear apertures. The model sizes the stop from F1.46 at the printed stop position: radius 12.73 mm, entrance-pupil diameter 13.92 mm. Fig. 1 draws the stop mark beginning about 13.7 mm from the axis.
+The patent prints no iris diameter or clear apertures. The model sizes the stop from F1.46 at the printed stop position: radius 12.73 mm, entrance-pupil diameter 13.92 mm. Fig. 1 draws the stop mark beginning about 13.3 mm from the axis, the height the real F1.46 marginal ray reaches at the stop.
 
-Every other radius is measured on Fig. 1, at 8.153 px/mm on a 400 dpi rendering, and reads the same above and below the axis. Where Fig. 1 ends a concave face short of the element's edge with a flat step (the rear faces of L1 and L2, the fronts of L4 and L6, the rear of L9), the model keeps the curve's end as the clear radius and draws the step out to the edge, as Sigma's drawing also shows for L1 and L2. Two radii are set by geometry rather than the drawing: L2's rear face ends at 20.2 mm, the largest value that keeps it from crowding L3 (Fig. 1 reads 20.6–21.2 mm); and Fig. 1 closes the air lens K at the rim, where the printed surfaces of L16 and L17 would cross at about 13.7 mm, so both faces end at 13.0 mm with steps out to the drawn 15.15 mm edge.
+Every other radius is measured on Fig. 1, at 8.153 px/mm on a 400 dpi rendering, and reads the same above and below the axis. Where Fig. 1 ends a concave face short of the element's edge with a flat step (the rear faces of L1 and L2, the front of L4, the rear of L9), the model keeps the curve's end as the clear radius and draws the step out to the edge, as Sigma's drawing also shows for L1 and L2. Three radii are set by geometry or light rather than the drawing: L2's rear face ends at 20.2 mm, the largest value that keeps it from crowding L3 (Fig. 1 reads 20.6–21.2 mm); Fig. 1 closes the air lens K at the rim, where the printed surfaces of L16 and L17 would cross at about 13.7 mm, so both faces end at 13.5 mm, 0.16 mm apart, with steps out to the drawn 15.15 mm edge; and L6's front face runs to 16.19 mm, leaving only a narrow step below its 16.4 mm edge. Fig. 1 ends that curve near 14.4 mm, but a step that deep would take up to a tenth of the light from the outer field.
 
-With these radii the F1.46 on-axis beam passes every surface at both focus states; the tightest margins are at the front of L6 (axial marginal ray 13.9 mm against 14.7 mm) and the rear of L9 (14.1 mm against 15.0 mm). The real chief ray reaches the 21.63 mm corner at 48.3°.
+With these radii the F1.46 on-axis beam passes every surface at both focus states; the tightest margin is at the rear of L9 (axial marginal ray 14.1 mm against 15.0 mm). The real chief ray reaches the 21.63 mm corner at 48.3°.
 
 ## Model Scope and Limitations
 
-Wide open at infinity, the model's geometric transmission relative to the axis is 82 % at 28°, 67 % at 37°, 51 % at 43° and 29 % at the 48.2° corner, limited mainly by the front of L6, the L13–L14 doublet and the L16–L17 rims. The radii are drawing measurements, not manufacturer data, so the corner fall-off and any vignetting or MTF result near it describe this model rather than the production lens.
+Wide open at infinity, the model's geometric transmission relative to the axis is 90 % at 28°, 76 % at 37°, 63 % at 43° and 38 % at the 48.2° corner, limited mainly by the 16.4 mm rim of the focus element L6; the L13–L14 doublet, the L16–L17 rims and L2's stepped rear each take a point or two more. The radii are drawing measurements, not manufacturer data, so the corner fall-off and any vignetting or MTF result near it describe this model rather than the production lens.
 
 The model is Example 1 as printed: patent radii, indices and spacings, HOYA and OHARA catalog dispersion for the matched glasses, two printed focus states and a linear path between them. It does not model the production minimum focus of 23 cm, the stepped mechanical flanges beyond the drawn edges, or any production change to the published prescription.
 

@@ -35,14 +35,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * NOTE ON SEMI-DIAMETERS: the patent prints no clear apertures. Rims are measured on Fig. 1 at
  * 8.153 px/mm (400 dpi; surface 1 to the image plane, 1052 px for 129.04 mm, checked against surface 1
  * to surface 33), the same on both sides of the axis. Fig. 1 draws a flat land beyond the curve on
- * S2, S4, S7, S11 and S18: those faces keep the curve end in `sd` and carry the drawn edge in
- * `rimExtensionSd` (S2 23.5 → 31.6, S4 20.2 → 24.8, S7 19.5 → 20.4, S11 14.7 → 16.4, S18 15.0 →
- * 16.25 mm). S4 is held at 20.2 mm, the largest curve end the cross-gap rule admits against L3
- * (Fig. 1 reads 20.6–21.2 mm). Fig. 1 closes the L16–L17 air lens at the rim, where the printed
- * surfaces would cross (about 13.7 mm), so S31 and S32 end at 13.0 mm and lands carry both elements
- * out to the drawn 15.15 mm edge. Every rim clears the F1.46 on-axis beam at both printed focus
- * states; the wide-open corner keeps the vignetting these rims give (about 29 % geometric
- * transmission at 48.2°).
+ * S2, S4, S7, S11 and S18; those faces carry the drawn edge in `rimExtensionSd` (S2 23.5 → 31.6,
+ * S4 20.2 → 24.8, S7 19.5 → 20.4, S11 16.19 → 16.4, S18 15.0 → 16.25 mm). S2, S7 and S18 keep the
+ * drawn curve end in `sd`. S4 is held at 20.2 mm, the largest curve end the cross-gap rule admits
+ * against L3 (Fig. 1 reads 20.6–21.2 mm). S11 does not follow the figure: Fig. 1 ends L6's front
+ * curve near 14.4 mm, but a step that deep takes up to 10 points of wide-open geometric
+ * transmission from the outer field, so S11 runs to 16.19 mm, the lowest rim within 3 points of an
+ * unstepped L6 front at every field angle, at infinity and at the 226 mm state traced from a real
+ * object point. Fig. 1 closes the L16–L17 air lens K at the rim, where the printed surfaces would
+ * cross (about 13.7 mm): S31 and S32 end at 13.5 mm, 0.16 mm apart there (the gap is fixed at both
+ * focus states), with lands out to the drawn 15.15 mm edge; checks.gapSagFrac 0.97 is the smallest
+ * two-decimal cross-gap limit that admits them. Every rim clears the F1.46 on-axis beam at both
+ * printed focus states; the wide-open corner keeps the vignetting these rims give (about 38 %
+ * geometric transmission at 48.2°).
  */
 const LENS_DATA = {
   schema: 2,
@@ -213,7 +218,7 @@ const LENS_DATA = {
       apdNote:
         "Sigma marks this position as SLD glass; printed PgF 0.5440 is 0.0156 above the engine's normal line, and the pair matches HOYA FCD515.",
       role: "Positive meniscus directly behind the stop, concave to the object; the low-dispersion crown of the first G3B doublet.",
-      cemented: "D1",
+      cemented: "C1",
       dPgF: 0.01562,
     },
     {
@@ -226,7 +231,7 @@ const LENS_DATA = {
       focalLengthMm: -22.8,
       glass: "NBFD25 (HOYA)",
       role: "Dense-flint negative meniscus cemented behind L11; the strongly curved junction corrects axial color.",
-      cemented: "D1",
+      cemented: "C1",
       dPgF: 0.0087,
     },
     {
@@ -239,7 +244,7 @@ const LENS_DATA = {
       focalLengthMm: -36.7,
       glass: "NBFD25 (HOYA)",
       role: "Dense-flint negative meniscus convex to the object, front of the second G3B doublet.",
-      cemented: "D2",
+      cemented: "C2",
       dPgF: 0.0087,
     },
     {
@@ -252,7 +257,7 @@ const LENS_DATA = {
       focalLengthMm: 24.4,
       glass: "TAC6 (HOYA)",
       role: "Strongest positive element of the lens, cemented behind L13; carries much of G3B's power.",
-      cemented: "D2",
+      cemented: "C2",
       dPgF: -0.0086,
     },
     {
@@ -264,6 +269,9 @@ const LENS_DATA = {
       vd: 20.88,
       focalLengthMm: 28.9,
       glass: "E-FDS1 (HOYA)",
+      apd: "patent",
+      apdNote:
+        "JP 2023-167728 A ¶0036–0039 makes the last positive lens of G3B a high-index, high anomalous-partial-dispersion material (conditions 3 and 4); printed PgF 0.6388 is 0.028 above the patent's line and 0.0301 above the engine's.",
       role: "Rear positive of G3B in high-index, high partial-dispersion glass (conditions 3 and 4); corrects lateral color and field curvature.",
       dPgF: 0.03012,
     },
@@ -318,7 +326,7 @@ const LENS_DATA = {
     { label: "8", R: 154.74, d: 0.15, sd: 20.4 },
     { label: "9", R: 65.08, d: 6.21, sd: 20.2, medium: 5 },
     { label: "10", R: -146.5, sd: 20.2 },
-    { label: "11", R: -42.49, d: 1.0, sd: 14.7, rimExtensionSd: 16.4, medium: 6 },
+    { label: "11", R: -42.49, d: 1.0, sd: 16.19, rimExtensionSd: 16.4, medium: 6 },
     { label: "12", R: -244.69, sd: 16.4 },
     { label: "13", R: 38.72, d: 4.8, sd: 17.6, medium: 7 },
     { label: "14", R: 500.27, d: 0.12, sd: 17.6 },
@@ -367,12 +375,12 @@ const LENS_DATA = {
     { label: "28", R: 44.45, d: 6.26, sd: 15.8, medium: 15 },
     { label: "29", R: -62.08, d: 0.6, sd: 15.8 },
     { label: "30", R: 69.22, d: 1.0, sd: 15.15, medium: 16 },
-    { label: "31", R: 28.74, d: 4.85, sd: 13.0, rimExtensionSd: 15.15 },
+    { label: "31", R: 28.74, d: 4.85, sd: 13.5, rimExtensionSd: 15.15 },
     {
       label: "32A",
       R: -143.18,
       d: 1.62,
-      sd: 13.0,
+      sd: 13.5,
       rimExtensionSd: 15.15,
       medium: 17,
       asphere: { K: 0, A4: -1.8625e-5, A6: -2.8534e-9, A8: -7.2938e-11, A10: 1.6668e-13 },
@@ -417,10 +425,15 @@ const LENS_DATA = {
     { text: "G2 focus", fromSurface: "11", toSurface: "12" },
     { text: "G3", fromSurface: "13", toSurface: "33A" },
   ],
+  doublets: [
+    { text: "C1", fromSurface: "22", toSurface: "24" },
+    { text: "C2", fromSurface: "25", toSurface: "27" },
+  ],
 
   layout: {
     yScFill: 0.78,
   },
+  checks: { gapSagFrac: 0.97 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

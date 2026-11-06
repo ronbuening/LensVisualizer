@@ -112,8 +112,9 @@ coverage are clean (100 %, corner clear), and the page renders with the Fig. 1 s
 
 - Open: Sigma's 23 cm and 1:6.1 differ slightly from the patent's 226.5 mm state at −0.160; the production focus
   schedule is not published, so only the printed state is modeled.
-- Open: the patent's condition (4) names L15 (E-FDS1 coordinates, ΔPgF +0.028) as a high-anomaly positive; it is not
-  tagged `apd`, because Sigma's drawing does not mark it as special glass.
+- Closed 2026-11-06: the patent's condition (4) names L15 (E-FDS1 coordinates, ΔPgF +0.028) as a high-anomaly
+  positive. ¶0036–0039 call for a high anomalous-partial-dispersion material at that position, which is the source
+  identifying the material, so L15 now carries `apd: "patent"` (second review, below).
 
 ## 2026-11-06 — Semi-diameter pass against the patent figure
 
@@ -180,3 +181,108 @@ and 17, SLD elements 10 and 11, and the stepped rears of L1 and L2. It is not dr
 L1, its G3A elements grow toward the stop (L6 about 17.5 mm to L10 about 18.7 mm) where Fig. 1 shrinks them (L7
 17.2 mm to L10 15.1 mm), and it draws L12 taller than L11 with a step where Fig. 1 draws the doublet square. The patent
 figure of the modeled example governs.
+
+## 2026-11-06 — Second review: diagram, labels and movement
+
+### What was compared
+
+The local page (infinity, the 226 mm state, the focus-movement overlay, and the inspector for L1, L6, L10, L11 and
+L15) against JP 2023-167728 A Fig. 1 (PDF p. 31, rendered at the raster's native 801 dpi), the Example 1 text
+(¶0079–0083), the variable-spacing table (PDF p. 17), Figs. 2–3 (longitudinal aberrations at infinity and 226 mm) and
+Sigma's A022 construction drawing. Fig. 1 scale, measured afresh: vertex crossings give 16.32 px/mm along the axis
+(surface 1 to the image plane, 2105 px for 129.04 mm; surface 1 to surface 33, 1774 px for 108.66 mm); a circle fit to
+the L11–L12 junction (R = −18.34 mm) at three heights gives 16.61–16.67 px/mm across the axis, so heights below use
+16.65 px/mm. Outer edges read L1 31.1, L2 24.4, L3 21.2, L4 19.9, L5 19.9, L6 16.0, L7 17.3, L8 16.8, L9 15.9, L10
+15.2, L11–L12 14.1, L13–L14 14.2, L15 15.6, L16–L17 14.9 mm; every stored edge is 1.5–2.5 % above these, inside
+measurement noise. The land corners read S7 19.0, S11 14.4 (land to 16.0), S18 14.5 mm. The silhouette, the step
+order between neighbours and the square rims match Fig. 1 everywhere except L6, below.
+
+### Lands and cuts
+
+No face is below its value in the baseline file, so there is no cut. Each land was costed by raising the face under
+it to the land height, wide open with the app's vignetting analysis at infinity and, for S11, also at the 226 mm
+state traced from a real object point; where the validator refuses that, by the largest value it admits.
+
+| Land | Fig. 1 | Baseline | Final | Light it costs (points, worst field) | Verdict |
+| --- | --- | --- | --- | ---: | --- |
+| S2 23.5 → 31.6 | curve end 23.2 | 23.5 | 23.5 | 0.0 (23.6 changes nothing; 24.0 and up refused, land intrusion 4.98 of 4.83 mm allowed; faces meet at 24.8) | keep: spacing, no cost |
+| S4 20.2 → 24.8 | curve end 20.7 | 20.2 | 20.2 | 0.6 at the corner even at 21.0 with the cross-gap rule relaxed; 20.3 refused (combined sag 12.67 of 12.63 mm allowed) | keep: spacing |
+| S7 19.5 → 20.4 | curve end 19.0 | 19.5 | 19.5 | 0.0 | keep: costs nothing |
+| S11 14.7 → 16.4 | curve end 14.4 | 14.7 | 16.19 | 10.1 at 39.7° before; after, 0.93 at 42.6° at infinity and 2.99 at the 21.63 mm corner of the 226 mm state (real object) | partly raised |
+| S18 15.0 → 16.25 | curve end 14.5 | 15.0 | 15.0 | 0.0 | keep: costs nothing |
+| S31, S32A 13.0 → 15.15 | faces meet at 13.6 | 13.0 | 13.5 | 1.1 at the corner against 13.65, where the faces nearly touch; the printed faces cross near 13.7 | raised to the figure; keep: spacing, slight |
+
+S11 is the front of the focus element L6. Its land took up to 10.1 points at 39.7° (59.6 % against 69.7 % for an
+unstepped L6 front). The final 16.19 mm is the lowest two-decimal rim that keeps the whole lens within 3 points of an
+unstepped L6 front (S11 at 16.4, S31 and S32A at 13.5) at every field, both at infinity and at the 226 mm state traced
+from a real object point; 16.18 mm loses 3.20 points at that state's corner. The land stays from 16.19 to the drawn
+16.4 mm edge. The F1.46 on-axis beam clears S11 at both focus states (13.89 mm against 16.19).
+
+S31 and S32A rise to 13.5 mm, where Fig. 1 closes the air lens K. There the faces sit 0.16 mm apart (S31 sag +3.368,
+S32A sag −1.321 mm across the fixed 4.85 mm gap, so the same at both focus states). The cross-gap rule needs
+`checks.gapSagFrac` 0.97 to admit them (0.96 refuses: combined sag 4.69 of 4.66 mm allowed), and the file now sets it.
+The raise adds 5.1 points at the infinity corner (32.96 to 38.04 %) and 13.1 at the near-state corner. The surface
+validator passes at the final values. S32A's departure from its vertex sphere at 13.5 mm is −0.683 mm.
+
+Wide-open geometric transmission, file before and after:
+
+| State | 28.4° | 36.9° | 42.6° | 45.4° | 48.2° |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Infinity, before | 82.0 | 66.8 | 50.6 | 40.7 | 28.8 |
+| Infinity, after | 90.4 | 75.8 | 62.9 | 53.6 | 38.0 |
+| Mid focus (parallel beam), before / after | 83.6 / 91.8 | 67.8 / 77.1 | 53.2 / 64.4 | 43.2 / 56.2 | 32.1 / 45.9 |
+| 226 mm state (parallel beam), before / after | 85.0 / 93.3 | 68.8 / 78.2 | 55.0 / 65.3 | 45.5 / 57.5 | 34.5 / 48.1 |
+
+At the 226 mm state with a real object point 97.44 mm ahead of surface 1 (object heights chosen so the chief ray lands
+at the stated image height; rays through a fine grid on the surface 1 vertex plane, counted relative to the axial
+point), the 21.63 mm corner rises from 60.1 % to 94.0 %, against 97.0 % with S11 unstepped; at 20.5 mm image height
+72.6 % to 104.8 % (107.6 %; off-axis values pass 100 % because the pupil grows off axis). The final worst loss against
+the baseline file is 0.0 points (rimcost with `--loo`, infinity): the changes only add light.
+
+### Labels, brackets and tags
+
+- Element designations L1–L17 are the patent's own (¶0079: Ln is the nth lens from the object). Every `type` agrees
+  with ¶0081–0083 and with the signs of R; the aspheric counts (L1, L8, L17, two faces each) match the table and the
+  labels 1A, 2A, 15A, 16A, 32A, 33A. Element focal lengths agree with a paraxial trace to 0.05 mm. Roles agree with
+  ¶0036–0039 and ¶0080–0083 and with the paragraphs the analysis cites.
+- Groups G1 (1A–10), G2 focus (11–12) and G3 (13–33A) bracket the patent's groups; the subgroups are left to the
+  analysis. The stop sits between L10 and L11, 2.31 mm behind surface 20, where Fig. 1 draws S.
+- Added cemented brackets C1 (22–24, L11–L12) and C2 (25–27, L13–L14), which the file lacked, and renamed the two
+  elements' `cemented` names D1, D2 to C1, C2 so the inspector matches the brackets and nothing reads like the d10 and
+  d12 gap labels. On the page they sit above the doublets, clear of other labels.
+- `apd`: L10 and L11 stay `inferred`, at Sigma's two SLD positions (blue on the A022 drawing). L15 gains
+  `apd: "patent"` with an `apdNote`: ¶0036–0039 require the last positive lens of G3B to be a high-index, high
+  anomalous-partial-dispersion material (conditions 3 and 4), and Example 1's L15 prints PgF 0.6388, 0.028 above the
+  patent's line. Sigma's drawing marks L1, L8 and L17 aspherical and L10, L11 SLD, 17 elements in 15 groups, matching
+  the file.
+
+### Movement
+
+The table (PDF p. 17) gives d10 11.3900 → 3.7932 and d12 2.0000 → 9.5968 from INF to the 226 mm column, BF 20.3784
+in both. The file's index 0 is infinity and index 1 the 226 mm state; ¶0080 has G2 move from the image side toward
+the object for close focus. On the page the movement overlay shows G2 travelling 7.60 mm from 81.5 mm to 89.1 mm
+ahead of the image plane while G1 and G3 stay put, and the focus slider's far end reads 23 cm (the 226.5 mm state
+rounded). Direction, order and amount are correct.
+
+### Colour, astigmatism and distortion against Figs. 2–3
+
+Read at 801 dpi on the plots' own scales (315 px/mm). At infinity the model's on-axis focus relative to the d-line
+paraxial focus is C +35 µm, g −25 µm paraxially and d −88, C −45, g −122 µm at the F1.46 rim; Fig. 2 draws the three
+curves within about ±0.05 mm of zero at the bottom, leaning to −0.05…−0.15 mm at the top, the same within reading
+error. At the 226 mm state (real object): paraxial C +46, g −37 µm; rim d −59, C −17, g −57 µm, matching Fig. 3's
+spread. No line is off by more than the reading error, so no glass label is suspect. Astigmatism at the infinity
+corner: model ΔS −0.111, ΔM −0.102 mm against about −0.11 for both in Fig. 2; distortion −4.98 % at 48.2° against
+about −5 %. Near-state astigmatism was not compared: the engine traces parallel beams at the near spacing.
+
+### Unchanged
+
+Engine half-field 48.23°, F1.46 and stop radius 12.73 mm before and after. The image-circle, field-coverage and
+aperture audits are clean, and there is no clip of the on-axis beam or the corner chief ray at either focus state. All 17
+glass labels resolve; the patent prints PgF for every glass, so none is unidentified.
+
+### Open
+
+- Closed 2026-11-06: the near-state cost of the L6 step. The coordinator applied the 3-point rule at the 226 mm state
+  with a real object point too, and S11 is 16.19 mm (2.99 points at that corner).
+- Closed 2026-11-06: S31 and S32A at 13.5 mm with `checks.gapSagFrac` 0.97, as the coordinator decided. Fig. 1 draws
+  the air lens K closed at about that height, and the raise adds 5.1 points at the infinity corner.
