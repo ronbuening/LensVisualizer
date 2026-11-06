@@ -85,3 +85,40 @@ Open: L3–L9 and the filter keep the `Unmatched (...)` glass string although ev
 a glass pass could label them. The package's own transcription of Table 7 gives condition (1) as 1.255 against 1.220
 computed from Table 1 (the other eight agree); Table 7 was not re-read here. The iris position and the filter
 identification are inferences; Fig. 3 and Ricoh's construction image were not viewed.
+
+## 2026-11-06 — Semi-diameter pass against the patent figure
+
+Source: the local JP H06-138385 A front page, whose representative drawing is Fig. 1, Example 1 at infinity. It was
+measured on the extracted 1-bit bitmap (630 × 459 px at its native 200 ppi), not on a resampled render. Fig. 3, the
+aberration plots and Ricoh's construction image are not in the local copy, so no fan-end or maker-diagram check was made.
+
+Scale. A least-squares fit of all 17 vertex columns to the Table 1 positions at infinity gives 6.625 native px per native
+mm (2.208 px per model mm), with residuals within 1.1 px; d9 = 3.66 fits, so the drawing is the infinity state. Arc fits
+with a free vertex on leader-free stretches give a vertical-to-horizontal ratio of 1.04 (r3), 1.02 and 1.05 (r6), 1.07
+(r7), 1.03 and 1.02 (r8) and 0.97 and 0.98 (r12), mean 1.02; r12's drawn arc follows its prescription sag to 0.5 px out to
+48 px at a ratio of 1. The figure is taken as isotropic within ±3 %.
+
+Outer rims, line centre to line centre over the full drawn diameter: L1 120.75 px (54.7 mm; file 54.5), L2 112.0 (50.7;
+50.5), L3 104.0 (47.1; 47.1), G2 70.25 (31.8; 31.7), G3 56.4 (25.5; 25.4), G4 43.1 (19.5; 19.4), filter 43.75 (19.8; 20.5,
+set by the drop-in ray-trace rule). The earlier 804 dpi readings reproduce to 0.25 px and every lens rim agrees within
+0.6 %. At a ratio of 1 the L1 to G3 rims sit 0.4 to 1.6 % outside their F/2.8 axial beams, a margin the ±3 % scale
+allowance cannot resolve, so they stay. No `sd` changed.
+
+Lands. Fig. 1 ends the concave rear caps r6 (L3) and r12 (L7) short of the element edge, with a stroke square to the axis
+from the cap end to the edge line, in both halves of the figure. No other face has one: r1, r3, r4, r7, r9, r13 and r15
+meet the edge lines within 2 px of their prescription sags. Cap ends, where the drawn arc meets the stroke, at 6.625
+native px per native mm: r12 48.25 px of a 56.4 px edge radius, q = 0.856 ± 0.033, q × sd = 21.7 mm (20.9 to 22.6); r6
+95.75 px of 104.15 px, q = 0.919 ± 0.018, 43.3 mm (42.4 to 44.2). The rim-cut probe (30 focus states, every field) puts
+the widest wide-open beam at 21.91 mm on r12 and 43.90 mm on r6, so both cuts move out to clear it by the spec margin
+(0.066 and 0.132 mm). Surface 12 keeps `sd` 25.4 and takes `rimCutDepthMm` 4.87 (cut radius 21.99 mm, 0.25 mm outside the
+figure's cap end; land 3.4 mm). Surface 6 keeps `sd` 47.1 and takes `rimCutDepthMm` 5.32 (cut radius 44.05 mm, 0.76 mm
+outside; land 3.05 mm). Both faces are glass on the vertex side and air on the rim side; neither is cemented.
+
+Clearance and light. The surface validator reports no errors, the rim-cut probe finds no ray clipped or within margin at
+either cut, the aperture audit reports no rim limit, the image-circle check finds nothing undersized and the traced
+corner chief ray clears at 100 %. Engine half-field 6.32°, FOPEN 2.8 and stop radius 25.80 mm are unchanged. Wide-open
+transmission equals the starting rims at every field: 100, 100, 97.8, 89.5, 79.3, 68.6 and 57.6 % from 0° to 4.12° at
+infinity, 76.1 % at 3.77° at mid travel and 90.0 % at 3.42° at the close state. The lands cost no light.
+
+Rendered check. The page at infinity and at the close state draws both lands. An overlay of the model outline on Fig. 1
+shows the starting rear corners of L3 and L7 running past the drawn strokes and the cut outline following them.

@@ -27,6 +27,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * L2 50.5 (49.79), L4/L5 31.7 (31.56), L6/L7 25.4 (24.98), L8/L9 19.4 (16.51), each one height across the element as
  * drawn. L3 keeps its earlier 47.1 mm (Fig. 1: 46.9). The filter (Fig. 1: 19.7) is sized by ray trace as the spec sets for
  * drop-in filters: 19.47 mm highest ray at either focus end, plus 5 %, rounded up to 20.5 mm.
+ * Lands: Fig. 1 ends the concave rear caps of L3 (r6) and L7 (r12) short of the element edge, with a stroke square to the
+ * axis, at q = 0.92 and 0.86 of the edge radius (43.3 and 21.7 mm). Both are inferred rim cuts, moved out to clear every
+ * traced F/2.8 beam at any focus by the spec margin: r6 at 5.32 mm depth (cut radius 44.05 mm), r12 at 4.87 mm (21.99 mm).
  * Glass: Ricoh names thin ED glass in the first and second elements, so L1 and L2 (1.49700/81.6) carry the FCD1 /
  * S-FPL51 class label and an inferred anomalous-dispersion tag. The other pairs are left unassigned and traced from
  * nd/νd alone.
@@ -192,14 +195,14 @@ const LENS_DATA = {
     { label: "3", R: 113.373, d: 12.0, sd: 50.5, medium: 2 },
     { label: "4", R: 468.099, d: 9.0, sd: 50.5 },
     { label: "5", R: "flat", d: 5.7, sd: 47.1, medium: 3 },
-    { label: "6", R: 185.046, d: 52.2, sd: 47.1 },
+    { label: "6", R: 185.046, d: 52.2, sd: 47.1, rimCutDepthMm: 5.32 },
     { label: "7", R: 86.745, d: 3.0, sd: 31.7, medium: 4 },
     { label: "8", R: 43.971, d: 13.8, sd: 31.7, medium: 5 },
     { label: "9", R: 521.037, d: 5.6, sd: 31.7 },
     { label: "STO", R: "flat" },
     { label: "10", R: -475.518, d: 5.1, sd: 25.4, medium: 6 },
     { label: "11", R: -101.067, d: 3.3, sd: 25.4, medium: 7 },
-    { label: "12", R: 52.101, sd: 25.4 },
+    { label: "12", R: 52.101, sd: 25.4, rimCutDepthMm: 4.87 },
     { label: "13", R: 112.14, d: 6.6, sd: 19.4, medium: 8 },
     { label: "14", R: -71.448, d: 2.7, sd: 19.4, medium: 9 },
     { label: "15", R: 138.99, d: 9.0, sd: 19.4 },

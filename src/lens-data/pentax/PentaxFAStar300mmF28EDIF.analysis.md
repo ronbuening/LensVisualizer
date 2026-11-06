@@ -149,6 +149,8 @@ The rims follow Fig. 1, measured at 26.56 px/mm from the 70.33 mm (native) r1–
 
 The filter rim is a ray-trace value: the highest ray that reaches the image at either focus end crosses it at 19.47 mm, plus 5 %, rounded up. The full f/2.8 axial beam passes at both infinity and the close state. Off axis, the drawn rims cut the corner bundle to about 58 % at 4.1° wide open. That vignetting follows Fig. 1 and is not removed by widening rims.
 
+Fig. 1 ends the concave rear faces of L3 and L7 short of their element edges, with a flat land square to the axis, at about 43.3 mm and 21.7 mm: close to the F/2.8 beam on those faces. The model draws both lands, at 44.05 mm on L3 and 21.99 mm on L7, just outside the widest F/2.8 beam that reaches either face at any focus distance, so they block no light.
+
 ## Aspherical Surfaces
 
 None. Every surface is spherical, as printed.
