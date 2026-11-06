@@ -216,3 +216,107 @@ infinity and 2.4 m: no stored rim below the axial marginal ray or the chief ray 
 22.39 against 23.4 mm). `audit:aperture`: 18 stations within 3 % of the stated F-number, no rim, trace or iris limit.
 `audit:surface`: OK. No rim changed. Targeted tests: closeFocusEndpoint, publishedStations, focusKeyframes,
 zoomApertureModel, irisInAir, duplicatedValues and schemaVersion pass.
+
+## 2026-11-06 — Second review: diagram, labels and movement
+
+**Compared.** The local page (wide and tele, infinity and 2.4 m, 332 mm, the zoom and focus movement overlays, the
+element inspector for L12, L33, L51 and L59) against Fig. 1 on PDF p. 81, re-measured at 381 dpi on the clean side of
+the axis (axis at x = 775 px; transverse 0.2235 mm/px as above); Table 2 on p. 35; Fig. 4 on p. 82 (Example 1
+aberrations, read at 800 and 1600 dpi); and Fujifilm's lens-configuration drawing. Rim decisions follow the owner's
+2026-11-01 rule on cuts and lands, measured against the rims saved before the figure pass, at all 18 stations.
+
+**Re-measurement.** Fig. 1 draws L11 170 px (38.0 mm), L12 164 px (36.65), L13 161 px (36.0), L21 and L22 79–80 px
+(17.7–17.9), L23 76 px (17.0), L31 and L32 105 px (23.5), L33–L34 104 px (23.2), L41 92 px (20.6), L42 88 px (19.7),
+the stop and L51–L52 62–63 px (13.9–14.1), L53–L54 46 px (10.3), L55–L57 45–47 px (10.1–10.5), the triplet 42 / 46 /
+44 px (L58 9.4, L59 10.3, L60 9.8), L61 46–47 px (10.4) and L62 47 px (10.5). Every rim the figure pass set agrees with
+these within 0.2 mm, and every rim it raised above the earlier values (S7, S10, S11, S12–S18, S24–S26) is supported.
+The silhouette on the page has the figure's height order: G1 descending L11 > L12 > L13, then G3 > G4 > G2 > stop and
+focus doublet > rear group.
+
+**Cuts and lands.** Corner-light cost against the earlier rims, wide open at infinity, every station. With the
+figure-pass rims the long end lost up to 3.4 points (496.5 mm at 1.6°, 79.9 → 76.5 %; 553.7 mm at 1.4°, 77.9 →
+74.7 %); the printed tele station alone lost 2.8, which is why the figure pass, which checked only the printed
+stations, kept G1 where it did. Restoring L12 or L13 alone wins back almost nothing (0.1 and 0.4 points), because each
+shadows the other; restoring both wins back up to 2.2 points (553.7 mm, 74.7 → 76.9 %). The smallest equal raise of both that keeps every
+station within 3 points in both field modes below is 0.2 mm, which keeps the drawn L11–L12–L13 steps (1.2 and 0.6 mm
+against the drawn 1.35 and 0.65 mm).
+
+| Surfaces | Element | Earlier rim | Fig. 1 | Figure pass | Final | Verdict, points of light it costs |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| S3, S4 | L12 | 39.1 | 36.65 | 37.7 | 37.9 | Partly raised; with S5/S6 the long-end worst falls from 3.4 to 2.7 |
+| S5, S6 | L13 | 39.04 | 36.0 | 37.1 | 37.3 | Partly raised, together with S3/S4 |
+| S21, S22 | L42 | 20.8 | 19.7 | 19.7 | 19.7 | Kept: 0.0 |
+| S27–S29 | L53–L54 | 12.0 | 10.3 | 10.2 | 10.2 | Kept, slight: 0.4 (172.5 mm, 2.3°) |
+| S30, S31 | L55 | 12.0 | 10.1 | 10.0 | 10.0 | Kept: 0.0 |
+| S34 | L57 rear | 12.0 | 10.5 | 10.5 | 10.5 | Kept: 0.0 |
+| S35–S38 | L58–L60 triplet | 10.65 / 11.82 | 9.4–10.3 | 9.2 / 9.7 | 9.2 / 9.7 | Kept, slight: 1.5 (358.6 mm, 2.2°) |
+| S39, S40 | L61 | 11.94 | 10.4 | 10.3 | 10.3 | Kept: 0.0 |
+| S41 | L62 front | 12.0 | 8.7, flange 10.5 | 9.0 + land 10.5 | 9.0 + land 10.5 | Kept: 0.0 with S42 |
+| S42 | L62 rear | 12.0 | 10.5 | 10.5 | 10.5 | Kept: 0.0 |
+| S8, S9 land | L21 rear, L22 front | 15.42, no land | rim contact to 17.7 | land 17.7 | land 17.7 | Kept: 0.0, drawn contact |
+| S32, S33 land | L56 rear, L57 front | 8.54, no land | rim contact to 10.5 | land 10.5 | land 10.5 | Kept: 0.0, drawn contact |
+
+No `checks.gapSagFrac` is set; the default passes. Final worst loss at every station, every field inside the APS-C
+corner: 2.7 points (524.5 mm at 1.5°, 78.8 → 76.1 %) with the analysis field following the real chief ray. Corners,
+earlier / figure pass / final: wide infinity (5.2°) 72.6 / 74.5 / 74.5 %; 496.5 mm (1.6°) 79.9 / 76.5 / 77.1 %;
+553.7 mm (1.4°) 77.9 / 74.7 / 75.2 %; tele infinity (1.4°) 76.3 / 73.5 / 74.0 %. At 2.4 m with a real object point
+2400 mm from the image plane, at the 14.175 mm corner: wide 75.7 / 78.1 / 78.1 %, 332 mm 90.7 / 89.2 / 89.2 %, 440 mm
+95.5 / 94.9 / 94.9 %, tele 97.1 / 96.0 / 96.5 %.
+
+**Field axis at 332–468 mm.** `projection: { kind: "rectilinear", fullFieldDeg: 10.4 }` fixes the engine's raw half-field
+at 5.2° at every zoom position. Where the chief ray at 5.2° cannot be traced (stations 8–13, 332–468 mm, and zoom
+positions between them), the analysis field stays at 5.2° instead of stopping at the format corner (1.7–2.4°): field
+coverage reports those six stations unsolved, and the Vignetting tab runs to 5.2° with 0 % past 4.3°. With the block
+removed, all 18 stations reach the corner at 100 % and the curves stop at the corner. The rim costs above use that
+corner-limited field; with the block in place `rimcost.mjs` reports up to 25 points at fields beyond the corner and
+3.5 points at 358.6 mm, both from that axis, not from a rim. Closed: the coordinator removed the `projection` block (a single 10.4° field is only true at the wide end); field coverage now reaches the corner at all 18 stations.
+
+**Clearance after the change.** `audit:surface` OK; `audit:image-circle` nothing undersized; `audit:aperture` 18
+stations within 3 % of the stated F-number with no rim, trace or iris limit; `clearap2` at the corner (ω per station
+from 14.175 mm) at infinity and 2.4 m: no surface below the axial marginal ray or the chief ray (largest G1 marginal
+35.26 mm against 37.9). Engine half-field 5.2°, F/5.76–8.19 and stop radii 13.79 / 9.70 mm before and after.
+
+**Labels and brackets.** Fig. 1 names every element (L11–L13, L21–L23, L31–L34, L41–L42, L51–L62) and draws
+brackets for G1–G5, GM, GE, GPA, the focus group L51–L52, the stabilization group L55–L57 and Gk. The file had no
+`groups` or `doublets`, element names L1–L24 and no `diagramLabel`, so the page drew no brackets, numbered the
+elements 1–24 and its movement overlay fell back to 17 construction groups.
+
+| Field | Before | After |
+| --- | --- | --- |
+| Element `name` / `label` / `diagramLabel` | L1–L24 / Element 1–24 / none | Fig. 1's L11–L62 / Element L11–L62 / same |
+| `groups` | none | G1 (S1–S6), G2 (S7–S11), G3 (S12–S18), G4 (S19–S22), G5 FOCUS (S24–S26), G5 OIS (S30–S34), Gk (S35–S42) |
+| `doublets` | none | C1 S9–S11, C2 S16–S18, C3 S24–S26, C4 S27–S29, C5 S30–S32, C6 S35–S38 |
+| `cemented` | CD5, CD9, CD13, CD15, CD17, CD21 | C1–C6, matching the brackets |
+| `role` cross-references | L5, L6, L9, L10, L15, L17, L18 | L22, L23, L33, L34, L53, L55, L56 |
+| `focus.description` | "L13–L14 doublet (…, the patent's focus group L51–L52)" | "L51–L52 doublet (S24–S26), the patent's focus group inside G5" |
+
+G5 is split into its moving and named parts rather than bracketed whole, so that the movement overlay tracks the focus
+group; L53–L54 is left without a bracket, as in Fig. 1. Every element `type` agrees with the signs of R; there are no
+aspheric surfaces and no `A` labels; the stop sits between L42 and L51 at S23. The inspector shows the new names,
+"DOUBLET C3" and "TRIPLET C6", focal lengths for every element checked, and APD (INFERRED) on L12. The `apd: "inferred"`
+tags sit on L12, L13, L22 and L33 (Super ED) and L31, L32 and L42 (ED), the second, third, fifth, ninth, seventh, eighth
+and twelfth elements Fujifilm's drawing marks; the patent's conditions 5–12 and 16–17 describe such glasses but do not
+name these elements, so `"inferred"` stays.
+
+**Movement.** Stations ascend 154.611 → 582.42 mm and every `values` row is in that order; keyframe 0 is infinity and
+keyframe 1 is 2.4 m. Table 2 (p. 35) matches stations 0 and 17 exactly. From the gaps, wide to tele: G1 fixed; G2
++72.505 mm toward the image, monotonic; G3 +11.28 mm toward the image at station 7 and back to −3.575 mm; G4 −5.48 mm
+toward the object at station 6, then +6.641 mm; G5 fixed (DD6 + DD11 + DD18 + DD22 = 136.764 mm at every station).
+Focus: only DD23 and DD26 change, sum 32.123 mm; the doublet moves toward the image by 1.447 mm (wide) to 21.651 mm
+(tele). The overlays show the same: in zoom mode G2 travels 72.51 mm and G3 and G4 reverse; in focus mode at the tele
+end only G5 FOCUS moves, 21.65 mm toward the image. The focus slider's far end reads 2.40 m.
+
+**Aberrations against Fig. 4.** Distortion: +0.62 % at 5.2° wide and +1.37 % at 1.4° tele against the plotted +0.65
+and +1.29 %. Astigmatism, from the image plane: wide 5.2° sagittal +31 / tangential −44 µm against the plotted +42 /
+−36; tele 1.4° −67 / −326 µm against −59 / −299, and −34 / −146 against −30 / −138 at 1.05°. Lateral colour at the
+corner: wide C +6.3, F −4.6, g +4.2 µm against curves at about +5.5 and −4.5; tele C −6.7, F +0.2, g −10.6 against
+about −7.9 and +1.2. On axis, from the image plane: d starts at −9 µm (wide) and −6 µm (tele) as plotted; C, d and F
+agree with the plotted curves within the 5 µm reading error at both ends, at the axis and the rim. The g line does
+not: the plot's dash-dot curve runs about +32 µm at the axis and +45 µm at the rim at wide, where the model gives +13
+and +23, and about +46 and −70 µm at tele, where the model gives +80 and −83. Every element's g index reproduces the
+printed θgF exactly and its νd within 0.08, so no single glass label explains it; the dash-dot and dashed curves
+overlap near the axis at wide, so line identity there is the weakest part of this reading.
+
+**Closed by the coordinator.** The `projection` block is removed. The header's dispersion line now says each glass
+carries its catalog equivalent for C/d/F while the printed θgF, kept as dPgF, sets the g-line. L53's S-TIL1 curve gives
+PgF 0.5686 against the printed 0.56859, so its label now reads as a θgF equivalent too (21 of 24 elements).
