@@ -74,3 +74,79 @@ and Limitations", with the vignetting above re-derived on the current file.
 Closed: ¶0024 calls the Vp/Vn > 62 glasses (L2, L9, L12, L13 here) high in partial dispersion, so those four now
 carry `apd: "patent"` with notes citing conditions (4)/(5), ¶0024 and ¶0052. No partial-dispersion values are added;
 the patent prints none.
+
+## 2026-11-06 — Semi-diameter pass against the patent figure
+
+Source: JP 2006-300972 A, Fig. 7 (PDF p. 13; native 300 ppi raster, measured on a 600 dpi render) for the outlines,
+and the Fig. 8 infinity lateral-aberration fans on the same page for rim radii independent of the drawing.
+
+Scale. The axis is page column 1280 at both ends of the figure (no skew), and the two sides agree within 2 px. The 22
+axial vertex crossings (S8/S9, S20/S21 and S22/S23 merge) fit 0.08117 mm per px at 0.31 mm RMS; S1–STO alone gives
+0.0812 and STO–S25 0.0822. The figure is narrower across the axis, at about 0.077 mm per px (± 0.002):
+
+- circle fits to seven deep arcs give R/r 0.0695–0.0775 mm per px, mean 0.0739, which is st²/sz for st = 0.0775;
+- the drawn ends of the concave caps of S2, S4 and S6, read through their sags on the axial scale, fall at 31.1, 20.3
+  and 16.2 mm for 404, 264.5 and 203 px (0.077, 0.077, 0.080); the S1 and S5 rims read the same way give 0.077 and
+  0.076;
+- L4's rim meets L3's land at 205–209 px, where S6 and S7 truly cross (16.15 mm): 0.078;
+- L13 is drawn as a knife edge at 228 px, and its edge thins to zero at 17.04 mm: 0.075.
+
+Fan coordinate. Fig. 8 plots ΔY against the entrance-pupil height from the chief ray in units of the axial pupil
+radius (3.096 mm). On that axis the model's ΔY at the ends of the 0.70-field fan (−0.93, +1.04) is −0.028 and −0.046
+mm against the plot's −0.029 and −0.042 (0.1 mm bar = 112 px); a stop-normalised axis would give −0.15 and −0.39 mm,
+and would put the full-field ends past the S6/S7 crossing. The 51.2° fan spans −0.566 to +0.961; the 0.70 and 0.50
+fans reach the frame (about ±1). The lower end needs S2 ≥ 29.5 mm and S6 = 15.56 mm. The upper end is the ray that
+meets S18 at 7.73 mm, and the 0.70 and 0.50 fans reaching +1 need S18 ≥ 7.6–7.8 mm. The only other rear rim near
+its drawn size at that ray is S22 (13.3 mm against 14.2 drawn), and Fig. 7 draws no land there.
+
+| Surface | Start | Fig. 7 (px → mm at 0.077) | New | Basis |
+|---|---|---|---|---|
+| 1 | 39 | 486 → 37.4 | 39 | kept, 4 % (noise) |
+| 2 | 28.7 | cap end 404 → 31.1 (sag reading 31.1) | 31.1, land to 39 | figure; the full-field fan needs ≥ 29.5 |
+| 3A | 29.5 | 386 → 29.7 | 29.5 | kept |
+| 4 | 21 | cap end 264.5 → 20.4 (sag reading 20.3) | 21, land to 29.5 | kept; drawn land added |
+| 5 | 20 | 248 → 19.1 | 20 | kept, 4.5 % (noise) |
+| 6 | 15.45 | cap end 203 → 15.6 | 15.45, land to 20 | kept (gap to S7); drawn land added |
+| 7, 8 | 17 | 209 → 16.1 | 16.1 | figure; admits the S6 land |
+| 9–11 | 16 | 193 → 14.9 | 14.9 | restores the drawn 16 px step below L4 |
+| 12, 13 | 9 | 108.5 → 8.4 | 9 | kept: 8.5 would cost 6.0 points at 45.5° |
+| 14 | 8.5 | 108.5 → 8.4 | 9 | square L7/L8 rim, as drawn |
+| 16, 17 | 9.5 | 117.5 → 9.0 | 9.5 | kept |
+| 18 | 13 | cap end 96 → 7.4, land to 164 | 7.7, land to 13 | figure and full-field fan end |
+| 19, 20 | 13 | 164 → 12.6 | 13 | kept |
+| 21, 22 | 14.5 | 184 → 14.2 | 14.5 | kept |
+| 23, 24, 25 | 18, 16, 18 | 228 → 17.6, L13 knife edge | 16.9 each | square doublet; L13 edge 0.20 mm |
+
+The lands are `rimExtensionSd` on S2 (39), S4 (29.5), S6 (20) and S18 (13). The S6 land sits 0.85 mm in front of L4's
+16.1 mm rim; the cross-gap check needs 0.929 of the 11.923 mm gap there, so `checks.gapSagFrac` is 0.93. The drawn
+stop line (98.5 px, 7.6 mm) is not used; the stop stays 7.058 mm from F/4.6.
+
+Clearance. The surface validator passes; the image-circle check finds nothing undersized; field coverage is 100 %
+(51.2° to 34.85 mm, corner clear); the aperture check is within 3 % of F/4.6 with no rim limit; the traced axial
+marginal ray at S18 is 7.07 mm against 7.7, and nothing clips the axial beam or the corner chief ray. Engine
+half-field 44.13° → 45.03°; F/4.600, EFL 28.479 mm and the 7.058 mm stop unchanged.
+
+Light, wide open, field in degrees: transmission before → after.
+
+| Field | 8.5 | 11.4 | 22.7 | 31.3 | 39.8 | 45.5 | 48.3 | 51.2 |
+|---|---|---|---|---|---|---|---|---|
+| Before | 100.0 | 100.0 | 100.0 | 99.3 | 90.4 | 80.0 | 66.2 | 32.2 |
+| After | 99.9 | 98.6 | 90.8 | 83.3 | 67.7 | 53.6 | 40.8 | 20.5 |
+
+Restoring each element in turn against the starting rims: S18 wins back 26.4 points at 45.5°, every other change 0.0,
+and the S7/S8 restore is refused by the validator (spacing for the S6 land). S18 is the radius the patent's own
+full-field fan traces to, so the light rule does not bind it; with S2 raised alone the corner was 41.8 %. The
+retrofocus entrance pupil grows with field (at 51.2° the stop edge lies 2.4 axial pupil radii from the chief ray), so
+S18 trims the oblique beams back to about the axial pupil width that Fig. 8 plots.
+
+Maker drawing. Phase One's flyer, p. 2, viewed as a render of the published PDF (nothing saved in the repo). It gives
+14 elements / 10 groups, 102.7° and 0.35 m; element order matches, and it draws the same flat lands on L1, L2, L3 and
+on L10's concave front. Proportions: S2 cap end / L1 rim 0.81 (Fig. 7 0.83), S4/S3 0.685 (0.685), S6/S5 0.83 (0.82),
+L2/L1 0.79 (0.79). Its only highlight is L2's front face (the S3 asphere, element 2). It differs from Fig. 7 in
+stepping L6 below L5, L8 below L7, L10 below L11 and L13 below L14, where Fig. 7 draws square doublets; in starting
+the S18 land at 0.22 of L1's rim against 0.20; and in its unprescribed rear plate.
+
+Limits. S1 and S5 stay about 4 % above Fig. 7 (both drawings put L2/L1 at 0.79, against 0.76 in the model). S6 is
+0.1 mm under the fan's 15.56 mm, held by the gap to S7. The L13/L14 rim is 0.7 mm inside the drawn 17.6 mm because
+L13's edge reaches zero at 17.04 mm. Overlay of model outlines on Fig. 7 (starting rims dashed) kept with the session
+renders, not in the repo.

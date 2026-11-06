@@ -14,13 +14,18 @@
  * A4 = .73817775E-05, A6 = -.41918163E-08, A8 = .30834735E-11,
  * A10 = -.24494941E-15. No value is borrowed from another example, and no
  * rear plate is added.
- * NOTE ON SEMI-DIAMETERS: the source prints no clear radii. All are inferred
- * from the Fig. 7 element outlines and from geometry and axial-pupil bounds.
- * S6, first estimated at 18.5 mm, crossed S7 and was limited to 15.45 mm by
- * the default 90 % gap-sag bound (no override). S2 was later raised from 28
- * to 28.7 mm, the smallest value that passes the chief ray at the 645 corner.
- * No other rim was fitted to ray or MTF results. The strong vignetting at the
- * edge of the field is kept; the field is not claimed to be free of losses.
+ * NOTE ON SEMI-DIAMETERS: the source prints no clear radii. All are
+ * estimated from the Fig. 7 outlines, read at 0.0812 mm per 600 dpi pixel
+ * along the axis (vertex fit) and 0.077 mm across it (arc and rim fits: the
+ * figure is about 5 % narrower than its axial scale), and checked by
+ * real-ray trace. S18 = 7.7 mm is where Fig. 7 ends L10's concave front with
+ * a flat land and where the full-field lateral-aberration fan of Fig. 8 ends;
+ * the loss it brings toward the edge of the field is kept. S2 = 31.1 mm is
+ * the drawn end of L1's concave face. S6 is held at 15.45 mm by the gap to
+ * S7. S23-S25 share 16.9 mm, just inside the 17.04 mm height where L13's
+ * edge thins to zero, as Fig. 7 draws it. The rimExtensionSd lands on S2,
+ * S4, S6 and S18 follow the flat annuli of Fig. 7; gapSagFrac 0.93 admits
+ * the S6 land beside L4's rim (0.85 mm apart at 16.1 mm).
  * Ordinary prime iris sized from the source F/4.6 (radius 7.05809570223 mm at
  * infinity).
  * The source gives d-line N and V but no numerical wavelength or full
@@ -268,7 +273,8 @@ const LENS_DATA = {
       "label": "2",
       "R": 42.0674,
       "d": 6.2028,
-      "sd": 28.7
+      "sd": 31.1,
+      "rimExtensionSd": 39
     },
     {
       "label": "3A",
@@ -288,7 +294,8 @@ const LENS_DATA = {
       "label": "4",
       "R": 24.4604,
       "d": 5.9466,
-      "sd": 21
+      "sd": 21,
+      "rimExtensionSd": 29.5
     },
     {
       "label": "5",
@@ -301,40 +308,41 @@ const LENS_DATA = {
       "label": "6",
       "R": 20.7169,
       "d": 11.9233,
-      "sd": 15.45
+      "sd": 15.45,
+      "rimExtensionSd": 20
     },
     {
       "label": "7",
       "R": -33.2248,
       "d": 3.5837,
-      "sd": 17,
+      "sd": 16.1,
       "medium": 4
     },
     {
       "label": "8",
       "R": -52.0263,
       "d": 0.2,
-      "sd": 17
+      "sd": 16.1
     },
     {
       "label": "9",
       "R": 61.2174,
       "d": 9.5,
-      "sd": 16,
+      "sd": 14.9,
       "medium": 5
     },
     {
       "label": "10",
       "R": -22.6518,
       "d": 3.0,
-      "sd": 16,
+      "sd": 14.9,
       "medium": 6
     },
     {
       "label": "11",
       "R": -68.9778,
       "d": 6.134,
-      "sd": 16
+      "sd": 14.9
     },
     {
       "label": "12",
@@ -354,7 +362,7 @@ const LENS_DATA = {
       "label": "14",
       "R": 16.3238,
       "d": 8.5441,
-      "sd": 8.5
+      "sd": 9
     },
     {
       "label": "STO",
@@ -378,7 +386,8 @@ const LENS_DATA = {
       "label": "18",
       "R": -23.4942,
       "d": 3.6149,
-      "sd": 13,
+      "sd": 7.7,
+      "rimExtensionSd": 13,
       "medium": 10
     },
     {
@@ -411,21 +420,21 @@ const LENS_DATA = {
       "label": "23",
       "R": "flat",
       "d": 9.0264,
-      "sd": 18,
+      "sd": 16.9,
       "medium": 13
     },
     {
       "label": "24",
       "R": -20.5898,
       "d": 2.0,
-      "sd": 16,
+      "sd": 16.9,
       "medium": 14
     },
     {
       "label": "25",
       "R": -67.0226,
       "d": 63.9,
-      "sd": 18
+      "sd": 16.9
     }
   ],
   "focus": {
@@ -447,6 +456,9 @@ const LENS_DATA = {
   },
   "layout": {
     "yScFill": 0.8
+  },
+  "checks": {
+    "gapSagFrac": 0.93
   }
 } satisfies LensDataV2Input;
 

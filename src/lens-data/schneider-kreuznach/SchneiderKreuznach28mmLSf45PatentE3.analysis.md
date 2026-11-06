@@ -140,16 +140,20 @@ A0 > 1 is condition (3): the base is an oblate ellipsoid with the optical axis a
 
 The patent prints neither an iris diameter nor clear apertures. The model sizes the iris from the printed F/4.6: radius 7.058 mm, giving a paraxial entrance-pupil radius of 3.096 mm.
 
-The clear radii follow the element outlines in Fig. 7, with two set by geometry. S6, the rear face of L3, was first estimated at 18.5 mm but would then cross the front face of L4, so the default limit on sag intrusion into an air gap holds it to 15.45 mm. S2, the rear face of L1, was raised from 28 to 28.7 mm, the smallest value that passes the chief ray at the 645 corner; Fig. 7 draws it at about 31–33 mm, so the modeled rim stays inside the drawn size.
+The clear radii are read from the element outlines in Fig. 7, whose scale across the axis is about 5 % smaller than along it. Fig. 7 ends the concave faces of L1, L2, L3 and L10 at flat annular lands, and the model draws the same lands outside those clear radii; L1's concave face is clear to 31.1 mm. Three radii are set by more than the outline:
+
+- **S6**, the rear face of L3, stops at 15.45 mm, short of the 16.15 mm height at which it would meet the front face of L4.
+- **S18**, the concave front of L10, is clear to 7.7 mm. Fig. 7 draws its land from about 7.4 mm, and the full-field lateral-aberration fan in Fig. 8 ends at the ray that meets S18 at about 7.7 mm.
+- **L13/L14** share a 16.9 mm rim, just inside the 17.04 mm height at which the plano-convex L13 thins to a knife edge, as Fig. 7 draws it.
 
 ## Model Scope and Limitations
 
-The printed 51.2° half-field lands at 34.876 mm image height, essentially the 34.85 mm half-diagonal of the 645 format, so the model covers the full frame. Wide open, its geometric transmission relative to the axis stays above 99 % out to 31°, then falls to about 90 % at 40°, 80 % at 45.5° and 32 % at the 51.2° corner. Because every rim is inferred, that fall-off, and any vignetting or MTF result near the corner, describes this model rather than the production lens.
+The printed 51.2° half-field lands at 34.876 mm image height, essentially the 34.85 mm half-diagonal of the 645 format, so the model covers the full frame. Wide open, its geometric transmission relative to the axis is 99 % or more out to about 10°, then falls to about 91 % at 23°, 83 % at 31°, 68 % at 40°, 54 % at 45.5° and 20.5 % at the 51.2° corner. Most of that loss comes from S18's 7.7 mm clear radius, which trims the outer side of every oblique beam. The entrance pupil of this retrofocus design grows with field angle, so even trimmed, the oblique beams span about the axial pupil's width in Fig. 8's pupil coordinate: the fans for 0.5 and 0.7 of the image height reach its edge, and the full-field fan spans −0.57 to +0.96 of it, against −0.46 to +0.93 in the model, where S6 and S18 set the two ends. Because every rim is inferred, that fall-off, and any vignetting or MTF result near the corner, describes this model rather than the production lens.
 
 The model is a single infinity state at the patent's scale, with Abbe-number dispersion and without the thin rear plate shown in Phase One's section. Its aberration and MTF results describe Example 3 as printed, not measurements of the production 28mm LS.
 
 ## Primary Sources
 
-- [JP 2006-300972 A](https://patents.google.com/patent/JP2006300972A/ja), Example 3: Tables 3A/3B, the aspheric equation and Fig. 7.
+- [JP 2006-300972 A](https://patents.google.com/patent/JP2006300972A/ja), Example 3: Tables 3A/3B, the aspheric equation, Fig. 7 and the Fig. 8 infinity aberration plots.
 - [JP 4717493 B2](https://patents.google.com/patent/JP4717493B2/ja), the granted patent; its p. 10 prints the same Example 3 prescription.
 - [Phase One, Schneider-Kreuznach 28mm LS f/4.5 flyer (2021)](https://www.phaseone.com/wp-content/uploads/2024/01/28mm_lens_flyer_A4_2021.pdf), product specifications and the lens section on p. 2; evidence for the product match, not for exact production radii.
