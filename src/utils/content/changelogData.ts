@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-11-07",
+    type: "lens",
+    summary:
+      "Added the Canon EF 300mm f/4L IS, Minolta AF 24mm f/2.8 and AF 50mm f/2.8 Macro, Sigma 17mm f/4 and 35mm f/2 DG DN, and ZEISS Otus ML 85mm f/1.4",
+  },
+  {
     date: "2026-11-06",
     type: "feature",
     summary:
