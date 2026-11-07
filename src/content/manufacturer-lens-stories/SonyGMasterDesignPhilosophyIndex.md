@@ -48,4 +48,4 @@ Sony has also published G Master developer interviews outside the numbered serie
 | FE 50mm F1.2 GM | 2021-03-17 | [「G Master」の設計思想や魅力を開発陣が解説 FE 50mm F1.2 GM編](https://www.sony.jp/ichigan/a-universe/news/547/) | [FE 50mm F1.2 GM](/lens/sony-fe-50mm-f12-gm) |
 | FE 50mm F1.2 GM | 2021-04-20 | [What Goes Into Building The Best 50mm Lens](https://alphauniverse.com/stories/what-goes-into-building-the-best-50mm-lens-sony-designers-tell-the-inside-story-/) (English) | [FE 50mm F1.2 GM](/lens/sony-fe-50mm-f12-gm) |
 
-Sony's regional sites also carry pages titled "Engineer Interviews | G Master Lenses," but they did not serve content to automated checks and are not linked here until their contents can be confirmed.
+Sony's corporate interview [Pioneering the Future with Optical Elements](https://www.sony.com/en/SonyInfo/technology/stories/entries/GMaster/) traces the manufacturing work behind the XA elements used in G Master lenses. Sony Japan also hosts a separate [launch interview](https://www.sony.jp/ichigan/lens/G-Master/interview/) on the first 24–70mm F2.8 GM, 85mm F1.4 GM, and 70–200mm F2.8 GM OSS.

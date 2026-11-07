@@ -138,6 +138,7 @@ describe("extractTOCHeadings", () => {
       "GROUND BREAKING",
       "Volume index",
       "RETICENCE",
+      "Additional SEIN Interviews",
     ]);
   });
 });
