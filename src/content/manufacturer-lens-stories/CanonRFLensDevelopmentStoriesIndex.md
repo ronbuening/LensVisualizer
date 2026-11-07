@@ -25,7 +25,7 @@ They are listed below in the order used by Canon's feature and grouped by lens. 
 
 ## RF70–200mm F2.8 L IS USM and RF70–200mm F4 L IS USM
 
-**[Open the RF70–200mm F2.8 L on Surface & Stop](/lens/canon-rf-70-200-f28).**
+**Open on Surface & Stop:** [RF70–200mm F2.8 L](/lens/canon-rf-70-200-f28) · [RF70–200mm F4 L](/lens/canon-rf70-200mm-f4-l-is-usm).
 
 - [Developer Interview](https://files.canon-europe.com/files/webcontent/rf-lens-world/features/development/index.html#pop03)
 
@@ -62,6 +62,12 @@ Canon Japan's member site publishes Japanese-language developer interviews for i
 | 2019-10-25 | RF15–35mm, RF24–70mm and RF70–200mm F2.8 L IS USM | [第4回（特別編）開発者に聞いた「F2.8 L IS シリーズ」のヒミツ](https://personal.canon.jp/articles/interview/nakanishi/column04) | [RF15–35mm F2.8 L](/lens/canon-rf-15-35-f28) · [RF24–70mm F2.8 L](/lens/canon-rf-24-70-f28) · [RF70–200mm F2.8 L](/lens/canon-rf-70-200-f28) |
 
 The RF28–70mm F2.8 interview was conducted for Canon by an outside editor. The RF100–300mm interview runs to nine parts; the date shown is that of part 01.
+
+### RF Hybrid Lens Roundtable
+
+On 2025-12-15, Canon Japan published companion [stills](https://personal.canon.jp/articles/interview/developer-creator-rfhybridlens-series-01) and [video](https://personal.canon.jp/articles/interview/developer-creator-rfhybridlens-series-02) roundtables. The creators discuss shooting with the hybrid lenses alongside the engineers responsible for optics, mechanics, and firmware.
+
+**Open on Surface & Stop:** [RF20mm F1.4 L VCM](/lens/canon-rf-20mm-f14-l-vcm) · [RF24mm F1.4 L VCM](/lens/canon-rf-24mm-f14-l-vcm) · [RF35mm F1.4 L VCM](/lens/canon-rf-35mm-f14-l-vcm) · [RF50mm F1.4 L VCM](/lens/canon-rf-50mm-f14-l-vcm) · [RF24–105mm F2.8 L IS USM Z](/lens/canon-rf24-105f28z).
 
 ### The Developers' Uncompromising Challenge
 
@@ -113,6 +119,7 @@ The following milestones have exact catalog matches. Years follow Canon's timeli
 | 2009 | EF100mm F2.8 L Macro IS USM | [EF100mm F2.8 L Macro IS](/lens/canon-ef-100mm-f28l-is-macro) |
 | 2008 | EF24mm F1.4 L II USM | [EF24mm F1.4 L II](/lens/canon-ef-24mm-f14-l-ii-usm) |
 | 2001 | EF400mm F4 DO IS USM | [EF400mm F4 DO IS](/lens/canon-ef-400mm-f4-do-is-usm) |
+| 1997 | EF300mm F4 L IS USM | [EF300mm F4 L IS USM](/lens/canon-ef-300mm-f4l-is-usm) |
 | 1995 | EF75–300mm F4–5.6 IS USM | [EF75–300mm F4–5.6 IS](/lens/canon-ef-75-300mm-f4-56-is-usm) |
 | 1989 | EF50mm F1.0 L USM | [EF50mm F1.0 L](/lens/canon-ef-50f10l) |
 | 1982 | New FD14mm F2.8 L | [New FD14mm F2.8 L](/lens/canon-new-fd-14mm-f28-l) |
