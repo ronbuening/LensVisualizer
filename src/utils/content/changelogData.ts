@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-11-08",
+    type: "lens",
+    summary:
+      "Added the Canon EF 50mm f/2.5 Compact Macro, FL-F 300mm f/5.6 and FL-F 500mm f/5.6, Pentax DA 50mm f/1.8, Sigma 500mm f/4 Sports and Vivitar Series 1 90mm f/2.5 Macro",
+  },
+  {
     date: "2026-11-07",
     type: "lens",
     summary:
