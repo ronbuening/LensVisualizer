@@ -25,6 +25,18 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Fujifilm XF 150-600mm f/5.6-8, Konica Hexanon AR 57mm f/1.2, Nikon EL-Nikkor 50mm f/2.8, Pentax FA* 300mm f/2.8, Schneider-Kreuznach 28mm LS f/4.5 and Sigma 20mm f/1.4 DG DN Art",
   },
   {
+    date: "2026-11-07",
+    type: "lens",
+    summary:
+      "Added the Canon EF 300mm f/4L IS, Minolta AF 24mm f/2.8 and AF 50mm f/2.8 Macro, Sigma 17mm f/4 and 35mm f/2 DG DN, and ZEISS Otus ML 85mm f/1.4",
+  },
+  {
+    date: "2026-11-06",
+    type: "feature",
+    summary:
+      "Added curved image surfaces: a lens with a curved sensor, film gate or focal sphere draws it, ends its rays on it, and measures every analysis there; cylindrical film gates are measured on the unrolled film, along the frame's long edge, short edge or corner",
+  },
+  {
     date: "2026-11-06",
     type: "lens",
     summary:

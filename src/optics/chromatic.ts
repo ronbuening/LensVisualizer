@@ -9,7 +9,7 @@ export {
   chromaticChannelWavelengthLabel,
   lensChromaticReference,
 } from "./chromatic/channels.js";
-export { computeChromaticRayFanSpread } from "./chromatic/chromaticTrace.js";
+export { chromaticMeridionalEndpoint, computeChromaticRayFanSpread } from "./chromatic/chromaticTrace.js";
 export { dispersionTableFromRuntime, makeSurfaceDispersionForRuntimeSurface } from "./chromatic/dispersionAdapter.js";
 export {
   summarizeDispersionQuality,

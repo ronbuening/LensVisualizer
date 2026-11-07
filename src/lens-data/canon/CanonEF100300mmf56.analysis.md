@@ -82,13 +82,13 @@ Although L6 is positive as a standalone element, the cemented C2 pair is net neg
 
 ### C3 — L7 + L8, positive third functional group
 
-**L7 — Biconvex Positive.** `nd = 1.52301, νd = 50.8. Glass: Unmatched (1.52301/50.8 outside the exact d-line window; KF5 and N-KF9 are near candidates). f = +46.505 mm.`
+**L7 — Biconvex Positive.** `nd = 1.52301, νd = 50.8. Glass: CF5 (HOYA catalog equivalent; production supplier unspecified). f = +46.505 mm.`
 
 **L8 — Negative Meniscus.** `nd = 1.80518, νd = 25.4. Glass: SF6 (spectral proxy; d-line inferred from printed coordinates; supplier, melt and chemistry unspecified). f = −88.059 mm.`
 
 C3 is net positive, with a compound EFL of approximately +99.422 mm, and is identical to functional group G3 because no additional glass elements belong to that group. The aperture stop follows G3 after the variable D13 air space. The patent specifically links the relative motion of G3 and G4 around this stop position to control of astigmatic variation during the second zoom. [1]
 
-L7's printed pair has no exact d-line match in the catalog, so it keeps its printed index and Abbe number without a catalog curve. KF5 and N-KF9 are near candidates only.
+L7's printed pair matches HOYA's discontinued crown flint CF5 (1.52310/50.95), which supplies its dispersion curve as a catalog equivalent; the production supplier is not known.
 
 ### C4 — L9 + L10, front positive compound of G4
 

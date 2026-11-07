@@ -6,6 +6,16 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "CF5",
+    vendor: "Hoya",
+    polynomial: [2.2805282, -0.0082883965, 0.013972658, 0.00014315318, 2.1493375e-5, -4.4079002e-7],
+    nd: 1.5231,
+    vd: 50.951831,
+    PgF: 0.557,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, CF5 NM/CD row; vendor formula-1 polynomial; code 523-510 omitted so bare-code annotations keep their existing row. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-11-03).",
+  },
+  {
     name: "BAFD14",
     vendor: "Hoya",
     polynomial: [2.8034419, -0.0098101664, 0.027600636, 0.0011151895, -4.2256185e-5, 8.1312173e-6],

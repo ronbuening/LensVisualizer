@@ -55,6 +55,7 @@ export {
   xpZRelLastSurfAtZoom,
   yRatioAtZoom,
 } from "./state/stationTables.js";
+export { landImageSurfaceMeridional } from "./geometry/imageSurface.js";
 export { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "./trace/chiefRelative.js";
 export {
   skewImagePlaneIntercept,

@@ -8,6 +8,7 @@
 import type { FoldedPathAutoCandidateSkip } from "../../types/optics.js";
 import { intersectSurfaceProfile } from "../geometry/intersect.js";
 import type { SurfaceIntersectionResult } from "../geometry/intersectTypes.js";
+import { intersectImageSurface } from "../geometry/imageSurface.js";
 import { intersectRayPlane } from "../geometry/intersectPlane.js";
 import type { RayPlaneIntersection } from "../geometry/intersectPlane.js";
 import type { Ray3, Vec3 } from "../types.js";
@@ -235,19 +236,21 @@ export function intersectStateSurface(
 }
 
 /**
- * Intersect a ray with the current image plane.
+ * Intersect a ray with the current image plane, or with the curved image surface whose vertex it carries.
  *
  * @param origin - current ray origin
  * @param direction - normalized ray direction
- * @param geometry - indexed trace geometry carrying the image plane
- * @returns image-plane hit, or null when the ray is parallel/behind the origin
+ * @param geometry - indexed trace geometry carrying the image plane and surface
+ * @returns image hit, or null when the ray is parallel/behind the origin or misses the surface
  */
 export function intersectImagePlane(
   origin: Vec3,
   direction: Vec3,
   geometry: TraceGeometry,
 ): ImagePlaneIntersection | null {
-  return intersectRayPlane({ origin, direction }, geometry.imagePlane);
+  return geometry.imageSurface === null
+    ? intersectRayPlane({ origin, direction }, geometry.imagePlane)
+    : intersectImageSurface(geometry.imageSurface, geometry.imagePlane, { origin, direction });
 }
 
 /**

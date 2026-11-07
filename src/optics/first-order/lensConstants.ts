@@ -1,6 +1,6 @@
 /** Build-time optical and display constants from compiled prescription records, without a runtime view. */
 
-import type { CompiledPrescription, CompiledSurface, LensConstants, Ray3 } from "../types.js";
+import type { CompiledPrescription, CompiledSurface, ImageSurfaceShape, LensConstants, Ray3 } from "../types.js";
 import { buildStateSurfaces, sumSurfaceThicknesses, buildZPositions } from "../state/layout.js";
 import { zoomIndexToT } from "../state/stationTables.js";
 import { fNumberRuleStop } from "../state/apertureStop.js";
@@ -259,6 +259,7 @@ function buildTraceGeometry(
   opticalPath: ResolvedOpticalPath,
   imagePlane?: ResolvedImagePlane,
   compiled?: readonly CompiledSurface[],
+  imageSurface: ImageSurfaceShape | null = null,
 ): TraceGeometry {
   const z = buildZPositions(S.map((surface) => surface.d));
   const surfaces = compiled
@@ -271,6 +272,7 @@ function buildTraceGeometry(
     imagePlane: resolvedImagePlaneToPlane3(
       imagePlane ?? { z: z[S.length - 1] + S[S.length - 1].d, y: 0, normal: { z: 1, y: 0 }, label: "IMG" },
     ),
+    imageSurface,
     pathPlan: opticalPath,
     isFoldedOptics: imagePlane !== undefined,
   });
@@ -362,7 +364,7 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
     stopIdx: number,
     opticalPath: ResolvedOpticalPath,
     imagePlane?: ResolvedImagePlane,
-  ) => buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath, imagePlane, lens.surfaces);
+  ) => buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath, imagePlane, lens.surfaces, lens.imageSurface);
 
   const preserveAuthoredStopSD = S[stopIdx]?.stopPlacement === "inside-element";
 

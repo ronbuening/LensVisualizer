@@ -1,7 +1,14 @@
+import { createImageSurfaceShape } from "../../../../src/optics/geometry/imageSurface.js";
+import {
+  chromaticMeridionalEndpoint,
+  computeChromaticRayFanSpread,
+} from "../../../../src/optics/chromatic/chromaticTrace.js";
+import { prepareAxialZoneLaunch } from "../../../../src/optics/analysis/aberration/shared.js";
+import { prepareAimedPupilLaunch, prepareAimedPupilTrace } from "../../../../src/optics/analysis/pupils/aimedPupil.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import { stateWithZ } from "../../../../src/optics/state/preparedGeometry.js";
 import { createAnalysisRequest } from "../../../../src/optics/analysis/request.js";
-import { describe, expect, it } from "vitest";
+import { assert, describe, expect, it } from "vitest";
 import {
   computeChromaticAnalysis,
   computeLateralColorCurve,
@@ -20,7 +27,7 @@ import { runtimeView } from "../../../../src/optics/prescription/runtimeView.js"
 import { prepareStateSurfacesReal } from "../../../../src/optics/field/geometry.js";
 import SonyFE20Raw from "../../../../src/lens-data/sony/SonyFE20mmf18G.data.js";
 import PentaxFA31Raw from "../../../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.js";
-import type { ChromaticChannel } from "../../../../src/types/optics.js";
+import type { ChromaticChannel, ImageSurfaceData } from "../../../../src/types/optics.js";
 import { computeChromaticRayFanAnalysis } from "../../../../src/optics/analysis/chromatic/rayFan.js";
 import { chromaticSpreadFromRays } from "../../../../src/optics/chromatic/zoneSelection.js";
 import { formatChromaticZone } from "../../../../src/components/display/analysis/chromaticChartUtils.js";
@@ -337,5 +344,220 @@ describe("chromatic analysis helpers", () => {
     );
     expect(oneChannel.longitudinalFocus).toBeNull();
     expect(oneChannel.lateralColor).toBeNull();
+  });
+});
+
+describe("chromatic analysis on curved image surfaces", () => {
+  const channels = ["R", "G", "B", "V"] as const;
+  const shapes: ImageSurfaceData[] = [
+    { R: -100, sd: 20 },
+    { R: -100, sd: 20, cylindrical: true },
+    { R: -100, sd: 20, asphere: { K: -0.5, A4: 1e-7 } },
+  ];
+
+  /* A cylinder's sections follow the frame, so it needs a format. */
+  const curvedLens = (imageSurface: ImageSurfaceData) =>
+    build({
+      ...constructionFixtureData(buildChromaticPositiveElementLens()),
+      imageSurface,
+      ...(imageSurface.cylindrical ? { imageFormat: "135-full-frame" } : {}),
+    });
+
+  it.each(shapes)("uses each channel's chief landing for lateral colour on %j", (imageSurface) => {
+    const L = curvedLens(imageSurface);
+    const request = analysisRequestForLens(L);
+    const curve = computeLateralColorCurve(request, { channels, fieldFractions: [0.3, 0.6] })!;
+    expect(curve).not.toBeNull();
+    for (const field of curve.fields) {
+      expect(field.validChannelCount).toBe(channels.length);
+      for (const sample of field.samples) {
+        const geometry = computeOffAxisChannelFieldGeometry(
+          request.preparedGeometry,
+          field.fieldFraction,
+          sample.channel,
+          computeAnalysisFieldGeometryAtState(0, 0, L),
+        )!;
+        const chief = traceOffAxisChiefRay(request, geometry, sample.channel)!;
+        expect(sample.imageHeightMm).toBe(chief.imagePoint.y);
+        /* Image coordinates; on a cylinder they lie along the unrolled film. */
+        const [x, y] = L.imageSurface!.fromImageCoordinates(chief.imagePoint.x, chief.imagePoint.y);
+        expect(Math.abs(chief.imagePoint.z! - geometry.imagePlaneZ - L.imageSurface!.sagAt(x, y))).toBeLessThan(1e-9);
+      }
+    }
+  });
+
+  it.each([-1e7, 1e7])("approaches flat lateral colour and fan heights at R = %s mm", (R) => {
+    const flat = analysisRequestForLens(buildChromaticPositiveElementLens());
+    const curved = analysisRequestForLens(curvedLens({ R, sd: 20 }));
+    const options = { channels, fieldFractions: [0.15] };
+    const flatCurve = computeLateralColorCurve(flat, options)!;
+    const curvedCurve = computeLateralColorCurve(curved, options)!;
+    for (let i = 0; i < channels.length; i++) {
+      expect(
+        Math.abs(curvedCurve.fields[0].samples[i].imageHeightMm! - flatCurve.fields[0].samples[i].imageHeightMm!),
+      ).toBeLessThan(1e-6);
+    }
+    // Keep ray heights modest: the physical near-flat correction scales with height squared over R.
+    const fanOptions = { channels, onAxisFractions: [0.1], offAxisFractions: [0.1], offAxisFieldFraction: 0.03 };
+    const flatFans = computeChromaticRayFanAnalysis(flat, fanOptions);
+    const curvedFans = computeChromaticRayFanAnalysis(curved, fanOptions);
+    for (const axis of ["onAxis", "offAxis"] as const) {
+      expect(curvedFans.spreads[axis]).not.toBeNull();
+      for (const channel of channels) {
+        expect(
+          Math.abs(
+            curvedFans.spreads[axis]!.imagePlaneHeights[channel]! - flatFans.spreads[axis]!.imagePlaneHeights[channel]!,
+          ),
+        ).toBeLessThan(1e-6);
+      }
+    }
+    const flatLoca = computeLongitudinalChromaticFocus(flat, { channels, longitudinalFractions: [0.5] })!;
+    const curvedLoca = computeLongitudinalChromaticFocus(curved, { channels, longitudinalFractions: [0.5] })!;
+    expect(curvedLoca.samples.map((sample) => sample.focusShiftMm)).toEqual(
+      flatLoca.samples.map((sample) => sample.focusShiftMm),
+    );
+  });
+
+  it.each(shapes)("lands selected fan rays on %j with a sub-nanometre residual", (imageSurface) => {
+    const L = curvedLens(imageSurface);
+    const request = analysisRequestForLens(L);
+    const state = request.preparedGeometry;
+    const fraction = 0.5;
+    const fans = computeChromaticRayFanAnalysis(request, {
+      channels,
+      onAxisFractions: [fraction],
+      offAxisFractions: [fraction],
+      offAxisFieldFraction: 0.3,
+    });
+    const geometry = computeOffAxisFieldGeometry(state, 0.3)!;
+    for (const channel of channels) {
+      const axial = prepareAxialZoneLaunch(request, [fraction], channel)!;
+      const axialAimed = axial.ray(fraction)!;
+      assert(axialAimed.status === "aimed");
+      const axialRay = axial.trace.engine(axialAimed);
+      const offAxisLaunch = prepareAimedPupilLaunch(
+        request,
+        [{ xFraction: 0, yFraction: fraction }],
+        geometry,
+        channel,
+      )!;
+      const offAxisTrace = prepareAimedPupilTrace(state, offAxisLaunch, channel);
+      const offAxisAimed = offAxisLaunch.rays[0];
+      assert(offAxisAimed.status === "aimed");
+      const offAxisRay = offAxisTrace.engine(offAxisAimed);
+      for (const [axis, ray] of [
+        ["onAxis", axialRay],
+        ["offAxis", offAxisRay],
+      ] as const) {
+        expect(ray.status).toBe("ok");
+        /* Image heights; on a cylinder they lie along the unrolled film. */
+        const height = L.imageSurface!.fromImageCoordinates(0, fans.spreads[axis]!.imagePlaneHeights[channel]!)[1];
+        // Reconstruct z from the outgoing physical line independently of the landing primitive.
+        const z = ray.terminalPoint[2] + (height - ray.terminalPoint[1]) / ray.uy;
+        expect(Math.abs(z - state.imgZ - L.imageSurface!.sagAt(0, height))).toBeLessThan(1e-9);
+      }
+    }
+  });
+
+  it("keeps folded fans at their terminal curved landings and measures LoCA axially", () => {
+    const L = build({
+      schema: 2,
+      key: "synthetic-folded-chromatic-surface",
+      name: "Synthetic folded surface",
+      elements: [{ id: 1, name: "M1", type: "Concave First-Surface Mirror", nd: 1, vd: 0 }],
+      surfaces: [
+        { label: "STO", R: "flat", d: 200, sd: 12.5 },
+        {
+          label: "M1",
+          R: -200,
+          d: 2,
+          sd: 32,
+          medium: 1,
+          interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" },
+        },
+        { label: "M1B", R: "flat", d: 0, sd: 32 },
+      ],
+      imageSurface: { R: -100, sd: 10 },
+      opticalPath: { surfaceOrder: ["STO", "M1"], imagePlane: { z: 100 }, maxInteractions: 3 },
+      focus: { closeFocusM: 10 },
+      aperture: { nominalFNumber: 4, fStops: [4, 8] },
+      projection: { kind: "rectilinear", fullFieldDeg: 10, maxTraceFieldDeg: 5 },
+      layout: { yScFill: 0.5 },
+    });
+    const request = analysisRequestForLens(L);
+    const state = request.preparedGeometry;
+    const fraction = 0.5;
+    const fans = computeChromaticRayFanAnalysis(request, {
+      channels,
+      onAxisFractions: [fraction],
+      offAxisFractions: [fraction],
+      offAxisFieldFraction: 0.5,
+    });
+    const axial = prepareAxialZoneLaunch(request, [fraction], "G")!;
+    const axialAimed = axial.ray(fraction)!;
+    assert(axialAimed.status === "aimed");
+    const axialRay = axial.trace.engine(axialAimed);
+    const geometry = computeOffAxisFieldGeometry(state, 0.5)!;
+    const launch = prepareAimedPupilLaunch(request, [{ xFraction: 0, yFraction: fraction }], geometry, "G")!;
+    const offAxisAimed = launch.rays[0];
+    assert(offAxisAimed.status === "aimed");
+    const offAxisRay = prepareAimedPupilTrace(state, launch, "G").engine(offAxisAimed);
+    for (const [axis, ray] of [
+      ["onAxis", axialRay],
+      ["offAxis", offAxisRay],
+    ] as const) {
+      expect(ray.reachedImagePlane).toBe(true);
+      expect(Math.abs(ray.terminalPoint[2] - state.imgZ)).toBeGreaterThan(1e-9);
+      expect(fans.spreads[axis]!.imagePlaneHeights.G).toBe(ray.terminalPoint[1]);
+      expect(fans.spreads[axis]!.axialIntercepts.G).toBe(ray.terminalPoint[2] - ray.y / ray.uy);
+    }
+    const loca = computeLongitudinalChromaticFocus(request, { channels, longitudinalFractions: [fraction] })!;
+    const green = loca.samples.find((sample) => sample.channel === "G")!;
+    expect(green.imageHeightMm).toBe(axialRay.terminalPoint[1]);
+    expect(green.focusShiftMm).toBe(axialRay.terminalPoint[2] - axialRay.y / axialRay.uy - state.imgZ);
+  });
+
+  it.each([false, undefined])(
+    "keeps unreached endpoints at the last surface with reached = %s",
+    (reachedImagePlane) => {
+      const shape = createImageSurfaceShape({ R: -60, sd: 20 });
+      expect(chromaticMeridionalEndpoint(null, reachedImagePlane, 50, 49, 40)).toStrictEqual({ z: 40 });
+      expect(chromaticMeridionalEndpoint(shape, reachedImagePlane, 50, 49, 40)).toStrictEqual({
+        z: 40,
+        reachedImagePlane,
+      });
+    },
+  );
+
+  it("lands raw and zone-selected fans on the curve while retaining reached folded landings", () => {
+    const shape = createImageSurfaceShape({ R: -60, sd: 20 });
+    const rays = channels.map((channel, i) => ({
+      channel,
+      fraction: 0.5,
+      y: 1 + i * 0.1,
+      u: 0.08,
+      z: 40,
+      clipped: false,
+    }));
+    const marginalRays = Object.fromEntries(rays.map((ray) => [ray.channel, ray]));
+    const spread = computeChromaticRayFanSpread(marginalRays, 50, 40, shape);
+    const selected = chromaticSpreadFromRays(rays, channels, 50, 40, shape)!;
+    for (const ray of rays) {
+      const height = spread.imagePlaneHeights[ray.channel]!;
+      const z = ray.z + (height - ray.y) / ray.u;
+      expect(Math.abs(z - 50 - shape.sagAt(0, height))).toBeLessThan(1e-9);
+      expect(selected.imagePlaneHeights[ray.channel]).toBe(height);
+      expect(Math.abs(height - (ray.y + (50 - ray.z) * ray.u))).toBeGreaterThan(1e-5);
+    }
+    // A folded sensor can face -z: its global landing is already in the placed surface's frame.
+    const reached = rays.map((ray) => ({ ...ray, z: 50 - shape.sagAt(0, ray.y), reachedImagePlane: true }));
+    const reachedSpread = chromaticSpreadFromRays(reached, channels, 50, 40, shape)!;
+    for (const ray of reached) {
+      expect(reachedSpread.imagePlaneHeights[ray.channel]).toBe(ray.y);
+      expect(reachedSpread.axialIntercepts[ray.channel]).toBe(ray.z - ray.y / ray.u);
+    }
+    expect(computeChromaticRayFanSpread(marginalRays, 50, 40, null)).toEqual(
+      computeChromaticRayFanSpread(marginalRays, 50, 40),
+    );
   });
 });

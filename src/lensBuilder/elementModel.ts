@@ -273,6 +273,7 @@ export function toElementModel(draft: LensDataV2Input): ToModelResult {
   const reasons: string[] = [];
   if (draft.opticalPath || draft.surfaces.some((s) => s.interaction && s.interaction.type !== "refract"))
     reasons.push("Folded, mirror and blocking paths need Advanced JSON.");
+  if (draft.imageSurface) reasons.push("A curved image surface needs Advanced JSON.");
   if (draft.media?.length || draft.surfaces.some((s) => typeof s.medium === "string"))
     reasons.push("Undrawn media layers need Advanced JSON.");
   if (draft.elements.some((e) => e.span)) reasons.push("Explicit element spans need Advanced JSON.");
