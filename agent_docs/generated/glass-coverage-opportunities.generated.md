@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1080** lenses scanned (**1065** visible)
-- **11482 / 12322** non-air surfaces use strict catalog Sellmeier data (93.2%)
-- **11496 / 12322** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
+- **1089** lenses scanned (**1071** visible)
+- **11544 / 12388** non-air surfaces use strict catalog Sellmeier data (93.2%)
+- **11558 / 12388** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **288** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **155** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -46,7 +46,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON AF-S ZOOM-NIKKOR 24-85mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor2485mmf3545GIFED.data.ts) | JP 2003-241093 A | [PDF](../../patents/JP_2003241093_A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [glass] (Element 4 hybrid layer: `Unmatched (thin hybrid-asphere layer, n_d=1.55389, v_d=38.1)`) | abbe: 1 |
 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | US 2010/0194930 A1 | [PDF](../../patents/US20100194930A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 28 [glass] (Element 16: `Unmatched crown class (523/701, likely phosphate/fluorophosphate)`) | abbe: 1 |
 | [PANASONIC LUMIX S 24-105mm f/4 MACRO O.I.S.](../../src/lens-data/panasonic/PanasonicLumixS24105mmf4MacroOIS.data.ts) | JP 2020-118738 A | [PDF](../../patents/JP2020118738A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 16A [glass] (Element 8: `Unmatched (688311; M-FD80 / S-TIM28 / J-SF8 class)`) | abbe: 1 |
-| [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | JP S61-77818 A | [PDF](../../patents/JPA 1986077818-000000.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 11 [glass] (Element 7: `Unmatched (1.52301/50.8 outside the exact d-line window; KF5 and N-KF9 are near candidates)`) | abbe: 1 |
 | [NIKON TV-NIKKOR 11.5-69mm f/1.2 (Nikon S-100)](../../src/lens-data/nikon/NikonTVNikkor11569mmf12NikonS100.data.ts) | US 4,437,733 | [PDF](../../patents/US_4437733_A.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 18 [glass] (L8: `Unmatched (740449; current authoritative catalogs)`) | abbe: 1 |
 | [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) | JP 2018-180366 A | [PDF](../../patents/JP2018180366A.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 13 [glass] (LR negative member: `Unmatched (675/348 partial-dispersion flint; patent nd=1.67542, vd=34.8, θgF=0.5825)`) | abbe: 1 |
 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | US 2023/0341664 A1 | [PDF](../../patents/US20230341664A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 11A [glass] (L24: `772493 — molded lanthanum-crown class (no exact public catalog match)`) | abbe: 1 |
