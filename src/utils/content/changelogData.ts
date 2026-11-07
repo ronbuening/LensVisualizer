@@ -25,6 +25,12 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Canon EF 50mm f/2.5 Compact Macro, FL-F 300mm f/5.6 and FL-F 500mm f/5.6, Pentax DA 50mm f/1.8, Sigma 500mm f/4 Sports and Vivitar Series 1 90mm f/2.5 Macro",
   },
   {
+    date: "2026-11-07",
+    type: "lens",
+    summary:
+      "Added the Canon EF 300mm f/4L IS, Minolta AF 24mm f/2.8 and AF 50mm f/2.8 Macro, Sigma 17mm f/4 and 35mm f/2 DG DN, and ZEISS Otus ML 85mm f/1.4",
+  },
+  {
     date: "2026-11-06",
     type: "feature",
     summary:
