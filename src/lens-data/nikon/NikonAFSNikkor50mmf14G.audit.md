@@ -66,9 +66,10 @@ The correlation stays inferred: the patent never names the product.
 - Catalog: `lensMounts` `["nikon-f"]`; `focalLengthMm` `{ marketing: 50, design: 51.598 }`; `fNumber`
   `{ marketing: 1.4, design: 1.4505 }`; specs rewritten to `8 ELEMENTS / 7 GROUPS`, `DESIGN f = 51.6 mm`,
   `DESIGN F/1.45`, `ALL SPHERICAL`. No `closeFocusM.marketing`, since the model's close state is Nikon's 0.45 m.
-- Cement: the drawn element M5 became the undrawn `cement` medium (nd 1.514) on surface 9 with the printed 0.0100 mm
-  thickness. First-order values are unchanged; the layer's νd 42.83 is no longer traced, which has no visible effect
-  because its two faces have equal radii.
+- Cement: the drawn element M5 is now the thin element C1 ("Cement layer", nd 1.514, νd 42.83) on surface 9 with
+  the printed 0.0100 mm thickness. A first pass made it an nd-only `cement` medium; that was reverted because a medium
+  without an Abbe number rates the whole lens as constant-dispersion and switches off chromatic rays and MTF.
+  First-order values are identical in both forms.
 - Elements: M1–M9 became L1–L8 with shape types, roles and focal lengths. Glass labels now name the catalog glass each
   printed pair reproduces (Δnd below 1 × 10⁻⁶, Δνd at most 0.005): S-LAH65 (OHARA), TAFD25 (HOYA), E-FD4 (HOYA) for
   L3 and L4, S-LAH55 (OHARA) for L5 and L6, S-LAH59 (OHARA), S-LAL18 (OHARA). No `apd` tags: the lens has no ED
@@ -91,4 +92,3 @@ clear-aperture check at a 21.63 mm image height shows no axial or chief-ray clip
 - The production identity is an inferred correlation; Nikon does not publish the prescription.
 - Rims and lands follow the patent figure, not a measured lens.
 - The close-focus spacing is a paraxial reconstruction.
-- The cement layer is traced at nd only.

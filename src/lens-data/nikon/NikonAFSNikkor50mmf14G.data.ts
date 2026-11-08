@@ -25,9 +25,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   - The patent gives no field for Gm; the 135 full-frame format is the production lens's.
  *
  * Cement: rows 9-10 print a 0.0100 mm layer (nd 1.514, νd 42.83) between the two R = 154.1 faces of L4 and L5. It is
- * modeled as the undrawn "cement" medium with its printed thickness, so the first-order values are exact. A medium
- * carries nd only; with equal radii on both faces the layer has no meaningful power (f ≈ 1.36 x 10^7 mm), so leaving
- * out its νd has no visible effect on colour.
+ * modeled as the thin cement element C1 with its printed thickness, nd and νd, so the first-order values are exact
+ * and the colour analyses keep a dispersion for every medium. With equal radii on both faces the layer has no
+ * meaningful power (f ≈ 1.36 x 10^7 mm). It is not counted in the 8 elements / 7 groups.
  *
  * Stop: printed as row 7, 6.822 mm behind S6 and 9.6123 mm ahead of S8 (18.402 mm behind S1). Its radius is derived
  * from f/1.4505.
@@ -126,6 +126,18 @@ const lens = {
       cemented: "D1",
     },
     {
+      id: 9,
+      name: "C1",
+      label: "Cement layer",
+      type: "Cement Layer",
+      nd: 1.514,
+      vd: 42.83,
+      glass: "Unmatched (1.51400/42.83)",
+      role: "Printed 0.0100 mm cement layer between L4 and L5; not counted as a lens element.",
+      diagramLabel: "C1",
+      cemented: "D1",
+    },
+    {
       id: 5,
       name: "L5",
       label: "Element 5",
@@ -175,7 +187,6 @@ const lens = {
       role: "Final weak biconvex element; lowest index and highest Abbe number in the lens.",
     },
   ],
-  media: [{ id: "cement", name: "Cement layer", nd: 1.514 }],
   surfaces: [
     {
       label: "1",
@@ -230,13 +241,13 @@ const lens = {
       rimExtensionSd: 16.2,
       medium: 4,
     },
-    // Printed 0.0100 mm cement layer (nd 1.514) between the two R = 154.1 faces.
+    // Printed 0.0100 mm cement layer (nd 1.514, νd 42.83) between the two R = 154.1 faces.
     {
       label: "9",
       R: 154.1,
       d: 0.01,
       sd: 16.2,
-      medium: "cement",
+      medium: 9,
     },
     {
       label: "10",
