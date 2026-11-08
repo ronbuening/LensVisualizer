@@ -205,7 +205,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 34.3781,
       glass: "D-K59 (CDGM catalog equivalent, a moulding glass; production supplier unspecified)",
-      role: "O.I.S. element behind the stop (sub-unit G3b), aspherical on its image side (surface 16); its stabilizing shift is not modelled",
+      role: "O.I.S. element behind the stop (sub-unit G3b), aspherical on its image side (surface 16); its stabilizing shift is not modeled",
     },
     {
       id: 10,
@@ -427,7 +427,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.0918999,
     description:
-      "PUBLISHED: the patent prints infinity and a close state with the object 1000 mm in front of the first lens surface at the wide, middle and tele stations. For close focus G4 (L10) moves toward the image by 0.87, 2.19 and 5.45 mm at the three stations. Positions between the printed stations interpolate the printed gaps linearly and are not the production cam, so between the middle and tele stations the image can sit up to about 2.7 mm from best focus and the indicated close distance is approximate. Panasonic's 0.9 m minimum focus is not in the patent and is not modelled.",
+      "PUBLISHED: the patent prints infinity and a close state with the object 1000 mm in front of the first lens surface at the wide, middle and tele stations. For close focus G4 (L10) moves toward the image by 0.87, 2.19 and 5.45 mm at the three stations. Positions between the printed stations interpolate the printed gaps linearly and are not the production cam, so between the middle and tele stations the image can sit up to about 2.7 mm from best focus and the indicated close distance is approximate. Panasonic's 0.9 m minimum focus is not in the patent and is not modeled.",
     conjugates: [
       {
         zoomStation: 0,

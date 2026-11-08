@@ -507,7 +507,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000000000,
     description:
-      "Infinity prescription only. The patent names moving the second group (G2) as an example of how the lens focuses but prints no close-focus spacings, so no focus movement is modelled. Sony specifies a 0.45 m minimum focus distance.",
+      "Infinity prescription only. The patent names moving the second group (G2) as an example of how the lens focuses but prints no close-focus spacings, so no focus movement is modeled. Sony specifies a 0.45 m minimum focus distance.",
   },
   gaps: {
     "5": {
