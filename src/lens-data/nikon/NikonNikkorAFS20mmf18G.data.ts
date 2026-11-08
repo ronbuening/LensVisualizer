@@ -141,7 +141,6 @@ const LENS_DATA = {
       vd: 42.8,
       glass: "514428 — patent cement layer (nd=1.51400, νd=42.8)",
       role: "Explicit 0.01 mm cement layer from the patent prescription.",
-      cemented: "LS",
     },
     {
       id: 7,
@@ -211,7 +210,6 @@ const LENS_DATA = {
       vd: 42.8,
       glass: "514428 — patent cement layer (nd=1.51400, νd=42.8)",
       role: "Explicit 0.01 mm cement layer from the patent prescription.",
-      cemented: "D2",
     },
     {
       id: 13,
