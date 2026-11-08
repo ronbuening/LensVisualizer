@@ -66,3 +66,7 @@ It is the only collection in this index devoted to lens manufacture rather than 
 | Surface treatment | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/reticence/surface-treatment/) |
 | Painting | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/reticence/painting/) |
 | Jigs and tools | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/reticence/jigs-and-tools/) |
+
+## Additional SEIN Interviews
+
+[The core technology of SIGMA](https://www.sigma-global.com/en/our-community/sein/voice/ThecoretechnologyofSIGMA/) is a _Voice_ interview from 2015 with staff from optical design, manufacturing, and inspection. It follows the decisions those teams make together when a design moves from the computer to the production line.

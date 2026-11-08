@@ -25,6 +25,17 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Canon RF 85mm f/1.4 L VCM and EF-S 60mm f/2.8 Macro, Pentax DA 14mm f/2.8, M 20mm f/4 and M 28mm f/2.8, and Sigma 500mm f/5.6 Sports",
   },
   {
+    date: "2026-11-08",
+    type: "lens",
+    summary:
+      "Added the Canon EF 50mm f/2.5 Compact Macro, FL-F 300mm f/5.6 and FL-F 500mm f/5.6, Pentax DA 50mm f/1.8, Sigma 500mm f/4 Sports and Vivitar Series 1 90mm f/2.5 Macro",
+  },
+  {
+    date: "2026-11-07",
+    type: "article",
+    summary: "Added OM System, Olympus and Cosina development stories to the lens story index",
+  },
+  {
     date: "2026-11-07",
     type: "lens",
     summary:

@@ -74,7 +74,7 @@ Fujifilm's stories archive also holds standalone lens features outside the named
 
 | Published | Lens or subject | Official article | Surface & Stop |
 | --- | --- | --- | --- |
-| 2025-11-18 | GF32–90mmT3.5 PZ OIS WR | [GFX ETERNA 55 Development Stories #5](https://www.fujifilm-x.com/global/stories/gfx-eterna-55-development-stories-5-gf32-90mmt3-5-pz-ois-wr/) | — |
+| 2025-11-18 | GF32–90mmT3.5 PZ OIS WR | [GFX ETERNA 55 Development Stories #5](https://www.fujifilm-x.com/global/stories/gfx-eterna-55-development-stories-5-gf32-90mmt3-5-pz-ois-wr/) | [GF32–90mmT3.5 PZ OIS WR](/lens/fujifilm-gf32-90mm-t35-pz-ois-wr) |
 | 2017-02-21 | The G mount | [GFX Technologies #2](https://www.fujifilm-x.com/global/stories/gfx-technologies-2/) | — |
 | 2016-10-11 | XF23mmF2 R WR | [XF23mmF2 into the stardom](https://www.fujifilm-x.com/global/stories/xf23mmf2-into-the-stardom/) | [XF23mmF2 R WR](/lens/fujifilm-xf-23mm-f2-r-wr) |
 | 2016-04-28 | XF35mmF2 R WR | [XF35mmF2 R WR](https://www.fujifilm-x.com/global/stories/xf35mmf2/) | [XF35mmF2 R WR](/lens/fujifilm-fujinon-xf-35mm-f2-r-wr) |
