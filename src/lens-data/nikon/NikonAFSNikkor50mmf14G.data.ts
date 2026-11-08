@@ -1,30 +1,69 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * NIKON AF-S NIKKOR 50mm f/1.4 G
+ *
+ * Source: JP 2015-041003 A (Nikon Corporation; inventor Haruo Sato; filed 2013-08-22, published 2015-03-02),
+ * master lens Gm, Table 1 rows 1-17. The patent claims rear wide converters; Examples 1-3 attach three different
+ * converters Gc to the same master lens Gm, whose rows Tables 2 and 3 and the grant JP 6413211 B2 repeat unchanged.
+ * Only Gm is modeled. The converter, its dummy filter plate and the compound image plane are left out.
+ *
+ * Production correlation (inferred): the patent never names a product. Gm matches the AF-S NIKKOR 50mm f/1.4G
+ * (announced 2008) in construction: 8 elements in 7 groups, all spherical, a design focal length of 51.6 mm at about
+ * f/1.45, and an F-mount back focus. Nikon's optical section shows the same nested L2/L3 pair ahead of the stop, a
+ * biconcave L4 with a stepped rim cemented to L5 across a nearly flat interface, and three rear singlets.
+ *
+ * Scale: none. The prescription is at patent scale; the lens group data print f(Gm) = 51.598 mm.
+ *
+ * Printed and derived values:
+ *   - R, d, nd and νd of all 17 rows, including the stop row, are printed and unchanged. There are no aspheres.
+ *   - Back focus 39.0174 mm is the paraxial image distance of Gm alone. The printed d17 = 3.0 mm is the gap from Gm
+ *     to the converter, not a back focus. Spherical aberration is small (about -0.09 mm in the worst zone), so the
+ *     paraxial plane is effectively best focus.
+ *   - The patent prints no F-number for Gm. f/1.4505 is inferred as the compound F-number divided by the focal ratio
+ *     (1.015 x 51.598 / 36.106 in Example 1; Examples 2 and 3 give 1.4501 and 1.4502).
+ *   - The patent gives no field for Gm; the 135 full-frame format is the production lens's.
+ *
+ * Cement: rows 9-10 print a 0.0100 mm layer (nd 1.514, νd 42.83) between the two R = 154.1 faces of L4 and L5. It is
+ * modeled as the undrawn "cement" medium with its printed thickness, so the first-order values are exact. A medium
+ * carries nd only; with equal radii on both faces the layer has no meaningful power (f ≈ 1.36 x 10^7 mm), so leaving
+ * out its νd has no visible effect on colour.
+ *
+ * Stop: printed as row 7, 6.822 mm behind S6 and 9.6123 mm ahead of S8 (18.402 mm behind S1). Its radius is derived
+ * from f/1.4505.
+ *
+ * Semi-diameters: not printed. They follow the patent's Figure 1 outline within the real geometry. L3's outer rim
+ * (S5) is held at 15.1 mm so that it clears L2. S6 keeps a 13.7 mm optical cap with a vertical land to 15.1 mm, and
+ * S8 a 13.2 mm cap with a land to 16.2 mm, following the stepped rims the figure draws.
+ *
+ * Focus: Nikon states that all lens groups move during focusing (unit focus). The patent prints infinity only. The
+ * close state is a paraxial reconstruction at Nikon's 0.45 m minimum focus distance (object to image): the back
+ * focus grows from 39.0174 mm to 46.6586 mm, a 7.641 mm extension at 0.148x. It is not a published state.
+ *
+ * Aperture: stops run to f/16, Nikon's minimum aperture; Nikon specifies 9 rounded blades.
+ *
+ * Glass: the patent prints nd/νd only. Each pair matches the named catalog glass to the printed precision; the
+ * production supplier is not stated.
+ *
+ * Source inconsistency: paragraph 0014 gives the master as 51.6 mm but divides 36.1 by 51.5 in its sample ratio
+ * calculation; the table value 51.598 mm is used.
+ */
+
 const lens = {
   schema: 2,
-  key: "nikon-af-s-50g-master-gm-research",
+  key: "nikon-af-s-nikkor-50mm-f14g",
   maker: "Nikon",
-  name: "NIKON 50G family master Gm patent-only research",
-  subtitle:
-    "JP2015041003A Example 1 shared master Gm only; geometry-bounded Lm3 outline, derived standalone BF and ratio-inferred aperture, not exact retail",
-  visible: false,
+  name: "NIKON AF-S NIKKOR 50mm f/1.4 G",
+  subtitle: "JP 2015-041003 A, master lens Gm — inferred AF-S NIKKOR 50mm f/1.4G correlation",
+  visible: true,
   catalog: {
+    lensMounts: ["nikon-f"],
     imageFormat: "135-full-frame",
+    specs: ["8 ELEMENTS / 7 GROUPS", "DESIGN f = 51.6 mm", "DESIGN F/1.45", "ALL SPHERICAL"],
     elementCount: 8,
     groupCount: 7,
-    focalLengthMm: {
-      design: 51.598,
-    },
-    fNumber: {
-      design: 1.4505060100814267,
-    },
-    specs: [
-      "Master Gm only; converter and compound plate/field excluded",
-      "8 physical lenses plus real0.010mm n1.514/V42.83 interlayer",
-      "Standalone BF is paraxial-derived; F-number is a compound-ratio research inference",
-      "Nominal schematic caps, assumed opaque S6/S8 lands and incomplete bond annulus",
-      "FX format is family-context diagnostic only, not supplied master field",
-      "One infinity state; no finite motion or iris-travel law",
-    ],
+    focalLengthMm: { marketing: 50, design: 51.598 },
+    fNumber: { marketing: 1.4, design: 1.4505 },
   },
   source: {
     patentNumber: "JP 2015-041003 A",
@@ -39,89 +78,104 @@ const lens = {
   elements: [
     {
       id: 1,
-      name: "M1",
-      label: "Source master glass segment 1",
-      type: "Source homogeneous glass",
+      name: "L1",
+      label: "Element 1",
+      type: "Positive Meniscus",
       nd: 1.804,
       vd: 46.57,
-      glass: "Unmatched (1.804000/46.57)",
+      focalLengthMm: 62.917,
+      glass: "S-LAH65 (OHARA)",
+      apd: false,
+      role: "Front positive meniscus, convex to the object; first collector of the front group.",
     },
     {
       id: 2,
-      name: "M2",
-      label: "Source master glass segment 2",
-      type: "Source homogeneous glass",
+      name: "L2",
+      label: "Element 2",
+      type: "Positive Meniscus",
       nd: 1.903658,
       vd: 31.31,
-      glass: "Unmatched (1.903658/31.31)",
+      focalLengthMm: 86.719,
+      glass: "TAFD25 (HOYA)",
+      apd: false,
+      role: "High-index positive meniscus nested against L3 ahead of the stop.",
     },
     {
       id: 3,
-      name: "M3",
-      label: "Source master glass segment 3",
-      type: "Source homogeneous glass",
+      name: "L3",
+      label: "Element 3",
+      type: "Negative Meniscus",
       nd: 1.7552,
       vd: 27.53,
-      glass: "Unmatched (1.755200/27.53)",
+      focalLengthMm: -36.724,
+      glass: "E-FD4 (HOYA)",
+      apd: false,
+      role: "Pre-stop negative meniscus; its deep concave rear face faces the stop.",
     },
     {
       id: 4,
-      name: "M4",
-      label: "Source master glass segment 4",
-      type: "Source homogeneous glass",
+      name: "L4",
+      label: "Element 4",
+      type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.53,
-      glass: "Unmatched (1.755200/27.53)",
+      focalLengthMm: -22.106,
+      glass: "E-FD4 (HOYA)",
+      apd: false,
+      role: "Post-stop biconcave flint with a stepped rim; negative member of the cemented pair.",
       cemented: "D1",
     },
     {
       id: 5,
-      name: "M5",
-      label: "Explicit finite material interlayer, chemistry unknown",
-      type: "Source thin material layer",
-      nd: 1.514,
-      vd: 42.83,
-      glass: "Unmatched (1.514000/42.83)",
+      name: "L5",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      nd: 1.834807,
+      vd: 42.71,
+      focalLengthMm: 37.008,
+      glass: "S-LAH55 (OHARA)",
+      apd: false,
+      role: "Positive lanthanum member of the cemented pair, joined to L4 across a nearly flat interface.",
       cemented: "D1",
     },
     {
       id: 6,
-      name: "M6",
-      label: "Source master glass segment 6",
-      type: "Source homogeneous glass",
+      name: "L6",
+      label: "Element 6",
+      type: "Positive Meniscus",
       nd: 1.834807,
       vd: 42.71,
-      glass: "Unmatched (1.834807/42.71)",
-      cemented: "D1",
+      focalLengthMm: 85.44,
+      glass: "S-LAH55 (OHARA)",
+      apd: false,
+      role: "First rear positive meniscus, concave to the stop.",
     },
     {
       id: 7,
-      name: "M7",
-      label: "Source master glass segment 7",
-      type: "Source homogeneous glass",
-      nd: 1.834807,
-      vd: 42.71,
-      glass: "Unmatched (1.834807/42.71)",
+      name: "L7",
+      label: "Element 7",
+      type: "Positive Meniscus",
+      nd: 1.816,
+      vd: 46.62,
+      focalLengthMm: 111.065,
+      glass: "S-LAH59 (OHARA)",
+      apd: false,
+      role: "Second rear positive meniscus, concave to the stop; shares the rear convergence.",
     },
     {
       id: 8,
-      name: "M8",
-      label: "Source master glass segment 8",
-      type: "Source homogeneous glass",
-      nd: 1.816,
-      vd: 46.62,
-      glass: "Unmatched (1.816000/46.62)",
-    },
-    {
-      id: 9,
-      name: "M9",
-      label: "Source master glass segment 9",
-      type: "Source homogeneous glass",
+      name: "L8",
+      label: "Element 8",
+      type: "Biconvex Positive",
       nd: 1.729157,
       vd: 54.68,
-      glass: "Unmatched (1.729157/54.68)",
+      focalLengthMm: 110.413,
+      glass: "S-LAL18 (OHARA)",
+      apd: false,
+      role: "Final weak biconvex element; lowest index and highest Abbe number in the lens.",
     },
   ],
+  media: [{ id: "cement", name: "Cement layer", nd: 1.514 }],
   surfaces: [
     {
       label: "1",
@@ -176,19 +230,20 @@ const lens = {
       rimExtensionSd: 16.2,
       medium: 4,
     },
+    // Printed 0.0100 mm cement layer (nd 1.514) between the two R = 154.1 faces.
     {
       label: "9",
       R: 154.1,
       d: 0.01,
       sd: 16.2,
-      medium: 5,
+      medium: "cement",
     },
     {
       label: "10",
       R: 154.1,
       d: 5.4,
       sd: 16.2,
-      medium: 6,
+      medium: 5,
     },
     {
       label: "11",
@@ -201,7 +256,7 @@ const lens = {
       R: -43.029,
       d: 3.53,
       sd: 16.4,
-      medium: 7,
+      medium: 6,
     },
     {
       label: "13",
@@ -214,7 +269,7 @@ const lens = {
       R: -151.43,
       d: 2.26,
       sd: 16.2,
-      medium: 8,
+      medium: 7,
     },
     {
       label: "15",
@@ -227,36 +282,40 @@ const lens = {
       R: 100.548,
       d: 2.33,
       sd: 16.0,
-      medium: 9,
+      medium: 8,
     },
+    // Last gap: paraxial back focus of Gm; the printed d17 = 3.0 mm is the gap to the converter.
     {
       label: "17",
       R: -400,
-      d: 39.017401057819434,
       sd: 16.0,
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.45,
     description:
-      "Single master infinity hypothesis only. No source finite prescription, rigid-motion assumption or retail MFD has been authored.",
+      "Unit focus: Nikon states that all lens groups move during focusing, so the whole optical unit travels toward the object and only the back focus changes. The patent prints the master lens at infinity only. The close state is a paraxial reconstruction at Nikon's 0.45 m minimum focus distance: the back focus grows from 39.02 mm to 46.66 mm, a 7.64 mm extension at about 0.148× magnification.",
   },
-  gaps: {},
+  gaps: {
+    "17": { label: "BF", values: [[39.017401057819434, 46.6586109679]] },
+  },
   aperture: {
     nominalFNumber: 1.4505060100814267,
-    fStops: [1.4505060100814267, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
-    maxFNumber: 22,
+    fStops: [1.4505060100814267, 2, 2.8, 4, 5.6, 8, 11, 16],
+    maxFNumber: 16,
+    blades: 9,
+    bladeRoundedness: 0.7,
   },
   groups: [
     {
-      text: "Gm",
+      text: "Gm (+) / UNIT FOCUS → OBJ",
       fromSurface: "1",
       toSurface: "17",
     },
   ],
   doublets: [
     {
-      text: "D1 plus finite layer",
+      text: "D1",
       fromSurface: "8",
       toSurface: "11",
     },
