@@ -167,7 +167,7 @@ nothing more in the patent than nd 1.49200 / νd 58.3 and the word plastic (p. 2
 
 Open:
 
-- S18 carries no `A` label suffix, unlike the catalog's other aspheric faces; renaming it also renames the `gaps` key
-  `18`, which is outside this pass.
+- Closed: S18 carried no `A` label suffix, unlike the catalog's other aspheric faces. The surface label, the `gaps` key
+  and the G3 bracket's end surface are now `18A`; the spacing keeps the patent's name D18.
 - The L7 front rim reads about 0.4 mm above the L8 rear in Fig. 1, a step the cemented pair cannot draw without a land
   on the interface; all three faces stay at 5.7 mm.

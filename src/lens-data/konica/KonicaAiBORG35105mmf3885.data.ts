@@ -399,7 +399,7 @@ const LENS_DATA = {
       medium: 10,
     },
     {
-      label: "18",
+      label: "18A",
       R: -12.9,
       sd: 5.7,
       rimExtensionSd: 6.7,
@@ -927,7 +927,7 @@ const LENS_DATA = {
         [2, 2],
       ],
     },
-    "18": {
+    "18A": {
       label: "D18",
       values: [
         [13.37, 13.37],
@@ -1085,7 +1085,7 @@ const LENS_DATA = {
     {
       text: "G3 (+)",
       fromSurface: "10",
-      toSurface: "18",
+      toSurface: "18A",
     },
     {
       text: "G4 (-)",
