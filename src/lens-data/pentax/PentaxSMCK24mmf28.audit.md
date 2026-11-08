@@ -63,8 +63,45 @@ Fields changed in this pass:
 
 Checks after the edits: the surface audit reports no validation errors; the aperture audit puts the lens within 3 % of its stated f-number with no rim, trace or iris failure; the image-circle audit does not flag it; field coverage is 97 %, stopped by the declared 42° field.
 
-Open: the rear rims (L6 to L9) stand wider than Fig. 1. Narrowing them toward the figure would keep the axial beam but cut corner light; that needs the patent-figure rim procedure and was not done here.
+Closed 2026-11-08 (second review below): every rim was measured on Fig. 1; L7 to L9 were narrowed as far as the light rule allows and now stand at most 0.6 mm wider than drawn.
 
 Open: no maker cross-section has been compared. The Asahi Pentax lens brochure cited for the 18mm f/3.5 (cameramanuals.org) may hold a 24mm f/2.8 section; the package notes placed one on its p. 3 and the specification table on p. 11. A comparison would firm up or weaken the association.
 
 Open: the stop position is inferred. A Pentax drawing showing the iris would settle it.
+
+## 2026-11-08 — Second review: diagram, labels and movement
+
+Compared: the live page (infinity; `focus=1`, which is the same static state; both movement overlays; the inspectors for L4, L7, L8 and L9) and the model outline against Fig. 1 of US 3,938,883 (PDF p. 2, the native 300 dpi raster), the drawing of the sole example, and the Fig. 2 plots on the same page. An overlay of the model (red) and the package rims (blue, dashed) on the figure at 19.1 px/mm is kept in the review scratch folder as `r2/pentax24/overlay.png`.
+
+Scale. The axis runs along row 1285.5 px and stays level to 1 px across the figure. Fifteen vertex crossings (r2/r3 and r15/r16 merge at this resolution) fit 19.13 px/mm with residuals of 6.5 px (0.34 mm) or less; r1 to r17 span 894 px for 46.896 mm. Rims are read at the line centre, top and bottom averaged, at 19.1 px/mm. Fig. 1 has no stop tick, and arc fits cannot prove the vertical scale: the drawn radii run flatter than the prescription in front (r1 61.6 against 59.2 mm, r4 13.1 against 10.46, r6 12.8 against 11.4) and steeper behind (r10 19.8 against 27.2, r13 28.7 against 41.3, r17 30.5 against 35.3), so no single stretch fits and heights are read at the axial scale. The drawing bevels L1, L2, C1 and L5 (a flat outer edge, then a chamfer down to the rear face), draws L6, L7 and L9 square, and draws L8 with its front rim at L7's height and its rear rim higher.
+
+Rims. Light is `rimcost.mjs` (full-pupil lattice, F/2.8, infinity, 0° to 42° in 3° steps) against the package rims, in points of transmitted light. The file has no lands (`rimExtensionSd`, `rimCutDepthMm`) and no `checks.gapSagFrac`.
+
+| Surface | Fig. 1 | Package | Final | Verdict | Light |
+| --- | --- | --- | --- | --- | --- |
+| 2, L1 rear | 17.2 | 19.2 | 17.2 | cut; keep (slight) | 0.0 at every field |
+| 4, L2 rear | 10.2 | 9.12 | 9.4 | raised toward the figure; 9.42 fails the rim-slope limit (64.2°) | alone gains 5.3 at 42° |
+| 6, C1 cemented face | 8.6 | 9.12 | 8.6 | cut; keep (slight). Inside the 10 % band, but with r7 at 7.75 a 9.12 rim would sit 0.04 mm behind r7's and L4 would lose the drawn bevel | 0.0 |
+| 7, L4 rear | 7.75 | 9.12 | 7.75 | cut; keep (slight) | 0.0 |
+| 9, L5 rear | 6.73 | 7.68 | 6.75 | cut; keep (slight) | 0.0 |
+| 10, 11, L6 | 7.55 | 7.92 | 7.92 | unchanged: 5 % over, inside the band; 7.55 alone costs 2.5 at 12° | — |
+| 12, 13, L7 | 7.6 | 8.4 | 8.18 | cut, partly raised (slight); 8.15 reaches 3.2 at 30° | restore wins 0.8 at 24° |
+| 14, L8 front | 7.75 | 10.08 | 8.35 | cut, partly raised (slight); 8.33 reaches 3.0 | L8 restore wins 0.2 at 36° |
+| 15, L8 rear | 8.75 | 10.08 | 8.8 | cut, partly raised (slight); 8.78 reaches 3.1 at 36° | with r14 |
+| 16, 17, L9 | 10.1 | 12.0 | 10.18 | cut, partly raised (slight); 10.15 reaches 3.0 at 42° | restore wins 3.0 at 42° |
+
+Single cuts to the drawn heights from the package rims would cost L7 10.2 points at 39°, r14 12.9 at 42°, r15 5.8 at 42° and L9 9.0 at 42°; all four together (with r4 at 9.4) lose 11.6 at 36°. L7 and L9 stay square and L8 stays stepped, as drawn. The r4 raise is figure-driven; it also returns the 5.3 points at 42° that the package's 9.12 mm rim cut from the lower rim of the corner bundle, which leaves room for L9 at 10.18 mm.
+
+Final light: worst loss 2.9 points at 36° (71.1 → 68.2 %); 42° goes from 53.1 to 50.6 % and 21° from 91.1 to 88.8 %; no field gains. The real-ray check finds no axial clip or blocked chief ray at 42° or at the 42.78° corner. Corner chief heights on r13 to r17 are 6.62, 7.21, 8.00, 9.23 and 9.59 mm; the F/2.8 axial heights on the cut faces are r2 4.15, r6 4.62, r7 4.78, r9 4.94 and r12 to r17 6.85 to 7.47 mm. The surface validator passes, the aperture audit finds no rim, trace or iris limit, the image-circle audit does not flag the lens, field coverage stays 97 % (declared 42°), and `built.mjs` runs. EFL 23.9937 mm, F/2.80, stop radius 5.763 mm and the 42° half field are unchanged. `tracingHalfField` falls from 41.31° to 37.99°: the engine's paraxial chief-ray estimate meets r15 there, although the real chief ray at the 42.78° corner passes r15 at 8.00 mm. The diagram's default off-axis fan therefore launches at 22.8° instead of 24.8°.
+
+Live page after the edits: L1's bevel, L2's tapered rear, the C1 bevel and L5's chamfer render as drawn; L6 and L7 stand at nearly one height, L8 meets L7 at the rim and steps up behind it, and L9 is about as tall as drawn.
+
+Checked and correct. Names L1 to L9 follow the patent's first to ninth lens (Fig. 1 numerals 12 to 28); the patent has no element letters to carry. Types agree with the radius signs: L1, L4 and L8 positive menisci; L2, L3 and L5 negative menisci; L6 and L9 biconvex (r16 = +8323.2 mm); L7 biconcave. Stored focal lengths equal the paraxial values (137.29, −30.33, −19.86, 22.24, −39.15, 17.94, −21.18, 33.56 and 50.39 mm; C1 −129.83 mm). The inspector shows L4 as "DOUBLET C1", Positive Meniscus, +22.24 mm, SF5; L7 Biconcave Negative, −21.18 mm, SF6; L8 Positive Meniscus, +33.56 mm, C12; L9 Biconvex Positive, +50.39 mm, S-LAL14. Brackets: C1 on surfaces 5 to 7 (the patent's bonded third and fourth lenses), FRONT on 1 to 9 (the patent's "front lens group of the negative retrofocus type", L1 to L5), REAR on 10 to 17 (no patent name); there are no gap labels to clash with. All surfaces are spherical and none carries an `A` label. There are no `apd` tags; the patent names no special glass and the validator report records none. The stop is drawn between L5 and L6. Roles match the numbers (L1 to L5 −15.67 mm, L1 to L6 +35.76 mm, L6 the strongest element). Movement: none. The focus slider reads "Not modeled", both `mv` overlays report no modeled focus or zoom group movement, and `focus.description` states the static model and Pentax's 0.25 m.
+
+Aberrations against Fig. 2, read from each plot's local axis line, at F = 100. Spherical aberration (2(a)) agrees within the reading: model −0.46, −0.73 and −0.57 at 0.85, 0.7 and 0.5 of the pupil against about −0.57, −0.76 and −0.62 plotted, both crossing zero near 0.95. Colour (2(b)): the g-line paraxial focus is −0.29 against about −0.27 plotted; at 0.5 of the pupil the model's g − d is −0.20 against about −0.07, some 0.03 mm at 24 mm and a little over twice the reading error. Every label is within 0.24 of the printed νd, so no single element stands out. Distortion (2(c)): model −2.67 % at 32°, a −3.0 % peak at 38° and −2.65 % at 42°; plotted about −2.8 %, −3.1 % near 36° and −2.1 % at 42°. The deployment section's "about −2.7 %" at 42° was read at lower resolution. Astigmatism (2(d)) is not reproduced: model sagittal and tangential −0.32 and +0.11 at 20°, −0.13 and +0.22 at 32°, +2.76 and −2.28 at 42°; plotted about −0.46 and −0.33, −0.79 and −0.79, +0.45 and −3.0. Finite-difference rays confirm the model's tangential values. The Petzval term (3ΔS − ΔM)/2 agrees at 20° (−0.53 in both).
+
+Stop. The patent text never mentions a stop or diaphragm, and Fig. 1 draws none. Moving the stop across d9 changes the model's distortion at 42° from −4.40 % (at r9) through −3.06 % (1.11 mm behind), −2.73 % (2.22 mm) and −2.65 % (3.33 mm, the file) to −2.63 % (at r10); the plotted peak and mid-field values favour the rear half of the gap. No position in d9 reproduces Fig. 2(d): at 32° the sagittal focus runs from +0.33 to −0.31 across the gap against −0.79 plotted. A stop behind L6 comes closer at 20° but not at 42°. The 3.33 mm placement stays.
+
+Glass: all nine labels resolve to compatible catalog rows (largest Δνd 0.24, L8's C12); none is `Unmatched`.
+
+Open: Fig. 2(d)'s astigmatism is not reproduced at any stop position in d9 (32°: model −0.13 sagittal and +0.22 tangential against about −0.79 for both, at F = 100). The prescription matches the table and the other three plots; the plot may rest on another chief-ray convention or design state.

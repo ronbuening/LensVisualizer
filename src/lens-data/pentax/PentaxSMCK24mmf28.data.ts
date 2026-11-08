@@ -17,13 +17,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent prints no back focus beyond "about 1.6 times" the focal length. The image plane is the paraxial back focus
  * of the scaled table: 39.981 mm behind r17 (166.588 at F = 100, or 1.666 F), 86.877 mm from the first vertex.
  *
- * The patent prints no stop position, and Fig. 1 draws no iris. The stop sits in the 4.44 mm air space d9 between L5
- * and L6, 3.33 mm behind r9 and 1.11 mm ahead of r10, three quarters of the way across the gap; that placement is a
- * modelling choice made for chief-ray clearance. Its radius follows from F/2.8.
+ * The patent prints no stop position, Fig. 1 draws no iris and the text never mentions one. The stop sits in the
+ * 4.44 mm air space d9 between L5 and L6, 3.33 mm behind r9 and 1.11 mm ahead of r10, three quarters of the way across
+ * the gap; that placement is a modelling choice made for chief-ray clearance. Fig. 2(c) favours the rear half of d9: a
+ * stop at r9 would give −4.4 % distortion at 42°, against about −2.1 % plotted. Its radius follows from F/2.8.
  *
- * Clear apertures are not printed. All `sd` values are estimates. L1 to L5 follow Fig. 1 closely (L1 19.2 mm against
- * about 19.3 mm drawn). L6 to L9 stand wider than the figure: about 7.6, 7.6, 8.9 and 10.1 mm drawn against 7.92, 8.4,
- * 10.08 and 12.0 mm here. Vignetting behind the stop is strong at the corner.
+ * Clear apertures are not printed. All `sd` values are read from Fig. 1 at 19.1 px/mm (the 46.896 mm vertex span) and
+ * checked against the F/2.8 axial beam and the corner chief ray. Rims the figure bevels are stepped: r2 17.2 mm behind
+ * L1's 19.2 mm front, r6 8.6 and r7 7.75 mm across the C1 bevel, r9 6.75 mm behind L5's 7.68 mm front. r4 is 9.4 mm,
+ * under the 10.2 mm drawn: the figure flattens that 10.46 mm radius, and 9.4 mm is the rim-slope limit. L6 (7.92 mm)
+ * is within 5 % of the 7.55 mm drawn. L7 (8.18), L8 (8.35 front, 8.8 rear) and L9 (10.18) stand up to 0.6 mm wider than
+ * drawn (7.6, 7.75, 8.75 and 10.1); the drawn heights would cut the 36° transmission from 68 % to 59 %. Vignetting
+ * behind the stop is strong at the corner.
  *
  * The 42° half field lands at 21.03 mm, so the model covers 97 % of the 21.65 mm full-frame corner; `projection`
  * declares that field.
@@ -189,7 +194,7 @@ const LENS_DATA = {
       label: "2",
       R: 145.128,
       d: 0.096,
-      sd: 19.2,
+      sd: 17.2,
     },
     {
       label: "3",
@@ -202,7 +207,7 @@ const LENS_DATA = {
       label: "4",
       R: 10.464,
       d: 5.544,
-      sd: 9.12,
+      sd: 9.4,
     },
     {
       label: "5",
@@ -215,14 +220,14 @@ const LENS_DATA = {
       label: "6",
       R: 11.4,
       d: 3.792,
-      sd: 9.12,
+      sd: 8.6,
       medium: 4,
     },
     {
       label: "7",
       R: 41.472,
       d: 0.48,
-      sd: 9.12,
+      sd: 7.75,
     },
     {
       label: "8",
@@ -235,7 +240,7 @@ const LENS_DATA = {
       label: "9",
       R: 12.72,
       d: 3.33,
-      sd: 7.68,
+      sd: 6.75,
     },
     {
       label: "STO",
@@ -259,40 +264,40 @@ const LENS_DATA = {
       label: "12",
       R: -30.288,
       d: 3.84,
-      sd: 8.4,
+      sd: 8.18,
       medium: 7,
     },
     {
       label: "13",
       R: 41.256,
       d: 1.32,
-      sd: 8.4,
+      sd: 8.18,
     },
     {
       label: "14",
       R: -135.12,
       d: 3.432,
-      sd: 10.08,
+      sd: 8.35,
       medium: 8,
     },
     {
       label: "15",
       R: -15.672,
       d: 0.096,
-      sd: 10.08,
+      sd: 8.8,
     },
     {
       label: "16",
       R: 8323.2,
       d: 2.592,
-      sd: 12.0,
+      sd: 10.18,
       medium: 9,
     },
     {
       label: "17",
       R: -35.256,
       d: 39.98109518161135,
-      sd: 12.0,
+      sd: 10.18,
     },
   ],
   focus: {

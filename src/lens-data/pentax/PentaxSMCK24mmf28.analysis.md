@@ -44,7 +44,7 @@ The large front element, convex to the object, with the patent's "face of larger
 
 nd = 1.62041, νd = 60.3. Glass: S-BSM16 (OHARA) catalog equivalent; supplier not established. f = −30.3 mm.
 
-The first negative meniscus of the front group, convex to the object. Its rear face r4 (10.46 mm) is the most strongly curved surface in the lens. Fig. 1 draws its rear rim much smaller than its front, and the model's front and rear clear apertures (13.2 and 9.12 mm) follow that taper.
+The first negative meniscus of the front group, convex to the object. Its rear face r4 (10.46 mm) is the most strongly curved surface in the lens. Fig. 1 draws its rear rim much smaller than its front, and the model's front and rear clear apertures (13.2 and 9.4 mm) follow that taper.
 
 ### L3 — Negative Meniscus
 
@@ -106,7 +106,7 @@ The patent defines its indices as d-line values and prints Abbe numbers, but nam
 
 SF5 and SF6 are lead-flint legacy rows, chosen for the patent's 1974 date as on the SMC Pentax 18mm f/3.5. L8's C12 is the only catalog row at nd 1.52307; its Abbe number differs from the printed value by 0.24. The model keeps every printed nd, and its chromatic calculations take dispersion from these catalog rows.
 
-The palette is conventional for the period: lanthanum glasses in L1, L3, L6 and L9, two dense flints (L4, L7) as achromatizing partners, and barium crowns of νd 58 to 60 in the negative menisci L2 and L5. Neither the patent nor Pentax names an ED or anomalous-dispersion glass. Fig. 2(b) plots d- and g-line spherical aberration; the Abbe numbers alone do not establish partial-dispersion correction.
+The palette is conventional for the period: lanthanum glasses in L1, L3, L6 and L9, two dense flints (L4, L7) as achromatizing partners, and barium crowns of νd 58 to 60 in the negative menisci L2 and L5. Neither the patent nor Pentax names an ED or anomalous-dispersion glass. Fig. 2(b) plots d- and g-line spherical aberration; the Abbe numbers alone do not establish partial-dispersion correction. On these catalog curves the g-line paraxial focus lies 0.069 mm in front of the d-line focus (−0.29 at F = 100, against about −0.27 plotted), and at half the pupil the g curve sits about 0.03 mm further from the d curve than Fig. 2(b) draws.
 
 ## Focus Mechanism
 
@@ -114,13 +114,13 @@ The patent says nothing about focusing: it names no focusing lens or direction a
 
 ## Stop, Clear Apertures and Image Plane
 
-The patent prints no stop position, and Fig. 1 draws no iris. The model places the stop in the 4.44 mm air space d9 between L5 and L6, 3.33 mm behind r9 and 1.11 mm ahead of r10. That placement, three quarters of the way across the gap, keeps the chief rays clear of the front rims; it is a modelling choice, not a published diaphragm position. The stop radius of 5.76 mm follows from the paraxial entrance pupil at F/2.8 (4.28 mm radius). The production lens stops down to f/22 with five blades.
+The patent prints no stop position, Fig. 1 draws no iris, and the text never mentions a diaphragm. The model places the stop in the 4.44 mm air space d9 between L5 and L6, 3.33 mm behind r9 and 1.11 mm ahead of r10. That placement, three quarters of the way across the gap, keeps the chief rays clear of the front rims; it is a modelling choice, not a published diaphragm position. The distortion plot favours the rear half of the gap: with the stop at r9 the model would show −4.4 % at 42°, and 1.11 mm behind it −3.1 %, while every position from 2.2 mm behind r9 to r10 gives −2.6 to −2.7 % at 42° and a peak near −3.0 % at 36° to 40°. Fig. 2(c) plots about −2.1 % at 42° with a −3.1 % peak near 36°. The stop radius of 5.76 mm follows from the paraxial entrance pupil at F/2.8 (4.28 mm radius). The production lens stops down to f/22 with five blades.
 
-Clear apertures are not printed. All semi-diameters are estimates. L1 to L5 follow Fig. 1 closely: L1's 19.2 mm against about 19.3 mm drawn. L6 to L9 stand wider than the figure, at 7.92, 8.4, 10.08 and 12.0 mm against about 7.6, 7.6, 8.9 and 10.1 mm drawn. The figure's own rims would still pass the axial beam at F/2.8, but would cut more of the corner bundle. Corner illumination depends on these estimates, and the corner bundle is clipped mainly by L6 to L8.
+Clear apertures are not printed. The semi-diameters are read from Fig. 1, scaled by the 46.90 mm vertex span, and checked against the F/2.8 axial beam and the corner chief ray. Where the figure bevels a rim, the model steps it: L1's rear face ends at 17.2 mm under its 19.2 mm front, the bevel of doublet C1 takes the cemented face to 8.6 mm and L4's rear face to 7.75 mm, and L5's rear face ends at 6.75 mm under its 7.68 mm front. L2's rear face is 9.4 mm against about 10.2 mm drawn: the figure draws that face flatter than its 10.46 mm radius, and 9.4 mm is as steep a rim as the model allows. L6, at 7.92 mm, is within 5 % of the figure. L7 (8.18 mm), L8 (8.35 mm in front, 8.8 mm behind) and L9 (10.18 mm) stand up to 0.6 mm wider than drawn (about 7.6, 7.75, 8.75 and 10.1 mm); at the drawn heights the 36° bundle would pass 59 % of its light instead of 68 %. Corner illumination depends on these estimates: at full aperture the geometric transmission is 89 % at 21°, 68 % at 36° and 51 % at 42°, and the corner bundle is clipped mainly by L7 to L9.
 
 The image plane is the paraxial back focus of the scaled table, 39.981 mm behind r17 and 86.877 mm from the first vertex. The patent prints no back focus beyond the abstract's ratio, so this plane is derived, not published.
 
-The patent's 42° half field lands at 21.03 mm at this scale, 97 % of the 21.65 mm full-frame corner; the corner itself would lie at 42.8°. The data file declares that 42° field in `projection`. Distortion at 42° is −2.66 %, close to the roughly −2.7 % of Fig. 2(c). The model's longitudinal spherical aberration is +0.11 mm at full aperture and −0.18 mm at 0.7 of the pupil, the zonal undercorrection that Fig. 2(a) shows.
+The patent's 42° half field lands at 21.03 mm at this scale, 97 % of the 21.65 mm full-frame corner; the corner itself would lie at 42.8°. The data file declares that 42° field in `projection`. Distortion is −2.67 % at 32° and −2.65 % at 42°, with a −3.0 % peak near 38°; Fig. 2(c) plots about −2.8 % at 32°, a −3.1 % peak near 36° and −2.1 % at 42°. The model's longitudinal spherical aberration is +0.11 mm at full aperture and −0.18 mm at 0.7 of the pupil, the zonal undercorrection that Fig. 2(a) shows. The astigmatism of Fig. 2(d) is not reproduced. At 32° the plot puts both focal lines about 0.19 mm in front of the image plane, where the model's sagittal and tangential foci lie 0.03 mm in front and 0.05 mm behind; at 42° the plotted sagittal focus is about 0.11 mm behind the plane against 0.66 mm in the model. No stop position in d9 closes that gap, although the Petzval term, (3ΔS − ΔM)/2, agrees with the plot at 20°.
 
 ## Conditional Expressions
 
