@@ -1,384 +1,295 @@
 ## Patent Reference and Design Identification
 
 **Patent:** JP H03-39920 A (特開平3-39920)\
-**Application Number:** 特願平2-39751 (JP3975190A)\
+**Application Number:** 特願平2-39751\
 **Filed:** 1990-02-22\
 **Published:** 1991-02-20\
 **Priority:** 1989-04-19, 特願平1-97566\
 **Inventor:** Akira Ishisaka (石坂 哲)\
 **Applicant:** Konica Corporation (コニカ株式会社)\
 **Title:** 小型の高変倍ズームレンズ (compact high-ratio zoom lens)\
-**Example details:** 第1実施例, prescription on printed p. 247, asphere on p. 248, Figs. 1 and 2
+**Example details:** 第1実施例; prescription and zoom spacings on gazette p. 247, asphere and conditions on p. 248,
+Fig. 1 (sections at wide, middle and tele) and Fig. 2 (aberration curves)
 
-This prescription is an **AiBORG-associated development candidate**, based on Example 1 of JP H03-39920 A. It preserves
-the published numerical prescription and supplies explicitly inferred aperture geometry and an infinity image plane.
-The evidence establishes a direct relationship between the AiBORG development and this patent, but does not establish
-that Example 1 is the unchanged factory prescription of the retail camera.
+The patent describes a four-group zoom of about 3× for lens-shutter compact cameras. Konica's own documents tie
+Example 1 to the zoom lens of the Konica AiBORG, a 35–105 mm autofocus compact introduced in 1991:
 
-The identification rests on the following primary-source evidence:
+1. Konica's January 1992 technical report, _Optical Systems and Lens Control Systems for Compact Zoom Cameras with a
+   Zooming Ratio of 3_ (Konica Technical Report vol. 5, pp. 110–114), describes the optics of the newly developed
+   AiBORG and its 35–105 mm range (p. 111). Ishisaka is one of its three authors.
+2. The report's reference 1 (p. 114) is 石坂: 特開平3-39920, this publication.
+3. The report settles on a positive–negative–positive–negative four-group zoom (§2.3, p. 112) with G1 and G3 at a fixed
+   separation, G2 as the inner-focus group, and only G3 and G4 on the zoom cam (§3.1). The four-group type, G2
+   focusing and the linked G1 and G3 are the patent's claim 1, claim 2 and its linked-group option.
+4. The report's Fig. 3-1 lens section (p. 112) shows 2 / 3 / 5 / 3 elements: a cemented front meniscus pair, a
+   three-element G2 whose first element has a flat front, a five-element G3 with the shutter blades between its
+   cemented pair and the next positive element, and a three-element rear group. Example 1 matches it element for
+   element. Examples 2 and 3 have 12 elements each, so Example 1 is the only example that fits.
+5. Konica's instruction manual lists the lens as a Konica zoom lens, 35 mm F3.8 to 105 mm F8.5, with autofocus from
+   0.8 m (specifications, printed p. 92). Example 1 is printed at F3.8–8.5, and the report's focusing figures run to
+   0.8 m.
 
-1. Konica's January 1992 technical paper, *Optical Systems and Lens Control Systems for Compact Zoom Cameras with a
-   Zooming Ratio of 3*, identifies the AiBORG and its marketed **35–105 mm** range on printed p. 111.
-2. The paper describes the camera's **positive–negative–positive–negative** four-group system, linked groups 1 and 3,
-   and group-2 internal focusing on pp. 111–112. These properties agree with the patent's architecture and claims.
-3. Reference 1 on p. 114 explicitly cites **石坂: 特開平3-39920**. This is a manufacturer-published product-to-patent
-   link, rather than an identification based only on similar focal lengths or a similar drawing.
-4. Example 1 supplies **13 elements in 11 air-separated components**, with three numerical zoom states of
-   **36.03 / 62.13 / 102.91 mm** and f-numbers **3.8 / 5.7 / 8.5**. Its approximately threefold range is consistent with
-   the development context. The paper does not name this example as the final production embodiment.
+The report prints no prescription, so the correlation does not show that the production glasses, spacings or
+aspheric coefficients equal Example 1's. The lens ring in the report's camera photograph (p. 110) is engraved KONICA
+LENS JAPAN 35-105, which gives the display name. Camera Legend dates the camera to 1991 but gives the lens as
+f/3.5–8.5; the manual and the patent both give F3.8 at the wide end, and the data file uses F3.8.
 
-The inventor's Japanese name is read directly from the patent front page. The manufacturer's paper prints that same
-name together with **“Ishisaka, Akira”** on p. 110; this primary-source Latin form is used for the structured author
-attribution. The searchable patent database instead displays “Satoru Ishizaka.” That differing transliteration is not
-treated as a second inventor. The paper's two other coauthors are not named inventors of this patent. Likewise, the
-original applicant is retained as Konica Corporation rather than replaced with the database's modern successor name.
+The patent front page prints the inventor as 石坂 哲. The report prints the same name with the romanization Ishisaka,
+Akira (p. 110), which is used here.
 
-The data distinguishes the marketed 35–105 mm range from the calculated design endpoints of approximately
-36.033–102.937 mm. No scaling or adjustment of the patent radii, material coordinates, thicknesses, asphere, or published
-zoom gaps is used to force agreement with marketing values. The reconstruction is **infinity-only**; exact factory
-clear apertures, the finite-focus movement law, and the physical diaphragm mechanism remain undetermined.
+The patent states f = 36.03–102.91 mm, F3.8–8.5 and 2ω = 60.6°–23.3°. The table traces to 36.033 / 62.128 /
+102.937 mm, within 0.027% of the printed values, at the patent's own scale.
 
 ## Optical Architecture
 
-The four moving optical groups contain **2 / 3 / 5 / 3 elements** respectively. Two cemented pairs reduce the total to
-11 air-separated components. These 11 components are the catalog's group count; they should not be confused with the
-four zoom groups G1–G4. The stop is a separate, zero-thickness air plane, not a fourteenth lens element.
+Example 1 is a positive–negative–positive–negative zoom with 13 elements in 11 air-separated groups; L1–L2 and L7–L8
+are cemented. The four zoom groups are:
 
-| Zoom group | Elements | Patent surfaces | Calculated air-to-air focal length | Main architectural role |
-|---|---|---|---:|---|
-| G1, positive | L1–L2, cemented | 1–3 | +172.250 mm | Weak positive front group, linked to G3 |
-| G2, negative | L3–L5 | 4–9 | −32.268 mm | Negative zoom group and documented internal-focus group |
-| G3, positive | L6–L10 | 10–18 | +20.516 mm | Strong positive group containing the stop and plastic aspheric corrector |
-| G4, negative | L11–L13 | 19–24 | −28.283 mm | Rear negative group carrying the largest published zoom-magnification change |
+| Zoom group | Elements | Surfaces | Focal length (d-line, calculated) | Role |
+| --- | --- | --- | ---: | --- |
+| G1 (+) | L1–L2, cemented | 1–3 | +172.25 mm | Weak positive front group, linked to G3 |
+| G2 (−) | L3–L5 | 4–9 | −32.27 mm | Negative zoom group and focusing group |
+| G3 (+) | L6–L10 | 10–18 | +20.52 mm | Strong positive group carrying the stop and the plastic asphere |
+| G4 (−) | L11–L13 | 19–24 | −28.28 mm | Rear negative group with the largest magnification change |
 
-The group focal lengths above are d-line paraxial calculations from the preserved prescription, not values measured
-from a manufactured camera. The patent's discussion on printed pp. 246–247 assigns progressively greater zooming load
-to the rear groups. Reducing the zoom burden on G2 limits changes in aberration generated near the front and subsequently
-magnified by the rear optics. This permits a compact arrangement without making G2 excessively strong.
+The report's section 2 (pp. 111–112) explains the four-group choice. A two-group positive–negative zoom puts the whole
+magnification change on its rear group, whose travel grows with the zoom ratio. A three-group telephoto zoom does not
+use each group's magnification change efficiently. In a four-group zoom the system focal length is
+$f = f_1 M_2 M_3 M_4$, and the report distributes the zoom load so that $M_{2T}/M_{2W} < M_{3T}/M_{3W} < M_{4T}/M_{4W}$
+(the report's eq. 2-6; the patent's claim 1). The rear groups magnify the aberrations left by the front groups, so
+keeping the front groups' share small keeps aberration change during zooming small. Example 1 prints the three ratios
+as 1.05, 1.20 and 2.27.
+
+The first-vertex-to-image length is 69.71 mm at wide and 103.06 mm at tele. The telephoto ratios, 1.935 and 1.0015,
+round to the patent's printed 1.93 and 1.0.
 
 ### Zoom movement
 
-The three source air gaps are retained exactly:
+| State | Printed f | D3 | D9 | D18 | BF (calculated) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Wide | 36.03 mm | 6.40 mm | 8.00 mm | 13.37 mm | 3.998 mm |
+| Middle | 62.13 mm | 8.76 mm | 5.64 mm | 5.74 mm | 24.084 mm |
+| Tele | 102.91 mm | 12.40 mm | 2.00 mm | 2.88 mm | 47.840 mm |
 
-| Patent control point | D3, G1–G2 | D9, G2–G3 | D18, G3–G4 |
-|---|---:|---:|---:|
-| Wide, 36.03 mm | 6.40 mm | 8.00 mm | 13.37 mm |
-| Middle, 62.13 mm | 8.76 mm | 5.64 mm | 5.74 mm |
-| Tele, 102.91 mm | 12.40 mm | 2.00 mm | 2.88 mm |
+D3 + D9 is 14.40 mm at every state, so G1 and G3 move as one unit. Relative to that unit, G2 moves 6.00 mm toward the
+image and G4 closes on G3 by 10.49 mm from wide to tele. Relative to the film plane every group moves toward the object:
+G1 and G3 by 33.35 mm, G2 by 27.35 mm and G4 by 43.84 mm.
 
-The invariant **D3 + D9 = 14.40 mm** keeps G1 and G3 at a fixed separation. Relative to this linked assembly, G2 moves
-6.00 mm imageward from wide to tele, while G4 approaches G3 by 10.49 mm. With the reconstructed infinity film plane held
-fixed, the first vertices of G1/G3, G2, and G4 instead move objectward by approximately **33.352, 27.352, and 43.842 mm**,
-respectively. These coordinate-dependent descriptions are consistent: the complete assembly also translates relative
-to the film. The source describes at least G1, G3, and G4 moving objectward during the wide-to-tele transition.
+In the camera only G3 and G4 ride the zoom cam. G2 follows an "imaginary cam": at each of 24 zoom stop positions the
+focusing motor drives it to an infinity position stored for that camera in EEPROM (report §3.2, §4.3, Figs. 3-2 and
+4-2). The individual calibration absorbs the mechanical tolerances that the report says a 3× compact zoom could not
+meet on part accuracy alone.
 
-The model contains **65 total zoom stations: three published anchors and 62 inferred intermediate stations**. D3, D9,
-and D18 are interpolated piecewise linearly in an abstract zoom coordinate, with a newly calculated infinity D24 at every
-station. Intermediate f-numbers are interpolated between the source values. This is a usable interpolation of the
-published states, not a recovered factory cam or aperture-control law.
+The patent prints no back focus, so BF is the paraxial infinity image distance. The data file adds 62 interpolated
+stations between the three printed states: D3, D9 and D18 change linearly between printed rows, and BF is solved at
+each station, because a BF interpolated linearly would leave the image up to 2.29 mm out of focus mid-segment. These
+intermediate stations are not the factory zoom law.
 
-### Inferred stop and clear apertures
+### Stop and clear apertures
 
-Figure 1 places the diaphragm inside G3, between source surfaces 14 and 15, where the table gives **D14 = 1.40 mm**.
-No numerical stop offset or stop diameter is published. The model splits this air space into **0.70 mm before and
-0.70 mm after** an explicit `STO` plane. All original refracting vertices remain unchanged.
+The patent prints no stop position or diameter. Fig. 1 draws the diaphragm between L8 and L9 at all three states, claim
+4 places the stop in or behind G3, and the report's Fig. 3-1 has the shutter blades in the same space, slightly nearer
+L8. The model splits the printed 1.40 mm air gap after surface 14 into 0.70 mm before and 0.70 mm after the stop. The
+stop diameter follows the printed f-number at each station: 9.31 mm at wide, 10.08 mm at the middle station and
+10.17 mm at tele.
 
-The stop is infinitesimally thin and has no refractive power. The midpoint maximizes its minimum axial clearance to the
-two neighboring vertices, 0.70 mm on each side. The bordering surfaces recede from the intervening plane off axis, so
-the optical construction permits closure without a surface intersection. This does not establish the clearance of an
-actual shutter blade stack, mounting edge, or moving mechanism.
-
-For the midpoint position, first-order pupil mapping and the source f-numbers imply stop diameters of approximately
-**9.311 / 10.077 / 10.165 mm** at wide/middle/tele. These are model-derived optical diameters. A fixed physical iris
-diameter is not imposed while simultaneously claiming exact agreement with all three published f-numbers.
-
-The refracting-surface semi-diameters are also inferred. They follow the relative rim sizes in the undimensioned patent
-drawing, with clear-aperture estimates conservatively inside the drawn contours. In particular, surfaces 8–9 use
-**8.0 mm**, compared with an approximately 8.16 mm drawn rim under the selected image scale. The drawing-reading
-precision, roughly ±0.3 mm, is not a manufacturing tolerance or a bound on unknown factory dimensions. These choices
-pass the modeled surface-separation and sag checks without an override, but retain substantial wide-angle edge clipping.
+The patent gives no semi-diameters either. The rims follow the relative element sizes of Fig. 1, with the front and
+rear rims at about 14.5 mm as drawn. The rear rims are smaller than a full-aperture bundle to the full-frame corner would
+need, so the wide-angle corners vignette heavily, as the drawing implies. The chief ray still reaches the 21.65 mm
+corner at every zoom position, at 30.3° at wide and 11.6° at tele, matching the patent's 2ω.
 
 ## Element-by-Element Analysis
 
-The focal lengths in this section are **calculated isolated-element d-line focal lengths in air**. Each uses its own
-two vertex radii, center thickness, and published index. Cemented members are mathematically separated for this
-calculation; their isolated values are not additive in situ and do not replace the combined-group powers above.
+Focal lengths are for each element alone in air; cemented members are separated for the calculation.
 
-For each element, the thick-lens expression is
+### L1 — Negative Meniscus, convex to object
 
-$$
-\frac{1}{f}=(n_d-1)\left[\frac{1}{R_1}-\frac{1}{R_2}+\frac{(n_d-1)t}{n_d R_1R_2}\right].
-$$
+**nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA) catalog equivalent, dense flint. f = −78.7 mm.**
 
-An independent two-surface reduced-angle matrix calculation gives the same results. The aspheric coefficients on
-surface 18 do not change its vertex paraxial power. Specific material trade names and suppliers are unpublished;
-the class descriptions below interpret the numerical coordinates without identifying a commercial glass.
+The front member of the cemented G1 pair. The patent notes that focusing with G2 lets G1 be a simple negative–positive
+pair (p. 247), which keeps the large front group light and short.
 
-### L1: Negative Meniscus, Convex to Object
+### L2 — Positive Meniscus, convex to object
 
-**nd = 1.80518, νd = 25.4. Glass: high-index, low-Abbe flint-like class; supplier unspecified. f = −78.741 mm.**
+**nd = 1.65844, νd = 50.9. Glass: S-BSM25 (OHARA) catalog equivalent, dense barium crown. f = +50.8 mm.**
 
-L1 is the negative front member of the cemented G1 pair, bounded by surfaces 1–2. Its high index and comparatively low
-Abbe number contrast with the positive L2. This supplies a conventional chromatic-balancing degree of freedom within
-the weak positive front group. The patent connects the simple negative–positive G1 structure to the decision to focus
-with G2 rather than translate the front group separately (printed p. 247).
+The positive member of G1. With L1 the cemented group is only weakly positive at +172.25 mm. Claim 3 bounds G1's power
+against G2's: a stronger G1 would lengthen the G2 focus travel and crowd G1 and G2 at the wide end, and a weaker one
+would lengthen the lens (p. 247).
 
-### L2: Positive Meniscus, Convex to Object
+### L3 — Biconcave Negative, nearly flat front
 
-**nd = 1.65844, νd = 50.9. Glass: higher-Abbe, moderate-index class; supplier unspecified. f = +50.791 mm.**
+**nd = 1.77250, νd = 49.6. Glass: S-LAH66 (OHARA) catalog equivalent, lanthanum flint. f = −22.0 mm.**
 
-L2 completes the front cemented pair at surfaces 2–3. Its isolated positive power exceeds the magnitude of L1's isolated
-negative power, but the cemented interface and finite thickness must be included to obtain G1's actual **+172.250 mm**
-air-to-air focal length. The higher Abbe number relative to L1 provides the dispersion contrast within that pair.
+The first element of G2. Its front radius of −56,728 mm is effectively flat, as Fig. 3-1 draws it, and its strong
+concave face points to the image. The patent builds G2 from a negative element with a strong concave face to the
+image, a positive element and a negative element with a strong concave face to the object, so that chromatic and
+off-axis aberrations change little as G2 focuses (p. 247).
 
-### L3: Biconcave Negative, Nearly Plano on the Front
+### L4 — Biconvex Positive
 
-**nd = 1.77250, νd = 49.6. Glass: high-index, moderate-dispersion class; supplier unspecified. f = −22.005 mm.**
+**nd = 1.71736, νd = 29.5. Glass: S-TIH1 (OHARA) catalog equivalent, dense flint. f = +22.8 mm.**
 
-L3 begins the negative G2 group at surfaces 4–5. Its first radius is **−56,728.0 mm**, extremely weak but still finite;
-the model preserves that radius rather than substituting a plane. The stronger concave side faces the image. The patent
-describes this orientation as part of the negative–positive–negative G2 arrangement used to limit chromatic and off-axis
-aberration changes during internal focusing (printed p. 247).
+The positive middle element of G2. As the flint partner of the two higher-Abbe negatives it keeps the moving focus group
+close to achromatic.
 
-### L4: Biconvex Positive
+### L5 — Biconcave Negative
 
-**nd = 1.71736, νd = 29.5. Glass: high-index, low-Abbe flint-like class; supplier unspecified. f = +22.772 mm.**
+**nd = 1.69680, νd = 55.5. Glass: S-LAL14 (OHARA) catalog equivalent, lanthanum crown. f = −33.3 mm.**
 
-L4 is the positive middle element of G2, at surfaces 6–7. Its lower Abbe number contrasts with both negative neighbors,
-providing chromatic balance while partly offsetting their negative power. The rear air spacing is the published
-**D7 = 1.20 mm**. The complete three-element group remains negative even though L4 alone is strongly positive.
+The rear element of G2, with its stronger concave face toward the object, mirroring L3 about the positive L4.
 
-### L5: Biconcave Negative
+### L6 — Positive Meniscus, convex to object
 
-**nd = 1.69680, νd = 55.5. Glass: higher-Abbe, high-index crown-like class; supplier unspecified. f = −33.291 mm.**
+**nd = 1.59551, νd = 39.2. Glass: S-TIM8 (OHARA) catalog equivalent, flint. f = +32.0 mm.**
 
-L5 completes G2 at surfaces 8–9, with its stronger concave side facing the object. Together with L3 it supplies the
-negative power around the lower-Abbe positive L4. The two opposed strong concave orientations are explicitly described
-in the patent's explanation of the focus group's aberration control. The modeled 8.0 mm clear semi-diameter is an
-inference from the drawing, not a published optical tolerance.
+The front element of G3. Nearly all of its power is on the front face; the rear radius is 419.33 mm.
 
-### L6: Positive Meniscus, Convex to Object
+### L7 — Negative Meniscus, convex to object
 
-**nd = 1.59551, νd = 39.2. Glass: intermediate-index, intermediate-dispersion class; supplier unspecified. f = +32.002 mm.**
+**nd = 1.84666, νd = 23.8. Glass: S-TIH53 (OHARA) catalog equivalent, dense flint. f = −23.0 mm.**
 
-L6 starts G3 at surfaces 10–11. Its front surface supplies most of its positive paraxial power, while the rear surface
-is weakly curved. It is a major positive member ahead of the internal cemented pair and stop. The patent does not assign
-a separate named aberration correction to L6, so its role here is limited to its position and calculated power.
+### L8 — Biconvex Positive
 
-### L7: Negative Meniscus, Convex to Object
+**nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) catalog equivalent, borosilicate crown. f = +20.8 mm.**
 
-**nd = 1.84666, νd = 23.8. Glass: very-high-index, low-Abbe flint-like class; supplier unspecified. f = −22.968 mm.**
+L7 and L8 form the cemented pair ahead of the stop. L7 carries the highest index and lowest Abbe number in the lens,
+L8 the lowest index and highest Abbe number. Cemented, the pair is only weakly positive (+236.6 mm), so its job is
+chromatic correction near the stop rather than power.
 
-L7 is the negative member of G3's cemented pair, at surfaces 12–13. It has the highest index and lowest Abbe number in
-the prescription. Its negative power and strong dispersion contrast with positive L8 provide a further chromatic
-balancing pair immediately before the diaphragm. The material's numerical coordinates do not identify its supplier.
+### L9 — Biconvex Positive
 
-### L8: Biconvex Positive
+**nd = 1.58144, νd = 40.7. Glass: S-TIL25 (OHARA) catalog equivalent, light flint. f = +56.5 mm.**
 
-**nd = 1.51633, νd = 64.1. Glass: low-index, high-Abbe crown-like class; supplier unspecified. f = +20.811 mm.**
+The first element behind the stop, adding positive power to G3 after the nearly powerless cemented pair.
 
-L8 completes the second cemented pair at surfaces 13–14. Its relatively high Abbe number opposes the lower-Abbe L7.
-The complete L7/L8 pair has a calculated air-to-air focal length of **+236.589 mm**, much weaker than either isolated
-member; it is therefore not treated as two independent powers in the system. Surface 14 borders the inferred stop gap.
+### L10 — Positive Meniscus, concave to object, aspherical rear surface
 
-### L9: Biconvex Positive
+**nd = 1.49200, νd = 58.3. Glass: plastic (patent-specified; the nd/νd fit a PMMA-type acrylic, no catalog curve).
+f = +444.4 mm.**
 
-**nd = 1.58144, νd = 40.7. Glass: intermediate-index, intermediate-dispersion class; supplier unspecified. f = +56.477 mm.**
+The patent states that Examples 1 and 3 use a plastic lens for the asphere and make it nearly powerless, so that
+changes in temperature and humidity affect performance little (p. 247). Its rear surface, S18, is the lens's only
+asphere; see below.
 
-L9 is the first element after the stop, at surfaces 15–16. It adds positive power in G3 behind the near-canceling
-cemented pair. Its location and dispersion give the group another degree of freedom for balancing the contributions
-on either side of the diaphragm. A unique allocation of spherical aberration or coma correction to this element is
-not specified by the source.
+### L11 — Positive Meniscus, concave to object
 
-### L10: Weak Positive Meniscus with an Aspheric Rear Surface
+**nd = 1.72342, νd = 38.0. Glass: S-BAH28 (OHARA) catalog equivalent, barium flint. f = +30.6 mm.**
 
-**nd = 1.49200, νd = 58.3. Glass/material: plastic, formulation and supplier unspecified. f = +444.372 mm.**
+### L12 — Biconcave Negative
 
-L10 occupies surfaces 17–18, with its concave side toward the object. The patent explicitly states that the aspheric
-elements in Examples 1 and 3 are plastic and made nearly powerless to reduce performance changes with the environment
-(printed p. 247). The calculated weak positive power is consistent with that description. A specific polymer, such as
-PMMA, is not identified merely from these index and Abbe values.
+**nd = 1.71300, νd = 53.9. Glass: LAL8 (OHARA) catalog equivalent, lanthanum crown. f = −18.6 mm.**
 
-The rear asphere is part of the patent's strategy for reducing astigmatism generated by G3 and controlling the resulting
-image surface. This allows more freedom in shaping G2 for smaller focus-induced aberration changes. Its function is
-principally higher-order correction rather than a large contribution to focal length.
+### L13 — Negative Meniscus, concave to object
 
-### L11: Positive Meniscus, Concave to Object
+**nd = 1.69680, νd = 55.5. Glass: S-LAL14 (OHARA) catalog equivalent, lanthanum crown. f = −62.7 mm.**
 
-**nd = 1.72342, νd = 38.0. Glass: high-index, intermediate-dispersion class; supplier unspecified. f = +30.619 mm.**
-
-L11 begins G4 at surfaces 19–20. The stronger rear curvature gives this concave-front meniscus positive power. It partly
-balances the two following negative elements in the net-negative rear group. The rear group's documented role is to
-carry a comparatively large zoom-magnification change; the source does not isolate a specific aberration assignment
-for L11 alone.
-
-### L12: Biconcave Negative
-
-**nd = 1.71300, νd = 53.9. Glass: higher-Abbe, high-index crown-like class; supplier unspecified. f = −18.627 mm.**
-
-L12, at surfaces 21–22, is the strongest isolated negative element in G4. Its strongly concave front surface dominates
-over the much weaker rear surface. Its higher Abbe number relative to positive L11 supplies a dispersion contrast
-within the rear group. The group calculation includes their 2.06 mm air separation, rather than adding isolated powers.
-
-### L13: Negative Meniscus, Concave to Object
-
-**nd = 1.69680, νd = 55.5. Glass: higher-Abbe, high-index crown-like class; supplier unspecified. f = −62.726 mm.**
-
-L13 ends the train at surfaces 23–24 and adds negative power behind L12. It shares the published material coordinates
-of L5 but has a different bending and a weaker isolated power. The air distance following surface 24 is absent from
-the source table and is supplied by the independent infinity paraxial calculation described below. No terminal plate
-or additional refracting surface is introduced.
+G4 is a positive flint meniscus followed by two negative crowns, net −28.28 mm. Its magnification grows 2.27 times from
+wide to tele, the largest share of the zoom.
 
 ## Glass Identification and Selection
 
-The source gives **12 distinct nd/νd pairs for 13 elements**. L5 and L13 share a pair. It does not identify optical-glass
-manufacturers or catalog designations. The data therefore uses the published coordinates directly, without treating a
-modern catalog match as a verified historical material. L10 is explicitly plastic in the patent; the remaining class
-labels are numerical descriptions, not trade-name identifications.
+The patent names no glass maker. Twelve of the thirteen elements match OHARA catalog coordinates: nd to all five
+printed decimals and νd within 0.05. The labels give the model catalog dispersion curves; they do not identify the
+production melts.
 
-| Material class or source identification | nd | νd | Elements |
-|---|---:|---:|---|
-| High-index, low-Abbe flint-like | 1.80518 | 25.4 | L1 |
-| Higher-Abbe, moderate-index | 1.65844 | 50.9 | L2 |
-| High-index, moderate-dispersion | 1.77250 | 49.6 | L3 |
-| High-index, low-Abbe flint-like | 1.71736 | 29.5 | L4 |
-| Higher-Abbe, high-index crown-like | 1.69680 | 55.5 | L5, L13 |
-| Intermediate-index and dispersion | 1.59551 | 39.2 | L6 |
-| Very-high-index, low-Abbe flint-like | 1.84666 | 23.8 | L7 |
-| Low-index, high-Abbe crown-like | 1.51633 | 64.1 | L8 |
-| Intermediate-index and dispersion | 1.58144 | 40.7 | L9 |
-| Plastic, formulation unspecified | 1.49200 | 58.3 | L10 |
-| High-index, intermediate-dispersion | 1.72342 | 38.0 | L11 |
-| Higher-Abbe, high-index crown-like | 1.71300 | 53.9 | L12 |
+| Glass | nd | νd | Elements | Type |
+| --- | ---: | ---: | --- | --- |
+| S-TIH53 (OHARA) | 1.84666 | 23.8 | L7 | Dense flint |
+| S-TIH6 (OHARA) | 1.80518 | 25.4 | L1 | Dense flint |
+| S-LAH66 (OHARA) | 1.77250 | 49.6 | L3 | Lanthanum flint |
+| S-BAH28 (OHARA) | 1.72342 | 38.0 | L11 | Barium flint |
+| S-TIH1 (OHARA) | 1.71736 | 29.5 | L4 | Dense flint |
+| LAL8 (OHARA) | 1.71300 | 53.9 | L12 | Lanthanum crown |
+| S-LAL14 (OHARA) | 1.69680 | 55.5 | L5, L13 | Lanthanum crown |
+| S-BSM25 (OHARA) | 1.65844 | 50.9 | L2 | Dense barium crown |
+| S-TIM8 (OHARA) | 1.59551 | 39.2 | L6 | Flint |
+| S-TIL25 (OHARA) | 1.58144 | 40.7 | L9 | Light flint |
+| S-BSL7 (OHARA) | 1.51633 | 64.1 | L8 | Borosilicate crown |
+| Plastic | 1.49200 | 58.3 | L10 | PMMA-type acrylic class |
 
-The front and central cemented pairs combine negative lower-Abbe members with positive higher-Abbe members. G2 and G4
-instead include positive lower-Abbe members among higher-Abbe negative elements. These relationships provide
-conventional chromatic-balancing degrees of freedom; they do not establish perfect achromatization of any isolated
-pair. No measured partial-dispersion data, ED designation, anomalous-dispersion assignment, or apochromatic performance
-is asserted. Spectral behavior inferred from nd/νd alone remains approximate.
+L12's printed 1.71300 matches OHARA's older LAL8 entry exactly; the current S-LAL8 is 1.71299. L10 has no catalog
+curve, so its dispersion comes from the printed Abbe number.
+
+The two cemented pairs, L1–L2 and L7–L8, are conventional negative-flint, positive-crown achromats. The negative groups
+reverse the pattern: G2 and G4 each place one positive flint (L4, L11) among higher-Abbe negative elements, so each
+moving group is corrected for colour on its own. No glass with anomalous partial dispersion is used, and no
+apochromatic correction is claimed.
 
 ## Focus Mechanism
 
-The **documented camera/patent mechanism is group-2 internal focusing**. Patent claim 2 and the discussion on printed
-pp. 246–247 assign focusing to G2. The maker paper, §3.1 on p. 112, likewise states that G2 performs internal focusing,
-that G1 and G3 are linked, and that the focusing drive is also used during zooming. This does not mean that G2 is
-stationary during the infinity zoom sequence.
+The lens focuses internally with G2 (claim 2). The patent chose G2 because it lets G1 stay a simple cemented pair, and
+the three-element negative–positive–negative G2 keeps the change in chromatic and off-axis aberrations small during
+focusing (p. 247).
 
-The **authored model is infinity-only**, identified by `NO_INTERNAL_RECONSTRUCTION`. The schema's `closeFocusM: 0.8`
-entry is not a solved 0.8 m optical state, and every focus column duplicates its infinity value. No finite-conjugate
-solution, focus travel, close-range aberration prediction, or continuous internal-focus cam is reconstructed. Neither
-the factory autofocus calibration nor the missing close-focus spacings can be deduced uniquely from the three
-published infinity zoom rows.
+The report (§4.3–4.4, Figs. 4-2 and 4-3) describes how the camera drives it. The focusing motor moves G2 toward the
+object from its infinity position to focus down to 0.8 m, at the wide and tele ends alike. The extension differs from one
+zoom stop to the next and is not linear in object distance, so the camera approximates each focusing curve by two
+straight segments whose slopes, P1 and P2, are calibrated for each camera and stored in EEPROM.
+
+The patent prints no close-focus spacings, so the model is infinity-only: both focus states repeat the infinity
+spacings, and the 0.8 m figure is the maker's minimum focus distance, not a modelled state.
 
 ## Aspherical Surfaces
 
-The only asphere in Example 1 is **surface 18, the image-side face of L10**. The source defines sag along the optical
-axis, with radial height $Y$ and vertex curvature $C=1/R_{18}$:
+The only asphere is S18, the rear face of the plastic L10. The patent gives the sag $X$ along the axis at height $Y$,
+with vertex curvature $C = 1/R$:
 
 $$
-X=\frac{CY^2}{1+\sqrt{1-(1+K)C^2Y^2}}+A_4Y^4+A_6Y^6.
+X = \frac{C Y^2}{1 + \sqrt{1 - (1 + K) C^2 Y^2}} + A_4 Y^4 + A_6 Y^6
 $$
 
-The patent explicitly uses **1 + K** under the square root. Thus its tabulated K is the standard conic constant;
-no sign reversal or subtraction of one is applied.
+The $1 + K$ under the root is the standard conic convention ($K = 0$ is a sphere), which the data file uses unchanged.
 
-| Surface | Vertex radius | K | A4 | A6 |
-|---|---:|---:|---:|---:|
-| 18 | −12.900 mm | +1.9205 × 10⁻1 | +4.9648 × 10⁻5 mm⁻3 | +1.4617 × 10⁻7 mm⁻5 |
+| Surface | R | K | A4 | A6 |
+| --- | ---: | ---: | ---: | ---: |
+| S18 | −12.900 mm | 0.19205 | 4.9648 × 10⁻⁵ | 1.4617 × 10⁻⁷ |
 
-The positive polynomial terms move the sag in the positive axial direction relative to the negative-curvature conic
-base. Their optical effect must be evaluated together with the base conic and the glass-to-air refraction. The patent
-describes the intended effect as weakening G3's positive refractive action off axis, reducing astigmatism, and avoiding
-an excessively overcorrected image surface (printed p. 247 and claim 4). It also states that placing the stop within
-or behind G3 makes this correction particularly effective.
+S18 is concave toward the object and, as a glass-to-air surface, has positive power. The positive A4 and A6 outweigh
+the slightly oblate conic: relative to the vertex sphere the surface departs 0.025 mm toward the image at 5 mm height
+and 0.08 mm at its 6.7 mm rim, so it flattens and its positive power weakens off axis. That is the patent's stated aim
+(p. 247, claim 4): weakening G3's positive power off axis reduces the astigmatism G3 generates and keeps the image
+surface from being overcorrected, which in turn leaves G2 free to take a shape with small focusing aberration changes.
+The patent adds that the asphere works best with the stop in or behind G3.
 
-The native equation and all three coefficients are preserved. The material is source-identified plastic, but the
-polymer formulation and manufacturing process are not established. No glass-molded or hybrid-resin-on-glass construction
-is inferred from the asphere alone.
+## Conditional Expressions
 
-## Conditional Expressions and Design Rationale
+| Condition | Source | Example 1 printed | Calculated |
+| --- | --- | ---: | ---: |
+| $M_{2T}/M_{2W}$ | Claim 1 (smaller than $M_{3T}/M_{3W}$) | 1.05 | 1.055 |
+| $M_{3T}/M_{3W}$ | Claim 1 | 1.20 | 1.194 |
+| $M_{4T}/M_{4W}$ | Description; report eq. 2-6 (largest share) | 2.27 | 2.267 |
+| $\lvert \phi_1/\phi_2 \rvert$ | Claim 3: between 0.10 and 0.27 | 0.19 | 0.187 |
+| Telephoto ratio, wide / tele | Description | 1.93 / 1.0 | 1.935 / 1.0015 |
 
-The patent's claim 1 requires a positive, smaller zoom magnification ratio in G2 than in G3. The discussion extends
-that ordering to G4. Example 1 tabulates **M2T/M2W = 1.05**, **M3T/M3W = 1.20**, and **M4T/M4W = 2.27**, satisfying
-the stated ordering. These are source group-magnification ratios, not the complete lens's focal-length zoom ratio.
+Example 1 satisfies each condition. The calculated values use the printed prescription and the computed infinity image
+distance.
 
-Claim 3 constrains the group-power ratio to **0.10 < |φ1/φ2| < 0.27**. The source gives 0.19 for this example. The
-independently calculated G1 and G2 powers give approximately **0.1873**, consistent with that rounded value. The
-discussion explains that excessive G1 power increases the required G2 focus movement and creates wide-end mechanical
-interference concerns, while insufficient G1 power lengthens the lens (printed p. 247).
+## Aberration Figures and Model Limitations
 
-These conditions describe the design strategy and its numerical embodiment. They are not manufacturing tolerances
-or evidence that the production camera retained every prescription value unchanged.
+The model's d-line axial spherical aberration at full aperture is −0.08 mm at wide, −0.12 mm at the middle station and
++0.22 mm at tele. Fig. 2(a) shows about −0.07 mm at wide, in agreement, but Fig. 2(b) and 2(c) show about +0.20 mm and
+−0.14 mm, the opposite signs. The table, checked against the scan, shows no misprint, and no single change to a radius,
+spacing, index, aspheric coefficient or zoom gap reproduces both plots while keeping the stated focal lengths. The
+focal lengths, f-numbers, telephoto ratios and conditional values all agree with the table. The cause is not known;
+the plots may come from another design iteration. J-PlatPat lists an amendment (手続補正書) to this publication that
+has not been seen. The data file keeps the printed values and records the conflict as an unresolved source erratum.
 
-## Verification Summary
-
-The preserved source quantities comprise all 24 vertex radii, all fixed glass and air thicknesses, all nd/νd values,
-the surface-18 asphere, and all three published D3/D9/D18 rows. The only split of a published interval is the explicit
-air stop inside D14, whose two parts still total 1.40 mm. No gap-sag allowance is increased and no published optical
-quantity is optimized to improve the reported results.
-
-### Calculated infinity image planes
-
-For reduced-angle rays $[y,n\theta]$, let the system matrix immediately after surface 24 be
-$M=\begin{pmatrix}A&B\\C&D\end{pmatrix}$. In air, the d-line effective focal length is $-1/C$ and the following
-infinity image distance is $-A/C$. The omitted **D24** is supplied by this calculation, not read as zero or confused
-with focal length.
-
-| State | Source focal length | Calculated EFL | Inferred D24 | First vertex to image |
-|---|---:|---:|---:|---:|
-| Wide | 36.03 mm | 36.033203 mm | 3.998160 mm | 69.708160 mm |
-| Middle | 62.13 mm | 62.128071 mm | 24.084039 mm | 82.164039 mm |
-| Tele | 102.91 mm | 102.937451 mm | 47.840446 mm | 103.060446 mm |
-
-An independent scalar paraxial recursion agrees with the matrix solution. The calculated focal lengths differ from
-the printed values by at most **0.027%**, with no fitting to remove the residuals. Dividing the calculated total lengths
-by the source focal lengths gives ratios of approximately **1.9347 wide** and **1.0015 tele**, consistent with the
-source's rounded 1.93 and 1.0 values. Using the calculated EFLs instead gives **1.9346** and **1.0012**, respectively.
-
-The dense zoom model recalculates D24 at each of its 65 stations. Between those stations, a 4,097-point scalar check
-found a maximum interpolated image-plane discrepancy of **0.004488 mm**, corroborated by 129 near-axis engine states.
-This bounds the tested interpolation error relative to the chosen inferred zoom law, not uncertainty in the factory cam.
-
-### Finite-aperture sensitivity and transmission
-
-Exact d-line ray tests used a 48-by-48 equal-area aimed-stop lattice at three zooms, three fields, and five stop offsets
-within the unchanged 1.40 mm gap. All 45 cases had zero failed and zero unaimed rays. Aperture-blocked rays were counted
-separately; successful aiming therefore does not imply unvignetted transmission.
-
-At the selected midpoint stop, the full-field transmitted fractions were approximately **57.87% wide, 93.57% middle,
-and 98.00% tele**. The field angles were **30.3°, 18.8°, and 11.65°** respectively. The patent's tele table gives a
-23.3° full field, while Fig. 2 rounds its tele half-field to 11.6°; the tests use the table-derived half-field without
-rewriting the different source rounding. These transmission fractions describe clipping of the sampled, stop-aimed
-geometric rays. They are not measured relative illumination and exclude coating, absorption, and other radiometric losses.
-
-The wide-angle result, approximately **58% transmission**, remains an important limitation of the drawing-based
-aperture reconstruction. It is not evidence that the retail AiBORG had that exact vignetting. Changing the inferred rims
-would change these results, while exact factory apertures remain unavailable.
-
-At the midpoint stop, the calculated axial geometric RMS radii at the paraxial image plane were **8.94 / 9.20 / 8.79 µm**
-at wide/middle/tele. A separate least-RMS plane search found axial shifts of **−0.0946 / −0.1472 / +0.2048 mm**, reducing
-the sampled axial RMS to **1.54 / 1.51 / 2.60 µm**. Those shifts are sensitivity results only; the model retains its
-independently calculated paraxial image planes. These are monochromatic geometric simulations, not measured resolution,
-factory focus settings, or MTF.
-
-Increasing the lattice from 24 to 48 samples per side changed the midpoint axial RMS by 0.14%–0.44%. Across the tested
-cases, the largest RMS change was 4.02%, and the largest transmitted-fraction change was 1.504 percentage points.
-Clipped-field results therefore retain percent-level sampling sensitivity. Independent replay of the terminal rays
-verified the image-plane intersection and RMS arithmetic to numerical precision, but did not constitute a second
-independent full-surface raytrace.
-
-The validation supports an explicitly inferred infinity development model. It does not establish exact production
-identity, finite-focus performance, physical shutter clearance, or completed browser/application integration.
+The stop position, rims, back focus and the 62 intermediate zoom stations are derived, as described above, and finite
+focusing is not modelled.
 
 ## Sources / References
 
-- **JP H03-39920 A**, 小型の高変倍ズームレンズ, 石坂 哲, applicant コニカ株式会社, published 1991-02-20.
-  Original eight-page Japanese publication: front-page parties and dates; printed pp. 246–247 for design rationale;
-  p. 247 for Example 1; p. 248 for its asphere and group ratios; Fig. 1 for the optical arrangement; Fig. 2 for the
-  three f-numbers and field annotations. [Searchable patent record](https://patents.google.com/patent/JPH0339920A/en).
-  Database romanization and modern assignee normalization are not substituted for the primary-source attribution.
-- **Haruki Nakayama, Hironobu Mikoshiba, and Akira Ishisaka**, *Optical Systems and Lens Control Systems for Compact
-  Zoom Cameras with a Zooming Ratio of 3*, **Konica Technical Report**, vol. 5, January 1992, pp. 110–114.
-  Page 110 supplies the bilingual author line; pp. 111–112 identify AiBORG and explain the architecture; §3.1 and
-  Fig. 3-1 document the mechanical arrangement; reference 1 on p. 114 cites JP H03-39920 A.
-  [Official manufacturer PDF](https://research.konicaminolta.com/jp/pdf/technology_report/1992/pdf/19.pdf).
+- **JP H03-39920 A**, 小型の高変倍ズームレンズ, 石坂 哲, applicant コニカ株式会社, published 1991-02-20: gazette pp.
+  246–247 for the design rationale, p. 247 for Example 1, p. 248 for its asphere and conditions, Fig. 1 for the
+  sections and Fig. 2 for the aberration curves.
+  [Patent record](https://patents.google.com/patent/JPH0339920A/en).
+- **Haruki Nakayama, Hironobu Mikoshiba and Akira Ishisaka**, _Optical Systems and Lens Control Systems for Compact
+  Zoom Cameras with a Zooming Ratio of 3_, Konica Technical Report vol. 5, January 1992, pp. 110–114: p. 110 for the
+  authors and the camera photograph, pp. 111–112 for the zoom-type choice, §3.1 and Fig. 3-1 for the lens section,
+  §4 and Figs. 4-2 and 4-3 for the focus control, and reference 1 on p. 114.
+  [Konica Minolta PDF](https://research.konicaminolta.com/jp/pdf/technology_report/1992/pdf/19.pdf).
+- **Konica AiBORG instruction manual**, English specifications, printed p. 92: lens, F3.8–F8.5 and the 0.8 m
+  autofocus range. [Manual scan](https://www.butkus.org/chinon/konica/konica_aiborg/konica_aiborg.htm).
+- **Camera Legend**, "The Force Awakens: The Konica AiBorg aka 'Vader Cam'", 2015: 1991 introduction.
+  [Article](https://cameralegend.com/2015/12/18/the-force-awakens-the-konica-aiborg-aka-vader-cam/).

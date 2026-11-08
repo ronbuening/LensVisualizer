@@ -1,31 +1,99 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
 /**
- * AiBORG-associated JPH0339920A Example 1, explicitly inferred and infinity-only.
- * All published R/D/nd/Vd and surface 18 asphere values are preserved; source D7 = 1.20 mm.
- * STO is a modeled zero-thickness plane 0.70 mm after S14 inside literal D14 = 1.40 mm.
- * D24 is derived from the unchanged d-line infinity ABCD matrix, not source-tabulated.
- * Clear apertures are conservative Fig. 1 estimates. No gap-sag override is used.
- * The 65 zoom nodes comprise 3 published anchors and 62 inferred intermediate nodes.
- * Their group-gap interpolation is not a recovered factory cam. Finite focus is not reconstructed.
- * Primary inventor 石坂哲 is romanized Akira Ishisaka by the manufacturer paper.
- * Element focal lengths are isolated-in-air calculations, not in-situ source measurements.
- * The maker-to-patent link does not establish an exact production prescription match.
+ * ╔══════════════════════════════════════════════════════════════════════════════╗
+ * ║ LENS DATA — KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)                   ║
+ * ╠══════════════════════════════════════════════════════════════════════════════╣
+ * ║ Source: JP H03-39920 A (特開平3-39920), Example 1 (第1実施例), Akira         ║
+ * ║ Ishisaka (石坂 哲, romanized as in Konica's report) / Konica Corporation.    ║
+ * ║ Prescription and zoom table on gazette pp. 247-248; Fig. 1 is the optical    ║
+ * ║ section at wide, middle and tele; Fig. 2 the aberration curves.              ║
+ * ║ Konica's January 1992 technical report on the AiBORG camera cites this       ║
+ * ║ publication (its reference 1), and its Fig. 3-1 lens section shows the same  ║
+ * ║ 13-element layout. Example 1 is the patent's only 13-element example.        ║
+ * ║ 13 elements / 11 groups in four zoom groups, + - + -. One aspherical surface ║
+ * ║ (S18) on a plastic element. Native patent scale; no scaling.                 ║
+ * ║                                                                              ║
+ * ║ PRINTED VS DERIVED                                                           ║
+ * ║ - All 24 radii, the fixed spacings, the 13 nd/νd pairs, the S18 K/A4/A6 and  ║
+ * ║   D3/D9/D18 at f = 36.03 / 62.13 / 102.91 mm (F3.8 / 5.7 / 8.5) are as       ║
+ * ║   printed. The patent writes 1 + K under the root, the same conic convention ║
+ * ║   as this file.                                                              ║
+ * ║ - No back focus is printed. BF (after S24) is the d-line paraxial infinity   ║
+ * ║   image distance: 3.998 / 24.084 / 47.840 mm at the published stations.      ║
+ * ║ - The table traces to EFL 36.033 / 62.128 / 102.937 mm against the printed   ║
+ * ║   36.03 / 62.13 / 102.91 mm; catalog design values are the printed ones.     ║
+ * ║                                                                              ║
+ * ║ ZOOM                                                                         ║
+ * ║ - G1 and G3 move as one unit (D3 + D9 = 14.40 mm); every group moves         ║
+ * ║   objectward from wide to tele. D3, D9, D18 and BF change with zoom only.    ║
+ * ║ - 65 stations: the three printed rows plus 62 interpolated stations          ║
+ * ║   (published: false). D3/D9/D18 are linear in station index between printed  ║
+ * ║   rows; BF is solved at every station, because a linear BF would defocus     ║
+ * ║   mid-segment by up to 2.29 mm. Intermediate f-numbers are linear between    ║
+ * ║   the printed values. The interpolation is not the factory cam.              ║
+ * ║                                                                              ║
+ * ║ STOP                                                                         ║
+ * ║ - Not printed. Fig. 1 marks the diaphragm between L8 and L9, claim 4 places  ║
+ * ║   the stop in or behind G3, and the maker's section (Konica Technical Report ║
+ * ║   vol. 5, Fig. 3-1) has the shutter there. STO splits D14 = 1.40 mm into     ║
+ * ║   0.70 + 0.70 mm. Its radius follows each station's f-number; the diameter   ║
+ * ║   is 9.31, 10.08 and 10.17 mm at the printed stations.                       ║
+ * ║                                                                              ║
+ * ║ SEMI-DIAMETERS                                                               ║
+ * ║ - Not printed; set from the relative rim sizes of Fig. 1 (front and rear     ║
+ * ║   rims about 14.5 mm as drawn) and kept inside the drawn outlines. The       ║
+ * ║   wide-angle corners vignette heavily, and S22-S24 are smaller than the      ║
+ * ║   full-format image-circle check asks for, as drawn.                         ║
+ * ║                                                                              ║
+ * ║ FOCUS                                                                        ║
+ * ║ - Claim 2 and the maker report put focusing on G2 (inner focus to 0.8 m). No ║
+ * ║   close-focus spacings are printed, so the model is infinity-only: both      ║
+ * ║   focus rows repeat the infinity spacings.                                   ║
+ * ║                                                                              ║
+ * ║ SOURCE INCONSISTENCY — UNRESOLVED (source.errata)                            ║
+ * ║ - Fig. 2(b)/(c) spherical aberration disagrees with the Example 1 table: the ║
+ * ║   model gives about -0.12 mm (middle) and +0.22 mm (tele) where the plots    ║
+ * ║   show about +0.20 and -0.14 mm; the wide end agrees (-0.08 against about    ║
+ * ║   -0.07 mm). No single change to any R, d, N, K/A4/A6 or zoom gap reproduces ║
+ * ║   the plots while keeping the stated focal lengths. J-PlatPat lists an       ║
+ * ║   amendment (手続補正書) that has not been seen. All printed values are      ║
+ * ║   kept.                                                                      ║
+ * ║                                                                              ║
+ * ║ GLASS                                                                        ║
+ * ║ - Twelve elements carry OHARA catalog names whose nd matches the printed     ║
+ * ║   value to five decimals and νd within 0.05; they are spectral proxies, not  ║
+ * ║   the production supplier. L10 is plastic per the patent (nd 1.49200, νd     ║
+ * ║   58.3) and has no catalog curve.                                            ║
+ * ╚══════════════════════════════════════════════════════════════════════════════╝
  */
+
 const LENS_DATA = {
   schema: 2,
-  key: "konica-aiborg-jph0339920a-example1-inferred",
+  key: "konica-aiborg-35-105mm-f38-85",
   maker: "Konica",
-  name: "Konica AiBORG-associated development candidate (infinity only)",
-  subtitle: "JPH0339920A Example 1; inferred apertures, stop and image plane",
-  visible: false,
+  name: "KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)",
+  subtitle: "JP H03-39920 A, Example 1 — cited in Konica's AiBORG design report",
+  visible: true,
   catalog: {
     lensMounts: ["fixed-lens-camera"],
     imageFormat: "135-full-frame",
+    specs: [
+      "13 ELEMENTS / 11 GROUPS",
+      "DESIGN f = 36.03–102.91 mm",
+      "DESIGN F/3.8–8.5",
+      "1 ASPHERICAL SURFACE / 1 ELEMENT",
+      "PLASTIC ASPHERICAL ELEMENT",
+    ],
     elementCount: 13,
     groupCount: 11,
     focalLengthMm: {
       marketing: [35, 105],
-      design: [36.03320258836365, 102.9374505933397],
+      design: [36.03, 102.91],
+    },
+    fNumber: {
+      marketing: 3.8,
+      design: 3.8,
     },
   },
   source: {
@@ -37,6 +105,12 @@ const LENS_DATA = {
     patentYear: 1991,
     authors: ["Akira Ishisaka"],
     assignees: ["Konica Corporation"],
+    errata: [
+      {
+        status: "unresolved",
+        note: "The middle and tele spherical-aberration curves of Fig. 2(b) and 2(c) disagree with the Example 1 table: the table traces to about −0.12 mm at the middle station and +0.22 mm at tele, where the plots show about +0.20 and −0.14 mm. The wide end agrees (−0.08 mm against about −0.07 mm in Fig. 2(a)). No single change to any radius, spacing, index, S18 coefficient or zoom gap reproduces the plots while keeping the stated focal lengths. J-PlatPat lists an amendment to this publication that has not been seen. All printed values are kept.",
+      },
+    ],
   },
   elements: [
     {
@@ -46,10 +120,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.4,
-      glass: "Patent nd/Vd; production supplier unspecified",
+      focalLengthMm: -78.74075599105264,
+      glass: "S-TIH6 (OHARA)",
+      role: "Negative flint member of the cemented front doublet; G1 is weakly positive and moves with G3.",
       diagramLabel: "L1",
       cemented: "D1",
-      focalLengthMm: -78.74075599105264,
     },
     {
       id: 2,
@@ -58,10 +133,11 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.65844,
       vd: 50.9,
-      glass: "Patent nd/Vd; production supplier unspecified",
+      focalLengthMm: 50.79131919261921,
+      glass: "S-BSM25 (OHARA)",
+      role: "Positive crown member of the cemented front doublet.",
       diagramLabel: "L2",
       cemented: "D1",
-      focalLengthMm: 50.79131919261921,
     },
     {
       id: 3,
@@ -70,9 +146,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.6,
-      glass: "Patent nd/Vd; production supplier unspecified",
-      diagramLabel: "L3",
       focalLengthMm: -22.004885548272977,
+      glass: "S-LAH66 (OHARA)",
+      role: "Front negative element of the G2 focusing group, with an almost flat front face.",
+      diagramLabel: "L3",
     },
     {
       id: 4,
@@ -81,9 +158,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.71736,
       vd: 29.5,
-      glass: "Patent nd/Vd; production supplier unspecified",
-      diagramLabel: "L4",
       focalLengthMm: 22.772343379157018,
+      glass: "S-TIH1 (OHARA)",
+      role: "Positive flint element between the two negatives of G2.",
+      diagramLabel: "L4",
     },
     {
       id: 5,
@@ -92,9 +170,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.6968,
       vd: 55.5,
-      glass: "Patent nd/Vd; production supplier unspecified",
-      diagramLabel: "L5",
       focalLengthMm: -33.29115193162658,
+      glass: "S-LAL14 (OHARA)",
+      role: "Rear negative element of G2, its stronger concave face toward the object.",
+      diagramLabel: "L5",
     },
     {
       id: 6,
@@ -103,9 +182,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.59551,
       vd: 39.2,
-      glass: "Patent nd/Vd; production supplier unspecified",
-      diagramLabel: "L6",
       focalLengthMm: 32.0017811089907,
+      glass: "S-TIM8 (OHARA)",
+      role: "Positive front element of G3.",
+      diagramLabel: "L6",
     },
     {
       id: 7,
@@ -114,10 +194,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      glass: "Patent nd/Vd; production supplier unspecified",
+      focalLengthMm: -22.967923438502968,
+      glass: "S-TIH53 (OHARA)",
+      role: "Dense-flint negative member of the cemented G3 doublet ahead of the stop.",
       diagramLabel: "L7",
       cemented: "D2",
-      focalLengthMm: -22.967923438502968,
     },
     {
       id: 8,
@@ -126,10 +207,11 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.51633,
       vd: 64.1,
-      glass: "Patent nd/Vd; production supplier unspecified",
+      focalLengthMm: 20.81069061007162,
+      glass: "S-BSL7 (OHARA)",
+      role: "Positive crown member of the cemented G3 doublet; the stop follows it.",
       diagramLabel: "L8",
       cemented: "D2",
-      focalLengthMm: 20.81069061007162,
     },
     {
       id: 9,
@@ -138,9 +220,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.58144,
       vd: 40.7,
-      glass: "Patent nd/Vd; production supplier unspecified",
-      diagramLabel: "L9",
       focalLengthMm: 56.47744110803131,
+      glass: "S-TIL25 (OHARA)",
+      role: "Positive element directly behind the stop.",
+      diagramLabel: "L9",
     },
     {
       id: 10,
@@ -149,9 +232,10 @@ const LENS_DATA = {
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.492,
       vd: 58.3,
-      glass: "Patent nd/Vd; plastic, formulation and supplier unspecified",
-      diagramLabel: "L10",
       focalLengthMm: 444.37220961889915,
+      glass: "Unmatched (patent-specified plastic; nd 1.49200, νd 58.3 fit a PMMA-type acrylic)",
+      role: "Nearly powerless plastic corrector closing G3; its rear asphere weakens the off-axis positive power to curb astigmatism.",
+      diagramLabel: "L10",
     },
     {
       id: 11,
@@ -160,9 +244,10 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.72342,
       vd: 38,
-      glass: "Patent nd/Vd; production supplier unspecified",
-      diagramLabel: "L11",
       focalLengthMm: 30.619436029740264,
+      glass: "S-BAH28 (OHARA)",
+      role: "Positive meniscus at the front of the negative rear group G4.",
+      diagramLabel: "L11",
     },
     {
       id: 12,
@@ -171,9 +256,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.713,
       vd: 53.9,
-      glass: "Patent nd/Vd; production supplier unspecified",
-      diagramLabel: "L12",
       focalLengthMm: -18.62656564423339,
+      glass: "LAL8 (OHARA)",
+      role: "Strongest negative element of G4.",
+      diagramLabel: "L12",
     },
     {
       id: 13,
@@ -182,9 +268,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.6968,
       vd: 55.5,
-      glass: "Patent nd/Vd; production supplier unspecified",
-      diagramLabel: "L13",
       focalLengthMm: -62.72578160225004,
+      glass: "S-LAL14 (OHARA)",
+      role: "Rear negative meniscus closing G4.",
+      diagramLabel: "L13",
     },
   ],
   surfaces: [
@@ -363,379 +450,316 @@ const LENS_DATA = {
       {
         focalLengthMm: 36.54581398667345,
         nominalFNumber: 3.859375,
-        label: "Inferred 1/64",
         published: false,
       },
       {
         focalLengthMm: 37.07097051716553,
         nominalFNumber: 3.9187499999999997,
-        label: "Inferred 2/64",
         published: false,
       },
       {
         focalLengthMm: 37.609127241691844,
         nominalFNumber: 3.978125,
-        label: "Inferred 3/64",
         published: false,
       },
       {
         focalLengthMm: 38.16076142028084,
         nominalFNumber: 4.0375,
-        label: "Inferred 4/64",
         published: false,
       },
       {
         focalLengthMm: 38.72637388067751,
         nominalFNumber: 4.096875,
-        label: "Inferred 5/64",
         published: false,
       },
       {
         focalLengthMm: 39.30649049053696,
         nominalFNumber: 4.15625,
-        label: "Inferred 6/64",
         published: false,
       },
       {
         focalLengthMm: 39.90166374136112,
         nominalFNumber: 4.215625,
-        label: "Inferred 7/64",
         published: false,
       },
       {
         focalLengthMm: 40.51247445420142,
         nominalFNumber: 4.275,
-        label: "Inferred 8/64",
         published: false,
       },
       {
         focalLengthMm: 41.13953361818923,
         nominalFNumber: 4.334375,
-        label: "Inferred 9/64",
         published: false,
       },
       {
         focalLengthMm: 41.78348437412042,
         nominalFNumber: 4.39375,
-        label: "Inferred 10/64",
         published: false,
       },
       {
         focalLengthMm: 42.44500415662372,
         nominalFNumber: 4.453125,
-        label: "Inferred 11/64",
         published: false,
       },
       {
         focalLengthMm: 43.12480700990402,
         nominalFNumber: 4.5125,
-        label: "Inferred 12/64",
         published: false,
       },
       {
         focalLengthMm: 43.82364609369355,
         nominalFNumber: 4.571875,
-        label: "Inferred 13/64",
         published: false,
       },
       {
         focalLengthMm: 44.542316397890296,
         nominalFNumber: 4.63125,
-        label: "Inferred 14/64",
         published: false,
       },
       {
         focalLengthMm: 45.28165768644495,
         nominalFNumber: 4.690625,
-        label: "Inferred 15/64",
         published: false,
       },
       {
         focalLengthMm: 46.04255769340438,
         nominalFNumber: 4.75,
-        label: "Inferred 16/64",
         published: false,
       },
       {
         focalLengthMm: 46.82595559667483,
         nominalFNumber: 4.809375,
-        label: "Inferred 17/64",
         published: false,
       },
       {
         focalLengthMm: 47.63284579807275,
         nominalFNumber: 4.86875,
-        label: "Inferred 18/64",
         published: false,
       },
       {
         focalLengthMm: 48.46428204164007,
         nominalFNumber: 4.928125,
-        label: "Inferred 19/64",
         published: false,
       },
       {
         focalLengthMm: 49.32138190607324,
         nominalFNumber: 4.9875,
-        label: "Inferred 20/64",
         published: false,
       },
       {
         focalLengthMm: 50.20533171152546,
         nominalFNumber: 5.046875,
-        label: "Inferred 21/64",
         published: false,
       },
       {
         focalLengthMm: 51.117391886067786,
         nominalFNumber: 5.10625,
-        label: "Inferred 22/64",
         published: false,
       },
       {
         focalLengthMm: 52.05890284284433,
         nominalFNumber: 5.165625,
-        label: "Inferred 23/64",
         published: false,
       },
       {
         focalLengthMm: 53.03129142553261,
         nominalFNumber: 5.225,
-        label: "Inferred 24/64",
         published: false,
       },
       {
         focalLengthMm: 54.03607798727323,
         nominalFNumber: 5.284375,
-        label: "Inferred 25/64",
         published: false,
       },
       {
         focalLengthMm: 55.074884176911866,
         nominalFNumber: 5.34375,
-        label: "Inferred 26/64",
         published: false,
       },
       {
         focalLengthMm: 56.14944151640284,
         nominalFNumber: 5.403125,
-        label: "Inferred 27/64",
         published: false,
       },
       {
         focalLengthMm: 57.261600864776405,
         nominalFNumber: 5.4625,
-        label: "Inferred 28/64",
         published: false,
       },
       {
         focalLengthMm: 58.41334287745345,
         nominalFNumber: 5.521875,
-        label: "Inferred 29/64",
         published: false,
       },
       {
         focalLengthMm: 59.606789585215786,
         nominalFNumber: 5.581250000000001,
-        label: "Inferred 30/64",
         published: false,
       },
       {
         focalLengthMm: 60.84421723520479,
         nominalFNumber: 5.640625,
-        label: "Inferred 31/64",
         published: false,
       },
       {
         focalLengthMm: 62.13,
         nominalFNumber: 5.7,
-        label: "Middle",
         published: true,
       },
       {
         focalLengthMm: 62.97186625983003,
         nominalFNumber: 5.7875000000000005,
-        label: "Inferred 33/64",
         published: false,
       },
       {
         focalLengthMm: 63.83453354095857,
         nominalFNumber: 5.875,
-        label: "Inferred 34/64",
         published: false,
       },
       {
         focalLengthMm: 64.71668834485615,
         nominalFNumber: 5.9625,
-        label: "Inferred 35/64",
         published: false,
       },
       {
         focalLengthMm: 65.618973517332,
         nominalFNumber: 6.05,
-        label: "Inferred 36/64",
         published: false,
       },
       {
         focalLengthMm: 66.54206028885265,
         nominalFNumber: 6.1375,
-        label: "Inferred 37/64",
         published: false,
       },
       {
         focalLengthMm: 67.48664985662322,
         nominalFNumber: 6.225,
-        label: "Inferred 38/64",
         published: false,
       },
       {
         focalLengthMm: 68.45347507365673,
         nominalFNumber: 6.3125,
-        label: "Inferred 39/64",
         published: false,
       },
       {
         focalLengthMm: 69.44330225336472,
         nominalFNumber: 6.4,
-        label: "Inferred 40/64",
         published: false,
       },
       {
         focalLengthMm: 70.45693309899401,
         nominalFNumber: 6.4875,
-        label: "Inferred 41/64",
         published: false,
       },
       {
         focalLengthMm: 71.49520676810442,
         nominalFNumber: 6.575,
-        label: "Inferred 42/64",
         published: false,
       },
       {
         focalLengthMm: 72.55900208324142,
         nominalFNumber: 6.6625,
-        label: "Inferred 43/64",
         published: false,
       },
       {
         focalLengthMm: 73.64923990102827,
         nominalFNumber: 6.75,
-        label: "Inferred 44/64",
         published: false,
       },
       {
         focalLengthMm: 74.76688565308167,
         nominalFNumber: 6.8375,
-        label: "Inferred 45/64",
         published: false,
       },
       {
         focalLengthMm: 75.91295207346545,
         nominalFNumber: 6.925,
-        label: "Inferred 46/64",
         published: false,
       },
       {
         focalLengthMm: 77.08850212885905,
         nominalFNumber: 7.0125,
-        label: "Inferred 47/64",
         published: false,
       },
       {
         focalLengthMm: 78.29465216923529,
         nominalFNumber: 7.1,
-        label: "Inferred 48/64",
         published: false,
       },
       {
         focalLengthMm: 79.53257531865812,
         nominalFNumber: 7.1875,
-        label: "Inferred 49/64",
         published: false,
       },
       {
         focalLengthMm: 80.80350512781705,
         nominalFNumber: 7.275,
-        label: "Inferred 50/64",
         published: false,
       },
       {
         focalLengthMm: 82.10873951218508,
         nominalFNumber: 7.3625,
-        label: "Inferred 51/64",
         published: false,
       },
       {
         focalLengthMm: 83.44964500219265,
         nominalFNumber: 7.45,
-        label: "Inferred 52/64",
         published: false,
       },
       {
         focalLengthMm: 84.82766133464986,
         nominalFNumber: 7.5375,
-        label: "Inferred 53/64",
         published: false,
       },
       {
         focalLengthMm: 86.24430641781267,
         nominalFNumber: 7.625,
-        label: "Inferred 54/64",
         published: false,
       },
       {
         focalLengthMm: 87.70118170605657,
         nominalFNumber: 7.7125,
-        label: "Inferred 55/64",
         published: false,
       },
       {
         focalLengthMm: 89.19997802412728,
         nominalFNumber: 7.8,
-        label: "Inferred 56/64",
         published: false,
       },
       {
         focalLengthMm: 90.74248188546558,
         nominalFNumber: 7.8875,
-        label: "Inferred 57/64",
         published: false,
       },
       {
         focalLengthMm: 92.3305823542019,
         nominalFNumber: 7.975,
-        label: "Inferred 58/64",
         published: false,
       },
       {
         focalLengthMm: 93.96627850619275,
         nominalFNumber: 8.0625,
-        label: "Inferred 59/64",
         published: false,
       },
       {
         focalLengthMm: 95.65168755101188,
         nominalFNumber: 8.15,
-        label: "Inferred 60/64",
         published: false,
       },
       {
         focalLengthMm: 97.38905368422606,
         nominalFNumber: 8.2375,
-        label: "Inferred 61/64",
         published: false,
       },
       {
         focalLengthMm: 99.1807577477329,
         nominalFNumber: 8.325,
-        label: "Inferred 62/64",
         published: false,
       },
       {
         focalLengthMm: 101.02932778553956,
         nominalFNumber: 8.4125,
-        label: "Inferred 63/64",
         published: false,
       },
       {
@@ -749,11 +773,11 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.8,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: infinity only. Close-focus states duplicate infinity and are not a solved finite conjugate.",
+      "Inner focus: the negative second group G2 moves toward the object to focus down to 0.8 m (patent claim 2; Konica's AiBORG report, Fig. 4-2). The patent prints no close-focus spacings, so focusing is not modelled and both focus states repeat the infinity spacings.",
   },
   gaps: {
     "3": {
-      label: "D3: source anchors / inferred interpolation",
+      label: "D3",
       values: [
         [6.4, 6.4],
         [6.473750000000001, 6.473750000000001],
@@ -823,7 +847,7 @@ const LENS_DATA = {
       ],
     },
     "9": {
-      label: "D9: source anchors / inferred interpolation",
+      label: "D9",
       values: [
         [8, 8],
         [7.92625, 7.92625],
@@ -893,7 +917,7 @@ const LENS_DATA = {
       ],
     },
     "18": {
-      label: "D18: source anchors / inferred interpolation",
+      label: "D18",
       values: [
         [13.37, 13.37],
         [13.1315625, 13.1315625],
@@ -963,7 +987,7 @@ const LENS_DATA = {
       ],
     },
     "24": {
-      label: "D24 (derived infinity)",
+      label: "BF",
       values: [
         [3.99815974187686, 3.99815974187686],
         [4.397488277440493, 4.397488277440493],

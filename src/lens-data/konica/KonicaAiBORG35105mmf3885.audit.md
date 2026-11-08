@@ -1,0 +1,107 @@
+# Audit Log — KONICA LENS 35-105mm f/3.8-8.5 (Konica AiBORG)
+
+Patent: JP H03-39920 A, Example 1 (第1実施例); local `patents/JPH0339920A.pdf`, tables on gazette pp. 247–248, Fig. 1
+and Fig. 2 on pp. 249–250.
+
+## 2026-11-07 — Package history
+
+The lens arrived as a data file and analysis without an audit log; this section condenses the package notes.
+
+- Source: Example 1 transcribed from the J-PlatPat keyed text and checked against the gazette scan. All 24 radii, the
+  fixed spacings (including D7 = 1.20 mm), 13 nd/νd pairs, the S18 K/A4/A6 and the three D3/D9/D18 rows are as
+  printed. The patent writes 1 + K under the root, the same conic convention as the schema.
+- Derived values: no back focus is printed, so D24 is the d-line paraxial infinity image distance (3.998 / 24.084 /
+  47.840 mm). No stop is printed; STO splits D14 = 1.40 mm into 0.70 + 0.70 mm, from the Fig. 1 diaphragm mark between
+  L8 and L9. Semi-diameters are conservative readings of Fig. 1 (S8–S9 at 8.0 mm against about 8.16 mm drawn); no
+  gap-sag override.
+- Zoom: 65 stations, the three printed rows plus 62 interpolated ones. D3/D9/D18 are linear in station index between
+  printed rows, BF is solved at every station, and intermediate f-numbers are linear between the printed values.
+- Focus: infinity only. `closeFocusM` 0.8 is the maker's minimum focus distance; both focus rows repeat infinity.
+- Production link: Konica Technical Report vol. 5 (January 1992) names the AiBORG, describes the +−+− four-group
+  architecture with G2 inner focus, and cites this publication as reference 1.
+- Package results kept as historical figures, not re-run: with the mid-gap stop, sampled full-field transmission was
+  about 58% at wide, 94% at the middle station and 98% at tele, and the axial geometric RMS spot at the paraxial image
+  plane was about 9 µm at all three printed stations.
+- The package delivered the lens hidden, under the key `konica-aiborg-jph0339920a-example1-inferred` and a descriptive
+  working name, with source-code glass strings ("Patent nd/Vd; production supplier unspecified").
+
+## 2026-11-08 — Deployment validation and production cleanup
+
+Source re-read: gazette pp. 247–248 were rendered at 200 dpi and compared with the data file: 24 radii, 20 fixed
+spacings, 13 nd/νd pairs, K = 0.19205, A4 = 0.49648 × 10⁻⁴, A6 = 0.14617 × 10⁻⁶ and nine zoom gaps. No mismatch.
+The earlier validator's 300-dpi check of the same pages also found none. Example 2's printed D1 = 9.80 mm looks like a
+misprint for 0.80 mm; it does not affect Example 1.
+
+First-order values, patent against model (unchanged before and after this pass):
+
+| Quantity | Patent | Model |
+| --- | --- | --- |
+| EFL, wide / middle / tele | 36.03 / 62.13 / 102.91 mm | 36.033 / 62.128 / 102.937 mm |
+| F-number | 3.8 / 5.7 / 8.5 | 3.8 / 5.7 / 8.5 (station values) |
+| Back focus | not printed | 3.998 / 24.084 / 47.840 mm |
+| Telephoto ratio, wide / tele | 1.93 / 1.0 | 1.935 / 1.0015 |
+| M2T/M2W, M3T/M3W, M4T/M4W | 1.05, 1.20, 2.27 | 1.055, 1.194, 2.267 |
+| \|φ1/φ2\| | 0.19 | 0.187 |
+| Half-field, wide / tele | 30.3° / 11.65° (2ω 60.6° / 23.3°) | chief ray reaches 21.65 mm at 30.3° / 11.6° |
+| Axial spherical aberration, full aperture | Fig. 2: about −0.07 / +0.20 / −0.14 mm | −0.078 / −0.121 / +0.221 mm |
+
+The engine's display half-field at wide is 24.87°, limited by S1 under its paraxial-aim chief-ray test; the
+field-coverage audit reaches the 21.65 mm corner at every station. Stop radius 4.656 / 5.039 / 5.082 mm and FOPEN 3.8 at
+wide are unchanged.
+
+Spherical aberration conflict: the wide end agrees with Fig. 2(a), but the middle and tele curves have the opposite
+sign to the traced table. The validator found that no single change to any R, d, N, K/A4/A6 or zoom gap reproduces
+Fig. 2(b) and 2(c) while keeping the stated focal lengths. Recorded as an unresolved `source.errata` entry; all printed
+values are kept.
+
+Maker-diagram comparison: the report's Fig. 3-1 (p. 112) shows 2 / 3 / 5 / 3 elements, a flat-fronted first G2
+element, and the shutter blades between the cemented L7/L8 pair and L9, slightly nearer L8. Example 1 matches it element
+for element; Examples 2 and 3 have 12 elements. The mid-gap stop in D14 sits in the same space. The report's camera
+photograph (p. 110) shows the lens ring engraved KONICA LENS JAPAN 35-105. Konica's instruction manual (English
+specifications, printed p. 92) gives "Konica zoom lens, 35mm F3.8-105mm F8.5" and autofocus from 0.8 m. This settles
+the marketed aperture: Camera Legend's f/3.5–8.5 is not followed; Kamerastore's f/3.8 agrees with the manual.
+
+Fields changed in the data file:
+
+- `key`: `konica-aiborg-jph0339920a-example1-inferred` → `konica-aiborg-35-105mm-f38-85`.
+- `name`: `Konica AiBORG-associated development candidate (infinity only)` → `KONICA LENS 35-105mm f/3.8-8.5 (Konica
+  AiBORG)`, from the lens-ring engraving in the maker report and the manual's aperture.
+- `subtitle`: → `JP H03-39920 A, Example 1 — cited in Konica's AiBORG design report`.
+- `visible`: false → true.
+- `catalog`: added `specs` (13 elements / 11 groups, design f 36.03–102.91 mm, design F/3.8–8.5, one aspherical
+  surface, plastic aspherical element); `focalLengthMm.design` → the printed [36.03, 102.91] (was the traced values);
+  added `fNumber` { marketing 3.8, design 3.8 }. Mount, format and counts unchanged. `catalog.closeFocusM` is not added
+  because the model's 0.8 m equals the maker's.
+- `source.errata`: added the unresolved Fig. 2(b)/(c) entry.
+- Header comment rewritten in the house block.
+- Elements: fields reordered to the schema order, a `role` added to each, and glass relabelled. Twelve elements now
+  carry OHARA names that resolve in the engine with nd equal to the printed five decimals and |Δνd| ≤ 0.05: S-TIH6
+  (L1), S-BSM25 (L2), S-LAH66 (L3), S-TIH1 (L4), S-LAL14 (L5, L13), S-TIM8 (L6), S-TIH53 (L7), S-BSL7 (L8), S-TIL25
+  (L9), S-BAH28 (L11) and LAL8 (L12; the current S-LAL8 is 1.71299, so the older LAL8 entry is the exact match). L10 is
+  `Unmatched (patent-specified plastic; nd 1.49200, νd 58.3 fit a PMMA-type acrylic)`, following the repo's PMMA-type
+  and patent-plastic labels; the glass catalog has no PMMA curve. No `apd` tags.
+- Zoom station labels reduced to Wide and Tele (the 62 "Inferred n/64" labels and the Middle label removed);
+  `published` flags unchanged.
+- Gap labels: `D3` / `D9` / `D18` (were "source anchors / inferred interpolation") and `BF` (was "D24 (derived
+  infinity)").
+- `focus.description`: G2 inner focus to 0.8 m per claim 2 and the report, model infinity-only.
+
+No R, d, nd, νd, asphere coefficient, stop position, `sd`, gap value, station or `closeFocusM` changed. `built.mjs`
+and `probe.mjs` outputs are byte-identical before and after.
+
+Rims: the aperture audit finds all 65 stations within 3% of the stated f-number with no rim, trace or iris limit, so
+no rim was touched. The image-circle audit reports S22, S23 and S24 undersized by 0.27, 2.05 and 3.25 mm against the
+full-frame floor. This matches the rear rims drawn in Fig. 1 and the heavy wide-angle corner vignetting the drawing
+implies; the rims were not widened. The surface audit is OK.
+
+Analysis rewritten to the analysis-spec skeleton: the development framing, transmission and RMS sampling prose and
+interpolation-error figures were removed; the Fig. 3-1 match, the report's zoom-type rationale and G2 control scheme,
+the manual's aperture and close focus, and the release year (Camera Legend) were added.
+
+Open:
+
+- J-PlatPat lists an amendment (手続補正書) to JP H03-39920 A that has not been seen. It may correct the Example 1 table
+  or Fig. 2; read it before resolving the spherical-aberration erratum.
+- The cause of the Fig. 2(b)/(c) mismatch is unknown.
+- The report's references 2 and 3 (特願平1-257884, 特願平2-66942) were not checked.
+- Production glasses, clear apertures, stop diameter, zoom cam and focusing travel are not published.
