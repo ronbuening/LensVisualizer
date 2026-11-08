@@ -114,9 +114,11 @@ function elementDispersionRows(info: ElementData, L: RuntimeLens): ElementDisper
       surfaceLabel: L.S[idx]?.label ?? String(idx + 1),
       quality: entry.quality,
       qualityLabel:
-        entry.quality === "sellmeier" && (entry.glassEntry?.polynomial || entry.glassEntry?.powerSeries)
-          ? "Catalog polynomial"
-          : DISPERSION_QUALITY_LABEL[entry.quality],
+        entry.quality === "lineIndices" && info.indexReference === "D" && info.ng === undefined
+          ? "Measured C/D/F; g estimated"
+          : entry.quality === "sellmeier" && (entry.glassEntry?.polynomial || entry.glassEntry?.powerSeries)
+            ? "Catalog polynomial"
+            : DISPERSION_QUALITY_LABEL[entry.quality],
       glassName: entry.glassEntry?.name ?? null,
       indices: {
         R: entry.fn("R"),

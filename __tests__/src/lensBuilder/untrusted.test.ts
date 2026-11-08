@@ -433,3 +433,12 @@ describe("builder gate residuals from the security re-test", () => {
     expect(parseUntrustedDraft(changed("publishedAt", "2026-10-27")).ok).toBe(false);
   });
 });
+
+it("round trips native sodium D elements and rear plates without rewriting source coordinates", () => {
+  const draft = changed("elements.0.indexReference", "D");
+  draft.rearPlates = [{ label: "CG", thicknessMm: 1, nd: 1.517, vd: 60.2, indexReference: "D", gapAfterMm: 0, sd: 20 }];
+  const restored = importJson(exportJson(draft));
+  expect(restored.elements[0].indexReference).toBe("D");
+  expect(restored.rearPlates![0]).toMatchObject({ indexReference: "D", nd: 1.517, vd: 60.2 });
+  expect(exportDataTs(restored)).toContain('indexReference: "D"');
+});

@@ -124,10 +124,17 @@ export function assessMtfSpectralData(state: PreparedGeometry): MtfSpectralData 
     const element = lens.elements.find((e) => e.id === surface.elemId)?.source;
     if (dispersion.quality === "constant") return blocked("a glass has no Abbe number");
     if (element?.indexReference === "e") return blocked("an e-line glass has no catalog dispersion data");
+    if (dispersion.quality === "lineIndices" && element?.indexReference === "D" && element.ng === undefined) {
+      // The historical table constrains C/D/F, but interpolation still uses an estimated g node.
+      estimated.add(surface.elemId ?? -1 - i);
+      continue;
+    }
     if (dispersion.quality !== "abbe") continue;
     const vd = element?.vd ?? lens.indices.vdByIdx[i] ?? 0;
     if (vd > MTF_ESTIMATED_DISPERSION_MAX_VD && element?.dPgF === undefined)
-      return blocked(`a low-dispersion glass (νd ${vd.toFixed(1)}) has no partial-dispersion data`);
+      return blocked(
+        `a low-dispersion glass (ν${element?.indexReference ?? "d"} ${vd.toFixed(1)}) has no partial-dispersion data`,
+      );
     estimated.add(surface.elemId ?? -1 - i);
   }
   return {
@@ -152,7 +159,7 @@ export function resolveMtfSpectrum(state: PreparedGeometry, preferred: MtfSpectr
       spectrum: preferred,
       note:
         estimatedGlasses > 0
-          ? `Dispersion of ${estimatedGlasses === 1 ? "one glass" : `${estimatedGlasses} glasses`} is estimated from nd and νd.`
+          ? `Dispersion of ${estimatedGlasses === 1 ? "one glass" : `${estimatedGlasses} glasses`} is estimated from ${state.lens.elements.some((e) => e.source.indexReference === "D") ? "the authored reference data" : "nd and νd"}.`
           : null,
     };
   return {
@@ -207,7 +214,7 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
     .filter((e) => state.surfaces.some((s) => s.nd !== 1 && s.elemId === e.id));
   const references = new Set(media.map((e) => e.indexReference ?? "d"));
   const mixed = references.size > 1;
-  const referenceWavelengthNm = references.size === 1 && references.has("e") ? LINE_NM.e : LINE_NM.d;
+  const referenceWavelengthNm = references.size === 1 ? LINE_NM[media[0]?.indexReference ?? "d"] : LINE_NM.d;
   const support: MtfSupport = {
     available: true,
     reason: null,
@@ -294,11 +301,11 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
     );
   }
   if (mixed && lens.dispersion.some((s) => s.quality !== "air" && s.quality !== "sellmeier")) {
-    return reject("mixed-reference", "Mixed d/e indices need physical wavelength data for every glass.");
+    return reject("mixed-reference", "Mixed d/D/e indices need physical wavelength data for every glass.");
   }
   if (mixed)
     support.limitations.push(
-      "Mixed d/e references are converted to the d line with compatible catalog dispersion, anchored to each authored index.",
+      "Mixed d/D/e references are converted to the d line with compatible catalog dispersion, anchored to each authored index.",
     );
   if (options.spectrum !== "reference") {
     const label = MTF_SPECTRUM_LABELS[options.spectrum];
@@ -319,10 +326,12 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
       support.limitations.push(
         "Compatible catalog glasses supply spectral proxies anchored to the authored indices, not proof of production glass identity or MTF accuracy.",
       );
-    if (spectral.estimatedGlasses > 0)
+    if (spectral.estimatedGlasses > 0) {
+      const data = references.has("D") ? "incomplete spectral data" : "only nd and νd";
       support.limitations.push(
-        `${spectral.estimatedGlasses === 1 ? "One glass has only nd and νd; its" : `${spectral.estimatedGlasses} glasses have only nd and νd; their`} dispersion is estimated from normal-line partial dispersions, which keeps primary color exact but approximates secondary spectrum.`,
+        `${spectral.estimatedGlasses === 1 ? `One glass has ${data}; its` : `${spectral.estimatedGlasses} glasses have ${data}; their`} dispersion is estimated from normal-line partial dispersions, which keeps primary color exact but approximates secondary spectrum.`,
       );
+    }
   }
   if (options.method === "geometric")
     support.limitations.push(

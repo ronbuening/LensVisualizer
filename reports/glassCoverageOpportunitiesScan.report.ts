@@ -335,7 +335,7 @@ describe("glass coverage opportunities scan", () => {
             surface.nd,
             element.vd,
             element.dPgF,
-            element.indexReference === "e" ? null : extractGlassCode(element.glass),
+            (element.indexReference ?? "d") !== "d" ? null : extractGlassCode(element.glass),
             element.indexReference ?? "d",
           ),
           localPatent,

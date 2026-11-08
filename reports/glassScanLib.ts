@@ -358,14 +358,14 @@ export function findCandidates(
     .map<GlassScanCandidate>((entry) => {
       const compatibility = assessCatalogGlassCompatibility(entry, storedNd, storedVd, referenceLine);
       const nd = compatibility.catalogIndex;
-      const candidateAbbe = referenceLine === "d" ? entry.vd : evaluateCatalogAbbeNumber(entry, "e");
+      const candidateAbbe = referenceLine === "d" ? entry.vd : evaluateCatalogAbbeNumber(entry, referenceLine);
       const ndDiff = compatibility.indexDiff;
       const vdDiff = compatibility.abbeDiff;
       const pgfDiff = lensPgF !== null && entry.PgF !== undefined ? entry.PgF - lensPgF : null;
       // Distance combines |Δnd|*1000 (3-digit precision) + |Δvd|*10 (1-digit
       // precision) so each axis contributes proportionally to its resolution.
       const codeDistance =
-        referenceLine === "e" || embeddedCode === null
+        referenceLine !== "d" || embeddedCode === null
           ? null
           : Math.abs(nd - embeddedCode.nd) * 1000 + Math.abs(candidateAbbe - embeddedCode.vd) * 10;
 

@@ -25,6 +25,7 @@ import {
   resolveGlass,
 } from "../../../src/optics/chromatic/glassCatalog.js";
 import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
+import { assessMtfDataLimitations } from "../../../src/optics/analysis/mtf/mtfDataLimitations.js";
 import { anchoredIndexAtWavelength } from "../../../src/optics/chromatic/indexResolver.js";
 import type { MtfOptions } from "../../../src/types/mtf.js";
 
@@ -293,4 +294,53 @@ describe("qualified spectral MTF", () => {
     expect(resolveMtfSpectrum(resolved, "photopic")).toEqual({ spectrum: "photopic", note: null });
     expect(resolveMtfSpectrum(resolved, "reference")).toEqual({ spectrum: "reference", note: null });
   });
+});
+
+it("uses D for native reference MTF and physical d for an explicitly C/d/F spectrum", () => {
+  const L = buildSimplePositiveElementLens();
+  const entry = resolveGlass("N-BK7")!;
+  const nD = evaluateSellmeier(entry, LINE_NM.D);
+  const data = constructionFixtureData(L);
+  const native = build({
+    ...data,
+    elements: data.elements.map((e) => ({
+      ...e,
+      nd: nD,
+      vd: evaluateCatalogAbbeNumber(entry, "D"),
+      indexReference: "D",
+      glass: undefined,
+    })),
+    surfaces: data.surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : nD })),
+  });
+  const state = prepareRuntimeState(native, 0, 0);
+  expect(assessMtfSupport(...mtfInputs(state, { ...options, spectrum: "reference" }))).toMatchObject({
+    available: true,
+    referenceWavelengthNm: LINE_NM.D,
+    useResolvedReference: false,
+  });
+  expect(assessMtfSupport(...mtfInputs(state, options))).toMatchObject({
+    available: true,
+    referenceWavelengthNm: LINE_NM.d,
+    useResolvedReference: true,
+  });
+});
+
+it("qualifies the estimated g node in a historical C/D/F table", () => {
+  const L = buildSimplePositiveElementLens(),
+    data = constructionFixtureData(L);
+  const native = build({
+    ...data,
+    elements: data.elements.map((e) => ({ ...e, indexReference: "D", glass: undefined, nC: 1.514, nF: 1.523 })),
+  });
+  const state = prepareRuntimeState(native, 0, 0);
+  expect(resolveMtfSpectrum(state, "photopic").note).toContain("authored reference data");
+  const notes = assessMtfDataLimitations(state, {
+    preferredSpectrum: "photopic",
+    spectrum: "photopic",
+    referenceWavelengthNm: 555,
+    result: null,
+  });
+  expect(notes[0]).toMatchObject({ kind: "estimated-dispersion", blocking: true });
+  expect(notes[0].text).toContain("some wavelength indices are estimated");
+  expect(notes[0].text).not.toContain("only by nd and νd");
 });

@@ -404,7 +404,7 @@ document their stable model order.
   type: "Biconvex Positive", // REQUIRED: optical shape/type description
   nd: 1.90525, // REQUIRED: index at indexReference (d-line by default)
   vd: 35.04, // recommended: Abbe number at indexReference
-  indexReference: "d", // optional: "d" (default) or "e" for retained patent ne / νe values
+  indexReference: "d", // optional: "d" (default), "D" for sodium nD / νD, "e" for ne / νe
   focalLengthMm: 119.3, // recommended: element focal length, shown in the inspector
   glass: "S-LAH58 (OHARA)", // recommended: catalog glass; see Glass Identification
   apd: false, // optional: false (default) | "patent" | "inferred"
@@ -452,9 +452,28 @@ E-line color channels are traced at C′/e/F′/g on every dispersion tier, so n
 is safe; do not add d-line `nC` / `nF` to an e-line element. Writing `indexReference: "d"` or `apd: false` explicitly
 records that the author checked; both may also be left out.
 
+Use `"D"` when the source explicitly retains historical sodium `nD` / `νD`, with νD = (nD − 1)/(nF − nC).
+The engine uses **589.2938 nm**, the sodium doublet center in [SCHOTT Optical Glass 2025, Table 10.1](https://media.schott.com/api/public/content/ff189abcb12f498aa221f54fd0b2055c?download=true&v=6f322b4f).
+This is distinct from helium d (587.5618 nm), not an alias or a D-to-d conversion. Record a source that specifies a
+particular doublet component or another wavelength as unresolved rather than silently applying this center convention.
+Native D elements trace C/D/F/g; `nC` / `nF` / `ng` retain their ordinary physical wavelengths.
+Published D-reference C/F values take precedence over a catalog proxy even when g is absent. Named catalog curves
+must reproduce nD / νD at C/D/F, and remain spectral proxies; a six-digit d-line code alone cannot establish a D glass.
+The builder shows D materials as native nD / νD readouts; reconcile glass or spectral edits in Advanced JSON.
+The reference index always stays authored. Missing C/F values use the catalog-fitted P_D,C normal-line estimate;
+missing g uses the estimated d-coordinate image of the Schott normal line. These runtime estimates are not measured
+source data and must never be copied into authored fields. `dPgF` remains a deviation from the **d-coordinate** normal
+line, not a newly defined D-line deviation.
+
+If printed νD disagrees with published C/D/F indices, retain the literal indices and printed νD separately from the
+derived (nD − 1)/(nF − nC) result in the lens notes/audit. Do not change either to force agreement. Published C/F
+indices control their channels; g remains an estimate unless published too. The support does not resolve a source's
+focal-distance or aperture ambiguities. The inspector separates measured C/D/F from estimated g, and spectral MTF
+qualifies incomplete D-line spectral data with its estimated-dispersion warning.
+
 For a historical source whose spectral line is unspecified and fails the coordinate test below, keep an explicit
 `Unmatched (...)` glass disposition and add `indexReferenceNote` explaining the uncertainty and the approximate tracing
-reference. The inspector then labels the values `n (source)` / `ν (source)` instead of asserting d/e identity. The note
+reference. The inspector then labels the values `n (source)` / `ν (source)` instead of asserting d/D/e identity. The note
 does not change the tracing convention or enable catalog resolution.
 
 A source that names no line can still establish one numerically. Treat a table as d-line when at least 80% of its pairs
@@ -1693,8 +1712,8 @@ stored prescription is not resolved, and the element falls through to a lower-qu
 ### Round-trip verification
 
 When the dispersion engine resolves a `glass` string against a Sellmeier catalog, it rejects the resolution if the
-catalog coordinates disagree with the element's stored reference pair by more than Δn ±0.003 or Δν ±2. D-line rows are
-compared at C/d/F; native e-line rows at C′/e/F′, and they need an explicit name or alias. This catches accidental
+catalog coordinates disagree with the element's stored reference pair by more than Δn ±0.003 or Δν ±2. Helium d-line rows are
+compared at C/d/F; native sodium D rows at C/D/F and e rows at C′/e/F′. D/e rows need an explicit name or alias. This catches accidental
 relabels, but it does not replace the author's own check.
 
 Before committing a `glass` change, verify:
@@ -1706,7 +1725,7 @@ Before committing a `glass` change, verify:
    is not exact.
 3. The source reference is identified correctly. If the prescription keeps `ne` / `νe`, set `indexReference: "e"` and
    use only an explicit name or alias that round-trips at C′/e/F′. Do not rely on a six-digit d-line code for an
-   e-line row.
+   D- or e-line row. For retained nD / νD, use `indexReference: "D"` and check the named curve at C/D/F.
 
 When these do not hold, prefer the `Unmatched` form to a speculative match.
 

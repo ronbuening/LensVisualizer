@@ -226,3 +226,14 @@ describe("lens builder optical train", () => {
     expect(screen.getByRole("button", { name: "L1 material" })).toBeTruthy();
   });
 });
+
+it("keeps sodium source coordinates out of the d-line material picker", () => {
+  const initial = createTemplate();
+  initial.elements[0].indexReference = "D";
+  render(<Harness initial={initial} />);
+  const material = screen.getByRole("group", { name: "L1 sodium D material" });
+  expect(within(material).getByText(/nD 1.5168 · νD 64.17/)).toBeTruthy();
+  expect(within(material).getByText("Sodium D · edit in Advanced JSON")).toBeTruthy();
+  edit("L1 thickness", "4.1");
+  expect(latest.elements[0]).toMatchObject({ indexReference: "D", nd: 1.5168, vd: 64.17 });
+});

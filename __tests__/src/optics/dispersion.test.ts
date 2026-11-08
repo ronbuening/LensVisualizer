@@ -29,6 +29,7 @@ import {
   abbeLineIndices,
   makeSurfaceDispersion,
   normalLinePdC,
+  normalLinePDC,
   normalLinePeC,
   normalLinePgF,
   normalLinePgFPrime,
@@ -1083,4 +1084,101 @@ describe("buildLens integration with dispersion", () => {
       expect(typeof L.indexByIdx[i].fn).toBe("function");
     }
   });
+});
+
+describe("native sodium D material coordinates", () => {
+  const entry = resolveGlass("N-BK7")!;
+  const nD = evaluateSellmeier(entry, LINE_NM.D);
+  const vD = evaluateCatalogAbbeNumber(entry, "D");
+  const surface: SurfaceData = { R: 60, d: 6, sd: 10, label: "1", nd: nD, elemId: 1 };
+  const element: ElementData = { id: 1, name: "L1", label: "L1", type: "Test", nd: nD, vd: vD, indexReference: "D" };
+
+  it("matches named glass in C/D/F coordinates and refuses d-line code-only identification", () => {
+    expect(assessCatalogGlassCompatibility(entry, nD, vD, "D")).toMatchObject({
+      compatible: true,
+      catalogIndex: nD,
+      indexDiff: 0,
+      abbeDiff: 0,
+    });
+    expect(resolveCompatibleGlass("N-BK7", nD, vD, "D")).toBe(entry);
+    expect(resolveCompatibleGlass(entry.code6!, nD, vD, "D")).toBeNull();
+    expect(nD).toBeCloseTo(1.51673, 5); // SCHOTT's published N-BK7 nD; not nd=1.51680.
+    const anchored = makeSurfaceDispersion({ ...surface, nd: nD + 0.001 }, { ...element, glass: "N-BK7" }, undefined);
+    expect(anchored.quality).toBe("sellmeier");
+    expect(anchored.fn("G")).toBe(nD + 0.001);
+    expect(anchored.fn("R")).toBeCloseTo(evaluateSellmeier(entry, LINE_NM.C) + 0.001, 14);
+  });
+
+  it("retains measured C/D/F independently of a conflicting printed Abbe number", () => {
+    const spectral = { nC: 1.51, nF: 1.52, ng: 1.53 };
+    const d = makeSurfaceDispersion({ ...surface, nd: 1.515 }, { ...element, vd: 60.2 }, spectral);
+    expect(d.quality).toBe("lineIndices");
+    expect(CHROMATIC_CHANNEL_ORDER.map((ch) => d.fn(ch))).toEqual([spectral.nC, 1.515, spectral.nF, spectral.ng]);
+    const partial = makeSurfaceDispersion(
+      surface,
+      { ...element, glass: "N-BK7" },
+      { nC: spectral.nC, nF: spectral.nF },
+    );
+    expect(partial.quality).toBe("lineIndices");
+    expect(partial.fn("R")).toBe(spectral.nC);
+    expect(partial.fn("B")).toBe(spectral.nF);
+  });
+
+  it("estimates missing lines around D while retaining the exact Abbe span", () => {
+    const estimated = makeSurfaceDispersion(surface, element, undefined);
+    const dEstimate = abbeLineIndices(nD, vD);
+    expect(estimated.quality).toBe("abbe");
+    expect(estimated.fn("G")).toBe(nD);
+    expect(estimated.fn("B") - estimated.fn("R")).toBeCloseTo((nD - 1) / vD, 14);
+    expect(estimated.fn("R")).not.toBe(dEstimate.nC);
+    for (const glass of allEntries()) {
+      const c = evaluateSellmeier(glass, LINE_NM.C),
+        D = evaluateSellmeier(glass, LINE_NM.D),
+        f = evaluateSellmeier(glass, LINE_NM.F);
+      const v = (D - 1) / (f - c);
+      expect(Math.abs(normalLinePDC(v) - (D - c) / (f - c))).toBeLessThan(0.014);
+      const delta =
+        (evaluateSellmeier(glass, LINE_NM.g) - f) / (f - c) - normalLinePgF(evaluateCatalogAbbeNumber(glass));
+      const lines = abbeLineIndices(D, v, delta, "D");
+      expect(Math.abs(lines.nC - c) / (f - c)).toBeLessThan(0.014);
+      expect(Math.abs(lines.ng - evaluateSellmeier(glass, LINE_NM.g)) / (f - c)).toBeLessThan(0.02);
+    }
+  });
+
+  it.each(["sellmeier", "lineIndices", "abbe"] as const)(
+    "anchors arbitrary wavelengths at D on the %s tier",
+    (tier) => {
+      const base = buildSimplePositiveElementLens();
+      const native = build({
+        ...constructionFixtureData(base),
+        elements: base.elements.map((e) => ({
+          ...e,
+          ...element,
+          glass: tier === "sellmeier" ? "N-BK7" : undefined,
+          ...(tier === "lineIndices"
+            ? {
+                nC: evaluateSellmeier(entry, LINE_NM.C),
+                nF: evaluateSellmeier(entry, LINE_NM.F),
+                ng: evaluateSellmeier(entry, LINE_NM.g),
+              }
+            : {}),
+        })),
+        surfaces: constructionFixtureData(base).surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : nD })),
+      });
+      const state = prepareRuntimeState(native, 0, 0);
+      const index = state.surfaces.findIndex((s) => s.nd !== 1);
+      expect(state.lens.dispersion[index].quality).toBe(tier);
+      expect(anchoredIndexAtWavelength(state, index, LINE_NM.D)).toBeCloseTo(nD, 13);
+      expect(anchoredIndexAtWavelength(state, index, LINE_NM.d)).toBeGreaterThan(nD);
+      for (const [channel, nm] of [
+        ["R", LINE_NM.C],
+        ["B", LINE_NM.F],
+        ["V", LINE_NM.g],
+      ] as const)
+        expect(anchoredIndexAtWavelength(state, index, nm)).toBeCloseTo(
+          state.lens.dispersion[index].indexAt(channel),
+          13,
+        );
+    },
+  );
 });

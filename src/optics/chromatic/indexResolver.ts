@@ -10,7 +10,7 @@ import { compiledLensFromRuntime } from "../prescription/identity.js";
 import { abbeLineIndices } from "./materialResolver.js";
 import { evaluateSellmeier } from "./glassCatalog.js";
 import { LINE_NM } from "./spectralLines.js";
-import { CHROMATIC_CHANNEL_WAVELENGTH_NM, CHROMATIC_CHANNEL_ORDER } from "./channels.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM, D_LINE_CHANNEL_WAVELENGTH_NM, CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 
 /** Chromatic channels traced by the engine: C, d, F, and g spectral lines. */
 export const CHROMATIC_CHANNELS = CHROMATIC_CHANNEL_ORDER;
@@ -117,14 +117,14 @@ const referenceLineByLens = new WeakMap<CompiledLens, ReadonlyMap<number, number
  * Catalog Sellmeier substitution accepts glasses whose nd sits within a few 1e-3 of the authored value.
  * An analysis evaluated at a fixed image plane, such as MTF, would then defocus the design by that
  * offset rather than by dispersion. Anchoring keeps the authored index at the element's reference line
- * (d, or e for e-referenced elements) and borrows only the catalog's wavelength dependence. Line-index
- * and Abbe surfaces interpolate their C/d/F/g channels with a four-term Cauchy form; their d channel is
+ * (d, historical D, or e) and borrows only the catalog's wavelength dependence. Line-index
+ * and Abbe surfaces interpolate their C/d/F/g or C/D/F/g channels with a four-term Cauchy form; their d channel is
  * already the authored index, so they are anchored by construction. Callers must not request native
  * e-referenced non-catalog surfaces, whose channels are not physical C/d/F/g values.
  *
  * @param state - prepared optical state with compiled dispersion descriptors
  * @param surfaceIndex - physical surface index
- * @param wavelengthNm - vacuum wavelength in nanometres (435.8-656.3 nm stays within the fitted lines)
+ * @param wavelengthNm - wavelength in nanometres, on the catalog spectral-line convention (435.8-656.3 nm stays within the fitted lines)
  * @returns refractive index, or 1 for air and missing surfaces
  */
 export function anchoredIndexAtWavelength(
@@ -144,7 +144,7 @@ export function anchoredIndexAtWavelength(
       evaluateSellmeier(dispersion.glassEntry, referenceNm)
     );
   }
-  const coefficients = channelCauchyCoefficients(dispersion);
+  const coefficients = channelCauchyCoefficients(dispersion, elementReferenceLineNm(state.lens, surface.elemId));
   const inverseSquare = 1 / (wavelengthNm / 1000) ** 2;
   return coefficients.reduce((sum, coefficient, power) => sum + coefficient * inverseSquare ** power, 0);
 }
@@ -153,7 +153,7 @@ export function anchoredIndexAtWavelength(
  * Precompute anchored indices for every surface at one wavelength, for hot trace loops.
  *
  * @param state - prepared optical state
- * @param wavelengthNm - vacuum wavelength in nanometres
+ * @param wavelengthNm - wavelength in nanometres, on the catalog spectral-line convention
  * @returns surface-indexed refractive indices
  */
 export function anchoredIndexTable(state: PreparedOpticalState, wavelengthNm: number): Float64Array {
@@ -163,20 +163,22 @@ export function anchoredIndexTable(state: PreparedOpticalState, wavelengthNm: nu
 function elementReferenceLineNm(lens: CompiledLens, elementId: number | undefined): number {
   let byElement = referenceLineByLens.get(lens);
   if (!byElement) {
-    byElement = new Map(
-      lens.elements.map((element) => [element.id, element.source.indexReference === "e" ? LINE_NM.e : LINE_NM.d]),
-    );
+    byElement = new Map(lens.elements.map((element) => [element.id, LINE_NM[element.source.indexReference ?? "d"]]));
     referenceLineByLens.set(lens, byElement);
   }
   return (elementId !== undefined ? byElement.get(elementId) : undefined) ?? LINE_NM.d;
 }
 
-/** Solve n(λ) = a0 + a1/λ² + a2/λ⁴ + a3/λ⁶ exactly through the C, d, F, and g channel indices. */
-function channelCauchyCoefficients(dispersion: CompiledSurfaceDispersion): readonly number[] {
+/** Solve n(λ) = a0 + a1/λ² + a2/λ⁴ + a3/λ⁶ through the native d- or D-reference channel indices. */
+function channelCauchyCoefficients(dispersion: CompiledSurfaceDispersion, referenceNm: number): readonly number[] {
   const cached = cauchyCoefficientsByDispersion.get(dispersion);
   if (cached) return cached;
-  const size = CAUCHY_NODES_UM.length;
-  const rows = CAUCHY_NODES_UM.map((lambda, row) => [
+  const nodes =
+    referenceNm === LINE_NM.D
+      ? CHROMATIC_CHANNEL_ORDER.map((channel) => D_LINE_CHANNEL_WAVELENGTH_NM[channel] / 1000)
+      : CAUCHY_NODES_UM;
+  const size = nodes.length;
+  const rows = nodes.map((lambda, row) => [
     ...Array.from({ length: size }, (_, power) => (1 / (lambda * lambda)) ** power),
     dispersion.indexAt(CHROMATIC_CHANNEL_ORDER[row]),
   ]);

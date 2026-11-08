@@ -52,7 +52,7 @@ function lensFiles(dir) {
 /** One row per element that carries `dPgF` and resolves to a d-line catalog glass. */
 function readElement(element) {
   if (typeof element.dPgF !== "number" || typeof element.vd !== "number") return null;
-  if (element.indexReference === "e" || !element.glass) return null;
+  if ((element.indexReference !== undefined && element.indexReference !== "d") || !element.glass) return null;
   const entry = resolveCompatibleGlass(element.glass, element.nd, element.vd, element.indexReference);
   if (!entry) return null;
   const nC = evaluateSellmeier(entry, LINE_NM.C);

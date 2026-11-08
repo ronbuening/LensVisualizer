@@ -154,13 +154,13 @@ describe("glass relabel by lens scan", () => {
           storedDPgF: element.dPgF,
           catalogNd,
           catalogDiff,
-          embeddedCode: element.indexReference === "e" ? null : embeddedCode,
+          embeddedCode: (element.indexReference ?? "d") !== "d" ? null : embeddedCode,
           candidates: findCandidates(
             entries,
             surface.nd,
             element.vd,
             element.dPgF,
-            element.indexReference === "e" ? null : embeddedCode,
+            (element.indexReference ?? "d") !== "d" ? null : embeddedCode,
             element.indexReference ?? "d",
           ),
         });

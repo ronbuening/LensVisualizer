@@ -78,14 +78,17 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
               .filter(Boolean)
               .join("; ");
       const count = estimated.length;
+      const hasSodium = estimated.some((element) => element.indexReference === "D");
       if (count > 0)
         limitations.push({
           kind: "estimated-dispersion",
           blocking: true,
           text:
-            (count === glasses.length
-              ? "Every glass is known only by nd and νd, so all dispersion is estimated."
-              : `${count} of ${glasses.length} glasses (${names}) ${count === 1 ? "is" : "are"} known only by nd and νd, so ${count === 1 ? "its" : "their"} dispersion is estimated.`) +
+            (hasSodium
+              ? `Spectral data for ${names} is incomplete; some wavelength indices are estimated.`
+              : count === glasses.length
+                ? "Every glass is known only by nd and νd, so all dispersion is estimated."
+                : `${count} of ${glasses.length} glasses (${names}) ${count === 1 ? "is" : "are"} known only by nd and νd, so ${count === 1 ? "its" : "their"} dispersion is estimated.`) +
             ` Primary color stays exact; secondary spectrum in these ${label === "Photopic" ? "photopic" : label} curves is approximate.`,
         });
     }

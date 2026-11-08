@@ -105,7 +105,7 @@ describe("glass-relabel candidate scan", () => {
           storedVd: element.vd,
           storedDPgF: element.dPgF,
           referenceLine: element.indexReference ?? "d",
-          embeddedCode: element.indexReference === "e" ? null : extractGlassCode(element.glass),
+          embeddedCode: (element.indexReference ?? "d") !== "d" ? null : extractGlassCode(element.glass),
         });
       }
     });
