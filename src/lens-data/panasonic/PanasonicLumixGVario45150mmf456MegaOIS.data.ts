@@ -1,147 +1,244 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-// Frozen independently reviewed optical hypothesis. Only display/source metadata changes in this integration.
+/**
+ * PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S. (H-FS45150) — US 2013/0335617 A1, Numerical Example 4
+ * (Tables 13–16; Embodiment 4, Fig. 13, ¶¶0111–0119). Panasonic Corporation; inventors Takuya Imaoka, Tsuneo Uchida,
+ * Shunichiro Yoshinaga and Masafumi Sueyoshi. Filed 13 June 2013 with JP priority 15 June 2012 and 19 April 2013;
+ * granted later as US 9,250,423 B2. Patent millimetres and d-line indices, unscaled; no printed radius, thickness,
+ * index, Abbe number, asphere coefficient or variable spacing is altered. Surface 23 (a flat plane with BF 0) is the
+ * patent's image-side reference, not an optical surface, so the 18.9311 mm gap after surface 22 is the back focus.
+ *
+ * Production correlation: Panasonic lists 12 elements in 9 groups with two aspherical elements and one UHR element.
+ * Example 4 has that construction, with aspheres on the image sides of L6 (surface 10) and L9 (surface 16) and L8 at
+ * nd 2.00100. All eight of the patent's examples share this layout and these two aspherical surfaces, so Example 4 is
+ * a representative choice, not a unique match. Panasonic has not published the prescription.
+ *
+ * Six units (+ − + − − +). From wide to tele G1 moves monotonically toward the object, G3, G4 and G5 move on paths
+ * slightly convex toward the object, and G2 and G6 stay fixed (¶0118). The stop sits between L8 and L9 and moves with
+ * G3. Zoom varies D3, D8, D16, D18 and D20; D16 and D18 also change with focus. L9 alone (G3b) decentres for O.I.S.
+ * (¶0115); Example 4 needs 0.4457 mm at tele (¶0236). Decentring is not modelled.
+ *
+ * FOCUS: G4 (L10) moves toward the image for close focus (¶0119). All six printed states are kept: infinity (Table 15)
+ * and close focus (Table 16) at the wide, middle and tele stations. The patent gives the close object distance as
+ * 1000 mm without naming its reference point; the printed close gaps focus paraxially on an object 1000.15 / 1000.02 /
+ * 999.99 mm in front of surface 1, so the distance is read from the first surface. Each station's closeFocusM is that
+ * 1000 mm plus the station's first-surface-to-image length. G4 travels 0.8654 / 2.1859 / 5.4529 mm. Panasonic's 0.9 m
+ * minimum focus is not in the patent and is not modelled.
+ *
+ * BETWEEN STATIONS: zoom interpolates the printed gaps linearly; this is not the production cam. The paraxial focus
+ * then sits up to about 0.57 mm ahead of the image plane near zoomT 0.3 and up to about 2.67 mm behind it near zoomT
+ * 0.8 (EFL about 116 mm). Interpolated close states focus between about 760 and 1130 mm from surface 1.
+ *
+ * STOP: surface 14 as printed. Its radius is derived from the printed F-numbers 4.16038 / 5.24260 / 5.75634 (about
+ * 5.16–5.18 mm at all three stations), not from a published iris diameter. F/22 and seven blades are Panasonic's.
+ *
+ * SEMI-DIAMETERS: not printed. Estimated from Fig. 13(a) (wide, infinity) and floor-checked by real-ray trace; an
+ * independent re-measurement of the figure agrees within about 5 %. G2 (surfaces 4–8) is 7.4 mm against about 7.7 mm
+ * drawn: at 7.7 mm the facing L4 rear and L5 front sags would fill 97 % of their 1.1474 mm air gap, and at 7.4 mm they
+ * fill 89 %. Axial bundles at the printed F-numbers and chief rays to the printed 10.815 mm image height clear every
+ * rim at every station, at infinity and at close focus. The rims vignette the corner bundle: at the printed half-field
+ * up to about two-thirds of one side of the meridional bundle is cut at G1, about half at G2 and about a fifth at L6
+ * and L10.
+ *
+ * ASPHERES: the patent's κ sits in the (1 + κ) form, the engine's convention, and is 0 on both surfaces; even orders
+ * A4–A10 (Table 14).
+ *
+ * Glass names are nd/νd catalog equivalents that select a dispersion curve; supplier and melt are not established.
+ * Table 15 prints overall lengths of 91.9007 / 107.1967 / 129.9016 mm; the printed d values sum to 91.8999 /
+ * 107.1952 / 129.8999 mm. The d values are kept.
+ */
 const LENS_DATA = {
   schema: 2,
-  key: "panasonic-45-150-e4-research-preflight",
+  key: "panasonic-lumix-g-vario-45-150mm-f4-56-mega-ois",
   maker: "Panasonic",
-  name: "PANASONIC 45–150mm family — conditional patent model",
-  subtitle:
-    "Three literal infinity and three 1000 mm first-surface object-distance endpoints; intermediate zoom/focus and OIS motion are not certified",
+  name: "PANASONIC LUMIX G VARIO 45-150mm f/4.0-5.6 ASPH. MEGA O.I.S.",
+  subtitle: "US 2013/0335617 A1, Numerical Example 4 — representative of eight near-identical examples",
   visible: true,
   catalog: {
+    lensMounts: ["micro-four-thirds"],
+    imageFormat: "four-thirds",
     imageCircleMm: 21.63,
+    specs: [
+      "12 ELEMENTS / 9 GROUPS",
+      "DESIGN f = 45.40–144.00 mm",
+      "DESIGN F/4.16–5.76",
+      "2 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "1 UHR ELEMENT",
+    ],
     elementCount: 12,
     groupCount: 9,
     focalLengthMm: {
-      design: [45.4004, 144.0003],
+      marketing: [45, 150],
+      design: [45.4, 144],
     },
     fNumber: {
-      design: 4.16038,
+      marketing: 4,
+      design: 4.16,
     },
-    specs: [
-      "Conditional source example; exact production identity unproved",
-      "Six literal source endpoints; schematic caps and inferred iris",
-      "CONDITIONAL PATENT RESEARCH; exact factory prescription unproved",
-      "Three literal infinity and three 1000 mm first-surface object-distance endpoints; intermediate zoom/focus and OIS motion are not certified",
-      "Inferred schematic clear apertures and F/N-derived iris; physical closures and dispersion unproved",
-      "Substantial off-axis clipping retained; numerical convergence is not measured product performance",
-    ],
+    closeFocusM: {
+      marketing: 0.9,
+    },
+  },
+  source: {
+    patentNumber: "US 2013/0335617 A1",
+    example: {
+      label: "Numerical Example 4",
+      id: "4",
+    },
+    patentYear: 2013,
+    authors: ["Takuya Imaoka", "Tsuneo Uchida", "Shunichiro Yoshinaga", "Masafumi Sueyoshi"],
+    assignees: ["Panasonic Corporation"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "Source element 1",
-      type: "Source glass element",
+      label: "Element 1",
+      type: "Negative Meniscus",
       nd: 1.8061,
       vd: 33.3,
-      glass: "Unmatched (1.80610/33.30)",
-      cemented: "D1",
+      indexReference: "d",
+      focalLengthMm: -116.7785,
+      glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Flint negative meniscus, convex toward the object, at the front of the cemented first-group doublet",
+      cemented: "L1+L2",
     },
     {
       id: 2,
       name: "L2",
-      label: "Source element 2",
-      type: "Source glass element",
+      label: "Element 2",
+      type: "Biconvex Positive",
       nd: 1.56384,
       vd: 60.8,
-      glass: "Unmatched (1.56384/60.80)",
-      cemented: "D1",
+      indexReference: "d",
+      focalLengthMm: 56.5348,
+      glass: "S-BAL41 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Crown biconvex positive of the cemented first-group doublet; the element of the patent's conditions (1) and (2)",
+      cemented: "L1+L2",
     },
     {
       id: 3,
       name: "L3",
-      label: "Source element 3",
-      type: "Source glass element",
+      label: "Element 3",
+      type: "Biconcave Negative",
       nd: 1.8061,
       vd: 33.3,
-      glass: "Unmatched (1.80610/33.30)",
-      cemented: "D2",
+      indexReference: "d",
+      focalLengthMm: -18.1726,
+      glass: "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Strong biconcave negative opening the fixed second group, cemented to L4",
+      cemented: "L3+L4",
     },
     {
       id: 4,
       name: "L4",
-      label: "Source element 4",
-      type: "Source glass element",
+      label: "Element 4",
+      type: "Positive Meniscus",
       nd: 1.94595,
       vd: 18,
-      glass: "Unmatched (1.94595/18.00)",
-      cemented: "D2",
+      indexReference: "d",
+      focalLengthMm: 24.5438,
+      glass: "FDS18 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Very high-dispersion positive meniscus, convex toward the object, cemented behind L3 in the second group",
+      cemented: "L3+L4",
     },
     {
       id: 5,
       name: "L5",
-      label: "Source element 5",
-      type: "Source glass element",
+      label: "Element 5",
+      type: "Biconcave Negative",
       nd: 1.72825,
       vd: 28.3,
-      glass: "Unmatched (1.72825/28.30)",
+      indexReference: "d",
+      focalLengthMm: -45.5606,
+      glass: "E-FD10 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Biconcave negative closing the fixed second group",
     },
     {
       id: 6,
       name: "L6",
-      label: "Source element 6",
-      type: "Source glass element",
+      label: "Element 6",
+      type: "Biconvex Positive (1× Asph)",
       nd: 1.80998,
       vd: 40.9,
-      glass: "Unmatched (1.80998/40.90)",
+      indexReference: "d",
+      focalLengthMm: 21.9455,
+      glass: "K-VC89 (SUMITA catalog equivalent, a moulding glass; production supplier unspecified)",
+      role: "High-index biconvex positive opening the third group, aspherical on its image side (surface 10)",
     },
     {
       id: 7,
       name: "L7",
-      label: "Source element 7",
-      type: "Source glass element",
+      label: "Element 7",
+      type: "Biconvex Positive",
       nd: 1.72916,
       vd: 54.7,
-      glass: "Unmatched (1.72916/54.70)",
-      cemented: "D3",
+      indexReference: "d",
+      focalLengthMm: 17.2785,
+      glass: "S-LAL18 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "High-index biconvex positive of the cemented doublet ahead of the stop",
+      cemented: "L7+L8",
     },
     {
       id: 8,
       name: "L8",
-      label: "Source element 8",
-      type: "Source glass element",
+      label: "Element 8",
+      type: "Biconcave Negative",
       nd: 2.001,
       vd: 29.1,
-      glass: "Unmatched (2.00100/29.10)",
-      cemented: "D3",
+      indexReference: "d",
+      focalLengthMm: -10.2099,
+      glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "UHR biconcave negative (nd 2.001) of the cemented doublet, directly ahead of the stop",
+      cemented: "L7+L8",
     },
     {
       id: 9,
       name: "L9",
-      label: "Source element 9",
-      type: "Source glass element",
+      label: "Element 9",
+      type: "Biconvex Positive (1× Asph)",
       nd: 1.5176,
       vd: 63.5,
-      glass: "Unmatched (1.51760/63.50)",
+      indexReference: "d",
+      focalLengthMm: 34.3781,
+      glass: "D-K59 (CDGM catalog equivalent, a moulding glass; production supplier unspecified)",
+      role: "O.I.S. element behind the stop (sub-unit G3b), aspherical on its image side (surface 16); its stabilizing shift is not modelled",
     },
     {
       id: 10,
       name: "L10",
-      label: "Source element 10",
-      type: "Source glass element",
+      label: "Element 10",
+      type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.6,
-      glass: "Unmatched (1.77250/49.60)",
+      indexReference: "d",
+      focalLengthMm: -40.3398,
+      glass: "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Negative meniscus, convex toward the object, forming the focus group G4; moves toward the image for close focus",
     },
     {
       id: 11,
       name: "L11",
-      label: "Source element 11",
-      type: "Source glass element",
+      label: "Element 11",
+      type: "Negative Meniscus",
       nd: 1.48749,
       vd: 70.4,
-      glass: "Unmatched (1.48749/70.40)",
+      indexReference: "d",
+      focalLengthMm: -83.7515,
+      glass: "FK5 (SUMITA catalog equivalent; production supplier unspecified)",
+      role: "Weak crown negative meniscus, concave toward the object, forming the zooming unit G5",
     },
     {
       id: 12,
       name: "L12",
-      label: "Source element 12",
-      type: "Source glass element",
+      label: "Element 12",
+      type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
-      glass: "Unmatched (1.84666/23.80)",
+      indexReference: "d",
+      focalLengthMm: 54.815,
+      glass: "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Dense-flint positive meniscus, concave toward the object, forming the fixed rear group G6",
     },
   ],
   surfaces: [
@@ -303,7 +400,7 @@ const LENS_DATA = {
       {
         focalLengthMm: 45.4004,
         nominalFNumber: 4.16038,
-        closeFocusM: 1.0918998999999998,
+        closeFocusM: 1.0918999,
         label: "Wide",
         publishedFocus: [1],
       },
@@ -317,16 +414,16 @@ const LENS_DATA = {
       {
         focalLengthMm: 144.0003,
         nominalFNumber: 5.75634,
-        closeFocusM: 1.1298998999999998,
+        closeFocusM: 1.1298999,
         label: "Tele",
         publishedFocus: [1],
       },
     ],
   },
   focus: {
-    closeFocusM: 1.0918998999999998,
+    closeFocusM: 1.0918999,
     description:
-      "Literal source G4 L10 internal focus;1000mm object-to-first-vertex. Intermediate interpolations not certified.",
+      "PUBLISHED: the patent prints infinity and a close state with the object 1000 mm in front of the first lens surface at the wide, middle and tele stations. For close focus G4 (L10) moves toward the image by 0.87, 2.19 and 5.45 mm at the three stations. Positions between the printed stations interpolate the printed gaps linearly and are not the production cam, so between the middle and tele stations the image can sit up to about 2.7 mm from best focus and the indicated close distance is approximate. Panasonic's 0.9 m minimum focus is not in the patent and is not modelled.",
     conjugates: [
       {
         zoomStation: 0,
@@ -334,7 +431,7 @@ const LENS_DATA = {
         objectDistanceMm: 1000,
         distanceReference: "first-surface",
         source:
-          "US20130335617A1 NumericalExample4 Tables13–16, literal object distance and spacings; first-vertex interpretation supported by independent paraxial conjugacy.",
+          "US 2013/0335617 A1, Numerical Example 4, Tables 15 and 16: printed close-focus gaps for a 1000 mm object distance, which the gaps focus when it is measured from the first lens surface",
       },
       {
         zoomStation: 1,
@@ -342,7 +439,7 @@ const LENS_DATA = {
         objectDistanceMm: 1000,
         distanceReference: "first-surface",
         source:
-          "US20130335617A1 NumericalExample4 Tables13–16, literal object distance and spacings; first-vertex interpretation supported by independent paraxial conjugacy.",
+          "US 2013/0335617 A1, Numerical Example 4, Tables 15 and 16: printed close-focus gaps for a 1000 mm object distance, which the gaps focus when it is measured from the first lens surface",
       },
       {
         zoomStation: 2,
@@ -350,7 +447,7 @@ const LENS_DATA = {
         objectDistanceMm: 1000,
         distanceReference: "first-surface",
         source:
-          "US20130335617A1 NumericalExample4 Tables13–16, literal object distance and spacings; first-vertex interpretation supported by independent paraxial conjugacy.",
+          "US 2013/0335617 A1, Numerical Example 4, Tables 15 and 16: printed close-focus gaps for a 1000 mm object distance, which the gaps focus when it is measured from the first lens surface",
       },
     ],
   },
@@ -399,6 +496,7 @@ const LENS_DATA = {
   aperture: {
     fStops: [4.16038, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
+    blades: 7,
   },
   groups: [
     {
@@ -434,33 +532,23 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "L1+L2",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "D2",
+      text: "L3+L4",
       fromSurface: "4",
       toSurface: "6",
     },
     {
-      text: "D3",
+      text: "L7+L8",
       fromSurface: "11",
       toSurface: "13",
     },
   ],
   layout: {
     yScFill: 0.3,
-  },
-  source: {
-    patentNumber: "US 2013/0335617 A1",
-    example: {
-      label: "Numerical Example 4",
-      id: "4",
-    },
-    patentYear: 2013,
-    authors: ["Takuya Imaoka", "Tsuneo Uchida", "Shunichiro Yoshinaga", "Masafumi Sueyoshi"],
-    assignees: ["Panasonic Corporation"],
   },
 } satisfies LensDataV2Input;
 
