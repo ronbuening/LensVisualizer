@@ -5,7 +5,7 @@
 **Filed:** 25 March 2021
 **Published:** 27 April 2022
 **Inventors:** Vladimir Aleksandrovich Bogdankov; Ilya Anatolevich Levin
-**Assignee:** Krasnogorsk Mechanical Plant (PAO KMZ)
+**Assignee:** PJSC Krasnogorsky Zavod named after S. A. Zverev (PAO KMZ)
 **Title:** Wide-angle fast objective (Широкоугольный сверхсветосильный объектив)
 **Example details:** Table 1, printed p. 7; optical layout and polychromatic MTF in Figs. 1–2, p. 9. Native 36 mm dimensions, without scaling.
 

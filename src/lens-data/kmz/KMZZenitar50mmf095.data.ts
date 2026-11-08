@@ -87,7 +87,7 @@ const LENS_DATA = {
       "Ilya Anatolevich Levin"
     ],
     "assignees": [
-      "Krasnogorsk Mechanical Plant"
+      "PJSC Krasnogorsky Zavod named after S. A. Zverev"
     ]
   },
   "elements": [

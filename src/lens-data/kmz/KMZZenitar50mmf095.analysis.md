@@ -5,7 +5,7 @@
 **Filed:** 26 December 2019
 **Published:** 10 July 2020 (Bulletin No. 19)
 **Inventors:** Vladimir Aleksandrovich Bogdankov, Ilya Anatolevich Levin
-**Assignee:** Krasnogorsk Mechanical Plant (printed as PAO "Krasnogorskij zavod im. S.A. Zvereva", PAO KMZ)
+**Assignee:** PJSC Krasnogorsky Zavod named after S. A. Zverev (printed as PAO "Krasnogorskij zavod im. S.A. Zvereva", PAO KMZ)
 **Title:** Сверхсветосильный фотографический объектив (ultra-fast photographic lens)
 **Example details:** Table 1, printed pp. 7–8; lens section Fig. 1 and polychromatic MTF Fig. 2, p. 10. The table is printed at f′ = 52 mm and is used without scaling.
 

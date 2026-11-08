@@ -201,3 +201,8 @@ so its left half (1.89 mm at 5.28 px/mm) overhangs the 1.65 mm air space, and th
 land's 20.1 mm corner. No figure-supported land clears it: the land would have to drop to about 19.0 mm (Fig. 1 draws
 19.9, flush with the 20.1 mm cemented rim) or stand 0.3 mm further forward, which would cut face 11 below its printed
 15.45 mm clear radius.
+
+Assignee: `source.assignees` now reads "PJSC Krasnogorsky Zavod named after S. A. Zverev", the conventional English form
+of the patent holder printed on the front page (PAO "Krasnogorskij zavod im. S.A. Zvereva", PAO KMZ). The earlier
+"Krasnogorsk Mechanical Plant" is the plant's Soviet-era name (1941–1993), a different historical entity under
+LENS_DATA_SPEC's assignee rule. Both KMZ files carry the same spelling.

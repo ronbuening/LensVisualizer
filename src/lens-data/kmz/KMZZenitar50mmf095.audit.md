@@ -229,3 +229,8 @@ low-softening moulding glass, unlikely for a ground spherical element.
 
 Open: exact factory prescription and revision; the production melts; the close-focus movement; a maker optical
 section.
+
+Assignee: `source.assignees` now reads "PJSC Krasnogorsky Zavod named after S. A. Zverev", the conventional English form
+of the patent holder printed on the front page (PAO "Krasnogorskij zavod im. S.A. Zvereva", PAO KMZ). The earlier
+"Krasnogorsk Mechanical Plant" is the plant's Soviet-era name (1941–1993), a different historical entity under
+LENS_DATA_SPEC's assignee rule. Both KMZ files carry the same spelling.
