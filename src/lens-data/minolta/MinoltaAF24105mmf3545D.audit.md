@@ -103,7 +103,8 @@ Patent: JP 2000-187161 A, Example 3 (Minolta Co., Ltd.; Mamoru Terada)
   (10.59 mm measured) with the front face bending back near its rim, and cutting both faces to 9.71 mm would cost
   7.6 points of corner light at the wide end, so the 10.6 mm rim stays.
 - Close focus: Gr2 rows for 0.5 m could be added as calculated (not published) states from the solve above.
-- Cement layer form: drawn element kept for chromatic support; revisit if undrawn media gain a dispersion field.
+- Closed 2026-11-08 (third review): cement layer form. The owner's decision for these branches keeps a printed cement
+  layer as a drawn element, so C1 stays (νd 42.83, dispersion estimated from νd, so no medium is constant).
 
 ## 2026-11-08 — Second review: diagram, labels and movement
 
@@ -211,6 +212,55 @@ Patent: JP 2000-187161 A, Example 3 (Minolta Co., Ltd.; Mamoru Terada)
 
 - Open (updated 2026-11-08): with HOYA FF8 on L6 the g-line focus follows Fig. 7 within about 0.02 mm at wide and
   mid; at tele it sits about 0.08 mm short (paraxial −0.018 mm against the figure's +0.06 mm), where the νd estimate
-  ran 0.20 mm long. No single label tested here removes the tele residual.
-- Open: wide-end distortion traces about 0.8 % less barrel at the corner than Fig. 7 shows; mid and tele agree.
-  Cause not identified.
+  ran 0.20 mm long. No single label tested here removes the tele residual. Third review: a partial-dispersion
+  excess of +0.02 / +0.03 on L1 (Unmatched 1.83350/21.00), usual for dense flints near νd 21, moves the tele g focus
+  to +0.033 / +0.058 mm and keeps wide and mid within about 0.02 mm of the figure; the patent prints no θgF and no
+  catalog glass lies within the window, so no `dPgF` is set.
+- Closed 2026-11-08 (third review): wide-end distortion. The W and M distortion panels print their left end tick as
+  "−6.0", but the zero line sits midway between the end ticks, as on the T panel printed −5.0 / 5.0, so every panel
+  spans ±5 %. Read that way, Fig. 7 gives −2.9 % / +2.5 % / +3.8 % at the corner and a wide-end minimum of −3.9 %
+  near 83 % height; an independent real-ray trace gives −2.78 % / +2.55 % / +3.65 % and −3.81 %. The wide gaps and
+  the r7, r24 and r25 coefficients match the table on publication page (11).
+
+## 2026-11-08 — Third review: diagram, labels and movement
+
+### What was compared
+
+- The live page at 24.71, 50 and 102.5 mm, both movement overlays and the inspectors of L1, C1, L2, L4, L6 and L12,
+  against Fig. 3 read at its native 200 dpi. Scale re-proven: 20 vertex crossings fit 0.2549 mm per native pixel
+  (the second review's 0.0854 mm per 600-dpi pixel), every vertex within 0.25 mm; the r2 and r5 arcs give the same
+  vertical scale within about 1 %.
+
+### Change
+
+| Item                          | Before         | After | Fig. 3 reading                                      | Verdict            |
+| ----------------------------- | -------------- | ----- | --------------------------------------------------- | ------------------ |
+| S8 `rimExtensionSd` (L4 edge) | none           | 13.8  | edge flat at 13.4 / 13.9 mm for 3 mm, then a step   | land kept; 0.0 pts |
+| `checks.gapSagFrac`           | 0.90 (default) | 0.93  | —                                                   | needed by the land |
+
+- The page drew L4 as a 46° bevel from the 13.8 mm front rim straight to the 10.0 mm rear rim, about 2.8 mm below
+  the figure's edge 3 mm behind the front rim. Fig. 3 draws a cylindrical edge at about 13.7 mm, then a step down
+  to the rear face near z = 18.9–19.3 mm (r7 vertex at 15.11 mm); the land draws that step at the r8 rim sag,
+  z = 19.90 mm. Both `sd` values are unchanged.
+- The land takes 5.954 mm of the 6.433 mm d8 and clears the L5 rim by 0.48 mm. The validator refuses it at 0.92
+  (allowed 5.918 mm) and passes it at 0.93.
+- Second-review land and cut verdicts re-measured: unchanged; worst loss 0.0 points at the three stations and at
+  nine zoom fractions, and the new land alone costs 0.0 points. Engine half-field 36.21° and FOPEN 3.6 are
+  unchanged.
+
+### Re-checked and found correct
+
+- Every type agrees with the signs of R, and the twelve standalone focal lengths recompute to the file's values.
+  C1 shows FL = — (its own focal length would be about 4.6 km) and no badge; L1 and L2 show DOUBLET L1+L2; no
+  TRIPLET appears. Brackets, the stop between L7 and L8, and the A markers on 7A, 24A and 25A are as drawn. Slider
+  ends read 24.71 / 102.5 mm, f/3.6 / f/22 and ∞ / "Not modeled".
+- Movement overlay: all four groups move toward the object from wide to tele, Gr1 by 40.08 mm.
+- Glass: the five Unmatched glasses and the cement recur in Examples 1, 2 and 4 (the patent has four examples); the
+  patent prints Nd and νd only (¶0037). In the resolver window only L4 has candidates: M-TAFD305, already traced,
+  and Hikari Q-LASFH58S (1.85108/40.12), which moves the tele g focus to −0.057 mm, further from Fig. 7's +0.06 mm,
+  so L4 stays Unmatched. The local HOYA, OHARA and Sumita catalogs hold nothing else in the window.
+- Colour: every medium has a dispersion curve (seven catalog Sellmeier, six νd estimates including C1); none is
+  constant. Fig. 7's C and g starting points re-read as the second review gives them.
+- Assignee: the front page prints ミノルタ株式会社 (applicant 000006079), "Minolta Co., Ltd.", the spelling the other
+  four Minolta Co., Ltd. files use; no variant in the catalog.
+- Open lines left: the tele g residual (updated above) and the unmodelled close focus.

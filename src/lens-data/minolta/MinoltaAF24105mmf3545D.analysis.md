@@ -187,10 +187,10 @@ Example 3 is outside condition (4): its f1/fW = 3.5605 exceeds the 3.50 upper li
 - Focus is infinity-only; no close-focus spacing is printed.
 - Positions between the three printed focal lengths are interpolated linearly and are not the production cam.
 - The stop diameter is not printed; the engine sizes the stop from the printed F-number at each station (f/3.6, f/4.1 and f/4.6).
-- Semi-diameters are measured from Fig. 3 and checked against ray clearance, not printed. L1 is square-cut at 28.8 mm on both faces, wider than the 26.8 mm rim of L2, as the figure draws it. The deep rear face of L4 is held at 10.0 mm so that it keeps an air gap to L5 at the rim.
+- Semi-diameters are measured from Fig. 3 and checked against ray clearance, not printed. L1 is square-cut at 28.8 mm on both faces, wider than the 26.8 mm rim of L2, as the figure draws it. The deep rear face of L4 is held at 10.0 mm so that it keeps an air gap to L5 at the rim; as in the figure, L4's edge runs flat at 13.8 mm and steps down to that face.
 - At the 21.63 mm image height the wide-end corner bundle loses about half its width at the Gr1 rims; that vignetting is kept.
 - The traced full-aperture longitudinal spherical aberration is −0.169 / −0.083 / −0.155 mm at wide / mid / tele.
-- A real chief ray at 42.0° reaches the 21.63 mm corner at the wide end, about −2.8 % barrel distortion; at the middle and tele positions the corner is reached at 22.9° and 11.5°, about +2.6 % and +3.6 % pincushion.
+- A real chief ray at 42.0° reaches the 21.63 mm corner at the wide end, about −2.8 % barrel distortion; at the middle and tele positions the corner is reached at 22.9° and 11.5°, about +2.6 % and +3.6 % pincushion. Fig. 7 plots about −2.9 %, +2.5 % and +3.8 % at the corner; its wide-end curve is deepest, about −3.9 %, near 83 % of the image height, where the trace gives −3.8 %.
 
 ## Sources
 

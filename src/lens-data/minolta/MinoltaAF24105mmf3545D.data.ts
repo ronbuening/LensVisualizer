@@ -19,9 +19,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: no diameter is printed; the engine sizes r15 from the F-number at each station.
  * Semi-diameters are measured from Fig. 3 (0.0854 mm per px at 600 dpi from the r1-r25 vertex spacing; the r2 arc
  * confirms the same vertical scale) and floor-checked by ray trace; none is printed. S8 is held at 10.0 mm, below the
- * figure's 10.3-10.5 mm, so the deep L4 rear face keeps an air gap to L5 at the rim; L4's 13.8 mm front face and
- * 10.0 mm rear face are joined by an oblique edge. L1 is square-cut at 28.8 mm on both faces (r1, r2), past the
- * 26.8 mm rim of the cemented interface r3 and L2, as Fig. 3 draws it. The r24 condition (P4) table (¶0053) runs
+ * figure's 10.3-10.5 mm, so the deep L4 rear face keeps an air gap to L5 at the rim. Fig. 3 draws L4 with a
+ * cylindrical edge at about 13.7 mm and a step down to the rear face, so a land (rimExtensionSd 13.8) carries the
+ * edge from the 13.8 mm front rim to the rear face's rim sag; it leaves 0.48 mm to the L5 rim and needs
+ * checks.gapSagFrac 0.93 (the land takes 5.95 mm of the 6.433 mm d8). L1 is square-cut at 28.8 mm on both faces
+ * (r1, r2), past the 26.8 mm rim of the cemented interface r3 and L2, as Fig. 3 draws it. The r24 condition (P4) table (¶0053) runs
  * to y = 9.708 mm; L12 is 10.6 mm as drawn, and its front face (24A) turns back toward the object beyond about
  * h = 8.1 mm. At the 21.63 mm image height the wide-angle corner bundle loses about half its width at the Gr1 rims;
  * that vignetting is kept.
@@ -297,6 +299,7 @@ const LENS_DATA = {
       R: 15.076,
       d: 6.433,
       sd: 10.0,
+      rimExtensionSd: 13.8,
     },
     {
       label: "9",
@@ -510,6 +513,9 @@ const LENS_DATA = {
   ],
   layout: {
     yScFill: 0.3,
+  },
+  checks: {
+    gapSagFrac: 0.93,
   },
 } satisfies LensDataV2Input;
 
