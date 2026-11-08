@@ -3351,7 +3351,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
 | 1 | Element 1 | abbe | `Unmatched (1.83350/21.00)` | Explicit unmatched/proprietary annotation |
-| 2 | Cement layer | abbe | `Unmatched (1.51400/42.83)` | Explicit unmatched/proprietary annotation |
+| 2 | Cement layer | abbe | `Unmatched (patent cement layer; nd=1.51400, νd=42.83)` | Explicit unmatched/proprietary annotation |
 | 5 | Element 3 | abbe | `Unmatched (1.69680/56.47)` | Explicit unmatched/proprietary annotation |
 | 7A | Element 4 | abbe | `Unmatched (1.85000/40.04)` | Explicit unmatched/proprietary annotation |
 | 13 | Element 7 | abbe | `Unmatched (1.75450/51.57)` | Explicit unmatched/proprietary annotation |
