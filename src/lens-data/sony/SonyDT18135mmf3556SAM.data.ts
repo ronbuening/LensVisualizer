@@ -23,9 +23,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * patent's field implies the 28.4 mm APS-C image circle used for imageCircleMm.
  * Stop: surface 15 (STO), 1.00 mm ahead of surface 16; it moves with G3 (¶0027). Its radius follows the printed
  * f-number at each station.
- * Semi-diameters: not published. They are inferred, and their proportions agree with the Fig. 1A section to within
- * about 5%. S8/S9 (9.743 mm) and S18/S19 (8.57 mm) stop where the facing surfaces close to 10% of their axial gap;
- * S23A (9.5 mm) stays inside 9.59 mm, where its aspheric sag stops increasing.
+ * Semi-diameters: not published. They are inferred and checked against Fig. 1A (8.16 px/mm at 300 dpi along and
+ * across the axis), whose outer rims they match to within about 6%. Fig. 1A draws flat lands outside the curved faces
+ * of L21 (rear), L22 (both faces) and L42 (rear); rimExtensionSd draws them (S8 to 14 mm, S9/S10 to 10.4 mm, S25 to
+ * 10.1 mm). The figure ends those curves at about 8.7–8.8 mm; the caps sit at 9.45 mm (S9/S10) and 9.3 mm (S25), the
+ * lowest values that take no light from the wide-angle corner. S8 (9.743 mm) and S18 (8.57 mm) stop where the facing
+ * surfaces close to about 10% of their axial gap; S19 is 9.0 mm so that L33 is square-cut as drawn. S23A (9.5 mm)
+ * stays inside 9.59 mm, where its aspheric sag stops increasing.
  * Focus: the patent states that G2 focuses, as an example (¶0029), but prints no close-focus spacings. The model is
  * infinity-only; Sony's 0.45 m minimum focus distance is in catalog.closeFocusM.
  * Glass: catalog equivalents matched by printed nd/νd; the patent names no supplier. The two hybrid layers stay
@@ -340,19 +344,22 @@ const LENS_DATA = {
       R: 14.443,
       d: 6.07,
       sd: 9.743,
+      rimExtensionSd: 14,
     },
     {
       label: "9",
       R: -29.082,
       d: 0.9,
-      sd: 9.743,
+      sd: 9.45,
+      rimExtensionSd: 10.4,
       medium: 6,
     },
     {
       label: "10",
       R: 51.963,
       d: 0.25,
-      sd: 10.3,
+      sd: 9.45,
+      rimExtensionSd: 10.4,
     },
     {
       label: "11",
@@ -408,7 +415,7 @@ const LENS_DATA = {
       label: "19",
       R: -23.678,
       d: 0.9,
-      sd: 8.57,
+      sd: 9,
       medium: 11,
     },
     {
@@ -455,7 +462,8 @@ const LENS_DATA = {
       label: "25",
       R: 22.16,
       d: 4.12,
-      sd: 10.1,
+      sd: 9.3,
+      rimExtensionSd: 10.1,
     },
     {
       label: "26",
@@ -499,7 +507,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000000000,
     description:
-      "Infinity prescription only. The patent states that the second group (G2) focuses but prints no close-focus spacings, so no focus movement is modelled. Sony specifies a 0.45 m minimum focus distance.",
+      "Infinity prescription only. The patent names moving the second group (G2) as an example of how the lens focuses but prints no close-focus spacings, so no focus movement is modelled. Sony specifies a 0.45 m minimum focus distance.",
   },
   gaps: {
     "5": {

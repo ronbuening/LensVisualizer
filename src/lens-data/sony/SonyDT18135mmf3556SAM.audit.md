@@ -89,3 +89,67 @@ Open:
 
 - No close-focus data exist in the patent; the G2 focus movement is not modelled.
 - The layer material (1.53420/41.73) has no catalog match and stays on Abbe-number dispersion.
+
+## 2026-11-08 — Second review: diagram, labels and movement
+
+Compared: Fig. 1A (sheet 1 of 10, PDF p. 2, headed "EXAMPLE 1" and "WIDE-ANGLE END"; ¶0014 and ¶0025 tie Figs. 1A–1C
+to Numerical Example 1) at its native 300 dpi, against the live page at 18.56 mm and an overlay of the model outline on
+the figure. Scale: 23 vertex crossings fit the wide-end prescription at 8.158 px/mm with residuals of 1.7 px or less;
+arcs of surfaces 8 and 21 fit 8.0–8.3 px/mm across the axis, so the drawing is not anamorphic. The axis line tilts
+0.3° on the sheet and was followed; left and right rims agree within 1–2 px, and the stop tick sits 51.8 mm behind
+surface 1 (model 51.83 mm).
+
+Figure readings (mm): L11 27.9; L12 26.8, square; L13 22.1–22.2; L21 14.1 outside, with surface 8 curving to about
+10.3 mm and a flat rear annulus out to 14.1; L22 a square block of 10.4 whose curves both end at about 8.65–8.7 mm
+inside flat lands; L23 10.0–10.1; L24 9.0–9.2; L31/L32 8.76; L33 9.1, square; L41 10.3; L42 10.05, its front face
+running to the rim and its rear curve ending at about 8.8 mm inside a land; L43/L44 11.1, square.
+
+Cuts, lands and raises (light = worst loss against the baseline rims over every field at the three stations and at
+zoom fractions 0, 0.125 … 1, full-pupil lattice):
+
+| Surface | Change | Figure reading | Baseline | Final | Light | Verdict |
+| ------- | ------ | -------------- | -------: | ----: | ----: | ------- |
+| 8 | land | curve to ~10.3, annulus to 14.1 | 9.743 | 9.743, land to 14 | 0.0 | keep: slight; figure-drawn L21 annulus |
+| 9 | cut + land | curve to ~8.7, land to 10.4 | 9.743 | 9.45, land to 10.4 | 0.0 | keep: slight |
+| 10 | cut + land | curve to ~8.65, land to 10.4 | 10.3 | 9.45, land to 10.4 | 0.0 | keep: slight |
+| 19 | raise | 9.1, L33 square | 8.57 | 9.0 | 0.0 | L33 square with surface 20 |
+| 25 | cut + land | curve to ~8.8, land to 10.05 | 10.1 | 9.3, land to 10.1 | 0.0 | keep: slight |
+
+The L22 and L42 caps stop at the lowest values that cost nothing. At the figure's own cap heights the wide-angle
+corner loses 12.6 points (surfaces 9/10 at 8.8 mm, 36.3°) and 5.3 points (surface 25 at 8.8 mm, 39.0°); 9.2 mm costs
+3.6 and 0.2 points, and surface 9 at 8.7 mm would sit under the corner chief ray (8.74 mm). Retained within the band:
+surface 8's cap (the figure's 10.3 mm is 5.7% higher; a raise past about 9.85 mm is refused by the 8/9 cross-gap limit
+with the lands, and would add up to 12 points of corner light); L12 (27.9/27.2 against a square 26.8; surface 2 is
+cemented and cannot carry L11's drawn annulus); 23A (the figure's 10.05 mm is past the 9.59 mm turnover); every other
+face within 3%. Final `rimcost.mjs` worst loss: 0.0 points. Corner transmission is unchanged at 44.6% (39.0°, wide),
+72.1% (15.4°, 50 mm) and 81.9% (6.1°, tele). Engine half-field 33.57 / 17.96 / 8.63° and f-number 3.61 / 4.43 / 5.79
+are unchanged; analyses still reach the 39.05° corner by real chief ray. The surface audit prints OK, the aperture
+audit finds no rim limit, the image-circle audit lists nothing for this lens, field coverage is 100% at all three
+stations, and the clearance trace shows no clipped axial or chief ray.
+
+Labels and tags found correct: `name` = `diagramLabel` = the patent's L11–L44 (Fig. 1A, ¶0081–0083), with L21r/L42r
+for the bonded layers; every `type` agrees with the signs of R and with ¶0081–0083; all 16 `focalLengthMm` values
+recompute (thick lens) to the stored figures; roles are true; the stop is surface 15 between L24 and L31 (¶0027);
+only 6A and 23A carry the asphere suffix (Table 2); brackets G1–G4 and C1/H1/C2/H2/C3 span the right surfaces and do
+not clash with D5/D14/D20/BF. The inspector shows L41 as APD (INFERRED), FCD1, +27.54 mm, the validator's record of
+Sony's ED position; the patent text names no special glass and prints d-line data only (¶0076). The hybrid layers
+read "Aspherical Resin Layer", Unmatched, −288.17 / +225.23 mm, labelled DOUBLET H1/H2 as in other hybrid files.
+
+Movement: stations ascend 18.56 / 50.01 / 130.89 mm and every gap lists them in that order (Table 3). With the image
+fixed, G1 moves 25.90 + 32.17 = 58.07 mm, G2 3.44 + 14.20 = 17.64 mm, G3 16.02 + 22.05 = 38.07 mm and G4
+20.86 + 24.21 = 45.07 mm toward the object, all monotonic, as ¶0028 states; the zoom motion chart shows the same. No
+focus movement is modelled; `focus.description` now says the patent names G2 only as an example (¶0029).
+
+Aberration plots (Figs. 4–6) are d-line only (¶0088), so no colour comparison is possible. Model distortion at image
+height ratios 0.5 / 0.75 / 0.9 / 1.0 is −2.41 / −4.75 / −5.73 / −5.71% at wide (Fig. 4C about −2.5 / −4.8 / −5.6 /
+−5.5), +2.88% at mid and +1.77% at tele at full field (Figs. 5C, 6C about +2.8 and +1.7). The traced field angles at
+0.5 / 0.9 / 1.0 relative height, 21.40 / 36.14 / 39.05°, match the printed 21.41 / 36.15 / 39.06° (mid and tele
+likewise). Mid-zoom astigmatism (S −0.10 mm, T −0.24 mm at 0.8 and −0.14 mm at full field) and tele marginal
+spherical aberration (+0.11 mm against about +0.08 mm) agree with Figs. 5B and 6A within reading error.
+
+Glass: the layer pair 1.53420/41.73 recurs on surfaces 6 and 23 of Example 2 (Table 4, PDF p. 18), so it is a real
+material, but the patent gives no name, line indices or partial dispersion for it.
+
+Open:
+
+- Both items above stay open: the patent has no close-focus data, and the layer material has no catalog dispersion.
