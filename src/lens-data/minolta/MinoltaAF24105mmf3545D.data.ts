@@ -1,34 +1,67 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-// Frozen independently reviewed optical hypothesis. Only display/source metadata changes in this integration.
+/**
+ * JP 2000-187161 A (Minolta Co., Ltd.; inventor Mamoru Terada), Example 3 (Fig. 3; aberrations Fig. 7): Minolta AF
+ * 24-105mm f/3.5-4.5 (D); the later Sony SAL24105 uses the same optical design. The match to the production lens is a
+ * qualified correlation: Examples 1-3 all have the production layout (12 elements / 11 groups, an asphere on the
+ * front of Gr2 and a double-aspherical negative meniscus at the rear, Gr2 focus); Example 4 has 13 elements. Example 3
+ * fits the marketed barrel best: of Examples 1-3, Table 1 gives it the longest wide-angle length (TLW/Y' 5.039,
+ * 109.0 mm) and the Gr1 travel closest to the barrel's 39 mm extension from 69 to 108 mm (X1/fW 1.6222, 40.1 mm).
+ * Printed and used as printed: all 25 surfaces (R, d, N, ν), including the stop r15 (d15 = 0.900 mm, moving with
+ * Gr3, ¶0012) and the 0.010 mm cement layer between L1 and L2 (N 1.51400, ν 42.83); the aspheric surfaces r7, r24 and
+ * r25 (ε = 1.0000, so K = 0; ¶0050-0052); d6, d14 and d21 at wide, middle and tele; f = 24.71 / 50.00 / 102.50 mm and
+ * FNO 3.60 / 4.10 / 4.60. No scaling.
+ * Derived: the patent prints no back focus for any example. BF is the paraxial image distance at each station
+ * (36.501 / 53.667 / 63.910 mm). With it the model gives TLW = 109.003 mm and X1 = 40.081 mm, which reproduce Table 1
+ * (TLW/Y' 5.039, X1/fW 1.6222) for Y' = 21.633 mm, the 35 mm half-diagonal, which matches Table 1's fW/Y' = 1.142.
+ * The cement layer is kept as a drawn 0.010 mm element (C1) so its printed ν stays in the chromatic trace;
+ * catalog.elementCount is the 12 lens elements.
+ * Stop: no diameter is printed; the engine sizes r15 from the F-number at each station.
+ * Semi-diameters are inferred from Fig. 3 proportions and ray clearance, not printed. S8 is held at 10.0 mm, below the
+ * figure's proportion, so the deep L4 rear face keeps an air gap to L5 at the rim; L4's 13.8 mm front face and
+ * 10.0 mm rear face are joined by an oblique edge. L1's 28.8 mm front face is wider than the 26.8 mm cemented
+ * interface. The r24 condition (P4) table (¶0053) runs to y = 9.708 mm; L12 is 10.6 mm, and its front face (24A)
+ * turns back toward the object beyond about h = 8.1 mm. At the 21.63 mm image height the wide-angle corner bundle
+ * loses about half its width at the Gr1 rims; that vignetting is kept.
+ * Focus: Gr2 focuses (¶0010, ¶0034, claim 6), but no close-focus spacing is printed. The model is infinity-only: both
+ * focus rows repeat the infinity spacings and closeFocusM is a far placeholder distance.
+ * Glass: the patent gives Nd and νd only. Six elements match five Hoya catalog glasses at the printed nd and within
+ * 0.15 in νd (L2 PCD4, L5 TAF1, L8 and L11 BSC7, L9 E-C3, L10 E-FD4); the other six elements and the cement keep the
+ * Unmatched form.
+ * Source note: Table 1 prints f1/fW = 3.5605 for Example 3, above the 3.50 upper limit of condition (4), so Example 3
+ * falls under claim 3 (condition (1), P4 and a double-aspherical Gr4 lens) rather than claims 1-2. The model gives
+ * 3.5604.
+ */
 const LENS_DATA = {
   schema: 2,
-  key: "minolta-af-24-105-e3-research-preflight",
+  key: "minolta-af-24-105mm-f3-5-4-5-d",
   maker: "Minolta",
-  name: "MINOLTA AF 24–105mm family — conditional patent model",
-  subtitle: "Three infinity stations only; no finite-focus or continuous zoom/cam law is certified",
+  name: "MINOLTA AF 24-105mm f/3.5-4.5 (D)",
+  subtitle: "JP 2000-187161 A, Example 3 — qualified production correlation",
   visible: true,
   catalog: {
+    lensMounts: ["sony-a"],
     imageFormat: "135-full-frame",
+    specs: [
+      "12 ELEMENTS / 11 GROUPS",
+      "DESIGN f = 24.71–102.5 mm",
+      "DESIGN F/3.6–4.6",
+      "3 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "INNER FOCUS",
+    ],
     elementCount: 12,
     groupCount: 11,
     focalLengthMm: {
+      marketing: [24, 105],
       design: [24.71, 102.5],
     },
     fNumber: {
+      marketing: 3.5,
       design: 3.6,
     },
-    specs: [
-      "Conditional whole E3 with explicit 0.010 mm material interlayer; 13 model segments, 12 physical lenses",
-      "Unknown source d25; separately frozen paraxial-derived image plane",
-      "Original Figure 3 cap hypothesis with unresolved front shoulder and S8 oblique closure",
-      "Sony SAL24105 16.5/16.6 mm service iris is not imported",
-      "Infinity only; no finite or continuous-law validation",
-      "CONDITIONAL PATENT RESEARCH; exact factory prescription unproved",
-      "Three infinity stations only; no finite-focus or continuous zoom/cam law is certified",
-      "Inferred schematic clear apertures and F/N-derived iris; physical closures and dispersion unproved",
-      "Substantial off-axis clipping retained; numerical convergence is not measured product performance",
-    ],
+    closeFocusM: {
+      marketing: 0.5,
+    },
   },
   source: {
     patentNumber: "JP 2000-187161 A",
@@ -43,123 +76,161 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "M1",
-      label: "Source glass segment 1",
-      type: "Source homogeneous glass",
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
       nd: 1.8335,
       vd: 21.0,
+      focalLengthMm: -196.77,
       glass: "Unmatched (1.83350/21.00)",
+      role: "High-dispersion flint front meniscus of the Gr1 cemented doublet",
+      diagramLabel: "L1",
       cemented: "D1",
     },
     {
       id: 2,
-      name: "M2",
-      label: "Thin material interlayer, chemistry unspecified",
-      type: "Source thin material layer",
+      name: "C1",
+      label: "Cement layer",
+      type: "Cement Layer",
       nd: 1.514,
       vd: 42.83,
       glass: "Unmatched (1.51400/42.83)",
+      role: "0.010 mm cement layer between L1 and L2, as printed in the patent; not counted as a lens element",
+      diagramLabel: "C1",
       cemented: "D1",
     },
     {
       id: 3,
-      name: "M3",
-      label: "Source glass segment 3",
-      type: "Source homogeneous glass",
+      name: "L2",
+      label: "Element 2",
+      type: "Biconvex Positive",
       nd: 1.618,
       vd: 63.39,
-      glass: "Unmatched (1.61800/63.39)",
+      focalLengthMm: 130.76,
+      glass: "PCD4 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      role: "Low-dispersion crown partner of the Gr1 cemented doublet",
+      diagramLabel: "L2",
       cemented: "D1",
     },
     {
       id: 4,
-      name: "M4",
-      label: "Source glass segment 4",
-      type: "Source homogeneous glass",
+      name: "L3",
+      label: "Element 3",
+      type: "Positive Meniscus",
       nd: 1.6968,
       vd: 56.47,
+      focalLengthMm: 112.89,
       glass: "Unmatched (1.69680/56.47)",
+      role: "Positive meniscus completing the Gr1 front collector",
+      diagramLabel: "L3",
     },
     {
       id: 5,
-      name: "M5",
-      label: "Source glass segment 5",
-      type: "Source homogeneous glass",
+      name: "L4",
+      label: "Element 4",
+      type: "Neg. Meniscus (1× Asph)",
       nd: 1.85,
       vd: 40.04,
+      focalLengthMm: -19.9,
       glass: "Unmatched (1.85000/40.04)",
+      role: "Strong negative front element of the Gr2 focusing group; aspherical front face for distortion",
+      diagramLabel: "L4",
     },
     {
       id: 6,
-      name: "M6",
-      label: "Source glass segment 6",
-      type: "Source homogeneous glass",
+      name: "L5",
+      label: "Element 5",
+      type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.77,
-      glass: "Unmatched (1.77250/49.77)",
+      focalLengthMm: -26.2,
+      glass: "TAF1 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      role: "Second negative element of Gr2",
+      diagramLabel: "L5",
     },
     {
       id: 7,
-      name: "M7",
-      label: "Source glass segment 7",
-      type: "Source homogeneous glass",
+      name: "L6",
+      label: "Element 6",
+      type: "Biconvex Positive",
       nd: 1.75,
       vd: 25.14,
+      focalLengthMm: 21.76,
       glass: "Unmatched (1.75000/25.14)",
+      role: "Dense-flint positive element that color-corrects the negative Gr2",
+      diagramLabel: "L6",
     },
     {
       id: 8,
-      name: "M8",
-      label: "Source glass segment 8",
-      type: "Source homogeneous glass",
+      name: "L7",
+      label: "Element 7",
+      type: "Negative Meniscus",
       nd: 1.7545,
       vd: 51.57,
+      focalLengthMm: -47.37,
       glass: "Unmatched (1.75450/51.57)",
+      role: "Rear negative meniscus of Gr2, convex to the image",
+      diagramLabel: "L7",
     },
     {
       id: 9,
-      name: "M9",
-      label: "Source glass segment 9",
-      type: "Source homogeneous glass",
+      name: "L8",
+      label: "Element 8",
+      type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.2,
-      glass: "Unmatched (1.51680/64.20)",
+      focalLengthMm: 34.15,
+      glass: "BSC7 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      role: "First positive crown of Gr3, just behind the stop",
+      diagramLabel: "L8",
     },
     {
       id: 10,
-      name: "M10",
-      label: "Source glass segment 10",
-      type: "Source homogeneous glass",
+      name: "L9",
+      label: "Element 9",
+      type: "Biconvex Positive",
       nd: 1.51823,
       vd: 58.96,
-      glass: "Unmatched (1.51823/58.96)",
+      focalLengthMm: 40.94,
+      glass: "E-C3 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      role: "Second positive crown of Gr3",
+      diagramLabel: "L9",
     },
     {
       id: 11,
-      name: "M11",
-      label: "Source glass segment 11",
-      type: "Source homogeneous glass",
+      name: "L10",
+      label: "Element 10",
+      type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.51,
-      glass: "Unmatched (1.75520/27.51)",
+      focalLengthMm: -27.83,
+      glass: "E-FD4 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      role: "Dense-flint negative element closing Gr3",
+      diagramLabel: "L10",
     },
     {
       id: 12,
-      name: "M12",
-      label: "Source glass segment 12",
-      type: "Source homogeneous glass",
+      name: "L11",
+      label: "Element 11",
+      type: "Biconvex Positive",
       nd: 1.5168,
       vd: 64.2,
-      glass: "Unmatched (1.51680/64.20)",
+      focalLengthMm: 27.97,
+      glass: "BSC7 (HOYA; coordinate equivalent; supplier unconfirmed)",
+      role: "Positive crown of the two-element Gr4",
+      diagramLabel: "L11",
     },
     {
       id: 13,
-      name: "M13",
-      label: "Source glass segment 13",
-      type: "Source homogeneous glass",
+      name: "L12",
+      label: "Element 12",
+      type: "Neg. Meniscus (2× Asph)",
       nd: 1.7745,
       vd: 44.46,
+      focalLengthMm: -51.68,
       glass: "Unmatched (1.77450/44.46)",
+      role: "Double-aspherical rear negative meniscus of Gr4 (condition P4)",
+      diagramLabel: "L12",
     },
   ],
   surfaces: [
@@ -203,10 +274,11 @@ const LENS_DATA = {
       sd: 24.8,
     },
     {
-      label: "7",
+      label: "7A",
       R: 142.98,
       d: 1.0,
       sd: 13.8,
+      medium: 5,
       asphere: {
         K: 0,
         A4: 1.3112223e-5,
@@ -215,7 +287,6 @@ const LENS_DATA = {
         A10: -3.4820002e-12,
         A12: 8.6768803e-15,
       },
-      medium: 5,
     },
     {
       label: "8",
@@ -318,20 +389,20 @@ const LENS_DATA = {
       sd: 11,
     },
     {
-      label: "24",
+      label: "24A",
       R: 29.964,
       d: 1.138,
       sd: 10.6,
+      medium: 13,
       asphere: {
         K: 0,
         A4: -0.00016701462,
         A6: 5.8514171e-7,
         A8: -2.671205e-9,
       },
-      medium: 13,
     },
     {
-      label: "25",
+      label: "25A",
       R: 16.852,
       sd: 10.6,
       asphere: {
@@ -364,11 +435,11 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000000000.0,
     description:
-      "Three source infinity stations only. Duplicate focus rows and schema sentinel do not validate finite focus or a continuous law.",
+      "Inner focus by Gr2, which moves toward the object for close focus (patent ¶0010, ¶0023, ¶0034). The patent prints infinity spacings only, so the model is infinity-only: both focus rows repeat the infinity spacings at all three focal lengths. The marketed 0.5 m minimum focus distance is not modeled.",
   },
   gaps: {
     "6": {
-      label: "Literal D6, infinity stations only",
+      label: "D6",
       values: [
         [1.9, 1.9],
         [14.386, 14.386],
@@ -376,7 +447,7 @@ const LENS_DATA = {
       ],
     },
     "14": {
-      label: "Literal D14, infinity stations only",
+      label: "D14",
       values: [
         [15.728, 15.728],
         [6.432, 6.432],
@@ -384,15 +455,15 @@ const LENS_DATA = {
       ],
     },
     "21": {
-      label: "Literal D21, infinity stations only",
+      label: "D21",
       values: [
         [5.723, 5.723],
         [1.701, 1.701],
         [0.9, 0.9],
       ],
     },
-    "25": {
-      label: "Derived paraxial infinity BF, not supplied d25",
+    "25A": {
+      label: "BF",
       values: [
         [36.501420288556446, 36.501420288556446],
         [53.66705162442531, 53.66705162442531],
@@ -412,7 +483,7 @@ const LENS_DATA = {
     },
     {
       text: "Gr2",
-      fromSurface: "7",
+      fromSurface: "7A",
       toSurface: "14",
     },
     {
@@ -423,12 +494,12 @@ const LENS_DATA = {
     {
       text: "Gr4",
       fromSurface: "22",
-      toSurface: "25",
+      toSurface: "25A",
     },
   ],
   doublets: [
     {
-      text: "D1 plus source interlayer",
+      text: "D1",
       fromSurface: "1",
       toSurface: "4",
     },
