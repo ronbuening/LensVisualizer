@@ -167,7 +167,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       focalLengthMm: 22.772343379157018,
-      glass: "S-TIH1 (OHARA)",
+      glass: "PBH1 (OHARA)",
       role: "Positive flint element between the two negatives of G2.",
       diagramLabel: "L4",
     },

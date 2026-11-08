@@ -219,6 +219,9 @@ Open:
 
 - The amendment (手続補正書) is still unseen; the local PDF ends at gazette p. 252 with no amendment pages. Reading it
   needs J-PlatPat.
-- Glass labels proposed to the coordinator: the lead-free S- OHARA rows postdate this 1989–90 design. PBH1 (OHARA) on
-  L4 moves the wide g line onto Fig. 2(a) (paraxial −0.081 mm against −0.080 read, −0.136 at 0.7 of the pupil against
-  −0.117; now −0.091 and −0.146).
+- Glass: the lead-free S- OHARA rows postdate this 1989–90 design. L3 and L9 keep their S- rows, because the period
+  rows (LAH66, PBL25) leave the colour unchanged.
+
+L4 now carries PBH1 (OHARA), the period lead flint at the same coordinate. It moves the wide g line onto Fig. 2(a):
+paraxial −0.081 mm against −0.080 read, and −0.136 at 0.7 of the pupil against −0.117. With S-TIH1 the values were
+−0.091 and −0.146.

@@ -132,7 +132,7 @@ off-axis aberrations change little as G2 focuses (p. 247).
 
 ### L4 — Biconvex Positive
 
-**nd = 1.71736, νd = 29.5. Glass: S-TIH1 (OHARA) catalog equivalent, dense flint. f = +22.8 mm.**
+**nd = 1.71736, νd = 29.5. Glass: PBH1 (OHARA) catalog equivalent, a lead dense flint of the period. f = +22.8 mm.**
 
 The positive middle element of G2. As the flint partner of the two higher-Abbe negatives it keeps the moving focus group
 close to achromatic.
@@ -203,7 +203,7 @@ production melts.
 | S-TIH6 (OHARA) | 1.80518 | 25.4 | L1 | Dense flint |
 | S-LAH66 (OHARA) | 1.77250 | 49.6 | L3 | Lanthanum flint |
 | S-BAH28 (OHARA) | 1.72342 | 38.0 | L11 | Barium flint |
-| S-TIH1 (OHARA) | 1.71736 | 29.5 | L4 | Dense flint |
+| PBH1 (OHARA) | 1.71736 | 29.5 | L4 | Dense flint |
 | LAL8 (OHARA) | 1.71300 | 53.9 | L12 | Lanthanum crown |
 | S-LAL14 (OHARA) | 1.69680 | 55.5 | L5, L13 | Lanthanum crown |
 | S-BSM25 (OHARA) | 1.65844 | 50.9 | L2 | Dense barium crown |
