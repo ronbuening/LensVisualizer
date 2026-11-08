@@ -169,5 +169,56 @@ Open:
 
 - Closed: S18 carried no `A` label suffix, unlike the catalog's other aspheric faces. The surface label, the `gaps` key
   and the G3 bracket's end surface are now `18A`; the spacing keeps the patent's name D18.
-- The L7 front rim reads about 0.4 mm above the L8 rear in Fig. 1, a step the cemented pair cannot draw without a land
-  on the interface; all three faces stay at 5.7 mm.
+- Closed: the L7 front rim reads about 0.4 mm above the L8 rear in Fig. 1, a step the cemented pair cannot draw without a
+  land on the interface; all three faces stay at 5.7 mm. The schema does not allow `rimExtensionSd` on a cemented
+  interface (`LENS_DATA_SPEC.md`, Rim extensions), and the 0.4 mm difference is inside the reading band.
+
+## 2026-11-08 — Third review: diagram, labels and movement
+
+Compared: the live page at the three printed stations (also at three times device scale), both movement overlays and the
+L2, L3, L10, L12 and L13 inspectors, against Fig. 1 at the native 347 dpi. Scale proved again: S1 to S24 vertex crossings
+span 705 px for 65.71 mm (10.73 px/mm), and the image plane sits at the same x in all three panels; arc fits of S2, S3,
+S20 and S23 give 10.26 to 10.62 px/mm across the axis (rms ≤ 0.6 px) and the stop tick's inner end 10.7, so 10.4 px/mm
+stands. The second review's readings repeat within about 0.2 mm (caps: S5 8.6, S18 5.1 to 5.4, S21 10.7, S23 12.2 to
+12.6 mm); outer rims read 5 to 6 % above the model, inside the band.
+
+| Face | Before | After | Fig. 1 reading | Verdict |
+| --- | --- | --- | --- | --- |
+| S3, L2 rear | 13.0 | 13.8 | flat L2 top at 13.5 to 13.7 mm from S2 to S3 | Square-rim error: the page drew L2's top as a wedge from 13.8 to 13.0 mm. Both faces now end at 13.8 mm; S2 cannot go lower without cutting the engine half-field. Adds light only |
+| S18, L10 rear (asphere) | 5.70, land to 6.7 | 5.71, land to 6.7 | cap 5.1 to 5.4 | Light budget: on the zoom slider's own 0.004 grid, t = 0.040 (about 37.4 mm, between nodes 2 and 3) lost 3.16 points at 29.4° and t = 0.044 lost 3.04. 5.71 is the smallest two-decimal value that keeps every state within 3.00 |
+
+Second-review land and cut verdicts re-measured: unchanged (S2, S5, S21 and S23 cost 0.00; S18 kept, slight, partly
+raised). Worst loss against the package rims: 2.91 points at 29.2° at the 37.61 mm node over all 65 nodes, 2.2 points at
+27.6° at wide over the nine zoom fractions, and 2.97 points at 29.4° at t = 0.040 over the 251 slider positions and a
+0.0002 grid from t = 0.038 to 0.045. Corners wide open at infinity: wide 30.3° 57.0 %, wide 27.6° 85.7 → 85.9 %,
+middle 18.8° 92.1 → 92.3 %, tele 11.6° 97.7 %. Engine half-field 24.87° and f-number 3.8 at wide are unchanged. The
+surface audit is OK; the aperture audit finds all 65 stations within 3 % with no rim limit; the image-circle audit
+lists S22 to S24 as before; field coverage reaches 21.65 mm at all 65 stations; no axial clip or blocked chief ray.
+
+Labels and tags: every type agrees with its radii, and every inspector focal length matches a thick-lens recomputation
+(L10 +444.37 mm). Roles are true; C1 (S1–S3), C2 (S12–S14), the G1–G4 brackets and the stop between L8 and L9 are as
+drawn; only S18 carries the A marker; no `apd` tags. L10: the patent says only プラスチックレンズ (p. 247, right column),
+with nd 1.49200 / νd 58.3, the same pair as Example 3's S15 (p. 248). The catalog has no PMMA row (`glassnear.mjs`
+finds none; its only plastic is a polycarbonate), so L10 stays Unmatched on the Abbe fallback; the other twelve
+elements use Sellmeier curves.
+
+Movement: the printed rows match p. 247. Against the fixed image plane every group moves objectward and monotonically,
+wide → middle → tele: G1 and G3 by 12.46 + 20.90 = 33.35 mm, G2 by 10.10 + 17.26 = 27.35 mm, G4 by 20.09 + 23.76 =
+43.84 mm. Fig. 1's panels give 32.6, 27.4, 33.5 and 43.2 mm for S1, S4, S10 and S19. The 65 stations ascend; D3, D9
+and D18 are linear in station index between printed rows, D3 + D9 is 14.40 mm at every node, the f-numbers step by
+0.059375 to the middle and 0.0875 after, every node is in paraxial focus, and between nodes the linear BF leaves at
+most 0.005 mm of defocus. Focus is infinity-only: the slider reads "Not modeled" and the focus overlay shows zoom.
+
+Fig. 2(b)/(c): the model's middle station gives a d-line marginal of −0.12 mm and −0.16 mm at 0.7 of the pupil,
+close to Fig. 2(c)'s −0.15 and −0.18; its tele station gives +0.22 and +0.17, on Fig. 2(b)'s +0.22 and +0.16. The
+two spherical-aberration panels therefore look interchanged. The astigmatism panels do not follow (Fig. 2(b)'s
+meridional curve is about −0.01 mm at 18.8°, the model −0.24 at the middle and −0.22 at tele), and the tele g line
+sits about 0.1 mm below Fig. 2(b)'s, so the erratum stays unresolved.
+
+Open:
+
+- The amendment (手続補正書) is still unseen; the local PDF ends at gazette p. 252 with no amendment pages. Reading it
+  needs J-PlatPat.
+- Glass labels proposed to the coordinator: the lead-free S- OHARA rows postdate this 1989–90 design. PBH1 (OHARA) on
+  L4 moves the wide g line onto Fig. 2(a) (paraxial −0.081 mm against −0.080 read, −0.136 at 0.7 of the pupil against
+  −0.117; now −0.091 and −0.146).

@@ -45,11 +45,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   10.4 px/mm across it (the scan is about 4 % short vertically). Outer       ║
  * ║   rims follow the drawn sizes. Fig. 1 ends four faces short of the element   ║
  * ║   edge with a flat land, modelled as rimExtensionSd: S5 8.7 mm (land to      ║
- * ║   9.7), S18 5.7 (drawn 5.5; land to 6.7), S21 11.3 (drawn 10.5; land to      ║
+ * ║   9.7), S18 5.71 (drawn 5.5; land to 6.7), S21 11.3 (drawn 10.5; land to     ║
  * ║   12.0) and S23 12.7 (drawn 12.4; land to 14.4). S2, the L1-L2 interface,    ║
- * ║   ends at 13.8 mm below L1's 14.4 mm rim (drawn 13.4). S18 stops where the   ║
- * ║   wide corner loses no more than 3 points of light, S21 at the               ║
- * ║   image-circle floor, S2 and S23 where the engine half-field stays 24.87°.   ║
+ * ║   and S3 end at 13.8 mm, below L1's 14.4 mm rim, so L2 is square-edged as    ║
+ * ║   drawn (13.5). S18 stops where no zoom position, printed or between,        ║
+ * ║   loses more than 3 points of corner light, S21 at the image-circle floor,   ║
+ * ║   S2 and S23 where the engine half-field stays 24.87°.                       ║
  * ║   The wide-angle corners vignette heavily, and S22-S24 are smaller than      ║
  * ║   the full-format image-circle check asks for, as drawn.                     ║
  * ║                                                                              ║
@@ -299,7 +300,7 @@ const LENS_DATA = {
     {
       label: "3",
       R: 30.642,
-      sd: 13,
+      sd: 13.8,
     },
     {
       label: "4",
@@ -401,7 +402,7 @@ const LENS_DATA = {
     {
       label: "18A",
       R: -12.9,
-      sd: 5.7,
+      sd: 5.71,
       rimExtensionSd: 6.7,
       asphere: {
         K: 0.19205,
