@@ -7,7 +7,7 @@
 
 import { wideOpenStopAtZoom } from "../../optics/optics.js";
 
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import {
   epAtZoomClamped as epAtZoom,
@@ -16,6 +16,7 @@ import {
   xpAtZoom,
   xpZRelLastSurfAtZoom,
 } from "../../optics/optics.js";
+import { stopSideRimLands } from "../../optics/diagramGeometry.js";
 import ApertureStop from "./ApertureStop.js";
 import CardinalElementsOverlay from "./CardinalElementsOverlay.js";
 import ElementAnnotations from "./ElementAnnotations.js";
@@ -111,6 +112,7 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
 }: DiagramOverlayLayerProps) {
   const reducedMotion = usePrefersReducedMotion();
   const stopInnerBlockedSD = stopInnerBlockedSemiDiameter(L);
+  const stopSideLands = useMemo(() => stopSideRimLands(L, zPos), [L, zPos]);
   const movedScreenPoint = (z: number, y: number): [number, number] => {
     const [zz, yy] = lensPointTransform ? lensPointTransform(z, y) : [z, y];
     return [sx(zz), sy(yy)];
@@ -126,6 +128,7 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
         stopHousingSD={Math.max(L.stopHousingSD, ...(L.zoomStopSDs ?? []))}
         currentPhysStopSD={currentPhysStopSD}
         innerBlockedSD={stopInnerBlockedSD}
+        sideLands={stopSideLands}
         bladeStubFrac={L.bladeStubFrac}
         lyStoPad={L.lyStoPad}
         pointTransform={lensPointTransform}
