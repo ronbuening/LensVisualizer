@@ -7,147 +7,136 @@
 **Inventors:** Vladimir Aleksandrovich Bogdankov; Ilya Anatolevich Levin
 **Assignee:** Krasnogorsk Mechanical Plant (PAO KMZ)
 **Title:** Wide-angle fast objective (Широкоугольный сверхсветосильный объектив)
-**Example details:** Table 1, printed p. 7; optical arrangement and polychromatic contrast plot in Figs. 1–2, p. 9. Native 36 mm dimensions, without scaling.
+**Example details:** Table 1, printed p. 7; optical layout and polychromatic MTF in Figs. 1–2, p. 9. Native 36 mm dimensions, without scaling.
 
-This companion describes the hidden **Zenitar 35mm f/1 candidate, RU2771147 literal 36mm** input. The patent supplies one unnumbered worked example, tabulated in Table 1; its normalized example label is “Sole example,” not an invented “Example 1.” Its specified focal length is 36 mm, relative aperture 1:1.0, image-field diameter 43 mm, and object distance infinity. These are source facts; identification with the retail Zenitar 35mm F1 M-mount lens remains a production hypothesis. [1]
+RU 2771147 C1 contains one worked example, the prescription of Table 1. The patent presents it as a wide-angle, very fast objective for a mirrorless camera, with focal length f′ = 36 mm, relative aperture 1:1.0 and linear image field 2y′ = 43 mm, for an object at infinity. [1, pp. 6–7]
 
-The evidence for that hypothesis is convergent but not a unique factory-prescription identification:
+The example matches the KMZ Zenitar 35mm f/1.0 on several independent points:
 
-1. The patent proprietor is KMZ. The official Zenit product listing identifies a 35 mm F1 M-mount lens with nine elements in eight groups, matching the table's physical topology and nominal aperture. [2]
-2. The source's native 36 mm focal length is close to a nominal 35 mm product designation. A retained search-index result for a manufacturer archive page gives a precise 35.9886 mm value, but the underlying page was not recovered because of a redirect-loop stop. That number is indexed evidence only. [5]
-3. Bogdankov's interview lists both 35 mm F1 and 50 mm F1 designs among his work. The patent link placed after the 50 mm entry was added editorially; it is not a designer's explicit identification of this prescription with either product. [3]
-4. The product was reported in 2018, before the patent's 2021 filing. Shared maker, designer, topology and approximate focal length support investigation, but neither chronology nor the retail specifications select an exact manufactured table. [4]
+1. **Maker.** The patent holder is KMZ of Krasnogorsk, which sells the lens under its Zenit brand. [1, 2]
+2. **Construction and aperture.** KMZ lists the optical scheme as 8/9, and launch coverage gives nine elements in eight groups. Table 1 has nine elements in eight air-separated groups at 1:1.0. [2, 4]
+3. **Angle of view.** KMZ lists a 61.7° angle of view. With the patent's own f′ = 36 mm and 43 mm image field, 2·atan(21.5/36) = 61.7°; a nominal 35 mm lens on the 43.3 mm full-frame diagonal would give 63.4°. The published angle is the one this design's stated focal length and field produce. [2]
+4. **Designer.** Bogdankov, the first inventor, lists the Zenitar 1.0/35 among the lenses whose optical designs he developed. [3]
+5. **Mount and size.** The lens is made in Leica M mount only. With the M flange 27.8 mm ahead of the image, the model's front vertex lies 84.7 mm ahead of the flange, which fits the listed 74 × 88 mm size. [2]
 
-No 35/36 scale factor has been applied. A 50 mm F1 or 50 mm F0.95 attribution is not established by this model. The source's discussion of an earlier 35 mm F0.95, eleven-element lens concerns prior art, not this nine-element example.
+The lens was announced in September 2018 together with the Zenit M rangefinder camera. [4] The application was filed on 25 March 2021, after the launch, so the patent describes a design that was already in production; no factory prescription is available to confirm that Table 1 is the production formula in every detail. The model keeps the patent's 36 mm design focal length; the marketed 35 mm is the rounded designation, and no scaling is applied.
+
+The patent's discussion of an eleven-element 35 mm f/0.95 lens (CN 107272156) concerns prior art, not this design. [1, p. 5]
 
 ## Optical Architecture
 
-The source defines an **asymmetric three-component, negative-front wide-angle objective**, with functional component powers negative / positive / positive. It does not identify the design as a particular named historical family. The three components must not be confused with the eight physical, air-separated groups. [1, pp. 6–8]
+The patent divides the lens into three components along the light path: I negative, II positive and III positive, with the aperture stop between II and III. [1, claim 1]
 
-- **Component I:** L1, a single negative meniscus, convex toward the object.
-- **Component II:** L2–L6, comprising a positive biconvex singlet, a negative meniscus concave toward the object, a second positive biconvex singlet, and the L5–L6 negative cemented meniscus.
-- **Component III:** L7–L9, two positive biconvex singlets followed by a negative meniscus, convex toward the object.
+- **Component I:** L1, a single negative meniscus convex to the object.
+- **Component II:** L2 (biconvex), L3 (negative meniscus concave to the object), L4 (biconvex) and the cemented negative meniscus L5–L6, convex to the object.
+- **Component III:** L7 and L8 (both biconvex) and L9, a negative meniscus convex to the object.
 
-The eight physical groups therefore have the source-described sign sequence negative / positive / negative / positive / negative / positive / positive / negative. This is a structural description, not an independently measured decomposition of the assembled lens's power.
+The nine elements form eight air-separated groups with one cemented interface and seventeen refracting surfaces, all spherical; the all-spherical construction is claim 2. [1, Table 1; claims 1–2]
 
-The aperture stop separates Components II and III. There are nine pieces of glass, one cemented interface and seventeen refracting surfaces. The model has eighteen sequential rows because its flat stop is a separate row. All refracting faces are spherical; the patent explicitly makes all-spherical construction part of its second claim. No aspheric coefficients, stabilization group or separate camera-side plate are supplied. [1, Table 1; claims 1–2]
+The patent names no design family. Read as an interpretation, component II, which ends in a cemented meniscus whose concave rear face looks toward the stop, resembles the front half of a double-Gauss lens with a negative meniscus placed ahead of it, while component III replaces the mirrored rear half with two positive singlets and a negative meniscus.
 
-The stated design change relative to the patent's cited predecessor is a three-element rather than five-element rear component, redistribution of wide-aperture aberration correction, and removal of aspherical surfaces. This is the patent's system-level explanation. It does not assign a quantitative coma, astigmatism or field-curvature correction contribution to each individual element. [1, p. 7]
+The closest prior art cited is JP 5959999, embodiment 5: thirteen elements, f′ = 34.88 mm, 1:1.45, 2y′ = 43 mm, with higher-order aspheric surfaces, for an SLR camera. The new design replaces that lens's five-element third component with three elements, which redistributes the correction of the wide-aperture aberrations and removes the aspheres. The patent states that this raised the relative aperture from 1:1.45 to 1:1.0, more than doubling the light flux. [1, pp. 5–7]
+
+The lens is long for its focal length: 112.5 mm from the front vertex to the image, about 3.1 times f′, with a 58.0 mm front clear diameter. The 17.3 mm back focus puts the rear vertex 10.5 mm behind the Leica M flange plane.
 
 ## Element-by-Element Analysis
 
-**Index convention:** Table 1 prints generic refractive indices nᵢ and dispersion values νᵢ, without an explicit reference spectral line. The following nd and νd labels match the candidate's schema and are **conditional**, not a verified d-line glass identification. Every glass remains unmatched. No vendor, catalog equivalent, ED class or anomalous partial dispersion is established.
+Table 1 prints n and ν without naming a spectral line; they are given here as nd and νd (see Glass Identification and Selection). Focal lengths are thick-lens values for each element alone in air; for L5 and L6 they describe the two elements as if separated.
 
-The quoted focal lengths are descriptive, isolated thick-lens calculations in air, using each element's two source radii, center thickness and printed scalar index. They are not patent-published focal lengths or in-situ contributions. For L5 and L6 they describe hypothetical separation into air, not the installed cemented interface. The calculation uses $\Phi=(n-1)\left(1/R_1-1/R_2+(n-1)t/(nR_1R_2)\right)$ and $f=1/\Phi$. No system ray trace or optimization was performed for these descriptions.
+### L1 — Negative Meniscus, Convex to Object
 
-### L1 - Negative Meniscus, Convex to Object
+nd = 1.5750, νd = 41.30. Glass: QF3 (CDGM) catalog equivalent. f = −59.4 mm.
 
-nd = 1.57500, νd = 41.30. Glass: Unmatched (conditional index convention). f = -59.4 mm (isolated, conditional).
+L1 alone is the negative first component. Both radii are positive (R1 = 133.66 mm, R2 = 26.92 mm), and the strongly curved rear face carries the power. It has the largest clear diameter in the lens, 58.0 mm, and is followed by the longest air space ahead of the stop, 11.45 mm. A single meniscus here, where the prior art uses a meniscus and a biconcave lens, is part of claim 1. [1, Table 1; claim 1]
 
-L1 alone forms the source's negative Component I. Its front and rear radii are both positive, with the rear face more strongly curved. It is separated from L2 by the table's 11.45 mm axial interval. The negative front-component role is expressly stated by the patent; a more specific aberration allocation is not. [1, p. 6; Table 1; claim 1]
+### L2 — Biconvex Positive
 
-### L2 - Biconvex Positive Singlet
+nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM) catalog equivalent. f = +84.7 mm.
 
-nd = 1.75520, νd = 27.52. Glass: Unmatched (conditional index convention). f = +84.7 mm (isolated, conditional).
+L2 opens the positive component II. Its rear face is nearly flat (R4 = −422.7 mm). It is a dense flint used as a positive element, the same glass as the negative L6 and L9; the patent assigns it no separate task.
 
-L2 is the first positive singlet of Component II. Its relatively weak rear curvature produces the asymmetric biconvex form shown in Fig. 1. It uses the same printed index/dispersion pair as L6 and L9, but their shapes and positions differ. The source specifies this repeated material pair without identifying a vendor glass or attributing a distinct corrective task to L2. [1, pp. 6–8]
+### L3 — Negative Meniscus, Concave to Object
 
-### L3 - Negative Meniscus, Concave to Object
+nd = 1.6920, νd = 55.05. Glass: Unmatched. f = −133.6 mm.
 
-nd = 1.69200, νd = 55.05. Glass: Unmatched (conditional index convention). f = -133.6 mm (isolated, conditional).
+L3 is the weakest element and sits between the two positive singlets of component II. Making this negative meniscus a single lens, where the prior art cements it from two elements, is part of claim 1. [1, pp. 5–6; claim 1]
 
-L3 is the negative singlet between the two positive singlets L2 and L4 within Component II. Both radii are negative and its object-side face is concave. Making this meniscus a single lens, rather than the cited predecessor's cemented construction, is part of claim 1. The claim supplies a structural distinction, not a measured attribution of residual aberrations. [1, pp. 5–6; claim 1]
+### L4 — Biconvex Positive
 
-### L4 - Biconvex Positive Singlet
+nd = 1.6920, νd = 55.05. Glass: Unmatched. f = +54.4 mm.
 
-nd = 1.69200, νd = 55.05. Glass: Unmatched (conditional index convention). f = +54.4 mm (isolated, conditional).
+L4 is 12.3 mm thick and, at 50.2 mm, has the largest clear diameter behind L1. It brings the beam to the cemented meniscus and shares its glass with L3, L7 and L8.
 
-L4 is Component II's second positive singlet and immediately precedes the cemented group. It shares its printed material pair with L3, L7 and L8. Its positive isolated power follows from its biconvex form; the common glass values alone do not establish that these four elements perform the same corrective function. [1, p. 6; Table 1; claim 3]
+### D1: L5 + L6 — Cemented Negative Meniscus
 
-### L5 - Biconvex Positive Member of D1
+- **L5 (Biconvex Positive):** nd = 1.6595, νd = 57.35. Glass: Unmatched. f = +39.6 mm.
+- **L6 (Biconcave Negative):** nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM) catalog equivalent. f = −23.5 mm.
 
-nd = 1.65950, νd = 57.35. Glass: Unmatched (conditional index convention). f = +39.6 mm (isolated, conditional).
+Together the pair is a negative meniscus convex to the object, f = −106.3 mm, as claim 1 describes it. L5 is the thickest element, 12.7 mm. The cemented interface (R10 = −91.83 mm) joins a crown of νd 57.35 to the dense flint, the lens's only cemented crown–flint contact. L6's rear face, R11 = 22.34 mm, is the most strongly curved surface in the lens and is concave toward the stop, which lies 7.85 mm behind it. [1, Table 1; claim 1]
 
-L5 is the front, biconvex member of the L5–L6 cemented group. Its rear face is the shared interface at source/model surface 10, with radius -91.83 mm. Claim 1 identifies the complete doublet as a negative meniscus convex toward the object. The positive isolated value for L5 is not the doublet's assembled focal length. [1, Table 1; claim 1]
+### L7 — Biconvex Positive
 
-### L6 - Biconcave Negative Member of D1
+nd = 1.6920, νd = 55.05. Glass: Unmatched. f = +79.9 mm.
 
-nd = 1.75520, νd = 27.52. Glass: Unmatched (conditional index convention). f = -23.5 mm (isolated, conditional).
+L7 begins the positive component III, 1.3 mm behind the stop. The model labels its faces 13 and 14 (the patent's R12 and R13) because the stop takes its own row. The patent credits the three-element rear component as a whole, not individual elements, with the redistributed wide-aperture correction. [1, p. 7]
 
-L6 is the negative member of D1 and the last glass element before the aperture stop. Its front boundary is the same physical cemented interface as L5's rear boundary, with no air interval. Its lower printed ν value than L5 indicates greater primary dispersion under the adopted convention, but the patent gives no element-level chromatic budget or evidence sufficient to call this doublet apochromatic. [1, Table 1; claims 1, 3]
+### L8 — Biconvex Positive
 
-### L7 - Biconvex Positive Singlet
+nd = 1.6920, νd = 55.05. Glass: Unmatched. f = +53.6 mm.
 
-nd = 1.69200, νd = 55.05. Glass: Unmatched (conditional index convention). f = +79.9 mm (isolated, conditional).
+L8 is the stronger of the two rear positive singlets. It follows L7 by 1.0 mm and precedes L9 by 0.5 mm, the smallest air space in the lens.
 
-L7 starts the positive Component III, 1.3 mm axially after the stop plane. Its source radii are R12 and R13, represented by model row labels 13 and 14 because the model counts the stop row. The patent's system-level explanation assigns the revised rear component a role in redistributing wide-aperture correction; it does not isolate L7's share. [1, pp. 6–7; Table 1]
+### L9 — Negative Meniscus, Convex to Object
 
-### L8 - Biconvex Positive Singlet
+nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM) catalog equivalent. f = −84.5 mm.
 
-nd = 1.69200, νd = 55.05. Glass: Unmatched (conditional index convention). f = +53.6 mm (isolated, conditional).
-
-L8 is the second positive singlet of Component III. It follows L7 by a 1.0 mm axial air interval and precedes L9 by 0.5 mm. These spacings and its distinct curvature distinguish it from L7 despite their common material pair. No independent field-flattener, focus-group or stabilization role is assigned by the source. [1, Table 1; claim 1]
-
-### L9 - Negative Meniscus, Convex to Object
-
-nd = 1.75520, νd = 27.52. Glass: Unmatched (conditional index convention). f = -84.5 mm (isolated, conditional).
-
-L9 is the final negative meniscus in the source's positive rear component. Its object-side convex face has a larger radius than its rear face. The following 17.3 mm source interval is retained literally. This rear position does not by itself justify calling L9 a field flattener or a focusing element. [1, Table 1; claim 1]
+L9 is an 8.9 mm thick dense-flint meniscus whose rear face (R17 = 22.49 mm) is concave toward the image. A negative element near the image is a common way to flatten the field; the system's Petzval sum is 0.0046 mm⁻¹, a Petzval radius of about 220 mm or six focal lengths. This reading of L9's role is an interpretation; the patent assigns it none beyond its place in claim 1.
 
 ## Glass Identification and Selection
 
-Only four distinct scalar index/dispersion pairs are published. The table below records those source pairs without turning a numerical resemblance into a catalog match.
+Table 1 heads its columns nᵢ (refractive index) and νᵢ (dispersion) without naming a spectral line. The lens uses four glasses:
 
-| Source index nᵢ | Source dispersion νᵢ | Elements       | Identification status                 |
-| --------------- | -------------------- | -------------- | ------------------------------------- |
-| 1.5750          | 41.30                | L1             | Unmatched; reference line unspecified |
-| 1.7552          | 27.52                | L2, L6, L9     | Unmatched; reference line unspecified |
-| 1.6920          | 55.05                | L3, L4, L7, L8 | Unmatched; reference line unspecified |
-| 1.6595          | 57.35                | L5             | Unmatched; reference line unspecified |
+| Printed n / ν  | Elements       | Catalog identification at the d line                                |
+| -------------- | -------------- | ------------------------------------------------------------------- |
+| 1.5750 / 41.30 | L1             | QF3 (CDGM), nd 1.57503, νd 41.30                                    |
+| 1.7552 / 27.52 | L2, L6, L9     | H-ZF6 (CDGM), nd 1.75520, νd 27.53; S-TIH4 (OHARA) and E-FD4 (HOYA) |
+| 1.6920 / 55.05 | L3, L4, L7, L8 | Unmatched; the nearest rows are LAK9-type glasses at nd 1.6910      |
+| 1.6595 / 57.35 | L5             | Unmatched; the nearest row is K-LaK11 (Sumita) at nd 1.6583         |
 
-The reuse of three pairs and the distinct L5 pair are explicit in claim 3. The L5–L6 pair combines positive and negative shapes with different dispersion values, but no vendor Sellmeier data, nC/nF/ng values or anomalous partial-dispersion data are supplied. Accordingly, the candidate's normal-dispersion spectral estimates are conditional. Neither ED construction nor apochromatic performance is asserted.
+Two of the four pairs reproduce d-line catalog glasses to the printed precision, and none reproduces a catalog glass at the e line. The other two match no catalog row at either line. With only half the pairs matched, the d-line reading is not established numerically, so every element carries a note that its values are traced as nd and νd. L1, L2, L6 and L9 use the CDGM catalog dispersion curves; the other five use an Abbe-number estimate. CDGM is the one vendor whose catalog holds both matched pairs exactly; the names are catalog equivalents and do not identify KMZ's glass supplier.
+
+The positive power sits mainly in the νd 55–57 crowns of L4, L5, L7 and L8, and the dense flint appears in the negative L6 and L9 and in the positive L2. Claim 3 fixes the four glasses as ranges with the equalities n2 = n6 = n9 and n3 = n4 = n7 = n8. No extra-low-dispersion or anomalous partial-dispersion glass is claimed, and none is implied by the printed values. [1, claim 3]
 
 ## Focus Mechanism
 
-The published numerical example traces an object at infinity to the plane of best image setting. It supplies no finite-distance prescription, group-motion schedule or focus travel. The candidate is therefore **static infinity only**, with no invented unit-focus, internal-focus or floating-group motion. [1, p. 7]
+The patent traces only an object at infinity and prints no finite-distance spacings or focusing movement, so the model shows the infinity state alone. [1, p. 7]
 
-The data field `closeFocusM = 1e15` is an implementation sentinel for that static state, not a physical minimum-focus claim. The official product's reported 0.8 m closest focus belongs to the retail lens and is not imported into this prescription. [2]
+The production lens focuses manually down to 0.8 m. [2] KMZ does not publish how its optics move, and launch coverage notes only an unusually long focus throw for a stills lens. [4]
 
 ## Conditional Expressions
 
-Claim 3 constrains the source's generic nᵢ and νᵢ. Table 1 satisfies all the printed strict bounds and repeated-value equalities:
+Claim 3 constrains the indices and dispersions. Table 1 satisfies every bound and equality:
 
-| Elements       | Index constraint                | Dispersion constraint           | Table 1 result                          |
+| Elements       | Index condition                 | Dispersion condition            | Table 1                                 |
 | -------------- | ------------------------------- | ------------------------------- | --------------------------------------- |
 | L1             | 1.57 < n₁ < 1.58                | 41 < ν₁ < 42                    | 1.5750 / 41.30, within bounds           |
 | L2, L6, L9     | 1.75 < n₂ = n₆ = n₉ < 1.76      | 27 < ν₂ = ν₆ = ν₉ < 28          | 1.7552 / 27.52, equal and within bounds |
 | L3, L4, L7, L8 | 1.69 < n₃ = n₄ = n₇ = n₈ < 1.70 | 54.5 < ν₃ = ν₄ = ν₇ = ν₈ < 55.5 | 1.6920 / 55.05, equal and within bounds |
 | L5             | 1.65 < n₅ < 1.66                | 57 < ν₅ < 58                    | 1.6595 / 57.35, within bounds           |
 
-These conditions do not establish the spectral reference convention or a specific glass product. [1, p. 8]
+[1, p. 8]
 
-## Verification Summary and Retained Limits
+## Back Focus, Stop and Field
 
-This is an as-is research candidate, not a factory-identity or production-readiness approval. The accompanying audit distinguishes historical test results from the descriptive calculations added here.
-
-- **Literal dimensions:** All source radii, eighteen following intervals, nine index/dispersion pairs and seventeen non-stop face diameters are retained. No scaling, radius adjustment, terminal refit, cap reduction, gap-sag override or hidden display trim is used.
-- **Focal length and terminal interval:** Retained conditional paraxial calculations give EFL 36.0137942607 mm and Gaussian BFL 17.4096248977 mm. Table 1's terminal interval remains 17.3 mm; the 0.1096248977 mm difference has not been removed or explained as a proven source typo.
-- **Stop convention:** Canonical engine F1 derives a 31.4674271482 mm physical iris diameter. The source prints 30.8 mm, equivalent to approximately F1.0216697126 under the retained pupil calculation. They are separate conventions, not two exact F1 apertures.
-- **Field and reference MTF:** The source's 43 mm image diameter means a 21.5 mm radius. In the stored eleven-field canonical-F1 reference run, ten fields converge through 50 lp/mm; the approximately 19.35 mm interior field converges only through 30 lp/mm at the supported 256 grid. The 21.5 mm edge converges through 50 lp/mm. The generic 43.3 mm format diagonal, radius 21.65 mm, is a distinct earlier test and retains its separate 50 lp/mm convergence limitation.
-- **Printed-iris scope:** The separate 30.8 mm iris reference control exists at three requested source-field radii only. Neither the eleven-field reference run nor the photopic run tested that printed iris, despite inherited wording in their raw scope strings.
-- **Conditional spectrum:** The stored three-field, five-line photopic run converges through 50 lp/mm using the canonical F1 iris and estimated normal dispersion. Its returned image radii are approximately 0, 10.750783 and 21.500478 mm, not three mathematically exact requested radii. It does not establish the source's unknown reference-index convention. The later sampled matrix below expands field/aperture coverage while retaining that spectral qualification.
-- **Current fixed-infinity matrix:** The current `500ef599` integration evidence covers 198 canonical-iris fields: nine F-numbers (1, 1.4, 2, 2.8, 4, 5.6, 8, 11 and 16), eleven requested image radii from 0 to 21.5 mm, and reference/estimated-photopic spectra, all at unchanged design focus. Of these, 197 converge through 50 lp/mm; the sole hold remains F1 reference at approximately 19.35 mm, through 30 lp/mm at grid 256. All report zero failed and unaimed rays. Fourteen fields reuse the current-engine replay and 184 are additional fields, without counting duplicate runs. This is a sampled source-43 mm matrix, not continuous-field, finite-focus, full printed-iris or generic-43.3 mm-corner coverage.
-- **Modeled geometry:** Subsequent native-polygon and continuous spherical-face/straight-shoulder checks pass for all nine bodies and 36 pairs, including the intended L5–L6 cemented contact. Minimum noncemented axial separation is 0.5 mm. Whole zero-thickness stop-plane clearance is 1.3 mm; it is not a finite-blade or housing check. Independent geometry review supports this bounded result.
-- **Open acceptance:** No optical rerun is added by these companions. Finite-focus behavior, full printed-iris coverage, behavior between sampled states, exact production identity and manufacturer mechanical details remain unestablished. The cited historical evidence does not supply full application aggregate or interactive browser acceptance. A rejected 512-grid request was invalid input, not an optical run.
-
-The patent itself reports contrast above 50% on-axis and above 20% over image heights 0–17 mm at 30 mm⁻¹, and distortion magnitude no greater than 1.5%. These are the patent's reported claims, not independently reproduced production measurements. Numerical convergence of the retained model is not proof of those claims. [1, p. 7; Fig. 2]
+- **Focal length.** The paraxial EFL of the transcribed table is 36.014 mm against the stated 36 mm (+0.04%).
+- **Back focus.** The final spacing is the printed d18 = 17.3 mm; the paraxial back focus is 17.41 mm. The patent says the image forms in the plane of best setting. The spherical aberration is undercorrected (−0.09 mm at 0.5 and 0.7 of the pupil, −0.13 mm at 0.85), so real d-line rays in those zones cross the axis 17.28–17.32 mm behind the last surface. The printed 17.3 mm is that best-focus plane, and the model keeps it. [1, p. 7]
+- **Stop.** Table 1 prints a 30.8 mm iris diameter, which gives paraxial F/1.02, within the rounding of the stated 1:1.0. The model derives its stop from the design F/1.0, a 31.47 mm diameter. The semi-diameters are the printed clear diameters divided by two, and they pass the axial F/1.0 beam to within 3% of its f-number.
+- **Field.** The 21.5 mm image height of the 43 mm field is reached by a real chief ray at 30.75°, with distortion of +0.35%; the patent states that distortion stays within 1.5% over the field. [1, p. 7]
+- **Image quality.** The patent reports, at 1:1.0, contrast above 50% at 30 mm⁻¹ on axis and above 20% from y′ = 0 to 17 mm (Fig. 2). [1, p. 7]
 
 ## Sources
 
-1. [RU 2771147 C1, original patent PDF](https://patentimages.storage.googleapis.com/37/0a/4e/47ae724f006eba/RU2771147C1.pdf), published 27 April 2022. Bibliographic pages 1 and 3; architecture pp. 5–6; Table 1 and native specification p. 7; claims p. 8; Figs. 1–2 p. 9. Page numbers are those printed in the original PDF.
-2. [Official Zenit/KMZ product listing, Zenitar 35mm F1.0](https://www.zenit.photo/catalog/zenit-m-obektiv-zenitar-35mm-f-1-0/), read in the retained attribution investigation on 6 November 2026. Product evidence, not a numerical-prescription disclosure.
-3. [Radojuva interview with Vladimir Bogdankov](https://radojuva.com/2022/04/with-vladimir-bogdankov/), April 2022; retained attribution review distinguishes the designer's statements from editorial patent links.
-4. [Newsshooter, Zenit M and 35mm F1 launch coverage](https://www.newsshooter.com/2018/09/28/want-to-shoot-razor-thin-dof-the-zenit-m-and-35mm-f-1-0-might-be-just-for-you/), 28 September 2018. Retained investigation used indexed contemporary coverage for chronology and product topology, not a factory table.
-5. [Zenitcamera archive route](https://www.zenitcamera.com/archive/lenses/zenitar-1-35.html), cited only as the URL behind a retained search-index snippet. The original route was stopped for a redirect loop and not recovered; the 35.9886 mm value is not presented as a newly inspected primary page.
-
-The companion `Zenitar35Literal.audit.md` identifies local input, attribution, stored validation and independent-review evidence, including the claim-scope correction, current fixed-infinity matrix and descriptive element-power calculation.
+1. [RU 2771147 C1, original patent PDF](https://patentimages.storage.googleapis.com/37/0a/4e/47ae724f006eba/RU2771147C1.pdf), published 27 April 2022. Bibliographic pages 1 and 3; description pp. 5–7; Table 1 p. 7; claims p. 8; Figs. 1–2 p. 9 (printed page numbers).
+2. [Zenit, Zenitar 35mm f/1.0 product page](https://www.zenit.photo/catalog/zenit-m-obektiv-zenitar-35mm-f-1-0/) (in Russian): focal length 35 mm, optical scheme 8/9, minimum focus 0.8 m, angle of view 61.7°, M mount, 74 × 88 mm.
+3. [Radojuva, interview with Vladimir Bogdankov](https://radojuva.com/2022/04/with-vladimir-bogdankov/), April 2022 (in Russian): list of the lenses whose optical designs he developed, including the Zenitar 1.0/35.
+4. [Newsshooter, Zenit M and Zenitar 35mm f/1.0 announcement coverage](https://www.newsshooter.com/2018/09/28/want-to-shoot-razor-thin-dof-the-zenit-m-and-35mm-f-1-0-might-be-just-for-you/), 28 September 2018: announcement with the Zenit M, nine elements in eight groups, M mount.

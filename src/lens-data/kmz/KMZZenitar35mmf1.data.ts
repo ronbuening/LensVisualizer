@@ -1,35 +1,74 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-// Private research input; no retail identity or aperture equivalence claim.
+
+/**
+ * RU 2771147 C1, sole example (Table 1, printed p. 7). Inventors Vladimir Aleksandrovich Bogdankov and Ilya
+ * Anatolevich Levin; patent holder PAO Krasnogorsk Plant named after S.A. Zverev (KMZ). Filed 25 March 2021,
+ * published 27 April 2022. The patent states f′ = 36 mm, relative aperture 1:1.0, image field 2y′ = 43 mm and an
+ * object at infinity. Nine elements in eight groups, all spherical; L5 and L6 form the one cemented doublet.
+ *
+ * SCALE: none. R, d, n and ν are as printed at the native 36 mm; the paraxial EFL is 36.014 mm.
+ *
+ * GLASS: Table 1 heads its columns n and ν without naming a spectral line; they are traced as nd and νd. Two of the
+ * four printed pairs equal d-line catalog glasses (1.5750 / 41.30 = QF3, 1.7552 / 27.52 = H-ZF6) and neither matches
+ * at the e line. 1.6920 / 55.05 and 1.6595 / 57.35 match no catalog row at either line and stay Unmatched.
+ *
+ * STOP: Table 1 places the aperture diaphragm (АД) 7.85 mm behind R11 and 1.3 mm ahead of R12. The stop takes its
+ * own row, so model labels 13–18 carry the patent's R12–R17. The printed iris diameter, 30.8 mm, works out to
+ * paraxial F/1.02, within the rounding of the stated 1:1.0. As for any ordinary prime, the stop radius is derived
+ * from the design F/1.0 instead: 15.73 mm, a 31.47 mm diameter.
+ *
+ * SEMI-DIAMETERS: the printed clear diameters D divided by two. The aperture audit finds no rim limit at F/1.0, so
+ * no rim is changed.
+ *
+ * IMAGE PLANE: the final spacing is the printed d18 = 17.3 mm against a paraxial back focus of 17.41 mm. This is not
+ * a source error. The patent says the image forms in the plane of best setting, and the spherical aberration is
+ * undercorrected: real d-line rays at pupil zones 0.5–0.85 cross the axis 17.28–17.32 mm behind the last surface.
+ * The printed 17.3 mm is that best-focus plane and is kept.
+ *
+ * FOCUS: the patent prints only the infinity state, so no focus movement is modelled; closeFocusM = 1e15 marks focus
+ * as not modelled and is not a minimum focus distance. KMZ lists 0.8 m for the production lens
+ * (catalog.closeFocusM.marketing).
+ */
 const lens = {
   "schema": 2,
-  "key": "zenitar-35-f1-ru2771147-literal-research",
+  "key": "kmz-zenitar-35mm-f1",
   "maker": "KMZ",
-  "name": "Zenitar 35mm f/1 candidate \u2014 RU2771147 literal 36mm",
-  "subtitle": "Factory identity unconfirmed; printed terminal 17.3mm; conditional reference-index interpretation",
-  "visible": false,
-  "layout": {
-    "yScFill": 0.3
-  },
+  "name": "KMZ ZENITAR 35mm f/1",
+  "subtitle": "RU 2771147 C1, sole example — strong production correlation",
+  "visible": true,
+
   "catalog": {
+    "lensMounts": ["leica-m"],
     "imageFormat": "135-full-frame",
+    "imageCircleMm": 43,
+    "specs": [
+      "9 ELEMENTS / 8 GROUPS",
+      "DESIGN f = 36 mm",
+      "DESIGN F/1.0",
+      "ALL SPHERICAL",
+      "2ω = 61.7°"
+    ],
     "elementCount": 9,
     "groupCount": 8,
     "focalLengthMm": {
+      "marketing": 35,
       "design": 36
     },
     "fNumber": {
+      "marketing": 1,
       "design": 1
     },
-    "specs": [
-      "Native patent36mm/F1; retail35mm identity hypothesis only",
-      "All radii, intervals and nine index/Abbe pairs unchanged",
-      "Source surface diameters retained; printed stop diameter30.8mm recorded separately",
-      "Reference index wavelength not explicit; schema nd assignment conditional",
-      "Static infinity only; no manufactured close-focus schedule"
-    ]
+    "closeFocusM": {
+      "marketing": 0.8
+    }
   },
+
   "source": {
     "patentNumber": "RU 2771147 C1",
+    "example": {
+      "label": "Sole example",
+      "id": null
+    },
     "patentYear": 2022,
     "authors": [
       "Vladimir Aleksandrovich Bogdankov",
@@ -37,103 +76,122 @@ const lens = {
     ],
     "assignees": [
       "Krasnogorsk Mechanical Plant"
-    ],
-    "example": {
-      "label": "Sole example",
-      "id": null
-    },
-    "errata": [
-      {
-        "status": "unresolved",
-        "note": "Printed terminal17.3mm differs from untuned paraxial BFL17.4096248977; retained without adjustment. Exact factory35mm identity and index reference wavelength unconfirmed."
-      }
     ]
   },
+
   "elements": [
     {
       "id": 1,
       "name": "L1",
-      "label": "Source glass 1",
-      "type": "Spherical source element",
+      "label": "Element 1",
+      "type": "Negative Meniscus",
       "nd": 1.575,
       "vd": 41.3,
-      "glass": "Unmatched; source index reference wavelength unconfirmed"
+      "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
+      "focalLengthMm": -59.44,
+      "glass": "QF3 (CDGM catalog equivalent; production supplier unspecified)",
+      "role": "Negative meniscus, convex to the object, that forms the whole negative first component (I)."
     },
     {
       "id": 2,
       "name": "L2",
-      "label": "Source glass 2",
-      "type": "Spherical source element",
+      "label": "Element 2",
+      "type": "Biconvex Positive",
       "nd": 1.7552,
       "vd": 27.52,
-      "glass": "Unmatched; source index reference wavelength unconfirmed"
+      "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
+      "focalLengthMm": 84.66,
+      "glass": "H-ZF6 (CDGM catalog equivalent; production supplier unspecified)",
+      "role": "Dense-flint positive singlet with a nearly flat rear face; first element of the positive second component (II)."
     },
     {
       "id": 3,
       "name": "L3",
-      "label": "Source glass 3",
-      "type": "Spherical source element",
+      "label": "Element 3",
+      "type": "Negative Meniscus",
       "nd": 1.692,
       "vd": 55.05,
-      "glass": "Unmatched; source index reference wavelength unconfirmed"
+      "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
+      "focalLengthMm": -133.62,
+      "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
+      "role": "Weak single negative meniscus, concave to the object, between the two positive singlets of component II."
     },
     {
       "id": 4,
       "name": "L4",
-      "label": "Source glass 4",
-      "type": "Spherical source element",
+      "label": "Element 4",
+      "type": "Biconvex Positive",
       "nd": 1.692,
       "vd": 55.05,
-      "glass": "Unmatched; source index reference wavelength unconfirmed"
+      "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
+      "focalLengthMm": 54.41,
+      "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
+      "role": "Thick second biconvex singlet of component II, directly ahead of the cemented meniscus."
     },
     {
       "id": 5,
       "name": "L5",
-      "label": "Source glass 5",
-      "type": "Spherical source element",
+      "label": "Element 5",
+      "type": "Biconvex Positive",
       "nd": 1.6595,
       "vd": 57.35,
-      "glass": "Unmatched; source index reference wavelength unconfirmed",
+      "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
+      "focalLengthMm": 39.62,
+      "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
+      "role": "Positive crown front member of the cemented negative meniscus D1, which closes component II ahead of the stop.",
       "cemented": "D1"
     },
     {
       "id": 6,
       "name": "L6",
-      "label": "Source glass 6",
-      "type": "Spherical source element",
+      "label": "Element 6",
+      "type": "Biconcave Negative",
       "nd": 1.7552,
       "vd": 27.52,
-      "glass": "Unmatched; source index reference wavelength unconfirmed",
+      "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
+      "focalLengthMm": -23.48,
+      "glass": "H-ZF6 (CDGM catalog equivalent; production supplier unspecified)",
+      "role": "Dense-flint rear member of D1; its strongly curved rear face is concave toward the stop.",
       "cemented": "D1"
     },
     {
       "id": 7,
       "name": "L7",
-      "label": "Source glass 7",
-      "type": "Spherical source element",
+      "label": "Element 7",
+      "type": "Biconvex Positive",
       "nd": 1.692,
       "vd": 55.05,
-      "glass": "Unmatched; source index reference wavelength unconfirmed"
+      "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
+      "focalLengthMm": 79.95,
+      "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
+      "role": "First positive singlet of the three-element rear component (III), 1.3 mm behind the stop."
     },
     {
       "id": 8,
       "name": "L8",
-      "label": "Source glass 8",
-      "type": "Spherical source element",
+      "label": "Element 8",
+      "type": "Biconvex Positive",
       "nd": 1.692,
       "vd": 55.05,
-      "glass": "Unmatched; source index reference wavelength unconfirmed"
+      "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
+      "focalLengthMm": 53.57,
+      "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
+      "role": "Second positive singlet of component III, the stronger of the two."
     },
     {
       "id": 9,
       "name": "L9",
-      "label": "Source glass 9",
-      "type": "Spherical source element",
+      "label": "Element 9",
+      "type": "Negative Meniscus",
       "nd": 1.7552,
       "vd": 27.52,
-      "glass": "Unmatched; source index reference wavelength unconfirmed"
+      "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
+      "focalLengthMm": -84.51,
+      "glass": "H-ZF6 (CDGM catalog equivalent; production supplier unspecified)",
+      "role": "Thick dense-flint negative meniscus, convex to the object, that closes component III ahead of the image."
     }
   ],
+
   "surfaces": [
     {
       "label": "1",
@@ -252,11 +310,12 @@ const lens = {
       "sd": 11.35
     }
   ],
+
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Static infinity research sentinel, not physical minimum focus."
+    "description": "Infinity prescription only. The patent publishes no focusing data, so no focus movement is modelled. The production lens focuses manually down to 0.8 m."
   },
-  "gaps": {},
+
   "aperture": {
     "nominalFNumber": 1,
     "fStops": [
@@ -272,12 +331,34 @@ const lens = {
     ],
     "maxFNumber": 16
   },
+
+  "groups": [
+    {
+      "text": "I",
+      "fromSurface": "1",
+      "toSurface": "2"
+    },
+    {
+      "text": "II",
+      "fromSurface": "3",
+      "toSurface": "11"
+    },
+    {
+      "text": "III",
+      "fromSurface": "13",
+      "toSurface": "18"
+    }
+  ],
   "doublets": [
     {
       "text": "D1",
       "fromSurface": "9",
       "toSurface": "11"
     }
-  ]
+  ],
+
+  "layout": {
+    "yScFill": 0.3
+  }
 } satisfies LensDataV2Input;
 export default lens;
