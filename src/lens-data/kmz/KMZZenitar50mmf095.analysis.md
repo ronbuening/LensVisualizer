@@ -40,31 +40,31 @@ Focal lengths below are computed in air from each element's printed radii, centr
 
 ### Element 1 — Plano-Concave
 
-nd = 1.5750, νd = 41.29. Glass: QF3 (CDGM) coordinate equivalent, a light flint; the pair is also consistent with the Russian light flint LF5 (inferred). f = −137.83 mm.
+nd = 1.5750, νd = 41.29. Glass: QF3 (CDGM) coordinate equivalent, a light flint; the pair is the d-line value of the Russian light flint LF5 (inferred). f = −137.83 mm.
 
 The front element is plane toward the object, with a concave rear face of R = 79.25 mm. The patent states that moving the negative lens ahead of the positive pair made it possible to correct the aberrations of the wide beams, and that the negative distortion this leaves is spread evenly over the lenses of components II and III.
 
 ### Element 2 — Biconvex Positive
 
-nd = 1.7441, νd = 50.42. Glass: Unmatched, a lanthanum glass with no catalog row at these coordinates. f = +113.45 mm.
+nd = 1.7441, νd = 50.42. Glass: Unmatched; the pair is the d-line value of the Russian extra-dense crown STK19 (inferred), a lanthanum glass the glass catalog does not carry. f = +113.45 mm.
 
 The first collector of component I. Its rear face (R = −288.4 mm) is weak, and it is separated from L3 by a 0.3 mm air space. L6 and L7 use the same glass; claim 2 sets n2 = n6 = n7 and ν2 = ν6 = ν7.
 
 ### Element 3 — Positive Meniscus
 
-nd = 1.6595, νd = 57.35. Glass: K-LaK11 (Sumita), the nearest catalog row to this lanthanum crown. f = +148.12 mm.
+nd = 1.6595, νd = 57.35. Glass: K-LaK11 (Sumita), the nearest catalog row; the pair is the d-line value of the Russian extra-dense crown STK3 (inferred). f = +148.12 mm.
 
 The positive meniscus, convex to the object, closes component I. Its rear face is 14.9 mm ahead of the stop. L8 repeats this glass (claim 2: n3 = n8).
 
 ### Element 4 — Negative Meniscus
 
-nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM) coordinate equivalent, an SF4-class dense flint. f = −47.13 mm.
+nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM) coordinate equivalent, an SF4-class dense flint; the pair is the d-line value of the Russian dense flint TF5 (inferred). f = −47.13 mm.
 
 The first element behind the stop, 11.3 mm from it, presents a strongly curved concave face (R = −32.21 mm) to the diaphragm. That face carries the second-largest negative Petzval term in the lens, −0.0134 mm⁻¹ in the model.
 
 ### Element 5 — Positive Meniscus
 
-nd = 1.6131, νd = 60.61. Glass: Unmatched; the pair is consistent with the Russian dense crown TK14 (inferred), which the glass catalog does not carry. f = +81.88 mm.
+nd = 1.6131, νd = 60.61. Glass: Unmatched; the pair is the d-line value of the Russian dense crown TK14 (inferred), which the glass catalog does not carry. f = +81.88 mm.
 
 At 19.5 mm, L5 is the thickest element. It is cemented to L4 on a nearly flat junction (R = −361.4 mm), and the pair has a net in-air focal length of −213.15 mm, the negative two-element meniscus of the claims. The pair joins a dense flint to a crown about 33 Abbe units apart. The patent states that the axial colour introduced by the plano-concave lens of component III is corrected by this single cemented group near the stop.
 
@@ -88,22 +88,24 @@ The meniscus, convex to the object, is the strongest positive element in the len
 
 ### Element 9 — Plano-Concave
 
-nd = 1.6895, νd = 31.13. Glass: L-TIM28 (OHARA) coordinate equivalent, a dense flint. f = −36.85 mm.
+nd = 1.6895, νd = 31.13. Glass: L-TIM28 (OHARA), which lends its dispersion curve; the pair is the d-line value of the Russian dense flint TF8 (inferred). f = −36.85 mm.
 
 The last element is plane toward the object, with a concave rear face of R = 25.41 mm that is 23.7 mm from the image. That face carries the largest negative Petzval term in the model, −0.0161 mm⁻¹, and acts as the field flattener; this role is inferred from the prescription, not stated by the patent. The patent names L9 as the source of the axial colour that the L4–L5 doublet corrects.
 
 ## Glass Identification
 
-| nd | νd | Elements | Label | Class |
-| ---: | ---: | --- | --- | --- |
-| 1.5750 | 41.29 | L1 | QF3 (CDGM) equivalent | light flint |
-| 1.7441 | 50.42 | L2, L6, L7 | Unmatched | lanthanum glass |
-| 1.6595 | 57.35 | L3, L8 | K-LaK11 (Sumita), nearest row | lanthanum crown |
-| 1.7552 | 27.52 | L4 | H-ZF6 (CDGM) equivalent | dense flint |
-| 1.6131 | 60.61 | L5 | Unmatched | dense crown |
-| 1.6895 | 31.13 | L9 | L-TIM28 (OHARA) equivalent | dense flint |
+| nd | νd | Elements | Russian glass (inferred) | Label | Class |
+| ---: | ---: | --- | --- | --- | --- |
+| 1.5750 | 41.29 | L1 | LF5 | QF3 (CDGM) equivalent | light flint |
+| 1.7441 | 50.42 | L2, L6, L7 | STK19 | Unmatched | extra-dense lanthanum crown |
+| 1.6595 | 57.35 | L3, L8 | STK3 | K-LaK11 (Sumita), nearest row | extra-dense lanthanum crown |
+| 1.7552 | 27.52 | L4 | TF5 | H-ZF6 (CDGM) equivalent | dense flint |
+| 1.6131 | 60.61 | L5 | TK14 | Unmatched | dense crown |
+| 1.6895 | 31.13 | L9 | TF8 | L-TIM28 (OHARA), nearest row | dense flint |
 
-Table 1 heads its columns n and ν without naming a spectral line. Three of the six distinct pairs equal d-line catalog glasses to the printed precision, and none matches any catalog glass at the e line, so the values are traced as nd and νd. The catalog names are coordinate equivalents, not identifications: the patent names no glass types or supplier. The 1.6595/57.35 crown, which the Zenitar 35mm f/1 patent prints as well, borrows the dispersion curve of the nearest row, K-LaK11 (0.0012 lower in nd, 0.05 lower in νd), while the trace keeps the printed index. The two remaining unmatched pairs are traced with Abbe-number dispersion. Every element satisfies the index and dispersion ranges of claim 2.
+Table 1 heads its columns n and ν without naming a spectral line, and the patent names no glass types or supplier. Every printed pair is the d-line value of a Russian GOST optical glass as GOST 13659-78 tabulates it: each nd agrees to the printed four decimals and each νd within 0.03. At the e line those glasses read 0.0024–0.0065 higher, and no pair matches any catalog glass there, so the values are traced as nd and νd. The identification rests on that agreement alone and says nothing about the production melts.
+
+The site's glass catalog carries no GOST rows. QF3 and H-ZF6 equal LF5 and TF5 at the d line. K-LaK11 (0.0012 lower in nd, 0.05 lower in νd than STK3) and L-TIM28 (0.11 lower in νd than TF8) lend their dispersion curves while the trace keeps the printed indices. STK19 and TK14 are traced with Abbe-number dispersion. The STK3 crown also appears in the Zenitar 35mm f/1 patent. Every element satisfies the index and dispersion ranges of claim 2.
 
 Only six glasses serve nine elements. The three positive elements L2, L6 and L7 share one lanthanum glass, and L3 and L8 share another. The two dense flints sit where the negative power is concentrated: L4 next to the stop and L9 in front of the image.
 
@@ -142,7 +144,7 @@ The production lens is focused manually to 0.7 m. The patent prints only the inf
 - The radii, spacings, indices, Abbe numbers, stop position and clear diameters are those of Table 1 at f′ = 52 mm. No value is rescaled to the marketed 50 mm.
 - The stop radius is derived from f/0.95, about 0.05 mm larger in radius than the printed 46.2 mm diameter implies.
 - Close focus is not modeled, and infinity results do not describe the lens at 0.7 m.
-- Three elements carry catalog coordinate equivalents; the other six are traced with Abbe-number dispersion. Neither represents the production melts, so colour results are estimates.
+- Five elements borrow the dispersion curves of catalog rows that stand in for their Russian glasses; L2, L5, L6 and L7 are traced with Abbe-number dispersion. Neither represents the production melts, so colour results are estimates.
 - The example was filed after the lens went on sale. It is the only published prescription linked to the lens, but it may differ from early production.
 
 ## Sources
@@ -151,4 +153,5 @@ The production lens is focused manually to 0.7 m. The patent prints only the inf
 2. [Sony Alpha Rumors: Zenit officially announced the new 50mm f/0.95 E-mount lens](https://www.sonyalpharumors.com/zenit-officially-announced-the-new-50mm-f-095-e-mount-lens/) — announcement, specifications and the optical-scheme credit to V. A. Bogdankov.
 3. [Photo Rumors: officially announced Zenitar 50mm f/0.95 for Sony E-mount](https://photorumors.com/2019/03/15/officially-announced-zenitar-50mm-f-0-95-manual-focus-full-frame-lens-for-sony-e-mount-from-zenit/) — announcement and specifications.
 4. [Phillip Reeve: quick review of the Zenitar 50mm 0.95 E](https://phillipreeve.net/blog/quick-review-zenitar-50mm-0-95-e/) — construction, mount, iris and handling.
-5. [Zenit product booklet, Zenitar 0.95/50](https://www.zenit.photo/upload/iblock/6a4/8ganoxdqmhgv9bykeweik37w7mhtj1j7/booklet_lens_zenitar_0_95_50_eng.pdf) — maker literature.
+5. [Zenit product booklet, Zenitar 0.95/50](https://www.zenit.photo/upload/iblock/6a4/8ganoxdqmhgv9bykeweik37w7mhtj1j7/booklet_lens_zenitar_0_95_50_eng.pdf) — maker specifications: 9 elements in 8 groups, 44° angular field, f/0.95–16, 14 blades, 0.7 m, 72 mm filter; no optical section.
+6. GOST 13659-78, Стекло оптическое бесцветное. Физико-химические характеристики (colourless optical glass: physical and chemical characteristics) — line indices and Abbe numbers of LF5, STK19, STK3, TF5, TK14 and TF8.

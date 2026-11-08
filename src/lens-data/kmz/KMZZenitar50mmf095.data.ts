@@ -10,12 +10,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * SCALE: none. R, d, n and ν are as printed at the native 52 mm; the paraxial EFL is 52.0315 mm.
  *
- * GLASS: Table 1 heads its columns n and ν without naming a spectral line; they are traced as nd and νd. Three of the
- * six distinct printed pairs equal d-line catalog glasses to the printed precision (1.5750 / 41.29 = QF3,
- * 1.7552 / 27.52 = H-ZF6, 1.6895 / 31.13 = L-TIM28), and none matches a catalog pair at the e line. 1.6595 / 57.35,
- * which the RU 2771147 C1 sibling also prints, takes the dispersion curve of the nearest row, K-LaK11 (nd 0.0012 and
- * νd 0.05 lower; the trace keeps the printed nd). 1.7441 / 50.42 and 1.6131 / 60.61 match no catalog row within 0.25
- * in νd and stay Unmatched.
+ * GLASS: Table 1 heads its columns n and ν without naming a spectral line; they are traced as nd and νd. All six
+ * distinct printed pairs are the d-line values of Russian GOST optical glasses as GOST 13659-78 tabulates them
+ * (inferred from that agreement; the patent names no glass): 1.5750 / 41.29 LF5, 1.7441 / 50.42 STK19,
+ * 1.6595 / 57.35 STK3, 1.7552 / 27.52 TF5, 1.6131 / 60.61 TK14 and 1.6895 / 31.13 TF8, every nd to the printed four
+ * decimals and every νd within 0.03. At the e line these glasses read 0.0024–0.0065 higher, and no pair matches any
+ * catalog glass there. The glass catalog carries no GOST rows. QF3 and H-ZF6 equal LF5 and TF5 at the d line;
+ * K-LaK11 (nd 0.0012 and νd 0.05 below STK3) and L-TIM28 (νd 0.11 below TF8) lend their dispersion curves, and the
+ * trace keeps the printed nd. STK19 and TK14 stay Unmatched.
  *
  * STOP: Table 1 places the aperture diaphragm (АД) 14.9 mm behind R6 and 11.3 mm ahead of R7. The stop takes its own
  * row, so model labels 8–18 carry the patent's R7–R17. The printed iris diameter, 46.2 mm, works out to paraxial

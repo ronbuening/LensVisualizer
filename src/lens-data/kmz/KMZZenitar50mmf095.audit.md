@@ -106,7 +106,9 @@ undersized, none of them this lens. The field-coverage audit over all lenses doe
 
 Open: the table's spectral line rests on three of six pairs, below the 80 % numerical threshold of the data spec,
 with no e-line match; exact factory prescription and revision; production glass types; the close-focus movement; a
-maker optical section; the booklet's contents.
+maker optical section; the booklet's contents. (Closed 2026-11-08: the spectral line, since all six pairs are d-line
+GOST glasses, and the booklet's contents; the design glasses are identified but not the production melts. See the
+third review below.)
 
 ## 2026-11-08 — Second review: diagram, labels and movement
 
@@ -173,7 +175,8 @@ field-coverage audit gives 100 %.
   claim 2 requires) and 1.6131 / 60.61 (L5) occur only in this example.
 
 Open: Fig. 1 carries L5's front face out to 29.45 mm, above L4's 26.3 mm edge; a cemented interface takes one
-semi-diameter, so the diagram stops L5's front at the 26.5 mm junction and draws its edge as a slope.
+semi-diameter, so the diagram stops L5's front at the 26.5 mm junction and draws its edge as a slope. (Closed
+2026-11-08: kept as drawn; see the third review below.)
 
 ## 2026-11-08 — Glass backfill
 
@@ -182,3 +185,43 @@ row while the trace keeps the printed nd: 1.6595 / 57.35 takes K-LaK11 (SUMITA, 
 1.6920 / 55.05 takes J-LAK9 (Hikari, 1.69100 / 54.93). Both differ from the printed νd by 0.12 or less. The patent
 prints no chromatic aberration curves to check them against, so the labels say "nearest catalog row" and name no
 supplier. Pairs further than 0.25 from any row in νd stay Unmatched.
+
+## 2026-11-08 — Third review: diagram, labels and movement
+
+Fig. 1 (the native page 2 raster, 301 ppi) was compared with the local page and with the model outline drawn over it.
+The scale was measured again: the first vertex to the image line gives 13.72 px/mm along the axis, with every vertex
+crossing within 0.15 mm; arc fits to R7, R9 and R17 give 13.50–13.56 px/mm across it, and the ±21.5 mm image line
+agrees. Every rim, land and the stop tick (37.35 mm behind the first vertex, inner end 23.0 mm) read within 2 % of the
+file, so no rim changed. Second-review land and cut verdicts re-measured: unchanged; worst loss 0.0 points. Each land
+alone (faces 8, 14, 16 and 18) also costs 0.0 points, and Fig. 1 draws all four.
+
+L5's front face stays as drawn. Raising the cemented face 9 to 29.5 mm would square L5, but it would also slope L4 from
+its 26.5 mm land up to 29.5 mm and put the junction 3 mm above the printed D9 = 53.0 mm, which Fig. 1 draws as L4's
+own edge. A cemented face takes one height and cannot carry a land, so one of the two elements must slope.
+
+Labels, types, focal lengths and roles agree with the signs of R and the text on pages 5–7. The inspector lines of L1–L5
+and L9 show the stored glass and focal length. Brackets I, II, III and D1 span the right faces without collisions, and
+the stop sits between L3 and L4. The lens has no aspheres, tags or movement, and the focus slider reads ∞ to
+"Not modeled". The engine is unchanged: EFL 52.0315 mm, f/0.95, half-field 22.29°, 15.4 % transmission at 22.0°.
+
+Glass. The patent prints no glass names, line indices or partial dispersions. The six printed pairs are the d-line
+values of Russian GOST glasses as GOST 13659-78 tabulates them (read from an OCR copy; STK19's C and g and LF5's C
+indices are partly illegible):
+
+| Printed n / ν | Glass | nd | νd | ne / νe (GOST 3514-94) | PgF |
+| --- | --- | --- | --- | --- | --- |
+| 1.5750 / 41.29 | LF5 | 1.575022 | about 41.3 | 1.5783 / 41.04 | 0.574 |
+| 1.7441 / 50.42 | STK19 | 1.744132 | 50.42 | 1.7476 / 50.21 | about 0.549 |
+| 1.6595 / 57.35 | STK3 | 1.659502 | 57.35 | 1.6622 / 57.09 | 0.5446 |
+| 1.7552 / 27.52 | TF5 | 1.755234 | 27.53 | 1.7617 / 27.32 | 0.6048 |
+| 1.6131 / 60.61 | TK14 | 1.61309 | 60.58 | 1.6155 / 60.34 | 0.5421 |
+| 1.6895 / 31.13 | TF8 | 1.689492 | 31.13 | 1.6947 / 30.89 | 0.5943 |
+
+All six nd agree to the printed four decimals, so the table is d-line. Relative to nd, the C, F and g indices of the
+current curves lie within 5e-6 of LF5 (QF3) and 1e-5 of STK3 (K-LaK11); H-ZF6 sits 1.5e-4 above TF5 at g and L-TIM28
+2.1e-4 above TF8 at g, where OHARA PBM28 comes within 1.4e-5. Tracing every element with the GOST indices moves the
+paraxial C, F and g foci by 5 µm or less. The maker booklet gives 9 elements in 8 groups, 44°, f/0.95–16, 14 blades,
+0.7 m and a 72 mm filter, and has no optical section.
+
+Open: exact factory prescription and revision; the production melts; the close-focus movement; a maker optical
+section.
