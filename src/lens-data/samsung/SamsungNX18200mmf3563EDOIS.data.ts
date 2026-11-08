@@ -27,7 +27,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * front close their 0.14 mm air gap at 9.43 mm, so L7 stops at 9.3 mm, 0.006 mm clear of L6, and checks.gapSagFrac
  * 0.96 admits that pair. FIG. 3 steps L16 (9.1 mm) below L17 (9.8 mm) at their cemented face, which one
  * semi-diameter cannot draw; both stay square at 9.7 mm. These rims vignette the wide-open corners heavily, and at
- * 0.5 m at tele L9's front rim also clips the axial beam.
+ * 0.5 m at tele L9 and the front of the triplet, both drawn at about 8.5 mm in FIG. 3A–3C, also clip the axial beam.
  * Glass: d-line. Fifteen elements carry HOYA catalog equivalents that match the printed nd and νd. The three
  * aspherical elements print indices 0.0019–0.0026 below HOYA moulding glasses with the same νd (within 0.1):
  * L9 M-BACD5N, L13 M-LAC130, L15 M-BACD12. They take those dispersion curves while the trace keeps the printed nd;
