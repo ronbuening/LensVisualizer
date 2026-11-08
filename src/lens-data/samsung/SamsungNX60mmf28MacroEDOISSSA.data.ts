@@ -8,10 +8,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the stop row between S14 and S16 (ST in Fig. 12), the variable gaps A–G at M = 0, −0.5 and −1.0 (Table 11), and
  * the S23–S24 plate (2.8 mm, 1.51680/64.2; the text places a filter closest to the image) with G = 1.0 mm to the
  * image, carried in rearPlates.
- * Derived: the patent prints no clear apertures. Semi-diameters are estimates from the axial entrance-pupil envelope
- * and Fig. 12 proportions; they sit 12–20 % inside the Fig. 12 drawing in G1, G4 and G5 and are kept as estimated, so
- * the full-field corner is heavily vignetted. The iris radius (8.48 mm) follows from F/2.86; Fig. 12 draws about
- * 8.5 mm.
+ * Derived: the patent prints no clear apertures. Semi-diameters are read from Fig. 12 (M = 0 panel; 13.26 px/mm along
+ * the axis from S1 to the image, about 13.2 px/mm radially from arc fits and the stop tick). Square rims at the drawn
+ * element edges: C1 13.7 mm, L3 11.3, L7 8.8, C3 12.7, L11 12.2 and L12 11.8; L8 keeps 9.4 (drawn 9.5). L3's 11.3 mm
+ * also clears the 1:1 axial beam from the printed object point (11.21 mm at S4). L4's flat S6 runs to the drawn
+ * 9.9 mm edge; its S7 curve ends at 8.8 mm (drawn about 8.7) and a land continues to 9.9 mm, as drawn. C2 keeps
+ * 8.8 mm: Fig. 12 ends its S9 and S10 curves at 8.3–8.5 mm, with lands out to a 9.5 mm edge. The iris radius (8.48 mm)
+ * follows from F/2.86; Fig. 12 draws about 8.5 mm.
  * Focus (published): G1, G3 (with the stop) and G5 are fixed; G2 (S6–S10) moves toward the image and G4 (S16–S20)
  * toward the object, keeping B + C = 12.94 mm and D + E = 33.72 mm. Table 11's gaps B, C, D and E are D5, D10, D15
  * and D20 here. The printed object distances A = 124.9239 and 79.4080 mm from S1 give 230.92 and 185.41 mm object to
@@ -76,8 +79,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -48.06,
       glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Dense-flint negative meniscus at the front of the G1 cemented doublet D1.",
-      cemented: "D1",
+      role: "Dense-flint negative meniscus at the front of the G1 cemented doublet C1.",
+      cemented: "C1",
     },
     {
       id: 2,
@@ -89,8 +92,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 34.99,
       glass: "Unmatched (patent nd 1.61780, νd 63.4; no catalog row at these coordinates)",
-      role: "Phosphate-crown-class positive member of D1; achromatizes the front doublet against L1.",
-      cemented: "D1",
+      role: "Phosphate-crown-class positive member of C1; achromatizes the front doublet against L1.",
+      cemented: "C1",
     },
     {
       id: 3,
@@ -126,8 +129,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -27.15,
       glass: "BSC7 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Crown biconcave front member of the G2 cemented doublet D2; the strongest negative element.",
-      cemented: "D2",
+      role: "Crown biconcave front member of the G2 cemented doublet C2; the strongest negative element.",
+      cemented: "C2",
     },
     {
       id: 6,
@@ -139,8 +142,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 43.48,
       glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Dense-flint positive meniscus completing D2; corrects the focus group's colour.",
-      cemented: "D2",
+      role: "Dense-flint positive meniscus completing C2; corrects the focus group's colour.",
+      cemented: "C2",
     },
     {
       id: 7,
@@ -179,8 +182,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -38.27,
       glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Dense-flint biconcave front member of the G4 cemented doublet D3.",
-      cemented: "D3",
+      role: "Dense-flint biconcave front member of the G4 cemented doublet C3.",
+      cemented: "C3",
     },
     {
       id: 10,
@@ -192,8 +195,8 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 30.74,
       glass: "LAC14 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Lanthanum-crown biconvex rear member of D3; the strongest positive element.",
-      cemented: "D3",
+      role: "Lanthanum-crown biconvex rear member of C3; the strongest positive element.",
+      cemented: "C3",
     },
     {
       id: 11,
@@ -205,7 +208,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 60.24,
       glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
-      role: "Lanthanum-crown biconvex singlet closing the G4 focus group.",
+      role: "Lanthanum-flint biconvex singlet closing the G4 focus group.",
     },
     {
       id: 12,
@@ -225,27 +228,27 @@ const LENS_DATA = {
       label: "1",
       R: 61.558,
       d: 1.1,
-      sd: 12,
+      sd: 13.7,
       medium: 1,
     },
     {
       label: "2",
       R: 24.298,
       d: 6,
-      sd: 12,
+      sd: 13.7,
       medium: 2,
     },
     {
       label: "3",
       R: -177.589,
       d: 0.1,
-      sd: 12,
+      sd: 13.7,
     },
     {
       label: "4A",
       R: 29.064,
       d: 3.85,
-      sd: 10.7,
+      sd: 11.3,
       medium: 3,
       asphere: {
         K: 0,
@@ -258,13 +261,13 @@ const LENS_DATA = {
     {
       label: "5",
       R: 965.867,
-      sd: 10.7,
+      sd: 11.3,
     },
     {
       label: "6",
       R: "flat",
       d: 1,
-      sd: 8.8,
+      sd: 9.9,
       medium: 4,
     },
     {
@@ -272,6 +275,7 @@ const LENS_DATA = {
       R: 18.094,
       d: 3.22,
       sd: 8.8,
+      rimExtensionSd: 9.9,
     },
     {
       label: "8",
@@ -296,14 +300,14 @@ const LENS_DATA = {
       label: "11",
       R: 45.769,
       d: 1.39,
-      sd: 9.4,
+      sd: 8.8,
       medium: 7,
     },
     {
       label: "12",
       R: 68.03,
       d: 0.98,
-      sd: 9.4,
+      sd: 8.8,
     },
     {
       label: "13",
@@ -326,39 +330,39 @@ const LENS_DATA = {
       label: "16",
       R: -244.231,
       d: 1,
-      sd: 10.4,
+      sd: 12.7,
       medium: 9,
     },
     {
       label: "17",
       R: 37.427,
       d: 5.22,
-      sd: 10.4,
+      sd: 12.7,
       medium: 10,
     },
     {
       label: "18",
       R: -47.2,
       d: 0.1,
-      sd: 10.4,
+      sd: 12.7,
     },
     {
       label: "19",
       R: 54.936,
       d: 3.6,
-      sd: 10.2,
+      sd: 12.2,
       medium: 11,
     },
     {
       label: "20",
       R: -295.683,
-      sd: 10.2,
+      sd: 12.2,
     },
     {
       label: "21",
       R: -72.217,
       d: 1.5,
-      sd: 10.2,
+      sd: 11.8,
       medium: 12,
     },
     // Last surface: printed gap F to the S23 plate
@@ -366,7 +370,7 @@ const LENS_DATA = {
       label: "22",
       R: 72.217,
       d: 19.3,
-      sd: 10.2,
+      sd: 11.8,
     },
   ],
 
@@ -431,9 +435,9 @@ const LENS_DATA = {
     { text: "G5 (−)", fromSurface: "21", toSurface: "22" },
   ],
   doublets: [
-    { text: "D1", fromSurface: "1", toSurface: "3" },
-    { text: "D2", fromSurface: "8", toSurface: "10" },
-    { text: "D3", fromSurface: "16", toSurface: "18" },
+    { text: "C1", fromSurface: "1", toSurface: "3" },
+    { text: "C2", fromSurface: "8", toSurface: "10" },
+    { text: "C3", fromSurface: "16", toSurface: "18" },
   ],
 
   layout: {

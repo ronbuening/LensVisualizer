@@ -81,8 +81,101 @@ audit do not flag the lens.
 Open:
 
 - Rims 12–20 % inside Fig. 12 in G1, G4 and G5 are kept, so the full-field corner is probably more heavily vignetted
-  than the patent's marginal ray ratio of 32.1 implies.
+  than the patent's marginal ray ratio of 32.1 implies. (Closed 2026-11-08: the rims now follow Fig. 12; see the
+  second review below.)
 - A paraxial-iris clear-aperture check flags S6 (8.8 mm against an 8.84 mm axial height with an 8.61 mm iris); with the
-  engine's 8.48 mm iris the beam clears. Rim clearance at the 0.5× and 1:1 states was not traced separately.
+  engine's 8.48 mm iris the beam clears. Rim clearance at the 0.5× and 1:1 states was not traced separately. (Closed
+  2026-11-08: S6 is 9.9 mm, and both near states were traced from the printed object points; see below.)
 - No source decides between Embodiments 4 and 5 for the production lens.
 - The OIS shift of L8 is not modelled.
+
+## 2026-11-08 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity, 0.5× and 1:1, its focus-movement overlay and the inspector for L3, L4, L8 and
+L11, against Fig. 12 (PDF p. 27, the M = 0 panel at the 300 dpi native scan; the patent ties Fig. 12 to Tables 10–12,
+so it is Embodiment 5) and the Fig. 13A aberration plots (PDF p. 28). An overlay of the model outline on the figure,
+baseline rims included, was made at matched scale.
+
+Figure scale. The axis line is level to 0.5 px across the panel. Vertex crossings put S1 at 617.5 px and the image
+line at 2023.5 px for the printed 106.0 mm track, 13.264 px/mm; S22 (82.9 mm) then falls at 1717.1 px against
+1716.5 px read, and S11 at 1043.4 against 1041.5. Across the axis, arc fits of the strongly curved faces (S1, S2,
+S4, S7, S9, S10, S17, S21) give 0.97–1.04 of the axial scale, and the stop tick's inner end (112 px) gives 8.44 mm
+against the engine's 8.48 mm iris, so the radial scale is about 13.2 px/mm.
+
+Readings (mm; line centres, both sides averaged): C1 13.7–13.8; L3 11.2–11.3; L4 9.9 at its edge, its flat S6 running
+to the edge and its S7 curve ending near 8.7 mm in a vertical land; C2 9.5 at its edge, S8 reaching the edge, the
+cemented S9 ending near 8.5 mm (L5 land) and S10 near 8.3 mm (land); L7 8.8; L8 9.5; C3 12.7, the cemented S17
+ending near 11.1 mm in an L9 land while S16 and S18 reach the edge; L11 12.2; L12 11.8.
+
+Rims raised to the figure (each square where Fig. 12 draws it square):
+
+| Surfaces | Baseline | Fig. 12 | Final | Evidence |
+| -------- | -------: | ------: | ----: | -------- |
+| S1–S3 (C1) | 12.0 | 13.7–13.8 | 13.7 | drawn edge, 14 % above baseline |
+| S4A, S5 (L3) | 10.7 | 11.2–11.3 | 11.3 | drawn edge; the wide-open 1:1 axial beam from the printed object point reaches 11.21 mm at S4A and 10.98 mm at S5, and the baseline rim clipped 8.5 % of it |
+| S6 (L4) | 8.8 | 9.9 | 9.9 | flat face drawn to the 9.9 mm edge |
+| S16–S18 (C3) | 10.4 | 12.7 | 12.7 | drawn edge, 22 % above baseline |
+| S19, S20 (L11) | 10.2 | 12.2 | 12.2 | drawn edge |
+| S21, S22 (L12) | 10.2 | 11.8 | 11.8 | drawn edge |
+
+Cuts and lands (the baseline had none):
+
+| Item | Fig. 12 | Baseline | Final | Light it costs | Verdict |
+| ---- | ------- | -------: | ----: | -------------- | ------- |
+| S11, S12 (L7) cut | 8.8 | 9.4 | 8.8 | 0.0 points at every field, at infinity and from the printed 0.5× and 1:1 object points | keep (slight); restores the drawn steps L7 below L8 and not above C2 |
+| S7 land (`rimExtensionSd`) | curve to about 8.7, land to 9.9 | none | sd 8.8, land 9.9 | 0.0 points | keep; drawn, squares L4 at its 9.9 mm edge |
+
+Kept: C2 at 8.8 mm (its drawn curves end at 8.3–8.5 mm; see Open) and L8 at 9.4 mm (drawn 9.5, 1.6 %). The STO radius
+is untouched.
+
+Light. The corner-light comparison against the baseline rims (full-pupil lattice, wide open, infinity) loses nothing
+anywhere; the worst loss is 0.0 points. Transmission at 0, 2.2, 4.5, 6.7, 9.0, 11.2 and 13.5° goes from 100, 92.8,
+84.9, 74.7, 57.1, 36.6 and 11.7 % to 100, 99.4, 93.9, 86.4, 77.6, 62.5 and 41.2 %; relative illumination at the
+corner goes from 11.1 to 38.6 %, against the patent's marginal ray ratio of 32.1 at 14.25 mm (Expression 5). Traced
+from the printed object points to the 14.18 mm corner: at 0.5× (A = 124.9239 mm) the axis passes 100 % before and
+after and the corner 33.5 → 57.5 %; at 1:1 (A = 79.408 mm) the axis 91.5 → 100 % and the corner 50.5 → 63.4 %.
+`audit:surface` reports no errors; `audit:aperture` finds the stated f-number within 3 % with no rim limit; the
+image-circle and field-coverage audits do not flag the lens (corner 13.5° clear). EFL 59.265 mm, F/2.86, engine
+half-field 13.5° and stop radius 8.4827 mm are unchanged. The S4 asphere departs −28.9 µm from its sphere at 11.3 mm
+(sag 2.258 mm) and does not turn over within 13 mm.
+
+Labels. The cemented brackets D1–D3 became C1–C3, because the gap labels D5, D10, D15 and D20 name spacings; the
+elements' `cemented` values, the roles and the analysis follow. L11's role and analysis text said lanthanum crown;
+1.77250/49.6 (TAF1, N-LAF34 class) is a lanthanum flint, and both now say so. Checked and correct: element types
+against the signs of R (L1 and L6 negative/positive menisci convex to the object, L2, L8, L10 and L11 biconvex, L4
+plano-concave with S6 flat, L5, L9 and L12 biconcave, L3 a positive meniscus with one asphere, L7 a positive
+meniscus); L1–L12 sequential, since the patent names groups and surfaces but no elements; focal lengths shown in the
+inspector (L3 +40.44, L8 +135.39, L11 +60.24 mm); S4 the only asphere (Table 12) and the only `A` label; the stop
+between S14 and S16 (ST); groups G1 S1–S5, G2 S6–S10, G3 S11–S14, G4 S16–S20 and G5 S21–S22 as bracketed in Fig. 12,
+with no parent and subgroup pair and no cement layer.
+
+Tag. L8 keeps `apd: "inferred"`. The patent designates no anomalous-dispersion glass; Samsung lists one ED element
+without placing it, and no Samsung construction drawing was found. L8 (1.49700/81.6, FCD1 class) is the only ED-class
+glass, and Table 13's Expression 3 value (81.6) marks it as the stabilizing lens. The inspector shows "APD (INFERRED)"
+with glass FCD1.
+
+Movement. Keyframes 0, 0.8029 and 1 are infinity, 0.5× (230.92 mm object to image) and 1:1 (185.41 mm). D5 2.0 →
+6.2983 → 11.3642 mm (G2 toward the image by 4.30 and 9.36 mm); D10 10.94 → 6.6417 → 1.5758 (B + C = 12.94); D15
+22.0052 → 11.5409 → 3.5925 (G4 toward the object by 10.46 and 18.41 mm); D20 11.7148 → 22.1791 → 30.1275 (D + E =
+33.72). G1, G3 with the stop and G5 stay fixed. This matches Table 11, claims 3 and 4 and the three panels of
+Fig. 12; the overlay shows a maximum travel of 18.41 mm and the slider's near end reads 19 cm.
+
+Aberrations against Fig. 13A (M = 0). Relative to the d-line paraxial focus, patent / model in mm: C paraxial +0.048 /
++0.048, F paraxial −0.023 / −0.023, d marginal +0.056 / +0.058, C marginal +0.116 / +0.113, F marginal +0.019 /
++0.018. The plot's zero lies 0.058 mm behind the model's printed image plane, a uniform shift. Tangential and sagittal
+focus relative to the axis, patent at 3.56, 7.12, 10.68 and 14.25 mm: +0.008/−0.005, +0.022/−0.015, +0.055/−0.019,
++0.053/+0.005; model at 3.48, 6.99, 10.54 and 14.17 mm: +0.004/−0.006, +0.022/−0.018, +0.055/−0.022, +0.051/+0.007.
+Distortion −0.022, −0.061, −0.096 and −0.050 % against the model's −0.02, −0.06, −0.095 and −0.046 %. No line or
+curve is off by more than the reading error.
+
+Glass. L2 (1.61780/63.4) and L3 (1.73968/49.0) stay unmatched. Table 10 (PDF p. 37) prints only nd and νd, with no
+glass name, extra line index or partial dispersion. Both pairs occur once in the patent: Embodiments 1 and 3 put
+1.61800/63.4 (PCD4 / N-PSK53A class) at L2, and Embodiment 4 puts 1.74330/49.2 (NBF1 class) at the aspherical L3.
+
+Open:
+
+- C2 is drawn at 8.8 mm against the figure's 9.5 mm edge. Fig. 12 ends its cemented S9 and rear S10 curves at
+  8.3–8.5 mm inside lands; a cemented face cannot carry a land, and S8 at 9.5 mm is refused by the S7–S8 gap (2.931 mm
+  of the 2.898 mm allowed at the default gap fraction; 0.92 would admit it).
+- C3's cemented S17 is drawn to the 12.7 mm edge, where Fig. 12 ends it near 11.1 mm inside an L9 land; at 11.1 mm it
+  limits no ray at infinity.

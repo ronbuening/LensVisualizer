@@ -28,10 +28,10 @@ Twelve elements in nine air-spaced groups form five functional groups, positive�
 
 | Group | Surfaces | Elements | Focal length | Focus | Role |
 | ----- | -------- | -------- | -----------: | ----- | ----------- |
-| G1 | S1–S5 | L1–L3 (doublet D1 + aspherical singlet) | +31.3 mm | fixed | positive front group |
-| G2 | S6–S10 | L4–L6 (singlet + doublet D2) | −20.1 mm | moves toward the image | focusing |
+| G1 | S1–S5 | L1–L3 (doublet C1 + aspherical singlet) | +31.3 mm | fixed | positive front group |
+| G2 | S6–S10 | L4–L6 (singlet + doublet C2) | −20.1 mm | moves toward the image | focusing |
 | G3 | S11–S14 | L7, L8 | +74.4 mm | fixed, with the stop | spherical aberration; L8 is the OIS lens |
-| G4 | S16–S20 | L9–L11 (doublet D3 + singlet) | +40.6 mm | moves toward the object | compensates the image-plane shift |
+| G4 | S16–S20 | L9–L11 (doublet C3 + singlet) | +40.6 mm | moves toward the object | compensates the image-plane shift |
 | G5 | S21–S22 | L12 | −73.8 mm | fixed | astigmatism and distortion |
 
 The patent explains the layout. The strong negative G2 leaves the axial marginal ray roughly parallel or diverging, so a positive G3 ahead of the stop reconverges it and keeps the moving G4 small and light. The patent's Expressions 1 and 2 bound the third group's focal length, f3/f, which Table 13 gives as 1.26 for Embodiment 5 (model 1.255). Expression 2 (0.5 ≤ f3/f ≤ 1.6) is the form for a design whose third group carries the stabilizer: a longer f3 keeps the image change small when the stabilizing lens shifts. The single negative lens of G5 is kept as one group so as not to lengthen the system.
@@ -50,7 +50,7 @@ Dense-flint front element, convex to the object, cemented to L2. The 1.84666/23.
 
 nd = 1.61780, νd = 63.4. Glass: Unmatched; no catalog row at these coordinates (phosphate-crown class). f = +35.0 mm.
 
-Positive half of doublet D1. With L1 it forms a weakly positive cemented pair (f = +128 mm).
+Positive half of doublet C1. With L1 it forms a weakly positive cemented pair (f = +128 mm).
 
 ### L3 — Positive Meniscus (aspherical front)
 
@@ -68,13 +68,13 @@ First element of the G2 focus group, flat on its object side (S6) and concave to
 
 nd = 1.51680, νd = 64.2. Glass: BSC7 (HOYA) catalog equivalent. f = −27.2 mm.
 
-Crown front member of doublet D2 and the strongest negative element. The doublet as a whole has f = −65.4 mm.
+Crown front member of doublet C2 and the strongest negative element. The doublet as a whole has f = −65.4 mm.
 
 ### L6 — Positive Meniscus
 
 nd = 1.84666, νd = 23.8. Glass: FDS90 (HOYA) catalog equivalent. f = +43.5 mm.
 
-Dense-flint rear member of D2, convex to the object. A low-dispersion negative crown with a high-dispersion positive flint is the usual achromatizing arrangement for a negative group; it limits the colour change as the group moves.
+Dense-flint rear member of C2, convex to the object. A low-dispersion negative crown with a high-dispersion positive flint is the usual achromatizing arrangement for a negative group; it limits the colour change as the group moves.
 
 ### L7 — Positive Meniscus
 
@@ -92,19 +92,19 @@ Equi-biconvex element (R = ±134.285 mm) just ahead of the stop. It is the desig
 
 nd = 1.84666, νd = 23.8. Glass: FDS90 (HOYA) catalog equivalent. f = −38.3 mm.
 
-Dense-flint front member of doublet D3, the first element behind the stop.
+Dense-flint front member of doublet C3, the first element behind the stop.
 
 ### L10 — Biconvex Positive
 
 nd = 1.69680, νd = 55.5. Glass: LAC14 (HOYA) catalog equivalent. f = +30.7 mm.
 
-Lanthanum-crown rear member of D3 and the strongest positive element. D3 is weakly positive (f = +130.7 mm) and achromatizes the moving G4.
+Lanthanum-crown rear member of C3 and the strongest positive element. C3 is weakly positive (f = +130.7 mm) and achromatizes the moving G4.
 
 ### L11 — Biconvex Positive
 
 nd = 1.77250, νd = 49.6. Glass: TAF1 (HOYA) catalog equivalent. f = +60.2 mm.
 
-Lanthanum-crown singlet that closes G4 and supplies most of its +40.6 mm power.
+Lanthanum-flint singlet that closes G4 and supplies most of its +40.6 mm power.
 
 ### L12 — Biconcave Negative
 
@@ -119,13 +119,13 @@ The patent prints nd and νd only, with the d-line defined as 587.6 nm. Ten elem
 | Glass (HOYA equivalent) | nd / νd | Elements | Role |
 | ----------------------- | ------: | -------- | ---- |
 | FDS90 | 1.84666 / 23.8 | L1, L6, L7, L9 | dense flint, achromatizing partner |
-| Unmatched | 1.61780 / 63.4 | L2 | phosphate-crown-class positive in D1 |
+| Unmatched | 1.61780 / 63.4 | L2 | phosphate-crown-class positive in C1 |
 | Unmatched | 1.73968 / 49.0 | L3 | aspherical positive |
 | BAC4 | 1.56883 / 56.0 | L4 | barium crown, negative in G2 |
-| BSC7 | 1.51680 / 64.2 | L5 | borosilicate crown, negative in D2 |
+| BSC7 | 1.51680 / 64.2 | L5 | borosilicate crown, negative in C2 |
 | FCD1 | 1.49700 / 81.6 | L8 | ED fluorophosphate, OIS lens |
-| LAC14 | 1.69680 / 55.5 | L10 | lanthanum crown in D3 |
-| TAF1 | 1.77250 / 49.6 | L11 | lanthanum crown, G4 singlet |
+| LAC14 | 1.69680 / 55.5 | L10 | lanthanum crown in C3 |
+| TAF1 | 1.77250 / 49.6 | L11 | lanthanum flint, G4 singlet |
 | FC5 | 1.48749 / 70.4 | L12 | fluor crown, G5 |
 
 Each of the three doublets joins a crown to the 1.84666/23.8 flint, and G3 pairs the same flint (L7) with the ED crown (L8), so G1 to G4 each carry their own colour correction; this reads as a way to keep colour steady while G2 and G4 move. The one ED glass sits in the stabilizer rather than in the focusing groups.
@@ -152,7 +152,7 @@ S4, the front of L3, is the only aspherical surface. The patent's Expression 4 i
 | ------- | -----: | -: | -----: | -----: | -----: | ------: |
 | S4 | 29.064 | 0 | −1.4452e−6 | −2.54447e−9 | 0 | 0 |
 
-Both terms are negative on a convex surface, so the surface falls away from its sphere toward the rim, by about 0.023 mm at the modelled 10.7 mm semi-diameter. Weakening the positive power of the marginal zone this way offsets the undercorrected spherical aberration a fast positive front group would otherwise add; the patent describes neither the asphere's purpose nor how it is made. The uncatalogued L3 glass suggests a glass-moulded element, but that is an inference.
+Both terms are negative on a convex surface, so the surface falls away from its sphere toward the rim, by about 0.029 mm at the modelled 11.3 mm semi-diameter. Weakening the positive power of the marginal zone this way offsets the undercorrected spherical aberration a fast positive front group would otherwise add; the patent describes neither the asphere's purpose nor how it is made. The uncatalogued L3 glass suggests a glass-moulded element, but that is an inference.
 
 ## Image Stabilization
 
@@ -162,7 +162,7 @@ The patent allows either G2 or G3 to carry the stabilizer and illustrates G3 in 
 
 The prescription is unscaled. The model traces EFL 59.265 mm against the stated 59.3 mm and back focus 0.972 mm behind the plate against the printed G = 1.0 mm; the 0.028 mm residual is kept. Real-ray longitudinal spherical aberration at infinity is about 0.06 mm at full aperture.
 
-The patent prints no clear apertures. The semi-diameters are estimates from the axial beam and the Fig. 12 proportions, and they sit 12–20% inside the drawn heights in G1, G4 and G5. They are kept as estimated rather than widened to the drawing, so the corner of the field is probably more heavily vignetted than in the patent design. The patent reports a marginal ray ratio of 32.1 at 14.25 mm image height for Embodiment 5 (Expression 5, listed as Expression 4 in Table 13). The iris radius, 8.48 mm, follows from F/2.86; Fig. 12 draws about 8.5 mm. Ten elements take their dispersion from the catalog equivalents; L2 and L3 use the Abbe-number model. The OIS shift is not modelled.
+The patent prints no clear apertures. The semi-diameters follow the element edges of Fig. 12, which is drawn to scale: square rims for C1 (13.7 mm), L3 (11.3 mm), L7, L8, C3, L11 and L12. Where the figure ends a curved face short of the element's edge, the optical rim ends with the curve: L4's concave rear face stops at 8.8 mm and a flat land carries it out to the 9.9 mm edge of its plane front, and C2 stops at 8.8 mm, near where the figure ends its cemented and rear curves (about 8.3–8.5 mm) inside a 9.5 mm edge. L3's rim also passes the whole axial beam at 1:1. Wide open at infinity the rims pass about 41% of the beam at the 14.2 mm corner (relative illumination about 39%); the patent gives a marginal ray ratio of 32.1 at 14.25 mm image height for Embodiment 5 (Expression 5, listed as Expression 4 in Table 13). Traced from the printed object points, about 58% of the beam reaches the corner at 0.5× and 63% at 1:1. The iris radius, 8.48 mm, follows from F/2.86; Fig. 12 draws about 8.5 mm. Ten elements take their dispersion from the catalog equivalents; L2 and L3 use the Abbe-number model. The OIS shift is not modelled.
 
 ## Sources and References
 
