@@ -57,32 +57,32 @@ L2 opens the positive component II. Its rear face is nearly flat (R4 = −422.7 
 
 ### L3 — Negative Meniscus, Concave to Object
 
-nd = 1.6920, νd = 55.05. Glass: Unmatched. f = −133.6 mm.
+nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), nearest catalog row. f = −133.6 mm.
 
 L3 is the weakest element and sits between the two positive singlets of component II. Making this negative meniscus a single lens, where the prior art cements it from two elements, is part of claim 1. [1, pp. 5–6; claim 1]
 
 ### L4 — Biconvex Positive
 
-nd = 1.6920, νd = 55.05. Glass: Unmatched. f = +54.4 mm.
+nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), nearest catalog row. f = +54.4 mm.
 
 L4 is 12.3 mm thick and, at 50.2 mm, has the largest clear diameter behind L1. It brings the beam to the cemented meniscus and shares its glass with L3, L7 and L8.
 
 ### D1: L5 + L6 — Cemented Negative Meniscus
 
-- **L5 (Biconvex Positive):** nd = 1.6595, νd = 57.35. Glass: Unmatched. f = +39.6 mm.
+- **L5 (Biconvex Positive):** nd = 1.6595, νd = 57.35. Glass: K-LaK11 (Sumita), nearest catalog row. f = +39.6 mm.
 - **L6 (Biconcave Negative):** nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM) catalog equivalent. f = −23.5 mm.
 
 Together the pair is a negative meniscus convex to the object, f = −106.3 mm, as claim 1 describes it. L5 is the thickest element, 12.7 mm. The cemented interface (R10 = −91.83 mm) joins a crown of νd 57.35 to the dense flint, the lens's only cemented crown–flint contact. L6's rear face, R11 = 22.34 mm, is the most strongly curved surface in the lens and is concave toward the stop, which lies 7.85 mm behind it. [1, Table 1; claim 1]
 
 ### L7 — Biconvex Positive
 
-nd = 1.6920, νd = 55.05. Glass: Unmatched. f = +79.9 mm.
+nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), nearest catalog row. f = +79.9 mm.
 
 L7 begins the positive component III, 1.3 mm behind the stop. The model labels its faces 13 and 14 (the patent's R12 and R13) because the stop takes its own row. The patent credits the three-element rear component as a whole, not individual elements, with the redistributed wide-aperture correction. [1, p. 7]
 
 ### L8 — Biconvex Positive
 
-nd = 1.6920, νd = 55.05. Glass: Unmatched. f = +53.6 mm.
+nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), nearest catalog row. f = +53.6 mm.
 
 L8 is the stronger of the two rear positive singlets. It follows L7 by 1.0 mm and precedes L9 by 0.5 mm, the smallest air space in the lens.
 
@@ -100,10 +100,10 @@ Table 1 heads its columns nᵢ (refractive index) and νᵢ (dispersion) without
 | -------------- | -------------- | ------------------------------------------------------------------- |
 | 1.5750 / 41.30 | L1             | QF3 (CDGM), nd 1.57503, νd 41.30                                    |
 | 1.7552 / 27.52 | L2, L6, L9     | H-ZF6 (CDGM), nd 1.75520, νd 27.53; S-TIH4 (OHARA) and E-FD4 (HOYA) |
-| 1.6920 / 55.05 | L3, L4, L7, L8 | Unmatched; the nearest rows are LAK9-type glasses at nd 1.6910      |
-| 1.6595 / 57.35 | L5             | Unmatched; the nearest row is K-LaK11 (Sumita) at nd 1.6583         |
+| 1.6920 / 55.05 | L3, L4, L7, L8 | Nearest row J-LAK9 (Hikari), nd 1.69100, νd 54.93                   |
+| 1.6595 / 57.35 | L5             | Nearest row K-LaK11 (Sumita), nd 1.65830, νd 57.30                  |
 
-Two of the four pairs reproduce d-line catalog glasses to the printed precision, and none reproduces a catalog glass at the e line. The other two match no catalog row at either line. With only half the pairs matched, the d-line reading is not established numerically, so every element carries a note that its values are traced as nd and νd. L1, L2, L6 and L9 use the CDGM catalog dispersion curves; the other five use an Abbe-number estimate. CDGM is the one vendor whose catalog holds both matched pairs exactly; the names are catalog equivalents and do not identify KMZ's glass supplier.
+Two of the four pairs reproduce d-line catalog glasses to the printed precision, and none reproduces a catalog glass at the e line. The other two match no catalog row at either line. With only half the pairs matched, the d-line reading is not established numerically, so every element carries a note that its values are traced as nd and νd. L1, L2, L6 and L9 use the CDGM catalog dispersion curves. The other two pairs borrow the dispersion curve of the nearest catalog row, J-LAK9 (0.0010 lower in nd, 0.12 lower in νd) and K-LaK11 (0.0012 lower, 0.05 lower), while the trace keeps the printed index. CDGM is the one vendor whose catalog holds both matched pairs exactly; the names are catalog equivalents and do not identify KMZ's glass supplier.
 
 The positive power sits mainly in the νd 55–57 crowns of L4, L5, L7 and L8, and the dense flint appears in the negative L6 and L9 and in the positive L2. Claim 3 fixes the four glasses as ranges with the equalities n2 = n6 = n9 and n3 = n4 = n7 = n8. No extra-low-dispersion or anomalous partial-dispersion glass is claimed, and none is implied by the printed values. [1, claim 3]
 

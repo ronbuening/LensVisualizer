@@ -52,7 +52,7 @@ The first collector of component I. Its rear face (R = −288.4 mm) is weak, and
 
 ### Element 3 — Positive Meniscus
 
-nd = 1.6595, νd = 57.35. Glass: Unmatched, a lanthanum crown with no catalog row at these coordinates. f = +148.12 mm.
+nd = 1.6595, νd = 57.35. Glass: K-LaK11 (Sumita), the nearest catalog row to this lanthanum crown. f = +148.12 mm.
 
 The positive meniscus, convex to the object, closes component I. Its rear face is 14.9 mm ahead of the stop. L8 repeats this glass (claim 2: n3 = n8).
 
@@ -82,7 +82,7 @@ Convex toward the object (R = 70.79 mm) with a plane rear face, L7 opens compone
 
 ### Element 8 — Positive Meniscus
 
-nd = 1.6595, νd = 57.35. Glass: Unmatched (as L3). f = +72.43 mm.
+nd = 1.6595, νd = 57.35. Glass: K-LaK11 (Sumita), as L3. f = +72.43 mm.
 
 The meniscus, convex to the object, is the strongest positive element in the lens. The patent attributes the correction of the aberrations of narrow oblique beams, that is astigmatism and field curvature, to replacing the earlier design's two cemented groups with the three singlets L7–L9.
 
@@ -98,12 +98,12 @@ The last element is plane toward the object, with a concave rear face of R = 25.
 | ---: | ---: | --- | --- | --- |
 | 1.5750 | 41.29 | L1 | QF3 (CDGM) equivalent | light flint |
 | 1.7441 | 50.42 | L2, L6, L7 | Unmatched | lanthanum glass |
-| 1.6595 | 57.35 | L3, L8 | Unmatched | lanthanum crown |
+| 1.6595 | 57.35 | L3, L8 | K-LaK11 (Sumita), nearest row | lanthanum crown |
 | 1.7552 | 27.52 | L4 | H-ZF6 (CDGM) equivalent | dense flint |
 | 1.6131 | 60.61 | L5 | Unmatched | dense crown |
 | 1.6895 | 31.13 | L9 | L-TIM28 (OHARA) equivalent | dense flint |
 
-Table 1 heads its columns n and ν without naming a spectral line. Three of the six distinct pairs equal d-line catalog glasses to the printed precision, and none matches any catalog glass at the e line, so the values are traced as nd and νd. The catalog names are coordinate equivalents, not identifications: the patent names no glass types or supplier. The three unmatched pairs are traced with Abbe-number dispersion. Every element satisfies the index and dispersion ranges of claim 2.
+Table 1 heads its columns n and ν without naming a spectral line. Three of the six distinct pairs equal d-line catalog glasses to the printed precision, and none matches any catalog glass at the e line, so the values are traced as nd and νd. The catalog names are coordinate equivalents, not identifications: the patent names no glass types or supplier. The 1.6595/57.35 crown, which the Zenitar 35mm f/1 patent prints as well, borrows the dispersion curve of the nearest row, K-LaK11 (0.0012 lower in nd, 0.05 lower in νd), while the trace keeps the printed index. The two remaining unmatched pairs are traced with Abbe-number dispersion. Every element satisfies the index and dispersion ranges of claim 2.
 
 Only six glasses serve nine elements. The three positive elements L2, L6 and L7 share one lanthanum glass, and L3 and L8 share another. The two dense flints sit where the negative power is concentrated: L4 next to the stop and L9 in front of the image.
 

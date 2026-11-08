@@ -12,8 +12,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * GLASS: Table 1 heads its columns n and ν without naming a spectral line; they are traced as nd and νd. Three of the
  * six distinct printed pairs equal d-line catalog glasses to the printed precision (1.5750 / 41.29 = QF3,
- * 1.7552 / 27.52 = H-ZF6, 1.6895 / 31.13 = L-TIM28), and none matches a catalog pair at the e line. 1.7441 / 50.42,
- * 1.6595 / 57.35 and 1.6131 / 60.61 match no catalog row and stay Unmatched.
+ * 1.7552 / 27.52 = H-ZF6, 1.6895 / 31.13 = L-TIM28), and none matches a catalog pair at the e line. 1.6595 / 57.35,
+ * which the RU 2771147 C1 sibling also prints, takes the dispersion curve of the nearest row, K-LaK11 (nd 0.0012 and
+ * νd 0.05 lower; the trace keeps the printed nd). 1.7441 / 50.42 and 1.6131 / 60.61 match no catalog row within 0.25
+ * in νd and stay Unmatched.
  *
  * STOP: Table 1 places the aperture diaphragm (АД) 14.9 mm behind R6 and 11.3 mm ahead of R7. The stop takes its own
  * row, so model labels 8–18 carry the patent's R7–R17. The printed iris diameter, 46.2 mm, works out to paraxial
@@ -120,7 +122,7 @@ const LENS_DATA = {
       "vd": 57.35,
       "indexReference": "d",
       "focalLengthMm": 148.12,
-      "glass": "Unmatched (patent nd=1.6595, νd=57.35; no catalog row at these coordinates)",
+      "glass": "K-LaK11 (SUMITA; nearest catalog row to patent 1.6595/57.35; supplier unconfirmed)",
       "role": "Positive meniscus, convex to the object, closing component I ahead of the stop"
     },
     {
@@ -182,7 +184,7 @@ const LENS_DATA = {
       "vd": 57.35,
       "indexReference": "d",
       "focalLengthMm": 72.43,
-      "glass": "Unmatched (patent nd=1.6595, νd=57.35; no catalog row at these coordinates)",
+      "glass": "K-LaK11 (SUMITA; nearest catalog row to patent 1.6595/57.35; supplier unconfirmed)",
       "role": "Positive meniscus, convex to the object; the strongest positive element"
     },
     {

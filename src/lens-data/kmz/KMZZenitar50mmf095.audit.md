@@ -174,3 +174,11 @@ field-coverage audit gives 100 %.
 
 Open: Fig. 1 carries L5's front face out to 29.45 mm, above L4's 26.3 mm edge; a cemented interface takes one
 semi-diameter, so the diagram stops L5's front at the 26.5 mm junction and draws its edge as a slope.
+
+## 2026-11-08 — Glass backfill
+
+The printed lanthanum-crown pairs without an exact catalog row now borrow the dispersion curve of the nearest catalog
+row while the trace keeps the printed nd: 1.6595 / 57.35 takes K-LaK11 (SUMITA, 1.65830 / 57.30) and, on the 35mm,
+1.6920 / 55.05 takes J-LAK9 (Hikari, 1.69100 / 54.93). Both differ from the printed νd by 0.12 or less. The patent
+prints no chromatic aberration curves to check them against, so the labels say "nearest catalog row" and name no
+supplier. Pairs further than 0.25 from any row in νd stay Unmatched.

@@ -10,7 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * GLASS: Table 1 heads its columns n and ν without naming a spectral line; they are traced as nd and νd. Two of the
  * four printed pairs equal d-line catalog glasses (1.5750 / 41.30 = QF3, 1.7552 / 27.52 = H-ZF6) and neither matches
- * at the e line. 1.6920 / 55.05 and 1.6595 / 57.35 match no catalog row at either line and stay Unmatched.
+ * at the e line. 1.6920 / 55.05 and 1.6595 / 57.35 match no catalog row exactly at either line; they take the
+ * dispersion curves of the nearest rows, J-LAK9 (nd 0.0010 and νd 0.12 lower) and K-LaK11 (nd 0.0012 and νd 0.05
+ * lower), and the trace keeps the printed nd.
  *
  * STOP: Table 1 places the aperture diaphragm (АД) 7.85 mm behind R11 and 1.3 mm ahead of R12. The stop takes its
  * own row, so model labels 13–18 carry the patent's R12–R17. The printed iris diameter, 30.8 mm, works out to
@@ -117,7 +119,7 @@ const lens = {
       "vd": 55.05,
       "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
       "focalLengthMm": -133.62,
-      "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
+      "glass": "J-LAK9 (Hikari; nearest catalog row to patent 1.6920/55.05; supplier unconfirmed)",
       "role": "Weak single negative meniscus, concave to the object, between the two positive singlets of component II."
     },
     {
@@ -129,7 +131,7 @@ const lens = {
       "vd": 55.05,
       "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
       "focalLengthMm": 54.41,
-      "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
+      "glass": "J-LAK9 (Hikari; nearest catalog row to patent 1.6920/55.05; supplier unconfirmed)",
       "role": "Thick second biconvex singlet of component II, directly ahead of the cemented meniscus."
     },
     {
@@ -141,7 +143,7 @@ const lens = {
       "vd": 57.35,
       "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
       "focalLengthMm": 39.62,
-      "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
+      "glass": "K-LaK11 (SUMITA; nearest catalog row to patent 1.6595/57.35; supplier unconfirmed)",
       "role": "Positive crown front member of the cemented negative meniscus D1, which closes component II ahead of the stop.",
       "cemented": "D1"
     },
@@ -167,7 +169,7 @@ const lens = {
       "vd": 55.05,
       "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
       "focalLengthMm": 79.95,
-      "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
+      "glass": "J-LAK9 (Hikari; nearest catalog row to patent 1.6920/55.05; supplier unconfirmed)",
       "role": "First positive singlet of the three-element rear component (III), 1.3 mm behind the stop."
     },
     {
@@ -179,7 +181,7 @@ const lens = {
       "vd": 55.05,
       "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, which the exact d-line catalog matches of L1, L2, L6 and L9 support.",
       "focalLengthMm": 53.57,
-      "glass": "Unmatched (printed coordinates; no vendor row at either the d or the e line)",
+      "glass": "J-LAK9 (Hikari; nearest catalog row to patent 1.6920/55.05; supplier unconfirmed)",
       "role": "Second positive singlet of component III, the stronger of the two."
     },
     {
