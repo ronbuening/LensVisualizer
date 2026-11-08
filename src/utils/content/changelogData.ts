@@ -19,7 +19,7 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-11-08",
+    date: "2026-11-12",
     type: "lens",
     summary:
       "Added the P. Angénieux Type M1 25mm f/0.95, Konica AiBORG 35-105mm zoom, KMZ Zenitar 35mm f/1 and 50mm f/0.95, and Nikon AF-S NIKKOR 50mm f/1.4 G",
