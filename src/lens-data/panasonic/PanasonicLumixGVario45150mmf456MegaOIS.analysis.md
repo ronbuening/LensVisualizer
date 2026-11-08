@@ -120,7 +120,7 @@ against L2. The patent's condition (3) holds its Abbe number between 28 and 40, 
 
 #### L2 — Biconvex positive
 
-nd = 1.56384, νd = 60.8. Glass: S-BAL41 (OHARA) equivalent. f = +56.53 mm.
+nd = 1.56384, νd = 60.8. Glass: N-SK11 (SCHOTT) equivalent. f = +56.53 mm.
 
 The crown half, and the element the main claim is written around: conditions (1) and (2) require 1.47 < nd < 1.57 and
 60 < νd < 75 for the positive element of G1. The patent ties the index bounds to length (a more curved, thicker element
@@ -220,7 +220,7 @@ selects that glass's dispersion curve; supplier and melt are not established.
 | Element | nd      | νd   | Catalog equivalent | Class                            |
 | ------- | ------- | ---- | ------------------ | -------------------------------- |
 | L1, L3  | 1.80610 | 33.3 | NBFD15 (HOYA)      | Lanthanum flint                  |
-| L2      | 1.56384 | 60.8 | S-BAL41 (OHARA)    | Barium crown                     |
+| L2      | 1.56384 | 60.8 | N-SK11 (SCHOTT)    | Barium crown                     |
 | L4      | 1.94595 | 18.0 | FDS18 (HOYA)       | Very high-dispersion dense flint |
 | L5      | 1.72825 | 28.3 | E-FD10 (HOYA)      | Dense flint                      |
 | L6      | 1.80998 | 40.9 | K-VC89 (SUMITA)    | Lanthanum flint, moulding glass  |

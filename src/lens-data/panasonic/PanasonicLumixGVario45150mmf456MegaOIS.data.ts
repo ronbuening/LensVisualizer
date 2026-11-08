@@ -115,7 +115,7 @@ const LENS_DATA = {
       vd: 60.8,
       indexReference: "d",
       focalLengthMm: 56.5348,
-      glass: "S-BAL41 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "N-SK11 (SCHOTT catalog equivalent; production supplier unspecified)",
       role: "Crown biconvex positive of the cemented first-group doublet; the element of the patent's conditions (1) and (2)",
       cemented: "L1+L2",
     },
