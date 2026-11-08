@@ -1,150 +1,172 @@
 ## Patent Reference and Design Identification
 
 **Patent:** [US 8,203,795 B2](https://patents.google.com/patent/US8203795B2/en)  
+**Application Number:** US 13/089,429  
+**Filed:** April 19, 2011 (priority KR 10-2010-0095964, October 1, 2010)  
 **Granted:** June 19, 2012  
 **Inventor:** Jae Myung Ryu  
 **Assignee:** Samsung Electronics Co., Ltd.  
-**Example details:** Tables 10–12, Fig. 12; original PDF pages 27 and 37; whole selected embodiment, native millimetres without retail rescaling.
+**Title:** Macro-lens system and photographing apparatus having the same  
+**Example details:** Tables 10–12 and Fig. 12 (PDF pp. 37 and 27); conditional values in Table 13; no scaling
 
-This is a probable Samsung NX product-family reconstruction. The numerical embodiment is representative; no uniquely selected factory prescription has been established. The original Samsung specification supplies 12 elements / 9 groups, one aspherical lens and one ED designation, 26.4° full field and F2.8. Those similarities support the family association without proving identity of every radius, glass or mechanical aperture. The source-native rating is 59.3 mm / F2.86, full field 27°. Product-name and retail values remain descriptive.
+The patent describes five macro designs that focus from infinity to 1:1 at a fixed overall length. Embodiment 5 is stated as f = 59.3 mm, F-number 2.86 and 2ω = 27.0°. Several lines of evidence tie it to the SAMSUNG 60mm f/2.8 Macro ED OIS SSA for the NX system, released in 2011:
 
-The inventor display spelling follows the existing corpus form “Jae Myung Ryu”; the original patent’s hyphenated spelling is preserved in the source. This is display normalization, not a new biographical identity claim.
+1. Twelve elements in nine groups with one aspherical lens and one extra-low-dispersion lens, the construction Samsung published.
+2. A 59.3 mm, F/2.86 design against the marketed 60 mm f/2.8; the 27.0° field against the listed 26.4° diagonal angle of view.
+3. A printed 1:1 state whose object sits 185.4 mm from the image, against the 0.187 m minimum focus at 1:1.
+4. Optical image stabilization: the patent moves one lens of the fixed third group across the axis (Fig. 12). Table 13's Expression 3 value for Embodiment 5 (νd = 81.6) identifies that lens as L8 (1.49700/81.6), which is also the design's only ED-class glass.
+5. A 106.0 mm front-vertex-to-image track; less the NX mount's 25.5 mm flange focal distance this leaves about 80.5 mm ahead of the mount, consistent with the 84 mm barrel.
+6. The October 2010 Korean priority date, a few months before the lens appeared.
+
+Embodiments 1–3 are all spherical, which rules them out (Embodiment 3 prints the marketed 26.4° field but no asphere). Embodiment 4 shares the element and group counts, the single S4 asphere and the 106 mm length. Embodiment 5 differs mainly in its glass: L2 changes from a catalog 1.64000/60.2 to 1.61780/63.4 and the aspherical L3 from a catalog 1.74330/49.2 to an uncatalogued 1.73968/49.0, which is consistent with a glass-moulded asphere. Embodiment 5 is used here, but no source states which embodiment, if either, is the factory prescription.
+
+The patent prints the inventor's name as Jae-myung Ryu; the corpus form is Jae Myung Ryu.
 
 ## Optical Architecture
 
-The prescription has 12 powered elements in 9 air-separated groups. Every source interface is retained in order, including cemented boundaries and the printed camera-side plane-parallel cover. The latter uses the supported rear-plate mechanism with literal physical thickness and air gaps, not an equivalent-air substitution.
+Twelve elements in nine air-spaced groups form five functional groups, positive–negative–positive–positive–negative:
 
-The source stop position is retained. Its opening and all powered-surface clear semi-diameters are inferred. The optical section is schematic and supplies approximate envelope proportions, not calibrated clear apertures or mechanical mount dimensions. No radii, spacings, indices or source image gaps were adjusted after tracing.
+| Group | Surfaces | Elements | Focal length | Focus | Role |
+| ----- | -------- | -------- | -----------: | ----- | ----------- |
+| G1 | S1–S5 | L1–L3 (doublet D1 + aspherical singlet) | +31.3 mm | fixed | positive front group |
+| G2 | S6–S10 | L4–L6 (singlet + doublet D2) | −20.1 mm | moves toward the image | focusing |
+| G3 | S11–S14 | L7, L8 | +74.4 mm | fixed, with the stop | spherical aberration; L8 is the OIS lens |
+| G4 | S16–S20 | L9–L11 (doublet D3 + singlet) | +40.6 mm | moves toward the object | compensates the image-plane shift |
+| G5 | S21–S22 | L12 | −73.8 mm | fixed | astigmatism and distortion |
+
+The patent explains the layout. The strong negative G2 leaves the axial marginal ray roughly parallel or diverging, so a positive G3 ahead of the stop reconverges it and keeps the moving G4 small and light. The patent's Expressions 1 and 2 bound the third group's focal length, f3/f, which Table 13 gives as 1.26 for Embodiment 5 (model 1.255). Expression 2 (0.5 ≤ f3/f ≤ 1.6) is the form for a design whose third group carries the stabilizer: a longer f3 keeps the image change small when the stabilizing lens shifts. The single negative lens of G5 is kept as one group so as not to lengthen the system.
+
+The iris sits 1.5 mm behind L8, at the patent's stop row between S14 and S16 (ST in Fig. 12), and stays fixed with G3. A 2.8 mm plane plate (1.51680/64.2) and a 1.0 mm air gap complete the 106.0 mm track; the patent text places a filter closest to the image.
 
 ## Element-by-Element Analysis
 
 ### L1 — Negative Meniscus
 
-nd = 1.84666, νd = 23.8. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.84666, νd = 23.8. Glass: FDS90 (HOYA) catalog equivalent. f = −48.1 mm.
 
-This glass starts at source surface 1. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+Dense-flint front element, convex to the object, cemented to L2. The 1.84666/23.8 flint appears four times in the design, always as the colour-correcting partner of a crown.
 
 ### L2 — Biconvex Positive
 
-nd = 1.6178, νd = 63.4. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.61780, νd = 63.4. Glass: Unmatched; no catalog row at these coordinates (phosphate-crown class). f = +35.0 mm.
 
-This glass starts at source surface 2. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+Positive half of doublet D1. With L1 it forms a weakly positive cemented pair (f = +128 mm).
 
-### L3 — Positive Meniscus
+### L3 — Positive Meniscus (aspherical front)
 
-nd = 1.73968, νd = 49. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.73968, νd = 49.0. Glass: Unmatched; no catalog row at these coordinates. f = +40.4 mm.
 
-This glass starts at source surface 4A. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+Nearly plano-convex singlet closing G1; it supplies most of the group's +31.3 mm power. Its front face S4 is the design's only asphere; see Aspherical Surfaces.
 
 ### L4 — Plano-Concave
 
-nd = 1.56883, νd = 56. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.56883, νd = 56.0. Glass: BAC4 (HOYA) catalog equivalent. f = −31.8 mm.
 
-This glass starts at source surface 6. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+First element of the G2 focus group, flat on its object side (S6) and concave toward the image. The patent suggests building G2 from meniscus, concave or plano-concave lenses rather than a biconvex one, to keep the moving group light.
 
 ### L5 — Biconcave Negative
 
-nd = 1.5168, νd = 64.2. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.51680, νd = 64.2. Glass: BSC7 (HOYA) catalog equivalent. f = −27.2 mm.
 
-This glass starts at source surface 8. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+Crown front member of doublet D2 and the strongest negative element. The doublet as a whole has f = −65.4 mm.
 
 ### L6 — Positive Meniscus
 
-nd = 1.84666, νd = 23.8. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.84666, νd = 23.8. Glass: FDS90 (HOYA) catalog equivalent. f = +43.5 mm.
 
-This glass starts at source surface 9. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+Dense-flint rear member of D2, convex to the object. A low-dispersion negative crown with a high-dispersion positive flint is the usual achromatizing arrangement for a negative group; it limits the colour change as the group moves.
 
 ### L7 — Positive Meniscus
 
-nd = 1.84666, νd = 23.8. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.84666, νd = 23.8. Glass: FDS90 (HOYA) catalog equivalent. f = +160.6 mm.
 
-This glass starts at source surface 11. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+Weak flint meniscus at the front of the fixed G3. It and L8 reconverge the beam leaving G2 just ahead of the stop.
 
-### L8 — Biconvex Positive
+### L8 — Biconvex Positive (ED, OIS)
 
-nd = 1.497, νd = 81.6. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.49700, νd = 81.6. Glass: FCD1 (HOYA) catalog equivalent — ED fluorophosphate crown. f = +135.4 mm.
 
-This glass starts at source surface 13. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+Equi-biconvex element (R = ±134.285 mm) just ahead of the stop. It is the design's only ED-class glass and the lens that shifts perpendicular to the axis for image stabilization. Expression 3 (60 ≤ νd) asks for a low-dispersion glass here so that the shift adds little lateral colour; Table 13 lists 81.6 for Embodiment 5. That this is Samsung's one ED element is inferred from the glass; Samsung does not say where it sits.
 
 ### L9 — Biconcave Negative
 
-nd = 1.84666, νd = 23.8. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.84666, νd = 23.8. Glass: FDS90 (HOYA) catalog equivalent. f = −38.3 mm.
 
-This glass starts at source surface 16. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+Dense-flint front member of doublet D3, the first element behind the stop.
 
 ### L10 — Biconvex Positive
 
-nd = 1.6968, νd = 55.5. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.69680, νd = 55.5. Glass: LAC14 (HOYA) catalog equivalent. f = +30.7 mm.
 
-This glass starts at source surface 17. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+Lanthanum-crown rear member of D3 and the strongest positive element. D3 is weakly positive (f = +130.7 mm) and achromatizes the moving G4.
 
 ### L11 — Biconvex Positive
 
-nd = 1.7725, νd = 49.6. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.77250, νd = 49.6. Glass: TAF1 (HOYA) catalog equivalent. f = +60.2 mm.
 
-This glass starts at source surface 19. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+Lanthanum-crown singlet that closes G4 and supplies most of its +40.6 mm power.
 
 ### L12 — Biconcave Negative
 
-nd = 1.48749, νd = 70.4. Glass: Unmatched source index/Abbe pair. Individual focal length is not printed or asserted.
+nd = 1.48749, νd = 70.4. Glass: FC5 (HOYA) catalog equivalent. f = −73.8 mm.
 
-This glass starts at source surface 21. Literal curvature, thickness and adjacent media are retained. Its role is evaluated within the complete prescription; an individual aberration-correction or catalog-glass identification is not established.
+Equi-biconcave G5 (R = ±72.217 mm), fixed 19.3 mm ahead of the filter. The patent assigns it the correction of astigmatic field curvature and distortion; as a negative lens well behind the stop it also lowers the Petzval sum.
 
 ## Glass Identification and Selection
 
-The source reference indices and Abbe numbers are preserved. “Unmatched” does not identify a vendor glass. No C-, F- or g-line indices, partial-dispersion data or melt properties are supplied. The engine's Abbe-based spectral extension is an approximation, not validation of full-spectrum or apochromatic factory performance. Monochromatic checks use literal reference indices under the explicitly qualified conventional 587.5618 nm d-line implementation.
+The patent prints nd and νd only, with the d-line defined as 587.6 nm. Ten elements resolve to HOYA catalog glasses whose nd matches the printed value to five decimals and νd within 0.04; these are equivalents for dispersion modelling, not production identifications. L2 and L3 have no catalog row at their printed coordinates and keep their printed nd/νd (Abbe-number dispersion).
 
-| Element | Literal reference index | Abbe number | Identity |
-| --- | ---: | ---: | --- |
-| L1 | 1.84666 | 23.8 | Unmatched |
-| L2 | 1.6178 | 63.4 | Unmatched |
-| L3 | 1.73968 | 49 | Unmatched |
-| L4 | 1.56883 | 56 | Unmatched |
-| L5 | 1.5168 | 64.2 | Unmatched |
-| L6 | 1.84666 | 23.8 | Unmatched |
-| L7 | 1.84666 | 23.8 | Unmatched |
-| L8 | 1.497 | 81.6 | Unmatched |
-| L9 | 1.84666 | 23.8 | Unmatched |
-| L10 | 1.6968 | 55.5 | Unmatched |
-| L11 | 1.7725 | 49.6 | Unmatched |
-| L12 | 1.48749 | 70.4 | Unmatched |
+| Glass (HOYA equivalent) | nd / νd | Elements | Role |
+| ----------------------- | ------: | -------- | ---- |
+| FDS90 | 1.84666 / 23.8 | L1, L6, L7, L9 | dense flint, achromatizing partner |
+| Unmatched | 1.61780 / 63.4 | L2 | phosphate-crown-class positive in D1 |
+| Unmatched | 1.73968 / 49.0 | L3 | aspherical positive |
+| BAC4 | 1.56883 / 56.0 | L4 | barium crown, negative in G2 |
+| BSC7 | 1.51680 / 64.2 | L5 | borosilicate crown, negative in D2 |
+| FCD1 | 1.49700 / 81.6 | L8 | ED fluorophosphate, OIS lens |
+| LAC14 | 1.69680 / 55.5 | L10 | lanthanum crown in D3 |
+| TAF1 | 1.77250 / 49.6 | L11 | lanthanum crown, G4 singlet |
+| FC5 | 1.48749 / 70.4 | L12 | fluor crown, G5 |
+
+Each of the three doublets joins a crown to the 1.84666/23.8 flint, and G3 pairs the same flint (L7) with the ED crown (L8), so G1 to G4 each carry their own colour correction; this reads as a way to keep colour steady while G2 and G4 move. The one ED glass sits in the stabilizer rather than in the focusing groups.
 
 ## Focus Mechanism
 
-The patent supplies infinity, approximately half-size and approximately life-size states with multiple variable gaps. These finite data are retained as evidence, rather than claimed absent. Their object-distance and fixed-image residuals are not resolved into a validated finite model: independent paraxial conjugates are approximately 125.489855 and 79.753574 mm from the first vertex, compared with literal 124.9239 and 79.408 mm. The final printed magnification sign convention is retained. No retail 0.187 m endpoint, continuous cam law, OIS displacement or finite performance is authored.
+Inner focus at constant length. G1, G3 (with the iris) and G5 stay fixed; G2 moves toward the image and G4 toward the object. The gap sums B + C = 12.94 mm and D + E = 33.72 mm stay constant in all three printed states, which confirms that G1, G3 and G5 do not move.
 
-The supported infinity-only sentinel is used. Source cover and final image gaps stay fixed. Default viewer reference-spectrum best-axial focus, if selected, is a separate display diagnostic and does not validate the fixed source plane.
+| Gap (mm) | Table 11 | Infinity | M = −0.5 | M = −1.0 |
+| -------- | -------- | -------: | -------: | -------: |
+| Object to S1 | A | ∞ | 124.9239 | 79.4080 |
+| D5 (G1–G2) | B | 2.0000 | 6.2983 | 11.3642 |
+| D10 (G2–G3) | C | 10.94 | 6.6417 | 1.5758 |
+| D15 (stop–G4) | D | 22.0052 | 11.5409 | 3.5925 |
+| D20 (G4–G5) | E | 11.7148 | 22.1791 | 30.1275 |
+
+From infinity to 1:1, G2 travels 9.36 mm and G4 18.41 mm (4.30 and 10.46 mm at half size). Table 11 heads the last column "M = 1.0"; the text and Fig. 12 make it M = −1.0. The printed object distances give 230.9 and 185.4 mm object to image. At those distances the paraxial magnifications are −0.501 and −1.003, with the image 0.14 and 0.34 mm behind the printed plane. With the image plane held, the 1:1 gaps focus paraxially at 79.78 mm from S1 (m = −0.994). Samsung lists 0.187 m minimum focus at 1:1. Positions between the printed states are interpolated, not printed. Samsung drives the focus with its Super Sonic Actuator (SSA).
 
 ## Aspherical Surfaces
 
-The patent uses the conventional conic-plus-even-polynomial sag equation with `(1 + K)` inside the radical. No K-to-KA remapping is applied. Printed terms and explicit zero terms are retained.
+S4, the front of L3, is the only aspherical surface. The patent's Expression 4 is the standard even asphere with (K + 1) in the root, so its K is used directly:
 
-| Source surface | K | A4 | A6 | A8 | A10 |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| 4A | 0 | -1.445200000e-06 | -2.544470000e-09 | 0.000000000e+00 | 0.000000000e+00 |
+| Surface | R (mm) | K | A (y⁴) | B (y⁶) | C (y⁸) | D (y¹⁰) |
+| ------- | -----: | -: | -----: | -----: | -----: | ------: |
+| S4 | 29.064 | 0 | −1.4452e−6 | −2.54447e−9 | 0 | 0 |
 
-A primary-pixel check found S4 A6 printed as −2.54447e−9 in Table 12. The supplied handoff had dropped one digit (−2.5447e−9). The original handoff is preserved; this additive transcription correction preceded all native construction, pupil and MTF runs. It is not a patent erratum or performance adjustment. Source S6 remains a powered plane interface.
+Both terms are negative on a convex surface, so the surface falls away from its sphere toward the rim, by about 0.023 mm at the modelled 10.7 mm semi-diameter. Weakening the positive power of the marginal zone this way offsets the undercorrected spherical aberration a fast positive front group would otherwise add; the patent describes neither the asphere's purpose nor how it is made. The uncatalogued L3 glass suggests a glass-moulded element, but that is an inference.
 
-## Inferred Apertures and Geometry
+## Image Stabilization
 
-Front-to-rear group clear semi-diameters are 12, 10.7, 8.8, 8.8, 9.4, 9.4, 10.4, 10.2, 10.2 mm. Cemented boundaries share their group cap. Initialization combines axial entrance-pupil envelopes with conservative clearance and rough Fig. 12 proportions; these are hypotheses, not factory measurements. Normal F-number/paraxial-pupil rules derive the iris. The real mathematical iris boundary was traced separately, retaining clipping; no real-ray iris recalibration was applied.
+The patent allows either G2 or G3 to carry the stabilizer and illustrates G3 in Figs. 10 and 12: one of its two lenses shifts perpendicular to the axis. Placing it in a group that stays fixed during focus simplifies the actuator and its control. Expression 2 keeps f3 long enough that the shift does not degrade the image badly, and Expression 3 asks for νd ≥ 60 in the shifting lens to limit lateral colour. In Embodiment 5 only L8 (νd 81.6) satisfies Expression 3, so it is the stabilizing lens.
 
-Baseline and −5% cap geometry pass the native validator with zero hidden rendering trim. The +5% sensitivity is rejected by ordinary geometry and retained. No gap-sag or rim-angle override is applied. Exact operating-iris disk clearance was checked against both neighboring surfaces at every advertised aperture. This does not establish blade or mount fit.
+## Model Scope and Limitations
 
-At 0°, 6.75° and 13.5°, the baseline 208-cell aimed pupil has valid/blocked counts 208/0, 152/56, 22/186. There is zero unaimed or unresolved baseline weight; original intersection failures and independent finite-cap miss witnesses remain in raw evidence. Uniform stop-grid counts are not photometric transmission or T-stop measurements. Heavy edge clipping is conditional on inferred authored caps, not source-validated factory vignetting.
+The prescription is unscaled. The model traces EFL 59.265 mm against the stated 59.3 mm and back focus 0.972 mm behind the plate against the printed G = 1.0 mm; the 0.028 mm residual is kept. Real-ray longitudinal spherical aberration at infinity is about 0.06 mm at full aperture.
 
-The −5% cap sensitivity remains separate. It reduces edge throughput and is not selected by contrast. Caps were frozen before pupil tracing or contrast inspection.
+The patent prints no clear apertures. The semi-diameters are estimates from the axial beam and the Fig. 12 proportions, and they sit 12–20% inside the drawn heights in G1, G4 and G5. They are kept as estimated rather than widened to the drawing, so the corner of the field is probably more heavily vignetted than in the patent design. The patent reports a marginal ray ratio of 32.1 at 14.25 mm image height for Embodiment 5 (Expression 5, listed as Expression 4 in Table 13). The iris radius, 8.48 mm, follows from F/2.86; Fig. 12 draws about 8.5 mm. Ten elements take their dispersion from the catalog equivalents; L2 and L3 use the Abbe-number model. The OIS shift is not modelled.
 
-## Verification Summary
+## Sources and References
 
-Independent literal paraxial matrices give EFL 59.265056401551 mm and back focus after the camera cover 0.972009508542 mm. The final source air gap stays 1.0 mm, leaving unapplied residual -0.027990491458 mm. The fixed source image is at z = 106.0 mm. No focus optimization, image-gap change or source-thickness correction is authored.
-
-Normal native monochromatic scalar diffraction uses reference spectrum, focus `design`, zero applied shift and sampled 0–50 lp/mm. Three source angles at eight apertures give 24/24 converged fields under the unchanged native grid/delta/unknown-flux contract. All 24 converged. No independent physical-OPL, phase-continuum or factory-performance certification is claimed.
-
-Source-angle requests are mapped through actual chief image height. A private larger field-coordinate window, when needed, expresses source fields beyond the native APS-C reference radius; it is not authored image-circle metadata or coverage proof. Source edge, native-format corner and retail field remain distinct. The accompanying release ledger records integration, regression and compiled-viewer outcomes separately, including unavailable and unconverged results.
-
-## Sources
-
-1. [Original patent US 8,203,795 B2](https://patents.google.com/patent/US8203795B2/en), selected complete embodiment, tables, equation and section above; exact original PDF and page images retained privately.
-2. Original Samsung NX lens specification page in the private source archive: product metadata/topology, not unique factory selection.
-3. Ninth B consumer source index SHA256 `8c95cad827b1aff39ff294d0e393d2273b253d896af0158604215ffb0ac42624`; original sources, native arrays and rebuild evidence are retained privately.
+1. [US 8,203,795 B2](https://patents.google.com/patent/US8203795B2/en), Samsung Electronics Co., Ltd., granted June 19, 2012: Embodiments 1–5, Tables 1–13 and the lens sections.
+2. [Imaging Resource, Samsung 60mm f/2.8 Macro ED OIS SSA specifications](https://imaging-resource.com/lenses/samsung/60mm-f2.8-macro-ed-ois-ssa-nx/specifications/): 12 elements in 9 groups with 1 aspherical and 1 extra-low-dispersion lens, Super Sonic Actuator focus drive, 18.7 cm minimum focus, 1:1, 7 rounded blades, 52 mm filter, 84 mm length, 26.4° diagonal angle of view, released 2011.
+3. [LensTip, Samsung NX 60 mm f/2.8 Macro ED OIS SSA specifications](https://www.lenstip.com/979-Samsung_NX_60_mm_f_2.8_Macro_ED_OIS_SSA-lens_specifications.html): 0.187 m closest focus, 1:1, f/32 minimum aperture, 7 blades, 52 mm filter.
+4. [Samsung NX-mount](https://en.wikipedia.org/wiki/Samsung_NX-mount), Wikipedia: 25.5 mm flange focal distance.
