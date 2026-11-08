@@ -134,7 +134,7 @@ const lens = {
       type: "Cement Layer",
       nd: 1.514,
       vd: 42.83,
-      glass: "Unmatched (1.51400/42.83)",
+      glass: "Patent cement medium (nd=1.51400, νd=42.83)",
       role: "Printed 0.0100 mm cement layer between L4 and L5; not counted as a lens element.",
       diagramLabel: "C1",
     },
