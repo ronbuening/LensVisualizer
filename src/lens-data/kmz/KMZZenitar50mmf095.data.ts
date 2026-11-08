@@ -1,39 +1,81 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * RU 2726264 C1, sole example (Table 1, printed pp. 7–8; Fig. 1). Inventors Vladimir Aleksandrovich Bogdankov and
+ * Ilya Anatolevich Levin; patent holder PAO Krasnogorsk Plant named after S.A. Zverev (KMZ). Application 2019143982,
+ * filed 26 December 2019, published 10 July 2020. The patent states f′ = 52 mm, relative aperture 1:0.95, image
+ * field 2y′ = 43 mm and an object at infinity. Nine elements in eight groups, all spherical; L4 and L5 form the one
+ * cemented doublet. The patent divides the lens into three positive components: I (L1–L3) ahead of the stop,
+ * II (L4–L6) and III (L7–L9) behind it.
+ *
+ * SCALE: none. R, d, n and ν are as printed at the native 52 mm; the paraxial EFL is 52.0315 mm.
+ *
+ * GLASS: Table 1 heads its columns n and ν without naming a spectral line; they are traced as nd and νd. Three of the
+ * six distinct printed pairs equal d-line catalog glasses to the printed precision (1.5750 / 41.29 = QF3,
+ * 1.7552 / 27.52 = H-ZF6, 1.6895 / 31.13 = L-TIM28), and none matches a catalog pair at the e line. 1.7441 / 50.42,
+ * 1.6595 / 57.35 and 1.6131 / 60.61 match no catalog row and stay Unmatched.
+ *
+ * STOP: Table 1 places the aperture diaphragm (АД) 14.9 mm behind R6 and 11.3 mm ahead of R7. The stop takes its own
+ * row, so model labels 8–18 carry the patent's R7–R17. The printed iris diameter, 46.2 mm, works out to paraxial
+ * F/0.952. As for any ordinary prime, the stop radius is derived from the design F/0.95 instead: 23.147 mm, a
+ * 46.29 mm diameter.
+ *
+ * SEMI-DIAMETERS: the printed clear diameters D divided by two. They are real-ray apertures: a real axial ray that
+ * just fills the stop meets surfaces 1–9 within 0.05 mm of D/2. The aperture audit finds no rim limit at F/0.95, so
+ * no rim is changed.
+ *
+ * IMAGE PLANE: the final spacing is the printed d18 = 23.7 mm against a paraxial back focus of 23.722 mm. The patent
+ * says the image forms in the plane of best setting; real rays at pupil zones 0.5–0.85 cross the axis
+ * 23.685–23.699 mm behind the last surface.
+ *
+ * FOCUS: infinity only. The patent prints no close-focus spacing or moving group; closeFocusM is a far placeholder,
+ * not a minimum focus distance. The maker's 0.7 m is catalog.closeFocusM.marketing.
+ *
+ * SOURCE NOTE: the application was filed on 26 December 2019, nine months after the lens went on sale on
+ * 20 March 2019, so the example may record a revision of the production design.
+ */
 const LENS_DATA = {
   "schema": 2,
-  "key": "zenitar-095-ru2726264-literal-research",
+  "key": "kmz-zenitar-50mm-f095",
   "maker": "KMZ",
-  "name": "Zenitar 50mm f/0.95 candidate \u2014 literal 52mm patent",
-  "subtitle": "RU2726264 source; factory identity unconfirmed",
-  "visible": false,
-  "layout": {
-    "yScFill": 0.3
-  },
+  "name": "KMZ ZENITAR 50mm f/0.95",
+  "subtitle": "RU 2726264 C1, sole example — probable Zenitar 50mm f/0.95 production correlation",
+  "visible": true,
   "catalog": {
+    "lensMounts": [
+      "sony-fe"
+    ],
     "imageFormat": "135-full-frame",
+    "specs": [
+      "9 ELEMENTS / 8 GROUPS",
+      "DESIGN f = 52 mm",
+      "DESIGN F/0.95",
+      "ALL SPHERICAL"
+    ],
     "elementCount": 9,
     "groupCount": 8,
     "focalLengthMm": {
+      "marketing": 50,
       "design": 52
     },
     "fNumber": {
+      "marketing": 0.95,
       "design": 0.95
     },
-    "specs": [
-      "Literal radii, gaps, indices and row diameters",
-      "Native52mm not rescaled to50mm",
-      "Conditional nd basis; printed23.7mm terminal"
-    ]
+    "closeFocusM": {
+      "marketing": 0.7
+    }
   },
   "source": {
     "patentNumber": "RU 2726264 C1",
-    "patentYear": 2020,
     "example": {
       "label": "Sole example",
       "id": null
     },
+    "patentYear": 2020,
     "authors": [
-      "Vladimir Bogdankov"
+      "Vladimir Aleksandrovich Bogdankov",
+      "Ilya Anatolevich Levin"
     ],
     "assignees": [
       "Krasnogorsk Mechanical Plant"
@@ -43,85 +85,112 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
-      "label": "Literal source glass",
-      "type": "Spherical source element",
+      "label": "Element 1",
+      "type": "Plano-Concave",
       "nd": 1.575,
       "vd": 41.29,
-      "glass": "Unmatched; reference spectral line unconfirmed"
+      "indexReference": "d",
+      "focalLengthMm": -137.83,
+      "glass": "QF3 (CDGM coordinate equivalent; supplier unconfirmed)",
+      "role": "Negative front element, plane side to the object; set ahead of the positive pair to correct wide-beam aberrations"
     },
     {
       "id": 2,
       "name": "L2",
-      "label": "Literal source glass",
-      "type": "Spherical source element",
+      "label": "Element 2",
+      "type": "Biconvex Positive",
       "nd": 1.7441,
       "vd": 50.42,
-      "glass": "Unmatched; reference spectral line unconfirmed"
+      "indexReference": "d",
+      "focalLengthMm": 113.45,
+      "glass": "Unmatched (patent nd=1.7441, νd=50.42; no catalog row at these coordinates)",
+      "role": "Biconvex positive collector of component I"
     },
     {
       "id": 3,
       "name": "L3",
-      "label": "Literal source glass",
-      "type": "Spherical source element",
+      "label": "Element 3",
+      "type": "Positive Meniscus",
       "nd": 1.6595,
       "vd": 57.35,
-      "glass": "Unmatched; reference spectral line unconfirmed"
+      "indexReference": "d",
+      "focalLengthMm": 148.12,
+      "glass": "Unmatched (patent nd=1.6595, νd=57.35; no catalog row at these coordinates)",
+      "role": "Positive meniscus, convex to the object, closing component I ahead of the stop"
     },
     {
       "id": 4,
       "name": "L4",
-      "label": "Literal source glass",
-      "type": "Spherical source element",
+      "label": "Element 4",
+      "type": "Negative Meniscus",
       "nd": 1.7552,
       "vd": 27.52,
-      "glass": "Unmatched; reference spectral line unconfirmed",
+      "indexReference": "d",
+      "focalLengthMm": -47.13,
+      "glass": "H-ZF6 (CDGM coordinate equivalent; supplier unconfirmed)",
+      "role": "Negative meniscus behind the stop, concave to the object; front member of the cemented doublet",
       "cemented": "D1"
     },
     {
       "id": 5,
       "name": "L5",
-      "label": "Literal source glass",
-      "type": "Spherical source element",
+      "label": "Element 5",
+      "type": "Positive Meniscus",
       "nd": 1.6131,
       "vd": 60.61,
-      "glass": "Unmatched; reference spectral line unconfirmed",
+      "indexReference": "d",
+      "focalLengthMm": 81.88,
+      "glass": "Unmatched (patent nd=1.6131, νd=60.61; no catalog row at these coordinates)",
+      "role": "Thick positive meniscus, concave to the object; rear member of the cemented doublet that corrects axial colour",
       "cemented": "D1"
     },
     {
       "id": 6,
       "name": "L6",
-      "label": "Literal source glass",
-      "type": "Spherical source element",
+      "label": "Element 6",
+      "type": "Plano-Convex",
       "nd": 1.7441,
       "vd": 50.42,
-      "glass": "Unmatched; reference spectral line unconfirmed"
+      "indexReference": "d",
+      "focalLengthMm": 102.42,
+      "glass": "Unmatched (patent nd=1.7441, νd=50.42; no catalog row at these coordinates)",
+      "role": "Plano-convex positive element, plane side to the object, closing component II"
     },
     {
       "id": 7,
       "name": "L7",
-      "label": "Literal source glass",
-      "type": "Spherical source element",
+      "label": "Element 7",
+      "type": "Plano-Convex",
       "nd": 1.7441,
       "vd": 50.42,
-      "glass": "Unmatched; reference spectral line unconfirmed"
+      "indexReference": "d",
+      "focalLengthMm": 95.14,
+      "glass": "Unmatched (patent nd=1.7441, νd=50.42; no catalog row at these coordinates)",
+      "role": "Plano-convex positive element, convex to the object, opening component III"
     },
     {
       "id": 8,
       "name": "L8",
-      "label": "Literal source glass",
-      "type": "Spherical source element",
+      "label": "Element 8",
+      "type": "Positive Meniscus",
       "nd": 1.6595,
       "vd": 57.35,
-      "glass": "Unmatched; reference spectral line unconfirmed"
+      "indexReference": "d",
+      "focalLengthMm": 72.43,
+      "glass": "Unmatched (patent nd=1.6595, νd=57.35; no catalog row at these coordinates)",
+      "role": "Positive meniscus, convex to the object; the strongest positive element"
     },
     {
       "id": 9,
       "name": "L9",
-      "label": "Literal source glass",
-      "type": "Spherical source element",
+      "label": "Element 9",
+      "type": "Plano-Concave",
       "nd": 1.6895,
       "vd": 31.13,
-      "glass": "Unmatched; reference spectral line unconfirmed"
+      "indexReference": "d",
+      "focalLengthMm": -36.85,
+      "glass": "L-TIM28 (OHARA coordinate equivalent; supplier unconfirmed)",
+      "role": "Negative rear element, plane side to the object; its concave rear face flattens the field"
     }
   ],
   "surfaces": [
@@ -164,6 +233,7 @@ const LENS_DATA = {
       "d": 14.9,
       "sd": 26.25
     },
+    // Table 1 row АД: printed diameter 46.2 mm (paraxial F/0.952). Radius derived from the design f-number.
     {
       "label": "STO",
       "R": "flat",
@@ -244,9 +314,8 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Static infinity sentinel, not physical MFD"
+    "description": "Only the patent's infinity prescription is modeled. The production lens focuses to 0.7 m, but the patent prints no close-focus spacing or moving group."
   },
-  "gaps": {},
   "aperture": {
     "nominalFNumber": 0.95,
     "fStops": [
@@ -260,14 +329,24 @@ const LENS_DATA = {
       11,
       16
     ],
-    "maxFNumber": 16
+    "maxFNumber": 16,
+    "blades": 14
   },
+  "groups": [
+    { "text": "I", "fromSurface": "1", "toSurface": "6" },
+    { "text": "II", "fromSurface": "8", "toSurface": "12" },
+    { "text": "III", "fromSurface": "13", "toSurface": "18" }
+  ],
   "doublets": [
     {
       "text": "D1",
       "fromSurface": "8",
       "toSurface": "10"
     }
-  ]
+  ],
+  "layout": {
+    "yScFill": 0.3
+  }
 } satisfies LensDataV2Input;
+
 export default LENS_DATA;
