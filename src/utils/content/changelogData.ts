@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-11-08",
     type: "lens",
     summary:
+      "Added the Minolta AF 24-105mm f/3.5-4.5 (D), Panasonic LUMIX G VARIO 45-150mm f/4.0-5.6, Samsung 18-200mm f/3.5-6.3 ED OIS and 60mm f/2.8 Macro ED OIS SSA, SMC Pentax 24mm f/2.8, and Sony DT 18-135mm f/3.5-5.6 SAM",
+  },
+  {
+    date: "2026-11-08",
+    type: "lens",
+    summary:
       "Added the Canon EF 50mm f/2.5 Compact Macro, FL-F 300mm f/5.6 and FL-F 500mm f/5.6, Pentax DA 50mm f/1.8, Sigma 500mm f/4 Sports and Vivitar Series 1 90mm f/2.5 Macro",
   },
   {
