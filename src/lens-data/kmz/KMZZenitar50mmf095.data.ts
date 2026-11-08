@@ -16,8 +16,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 1.6595 / 57.35 STK3, 1.7552 / 27.52 TF5, 1.6131 / 60.61 TK14 and 1.6895 / 31.13 TF8, every nd to the printed four
  * decimals and every νd within 0.03. At the e line these glasses read 0.0024–0.0065 higher, and no pair matches any
  * catalog glass there. The glass catalog carries no GOST rows. QF3 and H-ZF6 equal LF5 and TF5 at the d line;
- * K-LaK11 (nd 0.0012 and νd 0.05 below STK3) and L-TIM28 (νd 0.11 below TF8) lend their dispersion curves, and the
- * trace keeps the printed nd. STK19 and TK14 stay Unmatched.
+ * K-LaK11 (nd 0.0012 and νd 0.05 below STK3) and PBM28 (nd 0.0006 and νd 0.05 below TF8) lend their dispersion
+ * curves, and the trace keeps the printed nd. STK19 and TK14 stay Unmatched.
  *
  * STOP: Table 1 places the aperture diaphragm (АД) 14.9 mm behind R6 and 11.3 mm ahead of R7. The stop takes its own
  * row, so model labels 8–18 carry the patent's R7–R17. The printed iris diameter, 46.2 mm, works out to paraxial
@@ -100,7 +100,7 @@ const LENS_DATA = {
       "vd": 41.29,
       "indexReference": "d",
       "focalLengthMm": -137.83,
-      "glass": "QF3 (CDGM coordinate equivalent; supplier unconfirmed)",
+      "glass": "QF3 (CDGM; d-line equivalent of GOST LF5; supplier unconfirmed)",
       "role": "Negative front element, plane side to the object; set ahead of the positive pair to correct wide-beam aberrations"
     },
     {
@@ -112,7 +112,7 @@ const LENS_DATA = {
       "vd": 50.42,
       "indexReference": "d",
       "focalLengthMm": 113.45,
-      "glass": "Unmatched (patent nd=1.7441, νd=50.42; no catalog row at these coordinates)",
+      "glass": "Unmatched (patent nd=1.7441, νd=50.42; GOST STK19 at the d line, not in the glass catalog)",
       "role": "Biconvex positive collector of component I"
     },
     {
@@ -124,7 +124,7 @@ const LENS_DATA = {
       "vd": 57.35,
       "indexReference": "d",
       "focalLengthMm": 148.12,
-      "glass": "K-LaK11 (SUMITA; nearest catalog row to patent 1.6595/57.35; supplier unconfirmed)",
+      "glass": "K-LaK11 (SUMITA; spectral proxy for GOST STK3, nearest catalog row; supplier unconfirmed)",
       "role": "Positive meniscus, convex to the object, closing component I ahead of the stop"
     },
     {
@@ -136,7 +136,7 @@ const LENS_DATA = {
       "vd": 27.52,
       "indexReference": "d",
       "focalLengthMm": -47.13,
-      "glass": "H-ZF6 (CDGM coordinate equivalent; supplier unconfirmed)",
+      "glass": "H-ZF6 (CDGM; d-line equivalent of GOST TF5; supplier unconfirmed)",
       "role": "Negative meniscus behind the stop, concave to the object; front member of the cemented doublet",
       "cemented": "D1"
     },
@@ -149,7 +149,7 @@ const LENS_DATA = {
       "vd": 60.61,
       "indexReference": "d",
       "focalLengthMm": 81.88,
-      "glass": "Unmatched (patent nd=1.6131, νd=60.61; no catalog row at these coordinates)",
+      "glass": "Unmatched (patent nd=1.6131, νd=60.61; GOST TK14 at the d line, not in the glass catalog)",
       "role": "Thick positive meniscus, concave to the object; rear member of the cemented doublet that corrects axial colour",
       "cemented": "D1"
     },
@@ -162,7 +162,7 @@ const LENS_DATA = {
       "vd": 50.42,
       "indexReference": "d",
       "focalLengthMm": 102.42,
-      "glass": "Unmatched (patent nd=1.7441, νd=50.42; no catalog row at these coordinates)",
+      "glass": "Unmatched (patent nd=1.7441, νd=50.42; GOST STK19 at the d line, not in the glass catalog)",
       "role": "Plano-convex positive element, plane side to the object, closing component II"
     },
     {
@@ -174,7 +174,7 @@ const LENS_DATA = {
       "vd": 50.42,
       "indexReference": "d",
       "focalLengthMm": 95.14,
-      "glass": "Unmatched (patent nd=1.7441, νd=50.42; no catalog row at these coordinates)",
+      "glass": "Unmatched (patent nd=1.7441, νd=50.42; GOST STK19 at the d line, not in the glass catalog)",
       "role": "Plano-convex positive element, convex to the object, opening component III"
     },
     {
@@ -186,7 +186,7 @@ const LENS_DATA = {
       "vd": 57.35,
       "indexReference": "d",
       "focalLengthMm": 72.43,
-      "glass": "K-LaK11 (SUMITA; nearest catalog row to patent 1.6595/57.35; supplier unconfirmed)",
+      "glass": "K-LaK11 (SUMITA; spectral proxy for GOST STK3, nearest catalog row; supplier unconfirmed)",
       "role": "Positive meniscus, convex to the object; the strongest positive element"
     },
     {
@@ -198,7 +198,7 @@ const LENS_DATA = {
       "vd": 31.13,
       "indexReference": "d",
       "focalLengthMm": -36.85,
-      "glass": "L-TIM28 (OHARA coordinate equivalent; supplier unconfirmed)",
+      "glass": "PBM28 (OHARA; spectral proxy for GOST TF8, nearest dispersion; supplier unconfirmed)",
       "role": "Negative rear element, plane side to the object; its concave rear face flattens the field"
     }
   ],

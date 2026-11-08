@@ -223,5 +223,9 @@ current curves lie within 5e-6 of LF5 (QF3) and 1e-5 of STK3 (K-LaK11); H-ZF6 si
 paraxial C, F and g foci by 5 µm or less. The maker booklet gives 9 elements in 8 groups, 44°, f/0.95–16, 14 blades,
 0.7 m and a 72 mm filter, and has no optical section.
 
+The glass labels now name the GOST glass each pair matches. L9 takes PBM28 (OHARA, 1.68893 / 31.08) in place of
+L-TIM28, whose νd misses the printed 31.13 by 0.11 and whose g index sits 2.1e-4 above TF8. L-TIM28 is also a
+low-softening moulding glass, unlikely for a ground spherical element.
+
 Open: exact factory prescription and revision; the production melts; the close-focus movement; a maker optical
 section.
