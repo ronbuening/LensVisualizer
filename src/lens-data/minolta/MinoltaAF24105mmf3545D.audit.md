@@ -187,10 +187,30 @@ Patent: JP 2000-187161 A, Example 3 (Minolta Co., Ltd.; Mamoru Terada)
   0.20 mm farther from the lens. A partial-dispersion excess of +0.02 on L6 (Unmatched 1.75000/25.14, traced on
   the normal line) alone moves the model's g focus to −0.083 / −0.020 / +0.070 mm.
 
+### L6 and L4 glass labels
+
+| Station | Line | Fig. 7        | νd estimate     | L6 FF8          | L6 FF8 + L4 M-TAFD305 |
+| ------- | ---- | ------------- | --------------- | --------------- | --------------------- |
+| Wide    | C    | +0.10 / −0.09 | +0.097 / −0.089 | +0.095 / −0.091 | +0.094 / −0.092       |
+| Wide    | g    | −0.10 / −0.13 | −0.048 / −0.055 | −0.099 / −0.105 | −0.104 / −0.110       |
+| Mid     | C    | +0.10 / +0.03 | +0.120 / +0.020 | +0.114 / +0.014 | +0.112 / +0.012       |
+| Mid     | g    | −0.07 / +0.24 | +0.078 / +0.397 | −0.066 / +0.247 | −0.080 / +0.232       |
+| Tele    | C    | +0.12 / +0.05 | +0.132 / +0.026 | +0.121 / +0.015 | +0.116 / +0.010       |
+| Tele    | g    | +0.06 / +0.20 | +0.256 / +0.391 | −0.018 / +0.107 | −0.048 / +0.077       |
+
+- Values are the paraxial / full-aperture marginal on-axis focus in mm from the d-line paraxial focus. The catalog
+  curves are anchored on the printed nd, so no first-order value changes.
+- HOYA FF8 (1.75211/25.05, PgF 0.6192, about +0.018 above the engine's normal line) on L6 brings the g line within
+  about 0.02 mm of the figure at wide and mid and leaves it 0.08–0.09 mm short at tele, where the νd estimate ran
+  0.05–0.20 mm long; C stays within 0.02 mm paraxially at every station. L6 keeps FF8, which resolves (Δnd 0.0021,
+  Δνd −0.09).
+- HOYA M-TAFD305 on L4, added to FF8, changes wide and mid by 0.015 mm or less but moves the tele g focus a further
+  0.03 mm short of the figure, so L4 keeps "Unmatched (1.85000/40.04)". No `dPgF` is set on any element.
+
 ### Open
 
-- Open: g-line focus is 0.05 / 0.15 / 0.20 mm long against Fig. 7 at wide / mid / tele; the likely cause is the
-  normal-line partial dispersion of the L6 dense flint (1.75000/25.14). A glass or `dPgF` change is the
-  coordinator's.
+- Open (updated 2026-11-08): with HOYA FF8 on L6 the g-line focus follows Fig. 7 within about 0.02 mm at wide and
+  mid; at tele it sits about 0.08 mm short (paraxial −0.018 mm against the figure's +0.06 mm), where the νd estimate
+  ran 0.20 mm long. No single label tested here removes the tele residual.
 - Open: wide-end distortion traces about 0.8 % less barrel at the corner than Fig. 7 shows; mid and tele agree.
   Cause not identified.

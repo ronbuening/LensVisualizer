@@ -28,8 +28,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Focus: Gr2 focuses (¶0010, ¶0034, claim 6), but no close-focus spacing is printed. The model is infinity-only: both
  * focus rows repeat the infinity spacings and closeFocusM is a far placeholder distance.
  * Glass: the patent gives Nd and νd only. Six elements match five Hoya catalog glasses at the printed nd and within
- * 0.15 in νd (L2 PCD4, L5 TAF1, L8 and L11 BSC7, L9 E-C3, L10 E-FD4); the other six elements and the cement keep the
- * Unmatched form.
+ * 0.15 in νd (L2 PCD4, L5 TAF1, L8 and L11 BSC7, L9 E-C3, L10 E-FD4). L6 (1.75000/25.14) uses the nearest Hoya row,
+ * FF8 (1.75211/25.05, PgF 0.6192), anchored on the printed nd: its partial dispersion puts the traced g-line focus
+ * on Fig. 7 within about 0.02 mm at wide and mid and 0.08 mm short at tele, where the νd estimate ran 0.05 / 0.15 /
+ * 0.20 mm long. The other five elements and the cement keep the Unmatched form; HOYA M-TAFD305 on L4 was traced and
+ * moved the tele g focus further from Fig. 7.
  * Source note: Table 1 prints f1/fW = 3.5605 for Example 3, above the 3.50 upper limit of condition (4), so Example 3
  * falls under claim 3 (condition (1), P4 and a double-aspherical Gr4 lens) rather than claims 1-2. The model gives
  * 3.5604.
@@ -157,7 +160,7 @@ const LENS_DATA = {
       nd: 1.75,
       vd: 25.14,
       focalLengthMm: 21.76,
-      glass: "Unmatched (1.75000/25.14)",
+      glass: "FF8 (HOYA; nearest catalog row to patent nd 1.75000, νd 25.14; supplier unconfirmed)",
       role: "Dense-flint positive element that color-corrects the negative Gr2",
       diagramLabel: "L6",
     },

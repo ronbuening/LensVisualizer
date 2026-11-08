@@ -74,7 +74,7 @@ The second negative element of Gr2 adds variator power while keeping its own cur
 
 ### L6 — Biconvex Positive
 
-nd = 1.75000, νd = 25.14. Glass: Unmatched (no catalog glass at these values). f = +21.76 mm.
+nd = 1.75000, νd = 25.14. Glass: FF8 (Hoya catalog), the nearest catalog row (nd 1.75211, νd 25.05); supplier not stated. f = +21.76 mm.
 
 A dense-flint positive element inside the negative Gr2. Against the three negative elements (νd 40.0, 49.8 and 51.6), its low Abbe number corrects Gr2's color while its positive power is outweighed by theirs; Gr2 as a whole is −15.59 mm.
 
@@ -116,7 +116,7 @@ The last element is a negative meniscus, convex to the object, with both faces a
 
 ## Glass Identification and Selection
 
-The patent prints Nd and νd at the d-line (¶0037) and names no supplier. Six elements match five Hoya catalog glasses at the printed nd and within 0.15 in νd, and carry their names as equivalents. The other six elements and the cement have no catalog glass at their printed values and use dispersion estimated from νd.
+The patent prints Nd and νd at the d-line (¶0037) and names no supplier. Six elements match five Hoya catalog glasses at the printed nd and within 0.15 in νd, and carry their names as equivalents. L6 carries the nearest Hoya row, FF8 (nd 1.75211, νd 25.05), with its dispersion curve applied at the printed nd. Like most dense flints it lies above the normal partial-dispersion line (PgF 0.6192), and with it the traced g-line focus follows the patent's aberration curves (Fig. 7) within about 0.02 mm at the wide and middle positions and about 0.08 mm short of them at the tele end. The other five elements and the cement have no catalog glass at their printed values and use dispersion estimated from νd.
 
 | Element | nd      | νd    | Identification          | Role                         |
 | ------- | ------- | ----- | ----------------------- | ---------------------------- |
@@ -126,7 +126,7 @@ The patent prints Nd and νd at the d-line (¶0037) and names no supplier. Six e
 | L3      | 1.69680 | 56.47 | Unmatched               | Gr1 positive meniscus        |
 | L4      | 1.85000 | 40.04 | Unmatched               | Gr2 aspherical negative      |
 | L5      | 1.77250 | 49.77 | TAF1 (Hoya) equivalent  | Gr2 negative                 |
-| L6      | 1.75000 | 25.14 | Unmatched               | Gr2 flint positive           |
+| L6      | 1.75000 | 25.14 | FF8 (Hoya) nearest row  | Gr2 flint positive           |
 | L7      | 1.75450 | 51.57 | Unmatched               | Gr2 negative meniscus        |
 | L8, L11 | 1.51680 | 64.20 | BSC7 (Hoya) equivalent  | Gr3 and Gr4 positive crowns  |
 | L9      | 1.51823 | 58.96 | E-C3 (Hoya) equivalent  | Gr3 positive crown           |
