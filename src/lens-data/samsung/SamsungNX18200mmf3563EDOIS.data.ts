@@ -10,7 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 0.03 mm of the printed image plane at every station.
  * Groups G1–G4 are the patent's G11–G14 (+ − + +). G3 holds the weak negative meniscus L8, the stop, the focusing
  * element L9, the cemented triplet L10–L12 and the OIS doublet L13–L14 (the patent's fourth, first, second and third
- * part groups). All four groups and the stop move toward the object from wide to tele (¶0145). D5, D13, D25 and D32
+ * part groups). G3 is bracketed by those part groups, lettered after Table 1's f3f, f3a, f3b and f3c: G3f (L8), G3a
+ * (L9), G3b (L10–L12) and G3c (L13–L14), so the movement view tracks L9 apart from the rest of G3, which moves as one
+ * body. All four groups and the stop move toward the object from wide to tele (¶0145). D5, D13, D25 and D32
  * change with zoom only; D16 (after the stop) and D18 change with zoom and focus. Only the three printed stations are
  * authored; linear interpolation between them leaves the infinity image up to 5.6 mm ahead of the image plane near
  * 36 mm and up to 10.7 mm behind it near 141 mm.
@@ -19,8 +21,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 499.4 / 500.2 / 500.2 mm from object to image, so the 0.5 m is measured from the image plane, and the conjugates
  * use that reference. The OIS doublet's decentring is not modelled.
  * Stop: the iris radius at each station follows from the printed F-number; the patent prints no stop diameter.
- * Semi-diameters are not printed. They were estimated from FIG. 3 and checked by ray trace; S7's cap ends at 9.4 mm
- * with a flat land to 13.5 mm. These inferred rims vignette the wide-open corners heavily.
+ * Semi-diameters are not printed. They were estimated from FIG. 3 (wide panel, 8.25 px/mm at 300 dpi, scale proved on
+ * vertex spacings and the S7, S24 and S29 arcs) and checked by ray trace; S7's cap ends at 9.4 mm with the flat land
+ * FIG. 3 draws out to 13.5 mm. FIG. 3 draws L7 (9.9 mm) almost as tall as L6, meeting it at the rim; L6's rear and L7's
+ * front close their 0.14 mm air gap at 9.43 mm, so L7 stops at 9.3 mm, 0.006 mm clear of L6, and checks.gapSagFrac
+ * 0.96 admits that pair. FIG. 3 steps L16 (9.1 mm) below L17 (9.8 mm) at their cemented face, which one
+ * semi-diameter cannot draw; both stay square at 9.7 mm. These rims vignette the wide-open corners heavily, and at
+ * 0.5 m at tele L9's front rim also clips the axial beam.
  * Glass: d-line. Fifteen elements carry HOYA catalog equivalents that match the printed nd and νd; the three
  * aspherical elements (L9, L13, L15) match no catalog glass and stay Unmatched.
  * Source inconsistencies: the US family member US 2012/0154913 A1 prints η15 = 1.53123 for this example's L15. EP
@@ -77,7 +84,7 @@ const LENS_DATA = {
       focalLengthMm: -167.71,
       glass: "FD60 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Dense-flint negative meniscus at the front of G1, cemented to L2.",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 2,
@@ -91,7 +98,7 @@ const LENS_DATA = {
       apd: "inferred",
       apdNote: "Samsung lists two ED elements; the printed nd/νd (1.49700/81.6) fit an FCD1-class ED glass.",
       role: "Low-dispersion positive element of the front cemented doublet.",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 3,
@@ -218,7 +225,7 @@ const LENS_DATA = {
       focalLengthMm: -15.03,
       glass: "Unmatched (nd 1.69090, νd 53.3; no catalog glass with these values)",
       role: "Negative element of the OIS doublet, aspherical on its front face.",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 14,
@@ -230,7 +237,7 @@ const LENS_DATA = {
       focalLengthMm: 29.01,
       glass: "E-FD10 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Flint positive meniscus of the OIS doublet, which shifts across the axis to stabilize the image.",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 15,
@@ -253,7 +260,7 @@ const LENS_DATA = {
       focalLengthMm: 19.29,
       glass: "E-CF6 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive element of the G4 cemented doublet.",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 17,
@@ -265,7 +272,7 @@ const LENS_DATA = {
       focalLengthMm: -10.06,
       glass: "TAFD5G (HOYA catalog equivalent; production supplier unspecified)",
       role: "Strong negative element of the G4 cemented doublet.",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 18,
@@ -356,13 +363,13 @@ const LENS_DATA = {
       label: "12",
       R: -21.908,
       d: 1,
-      sd: 9.0,
+      sd: 9.3,
       medium: 7,
     },
     {
       label: "13",
       R: 138.173,
-      sd: 9.0,
+      sd: 9.3,
     },
     {
       label: "14",
@@ -636,8 +643,23 @@ const LENS_DATA = {
       toSurface: "13",
     },
     {
-      text: "G3",
+      text: "G3f",
       fromSurface: "14",
+      toSurface: "15",
+    },
+    {
+      text: "G3a",
+      fromSurface: "17",
+      toSurface: "18A",
+    },
+    {
+      text: "G3b",
+      fromSurface: "19",
+      toSurface: "22",
+    },
+    {
+      text: "G3c",
+      fromSurface: "23A",
       toSurface: "25",
     },
     {
@@ -648,7 +670,7 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "1",
       toSurface: "3",
     },
@@ -658,18 +680,21 @@ const LENS_DATA = {
       toSurface: "22",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "23A",
       toSurface: "25",
     },
     {
-      text: "D3",
+      text: "C3",
       fromSurface: "28",
       toSurface: "30",
     },
   ],
   layout: {
     yScFill: 0.3,
+  },
+  checks: {
+    gapSagFrac: 0.96,
   },
 } satisfies LensDataV2Input;
 

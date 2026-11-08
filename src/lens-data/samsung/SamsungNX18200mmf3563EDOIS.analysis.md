@@ -25,7 +25,7 @@ The US family member, US 2012/0154913 A1 (granted as US 9,140,905 B2), prints η
 
 ## Optical Architecture
 
-The design is a positive-negative-positive-positive zoom. Example 2 labels its groups G11–G14; the model shows them as G1–G4.
+The design is a positive-negative-positive-positive zoom. Example 2 labels its groups G11–G14; the model shows them as G1–G4. The diagram brackets G3 by its four part groups, lettered after the focal lengths f3f, f3a, f3b and f3c of Table 1: G3f (L8), G3a (L9), G3b (the triplet L10–L12) and G3c (the stabilizing doublet L13–L14).
 
 | Group | Elements         | Focal length, mm | Role                                                |
 | ----- | ---------------- | ---------------: | --------------------------------------------------- |
@@ -44,7 +44,7 @@ The prescription ends with a 2.24 mm plate (nd 1.51633, νd 64.1), drawn as LPF 
 
 Focal lengths are the model's thick-lens values for each element alone in air. Glass names are HOYA catalog glasses whose nd and νd match the printed values; they are equivalents, not Samsung's suppliers. The patent describes the elements only by sign and shape.
 
-### L1 / L2 — Cemented Doublet D1 (Negative Meniscus + Biconvex Positive)
+### L1 / L2 — Cemented Doublet C1 (Negative Meniscus + Biconvex Positive)
 
 - **L1:** nd = 1.80518, νd = 25.5. Glass: FD60 (HOYA) catalog equivalent. f = −167.71 mm.
 - **L2:** nd = 1.49700, νd = 81.6. Glass: FCD1 (HOYA) catalog equivalent, ED fluor-crown. f = +106.34 mm.
@@ -101,7 +101,7 @@ The whole focusing group: a single element of 3.20 mm centre thickness with an a
 
 The second part group (combined f = +48.01 mm). Its two cemented surfaces (¶0135) pair the second ED element with a dense flint, so the axial colour of the relay is corrected ahead of the stabilizing doublet (¶0019).
 
-### L13 / L14 — Cemented Doublet D2, Stabilizing Group (Biconcave Negative (1× Asph) + Positive Meniscus)
+### L13 / L14 — Cemented Doublet C2, Stabilizing Group (Biconcave Negative (1× Asph) + Positive Meniscus)
 
 - **L13:** nd = 1.69090, νd = 53.3. Glass: Unmatched (no catalog glass with these values). f = −15.03 mm.
 - **L14:** nd = 1.72825, νd = 28.3. Glass: E-FD10 (HOYA) catalog equivalent. f = +29.01 mm.
@@ -114,7 +114,7 @@ nd = 1.58123, νd = 59.5. Glass: Unmatched (no catalog glass with these values).
 
 The first element of G4, with an aspherical rear face (surface 27A) whose positive power weakens away from the axis (¶0138). This is the element whose index the US publication misprints.
 
-### L16 / L17 — Cemented Doublet D3 (Biconvex Positive + Biconcave Negative)
+### L16 / L17 — Cemented Doublet C3 (Biconvex Positive + Biconcave Negative)
 
 - **L16:** nd = 1.51742, νd = 52.2. Glass: E-CF6 (HOYA) catalog equivalent. f = +19.29 mm.
 - **L17:** nd = 1.83481, νd = 42.7. Glass: TAFD5G (HOYA) catalog equivalent. f = −10.06 mm.
@@ -200,7 +200,7 @@ f3a, f3b, f3c and f3f are the focal lengths of L9, the triplet, the stabilizing 
 
 The traced focal lengths are 18.50, 68.41 and 193.87 mm against the printed 18.50, 68.50 and 194.15 mm, and the infinity image lies within 0.03 mm of the printed image plane at each station. The iris at each station is sized from the printed F-number (F3.55, 5.81, 6.50); the patent prints no stop diameter.
 
-The patent prints no clear apertures. All semi-diameters are estimates from FIG. 3, checked by ray trace, and they vignette the wide-open corners heavily at the wide end. The 52.2 mm clear diameter of the front element is small beside the lens's 67 mm filter thread, so the front rims may be conservative. The traced field still reaches the corner of the APS-C format at all three stations.
+The patent prints no clear apertures. All semi-diameters are estimates from FIG. 3, checked by ray trace, and they vignette the wide-open corners heavily at the wide end: about 43 % of the wide-open beam reaches the corner of the APS-C frame at wide, 82 % at the middle setting and 60 % at tele. At wide the largest share is cut by L4's deeply curved rear face, whose cap ends at 9.4 mm in the flat land FIG. 3 draws, and the rest by the rims behind the stop. FIG. 3 also draws the front element at the model's 52.2 mm clear diameter, small beside the lens's 67 mm filter thread. The traced field still reaches the corner of the format at all three stations. At 0.5 m at tele the beam that fills the wide-open stop reaches 9.9 mm on L9's front face, beyond its 8.5 mm rim, so with the object 500 mm from the image about 71 % of it reaches the centre of the frame; the patent prints no close-focus F-number to compare.
 
 Between the three printed focal lengths the gaps are interpolated linearly. That is not Samsung's zoom cam, and it leaves the intermediate focal lengths well out of focus at infinity: the paraxial image falls up to 5.6 mm ahead of the sensor near 36 mm and up to 10.7 mm behind it near 141 mm. Image quality is meaningful only at the three printed focal lengths. The stabilizing shift is not simulated. L9, L13 and L15 use estimated dispersion.
 
