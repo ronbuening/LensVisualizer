@@ -25,6 +25,17 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Fujifilm XF 150-600mm f/5.6-8, Konica Hexanon AR 57mm f/1.2, Nikon EL-Nikkor 50mm f/2.8, Pentax FA* 300mm f/2.8, Schneider-Kreuznach 28mm LS f/4.5 and Sigma 20mm f/1.4 DG DN Art",
   },
   {
+    date: "2026-11-08",
+    type: "lens",
+    summary:
+      "Added the Canon EF 50mm f/2.5 Compact Macro, FL-F 300mm f/5.6 and FL-F 500mm f/5.6, Pentax DA 50mm f/1.8, Sigma 500mm f/4 Sports and Vivitar Series 1 90mm f/2.5 Macro",
+  },
+  {
+    date: "2026-11-07",
+    type: "article",
+    summary: "Added OM System, Olympus and Cosina development stories to the lens story index",
+  },
+  {
     date: "2026-11-07",
     type: "lens",
     summary:
