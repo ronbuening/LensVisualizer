@@ -168,7 +168,6 @@ const LENS_DATA = {
       glass: "UV-cure adhesive",
       apd: false,
       role: "Optical cement bonding L2b to L2c (0.01 mm layer)",
-      cemented: "D1",
     },
     {
       id: 7,
