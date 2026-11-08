@@ -98,8 +98,99 @@ Patent: JP 2000-187161 A, Example 3 (Minolta Co., Ltd.; Mamoru Terada)
 
 ### Open
 
-- The 24A front face of L12 turns back toward the object beyond about h = 8.1 mm, inside its 10.6 mm semi-diameter.
-  The patent's own (P4) table runs to y = 9.708 mm, past that point. No rim limit is reported, so the rim was not
-  changed in this pass.
+- Closed 2026-11-08 (second review): the 24A front face of L12 turns back toward the object beyond about h = 8.1 mm,
+  inside its 10.6 mm semi-diameter, and the patent's (P4) table runs to y = 9.708 mm. Fig. 3 draws L12 at 10.6 mm
+  (10.59 mm measured) with the front face bending back near its rim, and cutting both faces to 9.71 mm would cost
+  7.6 points of corner light at the wide end, so the 10.6 mm rim stays.
 - Close focus: Gr2 rows for 0.5 m could be added as calculated (not published) states from the solve above.
 - Cement layer form: drawn element kept for chromatic support; revisit if undrawn media gain a dispersion field.
+
+## 2026-11-08 — Second review: diagram, labels and movement
+
+### What was compared
+
+- The live page (infinity at 24.71, 50 and 102.5 mm, the focus control, both movement overlays and the element
+  inspector) against patent Fig. 3, which the brief description of the drawings names as the construction of
+  Example 3, drawn at the wide end with W→T arrows. The aberration curves of Fig. 7 were compared with traced values.
+- Figure scale: a least-squares fit of 18 vertex crossings (r1 to r25 at the wide spacing, 72.502 mm) gives
+  0.0854 mm per pixel at 600 dpi, with every vertex within 0.19 mm. The vertical scale is the same: the r2 arc
+  (R 89.123 mm) drawn at that scale lands within about 1.5 px of the figure out to h = 27 mm. The drawn axis is
+  tilted by about 0.5°, so each rim is the mean of its top and bottom reading about the local axis.
+- An overlay of the model outline on the figure at matched scale shows every element on the drawn lines.
+
+### Rims
+
+| Element (faces) | Fig. 3 (mm)       | Baseline (mm) | Final (mm)  | Verdict                         |
+| --------------- | ----------------- | ------------- | ----------- | ------------------------------- |
+| L1 (1, 2)       | 28.74, square-cut | 28.8 / 26.8   | 28.8 / 28.8 | r2 raised to square L1; 0.0 pts |
+| L2 (3, 4)       | 26.82             | 26.8          | 26.8        | kept                            |
+| L3 (5, 6)       | 24.77             | 24.8          | 24.8        | kept                            |
+| L4 (7A, 8)      | 13.80 / 10.3–10.5 | 13.8 / 10.0   | 13.8 / 10.0 | kept; S8 held for the gap to L5 |
+| L5 (9, 10)      | 10.55             | 10.5          | 10.5        | kept                            |
+| L6 (11, 12)     | 9.29              | 9.2           | 9.2         | kept                            |
+| L7 (13, 14)     | 9.14              | 8.8           | 8.8         | kept (3.8 % low, order right)   |
+| L8 (16, 17)     | 10.10             | 10.0          | 10.0        | kept                            |
+| L9 (18, 19)     | 10.04             | 9.9           | 9.9         | kept                            |
+| L10 (20, 21)    | 9.65              | 9.7           | 9.7         | kept                            |
+| L11 (22, 23)    | 10.93             | 11.0          | 11.0        | kept                            |
+| L12 (24A, 25A)  | 10.61             | 10.6          | 10.6        | kept                            |
+
+- Cuts and lands: none. No face ends below its baseline value, and the file has no `rimExtensionSd`,
+  `rimCutDepthMm` or `checks.gapSagFrac`. The r2 raise changes no transmitted light: against the baseline rims the
+  worst loss is 0.0 points at every field sample of the three printed stations and of nine zoom fractions from wide
+  to tele. Engine half-field 36.21° and FOPEN 3.6 are unchanged; wide-open corner transmission stays 60.2 / 95.9 /
+  70.0 % at 42.0° / 22.9° / 11.5°. The surface, aperture and image-circle audits pass with no rim limit, and the
+  traced corner reaches 21.63 mm at every station.
+- At 10.0 mm the L4 rear face clears L5 by 0.69 mm at the rim; at the figure's 10.4 mm the gap would close to
+  0.15 mm. The figure draws the faces meeting, so the 3–5 % difference is kept.
+- Fig. 3 draws the iris bars with their inner ends about 8.6 mm from the axis, against the engine's 7.12 mm wide-open
+  stop sized from F/3.6; the stop was not touched and the tick was not used for scale.
+
+### Labels and tags
+
+- The doublet bracket read "D1", the form the D6 / D14 / D21 gap labels use for spacings, and the cement layer
+  already carries the "C1" label, so the bracket and the `cemented` name of L1 and L2 are now "L1+L2".
+- C1 carried `cemented: "D1"` with L1 and L2, so the inspector showed "TRIPLET D1" on all three. C1 no longer
+  carries the field; L1 and L2 show "DOUBLET L1+L2" and C1's inspector shows FL = — with no badge.
+- Names and diagram labels agree (L1–L12, C1). Every type agrees with the signs of R; roles are correct. Aspheric
+  labels are on 7A, 24A and 25A only, the patent's starred r7, r24 and r25. The stop sits between L7 and L8 as
+  r15(S) does. Group brackets Gr1–Gr4 span surfaces 1–6, 7A–14, 16–21 and 22–25A, as the figure's groups do. No
+  element carries an `apd` tag and the patent names no special glass. The inspectors of L4, L12 and the six
+  Hoya-labelled elements show the expected type, focal length, glass and asphere lines.
+- Glass: the seven Unmatched media (L1 1.83350/21.00, cement 1.51400/42.83, L3 1.69680/56.47, L4 1.85000/40.04,
+  L6 1.75000/25.14, L7 1.75450/51.57, L12 1.77450/44.46) each recur unchanged in Examples 1, 2 and 4, so they are
+  real glasses, not optimizer values. The patent prints only Nd and νd (¶0037); no glass name, line index or partial
+  dispersion. The Hoya labels sit within 0.15 of the printed νd.
+
+### Movement
+
+- Zoom stations ascend 24.71 → 50 → 102.5 mm and each gap lists them in that order, as the table prints them.
+- With the image plane fixed, every group moves toward the object, monotonically, as ¶0012 and the Fig. 3 arrows
+  show: Gr1 16.33 + 23.75 = 40.08 mm, Gr2 3.85 + 3.81 = 7.66 mm, Gr3 (with the stop) 13.14 + 9.44 = 22.59 mm and
+  Gr4 17.17 + 10.24 = 27.41 mm (wide→mid + mid→tele). The zoom overlay shows the same, with a 40.08 mm maximum.
+- Focus is infinity-only by design: both focus rows repeat the infinity spacings, the focus control reads "Not
+  modeled" and the focus overlay is disabled. The description's Gr2 inner focus toward the object matches ¶0023
+  and ¶0034.
+
+### Aberrations against Fig. 7
+
+- Distortion at Y′ = 21.6 mm: Fig. 7 reads about −3.5 % / +2.7 % / +3.7 % (W / M / T), the model gives −2.74 % /
+  +2.6 % / +3.6 %. The wide curve also bottoms out lower in the figure, about −4.3 % near 84 % height against the
+  model's −3.8 %.
+- Astigmatism agrees in form at all three stations. At the wide end the meridional curve breaks far negative at the
+  corner while the sagittal stays near +0.4 mm; the app's real-ray curves, which stop at its 36.2° half-field, end at
+  T −1.36 / S +0.38 mm. At mid both curves stay within about 0.2 mm of the image plane. At tele the meridional curve
+  dips slightly and then rises to about +0.4 mm at the corner, as the app's tangential curve does.
+- Colour: relative to the d-line paraxial focus, the patent's C-line curve starts at about +0.10 / +0.10 / +0.12 mm
+  and the model's at +0.097 / +0.120 / +0.132 mm; at the wide end both end near −0.09 mm. The g-line curve starts at
+  about −0.10 / −0.07 / +0.06 mm in the figure but at −0.048 / +0.078 / +0.256 mm in the model, 0.05 / 0.15 /
+  0.20 mm farther from the lens. A partial-dispersion excess of +0.02 on L6 (Unmatched 1.75000/25.14, traced on
+  the normal line) alone moves the model's g focus to −0.083 / −0.020 / +0.070 mm.
+
+### Open
+
+- Open: g-line focus is 0.05 / 0.15 / 0.20 mm long against Fig. 7 at wide / mid / tele; the likely cause is the
+  normal-line partial dispersion of the L6 dense flint (1.75000/25.14). A glass or `dPgF` change is the
+  coordinator's.
+- Open: wide-end distortion traces about 0.8 % less barrel at the corner than Fig. 7 shows; mid and tele agree.
+  Cause not identified.

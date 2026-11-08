@@ -17,12 +17,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The cement layer is kept as a drawn 0.010 mm element (C1) so its printed ν stays in the chromatic trace;
  * catalog.elementCount is the 12 lens elements.
  * Stop: no diameter is printed; the engine sizes r15 from the F-number at each station.
- * Semi-diameters are inferred from Fig. 3 proportions and ray clearance, not printed. S8 is held at 10.0 mm, below the
- * figure's proportion, so the deep L4 rear face keeps an air gap to L5 at the rim; L4's 13.8 mm front face and
- * 10.0 mm rear face are joined by an oblique edge. L1's 28.8 mm front face is wider than the 26.8 mm cemented
- * interface. The r24 condition (P4) table (¶0053) runs to y = 9.708 mm; L12 is 10.6 mm, and its front face (24A)
- * turns back toward the object beyond about h = 8.1 mm. At the 21.63 mm image height the wide-angle corner bundle
- * loses about half its width at the Gr1 rims; that vignetting is kept.
+ * Semi-diameters are measured from Fig. 3 (0.0854 mm per px at 600 dpi from the r1-r25 vertex spacing; the r2 arc
+ * confirms the same vertical scale) and floor-checked by ray trace; none is printed. S8 is held at 10.0 mm, below the
+ * figure's 10.3-10.5 mm, so the deep L4 rear face keeps an air gap to L5 at the rim; L4's 13.8 mm front face and
+ * 10.0 mm rear face are joined by an oblique edge. L1 is square-cut at 28.8 mm on both faces (r1, r2), past the
+ * 26.8 mm rim of the cemented interface r3 and L2, as Fig. 3 draws it. The r24 condition (P4) table (¶0053) runs
+ * to y = 9.708 mm; L12 is 10.6 mm as drawn, and its front face (24A) turns back toward the object beyond about
+ * h = 8.1 mm. At the 21.63 mm image height the wide-angle corner bundle loses about half its width at the Gr1 rims;
+ * that vignetting is kept.
  * Focus: Gr2 focuses (¶0010, ¶0034, claim 6), but no close-focus spacing is printed. The model is infinity-only: both
  * focus rows repeat the infinity spacings and closeFocusM is a far placeholder distance.
  * Glass: the patent gives Nd and νd only. Six elements match five Hoya catalog glasses at the printed nd and within
@@ -85,7 +87,7 @@ const LENS_DATA = {
       glass: "Unmatched (1.83350/21.00)",
       role: "High-dispersion flint front meniscus of the Gr1 cemented doublet",
       diagramLabel: "L1",
-      cemented: "D1",
+      cemented: "L1+L2",
     },
     {
       id: 2,
@@ -97,7 +99,6 @@ const LENS_DATA = {
       glass: "Unmatched (1.51400/42.83)",
       role: "0.010 mm cement layer between L1 and L2, as printed in the patent; not counted as a lens element",
       diagramLabel: "C1",
-      cemented: "D1",
     },
     {
       id: 3,
@@ -110,7 +111,7 @@ const LENS_DATA = {
       glass: "PCD4 (HOYA; coordinate equivalent; supplier unconfirmed)",
       role: "Low-dispersion crown partner of the Gr1 cemented doublet",
       diagramLabel: "L2",
-      cemented: "D1",
+      cemented: "L1+L2",
     },
     {
       id: 4,
@@ -245,7 +246,7 @@ const LENS_DATA = {
       label: "2",
       R: 89.123,
       d: 0.01,
-      sd: 26.8,
+      sd: 28.8,
       medium: 2,
     },
     {
@@ -499,7 +500,7 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "L1+L2",
       fromSurface: "1",
       toSurface: "4",
     },
