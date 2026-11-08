@@ -21,18 +21,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * SEMI-DIAMETERS: the printed clear diameters D divided by two. The aperture audit finds no rim limit at F/1.0, so
  * no rim is changed. Fig. 1 (p. 9; 15.96 px/mm along the axis, 15.58 px/mm across it at 382 dpi) agrees with the
- * printed rims within 4% (L8's rear face 7%), and draws L1 and L6 with flat rear lands: L1's rear curve ends near
- * 23 mm and a vertical stroke rises to the 29 mm front rim; L6's rear curve ends near 15.4 mm and rises to the 20 mm
- * cemented rim. rimExtensionSd 29.0 on face 2 and 20.1 on face 11 draw those lands; they trace nothing and cost no
- * light.
+ * printed rims within 4%, except where it draws an element square past a smaller clear diameter. rimExtensionSd
+ * draws those four flat lands at the height of the element's other face: L1's rear curve ends near 23 mm and a
+ * vertical stroke rises to the 29 mm front rim (face 2, 29.0); L3's front curve ends near 22.3 mm and a stroke rises
+ * to its 23.2 mm flat top (face 5, 23.35); L6's rear curve ends near 15.4 mm and rises to the 20 mm cemented rim
+ * (face 11, 20.1); L8's rear face runs straight on past its 13.25 mm clear radius to the 14.1 mm flat top (face 16,
+ * 14.2). The lands trace nothing and cost no light.
  *
  * IMAGE PLANE: the final spacing is the printed d18 = 17.3 mm against a paraxial back focus of 17.41 mm. This is not
  * a source error. The patent says the image forms in the plane of best setting, and the spherical aberration is
  * undercorrected: real d-line rays at pupil zones 0.5–0.85 cross the axis 17.28–17.32 mm behind the last surface.
  * The printed 17.3 mm is that best-focus plane and is kept.
  *
- * FOCUS: the patent prints only the infinity state, so no focus movement is modelled; closeFocusM = 1e15 marks focus
- * as not modelled and is not a minimum focus distance. KMZ lists 0.8 m for the production lens
+ * FOCUS: the patent prints only the infinity state, so no focus movement is modeled; closeFocusM = 1e15 marks focus
+ * as not modeled and is not a minimum focus distance. KMZ lists 0.8 m for the production lens
  * (catalog.closeFocusM.marketing).
  */
 const lens = {
@@ -231,6 +233,7 @@ const lens = {
       "R": -42.85,
       "d": 3.6,
       "sd": 22.45,
+      "rimExtensionSd": 23.35,
       "medium": 3
     },
     {
@@ -302,7 +305,8 @@ const lens = {
       "label": "16",
       "R": -167.49,
       "d": 0.5,
-      "sd": 13.25
+      "sd": 13.25,
+      "rimExtensionSd": 14.2
     },
     {
       "label": "17",
@@ -321,7 +325,7 @@ const lens = {
 
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity prescription only. The patent publishes no focusing data, so no focus movement is modelled. The production lens focuses manually down to 0.8 m."
+    "description": "Infinity prescription only. The patent publishes no focusing data, so no focus movement is modeled. The production lens focuses manually down to 0.8 m."
   },
 
   "aperture": {

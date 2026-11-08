@@ -26,7 +26,8 @@
   focal length seen only in a search-index snippet for a zenitcamera.com archive page, which could not be loaded, is
   not used.
 - **Open at intake:** spectral line and glass identity; printed versus derived iris; d18 versus paraxial back focus;
-  production identity; finite focus.
+  production identity; finite focus. Closed 2026-11-08 for the iris and d18 items (deployment validation section);
+  the spectral line, glass identity, production identity and focus stay open.
 
 ## 2026-11-08 — Deployment validation and production cleanup
 
@@ -155,3 +156,40 @@ row while the trace keeps the printed nd: 1.6595 / 57.35 takes K-LaK11 (SUMITA, 
 1.6920 / 55.05 takes J-LAK9 (Hikari, 1.69100 / 54.93). Both differ from the printed νd by 0.12 or less. The patent
 prints no chromatic aberration curves to check them against, so the labels say "nearest catalog row" and name no
 supplier. Pairs further than 0.25 from any row in νd stay Unmatched.
+
+## 2026-11-08 — Third review: diagram, labels and movement
+
+Compared the local page with Fig. 1 (p. 9) on a scale measured afresh from the native 382 dpi scan: 15.95 px/mm along
+the axis (faces 1 to 18, 1518 px over 95.2 mm; face 1 to the image line, 1796 px over 112.5 mm), 15.59 px/mm across it
+(image line ±335 px for 2y′ = 43 mm; face 2 arc fit 15.56), axis tilt 0.39°. The second review read L3 and L8 as drawn
+square but kept their slanted edges because the printed diameters agree with the figure. On the page those slants (0.90
+and 0.95 mm) show plainly against the figure's flat tops, and Fig. 1 ends each shorter face below the top with a
+straight stroke, as it does for L1 and L6. A land at the height of the element's other face squares each one and keeps
+the printed clear diameters D5 = 44.9 and D16 = 26.5 mm.
+
+| Face         | Kind | Figure reading                                                                             | Before            | After                            | Light cost | Verdict           |
+| ------------ | ---- | ------------------------------------------------------------------------------------------ | ----------------- | -------------------------------- | ---------- | ----------------- |
+| 5 (L3 front) | land | curve ends at 22.3; vertical stroke at the curve end to the flat top at 23.1–23.2          | sd 22.45, no land | sd 22.45, `rimExtensionSd` 23.35 | 0.0 points | keep: drawn, free |
+| 16 (L8 rear) | land | rear face runs straight up past 13.25 to the flat top at 14.0–14.1; front rim 14.2 printed | sd 13.25, no land | sd 13.25, `rimExtensionSd` 14.2  | 0.0 points | keep: drawn, free |
+
+Second-review land verdicts re-measured with each land removed alone: faces 2 and 11 cost 0.0 points. The worst loss of
+the final file against the baseline rims is 0.0 points at every field (95.7% on axis, 29.7% at 30.8°). The surface
+validator prints OK, the aperture audit finds no rim limit, field coverage is 100%, and the engine half-field (28.10°)
+and f-number (F/1.000) are unchanged. L9 (11.7 / 11.35 mm) is drawn flat at 11.4–11.6 mm, inside the reading error, and
+stays.
+
+Re-checked and correct: every inspector line (L1–L9, types from the radius signs, thick-lens focal lengths, glass,
+roles), the I, II, III and D1 brackets, the stop between L6 and L7, no aspheres and no `apd` tags; the focus slider reads
+∞ to "Not modeled", `focus=1` changes nothing and both movement overlays report no modeled movement. The focus
+description and header comment now spell "modeled" as the slider does. Table 1 prints only n, ν and D, claim 3 only
+ranges, and Fig. 2 is the polychromatic MTF, so the patent names no glass and gives no colour curves to compare. Every
+label resolves to a dispersion curve. The catalog holds no LZOS rows; Schott SF4 sits 0.06 from the flint's νd against
+0.01 for H-ZF6, and no Schott row lies within the window of 1.5750 / 41.30, so the CDGM rows stay.
+
+Open: the STO label still touches the top corner of L6's land. The renderer centres the label on the stop plane with
+its baseline at the stop housing radius plus 0.12 of the largest drawn rim, 15.73 + 3.48 = 19.21 mm; the housing radius
+comes from the neighbouring faces' `sd` and ignores the land. The 9.5 px label with 0.1 em spacing is about 20 px wide,
+so its left half (1.89 mm at 5.28 px/mm) overhangs the 1.65 mm air space, and the S, about 19.2–20.5 mm high, meets the
+land's 20.1 mm corner. No figure-supported land clears it: the land would have to drop to about 19.0 mm (Fig. 1 draws
+19.9, flush with the 20.1 mm cemented rim) or stand 0.3 mm further forward, which would cut face 11 below its printed
+15.45 mm clear radius.
