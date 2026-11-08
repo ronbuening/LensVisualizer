@@ -8,7 +8,7 @@
 **Title:** Photographic Objective  
 **Example details:** Drawing sheet Figure 2; specification page 2, left-column numerical example and C/D/F table. Dimensions remain in the original millimeters, without scaling.
 
-This model transcribes the four-element numerical prescription explicitly associated with Figure 2. It does not identify a production lens, mount, camera, or commercial glass melt. The catalog title identifies the numerical reconstruction without combining the computed focal length with the unresolved source aperture rating. Computed EFL and source ratings are shown separately.
+This model transcribes the four-element numerical prescription explicitly associated with Figure 2. It does not identify a production lens, mount, camera, or commercial glass melt. The catalog title uses the patent’s nominal 65mm f/2 rating, following the catalog convention for historical source-rated designs. The focal-length metadata records only the literal model’s computed 85.9066 mm EFL as the prescription design value; the commercial `marketing` value remains unset. The 65 mm source rating appears in the title/specs and is not reinterpreted as EFL. Manufacturer, mount, image format/circle, and marketed minimum focus distance are unknown and remain unset.
 
 The patent calls the drawings diagrammatic and says the numerical dimensions are only approximately correct. Its summary states “focal distance 65 mm,” largest lens diameter 38 mm, effective aperture .5 or f/2, and an anastigmatically flattened field of about 65°. These statements are retained as source claims. The literal model does not reproduce all of them.
 
@@ -67,7 +67,7 @@ All four source indices explicitly refer to solar C, D, and F lines. The stored 
 | L3 | 1.61205 | 1.6169 | 1.62896 | 36.4 | 36.4814 |
 | L4 | 1.56967 | 1.5726 | 1.57962 | 57.4 | 57.5477 |
 
-The spectral trace preserves the published C/D/F anchors. The source supplies no g-line index, anomalous-partial-dispersion value, or catalog identity. Runtime g behavior is estimated and must not be interpreted as measured historical glass data. No modern catalog proxy is assigned; matching only a similar refractive index or Abbe number would not establish a material identity.
+The spectral trace preserves the published C/D/F anchors. The source supplies no g-line index, anomalous-partial-dispersion value, or catalog identity. Runtime g behavior is estimated from the authored reference index and measured C/F span, independently of the rounded printed Abbe value, and must not be interpreted as measured historical glass data. Recomputing g from the measured span changes the four estimated g indices by at most 0.0000025. Across the converged sampled photopic fields at nominal f/2, f/4, and f/8, the largest change in sagittal/tangential MTF through 50 lp/mm is below 0.000020; convergence counts remain 4/11, 8/11, and 10/11 respectively. Larger differences among unconverged outer-field estimates are numerical diagnostics, not validated performance changes. Native-D results are unchanged. No modern catalog proxy is assigned; matching only a similar refractive index or Abbe number would not establish a material identity.
 
 ## Focus Mechanism
 
@@ -94,6 +94,20 @@ The patent's “focal distance 65 mm” is close to the computed BFD, but it doe
 Exact on-axis rays also show substantial spherical aberration: rays launched 5, 10, and 15 mm above the axis cross it approximately 64.125, 65.351, and 69.446 mm behind the last vertex. A 65 mm crossing for some finite-height ray does not establish the intended definition of the printed focal distance. The derived paraxial image plane does not imply that every aperture zone focuses there.
 
 This is a literal, qualified patent reconstruction. The unresolved focal-distance and aperture claims prevent treating it as a validated reproduction of the patent's stated performance.
+
+## Independent Axial Performance Check
+
+A separate analytic sphere-intersection and vector-Snell calculation, without the application’s tracing or MTF helpers, confirms substantial axial blur in the literal prescription. Uniform incident-pupil-area weighting gives these RMS spot radii:
+
+| Nominal iris | At paraxial plane | At minimum-RMS plane | Minimum-RMS plane shift |
+| --- | --- | --- | --- |
+| f/2, glass-limited accepted beam | 1.0900 mm | 0.5718 mm | +6.5757 mm |
+| f/4 | 0.1018 mm | 0.0397 mm | +1.0802 mm |
+| f/8 | 0.0101 mm | 0.0035 mm | +0.2145 mm |
+
+A bounded axial geometric-MTF focus scan of the wide-open accepted beam gives approximately 0.130 / 0.075 at 10 / 30 lp/mm near a +0.35 mm plane shift. Minimum-RMS and high-frequency-contrast focus differ for this strongly aberrated beam; refocusing alone does not recover strong wide-open performance. Independent C/D/F paraxial BFDs are 63.900858 / 63.840692 / 63.802623 mm. Their 0.0982 mm spread is much smaller than the full-aperture longitudinal spherical aberration, so correcting the missing-g estimate cannot explain the poor native-D result.
+
+This independent check is axial and geometric, omits diffraction and Fresnel weighting, and does not validate unconverged application MTF values. The source scan still supports the literal radii, thicknesses, signs, and material order. No supported transcription correction has been identified. The patent’s approximate numerical prescription, an unestablished erratum, or missing design information remain possible explanations; no optimized substitute is presented as the source lens.
 
 ## Modeled Operating Envelope and Numerical Limits
 

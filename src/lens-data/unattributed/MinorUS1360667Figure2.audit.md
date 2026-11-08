@@ -57,3 +57,18 @@ under the existing numerical criterion. At f/2 every sampled field remains uncon
 These are numerical limits of the reconstruction, not reproduced historical ratings.
 The release scope is a faithful, qualified numerical example; the 65 mm/f/2/field claims
 remain unresolved and cannot be advertised as validated performance.
+
+## 2026-11-08 — Spectral review and independent performance cross-check
+
+The catalog title now follows the historical source-rated convention: **MINOR PHOTOGRAPHIC
+OBJECTIVE 65mm f/2**. Figure 2 attribution and the unresolved rating discrepancies remain in
+source metadata, specs, and visible notes. Catalog design focal length records the explicitly
+computed 85.9065926111 mm EFL; no commercial marketing value, manufacturer, mount, format,
+or image circle is inferred.
+
+Missing g now uses the C/F-derived Abbe coordinate rather than the rounded printed value.
+Published C/D/F and Abbe values remain unchanged. The independent analytic Snell/RMS check
+in the companion analysis confirms substantial literal axial blur even after refocusing;
+no supported transcription correction emerged. The native-D convergence envelope is unchanged.
+The small photopic changes and the distinction between physical blur and numerical
+nonconvergence are quantified in the companion analysis.

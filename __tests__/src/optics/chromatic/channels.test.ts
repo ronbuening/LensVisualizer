@@ -61,12 +61,14 @@ describe("chromatic channel metadata", () => {
   });
 });
 
-it("retains sodium D as the native C/D/F/g reference", () => {
-  expect(LINE_NM.D).toBe(589.2938);
-  expect(LINE_NM.D).not.toBe(LINE_NM.d);
-  expect(lensChromaticReference([{ indexReference: "D" }])).toBe("D");
-  expect(lensChromaticReference([{ indexReference: "D" }, {}])).toBe("d");
-  expect(chromaticChannelLineList("D")).toBe("C, D, F, and g");
-  expect(chromaticChannelWavelengthLabel("G", "D")).toBe("D-line 589.3 nm");
-  expect(chromaticChannelIndexLabel("G", "D")).toBe("nD");
+describe("native sodium D", () => {
+  it("retains sodium D as the native C/D/F/g reference", () => {
+    expect(LINE_NM.D).toBe(589.2938);
+    expect(LINE_NM.D).not.toBe(LINE_NM.d);
+    expect(lensChromaticReference([{ indexReference: "D" }])).toBe("D");
+    expect(lensChromaticReference([{ indexReference: "D" }, {}])).toBe("d");
+    expect(chromaticChannelLineList("D")).toBe("C, D, F, and g");
+    expect(chromaticChannelWavelengthLabel("G", "D")).toBe("D-line 589.3 nm");
+    expect(chromaticChannelIndexLabel("G", "D")).toBe("nD");
+  });
 });

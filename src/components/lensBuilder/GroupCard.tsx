@@ -22,6 +22,7 @@ import {
   type BuilderMaterial,
   type BuilderSurface,
 } from "../../lensBuilder/elementModel.js";
+import { isDLineReference } from "../../optics/glassCatalog.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
 import CommitInput, { builderCaptionStyle } from "./CommitInput.js";
 import MaterialPicker from "./MaterialPicker.js";
@@ -55,11 +56,7 @@ const ODD_TERMS = ASPHERIC_COEFFICIENT_SCHEMA.filter((d) => d.parity === "odd");
 /** Native spectral data describes the authored glass; replacing nd/νd alone would leave it inconsistent. */
 function hasNativeSpectra(e: BuilderElement): boolean {
   const x = e.extra;
-  return (
-    !!x &&
-    ((x.indexReference !== undefined && x.indexReference !== "d") ||
-      [x.nC, x.nF, x.ng, x.dPgF].some((v) => v !== undefined))
-  );
+  return !!x && (!isDLineReference(x.indexReference) || [x.nC, x.nF, x.ng, x.dPgF].some((v) => v !== undefined));
 }
 
 function LinkIcon() {
@@ -397,8 +394,14 @@ export default function GroupCard({ ctx, group, index, count, selected }: GroupC
           <div
             role="group"
             aria-label={`${e.name} sodium D material`}
+            aria-invalid={ctx.elementInvalid(e.id) || undefined}
             title="Sodium D source data. Reconcile spectral changes in Advanced JSON."
-            style={{ border: `1px solid ${t.panelBorder}`, borderRadius: 4, padding: "4px 6px", fontSize: 10.5 }}
+            style={{
+              border: `1px solid ${ctx.elementInvalid(e.id) ? t.error : t.panelBorder}`,
+              borderRadius: 4,
+              padding: "4px 6px",
+              fontSize: 10.5,
+            }}
           >
             <span>
               {textRun(

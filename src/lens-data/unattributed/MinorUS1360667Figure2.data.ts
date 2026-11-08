@@ -10,8 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * The source's "focal distance 65 mm" is ambiguous: the literal prescription
  * gives EFL 85.9065926111 mm and BFD 63.8406924899 mm at D. Neither prescription
- * nor indices are optimized to make 65 mm EFL. Catalog design EFL is omitted
- * because the source does not establish that 65 mm means effective focal length.
+ * nor indices are optimized to make 65 mm EFL. Catalog design records the
+ * explicitly computed EFL, not a reinterpretation of the printed focal distance.
+ * No commercial focal-length rating is established; marketing remains unset.
  *
  * SEMI-DIAMETERS: inferred 19 mm square rim on L1 from the stated largest
  * diameter 38 mm; 17.6 mm on L2-L4 from Figure 2's height ratio (~280/303).
@@ -26,8 +27,8 @@ const LENS_DATA = {
   schema: 2,
   key: "minor-us1360667-figure-2",
   maker: null, // Inventor known; no manufacturer or production lens is established.
-  name: "MINOR PHOTOGRAPHIC OBJECTIVE (Figure 2 patent reconstruction)",
-  subtitle: "US 1,360,667 Figure 2 — literal patent model; focal distance and aperture qualified",
+  name: "MINOR PHOTOGRAPHIC OBJECTIVE 65mm f/2",
+  subtitle: "US 1,360,667 Figure 2 (1920)",
   catalog: {
     specs: [
       "4 ELEMENTS / 4 GROUPS",
@@ -40,6 +41,8 @@ const LENS_DATA = {
     ],
     elementCount: 4,
     groupCount: 4,
+    // Computed EFL of the literal historical prescription; not the ambiguous source 65 mm.
+    focalLengthMm: { design: 85.9065926111 },
     fNumber: { design: 2 },
   },
   source: {

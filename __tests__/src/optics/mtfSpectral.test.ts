@@ -296,51 +296,111 @@ describe("qualified spectral MTF", () => {
   });
 });
 
-it("uses D for native reference MTF and physical d for an explicitly C/d/F spectrum", () => {
-  const L = buildSimplePositiveElementLens();
-  const entry = resolveGlass("N-BK7")!;
-  const nD = evaluateSellmeier(entry, LINE_NM.D);
-  const data = constructionFixtureData(L);
-  const native = build({
-    ...data,
-    elements: data.elements.map((e) => ({
-      ...e,
-      nd: nD,
-      vd: evaluateCatalogAbbeNumber(entry, "D"),
-      indexReference: "D",
-      glass: undefined,
-    })),
-    surfaces: data.surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : nD })),
+describe("native sodium D", () => {
+  it("uses D for native reference MTF and physical d for an explicitly C/d/F spectrum", () => {
+    const L = buildSimplePositiveElementLens();
+    const entry = resolveGlass("N-BK7")!;
+    const nD = evaluateSellmeier(entry, LINE_NM.D);
+    const data = constructionFixtureData(L);
+    const native = build({
+      ...data,
+      elements: data.elements.map((e) => ({
+        ...e,
+        nd: nD,
+        vd: evaluateCatalogAbbeNumber(entry, "D"),
+        indexReference: "D",
+        glass: undefined,
+      })),
+      surfaces: data.surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : nD })),
+    });
+    const state = prepareRuntimeState(native, 0, 0);
+    expect(assessMtfSupport(...mtfInputs(state, { ...options, spectrum: "reference" }))).toMatchObject({
+      available: true,
+      referenceWavelengthNm: LINE_NM.D,
+      useResolvedReference: false,
+    });
+    expect(assessMtfSupport(...mtfInputs(state, options))).toMatchObject({
+      available: true,
+      referenceWavelengthNm: LINE_NM.d,
+      useResolvedReference: true,
+    });
   });
-  const state = prepareRuntimeState(native, 0, 0);
-  expect(assessMtfSupport(...mtfInputs(state, { ...options, spectrum: "reference" }))).toMatchObject({
-    available: true,
-    referenceWavelengthNm: LINE_NM.D,
-    useResolvedReference: false,
-  });
-  expect(assessMtfSupport(...mtfInputs(state, options))).toMatchObject({
-    available: true,
-    referenceWavelengthNm: LINE_NM.d,
-    useResolvedReference: true,
+
+  it("qualifies the estimated g node in a historical C/D/F table", () => {
+    const L = buildSimplePositiveElementLens(),
+      data = constructionFixtureData(L);
+    const native = build({
+      ...data,
+      elements: data.elements.map((e) => ({ ...e, indexReference: "D", glass: undefined, nC: 1.514, nF: 1.523 })),
+    });
+    const state = prepareRuntimeState(native, 0, 0);
+    expect(resolveMtfSpectrum(state, "photopic").note).toContain("measured red/blue indices with an estimated g index");
+    const notes = assessMtfDataLimitations(state, {
+      preferredSpectrum: "photopic",
+      spectrum: "photopic",
+      referenceWavelengthNm: 555,
+      result: null,
+    });
+    expect(notes[0]).toMatchObject({ kind: "estimated-dispersion", blocking: true });
+    expect(notes[0].text).toContain("no measured g index");
+    expect(notes[0].text).not.toContain("only by nd and νd");
   });
 });
 
-it("qualifies the estimated g node in a historical C/D/F table", () => {
-  const L = buildSimplePositiveElementLens(),
-    data = constructionFixtureData(L);
-  const native = build({
-    ...data,
-    elements: data.elements.map((e) => ({ ...e, indexReference: "D", glass: undefined, nC: 1.514, nF: 1.523 })),
+describe("partial measured dispersion", () => {
+  it.each(["d", "D"] as const)(
+    "guards the measured span at %s independently of the printed Abbe value",
+    (reference) => {
+      for (const vd of [undefined, 30, 100]) {
+        const base = constructionFixtureData(buildSimplePositiveElementLens());
+        const state = prepareRuntimeState(
+          build({
+            ...base,
+            elements: base.elements.map((e) => ({
+              ...e,
+              indexReference: reference,
+              glass: undefined,
+              vd,
+              nC: e.nd - 0.002,
+              nF: e.nd + 0.004,
+            })),
+          }),
+          0,
+          0,
+        );
+        expect(assessMtfSupport(...mtfInputs(state, options)).message).toContain("low-dispersion glass");
+        const allowed = prepareRuntimeState(
+          build({
+            ...base,
+            elements: base.elements.map((e) => ({
+              ...e,
+              indexReference: reference,
+              glass: undefined,
+              vd,
+              nC: e.nd - 0.003,
+              nF: e.nd + 0.007,
+            })),
+          }),
+          0,
+          0,
+        );
+        expect(assessMtfSupport(...mtfInputs(allowed, options)).available).toBe(true);
+      }
+    },
+  );
+  it("retains the all-glass warning for sodium Abbe-only models", () => {
+    const base = constructionFixtureData(buildSimplePositiveElementLens());
+    const state = prepareRuntimeState(
+      build({ ...base, elements: base.elements.map((e) => ({ ...e, indexReference: "D" })) }),
+      0,
+      0,
+    );
+    const notes = assessMtfDataLimitations(state, {
+      preferredSpectrum: "photopic",
+      spectrum: "photopic",
+      referenceWavelengthNm: 555,
+      result: null,
+    });
+    expect(notes[0].text).toContain("Every glass is known only by nD and νD, so all dispersion is estimated.");
   });
-  const state = prepareRuntimeState(native, 0, 0);
-  expect(resolveMtfSpectrum(state, "photopic").note).toContain("authored reference data");
-  const notes = assessMtfDataLimitations(state, {
-    preferredSpectrum: "photopic",
-    spectrum: "photopic",
-    referenceWavelengthNm: 555,
-    result: null,
-  });
-  expect(notes[0]).toMatchObject({ kind: "estimated-dispersion", blocking: true });
-  expect(notes[0].text).toContain("some wavelength indices are estimated");
-  expect(notes[0].text).not.toContain("only by nd and νd");
 });

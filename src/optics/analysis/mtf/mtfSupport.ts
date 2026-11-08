@@ -8,6 +8,7 @@ import type {
   MtfUnavailableReason,
 } from "../../../types/mtf.js";
 import type { AnalysisRequest } from "../request.js";
+import { measuredLineAbbe } from "../../chromatic/materialResolver.js";
 import { LINE_NM } from "../../chromatic/spectralLines.js";
 import type { PreparedGeometry } from "../../types.js";
 import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "./mtfConjugates.js";
@@ -98,17 +99,21 @@ export interface MtfSpectrumChoice {
 export interface MtfSpectralData {
   /** Why a spectrum cannot be sampled, completing "…because …", or null when it can. */
   blocker: string | null;
-  /** Glasses whose C/F/g indices are estimated from nd and vd. */
+  /** Glasses using any normal-line estimate, including missing g in a measured table. */
   estimatedGlasses: number;
   /** Ids of the elements those glasses belong to, in surface order. */
   estimatedElementIds: number[];
+  /** Elements with measured red/blue indices but an estimated g index. */
+  partialLineElementIds: number[];
+  partialLineGlasses: number;
 }
 
 /**
- * Classify the glasses for spectral MTF. Catalog Sellmeier and d-referenced line indices are physical data;
- * d-referenced nd/vd-only glasses use the Abbe tier's normal-line estimate (`abbeLineIndices`), which keeps the
- * F−C span exact. Glasses with no Abbe number, native e-line glasses without catalog data, and nd/vd-only glasses
- * above `MTF_ESTIMATED_DISPERSION_MAX_VD` without an authored dPgF block spectral sampling. The same test gates
+ * Classify the glasses for spectral MTF. Catalog Sellmeier and complete measured line indices supply spectral
+ * data; native d/D Abbe-only glasses and missing-g line tables use normal-line estimates. The latter derive
+ * their Abbe coordinate from the measured span, independently of a printed Abbe value. Native e-line glasses
+ * without catalog data remain unsupported. Estimated glasses above `MTF_ESTIMATED_DISPERSION_MAX_VD` without
+ * an authored dPgF block spectral sampling. The same test gates
  * C/d/F and photopic sampling.
  *
  * @param state - prepared optical state
@@ -117,20 +122,27 @@ export interface MtfSpectralData {
 export function assessMtfSpectralData(state: PreparedGeometry): MtfSpectralData {
   const { lens } = state;
   const estimated = new Set<number>();
-  const blocked = (blocker: string): MtfSpectralData => ({ blocker, estimatedGlasses: 0, estimatedElementIds: [] });
+  const partial = new Set<number>();
+  const blocked = (blocker: string): MtfSpectralData => ({
+    blocker,
+    estimatedGlasses: 0,
+    estimatedElementIds: [],
+    partialLineElementIds: [],
+    partialLineGlasses: 0,
+  });
   for (const [i, dispersion] of lens.dispersion.entries()) {
     if (dispersion.quality === "air" || dispersion.quality === "sellmeier") continue;
     const surface = state.surfaces[i];
     const element = lens.elements.find((e) => e.id === surface.elemId)?.source;
     if (dispersion.quality === "constant") return blocked("a glass has no Abbe number");
     if (element?.indexReference === "e") return blocked("an e-line glass has no catalog dispersion data");
-    if (dispersion.quality === "lineIndices" && element?.indexReference === "D" && element.ng === undefined) {
-      // The historical table constrains C/D/F, but interpolation still uses an estimated g node.
-      estimated.add(surface.elemId ?? -1 - i);
-      continue;
-    }
-    if (dispersion.quality !== "abbe") continue;
-    const vd = element?.vd ?? lens.indices.vdByIdx[i] ?? 0;
+    const missingG = dispersion.quality === "lineIndices" && element?.ng === undefined;
+    if (dispersion.quality !== "abbe" && !missingG) continue;
+    const vd = missingG
+      ? measuredLineAbbe(surface.nd, dispersion.indexAt("R"), dispersion.indexAt("B"))
+      : (element?.vd ?? lens.indices.vdByIdx[i] ?? 0);
+    if (!Number.isFinite(vd) || vd <= 0) return blocked("a glass has no usable measured dispersion span");
+    if (missingG) partial.add(surface.elemId ?? -1 - i);
     if (vd > MTF_ESTIMATED_DISPERSION_MAX_VD && element?.dPgF === undefined)
       return blocked(
         `a low-dispersion glass (ν${element?.indexReference ?? "d"} ${vd.toFixed(1)}) has no partial-dispersion data`,
@@ -141,7 +153,21 @@ export function assessMtfSpectralData(state: PreparedGeometry): MtfSpectralData 
     blocker: null,
     estimatedGlasses: estimated.size,
     estimatedElementIds: [...estimated].filter((id) => id >= 0),
+    partialLineElementIds: [...partial].filter((id) => id >= 0),
+    partialLineGlasses: partial.size,
   };
+}
+
+/** Reference coordinates used by estimated glasses, preserving native reference letters. */
+export function mtfReferenceCoordinates(state: PreparedGeometry): string {
+  const references = [
+    ...new Set(
+      state.lens.elements
+        .filter((e) => state.lens.dispersion.some((d, i) => d.quality === "abbe" && state.surfaces[i].elemId === e.id))
+        .map((e) => e.source.indexReference ?? "d"),
+    ),
+  ];
+  return (references.length ? references : ["d"]).map((r) => `n${r} and ν${r}`).join(" / ");
 }
 
 /**
@@ -153,13 +179,13 @@ export function assessMtfSpectralData(state: PreparedGeometry): MtfSpectralData 
  */
 export function resolveMtfSpectrum(state: PreparedGeometry, preferred: MtfSpectrum): MtfSpectrumChoice {
   if (preferred === "reference") return { spectrum: preferred, note: null };
-  const { blocker, estimatedGlasses } = assessMtfSpectralData(state);
+  const { blocker, estimatedGlasses, partialLineGlasses } = assessMtfSpectralData(state);
   if (!blocker)
     return {
       spectrum: preferred,
       note:
         estimatedGlasses > 0
-          ? `Dispersion of ${estimatedGlasses === 1 ? "one glass" : `${estimatedGlasses} glasses`} is estimated from ${state.lens.elements.some((e) => e.source.indexReference === "D") ? "the authored reference data" : "nd and νd"}.`
+          ? `Dispersion of ${estimatedGlasses === 1 ? "one glass" : `${estimatedGlasses} glasses`} is estimated from ${partialLineGlasses === 0 ? mtfReferenceCoordinates(state) : partialLineGlasses === estimatedGlasses ? "measured red/blue indices with an estimated g index" : `${mtfReferenceCoordinates(state)} (${estimatedGlasses - partialLineGlasses} glasses) and measured red/blue indices with an estimated g index (${partialLineGlasses} glasses)`}.`
           : null,
     };
   return {
@@ -327,9 +353,19 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
         "Compatible catalog glasses supply spectral proxies anchored to the authored indices, not proof of production glass identity or MTF accuracy.",
       );
     if (spectral.estimatedGlasses > 0) {
-      const data = references.has("D") ? "incomplete spectral data" : "only nd and νd";
+      const partial = spectral.partialLineGlasses;
+      const abbe = spectral.estimatedGlasses - partial;
+      const descriptions = [];
+      if (abbe)
+        descriptions.push(
+          `${abbe === 1 ? "One glass has" : `${abbe} glasses have`} only ${mtfReferenceCoordinates(state)}; ${abbe === 1 ? "its" : "their"} dispersion is estimated from normal-line partial dispersions`,
+        );
+      if (partial)
+        descriptions.push(
+          `${partial === 1 ? "One glass has" : `${partial} glasses have`} measured red/blue indices with an estimated g index`,
+        );
       support.limitations.push(
-        `${spectral.estimatedGlasses === 1 ? `One glass has ${data}; its` : `${spectral.estimatedGlasses} glasses have ${data}; their`} dispersion is estimated from normal-line partial dispersions, which keeps primary color exact but approximates secondary spectrum.`,
+        `${descriptions.join(". ")}. Primary color stays exact but secondary spectrum is approximate.`,
       );
     }
   }

@@ -606,13 +606,15 @@ describe("prescriptionDifference", () => {
   });
 });
 
-it("preserves historical D through canonical and V2 views", () => {
-  const data = structuredClone(MAXIMAL_ZOOM) as LensDataV2Input;
-  data.elements[0].indexReference = "D";
-  data.rearPlates![0].indexReference = "D";
-  const canonical = ingestLens(data);
-  const v2 = toLensDataV2Input(canonical);
-  expect(v2.elements[0].indexReference).toBe("D");
-  expect(v2.rearPlates![0].indexReference).toBe("D");
-  expect(prescriptionDifference(canonical.prescription, ingestLens(v2).prescription)).toBeUndefined();
+describe("native sodium D", () => {
+  it("preserves historical D through canonical and V2 views", () => {
+    const data = structuredClone(MAXIMAL_ZOOM) as LensDataV2Input;
+    data.elements[0].indexReference = "D";
+    data.rearPlates![0].indexReference = "D";
+    const canonical = ingestLens(data);
+    const v2 = toLensDataV2Input(canonical);
+    expect(v2.elements[0].indexReference).toBe("D");
+    expect(v2.rearPlates![0].indexReference).toBe("D");
+    expect(prescriptionDifference(canonical.prescription, ingestLens(v2).prescription)).toBeUndefined();
+  });
 });

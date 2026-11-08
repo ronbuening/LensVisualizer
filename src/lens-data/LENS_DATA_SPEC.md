@@ -172,10 +172,6 @@ export default LENS_DATA;
 `name` is the user-facing lens title used in the lens picker, page headings, SEO metadata and generated catalog
 views. Keep it normalized even when the product's official styling varies by source:
 
-For a historical numerical reconstruction whose focal/aperture ratings remain unresolved, identify the patent
-example in the title instead of combining computed focal length with an unverified source f-number. Keep the literal
-source ratings and computed behavior explicitly distinguished in the specs and source notes.
-
 - Start with the public-facing manufacturer in all caps, e.g. `CANON`, `FUJIFILM`, `NIKON`, `CARL ZEISS` or
   `VOIGTLÄNDER`. Keep `maker` as the canonical maker-page value even when it is more specific than the display prefix.
 - Put lens branding or optical line names after the manufacturer, also in all caps: `NIKON NIKKOR`,
@@ -202,7 +198,7 @@ Everything the catalog, header and index read about the product, as opposed to t
 | `groupCount` | `number` | Air-separated groups. |
 | `acceptsTeleconverters` | `boolean` | `true` when the lens takes dedicated rear teleconverters made for one of its `lensMounts`. Universal converters ignore it. See [TELECONVERTER_DATA_SPEC.md](TELECONVERTER_DATA_SPEC.md). |
 | `opticalConfiguration` | `object` | Links complete prescriptions that are switchable optical states of one catalog lens. See below. |
-| `focalLengthMm` | `{ marketing?, design? }` | Each a number for a prime or `[wide, tele]` for a zoom. `marketing` is the marketed focal length; `design` the source's stated design focal length at the file's scale, which may differ. A sequential rectilinear lens's traced EFL must lie within 0.8 to 1.25 times `design` (its first value on a zoom), or `buildLens()` refuses it ([Validation Rules](#validation-rules)). A folded system takes its EFL from `design` ([Folded Paths](#folded-paths)). |
+| `focalLengthMm` | `{ marketing?, design? }` | Each a number for a prime or `[wide, tele]` for a zoom. `marketing` is the marketed focal length; `design` the prescription focal length at the file's scale, which may differ: normally the source's stated design value; for a historical reconstruction it may be an explicitly identified computed paraxial EFL when the source does not establish one. Identify that computation in specs/source notes; do not populate `marketing` from an ambiguous historical focal-distance statement. A sequential rectilinear lens's traced EFL must lie within 0.8 to 1.25 times `design` (its first value on a zoom), or `buildLens()` refuses it ([Validation Rules](#validation-rules)). A folded system takes its EFL from `design` ([Folded Paths](#folded-paths)). |
 | `fNumber` | `{ marketing?, design? }` | `marketing` is the marketed maximum f-number (`1.8` for an "f/1.8" lens), shown beside the wide-open readout when it differs from the design value. `design` is the source's stated design maximum f-number (`1.85`). |
 | `closeFocusM` | `{ marketing? }` | `marketing` is the maker's minimum focus distance in metres, a number or `[wide, tele]` on a zoom. The focus readout names it beside the close-focus label when they differ by more than 2 % (a pair at its own zoom end; between the ends, only when the label leaves the range). It never moves the optics: `focus.closeFocusM` stays where the close row focuses. |
 
@@ -445,7 +441,7 @@ document their stable model order.
 `spectral` wrapper. The chromatic trace uses data in this order of preference: air → complete explicit
 `nC`/`nF`/`ng` → catalog Sellmeier resolved from a coordinate-compatible `glass` name → partial explicit `nC`/`nF` →
 `dPgF`-corrected Abbe → plain Abbe (`nd` + `vd`), then a constant index when `vd` is unavailable. Each level falls back
-to the next. For apochromatic designs where the source publishes partial dispersion or line indices, transcribe them.
+to the next. Partial measured tables without `ng` require finite `nF > nC`; the missing g estimate derives its Abbe coordinate from that measured span and the authored reference index, not a conflicting printed Abbe value. Degenerate or reversed partial spans are rejected before tracing. For apochromatic designs where the source publishes partial dispersion or line indices, transcribe them.
 
 **Index reference.** `indexReference` says what `nd` / `vd` hold. Leave it out (or write `"d"`) for ordinary d-line
 data. Use `"e"` only when the stored values keep a source's native `ne` / `νe` coordinates. Native e-line elements can

@@ -93,7 +93,10 @@ function channelText(channel: ChromaticChannel, reference: RefractiveIndexRefere
   return reference === "e" ? metadata.eLine : metadata;
 }
 
-function channelWavelengths(reference: RefractiveIndexReferenceLine): Readonly<Record<ChromaticChannel, number>> {
+/** Physical wavelengths of the four channels in the authored reference convention. */
+export function channelWavelengths(
+  reference: RefractiveIndexReferenceLine,
+): Readonly<Record<ChromaticChannel, number>> {
   return Object.freeze(
     Object.fromEntries(
       CHROMATIC_CHANNEL_ORDER.map((channel) => [channel, channelText(channel, reference).wavelengthNm]),

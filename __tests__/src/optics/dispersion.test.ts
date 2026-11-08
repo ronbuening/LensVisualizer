@@ -27,6 +27,7 @@ import { SPECIAL_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalo
 import { SUMITA_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/sumita.js";
 import {
   abbeLineIndices,
+  referencePgF,
   makeSurfaceDispersion,
   normalLinePdC,
   normalLinePDC,
@@ -36,6 +37,7 @@ import {
 } from "../../../src/optics/chromatic/materialResolver.js";
 import {
   CHROMATIC_CHANNEL_ORDER,
+  channelWavelengths,
   E_LINE_CHANNEL_WAVELENGTH_NM as E_LINE_CHANNEL_NM,
 } from "../../../src/optics/chromatic/channels.js";
 import { anchoredIndexAtWavelength } from "../../../src/optics/chromatic/indexResolver.js";
@@ -887,7 +889,7 @@ describe("makeSurfaceDispersion preference cascade", () => {
       nC,
       nd,
       nF,
-      nF + normalLinePgF(vd, dPgF) * (nF - nC),
+      nF + normalLinePgF((nd - 1) / (nF - nC), dPgF) * (nF - nC),
     ]);
   });
 
@@ -1181,4 +1183,51 @@ describe("native sodium D material coordinates", () => {
         );
     },
   );
+});
+
+describe("native reference interpolation", () => {
+  it.each(["d", "D", "e"] as const)(
+    "fits all four native %s nodes with missing g and inconsistent printed Abbe",
+    (reference) => {
+      for (const vd of [undefined, 30, 100]) {
+        const base = constructionFixtureData(buildSimplePositiveElementLens());
+        const nd = base.elements[0].nd,
+          nC = nd - 0.003,
+          nF = nd + 0.007;
+        const state = prepareRuntimeState(
+          build({
+            ...base,
+            elements: base.elements.map((e) => ({
+              ...e,
+              indexReference: reference,
+              glass: undefined,
+              vd,
+              nC,
+              nF,
+            })),
+          }),
+          0,
+          0,
+        );
+        const i = state.surfaces.findIndex((s) => s.nd !== 1);
+        const expected = { R: nC, G: nd, B: nF, V: nF + referencePgF(reference, (nd - 1) / (nF - nC)) * (nF - nC) };
+        for (const channel of CHROMATIC_CHANNEL_ORDER) {
+          expect(state.lens.dispersion[i].indexAt(channel)).toBeCloseTo(expected[channel], 14);
+          expect(anchoredIndexAtWavelength(state, i, channelWavelengths(reference)[channel])).toBeCloseTo(
+            expected[channel],
+            12,
+          );
+        }
+      }
+    },
+  );
+});
+
+describe("degenerate measured dispersion span", () => {
+  it.each(["d", "D", "e"] as const)("keeps direct %s diagnostic channels finite for a zero span", (reference) => {
+    const nd = 1.5;
+    const surface = { nd } as SurfaceData;
+    const dispersion = makeSurfaceDispersion(surface, { indexReference: reference } as ElementData, { nC: nd, nF: nd });
+    for (const channel of CHROMATIC_CHANNEL_ORDER) expect(dispersion.fn(channel)).toBe(nd);
+  });
 });

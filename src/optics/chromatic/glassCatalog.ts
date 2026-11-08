@@ -163,7 +163,7 @@ export function assessCatalogGlassCompatibility(
 ): CatalogGlassCompatibility {
   const wavelengths = REFERENCE_COORDINATE_WAVELENGTHS[referenceLine];
   const catalogIndex = evaluateSellmeier(entry, wavelengths.reference);
-  const catalogAbbe = referenceLine === "d" ? entry.vd : evaluateCatalogAbbeNumber(entry, referenceLine);
+  const catalogAbbe = isDLineReference(referenceLine) ? entry.vd : evaluateCatalogAbbeNumber(entry, referenceLine);
   const indexDiff = catalogIndex - storedNd;
   const abbeDiff = storedVd === undefined ? null : catalogAbbe - storedVd;
   return {
@@ -461,7 +461,7 @@ function compatibleCandidateMatches(
   referenceLine: RefractiveIndexReferenceLine,
 ): RankedCompatibleGlassCandidate[] {
   return candidateMatches(glassString)
-    .filter((match) => referenceLine === "d" || match.source !== "code")
+    .filter((match) => isDLineReference(referenceLine) || match.source !== "code")
     .map((match) => ({
       ...match,
       compatibility: assessCatalogGlassCompatibility(match.entry, storedNd, storedVd, referenceLine),
@@ -513,7 +513,9 @@ function candidateSelectionReason(candidates: readonly RankedCompatibleGlassCand
     return {
       criterion: "index-residual",
       reason:
-        (referenceLine === "d" ? "Smallest d-line residual " : `Smallest ${referenceLine}-line index residual `) +
+        (isDLineReference(referenceLine)
+          ? "Smallest d-line residual "
+          : `Smallest ${referenceLine}-line index residual `) +
         `(${selectedIndexResidual.toFixed(9)} vs ${runnerUpIndexResidual.toFixed(9)}).`,
     };
   }
@@ -574,6 +576,11 @@ export function explainCompatibleGlassResolution(
     criterion: selection.criterion,
     reason: selection.reason,
   };
+}
+
+/** Whether authored coordinates use the catalog's default d-line convention. */
+export function isDLineReference(reference: RefractiveIndexReferenceLine | undefined): boolean {
+  return (reference ?? "d") === "d";
 }
 
 /**

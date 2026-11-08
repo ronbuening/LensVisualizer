@@ -1,3 +1,4 @@
+import { isDLineReference } from "../src/optics/glassCatalog.js";
 /**
  * Shared harness for the glass report scans in `reports/`.
  *
@@ -350,7 +351,7 @@ export function findCandidates(
   referenceLine: RefractiveIndexReferenceLine,
 ): GlassScanCandidate[] {
   const lensPgF =
-    referenceLine === "d" && storedVd !== undefined && storedDPgF !== undefined
+    isDLineReference(referenceLine) && storedVd !== undefined && storedDPgF !== undefined
       ? normalLinePgF(storedVd, storedDPgF)
       : null;
 
@@ -358,14 +359,16 @@ export function findCandidates(
     .map<GlassScanCandidate>((entry) => {
       const compatibility = assessCatalogGlassCompatibility(entry, storedNd, storedVd, referenceLine);
       const nd = compatibility.catalogIndex;
-      const candidateAbbe = referenceLine === "d" ? entry.vd : evaluateCatalogAbbeNumber(entry, referenceLine);
+      const candidateAbbe = isDLineReference(referenceLine)
+        ? entry.vd
+        : evaluateCatalogAbbeNumber(entry, referenceLine);
       const ndDiff = compatibility.indexDiff;
       const vdDiff = compatibility.abbeDiff;
       const pgfDiff = lensPgF !== null && entry.PgF !== undefined ? entry.PgF - lensPgF : null;
       // Distance combines |Δnd|*1000 (3-digit precision) + |Δvd|*10 (1-digit
       // precision) so each axis contributes proportionally to its resolution.
       const codeDistance =
-        referenceLine !== "d" || embeddedCode === null
+        !isDLineReference(referenceLine) || embeddedCode === null
           ? null
           : Math.abs(nd - embeddedCode.nd) * 1000 + Math.abs(candidateAbbe - embeddedCode.vd) * 10;
 

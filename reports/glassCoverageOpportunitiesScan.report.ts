@@ -1,3 +1,4 @@
+import { isDLineReference } from "../src/optics/glassCatalog.js";
 /**
  * Consolidated glass-coverage opportunity scanner.
  *
@@ -335,7 +336,7 @@ describe("glass coverage opportunities scan", () => {
             surface.nd,
             element.vd,
             element.dPgF,
-            (element.indexReference ?? "d") !== "d" ? null : extractGlassCode(element.glass),
+            !isDLineReference(element.indexReference) ? null : extractGlassCode(element.glass),
             element.indexReference ?? "d",
           ),
           localPatent,

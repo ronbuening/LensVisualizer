@@ -2777,3 +2777,11 @@ describe("stop semi-diameter", () => {
     expect(sdErrors(folded)).toContain('surfaces[0] ("STO"): missing or invalid sd');
   });
 });
+
+describe("partial measured line span", () => {
+  it.each([1.51, 1.5, Number.NaN])("rejects unsupported nF %s before chromatic tracing", (nF) => {
+    const data = makeValid();
+    Object.assign((data.elements as Record<string, unknown>[])[0], { nC: 1.51, nF, vd: undefined });
+    expect(validateLensData(data).join(" ")).toContain("partial line indices require finite nF > nC when ng is absent");
+  });
+});

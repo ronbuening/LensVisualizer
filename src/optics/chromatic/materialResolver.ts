@@ -111,6 +111,25 @@ export function normalLinePgFPrime(ve: number, dPgF = 0): number {
   return 0.5675 - 0.001438 * ve + dPgF;
 }
 
+/** Normal-line g partial dispersion in the authored reference coordinate. */
+export function referencePgF(reference: RefractiveIndexReferenceLine, v: number, dPgF = 0): number {
+  return reference === "e"
+    ? normalLinePgFPrime(v, dPgF)
+    : reference === "D"
+      ? sodiumPgF(v, dPgF)
+      : normalLinePgF(v, dPgF);
+}
+
+/** Reference-to-red partial dispersion in the authored reference coordinate. */
+export function referencePdC(reference: RefractiveIndexReferenceLine, v: number): number {
+  return reference === "e" ? normalLinePeC(v) : reference === "D" ? normalLinePDC(v) : normalLinePdC(v);
+}
+
+/** Abbe coordinate constrained by the authored reference index and measured red/blue span. */
+export function measuredLineAbbe(nReference: number, nC: number, nF: number): number {
+  return (nReference - 1) / (nF - nC);
+}
+
 /**
  * Estimate C, F and g line indices from (nd, vd) alone.
  *
@@ -132,14 +151,9 @@ export function abbeLineIndices(
   reference: RefractiveIndexReferenceLine = "d",
 ): { nC: number; nF: number; ng: number } {
   const span = (nd - 1) / vd;
-  if (reference === "e") {
-    const nC = nd - normalLinePeC(vd) * span;
-    const nF = nC + span;
-    return { nC, nF, ng: nF + normalLinePgFPrime(vd, dPgF) * span };
-  }
-  const nC = nd - (reference === "D" ? normalLinePDC(vd) : normalLinePdC(vd)) * span;
+  const nC = nd - referencePdC(reference, vd) * span;
   const nF = nC + span;
-  return { nC, nF, ng: nF + (reference === "D" ? sodiumPgF(vd, dPgF) : normalLinePgF(vd, dPgF)) * span };
+  return { nC, nF, ng: nF + referencePgF(reference, vd, dPgF) * span };
 }
 
 function makeLineIndicesDispersion(
@@ -151,21 +165,16 @@ function makeLineIndicesDispersion(
   const nC = spectral.nC!;
   const nF = spectral.nF!;
   const ngMeasured = spectral.ng;
-  // Resolve V channel: prefer measured ng, otherwise extend from (nC, nF)
-  // using the dPgF-corrected partial dispersion. Fall back to nF (zero
-  // secondary spectrum) when no dPgF info is present.
-  let nVfallback: number;
-  if (ngMeasured !== undefined) {
-    nVfallback = ngMeasured;
-  } else if (element?.vd !== undefined) {
-    const PgF =
-      element.indexReference === "D"
-        ? sodiumPgF(element.vd, element.dPgF ?? 0)
-        : normalLinePgF(element.vd, element.dPgF ?? 0);
-    nVfallback = nF + PgF * (nF - nC);
-  } else {
-    nVfallback = nF;
-  }
+  // Measured C/F and the authored reference constrain the estimate even when
+  // the source's printed Abbe value is absent or rounded inconsistently.
+  const measuredV = measuredLineAbbe(nd, nC, nF);
+  // A zero/reversed span cannot constrain a normal-line extrapolation. Keep
+  // diagnostic channels finite; spectral MTF rejects this unsupported span.
+  const estimatedG =
+    Number.isFinite(measuredV) && measuredV > 0
+      ? nF + referencePgF(element?.indexReference ?? "d", measuredV, element?.dPgF ?? 0) * (nF - nC)
+      : nF;
+  const nVfallback = ngMeasured ?? estimatedG;
   const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nC : ch === "B" ? nF : ch === "V" ? nVfallback : nd);
   return { fn, quality: "lineIndices" };
 }
@@ -242,11 +251,7 @@ export function makeSurfaceDispersion(
       // silently changing the violet channel.
       const nV =
         element.vd !== undefined && element.dPgF !== undefined
-          ? nB +
-            (element.indexReference === "D"
-              ? sodiumPgF(element.vd, element.dPgF)
-              : normalLinePgF(element.vd, element.dPgF)) *
-              (nB - nR)
+          ? nB + referencePgF(element.indexReference ?? "d", element.vd, element.dPgF) * (nB - nR)
           : evaluateSellmeier(entry, wavelengths.V) + anchor;
       const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nR : ch === "B" ? nB : ch === "V" ? nV : nd);
       return { fn, quality: "sellmeier", glassEntry: entry };

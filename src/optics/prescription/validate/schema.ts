@@ -259,6 +259,7 @@ export function validateRearPlates(data: UntrustedLensData, errors: string[]): v
     ) {
       errors.push(`${at}: indexReference must be "d", "D" or "e" when provided`);
     }
+    validatePartialLineSpan(plate, at, errors);
     for (const field of ["nC", "nF", "ng", "dPgF"]) {
       if (plate[field] !== undefined && !finite(plate[field])) errors.push(`${at}: ${field} must be finite`);
     }
@@ -594,6 +595,19 @@ export function validateSurfaces(data: UntrustedLensData, errors: string[]): Set
 
   return surfaceLabels;
 }
+/** Missing g can only be estimated from a finite, positive measured red/blue span. */
+function validatePartialLineSpan(material: Record<string, unknown>, path: string, errors: string[]): void {
+  if (material.nC === undefined || material.nF === undefined || material.ng !== undefined) return;
+  if (
+    typeof material.nC !== "number" ||
+    typeof material.nF !== "number" ||
+    !Number.isFinite(material.nC) ||
+    !Number.isFinite(material.nF) ||
+    material.nF <= material.nC
+  )
+    errors.push(`${path}: partial line indices require finite nF > nC when ng is absent`);
+}
+
 export function validateElements(data: UntrustedLensData, errors: string[]): Set<number> {
   /* ── Element IDs: unique ── */
   const elemIds = new Set<number>();
@@ -605,6 +619,7 @@ export function validateElements(data: UntrustedLensData, errors: string[]): Set
   );
   for (let i = 0; i < data.elements.length; i++) {
     const e = data.elements[i];
+    validatePartialLineSpan(e, `elements[${i}]`, errors);
     if (e.id === undefined || e.id === null) {
       errors.push(`elements[${i}]: missing id`);
       continue;
