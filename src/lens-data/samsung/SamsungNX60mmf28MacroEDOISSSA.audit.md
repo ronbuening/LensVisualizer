@@ -176,9 +176,11 @@ Open:
 
 - C2 is drawn at 8.8 mm against the figure's 9.5 mm edge. Fig. 12 ends its cemented S9 and rear S10 curves at
   8.3–8.5 mm inside lands; a cemented face cannot carry a land, and S8 at 9.5 mm is refused by the S7–S8 gap (2.931 mm
-  of the 2.898 mm allowed at the default gap fraction; 0.92 would admit it).
+  of the 2.898 mm allowed at the default gap fraction; 0.92 would admit it). (Closed 2026-11-08: C2 is square at
+  9.4 mm with an S10 land and `checks.gapSagFrac` 0.91; see the third review below.)
 - C3's cemented S17 is drawn to the 12.7 mm edge, where Fig. 12 ends it near 11.1 mm inside an L9 land; at 11.1 mm it
-  limits no ray at infinity.
+  limits no ray at infinity. (Closed 2026-11-08: Fig. 12 carries S17 to the edge on L10's side; only L9's concave
+  side stops near 11.1 mm, and a cemented face takes one rim. See the third review below.)
 
 ## 2026-11-08 — Glass backfill
 
@@ -186,3 +188,50 @@ L2 now takes HOYA PCD4's dispersion curve (1.61800 / 63.40) while the trace keep
 1 and 3 print 1.61800 / 63.4 in the same position, and the Abbe number is identical, so the colour trace is unchanged
 in practice (the second review found C and F foci within 0.003 mm of Fig. 13A). L3 (1.73968 / 49.0) stays Unmatched;
 Embodiment 4's 1.74330 / 49.2 in that position is 0.0036 away in nd, outside the catalog match window.
+
+## 2026-11-08 — Third review: diagram, labels and movement
+
+Compared: the local page at infinity, 0.5× and 1:1, the focus-movement overlay and the inspector line of all twelve
+elements, against Fig. 12 (PDF p. 27, M = 0 panel at the native 300 dpi; the text ties Tables 10–12 to Fig. 12). The
+scale was proved again: the axis is level on row 1131.5; S1 at 617.5 px and the image line at 2023.5 px give
+13.264 px/mm, and S10, S16, S21 and S23 then fall within 1.6 px of their crossings; arc fits of S1, S2, S4, S7, S9,
+S17, S18 and S21 give 0.96–1.03 of that scale across the axis. Every rim reads within 1 % of its file value except C2.
+
+| Item | Before | After | Fig. 12 | Light it costs |
+| ---- | -----: | ----: | ------- | -------------- |
+| S8, S9 (C2) | 8.8 | 9.4 | 9.5 edge, on the same pixel rows as L8's | 0.0 points |
+| S10 land (`rimExtensionSd`, `sd` 8.8 kept) | none | 9.4 | curve ends near 8.2 mm, vertical to the edge | 0.0 points; drawn, so it stays |
+| `checks.gapSagFrac` | 0.90 (default) | 0.91 | L4's land and L5's front corner 0.34 mm apart (model 0.30) | none |
+
+Verdict: C2 sat inside the 10 % band, but the page drew it level with L7 and 0.6 mm below L8, where Fig. 12 draws it
+0.7 mm above L7 and level with L8, and the L4-to-C2 step was 1.1 mm against 0.35 mm drawn. The figure draws C2 as it
+draws C1 and C3: S8 runs to the edge, the cemented S9 reaches it on L6's side (L5's concave side ends near 8.6 mm in
+a land), and S10's curve stops near 8.2 mm. 9.4 rather than 9.5 keeps C2 level with L8 (9.4) and needs the smaller
+relaxation. At the default fraction the validator refuses it: "combined surface sag (2.92 mm) exceeds allowed gap
+intrusion (2.898 mm of 3.220 mm)", and S7's land "intrudes 2.917 mm into the 3.220 mm gap" to S8. 0.91 admits it;
+9.5 would need 0.92, as the second review quoted. The faces do not cross at any focus state.
+
+Second-review land and cut verdicts re-measured: unchanged; worst loss 0.0 points. Transmission at infinity stays 100,
+99.4, 93.9, 86.4, 77.6, 62.5 and 41.2 % from 0 to 13.5°. Traced from the printed object points, the corner stays at
+57.5 % (0.5×) and 63.4 % (1:1), with the axis at 100 %. Engine half-field 13.5°, F/2.86 and stop radius 8.4827 mm
+are unchanged; `audit:surface` reports no errors, `audit:aperture` finds no rim limit, and the image-circle and
+field-coverage audits pass the lens.
+
+Labels and tags re-checked. Inspector types agree with the signs of R, focal lengths match thick-lens values to
+0.01 mm, the roles hold (L5 at −27.15 mm is the strongest negative and L10 at +30.74 mm the strongest positive), and
+S4 carries the only `A`. L8 keeps `apd: "inferred"`: Samsung lists one ED element without placing it, Table 13's
+Expression 3 value (81.6) marks L8 as the stabilizer, and its FCD1 curve has ΔPgF +0.032 against +0.005 for L12's FC5.
+The analysis claimed νd within 0.04 for the ten HOYA equivalents (FC5 is 70.45 against 70.4) and the Abbe-number
+model for L2 after the PCD4 backfill; both now read correctly. Colour with PCD4 on L2: C and F paraxial foci +0.047
+and −0.024 mm, d, C and F marginal +0.058, +0.113 and +0.017 mm, against Fig. 13A's +0.048, −0.023, +0.056, +0.116
+and +0.019. Every medium, the plate included, is dispersive.
+
+Movement re-checked against Table 11: G2 moves 4.30 and 9.36 mm toward the image and G4 10.46 and 18.41 mm toward the
+object at 0.5× and 1:1; G1, G3 with the stop and G5 stay fixed (B + C = 12.94, D + E = 33.72 mm). The 0.8029 keyframe
+is 185.41 / 230.92; the overlay shows 18.41 mm maximum travel and the slider runs from ∞ to 19 cm.
+
+At 0.5× and 1:1 the page's outermost on-axis rays pass above L3 and end there. They are launched from the focused
+state's paraxial entrance pupil (48.17 mm across at 1:1), which over-fills the stop at these conjugates; the beam that
+fills the stop from the printed object point reaches 11.21 mm at S4A and clears it.
+
+Still open from the first section: which of Embodiments 4 and 5 is the production lens, and the unmodelled OIS shift.

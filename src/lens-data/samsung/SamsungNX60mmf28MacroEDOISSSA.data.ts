@@ -12,9 +12,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the axis from S1 to the image, about 13.2 px/mm radially from arc fits and the stop tick). Square rims at the drawn
  * element edges: C1 13.7 mm, L3 11.3, L7 8.8, C3 12.7, L11 12.2 and L12 11.8; L8 keeps 9.4 (drawn 9.5). L3's 11.3 mm
  * also clears the 1:1 axial beam from the printed object point (11.21 mm at S4). L4's flat S6 runs to the drawn
- * 9.9 mm edge; its S7 curve ends at 8.8 mm (drawn about 8.7) and a land continues to 9.9 mm, as drawn. C2 keeps
- * 8.8 mm: Fig. 12 ends its S9 and S10 curves at 8.3–8.5 mm, with lands out to a 9.5 mm edge. The iris radius (8.48 mm)
- * follows from F/2.86; Fig. 12 draws about 8.5 mm.
+ * 9.9 mm edge; its S7 curve ends at 8.8 mm (drawn about 8.7) and a land continues to 9.9 mm, as drawn. C2 is square
+ * at 9.4 mm, level with L8 as Fig. 12 draws the two (both 9.5): S8 runs to the edge, the cemented S9 follows L6's
+ * side to it as S2 and S17 do in C1 and C3, and S10's curve ends at 8.8 mm (drawn about 8.2) with a land out to
+ * 9.4 mm. L4's land and L5's front edge then stand 0.30 mm apart across the S7–S8 gap (drawn 0.34 mm), which takes
+ * checks.gapSagFrac 0.91. The iris radius (8.48 mm) follows from F/2.86; Fig. 12 draws about 8.5 mm.
  * Focus (published): G1, G3 (with the stop) and G5 are fixed; G2 (S6–S10) moves toward the image and G4 (S16–S20)
  * toward the object, keeping B + C = 12.94 mm and D + E = 33.72 mm. Table 11's gaps B, C, D and E are D5, D10, D15
  * and D20 here. The printed object distances A = 124.9239 and 79.4080 mm from S1 give 230.92 and 185.41 mm object to
@@ -281,20 +283,21 @@ const LENS_DATA = {
       label: "8",
       R: -70.118,
       d: 1,
-      sd: 8.8,
+      sd: 9.4,
       medium: 5,
     },
     {
       label: "9",
       R: 17.623,
       d: 2.9,
-      sd: 8.8,
+      sd: 9.4,
       medium: 6,
     },
     {
       label: "10",
       R: 31.254,
       sd: 8.8,
+      rimExtensionSd: 9.4,
     },
     {
       label: "11",
@@ -442,6 +445,9 @@ const LENS_DATA = {
 
   layout: {
     yScFill: 0.78,
+  },
+  checks: {
+    gapSagFrac: 0.91,
   },
 } satisfies LensDataV2Input;
 
