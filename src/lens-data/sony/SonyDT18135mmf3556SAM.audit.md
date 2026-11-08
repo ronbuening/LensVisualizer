@@ -153,3 +153,30 @@ material, but the patent gives no name, line indices or partial dispersion for i
 Open:
 
 - Both items above stay open: the patent has no close-focus data, and the layer material has no catalog dispersion.
+
+## 2026-11-08 — Third review: diagram, labels and movement
+
+Fig. 1A (PDF p. 2, Example 1 at the wide end per ¶0014 and ¶0025) was re-measured against the live page at all three
+stations and a new overlay. Scale: 23 vertex crossings fit 8.157 px/mm (residuals 1.6 px or less), six arc fits give
+7.7–8.3 px/mm across the axis, and the stop tick sits 51.8 mm behind surface 1 (model 51.83 mm). The 1200 dpi rims agree
+with the second review's readings within reading error, so no rim changed. Fig. 1A draws L21's rear annulus, L22 as a
+square block whose curves end at about 8.6–9.0 mm inside flat lands, L42's rear land (curve to about 8.9 mm) and L33
+square at 9.1 mm.
+
+Second-review land and cut verdicts re-measured: unchanged; worst loss 0.0 points at the three stations and at zoom
+fractions 0, 0.125 … 1. Restoring any element's baseline rims, its land included, wins back 0.0 points. A separate
+`--noext` run for each land alone was refused by a tool permission check and was not repeated.
+
+Labels, types, roles, focal lengths and tags read correctly in the inspector. The two resin layers show "Aspherical
+Resin Layer", Unmatched, −288.17 / +225.23 mm, and trace on Abbe-number dispersion (nC 1.53041, nF 1.54321,
+ng 1.55055), so no medium has constant dispersion. Sony's construction diagram colours L21 and L42 as aspherical and
+L41 alone as ED, which supports L41's inferred tag. Movement is unchanged: all four groups move monotonically toward the
+object (G1 58.07, G2 17.64, G3 38.07, G4 45.07 mm), and `focus.description` matches ¶0029 and ¶0073. The plots are
+d-line only (¶0088), so no colour comparison is possible.
+
+Open:
+
+- Close focus: the patent names G2 only as an example (¶0029) and prints no spacings. A reconstruction to Sony's 0.45 m
+  would be the owner's decision.
+- The resin layer 1.53420/41.73 (also on surfaces 6 and 23 of Example 2) has no name, line indices or partial dispersion
+  in the patent, so it stays on Abbe-number dispersion.
