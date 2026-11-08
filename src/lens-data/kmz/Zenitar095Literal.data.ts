@@ -2,7 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   "schema": 2,
   "key": "zenitar-095-ru2726264-literal-research",
-  "maker": "Zenit",
+  "maker": "KMZ",
   "name": "Zenitar 50mm f/0.95 candidate \u2014 literal 52mm patent",
   "subtitle": "RU2726264 source; factory identity unconfirmed",
   "visible": false,

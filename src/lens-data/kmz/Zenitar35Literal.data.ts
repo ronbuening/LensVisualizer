@@ -3,7 +3,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const lens = {
   "schema": 2,
   "key": "zenitar-35-f1-ru2771147-literal-research",
-  "maker": "Zenit",
+  "maker": "KMZ",
   "name": "Zenitar 35mm f/1 candidate \u2014 RU2771147 literal 36mm",
   "subtitle": "Factory identity unconfirmed; printed terminal 17.3mm; conditional reference-index interpretation",
   "visible": false,
