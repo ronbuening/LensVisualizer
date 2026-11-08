@@ -45,65 +45,67 @@ Table 1 prints n and ν without naming a spectral line; they are given here as n
 
 ### L1 — Negative Meniscus, Convex to Object
 
-nd = 1.5750, νd = 41.30. Glass: QF3 (CDGM) catalog equivalent. f = −59.4 mm.
+nd = 1.5750, νd = 41.30. Glass: QF3 (CDGM) coordinate equivalent, a light flint; the pair is the d-line value of the Russian light flint LF5 (inferred). f = −59.4 mm.
 
 L1 alone is the negative first component. Both radii are positive (R1 = 133.66 mm, R2 = 26.92 mm), and the strongly curved rear face carries the power. It has the largest clear diameter in the lens, 58.0 mm, and is followed by the longest air space ahead of the stop, 11.45 mm. A single meniscus here, where the prior art uses a meniscus and a biconcave lens, is part of claim 1. [1, Table 1; claim 1]
 
 ### L2 — Biconvex Positive
 
-nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM) catalog equivalent. f = +84.7 mm.
+nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM) coordinate equivalent, a dense flint; the pair is the d-line value of the Russian dense flint TF5 (inferred). f = +84.7 mm.
 
 L2 opens the positive component II. Its rear face is nearly flat (R4 = −422.7 mm). It is a dense flint used as a positive element, the same glass as the negative L6 and L9; the patent assigns it no separate task.
 
 ### L3 — Negative Meniscus, Concave to Object
 
-nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), nearest catalog row. f = −133.6 mm.
+nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), the nearest catalog row; the pair is the d-line value of the Russian extra-dense crown STK12 (inferred). f = −133.6 mm.
 
 L3 is the weakest element and sits between the two positive singlets of component II. Making this negative meniscus a single lens, where the prior art cements it from two elements, is part of claim 1. [1, pp. 5–6; claim 1]
 
 ### L4 — Biconvex Positive
 
-nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), nearest catalog row. f = +54.4 mm.
+nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), as L3. f = +54.4 mm.
 
 L4 is 12.3 mm thick and, at 50.2 mm, has the largest clear diameter behind L1. It brings the beam to the cemented meniscus and shares its glass with L3, L7 and L8.
 
 ### D1: L5 + L6 — Cemented Negative Meniscus
 
-- **L5 (Biconvex Positive):** nd = 1.6595, νd = 57.35. Glass: K-LaK11 (Sumita), nearest catalog row. f = +39.6 mm.
-- **L6 (Biconcave Negative):** nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM) catalog equivalent. f = −23.5 mm.
+- **L5 (Biconvex Positive):** nd = 1.6595, νd = 57.35. Glass: K-LaK11 (Sumita), the nearest catalog row; the pair is the d-line value of the Russian extra-dense crown STK3 (inferred). f = +39.6 mm.
+- **L6 (Biconcave Negative):** nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM), as L2. f = −23.5 mm.
 
 Together the pair is a negative meniscus convex to the object, f = −106.3 mm, as claim 1 describes it. L5 is the thickest element, 12.7 mm. The cemented interface (R10 = −91.83 mm) joins a crown of νd 57.35 to the dense flint, the lens's only cemented crown–flint contact. L6's rear face, R11 = 22.34 mm, is the most strongly curved surface in the lens and is concave toward the stop, which lies 7.85 mm behind it. [1, Table 1; claim 1]
 
 ### L7 — Biconvex Positive
 
-nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), nearest catalog row. f = +79.9 mm.
+nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), as L3. f = +79.9 mm.
 
 L7 begins the positive component III, 1.3 mm behind the stop. The model labels its faces 13 and 14 (the patent's R12 and R13) because the stop takes its own row. The patent credits the three-element rear component as a whole, not individual elements, with the redistributed wide-aperture correction. [1, p. 7]
 
 ### L8 — Biconvex Positive
 
-nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), nearest catalog row. f = +53.6 mm.
+nd = 1.6920, νd = 55.05. Glass: J-LAK9 (Hikari), as L3. f = +53.6 mm.
 
 L8 is the stronger of the two rear positive singlets. It follows L7 by 1.0 mm and precedes L9 by 0.5 mm, the smallest air space in the lens.
 
 ### L9 — Negative Meniscus, Convex to Object
 
-nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM) catalog equivalent. f = −84.5 mm.
+nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM), as L2. f = −84.5 mm.
 
 L9 is an 8.9 mm thick dense-flint meniscus whose rear face (R17 = 22.49 mm) is concave toward the image. A negative element near the image is a common way to flatten the field; the system's Petzval sum is 0.0046 mm⁻¹, a Petzval radius of about 220 mm or six focal lengths. This reading of L9's role is an interpretation; the patent assigns it none beyond its place in claim 1.
 
 ## Glass Identification and Selection
 
-Table 1 heads its columns nᵢ (refractive index) and νᵢ (dispersion) without naming a spectral line. The lens uses four glasses:
+Table 1 heads its columns nᵢ (refractive index) and νᵢ (dispersion) without naming a spectral line, and the patent names no glass types or supplier. The lens uses four glasses:
 
-| Printed n / ν  | Elements       | Catalog identification at the d line                                |
-| -------------- | -------------- | ------------------------------------------------------------------- |
-| 1.5750 / 41.30 | L1             | QF3 (CDGM), nd 1.57503, νd 41.30                                    |
-| 1.7552 / 27.52 | L2, L6, L9     | H-ZF6 (CDGM), nd 1.75520, νd 27.53; S-TIH4 (OHARA) and E-FD4 (HOYA) |
-| 1.6920 / 55.05 | L3, L4, L7, L8 | Nearest row J-LAK9 (Hikari), nd 1.69100, νd 54.93                   |
-| 1.6595 / 57.35 | L5             | Nearest row K-LaK11 (Sumita), nd 1.65830, νd 57.30                  |
+| Printed n / ν  | Elements       | Russian glass (inferred) | GOST nd / νd     | Label                         | Class                       |
+| -------------- | -------------- | ------------------------ | ---------------- | ----------------------------- | --------------------------- |
+| 1.5750 / 41.30 | L1             | LF5                      | 1.575022 / ≈41.3 | QF3 (CDGM) equivalent         | light flint                 |
+| 1.7552 / 27.52 | L2, L6, L9     | TF5                      | 1.755234 / 27.53 | H-ZF6 (CDGM) equivalent       | dense flint                 |
+| 1.6920 / 55.05 | L3, L4, L7, L8 | STK12                    | 1.692012 / 55.01 | J-LAK9 (Hikari), nearest row  | extra-dense lanthanum crown |
+| 1.6595 / 57.35 | L5             | STK3                     | 1.659502 / 57.35 | K-LaK11 (Sumita), nearest row | extra-dense lanthanum crown |
 
-Two of the four pairs reproduce d-line catalog glasses to the printed precision, and none reproduces a catalog glass at the e line. The other two match no catalog row at either line. With only half the pairs matched, the d-line reading is not established numerically, so every element carries a note that its values are traced as nd and νd. L1, L2, L6 and L9 use the CDGM catalog dispersion curves. The other two pairs borrow the dispersion curve of the nearest catalog row, J-LAK9 (0.0010 lower in nd, 0.12 lower in νd) and K-LaK11 (0.0012 lower, 0.05 lower), while the trace keeps the printed index. CDGM is the one vendor whose catalog holds both matched pairs exactly; the names are catalog equivalents and do not identify KMZ's glass supplier.
+Every printed pair is the d-line value of a Russian GOST optical glass as GOST 13659-78 tabulates it: each nd agrees to the printed four decimals and each νd within 0.04. At the e line those glasses read 0.0027–0.0065 higher, and no pair matches any catalog glass there, so the values are traced as nd and νd. The identification rests on that agreement alone and says nothing about the production melts. [1, Table 1; 5]
+
+The site's glass catalog carries no GOST rows. QF3 and H-ZF6 equal LF5 and TF5 at the d line and give L1, L2, L6 and L9 their dispersion curves. J-LAK9 (0.0010 lower in nd and 0.12 lower in νd than the printed pair) and K-LaK11 (0.0012 and 0.05 lower) lend theirs to the two crowns while the trace keeps the printed index; relative to nd, their C, F and g indices lie within 2 × 10⁻⁵ of STK12 and STK3. The catalog names are equivalents and do not identify KMZ's glass supplier. LF5, TF5 and STK3 also appear in the Zenitar 50mm f/0.95 patent.
 
 The positive power sits mainly in the νd 55–57 crowns of L4, L5, L7 and L8, and the dense flint appears in the negative L6 and L9 and in the positive L2. Claim 3 fixes the four glasses as ranges with the equalities n2 = n6 = n9 and n3 = n4 = n7 = n8. No extra-low-dispersion or anomalous partial-dispersion glass is claimed, and none is implied by the printed values. [1, claim 3]
 
@@ -140,3 +142,4 @@ Claim 3 constrains the indices and dispersions. Table 1 satisfies every bound an
 2. [Zenit, Zenitar 35mm f/1.0 product page](https://www.zenit.photo/catalog/zenit-m-obektiv-zenitar-35mm-f-1-0/) (in Russian): focal length 35 mm, optical scheme 8/9, minimum focus 0.8 m, angle of view 61.7°, M mount, 74 × 88 mm.
 3. [Radojuva, interview with Vladimir Bogdankov](https://radojuva.com/2022/04/with-vladimir-bogdankov/), April 2022 (in Russian): list of the lenses whose optical designs he developed, including the Zenitar 1.0/35.
 4. [Newsshooter, Zenit M and Zenitar 35mm f/1.0 announcement coverage](https://www.newsshooter.com/2018/09/28/want-to-shoot-razor-thin-dof-the-zenit-m-and-35mm-f-1-0-might-be-just-for-you/), 28 September 2018: announcement with the Zenit M, nine elements in eight groups, M mount.
+5. GOST 13659-78, Стекло оптическое бесцветное. Физико-химические характеристики (colourless optical glass: physical and chemical characteristics) — line indices and Abbe numbers of LF5, TF5, STK12 and STK3.

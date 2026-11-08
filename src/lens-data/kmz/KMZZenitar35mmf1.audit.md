@@ -186,6 +186,14 @@ ranges, and Fig. 2 is the polychromatic MTF, so the patent names no glass and gi
 label resolves to a dispersion curve. The catalog holds no LZOS rows; Schott SF4 sits 0.06 from the flint's νd against
 0.01 for H-ZF6, and no Schott row lies within the window of 1.5750 / 41.30, so the CDGM rows stay.
 
+The glass labels now name the Russian glasses. Table 3 of GOST 13659-78 (read from an OCR copy) gives the d-line
+values of all four printed pairs: LF5 nd 1.575022 (its C index is partly illegible), TF5 1.755234 / 27.53, STK12
+1.692012 (C 1.688176, F 1.700756, g 1.707590, so νd 55.01) and STK3 1.659502 / 57.35. STK12 sits 0.04 below the
+printed 55.05, the widest νd gap of the four. Relative to nd, J-LAK9 follows STK12 within 7e-6 at C and F and 1.8e-5 at
+g, against 6.3e-5 for S-LAL9 and 1.3e-4 for K-LaK9, so it stays; K-LaK11 follows STK3 within 1e-5, and QF3 follows LF5
+at F and g within 5e-6. H-ZF6 runs 1.5e-4 above TF5 at g; every row in its window misses by 1.0–1.9e-4, so it stays, as
+on the Zenitar 50mm f/0.95.
+
 Open: the STO label still touches the top corner of L6's land. The renderer centres the label on the stop plane with
 its baseline at the stop housing radius plus 0.12 of the largest drawn rim, 15.73 + 3.48 = 19.21 mm; the housing radius
 comes from the neighbouring faces' `sd` and ignores the land. The 9.5 px label with 0.1 em spacing is about 20 px wide,
