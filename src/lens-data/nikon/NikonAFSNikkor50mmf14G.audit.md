@@ -153,6 +153,34 @@ pair is Nikon's usual cement value (1.514 / 42.8 in the AF-S NIKKOR 20mm f/1.8G 
 
 - At the 0.45 m state traced from a real object point, the rims of L6 and L7 (S13–S15) trim 4.5 % of the app's
   wide-open on-axis stop lattice (1.6 % at the real f/1.4505 marginal ray), which needs about 16.7 / 16.6 / 16.6 mm
-  there. The figure reads 16.4 and 16.2 mm and is drawn at infinity, so the rims stay.
+  there. The figure reads 16.4 and 16.2 mm and is drawn at infinity, so the rims stay. (Closed 2026-11-08: the third
+  review re-read the figure and kept both rims; see below.)
 - On the live page the first letter of the STO label touches the top corner of L3's land: the label sits at the stop
   housing height plus a fixed pad, a layout matter outside the rim data.
+
+## 2026-11-08 — Third review: diagram, labels and movement
+
+**Compared.** The live page at infinity and 0.45 m, the focus overlay and every element's inspector, against Figure 1
+(page 16), re-measured on its native 300 ppi bitmap. Twelve vertex crossings give 11.016 px/mm along the axis
+(residuals within 0.65 px) and the printed radii fit the arcs best at 11.0 px/mm across it. Rim readings: L1 18.85,
+L2 16.94, L3 edge 16.64, L4 16.21, L5 16.73, L6 16.51, L7 16.24, L8 16.05 mm; S6 cap 13.70, S8 cap 13.05 mm. Every
+rim but L3 (held at 15.8 mm by the S4/S5 contact) is within 0.15 mm of the figure, and the drawn step order holds. No
+rim changed. Second-review land and cut verdicts re-measured: unchanged; worst loss 0.0 points, and each land costs
+0.0 points.
+
+- **Near state.** From a real object 359.26 mm ahead of S1: 95.5 % on axis and 38.7 % at the 151 mm corner. The real
+  f/1.4505 marginal ray reaches 16.61, 16.55 and 16.58 mm at S13–S15. Raising L6 to its figure reading (16.5 mm) wins
+  0.0 points because L7 then clips. Full clearance needs L6 at 16.7 and L7 at 16.6 mm, which would draw L6 above L5
+  and L7 level with them, against the figure's 16.73 / 16.51 / 16.24 mm steps. Verdict: the rims stay.
+- **Labels and movement.** L4 and L5 read DOUBLET D1; C1 has no badge, FL "—", glass "Unmatched (1.51400/42.83)" and
+  an Abbe-estimate dispersion, so no medium is constant. The gap values give 7.641 mm of travel toward the object, the
+  probe 450.00 mm object to image at −0.148×, the overlay 7.64 mm, and the slider ends ∞ and 45 cm.
+- **Colour.** With the Example 1 converter rows matched to catalog glasses, the trace reproduces Figure 2: d −0.038
+  and g +0.109 mm at the rim (figure about −0.035 and +0.10), g +0.019 mm paraxial (+0.02), and g−d lateral colour
+  −0.010 mm at mid field and +0.043 mm at 14.25 mm (−0.009, +0.043). The stated label precision was corrected to
+  2 × 10⁻⁶ in nd and 0.01 in νd (TAFD25) in the analysis and header; the near-state trim now reads about 4.5 %.
+
+**Open:**
+
+- The STO label still touches L3's land corner. The stop housing uses the optical `sd` of S6 and S8 (13.7, 13.2 mm),
+  not their lands, so the label sits at 15.46 mm, under L3's 15.8 mm corner 1.07 mm ahead of the stop.

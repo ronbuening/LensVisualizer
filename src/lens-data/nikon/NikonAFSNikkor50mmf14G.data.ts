@@ -44,8 +44,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Aperture: stops run to f/16, Nikon's minimum aperture; Nikon specifies 9 rounded blades.
  *
- * Glass: the patent prints nd/νd only. Each pair matches the named catalog glass to the printed precision; the
- * production supplier is not stated.
+ * Glass: the patent prints nd/νd only. Each pair matches the named catalog glass within 2 x 10^-6 in nd and 0.01 in
+ * νd; the production supplier is not stated.
  *
  * Source inconsistency: paragraph 0014 gives the master as 51.6 mm but divides 36.1 by 51.5 in its sample ratio
  * calculation; the table value 51.598 mm is used.

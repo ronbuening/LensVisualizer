@@ -144,8 +144,8 @@ The final element, a weak biconvex lens 0.10 mm behind L7 with most of its power
 
 ## Glass Identification and Selection
 
-The patent prints nd and νd only. Each pair reproduces the named catalog glass to the printed precision
-(Δnd below 1 × 10⁻⁶, Δνd at most 0.005), so the names are catalog matches, not a statement of the production supplier.
+The patent prints nd and νd only. Each pair reproduces the named catalog glass to within 2 × 10⁻⁶ in nd and 0.01 in
+νd (the largest differences are TAFD25's), so the names are catalog matches, not a statement of the production supplier.
 E-FD4 (HOYA) and S-TIH4 (OHARA) are near-identical alternatives for the 1.7552 / 27.53 pair.
 
 | Glass | nd | νd | Elements | Role |
@@ -165,7 +165,9 @@ about 300 mm, or 5.8 times the focal length. The two negatives also have the low
 achromatizing flints against the lanthanum positives.
 
 No element uses ED or anomalous-dispersion glass. The chromatic trace uses the named catalog dispersion curves, and
-the cement layer's printed nd and νd.
+the cement layer's printed nd and νd. The patent plots aberrations only for Gm with a converter attached. Traced with
+the Example 1 converter, its rows matched to catalog glasses, these curves reproduce the d- and g-line spherical
+aberration and the g-line lateral colour of the patent's Figure 2 to within about 0.005 mm.
 
 ## Focus Mechanism
 
@@ -191,7 +193,7 @@ are interpolated.
 - The aperture runs from f/1.4505 to f/16, Nikon's minimum aperture.
 - The cement layer has no catalog match; its colour is traced from the printed nd 1.514 and νd 42.83 alone.
 - At the reconstructed 0.45 m state, traced from a real object point, the rims of L6 and L7 trim the outer edge of the
-  wide-open on-axis beam (about 4 % of it); the figure they follow is drawn at infinity.
+  wide-open on-axis beam (about 4.5 % of it); the figure they follow is drawn at infinity.
 - Paragraph 0014 of the patent gives the master as 51.6 mm but divides 36.1 by 51.5 in its sample ratio calculation.
   The table value, 51.598 mm, is used.
 
