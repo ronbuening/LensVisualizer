@@ -785,7 +785,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.8,
     description:
-      "Inner focus: the negative second group G2 moves toward the object to focus down to 0.8 m (patent claim 2; Konica's AiBORG report, Fig. 4-2). The patent prints no close-focus spacings, so focusing is not modelled and both focus states repeat the infinity spacings.",
+      "Inner focus: the negative second group G2 moves toward the object to focus down to 0.8 m (patent claim 2; Konica's AiBORG report, Fig. 4-2). The patent prints no close-focus spacings, so focusing is not modeled and both focus states repeat the infinity spacings.",
   },
   gaps: {
     "3": {
