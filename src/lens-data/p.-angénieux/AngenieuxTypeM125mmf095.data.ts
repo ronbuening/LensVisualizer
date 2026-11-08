@@ -27,8 +27,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters: not printed. They are inferred, pass the full f/1 axial beam and agree with the drawing
  * within about 0.5 mm. Every air-facing rim from surface 5 to 13 lies within 0.025 mm of that beam (5, 10
  * and 11 within 0.005 mm), so none can follow the drawing where it draws a rim up to 6 % smaller: L7 (9.45 mm against about
- * 8.95 mm drawn) stands 0.43 mm above L8, which the drawing shows level with it. The deep R7 and R8 caps fill
- * 93.8 % of the central air space at their shared rim height (0.48 mm of air remains), so checks.gapSagFrac
+ * 8.95 mm drawn) stands 0.43 mm above L8, which the drawing shows level with it. The drawn iris, R7, R8 and L7
+ * fit a real axial ray entering at half the focal length (12.5 mm), which crosses the stop plane at 6.83 mm; the
+ * stop here follows the paraxial f/1 rule (7.126 mm), and its real beam enters at 13.17 mm. The deep R7 and R8
+ * caps fill 93.8 % of the central air space at their shared rim height (0.48 mm of air remains), so checks.gapSagFrac
  * is 0.94, the smallest value that draws both caps untrimmed.
  *
  * Focus: the patent prints the infinity state only; no focus travel is modeled. The marketed f/0.95 is the

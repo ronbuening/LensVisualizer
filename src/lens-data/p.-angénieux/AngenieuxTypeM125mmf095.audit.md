@@ -105,8 +105,9 @@ construction, secondary citation); there is no other example to choose from.
 Open: the production prescription, glass, stop and clear apertures are unpublished. The M42 Mount Spiral section was
 not compared element by element with the patent drawing. (Closed 2026-11-08: it has the drawing's elements, cemented
 pairs and relative rim heights; see the second review below.) The Angénieux space-history page could not be re-read
-(certificate error) and the Grenier 1960 page was not re-viewed in this pass. The model's aperture settings stop at f/16
-against the marketed f/22.
+(certificate error) and the Grenier 1960 page was not re-viewed in this pass. (Grenier closed 2026-11-08: page 60 lists
+the Angénieux M1 at f/0.95, 25 mm, focusing to 0.50 m; see the third review below. The space-history page still fails
+with a certificate error.) The model's aperture settings stop at f/16 against the marketed f/22.
 
 ## 2026-11-08 — Second review: diagram, labels and movement
 
@@ -187,7 +188,9 @@ beam margins, the L7 step and the reason for 0.94; the analysis gains the L7 and
 M42 Mount Spiral comparison.
 
 Open: the drawing shows L7 level with L8 and 0.3 mm below D2; with the inferred f/1 stop the beam holds L7 at 9.45 mm,
-so the model draws L7 above both. A smaller or moved stop would settle it, but neither is printed.
+so the model draws L7 above both. A smaller or moved stop would settle it, but neither is printed. (Closed 2026-11-08:
+the drawn iris, R7, R8 and L7 fit a real-ray 1:1 beam through a 6.83 mm stop, while the paraxial f/1 stop rule keeps L7
+at 9.45 mm; see the third review below.)
 
 ## 2026-11-08 — Glass backfill
 
@@ -197,3 +200,35 @@ take SF5 (Schott, 1.6727 / 32.21), the label the Retrofocus R11 file already use
 prints no chromatic curves to compare. L2 (1.6689 / 46.7) and L3, L7, L8 (1.6913 / 53.8) stay Unmatched, 0.4 and 0.9 off
 the nearest rows in νd; the latter's label now says lanthanum crown, the class its coordinates sit in, instead of dense
 crown.
+
+## 2026-11-08 — Third review: diagram, labels and movement
+
+Compared the live page (infinity, the closest-focus end, the movement overlay and all eight inspectors) with the page 1
+drawing at its native 300 dpi, on a scale proved afresh: the R1 to R14 vertex strokes give 32.38 px/mm and R5 to R10
+32.15 px/mm along the axis, and circle fits to R5, R7, R8 and R10 give 31.8 to 32.6 px/mm across it. At 32.2 px/mm the
+rims read L1 14.30, L2 13.15, D1 10.71, D2 9.25, L7 8.95 and L8 8.90 mm, with the iris at 6.93, R7 at 6.83 and R8 at
+6.62 mm, within 0.15 mm of the second review. The largest excesses, R8 (7.6 %) and L7 (5.6 %), sit on the f/1 beam, so no
+rim, label, tag or movement changed. Second-review land and cut verdicts re-measured: unchanged; worst loss 0.0 points.
+The engine is unchanged (EFL 24.985 mm, f/1.000, stop radius 7.126 mm, half-field 20.756°, coverage 100 % at 6.35 mm).
+The R7 and R8 caps fill 0.938 of e7 at their shared 7.125 mm band and 0.93 would trim them to about 7.10 mm, so
+`checks.gapSagFrac` 0.94 stays.
+
+**L7 and the stop.** A real axial ray entering at 12.5 mm, half the focal length, crosses the stop plane at 6.83 mm and
+meets R7 at 6.93, R8 at 6.77 and R11 at 8.84 mm: the drawn iris, R7, R8 and L7 within the reading error, while the other
+drawn rims stand 0.3 to 1.8 mm clear of it. The paraxial f/1 rule gives 7.126 mm, whose real ray enters at 13.17 mm and
+needs L7 at 9.45 mm. A 6.83 mm stop would read f/1.04, and the data spec derives an ordinary prime's stop from its
+f-number, so L7 stays. Restoring the drawn order would take L8 to 9.45 mm and D2 to about 9.75 mm, 6 % above their own
+readings; not done. The header note and the analysis now give the real-ray reading.
+
+**Labels and glass.** The inspectors show the types, focal lengths, glasses and roles listed in the second review; D1
+and D2 bracket L3–L4 and L5–L6, the stop is in e7, and there are no aspheres or `apd` tags. SF5 (L1, L4) and SF15 (L5)
+resolve at Δνd −0.09 and −0.20; SF5 is 0.0024 below the printed index, so "nearest catalog row" wording was proposed to
+the coordinator. Each is the lead flint nearest its coordinate (PBM25 is 0.20 off; N-SF5, E-FD5, H-ZF2, S-TIM25,
+S-TIM35 and E-FD15 are lead-free). No row lies within the resolver window of 1.6689 / 46.7 or 1.6913 / 53.8.
+
+**Movement and sources.** The lens is static: the overlay reports no group movement and the focus slider's far end
+reads "Not modeled". Grenier 1960, page 60, lists the Angénieux M1 at f/0.95, 25 mm, focusing to 0.50 m, among the 9.5
+and 16 mm normal focal lengths; the analysis now cites it.
+
+Open: the model's stops end at f/16 against the marketed f/22. The Angénieux space-history page still fails with a
+certificate error.
