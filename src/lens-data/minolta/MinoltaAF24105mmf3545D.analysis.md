@@ -121,7 +121,7 @@ The patent prints Nd and νd at the d-line (¶0037) and names no supplier. Six e
 | Element | nd      | νd    | Identification          | Role                         |
 | ------- | ------- | ----- | ----------------------- | ---------------------------- |
 | L1      | 1.83350 | 21.00 | Unmatched               | Flint of the front doublet   |
-| Cement  | 1.51400 | 42.83 | Unmatched               | 0.010 mm cement layer        |
+| Cement  | 1.51400 | 42.83 | Unmatched (cement)      | 0.010 mm cement layer        |
 | L2      | 1.61800 | 63.39 | PCD4 (Hoya) equivalent  | Crown of the front doublet   |
 | L3      | 1.69680 | 56.47 | Unmatched               | Gr1 positive meniscus        |
 | L4      | 1.85000 | 40.04 | Unmatched               | Gr2 aspherical negative      |

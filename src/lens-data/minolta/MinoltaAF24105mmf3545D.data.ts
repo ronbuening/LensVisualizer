@@ -101,7 +101,7 @@ const LENS_DATA = {
       type: "Cement Layer",
       nd: 1.514,
       vd: 42.83,
-      glass: "Unmatched (1.51400/42.83)",
+      glass: "Unmatched (patent cement layer; nd=1.51400, νd=42.83)",
       role: "0.010 mm cement layer between L1 and L2, as printed in the patent; not counted as a lens element",
       diagramLabel: "C1",
     },
