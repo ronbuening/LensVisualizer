@@ -1,138 +1,138 @@
 ## Patent Reference and Design Identification
 
-**Patent:** [US 2,701,982](https://patentimages.storage.googleapis.com/2f/75/dd/b76ccb73bc0f44/US2701982.pdf)  
-**Application Number:** US serial 367,003  
-**Filed:** July 9, 1953  
-**Granted:** February 15, 1955  
-**Priority:** France, March 26, 1953  
-**Inventor:** Pierre Angénieux  
-**Assignee:** No organization is named in the original patent.  
-**Title:** Large Aperture Six Component Optical Objective  
-**Example details:** Unnumbered numerical table on PDF page 2, repeated in claim 4 on PDF page 3; sectional drawing on PDF page 1. All source radii and axial distances are uniformly scaled by 0.25.
+**Patent:** [US 2,701,982](https://patentimages.storage.googleapis.com/2f/75/dd/b76ccb73bc0f44/US2701982.pdf)
+**Application Number:** Serial No. 367,003
+**Filed:** July 9, 1953
+**Granted:** February 15, 1955
+**Priority:** France, March 26, 1953
+**Inventor:** Pierre Angénieux
+**Assignee:** None named; the patent issued to the inventor.
+**Title:** Large Aperture Six Component Optical Objective
+**Example details:** Unnumbered table on page 2 (Focal Length F = 100, Relative Aperture 1:1), repeated in claim 4 on page 3; axial section in the single drawing figure on page 1. All lengths scaled uniformly by 0.25 to 25 mm.
 
-**P. ANGÉNIEUX M1 FAMILY 25mm f/1 (conditional patent model)** is a private research representation, not an identified factory prescription. Its connection to the marketed M1 remains conditional. The source contains one unnumbered numerical example; the repeated claim table does not constitute another example.
+The patent contains one numerical example; the claim-4 table repeats it digit for digit and is not a second example. The model links it to the P. Angénieux Type M1 25mm f/0.95 by convergent evidence:
 
-The evidence has three distinct roles:
+1. Inventor and timing. Pierre Angénieux filed the French priority application in March 1953, and M42 Mount Spiral dates the design of the 25 mm f/0.95 Type M1 to 1953 [2].
+2. Construction. M42 Mount Spiral gives eight elements in six groups and describes the lens as a development of the Gauss type [2]. The patent derives its objective from the Gauss type by dividing the front lens and the rear lens each into two, and its example has eight elements in six components.
+3. Speed. The example is computed at 1:1; the production lens is rated f/0.95 [2; 5]. A rating slightly faster than the design value is common, and the model's own real-ray pupil at the f/1 stop corresponds to f/0.95 (see Stop, Clear Apertures and Image Plane).
+4. Secondary attribution. M42 Mount Spiral lists US 2,701,982 among its references for the lens [2]. It does not state that its section drawing reproduces the patent table.
 
-1. The original US patent supplies the numerical prescription: eight elements in six groups, normalized focal length 100, relative aperture 1:1 and back focal length 56.
-2. Grenier's 1960 commercial catalog, page 60, lists an Angénieux M1 at 25 mm f/0.95. It establishes a marketed product, but contains no optical section identifying this numerical table.
-3. The M42 Mount Spiral M1 article explicitly associates US2701982 with that product. This is secondary attribution, not independent primary proof of the production prescription. The manufacturer's space-history account supplies historical context rather than factory optical dimensions.
+No manufacturer cross-section or production prescription has been found, so the correlation is well supported but not factory-confirmed. The patent is normalized and does not name a focal length; the 0.25 scale fits the 25 mm C-mount lens, the model whose construction the sources describe. A 50 mm f/0.95 M1 for 35 mm cine cameras also existed, but no source ties its construction to this table.
 
-At the retained scale, the design focal length is 25 mm and the computed effective focal length is 24.9849355674 mm. **The modeled aperture remains source f/1.** The marketed f/0.95 is a separate product fact and is not used to enlarge the modeled pupil. Exact production correspondence cannot be inferred from nominal focal length, speed, element count or the secondary attribution alone.
+The production lens is a C-mount objective for 16 mm cinema cameras, with apertures from f/0.95 to f/22 and helicoid focusing to about 0.45 m [2]; a Science Museum Group example is engraved for focusing to 18 in [3]. It was also sold as the Bell & Howell 1 inch f/0.95 for the Filmo 70 cameras [2]. Ranger 7, launched on July 28, 1964, returned the first close-range pictures of the Moon on July 31, 1964, through 25 mm f/0.95 Type M1 lenses on its wide-angle cameras [2; 4].
 
 ## Optical Architecture
 
-The design is a modified Gaussian objective. The patent describes it as a Gauss-type arrangement in which each outer lens is subdivided into two lenses, enabling a larger aperture while maintaining correction of spherical aberration (PDF page 2, column 1). The numerical example has two positive front singlets, two central cemented components and two positive rear singlets.
+The objective is a modified Gauss design of eight spherical elements in six air-spaced components. Counting from the object, the components are two positive singlets (L1, L2), the cemented front meniscus D1 (L3 + L4) convex to the object, the central air space e7 holding the diaphragm, the cemented rear meniscus D2 (L5 + L6) convex to the image, and two biconvex singlets (L7, L8). The patent states that dividing the Gauss front and rear lenses in two allows a substantial increase in relative aperture while keeping good correction of spherical aberration (page 2, column 1).
 
-The groups are L1, L2, L3–L4, L5–L6, L7 and L8. The cemented boundaries are source surfaces 6 and 9. Fourteen refracting surfaces are spherical; the inserted flat stop plane is not an additional powered surface or glass element. No aspherical terms, sensor plate, optional filter or mechanical barrel geometry has been added.
+As isolated thick lenses in air, the outer pairs are positive (L1 + L2 ahead of D1, L7 + L8 behind D2), while both cemented components are weakly negative: D1 at −48.2 mm and D2 at −88.6 mm. The strongly curved faces R7 and R8 face each other across the stop. The patent also notes that the design reaches a back focal length above half the focal length at 1:1, which it calls unusual at that aperture: 56 at F = 100, or 14 mm here.
 
-The two cemented components face one another across the central airspace. Their strongly curved inner faces and dispersive negative members provide the central Gaussian structure; this role is an interpretation of the tabulated geometry, not a separate assertion of measured aberration correction. The patent specifically identifies a dispersive flint and a collective crown in each central component (PDF page 2, column 1 and claim 3).
+All radii, thicknesses and air spaces, including the printed back focal length, are scaled by 0.25; indices and Abbe numbers are unchanged, and there are no aspheres. The scaled prescription traces to EFL 24.985 mm (−0.06 % against 25 mm) with a paraxial back focus of 13.994 mm; the last gap keeps the printed 14 mm. The lens is 31.67 mm from first to last vertex and 45.67 mm from first vertex to image.
 
-All source radii and axial distances, including the stated image distance, are scaled uniformly by 0.25. Refractive indices and Abbe numbers are unchanged. No radius, thickness, glass coordinate or image-plane position is optimized to improve a computed image.
+The patent's claims bound six radii, the central air space and the rear indices. The example satisfies every condition:
+
+| Condition (claims 1–2) | Patent range | Example |
+| --- | --- | --- |
+| R3, front of the second component | 0.6F–2F | 1.001F |
+| R5, front of the third component | 0.45F–0.8F | 0.580F |
+| R7, rear of the third component | 0.25F–0.45F | 0.324F |
+| R8, front of the fourth component | 0.30F–0.55F | 0.404F |
+| R10, rear of the fourth component | 0.45F–0.80F | 0.555F |
+| e7, third to fourth component | 0.23F–0.50F | 0.307F |
+| R11, R12, fifth component | F to ∞ | 1.930F, 2.253F |
+| Index of the fifth and sixth components | > 1.63 | 1.6913, 1.6913 |
 
 ## Element-by-Element Analysis
 
-The following coordinates retain the patent's notation **n_D and ν**. The source explicitly names the D line, whereas the calculation engine uses its helium-d reference convention at 587.5618 nm. The stored values are not converted between those conventions. All listed glasses are **Unmatched**, with estimated Abbe dispersion and no identified catalog or production glass.
+The patent prints its indices for the D line; the values below are those printed. Focal lengths are for each element as an isolated thick lens in air at the 25 mm scale; the cemented elements do not have air on both sides in the assembled lens.
 
-The focal lengths below are **isolated thick-element diagnostics in air**, calculated from each element's two radii, center thickness and unchanged source index. They are not installed component powers: in particular, the cemented L3/L4 and L5/L6 elements do not have air on both sides in the assembled objective. The diagnostic uses Φ = (n − 1)[1/R₁ − 1/R₂ + (n − 1)t/(nR₁R₂)] and f = 1/Φ at the model's 0.25 scale.
+### L1 — Positive Meniscus
 
-### L1: Positive Meniscus
+nd = 1.6751, νd = 32.3. Glass: Unmatched (vintage dense flint). f = +85.08 mm.
 
-n_D = 1.6751; ν = 32.3; glass: Unmatched, Abbe dispersion estimate; isolated in-air f = +85.077 mm.
+The first component, a weak positive meniscus convex to the object (R1 41.03 mm, R2 139.80 mm). The patent requires only that it be convergent. Its dense-flint coordinate is the same as L4's.
 
-Surfaces 1–2 form a weakly positive front collector with both centers of curvature toward the image. The patent calls the first component convergent. Its relatively dispersive coordinate is retained as printed; no vendor identity or specific aberration contribution is assigned from that coordinate alone.
+### L2 — Positive Meniscus
 
-### L2: Positive Meniscus
+nd = 1.6689, νd = 46.7. Glass: Unmatched (vintage barium flint). f = +67.71 mm.
 
-n_D = 1.6689; ν = 46.7; glass: Unmatched, Abbe dispersion estimate; isolated in-air f = +67.712 mm.
+The second component, a convergent meniscus with both faces convex toward the front, as claim 1 requires. Its front radius, R3, is 1.001F, inside the claimed 0.6F–2F. L1 and L2 together take the place of the single front lens of a classic Gauss objective.
 
-Surfaces 3–4 form the second positive front component. The patent explicitly describes this component as a convergent meniscus with both faces convex toward the front. Its separation from L1 is a literal source airspace, not a reconstructed focus gap.
+### L3 — Positive Meniscus (D1)
 
-### L3: Positive Meniscus in the Front Cemented Component
+nd = 1.6913, νd = 53.8. Glass: Unmatched (vintage dense crown). f = +21.40 mm.
 
-n_D = 1.6913; ν = 53.8; glass: Unmatched, Abbe dispersion estimate; isolated in-air f = +21.398 mm.
+The collective crown of the third component. Its front face R5 (0.580F) is strongly convex; its rear face, the cemented interface R6 (2551.1 at F = 100), is almost flat, so L3 is nearly plano-convex.
 
-Surfaces 5–6 bound the collective member of the front cemented pair. Its rear boundary is the weakly curved cemented interface with L4. The contrast between this higher-Abbe member and the more dispersive L4 is consistent with the patent's stated crown/flint pairing; that interpretation does not identify a particular glass composition or supplier.
+### L4 — Negative Meniscus (D1)
 
-### L4: Negative Meniscus in the Front Cemented Component
+nd = 1.6751, νd = 32.3. Glass: Unmatched (vintage dense flint). f = −12.15 mm.
 
-n_D = 1.6751; ν = 32.3; glass: Unmatched, Abbe dispersion estimate; isolated in-air f = −12.154 mm.
+The dispersive flint of the third component, 0.645 mm thick at the center. Its deep concave rear face R7 (8.10 mm, 0.324F) bounds the central air space. Claim 3 calls for each central component to consist of a dispersive flint cemented to a collective crown; across D1 the Abbe number steps from 53.8 to 32.3.
 
-Surfaces 6–7 bound the thin, strongly negative member nearest the stop on the front side. Its rear concave face forms one boundary of the central airspace. L4 shares the printed index/Abbe coordinate of L1, but this coincidence does not prove an identical production melt.
+### L5 — Biconcave Negative (D2)
 
-### L5: Biconcave Negative Member in the Rear Cemented Component
+nd = 1.6992, νd = 30.2. Glass: Unmatched (vintage dense flint). f = −11.89 mm.
 
-n_D = 1.6992; ν = 30.2; glass: Unmatched, Abbe dispersion estimate; isolated in-air f = −11.892 mm.
+The dispersive flint of the fourth component, immediately behind the stop. Its concave front face R8 (−10.105 mm, 0.404F) mirrors R7 across the stop; its rear face is the cemented interface R9.
 
-Surfaces 8–9 form the negative, relatively dispersive member immediately behind the stop. Its front face bounds the rear side of the central airspace; its rear face is cemented to L6. Its in-air focal length is diagnostic only and must not replace the actual refractive-index step at that cemented boundary.
+### L6 — Biconvex Positive (D2)
 
-### L6: Biconvex Positive Member in the Rear Cemented Component
+nd = 1.6204, νd = 60.2. Glass: J-SK16 (Hikari catalog equivalent). f = +18.16 mm.
 
-n_D = 1.6204; ν = 60.2; glass: Unmatched, Abbe dispersion estimate; isolated in-air f = +18.158 mm.
+The thick collective crown of the fourth component (6.98 mm at the center), with a strongly convex rear face R10 (−13.88 mm, 0.555F). The Abbe step across D2 is 30.0, larger than across D1. The rear component is not a mirror image of the front one: glasses, thicknesses and radii all differ. The cemented radius R9 has the same printed value, 192.98, as the front face R11 of L7.
 
-Surfaces 9–10 form the thicker collective partner of L5. The higher Abbe number supplies the lower-dispersion member of this pair. The rear component is not an exact mirror of the front one: the source assigns different glass coordinates, curvatures and thicknesses to the two sides.
+### L7 — Biconvex Positive
 
-### L7: Biconvex Positive Rear Singlet
+nd = 1.6913, νd = 53.8. Glass: Unmatched (vintage dense crown). f = +37.89 mm.
 
-n_D = 1.6913; ν = 53.8; glass: Unmatched, Abbe dispersion estimate; isolated in-air f = +37.886 mm.
+The fifth component, a weak biconvex lens whose radii (1.930F and 2.253F) lie in the range F to ∞ given in claim 2. Its index exceeds the 1.63 that the patent asks of the fifth and sixth components.
 
-Surfaces 11–12 form the first of the two separated positive rear components. The source's stated index condition for the fifth component is satisfied by its printed n_D greater than 1.63. The element contributes to the rear collecting system; a separately measured field-flattening or chromatic role is not established.
+### L8 — Biconvex Positive
 
-### L8: Biconvex Positive Rear Singlet
+nd = 1.6913, νd = 53.8. Glass: Unmatched (vintage dense crown). f = +34.35 mm.
 
-n_D = 1.6913; ν = 53.8; glass: Unmatched, Abbe dispersion estimate; isolated in-air f = +34.354 mm.
+The sixth and last component, in the same glass as L3 and L7. L7 and L8 together replace the single rear lens of the Gauss form and deliver the beam to the image 14 mm behind the last vertex.
 
-Surfaces 13–14 form the final positive component. Its source index likewise exceeds 1.63, and it repeats the L3/L7 glass coordinate. The retained final image-space distance follows the patent's stated back focal length rather than a best-focus adjustment.
+## Glass Identification and Selection
 
-## Glass Identification and Spectral Limits
+The patent gives the refractive index for the D line and the Abbe number ν, without naming glasses. The model traces the printed values as d-line (587.6 nm) values without conversion; for glasses of this kind the index at the sodium D line (589.3 nm) is about 1–2 × 10⁻⁴ below nd.
 
-Five distinct source index/Abbe pairs occur across the eight elements: L1/L4 share 1.6751/32.3; L2 uses 1.6689/46.7; L3/L7/L8 share 1.6913/53.8; L5 uses 1.6992/30.2; and L6 uses 1.6204/60.2. These are published coordinates, not catalog identifications.
+| Printed nD / ν | Elements | Class | Model glass |
+| --- | --- | --- | --- |
+| 1.6751 / 32.3 | L1, L4 | dense flint | Unmatched; Abbe-number dispersion |
+| 1.6689 / 46.7 | L2 | barium flint | Unmatched; Abbe-number dispersion |
+| 1.6913 / 53.8 | L3, L7, L8 | dense crown | Unmatched; Abbe-number dispersion |
+| 1.6992 / 30.2 | L5 | dense flint | Unmatched; Abbe-number dispersion |
+| 1.6204 / 60.2 | L6 | dense crown | J-SK16 (Hikari) 1.62041 / 60.25 |
 
-The patent says “refractive index for the D line” (PDF page 2, column 2). It does not give a numerical reference wavelength or wavelength-dependent indices. The model preserves these source values while using the engine's d-line convention at 587.5618 nm. That convention is an explicit approximation, not evidence that the source specified the helium d line or that a numerical D-to-d conversion was performed.
+Only the L6 pair matches a current catalog glass to the printed precision; the same coordinate appears in Angénieux's Retrofocus R11 patent, where it is also modeled as J-SK16. The nearest catalog rows for the other four pairs (SF5 1.6727 / 32.2, BAF10 1.6700 / 47.1, LaK9 1.6910 / 54.7, S-TIM35 1.6990 / 30.1) miss the printed index by 0.0002 to 0.0024 or the Abbe number by up to 0.9, so those elements keep the printed index and Abbe number with an Abbe-number dispersion estimate. No supplier or melt is asserted for any element.
 
-**All eight wavelength-dependent glass dispersions are estimated from the retained index and Abbe value.** No catalog Sellmeier curve, measured partial dispersion, anomalous-dispersion coefficient, supplier or production melt is asserted. The central crown/flint pairing is source-supported design intent; the available data do not establish apochromatism or measured secondary-spectrum correction.
-
-The reference-index and estimated-photopic calculations must therefore remain distinct. Agreement between two implementations at the unchanged reference indices validates numerical ray propagation under that convention, not the physical dispersion of the manufactured M1.
+The chromatic scheme is the patent's: each central cemented component pairs a dispersive flint with a collective crown, with Abbe steps of 21.5 (D1) and 30.0 (D2). The outer singlets mix flint and crown coordinates. Bare index and Abbe data support an ordinary achromat; they cannot show partial-dispersion or secondary-spectrum correction.
 
 ## Focus Mechanism
 
-The model contains a single fixed source prescription and no finite-focus travel schedule. All six groups remain fixed. No unit-focus, internal-focus, floating-element or actuator motion is inferred from the product's focusing capability.
+The patent prints only the infinity state, and the model has no focus travel. The production lens focuses by helicoid to about 0.45 m [2; 3], which is consistent with unit focusing of the whole optical block, but no close-focus spacing is published and none is derived here. The image plane sits at the printed back focal length, 14 mm behind the last vertex; the paraxial focus lies 0.006 mm ahead of it, and no refocus is applied.
 
-The source's normalized back focal length 56 becomes 14 mm. The paraxial Gaussian result is 13.9942746904 mm, leaving a 0.0057253096 mm difference from the printed image distance. The model retains the printed boundary; no best-focus shift is applied to the reported MTF results.
+## Stop, Clear Apertures and Image Plane
 
-The finite close-focus placeholder used by the schema is not a physical minimum focus distance. The viewer should identify this as infinity-only, with finite-focus travel not modeled. The commercial catalog's product focus information does not supply a patent-derived moving-group schedule.
+The drawing places the diaphragm in the central air space e7 between R7 and R8, but the table gives neither its axial position nor its diameter. The model places the stop 0.60 of the way through e7 from R7, 4.599 mm behind the R7 vertex and 3.066 mm ahead of the R8 vertex; the drawing measures about 0.59. The stop radius, 7.126 mm, follows from the design f/1. At that radius the R7 and R8 caps leave 0.35 mm and 0.13 mm of air on either side of the iris.
 
-## Stop, Clear Apertures and Filled Geometry
+The patent prints no clear apertures. The modeled semi-diameters are inferred: 14.125 mm (L1), 13.025 mm (L2), 10.9 mm at R5–R6, 7.175 mm at R7, 7.125 mm at R8, 9.325 mm at R9–R10, 9.45 mm (L7) and 9.025 mm (L8). They agree with the outline in the drawing to within about 0.5 mm. The deep R7 and R8 caps fill 93.8 % of the 7.665 mm central air space at their shared rim height, as the drawing shows them nearly meeting. L7 and L8 keep edges of only 0.26 mm and 0.37 mm, close to the pointed edges drawn.
 
-The drawing places the diaphragm in central airspace e₇ between surfaces 7 and 8, but neither its numerical axial split nor its diameter is tabulated. The adopted stop is 60% of the way through that gap from surface 7. The drawing measurement was approximately 0.58848, with an estimated 0.56–0.62 interval; the adopted 0.60 is an explicitly inferred frozen hypothesis, not an optimized factory dimension.
+The rims are sized to the full-aperture axial beam with almost no margin. A real axial ray that just fills the f/1 stop enters 13.17 mm from the axis, against the 12.49 mm paraxial pupil radius, and reaches the rims of R5, R10 and R11 at the same height. The focal length over that real entrance diameter gives f/0.95, and the image-side angle of the same ray gives f/0.97. This matches the marketed f/0.95, but because the stop position and rims are inferred it is not evidence of how the rating was set.
 
-At the 0.25 scale, the central source gap is 7.665 mm, split into 4.599 mm before the stop and 3.066 mm after it. Its f/1 physical stop radius is computed as approximately 7.12604 mm from the unchanged reference prescription. Surface clear apertures and straight bevels remain inferred geometry. They must not be described as dimensions printed in the patent.
+## Model Scope and Limitations
 
-The earlier feasibility rendering used a default 90% cap safeguard that shortened the displayed central tips while the ray tracer retained larger authored clear apertures. That earlier rendered non-overlap check did not prove clearance of the full ray-bearing solids. The qualified model instead retains the full caps and uses a 94% gap-sag allowance, the smallest whole-percent stage passing for the frozen geometry after testing 90%, 91%, 92%, 93% and 94%.
+On axis, the model's longitudinal spherical aberration from the paraxial focus is −0.024 mm at the full pupil, −0.078 mm at 0.85, −0.070 mm at 0.7 and −0.041 mm at 0.5: a corrected margin with an undercorrected zone. The Petzval sum is 0.0132 mm⁻¹, a Petzval radius of about 76 mm, three times the focal length.
 
-The full-cap intrusion is 93.7944986% of the central gap, leaving 0.4756517 mm positive shared-cap air clearance. Even the zero-rounding-margin beam-floor caps at the adopted stop require more than 93%. No tested alternative in the measured stop interval preserves the source f/1 beam at the default 90% allowance. Some changed stop/cap hypotheses can reach a 93% stage, but they are different geometries and were not adopted as performance-fitted replacements.
+The 16 mm cinema frame (12.7 mm diagonal) puts its corner at 14.4°; the full field is traced to that corner without clipping. The patent prints no field angle, aberration plots or vignetting data, so off-axis performance rests on the inferred stop and rims rather than on source values. Chromatic results for seven of the eight elements rest on Abbe-number estimates. The production prescription, glasses, stop position and clear apertures are unpublished.
 
-All eight untrimmed closed element polygons pass the retained finite-area and self-intersection checks; all 28 element pairs have no positive overlap above the audit tolerance. The iris intersects no glass, with minimum full-solid clearance approximately 0.1265705 mm. Independent exact spherical-cap and straight-bevel material-path tests support this modeled solid convention, not undocumented factory edge machining.
+## Sources and References
 
-## Verification Summary
-
-The following results belong to the frozen private numerical and geometric validation checkpoint. They are not a production-lens measurement, an exact factory-identification result or a substitute for separate application acceptance.
-
-- The unchanged source prescription computes EFL 24.9849355674 mm and Gaussian BFL 13.9942746904 mm at the 0.25 scale. Source f/1 and the printed 14 mm image distance are retained.
-- The adopted 16 mm cinema format has a 12.7 mm diagonal and 6.35 mm corner. This is a diagnostic field assumption, not a patent-published usable image circle or a confirmed M1 performance boundary.
-- Eighteen native MTF cases cover f/1 through f/16 at both reference-index and estimated-photopic settings. Eleven true image-height fractions per case give 198 fields, each converged through 50 lp/mm at the 10, 30 and 50 lp/mm samples, with maximum grid 256. Every applied focus shift is zero.
-- These MTF grids record no failed, unaimed or unresolved in-beam rays and no unknown flux. The convergence result applies to the adopted model and sampling tolerance, not to the accuracy of the source-to-product attribution.
-- A separate 75-case reference-index pupil sweep covers five apertures, three grid sizes and five angle fractions. Its angle fractions are not the MTF matrix's image-height fractions. At f/1 and grid 128, the sampled geometric transmitted fraction falls from 1.0000 on axis to 0.52606 at the diagnostic edge; edge clipping is retained, not hidden by enlarged apertures. These are pupil diagnostics, not irradiance, T-stop or product transmission measurements.
-- An independently implemented reference-index tracer tested 1,685 vector launches, including deliberately outside-stop controls. All 995 transmitted rays agreed with native paths to within 1.60 × 10⁻¹³ mm in shared position and had no wrong-material intervals in the independent full-solid audit.
-- Native `noBracket` results on 192 already physically rejected analytic extensions remain recorded. They are outside-cap controls or continuations after an aperture clip, not converted into optical successes. No unexplained native failures were found in that audit.
-- Six cases exercised the pre-existing production worker's message protocol in a Node VM and exactly matched the fresh native numerical results. This was not an actual browser Worker test. The private numerical checkpoint also included strict standalone compilation, but did not by itself constitute application registration, a whole-application build, SSR or browser acceptance.
-
-Independent ray/material agreement and native scalar-diffraction convergence are different claims. No independent diffraction/MTF implementation, measured production-lens MTF, factory glass identification or confirmed product field is supplied. Exact M1 correspondence, stop location, clear apertures, bevels and spectral dispersion retain the qualifications stated above.
-
-## Sources and Evidence
-
-1. [US 2,701,982, original three-page patent](https://patentimages.storage.googleapis.com/2f/75/dd/b76ccb73bc0f44/US2701982.pdf): the drawing, literal numerical prescription, inventor, dates, D-line statement and sole-example determination. The numerical table is on PDF page 2 and repeated in claim 4 on page 3. Original PDF SHA-256: `4d77506b226df82d14000a4473ab00357ce6ba65ff8e4170a668d320f55a0675`.
-2. [Grenier 1960 catalog, page 60](https://collection.click-clack.fr/media/posts/895/1960-Grenier-7.jpg), hosted in the [Click-Clack Angénieux historical collection](https://collection.click-clack.fr/angenieux-histoire-et-publicites/): contemporary reseller evidence for the M1 25 mm f/0.95 product, not an optical-section identification.
-3. [M42 Mount Spiral, Angénieux articles](https://spiral-m42.blogspot.com/search/label/Angenieux): the M1 article dated January 4, 2023 explicitly cites US2701982. Its attribution is secondary evidence; no third-party numerical geometry is used.
-4. [Angénieux space history](https://www.angenieux.com/our-story/angenieux-space/): manufacturer historical context for 25 mm f/0.95 lenses, not the numerical source for this model.
-5. The accompanying private research checkpoint retains the original source table, inferred-geometry measurements, staged gap allowance checks, full-solid audits, 198-field MTF matrix, 75-case pupil sweep, independent launches and material-path results. These reproducible numerical records support the limited validation claims above; they do not upgrade secondary product attribution to factory identity.
+1. [US 2,701,982](https://patentimages.storage.googleapis.com/2f/75/dd/b76ccb73bc0f44/US2701982.pdf), Large Aperture Six Component Optical Objective: description, numerical table (page 2), claims 1–4 and the drawing.
+2. [M42 Mount Spiral, "P.Angénieux 25mm F0.95"](https://spiral-m42.blogspot.com/2020/06/pangenieux-25mm-f095.html): Bell & Howell – Angénieux Type M1 1 inch f/0.95; C mount, 16 mm format, 8 elements in 6 groups, 1953 design, f/0.95–f/22, close focus about 0.45 m, Ranger 7; lists US 2,701,982 among its references.
+3. [Science Museum Group, Angenieux Type M1 lens](https://collection.sciencemuseumgroup.org.uk/objects/co8235109/angenieux-type-m1-lens), object 1990-5036/4855: F 25 mm f/0.95, helical focusing to 18 in.
+4. [Film and Digital Times, "50 Years Ago Today: Ranger 7"](https://www.fdtimes.com/2014/07/31/50-years-ago-today-ranger-7/), July 31, 2014: Ranger 7 pictures made with Angénieux 25 mm f/0.95 M1 lenses.
+5. [Grenier 1960 catalog, page 60](https://collection.click-clack.fr/media/posts/895/1960-Grenier-7.jpg), in the [Click-Clack Angénieux historical collection](https://collection.click-clack.fr/angenieux-histoire-et-publicites/): lists the M1 25 mm f/0.95; no optical section.
+6. [Angénieux, space history](https://www.angenieux.com/our-story/angenieux-space/): manufacturer account of the 25 mm f/0.95 lenses on the Ranger missions.
