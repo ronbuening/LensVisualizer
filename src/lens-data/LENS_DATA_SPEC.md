@@ -172,6 +172,10 @@ export default LENS_DATA;
 `name` is the user-facing lens title used in the lens picker, page headings, SEO metadata and generated catalog
 views. Keep it normalized even when the product's official styling varies by source:
 
+For a historical numerical reconstruction whose focal/aperture ratings remain unresolved, identify the patent
+example in the title instead of combining computed focal length with an unverified source f-number. Keep the literal
+source ratings and computed behavior explicitly distinguished in the specs and source notes.
+
 - Start with the public-facing manufacturer in all caps, e.g. `CANON`, `FUJIFILM`, `NIKON`, `CARL ZEISS` or
   `VOIGTLÄNDER`. Keep `maker` as the canonical maker-page value even when it is more specific than the display prefix.
 - Put lens branding or optical line names after the manufacturer, also in all caps: `NIKON NIKKOR`,
