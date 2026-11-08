@@ -17,14 +17,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * d-line values without conversion. Only L6 (1.6204 / 60.2) matches a catalog glass to the printed precision
  * (J-SK16); the other seven elements use Abbe-number dispersion estimates.
  *
- * Stop: the patent drawing (Fig. 1, its only figure) puts the diaphragm in e7, but the table gives neither
- * its position nor its diameter. STO is placed at 0.60 of e7 from R7 (4.599 mm + 3.066 mm of the scaled
- * 7.665 mm gap); Fig. 1 measures about 0.59. The stop radius is derived from the design f/1.
+ * Stop: the patent's single, unnumbered drawing puts the diaphragm in e7, but the table gives neither its
+ * position nor its diameter. STO is placed at 0.60 of e7 from R7 (4.599 mm + 3.066 mm of the scaled
+ * 7.665 mm gap); the drawing measures about 0.59. The stop radius is derived from the design f/1.
  *
- * Semi-diameters: not printed. They are inferred, pass the full f/1 axial beam and agree with the Fig. 1
- * outline within about 0.5 mm (L7: 9.45 mm against about 9.0 mm drawn). Surfaces 5, 10 and 11 are sized to
- * the f/1 axial beam with almost no margin. The deep R7 and R8 caps fill 93.8 % of the central air space at
- * their shared rim height (0.48 mm of air remains), so checks.gapSagFrac is 0.94.
+ * Semi-diameters: not printed. They are inferred, pass the full f/1 axial beam and agree with the drawing
+ * within about 0.5 mm. Every air-facing rim from surface 5 to 13 lies within 0.025 mm of that beam (5, 10
+ * and 11 within 0.005 mm), so none can follow the drawing where it draws a rim up to 6 % smaller: L7 (9.45 mm against about
+ * 8.95 mm drawn) stands 0.43 mm above L8, which the drawing shows level with it. The deep R7 and R8 caps fill
+ * 93.8 % of the central air space at their shared rim height (0.48 mm of air remains), so checks.gapSagFrac
+ * is 0.94, the smallest value that draws both caps untrimmed.
  *
  * Focus: the patent prints the infinity state only; no focus travel is modeled. The marketed f/0.95 is the
  * production rating of the same design, which the patent states as 1:1.

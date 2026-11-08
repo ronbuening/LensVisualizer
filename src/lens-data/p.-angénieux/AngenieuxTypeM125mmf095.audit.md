@@ -103,6 +103,88 @@ construction, secondary citation); there is no other example to choose from.
   lists no undersized surface, and field coverage is 100 % at the 6.35 mm corner.
 
 Open: the production prescription, glass, stop and clear apertures are unpublished. The M42 Mount Spiral section was
-not compared element by element with the patent drawing. The Angénieux space-history page could not be re-read
+not compared element by element with the patent drawing. (Closed 2026-11-08: it has the drawing's elements, cemented
+pairs and relative rim heights; see the second review below.) The Angénieux space-history page could not be re-read
 (certificate error) and the Grenier 1960 page was not re-viewed in this pass. The model's aperture settings stop at f/16
 against the marketed f/22.
+
+## 2026-11-08 — Second review: diagram, labels and movement
+
+Compared: the live page at infinity, at the closest-focus slider end and with the movement overlay, against the patent's
+single, unnumbered drawing on page 1 (native 300 dpi raster), the table on page 2 and the M42 Mount Spiral section.
+
+**Scale.** The dash-dot axis lies on row 1752 ± 1 px across the figure. The R1 and R14 vertices are 1024.5 px apart
+against 31.6675 mm, or 32.35 px/mm; the R5 and R10 to R14 vertices fall within 0.7 % of that scale, while the drawing
+makes e7 about 3.5 % short and D2 about 4.5 % long. Circle fits to the R7 and R8 arcs (rms under 0.4 px) give 31.8 to 32.1 px/mm
+across the axis, so the drawing is isotropic within about 1 %, and the readings below use 32.0 to 32.35 px/mm. Each
+rim is the mean of the upper and lower outer stroke edges.
+
+| Rim | Drawn | Reading | Model `sd` | f/1 axial beam |
+| --- | --- | --- | --- | --- |
+| L1 (S1, S2) | 461 px | 14.25–14.40 mm | 14.125 mm | 13.17 mm |
+| L2 (S3, S4) | 423.5 px | 13.09–13.23 mm | 13.025 mm | 12.55 mm |
+| D1 edge (S5, S6) | 345.5 px | 10.68–10.80 mm | 10.9 mm | 10.900 mm |
+| R7 (S7) | 224.5 px | 6.94–7.02 mm | 7.175 mm | 7.162 mm |
+| Iris tick | 220.5 px | 6.82–6.89 mm | stop 7.126 mm | — |
+| R8 (S8) | 217.5 px | 6.72–6.80 mm | 7.125 mm | 7.107 mm |
+| D2 edge (S9, S10) | 298.25 px | 9.22–9.32 mm | 9.325 mm | 9.323 mm |
+| L7 (S11, S12) | 288.5 px | 8.92–9.02 mm | 9.45 mm | 9.445 mm |
+| L8 (S13, S14) | 287 px | 8.87–8.97 mm | 9.025 mm | 9.001 mm |
+
+**Rims.** No rim differs from its reading by 10 %; the largest gaps are R8 and L7, 5–6 % above the drawing. Every air-facing
+face from S5 to S13 lies within 0.025 mm of the real f/1 axial ray through the 7.126 mm stop, so none can come down to the
+drawing, and L1 and L2 read 1–2 % above the model, inside the reading error. The drawing's step order is L1 > L2 > D1 >
+D2 > L7 = L8, with L7 0.05 mm above L8 and D2 0.30 mm above L7. The model has L7 0.125 mm above D2 and 0.425 mm above L8.
+The rim out of order is L7, held at the beam (0.005 mm margin at S11). Restoring the drawn order would mean raising L8 to
+9.45 mm and D2 to about 9.75 mm, 5–6 % above their own readings, which already lie below the stored values, so neither
+raise has figure support and none was made. The drawn edge shapes match the model: L1, L2, L7 and L8 end both faces
+together, D1 runs flat across the cement and bevels straight down to the R7 rim, and D2 runs flat across L6. The one
+shape the outline cannot follow is L5's front corner: the drawing bevels at about 45° from the R8 rim to the full edge
+height near 19.6 mm from R1 and runs a short cylinder back to the cement, while the straight rim join from R8 to R9 leaves
+up to 0.8 mm less glass there. Only a land would add it, and the drawing shows a bevel, not a land. Laid over the
+drawing at 32.35 by 32.1 px/mm, the model outline follows every drawn arc.
+
+**Lands and cuts.** There are none: the file has no `rimExtensionSd` or `rimCutDepthMm`, and every `sd` equals its
+package value. The full-pupil transmission at f/1 is 100.0, 95.1, 89.6, 83.0, 74.5, 64.1 and 52.6 % at 0, 2.4, 4.8, 7.2,
+9.6, 12.0 and 14.4° for both the package and the final rims; worst loss 0.0 points.
+
+**Gap allowance.** The surface validator does not measure across the stop, so it passes this file at any
+`checks.gapSagFrac`. The renderer treats e7 as one 7.665 mm gap, into which the two caps reach 7.189 mm at the shared
+7.125 mm rim (0.9379). At 0.93 it would draw both caps cut to about 7.10 mm; 0.94 is the smallest two-decimal value
+that draws them whole, and it stays.
+
+**M42 Mount Spiral section.** Viewed through the blogger image URL in the validator report; nothing was saved in the repo. It shows
+eight elements in six groups with the same two cemented pairs, the stop between R7 and R8, L5's bevel and flat edge, and
+L7 and L8 at one height. Scaled on the R1 to R14 length (about 19.9 px/mm), its rims read L1 14.3, L2 13.3, D1 10.65,
+R7 7.1, iris 6.95, R8 6.8, D2 9.25, L7 8.95 and L8 8.95 mm, within about 0.2 mm of the patent drawing throughout. It
+follows the patent drawing and adds no independent evidence of the production rims.
+
+**Found correct.** Names L1 to L8 are sequential; the patent numbers only radii (R1–R14), spacings (e1–e13) and the six
+components. Types follow the signs of R: L1 to L3 positive menisci convex to the object (R1, R2, R3, R4, R5, R6 all
+positive), L4 a negative meniscus (R6 +637.8, R7 +8.10), L5 biconcave (R8 −10.105, R9 +48.245), L6 to L8 biconvex. The
+stored focal lengths equal the isolated thick-lens values (+85.08, +67.71, +21.40, −12.15, −11.89, +18.16, +37.89 and
++34.35 mm), and the roles are true. Doublet brackets D1 (S5–S7) and D2 (S8–S10) match the patent's cemented third and
+fourth components and the elements' `cemented` names; the lens has no gap labels and the patent calls its spacings e,
+so they do not clash. The patent names no groups, and the file has none. It marks no asphere and names no glass or
+special glass, and the file has no aspheric surface and no `apd` tag. The stop sits in e7 between L4 and L5. The
+inspector shows L4 as Negative Meniscus, FL −12.15 mm, Unmatched dense flint in D1, and L6 as Biconvex Positive, FL
++18.16 mm, J-SK16 in D2.
+
+**Movement.** The lens is static: `gaps` is empty, the focus description says the infinity prescription is the only
+state, the movement overlay reads "no modeled focus or zoom group movement" over six groups, the focus slider's far end
+reads "Not modeled", and the closest-focus view matches infinity.
+
+**Colour and glass.** The patent prints no aberration curves, so there is nothing to compare by line; on-axis LSA from
+the paraxial focus is −0.024, −0.078, −0.070 and −0.041 mm at pupil 1, 0.85, 0.7 and 0.5. The seven Unmatched elements
+have only nD and ν in the page 2 table and its claim 4 repeat on page 3: no glass name, no other line and no partial
+dispersion. The patent has one example. Within it 1.6751 / 32.3 serves L1 and L4 and 1.6913 / 53.8 serves L3, L7 and
+L8, which reads as stocked glass rather than floated values. The 1.6913 / 53.8 coordinate lies in the lanthanum-crown
+field (LaK9 1.691 / 54.7), not among the dense crowns its label names; the label was not changed.
+
+Engine values are unchanged: EFL 24.985 mm, f/1.000, stop radius 7.126 mm and half-field 20.756°. Field coverage is
+100 % at the 6.35 mm corner and the corner chief ray clears every rim. Text: the header's semi-diameter note now gives the
+beam margins, the L7 step and the reason for 0.94; the analysis gains the L7 and L8 heights, 53 % corner light and the
+M42 Mount Spiral comparison.
+
+Open: the drawing shows L7 level with L8 and 0.3 mm below D2; with the inferred f/1 stop the beam holds L7 at 9.45 mm,
+so the model draws L7 above both. A smaller or moved stop would settle it, but neither is printed.
