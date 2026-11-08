@@ -28,8 +28,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 0.96 admits that pair. FIG. 3 steps L16 (9.1 mm) below L17 (9.8 mm) at their cemented face, which one
  * semi-diameter cannot draw; both stay square at 9.7 mm. These rims vignette the wide-open corners heavily, and at
  * 0.5 m at tele L9's front rim also clips the axial beam.
- * Glass: d-line. Fifteen elements carry HOYA catalog equivalents that match the printed nd and νd; the three
- * aspherical elements (L9, L13, L15) match no catalog glass and stay Unmatched.
+ * Glass: d-line. Fifteen elements carry HOYA catalog equivalents that match the printed nd and νd. The three
+ * aspherical elements print indices 0.0019–0.0026 below HOYA moulding glasses with the same νd (within 0.1):
+ * L9 M-BACD5N, L13 M-LAC130, L15 M-BACD12. They take those dispersion curves while the trace keeps the printed nd;
+ * the offset is consistent with post-moulding indices, which the patent does not state.
  * Source inconsistencies: the US family member US 2012/0154913 A1 prints η15 = 1.53123 for this example's L15. EP
  * prints 1.58123, as do EP Examples 1 and 3 for the same lens. With 1.53123 the EFL becomes 20.94 / 88.33 / 259.88 mm
  * and the image falls 4.4–24.8 mm behind the printed image plane, so the US value is a misprint and the EP value is
@@ -174,7 +176,7 @@ const LENS_DATA = {
       nd: 1.58673,
       vd: 61.3,
       focalLengthMm: 36.98,
-      glass: "Unmatched (nd 1.58673, νd 61.3; no catalog glass with these values)",
+      glass: "M-BACD5N (HOYA moulding glass; nearest catalog row to patent nd 1.58673, νd 61.3; supplier unconfirmed)",
       role: "Single-element focusing group behind the stop; moves toward the image for close focus.",
     },
     {
@@ -223,7 +225,7 @@ const LENS_DATA = {
       nd: 1.6909,
       vd: 53.3,
       focalLengthMm: -15.03,
-      glass: "Unmatched (nd 1.69090, νd 53.3; no catalog glass with these values)",
+      glass: "M-LAC130 (HOYA moulding glass; nearest catalog row to patent nd 1.69090, νd 53.3; supplier unconfirmed)",
       role: "Negative element of the OIS doublet, aspherical on its front face.",
       cemented: "C2",
     },
@@ -247,7 +249,7 @@ const LENS_DATA = {
       nd: 1.58123,
       vd: 59.5,
       focalLengthMm: 31.01,
-      glass: "Unmatched (nd 1.58123, νd 59.5; no catalog glass with these values)",
+      glass: "M-BACD12 (HOYA moulding glass; nearest catalog row to patent nd 1.58123, νd 59.5; supplier unconfirmed)",
       role: "Positive element at the front of G4, aspherical on its rear face.",
     },
     {

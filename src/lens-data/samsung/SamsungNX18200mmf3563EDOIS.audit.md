@@ -46,3 +46,13 @@
 - Glass: L9 (1.58673/61.3), L13 (1.69090/53.3) and L15 (1.58123/59.5) stay Unmatched. The EP prints only nd and νd for them, no glass name or partial dispersion; each pair recurs in Example 1 (p. 14) and Example 3 (pp. 18–19), so they are real glasses, not floated values.
 - Open: at 0.5 m at tele the beam that fills the wide-open stop reaches 9.9 mm on L9's front face, against the 8.5 mm rim (FIG. 3 draws 8.6 mm). With the real object 71 % of it passes (the app's parallel-beam near state passes 82 %). The patent prints no close-focus F-number or diameters, so the rims stay with the figure.
 - Open: at interpolated zoom fractions 0.75 and 0.875, between the middle and tele stations, the rims behind the stop clip the on-axis beam to 88.4 % of the interpolated wide-open stop; this belongs with the mid-zoom interpolation item above.
+
+## 2026-11-08 — Glass backfill
+
+The three aspherical elements, Unmatched until now, print indices just below HOYA moulding glasses with the same Abbe
+number: L9 1.58673 / 61.3 against M-BACD5N 1.58913 / 61.25, L13 1.69090 / 53.3 against M-LAC130 1.69350 / 53.20, and
+L15 1.58123 / 59.5 against M-BACD12 1.58313 / 59.46. The offsets (0.0024, 0.0026, 0.0019) are consistent with indices
+quoted after moulding, and the fifteen spherical elements all match HOYA rows to five decimals, so the labels name
+these rows as nearest catalog rows and take their dispersion curves while the trace keeps the printed nd. Each pair
+recurs in Examples 1 and 3. The second review found the Unmatched trace within 0.02–0.03 mm of the colour plots; the
+borrowed curves change νd by at most 0.1.

@@ -89,7 +89,7 @@ A weak meniscus concave toward the object (¶0129), 1.00 mm ahead of the stop an
 
 ### L9 — Biconvex Positive (1× Asph)
 
-nd = 1.58673, νd = 61.3. Glass: Unmatched (no catalog glass with these values). f = +36.98 mm.
+nd = 1.58673, νd = 61.3. Glass: M-BACD5N (HOYA moulding glass), nearest catalog row. f = +36.98 mm.
 
 The whole focusing group: a single element of 3.20 mm centre thickness with an aspherical rear face (surface 18A), whose positive power weakens away from the axis (¶0134). It moves toward the image to focus closer (¶0147). Its focal length relative to the tele focal length, f3a/ft = 0.190, matches Table 1.
 
@@ -103,14 +103,14 @@ The second part group (combined f = +48.01 mm). Its two cemented surfaces (¶013
 
 ### L13 / L14 — Cemented Doublet C2, Stabilizing Group (Biconcave Negative (1× Asph) + Positive Meniscus)
 
-- **L13:** nd = 1.69090, νd = 53.3. Glass: Unmatched (no catalog glass with these values). f = −15.03 mm.
+- **L13:** nd = 1.69090, νd = 53.3. Glass: M-LAC130 (HOYA moulding glass), nearest catalog row. f = −15.03 mm.
 - **L14:** nd = 1.72825, νd = 28.3. Glass: E-FD10 (HOYA) catalog equivalent. f = +29.01 mm.
 
 The third part group (combined f = −28.57 mm) moves perpendicular to the axis to stabilize the image (¶0148). It is achromatized as a negative group, with the higher-dispersion glass in the positive element, so that a decentred doublet adds little lateral colour. The front face of L13 (surface 23A) is aspherical, with negative power that weakens away from the axis (¶0136).
 
 ### L15 — Biconvex Positive (1× Asph)
 
-nd = 1.58123, νd = 59.5. Glass: Unmatched (no catalog glass with these values). f = +31.01 mm.
+nd = 1.58123, νd = 59.5. Glass: M-BACD12 (HOYA moulding glass), nearest catalog row. f = +31.01 mm.
 
 The first element of G4, with an aspherical rear face (surface 27A) whose positive power weakens away from the axis (¶0138). This is the element whose index the US publication misprints.
 
@@ -138,14 +138,14 @@ The last element. With it, the model's exit pupil lies 63, 86 and 92 mm ahead of
 | L6, L11     | FDS90 (HOYA)               | 1.84666 | 23.8 | Dense flints                           |
 | L7          | TAF3D (HOYA)               | 1.80420 | 46.5 | Lanthanum negative                     |
 | L8          | LAF2 (HOYA)                | 1.74400 | 44.9 | Weak meniscus ahead of the stop        |
-| L9          | Unmatched                  | 1.58673 | 61.3 | Aspherical focusing element            |
+| L9          | M-BACD5N (HOYA), nearest   | 1.58673 | 61.3 | Aspherical focusing element            |
 | L12, L16    | E-CF6 (HOYA)               | 1.51742 | 52.2 | Crowns of the cemented groups          |
-| L13         | Unmatched                  | 1.69090 | 53.3 | Aspherical negative of the stabilizer  |
+| L13         | M-LAC130 (HOYA), nearest   | 1.69090 | 53.3 | Aspherical negative of the stabilizer  |
 | L14         | E-FD10 (HOYA)              | 1.72825 | 28.3 | Flint of the stabilizer                |
-| L15         | Unmatched                  | 1.58123 | 59.5 | Aspherical positive at the front of G4 |
+| L15         | M-BACD12 (HOYA), nearest   | 1.58123 | 59.5 | Aspherical positive at the front of G4 |
 | L18         | E-FL5 (HOYA)               | 1.58144 | 40.9 | Last positive element                  |
 
-Every matched name reproduces the printed nd to five decimals and νd within 0.05, so the chromatic trace uses the catalog dispersion curves for fifteen elements. The three aspherical elements (L9, L13, L15) match no catalog glass at the printed precision; they are probably moulding glasses and are traced with an Abbe-number estimate. The patent does not say which elements are ED. The two νd 81.6 elements are tagged as inferred ED positions because no other glass in the example is a low-dispersion crown.
+Every matched name reproduces the printed nd to five decimals and νd within 0.05, so the chromatic trace uses the catalog dispersion curves for fifteen elements. The three aspherical elements (L9, L13, L15) print indices 0.0019–0.0026 below HOYA's moulding glasses M-BACD5N (1.58913 / 61.25), M-LAC130 (1.69350 / 53.20) and M-BACD12 (1.58313 / 59.46) with Abbe numbers within 0.1, the pattern of indices quoted after moulding. They take those catalog dispersion curves while the trace keeps the printed nd; the pairs recur unchanged in Examples 1 and 3. The patent does not say which elements are ED. The two νd 81.6 elements are tagged as inferred ED positions because no other glass in the example is a low-dispersion crown.
 
 Colour is corrected group by group: the ED/flint doublet in G1, the flint L6 inside G2, the ED/flint triplet in G3 and the negative achromat that stabilizes. The patent's aberration plots use 546.1 nm as the reference line and add 656.3, 587.6, 486.1 and 435.8 nm (¶0195).
 
