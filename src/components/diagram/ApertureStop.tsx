@@ -2,10 +2,17 @@
  * ApertureStop — Renders the aperture stop blades and STO label in the SVG diagram.
  *
  * Drawn as two thick lines (top and bottom) from the physical housing edge
- * inward to the current aperture opening, plus the "STO" label above.
+ * inward to the current aperture opening, plus the "STO" label above. The label
+ * rises clear of a rim land on a face beside the stop when the land would reach it.
  */
 import { memo } from "react";
+import type { StopSideRimLand } from "../../optics/diagramGeometry.js";
 import type { Theme } from "../../types/theme.js";
+
+/** Half the drawn width of the "STO" label in SVG px: three capitals at 9.5 px with 0.1 em tracking. */
+const STO_LABEL_HALF_WIDTH = 11;
+/** Space kept between the label and a neighbouring rim land, in SVG px. */
+const STO_LABEL_CLEARANCE = 4;
 
 interface ApertureStopProps {
   sx: (z: number) => number;
@@ -15,6 +22,8 @@ interface ApertureStopProps {
   stopHousingSD: number;
   currentPhysStopSD: number;
   innerBlockedSD?: number;
+  /** Rim-extension lands on the faces beside the stop; see `stopSideRimLands`. */
+  sideLands?: readonly StopSideRimLand[];
   bladeStubFrac: number;
   lyStoPad: number;
   pointTransform?: (z: number, y: number) => [number, number];
@@ -29,6 +38,7 @@ const ApertureStop = memo(function ApertureStop({
   stopHousingSD,
   currentPhysStopSD,
   innerBlockedSD,
+  sideLands = [],
   bladeStubFrac,
   lyStoPad,
   pointTransform,
@@ -50,6 +60,12 @@ const ApertureStop = memo(function ApertureStop({
   const centralTop = screenPoint(stopZ, -centralBlocked);
   const centralBottom = screenPoint(stopZ, centralBlocked);
   const label = screenPoint(stopZ, -stopHousingSD - lyStoPad);
+  /* A land whose plane falls under the label and whose top reaches its baseline lifts the label above its corner. */
+  const labelY = sideLands.reduce((y, land) => {
+    const [landX, landTopY] = screenPoint(land.z, -land.outerSD);
+    if (Math.abs(landX - label[0]) >= STO_LABEL_HALF_WIDTH + STO_LABEL_CLEARANCE) return y;
+    return Math.min(y, landTopY - STO_LABEL_CLEARANCE);
+  }, label[1]);
 
   return (
     <>
@@ -84,7 +100,7 @@ const ApertureStop = memo(function ApertureStop({
       )}
       <text
         x={label[0]}
-        y={label[1]}
+        y={labelY}
         textAnchor="middle"
         fill={t.stopLabel}
         fontSize={9.5}
