@@ -10,9 +10,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * as printed. The table itself traces to EFL 99.974 at F = 100, so the model's EFL is 23.994 mm; nothing has been
  * refitted to remove the difference. r16 = 34680.0 (8323.2 mm here) stays a curved surface.
  *
- * The association with the SMC Pentax 24mm f/2.8 (K mount, 1977) is plausible to moderate. The patent's 9 elements in
- * 8 groups, 1:2.8 and 42° half field match the lens's 9/8, f/2.8 and 84°, and the Japanese priority (May 1974) comes
- * before its release. No Pentax cross-section was found to compare shapes. It is not a confirmed factory prescription.
+ * The association with the SMC Pentax 24mm f/2.8 (K mount, 1977) is probable. The patent's 9 elements in 8 groups,
+ * 1:2.8 and 42° half field match the lens's 9/8, f/2.8 and 84°, and the Japanese priority (May 1974) comes before its
+ * release. Pentax's section drawings of the SMC Pentax 24mm f/2.8 (Asahi Pentax lens brochure, p. 3) and the SMC
+ * Pentax-A 24mm f/2.8 (SMC PENTAX-A lens manual, printed p. 36) draw the same nine elements in Fig. 1's order, every
+ * vertex within 1.6 mm of the scaled table. It is not a confirmed factory prescription.
  *
  * The patent prints no back focus beyond "about 1.6 times" the focal length. The image plane is the paraxial back focus
  * of the scaled table: 39.981 mm behind r17 (166.588 at F = 100, or 1.666 F), 86.877 mm from the first vertex.
@@ -20,7 +22,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent prints no stop position, Fig. 1 draws no iris and the text never mentions one. The stop sits in the
  * 4.44 mm air space d9 between L5 and L6, 3.33 mm behind r9 and 1.11 mm ahead of r10, three quarters of the way across
  * the gap; that placement is a modelling choice made for chief-ray clearance. Fig. 2(c) favours the rear half of d9: a
- * stop at r9 would give −4.4 % distortion at 42°, against about −2.1 % plotted. Its radius follows from F/2.8.
+ * stop at r9 would give −4.4 % distortion at 42°, against about −2.1 % plotted. Its radius follows from F/2.8. Pentax's
+ * SMC Pentax-A drawing marks the iris elsewhere: in d11, between L6 and L7, about 1 mm behind r11.
  *
  * Clear apertures are not printed. All `sd` values are read from Fig. 1 at 19.1 px/mm (the 46.896 mm vertex span) and
  * checked against the F/2.8 axial beam and the corner chief ray. Rims the figure bevels are stepped: r2 17.2 mm behind

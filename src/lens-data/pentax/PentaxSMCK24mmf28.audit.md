@@ -65,9 +65,9 @@ Checks after the edits: the surface audit reports no validation errors; the aper
 
 Closed 2026-11-08 (second review below): every rim was measured on Fig. 1; L7 to L9 were narrowed as far as the light rule allows and now stand at most 0.6 mm wider than drawn.
 
-Open: no maker cross-section has been compared. The Asahi Pentax lens brochure cited for the 18mm f/3.5 (cameramanuals.org) may hold a 24mm f/2.8 section; the package notes placed one on its p. 3 and the specification table on p. 11. A comparison would firm up or weaken the association.
+Closed 2026-11-08 (third review below): the brochure's p. 3 section of the SMC Pentax 24mm f/2.8 and the SMC PENTAX-A manual's section of the Pentax-A version were compared; both match Fig. 1's arrangement, and the association is now rated probable.
 
-Open: the stop position is inferred. A Pentax drawing showing the iris would settle it.
+Open: the stop position is inferred. The SMC PENTAX-A manual's drawing marks the iris in d11, between L6 and L7; the model keeps it in d9 (third review below).
 
 ## 2026-11-08 — Second review: diagram, labels and movement
 
@@ -105,3 +105,17 @@ Stop. The patent text never mentions a stop or diaphragm, and Fig. 1 draws none.
 Glass: all nine labels resolve to compatible catalog rows (largest Δνd 0.24, L8's C12); none is `Unmatched`.
 
 Open: Fig. 2(d)'s astigmatism is not reproduced at any stop position in d9 (32°: model −0.13 sagittal and +0.22 tangential against about −0.79 for both, at F = 100). The prescription matches the table and the other three plots; the plot may rest on another chief-ray convention or design state.
+
+## 2026-11-08 — Third review: diagram, labels and movement
+
+Compared: the live page (infinity, both movement overlays, all nine inspectors) and the model outline against Fig. 1 (PDF p. 2, native 300 dpi), and Pentax's section drawings of the SMC Pentax 24mm f/2.8 (Asahi Pentax lens brochure, p. 3) and the SMC Pentax-A 24mm f/2.8 (SMC PENTAX-A manual, printed p. 36, PDF p. 39). Fig. 1's scale was proved again: 15 vertex crossings fit 19.13 px/mm (residuals ≤ 6.4 px), and the drawn sags of r1 and r15 at their rims come within 4 % and 7 % of what their radii give at that scale, so heights are read at the axial scale. The overlay is `r3/pentax24/overlay.png` in the review scratch folder. No rim, label, tag or movement field changed. Second-review land and cut verdicts re-measured: unchanged; worst loss 2.9 points at 36°.
+
+r15 and the engine half-field. Fig. 1 draws r15 at 8.60 mm above the axis and 8.86 below (L7 7.58, L8 front 7.80, L9 10.05), and the drawn r15 arc's sag puts its rim at 8.3 to 8.6 mm. The engine's paraxial chief-ray estimate stops `tracingHalfField` at 37.99° on r15; 41.3° needs r15 = 9.9 mm with L9 ≥ 10.8 mm, and r15 = 9.6 mm (10 % over the drawing) gives 40.4°. No figure-supported rim set passes 41°, so the rims stay. The real 42.8° chief ray crosses r15 at 8.01 mm.
+
+Maker drawings. Least-squares fits of the drawn vertices to the scaled table give 5.85 px/mm (brochure, 15 crossings) and 5.44 px/mm (A manual, 14), with every residual within 1.6 mm, the largest at L1's rear face and the C1 faces. Both drawings show L1 thinner (3.1 and 3.6 mm against 4.61) and L2 thicker (2.7 and 2.85 mm against 1.46) on the axis. Scaled to Fig. 1's L1, the brochure draws L3 at 10.9 mm and L6 at 8.7 against 9.7 and 7.55 in Fig. 1, and L2, L7 and L9 within 3 %. Fig. 1 governs the rims.
+
+Stop. The brochure marks no iris. The A manual draws a line across the barrel between L6 and L7, 34.29 mm behind r1 on the fitted scale: inside d11 (2.568 mm), 0.9 mm behind the drawn r11 and 1.24 mm behind the scaled one. Against Fig. 2 at F = 100 (10° to 41°), a stop 0.9 mm into d11 matches distortion as well as the file's (RMS 0.27 % for both) and the sagittal curve better (RMS 0.47 against 1.07; tangential 0.89 against 0.79); at 20° it gives −0.56 and −0.49 against about −0.47 and −0.34 plotted (file −0.32 and +0.11). Moving the stop changes `d`, outside this pass. A trial (r9 d 4.44, r11 d 0.9, stop d 1.668) passes the surface and aperture audits, with a 6.60 mm stop radius and 99.8, 78.6 and 51.4 % transmission at 21°, 36° and 42° (file 88.8, 68.2 and 50.6 %). There, the r9 cut would cost 5.3 points at 27° against the baseline rims; r9 = 7.0 mm brings the worst loss to 2.4 points (2.7 with the stop 1.24 mm into d11). `tracingHalfField` would fall to 34.3°, the paraxial limit at r4, which the rim-slope limit holds at 9.4 mm, although the real 42° chief ray crosses r4 at 9.02 mm. L5's and L6's roles name the stop.
+
+Labels, tags and movement re-checked on the page: the nine inspectors show the names, types, focal lengths, glass and roles the second review lists; C1 brackets surfaces 5 to 7, FRONT 1 to 9 and REAR 10 to 17; the stop is drawn between L5 and L6; the focus slider reads "Not modeled" and both overlays report no movement. All nine glass labels resolve (largest Δνd 0.24, L8); the patent prints only nd and νd. Fig. 2(b) re-read: g-line paraxial focus −0.26 against −0.29 in the model, and g − d at half pupil −0.07 against −0.20 (F = 100).
+
+Open: `tracingHalfField` is 37.99°, so off-axis analyses stop short of the patent's 42°; the limit is the engine's paraxial chief-ray estimate at r15, not a rim the real chief ray meets.
