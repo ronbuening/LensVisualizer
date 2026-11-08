@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-11-08",
     type: "lens",
     summary:
+      "Added the P. Angénieux Type M1 25mm f/0.95, Konica AiBORG 35-105mm zoom, KMZ Zenitar 35mm f/1 and 50mm f/0.95, and Nikon AF-S NIKKOR 50mm f/1.4 G",
+  },
+  {
+    date: "2026-11-08",
+    type: "lens",
+    summary:
       "Added the Canon EF 50mm f/2.5 Compact Macro, FL-F 300mm f/5.6 and FL-F 500mm f/5.6, Pentax DA 50mm f/1.8, Sigma 500mm f/4 Sports and Vivitar Series 1 90mm f/2.5 Macro",
   },
   {
