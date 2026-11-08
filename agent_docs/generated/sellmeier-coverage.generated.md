@@ -2070,7 +2070,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 9 | Cement layer | abbe | `Unmatched (1.51400/42.83)` | Explicit unmatched/proprietary annotation |
+| 9 | Cement layer | abbe | `Unmatched (patent cement layer; nd=1.51400, νd=42.83)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) - 88.9% trusted (8/9); 88.9% Sellmeier (8/9) - WO 2023/190222 A1
 
@@ -3311,10 +3311,10 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 3 | Element 2 | abbe | `Unmatched (patent nd=1.7441, νd=50.42; no catalog row at these coordinates)` | Explicit unmatched/proprietary annotation |
-| 9 | Element 5 | abbe | `Unmatched (patent nd=1.6131, νd=60.61; no catalog row at these coordinates)` | Explicit unmatched/proprietary annotation |
-| 11 | Element 6 | abbe | `Unmatched (patent nd=1.7441, νd=50.42; no catalog row at these coordinates)` | Explicit unmatched/proprietary annotation |
-| 13 | Element 7 | abbe | `Unmatched (patent nd=1.7441, νd=50.42; no catalog row at these coordinates)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (patent nd=1.7441, νd=50.42; GOST STK19 at the d line, not in the glass catalog)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 5 | abbe | `Unmatched (patent nd=1.6131, νd=60.61; GOST TK14 at the d line, not in the glass catalog)` | Explicit unmatched/proprietary annotation |
+| 11 | Element 6 | abbe | `Unmatched (patent nd=1.7441, νd=50.42; GOST STK19 at the d line, not in the glass catalog)` | Explicit unmatched/proprietary annotation |
+| 13 | Element 7 | abbe | `Unmatched (patent nd=1.7441, νd=50.42; GOST STK19 at the d line, not in the glass catalog)` | Explicit unmatched/proprietary annotation |
 
 ### [PANASONIC LUMIX G VARIO 12-32mm f/3.5-5.6 ASPH. MEGA O.I.S.](../../src/lens-data/panasonic/PanasonicLumixGVario1232mmf3556MegaOIS.data.ts) - 55.6% trusted (5/9); 55.6% Sellmeier (5/9) - US 2015/0097989 A1
 
