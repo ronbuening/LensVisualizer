@@ -87,3 +87,63 @@ Fields changed:
 
 Open: the production identity rests on correlation (no factory prescription; the patent was filed after launch). The
 patent states no spectral line, and the production focusing movement is unpublished.
+
+## 2026-11-08 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity (`focus=1` and both movement overlays show the same static state) against Fig. 1 of
+RU 2771147 C1 (p. 9), the patent's only drawing and the drawing of its sole example, rendered at the scan's native 382
+dpi. Fig. 1 numbers the nine lenses 1–9, brackets components I, II and III, marks the aperture diaphragm with ticks
+between lenses 6 and 7, and draws the image line. Scale along the axis: 15.96 px/mm from the vertex crossings of faces 1
+and 18 (1519 px over 95.2 mm); the other fifteen vertices fall within 0.25 mm. Scale across the axis: 15.58 px/mm from
+the image line, ±335 px for the printed 2y′ = 43 mm, confirmed by arc fits of faces 2, 9, 11 and 18 (15.45–15.72 px/mm).
+The scan is 2.4% narrower across the axis than along it and its axis line tilts 0.39°, so every height below is read
+from the local axis at the across-axis scale and is the mean of the two sides.
+
+Rims: every `sd` is half the printed clear diameter D of Table 1 (p. 7) and equals the baseline. Figure against file, in
+mm: face 1 28.8 / 29.0; face 2 curve end 23.2 / 22.95; L2 23.0 / 23.1 and 22.85; L3 23.3, drawn square / 22.45 and
+23.35; L4 25.0 / 25.0 and 25.1; face 9 21.35 / 21.45; cemented face 10 20.0 / 20.1; face 11 curve end 15.35 / 15.45;
+diaphragm tick 15.45 / printed 15.4 (the engine's 15.73 stop is untouched); L7 15.3 / 15.35 and 15.2; L8 14.2, drawn
+square / 14.2 and 13.25; L9 11.7, drawn square / 11.7 and 11.35. All agree within 4% except L8's rear face (7%), which
+is inside the 10% band with the drawn step order already right. The printed diameters stay and no `sd` changes.
+
+Lands: Fig. 1 draws two flat rear lands that the baseline rendered as slanted bevels. L1's rear curve ends at 22.9–23.5
+mm, and a vertical stroke 16.5–17.0 mm behind the front vertex (face 2's rim lies at 16.85 mm) rises to the 28.8 mm
+outer edge, which runs flat forward to the front rim. L6's rear curve ends at 15.2–15.5 mm, and a vertical stroke at
+70.85 mm (face 11's rim lies at 70.95 mm) rises to a flat 20.0 mm flange that runs forward to the cemented rim.
+`rimExtensionSd` draws each land at the height of the face it meets, so both elements are square as drawn. There are no
+cuts: no face ends below its baseline `sd`.
+
+| Face         | Kind | Figure reading                | Baseline          | Final                           | Light cost | Verdict                |
+| ------------ | ---- | ----------------------------- | ----------------- | ------------------------------- | ---------- | ---------------------- |
+| 2 (L1 rear)  | land | curve end 23.2, land to 28.8  | sd 22.95, no land | sd 22.95, `rimExtensionSd` 29.0 | 0.0 points | keep: slight (no cost) |
+| 11 (L6 rear) | land | curve end 15.35, land to 20.0 | sd 15.45, no land | sd 15.45, `rimExtensionSd` 20.1 | 0.0 points | keep: slight (no cost) |
+
+The final `rimcost.mjs` run against the baseline loses 0.0 points at every field from 0° to 30.8°: transmission stays
+95.7% on axis and 29.7% at 30.8°. Fig. 1 also draws L5 square back to the cemented plane with a step down to L6's
+flange; a land cannot sit on a cemented face, so L5's short slanted edge from 21.45 to 20.1 mm stays.
+
+Checked and found correct:
+
+- Labels: L1–L9 are the patent's lens numbers 1–9 (p. 6 and Fig. 1). The brackets I (faces 1–2), II (3–11) and III
+  (13–18) enclose the same lenses as Fig. 1, D1 (faces 9–11) is the one cemented pair, and the file has no gap labels
+  for it to clash with. Every type agrees with the radius signs. The stored thick-lens focal lengths equal the probe's
+  (−59.44, +84.66, −133.62, +54.41, +39.62, −23.48, +79.95, +53.57 and −84.51 mm; D1 −106.25 mm). The inspector shows L1
+  as a Negative Meniscus in QF3 at −59.44 mm and L6 as a Biconcave Negative in H-ZF6 at −23.48 mm, tagged DOUBLET D1.
+  Every role is true.
+- Stop and surfaces: STO is drawn between L6 and L7, 7.85 mm behind face 11, as Table 1 places the АД row. All faces are
+  spherical (claim 2; Table 1 prints no asphere), so no label carries an `A`. No `apd` tag: the patent names no special
+  glass and KMZ publishes no construction diagram.
+- Movement: none is modeled, and `focus.description` says so. `focus=1` changes nothing, the focus slider's far end
+  reads "Not modeled", and the movement overlay reports no modeled focus or zoom group movement.
+- Colour: the patent prints no spherical, chromatic, astigmatism or distortion curves, only the polychromatic MTF of
+  Fig. 2, so no line-by-line comparison is possible. The QF3 and H-ZF6 labels match the printed ν within 0.01. The
+  model's axial colour at 0.97 of the pupil spans 163 µm from C to F.
+- Unmatched glass: Table 1 (p. 7) prints only n and ν and claim 3 (p. 8) only ranges; the patent gives no glass name,
+  extra line index or partial dispersion. There is one example. The 1.6920 / 55.05 pair serves four elements, which
+  claim 3 ties together (n3 = n4 = n7 = n8), so it reads as one real melt; 1.6595 / 57.35 appears once, on L5.
+- Checks after the edit: the surface validator prints OK; the aperture audit finds no rim limit and traces F/1.0 within
+  3%; the image-circle audit lists nothing undersized; field coverage is 100%. The engine's half-field (28.10°),
+  f-number (F/1.000) and EFL (36.014 mm) are unchanged.
+
+Open: on the page, the STO label's first letter touches the top corner of L6's land, because the renderer centres the
+label on the stop 1.65 mm behind the land.

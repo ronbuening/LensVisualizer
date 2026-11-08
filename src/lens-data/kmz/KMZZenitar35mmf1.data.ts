@@ -18,7 +18,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * from the design F/1.0 instead: 15.73 mm, a 31.47 mm diameter.
  *
  * SEMI-DIAMETERS: the printed clear diameters D divided by two. The aperture audit finds no rim limit at F/1.0, so
- * no rim is changed.
+ * no rim is changed. Fig. 1 (p. 9; 15.96 px/mm along the axis, 15.58 px/mm across it at 382 dpi) agrees with the
+ * printed rims within 4% (L8's rear face 7%), and draws L1 and L6 with flat rear lands: L1's rear curve ends near
+ * 23 mm and a vertical stroke rises to the 29 mm front rim; L6's rear curve ends near 15.4 mm and rises to the 20 mm
+ * cemented rim. rimExtensionSd 29.0 on face 2 and 20.1 on face 11 draw those lands; they trace nothing and cost no
+ * light.
  *
  * IMAGE PLANE: the final spacing is the printed d18 = 17.3 mm against a paraxial back focus of 17.41 mm. This is not
  * a source error. The patent says the image forms in the plane of best setting, and the spherical aberration is
@@ -204,7 +208,8 @@ const lens = {
       "label": "2",
       "R": 26.92,
       "d": 11.45,
-      "sd": 22.95
+      "sd": 22.95,
+      "rimExtensionSd": 29.0
     },
     {
       "label": "3",
@@ -263,7 +268,8 @@ const lens = {
       "label": "11",
       "R": 22.34,
       "d": 7.85,
-      "sd": 15.45
+      "sd": 15.45,
+      "rimExtensionSd": 20.1
     },
     {
       "label": "STO",
