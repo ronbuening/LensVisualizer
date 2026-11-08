@@ -179,3 +179,10 @@ Open:
   of the 2.898 mm allowed at the default gap fraction; 0.92 would admit it).
 - C3's cemented S17 is drawn to the 12.7 mm edge, where Fig. 12 ends it near 11.1 mm inside an L9 land; at 11.1 mm it
   limits no ray at infinity.
+
+## 2026-11-08 — Glass backfill
+
+L2 now takes HOYA PCD4's dispersion curve (1.61800 / 63.40) while the trace keeps the printed nd 1.61780: Embodiments
+1 and 3 print 1.61800 / 63.4 in the same position, and the Abbe number is identical, so the colour trace is unchanged
+in practice (the second review found C and F foci within 0.003 mm of Fig. 13A). L3 (1.73968 / 49.0) stays Unmatched;
+Embodiment 4's 1.74330 / 49.2 in that position is 0.0036 away in nd, outside the catalog match window.

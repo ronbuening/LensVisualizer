@@ -91,7 +91,7 @@ const LENS_DATA = {
       vd: 63.4,
       indexReference: "d",
       focalLengthMm: 34.99,
-      glass: "Unmatched (patent nd 1.61780, νd 63.4; no catalog row at these coordinates)",
+      glass: "PCD4 (HOYA; nearest catalog row to patent nd 1.61780, νd 63.4; Embodiments 1 and 3 print 1.61800 / 63.4 here)",
       role: "Phosphate-crown-class positive member of C1; achromatizes the front doublet against L1.",
       cemented: "C1",
     },

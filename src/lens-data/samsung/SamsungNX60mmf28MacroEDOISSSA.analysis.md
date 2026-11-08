@@ -48,7 +48,7 @@ Dense-flint front element, convex to the object, cemented to L2. The 1.84666/23.
 
 ### L2 — Biconvex Positive
 
-nd = 1.61780, νd = 63.4. Glass: Unmatched; no catalog row at these coordinates (phosphate-crown class). f = +35.0 mm.
+nd = 1.61780, νd = 63.4. Glass: PCD4 (HOYA), nearest catalog row; Embodiments 1 and 3 print 1.61800 / 63.4 in this position. f = +35.0 mm.
 
 Positive half of doublet C1. With L1 it forms a weakly positive cemented pair (f = +128 mm).
 
@@ -114,12 +114,12 @@ Equi-biconcave G5 (R = ±72.217 mm), fixed 19.3 mm ahead of the filter. The pate
 
 ## Glass Identification and Selection
 
-The patent prints nd and νd only, with the d-line defined as 587.6 nm. Ten elements resolve to HOYA catalog glasses whose nd matches the printed value to five decimals and νd within 0.04; these are equivalents for dispersion modelling, not production identifications. L2 and L3 have no catalog row at their printed coordinates and keep their printed nd/νd (Abbe-number dispersion).
+The patent prints nd and νd only, with the d-line defined as 587.6 nm. Ten elements resolve to HOYA catalog glasses whose nd matches the printed value to five decimals and νd within 0.04; these are equivalents for dispersion modelling, not production identifications. L2's printed 1.61780 / 63.4 sits 0.0002 below HOYA PCD4 (1.61800 / 63.4), the pair Embodiments 1 and 3 print in the same position, so it takes the PCD4 dispersion curve while the trace keeps the printed nd. L3 has no catalog row within reach of its printed coordinates and keeps its printed nd/νd (Abbe-number dispersion).
 
 | Glass (HOYA equivalent) | nd / νd | Elements | Role |
 | ----------------------- | ------: | -------- | ---- |
 | FDS90 | 1.84666 / 23.8 | L1, L6, L7, L9 | dense flint, achromatizing partner |
-| Unmatched | 1.61780 / 63.4 | L2 | phosphate-crown-class positive in C1 |
+| PCD4 (nearest row) | 1.61780 / 63.4 | L2 | phosphate crown, positive in C1 |
 | Unmatched | 1.73968 / 49.0 | L3 | aspherical positive |
 | BAC4 | 1.56883 / 56.0 | L4 | barium crown, negative in G2 |
 | BSC7 | 1.51680 / 64.2 | L5 | borosilicate crown, negative in C2 |
