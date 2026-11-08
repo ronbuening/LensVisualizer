@@ -102,3 +102,81 @@ one side of the meridional bundle is cut at G1, about half at G2 and about a fif
   100-300 file) would remove this.
 - Panasonic's 0.9 m MFD and 0.17× are not modelled; the patent's close state is 1000 mm from the front lens.
 - The O.I.S. decentring of L9 is not modelled.
+
+## 2026-11-08 — Second review: diagram, labels and movement
+
+Compared: the local page at the wide, middle and tele stations at infinity and at the 1000 mm close state, the zoom and
+focus motion overlays at the wide and tele ends, and the element inspector for L4, L6, L8 and L9, against Fig. 13(a)
+(sheet 13, PDF p. 14; ¶0242 ties Numerical Example 4 to Fig. 13), Tables 13–16 (PDF pp. 48–49), Fig. 14 (sheet 14,
+PDF p. 15) and ¶¶0111–0119. No maker image was viewed; the deployment-validation section above records Panasonic's
+drawing as Example 4's twelve elements in nine groups, with L6 and L9 aspherical and L8 the UHR element.
+
+Scale. Fig. 13(a) was read at its native 300 dpi. The S1 vertex sits at x = 1099 px and the image line at
+x = 1892.5 px, 793.5 px for the 91.8999 mm wide-angle length, 8.634 px/mm; every vertex from S1 to S22 then lands
+within 1.5 px of the wide-angle spacings, so the panel is Example 4 at wide. Vertically, the stop ticks end 44 and 45
+px from the axis (5.15 mm against the engine's 5.156 mm stop), and L8's rear arc follows R 11.2704 within 1 px out
+to 5.5 mm.
+
+Rims, read at the centre of the outline stroke on both sides of the axis (mm, stored value in brackets): L1 14.07
+(14.1); L2 rear 13.6 (14.1); G2 box 7.70 (7.4, held below the drawing by the gap rule recorded above); L6 7.99 (8.1);
+L7 7.30 (7.5); L8 edge 6.78 (7.5 front, 7 rear); L9 6.02 (6.2); L10 4.98 (5); L11 8.14 (8.3); L12 10.83 (11). All are
+within about 4 % of the stored rims and in the drawn order of heights, and L3–L5, L6, L7, L9, L11 and L12 render
+square-cut as drawn, so no `sd` changed. The figure steps the rim down by 0.4–0.6 mm at the cemented faces of L1+L2
+and L7+L8; a cemented face carries one rim in the model, so L8's edge slopes from 7.5 to 7 mm instead of stepping.
+
+The one drawn feature the model lacked is a land on L8's concave rear face (surface 13). Fig. 13(a) ends the arc
+with a stroke square to the axis, 14 px (1.62 mm) behind the vertex, and the arc meets it 5.7–5.8 mm from the axis
+against a 6.775 mm edge (58.5 px): q = 0.85, 0.82–0.88 for one pixel at the cap end and the edge. Following
+LENS_DATA_SPEC.md (Rim cuts), the cut radius is q × sd = 5.95 mm and the depth is the cap's sag there, 1.70 mm. The
+inferred-cut beam check places the furthest wide-open ray at 5.530 mm on surface 13 (zoom 0.70, 1.97°), 0.42 mm
+inside the cut.
+
+| Face | Kind | Figure | Baseline | Final | Light cost | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| 13 (L8 rear) | land (`rimCutDepthMm`) | stroke 1.62 mm behind the vertex; cap end 5.7–5.8 mm of a 6.78 mm edge | none; cap to `sd` 7 | `rimCutDepthMm` 1.7 (cap end 5.95 mm, edge 7 mm) | 0.0 points | keep: no loss, drawn by the figure |
+
+No other face carries a cut or land; every `sd` equals its baseline. Against the baseline rims, `rimcost.mjs` finds a
+worst loss of 0.0 points at the three printed stations and at zoom fractions 0, 0.125, … 1; corner transmission wide
+open at infinity stays 60.8 / 79.9 / 54.8 % at wide, middle and tele. With a real object 1000 mm in front of surface 1,
+a skew-ray lattice to the 10.815 mm corner passes 63.9 / 82.4 / 65.4 % before and after. After the edit the surface
+validator, including the inferred-cut beam rule, reports no errors; the aperture audit has all three stations within
+3 % of the stated F-number with no rim, trace or iris limit; the image circle is not undersized; traced corner
+coverage is 100 % at all three stations; the engine's EFL 45.3995 mm, FOPEN 4.16038, half-field 17.68° and stop
+radius 5.156 mm are unchanged.
+
+Labels and tags, found correct. Names L1–L12 are the patent's. Every type agrees with the signs of R and with
+¶¶0111–0116 (L1 and L10 negative menisci convex to the object; L2, L6, L7 and L9 biconvex; L3, L5 and L8 biconcave;
+L4 a positive meniscus convex to the object; L11 a negative and L12 a positive meniscus concave to the object). The
+`A` suffix sits on surfaces 10 and 16 only, Table 13's asterisks and Fig. 13's marks on L6 and L9. The stop is drawn
+between L8 and L9 (¶0113). Group brackets G1 (1–3), G2 (4–8), G3 (9–16A), G4 (17–18), G5 (19–20) and G6 (21–22) are
+Fig. 13's units; the cemented brackets L1+L2, L3+L4 and L7+L8 do not collide with the D gap labels. No `apd` tag is
+due: Panasonic marks no ED element, and L8's TAFD55 is a high-index glass. The inspector shows each tagged-or-aspheric
+element's glass line and focal length (L4 +24.54, L6 +21.95, L8 −10.21, L9 +34.38 mm). All twelve glass labels
+resolve (Δνd ≤ 0.13). The header comment cited ¶0115 for L9's O.I.S. role; that paragraph describes G5, and the
+citation is now ¶0117.
+
+Movement, found correct. Tables 15 and 16 match the file in wide, middle, tele order. From wide to tele, measured from
+the image plane, G1 moves −91.90 → −107.20 → −129.90 mm, G3 −58.44 → −68.24 → −75.16, G4 −39.99 → −47.00 → −55.89
+and G5 −22.27 → −29.62 → −34.82: all toward the object and monotonic, as Fig. 13's arrows and ¶0118 give. G2 and G6
+stay fixed (D8 + D16 + D18 + D20 = 36.5129 / 36.5127 / 36.5127 mm). D16 + D18 is constant at each station, so only
+L10 moves in focus, toward the image by 0.8654 / 2.1859 / 5.4529 mm (¶0119 and Fig. 13's arrow). Keyframe 0 is
+infinity and keyframe 1 the 1000 mm state; the focus slider ends at ∞ and 1.09 m at wide, the zoom slider at 45.4
+and 144 mm.
+
+Colour and field against Fig. 14 (infinity, d, F and C lines). On-axis focus from the d-line paraxial image, model
+against plot (paraxial / full aperture, mm): wide C +0.084 / −0.003 against +0.083 / 0.00, F −0.078 / +0.038
+against −0.076 / +0.035, d marginal −0.037 against −0.036; middle d marginal +0.020 against +0.017, and C and F
+paraxial +0.040 and +0.027 against two curves at +0.031 and +0.039 that cannot be told apart at the axis; tele d
+−0.035 against −0.031, C +0.033 / −0.021 against +0.028 / −0.024, F +0.046 / +0.084 against +0.057 / +0.093. The tele
+F line sits about 0.01 mm short of the plot. The most sensitive element is L4: FDS18's catalog νd of 17.98 against
+the printed 18.0 moves the tele F focus about 0.009 mm on its own, so the residual is within the rounding of the
+printed Abbe numbers, and no label is more than 0.13 off in νd. Distortion at full field is −0.32 / +1.08 / +0.52 %
+against −0.35 / +0.99 / +0.44 % plotted. Astigmatism at 10.8 mm agrees at the middle station (s −0.051, t
+−0.008 mm against about −0.05 and −0.01) but not at the ends: wide s −0.025, t +0.054 against about 0.00 and +0.085;
+tele s −0.103, t −0.187 against about −0.005 and +0.01. The model's curves follow the Petzval sum of the printed radii
+and indices (−0.059 mm at 10.8 mm at every station); the plotted tele curves would need a much flatter Petzval field.
+
+**Open:**
+
+- Fig. 14's astigmatism at the wide and tele stations is not reproduced (tele t −0.187 mm modelled against about
+  +0.01 plotted at 10.8 mm); the prescription matches Tables 13–15 and the cause is not found.

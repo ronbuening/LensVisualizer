@@ -336,9 +336,12 @@ stations, so the iris barely changes with zoom; this is a calculation, not a pub
 blades are Panasonic's. [M1].
 
 The patent prints no clear apertures. The semi-diameters are estimated from Fig. 13(a). G2's are 7.4 mm, a little
-under the drawing: at the drawn 7.7 mm the facing L4 and L5 surfaces would fill 97 % of their 1.1474 mm air gap. The
-axial beam at the printed F-numbers and the chief ray to the full image height pass every rim at every station, at
-infinity and at close focus. The rims vignette the corner bundle, most strongly at G1 and G2.
+under the drawing: at the drawn 7.7 mm the facing L4 and L5 surfaces would fill 97 % of their 1.1474 mm air gap. As
+the figure draws it, L8's concave rear face ends at a radius of about 5.95 mm, 1.7 mm behind its vertex, and a flat
+land square to the axis runs from there to the 7 mm edge; no traced beam reaches the land. The axial beam at the
+printed F-numbers and the chief ray to the full image height pass every rim at every station, at infinity and at close
+focus. The rims vignette the corner bundle, most strongly at G1 and G2: wide open, about 61 %, 80 % and 55 % of the
+axial light reaches the image corner at the wide, middle and tele stations at infinity.
 
 ### What is not modelled
 

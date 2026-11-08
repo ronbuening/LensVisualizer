@@ -16,7 +16,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Six units (+ − + − − +). From wide to tele G1 moves monotonically toward the object, G3, G4 and G5 move on paths
  * slightly convex toward the object, and G2 and G6 stay fixed (¶0118). The stop sits between L8 and L9 and moves with
  * G3. Zoom varies D3, D8, D16, D18 and D20; D16 and D18 also change with focus. L9 alone (G3b) decentres for O.I.S.
- * (¶0115); Example 4 needs 0.4457 mm at tele (¶0236). Decentring is not modelled.
+ * (¶0117); Example 4 needs 0.4457 mm at tele (¶0236). Decentring is not modelled.
  *
  * FOCUS: G4 (L10) moves toward the image for close focus (¶0119). All six printed states are kept: infinity (Table 15)
  * and close focus (Table 16) at the wide, middle and tele stations. The patent gives the close object distance as
@@ -35,10 +35,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * SEMI-DIAMETERS: not printed. Estimated from Fig. 13(a) (wide, infinity) and floor-checked by real-ray trace; an
  * independent re-measurement of the figure agrees within about 5 %. G2 (surfaces 4–8) is 7.4 mm against about 7.7 mm
  * drawn: at 7.7 mm the facing L4 rear and L5 front sags would fill 97 % of their 1.1474 mm air gap, and at 7.4 mm they
- * fill 89 %. Axial bundles at the printed F-numbers and chief rays to the printed 10.815 mm image height clear every
- * rim at every station, at infinity and at close focus. The rims vignette the corner bundle: at the printed half-field
- * up to about two-thirds of one side of the meridional bundle is cut at G1, about half at G2 and about a fifth at L6
- * and L10.
+ * fill 89 %. Fig. 13(a) ends L8's concave rear face (surface 13) at about 0.85 of the element's edge radius, with a
+ * flat land square to the axis out to the edge; rimCutDepthMm 1.7 draws that land 1.7 mm behind the vertex (cap end
+ * 5.95 mm, edge 7 mm). The cut is inferred from the figure and clears every traced wide-open beam, at infinity and at
+ * the 1000 mm close state. Axial bundles at the printed F-numbers and chief rays to the printed 10.815 mm image height
+ * clear every rim at every station, at infinity and at close focus. The rims vignette the corner bundle: at the
+ * printed half-field up to about two-thirds of one side of the meridional bundle is cut at G1, about half at G2 and
+ * about a fifth at L6 and L10.
  *
  * ASPHERES: the patent's κ sits in the (1 + κ) form, the engine's convention, and is 0 on both surfaces; even orders
  * A4–A10 (Table 14).
@@ -332,6 +335,7 @@ const LENS_DATA = {
       R: 11.2704,
       d: 3.6496,
       sd: 7,
+      rimCutDepthMm: 1.7,
     },
     {
       label: "STO",
