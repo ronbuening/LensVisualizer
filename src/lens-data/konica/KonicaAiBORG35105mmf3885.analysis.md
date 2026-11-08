@@ -93,8 +93,11 @@ L8. The model splits the printed 1.40 mm air gap after surface 14 into 0.70 mm b
 stop diameter follows the printed f-number at each station: 9.31 mm at wide, 10.08 mm at the middle station and
 10.17 mm at tele.
 
-The patent gives no semi-diameters either. The rims follow the relative element sizes of Fig. 1, with the front and
-rear rims at about 14.5 mm as drawn. The rear rims are smaller than a full-aperture bundle to the full-frame corner would
+The patent gives no semi-diameters either. The rims follow the element sizes drawn in Fig. 1, with the front and rear
+rims at 14.4 mm. Fig. 1 ends four faces short of their element's edge with a flat land: the rear of L3, the aspherical
+rear of L10 and the fronts of L12 and L13. The diagram draws those lands, and the clear semi-diameters of the four faces
+are 8.7, 5.7, 11.3 and 12.7 mm. The cemented L1–L2 interface ends at 13.8 mm, below the 14.4 mm rim of L1, which
+overhangs L2 as in the figure. The rear rims are smaller than a full-aperture bundle to the full-frame corner would
 need, so the wide-angle corners vignette heavily, as the drawing implies. The chief ray still reaches the 21.65 mm
 corner at every zoom position, at 30.3° at wide and 11.6° at tele, matching the patent's 2ω.
 
@@ -247,8 +250,8 @@ The $1 + K$ under the root is the standard conic convention ($K = 0$ is a sphere
 
 S18 is concave toward the object and, as a glass-to-air surface, has positive power. The positive A4 and A6 outweigh
 the slightly oblate conic: relative to the vertex sphere the surface departs 0.025 mm toward the image at 5 mm height
-and 0.08 mm at its 6.7 mm rim, so it flattens and its positive power weakens off axis. That is the patent's stated aim
-(p. 247, claim 4): weakening G3's positive power off axis reduces the astigmatism G3 generates and keeps the image
+and 0.04 mm at the 5.7 mm edge of its clear aperture, so it flattens and its positive power weakens off axis. That is
+the patent's stated aim (p. 247, claim 4): weakening G3's positive power off axis reduces the astigmatism G3 generates and keeps the image
 surface from being overcorrected, which in turn leaves G2 free to take a shape with small focusing aberration changes.
 The patent adds that the asphere works best with the stop in or behind G3.
 

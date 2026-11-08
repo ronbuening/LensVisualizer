@@ -105,3 +105,69 @@ Open:
 - The cause of the Fig. 2(b)/(c) mismatch is unknown.
 - The report's references 2 and 3 (特願平1-257884, 特願平2-66942) were not checked.
 - Production glasses, clear apertures, stop diameter, zoom cam and focusing travel are not published.
+
+## 2026-11-08 — Second review: diagram, labels and movement
+
+Compared: the live page at every printed zoom station, with both movement overlays and the L10 inspector, against Fig. 1
+(gazette p. 249, PDF p. 5), rendered at the scan's native 347 dpi. The p. 249 text names Fig. 1 as the first example's
+section; it draws 13 elements, where Figs. 3 and 5 (Examples 2 and 3) draw 12. The wide panel governs; the middle and
+tele panels draw the same rims and lands. Scale along the axis: S1 to S24 vertex crossings span 704.5 px for 65.71 mm,
+10.72 px/mm, and the internal spans agree within about 0.3 mm. Across the axis: arc fits of S1, S20, S21 and S23 give
+10.05 to 10.62 px/mm (mean 10.31), and the CCITT scan is 2866 × 3895 px at 347 ppi, an A4-wide page 4 % short
+vertically; the wide-panel stop tick gives 10.6. Readings below use 10.4 px/mm, good to about ±2 %. At that scale the
+outer rims read 4 % below to 6 % above the model, within the band, so they stay: S1 15.1, S3 13.4, S4 10.2, S6–S7 8.9,
+S8–S9 8.5, S10–S11 6.2, S12 6.0, S14 5.5, S15–S16 5.5, S17 7.0, S19–S20 10.7, S22 12.6 and S24 14.9 mm. The model outline was laid
+over the figure at matched scale with the baseline rims.
+
+Fig. 1 ends four faces short of their element's edge with a flat land square to the axis, and draws L2 with a flat top
+below L1's rim, so the L1–L2 interface stops short of L1's edge. Cuts and lands, against the baseline rims, with the
+light each costs from the full-pupil `rimcost.mjs` lattice, wide open at infinity at every one of the 65 zoom stations:
+
+| Face | Figure (mm) | Baseline sd | Final | Cost (points) | Verdict |
+| --- | --- | ---: | --- | ---: | --- |
+| S2, L1–L2 interface | 13.4 (L2 top) | 14.4 | sd 13.8, no land (cemented face) | 0.00 | Keep, slight; partly raised: 13.0 and 13.3 cut the engine half-field to 23.64° and 24.13°, 13.8 keeps 24.87° |
+| S5, L3 rear | cap 8.7, edge 10.2 | 9.7 | sd 8.7, land to 9.7 | 0.00 | Keep, slight; L3 stays square at 9.7 mm |
+| S18, L10 rear (asphere) | cap 5.5, edge 7.0 | 6.7 | sd 5.70, land to 6.7 | 2.97 | Keep, slight; partly raised: at the printed stations 5.6 costs 3.7 and the figure's 5.5 costs 5.0, at the wide corner |
+| S21, L12 front | cap 10.5, edge 12.6 | 12.0 | sd 11.3, land to 12.0 | 0.00 | Keep, slight; partly raised to the 11.27 mm image-circle floor 10.38 mm ahead of the image |
+| S23, L13 front | cap 12.4, edge 14.9 | 14.4 | sd 12.7, land to 14.4 | 0.00 | Keep, slight; partly raised: 12.4 costs 1.1 and drops the engine half-field to 24.45°, S23-limited |
+
+The lands themselves cost nothing. Final worst loss against baseline rims: 2.97 points at 29.2° at the 37.61 mm station
+(75.8 % → 72.9 %), all from S18; 2.35 points at 27.6° at wide on the printed-station fractions, and 2.4 points at the
+printed stations alone. Corners, wide open at infinity: wide 30.3° 57.0 % before and after, wide 27.6° 88.1 % → 85.7 %,
+middle 18.8° 93.2 % → 92.1 %, tele 11.6° 97.7 % unchanged. The surface audit is OK; the aperture audit finds all 65
+stations within 3 % of the stated f-number with no rim limit; the image-circle audit lists S22, S23 and S24 as before,
+with S23 now 3.75 mm short (was 2.05); field coverage reaches the 21.65 mm corner at all 65 stations. The meridional
+trace shows no axial clip or blocked chief ray: S18 clears the 4.90 mm axial marginal ray, S23 the 11.83 mm chief ray.
+Engine half-field 24.87° and f-number 3.8 at wide are unchanged.
+
+Labels: the patent names groups 第1–第4レンズ群 and designates no elements, so G1–G4 and L1–L13 stand. The cemented
+brackets were renamed D1/D2 → C1/C2 (with the elements' `cemented` names), because D3, D9 and D18 label spacings and
+the patent's own D1 is a spacing. Group and bracket surface ranges are right (G1 1–3, G2 4–9, G3 10–18, G4 19–24; C1
+1–3, C2 12–14). Every element type agrees with the signs of its radii (L3's −56,728 mm front makes it biconcave, as
+labelled); roles are true; every element has a focal length (L10 shows +444.37 mm in the inspector, with its K, A4 and
+A6 on the rear face). Only S18 is aspheric, the patent's one starred surface. The stop sits between L8 and L9 as Fig. 1
+draws it. No `apd` tags: the patent names no special glass, and the maker-diagram record above notes none.
+
+Movement: the 65 stations ascend 36.03 → 102.91 mm and every gap lists them in that order; the printed rows match the
+p. 247 table (D3/D9/D18 6.40/8.00/13.37, 8.76/5.64/5.74, 12.40/2.00/2.88 mm). Every group moves objectward
+monotonically from wide to tele, as the three Fig. 1 panels place them against the fixed image plane: G1 with G3 by
+33.35 mm, G2 by 27.35 mm and G4 by 43.84 mm (the live zoom overlay shows the same four tracks and a 43.84 mm maximum).
+Zoom labels are Wide and Tele. Focus is infinity-only: the slider reads "Not modeled" and the focus overlay shows no
+focus movement, as the description says.
+
+Colour and field: Fig. 2 prints d and g lines. At wide the model agrees with Fig. 2(a): d-line −0.08 mm at the
+marginal ray and −0.10 mm at 0.7 of the pupil against about −0.07 and −0.10 read; g-line paraxial −0.09 mm against
+−0.08, and about −0.15 mm at 0.7 of the pupil against −0.12; astigmatism at 30.3° T +0.22 / S +0.04 mm against +0.20 / +0.03; distortion
++2.7 % against +2.8 %. At tele the g-line paraxial focus is −0.18 mm against −0.16. At the middle station the g-line
+paraxial focus (−0.18 against −0.09 mm), the meridional field (−0.24 against about −0.02 mm at 18.8°) and distortion
+(+2.2 % against +1.7 %) disagree too, the same pattern as the recorded Fig. 2(b)/(c) spherical-aberration erratum. Every
+catalog glass is within 0.05 of its printed νd, so no glass label is a suspect. L10, the only unresolved glass, has
+nothing more in the patent than nd 1.49200 / νd 58.3 and the word plastic (p. 247); the same pair recurs in Example 3
+(p. 248), so it is a real material, an acrylic.
+
+Open:
+
+- S18 carries no `A` label suffix, unlike the catalog's other aspheric faces; renaming it also renames the `gaps` key
+  `18`, which is outside this pass.
+- The L7 front rim reads about 0.4 mm above the L8 rear in Fig. 1, a step the cemented pair cannot draw without a land
+  on the interface; all three faces stay at 5.7 mm.

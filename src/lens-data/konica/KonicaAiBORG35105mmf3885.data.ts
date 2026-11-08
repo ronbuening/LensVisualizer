@@ -41,10 +41,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   is 9.31, 10.08 and 10.17 mm at the printed stations.                       ║
  * ║                                                                              ║
  * ║ SEMI-DIAMETERS                                                               ║
- * ║ - Not printed; set from the relative rim sizes of Fig. 1 (front and rear     ║
- * ║   rims about 14.5 mm as drawn) and kept inside the drawn outlines. The       ║
- * ║   wide-angle corners vignette heavily, and S22-S24 are smaller than the      ║
- * ║   full-format image-circle check asks for, as drawn.                         ║
+ * ║ - Not printed; read from Fig. 1 (wide) at 10.72 px/mm along the axis and     ║
+ * ║   10.4 px/mm across it (the scan is about 4 % short vertically). Outer       ║
+ * ║   rims follow the drawn sizes. Fig. 1 ends four faces short of the element   ║
+ * ║   edge with a flat land, modelled as rimExtensionSd: S5 8.7 mm (land to      ║
+ * ║   9.7), S18 5.7 (drawn 5.5; land to 6.7), S21 11.3 (drawn 10.5; land to      ║
+ * ║   12.0) and S23 12.7 (drawn 12.4; land to 14.4). S2, the L1-L2 interface,    ║
+ * ║   ends at 13.8 mm below L1's 14.4 mm rim (drawn 13.4). S18 stops where the   ║
+ * ║   wide corner loses no more than 3 points of light, S21 at the               ║
+ * ║   image-circle floor, S2 and S23 where the engine half-field stays 24.87°.   ║
+ * ║   The wide-angle corners vignette heavily, and S22-S24 are smaller than      ║
+ * ║   the full-format image-circle check asks for, as drawn.                     ║
  * ║                                                                              ║
  * ║ FOCUS                                                                        ║
  * ║ - Claim 2 and the maker report put focusing on G2 (inner focus to 0.8 m). No ║
@@ -124,7 +131,7 @@ const LENS_DATA = {
       glass: "S-TIH6 (OHARA)",
       role: "Negative flint member of the cemented front doublet; G1 is weakly positive and moves with G3.",
       diagramLabel: "L1",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 2,
@@ -137,7 +144,7 @@ const LENS_DATA = {
       glass: "S-BSM25 (OHARA)",
       role: "Positive crown member of the cemented front doublet.",
       diagramLabel: "L2",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 3,
@@ -198,7 +205,7 @@ const LENS_DATA = {
       glass: "S-TIH53 (OHARA)",
       role: "Dense-flint negative member of the cemented G3 doublet ahead of the stop.",
       diagramLabel: "L7",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 8,
@@ -211,7 +218,7 @@ const LENS_DATA = {
       glass: "S-BSL7 (OHARA)",
       role: "Positive crown member of the cemented G3 doublet; the stop follows it.",
       diagramLabel: "L8",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 9,
@@ -285,7 +292,7 @@ const LENS_DATA = {
     {
       label: "2",
       R: 16.923,
-      sd: 14.4,
+      sd: 13.8,
       d: 4.5,
       medium: 2,
     },
@@ -304,7 +311,8 @@ const LENS_DATA = {
     {
       label: "5",
       R: 17.004,
-      sd: 9.7,
+      sd: 8.7,
+      rimExtensionSd: 9.7,
       d: 0.7,
     },
     {
@@ -393,7 +401,8 @@ const LENS_DATA = {
     {
       label: "18",
       R: -12.9,
-      sd: 6.7,
+      sd: 5.7,
+      rimExtensionSd: 6.7,
       asphere: {
         K: 0.19205,
         A4: 0.000049648,
@@ -416,7 +425,8 @@ const LENS_DATA = {
     {
       label: "21",
       R: -13.89,
-      sd: 12,
+      sd: 11.3,
+      rimExtensionSd: 12,
       d: 1,
       medium: 12,
     },
@@ -429,7 +439,8 @@ const LENS_DATA = {
     {
       label: "23",
       R: -24.276,
-      sd: 14.4,
+      sd: 12.7,
+      rimExtensionSd: 14.4,
       d: 1.2,
       medium: 13,
     },
@@ -1084,12 +1095,12 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "12",
       toSurface: "14",
     },
