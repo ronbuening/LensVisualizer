@@ -22,7 +22,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * SEMI-DIAMETERS: the printed clear diameters D divided by two. They are real-ray apertures: a real axial ray that
  * just fills the stop meets surfaces 1–9 within 0.05 mm of D/2. The aperture audit finds no rim limit at F/0.95, so
- * no rim is changed.
+ * no rim is changed. Fig. 1 (13.74 px/mm along the axis, about 13.6 px/mm across it at 301 dpi) draws L4, L7, L8 and
+ * L9 as square blocks wider than those apertures: L4's front face ends in a flat land out to 26.5 mm, L7's plane
+ * rear face runs out to its front rim, L8's rear face meets the edge, and L9's rear face ends in a land out to
+ * 18.25 mm. rimExtensionSd draws these edges (8: 26.5, 14: 25.55, 16: 19.6, 18: 18.25); they clip no rays. A
+ * cemented interface carries one semi-diameter, so L5's front face stops at the 26.5 mm junction instead of
+ * reaching the 29.5 mm edge the figure draws.
  *
  * IMAGE PLANE: the final spacing is the printed d18 = 23.7 mm against a paraxial back focus of 23.722 mm. The patent
  * says the image forms in the plane of best setting; real rays at pupil zones 0.5–0.85 cross the axis
@@ -244,6 +249,7 @@ const LENS_DATA = {
       "R": -32.21,
       "d": 5,
       "sd": 22.65,
+      "rimExtensionSd": 26.5,
       "medium": 4
     },
     {
@@ -283,7 +289,8 @@ const LENS_DATA = {
       "label": "14",
       "R": "flat",
       "d": 0.3,
-      "sd": 24.5
+      "sd": 24.5,
+      "rimExtensionSd": 25.55
     },
     {
       "label": "15",
@@ -296,7 +303,8 @@ const LENS_DATA = {
       "label": "16",
       "R": 105.93,
       "d": 2.6,
-      "sd": 18.75
+      "sd": 18.75,
+      "rimExtensionSd": 19.6
     },
     {
       "label": "17",
@@ -309,7 +317,8 @@ const LENS_DATA = {
       "label": "18",
       "R": 25.41,
       "d": 23.7,
-      "sd": 16.2
+      "sd": 16.2,
+      "rimExtensionSd": 18.25
     }
   ],
   "focus": {

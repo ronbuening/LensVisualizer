@@ -115,6 +115,8 @@ At the paraxial level the printed 46.2 mm diameter gives f/0.952. The model deri
 
 The printed clear diameters are real-ray apertures. A real axial ray that just fills the stop meets surfaces 1–9 within 0.05 mm of half the printed diameter, and surfaces 10–15 within 0.2 mm. The three rear surfaces are larger than the axial beam needs, consistent with sizing for the oblique beam. The model's semi-diameters are the printed diameters halved. At f/0.95 surface 8 trims about 0.05 mm from the edge of the axial beam; no other rim touches it.
 
+Fig. 1 draws L4, L7, L8 and L9 as square-edged blocks wider than these clear apertures: L4's front face ends in a flat land out to a 53.0 mm edge, and L9's rear face in a land out to 36.5 mm. The diagram draws these edges, and they clip no rays. The figure also carries L5's front face out to the full 59.0 mm; the diagram, which gives a cemented face one diameter, stops it at the 53.0 mm junction with L4.
+
 Longitudinal spherical aberration in the model is small: −0.023, −0.034, −0.037 and −0.035 mm at 0.5, 0.7, 0.85 and 1.0 of the paraxial pupil radius, relative to the paraxial focus.
 
 ## Field and Image

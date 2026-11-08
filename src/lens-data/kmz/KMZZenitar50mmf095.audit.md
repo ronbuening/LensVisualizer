@@ -107,3 +107,70 @@ undersized, none of them this lens. The field-coverage audit over all lenses doe
 Open: the table's spectral line rests on three of six pairs, below the 80 % numerical threshold of the data spec,
 with no e-line match; exact factory prescription and revision; production glass types; the close-focus movement; a
 maker optical section; the booklet's contents.
+
+## 2026-11-08 — Second review: diagram, labels and movement
+
+### What was compared
+
+Fig. 1 of the sole example (the raster on page 2, read at 301 dpi; page 10 repeats it) was set beside the local page at
+infinity. The drawing's optical axis tilts 0.30° on the page and was followed. Thirteen vertex crossings from the
+first vertex to the image line (128.0 mm) give 13.742 px/mm along the axis; every crossing falls within 0.15 mm of
+the prescription. Across the axis, arc fits to R7 (−32.21), R9 (−44.98) and R17 (25.41) and the image line give
+13.45–13.8 px/mm; 13.6 px/mm (±1 %) is used. The stop tick is drawn 37.55 mm behind the first vertex (model 37.4 mm),
+its inner end at 22.7 mm. With these scales the model's faces lie on the figure's curves.
+
+| Element | Faces | Fig. 1 reading (mm) | Model `sd` | Fig. 1 shape |
+| --- | --- | --- | --- | --- |
+| L1 | 1 / 2 | 26.5 / 26.5 | 26.6 / 26.6 | square; edge on the marginal ray |
+| L2 | 3 / 4 | 26.7 / 26.8 | 27.1 / 27.15 | rims on the marginal ray |
+| L3 | 5 / 6 | 26.8 / 26.6 | 26.85 / 26.25 | rims on the marginal ray |
+| L4 | 8 / 9 | cap end 22.8, edge 26.3 | 22.65 / 26.5 | flat front land, square edge |
+| L5 | 9 / 10 | front face and edge 29.45 | 26.5 / 29.5 | square block taller than L4 |
+| L6 | 11 / 12 | 29.2 | 29.5 / 29.5 | square |
+| L7 | 13 / 14 | 25.4 / 25.4 | 25.55 / 24.5 | square; plane rear face out to the edge |
+| L8 | 15 / 16 | 19.5 / 19.5 | 19.6 / 18.75 | square; rear face meets the edge |
+| L9 | 17 / 18 | 18.2 / cap end 15.9, land to 18.2 | 18.25 / 16.2 | square; flat rear land |
+
+Where a curved cap ends, every reading is within 2 % of the printed D/2, so no `sd` moved and the printed diameters
+stay as the clear apertures. The other readings are edges drawn outside those apertures, and they were the visible
+differences: the page drew L4, L7, L8 and L9 bevelled where the figure draws square blocks. Lands at the cap-edge sag
+square them; L4's land sits 39.39 mm behind the first vertex (figure 39.22 mm) and L9's 110.13 mm
+(figure 110.06 mm).
+
+### Cuts and lands
+
+No face ends below its baseline `sd`. The four lands are new; `rimcost.mjs` against the baseline rims finds 0.0 points
+lost at every field from 0° to 22.0°, and each land alone wins back 0.0 points when removed.
+
+| Face | Kind | Fig. 1 reading (mm) | Baseline | Final | Points lost | Verdict |
+| --- | --- | --- | --- | --- | ---: | --- |
+| 8 (L4 front) | land | cap 22.8, land to 26.3 | `sd` 22.65 | `sd` 22.65, `rimExtensionSd` 26.5 | 0.0 | keep: slight (figure-drawn) |
+| 14 (L7 rear) | land | plane face to 25.4 | `sd` 24.5 | `sd` 24.5, `rimExtensionSd` 25.55 | 0.0 | keep: slight (figure-drawn) |
+| 16 (L8 rear) | land | face to 19.5 | `sd` 18.75 | `sd` 18.75, `rimExtensionSd` 19.6 | 0.0 | keep: slight (figure-drawn) |
+| 18 (L9 rear) | land | cap 15.9, land to 18.2 | `sd` 16.2 | `sd` 16.2, `rimExtensionSd` 18.25 | 0.0 | keep: slight (figure-drawn) |
+
+The final worst loss against the baseline rims is 0.0 points. Before and after: EFL 52.0315 mm, f/0.95, half-field
+22.29°, stop radius 23.147 mm, transmission 99.5 % on axis and 15.4 % at 22.0°. The surface audit reports no
+validation errors, the aperture audit no rim limit, the image-circle audit does not list the lens, and the
+field-coverage audit gives 100 %.
+
+### Labels, tags and movement
+
+- Names L1–L9 follow the figure's numerals 1–9 and the text's lenses 1–9. Types agree with the signs of R, every
+  element carries a focal length, and the inspector shows them (L4 −47.13 mm, L5 +81.88 mm, L9 −36.85 mm) with
+  their glass lines. Roles agree with the text on page 7; L9's field-flattening role is inferred from the prescription.
+- Group brackets I (1–6), II (8–12) and III (13–18) are the patent's components; D1 (8–10) is the only cemented
+  pair, and the lens has no gap labels for it to collide with. Table 1 has no aspheres and the model labels none. No
+  element carries `apd`: the patent names no special glass and the deployment validation found no maker claim.
+- The stop sits between L3 and L4, as Table 1 and Fig. 1 place it.
+- Movement: the patent prints the infinity state only. The focus description says so, the movement overlay reports
+  no modeled group movement, and the slider reads ∞ to "Not modeled".
+- Colour: the patent prints no longitudinal, astigmatism or distortion curves; Fig. 2 (page 10) is a polychromatic
+  MTF with no stated wavelengths or weights. Its plots cannot separate a d-line from an e-line reading of Table 1,
+  so the reference-line item above stays open.
+- Glass: the patent prints no glass names, further line indices or partial dispersions (pages 5–9). 1.6595 / 57.35
+  recurs in the sibling RU 2771147 C1 (Zenitar 35mm f/1), so it is a real glass. 1.7441 / 50.42 (L2, L6, L7, as
+  claim 2 requires) and 1.6131 / 60.61 (L5) occur only in this example.
+
+Open: Fig. 1 carries L5's front face out to 29.45 mm, above L4's 26.3 mm edge; a cemented interface takes one
+semi-diameter, so the diagram stops L5's front at the 26.5 mm junction and draws its edge as a slope.
