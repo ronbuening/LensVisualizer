@@ -92,3 +92,67 @@ clear-aperture check at a 21.63 mm image height shows no axial or chief-ray clip
 - The production identity is an inferred correlation; Nikon does not publish the prescription.
 - Rims and lands follow the patent figure, not a measured lens.
 - The close-focus spacing is a paraxial reconstruction.
+
+## 2026-11-08 — Second review: diagram, labels and movement
+
+**Compared.** The live page (infinity, 0.45 m, the focus-motion overlay, and the inspectors of L3, L4, C1 and L5) with
+Figure 1 of JP 2015-041003 A (page 16), which draws Gm with the Example 1 converter. Figures 3 and 5 (page 17) draw the
+same Gm and served as a second reading. Figure 1 is isotropic at 11.04 px/mm at 300 dpi: S1 to S17 spans 486.5 px for
+44.0843 mm, the S1–S8 and S8–S17 spans agree within 1 %, and every printed radius traced across the drawing stays within
+±1 px of the ink out to its rim. The stop tick's inner end reads 12.8 mm against the engine's 13.03 mm. Nikon's optical
+section, a small silhouette, also draws L3's rim running up to L2's rear face; it is too coarse to read rim heights.
+
+| Element | Figure 1 (Figure 3) | Before | After |
+| --- | --- | --- | --- |
+| L1 | 18.7 (18.9), square | 18.8 / 18.8 | unchanged |
+| L2 | 16.8 (17.0), square | 16.9 / 16.9 | unchanged |
+| L3 | S5 meets L2's rear face at the corner, 16.3; edge 16.4 (16.7); S6 cap 13.7 (13.7) with a land to the edge | S5 15.1; S6 13.7, land 15.1 | S5 15.8; S6 13.7, land 15.8 |
+| L4 | S8 cap 13.0–13.1 (13.15) with a land to 16.1 (16.3); S9 16.1 | S8 13.2, land 16.2; S9 16.2 | unchanged |
+| L5 | square, 16.5 (16.8), 0.4 mm proud of L4 | S10 16.2 / S11 16.6 | 16.6 / 16.6 |
+| L6, L7, L8 | 16.4 (16.6), 16.2 (16.35), 16.0 (16.1) | 16.4, 16.2, 16.0 | unchanged |
+
+- L3 was 1.3 mm short of the figure and drawn below L4, the reverse of the figure. S4 and S5 meet at 15.90 mm, so
+  15.8 mm is the largest 0.1 mm value short of contact; `checks.gapSagFrac` 0.99 admits the S4/S5 pair (combined sag
+  1.488 mm of the 1.51 mm gap; 0.98 refuses it). The S6 land moved with S5, so L3 stays square-cut as drawn. L3 stays
+  0.6 mm under the figure, whose S4 and S5 arcs overlap at the rim.
+- S10 16.2 → 16.6 mm squares L5, which the figure draws square-cut and standing proud of L4; the model had a bevel.
+- The cement element C1 no longer carries `cemented: "D1"`. With it the inspector counted three members and badged D1
+  as a TRIPLET; L4 and L5 now read DOUBLET D1, and C1 shows FL "—" (its thick-lens focal length is 1.36 × 10⁷ mm).
+
+**Lands and cuts.** No face ends below its baseline value, so there are no cuts.
+
+| Face | Kind | Figure | Baseline | Final | Light cost | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| S6 | `rimExtensionSd` | cap 13.7, land to 16.4 | 13.7 + 15.1 | 13.7 + 15.8 | 0.0 points | keep: slight, drawn |
+| S8 | `rimExtensionSd` | cap 13.0–13.1, land to 16.1 | 13.2 + 16.2 | 13.2 + 16.2 | 0.0 points | keep: slight, drawn |
+
+The light cost is what raising each cap to its land height wins back; neither does at any field. Against the baseline
+rims the final file loses nothing at any field and gains up to 1.7 points: 100.0 % on axis (from 99.0 %), 98.8 % at
+2.9° (from 97.1 %), and 31.1 % at the 23.2° corner before and after. Engine half-field 25.83°, f/1.4505 and the
+13.035 mm stop radius are unchanged; the surface validator, the aperture census (no rim limit), the image-circle check
+and the corner field coverage (100 %) pass.
+
+**Near state with a real object.** With the object 359.26 mm ahead of S1 (0.45 m to the image) and the corner object
+height of 151 mm that reaches the 21.63 mm image corner, the wide-open transmission is 38.7 % at the corner before and
+after, 90.2 % at a quarter field (from 88.9 %) and 95.5 % on axis before and after.
+
+**Labels, tags and movement.** Element types agree with the signs of R, the inspector focal lengths match a thick-lens
+calculation for all eight elements, and the roles are true. The stop sits between L3 and L4, as ¶0046 states. There
+are no aspheres and no `A` labels, and no `apd` tags, since Nikon lists no ED glass. The `Gm (+) / UNIT FOCUS → OBJ`
+bracket spans S1–S17 and the D1 bracket S8–S11; BF is the only gap label, so nothing collides. Focus keyframe 0 is
+infinity (back focus 39.017 mm) and keyframe 1 the 0.45 m state (46.659 mm); the motion overlay moves the single group
+7.64 mm toward the object, and the slider ends read ∞ and 45 cm. The patent designates the elements Lm1–Lm8; the file
+keeps L1–L8, and the analysis states the mapping.
+
+**Colour and glass.** The patent prints aberration curves only for Gm with each converter (Figures 2, 4 and 6;
+f = 36.1 mm, F1.01), not for Gm alone, so no line-by-line comparison is possible. C1 (1.514 / 42.83) is the only
+unmatched label. The patent prints nd and νd only for it, the row belongs to the shared master (Tables 1–3), and the
+pair is Nikon's usual cement value (1.514 / 42.8 in the AF-S NIKKOR 20mm f/1.8G file).
+
+**Open:**
+
+- At the 0.45 m state traced from a real object point, the rims of L6 and L7 (S13–S15) trim 4.5 % of the app's
+  wide-open on-axis stop lattice (1.6 % at the real f/1.4505 marginal ray), which needs about 16.7 / 16.6 / 16.6 mm
+  there. The figure reads 16.4 and 16.2 mm and is drawn at infinity, so the rims stay.
+- On the live page the first letter of the STO label touches the top corner of L3's land: the label sits at the stop
+  housing height plus a fixed pad, a layout matter outside the rim data.

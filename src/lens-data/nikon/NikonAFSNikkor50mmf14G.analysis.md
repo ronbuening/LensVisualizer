@@ -95,8 +95,10 @@ patent's figure and Nikon's section both show their rims almost touching. It has
 nd = 1.75520, νd = 27.53. Glass: E-FD4 (HOYA). f = −36.72 mm.
 
 The pre-stop negative meniscus. Its deep concave rear face (R = 19.2 mm) faces the stop and supplies much of the
-negative power that holds the Petzval sum down. In the model its outer rim (S5) is 15.1 mm, held there so it clears
-L2; the rear face keeps a 13.7 mm optical cap with a vertical land out to 15.1 mm, as the patent's figure draws it.
+negative power that holds the Petzval sum down. Its front face meets L2's rear face at about 15.9 mm from the axis, so
+in the model its outer rim (S5) is 15.8 mm, just short of contact, as the patent's figure draws the two rims meeting.
+The rear face keeps a 13.7 mm optical cap with a vertical land out to 15.8 mm, so the element is square-cut at the
+rim, as the figure draws it.
 
 ### L4 + L5 — Cemented Doublet
 
@@ -105,16 +107,17 @@ L5: nd = 1.83481, νd = 42.71. Glass: S-LAH55 (OHARA). Biconvex Positive. f = +3
 
 The cemented pair behind the stop has a combined focal length of −69.80 mm. L4's front face (R = −18.804 mm) nearly
 mirrors L3's rear face across the stop, the defining feature of the Gauss form. L4 has a stepped rim: a 13.2 mm optical
-cap on its front face with a vertical land out to 16.2 mm, matching both the patent figure and Nikon's section.
+cap on its front face with a vertical land out to 16.2 mm, matching both the patent figure and Nikon's section. L5 is
+square-cut at 16.6 mm and stands just proud of L4's rim, as the patent figure draws it.
 
 The junction is nearly flat (R = 154.1 mm on both sides), so it adds little power. Its job is chromatic: the flint L4
 (νd 27.53) and the lanthanum glass L5 (νd 42.71) differ by 15.2 in Abbe number, which helps correct colour close to
 the stop.
 
 The patent prints a 0.0100 mm cement layer (nd 1.514, νd 42.83) between the two 154.1 mm faces. The data file keeps
-it as an undrawn cement medium with its printed thickness, so all first-order values are exact. The model traces the
-layer at its nd only; with equal radii on both faces its own focal length is about 1.4 × 10⁷ mm, so its dispersion has
-no visible effect.
+it as the thin cement element C1 with its printed thickness, nd and νd, so all first-order values are exact. With
+equal radii on both faces its own focal length is about 1.4 × 10⁷ mm, so neither its power nor its dispersion has a
+visible effect.
 
 ### L6 — Positive Meniscus
 
@@ -153,7 +156,7 @@ E-FD4 (HOYA) and S-TIH4 (OHARA) are near-identical alternatives for the 1.7552 /
 | S-LAH55 (OHARA) | 1.83481 | 42.71 | L5, L6 | Cemented positive and first rear meniscus |
 | S-LAH59 (OHARA) | 1.81600 | 46.62 | L7 | Second rear meniscus |
 | S-LAL18 (OHARA) | 1.72916 | 54.68 | L8 | Final positive element |
-| Cement | 1.514 | 42.83 | L4/L5 junction | 0.0100 mm layer, traced at nd only |
+| Cement (no catalog match) | 1.514 | 42.83 | C1 | 0.0100 mm layer at the L4/L5 junction |
 
 The palette is uniformly high-index. Five of the six positive elements have nd above 1.80, while the two negative
 elements share a lower-index flint (1.7552). Placing high index in the positive elements and lower index in the negative
@@ -161,7 +164,8 @@ ones is the classical way to keep the Petzval sum small; this model's Petzval su
 about 300 mm, or 5.8 times the focal length. The two negatives also have the lowest Abbe numbers, so they act as the
 achromatizing flints against the lanthanum positives.
 
-No element uses ED or anomalous-dispersion glass. The chromatic trace uses the named catalog dispersion curves.
+No element uses ED or anomalous-dispersion glass. The chromatic trace uses the named catalog dispersion curves, and
+the cement layer's printed nd and νd.
 
 ## Focus Mechanism
 
@@ -185,7 +189,9 @@ are interpolated.
 - The patent prints no semi-diameters. The rims follow the outline of the patent's Figure 1 within the real geometry,
   including the lands on L3's rear face and L4's front face. The rims are not measured from a production lens.
 - The aperture runs from f/1.4505 to f/16, Nikon's minimum aperture.
-- The cement layer is traced at nd 1.514 only; its printed νd 42.83 is not used.
+- The cement layer has no catalog match; its colour is traced from the printed nd 1.514 and νd 42.83 alone.
+- At the reconstructed 0.45 m state, traced from a real object point, the rims of L6 and L7 trim the outer edge of the
+  wide-open on-axis beam (about 4 % of it); the figure they follow is drawn at infinity.
 - Paragraph 0014 of the patent gives the master as 51.6 mm but divides 36.1 by 51.5 in its sample ratio calculation.
   The table value, 51.598 mm, is used.
 

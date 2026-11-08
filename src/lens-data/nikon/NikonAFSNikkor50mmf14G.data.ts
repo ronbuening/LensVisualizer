@@ -32,9 +32,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: printed as row 7, 6.822 mm behind S6 and 9.6123 mm ahead of S8 (18.402 mm behind S1). Its radius is derived
  * from f/1.4505.
  *
- * Semi-diameters: not printed. They follow the patent's Figure 1 outline within the real geometry. L3's outer rim
- * (S5) is held at 15.1 mm so that it clears L2. S6 keeps a 13.7 mm optical cap with a vertical land to 15.1 mm, and
- * S8 a 13.2 mm cap with a land to 16.2 mm, following the stepped rims the figure draws.
+ * Semi-diameters: not printed. They follow the patent's Figure 1 outline within the real geometry. The figure draws
+ * L3's front face meeting L2's rear face at the rim; the two faces touch at 15.9 mm, so S5 stops at 15.8 mm and
+ * checks.gapSagFrac 0.99 admits that S4/S5 pair. S6 keeps a 13.7 mm optical cap with a vertical land to 15.8 mm, so
+ * L3 stays square-cut as drawn, and S8 a 13.2 mm cap with a land to 16.2 mm, following the stepped rims the figure
+ * draws. L5 is square-cut at 16.6 mm and stands just proud of L4 (16.2 mm), as the figure draws it.
  *
  * Focus: Nikon states that all lens groups move during focusing (unit focus). The patent prints infinity only. The
  * close state is a paraxial reconstruction at Nikon's 0.45 m minimum focus distance (object to image): the back
@@ -135,7 +137,6 @@ const lens = {
       glass: "Unmatched (1.51400/42.83)",
       role: "Printed 0.0100 mm cement layer between L4 and L5; not counted as a lens element.",
       diagramLabel: "C1",
-      cemented: "D1",
     },
     {
       id: 5,
@@ -218,7 +219,7 @@ const lens = {
       label: "5",
       R: 64.144,
       d: 1.25,
-      sd: 15.1,
+      sd: 15.8,
       medium: 3,
     },
     {
@@ -226,7 +227,7 @@ const lens = {
       R: 19.2,
       d: 6.822,
       sd: 13.7,
-      rimExtensionSd: 15.1,
+      rimExtensionSd: 15.8,
     },
     {
       label: "STO",
@@ -253,7 +254,7 @@ const lens = {
       label: "10",
       R: 154.1,
       d: 5.4,
-      sd: 16.2,
+      sd: 16.6,
       medium: 5,
     },
     {
@@ -331,6 +332,9 @@ const lens = {
       toSurface: "11",
     },
   ],
+  checks: {
+    gapSagFrac: 0.99,
+  },
   layout: {
     yScFill: 0.3,
   },
