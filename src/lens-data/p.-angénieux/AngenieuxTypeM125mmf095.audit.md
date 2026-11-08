@@ -188,3 +188,12 @@ M42 Mount Spiral comparison.
 
 Open: the drawing shows L7 level with L8 and 0.3 mm below D2; with the inferred f/1 stop the beam holds L7 at 9.45 mm,
 so the model draws L7 above both. A smaller or moved stop would settle it, but neither is printed.
+
+## 2026-11-08 — Glass backfill
+
+The dense flints now borrow catalog dispersion curves while the trace keeps the printed nD: L1 and L4 (1.6751 / 32.3)
+take SF5 (Schott, 1.6727 / 32.21), the label the Retrofocus R11 file already uses for the same coordinate, and L5
+(1.6992 / 30.2) takes SUMITA's legacy lead flint SF15 (1.69895 / 30.05). The Abbe numbers agree within 0.15; the patent
+prints no chromatic curves to compare. L2 (1.6689 / 46.7) and L3, L7, L8 (1.6913 / 53.8) stay Unmatched, 0.4 and 0.9 off
+the nearest rows in νd; the latter's label now says lanthanum crown, the class its coordinates sit in, instead of dense
+crown.

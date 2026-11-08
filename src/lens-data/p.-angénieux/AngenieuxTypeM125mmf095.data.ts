@@ -15,7 +15,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Indices: the patent gives n for the D line (sodium, about 589.3 nm); the printed values are traced as
  * d-line values without conversion. Only L6 (1.6204 / 60.2) matches a catalog glass to the printed precision
- * (J-SK16); the other seven elements use Abbe-number dispersion estimates.
+ * (J-SK16). The dense flints take the dispersion curves of their nearest catalog rows while the trace keeps the
+ * printed nd: L1 and L4 (1.6751 / 32.3) SF5, as in the Retrofocus R11 patent, and L5 (1.6992 / 30.2) SUMITA's
+ * legacy lead flint SF15 (νd 0.09 and 0.15 lower). L2 (1.6689 / 46.7) and the lanthanum crowns L3, L7 and L8
+ * (1.6913 / 53.8) are 0.4–0.9 off the nearest rows in νd and use Abbe-number dispersion estimates.
  *
  * Stop: the patent's single, unnumbered drawing puts the diaphragm in e7, but the table gives neither its
  * position nor its diameter. STO is placed at 0.60 of e7 from R7 (4.599 mm + 3.066 mm of the scaled
@@ -84,7 +87,7 @@ const lens = {
       "vd": 32.3,
       "indexReferenceNote": "The patent gives the index for the D line (sodium, about 589.3 nm); the printed index and Abbe number are traced as d-line values without conversion.",
       "focalLengthMm": 85.077,
-      "glass": "Unmatched (vintage dense flint; native sodium D coordinates)",
+      "glass": "SF5 (Schott catalog equivalent to patent 675323 dense-flint coordinate; production supplier unspecified)",
       "role": "Weak positive front meniscus, convex to the object; the first half of the divided Gauss front lens."
     },
     {
@@ -108,7 +111,7 @@ const lens = {
       "vd": 53.8,
       "indexReferenceNote": "The patent gives the index for the D line (sodium, about 589.3 nm); the printed index and Abbe number are traced as d-line values without conversion.",
       "focalLengthMm": 21.398,
-      "glass": "Unmatched (vintage dense crown; native sodium D coordinates)",
+      "glass": "Unmatched (vintage lanthanum crown; native sodium D coordinates)",
       "role": "Positive crown member of the front cemented meniscus D1; nearly plano-convex.",
       "cemented": "D1"
     },
@@ -121,7 +124,7 @@ const lens = {
       "vd": 32.3,
       "indexReferenceNote": "The patent gives the index for the D line (sodium, about 589.3 nm); the printed index and Abbe number are traced as d-line values without conversion.",
       "focalLengthMm": -12.154,
-      "glass": "Unmatched (vintage dense flint; native sodium D coordinates)",
+      "glass": "SF5 (Schott catalog equivalent to patent 675323 dense-flint coordinate; production supplier unspecified)",
       "role": "Thin negative flint member of D1; its deep concave rear face R7 faces the stop.",
       "cemented": "D1"
     },
@@ -134,7 +137,7 @@ const lens = {
       "vd": 30.2,
       "indexReferenceNote": "The patent gives the index for the D line (sodium, about 589.3 nm); the printed index and Abbe number are traced as d-line values without conversion.",
       "focalLengthMm": -11.892,
-      "glass": "Unmatched (vintage dense flint; native sodium D coordinates)",
+      "glass": "SF15 (Sumita catalog equivalent to patent 699302 dense-flint coordinate; production supplier unspecified)",
       "role": "Thin negative flint member of the rear cemented meniscus D2; its deep concave front face R8 faces the stop.",
       "cemented": "D2"
     },
@@ -160,7 +163,7 @@ const lens = {
       "vd": 53.8,
       "indexReferenceNote": "The patent gives the index for the D line (sodium, about 589.3 nm); the printed index and Abbe number are traced as d-line values without conversion.",
       "focalLengthMm": 37.886,
-      "glass": "Unmatched (vintage dense crown; native sodium D coordinates)",
+      "glass": "Unmatched (vintage lanthanum crown; native sodium D coordinates)",
       "role": "First of the two biconvex lenses that divide the Gauss rear lens."
     },
     {
@@ -172,7 +175,7 @@ const lens = {
       "vd": 53.8,
       "indexReferenceNote": "The patent gives the index for the D line (sodium, about 589.3 nm); the printed index and Abbe number are traced as d-line values without conversion.",
       "focalLengthMm": 34.354,
-      "glass": "Unmatched (vintage dense crown; native sodium D coordinates)",
+      "glass": "Unmatched (vintage lanthanum crown; native sodium D coordinates)",
       "role": "Final biconvex lens; completes the divided rear lens ahead of the 14 mm back focus."
     }
   ],

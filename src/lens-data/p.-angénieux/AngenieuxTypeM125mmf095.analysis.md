@@ -48,7 +48,7 @@ The patent prints its indices for the D line; the values below are those printed
 
 ### L1 — Positive Meniscus
 
-nd = 1.6751, νd = 32.3. Glass: Unmatched (vintage dense flint). f = +85.08 mm.
+nd = 1.6751, νd = 32.3. Glass: SF5 (Schott catalog equivalent). f = +85.08 mm.
 
 The first component, a weak positive meniscus convex to the object (R1 41.03 mm, R2 139.80 mm). The patent requires only that it be convergent. Its dense-flint coordinate is the same as L4's.
 
@@ -60,19 +60,19 @@ The second component, a convergent meniscus with both faces convex toward the fr
 
 ### L3 — Positive Meniscus (D1)
 
-nd = 1.6913, νd = 53.8. Glass: Unmatched (vintage dense crown). f = +21.40 mm.
+nd = 1.6913, νd = 53.8. Glass: Unmatched (vintage lanthanum crown). f = +21.40 mm.
 
 The collective crown of the third component. Its front face R5 (0.580F) is strongly convex; its rear face, the cemented interface R6 (2551.1 at F = 100), is almost flat, so L3 is nearly plano-convex.
 
 ### L4 — Negative Meniscus (D1)
 
-nd = 1.6751, νd = 32.3. Glass: Unmatched (vintage dense flint). f = −12.15 mm.
+nd = 1.6751, νd = 32.3. Glass: SF5 (Schott catalog equivalent). f = −12.15 mm.
 
 The dispersive flint of the third component, 0.645 mm thick at the center. Its deep concave rear face R7 (8.10 mm, 0.324F) bounds the central air space. Claim 3 calls for each central component to consist of a dispersive flint cemented to a collective crown; across D1 the Abbe number steps from 53.8 to 32.3.
 
 ### L5 — Biconcave Negative (D2)
 
-nd = 1.6992, νd = 30.2. Glass: Unmatched (vintage dense flint). f = −11.89 mm.
+nd = 1.6992, νd = 30.2. Glass: SF15 (Sumita catalog equivalent). f = −11.89 mm.
 
 The dispersive flint of the fourth component, immediately behind the stop. Its concave front face R8 (−10.105 mm, 0.404F) mirrors R7 across the stop; its rear face is the cemented interface R9.
 
@@ -84,13 +84,13 @@ The thick collective crown of the fourth component (6.98 mm at the center), with
 
 ### L7 — Biconvex Positive
 
-nd = 1.6913, νd = 53.8. Glass: Unmatched (vintage dense crown). f = +37.89 mm.
+nd = 1.6913, νd = 53.8. Glass: Unmatched (vintage lanthanum crown). f = +37.89 mm.
 
 The fifth component, a weak biconvex lens whose radii (1.930F and 2.253F) lie in the range F to ∞ given in claim 2. Its index exceeds the 1.63 that the patent asks of the fifth and sixth components.
 
 ### L8 — Biconvex Positive
 
-nd = 1.6913, νd = 53.8. Glass: Unmatched (vintage dense crown). f = +34.35 mm.
+nd = 1.6913, νd = 53.8. Glass: Unmatched (vintage lanthanum crown). f = +34.35 mm.
 
 The sixth and last component, in the same glass as L3 and L7. L7 and L8 together replace the single rear lens of the Gauss form and deliver the beam to the image 14 mm behind the last vertex.
 
@@ -100,13 +100,13 @@ The patent gives the refractive index for the D line and the Abbe number ν, wit
 
 | Printed nD / ν | Elements | Class | Model glass |
 | --- | --- | --- | --- |
-| 1.6751 / 32.3 | L1, L4 | dense flint | Unmatched; Abbe-number dispersion |
+| 1.6751 / 32.3 | L1, L4 | dense flint | SF5 (Schott) 1.6727 / 32.21, nearest row |
 | 1.6689 / 46.7 | L2 | barium flint | Unmatched; Abbe-number dispersion |
-| 1.6913 / 53.8 | L3, L7, L8 | dense crown | Unmatched; Abbe-number dispersion |
-| 1.6992 / 30.2 | L5 | dense flint | Unmatched; Abbe-number dispersion |
+| 1.6913 / 53.8 | L3, L7, L8 | lanthanum crown | Unmatched; Abbe-number dispersion |
+| 1.6992 / 30.2 | L5 | dense flint | SF15 (Sumita) 1.69895 / 30.05, nearest row |
 | 1.6204 / 60.2 | L6 | dense crown | J-SK16 (Hikari) 1.62041 / 60.25 |
 
-Only the L6 pair matches a current catalog glass to the printed precision; the same coordinate appears in Angénieux's Retrofocus R11 patent, where it is also modeled as J-SK16. The nearest catalog rows for the other four pairs (SF5 1.6727 / 32.2, BAF10 1.6700 / 47.1, LaK9 1.6910 / 54.7, S-TIM35 1.6990 / 30.1) miss the printed index by 0.0002 to 0.0024 or the Abbe number by up to 0.9, so those elements keep the printed index and Abbe number with an Abbe-number dispersion estimate. No supplier or melt is asserted for any element.
+Only the L6 pair matches a current catalog glass to the printed precision; the same coordinate appears in Angénieux's Retrofocus R11 patent, where it is also modeled as J-SK16. The two dense flints take the dispersion curves of their nearest catalog rows, SF5 (1.6727 / 32.21, the label the Retrofocus R11 uses for the same coordinate) and SUMITA's legacy lead flint SF15 (1.69895 / 30.05); the Abbe numbers agree within 0.15, and the trace keeps the printed index. The nearest rows for the barium flint (BAF10, 1.6700 / 47.1) and the lanthanum crown (LaK9, 1.6910 / 54.7) miss the printed Abbe number by 0.4 and 0.9, so those elements keep the printed index and Abbe number with an Abbe-number dispersion estimate. No supplier or melt is asserted for any element.
 
 The chromatic scheme is the patent's: each central cemented component pairs a dispersive flint with a collective crown, with Abbe steps of 21.5 (D1) and 30.0 (D2). The outer singlets mix flint and crown coordinates. Bare index and Abbe data support an ordinary achromat; they cannot show partial-dispersion or secondary-spectrum correction.
 
