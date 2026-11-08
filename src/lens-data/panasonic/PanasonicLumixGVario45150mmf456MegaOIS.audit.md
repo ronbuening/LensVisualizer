@@ -180,3 +180,23 @@ and indices (−0.059 mm at 10.8 mm at every station); the plotted tele curves w
 
 - Fig. 14's astigmatism at the wide and tele stations is not reproduced (tele t −0.187 mm modelled against about
   +0.01 plotted at 10.8 mm); the prescription matches Tables 13–15 and the cause is not found.
+
+## 2026-11-08 — Third review: diagram, labels and movement
+
+Re-checked against Fig. 13(a), Tables 13–16, ¶¶0111–0119, ¶0226 and Fig. 14, with the local page at every station
+and both focus states, both motion overlays and all twelve inspectors. No field changed.
+
+- Scale re-proved at 8.633 px/mm (S9, S13, S19 and S22 within 1.1 px; stop ticks 5.13–5.18 mm). Every rim reads
+  within 4 % of its stored value. The L8 land is drawn on both sides, 1.56–1.62 mm behind the vertex (q 0.85).
+- Second-review land and cut verdicts re-measured: unchanged; worst loss 0.0 points at the stations and at zoom
+  fractions every 0.0625. With a real object 1000 mm away the corner is 64.0 / 82.3 / 65.4 % with or without the land.
+- Labels, types, focal lengths, roles, badges, brackets and the stop agree with the patent. All 30 gaps match Tables
+  15–16; L10 alone moves toward the image, 0.8654 / 2.1859 / 5.4529 mm (¶0119).
+- Table 14's asphere values, order and signs are the file's, and ¶0226's sag is the engine's. Reversing or dropping
+  the aspheric terms moves the full-field foci by 0.6–3.7 mm. Fig. 14's three panels imply third-order Petzval sags
+  of about −0.045, −0.06 and −0.013 mm at 10.8 mm, but the Petzval sum does not change with zoom (−0.059 mm here). All
+  eight examples plot the same flat tele field, so the tele mismatch most likely comes from how the plots were made.
+- L2's S-BAL41 (νd 60.67) does not round to the printed 60.8. A 564608 curve (N-SK11) brings the tele F line to
+  +0.053 / +0.091 mm against +0.057 / +0.093 plotted, so L2 now carries N-SK11 (SCHOTT catalog equivalent).
+
+**Open:** the astigmatism line above, and the four deployment-validation lines, which the patent cannot settle.
