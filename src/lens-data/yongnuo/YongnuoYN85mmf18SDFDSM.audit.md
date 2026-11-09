@@ -1,8 +1,8 @@
 # CN110146970B Example 1 transcription audit
 
-Date: 2026-11-09. Base: ronbuening/LensVisualizer at 9d121be76e14bc5098256ee78cd0a7545a1acf11.
+Date: 2026-11-09.
 
-The original PDF and pixels of pp. 9, 10, 14, 15 and 16 were inspected. All 20 source surfaces, including cover glass, were compared with the supplied transcription packet. PDF SHA-256: 2dcebad2490a2da1001c16e5a7ce1c00b319af8695eeb705f161c5abf45c7559. Packet SHA-256: f831de4ad6a873b47069e0c67c30a6226712de99d7bec66c3e6ab4588c259c9d.
+The original PDF and pixels of pp. 9, 10, 14, 15 and 16 were inspected. All 20 source surfaces, including cover glass, were compared with the supplied transcription.
 
 Source S10 maps to STO; S19–20 map to the standard rearPlates representation. All radii, axial thicknesses, indices and Abbe numbers remain literal. The close table changes only d7 and d9. The printed 697 mm object distance is first-vertex referenced, consistent with the 103.397 mm track and rounded 0.8 m total distance. The object distance is explicitly authored as a finite conjugate, not inferred from a focus slider label.
 
@@ -12,11 +12,9 @@ The 23.5425 mm pupil radius is printed in Fig. 2A. The standard prime stop rule 
 
 Independent paraxial focus residuals relative to the literal sensor are −0.0179802 mm at infinity and +0.1818068 mm at the 697 mm finite endpoint. These are disclosed, not repaired. Midpoint mechanical interpolation has no source-certified conjugate, so its MTF is unavailable rather than silently evaluated as an infinity design.
 
-No catalog glass identities or partial-dispersion coefficients are established. D-line ray and MTF checks use literal indices. Broadband behavior remains qualified. Exact production association is unproven; production review scores do not validate this prescription.
+No catalog glass identities or partial-dispersion coefficients are established (superseded 2026-11-09: exact-match catalog equivalents added, see the cleanup pass). D-line ray and MTF checks use literal indices. Exact production association is unproven; production review scores do not validate this prescription.
 
 AST-based comparison against all 1,095 other catalog prescriptions found no complete signed-curvature sequence match after arbitrary scaling at 0.1% tolerance. This detects same-order scaled designs, not every conceivable rearrangement or optical equivalence.
-
-The companion evidence bundle contains machine-readable literal checks, geometry/render diagnostics, aperture and field audits, geometric MTF results, independent paraxial calculation, original source pages, and integration logs. No commit, push, PR, merge or deployment was performed.
 
 ## 2026-11-09 — Deployment validation
 
@@ -28,3 +26,45 @@ diagram draws; Example 1 fits the 88 mm product length best.
 
 Deployment change: `source.assignees` → "Shenzhen Yongnuo Electric Appliance Co., Ltd." to match the front page
 (深圳市永诺电器有限公司); the analysis assignee line follows.
+
+## 2026-11-09 — Cleanup and wording pass
+
+Data file changes (no optical value touched):
+
+- Header rewritten as plain technical notes: printed versus derived values, the stop rule, the inferred rims and
+  the attribution, with its caveats.
+- `subtitle` → "CN 110146970 B, Example 1 — probable match to the 2020 production lens".
+- `specs` → 9/8, DESIGN f = 84.67 mm, DESIGN F/1.8, ALL SPHERICAL, 1 ED ELEMENT (was "f = 84.67 mm (source)",
+  "F/1.8", "2ω = 27.338°").
+- `catalog.closeFocusM.marketing` 0.8 (Yongnuo).
+- `aperture.blades` 7 (Yongnuo).
+- `focus.description` names the printed states.
+- Element roles added.
+- L14 `apd: "inferred"`, because Yongnuo's drawing marks the ED element at that position and 1.497/81.61 is the
+  FCD1 / S-FPL51 class.
+- Glass labels added only where a catalog row equals the printed pair (|Δnd| ≤ 0.0001, |Δνd| ≤ 0.15), each
+  confirmed with trylabel: L12 S-FPM3, L13 NBFD15, L14 FCD1, L21 BSM4 (Δνd 0.03), L31 YGH52, L33 TPH55, L34 SF10.
+  L11 (1.8213/42.73) and L32 (1.5955/38.77) have no match and are labelled Unmatched.
+- The patent states the d-line (¶0117, ¶0120).
+
+Analysis changes:
+
+- Removed package and validation-report references.
+- Added the product, R and Z versions, the 2022 revision, the 9/6 EF/F lens, the maker-drawing comparison and the
+  attribution evidence. The evidence includes ¶0110, which names an 85mm F1.8 mirrorless lens.
+- Added the caveats: three examples share the layout; the shaded high-index L31 position is Example 1's third-highest
+  index; paraxial 0.138× against 0.13×.
+- Added a conditional-expression table. Condition (6) reproduces with L32 in all three examples, although ¶0123
+  calls L34 the meniscus.
+- "Verification Summary" and "Aperture Reconstruction" merged into "Model Scope and Limitations".
+
+Engine numbers before and after, identical:
+
+- EFL 84.7466 mm, FOPEN 1.79987, half-field 13.669°, stop radius 14.0448 mm.
+- BFD 0.9820 mm (infinity) and close-row EFL 80.0518 mm.
+
+audit:surface OK. audit:aperture reports no rim limit.
+
+Open: the S6/S7 rims (21 mm) are larger than Fig. 1 draws (about 18 mm) and L32 (14 mm) slightly larger
+(about 12.8 mm). The 30 mm front rim exceeds what Yongnuo's 58 mm filter thread suggests. Rims were left unchanged
+in this pass.

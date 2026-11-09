@@ -1,114 +1,155 @@
 ## Patent Reference and Design Identification
 
 **Patent:** [CN 110146970 B](https://patents.google.com/patent/CN110146970B/en)
+**Application Number:** 201910569908.7
 **Filed:** 2019-06-27
+**Published:** 2019-08-20 (CN 110146970 A)
 **Granted:** 2023-08-18
 **Inventors:** Yuanhua Ye, Yongsheng Zhuang, Jiannan Zhuang, Qiyun Zhu
 **Assignee:** Shenzhen Yongnuo Electric Appliance Co., Ltd. (深圳市永诺电器有限公司)
-**Title:** An imaging lens and an imaging device
-**Example details:** Prescription on PDF p. 9, focus table on p. 10; optical section Fig. 1 and infinity aberrations Figs. 2A–2B on pp. 14–16.
+**Title:** An imaging lens and an imaging device (一种成像镜头及成像设备)
+**Example details:** 实施例1; prescription on PDF p. 9, focus table on p. 10, conditional values on p. 13; optical section Fig. 1 and infinity aberrations Figs. 2A–2B on pp. 14–16.
 
-This is a literal transcription of the patent's first numerical example, associated provisionally with the first-generation YN85mm F1.8S DF DSM. The production association is plausible, not proven. It must not be treated as the released factory prescription, the later upgraded 85F1.8S, or a DSLR 85 mm version.
+The patent describes a positive–negative–positive lens in which a single negative lens focuses. Its back-focus condition is written for mirrorless interchangeable-lens cameras, "for example an 85mm F1.8 mirrorless lens" (¶0110). It gives three numerical examples with the same nine-element layout: Example 1 (f = 84.67 mm), Example 2 (82.58 mm) and Example 3 (81.35 mm). The data file transcribes Example 1 at its printed scale. Fig. 2A prints a 23.5425 mm entrance-pupil radius and Fig. 2B a 13.669° maximum half-field; the design plots are dated 27 May 2019, a month before filing.
 
-The supporting points are a nine-element/eight-group construction, an approximately 85 mm focal length, f/1.8 pupil, and single-element internal focus. Those points support comparison, not identity. The source design focal length is 84.67 mm at infinity and 80.03 mm at close focus. Figs. 2A–2B explicitly print pupil radius 23.5425 mm and maximum half-field 13.669°.
+The production lens is the Yongnuo YN85mm F1.8S DF DSM for Sony E, a full-frame autofocus prime with a stepping motor, announced in China on 25 August 2020. Yongnuo lists 9 elements in 8 groups with one ED element, f/1.8–f/16, seven rounded blades, 0.8 m minimum focus, 0.13× maximum magnification, a 58 mm filter, and Φ67 × 88 mm at 346 g. The Canon RF version (YN85mm F1.8R DF DSM, 2021) and the Nikon Z version (YN85mm F1.8Z DF DSM, March 2022) list the same 9/8 construction, 0.8 m focus and 58 mm filter, and probably share the optics. A 2022 revision of the Sony lens (85F1.8S DF DSM) has an aluminium barrel and revised coatings with 9/8 unchanged. The earlier Canon EF / Nikon F YN85mm F1.8 has 9 elements in 6 groups and is a different design.
+
+The match between Example 1 and the YN85mm F1.8S DF DSM is probable, not certain:
+
+1. **Stated purpose.** The applicant is Yongnuo, and the patent names an 85 mm F1.8 mirrorless lens as its application (¶0110).
+2. **Construction.** Nine elements in eight groups, all spherical, with one cemented pair.
+3. **Maker drawing.** Yongnuo's construction drawing shows the same sequence: two positive menisci, a cemented negative–positive pair with the ED element in the L14 position, a single thin concave lens ahead of the stop, and four rear elements with a long air gap before a final meniscus concave to the object.
+4. **ED glass.** L14 (nd 1.497, νd 81.61) is the only fluorophosphate-class glass, matching the one ED element Yongnuo lists.
+5. **Focal length and length.** Example 1 is the closest of the three examples to 85 mm. Its 103.4 mm first-vertex-to-image track places the front glass 85.4 mm ahead of the Sony E flange (18 mm), in line with the 88 mm barrel. Examples 2 and 3 give 74.5 and 80.7 mm.
+6. **Focus.** The patent's 0.8 m close state (697 mm object distance plus the 103.4 mm track) is Yongnuo's 0.8 m minimum focus.
+7. **Timing.** Filed in June 2019, 14 months before the Sony version was announced.
+
+The evidence stops short of identity. All three examples share the layout, so the drawing cannot single out Example 1. Yongnuo's drawing shades a second special element in the L31 position, presumably the high-index element LensTip lists. In Example 1, L31 (nd 1.7865) is less refractive than L11 (1.8213) and L13 (1.8061), whereas in Examples 2 and 3 L31 is the highest-index element. At its printed close state Example 1 reaches 0.138× paraxially, against Yongnuo's 0.13×. Yongnuo publishes no prescription.
+
+The [DXOMARK review](https://www.dxomark.com/yongnuo-yn-85mm-f1-8-s-df-dsm-lens-review/) of the production lens reports a sharp centre and weaker corners. These measurements describe the product, not this patent example.
 
 ## Optical Architecture
 
-The patent divides the lens into positive GR1, negative GR2 and positive GR3, with the stop after GR2. GR1 contains four elements including one cemented doublet. GR2 is the single negative focusing element L21. GR3 contains four separated elements. Nine physical lenses therefore form eight air-separated groups; the three labeled groups describe mechanical/power subdivisions rather than the catalog's air-separated count.
+The patent divides the lens into a positive first group GR1 (f ≈ +91.3 mm), a negative second group GR2 (−72.3 mm) and a positive third group GR3 (+65.6 mm), with the stop between GR2 and GR3 (¶0122). GR1 holds four elements, L11, L12 and the cemented pair L13/L14. GR2 is the single negative focusing element L21. GR3 holds four separate elements, L31 to L34. GR1 and GR3 stay fixed relative to the image plane. Nine elements in eight air-spaced groups match Yongnuo's 9/8 count; the patent's three groups describe the power and focusing split.
 
-All refracting lens surfaces are spherical. The model retains the source's 2.2 mm plane-parallel rear cover glass as a traced rear plate, outside the nine-element lens count. The literal final air gap remains 1 mm. No source radii, spacings or glass indices have been optimized or repaired.
+The layout is a positive–negative–positive inner-focus short telephoto prime (total track 103.4 mm, 1.22 × f). A strong positive front group converges the f/1.8 beam, so a single thin negative lens can focus with little moving mass (¶0116). A compact positive rear group after the stop finishes the convergence and controls the field. Example 1 keeps a 17.9 mm back focus (Bf/F = 0.21), suited to a short-flange mirrorless mount.
+
+All surfaces are spherical. The 2.2 mm cover glass printed as surfaces 19–20 is kept as a traced rear plate with its printed 1 mm air gap to the image; it is not counted as a lens element.
 
 ## Element-by-Element Analysis
 
-Element roles follow the source power signs and prescription. No standalone focal-length estimate is substituted for the actual cemented-group power.
+Focal lengths below are for each element alone in air.
 
-### L11: Positive meniscus
+### L11: Positive meniscus, convex to the object
 
-nd = 1.8213, νd = 42.73. Glass: unassigned source nd/νd pair.
+nd = 1.8213, νd = 42.73. Glass: Unmatched (no catalog row equals the printed pair). f = +87.1 mm.
 
-The large first element supplies positive collecting power. Its broad front aperture admits the fast axial bundle. Its 58.558 mm front radius is substantially steeper than its 298.95 mm rear radius.
+The largest element and the main collector of GR1. Its 58.558 mm front radius is much steeper than its 298.95 mm rear radius. The high index keeps the curvatures moderate for the f/1.8 beam.
 
-### L12: Positive meniscus
+### L12: Positive meniscus, convex to the object
 
-nd = 1.53775, νd = 74.7. Glass: unassigned low-dispersion crown-class pair.
+nd = 1.53775, νd = 74.7. Glass: S-FPM3 (OHARA catalog equivalent). f = +98.1 mm.
 
-The second positive meniscus shares the front-group convergence with L11. Its higher Abbe number provides chromatic leverage without establishing a particular catalog glass or anomalous partial dispersion.
+Shares GR1's convergence with L11. Its low-dispersion crown limits the colour the two front positives add before the cemented pair corrects it.
 
-### L13 and L14: Cemented negative-positive pair
+### L13 / L14: Cemented doublet
 
-L13: nd = 1.8061, νd = 33.27. Glass: unassigned high-index, higher-dispersion pair.
+L13, negative meniscus: nd = 1.8061, νd = 33.27. Glass: NBFD15 (HOYA catalog equivalent). f = −36.3 mm.
 
-L14: nd = 1.497, νd = 81.61. Glass: unassigned low-dispersion pair.
+L14, positive meniscus: nd = 1.497, νd = 81.61. Glass: FCD1 (HOYA catalog equivalent) — ED, fluorophosphate class. f = +71.0 mm.
 
-The shared 27.251 mm interface couples negative L13 to positive L14. The large dispersion difference is consistent with an achromatizing role. This is an optical interpretation of the numerical pair, not a claim of measured apochromatism.
+L13's front is nearly flat (R = 412.741 mm) and sits 1.17 mm behind L12. The pair shares a strongly curved 27.251 mm interface, convex to the object. Together the two elements are weakly negative (about −70 mm). The flint–ED pairing, with a νd difference of 48, provides GR1's achromatisation. The patent's condition (2) requires νd 70–95 for this positive element. Yongnuo's drawing marks the L14 position as the ED element, so the model treats L14 as an inferred anomalous-dispersion glass. The patent gives no partial-dispersion data.
 
 ### L21: Biconcave focusing element
 
-nd = 1.6127, νd = 58.7169. Glass: unassigned source pair.
+nd = 1.6127, νd = 58.7169. Glass: BSM4 (OHARA catalog equivalent). f = −72.3 mm.
 
-The 1.4 mm-thick negative element is the only translating lens. Its light moving mass is the mechanism emphasized by the patent. The stop lies behind it at source surface 10.
+The whole of GR2 and the only moving lens. It is 1.4 mm thick and nearly plano-concave (R = −442.29 / 49.317 mm). Conditions (4) and (5) hold its index to 1.59–1.70 and its νd to 50–83. Within those limits it neither under- nor over-corrects the axial colour and spherical aberration left by GR1 (¶0087–¶0088). The stop follows 17.28 mm behind it at infinity focus.
 
-### L31: Positive meniscus
+### L31: Positive, nearly plano-convex
 
-nd = 1.7865, νd = 50. Glass: unassigned source pair.
+nd = 1.7865, νd = 50.0. Glass: YGH52 (OHARA catalog equivalent). f = +47.1 mm.
 
-The first rear-group element restores convergence after the negative focusing group. Its 1864.782 mm rear radius is nearly planar relative to its 36.369 mm front radius.
+The strongest positive element of GR3, 3.26 mm behind the stop. Its rear radius, 1864.782 mm, is nearly flat. Yongnuo's drawing shades this position as a special element, probably the listed high-index element. In Example 1 it is only the third most refractive glass in the lens.
 
-### L32: Negative meniscus
+### L32: Negative meniscus, convex to the object
 
-nd = 1.5955, νd = 38.77. Glass: unassigned source pair.
+nd = 1.5955, νd = 38.77. Glass: Unmatched (no catalog row equals the printed pair). f = −313 mm.
 
-The thin negative meniscus follows L31 across a literal 0.15 mm axial gap. Its strong surfaces participate in rear-group aberration balancing. No extra clearance has been inserted into this tight gap.
+A thin, weak meniscus 0.15 mm behind L31. Its nearly concentric surfaces (24.546 / 21.181 mm) make it the meniscus of condition (6): (Ra + Rb)/(Ra − Rb) = 13.59, within 1–15. The patent ties that condition to the meniscus's share of the spherical-aberration correction. It also says a value above the limit would curve the image-side face too strongly and over-curve the field (¶0096–¶0097).
 
-### L33: Positive meniscus
+### L33: Positive meniscus, concave to the object
 
-nd = 1.7555, νd = 25.07. Glass: unassigned high-dispersion pair.
+nd = 1.7555, νd = 25.07. Glass: TPH55 (OHARA catalog equivalent). f = +308 mm.
 
-The positive meniscus contributes converging power behind L32. Its relatively high dispersion provides another chromatic balancing degree of freedom; the source gives no spectral line indices beyond nd and νd.
+A weak dense-flint positive lens. Its high dispersion, against L31's νd 50 glass, trims the colour of the rear group.
 
-### L34: Negative meniscus
+### L34: Negative meniscus, concave to the object
 
-nd = 1.72825, νd = 28.41. Glass: unassigned source pair.
+nd = 1.72825, νd = 28.41. Glass: SF10 (SCHOTT catalog equivalent). f = −82.4 mm.
 
-The final negative meniscus precedes the rear plate by 14.718 mm. Its curved surfaces participate in field correction. The isolated element is not a flat-field guarantee; the patent's field curves show residual field curvature and astigmatism.
+The last lens, 15 mm behind L33 and 17.9 mm ahead of the image. ¶0123 names it as GR3's negative meniscus, but the patent's condition (6) values are those of L32 (see Conditional Expressions). In the author's reading, its negative power far behind the stop flattens the field. Fig. 2B shows residual field curvature and astigmatism of up to about 0.1 mm across the 13.669° field.
 
-## Glass Identification and Model Limits
+## Glass Identification
 
-No vendor glass names are asserted. The model uses every source nd/νd pair literally and permits the engine's synthetic Abbe-based dispersion. Monochromatic d-line calculations are materially better constrained than broadband calculations. Secondary spectrum, anomalous partial dispersion and production color correction cannot be recovered from these two numbers alone.
+The patent prints nd and νd at the d-line (¶0117, ¶0120) and names no glass. Seven of the nine pairs equal a catalog row to the printed precision. The labels name that row as a catalog equivalent; the production supplier is not known. L11 and L32 match no catalog row. Only L14 is an anomalous-dispersion glass.
 
-The rear plate uses nd = 1.5168 and νd = 64.2 without asserting a catalog identity. It remains in all ray calculations, with physical thickness and physical air gaps intact.
+| Element | nd | νd | Catalog equivalent | Role |
+| --- | --- | --- | --- | --- |
+| L11 | 1.8213 | 42.73 | Unmatched | High-index front collector |
+| L12 | 1.53775 | 74.70 | S-FPM3 (OHARA) | Low-dispersion crown |
+| L13 | 1.8061 | 33.27 | NBFD15 (HOYA) | Flint partner of the ED element |
+| L14 | 1.497 | 81.61 | FCD1 (HOYA) | ED, fluorophosphate |
+| L21 | 1.6127 | 58.72 | BSM4 (OHARA) | Focusing negative |
+| L31 | 1.7865 | 50.00 | YGH52 (OHARA) | High-index rear positive |
+| L32 | 1.5955 | 38.77 | Unmatched | Weak meniscus |
+| L33 | 1.7555 | 25.07 | TPH55 (OHARA) | Dense flint |
+| L34 | 1.72825 | 28.41 | SF10 (SCHOTT) | Dense-flint field lens |
+
+The 2.2 mm cover glass (nd 1.5168, νd 64.2) is BK7 class and is traced with the lens.
 
 ## Focus Mechanism
 
-L21 moves 14.5 mm imageward. The gap after surface 7 increases from 2.95 to 17.45 mm while the gap after surface 9 decreases from 17.28 to 2.78 mm. Their sum remains 20.23 mm. GR1, the stop, GR3 and the image plane remain fixed.
+Inner focus by the single element L21 (GR2), which moves 14.5 mm toward the image. GR1, the stop, GR3 and the image plane stay fixed (¶0122). The printed table gives two states:
 
-The close-focus source object distance is 697 mm before the first vertex. The literal first-vertex-to-image track is 103.397 mm, so the full distance is 800.397 mm, consistent with the rounded 0.8 m label. The endpoint is explicitly declared as a finite conjugate. Intermediate slider positions interpolate mechanical travel and are not independently source-certified object distances.
+| State | f (mm) | Object distance from S1 (mm) | D(1) after S7 (mm) | D(2) after S9 (mm) |
+| --- | --- | --- | --- | --- |
+| Infinity | 84.67 | ∞ | 2.95 | 17.28 |
+| Close (0.8 m) | 80.03 | 697 | 17.45 | 2.78 |
 
-## Aperture Reconstruction
+The two gaps sum to 20.23 mm in both states. The 697 mm object distance plus the 103.397 mm first-vertex-to-image track gives 800.4 mm object to image, which matches the patent's "0.8 m" label and Yongnuo's 0.8 m minimum focus. The close state focuses at about 0.138× paraxially (Yongnuo: 0.13×). The model keeps the printed image plane in both states. At the close spacings the paraxial focus falls 0.18 mm behind that plane; at infinity it falls 0.018 mm in front. Intermediate positions interpolate the two gaps linearly and are not printed states. The production lens drives its focusing element with a stepping motor (DSM).
 
-The patent publishes no clear-aperture table. The authored semi-diameters are therefore a qualified reconstruction: a smooth envelope guided by Fig. 1, then checked against the engine's required axial beam, field chief rays and geometry validation. They are not measured production barrel apertures or pixel-calibrated figure dimensions.
+## Conditional Expressions
 
-The front-to-rear lens semi-diameters are 30, 24, 21, 21, 17, 15, 14, 12 and 14 mm, with each physical element's two faces kept equal and the cemented interface shared. These values are not a uniquely recovered aperture solution. Off-axis vignetting and MTF depend on this choice.
+The patent's table on p. 13 lists eight conditions. The model reproduces each of Example 1's printed values:
 
-The ordinary-prime stop is derived by the repository's standard pupil rule. The design f-number is 84.7466448894 / (2 × 23.5425) = 1.79986503. This preserves the explicitly printed pupil rather than rounding it to the marketed f/1.8. The resulting physical stop diameter is 28.08963655 mm, an inferred value rather than a patent table entry. No gap-sag override, inferred rim cut or hidden surface trimming was needed.
+| No. | Expression | Range (claims) | Printed | Model |
+| --- | --- | --- | --- | --- |
+| 1 | F1/F | 0.4–1.5 | 1.08 | 1.078 |
+| 2 | νd of the cemented positive (L14) | 70–95 | 81.61 | 81.61 |
+| 3 | R3a/R2b (S5 / S4) | 1–13 | 2.4 | 2.404 |
+| 4 | nd of the GR2 negative (L21) | 1.59–1.70 | 1.613 | 1.6127 |
+| 5 | νd of the GR2 negative (L21) | 50–83 | 58.72 | 58.72 |
+| 6 | (Ra + Rb)/(Ra − Rb), GR3 negative meniscus | 1–15 | 13.59 | 13.589 (L32) |
+| 7 | F3/F | 0.5–1.5 | 0.77 | 0.774 |
+| 8 | Bf/F | 0.17–0.29 | 0.21 | 0.211 |
 
-## Verification Summary
+Condition (6) reproduces with L32's radii in all three examples (13.59, 3.991, 9.088), although ¶0123 calls L34 the negative meniscus; L34 itself gives −4.14. Bf is the 17.918 mm from L34 to the image with the cover glass counted at its physical thickness.
 
-The engine's infinity d-line EFL is 84.7466448894 mm, 0.091% above the source's rounded 84.67 mm. The literal image plane is 0.0179802 mm behind the paraxial focus. This discrepancy is retained; diagnostic MTF uses the authored plane, not best focus.
+## Model Scope and Limitations
 
-The axial beam is stop-limited at f/1.79986503. The source field reaches approximately 21.00758 mm image height, or 97.03% of the 21.65 mm full-frame corner radius. The full-frame corner requires approximately 14.0601°, beyond the source's explicit 13.669° field. This distinction is retained rather than silently extending the patent's field claim.
+The prescription is the printed table without rescaling or correction. The engine EFL is 84.747 mm, 0.09 % above the printed 84.67 mm, and the close-state EFL is 80.052 mm (printed 80.03 mm). Examples 2 and 3 show the same small offset, so it reflects the patent's own calculation rather than a transcription error.
 
-At the published finite endpoint, an independent paraxial calculation gives 80.051773 mm EFL and a focus 0.181807 mm behind the literal sensor. This residual is preserved and disclosed. Close-focus image quality must therefore be treated as the literal printed configuration, not a corrected factory focus calibration.
+The nominal f-number comes from the printed 23.5425 mm entrance-pupil radius: 84.747 / 47.085 = 1.80. The stop diameter that gives it (28.09 mm) is derived, not printed. The printed 13.669° half-field reaches about 21.0 mm image height, 97 % of the 21.65 mm full-frame corner radius. The model keeps the patent's field rather than extending it to the corner.
 
-The package includes runtime geometry and render diagnostics, finite-conjugate checks, aperture and field audits, and d-line geometric MTF. These are simulations of the reconstructed patent model, not measured production lens results. Geometric MTF omits diffraction, coatings, tolerances and sensor processing. The packaged validation report gives the actual pass/fail/unavailable status for each check.
-
-## Production Context
-
-The [DXOMARK review](https://www.dxomark.com/yongnuo-yn-85mm-f1-8-s-df-dsm-lens-review/) reports strong central performance and weaker corners for the factory lens. Such measurements explain why the product is a useful practical candidate, but neither its score nor its center sharpness validates this patent embodiment. No production MTF is presented as patent MTF.
+The patent prints no clear apertures. The semi-diameters (30, 24, 21, 21, 17, 15, 14, 12 and 14 mm front to rear, both faces of each element equal) follow the Fig. 1 envelope, so off-axis vignetting depends on that reading. Glass dispersion follows the catalog equivalents above. L11 and L32 use the Abbe-number estimate, and no partial-dispersion data are printed.
 
 ## Sources
 
-- [CN 110146970 B](https://patents.google.com/patent/CN110146970B/en), prescription, focus mechanism, element roles and figures.
-- [Original patent PDF](https://patentimages.storage.googleapis.com/c5/b6/13/83dc9f193cece3/CN110146970B.pdf), preserved in the evidence archive.
-- [Yongnuo product page](https://th.hkyongnuo.com/products/yn85mm-f18s-df-dsm), production identity context.
-- [DXOMARK production-lens review](https://www.dxomark.com/yongnuo-yn-85mm-f1-8-s-df-dsm-lens-review/), independent practical context only.
+- [CN 110146970 B](https://patents.google.com/patent/CN110146970B/en): prescription, focus table, conditional values and figures ([PDF](https://patentimages.storage.googleapis.com/c5/b6/13/83dc9f193cece3/CN110146970B.pdf)).
+- [Yongnuo, YN85mm F1.8S DF DSM](https://th.hkyongnuo.com/products/yn85mm-f18s-df-dsm): construction (9/8), ED element, construction drawing, 0.8 m minimum focus, 0.13×, 58 mm filter, seven blades, f/1.8–f/16, dimensions and weight.
+- [Yongnuo, 85F1.8S DF DSM](https://www.th.hkyongnuo.com/products/85f18s-df-dsm): the revised Sony E version (9/8, aluminium barrel, revised coating).
+- [Photo Rumors, 25 August 2020](https://photorumors.com/2020/08/25/the-new-200-yongnuo-yn-85mm-f-1-8s-df-dsm-autofocus-lens-for-sony-e-mount-is-now-officially-announced-in-china/): announcement of the Sony E lens.
+- [LensTip, YN 85 mm f/1.8S DF DSM](https://www.lenstip.com/1741-Yongnuo_YN_85_mm_f_1.8S_DF_DSM-lens_specifications.html) and [YN 85 mm f/1.8R DF DSM](https://www.lenstip.com/1841-Yongnuo_YN_85_mm_f_1.8R_DF_DSM-lens_specifications.html): specifications, including one ED and one high-index element.
+- [Z System User, Yongnuo 85mm f/1.8Z DF DSM](https://zsystemuser.com/z-mount-lenses/third-party-lenses/third-party-autofocus-lense/yongnuo-lenses/yongnuo-85mm-f18z-df-dsm.html): Nikon Z version, 9/8, 0.8 m, announced March 2022.
+- [DXOMARK review](https://www.dxomark.com/yongnuo-yn-85mm-f1-8-s-df-dsm-lens-review/): measured performance of the production lens.

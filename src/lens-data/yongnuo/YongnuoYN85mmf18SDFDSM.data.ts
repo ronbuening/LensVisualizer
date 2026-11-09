@@ -1,16 +1,29 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-// Literal CN110146970B Example 1; PDF pp. 9–10, Figs. 1, 2A–B.
-// Production association is plausible, not proven. No radii, thicknesses or image gap repaired.
-// Apertures are reconstructed, not source measurements; see analysis and evidence.
-// Synthetic nd/vd dispersion only: no catalog glass identification claimed.
-// The source pupil radius 23.5425 mm defines the derived nominal f-number.
-// Derived physical stop diameter ~28.089637 mm is inferred, not printed.
+
+/** CN 110146970 B, Example 1 (Shenzhen Yongnuo Electric Appliance Co., Ltd.): f = 84.67 mm, all spherical,
+ * 9 elements / 8 groups. Prescription on PDF p. 9, focus table on p. 10, Fig. 1 section, Figs. 2A–2B aberrations.
+ * No scale factor is applied. R, d, nd and νd (d-line, ¶0117) follow the printed table without alteration.
+ * Source S10 is the stop; S19–S20 are the printed 2.2 mm cover glass, kept as a rear plate with its printed 1 mm
+ * air gap to the image. The engine EFL is 84.747 mm, 0.09 % above the printed 84.67 mm (Examples 2 and 3 show
+ * the same offset); the printed image plane sits 0.018 mm behind the paraxial focus at infinity and is kept.
+ * Fig. 2A prints a 23.5425 mm entrance-pupil radius, which sets the nominal f-number 84.747 / 47.085 = 1.7999;
+ * the stop radius (14.04 mm) is derived by the stop rule, not printed. Fig. 2B prints a 13.669° half-field,
+ * which reaches about 21.0 mm image height (97 % of the full-frame corner).
+ * All semi-diameters are inferred from the Fig. 1 envelope (30, 24, 21, 21, 17, 15, 14, 12 and 14 mm front to
+ * rear, both faces of each element equal); the patent prints none.
+ * Glass labels are catalog rows whose nd/νd equal the printed pairs; the production supplier is not known. L11
+ * and L32 match no catalog row.
+ * Probable match to the YN85mm F1.8S DF DSM (Sony E, 2020): ¶0110 names an 85mm F1.8 mirrorless lens, and
+ * Yongnuo's 9/8 construction drawing shows the same element sequence, the ED element at L14 and the single
+ * focusing lens ahead of the stop. The drawing does not separate Example 1 from Examples 2–3, and its shaded
+ * high-index position (L31) is not Example 1's highest-index glass. Not a factory prescription.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "yongnuo-yn-85mm-f18s-df-dsm",
   "maker": "Yongnuo",
   "name": "YONGNUO YN 85mm f/1.8 S DF DSM",
-  "subtitle": "CN 110146970 B \u2014 associated patent design, production identity unconfirmed",
+  "subtitle": "CN 110146970 B, Example 1 \u2014 probable match to the 2020 production lens",
   "catalog": {
     "lensMounts": [
       "sony-fe"
@@ -18,12 +31,16 @@ const LENS_DATA = {
     "imageFormat": "135-full-frame",
     "specs": [
       "9 ELEMENTS / 8 GROUPS",
-      "f = 84.67 mm (source)",
-      "F/1.8",
-      "2\u03c9 = 27.338\u00b0"
+      "DESIGN f = 84.67 mm",
+      "DESIGN F/1.8",
+      "ALL SPHERICAL",
+      "1 ED ELEMENT"
     ],
     "elementCount": 9,
     "groupCount": 8,
+    "closeFocusM": {
+      "marketing": 0.8
+    },
     "focalLengthMm": {
       "marketing": 85,
       "design": 84.67
@@ -57,7 +74,9 @@ const LENS_DATA = {
       "label": "Element 1",
       "type": "Positive Meniscus",
       "nd": 1.8213,
-      "vd": 42.73
+      "vd": 42.73,
+      "glass": "Unmatched (patent nd 1.8213, νd 42.73; no catalog row matches)",
+      "role": "High-index positive meniscus front element, convex to the object; the main collector of the fixed first group."
     },
     {
       "id": 2,
@@ -65,7 +84,9 @@ const LENS_DATA = {
       "label": "Element 2",
       "type": "Positive Meniscus",
       "nd": 1.53775,
-      "vd": 74.7
+      "vd": 74.7,
+      "glass": "S-FPM3 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Low-dispersion crown positive meniscus, convex to the object; shares the first group's convergence with L11."
     },
     {
       "id": 3,
@@ -73,7 +94,9 @@ const LENS_DATA = {
       "label": "Element 3",
       "type": "Negative Meniscus",
       "nd": 1.8061,
-      "vd": 33.27
+      "vd": 33.27,
+      "glass": "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "High-index flint negative meniscus, nearly flat in front, leading the cemented doublet; the flint partner of the ED element L14."
     },
     {
       "id": 4,
@@ -81,7 +104,11 @@ const LENS_DATA = {
       "label": "Element 4",
       "type": "Positive Meniscus",
       "nd": 1.497,
-      "vd": 81.61
+      "vd": 81.61,
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "Yongnuo's construction drawing marks this position as the ED element, and the printed nd/νd equal the FCD1 / S-FPL51 fluorophosphate class.",
+      "role": "ED positive meniscus closing the cemented doublet; corrects the first group's axial colour against L13."
     },
     {
       "id": 5,
@@ -89,7 +116,9 @@ const LENS_DATA = {
       "label": "Element 5",
       "type": "Biconcave Negative",
       "nd": 1.6127,
-      "vd": 58.7169
+      "vd": 58.7169,
+      "glass": "BSM4 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Thin, nearly plano-concave focusing element (the whole second group); moves 14.5 mm toward the image for close focus."
     },
     {
       "id": 6,
@@ -97,7 +126,9 @@ const LENS_DATA = {
       "label": "Element 6",
       "type": "Positive Meniscus",
       "nd": 1.7865,
-      "vd": 50
+      "vd": 50,
+      "glass": "YGH52 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "High-index, nearly plano-convex element just behind the stop; the strongest positive element of the rear group."
     },
     {
       "id": 7,
@@ -105,7 +136,9 @@ const LENS_DATA = {
       "label": "Element 7",
       "type": "Negative Meniscus",
       "nd": 1.5955,
-      "vd": 38.77
+      "vd": 38.77,
+      "glass": "Unmatched (patent nd 1.5955, νd 38.77; no catalog row matches)",
+      "role": "Weak negative meniscus, convex to the object, 0.15 mm behind L31; the meniscus of the patent's condition (6)."
     },
     {
       "id": 8,
@@ -113,7 +146,9 @@ const LENS_DATA = {
       "label": "Element 8",
       "type": "Positive Meniscus",
       "nd": 1.7555,
-      "vd": 25.07
+      "vd": 25.07,
+      "glass": "TPH55 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Weak dense-flint positive meniscus, concave to the object; trims the colour of the rear group."
     },
     {
       "id": 9,
@@ -121,7 +156,9 @@ const LENS_DATA = {
       "label": "Element 9",
       "type": "Negative Meniscus",
       "nd": 1.72825,
-      "vd": 28.41
+      "vd": 28.41,
+      "glass": "SF10 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Negative meniscus, concave to the object, 15 mm behind L33; the last lens, flattening the field ahead of the 17.9 mm back focus."
     }
   ],
   "surfaces": [
@@ -242,8 +279,16 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 0.800397,
- "conjugates": [{"zoomStation":0,"keyframe":1,"objectDistanceMm":697,"distanceReference":"first-surface","source":"CN 110146970 B Example 1 focus table, PDF p. 10"}],
-    "description": "Published inner focus: L21 alone moves 14.5 mm toward the image; object is 697 mm before first vertex at close focus. No refocus correction.",
+    "conjugates": [
+      {
+        "zoomStation": 0,
+        "keyframe": 1,
+        "objectDistanceMm": 697,
+        "distanceReference": "first-surface",
+        "source": "CN 110146970 B, Example 1 focus table, PDF p. 10"
+      }
+    ],
+    "description": "PUBLISHED inner focus: CN 110146970 B, Example 1 prints D(1) and D(2) at infinity and at 0.8 m (D(1) 2.95 → 17.45 mm, D(2) 17.28 → 2.78 mm), with the object 697 mm in front of the first surface (800.4 mm object to image, Yongnuo's 0.8 m minimum focus). The single negative element L21 moves 14.5 mm toward the image; the first group, the stop, the rear group and the image plane stay fixed. At the printed close spacings the paraxial focus falls 0.18 mm behind the printed image plane, which is kept as printed. Intermediate positions interpolate the gaps linearly.",
     "published": [
       1
     ]
@@ -279,7 +324,8 @@ const LENS_DATA = {
       8,
       11,
       16
-    ]
+    ],
+    "blades": 7
   },
   "projection": {
     "kind": "rectilinear",
