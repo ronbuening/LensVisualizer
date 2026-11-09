@@ -93,7 +93,7 @@ Claim 2 and ¶0029 make U2 (L5 + L6) the focusing group, moved by a linear motor
 
 The table's last column is headed 孔径 (aperture) without saying whether it is a radius or a diameter. Read as a diameter, the stop's 29.75 mm gives a paraxial f/1.785, consistent with the stated F = 1.8; read as a radius it would give f/0.89. Every printed value is therefore taken as a clear diameter and halved. Where the two printed cells at a cemented join differ, the smaller is used: 36.97 mm rather than 37.30 mm at the L3–L4 join, and 28.42 mm rather than 29.00 mm at the L7–L8 join. Under the site's rule for primes, the stop radius follows the design F/1.8 (diameter 29.49 mm) rather than the printed 29.75 mm; the two agree to the patent's rounding of the f-number.
 
-The printed clear apertures of S3 to S8 sit slightly inside the real f/1.8 axial bundle, by up to 0.35 mm in radius at S3, so the model works at about f/1.83 wide open, 1.6 % slower than stated. These rims are kept as printed rather than enlarged. Off axis they vignette strongly; the patent puts the relative illumination at the image corner above 42 % (¶0039).
+The printed clear apertures of S3 to S8 sit slightly inside the real f/1.8 axial bundle, by up to 0.35 mm in radius at S3, so the model works at about f/1.83 wide open, 1.6 % slower than stated. These rims are kept as printed rather than enlarged. The one printed value not used is S19's 43.00 mm: it reads as a transposed 34.00 mm, which halves to L9's printed front rim of 17.0 mm, and both the patent figure and Meike's own cutaway render draw L9 as a square-edged element at about that height, not flaring to 21.5 mm at its rear face. Off axis the rims vignette strongly; the patent puts the relative illumination at the image corner above 42 % (¶0039).
 
 ## Model Scope and Limitations
 
@@ -108,7 +108,7 @@ The printed clear apertures of S3 to S8 sit slightly inside the real f/1.8 axial
 - The computed focal length is 0.76 % longer than the stated 85 mm. Across the C to g lines it runs from 85.55 to 85.74 mm, so no wavelength reaches 85.0 mm and the stated value is a nominal one.
 - The stored image plane is the printed one, 0.268 mm beyond paraxial focus. The model's best axial focus lies about 0.3 mm in front of it, so sharpness at the stored plane falls short of the patent's MTF plots (Figs. 2 and 4).
 - The model is static at infinity and says nothing about performance at 0.85 m.
-- All semi-diameters are the printed clear apertures, halved; the stop radius follows F/1.8.
+- All semi-diameters are the printed clear apertures, halved, except S19 (read as a transposed 34.00 mm); the stop radius follows F/1.8.
 - Dispersion rests on catalog data for the named glasses, not on production melts.
 
 ## Sources

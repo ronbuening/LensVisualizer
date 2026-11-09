@@ -18,8 +18,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * printed cells differ, the smaller is used (36.97 against 37.30 mm, 28.42 against 29.00 mm). The printed rims at
  * S3 to S8 sit slightly inside the real f/1.8 axial bundle (up to 0.35 mm at S3), so the model works at about f/1.83
  * wide open; they are kept as printed. Fig. 1 (15.46 px/mm at 300 dpi, from the drawn rim heights) draws every face
- * within about 2 % of its printed rim except S19: it draws L9 at about 17.3 mm on both faces, against the printed
- * 43.00 mm diameter (21.5 mm here), which is kept. Fig. 1 also draws flat lands on L4's rear, L6's rear and L7's
+ * within about 2 % of its printed rim except S19. The printed S19 cell, 43.00 mm, reads as a transposed 34.00 mm:
+ * halved, that is 17.0 mm, equal to L9's printed front rim, and Fig. 1 and Meike's own render both draw L9 square at
+ * about that height (Fig. 1: 17.3 mm on both faces). S19 therefore takes 17.0 mm, not 21.5 mm. Fig. 1 also draws flat lands on L4's rear, L6's rear and L7's
  * front faces; rimExtensionSd carries each out to its cemented junction's rim (S8 to 18.485, S13 to 14.35, S14 to
  * 14.21 mm), so the three elements are square-edged. The figure continues them to the full doublet height, which the
  * merged junctions do not reach. The lands do not change the trace.
@@ -262,7 +263,7 @@ const LENS_DATA = {
       label: "19",
       R: -142.56,
       d: 42.53,
-      sd: 21.5,
+      sd: 17.0,
     },
   ],
   focus: {

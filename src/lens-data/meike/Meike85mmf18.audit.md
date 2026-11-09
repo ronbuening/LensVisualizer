@@ -118,3 +118,13 @@ CDGM H-ZLaF55D and H-LaK50A are added to the glass catalog from CDGM's September
 existing CDGM rows cite), so L2, L3, L8 and L9 now resolve to their named rows. The C, F and g line indices stored on
 all nine elements were the catalog curves of the named glasses (identical to the catalog rows to 1e-15), so they are
 removed and every element traces on its catalog Sellmeier curve; the chromatic result is unchanged.
+
+## 2026-11-09 — S19 clear aperture
+
+S19 sd 21.5 → 17.0 mm, approved by the owner. The printed S19 cell, 43.00 mm, reads as a transposed 34.00 mm: halved,
+that is 17.0 mm, exactly L9's printed front rim (S18 34.00 mm). Fig. 1 draws L9 square-edged at about 17.3 mm on both
+faces, and Meike's cutaway render shows the rearmost element as a square-edged disc about 1.1× the size of the cemented
+pair ahead of it (17.0 mm gives 1.10×, 21.5 mm would give 1.39× with a flared rear face). No two-dimensional production
+section is published. Cost against the starting rims: 0.5 corner points at 14.1° (45.4 → 45.2 % at 11.8°, 27.4 → 26.9 %
+at 14.1°), inside the 3-point rule. audit:surface OK; audit:aperture within 3 %, no rim limit; image circle and field
+coverage pass.
