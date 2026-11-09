@@ -53,7 +53,8 @@ the aperture audit reports no rim limit.
 Open: no Pentax construction diagram was found, so Fig. 3 cannot be compared with a maker drawing. At ×2 the front
 vertex sits about 2.7 mm ahead of the 111 mm retail barrel; a production focal length a few percent below 200 mm
 would fit better, but the file keeps the house rule of scaling to the marketed focal length. The stop position (mid
-d6) is a modeling choice; the patent draws no iris.
+d6) is a modeling choice; the patent draws no iris. (Stop closed 2026-11-09: moved into d8 from Fig. 4's field curves;
+see the second review.)
 
 ## 2026-11-09 — Semi-diameter pass against the patent figure
 
@@ -92,3 +93,49 @@ Surface audit OK, aperture audit reports no rim limit. The page at `/lens/pentax
 printed state) shows the bevelled L5 front as a short land and otherwise matches the figure's proportions.
 
 Open: none for rims. No maker section drawing exists to compare.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the live page (`/lens/pentax-m-200mm-f4`, infinity, `?el=1`, `?el=5`, `?el=6`, `?mv=focus`) with Fig. 3 of
+US 4,139,264 (PDF p. 3, Example 2) at the scale proved in the semi-diameter pass (14.14 px/mm at 600 dpi from S1–S11;
+the S9 and S11 arc sags fit their radii at that scale in both directions), with the model outline overlaid on the
+figure at that scale.
+
+Silhouette: L2 drawn taller than L3 (23.9 against 23.2 mm on the figure) renders taller (23.6 against 23.0); L2, L3 and
+L4 render square-cut as drawn; the rear pair's front face ends in the short land where Fig. 3 bevels it. No rim change.
+
+| Cut or land | Figure | Baseline | Final | Light cost | Verdict |
+|---|---|---|---|---|---|
+| S9 cap (cut) | cap end 10.6–11.0 mm | 12.5 | 11.1 | 2.4 pts at 4.1°, 2.3 at 5.1°, 0.8 at 6.1° | keep: slight |
+| S9 `rimExtensionSd` (land) | bevelled edge 12.6 mm | none | 12.5 | 0.0 (outside the clear cap) | keep: drawn |
+
+Final worst loss against the baseline rims: 2.4 points at 4.1°; corner 72.4 % → 71.6 % at 6.1°. Engine half-field
+6.2° and F/4.000 before and after.
+
+Labels changed: the cemented-pair bracket `REAR DOUBLET` → `C1`, and `cemented: "C1"` on L5 and L6, the convention of
+the other Pentax M files; the inspector now tags both elements "DOUBLET C1". Checked and correct: L1–L6 names (the
+patent names lenses only as first to sixth), every `type` against the signs of R, roles, focal lengths in the
+inspector (L5 −33.97 mm, L6 +60.78 mm), no aspheric markers (all spherical), no `apd` tags (the patent names no
+special glass and Pentax publishes none). Movement: static; the movement panel reports no modeled group movement and
+the focus slider reads "Not modeled".
+
+Colour against Fig. 4 (d and g lines, F = 100): g-line paraxial focus +0.088 behind d (figure +0.090); g-line zones at
+0.7 and full aperture −0.046 and +0.217 (figure −0.04 and +0.20); d-line zones −0.150 and +0.080 (figure −0.144 and
++0.06). Distortion at 6.2° +1.08 % (figure +1.16 %). All six labels resolve exactly (S-BSL7, FD140, NBFD5); no
+nd-only medium. Assignee "Asahi Kogaku Kogyo Co., Ltd." is the catalog's canonical spelling (34 uses); the front page
+prints Asahi Kogaku Kogyo Kabushiki Kaisha.
+
+Open: Fig. 4's tangential field curve does not fit the mid-d6 stop. Traced at the d-line, the model gives ΔM −0.170
+and ΔS −0.037 at 6.2° (F = 100) where the figure reads −0.104 and −0.026; the mid-field values agree. Moving the stop
+plane in a scratch copy, the curve fits best 2–4 mm (model scale) behind L4's rear vertex, in d8: ΔM RMS error 0.003
+over seven field readings against 0.028 now, edge −0.106, distortion +1.11 %. Placing the stop there is a change to
+`d` and the stop position, outside this pass; with the current rims it would lower the corner to 69.6 % and make the
+front rims vignette from 1°. (Closed 2026-11-09 on the coordinator's decision, as for the M 120: S6 d 16.61 → 33.22
+with the STO row removed there; S8 d 28.68 → 3.12 with the STO row, d 25.56, after it, so the stop sits 64.00 mm
+behind S1, the centre of the 63–65 mm best-fit band. Nothing else moved and no rim changed. At 6.2°, F = 100:
+ΔM −0.170 → −0.103 (figure −0.104), ΔS −0.037 → −0.032 (figure −0.026), distortion +1.08 % → +1.11 % (figure
++1.16 %); ΔM RMS over seven fields 0.028 → 0.003. EFL 200.030 mm, BFD 62.649 mm, half-field 6.2° and F/4.000 are
+unchanged; the stop radius follows F/N, 18.158 → 13.687 mm. Vignetting with the new stop: 99.0 / 95.0 / 91.0 / 86.7
+/ 79.5 / 69.6 % at 1.0 / 2.0 / 3.1 / 4.1 / 5.1 / 6.1°, against 100 / 99.9 / 98.0 / 92.1 / 82.5 / 71.6 % before; the
+rim cut at S9 now costs at most 1.4 points against baseline rims at the same stop (rimcost worst loss, 5.1°). Surface
+and aperture audits pass, image circle and field coverage 100 %, no axial clip or chief-ray block.)
