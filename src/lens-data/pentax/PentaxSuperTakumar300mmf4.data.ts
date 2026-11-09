@@ -15,8 +15,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Image plane: the final gap is the computed paraxial back focus, 74.838 mm, not a printed value.
  * Stop: the patent neither prints nor draws one. Following the PhotonsToPhotos reconstruction it sits 82 mm behind S6,
  * splitting the printed 111 mm air space 82 + 29, with its radius set by the paraxial entrance pupil, F/N.
- * Semi-diameters are not printed. They are the PhotonsToPhotos values (diameters 75.15, 68.29, 67.55 and 22.08 mm),
- * which agree with the proportions of Fig. 1; the small rear group vignettes the oblique beam strongly at full aperture.
+ * Semi-diameters are not printed. They are the PhotonsToPhotos values (diameters 75.15, 68.29, 67.55 and 22.08 mm).
+ * The rear pair matches Fig. 1 within 1 %; the front three sit just outside the wide-open on-axis beam, which Fig. 1
+ * draws 4 to 6 % smaller. The small rear group vignettes the oblique beam strongly at full aperture.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies.
  * The 5.5 m minimum focus is Asahi's retail figure and is not modeled.
  */

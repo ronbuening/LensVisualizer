@@ -47,5 +47,35 @@ aperture audit reports no rim, trace or iris limit.
 
 Open: the rear-group rims (11.04 mm) are the PhotonsToPhotos values and sit at or just below the Fig. 1 readings
 (11.0 to 12.4 mm), so the model vignettes strongly (39 % at the 4.1° frame corner wide open); left unchanged in this
-pass. The engine's paraxial stop radius (15.20 mm) is 1.9 % smaller than the PhotonsToPhotos diameter (30.98 mm).
+pass. (Closed in the semi-diameter pass below: line-centre readings give 10.9 and 11.1 mm, a match.) The engine's paraxial stop radius (15.20 mm) is 1.9 % smaller than the PhotonsToPhotos diameter (30.98 mm).
 No Asahi construction drawing of the 35 mm lens has been found.
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/US3502394.pdf`, page 1, Fig. 1, the patent's only section (no maker drawing is known). The page is a
+72 dpi bilevel scan, measured at 288 dpi. The drawn axis tilts about 0.55° across the figure, so each rim is read as
+half the distance between the centres of its top and bottom edge lines, which does not depend on the axis line.
+Scale from the vertex crossings near the axis, against the prescription at file scale: S1 to S10 is 3650 px for
+161.178 mm (22.65 px/mm), S1 to S7 22.55 px/mm, S6 to S7 22.65 px/mm; 22.6 px/mm used. The L1 front arc traced at that
+scale follows R1 = 120.75 mm, so the figure is drawn at one scale in both directions.
+
+| Surfaces | Model sd (mm) | Fig. 1 sd (mm) | Ratio | f/4 on-axis ray (mm) |
+|---|---|---|---|---|
+| 1, 2 (L1) | 37.575 | 35.3 | 0.94 | 37.50, 36.80 |
+| 3, 4 (L2) | 34.145 | 32.5 | 0.95 | 34.10, 33.81 |
+| 5, 6 (L3) | 33.775 | 32.4 | 0.96 | 33.68, 33.05 |
+| 7, 8 (L4) | 11.04 | 10.9 | 0.99 | 9.50, 9.48 |
+| 9, 10 (L5) | 11.04 | 11.1 | 1.00 | 9.53, 9.48 |
+
+No rim changed. The front three elements sit 0.04 to 0.10 mm outside the real wide-open on-axis ray at their
+limiting faces; the figure draws them 4 to 6 % smaller, and a trial at the figure readings clips the f/4 beam on all
+six front faces, so the ray is the floor. The order of sizes matches the figure (L1 tallest; L2 and L3 nearly equal,
+0.37 mm apart in the model because each follows its own ray floor; L4 and L5 equal within the 0.2 mm reading
+precision). The rear pair matches within 1 %. The header and analysis now state these readings; the earlier rough
+figure readings (L2 and L3 about 69 mm, L4 and L5 23.5 to 25 mm, from outer ink scaled to L1) are replaced.
+
+Results, unchanged from the start of the pass: surface audit OK; aperture audit reports no surface below the stated
+on-axis ray; EFL 300.022 mm, f/4.000, half-field 4.5°, engine stop radius 15.198 mm. Wide-open transmission at 0,
+1.4, 2.1, 2.8, 3.4 and 4.1° is 100, 89.0, 77.3, 64.6, 51.7 and 39.3 %, identical to the starting rims. The lens is
+static, so the infinity state is the only printed state; the page at infinity matches the figure in element order,
+shapes and proportions.

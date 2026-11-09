@@ -95,7 +95,7 @@ The patent prints no back focus. The final gap is the computed paraxial back foc
 
 The patent neither prints nor draws a stop. The model follows the PhotonsToPhotos reconstruction and places it 82 mm behind S6 and 29 mm ahead of L4, inside the printed 111 mm air space, whose total is unchanged. Its radius, 15.20 mm, is set by the paraxial entrance pupil at f/4 (37.50 mm radius); PhotonsToPhotos lists a 30.98 mm stop diameter, 1.9 % larger. The aperture scale runs to f/22, as in Asahi's specification.
 
-The patent prints no semi-diameters either. The model uses the PhotonsToPhotos clear diameters: 75.15 mm for L1, 68.29 mm for L2, 67.55 mm for L3 and 22.08 mm for both rear elements. Fig. 1, scaled by the height of L1, gives about 69 mm for L2 and L3 and 23.5 to 25 mm for L4 and L5; at the figure's axial scale the rear elements come to 22 to 23 mm. The figure is a patent schematic, so these readings are approximate.
+The patent prints no semi-diameters either. The model uses the PhotonsToPhotos clear diameters: 75.15 mm for L1, 68.29 mm for L2, 67.55 mm for L3 and 22.08 mm for both rear elements. Read at its axial scale, Fig. 1 draws L1 70.6 mm across, L2 and L3 65 mm and L4 and L5 22 mm. The rear pair matches the figure within 1 %. The front three are drawn 4 to 6 % smaller than the wide-open on-axis beam needs (37.50 mm radius at S1, 34.10 mm at S3, 33.68 mm at S5), so the model keeps their rims just outside that beam. The figure is a patent schematic, so these readings are approximate.
 
 The small rear group cuts the oblique beam. Wide open, the model passes 77 % of the beam at 2.1° and 39 % at the 4.1° corner of the 35 mm frame.
 
