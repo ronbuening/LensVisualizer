@@ -1,14 +1,32 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Primary Table II / Claim 2: exact 0.28 scaling of every R, d and BFD.
- * Stop position and rims are secondary assumptions, not patent numbers.
- * Stop radius is derived from f/3.5; printed BFD is retained, not best focus. */
+
+/**
+ * US 3,955,883 (Takahiro Sugiyama, Asahi Kogaku Kogyo), Example 2: Table II, repeated in claim 2, section in Fig. 3,
+ * aberration plots in Figs. 4a-4d. Associated with the SMC Pentax-M 28mm f/3.5 (1977) on construction (six single
+ * elements in six groups), focal length, aperture, field and timing; a patent design, not a confirmed factory
+ * prescription. Example 1 of the patent is the f/2.8 version of the layout and is not used.
+ * Scale: the patent is normalized to F = 100. Every printed R and d and the printed back focus are multiplied by
+ * exactly 0.28 for f = 28 mm (computed EFL 27.995 mm). All surfaces are spherical, so no coefficient transform applies.
+ * Printed: R, d, d-line n, Abbe number, aperture ratio 1:3.5, a 75 degree field in the text, back focus 130.113
+ * (36.432 mm here) and F1,2 = -101.729 for the first two lenses (the model gives -101.75). Figs. 4a-4d plot the
+ * half-field to 37.6 degrees, which the model uses.
+ * Image plane: the final gap keeps the printed back focus; the paraxial back focus is 36.429 mm, 0.003 mm shorter.
+ * Stop: the patent neither prints nor draws one. It sits at the rear vertex of L3, splitting d6 into 0 + 2.9568 mm,
+ * as in the Photons to Photos Optical Bench transcription of this example; its radius is set by the paraxial entrance
+ * pupil, F/N.
+ * Semi-diameters are inferred, none is printed: each is half the Photons to Photos diameter. L1, L2 and L6 agree with
+ * Fig. 3 within about 3 %; the rims of L3, L4 and L5 are wider than Fig. 3 draws them (S8 by about 38 %).
+ * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies.
+ * The 0.3 m minimum focus is Pentax's retail figure and is not modeled.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "pentax-m-28mm-f35",
   maker: "Pentax",
   name: "PENTAX SMC M 28mm f/3.5",
-  subtitle: "US 3,955,883 \u2014 qualified product association",
+  subtitle: "US 3,955,883, Example 2 \u2014 probable match to the 1977 production lens",
   catalog: {
+    specs: ["6 ELEMENTS / 6 GROUPS", "DESIGN f = 28 mm", "DESIGN F/3.5", "ALL SPHERICAL", "PATENT f = 100 SCALED \u00d7 0.28"],
     elementCount: 6,
     groupCount: 6,
     focalLengthMm: {
@@ -18,6 +36,9 @@ const LENS_DATA = {
     fNumber: {
       marketing: 3.5,
       design: 3.5,
+    },
+    closeFocusM: {
+      marketing: 0.3,
     },
     lensMounts: ["pentax-k"],
     imageFormat: "135-full-frame",
@@ -41,7 +62,8 @@ const LENS_DATA = {
       nd: 1.6228,
       vd: 57.0,
       focalLengthMm: 130.60285725575466,
-      glass: "Unmatched (patent nd=1.6228, vd=57.0)",
+      glass: "S-BSM10 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Weak positive front meniscus, convex to the object; leads the negative front pair.",
     },
     {
       id: 2,
@@ -51,7 +73,8 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: -22.296508876876743,
-      glass: "Unmatched (patent nd=1.62041, vd=60.3)",
+      glass: "S-BSM16 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Strong negative meniscus, convex to the object; supplies the front pair's negative power and the long back focus.",
     },
     {
       id: 3,
@@ -61,7 +84,8 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 43.7,
       focalLengthMm: 19.55273328391182,
-      glass: "Unmatched (patent nd=1.72, vd=43.7)",
+      glass: "S-LAM52 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Thick biconvex element ahead of the stop; the strongest positive element of the lens.",
     },
     {
       id: 4,
@@ -71,7 +95,8 @@ const LENS_DATA = {
       nd: 1.74077,
       vd: 27.8,
       focalLengthMm: -15.859879963654553,
-      glass: "Unmatched (patent nd=1.74077, vd=27.8)",
+      glass: "S-TIH13 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Dense-flint biconcave negative behind the stop; the only negative element of the rear group.",
     },
     {
       id: 5,
@@ -81,7 +106,8 @@ const LENS_DATA = {
       nd: 1.6228,
       vd: 57.0,
       focalLengthMm: 32.52730409576573,
-      glass: "Unmatched (patent nd=1.6228, vd=57.0)",
+      glass: "S-BSM10 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Positive meniscus, concave to the object; the stronger of the two rear menisci.",
     },
     {
       id: 6,
@@ -91,7 +117,8 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.3,
       focalLengthMm: 43.85067060658375,
-      glass: "Unmatched (patent nd=1.62041, vd=60.3)",
+      glass: "S-BSM16 (OHARA catalog equivalent; production supplier unspecified)",
+      role: "Weaker rear positive meniscus, concave to the object; completes the convergence to the image.",
     },
   ],
   surfaces: [
@@ -180,14 +207,15 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1,
+    closeFocusM: 1000000000000000.0,
     description:
-      "Infinity-only prescription. All spacings are fixed; no close-focus movement or factory minimum distance is modeled. The required closeFocusM value is an inactive schema placeholder, not a sourced minimum focus distance.",
+      "The patent names no focusing group or motion and prints the infinity state only, with its back focus of 130.113 at F = 100 (36.432 mm here), so the lens is modeled at infinity with no focus movement. Pentax's retail minimum focus of 0.3 m is not modeled.",
   },
   aperture: {
     nominalFNumber: 3.5,
     fStops: [3.5, 4, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
+    blades: 5,
   },
   projection: {
     kind: "rectilinear",
