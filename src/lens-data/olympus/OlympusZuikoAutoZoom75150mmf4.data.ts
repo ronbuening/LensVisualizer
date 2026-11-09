@@ -445,7 +445,6 @@ const LENS_DATA = {
     },
   ],
   zoom: {
-    // Stations 0 and 14 are the printed rows; the 13 between are solved fixed-image-plane states (see header).
     stations: [
       { focalLengthMm: 76.5, label: "Wide", published: true },
       { focalLengthMm: 80, published: false },
