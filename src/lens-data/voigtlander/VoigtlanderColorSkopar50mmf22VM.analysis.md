@@ -121,7 +121,7 @@ Both printed back-focus values are kept. At infinity, D14 = 13.99 mm lies 0.009 
 - **Scale and first-order values.** The prescription is used at the patent's own scale. The model's EFL is 48.447 mm against the printed 48.455 mm (−0.02 %), a difference from the table's rounding.
 - **Stop.** Table 2 places the stop as a virtual surface, STO, 4.28 mm behind S6 and 6.31 mm ahead of S8 (¶0024). That puts it 13.45 mm behind S1, a sum rather than a printed figure. The stop diameter is not printed; the iris radius, 8.11 mm, is derived from F2.254.
 - **Aperture scale.** Cosina gives f/2.2 to f/16 with a 10-blade diaphragm. The model opens at the design F2.254 and stops down through f/16.
-- **Semi-diameters.** No clear aperture is printed. The rims are inferred from the element proportions of Fig. 1 and Cosina's section: 12.0 mm at L1, about 9 mm through the cemented pair and L6, and 12.25 mm at the rear of L7. At full aperture the front rims cut part of the edge-of-field beam, so the model shows strong corner vignetting wide open.
+- **Semi-diameters.** No clear aperture is printed. The rims are estimated from Fig. 1: 12.0 mm at L1, 8.7 mm on the cemented pair, 8.75 mm on L6 and 12.25 mm at the rear of L7. Fig. 1 draws the cemented pair slightly smaller (L4 8.6 mm, L5 8.3 mm); smaller rims there would cut more of the wide-open beam at mid-field. At full aperture the front rims cut part of the edge-of-field beam, so the model shows strong corner vignetting wide open.
 - **Field.** The 23.797° half-field reaches about 21.64 mm image height, the corner of the 36 × 24 mm frame.
 - **Production spacing.** As described above, Cosina's section draws some air spaces differently from Embodiment 1. The model follows the patent.
 

@@ -11,8 +11,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (702.45 mm object to image). Both rows are kept as printed. The surfaces sum to 56.48 mm against Table 1's
  * L-H = 56.482 mm and L-BF = 13.994 mm; the printed D14 lies 0.009 mm behind the paraxial focus (13.981 mm) and is
  * not refocused.
- * Semi-diameters are not printed. They are inferred from the element proportions of Fig. 1 and Cosina's section and
- * were not changed after tracing; at full aperture the rims clip part of the edge-of-field beam.
+ * Semi-diameters are not printed. They are estimated from Fig. 1 (18.9 px/mm at 300 dpi from the S1–S14 vertex
+ * span, checked on the S1 and S14 arcs) and floor-checked by real-ray trace at both printed focus states. The
+ * cemented pair is 8.7 mm on all three faces, just inside L6 as Fig. 1 draws it. The figure reads L4 8.6 and L5
+ * 8.3 mm; the pair is held at 8.7 mm because smaller rims there cut more of the wide-open beam at mid-field. The
+ * other rims agree with Fig. 1 within about 5 %. At full aperture the rims clip part of the edge-of-field beam.
  * The patent's L6 names the L4/L5 cemented pair, so its L7 and L8 are this file's L6 and L7.
  */
 const LENS_DATA = {
@@ -196,20 +199,20 @@ const LENS_DATA = {
       R: 52.439,
       d: 0.9,
       medium: 4,
-      sd: 9.5,
+      sd: 8.7,
     },
     {
       label: "9",
       R: 12.289,
       d: 5.47,
       medium: 5,
-      sd: 9.25,
+      sd: 8.7,
     },
     {
       label: "10",
       R: 406.929,
       d: 3.02,
-      sd: 9.25,
+      sd: 8.7,
     },
     {
       label: "11",
