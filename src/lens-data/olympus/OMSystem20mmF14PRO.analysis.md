@@ -155,9 +155,9 @@ S12 is the rear face of L6 near the stop, where it acts mainly on spherical aber
 
 ## Model Scope and Limitations
 
-The patent prints no clear apertures and no iris diameter. Semi-diameters are estimated from the proportions of Figure 1 and are not factory apertures. The iris diameter, about 17.40 mm, is derived from the design F1.43. The computed paraxial back focus at infinity is 1.3933 mm against the printed BF of 1.3929 mm. The printed value is kept, which leaves a 0.0004 mm defocus.
+The patent prints no clear apertures and no iris diameter. Semi-diameters are estimated from Figure 1 and are not factory apertures. The figure ends the curved faces of L2, L3, L5, L9 and L11 short of the element edge with a flat land; the model draws these lands too, and the L5, L9 and L11 lands sit where they leave the wide-open beams untouched. The iris diameter, about 17.40 mm, is derived from the design F1.43. The computed paraxial back focus at infinity is 1.3933 mm against the printed BF of 1.3929 mm. The printed value is kept, which leaves a 0.0004 mm defocus.
 
-At full aperture the front-group rims clip the oblique beam toward the field edge. Corner brightness at F1.43 therefore reflects mechanical vignetting set by the estimated apertures. It is a geometric ray fraction, not a measured T-stop or relative illumination. Coatings, tolerances, measured melt dispersion and production aperture dimensions are not modeled.
+At full aperture the rims of L9 and L10, behind the stop, clip the oblique beam toward the field edge. At F1.43 about 55% of the axial beam's rays reach the 29.5° field edge at infinity, and 57% at the printed near state. This mechanical vignetting is set by the estimated apertures. It is a geometric ray fraction, not a measured T-stop or relative illumination. Coatings, tolerances, measured melt dispersion and production aperture dimensions are not modeled.
 
 ## Sources
 

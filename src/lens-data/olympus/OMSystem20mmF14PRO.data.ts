@@ -10,7 +10,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Rear plate: the optical filter FL (S23–S24, 4.14 mm) is in rearPlates with the printed 15 mm gap ahead of it and
  * BF 1.3929 behind it. The computed paraxial back focus is 1.3933 mm; the printed BF is kept.
  * Focus: the printed infinity and 0.025× states (d16, d18) are kept; OM's 0.25 m minimum focus is not modeled.
- * Semi-diameters are not printed; they are estimated from the proportions of Figure 1.
+ * Semi-diameters are not printed; they are estimated from Figure 1 (printed page 25), read at 787 dpi: 28.30 px/mm
+ * along the axis from the S1–S22 vertex span, 28.95 px/mm across it from arc fits to S4, S10 and S18 and the stop
+ * tick, and floor-checked by real-ray trace at both printed focus states. Figure lands: L2's rear face ends at 10.2 mm
+ * (the figure's 10.6 would meet L3) and its land runs out to the 13.8 mm edge; L3's rear land runs to 10.9 mm. Inferred
+ * cuts on S10, S18 and S22 sit at the figure's cap end where the wide-open beams allow (S10, q = 0.78) and just
+ * outside the beams elsewhere (S18 at 10.37 mm, S22 at 10.60 mm, against the figure's 9.4 and 10.0 mm).
+ * checks.gapSagFrac 0.91 admits L3's 10.9 mm front rim beside L2's rear face (S4/S5), which the figure draws touching.
  * Glass labels are catalog rows whose nd/νd equal the printed values; the production supplier is not known. */
 const LENS_DATA = {
   "schema": 2,
@@ -218,33 +224,35 @@ const LENS_DATA = {
       "label": "4",
       "R": 12.8,
       "d": 6.23,
-      "sd": 10.2
+      "sd": 10.2,
+      "rimExtensionSd": 13.8
     },
     {
       "label": "5",
       "R": -100,
       "d": 1,
-      "sd": 10.2,
+      "sd": 10.9,
       "medium": 3
     },
     {
       "label": "6",
       "R": 33.37,
       "d": 2,
-      "sd": 10.2
+      "sd": 10.2,
+      "rimExtensionSd": 10.9
     },
     {
       "label": "7",
       "R": 75.33,
       "d": 2.35,
-      "sd": 10.6,
+      "sd": 10.1,
       "medium": 4
     },
     {
       "label": "8",
       "R": -234.61,
       "d": 5.07,
-      "sd": 10.6
+      "sd": 10.1
     },
     {
       "label": "STO",
@@ -256,6 +264,7 @@ const LENS_DATA = {
       "R": -21.49,
       "d": 1,
       "sd": 12.5,
+      "rimCutDepthMm": 2.34,
       "medium": 5
     },
     {
@@ -285,14 +294,14 @@ const LENS_DATA = {
       "label": "13",
       "R": 186.84,
       "d": 7.25,
-      "sd": 13.5,
+      "sd": 13.8,
       "medium": 7
     },
     {
       "label": "14",
       "R": -21.48,
       "d": 0.15,
-      "sd": 13.5
+      "sd": 13.8
     },
     {
       "label": "15",
@@ -316,7 +325,8 @@ const LENS_DATA = {
     {
       "label": "18",
       "R": 15.61,
-      "sd": 11.1
+      "sd": 11.1,
+      "rimCutDepthMm": 3.94
     },
     {
       "label": "19",
@@ -362,7 +372,8 @@ const LENS_DATA = {
       "label": "22",
       "R": 16.26,
       "d": 15,
-      "sd": 11.1
+      "sd": 11.1,
+      "rimCutDepthMm": 3.93
     }
   ],
   "rearPlates": [
@@ -461,6 +472,9 @@ const LENS_DATA = {
       "toSurface": "12"
     }
   ],
+  "checks": {
+    "gapSagFrac": 0.91
+  },
   "layout": {
     "yScFill": 0.4
   }
