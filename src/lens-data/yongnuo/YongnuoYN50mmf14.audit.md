@@ -50,7 +50,7 @@ Deployment change: `focalLengthMm.design` → 51.5 (stated); `catalog.lensMounts
 
 Open: the rim table and "revalidation pending" lines above predate the delivered file; L9 is drawn about 16.5 mm
 in Fig. 3 against the file's 14.7; wording. (Rim table, pending lines and wording closed in the cleanup pass below;
-the L9 item stays open.)
+the L9 item closed in the semi-diameter pass below.)
 
 ## 2026-11-09 — Cleanup and wording pass
 
@@ -85,5 +85,50 @@ audit reports no rim limit.
 
 Open: Fig. 3 draws L9 at about 16.5 mm against the file's 14.72 mm (and L7 / L8 at about 18.7 against 17.216, L2 at
 about 19 against 17.859, L1 at about 19.7 against 21); a larger L9 needs a flat step on L8's rear face, which the
-figure appears to draw. The Photons to Photos row attributing Example 2 to the lens was not re-read in this pass
-(its table is script-loaded).
+figure appears to draw (closed in the semi-diameter pass below). The Photons to Photos row attributing Example 2 to
+the lens was not re-read in this pass (its table is script-loaded).
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/CN106249387B.pdf`, Fig. 3 on PDF p. 17 (the Example 2 section at infinity; the embedded raster is
+150 ppi), measured at 300 dpi. Scale along the axis: the 16 surface vertex crossings fit the Table 3 spacings at
+12.275 px/mm (S1→S10 and S10→S17 both 12.27–12.28), each within about 2 px. Across the axis: line centres of the S3
+and S13 arcs give 12.43 and 12.39 px/mm, so the drawing is about 1 % taller than wide; rim heights use 12.40 px/mm.
+Axis at row 647. Edge readings are line centres, lower side (clean of leaders), checked on the upper side where it
+is clean; agreement 0.1 mm or better.
+
+| Element (surfaces) | Before (mm) | Fig. 3 (mm) | After (mm) | Evidence |
+| --- | ---: | ---: | ---: | --- |
+| L1 (S1–S2) | 21 | 19.6 (lower 19.56, upper 19.5) | 20.3 | Figure and step order to L2; held at the smallest rim within 3 corner points of 21 mm at every state |
+| L2 (S3–S4) | 17.859 | 18.7 (where the drawn S3 and S4 arcs meet) | 18.7 | Figure; L1→L2 step 0.85 mm drawn against 3.1 mm before; edge 0.94 mm |
+| L3 (S5–S6) | 17.23 | 18.2, rear land at about 16.1 | 17.23 | Kept: 5 % under the figure, at the axial beam (S5 17.22); the drawn land is inside the 16.71 mm beam at S6 |
+| L4 (S7–S8) | 16.97 | 17.85 | 16.97 | Kept: 5 % under; raising it closes the S6–S7 gap beyond 0.99 with L3 square |
+| L5 / L6 (S10–S11) | 21.652 | 20.9 | 21.652 | Kept: within 4 % |
+| L6 rear (S12) | 21.652 | cap about 17.1, land at about 4.9 mm depth to 20.9 | 17.2, rimExtensionSd 21.652 | Figure land; cap held at the axial beam (17.13 mm at the engine stop) |
+| L7 / L8 (S13–S14) | 17.216 | 18.6 (lower 18.59, upper 18.51) | 18.6 | Figure (8 %), step order to L3, and the edge L8's land needs |
+| L8 rear (S15) | 17.216 | cap about 15.1 (land at about 3.05 mm depth), land to 18.6 | 15.1, rimExtensionSd 18.6 | Figure land; needed for spacing: with L9 at 16.4 a full S15 crosses S16 |
+| L9 (S16–S17) | 14.722 | 16.4 (lower 16.41, upper 16.37) | 16.4 | Figure (11 %); edge 0.78 mm |
+
+Both lands are rim extensions on glass/air faces; the S15 land sits 1.42 mm into the 1.5 mm S15–S16 gap at 15.1 mm
+(95 %, inside the file's 0.962). S12's land clears L7's front by 1.4 mm. `checks.gapSagFrac` stays 0.962 for S6–S7.
+
+Corner illumination (app vignetting curve, wide open, starting rims → final rims): infinity 28.8 → 29.9 % at 23.5°,
+x20 31.5 → 32.5 % at 22.9°, MOD 36.2 → 36.8 % at 21.7°; no field at any of the three printed states loses light
+(largest gain +2.8 points, at 8.8° at infinity and 8.6° at x20). Leave-one-out from the final set: L1 back to 21 mm wins 2.5 points
+(17.6°, infinity), 2.4 (x20) and 2.7 (MOD); the S12 land costs 0.4–0.5 points at 2.9° only; the S15 land is needed
+for spacing (the validator refuses its removal with L9 at 16.4). At 19.6 mm L1 would have cost 5.0 points at
+17.6°.
+
+Clearance: at the engine's stop (17.54 mm, real-ray f/1.424) no surface clips the axial beam at any state, and the
+on-axis transmission is 100 % at all three printed states. At the nominal real-ray f/1.4 entrance pupil (stop height
+17.84 mm), S5, S7 and S8 sit 0.10–0.33 mm under the marginal ray, as before; the engine sizes the stop paraxially,
+so these are not limits. Surface audit OK; aperture audit reports no rim limit; image-circle 0 undersized; field
+coverage 100 % (23.5° to 21.63 mm). Engine EFL 51.4848 mm, f/1.4, half-field 23.5°, stop 17.5376 mm and the focus
+keyframes are unchanged; the engine's tracing half-field rises from 27.9° to 30.4°.
+
+Live check at focus 0, 0.33 and 1 on the local page: the section now shows L2 close to L1's height, the stepped
+rear of L6 and of L8, and the larger L9, as Fig. 3 draws them. No maker section drawing was available (see the
+deployment validation above); Fig. 3 governs.
+
+Open: Fig. 3 draws L3 and L4 about 1 mm taller than the file and ends L3's rear face in a land at about 16.1 mm;
+both conflict with the wide-open axial beam and the S6–S7 gap, so they stay as they are.

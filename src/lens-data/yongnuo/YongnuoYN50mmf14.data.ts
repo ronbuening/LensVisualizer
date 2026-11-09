@@ -11,12 +11,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 0.0499 and 0.1502, and the paraxial focus falls 0.072 and 0.211 mm behind the printed plane; all kept as printed.
  * Fig. 4A prints Fno 1.4 and ω = 23.5°; the 23.5° chief ray lands at 21.63 mm, the full-frame corner. The stop
  * radius (17.54 mm) is derived from f/1.4 by the stop rule, not printed.
- * Semi-diameters are estimates guided by Fig. 3, which is drawn to scale (6.14 px/mm at the embedded 150 dpi; all 16
- * vertex crossings fall within about 1 px of the table), and set to pass the f/1.4 axial beam within the repo's
- * edge and gap rules, with one height on both faces of each element; the patent prints none. The S6–S7 air gap
- * (3.9 mm between R 33.66 and R 171.98 mm) leaves 0.15 mm at the 16.97 mm rim that the axial beam needs; Fig. 3
- * draws square-cut edges there, so checks.gapSagFrac is 0.962 instead of a taper. Fig. 3 draws L1 at about 19.7 mm
- * and L9 at about 16.5 mm, against the file's 21 and 14.72 mm.
+ * Semi-diameters are estimated from Fig. 3 and floor-checked by real-ray trace; the patent prints none. Fig. 3 is
+ * drawn to scale: 12.28 px/mm along the axis at 300 dpi from the 16 vertex crossings, and 12.40 px/mm across it
+ * from the S3 and S13 arcs. It reads L1 19.6, L2 18.7, L3 18.2, L4 17.9, L5/L6 20.9, L7/L8 18.6 and L9 16.4 mm.
+ * L2, L7/L8 and L9 follow it. L1 is 20.3 mm, the smallest rim within 3 points of a 21 mm rim's corner illumination
+ * at every printed state; the drawn 19.6 mm would cost about 5. L5/L6 (21.652 mm) is within 4 %. L6's rear face S12 ends at 17.2 mm,
+ * just outside the f/1.4 axial beam (17.13 mm), and L8's rear face S15 at 15.1 mm, where it would otherwise run into
+ * L9's front; both carry the flat land Fig. 3 draws out to the element edge (rimExtensionSd). L3 and L4 stay
+ * square-cut at the axial beam (17.23 and 16.97 mm, 5–6 % under the figure): the S6–S7 air gap (3.9 mm between
+ * R 33.66 and R 171.98 mm) leaves 0.15 mm at 16.97 mm, so checks.gapSagFrac is 0.962. Fig. 3 ends L3's rear face in
+ * a land at about 16.1 mm, inside the 16.7 mm axial beam there, so that land is not modelled.
  * Glass labels are catalog rows whose nd/νd equal the printed pairs; the production supplier is not known.
  * Probable match to the Yongnuo YN50mm F1.4 (Canon EF; Nikon F as YN50mm F1.4N E), announced in 2018: the
  * applicant is Yongnuo, and the lens is 9 elements / 7 groups, f/1.4, 0.15× maximum magnification. Example 1 of the
@@ -171,26 +175,26 @@ const LENS_DATA = {
       "R": -152.17,
       "d": 10,
       "medium": 1,
-      "sd": 21
+      "sd": 20.3
     },
     {
       "label": "2",
       "R": -74.48,
       "d": 0.2,
-      "sd": 21
+      "sd": 20.3
     },
     {
       "label": "3",
       "R": 42.51,
       "d": 3.2,
       "medium": 2,
-      "sd": 17.859
+      "sd": 18.7
     },
     {
       "label": "4",
       "R": 85.58,
       "d": 5,
-      "sd": 17.859
+      "sd": 18.7
     },
     {
       "label": "5",
@@ -241,39 +245,41 @@ const LENS_DATA = {
       "label": "12",
       "R": 32.56,
       "d": 1.7,
-      "sd": 21.652
+      "sd": 17.2,
+      "rimExtensionSd": 21.652
     },
     {
       "label": "13",
       "R": 34.49,
       "d": 12.2,
       "medium": 7,
-      "sd": 17.216
+      "sd": 18.6
     },
     {
       "label": "14",
       "R": -34.49,
       "d": 2.5,
       "medium": 8,
-      "sd": 17.216
+      "sd": 18.6
     },
     {
       "label": "15",
       "R": 39.22,
       "d": 1.5,
-      "sd": 17.216
+      "sd": 15.1,
+      "rimExtensionSd": 18.6
     },
     {
       "label": "16",
       "R": 72.15,
       "d": 4,
       "medium": 9,
-      "sd": 14.722
+      "sd": 16.4
     },
     {
       "label": "17",
       "R": -101.48,
-      "sd": 14.722
+      "sd": 16.4
     }
   ],
   "focus": {
