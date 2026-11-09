@@ -12,12 +12,13 @@
  * Semi-diameters are estimated from Fig. 10 (PDF p. 25), none is printed, and checked by real-ray trace. The figure
  * is drawn taller than it is long: at 400 dpi the axial scale is 15.23 px/mm (S1 to S18, 607 px for 39.85 mm) and the
  * height scale 17.0 px/mm, from the image-plane line (242 px for the printed 14.20 mm) and arc fits to S4, S7 and the
- * S17 asphere. Read at that height scale, the elements end at: L1 10.8 mm, L2 8.2 mm, the cemented pair 6.1 mm,
- * L5 7.4 mm, L6 8.1 mm, L7 8.3 mm, L8 10.1 mm and L9 12.9 mm. Fig. 10 draws flat lands behind L1 (S2 clear to
- * 8.9 mm), behind L2 (S4 clear to 5.2 mm, the rim-slope limit of R 5.79), behind L7 (S14 clear to 7.8 mm) and in
- * front of L8 (S15 clear to 8.3 mm, where it meets L7's corner). The cemented pair's 6.1 mm rims sit at the
+ * S17 asphere. Read at that height scale, the elements end at: G1 10.8 mm, G2 8.2 mm, the cemented pair 6.1 mm,
+ * G5 7.4 mm, G6 8.1 mm, G7 8.3 mm, G8 10.1 mm and G9 12.9 mm. Fig. 10 draws flat lands behind G1 (S2 clear to
+ * 8.9 mm), behind G2 (S4 clear to 5.2 mm, the rim-slope limit of R 5.79), behind G7 (S14 clear to 7.8 mm) and in
+ * front of G8 (S15 clear to 8.3 mm, where it meets G7's corner). The cemented pair's 6.1 mm rims sit at the
  * rim-slope limit of the S7 junction (R -6.84). S14's land and S15 come within 0.30 mm at 8.3 mm without crossing;
  * checks.gapSagFrac 0.96 is the smallest two-decimal value that admits them.
+ * Names follow the patent: elements G1-G9, groups L1 (G1-G6 with the stop) and L2 (G7-G9).
  * Focus: the patent moves the first group (elements 1-6 and the stop) toward the object, but prints the infinity
  * state only, so no gap varies. Sigma's 0.2 m minimum focus is not modeled.
  */
@@ -66,21 +67,23 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "G1",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.883,
       vd: 40.8,
+      focalLengthMm: 55.74,
       glass: "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
       role: "High-index positive meniscus, convex to the object; the positive member of the front subgroup ahead of the stop.",
     },
     {
       id: 2,
-      name: "L2",
+      name: "G2",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.437,
       vd: 95.1,
+      focalLengthMm: -22.44,
       glass: "FCD100 (HOYA catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote:
@@ -89,73 +92,80 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "G3",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.8042,
       vd: 46.5,
+      focalLengthMm: 8.32,
       glass: "TAF3 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Thick positive element directly behind the stop, nearly flat in front; its strongly curved rear face is the cemented junction.",
       cemented: "D1",
     },
     {
       id: 4,
-      name: "L4",
+      name: "G4",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.69895,
       vd: 30.05,
+      focalLengthMm: -10.08,
       glass: "E-FD15 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Dense-flint negative member of the cemented doublet; balances the color of element 3.",
       cemented: "D1",
     },
     {
       id: 5,
-      name: "L5",
+      name: "G5",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.62,
+      focalLengthMm: 33.3,
       glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Thin, nearly plano-convex positive element; adds power to the rear subgroup behind the doublet.",
     },
     {
       id: 6,
-      name: "L6",
+      name: "G6",
       label: "Element 6",
       type: "Biconvex Positive (1× Asph)",
       nd: 1.77377,
       vd: 47.17,
+      focalLengthMm: 22.32,
       glass: "M-TAF401 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Biconvex positive with an aspheric rear face; the last element of the focusing group.",
     },
     {
       id: 7,
-      name: "L7",
+      name: "G7",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.60342,
       vd: 38.01,
+      focalLengthMm: -34.73,
       glass: "E-F5 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative meniscus with a strongly concave rear face; opens the fixed negative rear group.",
     },
     {
       id: 8,
-      name: "L8",
+      name: "G8",
       label: "Element 8",
       type: "Negative Meniscus",
       nd: 1.54072,
       vd: 47.2,
+      focalLengthMm: -41.2,
       glass: "E-FEL2 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative meniscus, concave to the object; faces element 7 across the 6.63 mm air space.",
     },
     {
       id: 9,
-      name: "L9",
+      name: "G9",
       label: "Element 9",
       type: "Biconvex Positive (1× Asph)",
       nd: 1.6935,
       vd: 53.2,
+      focalLengthMm: 67.63,
       glass: "M-LAC130 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Largest element, biconvex positive with an aspheric front face; ends the fixed rear group ahead of the filter.",
     },
@@ -312,6 +322,7 @@ const LENS_DATA = {
       thicknessMm: 1.2,
       nd: 1.52301,
       vd: 58.59,
+      glass: "C12 (HOYA catalog equivalent; production supplier unspecified)",
       gapAfterMm: 4.9327,
       source:
         "JP 2013-137377 A Example 4, surfaces 19–20; not a claim of exact retail sensor stack.",
@@ -319,12 +330,12 @@ const LENS_DATA = {
   ],
   groups: [
     {
-      text: "G1",
+      text: "L1",
       fromSurface: "1",
       toSurface: "12A",
     },
     {
-      text: "G2",
+      text: "L2",
       fromSurface: "13",
       toSurface: "18",
     },

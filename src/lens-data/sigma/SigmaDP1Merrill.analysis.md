@@ -24,7 +24,7 @@ The patent has nine examples. Examples 3 and 7 share Example 4's layout and near
 
 ## Optical Architecture
 
-The lens is a compact wide-angle of telephoto type: a positive first group G1 (the patent's L1: elements 1–6 and the stop, f = 11.71 mm) and a negative second group G2 (the patent's L2: elements 7–9, f = −26.50 mm). The patent chose this positive–negative arrangement to shorten the lens (¶0020) and aims for a field of 65° or more while limiting the angle at which light leaves the lens toward the sensor (abstract). G1 divides at the stop into a negative front subgroup (elements 1–2) and a positive rear subgroup (the cemented pair 3–4, then elements 5 and 6). G2 is a negative element with a strongly concave rear face, a negative meniscus convex to the image and a positive element, the order the patent claims (¶0019).
+The lens is a compact wide-angle of telephoto type: a positive first group L1 (elements G1–G6 and the stop, f = 11.71 mm) and a negative second group L2 (G7–G9, f = −26.50 mm). The names are the patent's own, which uses L for groups and G for elements. The patent chose this positive–negative arrangement to shorten the lens (¶0020) and aims for a field of 65° or more while limiting the angle at which light leaves the lens toward the sensor (abstract). L1 divides at the stop into a negative front subgroup L1F (G1–G2) and a positive rear subgroup L1R (the cemented pair G3–G4, then G5 and G6). L2 is a negative element with a strongly concave rear face, a negative meniscus convex to the image and a positive element, the order the patent claims (¶0019).
 
 The stop is the patent's surface 5, 10.13 mm behind the first vertex, 6.10 mm behind element 2 and 2.20 mm ahead of element 3. The lens is 46.98 mm from S1 to the image plane, filter included.
 
@@ -32,50 +32,50 @@ The patent's filter F, an IR-cut or low-pass plate (¶0060), is modeled as a rea
 
 ## Element-by-Element Analysis
 
-### L1 — Positive Meniscus
+### G1 — Positive Meniscus
 
 nd = 1.88300, νd = 40.80. Glass: TAFD30 (HOYA) equivalent, high-index lanthanum glass. f = +55.7 mm.
 
 Convex to the object and the only positive element ahead of the stop. Its high index lets a weak meniscus carry the front positive power with shallow curves. As the highest-index glass in the lens, it is most likely the high-refractive-index element Sigma lists.
 
-### L2 — Negative Meniscus
+### G2 — Negative Meniscus
 
 nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA) equivalent, fluorophosphate crown of very low dispersion. f = −22.4 mm.
 
-The deep concave rear face (R 5.79 mm) gives the front subgroup its negative power, which the patent requires of the part of G1 ahead of the stop. Fig. 10 and Sigma's drawing both show a flat land around that face, modeled as a 5.2 mm clear radius on an 8.2 mm blank. Its glass matches Sigma's one FLD element; the model tags it as inferred anomalous dispersion.
+The deep concave rear face (R 5.79 mm) gives the front subgroup its negative power, which the patent requires of the part of L1 ahead of the stop. Fig. 10 and Sigma's drawing both show a flat land around that face, modeled as a 5.2 mm clear radius on an 8.2 mm blank. Its glass matches Sigma's one FLD element; the model tags it as inferred anomalous dispersion.
 
-### L3 and L4 — Cemented Doublet
+### G3 and G4 — Cemented Doublet
 
-- **L3, Biconvex Positive:** nd = 1.80420, νd = 46.50. Glass: TAF3 (HOYA) equivalent, lanthanum flint. f = +8.3 mm.
-- **L4, Negative Meniscus:** nd = 1.69895, νd = 30.05. Glass: E-FD15 (HOYA) equivalent, dense flint. f = −10.1 mm.
+- **G3, Biconvex Positive:** nd = 1.80420, νd = 46.50. Glass: TAF3 (HOYA) equivalent, lanthanum flint. f = +8.3 mm.
+- **G4, Negative Meniscus:** nd = 1.69895, νd = 30.05. Glass: E-FD15 (HOYA) equivalent, dense flint. f = −10.1 mm.
 
-The doublet sits 2.20 mm behind the stop. L3 is 5.80 mm thick and nearly flat in front (R 194.0); its strongly curved rear face (R −6.84) is the cemented junction, and L4 is concave to the object with a nearly flat rear. The pair is weakly positive (f = +45.2 mm), and the more dispersive L4 balances the color of L3.
+The doublet sits 2.20 mm behind the stop. G3 is 5.80 mm thick and nearly flat in front (R 194.0); its strongly curved rear face (R −6.84) is the cemented junction, and G4 is concave to the object with a nearly flat rear. The pair is weakly positive (f = +45.2 mm), and the more dispersive G4 balances the color of G3.
 
-### L5 — Biconvex Positive
+### G5 — Biconvex Positive
 
 nd = 1.77250, νd = 49.62. Glass: TAF1 (HOYA) equivalent, lanthanum flint. f = +33.3 mm.
 
 A thin, nearly plano-convex element (R 223.5 / −28.93) that adds positive power behind the doublet.
 
-### L6 — Biconvex Positive (Asph)
+### G6 — Biconvex Positive (Asph)
 
 nd = 1.77377, νd = 47.17. Glass: M-TAF401 (HOYA) equivalent, precision-moulding lanthanum glass. f = +22.3 mm.
 
-The last element of G1 and the strongest positive singlet. Its rear face S12 is aspheric, as the patent requires of the image-side surface of G1 (¶0018); the moulding glass agrees with Sigma's glass-moulded aspheres.
+The last element of L1 and the strongest positive singlet. Its rear face S12 is aspheric, as the patent requires of the image-side surface of L1 (¶0018); the moulding glass agrees with Sigma's glass-moulded aspheres.
 
-### L7 — Negative Meniscus
+### G7 — Negative Meniscus
 
 nd = 1.60342, νd = 38.01. Glass: E-F5 (HOYA) equivalent, flint. f = −34.7 mm.
 
-Opens the fixed rear group G2, 1.00 mm behind L6 at infinity. Its strongly concave rear face (R 12.50) is the surface whose Petzval contribution condition (3) controls.
+Opens the fixed rear group L2, 1.00 mm behind G6 at infinity. Its strongly concave rear face (R 12.50) is the surface whose Petzval contribution condition (3) controls.
 
-### L8 — Negative Meniscus
+### G8 — Negative Meniscus
 
 nd = 1.54072, νd = 47.20. Glass: E-FEL2 (HOYA) equivalent, light flint. f = −41.2 mm.
 
-Concave to the object (R −11.38) and facing L7 across a 6.63 mm air space, so the two concave faces enclose a strongly curved air lens. Fig. 10 and Sigma's drawing show L8 taller than L7, with a flat land around its front face; the model gives it an 8.3 mm clear radius, where the face meets L7's corner, on a 10.1 mm blank.
+Concave to the object (R −11.38) and facing G7 across a 6.63 mm air space, so the two concave faces enclose a strongly curved air lens. Fig. 10 and Sigma's drawing show G8 taller than G7, with a flat land around its front face; the model gives it an 8.3 mm clear radius, where the face meets G7's corner, on a 10.1 mm blank.
 
-### L9 — Biconvex Positive (Asph)
+### G9 — Biconvex Positive (Asph)
 
 nd = 1.69350, νd = 53.20. Glass: M-LAC130 (HOYA) equivalent, precision-moulding lanthanum crown. f = +67.6 mm.
 
@@ -87,21 +87,21 @@ All nine patent nd/νd pairs equal Hoya catalog rows to the printed precision; o
 
 | Element | Patent nd / νd | Catalog equivalent | Type |
 |---|---|---|---|
-| L1 | 1.88300 / 40.80 | TAFD30 (HOYA) | High-index lanthanum glass |
-| L2 | 1.43700 / 95.10 | FCD100 (HOYA) | Fluorophosphate crown, anomalous dispersion |
-| L3 | 1.80420 / 46.50 | TAF3 (HOYA) | Lanthanum flint |
-| L4 | 1.69895 / 30.05 | E-FD15 (HOYA) | Dense flint |
-| L5 | 1.77250 / 49.62 | TAF1 (HOYA) | Lanthanum flint |
-| L6 | 1.77377 / 47.17 | M-TAF401 (HOYA) | Precision-moulding lanthanum glass |
-| L7 | 1.60342 / 38.01 | E-F5 (HOYA) | Flint |
-| L8 | 1.54072 / 47.20 | E-FEL2 (HOYA) | Light flint |
-| L9 | 1.69350 / 53.20 | M-LAC130 (HOYA) | Precision-moulding lanthanum crown |
+| G1 | 1.88300 / 40.80 | TAFD30 (HOYA) | High-index lanthanum glass |
+| G2 | 1.43700 / 95.10 | FCD100 (HOYA) | Fluorophosphate crown, anomalous dispersion |
+| G3 | 1.80420 / 46.50 | TAF3 (HOYA) | Lanthanum flint |
+| G4 | 1.69895 / 30.05 | E-FD15 (HOYA) | Dense flint |
+| G5 | 1.77250 / 49.62 | TAF1 (HOYA) | Lanthanum flint |
+| G6 | 1.77377 / 47.17 | M-TAF401 (HOYA) | Precision-moulding lanthanum glass |
+| G7 | 1.60342 / 38.01 | E-F5 (HOYA) | Flint |
+| G8 | 1.54072 / 47.20 | E-FEL2 (HOYA) | Light flint |
+| G9 | 1.69350 / 53.20 | M-LAC130 (HOYA) | Precision-moulding lanthanum crown |
 
 FCD100's catalog θgF is 0.5336, about +0.050 above the normal line at its Abbe number. That matches Sigma's description of its FLD glass as performing like fluorite, but the patent prints only nd and νd, so the identity is inferred. The two moulding glasses on the aspheric elements are the strongest glass-level link to Sigma's two glass-moulded aspheres. The model traces every element on its catalog dispersion curve; only the patent's filter plate uses an estimate from its nd and νd.
 
 ## Focus Mechanism
 
-The patent moves the whole first group, elements 1–6 with the stop, toward the object for close focus, while G2 and the filter stay fixed (¶0058); the variable gap is d12 between L6 and L7. Only the infinity state is printed (d12 = 1.0000 mm), so the model stays at infinity and has no focus movement. Sigma's 0.2 m minimum focus and 1:8.4 maximum magnification are not modeled.
+The patent moves the whole first group, elements 1–6 with the stop, toward the object for close focus, while L2 and the filter stay fixed (¶0058); the variable gap is d12 between G6 and G7. Only the infinity state is printed (d12 = 1.0000 mm), so the model stays at infinity and has no focus movement. Sigma's 0.2 m minimum focus and 1:8.4 maximum magnification are not modeled.
 
 ## Aspherical Surfaces
 
@@ -112,7 +112,7 @@ The patent uses the standard form z = (y²/r) / [1 + √(1 − (1 + K)(y/r)²)] 
 | S12     |   0 | 6.56730e-5 | −9.61790e-8 |  3.41610e-9 | −1.49310e-11 |
 | S17     |   0 | 2.60540e-5 | −1.17690e-7 | 7.28490e-10 | −1.00900e-12 |
 
-Both departures are toward the image. On S12, the convex rear face of L6, that flattens the outer zone (0.011 mm at the f/2.89 marginal height of 3.6 mm, 0.086 mm at 6 mm), weakening the surface's positive power toward the rim. On S17, the convex front face of L9, it steepens the outer zone that the off-axis beams use (0.087 mm at 8 mm, 0.30 mm at 11 mm). Both elements are glass-moulded according to Sigma, and their glasses match Hoya precision-moulding types.
+Both departures are toward the image. On S12, the convex rear face of G6, that flattens the outer zone (0.011 mm at the f/2.89 marginal height of 3.6 mm, 0.086 mm at 6 mm), weakening the surface's positive power toward the rim. On S17, the convex front face of G9, it steepens the outer zone that the off-axis beams use (0.087 mm at 8 mm, 0.30 mm at 11 mm). Both elements are glass-moulded according to Sigma, and their glasses match Hoya precision-moulding types.
 
 ## Conditional Expressions
 
@@ -121,9 +121,9 @@ The patent states five conditions (¶0021, ¶0031) and lists Example 4's values 
 | Condition | Range | Example 4 | Model |
 |---|---|---|---|
 | (1) f1/f2 | −0.70 to −0.30 | −0.44 | −0.442 |
-| (2) BF/d2G, air-equivalent back focus over G2's axial length | 0.43 to 0.73 | 0.53 | 0.529 |
-| (3) p21/P2, Petzval term of L7's rear face over G2's Petzval sum | 0.60 to 1.50 | 1.17 | 1.175 |
-| (4) β2, lateral magnification of G2 | above 1.4 | 1.61 | 1.608 |
+| (2) BF/d2G, air-equivalent back focus over L2's axial length | 0.43 to 0.73 | 0.53 | 0.529 |
+| (3) p21/P2, Petzval term of G7's rear face over L2's Petzval sum | 0.60 to 1.50 | 1.17 | 1.175 |
+| (4) β2, lateral magnification of L2 | above 1.4 | 1.61 | 1.608 |
 | (5) h1RF/h1RR, marginal-ray heights at the first and last surfaces behind the stop | 0.91 to 1.23 | 1.05 | 1.046 |
 
 The patent ties conditions (1)–(4) to field curvature and astigmatism at the edge of the frame, which worsen when a telephoto-type layout is widened (¶0021), and condition (5) to an efficient power layout with low manufacturing sensitivity behind the stop (¶0032–0033).
@@ -132,9 +132,9 @@ The patent ties conditions (1)–(4) to field curvature and astigmatism at the e
 
 The patent prints the stop position but no diameters. The stop radius, 3.410 mm, is set so that the lens works at the printed F2.89, and the stop limits the axial beam at every aperture.
 
-All semi-diameters are estimated from Fig. 10. The figure is drawn about 12 % taller than it is long: its image-plane line spans the printed 14.20 mm image height at 17.0 px/mm against 15.23 px/mm along the axis, and arc fits to S4, the S7 junction and the S17 asphere give the same height scale. Read that way, every drawn arc follows the prescription to its rim. The outer radii are 10.8 mm (L1), 8.2 mm (L2), 6.1 mm (the cemented pair), 7.4 mm (L5), 8.1 mm (L6), 8.3 mm (L7), 10.1 mm (L8) and 12.9 mm (L9).
+All semi-diameters are estimated from Fig. 10. The figure is drawn about 12 % taller than it is long: its image-plane line spans the printed 14.20 mm image height at 17.0 px/mm against 15.23 px/mm along the axis, and arc fits to S4, the S7 junction and the S17 asphere give the same height scale. Read that way, every drawn arc follows the prescription to its rim. The outer radii are 10.8 mm (G1), 8.2 mm (G2), 6.1 mm (the cemented pair), 7.4 mm (G5), 8.1 mm (G6), 8.3 mm (G7), 10.1 mm (G8) and 12.9 mm (G9).
 
-The figure draws flat lands on four faces, which the model keeps: behind L1 (S2 clear to 8.9 mm), behind L2 (S4 clear to 5.2 mm, the slope limit of its 5.79 mm radius), behind L7 (S14 clear to 7.8 mm) and in front of L8 (S15 clear to 8.3 mm). L7's land and the front face of L8 come within 0.30 mm of each other at the rim without touching, as the figure draws them.
+The figure draws flat lands on four faces, which the model keeps: behind G1 (S2 clear to 8.9 mm), behind G2 (S4 clear to 5.2 mm, the slope limit of its 5.79 mm radius), behind G7 (S14 clear to 7.8 mm) and in front of G8 (S15 clear to 8.3 mm). G7's land and the front face of G8 come within 0.30 mm of each other at the rim without touching, as the figure draws them.
 
 ## Model Scope and Limitations
 
@@ -144,7 +144,7 @@ The figure draws flat lands on four faces, which the model keeps: behind L1 (S2 
 | F-number | 2.89 | 2.89 |
 | Image gap after the filter | 4.9327 mm | 4.9326 mm paraxial |
 | S1 to image | 46.98 mm | 46.983 mm |
-| G1 / G2 focal lengths | 11.71 / −26.50 mm | 11.707 / −26.498 mm |
+| L1 / L2 focal lengths | 11.71 / −26.50 mm | 11.707 / −26.498 mm |
 
 - The prescription is the patent's Example 4, a probable match to the production lens rather than a confirmed factory prescription.
 - All semi-diameters and the stop radius are inferred; the image plane is the printed one.

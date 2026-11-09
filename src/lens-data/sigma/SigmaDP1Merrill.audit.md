@@ -102,7 +102,8 @@ land behind L1; the patent figure governs.
 
 Open: the engine's diagram half-field (33.73°) is still a paraxial S15 limit below the patent's 37.59°, and no rim the
 figure allows can lift it (it would need S15 at about 9.6 mm, past where L7 and L8 meet). Declaring the patent's field
-as a rectilinear projection (fullFieldDeg 75.18) would set it directly; that field is outside this pass.
+as a rectilinear projection (fullFieldDeg 75.18) would set it directly; that field is outside this pass. (Closed by
+the field-angle section below; the diagram's off-axis fan is covered in the second review.)
 
 ## 2026-11-09 — Field angle
 
@@ -110,3 +111,52 @@ as a rectilinear projection (fullFieldDeg 75.18) would set it directly; that fie
 `maxTraceFieldDeg`. The rims alone let the engine's default field search reach only 33.73°, although the traced chief
 ray reaches the 14.20 mm image height at 37.59° and 79 % of the f/2.89 beam passes there. Optics unchanged;
 audit:surface, image-circle and field-coverage pass.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the live page (infinity; the lens is static) with Fig. 10 on PDF p. 25 at its proven scale, re-measured
+today: S1 and S18 cross the axis at x = 1748 and 2355 (607 px for 39.85 mm, 15.23 px/mm), and the image-plane line is
+243 px high for the printed 14.20 mm (17.1 px/mm). The overlay of the file's rims on the figure still follows every
+drawn arc to its rim. On the page, G1 and G2 show their rear lands, the cemented pair is square, G7 squares out at
+8.3 mm above G6, G8 steps out in front, and G9 is the tallest. The height order G1 > G2 > pair < G5 < G6 < G7 < G8 < G9
+matches the figure. No rim changed.
+
+Lands and cuts: every cut and the four lands (S2, S4, S14, S15) cost 0.0 points against the pre-SD rims at every
+field. Each land removed alone also costs 0.0. The worst loss is 0.0, and the edge field gains 12.1 points
+(66.6 % → 78.7 % at 37.5°). All verdicts from the semi-diameter pass stand.
+
+| Change | Before | After | Evidence |
+|---|---|---|---|
+| Element `name` | L1–L9 | G1–G9 | The patent names the elements G1–G9 (¶0058–0059) |
+| `groups` text | G1, G2 | L1, L2 | The patent names the groups L1 and L2 in Fig. 10 and ¶0058–0059; the ranges (S1–S12A, S13–S18) are unchanged |
+| `focalLengthMm` | absent (inspector showed "FL = —") | 55.74, −22.44, 8.32, −10.08, 33.30, 22.32, −34.73, −41.20, 67.63 mm | paraxial element focal lengths |
+
+Checked and correct:
+- Element `type` strings agree with the signs of R and the patent's ¶0058–0059 wording.
+- Only S12 and S17 carry the A suffix and an asphere.
+- The stop sits between G2 and G3.
+- The cemented bracket D1 spans S6–S8.
+- `apd: "inferred"` sits only on G2, Sigma's FLD position.
+- Movement: the lens is static, the focus overlay reports no group movement, and the slider reads "Not modeled".
+
+The declared projection makes the engine half-field 37.59°. The diagram's off-axis fan is drawn at 0.6 × 33.73 =
+20.24°, because its scale uses the tracing half-field (the paraxial S15 limit). The real chief ray clears at 37.59°.
+
+Colour and aberrations, compared with Fig. 11 on PDF p. 25:
+- On-axis focus, relative to the d paraxial focus, at full pupil: model d −0.017, C +0.009, g +0.091 mm. The plot
+  reads d and C within −0.03 to +0.01 mm and g at about +0.10 mm.
+- Paraxial: model C +0.034, g +0.018 mm, both inside the plot's ±0.03 mm bundle.
+- Edge astigmatism: model ΔS −0.18, ΔM −0.02 mm; plot about −0.16 and −0.02 mm.
+- Distortion: model −2.03 %; plot about −2.0 %.
+
+All agree within the reading error. Engine values are unchanged: EFL 18.8212 mm, F/2.89, half-field 37.59°, stop
+radius 3.4101 mm.
+
+Open: the patent's filter plate (nd 1.52301, νd 58.59) carries no `glass` label. HOYA C12 (1.52307 / 58.64) is
+within the exact-match window, and labelling the plate with it would put every medium on a catalog curve.
+
+## 2026-11-09 — Filter plate glass
+
+The filter plate F (printed 1.52301 / 58.59) now carries `glass: "C12 (HOYA catalog equivalent; production supplier
+unspecified)"` (catalog 1.52307 / 58.64, inside |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15; confirmed with trylabel), so no medium
+in the lens uses an estimated dispersion.
