@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-11-16",
+    type: "lens",
+    summary:
+      "Added the Pentax M 200mm f/4, M* 300mm f/4 and A 28mm f/2.8, Meike AF 85mm f/1.8 FF STM and Sigma DP1 Merrill",
+  },
+  {
     date: "2026-11-09",
     type: "fix",
     summary:

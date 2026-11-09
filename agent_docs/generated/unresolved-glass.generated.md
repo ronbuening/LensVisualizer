@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **1095** lenses scanned
-- **12438** non-air surfaces examined
-- **12448** element glass declarations examined
-- **220** non-explicit-unmatched annotations did not resolve
-- **116** distinct unresolved glass-like tokens found
+- **1100** lenses scanned
+- **12477** non-air surfaces examined
+- **12487** element glass declarations examined
+- **224** non-explicit-unmatched annotations did not resolve
+- **118** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -20,6 +20,7 @@ or per-lens patent backfills.
 |---|---:|---:|---|
 | 493836 | 6 | 2 | |
 | 662561 | 4 | 1 | |
+| H-ZLAF55D | 3 | 1 | |
 | 486815 | 2 | 1 | |
 | 514428 | 2 | 1 | |
 | 620586 | 2 | 1 | |
@@ -130,6 +131,7 @@ or per-lens patent backfills.
 | 916364 | 1 | 1 | |
 | 958300 | 1 | 1 | |
 | FPL51 | 1 | 1 | |
+| H-LAK50A | 1 | 1 | |
 | KZF4 | 1 | 1 | |
 | LAFN8 | 1 | 1 | |
 | LF7-CLASS | 1 | 1 | |
@@ -152,6 +154,12 @@ or per-lens patent backfills.
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 3: `SSK / LaK (Jena in-house, 662/561)`
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 7: `SSK / LaK (Jena in-house, 662/561)`
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 9: `SSK / LaK (Jena in-house, 662/561)`
+
+### H-ZLAF55D — 3 occurrences
+
+- [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) 3: `H-ZLaF55D (CDGM; named in the patent)`
+- [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) 16: `H-ZLaF55D (CDGM; named in the patent)`
+- [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) 18: `H-ZLaF55D (CDGM; named in the patent)`
 
 ### 486815 — 2 occurrences
 
@@ -615,6 +623,10 @@ or per-lens patent backfills.
 ### FPL51 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 1: `FPL51 class (499/801, OHARA family)`
+
+### H-LAK50A — 1 occurrence
+
+- [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) 5: `H-LaK50A (CDGM; named in the patent)`
 
 ### KZF4 — 1 occurrence
 

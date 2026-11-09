@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1095** lenses scanned (**1077** visible)
-- **11593 / 12438** non-air surfaces use strict catalog Sellmeier data (93.2%)
-- **11607 / 12438** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
+- **1100** lenses scanned (**1082** visible)
+- **11628 / 12477** non-air surfaces use strict catalog Sellmeier data (93.2%)
+- **11646 / 12477** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **288** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **155** self-recording explicit dispositions, **0** dispositions missing any review record
-- **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
+- **4** unresolved named-token elements in Sweep 2B, producing **4** token occurrences across **2** distinct tokens
 - **20** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -260,6 +260,8 @@ These unresolved catalog-style labels are often better first catalog targets tha
 
 | Token | Token occurrences | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
+| H-ZLAF55D | 3 | 1 | patents/CN217606166U.pdf | [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) Element 2 (1.83481 / 42.73; lineIndices)<br>[MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) Element 8 (1.83481 / 42.73; lineIndices)<br>[MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) Element 9 (1.83481 / 42.73; lineIndices) |
+| H-LAK50A | 1 | 1 | patents/CN217606166U.pdf | [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) Element 3 (1.65160 / 58.40; lineIndices) |
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 
