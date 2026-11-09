@@ -1,67 +1,110 @@
 ## Patent Reference and Design Identification
 
-**Patent:** US 3819253 A  
-**Example details:** Sole numerical embodiment, physical page 4 columns 1–2.  
+**Patent:** US 3,819,253  
+**Filed:** 1973-05-11  
+**Granted:** 1974-06-25  
+**Priority:** 1972-05-15 (JP 47-47166)  
 **Inventor:** Keiichi Itoh  
 **Assignee:** Olympus Optical Co., Ltd.  
-**Filed:** May 11, 1973.  
-**Granted:** June 25, 1974.  
-**Priority:** Japan, May 15, 1972.  
-**Identification status:** Qualified product association from PhotonsToPhotos, not factory certification.
+**Title:** Telephoto lens system  
+**Example details:** The patent's only numerical example, columns 1–2, repeated unchanged in claim 1; section in Fig. 1, aberration plots in Figs. 2A–2D. The example is printed at f = 300, so no scaling is applied.
 
-The source optical section and numerical table were directly pixel-inspected. No contradictory primary numeric reading found. Cemented boundaries S6 and S9 retained.
+This is a patent design associated with the Olympus OM Zuiko Auto-T 300mm f/4.5, not a confirmed factory prescription. The lens was sold first as the F.Zuiko Auto-T, the F marking its six elements, and later, multicoated, as the Zuiko Auto-T. Both versions are listed at six elements in four groups, and the example fits either. The association is strong and rests on six points:
+
+1. The patent's four components, a biconvex lens, a biconcave lens and a cemented positive meniscus in front and a cemented negative meniscus behind, make six elements in four groups, the marketed construction.
+2. The example is printed at f = 300 and F 1:4.5, and its astigmatism and distortion plots run to 4°, half of the lens's 8° diagonal angle of view.
+3. The construction drawing on the mir.com.my Zuiko pages shows the same four groups with the same shapes and proportions. Scaled to the patent's 100 mm space between the groups, the drawing's front group is about 36 mm long against the model's 34.1 mm and its front element about 70 mm across against 71.5 mm, and its rear doublet is about 0.42 times the front element's diameter, against 0.415 in the model.
+4. The model's front vertex lies 224.9 mm ahead of the image. The lens's 181 mm barrel plus the 46 mm OM flange distance gives about 227 mm.
+5. Extended as a unit to the 3.5 m minimum focus, the example reaches 0.112×, a 321 × 214 mm field. The lens's specifications give a 21 × 32 cm minimum field.
+6. The May 1972 priority falls at the launch of the OM system in 1972, and reference listings date the lens to the system's first years.
+
+The PhotonsToPhotos Optical Bench makes the same identification in the title of its transcription of this example. Olympus published no prescription, so the production radii cannot be confirmed, and the stop position and clear apertures come from that transcription rather than from the patent.
+
+Retail and reference listings give f/4.5 to f/32, focusing by straight helicoid to 3.5 m, 72 mm filters, a built-in hood, a tripod collar and a weight of about 1.0–1.1 kg.
 
 ## Optical Architecture
 
-All spherical, 6 elements in 4 components. A large front collecting group is separated from the small rear group by 100 mm of air. The stop subdivides this gap without changing its total length. The native millimetre values are retained.
+A telephoto of six spherical elements in four groups. The positive front group, L1 to L4 (f = +180.75 mm), is separated by a 100 mm air space from the negative rear group, the cemented pair L5–L6 (f = −142.79 mm), which lengthens the front group's focal length by a factor of 1.66. The power sequence is positive, negative, positive (cemented), then negative (cemented). There are two cemented interfaces, S6 and S9, no aspheric surfaces and no cover plate.
+
+The patent numbers components rather than elements. Its L1 and L2 are elements L1 and L2 here; its cemented component L3 is elements L3 and L4; its rear component L4 is elements L5 and L6.
+
+The patent's aim is a telephoto ratio, the distance from the first surface to the image divided by the focal length, within 0.8, against 0.85 to 0.9 for most telephoto lenses of the time. The example's ratio is 0.750: the image lies 224.89 mm behind S1 for a focal length of 299.85 mm. The patent explains that a short telephoto lens needs a strongly positive front group and a strongly negative rear group, which raises the Petzval sum and the secondary spectrum. It answers the first with a small air space between L1 and L2 and the second with a special glass in L4. The model's Petzval sum is 1.23 × 10⁻⁴ mm⁻¹, a Petzval radius of about 8,160 mm, or 27 times the focal length.
 
 ## Element-by-Element Analysis
 
 ### L1 — Biconvex Positive
 
-nd = 1.48749, νd = 70.1. Glass: Unmatched (patent nd=1.48749, Vd=70.1). Isolated thick-element focal length in air = 136.041 mm. This scalar is descriptive, not the power of a cemented member in situ.
+nd = 1.48749, νd = 70.1. Glass: S-FSL5 (OHARA) equivalent, a fluor crown (catalog νd 70.24). f = +136.0 mm.
+
+The front element and the main positive power of the front group, 13 mm thick, with its stronger curve (R1 = 89.944 mm) toward the object. A low-dispersion crown keeps down the primary colour generated by the lens's strongest converging element.
 
 ### L2 — Biconcave Negative
 
-nd = 1.69350, νd = 53.3. Glass: Unmatched (patent nd=1.6935, Vd=53.3). Isolated thick-element focal length in air = -217.800 mm. This scalar is descriptive, not the power of a cemented member in situ.
+nd = 1.69350, νd = 53.3. Glass: LAC13 (HOYA) equivalent, a lanthanum crown. f = −217.8 mm.
 
-### L3 — Biconvex Positive
+L2 sits 4 mm behind L1, and its front face (R3 = −234.162 mm) nearly follows L1's rear face (R2 = −240.523 mm), so the air space between them is a thin meniscus. The patent states that keeping this space, d2, small reduces the front group's Petzval sum and corrects spherical aberration at every wavelength.
 
-nd = 1.61800, νd = 63.4. Glass: Unmatched (patent nd=1.618, Vd=63.4). Isolated thick-element focal length in air = 134.461 mm. This scalar is descriptive, not the power of a cemented member in situ.
+### L3 and L4 — Cemented Positive Meniscus
 
-### L4 — Biconcave Negative
+- **L3, Biconvex Positive:** nd = 1.61800, νd = 63.4. Glass: PCD4 (HOYA) equivalent, a dense phosphate crown. f = +134.5 mm.
+- **L4, Biconcave Negative:** nd = 1.73980, νd = 31.7. Glass: Unmatched; the patent calls it an abnormal-dispersion glass of KzSF type. f = −191.7 mm.
 
-nd = 1.73980, νd = 31.7. Glass: KzSF class, supplier unknown. Isolated thick-element focal length in air = -191.702 mm. This scalar is descriptive, not the power of a cemented member in situ.
+The pair is convex to the object (R5 = 95.45 mm, R7 = 184.817 mm) and forms a weak positive meniscus (f = +399.7 mm) that closes the front group 0.1 mm behind L2. The patent places the KzSF-type glass in the negative element on the image side of this component, where it serves to minimize chromatic aberration. Short flints of this kind have a lower blue partial dispersion than ordinary flints of the same Abbe number, which reduces the secondary spectrum of a long lens; that reading of the patent's choice is an interpretation, since the patent prints no partial dispersion.
 
-### L5 — Biconcave Negative
+### L5 and L6 — Cemented Negative Meniscus
 
-nd = 1.71300, νd = 54.0. Glass: Unmatched (patent nd=1.713, Vd=54.0). Isolated thick-element focal length in air = -43.910 mm. This scalar is descriptive, not the power of a cemented member in situ.
+- **L5, Biconcave Negative:** nd = 1.71300, νd = 54.0. Glass: LAC8 (HOYA) equivalent, a lanthanum crown. f = −43.9 mm.
+- **L6, Biconvex Positive:** nd = 1.59270, νd = 35.6. Glass: FF5 (HOYA) equivalent, a flint (catalog νd 35.45). f = +67.2 mm.
 
-### L6 — Biconvex Positive
+The rear group is a single cemented meniscus concave to the object (R8 = −41.868 mm, R10 = −57.411 mm), f = −142.8 mm, standing 100 mm behind the front group. L5 is the strongest element in the lens. As in any negative achromat, the stronger negative element is the crown and the weaker positive element the flint, so the group corrects its own colour while it supplies the telephoto power.
 
-nd = 1.59270, νd = 35.6. Glass: Unmatched (patent nd=1.5927, Vd=35.6). Isolated thick-element focal length in air = 67.184 mm. This scalar is descriptive, not the power of a cemented member in situ.
+## Glass Identification
 
-## Glass Identification and Selection
+The patent gives d-line indices and Abbe numbers. Five elements have catalog rows that match both values to the printed precision; the supplier of the production glass is not established.
 
-Only index and Abbe coordinates are available; no manufacturer melt or complete dispersion coefficients are identified. The primary patent explicitly identifies nd=1.73980, νd=31.7 as abnormal-dispersion KzSF class. A two-number Abbe model cannot reproduce that special partial dispersion reliably. Calculated polychromatic curves are illustrative model diagnostics, not measured product performance.
+| Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Type |
+|---|---|---|---|---|
+| L1 | 1.48749 / 70.1 | S-FSL5 (OHARA) | 1.48749 / 70.24 | Fluor crown |
+| L2 | 1.69350 / 53.3 | LAC13 (HOYA) | 1.69350 / 53.34 | Lanthanum crown |
+| L3 | 1.61800 / 63.4 | PCD4 (HOYA) | 1.61800 / 63.40 | Dense phosphate crown |
+| L4 | 1.73980 / 31.7 | Unmatched | — | KzSF-type anomalous-dispersion flint, named in the patent |
+| L5 | 1.71300 / 54.0 | LAC8 (HOYA) | 1.71300 / 53.94 | Lanthanum crown |
+| L6 | 1.59270 / 35.6 | FF5 (HOYA) | 1.59270 / 35.45 | Flint |
+
+No catalog row reproduces L4's pair, so the trace uses its Abbe number and does not represent the anomalous partial dispersion the patent names. Fig. 2A gives a check on the colour. On axis, the patent plots the C-line focus about 0.25 mm behind the d-line focus, the F-line about 0.14 mm ahead and the g-line about 0.09 mm behind. With the catalog equivalents the model gives +0.27, −0.14 and +0.14 mm. Traced on Abbe numbers alone, the g-line would fall 0.34 mm behind. A partial-dispersion deviation of about −0.005 in L4, within the range of short flints, would close the remaining g-line difference; the patent prints no value, so the model leaves it out.
 
 ## Focus Mechanism
 
-Static infinity geometry only. No focus travel or minimum focus distance is asserted. The patent does not print a numeric rear image distance. The model uses computed d-line paraxial BFD 84.786594135 mm and EFL 299.845329428 mm. Separately computed best-axial focus must remain labeled as an alternative diagnostic plane.
+The patent names no focusing method and prints only the infinity state, so the model stays at infinity and no gap varies. The lens focuses to 3.5 m with a straight helicoid, which fits a lens that extends as a unit but does not show which elements move. Extending this example as a unit to 3.5 m from object to image would take 33.6 mm of travel and give 0.112×, the magnification of the published 21 × 32 cm minimum field; that state is not modeled.
 
-## Apertures and Validation
+## Aperture Stop and Clear Apertures
 
-Stop position (50 mm behind S7) and physical surface apertures are secondary PhotonsToPhotos assumptions, not original patent measurements. The runtime derives the nominal f-number stop; its result is checked independently against the secondary stop diameter. Full-pupil center, mid-field and edge transmission and rendering checks accompany the package. No factory-accuracy or real-product MTF claim is made.
+The patent neither prints nor draws a stop. Fig. 1 shows the lenses alone, with d7 marked across the empty space, and is not drawn to scale. The model follows the PhotonsToPhotos Optical Bench transcription, which puts the stop at the midpoint of d7, 50 mm behind S7, and lists a clear diameter for every surface. Each semi-diameter in the model is half of that diameter, from 35.95 mm at S3 to 13.76 mm at S8. The stop radius, 18.70 mm, follows from the f/4.5 entrance pupil of 66.63 mm; PhotonsToPhotos lists a stop diameter of 38.38 mm, 2.6 % larger.
 
-## Verification Summary
+The mir.com.my drawing does not settle where the diaphragm sits. Its barrel narrows behind the front group, and a pair of thin plates about 70 mm behind S7 may be the diaphragm housing, but the drawing is too small to read reliably. A stop there instead of at the midpoint would leave the focal length, the f-number and the axial beam unchanged; only the off-axis vignetting and the pupil positions would differ.
 
-Primary R/d/nd/νd values match the archived source packet exactly, including combined air gaps across the added stop. Geometry validation passes with no override and zero hidden cap trim. Runtime nominal-f-number iris diameter is 37.39617 mm versus secondary 38.379 mm (−2.56%); it is a model calibration rather than literal adoption of the secondary iris.
+## Model Scope and Limitations
 
-Reference-wavelength diffraction MTF converges at 10, 20 and 40 lp/mm at the center, half-format and edge-format fields, on both the unchanged paraxial plane and separately labeled best-axial plane. These MTF field angles are format-based and are stored explicitly in the diagnostics; declared-field transmission uses 0°, 2°, 4°: 100%, 99.07%, 84.63%. This is pupil transmission through modeled apertures, not radiometric illumination or coating loss. No failed or unaimed samples occur. 
+| Quantity | Patent | Model |
+|---|---|---|
+| Focal length | 300 | 299.845 mm |
+| F-number | 4.5 | 4.5 |
+| Half-field | 4° (Figs. 2C, 2D) | 4.0° |
+| Back focus | not printed | 84.787 mm, paraxial |
+| S1 to image | not printed | 224.887 mm |
+| Telephoto ratio | within 0.8 (claimed aim) | 0.750 |
 
-C/d/F MTF is unavailable because partial dispersion is missing; it is not a passed polychromatic gate. No browser UI verification is claimed.
+- The prescription is the patent's, not a confirmed factory one.
+- The stop position and every semi-diameter come from the PhotonsToPhotos transcription; the patent prints neither.
+- The image plane is the computed paraxial back focus.
+- The model is static at infinity and says nothing about performance at 3.5 m.
+- Colour away from the d-line rests on catalog equivalents for five elements and on the Abbe number for L4, whose anomalous partial dispersion is not represented.
+- At the 4° half-field the image height is 21.16 mm, 0.5 mm short of the 21.65 mm format corner.
 
 ## Sources
 
-- [Original USPTO patent](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/3819253), archived with original page pixels.
-- [PhotonsToPhotos secondary transcription](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/Data/US003819253_Example01P.txt), archived separately.
+- [US 3,819,253](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/3819253), "Telephoto Lens System," Keiichi Itoh, Olympus Optical Co., Ltd., granted 1974-06-25: text, sole example, claim 1 and Figs. 1–2D.
+- [PhotonsToPhotos Optical Bench, US 3,819,253 Example 1](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/Data/US003819253_Example01P.txt): stop position, clear diameters and the product identification.
+- [mir.com.my, Zuiko Auto-T 300mm f/4.5](http://www.mir.com.my/rb/photography/hardwares/classics/olympusom1n2/shared/zuiko/htmls/300mm.htm): construction drawing, six elements in four groups, 8° angle of view, f/4.5–32, straight helicoid, 3.5 m, 21 × 32 cm minimum field, 72 mm filter, 1,000 g with tripod collar, F.Zuiko and later Zuiko versions.
+- [Kamerastore, F.Zuiko Auto-T 300mm f/4.5](https://kamerastore.com/products/olympus-300mm-f4-5-f-zuiko-auto-t-olympus-om): retail listing, six elements in four groups, 3.5 m.
+- OHARA and HOYA optical glass catalogue entries for the equivalents listed above.
