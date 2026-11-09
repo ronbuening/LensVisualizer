@@ -1,16 +1,44 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Qualified reconstruction. See companion analysis and evidence; inferred rims are not manufacturing dimensions. */
+
+/**
+ * US 3,467,462 A (Kazamaki and Matsumoto, Asahi Kogaku Kogyo), the first embodiment (Fig. 1, table on p. 5 col. 3,
+ * repeated in claim 2), recorded here as Example 1. It is associated with the Super-Takumar/6x7 300mm f/4 (1969), sold
+ * later as the Super-Multi-Coated Takumar/6x7, SMC Takumar 6x7 and SMC Pentax 67 300mm f/4, by construction (five
+ * single elements in five groups), f/4, field and barrel length. This is a patent design, not a confirmed factory prescription; scaled by 1.5 instead, the
+ * same example would also suit the 35 mm Super-Takumar 150mm f/4 of 1965.
+ * Scale: the patent is normalized to f = 100 mm. Every printed R and d and the back focus are multiplied by exactly 3
+ * for f = 300 mm (computed EFL 300.051 mm); indices and Abbe numbers are as printed. All surfaces are spherical.
+ * Printed: R, d, d-line n, Abbe number, f = 100, back focus 40.16, 1:4, and a half-field of 8 degrees in Fig. 3.
+ * Signs: the table prints r9 = +18.00 and claim 2 prints r3 = +1.1700F. The patent's Seidel table resolves both: its
+ * Petzval terms for surfaces 3 and 9 (-0.357 and -1.879) need r3 = -117.00 and r9 = -18.00, and all ten terms then
+ * reproduce. The file uses r3 = -351.0 and r9 = -54.0.
+ * Image plane: the final gap is the printed back focus (120.48 mm); the paraxial back focus is 120.531 mm.
+ * Stop: the patent neither prints nor draws one. It sits 3 mm behind S8 in the 33 mm air space before L5, as in the
+ * PhotonsToPhotos reconstruction, with its radius set by the paraxial entrance pupil at F/4.
+ * Semi-diameters are inferred, none is printed: the PhotonsToPhotos clear diameters, which agree with Fig. 1 read at
+ * its axial scale within the figure's precision. L1's rim equals the f/4 entrance pupil, so the oblique beam is cut
+ * at the front and about 44 % of it passes at 8 degrees.
+ * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies. The
+ * 5.0 m minimum focus is Pentax's retail figure and is not modeled.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "pentax-smc-takumar-6x7-300mm-f4",
   "maker": "Pentax",
   "name": "PENTAX SMC TAKUMAR 6x7 300mm f/4",
-  "subtitle": "Qualified patent reconstruction; assumed clear apertures and approximate dispersion",
+  "subtitle": "US 3,467,462 A, Example 1 — probable match to the 1969 production lens",
   "catalog": {
     "lensMounts": [
       "pentax-67"
     ],
     "imageFormat": "6x7",
+    "specs": [
+      "5 ELEMENTS / 5 GROUPS",
+      "DESIGN f = 300 mm",
+      "DESIGN F/4",
+      "ALL SPHERICAL",
+      "PATENT f = 100 SCALED × 3"
+    ],
     "elementCount": 5,
     "groupCount": 5,
     "focalLengthMm": {
@@ -20,6 +48,9 @@ const LENS_DATA = {
     "fNumber": {
       "marketing": 4,
       "design": 4
+    },
+    "closeFocusM": {
+      "marketing": 5
     }
   },
   "source": {
@@ -46,8 +77,8 @@ const LENS_DATA = {
       "nd": 1.5163,
       "vd": 64.0,
       "focalLengthMm": 200.01146150119362,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Crown biconvex front collector; the strongest positive element of the front group."
     },
     {
       "id": 2,
@@ -57,8 +88,8 @@ const LENS_DATA = {
       "nd": 1.7174,
       "vd": 29.5,
       "focalLengthMm": -207.70248975602266,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-TIH1 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Dense-flint biconcave negative; over-corrects the color of L1, as the patent assigns it."
     },
     {
       "id": 3,
@@ -68,8 +99,8 @@ const LENS_DATA = {
       "nd": 1.5163,
       "vd": 64.0,
       "focalLengthMm": 339.59205118328293,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Crown meniscus, convex to the object; closes the front group and pulls its color back toward under-correction."
     },
     {
       "id": 4,
@@ -79,8 +110,8 @@ const LENS_DATA = {
       "nd": 1.6034,
       "vd": 38.0,
       "focalLengthMm": 242.26211796647434,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-TIM5 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Isolated positive element; its weak front face keeps its astigmatism small, so L5's front face can stay gentle."
     },
     {
       "id": 5,
@@ -90,8 +121,8 @@ const LENS_DATA = {
       "nd": 1.5111,
       "vd": 60.5,
       "focalLengthMm": -154.2481512198764,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "NSL7 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Rear negative meniscus, concave to the object; the telephoto's negative group, correcting astigmatism and the remaining color."
     }
   ],
   "surfaces": [
@@ -167,8 +198,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 10,
-    "description": "Static infinity prescription. closeFocusM is an inactive schema placeholder, not product specification."
+    "closeFocusM": 1000000000000000.0,
+    "description": "The patent names no focusing group or motion and prints the infinity state only, with its back focus of 40.16 at f = 100 (120.48 mm here), so the lens is modeled at infinity with no focus movement. Pentax's retail minimum focus of 5.0 m is not modeled."
   },
   "aperture": {
     "nominalFNumber": 4,
@@ -178,9 +209,11 @@ const LENS_DATA = {
       8,
       11,
       16,
-      22
+      22,
+      32,
+      45
     ],
-    "maxFNumber": 22
+    "maxFNumber": 45
   },
   "projection": {
     "kind": "rectilinear",
