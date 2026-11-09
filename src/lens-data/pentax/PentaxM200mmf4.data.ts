@@ -20,7 +20,7 @@ const LENS_DATA = {
     "groupCount": 5,
     "focalLengthMm": {
       "marketing": 200,
-      "design": 200.02966882336162
+      "design": 200
     },
     "fNumber": {
       "marketing": 4,

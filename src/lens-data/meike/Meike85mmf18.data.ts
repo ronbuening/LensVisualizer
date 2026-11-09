@@ -11,10 +11,11 @@ const LENS_DATA = {
   catalog: {
     elementCount: 9,
     groupCount: 6,
+    lensMounts: ["sony-fe", "nikon-z", "fujifilm-x", "l-mount"],
     imageFormat: "135-full-frame",
     focalLengthMm: {
       marketing: 85,
-      design: 85.64544037598712,
+      design: 85,
     },
     fNumber: {
       marketing: 1.8,
@@ -32,7 +33,7 @@ const LENS_DATA = {
     },
     patentYear: 2022,
     authors: ["Yunhong Li"],
-    assignees: ["深圳市慧天影视器材有限公司"],
+    assignees: ["Shenzhen Huitian Film and Television Equipment Co., Ltd."],
   },
   elements: [
     {

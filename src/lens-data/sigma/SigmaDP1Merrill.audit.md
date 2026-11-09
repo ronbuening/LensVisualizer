@@ -11,3 +11,16 @@ V1 failed: S14/S15clear caps9.3mm give8.9692mm combined sag across6.63mm gap. Th
 V2 passes native build, default geometry, zero undersized image-circle flags, clear format-corner chief ray, iris-in-air across257stroke samples, and production render diagnostics with0hidden trim. Actual axial aperture F2.889999997 limited by STO; stop radius3.410105667mm. Native production SVG raster independently inspected: topology and explicit lands agree with source, E7height differs because schematic cap estimates were physically inconsistent.
 
 Source37.59° pupil counts at32grid: F2.89=536valid/276blocked/0failed; F4=612valid/200blocked/0failed,812sampled each. Onaxis and18.795° both812/812. Source image plane unchanged46.9827mm. Geometric MTF converged at0/0.5/1format heights through40lp/mm atF2.89/F4 for source and separately labeled best-axial. Best-axial shifts−0.04540557/−0.04699964mm are diagnostics only. C/d/F MTF refused due to missing partial dispersion forνd95.1; no invented spectral data. Reference diffraction assessed separately. Metadata, full typecheck/format/lint, focused corpus/integration (36 files, 1385 tests), production build and SEO passed. This is not a full-repository test run. Interactive browser UI remains unverified. Reference diffraction converged through 40 lp/mm at all sampled fields at F2.89/F4, source and separate best-axial focus, max grid 128.
+
+## 2026-11-09 — Deployment validation
+
+Independent check against JP 2013-137377 A Example 4 (PDF pp. 14–15): 18 surfaces plus the stop, both aspheres
+(K, A4–A10), the filter and the 4.9327 image gap agree; scale 1. Engine EFL 18.821, F/2.89, BF 4.9326, TL 46.98;
+group focal lengths and the three condition values reproduce. Front page: Sigma Corporation, inventor Atsushi
+Yamazaki. Attribution: the DP1 Merrill lens is 9 elements / 8 groups with one FLD and two moulded aspheres; all
+nine nd/νd pairs are exact Hoya rows including FCD100, and Example 4's symmetric biconvex last element matches
+Sigma's catalog drawing better than Examples 2, 3 and 7.
+
+Deployment change: none.
+
+Open: glass labels (Hoya names); the 0.2 m close focus has no focus data; wording.

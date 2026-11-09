@@ -5,7 +5,7 @@
 **Filed:** 2022-06-06
 **Published:** 2022-10-18
 **Inventor:** Yunhong Li (李云洪)
-**Assignee:** 深圳市慧天影视器材有限公司
+**Assignee:** Shenzhen Huitian Film and Television Equipment Co., Ltd. (深圳市慧天影视器材有限公司)
 **Title:** 一种85mmF1.8全画幅镜头
 **Example details:** Paragraph0034, PDF page7; Figure1, PDF page9. The single numerical prescription is reproduced without scaling.
 
