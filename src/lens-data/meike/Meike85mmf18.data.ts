@@ -4,9 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   layout: { yScFill: 0.4 },
-  key: "meike-85f18-cn217606166u",
+  key: "meike-af-85mm-f18-ff-stm",
   maker: "Meike",
-  name: "MEIKE 85mm f/1.8",
+  name: "MEIKE AF 85mm f/1.8 FF STM",
   subtitle: "CN 217606166 U \u2014 qualified associated patent model",
   catalog: {
     elementCount: 9,

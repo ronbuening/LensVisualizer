@@ -9,7 +9,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "pentax-m-200mm-f4",
   "maker": "Pentax",
-  "name": "PENTAX SMC PENTAX-M 200mm f/4",
+  "name": "PENTAX SMC M 200mm f/4",
   "subtitle": "US 4,139,264 A; probable association, 2x retail-scale hypothesis",
   "catalog": {
     "lensMounts": [

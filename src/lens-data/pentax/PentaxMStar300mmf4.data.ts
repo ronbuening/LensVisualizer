@@ -13,7 +13,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "pentax-m-star-300mm-f4",
   "maker": "Pentax",
-  "name": "PENTAX SMC PENTAX-M★ 300mm f/4",
+  "name": "PENTAX SMC M* 300mm f/4",
   "subtitle": "US 4,293,197 A; representative patent reconstruction, 3× scale and inferred apertures",
   "catalog": {
     "lensMounts": [

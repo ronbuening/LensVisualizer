@@ -10,7 +10,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "pentax-a-28mm-f28",
   "maker": "Pentax",
-  "name": "PENTAX SMC PENTAX-A 28mm f/2.8",
+  "name": "PENTAX SMC A 28mm f/2.8",
   "subtitle": "US 4,468,100 A; probable design-family representative, not a factory-exact prescription",
   "catalog": {
     "lensMounts": [
