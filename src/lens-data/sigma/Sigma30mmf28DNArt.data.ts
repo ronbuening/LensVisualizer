@@ -73,7 +73,7 @@ const LENS_DATA = {
       glass: "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 19.79917257739472,
       role: "High-index positive front element of the fixed first group's cemented doublet; its nearly flat rear face is the cemented interface.",
-      cemented: "D1",
+      cemented: "DB1",
     },
     {
       id: 2,
@@ -85,7 +85,7 @@ const LENS_DATA = {
       glass: "E-FL5 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -22.02171881675118,
       role: "Negative rear element of the front doublet; its concave rear face, just ahead of the iris, gives the first group a telephoto-like power split (¶0071).",
-      cemented: "D1",
+      cemented: "DB1",
     },
     {
       id: 3,
@@ -97,7 +97,7 @@ const LENS_DATA = {
       glass: "E-FD15 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -12.197608061547106,
       role: "Dense-flint negative front element of the focusing group's cemented doublet; its strongly concave front face faces the iris.",
-      cemented: "D2",
+      cemented: "DB2",
     },
     {
       id: 4,
@@ -109,7 +109,7 @@ const LENS_DATA = {
       glass: "TAF3 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 15.78503089057621,
       role: "High-index positive rear element of the focusing doublet; with Element 3 it corrects the moving group's axial colour (¶0066).",
-      cemented: "D2",
+      cemented: "DB2",
     },
     {
       id: 5,
@@ -200,7 +200,7 @@ const LENS_DATA = {
       medium: 5,
     },
     {
-      label: "9",
+      label: "9A",
       R: -27.3923,
       sd: 8.5,
       asphere: {
@@ -232,7 +232,7 @@ const LENS_DATA = {
       medium: 7,
     },
     {
-      label: "13",
+      label: "13A",
       R: -67.2193,
       d: 20.4045,
       sd: 11,
@@ -248,6 +248,16 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.5,
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 500.07,
+        distanceReference: "image-plane",
+        source:
+          "JP 2012-234169 A, Example 1, variable-spacing table at the 500 mm shooting distance (d4 5.6552, d9 2.8307); the printed spacings focus 500.07 mm object to image",
+      },
+    ],
     description:
       "PUBLISHED inner focus: JP 2012-234169 A, Example 1 prints d4 and d9 at infinity and at a 500 mm shooting distance (d4 6.9859 \u2192 5.6552, d9 1.5000 \u2192 2.8307 mm; Bf 20.4045 mm in both). The front doublet, the iris and the rear group stay fixed; the second group (L3\u2013L5) moves 1.3307 mm toward the object. The printed spacings give 500.07 mm object to image at \u22120.069\u00d7. This is the patent's near state, not Sigma's 0.30 m minimum focus (1:8.1), which is not modeled. Intermediate positions interpolate the gaps linearly.",
   },
@@ -267,15 +277,15 @@ const LENS_DATA = {
       label: "d4",
       values: [[6.9859, 5.6552]],
     },
-    "9": {
+    "9A": {
       label: "d9",
       values: [[1.5, 2.8307]],
     },
   },
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "3" },
-    { text: "G2 IF", fromSurface: "5", toSurface: "9" },
-    { text: "G3", fromSurface: "10", toSurface: "13" },
+    { text: "G2 IF", fromSurface: "5", toSurface: "9A" },
+    { text: "G3", fromSurface: "10", toSurface: "13A" },
   ],
   doublets: [
     { text: "DB1", fromSurface: "1", toSurface: "3" },

@@ -94,3 +94,58 @@ aperture audit reports no rim limit, the image circle holds and the corner chief
 30.8257, FOPEN 2.89, half-field 25.245°, stop radius 4.6099 mm: unchanged.
 Open: L5 is drawn 0.5 mm taller in Fig. 1 than modeled (8.98 against 8.5 mm, 6%), and L1 0.4 mm shorter
 (7.63 against 8.0 mm); both are left inside the noise band.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared: the model with Fig. 1 (p. 32, Example 1; native 400 dpi), read on both sides of the axis, with Sigma's DN | Art
+construction drawing and with the Fig. 2 aberration plots. The scale was re-derived from the vertex crossings: S1 at
+402 px and S13 at 848 px (446 px for 31.8621 mm, 14.00 px/mm), confirmed by S1–S9 (13.99) and S1 to the image line
+(731 px for 52.2666 mm, 13.99). Every printed vertex lands within 1 px of its infinity position, so the figure shows
+the infinity state. Rims, averaging the two sides: L1/L2 108 px (7.71 mm against 8.0), L3/L4 105 (7.50 against 7.5),
+L5 126.5 (9.04 against 8.5), L6 133.5 (9.54 against 9.5), L7 156 (11.14 against 11.0). Along the axis the drawn rim
+edges agree with the modeled ones within 2 px (L1 front 428 against 428.6 px, L6 725 / 773 against 724.8 / 772.6, L7
+818 / 834 against 817.2 / 835.4). No reading differs by 10%, and the drawn order DB1 ≈ DB2 < L5 < L6 < L7 holds, so
+every rim from the semi-diameter pass stands. In an overlay at 14.00 px/mm the model outline lies on Fig. 1 except at
+the L5 rim and the two lands below.
+
+| Face | Fig. 1 land | Baseline | Final | Cost | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| S3 (L2 rear) | column 473 px; cap ends at 71 px (5.07 mm, q 0.66 ± 0.02), 1.14 mm behind the vertex | sd 8.0, no cut | cut 1.31 mm deep, cap radius 5.68 | 0.0 pts | keep: drawn, costs no light |
+| S5 (L3 front) | column 576 px; cap ends at 63 px (4.50 mm, q 0.60 ± 0.02), 1.14 mm ahead of the vertex | sd 7.5, no cut | cut 1.85 mm deep, cap radius 5.80 | 0.0 pts | keep: drawn, costs no light |
+
+Both cuts sit at the shallowest depth the beam rule allows. The wide-open beams reach 5.614 mm at S3 (28.0° field) and
+5.740 mm at S5 (13.2°), both at infinity, so the lands sit 0.17 and 0.71 mm deeper than drawn. A trial copy with a real
+object 500 mm from the image plane at the near keyframe reaches no further. Removing the S3 cut still passes the
+validator, because the iris stroke (at most 4.61 mm) stays in air. The cut is kept because Fig. 1 and Sigma's drawing
+both show the land and it costs no light, not because spacing needs it. With both cuts removed the curves are
+identical: 65.6% at 25.2° at infinity and 77.5% at 24.9° at the 500 mm state with the app's parallel beams. With a real
+object point at 500 mm, the 14.18 mm corner receives about 79% with or without the cuts. Final worst loss against the
+baseline rims: 0.0 points at every field.
+
+Change: element `cemented` ids D1 → DB1 (L1, L2) and D2 → DB2 (L3, L4), so the inspector badge uses the patent's
+names (¶0176), as the brackets do.
+
+Labels checked and found correct. Groups G1 (S1–3), G2 IF (S5–9) and G3 (S10–13) bracket the elements that ¶0176 and
+the Fig. 1 brackets assign (L1–L2, L3–L5, L6–L7). G3a (L6) and G3b (L7) have no bracket of their own, which avoids a
+parent and subgroup pair; the analysis names them. Doublets DB1 (S1–3) and DB2 (S5–7) match Fig. 1. Element names
+L1–L7 follow Fig. 1, each `type` agrees with the signs of R, the two aspheres are the starred S9 and S13 (p. 21), and
+the stop is printed surface 4, between L2 and L3. The file has no `apd` tag, which is right: neither the patent nor Sigma
+names a special-dispersion glass.
+
+Movement: d4 6.9859 → 5.6552 and d9 1.5000 → 2.8307 (pp. 21–22), with a constant sum of 8.4859 and Bf 20.4045 in both
+states. G2 moves 1.3307 mm toward the object and G1, the stop and G3 stay fixed. The Fig. 1 arrow under G2 points to
+the object side. Keyframe 0 is infinity; the close keyframe focuses 500.07 mm from the image (EFL 30.826 → 30.100).
+On the local page the movement overlay shows G1 and G3 fixed and G2 IF moving 1.33 mm away from the image, the focus
+slider runs from ∞ to 50 cm, and the inspectors read "DOUBLET DB1" / "DOUBLET DB2" and ASPH on L5 and L7.
+
+Colour against Fig. 2, at 182 px/mm on a 400 dpi render: the model's d line is at 0.000 mm paraxially and −0.077 mm at
+full pupil (plot about −0.01 / −0.08). C is at +0.038 / −0.035 and g at +0.035 / −0.034 (plot about +0.03 to +0.05 /
+−0.044). Every line agrees within one native pixel (0.011 mm). Distortion is −2.19% at 25.18° (plot −2.2%). All seven
+glass labels resolve exactly. Engine EFL 30.8257, FOPEN 2.89 and half-field 25.245° are unchanged.
+(Closed the same day by the coordinator.) Open: S9 and S13 are aspheric but carry plain labels, not the spec's "9A" / "13A". The rename also touches the `gaps`
+key and the G2 / G3 bracket ends, which are outside this review.
+
+Coordinator follow-up, same day: the aspheric surfaces are now labelled `9A` and `13A`, with the `9A` focus gap and the
+G2 IF / G3 bracket ends renamed to match; engine values unchanged. The printed 500 mm state is now a certified conjugate
+(keyframe 1, 500.07 mm object to image plane, `image-plane` reference), so finite-distance analyses use the patent's own
+object distance.
