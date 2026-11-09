@@ -1,25 +1,55 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Primary radii, spacings and glass coordinates preserved. Stop and apertures from P2P, not primary measurements. Final image distance is computed paraxial BFD, not a printed source plane. See companion analysis. */
+
+/**
+ * US 3,502,394 (Koichi Kobayashi, Asahi Kogaku Kogyo), the patent's single numerical example (Table I), associated
+ * with the Asahi Super-Takumar 300mm f/4 for the M42 screw mount. The association rests on construction (five single
+ * elements in five groups), focal length, aperture, field and assignee; this is a patent design, not a confirmed
+ * factory prescription.
+ * Scale: the patent is normalized to F = 1.0. Every printed R and d, and every semi-diameter, is multiplied by exactly
+ * 300 (computed EFL 300.022 mm). All surfaces are spherical, so no coefficient transform applies.
+ * Printed: R, d, d-line n, Abbe number, F = 1.0, relative aperture 1:4, field ±4.5 degrees and telephoto ratio 1.27
+ * (1.271 here). The radii, spacings and indices are the patent's; no back focus is printed.
+ * Source inconsistency: Table I prints R3 = -0.74505 and the claim table +0.74505. The negative value is used: the text
+ * calls L2 biconcave, Fig. 1 draws it so, and the patent's Seidel table (Petzval term -0.560 at surface 3, sum -0.219)
+ * is reproduced only with R3 < 0.
+ * Image plane: the final gap is the computed paraxial back focus, 74.838 mm, not a printed value.
+ * Stop: the patent neither prints nor draws one. Following the PhotonsToPhotos reconstruction it sits 82 mm behind S6,
+ * splitting the printed 111 mm air space 82 + 29, with its radius set by the paraxial entrance pupil, F/N.
+ * Semi-diameters are not printed. They are the PhotonsToPhotos values (diameters 75.15, 68.29, 67.55 and 22.08 mm),
+ * which agree with the proportions of Fig. 1; the small rear group vignettes the oblique beam strongly at full aperture.
+ * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies.
+ * The 5.5 m minimum focus is Asahi's retail figure and is not modeled.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "pentax-super-takumar-300mm-f4",
   "maker": "Pentax",
   "name": "PENTAX SUPER-TAKUMAR 300mm f/4",
-  "subtitle": "Qualified patent reconstruction; secondary stop and apertures",
+  "subtitle": "US 3,502,394, Sole example — probable match to the M42 production lens",
   "catalog": {
     "lensMounts": [
       "m42"
     ],
     "imageFormat": "135-full-frame",
+    "specs": [
+      "5 ELEMENTS / 5 GROUPS",
+      "DESIGN f = 300 mm",
+      "DESIGN F/4",
+      "ALL SPHERICAL",
+      "PATENT f = 1 SCALED × 300"
+    ],
     "elementCount": 5,
     "groupCount": 5,
     "focalLengthMm": {
       "marketing": 300,
-      "design": 300.02206554077543
+      "design": 300
     },
     "fNumber": {
       "marketing": 4,
       "design": 4
+    },
+    "closeFocusM": {
+      "marketing": 5.5
     }
   },
   "source": {
@@ -45,8 +75,8 @@ const LENS_DATA = {
       "nd": 1.50977,
       "vd": 61.9,
       "focalLengthMm": 208.2465135101512,
-      "glass": "Unmatched (patent nd=1.50977, Vd=61.9)",
-      "indexReferenceNote": "Patent nd/Vd only. Abbe approximation does not establish secondary-spectrum accuracy."
+      "glass": "Unmatched (patent nd 1.50977, νd 61.9; no catalog glass at this pair)",
+      "role": "Low-index front collector with a weak convex rear face; the patent uses that face against higher-order spherical aberration."
     },
     {
       "id": 2,
@@ -56,8 +86,8 @@ const LENS_DATA = {
       "nd": 1.71736,
       "vd": 29.5,
       "focalLengthMm": -212.3487324375536,
-      "glass": "Unmatched (patent nd=1.71736, Vd=29.5)",
-      "indexReferenceNote": "Patent nd/Vd only. Abbe approximation does not establish secondary-spectrum accuracy."
+      "glass": "SF1 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Dense-flint biconcave negative; the color-correcting partner of the two crowns in the front group."
     },
     {
       "id": 3,
@@ -67,8 +97,8 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.0,
       "focalLengthMm": 188.4629126819168,
-      "glass": "Unmatched (patent nd=1.48749, Vd=70.0)",
-      "indexReferenceNote": "Patent nd/Vd only. Abbe approximation does not establish secondary-spectrum accuracy."
+      "glass": "Unmatched (patent nd 1.48749, νd 70.0; FK5-type crowns are 0.2 higher in νd)",
+      "role": "Low-index positive meniscus closing the front group; its weakly concave rear face trims higher-order spherical aberration and oblique aberrations."
     },
     {
       "id": 4,
@@ -78,8 +108,8 @@ const LENS_DATA = {
       "nd": 1.72916,
       "vd": 54.8,
       "focalLengthMm": -43.68532962600018,
-      "glass": "Unmatched (patent nd=1.72916, Vd=54.8)",
-      "indexReferenceNote": "Patent nd/Vd only. Abbe approximation does not establish secondary-spectrum accuracy."
+      "glass": "S-LAL18 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Strong biconcave negative leading the rear group; supplies the negative power of the telephoto rear group."
     },
     {
       "id": 5,
@@ -89,8 +119,8 @@ const LENS_DATA = {
       "nd": 1.762,
       "vd": 40.3,
       "focalLengthMm": 67.4850902838996,
-      "glass": "Unmatched (patent nd=1.762, Vd=40.3)",
-      "indexReferenceNote": "Patent nd/Vd only. Abbe approximation does not establish secondary-spectrum accuracy."
+      "glass": "NBFD5 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "High-index biconvex positive closing the rear group; the flint partner of L4 and the last element before the image."
     }
   ],
   "surfaces": [
@@ -166,8 +196,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 10,
-    "description": "Static infinity-only patent reconstruction. No source-backed focusing travel; inactive close-focus schema placeholder is not a product specification."
+    "closeFocusM": 1000000000000000.0,
+    "description": "The patent names no focusing group or motion and prints the infinity state only, so the lens is modeled at infinity with no focus movement. Asahi's retail minimum focus of 5.5 m (18 ft) is not modeled."
   },
   "aperture": {
     "nominalFNumber": 4,
