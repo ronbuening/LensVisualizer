@@ -77,3 +77,43 @@ Corner coverage is 100 % at 8.1°, and the ray check shows no axial clip or chie
 page renders the same at both ends of the focus control. The data header and the analysis table carry the new values.
 
 Open: no maker construction drawing is known, so Fig. 5 is the only shape reference.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the local page (infinity, the far end of the focus control, the focus-movement overlay, and the inspector for
+L1, L2 and L5) with Fig. 5 on PDF page 4 at 300 dpi, plus a model-over-figure overlay. Scale, re-derived: the drawn axis
+is the line y = 1359.03 − 0.0119x (0.68° tilt); vertex crossings run 541.5 px from S1 to S10 for 58.41 mm, or 9.27 px
+per model mm, and three spans agree (S1-S6 143 px for 142.1, d6 332.5 for 333.6, S7-S10 66 for 65.8). At that scale the
+model's S1, S5 and S6 arcs lie on the drawn ones. Rim heights, read to the line centre and averaged top and bottom:
+L1 20.9 (20.99 / 20.89), L2 20.8 (20.94 / 20.70), L3 20.8 (20.94 / 20.73), L4 and L5 10.7.
+
+| Element | sd before → after | Fig. 5 reading | Verdict |
+|---|---|---|---|
+| L3 (S5, S6) | 20.6 → 21.2 | 20.8, level with L2 | step order: the figure draws L2 and L3 level (0.00-0.03 mm apart at top and bottom); the page showed L3 0.6 mm below L2 |
+
+L1 (21.5) and L2 (21.2) stay at the f/3.5 marginal ray, 3 % and 2 % above the drawing; the rear pair stays at 11.25, 5 %
+above it and the limiting rim for off-axis light. With L3 at 21.2 the front three render as drawn: L1 a little taller,
+L2 and L3 level. The surface validator, the aperture, image-circle and field-coverage audits and the ray check are clean.
+
+Cuts against the pre-pass rims (no lands): L1 22.5 → 21.5, L2 22.5 → 21.2 and L3 21.9 → 21.2 each cost 0.0 points at
+every field and are kept as slight. Final `rimcost.mjs` worst loss: 0.0 points; transmission 99.8 / 95.0 / 88.0 / 80.0 %
+at 4.1 / 5.4 / 6.8 / 8.1°, as before. EFL 149.998 mm, f/3.5, half-field 8.2° and the 17.32 mm stop radius are unchanged.
+
+Labels and movement. L1-L5 are the claims' own designations; every element type agrees with its radii; there are no
+cemented surfaces, aspheres or special-glass tags, and the patent names no special glass. The Front / Rear brackets
+cover S1-S6 and S7-S10 (the patent names no groups); the stop sits between L3 and L4. The inspector shows L2 biconcave,
+f −121.61 mm, S-TIH6, and L5 negative meniscus, f −48.14 mm, S-LAL7. The lens is static: the diagram is identical at
+both ends of the focus control, which reads "Not modeled", and the movement overlay reports no modeled movement.
+
+Colour and field against Fig. 6 (F = 100 units). The d-line spherical aberration follows the plot within 0.013 at every
+zone. The g-line paraxial focus is +0.040 behind the d-line in the model, where the plot starts both lines at 0; the
+plot is d-referenced (the same method reproduces Example 1's offset in Fig. 2 within 0.011). Closing it would need a
+partial-dispersion shift of +0.017 on L1, +0.020 on L3 or −0.009 on L2, beyond any catalog glass of these types, so no
+relabel is proposed. Distortion is +0.97 % at 8.2°, +0.96 % plotted. Astigmatism at 8.2° is ΔS −0.049 and ΔM +0.006
+against −0.080 and −0.199 plotted; a stop 24-25 mm behind S6 (16.0-16.7 at F = 100) reproduces both plotted curves to
+0.006 rms at five field angles, against 0.071 at the modeled 6.0 mm.
+
+Open: Fig. 6's astigmatism places the stop about 24 mm behind S6, not 6.0 mm; moving it is a gap change outside this
+review, and on a scratch copy it would make the present front cuts cost 5.1 points at 8.1°, so the front rims would need
+another look.
+Open: the model's g-line paraxial focus sits 0.040 (F = 100) behind the plotted one; no catalog relabel closes it.

@@ -97,11 +97,11 @@ The patent prints no semi-diameters, so all are inferred, with both faces of eac
 | Element | Model sd (mm) | Fig. 5 reading (mm) | Basis |
 |---|---|---|---|
 | L1 | 21.5 | 20.9 | Just above Fig. 5, at the f/3.5 marginal ray (21.43 mm at S1); 43 mm diameter, inside the 49 mm filter thread |
-| L2 | 21.2 | 21.0 | Just above Fig. 5, at the f/3.5 marginal ray (21.13 mm at S3); drawn square-cut |
-| L3 | 20.6 | 20.6 | Fig. 5; the f/3.5 marginal ray is 20.55 mm high at S5 |
-| L4, L5 | 11.25 | 11.0, 11.0 | Fig. 5, about half the front height |
+| L2 | 21.2 | 20.8 | Just above Fig. 5, at the f/3.5 marginal ray (21.13 mm at S3); drawn square-cut |
+| L3 | 21.2 | 20.8 | Level with L2, as Fig. 5 draws it; the f/3.5 marginal ray is 20.55 mm high at S5 |
+| L4, L5 | 11.25 | 10.7, 10.7 | Fig. 5, about half the front height |
 
-Fig. 5 is drawn to scale along the axis, and its surface curves give the same scale across it. The model follows its heights to within 3 %, and the step order (L1 and L2 nearly level, L3 slightly lower, L4 and L5 level) is the drawing's.
+Fig. 5 is drawn to scale along the axis, and its surface curves give the same scale across it. The front three elements sit within 3 % of its heights and the rear pair 5 % above them. The step order is the drawing's: L1 a little taller than L2 and L3, which are level with each other, and L4 and L5 level.
 
 With these rims the full f/3.5 beam passes on the axis. Off the axis the rear pair trims the beam: about 95 % of it passes at 5.4°, 88 % at 6.8° and 80 % at the 8.1° frame corner. The chief ray reaches the corner unobstructed.
 

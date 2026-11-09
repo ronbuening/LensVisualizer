@@ -14,12 +14,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 250 mm object to image on the fixed image plane, which gives −0.109× (OM: 0.11×).
  * Semi-diameters are not printed; they are estimated from Figure 1 (printed page 25), read at 787 dpi: 28.30 px/mm
  * along the axis from the S1–S22 vertex span, 28.95 px/mm across it from arc fits to S4, S10 and S18 and the stop
- * tick, and floor-checked by real-ray trace at all three focus states. Figure lands: L2's rear face ends at 10.2 mm
- * (the figure's 10.6 would meet L3) and its land runs out to the 13.8 mm edge; L3's rear land runs to 10.9 mm. Inferred
+ * tick, and floor-checked by real-ray trace at all three focus states. Figure lands: L2's rear face ends at the
+ * figure's 10.6 mm and its land runs out to the 13.8 mm edge; L3's rear land runs to 10.9 mm. Inferred
  * cuts on S10, S18 and S22 sit at the figure's cap end where the wide-open beams allow (S10, q = 0.78) and just
  * outside the beams at every focus state elsewhere (S18 at 10.43 mm, S22 at 10.65 mm, against the figure's 9.4 and
  * 10.0 mm).
- * checks.gapSagFrac 0.91 admits L3's 10.9 mm front rim beside L2's rear face (S4/S5), which the figure draws touching.
+ * checks.gapSagFrac 1 admits L2's 10.6 mm rear face beside L3's 10.9 mm front rim (S4/S5); the faces come within
+ * the gap but do not cross, and the figure draws the two elements touching.
  * Glass labels are catalog rows whose nd/νd equal the printed values; the production supplier is not known. */
 const LENS_DATA = {
   "schema": 2,
@@ -227,7 +228,7 @@ const LENS_DATA = {
       "label": "4",
       "R": 12.8,
       "d": 6.23,
-      "sd": 10.2,
+      "sd": 10.6,
       "rimExtensionSd": 13.8
     },
     {
@@ -278,7 +279,7 @@ const LENS_DATA = {
       "medium": 6
     },
     {
-      "label": "12",
+      "label": "12A",
       "R": -37.19,
       "d": 0.25,
       "sd": 12.5,
@@ -332,7 +333,7 @@ const LENS_DATA = {
       "rimCutDepthMm": 4
     },
     {
-      "label": "19",
+      "label": "19A",
       "R": 35.41,
       "d": 4.65,
       "sd": 11.1,
@@ -349,7 +350,7 @@ const LENS_DATA = {
       }
     },
     {
-      "label": "20",
+      "label": "20A",
       "R": -90,
       "d": 0.15,
       "sd": 11.1,
@@ -471,7 +472,7 @@ const LENS_DATA = {
     },
     {
       "text": "G4",
-      "fromSurface": "19",
+      "fromSurface": "19A",
       "toSurface": "22"
     }
   ],
@@ -479,11 +480,11 @@ const LENS_DATA = {
     {
       "text": "D1",
       "fromSurface": "10",
-      "toSurface": "12"
+      "toSurface": "12A"
     }
   ],
   "checks": {
-    "gapSagFrac": 0.91
+    "gapSagFrac": 1
   },
   "layout": {
     "yScFill": 0.4

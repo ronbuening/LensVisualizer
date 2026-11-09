@@ -121,3 +121,66 @@ cleanup-pass reading from the bar midpoint (C +0.25, F −0.14, g +0.09) is give
 Measured from the d curve, all three lines move closer to the plot (C by 0.001, F by 0.001, g by 0.004 mm). Against
 the bar-midpoint reading F moves 0.001 mm away, far below the plot's reading precision (one line width is about
 0.02 mm). Kept. EFL, f-number, half-field, stop radius and back focus are unchanged at the d-line.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity and at the slider's far end, the focus-movement dialog and the inspector for
+elements 4, 5 and 6, against Fig. 1 (sheet 1, PDF page 2), the text in columns 1–2 (PDF page 4) and Fig. 2A (sheet 2).
+
+Figure scale, re-measured. Fig. 1 was rendered at 144 dpi and resampled along a fresh fit of the drawn axis (3.49°
+tilt, rms 0.6 px over 619 rows in d7). Vertex line centres at S1 217, S2 463, S3 532, S4 572, S5 584, S6 786, S7 826,
+S8 2629, S9 2662 and S10 2729 px give 17.85 px/mm over S1–S7, 18.03 across d7, 16.7 in the rear doublet and 17.92
+over S1–S10, as the earlier pass found. The drawing is also sheared: element edges that should stand square to the axis
+lean about 0.12 px per px of height, so every rim was read as the distance perpendicular to the axis line, measured
+from each element's own centre (8 to 15 px off the line). Arc fits across the axis scatter (17.1 px/mm on R2, 18–20 on
+the half arc of R1 that clears the labels), so heights are quoted at 17.5 px/mm and at the isotropic 17.9.
+
+| Rim | Figure, px | mm at 17.5 / 17.9 | Stored | Verdict |
+|---|---|---|---|---|
+| S1, S2 (L1 square) | 638 | 36.5 / 35.6 | 35.73 | agrees |
+| S3 (face end below L2's bevel) | 605–609 | 34.6–34.8 / 33.8–34.0 | 34.6 | agrees |
+| S4 | 577 | 33.0 / 32.2 | 32.96 | agrees |
+| S5, S6 (edge of the front pair) | 590 | 33.7 / 32.9 | 33.39 | agrees |
+| S7 (bevel above, corner below) | 545 / 590, mean 568 | 32.4 / 31.7 | 31.04 | within 5 % |
+| S8 | 235 | 13.4 / 13.1 | 13.76 | within 5 % |
+| S9, S10 (edge of the rear doublet) | 250 | 14.3 / 14.0 | 14.83 | 4–6 % above |
+
+The rear doublet's drawn height is 0.392 of L1's against 0.415 in the model, 5.5 % at any across-axis scale, inside
+the 10 % threshold, so the earlier verdict stands without a light argument. No rim changed. The overlay (model red,
+baseline blue) lies on the drawn outlines of all four groups; the live page shows L1 square, L2's front rim just
+inside L1's and the step order of the figure.
+
+Lands and cuts: the only cut is S3 (baseline 35.95, now 34.6), which the figure supports and which costs 0.0 points at
+every field; there are no lands. Kept. Final worst loss against the baseline rims: 0.0 points (corner 84.6 %).
+
+Labels. The patent numbers components L1 to L4, and Fig. 1 brackets the cemented L3 and L4, so the element names
+L3–L6 clashed with its designations (the patent's L4 is the rear doublet). Element names are now L1, L2, L3a, L3b,
+L4a, L4b (ids, `label` and diagram numbers unchanged); `.analysis.md` and the header follow. Added `groups` FRONT
+(S1–S7) and REAR (S8–S10) for the patent's front and rear lens groups; both sit under the element numbers on the page
+without collisions. Roles: L3b "the patent's main corrector of chromatic aberration" → "the patent credits it with
+minimizing chromatic aberration" (the text says it "also serves to minimize chromatic aberration"); L4b "leaves the
+rear group a weak negative meniscus" → "offsets part of its power, leaving the rear group at f = −142.8 mm" (the
+patent asks for a rear group of large negative power). In the analysis, L1 is the lens's strongest positive
+component, not its strongest converging element (L3a is +134.5 mm and L4b +67.2 mm against L1's +136.0). Checked and
+correct: element types against the signs of R, D1 (S5–S7) and D2 (S8–S10) brackets and `cemented` tags, no aspheric
+markers, the stop drawn in d7, and `apd: "patent"` on L3b, where the text places the KzSF-type abnormal-dispersion
+glass in "the concave lens on the image side of the third component L3".
+
+Stop. Neither the text nor Fig. 1 marks a stop: the gaps in the axis across d7 are the dash-dot pattern, and the d7
+label is a dimension label. The patent gives no better position than the midpoint.
+
+Movement: none modeled. The movement dialog reports no focus or zoom group movement and the slider's far end reads
+"Not modeled", which matches the static description.
+
+Colour, Fig. 2A re-read at 300 dpi (820 px per mm): on axis the C, g and F curves end +0.239, +0.084 and −0.149 mm from
+the d curve; the model gives +0.269, +0.133 and −0.145. The g line sits 0.05 mm long, more than the 0.02 mm reading
+precision, and C 0.03 mm long; both point to L3b's partial dispersion, which BPH50 does not carry (P_g,F 0.5902,
+0.0003 below the normal line). No other catalog row lies inside the resolver window. Every element resolves to a
+catalog dispersion curve; there is no nd-only medium, and the patent prints no line indices or partial dispersions.
+
+Source: the assignee "Olympus Optical Co., Ltd." matches the front page and the spelling of 38 other catalog files.
+
+Engine before and after: EFL 299.845 mm, f/4.5, half-field 4.0°, stop radius 18.698 mm, unchanged.
+
+Open: the stop stays at the midpoint of d7 (PhotonsToPhotos); only a maker drawing or service document can place it.
+Open: the rear doublet stays 4–6 % above the figure reading.

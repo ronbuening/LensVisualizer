@@ -18,7 +18,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * L1's rim, so S3 is 34.6 mm (listed 35.95). The rear doublet is drawn about 7 % smaller than listed. It keeps the
  * listed values: they set the light at the field edge (the drawn values would take 5 points from the 4° corner) and
  * match the maker's construction drawing, where the doublet is 0.42 of the front element's diameter.
- * Glass: five elements carry exact catalog equivalents of the printed nd and Abbe number. L4 is the glass the patent
+ * Elements: the patent numbers components L1 to L4 (Fig. 1 brackets the cemented L3 and L4). The single lenses keep
+ * those names; the elements of the cemented components are L3a/L3b and L4a/L4b, front to rear. The FRONT and REAR
+ * brackets are the patent's front and rear lens groups.
+ * Glass: five elements carry exact catalog equivalents of the printed nd and Abbe number. L3b is the glass the patent
  * calls an abnormal-dispersion glass of KzSF type (nd 1.7398, Abbe number 31.7); no catalog row matches it exactly, so
  * it is traced on the nearest, OHARA BPH50 (1.73999 / 31.71), whose catalog partial dispersion is close to normal.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies. The 3.5 m
@@ -95,7 +98,7 @@ const LENS_DATA = {
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "L3a",
       "label": "Element 3",
       "type": "Biconvex Positive",
       "nd": 1.618,
@@ -107,7 +110,7 @@ const LENS_DATA = {
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "L3b",
       "label": "Element 4",
       "type": "Biconcave Negative",
       "nd": 1.7398,
@@ -116,12 +119,12 @@ const LENS_DATA = {
       "glass": "BPH50 (OHARA; nearest catalog row to patent nd 1.7398, νd 31.7)",
       "apd": "patent",
       "apdNote": "The patent names this an abnormal-dispersion glass of KzSF type but prints no partial dispersion; the trace uses the nearest catalog row, OHARA BPH50, whose partial dispersion is close to normal.",
-      "role": "Anomalous-dispersion flint on the image side of the front cemented meniscus; the patent's main corrector of chromatic aberration.",
+      "role": "Anomalous-dispersion flint on the image side of the front cemented meniscus; the patent credits it with minimizing chromatic aberration.",
       "cemented": "D1"
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "L4a",
       "label": "Element 5",
       "type": "Biconcave Negative",
       "nd": 1.713,
@@ -133,14 +136,14 @@ const LENS_DATA = {
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "L4b",
       "label": "Element 6",
       "type": "Biconvex Positive",
       "nd": 1.5927,
       "vd": 35.6,
       "focalLengthMm": 67.18435005020238,
       "glass": "FF5 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Positive flint cemented behind L5; leaves the rear group a weak negative meniscus and balances its colour.",
+      "role": "Positive flint cemented behind L4a; offsets part of its power, leaving the rear group at f = −142.8 mm, and corrects the group's colour.",
       "cemented": "D2"
     }
   ],
@@ -242,6 +245,18 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.36
   },
+  "groups": [
+    {
+      "text": "FRONT",
+      "fromSurface": "1",
+      "toSurface": "7"
+    },
+    {
+      "text": "REAR",
+      "fromSurface": "8",
+      "toSurface": "10"
+    }
+  ],
   "doublets": [
     {
       "text": "D1",

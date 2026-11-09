@@ -14,10 +14,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the patent neither prints nor draws one. It sits in the long air space d6, 6.0 mm (4.0 at F = 100) behind
  * S6, splitting d6 into 6.0 + 29.985 mm, with its radius set by the paraxial entrance pupil, F/N.
  * Semi-diameters are inferred, none is printed. Fig. 5, read at its own axial scale (S1 to S10 = 58.41 mm here),
- * draws L1, L2 and L3 at 20.9, 21.0 and 20.6 mm and L4 and L5 at 11.0 mm. L3 takes its drawn height, 20.6 mm. L1
+ * draws L1 at about 20.9 mm, L2 and L3 level with each other at about 20.8 mm, and L4 and L5 at about 10.7 mm. L1
  * (21.5 mm) and L2 (21.2 mm) stand just above the drawing, at the f/3.5 marginal ray, which reaches 21.43, 21.29 and
- * 21.13 mm at S1-S3. The rear pair is 11.25 mm. Both faces of each element share one rim, and the 43 mm front clear
- * diameter fits inside the retail 49 mm filter thread.
+ * 21.13 mm at S1-S3; L3 is level with L2 at 21.2 mm, as drawn. The rear pair is 11.25 mm. Both faces of each element
+ * share one rim, and the 43 mm front clear diameter fits inside the retail 49 mm filter thread.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies.
  * The 1.8 m minimum focus is Pentax's retail figure and is not modeled.
  */
@@ -157,14 +157,14 @@ const LENS_DATA = {
       "label": "5",
       "R": 30.855,
       "d": 5.805,
-      "sd": 20.6,
+      "sd": 21.2,
       "medium": 3
     },
     {
       "label": "6",
       "R": 67.785,
       "d": 6.0,
-      "sd": 20.6
+      "sd": 21.2
     },
     {
       "label": "STO",

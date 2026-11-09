@@ -116,3 +116,55 @@ inferred rim cuts that the wider travel brought inside their 0.05 mm beam margin
 radius 10.367 → 10.435 mm) and S22 3.93 → 3.97 mm (10.600 → 10.646 mm). After: `audit:surface` OK, the rim-cut probe
 clear over 22 focus states, `audit:aperture` within 3 % of F1.43, field coverage 100 %, and no axial clip or blocked
 chief ray at any of the three states. Infinity values are unchanged.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the local page at infinity, at the printed 0.025× state (focus 0.285732, slider "88 cm") and at 0.25 m with
+Figure 1 (printed page 25, 787 dpi) and with an overlay of the model and the baseline rims on the figure. Scale proved
+again: 28.31 px/mm along the axis (S1–S22 1691.5 px for 59.73 mm; S1 to the filter's rear face 2232.5 px for 78.87 mm;
+every vertex within 2 px) and 29.0 px/mm across it (arc fits to S4, S6, S10, S18 and S22, 28.9–29.3). Readings: L1
+15.86, L2 13.66, L3 10.93, L4 10.10 (square), D1 12.34, L7 13.83, L8 13.48, L9 11.28, L10 11.14, L11 10.89 mm; lands at
+S4 (cap end about 10.6), S6 (about 9.9), S10 (depth 2.36), S18 (depth 3.16, cap end 9.4) and S22 (depth 3.45, cap end
+10.0). Every outer rim is within 2 % of these, and the land positions that differ are set by the beam rule (S18, S22) and
+by L3's rim (S4, see Open), so no rim changed.
+
+| Land or cut | Figure | Baseline | Final | Light cost | Verdict |
+|---|---|---|---|---|---|
+| S4 land (L2) | land from 10.6 to 13.66 | 10.2, none | 10.2, land to 13.8 | 0.0 | keep: drawn, costs nothing |
+| S6 land (L3) | land from 9.9 to 10.93 | 10.2, none | 10.2, land to 10.9 | 0.0 | keep: drawn, costs nothing |
+| S7/S8 cut (L4) | 10.10, square | 10.6 | 10.1 | 0.0 | keep: costs nothing |
+| S10 cut (L5) | depth 2.36 | 12.5, none | depth 2.34 (r 9.75) | 0.0 | keep: drawn, costs nothing |
+| S18 cut (L9) | depth 3.16 | 11.1, none | depth 4.00 (r 10.44) | 0.0 | keep; the beam rule refuses it deeper |
+| S22 cut (L11) | depth 3.45 | 11.1, none | depth 3.97 (r 10.65) | 0.0 | keep; the beam rule refuses it deeper |
+
+Light cost is the worst loss against baseline rims at any field, wide open, at all three focus states with the app's
+lattice (rimcost.mjs, and the same lattice with each cut removed); worst loss 0.0 points. With a real object point the
+corners are 60.7 % at the printed state (object 794.68 mm from S1) and 66.2 % at 0.25 m (169.74 mm), or 54.8 % and
+61.4 % if the samples the aiming cannot reach count as blocked, identical with baseline rims and with all three cuts
+removed; the furthest corner-beam rays reach 10.34 mm at S18 and 10.11 mm at S22.
+`audit:surface` refuses S22 at depth 3.5: the beams of the uncut lens reach 10.58 mm there at the 0.25 m state at 35.0°.
+`checks.gapSagFrac` 0.91 is the smallest value that admits S5 at 10.9 mm beside S4 (at 0.90: combined sag 5.66 mm
+against 5.607 mm allowed in the 6.23 mm gap); the figure draws L2's land touching L3's rim.
+
+Labels, tags and movement: element types match the signs of R and ¶0089–¶0093; G1 S1–8, G2 S10–16, G3 S17–18, G4
+S19–22 match the printed group table; D1 brackets S10–12; the stop sits between L4 and L5; the page marks only S12, S19
+and S20 aspheric. The inspector shows L2, L3, L7 and L8 as inferred APD and L6 and L10 as aspheric with their catalog
+glasses. Only L9 moves, toward the image (d16 1.4000 → 1.7647 → 3.019, d18 6.0800 → 5.7153 → 4.461, sum 7.48 mm), as
+¶0092 and the figure arrow state; the movement overlay shows G1, G2 and G4 fixed and 1.62 mm of travel. Colour agrees
+with Figs. 2 and 3 within 0.01 mm: at infinity d marginal −0.091 (figure −0.090), C paraxial +0.028 (+0.027), g
++0.002 at the margin (+0.002); at 0.025× g paraxial −0.018 (−0.018) and C +0.032 (+0.030). Distortion at 29.5° is
+−2.9 % (figure about −2.9 %) and ΔM −0.31 mm (about −0.34 mm). Engine EFL 20.274 mm, F1.43, half-field 29.505° and
+stop radius 8.700 mm are unchanged. The analysis now names L2's rear face with L10 as the field-edge limit (opening S4
+alone to 10.6 mm adds 4.6 points at 29.5°, L10 alone 4.3, L9 alone 0.2) and L9 at mid field.
+
+(Closed the same day by the coordinator: S4 raised to 10.6 mm.) Open: L2's rear land sits 0.8 mm ahead of where Figure 1 draws it, because S4's cap stops at 10.2 mm; the drawn
+10.6 mm would leave 0.01 mm to L3's rim and need `checks.gapSagFrac` 1.00 (10.5 mm needs 0.98), and would also raise
+the 29.5° corner by up to 4.6 points.
+Open: surface labels S12, S19 and S20 carry no `A` suffix (LENS_DATA_SPEC, surface labels); the page marks them from
+the `asphere` entries.
+
+Coordinator follow-up, same day: S4 (L2's rear face) rises 10.2 → 10.6 mm, the figure's reading, with
+`checks.gapSagFrac` 0.91 → 1 so the face may come within the S4/S5 gap beside L3's 10.9 mm front rim (the faces do not
+cross; 0.98 admits 10.5 mm, 1 is needed for 10.6). It costs no light and gains 4.6 points at 29.5° against the baseline
+rims (55.1 → 59.7 %; 26.6° 67.3 → 70.6 %); `audit:surface` OK, aperture within 3 % of F1.43, rim-cut probe clear.
+The aspheric surfaces are now labelled `12A`, `19A` and `20A`, with the D1 and G4 bracket ends renamed to match.
