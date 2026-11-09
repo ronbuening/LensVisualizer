@@ -47,4 +47,50 @@ asphere equation and profile, the stop and rim assumptions, a short scope sectio
 hashes, archive IDs and ray/MTF sample tables removed).
 
 Open: Cosina's section draws L7 with a slightly concave front face, as in Embodiment 1; if a later source favors
-Embodiment 1, it could be modeled with a `source.errata` entry for L1 nd. Rims remain Fig. 5 estimates.
+Embodiment 1, it could be modeled with a `source.errata` entry for L1 nd. Rims remain Fig. 5 estimates (measured
+against Fig. 5 in the semi-diameter pass below).
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: JP 2025-044411 A (`patents/JP2025044411A.pdf`, 17 pp.), Fig. 5 (Embodiment 3) on p. 17, rendered at 600 dpi
+(the embedded CCITT image is 592 ppi). The axis is vertical with the object at the bottom. Scale: the S1–S13 vertex
+span is 1329 px for 22.21 mm, so 59.84 px/mm. The other vertices then read S4 5.21, stop 7.50, S8 13.27 and S11
+19.54 mm (printed 5.20, 7.50, 13.28, 19.56). Laterally, the drawn S1 arc follows the sphere within 0.03 mm out to
+6.35 mm, the S9 arc within 0.02 mm out to 3.0 mm, and the S2 arc to 5.9 mm, so the figure is isotropic and to
+scale. Edges were read as line centres on both sides of the axis, which sits at x = 1454.5 px. The left and right
+readings agree within 2 px.
+
+| Surface | Before | After | Fig. 5 | Evidence and decision |
+|---|---:|---:|---:|---|
+| 1 | 8.0 | 7.2 | 7.19 | L1 square edge; no light cost |
+| 2 | 7.5 | 7.2, cut 2.46 | cap end 5.96, edge 7.19 | Flat land square to the axis at q = 0.829 ± 0.004. Cut radius 6.03 mm clears the wide-open beams (5.977 mm at 37.9°, infinity) by 0.05 mm. |
+| 3 | 5.8 | 5.9 | 5.91 | L2 square edge; +0.5 points at the corner |
+| 4 | 6.8 | 5.9 | 5.91 | L2 square edge |
+| 6, 7, 8 | 4.0 | 4.0 | 3.69 | Kept. 3.7 costs 7.3 points (23°), 3.8 costs 4.8; 3.9 (2.5 points) is inside the noise band. |
+| 9 | 5.1 | 5.3, cut 1.35 | cap end 3.79, edge 4.66 | Flat land at q = 0.81 ± 0.007. The cut moves out to radius 4.66 mm: the beams reach 4.598 mm (34.4°, focus 0.75), and an S9 cap under about 4.6 mm costs light (4.4 mm: 3.5 points). Edge raised to S10's height, as L5 is drawn square-cut. |
+| 10 | 5.3 | 5.3 | 4.66 | Kept. 4.7 costs 17.5 points; the smallest value within 3 points is 5.2. |
+| 11 | 6.1 | 6.1 | 5.42 | Kept. 5.4 costs 17.4 points; the smallest value within 3 points is 6.0. |
+| 12, 13 | 7.2 | 7.2 | 6.70 | Kept. 6.7 costs 13.3 points at 37.9°; the smallest value within 3 points is 7.1. |
+
+Light costs are against this file's starting rims, measured with the app's vignetting curve at focus 0, 0.25, 0.5,
+0.75 and 1. The kept rims of G2A, G2B and L7 are 7–14 % above Fig. 5. Their light-limited minimums (3.9, 5.2, 6.0 and
+7.1 mm) are within 0.1 mm of the current values, so they were not spent from the 3-point budget. The S2 and S9 lands
+reproduce the drawn flat steps on L1 and L5 at no light cost.
+
+Results for the final set: worst corner-light loss 0.0 points at every focus state. Corner illumination is 58.9 →
+59.4 % at 37.9° (infinity), 63.9 → 63.9 % at 36.8° (focus 0.5) and 67.5 → 67.5 % at 35.9° (close). The real-ray
+check at the patent's 14.2 mm image height shows no axial clip or chief-ray block at either printed focus state:
+S1 7.2 mm against the lower rim ray's 7.21 mm (0 % side), S3 1 % side. The rim-cut probe is clear for both cuts. The
+surface validator passes, the image-circle floor shows no undersized surface, field coverage is 100 %, and the
+aperture audit reports no rim limit. Engine EFL 18.543 mm, F/2.82, half field 37.95° and stop radius 3.442 mm are
+unchanged. The live page shows the L1 and L5 lands and L1 taller than L2 at infinity and at the close state.
+Overlay: `$S/sd/color18/overlay.png` (scratch, not in the repo).
+
+Maker drawing (second check, Cosina section SVG): it has the same 7/5 order, with the APD front element and the
+double-sided rear asphere. It also draws the S2 land (cap end 0.79 of L1's edge), the L5 front land (cap end 0.54)
+and a flat step on L6's front. Relative to L1 its heights are L2 0.83, G2A 0.51, L5 0.72, L6 0.83 and L7 1.01.
+Fig. 5 gives 0.82, 0.51, 0.65, 0.75 and 0.93, and the model 0.82, 0.56, 0.74, 0.85 and 1.00, so the maker drawing
+sides with the model's larger G2B and L7.
+
+Open: the renderer joins L6's front rim to S11 with a sloped edge where Fig. 5 draws a flat step (a cemented face
+cannot carry a land).

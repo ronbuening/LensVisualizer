@@ -14,8 +14,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * f, f2 = 19.57 and f23 = 33.01 mm reproduce.
  * Focus: unit focus (¶0026, claim 7). Table 11 prints D0 = 125.20 mm and D13 = 21.62 mm at the shortest distance.
  * The stop sits where Table 10 prints it (2.30 mm behind surface 4, 1.68 mm ahead of surface 6); its radius follows
- * from F/2.82. Semi-diameters are not printed: they are scaled from the element proportions of Fig. 5, then checked
- * for edge thickness, rim slope and gap clearance.
+ * from F/2.82. Semi-diameters are not printed. They are estimated from Fig. 5, which is drawn to scale (59.84 px/mm
+ * at 600 dpi from the S1–S13 vertex span, confirmed on the S4, stop, S8 and S11 vertices and on the S1, S2 and S9
+ * arcs). L1 (7.2 mm) and L2 (5.9 mm) follow the drawn square edges. Fig. 5 ends the concave caps of S2 and S9 at a
+ * flat land: S2 at 0.83 of L1's edge, S9 at 0.81 of L5's edge. The cuts sit just outside the wide-open beams (S2 depth
+ * 2.46 mm, cut radius 6.03 mm; S9 depth 1.35 mm, cut radius 4.66 mm, with S9's edge equal to S10's). G2A (4.0 mm),
+ * G2B (S10 5.3, S11 6.1 mm) and L7 (7.2 mm) stay 7–14 % above the drawing (3.7, 4.7, 5.4 and 6.7 mm): the drawn
+ * rims would cost 7–17 points of corner illumination.
  */
 const LENS_DATA = {
   schema: 2,
@@ -156,26 +161,27 @@ const LENS_DATA = {
       R: 18.918,
       d: 0.9,
       medium: 1,
-      sd: 8.0,
+      sd: 7.2,
     },
     {
       label: "2",
       R: 8.622,
       d: 2.09,
-      sd: 7.5,
+      sd: 7.2,
+      rimCutDepthMm: 2.46,
     },
     {
       label: "3",
       R: 37.431,
       d: 2.21,
       medium: 2,
-      sd: 5.8,
+      sd: 5.9,
     },
     {
       label: "4",
       R: -376.128,
       d: 2.3,
-      sd: 6.8,
+      sd: 5.9,
     },
     {
       label: "STO",
@@ -207,7 +213,8 @@ const LENS_DATA = {
       R: -8.713,
       d: 2.67,
       medium: 5,
-      sd: 5.1,
+      sd: 5.3,
+      rimCutDepthMm: 1.35,
     },
     {
       label: "10",
