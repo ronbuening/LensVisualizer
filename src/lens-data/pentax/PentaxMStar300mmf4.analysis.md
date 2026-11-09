@@ -55,7 +55,7 @@ Convex to the object and 0.09 mm behind L1 on the axis. It shares the front grou
 
 ### L3 — Biconcave Negative
 
-nd = 1.80610, νd = 40.9. Glass: S-LAH53 (OHARA) equivalent, a lanthanum flint. f = −92.9 mm.
+nd = 1.80610, νd = 40.9. Glass: J-LASF03 (HIKARI) equivalent, a lanthanum flint. f = −92.9 mm.
 
 Nearly flat in front (R5 = −1005.51 mm) and strongly concave behind (R6 = 81.09 mm), the form the patent claims, with the stronger curve toward the image. It is the only negative element of the front group and achromatizes the three ν 81.3 crowns. Its shape factor is condition (1).
 
@@ -91,7 +91,7 @@ The patent does not name the line of its N and ν columns; its aberration plots 
 | Element | Patent N / ν | Catalog equivalent | Catalog nd / νd | θgF | Type |
 |---|---|---|---|---|---|
 | L1, L2, L4 | 1.49700 / 81.3 | K-PFK80 (SUMITA) | 1.49700 / 81.35 | 0.537 | Fluorophosphate crown |
-| L3 | 1.80610 / 40.9 | S-LAH53 (OHARA) | 1.80610 / 40.93 | 0.570 | Lanthanum flint |
+| L3 | 1.80610 / 40.9 | J-LASF03 (HIKARI) | 1.80610 / 40.97 | 0.569 | Lanthanum flint |
 | L5 | 1.79952 / 42.2 | S-LAH52 (OHARA) | 1.79952 / 42.23 | 0.567 | Lanthanum flint |
 | L6 | 1.59270 / 35.3 | S-FTM16 (OHARA) | 1.59270 / 35.31 | 0.593 | Flint |
 | L7 | 1.88300 / 40.8 | S-LAH58 (OHARA) | 1.88300 / 40.77 | 0.567 | High-index lanthanum flint |

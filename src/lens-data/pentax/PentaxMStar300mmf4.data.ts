@@ -107,7 +107,7 @@ const LENS_DATA = {
       "nd": 1.8061,
       "vd": 40.9,
       "focalLengthMm": -92.90055257987268,
-      "glass": "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
+      "glass": "J-LASF03 (HIKARI catalog equivalent; production supplier unspecified)",
       "role": "Nearly plano-concave negative of the front group; achromatizes the three crowns, and its shape factor is the patent's condition (1)."
     },
     {

@@ -91,3 +91,43 @@ and grouping, L3's slanted rear corner, the doublet and L7 at about 12 and 16–
 scale. It does not separate Examples 1–3.
 
 Open: none for rims.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared: the live page (infinity, `focus=1`, `mv=focus`, inspectors for elements 1, 3, 5 and 8) with Fig. 1 on the
+scale proved in the semi-diameter pass (18.41 px per patent unit, 6.14 px per model mm), and the model's on-axis
+colour, distortion and astigmatism with Fig. 2. No field changed.
+
+- Silhouette: height order L1 > L2 > L3 > L4 and doublet < L7 < L8 as drawn; L1, L2 and L4 pointed, L3 flat-topped
+  with its rear cap ending below the blank, doublet and L7 square, L8 slanted with the rear face taller, all as in
+  Fig. 1. No reading differs from the file by 10 % or more.
+- Lands and cuts: S6 (baseline 34, now 30.6 with a land to 34) costs 0.3 points at 0.7° and nothing at the corner
+  (keep: slight); the land alone costs nothing (`--noext 6` identical) and is drawn. L8 (16 → 18.3 / 19.3) gains
+  17 points at 4.1°. Final worst loss 0.3 points.
+- Labels and tags: groups Front 1–8, Intermediate 9–12, Rear 13–16 follow the patent's front, intermediate and rear
+  lens groups; one cemented bracket D1 over 9–12, with no gap labels on this static lens to collide with; L1–L8
+  sequential (the figure names surfaces only); types agree with the signs of R; no aspheres; stop between L4 and L5;
+  `apd: "inferred"` on L1, L2, L4 only, citing the booklet's special-glass note.
+- Movement: static; the movement overlay reports no modeled group movement and `focus=1` draws the infinity state.
+- Colour (patent scale, from the d-line paraxial focus): d-line 0.007 / 0.035 / 0.067 / 0.064 at pupil 0.5 / 0.7 /
+  0.85 / 1, matching Fig. 2 (about 0.062 at 0.85 and 0.065 at the rim). g-line paraxial 0.130 against the plot's
+  0.112, and 0.155 against 0.12 at 0.7–0.85: the model's g focus lies about 0.02 to 0.035 behind the patent's.
+  L3 is the most sensitive element (+0.005 per +0.001 of θgF). J-LASF03 (HIKARI; 1.80610 / 40.97) would put the g
+  paraxial focus at 0.113 and P-LASF47 (SCHOTT; exact) at 0.115, both era-implausible vendors for a 1979 Asahi design.
+- Distortion: +0.31 / +0.57 / +0.71 % at 2.5 / 3.5 / 4.1° against the plot's +0.26 / +0.59 / +0.73 %. Astigmatism
+  at 4.1°: sagittal +0.048, tangential −0.035 against the plot's +0.060 and −0.036.
+
+Open: the g-line offset above; a glass decision for L3 is the coordinator's (closed below).
+
+## 2026-11-09 — L3 glass against the g-line plot
+
+L3 (1.80610 / 40.9) has four exact catalog equivalents. Traced against Fig. 2's g-line curve (patent scale, focus
+relative to the d-line paraxial focus, pupil 0 / 0.5 / 0.85; plot 0.112 / 0.114 / 0.120, read to about ±0.003): OHARA
+S-LAH53 gives 0.130 / 0.139 / 0.155, OHARA LAH53 0.124 / 0.133 / 0.148, SCHOTT P-LASF47 0.115 / 0.124 / 0.139 and HIKARI
+J-LASF03 0.113 / 0.122 / 0.136; the d line is identical under all four. L3 is relabelled
+`J-LASF03 (HIKARI catalog equivalent; production supplier unspecified)`, the only candidate that puts the axial g focus
+within the plot's reading error. The label names a dispersion equivalent, not the 1979 supplier, which was more likely
+OHARA or HOYA. About 0.015–0.03 of g-line offset remains at 0.7–1 of the pupil under every L3 choice, so the rest lies in
+the other glasses' partial dispersions.
+
+Open: the residual g-line offset at the outer pupil.
