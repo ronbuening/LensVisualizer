@@ -1,13 +1,23 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal JP2023032222A Example 1 prescription. All clear apertures inferred; no catalog glass identities claimed.
- * Stop at printed S9; radius derived by engine from F1.43, not a tabulated diameter.
- * Product identity inferred, not factory certified. Literal BF1.3929 retained; no refocus correction. */
+/** JP 2023-32222 A, Numerical Example 1 (Sigma Corporation; Jumpei Nakamoto, Takehisa Koyama): f = 20.27 mm,
+ * F1.43, 2ω = 59.01°, Y = 11.15 mm, total length 80.26 mm; 11 elements / 10 groups, aspheres on S12, S19 and S20.
+ * No scale factor is applied. R, d, nd and νd are as printed (d-line). The patent's sag equation is the standard
+ * (1+K) form and every K is 0.
+ * Production match: OM Digital Solutions' construction drawing for the M.Zuiko Digital ED 20mm F1.4 PRO (press
+ * release of 4 November 2021, p. 2) matches Example 1 element by element: Super HR at L1/L4, ED at L2/L7/L8,
+ * Super ED at L3, aspherical lenses L6/L10. Neither company has confirmed the attribution; Sigma is the applicant.
+ * Stop: the printed S9 plane; its radius is derived from F1.43 (the patent prints no iris diameter).
+ * Rear plate: the optical filter FL (S23–S24, 4.14 mm) is in rearPlates with the printed 15 mm gap ahead of it and
+ * BF 1.3929 behind it. The computed paraxial back focus is 1.3933 mm; the printed BF is kept.
+ * Focus: the printed infinity and 0.025× states (d16, d18) are kept; OM's 0.25 m minimum focus is not modeled.
+ * Semi-diameters are not printed; they are estimated from the proportions of Figure 1.
+ * Glass labels are catalog rows whose nd/νd equal the printed values; the production supplier is not known. */
 const LENS_DATA = {
   "schema": 2,
   "key": "om-system-mzuiko-digital-ed-20mm-f14-pro",
   "maker": "Olympus",
   "name": "OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO",
-  "subtitle": "JP 2023-32222 A Example 1 \u2014 inferred product association",
+  "subtitle": "JP 2023-32222 A, Example 1 \u2014 element-by-element match to the production lens",
   "catalog": {
     "lensMounts": [
       "micro-four-thirds"
@@ -16,6 +26,9 @@ const LENS_DATA = {
     "imageCircleMm": 22.3,
     "elementCount": 11,
     "groupCount": 10,
+    "closeFocusM": {
+      "marketing": 0.25
+    },
     "focalLengthMm": {
       "marketing": 20,
       "design": 20.27
@@ -26,8 +39,10 @@ const LENS_DATA = {
     },
     "specs": [
       "11 ELEMENTS / 10 GROUPS",
-      "3 ASPHERICAL SURFACES",
-      "INFERRED PRODUCT ASSOCIATION"
+      "DESIGN f = 20.27 mm",
+      "DESIGN F/1.43",
+      "3 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "1 SUPER ED / 3 ED ELEMENTS"
     ]
   },
   "source": {
@@ -53,8 +68,9 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 2.00069,
       "vd": 25.46,
-      "glass": "Unmatched (patent nd=2.00069, vd=25.46)",
-      "focalLengthMm": 133.26695515786787
+      "glass": "TAFD40 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 133.26695515786787,
+      "role": "Weak positive front meniscus forming subgroup G1a; offsets the negative distortion and field curvature of the negative front group. A Super HR element in OM's drawing."
     },
     {
       "id": 2,
@@ -63,8 +79,11 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.497,
       "vd": 81.61,
-      "glass": "Unmatched (patent nd=1.497, vd=81.61)",
-      "focalLengthMm": -42.43223721776146
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -42.43223721776146,
+      "apd": "inferred",
+      "apdNote": "OM's construction drawing marks this element ED, and its printed nd 1.49700 / νd 81.61 equals HOYA's FCD1 fluorophosphate crown.",
+      "role": "First negative element of subgroup G1b, which supplies the front group's negative power and keeps its lateral colour low."
     },
     {
       "id": 3,
@@ -73,8 +92,11 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.437,
       "vd": 95.1,
-      "glass": "Unmatched (patent nd=1.437, vd=95.1)",
-      "focalLengthMm": -57.12516692804971
+      "glass": "FCD100 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -57.12516692804971,
+      "apd": "inferred",
+      "apdNote": "OM's construction drawing marks this element Super ED, and its printed nd 1.43700 / νd 95.10 equals HOYA's FCD100.",
+      "role": "Second negative element of subgroup G1b, nested behind L2; its very low dispersion holds the subgroup's average Abbe number at 88.35."
     },
     {
       "id": 4,
@@ -83,8 +105,9 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 2.0509,
       "vd": 26.94,
-      "glass": "Unmatched (patent nd=2.0509, vd=26.94)",
-      "focalLengthMm": 54.47108789711136
+      "glass": "TAFD65 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 54.47108789711136,
+      "role": "Positive element forming subgroup G1c just ahead of the stop; lowers the axial beam height entering the iris. A Super HR element in OM's drawing."
     },
     {
       "id": 5,
@@ -93,8 +116,9 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.77047,
       "vd": 29.74,
-      "glass": "Unmatched (patent nd=1.77047, vd=29.74)",
+      "glass": "NBFD29 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -15.790822014241082,
+      "role": "Biconcave flint front member of the cemented doublet D1 that opens the positive second group behind the stop.",
       "cemented": "D1"
     },
     {
@@ -104,8 +128,9 @@ const LENS_DATA = {
       "type": "Biconvex Positive (1\u00d7 Asph)",
       "nd": 1.7645,
       "vd": 49.1,
-      "glass": "Unmatched (patent nd=1.7645, vd=49.1)",
+      "glass": "L-LAH91 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 21.991339995336865,
+      "role": "Biconvex rear member of D1 with an aspherical rear face (S12); corrects spherical aberration of the wide-open beam behind the stop.",
       "cemented": "D1"
     },
     {
@@ -115,8 +140,11 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.59282,
       "vd": 68.62,
-      "glass": "Unmatched (patent nd=1.59282, vd=68.62)",
-      "focalLengthMm": 32.92398496136109
+      "glass": "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 32.92398496136109,
+      "apd": "inferred",
+      "apdNote": "OM's construction drawing marks this element ED, and its printed nd 1.59282 / νd 68.62 matches HOYA's FCD515 phosphate crown.",
+      "role": "Thick biconvex element carrying much of the second group's positive power with low-dispersion glass."
     },
     {
       "id": 8,
@@ -125,8 +153,11 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.59282,
       "vd": 68.62,
-      "glass": "Unmatched (patent nd=1.59282, vd=68.62)",
-      "focalLengthMm": 37.119948233897844
+      "glass": "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 37.119948233897844,
+      "apd": "inferred",
+      "apdNote": "OM's construction drawing marks this element ED, and its printed nd 1.59282 / νd 68.62 matches HOYA's FCD515 phosphate crown.",
+      "role": "Biconvex rear element of the fixed positive second group, ahead of the focusing element."
     },
     {
       "id": 9,
@@ -135,8 +166,9 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.73037,
       "vd": 32.23,
-      "glass": "Unmatched (patent nd=1.73037, vd=32.23)",
-      "focalLengthMm": -34.613382188315605
+      "glass": "NBFD32 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -34.613382188315605,
+      "role": "Thin negative meniscus forming the third group, the single-element focusing group that moves toward the image for close focus."
     },
     {
       "id": 10,
@@ -145,8 +177,9 @@ const LENS_DATA = {
       "type": "Biconvex Positive (2\u00d7 Asph)",
       "nd": 1.8061,
       "vd": 40.73,
-      "glass": "Unmatched (patent nd=1.8061, vd=40.73)",
-      "focalLengthMm": 32.054909587411146
+      "glass": "M-NBFD130 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 32.054909587411146,
+      "role": "Double-aspherical positive element opening the fixed rear group, where the chief ray is high; corrects the astigmatism, lateral colour and distortion the focusing element introduces."
     },
     {
       "id": 11,
@@ -155,8 +188,9 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.48749,
       "vd": 70.44,
-      "glass": "Unmatched (patent nd=1.48749, vd=70.44)",
-      "focalLengthMm": -73.29568746826821
+      "glass": "FC5 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -73.29568746826821,
+      "role": "Weak negative meniscus closing the rear group, ahead of the camera-side filter."
     }
   ],
   "surfaces": [
@@ -338,7 +372,7 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.14,
       "gapAfterMm": 1.3929,
-      "glass": "Unmatched (patent nd=1.51633, vd=64.14)",
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "source": "JP 2023-32222 A Example 1, surfaces 23\u201324, printed pages 13\u201314"
     }
   ],
@@ -373,10 +407,10 @@ const LENS_DATA = {
         "keyframe": 1,
         "objectDistanceMm": 794.6816,
         "distanceReference": "first-surface",
-        "source": "JP 2023-32222 A printed page 14, beta=0.025"
+        "source": "JP 2023-32222 A, Example 1, variable-spacing table (printed page 14): magnification 0.025, d0 = 794.6816 mm"
       }
     ],
-    "description": "Only L9 (S17\u201318) translates 0.3647 mm imageward, from infinity to the published beta=0.025 state. This is not the marketed minimum focus distance."
+    "description": "PUBLISHED inner focus: JP 2023-32222 A, Example 1 prints infinity and 0.025\u00d7 (d16 1.4000 \u2192 1.7647, d18 6.0800 \u2192 5.7153 mm, object 794.68 mm ahead of the first surface). Only the negative meniscus L9 (third group) moves, 0.3647 mm toward the image; the other groups, the iris and the image plane stay fixed, and BF stays 1.3929 mm. The printed near state is 0.875 m object to image, not OM's 0.25 m minimum focus (0.11\u00d7), which is not modeled. Intermediate positions interpolate the gaps linearly."
   },
   "aperture": {
     "nominalFNumber": 1.43,
@@ -390,13 +424,43 @@ const LENS_DATA = {
       11,
       16
     ],
-    "maxFNumber": 16
+    "maxFNumber": 16,
+    "blades": 9
   },
   "projection": {
     "kind": "rectilinear",
     "fullFieldDeg": 59.01,
     "maxTraceFieldDeg": 29.505
   },
+  "groups": [
+    {
+      "text": "G1",
+      "fromSurface": "1",
+      "toSurface": "8"
+    },
+    {
+      "text": "G2",
+      "fromSurface": "10",
+      "toSurface": "16"
+    },
+    {
+      "text": "G3",
+      "fromSurface": "17",
+      "toSurface": "18"
+    },
+    {
+      "text": "G4",
+      "fromSurface": "19",
+      "toSurface": "22"
+    }
+  ],
+  "doublets": [
+    {
+      "text": "D1",
+      "fromSurface": "10",
+      "toSurface": "12"
+    }
+  ],
   "layout": {
     "yScFill": 0.4
   }
