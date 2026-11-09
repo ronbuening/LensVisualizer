@@ -110,19 +110,19 @@ The final gap of 36.79 mm is the printed back focus fB, which is the infinity va
 
 The patent neither prints nor draws a stop, and Fig. 1 shows none. The model places it at the midpoint of the 4.62 mm air space between L3 and L4, 23.14 mm behind S1. At f/2.8 the entrance pupil radius is 5.14 mm and the stop radius 7.24 mm. Pentax's section draws the iris about 4.3 mm behind L3's rear vertex, close to L4's front face; the model keeps the midpoint.
 
-The patent prints no semi-diameters, so all are inferred. They follow the relative element sizes of Pentax's section, within the rim-slope and air-gap limits. Both drawings, read at their own axial scales, give:
+The patent prints no semi-diameters, so all are inferred. They follow Fig. 1, read at the scale of its S1 to S14 vertex span, wherever it departs clearly from the relative element sizes of Pentax's section, and those sizes elsewhere. Front and rear faces, in mm:
 
-| Element | Model sd (mm) | Pentax section (mm) | Patent Fig. 1 (mm) | Basis |
+| Element | Model sd | Pentax section | Patent Fig. 1 | Basis |
 |---|---|---|---|---|
-| L1 | 14.9 | 16.0 | 15.2 | Rim-slope limit at S2 |
-| L2 | 12.0 | 12.5 | 11.4 | Section proportions |
-| L3 | 9.5 | 10.0 | 9.4 | Section proportions |
-| L4 | 8.5 | 8.6 | 8.1 | Section proportions |
-| L5 | 6.45 | 7.9 | 7.0 | Air-gap limit between S10 and S11 |
-| L6 | 8.5 | 8.7 | 7.8 | Section proportions |
-| L7 | 9.5 | 10.2 | 9.5 | Section proportions |
+| L1 | 14.9 / 13.0 | 16.0 | 15.3 / 13.0 | Front from the section; rear ends at a chamfer in Fig. 1 |
+| L2 | 12.0 / 10.4 | 12.5 | 11.6 / 10.4 | Front from the section; rear ends at a chamfer in Fig. 1 |
+| L3 | 9.5 / 9.5 | 10.0 | 9.4 / 8.8 | Section proportions |
+| L4 | 8.5 / 8.5 | 8.6 | 8.1 / 8.1 | Section proportions |
+| L5 | 6.8 / 6.8 | 7.9 | 7.1 / 7.1 | Square-cut; its rear rim meets L6 |
+| L6 | 7.2 / 8.5 | 8.7 | 7.1 / 7.9 | Front ends at L5's rim; rear from the section |
+| L7 | 9.5 / 9.5 | 10.2 | 9.5 / 9.5 | Fig. 1 and the section |
 
-The drawings are schematics, so these readings are approximate. Both show L5 larger than the model, and Fig. 1 draws a flat land on its rear face where it meets L6; with spherical rims, the model's L5 stops where its rear face would come too close to L6. At 6.45 mm L5 still passes the f/2.8 axial beam, with about 0.2 mm to spare at S10, and it does much of the clipping off axis. About 50 % of the f/2.8 beam reaches the 37.6° field edge, which lands at 21.63 mm, the corner of the 35 mm format.
+The drawings are schematics, so these readings are approximate. Fig. 1 ends the deep rear faces of L1 and L2 at chamfers; the full-field beam passes S2 at 12.6 mm and S4 at 10.2 mm, inside them. It draws L5 square-cut, with its rear rim meeting L6's front face. By the prescription those two faces meet 6.84 mm from the axis, so L5 is 6.8 mm on both faces, 0.012 mm from L6 at the rim, and L6's front face ends at 7.2 mm. Pentax's section draws L5 wider, about 7.9 mm, than that contact allows. At 6.8 mm L5 passes the f/2.8 axial beam, which reaches 6.58 mm at S10, and it still does much of the clipping off axis. About 54 % of the f/2.8 beam reaches the 37.6° field edge, which lands at 21.63 mm, the corner of the 35 mm format.
 
 ## Model Scope and Limitations
 
@@ -135,7 +135,7 @@ The drawings are schematics, so these readings are approximate. Both show L5 lar
 | Half-field | 37.6° | 37.6° |
 
 - The prescription is the patent's, not a confirmed factory one.
-- Stop position and all semi-diameters are inferred; L5's is smaller than both drawings show, and the iris sits farther forward than in Pentax's section.
+- Stop position and all semi-diameters are inferred; L5's is held below Pentax's section by its contact with L6, and the iris sits farther forward than in Pentax's section.
 - The model is static at infinity and says nothing about performance at 0.3 m.
 - The patent gives d-line indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents.
 

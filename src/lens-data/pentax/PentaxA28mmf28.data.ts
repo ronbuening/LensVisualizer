@@ -13,9 +13,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the patent neither prints nor draws one. The stop sits at the midpoint of d6 (2.31 + 2.31 mm), 23.14 mm behind
  * S1, with its radius set by the paraxial entrance pupil, F/N; at f/2.8 the stop, not a rim, limits the axial beam.
  * The maker section draws the iris about 4.3 mm behind S6, close to L4; the model keeps the midpoint.
- * Semi-diameters are inferred, none is printed. They follow the relative element sizes of the maker section. L1 is
- * held to 14.9 mm by the rim-slope limit at S2 and L5 to 6.45 mm by the air-gap limit between S10 and S11; the maker
- * section draws L5 at about 7.9 mm. No rim or gap check is overridden.
+ * Semi-diameters are inferred, none is printed. They are estimated from Fig. 1 at its axial scale (S1 to S14 vertex
+ * span) and floor-checked by real-ray trace; rims that agree with the figure within about 8 % follow the maker
+ * section's relative element sizes. Fig. 1 ends the rear faces of L1 and L2 at chamfers, so S2 is
+ * 13.0 mm and S4 10.4 mm (fronts 14.9 and 12.0 mm). It draws L5 square-cut, its rear rim meeting L6's front face;
+ * by the prescription the two faces meet at 6.84 mm, so S9 and S10 are 6.8 mm, which also clears the real-ray f/2.8
+ * axial beam (6.58 mm at S10), and S11 is 7.2 mm, which keeps the engine's traced field to 38.8 degrees.
+ * checks.gapSagFrac 0.99 admits the near contact of S10 and S11 (0.012 mm apart at 6.8 mm). The maker section draws
+ * L5 at about 7.9 mm.
  * Glasses: the patent gives d-line indices and Abbe numbers only. Each pair equals an OHARA catalog glass, named as the
  * equivalent; the production supplier is not known.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies.
@@ -165,7 +170,7 @@ const LENS_DATA = {
       "label": "2",
       "R": 16.614,
       "d": 6.46,
-      "sd": 14.9
+      "sd": 13
     },
     {
       "label": "3",
@@ -178,7 +183,7 @@ const LENS_DATA = {
       "label": "4",
       "R": 14.85,
       "d": 7.17,
-      "sd": 12
+      "sd": 10.4
     },
     {
       "label": "5",
@@ -215,20 +220,20 @@ const LENS_DATA = {
       "label": "9",
       "R": -17.929,
       "d": 3.33,
-      "sd": 6.45,
+      "sd": 6.8,
       "medium": 5
     },
     {
       "label": "10",
       "R": 48.28,
       "d": 1.19,
-      "sd": 6.45
+      "sd": 6.8
     },
     {
       "label": "11",
       "R": -33.552,
       "d": 2.4,
-      "sd": 8.5,
+      "sd": 7.2,
       "medium": 6
     },
     {
@@ -272,6 +277,9 @@ const LENS_DATA = {
     "kind": "rectilinear",
     "fullFieldDeg": 75.2,
     "maxTraceFieldDeg": 37.6
+  },
+  "checks": {
+    "gapSagFrac": 0.99
   },
   "layout": {
     "yScFill": 0.36
