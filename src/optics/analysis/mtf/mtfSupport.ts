@@ -180,14 +180,21 @@ export function mtfReferenceCoordinates(state: PreparedGeometry): string {
 export function resolveMtfSpectrum(state: PreparedGeometry, preferred: MtfSpectrum): MtfSpectrumChoice {
   if (preferred === "reference") return { spectrum: preferred, note: null };
   const { blocker, estimatedGlasses, partialLineGlasses } = assessMtfSpectralData(state);
-  if (!blocker)
+  if (!blocker) {
+    const glassCount = (n: number) => (n === 1 ? "one glass" : `${n} glasses`);
+    const abbeGlasses = estimatedGlasses - partialLineGlasses;
+    const partialSource = "measured red/blue indices with an estimated g index";
+    const source =
+      partialLineGlasses === 0
+        ? mtfReferenceCoordinates(state)
+        : abbeGlasses === 0
+          ? partialSource
+          : `${mtfReferenceCoordinates(state)} (${glassCount(abbeGlasses)}) and ${partialSource} (${glassCount(partialLineGlasses)})`;
     return {
       spectrum: preferred,
-      note:
-        estimatedGlasses > 0
-          ? `Dispersion of ${estimatedGlasses === 1 ? "one glass" : `${estimatedGlasses} glasses`} is estimated from ${partialLineGlasses === 0 ? mtfReferenceCoordinates(state) : partialLineGlasses === estimatedGlasses ? "measured red/blue indices with an estimated g index" : `${mtfReferenceCoordinates(state)} (${estimatedGlasses - partialLineGlasses} glasses) and measured red/blue indices with an estimated g index (${partialLineGlasses} glasses)`}.`
-          : null,
+      note: estimatedGlasses > 0 ? `Dispersion of ${glassCount(estimatedGlasses)} is estimated from ${source}.` : null,
     };
+  }
   return {
     spectrum: "reference",
     note: `${MTF_SPECTRUM_LABELS[preferred]} MTF is unavailable because ${blocker}; showing the reference wavelength.`,

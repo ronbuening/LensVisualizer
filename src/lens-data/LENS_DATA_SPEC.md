@@ -184,6 +184,10 @@ views. Keep it normalized even when the product's official styling varies by sou
 - For fixed-lens cameras, put the camera body name, with its maker, in parentheses after the lens name and leave the
   camera name in normal product-title case, e.g. `FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)`.
 
+For a historical numerical reconstruction whose focal/aperture ratings remain unresolved, identify the patent
+example in the title instead of a focal length and f-number the example does not reproduce. Keep the literal source
+ratings and computed behavior explicitly distinguished in the specs and source notes.
+
 ### Catalog (`catalog`)
 
 Everything the catalog, header and index read about the product, as opposed to the prescription.

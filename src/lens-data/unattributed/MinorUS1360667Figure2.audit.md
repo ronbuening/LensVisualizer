@@ -72,3 +72,50 @@ in the companion analysis confirms substantial literal axial blur even after ref
 no supported transcription correction emerged. The native-D convergence envelope is unchanged.
 The small photopic changes and the distinction between physical blur and numerical
 nonconvergence are quantified in the companion analysis.
+
+## 2026-11-09 — Sibling-example cross-check, misprint scan and retitle
+
+The title returns to **MINOR PHOTOGRAPHIC OBJECTIVE (Figure 2 patent reconstruction)**, and the
+display-name rule for unresolved historical ratings is restored in `LENS_DATA_SPEC.md`. The
+reason is new evidence that the 65 mm and f/2 statements are not properties of Figure 2.
+No optical value, rim, stop or focus setting changed.
+
+**Shared rating text.** Figures 3 and 4 close with the same words as Figure 2: “focal distance
+65 mm; diameter of largest lens 38 mm; effective aperture .5 or f/2”. An independent D-line
+exact trace (spherical surfaces, vector Snell) of each printed table, which reproduces this
+file's Figure 2 EFL, BFD and axial crossings to the printed digits, gives:
+
+| Example | Paraxial EFL | Paraxial BFD | Min-RMS axial spot, 32.5 mm beam | Crossings at h = 5/10/15 mm |
+| --- | ---: | ---: | ---: | --- |
+| Figure 2 | 85.907 mm | 63.841 mm | 0.267 mm | 64.125 / 65.351 / 69.446 mm |
+| Figure 3 | 82.774 mm | 56.351 mm | 0.040 mm | 56.130 / 55.663 / 55.969 mm |
+| Figure 4 | 67.654 mm | 43.676 mm | 0.179 mm | 43.285 / 42.152 / 40.496 mm |
+
+Both later tables list the rear-doublet radii in numeric order (r7, r8, then the common radius).
+Read in that order, each doublet has negative edge thickness. The only realizable order puts
+the common radius in the middle: Figure 3 r7 +210 / r9 +35 / r8 −48, Figure 4 r7 +210 /
+r9a −22.5 / r8 −48. Both rows depend on that inferred order, which edge thickness forces. The 65 mm statement matches
+neither the EFL nor the BFD of Figures 3 and 4, so its closeness to Figure 2's BFD is best read
+as coincidence, not as a back-focus convention.
+
+**Aperture reading.** Against the source's own 65 mm, “.5 or f/2” is a 32.5 mm beam, which fits
+the 38 mm largest lens in all three examples. At Figure 2's computed EFL that beam is f/2.64.
+`aperture.nominalFNumber` stays at the source's stated f/2 (spec § patent transcription, item 8).
+
+**Single-slip misprint scan.** Figure 3 shares L2/L3 glass and has similar radii but is well
+corrected, so a Figure 2 misprint is plausible. Every radius and spacing was varied by sign
+flip, one-digit change, adjacent-digit transposition and ×10/÷10, scored by min-RMS axial spot
+on the 32.5 mm beam (literal 0.267 mm). Best plausible results:
+
+| Edit | EFL | BFD | Min-RMS spot |
+| --- | ---: | ---: | ---: |
+| r5 −160.0 → −360.0 | 76.41 mm | 54.52 mm | 0.014 mm |
+| b2 1.20 → 4.20 | 80.47 mm | 51.37 mm | 0.018 mm |
+| r6 22.5 → 25.5 | 73.16 mm | 51.77 mm | 0.021 mm |
+| r1 37.0 → 32.0 | 71.60 mm | 47.94 mm | 0.024 mm |
+
+d3 3.20 → 32.0 scores best numerically but gives a 15.6 mm BFD and an implausible element, so it
+is rejected. r1 = 32.0 matches the front radius of Figures 3 and 4 (32.2 and 32.0), which makes
+it the leading candidate, but Figure 2's other radii also differ from those examples. None of
+the edits reproduces 65 mm. The patent prints no aberration curves and no family publication is
+on file, so no edit meets the two-evidence errata standard; the literal table is retained.

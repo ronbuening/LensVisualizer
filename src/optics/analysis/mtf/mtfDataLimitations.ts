@@ -92,7 +92,7 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
           blocking: true,
           text:
             (partialCount > 0
-              ? `${partialCount} of ${glasses.length} glasses ${partialCount === 1 ? "has" : "have"} measured red/blue indices but no measured g index; g is estimated.${count > partialCount ? ` Another ${count - partialCount === 1 ? "glass is" : `${count - partialCount} glasses are`} known only by ${coordinates}, so ${count - partialCount === 1 ? "its" : "their"} dispersion is estimated.` : ""} (${names}).`
+              ? `${partialCount} of ${glasses.length} glasses ${partialCount === 1 ? "has" : "have"} measured red/blue indices but no measured g index; g is estimated.${count > partialCount ? ` Another ${count - partialCount === 1 ? "glass is" : `${count - partialCount} glasses are`} known only by ${coordinates}, so ${count - partialCount === 1 ? "its" : "their"} dispersion is estimated.` : ""} Estimated: ${names}.`
               : count === glasses.length
                 ? `Every glass is known only by ${coordinates}, so all dispersion is estimated.`
                 : `${count} of ${glasses.length} glasses (${names}) ${count === 1 ? "is" : "are"} known only by ${coordinates}, so ${count === 1 ? "its" : "their"} dispersion is estimated.`) +

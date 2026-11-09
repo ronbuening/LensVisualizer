@@ -9,10 +9,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * No vendor/melt identity or measured g index is supplied by the patent.
  *
  * The source's "focal distance 65 mm" is ambiguous: the literal prescription
- * gives EFL 85.9065926111 mm and BFD 63.8406924899 mm at D. Neither prescription
- * nor indices are optimized to make 65 mm EFL. Catalog design records the
- * explicitly computed EFL, not a reinterpretation of the printed focal distance.
- * No commercial focal-length rating is established; marketing remains unset.
+ * gives EFL 85.9065926111 mm and BFD 63.8406924899 mm at D. Figures 3 and 4
+ * repeat the same 65 mm and f/2 wording, yet their prescriptions trace to
+ * about 82.8 and 67.7 mm EFL, so the statement is not specific to this example.
+ * Neither prescription nor indices are optimized to make 65 mm EFL. Catalog
+ * design records the explicitly computed EFL, not a reinterpretation of the
+ * printed focal distance. The title therefore names the patent example rather
+ * than a 65mm f/2 rating. No commercial rating is established; marketing is unset.
  *
  * SEMI-DIAMETERS: inferred 19 mm square rim on L1 from the stated largest
  * diameter 38 mm; 17.6 mm on L2-L4 from Figure 2's height ratio (~280/303).
@@ -27,13 +30,13 @@ const LENS_DATA = {
   schema: 2,
   key: "minor-us1360667-figure-2",
   maker: null, // Inventor known; no manufacturer or production lens is established.
-  name: "MINOR PHOTOGRAPHIC OBJECTIVE 65mm f/2",
+  name: "MINOR PHOTOGRAPHIC OBJECTIVE (Figure 2 patent reconstruction)",
   subtitle: "US 1,360,667 Figure 2 (1920)",
   catalog: {
     specs: [
       "4 ELEMENTS / 4 GROUPS",
       "D-LINE EFL ≈ 85.91 mm (computed)",
-      'SOURCE: "FOCAL DISTANCE 65 mm" (ambiguous)',
+      'SOURCE: "FOCAL DISTANCE 65 mm" (same in Figs. 2–4)',
       "SOURCE f/2 = NOMINAL IRIS SETTING; GLASS-LIMITED",
       "f/2 AXIAL CLEAR BEAM ≈ 37.09 mm (computed)",
       "INFERRED CLEAR RADII / STOP POSITION",
@@ -54,11 +57,11 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: 'The source states "focal distance 65 mm"; literal native-D paraxial EFL is 85.9066 mm and BFD 63.8407 mm. Neither its meaning nor a correction is established; 65 mm is not relabeled as back focal distance.',
+        note: 'The source states "focal distance 65 mm"; literal native-D paraxial EFL is 85.9066 mm and BFD 63.8407 mm. Figures 3 and 4 print the same 65 mm while their prescriptions trace to about 82.8 and 67.7 mm EFL (BFD 56.4 and 43.7 mm), so it does not describe this example specifically. Neither its meaning nor a correction is established; 65 mm is not relabeled as back focal distance.',
       },
       {
         status: "unresolved",
-        note: "The source states f/2 and a largest lens diameter of 38 mm. The literal D-line EFL needs a 42.9533 mm paraxial entrance pupil at f/2, larger than the front glass. The inferred glass apertures remain within the printed maximum. The f/2 control is a nominal iris setting, not a reproduced transmitted aperture or T-stop.",
+        note: "The source states f/2 and a largest lens diameter of 38 mm. The literal D-line EFL needs a 42.9533 mm paraxial entrance pupil at f/2, larger than the front glass. Against the source's own 65 mm, f/2 is a 32.5 mm beam, which fits the 38 mm lens; at the computed EFL that beam is f/2.64. The inferred glass apertures remain within the printed maximum. The f/2 control is a nominal iris setting, not a reproduced transmitted aperture or T-stop.",
       },
     ],
   },
