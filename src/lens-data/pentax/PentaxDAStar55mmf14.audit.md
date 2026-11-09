@@ -87,3 +87,9 @@ Open: the figure draws L2 and L3 about 4 % smaller than the file; left as noise.
 needs 13.69 mm at S7 and 13.58 mm at S8, which L4 cannot reach because its flat rear face meets L5 at 13.49 mm; L4
 costs about 2 points of the on-axis transmission (98.1 % with it out of the way), while the traced f-number stays
 within 3 % of f/1.4. This follows from the prescription and is not a rim choice.
+
+## 2026-11-09 — Glass coverage pass
+
+The CG cover plate keeps its assumed 1.5168 / 64.2 and is labelled HOYA BSC7, the catalog row at exactly that pair, so
+it traces on a catalog dispersion curve instead of the Abbe estimate; the patent still names no material. Every element
+and the plate now resolve to catalog rows.

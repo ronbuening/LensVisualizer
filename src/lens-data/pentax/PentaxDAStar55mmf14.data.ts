@@ -349,6 +349,7 @@ const LENS_DATA = {
       "nd": 1.5168,
       "vd": 64.2,
       "gapAfterMm": 0,
+      "glass": "BSC7 (HOYA catalog equivalent; cover-glass material assumed, not printed)",
       "source": "US 2010/0073777 A1 Table 1, S18\u2013S19: the 2.00 mm cover-glass thickness is printed, its material is not; nd 1.5168 / \u03bdd 64.2 is assumed."
     }
   ],
