@@ -110,7 +110,8 @@ image-circle check finds nothing undersized, and field coverage is 100 % to the 
 so the live page check at infinity covers every printed state.
 
 Open: S19 against Fig. 1 (printed 43.00 mm against about 34.5 mm drawn), for an owner decision on a source-errata
-entry. The S3–S8 axial clipping above is unchanged.
+entry. The S3–S8 axial clipping above is unchanged. (S19 closed: the owner approved 17.0 mm; see "S19 clear
+aperture".)
 
 ## 2026-11-09 — Glass coverage
 
@@ -128,3 +129,47 @@ pair ahead of it (17.0 mm gives 1.10×, 21.5 mm would give 1.39× with a flared 
 section is published. Cost against the starting rims: 0.5 corner points at 14.1° (45.4 → 45.2 % at 11.8°, 27.4 → 26.9 %
 at 14.1°), inside the 3-point rule. audit:surface OK; audit:aperture within 3 %, no rim limit; image circle and field
 coverage pass.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the live page at infinity (and at `focus=1`, `mv=focus`, `el=4`, `el=9`) with Fig. 1 on PDF page 9. The scale
+was re-proved at 300 dpi: rim heights give 15.46 px/mm with a 0.3 % spread, and the L1-front and L3-front arc sags give
+the same horizontal scale.
+
+| Change | Before | After | Evidence |
+|---|---|---|---|
+| S2 `rimExtensionSd` | none | 24.1 | Fig. 1 draws L1 as a square block whose rear face reaches the 24.1 mm top edge; the site showed a bevel |
+| S4 `rimExtensionSd` | none | 22.02 | as S2, for L2 (top edge 22.04 mm on the figure) |
+| `focalLengthMm` on L1–L9 | missing (inspector "FL = —") | 189.44, 132.56, 53.9, −42.06, 158.32, −43.5, −57.08, 54.54, 63.57 | paraxial element focal lengths |
+| `doublets` | none | U1 (5–8), U2 (10–13), U3 (14–17) | the patent's own bracket labels in Fig. 1 |
+| Header author order | Li Yunhong | Yunhong Li | matches `source.authors` |
+
+Lands and cuts against the starting rims (`.lens-work/base1116sd`):
+
+| Item | Verdict | Cost |
+|---|---|---|
+| S2, S4, S8, S13 and S14 lands | keep: drawn by Fig. 1, outside printed clear apertures | 0.0 points |
+| S19 cut 21.5 → 17.0 | keep: owner-approved; slight | 0.5 points at 14.1° |
+
+The worst loss is 0.5 points, at 14.1° (corner 27.4 → 26.9 %).
+
+The step at U1 and U3 stays. Fig. 1 draws each doublet as one block (19.74 and 15.51 mm). The merged junctions keep the
+smaller printed value (18.485 and 14.21 mm), and a cemented face takes no land, so L3 and L8 keep their bevels.
+
+Checked and found correct:
+- Element names L1–L9 follow the patent's lenses 1–9, and every `type` agrees with the signs of R.
+- There are no aspheres, which matches the zero conics. The stop sits between L4 and L5 (the patent's 光阑 10).
+- There are no `apd` tags: the patent names no special glass and Meike lists none.
+- The model is static. The focus slider's far end shows ∞ and "Not modeled".
+- Engine half-field 15.14° and f/1.8 are unchanged by this review. Surface audit OK; aperture within 3 %; the image
+  circle and 21.65 mm corner coverage pass.
+
+Colour, against Fig. 3 (field curvature at g, F, e, d and C): at Y = 0 the plot's five paraxial foci lie at −0.050 to
++0.141 mm from the image plane. The model's lie at −0.390 (F) to −0.148 (C). The model's set therefore sits about
+0.29 mm closer to the lens, which is the known 0.268 mm image-plane offset. Its spread, 0.24 mm, is about 0.05 mm
+larger than the plot's 0.19 mm. The monochrome plot cannot assign lines to wavelengths, so no element can be named.
+Distortion agrees: +0.27 % at 13.06° against about +0.3 % plotted. All nine glasses resolve to the patent's named rows,
+and no relabel is proposed.
+
+Open: the paraxial-focus offset and a 0.05 mm larger longitudinal-colour spread against Fig. 3; the S3–S8 axial
+trimming by printed rims; the U1 and U3 doublet steps.

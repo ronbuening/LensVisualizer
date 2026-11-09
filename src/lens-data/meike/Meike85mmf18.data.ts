@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * CN 217606166 U (Li Yunhong; Shenzhen Huitian Film and Television Equipment Co., Ltd., the name Meike's Shenzhen
+ * CN 217606166 U (Yunhong Li; Shenzhen Huitian Film and Television Equipment Co., Ltd., the name Meike's Shenzhen
  * company took in July 2019), sole numerical example: table in para. 0034, section in Fig. 1. Associated with the
  * original Meike AF 85mm f/1.8 FF STM (nine elements in six groups, all spherical); this is a patent design, not a
  * confirmed factory prescription.
@@ -20,10 +20,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * wide open; they are kept as printed. Fig. 1 (15.46 px/mm at 300 dpi, from the drawn rim heights) draws every face
  * within about 2 % of its printed rim except S19. The printed S19 cell, 43.00 mm, reads as a transposed 34.00 mm:
  * halved, that is 17.0 mm, equal to L9's printed front rim, and Fig. 1 and Meike's own render both draw L9 square at
- * about that height (Fig. 1: 17.3 mm on both faces). S19 therefore takes 17.0 mm, not 21.5 mm. Fig. 1 also draws flat lands on L4's rear, L6's rear and L7's
- * front faces; rimExtensionSd carries each out to its cemented junction's rim (S8 to 18.485, S13 to 14.35, S14 to
- * 14.21 mm), so the three elements are square-edged. The figure continues them to the full doublet height, which the
- * merged junctions do not reach. The lands do not change the trace.
+ * about that height (Fig. 1: 17.3 mm on both faces). S19 therefore takes 17.0 mm, not 21.5 mm. Fig. 1 also draws flat
+ * lands on L4's rear, L6's rear and L7's front faces; rimExtensionSd carries each out to its cemented junction's rim
+ * (S8 to 18.485, S13 to 14.35, S14 to 14.21 mm), so the three elements are square-edged. The figure continues them to
+ * the full doublet height, which the merged junctions do not reach. Fig. 1 draws L1 and L2 as square blocks, their
+ * rear faces reaching the front rims; S2 and S4 carry lands to 24.1 and 22.02 mm to match. The lands lie outside the
+ * printed clear apertures and do not change the trace.
  * Stop: the radius follows the design F/1.8 (diameter 29.49 mm) under the prime stop rule, not the printed 29.75 mm.
  * Image plane: the final gap is the printed 42.53 mm; the paraxial back focus is 42.262 mm, so the stored image plane
  * lies 0.268 mm beyond paraxial focus.
@@ -75,6 +77,7 @@ const LENS_DATA = {
       role: "Weak biconvex front collector; begins converging the 47.6 mm f/1.8 entrance beam.",
       nd: 1.7725,
       vd: 49.598996,
+      focalLengthMm: 189.44,
     },
     {
       id: 2,
@@ -85,6 +88,7 @@ const LENS_DATA = {
       role: "Positive meniscus convex to the object; with L1 forms the positive front pair of claim 3.",
       nd: 1.83481,
       vd: 42.725177,
+      focalLengthMm: 132.56,
     },
     {
       id: 3,
@@ -95,6 +99,7 @@ const LENS_DATA = {
       role: "Lanthanum-crown positive meniscus of the front cemented doublet U1.",
       nd: 1.6516,
       vd: 58.403057,
+      focalLengthMm: 53.9,
     },
     {
       id: 4,
@@ -105,6 +110,7 @@ const LENS_DATA = {
       role: "Dense-flint negative meniscus of U1; makes the doublet weakly negative and corrects axial color ahead of the stop.",
       nd: 1.72825,
       vd: 28.32,
+      focalLengthMm: -42.06,
     },
     {
       id: 5,
@@ -115,6 +121,7 @@ const LENS_DATA = {
       role: "Dense-flint positive meniscus, concave to the object; front half of the cemented focusing doublet U2.",
       nd: 1.84666,
       vd: 23.784497,
+      focalLengthMm: 158.32,
     },
     {
       id: 6,
@@ -125,6 +132,7 @@ const LENS_DATA = {
       role: "Biconcave crown that gives U2 its negative power; U2 is the patent's focusing group.",
       nd: 1.5168,
       vd: 64.198732,
+      focalLengthMm: -43.5,
     },
     {
       id: 7,
@@ -135,6 +143,7 @@ const LENS_DATA = {
       role: "Dense-flint biconcave element opening the rear cemented doublet U3.",
       nd: 1.84666,
       vd: 23.784497,
+      focalLengthMm: -57.08,
     },
     {
       id: 8,
@@ -145,6 +154,7 @@ const LENS_DATA = {
       role: "Biconvex lanthanum element of U3; nearly index-matched to L7, so the pair works mainly on lateral color.",
       nd: 1.83481,
       vd: 42.725177,
+      focalLengthMm: 54.54,
     },
     {
       id: 9,
@@ -155,6 +165,7 @@ const LENS_DATA = {
       role: "Biconvex rear positive element; balances the front pair's power about the stop (claim 3).",
       nd: 1.83481,
       vd: 42.725177,
+      focalLengthMm: 63.57,
     },
   ],
   surfaces: [
@@ -170,6 +181,7 @@ const LENS_DATA = {
       R: -440.08,
       d: 0.1,
       sd: 23.71,
+      rimExtensionSd: 24.1,
     },
     {
       label: "3",
@@ -183,6 +195,7 @@ const LENS_DATA = {
       R: 201.49,
       d: 0.24,
       sd: 21.56,
+      rimExtensionSd: 22.02,
     },
     {
       label: "5",
@@ -265,6 +278,11 @@ const LENS_DATA = {
       d: 42.53,
       sd: 17.0,
     },
+  ],
+  doublets: [
+    { text: "U1", fromSurface: "5", toSurface: "8" },
+    { text: "U2", fromSurface: "10", toSurface: "13" },
+    { text: "U3", fromSurface: "14", toSurface: "17" },
   ],
   focus: {
     closeFocusM: 1000000000000000.0,
