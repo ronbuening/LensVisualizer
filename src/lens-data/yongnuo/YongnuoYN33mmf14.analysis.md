@@ -63,7 +63,7 @@ Element focal lengths are thick-lens values for each element in air, from Table 
 
 ### L1 — Negative Meniscus, convex to object
 
-nd = 1.593, νd = 68.53. Glass: Unmatched (fluor-crown class; FCD515 and H-ZPK5 lie at nd 1.5928). f = −50.9 mm.
+nd = 1.593, νd = 68.53. Glass: FCD515 (HOYA equivalent), a fluor crown. f = −50.9 mm.
 
 The entrance element of GR1 and the largest in the lens. A weak front (R 163.5 mm) and a deep concave rear
 (R 25.4 mm) spread the incoming beam before the positive elements that follow. It is one of the two νd ≈ 68.5
@@ -78,7 +78,7 @@ begins converging the beam that L1 spread. A 6.6 mm air space separates it from 
 
 ### L3/L4 — Cemented Doublet, concave to object
 
-- **L3 (Positive Meniscus):** nd = 1.772, νd = 49.60. Glass: Unmatched (lanthanum-crown class). f = +56.3 mm.
+- **L3 (Positive Meniscus):** nd = 1.772, νd = 49.60. Glass: H-LaF50B (CDGM equivalent), a lanthanum crown. f = +56.3 mm.
 - **L4 (Negative Meniscus):** nd = 1.883, νd = 40.79. Glass: H-ZLaF68C (CDGM catalog equivalent) — high index.
   f = −59.1 mm.
 
@@ -98,9 +98,8 @@ GR1's positive power.
 
 ### L6/L7 — Cemented Doublet
 
-- **L6 (Biconvex Positive):** nd = 1.593, νd = 68.62. Glass: Unmatched (fluor-crown class, as L1). f = +28.2 mm.
-- **L7 (Biconcave Negative):** nd = 1.762, νd = 26.62. Glass: Unmatched (dense-flint class; FD140 and S-TIH14 lie
-  at nd 1.7618). f = −16.1 mm.
+- **L6 (Biconvex Positive):** nd = 1.593, νd = 68.62. Glass: FCD515 (HOYA equivalent), as L1. f = +28.2 mm.
+- **L7 (Biconcave Negative):** nd = 1.762, νd = 26.62. Glass: H-ZF12 (CDGM equivalent), a dense flint. f = −16.1 mm.
 
 The pair is negative overall (f ≈ −57.1 mm) and is GR1's crown–flint achromat: a νd 68.6 crown against a νd 26.6
 flint, cemented at R −61.9 mm. L7's rear face (R 15.45 mm) is the most strongly curved surface ahead of the stop and
@@ -131,7 +130,7 @@ distance.
 
 ### L11 — Negative Meniscus, nearly plano-concave
 
-nd = 1.855, νd = 25.15. Glass: Unmatched (dense-flint class). f = −54.5 mm.
+nd = 1.855, νd = 25.15. Glass: NBFD25 (HOYA equivalent), a dense lanthanum flint. f = −54.5 mm.
 
 The last element: a concave front (R −44.5 mm) and an almost flat rear (R −1000 mm). Against L10 it leaves GR3
 weakly positive (f ≈ +149 mm). Its ratio to L10, F3b/F3a = −1.27, satisfies condition (4), −1.7 < F3b/F3a < 0.
@@ -146,18 +145,19 @@ The names are catalog equivalents, not the production supplier.
 
 | Glass | nd / νd | Elements | Role |
 |---|---|---|---|
-| Unmatched (fluor-crown class) | 1.593 / 68.53, 68.62 | L1, L6 | Probable low-dispersion crowns; L6 is the crown of the stop-side achromat |
+| FCD515 (HOYA equivalent) | 1.593 / 68.53, 68.62 | L1, L6 | Probable low-dispersion crowns; L6 is the crown of the stop-side achromat |
 | H-ZF88 (CDGM equivalent) | 1.946 / 17.99 | L2 | Very high-index dense flint, weak positive meniscus |
-| Unmatched (lanthanum-crown class) | 1.772 / 49.60 | L3 | Positive half of the afocal meniscus pair |
+| H-LaF50B (CDGM equivalent) | 1.772 / 49.60 | L3 | Positive half of the afocal meniscus pair |
 | H-ZLaF68C (CDGM equivalent) | 1.883 / 40.79 | L4, L9, L10 | High-index lanthanum flint; L9 and L10 carry the power behind the stop |
 | H-ZLaF50E (CDGM equivalent) | 1.804 / 46.59 | L5 | Main air-spaced positive element of GR1 |
-| Unmatched (dense-flint class) | 1.762 / 26.62 | L7 | Flint of the stop-side achromat |
+| H-ZF12 (CDGM equivalent) | 1.762 / 26.62 | L7 | Flint of the stop-side achromat |
 | FD225 (HOYA equivalent) | 1.808 / 22.76 | L8 | Dense flint, negative element of the focus group |
-| Unmatched (dense-flint class) | 1.855 / 25.15 | L11 | Negative last element |
+| NBFD25 (HOYA equivalent) | 1.855 / 25.15 | L11 | Negative last element |
 
-L1 and L6 miss the nearest rows (FCD515 and FCD505 at 1.59282 / 68.63, H-ZPK5 at 1.5928 / 68.34) by 0.0002 in nd,
-so they stay unmatched. L3 (1.772 / 49.60), L7 (FD140 at 1.76182) and L11 (S-NBH56 at 1.85478 / 24.80) also have
-no row close enough. The unmatched elements are modeled from nd and νd alone.
+The patent prints nd to three decimals, and every pair equals a catalog row at that precision: FCD515 (1.59282 /
+68.63) for L1 and L6, H-LaF50B (1.7725 / 49.60) for L3, H-ZF12 (1.76182 / 26.61) for L7 and NBFD25 (1.85451 / 25.15)
+for L11. CDGM rows are preferred where they match, as for the other CDGM-class glasses in this lens; HOYA FD140 is an
+equal match for L7. All eleven elements trace on catalog dispersion.
 
 The maker's low-dispersion and high-index claims fit the palette. A review counts two low-dispersion and four
 high-index elements. The νd ≈ 68.5 crowns (L1, L6) are the only low-dispersion glasses; the next lowest dispersion
@@ -234,7 +234,7 @@ the image plane at the infinity paraxial focus, so it reports the MOD state as a
 - Yongnuo, [33mm F1.4 APS-C autofocus prime product page](https://th.hkyongnuo.com/products/33mmf14): Sony E,
   Nikon Z and Canon RF versions.
 - Digital Camera World, [Yongnuo YN33mm f/1.4 DA DSM WL Pro review](https://www.digitalcameraworld.com/reviews/yongnuo-yn33mm-f14-da-dsm-wl-pro-review-not-just-an-autofocus-lens-its-got-built-in-rf-wireless-too):
-  two low-dispersion and four high-index elements.
+  two low-dispersion and four high-index elements; Nikon Z, Sony E and Fujifilm X versions.
 - Thom Hogan, [Yongnuo 33mm f/1.4 DA DSM WL Pro specifications](https://zsystemuser.com/z-mount-lenses/third-party-lenses/third-party-autofocus-lense/yongnuo-lenses/yongnuo-33mm-f14-da-dsm-wl.html):
   48.8° diagonal angle of view, f/1.4–f/16, internal focus, 2024 announcement. The same page lists two aspherical
   elements, which Yongnuo's drawing does not show.

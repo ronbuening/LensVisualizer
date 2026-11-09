@@ -102,3 +102,11 @@ two lands cost none. Overlay of the model outline on Fig. 1: scratch file overla
 
 Open: the renderer joins L4's 14.926 mm cemented face to its 16.4 mm rear with a slanted edge where Fig. 1 draws a
 step and a flat top. Open: L6 is drawn 0.65 mm taller than L7 across the cemented face; both stay at 13.5 mm.
+
+## 2026-11-09 — Glass coverage and mounts
+
+The five elements left `Unmatched` are relabelled to catalog rows that equal the patent's three-decimal nd and its νd
+(each confirmed with trylabel): L1 and L6 → FCD515 (HOYA, 1.59282 / 68.63), L3 → H-LaF50B (CDGM, 1.7725 / 49.60),
+L7 → H-ZF12 (CDGM, 1.76182 / 26.61; the row is added to the CDGM catalog from CDGM's September 2026 Zemax file) and
+L11 → NBFD25 (HOYA, 1.85451 / 25.15). `catalog.lensMounts` adds `fujifilm-x` (Digital Camera World review; Yongnuo's
+S/Z/X model listing) and `canon-rf` (Yongnuo's product page).

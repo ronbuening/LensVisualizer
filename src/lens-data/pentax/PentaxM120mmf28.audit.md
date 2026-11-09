@@ -98,7 +98,7 @@ paraxial back focus 42.2493 mm, final gap 42.624 mm; only `closeFocusM` changed 
 97.0 % at 5.1°, 71.1 % at 10.2°; edge 85.2 % at f/4, 97.6 % at f/5.6, 100 % from f/8.
 
 Open: the r8 erratum (a correction would need a second evidence kind); the stop position is inferred (PhotonsToPhotos
-puts it 20.6 mm behind S6 rather than 5 mm); relabel L1 to BSL22 once that catalog row reaches this branch. The f/2.8
+puts it 20.6 mm behind S6 rather than 5 mm); relabel L1 to BSL22 once that catalog row reaches this branch (closed below). The f/2.8
 real marginal ray meets the inferred stop at 19.08 mm against the 17.19 mm paraxial stop radius (the front group is
 strongly over-corrected), so the real-ray on-axis aperture at that stop is about f/3.05; this follows the shared
 paraxial F/N stop rule and was not changed.
@@ -140,3 +140,9 @@ at S1 (21.26 of 22 mm) and 1.29 mm at S7. Corner illumination at f/2.8 is 97.0 %
 Maker drawing: none exists (see the deployment validation above); the LX manual lists five elements in five groups and
 Pentax publishes no aspherical or special-dispersion element for this lens. The page at infinity, the only state the
 patent prints, shows the three tall front elements and the half-height rear pair as Fig. 1 does.
+
+## 2026-11-09 — Glass coverage
+
+The OHARA BSL22 row (the same row ronbuening/AddLens261113 adds for the M 135mm) is now in this branch's catalog, so L1
+is relabelled `BSL22 (OHARA catalog equivalent; production supplier unspecified)`, confirmed with trylabel (catalog
+1.518206 / 65.04). All five elements now trace on OHARA catalog dispersion.

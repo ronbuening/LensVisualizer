@@ -53,7 +53,7 @@ const LENS_DATA = {
       "marketing": 1.4,
       "design": 1.4570119336552654
     },
-    "lensMounts": ["sony-fe", "nikon-z"],
+    "lensMounts": ["sony-fe", "nikon-z", "fujifilm-x", "canon-rf"],
     "imageFormat": "aps-c"
   },
   "source": {
@@ -81,7 +81,7 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.593,
       "vd": 68.53,
-      "glass": "Unmatched (patent nd 1.593, νd 68.53)",
+      "glass": "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Fluor-crown-class (νd 68.5) negative meniscus, convex to the object, at the front of the fixed first group; its deep concave rear surface spreads the incoming beam."
     },
     {
@@ -101,7 +101,7 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.772,
       "vd": 49.6,
-      "glass": "Unmatched (patent nd 1.772, νd 49.60)",
+      "glass": "H-LaF50B (CDGM catalog equivalent; production supplier unspecified)",
       "role": "Thick positive meniscus, concave to the object, at the front of the cemented L3/L4 pair."
     },
     {
@@ -131,7 +131,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.593,
       "vd": 68.62,
-      "glass": "Unmatched (patent nd 1.593, νd 68.62)",
+      "glass": "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Fluor-crown-class (νd 68.6) biconvex element at the front of the cemented L6/L7 pair ahead of the stop."
     },
     {
@@ -141,7 +141,7 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.762,
       "vd": 26.62,
-      "glass": "Unmatched (patent nd 1.762, νd 26.62)",
+      "glass": "H-ZF12 (CDGM catalog equivalent; production supplier unspecified)",
       "role": "Biconcave flint cemented to L6; the pair is negative (about −57 mm) and is the first group's crown–flint achromat, with its strongly curved rear face toward the stop."
     },
     {
@@ -181,7 +181,7 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.855,
       "vd": 25.15,
-      "glass": "Unmatched (patent nd 1.855, νd 25.15)",
+      "glass": "NBFD25 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Nearly plano-concave flint, concave to the object, as the last element; against L10 it leaves the fixed rear group weakly positive (about +149 mm)."
     }
   ],

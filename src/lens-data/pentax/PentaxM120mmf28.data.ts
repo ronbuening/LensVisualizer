@@ -89,7 +89,7 @@ const LENS_DATA = {
       "nd": 1.51821,
       "vd": 65,
       "focalLengthMm": 121.41112278125732,
-      "glass": "Unmatched (patent nd 1.51821, νd 65.0)",
+      "glass": "BSL22 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Positive crown meniscus, convex to the object; the first of the three closely spaced front elements."
     },
     {

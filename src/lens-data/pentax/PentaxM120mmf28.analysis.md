@@ -46,7 +46,7 @@ Condition (5) is printed as "ν1 · ν3 > 58" and is read here as a bound on eac
 
 ### L1 — Positive Meniscus
 
-nd = 1.51821, νd = 65.0. Glass: Unmatched (patent nd 1.51821, νd 65.0), a borosilicate crown. f = +121.4 mm.
+nd = 1.51821, νd = 65.0. Glass: OHARA BSL22 catalog equivalent, a borosilicate crown. f = +121.4 mm.
 
 The front crown, convex to the object (R1 = 46.78 mm, R2 = 174.58 mm), modeled like L2 and L3 at 22 mm semi-diameter. Its low dispersion satisfies condition (5); the patent ties conditions (4) and (5) to keeping the power of each front lens moderate so that the Petzval sum does not fall (col. 2).
 
@@ -80,12 +80,12 @@ The patent gives indices and Abbe numbers without naming a spectral line; Fig. 2
 
 | Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Type |
 |---|---|---|---|---|
-| L1 | 1.51821 / 65.0 | Unmatched | — | Borosilicate crown |
+| L1 | 1.51821 / 65.0 | BSL22 (OHARA) | 1.51821 / 65.04 | Borosilicate crown |
 | L2, L4 | 1.80518 / 25.4 | S-TIH6 (OHARA) | 1.80518 / 25.43 | Dense flint |
 | L3 | 1.55963 / 61.2 | S-BAL50 (OHARA) | 1.55963 / 61.17 | Barium crown |
 | L5 | 1.80610 / 40.9 | S-LAH53 (OHARA) | 1.80610 / 40.93 | Lanthanum flint |
 
-For L2 and L4, SCHOTT SF6 and Sumita K-SFLD6 match equally, and for L5 SCHOTT P-LASF47; OHARA is used throughout for consistency. L1's pair equals OHARA BSL22, a discontinued borosilicate crown (1.51821 / 65.04); L1 is left unmatched here and traces on its printed index and Abbe number. The patent prints no partial dispersions. The palette repeats the dense flint of L2 in the positive L4 and puts a high-index lanthanum flint in the telephoto negative L5.
+For L2 and L4, SCHOTT SF6 and Sumita K-SFLD6 match equally, and for L5 SCHOTT P-LASF47; OHARA is used throughout for consistency. L1's pair equals OHARA BSL22, a discontinued borosilicate crown, so all five elements trace on OHARA catalog dispersion. The patent prints no partial dispersions. The palette repeats the dense flint of L2 in the positive L4 and puts a high-index lanthanum flint in the telephoto negative L5.
 
 ## Focus Mechanism
 
