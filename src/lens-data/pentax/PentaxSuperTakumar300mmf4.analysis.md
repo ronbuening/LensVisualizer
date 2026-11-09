@@ -24,7 +24,7 @@ Table I and the claim table print the same prescription except for R3, which is 
 
 ## Optical Architecture
 
-A two-group telephoto: a positive front group of three singlets (L1 biconvex, L2 biconcave, L3 positive meniscus) and, 111 mm behind it, a small negative rear group of two singlets (L4 biconcave, L5 biconvex). The power sequence is P-N-P, then N-P. There are no cemented, aspheric or plane surfaces.
+A two-group telephoto: a positive front group G1 of three singlets (L1 biconvex, L2 biconcave, L3 positive meniscus) and, 111 mm behind it, a small negative rear group G2 of two singlets (L4 biconcave, L5 biconvex), the patent's lenses 1 to 5 and its group names. The power sequence is P-N-P, then N-P. There are no cemented, aspheric or plane surfaces.
 
 At this scale the front group has a focal length of +187.75 mm (0.626F) and the rear group −151.65 mm (−0.506F). The rear group enlarges the front group's image 1.60 times, so the 300 mm focal length is reached with the front vertex only 236.0 mm ahead of the image. That is a telephoto ratio of 1.271 against the printed 1.27, which the patent defines as the focal length divided by the distance from the front lens surface to the image plane. The lens measures 161.18 mm from S1 to S10, and the computed paraxial back focus is 74.84 mm.
 

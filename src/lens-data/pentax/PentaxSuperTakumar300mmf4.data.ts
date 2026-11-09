@@ -217,6 +217,18 @@ const LENS_DATA = {
     "fullFieldDeg": 9,
     "maxTraceFieldDeg": 4.5
   },
+  "groups": [
+    {
+      "text": "G1 (+)",
+      "fromSurface": "1",
+      "toSurface": "6"
+    },
+    {
+      "text": "G2 (−)",
+      "fromSurface": "7",
+      "toSurface": "10"
+    }
+  ],
   "layout": {
     "yScFill": 0.36
   }
