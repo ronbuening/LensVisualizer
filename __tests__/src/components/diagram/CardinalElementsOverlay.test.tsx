@@ -11,6 +11,7 @@ afterEach(() => cleanup());
 
 const lens = {
   maxSD: 20,
+  svgW: 400,
   svgH: 400,
   YSC: 4,
 } as unknown as RuntimeLens;
@@ -178,6 +179,46 @@ describe("CardinalElementsOverlay", () => {
     const principalCurve = container.querySelector('path[stroke-dasharray="5,3"]');
     expect(principalCurve?.getAttribute("d")).toContain("M");
     expect(principalCurve?.getAttribute("d")).not.toContain("M105,120");
+  });
+
+  it("marks off-view points and spans at the viewport edge instead of drawing them", () => {
+    // Telephoto-like layout: H and H′ sit far outside the 400 px viewport (sx = z + 100).
+    const cardinals = {
+      ...baseCardinals,
+      points: {
+        ...baseCardinals.points,
+        frontPrincipal: { id: "H", z: 2000 },
+        rearPrincipal: { id: "H'", z: -400 },
+        frontNodal: { id: "N", z: 2000 },
+        rearNodal: { id: "N'", z: -400 },
+      },
+      distances: {
+        ...baseCardinals.distances,
+        efl: { id: "EFL", fromZ: -400, toZ: 92, valueMm: 492 },
+        hiatus: { id: "Hiatus", fromZ: -400, toZ: 2000, valueMm: 2400 },
+        ffd: { id: "FFD", fromZ: 1900, toZ: 2000, valueMm: 100 },
+      },
+    } satisfies CardinalElements;
+    const { container } = renderOverlay(cardinals);
+    const texts = Array.from(container.querySelectorAll("text"));
+    const labels = texts.map((el) => el.textContent || "");
+
+    expect(labels).toContain("← H'/N'");
+    expect(labels).toContain("H/N →");
+    expect(labels).toContain("F");
+    expect(labels).toContain("FFD 100.0 mm →");
+
+    const xs = Array.from(container.querySelectorAll("line, circle, text")).flatMap((el) =>
+      ["x", "x1", "x2", "cx"].map((attr) => el.getAttribute(attr)).filter((value) => value !== null),
+    );
+    for (const x of xs.map(Number)) {
+      expect(x).toBeGreaterThanOrEqual(0);
+      expect(x).toBeLessThanOrEqual(400);
+    }
+
+    const eflLine = texts.find((el) => el.textContent?.startsWith("EFL "))?.parentElement?.querySelector("line");
+    expect(eflLine?.getAttribute("x1")).toBe("3");
+    expect(eflLine?.getAttribute("x2")).toBe("192");
   });
 
   it("honors cardinal and dimension sub-layer visibility", () => {

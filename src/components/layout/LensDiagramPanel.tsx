@@ -246,7 +246,6 @@ export default function LensDiagramPanel({
     tiltDeg,
     scaleRatio,
     panelId,
-    includeCardinalExtents: ENABLE_CARDINAL_ELEMENTS && (showCardinals || showCardinalDimensions),
     snapToPublishedStations: patentPositionsActive,
     imageSection: lens.comparing ? "long" : imageSection,
   });

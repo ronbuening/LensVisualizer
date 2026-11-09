@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-11-09",
+    type: "fix",
+    summary:
+      "Fixed cardinal points and dimensions shrinking long telephoto diagrams; points and spans beyond the view are now marked at its edge",
+  },
+  {
+    date: "2026-11-09",
     type: "lens",
     summary:
       "Added the Canon RF 85mm f/1.4 L VCM and EF-S 60mm f/2.8 Macro, Pentax DA 14mm f/2.8, M 20mm f/4 and M 28mm f/2.8, and Sigma 500mm f/5.6 Sports",
