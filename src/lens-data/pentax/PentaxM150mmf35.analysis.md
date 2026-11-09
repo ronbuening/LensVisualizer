@@ -14,7 +14,7 @@ This is a patent design associated with the SMC Pentax-M 150mm f/3.5, not a conf
 1. The patent's five single lenses in five air-spaced components match the retail construction of five elements in five groups.
 2. At the 1.5 scale the example is a 150 mm f/3.5 lens. Its printed half-field of 8.2° is the half-angle of a 150 mm lens on the 43.3 mm diagonal of 35 mm film.
 3. The patent's other two examples fit the rest of the series. Example 1 (f/2.8, ±10.2°) corresponds to a 120 mm lens and Example 2 (f/3.5, ±9.0°) to a 135 mm lens; the M series had a 120mm f/2.8 and a 135mm f/3.5. The PhotonsToPhotos Optical Bench lists all three lenses.
-4. The August 1976 priority date precedes the 1977 introduction. At this scale the front vertex lies 73.5 mm ahead of the K-mount flange, close to the 75 mm length of the lens, and the 45 mm front clear diameter fits inside the 49 mm filter thread.
+4. The August 1976 priority date precedes the 1977 introduction. At this scale the front vertex lies 73.5 mm ahead of the K-mount flange, close to the 75 mm length of the lens, and the 43 mm front clear diameter fits inside the 49 mm filter thread.
 
 These points fix the type, scale and period of the design but not its radii, clear apertures or iris position. Examples 2 and 3 are separate designs: every radius differs, as do several glasses and spacings.
 
@@ -94,11 +94,14 @@ The patent neither prints nor draws a stop, and Fig. 5 shows none. The model pla
 
 The patent prints no semi-diameters, so all are inferred, with both faces of each element sharing one rim:
 
-| Element | Model sd (mm) | Basis |
-|---|---|---|
-| L1, L2 | 22.5 | Clears the 21.43 mm f/3.5 entrance pupil; 45 mm diameter, inside the 49 mm filter thread |
-| L3 | 21.9 | Passes the f/3.5 axial beam, which is 20.6 mm high at S5 |
-| L4, L5 | 11.25 | Half the front height; Fig. 5 draws the rear pair at about 0.54 of it |
+| Element | Model sd (mm) | Fig. 5 reading (mm) | Basis |
+|---|---|---|---|
+| L1 | 21.5 | 20.9 | Just above Fig. 5, at the f/3.5 marginal ray (21.43 mm at S1); 43 mm diameter, inside the 49 mm filter thread |
+| L2 | 21.2 | 21.0 | Just above Fig. 5, at the f/3.5 marginal ray (21.13 mm at S3); drawn square-cut |
+| L3 | 20.6 | 20.6 | Fig. 5; the f/3.5 marginal ray is 20.55 mm high at S5 |
+| L4, L5 | 11.25 | 11.0, 11.0 | Fig. 5, about half the front height |
+
+Fig. 5 is drawn to scale along the axis, and its surface curves give the same scale across it. The model follows its heights to within 3 %, and the step order (L1 and L2 nearly level, L3 slightly lower, L4 and L5 level) is the drawing's.
 
 With these rims the full f/3.5 beam passes on the axis. Off the axis the rear pair trims the beam: about 95 % of it passes at 5.4°, 88 % at 6.8° and 80 % at the 8.1° frame corner. The chief ray reaches the corner unobstructed.
 

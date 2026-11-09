@@ -13,10 +13,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Image plane: the final gap keeps the printed back focus; the paraxial back focus is 60.569 mm, 0.031 mm shorter.
  * Stop: the patent neither prints nor draws one. It sits in the long air space d6, 6.0 mm (4.0 at F = 100) behind
  * S6, splitting d6 into 6.0 + 29.985 mm, with its radius set by the paraxial entrance pupil, F/N.
- * Semi-diameters are inferred, none is printed. The front three elements (22.5, 22.5 and 21.9 mm) pass the 21.43 mm
- * f/3.5 entrance pupil, and the 45 mm front clear diameter fits inside the retail 49 mm filter thread. The rear pair
- * is 11.25 mm, half the front height, near the proportions of Fig. 5 (about 0.54). Both faces of each element share
- * one rim.
+ * Semi-diameters are inferred, none is printed. Fig. 5, read at its own axial scale (S1 to S10 = 58.41 mm here),
+ * draws L1, L2 and L3 at 20.9, 21.0 and 20.6 mm and L4 and L5 at 11.0 mm. L3 takes its drawn height, 20.6 mm. L1
+ * (21.5 mm) and L2 (21.2 mm) stand just above the drawing, at the f/3.5 marginal ray, which reaches 21.43, 21.29 and
+ * 21.13 mm at S1-S3. The rear pair is 11.25 mm. Both faces of each element share one rim, and the 43 mm front clear
+ * diameter fits inside the retail 49 mm filter thread.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies.
  * The 1.8 m minimum focus is Pentax's retail figure and is not modeled.
  */
@@ -130,40 +131,40 @@ const LENS_DATA = {
       "label": "1",
       "R": 50.715,
       "d": 5.31,
-      "sd": 22.5,
+      "sd": 21.5,
       "medium": 1
     },
     {
       "label": "2",
       "R": 642.825,
       "d": 2.115,
-      "sd": 22.5
+      "sd": 21.5
     },
     {
       "label": "3",
       "R": -218.79,
       "d": 1.995,
-      "sd": 22.5,
+      "sd": 21.2,
       "medium": 2
     },
     {
       "label": "4",
       "R": 177.96,
       "d": 0.105,
-      "sd": 22.5
+      "sd": 21.2
     },
     {
       "label": "5",
       "R": 30.855,
       "d": 5.805,
-      "sd": 21.9,
+      "sd": 20.6,
       "medium": 3
     },
     {
       "label": "6",
       "R": 67.785,
       "d": 6.0,
-      "sd": 21.9
+      "sd": 20.6
     },
     {
       "label": "STO",

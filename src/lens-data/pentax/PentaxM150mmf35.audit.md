@@ -42,3 +42,38 @@ Open: no Pentax construction diagram was found, so element shapes and the iris p
 drawing. The PhotonsToPhotos Optical Bench lists the lens, but the patent example behind that listing could not be
 read. The patent's printed Petzval sum (0.020) differs from the surface sum of its own table (0.018), as it also does
 for Examples 1 and 2.
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/US4134645.pdf`, page 4 (sheet 3), Fig. 5, the section of Example 3, read at the native 300 dpi.
+The drawn axis tilts about 0.7° (row 1351 at the left of the sheet, 1341 at the right), so heights are taken from the
+local axis and averaged top and bottom. Vertex crossings give 540.5 px from S1 to S10 for 38.94 at F = 100, or 9.25 px
+per model mm; three spans agree (S1-S6 143 px for 142 predicted, d6 332.5 for 333, S7-S10 65 for 65.6). The S1 arc
+fits a radius of 466-483 px against 469 predicted, so the vertical scale matches. The automatic figure screen read
+the front group at 21.07 / 21.07-21.39 / 20.11 mm. Its rear readings (about 17.5 mm) are the r7-r10 and d8-d9 leader
+lines; the profile between the leaders and a 600 dpi zoom give 11.0 mm.
+
+| Element | sd before → after | Fig. 5 reading | f/3.5 marginal ray, real trace | Basis |
+|---|---|---|---|---|
+| L1 (S1, S2) | 22.5 → 21.5 | 20.9 | 21.43, 21.29 | lowered to the marginal ray, the floor above the drawing |
+| L2 (S3, S4) | 22.5 → 21.2 | 21.0 | 21.13, 20.81 | lowered to the marginal ray; square-cut, one height |
+| L3 (S5, S6) | 21.9 → 20.6 | 20.6 | 20.55, 20.23 | lowered to the drawing, which clears the ray |
+| L4 (S7, S8) | 11.25 kept | 11.0 | 9.98, 9.66 | agrees within 2 % |
+| L5 (S9, S10) | 11.25 kept | 11.0 | 8.94, 8.80 | agrees within 2 % |
+
+The front group read 6-7 % under the earlier rims, below the 10 % bar, so the first pass kept them. The owner asked
+for rims closer to the drawings, and the closest set the ray check allows costs no light, so six front faces moved
+4-6 %. The drawn heights of L1 and L2 lie below the marginal ray launched at the 21.43 mm entrance pupil, so those two
+stop at the ray rather than at the drawing. The model now follows Fig. 5 within 3 %, and the front-to-rear height
+ratio is 0.52 against 0.52 drawn. The step order matches: L1 and L2 nearly level, L3 slightly lower, L4 and L5 level.
+L2 is drawn square-cut and L5 nearly so, and both keep one height per element. Fig. 5 draws S9 flatter than its
+printed radius (sag 9 px at 78 px height against 14 px from R9 = -15.87), so the drawing is schematic there; the rim
+height is unaffected.
+
+With the final rims, the surface validator reports no errors and the image-circle and aperture audits flag nothing.
+Corner coverage is 100 % at 8.1°, and the ray check shows no axial clip or chief-ray block. Corner illumination is
+80.0 % at 8.1° before and after (95.0 % at 5.4°, 88.0 % at 6.8°), with 0.0 points lost at any field. EFL, half-field
+8.2°, f/3.5 and the 17.32 mm stop radius are unchanged. The lens is static, so infinity is the only printed state; the
+page renders the same at both ends of the focus control. The data header and the analysis table carry the new values.
+
+Open: no maker construction drawing is known, so Fig. 5 is the only shape reference.
