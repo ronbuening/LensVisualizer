@@ -94,3 +94,58 @@ sides with the model's larger G2B and L7.
 
 Open: the renderer joins L6's front rim to S11 with a sloped edge where Fig. 5 draws a flat step (a cemented face
 cannot carry a land).
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the live page with Fig. 5 (p. 17 at 600 dpi). Pages checked: infinity, the close state, the focus overlay,
+and the inspectors for elements 1 and 7. The scale was re-proved: the S13–S1 vertices sit at 4238–5567 px, which is
+1329 px for 22.21 mm, so 59.84 px/mm. S4, the stop, S8 and S11 fall within 0.02 mm.
+
+Rims: no change. The semi-diameter pass verdicts stand on re-measurement against the starting rims:
+
+| Rims at the drawn value | Points lost at infinity |
+|---|---:|
+| G2A at 3.7 | 7.3 (23.3°) |
+| S10 at 4.7 | 16.5 |
+| S11 at 5.4 | 16.4 |
+| L22 at 6.7 | 12.8 |
+
+The cuts at S1 and S4 and the lands at S2 and S9 cost 0.0 points at focus 0, 0.25, 0.5, 0.75 and 1. The worst loss
+is 0.0, and the corner gains 0.6 points at 37.9°. The close state was also traced exactly with a real object 125.2 mm
+ahead of S1, at object heights 0–100 mm (95 mm images at 14.24 mm, the corner). The file transmits the same as the
+starting rims at every height: 85.9 % of the stop-limited rays at the corner.
+
+Labels changed:
+- Element names L1–L7 → the patent's L16–L22, as `name` and `diagramLabel` (Fig. 5, ¶0071–¶0075).
+- Cemented brackets and tags D1/D2 → C1/C2, because D labels name the spacings D0 and D13.
+- `groups` G1 (S1–S4) and G2 (S6–S13) added, the patent's two groups (¶0070, ¶0072).
+- L22 type → "Biconvex Positive (2× Asph)".
+
+The header and analysis were remapped to match.
+
+Checked and found correct:
+- Every `type` agrees with the signs of R.
+- Only surfaces 12 and 13 carry the aspheric marker.
+- The stop sits between L17 and L18 (2.30 / 1.68 mm).
+- The only `apd` tag is "inferred" on L16. Cosina's section marks that element; the patent names no special glass.
+
+Movement: unit focus. Keyframe 0 is infinity (D13 18.81 mm) and keyframe 1 is Table 11's shortest state (D13 21.62,
+D0 125.20 mm). The overlay moves G1 and G2 together 2.81 mm toward the object, and the slider's far end reads 17 cm
+(0.169 m).
+
+Colour against Fig. 6, paraxial, relative to d:
+
+| Line | Patent | Model |
+|---|---:|---:|
+| C | +0.0375 mm | +0.038 mm |
+| g | −0.015 mm | −0.030 mm |
+
+No single catalog alternative moves g by more than 1.4 µm. Tried: FC5 and S-FSL5 (L16), S-LAH99 (L17), S-TIH1 and J-SF1
+(L18), S-TIH6 (L21), S-BAL42 (L22). At full pupil, d reads −0.026 mm on the plot against −0.042 mm in the model.
+Distortion at 14.2 mm is −1.8 % on the plot and −1.74 % in the model. All seven glass labels resolve. No medium is
+nd-only, and the patent prints no line indices or PgF.
+
+Assignee: "Cosina Co., Ltd." matches the front page (株式会社コシナ) and the corpus (29 files, no variant).
+
+Open: the model's paraxial g focus is 0.015 mm short of Fig. 6 (1.5 % of the plot's full scale); no exact catalog
+label explains it. The L21 front-edge bevel noted above remains.

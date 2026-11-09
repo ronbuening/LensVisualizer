@@ -19,7 +19,7 @@ The application describes a compact wide-angle lens for interchangeable-lens cam
 
 Embodiment 2 has eight elements in six groups (a separate third lens in G2B, ¶0054) and does not fit the product. Embodiments 1 and 3 share the seven-element layout and differ in detail. Embodiment 1 is the patent's representative figure, but its Table 2 prints the first element as nd 1.78749 beside νd 70.32, a pair no optical glass has. With nd 1.48749, the value Embodiment 3 prints for the same position, Embodiment 1 reproduces its own Table 1 (f = 18.537 mm against 18.54, back focus 19.413 against 19.41 mm, G1 focal length 2353 against 2343.43 mm), so the printed index is a one-digit misprint. Embodiment 3 needs no correction and is the example transcribed here.
 
-Cosina's section does not single out either embodiment. Its rear element has a slightly concave front face, like Embodiment 1's positive meniscus (R12 = −36.650 mm), whereas Embodiment 3's front face is nearly flat with a weakly convex aspheric zone (R12 = +2000 mm) and Fig. 5 draws the element biconvex. Scaled by its overall vertex length, the section's air gap between the two cemented doublets is about 2.2 mm (Embodiment 1: 2.25 mm; Embodiment 3: 2.71 mm), and its rear aspheric profile falls between the two embodiments. Other spacings in the section are not to scale for either (its L1–L2 gap is about 1.2 mm against 2.09 mm printed). Embodiment 1 thus matches the drawing's shapes slightly better, while Embodiment 3 is the self-consistent printed example. The correlation is with the patent family and is probable, not a confirmed factory prescription.
+Cosina's section does not single out either embodiment. Its rear element has a slightly concave front face, like Embodiment 1's positive meniscus (R12 = −36.650 mm), whereas Embodiment 3's front face is nearly flat with a weakly convex aspheric zone (R12 = +2000 mm) and Fig. 5 draws the element biconvex. Scaled by its overall vertex length, the section's air gap between the two cemented doublets is about 2.2 mm (Embodiment 1: 2.25 mm; Embodiment 3: 2.71 mm), and its rear aspheric profile falls between the two embodiments. Other spacings in the section are not to scale for either (its gap between the first two elements is about 1.2 mm against 2.09 mm printed). Embodiment 1 thus matches the drawing's shapes slightly better, while Embodiment 3 is the self-consistent printed example. The correlation is with the patent family and is probable, not a confirmed factory prescription.
 
 ## Optical Architecture
 
@@ -31,39 +31,39 @@ The arrangement is a compact, nearly symmetric wide-angle form rather than a str
 
 ## Element-by-Element Analysis
 
-The patent numbers the elements of Embodiment 3 L16 to L22; the data file and this section use L1 to L7. Element focal lengths are thick-lens values in air, not the power each element contributes inside its cemented group.
+The patent numbers its elements continuously across the three embodiments, so Embodiment 3's seven elements are L16 to L22 (Fig. 5, ¶0071–¶0075); the data file and this section use those designations. Element focal lengths are thick-lens values in air, not the power each element contributes inside its cemented group.
 
-### L1 (patent L16) — Negative Meniscus, convex to the object
+### L16 — Negative Meniscus, convex to the object
 
 nd = 1.48749, νd = 70.32. Glass: J-FK5 (HIKARI) catalog equivalent; FK5-type fluor crown. f = −33.46 mm.
 
 The front element is a thin (0.90 mm) negative meniscus whose deep rear face (R = 8.622 mm) accepts the wide field ahead of the stop. Cosina's optical section marks this position as anomalous partial dispersion glass. The patent's index pair is that of the FK5 family, a low-dispersion crown whose partial dispersion lies only slightly above the normal line (catalog PgF 0.5291, about +0.004); the marking is consistent with that glass, but neither source states the actual production material.
 
-### L2 (patent L17) — Biconvex Positive
+### L17 — Biconvex Positive
 
 nd = 2.00100, νd = 29.13. Glass: TAFD55 (HOYA) catalog equivalent. f = +34.10 mm.
 
-L2 is a nearly plano-convex positive element (R = +37.431 / −376.128 mm) just ahead of the stop. With L1 it forms the almost afocal G1. Its index of 2.001 is the patent's condition nd > 1.9 for the strongest positive lens of G1 (¶0085), which the patent credits with spherical aberration and coma correction, gentler radii and lower decentering sensitivity.
+L17 is a nearly plano-convex positive element (R = +37.431 / −376.128 mm) just ahead of the stop. With L16 it forms the almost afocal G1. Its index of 2.001 is the patent's condition nd > 1.9 for the strongest positive lens of G1 (¶0085), which the patent credits with spherical aberration and coma correction, gentler radii and lower decentering sensitivity.
 
-### G2A — L3 and L4, Cemented Doublet behind the Stop
+### G2A — L18 and L19, Cemented Doublet behind the Stop
 
-**L3 (patent L18):** nd = 1.71736, νd = 29.50. Glass: E-FD1L (HOYA) catalog equivalent. f = −7.35 mm.  
-**L4 (patent L19):** nd = 1.90043, νd = 37.37. Glass: TAFD37A (HOYA) catalog equivalent. f = +6.13 mm.
+**L18:** nd = 1.71736, νd = 29.50. Glass: E-FD1L (HOYA) catalog equivalent. f = −7.35 mm.  
+**L19:** nd = 1.90043, νd = 37.37. Glass: TAFD37A (HOYA) catalog equivalent. f = +6.13 mm.
 
-L3 is a biconcave negative element (R = −21.638 / +7.097 mm) whose strong rear face is the cemented interface; L4 is a strong biconvex positive element (R = +7.097 / −19.594 mm). The two nearly cancel, leaving the doublet at +24.77 mm. The patent assigns G2A the correction of chromatic aberration and field curvature (¶0073). It also requires the positive member's index to exceed the negative member's (1.90043 > 1.71736), which it says prevents astigmatism without raising the Petzval sum and keeps G2B and G2C small (¶0086).
+L18 is a biconcave negative element (R = −21.638 / +7.097 mm) whose strong rear face is the cemented interface; L19 is a strong biconvex positive element (R = +7.097 / −19.594 mm). The two nearly cancel, leaving the doublet at +24.77 mm. The patent assigns G2A the correction of chromatic aberration and field curvature (¶0073). It also requires the positive member's index to exceed the negative member's (1.90043 > 1.71736), which it says prevents astigmatism without raising the Petzval sum and keeps G2B and G2C small (¶0086).
 
-### G2B — L5 and L6, Cemented Meniscus Pair
+### G2B — L20 and L21, Cemented Meniscus Pair
 
-**L5 (patent L20):** nd = 1.90043, νd = 37.37. Glass: TAFD37A (HOYA) catalog equivalent. f = +20.79 mm.  
-**L6 (patent L21):** nd = 1.80517, νd = 25.45. Glass: J-SF6 (HIKARI) catalog equivalent. f = −18.69 mm.
+**L20:** nd = 1.90043, νd = 37.37. Glass: TAFD37A (HOYA) catalog equivalent. f = +20.79 mm.  
+**L21:** nd = 1.80517, νd = 25.45. Glass: J-SF6 (HIKARI) catalog equivalent. f = −18.69 mm.
 
-Both members are menisci concave to the object (R = −8.713 / −6.809 / −13.168 mm). The cemented pair is weakly negative (−68.33 mm). Its outer faces are nearly concentric with the stop (their centers of curvature lie within about 1.1 mm of it), so oblique bundles cross them at small angles of incidence. L5 again uses an index above 1.9 (¶0087), and L6 is a dense flint (νd 25.45) for color correction against the high-index crowns in G2.
+Both members are menisci concave to the object (R = −8.713 / −6.809 / −13.168 mm). The cemented pair is weakly negative (−68.33 mm). Its outer faces are nearly concentric with the stop (their centers of curvature lie within about 1.1 mm of it), so oblique bundles cross them at small angles of incidence. L20 again uses an index above 1.9 (¶0087), and L21 is a dense flint (νd 25.45) for color correction against the high-index crowns in G2.
 
-### L7 (patent L22) — Biconvex Positive, both faces aspherical
+### L22 — Biconvex Positive, both faces aspherical
 
 nd = 1.58312, νd = 59.38. Glass: L-BAL42 (OHARA) catalog equivalent. f = +33.01 mm.
 
-L7 is the whole of G2C. Its front face has an almost flat base (R = +2000 mm) and takes its shape from the aspheric terms; the rear face is a convex sphere (R = −19.429 mm) with a strong aspheric departure toward the rim. The patent places the aspheric element last to keep peripheral performance while shortening the lens (¶0075). Cosina marks both faces as aspherical, matching the patent.
+L22 is the whole of G2C. Its front face has an almost flat base (R = +2000 mm) and takes its shape from the aspheric terms; the rear face is a convex sphere (R = −19.429 mm) with a strong aspheric departure toward the rim. The patent places the aspheric element last to keep peripheral performance while shortening the lens (¶0075). Cosina marks both faces as aspherical, matching the patent.
 
 ## Glass Identification and Selection
 
@@ -71,14 +71,14 @@ The patent prints nd and νd at the d line (587.56 nm, ¶0080) and names no glas
 
 | Element | nd | νd | Catalog equivalent | PgF | ΔPgF | Role |
 |---|---:|---:|---|---:|---:|---|
-| L1 | 1.48749 | 70.32 | J-FK5 (HIKARI); also S-FSL5, FC5, N-FK5 | 0.5291 | +0.004 | Front negative meniscus; Cosina's anomalous partial dispersion element |
-| L2 | 2.00100 | 29.13 | TAFD55 (HOYA) | 0.5995 | +0.005 | G1 positive, nd > 1.9 |
-| L3 | 1.71736 | 29.50 | E-FD1L (HOYA) | 0.6040 | +0.010 | G2A negative |
-| L4, L5 | 1.90043 | 37.37 | TAFD37A (HOYA) | 0.5769 | −0.004 | Positive members of G2A and G2B |
-| L6 | 1.80517 | 25.45 | J-SF6 (HIKARI) | 0.6157 | +0.015 | G2B negative, dense flint |
-| L7 | 1.58312 | 59.38 | L-BAL42 (OHARA); also S-BAL42, M-BACD12 | 0.5423 | −0.002 | Aspherical rear singlet |
+| L16 | 1.48749 | 70.32 | J-FK5 (HIKARI); also S-FSL5, FC5, N-FK5 | 0.5291 | +0.004 | Front negative meniscus; Cosina's anomalous partial dispersion element |
+| L17 | 2.00100 | 29.13 | TAFD55 (HOYA) | 0.5995 | +0.005 | G1 positive, nd > 1.9 |
+| L18 | 1.71736 | 29.50 | E-FD1L (HOYA) | 0.6040 | +0.010 | G2A negative |
+| L19, L20 | 1.90043 | 37.37 | TAFD37A (HOYA) | 0.5769 | −0.004 | Positive members of G2A and G2B |
+| L21 | 1.80517 | 25.45 | J-SF6 (HIKARI) | 0.6157 | +0.015 | G2B negative, dense flint |
+| L22 | 1.58312 | 59.38 | L-BAL42 (OHARA); also S-BAL42, M-BACD12 | 0.5423 | −0.002 | Aspherical rear singlet |
 
-The palette is dominated by high-index lanthanum glasses (nd 1.90–2.00) in three of the four positive elements, which the patent ties to compactness, gentler radii and spherical-aberration and coma control (¶0085, ¶0087). Color correction pairs these with the dense flints of L3 and L6. The FK5-type front element is the only low-dispersion crown; its partial dispersion is only mildly anomalous, and the data do not support an apochromatic classification. L-BAL42 is OHARA's low-softening-point grade intended for precision molding, which suits a double-sided asphere, but S-BAL42 and HOYA M-BACD12 match the printed pair equally well, so the molding process is not established.
+The palette is dominated by high-index lanthanum glasses (nd 1.90–2.00) in three of the four positive elements, which the patent ties to compactness, gentler radii and spherical-aberration and coma control (¶0085, ¶0087). Color correction pairs these with the dense flints of L18 and L21. The FK5-type front element is the only low-dispersion crown; its partial dispersion is only mildly anomalous, and the data do not support an apochromatic classification. L-BAL42 is OHARA's low-softening-point grade intended for precision molding, which suits a double-sided asphere, but S-BAL42 and HOYA M-BACD12 match the printed pair equally well, so the molding process is not established.
 
 ## Focus Mechanism
 
@@ -95,7 +95,7 @@ At infinity the file keeps the printed D13 = 18.81 mm, 0.004 mm short of the com
 
 ## Aspherical Surfaces
 
-Surfaces 12 and 13, the two faces of L7, are aspherical. The patent's equation (¶0044, reused for Embodiment 3 in ¶0084) is the standard form with C = 1/R:
+Surfaces 12 and 13, the two faces of L22, are aspherical. The patent's equation (¶0044, reused for Embodiment 3 in ¶0084) is the standard form with C = 1/R:
 
 $$
 Z = \frac{C H^2}{1 + \sqrt{1 - (1 + K) C^2 H^2}} + A_4 H^4 + A_6 H^6 + A_8 H^8 + A_{10} H^{10} + A_{12} H^{12}
@@ -114,7 +114,7 @@ K = 0 therefore means a spherical base, and both surfaces print K = 0. Table 12 
 | A12 | +1.0931E-11 | +1.9861E-11 |
 | A14 | 0.0000E+00 | 0.0000E+00 |
 
-Both polynomial departures are positive (toward the image) and grow quickly toward the rim. At 7 mm from the axis they are +0.31 mm on surface 12 and +0.69 mm on surface 13. The rear face there keeps less than half of its spherical sag, and the element edge is 0.38 mm thicker than the spherical bases would make it. The outer zone of L7 therefore has less positive power and is bent toward a meniscus convex to the object. The front face's local curvature reverses close to its rim. This is the zone the oblique bundles cross near the image, so the profile fits the patent's statement that the aspheric last element keeps peripheral performance in a short lens (¶0006, ¶0075); the patent itself gives no surface-by-surface explanation. Whether the production element is glass-molded or ground is not published.
+Both polynomial departures are positive (toward the image) and grow quickly toward the rim. At 7 mm from the axis they are +0.31 mm on surface 12 and +0.69 mm on surface 13. The rear face there keeps less than half of its spherical sag, and the element edge is 0.38 mm thicker than the spherical bases would make it. The outer zone of L22 therefore has less positive power and is bent toward a meniscus convex to the object. The front face's local curvature reverses close to its rim. This is the zone the oblique bundles cross near the image, so the profile fits the patent's statement that the aspheric last element keeps peripheral performance in a short lens (¶0006, ¶0075); the patent itself gives no surface-by-surface explanation. Whether the production element is glass-molded or ground is not published.
 
 Embodiment 1 uses different coefficients on a different base (R12 = −36.650 mm), which is why its last element is drawn as a meniscus.
 
@@ -122,7 +122,7 @@ Embodiment 1 uses different coefficients on a different base (R12 = −36.650 mm
 
 The iris sits where Table 10 prints it, 2.30 mm behind surface 4 and 1.68 mm ahead of surface 6. Its radius, 3.44 mm, follows from the printed F/2.82. The f-stop scale runs to f/22 with ten blades, as Cosina specifies.
 
-The patent prints no clear apertures. Fig. 5 is drawn to scale: its vertex spacings and the drawn arcs of surfaces 1, 2 and 9 agree with the prescription at a single scale in both directions. L1 (7.2 mm) and L2 (5.9 mm) take the drawn square edges. Fig. 5 ends the deep concave caps of surfaces 2 and 9 at a flat land square to the axis, and the model draws both lands. Each cut lies just outside the wide-open beams, at radii of 6.03 and 4.66 mm against the drawn 5.96 and 3.8 mm. Fig. 5 draws G2A, G2B and L7 7–14 % smaller than the model (3.7, 4.7 and 5.4, and 6.7 mm). At those heights the corner illumination would fall by 7 to 17 points, so the model keeps G2A at 4.0 mm, L5 and L6 at 5.3 and 6.1 mm, and L7 at 7.2 mm. Wide open at infinity the edge of the field (37.9°) keeps about 59 % of the axial illumination, and 67 % at the 35.9° edge of the close state. The rims, and the corner illumination they produce, remain estimates.
+The patent prints no clear apertures. Fig. 5 is drawn to scale: its vertex spacings and the drawn arcs of surfaces 1, 2 and 9 agree with the prescription at a single scale in both directions. L16 (7.2 mm) and L17 (5.9 mm) take the drawn square edges. Fig. 5 ends the deep concave caps of surfaces 2 and 9 at a flat land square to the axis, and the model draws both lands. Each cut lies just outside the wide-open beams, at radii of 6.03 and 4.66 mm against the drawn 5.96 and 3.8 mm. Fig. 5 draws G2A, G2B and L22 7–14 % smaller than the model (3.7, 4.7 and 5.4, and 6.7 mm). At those heights the corner illumination would fall by 7 to 17 points, so the model keeps G2A at 4.0 mm, L20 and L21 at 5.3 and 6.1 mm, and L22 at 7.2 mm. Wide open at infinity the edge of the field (37.9°) keeps about 59 % of the axial illumination, and 67 % at the 35.9° edge of the close state. The rims, and the corner illumination they produce, remain estimates.
 
 At the printed half field of 37.95° the chief ray reaches an image height of 14.21 mm, slightly beyond the 14.18 mm half-diagonal of the APS-C format the viewer uses.
 

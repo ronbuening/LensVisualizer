@@ -6,8 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * reused by ¶0084) is the standard 1 + K form, and both K are 0. A14 is printed as zero; no higher terms are printed.
  * Probable production correlation with the COLOR-SKOPAR 18mm F2.8 Aspherical X-mount (2024; Cosina: 7/5, one
  * anomalous-partial-dispersion element, a double-sided asphere, 0.17 m, 1:6.6); not a factory prescription.
- * Embodiment 1 (the patent's representative figure) has the same layout but prints L1 nd 1.78749 beside νd 70.32,
- * a one-digit misprint of 1.48749; Embodiment 3 needs no correction and is used instead.
+ * Embodiment 1 (the patent's representative figure) has the same layout but prints its L1 nd 1.78749 beside νd 70.32,
+ * a one-digit misprint of 1.48749; Embodiment 3 needs no correction and is used instead. Elements carry Embodiment
+ * 3's own designations L16–L22 (Fig. 5, ¶0071–¶0075); cemented brackets are C1 and C2, as D labels name spacings.
  * Image plane: the printed back focus D13 = 18.81 mm is kept, 0.004 mm short of the paraxial 18.814 mm. The
  * resulting 41.02 mm track and 13.03 mm G2 length differ from the printed 41.03 and 13.04 mm by rounding. The
  * printed G1 focal length 1107.30 mm computes as 1113.9 mm (a very weak group, sensitive to last-digit rounding);
@@ -16,10 +17,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The stop sits where Table 10 prints it (2.30 mm behind surface 4, 1.68 mm ahead of surface 6); its radius follows
  * from F/2.82. Semi-diameters are not printed. They are estimated from Fig. 5, which is drawn to scale (59.84 px/mm
  * at 600 dpi from the S1–S13 vertex span, confirmed on the S4, stop, S8 and S11 vertices and on the S1, S2 and S9
- * arcs). L1 (7.2 mm) and L2 (5.9 mm) follow the drawn square edges. Fig. 5 ends the concave caps of S2 and S9 at a
- * flat land: S2 at 0.83 of L1's edge, S9 at 0.81 of L5's edge. The cuts sit just outside the wide-open beams (S2 depth
- * 2.46 mm, cut radius 6.03 mm; S9 depth 1.35 mm, cut radius 4.66 mm, with S9's edge equal to S10's). G2A (4.0 mm),
- * G2B (S10 5.3, S11 6.1 mm) and L7 (7.2 mm) stay 7–14 % above the drawing (3.7, 4.7, 5.4 and 6.7 mm): the drawn
+ * arcs). L16 (7.2 mm) and L17 (5.9 mm) follow the drawn square edges. Fig. 5 ends the concave caps of S2 and S9 at a
+ * flat land: S2 at 0.83 of L16's edge, S9 at 0.81 of L20's edge. The cuts sit just outside the wide-open beams (S2
+ * depth 2.46 mm, cut radius 6.03 mm; S9 depth 1.35 mm, cut radius 4.66 mm, with S9's edge equal to S10's). G2A (4.0
+ * mm), G2B (S10 5.3, S11 6.1 mm) and L22 (7.2 mm) stay 7–14 % above the drawing (3.7, 4.7, 5.4 and 6.7 mm): the drawn
  * rims would cost 7–17 points of corner illumination.
  */
 const LENS_DATA = {
@@ -65,23 +66,25 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L16",
       label: "Element 1",
+      diagramLabel: "L16",
       type: "Negative Meniscus",
       nd: 1.48749,
       vd: 70.32,
       indexReference: "d",
       glass: "J-FK5 (HIKARI catalog equivalent; production supplier unspecified)",
       focalLengthMm: -33.455852427497796,
-      role: "Front negative meniscus, convex to the object; with L2 it forms the weakly positive first group G1.",
+      role: "Front negative meniscus, convex to the object; with L17 it forms the weakly positive first group G1.",
       apd: "inferred",
       apdNote:
         "Cosina's optical section marks the front element as anomalous partial dispersion glass; the patent's nd 1.48749 / νd 70.32 is an FK5-type fluor crown consistent with that marking (catalog PgF 0.5291, about +0.004 above the normal line).",
     },
     {
       id: 2,
-      name: "L2",
+      name: "L17",
       label: "Element 2",
+      diagramLabel: "L17",
       type: "Biconvex Positive",
       nd: 2.001,
       vd: 29.13,
@@ -92,34 +95,37 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L18",
       label: "Element 3",
+      diagramLabel: "L18",
       type: "Biconcave Negative",
       nd: 1.71736,
       vd: 29.5,
       indexReference: "d",
       glass: "E-FD1L (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -7.353575209130201,
-      role: "Negative front member of the cemented doublet G2A just behind the stop; corrects color and field curvature with L4 (¶0073).",
-      cemented: "D1",
+      role: "Negative front member of the cemented doublet G2A just behind the stop; corrects color and field curvature with L19 (¶0073).",
+      cemented: "C1",
     },
     {
       id: 4,
-      name: "L4",
+      name: "L19",
       label: "Element 4",
+      diagramLabel: "L19",
       type: "Biconvex Positive",
       nd: 1.90043,
       vd: 37.37,
       indexReference: "d",
       glass: "TAFD37A (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 6.134531710703466,
-      role: "Strong positive member of G2A; its index above L3's limits astigmatism without raising the Petzval sum (¶0086).",
-      cemented: "D1",
+      role: "Strong positive member of G2A; its index above L18's limits astigmatism without raising the Petzval sum (¶0086).",
+      cemented: "C1",
     },
     {
       id: 5,
-      name: "L5",
+      name: "L20",
       label: "Element 5",
+      diagramLabel: "L20",
       type: "Positive Meniscus",
       nd: 1.90043,
       vd: 37.37,
@@ -127,26 +133,28 @@ const LENS_DATA = {
       glass: "TAFD37A (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 20.790806786372045,
       role: "Positive meniscus, concave to the object, front member of the cemented doublet G2B (nd > 1.9, ¶0087).",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 6,
-      name: "L6",
+      name: "L21",
       label: "Element 6",
+      diagramLabel: "L21",
       type: "Negative Meniscus",
       nd: 1.80517,
       vd: 25.45,
       indexReference: "d",
       glass: "J-SF6 (HIKARI catalog equivalent; production supplier unspecified)",
       focalLengthMm: -18.691603451609723,
-      role: "Dense-flint negative meniscus cemented behind L5; makes G2B a weakly negative, concave-forward corrector.",
-      cemented: "D2",
+      role: "Dense-flint negative meniscus cemented behind L20; makes G2B a weakly negative, concave-forward corrector.",
+      cemented: "C2",
     },
     {
       id: 7,
-      name: "L7",
+      name: "L22",
       label: "Element 7",
-      type: "Biconvex Positive",
+      diagramLabel: "L22",
+      type: "Biconvex Positive (2× Asph)",
       nd: 1.58312,
       vd: 59.38,
       indexReference: "d",
@@ -260,14 +268,26 @@ const LENS_DATA = {
       },
     },
   ],
+  groups: [
+    {
+      text: "G1",
+      fromSurface: "1",
+      toSurface: "4",
+    },
+    {
+      text: "G2",
+      fromSurface: "6",
+      toSurface: "13",
+    },
+  ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "6",
       toSurface: "8",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "9",
       toSurface: "11",
     },
