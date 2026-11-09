@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-11-09",
+    type: "lens",
+    summary:
+      "Added the OM SYSTEM 20mm f/1.4 PRO, Olympus Zuiko 75-150mm f/4 and F.Zuiko 300mm f/4.5, Pentax M 135mm and 150mm f/3.5, and Yongnuo YN 56mm f/1.4 and YN 85mm f/1.8",
+  },
+  {
+    date: "2026-11-09",
     type: "fix",
     summary:
       "Fixed cardinal points and dimensions shrinking long telephoto diagrams and dimension labels covering the element numbers; spans now sit in a band below the lens, and anything beyond the view is marked at its edge",
