@@ -24,7 +24,7 @@ const LENS_DATA = {
     }
   },
   "source": {
-    "patentNumber": "US 12066598 B2",
+    "patentNumber": "US 12,066,598 B2",
     "example": {
       "label": "Numerical Example 3",
       "id": "3"

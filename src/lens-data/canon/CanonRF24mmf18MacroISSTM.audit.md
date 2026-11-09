@@ -23,5 +23,5 @@ matches element by element (11/9, PMo asphere on L9, UD on L7, IS lens behind th
 
 Deployment changes: element focal lengths L7 41.28 → 41.73 mm and L8 52.33 → 26.28 mm, the patent's single-lens data
 for Example 3 (the package's L8 value is Example 2's); the analysis follows, and its L5 description becomes biconvex
-(R 70.143 / −252.397).
+(R 70.143 / −252.397). `patentNumber` "US 12066598 B2" → "US 12,066,598 B2" (house form).
 Open: package wording (subtitle "inferred product association", process notes in this log) remains for the cleanup pass.
