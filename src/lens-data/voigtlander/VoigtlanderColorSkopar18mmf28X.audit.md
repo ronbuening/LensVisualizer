@@ -1,0 +1,3 @@
+# Private whole-E3 authoring audit
+
+JP2025044411A Embodiment3 selected as a complete separate representative, not a repaired E1. All13rows and both complete asphere tables are source-native. Literal final18.81 and imagez41.02 frozen before native calls; header41.03/G2track13.04 versus literal13.03 and weakG1focal residual remain explicit. Source SD/iris hypotheses frozen before construction/tracing, never resized afterward. Native geometry zero hidden trim; six source-field scalar diffraction results pass, with original sparse208-ray-per-field clipping retained. Integration/viewer results are recorded separately after execution. E1 hold and old two-lens packages remain unchanged.
