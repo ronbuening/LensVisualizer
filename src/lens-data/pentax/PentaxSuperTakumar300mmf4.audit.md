@@ -1,4 +1,4 @@
-# Pentax Super-Takumar 300mm f/4 — audit log
+# PENTAX SUPER-TAKUMAR 300mm f/4 — audit log
 
 ## 2026-11-09 — Deployment validation
 

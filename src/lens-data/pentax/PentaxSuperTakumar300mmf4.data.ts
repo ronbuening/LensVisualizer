@@ -4,7 +4,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "pentax-super-takumar-300mm-f4",
   "maker": "Pentax",
-  "name": "Pentax Super-Takumar 300mm f/4",
+  "name": "PENTAX SUPER-TAKUMAR 300mm f/4",
   "subtitle": "Qualified patent reconstruction; secondary stop and apertures",
   "catalog": {
     "lensMounts": [

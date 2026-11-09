@@ -2,9 +2,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Qualified reconstruction. See companion analysis and evidence; inferred rims are not manufacturing dimensions. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "pentax-67-300mm-f4",
+  "key": "pentax-smc-takumar-6x7-300mm-f4",
   "maker": "Pentax",
-  "name": "PENTAX 6\u00d77 300mm f/4",
+  "name": "PENTAX SMC TAKUMAR 6x7 300mm f/4",
   "subtitle": "Qualified patent reconstruction; assumed clear apertures and approximate dispersion",
   "catalog": {
     "lensMounts": [

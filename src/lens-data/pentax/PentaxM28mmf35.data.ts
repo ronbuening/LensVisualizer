@@ -4,9 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop radius is derived from f/3.5; printed BFD is retained, not best focus. */
 const LENS_DATA = {
   schema: 2,
-  key: "pentax-smc-m-28mm-f35",
+  key: "pentax-m-28mm-f35",
   maker: "Pentax",
-  name: "PENTAX smc PENTAX-M 28mm f/3.5",
+  name: "PENTAX SMC M 28mm f/3.5",
   subtitle: "US 3,955,883 \u2014 qualified product association",
   catalog: {
     elementCount: 6,

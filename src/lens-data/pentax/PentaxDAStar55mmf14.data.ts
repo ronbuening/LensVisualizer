@@ -4,7 +4,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "pentax-da-star-55mm-f14",
   "maker": "Pentax",
-  "name": "PENTAX SMC DA\u2605 55mm f/1.4",
+  "name": "PENTAX SMC DA* 55mm f/1.4 SDM",
   "subtitle": "Qualified patent reconstruction; assumed clear apertures and approximate dispersion",
   "catalog": {
     "lensMounts": [

@@ -1,4 +1,4 @@
-# PENTAX 6×7 300mm f/4 — audit log
+# PENTAX SMC TAKUMAR 6x7 300mm f/4 — audit log
 
 ## 2026-11-09 — Deployment validation
 

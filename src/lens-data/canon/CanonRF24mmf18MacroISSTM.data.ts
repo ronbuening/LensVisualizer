@@ -4,7 +4,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "canon-rf-24mm-f18-macro-is-stm",
   "maker": "Canon",
-  "name": "Canon RF 24mm f/1.8 Macro IS STM",
+  "name": "CANON RF 24mm f/1.8 Macro IS STM",
   "subtitle": "US 12066598 B2 Numerical Example 3 \u2014 inferred product association",
   "catalog": {
     "lensMounts": [

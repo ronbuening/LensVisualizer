@@ -1,4 +1,4 @@
-# PENTAX SMC DA★ 55mm f/1.4 — audit log
+# PENTAX SMC DA* 55mm f/1.4 SDM — audit log
 
 ## 2026-11-09 — Deployment validation
 

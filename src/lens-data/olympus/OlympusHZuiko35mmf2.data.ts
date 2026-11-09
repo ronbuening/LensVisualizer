@@ -2,7 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Literal primary R7=0.7053×35, not secondary 24.6225. All SD and stop location are secondary modeling assumptions; engine derives stop radius from f/2. No hidden aperture trims. */
 const LENS_DATA = {
   schema: 2,
-  key: "olympus-h-zuiko-35mm-f2",
+  key: "olympus-zuiko-auto-w-35mm-f2",
   maker: "Olympus",
   name: "OLYMPUS H.ZUIKO AUTO-W 35mm f/2",
   subtitle: "US 3,844,640 \u2014 qualified product association",
