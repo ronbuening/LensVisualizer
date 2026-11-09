@@ -5,7 +5,7 @@ const LENS_DATA = {
     "yScFill": 0.4
   },
   "schema": 2,
-  "key": "yongnuo-yn33f14-cn220137479u",
+  "key": "yongnuo-yn-33mm-f14-da-dsm-wl-pro",
   "maker": "Yongnuo",
   "name": "YONGNUO YN 33mm f/1.4 DA DSM WL PRO",
   "subtitle": "CN 220137479 U \u2014 qualified associated patent model",

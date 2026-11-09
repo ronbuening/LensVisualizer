@@ -8,7 +8,7 @@ const LENS_DATA = {
   schema: 2,
   key: "voigtlander-nokton-23mm-f12-x",
   maker: "Voigtländer",
-  name: "VOIGTLÄNDER NOKTON 23mm f/1.2 X (patent reconstruction)",
+  name: "VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount",
   subtitle: "JP 2023-090337 A Embodiment 1; literal 23.6mm/F1.22; source interval 14.78mm; infinity only.",
   catalog: {
     lensMounts: ["fujifilm-x"],

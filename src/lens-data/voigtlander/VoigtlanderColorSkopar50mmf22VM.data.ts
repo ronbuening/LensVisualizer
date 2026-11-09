@@ -8,7 +8,7 @@ const LENS_DATA = {
   schema: 2,
   key: "voigtlander-color-skopar-50mm-f22-vm",
   maker: "Voigtländer",
-  name: "VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM (patent reconstruction)",
+  name: "VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM",
   subtitle: "JP 2025-187904 A Embodiment 1; literal 48.455mm/F2.254; source interval 13.99mm; infinity only.",
   catalog: {
     lensMounts: ["leica-m"],

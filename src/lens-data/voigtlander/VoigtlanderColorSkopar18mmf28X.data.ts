@@ -8,7 +8,7 @@ const LENS_DATA = {
   schema: 2,
   key: "voigtlander-color-skopar-18mm-f28-x",
   maker: "Voigtländer",
-  name: "VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 X (patent reconstruction)",
+  name: "VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 Aspherical X-Mount",
   subtitle: "Whole JP 2025-044411 A Embodiment 3; native 18.54 mm/F2.82; literal image z41.02 mm; infinity only.",
   catalog: {
     lensMounts: ["fujifilm-x"],

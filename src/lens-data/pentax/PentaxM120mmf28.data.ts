@@ -13,7 +13,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "pentax-m-120mm-f28",
   "maker": "Pentax",
-  "name": "PENTAX SMC PENTAX-M 120mm f/2.8",
+  "name": "PENTAX SMC M 120mm f/2.8",
   "subtitle": "US 4,134,645 A; probable product association, uniformly scaled prescription and inferred apertures",
   "catalog": {
     "lensMounts": [

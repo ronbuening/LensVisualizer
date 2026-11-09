@@ -7,7 +7,7 @@ const LENS_DATA = {
     "yScFill": 0.4
   },
   "schema": 2,
-  "key": "yongnuo-yn50f14-cn106249387b",
+  "key": "yongnuo-yn-50mm-f14",
   "maker": "Yongnuo",
   "name": "YONGNUO YN 50mm f/1.4",
   "subtitle": "CN 106249387 B \u2014 qualified associated patent model",
