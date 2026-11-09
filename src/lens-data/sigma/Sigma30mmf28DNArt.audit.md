@@ -57,4 +57,40 @@ Engine before → after: EFL 30.8257, FOPEN 2.89, half-field 25.245°, stop radi
 TL 52.2666 mm, close state 500.07 mm object to image (−0.0689×): all unchanged; only the aperture slider maximum moved
 from 16 to 22. Geometric transmission wide open at infinity: 100% to 11.2°, 87% at 19.6°, 65.6% at 25.2°.
 Open: the estimated L6 rim (S10–11, 9.5 mm) is about 1 mm smaller than Sigma's drawing shows; rims were left as
-authored.
+authored. (Closed 2026-11-09: patent Fig. 1 draws L6 at 9.5 mm, so the rim stays; see the section below.)
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/JP2012234169A.pdf`, p. 32, Fig. 1 (Example 1 lens section; native raster 400 dpi, measured at
+400 dpi on the clean lower half, axis row 2685). The figure is drawn at infinity: d4 measures 97 px (6.93 mm against
+6.9859) and d9 20 px (1.43 against 1.5000). Scale 14.03 px/mm from the S1–S13 vertex span (447 px for 31.8621 mm),
+checked at 13.98–13.99 px/mm on S1–S5 and S1–S9 and by Bf (284 px, 20.24 mm). Arc fits of S1, S3 and S5 agree with the
+same scale vertically, so the drawing is isotropic. The stop tick starts at 4.35 mm (engine stop radius 4.61 mm).
+
+| Surface | Stored sd | Fig. 1 | Ratio | Decision |
+| --- | --- | --- | --- | --- |
+| S1, S2 (L1, DB1 interface) | 8.0 | 7.63 (107 px) | 0.95 | kept, inside noise |
+| S3 (L2 rear) | 8.0 | edge 7.56; cap ends 4.99 (70 px) | — | cut 1.31 mm deep (cap radius 5.68) |
+| S5 (L3 front) | 7.5 | edge 7.41; cap ends 4.42 (62 px) | — | cut 1.85 mm deep (cap radius 5.80) |
+| S6, S7 (DB2 interface, L4 rear) | 7.5 | 7.41 (104 px) | 0.99 | kept |
+| S8, S9 (L5) | 8.5 | 8.98 (126 px) | 1.06 | kept, inside noise; step order unchanged |
+| S10, S11 (L6) | 9.5 | 9.48 (133 px) | 1.00 | kept |
+| S12, S13 (L7) | 11.0 | 11.05 (155 px) | 1.00 | kept |
+
+Fig. 1 draws the concave rear of L2 and the concave front of L3 ending in flat strokes square to the axis, at
+q = 0.654 ± 0.016 and 0.596 ± 0.015 of the element edge. At those shares of the stored rims (5.23 and 4.47 mm) the
+inferred cuts would clip the wide-open beams, which reach 5.61 mm at S3 (28.0° field) and 5.74 mm at S5 (13.3°), so
+both cuts were moved out to the smallest 0.01 mm depth that clears them by 0.05 mm: S3 1.31 mm (radius 5.681), S5
+1.85 mm (radius 5.804). The dense rim-cut probe over 21 focus states finds no ray clipped or within margin. Without
+the cut, the S3 cap reached 2.76 mm behind its vertex at the 8.0 mm rim, past the stop plane 2.62 mm away; the land
+now sits 1.31 mm behind it. Sigma's construction drawing (both product pages) also draws both lands. It shows L6
+about 1 mm taller than Fig. 1; the patent figure governs.
+
+Corner light, wide open at infinity, starting rims → final: 100 / 99.4 / 94.9 / 87.4 / 77.1 / 65.6% at 11.2 / 14.0 /
+16.8 / 19.6 / 22.4 / 25.2° in both cases, a change of 0.0 points. The cuts clear every beam at every focus position,
+so the 500 mm state loses nothing either. Clearance (exact meridional trace, Y = 14.175 mm): no axial clip and no
+chief-ray block at infinity (ω = 25.18°) or at the 500 mm state (ω = 24.93°). The surface validator passes, the
+aperture audit reports no rim limit, the image circle holds and the corner chief ray reaches 14.17 mm. Engine EFL
+30.8257, FOPEN 2.89, half-field 25.245°, stop radius 4.6099 mm: unchanged.
+Open: L5 is drawn 0.5 mm taller in Fig. 1 than modeled (8.98 against 8.5 mm, 6%), and L1 0.4 mm shorter
+(7.63 against 8.0 mm); both are left inside the noise band.

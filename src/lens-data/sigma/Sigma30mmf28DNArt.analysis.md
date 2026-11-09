@@ -187,9 +187,13 @@ The model reproduces all six values that the patent tabulates for Example 1 (¶0
 
 - R, d, nd, νd, the aspheric coefficients, the stop position and both focus states are printed. K = 0 is assumed.
 - The iris is the printed surface 4; its radius is set from the stated f/2.89.
-- The patent prints no clear apertures. All lens semi-diameters are estimated from Fig. 1 proportions: S1–3 8.0,
-  S5–7 7.5, S8–9 8.5, S10–11 9.5 and S12–13 11.0 mm. They agree with Sigma's drawing to within about 1 mm; the
-  drawing shows L6 about 1 mm taller.
+- The patent prints no clear apertures. All lens semi-diameters are estimated from Fig. 1: S1–3 8.0, S5–7 7.5,
+  S8–9 8.5, S10–11 9.5 and S12–13 11.0 mm, each within about 6% of the drawn rim. They agree with Sigma's drawing to
+  within about 1 mm; that drawing shows L6 about 1 mm taller.
+- Fig. 1 ends the two concave faces beside the iris, the rear of L2 (S3) and the front of L3 (S5), with flat lands.
+  The model draws them as rim cuts placed just outside the wide-open beams at every focus position: S3 1.31 mm deep
+  (cap radius 5.68 mm) and S5 1.85 mm deep (5.80 mm). The lands block no light; Fig. 1 ends the two caps lower, at
+  about 5.0 and 4.4 mm.
 - With these rims, wide open at infinity, the geometric transmission is 100% to about 11°, 87% at 19.6° and 66% at
   the 25.2° corner. These figures describe the estimated rims, not measured illumination. The APS-C half-diagonal
   (14.18 mm) is reached at 25.2°, just inside the printed 25.245° half-field.

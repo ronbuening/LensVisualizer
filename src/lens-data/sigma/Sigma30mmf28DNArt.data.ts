@@ -1,18 +1,23 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /** JP 2012-234169 A, Numerical Example 1 (Sigma Corporation; Noriyuki Ogasawara): f = 30.83 mm, Fno 2.89,
- * 2\u03c9 = 50.49\u00b0, 7 elements / 5 groups, aspherical S9 (rear of L5) and S13 (rear of L7). No scale factor is applied.
- * R, d, nd and \u03bdd follow the printed table (PDF p. 21) without alteration. The aspheric equation includes a conic
+ * 2ω = 50.49°, 7 elements / 5 groups, aspherical S9 (rear of L5) and S13 (rear of L7). No scale factor is applied.
+ * R, d, nd and νd follow the printed table (PDF p. 21) without alteration. The aspheric equation includes a conic
  * constant K, but no example in the patent prints a K value, so K = 0 at S9 and S13 is a modeling assumption.
  * The stop is the printed surface 4; its radius is set from the stated f/2.89. Bf = 20.4045 mm is printed.
  * d4 and d9 are printed at infinity and at a 500 mm shooting distance; the printed spacings give 500.07 mm object
- * to image. The patent prints no clear apertures: all lens semi-diameters are estimated from Fig. 1 proportions
- * (S1\u20133 8.0, S5\u20137 7.5, S8\u20139 8.5, S10\u201311 9.5, S12\u201313 11.0 mm).
+ * to image. The patent prints no clear apertures: all lens semi-diameters are estimated from Fig. 1 (p. 32,
+ * infinity state, 14.0 px/mm at its native 400 dpi from the S1–S13 vertex span, isotropic by arc fits) and kept
+ * where they agree within about 6%: S1–3 8.0 (figure 7.6), S5–7 7.5 (7.4), S8–9 8.5 (9.0), S10–11 9.5 (9.5),
+ * S12–13 11.0 mm (11.1). Fig. 1 ends the concave faces beside the iris with flat lands: the cap of S3 at 0.65 and
+ * that of S5 at 0.60 of the element edge. Both are modeled as inferred rim cuts moved out until they clear every
+ * wide-open beam by 0.05 mm from infinity to the 500 mm state: S3 1.31 mm deep (cut radius 5.68 mm), S5 1.85 mm deep
+ * (5.80 mm). They cost no corner light.
  * The patent decenters L6 (group 3a) for image stabilization; it is modeled centred, and the production lens has
  * no stabilizer. Probable production correlation with the 2012 30mm F2.8 EX DN and the optically identical 2013
  * 30mm F2.8 DN | Art (Sigma: 7 elements / 5 groups, aspherical L5 and L7). Sigma describes one double-sided
  * aspherical element and draws L7 nearly plano-convex, so the production prescription differs in detail.
- * Glass labels are HOYA catalog rows equal to the printed nd / \u03bdd; the production supplier is not known.
+ * Glass labels are HOYA catalog rows equal to the printed nd / νd; the production supplier is not known.
  */
 const LENS_DATA = {
   schema: 2,
@@ -160,6 +165,7 @@ const LENS_DATA = {
       R: 12.9742,
       d: 2.6198,
       sd: 8,
+      rimCutDepthMm: 1.31,
     },
     {
       label: "STO",
@@ -170,6 +176,7 @@ const LENS_DATA = {
       R: -10.0295,
       d: 0.8,
       sd: 7.5,
+      rimCutDepthMm: 1.85,
       medium: 3,
     },
     {
