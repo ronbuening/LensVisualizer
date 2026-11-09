@@ -147,7 +147,8 @@ and the rear-group order L31 > L32 > L33 < L34, as Fig. 1 draws.
 
 Open: the renderer draws L13's top as a taper from 22.1 mm at the front to the 19 mm interface, where Fig. 1 draws a
 flat flange and a step. A rim extension cannot be used on a cemented interface. L21 (17 mm) sits about 1 mm above
-the figure's 16.0 mm, within reading noise.
+the figure's 16.0 mm, within reading noise. (L21 part closed 2026-11-09 by the second review: a 15.9 mm reading puts
+17 mm 7 % high, inside the 10 % band, with the step order right; kept. The L13 part stays open below.)
 
 ## 2026-11-09 — Glass coverage pass
 
@@ -156,3 +157,65 @@ catalog from the local HOYA 2026-07-07 and OHARA 2026-07-01 AGF files; both equa
 GL cover plate (1.5168 / 64.2) is labelled CDGM H-K9L as a catalog equivalent; the patent does not name its material.
 Every element and the plate now trace on catalog dispersion curves. A corpus-wide resolution dump before and after the
 catalog additions showed no other element changing its resolved glass.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+**Compared.** The local page at infinity and at the 0.8 m state, the focus-movement overlay and the inspectors of L13,
+L14 and L32 against Fig. 1 (PDF p. 14) at 300 dpi, with a model outline drawn over the figure. The scale holds in both
+directions: S1 to S18 is 1473 px for 85.479 mm and S1 to the image 1782.5 px for 103.397 mm (17.23 px/mm), every
+vertex from S4 to S17 falls within 1 px, and the L11 front arc gives sags of 2.47 and 4.53 mm at 16.8 and 22.6 mm
+(R 58.558: 2.47 and 4.55). Rims were read from the line centres above and below the axis: L11 29.8, L12 24.0, L13 22.1,
+L14 18.0, L21 15.9, L31 14.6, L32 12.8, L33 11.6 and L34 14.0 mm. Every stored rim is within 10 % of its reading
+(L21 +7 %, L14 +6 % on its close-focus floor), the step order matches, and every element except L13 is drawn square
+in both. No rim changed.
+
+**L13 flange.** Fig. 1 draws L13's top flat at 22.1 mm back to the S6 rim, 8.3 mm behind the S5 vertex, then a
+square step down to L14's 18.0 mm cap. The site joins the 22.1 mm S5 rim to the 19 mm interface rim, so it draws a
+taper. No allowed edit draws the step: a rim extension is refused on the cemented S6; a rim cut needs a face whose
+rim bends into air, and S5's bends into the glass; raising S6 and S7 toward 22.1 mm moves L14 further from the
+figure and leaves it with no edge past about 21.2 mm; lowering S5 is barred by the close-state axial beam, which a
+real object at 697 mm brings to 21.6 mm at S5 (100 % on axis at 21.7 mm, 99.3 % at 21.5 mm). L14 at 18.9 mm keeps
+100 % on axis at that state and 18.8 mm drops to 99.9 %, so its 19 mm floor stands.
+
+**Lands and cuts.** No lands. All three cuts stand: L11 30 → 29 mm wins back 2.4 points at 13.7° if restored, L32
+14 → 12.9 mm 0.1 point and L14 21 → 19 mm at most 0.3 point. Against the starting rims, `rimcost.mjs` reports a worst
+loss of 0.0 points at infinity and gains of up to 4.7 points. The close state with parallel beams gains at every
+field (on axis 79.8 → 87.9 %, 10.6° 45.3 → 49.3 %). With a real object at 697 mm, the 21.0 mm image corner goes from
+45.8 to 49.4 % and the axis from 95.3 to 100 %. Engine EFL 84.747 mm, f/1.7999, half-field 13.669° and stop radius
+14.045 mm are unchanged.
+
+**Changes (labels only).**
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `diagramLabel`, all elements | none (diagram showed 1–9) | L11–L14, L21, L31–L34 | Fig. 1 and the text name the elements this way; the doublet bracket already read L13 / L14 |
+| `focalLengthMm`, all elements | none (inspector showed FL = —) | +87.1, +98.1, −36.3, +71.0, −72.3, +47.1, −313.3, +307.8, −82.4 mm | Thick-lens focal length in air from the printed R, d and nd; the analysis quotes the same values |
+| `cemented`, L13 and L14 | none | L13 / L14 | Inspector now badges the pair as a doublet, with the bracket's text |
+
+The header no longer says L11 and L32 match no catalog row, and it notes the L13 taper. The analysis no longer calls
+L14 the only anomalous-dispersion glass: L12's S-FPM3 has a catalog ΔPgF of about +0.021 (FCD1 +0.032).
+
+**Labels and tags.** Groups GR1 (S1–S7), GR2 FOCUS (S8–S9) and GR3 (S11–S18) are the figure's. The single doublet
+bracket spans S5–S7. The stop sits 50.60 mm behind S1, between L21 and L31, where Fig. 1 draws SP (50.5 mm). Its
+ticks end 14.4–14.5 mm from the axis against the derived 14.04 mm stop radius, within 3 %. Element types agree with
+the signs of R, the lens has no aspheres, and the roles are true. The only `apd` tag is the inferred one on L14,
+the ED position on Yongnuo's drawing. The gap labels D(1) and D(2) follow the table on p. 10.
+
+**Movement.** Keyframe 0 is infinity (D(1) 2.95, D(2) 17.28 mm) and keyframe 1 the 0.8 m state (17.45, 2.78 mm).
+L21 moves 14.50 mm toward the image, as the arrow under GR2 in Fig. 1 points. GR1, the stop, GR3 and the image plane
+stay fixed. The slider's close end reads 81 cm, the paraxial object distance of the printed close spacings: their
+focus falls 0.18 mm behind the printed plane. That is within 2 % of Yongnuo's 0.8 m, so no marketed note shows.
+
+**Colour and field.** The d-line spherical aberration matches Fig. 2A within 1 µm through 0.85 of the pupil. The
+C–F spread also matches: 131.5 µm in the plot, 131.7 µm in the model. Both lines sit about 5 µm forward of the plot
+relative to d. Paraxially, C is +71.2 µm in the plot against +66.6 µm in the model, and F is −60.3 against −65.2 µm.
+Fig. 2C, at the close state, shows the same shift: d +0.198 mm with F on it and C +0.265 mm, against model d +0.200,
+F +0.189 and C +0.258 mm. A partial dispersion (nd − nC)/(nF − nC) on L13 0.0014 below NBFD15's 0.2924 would close
+both plots; one on L11 0.0025 above MP-TAFD51-50's 0.2981 would also. No in-window catalog row does it: J-LASFH6 moves
+L13 the wrong way by 1.3 µm, and the alternatives for L14, L21 and L34 move it by 1 µm or less. Fig. 2B distortion
+is +1.87 % at 13.669°; the model gives +1.88 %. Field curvature has the same shape in both: the sagittal curve dips
+deepest and the curves cross near 0.97 of the field. The model sits 5–9 µm less inward from 0.75 of the field out:
+T −0.077 against −0.086 mm and S −0.064 against −0.072 mm at full field.
+
+Open: L13's flat flange and step (Fig. 1) need a land on the front side of a cemented interface, which the schema
+does not allow. With one, S6 would stay 19 mm and L13's rear would run flat from 19 to 22.1 mm at the S6 rim.

@@ -19,7 +19,7 @@ The match between Example 1 and the YN85mm F1.8S DF DSM is probable, not certain
 1. **Stated purpose.** The applicant is Yongnuo, and the patent names an 85 mm F1.8 mirrorless lens as its application (¶0110).
 2. **Construction.** Nine elements in eight groups, all spherical, with one cemented pair.
 3. **Maker drawing.** Yongnuo's construction drawing shows the same sequence: two positive menisci, a cemented negative–positive pair with the ED element in the L14 position, a single thin concave lens ahead of the stop, and four rear elements with a long air gap before a final meniscus concave to the object.
-4. **ED glass.** L14 (nd 1.497, νd 81.61) is the only fluorophosphate-class glass, matching the one ED element Yongnuo lists.
+4. **ED glass.** L14 (nd 1.497, νd 81.61) is the lowest-dispersion glass in the lens, in the FCD1 / S-FPL51 class, matching the one ED element Yongnuo lists.
 5. **Focal length and length.** Example 1 is the closest of the three examples to 85 mm. Its 103.4 mm first-vertex-to-image track places the front glass 85.4 mm ahead of the Sony E flange (18 mm), in line with the 88 mm barrel. Examples 2 and 3 give 74.5 and 80.7 mm.
 6. **Focus.** The patent's 0.8 m close state (697 mm object distance plus the 103.4 mm track) is Yongnuo's 0.8 m minimum focus.
 7. **Timing.** Filed in June 2019, 14 months before the Sony version was announced.
@@ -92,7 +92,7 @@ The last lens, 15 mm behind L33 and 17.9 mm ahead of the image. ¶0123 names it 
 
 ## Glass Identification
 
-The patent prints nd and νd at the d-line (¶0117, ¶0120) and names no glass. All nine pairs equal a catalog row to the printed precision. The labels name that row as a catalog equivalent; the production supplier is not known. Only L14 is an anomalous-dispersion glass.
+The patent prints nd and νd at the d-line (¶0117, ¶0120) and names no glass. All nine pairs equal a catalog row to the printed precision. The labels name that row as a catalog equivalent; the production supplier is not known. L14 is the ED element. L12's catalog equivalent, S-FPM3, also has anomalous partial dispersion (catalog ΔPgF about +0.021, against +0.032 for L14's FCD1), but Yongnuo counts one ED element.
 
 | Element | nd | νd | Catalog equivalent | Role |
 | --- | --- | --- | --- | --- |

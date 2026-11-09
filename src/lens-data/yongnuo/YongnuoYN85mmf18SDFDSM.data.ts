@@ -13,12 +13,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * spacing; the L11 front arc confirms the same vertical scale), and floor-checked by real-ray trace; the patent
  * prints none. Fig. 1 reads L11 29.8, L12 24.1, L13 front 22.1, L14 18.0, L21 16.0, L31 14.7, L32 12.9, L33 11.6
  * and L34 14.0 mm. L11 is held at 29 mm, the radius of Yongnuo's 58 mm filter thread. L13's front is 22.1 mm,
- * stepping down to the 19 mm cemented interface. L14 is square-cut at 19 mm because the wide-open axial beam at
- * the printed 697 mm close state reaches 18.8 mm at the interface. L12 (24 mm), L21 (17), L31 (15), L32 (12.9),
- * L33 (12) and L34 (14) follow the figure within reading error. Every element except L13 keeps one height on both
- * faces.
- * Glass labels are catalog rows whose nd/νd equal the printed pairs; the production supplier is not known. L11
- * and L32 match no catalog row.
+ * stepping down to the 19 mm cemented interface; Fig. 1 draws a flat flange and a square step there, which the
+ * diagram can only draw as a taper (no land is allowed on a cemented face). L14 is square-cut at 19 mm because
+ * the wide-open axial beam at the printed 697 mm close state reaches 18.8 mm at the interface. L12 (24 mm), L21
+ * (17), L31 (15), L32 (12.9), L33 (12) and L34 (14) follow the figure within reading error. Every element except
+ * L13 keeps one height on both faces.
+ * Glass labels are catalog rows whose nd/νd equal the printed pairs; the production supplier is not known.
  * Probable match to the YN85mm F1.8S DF DSM (Sony E, 2020): ¶0110 names an 85mm F1.8 mirrorless lens, and
  * Yongnuo's 9/8 construction drawing shows the same element sequence, the ED element at L14 and the single
  * focusing lens ahead of the stop. The drawing does not separate Example 1 from Examples 2–3, and its shaded
@@ -77,92 +77,112 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L11",
+      "diagramLabel": "L11",
       "label": "Element 1",
       "type": "Positive Meniscus",
       "nd": 1.8213,
       "vd": 42.73,
+      "focalLengthMm": 87.11796126315882,
       "glass": "MP-TAFD51-50 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "High-index positive meniscus front element, convex to the object; the main collector of the fixed first group."
     },
     {
       "id": 2,
       "name": "L12",
+      "diagramLabel": "L12",
       "label": "Element 2",
       "type": "Positive Meniscus",
       "nd": 1.53775,
       "vd": 74.7,
+      "focalLengthMm": 98.06865524256378,
       "glass": "S-FPM3 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Low-dispersion crown positive meniscus, convex to the object; shares the first group's convergence with L11."
     },
     {
       "id": 3,
       "name": "L13",
+      "diagramLabel": "L13",
       "label": "Element 3",
       "type": "Negative Meniscus",
       "nd": 1.8061,
       "vd": 33.27,
+      "focalLengthMm": -36.25875717344259,
       "glass": "NBFD15 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "High-index flint negative meniscus, nearly flat in front, leading the cemented doublet; the flint partner of the ED element L14."
+      "role": "High-index flint negative meniscus, nearly flat in front, leading the cemented doublet; the flint partner of the ED element L14.",
+      "cemented": "L13 / L14"
     },
     {
       "id": 4,
       "name": "L14",
+      "diagramLabel": "L14",
       "label": "Element 4",
       "type": "Positive Meniscus",
       "nd": 1.497,
       "vd": 81.61,
+      "focalLengthMm": 71.00434147564626,
       "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
       "apdNote": "Yongnuo's construction drawing marks this position as the ED element, and the printed nd/νd equal the FCD1 / S-FPL51 fluorophosphate class.",
-      "role": "ED positive meniscus closing the cemented doublet; corrects the first group's axial colour against L13."
+      "role": "ED positive meniscus closing the cemented doublet; corrects the first group's axial colour against L13.",
+      "cemented": "L13 / L14"
     },
     {
       "id": 5,
       "name": "L21",
+      "diagramLabel": "L21",
       "label": "Element 5",
       "type": "Biconcave Negative",
       "nd": 1.6127,
       "vd": 58.7169,
+      "focalLengthMm": -72.33828431763945,
       "glass": "BSM4 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Thin, nearly plano-concave focusing element (the whole second group); moves 14.5 mm toward the image for close focus."
     },
     {
       "id": 6,
       "name": "L31",
+      "diagramLabel": "L31",
       "label": "Element 6",
       "type": "Positive Meniscus",
       "nd": 1.7865,
       "vd": 50,
+      "focalLengthMm": 47.10658519312321,
       "glass": "YGH52 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "High-index, nearly plano-convex element just behind the stop; the strongest positive element of the rear group."
     },
     {
       "id": 7,
       "name": "L32",
+      "diagramLabel": "L32",
       "label": "Element 7",
       "type": "Negative Meniscus",
       "nd": 1.5955,
       "vd": 38.77,
+      "focalLengthMm": -313.3207348906547,
       "glass": "PBM18Y (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Weak negative meniscus, convex to the object, 0.15 mm behind L31; the meniscus of the patent's condition (6)."
     },
     {
       "id": 8,
       "name": "L33",
+      "diagramLabel": "L33",
       "label": "Element 8",
       "type": "Positive Meniscus",
       "nd": 1.7555,
       "vd": 25.07,
+      "focalLengthMm": 307.76387161566765,
       "glass": "TPH55 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Weak dense-flint positive meniscus, concave to the object; trims the colour of the rear group."
     },
     {
       "id": 9,
       "name": "L34",
+      "diagramLabel": "L34",
       "label": "Element 9",
       "type": "Negative Meniscus",
       "nd": 1.72825,
       "vd": 28.41,
+      "focalLengthMm": -82.38258015860343,
       "glass": "SF10 (SCHOTT catalog equivalent; production supplier unspecified)",
       "role": "Negative meniscus, concave to the object, 15 mm behind L33; the last lens, flattening the field ahead of the 17.9 mm back focus."
     }
