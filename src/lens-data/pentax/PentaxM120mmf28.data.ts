@@ -1,20 +1,35 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Whole US 4,134,645 A Example 1 at uniform 1.2x retail-scale hypothesis.
- * Literal source plane z=106.776 mm and final gap 42.624 mm are not refocused.
- * Stop is inferred 5 mm after surface 6; its radius follows the shared F/N rule.
- * Clear radii 22/11.5 mm are figure-guided estimates, not manufacturing apertures.
- * Probable product association, not factory confirmation. Infinity-only geometry.
- * Native geometry and bounded rays/MTF evaluated; full integration gates pending.
- * Source erratum (unresolved): the printed table traces to f = 99.23 / back focus 35.21 at patent scale against the
- * stated F = 100 / 35.52 and F1.2.3.4 = 52.73. r8 = 53.39 instead of the printed 53.93 reproduces all three, but the
- * claims and the Japanese original JP S53-27421 A print 53.93 too, so the printed value is kept.
+/**
+ * US 4,134,645 A (Sugiyama, Kubota and Adachi, Asahi Kogaku Kogyo), Example 1 (PDF p. 6, repeated in claim 1;
+ * section in Fig. 1, aberration plots in Fig. 2), a probable match to the smc Pentax-M 120mm f/2.8 (1977). The match
+ * rests on construction (five single elements in five groups, all spherical), f/2.8, a ±10.2° field that reaches the
+ * corner of the 35 mm frame at 120 mm, and timing; Examples 2 and 3 of the patent fit the Pentax-M 135mm f/3.5 and
+ * 150mm f/3.5, and the PhotonsToPhotos Optical Bench Hub lists Example 1 as this lens. The patent names no product,
+ * so this is a patent design, not a confirmed factory prescription.
+ * Scale: the patent is normalized to F = 100. Every printed R and d and the printed back focus are multiplied by
+ * exactly 1.2 for f = 120 mm (computed EFL 119.081 mm, see the erratum). All surfaces are spherical, so no
+ * coefficient transform applies.
+ * Printed: R, d, n, Abbe number, f/2.8, half-field 10.2°, back focus 35.52 (42.624 mm here), F1.2.3 = 77.97,
+ * F1.2.3.4 = 52.73 and a Petzval sum of 0.170. The model reproduces F1.2.3 (77.975 at F = 100) but not F1.2.3.4.
+ * Source erratum (unresolved): the printed table traces to f = 99.23, back focus 35.21 and F1.2.3.4 = 52.54 at
+ * F = 100, against the stated 100, 35.52 and 52.73. Reading r8 as 53.39 instead of the printed 53.93 reproduces all
+ * three, but the claims and the Japanese original JP S53-27421 A also print 53.93, so the printed value is kept.
+ * Image plane: the final gap keeps the printed back focus, 42.624 mm. The paraxial back focus is 42.249 mm, so the
+ * printed plane lies 0.375 mm behind paraxial focus; it is not refocused.
+ * Stop: the patent neither prints nor draws one. It sits in the long air space d6, 5 mm behind S6, which splits d6
+ * into 5 + 29.608 mm; its radius is set by the paraxial entrance pupil, F/N.
+ * Semi-diameters are inferred, none is printed: 22 mm on the three front elements and 11.5 mm on the rear pair, the
+ * heights of Fig. 1 read at the scale of its S1 to S10 vertex span (the rear pair is drawn about half as tall).
+ * Glass: four of the five n/ν pairs equal catalog d-line rows at the printed precision, so the table is read as d-line.
+ * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies. The
+ * 1.2 m minimum focus is Pentax's retail figure and is not modeled.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "pentax-m-120mm-f28",
   "maker": "Pentax",
   "name": "PENTAX SMC M 120mm f/2.8",
-  "subtitle": "US 4,134,645 A; probable product association, uniformly scaled prescription and inferred apertures",
+  "subtitle": "US 4,134,645 A, Example 1 — probable match to the 1977 production lens",
   "catalog": {
     "lensMounts": [
       "pentax-k"
@@ -30,10 +45,15 @@ const LENS_DATA = {
       "marketing": 2.8,
       "design": 2.8
     },
+    "closeFocusM": {
+      "marketing": 1.2
+    },
     "specs": [
       "5 ELEMENTS / 5 GROUPS",
+      "DESIGN f = 120 mm",
+      "DESIGN F/2.8",
       "ALL SPHERICAL",
-      "QUALIFIED PATENT RECONSTRUCTION"
+      "PATENT f = 100 SCALED × 1.2"
     ]
   },
   "source": {
@@ -54,7 +74,7 @@ const LENS_DATA = {
     "errata": [
       {
         "status": "unresolved",
-        "note": "Example 1 traces to f = 99.23 and back focus 35.21 at the patent's F = 100 scale, against the stated F = 100, back focus 35.52 and F1.2.3.4 = 52.73. Reading r8 as 53.39 instead of the printed 53.93 reproduces all three, but the claims and the Japanese original JP S53-27421 A also print 53.93, so the printed value is kept."
+        "note": "Example 1 traces to f = 99.23, back focus 35.21 and F1.2.3.4 = 52.54 at the patent's F = 100 scale, against the stated 100, 35.52 and 52.73. Reading r8 as 53.39 instead of the printed 53.93 reproduces all three, but the claims and the Japanese original JP S53-27421 A also print 53.93, so the printed value is kept."
       }
     ]
   },
@@ -67,8 +87,8 @@ const LENS_DATA = {
       "nd": 1.51821,
       "vd": 65,
       "focalLengthMm": 121.41112278125732,
-      "glass": "Unmatched (patent n=1.51821, V=65.0)",
-      "indexReferenceNote": "Source n/v and d/g aberration plots support an inferred d-line reference. Supplier, melt and partial dispersion are not specified."
+      "glass": "Unmatched (patent nd 1.51821, νd 65.0)",
+      "role": "Positive crown meniscus, convex to the object; the first of the three closely spaced front elements."
     },
     {
       "id": 2,
@@ -78,8 +98,8 @@ const LENS_DATA = {
       "nd": 1.80518,
       "vd": 25.4,
       "focalLengthMm": -109.01326128236924,
-      "glass": "Unmatched (patent n=1.80518, V=25.4)",
-      "indexReferenceNote": "Source n/v and d/g aberration plots support an inferred d-line reference. Supplier, melt and partial dispersion are not specified."
+      "glass": "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Dense-flint biconcave negative between the two front positives; achromatizes the front group (condition (4), ν2 < 28)."
     },
     {
       "id": 3,
@@ -89,8 +109,8 @@ const LENS_DATA = {
       "nd": 1.55963,
       "vd": 61.2,
       "focalLengthMm": 84.52659386822948,
-      "glass": "Unmatched (patent n=1.55963, V=61.2)",
-      "indexReferenceNote": "Source n/v and d/g aberration plots support an inferred d-line reference. Supplier, melt and partial dispersion are not specified."
+      "glass": "S-BAL50 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Strongest positive element, a crown meniscus convex to the object; completes the front group ahead of the long air space."
     },
     {
       "id": 4,
@@ -100,8 +120,8 @@ const LENS_DATA = {
       "nd": 1.80518,
       "vd": 25.4,
       "focalLengthMm": 99.99213993087761,
-      "glass": "Unmatched (patent n=1.80518, V=25.4)",
-      "indexReferenceNote": "Source n/v and d/g aberration plots support an inferred d-line reference. Supplier, melt and partial dispersion are not specified."
+      "glass": "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Dense-flint positive meniscus behind the long air space; the patent gives it a low Abbe number to correct lateral color."
     },
     {
       "id": 5,
@@ -111,8 +131,8 @@ const LENS_DATA = {
       "nd": 1.8061,
       "vd": 40.9,
       "focalLengthMm": -49.05058562397137,
-      "glass": "Unmatched (patent n=1.80610, V=40.9)",
-      "indexReferenceNote": "Source n/v and d/g aberration plots support an inferred d-line reference. Supplier, melt and partial dispersion are not specified."
+      "glass": "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Negative meniscus concave to the object; the telephoto rear negative, whose index above 1.62 keeps the Petzval sum from falling."
     }
   ],
   "surfaces": [
@@ -188,8 +208,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1.2,
-    "description": "Infinity-only static model. Manufacturer minimum focus is 1.2 m; no source-backed focus travel is modeled."
+    "closeFocusM": 1000000000000000.0,
+    "description": "The patent names no focusing group or motion and prints the infinity state only, with its back focus of 35.52 at F = 100 (42.624 mm here), so the lens is modeled at infinity with no focus movement. Pentax's retail minimum focus of 1.2 m is not modeled."
   },
   "aperture": {
     "nominalFNumber": 2.8,
@@ -203,7 +223,8 @@ const LENS_DATA = {
       22,
       32
     ],
-    "maxFNumber": 32
+    "maxFNumber": 32,
+    "blades": 8
   },
   "projection": {
     "kind": "rectilinear",
@@ -212,12 +233,12 @@ const LENS_DATA = {
   },
   "groups": [
     {
-      "text": "FRONT",
+      "text": "Front",
       "fromSurface": "1",
       "toSurface": "6"
     },
     {
-      "text": "REAR",
+      "text": "Rear",
       "fromSurface": "7",
       "toSurface": "10"
     }
