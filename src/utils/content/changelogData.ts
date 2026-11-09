@@ -19,7 +19,7 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
-    date: "2026-11-09",
+    date: "2026-11-14",
     type: "lens",
     summary:
       "Added the Canon RF 24mm f/1.8 Macro, Pentax DA* 55mm f/1.4, M 28mm f/3.5, Super-Takumar 300mm f/4 and Takumar 6x7 300mm f/4, Sigma 30mm f/2.8 DN Art and Olympus H.Zuiko 35mm f/2",
