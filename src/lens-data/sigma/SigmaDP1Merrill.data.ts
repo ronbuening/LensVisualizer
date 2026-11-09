@@ -9,12 +9,15 @@
  * lengths 11.71 and -26.50 mm. The filter (S19-S20, 1.20 mm, nd 1.52301, νd 58.59) is a rear plate with its printed
  * 1.00 mm and 4.9327 mm gaps; the paraxial back focus is 0.0001 mm shorter than the printed image gap.
  * Stop: printed as surface 5, 6.10 mm behind S4 and 2.20 mm ahead of S6. Its radius (3.410 mm) is set from F2.89.
- * Semi-diameters are inferred, none is printed. They are read from Fig. 10 (PDF p. 25) at its axial scale (first to
- * last vertex, 39.85 mm). Fig. 10 draws flat lands on S4 and S15: S4 is clear to 5.2 mm with its blank to 9.2 mm,
- * S15 clear to 7.8 mm with its blank to 11.2 mm. S13, S14 and S15 are held to 7.8 mm: at the drawn height of about
- * 9.2 mm, S14 and S15 would overlap across the 6.63 mm gap (combined sag 8.97 mm), so the figure is schematic there.
- * S4's 5.2 mm clear radius and the cemented pair's 6.1 mm rims sit at the rim-slope limits of S4 (R 5.79) and the
- * S7 junction (R -6.84).
+ * Semi-diameters are estimated from Fig. 10 (PDF p. 25), none is printed, and checked by real-ray trace. The figure
+ * is drawn taller than it is long: at 400 dpi the axial scale is 15.23 px/mm (S1 to S18, 607 px for 39.85 mm) and the
+ * height scale 17.0 px/mm, from the image-plane line (242 px for the printed 14.20 mm) and arc fits to S4, S7 and the
+ * S17 asphere. Read at that height scale, the elements end at: L1 10.8 mm, L2 8.2 mm, the cemented pair 6.1 mm,
+ * L5 7.4 mm, L6 8.1 mm, L7 8.3 mm, L8 10.1 mm and L9 12.9 mm. Fig. 10 draws flat lands behind L1 (S2 clear to
+ * 8.9 mm), behind L2 (S4 clear to 5.2 mm, the rim-slope limit of R 5.79), behind L7 (S14 clear to 7.8 mm) and in
+ * front of L8 (S15 clear to 8.3 mm, where it meets L7's corner). The cemented pair's 6.1 mm rims sit at the
+ * rim-slope limit of the S7 junction (R -6.84). S14's land and S15 come within 0.30 mm at 8.3 mm without crossing;
+ * checks.gapSagFrac 0.96 is the smallest two-decimal value that admits them.
  * Focus: the patent moves the first group (elements 1-6 and the stop) toward the object, but prints the infinity
  * state only, so no gap varies. Sigma's 0.2 m minimum focus is not modeled.
  */
@@ -163,27 +166,28 @@ const LENS_DATA = {
       R: 22.61,
       d: 2.83,
       medium: 1,
-      sd: 12.1,
+      sd: 10.8,
     },
     {
       label: "2",
       R: 39.37,
       d: 0.3,
-      sd: 12.1,
+      sd: 8.9,
+      rimExtensionSd: 10.8,
     },
     {
       label: "3",
       R: 14.81,
       d: 0.9,
       medium: 2,
-      sd: 9.2,
+      sd: 8.2,
     },
     {
       label: "4",
       R: 5.79,
       d: 6.1,
       sd: 5.2,
-      rimExtensionSd: 9.2,
+      rimExtensionSd: 8.2,
     },
     {
       label: "STO",
@@ -215,20 +219,20 @@ const LENS_DATA = {
       R: 223.5,
       d: 2.4,
       medium: 5,
-      sd: 8.3,
+      sd: 7.4,
     },
     {
       label: "10",
       R: -28.93,
       d: 0.15,
-      sd: 8.3,
+      sd: 7.4,
     },
     {
       label: "11",
       R: 119.0,
       d: 3.58,
       medium: 6,
-      sd: 9.1,
+      sd: 8.1,
     },
     {
       label: "12A",
@@ -241,34 +245,35 @@ const LENS_DATA = {
         A8: 3.4161e-9,
         A10: -1.4931e-11,
       },
-      sd: 9.1,
+      sd: 8.1,
     },
     {
       label: "13",
       R: 31.81,
       d: 0.9,
       medium: 7,
-      sd: 7.8,
+      sd: 8.3,
     },
     {
       label: "14",
       R: 12.5,
       d: 6.63,
       sd: 7.8,
+      rimExtensionSd: 8.3,
     },
     {
       label: "15",
       R: -11.38,
       d: 0.9,
       medium: 8,
-      sd: 7.8,
-      rimExtensionSd: 11.2,
+      sd: 8.3,
+      rimExtensionSd: 10.1,
     },
     {
       label: "16",
       R: -23.91,
       d: 0.15,
-      sd: 11.2,
+      sd: 10.1,
     },
     {
       label: "17A",
@@ -282,13 +287,13 @@ const LENS_DATA = {
         A8: 7.2849e-10,
         A10: -1.009e-12,
       },
-      sd: 14.4,
+      sd: 12.9,
     },
     {
       label: "18",
       R: -95.67,
       d: 1.0,
-      sd: 14.4,
+      sd: 12.9,
     },
   ],
   focus: {
@@ -331,6 +336,9 @@ const LENS_DATA = {
       toSurface: "8",
     },
   ],
+  checks: {
+    gapSagFrac: 0.96,
+  },
   layout: {
     scFill: 0.55,
     yScFill: 0.38,

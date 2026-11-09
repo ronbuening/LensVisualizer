@@ -42,7 +42,7 @@ Convex to the object and the only positive element ahead of the stop. Its high i
 
 nd = 1.43700, νd = 95.10. Glass: FCD100 (HOYA) equivalent, fluorophosphate crown of very low dispersion. f = −22.4 mm.
 
-The deep concave rear face (R 5.79 mm) gives the front subgroup its negative power, which the patent requires of the part of G1 ahead of the stop. Fig. 10 and Sigma's drawing both show a flat land around that face, modeled as a 5.2 mm clear radius on a 9.2 mm blank. Its glass matches Sigma's one FLD element; the model tags it as inferred anomalous dispersion.
+The deep concave rear face (R 5.79 mm) gives the front subgroup its negative power, which the patent requires of the part of G1 ahead of the stop. Fig. 10 and Sigma's drawing both show a flat land around that face, modeled as a 5.2 mm clear radius on an 8.2 mm blank. Its glass matches Sigma's one FLD element; the model tags it as inferred anomalous dispersion.
 
 ### L3 and L4 — Cemented Doublet
 
@@ -73,13 +73,13 @@ Opens the fixed rear group G2, 1.00 mm behind L6 at infinity. Its strongly conca
 
 nd = 1.54072, νd = 47.20. Glass: E-FEL2 (HOYA) equivalent, light flint. f = −41.2 mm.
 
-Concave to the object (R −11.38) and facing L7 across a 6.63 mm air space, so the two concave faces enclose a strongly curved air lens. Fig. 10 and Sigma's drawing show L8 taller than L7, with a flat land around its front face; the model gives it a 7.8 mm clear radius on an 11.2 mm blank.
+Concave to the object (R −11.38) and facing L7 across a 6.63 mm air space, so the two concave faces enclose a strongly curved air lens. Fig. 10 and Sigma's drawing show L8 taller than L7, with a flat land around its front face; the model gives it an 8.3 mm clear radius, where the face meets L7's corner, on a 10.1 mm blank.
 
 ### L9 — Biconvex Positive (Asph)
 
 nd = 1.69350, νd = 53.20. Glass: M-LAC130 (HOYA) equivalent, precision-moulding lanthanum crown. f = +67.6 mm.
 
-The largest element (14.4 mm semi-diameter) and the last of the lens, with nearly equal radii (R 90.38 / −95.67). Its aspheric front face S17 sits where the chief ray is highest (about 11 mm at the field edge), so it acts mainly on the off-axis aberrations. The moulding glass again agrees with Sigma's description.
+The largest element (12.9 mm semi-diameter) and the last of the lens, with nearly equal radii (R 90.38 / −95.67). Its aspheric front face S17 sits where the chief ray is highest (about 11 mm at the field edge), so it acts mainly on the off-axis aberrations. The moulding glass again agrees with Sigma's description.
 
 ## Glass Identification and Selection
 
@@ -132,7 +132,9 @@ The patent ties conditions (1)–(4) to field curvature and astigmatism at the e
 
 The patent prints the stop position but no diameters. The stop radius, 3.410 mm, is set so that the lens works at the printed F2.89, and the stop limits the axial beam at every aperture.
 
-All semi-diameters are inferred from Fig. 10 read at its axial scale. The figure shows flat lands on S4 and S15, modeled as clear radii of 5.2 and 7.8 mm on blanks of 9.2 and 11.2 mm. L7 and the front of L8 are held to 7.8 mm, below the figure's drawn height of about 9.2 mm: at that height S14 and S15 would overlap across their 6.63 mm air space, so the figure is schematic there. The cemented pair has 6.1 mm rims on both faces.
+All semi-diameters are estimated from Fig. 10. The figure is drawn about 12 % taller than it is long: its image-plane line spans the printed 14.20 mm image height at 17.0 px/mm against 15.23 px/mm along the axis, and arc fits to S4, the S7 junction and the S17 asphere give the same height scale. Read that way, every drawn arc follows the prescription to its rim. The outer radii are 10.8 mm (L1), 8.2 mm (L2), 6.1 mm (the cemented pair), 7.4 mm (L5), 8.1 mm (L6), 8.3 mm (L7), 10.1 mm (L8) and 12.9 mm (L9).
+
+The figure draws flat lands on four faces, which the model keeps: behind L1 (S2 clear to 8.9 mm), behind L2 (S4 clear to 5.2 mm, the slope limit of its 5.79 mm radius), behind L7 (S14 clear to 7.8 mm) and in front of L8 (S15 clear to 8.3 mm). L7's land and the front face of L8 come within 0.30 mm of each other at the rim without touching, as the figure draws them.
 
 ## Model Scope and Limitations
 
@@ -147,7 +149,7 @@ All semi-diameters are inferred from Fig. 10 read at its axial scale. The figure
 - The prescription is the patent's Example 4, a probable match to the production lens rather than a confirmed factory prescription.
 - All semi-diameters and the stop radius are inferred; the image plane is the printed one.
 - The model is static at infinity and says nothing about performance at 0.2 m.
-- At the patent's 37.59° field edge the chief ray reaches 14.20 mm of image height, and about two-thirds of the f/2.89 beam passes the model's rims.
+- At the patent's 37.59° field edge the chief ray reaches 14.20 mm of image height, and nearly four-fifths of the f/2.89 beam (79 %) passes the model's rims, which are limited there mainly by the rear face of the cemented pair.
 - Dispersion follows the Hoya catalog equivalents, so color results, including the C/d/F MTF, rest on catalog curves rather than the production melts.
 
 ## Sources

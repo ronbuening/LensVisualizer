@@ -51,4 +51,55 @@ and total length 46.9827 mm, all unchanged; only `closeFocusM` changed. Surface 
 rim limit.
 
 Open: the diagram's default half-field is 32.11° because S15's 7.8 mm clear radius sets the paraxial limit, while the
-real chief ray clears to the patent's 37.59° (7.55 mm at S15). Rims were left as they are in this pass.
+real chief ray clears to the patent's 37.59° (7.55 mm at S15). Rims were left as they are in this pass. (Partly
+closed in the semi-diameter pass below: 33.73°; the rest needs a declared projection field.)
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/JP2013137377A.pdf`, PDF p. 25, Fig. 10 (Example 4), a 400 ppi CCITT raster, measured at 400 dpi with
+the axis on row 1649. Axial scale: vertex crossings at x = 1748 (S1) and 2355 (S18) give 607 px for 39.85 mm,
+15.23 px/mm; S6, S8, S12, S14, S15 and S17 land within 0.15 mm of their prescription positions. Height scale:
+17.0 px/mm, not the axial one. Four independent checks agree: the image-plane line is 242–243 px high for the printed
+14.20 mm image height (17.1); the S4 arc (R 5.79) fits at 17.0 and is impossible at 15.23; the S7 junction (R −6.84)
+fits at 16.5–16.7; and the S17 asphere's sag at its drawn rim (23 px) matches the polynomial at 12.9 mm. The figure is
+therefore drawn about 12 % taller than it is long. The first section above read heights at the axial scale, which
+made every rim about 11 % too large and made L7 and L8 look as if they overlapped; at the true height scale they meet
+without crossing, so the figure is not schematic there.
+
+Readings (px at 17.0 px/mm), with the overlay confirming that every drawn arc follows the prescription to its rim:
+
+| Surface | Before | Figure | After | Evidence |
+|---|---|---|---|---|
+| S1 | 12.1 | 184–185 px = 10.8–10.9 | 10.8 | S1 meets the outer edge at x = 1792, matching R 22.61 at 10.8 |
+| S2 | 12.1 | clear 150.6 px = 8.86, land to 184 px | 8.9, land 10.8 | vertical land behind L1 at x = 1807 |
+| S3 | 9.2 | 139 px = 8.2 | 8.2 | S3 meets the flat top at x = 1834, matching R 14.81 at 8.2 |
+| S4 | 5.2, land 9.2 | clear 86–88 px = 5.1–5.2, land to 139 px | 5.2, land 8.2 | slope limit 5.21 kept |
+| S6–S8 | 6.1 | 104–105 px = 6.1–6.2 | 6.1 (kept) | square-cut pair, within noise |
+| S9, S10 | 8.3 | 125 px = 7.35 | 7.4 | flat run 2055–2074 matches both sags |
+| S11, S12A | 9.1 | 138 px = 8.1 | 8.1 | flat run 2097–2123 matches both sags |
+| S13 | 7.8 | 141 px = 8.3 | 8.3 | L7's outer edge, above L6 as drawn |
+| S14 | 7.8 | clear 133 px = 7.8, land to 140.6 px | 7.8, land 8.3 | short land behind L7 (800 dpi crop) |
+| S15 | 7.8, land 11.2 | clear 140.6 px = 8.27, land to 170–171 px | 8.3, land 10.1 | S15 ends at L7's corner |
+| S16 | 11.2 | 171 px = 10.06 | 10.1 | S16 meets the flat top at x = 2256 |
+| S17A, S18 | 14.4 | 219 px = 12.9 | 12.9 | flat run 2317–2342 matches both sags |
+
+Most rims fall by 10–11 %: one scale correction, with element proportions unchanged. L7 and S15 rise 0.5 mm to the
+figure; with L6 at 8.1 mm, keeping L7 at 7.8 would have reversed the drawn step between them. S14's land plane and S15
+at 8.3 mm are 0.30 mm apart and do not cross; the cross-gap check counts 6.327 mm of the 6.630 mm gap, so
+checks.gapSagFrac 0.96 is the smallest two-decimal value that admits them. No asphere approaches a turnover:
+`--scan` shows S17A monotonic to 14.4 mm and S12A to 9.1 mm.
+
+Clearance and light: no CLIPS-AXIAL or BLOCKS-CHIEF at Y = 14.2 mm; the stop still limits the axial beam at F2.89;
+image circle and field coverage unchanged (37.5° reaches the 14.18 mm corner, clear). Corner transmission against
+the starting rims is unchanged at every field to 34.7° (86.2 % there) and rises from 66.6 % to 78.7 % at 37.5°,
+because of the wider S15; no cut costs light, and the cemented pair's rear face now limits the edge field. Engine:
+EFL 18.8212 mm, F/2.89 and stop radius 3.4101 mm unchanged; half-field 32.11° → 33.73°.
+
+Maker drawing (second check): Sigma's catalog drawing has the same nine elements in eight groups, the flanged L2,
+the facing L7–L8 pair with L8 taller and stepped, and L9 the tallest element. It shades L2 (FLD) and L6 and L9
+(moulded aspheres). It draws L4 taller than L3 and L7 relatively taller (0.87 of L1, against 0.77 here) and shows no
+land behind L1; the patent figure governs.
+
+Open: the engine's diagram half-field (33.73°) is still a paraxial S15 limit below the patent's 37.59°, and no rim the
+figure allows can lift it (it would need S15 at about 9.6 mm, past where L7 and L8 meet). Declaring the patent's field
+as a rectilinear projection (fullFieldDeg 75.18) would set it directly; that field is outside this pass.
