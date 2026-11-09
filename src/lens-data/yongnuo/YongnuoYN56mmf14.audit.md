@@ -60,7 +60,8 @@ at infinity; close-state EFLs 56.4281 / 54.7129. audit:surface OK; audit:apertur
 
 Open: L8 (S-LAH55V class) and L1/L5 (S-TIH53 class) miss the exact window only because nd is printed to three
 decimals; a looser rule for three-decimal patents would label them. `rearPlates[0].source` still reads "literal
-physical plate and image spacing" (rear plates were outside this pass).
+physical plate and image spacing" (rear plates were outside this pass). (Closed 2026-11-09: the glass coverage pass
+labelled L1/L5, L2 and L8 as nearest rows, and the plate source now cites Table 1 S22–S23.)
 
 ## 2026-11-09 — Semi-diameter pass against the patent figure
 
@@ -111,7 +112,74 @@ Page renders at the three printed focus states show L5's land ahead of the stop,
 
 The patent prints nd to three decimals, so the five elements the cleanup pass left `Unmatched` (L1, L5 1.847 / 23.79;
 L2 1.603 / 38.00; L6 1.438 / 94.58; L8 1.835 / 42.73) and the GL plate (1.517 / 64.2) match catalog rows to the printed
-precision: OHARA S-TIH53, HOYA E-F5, OHARA S-FPL55, OHARA S-LAH55V and CDGM H-K9L (Δnd ≤ 0.00042, Δνd ≤ 0.08). Their
+precision: OHARA S-TIH53, HOYA E-F5, OHARA S-FPL55, OHARA S-LAH55V and CDGM H-K9L (Δnd ≤ 0.00075, Δνd ≤ 0.08). Their
 labels name each as the nearest catalog row to the printed pair; every element and the plate now trace on catalog
 dispersion curves. L6, the element Yongnuo marks ED, takes S-FPL55 (νd 94.66) rather than S-FPL53 (94.95) because it
 is the closer row.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the local page at infinity, X20 and MOD, the focus-movement overlay and the inspector (G4, G5, G6) with
+Fig. 1 (page 8, native 909 × 406 px at 150 ppi, read at 300 dpi), Table 2, Figs. 2–3 and the claim and ¶0031–¶0033
+text. Scale, proved again: vertex crossings give 16.42 px/mm along the axis (S1 to image 1560.5 px for 94.998 mm;
+S1–S12, S1–S21 and S5–S17 16.41–16.42); arc fits of S5, S9, S12, S13, S18 and S19 give 16.20–16.74 px/mm across
+(mean 16.54); the stop ticks end at 188.5 px, 11.48 mm against the 11.50 mm stop, and sit 38.40 mm behind S1
+(STO 38.47). Overlay: model rims in red over the figure, baseline G5 in blue.
+
+Rims re-measured at the outline centre, top and bottom averaged: G1 19.6, G2 19.25, G3 19.0, G4 15.9, G5 14.9 (cap
+end 11.6 mm, land 4.38 mm behind the S9 vertex), G6 12.15, G7 12.4, G8 12.6, G9 12.2, G10 13.2 mm. Every stored rim
+is within 6% (G10 14 is the largest gap) and no step is reversed; G1 = G2 and G7 = G8 in the model where the figure
+has 0.35 and 0.2 mm steps, inside the reading error. No rim changed. The figure draws G5 square at 14.9 mm with G4
+1 mm taller at the cemented face; with the shared S8 at 16 the page shows G5's top edge falling from 16 to the land.
+S8 at 14.9 would move that bevel onto G4 (1.1 mm over its 1.7 mm edge), so S8 stays at 16.
+
+| Item | Baseline | Final | Fig. 1 | Light | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| S9 `sd` (cut) | 16 | 14.9 | 14.9 | 0.0 points | keep (slight) |
+| S9 `rimCutDepthMm` (land) | none | 4.47, cut radius 11.92 | land 4.38, cap end 11.6 | 0.0 points | keep (drawn; slight) |
+
+Final `rimcost.mjs` worst loss 0.0 points (restoring S9 to 16 wins 0.0; the validator accepts it). The app curve at
+INF, X20 and MOD is identical for the baseline rims, the file and the file without its cut (38.8, 45.2 and 51.7% at
+the 12.8° edge). A finite-object lattice trace from the Table 2 object points gives the same corner before and
+after: X20 41.0% at 13.65 mm and 38.1% at the 14.18 mm APS-C corner, MOD 50.0% and 47.5%. Engine EFL 58.0958,
+f/1.4942, half-field 12.76° and stop radius 11.4956 are unchanged.
+
+Labels: elements L1–L10 → G1–G10, the patent's names (claim 1, ¶0031–¶0033); the doublet bracket L4/L5 → G4/G5;
+G2's role, the focus description, the header and the analysis prose remapped by element id. Groups GR1–GR3 and the
+diagram's numerals 1–10 already match the patent and Fig. 1's reference numerals; the stop sits between G5 and G6.
+The inspector showed "FL = —"; every element now carries `focalLengthMm` (thick lens at nd): 85.8, −64, 40.5,
+38.5, −18.2, −202.2, 37.8, 54.7, −23.1, 43.5 mm. Types agree with the signs of R; no aspheres. The patent names no
+special glass, so G4 (LD) and G6 (ED) stay `inferred` from Yongnuo's drawing; G6's `apdNote` now names S-FPL55 as
+the nearest row. The analysis glass paragraph no longer says G6 lacks partial-dispersion data, and the plate row
+names H-K9L.
+
+Movement: Table 2 D10 12.688 → 9.460 → 5.903 and D15 2.500 → 5.728 → 9.285 (sum 15.188) are in the file in that
+order; keyframe 0 is infinity and the last is MOD. GR2 alone moves 6.785 mm toward the object, as claim 1 and the
+Fig. 1 arrow state; GR1, the stop and GR3 stay fixed (the overlay shows 6.78 mm on GR2 only). The far label reads
+61 cm beside "marketed 60 cm": the MOD state's paraxial focus lies 0.17 mm behind the printed plane, so it is in
+paraxial focus at about 0.61 m.
+
+Colour against Fig. 2 (C, d, g): the curve that starts at zero is d (the model's d curve follows it within 0.003 mm
+to 0.7 of the pupil and 0.007 mm at the rim); Fig. 2's C and d labels sit beside each other's curves. C: +41.2 µm
+paraxial against +42.5, within 0.002 mm to 0.8 of the pupil. g: +20.5 µm against +15.4, and 5–7 µm high to 0.7
+of the pupil, beyond the 1 µm reading error. Label trials: G5 → FDS90 (HOYA) gives 14.8 / 26.7 / 59.9 / 102.3 µm
+at 0 / 0.5 / 0.7 / 0.9 against the plot's 15.4 / 26.5 / 59.3 / 100.6; G2 → F5 (SCHOTT) 15.6 / 27.7 / 61.1 / 103.9;
+G1 and G5 both → FDS90 17.7 at 0; G6 → S-FPL53 or FCD100 moves g by 0.5 µm or less.
+
+Fig. 3 fits the model on a field axis ending near 13.2° (2ω ≈ 26.4°, the APS-C corner and Yongnuo's angle of view):
+sagittal within 0.002 mm, tangential within 0.008 mm, distortion within 0.06 points (+4.26% against about +4.2% at
+the edge). On the header's 12.76° axis the model's distortion falls 10–15% short of the plot at every height.
+
+The glass coverage pass above gives Δnd ≤ 0.00042 for every relabel; G6's S-FPL55 is 0.00075 off (1.43875 does
+not round to 1.438). It still resolves inside the resolver window.
+
+Open: the g line sits 5–7 µm behind Fig. 2; one dense-flint row change (G5 → FDS90, or G2 → F5) closes it, but G1
+shares G5's printed pair. Left to the coordinator.
+
+Open: `projection.fullFieldDeg` is the header's 25.52°, while Fig. 3 is plotted to about 26.4°, which would reach
+the APS-C corner (96% now). Outside this review's edits.
+
+Coordinator follow-up, same day: `projection.fullFieldDeg` 25.52 → 26.4, so the page traces to the APS-C corner
+(half-field 13.2°), the field Fig. 3's axis and Yongnuo's angle of view use; the field-value `Open:` line above is
+closed by this. The glass coverage pass's "Δnd ≤ 0.00042" is corrected in place to 0.00075 (S-FPL55 on G6).
+Engine EFL and f-number unchanged; `audit:surface` OK; field coverage reaches the corner.

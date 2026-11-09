@@ -18,8 +18,8 @@ patent names no product, but the evidence linking its sole example to this lens 
 2. **Maker drawing.** Yongnuo's Optical Structure drawing shows the same sequence as Fig. 1: a positive meniscus and
    a biconcave element, a nearly plano-convex element, a cemented biconvex–biconcave doublet ahead of the stop, a
    negative meniscus concave to the stop, an equiconvex element, then a positive–negative–positive rear group. It
-   marks high-index glass on L3, L7 and L10 (all nd 1.883 in the patent), low-dispersion glass on L4 (νd 71.31) and
-   extra-low-dispersion glass on L6 (νd 94.58). The relative element heights also agree with Fig. 1.
+   marks high-index glass on G3, G7 and G10 (all nd 1.883 in the patent), low-dispersion glass on G4 (νd 71.31) and
+   extra-low-dispersion glass on G6 (νd 94.58). The relative element heights also agree with Fig. 1.
 3. **Close focus.** Table 2's minimum object distance, 505 mm from the first surface, plus the 95 mm track gives
    600 mm at about 0.11×; Yongnuo specifies 0.6 m and 0.11×.
 4. **Angle of view.** Yongnuo gives a 26.4° diagonal. The model's real chief ray reaches the APS-C corner
@@ -36,73 +36,75 @@ prescription.
 The header's 56 mm and F/1.4 are the product's nominal values. Table 2 prints 58.066 mm at infinity, and Fig. 2
 labels an entrance-pupil radius of 19.4398 mm, which gives F/1.49. The rounded table traces to 58.096 mm. The model
 sizes its stop from the Fig. 2 pupil, which gives an iris diameter of 22.99 mm (not printed) and F/1.494; it is not
-enlarged to reach F/1.4. The analysis field is limited to the patent's 2ω = 25.52°, which reaches a 13.65 mm image
-height, 96% of the APS-C corner; the corner chief ray also clears the modeled apertures.
+enlarged to reach F/1.4. The analysis field runs to 2ω = 26.4°, the APS-C corner and Yongnuo's stated angle of view,
+slightly past the 25.52° the patent's header gives; Fig. 3's field axis ends there too, and the corner chief ray clears
+the modeled apertures.
 
 ## Optical Architecture
 
-Ten spherical elements form nine groups, with one cemented doublet (L4/L5). The patent divides them into three
-positive groups (¶0006, ¶0030): a fixed front group GR1 (L1–L5, f ≈ +133.8 mm), the stop SP, a two-element focus
-group GR2 (L6–L7, f ≈ +42.0 mm) and a fixed, nearly afocal rear group GR3 (L8–L10, f ≈ +859 mm). The group focal
+Ten spherical elements form nine groups, with one cemented doublet (G4/G5). Element and group names are the
+patent's (G1–G10, GR1–GR3); Fig. 1 numbers the elements 1–10. The patent divides them into three
+positive groups (¶0006, ¶0030): a fixed front group GR1 (G1–G5, f ≈ +133.8 mm), the stop SP, a two-element focus
+group GR2 (G6–G7, f ≈ +42.0 mm) and a fixed, nearly afocal rear group GR3 (G8–G10, f ≈ +859 mm). The group focal
 lengths are paraxial values from Table 1. Only GR2 moves, so the length of the lens does not change with focus, and
 the patent presents the light two-element focus group and reduced breathing as the design's aims (¶0022–¶0024).
 
-The stop is row 10 of Table 1, 7 mm behind the doublet; the table has no row 11. Behind L10, Table 1 lists an
+The stop is row 10 of Table 1, 7 mm behind the doublet; the table has no row 11. Behind G10, Table 1 lists an
 11.5 mm air gap, a 2 mm plate (nd 1.517, νd 64.2) and 1 mm to the image, which the model keeps as a rear plate.
 
 ## Element-by-Element Analysis
 
-### L1 — Positive Meniscus, convex to object
+### G1 — Positive Meniscus, convex to object
 
 nd = 1.847, νd = 23.79. Glass: OHARA S-TIH53 (nearest catalog row). f = +85.8 mm. The first element begins
 converging the f/1.49 axial beam. Its rear surface (R 300.6 mm) is nearly flat, and a 1.15 mm air space separates it
-from L2.
+from G2.
 
-### L2 — Biconcave Negative
+### G2 — Biconcave Negative
 
 nd = 1.603, νd = 38.00. Glass: HOYA E-F5 (nearest catalog row). f = −64.0 mm. A nearly flat front (R −584.7 mm) and a
-strongly concave rear (R 41.4 mm) give the front group a negative element between L1 and L3.
+strongly concave rear (R 41.4 mm) give the front group a negative element between G1 and G3.
 
-### L3 — Positive Meniscus, nearly plano-convex
+### G3 — Positive Meniscus, nearly plano-convex
 
 nd = 1.883, νd = 39.23. Glass: H-ZLaF68N (CDGM catalog equivalent) — high index. f = +40.5 mm. One of the three
 elements Yongnuo marks as high-index glass; its high index lets it carry strong positive power with moderate
 curvature (R 34.6 / 951.8 mm).
 
-### L4/L5 — Cemented Doublet
+### G4/G5 — Cemented Doublet
 
-- **L4 (Biconvex Positive):** nd = 1.569, νd = 71.31. Glass: K-GFK70 (Sumita catalog equivalent) — LD. f = +38.5 mm.
-- **L5 (Biconcave Negative):** nd = 1.847, νd = 23.79. Glass: OHARA S-TIH53 (nearest catalog row). f = −18.2 mm.
+- **G4 (Biconvex Positive):** nd = 1.569, νd = 71.31. Glass: K-GFK70 (Sumita catalog equivalent) — LD. f = +38.5 mm.
+- **G5 (Biconcave Negative):** nd = 1.847, νd = 23.79. Glass: OHARA S-TIH53 (nearest catalog row). f = −18.2 mm.
 
 The doublet is negative overall (f ≈ −45.6 mm) and is the main achromatizing pair of the front group: a
-low-dispersion crown against a dense flint, cemented at S8 (R −108 mm). Yongnuo marks L4 as low-dispersion glass.
-L5's strongly concave rear surface (R 18.1 mm) faces the stop 7 mm behind it. Fig. 1 and Yongnuo's drawing both
-end that curve short of L5's rim in a flat land, which keeps the glass ahead of the stop plane.
+low-dispersion crown against a dense flint, cemented at S8 (R −108 mm). Yongnuo marks G4 as low-dispersion glass.
+G5's strongly concave rear surface (R 18.1 mm) faces the stop 7 mm behind it. Fig. 1 and Yongnuo's drawing both
+end that curve short of G5's rim in a flat land, which keeps the glass ahead of the stop plane.
 
-### L6 — Negative Meniscus, concave to object
+### G6 — Negative Meniscus, concave to object
 
 nd = 1.438, νd = 94.58. Glass: OHARA S-FPL55 (nearest catalog row) — ED. f = −202 mm. The weak front
 element of the focus group, concave toward the stop (R −18.9 / −25.6 mm). Yongnuo marks it as extra-low-dispersion
 glass. Claim 3 bounds its power relative to the group: F2a/F2 = −4.81 lies within −10 to −1 (¶0044–¶0047).
 
-### L7 — Biconvex Positive
+### G7 — Biconvex Positive
 
 nd = 1.883, νd = 40.79. Glass: H-ZLaF68C (CDGM catalog equivalent) — high index. f = +37.8 mm. Equiconvex
 (R ±65.85 mm); it gives the focus group its positive power (group f ≈ +42.0 mm, F2b/F2a = −0.19, within −2 to 0).
-L6 and L7 move together.
+G6 and G7 move together.
 
-### L8 — Biconvex Positive
+### G8 — Biconvex Positive
 
 nd = 1.835, νd = 42.73. Glass: OHARA S-LAH55V (nearest catalog row). f = +54.7 mm. Nearly flat in front
 (R 1162.8 mm), it opens the fixed rear group.
 
-### L9 — Biconcave Negative
+### G9 — Biconcave Negative
 
 nd = 1.620, νd = 36.33. Glass: E-F2 (Hoya catalog equivalent). f = −23.1 mm. The thin negative element between the
 rear group's two positive elements nearly cancels their power, leaving GR3 weakly positive (f ≈ +859 mm, inside
 claim 4's 200–2000 mm).
 
-### L10 — Biconvex Positive
+### G10 — Biconvex Positive
 
 nd = 1.883, νd = 39.23. Glass: H-ZLaF68N (CDGM catalog equivalent) — high index. f = +43.5 mm. The last element,
 which Yongnuo also marks as high-index glass, leaves 14.5 mm to the image plane, inside claim 5's 12–19 mm.
@@ -112,29 +114,31 @@ which Yongnuo also marks as high-index glass, leaves 14.5 mm to the image plane,
 The patent prints d-line nd to three decimals and νd to two, and names no glass. Every element carries a catalog row:
 where a row reproduces both printed values exactly it is named as a catalog equivalent, and where the printed
 three-decimal nd only rounds to a row (within 0.0005, νd within 0.1) the label names it as the nearest catalog row.
-The vendor is a catalog equivalent, not the production supplier.
+No row rounds to G6's printed nd 1.438; its label names the nearest fluorophosphate row. The vendor is a catalog
+equivalent, not the production supplier.
 
 | Element | nd / νd | Label | Notes |
 | --- | --- | --- | --- |
-| L1, L5 | 1.847 / 23.79 | S-TIH53 (OHARA), nearest row | Dense titanium flint, 1.84666 / 23.78 |
-| L2 | 1.603 / 38.00 | E-F5 (HOYA), nearest row | F5-type flint, 1.60342 / 38.01 |
-| L3, L10 | 1.883 / 39.23 | H-ZLaF68N (CDGM) | High-index lanthanum glass; marked high-index by Yongnuo |
-| L4 | 1.569 / 71.31 | K-GFK70 (Sumita) | Low-dispersion crown, catalog ΔPgF ≈ +0.021; marked LD by Yongnuo |
-| L6 | 1.438 / 94.58 | S-FPL55 (OHARA), nearest row | Fluorophosphate ED glass, 1.43875 / 94.66; marked ED by Yongnuo |
-| L7 | 1.883 / 40.79 | H-ZLaF68C (CDGM) | High-index lanthanum glass (TAFD30 and S-LAH58 also match); marked high-index by Yongnuo |
-| L8 | 1.835 / 42.73 | S-LAH55V (OHARA), nearest row | Lanthanum flint, 1.83481 / 42.73 |
-| L9 | 1.620 / 36.33 | E-F2 (Hoya) | F2-type flint |
-| Plate | 1.517 / 64.2 | — | BK7-type cover plate, kept as printed |
+| G1, G5 | 1.847 / 23.79 | S-TIH53 (OHARA), nearest row | Dense titanium flint, 1.84666 / 23.78 |
+| G2 | 1.603 / 38.00 | E-F5 (HOYA), nearest row | F5-type flint, 1.60342 / 38.01 |
+| G3, G10 | 1.883 / 39.23 | H-ZLaF68N (CDGM) | High-index lanthanum glass; marked high-index by Yongnuo |
+| G4 | 1.569 / 71.31 | K-GFK70 (Sumita) | Low-dispersion crown, catalog ΔPgF ≈ +0.021; marked LD by Yongnuo |
+| G6 | 1.438 / 94.58 | S-FPL55 (OHARA), nearest row | Fluorophosphate ED glass, 1.43875 / 94.66; marked ED by Yongnuo |
+| G7 | 1.883 / 40.79 | H-ZLaF68C (CDGM) | High-index lanthanum glass (TAFD30 and S-LAH58 also match); marked high-index by Yongnuo |
+| G8 | 1.835 / 42.73 | S-LAH55V (OHARA), nearest row | Lanthanum flint, 1.83481 / 42.73 |
+| G9 | 1.620 / 36.33 | E-F2 (Hoya) | F2-type flint |
+| Plate | 1.517 / 64.2 | H-K9L (CDGM), nearest row | BK7-type cover plate, 1.51680 / 64.20 |
 
-The near-matches for L1/L5, L2 and L8 miss the window only because the patent rounds nd to three decimals; L6's
-printed pair matches no catalog row. The chromatic strategy is conventional for a fast portrait prime: the LD/dense-
-flint doublet achromatizes the front group, and the ED meniscus sits in the focus group. Because L6 has no catalog
-partial-dispersion data, the model cannot represent its anomalous partial dispersion, and secondary-spectrum results
-are approximate.
+The chromatic strategy is conventional for a fast portrait prime: the LD/dense-flint doublet achromatizes the front
+group, and the ED meniscus sits in the focus group. G6 traces on the S-FPL55 curve, so the model carries a
+fluorophosphate's anomalous partial dispersion; the production glass may differ, so secondary-spectrum results are
+approximate. Against Fig. 2, the model's C curve follows the plot within about 0.002 mm out to 0.8 of the pupil,
+and its g curve lies 0.005–0.007 mm behind the plotted one out to 0.7. Fig. 2's C and d labels sit beside each
+other's curves: the d curve is the one that starts at zero.
 
 ## Focus Mechanism
 
-Inner focus: GR2 (L6–L7) moves 6.785 mm toward the object, while GR1, the stop and GR3 stay fixed relative to the
+Inner focus: GR2 (G6–G7) moves 6.785 mm toward the object, while GR1, the stop and GR3 stay fixed relative to the
 image plane (¶0006, ¶0030). Yongnuo drives it with a DSM stepping motor. Table 2 prints three states:
 
 | State | Object distance | f (Table 2) | D10 | D15 |
@@ -167,15 +171,18 @@ values.
 
 ## Model Scope and Limitations
 
-The surface semi-diameters are inferred, not printed: L1/L2 20 mm, L3 19 mm, L4 16 mm, L5 16 mm at the cemented
-face and 14.9 mm at the rear, L6 12.5 mm, L7/L8 13 mm, L9 12.5 mm and L10 14 mm, estimated from Fig. 1, which is
-drawn to scale, and consistent with Yongnuo's drawing. L5's rear curve ends at 11.9 mm, where an inferred flat land
+The surface semi-diameters are inferred, not printed: G1/G2 20 mm, G3 19 mm, G4 16 mm, G5 16 mm at the cemented
+face and 14.9 mm at the rear, G6 12.5 mm, G7/G8 13 mm, G9 12.5 mm and G10 14 mm, estimated from Fig. 1, which is
+drawn to scale, and consistent with Yongnuo's drawing. G5's rear curve ends at 11.9 mm, where an inferred flat land
 4.47 mm behind its vertex runs out to the rim; the land lies outside every wide-open beam. Wide open, the
 rims of the focus group and the rear group cut the edge-of-field bundles heavily on one side; by f/4 the full-field
 bundle passes unclipped. Off-axis illumination therefore depends on these inferred rims.
 
-Against the patent's own plots, the model's d-line spherical aberration follows Fig. 2 within about 0.01 mm. Its
-distortion follows Fig. 3 at mid-field and reaches +3.8% at the 12.76° field edge, where Fig. 3 reads about +4.3%.
+Against the patent's own plots, the model's d-line spherical aberration follows Fig. 2 within about 0.01 mm. Fig. 3
+matches the model only if its field axis ends near 13.2°, the APS-C corner (2ω ≈ 26.4°, Yongnuo's angle of view),
+rather than at the header's 12.76°. On that axis the model's distortion follows the plot within 0.06 percentage
+points (+4.26% at the edge against about +4.2%), its sagittal curve within about 0.002 mm, and its tangential curve
+within about 0.008 mm. At the 12.76° field edge the model's distortion is +3.8%.
 
 Yongnuo specifies a 58 mm filter, nine aperture blades, a minimum aperture of F/16 and a weight of about 368 g
 (Sony E version). [Dustin Abbott's review](https://dustinabbott.net/2025/03/yongnuo-yn-56mm-f1-4s-da-dsm-wl-pro-review/)
