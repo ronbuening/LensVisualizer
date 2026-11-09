@@ -124,7 +124,7 @@ const LENS_DATA = {
       "focalLengthMm": -20.14549257186005,
       "glass": "S-TIH14 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Dense-flint biconcave front element of the cemented doublet, deeply concave to the iris; the strongest negative element.",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 6,
@@ -136,7 +136,7 @@ const LENS_DATA = {
       "focalLengthMm": 26.09268151291995,
       "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "High-index biconvex rear element of the cemented doublet; the strongest positive element in the lens.",
-      "cemented": "D1"
+      "cemented": "C1"
     },
     {
       "id": 7,
@@ -326,7 +326,7 @@ const LENS_DATA = {
   },
   "doublets": [
     {
-      "text": "D1",
+      "text": "C1",
       "fromSurface": "9",
       "toSurface": "11"
     }

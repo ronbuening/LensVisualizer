@@ -91,3 +91,45 @@ Ricoh's.
 
 Open: Fig. 1 reads L1 at 36.3 mm, inside the f/4 entrance pupil; the rim stays at the pupil and the earlier Open line
 on its corner vignetting stands.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the local page (infinity, the L1 inspector, the movement overlay, the vignetting tab) and a model-over-figure
+overlay with Fig. 1 at its native 72 dpi. Axial scale re-measured from vertex crossings 16 px below the axis: S1 to
+the image line 8.43 px per unit at f = 100, S1 to S10 8.44, S8 to the image 8.47; the sheet is turned about 0.9°.
+Drawn half-heights (half the top-to-bottom height between line centres) are L1 102.25 px, L2 95.25, L3 95.25,
+L4 73.5 and L5 49.0: 36.3, 33.9, 33.9, 26.1 and 17.4 mm at the axial scale, or 37.5, 34.9, 34.9, 27.0 and 18.0 mm
+anchored to L1. Every stored rim lies within 5.5 % of one reading, the drawn order L1 > L2 = L3 > L4 > L5 holds on the
+page, and each element is square as drawn. L1 (37.5 mm, the f/4 entrance pupil) and L2 (35.43 mm, axial ray 35.01 at
+S3) are floors; L3 at L2's height sits on Fig. 1's top and bottom lines, where the baseline 34.295 mm fell inside
+them. No rim changed. Lands and cuts: none; worst loss against the pre-pass rims 0.0 points at every field, wide open
+(100, 95.4, 88.7, 77.9, 66.6, 55.5 and 44.1 % from 0 to 8°). Engine half-field 8° and f/4.000 unchanged; no near
+state exists.
+
+Labels: L1 to L5 follow the figure's numerals 1 to 5, and each type agrees with the signs of R; there is no cemented,
+aspheric or tagged element and no group bracket, since the patent names lenses, not groups. The L1 inspector shows
+Biconvex Positive, FL +200.01 mm, S-BSL7. Movement: static; the focus slider reads "Not modeled" at both ends and the
+movement overlay reports no group movement.
+
+The model reproduces all ten spherical (S1) terms of the patent's Seidel table, sum 0.450. Its coma, astigmatism and
+distortion columns (sums 0.114, −0.001, −0.789) reproduce only with the chief ray through S1's vertex, so the patent
+computed them with the entrance pupil at the first surface; the file's stop gives −0.144, 0.015 and −0.858.
+
+Colour, Fig. 3(b) (84.25 px per mm at f = 100): at the paraxial foot the C line sits +0.14 mm from the solid d line,
+F −0.04 mm, and g lies within the d line's width (±0.02 mm). The model gives C +0.117, F −0.080 and g +0.028 mm. C
+agrees; F sits about 3 px farther from d, beyond the line reading, but no normal-glass label moves it; g fits PBH1 at
+L2 (+0.002 mm) better than S-TIH1. Fig. 3(c) plots at most 0.25 % distortion at 8°, against +0.77 % traced and about
+0.8 % from the patent's own distortion sum, and Fig. 3(a)'s solid curve does not follow the S1 sum either, so those
+plots are taken as schematic. Fig. 3(d) bends both fans inward by roughly 0.05 to 0.3 mm at 8°, the same sign and
+order as the model's third-order −0.19 mm sagittal and −0.22 mm meridional.
+
+Open: the earlier line on the 8° projection stands: the page traces 42.49 of 44.80 mm; `fullFieldDeg` 17 with
+`maxTraceFieldDeg` 8.5 (Ricoh's 17°) would reach the corner at 8.4°, where the chief ray clears every rim and about
+41 % of the f/4 beam passes. Open: the stop position is the PhotonsToPhotos choice; the patent's Seidel table assumes
+the pupil at S1. Open: L2 S-TIH1 → PBH1 proposed for the coordinator (era lead flint, νd 29.51, g line as Fig. 3).
+
+Coordinator follow-up, same day: L2 (1.7174 / 29.5) moves from OHARA S-TIH1 to OHARA PBH1 (1.71736 / 29.51), the lead
+dense flint of the period; the reviewer's paraxial g-line focus moves from +0.028 to +0.002 (f = 100) against about 0 on
+Fig. 3(b), with C and d unchanged. `projection` now traces to 8.5° (`fullFieldDeg` 17, Ricoh's angle of view) so the
+page reaches the 6x7 corner at 8.4°; the chief ray clears every rim there and about 41 % of the f/4 beam passes.
+Engine EFL, f/4 and the stop are unchanged; `audit:surface` OK and field coverage reaches the corner.

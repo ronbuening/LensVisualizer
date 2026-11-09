@@ -90,7 +90,7 @@ const LENS_DATA = {
       "nd": 1.7174,
       "vd": 29.5,
       "focalLengthMm": -207.70248975602266,
-      "glass": "S-TIH1 (OHARA catalog equivalent; production supplier unspecified)",
+      "glass": "PBH1 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Dense-flint biconcave negative; over-corrects the color of L1, as the patent assigns it."
     },
     {
@@ -219,8 +219,8 @@ const LENS_DATA = {
   },
   "projection": {
     "kind": "rectilinear",
-    "fullFieldDeg": 16,
-    "maxTraceFieldDeg": 8
+    "fullFieldDeg": 17,
+    "maxTraceFieldDeg": 8.5
   },
   "layout": {
     "yScFill": 0.36

@@ -41,7 +41,7 @@ The largest element and the strongest positive one in the front group, with a st
 
 ### L2 — Biconcave Negative
 
-nd = 1.71740, νd = 29.5. Glass: S-TIH1 (OHARA catalog equivalent), a dense flint. f = −207.7 mm.
+nd = 1.71740, νd = 29.5. Glass: PBH1 (OHARA catalog equivalent), a lead dense flint of the period. f = −207.7 mm.
 
 Placed 9 mm behind L1, it over-corrects L1's color. Its front face is the r3 whose sign the claim misprints; the Seidel table and Fig. 1 both require it concave to the object.
 
@@ -70,7 +70,7 @@ The patent gives d-line indices and Abbe numbers to four decimals and one decima
 | Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Type |
 |---|---|---|---|---|
 | L1, L3 | 1.5163 / 64.0 | S-BSL7 (OHARA) | 1.51633 / 64.14 | Borosilicate crown |
-| L2 | 1.7174 / 29.5 | S-TIH1 (OHARA) | 1.71736 / 29.52 | Dense flint |
+| L2 | 1.7174 / 29.5 | PBH1 (OHARA) | 1.71736 / 29.51 | Lead dense flint |
 | L4 | 1.6034 / 38.0 | S-TIM5 (OHARA) | 1.60342 / 38.03 | Flint |
 | L5 | 1.5111 / 60.5 | NSL7 (OHARA) | 1.51112 / 60.49 | Crown |
 
@@ -96,7 +96,7 @@ The patent prints no semi-diameters, so all are inferred, from the PhotonsToPhot
 | L4 | 25.47 | 26.1 | Fig. 1 |
 | L5 | 17.25 | 17.4 | Fig. 1 |
 
-The figure draws L1 to L3 a few percent inside the f/4 axial beam, so those rims follow the beam and the drawn step order, L1 above L2 and L3 at one height. L1's rim equals the f/4 entrance pupil, so the oblique beam is cut from the first surface on. Of the f/4 beam, about 78 % passes at 4° and about 44 % at the patent's 8° edge.
+The figure draws L1 to L3 a few percent inside the f/4 axial beam, so those rims follow the beam and the drawn step order, L1 above L2 and L3 at one height. L1's rim equals the f/4 entrance pupil, so the oblique beam is cut from the first surface on. Of the f/4 beam, about 77 % passes at 4°, about 46 % at the patent's 8° edge and about 41 % at the 8.4° frame corner.
 
 ## Model Scope and Limitations
 
@@ -105,13 +105,13 @@ The figure draws L1 to L3 a few percent inside the f/4 axial beam, so those rims
 | Focal length | 100 | 300 | 300.051 |
 | Back focus | 40.16 | 120.48 | 120.531 paraxial |
 | S1 to S10 | 49.70 | 149.10 | 149.10 |
-| Half-field | 8° | 8° | 8° |
+| Half-field | 8° | 8° | 8.5° (traced to the 6x7 corner) |
 
 - The prescription is the patent's, not a confirmed factory one, and the association with the 6x7 lens is probable rather than established (see above).
 - Stop position and all semi-diameters are inferred.
 - The image plane is the printed back focus.
 - The model is static at infinity and says nothing about performance at 5.0 m.
-- The model traces to the patent's 8° edge, 42.2 mm of image height, 2.6 mm short of the 6x7 corner; the outer 6 % of the frame diagonal lies past the patent's stated field.
+- The model traces to 8.5°, past the 6x7 corner at 8.4° (Ricoh's 17° diagonal); the patent states 8°, so the outer 6 % of the frame diagonal lies beyond the field its plots cover.
 - The patent gives d-line indices and Abbe numbers only, so chromatic results depend on the catalog equivalents.
 
 ## Sources
