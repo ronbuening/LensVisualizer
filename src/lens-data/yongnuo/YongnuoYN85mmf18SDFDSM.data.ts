@@ -9,8 +9,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Fig. 2A prints a 23.5425 mm entrance-pupil radius, which sets the nominal f-number 84.747 / 47.085 = 1.7999;
  * the stop radius (14.04 mm) is derived by the stop rule, not printed. Fig. 2B prints a 13.669° half-field,
  * which reaches about 21.0 mm image height (97 % of the full-frame corner).
- * All semi-diameters are inferred from the Fig. 1 envelope (30, 24, 21, 21, 17, 15, 14, 12 and 14 mm front to
- * rear, both faces of each element equal); the patent prints none.
+ * Semi-diameters are estimated from Fig. 1, which is drawn to scale (17.23 px/mm at 300 dpi from the vertex
+ * spacing; the L11 front arc confirms the same vertical scale), and floor-checked by real-ray trace; the patent
+ * prints none. Fig. 1 reads L11 29.8, L12 24.1, L13 front 22.1, L14 18.0, L21 16.0, L31 14.7, L32 12.9, L33 11.6
+ * and L34 14.0 mm. L11 is held at 29 mm, the radius of Yongnuo's 58 mm filter thread. L13's front is 22.1 mm,
+ * stepping down to the 19 mm cemented interface. L14 is square-cut at 19 mm because the wide-open axial beam at
+ * the printed 697 mm close state reaches 18.8 mm at the interface. L12 (24 mm), L21 (17), L31 (15), L32 (12.9),
+ * L33 (12) and L34 (14) follow the figure within reading error. Every element except L13 keeps one height on both
+ * faces.
  * Glass labels are catalog rows whose nd/νd equal the printed pairs; the production supplier is not known. L11
  * and L32 match no catalog row.
  * Probable match to the YN85mm F1.8S DF DSM (Sony E, 2020): ¶0110 names an 85mm F1.8 mirrorless lens, and
@@ -166,14 +172,14 @@ const LENS_DATA = {
       "label": "1",
       "R": 58.558,
       "d": 9.48,
-      "sd": 30,
+      "sd": 29,
       "medium": 1
     },
     {
       "label": "2",
       "R": 298.95,
       "d": 0.394,
-      "sd": 30
+      "sd": 29
     },
     {
       "label": "3",
@@ -192,20 +198,20 @@ const LENS_DATA = {
       "label": "5",
       "R": 412.741,
       "d": 1.5,
-      "sd": 21,
+      "sd": 22.1,
       "medium": 3
     },
     {
       "label": "6",
       "R": 27.251,
       "d": 8.09,
-      "sd": 21,
+      "sd": 19,
       "medium": 4
     },
     {
       "label": "7",
       "R": 107.846,
-      "sd": 21
+      "sd": 19
     },
     {
       "label": "8",
@@ -241,14 +247,14 @@ const LENS_DATA = {
       "label": "13",
       "R": 24.546,
       "d": 1.55,
-      "sd": 14,
+      "sd": 12.9,
       "medium": 7
     },
     {
       "label": "14",
       "R": 21.181,
       "d": 5.47,
-      "sd": 14
+      "sd": 12.9
     },
     {
       "label": "15",

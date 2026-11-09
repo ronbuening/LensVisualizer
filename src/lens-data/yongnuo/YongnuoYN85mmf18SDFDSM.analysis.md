@@ -142,7 +142,7 @@ The prescription is the printed table without rescaling or correction. The engin
 
 The nominal f-number comes from the printed 23.5425 mm entrance-pupil radius: 84.747 / 47.085 = 1.80. The stop diameter that gives it (28.09 mm) is derived, not printed. The printed 13.669° half-field reaches about 21.0 mm image height, 97 % of the 21.65 mm full-frame corner radius. The model keeps the patent's field rather than extending it to the corner.
 
-The patent prints no clear apertures. The semi-diameters (30, 24, 21, 21, 17, 15, 14, 12 and 14 mm front to rear, both faces of each element equal) follow the Fig. 1 envelope, so off-axis vignetting depends on that reading. Glass dispersion follows the catalog equivalents above. L11 and L32 use the Abbe-number estimate, and no partial-dispersion data are printed.
+The patent prints no clear apertures. The semi-diameters are measured from Fig. 1, which is drawn to scale, and checked against the wide-open beam at both printed focus states. Front to rear they are L11 29, L12 24, L13 22.1 in front stepping to a 19 mm cemented interface, L14 19, L21 17, L31 15, L32 12.9, L33 12 and L34 14 mm. L11 stays within the 58 mm filter thread of the production lens. L14 is held at 19 mm, about 1 mm above the figure, because the axial beam at the 697 mm close state reaches 18.8 mm at the interface. Off-axis vignetting depends on these readings: at infinity and f/1.8 the 13.7° corner transmits about 53 % of the stop's beam geometrically. Glass dispersion follows the catalog equivalents above. L11 and L32 use the Abbe-number estimate, and no partial-dispersion data are printed.
 
 ## Sources
 
