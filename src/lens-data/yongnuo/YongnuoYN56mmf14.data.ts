@@ -9,9 +9,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The rounded table traces to 58.096 mm. The stop is sized from the entrance-pupil radius 19.4398 mm printed on
  * Fig. 2 (F/1.494), not from the header's F/1.4. The printed 1 mm image gap is kept; the paraxial focus lies
  * 0.033 mm behind it at infinity.
- * Semi-diameters are not printed. They are inferred from relative heights in Fig. 1, read at the 95 mm track
- * scale and rounded: L1/L2 20, L3 19, L4/L5 16, L6 12.5, L7/L8 13, L9 12.5 and L10 14 mm. Yongnuo's construction
- * drawing shows the same proportions.
+ * Semi-diameters are not printed. They are estimated from Fig. 1, which is drawn to scale: 16.44 px/mm along the
+ * axis at 300 dpi (S1 to image, 94.998 mm), arc fits of S1, S5, S9, S12, S13, S18 and S19 give 16.2–16.9 px/mm
+ * across it, and the stop tick ends at 11.47 mm against the 11.50 mm stop. L1/L2 20, L3 19, L4 16, L6 12.5,
+ * L7/L8 13, L9 12.5 and L10 14 mm agree with the figure within 6% (it reads 19.6, 19.3, 19.0, 15.9, 12.2, 12.4,
+ * 12.6, 12.2 and 13.2 mm). L5 is drawn shorter than L4 (14.9 mm) with its concave rear cap ending in a flat land at
+ * about 0.78 of that height: S9 has sd 14.9 and an inferred rim cut 4.47 mm behind its vertex. The cut radius,
+ * 11.92 mm, is moved out from the figure's 11.7 mm to clear the wide-open beams (11.86 mm at S9) by 0.05 mm, and
+ * keeps the glass 2.5 mm ahead of the stop plane. All rims are floor-checked by real-ray trace at the three printed
+ * focus states. Yongnuo's construction drawing shows the same proportions and the same land on L5.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -227,7 +233,8 @@ const LENS_DATA = {
       "label": "9",
       "R": 18.127,
       "d": 7,
-      "sd": 16
+      "sd": 14.9,
+      "rimCutDepthMm": 4.47
     },
     {
       "label": "STO",

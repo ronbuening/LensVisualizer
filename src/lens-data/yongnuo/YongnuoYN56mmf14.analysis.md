@@ -76,7 +76,8 @@ curvature (R 34.6 / 951.8 mm).
 
 The doublet is negative overall (f ≈ −45.6 mm) and is the main achromatizing pair of the front group: a
 low-dispersion crown against a dense flint, cemented at S8 (R −108 mm). Yongnuo marks L4 as low-dispersion glass.
-L5's strongly concave rear surface (R 18.1 mm) faces the stop 7 mm behind it.
+L5's strongly concave rear surface (R 18.1 mm) faces the stop 7 mm behind it. Fig. 1 and Yongnuo's drawing both
+end that curve short of L5's rim in a flat land, which keeps the glass ahead of the stop plane.
 
 ### L6 — Negative Meniscus, concave to object
 
@@ -166,8 +167,10 @@ values.
 
 ## Model Scope and Limitations
 
-The surface semi-diameters are inferred, not printed: L1/L2 20 mm, L3 19 mm, L4/L5 16 mm, L6 12.5 mm, L7/L8 13 mm,
-L9 12.5 mm and L10 14 mm, read from relative heights in Fig. 1 and consistent with Yongnuo's drawing. Wide open, the
+The surface semi-diameters are inferred, not printed: L1/L2 20 mm, L3 19 mm, L4 16 mm, L5 16 mm at the cemented
+face and 14.9 mm at the rear, L6 12.5 mm, L7/L8 13 mm, L9 12.5 mm and L10 14 mm, estimated from Fig. 1, which is
+drawn to scale, and consistent with Yongnuo's drawing. L5's rear curve ends at 11.9 mm, where an inferred flat land
+4.47 mm behind its vertex runs out to the rim; the land lies outside every wide-open beam. Wide open, the
 rims of the focus group and the rear group cut the edge-of-field bundles heavily on one side; by f/4 the full-field
 bundle passes unclipped. Off-axis illumination therefore depends on these inferred rims.
 

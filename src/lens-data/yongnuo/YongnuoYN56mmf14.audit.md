@@ -61,3 +61,48 @@ at infinity; close-state EFLs 56.4281 / 54.7129. audit:surface OK; audit:apertur
 Open: L8 (S-LAH55V class) and L1/L5 (S-TIH53 class) miss the exact window only because nd is printed to three
 decimals; a looser rule for three-decimal patents would label them. `rearPlates[0].source` still reads "literal
 physical plate and image spacing" (rear plates were outside this pass).
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: CN 220171327 U, Fig. 1 (page 8), an embedded 909 × 406 px raster at 150 ppi, measured at 300 dpi (two
+render px per native px). Fig. 1 draws the infinity state to scale. Along the axis, the vertex crossings give
+16.44 px/mm from S1 to the image plane (94.998 mm), and the same within 0.2% over S1–S5, S1–S8, S1–S12, S1–S16 and
+S1–S21; the S9–S12 span reads 19.65 mm against 19.688 mm at infinity. Across the axis, circle fits to the drawn arcs
+of S1, S5, S9, S12, S13, S18 and S19 give 16.2–16.9 px/mm (mean 16.54), and the stop ticks end at 188.5 px, 11.47 mm
+at 16.44 px/mm against the 11.50 mm stop. Heights below use 16.44 px/mm and the centre of the 4 px outline, averaged
+over the top and bottom rims.
+
+| Element | Stored sd | Fig. 1 | Ratio | Decision |
+| --- | --- | --- | --- | --- |
+| L1 (S1/S2) | 20 / 20 | 19.6 | 0.98 | kept |
+| L2 (S3/S4) | 20 / 20 | 19.3 | 0.96 | kept |
+| L3 (S5/S6) | 19 / 19 | 19.0 | 1.00 | kept |
+| L4 (S7/S8) | 16 / 16 | 15.9 | 0.99 | kept; the wide-open axial beam reaches 15.86 at S7 |
+| L5 (S8/S9) | 16 / 16 | rim 14.9, cap end 11.7 | 0.93 | S9 16 → 14.9 with `rimCutDepthMm` 4.47; S8 shared with L4 |
+| L6 (S12/S13) | 12.5 / 12.5 | 12.2 | 0.97 | kept |
+| L7 (S14/S15) | 13 / 13 | 12.4 | 0.96 | kept |
+| L8 (S16/S17) | 13 / 13 | 12.6 | 0.97 | kept |
+| L9 (S18/S19) | 12.5 / 12.5 | 12.2 | 0.97 | kept |
+| L10 (S20/S21) | 14 / 14 | 13.2 | 0.95 | kept |
+
+L5 is the one element whose drawn shape differs: Fig. 1 draws it shorter than L4, with a flat top at 14.9 mm and a
+vertical land at 4.47 mm behind the S9 vertex (73.5 px), where the concave S9 curve ends at 192 px, q = 0.78 ± 0.014
+of the rim (one native pixel). The stored S9 cap ran to 16 mm, where its sag (9.6 mm) reached 2.6 mm past the stop
+plane. S9 now has sd 14.9 and an inferred cut 4.47 mm deep (cut radius 11.92 mm). The figure's q × sd is 11.7 mm, but
+the wide-open beams reach 11.86 mm at S9 near the axis, so the cut was moved out to clear them by 0.05 mm;
+its depth then equals the drawn land position. The land is 2.98 mm long and sits 2.53 mm ahead of the stop plane.
+Yongnuo's Optical Structure drawing also ends L5's rear curve in a land short of the rim.
+
+The other nine elements agree with the figure within 6% and keep their values. Order is right everywhere: L1 ≥ L2 >
+L3 > L4 > L5, and L6 < L7 ≤ L8 > L9 < L10. L10 reads 13.2 mm against 14, which is inside the noise band; a 13.2 mm rim
+would cost no light, while L7 at the figure's 12.4 mm would cost 3.8 corner points and L8 at 12.6 mm 1.3 points.
+Yongnuo's drawing agrees on element order and grouping. It is not to scale and draws L5's mounting step taller than
+L4.
+
+Clearance and light: audit:surface OK; the rim-cut beam check clears S9 at all 22 focus states with no ray inside the
+margin; audit:aperture shows no rim limit; audit:image-circle has no undersized surface; field coverage stays at 96%
+of the APS-C corner, limited by the declared 25.52° field. Engine EFL 58.0958, f/1.4942, half-field 12.76° and stop
+radius 11.4956 are unchanged. Wide-open transmission at infinity (0 / 2.1 / 4.3 / 6.4 / 8.5 / 10.6 / 12.8°) is
+100 / 96.9 / 92.1 / 81.8 / 68.8 / 54.2 / 38.8% before and after. The real-ray clearance rows are identical at
+infinity, X20 and MOD, and the cut clears every beam at all three states, so close-focus transmission is unchanged.
+Page renders at the three printed focus states show L5's land ahead of the stop, with no contact with L6 at MOD.
