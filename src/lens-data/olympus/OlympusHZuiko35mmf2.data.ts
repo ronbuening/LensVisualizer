@@ -228,7 +228,7 @@ const LENS_DATA = {
   },
   aperture: {
     nominalFNumber: 2,
-    fStops: [2, 4, 5.6, 8, 11, 16],
+    fStops: [2, 2.8, 4, 5.6, 8, 11, 16],
     maxFNumber: 16,
   },
   projection: {

@@ -142,14 +142,14 @@ const LENS_DATA = {
       "label": "1",
       "R": 50.922,
       "d": 5.5,
-      "sd": 20.5,
+      "sd": 20.6,
       "medium": 1
     },
     {
       "label": "2",
       "R": 328.301,
       "d": 0.1,
-      "sd": 20.5
+      "sd": 20.6
     },
     {
       "label": "3",
@@ -186,14 +186,14 @@ const LENS_DATA = {
       "label": "7",
       "R": -150,
       "d": 2,
-      "sd": 12.8,
+      "sd": 13.45,
       "medium": 4
     },
     {
       "label": "8",
       "R": "flat",
       "d": 5.49,
-      "sd": 12.8
+      "sd": 13.45
     },
     {
       "label": "9",
@@ -206,39 +206,39 @@ const LENS_DATA = {
       "label": "10",
       "R": 77.297,
       "d": 9.43,
-      "sd": 17,
+      "sd": 17.4,
       "medium": 6
     },
     {
       "label": "11",
       "R": -28.608,
       "d": 0.1,
-      "sd": 17
+      "sd": 17.4
     },
     {
       "label": "12",
       "R": -251.725,
       "d": 3.24,
-      "sd": 16.8,
+      "sd": 17.4,
       "medium": 7
     },
     {
       "label": "13",
       "R": -64,
       "d": 0.1,
-      "sd": 16.8
+      "sd": 17.4
     },
     {
       "label": "14",
       "R": 104,
       "d": 3.42,
-      "sd": 16.5,
+      "sd": 16.8,
       "medium": 8
     },
     {
       "label": "15",
       "R": -197.685,
-      "sd": 16.5
+      "sd": 16.8
     },
     {
       "label": "16",
@@ -304,6 +304,9 @@ const LENS_DATA = {
       "gapAfterMm": 0,
       "source": "US20100073777A1 Table 1 S18\u201319: thickness printed, material NOT printed; assumed nd 1.5168 / Vd 64.2."
     }
-  ]
+  ],
+  "checks": {
+    "gapSagFrac": 1
+  }
 } satisfies LensDataV2Input;
 export default LENS_DATA;

@@ -11,3 +11,15 @@ The fixed infinity geometry has no focus movement. No close-focus law is invente
 A broad scale-normalized radius/index fingerprint was compared against 1,095 other baseline data files, deliberately ignoring thickness so even looser duplicates would be caught. No matching candidates. Exact primary round-trip, independent paraxial verification, axial aperture audit and full pupil center/mid/edge diagnostics are in the reproducibility package. Reference-wavelength MTF at the source plane and best axial focus are saved separately. nd/νd dispersion is not secondary-spectrum certification.
 
 The section visualization is generated from engine production geometry and visually checked; it is not a browser UI pass. Browser smoke testing is unavailable in the current environment. Focused tests and isolated build logs are retained; no aggregate-suite pass is implied by focused checks.
+
+## 2026-11-09 — Deployment validation
+
+Independent check of US 3,955,883 Example 2 (Table II and Claim 2, page images): 12 R, 11 d, 6 nd/νd and the back focus
+130.113 → 36.432 agree at one scale factor ×0.28. Engine EFL 27.995, f/3.5, half-field 37.6°, total length 78.574;
+F1,2 −101.751 (printed −101.729). Different design from the catalog's Pentax-M 28mm f/2.8 (US 4,143,945) and
+Super-Takumar 28mm f/3.5 (US 3,506,339). Attribution probable: the M 28/3.5 is 6 elements / 6 groups (the patent's six
+singlets), 1977–85, 0.3 m; Example 1 is f/2.8, and PhotonsToPhotos labels Example 2 as this lens. No maker drawing
+found. No deployment changes.
+Open: rear rims S5–S10 (PhotonsToPhotos) draw wider than Fig. 3 (S8 about 38 % larger), which hides some of the corner
+vignetting the figure implies; to be read against the figure in the review pass. `focus.closeFocusM` 1 is a placeholder
+(production 0.3 m); name style against the catalog's "PENTAX SMC M 28mm f/2.8"; package wording remains.

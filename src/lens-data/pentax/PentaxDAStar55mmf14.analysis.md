@@ -80,9 +80,9 @@ The source d15 changes from 1.00 to 13.27 mm. Surfaces 1–15 and the diaphragm 
 
 ## Aperture, Geometry and Validation
 
-The source places the diaphragm 7.49 mm behind surface 6, leaving 2.19 mm to surface 7. Its 27.75319192 mm paraxial diameter is derived from the f/1.4 header, not printed. All clear rims are inferred. An initial 15 mm L4 semi-diameter caused overlap toward L5; 12.8 mm is a viable figure-consistent alternative. No gap-sag override is used. Fresh aperture tracing gives f/1.501469327 (rim-limited at surface 7), rather than the nominal f/1.4. The resulting axial clipping must not be hidden by calling the model an unobstructed f/1.4 lens.
+The source places the diaphragm 7.49 mm behind surface 6, leaving 2.19 mm to surface 7. Its 27.75 mm paraxial diameter is derived from the f/1.4 header, not printed. All clear rims are inferred. L4's flat rear face meets the deep concave front of L5 at a height of about 13.5 mm, so L4 is drawn square at 13.45 mm, just inside that contact, and the rims of L1, L6, L7 and L8 are raised only as far as the f/1.4 axial beam needs; the model then traces the full f/1.4 aperture.
 
-Fresh EFL: 56.357184552 mm. Every rendered element has zero hidden rim trim. Full-pupil sampled transmissions (32-grid, center / half / three-quarter / edge field) are 88.18% / 79.06% / 68.47% / 56.16%. These are geometric transmitted fractions, not exposure measurements or coating efficiency. No failed or unaimed rays occurred in those field samples.
+The model's EFL is 56.357 mm against the patent's 56.36 mm.
 
 The physical source image plane remains at the back of the cover (zero final air gap). Under the assumed cover material the paraxial offset is +0.001768165 mm. Reference-line diffraction MTF was computed at source/design and separately best-axial focus, at center, half and edge fields and 10/20/40 lp/mm, with a 64-grid ceiling. Grid convergence and support status are retained per field in the diagnostics; finite values alone are not a convergence or quality certification.
 

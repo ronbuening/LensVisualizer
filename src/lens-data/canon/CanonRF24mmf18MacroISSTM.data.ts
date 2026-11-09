@@ -109,7 +109,7 @@ const LENS_DATA = {
       "nd": 1.497,
       "vd": 81.5,
       "glass": "Unmatched (patent nd=1.497, vd=81.5)",
-      "focalLengthMm": 41.28,
+      "focalLengthMm": 41.73,
       "cemented": "D2"
     },
     {
@@ -120,7 +120,7 @@ const LENS_DATA = {
       "nd": 1.91082,
       "vd": 35.3,
       "glass": "Unmatched (patent nd=1.91082, vd=35.3)",
-      "focalLengthMm": 52.33
+      "focalLengthMm": 26.28
     },
     {
       "id": 9,

@@ -22,3 +22,18 @@ No browser UI pass is claimed. Focused corpus tests and build results are report
 
 
 Source pixels inspected locally before modeling. Original PDF, source rows, diagnostics and reproducibility scripts are included in the delivery archive. No commit, push, PR, merge, publication or deployment.
+
+## 2026-11-09 — Deployment validation
+
+Independent check of JP 2012-234169 A Example 1 (PDF pp. 21–22, page images): 13 surfaces, stop at S4, the L1/L2 and
+L3/L4 cemented pairs, both aspheres (A4–A10; no K printed in any example, so K = 0), d4 and d9 at both states and Bf
+agree. Engine EFL 30.826 (30.83), F2.89, half-field 25.245°, Bf 20.4048 (20.4045); the close state is 500.07 mm object
+to image (patent: 500 mm) and all six conditional values reproduce. Different design from the catalog's DP2 Merrill
+(JP 2013-156459 A).
+
+Attribution probable: 7/5, aspheres on L5 and L7 as Sigma's drawing marks them, cemented pairs and stop agree, priority
+April 2011 before the January 2012 EX DN announcement (the Art version shares its optics). Against: Sigma describes
+"two glass mold aspherical lenses including a double-sided aspherical lens", where Example 1 has two single-sided
+aspheres, and Sigma draws L7 nearly plano-convex. Example 1 still fits best of the patent's 14 examples. No deployment
+changes.
+Open: production MFD 0.30 m is not in `catalog.closeFocusM`; package wording remains for the cleanup pass.

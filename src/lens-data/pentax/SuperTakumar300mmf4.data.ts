@@ -7,6 +7,9 @@ const LENS_DATA = {
   "name": "Pentax Super-Takumar 300mm f/4",
   "subtitle": "Qualified patent reconstruction; secondary stop and apertures",
   "catalog": {
+    "lensMounts": [
+      "m42"
+    ],
     "imageFormat": "135-full-frame",
     "elementCount": 5,
     "groupCount": 5,
@@ -20,10 +23,10 @@ const LENS_DATA = {
     }
   },
   "source": {
-    "patentNumber": "US 3502394 A",
+    "patentNumber": "US 3,502,394",
     "example": {
-      "label": "Example 1",
-      "id": "1"
+      "label": "Sole example",
+      "id": null
     },
     "patentYear": 1970,
     "authors": [

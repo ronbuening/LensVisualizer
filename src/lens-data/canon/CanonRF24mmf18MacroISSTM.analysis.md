@@ -44,7 +44,7 @@ Negative flint member of the first doublet, adjacent to the stop.
 
 nd = 1.67790, νd = 55.3. Glass: unmatched patent glass; no vendor identity asserted. f = +81.14 mm (source single-lens data).
 
-Positive meniscus immediately behind the stop; Figure 5 identifies this element as the stabilization group.
+Biconvex positive lens immediately behind the stop; Figure 5 identifies this element as the stabilization group.
 
 ### L6
 
@@ -54,13 +54,13 @@ Negative member of the rear cemented doublet.
 
 ### L7
 
-nd = 1.49700, νd = 81.5. Glass: unmatched patent glass; no vendor identity asserted. f = +41.28 mm (source single-lens data).
+nd = 1.49700, νd = 81.5. Glass: unmatched patent glass; no vendor identity asserted. f = +41.73 mm (source single-lens data).
 
 High-Abbe positive member of that doublet provides the low-dispersion partner.
 
 ### L8
 
-nd = 1.91082, νd = 35.3. Glass: unmatched patent glass; no vendor identity asserted. f = +52.33 mm (source single-lens data).
+nd = 1.91082, νd = 35.3. Glass: unmatched patent glass; no vendor identity asserted. f = +26.28 mm (source single-lens data).
 
 Positive biconvex element adds rear-group power.
 
