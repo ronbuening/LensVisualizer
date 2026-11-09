@@ -730,4 +730,16 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SCHOTT Zemax catalog 2017-01-20b, N-LAF35; https://refractiveindex.info/database/data/specs/schott/optical/N-LAF35.yml (accessed 2026-10-10).",
   },
+  {
+    name: "N-BK10",
+    vendor: "Schott",
+    B: [0.888308131, 0.328964475, 0.984610769],
+    C: [0.00516900822, 0.0161190045, 99.7575331],
+    nd: 1.49782,
+    vd: 66.95,
+    PgF: 0.5303,
+    code6: "498670",
+    source:
+      "SCHOTT Zemax catalog 2017-01-20b, N-BK10; https://refractiveindex.info/database/data/specs/schott/optical/N-BK10.yml (accessed 2026-11-04).",
+  },
 ];

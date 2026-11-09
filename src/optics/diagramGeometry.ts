@@ -11,6 +11,7 @@ export {
   computeStandaloneMirrorPaths,
   stateForRuntimeDiagram,
 } from "./diagram/runtimeDiagramAdapter.js";
-export { gapTrimHeight, renderSag, sagSlope, slopeTrimHeight } from "./diagram/runtimeSurface.js";
+export { gapTrimHeight, renderSag, sagSlope, slopeTrimHeight, stopSideRimLands } from "./diagram/runtimeSurface.js";
+export type { StopSideRimLand } from "./diagram/runtimeSurface.js";
 export { SVG_PATH_SUBDIVISIONS, surfacePathD } from "./diagram/surfaceOutline.js";
 export type { DiagramPointTransform } from "./diagram/surfaceOutline.js";

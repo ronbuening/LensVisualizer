@@ -25,6 +25,17 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the P. Angénieux Type M1 25mm f/0.95, Konica AiBORG 35-105mm zoom, KMZ Zenitar 35mm f/1 and 50mm f/0.95, and Nikon AF-S NIKKOR 50mm f/1.4 G",
   },
   {
+    date: "2026-11-09",
+    type: "lens",
+    summary:
+      "Added the Canon RF 85mm f/1.4 L VCM and EF-S 60mm f/2.8 Macro, Pentax DA 14mm f/2.8, M 20mm f/4 and M 28mm f/2.8, and Sigma 500mm f/5.6 Sports",
+  },
+  {
+    date: "2026-11-08",
+    type: "fix",
+    summary: "Fixed the STO label overlapping the flat rim of an element beside the aperture stop",
+  },
+  {
     date: "2026-11-08",
     type: "lens",
     summary:

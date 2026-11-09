@@ -82,3 +82,33 @@ export function slopeTrimHeight(surfIdx: number, sd: number, maxSlopeTan: number
   }
   return (lo + hi) / 2;
 }
+
+/** A rim extension's flat land on a face beside the aperture stop, in mm. */
+export interface StopSideRimLand {
+  /** Axial position of the land plane at the current surface positions. */
+  z: number;
+  /** Outer drawn semi-diameter of the land (`rimExtensionSd`). */
+  outerSD: number;
+}
+
+/**
+ * Locate rim-extension lands on the two faces bordering the stop, so the STO label can clear them.
+ *
+ * A land stands square to the axis at the face's edge sag and reaches past its clear `sd` to `rimExtensionSd`;
+ * rim cuts never draw beyond `sd` and are left out.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @returns lands on the faces just before and after the stop; empty when neither face has an extension
+ */
+export function stopSideRimLands(L: RuntimeLens, zPos: readonly number[]): StopSideRimLand[] {
+  const lands: StopSideRimLand[] = [];
+  for (const surfIdx of [L.stopIdx - 1, L.stopIdx + 1]) {
+    const surface = L.S[surfIdx];
+    const outerSD = surface?.rimExtensionSd;
+    if (outerSD === undefined || !(outerSD > surface.sd)) continue;
+    const z = zPos[surfIdx] + renderSag(surface.sd, surfIdx, L);
+    if (Number.isFinite(z)) lands.push({ z, outerSD });
+  }
+  return lands;
+}

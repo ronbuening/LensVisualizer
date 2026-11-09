@@ -11,18 +11,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1094** lenses scanned
-- **1076** visible lenses scanned
-- **745** lenses fully covered by trusted chromatic data
-- **740** visible lenses fully covered by trusted chromatic data
-- **737** lenses fully covered by strict Sellmeier data
-- **732** visible lenses fully covered by strict Sellmeier data
+- **1100** lenses scanned
+- **1082** visible lenses scanned
+- **751** lenses fully covered by trusted chromatic data
+- **746** visible lenses fully covered by trusted chromatic data
+- **743** lenses fully covered by strict Sellmeier data
+- **738** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **11558 / 12413** non-air surfaces use strict catalog Sellmeier data
-- **93.1%** strict Sellmeier surface coverage overall
-- **11572 / 12413** non-air surfaces use trusted chromatic data
-- **93.2%** trusted chromatic coverage overall
+- **11631 / 12486** non-air surfaces use strict catalog Sellmeier data
+- **93.2%** strict Sellmeier surface coverage overall
+- **11645 / 12486** non-air surfaces use trusted chromatic data
+- **93.3%** trusted chromatic coverage overall
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -352,6 +352,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AF-S NIKKOR 70-200mm f/4 G ED VR](../../src/lens-data/nikon/NikonAFSNikkor70200mmf4GEDVR.data.ts) | 20/20 | 20 | 20/20 |
 | [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | 20/20 | 20 | 20/20 |
 | [NIKON ZOOM-NIKKOR AUTO 50-300mm f/4.5](../../src/lens-data/nikon/NikonZoomNikkorAuto50300mmf45.data.ts) | 20/20 | 20 | 20/20 |
+| [SIGMA 500mm f/5.6 DG DN OS | Sports](../../src/lens-data/sigma/Sigma500mmf56DGDNosSports.data.ts) | 20/20 | 20 | 20/20 |
 | [SIGMA 70-200mm f/2.8 DG DN OS | Sports](../../src/lens-data/sigma/Sigma70200mmf28DGDNOS.data.ts) | 20/20 | 20 | 20/20 |
 | [SIGMA APO 80-400mm f/4.5-5.6 EX OS](../../src/lens-data/sigma/Sigma80400mmf4556EXOS.data.ts) | 20/20 | 20 | 20/20 |
 | [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) | 20/20 | 20 | 20/20 |
@@ -532,6 +533,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CANON EF-S 10-18mm f/4.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS1018mmf4.data.ts) | 14/14 | 14 | 14/14 |
 | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) | 14/14 | 14 | 14/14 |
 | [CANON RF 35mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF35mmF14LVCM.data.ts) | 14/14 | 14 | 14/14 |
+| [CANON RF 85mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF85mmf14LVCM.data.ts) | 14/14 | 14 | 14/14 |
 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) | 14/14 | 14 | 14/14 |
 | [FUJIFILM FUJINON GF 110mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmGF110mmf2RLM.data.ts) | 14/14 | 14 | 14/14 |
 | [FUJIFILM FUJINON GF 120mm f/4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) | 14/14 | 14 | 14/14 |
@@ -599,6 +601,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [TAMRON SP AF 200-500mm f/5-6.3 Di LD [IF]](../../src/lens-data/tamron/TamronA08200500mmf563.data.ts) | 13/13 | 13 | 13/13 |
 | [CANON EF-M 11-22mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFM1122mmf456ISSTM.data.ts) | 12/12 | 12 | 12/12 |
 | [CANON EF-S 55-250mm f/4-5.6 IS](../../src/lens-data/canon/CanonEFS55250mmf456IS.data.ts) | 12/12 | 12 | 12/12 |
+| [CANON EF-S 60mm f/2.8 Macro USM](../../src/lens-data/canon/CanonEFS60mmf28MacroUSM.data.ts) | 12/12 | 12 | 12/12 |
 | [CANON RF 85mm f/2 MACRO IS STM](../../src/lens-data/canon/CanonRF85mmf2Macro.data.ts) | 12/12 | 12 | 12/12 |
 | [CANON TS-E 50mm f/2.8 L MACRO](../../src/lens-data/canon/CanonTSE50mmf28L.data.ts) | 12/12 | 12 | 12/12 |
 | [FUJIFILM FUJINON GF 80mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) | 12/12 | 12 | 12/12 |
@@ -616,6 +619,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON SERIES E ZOOM 75-150mm f/3.5](../../src/lens-data/nikon/NikonSeriesE75150mmf35.data.ts) | 12/12 | 12 | 12/12 |
 | [OLYMPUS ZUIKO DIGITAL ED 300mm f/2.8](../../src/lens-data/olympus/OlympusZuikoDigitalED300mmf28.data.ts) | 12/12 | 12 | 12/12 |
 | [OLYMPUS ZUIKO DIGITAL ED 40-150mm f/4.0-5.6](../../src/lens-data/olympus/OlympusZuikoDigitalED40150mmf456.data.ts) | 12/12 | 12 | 12/12 |
+| [PENTAX DA 14mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxDA14mmf28EDIF.data.ts) | 12/12 | 12 | 12/12 |
 | [PENTAX HD D FA* 85mm f/1.4 ED SDM AW](../../src/lens-data/pentax/PentaxDFA85mmf14.data.ts) | 12/12 | 12 | 12/12 |
 | [PENTAX SMC D FA645 25mm f/4 AL [IF] SDM AW](../../src/lens-data/pentax/PentaxDFA64525mmF4ALIFSDMAW.data.ts) | 12/12 | 12 | 12/12 |
 | [SAMYANG XP 35mm f/1.2](../../src/lens-data/samyang/SamyangXP35mmf12.data.ts) | 12/12 | 12 | 12/12 |
@@ -817,6 +821,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8 (US 3,994,574 Design)](../../src/lens-data/olympus/OlympusZuikoAutoW24mmf28.data.ts) | 8/8 | 8 | 8/8 |
 | [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/p.-angénieux/AngenieuxDEM180mmf23APO.data.ts) | 8/8 | 8 | 8/8 |
 | [PENTAX SMC F 135mm f/2.8 [IF]](../../src/lens-data/pentax/PentaxF135mmf28IF.data.ts) | 8/8 | 8 | 8/8 |
+| [PENTAX SMC M 20mm f/4](../../src/lens-data/pentax/PentaxM20mmf4.data.ts) | 8/8 | 8 | 8/8 |
 | [PENTAX SUPER-TAKUMAR 35mm f/2](../../src/lens-data/pentax/PentaxSuperTakumar35mmf2.data.ts) | 8/8 | 8 | 8/8 |
 | [PENTAX SUPER-TAKUMAR 50mm f/1.4 (8-element)](../../src/lens-data/pentax/PentaxSuperTakumar50mmf14EightElement.data.ts) | 8/8 | 8 | 8/8 |
 | [RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL III)](../../src/lens-data/ricoh/RicohGRDigitalIII60mmF19.data.ts) | 8/8 | 8 | 8/8 |
@@ -888,6 +893,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC A ZOOM 35-70mm f/4](../../src/lens-data/pentax/PentaxA3570mmf4.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC A* 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) | 7/7 | 7 | 7/7 |
+| [PENTAX SMC M 28mm f/2.8](../../src/lens-data/pentax/PentaxM28mmf28.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SUPER-TAKUMAR 28mm f/3.5](../../src/lens-data/pentax/PentaxSuperTakumar28mmf35.data.ts) | 7/7 | 7 | 7/7 |
 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) | 7/7 | 7 | 7/7 |
 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR IV)](../../src/lens-data/ricoh/RicohGR428f28.data.ts) | 7/7 | 7 | 7/7 |

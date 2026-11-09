@@ -156,3 +156,11 @@ measurement or production supplier is invented. No glass-data or analysis correc
 
 Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
 The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
+
+## 2026-11-08 — Cement layer no longer joins the D1 tag
+
+The printed 0.01 mm cement layer (element 6, "Cem", between L2b and L2c) carried the doublet's `cemented: "D1"` tag,
+so the inspector counted three members and badged L2b+L2c as a triplet. The tag is removed from the cement element
+only; it stays a drawn `Cement Layer` element with nd 1.514 and νd 27.05, so every medium keeps a dispersion and the
+colour analyses stay on. On the dev server `?el=6` shows no cemented badge and an FL of "—", while L2b (element 5)
+and L2c (element 7) read DOUBLET D1. Prescription, rims and analysis text are unchanged.
