@@ -170,7 +170,6 @@ describe("useLensComputation", () => {
         stopdownT: 0,
         scaleRatio: null,
         panelId: "test",
-        includeCardinalExtents: true,
       }),
     );
 
@@ -187,7 +186,6 @@ describe("useLensComputation", () => {
         stopdownT: 0,
         scaleRatio: null,
         panelId: "test",
-        includeCardinalExtents: true,
       }),
     );
 
