@@ -48,7 +48,7 @@ Condition (5) is printed as "ν1 · ν3 > 58" and is read here as a bound on eac
 
 nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) equivalent, a borosilicate crown. f = +103.0 mm.
 
-The front crown, convex to the object (R1 = 47.40 mm, R2 = 417.0 mm), and with L2 the largest element at 21.6 mm semi-diameter. Its low dispersion satisfies condition (5); the patent ties conditions (4) and (5) to keeping the power of each front lens moderate so that the Petzval sum does not fall (col. 2).
+The front crown, convex to the object (R1 = 47.40 mm, R2 = 417.0 mm), and the largest element, at 20.6 mm semi-diameter. Its low dispersion satisfies condition (5); the patent ties conditions (4) and (5) to keeping the power of each front lens moderate so that the Petzval sum does not fall (col. 2).
 
 ### L2 — Biconcave Negative
 
@@ -102,11 +102,11 @@ The patent prints no semi-diameters, so all are inferred:
 
 | Element | Model sd (mm) | Basis |
 |---|---|---|
-| L1, L2 | 21.6 | The largest elements in Fig. 3; L1 passes the f/3.5 beam to the 9° corner |
-| L3 | 21.33 | Drawn about as tall as L1 in Fig. 3; at this rim its two faces nearly meet |
-| L4, L5 | 9.45 | The small rear pair of Fig. 3; the L4–L5 air space closes near 10 mm |
+| L1 | 20.6 | The tallest element in Fig. 3 |
+| L2, L3 | 20.3 | Drawn at one height in Fig. 3, slightly below L1; L3's faces leave a 0.8 mm edge |
+| L4, L5 | 9.9 | The square-cut rear pair of Fig. 3, held below the height where S8 and S9 meet |
 
-Fig. 3 is a schematic. Read at its own axial scale it gives about 21 mm for the front elements and about 11 mm for the rear pair, so the rear rims sit somewhat inside the drawing, where the L4–L5 air space limits them. The full f/3.5 beam passes on axis. Off axis the rims of L4 and L5 cut the oblique beam: about 91 % of it passes at 4.5° and 67 % at the 9° field edge.
+Fig. 3 is a schematic: its curves are drawn flatter than the printed radii. The rims above are read from it at the scale set by the vertex spacing from S1 to S10, 13.80 px per patent unit at 300 dpi. The figure draws the rear pair at about 10.9 mm, but with the printed radii the rear face of L4 and the strongly concave front of L5 meet at 10.02 mm, so the model keeps both elements at 9.9 mm, 0.08 mm apart at the rim, where the drawing shows a small gap. The full f/3.5 beam passes on axis. Off axis the rims of L4 and L5 cut the oblique beam: about 96 % of it passes at 4.5° and 72 % at the 9° field edge.
 
 ## Model Scope and Limitations
 

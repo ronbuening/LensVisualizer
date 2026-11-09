@@ -14,9 +14,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Image plane: the final gap keeps the printed back focus; the paraxial back focus is 54.4069 mm, 0.0116 mm shorter.
  * Stop: the patent neither prints nor draws one. It sits in the long air space d6, 4 patent units (5.4 mm) behind S6,
  * which splits d6 into 5.4 + 26.244 mm; its radius is set by the paraxial entrance pupil, F/N.
- * Semi-diameters are inferred, none is printed: 21.6 mm on L1 and L2, 21.33 mm on L3 and 9.45 mm on L4 and L5,
- * following the large front group and small rear pair of Fig. 3 and passing the f/3.5 axial beam. At 21.33 mm L3's
- * edge is almost sharp (about 0.01 mm), and at 9.45 mm the L4–L5 air space is 0.39 mm at the rim.
+ * Semi-diameters are inferred, none is printed. They are read from Fig. 3 (outer ink, both halves) at its vertex
+ * scale of 13.80 px per patent unit at 300 dpi (S1 to S10): 20.6 mm on L1, and 20.3 mm on L2 and L3, which the figure
+ * draws at one height. Fig. 3 draws the square-cut rear pair at about 10.9 mm, but S8 and S9 of this prescription meet
+ * at 10.02 mm, so L4 and L5 stop at 9.9 mm, where their air space is 0.08 mm at the rim; checks.gapSagFrac 0.98 admits
+ * that pair. Every rim passes the f/3.5 axial beam and the chief ray to the 21.6 mm corner.
  * Glass: four of the five n/ν pairs equal OHARA catalog rows at the printed precision, so the table is read as d-line.
  * L3 (1.51821 / 65.0) stays unmatched, 0.16 in νd from HOYA PC2, and traces on dispersion from its printed pair.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies. The
@@ -132,40 +134,40 @@ const LENS_DATA = {
       "label": "1",
       "R": 47.3985,
       "d": 5.6565,
-      "sd": 21.6,
+      "sd": 20.6,
       "medium": 1
     },
     {
       "label": "2",
       "R": 417.0015,
       "d": 2.4435,
-      "sd": 21.6
+      "sd": 20.6
     },
     {
       "label": "3",
       "R": -176.7015,
       "d": 1.7955,
-      "sd": 21.6,
+      "sd": 20.3,
       "medium": 2
     },
     {
       "label": "4",
       "R": 163.1205,
       "d": 0.108,
-      "sd": 21.6
+      "sd": 20.3
     },
     {
       "label": "5",
       "R": 28.2825,
       "d": 6.2235,
-      "sd": 21.33,
+      "sd": 20.3,
       "medium": 3
     },
     {
       "label": "6",
       "R": 66.8385,
       "d": 5.4,
-      "sd": 21.33
+      "sd": 20.3
     },
     {
       "label": "STO",
@@ -176,27 +178,27 @@ const LENS_DATA = {
       "label": "7",
       "R": 36.0855,
       "d": 2.6055,
-      "sd": 9.45,
+      "sd": 9.9,
       "medium": 4
     },
     {
       "label": "8",
       "R": 64.1385,
       "d": 3.348,
-      "sd": 9.45
+      "sd": 9.9
     },
     {
       "label": "9",
       "R": -20.871,
       "d": 1.215,
-      "sd": 9.45,
+      "sd": 9.9,
       "medium": 5
     },
     {
       "label": "10",
       "R": -70.47,
       "d": 54.4185,
-      "sd": 9.45
+      "sd": 9.9
     }
   ],
   "focus": {
@@ -225,6 +227,9 @@ const LENS_DATA = {
   },
   "layout": {
     "yScFill": 0.36
+  },
+  "checks": {
+    "gapSagFrac": 0.98
   },
   "groups": [
     {
