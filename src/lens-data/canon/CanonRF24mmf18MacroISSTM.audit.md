@@ -100,4 +100,60 @@ The page renders at infinity and at close focus match Fig. 5's square edges and 
 Canon's Camera Museum drawing shows the same square-edged elements and the same land on L1's rear face. It is drawn
 to a different scale and is used only for order and proportion.
 
-Open: none for rims. L9 and L10 keep their faint 0.2–0.4 mm edge slopes.
+Open: none for rims. L10 keeps its faint 0.2 mm edge slope (L9's 0.375 mm slope closed 2026-11-09 in the second
+review below).
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the local page (infinity, close focus, the focus-movement panel, the L5, L7 and L9 inspectors) with Fig. 5
+(sheet 5, PDF p. 6, 300 dpi scan) and Fig. 6A. Scale re-proved: axis at column 1398.75; vertex rows S1 2702.5 to S21
+1106 give 22.81 px/mm, S3 to S19 22.80 and S1 to the image line 22.80; arc fits on S2 (R 16.734) and S20 (R −24.031)
+give 22.78 and 22.84–22.89 px/mm across the axis.
+
+No `sd` differs from the baseline. Every land lies outside a printed effective radius, so each costs no light by
+construction; `rimcost.mjs` confirms 0.0 points at every field for each one.
+
+| Face: sd + land to             | Fig. 5 (mm, at 22.80 px/mm)                                     | Verdict             |
+| ------------------------------ | --------------------------------------------------------------- | ------------------- |
+| S2 12.845 + 16.5 (L1)          | edge 17.15, cap end 13.4 (ratio 0.78; printed 0.778)            | keep: drawn         |
+| S7 9.095 + 9.715 (D1 rear)     | S5, S6 and S7 all run out to the 10.3 edge                      | keep: drawn square  |
+| S11 7.515 + 9.75 (D2 front)    | edge 10.32, cap end 8.03 (0.78; printed 0.771)                  | keep: drawn         |
+| S14 11.4 + 12.035 (L8)         | both faces run out to the 12.63 edge                            | keep: drawn square  |
+| S16 12.4 + 12.775 (L9), new    | both faces run out to the 13.4 edge                             | added: drawn square |
+| S20 15.205 + 16.73 (L11)       | edge 17.37, cap end 15.66 (0.90; printed 0.909)                 | keep: drawn         |
+
+The page drew L9's rim as a 0.375 mm rise over its 2.2 mm edge, about 3 px and a 10° slant, where Fig. 5 and Canon's
+drawing both show a square end; S17 meets the drawn edge 1.30 mm objectward of its vertex, as the asphere predicts. The
+surface audit passes with the new land. Left sloped, each under 2 px on the page: D2's rear
+S12/S13 0.255 mm (Fig. 5 runs S13's arc into the corner with no land to read), L10 0.2, L5 0.145 and L2 0.075 mm.
+
+Light: worst loss 0.0 points against the baseline; corner 32.8 % at 41.2° wide open at infinity. A real-object trace of
+the close state (object 42.01 mm ahead of S1, 136.0 mm from the image, 48 × 48 stop lattice) gives 92.2 % on axis and
+48.1 % at the 19.34 mm image corner (object height 39.5 mm), the same with baseline rims. The on-axis loss is the
+printed S9–S11 diameters trimming the full-iris cone at close range; the app's parallel-beam close state does not show
+it. The same tracer gives 33.0 % at 41.19° at infinity, against the app's 32.8 %.
+
+Brackets and labels: added `groups` FOCUS (S1–S17, L1–L9) and FIXED (S18–S21, L10–L11), the mechanical groups that
+Fig. 5's focus line marks (it runs from L1 to L9). The patent's units L1/L2/L3 are not used as brackets: L2 straddles
+the focusing gap d17, so the movement panel would track it as a half-moving group, and the names clash with elements
+L1–L3. The movement panel now shows two groups with 13.00 mm maximum travel instead of nine. L5's label "Element 5"
+becomes "Element 5 — IS", after Fig. 5's IS brace (col. 3, ll. 37–41). Element types agree with the signs of R on all
+eleven elements; S17 is the only asphere and the only face the page marks A; the stop sits between D1 and L5; the D1
+(S5–S7) and D2 (S11–S13) brackets are right. L7's `apd: "inferred"` stands: the patent prints only nd and νd and
+argues D2 from the Abbe difference (¶0050), and Canon's drawing colours L7 as the UD element.
+
+Movement: keyframe 0 is d17 2.56 mm (infinity) and keyframe 1 is 15.56 mm (close), as printed. S1–S17 move 13.00 mm
+toward the object, as Fig. 5's arrow (∞ to CLOSE RANGE, pointing objectward) and the text ("move to the object side",
+col. 3, ll. 28–33) say; L10, L11 and the image plane stay fixed. The slider's far end reads 14 cm.
+
+Colour: Fig. 6A prints d and g. Read at 0.00254 mm/px, the paraxial g focus is +0.036 mm against the model's +0.037
+and d +0.003 against +0.002; at 0.84 of the pupil g is +0.048 against +0.051 and d +0.009 against +0.010. All within
+the reading error. All eleven labels resolve to exact catalog rows; no medium has constant dispersion; the patent prints
+no θgF or other line indices.
+
+Engine before and after: EFL 24.7201 mm, F1.85, half-field 41.2°, stop radius 8.467 mm, close state 0.1360 m.
+
+(Closed the same day by the coordinator.) Open: S17 is labelled "17" without the house "A" suffix; renaming it moves the `gaps` key, which this pass may not edit.
+
+Coordinator follow-up, same day: the aspheric surface is now labelled `17A`, with the `17A` focus gap (`d17`) and the
+focus-group bracket end renamed to match; the bracket texts read "Focus group" and "Fixed". Engine values unchanged.

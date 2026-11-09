@@ -26,11 +26,11 @@ Canon's construction diagram matches Fig. 5 element by element: a thick negative
 
 ## Optical Architecture
 
-The design is a negative–positive–negative wide-angle in three units. The first unit is a single negative meniscus (f = −34.08 mm). The second unit (surfaces 3–19, f = +29.56 mm) holds eight lenses: a biconvex lens, a cemented doublet ahead of the stop, the stop (S8), the IS lens, a cemented doublet behind the stop, a biconvex lens, the aspherical meniscus and a positive meniscus. The third unit is a single negative meniscus concave to the object (f = −104.12 mm). Two cemented doublets give 11 elements in 9 groups.
+The design is a negative–positive–negative wide-angle in three units. The first unit is a single negative meniscus (f = −34.08 mm). The second unit (surfaces 3–19, f = +29.56 mm) holds nine lenses in seven components: a biconvex lens, a cemented doublet ahead of the stop, the stop (S8), the IS lens, a cemented doublet behind the stop, a biconvex lens, the aspherical meniscus and a positive meniscus. The third unit is a single negative meniscus concave to the object (f = −104.12 mm). Two cemented doublets give 11 elements in 9 groups.
 
 The two widest air spaces separate the units: 15.32 mm after L1 and 10.30 mm before L11. The patent sizes them so that light reflected from the front and rear lenses does not reach the image as ghosts (¶0041–¶0043; x1/TTL = 0.189, x2/TTL = 0.127). The doublets sit on either side of the stop, where the marginal ray is highest, to correct spherical aberration and axial colour at F1.85 (¶0083).
 
-Focusing does not follow the unit boundaries: L1–L9 move together and L10–L11 stay fixed (see Focus Mechanism).
+Focusing does not follow the unit boundaries: L1–L9 move together and L10–L11 stay fixed (see Focus Mechanism). The diagram's brackets mark these two mechanical groups, FOCUS and FIXED, rather than the patent's three units.
 
 The design leaves −10.6 % barrel distortion at full field (Table 1, dist ω) for correction by image processing from distortion data stored in the lens (¶0086–¶0087), which is why the first unit needs no asphere. The printed image height is therefore 19.34 mm, short of the 21.63 mm full-frame corner; the model keeps that 38.68 mm image circle and does not apply the in-camera correction.
 
@@ -159,7 +159,7 @@ Table 1 lists the third embodiment's values; all twelve inequalities hold.
 
 ## Model Scope and Limitations
 
-- **Semi-diameters:** all 20 refracting surfaces use half the printed effective diameters. As in Fig. 5, flat lands carry the smaller face of L1, L4, L6, L8 and L11 out to the element's larger printed face, so those elements are drawn square-edged; the lands lie outside the clear aperture and do not affect the trace. Fig. 5 draws every element about 5 % larger in radius than the printed diameters.
+- **Semi-diameters:** all 20 refracting surfaces use half the printed effective diameters. As in Fig. 5, flat lands carry the smaller face of L1, L4, L6, L8, L9 and L11 out to the larger printed face of the same element or doublet, so those elements are drawn square-edged; the lands lie outside the clear aperture and do not affect the trace. Fig. 5 draws every element about 5 % larger in radius than the printed diameters.
 - **Stop:** the printed S8 diameter, 17.43 mm, agrees with F1.85 at real-ray height: an f/1.85 marginal ray entering at 6.68 mm crosses S8 at 8.72 mm, and the printed diameters of S3–S11 equal that ray's heights. As for every ordinary prime, the viewer sizes the iris paraxially from F1.85, giving a radius of 8.467 mm, about 3 % smaller than the printed stop.
 - **Field:** the printed image height is 19.34 mm (ω = 41.2°). The −10.6 % residual distortion that the camera corrects is left in the model, and the full-frame corner beyond 19.34 mm is not traced. Corner vignetting at full aperture is substantial with the printed diameters.
 - **Stabilization:** the IS lens is traced centred; its decentering is not modelled.

@@ -8,7 +8,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Every refracting semi-diameter is half the printed effective diameter. Fig. 5 (22.80 px/mm on both axes at 300 dpi)
  * draws each element square-edged, about 5 % larger in radius than those diameters, with a flat land beyond the
  * smaller face. Those lands are drawn with rimExtensionSd out to the larger printed face of the same element or
- * doublet (S2 16.5, S7 9.715, S11 9.75, S14 12.035, S20 16.73 mm); they do not change the trace.
+ * doublet (S2 16.5, S7 9.715, S11 9.75, S14 12.035, S16 12.775, S20 16.73 mm); they do not change the trace.
  * The stop (S8) prints a 17.43 mm diameter, which agrees with F1.85 at real-ray height: an f/1.85 marginal ray
  * entering at EFL / 2N = 6.68 mm crosses S8 at 8.72 mm. The iris follows the stop rule for an ordinary prime and is
  * derived paraxially from F1.85 instead (radius 8.467 mm, about 3 % smaller).
@@ -115,7 +115,7 @@ const LENS_DATA = {
     {
       "id": 5,
       "name": "L5",
-      "label": "Element 5",
+      "label": "Element 5 — IS",
       "type": "Biconvex Positive",
       "nd": 1.6779,
       "vd": 55.3,
@@ -301,10 +301,11 @@ const LENS_DATA = {
       "R": -83.02,
       "d": 2.5,
       "sd": 12.4,
+      "rimExtensionSd": 12.775,
       "medium": 9
     },
     {
-      "label": "17",
+      "label": "17A",
       "R": -48.642,
       "sd": 12.775,
       "asphere": {
@@ -345,7 +346,7 @@ const LENS_DATA = {
     }
   ],
   "gaps": {
-    "17": {
+    "17A": {
       "label": "d17",
       "values": [
         [
@@ -386,6 +387,18 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.4
   },
+  "groups": [
+    {
+      "text": "Focus group",
+      "fromSurface": "1",
+      "toSurface": "17A"
+    },
+    {
+      "text": "Fixed",
+      "fromSurface": "18",
+      "toSurface": "21"
+    }
+  ],
   "doublets": [
     {
       "text": "D1",
