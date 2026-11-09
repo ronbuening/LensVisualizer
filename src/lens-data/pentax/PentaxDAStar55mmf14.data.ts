@@ -1,18 +1,45 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Qualified reconstruction. See companion analysis and evidence; inferred rims are not manufacturing dimensions. */
+/**
+ * US 2010/0073777 A1 (Hoya Corporation; Jun Hirakawa), Embodiment 1 (Table 1, Fig. 1): f = 56.36, FNO 1:1.4,
+ * W = 14.3°, M = −0.173, fB = 0.0, image height 14.24 mm. Native scale; no scale factor is applied. All spherical,
+ * nine elements in eight groups with L5/L6 cemented. Strong production correlation with the smc PENTAX-DA★55mm
+ * F1.4 SDM, announced in September 2008 (9/8, 28.6°, 0.45 m, 0.173×, one anomalous-dispersion element, drawn at
+ * L8); Embodiment 3 has the same layout and headline values. This is a patent design, not a factory prescription.
+ * R, d, nd and νd follow the printed Table 1 without alteration.
+ * Stop: the diaphragm is 7.49 mm behind S6 (¶0061), so the printed d6 = 9.68 is split 7.49 + 2.19. Its radius is
+ * set by the f/1.4 paraxial entrance pupil; the patent prints no stop diameter.
+ * Cover glass: S18–S19 is a 2.00 mm plate whose index is not printed; it is traced as a rear plate with an assumed
+ * nd 1.5168 / νd 64.2. The image lies on its rear face (fB = 0.0); with that index the paraxial back focus is
+ * 0.0018 mm.
+ * Focus: d15 is printed as 1.00 (infinity) and 13.27 mm (close). L1–L8 and the iris move 12.27 mm toward the object
+ * and L9 stays fixed (¶0060). The close spacing focuses at 0.45 m object to image, −0.173×.
+ * Semi-diameters are inferred; none is printed. L4 is square at 13.45 mm, just inside the height (about 13.49 mm)
+ * where its flat rear face meets the deep concave front of L5 across the 5.49 mm gap, hence `gapSagFrac: 1`. The
+ * rims of L1 and L6–L8 are raised only as far as the f/1.4 axial beam needs.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "pentax-da-star-55mm-f14",
   "maker": "Pentax",
   "name": "PENTAX SMC DA* 55mm f/1.4 SDM",
-  "subtitle": "Qualified patent reconstruction; assumed clear apertures and approximate dispersion",
+  "subtitle": "US 2010/0073777 A1, Example 1 — strong match to the 2008 production lens",
   "catalog": {
     "lensMounts": [
       "pentax-k"
     ],
     "imageFormat": "aps-c",
+    "specs": [
+      "9 ELEMENTS / 8 GROUPS",
+      "DESIGN f = 56.36 mm",
+      "DESIGN F/1.4",
+      "ALL SPHERICAL",
+      "1 ANOMALOUS-DISPERSION ELEMENT"
+    ],
     "elementCount": 9,
     "groupCount": 8,
+    "closeFocusM": {
+      "marketing": 0.45
+    },
     "focalLengthMm": {
       "marketing": 55,
       "design": 56.36
@@ -45,8 +72,8 @@ const LENS_DATA = {
       "nd": 1.7725,
       "vd": 49.6,
       "focalLengthMm": 77.35148473128464,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-LAH66 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Front positive meniscus, convex to the object; with L2 it collects the f/1.4 beam."
     },
     {
       "id": 2,
@@ -56,8 +83,8 @@ const LENS_DATA = {
       "nd": 1.8061,
       "vd": 40.9,
       "focalLengthMm": 77.92480822332072,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Second positive meniscus, convex to the object; shares the front converging power with L1."
     },
     {
       "id": 3,
@@ -67,8 +94,8 @@ const LENS_DATA = {
       "nd": 1.69895,
       "vd": 30.1,
       "focalLengthMm": -39.85358097541357,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-TIM35 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Negative meniscus whose deep concave rear face looks at the iris; the front negative member of the Gauss pair."
     },
     {
       "id": 4,
@@ -78,8 +105,8 @@ const LENS_DATA = {
       "nd": 1.58144,
       "vd": 40.7,
       "focalLengthMm": -257.98018712162906,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-TIL25 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Weak plano-concave element just behind the iris; the patent's intermediate negative lens, added to correct sagittal lateral aberration."
     },
     {
       "id": 5,
@@ -89,8 +116,9 @@ const LENS_DATA = {
       "nd": 1.76182,
       "vd": 26.5,
       "focalLengthMm": -20.14549257186005,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-TIH14 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Dense-flint biconcave front element of the cemented doublet, deeply concave to the iris; the strongest negative element.",
+      "cemented": "D1"
     },
     {
       "id": 6,
@@ -100,8 +128,9 @@ const LENS_DATA = {
       "nd": 1.834,
       "vd": 37.2,
       "focalLengthMm": 26.09268151291995,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-LAH60 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "High-index biconvex rear element of the cemented doublet; the strongest positive element in the lens.",
+      "cemented": "D1"
     },
     {
       "id": 7,
@@ -111,8 +140,8 @@ const LENS_DATA = {
       "nd": 1.8061,
       "vd": 40.9,
       "focalLengthMm": 105.64833583168914,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Positive meniscus, convex to the image; first of the three positive elements behind the doublet."
     },
     {
       "id": 8,
@@ -122,8 +151,10 @@ const LENS_DATA = {
       "nd": 1.5924,
       "vd": 68.3,
       "focalLengthMm": 115.52439840620401,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "K-GFK68 (SUMITA catalog equivalent; production supplier unspecified)",
+      "apd": "inferred",
+      "apdNote": "Ricoh's construction drawing marks this element as anomalous low-dispersion glass; the patent nd/νd (1.59240/68.3) equal Sumita K-GFK68, whose catalog θgF of 0.546 lies about +0.017 above the normal line.",
+      "role": "Low-dispersion biconvex element, the last that moves in focusing; its νd 68.3 meets the patent's condition (2) for chromatic correction."
     },
     {
       "id": 9,
@@ -133,8 +164,8 @@ const LENS_DATA = {
       "nd": 1.48749,
       "vd": 70.2,
       "focalLengthMm": 358.4688916695727,
-      "glass": "Unmatched (patent coordinates)",
-      "indexReferenceNote": "Published d-line index and Abbe number; supplier and partial dispersion unknown."
+      "glass": "S-FSL5 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Weak plano-convex rear element, convex to the image; stays fixed while L1–L8 move to focus."
     }
   ],
   "surfaces": [
@@ -256,7 +287,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 0.45,
-    "description": "Source focus motion: first eight elements and iris advance 12.27 mm; rear element and sensor cover fixed. Endpoint object distance is a catalog approximation.",
+    "description": "PUBLISHED focus: US 2010/0073777 A1, Example 1 prints d15 at infinity (1.00 mm) and at the close state (13.27 mm, M = −0.173). L1–L8 and the iris move 12.27 mm toward the object while L9 and the cover glass stay fixed. The patent prints no object distance; with the image on the rear face of the cover glass, the close spacing focuses at 0.45 m object to image and −0.173×, matching Ricoh's 0.45 m minimum focus and 0.173× maximum magnification. Intermediate positions interpolate d15 linearly.",
     "published": [
       1
     ]
@@ -274,7 +305,8 @@ const LENS_DATA = {
       16,
       22
     ],
-    "maxFNumber": 22
+    "maxFNumber": 22,
+    "blades": 9
   },
   "projection": {
     "kind": "rectilinear",
@@ -284,9 +316,16 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.36
   },
+  "doublets": [
+    {
+      "text": "D1",
+      "fromSurface": "9",
+      "toSurface": "11"
+    }
+  ],
   "gaps": {
     "15": {
-      "label": "Front-group focus separation",
+      "label": "D15",
       "values": [
         [
           1,
@@ -297,12 +336,12 @@ const LENS_DATA = {
   },
   "rearPlates": [
     {
-      "label": "CG (assumed material)",
+      "label": "CG",
       "thicknessMm": 2,
       "nd": 1.5168,
       "vd": 64.2,
       "gapAfterMm": 0,
-      "source": "US20100073777A1 Table 1 S18\u201319: thickness printed, material NOT printed; assumed nd 1.5168 / Vd 64.2."
+      "source": "US 2010/0073777 A1 Table 1, S18\u2013S19: the 2.00 mm cover-glass thickness is printed, its material is not; nd 1.5168 / \u03bdd 64.2 is assumed."
     }
   ],
   "checks": {
