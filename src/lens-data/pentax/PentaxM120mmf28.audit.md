@@ -146,3 +146,58 @@ patent prints, shows the three tall front elements and the half-height rear pair
 The OHARA BSL22 row (the same row ronbuening/AddLens261113 adds for the M 135mm) is now in this branch's catalog, so L1
 is relabelled `BSL22 (OHARA catalog equivalent; production supplier unspecified)`, confirmed with trylabel (catalog
 1.518206 / 65.04). All five elements now trace on OHARA catalog dispersion.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the live page (infinity, the focus slider's far end, the focus-movement overlay, the L1 and L5 inspectors)
+with Fig. 1 and the Fig. 2 plots, at the scale proved in the semi-diameter pass (11.12 px per patent unit from the
+vertex crossings, confirmed vertically by the drawn edge thicknesses of L2 and L4). The model outline over Fig. 1
+matches all five silhouettes in the drawn order: three equal front elements, the rear pair about half as tall, every
+element square-cut. No rim changed. There are no lands and no face is below its baseline; the worst loss against the
+baseline rims is 0.0 points (corner 71.1 % at 10.2°). Engine half-field 10.2° and f/2.8, unchanged.
+
+Labels: L1 to L5 are the patent's own designations (claim 1); the types agree with the signs of R; the roles are true.
+There are no doublets, aspheres or `apd` tags (neither the patent nor Pentax names a special glass). The patent names
+no groups; Front (S1 to S6) and Rear (S7 to S10) bracket its closely spaced first three lenses and the remote fourth
+and fifth. The stop sits in d6 between L3 and L4. Movement: static infinity model; the focus overlay reports no group
+movement and the slider's far end changes nothing. After today's L1 relabel, the header and analysis now say all five
+n/ν pairs equal catalog d-line rows, and the analysis limitation about L1's printed pair is replaced by the g-line
+comparison below.
+
+Colour (Fig. 2, d and g lines at 600 dpi, read against the drawn reference line; the scan is rotated about 0.9°): the
+g-line paraxial focus is plotted at +0.159 to +0.161 at F = 100 against the model's +0.156, and the g-line zonal
+values agree within about 0.006 from 0.12 to 0.99 of the pupil (+0.115 against +0.120 at full aperture). The d-line
+spherical aberration is plotted up to about 0.02 more negative than the model traces (−0.075, −0.094 and −0.086 at
+0.99, 0.71 and 0.52 of the pupil against −0.054, −0.080 and −0.066). The r8 = 53.39 reading traces −0.068, −0.086
+and −0.071 there, closer in d, but puts the g line 0.012 to 0.018 too far out, so the plots do not settle the
+erratum. Every glass label resolves (Δnd ≤ 5e-6, Δνd ≤ 0.04); no relabel proposed.
+
+Distortion: Fig. 2 plots +0.92 % at 10.1° and about +0.44 % at 7.4°; the model traces +0.87 % at 10.2° and +0.52 %
+at 7.65°, and the edge value hardly depends on the stop position (0.85 to 0.90 % for stops 4 to 24 units behind r6).
+
+Astigmatism: Fig. 2 plots ΔS −0.198 and ΔM −0.146 at 10.2°, about −0.13 to −0.145 for both at 7.65° and −0.066 at
+5.1° (F = 100). A Coddington trace along the real chief ray with the modeled stop (4.17 units, 5 mm, behind r6) gives
+ΔS −0.167 but ΔM +0.301 at 10.2°: the meridional field turns back at the edge, unlike the patent. With the stop 16 to
+18 units behind r6 the trace follows the plot within about 0.02 at every field; at 17.17 units (20.608 mm, the
+PhotonsToPhotos position) it gives ΔM −0.066, −0.117, −0.152 and ΔS −0.068, −0.140, −0.214 at 5.1°, 7.65° and 10.2°.
+A scratch copy with the stop there passes the surface validator, clips no beam at the 21.6 mm corner, has a 13.64 mm
+stop radius and transmits 72.8 % at 10.2° (71.1 % now). The stop position was outside this pass.
+
+Assignees: "Asahi Kogaku Kogyo Co., Ltd." matches the front page (Asahi Kogaku Kogyo Kabushiki Kaisha) and the
+catalog's other 32 uses; no variant.
+
+Open: move the stop to about 20.6 mm behind S6 (d6 split 20.608 + 14.000), on the evidence of the patent's own
+astigmatism plot; owner decision. (Closed: applied the same day on the coordinator's decision, below.)
+
+Stop moved: S6 `d` 5 → 20.608 and STO `d` 29.608 → 14.000 (d6 stays 34.608 mm, so the image plane stays at
+106.776 mm); nothing else changed and the stop radius follows the F/N rule. Coddington trace, model against Fig. 2 at
+F = 100: ΔS −0.068, −0.140, −0.214 against about −0.066, −0.145, −0.198 plotted, and ΔM −0.066, −0.117, −0.152
+against about −0.066, −0.13, −0.146, at 5.1°, 7.65° and 10.2° (at the old stop: ΔS −0.086, −0.156, −0.167 and ΔM
+−0.105, −0.081, +0.301). Engine before and after: EFL 119.0815 mm, paraxial back focus 42.2493 mm, half-field 10.2°
+and f/2.8 unchanged; stop radius 17.188 → 13.641 mm; engine entrance-pupil offset from the stop −1.19 → +13.30 mm.
+The real f/2.8 marginal ray now passes the paraxial stop radius at an entrance height of 20.04 mm, a real on-axis
+f-number of about f/2.97 (f/3.05 at the old stop). Surface validator OK; aperture audit f/2.8 with no rim limit;
+image circle 0 undersized; corner coverage 100 % (10.2° reaches 21.65 mm); the real-ray trace at 21.6 mm shows no
+axial clip or chief-ray block. Corner transmission at f/2.8: 97.8 % at 5.1°, 91.4 % at 6.8°, 83.0 % at 8.5° and
+72.8 % at 10.2° (97.0, 89.8, 81.3 and 71.1 % at the old stop), 99.6 % at the edge at f/4; rims unchanged, worst loss
+against the baseline rims 0.0 points.

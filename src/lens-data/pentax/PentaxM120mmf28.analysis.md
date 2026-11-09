@@ -76,7 +76,7 @@ The telephoto negative element, concave to the object (R9 = −24.65 mm, R10 = �
 
 ## Glass Identification
 
-The patent gives indices and Abbe numbers without naming a spectral line; Fig. 2 plots the d and g lines. Four of the five pairs equal catalog d-line rows at the printed precision and none equals an e-line row, so the table is read as d-line. The table gives catalog equivalents; the supplier of the production glass is not established.
+The patent gives indices and Abbe numbers without naming a spectral line; Fig. 2 plots the d and g lines. All five pairs equal catalog d-line rows at the printed precision and none equals an e-line row, so the table is read as d-line. The table gives catalog equivalents; the supplier of the production glass is not established.
 
 | Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Type |
 |---|---|---|---|---|
@@ -99,7 +99,7 @@ As a result the model's focal length is 119.08 mm rather than 120 mm, and its pa
 
 ## Aperture Stop and Clear Apertures
 
-The patent neither prints nor draws a stop, and Fig. 1 shows none. The model places it in the long air space d6, 5 mm behind S6, a modeling choice; the PhotonsToPhotos Optical Bench places it 20.6 mm behind S6. At f/2.8 the entrance pupil radius is 21.26 mm and the stop radius 17.19 mm.
+The patent neither prints nor draws a stop, and Fig. 1 shows none. The model places it in the long air space d6, 20.608 mm behind S6 (17.17 at F = 100), the position the PhotonsToPhotos Optical Bench also uses. The position is inferred from the patent's own astigmatism curves, which depend on it while the axial data do not. Traced along the real chief ray, the model's sagittal and meridional fields at 5.1°, 7.65° and 10.2° are −0.068, −0.140, −0.214 and −0.066, −0.117, −0.152 at F = 100, against about −0.066, −0.145, −0.198 and −0.066, −0.13, −0.146 plotted in Fig. 2; with the stop 5 mm behind S6 the meridional field would instead turn back to +0.30 at the edge. At f/2.8 the entrance pupil radius is 21.26 mm and the stop radius 13.64 mm.
 
 The patent prints no semi-diameters, so all are inferred:
 
@@ -108,7 +108,7 @@ The patent prints no semi-diameters, so all are inferred:
 | L1, L2, L3 | 22 | The front group, drawn at nearly one height in Fig. 1 |
 | L4, L5 | 11.5 | The rear pair, drawn about half as tall as the front group |
 
-Both heights are Fig. 1 read at the scale of its S1 to S10 vertex span; the figure is a schematic, so they are approximate. The full f/2.8 beam passes on axis. Off axis the rims of L4 and L5 cut the oblique beam: about 97 % of it passes at 5.1° and 71 % at the 10.2° field edge. Stopped down, the edge transmission rises to about 85 % at f/4 and 98 % at f/5.6, and the full beam passes from f/8.
+Both heights are Fig. 1 read at the scale of its S1 to S10 vertex span; the figure is a schematic, so they are approximate. The full f/2.8 beam passes on axis. Off axis both the front rims and the rims of L4 and L5 cut the oblique beam: about 98 % of it passes at 5.1° and 73 % at the 10.2° field edge. Stopped down to f/4, nearly the full beam passes at every field (99.6 % at the edge).
 
 ## Model Scope and Limitations
 
@@ -121,10 +121,10 @@ Both heights are Fig. 1 read at the scale of its S1 to S10 vertex span; the figu
 | F1.2.3.4 | 52.73 | 63.28 | 63.05 |
 
 - The prescription is the patent's, not a confirmed factory one, and it keeps the printed r8 under the unresolved erratum above.
-- Stop position and all semi-diameters are inferred.
+- Stop position and all semi-diameters are inferred; the stop position rests on the astigmatism curves of Fig. 2.
 - The image plane is the printed back focus, 0.375 mm behind paraxial focus.
 - The model is static at infinity and says nothing about performance at 1.2 m.
-- The patent gives indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents, and for L1 on its printed pair.
+- The patent gives indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents. On axis, the model's g-line focus agrees with Fig. 2 to within about 0.005 at F = 100 (+0.156 paraxial against about +0.16 plotted).
 
 ## Sources
 

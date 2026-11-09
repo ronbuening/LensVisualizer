@@ -16,13 +16,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * three, but the claims and the Japanese original JP S53-27421 A also print 53.93, so the printed value is kept.
  * Image plane: the final gap keeps the printed back focus, 42.624 mm. The paraxial back focus is 42.249 mm, so the
  * printed plane lies 0.375 mm behind paraxial focus; it is not refocused.
- * Stop: the patent neither prints nor draws one. It sits in the long air space d6, 5 mm behind S6, which splits d6
- * into 5 + 29.608 mm; its radius is set by the paraxial entrance pupil, F/N.
+ * Stop: the patent neither prints nor draws one. It sits in the long air space d6, 20.608 mm behind S6 (17.17 at
+ * F = 100), which splits d6 into 20.608 + 14.000 mm. There a Coddington trace reproduces the astigmatism curves of
+ * Fig. 2 (ΔS −0.214, ΔM −0.152 at 10.2° against the plotted −0.198 and −0.146 at F = 100); with the stop 5 mm behind
+ * S6 the meridional field turns back to +0.30 at the edge. Its radius is set by the paraxial entrance pupil, F/N.
  * Semi-diameters are inferred, none is printed: 22 mm on the three front elements and 11.5 mm on the rear pair, the
  * heights of Fig. 1 read at the scale of its S1 to S10 vertex span (the rear pair is drawn about half as tall); at
  * these rims the drawn edge thicknesses of L2 and L4 match the prescription. Every rim passes the f/2.8 axial beam
  * and the chief ray to the 21.6 mm corner.
- * Glass: four of the five n/ν pairs equal catalog d-line rows at the printed precision, so the table is read as d-line.
+ * Glass: all five n/ν pairs equal catalog d-line rows at the printed precision, so the table is read as d-line.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies. The
  * 1.2 m minimum focus is Pentax's retail figure and is not modeled.
  */
@@ -174,13 +176,13 @@ const LENS_DATA = {
     {
       "label": "6",
       "R": 160.968,
-      "d": 5,
+      "d": 20.608,
       "sd": 22
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 29.608
+      "d": 14
     },
     {
       "label": "7",
