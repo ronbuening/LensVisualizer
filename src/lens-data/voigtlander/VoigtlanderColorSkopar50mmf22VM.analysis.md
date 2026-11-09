@@ -21,11 +21,11 @@ Embodiment 1 is a probable match to that lens, not a confirmed factory prescript
 
 Cosina's section agrees with Fig. 1 in element count, grouping, the cemented pair and the direction of every meniscus. Its air spacings do not follow Embodiment 1, however. Scaled to the same S1–S14 length, the drawing gives about 7.4 mm for the space around the stop (patent 10.59 mm), about 6.6 mm behind the cemented pair (3.02 mm) and about 5.4 mm ahead of the last element (7.46 mm). Element thicknesses agree within about 0.4 mm. Either the production spacing was revised or the drawing is schematic, so the model represents the design family rather than a verified production formula.
 
-The patent names the cemented L4/L5 pair "L6"; its positive meniscus L7 and rear negative meniscus L8 are this page's L6 and L7.
+Element names follow the patent, which calls the cemented L4/L5 pair "L6"; the two rear singlets are therefore L7 and L8, and no single element is named L6.
 
 ## Optical Architecture
 
-Two positive groups sit either side of the stop (¶0026). The first group G1 is three air-spaced menisci, positive L1, positive L2 and negative L3, with no cemented lens, which keeps the front small (¶0008). The second group G2 is the cemented pair L4/L5 convex to the object, the weak positive meniscus L6 and the thick negative meniscus L7, both concave to the object. Every element is a meniscus and every surface is spherical. There is no cover plate.
+Two positive groups sit either side of the stop (¶0026). The first group G1 is three air-spaced menisci, positive L1, positive L2 and negative L3, with no cemented lens, which keeps the front small (¶0008). The second group G2 is the cemented pair L4/L5 convex to the object, the weak positive meniscus L7 and the thick negative meniscus L8, both concave to the object. Every element is a meniscus and every surface is spherical. There is no cover plate.
 
 The patent's central device is the air space AL1 between L2 and L3 (surfaces 4 and 5). It has the shape of a positive meniscus convex to the object, so it acts as a negative lens and turns G1 into a convex-convex-concave-concave Gauss front with a strong telephoto bias (¶0009, ¶0028). Behind the stop, the cemented pair is the strongest positive component, and the negative last lens shortens the back focus (¶0029). Focusing by moving the whole lens means no focusing space is needed between the groups (¶0017).
 
@@ -36,8 +36,8 @@ Table 1 gives f1 = 132.301 mm and f2 = 57.996 mm; the model gives 132.16 and 57.
 | Gr1P-ΔPgF (largest ΔPgF of a G1 positive lens) | > 0.015 | 0.0374 | +0.0375 (L2, FCD1 catalog) |
 | Gr1P-nd | > 1.90 | 2.00100 | 2.001 (L1) |
 | f / f21 | > 1.15 | 1.18 | 1.18 (f21 = 41.06 mm) |
-| Gr2P-νd | 28.40 to 44.30 | 44.27 | 44.27 (L6) |
-| Gr2P-nd | 1.610 to 1.790 | 1.61340 | 1.61339 (L6) |
+| Gr2P-νd | 28.40 to 44.30 | 44.27 | 44.27 (L7) |
+| Gr2P-nd | 1.610 to 1.790 | 1.61340 | 1.61339 (L7) |
 | L-H / L-BF | > 3.2 | 4.04 | 4.04 |
 | L-H / f | < 1.30 | 1.17 | 1.17 |
 
@@ -65,7 +65,7 @@ nd = 1.80808, νd = 22.76. Glass: FD225 (HOYA) equivalent; anomalous partial dis
 
 The only negative element of G1: almost flat in front (R5 = 367.195 mm) and deeply concave toward the stop (R6 = 21.671 mm). Its front face and L2's rear face (R4 = 85.888 mm) bound the 0.64 mm air lens AL1 described above. The high-dispersion glass balances the color of the two positive menisci ahead of it, and its θgF lies well above the normal line. Cosina marks this position as anomalous partial dispersion glass.
 
-### L4 + L5 — Cemented Pair (patent "L6")
+### L4 + L5 — Cemented Pair L6
 
 **L4:** nd = 1.75520, νd = 27.53. Glass: E-FD4 (HOYA) equivalent. f = −21.46 mm.
 
@@ -73,17 +73,17 @@ The only negative element of G1: almost flat in front (R5 = 367.195 mm) and deep
 
 A thin negative meniscus (0.90 mm) cemented to a thick positive meniscus (5.47 mm), both convex to the object, 6.31 mm behind the stop. The cemented surface (R9 = 12.289 mm) is the most strongly curved in the lens, and the rear face is nearly flat (R10 = 406.929 mm). Together they form a positive doublet of f21 = 41.06 mm, the strongest component of G2. The condition f/f21 > 1.15 (¶0012, ¶0035) keeps this power high, which ¶0029 ties to the large reduction in length. The two flints differ by 0.15 in index but only 3.8 in νd, so the interface probably serves monochromatic correction more than color.
 
-### L6 — Positive Meniscus (patent L7)
+### L7 — Positive Meniscus
 
 nd = 1.61339, νd = 44.27. Glass: S-NBM51 (OHARA) equivalent; anomalous partial dispersion. f = +178.21 mm.
 
 A weak positive meniscus concave to the object, 3.02 mm behind the cemented pair (Table 1: f22 = 178.202 mm). Its glass meets the patent's condition for a positive lens of G2, 28.40 < νd < 44.30 and 1.610 < nd < 1.790, which ¶0013 gives for chromatic correction. S-NBM51's θgF lies slightly below the normal line. Cosina marks this position as anomalous partial dispersion glass.
 
-### L7 — Negative Meniscus (patent L8)
+### L8 — Negative Meniscus
 
 nd = 1.54814, νd = 45.83. Glass: E-FEL1 (HOYA) equivalent. f = −64.18 mm.
 
-The rear element: a thick meniscus (3.30 mm) concave to the object on both faces (R13 = −11.604, R14 = −19.059 mm), 7.46 mm behind L6 and the widest element in the model. Table 1 gives f23 = −64.175 mm. Putting a negative lens last shortens the back focus and so the total length (¶0029).
+The rear element: a thick meniscus (3.30 mm) concave to the object on both faces (R13 = −11.604, R14 = −19.059 mm), 7.46 mm behind L7 and the widest element in the model. Fig. 1 draws its front face as the concave curve followed by a flat land out to a square outer edge, and the model draws it the same way. Table 1 gives f23 = −64.175 mm. Putting a negative lens last shortens the back focus and so the total length (¶0029).
 
 ## Glass Identification and Selection
 
@@ -96,10 +96,10 @@ The patent prints nd and νd at the d line (587.56 nm) and plots the C, d and g 
 | L3 | 1.80808 | 22.76 | FD225 (HOYA) | 0.6287 | +0.0213 | Dense flint, APD (Cosina) |
 | L4 | 1.75520 | 27.53 | E-FD4 (HOYA) | 0.6091 | +0.0103 | Flint of the cemented pair |
 | L5 | 1.90365 | 31.31 | TAFD25 (HOYA) | 0.5948 | +0.0028 | High-index positive of the cemented pair |
-| L6 | 1.61339 | 44.27 | S-NBM51 (OHARA) | 0.5634 | −0.0052 | Rear positive, APD (Cosina) |
-| L7 | 1.54814 | 45.83 | E-FEL1 (HOYA) | 0.5700 | +0.0042 | Rear negative |
+| L7 | 1.61339 | 44.27 | S-NBM51 (OHARA) | 0.5634 | −0.0052 | Rear positive, APD (Cosina) |
+| L8 | 1.54814 | 45.83 | E-FEL1 (HOYA) | 0.5700 | +0.0042 | Rear negative |
 
-The front group pairs the FCD1-type crown of L2 with the FD225-type dense flint of L3: both lie well above the normal line, and the patent's ΔPgF condition (¶0010) applies to the crown. Behind the stop, L6 is the positive lens that meets the Gr2P conditions (¶0013); its S-NBM51-type glass lies slightly below the normal line. These three are the positions Cosina colours as anomalous partial dispersion glass. The other four are high-index or flint glasses whose θgF lies nearer the line.
+The front group pairs the FCD1-type crown of L2 with the FD225-type dense flint of L3: both lie well above the normal line, and the patent's ΔPgF condition (¶0010) applies to the crown. Behind the stop, L7 is the positive lens that meets the Gr2P conditions (¶0013); its S-NBM51-type glass lies slightly below the normal line. These three are the positions Cosina colours as anomalous partial dispersion glass. The other four are high-index or flint glasses whose θgF lies nearer the line.
 
 ## Focus Mechanism
 
@@ -121,7 +121,7 @@ Both printed back-focus values are kept. At infinity, D14 = 13.99 mm lies 0.009 
 - **Scale and first-order values.** The prescription is used at the patent's own scale. The model's EFL is 48.447 mm against the printed 48.455 mm (−0.02 %), a difference from the table's rounding.
 - **Stop.** Table 2 places the stop as a virtual surface, STO, 4.28 mm behind S6 and 6.31 mm ahead of S8 (¶0024). That puts it 13.45 mm behind S1, a sum rather than a printed figure. The stop diameter is not printed; the iris radius, 8.11 mm, is derived from F2.254.
 - **Aperture scale.** Cosina gives f/2.2 to f/16 with a 10-blade diaphragm. The model opens at the design F2.254 and stops down through f/16.
-- **Semi-diameters.** No clear aperture is printed. The rims are estimated from Fig. 1: 12.0 mm at L1, 8.7 mm on the cemented pair, 8.75 mm on L6 and 12.25 mm at the rear of L7. Fig. 1 draws the cemented pair slightly smaller (L4 8.6 mm, L5 8.3 mm); smaller rims there would cut more of the wide-open beam at mid-field. At full aperture the front rims cut part of the edge-of-field beam, so the model shows strong corner vignetting wide open.
+- **Semi-diameters.** No clear aperture is printed. The rims are estimated from Fig. 1: 12.0 mm at L1, 8.7 mm on the cemented pair, 8.75 mm on L7 and 12.25 mm at the rear of L8. Fig. 1 draws the cemented pair slightly smaller (L4 8.6 mm, L5 8.3 mm); smaller rims there would cut more of the wide-open beam at mid-field. Where Fig. 1 draws a curved face ending in a flat land with a square outer edge (the rear of L3, the front of L8) or a square-cut element (L1), the model draws a flat land out to the element's outer rim; the lands pass no light. At full aperture the front rims cut part of the edge-of-field beam, so the model shows strong corner vignetting wide open.
 - **Field.** The 23.797° half-field reaches about 21.64 mm image height, the corner of the 36 × 24 mm frame.
 - **Production spacing.** As described above, Cosina's section draws some air spaces differently from Embodiment 1. The model follows the patent.
 

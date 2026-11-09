@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 7 elements / 6 groups, all surfaces spherical (¶0040). No scale factor is applied. Probable match to the 2024
  * Voigtländer Color-Skopar 50mm F2.2 VM (Cosina: 7/6 with three anomalous partial dispersion elements); not a
  * confirmed factory prescription.
- * R, d, nd and νd follow Table 2 as printed. Table 2 gives L6 nd = 1.61339 while Table 1's condition row gives
+ * R, d, nd and νd follow Table 2 as printed. Table 2 gives L7 nd = 1.61339 while Table 1's condition row gives
  * 1.61340; the surface table is used. The stop is Table 2's STO row, 4.28 mm behind S6 and 6.31 mm ahead of S8; its
  * diameter is not printed, so the iris radius is derived from F2.254.
  * Unit focus (¶0023): Table 3 prints D14 = 13.99 mm at infinity and 17.96 mm with the object 642.00 mm ahead of S1
@@ -13,10 +13,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * not refocused.
  * Semi-diameters are not printed. They are estimated from Fig. 1 (18.9 px/mm at 300 dpi from the S1–S14 vertex
  * span, checked on the S1 and S14 arcs) and floor-checked by real-ray trace at both printed focus states. The
- * cemented pair is 8.7 mm on all three faces, just inside L6 as Fig. 1 draws it. The figure reads L4 8.6 and L5
+ * cemented pair is 8.7 mm on all three faces, just inside L7 as Fig. 1 draws it. The figure reads L4 8.6 and L5
  * 8.3 mm; the pair is held at 8.7 mm because smaller rims there cut more of the wide-open beam at mid-field. The
- * other rims agree with Fig. 1 within about 5 %. At full aperture the rims clip part of the edge-of-field beam.
- * The patent's L6 names the L4/L5 cemented pair, so its L7 and L8 are this file's L6 and L7.
+ * other rims agree with Fig. 1 within about 5 %. Fig. 1 draws flat lands with square outer edges on S6 (curve end
+ * about 9.0 mm, edge 10.0 mm) and S13 (9.7 mm, 12.7 mm) and draws L1 square; S2, S6 and S13 carry
+ * `rimExtensionSd` lands out to the element's outer rim (12.0, 10.25 and 12.25 mm), which change no ray. At full
+ * aperture the rims clip part of the edge-of-field beam.
+ * Element names follow the patent: L6 is its name for the L4/L5 cemented pair, so the last two elements are L7 and
+ * L8. Groups G1 (L1–L3) and G2 (L4–L8) are the patent's.
  */
 const LENS_DATA = {
   schema: 2,
@@ -106,7 +110,7 @@ const LENS_DATA = {
       glass: "E-FD4 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -21.460133511738967,
       role: "Negative meniscus at the front of the cemented pair behind the stop; the dense-flint partner of L5.",
-      cemented: "D1",
+      cemented: "L6",
     },
     {
       id: 5,
@@ -119,11 +123,11 @@ const LENS_DATA = {
       glass: "TAFD25 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 13.931109515814104,
       role: "Strong positive meniscus of the cemented pair; the pair (f21 = 41.06 mm) carries most of the rear group's power and shortens the lens (¶0029, ¶0035).",
-      cemented: "D1",
+      cemented: "L6",
     },
     {
       id: 6,
-      name: "L6",
+      name: "L7",
       label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.61339,
@@ -138,7 +142,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L8",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.54814,
@@ -162,6 +166,7 @@ const LENS_DATA = {
       R: 54.125,
       d: 0.15,
       sd: 11.5,
+      rimExtensionSd: 12.0,
     },
     {
       label: "3",
@@ -188,6 +193,7 @@ const LENS_DATA = {
       R: 21.671,
       d: 4.28,
       sd: 9.25,
+      rimExtensionSd: 10.25,
     },
     {
       label: "STO",
@@ -233,6 +239,7 @@ const LENS_DATA = {
       d: 3.3,
       medium: 7,
       sd: 9.25,
+      rimExtensionSd: 12.25,
     },
     {
       label: "14",
@@ -240,9 +247,21 @@ const LENS_DATA = {
       sd: 12.25,
     },
   ],
+  groups: [
+    {
+      text: "G1",
+      fromSurface: "1",
+      toSurface: "6",
+    },
+    {
+      text: "G2",
+      fromSurface: "8",
+      toSurface: "14",
+    },
+  ],
   doublets: [
     {
-      text: "D1",
+      text: "L6",
       fromSurface: "8",
       toSurface: "10",
     },

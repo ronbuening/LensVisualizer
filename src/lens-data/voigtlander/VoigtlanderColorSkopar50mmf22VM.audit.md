@@ -103,4 +103,54 @@ relative to L1 are L2 0.93, L3 0.85, L4 0.78, L5 0.76, L6 0.73 and L7 1.01; Fig.
 smaller. Fig. 1 governs.
 
 Open: S13/S14 sit 4–5 % inside Fig. 1 (9.7 / 12.7 mm), so the last element reads slightly small against L1. L1 is
-drawn square at 11.65 mm against 12.0 / 11.5 mm. Both are within noise and were kept.
+drawn square at 11.65 mm against 12.0 / 11.5 mm. Both are within noise and were kept. (L1's outline closed in the
+second review below: a land on S2 draws it square.)
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+What was compared: the local page (infinity, 70 cm, `?mv=focus`, inspectors for elements 4, 6 and 7) against
+JP 2025-187904 A Fig. 1 (page 16). The scale was re-proved at 300 dpi: the S1–S14 vertices sit 802 px apart for
+42.49 mm, the stop tick sits 4.26 mm behind S6 (printed 4.28 mm), and the S1/S14 arc fits give 18.6–18.8 px/mm across
+the axis. The text of ¶0022–¶0031 and Tables 1–3 was also checked, along with the Fig. 2 aberration plots.
+
+Silhouette. The page drew L1, L3 and the last element with slanted rim edges. Fig. 1 draws L1 square-cut, and shows
+flat lands with square outer edges on L3's rear face (curve end 169 px = 9.0 mm, edge 188 px = 10.0 mm) and on the
+last element's front face (curve end 181 px = 9.7 mm, edge 238 px = 12.7 mm); Cosina's section draws the same lands.
+Rim extensions now draw them, with no change to any `sd`:
+
+| Face | Kind | Fig. 1 | Baseline | Final | Light cost | Verdict |
+|---|---|---|---|---|---|---|
+| S2 | land | L1 square at 11.65 | sd 11.5 | sd 11.5, land to 12.0 | 0.0 points | keep: costs nothing, squares L1 |
+| S6 | land | curve 9.0, land to 10.0 | sd 9.25 | sd 9.25, land to 10.25 | 0.0 points | keep: drawn, costs nothing |
+| S13 | land | curve 9.7, land to 12.7 | sd 9.25 | sd 9.25, land to 12.25 | 0.0 points | keep: drawn, costs nothing |
+| S8 / S9 / S10 | cut | 8.56 / about 8.3 / 8.26 | 9.5 / 9.25 / 9.25 | 8.7 | 2.6 points together | keep: slight |
+
+Final worst loss against the baseline is 2.6 points at 11.9° (infinity) and 2.7 points at 10.9° (near state, parallel
+beams). The corners are unchanged at 32.5 % and 48.0 %. With a real object 642 mm ahead of S1, a full-pupil scratch
+trace gives 49.9 % at the 21.63 mm corner for both the baseline and the final rims; the same trace reads 35.3 % at the
+infinity corner, where the app reads 32.5 %. Engine half-field 23.797° and F/2.254 are unchanged. audit:surface,
+audit:image-circle, audit:aperture and field coverage (21.64 mm corner) are clean.
+
+Labels. Elements 6 and 7 were named L6 and L7; Fig. 1 and ¶0029/¶0031 name them L7 and L8, because the patent gives
+"L6" to the L4/L5 cemented lens. They are renamed L7 and L8. The cemented bracket and the `cemented` tags change from
+D1 to L6, which is the patent's name and keeps clear of the D14 spacing label. Groups G1 (S1–S6) and G2 (S8–S14) are
+added from ¶0022, ¶0027, ¶0029 and the Fig. 1 brackets; the movement panel now tracks the two groups instead of six
+element runs. Element types agree with the signs of R. The stop sits between L3 and L4. There are no aspheres. The
+`apd: "inferred"` tags sit on L2, L3 and L7, Cosina's three APD positions. The inspectors read correctly ("DOUBLET L6"
+on L4, "L8" on element 7).
+
+Movement. Keyframe 0 is infinity (D14 13.99 mm) and keyframe 1 the printed close state (D14 17.96 mm, Table 3). G1
+and G2 move together 3.97 mm toward the object (¶0023), which the movement panel shows. The slider's far end reads
+70 cm, beside Cosina's 50 cm.
+
+Colour and aberrations against Fig. 2. Paraxial focus relative to d is C +0.060 and g −0.034 mm in the model, against
++0.061 and −0.031 read from the plot. At full pupil, d is +0.014 (plot +0.014), C +0.035 (plot about +0.04) and g
++0.206 (plot about +0.19 to +0.20). Distortion at 5.41/10.82/16.22/21.63 mm is +0.24/+0.80/+1.36/+1.27 % against the
+plot's +0.24/+0.77/+1.35/+1.27 %. Sagittal field curvature agrees within about 0.02 mm. All seven glasses resolve to
+exact catalog rows with Sellmeier data. The only partial-dispersion figure the patent prints is Gr1P-ΔPgF = 0.0374
+(¶0033), which matches FCD1 at L2 (+0.0375 on the patent's line). No relabel is proposed. The assignee "Cosina Co.,
+Ltd." matches the front page (株式会社コシナ) and the catalog's 29 other uses.
+
+Open: the 0.3 mm step by which Fig. 1 draws L4 beyond L5 is not drawn, because the pair is held at 8.7 mm for light.
+Open: L2 stays `apd: "inferred"`. ¶0010/¶0033 give a first-group positive lens a ΔPgF of 0.0374, but only the catalog
+match ties that value to L2.
