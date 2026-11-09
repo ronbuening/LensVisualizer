@@ -42,4 +42,42 @@ Engine numbers identical before and after: EFL 23.6055 mm, F/1.22, half field 31
 14.7827 mm. Surface audit OK; aperture audit within 3 % of the stated f-number, no rim limit.
 
 Open: L1 (11.0/10.2 mm) and L2–L3 (12.0 mm) rims are up to 0.8 mm larger than Fig. 1 drawn to scale (about 10.2 and
-11.3 mm); left as authored in this pass.
+11.3 mm); left as authored in this pass. (Closed by the semi-diameter pass below.)
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: patents/JP2023090337A.pdf, page 18, Fig. 1 (Embodiment 1, infinity, axis vertical with the object at the
+bottom), read at 600 dpi. Scale: the 16 vertex crossings on the axis give S1 to S17 = 1186.5 px for 40.88 mm, 28.95
+px/mm, and every span longer than 4 mm agrees within 0.3 % (S6–S7 196.5 px for 6.80 mm, S8–S10 218 px for 7.54 mm). The drawing is
+isotropic: at 197 px off the axis all 16 drawn arcs sit within 2 px of the printed radii placed at that scale. Axis at
+page x = 1450. Element edges were read as the centres of the vertical rim strokes, both sides; cap ends were found by
+following each drawn arc outward until it left the printed profile.
+
+| Surface | Before | Fig. 1 | After | Evidence and decision |
+|---|---:|---:|---:|---|
+| 1 | 11.0 | 10.1 | 10.2 | Square L1 edge at 10.14 mm (587 px across); 10.1 cost 2.4 points at 31.4°, so 0.1 mm stays for light |
+| 2 | 10.2 | 10.1 | 10.2 | Same square edge; S2's arc reaches the corner |
+| 3–5 | 12.0 | 11.3 | 11.3 | L2–L3 edge 11.30 mm (654.5 px across); costs no light; restores the drawn step below L4–L5 |
+| 6–7 | 12.0 | 12.2 | 12.0 | 12.19 mm drawn, 1.6 % off; kept |
+| 8 | 12.0 | cap 11.1, edge 12.2 | 12.0, cut 1.49 | Drawn flat land; q = 0.91 ± 0.005 of the edge (322 of 353 px); cut radius 10.94 mm clears the beams (reach 10.34 mm) |
+| 10 | 9.75 | cap 9.5, edge 9.85 | 9.75, cut 2.33 | Drawn flat land; q = 0.96 ± 0.007 (275 of 285 px); cut radius 9.39 mm clears the beams (reach 9.08 mm) |
+| 11–12 | 9.75 | 9.85 | 9.75 | 1 % off; kept |
+| 13–14 | 9.75 | 9.5 | 9.6 | L8–L9 edge 9.49 mm (549.5 px across); 9.5 cost 2.3 points at 20°, and with L1 the total passed 3, so 9.6 |
+| 15 | 9.0 | cap 8.3, edge 9.5 | 9.0, rimExtensionSd 9.6 | A cut at the drawn cap (8.33 mm) fails the beam rule (beams reach 9.26 mm at 31.65°); the cap keeps 9.0 and a land squares the doublet at 9.6 |
+| 16A–17A | 9.5 | 9.5 | 9.5 | L10 edge 9.47 mm; arcs reach the rim; kept |
+
+Corner light (geometric transmission against the starting rims, wide open, infinity): worst loss 2.3 points at 25.7°;
+31.4° goes from 35.6 % to 33.3 %, and relative illumination at 31.5° from 0.204 to 0.192. Restoring the S8 or S10
+land or the L2–L3 rims wins back nothing. The audit's on-axis check stays within 3 % of F/1.22 with no rim limit, the
+inferred-cut beam check clears the cuts by 0.60 mm (S8) and 0.31 mm (S10), the image-circle floor shows nothing
+undersized, and the traced
+corner chief ray reaches 14.17 of 14.18 mm at 31.4°, as before. Engine EFL, F/1.22, half field 31.5° and stop radius
+9.5143 mm are unchanged. The meridional real-ray check, which sizes its own iris (9.82 mm) larger than the engine
+(9.51 mm), still flags S6, S11 and S12 as it did before the pass; at the engine's iris none of them is reached.
+
+Cosina's section (official_section.png) agrees in order and grouping: 10 elements in 6 groups, the stop between the
+second and third doublets, anomalous partial dispersion glass at elements 1 and 2 and the double-sided asphere at
+element 10. It is schematic in proportion: it draws L2–L3 as tall as L4–L5 and L1 at about 0.93 of them, where Fig. 1
+steps 10.1, 11.3 and 12.2 mm; its rear group at about 0.8 of the front matches Fig. 1.
+
+Open: L4–L5 (12.0 against 12.2 drawn) and L6–L7 (9.75 against 9.85) sit inside measurement noise and were left.

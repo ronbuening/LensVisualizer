@@ -123,9 +123,11 @@ Both faces flatten toward the rim. Relative to its base sphere, 16A departs by �
 
 The stop position is printed: 3.75 mm behind S8 and 3.79 mm ahead of S10, 19.36 mm behind S1. The patent gives no iris diameter, so the engine sizes the stop radius at 9.51 mm, which gives a 9.67 mm paraxial entrance-pupil radius, F/1.22. The f-stop scale runs to f/16 with 12 blades, following Cosina's specification.
 
-No clear apertures are printed, so all semi-diameters are estimates in the proportions of Fig. 1 and Cosina's section: 11.0 and 10.2 mm for L1, 12.0 mm for both front doublets, 9.75 mm for the rear doublets (9.0 mm at S15) and 9.5 mm for L10. Fig. 1 is drawn to scale. Read at its axial scale, it gives about 10.2 mm for L1, 11.3 mm for L2–L3, 12.2 mm for L4–L5, 9.8 mm for L6–L7 and 9.5 mm for L8–L10, so the model's L1 and first doublet are up to 0.8 mm larger than drawn.
+No clear apertures are printed, so all semi-diameters are estimated from Fig. 1, which is drawn to scale: its surface arcs fit the printed radii within about 0.07 mm. The drawn element edges are 10.1 mm for L1, 11.3 mm for L2–L3, 12.2 mm for L4–L5, 9.85 mm for L6–L7, and 9.5 mm for L8–L9 and L10. The model uses 10.2, 11.3, 12.0, 9.75, 9.6 and 9.5 mm. L1 and L8–L9 sit 0.1 mm outside the drawing, which keeps light at the field edge.
 
-At F/1.22 the rims pass 78 % of the beam at 14.3° and 36 % at the 31.5° edge, where relative illumination falls to 0.20, about 2.3 stops. The chief ray at 31.5° lands at 14.20 mm, just beyond the 14.18 mm APS-C corner.
+Fig. 1 ends three concave faces short of their element edges with flat lands. The model draws the lands on S8 (cap to 10.94 mm of 12.0 mm) and S10 (9.39 of 9.75 mm), both outside the wide-open beams. On S15 the drawn cap ends near 8.3 mm, but the beams reach 9.26 mm there, so the cap keeps 9.0 mm with a land out to the 9.6 mm edge.
+
+At F/1.22 the rims pass 77 % of the beam at 14.3° and 33 % at the 31.5° edge, where relative illumination falls to 0.19, about 2.4 stops. The chief ray at 31.5° lands at 14.20 mm, just beyond the 14.18 mm APS-C corner.
 
 ## Model Scope and Limitations
 

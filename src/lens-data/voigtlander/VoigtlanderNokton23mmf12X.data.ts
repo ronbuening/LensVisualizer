@@ -12,8 +12,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Image plane: the final gap keeps Table 2's 14.78 mm. Table 1 rounds the back focus to 14.8 mm and the length in air
  * to 55.7 mm (55.66 mm here). The paraxial back focus is 14.783 mm, 0.003 mm longer.
  * Stop and rims: the patent prints no iris opening and no clear apertures. The engine sizes the iris from F/1.22.
- * Semi-diameters are estimates in the proportions of Fig. 1 and Cosina's section (front doublets 12 mm, rear group
- * 9.0 to 9.75 mm); the wide-open beam is heavily vignetted at the field edge.
+ * Semi-diameters are estimated from Fig. 1, which is drawn to scale (28.95 px/mm at 600 dpi from the S1–S17 vertex
+ * span; arcs fit the printed radii within 2 px in both directions), and floor-checked by real-ray trace. Drawn rims:
+ * L1 10.1, L2–L3 11.3, L4–L5 12.2, L6–L7 9.85, L8–L9 9.5, L10 9.5 mm. L1 (10.2) and L8–L9 (9.6) sit 0.1 mm outside
+ * the drawing so that corner light stays within 3 points of the earlier rims; L4–L5 and L6–L7 keep 12.0 and 9.75.
+ * Fig. 1 ends three concave caps short of the element edge with a flat land: S8 at q = 0.91 of the edge (cut depth
+ * 1.49 mm, cap end 10.94 mm) and S10 at q = 0.96 (2.33 mm, 9.39 mm), both clear of the wide-open beams; S15's cap
+ * (drawn to about 8.3 mm) keeps 9.0 mm, with a land to 9.6 mm, because the beams reach 9.26 mm there.
+ * The wide-open beam is heavily vignetted at the field edge.
  * Glass labels are catalog equivalents whose nd and νd equal the printed pairs; the production supplier is not known.
  * Focus: the patent prints the infinity state only, so the model is static. Cosina's 0.18 m minimum focus, reached by
  * extending the whole lens, is not modeled.
@@ -200,7 +206,7 @@ const LENS_DATA = {
       R: -37.656,
       d: 0.9,
       medium: 1,
-      sd: 11.0,
+      sd: 10.2,
     },
     {
       label: "2",
@@ -213,20 +219,20 @@ const LENS_DATA = {
       R: 91.449,
       d: 1.3,
       medium: 2,
-      sd: 12,
+      sd: 11.3,
     },
     {
       label: "4",
       R: 41.556,
       d: 4.38,
       medium: 3,
-      sd: 12,
+      sd: 11.3,
     },
     {
       label: "5",
       R: -54.889,
       d: 0.15,
-      sd: 12,
+      sd: 11.3,
     },
     {
       label: "6",
@@ -247,6 +253,7 @@ const LENS_DATA = {
       R: 40.875,
       d: 3.75,
       sd: 12,
+      rimCutDepthMm: 1.49,
     },
     {
       label: "STO",
@@ -259,6 +266,7 @@ const LENS_DATA = {
       d: 0.9,
       medium: 6,
       sd: 9.75,
+      rimCutDepthMm: 2.33,
     },
     {
       label: "11",
@@ -278,20 +286,21 @@ const LENS_DATA = {
       R: 24.398,
       d: 6.07,
       medium: 8,
-      sd: 9.75,
+      sd: 9.6,
     },
     {
       label: "14",
       R: -20.037,
       d: 1.61,
       medium: 9,
-      sd: 9.75,
+      sd: 9.6,
     },
     {
       label: "15",
       R: 22.356,
       d: 1.66,
       sd: 9.0,
+      rimExtensionSd: 9.6,
     },
     {
       label: "16A",
