@@ -168,13 +168,14 @@ describe("CardinalElementsOverlay", () => {
     const eflLabel = Array.from(container.querySelectorAll("text")).find((node) =>
       node.textContent?.startsWith("EFL "),
     );
+    // Spans follow the moved lens along z but stay level on their lane in the band below the drawing.
     const eflLine = eflLabel?.parentElement?.querySelector("line");
     expect(eflLine?.getAttribute("x1")).toBe("152");
-    expect(Number(eflLine?.getAttribute("y1"))).toBeCloseTo(286.8);
+    expect(eflLine?.getAttribute("y1")).toBe("416");
     expect(eflLine?.getAttribute("x2")).toBe("202");
-    expect(Number(eflLine?.getAttribute("y2"))).toBeCloseTo(306.8);
+    expect(eflLine?.getAttribute("y2")).toBe("416");
     expect(Number(eflLabel?.getAttribute("x"))).toBeCloseTo(177);
-    expect(Number(eflLabel?.getAttribute("y"))).toBeCloseTo(291.8);
+    expect(eflLabel?.getAttribute("y")).toBe("411");
 
     const principalCurve = container.querySelector('path[stroke-dasharray="5,3"]');
     expect(principalCurve?.getAttribute("d")).toContain("M");
@@ -254,5 +255,14 @@ describe("CardinalElementsOverlay", () => {
     expect(labels.some((label) => label.startsWith("EFL "))).toBe(false);
     expect(labels.some((label) => label.startsWith("BFD "))).toBe(true);
     expect(labels.some((label) => label.startsWith("Total track "))).toBe(true);
+
+    // Hidden spans leave no gap: the visible ones take the top lanes of the band, below the 400-unit drawing.
+    const laneY = (prefix: string) =>
+      Array.from(container.querySelectorAll("text"))
+        .find((el) => el.textContent?.startsWith(prefix))
+        ?.parentElement?.querySelector("line")
+        ?.getAttribute("y1");
+    expect(laneY("BFD ")).toBe("416");
+    expect(laneY("Total track ")).toBe("432");
   });
 });

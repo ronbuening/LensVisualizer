@@ -1,5 +1,6 @@
 import { memo } from "react";
 import type { CardinalElements, CardinalDistance, CardinalPoint } from "../../optics/analysis.js";
+import { cardinalDimensionLaneY, visibleCardinalDimensions } from "./cardinalDimensionBand.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -154,29 +155,26 @@ function spanEnd(x: number, y: number, clipped: "left" | "right" | null, color: 
 }
 
 /**
- * Draw one dimension span in its lane. A span that runs past the viewport is cut at the edge
- * with a chevron; one wholly beyond it becomes an edge label carrying its value.
+ * Draw one dimension span on its band lane, level whatever the lens movement. A span that runs past
+ * the viewport is cut at the edge with a chevron; one wholly beyond it becomes an edge label carrying
+ * its value.
  *
- * @param edgeAxisY - lens-axis screen y used for the edge label when the span is wholly off view
+ * @param laneY - SVG y of the span line inside the dimension band
  */
 function dimensionLine(
   distance: CardinalDistance,
-  laneOffset: number,
+  laneY: number,
   sx: (z: number) => number,
   sy: (y: number) => number,
   color: string,
   svgW: number,
-  edgeAxisY: { left: number; right: number },
   pointTransform?: (z: number, y: number) => [number, number],
 ) {
-  const [fromX, fromAxisY] = screenPoint(distance.fromZ, 0, sx, sy, pointTransform);
-  const [toX, toAxisY] = screenPoint(distance.toZ, 0, sx, sy, pointTransform);
-  if (![fromX, fromAxisY, toX, toAxisY].every(Number.isFinite)) return null;
-  const forward = fromX <= toX;
-  const x1 = forward ? fromX : toX;
-  const x2 = forward ? toX : fromX;
-  const y1 = (forward ? fromAxisY : toAxisY) + laneOffset;
-  const y2 = (forward ? toAxisY : fromAxisY) + laneOffset;
+  const fromX = screenPoint(distance.fromZ, 0, sx, sy, pointTransform)[0];
+  const toX = screenPoint(distance.toZ, 0, sx, sy, pointTransform)[0];
+  if (!Number.isFinite(fromX) || !Number.isFinite(toX)) return null;
+  const x1 = Math.min(fromX, toX);
+  const x2 = Math.max(fromX, toX);
   const label = `${distance.id} ${fmtMm(distance.valueMm, distance.id === "Hiatus")}`;
   const textStyle = { letterSpacing: "0.08em" };
 
@@ -188,7 +186,7 @@ function dimensionLine(
       <text
         key={distance.id}
         x={side === "left" ? EDGE_INSET : svgW - EDGE_INSET}
-        y={edgeAxisY[side] + laneOffset + SPAN_FONT_SIZE / 2}
+        y={laneY + SPAN_FONT_SIZE / 2 - 1}
         textAnchor={side === "left" ? "start" : "end"}
         fill={color}
         fontSize={SPAN_FONT_SIZE}
@@ -200,23 +198,21 @@ function dimensionLine(
     );
   }
 
-  const yAt = (x: number) => (x2 - x1 > 1e-9 ? y1 + ((x - x1) / (x2 - x1)) * (y2 - y1) : y1);
   const startX = leftSide === "left" ? SPAN_CLIP_INSET : x1;
   const endX = rightSide === "right" ? svgW - SPAN_CLIP_INSET : x2;
-  const startY = leftSide === "left" ? yAt(startX) : y1;
-  const endY = rightSide === "right" ? yAt(endX) : y2;
   const halfLabelWidth = (label.length * SPAN_CHAR_WIDTH) / 2;
-  const midX = (startX + endX) / 2;
-  const labelX = Math.min(Math.max(midX, EDGE_INSET + halfLabelWidth), svgW - EDGE_INSET - halfLabelWidth);
-  const labelY = yAt(labelX) - 5;
+  const labelX = Math.min(
+    Math.max((startX + endX) / 2, EDGE_INSET + halfLabelWidth),
+    svgW - EDGE_INSET - halfLabelWidth,
+  );
   return (
     <g key={distance.id} style={{ pointerEvents: "none" }}>
-      <line x1={startX} y1={startY} x2={endX} y2={endY} stroke={color} strokeWidth={0.9} />
-      {spanEnd(startX, startY, leftSide === "left" ? "left" : null, color)}
-      {spanEnd(endX, endY, rightSide === "right" ? "right" : null, color)}
+      <line x1={startX} y1={laneY} x2={endX} y2={laneY} stroke={color} strokeWidth={0.9} />
+      {spanEnd(startX, laneY, leftSide === "left" ? "left" : null, color)}
+      {spanEnd(endX, laneY, rightSide === "right" ? "right" : null, color)}
       <text
         x={labelX}
-        y={labelY}
+        y={laneY - 5}
         textAnchor="middle"
         fill={color}
         fontSize={SPAN_FONT_SIZE}
@@ -336,19 +332,24 @@ const CardinalElementsOverlay = memo(function CardinalElementsOverlay({
       {edgeIndicator("left", offView.left, edgeAxisY.left - 12, L.svgW, t.muted)}
       {edgeIndicator("right", offView.right, edgeAxisY.right - 12, L.svgW, t.muted)}
 
-      {showCardinalDimensions
-        ? (
-            [
-              [showCardinalEfl, cardinals.distances.efl, 70],
-              [showCardinalBfd, cardinals.distances.bfd, 86],
-              [showCardinalFfd, cardinals.distances.ffd, 102],
-              [showCardinalHiatus, cardinals.distances.hiatus, 118],
-              [showCardinalTotalTrack, cardinals.distances.totalTrack, 134],
-            ] as const
-          ).map(([shown, distance, lane]) =>
-            shown ? dimensionLine(distance, lane, sx, sy, dimensionColor, L.svgW, edgeAxisY, pointTransform) : null,
-          )
-        : null}
+      {visibleCardinalDimensions({
+        showCardinalDimensions,
+        showCardinalEfl,
+        showCardinalBfd,
+        showCardinalFfd,
+        showCardinalHiatus,
+        showCardinalTotalTrack,
+      }).map((id, lane) =>
+        dimensionLine(
+          cardinals.distances[id],
+          cardinalDimensionLaneY(L.svgH, lane),
+          sx,
+          sy,
+          dimensionColor,
+          L.svgW,
+          pointTransform,
+        ),
+      )}
     </g>
   );
 });

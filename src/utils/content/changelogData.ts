@@ -22,7 +22,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-11-09",
     type: "fix",
     summary:
-      "Fixed cardinal points and dimensions shrinking long telephoto diagrams; points and spans beyond the view are now marked at its edge",
+      "Fixed cardinal points and dimensions shrinking long telephoto diagrams and dimension labels covering the element numbers; spans now sit in a band below the lens, and anything beyond the view is marked at its edge",
   },
   {
     date: "2026-11-09",
