@@ -2,59 +2,146 @@
 
 **Patent:** US 4,468,100 A  
 **Filed:** September 23, 1982  
-**Published:** August 28, 1984  
+**Granted:** August 28, 1984  
+**Priority:** October 9, 1981 (JP 56-161448)  
 **Inventors:** Takayuki Itoh; Yasunori Arai  
 **Assignee:** Asahi Kogaku Kogyo Co., Ltd.  
 **Title:** Wide-angle photographic lens  
-**Example details:** Figure 1 and printed column 4; complete literal prescription without normalization.
+**Example details:** Example 1, printed column 4 and repeated in claim 2; section in Fig. 1, aberration plots in Fig. 2. The prescription is used at the patent's own scale, f = 28.78 mm, without normalization.
 
-The named SMC Pentax-A 28mm f/2.8 section in the manufacturer's A-lens booklet, printed page 36, supports a probable design-family association. It shows seven separate elements, two negative front menisci, separate positive third and fourth elements, a biconcave fifth element, and the two positive rear elements. The specification table gives seven elements in seven groups and a 75° field. The patent's f/2.8, 28.78 mm, 75.2° example agrees at the product-class level. The source dimensions are not rescaled to the marketed 28 mm.
+This is a patent design associated with the SMC Pentax-A 28mm f/2.8, introduced in 1984, not a confirmed factory prescription. The association is strong and rests on four points:
 
-The maker's weakly biconvex fourth element favors this example over the second example's shallow front concavity. Schematic precision does not uniquely exclude Example 2 or establish the actual manufactured radii. This is not a factory-exact prescription. No alternative-example values are mixed in. The later F28 model is not separately instantiated from the same data. Other M28 prescriptions remain distinct.
+1. The patent's seven single lenses in seven components match Pentax's published construction of seven elements in seven groups, in the same order of shapes: two negative menisci convex to the object, a biconvex element, the iris, a second biconvex element, a biconcave element and two positive elements convex to the image.
+2. The lens section in Pentax's A-lens booklet is drawn closely to scale. Read at its own scale, its vertex positions agree with Example 1's spacings within about 0.5 mm: the L1–L2 air space measures 6.53 mm against the printed 6.46 mm, the L2–L3 air space 7.26 against 7.17 mm, the L5 thickness 3.31 against 3.33 mm and the L5–L6 air space 1.13 against 1.19 mm.
+3. Example 1 is a 28.78 mm f/2.8 lens with a half-field of 37.6°, which gives the 75° angle of view in Pentax's specification table.
+4. The October 1981 priority date falls shortly before the second version of the SMC Pentax-M 28mm f/2.8 (1982), which CineLensWiki reports shares its optical formula with the A lens. The A version followed in 1984 and was made until 1988.
+
+Example 2 of the same patent has the same layout but fits the maker's section worse. Its L1–L2 air space is 4.53 mm and its L2–L3 air space 8.55 mm, which puts L2 and L3 up to 1.7 mm from where the section draws them, and its L4 has a nearly flat, slightly concave front face where the section draws a weakly convex one. No Example 2 value is used here.
+
+Pentax's specification table gives seven elements in seven groups, a 75° angle of view, f/22 as the smallest aperture, a fully automatic diaphragm, a 0.3 m minimum focus, a 49 mm filter thread, 63 × 36.5 mm and 170 g, on the Pentax K mount. A five-blade diaphragm is reported. None of these fixes the radii, the clear apertures or the iris position. The first version of the SMC Pentax-M 28mm f/2.8 (1977) used a different formula, from a different patent.
 
 ## Optical Architecture
 
-This is an all-spherical retrofocus wide-angle with seven air-separated elements and fourteen refracting surfaces. The front negative section creates the extended back focus; the central and rear positive elements balance that negative power. No aspheres, cemented pairs, coating data or filter plates are specified.
+Seven spherical singlets form a retrofocus wide-angle lens. The patent divides them into a negative front component of two menisci convex to the object (L1, L2), a positive middle component of two biconvex elements around the iris (L3, L4), and a rear component of a biconcave negative (L5) and two positive elements convex to the image (L6, L7). The power sequence is N-N-P-P-N-P-P. There are no cemented surfaces, aspheric surfaces or cover plates.
 
-The maker section places the iris between L3 and L4 but gives neither its coordinate nor diameter. The initial model uses the midpoint of the unchanged 4.62 mm sixth air space: 2.31 mm after S6, at z = 23.14 mm. The engine derives the iris radius from the design f-number. Initial clear semi-diameters of 15, 12, 9.5, 8.5, 7.5, 8.5 and 9.5 mm are approximate mechanical hypotheses guided by the section's relative rim envelope, not measured factory dimensions or values derived from the 49 mm filter. The first hypothesis failed the S2 rim-slope and S10/S11 gap-sag checks. Conservative paired corrections set L1 to 14.9 mm and L5 to 6.45 mm. All other caps and the midpoint iris remain unchanged. This corrected hypothesis passes ordinary default geometry checks with zero hidden rendering trim and no overrides. Native rendered silhouettes were visually compared with the maker and patent sections; topology and comparative envelope agree, but the rim dimensions remain estimates.
+The front component has a composite focal length of −24.20 mm. Ahead of the positive components it pushes the back focus to 36.79 mm, 1.28 times the focal length, which leaves room for the reflex mirror. The lens is 43.72 mm long from S1 to S14, and the image plane lies 80.51 mm behind S1.
+
+The patent's stated aim is a small, high-performance 28 mm f/2.8 that is easy and inexpensive to make. Its eight conditions serve that aim: among other things they keep the rear radii of the two front menisci from becoming so short that the lenses are hard to make, hold the front glasses to inexpensive, durable crowns, and keep the front component short. Example 1 meets all of them:
+
+| Condition | Range | Patent, Example 1 | Model |
+|---|---|---|---|
+| (1) f / f(I–II) | −1.4 to −0.9 | −1.186 | −1.189 |
+| (2) f(I–II) / f(I) | 0.3 to 0.65 | 0.47 | 0.471 |
+| (3) (d1 + d2 + d3 + d4) / f | 0.4 to 0.8 | 0.567 | 0.567 |
+| (4) (N(I) + N(II)) / 2 | 1.5 to 1.6 | 1.553 | 1.553 |
+| (5) f / f(I–IV) | 1.0 to 1.5 | 1.302 | 1.305 |
+| (6) f(III–IV) / f(III) | 0.4 to 0.75 | 0.597 | 0.597 |
+| (7) r5 / f | 0.7 to 1.3 | 0.892 | 0.892 |
+| (8) d10 / f | 0.02 to 0.1 | 0.041 | 0.041 |
+
+Here f(I–II) is the composite focal length of L1 and L2, f(I–IV) that of L1 to L4, f(III–IV) that of L3 and L4, and N(I), N(II) are the d-line indices of L1 and L2. Conditions (1) to (4) govern the front component, (5) to (7) the middle component and (8) the rear. The printed values of (1) and (5) are both about 0.3 % smaller in magnitude than the model's, as if they had been computed with f ≈ 28.70 mm; the others agree to rounding.
 
 ## Element-by-Element Analysis
 
-### L1 and L2: Negative Front Menisci
+### L1 — Negative Meniscus
 
-L1: nd = 1.58913, Vd = 61.0. L2: nd = 1.51633, Vd = 64.1. Both remain unmatched glasses. Their object-facing convex surfaces and more strongly curved rear surfaces contribute negative power and the long back focus.
+nd = 1.58913, νd = 61.0. Glass: S-BAL35 (OHARA) equivalent. f = −51.36 mm.
 
-### L3 and L4: Separate Positive Elements
+The largest element, convex to the object, with its stronger curve (R2 = 16.614 mm) toward the image. With L2 it forms the negative front component (f = −24.20 mm) that conditions (1) to (4) govern. Condition (2) splits that power almost equally between the two menisci.
 
-L3: nd = 1.70000, Vd = 48.1. L4: nd = 1.65844, Vd = 50.9. Both are biconvex and remain unmatched. Their positive power surrounds the assumed stop region; L4's weak front curvature is a useful but not unique topology discriminator.
+### L2 — Negative Meniscus
 
-### L5: Biconcave Negative Element
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) equivalent. f = −52.27 mm.
 
-nd = 1.76182, Vd = 26.6. This unmatched, relatively dispersive glass supplies negative power in the rear section. Both signed radii and the 3.33 mm center thickness remain literal.
+The same form as L1, with a rear radius of 14.85 mm. Condition (4) holds the mean index of L1 and L2 between 1.5 and 1.6: the patent says glass of higher index would cost more and resist acid and water less well, while lower index would make the aberrations harder to correct. The two crowns here average 1.553.
 
-### L6 and L7: Positive Rear Menisci
+### L3 — Biconvex Positive
 
-Both use nd = 1.69350 and Vd = 53.2, without an established supplier identity. L6 has a stronger image-facing curvature. L7's very weak front curvature and stronger rear curvature close the system. The intervening 0.10 mm air space remains present and requires explicit cross-gap validation.
+nd = 1.70000, νd = 48.1. Glass: S-LAM51 (OHARA) equivalent. f = +31.69 mm.
 
-## Glass Identification and Spectral Limits
+The first positive element, ahead of the iris, with its strong surface (R5 = 25.674 mm) facing the object. Condition (7) bounds that radius: the patent says a weaker surface would leave the aberrations of the two front menisci uncancelled, and a stronger one would overcorrect them and add higher-order aberrations.
 
-Printed column 3 explicitly defines N with respect to the d-line. Each element therefore declares d-line coordinates. No catalog names, melt data, measured C/F/g indices or partial dispersion are supplied. All glasses remain unmatched, and wavelength dispersion derived from nd/Vd is estimated. Any polychromatic result is a model estimate, not a manufacturer's measured curve.
+### L4 — Biconvex Positive
 
-## Focus Mechanism
+nd = 1.65844, νd = 50.9. Glass: S-BSM25 (OHARA) equivalent. f = +33.43 mm.
 
-The checked source does not explicitly declare infinity. A collimated conjugate is a modeling interpretation supported by agreement with the printed focal length and back focus, not a quoted source condition. The manufacturer's 0.30 m minimum focus is metadata only. No close-focus prescription or motion is invented.
+Behind the iris, weakly convex toward the object (R7 = 94.86 mm) and strongly toward the image (R8 = −28.09 mm). Condition (6) shares the middle component's power between L3 and L4; giving either element too large a share would shorten its strong radius until it produced higher-order aberrations and left spherical aberration hard to correct.
 
-## Verification Status
+### L5 — Biconcave Negative
 
-Static source roundtrip preserves all fourteen radii, thirteen intersurface distances, seven material pairs and the printed 36.79 mm image-side gap. Splitting d6 around the assumed iris leaves its total unchanged. Independent paraxial calculation gives EFL 28.775775627 mm and BFL 36.794842307 mm. The source track is 43.72 mm and the source image plane is z = 80.51 mm; the derived paraxial plane is 0.004842307 mm farther back. Neither paraxial nor diagnostic best focus replaces the source plane.
+nd = 1.76182, νd = 26.6. Glass: S-TIH14 (OHARA) equivalent. f = −16.80 mm.
 
-Native geometry passes with zero hidden trims. A 257-sample iris-stroke check finds positive margins exceeding 2.31 mm on both sides. The shared axial-aperture audit measures f/2.799999997 with STO as limiter. Wide-open 32-grid transmission is 100% on axis, 77.34% at half field, 64.04% at three-quarter field and 49.75% at the 37.6° edge, with no failed or unaimed samples. All modeled f/2.8–22 settings pass the full axial bundle; severe wide-open edge clipping remains a modeling limitation, not a retail-lens measurement.
+The strongest element of the lens and its only negative element behind the iris. As the only dense flint among glasses of νd 48 to 64, it presumably carries most of the chromatic correction. Its rear surface sits 1.19 mm from L6, the air space of condition (8). The patent explains that a lens of this type tends to leave sagittal astigmatism undercorrected at intermediate field angles and overcorrected at the full field, and uses this air space to balance the two; a smaller space would make L5 and L6 collide at their rims.
 
-At the source plane, reference-wavelength and estimated three-color MTF converge through 40 lp/mm at center and half field with grids up to 64. The edge initially converges only through 20 lp/mm at grid64. Reference-wavelength grid128 refinement converges through 40 lp/mm with maximum delta 0.002076; estimated three-color edge128 also converges through 40 lp/mm, maximum delta 0.001659. Separate best-axial diagnostics select shifts of -0.05400949 mm (reference) and -0.04354901 mm (estimated color); they do not alter the authored source plane. Best-focus center and edge results remain convergence-limited at grid64, while half-field results converge through 40 lp/mm. Estimated spectral curves must not be presented as measured manufacturer performance.
+### L6 — Positive Meniscus
 
-Standalone integration passed metadata generation, full typecheck, formatting, lint, 23 focused corpus/integration suites containing 1609 tests, production build and SEO (zero errors or warnings). The entire repository test suite was not run. Interactive UI remains unverified. Native diagnostics used a 1536 MiB heap; integration used one test worker and a maximum 3 GiB heap. These checks do not establish a factory-exact prescription or measured retail-lens performance.
+nd = 1.69350, νd = 53.2. Glass: S-LAL13 (OHARA) equivalent. f = +42.55 mm.
+
+Concave to the object, with its stronger curve (R12 = −16.16 mm) toward the image, as the claims require. With L7 it brings the beam to focus.
+
+### L7 — Positive Meniscus
+
+nd = 1.69350, νd = 53.2. Glass: S-LAL13 (OHARA) equivalent. f = +45.15 mm.
+
+The same glass as L6, 0.10 mm behind it. Its front face (R13 = −1141.732 mm) is almost flat, so nearly all of its power lies in the rear face; the claims require only a positive lens here. Its rim carries the oblique beam to the format corner.
+
+## Glass Identification
+
+The patent defines N as the d-line index. Each printed pair equals an OHARA catalog glass, given here as the equivalent; other makers list the same pairs, and the supplier of the production glass is not established.
+
+| Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Type |
+|---|---|---|---|---|
+| L1 | 1.58913 / 61.0 | S-BAL35 (OHARA) | 1.58913 / 61.14 | Dense crown (SK5 type) |
+| L2 | 1.51633 / 64.1 | S-BSL7 (OHARA) | 1.51633 / 64.14 | Borosilicate crown (BK7 type) |
+| L3 | 1.70000 / 48.1 | S-LAM51 (OHARA) | 1.70000 / 48.08 | Lanthanum flint |
+| L4 | 1.65844 / 50.9 | S-BSM25 (OHARA) | 1.65844 / 50.88 | Extra-dense crown (SSK5 type) |
+| L5 | 1.76182 / 26.6 | S-TIH14 (OHARA) | 1.76182 / 26.52 | Dense flint (SF14 type) |
+| L6, L7 | 1.69350 / 53.2 | S-LAL13 (OHARA) | 1.69350 / 53.21 | Lanthanum crown |
+
+The engine traces each element on its catalog equivalent's dispersion curve. The patent prints no partial dispersions, and none of these glasses is an anomalous-dispersion type. The palette is conventional: inexpensive crowns in the front component, a lanthanum flint and an extra-dense crown around the iris, one dense flint behind it and two lanthanum crowns at the rear.
+
+## Focus Mechanism and Image Plane
+
+The patent names no focusing group or movement and prints the infinity state only, so no gap varies and the focus control stays at infinity. Pentax's 0.3 m minimum focus is the retail specification and is not traced.
+
+The final gap of 36.79 mm is the printed back focus fB, which is the infinity value. The computed paraxial back focus is 36.795 mm; the 0.005 mm difference is rounding in the printed table, and the model keeps the printed plane, 80.51 mm behind S1.
+
+## Aperture Stop and Clear Apertures
+
+The patent neither prints nor draws a stop, and Fig. 1 shows none. The model places it at the midpoint of the 4.62 mm air space between L3 and L4, 23.14 mm behind S1. At f/2.8 the entrance pupil radius is 5.14 mm and the stop radius 7.24 mm. Pentax's section draws the iris about 4.3 mm behind L3's rear vertex, close to L4's front face; the model keeps the midpoint.
+
+The patent prints no semi-diameters, so all are inferred. They follow the relative element sizes of Pentax's section, within the rim-slope and air-gap limits. Both drawings, read at their own axial scales, give:
+
+| Element | Model sd (mm) | Pentax section (mm) | Patent Fig. 1 (mm) | Basis |
+|---|---|---|---|---|
+| L1 | 14.9 | 16.0 | 15.2 | Rim-slope limit at S2 |
+| L2 | 12.0 | 12.5 | 11.4 | Section proportions |
+| L3 | 9.5 | 10.0 | 9.4 | Section proportions |
+| L4 | 8.5 | 8.6 | 8.1 | Section proportions |
+| L5 | 6.45 | 7.9 | 7.0 | Air-gap limit between S10 and S11 |
+| L6 | 8.5 | 8.7 | 7.8 | Section proportions |
+| L7 | 9.5 | 10.2 | 9.5 | Section proportions |
+
+The drawings are schematics, so these readings are approximate. Both show L5 larger than the model, and Fig. 1 draws a flat land on its rear face where it meets L6; with spherical rims, the model's L5 stops where its rear face would come too close to L6. At 6.45 mm L5 still passes the f/2.8 axial beam, with about 0.2 mm to spare at S10, and it does much of the clipping off axis. About 50 % of the f/2.8 beam reaches the 37.6° field edge, which lands at 21.63 mm, the corner of the 35 mm format.
+
+## Model Scope and Limitations
+
+| Quantity | Patent | Model |
+|---|---|---|
+| Focal length | 28.78 | 28.776 |
+| Back focus | 36.79 | 36.795 paraxial |
+| S1 to S14 | 43.72 | 43.72 |
+| F-number | 2.8 | 2.8 |
+| Half-field | 37.6° | 37.6° |
+
+- The prescription is the patent's, not a confirmed factory one.
+- Stop position and all semi-diameters are inferred; L5's is smaller than both drawings show, and the iris sits farther forward than in Pentax's section.
+- The model is static at infinity and says nothing about performance at 0.3 m.
+- The patent gives d-line indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents.
 
 ## Sources
 
-- [US 4,468,100 A original patent](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4468100), front page, Figure 1 and printed columns 3–4.
-- [Pentax A-lens booklet](https://www.cameramanuals.org/lenses/pentax_smc_a_lenses.pdf), printed pages 33 and 36 (PDF pages 36 and 39).
+- [US 4,468,100 A original patent](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4468100), front page, Figs. 1–2, columns 1–4 and claim 2.
+- [Pentax A-lens booklet](https://www.cameramanuals.org/lenses/pentax_smc_a_lenses.pdf), printed page 33 (specification table) and page 36 (lens section), PDF pages 36 and 39.
+- [CineLensWiki, SMC Pentax-A 28mm f/2.8](https://www.cinelenswiki.com/lens:pen-asmc28mmf2.8): production 1984–1988, five-blade diaphragm, and the same optical formula as the second Pentax-M 28mm f/2.8.
+- [CineLensWiki, SMC Pentax-M 28mm f/2.8, second version](https://cinelenswiki.com/lens:pen-msmc28mmf2.8ver2): released 1982 with the formula of the later A-series lens.
