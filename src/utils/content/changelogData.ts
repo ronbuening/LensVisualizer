@@ -20,6 +20,12 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-11-09",
+    type: "lens",
+    summary:
+      "Added the Canon RF 24mm f/1.8 Macro, Pentax DA* 55mm f/1.4, M 28mm f/3.5, Super-Takumar 300mm f/4 and Takumar 6x7 300mm f/4, Sigma 30mm f/2.8 DN Art and Olympus H.Zuiko 35mm f/2",
+  },
+  {
+    date: "2026-11-09",
     type: "fix",
     summary:
       "Fixed cardinal points and dimensions shrinking long telephoto diagrams and dimension labels covering the element numbers; spans now sit in a band below the lens, and anything beyond the view is marked at its edge",
