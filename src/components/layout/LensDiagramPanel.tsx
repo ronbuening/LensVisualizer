@@ -34,6 +34,7 @@ import useMediaQuery from "../../utils/useMediaQuery.js";
 import { resolveDarkPreference } from "../../utils/theme/themePreferences.js";
 import { SET_SELECTED_ELEMENT } from "../../utils/state/lensReducer.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
+import { diagramViewHeight } from "../diagram/cardinalDimensionBand.js";
 import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
 import LensGroupMovementOverlay from "../display/overlays/LensGroupMovementOverlay.js";
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
@@ -246,7 +247,6 @@ export default function LensDiagramPanel({
     tiltDeg,
     scaleRatio,
     panelId,
-    includeCardinalExtents: ENABLE_CARDINAL_ELEMENTS && (showCardinals || showCardinalDimensions),
     snapToPublishedStations: patentPositionsActive,
     imageSection: lens.comparing ? "long" : imageSection,
   });
@@ -318,7 +318,18 @@ export default function LensDiagramPanel({
   );
 
   /* ── Zoom/pan viewBox management ── */
-  const zoomHook = useViewBoxZoom(L?.svgW ?? 1200, L?.svgH ?? 600, zoomPanActive);
+  /* The cardinal dimension band extends the viewBox below the drawing; pan limits follow it. */
+  const diagramHeight = L
+    ? diagramViewHeight(L.svgH, cardinalElements != null, {
+        showCardinalDimensions: ENABLE_CARDINAL_ELEMENTS && showCardinalDimensions,
+        showCardinalEfl,
+        showCardinalBfd,
+        showCardinalFfd,
+        showCardinalHiatus,
+        showCardinalTotalTrack,
+      })
+    : 600;
+  const zoomHook = useViewBoxZoom(L?.svgW ?? 1200, diagramHeight, zoomPanActive);
 
   const handleZoomPanToggle = useCallback(
     (active: boolean) => {

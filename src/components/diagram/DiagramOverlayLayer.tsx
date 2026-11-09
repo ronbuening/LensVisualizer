@@ -32,6 +32,8 @@ import type { CardinalElements } from "../../optics/analysis.js";
 
 interface DiagramOverlayLayerProps {
   lens: RuntimeLens;
+  /** ViewBox height: the lens drawing plus any cardinal dimension band below it. */
+  viewHeight?: number;
   theme: Theme;
   dark: boolean;
   sx: (z: number) => number;
@@ -73,6 +75,7 @@ interface DiagramOverlayLayerProps {
 
 const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
   lens: L,
+  viewHeight = L.svgH,
   theme: t,
   dark,
   sx,
@@ -412,7 +415,7 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
           x="0"
           y="0"
           width={L.svgW}
-          height={L.svgH}
+          height={viewHeight}
           fill={dark ? "#ffffff" : "#000000"}
           opacity={flashFading ? 0 : 0.22}
           style={{
