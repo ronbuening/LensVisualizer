@@ -58,5 +58,46 @@ Engine numbers before and after are identical: EFL 24.7201 mm, FOPEN 1.85, half-
 BFD 11.0023 mm, close state 0.13600 m at −0.5106×. Only the aperture slider limit changes (16 → 22). The surface audit
 is OK, and the aperture audit is within 3 % of the stated f-number, with no rim limit.
 
-Open: the drawing joins element faces of different printed diameters with sloped edges (L1, L6 most visibly), whereas
-Fig. 5 and Canon's diagram show square lands. Rims were left unchanged in this pass.
+Open (closed 2026-11-09 in the semi-diameter pass below): the drawing joins element faces of different printed diameters
+with sloped edges (L1, L6 most visibly), whereas Fig. 5 and Canon's diagram show square lands. Rims were left unchanged
+in this pass.
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: US 12,066,598 B2, Fig. 5 (sheet 5, PDF page 6), the Example 3 cross-section at infinity. The page is a 300 dpi
+CCITT scan, measured at native resolution, with the axis vertical at column 1399 and the object at the bottom.
+Vertex crossings from S1 (row 2702.5) to S21 (1106.5) span 1596 px for 69.99 mm, and S1 to the image line (856) spans
+1846.5 px for 80.99 mm: 22.80 px/mm axially. Arc fits give the same radial scale, 22.6–22.9 px/mm, on S2 (R 16.734),
+S11 (R −15.958), S13 (R −28.609) and S20 (R −24.031), so the figure is isotropic.
+
+The table prints an effective diameter for every surface, and every `sd` stays at half of it. Fig. 5 draws each
+element's edge 4–8 % beyond those radii. The edges, in mm at 22.80 px/mm against the larger printed face, are: L1 17.11
+(16.5), L2 10.83 (10.27), D1 10.31 (9.715), L5 8.73 (8.12), D2 10.31 (9.75), L8 12.63 (12.035), L9 13.42 (12.775),
+L10 15.09 (14.5) and L11 17.37 (16.73). This is a uniform drawing allowance, not a reason to move printed radii.
+
+Every element in Fig. 5 is square-edged. Where the two faces print different radii, the figure ends the smaller cap
+with a flat land out to the edge. The cap end measures as a share of the drawn edge: S2 0.789 (printed ratio 0.778),
+S11 0.790 (0.771) and S20 0.910 (0.909). The model drew those elements with sloped edges. Lands
+(`rimExtensionSd`) now square every element whose faces differ by enough to show in the drawing:
+
+- S2 12.845 + land to 16.5 (L1, S1's radius)
+- S7 9.095 + land to 9.715 (rear of D1, to S5)
+- S11 7.515 + land to 9.75 (front of D2, to the S12 junction)
+- S14 11.4 + land to 12.035 (L8, to S15)
+- S20 15.205 + land to 16.73 (L11, to S21)
+
+Faces that differ by less than 0.4 mm are left sloped: S3/S4 0.075, S9/S10 0.145, S12/S13 0.255, S16/S17 0.375 (L9,
+2.9 % of its radius) and S18/S19 0.2 mm. A step of under about 3 px at the page's 7.3 px/mm cannot be seen.
+
+No `sd`, stop, `R`, `d` or focus value changed. EFL 24.7201 mm, F1.85, half-field 41.2°, stop radius 8.4669 mm and BFD
+11.0023 mm are identical to the starting file. Corner illumination is unchanged at every field, 32.8 % at 41.2°
+before and after, with 0.0 points lost against the starting rims. The real-ray clearance trace shows no axial clip
+and no chief-ray block at infinity or at the printed close state (d17 15.56 mm). The surface audit passes with the
+lands checked at both focus keyframes. The aperture audit reports no rim limit. Image-circle and field-coverage
+audits are unchanged (19.34 mm reached at 41.2°).
+
+The page renders at infinity and at close focus match Fig. 5's square edges and lands on L1, D1, D2, L8 and L11.
+Canon's Camera Museum drawing shows the same square-edged elements and the same land on L1's rear face. It is drawn
+to a different scale and is used only for order and proportion.
+
+Open: none for rims. L9 and L10 keep their faint 0.2–0.4 mm edge slopes.

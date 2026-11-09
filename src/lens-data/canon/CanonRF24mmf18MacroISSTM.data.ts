@@ -5,8 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * f/1.8 Macro IS STM (August 2022), whose published construction diagram matches this example element by element.
  * R, d, nd, νd and the S17 coefficients follow the printed table without alteration; the grant and the application
  * US 2022/0252840 A1 print identical values. The table lists no cover glass or filter, so there are no rear plates.
- * Every refracting semi-diameter is half the printed effective diameter. Where an element's two faces print
- * different diameters, the drawing joins them with a sloped edge; the square lands of Fig. 5 are not modelled.
+ * Every refracting semi-diameter is half the printed effective diameter. Fig. 5 (22.80 px/mm on both axes at 300 dpi)
+ * draws each element square-edged, about 5 % larger in radius than those diameters, with a flat land beyond the
+ * smaller face. Those lands are drawn with rimExtensionSd out to the larger printed face of the same element or
+ * doublet (S2 16.5, S7 9.715, S11 9.75, S14 12.035, S20 16.73 mm); they do not change the trace.
  * The stop (S8) prints a 17.43 mm diameter, which agrees with F1.85 at real-ray height: an f/1.85 marginal ray
  * entering at EFL / 2N = 6.68 mm crosses S8 at 8.72 mm. The iris follows the stop rule for an ordinary prime and is
  * derived paraxially from F1.85 instead (radius 8.467 mm, about 3 % smaller).
@@ -204,7 +206,8 @@ const LENS_DATA = {
       "label": "2",
       "R": 16.734,
       "d": 15.32,
-      "sd": 12.845
+      "sd": 12.845,
+      "rimExtensionSd": 16.5
     },
     {
       "label": "3",
@@ -237,7 +240,8 @@ const LENS_DATA = {
       "label": "7",
       "R": 92.116,
       "d": 2.92,
-      "sd": 9.095
+      "sd": 9.095,
+      "rimExtensionSd": 9.715
     },
     {
       "label": "STO",
@@ -262,6 +266,7 @@ const LENS_DATA = {
       "R": -15.958,
       "d": 1,
       "sd": 7.515,
+      "rimExtensionSd": 9.75,
       "medium": 6
     },
     {
@@ -282,6 +287,7 @@ const LENS_DATA = {
       "R": 162.276,
       "d": 5.15,
       "sd": 11.4,
+      "rimExtensionSd": 12.035,
       "medium": 8
     },
     {
@@ -328,6 +334,7 @@ const LENS_DATA = {
       "R": -24.031,
       "d": 2.55,
       "sd": 15.205,
+      "rimExtensionSd": 16.73,
       "medium": 11
     },
     {
