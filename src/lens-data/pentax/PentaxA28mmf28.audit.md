@@ -87,3 +87,37 @@ L6 8.7, L7 10.2 mm) keep the same order as the model; it draws L1 and L2 square-
 than its contact with L6 allows.
 
 Open: the iris position (maker section about 4.3 mm behind S6; model at the d6 midpoint).
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the live page (infinity; the lens is static) with Fig. 1 of US 4,468,100 at its native 72 dpi raster. The
+scale was re-proved on a fresh render: axis tilt 1.33°, S1 to S14 vertex span 823.5 px for 43.72 mm (18.8 px/mm), L5
+edges at 760.5 and 1028 px (7.1 mm). Element order, heights and the L1/L2 chamfers, square L5 meeting L6 and bevelled
+L6 match the figure within the reading error; no rim moved.
+
+| Face | Baseline | Final | Fig. 1 | Light cost | Verdict |
+|---|---|---|---|---|---|
+| S2 cut | 14.9 | 13.0 | 13.0 (chamfer end) | 0.0 points | keep (slight) |
+| S4 cut | 12.0 | 10.4 | 10.4 (chamfer end) | 0.0 points | keep (slight) |
+| S11 cut | 8.5 | 7.2 | about 7.1, at L5's rim | 0.0 points | keep (slight) |
+
+Worst loss against baseline 0.0 points at every field; the edge (37.6°) gains 4.4 points (49.5 → 53.9 %). No lands.
+
+Changed: `groups` added, Front (S1–S4), Intermediate (S5–S8) and Rear (S9–S14), the three components the patent text
+names (column 2); L3 and L4 roles and three analysis sentences now say "intermediate component" to match. The
+brackets render under the element numbers without collisions.
+
+Checked and found correct: names L1–L7 as in Fig. 1; types agree with the R signs; no aspheric surfaces and no `apd`
+tags (the patent names no special glass, and Pentax's section marks none); stop between L3 and L4; the inspector for
+L1 and L5 shows type, nd/νd, focal length (−51.36 and −16.8 mm), glass and role. Movement: none modeled, as the patent
+prints the infinity state only; the focus panel says so, the slider's far end reads "Not modeled", and the movement
+overlay reports no group movement. Engine EFL 28.776 mm, F/2.8, half-field 37.6° (traced 38.76°) unchanged.
+
+Colour and plots against Fig. 2: paraxial g-line focus +0.066 mm behind d in the model, +0.059 mm on the plot (330 px/mm
+there, about ±0.01 mm). d-line spherical aberration −0.074 mm at half pupil, −0.075 at 0.7 and crossing zero near 0.9
+on the plot; the model gives −0.072, −0.084 and −0.030 at 0.85. Distortion at 37.6° is −2.38 % on the plot and −2.37 %
+in the model. All seven glasses resolve to OHARA rows within Δνd 0.14; no constant or nd-only medium. Assignee "Asahi
+Kogaku Kogyo Co., Ltd." is the catalog's spelling for all 33 Asahi files (front page: Asahi Kogaku Kogyo Kabushiki
+Kaisha).
+
+Open: the iris position, as above.

@@ -107,7 +107,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 31.68885818332139,
       "glass": "S-LAM51 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Biconvex positive ahead of the stop, its stronger curve facing the object; opens the positive middle component."
+      "role": "Biconvex positive ahead of the stop, its stronger curve facing the object; opens the positive intermediate component."
     },
     {
       "id": 4,
@@ -119,7 +119,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 33.427441803070295,
       "glass": "S-BSM25 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Biconvex positive behind the stop, its stronger curve facing the image; completes the positive middle component."
+      "role": "Biconvex positive behind the stop, its stronger curve facing the image; completes the positive intermediate component."
     },
     {
       "id": 5,
@@ -283,6 +283,23 @@ const LENS_DATA = {
   },
   "layout": {
     "yScFill": 0.36
-  }
+  },
+  "groups": [
+    {
+      "text": "Front",
+      "fromSurface": "1",
+      "toSurface": "4"
+    },
+    {
+      "text": "Intermediate",
+      "fromSurface": "5",
+      "toSurface": "8"
+    },
+    {
+      "text": "Rear",
+      "fromSurface": "9",
+      "toSurface": "14"
+    }
+  ]
 } satisfies LensDataV2Input;
 export default LENS_DATA;

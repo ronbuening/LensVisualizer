@@ -22,7 +22,7 @@ Pentax's specification table gives seven elements in seven groups, a 75° angle 
 
 ## Optical Architecture
 
-Seven spherical singlets form a retrofocus wide-angle lens. The patent divides them into a negative front component of two menisci convex to the object (L1, L2), a positive middle component of two biconvex elements around the iris (L3, L4), and a rear component of a biconcave negative (L5) and two positive elements convex to the image (L6, L7). The power sequence is N-N-P-P-N-P-P. There are no cemented surfaces, aspheric surfaces or cover plates.
+Seven spherical singlets form a retrofocus wide-angle lens. The patent divides them into a negative front component of two menisci convex to the object (L1, L2), a positive intermediate component of two biconvex elements around the iris (L3, L4), and a rear component of a biconcave negative (L5) and two positive elements convex to the image (L6, L7). The power sequence is N-N-P-P-N-P-P. There are no cemented surfaces, aspheric surfaces or cover plates.
 
 The front component has a composite focal length of −24.20 mm. Ahead of the positive components it pushes the back focus to 36.79 mm, 1.28 times the focal length, which leaves room for the reflex mirror. The lens is 43.72 mm long from S1 to S14, and the image plane lies 80.51 mm behind S1.
 
@@ -39,7 +39,7 @@ The patent's stated aim is a small, high-performance 28 mm f/2.8 that is easy an
 | (7) r5 / f | 0.7 to 1.3 | 0.892 | 0.892 |
 | (8) d10 / f | 0.02 to 0.1 | 0.041 | 0.041 |
 
-Here f(I–II) is the composite focal length of L1 and L2, f(I–IV) that of L1 to L4, f(III–IV) that of L3 and L4, and N(I), N(II) are the d-line indices of L1 and L2. Conditions (1) to (4) govern the front component, (5) to (7) the middle component and (8) the rear. The printed values of (1) and (5) are both about 0.3 % smaller in magnitude than the model's, as if they had been computed with f ≈ 28.70 mm; the others agree to rounding.
+Here f(I–II) is the composite focal length of L1 and L2, f(I–IV) that of L1 to L4, f(III–IV) that of L3 and L4, and N(I), N(II) are the d-line indices of L1 and L2. Conditions (1) to (4) govern the front component, (5) to (7) the intermediate component and (8) the rear. The printed values of (1) and (5) are both about 0.3 % smaller in magnitude than the model's, as if they had been computed with f ≈ 28.70 mm; the others agree to rounding.
 
 ## Element-by-Element Analysis
 
@@ -65,7 +65,7 @@ The first positive element, ahead of the iris, with its strong surface (R5 = 25.
 
 nd = 1.65844, νd = 50.9. Glass: S-BSM25 (OHARA) equivalent. f = +33.43 mm.
 
-Behind the iris, weakly convex toward the object (R7 = 94.86 mm) and strongly toward the image (R8 = −28.09 mm). Condition (6) shares the middle component's power between L3 and L4; giving either element too large a share would shorten its strong radius until it produced higher-order aberrations and left spherical aberration hard to correct.
+Behind the iris, weakly convex toward the object (R7 = 94.86 mm) and strongly toward the image (R8 = −28.09 mm). Condition (6) shares the intermediate component's power between L3 and L4; giving either element too large a share would shorten its strong radius until it produced higher-order aberrations and left spherical aberration hard to correct.
 
 ### L5 — Biconcave Negative
 
