@@ -17,3 +17,14 @@ No catalog glass identities or partial-dispersion coefficients are established. 
 AST-based comparison against all 1,095 other catalog prescriptions found no complete signed-curvature sequence match after arbitrary scaling at 0.1% tolerance. This detects same-order scaled designs, not every conceivable rearrangement or optical equivalence.
 
 The companion evidence bundle contains machine-readable literal checks, geometry/render diagnostics, aperture and field audits, geometric MTF results, independent paraxial calculation, original source pages, and integration logs. No commit, push, PR, merge or deployment was performed.
+
+## 2026-11-09 — Deployment validation
+
+Independent check of CN 110146970 B Example 1 (PDF p. 9 page images): 20 surfaces, stop at S10, cemented L13/L14,
+cover glass S19–S20 and both variable gaps at both states agree; no aspheres. Engine EFL 84.747 (printed 84.67; the
+same +0.08–0.09 % offset appears in Examples 2 and 3), close EFL 80.052 (80.03), conditional values reproduce.
+Attribution probable: 9/8 with the ED element at L14 and the single focusing lens before the stop, as Yongnuo's
+diagram draws; Example 1 fits the 88 mm product length best.
+
+Deployment change: `source.assignees` → "Shenzhen Yongnuo Electric Appliance Co., Ltd." to match the front page
+(深圳市永诺电器有限公司); the analysis assignee line follows.

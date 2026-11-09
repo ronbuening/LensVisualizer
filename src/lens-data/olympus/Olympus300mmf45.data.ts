@@ -7,6 +7,9 @@ const LENS_DATA = {
   "name": "Olympus F.Zuiko Auto-T 300mm f/4.5",
   "subtitle": "Qualified patent reconstruction; secondary stop and apertures",
   "catalog": {
+    "lensMounts": [
+      "olympus-om"
+    ],
     "imageFormat": "135-full-frame",
     "elementCount": 6,
     "groupCount": 4,

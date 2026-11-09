@@ -4,7 +4,7 @@
 **Filed:** 2019-06-27
 **Granted:** 2023-08-18
 **Inventors:** Yuanhua Ye, Yongsheng Zhuang, Jiannan Zhuang, Qiyun Zhu
-**Assignee:** Shenzhen Yongnuo Photographic Equipment Co., Ltd. (深圳市永诺电器有限公司)
+**Assignee:** Shenzhen Yongnuo Electric Appliance Co., Ltd. (深圳市永诺电器有限公司)
 **Title:** An imaging lens and an imaging device
 **Example details:** Prescription on PDF p. 9, focus table on p. 10; optical section Fig. 1 and infinity aberrations Figs. 2A–2B on pp. 14–16.
 

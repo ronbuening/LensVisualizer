@@ -5,7 +5,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   "schema": 2,
   "key": "om-system-m-zuiko-20mm-f14-pro",
-  "maker": "OM System",
+  "maker": "Olympus",
   "name": "OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO",
   "subtitle": "JP 2023-32222 A Example 1 \u2014 inferred product association",
   "catalog": {

@@ -19,3 +19,15 @@ Validation:
 - Normalized signed-radii and ordered-index duplicate screen covers 1,095 baseline entries, 24 with matching element/surface topology; no matches. It is not a proof against differently represented equivalent designs.
 
 Full commands, numerical reports and original source files are in the delivery archive. The analysis and data files do not imply factory certification or measured production performance.
+
+## 2026-11-09 — Deployment validation
+
+Independent check of CN 220171327 U from the embedded table images: 20 rows, stop at S10, the S22–S23 plate and the
+variable gaps at all three states agree; all surfaces spherical. Engine EFL 58.096 (printed 58.066), close state
+0.600 m at 0.11×, matching Yongnuo's 0.6 m / 0.11×. Attribution strong: Yongnuo's Optical Structure panel matches the
+figure with HRI on L3/L7/L10, LD on L4 and ED on L6; 10/9, APS-C.
+
+Deployment changes: `source.assignees` → "Shenzhen Yongnuo Electric Appliance Co., Ltd." (front page
+深圳市永诺电器有限公司; the package had a different company name), and `key` `yongnuo-yn56f14-cn220171327u` →
+`yongnuo-yn-56mm-f14s-da-dsm-wl-pro` so the URL carries the product, not the patent number.
+Open: `lensMounts` lists only Sony E though Yongnuo also sells Z and RF versions; package wording remains.

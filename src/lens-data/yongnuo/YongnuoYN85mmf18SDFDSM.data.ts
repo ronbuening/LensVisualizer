@@ -47,7 +47,7 @@ const LENS_DATA = {
       "Qiyun Zhu"
     ],
     "assignees": [
-      "Shenzhen Yongnuo Photographic Equipment Co., Ltd."
+      "Shenzhen Yongnuo Electric Appliance Co., Ltd."
     ]
   },
   "elements": [

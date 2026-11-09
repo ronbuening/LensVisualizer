@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // Stop uses Fig.2 pupil radius 19.4398 mm, not nominal marketing f/1.4.
 const LENS_DATA = {
   "schema": 2,
-  "key": "yongnuo-yn56f14-cn220171327u",
+  "key": "yongnuo-yn-56mm-f14s-da-dsm-wl-pro",
   "maker": "Yongnuo",
   "name": "YONGNUO YN 56mm f/1.4 S DA DSM WL PRO",
   "subtitle": "CN 220171327 U \u2014 associated patent model, not factory-certified",
@@ -44,7 +44,7 @@ const LENS_DATA = {
       "Yongxiao Zhuang"
     ],
     "assignees": [
-      "Shenzhen Yongnuo Photographic Equipment Co., Ltd."
+      "Shenzhen Yongnuo Electric Appliance Co., Ltd."
     ]
   },
   "elements": [

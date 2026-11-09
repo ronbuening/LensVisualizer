@@ -4,7 +4,7 @@
 **Filed:** 2023-06-08
 **Published:** 2023-12-12
 **Inventors:** Ying Zhuang, Yuanhua Ye, Yongsheng Zhuang, Yongxiao Zhuang
-**Assignee:** Shenzhen Yongnuo Photographic Equipment Co., Ltd.
+**Assignee:** Shenzhen Yongnuo Electric Appliance Co., Ltd. (深圳市永诺电器有限公司)
 **Title:** A medium-telephoto internal-focusing imaging lens
 **Example details:** Tables 1–2, Figures 1–3, printed pages 5–9. Unscaled millimetres.
 
