@@ -73,7 +73,7 @@ Concave to the object, with its stronger curve toward the image. It is the stron
 
 nd = 1.62041, νd = 60.3. Glass: S-BSM16 (OHARA catalog equivalent), as in L2. f = +43.85 mm.
 
-Concave to the object, with an almost flat front face (R11 = −591.5 mm). With L5 it carries the final convergence to the image, and the rims of the two menisci set most of the vignetting at the edge of the field.
+Concave to the object, with an almost flat front face (R11 = −591.5 mm). With L5 it carries the final convergence to the image, and its rims, with those of L4 and L5, trim the oblique beam toward the edge of the field.
 
 ## Glass Identification
 
@@ -98,18 +98,18 @@ The final gap of 36.432 mm is the printed back focus of 130.113 at F = 100. The 
 
 The patent neither prints nor draws a stop, and Fig. 3 shows none. The model places it at the rear vertex of L3, 32.833 mm behind S1 and 2.957 mm ahead of L4, as in the Photons to Photos transcription of this example; this is a modeling choice. At f/3.5 the entrance pupil radius is 4.00 mm and the stop radius 5.33 mm.
 
-The patent prints no semi-diameters, so all are inferred: each is half the diameter in the Photons to Photos transcription. Fig. 3 read at its own axial scale gives:
+The patent prints no semi-diameters, so all are inferred. Fig. 3, read at the scale of its vertex spacing (29.5 px/mm on the native scan, at the model's 0.28 scale), gives:
 
-| Element | Model sd (mm) | Fig. 3 reading (mm) |
-|---|---|---|
-| L1 | 17.42 | 16.8 |
-| L2 | 14.25 / 9.46 | 13.9 / 9.5 |
-| L3 | 7.42 / 7.98 | 6.3 |
-| L4 | 5.98 / 7.74 | 5.6 |
-| L5 | 6.70 / 6.84 | 6.0 |
-| L6 | 6.81 / 7.16 | 6.9 |
+| Element | Model sd (mm) | Fig. 3 reading (mm) | Basis |
+|---|---|---|---|
+| L1 | 17.42 / 15.70 | 16.9 / 15.6 | Photons to Photos diameter for S1; S2 at the drawn rear chamfer |
+| L2 | 14.25 / 9.46 | 13.8 / 9.7 | Photons to Photos diameters, within about 3 % of the figure |
+| L3 | 7.30 / 7.30 | 6.5 / 6.5 | Drawn square-cut; held above the figure by the oblique beam |
+| L4 | 5.70 / 5.70 | 5.6 / 5.6 | Drawn square-cut |
+| L5 | 6.20 / 6.20 | 6.0 / 6.0 | Drawn square-cut |
+| L6 | 6.81 / 7.16 | 6.7 / 6.9 | Photons to Photos diameters, within about 4 % of the figure |
 
-The figure is a patent schematic, so these readings are approximate. L1, L2 and L6 agree within about 3 %. The rims of L3, L4 and L5 are wider than drawn, L4's rear face by about 38 %, so the model probably passes more of the oblique beam than the drawn lens would. The axial f/3.5 beam needs no more than 5.8 mm at any of these surfaces and clears the drawn rims as well.
+The figure is a patent schematic, so these readings are approximate; the drawn sags of L4's faces agree with the prescription at the same scale. L1's rear face, L4 and L5 follow the figure to within 0.1–0.2 mm. L3 is about 0.8 mm taller than drawn: at the drawn height it would remove up to 11 points of transmission between 20° and 37.6°, most at 34.7°, so the model keeps the taller rim. The axial f/3.5 beam needs no more than 5.8 mm at any of these surfaces. At the 37.6° edge about 60 % of the f/3.5 beam passes.
 
 ## Model Scope and Limitations
 
@@ -121,7 +121,7 @@ The figure is a patent schematic, so these readings are approximate. L1, L2 and 
 | F1,2 | −101.729 | −28.48 | −28.49 |
 
 - The prescription is the patent's, not a confirmed factory one, and no Pentax drawing was found to compare it with.
-- Stop position and all semi-diameters are inferred; the rear rims are wider than Fig. 3 draws them.
+- Stop position and all semi-diameters are inferred; L3 is drawn taller than Fig. 3 shows it.
 - The image plane is the printed back focus.
 - The model is static at infinity and says nothing about performance at 0.3 m.
 - The 37.6° edge reaches 21.32 mm of image height, 0.33 mm short of the format corner; rays beyond 37.6° extend past the patent's stated field.
@@ -130,7 +130,7 @@ The figure is a patent schematic, so these readings are approximate. L1, L2 and 
 ## Sources
 
 - [US 3,955,883](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/3955883), USPTO PDF: text, Table II, claim 2, Figs. 3 and 4a–4d.
-- [Photons to Photos prescription of Example 2](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/Data/US003955883_Example02P.txt): product label, stop position and diameters used for the rims.
+- [Photons to Photos prescription of Example 2](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/Data/US003955883_Example02P.txt): product label, stop position and diameters used for the S1, S3, S4, S11 and S12 rims.
 - [Photons to Photos Optical Bench Hub](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/OpticalBenchHub.htm): product listing.
 - [Allphotolenses, SMC Pentax-M 28mm f/3.5](https://allphotolenses.com/lenses/item/c_1802.html): six elements in six groups, 1977–1985, 0.3 m minimum focus, 49 mm filter, five blades.
 - [Cine Lens Wiki, Pentax-M SMC 28mm f/3.5](https://cinelenswiki.com/lens:pen-msmc28mmf3.5): six elements in six groups, 1977, 0.3 m, 49 mm filter; [SMC Pentax 28mm f/3.5](https://cinelenswiki.com/lens:pensmc28mmf3.5): eight elements in seven groups, 52 mm filter.

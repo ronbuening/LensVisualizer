@@ -47,4 +47,39 @@ the claim's positive-meniscus misprint for L2, the glass table, a Fig. 3 rim com
 
 Open: rear rims S5–S10 stay as transcribed but draw wider than Fig. 3 (L3 about 6.3 mm in the figure against 7.42 /
 7.98; L4 about 5.6 against 5.98 / 7.74; L5 about 6.0 against 6.70 / 6.84), so the model likely understates corner
-vignetting. The axial f/3.5 beam (at most 5.8 mm) would clear the drawn rims.
+vignetting. The axial f/3.5 beam (at most 5.8 mm) would clear the drawn rims. (Closed in the semi-diameter pass
+below: L4 and L5 now follow the figure; L3 is held 0.8 mm above it by corner light.)
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/US3955883.pdf`, sheet 2 (PDF page 3), Fig. 3, the Example 2 section, a 1-bit scan at 72 ppi native,
+measured at native resolution. Scale: the S1 vertex at x 520 px and the S12 vertex at x 1764 px span 42.1428 mm,
+29.52 px/mm at the model's 0.28 scale; the axis line is read locally (it falls 5 px over the figure). Vertical scale
+checked against drawn sags: L4's front and rear rim sags (26 and 13 px) match the prescription at 29.5 px/mm; the
+r1, r4, r5 and r6 arcs give 27–31 px/mm, so the drawing is treated as isotropic to about ±5 %. Each rim was read top
+and bottom from the local axis at line centres.
+
+| Surface | Before | Fig. 3 | After | Evidence |
+|---|---:|---:|---:|---|
+| S1 | 17.415 | 16.9 | 17.415 | Within 3 %; kept |
+| S2 | 17.415 | 15.6 (16.1 top, 15.1 bottom) | 15.7 | Rear face ends at the drawn chamfer; 15.6 cost 3.6 points at 37.6° |
+| S3 / S4 | 14.245 / 9.46 | 13.8 / 9.7 | unchanged | Within 3 % |
+| S5 / S6 | 7.42 / 7.975 | 6.5 / 6.5, square | 7.3 / 7.3 | Square as drawn; 6.5 cost 12.8 points at 34.7°, 7.3 is the least that meets the light rule |
+| S7 / S8 | 5.975 / 7.74 | 5.6 / 5.6, square | 5.7 / 5.7 | Square as drawn; 5.6 cost 3.3 points at 23.1° even with L3 at 7.4 |
+| S9 / S10 | 6.7 / 6.84 | 6.0 / 6.0, square | 6.2 / 6.2 | Square as drawn; least height meeting the light rule with L3 at 7.3 |
+| S11 / S12 | 6.805 / 7.16 | 6.65 / 6.88 | unchanged | Within 4 % |
+
+Corner light, engine full-pupil lattice at f/3.5, infinity, against the starting rims: 100 % to 20.2° before; after,
+99.4 % at 17.4°, 93.6 % at 26.0°, 84.1 % at 31.8° and 60.5 % at 37.6° (63.4 % before); the worst loss at any field is
+2.9 points (26.0°, 28.9° and 37.6°). The rims were chosen by sweeping L3, L4 and L5 together at 0.1 mm steps with S2:
+L3 7.3, L4 5.7, L5 6.2 has the least total height above the figure of the sets within 3 points (7.2 / 5.8 / 6.3 is
+the other). Restoring any one element to its starting rims wins back at most 2.4 points (S2, at 37.6°).
+
+Clearance: no surface clips the f/3.5 axial beam (largest need 5.75 mm at S5); the real chief ray reaches 21.56 mm at
+37.88° with no blocked surface; the field-coverage trace still reaches 21.32 mm at the declared 37.6° (corner 38.0°,
+clear); image-circle and surface validators are clean and the aperture audit finds no rim limit. EFL 27.9951 mm,
+f/3.5, half-field 37.6° and paraxial BFD 36.4288 mm are unchanged; only the drawn stop housing (5.975 to 5.7 mm)
+follows L4. The lens is static at infinity, so that is the only printed state. No maker drawing is known.
+
+Open: L3 stays about 0.8 mm (13 %) taller than Fig. 3 draws it, and is now taller than L6 (7.3 against 7.16 mm)
+where the figure draws it slightly shorter; neighbouring step order (L2 > L3 > L4 < L5 < L6) matches the figure.

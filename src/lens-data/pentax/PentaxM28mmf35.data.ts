@@ -14,8 +14,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the patent neither prints nor draws one. It sits at the rear vertex of L3, splitting d6 into 0 + 2.9568 mm,
  * as in the Photons to Photos Optical Bench transcription of this example; its radius is set by the paraxial entrance
  * pupil, F/N.
- * Semi-diameters are inferred, none is printed: each is half the Photons to Photos diameter. L1, L2 and L6 agree with
- * Fig. 3 within about 3 %; the rims of L3, L4 and L5 are wider than Fig. 3 draws them (S8 by about 38 %).
+ * Semi-diameters are inferred, none is printed. They are estimated from Fig. 3 at 29.52 px/mm (S1 to S12 vertex span
+ * on the native 72 dpi scan; the drawn arcs and L4's rim sags confirm about the same scale across the axis) and
+ * floor-checked by real-ray trace. S1, S3, S4, S11 and S12 keep half the Photons to Photos diameters, which agree with
+ * the figure within about 3 %. L3, L4 and L5 are drawn square-cut at about 6.5, 5.6 and 6.0 mm, and L1's rear face
+ * ends at its drawn chamfer, about 15.6 mm. Each is set to the least height, rounded to 0.1 mm, that keeps the
+ * geometric transmission within 3 points of the wider Photons to Photos rims at every field: L1 rear 15.7, L3 7.3
+ * (both faces), L4 5.7 (both faces), L5 6.2 (both faces). L3 is held about 0.8 mm above the figure by that light.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies.
  * The 0.3 m minimum focus is Pentax's retail figure and is not modeled.
  */
@@ -133,7 +138,7 @@ const LENS_DATA = {
       label: "2",
       R: 1111.73216,
       d: 0.098,
-      sd: 17.415,
+      sd: 15.7,
     },
     {
       label: "3",
@@ -152,14 +157,14 @@ const LENS_DATA = {
       label: "5",
       R: 23.373,
       d: 11.5164,
-      sd: 7.42,
+      sd: 7.3,
       medium: 3,
     },
     {
       label: "6",
       R: -28.09856,
       d: 0,
-      sd: 7.975,
+      sd: 7.3,
     },
     {
       label: "STO",
@@ -170,27 +175,27 @@ const LENS_DATA = {
       label: "7",
       R: -17.7464,
       d: 1.1144,
-      sd: 5.975,
+      sd: 5.7,
       medium: 4,
     },
     {
       label: "8",
       R: 35.6902,
       d: 1.0584,
-      sd: 7.74,
+      sd: 5.7,
     },
     {
       label: "9",
       R: -71.86228,
       d: 2.0216,
-      sd: 6.7,
+      sd: 6.2,
       medium: 5,
     },
     {
       label: "10",
       R: -15.97372,
       d: 0.098,
-      sd: 6.84,
+      sd: 6.2,
     },
     {
       label: "11",
