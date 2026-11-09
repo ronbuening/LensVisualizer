@@ -28,9 +28,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * to-last vertex span, the same at every zoom setting, with arc fits of 8.8-9.5 px/mm) and floor-checked by real-ray
  * trace. The 22.5 mm front rims sit inside the 49 mm filter thread. As drawn, L3's rear (20 mm) steps down from L2 and
  * L5's rear (13.8 mm) from L4; the compensator (12.7 mm) and the relay's two menisci (12.5 mm) are about equal; and
- * the relay's cemented pair is smaller (11.6 mm), with L13's concave rear face ending at 9.6 mm inside a bevel. That
- * last rim is raised from the figure's 9.2 mm so corner light stays within 3 points of the earlier rims. L6 and L7
- * stay at 13 mm, where their facing concave surfaces nearly meet; L14 and L15 keep 14.8 and 15.2 mm.
+ * the relay's cemented pair is smaller (11.6 mm), with L13's concave rear face ending at 9.52 mm inside a bevel. That
+ * last rim is raised from the figure's 9.2 mm, the least that keeps corner light within 3 points of the earlier rims
+ * (2.97 points at 153 mm). L6 and L7 stay at 13 mm, where their facing concave surfaces nearly meet; L14 and L15 keep
+ * 14.8 and 15.2 mm.
  * Focus: the patent prints the infinity state only and names no focusing group, so no gap varies with focus.
  */
 const LENS_DATA = {
@@ -87,6 +88,7 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.15,
       indexReference: "d",
+      focalLengthMm: 185.13,
       glass: "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Front positive meniscus of the first group, which stays fixed during zooming.",
     },
@@ -98,6 +100,7 @@ const LENS_DATA = {
       nd: 1.74077,
       vd: 27.79,
       indexReference: "d",
+      focalLengthMm: -149.54,
       glass: "S-TIH13 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Dense-flint negative meniscus of the first group's cemented achromat.",
       cemented: "D1",
@@ -110,7 +113,8 @@ const LENS_DATA = {
       nd: 1.51821,
       vd: 65.04,
       indexReference: "d",
-      glass: "PC2 (HOYA catalog equivalent; production supplier unspecified)",
+      focalLengthMm: 87.23,
+      glass: "BSL22 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Crown positive member of the first group's cemented achromat; nearly flat at the rear.",
       cemented: "D1",
     },
@@ -122,7 +126,8 @@ const LENS_DATA = {
       nd: 1.618,
       vd: 63.38,
       indexReference: "d",
-      glass: "N-PSK53A (SCHOTT catalog equivalent; production supplier unspecified)",
+      focalLengthMm: -122.22,
+      glass: "PCD4 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Front element of the variator; its weak concave front surface controls wide-end coma and distortion.",
       cemented: "D2",
     },
@@ -134,6 +139,7 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.22,
       indexReference: "d",
+      focalLengthMm: 64.45,
       glass: "PBH23 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Dense-flint biconvex partner of L4; its chromatic coma cancels L4's, and the pair is weakly positive.",
       cemented: "D2",
@@ -146,6 +152,7 @@ const LENS_DATA = {
       nd: 1.5725,
       vd: 57.65,
       indexReference: "d",
+      focalLengthMm: -58.75,
       glass: "S-BAL11 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Negative variator element with a deep concave rear surface facing L7.",
     },
@@ -157,7 +164,8 @@ const LENS_DATA = {
       nd: 1.618,
       vd: 63.38,
       indexReference: "d",
-      glass: "N-PSK53A (SCHOTT catalog equivalent; production supplier unspecified)",
+      focalLengthMm: -53.69,
+      glass: "PCD4 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Rear negative variator element with a deep concave front surface facing L6.",
     },
     {
@@ -168,6 +176,7 @@ const LENS_DATA = {
       nd: 1.74077,
       vd: 27.79,
       indexReference: "d",
+      focalLengthMm: -86.66,
       glass: "S-TIH13 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Dense-flint negative meniscus of the cemented compensator.",
       cemented: "D3",
@@ -180,6 +189,7 @@ const LENS_DATA = {
       nd: 1.6223,
       vd: 53.2,
       indexReference: "d",
+      focalLengthMm: 43.76,
       glass: "S-BSM22 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive member of the compensator, which moves toward the relay and back to hold the image plane.",
       cemented: "D3",
@@ -192,6 +202,7 @@ const LENS_DATA = {
       nd: 1.50378,
       vd: 66.81,
       indexReference: "d",
+      focalLengthMm: 66.73,
       glass: "BSL21 (OHARA catalog equivalent; production supplier unspecified)",
       role: "First positive meniscus of the fixed relay, just behind the iris.",
     },
@@ -203,6 +214,7 @@ const LENS_DATA = {
       nd: 1.50048,
       vd: 65.99,
       indexReference: "d",
+      focalLengthMm: 176.13,
       glass: "BK4 (SUMITA catalog equivalent; production supplier unspecified)",
       role: "Second positive meniscus of the relay's front pair, which shares the converging power with L10.",
     },
@@ -214,6 +226,7 @@ const LENS_DATA = {
       nd: 1.50378,
       vd: 66.81,
       indexReference: "d",
+      focalLengthMm: 41.11,
       glass: "BSL21 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Low-index biconvex front member of the relay's cemented middle pair.",
       cemented: "D4",
@@ -226,6 +239,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.78,
       indexReference: "d",
+      focalLengthMm: -19.73,
       glass: "S-LAM2 (OHARA catalog equivalent; production supplier unspecified)",
       role: "High-index biconcave rear member of the middle pair; its deep concave rear surface is the relay's main negative power.",
       cemented: "D4",
@@ -238,6 +252,7 @@ const LENS_DATA = {
       nd: 1.60717,
       vd: 40.34,
       indexReference: "d",
+      focalLengthMm: 31.05,
       glass: "BAFD3 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive element of the rear pair, behind the relay's 26 mm air space.",
     },
@@ -249,6 +264,7 @@ const LENS_DATA = {
       nd: 1.66755,
       vd: 41.93,
       indexReference: "d",
+      focalLengthMm: -36.36,
       glass: "J-BASF6 (HIKARI catalog equivalent; production supplier unspecified)",
       role: "Last element; with L14 it balances off-axis coma and keeps the relay's Petzval sum in range.",
     },
@@ -399,7 +415,7 @@ const LENS_DATA = {
       label: "22",
       R: 16.95,
       d: 26,
-      sd: 9.6,
+      sd: 9.52,
     },
     {
       label: "23",

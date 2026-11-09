@@ -56,13 +56,13 @@ The front element, convex to the object, carries about half of G1's positive pow
 
 L2: nd = 1.74077, νd = 27.79. Glass: S-TIH13 (OHARA catalog equivalent). f = −149.5 mm.
 
-L3: nd = 1.51821, νd = 65.04. Glass: PC2 (HOYA catalog equivalent). f = +87.2 mm.
+L3: nd = 1.51821, νd = 65.04. Glass: BSL22 (OHARA catalog equivalent). f = +87.2 mm.
 
 A dense-flint negative meniscus cemented to a crown positive meniscus that is nearly flat at the rear (R = 1742.45 mm). The pair is weakly positive (f = +215.3 mm) and achromatizes G1.
 
 ### L4 and L5 — Cemented Variator Pair (D2)
 
-L4: nd = 1.61800, νd = 63.38. Glass: N-PSK53A (SCHOTT catalog equivalent). f = −122.2 mm.
+L4: nd = 1.61800, νd = 63.38. Glass: PCD4 (HOYA catalog equivalent). f = −122.2 mm.
 
 L5: nd = 1.78470, νd = 26.22. Glass: PBH23 (OHARA catalog equivalent). f = +64.5 mm.
 
@@ -74,7 +74,7 @@ nd = 1.57250, νd = 57.65. Glass: S-BAL11 (OHARA catalog equivalent). f = −58.
 
 ### L7 — Biconcave Negative
 
-nd = 1.61800, νd = 63.38. Glass: N-PSK53A (SCHOTT catalog equivalent). f = −53.7 mm.
+nd = 1.61800, νd = 63.38. Glass: PCD4 (HOYA catalog equivalent). f = −53.7 mm.
 
 L6 and L7 carry the variator's negative power (G2: f = −34.43 mm). Their deep concave surfaces, L6's rear (39.98 mm) and L7's front (−35.068 mm), face each other across a 5.26 mm air space. Condition 4 bounds their mean radius against fB; the patent uses them, with rB1, to balance the coma of L5's rear surface.
 
@@ -118,8 +118,8 @@ The patent gives refractive index and Abbe number without naming a spectral line
 |---|---:|---:|---|---|
 | S-BSL7 (OHARA) | 1.51633 | 64.15 | L1 | front crown |
 | S-TIH13 (OHARA) | 1.74077 | 27.79 | L2, L8 | dense flint of the G1 and G3 doublets |
-| PC2 (HOYA) | 1.51821 | 65.04 | L3 | crown of the G1 achromat |
-| N-PSK53A (SCHOTT) | 1.61800 | 63.38 | L4, L7 | dense phosphate crown, variator |
+| BSL22 (OHARA) | 1.51821 | 65.04 | L3 | crown of the G1 achromat |
+| PCD4 (HOYA) | 1.61800 | 63.38 | L4, L7 | dense phosphate crown, variator |
 | PBH23 (OHARA) | 1.78470 | 26.22 | L5 | dense flint, variator pair |
 | S-BAL11 (OHARA) | 1.57250 | 57.65 | L6 | barium crown, variator |
 | S-BSM22 (OHARA) | 1.62230 | 53.20 | L9 | crown of the compensator |
