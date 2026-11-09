@@ -10,6 +10,7 @@ come from PhotonsToPhotos' Optical Bench diameters, and the last gap is the para
 Attribution strong: 6 elements / 4 groups, 8° diagonal, f/4.5–32, 3.5 m, OM system launched 1972 (priority JP 47-47166,
 May 1972); the mir.com.my OM construction drawing shows the same four groups and proportions.
 
-Deployment change: added `catalog.lensMounts: ["olympus-om"]` (missing in the package).
+Deployment changes: added `catalog.lensMounts: ["olympus-om"]` (missing in the package); `patentNumber`
+"US 3819253 A" → "US 3,819,253" (house form).
 Open: `focus.closeFocusM` 10 is a placeholder (production 3.5 m); `fStops` stop at 22 (lens closes to 32); package
 wording ("Qualified patent reconstruction", "P2P") remains for the cleanup pass.
