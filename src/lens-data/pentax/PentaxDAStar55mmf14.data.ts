@@ -15,7 +15,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and L9 stays fixed (¶0060). The close spacing focuses at 0.45 m object to image, −0.173×.
  * Semi-diameters are inferred; none is printed. L4 is square at 13.45 mm, just inside the height (about 13.49 mm)
  * where its flat rear face meets the deep concave front of L5 across the 5.49 mm gap, hence `gapSagFrac: 1`. The
- * rims of L1 and L6–L8 are raised only as far as the f/1.4 axial beam needs.
+ * rims of L1 and L6–L8 are raised only as far as the f/1.4 axial beam needs. The other element heights agree with
+ * Fig. 1 within 4 %, so they are kept; the figure is drawn anamorphic, at 17.81 px/mm along the axis and 15.6–15.9
+ * px/mm across it at 400 dpi (from the stop opening and from arc fits to five surfaces). Fig. 1 ends L3's concave rear face and L5's concave front face in flat lands, as
+ * Ricoh's drawing does: S6 is cut at 6.13 mm (cap end q = 0.837 of the edge, cut radius 14.07 mm, clear of the stop
+ * plane) and S9 at 5.45 mm (q = 0.772 gives 13.43 mm; moved out to 13.45 mm to clear the traced beams by 0.05 mm).
+ * S9 is 17.4 mm so the cemented pair is square-cut, as drawn. The cuts clip no ray of the wide-open beams at either
+ * focus state.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -206,7 +212,8 @@ const LENS_DATA = {
       "label": "6",
       "R": 19.203,
       "d": 7.49,
-      "sd": 16.8
+      "sd": 16.8,
+      "rimCutDepthMm": 6.13
     },
     {
       "label": "STO",
@@ -230,8 +237,9 @@ const LENS_DATA = {
       "label": "9",
       "R": -19.31,
       "d": 1.5,
-      "sd": 17,
-      "medium": 5
+      "sd": 17.4,
+      "medium": 5,
+      "rimCutDepthMm": 5.45
     },
     {
       "label": "10",

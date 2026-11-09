@@ -115,6 +115,8 @@ The patent places the diaphragm 7.49 mm behind surface 6, leaving 2.19 mm to sur
 
 All clear apertures are inferred; the patent prints none. L4's flat rear face meets the deep concave front of L5 at a height of about 13.5 mm across the 5.49 mm gap, so L4 is drawn square at 13.45 mm, just inside that contact. Ricoh's drawing likewise shows L4 sitting against L5's rim. The rims of L1, L6, L7 and L8 are set only as large as the F/1.4 axial beam needs, so the model traces the full F/1.4 aperture on axis.
 
+Fig. 1 and Ricoh's drawing both end the two deep concave faces beside the iris in flat lands. L3's rear face is cut 6.13 mm behind its vertex, at a radius of 14.07 mm, which keeps its rim ahead of the iris; L5's front face is cut 5.45 mm ahead of its vertex, at 13.45 mm, level with L4's edge. Both radii follow the proportions of Fig. 1, and neither land touches a ray of the wide-open beams at infinity or at the close state. The cemented pair is square-cut at 17.4 mm, as drawn. The other element heights agree with Fig. 1 within 4 %; the figure is drawn about 11 % shorter across the axis than along it.
+
 The model's focal length is 56.357 mm against the patent's 56.36 mm, at F/1.4 with a 14.3° half-field and a total length of 93.2 mm from S1 to the image. The image plane is the rear face of the cover glass, as the printed fB = 0.0 states; with the assumed cover index the paraxial focus falls 0.002 mm behind it.
 
 ## Sources

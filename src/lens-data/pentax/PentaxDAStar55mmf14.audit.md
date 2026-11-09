@@ -52,3 +52,38 @@ limit.
 Open: Embodiment 3 cannot be excluded from the published specifications. The rear plate's label "CG (assumed material)"
 and its source string keep package wording (rear plates are outside this pass). A `focus.conjugates` entry for the
 close state was not added: the patent prints M, not an object distance.
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/US20100073777A1.pdf`, sheet 1 (PDF page 2), Fig. 1 (Embodiment 1, infinity), a 300 dpi CCITT scan
+measured at 400 dpi. The sheet is rotated about 0.45° (axis line from y 1617.5 at x 900 to y 1625.5 at x 1920), so
+heights are read from the local axis and averaged above and below it. Axial scale 17.81 px/mm from the S1–S17 vertex
+crossings (958 px for 53.79 mm, checked on S7, S9, S11, S13 and S15 to ±2 px). The figure is anamorphic: arc fits to
+S1, S4, S5, S6, S9, S10, S11 and S13 give 0.88–0.91 of the axial scale across the axis (15.7–16.2 px/mm), and the stop
+opening (212.6 px) equals the f/1.4 real-ray stop radius of 13.625 mm at 15.60 px/mm. Ricoh's construction drawing was
+viewed as a second check on order and proportions.
+
+Element heights at 15.6 px/mm, figure → file: L1 20.2 → 20.6, L2 18.2 → 19.0, L3 16.2 → 16.8, L4 13.5 → 13.45,
+L5–L6 16.9 → 17.4, L7 16.9 → 17.4, L8 16.3 → 16.8, L9 16.5 → 16.5. Every ratio is 1.00–1.04, inside measurement
+noise, and L1, L4 and L6–L8 sit at their f/1.4 floors, so no element height changed.
+
+Changes, both drawn in Fig. 1 and in Ricoh's drawing:
+- S6 (L3 rear, R 19.203): `rimCutDepthMm` 6.13. The cap ends at q = 0.837 of L3's edge (cap end 213.5 px, edge 255 px,
+  one native pixel ±0.010), so the cut radius is 0.837 × 16.8 = 14.07 mm. Without it L3's rim reached 2.4 mm past
+  the stop plane (cap sag 9.90 mm against 7.49 mm); the land now sits 1.36 mm ahead of it.
+- S9 (L5 front, R −19.310): `sd` 17 → 17.4, so the cemented pair is square-cut at one height as drawn, and
+  `rimCutDepthMm` 5.45. The cap ends at q = 0.772 of the doublet edge (204 px against 264 px, ±0.009), which gives
+  13.43 mm; the traced beams reach 13.392 mm there, so the cut moved out to 13.445 mm (depth 5.45) to clear them by
+  0.05 mm. Without it L5's rim reached forward past L4 and the stop plane (sag 10.15 mm at 17 mm against 9.68 mm to
+  the stop). The land sits 0.04 mm behind L4's flat rear face, where Ricoh's drawing has L4 resting on L5's rim.
+  `gapSagFrac` stays 1.
+
+The rim-cut probe (21 focus states, 41-point grid, 0.5° field step) clips no ray at either cut: margins 0.147 mm at S6
+and 0.053 mm at S9. Corner light against the starting rims is unchanged at every field: 95.9 % on axis and 56.9 % at
+14.2° at infinity, 95.9 % and 64.3 % at 12.5° at the close state. EFL 56.357 mm, f/1.4, half-field 14.3° and stop
+radius 13.876 mm are unchanged; surface audit OK, aperture audit within 3 % of f/1.4 with no rim limit, image circle
+and corner coverage clear. Both focus states were checked on the local page.
+Open: the figure draws L2 and L3 about 4 % smaller than the file; left as noise. The ray to the iris rim at infinity
+needs 13.69 mm at S7 and 13.58 mm at S8, which L4 cannot reach because its flat rear face meets L5 at 13.49 mm; L4
+costs about 2 points of the on-axis transmission (98.1 % with it out of the way), while the traced f-number stays
+within 3 % of f/1.4. This follows from the prescription and is not a rim choice.
