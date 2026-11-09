@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    date: "2026-11-15",
+    type: "lens",
+    summary:
+      "Added the Voigtländer Color-Skopar 50mm f/2.2 VM, Nokton 23mm f/1.2 X and Color-Skopar 18mm f/2.8 X, Pentax M 120mm f/2.8, and Yongnuo YN 33mm f/1.4 and YN 50mm f/1.4",
+  },
+  {
     date: "2026-11-09",
     type: "fix",
     summary:
