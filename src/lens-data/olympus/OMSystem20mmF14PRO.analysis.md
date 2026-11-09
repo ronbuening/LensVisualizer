@@ -130,16 +130,16 @@ The patent's claims 2–7 state ten conditions. The printed Example 1 values all
 
 ## Focus Mechanism
 
-Inner focus by the single element L9 (G3), which moves 0.3647 mm toward the image from infinity to the printed near state. Only d16 and d18 change in the printed table, so G1, the stop, G2, G4, the filter and the image plane stay fixed (claim 1, ¶0092).
+Inner focus by the single element L9 (G3), which moves toward the image as the lens focuses closer: 0.3647 mm from infinity to the printed near state, 1.619 mm to OM's 0.25 m minimum focus. Only d16 and d18 change in the printed table, so G1, the stop, G2, G4, the filter and the image plane stay fixed (claim 1, ¶0092).
 
-| Spacing (mm) | Infinity | 0.025× |
-|---|---|---|
-| d0, object to S1 | ∞ | 794.6816 |
-| d16 | 1.4000 | 1.7647 |
-| d18 | 6.0800 | 5.7153 |
-| BF | 1.3929 | 1.3929 |
+| Spacing (mm) | Infinity | 0.025× (printed) | 0.109× (derived) |
+|---|---|---|---|
+| d0, object to S1 | ∞ | 794.6816 | 169.74 |
+| d16 | 1.4000 | 1.7647 | 3.019 |
+| d18 | 6.0800 | 5.7153 | 4.461 |
+| BF | 1.3929 | 1.3929 | 1.3929 |
 
-The near state is 874.94 mm object to image, the model's close-focus end, with a paraxial magnification of −0.0250. The patent prints only this one finite state, alongside its aberration plots (Figs. 3 and 5); it is not the close limit. OM specifies a 0.25 m minimum focus and 0.11× (0.22× in 35 mm terms). Reaching that would need L9 travel the patent does not print, so the model does not extend the range. Positions between the two printed states interpolate the gaps linearly.
+The printed near state is 874.94 mm object to image, with a paraxial magnification of −0.0250. The patent prints only this one finite state, alongside its aberration plots (Figs. 3 and 5); it is not the close limit. OM specifies a 0.25 m minimum focus and 0.11× (0.22× in 35 mm terms). The model's close end is that 0.25 m: with the patent's own focusing group, L9 is moved until the paraxial image of an object 250 mm from the image plane lands on the fixed image plane, which needs d16 3.019 mm and gives −0.109×, in line with OM's figure. That state is derived, not printed, and finite-distance analyses certify only the printed 0.025× state. Positions between states interpolate the gaps linearly.
 
 ## Aspherical Surfaces
 

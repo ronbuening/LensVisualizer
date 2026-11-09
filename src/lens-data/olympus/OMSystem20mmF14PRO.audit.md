@@ -103,3 +103,16 @@ Open: S4's cap stays at 10.2 mm, so L2's rear land sits 0.8 mm ahead of where Fi
 
 Coordinator follow-up, same day: the FL rear plate (1.51633/64.14) is labelled S-BSL7 (OHARA catalog equivalent), an
 exact match; the open item above is closed.
+
+## 2026-11-09 — Focus extended to the 0.25 m minimum focus
+
+On the owner's request the focus range now runs to OM's 0.25 m minimum focus instead of stopping at the printed 0.875 m
+state. The patent names L9 (G3) as the only moving element (claim 1, ¶0092), so the close state moves L9 alone, holding
+d16 + d18 = 7.48 mm and the image plane fixed: a secant solve on the paraxial trace puts the image of an object 250.00 mm
+from the image plane on that plane at d16 3.019 / d18 4.461 mm (L9 travel 1.619 mm), with magnification −0.1089 (OM:
+0.11×) and EFL 19.595 mm. `focus.closeFocusM` 0.8749445 → 0.25 with keyframes [0, 0.285732, 1]; the printed state is
+the middle keyframe (0.25 / 0.8749445), still listed in `published` and still the only certified conjugate. The two
+inferred rim cuts that the wider travel brought inside their 0.05 mm beam margin moved out: S18 3.94 → 4.00 mm (cut
+radius 10.367 → 10.435 mm) and S22 3.93 → 3.97 mm (10.600 → 10.646 mm). After: `audit:surface` OK, the rim-cut probe
+clear over 22 focus states, `audit:aperture` within 3 % of F1.43, field coverage 100 %, and no axial clip or blocked
+chief ray at any of the three states. Infinity values are unchanged.

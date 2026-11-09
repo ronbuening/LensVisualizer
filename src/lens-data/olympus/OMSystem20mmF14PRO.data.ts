@@ -9,13 +9,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the printed S9 plane; its radius is derived from F1.43 (the patent prints no iris diameter).
  * Rear plate: the optical filter FL (S23–S24, 4.14 mm) is in rearPlates with the printed 15 mm gap ahead of it and
  * BF 1.3929 behind it. The computed paraxial back focus is 1.3933 mm; the printed BF is kept.
- * Focus: the printed infinity and 0.025× states (d16, d18) are kept; OM's 0.25 m minimum focus is not modeled.
+ * Focus: the printed infinity and 0.025× states (d16, d18) are kept. A third state at OM's 0.25 m minimum focus is
+ * derived, not printed: L9 alone moves (the patent's focusing group) to d16 3.019 / d18 4.461 mm, solved paraxially for
+ * 250 mm object to image on the fixed image plane, which gives −0.109× (OM: 0.11×).
  * Semi-diameters are not printed; they are estimated from Figure 1 (printed page 25), read at 787 dpi: 28.30 px/mm
  * along the axis from the S1–S22 vertex span, 28.95 px/mm across it from arc fits to S4, S10 and S18 and the stop
- * tick, and floor-checked by real-ray trace at both printed focus states. Figure lands: L2's rear face ends at 10.2 mm
+ * tick, and floor-checked by real-ray trace at all three focus states. Figure lands: L2's rear face ends at 10.2 mm
  * (the figure's 10.6 would meet L3) and its land runs out to the 13.8 mm edge; L3's rear land runs to 10.9 mm. Inferred
  * cuts on S10, S18 and S22 sit at the figure's cap end where the wide-open beams allow (S10, q = 0.78) and just
- * outside the beams elsewhere (S18 at 10.37 mm, S22 at 10.60 mm, against the figure's 9.4 and 10.0 mm).
+ * outside the beams at every focus state elsewhere (S18 at 10.43 mm, S22 at 10.65 mm, against the figure's 9.4 and
+ * 10.0 mm).
  * checks.gapSagFrac 0.91 admits L3's 10.9 mm front rim beside L2's rear face (S4/S5), which the figure draws touching.
  * Glass labels are catalog rows whose nd/νd equal the printed values; the production supplier is not known. */
 const LENS_DATA = {
@@ -326,7 +329,7 @@ const LENS_DATA = {
       "label": "18",
       "R": 15.61,
       "sd": 11.1,
-      "rimCutDepthMm": 3.94
+      "rimCutDepthMm": 4
     },
     {
       "label": "19",
@@ -373,7 +376,7 @@ const LENS_DATA = {
       "R": 16.26,
       "d": 15,
       "sd": 11.1,
-      "rimCutDepthMm": 3.93
+      "rimCutDepthMm": 3.97
     }
   ],
   "rearPlates": [
@@ -393,7 +396,8 @@ const LENS_DATA = {
       "values": [
         [
           1.4,
-          1.7647
+          1.7647,
+          3.019
         ]
       ]
     },
@@ -402,13 +406,19 @@ const LENS_DATA = {
       "values": [
         [
           6.08,
-          5.7153
+          5.7153,
+          4.461
         ]
       ]
     }
   },
   "focus": {
-    "closeFocusM": 0.8749445,
+    "closeFocusM": 0.25,
+    "keyframes": [
+      0,
+      0.285732,
+      1
+    ],
     "published": [
       1
     ],
@@ -421,7 +431,7 @@ const LENS_DATA = {
         "source": "JP 2023-32222 A, Example 1, variable-spacing table (printed page 14): magnification 0.025, d0 = 794.6816 mm"
       }
     ],
-    "description": "PUBLISHED inner focus: JP 2023-32222 A, Example 1 prints infinity and 0.025\u00d7 (d16 1.4000 \u2192 1.7647, d18 6.0800 \u2192 5.7153 mm, object 794.68 mm ahead of the first surface). Only the negative meniscus L9 (third group) moves, 0.3647 mm toward the image; the other groups, the iris and the image plane stay fixed, and BF stays 1.3929 mm. The printed near state is 0.875 m object to image, not OM's 0.25 m minimum focus (0.11\u00d7), which is not modeled. Intermediate positions interpolate the gaps linearly."
+    "description": "PUBLISHED inner focus: JP 2023-32222 A, Example 1 prints infinity and 0.025\u00d7 (d16 1.4000 \u2192 1.7647, d18 6.0800 \u2192 5.7153 mm, object 794.68 mm ahead of the first surface, 0.875 m object to image). Only the negative meniscus L9 (third group) moves toward the image; the other groups, the iris and the image plane stay fixed, and BF stays 1.3929 mm. The close end at OM's 0.25 m minimum focus is derived, not printed: L9 travels on to d16 3.019 / d18 4.461 mm (1.62 mm in all), solved for focus on the fixed image plane, which gives 0.109\u00d7 against OM's 0.11\u00d7. Positions between states interpolate the gaps linearly."
   },
   "aperture": {
     "nominalFNumber": 1.43,
