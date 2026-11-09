@@ -4,8 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 3,467,462 A (Kazamaki and Matsumoto, Asahi Kogaku Kogyo), the first embodiment (Fig. 1, table on p. 5 col. 3,
  * repeated in claim 2), recorded here as Example 1. It is associated with the Super-Takumar/6x7 300mm f/4 (1969), sold
  * later as the Super-Multi-Coated Takumar/6x7, SMC Takumar 6x7 and SMC Pentax 67 300mm f/4, by construction (five
- * single elements in five groups), f/4, field and barrel length. This is a patent design, not a confirmed factory prescription; scaled by 1.5 instead, the
- * same example would also suit the 35 mm Super-Takumar 150mm f/4 of 1965.
+ * single elements in five groups), f/4, field and barrel length. This is a patent design, not a confirmed factory
+ * prescription; scaled by 1.5 instead, the same example would also suit the 35 mm Super-Takumar 150mm f/4 of 1965.
  * Scale: the patent is normalized to f = 100 mm. Every printed R and d and the back focus are multiplied by exactly 3
  * for f = 300 mm (computed EFL 300.051 mm); indices and Abbe numbers are as printed. All surfaces are spherical.
  * Printed: R, d, d-line n, Abbe number, f = 100, back focus 40.16, 1:4, and a half-field of 8 degrees in Fig. 3.
@@ -15,9 +15,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Image plane: the final gap is the printed back focus (120.48 mm); the paraxial back focus is 120.531 mm.
  * Stop: the patent neither prints nor draws one. It sits 3 mm behind S8 in the 33 mm air space before L5, as in the
  * PhotonsToPhotos reconstruction, with its radius set by the paraxial entrance pupil at F/4.
- * Semi-diameters are inferred, none is printed: the PhotonsToPhotos clear diameters, which agree with Fig. 1 read at
- * its axial scale within the figure's precision. L1's rim equals the f/4 entrance pupil, so the oblique beam is cut
- * at the front and about 44 % of it passes at 8 degrees.
+ * Semi-diameters are inferred, none is printed. They start from the PhotonsToPhotos clear diameters, checked against
+ * Fig. 1 read at its axial scale (the figure keeps the axial spacings to scale). L4 and L5 agree with it within its
+ * precision. L1 and L2 sit just above the f/4 axial beam, which the figure draws 3 to 5 % lower. L3 takes L2's
+ * 35.43 mm because Fig. 1 draws the two at one height. L1's rim equals the f/4 entrance pupil, so the oblique beam is
+ * cut at the front and about 44 % of it passes at 8 degrees.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies. The
  * 5.0 m minimum focus is Pentax's retail figure and is not modeled.
  */
@@ -156,14 +158,14 @@ const LENS_DATA = {
       "label": "5",
       "R": 79.8,
       "d": 12,
-      "sd": 34.295,
+      "sd": 35.43,
       "medium": 3
     },
     {
       "label": "6",
       "R": 138.96,
       "d": 60,
-      "sd": 34.295
+      "sd": 35.43
     },
     {
       "label": "7",

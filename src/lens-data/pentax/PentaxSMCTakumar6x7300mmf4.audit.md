@@ -51,3 +51,43 @@ between the two remains open. Open: L1's rim equals the f/4 entrance pupil (Phot
 about 36.4 mm), which cuts the oblique beam to 44 % at 8°; the retail 82 mm filter would allow a larger front clear
 aperture, but rims were left unchanged in this pass. Open: the projection traces to the patent's 8°, 94 % of the 6x7
 half-diagonal.
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: patents/US3467462.pdf, sheet 1, Fig. 1 (the first embodiment), read at the scan's native 72 dpi (one pixel per
+point of the 2320 × 3408 page). Rim edges were located column by column on the ink, taking the centre of each drawn
+line; the axis line is tilted about 0.9° across the sheet, so each element's half-height is half its drawn top-to-bottom
+height. Axial scale: S2 (the nearly flat rear of L1) at x = 119.5 px, S8 at 394.5 px and the image line at 837.5 px give
+8.41, 8.46 and 8.49 px per unit at f = 100 over spans of 32.7, 84.86 and 52.16 units, so 8.45 px per unit, or
+2.817 px per mm at the file's ×3 scale. The figure is drawn to scale along the axis except L5's thickness (1 unit drawn
+about 13 px). No independent vertical check exists (no stop, rays or printed diameters); an arc fit to L1's front face
+suggests the vertical scale is within about 8 % of the axial one, and nothing below depends on more than the elements'
+relative heights.
+
+| Element | Drawn half-height (px) | Figure × 3 (mm) | Stored sd | Ratio | Decision |
+|---|---|---|---|---|---|
+| L1 (S1, S2) | 102.1 | 36.3 | 37.50 | 0.97 | Kept: equals the f/4 entrance pupil (axial ray 37.51 at S1) |
+| L2 (S3, S4) | 95.3 | 33.8 | 35.43 | 0.95 | Kept: axial ray 35.01 at S3 |
+| L3 (S5, S6) | 95.4 | 33.9 | 34.295 → 35.43 | 0.99 → 0.96 | Raised to L2's height |
+| L4 (S7, S8) | 73.5 | 26.1 | 25.47 | 1.02 | Kept, within noise |
+| L5 (S9, S10) | 49.0 | 17.4 | 17.25 | 1.01 | Kept, within noise |
+
+Normalised to L1, the shape ratios are L2 0.99, L3 1.02, L4 1.06 and L5 1.04, all inside the noise band. The one
+change is order, not size: Fig. 1 draws L2 and L3 with their top and bottom edges on the same pixel rows (95.3 and
+95.4 px), while the stored rims stepped L3 1.1 mm (3.2 px of the figure) below L2, a step visible in the page render.
+L2 cannot come down (its 35.43 mm is 0.4 mm above the f/4 axial ray at S3), so L3 rose to 35.43 mm on both faces; the
+figure draws it square-cut. Its rim gap to L2 opens outward (6.5 mm at the rim) and its edge is 8.3 mm thick. L4 and L5
+read 2 % and 1 % above their stored values at the axial scale; if the figure is instead anchored to L1 at 37.5 mm, they
+read 6 % and 4 % above, still inside the band, so both stay.
+
+Clearance and light, final set against the starting rims: the surface audit reports no errors, the aperture audit no
+rim limit, the image-circle audit no undersized surface, and field coverage is unchanged at 95 % (8.0° gives 42.49 of
+44.80 mm, stopped by the declared field). The real-ray check at 42.16 and 44.8 mm shows no axial clip and no blocked
+chief ray. Geometric transmission at f/4 is unchanged at every field: 100, 95.4, 88.7, 77.9, 66.6, 55.5 and 44.1 % at
+0 to 8°, because L3 does not limit any beam. Engine values are unchanged: EFL 300.051 mm, f/4.000, half-field 8°, stop
+radius 21.98 mm, paraxial back focus 120.531 mm. The lens has one printed state (infinity), and the page render at
+that state shows L2 and L3 at one height as in Fig. 1. No maker drawing is known; the 5-group, 5-element count is
+Ricoh's.
+
+Open: Fig. 1 reads L1 at 36.3 mm, inside the f/4 entrance pupil; the rim stays at the pupil and the earlier Open line
+on its corner vignetting stands.

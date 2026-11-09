@@ -86,17 +86,17 @@ The final gap of 120.48 mm is the printed back focus of 40.16 at f = 100. The co
 
 The patent neither prints nor draws a stop, and Fig. 1 shows none. The model places it 3 mm behind S8, at the front of the 33 mm air space before L5, following the PhotonsToPhotos reconstruction; this is a modeling choice. At f/4 the entrance pupil radius is 37.5 mm and the stop radius 21.98 mm. The aperture scale runs from f/4 to f/45, as in Ricoh's table.
 
-The patent prints no semi-diameters. The model uses the PhotonsToPhotos clear diameters, which agree with Fig. 1 read at its own axial scale within the precision of the drawing:
+The patent prints no semi-diameters, so all are inferred, from the PhotonsToPhotos clear diameters checked against Fig. 1. The figure keeps the prescription's axial spacings to scale, so its rim heights read at that scale are:
 
-| Element | Model sd (mm) | Fig. 1 reading × 3 (mm) |
-|---|---|---|
-| L1 | 37.50 | 36.4 |
-| L2 | 35.43 | 34.5 |
-| L3 | 34.30 | 33.7 |
-| L4 | 25.47 | 26.3 |
-| L5 | 17.25 | 17.5 |
+| Element | Model sd (mm) | Fig. 1 reading × 3 (mm) | Basis |
+|---|---|---|---|
+| L1 | 37.50 | 36.3 | f/4 entrance pupil |
+| L2 | 35.43 | 33.8 | Just above the f/4 axial beam (35.01 mm at S3) |
+| L3 | 35.43 | 33.9 | Drawn at L2's height |
+| L4 | 25.47 | 26.1 | Fig. 1 |
+| L5 | 17.25 | 17.4 | Fig. 1 |
 
-L1's rim equals the f/4 entrance pupil, so the oblique beam is cut from the first surface on. Of the f/4 beam, about 78 % passes at 4° and about 44 % at the patent's 8° edge.
+The figure draws L1 to L3 a few percent inside the f/4 axial beam, so those rims follow the beam and the drawn step order, L1 above L2 and L3 at one height. L1's rim equals the f/4 entrance pupil, so the oblique beam is cut from the first surface on. Of the f/4 beam, about 78 % passes at 4° and about 44 % at the patent's 8° edge.
 
 ## Model Scope and Limitations
 
