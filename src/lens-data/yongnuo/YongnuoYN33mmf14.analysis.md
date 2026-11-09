@@ -205,12 +205,14 @@ The model reproduces Table 2 to within 0.1%: 32.637, 31.785 and 31.110 mm agains
 31.080 mm, a difference consistent with the three-decimal indices. The total track is 95.000 mm.
 
 The patent prints no clear apertures and no stop diameter. The iris radius, 9.604 mm, follows from the Fig. 2 pupil;
-Fig. 1's stop opening, about 9.7 mm, agrees. Fig. 1 is drawn to scale, and the semi-diameters of L1, L5 and L6–L11
-are read from it within 2%. L2–L4 are modeled at 14.926 mm, narrower than the 15.3–16.5 mm drawn. With equal-height
-rims, the air space between L2 and L3 closes at 15.67 mm, so the drawing implies stepped rims that the model does not
-reproduce. Wide open, the iris limits the axial beam. At the corner of the frame, the 10.5 mm rims of the focus group
-cut a large part of the oblique beam, as Fig. 1's small L8 suggests, so corner illumination depends on these
-inferred rims.
+Fig. 1's stop opening, about 9.7 mm, agrees. Fig. 1 is drawn to scale, and most semi-diameters are read from it within
+2%; L7 is drawn about 5% smaller than modeled. L2 and L3 are modeled at 14.926 mm against the 15.5 and 15.3 mm drawn,
+the largest equal rims that keep a clear air space between them. L4 is drawn larger than L3, its front stepping out
+past the cemented face, and reaches 16.4 mm at its rear. The figure ends the concave rears of L1 and L7 at flat lands,
+which the model reproduces as rim cuts outside the traced beams; L7's land keeps its rim ahead of the stop plane.
+Wide open, the iris limits the axial beam. At the corner of the frame, the 10.5 mm rims of the focus group cut a large
+part of the oblique beam, as Fig. 1's small L8 suggests, so corner illumination depends on these inferred rims: about
+26% of the axial value at infinity, 37% at X20 and 46% at MOD, wide open.
 
 The field runs to the printed 2ω = 48.74°. The real chief ray reaches the APS-C corner (14.18 mm) at 24.3°, with
 about 4% barrel distortion, as Fig. 3 plots.

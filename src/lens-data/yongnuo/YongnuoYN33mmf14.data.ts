@@ -10,11 +10,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The stop is sized from the entrance-pupil radius 11.1999 mm printed on Fig. 2 (F/1.457; iris radius 9.604 mm, not
  * printed), not from the header's F/1.4. The printed 1 mm image gap is kept; the paraxial focus lies 0.062 mm behind
  * it at infinity, 0.096 mm at X20 and 0.141 mm at MOD.
- * Semi-diameters are not printed. They are estimated from Fig. 1, which is drawn to scale (about 21.5 px/mm at
- * 400 dpi, S1 to image 95.0 mm). L1 17.5, L5 16, L6/L7 13.5, L8 10.5, L9 13.5, L10 14 and L11 13.5 mm agree with the
- * figure within 2% (it reads 17.7, 15.9, 13.4, 10.5, 13.3, 14.0 and 13.4 mm), and its stop opening (9.66 mm) agrees
- * with the derived iris. L2–L4 share 14.926 mm, below the figure's 15.3–16.5 mm: at equal heights the L2–L3 air space
- * closes at 15.67 mm, and 14.926 mm leaves it 0.66 mm at the rim.
+ * Semi-diameters are not printed. They are estimated from Fig. 1, which is drawn to scale: 21.50 px/mm at 400 dpi
+ * from S1 to the image (95.0 mm), with S1–S13 and S1–S22 within 0.2%, and the S2 and S13 cap ends read alike from
+ * their axial and radial positions within 1%. L1 17.5, L5 16, L6 13.5, L8 10.5, L9 13.5, L10 14 and L11 13.5 mm agree
+ * with the figure within 2% (it reads 17.65, 15.95, 13.44, 10.51, 13.35, 14.07 and 13.37 mm); L7, drawn at 12.8 mm,
+ * keeps 13.5 mm with L6. The stop opening (9.66 mm) agrees with the derived iris. L2 and L3 share 14.926 mm against
+ * the drawn 15.47 and 15.28 mm, the cross-gap limit (gapSagFrac 0.9) between S4 and S5 for equal rims. L4 is drawn
+ * larger than L3, its front stepping out past the cemented face: S7 takes the drawn 16.4 mm and S6 stays at L3's rim.
+ * Two lands follow the figure, both inferred and clear of every traced wide-open beam: S2 (L1's concave rear) is cut
+ * 5.34 mm behind its vertex (cut radius 15.57 mm; the drawn cap ends at 0.89 of the 17.65 mm edge, ±0.013 for one
+ * native pixel), and S13 (L7's concave rear) 4.22 mm behind its vertex (cut radius 10.61 mm; cap end 0.79 of the
+ * 12.8 mm edge, ±0.017), which keeps L7 ahead of the stop plane as drawn. Fig. 1 also draws a short land on L8's
+ * concave front at about 0.9 of its edge; it is not modeled, because the off-axis beam fills S15 to its rim.
  */
 const LENS_DATA = {
   "layout": {
@@ -190,7 +197,8 @@ const LENS_DATA = {
       "label": "2",
       "R": 25.366,
       "d": 6.35,
-      "sd": 17.5
+      "sd": 17.5,
+      "rimCutDepthMm": 5.34
     },
     {
       "label": "3",
@@ -223,7 +231,7 @@ const LENS_DATA = {
       "label": "7",
       "R": -28.987,
       "d": 0.3,
-      "sd": 14.926
+      "sd": 16.4
     },
     {
       "label": "8",
@@ -256,7 +264,8 @@ const LENS_DATA = {
       "label": "13",
       "R": 15.451,
       "d": 6.48,
-      "sd": 13.5
+      "sd": 13.5,
+      "rimCutDepthMm": 4.22
     },
     {
       "label": "STO",
