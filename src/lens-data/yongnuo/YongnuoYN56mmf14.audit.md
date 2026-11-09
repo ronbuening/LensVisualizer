@@ -106,3 +106,12 @@ radius 11.4956 are unchanged. Wide-open transmission at infinity (0 / 2.1 / 4.3 
 100 / 96.9 / 92.1 / 81.8 / 68.8 / 54.2 / 38.8% before and after. The real-ray clearance rows are identical at
 infinity, X20 and MOD, and the cut clears every beam at all three states, so close-focus transmission is unchanged.
 Page renders at the three printed focus states show L5's land ahead of the stop, with no contact with L6 at MOD.
+
+## 2026-11-09 — Glass coverage pass
+
+The patent prints nd to three decimals, so the five elements the cleanup pass left `Unmatched` (L1, L5 1.847 / 23.79;
+L2 1.603 / 38.00; L6 1.438 / 94.58; L8 1.835 / 42.73) and the GL plate (1.517 / 64.2) match catalog rows to the printed
+precision: OHARA S-TIH53, HOYA E-F5, OHARA S-FPL55, OHARA S-LAH55V and CDGM H-K9L (Δnd ≤ 0.00042, Δνd ≤ 0.08). Their
+labels name each as the nearest catalog row to the printed pair; every element and the plate now trace on catalog
+dispersion curves. L6, the element Yongnuo marks ED, takes S-FPL55 (νd 94.66) rather than S-FPL53 (94.95) because it
+is the closer row.

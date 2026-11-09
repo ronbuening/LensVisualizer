@@ -77,7 +77,7 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.847,
       "vd": 23.79,
-      "glass": "Unmatched (patent nd 1.847, νd 23.79)",
+      "glass": "S-TIH53 (OHARA catalog equivalent; nearest row to the printed nd 1.847, νd 23.79)",
       "role": "Dense-flint positive meniscus, convex to the object, at the front of the fixed first group; begins converging the wide f/1.49 axial beam."
     },
     {
@@ -87,7 +87,7 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.603,
       "vd": 38,
-      "glass": "Unmatched (patent nd 1.603, νd 38.00)",
+      "glass": "E-F5 (HOYA catalog equivalent; nearest row to the printed nd 1.603, νd 38.00)",
       "role": "Negative element of the first group, nearly flat in front and strongly concave behind; offsets part of L1's and L3's positive power."
     },
     {
@@ -119,7 +119,7 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.847,
       "vd": 23.79,
-      "glass": "Unmatched (patent nd 1.847, νd 23.79)",
+      "glass": "S-TIH53 (OHARA catalog equivalent; nearest row to the printed nd 1.847, νd 23.79)",
       "role": "Dense-flint biconcave rear element of the doublet; corrects the first group's axial colour, and its strongly concave rear surface faces the stop."
     },
     {
@@ -129,7 +129,7 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.438,
       "vd": 94.58,
-      "glass": "Unmatched (patent nd 1.438, νd 94.58)",
+      "glass": "S-FPL55 (OHARA catalog equivalent; nearest row to the printed nd 1.438, νd 94.58)",
       "apd": "inferred",
       "apdNote": "Yongnuo's construction drawing marks this element as extra-low-dispersion glass; the patent nd/νd (1.438/94.58) lie in the S-FPL53 / FCD100 fluorophosphate class, though no catalog row matches exactly.",
       "role": "Weak negative meniscus, concave to the stop, at the front of the two-element focus group, which moves toward the object for close focus."
@@ -151,7 +151,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.835,
       "vd": 42.73,
-      "glass": "Unmatched (patent nd 1.835, νd 42.73)",
+      "glass": "S-LAH55V (OHARA catalog equivalent; nearest row to the printed nd 1.835, νd 42.73)",
       "role": "Positive front element of the fixed rear group, nearly flat in front."
     },
     {
@@ -379,6 +379,7 @@ const LENS_DATA = {
       "nd": 1.517,
       "vd": 64.2,
       "gapAfterMm": 1,
+      "glass": "H-K9L (CDGM catalog equivalent; nearest row to the printed nd 1.517, νd 64.2)",
       "source": "CN 220171327 U Table 1, S22\u2013S23: plate thickness, index and the gap to the image as printed"
     }
   ],

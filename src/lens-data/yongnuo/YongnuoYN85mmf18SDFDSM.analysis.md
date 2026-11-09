@@ -42,7 +42,7 @@ Focal lengths below are for each element alone in air.
 
 ### L11: Positive meniscus, convex to the object
 
-nd = 1.8213, νd = 42.73. Glass: Unmatched (no catalog row equals the printed pair). f = +87.1 mm.
+nd = 1.8213, νd = 42.73. Glass: HOYA MP-TAFD51-50 (catalog equivalent). f = +87.1 mm.
 
 The largest element and the main collector of GR1. Its 58.558 mm front radius is much steeper than its 298.95 mm rear radius. The high index keeps the curvatures moderate for the f/1.8 beam.
 
@@ -74,7 +74,7 @@ The strongest positive element of GR3, 3.26 mm behind the stop. Its rear radius,
 
 ### L32: Negative meniscus, convex to the object
 
-nd = 1.5955, νd = 38.77. Glass: Unmatched (no catalog row equals the printed pair). f = −313 mm.
+nd = 1.5955, νd = 38.77. Glass: OHARA PBM18Y (catalog equivalent). f = −313 mm.
 
 A thin, weak meniscus 0.15 mm behind L31. Its nearly concentric surfaces (24.546 / 21.181 mm) make it the meniscus of condition (6): (Ra + Rb)/(Ra − Rb) = 13.59, within 1–15. The patent ties that condition to the meniscus's share of the spherical-aberration correction. It also says a value above the limit would curve the image-side face too strongly and over-curve the field (¶0096–¶0097).
 
@@ -92,17 +92,17 @@ The last lens, 15 mm behind L33 and 17.9 mm ahead of the image. ¶0123 names it 
 
 ## Glass Identification
 
-The patent prints nd and νd at the d-line (¶0117, ¶0120) and names no glass. Seven of the nine pairs equal a catalog row to the printed precision. The labels name that row as a catalog equivalent; the production supplier is not known. L11 and L32 match no catalog row. Only L14 is an anomalous-dispersion glass.
+The patent prints nd and νd at the d-line (¶0117, ¶0120) and names no glass. All nine pairs equal a catalog row to the printed precision. The labels name that row as a catalog equivalent; the production supplier is not known. Only L14 is an anomalous-dispersion glass.
 
 | Element | nd | νd | Catalog equivalent | Role |
 | --- | --- | --- | --- | --- |
-| L11 | 1.8213 | 42.73 | Unmatched | High-index front collector |
+| L11 | 1.8213 | 42.73 | MP-TAFD51-50 (HOYA) | High-index front collector |
 | L12 | 1.53775 | 74.70 | S-FPM3 (OHARA) | Low-dispersion crown |
 | L13 | 1.8061 | 33.27 | NBFD15 (HOYA) | Flint partner of the ED element |
 | L14 | 1.497 | 81.61 | FCD1 (HOYA) | ED, fluorophosphate |
 | L21 | 1.6127 | 58.72 | BSM4 (OHARA) | Focusing negative |
 | L31 | 1.7865 | 50.00 | YGH52 (OHARA) | High-index rear positive |
-| L32 | 1.5955 | 38.77 | Unmatched | Weak meniscus |
+| L32 | 1.5955 | 38.77 | PBM18Y (OHARA) | Weak meniscus |
 | L33 | 1.7555 | 25.07 | TPH55 (OHARA) | Dense flint |
 | L34 | 1.72825 | 28.41 | SF10 (SCHOTT) | Dense-flint field lens |
 
@@ -142,7 +142,7 @@ The prescription is the printed table without rescaling or correction. The engin
 
 The nominal f-number comes from the printed 23.5425 mm entrance-pupil radius: 84.747 / 47.085 = 1.80. The stop diameter that gives it (28.09 mm) is derived, not printed. The printed 13.669° half-field reaches about 21.0 mm image height, 97 % of the 21.65 mm full-frame corner radius. The model keeps the patent's field rather than extending it to the corner.
 
-The patent prints no clear apertures. The semi-diameters are measured from Fig. 1, which is drawn to scale, and checked against the wide-open beam at both printed focus states. Front to rear they are L11 29, L12 24, L13 22.1 in front stepping to a 19 mm cemented interface, L14 19, L21 17, L31 15, L32 12.9, L33 12 and L34 14 mm. L11 stays within the 58 mm filter thread of the production lens. L14 is held at 19 mm, about 1 mm above the figure, because the axial beam at the 697 mm close state reaches 18.8 mm at the interface. Off-axis vignetting depends on these readings: at infinity and f/1.8 the 13.7° corner transmits about 53 % of the stop's beam geometrically. Glass dispersion follows the catalog equivalents above. L11 and L32 use the Abbe-number estimate, and no partial-dispersion data are printed.
+The patent prints no clear apertures. The semi-diameters are measured from Fig. 1, which is drawn to scale, and checked against the wide-open beam at both printed focus states. Front to rear they are L11 29, L12 24, L13 22.1 in front stepping to a 19 mm cemented interface, L14 19, L21 17, L31 15, L32 12.9, L33 12 and L34 14 mm. L11 stays within the 58 mm filter thread of the production lens. L14 is held at 19 mm, about 1 mm above the figure, because the axial beam at the 697 mm close state reaches 18.8 mm at the interface. Off-axis vignetting depends on these readings: at infinity and f/1.8 the 13.7° corner transmits about 53 % of the stop's beam geometrically. Glass dispersion follows the catalog equivalents above; the patent prints no partial-dispersion data.
 
 ## Sources
 

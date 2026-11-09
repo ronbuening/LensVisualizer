@@ -29,7 +29,7 @@ Glass (catalog minus patent), each label checked with the resolver: L1 S-BSL7 (O
 (OHARA) Δnd +0.000002, Δνd +0.017; S-TIH23 (OHARA, +0.09) and SF56A (SCHOTT, −0.12) are also within the window, and the
 closest row, the period lead flint, was kept, as PBH53 was for the M 28mm f/2.8. L4 S-TIH10 (OHARA) Δnd 0, Δνd −0.04.
 L5 S-BSM81 (OHARA) Δnd −0.000001, Δνd −0.12; LACL60 (HOYA) and J-LAK01 (Hikari) are exact, and OHARA was kept for
-consistency with L1, L2 and L4. L3 stays Unmatched: the nearest row, PC2 (HOYA, 1.51821 / 65.16), is 0.16 off in νd.
+consistency with L1, L2 and L4. L3 stays Unmatched: the nearest row, PC2 (HOYA, 1.51821 / 65.16), is 0.16 off in νd (closed 2026-11-09: OHARA BSL22 added to the catalog; see the glass coverage pass).
 Four of five pairs pass the d-line coordinate test, so the five `indexReferenceNote` fields were removed.
 
 Analysis. Removed: the evidence-JSON, SHA-256, MTF sample-grid and sibling-duplicate text, "qualified" and the 10 m
@@ -95,3 +95,10 @@ pair stands taller but meets at its rims where the drawing leaves a gap.
 
 Open: Fig. 3 draws S9 much flatter than the printed R9, so the rear pair cannot match the drawing in height and rim
 gap at once.
+
+## 2026-11-09 — Glass coverage pass
+
+L3 (1.51821 / 65.0) is labelled OHARA BSL22 (1.518206 / 65.04), a discontinued borosilicate crown added to the glass
+catalog from the local OHARA 2026-07-01 AGF file; it equals the printed pair (Δνd 0.04), where the catalog's previous
+nearest row, HOYA PC2, was 0.16 off in νd. All five elements now trace on catalog dispersion curves. A corpus-wide
+resolution dump before and after the catalog addition showed no other element changing its resolved glass.

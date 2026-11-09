@@ -54,13 +54,13 @@ The stop is row 10 of Table 1, 7 mm behind the doublet; the table has no row 11.
 
 ### L1 — Positive Meniscus, convex to object
 
-nd = 1.847, νd = 23.79. Glass: Unmatched (S-TIH53-class dense flint). f = +85.8 mm. The first element begins
+nd = 1.847, νd = 23.79. Glass: OHARA S-TIH53 (nearest catalog row). f = +85.8 mm. The first element begins
 converging the f/1.49 axial beam. Its rear surface (R 300.6 mm) is nearly flat, and a 1.15 mm air space separates it
 from L2.
 
 ### L2 — Biconcave Negative
 
-nd = 1.603, νd = 38.00. Glass: Unmatched (F5-class flint). f = −64.0 mm. A nearly flat front (R −584.7 mm) and a
+nd = 1.603, νd = 38.00. Glass: HOYA E-F5 (nearest catalog row). f = −64.0 mm. A nearly flat front (R −584.7 mm) and a
 strongly concave rear (R 41.4 mm) give the front group a negative element between L1 and L3.
 
 ### L3 — Positive Meniscus, nearly plano-convex
@@ -72,7 +72,7 @@ curvature (R 34.6 / 951.8 mm).
 ### L4/L5 — Cemented Doublet
 
 - **L4 (Biconvex Positive):** nd = 1.569, νd = 71.31. Glass: K-GFK70 (Sumita catalog equivalent) — LD. f = +38.5 mm.
-- **L5 (Biconcave Negative):** nd = 1.847, νd = 23.79. Glass: Unmatched (S-TIH53-class dense flint). f = −18.2 mm.
+- **L5 (Biconcave Negative):** nd = 1.847, νd = 23.79. Glass: OHARA S-TIH53 (nearest catalog row). f = −18.2 mm.
 
 The doublet is negative overall (f ≈ −45.6 mm) and is the main achromatizing pair of the front group: a
 low-dispersion crown against a dense flint, cemented at S8 (R −108 mm). Yongnuo marks L4 as low-dispersion glass.
@@ -81,7 +81,7 @@ end that curve short of L5's rim in a flat land, which keeps the glass ahead of 
 
 ### L6 — Negative Meniscus, concave to object
 
-nd = 1.438, νd = 94.58. Glass: Unmatched (S-FPL53 / FCD100 fluorophosphate class) — ED. f = −202 mm. The weak front
+nd = 1.438, νd = 94.58. Glass: OHARA S-FPL55 (nearest catalog row) — ED. f = −202 mm. The weak front
 element of the focus group, concave toward the stop (R −18.9 / −25.6 mm). Yongnuo marks it as extra-low-dispersion
 glass. Claim 3 bounds its power relative to the group: F2a/F2 = −4.81 lies within −10 to −1 (¶0044–¶0047).
 
@@ -93,7 +93,7 @@ L6 and L7 move together.
 
 ### L8 — Biconvex Positive
 
-nd = 1.835, νd = 42.73. Glass: Unmatched (S-LAH55V-class lanthanum flint). f = +54.7 mm. Nearly flat in front
+nd = 1.835, νd = 42.73. Glass: OHARA S-LAH55V (nearest catalog row). f = +54.7 mm. Nearly flat in front
 (R 1162.8 mm), it opens the fixed rear group.
 
 ### L9 — Biconcave Negative
@@ -109,20 +109,20 @@ which Yongnuo also marks as high-index glass, leaves 14.5 mm to the image plane,
 
 ## Glass Identification and Selection
 
-The patent prints d-line nd to three decimals and νd to two, and names no glass. A catalog label is used only where
-a catalog row reproduces both printed values (nd within 0.0001, νd within 0.15); the vendor is a catalog
-equivalent, not the production supplier. Where no row passes, the element keeps an `Unmatched` label and the
-model uses Abbe-number dispersion.
+The patent prints d-line nd to three decimals and νd to two, and names no glass. Every element carries a catalog row:
+where a row reproduces both printed values exactly it is named as a catalog equivalent, and where the printed
+three-decimal nd only rounds to a row (within 0.0005, νd within 0.1) the label names it as the nearest catalog row.
+The vendor is a catalog equivalent, not the production supplier.
 
 | Element | nd / νd | Label | Notes |
 | --- | --- | --- | --- |
-| L1, L5 | 1.847 / 23.79 | Unmatched | Dense titanium flint class (S-TIH53, H-ZF52: 1.84666 / 23.78) |
-| L2 | 1.603 / 38.00 | Unmatched | Flint class (F5, S-TIM5: 1.60342 / 38.03) |
+| L1, L5 | 1.847 / 23.79 | S-TIH53 (OHARA), nearest row | Dense titanium flint, 1.84666 / 23.78 |
+| L2 | 1.603 / 38.00 | E-F5 (HOYA), nearest row | F5-type flint, 1.60342 / 38.01 |
 | L3, L10 | 1.883 / 39.23 | H-ZLaF68N (CDGM) | High-index lanthanum glass; marked high-index by Yongnuo |
 | L4 | 1.569 / 71.31 | K-GFK70 (Sumita) | Low-dispersion crown, catalog ΔPgF ≈ +0.021; marked LD by Yongnuo |
-| L6 | 1.438 / 94.58 | Unmatched | Fluorophosphate ED class (S-FPL53 1.43875 / 94.95, FCD100 1.43700 / 95.10); marked ED by Yongnuo |
+| L6 | 1.438 / 94.58 | S-FPL55 (OHARA), nearest row | Fluorophosphate ED glass, 1.43875 / 94.66; marked ED by Yongnuo |
 | L7 | 1.883 / 40.79 | H-ZLaF68C (CDGM) | High-index lanthanum glass (TAFD30 and S-LAH58 also match); marked high-index by Yongnuo |
-| L8 | 1.835 / 42.73 | Unmatched | Lanthanum flint class (S-LAH55V, TAFD5F: 1.83481 / 42.73) |
+| L8 | 1.835 / 42.73 | S-LAH55V (OHARA), nearest row | Lanthanum flint, 1.83481 / 42.73 |
 | L9 | 1.620 / 36.33 | E-F2 (Hoya) | F2-type flint |
 | Plate | 1.517 / 64.2 | — | BK7-type cover plate, kept as printed |
 

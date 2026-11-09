@@ -44,7 +44,7 @@ Data file changes (no optical value touched):
   FCD1 / S-FPL51 class.
 - Glass labels added only where a catalog row equals the printed pair (|Δnd| ≤ 0.0001, |Δνd| ≤ 0.15), each
   confirmed with trylabel: L12 S-FPM3, L13 NBFD15, L14 FCD1, L21 BSM4 (Δνd 0.03), L31 YGH52, L33 TPH55, L34 SF10.
-  L11 (1.8213/42.73) and L32 (1.5955/38.77) have no match and are labelled Unmatched.
+  L11 (1.8213/42.73) and L32 (1.5955/38.77) have no match and are labelled Unmatched (closed 2026-11-09: catalog rows added; see the glass coverage pass).
 - The patent states the d-line (¶0117, ¶0120).
 
 Analysis changes:
@@ -148,3 +148,11 @@ and the rear-group order L31 > L32 > L33 < L34, as Fig. 1 draws.
 Open: the renderer draws L13's top as a taper from 22.1 mm at the front to the 19 mm interface, where Fig. 1 draws a
 flat flange and a step. A rim extension cannot be used on a cemented interface. L21 (17 mm) sits about 1 mm above
 the figure's 16.0 mm, within reading noise.
+
+## 2026-11-09 — Glass coverage pass
+
+L11 (1.8213 / 42.73) and L32 (1.5955 / 38.77) now name HOYA MP-TAFD51-50 and OHARA PBM18Y, rows added to the glass
+catalog from the local HOYA 2026-07-07 and OHARA 2026-07-01 AGF files; both equal the printed pairs (Δνd ≤ 0.01). The
+GL cover plate (1.5168 / 64.2) is labelled CDGM H-K9L as a catalog equivalent; the patent does not name its material.
+Every element and the plate now trace on catalog dispersion curves. A corpus-wide resolution dump before and after the
+catalog additions showed no other element changing its resolved glass.

@@ -81,7 +81,7 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.8213,
       "vd": 42.73,
-      "glass": "Unmatched (patent nd 1.8213, νd 42.73; no catalog row matches)",
+      "glass": "MP-TAFD51-50 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "High-index positive meniscus front element, convex to the object; the main collector of the fixed first group."
     },
     {
@@ -143,7 +143,7 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.5955,
       "vd": 38.77,
-      "glass": "Unmatched (patent nd 1.5955, νd 38.77; no catalog row matches)",
+      "glass": "PBM18Y (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Weak negative meniscus, convex to the object, 0.15 mm behind L31; the meniscus of the patent's condition (6)."
     },
     {
@@ -344,6 +344,7 @@ const LENS_DATA = {
       "nd": 1.5168,
       "vd": 64.2,
       "gapAfterMm": 1,
+      "glass": "H-K9L (CDGM catalog equivalent; cover-glass material not named by the patent)",
       "source": "CN 110146970 B Example 1, surfaces 19\u201320, PDF p. 9"
     }
   ],

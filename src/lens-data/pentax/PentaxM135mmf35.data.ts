@@ -20,7 +20,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * at 10.02 mm, so L4 and L5 stop at 9.9 mm, where their air space is 0.08 mm at the rim; checks.gapSagFrac 0.98 admits
  * that pair. Every rim passes the f/3.5 axial beam and the chief ray to the 21.6 mm corner.
  * Glass: four of the five n/ν pairs equal OHARA catalog rows at the printed precision, so the table is read as d-line.
- * L3 (1.51821 / 65.0) stays unmatched, 0.16 in νd from HOYA PC2, and traces on dispersion from its printed pair.
+ * L3 (1.51821 / 65.0) is OHARA BSL22 (1.518206 / 65.04), a discontinued borosilicate crown.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies. The
  * 1.5 m minimum focus is Pentax's retail figure and is not modeled.
  */
@@ -103,7 +103,7 @@ const LENS_DATA = {
       "nd": 1.51821,
       "vd": 65,
       "focalLengthMm": 89.67160248053281,
-      "glass": "Unmatched (patent nd 1.51821, νd 65.0)",
+      "glass": "BSL22 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Strongest positive element, a crown meniscus convex to the object; completes the front group ahead of the long air space."
     },
     {

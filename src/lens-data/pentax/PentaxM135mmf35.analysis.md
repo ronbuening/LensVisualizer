@@ -58,7 +58,7 @@ The only negative element of the front group, 2.44 mm behind L1 and 0.108 mm ahe
 
 ### L3 — Positive Meniscus
 
-nd = 1.51821, νd = 65.0. Glass: Unmatched, nearest catalog row PC2 (HOYA), a phosphate crown. f = +89.7 mm.
+nd = 1.51821, νd = 65.0. Glass: OHARA BSL22 (catalog equivalent), a borosilicate crown. f = +89.7 mm.
 
 The strongest positive element, with the stronger curve facing the object as the claims require (R5 = 28.28 mm, R6 = 66.84 mm). It completes the front group, whose composite focal length condition (1) bounds: a shorter F1.2.3 burdens L1 and L3 and narrows their coverage, a longer one makes the lens harder to shorten and shifts the burden to L4 (col. 2).
 
@@ -82,7 +82,7 @@ The patent gives indices and Abbe numbers without naming a spectral line; Fig. 4
 |---|---|---|---|---|
 | L1 | 1.51633 / 64.1 | S-BSL7 (OHARA) | 1.51633 / 64.14 | Borosilicate crown |
 | L2 | 1.78470 / 26.2 | PBH23 (OHARA) | 1.78470 / 26.22 | Dense flint |
-| L3 | 1.51821 / 65.0 | Unmatched; nearest PC2 (HOYA) | 1.51821 / 65.16 | Phosphate crown class |
+| L3 | 1.51821 / 65.0 | BSL22 (OHARA) | 1.51821 / 65.04 | Borosilicate crown |
 | L4 | 1.72825 / 28.5 | S-TIH10 (OHARA) | 1.72825 / 28.46 | Dense flint |
 | L5 | 1.64000 / 60.2 | S-BSM81 (OHARA) | 1.64000 / 60.08 | Dense barium crown |
 
