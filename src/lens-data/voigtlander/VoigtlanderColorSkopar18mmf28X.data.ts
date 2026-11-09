@@ -1,20 +1,36 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Whole source Embodiment 3, scale1; not a repaired or spliced E1.
- * Literal R/d/nd/vd/K/A4-A14, printed stop and final18.81 mm interval retained.
- * Clear SDs are figure-informed pretrace hypotheses. Never resize after tracing.
+/** JP 2025-044411 A (Cosina Co., Ltd.; Tatsuya Moriyama), Embodiment 3 (Tables 9–12, Fig. 5): f = 18.54 mm,
+ * Fno 2.82, ω = 37.95°, 7 elements / 5 groups, both faces of the last element aspherical. No scale factor is
+ * applied. R, d, nd, νd, K and A4–A14 follow the printed tables without alteration; the asphere equation (¶0044,
+ * reused by ¶0084) is the standard 1 + K form, and both K are 0. A14 is printed as zero; no higher terms are printed.
+ * Probable production correlation with the COLOR-SKOPAR 18mm F2.8 Aspherical X-mount (2024; Cosina: 7/5, one
+ * anomalous-partial-dispersion element, a double-sided asphere, 0.17 m, 1:6.6); not a factory prescription.
+ * Embodiment 1 (the patent's representative figure) has the same layout but prints L1 nd 1.78749 beside νd 70.32,
+ * a one-digit misprint of 1.48749; Embodiment 3 needs no correction and is used instead.
+ * Image plane: the printed back focus D13 = 18.81 mm is kept, 0.004 mm short of the paraxial 18.814 mm. The
+ * resulting 41.02 mm track and 13.03 mm G2 length differ from the printed 41.03 and 13.04 mm by rounding. The
+ * printed G1 focal length 1107.30 mm computes as 1113.9 mm (a very weak group, sensitive to last-digit rounding);
+ * f, f2 = 19.57 and f23 = 33.01 mm reproduce.
+ * Focus: unit focus (¶0026, claim 7). Table 11 prints D0 = 125.20 mm and D13 = 21.62 mm at the shortest distance.
+ * The stop sits where Table 10 prints it (2.30 mm behind surface 4, 1.68 mm ahead of surface 6); its radius follows
+ * from F/2.82. Semi-diameters are not printed: they are scaled from the element proportions of Fig. 5, then checked
+ * for edge thickness, rim slope and gap clearance.
  */
 const LENS_DATA = {
   schema: 2,
   key: "voigtlander-color-skopar-18mm-f28-x",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 Aspherical X-Mount",
-  subtitle: "Whole JP 2025-044411 A Embodiment 3; native 18.54 mm/F2.82; literal image z41.02 mm; infinity only.",
+  subtitle: "JP 2025-044411 A, Embodiment 3 — probable production correlation",
   catalog: {
     lensMounts: ["fujifilm-x"],
     imageFormat: "aps-c",
     elementCount: 7,
     groupCount: 5,
+    closeFocusM: {
+      marketing: 0.17,
+    },
     focalLengthMm: {
       marketing: 18,
       design: 18.54,
@@ -24,13 +40,11 @@ const LENS_DATA = {
       design: 2.82,
     },
     specs: [
-      "Grade B probable patent family; exact factory embodiment unproved",
-      "Whole Embodiment 3 selected; conflicting Embodiment 1 preserved on hold",
-      "Clear apertures and iris opening inferred before tracing; printed stop retained",
-      "Infinity only; source-native scale and literal 18.81 mm final interval",
-    "Modeled off-axis clipping retained; conditional transmitted-pupil MTF",
-      "Literal image z41.02 mm versus header41.03; G2 track13.03 versus13.04",
-      "Weak G1 focal discrepancy retained; no source tuning",
+      "7 ELEMENTS / 5 GROUPS",
+      "DESIGN f = 18.54 mm",
+      "DESIGN F/2.82",
+      "2 ASPHERICAL SURFACES / 1 ELEMENT",
+      "UNIT FOCUS; 1:6.6 MAX",
     ],
   },
   source: {
@@ -47,93 +61,93 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Source L16",
+      label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.48749,
       vd: 70.32,
       indexReference: "d",
-      glass: "Unmatched (literal E3 patent d-line pair; supplier and full dispersion unproved)",
+      glass: "J-FK5 (HIKARI catalog equivalent; production supplier unspecified)",
       focalLengthMm: -33.455852427497796,
-      role: "Whole Embodiment 3 source element; isolated paraxial focal estimate in air is not assembled group power.",
+      role: "Front negative meniscus, convex to the object; with L2 it forms the weakly positive first group G1.",
       apd: "inferred",
       apdNote:
-        "Maker highlights the probable first element as anomalous partial dispersion; quantitative dispersion and exact factory glass pairing are unproved.",
+        "Cosina's optical section marks the front element as anomalous partial dispersion glass; the patent's nd 1.48749 / νd 70.32 is an FK5-type fluor crown consistent with that marking (catalog PgF 0.5291, about +0.004 above the normal line).",
     },
     {
       id: 2,
       name: "L2",
-      label: "Source L17",
+      label: "Element 2",
       type: "Biconvex Positive",
       nd: 2.001,
       vd: 29.13,
       indexReference: "d",
-      glass: "Unmatched (literal E3 patent d-line pair; supplier and full dispersion unproved)",
+      glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 34.10029049690241,
-      role: "Whole Embodiment 3 source element; isolated paraxial focal estimate in air is not assembled group power.",
+      role: "High-index positive element ahead of the stop; meets the patent's nd > 1.9 condition for G1 (¶0085).",
     },
     {
       id: 3,
       name: "L3",
-      label: "Source L18",
+      label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.71736,
       vd: 29.5,
       indexReference: "d",
-      glass: "Unmatched (literal E3 patent d-line pair; supplier and full dispersion unproved)",
+      glass: "E-FD1L (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -7.353575209130201,
-      role: "Whole Embodiment 3 source element; isolated paraxial focal estimate in air is not assembled group power.",
+      role: "Negative front member of the cemented doublet G2A just behind the stop; corrects color and field curvature with L4 (¶0073).",
       cemented: "D1",
     },
     {
       id: 4,
       name: "L4",
-      label: "Source L19",
+      label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.90043,
       vd: 37.37,
       indexReference: "d",
-      glass: "Unmatched (literal E3 patent d-line pair; supplier and full dispersion unproved)",
+      glass: "TAFD37A (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 6.134531710703466,
-      role: "Whole Embodiment 3 source element; isolated paraxial focal estimate in air is not assembled group power.",
+      role: "Strong positive member of G2A; its index above L3's limits astigmatism without raising the Petzval sum (¶0086).",
       cemented: "D1",
     },
     {
       id: 5,
       name: "L5",
-      label: "Source L20",
+      label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.90043,
       vd: 37.37,
       indexReference: "d",
-      glass: "Unmatched (literal E3 patent d-line pair; supplier and full dispersion unproved)",
+      glass: "TAFD37A (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 20.790806786372045,
-      role: "Whole Embodiment 3 source element; isolated paraxial focal estimate in air is not assembled group power.",
+      role: "Positive meniscus, concave to the object, front member of the cemented doublet G2B (nd > 1.9, ¶0087).",
       cemented: "D2",
     },
     {
       id: 6,
       name: "L6",
-      label: "Source L21",
+      label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.80517,
       vd: 25.45,
       indexReference: "d",
-      glass: "Unmatched (literal E3 patent d-line pair; supplier and full dispersion unproved)",
+      glass: "J-SF6 (HIKARI catalog equivalent; production supplier unspecified)",
       focalLengthMm: -18.691603451609723,
-      role: "Whole Embodiment 3 source element; isolated paraxial focal estimate in air is not assembled group power.",
+      role: "Dense-flint negative meniscus cemented behind L5; makes G2B a weakly negative, concave-forward corrector.",
       cemented: "D2",
     },
     {
       id: 7,
       name: "L7",
-      label: "Source L22",
+      label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.58312,
       vd: 59.38,
       indexReference: "d",
-      glass: "Unmatched (literal E3 patent d-line pair; supplier and full dispersion unproved)",
+      glass: "L-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 33.01262890114499,
-      role: "Whole Embodiment 3 source element; isolated paraxial focal estimate in air is not assembled group power.",
+      role: "Rear positive singlet G2C with both faces aspherical; controls off-axis aberrations while keeping the back focus short (¶0006, ¶0075).",
     },
   ],
   surfaces: [
@@ -227,7 +241,6 @@ const LENS_DATA = {
     {
       label: "13",
       R: -19.429,
-      d: 18.81,
       sd: 7.2,
       asphere: {
         K: 0.0,
@@ -253,9 +266,23 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.16903,
     description:
-      "Static infinity only. Whole E3 terminal gap18.81 mm fixes image z41.02 mm. Near D0=125.20/D13=21.62 mm remains provenance, not a continuous finite cam or exact retail0.17 m model. E1 is separately held unchanged.",
+      "PUBLISHED unit focus: the complete optical assembly moves 2.81 mm toward the object (¶0026). D13 changes from 18.81 mm at infinity to 21.62 mm at the printed shortest distance, where the object lies 125.20 mm in front of surface 1 (0.169 m object to image, 1:6.6). All internal spacings stay fixed. Cosina specifies 0.17 m and 1:6.6.",
+    published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 125.2,
+        distanceReference: "first-surface",
+        source:
+          "JP 2025-044411 A, Embodiment 3, Table 11: D0 = 125.20 mm (object to surface 1) and D13 = 21.62 mm at the shortest photographing distance.",
+      },
+    ],
+  },
+  gaps: {
+    "13": { label: "D13", values: [[18.81, 21.62]] },
   },
   aperture: {
     nominalFNumber: 2.82,
