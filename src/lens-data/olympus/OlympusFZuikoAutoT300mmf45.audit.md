@@ -98,3 +98,26 @@ after. The only printed state is infinity, and the page render at that state sho
 as drawn. Overlay of model outlines on the rectified figure (new rims red, old blue) kept outside the repo.
 
 Open: the rear doublet's rims stay about 7 % above the figure reading for the reasons above.
+
+## 2026-11-09 — Glass coverage pass
+
+L4 (patent 1.7398 / 31.7, which the patent calls an abnormal-dispersion glass of KzSF type) was the only element on
+the Abbe estimate. Its label is now "BPH50 (OHARA; nearest catalog row to patent nd 1.7398, νd 31.7)", which resolves
+to OHARA BPH50, 1.739997 / 31.71 (Δnd +0.0002, Δνd +0.01). The catalog curve gives P_g,F 0.5902, within 0.0003 of
+the normal line, so the label adds a measured dispersion curve but not the anomalous partial dispersion the patent
+names; `apd: "patent"` stays and the `apdNote` says so.
+
+Colour check, paraxial focus relative to the d-line on axis (mm). Fig. 2A was re-read at 300 dpi: the ±0.5 mm bar is
+820 px long, and the curve ends at the axis lie at 335 (C), 462 (g), 529 (d) and 653.5 (F) px. The d curve ends 11 px
+from the bar's midpoint, so the table gives the patent offsets from the d curve, as the model's are; the
+cleanup-pass reading from the bar midpoint (C +0.25, F −0.14, g +0.09) is given in brackets.
+
+| Line | Fig. 2A | L4 on Abbe number | L4 as BPH50 |
+|---|---|---|---|
+| C | +0.237 (+0.25) | +0.270 | +0.269 |
+| F | −0.152 (−0.14) | −0.144 | −0.145 |
+| g | +0.082 (+0.09) | +0.138 | +0.133 |
+
+Measured from the d curve, all three lines move closer to the plot (C by 0.001, F by 0.001, g by 0.004 mm). Against
+the bar-midpoint reading F moves 0.001 mm away, far below the plot's reading precision (one line width is about
+0.02 mm). Kept. EFL, f-number, half-field, stop radius and back focus are unchanged at the d-line.

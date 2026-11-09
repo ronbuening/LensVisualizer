@@ -47,7 +47,7 @@ L2 sits 4 mm behind L1, and its front face (R3 = −234.162 mm) nearly follows L
 ### L3 and L4 — Cemented Positive Meniscus
 
 - **L3, Biconvex Positive:** nd = 1.61800, νd = 63.4. Glass: PCD4 (HOYA) equivalent, a dense phosphate crown. f = +134.5 mm.
-- **L4, Biconcave Negative:** nd = 1.73980, νd = 31.7. Glass: Unmatched; the patent calls it an abnormal-dispersion glass of KzSF type. f = −191.7 mm.
+- **L4, Biconcave Negative:** nd = 1.73980, νd = 31.7. Glass: BPH50 (OHARA), the nearest catalog row (1.73999 / 31.71); the patent calls it an abnormal-dispersion glass of KzSF type. f = −191.7 mm.
 
 The pair is convex to the object (R5 = 95.45 mm, R7 = 184.817 mm) and forms a weak positive meniscus (f = +399.7 mm) that closes the front group 0.1 mm behind L2. The patent places the KzSF-type glass in the negative element on the image side of this component, where it serves to minimize chromatic aberration. Short flints of this kind have a lower blue partial dispersion than ordinary flints of the same Abbe number, which reduces the secondary spectrum of a long lens; that reading of the patent's choice is an interpretation, since the patent prints no partial dispersion.
 
@@ -67,11 +67,11 @@ The patent gives d-line indices and Abbe numbers. Five elements have catalog row
 | L1 | 1.48749 / 70.1 | S-FSL5 (OHARA) | 1.48749 / 70.24 | Fluor crown |
 | L2 | 1.69350 / 53.3 | LAC13 (HOYA) | 1.69350 / 53.34 | Lanthanum crown |
 | L3 | 1.61800 / 63.4 | PCD4 (HOYA) | 1.61800 / 63.40 | Dense phosphate crown |
-| L4 | 1.73980 / 31.7 | Unmatched | — | KzSF-type anomalous-dispersion flint, named in the patent |
+| L4 | 1.73980 / 31.7 | BPH50 (OHARA), nearest row | 1.73999 / 31.71 | KzSF-type anomalous-dispersion flint, named in the patent |
 | L5 | 1.71300 / 54.0 | LAC8 (HOYA) | 1.71300 / 53.94 | Lanthanum crown |
 | L6 | 1.59270 / 35.6 | FF5 (HOYA) | 1.59270 / 35.45 | Flint |
 
-No catalog row reproduces L4's pair, so the trace uses its Abbe number and does not represent the anomalous partial dispersion the patent names. Fig. 2A gives a check on the colour. On axis, the patent plots the C-line focus about 0.25 mm behind the d-line focus, the F-line about 0.14 mm ahead and the g-line about 0.09 mm behind. With the catalog equivalents the model gives +0.27, −0.14 and +0.14 mm. Traced on Abbe numbers alone, the g-line would fall 0.34 mm behind. A partial-dispersion deviation of about −0.005 in L4, within the range of short flints, would close the remaining g-line difference; the patent prints no value, so the model leaves it out.
+No catalog row reproduces L4's pair exactly. The trace uses the nearest, OHARA BPH50, 0.0002 higher in nd; its catalog partial dispersion is close to the normal line, so the anomalous partial dispersion the patent names is not represented. Fig. 2A gives a check on the colour. On axis, the patent plots the C-line focus about 0.24 mm behind the d-line focus, the F-line about 0.15 mm ahead and the g-line about 0.08 mm behind. With the catalog glasses the model gives +0.27, −0.14 and +0.13 mm. Traced on Abbe numbers alone, the g-line would fall 0.34 mm behind. A partial-dispersion deviation of about −0.005 in L4, within the range of short flints, would close the remaining g-line difference; the patent prints no value, so the model leaves it out.
 
 ## Focus Mechanism
 
@@ -100,7 +100,7 @@ The mir.com.my drawing does not settle where the diaphragm sits. Its barrel narr
 - The stop position and every semi-diameter but S3's come from the PhotonsToPhotos transcription, and S3 from Fig. 1; the patent prints neither a stop nor diameters.
 - The image plane is the computed paraxial back focus.
 - The model is static at infinity and says nothing about performance at 3.5 m.
-- Colour away from the d-line rests on catalog equivalents for five elements and on the Abbe number for L4, whose anomalous partial dispersion is not represented.
+- Colour away from the d-line rests on catalog equivalents for five elements and on the nearest catalog row for L4, whose anomalous partial dispersion is not represented.
 - At the 4° half-field the image height is 21.16 mm, 0.5 mm short of the 21.65 mm format corner.
 
 ## Sources

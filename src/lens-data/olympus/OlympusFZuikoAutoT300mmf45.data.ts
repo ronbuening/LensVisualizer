@@ -19,8 +19,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * listed values: they set the light at the field edge (the drawn values would take 5 points from the 4° corner) and
  * match the maker's construction drawing, where the doublet is 0.42 of the front element's diameter.
  * Glass: five elements carry exact catalog equivalents of the printed nd and Abbe number. L4 is the glass the patent
- * calls an abnormal-dispersion glass of KzSF type (nd 1.7398, Abbe number 31.7); no catalog row matches it, so it is
- * traced on its Abbe number.
+ * calls an abnormal-dispersion glass of KzSF type (nd 1.7398, Abbe number 31.7); no catalog row matches it exactly, so
+ * it is traced on the nearest, OHARA BPH50 (1.73999 / 31.71), whose catalog partial dispersion is close to normal.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies. The 3.5 m
  * minimum focus is Olympus's retail figure and is not modeled.
  */
@@ -113,9 +113,9 @@ const LENS_DATA = {
       "nd": 1.7398,
       "vd": 31.7,
       "focalLengthMm": -191.70224728860555,
-      "glass": "Unmatched (KzSF-type abnormal-dispersion glass named in the patent; nd 1.7398, νd 31.7)",
+      "glass": "BPH50 (OHARA; nearest catalog row to patent nd 1.7398, νd 31.7)",
       "apd": "patent",
-      "apdNote": "The patent names this an abnormal-dispersion glass of KzSF type but prints no partial dispersion, so the trace uses its Abbe number.",
+      "apdNote": "The patent names this an abnormal-dispersion glass of KzSF type but prints no partial dispersion; the trace uses the nearest catalog row, OHARA BPH50, whose partial dispersion is close to normal.",
       "role": "Anomalous-dispersion flint on the image side of the front cemented meniscus; the patent's main corrector of chromatic aberration.",
       "cemented": "D1"
     },
