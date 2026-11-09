@@ -169,4 +169,35 @@ describe("ApertureStop", () => {
     expect(lines[2].getAttribute("y1")).toBe("-8");
     expect(lines[2].getAttribute("y2")).toBe("8");
   });
+
+  it("lifts the label clear of a rim land beside the stop and leaves it in place otherwise", () => {
+    const labelY = (sideLands?: { z: number; outerSD: number }[]) => {
+      const { container, unmount } = render(
+        <svg>
+          <ApertureStop
+            sx={identity}
+            sy={identity}
+            stopZ={0}
+            stopPhysSD={10}
+            stopHousingSD={12}
+            currentPhysStopSD={8}
+            sideLands={sideLands}
+            bladeStubFrac={0.1}
+            lyStoPad={2}
+            t={mockTheme}
+          />
+        </svg>,
+      );
+      const y = Number(container.querySelector("text")!.getAttribute("y"));
+      unmount();
+      return y;
+    };
+    // Default baseline: sy(-(12 + 2)).
+    expect(labelY()).toBe(-14);
+    // A land 8 px from the stop that stands to 20 mm puts the baseline 4 px above its corner.
+    expect(labelY([{ z: -8, outerSD: 20 }])).toBe(-24);
+    // A land wider of the stop than the label, or one whose top stays below the baseline, leaves it alone.
+    expect(labelY([{ z: 20, outerSD: 20 }])).toBe(-14);
+    expect(labelY([{ z: 5, outerSD: 9 }])).toBe(-14);
+  });
 });

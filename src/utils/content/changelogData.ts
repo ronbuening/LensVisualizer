@@ -25,6 +25,17 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Fujifilm XF 150-600mm f/5.6-8, Konica Hexanon AR 57mm f/1.2, Nikon EL-Nikkor 50mm f/2.8, Pentax FA* 300mm f/2.8, Schneider-Kreuznach 28mm LS f/4.5 and Sigma 20mm f/1.4 DG DN Art",
   },
   {
+    date: "2026-11-09",
+    type: "lens",
+    summary:
+      "Added the Canon RF 85mm f/1.4 L VCM and EF-S 60mm f/2.8 Macro, Pentax DA 14mm f/2.8, M 20mm f/4 and M 28mm f/2.8, and Sigma 500mm f/5.6 Sports",
+  },
+  {
+    date: "2026-11-08",
+    type: "fix",
+    summary: "Fixed the STO label overlapping the flat rim of an element beside the aperture stop",
+  },
+  {
     date: "2026-11-08",
     type: "lens",
     summary:
