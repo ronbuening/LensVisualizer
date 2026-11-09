@@ -25,6 +25,17 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Minolta AF 24-105mm f/3.5-4.5 (D), Panasonic LUMIX G VARIO 45-150mm f/4.0-5.6, Samsung 18-200mm f/3.5-6.3 ED OIS and 60mm f/2.8 Macro ED OIS SSA, SMC Pentax 24mm f/2.8, and Sony DT 18-135mm f/3.5-5.6 SAM",
   },
   {
+    date: "2026-11-09",
+    type: "lens",
+    summary:
+      "Added the Canon RF 85mm f/1.4 L VCM and EF-S 60mm f/2.8 Macro, Pentax DA 14mm f/2.8, M 20mm f/4 and M 28mm f/2.8, and Sigma 500mm f/5.6 Sports",
+  },
+  {
+    date: "2026-11-08",
+    type: "fix",
+    summary: "Fixed the STO label overlapping the flat rim of an element beside the aperture stop",
+  },
+  {
     date: "2026-11-08",
     type: "lens",
     summary:
