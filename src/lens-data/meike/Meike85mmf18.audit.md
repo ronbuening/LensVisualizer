@@ -53,3 +53,61 @@ audit lists S3 22.02 → 22.37, S4 21.56 → 21.70, S5 19.81 → 19.94, S7 18.48
 the radii that would pass the full f/1.8 bundle.
 
 Open: the printed rims at S3–S8 trim the f/1.8 axial bundle (f/1.83 effective); kept as printed in this pass.
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/CN217606166U.pdf`, PDF page 9, Fig. 1 (a ray-trace layout embedded at 150 dpi native, measured at
+300 dpi). The optical axis is row 798.5. Scale: the drawn rim heights of L1, L2, U1, U2 and U3 against their larger
+printed rims give 15.45, 15.48, 15.41, 15.44 and 15.52 px/mm, mean 15.46 px/mm (spread 0.3 %). Arc fits of the L1
+front (R 217.50) and L3 front (R 33.09) give the same scale horizontally, so the drawing is not anamorphic.
+
+Fig. 1 is not drawn to the tabulated spacings. At 15.46 px/mm, L1 is drawn 3.9 mm thick (printed 8.06). L8 and L9
+almost touch on the axis (printed gap 3.53 mm). L8 is drawn 5.4 mm thick (printed 4.16) and L9 5.7 mm (4.08). S1 to
+the image is drawn as 108.5 mm (113.92), and L4 to the stop as 8.3 mm (9.25). The stop-to-L7 spacings agree with the
+table to within 0.4 mm. The
+transcription was re-read against the table image and is correct, so the figure looks like a drawing of a slightly
+different state of the design; its rim heights still agree with the printed 孔径.
+
+| Surface | Stored sd | Fig. 1 | Ratio | Note |
+|---|---|---|---|---|
+| S1 | 24.1 | 24.08 | 1.00 | rim of L1 |
+| S2 | 23.71 | ≈24.1 | 1.02 | face reaches L1's square rim; a 0.39 mm land is below the figure's resolution |
+| S3 | 22.02 | 22.04 | 1.00 | |
+| S4 | 21.56 | ≈22.0 | 1.02 | as S2, 0.46 mm |
+| S5 | 19.81 | 19.74 | 1.00 | top of the drawn U1 block |
+| S7 (L3–L4) | 18.485 | junction drawn to 19.74 | — | printed 36.97 and 37.30; see below |
+| S8 | 15.865 | face ends at 15.56, land to 19.74 | 0.98 | land added, to 18.485 |
+| S10 | 14.495 | 14.47 | 1.00 | top of the drawn U2 block |
+| S12 (L5–L6) | 14.35 | junction drawn to 14.47 | — | |
+| S13 | 13.495 | face ends at 13.21, land to 14.47 | 0.98 | land added, to 14.35 |
+| S14 | 13.5 | face ends at 13.20, land to 15.51 | 0.98 | land added, to 14.21 |
+| S16 (L7–L8) | 14.21 | junction drawn to 15.51 | — | printed 28.42 and 29.00; see below |
+| S17 | 15.45 | 15.51 | 1.00 | top of the drawn U3 block |
+| S18 | 17.0 | 17.25 | 1.01 | |
+| S19 | 21.5 | 17.25 | 0.80 | kept; see below |
+
+All `sd` values are unchanged: they are the patent's printed 孔径/2 and stay as floors. Three lands were added with
+`rimExtensionSd`: S8 to 18.485 mm, S13 to 14.35 mm and S14 to 14.21 mm. Fig. 1 draws each of these faces ending short of
+the element edge with a vertical stroke. Each land stops at the element's cemented junction rim, so L4, L6 and L7 draw
+square-edged. The figure continues each land to the full height of its doublet block (19.74, 14.47 and 15.51 mm). The
+model cannot follow that, because the merged junction keeps the smaller printed value and a cemented face takes no
+extension. The lands cost no light: corner illumination is 27.4 % at 14.1° before and after, and the axial value is
+95.9 %. The leave-one-out restore wins back 0.0 points at every field.
+
+Cemented junctions: the figure draws the S7 and S16 junction lines up to the top of each doublet block, above both
+printed values. It therefore cannot choose between 36.97 and 37.30 mm, or between 28.42 and 29.00 mm. The smaller value
+stays: a ray must pass both of the patent's zero-gap surfaces, so their common clear aperture is the smaller.
+
+S19: Fig. 1 draws L9 square at 17.25 mm, with its rear face ending at the element edge. The printed 43.00 mm would
+give 21.5 mm and a rim 4.25 mm taller than the drawn element. No other surface departs from the figure by more than
+2 %. A trial S19 of 17.3 mm passes the surface audit and costs no light (27.4 % at the corner); 17.0 mm costs 0.5
+points. The value could be a misprint or a mechanical diameter. It is kept here because the patent prints it; the
+render shows L9 with a sharp, flared rear rim that the figure does not draw.
+
+Engine values are unchanged: EFL 85.6454 mm, F/1.8, half-field 15.250°, stop radius 14.747 mm, paraxial BFD 42.262
+mm. The surface audit reports no validation errors. The aperture audit finds f/1.83 at S3, within its 3 % window. The
+image-circle check finds nothing undersized, and field coverage is 100 % to the 21.65 mm corner. The focus is static,
+so the live page check at infinity covers every printed state.
+
+Open: S19 against Fig. 1 (printed 43.00 mm against about 34.5 mm drawn), for an owner decision on a source-errata
+entry. The S3–S8 axial clipping above is unchanged.
