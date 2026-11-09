@@ -1,20 +1,34 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Qualified Grade B patent-family reconstruction; exact factory identity is unproved.
- * Literal source R/d/nd/vd/aspheres and final interval retained. Clear SDs and iris opening
- * are pretrace frozen hypotheses; no cap retuning after native tracing and no finite law.
+/** JP 2025-187904 A, Embodiment 1 (Cosina Co., Ltd.; Tatsuya Moriyama): f = 48.455 mm, Fno 2.254, ω = 23.797°,
+ * 7 elements / 6 groups, all surfaces spherical (¶0040). No scale factor is applied. Probable match to the 2024
+ * Voigtländer Color-Skopar 50mm F2.2 VM (Cosina: 7/6 with three anomalous partial dispersion elements); not a
+ * confirmed factory prescription.
+ * R, d, nd and νd follow Table 2 as printed. Table 2 gives L6 nd = 1.61339 while Table 1's condition row gives
+ * 1.61340; the surface table is used. The stop is Table 2's STO row, 4.28 mm behind S6 and 6.31 mm ahead of S8; its
+ * diameter is not printed, so the iris radius is derived from F2.254.
+ * Unit focus (¶0023): Table 3 prints D14 = 13.99 mm at infinity and 17.96 mm with the object 642.00 mm ahead of S1
+ * (702.45 mm object to image). Both rows are kept as printed. The surfaces sum to 56.48 mm against Table 1's
+ * L-H = 56.482 mm and L-BF = 13.994 mm; the printed D14 lies 0.009 mm behind the paraxial focus (13.981 mm) and is
+ * not refocused.
+ * Semi-diameters are not printed. They are inferred from the element proportions of Fig. 1 and Cosina's section and
+ * were not changed after tracing; at full aperture the rims clip part of the edge-of-field beam.
+ * The patent's L6 names the L4/L5 cemented pair, so its L7 and L8 are this file's L6 and L7.
  */
 const LENS_DATA = {
   schema: 2,
   key: "voigtlander-color-skopar-50mm-f22-vm",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM",
-  subtitle: "JP 2025-187904 A Embodiment 1; literal 48.455mm/F2.254; source interval 13.99mm; infinity only.",
+  subtitle: "JP 2025-187904 A, Embodiment 1 — probable match to the 2024 production lens",
   catalog: {
     lensMounts: ["leica-m"],
     imageFormat: "135-full-frame",
     elementCount: 7,
     groupCount: 6,
+    closeFocusM: {
+      marketing: 0.5,
+    },
     focalLengthMm: {
       marketing: 50,
       design: 48.455,
@@ -23,14 +37,7 @@ const LENS_DATA = {
       marketing: 2.2,
       design: 2.254,
     },
-    specs: [
-      "Grade B probable patent family; exact factory prescription unproved",
-      "Clear apertures and iris opening inferred; printed stop retained",
-      "Infinity only; source-native scale and image interval preserved",
-    "Substantial modeled off-axis clipping retained; conditional transmitted-pupil MTF",
-      "Table2 L6 nd1.61339 retained versus aggregate1.61340",
-      "Literal final 13.99 mm versus header BF 13.994 mm; no refocus",
-    ],
+    specs: ["7 ELEMENTS / 6 GROUPS", "DESIGN f = 48.455 mm", "DESIGN F/2.254", "ALL SPHERICAL", "3 APD GLASS ELEMENTS"],
   },
   source: {
     patentNumber: "JP 2025-187904 A",
@@ -51,9 +58,9 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.13,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 56.999120795327535,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Front positive meniscus of the first group; its nd 2.001 glass meets the patent's Gr1P-nd > 1.90 condition for spherical aberration and coma control in a short lens (¶0034).",
     },
     {
       id: 2,
@@ -63,12 +70,12 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.61,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 54.28910636913114,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Second positive meniscus of the first group; a low-dispersion crown with positive anomalous partial dispersion that corrects the front group's secondary color (¶0033).",
       apd: "inferred",
       apdNote:
-        "Manufacturer marks this probable element position as anomalous partial dispersion; exact source/factory glass pairing and quantitative dispersion remain unproved.",
+        "Cosina marks this position as anomalous partial dispersion glass; the patent's nd/νd equal HOYA FCD1, whose catalog ΔPgF of +0.037 on the patent's normal line matches the printed Gr1P-ΔPgF = 0.0374.",
     },
     {
       id: 3,
@@ -78,12 +85,12 @@ const LENS_DATA = {
       nd: 1.80808,
       vd: 22.76,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "FD225 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -28.533102950993445,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Negative meniscus closing the first group, concave to the stop; the air lens AL1 between it and L2 gives the first group its telephoto Gauss form (¶0028).",
       apd: "inferred",
       apdNote:
-        "Manufacturer marks this probable element position as anomalous partial dispersion; exact source/factory glass pairing and quantitative dispersion remain unproved.",
+        "Cosina marks this position as anomalous partial dispersion glass; the patent's nd/νd equal HOYA FD225, a dense flint whose θgF lies well above the normal line.",
     },
     {
       id: 4,
@@ -93,9 +100,9 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.53,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "E-FD4 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -21.460133511738967,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Negative meniscus at the front of the cemented pair behind the stop; the dense-flint partner of L5.",
       cemented: "D1",
     },
     {
@@ -106,9 +113,9 @@ const LENS_DATA = {
       nd: 1.90365,
       vd: 31.31,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "TAFD25 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 13.931109515814104,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Strong positive meniscus of the cemented pair; the pair (f21 = 41.06 mm) carries most of the rear group's power and shortens the lens (¶0029, ¶0035).",
       cemented: "D1",
     },
     {
@@ -119,12 +126,12 @@ const LENS_DATA = {
       nd: 1.61339,
       vd: 44.27,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "S-NBM51 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 178.2074251905621,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Weak positive meniscus concave to the object; its glass meets the patent's Gr2P-nd and Gr2P-νd conditions for color correction in the rear group (¶0013).",
       apd: "inferred",
       apdNote:
-        "Manufacturer marks this probable element position as anomalous partial dispersion; exact source/factory glass pairing and quantitative dispersion remain unproved.",
+        "Cosina marks this position as anomalous partial dispersion glass; the patent's nd/νd equal OHARA S-NBM51, whose θgF lies below the normal line.",
     },
     {
       id: 7,
@@ -134,9 +141,9 @@ const LENS_DATA = {
       nd: 1.54814,
       vd: 45.83,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "E-FEL1 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -64.18021769580106,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Thick rear negative meniscus concave to the object; a negative last lens shortens the back focus and with it the total length (¶0029).",
     },
   ],
   surfaces: [
@@ -227,7 +234,6 @@ const LENS_DATA = {
     {
       label: "14",
       R: -19.059,
-      d: 13.99,
       sd: 12.25,
     },
   ],
@@ -239,9 +245,23 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 0.70245,
     description:
-      "Static infinity only. Source whole-system near-extension evidence is not an authored finite cam. Retail0.5m is descriptive. Literal final13.99mm and total56.48mm are fixed; header13.994/56.482 rounding differences remain.",
+      "PUBLISHED unit focus: the whole lens moves toward the object and only D14 changes (¶0017, ¶0023). Table 3 prints D14 = 13.99 mm at infinity and 17.96 mm at the shortest distance, with the object 642.00 mm ahead of S1: 702.45 mm from object to image, a 3.97 mm extension at a computed −0.08×. That printed close state is the 0.7 m limit of Cosina's rangefinder coupling; the lens's 0.5 m minimum focus, reached beyond the coupled range, is not printed and not modeled. Positions between the two printed states are interpolated by the app, not a published cam law.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 642,
+        distanceReference: "first-surface",
+        source:
+          "JP 2025-187904 A, Embodiment 1, Table 3: D0 = 642.00 mm (object to S1) and D14 = 17.96 mm at the shortest photographing distance, both printed.",
+      },
+    ],
+    published: [1],
+  },
+  gaps: {
+    "14": { label: "D14", values: [[13.99, 17.96]] },
   },
   aperture: {
     nominalFNumber: 2.254,
