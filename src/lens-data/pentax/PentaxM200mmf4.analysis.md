@@ -1,96 +1,144 @@
 ## Patent Reference and Design Identification
 
-**Patent:** [US 4,139,264 A](https://patents.google.com/patent/US4139264A)
-**Filed:** 25 August 1977
-**Granted:** 13 February 1979
-**Inventor:** Yasuo Takahashi
-**Assignee:** Asahi Kogaku Kogyo Co., Ltd.
-**Example details:** Example 2, printed pages 3–4, repeated in claim 2; Figure 3.
+**Patent:** US 4,139,264 A  
+**Application Number:** 827,637  
+**Filed:** 1977-08-25  
+**Granted:** 1979-02-13  
+**Priority:** 1976-08-26 (JP 51-101958)  
+**Inventor:** Yasuo Takahashi  
+**Assignee:** Asahi Kogaku Kogyo Co., Ltd.  
+**Title:** Miniaturized telephoto camera lens assembly  
+**Example details:** Example 2, repeated in claim 2; section in Fig. 3, aberration plots in Fig. 4. The patent is normalized to F = 100; every printed radius and spacing is multiplied by exactly 2 for f = 200 mm.
 
-The source explicitly gives f = 100 mm, F/4 and a 6.2° half-field. The model uniformly doubles all lengths as a retail-scale hypothesis. This is not a claim that the printed table contains 200 mm dimensions.
+The smc Pentax-M 200mm f/4 was introduced in 1977 for the Pentax K mount as one of the compact M-series lenses. Pentax's LX manual lists it with six elements in five groups, a 12° angle of view, an automatic diaphragm closing to f/32, a 2 m minimum focus, a 52 mm filter, 63.5 × 111 mm and 400 g. Reference listings add an eight-blade diaphragm, a 0.13× maximum magnification and a built-in sliding hood; it was made until 1984.
 
-The qualified association rests on three observations:
+The patent belongs to Asahi Kogaku Kogyo, the maker of Pentax cameras and lenses, so this is an in-house design; it names no product, though. Its stated aim is a telephoto of about 200 mm for a 35 mm single-lens reflex whose length from the front vertex to the image is less than 0.85 times the focal length. This page models Example 2 as a patent design probably close to the production lens, not a confirmed factory prescription. The association rests on four points:
 
-1. The complete source has six elements in five groups with a rear cemented doublet.
-2. The Pentax LX manual identifies SMC Pentax-M 200mm f/4 with six elements/five groups, 12° field and 2 m minimum focus.
-3. Photons to Photos attributes US004139264 Example02P to this product.
+1. Example 2 is six spherical lenses in five components, the last two cemented, which matches the retail six elements in five groups.
+2. At the ×2 scale it is a 200 mm f/4, and its printed half-field of 6.2° (12.4° full) reaches 21.7 mm of image height, the 21.6 mm corner of the 35 mm frame; Pentax rounds the angle to 12°.
+3. The August 1976 priority date falls shortly before the lens's 1977 introduction, alongside the other compact M-series telephotos.
+4. The PhotonsToPhotos Optical Bench Hub lists Example 2 of this patent as the smc Pentax-M 200mm f/4.
 
-These facts support a probable association, not factory confirmation. The source's 12.4° full field is retained rather than forced to the maker's rounded 12°. The existing Pentax-A 200 mm design is a distinct six-group prescription.
+The choice between the patent's two examples rests on that listing alone. Example 1 is also six elements in five groups at f/4 with a ±6.2° field; it has slightly different radii, d6, d8 and d9, and different glass in L4 (1.51874 / 64.5) and L6 (1.80518 / 25.4). Its length from S1 to S11 differs by only 0.01 at F = 100, so nothing in the retail data separates the two.
 
-The LX manual's printed page 61 lists 400 g (14.11 oz). An earlier source card transcribed 440 g; that error does not affect the optical prescription.
+No Pentax construction diagram could be found to compare with Fig. 3. One physical check is slightly off: at the ×2 scale the front vertex lies 159.21 mm ahead of the image, 113.75 mm ahead of the 45.46 mm K-mount flange, while the retail length of 111 mm puts the front of the barrel about 156.5 mm from the film. A front vertex 2.7 mm beyond the barrel, behind which a 52 mm filter thread still has to fit, suggests that the production lens is a few percent shorter in focal length than 200 mm or differs in detail. The attribution therefore remains probable rather than confirmed.
+
+The later SMC Pentax-A 200mm f/4, also in this catalog, is a different design of six separate elements in six groups (US 4,550,987).
 
 ## Optical Architecture
 
-Six spherical elements form five air-separated groups. Three front elements precede an isolated positive meniscus and a rear cemented negative-positive pair. The rear group contributes the shortened telephoto architecture. No extra mechanical surfaces are added.
+Six spherical elements in five groups form a compact telephoto: a positive front group of L1 (positive meniscus), L2 (biconcave) and L3 (positive meniscus), all closely spaced, then the long air space d6, a single weak positive meniscus L4, a second long air space d8, and a cemented rear pair of L5 (biconcave negative) and L6 (biconvex positive). The power sequence is P-N-P, P, then a negative cemented pair (−88.5 mm). There are no aspheric surfaces or cover plates.
+
+The front group has a composite focal length of 138.1 mm (69.0 at F = 100), and the first four lenses together 110.2 mm (55.1). The negative rear pair spreads the converging beam and moves the rear principal plane well ahead of the lens: the glass runs 96.56 mm from S1 to S11, and the image plane lies 159.21 mm behind S1, 0.796 times the focal length. The claims set the length limit at 0.85 times the focal length (condition 8).
+
+The description lists seven conditions and the claims add the eighth; Example 2 meets all of them:
+
+| Condition | Range at F = 100 | Example 2 |
+|---|---|---|
+| (1) F1.2.3 | F/1.8 to F/1.2 (55.6 to 83.3) | F/1.449 = 69.0 |
+| (2) F1.2.3.4 | F/2.3 to F/1.8 (43.5 to 55.6) | F/1.815 = 55.1 |
+| (3) ν1, ν3 | above 58 | 64.1, 64.1 |
+| (4) ν2 | below 30 | 26.6 |
+| (5) ν4, n4 | ν4 above 55, n4 below 1.55 | 64.1, 1.51633 |
+| (6) \|n5 − n6\| | below 0.1 | 0.00018 |
+| (7) n5, n6 | above 1.65 | 1.76200, 1.76182 |
+| (8) Overall length | below 0.85F (85) | 79.60 |
+
+Conditions (3), (5) and (7) are printed as products ("58 < ν1 · ν3", "55 < ν4 · n4 < 1.55", "1.65 < n5 · n6") and are read here as bounds on each value; the text discusses them that way. The patent's recurring concern is the Petzval sum, which tends to fall as a telephoto is shortened. It describes the design as a development of Japanese Patent Application Publication No. 3417/1968, whose short fourth-lens spacing kept the Petzval sum up at the cost of astigmatism; this design instead lengthens d8 and uses a low-index fourth lens, then needs a high Abbe number there to keep the color correction (col. 2).
 
 ## Element-by-Element Analysis
 
 ### L1 — Positive Meniscus
 
-nd = 1.51633, νd = 64.1. Glass: unmatched patent pair. Isolated in-air element f ≈ 133.628 mm at the stated model scale.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) equivalent, a borosilicate crown. f = +133.6 mm.
 
-This signed power is derived from the literal two radii, thickness and index. It is not a supplier-glass identification or a separate measurement of the assembled group.
+The front crown, convex to the object (R1 = 59.82 mm, R2 = 431.72 mm), and the largest element, at 25.2 mm semi-diameter. Condition (3) asks for Abbe numbers above 58 in L1 and L3: with lower values the front group's color could still be held by strengthening L2, but that lowers the Petzval sum (col. 2).
 
 ### L2 — Biconcave Negative
 
-nd = 1.76182, νd = 26.6. Glass: unmatched patent pair. Isolated in-air element f ≈ -162.355 mm at the stated model scale.
+nd = 1.76182, νd = 26.6. Glass: FD140 (HOYA) equivalent, a dense flint. f = −162.4 mm.
 
-This signed power is derived from the literal two radii, thickness and index. It is not a supplier-glass identification or a separate measurement of the assembled group.
+The only negative element of the front group, 8.40 mm behind L1 and 0.10 mm ahead of L3 on the axis. Condition (4), ν2 < 30, lets L2 correct the color of the first three lenses with as little power as possible, which keeps it in balance with the other aberrations (col. 2).
 
 ### L3 — Positive Meniscus
 
-nd = 1.51633, νd = 64.1. Glass: unmatched patent pair. Isolated in-air element f ≈ 170.634 mm at the stated model scale.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) equivalent, a borosilicate crown. f = +170.6 mm.
 
-This signed power is derived from the literal two radii, thickness and index. It is not a supplier-glass identification or a separate measurement of the assembled group.
+A crown meniscus with the stronger curve facing the object (R5 = 56.72 mm, R6 = 152.98 mm), as the claims require of L3 and L4. It completes the front group, whose composite focal length condition (1) bounds: a longer F1.2.3 shifts the burden of shortening the lens to L4 and costs astigmatism at its surfaces, and a shorter one lowers the Petzval sum and makes the front group's color hard to hold (col. 2).
 
 ### L4 — Positive Meniscus
 
-nd = 1.51633, νd = 64.1. Glass: unmatched patent pair. Isolated in-air element f ≈ 353.729 mm at the stated model scale.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) equivalent, a borosilicate crown. f = +353.7 mm.
 
-This signed power is derived from the literal two radii, thickness and index. It is not a supplier-glass identification or a separate measurement of the assembled group.
+A weak meniscus convex to the object (R7 = 53.38 mm, R8 = 73.74 mm), alone between the 33.22 mm air space after L3 and the 28.68 mm air space before the rear pair. Condition (2) sets its power together with the front group. Condition (5) is the feature the patent singles out: a low index (n4 < 1.55) keeps the Petzval sum from falling as the lens is shortened, and because the long d8 then leaves the color correction short, L4 needs a high Abbe number (ν4 > 55) as well (col. 2).
 
 ### L5 — Biconcave Negative
 
-nd = 1.76200, νd = 40.2. Glass: unmatched patent pair. Isolated in-air element f ≈ -33.968 mm at the stated model scale.
+nd = 1.76200, νd = 40.2. Glass: NBFD5 (HOYA) equivalent, a lanthanum dense flint. f = −34.0 mm.
 
-This signed power is derived from the literal two radii, thickness and index. It is not a supplier-glass identification or a separate measurement of the assembled group.
+The strongest element of the lens and the telephoto negative, with a deep concave front face (R9 = −28.36 mm) and a weak rear face (R10 = 309.42 mm) cemented to L6. Condition (7) asks for a high index in L5 and L6, which keeps the Petzval sum from falling; the patent also ties it to limiting the distortion produced at the last surface (col. 3).
 
 ### L6 — Biconvex Positive
 
-nd = 1.76182, νd = 26.6. Glass: unmatched patent pair. Isolated in-air element f ≈ 60.782 mm at the stated model scale.
+nd = 1.76182, νd = 26.6. Glass: FD140 (HOYA) equivalent, a dense flint. f = +60.8 mm.
 
-This signed power is derived from the literal two radii, thickness and index. It is not a supplier-glass identification or a separate measurement of the assembled group.
+Cemented behind L5 (R10 = 309.42 mm, R11 = −54.14 mm); the pair together is negative at −88.5 mm. Condition (6) keeps the two indices within 0.1 of each other so that the cemented face adds no aberration of its own, and the cementing balances the color (col. 2–3). In Example 2 the indices differ by only 0.00018, so the cemented face has almost no d-line power and acts, by this reading, almost purely on color through the difference between νd 40.2 and 26.6.
 
-## Glass Identification and Selection
+## Glass Identification
 
-All glass indices and Abbe numbers are literal d-line source pairs. No modern catalogue substitution is applied. Supplier, melt, partial dispersion and full wavelength curves are unprovided. Any C–d–F diagnostic is a dispersion proxy and is not evidence of exact historical chromatic performance. The isolated powers of cemented members are explanatory in-air calculations, not the powers of the assembled cemented group.
+The patent defines n as the index at the d-line (col. 2); Fig. 4 plots the d and g lines. All three pairs equal catalog d-line rows at the printed precision. The table gives catalog equivalents; the supplier of the production glass is not established.
 
-## Focus Mechanism
+| Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Type |
+|---|---|---|---|---|
+| L1, L3, L4 | 1.51633 / 64.1 | S-BSL7 (OHARA) | 1.51633 / 64.14 | Borosilicate crown |
+| L2, L6 | 1.76182 / 26.6 | FD140 (HOYA) | 1.76182 / 26.61 | Dense flint |
+| L5 | 1.76200 / 40.2 | NBFD5 (HOYA) | 1.76200 / 40.26 | Lanthanum dense flint |
 
-The model is static at infinity. Manufacturer minimum focus is retained only as product metadata. No unit-focus, floating or internal-focus motion is inferred from the drawing. The focus control does not create unsupported moving spacings.
+For L2 and L6, J-SF14 (Hikari, νd 26.58) and S-TIH14 (OHARA, 26.52) also match; for L5, S-LAM55 (OHARA, 40.10). The patent prints no partial dispersions, so behavior away from the d-line rests on these catalog curves. The palette uses only three glasses: one crown for all three positive singlets, one dense flint for both L2 and L6, and a lanthanum flint chosen to match L6's index in the cemented pair.
 
-## Aspherical Surfaces
+## Focus Mechanism and Image Plane
 
-All listed surfaces are spherical. No conics, polynomial terms, coatings or diffraction structures are inferred.
+The patent names no focusing group or movement and prints the infinity state only, so no gap varies and the focus control stays at infinity. The 2 m minimum focus is the retail specification and is not traced.
 
-## Stop, Clear Apertures and Image Plane
+The patent prints no back focus. The final gap of 62.6492 mm is the paraxial back focus, 31.3246 at F = 100, so the image plane is computed, not printed. Fig. 4 shows undercorrected zonal spherical aberration of about −0.15 near 0.7 of the aperture, returning to slightly positive at full aperture (F = 100). The model traces −0.150 at 0.7 and +0.080 at full aperture (−0.300 and +0.161 mm at 200 mm), so the sharpest axial focus lies slightly in front of the paraxial plane.
 
-The physical stop position is unprinted and no iris is drawn in Figure 3. The model uses the midpoint of d6, 16.61 mm after surface 6 at the doubled scale. Its radius follows the shared F/4 rule. This location is a geometric hypothesis, not a decoded patent dimension.
+## Aperture Stop and Clear Apertures
 
-Clear semi-diameters are figure-derived estimates: 25.2, 23.6, 23.0, 15.6 and 12.5 mm for successive groups. Independent ENV/RIM measurements agree, with median figure/data ratio 0.992. No rim adjustment or check relaxation was needed.
+The patent neither prints nor draws a stop, and Fig. 3 shows none. The model places it at the midpoint of the long air space d6, 16.61 mm behind S6, a modeling choice. At f/4 the entrance pupil radius is 25.0 mm and the stop radius 18.16 mm.
 
-The source does not print BFL. An independent paraxial recurrence gives 31.324578667749 native mm, doubled to 62.649157335498 mm. The resulting infinity image plane is frozen at z = 159.209157335498 mm before exact rays. It is explicitly derived, not a printed or fitted plane.
+The patent prints no semi-diameters, so all are inferred from the proportions of Fig. 3:
 
-## Native Verification and Limits
+| Element | Model sd (mm) |
+|---|---|
+| L1 | 25.2 |
+| L2 | 23.6 |
+| L3 | 23.0 |
+| L4 | 15.6 |
+| L5, L6 | 12.5 |
 
-Native EFL is 200.029668823362 mm. Geometry and the stated-aperture audit pass; all six elements have zero hidden render trim. Sampled throughput is 100% axial and approximately 71.67% at the source 6.2° half-field, with no failed or unaimed samples.
+The full f/4 beam passes on axis. Toward the 21.6 mm corner the rims of the cemented rear pair cut into the oblique beam; in the meridional section the last surface removes about 45 % of its outer half.
 
-At the frozen plane, reference and CDF-proxy diffraction MTF converge through 40 lp/mm at center, half and full field within the bounded 64-grid diagnostic. Frequencies are physical inverse millimetres under the 2× scale hypothesis; wavelength units follow the engine in nanometres.
+## Model Scope and Limitations
 
-Diagnostic best-axial shifts are approximately −0.249 mm reference and −0.288 mm CDF. They do not replace the frozen plane. A nine-case sensitivity study varies stop placement by ±4 mm and caps by ±5%; these are uncertainty checks, not performance-selected edits. Whole-tree gates are tracked separately.
+| Quantity | Patent, F = 100 | Patent × 2 | Model |
+|---|---|---|---|
+| Focal length | 100 | 200.0 | 200.030 |
+| F1.2.3 | 69.0 | 138.0 | 138.11 |
+| F1.2.3.4 | 55.1 | 110.2 | 110.24 |
+| Petzval sum | −0.06 | — | −0.062 at F = 100 |
+| S1 to image | below 85 (condition 8) | below 170 | 159.21 |
+
+- The prescription is the patent's, not a confirmed factory one, and the choice of Example 2 over Example 1 rests on the PhotonsToPhotos listing.
+- The ×2 scale assumes a 200 mm production focal length; the retail length suggests the production lens may be a few percent shorter.
+- Stop position and all semi-diameters are inferred.
+- The image plane is the paraxial back focus; the patent prints none.
+- The model is static at infinity and says nothing about performance at 2 m.
+- The body table's Petzval line is misprinted "31 0.06"; claim 2 repeats the example with −0.06, which the model matches.
+- The patent gives indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents.
 
 ## Sources
 
-- [Primary patent](https://patents.google.com/patent/US4139264A)
-- [Pentax LX manual, printed page 61](https://retro-camera.ru/files/Pentax-LX-Manual-EN.pdf)
-- [Photons to Photos association index](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/OpticalBenchHub.htm)
+- [US 4,139,264 A](https://patents.google.com/patent/US4139264A/en), text, Example 2, claim 2 and Figs. 3–4.
+- [Pentax LX manual](https://retro-camera.ru/files/Pentax-LX-Manual-EN.pdf), printed p. 61: construction, angle of view, minimum aperture, minimum focus, filter, size and weight.
+- [Cine Lens Wiki: Pentax-M SMC 200mm f/4](https://cinelenswiki.com/lens:pen-msmc200mmf4): diaphragm blades, magnification, sliding hood, and the 1977–1984 production span.
+- [PhotonsToPhotos Optical Bench Hub](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/OpticalBenchHub.htm), which lists Example 2 of the patent as the smc Pentax-M 200mm f/4.

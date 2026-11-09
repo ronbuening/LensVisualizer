@@ -1,16 +1,34 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Whole Example 2; all lengths uniformly scaled 2x as a retail-scale hypothesis.
- * Derived paraxial infinity plane 159.20915733549794 mm is frozen, not fitted.
- * Stop at midpoint of d6 is inferred, not shown in Figure 3. Radius follows F/4.
- * Caps follow Figure 3; native geometry/aperture pass with zero hidden trim.
- * Probable association, not confirmed factory prescription. Infinity-only model.
+/**
+ * US 4,139,264 A (Takahashi, Asahi Kogaku Kogyo), Example 2 (PDF p. 5, repeated in claim 2; section in Fig. 3,
+ * aberration plots in Fig. 4), a probable match to the smc Pentax-M 200mm f/4 (1977). The patent is Asahi's own, but
+ * it names no product. The match rests on construction (six elements in five groups with a cemented rear pair, all
+ * spherical), f/4, a ±6.2° field and timing. Example 1 is also six elements in five groups at f/4 (slightly different
+ * radii, d6, d8 and d9, and different glass in L4 and L6); the choice of Example 2 follows the PhotonsToPhotos Optical Bench Hub, which
+ * lists it as this lens. This is a patent design, not a confirmed factory prescription.
+ * Scale: the patent is normalized to F = 100. Every printed R and d is multiplied by exactly 2 for f = 200 mm
+ * (computed EFL 200.030 mm). All surfaces are spherical, so no coefficient transform applies.
+ * Printed: R, d, d-line n, Abbe number, F/4, half-field 6.2°, F1.2.3 = 69.0, F1.2.3.4 = 55.1 and a Petzval sum of
+ * -0.06, which the model reproduces (69.05, 55.12 and -0.062 at F = 100). The body table's Petzval line is misprinted
+ * "31 0.06"; claim 2 prints -0.06. The PDF's text layer is corrupt, so the table was read from the page images.
+ * Image plane: the patent prints no back focus. The final gap is the paraxial back focus, 31.3246 at F = 100
+ * (62.6492 mm here), which puts the image plane 159.209 mm behind S1 (0.796 F; the patent's condition 8 asks < 0.85 F).
+ * Stop: the patent neither prints nor draws one. It sits at the midpoint of d6 (16.61 + 16.61 mm), with its radius
+ * set by the paraxial entrance pupil, F/N.
+ * Semi-diameters are inferred, none is printed. They follow the proportions of Fig. 3: 25.2 mm on L1, 23.6 mm on L2,
+ * 23.0 mm on L3, 15.6 mm on L4 and 12.5 mm on the rear pair.
+ * Glass: every n/ν pair equals a catalog row at the printed precision.
+ * Length: at this scale the front vertex lies 113.75 mm ahead of the K-mount flange, about 2.7 mm beyond the 111 mm
+ * retail length, so the production focal length may be slightly shorter than 200 mm.
+ * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies.
+ * The 2 m minimum focus is Pentax's retail figure and is not modeled.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "pentax-m-200mm-f4",
   "maker": "Pentax",
   "name": "PENTAX SMC M 200mm f/4",
-  "subtitle": "US 4,139,264 A; probable association, 2x retail-scale hypothesis",
+  "subtitle": "US 4,139,264 A, Example 2 — probable match to the 1977 production lens",
   "catalog": {
     "lensMounts": [
       "pentax-k"
@@ -26,9 +44,15 @@ const LENS_DATA = {
       "marketing": 4,
       "design": 4
     },
+    "closeFocusM": {
+      "marketing": 2
+    },
     "specs": [
       "6 ELEMENTS / 5 GROUPS",
-      "QUALIFIED PATENT RECONSTRUCTION"
+      "DESIGN f = 200 mm",
+      "DESIGN F/4",
+      "ALL SPHERICAL",
+      "PATENT f = 100 SCALED × 2"
     ]
   },
   "source": {
@@ -54,8 +78,9 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "focalLengthMm": 133.6277711641613,
-      "glass": "Unmatched (patent nd=1.51633, Vd=64.1)",
-      "indexReference": "d"
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
+      "indexReference": "d",
+      "role": "Positive crown meniscus, convex to the object; the first and largest of the three closely spaced front elements."
     },
     {
       "id": 2,
@@ -65,8 +90,9 @@ const LENS_DATA = {
       "nd": 1.76182,
       "vd": 26.6,
       "focalLengthMm": -162.35491198135534,
-      "glass": "Unmatched (patent nd=1.76182, Vd=26.6)",
-      "indexReference": "d"
+      "glass": "FD140 (HOYA catalog equivalent; production supplier unspecified)",
+      "indexReference": "d",
+      "role": "Dense-flint biconcave negative between the two front positives; corrects the front group's color (patent condition ν2 < 30)."
     },
     {
       "id": 3,
@@ -76,8 +102,9 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "focalLengthMm": 170.63370099339184,
-      "glass": "Unmatched (patent nd=1.51633, Vd=64.1)",
-      "indexReference": "d"
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
+      "indexReference": "d",
+      "role": "Positive crown meniscus, convex to the object; completes the positive front group ahead of the long air space."
     },
     {
       "id": 4,
@@ -87,8 +114,9 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "focalLengthMm": 353.7291817849575,
-      "glass": "Unmatched (patent nd=1.51633, Vd=64.1)",
-      "indexReference": "d"
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
+      "indexReference": "d",
+      "role": "Weak positive crown meniscus between the two long air spaces; low index and high Abbe number hold up the Petzval sum and the color correction."
     },
     {
       "id": 5,
@@ -98,8 +126,9 @@ const LENS_DATA = {
       "nd": 1.762,
       "vd": 40.2,
       "focalLengthMm": -33.96778905642974,
-      "glass": "Unmatched (patent nd=1.762, Vd=40.2)",
-      "indexReference": "d"
+      "glass": "NBFD5 (HOYA catalog equivalent; production supplier unspecified)",
+      "indexReference": "d",
+      "role": "Strong biconcave negative at the front of the cemented rear pair; the telephoto negative, in high-index glass to hold up the Petzval sum."
     },
     {
       "id": 6,
@@ -109,8 +138,9 @@ const LENS_DATA = {
       "nd": 1.76182,
       "vd": 26.6,
       "focalLengthMm": 60.78151494666458,
-      "glass": "Unmatched (patent nd=1.76182, Vd=26.6)",
-      "indexReference": "d"
+      "glass": "FD140 (HOYA catalog equivalent; production supplier unspecified)",
+      "indexReference": "d",
+      "role": "Dense-flint biconvex positive cemented behind L5 at nearly the same index; balances the rear pair's color."
     }
   ],
   "surfaces": [
@@ -193,8 +223,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 2,
-    "description": "Infinity-only static prescription. Maker 2 m minimum focus is metadata, not modeled motion."
+    "closeFocusM": 1000000000000000.0,
+    "description": "The patent names no focusing group or motion and prints the infinity state only. It gives no back focus, so the final gap is the paraxial back focus, 31.32 at F = 100 (62.65 mm here). The lens is modeled at infinity with no focus movement; Pentax's retail minimum focus of 2 m is not modeled."
   },
   "aperture": {
     "nominalFNumber": 4,
@@ -207,7 +237,8 @@ const LENS_DATA = {
       22,
       32
     ],
-    "maxFNumber": 32
+    "maxFNumber": 32,
+    "blades": 8
   },
   "projection": {
     "kind": "rectilinear",
