@@ -103,3 +103,10 @@ land behind L1; the patent figure governs.
 Open: the engine's diagram half-field (33.73°) is still a paraxial S15 limit below the patent's 37.59°, and no rim the
 figure allows can lift it (it would need S15 at about 9.6 mm, past where L7 and L8 meet). Declaring the patent's field
 as a rectilinear projection (fullFieldDeg 75.18) would set it directly; that field is outside this pass.
+
+## 2026-11-09 — Field angle
+
+`projection` now declares the patent's printed field (2ω = 75.18°, half-field 37.59°) as rectilinear `fullFieldDeg` /
+`maxTraceFieldDeg`. The rims alone let the engine's default field search reach only 33.73°, although the traced chief
+ray reaches the 14.20 mm image height at 37.59° and 79 % of the f/2.89 beam passes there. Optics unchanged;
+audit:surface, image-circle and field-coverage pass.

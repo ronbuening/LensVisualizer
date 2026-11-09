@@ -336,6 +336,7 @@ const LENS_DATA = {
       toSurface: "8",
     },
   ],
+  projection: { kind: "rectilinear", fullFieldDeg: 75.18, maxTraceFieldDeg: 37.59 },
   checks: {
     gapSagFrac: 0.96,
   },
