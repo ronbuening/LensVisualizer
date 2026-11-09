@@ -1,15 +1,29 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Qualified Grade B patent-family reconstruction; exact factory identity is unproved.
- * Literal source R/d/nd/vd/aspheres and final interval retained. Clear SDs and iris opening
- * are pretrace frozen hypotheses; no cap retuning after native tracing and no finite law.
+/**
+ * JP 2023-090337 A (Cosina; Moriyama, Nagasawa, Shibata), Embodiment 1, associated with the VOIGTLÄNDER NOKTON 23mm
+ * f/1.2 Aspherical X-Mount (2022). Embodiment 1 is the patent's only 10-element, 6-group example and matches Cosina's
+ * published section element by element; it is a patent design, not a confirmed factory prescription.
+ * Scale 1: Tables 1–3 are transcribed at patent scale (f = 23.6 mm, F/1.22, half field 31.5°, image height 14.2 mm),
+ * not rescaled to the retail 23 mm f/1.2. Paraxial EFL is 23.606 mm.
+ * Printed: R, d, d-line nd and νd, the stop position (3.75 mm behind S8, 3.79 mm ahead of S10) and both aspheric faces
+ * of L10 in the 1 + K form (K = -20 and -4, A4 to A18), entered as printed. The paragraph that lists the coefficients
+ * omits A6; the equation and Table 3 include it, and it is kept.
+ * Image plane: the final gap keeps Table 2's 14.78 mm. Table 1 rounds the back focus to 14.8 mm and the length in air
+ * to 55.7 mm (55.66 mm here). The paraxial back focus is 14.783 mm, 0.003 mm longer.
+ * Stop and rims: the patent prints no iris opening and no clear apertures. The engine sizes the iris from F/1.22.
+ * Semi-diameters are estimates in the proportions of Fig. 1 and Cosina's section (front doublets 12 mm, rear group
+ * 9.0 to 9.75 mm); the wide-open beam is heavily vignetted at the field edge.
+ * Glass labels are catalog equivalents whose nd and νd equal the printed pairs; the production supplier is not known.
+ * Focus: the patent prints the infinity state only, so the model is static. Cosina's 0.18 m minimum focus, reached by
+ * extending the whole lens, is not modeled.
  */
 const LENS_DATA = {
   schema: 2,
   key: "voigtlander-nokton-23mm-f12-x",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount",
-  subtitle: "JP 2023-090337 A Embodiment 1; literal 23.6mm/F1.22; source interval 14.78mm; infinity only.",
+  subtitle: "JP 2023-090337 A, Embodiment 1 — matches Cosina's published 10/6 construction",
   catalog: {
     lensMounts: ["fujifilm-x"],
     imageFormat: "aps-c",
@@ -24,13 +38,15 @@ const LENS_DATA = {
       design: 1.22,
     },
     specs: [
-      "Grade B probable patent family; exact factory prescription unproved",
-      "Clear apertures and iris opening inferred; printed stop retained",
-      "Infinity only; source-native scale and image interval preserved",
-    "Substantial modeled off-axis clipping retained; conditional transmitted-pupil MTF",
-      "Conventional1+K: K-20/-4 and all A4-A18 terms retained",
-      "Literal final 14.78 mm versus header BF 14.8 mm; no retail focus law",
+      "10 ELEMENTS / 6 GROUPS",
+      "DESIGN f = 23.6 mm",
+      "DESIGN F/1.22",
+      "2 ASPHERICAL SURFACES / 1 ELEMENT",
+      "2 ANOMALOUS-DISPERSION ELEMENTS",
     ],
+    closeFocusM: {
+      marketing: 0.18,
+    },
   },
   source: {
     patentNumber: "JP 2023-090337 A",
@@ -51,12 +67,12 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.88,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "E-FDS1 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -18.879905073538307,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Biconcave negative front element, the only air-spaced lens ahead of the stop.",
       apd: "inferred",
       apdNote:
-        "Manufacturer marks this probable element position as anomalous partial dispersion; exact source/factory glass pairing and quantitative dispersion remain unproved.",
+        "Cosina marks this position as anomalous partial dispersion glass; the printed pair matches E-FDS1, whose θgF of 0.639 lies about 0.030 above the normal line.",
     },
     {
       id: 2,
@@ -66,12 +82,12 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.58,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "J-SF14 (HIKARI catalog equivalent; production supplier unspecified)",
       focalLengthMm: -101.12103924487957,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Weak negative meniscus, convex to the object, leading the first front doublet.",
       apd: "inferred",
       apdNote:
-        "Manufacturer marks this probable element position as anomalous partial dispersion; exact source/factory glass pairing and quantitative dispersion remain unproved.",
+        "Cosina marks this position as anomalous partial dispersion glass; the printed pair matches the dense flint J-SF14, whose θgF of 0.613 lies about 0.014 above the normal line.",
       cemented: "D1",
     },
     {
@@ -82,9 +98,9 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.13,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 24.17606551341098,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Index-2.0 biconvex positive of the first front doublet.",
       cemented: "D1",
     },
     {
@@ -95,9 +111,9 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.13,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 15.987402951472255,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Thick index-2.0 biconvex positive of the second front doublet; the strongest element ahead of the stop.",
       cemented: "D2",
     },
     {
@@ -108,9 +124,9 @@ const LENS_DATA = {
       nd: 1.55298,
       vd: 55.07,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "J-KZFH4 (HIKARI catalog equivalent; production supplier unspecified)",
       focalLengthMm: -32.06759831612535,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Biconcave negative closing the front group, its concave rear face toward the stop.",
       cemented: "D2",
     },
     {
@@ -121,9 +137,9 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -12.754135173164144,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Biconcave negative opening the rear group, facing L5 across the stop.",
       cemented: "D3",
     },
     {
@@ -134,9 +150,9 @@ const LENS_DATA = {
       nd: 1.90043,
       vd: 37.37,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "TAFD37 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 17.104830757836034,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Biconvex positive of the first rear doublet, which is weakly negative overall.",
       cemented: "D3",
     },
     {
@@ -147,9 +163,9 @@ const LENS_DATA = {
       nd: 1.90043,
       vd: 37.37,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "TAFD37 (HOYA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 13.063866507043056,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Biconvex positive of the second rear doublet; the strongest element of the lens.",
       cemented: "D4",
     },
     {
@@ -160,9 +176,9 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.38,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "J-SF10 (HIKARI catalog equivalent; production supplier unspecified)",
       focalLengthMm: -14.28094996329729,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Dense-flint biconcave negative closing the second rear doublet, mirroring L2 across the stop.",
       cemented: "D4",
     },
     {
@@ -173,9 +189,9 @@ const LENS_DATA = {
       nd: 1.80835,
       vd: 40.55,
       indexReference: "d",
-      glass: "Unmatched (literal patent d-line nd/vd; supplier and full dispersion unproved)",
+      glass: "L-LAH84 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 48.59716835279629,
-      role: "Literal source element; isolated paraxial power and probable product association do not prove factory glass identity.",
+      role: "Weak biconvex rear element with both faces aspheric, the lens's only asphere.",
     },
   ],
   surfaces: [
@@ -338,7 +354,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000000000.0,
     description:
-      "Static infinity only. No printed finite-conjugate law is supplied; retail0.18m and manufacturer unit extension remain descriptive. The source14.78mm final interval fixes image z55.66mm, retaining rounded header BF14.8/TTL55.7.",
+      "The patent names no focusing group and prints the infinity state only, so the lens is modeled at infinity with no focus movement. The final gap is Table 2's 14.78 mm (Table 1 rounds the back focus to 14.8 mm). Cosina focuses the lens by extending the whole optical unit; its 0.18 m minimum focus is not modeled.",
   },
   aperture: {
     nominalFNumber: 1.22,

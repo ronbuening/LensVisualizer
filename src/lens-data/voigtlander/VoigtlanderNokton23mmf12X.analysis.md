@@ -1,174 +1,152 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP 2023-090337 A (published application).  
-**Filed:** 2021-12-17.  
-**Published:** 2023-06-29.  
-**Inventors:** Tatsuya Moriyama, Keisuke Nagasawa, Yuki Shibata; Romanized names follow the acquired source handoff.  
+**Patent:** JP 2023-090337 A  
+**Application Number:** JP 2021-205261  
+**Filed:** 2021-12-17  
+**Published:** 2023-06-29  
+**Inventors:** Tatsuya Moriyama, Keisuke Nagasawa, Yuki Shibata  
 **Applicant:** Cosina Co., Ltd.  
-**Example details:** 第1実施形態, Tables 1–3 and Fig. 1; original millimetres, scale factor 1.
+**Title:** 光学レンズ系 (Optical lens system)  
+**Example details:** 第1実施形態 (first embodiment), Tables 1–3, section in Fig. 1, aberrations at infinity in Fig. 2; transcribed at patent scale (scale factor 1).
 
-This is a Grade B probable product-family reconstruction. The primary numerical embodiment is retained at 23.6 mm, F1.22 and 63° full field. The retail label is 23 mm f/1.2; it supplies identification context rather than a reason to rescale or refocus the patent. Exact factory radii, glasses, apertures and production-example selection remain unproved.
+The Voigtländer NOKTON 23mm F1.2 Aspherical for Fujifilm X was announced in February 2022 and released on 13 July 2022. Cosina lists 10 elements in 6 groups with one double-sided aspherical element and two anomalous partial dispersion glass elements, a 63.2° angle of view, a 0.18 m minimum focus (1:4.9), a 12-blade diaphragm closing to f/16, and focusing by extension of the whole optical unit on a metal helicoid.
 
-The association is with the original 2022 X-mount product, not an asserted D23 Z prescription. The evidence converges on:
+Embodiment 1 is a patent design associated with that lens, not a confirmed factory prescription. The association rests on five points:
 
-1. Ten elements in six groups: four cemented doublets and two singlets.
-2. The same front negative singlet, doublet bending sequence and rear-only dual-aspheric final element in the official section.
-3. A compatible source 63.0° full field and retail 63.2° field, with native 23.6 mm F1.22 versus marketed 23 mm f/1.2 retained separately.
+1. Construction: a biconcave front singlet, four cemented doublets and a rear singlet make 10 elements in 6 groups, the published construction. Of the patent's four embodiments it is the only 10/6 one: Embodiment 2 is a 10/7 APS-C design (f = 23.7 mm, F/1.26), and Embodiments 3 and 4 are full-frame designs of about 34 mm (9/7 and 9/6, image height 21.6 mm).
+2. Aspheres: the patent's only asphere is the rear element, aspheric on both faces (¶0020), as in Cosina's single double-sided aspherical element drawn at the rear.
+3. Section: Cosina's construction diagram agrees with Fig. 1 element by element, with the same cemented pairs, the same meniscus and biconcave shapes, the stop between the second and third doublets, and the two anomalous-dispersion elements drawn at the L1 and L2 positions.
+4. Specification: f = 23.6 mm, F/1.22 and a 31.5° half field (63.0° full) on a 14.2 mm image height, for an APS-C sensor (¶0015), against the retail 23 mm, f/1.2 and 63.2°. ¶0014 states the aim of an aperture faster than f/1.4.
+5. Applicant and timing: Cosina filed in December 2021, two months before the announcement.
 
-The other source embodiments are alternatives rather than additional factory matches. Embodiment 2 is another APS-C design with 10/7 construction; the full-frame alternatives are not selected. The publication is not labeled a grant and no legal-status conclusion is drawn.
+The model keeps the patent's 23.6 mm and F/1.22 rather than rescaling to the rounded retail figures. The production lens's radii, glasses and clear apertures are not published, so any differences between Embodiment 1 and the lens as built are unknown.
 
 ## Optical Architecture
 
-The front negative singlet precedes negative-positive and positive-negative doublets. After the central diaphragm, negative-positive and positive-negative doublets lead to a separate positive dual-aspheric rear element. This modified central-stop architecture distributes optical power among cemented interfaces and the rear asphere. Detailed aberration attribution would require a separately controlled sensitivity study; it is not inferred solely from element shape.
+The patent places the design among double-Gauss lenses (¶0002): a positive front group G1 (L1–L5, f = +38.1 mm), the stop, and a positive rear group G2 (L6–L10, f = +40.6 mm). G1 holds the biconcave L1 (f = −18.9 mm), the doublet L2 + L3 (f = +31.6 mm) and the doublet L4 + L5 (f = +28.2 mm). G2 holds the doublet L6 + L7 (f = −72.3 mm), the doublet L8 + L9 (f = +58.5 mm) and the aspheric singlet L10 (f = +48.6 mm).
+
+Counting outward from the stop, the four doublet elements on each side run negative, positive, positive, negative (claim 2): L5, L4, L3, L2 in front and L6, L7, L8, L9 behind, with matching signs of power across the stop (claim 3). The patent says this near-symmetric arrangement gives similar ray paths in the two groups, so that their aberrations cancel, which favors the correction of lateral color and distortion (¶0006, ¶0020). Two elements stand outside the symmetric core: the negative L1 at the front, which claim 3 requires, and the aspheric L10 at the rear, the defining feature of claim 1.
+
+Claim 6 bounds the rear group's power: 0.4 ≤ f/fR ≤ 1.2 (¶0011, ¶0021). Embodiment 1 gives 0.58 (¶0023; 0.582 computed). Below the lower limit, the patent says the front group's diameter grows, enlarging the lens, and coma appears; above the upper limit, coma and axial color degrade resolution.
+
+The lens is 40.88 mm from S1 to S17, the stop lies 19.36 mm behind S1, and the image plane is 55.66 mm behind S1. The Petzval sum is 0.0058 mm⁻¹ (0.137 in units of 1/f).
 
 ## Element-by-Element Analysis
 
+The patent names the cemented lenses by position: its L2f/L2r, L3f/L3r, L4f/L4r and L5f/L5r are L2/L3, L4/L5, L6/L7 and L8/L9 here, and its aspheric L6 is L10. Focal lengths are for each element alone in air.
+
 ### L1 — Biconcave Negative
 
-nd = 1.92286, νd = 20.88. Glass: Unmatched, literal patent d-line pair; supplier unproved. f = -18.879905 mm (isolated thick-element paraxial estimate in air).
+nd = 1.92286, νd = 20.88. Glass: E-FDS1 (HOYA) equivalent — dense flint, anomalous partial dispersion per Cosina. f = −18.88 mm.
 
-Source surfaces 1–2 delimit this element. It is an air-separated singlet. The maker marks the probable corresponding position as anomalous partial dispersion; this is an inferred position association, without a quantitative partial-dispersion or supplier identification. Its signed power and geometry are source-derived; a specific correction role is not presented as a measured causal result.
+The front element and the only air-spaced lens ahead of the stop, with a weaker concave front face (R1 = −37.656 mm) and a stronger concave rear face (R2 = 32.800 mm). A negative element of νd 20.9 at the front of a fast lens is uncommon. Cosina colors this position as anomalous partial dispersion glass, and the matching catalog glass lies about 0.030 above the normal line in θgF. The patent does not discuss the choice.
 
-### L2 — Negative Meniscus
+### L2 + L3 — First Front Doublet (f = +31.6 mm)
 
-nd = 1.76182, νd = 26.58. Glass: Unmatched, literal patent d-line pair; supplier unproved. f = -101.121039 mm (isolated thick-element paraxial estimate in air).
+- **L2 — Negative Meniscus, convex to object.** nd = 1.76182, νd = 26.58. Glass: J-SF14 (HIKARI) equivalent — dense flint, anomalous partial dispersion per Cosina. f = −101.1 mm.
+- **L3 — Biconvex Positive.** nd = 2.00100, νd = 29.13. Glass: TAFD55 (HOYA) equivalent — lanthanum dense flint. f = +24.18 mm.
 
-Source surfaces 3–4 delimit this element. It belongs to cemented assembly D1; the isolated focal estimate does not represent the power of that assembly in situ. The maker marks the probable corresponding position as anomalous partial dispersion; this is an inferred position association, without a quantitative partial-dispersion or supplier identification. Its signed power and geometry are source-derived; a specific correction role is not presented as a measured causal result.
+Both glasses are high-dispersion flints, so the cemented face (R4 = 41.556 mm, an index step of 0.239) adds positive power rather than acting as a crown–flint achromatizing interface. L2 is the second element Cosina marks as anomalous partial dispersion glass; its catalog equivalent lies about 0.014 above the normal line, less than half of L1's departure.
 
-### L3 — Biconvex Positive
+### L4 + L5 — Second Front Doublet (f = +28.2 mm)
 
-nd = 2.00100, νd = 29.13. Glass: Unmatched, literal patent d-line pair; supplier unproved. f = +24.176066 mm (isolated thick-element paraxial estimate in air).
+- **L4 — Biconvex Positive.** nd = 2.00100, νd = 29.13. Glass: TAFD55 (HOYA) equivalent. f = +15.99 mm.
+- **L5 — Biconcave Negative.** nd = 1.55298, νd = 55.07. Glass: J-KZFH4 (HIKARI) equivalent — short flint. f = −32.07 mm.
 
-Source surfaces 4–5 delimit this element. It belongs to cemented assembly D1; the isolated focal estimate does not represent the power of that assembly in situ. Its signed power and geometry are source-derived; a specific correction role is not presented as a measured causal result.
+L4, 6.80 mm thick, is the strongest element ahead of the stop. The pair reverses the usual achromat: the positive element is the high-dispersion glass and the negative one the low-dispersion glass, joined at R7 = −31.566 mm with an index step of 0.448. L5's rear face (R8 = 40.875 mm) is concave toward the stop; claim 1 requires a negative element with its concave face toward the image to close G1.
 
-### L4 — Biconvex Positive
+### L6 + L7 — First Rear Doublet (f = −72.3 mm)
 
-nd = 2.00100, νd = 29.13. Glass: Unmatched, literal patent d-line pair; supplier unproved. f = +15.987403 mm (isolated thick-element paraxial estimate in air).
+- **L6 — Biconcave Negative.** nd = 1.84666, νd = 23.78. Glass: FDS90 (HOYA) equivalent — dense flint. f = −12.75 mm.
+- **L7 — Biconvex Positive.** nd = 1.90043, νd = 37.37. Glass: TAFD37 (HOYA) equivalent — lanthanum dense flint. f = +17.10 mm.
 
-Source surfaces 6–7 delimit this element. It belongs to cemented assembly D2; the isolated focal estimate does not represent the power of that assembly in situ. Its signed power and geometry are source-derived; a specific correction role is not presented as a measured causal result.
+L6 faces L5 across the stop with its concave front face (R10 = −20.084 mm), the counterpart of L5's concave rear face; claim 3 specifies this biconcave-biconvex doublet. The pair is weakly negative overall, and here the positive element has the higher Abbe number, the ordinary achromatic arrangement.
 
-### L5 — Biconcave Negative
+### L8 + L9 — Second Rear Doublet (f = +58.5 mm)
 
-nd = 1.55298, νd = 55.07. Glass: Unmatched, literal patent d-line pair; supplier unproved. f = -32.067598 mm (isolated thick-element paraxial estimate in air).
+- **L8 — Biconvex Positive.** nd = 1.90043, νd = 37.37. Glass: TAFD37 (HOYA) equivalent. f = +13.06 mm.
+- **L9 — Biconcave Negative.** nd = 1.72825, νd = 28.38. Glass: J-SF10 (HIKARI) equivalent — dense flint. f = −14.28 mm.
 
-Source surfaces 7–8 delimit this element. It belongs to cemented assembly D2; the isolated focal estimate does not represent the power of that assembly in situ. Its signed power and geometry are source-derived; a specific correction role is not presented as a measured causal result.
+L8, 6.07 mm thick, is the strongest element in the lens, and L9 cancels most of it, leaving the doublet weakly positive. The pair mirrors L2 + L3 across the stop: positive then negative, where the front pair is negative then positive.
 
-### L6 — Biconcave Negative
+### L10 — Biconvex Positive (2× Asph)
 
-nd = 1.84666, νd = 23.78. Glass: Unmatched, literal patent d-line pair; supplier unproved. f = -12.754135 mm (isolated thick-element paraxial estimate in air).
+nd = 1.80835, νd = 40.55. Glass: L-LAH84 (OHARA) equivalent — lanthanum flint made for precision molding. f = +48.60 mm.
 
-Source surfaces 10–11 delimit this element. It belongs to cemented assembly D3; the isolated focal estimate does not represent the power of that assembly in situ. Its signed power and geometry are source-derived; a specific correction role is not presented as a measured causal result.
+A thin (2.03 mm), weak element 1.66 mm behind L9 and 14.78 mm ahead of the image. It is the only asphere in the lens; the patent credits the single asphere with good correction from few elements (¶0020). Both faces flatten toward the rim (see Aspherical Surfaces). Close to the image, the beams for different field points are well separated, so in the author's reading L10 works mainly on astigmatism, field curvature and distortion rather than on spherical aberration.
 
-### L7 — Biconvex Positive
+## Glass Identification
 
-nd = 1.90043, νd = 37.37. Glass: Unmatched, literal patent d-line pair; supplier unproved. f = +17.104831 mm (isolated thick-element paraxial estimate in air).
+The patent gives d-line nd and νd only (¶0026, 587.56 nm) and no partial dispersions. Each pair below equals a catalog glass at the printed precision, and the model traces each element on that glass's dispersion curve. Several pairs are also listed by other makers (L1 as SCHOTT N-SF66 and OHARA PBH21, L3 and L4 as OHARA S-LAH99, L6 as OHARA S-TIH53), so the supplier of the production glass is not established. ΔPgF is the catalog θgF minus the normal line 0.6438 − 0.001682·νd.
 
-Source surfaces 11–12 delimit this element. It belongs to cemented assembly D3; the isolated focal estimate does not represent the power of that assembly in situ. Its signed power and geometry are source-derived; a specific correction role is not presented as a measured causal result.
+| Element | Patent nd / νd | Catalog equivalent | θgF | ΔPgF | Type |
+|---|---|---|---:|---:|---|
+| L1 | 1.92286 / 20.88 | E-FDS1 (HOYA) | 0.639 | +0.030 | Dense flint; anomalous partial dispersion per Cosina |
+| L2 | 1.76182 / 26.58 | J-SF14 (HIKARI) | 0.613 | +0.014 | Dense flint; anomalous partial dispersion per Cosina |
+| L3, L4 | 2.00100 / 29.13 | TAFD55 (HOYA) | 0.600 | +0.005 | Lanthanum dense flint |
+| L5 | 1.55298 / 55.07 | J-KZFH4 (HIKARI) | 0.545 | −0.007 | Short flint |
+| L6 | 1.84666 / 23.78 | FDS90 (HOYA) | 0.619 | +0.015 | Dense flint |
+| L7, L8 | 1.90043 / 37.37 | TAFD37 (HOYA) | 0.577 | −0.004 | Lanthanum dense flint |
+| L9 | 1.72825 / 28.38 | J-SF10 (HIKARI) | 0.607 | +0.011 | Dense flint |
+| L10 | 1.80835 / 40.55 | L-LAH84 (OHARA) | 0.569 | −0.006 | Lanthanum flint, molding glass |
 
-### L8 — Biconvex Positive
+The palette contains no crown. Eight of the ten elements have nd above 1.75 and five reach 1.90 or more; the lowest-dispersion glass is L5's short flint at νd 55.1. In the author's reading, the high indices let the strong positive elements carry their power with moderate curvatures and keep the Petzval sum low, while color correction comes from the balance of high- and low-dispersion powers on each side of the stop rather than from an ED element.
 
-nd = 1.90043, νd = 37.37. Glass: Unmatched, literal patent d-line pair; supplier unproved. f = +13.063867 mm (isolated thick-element paraxial estimate in air).
-
-Source surfaces 13–14 delimit this element. It belongs to cemented assembly D4; the isolated focal estimate does not represent the power of that assembly in situ. Its signed power and geometry are source-derived; a specific correction role is not presented as a measured causal result.
-
-### L9 — Biconcave Negative
-
-nd = 1.72825, νd = 28.38. Glass: Unmatched, literal patent d-line pair; supplier unproved. f = -14.280950 mm (isolated thick-element paraxial estimate in air).
-
-Source surfaces 14–15 delimit this element. It belongs to cemented assembly D4; the isolated focal estimate does not represent the power of that assembly in situ. Its signed power and geometry are source-derived; a specific correction role is not presented as a measured causal result.
-
-### L10 — Biconvex Positive
-
-nd = 1.80835, νd = 40.55. Glass: Unmatched, literal patent d-line pair; supplier unproved. f = +48.597168 mm (isolated thick-element paraxial estimate in air).
-
-Source surfaces 16A–17A delimit this element. It is an air-separated singlet. Both surfaces are aspherical, with their full literal coefficients retained. Its signed power and geometry are source-derived; a specific correction role is not presented as a measured causal result.
-
-## Glass Identification and Selection
-
-| Element | nd | νd | Status |
-|---|---:|---:|---|
-| L1 | 1.92286 | 20.88 | Unmatched; literal d-line |
-| L2 | 1.76182 | 26.58 | Unmatched; literal d-line |
-| L3 | 2.00100 | 29.13 | Unmatched; literal d-line |
-| L4 | 2.00100 | 29.13 | Unmatched; literal d-line |
-| L5 | 1.55298 | 55.07 | Unmatched; literal d-line |
-| L6 | 1.84666 | 23.78 | Unmatched; literal d-line |
-| L7 | 1.90043 | 37.37 | Unmatched; literal d-line |
-| L8 | 1.90043 | 37.37 | Unmatched; literal d-line |
-| L9 | 1.72825 | 28.38 | Unmatched; literal d-line |
-| L10 | 1.80835 | 40.55 | Unmatched; literal d-line |
-
-The patent explicitly defines d-line indices near 587.56 nm. The native reference calculation uses 587.5618 nm with literal reference indices (`useResolvedReference:false`); this small wavelength convention difference is disclosed rather than treated as measured dispersion. The supplier and full dispersion are unproved. Abbe-only chromatic interpolation is not validated here, and no APO or broadband performance claim follows from these monochromatic checks.
-
-The maker marks probable L1/L2 anomalous-dispersion positions, but no quantitative relative partial dispersion or named commercial glasses are supplied for this embodiment.
+Cosina marks L1 and L2 as anomalous partial dispersion glass. On the catalog equivalents, L1 lies well above the normal line; L2's departure is similar to that of the unmarked dense flints L6 and L9, so the marking may reflect production glasses that differ from these equivalents.
 
 ## Focus Mechanism
 
-The manufacturer describes whole-system extension and a retail 0.18 m nearest distance. No finite-conjugate spacing law is tabulated for this selected embodiment, so neither a retail endpoint nor an interpolation is authored.
+The patent names no focusing group and prints the infinity state only: the object distance in Table 2 is infinite, and Fig. 2 shows the aberrations at infinity. The model is therefore static at infinity. Cosina focuses the production lens by extending the whole optical unit on its helicoid, down to 0.18 m at 1:4.9; that range is not modeled.
 
-The delivered data is static infinity only (`closeFocusM:1e15`). The literal terminal gap 14.78 mm fixes image z = 55.66 mm. The rounded header BF 14.8 mm and total 55.7 mm remain separate from the literal 14.78/55.66 mm surface prescription.
+The final gap is Table 2's 14.78 mm. Table 1 rounds the back focus to 14.8 mm and the length in air to 55.7 mm. The model's image plane is 55.66 mm behind S1, and the paraxial back focus of 14.783 mm lies 0.003 mm beyond it, within the rounding of the table.
 
 ## Aspherical Surfaces
 
-The source uses conventional `1+K` in the conic denominator. Surface 16A has K = −20 and 17A has K = −4; these are authored directly, with no KA or K−1 remapping. The complete polynomial is retained in source millimetres, with no scaling. One prose enumeration omits A6, while the displayed equation and coefficient table explicitly include it; the actual A6 coefficients are retained.
+Both faces of L10, surfaces 16A and 17A, are aspheric. The patent's equation (数1, ¶0029–0030) is Z = C·H² / (1 + √(1 − (1 + K)·C²·H²)) + A4·H⁴ + A6·H⁶ + … + A18·H¹⁸, with C = 1/R. This is the standard form, so K is entered as printed. The paragraph that names the coefficients omits A6, but the equation and Table 3 include it, and the printed A6 values are used.
 
-| Term | Surface 16A | Surface 17A |
+| Term | 16A | 17A |
 |---|---:|---:|
-| K | -2.0000000e+01 | -4.0000000e+00 |
-| A4 | -1.7869000e-05 | +5.1477000e-05 |
-| A6 | +1.0035000e-06 | -3.1256000e-07 |
-| A8 | -3.4415000e-08 | +1.3570000e-08 |
-| A10 | +6.8230000e-10 | -3.5161000e-10 |
-| A12 | -1.1254000e-11 | +5.5559000e-12 |
-| A14 | +1.3261000e-13 | -6.6826000e-14 |
-| A16 | -9.8260000e-16 | +5.1324000e-16 |
-| A18 | +3.3798000e-18 | -1.6849000e-18 |
+| R | 67.568 | −92.583 |
+| K | −20 | −4 |
+| A4 | −1.7869E−05 | 5.1477E−05 |
+| A6 | 1.0035E−06 | −3.1256E−07 |
+| A8 | −3.4415E−08 | 1.3570E−08 |
+| A10 | 6.8230E−10 | −3.5161E−10 |
+| A12 | −1.1254E−11 | 5.5559E−12 |
+| A14 | 1.3261E−13 | −6.6826E−14 |
+| A16 | −9.8260E−16 | 5.1324E−16 |
+| A18 | 3.3798E−18 | −1.6849E−18 |
 
-The different conics and polynomial signs shape the peripheral correction together. No manufacturing process or production surface metrology is inferred from those numbers alone.
+Both faces flatten toward the rim. Relative to its base sphere, 16A departs by −0.041 mm at h = 7 mm and −0.259 mm at h = 9.5 mm, and 17A by +0.113 mm and +0.323 mm. The rear face is almost flat beyond h = 8 mm, where its sag changes by only 0.004 mm out to the rim. L10's positive power therefore falls away toward its edge, which is 1.45 mm thick against 2.03 mm at the center. Its catalog equivalent is a molding glass, consistent with a precision-molded asphere; Cosina does not state the process.
 
-## Aperture and Geometry Assumptions
+## Aperture Stop and Clear Apertures
 
-The source prints the stop station z = 19.36 mm. Its opening and all glass clear semi-diameters are absent. The inferred row SD vector, including null for the ordinary native iris, is `[11.0, 10.2, 12, 12, 12, 12, 12, 12, None, 9.75, 9.75, 9.75, 9.75, 9.75, 9.0, 9.5, 9.5]` mm. Source and maker figures inform the approximate element-envelope ratios, with clear optical caps distinguished from body bevels and flanges. These hypotheses were frozen before the first native construction or trace. No SD was altered after tracing or selected by contrast.
+The stop position is printed: 3.75 mm behind S8 and 3.79 mm ahead of S10, 19.36 mm behind S1. The patent gives no iris diameter, so the engine sizes the stop radius at 9.51 mm, which gives a 9.67 mm paraxial entrance-pupil radius, F/1.22. The f-stop scale runs to f/16 with 12 blades, following Cosina's specification.
 
-The native ordinary-prime rule derives the wide-open iris radius 9.514254283019 mm from F1.22; it was not hand-set to force throughput. All 9 modeled aperture settings passed exact neighboring spherical-cap iris-disk clearance and normal render diagnostics with zero hidden trim. This proves clearance of the modeled open disk, not physical blade or mount fit. The standalone pretrace radial extrema search is a numerical bracket/bisection check, not formal interval certification.
+No clear apertures are printed, so all semi-diameters are estimates in the proportions of Fig. 1 and Cosina's section: 11.0 and 10.2 mm for L1, 12.0 mm for both front doublets, 9.75 mm for the rear doublets (9.0 mm at S15) and 9.5 mm for L10. Fig. 1 is drawn to scale. Read at its axial scale, it gives about 10.2 mm for L1, 11.3 mm for L2–L3, 12.2 mm for L4–L5, 9.8 mm for L6–L7 and 9.5 mm for L8–L10, so the model's L1 and first doublet are up to 0.8 mm larger than drawn.
 
-Two pretrace proposals failed the ordinary cross-gap guard and are retained. The selected front/rear caps passed that analytic geometry gate before any native call. The narrowest analytic cross-gap guard margin is 0.0063288 mm; no later resizing was used to remove clipping.
+At F/1.22 the rims pass 78 % of the beam at 14.3° and 36 % at the 31.5° edge, where relative illumination falls to 0.20, about 2.3 stops. The chief ray at 31.5° lands at 14.20 mm, just beyond the 14.18 mm APS-C corner.
 
-The aperture controls [1.22, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16] are the source maximum plus modeled stop-down settings through f/16. Their presence does not establish an unprinted factory minimum aperture or exact blade geometry.
+## Model Scope and Limitations
 
-## Verification Summary
+| Quantity | Patent | Model |
+|---|---|---|
+| Focal length | 23.6 mm | 23.606 mm |
+| F-number | 1.22 | 1.22 |
+| Back focus | 14.8 mm (Table 1), 14.78 mm (Table 2) | 14.783 mm paraxial; image plane at 14.78 mm |
+| S1 to image | 55.7 mm | 55.66 mm |
+| Front group fF | 38.1 mm | 38.08 mm |
+| Rear group fR | 40.6 mm | 40.56 mm |
+| f/fR | 0.58 | 0.582 |
+| Half field, image height | 31.5°, 14.2 mm | 31.5°, 14.20 mm |
 
-Independent reduced-angle matrices and a separate physical-slope recursion agree with native EFL 23.605515639186 mm. This differs from the printed 23.6 mm by +0.02337135%. The source image plane minus the paraxial infinity plane is -0.002711041905 mm. The source plane remains fixed; no EFL normalization or best-focus displacement is applied.
+- The prescription is the patent's Embodiment 1, not a confirmed factory one.
+- The iris radius and all semi-diameters are inferred.
+- The model is static at infinity and says nothing about performance at 0.18 m.
+- The patent gives d-line indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents.
 
-Exact source-angle pupil evidence uses 208 native stop-grid samples per field at wide open. Full launches, aim states, traced hits and classifications are retained for independent recount. Raw failures and aim-certified blocked witnesses overlap the final partition; they are not added as extra losses.
+## Sources
 
-| Incident angle | Valid | Blocked | Unaimed | Unresolved | Raw failure witnesses |
-|---|---:|---:|---:|---:|---:|
-| 0° | 208 | 0 | 0 | 0 | 0 |
-| 15.75° | 154 | 54 | 0 | 0 | 0 |
-| 31.5° | 68 | 140 | 0 | 0 | 24 |
-
-The normal native scalar diffraction estimator uses reference spectrum, 587.5618 nm, design focus and zero applied shift. Curves are conditional on the transmitted modeled pupil; zero unresolved flux does not mean loss-free transmission. All saved prior grids and final arrays are retained. These checks establish the native estimator’s sampled grid convergence, not an independent physical-OPL, continuum, factory or full-spectrum validation. No withdrawn one-dimensional OPL reference is used.
-
-| F-number | Requested source angle | Actual angle | Grid | Successive-grid max Δ through 50 lp/mm | Unknown flux |
-|---|---:|---:|---:|---:|---:|
-| 1.22 | 0° | 0.000000000° | 32 | 0.008253261972 | 0 |
-| 1.22 | 15.75° | 15.749998072° | 64 | 0.006460219228 | 0 |
-| 1.22 | 31.5° | 31.499987539° | 256 | 0.003787483646 | 0 |
-| 8 | 0° | 0.000000000° | 32 | 0.006932392173 | 0 |
-| 8 | 15.75° | 15.749998072° | 32 | 0.007325644025 | 0 |
-| 8 | 31.5° | 31.499987539° | 32 | 0.006616080976 | 0 |
-
-The source incident angles are mapped from actual chief-ray heights. They are separate from the compiled viewer’s eleven native image-height fractions and generic format corner. The exact 31.5° source edge reaches 14.204742056 mm, beyond the native APS-C 14.175 mm reference. Only a private analysis copy adds a 28.412 mm image-circle coordinate window; all other object fields and optical invariants are verified identical. That metadata is not shipped and does not assert factory coverage.
-
-Native best-axial diagnostics remain unapplied: F1.22: +0.022321101449 mm, F8: +0.010490266697 mm. The authored plane and the design-focus validation remain unchanged.
-
-## Sources and Reproducibility
-
-- [JP2023090337A.pdf](https://patentimages.storage.googleapis.com/0d/e7/7e/f781e224100669/JP2023090337A.pdf), acquired original SHA256 `3322cf1a23fe74f9a9cad2ab2adf7c3b31e7a38d111e48a43876586e889f439f`; 4143987 bytes.
-- [official_product.html](https://www.cosina.co.jp/voigtlander/x-mount/nokton-23mm-f1-2-aspherical/), acquired original SHA256 `b4ff3b9ea2478a88f8c1cdba28b87aefd570c1dcb808c1dfe8e6334cf1d05cd2`; 70665 bytes.
-- [official_section.svg](https://www.cosina.co.jp/wp/wp-content/uploads/2022/03/23_12_X_LD.svg), acquired original SHA256 `ab05f290d3cd081d6f1fa941dd79a1e9708d535c76be1a8e96a30604106f5d6f`; 15355 bytes.
-
-The local source packet retains the selected primary numerical/equation/figure rasters and official section, plus the exact literal jobcard. Full original PDF custody is linked by the acquired source index; this package does not claim to contain or freshly inspect every full-PDF page. Selected pages were visually checked against the literal jobcards.
-
-The acquired index is private Drive `1ciHCmHYrESvTiv5jTsfaUErfvEgtgCC_`, 72,246 bytes, SHA256 `614740109349ffba95666caae642d93c261f1b62f3d9bae06b05e8629593f3ef`. Seven readable transport parts and all eighteen embedded member hashes were verified; the jobcard bytes match their original hashes. Current-main repository-only dedup evidence, frozen inputs, independent first-order/sag scripts, all native call counters, pupil arrays, diffraction prior grids and final arrays are included in the private evidence archive. No new patent discovery query, production code change, commit or deployment was performed.
+- [JP 2023-090337 A](https://patents.google.com/patent/JP2023090337A/en): claims, ¶0002–0032, Tables 1–3 and Figs. 1–2; Embodiments 2–4 from ¶0033 and Figs. 3–8.
+- [Cosina, NOKTON 23mm F1.2 Aspherical (X-mount)](https://www.cosina.co.jp/voigtlander/x-mount/nokton-23mm-f1-2-aspherical/): specifications, focusing method and [lens construction diagram](https://www.cosina.co.jp/wp/wp-content/uploads/2022/03/23_12_X_LD.svg).
+- [Lenstip, Voigtländer Nokton 23 mm f/1.2 specifications](https://www.lenstip.com/1923-Voigtlander_Nokton_23_mm_f_1.2-lens_specifications.html): construction and announcement date.
