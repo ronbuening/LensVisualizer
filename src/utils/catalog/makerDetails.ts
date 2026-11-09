@@ -46,6 +46,23 @@ export interface MakerDetails {
 }
 
 export const MAKER_DETAILS: Record<string, MakerDetails> = {
+  // https://www.om-digitalsolutions.com/en/company/profile/index.html
+  // https://www.olympus-global.com/news/2021/contents/nr02010/nr02010_00000.pdf
+  "om-system": {
+    headquarters: "Hachioji, Tokyo, Japan (OM Digital Solutions)",
+    summary:
+      "Camera and interchangeable-lens brand of OM Digital Solutions, the company that took over Olympus's imaging business.",
+    history:
+      "OM Digital Solutions was established in October 2020 and took over Olympus's imaging business in January 2021. Its business includes digital cameras and interchangeable lenses, continuing the OM and Zuiko imaging heritage. The patent-to-product association of the 20mm f/1.4 reconstruction in this catalog remains inferred, as documented in its lens analysis.",
+  },
+  // Company history: https://www.hkyongnuo.com/gsjj
+  // Shenzhen assignee: https://patents.google.com/patent/CN110146970B/en
+  yongnuo: {
+    headquarters: "Shenzhen, China",
+    summary: "Chinese photographic-equipment manufacturer producing autofocus lenses and flash equipment.",
+    history:
+      "Yongnuo's company history records its first flash in 2009 and its first autofocus lens in 2014. Its lens patents include CN110146970B and CN220171327U, used for the qualified 85mm and 56mm reconstructions in this catalog. The individual lens analyses distinguish source prescriptions from inferred production associations and optical assumptions.",
+  },
   // Corporate and camera history: company announcements, archived specifications and museum records.
   // https://www.apple.com/sg/newsroom/2026/03/apple-to-celebrate-50-years-of-thinking-different/
   // https://computerhistory.org/apple-timeline/
