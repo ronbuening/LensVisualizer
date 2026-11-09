@@ -1,136 +1,132 @@
 ## Patent Reference and Design Identification
 
-**Patent:** CN 106249387 B
+**Patent:** [CN 106249387 B](https://patents.google.com/patent/CN106249387B/en)
+**Application Number:** 201610900968.9
 **Filed:** 2016-10-17
+**Published:** 2016-12-21 (CN 106249387 A)
 **Granted:** 2019-01-29
 **Inventor:** Yuanhua Ye
 **Assignee:** Shenzhen Yongnuo Photographic Equipment Co., Ltd. (深圳市永诺摄影器材股份有限公司)
-**Title:** An imaging lens and imaging apparatus
-**Example details:** Example 2; Tables 3–4, Figure 3 and Figure 4A.
+**Title:** An imaging lens and imaging device (一种成像镜头和成像设备)
+**Example details:** 实施例2; prescription Table 3 on PDF p. 10, focus Table 4 on p. 11, conditional values Table 10 on p. 14; optical section Fig. 3 and infinity aberrations Fig. 4A on p. 17.
 
-This model transcribes the second numerical example at its native millimetre scale. Its association with the Yongnuo YN 50mm f/1.4 is supported by the maker, nine elements in seven groups, aperture, section topology and independent secondary catalog identification. It is not factory confirmation.
+The patent describes a fast standard lens with a positive first group, a negative second group, the stop and a positive third group, and requires −8.0 < F12/F ≤ −2.0 for the combined focal length F12 of the first two groups (claim 1). It sets the design against the symmetric double-Gauss, whose large Petzval sum and short back focus suit single-lens reflex cameras poorly (¶0003). Four numerical examples share the nine-element layout: Examples 1 and 2 at f = 51.50 mm, Example 3 at 41.2 mm with aspherical surfaces, and Example 4 at 66.95 mm. The data file transcribes Example 2 at its printed scale; the engine EFL is 51.485 mm. Fig. 4A prints Fno 1.4 and a 23.5° half-field.
 
-The printed design focal length is 51.50 mm; literal rounded radii and indices yield 51.484841993 mm. Neither is rescaled to the retail 50 mm name. The source aperture is f/1.4 and the full field is 47°. The product's approximately 46° field and retail 0.45 m close focus are association limitations, not permission to alter the prescription.
+The production lens is the Yongnuo YN50mm F1.4 for Canon EF, announced in May 2018 ([LensTip](https://www.lenstip.com/1259-Yongnuo_YN_50_mm_f_1.4-lens_specifications.html)), with a Nikon F version, the YN50mm F1.4N E. Yongnuo lists 9 elements in 7 groups, f/1.4–f/22, seven blades, 0.45 m minimum focus, 0.15× maximum magnification, a 46° diagonal angle of view and a 58 mm filter. The Canon version has a digital stepping motor (Φ81 × 93 mm, 572 g), the Nikon version a DC motor (Φ81 × 92 mm, 577 g). Retail descriptions mention four ultra-high-refractive-index elements. The lens replaced an earlier Yongnuo 50mm f/1.4 that copied Canon's EF 50mm f/1.4 ([PetaPixel](https://petapixel.com/2018/05/31/yongnuo-unveils-50mm-f-1-4-ii-lens-replacing-its-canon-clone)).
+
+The match between the patent and the YN50mm F1.4 is probable; the choice of Example 2 within it is less certain:
+
+1. **Applicant and timing.** The applicant is Yongnuo; the application was filed in October 2016, 19 months before the lens was announced.
+2. **Construction.** Nine all-spherical elements in seven groups, with two cemented pairs behind the stop, as in Yongnuo's 9/7 count.
+3. **Aperture and field.** F1.4 and a 47° printed field, against Yongnuo's f/1.4 and 46°.
+4. **Close focus.** The closest printed state is β = 0.15, Yongnuo's 0.15× maximum magnification. Its object-to-image distance is 470.4 mm (350.08 mm object distance plus the 120.35 mm track), against the marketed 0.45 m.
+5. **High-index glass.** Four elements have nd ≥ 1.88 (L1, L4, L5, L9), matching the four ultra-high-index elements of the retail descriptions.
+
+Example 1 of the same patent fits the marketed specifications equally well. It is also 51.50 mm, F1.4 and nine elements in seven groups with two cemented pairs behind the stop, reaches β = 0.15 at its closest state, and also has four elements of nd ≥ 1.88. It differs in shape (a biconvex front element and a 12.5 mm meniscus ahead of the stop) and in length (127.2 mm from the first vertex to the image, against 112.8 mm). No Yongnuo section drawing was found to separate the two. Example 2 is used because a secondary catalogue, the Photons to Photos Optical Bench, attributes it to this lens. Yongnuo publishes no prescription, and the data file is not a factory prescription.
 
 ## Optical Architecture
 
-Nine spherical glass elements in seven air-separated groups form the optical assembly. The first four elements lie ahead of the stop; five lie behind it, including two cemented pairs. The stop is the plane at printed surface 9. The camera-side plate remains separately modeled and does not count among the nine lens elements.
+The patent divides the lens into a positive first group GR1 (L11, L12), a negative second group GR2 (L21, L22), the stop, and a positive third group GR3 of two cemented pairs (L31/L32, L33/L34) and a single positive lens L35 (¶0138–¶0139). The data file numbers the elements L1–L9 in sequence; each heading below gives the patent's label. Nine elements in seven air-spaced groups match Yongnuo's 9/7 count.
 
-The last image row repeats an earlier printed surface number. It is an image-plane label defect, not a second refracting surface or permission to overwrite glass surface 12. No numerical aspheric terms are published for Example 2, so no aspheres are introduced despite the generic equation elsewhere in the patent.
+The design is a double-Gauss derivative with a weakly negative front. GR1 and GR2 together have F12 = −260 mm (F12/F = −5.05; Table 10 prints −5.0), and the two cemented pairs together are weakly positive (FB = +118.5 mm, FB/F = 2.30; printed 2.3), leaving L35 to carry much of the rear power. The negative front lengthens the back focus relative to a symmetric double-Gauss: the last lens surface is 35.52 mm from the cover glass (Bf/F = 0.69 in Table 10) and 37.84 mm from the image in air-equivalent terms, room enough for an SLR mirror. The track from the first vertex to the image is 112.8 mm at infinity (2.19 × f). The 23.5° chief ray lands at 21.63 mm, the full-frame corner, consistent with the roughly −3.3 % distortion plotted in Fig. 4A.
+
+All surfaces are spherical; the patent's asphere equation (¶0121) is used only in Example 3. The 2 mm cover glass printed as surfaces 18–19 (nd 1.5168, νd 64.2) is kept as a traced rear plate with its printed 1 mm air gap to the image; it is not counted as a lens element. Table 3's last row, the image plane, is misnumbered "12".
 
 ## Element-by-Element Analysis
 
-### L1 — Positive Meniscus
+Focal lengths below are for each element alone in air. All nine elements move together for focusing.
 
-nd = 1.883, νd = 40.81. Glass: unidentified, patent coordinates retained. Isolated-in-air focal length ≈ +155.81 mm.
+### L1 (patent L11): Positive meniscus, concave to the object
 
-This air-separated element moves with the complete optical assembly during focusing. Its center thickness, surface curvatures and material values are fixed.
+nd = 1.883, νd = 40.81. Glass: TAFD30 (HOYA catalog equivalent). f = +155.8 mm.
 
-### L2 — Positive Meniscus
+A 10 mm thick meniscus with both centres of curvature on the object side (R −152.17 / −74.48 mm). Claim 1 allows the first positive lens of GR1 to be concave or convex in front but requires a convex rear; Example 2 is the one the text describes with a concave face toward the object (¶0139). It is the largest element in front of the stop.
 
-nd = 1.804, νd = 46.59. Glass: unidentified, patent coordinates retained. Isolated-in-air focal length ≈ +101.69 mm.
+### L2 (patent L12): Positive meniscus, convex to the object
 
-This air-separated element moves with the complete optical assembly during focusing. Its center thickness, surface curvatures and material values are fixed.
+nd = 1.804, νd = 46.59. Glass: S-LAH65V (OHARA catalog equivalent). f = +101.7 mm.
 
-### L3 — Biconcave Negative
+The stronger of the two GR1 positives (R 42.51 / 85.58 mm). Conditions (2) and (3) fix its relation to L1: R1b/R2a = −1.75 and the shape factor (R2a + R2b)/(R2a − R2b) = −2.97, printed as −1.8 and −3.0 in Table 10.
 
-nd = 1.6889, νd = 31.18. Glass: unidentified, patent coordinates retained. Isolated-in-air focal length ≈ -31.38 mm.
+### L3 (patent L21): Biconcave negative
 
-This air-separated element moves with the complete optical assembly during focusing. Its center thickness, surface curvatures and material values are fixed.
+nd = 1.6889, νd = 31.18. Glass: E-FD8 (HOYA catalog equivalent). f = −31.4 mm.
 
-### L4 — Biconvex Positive
+The only negative element ahead of the stop and the main power of GR2 (R −62.28 / 33.66 mm). Conditions (4), 1.64 ≤ nd ≤ 1.82, and (5), 28 ≤ νd ≤ 42, govern this glass; Table 10 gives nd 1.68893 and νd 31.18 for Example 2. Its deep rear face nearly meets L4 at the rim across a 3.9 mm air gap (see Semi-Diameters and Model Limits).
 
-nd = 1.9004, νd = 37.37. Glass: unidentified, patent coordinates retained. Isolated-in-air focal length ≈ +122.33 mm.
+### L4 (patent L22): Biconvex positive
 
-This air-separated element moves with the complete optical assembly during focusing. Its center thickness, surface curvatures and material values are fixed.
+nd = 1.9004, νd = 37.37. Glass: TAFD37 (HOYA catalog equivalent). f = +122.3 mm.
 
-### L5 — Biconvex Positive
+A nearly flat, high-index positive lens (R 171.98 / −304.23 mm) 2.5 mm ahead of the stop, the positive member of GR2 (claims 4–5).
 
-nd = 2.001, νd = 29.13. Glass: unidentified, patent coordinates retained. Isolated-in-air focal length ≈ +26.66 mm.
+### L5 / L6 (patent L31 / L32): Cemented doublet
 
-This glass is part of a cemented pair behind the stop. Its shared interface and material values remain literal; the isolated-in-air focal length is not its embedded group power.
+L5, biconvex positive: nd = 2.001, νd = 29.13. Glass: TAFD55 (HOYA catalog equivalent). f = +26.7 mm.
 
-### L6 — Biconcave Negative
+L6, biconcave negative: nd = 1.62, νd = 36.3. Glass: E-F2 (HOYA catalog equivalent). f = −26.9 mm.
 
-nd = 1.62, νd = 36.3. Glass: unidentified, patent coordinates retained. Isolated-in-air focal length ≈ -26.92 mm.
+The first pair behind the stop, 9.8 mm after it. L5 is the highest-index glass in the lens and 10 mm thick. The pair is weakly positive as a whole (f = +277.7 mm) but has strong internal curvatures; L6's rear face (R 32.56 mm) is the deep concave surface facing the second pair across a 1.7 mm air gap. It is not an achromat in the usual sense: the positive L5 is the more dispersive glass (νd 29.13 against 36.3).
 
-This glass is part of a cemented pair behind the stop. Its shared interface and material values remain literal; the isolated-in-air focal length is not its embedded group power.
+### L7 / L8 (patent L33 / L34): Cemented doublet
 
-### L7 — Biconvex Positive
+L7, biconvex positive: nd = 1.7292, νd = 54.67. Glass: TAC8 (HOYA catalog equivalent). f = +25.6 mm.
 
-nd = 1.7292, νd = 54.67. Glass: unidentified, patent coordinates retained. Isolated-in-air focal length ≈ +25.56 mm.
+L8, biconcave negative: nd = 1.7552, νd = 27.55. Glass: E-FD4 (HOYA catalog equivalent). f = −24.0 mm.
 
-This glass is part of a cemented pair behind the stop. Its shared interface and material values remain literal; the isolated-in-air focal length is not its embedded group power.
+L7 is an equi-convex 12.2 mm lanthanum crown (R ±34.49 mm), the lowest-dispersion glass in the lens; L8 is a dense flint. With an Abbe-number difference of 27.1 this is the achromatizing pair of the rear group, weakly positive as a whole (f = +213.7 mm). Claim 6 specifies the two cemented pairs, and condition (6) bounds their combined focal length (FB/F = 2.30).
 
-### L8 — Biconcave Negative
+### L9 (patent L35): Biconvex positive
 
-nd = 1.7552, νd = 27.55. Glass: unidentified, patent coordinates retained. Isolated-in-air focal length ≈ -23.95 mm.
+nd = 1.883, νd = 40.81. Glass: TAFD30 (HOYA catalog equivalent). f = +48.3 mm.
 
-This glass is part of a cemented pair behind the stop. Its shared interface and material values remain literal; the isolated-in-air focal length is not its embedded group power.
-
-### L9 — Biconvex Positive
-
-nd = 1.883, νd = 40.81. Glass: unidentified, patent coordinates retained. Isolated-in-air focal length ≈ +48.28 mm.
-
-This air-separated element moves with the complete optical assembly during focusing. Its center thickness, surface curvatures and material values are fixed.
-
-Element numbering here is sequential L1–L9; Figure 3 uses group-local labels L11/L12, L21/L22 and L31–L35. Detailed aberration roles are not uniquely established by these isolated first-order powers.
+The last lens (R 72.15 / −101.48 mm), in the same glass as L1 and the only uncemented element of GR3. Its rear face is 35.52 mm from the cover glass at infinity.
 
 ## Glass Identification and Selection
 
-All nine printed nd/νd pairs are preserved. No manufacturer trade name, production melt, coating or anomalous dispersion is claimed. Native MTF evidence uses the reference d-line at 587.5618 nm. It does not certify broadband, production or measured optical performance.
+The patent prints nd and νd only. Each label is a catalog row whose nd and νd equal the printed pair (within 0.0001 and 0.15); the production supplier is not known.
+
+| Glass (catalog equivalent) | nd | νd | Elements | Role |
+|---|---:|---:|---|---|
+| TAFD30 (HOYA) | 1.883 | 40.81 | L1, L9 | High-index positive lenses |
+| S-LAH65V (OHARA) | 1.804 | 46.59 | L2 | Lanthanum positive meniscus |
+| E-FD8 (HOYA) | 1.6889 | 31.18 | L3 | Dense flint, GR2 negative (conditions 4–5) |
+| TAFD37 (HOYA) | 1.9004 | 37.37 | L4 | High-index positive before the stop |
+| TAFD55 (HOYA) | 2.001 | 29.13 | L5 | Index-2.0 positive behind the stop |
+| E-F2 (HOYA) | 1.62 | 36.3 | L6 | Flint negative of the first pair |
+| TAC8 (HOYA) | 1.7292 | 54.67 | L7 | Lanthanum crown of the achromatizing pair |
+| E-FD4 (HOYA) | 1.7552 | 27.55 | L8 | Dense flint of the achromatizing pair |
+
+The palette is high-index rather than low-dispersion: four positive elements are at nd ≥ 1.88, the lowest-dispersion glass is L7 at νd 54.67, and no element is an ED-class glass. Yongnuo claims no ED element.
 
 ## Focus Mechanism
 
-The inter-lens gaps are fixed. Unit focusing changes the separation between the final lens surface and the fixed camera-side plate/image assembly. Coordinates below use the first lens vertex as zero; the image coordinate therefore increases as the lens extends relative to the camera.
+Unit focus. Table 4 changes only D(1), the air gap from the last lens surface to the cover glass, so the whole lens moves toward the object while the cover glass and image plane stay fixed; the printed focal length is 51.50 mm at all three states. Yongnuo drives the Canon version with a digital stepping motor and the Nikon version with a DC motor.
 
-| Source position | Object to first surface (mm) | Last-lens-to-plate gap (mm) | Image coordinate (mm) |
+| Printed state | Object to first surface (mm) | D(1) (mm) | First vertex to image (mm) |
 |---|---:|---:|---:|
-| Infinity | Infinity | 35.5194 | 112.8194 |
-| X20 | 1036.73 | 38.0062 | 115.3062 |
-| MOD | 350.08 | 43.0547 | 120.3547 |
+| Infinity (β = 0) | ∞ | 35.5194 | 112.8194 |
+| x20 (β = 0.05) | 1036.73 | 38.0062 | 115.3062 |
+| MOD (β = 0.15) | 350.08 | 43.0547 | 120.3547 |
 
-The extension to MOD is 7.5353 mm. The source-derived object-to-image MOD is 470.4347 mm, kept distinct from the retail 450 mm specification. The initial draft incorrectly used the retail distance as the modeled datum; that informational field was corrected without changing any physical gap or published conjugate. Intermediate slider positions interpolate the printed extension states.
+The extension to the closest state is 7.535 mm. That state is 470.4 mm from object to image, against Yongnuo's 0.45 m minimum focus; the data file keeps the printed state and shows the 0.45 m as the marketed figure. At the printed object distances the model's magnification is 0.0499 and 0.1502. At the printed spacings the paraxial focus falls 0.020 mm ahead of the printed image plane at infinity and 0.072 and 0.211 mm behind it at the two close states; the printed plane is kept. Intermediate positions interpolate D(1) linearly.
 
-The rear plate has thickness 2 mm, nd = 1.5168 and νd = 64.2. Its image-side air gap remains the printed 1 mm. The plate is traced explicitly rather than folded into an air-equivalent last gap.
+## Semi-Diameters and Model Limits
 
-## Inferred Rims and Necessary Per-Model Gap Allowance
+The patent prints no semi-diameters and no stop size. The stop radius, 17.54 mm, is derived from f/1.4 (entrance-pupil radius 18.39 mm), and at infinity the f/1.4 beam is limited by the stop, not by a lens rim. The other rims are estimates guided by Fig. 3, which is drawn to scale: its sixteen surface vertices fall within about 0.2 mm of the tabulated spacings. Each element keeps one height on both faces. The rims are modelling estimates, not factory dimensions, and they set the modelled vignetting.
 
-Surface semi-diameters and physical iris radius are not tabulated. The inferred rims use the inspected Figure 3 contours and source-aperture tracing. They are not factory clear-aperture measurements. Their effect on modeled clipping and vignetting remains an uncertainty.
+The tight spot is the 3.9 mm air gap between L3 and L4. L3's rear face (R 33.66 mm) curves toward L4's nearly flat front (R 171.98 mm), so the gap narrows toward the rim: at the 16.97 mm radius the f/1.4 axial beam needs, about 0.15 mm of air remains. Fig. 3 draws both elements with square-cut edges and shows no taper. The data file therefore keeps square rims and lets that gap close to 96.2 % of its axial width (`checks.gapSagFrac` 0.962; the repo default is 90 %). A tapered L3 rim would have needed about 93.1 %.
 
-The original geometry-valid draft at the default 90% gap-sag allowance clipped the f/1.4 beam to approximately f/1.624469. Native aperture diagnostics identify required inferred clear radii at surfaces 5–8 and 13–14. No smaller rim that clips that beam can represent the printed source aperture.
+Fig. 3 draws some elements at other heights than the file: L1 at about 19.7 mm (file 21 mm), L2 at about 19 mm (17.86 mm), L7 / L8 at about 18.7 mm (17.22 mm) and L9 at about 16.5 mm (14.72 mm). L9's rim is limited by the 1.5 mm air gap behind L8, whose concave rear face (R 39.22 mm) closes toward L9's front; Fig. 3 appears to end that face in a flat step, which the file does not model. The smaller rear rims increase corner vignetting relative to the drawing.
 
-For the critical surface 6–7 gap, the printed radii are 33.66 and 171.98 mm and the gap is 3.900 mm. Even a tapered-face numerical counterfactual requires about 93.11945% gap-sag allowance. Thus a non-override solution cannot clear the source beam without changing printed optics or pupil rules.
-
-A 300 dpi inspection of Figure 3 shows near-horizontal cut contours on the two relevant elements (Figure labels L21 and L22). In the preserved detail crop, the L21 upper edge lies at rows 123–127 across columns 290, 320 and 380; its lower edge stays at rows 572–576. A leader contaminates column 350 and is not treated as an optical edge. There is no positive evidence for the taper needed by the smaller counterfactual. Equal-height face rims are therefore retained, with the documented source-diagram uncertainty.
-
-| Shape and allowance | Native geometry result |
-|---|---|
-| Tapered counterfactual, 90% | Fails surface 6–7 gap |
-| Tapered counterfactual, 93.2% | Passes, but not selected without source taper support |
-| Source-supported equal-height rims, 90% | Fails surface 6–7 gap |
-| Source-supported equal-height rims, 93.2% | Fails surface 6–7 gap |
-| Source-supported equal-height rims, 95% | Fails surface 6–7 gap |
-| Source-supported equal-height rims, 96.2% | Passes |
-
-The selected per-model allowance is 96.2%, rounding the necessary 96.19396% fraction upward. The 16.97 mm common radial band retains about 0.1484 mm physical axial clearance. It is below the authorized 97% ceiling. No global validator, test threshold, radius, gap, glass value, source pupil or source image plane was altered. Earlier failure evidence and per-stage results remain in the reproducibility archive.
-
-## Native Optical Results and Limits
-
-The derived physical stop radius is 17.537611760 mm and the entrance-pupil radius is 18.387443569 mm. Infinity aperture tracing is iris-limited and agrees with f/1.4. All three published positions pass native geometry and have zero hidden render trim.
-
-Infinity diffraction MTF converges at center, half and 95% modeled field at f/1.4 and f/4, reference wavelength, over 0–40 lp/mm with maximum grid 128. The source image plane is used without best-focus substitution.
-
-Geometric MTF with maximum grid 64 retains numerical limits: at f/1.4, center and 95% field are unconverged at infinity and X20, while half field converges. At MOD all three wide-open geometric fields are unconverged. At f/4, all tested geometric fields converge at every published position. Finite-focus diffraction MTF is not tested.
-
-Independent first-order propagation through the literal rear plate places the paraxial image plane −0.019985 mm, +0.071764 mm and +0.210551 mm from the source image plane at infinity, X20 and MOD respectively. Positive means farther behind the source plane. These offsets are disclosed, not removed. They can materially affect modeled contrast, particularly at MOD.
-
-Convergence does not establish source or factory accuracy. These results omit production tolerances, coating behavior, polarization, sensor processing and unsupported spectral material information. Whole-tree integration/build checks are reported separately from native optical evidence.
+The paraxial offsets from the printed image plane (see Focus Mechanism) are kept rather than refocused, so the modelled contrast at the close states includes up to 0.21 mm of defocus. The model omits production tolerances and coatings.
 
 ## Sources
 
-- [CN106249387B primary patent](https://patents.google.com/patent/CN106249387B/en), Example 2, Tables 3–4 and Figures 3–4.
-- [Primary patent PDF](https://patentimages.storage.googleapis.com/58/3c/ef/dc7d65cbfecf6d/CN106249387B.pdf).
-- [Yongnuo YN50mm F1.4 product page](https://th.hkyongnuo.com/products/yn50mm-f14), association and retail specifications.
-- [Yongnuo Nikon product page](https://th.hkyongnuo.com/products/yn50mm-f14n-e), related retail variant; motor descriptions are not inferred as an optical identity.
-- [Photons to Photos Optical Bench hub](https://photonstophotos.net/GeneralTopics/Lenses/OpticalBench/OpticalBenchHub.htm), secondary patent-product association only.
+- [CN 106249387 B](https://patents.google.com/patent/CN106249387B/en), Example 2: Tables 3–4, Table 10, Figs. 3 and 4A.
+- [Patent PDF](https://patentimages.storage.googleapis.com/58/3c/ef/dc7d65cbfecf6d/CN106249387B.pdf).
+- [Yongnuo YN50mm F1.4 product page](https://th.hkyongnuo.com/products/yn50mm-f14) (Canon EF): construction, aperture range, blades, minimum focus, magnification, motor.
+- [Yongnuo YN50mm F1.4N E product page](https://th.hkyongnuo.com/products/yn50mm-f14n-e) (Nikon F): the same optical specifications with a DC motor.
+- [LensTip specifications](https://www.lenstip.com/1259-Yongnuo_YN_50_mm_f_1.4-lens_specifications.html): May 2018 announcement.
+- [PetaPixel, 31 May 2018](https://petapixel.com/2018/05/31/yongnuo-unveils-50mm-f-1-4-ii-lens-replacing-its-canon-clone): the lens replacing Yongnuo's earlier Canon-derived 50mm f/1.4.
+- [Photons to Photos Optical Bench](https://photonstophotos.net/GeneralTopics/Lenses/OpticalBench/OpticalBenchHub.htm): secondary attribution of Example 2 to the lens.
