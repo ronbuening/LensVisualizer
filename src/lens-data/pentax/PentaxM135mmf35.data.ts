@@ -19,7 +19,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * draws at one height. Fig. 3 draws the square-cut rear pair at about 10.9 mm, but S8 and S9 of this prescription meet
  * at 10.02 mm, so L4 and L5 stop at 9.9 mm, where their air space is 0.08 mm at the rim; checks.gapSagFrac 0.98 admits
  * that pair. Every rim passes the f/3.5 axial beam and the chief ray to the 21.6 mm corner.
- * Glass: four of the five n/ν pairs equal OHARA catalog rows at the printed precision, so the table is read as d-line.
+ * Glass: every n/ν pair equals a catalog row at the printed precision, so the table is read as d-line.
  * L3 (1.51821 / 65.0) is OHARA BSL22 (1.518206 / 65.04), a discontinued borosilicate crown.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies. The
  * 1.5 m minimum focus is Pentax's retail figure and is not modeled.
@@ -125,7 +125,7 @@ const LENS_DATA = {
       "nd": 1.64,
       "vd": 60.2,
       "focalLengthMm": -46.78065367072402,
-      "glass": "S-BSM81 (OHARA catalog equivalent; production supplier unspecified)",
+      "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Rear negative meniscus, concave to the object; the telephoto negative, with an index above 1.62 to hold up the Petzval sum."
     }
   ],

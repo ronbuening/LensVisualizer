@@ -102,3 +102,63 @@ L3 (1.51821 / 65.0) is labelled OHARA BSL22 (1.518206 / 65.04), a discontinued b
 catalog from the local OHARA 2026-07-01 AGF file; it equals the printed pair (Δνd 0.04), where the catalog's previous
 nearest row, HOYA PC2, was 0.16 off in νd. All five elements now trace on catalog dispersion curves. A corpus-wide
 resolution dump before and after the catalog addition showed no other element changing its resolved glass.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the model outline with Fig. 3 of `patents/US4134645.pdf` (PDF p. 3, 300 ppi raster), and the Example 2 table and
+claim 2 (PDF pp. 6–7). The live page could not be re-shot: the worktree dev server on port 5193 was not running during the
+review, so the comparison rests on an overlay of the model on the figure at matched scale. Fresh measurements: the axis
+runs from y 1448.5 px at x 750 to y 1426.5 at x 1670 (1.37°); vertex crossings S1 926.5, S2 979, S3 1005, S4/S5 1022, S6
+1086, S7 1415.5, S8 1440, S9 1477.5, S10 1489 px, so S1 to S10 gives 13.80 px per patent unit (front group alone 13.27,
+rear pair 13.84). Outer-ink rims at that scale: L1 210–212 px (20.6–20.7 mm), L2 about 207.5 (20.3), L3 about 208
+(20.3), L4 and L5 about 111 (10.8–10.9), both rear elements square-cut at one height. The tip sag of S1 drawn on the
+figure fits a perpendicular scale of about 14.2 px per unit, inside the spread of the axial spans, so the figure is
+treated as isotropic. Every SD-pass reading reproduces within 2 %; no rim changed.
+
+| Surfaces | Kind | Baseline (mm) | Final (mm) | Fig. 3 (mm) | Light cost (points) | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| S1, S2 (L1) | cut | 21.6 | 20.6 | 20.65 | 0.0 | keep: slight |
+| S3, S4 (L2) | cut | 21.6 | 20.3 | 20.31 | 0.0 | keep: slight |
+| S5, S6 (L3) | cut | 21.33 | 20.3 | 20.32 | 0.0 | keep: slight |
+| S7–S10 (L4, L5) | raise | 9.45 | 9.9 | 10.85 | gains up to 5.0 | keep: figure height, held below contact |
+
+The worst loss in the lands-and-cuts run against the baseline rims, with leave-one-out restores, is 0.0 points at every
+field; restoring any element wins back 0.0 points. The lens has no lands. Wide-open transmission is 100 / 100 / 100 /
+96.1 / 89.2 / 81.1 / 71.9 % at 0 to 9.0° in 1.5° steps, against 100 / 100 / 98.0 / 91.3 / 84.2 / 76.2 / 67.4 % on the
+baseline rims. With the printed R8 = 47.51 and R9 = −15.46 (×1.35), S8 and S9 meet at 10.02 mm, and the surface
+audit refuses the rear pair at 9.9 mm with `checks.gapSagFrac` 0.97 or the default 0.9 (combined sag 3.27 mm against
+3.248 or 3.013 mm allowed of the 3.348 mm gap), so 0.98 stands and the SD-pass refusal was quoted correctly. The figure
+draws S9 with roughly twice the printed radius, which is why it can show both the taller rear pair and an open rim gap.
+
+Checks after the review: surface audit OK; aperture audit within 3 % of f/3.5 with no rim limit; image circle not
+undersized; field coverage 100 % (9.0° reaches 21.60 mm, corner clear). Engine half-field 9.0° and f/3.5 against 9.0°
+and f/3.5 on the baseline rims; traced field limit 14.0° against 13.4°.
+
+Labels and movement. L1 to L5 are the patent's own designations from the claims; each `type` agrees with the signs of R
+(L1 +47.40 / +417.0, L2 −176.7 / +163.1, L3 +28.28 / +66.84, L4 +36.09 / +64.14, L5 −20.87 / −70.47), every element
+has a focal length (L5 −46.78 mm by the thick-lens formula), and the roles agree with cols. 2–3. The patent names no
+groups; "Front" (S1–S6) and "Rear" (S7–S10) leave the modeled stop between them. No cemented pair, asphere or
+special-glass tag, and the patent designates none. The patent prints the infinity state only and names no focusing
+group, so no gap varies and the focus description says so; there is no movement to check.
+
+Colour against the chromatic panel of Fig. 4 (d and g, F = 100, read from the panel's own axis line at 94.5 px per
+0.2): the d-line spherical aberration agrees within 0.01 at every zone (model −0.082 / −0.120 / −0.126 / −0.089 at
+pupil 1 / 0.85 / 0.7 / 0.5, figure about −0.08 / −0.13 / −0.13 / −0.09). The model's paraxial g focus lies +0.146
+behind the d focus against about +0.156 on the plot, and the zonal g values run 0.004 to 0.010 low; at full aperture
+the plot's g and d curves join near −0.08, where the model's g reads −0.105. S-TIH23 on L2 would bring paraxial g to
++0.154, but its νd of 26.29 does not round to the printed 26.2, so PBH23 stays. Glass labels all resolve; S-BSM81 on
+L5 (νd 60.08) is the one label that does not reproduce the printed 60.2, which HOYA LACL60 matches exactly. The
+assignee spelling equals the catalog's canonical "Asahi Kogaku Kogyo Co., Ltd." (front page: Asahi Kogaku Kogyo
+Kabushiki Kaisha).
+
+The analysis still said, in the glass section and the limitations list, that L3 traced on dispersion derived from its
+printed pair; since the BSL22 label it traces on the catalog curve, and both sentences were corrected.
+
+Open: the live page was not re-shot in this review (dev server down); the rims are unchanged from the SD pass, whose
+page check stands.
+
+Open: Fig. 3 draws S9 much flatter than the printed R9, so the rear pair cannot match the drawing in height and rim
+gap at once (carried from the SD pass).
+
+Coordinator follow-up, same day: L5 (1.64000 / 60.2) moves from OHARA S-BSM81 (νd 60.08, which does not round to the
+printed 60.2) to HOYA LACL60 (1.64000 / 60.20), the exact row; the g-line change is negligible.

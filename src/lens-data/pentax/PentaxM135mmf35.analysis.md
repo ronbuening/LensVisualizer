@@ -70,7 +70,7 @@ Convex to the object, 31.64 mm behind L3. Because the front group over-corrects 
 
 ### L5 — Negative Meniscus
 
-nd = 1.64000, νd = 60.2. Glass: S-BSM81 (OHARA) equivalent, a dense barium crown. f = −46.8 mm.
+nd = 1.64000, νd = 60.2. Glass: LACL60 (HOYA) equivalent, a lanthanum crown. f = −46.8 mm.
 
 The telephoto negative element, concave to the object (R9 = −20.87 mm, R10 = −70.47 mm), 3.35 mm behind L4. The patent notes that a high Abbe number here helps prevent a decrease in the Petzval sum once condition (3) is used and achromatism is established, and that an index above 1.62, condition (6), is preferable for the same purpose: it prevents a decrease in the Petzval sum (col. 3). Condition (7) keeps d8 between 0.015F and 0.065F; a smaller d8 makes color correction and assembly difficult, a larger one lowers the Petzval sum.
 
@@ -84,9 +84,9 @@ The patent gives indices and Abbe numbers without naming a spectral line; Fig. 4
 | L2 | 1.78470 / 26.2 | PBH23 (OHARA) | 1.78470 / 26.22 | Dense flint |
 | L3 | 1.51821 / 65.0 | BSL22 (OHARA) | 1.51821 / 65.04 | Borosilicate crown |
 | L4 | 1.72825 / 28.5 | S-TIH10 (OHARA) | 1.72825 / 28.46 | Dense flint |
-| L5 | 1.64000 / 60.2 | S-BSM81 (OHARA) | 1.64000 / 60.08 | Dense barium crown |
+| L5 | 1.64000 / 60.2 | LACL60 (HOYA) | 1.64000 / 60.20 | Lanthanum crown |
 
-For L2, S-TIH23 (OHARA, νd 26.29) and SF56A (SCHOTT, 26.08) match equally; PBH23, the lead-containing flint of the period, is the closest. For L5, LACL60 (HOYA) and J-LAK01 (Hikari) print exactly 1.64000 / 60.2; OHARA was kept for consistency with the rest of the lens. L3's catalog νd lies 0.16 from the printed 65.0, outside the printed precision, so L3 traces on dispersion derived from its printed pair. The patent prints no partial dispersions. The palette is conventional for its time, with one notable choice: the rear pair reverses the usual order, putting the flint in the positive L4 and a crown in the negative L5.
+For L2, S-TIH23 (OHARA, νd 26.29) and SF56A (SCHOTT, 26.08) match equally; PBH23, the lead-containing flint of the period, is the closest. For L5, LACL60 (HOYA) and J-LAK01 (Hikari) print exactly 1.64000 / 60.2; OHARA was kept for consistency with the rest of the lens. L3's BSL22, a discontinued OHARA borosilicate crown, matches the printed 1.51821 / 65.0 to the printed digits, so all five elements trace on catalog dispersion curves. The patent prints no partial dispersions. The palette is conventional for its time, with one notable choice: the rear pair reverses the usual order, putting the flint in the positive L4 and a crown in the negative L5.
 
 ## Focus Mechanism and Image Plane
 
@@ -123,7 +123,7 @@ Fig. 3 is a schematic: its curves are drawn flatter than the printed radii. The 
 - The image plane is the printed back focus.
 - The model is static at infinity and says nothing about performance at 1.5 m.
 - The patent prints a Petzval sum of 0.018 at F = 100; the usual surface sum gives 0.0125. The patent does not state its convention, and every other printed value agrees with the model.
-- The patent gives indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents, and for L3 on its printed pair.
+- The patent gives indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents.
 
 ## Sources
 
