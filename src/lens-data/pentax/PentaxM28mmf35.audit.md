@@ -83,3 +83,40 @@ follows L4. The lens is static at infinity, so that is the only printed state. N
 
 Open: L3 stays about 0.8 mm (13 %) taller than Fig. 3 draws it, and is now taller than L6 (7.3 against 7.16 mm)
 where the figure draws it slightly shorter; neighbouring step order (L2 > L3 > L4 < L5 < L6) matches the figure.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the local page and a model overlay with `patents/US3955883.pdf` sheet 2 (PDF page 3), Fig. 3, at the native 72 ppi.
+Scale re-derived: vertices at x 520 (S1), 772 (S4), 1140 (S5), 1481 (S6), 1608 (S8), 1642 (S9) and 1764 (S12) give
+29.52 px/mm over S1–S12 and 29.6 px/mm over S1–S4 and over L3 alone (L3 is drawn about 9 px forward, L4 thicker than
+printed); L4's drawn rim sags (26 and 13 px) put the vertical scale at 29.9 px/mm. Rims read at line centres from the
+local axis (y 1032 + 0.004 per px), top and bottom: S1 16.9; S2 at the chamfer 15.8 / 15.2; S3 13.8; S4 9.4 / 9.6; L3
+6.3 (6.31 top, 6.3–6.4 bottom); L4 5.6; L5 5.9–6.0; S11 6.4 (top, chamfered) to 6.85 (bottom); S12 6.9–7.0.
+
+No rim changed. Every semi-diameter-pass value is within the reading error or held by light. Land and cut verdicts
+re-measured: unchanged. The worst loss against the baseline rims is 2.91 points, at 26.0°, 28.9° and 37.6°.
+Restoring single elements wins back S2 2.4, L3 1.4, L4 0.5 and L5 1.1 points, so every cut is a slight loss and none
+is refused by the validator. L3 cannot follow the figure: at 7.1 mm it alone costs 4.0 points at 34.7° with every
+other rim at baseline. 7.2 / 5.8 / 6.3 also meets the budget, but it puts L4 and L5 further above the figure.
+
+Added group brackets FRONT (−) over S1–S4 and REAR (+) over S5–S12, after the patent's front diverging component
+L1–L2 (F1,2) and the converging system behind L2. They render under the element numbers without collision. Element
+names L1–L6 are the patent's. Types agree with the signs of R, focal lengths match thick-lens values (L1 +130.6),
+and the roles are true. There are no aspheres, no cemented surfaces and no `apd` tags. The inspector for L3 and L4
+shows the expected type, glass and focal length. The lens is static: the focus slider reads "Not modeled" and the
+movement overlay reports no group motion. Assignee: the front page prints "Asahi Kogaku Kogyo Kabushiki Kaisha",
+and the file uses the catalog's single spelling, "Asahi Kogaku Kogyo Co., Ltd." (34 files).
+
+Colour and field against Figs. 4a–4d, in F = 100 units. On-axis d-line LSA is −0.08 / −0.31 / −0.33 / −0.23 at
+pupil 1 / 0.85 / 0.7 / 0.5; the plot reads −0.07 / −0.30 / −0.35 / −0.29. The g line is +0.50 at full aperture
+(plot +0.48) and lies about 0.07 long at the paraxial and middle zones. No equal catalog row (E-FD13, N-SK10, BACD16,
+N-SK16) moves it by more than 0.01. Distortion is −1.25 / −1.68 / −1.09 % at 23.2° / 32.8° / 37.6° (plot −1.16 /
+−1.64 / −1.18 %).
+
+Open: Fig. 4d's meridional curve is not reproduced with the stop at L3's rear vertex. The model's parabasal ΔM is
+−0.37 / −0.94 / −2.39 at 23.2° / 32.8° / 37.6° against the plot's 0 / +0.08 / −0.69, and ΔS is −0.86 / −1.03 /
+−0.29 against −0.77 / −0.83 / about 0. With the stop at L4's front vertex the model gives ΔS −0.90 / −0.88 / +0.23
+and ΔM −0.44 / −0.28 / −0.56, close to the printed shape. That plane lies inside L4's concave front sag at the f/3.5
+stop radius, so it is not a physical iris position. The stop placement stays as transcribed.
+Open: L3 stays about 1.0 mm above Fig. 3 by this reading (7.3 against 6.3) and taller than L6, held there by corner
+light.

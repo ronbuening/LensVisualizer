@@ -230,5 +230,17 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.4,
   },
+  groups: [
+    {
+      text: "Front (−)",
+      fromSurface: "1",
+      toSurface: "4",
+    },
+    {
+      text: "Rear (+)",
+      fromSurface: "5",
+      toSurface: "12",
+    },
+  ],
 } satisfies LensDataV2Input;
 export default LENS_DATA;
