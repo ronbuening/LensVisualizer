@@ -81,3 +81,41 @@ element 10. It is schematic in proportion: it draws L2–L3 as tall as L4–L5 a
 steps 10.1, 11.3 and 12.2 mm; its rear group at about 0.8 of the front matches Fig. 1.
 
 Open: L4–L5 (12.0 against 12.2 drawn) and L6–L7 (9.75 against 9.85) sit inside measurement noise and were left.
+(Carried into the second review below under the patent's names L3 and L4.)
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared the live page (infinity, the element inspector for elements 1, 2 and 10, the focus-movement overlay and
+`focus=1`) with Fig. 1 on page 18 of JP 2023-090337 A at 600 dpi. The scale was re-proved: the 16 vertex rows on the
+axis and the 16 arcs 197 px off the axis are where the semi-diameter pass found them (28.95 px/mm, within 2 px).
+
+Rims: no change. Every reading repeats the semi-diameter pass within 0.05 mm, the drawn step order (L1 < L2 < L3,
+then L4 > L5 ≥ L6) holds on the page, and L1 and L5 render square as drawn. The lands and cuts were re-measured
+against the base1115sd rims: the L1, L2 and L5 cuts cost 1.9, 0.0 and 1.4 points when restored one at a time, and the
+S8 and S10 cuts and the S15 land cost nothing. Every verdict stands; worst loss 2.3 points at 25.7°. Fig. 1's stop
+strokes begin 8.46 mm from the axis (inner ends 490 px apart) against the engine's 9.51 mm iris for F/1.22; the drawn
+opening is schematic, and the STO radius was not touched. The stop sits 3.73 mm behind S8 in the drawing (printed 3.75).
+
+Labels (changed): the patent designates its elements L1, L2f/L2r, L3f/L3r, L4f/L4r, L5f/L5r and L6 (¶0016, ¶0018,
+Fig. 1). Element `name` and new `diagramLabel` now use those designations (ids 1–10 were L1–L10); the cemented
+brackets and `cemented` tags D1–D4 became the patent's cemented-lens names L2–L5, which also keeps them apart from the
+table's D(i) spacings; `groups` G1 (S1–S8) and G2 (S10–S17A) were added, as drawn. Roles that cited other elements
+were remapped, and L1's "only air-spaced lens" became "only singlet". The analysis and header comment use the new names.
+
+Checked and found correct: every `type` against the signs of R; aspheric labels 16A and 17A only, as printed; the stop
+between S8 and S10; `apd: "inferred"` on L1 and L2f, the two elements Cosina colors as anomalous partial dispersion.
+Movement: the model is static, as the patent prints the infinity state only; keyframe 0 is infinity, the slider's far
+end reads "Not modeled", and the movement overlay reports no group movement.
+
+Colour against Fig. 2 (on-axis focus relative to the image plane, at pupil 0 / 0.25 / 0.5 / 0.75 / 1.0, mm): d model
++0.003 / +0.028 / +0.042 / +0.016 / −0.020, plot 0.00 / +0.03 / +0.04 / +0.02 / −0.01; C model +0.035 / +0.061 /
++0.074 / +0.046 / +0.005, plot +0.03 / +0.06 / +0.08 / +0.05 / about +0.04; g model +0.053 / +0.083 / +0.107 / +0.096
+/ +0.081, plot +0.05 / +0.08 / +0.11 / +0.10 / +0.10. Each line agrees within 0.01 mm inside 0.75 of the pupil and
+within 0.035 mm at the rim, where the plotted curves end. Astigmatism at 14.2 mm: T −0.075, S −0.017 (plot −0.07,
+−0.01); the tangential peak of +0.12 near 4 mm matches. Distortion at 14.2 mm: −1.80 % (plot −1.76 %). All ten glass
+labels resolve to exact catalog rows; no medium is constant-index; the patent prints no partial dispersions.
+
+Assignee "Cosina Co., Ltd." matches the front page (株式会社コシナ) and every Cosina entry in the catalog (29 files,
+this one included); no variant.
+
+Open: L3 (12.0 against 12.2 drawn) and L4 (9.75 against 9.85) remain inside measurement noise.
