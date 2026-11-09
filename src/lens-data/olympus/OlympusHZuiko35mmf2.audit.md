@@ -114,3 +114,39 @@ front menisci, the middle group with one cemented pair, then three rear elements
 to check rim proportions beyond L1 being about twice the middle group, which the model also has.
 
 Open: none for rims.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared: the local page with Fig. 1 (page 2, native 72 ppi 1-bit scan, deskewed by 0.75° on a least-squares axis fit),
+and the model's d/g spherical aberration, field curves and distortion with Figs. 2–4. Scale: S1–S15 span 767.5 px for
+47.667 mm (16.1 px/mm along the axis); heights on the cemented pair's 163.5 px for 10.01 mm (16.33 px/mm). Arc fits to
+S1, S4 and S10 imply 17.2–18 px/mm if the drawing were isotropic, so heights could read 4–5 % lower; no verdict
+changes on either scale. Readings at the pair scale: L1 20.0 (19.94), L2 front 16.2 (16.19), S4 arc end 10.65 (10.0),
+L3 9.9 (9.46/9.06), L5–L7 flat tops and L7 tips 11.68 (11.0/10.97), S10 arc end 10.7 (10.77).
+
+Rims: no change. Every rim is within 7 % of the figure. L5 and L6 cannot rise past 11.07 mm, where S11 and S12 touch:
+11.05 is refused by the 0.99 gap-intrusion limit. L7 stays level with them, as drawn. S4 is refused above 10.07 mm
+(rim slope 64.5° at 10.1). The L2 bevel (figure: a 2.5 mm flat top, then a chamfer to the S4 arc) and the small 45°
+chamfer at L5's front corner are drawn by the renderer's straight rim joins. A vertical land on S4 or S10 would not
+match either chamfer better: on L2 it cuts the mismatched area only from 4.7 to 4.5 mm². No lands or cuts; against
+the baseline rims the worst loss is 0.0 points, with up to 1.7 points gained at 8.7°.
+
+Labels: Fig. 1 labels the seven components L1–L7, and the file's sequential L1–L8 clashed from L5 on. Element names
+and new `diagramLabel`s now follow the figure: ids 4 and 5 are L4a and L4b (the cemented L4), and ids 6–8 are L5–L7;
+ids 4–8 were named L4–L8. Roles, header note and analysis are renamed to match. The D1 bracket spans S7–S9, the
+stop sits in d9 between L4b and L5, and types agree with the R signs and the patent's lens descriptions. Inspector FLs
+are present, there are no aspheres and no `apd` tags, and the patent names no special glass. The focus slider reads
+"Not modeled" (static lens, infinity only).
+
+Stop: neither the text (only "when the stop is almost fully opened", col. 2) nor Fig. 1 locates it. The plots support
+d9. With the stop 1.6745 mm into d9 the model gives, at 32°, distortion −2.07 %, meridional −0.0207f and sagittal
+−0.0002f, against about −2.2 to −2.3 %, −0.023f and 0 in Figs. 3–4. At 16° the distortion is −0.73 % (patent −0.76 %).
+Across d9 the 32° distortion runs −2.16 to −1.85 % and the meridional focus −0.016 to −0.022f; distortion favours the
+front of d9 and the meridional curve 2.5–3.5 mm in, so the 1.6745 mm position is consistent and is kept. A stop in d4
+puts the 32° meridional focus beyond −0.12f. The 0.55 mm space d6 is the patent's "layer-like" gap (condition vi).
+
+Colour (Fig. 2, d and g): model d LSA +0.0015f at the f/2 margin and −0.0039f at 0.7 (patent +0.0019f, −0.0046f).
+g minus d is +0.0019f at 0.5, +0.0029f at 0.7 and +0.0048f at the margin (patent +0.0018f, +0.0029f, about +0.005 to
++0.007f). All eight glasses resolve to OHARA Sellmeier rows; no line is off beyond the reading error.
+
+Open: none.

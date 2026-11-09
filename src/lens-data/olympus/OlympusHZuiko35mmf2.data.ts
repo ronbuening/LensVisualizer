@@ -17,10 +17,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters are inferred, none is printed. They start from the PhotonsToPhotos clear diameters and are checked
  * against Fig. 1, scaled by the axial vertex span and by the cemented pair's height (L1, L2, L3 and the pair agree
  * with the figure to within about 5 %). S4 stays at 10.0 mm (figure about 10.5 mm, PhotonsToPhotos 10.235 mm): its
- * deep concave face reaches the validator's rim-slope limit there. Fig. 1 draws L6 and L7 square-cut and touching at
- * the rim, at about the height of L8 (about 11.5 mm); their facing surfaces S11 and S12 meet at 11.07 mm, so S11–S13
+ * deep concave face reaches the validator's rim-slope limit there. Fig. 1 draws L5 and L6 square-cut and touching at
+ * the rim, at about the height of L7 (about 11.5 mm); their facing surfaces S11 and S12 meet at 11.07 mm, so S11–S13
  * are 11.0 mm, 0.02 mm short of contact, and `checks.gapSagFrac` is 0.99 to admit the S11/S12 pair. S10 (10.77 mm) matches the
- * end of L6's front curve before the small chamfer the figure draws.
+ * end of L5's front curve before the small chamfer the figure draws.
+ * Element names follow Fig. 1, which labels the seven components L1–L7; the cemented fourth component is L4a + L4b.
  * Focus: the patent prints the infinity state only and names no focusing motion, so no gap varies. The production
  * lens focuses as a unit on a straight helicoid to 0.3 m; that movement is not modeled.
  */
@@ -75,6 +76,7 @@ const LENS_DATA = {
       glass: "S-BAH28 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 58.75746376009973,
       role: "Positive front meniscus, convex to the object; the patent sets its power for distortion and lateral color correction.",
+      diagramLabel: "L1",
     },
     {
       id: 2,
@@ -86,6 +88,7 @@ const LENS_DATA = {
       glass: "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -32.91825065018318,
       role: "Strong negative meniscus with a deep rear face; gives the long back focus and keeps the Petzval sum small.",
+      diagramLabel: "L2",
     },
     {
       id: 3,
@@ -96,11 +99,12 @@ const LENS_DATA = {
       vd: 25.4,
       glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -31.524341519145427,
-      role: "Nearly plano-concave dense-flint negative; its rear face nearly matches L4's front across a thin air space for edge coma.",
+      role: "Nearly plano-concave dense-flint negative; its rear face nearly matches L4a's front across a thin air space for edge coma.",
+      diagramLabel: "L3",
     },
     {
       id: 4,
-      name: "L4",
+      name: "L4a",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.8061,
@@ -109,10 +113,11 @@ const LENS_DATA = {
       focalLengthMm: 20.8629063870343,
       cemented: "D1",
       role: "High-index biconvex front member of the cemented pair ahead of the stop; the strongest positive element.",
+      diagramLabel: "L4a",
     },
     {
       id: 5,
-      name: "L5",
+      name: "L4b",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.699,
@@ -120,11 +125,12 @@ const LENS_DATA = {
       glass: "S-TIM35 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -223.0025182224957,
       cemented: "D1",
-      role: "Weak flint negative meniscus cemented behind L4; the patent uses the cemented pair for chromatic correction.",
+      role: "Weak flint negative meniscus cemented behind L4a; the patent uses the cemented pair for chromatic correction.",
+      diagramLabel: "L4b",
     },
     {
       id: 6,
-      name: "L6",
+      name: "L5",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.7174,
@@ -132,28 +138,31 @@ const LENS_DATA = {
       glass: "S-TIH1 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -32.89242292571106,
       role: "Thick biconcave flint negative behind the stop; the only negative element of the rear group.",
+      diagramLabel: "L5",
     },
     {
       id: 7,
-      name: "L7",
+      name: "L6",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.7292,
       vd: 54.6,
       glass: "S-LAL18 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 37.59930840993501,
-      role: "Positive meniscus, convex to the image, close behind L6; the patent ties that short air space to coma and distortion.",
+      role: "Positive meniscus, convex to the image, close behind L5; the patent ties that short air space to coma and distortion.",
+      diagramLabel: "L6",
     },
     {
       id: 8,
-      name: "L8",
+      name: "L7",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.6968,
       vd: 55.6,
       glass: "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 50.446655427022904,
-      role: "Rear biconvex positive element; shares the final convergence to the image with L7.",
+      role: "Rear biconvex positive element; shares the final convergence to the image with L6.",
+      diagramLabel: "L7",
     },
   ],
   surfaces: [

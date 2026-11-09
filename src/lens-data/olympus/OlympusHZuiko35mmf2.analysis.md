@@ -26,11 +26,11 @@ The drawing is too small (112 × 130 px) to confirm individual surface curvature
 
 ## Optical Architecture
 
-Eight spherical elements in seven groups form a retrofocus lens. L1 (positive meniscus), L2 (negative meniscus) and L3 (nearly plano-concave negative) make a negative front section with a composite focal length of −25.2 mm. It is followed by the cemented positive pair L4–L5, the stop, and a rear group of L6 (biconcave negative), L7 (positive meniscus, convex to the image) and L8 (biconvex). By element the power sequence is P-N-N-(P-N), stop, N-P-P. There are no aspheric surfaces and no cover plates.
+Eight spherical elements in seven groups form a retrofocus lens. L1 (positive meniscus), L2 (negative meniscus) and L3 (nearly plano-concave negative) make a negative front section with a composite focal length of −25.2 mm. It is followed by the cemented positive pair L4a–L4b, the stop, and a rear group of L5 (biconcave negative), L6 (positive meniscus, convex to the image) and L7 (biconvex). By element the power sequence is P-N-N-(P-N), stop, N-P-P. There are no aspheric surfaces and no cover plates.
 
-The patent counts components, not elements: its L1–L3 are L1–L3 here, its cemented fourth lens is L4–L5, and its fifth to seventh lenses are L6–L8.
+The element names follow Fig. 1, which labels the patent's seven components L1–L7. The fourth component is the cemented pair, so its two elements are L4a and L4b here.
 
-The rear group (L6–L8) has a focal length of 39.2 mm, and everything ahead of the stop a weak +199 mm. The negative front pushes the back focus to 39.68 mm, 1.13 times the focal length. The lens is 47.67 mm from S1 to S15, and the image plane lies 87.35 mm behind S1.
+The rear group (L5–L7) has a focal length of 39.2 mm, and everything ahead of the stop a weak +199 mm. The negative front pushes the back focus to 39.68 mm, 1.13 times the focal length. The lens is 47.67 mm from S1 to S15, and the image plane lies 87.35 mm behind S1.
 
 The patent sets the layout with seven conditions, all met by the example (values at f = 1):
 
@@ -66,32 +66,32 @@ The main diverging element of the front section. Its deep rear face (r4 = 11.19 
 
 nd = 1.8052, νd = 25.4. Glass: S-TIH6 (OHARA) equivalent, an SF6-type dense flint. f = −31.52 mm.
 
-Its front face is almost flat (r5 = 2845.9 mm) and its concave rear face (r6 = 25.15 mm) faces L4's convex front (r7 = 24.69 mm) across a 0.55 mm air space. The patent requires the two radii to lie between 0.5f and f and to be nearly equal, which corrects coma at the edge of the field. With the cemented pair it forms the f3,4 power of condition (v), +72.1 mm here.
+Its front face is almost flat (r5 = 2845.9 mm) and its concave rear face (r6 = 25.15 mm) faces L4a's convex front (r7 = 24.69 mm) across a 0.55 mm air space. The patent requires the two radii to lie between 0.5f and f and to be nearly equal, which corrects coma at the edge of the field. With the cemented pair it forms the f3,4 power of condition (v), +72.1 mm here.
 
-### L4 and L5 — Cemented pair ahead of the stop
+### L4a and L4b — Cemented pair ahead of the stop
 
-- **L4, Biconvex Positive.** nd = 1.8061, νd = 40.8. Glass: S-LAH53 (OHARA) equivalent, a high-index lanthanum flint. f = +20.86 mm.
-- **L5, Negative Meniscus, concave to the object.** nd = 1.6990, νd = 30.1. Glass: S-TIM35 (OHARA) equivalent, a dense flint. f = −223.0 mm.
+- **L4a, Biconvex Positive.** nd = 1.8061, νd = 40.8. Glass: S-LAH53 (OHARA) equivalent, a high-index lanthanum flint. f = +20.86 mm.
+- **L4b, Negative Meniscus, concave to the object.** nd = 1.6990, νd = 30.1. Glass: S-TIM35 (OHARA) equivalent, a dense flint. f = −223.0 mm.
 
-The pair has a combined focal length of +22.95 mm and is the strongest positive group in the lens; L4 alone carries most of that power. The patent cements the fourth component for chromatic correction. The index step across the junction is small (1.806 to 1.699) and the dispersion step moderate (νd 40.8 to 30.1). Condition (iv) bounds the summed thickness of L3, L4 and L5 at 0.256f, between the astigmatism limit and the length limit.
+The pair has a combined focal length of +22.95 mm and is the strongest positive group in the lens; L4a alone carries most of that power. The patent cements the fourth component for chromatic correction. The index step across the junction is small (1.806 to 1.699) and the dispersion step moderate (νd 40.8 to 30.1). Condition (iv) bounds the summed thickness of L3, L4a and L4b at 0.256f, between the astigmatism limit and the length limit.
 
-### L6 — Biconcave Negative
+### L5 — Biconcave Negative
 
 nd = 1.7174, νd = 29.5. Glass: S-TIH1 (OHARA) equivalent, an SF1-type dense flint. f = −32.89 mm.
 
 The patent's fifth lens, a thick (4.36 mm) negative element behind the stop with a strongly concave front (r10 = −28.01 mm) and a nearly flat rear. It is the only negative element of the rear group and the flint partner of the two lanthanum crowns behind it.
 
-### L7 — Positive Meniscus, convex to the image
+### L6 — Positive Meniscus, convex to the image
 
 nd = 1.7292, νd = 54.6. Glass: S-LAL18 (OHARA) equivalent, a lanthanum crown. f = +37.60 mm.
 
-It sits 1.4 mm behind L6. The patent's condition (vii) keeps this air space below 0.1f and says that a longer one would increase the oblique-ray errors and the barrel distortion. In Fig. 1, L6 and L7 meet at their rims.
+It sits 1.4 mm behind L5. The patent's condition (vii) keeps this air space below 0.1f and says that a longer one would increase the oblique-ray errors and the barrel distortion. In Fig. 1, L5 and L6 meet at their rims.
 
-### L8 — Biconvex Positive
+### L7 — Biconvex Positive
 
 nd = 1.6968, νd = 55.6. Glass: S-LAL14 (OHARA) equivalent, a lanthanum crown. f = +50.45 mm.
 
-The last element, 0.10 mm behind L7. With L7 it brings the beam to focus 39.68 mm behind the rear vertex.
+The last element, 0.10 mm behind L6. With L6 it brings the beam to focus 39.68 mm behind the rear vertex.
 
 ## Glass Identification
 
@@ -102,11 +102,11 @@ The patent gives d-line indices and Abbe numbers only. Each pair matches one OHA
 | L1 | 1.7234 / 37.9 | S-BAH28 (OHARA) | 1.72342 / 37.96 | Barium dense flint |
 | L2 | 1.5163 / 64.0 | S-BSL7 (OHARA) | 1.51633 / 64.14 | Borosilicate crown |
 | L3 | 1.8052 / 25.4 | S-TIH6 (OHARA) | 1.80518 / 25.43 | Dense flint |
-| L4 | 1.8061 / 40.8 | S-LAH53 (OHARA) | 1.80610 / 40.93 | Lanthanum flint |
-| L5 | 1.6990 / 30.1 | S-TIM35 (OHARA) | 1.69895 / 30.13 | Dense flint |
-| L6 | 1.7174 / 29.5 | S-TIH1 (OHARA) | 1.71736 / 29.52 | Dense flint |
-| L7 | 1.7292 / 54.6 | S-LAL18 (OHARA) | 1.72916 / 54.68 | Lanthanum crown |
-| L8 | 1.6968 / 55.6 | S-LAL14 (OHARA) | 1.69680 / 55.53 | Lanthanum crown |
+| L4a | 1.8061 / 40.8 | S-LAH53 (OHARA) | 1.80610 / 40.93 | Lanthanum flint |
+| L4b | 1.6990 / 30.1 | S-TIM35 (OHARA) | 1.69895 / 30.13 | Dense flint |
+| L5 | 1.7174 / 29.5 | S-TIH1 (OHARA) | 1.71736 / 29.52 | Dense flint |
+| L6 | 1.7292 / 54.6 | S-LAL18 (OHARA) | 1.72916 / 54.68 | Lanthanum crown |
+| L7 | 1.6968 / 55.6 | S-LAL14 (OHARA) | 1.69680 / 55.53 | Lanthanum crown |
 
 The palette is conventional for its date. Ahead of the stop, high-index flints carry the positive power and a crown carries the main negative power. Behind it, a dense-flint negative is paired with two lanthanum crowns. None of the eight pairs points to an anomalous-dispersion glass, and the patent prints no partial dispersions.
 
@@ -118,14 +118,14 @@ The final gap of 39.683 mm is the printed back focus (1.1338 at f = 1). The comp
 
 ## Aperture Stop and Clear Apertures
 
-The patent neither prints nor draws a stop. The model places it in the 4.71 mm air space d9 between the cemented pair and L6, 1.67 mm behind S9, as in the PhotonsToPhotos layout. The space ahead of the rear group is the usual place for the iris in this layout, but the position is a modeling choice. At f/2 the entrance pupil radius is 8.75 mm and the stop radius 8.78 mm.
+The patent neither prints nor draws a stop. The model places it in the 4.71 mm air space d9 between the cemented pair and L5, 1.67 mm behind S9, as in the PhotonsToPhotos layout. The patent's field plots support that air space. With the stop there, the model's 32° distortion is −2.07 % and its meridional and sagittal foci lie −0.021f and 0.000f from the paraxial plane, against about −2.2 %, −0.023f and 0 in Figs. 3 and 4. A stop in the 11.6 mm space d4 would put the 32° meridional focus more than 0.1f away, and the 0.55 mm space d6 between the nearly matched r6 and r7 leaves no room for an iris. The plots cannot fix the stop within d9: across it, the 32° distortion changes by only 0.3 percentage points and the meridional focus by 0.007f, so the exact position is a modeling choice. At f/2 the entrance pupil radius is 8.75 mm and the stop radius 8.78 mm.
 
-All semi-diameters are inferred. They start from the PhotonsToPhotos clear diameters and follow the proportions of Fig. 1. L1, L2, L3, the cemented pair and L8 agree with the figure to within about 5 %. Two rims are set by the geometry:
+All semi-diameters are inferred. They start from the PhotonsToPhotos clear diameters and follow the proportions of Fig. 1. L1, L2, L3, the cemented pair and L7 agree with the figure to within about 5 %. Two rims are set by the geometry:
 
-- S4, the deep concave face of L2, is 10.0 mm. That is the largest the rim-slope limit allows, against 10.24 mm in PhotonsToPhotos and about 10.5 mm in the figure.
-- Fig. 1 draws L6 and L7 square-cut, touching at the rim and level with L8, about 15 % taller than the cemented pair. Their facing surfaces S11 and S12 meet at 11.07 mm, so S11–S13 are 11.0 mm, 0.02 mm short of contact. S10 is 10.77 mm, where L6's front curve ends at the small chamfer the figure draws.
+- S4, the deep concave face of L2, is 10.0 mm, just under the 10.07 mm the rim-slope limit allows, against 10.24 mm in PhotonsToPhotos and about 10.5 mm in the figure.
+- Fig. 1 draws L5 and L6 square-cut, touching at the rim and level with L7, about 15 % taller than the cemented pair. Their facing surfaces S11 and S12 meet at 11.07 mm, so S11–S13 are 11.0 mm, 0.02 mm short of contact. S10 is 10.77 mm, where L5's front curve ends at the small chamfer the figure draws.
 
-With these rims the whole f/2 beam passes on axis, 77 % of it reaches the image at 20.4° and 24 % at the patent's 32° edge. L8's rim does most of the cutting at the edge. These are model results that depend on the inferred rims.
+With these rims the whole f/2 beam passes on axis, 77 % of it reaches the image at 20.4° and 24 % at the patent's 32° edge. L7's rim does most of the cutting at the edge. These are model results that depend on the inferred rims.
 
 ## Model Scope and Limitations
 
