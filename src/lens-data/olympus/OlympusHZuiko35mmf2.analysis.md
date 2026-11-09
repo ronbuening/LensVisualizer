@@ -1,90 +1,155 @@
 ## Patent Reference and Design Identification
 
-**Patent:** US 3,844,640
-**Filed:** November 22, 1972
-**Granted:** October 29, 1974
-**Inventor:** Jihei Nakagawa
-**Assignee:** Olympus Optical Co., Ltd.
-**Title:** Large-aperture wide-angle photographic lens system
-**Example details:** Physical PDF page 4, body and Claim 1; Figure 1 on page 2. Native focal length 1 scaled ×35.
+**Patent:** US 3,844,640  
+**Application Number:** 308,786  
+**Filed:** November 22, 1972  
+**Granted:** October 29, 1974  
+**Priority:** May 22, 1972 (JP 47-50480)  
+**Inventor:** Jihei Nakagawa  
+**Assignee:** Olympus Optical Co., Ltd.  
+**Title:** Large-aperture wide-angle photographic lens system  
+**Example details:** The single embodiment, printed twice with identical values: in the description table (col. 3) and in claim 1 (col. 4); section in Fig. 1, aberration curves in Figs. 2–4. The patent is normalized to f = 1.0; every length in the model is multiplied by exactly 35.
 
-The H.ZUIKO 35mm f/2 association is secondary, not a factory-certified prescription. The indexed PhotonsToPhotos record identifies this product, and the eight-element/seven-group architecture, scaled 35 mm focal length and f/2 aperture are consistent. The primary body and high-resolution claim crop both confirm R5 = 81.3104. The primary body and claim both print R7 = 0.7053, or 24.6855 mm; the secondary 24.6225 mm is not adopted.
+This is a patent design associated with the Olympus OM-system H.Zuiko Auto-W 35mm f/2, not a confirmed factory prescription. The association is probable to strong and rests on these points:
+
+1. The patent's seven components, the fourth a cemented pair, make eight elements in seven groups, the retail construction of the lens. Olympus's letter prefix on early Zuiko lenses gives the element count, and H is the eighth letter.
+2. At 35× scale the example is a 35 mm f/2 with 2ω = 64°; Olympus lists a 63° diagonal angle of view.
+3. The patent's stated aim is a compact large-aperture wide-angle lens with a long back focus, for apertures up to f/2 and fields up to 64°: an SLR wide-angle of exactly this class. Its paraxial back focus of 39.68 mm leaves room for the reflex mirror.
+4. The Japanese priority date (May 1972) falls shortly before the lens appeared; production is given as 1974 to 2002.
+5. The only published construction drawing found, a small image on the mir.com.my OM lens pages, is drawn with the front to the right. Mirrored, it shows the patent's layout: two large front menisci, a three-element middle group containing one cemented pair, an air space, then a thick negative element, a positive meniscus and a thin biconvex element.
+
+The drawing is too small (112 × 130 px) to confirm individual surface curvatures, and no Olympus source ties the patent to the lens. No other example or patent that fits the lens better has been identified. The same inventor's H.Zuiko Auto-W 24mm f/2.8 (US 3,994,574) has the same eight-element, seven-group count.
+
+**Product.** The lens was sold first as the H.Zuiko Auto-W 35mm f/2 and later as the Zuiko Auto-W and Zuiko MC Auto-W 35mm f/2. The first copies marked MC date from late 1982. mir.com.my reports the optical construction unchanged over the whole run. Early copies took 49 mm filters, later ones 55 mm, and the lens is 42–43 mm long. It focuses on a straight helicoid to 0.3 m, where it covers 14 × 21 cm; the aperture runs from f/2 to f/16 with six blades. The only mount is Olympus OM.
+
+**Transcription note.** The PhotonsToPhotos transcription of this example lists r7 as 0.7035 (24.6225 mm). Both patent tables print 0.7053 (24.6855 mm), and only 0.7053 reproduces the printed back focus: 39.683 mm, against 39.585 mm with 0.7035. The model keeps the printed value. Both tables also print r5 = 81.3104, a nearly flat front face on L3.
 
 ## Optical Architecture
 
-Eight spherical elements form seven components. The front positive meniscus and negative front section provide retrofocus clearance. L4/L5 share the cemented S8 interface. Rear negative and positive elements balance the converging beam. Component numbering in the patent differs from individual element numbering here.
+Eight spherical elements in seven groups form a retrofocus lens. L1 (positive meniscus), L2 (negative meniscus) and L3 (nearly plano-concave negative) make a negative front section with a composite focal length of −25.2 mm. It is followed by the cemented positive pair L4–L5, the stop, and a rear group of L6 (biconcave negative), L7 (positive meniscus, convex to the image) and L8 (biconvex). By element the power sequence is P-N-N-(P-N), stop, N-P-P. There are no aspheric surfaces and no cover plates.
+
+The patent counts components, not elements: its L1–L3 are L1–L3 here, its cemented fourth lens is L4–L5, and its fifth to seventh lenses are L6–L8.
+
+The rear group (L6–L8) has a focal length of 39.2 mm, and everything ahead of the stop a weak +199 mm. The negative front pushes the back focus to 39.68 mm, 1.13 times the focal length. The lens is 47.67 mm from S1 to S15, and the image plane lies 87.35 mm behind S1.
+
+The patent sets the layout with seven conditions, all met by the example (values at f = 1):
+
+| Condition | Range | Example |
+|---|---|---|
+| (i) f1 | f to 2f | 1.679 |
+| (ii) \|f2\| | 0.8f to 1.2f | 0.941 |
+| (iii) r4 | 0.2f to 0.4f | 0.3198 |
+| (iv) d5 + d7 + d8 | 0.15f to 0.3f | 0.2559 |
+| (v) f3,4 (L3 with the cemented pair) | 1.5f to 2.5f | 2.061 |
+| (vi) r6, r7 | 0.5f to f | 0.7185, 0.7053 |
+| (vii) d11 | below 0.1f | 0.0400 |
+
+The patent explains that (i) serves distortion and lateral color, and (ii) and (iii) give the long back focus and a small Petzval sum. Condition (iv) trades astigmatism correction against overall length. Condition (v) balances the back focus and the upper oblique rays against spherical aberration and the lower oblique rays. Making r6 and r7 nearly equal, as (vi) requires, corrects coma at the edge of the field, and keeping the air space d11 short controls coma and distortion. The model's Petzval sum is 0.164 at f = 1.
 
 ## Element-by-Element Analysis
 
-### L1 — Positive Meniscus
+Focal lengths are for each element alone in air.
 
-nd = 1.7234, νd = 37.9. Glass: unmatched patent optical constants. f = 58.76 mm (isolated thick-element estimate).
+### L1 — Positive Meniscus, convex to the object
 
-Its signed isolated power describes its contribution to the sequential system; no unverified catalog glass or fabrication method is assigned.
+nd = 1.7234, νd = 37.9. Glass: S-BAH28 (OHARA) equivalent, a barium dense flint. f = +58.76 mm.
 
-### L2 — Negative Meniscus
+The largest element, with a clear diameter of about 40 mm, which fits the 49 mm filter thread of early copies. Its power, 1.68f, lies inside the patent's condition (i). The patent credits the positive first meniscus with correcting distortion and lateral color, the usual weakness of a retrofocus wide-angle. It sits 0.14 mm ahead of L2 on the axis.
 
-nd = 1.5163, νd = 64.0. Glass: unmatched patent optical constants. f = -32.92 mm (isolated thick-element estimate).
+### L2 — Negative Meniscus, convex to the object
 
-Its signed isolated power describes its contribution to the sequential system; no unverified catalog glass or fabrication method is assigned.
+nd = 1.5163, νd = 64.0. Glass: S-BSL7 (OHARA) equivalent, a borosilicate crown of the BK7 type. f = −32.92 mm.
 
-### L3 — Negative Meniscus
+The main diverging element of the front section. Its deep rear face (r4 = 11.19 mm, 0.32f) and its power (0.94f) are the patent's conditions (iii) and (ii). The patent calls them essential for the long back focus and a small Petzval sum. A stronger L2 would need more positive power behind it, at the cost of coma correction. A weaker one would need a longer air space behind it to keep the back focus, making the lens less compact. Pairing a low-dispersion negative with the higher-dispersion positive L1 is the usual way to hold lateral color in front of the stop; this reading is an interpretation, not the patent's text.
 
-nd = 1.8052, νd = 25.4. Glass: unmatched patent optical constants. f = -31.52 mm (isolated thick-element estimate).
+### L3 — Negative Meniscus, nearly plano-concave
 
-Its signed isolated power describes its contribution to the sequential system; no unverified catalog glass or fabrication method is assigned.
+nd = 1.8052, νd = 25.4. Glass: S-TIH6 (OHARA) equivalent, an SF6-type dense flint. f = −31.52 mm.
 
-### L4 — Biconvex Positive
+Its front face is almost flat (r5 = 2845.9 mm) and its concave rear face (r6 = 25.15 mm) faces L4's convex front (r7 = 24.69 mm) across a 0.55 mm air space. The patent requires the two radii to lie between 0.5f and f and to be nearly equal, which corrects coma at the edge of the field. With the cemented pair it forms the f3,4 power of condition (v), +72.1 mm here.
 
-nd = 1.8061, νd = 40.8. Glass: unmatched patent optical constants. f = 20.86 mm (isolated thick-element estimate).
+### L4 and L5 — Cemented pair ahead of the stop
 
-This element shares a cemented boundary with its partner; the isolated focal length is descriptive, not the power of the assembled doublet.
+- **L4, Biconvex Positive.** nd = 1.8061, νd = 40.8. Glass: S-LAH53 (OHARA) equivalent, a high-index lanthanum flint. f = +20.86 mm.
+- **L5, Negative Meniscus, concave to the object.** nd = 1.6990, νd = 30.1. Glass: S-TIM35 (OHARA) equivalent, a dense flint. f = −223.0 mm.
 
-### L5 — Negative Meniscus
-
-nd = 1.699, νd = 30.1. Glass: unmatched patent optical constants. f = -223.00 mm (isolated thick-element estimate).
-
-This element shares a cemented boundary with its partner; the isolated focal length is descriptive, not the power of the assembled doublet.
+The pair has a combined focal length of +22.95 mm and is the strongest positive group in the lens; L4 alone carries most of that power. The patent cements the fourth component for chromatic correction. The index step across the junction is small (1.806 to 1.699) and the dispersion step moderate (νd 40.8 to 30.1). Condition (iv) bounds the summed thickness of L3, L4 and L5 at 0.256f, between the astigmatism limit and the length limit.
 
 ### L6 — Biconcave Negative
 
-nd = 1.7174, νd = 29.5. Glass: unmatched patent optical constants. f = -32.89 mm (isolated thick-element estimate).
+nd = 1.7174, νd = 29.5. Glass: S-TIH1 (OHARA) equivalent, an SF1-type dense flint. f = −32.89 mm.
 
-Its signed isolated power describes its contribution to the sequential system; no unverified catalog glass or fabrication method is assigned.
+The patent's fifth lens, a thick (4.36 mm) negative element behind the stop with a strongly concave front (r10 = −28.01 mm) and a nearly flat rear. It is the only negative element of the rear group and the flint partner of the two lanthanum crowns behind it.
 
-### L7 — Positive Meniscus
+### L7 — Positive Meniscus, convex to the image
 
-nd = 1.7292, νd = 54.6. Glass: unmatched patent optical constants. f = 37.60 mm (isolated thick-element estimate).
+nd = 1.7292, νd = 54.6. Glass: S-LAL18 (OHARA) equivalent, a lanthanum crown. f = +37.60 mm.
 
-Its signed isolated power describes its contribution to the sequential system; no unverified catalog glass or fabrication method is assigned.
+It sits 1.4 mm behind L6. The patent's condition (vii) keeps this air space below 0.1f and says that a longer one would increase the oblique-ray errors and the barrel distortion. In Fig. 1, L6 and L7 meet at their rims.
 
 ### L8 — Biconvex Positive
 
-nd = 1.6968, νd = 55.6. Glass: unmatched patent optical constants. f = 50.45 mm (isolated thick-element estimate).
+nd = 1.6968, νd = 55.6. Glass: S-LAL14 (OHARA) equivalent, a lanthanum crown. f = +50.45 mm.
 
-Its signed isolated power describes its contribution to the sequential system; no unverified catalog glass or fabrication method is assigned.
+The last element, 0.10 mm behind L7. With L7 it brings the beam to focus 39.68 mm behind the rear vertex.
 
-## Glass Identification and Selection
+## Glass Identification
 
-The source specifies nd and νd, not material catalog identities. These are retained directly. Dispersion away from the reference line is an approximation from those two constants; no measured secondary-spectrum agreement, coating transmission, or production glass equivalence is claimed.
+The patent gives d-line indices and Abbe numbers only. Each pair matches one OHARA catalog row to the patent's printed precision. The table names those rows as equivalents; the S-prefixed rows are current lead-free formulations, and the supplier and melt of the 1970s production glass are not known.
+
+| Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Type |
+|---|---|---|---|---|
+| L1 | 1.7234 / 37.9 | S-BAH28 (OHARA) | 1.72342 / 37.96 | Barium dense flint |
+| L2 | 1.5163 / 64.0 | S-BSL7 (OHARA) | 1.51633 / 64.14 | Borosilicate crown |
+| L3 | 1.8052 / 25.4 | S-TIH6 (OHARA) | 1.80518 / 25.43 | Dense flint |
+| L4 | 1.8061 / 40.8 | S-LAH53 (OHARA) | 1.80610 / 40.93 | Lanthanum flint |
+| L5 | 1.6990 / 30.1 | S-TIM35 (OHARA) | 1.69895 / 30.13 | Dense flint |
+| L6 | 1.7174 / 29.5 | S-TIH1 (OHARA) | 1.71736 / 29.52 | Dense flint |
+| L7 | 1.7292 / 54.6 | S-LAL18 (OHARA) | 1.72916 / 54.68 | Lanthanum crown |
+| L8 | 1.6968 / 55.6 | S-LAL14 (OHARA) | 1.69680 / 55.53 | Lanthanum crown |
+
+The palette is conventional for its date. Ahead of the stop, high-index flints carry the positive power and a crown carries the main negative power. Behind it, a dense-flint negative is paired with two lanthanum crowns. None of the eight pairs points to an anomalous-dispersion glass, and the patent prints no partial dispersions.
 
 ## Focus Mechanism
 
-Only infinity is published. A 3.017 mm increase in the final air gap supplies illustrative unit focus at a computed 0.4892004 m object-to-image distance. The 39.683 mm source back focus remains literal at infinity. This inferred near state is not registered as a source-certified finite conjugate.
+The patent names no focusing group or motion and prints the infinity state only, so the model is static at infinity. The production lens focuses as a unit on a straight helicoid, with a retail minimum focus of 0.3 m; that movement is not modeled.
 
-## Verification Summary and Modeling Limits
+The final gap of 39.683 mm is the printed back focus (1.1338 at f = 1). The computed paraxial back focus is 39.685 mm; the 0.002 mm difference is rounding in the printed table, and the model keeps the printed plane.
 
-Stop location follows the secondary scaffold: 1.6745 mm after S9, leaving 3.0400 mm before S10. Its radius is derived from f/2, not copied as patent data. Secondary SDs required corrections: S4 10.235 → 10.000 mm for the default rim slope, and S11–13 11.055 → 10.400 mm to clear the rear air gap. All other secondary radii remain unchanged.
+## Aperture Stop and Clear Apertures
 
-Default geometry checks pass without gap-sag overrides, rim cuts or hidden rendering trims. Eleven focus states have zero trim. Literal radii, axial distances, glass constants and aspheric coefficients round-trip to the source packet. Normalized radius/index fingerprints find no duplicate among the other 1,096 catalog prescriptions.
+The patent neither prints nor draws a stop. The model places it in the 4.71 mm air space d9 between the cemented pair and L6, 1.67 mm behind S9, as in the PhotonsToPhotos layout. The space ahead of the rear group is the usual place for the iris in this layout, but the position is a modeling choice. At f/2 the entrance pupil radius is 8.75 mm and the stop radius 8.78 mm.
 
-At infinity, full-pupil 64×64 sampling gives center/mid/edge transmitted fractions 1.000, 0.901, 0.243, with zero unaimed/failed samples. Edge angle is 32.000°. These are model-dependent pupil fractions, not measured illumination. The severe modeled edge vignetting is a conspicuous limitation of the assumed apertures, not evidence of factory performance.
+All semi-diameters are inferred. They follow the PhotonsToPhotos clear diameters, with two reductions:
 
-Reference-line diffraction MTF was calculated at center, mid field and edge at the literal image plane, with a maximum grid of 128. All fields report converged. A separate best-axial-focus diagnostic shifts the plane -0.119751 mm; that shift is not baked into the model. Source-plane paraxial offset is 0.001560 mm. No agreement with empirical review charts is asserted. Near/intermediate MTF is not certified.
+- S4, the deep concave face of L2, from 10.24 to 10.0 mm, for the rim-slope limit.
+- S11–S13 (the rear of L6 and both faces of L7) from 11.06 to 10.4 mm, to keep edge clearance in the 1.4 mm air space between them.
 
-No browser UI pass is claimed. Focused corpus tests and build results are reported in the archive, not represented as a full aggregate-suite pass.
+Fig. 1 draws L1 about twice the height of the middle group. It draws L6 and L7 about a tenth taller than the middle group, with their rims touching, so the model's rear rims are on the small side.
+
+At those rims about 84 % of the f/2 beam that fills the stop clears every surface at 19.2°, and about 30 % at the patent's 32° edge, cut mainly by the rear rims. These are model results that depend on the inferred rims.
+
+## Model Scope and Limitations
+
+| Quantity | Patent, f = 1 | Patent × 35 | Model |
+|---|---|---|---|
+| Focal length | 1.0 | 35.0 | 34.998 |
+| Back focus | 1.1338 | 39.683 | 39.685 paraxial |
+| S1 to S15 | 1.3619 | 47.667 | 47.667 |
+| f-number | 2 | 2 | 2.00 |
+| Field (2ω) | 64° | 64° | 64° |
+
+- The prescription is the patent's, not a confirmed factory one.
+- The stop position and all semi-diameters are inferred, and the rear rims are smaller than Fig. 1 suggests.
+- The image plane is the printed back focus.
+- The model is static at infinity and says nothing about performance at 0.3 m.
+- The real chief ray at 32° reaches 21.42 mm, about 2 % short of f·tan ω. That is the barrel distortion Fig. 4 plots at the field edge, and 0.2 mm short of the 135 format corner, which the model reaches at 32.3°.
+- The patent gives d-line indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents.
 
 ## Sources
 
-- https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/3844640
-- https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/Data/US003844640_Example01P.txt
+- [US 3,844,640](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/3844640): description, table, claim 1 and Figs. 1–4.
+- [PhotonsToPhotos Optical Bench, US 3,844,640 Example 1](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/Data/US003844640_Example01P.txt): product attribution, stop position and clear diameters (its r7 differs from the patent, see above).
+- [mir.com.my, Zuiko 35mm wide-angle lenses](http://www.mir.com.my/rb/photography/hardwares/classics/olympusom1n2/shared/zuiko/htmls/35mm.htm): H.Zuiko and later versions, construction, 63° angle of view, 0.3 m minimum focus and field, filter sizes, straight helicoid; also the construction drawing.
+- [allphotolenses, Olympus OM Zuiko Auto-W 35 mm f/2](https://allphotolenses.com/lenses/item/c_1415.html): 1974–2002 production, six aperture blades, f/2–f/16.
+- [Wikipedia, Zuiko](https://en.wikipedia.org/wiki/Zuiko): the letter prefix giving the element count.

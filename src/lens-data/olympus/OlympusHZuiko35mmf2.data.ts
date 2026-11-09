@@ -1,12 +1,33 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal primary R7=0.7053×35, not secondary 24.6225. All SD and stop location are secondary modeling assumptions; engine derives stop radius from f/2. No hidden aperture trims. */
+
+/**
+ * US 3,844,640 (Jihei Nakagawa, Olympus Optical), sole example, printed twice with identical values: in the
+ * description table (col. 3) and in claim 1 (col. 4); section in Fig. 1. It is associated with the OM-system
+ * H.Zuiko Auto-W 35mm f/2 (8 elements / 7 groups); this is a patent design, not a confirmed factory prescription.
+ * Scale: the patent is normalized to f = 1.0. Every printed R and d and the printed back focus are multiplied by
+ * exactly 35 (computed EFL 34.998 mm). All surfaces are spherical, so no coefficient transform applies.
+ * Printed: R, d, d-line n, Abbe number, f = 1.0, f_B = 1.1338 (39.683 mm here), aperture ratio 1:2, 2ω = 64°.
+ * Both tables print r5 = 81.3104 and r7 = 0.7053 (24.6855 mm). The PhotonsToPhotos transcription lists r7 as
+ * 0.7035 (24.6225 mm); that radius gives a back focus of 39.585 mm instead of the printed 39.683 mm, so the
+ * printed 0.7053 is kept.
+ * Image plane: the final gap keeps the printed back focus; the paraxial back focus is 39.685 mm, 0.002 mm longer.
+ * Stop: the patent neither prints nor draws one. It sits in the 4.7145 mm air space d9 between the cemented pair and
+ * the biconcave element, 1.6745 mm behind S9 and 3.04 mm ahead of S10, as in the PhotonsToPhotos layout; its radius
+ * is set by the paraxial entrance pupil at f/2.
+ * Semi-diameters are inferred, none is printed. They follow the PhotonsToPhotos clear diameters, with two
+ * reductions: S4 from 10.235 to 10.0 mm for the rim-slope limit of its deep concave face, and S11–S13 from 11.055
+ * to 10.4 mm to keep edge clearance in the 1.4 mm air space between L6 and L7.
+ * Focus: the patent prints the infinity state only and names no focusing motion, so no gap varies. The production
+ * lens focuses as a unit on a straight helicoid to 0.3 m; that movement is not modeled.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "olympus-zuiko-auto-w-35mm-f2",
   maker: "Olympus",
   name: "OLYMPUS H.ZUIKO AUTO-W 35mm f/2",
-  subtitle: "US 3,844,640 \u2014 qualified product association",
+  subtitle: "US 3,844,640, Sole example \u2014 probable to strong match to the production lens",
   catalog: {
+    specs: ["8 ELEMENTS / 7 GROUPS", "DESIGN f = 35 mm", "DESIGN F/2", "ALL SPHERICAL", "PATENT f = 1 SCALED \u00d7 35"],
     elementCount: 8,
     groupCount: 7,
     focalLengthMm: {
@@ -16,6 +37,9 @@ const LENS_DATA = {
     fNumber: {
       marketing: 2,
       design: 2,
+    },
+    closeFocusM: {
+      marketing: 0.3,
     },
     lensMounts: ["olympus-om"],
     imageFormat: "135-full-frame",
@@ -41,8 +65,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7234,
       vd: 37.9,
-      glass: "Unmatched (patent nd=1.7234, vd=37.9)",
+      glass: "S-BAH28 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 58.75746376009973,
+      role: "Positive front meniscus, convex to the object; the patent sets its power for distortion and lateral color correction.",
     },
     {
       id: 2,
@@ -51,8 +76,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.5163,
       vd: 64.0,
-      glass: "Unmatched (patent nd=1.5163, vd=64.0)",
+      glass: "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -32.91825065018318,
+      role: "Strong negative meniscus with a deep rear face; gives the long back focus and keeps the Petzval sum small.",
     },
     {
       id: 3,
@@ -61,8 +87,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.8052,
       vd: 25.4,
-      glass: "Unmatched (patent nd=1.8052, vd=25.4)",
+      glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -31.524341519145427,
+      role: "Nearly plano-concave dense-flint negative; its rear face nearly matches L4's front across a thin air space for edge coma.",
     },
     {
       id: 4,
@@ -71,9 +98,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8061,
       vd: 40.8,
-      glass: "Unmatched (patent nd=1.8061, vd=40.8)",
+      glass: "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 20.8629063870343,
       cemented: "D1",
+      role: "High-index biconvex front member of the cemented pair ahead of the stop; the strongest positive element.",
     },
     {
       id: 5,
@@ -82,9 +110,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.699,
       vd: 30.1,
-      glass: "Unmatched (patent nd=1.699, vd=30.1)",
+      glass: "S-TIM35 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -223.0025182224957,
       cemented: "D1",
+      role: "Weak flint negative meniscus cemented behind L4; the patent uses the cemented pair for chromatic correction.",
     },
     {
       id: 6,
@@ -93,8 +122,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7174,
       vd: 29.5,
-      glass: "Unmatched (patent nd=1.7174, vd=29.5)",
+      glass: "S-TIH1 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: -32.89242292571106,
+      role: "Thick biconcave flint negative behind the stop; the only negative element of the rear group.",
     },
     {
       id: 7,
@@ -103,8 +133,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.7292,
       vd: 54.6,
-      glass: "Unmatched (patent nd=1.7292, vd=54.6)",
+      glass: "S-LAL18 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 37.59930840993501,
+      role: "Positive meniscus, convex to the image, close behind L6; the patent ties that short air space to coma and distortion.",
     },
     {
       id: 8,
@@ -113,8 +144,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6968,
       vd: 55.6,
-      glass: "Unmatched (patent nd=1.6968, vd=55.6)",
+      glass: "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
       focalLengthMm: 50.446655427022904,
+      role: "Rear biconvex positive element; shares the final convergence to the image with L7.",
     },
   ],
   surfaces: [
@@ -219,28 +251,25 @@ const LENS_DATA = {
       label: "15",
       R: -56.035,
       sd: 10.97,
+      d: 39.683,
     },
   ],
   focus: {
-    closeFocusM: 0.4892,
+    closeFocusM: 1000000000000000.0,
     description:
-      "Illustrative unit focus to approximately 0.4892 m. Only infinity prescription is published; rear-gap extension is inferred, not a factory focus calibration.",
+      "The patent names no focusing group or motion and prints the infinity state only, with its back focus of 1.1338 at f = 1 (39.683 mm here), so the lens is modeled at infinity with no focus movement. The production lens focuses as a unit to Olympus's retail minimum of 0.3 m; that movement is not modeled.",
   },
   aperture: {
     nominalFNumber: 2,
     fStops: [2, 2.8, 4, 5.6, 8, 11, 16],
     maxFNumber: 16,
+    blades: 6,
   },
   projection: {
     kind: "rectilinear",
     fullFieldDeg: 64,
     maxTraceFieldDeg: 32.0,
   },
-  gaps: {
-    "15": {
-      label: "BF",
-      values: [[39.683, 42.7]],
-    },
-  },
+  doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 } satisfies LensDataV2Input;
 export default LENS_DATA;
