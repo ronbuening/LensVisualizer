@@ -67,7 +67,8 @@ rim pass could model. (Closed by the semi-diameter pass below: L4 raised to the 
 list a Fujifilm X version; `lensMounts` keeps the catalog's E and Z. Open: if a legible maker drawing turns up (the
 product page carries images YN33mm-F101 to F110 that were not viewed), tag the two νd ≈ 68.5 elements `apd:
 "inferred"` if it marks them low-dispersion. Open: `rearPlates[0].source` still reads "literal rear plate" and has
-no glass label. Open: elements are named L1–L11 while the patent and the YN 56mm entry use G1–G11.
+no glass label. Open: elements are named L1–L11 while the patent and the YN 56mm entry use G1–G11. (Closed in the second review:
+renamed G1–G11.)
 
 ## 2026-11-09 — Semi-diameter pass against the patent figure
 
@@ -110,3 +111,49 @@ The five elements left `Unmatched` are relabelled to catalog rows that equal the
 L7 → H-ZF12 (CDGM, 1.76182 / 26.61; the row is added to the CDGM catalog from CDGM's September 2026 Zemax file) and
 L11 → NBFD25 (HOYA, 1.85451 / 25.15). `catalog.lensMounts` adds `fujifilm-x` (Digital Camera World review; Yongnuo's
 S/Z/X model listing) and `canon-rf` (Yongnuo's product page).
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared: the local page at infinity, X20 and MOD, the focus-movement overlay and the inspectors of elements 3, 7 and
+11, against Fig. 1 (page 8, 400 dpi; 21.50 px/mm from S1 to the image over 95.0 mm, S1–S13 and S15–S22 within 0.2%,
+the S2 and S13 cap ends isotropic within 1%), and the model's on-axis colour and field curves against Figs. 2 and 3.
+
+Changes. Element names L1–L11 → G1–G11, the patent's designations (claim 1, ¶0030–¶0032); Fig. 1's numerals 1–11
+equal the element ids, so no `diagramLabel` is needed. Doublet brackets L3/L4 and L6/L7 → G3/G4 and G6/G7; roles,
+the focus description, the header comment and the analysis follow the rename. Every element gains `focalLengthMm`
+(thick-lens values from probe: −50.9, +97.6, +56.3, −59.1, +36.2, +28.2, −16.1, −95.9, +38.1, +43.0, −54.5 mm); the
+inspector showed "FL = —". The analysis's glass rule now matches the labels (rows that round to the printed nd), and
+the header and analysis record the Fig. 2 and Fig. 3 comparisons below.
+
+Rims: no change. The semi-diameter pass readings hold at the proved scale: G1 17.65, G2 15.47, G3 15.28, G4 16.40,
+G5 15.95, G6 13.44, G7 12.79, G8 10.51, G9 13.35, G10 14.07, G11 13.37 mm against 17.5, 14.926, 14.926, 16.4, 16, 13.5,
+13.5, 10.5, 13.5, 14 and 13.5. The step order on the page follows the figure's (G1 > G4 > G5 > G2 ≥ G3 > G10 > G6 ≈ G9 ≈ G11
+> G7 > G8), with G2/G3 and G6/G7/G9/G11 tied inside the reading noise. Lands and cuts: no face is below its baseline rim; the S2 and S13 lands each cost 0.0 points at every
+field at infinity (rimcost with and without them) and at X20 and MOD with a real object point; worst loss 0.0, best
+gain 5.6 points. Corner illumination, baseline → final, wide open: 22.8 → 26.0% at infinity (engine); with a real
+object point, 34.0 → 38.2% at X20 and 42.0 → 46.3% at MOD (3D lattice trace, 14.18 mm image corner).
+
+Movement: keyframe 0 is infinity and the last is MOD. Only GR2 moves, toward the object as the patent states (¶0006)
+and as Fig. 1's arrow shows: d14 11.910 → 8.396 → 5.312 mm and d18 1.500 → 5.014 → 8.098 mm, sum 13.410 mm at every
+state, so GR1 and GR3 stay fixed. The overlay shows GR2's centre moving from 31.0 to 37.6 mm ahead of the image
+(6.60 mm). The slider's far end reads 42 cm with "marketed 40 cm". Brackets GR1 (S1–S13), GR2 FOCUS (S15–S18) and GR3
+(S19–S22) follow the patent; the stop sits at row 14 between G7 and G8; no surface is aspheric; every `type` agrees
+with the signs of R; no `apd` tag is set, because Yongnuo's drawing does not show which positions are low-dispersion.
+
+Glass and colour: all eleven labels resolve (glasscheck), each to a row that rounds to the printed nd with |Δνd|
+≤ 0.10. On axis the model's C, d and g curves agree with Fig. 2 within about 5 µm per zone (g at full aperture about
+7 µm). Fig. 3 confirms the rows: a Coddington trace with their five-decimal indices reproduces the plotted T and S
+curves within about 1 µm (corner −90 / −73 µm); with the printed indices the corner T is −46 µm, and G3 alone
+(1.772 for 1.7725) accounts for most of the gap. The engine's field-curvature analysis agrees with the Coddington
+trace. Distortion at the corner is −3.93% against Fig. 3's −3.9%.
+
+Open: G3's nd 1.772 (and the other rounded indices) could take the catalog values the labels name (1.59282, 1.94595,
+1.7725, 1.76182, 1.80809, 1.85451) to reproduce Fig. 3; that is an nd change, outside this pass. Open: the rear
+plate (nd 1.517, νd 64.2) has no glass label; H-K9L (CDGM, 1.51680 / 64.20) matches. Open lines of the semi-diameter
+pass (G4's slanted top edge, the G6/G7 step) remain.
+
+## 2026-11-09 — Rear plate glass
+
+The rear plate (nd / νd as printed) now carries `glass: "H-K9L (CDGM catalog equivalent; production supplier
+unspecified)"`, confirmed with trylabel (catalog 1.5168 / 64.20), so it traces on catalog dispersion instead of the
+Abbe-number fallback.

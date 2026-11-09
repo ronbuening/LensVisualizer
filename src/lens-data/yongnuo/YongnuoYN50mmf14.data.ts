@@ -366,6 +366,7 @@ const LENS_DATA = {
       "thicknessMm": 2,
       "nd": 1.5168,
       "vd": 64.2,
+      "glass": "H-K9L (CDGM catalog equivalent; production supplier unspecified)",
       "gapAfterMm": 1,
       "source": "CN 106249387 B literal rear plate"
     }

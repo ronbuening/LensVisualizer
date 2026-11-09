@@ -184,3 +184,9 @@ unspecified)` (1.62004 / 36.37, θgF 0.5828) and L34 → `SF4 (SCHOTT catalog eq
 unspecified)` (1.75520 / 27.58, θgF 0.6036), both confirmed with trylabel. The model then gives +62.4 / −9.9 µm. Lead
 dense flints of the same coordinates are also sold by CDGM (ZF6) and OHARA (PBM2, PBH4); the labels name dispersion
 equivalents, not the 2016 supplier. Distortion is unchanged (−3.4 % against −3.3 % plotted).
+
+## 2026-11-09 — Rear plate glass
+
+The rear plate (nd / νd as printed) now carries `glass: "H-K9L (CDGM catalog equivalent; production supplier
+unspecified)"`, confirmed with trylabel (catalog 1.5168 / 64.20), so it traces on catalog dispersion instead of the
+Abbe-number fallback.
