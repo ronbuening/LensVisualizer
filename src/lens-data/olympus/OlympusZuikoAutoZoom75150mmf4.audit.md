@@ -51,4 +51,36 @@ patent's dA5, dB7, dC3. The analysis is rewritten as a zoom analysis: attributio
 architecture and station table, the patent's twelve conditions (all met), the erratum, and the MIR diagram comparison.
 
 Open: `aperture.blades` is not set (only a retailer listing gives 8 blades). Corner vignetting with the moved stop was
-not re-measured; the inferred rims are unchanged from the endpoint files.
+not re-measured; the inferred rims are unchanged from the endpoint files. (Vignetting closed: measured in the
+semi-diameter pass below.)
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/US3796481.pdf`, page 3, Fig. 2 (the Example 4 layout; one panel, drawn near mid-zoom with dA5 ≈ 16,
+dB7 ≈ 14.6 and dC3 ≈ 1.4 mm), native 300 dpi scan rotated 1.26°. Scale 9.0 px/mm from the S1–S26 vertex span (1023.5 px
+for 114.144 mm, a span that does not change with zoom); arc fits give 9.3 (S1, S16) and 8.8 (S23) px/mm, so heights carry
+about ±4 %. Group spans read 8.5–9.5 px/mm: the drawing is schematic in its spacings. Each half-height is the mean of the
+top and bottom ink (top only where leader lines for LB1–LB4 do not reach), so the axis offset cancels.
+
+Figure readings at 9.0 px/mm against the starting rims: L1 22.9 (22.5), L2 22.2 (21.3), L3 rear 20.6 (21.3), L4 15.5 (15),
+L5 13.8 (15), L6 13.9 (13), L7 13.4 (13), G3 12.7 (13.5), L10 12.5 (13.5), L11 12.5 (14.5), L12/L13 11.6 (14), L13 rear
+concave face 9.2 (12, beyond it a bevel to 11.6), L14 15.5 (14.8), L15 16.4 (15.2).
+
+Changed: S5 21.3 → 20 (L3 drawn 1.5 mm below L2 on both sides; 20 matches the 9.3 px/mm reading and costs 1.2 points
+where 19.8 cost 2.0); S8 15 → 13.8 (L5 drawn level with L6, below L4); S13–S15 13.5 → 12.7 (G3 drawn level with the relay
+menisci); S16–S17 13.5 → 12.5 and S18–S19 14.5 → 12.5 (L10 and L11 drawn equal; the model had L11 taller); S20–S21 14 →
+11.6 and S22 12 → 9.6 (the cemented pair drawn below the menisci, with L13's rear face ending inside a bevel). S22 at the
+figure's 9.2 mm lost 5.4 points (6.8° at 148 mm); 9.5 lost 3.3; 9.6 is the least that meets the 3-point rule. Kept: L1,
+L2 front and interface, L4, L6/L7 (13 mm: the facing deep concave faces leave 0.59 mm at 13 mm, 88.8 % sag intrusion
+against the 90 % limit, and the figure's 13.4–13.9 is inside the noise), L14 (15.5 mm would give L14 a negative edge; 14.8 equals
+the reading at the relay's own 9.42 px/mm span scale) and L15 (+4 % at that scale). No raise was needed for a clip.
+
+Floors at the f/4 axial beam, maximum over all 15 stations: S5 17.88, S8 12.43, S15 12.01, S16 12.00, S18 11.63, S20
+10.72, S22 8.45 mm; every new rim clears them. Light, against the starting rims at every station (all 13 solved and both
+printed), worst loss 2.5 points at 6.6° and 153 mm; corner 53.2 → 53.0 % at 76.5 mm, 61.5 → 61.3 % at 90 mm, 57.0 →
+57.0 % at 106 mm, 48.3 → 47.9 % at 153 mm. Restoring one element at a time wins back 1.2 (S5), 1.7 (L12/L13), 0.2 (L5,
+G3) and 0.0 points (L10, L11). Engine half-field 20.77° to 9.87° and f/4.000 at all stations are unchanged; validator,
+aperture audit (15 stations within 3 % of f/4), image circle and field coverage (corner chief ray clear at all 15
+stations) pass, with no axial clip or chief-ray block at Y = 21.63 mm. The rendered section at 76.5, 108 and 153 mm
+matches the figure's step order; the MIR production drawing agrees on order (G3 about level with the relay front, the
+relay's cemented pair smaller with a bevelled rear, the rear pair the tallest relay elements).

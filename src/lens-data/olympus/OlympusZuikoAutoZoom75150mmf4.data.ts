@@ -24,8 +24,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: neither printed nor drawn in the patent. The iris sits 1.0 mm ahead of surface 16, fixed with G4, where the
  * production construction diagram draws it just ahead of the relay; G3 comes no closer than 1.54 mm. The beam at the
  * stop is collimated, so one iris radius, set by F/4 at the wide station, gives F/4 at every station.
- * Semi-diameters are inferred; none is printed. The 22.5 mm front rims sit inside the 49 mm filter thread, and the
- * others follow the element proportions of Fig. 2 and the production diagram within edge-thickness and air-gap limits.
+ * Semi-diameters are inferred; none is printed. They are read from Fig. 2 at 9.0 px/mm (300 dpi; the 114.144 mm first-
+ * to-last vertex span, the same at every zoom setting, with arc fits of 8.8-9.5 px/mm) and floor-checked by real-ray
+ * trace. The 22.5 mm front rims sit inside the 49 mm filter thread. As drawn, L3's rear (20 mm) steps down from L2 and
+ * L5's rear (13.8 mm) from L4; the compensator (12.7 mm) and the relay's two menisci (12.5 mm) are about equal; and
+ * the relay's cemented pair is smaller (11.6 mm), with L13's concave rear face ending at 9.6 mm inside a bevel. That
+ * last rim is raised from the figure's 9.2 mm so corner light stays within 3 points of the earlier rims. L6 and L7
+ * stay at 13 mm, where their facing concave surfaces nearly meet; L14 and L15 keep 14.8 and 15.2 mm.
  * Focus: the patent prints the infinity state only and names no focusing group, so no gap varies with focus.
  */
 const LENS_DATA = {
@@ -279,7 +284,7 @@ const LENS_DATA = {
     {
       label: "5",
       R: 1742.45,
-      sd: 21.3,
+      sd: 20,
     },
     {
       label: "6",
@@ -299,7 +304,7 @@ const LENS_DATA = {
       label: "8",
       R: -80.74,
       d: 0.38,
-      sd: 15,
+      sd: 13.8,
     },
     {
       label: "9",
@@ -330,20 +335,20 @@ const LENS_DATA = {
       label: "13",
       R: 84.07,
       d: 1.13,
-      sd: 13.5,
+      sd: 12.7,
       medium: 8,
     },
     {
       label: "14",
       R: 36.191,
       d: 3.95,
-      sd: 13.5,
+      sd: 12.7,
       medium: 9,
     },
     {
       label: "15",
       R: -105.44,
-      sd: 13.5,
+      sd: 12.7,
     },
     {
       label: "STO",
@@ -354,47 +359,47 @@ const LENS_DATA = {
       label: "16",
       R: 25.913,
       d: 3.3,
-      sd: 13.5,
+      sd: 12.5,
       medium: 10,
     },
     {
       label: "17",
       R: 108.255,
       d: 0.15,
-      sd: 13.5,
+      sd: 12.5,
     },
     {
       label: "18",
       R: 46.923,
       d: 2.5,
-      sd: 14.5,
+      sd: 12.5,
       medium: 11,
     },
     {
       label: "19",
       R: 98.549,
       d: 0.2,
-      sd: 14.5,
+      sd: 12.5,
     },
     {
       label: "20",
       R: 24.83,
       d: 5.74,
-      sd: 14,
+      sd: 11.6,
       medium: 12,
     },
     {
       label: "21",
       R: -115.109,
       d: 2,
-      sd: 14,
+      sd: 11.6,
       medium: 13,
     },
     {
       label: "22",
       R: 16.95,
       d: 26,
-      sd: 12,
+      sd: 9.6,
     },
     {
       label: "23",
