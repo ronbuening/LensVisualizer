@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1101** lenses scanned (**1083** visible)
-- **11636 / 12487** non-air surfaces use strict catalog Sellmeier data (93.2%)
-- **11650 / 12487** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
+- **11642 / 12487** non-air surfaces use strict catalog Sellmeier data (93.2%)
+- **11656 / 12487** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **288** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **155** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -132,7 +132,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown; vendor unresolved)`) | abbe: 1 |
 | [NIKON NIKKOR 800mm f/8 ED](../../src/lens-data/nikon/NikonNikkor800mmf8ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown / ED-class; vendor unresolved)`) | abbe: 1 |
 | [PANASONIC LUMIX S 26mm f/8](../../src/lens-data/panasonic/PanasonicLumixS26mmF8.data.ts) | US 2025/0334777 A1 | [PDF](../../patents/US20250334777A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 8 [glass] (Element 4: `Unmatched (patent nd=1.69513, vd=24.0; no match in six supplier catalogs)`) | abbe: 1 |
-| [PENTAX SMC M 120mm f/2.8](../../src/lens-data/pentax/PentaxM120mmf28.data.ts) | US 4,134,645 A | [PDF](../../patents/US4134645.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (patent nd 1.51821, νd 65.0)`) | abbe: 1 |
 | [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) | US 2010/0149663 A1 | [PDF](../../patents/US20100149663A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (684316 dense-flint class; vendor unresolved)`) | abbe: 1 |
 | [VOIGTLÄNDER SUPER-DYNAREX 200mm f/4 (Bessamatic)](../../src/lens-data/voigtlander/VoigtlanderSuperDynarex200mmf4.data.ts) | US 3,388,956 A | [PDF](../../patents/US3388956A.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 6 [glass] (Element IV: `Unmatched (758/316 dense flint; no catalog glass within 0.0001 in nd)`) | abbe: 1 |
 | [CANON EF-M 15-45mm f/3.5-6.3 IS STM](../../src/lens-data/canon/CanonEFM1545mmf3563ISSTM.data.ts) | JP 2016-118658 A | [PDF](../../patents/JP2016118658A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 3A [glass] (Element 2: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`)<br>17A [glass] (Element 9: `Unmatched (nd=1.52996, nu_d=55.8; no exact defensible public-catalog identity found)`) | abbe: 2 |
