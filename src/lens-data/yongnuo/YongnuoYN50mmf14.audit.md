@@ -132,3 +132,55 @@ deployment validation above); Fig. 3 governs.
 
 Open: Fig. 3 draws L3 and L4 about 1 mm taller than the file and ends L3's rear face in a land at about 16.1 mm;
 both conflict with the wide-open axial beam and the S6–S7 gap, so they stay as they are.
+
+## 2026-11-09 — Second review: diagram, labels and movement
+
+Compared: the local page (infinity, x20 slider, closest focus, focus-movement overlay, inspectors) with Fig. 3 (PDF
+p. 17, scale re-proved: 12.275 px/mm along the axis from the vertex crossings, 12.40 across from the S3 and S13 arcs),
+Table 3–4 and Fig. 4A. The element designations below are now the patent's (L1–L9 became L11, L12, L21, L22,
+L31–L35).
+
+| Surface | Before | After | Figure | Verdict |
+| --- | ---: | ---: | ---: | --- |
+| S12 (L32 rear, land to 21.652) | 17.2 | 18.0 | cap about 17.1 | Raised to the real-object axial beam: from the printed 1036.73 mm and 350.08 mm objects the f/1.4 marginal ray reaches 17.41 and 17.92 mm there (17.13 at infinity); 17.2 clipped the on-axis beam at x20 (98.2 % transmitted with a real object, now 100 %) |
+
+Lands and cuts against `.lens-work/base1115sd`: L11 cut (20.3 against 21) costs 2.5 points at 17.6° (2.4 at x20,
+2.7 at the closest state) and is within budget; the S12 land now costs 0.0; the S15 land is needed for spacing (its
+removal is refused: air gap 15→16, 1.70 mm against the 1.443 mm allowed at sd 16.4). Final worst loss against the
+starting rims: 0.0 points at every field at all three printed states (corner 28.8 → 29.9 %, 31.5 → 32.5 %,
+36.2 → 36.8 %). With a real object point the corner (21.6 mm image height) goes 32.1 → 32.9 % at x20 and
+41.3 → 41.8 % at the closest state; the on-axis beam there is 87.1 → 91.7 % transmitted, limited by the S15–S16 gap:
+the two faces meet at 15.43 mm while the beam needs 15.81 mm at S15, so no physical rims pass the full f/1.4 cone at
+that state. Engine EFL 51.485 mm, f/1.4 and half-field 23.5° unchanged.
+
+Labels and tags: `name` and `diagramLabel` now carry Fig. 3's L11–L35, with roles renamed to match; `groups` added as
+the patent's GR1 (S1–S4), GR2 (S5–S8) and GR3 (S10–S17); doublet brackets and `cemented` tags renamed L31 / L32
+(S10–S12) and L33 / L34 (S13–S15); `focalLengthMm` added to every element (the inspector showed FL = —). Types agree
+with the signs of R; no aspheres, none marked; the stop sits between L22 and L31 as Fig. 3 draws S; no `apd` tags,
+and neither the patent nor Yongnuo names a special-dispersion glass.
+
+Movement: keyframe 0 is infinity and keyframe 2 the closest state. D(1) runs 35.5194 → 38.0062 → 43.0547 mm in
+Table 4's order (INF, x20, MOD), so GR1–GR3 move together 7.535 mm toward the object while the cover glass and the
+image plane stay fixed; the movement overlay shows all three groups moving left by 7.54 mm. The slider's close end
+reads 48 cm beside the marketed 45 cm (the printed state is 470.4 mm object to image; the engine refocuses the
+printed spacing paraxially).
+
+Colour against Fig. 4A (read at 380 px/mm on its own axis ticks): on axis the patent puts the C focus 62 µm behind d
+and the g focus 9 µm in front of it (+62 and −9 µm); the model gives +60.9 and +26.4 µm. The C line agrees; the g line is 35 µm behind. Relabelling L32 to SCHOTT F2
+(1.62004 / 36.37, θgF 0.5828) and L34 to SCHOTT SF4 (1.75520 / 27.58, θgF 0.6036) gives +62.4 and −9.9 µm. Distortion
+at 23.5° is −3.4 % against about −3.3 % plotted. The plotted d-line spherical aberration (about −5 µm at the full
+pupil, −46 µm at 0.7) does not match the traced table (−195 and −88 µm); the transcription is exact, so the printed
+table is probably rounded from the design that produced the plot.
+
+Open: L32 → F2 and L34 → SF4 are proposed to the coordinator (glass strings are not edited in this pass). Open: Fig. 3
+draws L21 and L22 about 1 mm taller than the file (unchanged from the semi-diameter pass).
+
+## 2026-11-09 — L32 and L34 glass against the colour plot
+
+Fig. 4A puts the on-axis C and g foci at +62 and −9 µm from d; with HOYA's lead-free E-F2 (θgF 0.587) on L32 and E-FD4
+(0.609) on L34 the model gave +60.9 and +26.4 µm. Both pairs (1.62 / 36.3, 1.7552 / 27.55) equal classic lead flints at
+the printed precision, whose partial dispersions are lower: L32 → `F2 (SCHOTT catalog equivalent; production supplier
+unspecified)` (1.62004 / 36.37, θgF 0.5828) and L34 → `SF4 (SCHOTT catalog equivalent; production supplier
+unspecified)` (1.75520 / 27.58, θgF 0.6036), both confirmed with trylabel. The model then gives +62.4 / −9.9 µm. Lead
+dense flints of the same coordinates are also sold by CDGM (ZF6) and OHARA (PBM2, PBH4); the labels name dispersion
+equivalents, not the 2016 supplier. Distortion is unchanged (−3.4 % against −3.3 % plotted).

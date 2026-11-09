@@ -13,14 +13,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * radius (17.54 mm) is derived from f/1.4 by the stop rule, not printed.
  * Semi-diameters are estimated from Fig. 3 and floor-checked by real-ray trace; the patent prints none. Fig. 3 is
  * drawn to scale: 12.28 px/mm along the axis at 300 dpi from the 16 vertex crossings, and 12.40 px/mm across it
- * from the S3 and S13 arcs. It reads L1 19.6, L2 18.7, L3 18.2, L4 17.9, L5/L6 20.9, L7/L8 18.6 and L9 16.4 mm.
- * L2, L7/L8 and L9 follow it. L1 is 20.3 mm, the smallest rim within 3 points of a 21 mm rim's corner illumination
- * at every printed state; the drawn 19.6 mm would cost about 5. L5/L6 (21.652 mm) is within 4 %. L6's rear face S12 ends at 17.2 mm,
- * just outside the f/1.4 axial beam (17.13 mm), and L8's rear face S15 at 15.1 mm, where it would otherwise run into
- * L9's front; both carry the flat land Fig. 3 draws out to the element edge (rimExtensionSd). L3 and L4 stay
- * square-cut at the axial beam (17.23 and 16.97 mm, 5–6 % under the figure): the S6–S7 air gap (3.9 mm between
- * R 33.66 and R 171.98 mm) leaves 0.15 mm at 16.97 mm, so checks.gapSagFrac is 0.962. Fig. 3 ends L3's rear face in
- * a land at about 16.1 mm, inside the 16.7 mm axial beam there, so that land is not modelled.
+ * from the S3 and S13 arcs. Element names follow Fig. 3 (L11–L12 in GR1, L21–L22 in GR2, L31–L35 in GR3). It reads
+ * L11 19.6, L12 18.7, L21 18.2, L22 17.9, L31/L32 20.9, L33/L34 18.6 and L35 16.4 mm. L12, L33/L34 and L35 follow it.
+ * L11 is 20.3 mm, the smallest rim within 3 points of a 21 mm rim's corner illumination at every printed state; the
+ * drawn 19.6 mm would cost about 5. L31/L32 (21.652 mm) is within 4 %. L32's rear face S12 ends at 18.0 mm (Fig. 3
+ * about 17.1), the height the f/1.4 axial beam from the printed 350.08 mm object reaches there (17.92 mm; 17.13 mm
+ * at infinity), and L34's rear face S15 at 15.1 mm, where it would otherwise run into L35's front; both carry the
+ * flat land Fig. 3 draws out to the element edge (rimExtensionSd). S15 and S16 meet at 15.43 mm, so at the closest
+ * printed state, with a real object point, the f/1.4 axial beam (15.81 mm at S15) is clipped there whatever the
+ * rims. L21 and L22 stay square-cut at the axial beam (17.23 and 16.97 mm, 5–6 % under the figure): the S6–S7 air
+ * gap (3.9 mm between R 33.66 and R 171.98 mm) leaves 0.15 mm at 16.97 mm, so checks.gapSagFrac is 0.962. Fig. 3
+ * ends L21's rear face in a land at about 16.1 mm, inside the 16.7 mm axial beam there, so that land is not modelled.
  * Glass labels are catalog rows whose nd/νd equal the printed pairs; the production supplier is not known.
  * Probable match to the Yongnuo YN50mm F1.4 (Canon EF; Nikon F as YN50mm F1.4N E), announced in 2018: the
  * applicant is Yongnuo, and the lens is 9 elements / 7 groups, f/1.4, 0.15× maximum magnification. Example 1 of the
@@ -76,97 +79,115 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "L11",
+      "diagramLabel": "L11",
       "label": "Element 1",
       "type": "Positive Meniscus",
       "nd": 1.883,
       "vd": 40.81,
+      "focalLengthMm": 155.81,
       "glass": "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Thick high-index positive meniscus, concave to the object; the front element of the positive first group (patent L11)."
+      "role": "Thick high-index positive meniscus, concave to the object; the front element of the positive first group GR1."
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "L12",
+      "diagramLabel": "L12",
       "label": "Element 2",
       "type": "Positive Meniscus",
       "nd": 1.804,
       "vd": 46.59,
+      "focalLengthMm": 101.69,
       "glass": "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Positive meniscus, convex to the object; the stronger of the two first-group positives (patent L12)."
+      "role": "Positive meniscus, convex to the object; the stronger of the two GR1 positives."
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "L21",
+      "diagramLabel": "L21",
       "label": "Element 3",
       "type": "Biconcave Negative",
       "nd": 1.6889,
       "vd": 31.18,
+      "focalLengthMm": -31.38,
       "glass": "E-FD8 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Biconcave negative lens of the negative second group, the only negative element ahead of the stop; its glass sets the patent's conditions (4) and (5) (patent L21)."
+      "role": "Biconcave negative lens of the negative second group GR2, the only negative element ahead of the stop; its glass sets the patent's conditions (4) and (5)."
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "L22",
+      "diagramLabel": "L22",
       "label": "Element 4",
       "type": "Biconvex Positive",
       "nd": 1.9004,
       "vd": 37.37,
+      "focalLengthMm": 122.33,
       "glass": "TAFD37 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Weak high-index biconvex lens just ahead of the stop, closing the second group (patent L22)."
+      "role": "Weak high-index biconvex lens just ahead of the stop, closing GR2."
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "L31",
+      "diagramLabel": "L31",
       "label": "Element 5",
       "type": "Biconvex Positive",
       "nd": 2.001,
       "vd": 29.13,
+      "focalLengthMm": 26.66,
       "glass": "TAFD55 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Index-2.0 biconvex lens just behind the stop, leading the first cemented pair of the rear group (patent L31).",
-      "cemented": "L5 / L6"
+      "role": "Index-2.0 biconvex lens just behind the stop, leading the first cemented pair of the rear group GR3.",
+      "cemented": "L31 / L32"
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "L32",
+      "diagramLabel": "L32",
       "label": "Element 6",
       "type": "Biconcave Negative",
       "nd": 1.62,
       "vd": 36.3,
-      "glass": "E-F2 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Biconcave flint closing the first cemented pair; its rear face is the strong concave surface ahead of the second pair (patent L32).",
-      "cemented": "L5 / L6"
+      "focalLengthMm": -26.92,
+      "glass": "F2 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Biconcave flint closing the first cemented pair; its rear face is the strong concave surface ahead of the second pair.",
+      "cemented": "L31 / L32"
     },
     {
       "id": 7,
-      "name": "L7",
+      "name": "L33",
+      "diagramLabel": "L33",
       "label": "Element 7",
       "type": "Biconvex Positive",
       "nd": 1.7292,
       "vd": 54.67,
+      "focalLengthMm": 25.56,
       "glass": "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Thick equi-convex lanthanum-crown lens leading the second cemented pair (patent L33).",
-      "cemented": "L7 / L8"
+      "role": "Thick equi-convex lanthanum-crown lens leading the second cemented pair.",
+      "cemented": "L33 / L34"
     },
     {
       "id": 8,
-      "name": "L8",
+      "name": "L34",
+      "diagramLabel": "L34",
       "label": "Element 8",
       "type": "Biconcave Negative",
       "nd": 1.7552,
       "vd": 27.55,
-      "glass": "E-FD4 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Dense-flint biconcave lens closing the second cemented pair, the achromatizing partner of L7 (patent L34).",
-      "cemented": "L7 / L8"
+      "focalLengthMm": -23.95,
+      "glass": "SF4 (SCHOTT catalog equivalent; production supplier unspecified)",
+      "role": "Dense-flint biconcave lens closing the second cemented pair, the achromatizing partner of L33.",
+      "cemented": "L33 / L34"
     },
     {
       "id": 9,
-      "name": "L9",
+      "name": "L35",
+      "diagramLabel": "L35",
       "label": "Element 9",
       "type": "Biconvex Positive",
       "nd": 1.883,
       "vd": 40.81,
+      "focalLengthMm": 48.28,
       "glass": "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "High-index biconvex rear element, ahead of the 35.5 mm air gap to the cover glass (patent L35)."
+      "role": "High-index biconvex rear element of GR3, ahead of the 35.5 mm air gap to the cover glass."
     }
   ],
   "surfaces": [
@@ -245,7 +266,7 @@ const LENS_DATA = {
       "label": "12",
       "R": 32.56,
       "d": 1.7,
-      "sd": 17.2,
+      "sd": 18,
       "rimExtensionSd": 21.652
     },
     {
@@ -353,14 +374,31 @@ const LENS_DATA = {
     "kind": "rectilinear",
     "fullFieldDeg": 47
   },
+  "groups": [
+    {
+      "text": "GR1",
+      "fromSurface": "1",
+      "toSurface": "4"
+    },
+    {
+      "text": "GR2",
+      "fromSurface": "5",
+      "toSurface": "8"
+    },
+    {
+      "text": "GR3",
+      "fromSurface": "10",
+      "toSurface": "17"
+    }
+  ],
   "doublets": [
     {
-      "text": "L5 / L6",
+      "text": "L31 / L32",
       "fromSurface": "10",
       "toSurface": "12"
     },
     {
-      "text": "L7 / L8",
+      "text": "L33 / L34",
       "fromSurface": "13",
       "toSurface": "15"
     }
