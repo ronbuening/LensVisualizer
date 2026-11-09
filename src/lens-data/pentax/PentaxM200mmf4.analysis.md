@@ -106,7 +106,7 @@ The patent prints no back focus. The final gap of 62.6492 mm is the paraxial bac
 
 The patent neither prints nor draws a stop, and Fig. 3 shows none. The model places it at the midpoint of the long air space d6, 16.61 mm behind S6, a modeling choice. At f/4 the entrance pupil radius is 25.0 mm and the stop radius 18.16 mm.
 
-The patent prints no semi-diameters, so all are inferred from the proportions of Fig. 3:
+The patent prints no semi-diameters, so all are inferred from Fig. 3, which is drawn to scale (14.14 px per mm of the model at 600 dpi, from the S1 to S11 span):
 
 | Element | Model sd (mm) |
 |---|---|
@@ -114,9 +114,11 @@ The patent prints no semi-diameters, so all are inferred from the proportions of
 | L2 | 23.6 |
 | L3 | 23.0 |
 | L4 | 15.6 |
-| L5, L6 | 12.5 |
+| L5, L6 | 12.5 (L5's front face 11.1) |
 
-The full f/4 beam passes on axis. Toward the 21.6 mm corner the rims of the cemented rear pair cut into the oblique beam; in the meridional section the last surface removes about 45 % of its outer half.
+Fig. 3 ends the deep concave front face of L5 short of the element's edge, at about 10.8 mm, and bevels it out to the rim. The model keeps that face's clear cap to 11.1 mm and draws a flat land from there to the 12.5 mm edge.
+
+The full f/4 beam passes on axis. Toward the 21.6 mm corner the rims of the cemented rear pair cut into the oblique beam; in the meridional section the last surface removes about 45 % of its outer half. About 72 % of the wide-open beam reaches the 6.1° corner.
 
 ## Model Scope and Limitations
 

@@ -15,8 +15,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (62.6492 mm here), which puts the image plane 159.209 mm behind S1 (0.796 F; the patent's condition 8 asks < 0.85 F).
  * Stop: the patent neither prints nor draws one. It sits at the midpoint of d6 (16.61 + 16.61 mm), with its radius
  * set by the paraxial entrance pupil, F/N.
- * Semi-diameters are inferred, none is printed. They follow the proportions of Fig. 3: 25.2 mm on L1, 23.6 mm on L2,
- * 23.0 mm on L3, 15.6 mm on L4 and 12.5 mm on the rear pair.
+ * Semi-diameters are inferred, none is printed. They are estimated from Fig. 3, which is drawn to scale (S1 to S11 is
+ * 1365 px at 600 dpi for 96.56 mm, 14.14 px/mm, and the deep L5 front face fits its printed radius at that scale):
+ * 25.2 mm on L1, 23.6 mm on L2, 23.0 mm on L3, 15.6 mm on L4 and 12.5 mm on the rear pair, all within 3 % of the
+ * drawing. Fig. 3 ends L5's concave front face short of the element's edge, at about 10.8 mm, with a bevel out to the
+ * 12.5 mm rim; S9 keeps its clear cap to 11.1 mm, the smallest radius that costs no more than 3 points of corner
+ * illumination, and a land (rimExtensionSd) carries the drawn edge to 12.5 mm. Rims are floor-checked by real-ray
+ * trace: the f/4 axial beam passes every surface.
  * Glass: every n/ν pair equals a catalog row at the printed precision.
  * Length: at this scale the front vertex lies 113.75 mm ahead of the K-mount flange, about 2.7 mm beyond the 111 mm
  * retail length, so the production focal length may be slightly shorter than 200 mm.
@@ -205,7 +210,8 @@ const LENS_DATA = {
       "label": "9",
       "R": -28.36,
       "d": 2.88,
-      "sd": 12.5,
+      "sd": 11.1,
+      "rimExtensionSd": 12.5,
       "medium": 5
     },
     {

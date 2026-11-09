@@ -54,3 +54,41 @@ Open: no Pentax construction diagram was found, so Fig. 3 cannot be compared wit
 vertex sits about 2.7 mm ahead of the 111 mm retail barrel; a production focal length a few percent below 200 mm
 would fit better, but the file keeps the house rule of scaling to the marketed focal length. The stop position (mid
 d6) is a modeling choice; the patent draws no iris.
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/US4139264A.pdf`, PDF p. 3 (sheet 2), Fig. 3, which is Example 2 (Fig. 1 is Example 1). The page is a
+300 ppi CCITT scan; it was read at 600 dpi. The optical axis is row 2599–2600 (600 dpi), skewed by under 2 px across
+the figure.
+
+Scale: vertex crossings on the axis put S1 at x = 1579.5 and S11 at x = 2944.5, 1365 px for 96.56 mm (×2 model), so
+14.14 px/mm. Checks on other spans: S1 to S7 reads 817 px against 811 predicted, S8 to S9 410 against 405, S1 to S3
+and S1 to S6 within 4 px. The vertical scale matches: the sag of the deep S9 face (R −28.36 mm) at 100 and 150 px
+from the axis reads 12 and 30 px against 12.7 and 29 predicted. S1 reads about 10 % flatter than its radius, so the
+L1 front curve is drawn slightly schematically.
+
+Figure rims (outer ink, top and bottom averaged, mm at model scale) against the file:
+
+| Surface | File sd | Figure | Ratio | Decision |
+|---|---|---|---|---|
+| 1, 2 (L1) | 25.2 | 25.7 | 1.02 | kept (noise) |
+| 3, 4 (L2) | 23.6 | 23.9 | 1.01 | kept (noise); drawn square-cut |
+| 5, 6 (L3) | 23.0 | 23.2 | 1.01 | kept (noise) |
+| 7, 8 (L4) | 15.6 | 16.0 | 1.03 | kept (noise); drawn square-cut |
+| 9 (L5 front) | 12.5 | cap 10.8, edge 12.7 | 0.86 / 1.02 | sd 12.5 → 11.1, `rimExtensionSd` 12.5 |
+| 10, 11 (L5/L6) | 12.5 | 12.7 | 1.02 | kept (noise) |
+
+S9: Fig. 3 ends L5's concave front face at 150–155 px from the axis (10.6–11.0 mm; q ≈ 0.85 of the 179 px edge, ±0.02
+for one native pixel) and bevels it to the flat top at 178–182 px, on both halves. At 10.8 mm the cap would cost
+4.5 points of corner light at 4.1° and 5.0 at 5.1° against the starting rims; 11.1 mm is the smallest radius within
+3 points at every field (rimcost: 94.4 → 92.1 at 4.1°, 84.8 → 82.5 at 5.1°, 72.4 → 71.6 at 6.1°; 11.0 mm loses 3.2).
+The land keeps the drawn 12.5 mm edge. An inferred `rimCutDepthMm` was not usable: the traced corner beam reaches the
+12.5 mm rim of S9, so no inferred cut radius can clear it.
+
+Engine values are unchanged: EFL 200.03 mm, F/4.000, half-field 6.2°, stop radius 18.158 mm, image circle and field
+coverage 100 % (21.65 mm corner, 6.1°). Real-ray clearance at Y = 21.63 mm: no axial clip or chief-ray block; the
+axial marginal ray reaches 8.01 mm at S9 against the new 11.1 mm cap. Corner illumination 72.4 % before, 71.6 % after.
+Surface audit OK, aperture audit reports no rim limit. The page at `/lens/pentax-m-200mm-f4` (infinity, the only
+printed state) shows the bevelled L5 front as a short land and otherwise matches the figure's proportions.
+
+Open: none for rims. No maker section drawing exists to compare.
