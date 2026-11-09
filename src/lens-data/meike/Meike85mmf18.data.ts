@@ -1,14 +1,38 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-// Literal radii/thicknesses. Aperture diameter interpretation; coincident cemented rows merged.
-// Printed stop diameter29.75 is retained in source evidence; runtime stop follows source nominalf1.8.
+
+/**
+ * CN 217606166 U (Li Yunhong; Shenzhen Huitian Film and Television Equipment Co., Ltd., the name Meike's Shenzhen
+ * company took in July 2019), sole numerical example: table in para. 0034, section in Fig. 1. Associated with the
+ * original Meike AF 85mm f/1.8 FF STM (nine elements in six groups, all spherical); this is a patent design, not a
+ * confirmed factory prescription.
+ * Scale: none. The example is printed at the production focal length; the computed d-line EFL is 85.645 mm against
+ * the stated f = 85 mm (para. 0035). No wavelength from C to g reaches 85.0 mm, so the 85 is a nominal value.
+ * Printed: R, d, glass name, a clear aperture (孔径) for every row, zero conic on every row, f = 85 mm and F = 1.8.
+ * The patent prints no index or Abbe number; nd, vd and the C, F and g line indices are the CDGM and HOYA catalog
+ * values for the named glasses.
+ * Cemented joins: the table prints each cemented interface twice with 0.00 mm of air (rows 6, 11 and 15). Each pair
+ * is merged into one cemented surface, as the text describes, leaving 15 refracting surfaces and the stop. Surface
+ * labels keep the patent's row numbers.
+ * Semi-diameters: the 孔径 column is read as a clear diameter and halved. As a diameter the stop's 29.75 mm gives a
+ * paraxial f/1.785, consistent with F = 1.8; as a radius it would give f/0.89. At the two cemented joins whose
+ * printed cells differ, the smaller is used (36.97 against 37.30 mm, 28.42 against 29.00 mm). The printed rims at
+ * S3 to S8 sit slightly inside the real f/1.8 axial bundle (up to 0.35 mm at S3), so the model works at about f/1.83
+ * wide open; they are kept as printed.
+ * Stop: the radius follows the design F/1.8 (diameter 29.49 mm) under the prime stop rule, not the printed 29.75 mm.
+ * Image plane: the final gap is the printed 42.53 mm; the paraxial back focus is 42.262 mm, so the stored image plane
+ * lies 0.268 mm beyond paraxial focus.
+ * Focus: claim 2 moves the cemented L5-L6 pair to focus from infinity to 1 m but no close-range spacings are printed,
+ * so no gap varies. Meike's 0.85 m minimum focus is not modeled.
+ */
 const LENS_DATA = {
   schema: 2,
   layout: { yScFill: 0.4 },
   key: "meike-af-85mm-f18-ff-stm",
   maker: "Meike",
   name: "MEIKE AF 85mm f/1.8 FF STM",
-  subtitle: "CN 217606166 U \u2014 qualified associated patent model",
+  subtitle: "CN 217606166 U, Sole example \u2014 probable match to the 2022 production lens",
   catalog: {
+    specs: ["9 ELEMENTS / 6 GROUPS", "DESIGN f = 85 mm", "DESIGN F/1.8", "ALL SPHERICAL"],
     elementCount: 9,
     groupCount: 6,
     lensMounts: ["sony-fe", "nikon-z", "fujifilm-x", "l-mount"],
@@ -41,7 +65,8 @@ const LENS_DATA = {
       name: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
-      glass: "H-LAF50B",
+      glass: "H-LaF50B (CDGM; named in the patent)",
+      role: "Weak biconvex front collector; begins converging the 47.6 mm f/1.8 entrance beam.",
       nd: 1.7725,
       vd: 49.598996,
       nC: 1.7677981482893248,
@@ -53,7 +78,8 @@ const LENS_DATA = {
       name: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
-      glass: "H-ZLAF55D",
+      glass: "H-ZLaF55D (CDGM; named in the patent)",
+      role: "Positive meniscus convex to the object; with L1 forms the positive front pair of claim 3.",
       nd: 1.83481,
       vd: 42.725177,
       nC: 1.8289826215085356,
@@ -65,7 +91,8 @@ const LENS_DATA = {
       name: "L3",
       label: "Element 3",
       type: "Positive Meniscus",
-      glass: "H-LAK50A",
+      glass: "H-LaK50A (CDGM; named in the patent)",
+      role: "Lanthanum-crown positive meniscus of the front cemented doublet U1.",
       nd: 1.6516,
       vd: 58.403057,
       nC: 1.6481924860863575,
@@ -77,7 +104,8 @@ const LENS_DATA = {
       name: "L4",
       label: "Element 4",
       type: "Negative Meniscus",
-      glass: "E-FD10",
+      glass: "E-FD10 (HOYA; named in the patent)",
+      role: "Dense-flint negative meniscus of U1; makes the doublet weakly negative and corrects axial color ahead of the stop.",
       nd: 1.72825,
       vd: 28.32,
       nC: 1.7208203129692747,
@@ -89,7 +117,8 @@ const LENS_DATA = {
       name: "L5",
       label: "Element 5",
       type: "Positive Meniscus",
-      glass: "H-ZF52",
+      glass: "H-ZF52 (CDGM; named in the patent)",
+      role: "Dense-flint positive meniscus, concave to the object; front half of the cemented focusing doublet U2.",
       nd: 1.84666,
       vd: 23.784497,
       nC: 1.83649557954429,
@@ -101,7 +130,8 @@ const LENS_DATA = {
       name: "L6",
       label: "Element 6",
       type: "Biconcave Negative",
-      glass: "H-K9L",
+      glass: "H-K9L (CDGM; named in the patent)",
+      role: "Biconcave crown that gives U2 its negative power; U2 is the patent's focusing group.",
       nd: 1.5168,
       vd: 64.198732,
       nC: 1.5143264577507813,
@@ -113,7 +143,8 @@ const LENS_DATA = {
       name: "L7",
       label: "Element 7",
       type: "Biconcave Negative",
-      glass: "H-ZF52",
+      glass: "H-ZF52 (CDGM; named in the patent)",
+      role: "Dense-flint biconcave element opening the rear cemented doublet U3.",
       nd: 1.84666,
       vd: 23.784497,
       nC: 1.83649557954429,
@@ -125,7 +156,8 @@ const LENS_DATA = {
       name: "L8",
       label: "Element 8",
       type: "Biconvex Positive",
-      glass: "H-ZLAF55D",
+      glass: "H-ZLaF55D (CDGM; named in the patent)",
+      role: "Biconvex lanthanum element of U3; nearly index-matched to L7, so the pair works mainly on lateral color.",
       nd: 1.83481,
       vd: 42.725177,
       nC: 1.8289826215085356,
@@ -137,7 +169,8 @@ const LENS_DATA = {
       name: "L9",
       label: "Element 9",
       type: "Biconvex Positive",
-      glass: "H-ZLAF55D",
+      glass: "H-ZLaF55D (CDGM; named in the patent)",
+      role: "Biconvex rear positive element; balances the front pair's power about the stop (claim 3).",
       nd: 1.83481,
       vd: 42.725177,
       nC: 1.8289826215085356,
@@ -254,12 +287,13 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000000000.0,
     description:
-      "Static infinity prescription. The patent describes moving L5/L6 but gives no finite-distance spacings; no motion law is invented.",
+      "The patent prints the infinity state only. Its claims move the cemented L5-L6 pair to focus from infinity to 1 m, but no close-range spacings are given, so the lens is modeled at infinity with no focus movement. Meike's retail minimum focus of 0.85 m is not modeled.",
   },
   aperture: {
     nominalFNumber: 1.8,
     fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
+    blades: 9,
   },
 } satisfies LensDataV2Input;
 export default LENS_DATA;
