@@ -1,11 +1,27 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal source diameters / 2. S8 published clear envelope diameter 17.43 mm; ordinary-prime iris derives from F1.85, not this envelope. No repaired asphere coefficients or rear plate. */
+/** US 12,066,598 B2, Numerical Example 3 (Canon Inc.; Yuki Shinzato; priority JP 2021-019102, February 9, 2021):
+ * f = 24.72 mm, F1.85, ω = 41.2°, image height 19.34 mm, overall length 81.00 mm, BF 11.00 mm; 11 elements /
+ * 9 groups, one aspherical surface (S17). No scale factor is applied. Production correlation: Canon RF 24mm
+ * f/1.8 Macro IS STM (August 2022), whose published construction diagram matches this example element by element.
+ * R, d, nd, νd and the S17 coefficients follow the printed table without alteration; the grant and the application
+ * US 2022/0252840 A1 print identical values. The table lists no cover glass or filter, so there are no rear plates.
+ * Every refracting semi-diameter is half the printed effective diameter. Where an element's two faces print
+ * different diameters, the drawing joins them with a sloped edge; the square lands of Fig. 5 are not modelled.
+ * The stop (S8) prints a 17.43 mm diameter, which agrees with F1.85 at real-ray height: an f/1.85 marginal ray
+ * entering at EFL / 2N = 6.68 mm crosses S8 at 8.72 mm. The iris follows the stop rule for an ordinary prime and is
+ * derived paraxially from F1.85 instead (radius 8.467 mm, about 3 % smaller).
+ * Only d17 is printed variable (2.56 mm at infinity, 15.56 mm close); S1–S17 move toward the object. The patent
+ * prints no close object distance; the printed close spacing focuses at 136.0 mm object to image at −0.51×.
+ * The terminal gap is the printed BF 11.00 mm (paraxial back focus 11.0023 mm), not refocused.
+ * The 19.34 mm image height is short of the 21.63 mm full-frame corner: the design leaves −10.6 % distortion at
+ * full field for in-camera correction (¶0086–¶0087, Table 1), so imageCircleMm is 38.68 mm.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "canon-rf-24mm-f18-macro-is-stm",
   "maker": "Canon",
   "name": "CANON RF 24mm f/1.8 Macro IS STM",
-  "subtitle": "US 12066598 B2 Numerical Example 3 \u2014 inferred product association",
+  "subtitle": "US 12,066,598 B2, Example 3 \u2014 construction match to the production lens",
   "catalog": {
     "lensMounts": [
       "canon-rf"
@@ -14,6 +30,9 @@ const LENS_DATA = {
     "imageCircleMm": 38.68,
     "elementCount": 11,
     "groupCount": 9,
+    "closeFocusM": {
+      "marketing": 0.14
+    },
     "focalLengthMm": {
       "marketing": 24,
       "design": 24.72
@@ -21,7 +40,14 @@ const LENS_DATA = {
     "fNumber": {
       "marketing": 1.8,
       "design": 1.85
-    }
+    },
+    "specs": [
+      "11 ELEMENTS / 9 GROUPS",
+      "DESIGN f = 24.72 mm",
+      "DESIGN F/1.85",
+      "1 ASPHERICAL SURFACE / 1 ELEMENT",
+      "FRONT-GROUP FOCUS; 0.5× MAX"
+    ]
   },
   "source": {
     "patentNumber": "US 12,066,598 B2",
@@ -45,8 +71,9 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.51633,
       "vd": 64.1,
-      "glass": "Unmatched (patent nd=1.51633, vd=64.1)",
-      "focalLengthMm": -34.08
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -34.08,
+      "role": "Negative front meniscus, concave to the image, forming the whole first unit; widens the field and moves the entrance pupil forward (¶0036)."
     },
     {
       "id": 2,
@@ -55,8 +82,9 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.91082,
       "vd": 35.3,
-      "glass": "Unmatched (patent nd=1.91082, vd=35.3)",
-      "focalLengthMm": 27.61
+      "glass": "TAFD35 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 27.61,
+      "role": "High-index biconvex lens opening the second unit; reconverges the beam after the 15.32 mm first air space."
     },
     {
       "id": 3,
@@ -65,8 +93,9 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.90043,
       "vd": 37.4,
-      "glass": "Unmatched (patent nd=1.90043, vd=37.4)",
+      "glass": "TAFD37A (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 24.97,
+      "role": "High-index positive member of the cemented doublet ahead of the stop.",
       "cemented": "D1"
     },
     {
@@ -76,8 +105,9 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.72825,
       "vd": 28.5,
-      "glass": "Unmatched (patent nd=1.72825, vd=28.5)",
+      "glass": "S-TIH10 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -22.58,
+      "role": "Dense-flint negative member of the doublet ahead of the stop; achromatizes it, and its index step below L3 helps lower the Petzval sum (¶0049).",
       "cemented": "D1"
     },
     {
@@ -87,8 +117,9 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.6779,
       "vd": 55.3,
-      "glass": "Unmatched (patent nd=1.6779, vd=55.3)",
-      "focalLengthMm": 81.14
+      "glass": "S-LAL12 (OHARA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 81.14,
+      "role": "Image-stabilizing lens just behind the stop (Fig. 5, IS); shifts across the axis to correct camera shake (¶0031, ¶0085)."
     },
     {
       "id": 6,
@@ -97,8 +128,9 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.85478,
       "vd": 24.8,
-      "glass": "Unmatched (patent nd=1.85478, vd=24.8)",
+      "glass": "S-NBH56 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -15.2,
+      "role": "Strong biconcave flint member of the cemented doublet behind the IS lens; its deeply curved front face (R −15.958) supplies the doublet's negative power.",
       "cemented": "D2"
     },
     {
@@ -108,8 +140,11 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.497,
       "vd": 81.5,
-      "glass": "Unmatched (patent nd=1.497, vd=81.5)",
+      "glass": "S-FPL51 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 41.73,
+      "apd": "inferred",
+      "apdNote": "Canon's construction diagram marks this position as the lens's UD element, and its nd 1.49700 / νd 81.5 is a fluorophosphate UD-class glass (S-FPL51 catalog PgF 0.5375).",
+      "role": "UD positive member of the doublet behind the stop; its Abbe spread against L6 (νd 81.5 against 24.8) corrects colour, including secondary spectrum (¶0050).",
       "cemented": "D2"
     },
     {
@@ -119,8 +154,9 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.91082,
       "vd": 35.3,
-      "glass": "Unmatched (patent nd=1.91082, vd=35.3)",
-      "focalLengthMm": 26.28
+      "glass": "TAFD35 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 26.28,
+      "role": "High-index biconvex lens carrying much of the positive power behind the stop."
     },
     {
       "id": 9,
@@ -129,8 +165,9 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.5311,
       "vd": 55.9,
-      "glass": "Unmatched (patent nd=1.5311, vd=55.9)",
-      "focalLengthMm": 215.73
+      "glass": "E48R (ZEON polymer catalog equivalent; production material unspecified)",
+      "focalLengthMm": 215.73,
+      "role": "Plastic-molded aspherical meniscus, last element of the focusing group; its aspherical rear face (S17) corrects field curvature (¶0084)."
     },
     {
       "id": 10,
@@ -139,8 +176,9 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.72916,
       "vd": 54.7,
-      "glass": "Unmatched (patent nd=1.72916, vd=54.7)",
-      "focalLengthMm": 143.27
+      "glass": "S-LAL18 (OHARA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 143.27,
+      "role": "Weak positive meniscus behind the variable gap d17; stays fixed during focusing."
     },
     {
       "id": 11,
@@ -149,8 +187,9 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.51742,
       "vd": 52.4,
-      "glass": "Unmatched (patent nd=1.51742, vd=52.4)",
-      "focalLengthMm": -104.12
+      "glass": "S-NSL36 (OHARA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -104.12,
+      "role": "Fixed negative rear meniscus, concave to the object, forming the third unit; flattens the field (¶0038)."
     }
   ],
   "surfaces": [
@@ -314,7 +353,7 @@ const LENS_DATA = {
     "published": [
       1
     ],
-    "description": "Literal published d17 expands 13 mm. Close distance calculated from this prescription, not marketed MFD; intermediate states are interpolation."
+    "description": "PUBLISHED front-group focus: US 12,066,598 B2, Example 3 prints d17 at infinity and at close range (2.56 → 15.56 mm). Surfaces 1–17 (L1–L9, with the iris and the IS lens) move 13.00 mm toward the object as one unit; L10, L11 and the image plane stay fixed. The patent prints no close object distance or magnification: with the image plane at the printed 11.00 mm back focus, the close spacing focuses at 136.0 mm object to image at −0.51×, in line with Canon's 0.14 m minimum focus and 0.5× maximum magnification. Intermediate positions interpolate d17 linearly."
   },
   "aperture": {
     "nominalFNumber": 1.85,
@@ -326,9 +365,11 @@ const LENS_DATA = {
       5.6,
       8,
       11,
-      16
+      16,
+      22
     ],
-    "maxFNumber": 16
+    "maxFNumber": 22,
+    "blades": 9
   },
   "projection": {
     "kind": "rectilinear",
@@ -337,6 +378,18 @@ const LENS_DATA = {
   },
   "layout": {
     "yScFill": 0.4
-  }
+  },
+  "doublets": [
+    {
+      "text": "D1",
+      "fromSurface": "5",
+      "toSurface": "7"
+    },
+    {
+      "text": "D2",
+      "fromSurface": "11",
+      "toSurface": "13"
+    }
+  ]
 } satisfies LensDataV2Input;
 export default LENS_DATA;
