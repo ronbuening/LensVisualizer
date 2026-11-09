@@ -16,12 +16,13 @@ const LENS_DATA = {
     "groupCount": 7,
     "focalLengthMm": {
       "marketing": 50,
-      "design": 51.48484199251793
+      "design": 51.5
     },
     "fNumber": {
       "marketing": 1.4,
       "design": 1.4
     },
+    "lensMounts": ["canon-ef", "nikon-f"],
     "imageFormat": "135-full-frame",
     "closeFocusM": {
       "marketing": 0.45

@@ -17,3 +17,17 @@ Surface | Initial inferred sd (mm) | Refined inferred sd (mm)
 ## Native optical results
 
 Geometry passes and zero hidden render trim at INF, X20 and MOD. Source pupil 11.1999 mm gives iris-limited f/1.457011934. Infinity diffraction center/half/95%-field converges at wide open and f/4; geometric wide-open95%-field remains unconverged at all three states (grid64), explicitly retained. Finite diffraction not run. Source image remains z95 mm; independent paraxial residual shifts are+0.061687,+0.096270,+0.141078 mm. Full evidence: local-validation/validation33.json and validate33.mjs.
+
+## 2026-11-09 — Deployment validation
+
+Independent check against CN 220137479 U (PDF pp. 6–7): 21 surfaces, the stop, the rear plate, 11 nd/νd pairs, both
+variable gaps at three states and both object distances agree; all spherical. Engine EFL 32.637 (printed 32.620),
+TL 95.000, magnification 0.0965 at 0.40 m; all four conditional expressions reproduce. Front page: 深圳市永诺电器有限公司,
+inventors Zhuang Ying, Ye Yuanhua, Zhuang Yongsheng, Zhuang Yongxiao. Attribution strong: Yongnuo's 2026 catalog
+lists E and Z mounts, APS-C, 11 elements / 9 groups, 0.4 m, 0.1×, and low-dispersion plus high-index glass, which
+the example's two nd 1.593 and four high-index elements match.
+
+Deployment change: `projection.fullFieldDeg` → 48.74, the printed 2ω (para. 0051); `focalLengthMm.design` → 32.62
+(Table 2); `catalog.lensMounts` ["sony-fe", "nikon-z"] from the maker catalog.
+
+Open: the analysis text still calls 46.8° unprinted; wording.

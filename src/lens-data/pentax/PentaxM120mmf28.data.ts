@@ -5,6 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Clear radii 22/11.5 mm are figure-guided estimates, not manufacturing apertures.
  * Probable product association, not factory confirmation. Infinity-only geometry.
  * Native geometry and bounded rays/MTF evaluated; full integration gates pending.
+ * Source erratum (unresolved): the printed table traces to f = 99.23 / back focus 35.21 at patent scale against the
+ * stated F = 100 / 35.52 and F1.2.3.4 = 52.73. r8 = 53.39 instead of the printed 53.93 reproduces all three, but the
+ * claims and the Japanese original JP S53-27421 A print 53.93 too, so the printed value is kept.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -21,7 +24,7 @@ const LENS_DATA = {
     "groupCount": 5,
     "focalLengthMm": {
       "marketing": 120,
-      "design": 119.08145357952586
+      "design": 120
     },
     "fNumber": {
       "marketing": 2.8,
@@ -47,6 +50,12 @@ const LENS_DATA = {
     ],
     "assignees": [
       "Asahi Kogaku Kogyo Co., Ltd."
+    ],
+    "errata": [
+      {
+        "status": "unresolved",
+        "note": "Example 1 traces to f = 99.23 and back focus 35.21 at the patent's F = 100 scale, against the stated F = 100, back focus 35.52 and F1.2.3.4 = 52.73. Reading r8 as 53.39 instead of the printed 53.93 reproduces all three, but the claims and the Japanese original JP S53-27421 A also print 53.93, so the printed value is kept."
+      }
     ]
   },
   "elements": [

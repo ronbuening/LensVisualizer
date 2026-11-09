@@ -14,12 +14,13 @@ const LENS_DATA = {
     "groupCount": 9,
     "focalLengthMm": {
       "marketing": 33,
-      "design": 32.63677591149121
+      "design": 32.62
     },
     "fNumber": {
       "marketing": 1.4,
       "design": 1.4570119336552654
     },
+    "lensMounts": ["sony-fe", "nikon-z"],
     "imageFormat": "aps-c"
   },
   "source": {
@@ -352,7 +353,7 @@ const LENS_DATA = {
   ],
   "projection": {
     "kind": "rectilinear",
-    "fullFieldDeg": 46.8
+    "fullFieldDeg": 48.74
   }
 } satisfies LensDataV2Input;
 export default LENS_DATA;

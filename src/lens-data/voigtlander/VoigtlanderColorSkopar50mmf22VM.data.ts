@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   key: "voigtlander-color-skopar-50mm-f22-vm",
-  maker: "Voigtlander",
+  maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM (patent reconstruction)",
   subtitle: "JP 2025-187904 A Embodiment 1; literal 48.455mm/F2.254; source interval 13.99mm; infinity only.",
   catalog: {

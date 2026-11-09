@@ -5,3 +5,17 @@ Baseline 9128e249e492fe49eb032df61aa0ffb60d8e1d15. Literal acquired-source trans
 Integration and compiled-viewer results are recorded separately by the final report, rather than asserted before they run. Color-Skopar18 E1 is a separate source hold and is not included as an authored lens.
 
 Additive independent qualification: Color50 rows31/38 remain aimed native noBracket failures. Separate analytical saved-state S9 sphere roots place them at radius10.39306722949 mm, outside frozen9.25 mm cap by1.14306722949 mm. Other8 raw failures carry native aim-blocked status. Native clipEvent alone is not used as independent proof; inferred-cap miss is not factory clipping. Original data, arrays, failures and archives remain unchanged; no native rerun.
+
+## 2026-11-09 — Deployment validation
+
+Independent check against the full JP 2025-187904 A (J-PlatPat, 17 pp.; page 8 table): 13 surfaces plus STO, the
+cemented pair at S8–S10 and D14 at both printed states agree with the file; all surfaces spherical (para. 0040).
+Engine EFL 48.447 (printed 48.455), F/2.254, ω 23.797°, f1/f2/f21/f22/f23 reproduce Table 1. Front page: Cosina Co.,
+Ltd., inventor Tatsuya Moriyama, filed 2024-06-14, published 2025-12-25. Attribution: Cosina's VM construction
+diagram is 7 elements / 6 groups with three APD elements at the patent's positions 2, 3 and 6; Embodiments 2 (8/7)
+and 3 (8/6) do not fit. The maker drawing's air spacings differ by up to 3 mm, so the match is design-family level.
+
+Deployment change: `maker` → "Voigtländer" to match the other Voigtländer files.
+
+Open: Table 3 prints a close state (D0 642.00, D14 17.96; 0.70 m, the rangefinder-coupling limit) that the file
+does not model; glass labels; wording.

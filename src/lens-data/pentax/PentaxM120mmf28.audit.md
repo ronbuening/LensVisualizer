@@ -51,3 +51,20 @@ The subsequent exclusive integration run passed metadata generation, whole-tree 
 Built lens and Pentax maker pages were read back, along with the lazy-loaded analysis asset. Identity, source-plane and dispersion qualifications, refined convergence history and maker linkage were verified. Analysis text is in its JS asset, not embedded in prerendered HTML. No maker profile change was needed. The analysis retains its pre-gate status sentence so delivered rendered input remains byte-identical to the successful build input; this final audit and package README supersede that sentence.
 
 No prescription, aperture inference, source plane, engine, threshold, or test change was made after optical evaluation. Existing models are untouched; only the new model triplet and generated README count differ from baseline.
+
+## 2026-11-09 — Deployment validation
+
+Independent check against US 4,134,645 (page 6 table and the claim 1 copy): 10 R, 9 d, 5 n/ν and the back focus
+equal the patent ×1.2 exactly. The printed table traces to f = 99.23 and back focus 35.21 at F = 100 against the
+stated 100 and 35.52; F1.2.3 reproduces (77.97) but F1.2.3.4 does not (52.54 vs 52.73). A search of single-digit
+and transposition changes isolates r8 = 53.39 for the printed 53.93, which reproduces f, back focus and F1.2.3.4;
+Examples 2 and 3 reproduce their own stated values. The claims, GB 1584416, DE 2738365 and the Japanese original
+JP S53-27421 A (J-PlatPat; its 1979 amendment changes only the claims) all print 53.93, so the evidence is one
+kind and the value stays as printed under an `unresolved` erratum. Front page: Asahi Kogaku Kogyo, inventors
+Sugiyama, Kubota, Adachi. Attribution: the LX manual lists the M 120mm f/2.8 as 5 elements / 5 groups, 21°, 1.2 m;
+Examples 2 and 3 scale to the M 135mm and M 150mm. No maker section drawing exists.
+
+Deployment change: `source.errata` (unresolved) and header note added; `focalLengthMm.design` → 120, the stated
+design focal length at the file's scale.
+
+Open: wording; the stop position is inferred.

@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   key: "voigtlander-color-skopar-18mm-f28-x",
-  maker: "Voigtlander",
+  maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 X (patent reconstruction)",
   subtitle: "Whole JP 2025-044411 A Embodiment 3; native 18.54 mm/F2.82; literal image z41.02 mm; infinity only.",
   catalog: {
@@ -259,8 +259,8 @@ const LENS_DATA = {
   },
   aperture: {
     nominalFNumber: 2.82,
-    fStops: [2.82, 4, 5.6, 8, 11, 16],
-    maxFNumber: 16,
+    fStops: [2.82, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
     blades: 10,
   },
   projection: {
