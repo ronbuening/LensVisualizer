@@ -16,8 +16,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the patent says only that the diaphragm sits near the intermediate group and draws none. The model places it
  * 3.6 mm ahead of S9, 84.0 mm behind S1, splitting d8 into 41.28 + 3.6 mm; its radius is set by the paraxial
  * entrance pupil, F/N. Asahi's A* drawing shows the stop just ahead of the doublet.
- * Semi-diameters are inferred, none is printed: 39, 37, 34 and 31 mm for L1 to L4, 12 mm for the doublet and 16 mm
- * for L7 and L8, from the proportions of Fig. 1 with positive edge thickness. No rim cuts.
+ * Semi-diameters are inferred, none is printed. They are estimated from Fig. 1 (300 dpi; 6.14 px per model mm from
+ * the S1 to S16 vertex span) and floor-checked by real-ray trace: 39, 37 and 31 mm for L1, L2 and L4; 34 mm for L3's
+ * flat front, whose concave rear ends at 30.6 mm (29.7 mm axial beam) with a land out to the drawn 34 mm blank;
+ * 12 mm for the doublet; 16 mm for L7; 18.3 and 19.3 mm for the two faces of L8. No rim cuts.
  * Glass labels are catalog rows equal to the printed N and ν; the production supplier is not known.
  * Field: the model keeps the patent's ±4.5°; Asahi lists an 8.3° angle of view for the retail lens.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies. The
@@ -206,7 +208,8 @@ const LENS_DATA = {
       "label": "6",
       "R": 81.09,
       "d": 0.09,
-      "sd": 34
+      "sd": 30.6,
+      "rimExtensionSd": 34
     },
     {
       "label": "7",
@@ -263,14 +266,14 @@ const LENS_DATA = {
       "label": "15",
       "R": 179.52,
       "d": 5.61,
-      "sd": 16,
+      "sd": 18.3,
       "medium": 8
     },
     {
       "label": "16",
       "R": -50.58,
       "d": 39.81295531541666,
-      "sd": 16
+      "sd": 19.3
     }
   ],
   "focus": {

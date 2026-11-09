@@ -111,7 +111,7 @@ The patent prints no back focus. The final gap is the computed paraxial back foc
 
 The patent places the diaphragm "in the vicinity of the intermediate lens group" and draws none. The model puts it 3.6 mm ahead of S9, 84.0 mm behind S1, by splitting d8 (44.88 mm) into 41.28 + 3.6 mm, a modeling choice. Its radius, 11.55 mm, follows from the paraxial entrance pupil at f/4, 37.53 mm in radius. Asahi's A★ drawing shows the diaphragm just ahead of the doublet, which agrees. The diaphragm closes from f/4 to f/32, as Asahi lists.
 
-The patent prints no semi-diameters, so all are inferred: 39, 37, 34 and 31 mm for L1 to L4, 12 mm for the doublet and 16 mm for L7 and L8, from the proportions of Fig. 1 with positive edge thickness. Fig. 1 and the A★ drawing both show L8 slightly taller than L7, about 18 to 19 mm at this scale, so the model's L8 is on the small side. At f/4 the axial beam fills 37.5 mm of L1's 39 mm. Toward the format corner the rims of the rear group cut the oblique beam strongly, so the model's illumination falls well off at full aperture.
+The patent prints no semi-diameters, so all are inferred from Fig. 1 at the model's scale: 39, 37 and 31 mm for L1, L2 and L4; 34 mm for the flat front of L3, whose concave rear ends at 30.6 mm and meets the drawn square blank through a short land; 12 mm for the doublet; 16 mm for L7; and 18.3 and 19.3 mm for the two faces of L8, which Fig. 1 and the A★ drawing both show taller than L7. At f/4 the axial beam fills 37.5 mm of L1's 39 mm and 29.7 mm of L3's 30.6 mm rear rim. Wide open, about 70 % of the pupil reaches the 21.65 mm format corner (4.1°), and about 82 % at 3.4°.
 
 ## Comparison with Asahi's Section Drawing
 

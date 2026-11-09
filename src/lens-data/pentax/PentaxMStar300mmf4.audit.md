@@ -13,8 +13,8 @@ element by element; Fig. 1 serves Examples 1–3, so the example itself is not p
 
 Deployment change: this file.
 
-Open: the L8 rim (16 mm) is about 2.5 mm under the patent and maker drawings; wording (closed in the cleanup pass
-below).
+Open: the L8 rim (16 mm) is about 2.5 mm under the patent and maker drawings (closed in the semi-diameter pass
+below); wording (closed in the cleanup pass below).
 
 ## 2026-11-09 — Cleanup and wording pass
 
@@ -49,6 +49,45 @@ f/4 drawing comparison and a scope table.
 Engine, before and after (identical): EFL 300.2096 mm, F/4.000, half-field 4.5°, stop radius 11.5494 mm, BFD
 39.8130 mm, TL 181.1130 mm. Surface audit OK; aperture audit: 1 station within 3 % of f/4, no rim limit.
 
-Open: the L8 rim (16 mm) is about 2.5 mm under Fig. 1 and the A★ drawing (rims unchanged in this pass). `blades` is
-not set: the eight-blade figure comes from secondary listings, not from Asahi. The missing `cemented` tag and
-`doublets` bracket on L5 and L6 were added in this pass (closed).
+Open: the L8 rim (16 mm) is about 2.5 mm under Fig. 1 and the A★ drawing (rims unchanged in this pass; closed in
+the semi-diameter pass below). `blades` is not set: the eight-blade figure comes from secondary listings, not from
+Asahi. The missing `cemented` tag and `doublets` bracket on L5 and L6 were added in this pass (closed).
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/US4293197.pdf`, sheet 1 (PDF p. 2), Fig. 1, which serves Examples 1–3; native raster 300 dpi,
+read at 300 and 600 dpi with figprofile and zoomed crops. The axis is a 4 px line at rows 902–906 (300 dpi), tilting
+about 3 px across the figure, so each element is measured as half its full drawn height, which cancels the axis
+position. Scale: the S1 and S16 vertex crossings are 867 px apart for 47.10 patent units, 18.41 px per unit, so
+6.14 px per model mm at ×3. Check spans: S1–S8 gives 18.54 and S8–S9 and S12–S13 give 18.1 px per unit (within 2 %),
+and the S1 arc (R1 = 28.45) reaches the drawn L1 rim at the predicted 58 px sag, so the figure is not anamorphic.
+No stop is drawn.
+
+| Surface | Before (mm) | Fig. 1 (mm) | After (mm) | Evidence |
+|---|---|---|---|---|
+| 1, 2 (L1) | 39 | 39.7 | 39 | Pointed rim, 487 px full height; +1.7 %, noise |
+| 3, 4 (L2) | 37 | 36.6 | 37 | 449 px; −1.1 %, noise |
+| 5 (L3 front) | 34 | 34.0 | 34 | Square blank, flat top 417 px |
+| 6 (L3 rear) | 34 | 30.6 | 30.6, land to 34 | Concave face ends at a chamfer, 375 px; −10 %. The A★ drawing has the same slanted corner, rear about 0.92 of front |
+| 7, 8 (L4) | 31 | 30.5 | 31 | 374 px; noise |
+| 9, 10/11, 12 (doublet) | 12 | 12.1 | 12 | Square-cut, 148 px |
+| 13, 14 (L7) | 16 | 16.8 | 16 | 413 px at 600 dpi; +5 %, noise, and the L7 < L8 order is right after the L8 change |
+| 15 (L8 front) | 16 | 18.3 | 18.3 | 450 px at 600 dpi; the drawn rim slants, front face lower |
+| 16 (L8 rear) | 16 | 19.3 | 19.3 | 473 px at 600 dpi; +21 % |
+
+L3's rear cap ends at the figure's chamfer and `rimExtensionSd` 34 draws the land up to the square blank that S5
+keeps, so the silhouette stays a flat-topped blank. The cap clears the f/4 axial beam (29.73 mm) by 0.87 mm. L8 rises
+to the figure, which both drawings show taller than L7. No other rim moved.
+
+Clearance and light, starting rims vs final: no CLIPS-AXIAL or BLOCKS-CHIEF at the 21.65 mm corner (4.10°);
+surface audit OK; aperture audit within 3 % of f/4 with no rim limit; image circle 0 undersized; field coverage
+100 %, corner clear. Engine EFL 300.21 mm, F/4, half-field 4.5° and stop radius 11.549 mm are unchanged; the traced
+half-field limit rises from 4.78° to 5.49°. Wide-open transmission at 0, 0.7, 1.4, 2.0, 2.7, 3.4 and 4.1°: 100, 99.3,
+95.5, 91.1, 86.9, 80.2, 53.2 % before; 100, 98.9, 95.4, 91.1, 86.9, 82.5, 70.2 % after. The L3 cut costs 0.3 points
+at 0.7° and nothing at the corner, inside the 3-point rule, so it stays; the L8 raise gains 17 points at the corner.
+
+Maker drawing (Asahi's A★ 300mm f/4 section, printed p. 38 of the *SMC Pentax-A Lenses* booklet): same element order
+and grouping, L3's slanted rear corner, the doublet and L7 at about 12 and 16–17 mm and L8 at about 18 mm at this
+scale. It does not separate Examples 1–3.
+
+Open: none for rims.
