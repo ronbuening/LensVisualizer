@@ -11,8 +11,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the patent neither prints nor draws one. Following the PhotonsToPhotos Optical Bench transcription of this
  * example, the stop sits at the midpoint of the 100 mm air space d7 (50 + 50 mm); its radius is set by the f/4.5
  * paraxial entrance pupil.
- * Semi-diameters: the patent prints none and Fig. 1 is not to scale. Each is half the clear diameter that
- * PhotonsToPhotos Optical Bench lists for the same surface.
+ * Semi-diameters: the patent prints none. Fig. 1 is drawn close to scale, 17.7 px/mm along the axis at 144 dpi
+ * (18.1 across d7, 15.6 in the thin rear doublet) and about 17.5 across it from arc fits to R1, R2, R3, R6 and R7.
+ * Each semi-diameter is half the clear diameter that PhotonsToPhotos Optical Bench lists for the same surface, and
+ * the front-group values agree with Fig. 1 within about 1 %, except S3: Fig. 1 ends L2's front face 1.4 mm inside
+ * L1's rim, so S3 is 34.6 mm (listed 35.95). The rear doublet is drawn about 7 % smaller than listed. It keeps the
+ * listed values: they set the light at the field edge (the drawn values would take 5 points from the 4° corner) and
+ * match the maker's construction drawing, where the doublet is 0.42 of the front element's diameter.
  * Glass: five elements carry exact catalog equivalents of the printed nd and Abbe number. L4 is the glass the patent
  * calls an abnormal-dispersion glass of KzSF type (nd 1.7398, Abbe number 31.7); no catalog row matches it, so it is
  * traced on its Abbe number.
@@ -157,7 +162,7 @@ const LENS_DATA = {
       "label": "3",
       "R": -234.162,
       "d": 3,
-      "sd": 35.95,
+      "sd": 34.6,
       "medium": 2
     },
     {

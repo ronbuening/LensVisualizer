@@ -18,7 +18,7 @@ This is a patent design associated with the Olympus OM Zuiko Auto-T 300mm f/4.5,
 5. Extended as a unit to the 3.5 m minimum focus, the example reaches 0.112×, a 321 × 214 mm field. The lens's specifications give a 21 × 32 cm minimum field.
 6. The May 1972 priority falls at the launch of the OM system in 1972, and reference listings date the lens to the system's first years.
 
-The PhotonsToPhotos Optical Bench makes the same identification in the title of its transcription of this example. Olympus published no prescription, so the production radii cannot be confirmed, and the stop position and clear apertures come from that transcription rather than from the patent.
+The PhotonsToPhotos Optical Bench makes the same identification in the title of its transcription of this example. Olympus published no prescription, so the production radii cannot be confirmed, and the stop position and clear apertures come from that transcription and the patent's drawing rather than from its table.
 
 Retail and reference listings give f/4.5 to f/32, focusing by straight helicoid to 3.5 m, 72 mm filters, a built-in hood, a tripod collar and a weight of about 1.0–1.1 kg.
 
@@ -79,7 +79,9 @@ The patent names no focusing method and prints only the infinity state, so the m
 
 ## Aperture Stop and Clear Apertures
 
-The patent neither prints nor draws a stop. Fig. 1 shows the lenses alone, with d7 marked across the empty space, and is not drawn to scale. The model follows the PhotonsToPhotos Optical Bench transcription, which puts the stop at the midpoint of d7, 50 mm behind S7, and lists a clear diameter for every surface. Each semi-diameter in the model is half of that diameter, from 35.95 mm at S3 to 13.76 mm at S8. The stop radius, 18.70 mm, follows from the f/4.5 entrance pupil of 66.63 mm; PhotonsToPhotos lists a stop diameter of 38.38 mm, 2.6 % larger.
+The patent neither prints nor draws a stop; Fig. 1 shows the lenses alone, with d7 marked across the empty space. The model follows the PhotonsToPhotos Optical Bench transcription, which puts the stop at the midpoint of d7, 50 mm behind S7, and lists a clear diameter for every surface. The stop radius, 18.70 mm, follows from the f/4.5 entrance pupil of 66.63 mm; PhotonsToPhotos lists a stop diameter of 38.38 mm, 2.6 % larger.
+
+Fig. 1 is drawn close to scale. Its vertex spacings give one scale through the front group and across d7, within 2 %, though the thin rear doublet is drawn somewhat thin, and arc fits to the drawn surfaces give a similar scale across the axis. Read at that scale, the figure agrees with the PhotonsToPhotos diameters within about 1 % for L1 and the front cemented pair, and the model uses half of each. The figure draws L2 with bevelled corners and its front face ending 1.4 mm inside L1's rim, so S3 is 34.6 mm; L2's rear face, 32.96 mm, matches the figure. The rear doublet is drawn about 7 % smaller than the listed diameters. It keeps the listed values, which set the light at the edge of the field and match the proportions of the mir.com.my drawing. With these rims the 4° field edge receives 85 % of the axial light.
 
 The mir.com.my drawing does not settle where the diaphragm sits. Its barrel narrows behind the front group, and a pair of thin plates about 70 mm behind S7 may be the diaphragm housing, but the drawing is too small to read reliably. A stop there instead of at the midpoint would leave the focal length, the f-number and the axial beam unchanged; only the off-axis vignetting and the pupil positions would differ.
 
@@ -95,7 +97,7 @@ The mir.com.my drawing does not settle where the diaphragm sits. Its barrel narr
 | Telephoto ratio | within 0.8 (claimed aim) | 0.750 |
 
 - The prescription is the patent's, not a confirmed factory one.
-- The stop position and every semi-diameter come from the PhotonsToPhotos transcription; the patent prints neither.
+- The stop position and every semi-diameter but S3's come from the PhotonsToPhotos transcription, and S3 from Fig. 1; the patent prints neither a stop nor diameters.
 - The image plane is the computed paraxial back focus.
 - The model is static at infinity and says nothing about performance at 3.5 m.
 - Colour away from the d-line rests on catalog equivalents for five elements and on the Abbe number for L4, whose anomalous partial dispersion is not represented.

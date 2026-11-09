@@ -54,5 +54,47 @@ rim limit.
 
 Open: the stop at the midpoint of d7 is the PhotonsToPhotos convention; the mir.com.my drawing may place the diaphragm
 nearer 70 mm behind S7, which would change off-axis vignetting only. Rims stay as transcribed and are not checked
-against a figure (Fig. 1 is not to scale). The lens's introduction year (1972–1974 in reference listings) is not
-fixed; a dated Olympus catalogue page would settle it and might carry a sharper construction drawing.
+against a figure (Fig. 1 is not to scale). (Rim item closed in the semi-diameter pass below, which also finds Fig. 1
+close to scale; the earlier "not to scale" reading was wrong.) The lens's introduction year (1972–1974 in reference
+listings) is not fixed; a dated Olympus catalogue page would settle it and might carry a sharper construction drawing.
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/US3819253.pdf`, sheet 1 (PDF page 2), Fig. 1, the only section drawing, of the sole example at
+infinity (the front page repeats it smaller). The scan is 72 ppi native; it was rendered at 144 dpi, the axis line was
+fitted (3.49° tilt, rms 0.5 px over 282 rows) and the drawing resampled along and across that axis.
+
+Scale, both directions. Vertex crossings beside the axis (S1 168, S2 413, S3 481, S4/S5 520, S6 734, S7 774, S8 2580,
+S9 2611, S10 2674 px) give 17.74 px/mm through the front group (S1–S7, 34.1 mm), 18.07 across d7 (100 mm), 15.6 in
+the rear doublet (6 mm) and 17.88 overall (S1–S10, 140.1 mm); d7 is drawn to scale and the thin elements somewhat thin.
+Across the axis, arcs fitted to the drawn R1, R2, R3, R6 and R7 at the front-group axial scale give 18.0, 17.3, 18.0,
+17.5 and 16.1 px/mm, median 17.5; the rear surfaces' short arcs scatter (15–20). Readings use 17.5 px/mm across the
+axis. The drawn axis runs about 7 px off the element centres, so each rim is the mean of its top and bottom readings.
+
+Rims (figure px → mm, stored, figure/stored), read where each curved face ends (L2 and the rear face of the front pair
+end in bevels; L1 and the rear doublet are drawn square):
+S1 630 → 36.0, 35.73, 1.01. S2 630 → 36.0, 35.73, 1.01. S3 605 → 34.6, 35.95, 0.96. S4 578 → 33.0, 32.96, 1.00.
+S5 582 → 33.3, 33.39, 1.00. S6 585 → 33.4, 33.39, 1.00. S7 546 → 31.2, 31.04, 1.00. S8 227 → 13.0, 13.76, 0.94.
+S9 241 → 13.8, 14.83, 0.93. S10 241 → 13.8, 14.83, 0.93.
+
+The PhotonsToPhotos diameters for L1, the front pair and L2's rear face match the figure within 1 %. One change: S3
+35.95 → 34.6. The figure ends L2's front face 1.4 mm inside L1's rim (605 against 630 px, each read to about ±3 px),
+where the stored values put it 0.2 mm outside; the step order is now as drawn and L2's front/rear ratio is 1.05
+against 1.05 drawn. S3 does not limit any traced beam: the f/4.5 axial ray reaches 31.66 mm there, the gap to S2 stays
+3.9 mm at the rim, and the corner light is unchanged.
+
+Kept: the rear doublet, drawn about 7 % smaller than stored (S8 0.94, S9/S10 0.93). Its drawn thickness is also 13 %
+short of scale, so its own drawn proportions (rim to thickness 2.58) match the model's (2.47) within 5 %, and the
+mir.com.my construction drawing gives it 0.42 of the front element's diameter against 0.415 stored and 0.38 in the
+patent figure. Moving it to the figure would cost 5.1 points of light at the 4° corner (84.6 → 79.5 %), more than the
+3-point allowance; a half-way move would cost 2.3. L1's square rim, both front-pair faces and L2's rear face are
+within reading error and keep their values.
+
+Clearance, final set: surface audit OK; aperture audit reports no rim limit; real-ray trace at Y = 21.6 mm shows no
+axial clip or blocked chief ray (ω 4.08°); image-circle check 0 undersized; field coverage 98 %, limited by the
+declared 4° field (21.16 of 21.65 mm), corner clear. Engine EFL 299.845 mm, f/4.5, half-field 4.0° and stop radius
+18.698 mm unchanged. Geometric transmission at 0, 2.0, 2.7, 3.3 and 4.0°: 100, 99.1, 97.3, 92.3, 84.6 % before and
+after. The only printed state is infinity, and the page render at that state shows L2's front rim just inside L1's,
+as drawn. Overlay of model outlines on the rectified figure (new rims red, old blue) kept outside the repo.
+
+Open: the rear doublet's rims stay about 7 % above the figure reading for the reasons above.
