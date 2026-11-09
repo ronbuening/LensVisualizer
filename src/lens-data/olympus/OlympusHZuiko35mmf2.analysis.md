@@ -120,14 +120,12 @@ The final gap of 39.683 mm is the printed back focus (1.1338 at f = 1). The comp
 
 The patent neither prints nor draws a stop. The model places it in the 4.71 mm air space d9 between the cemented pair and L6, 1.67 mm behind S9, as in the PhotonsToPhotos layout. The space ahead of the rear group is the usual place for the iris in this layout, but the position is a modeling choice. At f/2 the entrance pupil radius is 8.75 mm and the stop radius 8.78 mm.
 
-All semi-diameters are inferred. They follow the PhotonsToPhotos clear diameters, with two reductions:
+All semi-diameters are inferred. They start from the PhotonsToPhotos clear diameters and follow the proportions of Fig. 1. L1, L2, L3, the cemented pair and L8 agree with the figure to within about 5 %. Two rims are set by the geometry:
 
-- S4, the deep concave face of L2, from 10.24 to 10.0 mm, for the rim-slope limit.
-- S11–S13 (the rear of L6 and both faces of L7) from 11.06 to 10.4 mm, to keep edge clearance in the 1.4 mm air space between them.
+- S4, the deep concave face of L2, is 10.0 mm. That is the largest the rim-slope limit allows, against 10.24 mm in PhotonsToPhotos and about 10.5 mm in the figure.
+- Fig. 1 draws L6 and L7 square-cut, touching at the rim and level with L8, about 15 % taller than the cemented pair. Their facing surfaces S11 and S12 meet at 11.07 mm, so S11–S13 are 11.0 mm, 0.02 mm short of contact. S10 is 10.77 mm, where L6's front curve ends at the small chamfer the figure draws.
 
-Fig. 1 draws L1 about twice the height of the middle group. It draws L6 and L7 about a tenth taller than the middle group, with their rims touching, so the model's rear rims are on the small side.
-
-At those rims about 84 % of the f/2 beam that fills the stop clears every surface at 19.2°, and about 30 % at the patent's 32° edge, cut mainly by the rear rims. These are model results that depend on the inferred rims.
+With these rims the whole f/2 beam passes on axis, 77 % of it reaches the image at 20.4° and 24 % at the patent's 32° edge. L8's rim does most of the cutting at the edge. These are model results that depend on the inferred rims.
 
 ## Model Scope and Limitations
 
@@ -140,7 +138,7 @@ At those rims about 84 % of the f/2 beam that fills the stop clears every surfac
 | Field (2ω) | 64° | 64° | 64° |
 
 - The prescription is the patent's, not a confirmed factory one.
-- The stop position and all semi-diameters are inferred, and the rear rims are smaller than Fig. 1 suggests.
+- The stop position and all semi-diameters are inferred.
 - The image plane is the printed back focus.
 - The model is static at infinity and says nothing about performance at 0.3 m.
 - The real chief ray at 32° reaches 21.42 mm, about 2 % short of f·tan ω. That is the barrel distortion Fig. 4 plots at the field edge, and 0.2 mm short of the 135 format corner, which the model reaches at 32.3°.

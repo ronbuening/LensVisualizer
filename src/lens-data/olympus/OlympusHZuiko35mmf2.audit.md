@@ -58,7 +58,8 @@ and its limits, the maker-drawing comparison, the patent's seven conditions, the
 table and the model's limits. It drops the process material (packet, scaffold, fingerprint, sampling-grid, MTF-grid
 and test-status lines) and the incorrect asphere round-trip claim. The full-pupil edge fraction is now an independent
 3D trace at the file's rims: 84 % at 19.2° and 30 % at 32° of the stop-filling f/2 beam. The earlier 0.901 and 0.243
-used a denominator that was not stated and were not reproduced.
+used a denominator that was not stated and were not reproduced. (Corrected in the semi-diameter pass below: 0.243 is
+the engine's own transmission at 32°, and the analysis now quotes the engine curve.)
 
 Engine, before → after: EFL 34.99838, FOPEN 2, half-field 32°, tracing half-field 28.478°, stop radius 8.77737 and
 paraxial BFD 39.6846 are all unchanged; `closeFocusM` 0.4892 → 1e15. The surface audit is OK, and the aperture audit
@@ -66,4 +67,50 @@ reports no rim limit.
 
 Open: Fig. 1 draws L6 and L7 rims touching at about 1.13 times the middle-group height (about 11.2 mm at the figure's
 height scale), against 10.4 mm in the model at S11–S13. Raising them would need the S11/S12 edge clearance
-re-checked, and it would reduce the modeled corner vignetting.
+re-checked, and it would reduce the modeled corner vignetting. (Closed in the semi-diameter pass below: S11–S13 are
+now 11.0 mm.)
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: `patents/US3844640.pdf`, page 2, Fig. 1, the section of the single example. The page is a 1-bit scan at 72 ppi
+and was measured at its native resolution. The optical axis is tilted by 0.72° on the scan, so each height was read
+from the local axis line, and top and bottom readings were averaged.
+
+Scale: the S1 and S15 vertex crossings are 766.5 px apart for 47.667 mm, giving 0.0622 mm/px along the axis. The S4
+vertex lands within 0.01 mm of the prescription. Arc fits to S1, S4 and S10 give 0.0585–0.062 mm/px across the axis,
+so the drawing is close to isotropic. Heights were therefore converted with the cemented pair's height (163.35 px for
+10.01 mm, 0.0613 mm/px). At that scale L1 and L2 read within 0.2 % of the file.
+
+| Surface | Starting sd | Fig. 1 | Final sd | Evidence |
+|---|---|---|---|---|
+| S1/S2 (L1) | 19.94 | 19.92 | 19.94 | agrees |
+| S3 (L2 front) | 16.19 | 16.21 | 16.19 | agrees |
+| S4 (L2 rear) | 10.0 | 10.47 (end of the arc at the bevel) | 10.0 | −4.5 %; the rim-slope limit for R = 11.193 mm caps it at 10.07 |
+| S5 (L3 front) | 9.46 | 9.83 | 9.46 | −3.8 %, noise |
+| S6 (L3 rear) | 9.06 | 8.58 (end of the arc at the chamfer) | 9.06 | +5.6 %, noise |
+| S7–S9 (L4–L5) | 10.01 | 10.01 (scale reference) | 10.01 | reference |
+| S10 (L6 front) | 10.77 | 10.88 (end of the arc at the chamfer) | 10.77 | agrees |
+| S11 (L6 rear) | 10.4 | 11.55 (square rim, touching L7) | 11.0 | raised to 0.02 mm short of contact with S12 |
+| S12/S13 (L7) | 10.4 | 11.55 (square rim) | 11.0 | raised; square rim kept |
+| S14/S15 (L8) | 10.97 | 11.59 | 10.97 | −5.3 %, noise; level with L6 and L7 as drawn |
+
+S11 and S12 meet at 11.07 mm, so the figure's 11.55 mm cannot be reached. At 11.0 mm their combined sag is 1.382 mm of
+the 1.4 mm gap, a fraction of 0.987. `checks.gapSagFrac` is therefore 0.99, the smallest two-decimal value that admits
+it; 0.98 is refused. With the raise, L6, L7 and L8 stand level as drawn, 10 % taller than the cemented pair against
+about 15 % in the figure.
+
+Light, wide open at infinity against the starting rims (engine geometric transmission): mid-field gains up to 1.7
+points (5.8° 99.3 → 100, 8.7° 97.7 → 99.4, 11.6° 95.8 → 97.2). From 20.4° outward the curve barely moves: 76.7 → 77.0 %
+at 20.4°, and 24.3 % at 32° before and after. The corner is limited mainly by L8:
+raising L8 alone to 14 mm would give 43 %. No rim lost light.
+
+Clearance: the surface, image-circle and aperture audits pass. The traced chief ray reaches the 21.65 mm corner at
+32.3°. A real-ray f/2 axial trace no longer flags S12 or S13; at 10.4 mm it did, by 0.01 and 0.39 mm. Engine EFL
+34.998, f/2, half-field 32° and stop radius 8.777 are unchanged. The lens has one printed state (infinity), checked
+live.
+
+Maker drawing (mir.com.my, 112 × 130 px, front to the right): mirrored, it agrees in order and grouping: two large
+front menisci, the middle group with one cemented pair, then three rear elements of similar height. It is too small
+to check rim proportions beyond L1 being about twice the middle group, which the model also has.
+
+Open: none for rims.

@@ -14,9 +14,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the patent neither prints nor draws one. It sits in the 4.7145 mm air space d9 between the cemented pair and
  * the biconcave element, 1.6745 mm behind S9 and 3.04 mm ahead of S10, as in the PhotonsToPhotos layout; its radius
  * is set by the paraxial entrance pupil at f/2.
- * Semi-diameters are inferred, none is printed. They follow the PhotonsToPhotos clear diameters, with two
- * reductions: S4 from 10.235 to 10.0 mm for the rim-slope limit of its deep concave face, and S11–S13 from 11.055
- * to 10.4 mm to keep edge clearance in the 1.4 mm air space between L6 and L7.
+ * Semi-diameters are inferred, none is printed. They start from the PhotonsToPhotos clear diameters and are checked
+ * against Fig. 1, scaled by the axial vertex span and by the cemented pair's height (L1, L2, L3 and the pair agree
+ * with the figure to within about 5 %). S4 stays at 10.0 mm (figure about 10.5 mm, PhotonsToPhotos 10.235 mm): its
+ * deep concave face reaches the validator's rim-slope limit there. Fig. 1 draws L6 and L7 square-cut and touching at
+ * the rim, at about the height of L8 (about 11.5 mm); their facing surfaces S11 and S12 meet at 11.07 mm, so S11–S13
+ * are 11.0 mm, 0.02 mm short of contact, and `checks.gapSagFrac` is 0.99 to admit the S11/S12 pair. S10 (10.77 mm) matches the
+ * end of L6's front curve before the small chamfer the figure draws.
  * Focus: the patent prints the infinity state only and names no focusing motion, so no gap varies. The production
  * lens focuses as a unit on a straight helicoid to 0.3 m; that movement is not modeled.
  */
@@ -56,6 +60,9 @@ const LENS_DATA = {
   },
   layout: {
     yScFill: 0.4,
+  },
+  checks: {
+    gapSagFrac: 0.99,
   },
   elements: [
     {
@@ -224,20 +231,20 @@ const LENS_DATA = {
     {
       label: "11",
       R: 159.4005,
-      sd: 10.4,
+      sd: 11.0,
       d: 1.4,
     },
     {
       label: "12",
       R: -60.9,
-      sd: 10.4,
+      sd: 11.0,
       d: 3.885,
       medium: 7,
     },
     {
       label: "13",
       R: -19.4145,
-      sd: 10.4,
+      sd: 11.0,
       d: 0.1015,
     },
     {
