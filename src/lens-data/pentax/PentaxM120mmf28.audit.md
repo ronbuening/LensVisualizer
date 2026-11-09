@@ -102,3 +102,41 @@ puts it 20.6 mm behind S6 rather than 5 mm); relabel L1 to BSL22 once that catal
 real marginal ray meets the inferred stop at 19.08 mm against the 17.19 mm paraxial stop radius (the front group is
 strongly over-corrected), so the real-ray on-axis aperture at that stop is about f/3.05; this follows the shared
 paraxial F/N stop rule and was not changed.
+
+## 2026-11-09 — Semi-diameter pass against the patent figure
+
+Source: US 4,134,645, page 2 (sheet 1), Fig. 1, the section of Example 1, read at its native 300 dpi raster. The
+dash-dot axis is skewed by about 0.9° (row 1395.5 at x 730 falling to 1383.5 at x 1515), so each rim is taken as half
+of the element's drawn top-to-bottom extent rather than measured from the axis line.
+
+Scale: vertex crossings read beside the axis at r1 853, r2 895.5, r3 935, r4 and r5 950, r6 1019, r7 1348, r8 1376,
+r9 1430.5 and r10 1447.5 px. r1 to r10 is 594.5 px for 53.46 patent units, 11.12 px per unit; a least-squares fit
+over all ten crossings gives 11.26 (residuals under 4.5 px except 9.1 px at r1). The spans r1 to r6 (10.63) and r6 to
+r10 (11.32) show the front group drawn slightly compressed. At the file's ×1.2 this is 0.1079 mm/px (0.1065 by the
+fit).
+
+| Element | Drawn half-height (px) | Figure sd (mm) | Stored sd (mm) | Figure / stored |
+|---|---|---|---|---|
+| L1 (S1, S2) | 202.9 | 21.9 (21.6) | 22 | 1.00 (0.98) |
+| L2 (S3, S4) | 203.2 | 21.9 (21.6) | 22 | 1.00 (0.98) |
+| L3 (S5, S6) | 201.3 | 21.7 (21.4) | 22 | 0.99 (0.97) |
+| L4 (S7, S8) | 105.5 | 11.4 (11.2) | 11.5 | 0.99 (0.98) |
+| L5 (S9, S10) | 106.0 | 11.4 (11.3) | 11.5 | 0.99 (0.98) |
+
+Fig. 1 draws every element with a flat cap at one height for both faces, as the file has. The two directions agree at
+the rims: at the stored values the edge thicknesses are 4.78 mm (L2) and 2.64 mm (L4) against about 4.7 and 2.7 mm
+across the drawn caps net of line width, and the rim gaps L1 to L2 (0.64 mm) and L4 to L5 (1.96 mm) against about 0.8
+and 2.1 mm. The figure draws the strongly curved faces R1 and R5 flatter than the printed radii, a schematic
+simplification that does not move the rim heights. An overlay of the model outline on Fig. 1 at the fitted scale
+matches all five silhouettes.
+
+Decision: every rim is within 3 % of the figure, inside measurement noise, so no value changed; the stop was outside
+this pass. Clearance with the unchanged rims: the surface validator passes; the aperture audit finds f/2.8 with no rim
+limit; the image-circle floor reports nothing undersized; the traced corner chief ray reaches 21.65 mm at 10.2°; the
+real-ray trace at 21.6 mm image height shows no axial clip or chief-ray block, with the smallest axial margins 0.74 mm
+at S1 (21.26 of 22 mm) and 1.29 mm at S7. Corner illumination at f/2.8 is 97.0 % at 5.1°, 89.8 % at 6.8°, 81.3 % at
+8.5° and 71.1 % at 10.2°, identical to the starting rims. Engine half-field 10.2° and f/2.8, unchanged.
+
+Maker drawing: none exists (see the deployment validation above); the LX manual lists five elements in five groups and
+Pentax publishes no aspherical or special-dispersion element for this lens. The page at infinity, the only state the
+patent prints, shows the three tall front elements and the half-height rear pair as Fig. 1 does.

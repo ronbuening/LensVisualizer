@@ -19,7 +19,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: the patent neither prints nor draws one. It sits in the long air space d6, 5 mm behind S6, which splits d6
  * into 5 + 29.608 mm; its radius is set by the paraxial entrance pupil, F/N.
  * Semi-diameters are inferred, none is printed: 22 mm on the three front elements and 11.5 mm on the rear pair, the
- * heights of Fig. 1 read at the scale of its S1 to S10 vertex span (the rear pair is drawn about half as tall).
+ * heights of Fig. 1 read at the scale of its S1 to S10 vertex span (the rear pair is drawn about half as tall); at
+ * these rims the drawn edge thicknesses of L2 and L4 match the prescription. Every rim passes the f/2.8 axial beam
+ * and the chief ray to the 21.6 mm corner.
  * Glass: four of the five n/ν pairs equal catalog d-line rows at the printed precision, so the table is read as d-line.
  * Focus: the patent names no focusing group or motion and prints the infinity state only, so no gap varies. The
  * 1.2 m minimum focus is Pentax's retail figure and is not modeled.
