@@ -15,11 +15,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **1082** visible lenses scanned
 - **755** lenses fully covered by trusted chromatic data
 - **750** visible lenses fully covered by trusted chromatic data
-- **746** lenses fully covered by strict Sellmeier data
-- **741** visible lenses fully covered by strict Sellmeier data
-- **9** lenses fully covered only after measured line-index data
-- **9** visible lenses fully covered only after measured line-index data
-- **11628 / 12477** non-air surfaces use strict catalog Sellmeier data
+- **747** lenses fully covered by strict Sellmeier data
+- **742** visible lenses fully covered by strict Sellmeier data
+- **8** lenses fully covered only after measured line-index data
+- **8** visible lenses fully covered only after measured line-index data
+- **11632 / 12477** non-air surfaces use strict catalog Sellmeier data
 - **93.2%** strict Sellmeier surface coverage overall
 - **11646 / 12477** non-air surfaces use trusted chromatic data
 - **93.3%** trusted chromatic coverage overall
@@ -749,6 +749,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [KONICA ZOOM-HEXANON AR 35-70mm f/3.5](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf35.data.ts) | 9/9 | 9 | 9/9 |
 | [LEICA SUMMILUX-M 35mm f/1.4 ASPHERICAL](../../src/lens-data/leica/LeicaSummiluxM35mmf14Aspherical.data.ts) | 9/9 | 9 | 9/9 |
 | [MAMIYA-SEKOR ZOOM E 28-50mm f/3.5-4.5](../../src/lens-data/mamiya/MamiyaSekorZoomE2850mmf3545.data.ts) | 9/9 | 9 | 9/9 |
+| [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6 PD-ZOOM](../../src/lens-data/nikon/Nikon1NikkorVR1030mmf3556PDZoom.data.ts) | 9/9 | 9 | 9/9 |
@@ -1069,7 +1070,6 @@ These lenses are complete for chromatic tracing but not strict catalog-Sellmeier
 | [FUJIFILM FUJINON GF 110mm f/5.6 T/S Macro](../../src/lens-data/fujifilm/FujifilmGF110mmf56TSMacro.data.ts) | 11/11 | 10/11 | 11 | 10/11 | 1 | Line indices |
 | [PANASONIC LUMIX G VARIO 12-60mm f/3.5-5.6 ASPH. POWER O.I.S.](../../src/lens-data/panasonic/PanasonicLumixG1260mmF3556.data.ts) | 11/11 | 9/11 | 11 | 9/11 | 2 | Line indices |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | 8/8 | 6/8 | 8 | 6/8 | 2 | Line indices |
-| [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | 9/9 | 5/9 | 9 | 5/9 | 4 | Line indices |
 
 ## Incomplete Lenses by Completeness
 
