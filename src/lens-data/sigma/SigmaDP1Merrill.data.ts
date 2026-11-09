@@ -1,26 +1,31 @@
 /**
- * Sigma DP1 Merrill probable family, JP 2013-137377 A Example 4.
- * Native 18.82 mm / F2.89, no retail scaling. Literal source radii, spacings,
- * nd/vd, S12/S17 aspheres and rear filter/image gap are unchanged.
- * NOTE ON SEMI-DIAMETERS: inferred from Fig10 (PDF25), not factory dimensions.
- * 400dpi vertex span608px =39.85mm. Square rims remain square. S4 and S15
- * have figure-supported opaque rim extensions. S4 optical cap and S7 cemented
- * square-rim neighborhood are initially limited by the default rim-slope rule;
- * rims remain inferred, although exact source-field and aperture checks pass.
- * Ordinary-prime iris radius is derived from native F2.89; no authored STO sd.
- * Infinity only; no fabricated near-focus law. E3/E7 are plausible alternatives.
- * Original full brochure/grant custody unavailable; recovered A-publication and
- * maker crop retained. No exact factory-embodiment or commercial-glass claim.
+ * JP 2013-137377 A (Yamazaki, Sigma), Example 4, associated with the SIGMA 19mm F2.8 lens of the DP1 Merrill (2012).
+ * The association rests on construction (nine elements in eight groups, a very low-dispersion second element, a
+ * high-index front element, aspheres on elements 6 and 9), focal length, aperture, field and timing; Examples 3 and 7
+ * of the same patent are close alternatives. This is a patent design, not a confirmed factory prescription.
+ * Scale: none. The example is printed at f = 18.82 mm, F2.89 (computed EFL 18.821 mm).
+ * Printed: R, d, d-line n and Abbe number for surfaces 1-20; aspheres on S12 and S17 (K = 0, A4-A10, standard form
+ * with (1 + K)); f, F-number, 2ω = 75.18°, image height 14.20 mm, length 46.98 mm including the filter; group focal
+ * lengths 11.71 and -26.50 mm. The filter (S19-S20, 1.20 mm, nd 1.52301, νd 58.59) is a rear plate with its printed
+ * 1.00 mm and 4.9327 mm gaps; the paraxial back focus is 0.0001 mm shorter than the printed image gap.
+ * Stop: printed as surface 5, 6.10 mm behind S4 and 2.20 mm ahead of S6. Its radius (3.410 mm) is set from F2.89.
+ * Semi-diameters are inferred, none is printed. They are read from Fig. 10 (PDF p. 25) at its axial scale (first to
+ * last vertex, 39.85 mm). Fig. 10 draws flat lands on S4 and S15: S4 is clear to 5.2 mm with its blank to 9.2 mm,
+ * S15 clear to 7.8 mm with its blank to 11.2 mm. S13, S14 and S15 are held to 7.8 mm: at the drawn height of about
+ * 9.2 mm, S14 and S15 would overlap across the 6.63 mm gap (combined sag 8.97 mm), so the figure is schematic there.
+ * S4's 5.2 mm clear radius and the cemented pair's 6.1 mm rims sit at the rim-slope limits of S4 (R 5.79) and the
+ * S7 junction (R -6.84).
+ * Focus: the patent moves the first group (elements 1-6 and the stop) toward the object, but prints the infinity
+ * state only, so no gap varies. Sigma's 0.2 m minimum focus is not modeled.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-// v2: S13/S14 square rims and S15 optical cap inferred at7.8mm to avoid physical overlap; S15 opaque blank remains11.2mm.
 const LENS_DATA = {
   schema: 2,
   key: "sigma-dp1m-19f28",
   maker: "Sigma",
   name: "SIGMA 19mm f/2.8 (Sigma DP1 Merrill)",
-  subtitle: "JP 2013-137377 A Example 4 — probable DP1 Merrill family",
+  subtitle: "JP 2013-137377 A, Example 4 — probable match to the 2012 DP1 Merrill lens",
   catalog: {
     lensMounts: ["fixed-lens-camera"],
     imageFormat: "aps-c",
@@ -34,12 +39,15 @@ const LENS_DATA = {
       marketing: 2.8,
       design: 2.89,
     },
+    closeFocusM: {
+      marketing: 0.2,
+    },
     specs: [
       "9 ELEMENTS / 8 GROUPS",
-      "f = 18.82 mm",
-      "F/2.89",
-      "2ω = 75.18°",
-      "2 ASPHERICAL SURFACES",
+      "DESIGN f = 18.82 mm",
+      "DESIGN F/2.89",
+      "2 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "1 FLD ELEMENT",
     ],
   },
   source: {
@@ -60,7 +68,8 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.883,
       vd: 40.8,
-      glass: "Unmatched (source nd/νd only)",
+      glass: "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "High-index positive meniscus, convex to the object; the positive member of the front subgroup ahead of the stop.",
     },
     {
       id: 2,
@@ -69,7 +78,11 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.437,
       vd: 95.1,
-      glass: "Unmatched (source nd/νd only)",
+      glass: "FCD100 (HOYA catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "Sigma lists one FLD element and its 2012 catalog drawing marks this position; the patent prints only nd and νd, so the partial dispersion is the FCD100 catalog value.",
+      role: "Very low-dispersion negative meniscus with a deep concave rear face; gives the front subgroup its negative power ahead of the stop.",
     },
     {
       id: 3,
@@ -78,7 +91,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.8042,
       vd: 46.5,
-      glass: "Unmatched (source nd/νd only)",
+      glass: "TAF3 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Thick positive element directly behind the stop, nearly flat in front; its strongly curved rear face is the cemented junction.",
       cemented: "D1",
     },
     {
@@ -88,7 +102,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.69895,
       vd: 30.05,
-      glass: "Unmatched (source nd/νd only)",
+      glass: "E-FD15 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Dense-flint negative member of the cemented doublet; balances the color of element 3.",
       cemented: "D1",
     },
     {
@@ -98,7 +113,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.62,
-      glass: "Unmatched (source nd/νd only)",
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Thin, nearly plano-convex positive element; adds power to the rear subgroup behind the doublet.",
     },
     {
       id: 6,
@@ -107,7 +123,8 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.77377,
       vd: 47.17,
-      glass: "Unmatched (source nd/νd only)",
+      glass: "M-TAF401 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Biconvex positive with an aspheric rear face; the last element of the focusing group.",
     },
     {
       id: 7,
@@ -116,7 +133,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.60342,
       vd: 38.01,
-      glass: "Unmatched (source nd/νd only)",
+      glass: "E-F5 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative meniscus with a strongly concave rear face; opens the fixed negative rear group.",
     },
     {
       id: 8,
@@ -125,7 +143,8 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.54072,
       vd: 47.2,
-      glass: "Unmatched (source nd/νd only)",
+      glass: "E-FEL2 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative meniscus, concave to the object; faces element 7 across the 6.63 mm air space.",
     },
     {
       id: 9,
@@ -134,7 +153,8 @@ const LENS_DATA = {
       type: "Biconvex Positive (1× Asph)",
       nd: 1.6935,
       vd: 53.2,
-      glass: "Unmatched (source nd/νd only)",
+      glass: "M-LAC130 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Largest element, biconvex positive with an aspheric front face; ends the fixed rear group ahead of the filter.",
     },
   ],
   surfaces: [
@@ -272,9 +292,9 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 0.2,
+    closeFocusM: 1000000000000000.0,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: Infinity-only prescription. Patent L1 (front six elements and stop) moves objectward for close focus, but no finite-focus spacing law is published. Retail 0.2 m is metadata only.",
+      "The patent moves the first group (elements 1–6 with the stop) toward the object for close focus, but prints the infinity state only, so the lens is modeled at infinity with no focus movement. Sigma's minimum focus of 0.2 m is not modeled.",
   },
   aperture: {
     nominalFNumber: 2.89,
@@ -294,12 +314,12 @@ const LENS_DATA = {
   ],
   groups: [
     {
-      text: "L1",
+      text: "G1",
       fromSurface: "1",
       toSurface: "12A",
     },
     {
-      text: "L2",
+      text: "G2",
       fromSurface: "13",
       toSurface: "18",
     },

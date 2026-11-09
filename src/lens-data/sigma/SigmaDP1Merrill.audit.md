@@ -1,16 +1,14 @@
 # Sigma DP1 Merrill patent and semi-diameter audit
 
-## 2026-11-09 — whole Example4, qualified mechanical inference
+## 2026-11-09 — Example 4 transcription and inferred rims
 
-Pinned baseline9d121be76e14bc5098256ee78cd0a7545a1acf11. Independently reviewed PDF14–15 all20source rows, both asphere tables, PDF25Fig10 and maker crop. Preserve native18.82mm/F2.89, nine elements/eight groups, explicit stop6.10/2.20split, source plate1.20mm and postplate image gap4.9327mm. E4 is a probable family representative, not factory-selected proof; E3/E7 remain alternatives. Infinity only. Complete A-publication and maker section crop recovered; full brochure/grant custody unavailable.
+Source re-read: all 20 rows on PDF pp. 14–15, both asphere tables, Fig. 10 (PDF p. 25) and Sigma's catalog drawing. Kept as printed: 18.82 mm / F2.89 with no scaling, nine elements in eight groups, the stop at 6.10 / 2.20 mm, the 1.20 mm filter plate and the 4.9327 mm image gap. Example 4 is a probable match, not a confirmed factory prescription; Examples 3 and 7 remain alternatives. Infinity only.
 
-400dpi Fig10 crop(1720,1370,680,600), axis279, first/final vertices28/636:608px/39.85mm=15.2572px/mm. Initial outline estimates12.1,9.2,6.9,6.9,8.3,9.1,9.3,11.2,14.4mm. S4 and S15 visibly have vertical opaque lands. S4 optical cap5.2mm respects default slope limit while its drawn blank remains9.2mm. Cemented square rims6.1mm respect source S7 radius and slope limit. No auto-trimming used.
+Fig. 10 at 400 dpi: first to last vertex 608 px = 39.85 mm (15.257 px/mm). First outline readings were 12.1, 9.2, 6.9, 6.9, 8.3, 9.1, 9.3, 11.2 and 14.4 mm. S4 and S15 are drawn with flat lands. S4's clear radius of 5.2 mm is at the rim-slope limit; its blank stays at the drawn 9.2 mm. The cemented pair's 6.1 mm rims respect the S7 radius and the slope limit.
 
-V1 failed: S14/S15clear caps9.3mm give8.9692mm combined sag across6.63mm gap. This is invalid schematic-radius inference, not a demonstrated error in source optics. V1 and log retained in external evidence. V2 uses square E7rims7.8mm and S15clear cap7.8mm with11.2mm drawn opaque blank. Default90% bound is7.8804mm; revised radii leave positive physical clearance. No gap-sag override or source edits.
+First attempt rejected: 9.3 mm clear radii on S14 and S15 give 8.969 mm of combined sag across the 6.63 mm gap, so the figure is schematic there; this is not an error in the prescription. Adopted: L7 at 7.8 mm on both faces and S15 at 7.8 mm clear on an 11.2 mm blank, inside the default 90 % gap bound of 7.880 mm. No gap-sag override and no prescription change.
 
-V2 passes native build, default geometry, zero undersized image-circle flags, clear format-corner chief ray, iris-in-air across257stroke samples, and production render diagnostics with0hidden trim. Actual axial aperture F2.889999997 limited by STO; stop radius3.410105667mm. Native production SVG raster independently inspected: topology and explicit lands agree with source, E7height differs because schematic cap estimates were physically inconsistent.
-
-Source37.59° pupil counts at32grid: F2.89=536valid/276blocked/0failed; F4=612valid/200blocked/0failed,812sampled each. Onaxis and18.795° both812/812. Source image plane unchanged46.9827mm. Geometric MTF converged at0/0.5/1format heights through40lp/mm atF2.89/F4 for source and separately labeled best-axial. Best-axial shifts−0.04540557/−0.04699964mm are diagnostics only. C/d/F MTF refused due to missing partial dispersion forνd95.1; no invented spectral data. Reference diffraction assessed separately. Metadata, full typecheck/format/lint, focused corpus/integration (36 files, 1385 tests), production build and SEO passed. This is not a full-repository test run. Interactive browser UI remains unverified. Reference diffraction converged through 40 lp/mm at all sampled fields at F2.89/F4, source and separate best-axial focus, max grid 128.
+Result: the stop (radius 3.4101 mm) limits the axial beam at F2.89; the iris stays in air over its full travel; no image-circle shortfall; the chief ray clears the format corner. At the patent's 37.59° edge about two-thirds of the f/2.89 beam passes the rims. The drawn section agrees with Fig. 10 in topology and lands; L7 is drawn lower than in the figure because the figure's height cannot be built. Chromatic MTF was then blocked by the unlabelled νd 95.1 glass (closed in the cleanup pass below).
 
 ## 2026-11-09 — Deployment validation
 
@@ -23,4 +21,34 @@ Sigma's catalog drawing better than Examples 2, 3 and 7.
 
 Deployment change: none.
 
-Open: glass labels (Hoya names); the 0.2 m close focus has no focus data; wording.
+Open: glass labels (Hoya names); the 0.2 m close focus has no focus data; wording. (All three closed in the
+cleanup pass below.)
+
+## 2026-11-09 — Cleanup and wording pass
+
+Data file. Header comment rewritten in plain English with the same facts. `subtitle` "JP 2013-137377 A Example 4 —
+probable DP1 Merrill family" → "JP 2013-137377 A, Example 4 — probable match to the 2012 DP1 Merrill lens". `specs`
+now read 9 ELEMENTS / 8 GROUPS, DESIGN f = 18.82 mm, DESIGN F/2.89, 2 ASPHERICAL SURFACES / 2 ELEMENTS and 1 FLD
+ELEMENT (the 2ω line was dropped). `catalog.closeFocusM.marketing` 0.2 added from Sigma's specification page. Focus is
+static: `focus.closeFocusM` 0.2 → 1e15, since the patent prints only the infinity state and the 0.2 m value had no
+focus data behind it; the description now says so in plain words. Group labels L1 / L2 → G1 / G2, as in the DP2 and
+DP3 Merrill files, so they no longer collide with the element names. Roles added to all nine elements.
+
+Glass. All nine "Unmatched" labels became Hoya catalog equivalents. Each row equals the patent's nd and νd (TAF1 by
+0.01 in νd), and each label resolves to its row: TAFD30, FCD100, TAF3, E-FD15, TAF1, M-TAF401, E-F5, E-FEL2 and
+M-LAC130. Element 2 is tagged `apd: "inferred"` because Sigma lists one FLD glass and its drawing marks that position;
+FCD100's catalog θgF is 0.5336, about +0.050 above the normal line. With FCD100 resolved, the spectral-MTF blocker
+for νd 95.1 is gone; only the patent's filter plate still uses an nd/νd estimate.
+
+Analysis. Removed package and process material: custody notes, test and sample counts, grid sizes, best-focus
+diagnostics and the statement that C/d/F MTF is unavailable. Added the product facts (September 2012 release, Sigma's
+construction and special glasses, 0.2 m and 1:8.4), the attribution with its caveats and the comparison with the
+other eight examples, the catalog-drawing comparison, focal lengths for each element, the glass table, the patent's
+asphere form, and the five conditional expressions with model values (−0.442, 0.529, 1.175, 1.608, 1.046).
+
+Engine, before → after: EFL 18.8212, F/2.89, half-field 32.11°, stop radius 3.4101 mm, paraxial back focus 4.9326 mm
+and total length 46.9827 mm, all unchanged; only `closeFocusM` changed. Surface audit OK; the aperture audit finds no
+rim limit.
+
+Open: the diagram's default half-field is 32.11° because S15's 7.8 mm clear radius sets the paraxial limit, while the
+real chief ray clears to the patent's 37.59° (7.55 mm at S15). Rims were left as they are in this pass.
