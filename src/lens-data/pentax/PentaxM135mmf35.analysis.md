@@ -1,109 +1,134 @@
 ## Patent Reference and Design Identification
 
 **Patent:** US 4,134,645 A  
-**Filed:** August 25, 1977  
-**Granted:** January 16, 1979  
-**Inventors:** Takahiro Sugiyama; Toshifumi Kubota; Rensuke Adachi  
-**Assignee:** Asahi Kogaku Kogyo Co., Ltd. (printed as Asahi Kogaku Kogyo Kabushiki Kaisha)  
-**Title:** Miniaturized Telephoto Camera Lens  
-**Example details:** Physical page 6, Figures 3 and 4; repeated in Claim 2. All lengths scaled 1.35× from the normalized 100 mm table.
+**Application Number:** 827,636  
+**Filed:** 1977-08-25  
+**Granted:** 1979-01-16  
+**Priority:** 1976-08-26 (JP 51-101957)  
+**Inventors:** Takahiro Sugiyama, Toshifumi Kubota, Rensuke Adachi  
+**Assignee:** Asahi Kogaku Kogyo Co., Ltd.  
+**Title:** Miniaturized telephoto camera lens  
+**Example details:** Example 2, repeated in claim 2; section in Fig. 3, aberration plots in Fig. 4. The patent is normalized to F = 100; every printed radius, spacing and the back focus is multiplied by exactly 1.35 for f = 135 mm.
 
-This is a qualified reconstruction associated with the smc Pentax-M 135mm f/3.5. The PhotonsToPhotos OpticalBenchHub identifies Example 02P with that product. The patent itself does not name a retail product, so this is not factory-certified production geometry.
+The smc Pentax-M 135mm f/3.5 was introduced in 1977 for the Pentax K mount as part of the compact M series. Reference listings give it five elements in five groups, an eight-blade diaphragm closing to f/32, a 1.5 m minimum focus (0.11×), a 49 mm filter thread, a length of about 66 mm and a weight of about 270 g. It followed the four-element SMC Pentax 135mm f/3.5 of the K series.
 
-The association rests on the following evidence:
+This page models Example 2 as a patent design probably close to that lens, not a confirmed factory prescription; the patent names no product. The association rests on five points:
 
-1. An explicit third-party mapping of this particular numerical example, not merely the patent family.
-2. A five-element, five-group all-spherical telephoto architecture and f/3.5 design aperture.
-3. A uniform dimensional scale giving 134.972602 mm effective focal length; glass coordinates remain unchanged.
+1. The example's five single lenses in five air-spaced components match the retail construction of five elements in five groups, all spherical.
+2. At the 1.35 scale the example is a 135 mm f/3.5, and its printed half-field of 9.0° reaches 21.38 mm of image height, close to the 21.63 mm corner of the 35 mm frame.
+3. The patent's three examples fit the three M-series telephotos introduced in 1977, each of five elements in five groups: Example 1 (f/2.8, ±10.2°) the 120mm f/2.8, Example 2 (f/3.5, ±9.0°) the 135mm f/3.5 and Example 3 (f/3.5, ±8.2°) the 150mm f/3.5. Scaled to 135 mm, Example 3 would cover only 19.4 mm of image height, so Example 2 is the one that fits this lens.
+4. The front vertex lies 109.46 mm ahead of the image plane. The retail length of about 66 mm plus the 45.46 mm K-mount flange distance puts the front of the barrel about 111.5 mm from the film.
+5. The August 1976 priority date falls shortly before the lens's introduction, and the PhotonsToPhotos Optical Bench Hub lists Example 2 as this lens.
 
-The two examples are independent designs. Every radius differs, as do several glasses and separations. Neither model is a focal-length-scaled duplicate of the other.
+No Pentax construction diagram could be found to compare with Fig. 3, and one retailer listing gives seven elements in three groups against the five in five of the other sources, so the attribution remains probable rather than confirmed.
 
 ## Optical Architecture
 
-The power sequence is positive, negative, positive, positive, negative. Three closely spaced front elements form the principal positive group. A long air interval separates them from a compact rear positive-negative meniscus pair. All five elements are air-separated and all ten glass boundaries are spherical.
+Five spherical singlets form a compact telephoto: a positive front group of L1 (positive meniscus), L2 (biconcave) and L3 (positive meniscus), all closely spaced, then a long air space d6 and a rear pair of L4 (positive meniscus) and L5 (negative meniscus, concave to the object). The power sequence is P-N-P, then P-N. There are no cemented surfaces, aspheric surfaces or cover plates.
 
-The front positive crown and negative flint provide opposing chromatic powers. The third positive meniscus further bends the beam before the long gap. The rear pair supplies telephoto power redistribution and field correction. These roles are interpretations of the prescription and patent discussion, not individual measured performance claims.
+The front group has a composite focal length of 87.1 mm (64.53 at F = 100), and the first four lenses together 61.75 mm (45.75). The rear negative L5 spreads the converging beam, which places the rear principal plane well ahead of the lens: the lens is 55.04 mm from S1 to S10, and the image plane lies 109.46 mm behind S1, 0.81 times the focal length. The patent's aim is a shorter telephoto for its focal length; it says Examples 2 and 3 gain compactness over Example 1 at a slight sacrifice in field (col. 1), and Example 2 is 81.08 long at F = 100 against 88.98 for Example 1.
 
-No cover glass, detachable filter, coating or mechanical barrel has been invented. Source-listed physical spacings remain unchanged, except that the long air interval is split by a zero-thickness modeled iris.
+The patent's seven conditions set the layout, and Example 2 meets all of them:
+
+| Condition | Range at F = 100 | Example 2 |
+|---|---|---|
+| (1) F1.2.3 | F/1.8 to F/1.2 (55.6 to 83.3) | F/1.550 = 64.53 |
+| (2) F1.2.3.4 | F/2.5 to F/1.85 (40.0 to 54.1) | F/2.186 = 45.75 |
+| (3) d6 | 0.22F to 0.32F | 23.44 |
+| (4) ν2 | below 28 | 26.2 |
+| (5) ν1, ν3 | above 58 | 64.1, 65.0 |
+| (6) n5 | above 1.62 | 1.64000 |
+| (7) d8 | 0.015F to 0.065F | 2.48 |
+
+Condition (5) is printed as "ν1 · ν3 > 58" and is read here as a bound on each Abbe number. The patent's recurring concern is the Petzval sum, which tends to fall as a telephoto is shortened: a shorter d6 costs compactness, a longer d6 lowers the Petzval sum and upsets the aberration balance, and conditions (4) to (7) are chosen to keep it from falling (col. 2–3).
 
 ## Element-by-Element Analysis
 
 ### L1 — Positive Meniscus
 
-nd = 1.51633, νd = 64.1. Glass: unmatched patent coordinates; supplier unknown. f = +103.034 mm.
+nd = 1.51633, νd = 64.1. Glass: S-BSL7 (OHARA) equivalent, a borosilicate crown. f = +103.0 mm.
 
-The front positive meniscus collects the incident beam. Its low-dispersion crown coordinates contrast with the negative second element.
+The front crown, convex to the object (R1 = 47.40 mm, R2 = 417.0 mm), and with L2 the largest element at 21.6 mm semi-diameter. Its low dispersion satisfies condition (5); the patent ties conditions (4) and (5) to keeping the power of each front lens moderate so that the Petzval sum does not fall (col. 2).
 
 ### L2 — Biconcave Negative
 
-nd = 1.78470, νd = 26.2. Glass: unmatched patent coordinates; supplier unknown. f = -107.841 mm.
+nd = 1.78470, νd = 26.2. Glass: PBH23 (OHARA) equivalent, a dense flint. f = −107.8 mm.
 
-The biconcave negative element supplies strong opposing power and higher dispersion. Its role is consistent with achromatizing the positive front elements.
+The only negative element of the front group, 2.44 mm behind L1 and 0.108 mm ahead of L3 on the axis. Condition (4), ν2 < 28, corrects the color of the first three lenses and makes condition (3) more effective (col. 2). The patent adds that the front three lenses carry most of the achromatism and leave it somewhat over-corrected (col. 2–3).
 
 ### L3 — Positive Meniscus
 
-nd = 1.51821, νd = 65.0. Glass: unmatched patent coordinates; supplier unknown. f = +89.672 mm.
+nd = 1.51821, νd = 65.0. Glass: Unmatched, nearest catalog row PC2 (HOYA), a phosphate crown. f = +89.7 mm.
 
-The third positive meniscus has the stronger object-side curvature described by the patent. Its position completes the closely spaced front group.
+The strongest positive element, with the stronger curve facing the object as the claims require (R5 = 28.28 mm, R6 = 66.84 mm). It completes the front group, whose composite focal length condition (1) bounds: a shorter F1.2.3 burdens L1 and L3 and narrows their coverage, a longer one makes the lens harder to shorten and shifts the burden to L4 (col. 2).
 
 ### L4 — Positive Meniscus
 
-nd = 1.72825, νd = 28.5. Glass: unmatched patent coordinates; supplier unknown. f = +109.023 mm.
+nd = 1.72825, νd = 28.5. Glass: S-TIH10 (OHARA) equivalent, a dense flint. f = +109.0 mm.
 
-The rear positive meniscus is isolated from the front group by the long air interval. Its low Abbe number is an explicit part of the patent’s rear-group correction strategy.
+Convex to the object, 31.64 mm behind L3. Because the front group over-corrects color, the correction of lateral color left to L4 is insufficient, and with L5 only d8 behind it (condition 7) L4 has to be a glass of low Abbe number; a high-index flint or dense flint also limits the fall in the Petzval sum (col. 3). Condition (2) sets its power together with the front group.
 
 ### L5 — Negative Meniscus
 
-nd = 1.64000, νd = 60.2. Glass: unmatched patent coordinates; supplier unknown. f = -46.781 mm.
+nd = 1.64000, νd = 60.2. Glass: S-BSM81 (OHARA) equivalent, a dense barium crown. f = −46.8 mm.
 
-The final negative meniscus completes the telephoto rear pair. The patent discusses higher refractive index in this element as a means of reducing the Petzval sum.
+The telephoto negative element, concave to the object (R9 = −20.87 mm, R10 = −70.47 mm), 3.35 mm behind L4. The patent notes that a high Abbe number here helps prevent a decrease in the Petzval sum once condition (3) is used and achromatism is established, and that an index above 1.62, condition (6), is preferable for the same purpose: it prevents a decrease in the Petzval sum (col. 3). Condition (7) keeps d8 between 0.015F and 0.065F; a smaller d8 makes color correction and assembly difficult, a larger one lowers the Petzval sum.
 
-## Glass Identification and Spectral Qualification
+## Glass Identification
 
-Only refractive-index and Abbe-number pairs are transcribed. No trade name, supplier, melt data or measured C/F/g line indices is known. The patent plots d-line and g-line aberrations; this reconstruction uses its tabulated n/ν as approximate d-line coordinates, with an explicit index-reference qualification on every element.
+The patent gives indices and Abbe numbers without naming a spectral line; Fig. 4 plots the d and g lines. Four of the five pairs equal catalog d-line rows at the printed precision, so the table is read as d-line. The table gives catalog equivalents; the supplier of the production glass is not established.
 
-All glasses are deliberately labeled Unmatched. The model uses synthetic Abbe-based dispersion, not verified catalog Sellmeier curves. Polychromatic MTF and chromatic aberration plots are illustrative approximations. No apochromatic or anomalous-partial-dispersion performance is claimed.
+| Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd | Type |
+|---|---|---|---|---|
+| L1 | 1.51633 / 64.1 | S-BSL7 (OHARA) | 1.51633 / 64.14 | Borosilicate crown |
+| L2 | 1.78470 / 26.2 | PBH23 (OHARA) | 1.78470 / 26.22 | Dense flint |
+| L3 | 1.51821 / 65.0 | Unmatched; nearest PC2 (HOYA) | 1.51821 / 65.16 | Phosphate crown class |
+| L4 | 1.72825 / 28.5 | S-TIH10 (OHARA) | 1.72825 / 28.46 | Dense flint |
+| L5 | 1.64000 / 60.2 | S-BSM81 (OHARA) | 1.64000 / 60.08 | Dense barium crown |
 
-## Focus Mechanism
+For L2, S-TIH23 (OHARA, νd 26.29) and SF56A (SCHOTT, 26.08) match equally; PBH23, the lead-containing flint of the period, is the closest. For L5, LACL60 (HOYA) and J-LAK01 (Hikari) print exactly 1.64000 / 60.2; OHARA was kept for consistency with the rest of the lens. L3's catalog νd lies 0.16 from the printed 65.0, outside the printed precision, so L3 traces on dispersion derived from its printed pair. The patent prints no partial dispersions. The palette is conventional for its time, with one notable choice: the rear pair reverses the usual order, putting the flint in the positive L4 and a crown in the negative L5.
 
-Only the static infinity prescription is supplied. The patent publishes no near-focus travel or moving-group schedule. No focus gaps are authored, and changing the focus slider leaves all physical vertex positions unchanged. The required closeFocusM field is an inactive 10 m schema placeholder, not a product MFD or a modeled finite conjugate.
+## Focus Mechanism and Image Plane
 
-The image plane preserves the printed back focus rather than silently optimizing it:
+The patent names no focusing group or movement and prints the infinity state only, so no gap varies and the focus control stays at infinity. The 1.5 m minimum focus is the retail specification and is not traced.
 
-- Printed normalized back focus: 40.31000 mm.
-- Authored scaled image distance after r10: 54.418500 mm.
-- Independently computed paraxial infinity back focus: 54.406877379 mm.
-- Paraxial minus printed plane: -0.011622621 mm.
+The final gap of 54.4185 mm is the printed back focus of 40.31 at F = 100. The computed paraxial back focus is 54.4069 mm (40.30 at F = 100); the 0.0116 mm difference is rounding in the printed table, and the model keeps the printed plane. Fig. 4 shows undercorrected zonal spherical aberration, about −0.13 near 0.7 of the aperture and −0.08 at full aperture at F = 100. The model traces −0.126 and −0.082 (−0.171 and −0.111 mm at 135 mm), so the sharpest axial focus lies slightly in front of the printed plane.
 
-This small rounding-level residual is reported as a separate evaluation-plane diagnostic. Best-axial MTF also reports its own shift from the printed plane; neither diagnostic changes the literal prescription.
+## Aperture Stop and Clear Apertures
 
-## Stop and Clear-Aperture Reconstruction
+The patent neither prints nor draws a stop, and Fig. 3 shows none. The model places it in the long air space d6, 5.4 mm (4.0 at F = 100) behind S6, a modeling choice. At f/3.5 the entrance pupil radius is 19.28 mm and the stop radius 15.30 mm.
 
-The patent construction drawing does not label an iris or numerical clear semi-diameters. The modeled iris is an engineering inference, placed four normalized millimetres after r6, within the long air interval. Its physical opening is derived by the engine from f/3.5. It is not a traced factory iris position.
+The patent prints no semi-diameters, so all are inferred:
 
-The derived full-open iris radius is 15.303777 mm, with entrance-pupil radius 19.281800 mm. The front-to-rear element clear radii are 21.600, 21.600, 21.330, 9.450, 9.450 mm.
+| Element | Model sd (mm) | Basis |
+|---|---|---|
+| L1, L2 | 21.6 | The largest elements in Fig. 3; L1 passes the f/3.5 beam to the 9° corner |
+| L3 | 21.33 | Drawn about as tall as L1 in Fig. 3; at this rim its two faces nearly meet |
+| L4, L5 | 9.45 | The small rear pair of Fig. 3; the L4–L5 air space closes near 10 mm |
 
-Clear apertures are engineering estimates guided by the source section’s large front group and smaller rear pair, then constrained by exact-ray passage and geometry. They are not measured from a production sample. Both faces of each element share one radius. No rim cuts, rim extensions, negative thickness, or geometry-check overrides are used.
+Fig. 3 is a schematic. Read at its own axial scale it gives about 21 mm for the front elements and about 11 mm for the rear pair, so the rear rims sit somewhat inside the drawing, where the L4–L5 air space limits them. The full f/3.5 beam passes on axis. Off axis the rims of L4 and L5 cut the oblique beam: about 91 % of it passes at 4.5° and 67 % at the 9° field edge.
 
-## Verification Summary
+## Model Scope and Limitations
 
-The engine computes EFL 134.972602 mm. The full-open axial beam passes at f/3.5 and is iris-limited. Every element has zero hidden render trim. At the tested fields no ray was unaimed or failed; rays lost off-axis were blocked by physical clear apertures.
+| Quantity | Patent, F = 100 | Patent × 1.35 | Model |
+|---|---|---|---|
+| Focal length | 100 | 135.0 | 134.973 |
+| Back focus | 40.31 | 54.419 | 54.407 paraxial |
+| S1 to S10 | 40.77 | 55.040 | 55.040 |
+| F1.2.3 | 64.53 | 87.12 | 87.10 |
+| F1.2.3.4 | 45.75 | 61.76 | 61.75 |
 
-| Field angle | Geometric transmitted stop fraction |
-| --- | --- |
-| 0.0000° | 100.00% |
-| 4.5000° | 91.13% |
-| 6.7500° | 80.30% |
-| 9.0000° | 67.24% |
-
-Throughput is a geometric pupil sample fraction on a 32×32 stop lattice, not coating transmission or a measured relative-illumination curve. Field-dependent values depend on the inferred iris and clear apertures.
-
-Reference-line and synthetic C/d/F diffraction MTF were evaluated at 0, 0.5 and 1.0 image-height fractions, at 10, 20 and 40 lp/mm, on both the printed and best-axial planes. The evidence JSON retains convergence status and exact focus shifts for every run. These are simulated results, not manufacturer charts or camera measurements.
+- The prescription is the patent's, not a confirmed factory one.
+- Stop position and all semi-diameters are inferred.
+- The image plane is the printed back focus.
+- The model is static at infinity and says nothing about performance at 1.5 m.
+- The patent prints a Petzval sum of 0.018 at F = 100; the usual surface sum gives 0.0125. The patent does not state its convention, and every other printed value agrees with the model.
+- The patent gives indices and Abbe numbers only, so behavior away from the d-line rests on the catalog equivalents, and for L3 on its printed pair.
 
 ## Sources
 
-- [Original US patent](https://patents.google.com/patent/US4134645A/en).
-- [Original patent PDF](https://patentimages.storage.googleapis.com/0b/ec/f7/991950b334847e/US4134645.pdf).
-- [PhotonsToPhotos OpticalBenchHub](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/OpticalBenchHub.htm), explicit product-example mapping supplied with the source packet.
-
-The original PDF and rendered numerical/construction pages accompany the local evidence package. PDF SHA-256: 388f11db7b041e0d8c68124ebe67d2af43c7877cda34e2e275c6acdf10715e4b.
+- [US 4,134,645 A](https://patents.google.com/patent/US4134645A/en), text, Example 2, claim 2 and Figs. 3–4.
+- [Cine Lens Wiki: Pentax-M SMC 135mm f/3.5](https://cinelenswiki.com/lens:pen-msmc135mmf3.5): construction, diaphragm blades, minimum aperture, minimum focus, filter, size, weight and 1977 release.
+- [PentaxUser: SMC Pentax-M 135mm f/3.5 review](https://www.pentaxuser.com/review/smc-pentax-m-135mm-f-3-5-lens-review-2217): five elements in five groups, eight blades, f/32 and 1.5 m.
+- [Cine Lens Wiki: Pentax-M SMC 120mm f/2.8](https://cinelenswiki.com/lens:pen-msmc120mmf2.8) and [150mm f/3.5](https://cinelenswiki.com/lens:pen-msmc150mmf3.5): five elements in five groups, 1977.
+- [PhotonsToPhotos Optical Bench Hub](https://www.photonstophotos.net/GeneralTopics/Lenses/OpticalBench/OpticalBenchHub.htm), which lists Examples 1 to 3 of the patent as the Pentax-M 120mm f/2.8, 135mm f/3.5 and 150mm f/3.5.
