@@ -1,107 +1,144 @@
 ## Patent Reference and Design Identification
 
-**Patent:** US 4,293,197 A
-**Filed:** February 27, 1980
-**Granted:** October 6, 1981
-**Inventors:** Koichi Kobayashi; Sadao Okudaira
-**Assignee:** Asahi Kogaku Kogyo Co., Ltd.
-**Title:** Telephoto Lens with Small Telephoto Ratio
-**Example details:** PDF page 6, left-column numerical table; Figure 1 and Figure 2 on PDF page 2. All source lengths are scaled uniformly by 3.
+**Patent:** US 4,293,197 A  
+**Filed:** 1980-02-27  
+**Granted:** 1981-10-06  
+**Priority:** 1979-03-12 (JP 54-28394)  
+**Inventors:** Koichi Kobayashi, Sadao Okudaira  
+**Assignee:** Asahi Kogaku Kogyo Co., Ltd.  
+**Title:** Telephoto lens with small telephoto ratio  
+**Example details:** Example 1 (column 3), repeated in claim 1; section in Fig. 1, aberration plots in Fig. 2. The patent is normalized to f = 100; every printed length is multiplied by exactly 3 for f = 300 mm, and the radii and spacings are not otherwise adjusted.
 
-This is a qualified, representative reconstruction of the SMC PENTAX-M★ 300mm f/4 family, not a confirmed factory prescription. The numerical embodiment is preserved whole, without borrowing surfaces from the other examples.
+This is a patent design associated with the SMC Pentax-M★ 300mm f/4, introduced in 1981 as the only lens of the M★ line, not a confirmed factory prescription. The association rests on five points:
 
-1. The patent describes an eight-element, seven-group, f/4 compact telephoto lens assigned to Asahi.
-2. The manufacturer's *SMC Pentax-A Lenses* brochure, printed page 35 (PDF page 38), explicitly lists the M★300mm f/4 as eight elements in seven groups. The older SMC Pentax 300mm f/4 is a separate seven-element, five-group entry.
-3. A secondary photographic-patent index maps this product to the selected embodiment. This supports selection but does not prove factory adoption. Figure 1 serves three different patent examples and therefore cannot uniquely identify the numerical embodiment.
+1. The patent's eight lenses in seven groups match the construction Asahi lists for the M★ 300mm f/4: eight elements in seven groups. The earlier SMC Pentax 300mm f/4 appears in the same table as seven elements in five groups.
+2. At the ×3 scale the example is a 300 mm f/4. Its printed field of ±4.5° is close to the 8.3° angle of view Asahi lists, which is the diagonal of the 35 mm format at 300 mm.
+3. The patent's aim is a short telephoto, with a printed telephoto ratio of 0.60, and the M★ was a compact 300 mm: 84 mm across, 132 mm long and 825 g in Asahi's table.
+4. The March 1979 Japanese priority date falls about two years before the lens's introduction.
+5. Asahi's booklet draws the section of the later SMC Pentax-A★ 300mm f/4, which its tables list with the same construction, angle of view, minimum focus, filter size and length as the M★. That drawing matches Example 1 element by element (see the comparison below).
 
-The source states f = 100, f/4, viewing angle ±4.5°, and telephoto ratio 0.60, without an explicit dimensional unit. A uniform 3× dimensional interpretation maps the nominal source focal length to the marketed 300 mm. The radii and thicknesses have not been tuned to force a computed focal length of exactly 300 mm.
-
-The manufacturer's 8.3° full angle of view is retained as separate product evidence. The model uses the patent's full 9° design field. The A★300 section on printed page 38 is a different named model and is not used as proof of M★300 stop placement or prescription identity.
+Fig. 1 is drawn for Examples 1, 2 and 3 alike, and all three share the layout and the eight-element, seven-group construction, so the construction does not single out Example 1; Example 4 cements the rear pair. Example 1 is transcribed whole, with no surfaces taken from the other examples. One dimension fits less well: at ×3 the front vertex lies about 135.7 mm ahead of the K-mount flange, a few millimetres more than the 132 mm barrel length Asahi lists excluding the mount. Examples 2 and 3, with telephoto ratios of 0.596 and 0.593, come closer, so the production lens may differ slightly from all three.
 
 ## Optical Architecture
 
-Eight spherical glass elements form seven physical groups: four separate front elements, a cemented intermediate doublet, and two separate rear elements. The front group has strong collecting power. The intermediate doublet and separated rear pair balance the compact telephoto arrangement.
+Example 1 is a telephoto in three groups, positive, negative and weakly positive. The front group has four single elements: L1 (biconvex), L2 (positive meniscus), L3 (nearly plano-concave negative) and L4 (thick positive meniscus). A long air space leads to the negative intermediate group, a cemented doublet of L5 (biconcave) and L6 (biconvex). A second long air space leads to the rear group, L7 (negative meniscus, concave to the object) and L8 (biconvex). There are eight spherical elements in seven groups, with no aspheric surfaces or cover plates.
 
-The table's r10 and r11 are both 7.12 and d10 is zero. They describe the same cemented face. The model collapses these coincident glass–air–glass bookkeeping rows into one direct glass-to-glass surface labeled 10/11. This exact normalization gives 15 unique optical interfaces; it does not create a finite air film or change the optical track. Raw source rows remain in the supporting evidence.
+At 300 mm the front group has a focal length of +105.6 mm, the doublet −46.5 mm and the rear pair +521 mm. The patent says the front and intermediate groups alone produce the short telephoto ratio, and the weak rear group keeps it while correcting the oblique beams. Its reasoning is that the oblique beams cross the rear group high above the axis, compared with the axial beam, so the rear group can correct field aberrations, distortion in particular, largely independently of the front group, which governs the axial beam.
 
-The patent locates the diaphragm only in the vicinity of the intermediate group. The model places it at z = 84 mm, 3.6 mm before surface 9 at z = 87.6 mm. This is an explicit mechanical hypothesis, not a source measurement. Splitting the original surface-8 air gap preserves its total 44.88 mm thickness. The ordinary engine pupil rule derives the iris radius from f/4.
+The table lists r10 = r11 = 7.12 with d10 = 0. The two rows describe one cemented face, and the model uses a single surface, 10/11, with no air between L5 and L6.
 
-Clear semi-diameters are inferred as 39, 37, 34, 31, 12, 12, 16, and 16 mm for L1–L8. Their broad progression follows the patent schematic and positive-edge spherical geometry; they are not manufacturing apertures, figure metrology, or values derived from the filter thread. They must be tested for actual clipping and sensitivity before qualification.
+Three conditions govern the layout, and Example 1 meets each:
+
+| Condition | Range | Printed | Model |
+|---|---|---|---|
+| (1) (r6 + r5) / (r6 − r5) | −1.2 to −0.7 | −0.85 | −0.851 |
+| (2) \|f / r9\| | 6.7 to 7.6 | 7.16 | 7.163 |
+| (3) f (−1/r14 + 1/r15) | −0.5 to 3 | 2.23 | 2.233 |
+
+Condition (1), the shape of L3, balances spherical aberration, coma and astigmatism. Condition (2), the front radius of L5, lets the intermediate group offset the large aberrations of the front group. Condition (3), the air lens between L7 and L8, sets the distortion correction; the patent says that below its lower limit the distortion becomes strongly positive, a fault inherent in long telephotos, and that above its upper limit the field cannot be corrected away from the axis.
 
 ## Element-by-Element Analysis
 
-The n and Abbe values below use the engine's assumed d-line convention. The patent table does not explicitly define their spectral reference. Individual-element focal lengths are thick-lens values in air at the declared scale, not independent in-system group powers. In particular, the intermediate doublet's shared glass boundary changes its assembled behavior.
+Element focal lengths are thick-lens values in air at 300 mm.
 
-### L1: Biconvex Positive
+### L1 — Biconvex Positive
 
-nd = 1.49700, νd = 81.3. Glass: Unmatched (patent n=1.49700, V=81.3). f = +160.085 mm.
+nd = 1.49700, νd = 81.3. Glass: K-PFK80 (SUMITA) equivalent, a fluorophosphate crown; anomalous partial dispersion inferred. f = +160.1 mm.
 
-The leading positive collector uses the source low-index, high-Abbe material. Its stronger curvature faces the object.
+The largest element, 39 mm in semi-diameter. Its strong front curve (R1 = 85.35 mm) faces the object and its rear is nearly flat (R2 = −1121.4 mm), the orientation the patent claims for the first lens. It is the first of three positive elements in the same low-dispersion crown.
 
-### L2: Positive Meniscus
+### L2 — Positive Meniscus
 
-nd = 1.49700, νd = 81.3. Glass: Unmatched (patent n=1.49700, V=81.3). f = +196.602 mm.
+nd = 1.49700, νd = 81.3. Glass: K-PFK80 (SUMITA) equivalent; anomalous partial dispersion inferred. f = +196.6 mm.
 
-A positive meniscus reinforces the front collecting group. It repeats L1's numerical glass pair without establishing a named glass identity.
+Convex to the object and 0.09 mm behind L1 on the axis. It shares the front group's converging power with L1 and L4.
 
-### L3: Biconcave Negative
+### L3 — Biconcave Negative
 
-nd = 1.80610, νd = 40.9. Glass: Unmatched (patent n=1.80610, V=40.9). f = -92.901 mm.
+nd = 1.80610, νd = 40.9. Glass: S-LAH53 (OHARA) equivalent, a lanthanum flint. f = −92.9 mm.
 
-This biconcave negative member opposes the surrounding positive front elements. Its lower Abbe number provides chromatic balancing within the front group.
+Nearly flat in front (R5 = −1005.51 mm) and strongly concave behind (R6 = 81.09 mm), the form the patent claims, with the stronger curve toward the image. It is the only negative element of the front group and achromatizes the three ν 81.3 crowns. Its shape factor is condition (1).
 
-### L4: Positive Meniscus
+### L4 — Positive Meniscus
 
-nd = 1.49700, νd = 81.3. Glass: Unmatched (patent n=1.49700, V=81.3). f = +116.821 mm.
+nd = 1.49700, νd = 81.3. Glass: K-PFK80 (SUMITA) equivalent; anomalous partial dispersion inferred. f = +116.8 mm.
 
-A strongly curved positive meniscus completes the front block. The small central air gap before it is retained exactly.
+The strongest front element, 11.37 mm thick, convex to the object and nested 0.09 mm behind L3. It closes the front group; the 44.88 mm air space behind it carries the converging beam down to the intermediate group.
 
-### L5: Biconcave Negative
+### L5 and L6 — Cemented Intermediate Doublet
 
-nd = 1.79952, νd = 42.2. Glass: Unmatched (patent n=1.79952, V=42.2). f = -17.292 mm.
+L5: nd = 1.79952, νd = 42.2. Glass: S-LAH52 (OHARA) equivalent, a lanthanum flint. f = −17.29 mm.  
+L6: nd = 1.59270, νd = 35.3. Glass: S-FTM16 (OHARA) equivalent, a flint. f = +29.59 mm.
 
-The negative front member of the cemented doublet has a biconcave profile. Its rear boundary is the shared 10/11 interface.
+The patent's negative intermediate group: a biconcave L5 cemented to a biconvex L6 on the shared surface 10/11 (R = 21.36 mm), together f = −46.5 mm. The front radius of L5 (R9 = −41.91 mm) is condition (2). The negative element has the higher Abbe number, as in an achromatized negative doublet; with two flints the pair reduces its own color rather than cancelling it.
 
-### L6: Biconvex Positive
+### L7 — Negative Meniscus
 
-nd = 1.59270, νd = 35.3. Glass: Unmatched (patent n=1.59270, V=35.3). f = +29.586 mm.
+nd = 1.88300, νd = 40.8. Glass: S-LAH58 (OHARA) equivalent, a high-index lanthanum flint. f = −57.5 mm.
 
-The positive rear member of the intermediate doublet shares precisely the same interface, with no air added. Its glass is lower-index and lower-Abbe than L5.
+Concave to the object, with its stronger curve in front (R13 = −46.26 mm), as the patent claims. It opens the rear group, 35.13 mm behind the doublet; its rear radius enters condition (3).
 
-### L7: Negative Meniscus
+### L8 — Biconvex Positive
 
-nd = 1.88300, νd = 40.8. Glass: Unmatched (patent n=1.88300, V=40.8). f = -57.469 mm.
+nd = 1.69895, νd = 30.1. Glass: S-TIM35 (OHARA) equivalent, a dense flint. f = +57.0 mm.
 
-A rear negative meniscus precedes the final positive element. The source uses high index here; its exact glass family remains unidentified.
-
-### L8: Biconvex Positive
-
-nd = 1.69895, νd = 30.1. Glass: Unmatched (patent n=1.69895, V=30.1). f = +57.030 mm.
-
-The final biconvex positive member completes the rear correction pair. Its modeled image-side air distance is derived from first-order collimated propagation, not printed in the table.
+Its stronger curve faces the image (R16 = −50.58 mm), as claimed. L7 and L8 nearly cancel, leaving the rear group with a focal length of +521 mm. The air lens between them, R14 and R15, is condition (3), which sets the distortion correction.
 
 ## Glass Identification and Selection
 
-L1, L2, and L4 share n = 1.49700 and Abbe number 81.3. L3 uses 1.80610/40.9; L5 uses 1.79952/42.2; L6 uses 1.59270/35.3; L7 uses 1.88300/40.8; L8 uses 1.69895/30.1. These six numerical glass pairs are retained without catalog substitution.
+The patent does not name the line of its N and ν columns; its aberration plots are drawn for the d and g lines, and the model reads the columns as d-line values. Each printed pair equals a catalog row to the printed precision, and the table gives those rows as equivalents; the supplier of the production glass is not established.
 
-The patent's aberration plots label d and g lines, but this does not unambiguously define the table's N/ν reference. A d-line interpretation is disclosed as an engine modeling assumption. No C/F/g line indices, anomalous partial dispersion, supplier, melt, or Sellmeier coefficients are recovered. The engine's Abbe-based dispersion is only a proxy. Any multi-wavelength result must be labeled accordingly; it cannot establish production color correction or apochromatic performance.
+| Element | Patent N / ν | Catalog equivalent | Catalog nd / νd | θgF | Type |
+|---|---|---|---|---|---|
+| L1, L2, L4 | 1.49700 / 81.3 | K-PFK80 (SUMITA) | 1.49700 / 81.35 | 0.537 | Fluorophosphate crown |
+| L3 | 1.80610 / 40.9 | S-LAH53 (OHARA) | 1.80610 / 40.93 | 0.570 | Lanthanum flint |
+| L5 | 1.79952 / 42.2 | S-LAH52 (OHARA) | 1.79952 / 42.23 | 0.567 | Lanthanum flint |
+| L6 | 1.59270 / 35.3 | S-FTM16 (OHARA) | 1.59270 / 35.31 | 0.593 | Flint |
+| L7 | 1.88300 / 40.8 | S-LAH58 (OHARA) | 1.88300 / 40.77 | 0.567 | High-index lanthanum flint |
+| L8 | 1.69895 / 30.1 | S-TIM35 (OHARA) | 1.69895 / 30.13 | 0.603 | Dense flint |
+
+The chromatic design rests on the three positive front elements in a ν 81.3 fluorophosphate crown. Its catalog equivalent lies about +0.030 above the normal line in θgF, the anomalous partial dispersion that reduces secondary spectrum in a long telephoto. Asahi's booklet calls the A★ 300mm f/4 "an ultra-compact unit utilizing special glass elements" without naming them; these three positions are the only ones whose printed glass fits that description, so the tag on them is an inference. The other five elements are flints: L3 achromatizes the front crowns, the doublet partly corrects its own color, and the rear pair is two flints of nearly cancelling power.
 
 ## Focus Mechanism
 
-The model is a static collimated-object interpretation. The manufacturer lists a 4 m minimum focus distance, retained only as product metadata. No finite-focus spacings, focus law, floating group, or unit-extension amount is invented. Moving the focus control must not change the prescription or the fixed reference image plane.
+The patent names no focusing group or motion and prints the infinity state only, so no gap varies and the focus control stays at infinity. The 4 m minimum focus is Asahi's retail figure and is not modeled.
 
-## Reference Plane and Qualification
+## Image Plane
 
-An independent first-order recurrence gives EFL = 100.0698714244 and BFL = 13.2709851051 in native source units, with powered axial track 47.1. At 3× scale these become EFL = 300.2096142731 mm, derived BFL = 39.8129553154 mm, and powered track = 141.3 mm. The derived paraxial image coordinate is z = 181.1129553154 mm. Neither BFL nor that image coordinate is printed in the patent. This is not recovered factory focus.
+The patent prints no back focus. The final gap is the computed paraxial back focus, 39.813 mm (13.271 at f = 100), which puts the image 181.113 mm behind S1. The resulting telephoto ratio, 181.113 / 300.21 = 0.603, agrees with the printed 0.60.
 
-The computed track-to-EFL ratio is approximately 0.603288, compared with the patent's rounded target 0.60. Both the residual and the unmodified prescription are retained.
+## Aperture Stop and Clear Apertures
 
-Static source-integrity and spherical arithmetic checks pass: exact raw-row roundtrip, positive element edge thicknesses, and ordinary 90% cross-gap allowance. No gap override, rim cut, rim extension, or intentional hidden render trimming is authored.
+The patent places the diaphragm "in the vicinity of the intermediate lens group" and draws none. The model puts it 3.6 mm ahead of S9, 84.0 mm behind S1, by splitting d8 (44.88 mm) into 41.28 + 3.6 mm, a modeling choice. Its radius, 11.55 mm, follows from the paraxial entrance pupil at f/4, 37.53 mm in radius. Asahi's A★ drawing shows the diaphragm just ahead of the doublet, which agrees. The diaphragm closes from f/4 to f/32, as Asahi lists.
 
-The native model has the following explicit qualifications. A short native pilot passes geometry and the f/32–f/4 iris-in-air stroke with at least 1.9772 mm clearance. Every rendered face has zero hidden trim. The shared aperture census reports actual traced f/3.999999996 with STO as the limiter. Seven axial rays through ±99% of the nominal pupil pass, and focus geometry is static. A coarse 16-grid throughput sample gives 100%, 89.42%, 79.81%, and 33.65% at 0°, 2.25°, 3.375°, and 4.5°, respectively, with no failed or unaimed rays. These field fractions are preliminary sampling diagnostics, not converged throughput measurements. Native monochromatic MTF now converges through 40 lp/mm at grid 64, within the engine’s 0.01 MTF sampling tolerance. Its field fractions refer to the declared format corner, resolving to 0°, 2.06049°, and 4.09569° (21.65 mm image height), not the source 4.5° edge. At the fixed derived plane, axial MTF at 10/20/40 lp/mm is 0.786/0.488/0.336. A separate best-axial diagnostic shifts by +0.163925 mm and gives 0.933/0.806/0.494; that shift is not applied to the authored lens. The corner remains strongly clipped: 1,718 of 3,228 sampled stop-grid rays pass, with 1,510 blocked and no failed rays. Native spectral support refuses multi-wavelength MTF because the Abbe-81.3 material lacks partial-dispersion data; only the assumed-d monochromatic result is reported. MTF at the fixed derived reference plane remains separate from best-focus diagnostics. A separate grid-64 field sampling gives source-edge 4.5° pupil fraction 34.0768% and manufacturer-half-field 4.15° comparison fraction 50.8055%; these are sampled geometric pupil fractions, not measured retail illumination. Grid-32 to grid-64 differences are below 0.32 percentage points at those fields. A ±1 mm stop-position / ±5% cap sensitivity sweep preserves the baseline: the +5% cap alternatives fail the default L4 edge-thickness check at −0.152 mm and are rejected. The standalone delivery records metadata, type, format, lint, corpus, build, SEO, and installer checks separately from optical qualification.
+The patent prints no semi-diameters, so all are inferred: 39, 37, 34 and 31 mm for L1 to L4, 12 mm for the doublet and 16 mm for L7 and L8, from the proportions of Fig. 1 with positive edge thickness. Fig. 1 and the A★ drawing both show L8 slightly taller than L7, about 18 to 19 mm at this scale, so the model's L8 is on the small side. At f/4 the axial beam fills 37.5 mm of L1's 39 mm. Toward the format corner the rims of the rear group cut the oblique beam strongly, so the model's illumination falls well off at full aperture.
+
+## Comparison with Asahi's Section Drawing
+
+Asahi's *SMC Pentax-A Lenses* booklet draws the section of the SMC Pentax-A★ 300mm f/4 (printed page 38); no drawing of the M★ itself has been found. The booklet's tables list both lenses as eight elements in seven groups, with an 8.3° angle of view, f/32 minimum aperture, 4 m minimum focus, 77 mm filter and 132 mm length: 84 mm across and 825 g for the M★, 84.5 mm and 850 g for the A★. Asahi does not say that the two share their optics.
+
+The drawing agrees with Example 1 element by element: a biconvex front element, a positive meniscus, a flat-fronted negative with a concave rear, a thick positive meniscus nested into it, the diaphragm just ahead of a cemented pair of a biconcave and a biconvex element, and a rear pair of a thin negative meniscus concave to the object and a biconvex element. Measured on the drawing and scaled by the front group's length, the two long air spaces, the doublet and the rear pair agree with Example 1 to within about 5 %. The relative element heights, front to doublet to rear about 39 : 12 : 16–19, agree with Fig. 1. The drawing cannot separate Examples 1 to 3, whose spacings differ by less than its precision.
+
+## Model Scope and Limitations
+
+| Quantity | Patent, f = 100 | Patent × 3 | Model |
+|---|---|---|---|
+| Focal length | 100 | 300 | 300.21 |
+| F-number | 4 | 4 | 4 |
+| Half-field | 4.5° | 4.5° | 4.5° |
+| Telephoto ratio | 0.60 | 0.60 | 0.603 |
+| S1 to S16 | 47.10 | 141.30 | 141.30 |
+| Back focus | not printed | — | 39.813 paraxial |
+
+- The prescription is the patent's Example 1, not a confirmed factory one; Examples 2 and 3 share its layout.
+- Stop position and all semi-diameters are inferred.
+- The image plane is the computed paraxial back focus.
+- The model is static at infinity and says nothing about performance at 4 m.
+- The patent's 4.5° edge reaches 23.6 mm of image height, beyond the 21.65 mm format corner; Asahi's 8.3° angle of view corresponds to the corner.
+- The patent gives N and ν only, so behavior away from the d-line rests on the catalog equivalents.
 
 ## Sources
 
-- [US 4,293,197 A](https://patents.google.com/patent/US4293197A/en), primary patent: title/attribution on PDF page 1; Figure 1 and Example 1 aberrations on PDF page 2; diaphragm description on PDF page 5; numerical Example 1 on PDF page 6.
-- [SMC Pentax-A Lenses brochure](https://www.cameramanuals.org/lenses/pentax_smc_a_lenses.pdf), printed page 35 / PDF page 38, named M★300 product specifications. Printed page 38 describes A★300 and is not substituted for the M★300 entry.
-- Preserved secondary photographic-patent index, P2P_hub.html, used only for the qualified example association.
+- [US 4,293,197 A](https://patents.google.com/patent/US4293197A/en), text (diaphragm position and conditions, columns 1–3), Example 1, claim 1 and Figs. 1–2.
+- Asahi Optical, [*SMC Pentax-A Lenses*](https://www.cameramanuals.org/lenses/pentax_smc_a_lenses.pdf) booklet: printed page 33 (A-series table and the A★ 300mm f/4 special-glass note), page 35 (SMC Pentax-M★ 300mm f/4 and SMC Pentax 300mm f/4 rows) and page 38 (A★ 300mm f/4 section drawing).
+- [Cinelenswiki, Pentax-M★ SMC 300mm f/4](https://www.cinelenswiki.com/lens:pen-msmc300mmf4), release year 1981 and its place as the only M★ lens.
