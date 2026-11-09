@@ -1,4 +1,4 @@
-# PENTAX SMC PENTAX-M 150mm f/3.5 — audit log
+# PENTAX SMC M 150mm f/3.5 — audit log
 
 ## 2026-11-09 — Deployment validation
 

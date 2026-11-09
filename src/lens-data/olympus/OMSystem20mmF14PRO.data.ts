@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Product identity inferred, not factory certified. Literal BF1.3929 retained; no refocus correction. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "om-system-m-zuiko-20mm-f14-pro",
+  "key": "om-system-mzuiko-digital-ed-20mm-f14-pro",
   "maker": "Olympus",
   "name": "OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO",
   "subtitle": "JP 2023-32222 A Example 1 \u2014 inferred product association",

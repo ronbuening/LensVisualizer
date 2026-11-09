@@ -1,4 +1,4 @@
-# Olympus F.Zuiko Auto-T 300mm f/4.5 — audit log
+# OLYMPUS F.ZUIKO AUTO-T 300mm f/4.5 — audit log
 
 ## 2026-11-09 — Deployment validation
 

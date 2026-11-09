@@ -2,9 +2,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Primary radii, spacings and glass coordinates preserved. Stop and apertures from P2P, not primary measurements. Final image distance is computed paraxial BFD, not a printed source plane. See companion analysis. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "olympus-300mm-f45",
+  "key": "olympus-f-zuiko-auto-t-300mm-f45",
   "maker": "Olympus",
-  "name": "Olympus F.Zuiko Auto-T 300mm f/4.5",
+  "name": "OLYMPUS F.ZUIKO AUTO-T 300mm f/4.5",
   "subtitle": "Qualified patent reconstruction; secondary stop and apertures",
   "catalog": {
     "lensMounts": [

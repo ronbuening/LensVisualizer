@@ -1,4 +1,4 @@
-# PENTAX SMC PENTAX-M 135mm f/3.5 — audit log
+# PENTAX SMC M 135mm f/3.5 — audit log
 
 ## 2026-11-09 — Deployment validation
 

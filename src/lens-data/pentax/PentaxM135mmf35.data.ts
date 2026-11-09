@@ -11,7 +11,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "pentax-m-135mm-f35",
   "maker": "Pentax",
-  "name": "PENTAX SMC PENTAX-M 135mm f/3.5",
+  "name": "PENTAX SMC M 135mm f/3.5",
   "subtitle": "US 4,134,645 A, Example 2; qualified product association, inferred apertures",
   "catalog": {
     "lensMounts": [
