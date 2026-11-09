@@ -8,8 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Scale: none. The example is printed at the production focal length; the computed d-line EFL is 85.645 mm against
  * the stated f = 85 mm (para. 0035). No wavelength from C to g reaches 85.0 mm, so the 85 is a nominal value.
  * Printed: R, d, glass name, a clear aperture (孔径) for every row, zero conic on every row, f = 85 mm and F = 1.8.
- * The patent prints no index or Abbe number; nd, vd and the C, F and g line indices are the CDGM and HOYA catalog
- * values for the named glasses.
+ * The patent prints no index or Abbe number; nd and vd are the CDGM and HOYA catalog values for the named glasses,
+ * and each element traces on that glass's catalog dispersion curve.
  * Cemented joins: the table prints each cemented interface twice with 0.00 mm of air (rows 6, 11 and 15). Each pair
  * is merged into one cemented surface, as the text describes, leaving 15 refracting surfaces and the stop. Surface
  * labels keep the patent's row numbers.
@@ -74,9 +74,6 @@ const LENS_DATA = {
       role: "Weak biconvex front collector; begins converging the 47.6 mm f/1.8 entrance beam.",
       nd: 1.7725,
       vd: 49.598996,
-      nC: 1.7677981482893248,
-      nF: 1.7833730595066908,
-      ng: 1.7919645479604502,
     },
     {
       id: 2,
@@ -87,9 +84,6 @@ const LENS_DATA = {
       role: "Positive meniscus convex to the object; with L1 forms the positive front pair of claim 3.",
       nd: 1.83481,
       vd: 42.725177,
-      nC: 1.8289826215085356,
-      nF: 1.848521687889939,
-      ng: 1.85954788015501,
     },
     {
       id: 3,
@@ -100,9 +94,6 @@ const LENS_DATA = {
       role: "Lanthanum-crown positive meniscus of the front cemented doublet U1.",
       nd: 1.6516,
       vd: 58.403057,
-      nC: 1.6481924860863575,
-      nF: 1.659349436592451,
-      ng: 1.6653876643797305,
     },
     {
       id: 4,
@@ -113,9 +104,6 @@ const LENS_DATA = {
       role: "Dense-flint negative meniscus of U1; makes the doublet weakly negative and corrects axial color ahead of the stop.",
       nd: 1.72825,
       vd: 28.32,
-      nC: 1.7208203129692747,
-      nF: 1.7465349063631939,
-      ng: 1.7621146531573137,
     },
     {
       id: 5,
@@ -126,9 +114,6 @@ const LENS_DATA = {
       role: "Dense-flint positive meniscus, concave to the object; front half of the cemented focusing doublet U2.",
       nd: 1.84666,
       vd: 23.784497,
-      nC: 1.83649557954429,
-      nF: 1.8720927193923005,
-      ng: 1.894189005513759,
     },
     {
       id: 6,
@@ -139,9 +124,6 @@ const LENS_DATA = {
       role: "Biconcave crown that gives U2 its negative power; U2 is the patent's focusing group.",
       nd: 1.5168,
       vd: 64.198732,
-      nC: 1.5143264577507813,
-      nF: 1.5223764609729011,
-      ng: 1.5266898809333964,
     },
     {
       id: 7,
@@ -152,9 +134,6 @@ const LENS_DATA = {
       role: "Dense-flint biconcave element opening the rear cemented doublet U3.",
       nd: 1.84666,
       vd: 23.784497,
-      nC: 1.83649557954429,
-      nF: 1.8720927193923005,
-      ng: 1.894189005513759,
     },
     {
       id: 8,
@@ -165,9 +144,6 @@ const LENS_DATA = {
       role: "Biconvex lanthanum element of U3; nearly index-matched to L7, so the pair works mainly on lateral color.",
       nd: 1.83481,
       vd: 42.725177,
-      nC: 1.8289826215085356,
-      nF: 1.848521687889939,
-      ng: 1.85954788015501,
     },
     {
       id: 9,
@@ -178,9 +154,6 @@ const LENS_DATA = {
       role: "Biconvex rear positive element; balances the front pair's power about the stop (claim 3).",
       nd: 1.83481,
       vd: 42.725177,
-      nC: 1.8289826215085356,
-      nF: 1.848521687889939,
-      ng: 1.85954788015501,
     },
   ],
   surfaces: [

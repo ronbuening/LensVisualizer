@@ -34,7 +34,7 @@ the 2022 production lens". Added `catalog.specs` ["9 ELEMENTS / 6 GROUPS", "DESI
 modeled. Glass labels keep the patent's names in vendor form, "<name> (CDGM; named in the patent)" and "E-FD10 (HOYA;
 named in the patent)". H-LaF50B, E-FD10, H-ZF52 and H-K9L resolve to their catalog rows at the stored nd/νd;
 H-ZLaF55D (L2, L8, L9) and H-LaK50A (L3) are not in the site catalog and keep the patent's names, their dispersion
-coming from the stored CDGM line indices. No relabel to another vendor was made, because the patent names these
+coming from the stored CDGM line indices (closed below: both rows are now in the catalog). No relabel to another vendor was made, because the patent names these
 glasses. No apd: Meike publishes no special-dispersion element.
 
 Analysis: run-together text fixed throughout; "Curvatures" corrected to radii; the Verification Summary replaced by
@@ -111,3 +111,10 @@ so the live page check at infinity covers every printed state.
 
 Open: S19 against Fig. 1 (printed 43.00 mm against about 34.5 mm drawn), for an owner decision on a source-errata
 entry. The S3–S8 axial clipping above is unchanged.
+
+## 2026-11-09 — Glass coverage
+
+CDGM H-ZLaF55D and H-LaK50A are added to the glass catalog from CDGM's September 2026 Zemax file (the same file the
+existing CDGM rows cite), so L2, L3, L8 and L9 now resolve to their named rows. The C, F and g line indices stored on
+all nine elements were the catalog curves of the named glasses (identical to the catalog rows to 1e-15), so they are
+removed and every element traces on its catalog Sellmeier curve; the chromatic result is unchanged.

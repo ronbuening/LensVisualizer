@@ -72,7 +72,7 @@ The rear positive element balances the front pair about the stop, with φ9/φ12 
 
 ## Glass Identification and Selection
 
-The patent names each glass but prints no index or Abbe number. The nd, νd and C, F and g line indices stored for each element are the CDGM and HOYA catalog values for the named types, so the lens's chromatic behavior here rests on the catalogs, not on measured melts.
+The patent names each glass but prints no index or Abbe number. The nd and νd stored for each element are the CDGM and HOYA catalog values for the named types, and each element traces on that glass's catalog dispersion curve, so the lens's chromatic behavior here rests on the catalogs, not on measured melts.
 
 | Glass | nd | νd | Elements | Role |
 |---|---|---|---|---|
@@ -83,7 +83,7 @@ The patent names each glass but prints no index or Abbe number. The nd, νd and 
 | H-ZF52 (CDGM) | 1.84666 | 23.78 | L5, L7 | Dense flint, flint halves of U2 and U3 |
 | H-K9L (CDGM) | 1.51680 | 64.20 | L6 | Borosilicate crown, negative half of U2 |
 
-H-ZLaF55D and H-LaK50A are not in the site's glass catalog, so those elements take their dispersion from the stored line indices alone. None of the nine glasses is an ED or anomalous-dispersion type, and Meike advertises no special elements; the three doublets are ordinary crown–flint achromats.
+All nine glasses, H-ZLaF55D and H-LaK50A included, are in the site's glass catalog. None of the nine glasses is an ED or anomalous-dispersion type, and Meike advertises no special elements; the three doublets are ordinary crown–flint achromats.
 
 ## Focus Mechanism
 
