@@ -116,7 +116,8 @@ Catalog modules live under `src/utils/catalog/`, content registries under `src/u
   `lensMountMetadata` / `imageFormatMetadata`, which return `undefined` for anything else, and skip it.
 - `patentRecords.ts` is the pure, index-free leaf shared by `patentCatalog.ts` and `authorCatalog.ts`;
   `lensPatentMetadata.ts` is re-exported by `lensMetadata.ts` so lens pages and cards share patent subtitles.
-- `src/utils/content/changelogData.ts` is the hand-maintained update history (rules in `agent_docs/changelog.md`);
+- `src/utils/content/changelogData.ts` exposes the update history compiled from `src/content/changelog/` (rules in
+  `agent_docs/changelog.md`);
   `src/utils/seo/siteUrls.ts` normalizes page URLs to Cloudflare Pages' trailing-slash direct-`200` form while
   preserving static-file URLs.
 

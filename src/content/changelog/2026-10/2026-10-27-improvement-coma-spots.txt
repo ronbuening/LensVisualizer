@@ -1,0 +1,1 @@
+Coma spots, ray fans, bokeh, field curves, spherical aberration and color zones now sample the real aperture stop, as lens-design software does with ray aiming

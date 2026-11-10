@@ -94,7 +94,7 @@ src/utils/                - State, URL sync, themes, catalog, SEO, metadata util
 src/lens-data/            - Auto-registered `*.data.ts` prescriptions, `*.teleconverter.ts` converters,
                             `*.analysis.md` notes, `*.audit.md` logs
 src/mounts/               - Mount diagram `*.mount.ts` specs, barrel, schema, and authoring guide
-src/content/              - Auto-registered markdown articles and static content
+src/content/              - Auto-registered markdown articles, static content, and changelog/ entry files
 src/benchmarks/           - Optics/render benchmark harness (npm run benchmark:optics-rendering)
 scripts/                  - Metadata, folder-readme, prerender, sitemap, SEO, and lens-data build helpers
 __tests__/                - Vitest unit/component/script tests

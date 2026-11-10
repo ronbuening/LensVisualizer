@@ -1,0 +1,1 @@
+Fixed publication dates so site cards, feeds, and sitemaps agree on the UTC day

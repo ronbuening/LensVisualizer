@@ -1,0 +1,1 @@
+Fixed close-focus distortion readings, which were measured against an infinity reference

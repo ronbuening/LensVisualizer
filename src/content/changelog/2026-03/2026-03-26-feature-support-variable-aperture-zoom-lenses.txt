@@ -1,0 +1,1 @@
+Added support for variable-aperture zoom lenses (e.g. f/4.5–5.6)

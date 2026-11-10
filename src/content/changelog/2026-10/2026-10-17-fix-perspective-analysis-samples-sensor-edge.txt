@@ -1,0 +1,1 @@
+Stabilized perspective analysis samples at the sensor edge

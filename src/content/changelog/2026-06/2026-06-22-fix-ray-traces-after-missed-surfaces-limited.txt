@@ -1,0 +1,1 @@
+Stopped ray traces after missed surfaces and limited clipped ghost rays

@@ -1,0 +1,1 @@
+Added aberration control variable support for lenses with separate soft-focus rings

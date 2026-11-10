@@ -1,0 +1,1 @@
+Added connection tracing, company comparisons, and inventor relationship views
