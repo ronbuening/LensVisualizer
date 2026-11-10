@@ -113,3 +113,60 @@ draws at 12.1 mm beside the 11.33 mm paraxial iris.
 L4 relabelled from Unmatched to K-PMK30 (Sumita): the vendor catalog prints 1.52500 / 70.4 against the patent's
 1.525 / 70.361 (Δnd 0, Δνd 0.04); the row was added to the glass catalog for this lens. `catalog.focalLengthMm.design`
 set to the patent's stated 35.02 mm to match the specs line.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared: the current local page at infinity (diagram, inspector for all nine elements, focus-movement overlay) with
+CN 113126266 A Fig. 1 (page 13, rendered at 300 dpi), the Example 1 tables (page 9), the legend in ¶0048 and the
+C/d/F plot of Fig. 2. Heights were re-measured on both sides of the axis line (row 853.5 px); the first vertex to the
+image line spans 1669 px for 80.114 mm, 20.8–20.9 px/mm, as the earlier pass found. The model was overlaid on the
+figure at that scale.
+
+Rims, re-measured (outer ink less a 4 px half-stroke, mm): G11 blank 14.1–14.2 (file 14.3), its rear cap meets the
+land at 12.4 (13.0), G12 12.3–12.5 (12.35), G13 10.9–11.3 (11.0), G14 11.6–11.9 (12.1), G15 13.0–13.2 (13.2), Gj1
+12.1 and Gj2 11.6–11.7 (12.0 across the doublet), G22 12.5 (12.0), G31 13.5–13.7 (13.6). Every reading lies within
+5 % of the file, the drawn height order between neighbours holds on the page, and G13, G14, the doublet and G31 are
+square-cut as drawn. No rim changed. G22 remains 4 % under the figure: the render shows it level with the doublet
+where the figure draws it about 0.5 mm taller, which is within the reading band.
+
+Lands and cuts: no face sits below its `.lens-work/base1118sd` value, so there are no cuts. The one land, surface 2's
+`rimExtensionSd` 14.3 out to G11's square edge, costs 0.0 points at every field when removed and is drawn in Fig. 1:
+kept. Final rim cost against the baseline: worst loss 0.0 points; the corner (31.1°) passes 58.4 % against 38.4 %.
+Engine half-field 32.258° and FOPEN 2.000 before and after.
+
+Labels and tags:
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| element `name` | L1–L9 | G11, G12, G13, G14, G15, Gj1, Gj2, G22, G31 | the patent's own signs (¶0048, Fig. 1), already on `diagramLabel`; the inspector now matches the drawn label |
+| cemented id and doublet bracket | C1 | G21 | ¶0048 names the cemented achromatic group G21; Fig. 1 brackets Gj1/Gj2 as "G21 (胶合镜组)" |
+| G22 `type` | Positive Meniscus | Positive Meniscus (2× Asph) | surfaces 16 and 17 are the patent's only aspheres |
+| G14 `apdNote` | "no catalog row matches" | names the K-PMK30 match and its ΔPgF (+0.006) | the label set earlier today |
+
+Checked and correct: `type` against the signs of R for all nine elements; focal lengths (G11 −33.68 mm by thick-lens
+check; the G21 pair +245 mm); groups GR1 (S1–S11), GR2 (S12–S17A), GR3 (S18–S19) as Fig. 1 brackets them; the stop
+between G14 and G15 at surface 9; A markers on 16A and 17A only; `apd: "inferred"` on G14 only, the element Yongnuo
+marks ED. The analysis now uses the patent signs throughout and quotes the printed nd/νd for G15, Gj1 and G31.
+
+Movement: infinity only, no keyframes, and the overlay shows no modelled movement. The focus table (¶0108) and the
+arrow in Fig. 1 move GR2 toward the object by 2.39 mm (d11 3.17 → 0.78 mm, d17 1.71 → 4.10 mm) with GR1 and GR3
+fixed; `focus.description` says the same.
+
+Glass: the four-decimal Abbe numbers equal FD3 (28.2450), S-BSM14 (60.6411) and PBM39 (33.0468) exactly, and the
+plate's 64.1501 equals the obsolete OHARA BSL7 (S-BSL7 is 64.1420). G11 (34.4697) lies between S-TIM27 (34.4664) and
+PBM27 (34.4771), G15 between TAFD35 (35.2500) and TAFD35L (35.2540), G31 0.016 above E-FD4: no exact alternative, labels
+kept. G12 (1.9014/31.6382): the obsolete OHARA LAH78 (1.901355/31.5502, OHARA_260701.AGF) falls inside the label window
+but is not in the repo catalog, and its Abbe number differs at the decimals the patent matches elsewhere. G22
+(1.79/45) has no row within the window. Example 2 prints other values at G12, G14 and G22 (1.85026/32.3077,
+1.51/63.3645, 1.795/45.29), and G14's and G22's round values suggest optimizer-chosen glasses; the K-PMK30 match for
+G14 may be coincidental. The patent prints no ΔPgF or line indices, and no medium is nd-only.
+
+Colour: Fig. 2 plots C, d and F against the image plane. The traced foci keep the plotted spacing to within 0.003 mm
+(F − d on axis −0.023 mm traced and plotted, at the rim −0.071 / −0.072; C − d 0.044 / 0.043 on axis, 0.075 / 0.073 at
+the rim). All three traced curves sit 0.007–0.012 mm behind the plotted ones: the paraxial d focus is 0.095 mm ahead of
+the image against about 0.105 mm in Figs. 2 and 3.
+
+Open: the `source.errata` note still calls the corrected element L7 (now Gj2) and quotes the −0.095 mm focus shift as
+matching Figs. 2–4, which plot about −0.105 mm; `source` is outside this pass.
+Open: the camera-side plate could take the exact OHARA BSL7 row instead of S-BSL7 (Δνd 0.008); `rearPlates` is outside
+this pass.

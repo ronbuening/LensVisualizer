@@ -1,15 +1,16 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 // CN 113126266 A, Example 1, at the printed scale (f = 35.02 mm) and infinity focus. Radii, thicknesses, indices,
-// Abbe numbers, asphere terms and the image distance are as printed, except L7 nd: the main table prints 1.668 and
-// the parameter list ([0120]) gives 1.6668 (see source.errata).
+// Abbe numbers, asphere terms and the image distance are as printed, except the nd of Gj2 (the seventh lens, L7 in
+// source.errata): the main table prints 1.668 and the parameter list ([0120]) gives 1.6668.
+// Element names are the patent's signs (G11–G15, Gj1/Gj2 in the cemented group G21, G22, G31; [0048]).
 // The patent prints the asphere coefficients without the sag equation; the standard even-asphere form (conic 1 + K)
 // reproduces its spherical-aberration plot (Fig. 2).
 // The camera-side plate GL (2.5 mm, 14.08 mm air before it, 1.00 mm to the image) is the patent's own rear train.
 // Semi-diameters are inferred (the patent prints none), not factory dimensions: estimated from Fig. 1 (20.9 px/mm at
-// 300 dpi from the vertex span) and floor-checked by real-ray trace. L1 is drawn as a square blank, so its concave
-// rear cap ends at 13.0 mm with a land out to 14.3 mm (rimExtensionSd). L4 and L5 also clear the real F/2.00
-// marginal ray of Fig. 2. The stop is sized for F/2.00 at the paraxial entrance pupil. L2, L4 and L8 match no
+// 300 dpi from the vertex span) and floor-checked by real-ray trace. G11 is drawn as a square blank, so its concave
+// rear cap ends at 13.0 mm with a land out to 14.3 mm (rimExtensionSd). G14 and G15 also clear the real F/2.00
+// marginal ray of Fig. 2. The stop is sized for F/2.00 at the paraxial entrance pupil. G12 and G22 match no
 // catalog glass and use Abbe-number dispersion.
 // Infinity focus only: the patent's 0.35 m state (GR2 moved) is not modelled.
 const LENS_DATA = {
@@ -61,7 +62,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "G11",
       label: "Element 1",
       diagramLabel: "G11",
       type: "Negative Meniscus",
@@ -74,7 +75,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "G12",
       label: "Element 2",
       diagramLabel: "G12",
       type: "Biconvex Positive",
@@ -87,7 +88,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "G13",
       label: "Element 3",
       diagramLabel: "G13",
       type: "Biconcave Negative",
@@ -100,7 +101,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "G14",
       label: "Element 4",
       diagramLabel: "G14",
       type: "Positive Meniscus",
@@ -111,12 +112,12 @@ const LENS_DATA = {
       glass: "K-PMK30 (SUMITA catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote:
-        "Yongnuo marks this element as its ED glass; the patent requires 60 ≤ νd ≤ 90 here for axial and lateral colour but names no glass, and no catalog row matches, so its partial dispersion is unpublished.",
+        "Yongnuo marks this element as its ED glass; the patent requires 60 ≤ νd ≤ 90 here for axial and lateral colour but names no glass. The printed 1.525/70.361 matches Sumita K-PMK30 (1.52500/70.4), whose catalog curve supplies the partial dispersion (ΔPgF about +0.006); the production glass is unspecified.",
       role: "Low-dispersion positive meniscus just ahead of the stop; the colour-correcting crown of GR1.",
     },
     {
       id: 5,
-      name: "L5",
+      name: "G15",
       label: "Element 5",
       diagramLabel: "G15",
       type: "Biconvex Positive",
@@ -129,7 +130,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "Gj1",
       label: "Element 6",
       diagramLabel: "Gj1",
       type: "Biconvex Positive",
@@ -139,11 +140,11 @@ const LENS_DATA = {
       focalLengthMm: 22.953117165279846,
       glass: "S-BSM14 (OHARA)",
       role: "Positive crown of the achromatic doublet that leads the focusing group GR2.",
-      cemented: "C1",
+      cemented: "G21",
     },
     {
       id: 7,
-      name: "L7",
+      name: "Gj2",
       label: "Element 7",
       diagramLabel: "Gj2",
       type: "Biconcave Negative",
@@ -153,14 +154,14 @@ const LENS_DATA = {
       focalLengthMm: -22.54630165284914,
       glass: "PBM39 (OHARA)",
       role: "Negative flint of the GR2 achromatic doublet; its index is the corrected source erratum.",
-      cemented: "C1",
+      cemented: "G21",
     },
     {
       id: 8,
-      name: "L8",
+      name: "G22",
       label: "Element 8",
       diagramLabel: "G22",
-      type: "Positive Meniscus",
+      type: "Positive Meniscus (2× Asph)",
       nd: 1.79,
       vd: 45,
       indexReference: "d",
@@ -170,7 +171,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "G31",
       label: "Element 9",
       diagramLabel: "G31",
       type: "Negative Meniscus",
@@ -352,7 +353,7 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "C1",
+      text: "G21",
       fromSurface: "12",
       toSurface: "14",
     },
