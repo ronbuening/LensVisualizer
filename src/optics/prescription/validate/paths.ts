@@ -29,6 +29,7 @@ export function authoredMessages(
     patentExample: "source.example",
     patentAuthors: "source.authors",
     patentAssignees: "source.assignees",
+    sourceIssuer: "source.issuer",
   };
   for (const row of LENS_SCHEMA_DEFAULTS) {
     if (!row.spread) names[row.v1Field] = row.path;

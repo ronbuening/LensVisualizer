@@ -248,3 +248,7 @@ included harness directly; it never invokes npm lifecycle hooks. The final archi
 membership/hash validation, safe clean extraction, unchanged-original checks and an external replay match. The final
 manifest records that earned pre-integration gate. Full-project typecheck/corpus/metadata/build remain NOT_RUN at
 integration scope. Integration status remains INTEGRATION_PENDING.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2.8: `patents/JP_S5162037_A.pdf` PDF p. 3 (gazette p. 249), left column, 実施例1 heading "f = 100  1 : 2.8  2ω = 18.2°" (image-only page, read from a render); the Fig. 2 aberration plot is also labelled F2.8. The stop's `nominalFNumber` 2.8 passes the 0.5% guard.

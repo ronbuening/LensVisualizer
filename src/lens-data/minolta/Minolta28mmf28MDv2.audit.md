@@ -27,3 +27,7 @@ Canonicalized `Minolta Camera Kabushiki Kaisha` to `Minolta Camera Co., Ltd.` wi
 ### Live geometry and travel follow-up
 
 A second axial-calibrated reading of FIG. 1 gives approximately 35.6 pixels/mm in the 600 dpi crop: the 48.3784 mm first-to-last vertex span measures about 1722 pixels. Optical rims support S1/S2 = 15.5/13 mm, S3/S4 = 8/8 mm, S5 = 7.3 mm and S9/S10 = 8.5/8.5 mm. These replace 14/12, 8.75/7.5, 6.1 and 8/8.2 mm respectively, making the front larger and the second element less tapered. S6/S7 remain 6.9 mm and S8 remains 7.6 mm: widening the shared S6–S7 band to 7.3 mm exceeds the permitted sag intrusion in the 0.798 mm gap. Figure leaders and the front mechanical bevel are excluded. The displayed five-element version remains distinct from the seven-element MD. L2 and L3 remain unmatched: the nearest catalog candidates are at the compatibility boundary or have an appreciable index residual, and no closer sourced spectral data were found. Focus remains explicitly not modeled. No zoom travel applies to this prime lens.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2.8: `patents/US_4493536_A.pdf` PDF p. 8, Table 1 [Embodiment 1] heading "f = 100  FNo. 2.8  2ω = 76°  L.B. = 127.68" (col. 5 foot; repeated on the Table 1-continued heading, col. 6), read from a render. The stop's `nominalFNumber` 2.8 passes the 0.5% guard.

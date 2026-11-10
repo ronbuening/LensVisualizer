@@ -89,3 +89,8 @@ Movement: the patent (cols. 3–4) focuses by moving L2 toward the image along a
 Colour and field against Fig. 5A: the d-line curve agrees (paraxial 0, 0.7 zone −0.053 plotted and −0.055 modeled, full aperture −0.031 and −0.026 mm). The model's g-line focus lies about 0.04 mm farther back than plotted in every zone (paraxial +0.148 against +0.11, full aperture +0.085 against +0.044 mm), beyond the 0.01 mm reading error. Every glass label resolves to a catalog curve within 0.07 of the printed νd, and the patent prints no partial dispersions, so no label stands out; the g focus is most sensitive to E3 and E8 (about +0.009 mm per +0.001 of θgF) and to E9 and E10 (about −0.007 mm). Distortion at 4.15° is +1.24 % modeled and about +1.28 % plotted; ΔS and ΔM are −0.009 and −0.025 mm modeled, inside the plot's line width around zero.
 
 Open: the 0.04 mm g-line offset against Fig. 5A is unexplained by the printed data.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.marketing: 4` from the product name, so the wide-open readout names the marked f/4 beside
+  the design f/4.1. No optical value changed.

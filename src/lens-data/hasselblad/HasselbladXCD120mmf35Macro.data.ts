@@ -44,8 +44,8 @@ const LENS_DATA = {
     elementCount: 10,
     groupCount: 7,
     /* ── Explicit metadata fields ── */
-    focalLengthMm: { marketing: 120 },
-    fNumber: { marketing: 3.5 },
+    focalLengthMm: { marketing: 120, design: 120 },
+    fNumber: { marketing: 3.5, design: 3.5 },
   },
 
   source: {

@@ -27,6 +27,7 @@ const LENS_DATA = {
       design: 34.5,
     },
     fNumber: {
+      marketing: 1.8,
       design: 1.86,
     },
     specs: [
