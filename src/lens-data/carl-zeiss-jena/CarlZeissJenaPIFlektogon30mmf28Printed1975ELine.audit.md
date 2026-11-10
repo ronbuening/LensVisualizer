@@ -283,3 +283,15 @@ as a pass. Existing UTC changelog entries are unchanged. No patent or scratch fi
   the works' patents.
 - Effect: the universal relationship map groups the model under VEB Carl Zeiss Jena instead of a separate
   "Carl Zeiss Jena" catalog-maker hub. `maker` stays "Carl Zeiss Jena" for the maker page. No patent metadata is added.
+
+## 2026-11-10 — Product context and metadata check
+
+- Re-read the archive page that hosts the sheet (zeissikonveb.de, Zeiss-Sonderobjektive). It describes the lens as
+  corrected to 850 nm, ties a *similar* SO-4 2,8/30 to the Stasi HFK camera's 24 × 24 mm frame, and suggests DD 301 976
+  Example 3 (Eberhard Dietzsch, filed 15 July 1976). Its back focus 26.7 mm, 54° field and −3.52% distortion agree with
+  the model's 26.83 mm, 54° and −3.46%.
+- `lensMounts` and `imageFormat` stay unset: no thread, bayonet or recording frame is tied to this sheet, the 24 × 24 mm
+  frame has no canonical id, and the 29.5 mm image circle would not cover it. The row is queued in
+  `agent_docs/lens-mount-format-backfill.md`.
+- Patent metadata stays out: the sheet, not DD 301 976, supplies every number, and the Example 3 match is the archive's
+  suggestion. A production minimum focus distance is still unsourced; the 1e15 sentinel stays.
