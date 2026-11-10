@@ -21,7 +21,7 @@ flowchart TD
   Target -->|Lens library| IndexPage[src/pages/lensIndex]
   Target -->|Maker/mount/format clusters| ClusterPages[src/pages Maker/Mount/Format pages]
   Target -->|Articles| ArticleRoutes[src/pages ArticlesPage and ArticlePage]
-  Target -->|Updates| UpdatesPage[src/pages/UpdatesPage.tsx]
+  Target -->|Updates hub and monthly archive| UpdatesPage[src/pages/UpdatesPage.tsx and UpdatesMonthPage.tsx]
   Target -->|404| NotFound[src/pages/NotFoundPage.tsx]
 
   Generated[src/generated build metadata] --> ContentRegistry[src/utils/content/homepageContent.ts]

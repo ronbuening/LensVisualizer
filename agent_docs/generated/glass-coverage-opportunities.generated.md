@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1068** lenses scanned (**1053** visible)
-- **11376 / 12213** non-air surfaces use strict catalog Sellmeier data (93.1%)
-- **11390 / 12213** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
+- **1095** lenses scanned (**1077** visible)
+- **11593 / 12438** non-air surfaces use strict catalog Sellmeier data (93.2%)
+- **11607 / 12438** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **288** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **155** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -46,7 +46,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON AF-S ZOOM-NIKKOR 24-85mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor2485mmf3545GIFED.data.ts) | JP 2003-241093 A | [PDF](../../patents/JP_2003241093_A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [glass] (Element 4 hybrid layer: `Unmatched (thin hybrid-asphere layer, n_d=1.55389, v_d=38.1)`) | abbe: 1 |
 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | US 2010/0194930 A1 | [PDF](../../patents/US20100194930A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 28 [glass] (Element 16: `Unmatched crown class (523/701, likely phosphate/fluorophosphate)`) | abbe: 1 |
 | [PANASONIC LUMIX S 24-105mm f/4 MACRO O.I.S.](../../src/lens-data/panasonic/PanasonicLumixS24105mmf4MacroOIS.data.ts) | JP 2020-118738 A | [PDF](../../patents/JP2020118738A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 16A [glass] (Element 8: `Unmatched (688311; M-FD80 / S-TIM28 / J-SF8 class)`) | abbe: 1 |
-| [CANON EF 100-300mm f/5.6](../../src/lens-data/canon/CanonEF100300mmf56.data.ts) | JP S61-77818 A | [PDF](../../patents/JPA 1986077818-000000.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 11 [glass] (Element 7: `Unmatched (1.52301/50.8 outside the exact d-line window; KF5 and N-KF9 are near candidates)`) | abbe: 1 |
 | [NIKON TV-NIKKOR 11.5-69mm f/1.2 (Nikon S-100)](../../src/lens-data/nikon/NikonTVNikkor11569mmf12NikonS100.data.ts) | US 4,437,733 | [PDF](../../patents/US_4437733_A.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 18 [glass] (L8: `Unmatched (740449; current authoritative catalogs)`) | abbe: 1 |
 | [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) | JP 2018-180366 A | [PDF](../../patents/JP2018180366A.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 13 [glass] (LR negative member: `Unmatched (675/348 partial-dispersion flint; patent nd=1.67542, vd=34.8, θgF=0.5825)`) | abbe: 1 |
 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | US 2023/0341664 A1 | [PDF](../../patents/US20230341664A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 11A [glass] (L24: `772493 — molded lanthanum-crown class (no exact public catalog match)`) | abbe: 1 |
@@ -127,6 +126,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [PANASONIC LEICA DC VARIO-SUMMILUX 4.7-17.7mm f/1.4-2.3 (Panasonic Lumix DMC-LX7; Leica D-Lux 6)](../../src/lens-data/panasonic/LeicaDCVarioSummilux47177mmf1423PanasonicLX7.data.ts) | US 2015/0124127 A1 | [PDF](../../patents/US20150124127A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 20A [glass] (Element 10: `684313 — Unmatched exact public catalog identity`)<br>22A [glass] (Element 11: `636239 — Unmatched exact public catalog identity`) | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | GB 775,944 | [PDF](../../patents/GB_775944_A.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 4 [glass] (Element 3: `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)`) | abbe: 1 |
 | [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) | US 2,819,651 | [PDF](../../patents/US2819651.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 4 [glass] (Lens III: `KzF4 class (Schott-Jena legacy short flint, 570/481)`) | abbe: 1 |
+| [CANON FL-F 500mm f/5.6](../../src/lens-data/canon/CanonFLF500mmf56.data.ts) | JP S47-8109 B | [PDF](../../patents/JPS478109B.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 5 [glass] (Element 3: `Unmatched (fluor crown, nd 1.48749 / νd 70.0)`) | abbe: 1 |
 | [MINOLTA MD 35mm f/2.8](../../src/lens-data/minolta/MinoltaMD35mmf28.data.ts) | US 3,936,153 | [PDF](../../patents/US3936153.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (lanthanum crown; printed 1.6583/58.5 recurs in Minolta patents but has no catalog row)`) | abbe: 1 |
 | [NIKON AI NIKKOR 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) | US 4,338,001 | [PDF](../../patents/US4338001.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unresolved low-dispersion glass (source 1.50032/81.9; ED class inferred, composition unspecified)`) | abbe: 1 |
 | [NIKON NIKKOR 600mm f/5.6 ED](../../src/lens-data/nikon/NikonNikkor600mmf56ED.data.ts) | US 3,774,991 | [PDF](../../patents/US3774991.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `Unmatched (486815 — fluophosphate crown; vendor unresolved)`) | abbe: 1 |

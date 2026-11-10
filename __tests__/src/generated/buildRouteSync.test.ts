@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { CATALOG_KEYS } from "../../../src/utils/catalog/lensCatalog.js";
 import { ALL_TELECONVERTER_KEYS, TELECONVERTER_KEYS } from "../../../src/utils/catalog/teleconverterCatalog.js";
 import { CATALOG_ENTRIES } from "../../../src/pages/lensIndex/catalog.js";
+import { UPDATE_MONTHS } from "../../../src/utils/content/updatesArchive.js";
 import buildMeta from "../../../src/generated/build-metadata.json";
 
 /**
@@ -49,6 +50,13 @@ describe("build-route-sync", () => {
     expect(routes).toContain("/authors");
     expect(routes).toContain("/patents");
     expect(routes).toContain("/articles");
+  });
+
+  it("update months match the runtime /updates archive, one /updates/<month> route each", () => {
+    const monthRoutes = buildMeta.routes.filter((r: string) => r.startsWith("/updates/"));
+
+    expect(buildMeta.updateMonths).toEqual(UPDATE_MONTHS);
+    expect(monthRoutes).toEqual(UPDATE_MONTHS.map(({ month }) => `/updates/${month}`));
   });
 
   it("lensKeys array matches routes with /lens/ prefix", () => {

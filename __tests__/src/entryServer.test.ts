@@ -10,6 +10,8 @@
 import { describe, it, expect } from "vitest";
 import { render as renderRoute } from "../../src/entry-server.js";
 import { ARTICLES } from "../../src/utils/content/homepageContent.js";
+import { formatUpdateMonth } from "../../src/utils/content/updateMonths.js";
+import { UPDATE_MONTHS } from "../../src/utils/content/updatesArchive.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../../src/utils/catalog/lensCatalog.js";
 import { IMAGE_FORMAT_OPTIONS, MOUNT_OPTIONS } from "../../src/pages/lensIndex/catalog.js";
 import { getMountDetails } from "../../src/utils/catalog/mountDetails.js";
@@ -50,6 +52,7 @@ const TEST_UNPROFILED_RICH_AUTHOR = AUTHORS.find(
   (author) => (author.patentCount > 1 || author.lensKeys.length > 1) && !getAuthorBiography(author.name),
 )!;
 const TEST_PATENT = PATENTS[0];
+const TEST_UPDATE_MONTH = UPDATE_MONTHS[UPDATE_MONTHS.length - 1].month;
 
 /* render(url) is a pure function of the URL (no shared mutable state between
  * calls), so each unique route is SSR-rendered once and shared by every test
@@ -108,6 +111,8 @@ describe("SSR render — all routes produce valid head output", () => {
     [`/mounts/${TEST_MOUNT.id}`, "mount page", true],
     ["/formats", "formats index", true],
     [`/formats/${TEST_FORMAT.id}`, "format page", true],
+    ["/updates", "updates hub", true],
+    [`/updates/${TEST_UPDATE_MONTH}`, "updates month archive", true],
     ["/relationships", "relationship map", true],
     ["/relationships/universal", "universal relationship map", true],
     ["/this-route-does-not-exist", "404", false],
@@ -418,6 +423,24 @@ describe("SSR render — formats", () => {
     expect(scripts).toContain('"@type":"BreadcrumbList"');
     expect(html).toContain(TEST_FORMAT.label);
     expect(html).toContain(escapeHtmlText(TEST_FORMAT_DETAILS.description.split("\n\n")[0]));
+  });
+});
+
+/* ── Updates ── */
+
+describe("SSR render — updates archive /updates/:month", () => {
+  it("month archive has its own title, canonical, breadcrumbs, and current-month marker", () => {
+    const { helmet, html } = render(`/updates/${TEST_UPDATE_MONTH}`);
+    const label = formatUpdateMonth(TEST_UPDATE_MONTH);
+    expect(helmet.title.toString()).toContain(`${label} Updates`);
+    expect(helmet.link.toString()).toContain(`/updates/${TEST_UPDATE_MONTH}/`);
+    expect(helmet.script.toString()).toContain('"@type":"BreadcrumbList"');
+    expect(helmet.script.toString()).toContain('"@type":"CollectionPage"');
+    expect(html).toContain('aria-current="page"');
+  });
+
+  it("hub links the month archive", () => {
+    expect(render("/updates").html).toContain(`href="/updates/${TEST_UPDATE_MONTH}/"`);
   });
 });
 

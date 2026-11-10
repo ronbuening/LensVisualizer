@@ -129,6 +129,23 @@ export function buildSimplePositiveElementLens(
   return buildFixture({ key, surfaces: simplePositiveSurfaces(1, 5, 80, elementSd) });
 }
 
+/**
+ * The simple positive element focused near its paraxial back focus, with a curved image surface there; null gives the
+ * flat twin. Its Petzval sum is about 1/(n f), so `R: -1 / L.petzvalSum` curves the image onto the Petzval surface.
+ */
+export function buildCurvedImageLens(
+  imageSurface: import("../../../src/types/optics.js").ResolvedImageSurfaceData | null,
+  key = imageSurface ? "test-curved-image" : "test-curved-image-flat",
+): RuntimeLens {
+  /* A cylinder's sections follow the frame, so it carries a format. */
+  return buildFixture({
+    key,
+    surfaces: simplePositiveSurfaces(1, 5, 47.4),
+    ...(imageSurface ? { imageSurface } : {}),
+    ...(imageSurface?.cylindrical ? { imageFormat: "135-full-frame" as const } : {}),
+  });
+}
+
 export function buildChromaticPositiveElementLens(
   key = "test-chromatic-positive-element",
   { elementSd = 15 }: { elementSd?: number } = {},

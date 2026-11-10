@@ -1,0 +1,1 @@
+Added patent attribution details and inventor/assignee browsing across the lens library

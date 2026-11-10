@@ -115,6 +115,36 @@ export interface ResolvedImagePlane {
   label: string;
 }
 
+/**
+ * Shape of a curved image surface: a curved sensor, film gate or focal surface. The shape alone; the vertex sits where
+ * a flat image plane would (the last gap, or `opticalPath.imagePlane`). See LENS_DATA_SPEC.md, Image Surface.
+ */
+export interface ImageSurfaceData {
+  /** Signed vertex radius in mm; the centre of curvature lies at vertex + R·n̂ along the image-plane normal. */
+  R: number;
+  /** Conic and polynomial terms, as on a surface. Not with `cylindrical`. */
+  asphere?: Partial<AsphericCoefficients>;
+  /** A circular cylinder: curved across one side of the frame, straight along the other. Needs `catalog.imageFormat`. */
+  cylindrical?: true;
+  /** The frame side a cylinder curves along; `"long"` when left out, as film gates curve along the film. */
+  curvedAlong?: "long" | "short";
+  /** Half-height in mm the surface is drawn and validated over; analyses do not clip at it. */
+  sd: number;
+  /** Source citation, e.g. "JP 2019-000000 A, Table 1 image surface". */
+  source?: string;
+}
+
+/**
+ * An image surface as the engine receives it. `section` names the frame direction a cylinder is drawn and analysed
+ * along (`"long"` when left out); written only by `withImageSurfaceSection()`, never authored.
+ */
+export interface ResolvedImageSurfaceData extends ImageSurfaceData {
+  section?: ImageSurfaceSection;
+}
+
+/** A frame direction a cylindrical image surface can be viewed along. */
+export type ImageSurfaceSection = "long" | "short" | "corner";
+
 export interface OpticalPathData {
   mode?: "sequential" | "auto";
   surfaceOrder?: string[];
@@ -475,6 +505,8 @@ export interface LensData {
   surfaces: SurfaceData[];
   /** Source-documented rear plates, ordered lens → image; see `RearPlateData`. */
   rearPlates?: RearPlateData[];
+  /** Curved image surface; absent for a flat image. */
+  imageSurface?: ResolvedImageSurfaceData;
   asph?: Record<string, AsphericCoefficients>;
   var?: Record<string, VarRange>;
   varLabels?: [string, string][];
@@ -585,6 +617,8 @@ export interface RuntimeLens {
   readonly projection: LensProjectionConfig;
   readonly opticalPath: ResolvedOpticalPath;
   readonly imagePlane: ResolvedImagePlane;
+  /** Curved image surface at the image plane; null for a flat image. */
+  readonly imageSurface: import("../optics/types.js").ImageSurfaceShape | null;
   readonly isFoldedOptics: boolean;
   readonly stopIdx: number;
   readonly stopPhysSD: number;

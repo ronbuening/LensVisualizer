@@ -30,6 +30,7 @@ export function fixtureGeometry(lens: GeometryFixture, zPos?: number[]) {
     imagePlane: resolvedImagePlaneToPlane3(
       lens.imagePlane ?? { z: z.at(-1)! + lens.S.at(-1)!.d, y: 0, normal: { y: 0, z: 1 }, label: "IMG" },
     ),
+    imageSurface: null,
     pathPlan: lens.opticalPath ?? {
       mode: "sequential",
       surfaceOrder: null,

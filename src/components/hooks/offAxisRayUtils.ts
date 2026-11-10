@@ -2,6 +2,7 @@ import { computeOffAxisFieldGeometry, isOffAxisVectorFieldGeometry } from "../..
 import {
   eflAtZoomClamped as eflAtZoom,
   halfFieldAtZoom,
+  landImageSurfaceMeridional,
   prepareRuntimeState,
   stateWithZ,
   traceRay,
@@ -30,6 +31,21 @@ export type OffAxisTraceGeometry =
       edgeEnd: number[];
       useEdge: boolean;
     };
+
+/**
+ * Diagram end of the off-axis fan's edge marker at an image height: on a flat plane at `IMG_MM`, or on the curved
+ * image surface there.
+ */
+function imageEdgeEnd(L: RuntimeLens, IMG_MM: number, height: number): [number, number] {
+  const sag = L.imageSurface && !L.isFoldedOptics ? L.imageSurface.sagAt(0, height) : 0;
+  return [IMG_MM + (Number.isFinite(sag) ? sag : 0), height];
+}
+
+/** Lateral height at which a meridional ray reported at the last vertex reaches the image. */
+function chiefEndHeight(L: RuntimeLens, IMG_MM: number, lastZ: number, y: number, u: number): number {
+  if (!L.imageSurface || L.isFoldedOptics) return y + u * (IMG_MM - lastZ);
+  return landImageSurfaceMeridional(L.imageSurface, y, u, lastZ, IMG_MM)?.y ?? NaN;
+}
 
 function idealOffAxisImageHeight(L: RuntimeLens, zoomT: number, fieldAngleDeg: number): number {
   const thetaRad = (fieldAngleDeg * Math.PI) / 180;
@@ -76,14 +92,15 @@ export function computeOffAxisTraceGeometry({
     let edgeImgH = idealEdgeImgH;
     if (useEdge) {
       const chiefTrace = traceRayVector(geometry.vectorLaunch, zPos, undefined, false, L, focusT, zoomT, aberrationT);
-      const chiefEndY = chiefTrace.y + chiefTrace.u * (IMG_MM - zPos[L.N - 1]);
+      const chiefEndY = chiefEndHeight(L, IMG_MM, zPos[L.N - 1], chiefTrace.y, chiefTrace.u);
       if (isFinite(chiefEndY)) edgeImgH = chiefEndY;
     }
+    const [edgeZ, edgeY] = imageEdgeEnd(L, IMG_MM, edgeImgH);
     return {
       kind: "vector",
       fieldAngleDeg: geometry.fieldAngleDeg,
       vectorLaunch: geometry.vectorLaunch,
-      edgeEnd: [sx(IMG_MM), sy(edgeImgH)],
+      edgeEnd: [sx(edgeZ), sy(edgeY)],
       useEdge,
     };
   }
@@ -94,16 +111,17 @@ export function computeOffAxisTraceGeometry({
   let edgeImgH = idealEdgeImgH;
   if (useEdge) {
     const chiefTrace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, false, L, aberrationT);
-    const chiefEndY = chiefTrace.y + chiefTrace.u * (IMG_MM - zPos[L.N - 1]);
+    const chiefEndY = chiefEndHeight(L, IMG_MM, zPos[L.N - 1], chiefTrace.y, chiefTrace.u);
     if (isFinite(chiefEndY)) edgeImgH = chiefEndY;
   }
 
+  const [edgeZ, edgeY] = imageEdgeEnd(L, IMG_MM, edgeImgH);
   return {
     kind: "slope",
     fieldAngleDeg,
     uField,
     yChief,
-    edgeEnd: [sx(IMG_MM), sy(edgeImgH)],
+    edgeEnd: [sx(edgeZ), sy(edgeY)],
     useEdge,
   };
 }

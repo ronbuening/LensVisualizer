@@ -589,6 +589,28 @@ describe("build metadata helpers", () => {
     expect(Object.hasOwn(withoutTeleconverters, "/teleconverters")).toBe(false);
   });
 
+  it("dates /updates months from their entries and lens publications, never past today", () => {
+    const routeFreshness = buildRouteFreshness({
+      lenses: [
+        { key: "lens-a", makerSlug: "nikon", freshness: { publishedOn: "2026-03-19", lastModified: "2026-04-02" } },
+        { key: "lens-b", makerSlug: "canon", freshness: { publishedOn: "2026-04-03", lastModified: "2026-04-05" } },
+      ],
+      articles: [],
+      makerSlugs: [],
+      changelog: [{ date: "2026-04-09" }, { date: "2026-03-22" }],
+      updateMonths: [{ month: "2026-04" }, { month: "2026-03" }],
+      makerDetailsFreshness: null,
+      fallbackDate: "2026-04-06",
+    });
+
+    /* An archive page lists a lens by name, so lens-a's later prescription edit (04-02) does not re-date March. */
+    expect(routeFreshness["/updates/2026-03"]).toMatchObject({ publishedOn: "2026-03-19", lastModified: "2026-03-22" });
+    /* The 04-09 entry is scheduled past today (04-06), so it dates April as today. */
+    expect(routeFreshness["/updates/2026-04"]).toMatchObject({ publishedOn: "2026-04-03", lastModified: "2026-04-06" });
+    /* The hub keeps whole-lens freshness and adds every changelog entry. */
+    expect(routeFreshness["/updates"]).toMatchObject({ publishedOn: "2026-03-19", lastModified: "2026-04-06" });
+  });
+
   it("parses quoted frontmatter values and ignores indented keys", () => {
     const meta = parseFrontmatterContent(
       ["---", 'slug: "optics-primer"', "title: 'Optics Primer'", "  tag: indented", "---", "", "Body"].join("\n"),

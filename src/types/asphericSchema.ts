@@ -74,3 +74,19 @@ type OptionalAsphericKey = Extract<SchemaEntry, { required: false }>["key"];
  * Required/optional membership is derived from the schema list above.
  */
 export type AsphericCoefficients = Record<RequiredAsphericKey, number> & Partial<Record<OptionalAsphericKey, number>>;
+
+/**
+ * Fill sparse aspheric terms out to the full coefficient object the engine reads: a required term left out is zero,
+ * an optional one stays absent.
+ *
+ * @param sparse - authored or canonical terms
+ * @returns coefficients in schema order
+ */
+export function expandAsphericCoefficients(sparse: Partial<AsphericCoefficients>): AsphericCoefficients {
+  return Object.fromEntries(
+    ASPHERIC_COEFFICIENT_SCHEMA.flatMap(({ key, required }) => {
+      const value = sparse[key] ?? (required ? 0 : undefined);
+      return value === undefined ? [] : [[key, value]];
+    }),
+  ) as AsphericCoefficients;
+}

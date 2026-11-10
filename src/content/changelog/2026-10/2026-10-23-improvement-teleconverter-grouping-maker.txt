@@ -1,0 +1,1 @@
+Added teleconverter grouping by maker, inventor, assignee, mount, format and patent year

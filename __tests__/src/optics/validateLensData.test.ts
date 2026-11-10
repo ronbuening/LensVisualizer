@@ -609,6 +609,61 @@ describe("validateLensData", () => {
     ).toBe(true);
   });
 
+  it("accepts a curved image surface and rejects malformed, uncovered or colliding ones", () => {
+    const errorsFor = (overrides: Record<string, unknown>) => validateLensData(makeValid(overrides));
+    const has = (errors: string[], text: string) => errors.some((error) => error.includes(text));
+    const curved = { R: -60, sd: 20 };
+
+    expect(errorsFor({ imageSurface: curved })).toEqual([]);
+    expect(errorsFor({ imageSurface: { ...curved, cylindrical: true }, imageFormat: "135-full-frame" })).toEqual([]);
+    expect(
+      errorsFor({
+        imageSurface: { ...curved, cylindrical: true, curvedAlong: "short" },
+        imageFormat: "135-full-frame",
+      }),
+    ).toEqual([]);
+    expect(errorsFor({ imageSurface: { ...curved, asphere: { K: -0.5, A4: 1e-7 } } })).toEqual([]);
+    for (const [imageSurface, text] of [
+      [{ ...curved, R: 0 }, "imageSurface.R must be"],
+      [{ ...curved, sd: -1 }, "imageSurface.sd must be"],
+      [{ ...curved, tilt: 1 }, "imageSurface.tilt is not an image-surface field"],
+      [{ ...curved, cylindrical: false }, "imageSurface.cylindrical must be true"],
+      [{ ...curved, cylindrical: true, asphere: { K: 0 } }, "cannot be combined with a cylindrical"],
+      [{ ...curved, asphere: { B4: 1 } }, "imageSurface.asphere.B4 is not an aspheric coefficient"],
+      [{ ...curved, cylindrical: true }, 'a cylindrical imageSurface needs "imageFormat"'],
+      [{ ...curved, curvedAlong: "long" }, "curvedAlong applies only to a cylindrical surface"],
+      [{ ...curved, sd: 70 }, "reaches the edge of the surface"],
+    ] as const) {
+      expect(has(errorsFor({ imageSurface }), text)).toBe(true);
+    }
+    expect(has(errorsFor({ imageSurface: curved, imageCircleMm: 50 }), "does not cover")).toBe(true);
+    expect(
+      has(
+        errorsFor({ imageSurface: curved, perspectiveControl: { shift: { enabled: false } } }),
+        'cannot be combined with "perspectiveControl"',
+      ),
+    ).toBe(true);
+    /* R = −30 bends 7.6 mm toward the lens at h = 20 mm, across a 1 mm gap. */
+    const surfaces = (makeValid().surfaces as Record<string, unknown>[]).map((surface, i, all) =>
+      i === all.length - 1 ? { ...surface, d: 1 } : surface,
+    );
+    expect(has(errorsFor({ surfaces, imageSurface: { R: -30, sd: 20 } }), 'the surface meets "2"')).toBe(true);
+    expect(has(errorsFor({ surfaces, imageSurface: { R: 30, sd: 20 } }), "the surface meets")).toBe(false);
+    /* A rear face bulging 0.77 mm toward the image at its 5.5 mm rim clears a sphere bending away with it, but not a
+     * cylinder's straight direction, which has no sag. */
+    const bulging = (makeValid().surfaces as Record<string, unknown>[]).map((surface, i, all) =>
+      i === all.length - 1 ? { ...surface, R: 20, d: 0.4, sd: 5.5 } : surface,
+    );
+    const convex = { R: 20, sd: 19 };
+    expect(has(errorsFor({ surfaces: bulging, imageSurface: convex }), "the surface meets")).toBe(false);
+    expect(
+      has(
+        errorsFor({ surfaces: bulging, imageSurface: { ...convex, cylindrical: true }, imageFormat: "135-full-frame" }),
+        'the surface meets "2"',
+      ),
+    ).toBe(true);
+  });
+
   it("reserves synthetic markers and rear-plate labels for the engine", () => {
     const valid = makeValid();
     const surfaces = valid.surfaces as Record<string, unknown>[];

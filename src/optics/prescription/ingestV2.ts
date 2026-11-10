@@ -110,6 +110,7 @@ const LENS_FIELDS: Fields<LensDataV2Input> = {
   opticalPath: true,
   perspectiveControl: true,
   rearPlates: true,
+  imageSurface: true,
   groups: true,
   doublets: true,
   layout: true,
@@ -1089,6 +1090,7 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   if (control) lens.aberrationControl = ingestAberrationControl(control, labelIndex, context);
   for (const field of ["projection", "opticalPath", "perspectiveControl"]) put(lens, field, data[field]);
   if (has(data, "rearPlates")) lens.rearPlates = ingestRearPlates(everyIndex(data.rearPlates), context);
+  put(lens, "imageSurface", data.imageSurface);
   put(lens, "groups", data.groups);
   put(lens, "doublets", data.doublets);
   lens.layout = display.layout;
@@ -1097,7 +1099,14 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   if (context.sources) {
     const sources = context.sources;
     recordInPlace(sources, "", lens, ["key", "maker", "name", "subtitle", "publishedAt"]);
-    recordReads(sources, "", "", lens, ["projection", "opticalPath", "perspectiveControl", "groups", "doublets"]);
+    recordReads(sources, "", "", lens, [
+      "projection",
+      "opticalPath",
+      "perspectiveControl",
+      "imageSurface",
+      "groups",
+      "doublets",
+    ]);
     sources.records.elements = "elements";
     sources.records.surfaces = "surfaces";
     sources.read["layout.yScFill"] = "layout.yScFill";

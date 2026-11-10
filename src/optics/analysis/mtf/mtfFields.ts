@@ -88,6 +88,9 @@ export function mtfModeledHalfField(state: PreparedGeometry): number {
  * @returns image-circle or format-diagonal radius, or null when the lens declares neither
  */
 export function declaredFormatRadiusMm(state: PreparedGeometry): number | null {
+  /* A cylindrical image surface's fields run to the frame's edge along the viewed section. */
+  const sectionExtent = state.lens.imageSurface?.fieldExtentMm ?? null;
+  if (sectionExtent !== null) return sectionExtent;
   const { imageCircleMm, imageFormat } = state.lens.source.catalog;
   const diameter = imageCircleMm ?? (isImageFormatId(imageFormat) ? IMAGE_FORMAT_BY_ID[imageFormat].diagonalMm : null);
   return diameter !== null && Number.isFinite(diameter) && diameter > 0 ? diameter / 2 : null;
@@ -331,6 +334,7 @@ export function resolveMtfFieldTargets(
   const inside = solvable.filter((target) => target.targetImageHeightMm <= geometry.chiefEdgeHeightMm + edgeTolerance);
   if (inside.length) {
     // The inversion scans its geometry's half field; widen it to the traced edge.
+    // It shares the curved image landing, so targets remain lateral heights at the authored vertex.
     const L = runtimeView(state.lens);
     const shared = computeFieldGeometryAtState(state.focusT, state.zoomT, L, state.aberrationT);
     const angles = solveFieldAnglesForImageHeightsAccurateForRuntimeLens(
@@ -370,7 +374,7 @@ export function resolveMtfFieldTargets(
  * @param options - MTF request
  * @param support - support record, including any finite conjugate
  * @param checkApertures - false to trace the chief through every surface regardless of its rim
- * @returns radial chief height in mm, or NaN when the chief cannot be established or clips
+ * @returns lateral radial chief height on the image surface in mm, or NaN when the chief cannot be established or clips
  */
 export function mtfChiefHeight(
   state: PreparedGeometry,

@@ -7,7 +7,7 @@
 
 import { wideOpenStopAtZoom } from "../../optics/optics.js";
 
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import {
   epAtZoomClamped as epAtZoom,
@@ -16,19 +16,24 @@ import {
   xpAtZoom,
   xpZRelLastSurfAtZoom,
 } from "../../optics/optics.js";
+import { stopSideRimLands } from "../../optics/diagramGeometry.js";
 import ApertureStop from "./ApertureStop.js";
 import CardinalElementsOverlay from "./CardinalElementsOverlay.js";
 import ElementAnnotations from "./ElementAnnotations.js";
 import ImagePlaneOverlay from "./ImagePlaneOverlay.js";
 import LocaInsetWidget from "./LocaInsetWidget.js";
 import PetzvalSumBadge from "./PetzvalSumBadge.js";
+import ImageSectionBadge from "./ImageSectionBadge.js";
 import type { RuntimeLens, ElementShape, ChromaticRayFanSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { ImageSectionControl } from "./ImageSectionBadge.js";
 import type { DispersionQuality } from "../../optics/chromatic.js";
 import type { CardinalElements } from "../../optics/analysis.js";
 
 interface DiagramOverlayLayerProps {
   lens: RuntimeLens;
+  /** ViewBox height: the lens drawing plus any cardinal dimension band below it. */
+  viewHeight?: number;
   theme: Theme;
   dark: boolean;
   sx: (z: number) => number;
@@ -64,10 +69,13 @@ interface DiagramOverlayLayerProps {
   flashFading: boolean;
   onLocaInsetClick?: () => void;
   onPetzvalBadgeClick?: () => void;
+  /** Viewed section of a cylindrical image surface; the chip shows only when this is given. */
+  imageSection?: ImageSectionControl;
 }
 
 const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
   lens: L,
+  viewHeight = L.svgH,
   theme: t,
   dark,
   sx,
@@ -103,9 +111,11 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
   flashFading,
   onLocaInsetClick,
   onPetzvalBadgeClick,
+  imageSection,
 }: DiagramOverlayLayerProps) {
   const reducedMotion = usePrefersReducedMotion();
   const stopInnerBlockedSD = stopInnerBlockedSemiDiameter(L);
+  const stopSideLands = useMemo(() => stopSideRimLands(L, zPos), [L, zPos]);
   const movedScreenPoint = (z: number, y: number): [number, number] => {
     const [zz, yy] = lensPointTransform ? lensPointTransform(z, y) : [z, y];
     return [sx(zz), sy(yy)];
@@ -121,6 +131,7 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
         stopHousingSD={Math.max(L.stopHousingSD, ...(L.zoomStopSDs ?? []))}
         currentPhysStopSD={currentPhysStopSD}
         innerBlockedSD={stopInnerBlockedSD}
+        sideLands={stopSideLands}
         bladeStubFrac={L.bladeStubFrac}
         lyStoPad={L.lyStoPad}
         pointTransform={lensPointTransform}
@@ -394,6 +405,9 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
       ) : null}
 
       <PetzvalSumBadge L={L} t={t} onClick={onPetzvalBadgeClick} />
+      {imageSection && L.imageSurface?.kind === "cylindrical" ? (
+        <ImageSectionBadge t={t} section={imageSection.section} onSelect={imageSection.select} />
+      ) : null}
 
       {flashVisible && (
         <rect
@@ -401,7 +415,7 @@ const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
           x="0"
           y="0"
           width={L.svgW}
-          height={L.svgH}
+          height={viewHeight}
           fill={dark ? "#ffffff" : "#000000"}
           opacity={flashFading ? 0 : 0.22}
           style={{

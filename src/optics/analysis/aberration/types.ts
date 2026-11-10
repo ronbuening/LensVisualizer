@@ -263,6 +263,11 @@ export interface FieldCurvatureFieldResult {
   petzvalShiftMm: number;
   astigmaticDifferenceMm: number;
   astigmaticDifferenceUm: number;
+  /**
+   * On a curved image surface, its z at the chief ray's landing less the vertex z, in mm. Shifts above are measured
+   * from the surface there; a flat plane at the vertex sits at −imageSurfaceSagMm. Absent for a flat image.
+   */
+  imageSurfaceSagMm?: number;
   diagnosticTangentialBestFocusZ?: number;
   diagnosticSagittalBestFocusZ?: number;
   diagnosticTangentialShiftMm?: number;

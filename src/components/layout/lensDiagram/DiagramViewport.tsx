@@ -115,6 +115,7 @@ export default function DiagramViewport({
   onClosePetzvalOverlay,
   onOpenChromaticOverlay,
   onOpenPetzvalOverlay,
+  imageSection,
   analysisDrawerOpen,
   onAnalysisDrawerToggle,
   analysisDrawerTab,
@@ -267,6 +268,7 @@ export default function DiagramViewport({
       flashFading={flashFading}
       onLocaInsetClick={onOpenChromaticOverlay}
       onPetzvalBadgeClick={onOpenPetzvalOverlay}
+      imageSection={imageSection}
       viewBoxOverride={viewBoxOverride}
       zoomPanActive={zoomPanActive}
       isPanning={isPanning}

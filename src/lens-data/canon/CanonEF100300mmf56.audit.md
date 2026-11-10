@@ -108,3 +108,7 @@ The patent names no spectral line for its index and Abbe columns, and the 2026-1
 | Element 15 | 1.61293 / 37 | F3 | +0.000000 | -0.053 |
 
 The other medium has no exact catalog match and stays `Unmatched`: Element 7 (1.52301 / 50.8).
+
+## 2026-11-03 — Catalog row for L7
+
+HOYA's discontinued CF5 (nd 1.52310, νd 50.95, Zemax AGF 2026-07-07 including obsolete glasses) was added to the glass catalog. It lies 0.00009 in nd and 0.15 in νd from L7's printed 1.52301/50.8, inside the 0.25 νd limit used for catalog equivalents, so L7 now resolves to CF5 instead of tracing the printed pair alone. No other corpus element changed resolution.

@@ -1498,6 +1498,42 @@ rearPlates: [
   is a drawn element wherever it sits ([Scope: What to Include](#scope-what-to-include)).
 - Do not invent a camera stack: `rearPlates` holds only plates the source lists.
 
+## Image Surface
+
+Use `imageSurface` when the source prescription gives the image surface a radius: a curved sensor, a curved film gate,
+or the focal sphere of a Schmidt camera. Left out, the image is flat. It carries the shape only; the vertex stays where
+a flat image would be (the last gap or the last rear plate's `gapAfterMm`, or `opticalPath.imagePlane` on a folded
+path), and its label stays the image plane's (`IMG`).
+
+```ts
+imageSurface: {
+  R: -120, // the source's image-surface radius
+  sd: 21.7, // covers the image circle
+  source: "JP 2019-000000 A, Example 1 Table 1 image surface",
+},
+```
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `R` | `number` | ✓ | Signed vertex radius in mm, with the surface sign convention along the image-plane normal: the centre of curvature lies at vertex + R·n̂. On an ordinary lens n̂ is +z, so a sensor concave toward the lens (the Petzval-matching case) has `R < 0`. |
+| `sd` | `number` | ✓ | Half-height in mm the surface is drawn and validated over. It must cover the image circle (a cylinder: half the frame side it curves along); analyses never clip at it. |
+| `asphere` | object | | `K` and polynomial terms, with the same meaning and keys as a surface's `asphere`. |
+| `cylindrical` | `true` | | A circular cylinder: a film gate, curved across one side of the frame and straight along the other. Needs `catalog.imageFormat`. Not with `asphere`. |
+| `curvedAlong` | `"long"` \| `"short"` | | The frame side a cylinder curves along; `"long"` when left out, as film gates curve along the film. |
+| `source` | `string` | | Source citation. |
+
+- Rays land on the surface everywhere: the diagram, every analysis tab and the MTF. Image heights on a sphere or
+  asphere are lateral heights, the distance of the landing point from the axis, as design software tabulates them. A
+  cylinder unrolls flat, so its heights are distances along the unrolled film, as the print shows them. Field-curvature
+  and focus shifts are measured along z from the surface at the chief ray's landing.
+- On a cylinder the 1-D field results (field curvature, lateral colour, relative illumination, distortion and MTF
+  against field) follow one frame direction, out to the frame's edge in that direction: the long edge by default, and
+  the short edge or the corner in the viewer.
+- Not with `perspectiveControl`. With `rearPlates`, the surface follows the last plate. On a folded path the trace ends
+  on the surface and the diagram draws it; folded analysis tabs stay guarded as for a flat plane.
+- A source that gives only a flat image with a field-flattener, or only a Petzval radius, has no image surface: do not
+  infer one.
+
 ## Annotations
 
 Brackets drawn on the cross-section, by surface label.
@@ -1611,6 +1647,7 @@ Code: `src/optics/prescription/validate/`.
 | `projection` kind, fields and field-angle bounds | `validateProjection` (`schema.ts`) |
 | `perspectiveControl` ranges, steps and pivot; `catalog.imageFormat` present; not with `opticalPath` | `validatePerspectiveControl` (`schema.ts`), `validateTopLevel` |
 | `rearPlates` field bounds; not with folded paths or `perspectiveControl` | `validateRearPlates` (`schema.ts`) |
+| `imageSurface` fields; `R` finite and curved; single-valued out to `sd`; `sd` covers the image circle; clears the last lens surface or rear plate at every authored state of the last gap (a cylinder in its straight direction too); not with `perspectiveControl` | `validateImageSurface` (`imageSurface.ts`) |
 | Labels unique and not reserved; `R`, `d`, `sd` present; `sd` positive; `innerSd` non-negative and below `sd`; `rimCutDepthMm` positive, and not on the stop, an annular or diffractive surface, one with an `interaction` or a folded lens; `rimCutDepthSource` a non-empty string beside a `rimCutDepthMm`; `interaction` enums and normals; `diffractive` only on refracting surfaces; `stopPlacement` only on `STO`; exactly one `STO` | `validateSurfaces` (`schema.ts`) |
 | Element ids unique; `maxSdRatio` ≥ 1; `indexReference`, `apd` and `absorptionCoefficientPerMm` valid; no absorption on folded paths | `validateElements` (`schema.ts`) |
 | Every surface medium names an element, and every element is some surface's medium; asphere terms finite and known | `validateReferences` (`references.ts`) |

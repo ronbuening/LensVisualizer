@@ -1,0 +1,1 @@
+Added a patent-number index grouped by country and assignee

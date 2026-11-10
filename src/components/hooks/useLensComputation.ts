@@ -16,7 +16,7 @@ import { useMemo, useRef } from "react";
 import { resolveLensSystemData } from "../../utils/catalog/teleconverterCatalog.js";
 import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../../optics/optics.js";
 import { fNumberAtStopdown } from "../../optics/optics.js";
-import { buildLens } from "../../optics/buildLens.js";
+import { buildLens, withImageSurfaceSection } from "../../optics/buildLens.js";
 import type { CardinalElements } from "../../optics/analysis.js";
 import { computeCardinalElements, computeFocusEFL, createAnalysisRequest } from "../../optics/analysis.js";
 import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
@@ -34,7 +34,7 @@ import {
   thickOrZero as thick,
 } from "../../optics/optics.js";
 import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../../optics/fieldGeometry.js";
-import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
+import type { RuntimeLens, ElementShape, CoordinateTransforms, ImageSurfaceSection } from "../../types/optics.js";
 import type { LensMovementTransform, ResolvedLensMovement } from "../../optics/perspective.js";
 import type { FieldGeometryState } from "../../optics/fieldGeometry.js";
 
@@ -51,9 +51,10 @@ interface UseLensComputationParams {
   tiltDeg?: number;
   scaleRatio: number | null;
   panelId: string;
-  includeCardinalExtents?: boolean;
   /** Patent-positions mode: land on the nearest published station, wide open, aberration control neutral. */
   snapToPublishedStations?: boolean;
+  /** Frame direction a cylindrical image surface is drawn and analysed along; ignored with `runtimeLens`. */
+  imageSection?: ImageSurfaceSection;
 }
 
 interface VarReadout {
@@ -111,18 +112,19 @@ export default function useLensComputation({
   tiltDeg = 0,
   scaleRatio,
   panelId,
-  includeCardinalExtents = false,
   snapToPublishedStations = false,
+  imageSection = "long",
 }: UseLensComputationParams): UseLensComputationResult {
   /* ── Build lens from catalog ── */
   const buildResult = useMemo((): { L: RuntimeLens; error?: undefined } | { L?: undefined; error: unknown } => {
     if (runtimeLens) return { L: runtimeLens };
     try {
-      return { L: buildLens(resolveLensSystemData(lensKey, teleconverterKey)) };
+      const system = resolveLensSystemData(lensKey, teleconverterKey);
+      return { L: buildLens(withImageSurfaceSection(system, imageSection)) };
     } catch (e) {
       return { error: e };
     }
-  }, [lensKey, teleconverterKey, runtimeLens]);
+  }, [lensKey, teleconverterKey, runtimeLens, imageSection]);
 
   const L = buildResult.L;
   const buildError = buildResult.error;
@@ -203,19 +205,16 @@ export default function useLensComputation({
     [firstOrderRequest, zPos, IMG_MM],
   );
 
-  const cardinalZExtent = useMemo(() => {
-    const foldedExtent =
+  /* Folded paths can run surfaces behind the image plane, so the viewport widens to hold them.
+   * Cardinal points and spans never widen it: a telephoto's H/H′ can sit metres away, and the
+   * overlay marks anything outside the viewport at the edge instead. */
+  const foldedZExtent = useMemo(
+    () =>
       L && L.isFoldedOptics && zPos.length > 0
         ? { min: Math.min(IMG_MM, ...zPos), max: Math.max(IMG_MM, ...zPos) }
-        : null;
-    if (!includeCardinalExtents || !cardinalElements) return foldedExtent;
-    const pointZ = Object.values(cardinalElements.points).map((point) => point.z);
-    const distanceZ = Object.values(cardinalElements.distances).flatMap((distance) => [distance.fromZ, distance.toZ]);
-    return {
-      min: Math.min(foldedExtent?.min ?? Infinity, ...pointZ, ...distanceZ),
-      max: Math.max(foldedExtent?.max ?? -Infinity, ...pointZ, ...distanceZ),
-    };
-  }, [includeCardinalExtents, cardinalElements, L, zPos, IMG_MM]);
+        : null,
+    [L, zPos, IMG_MM],
+  );
 
   const movementViewportExtent = useMemo(
     () =>
@@ -232,12 +231,12 @@ export default function useLensComputation({
   );
 
   const coordinateZExtent = useMemo(() => {
-    if (!cardinalZExtent && !movementViewportExtent) return null;
+    if (!foldedZExtent && !movementViewportExtent) return null;
     return {
-      min: Math.min(0, IMG_MM, cardinalZExtent?.min ?? Infinity, movementViewportExtent?.z.min ?? Infinity),
-      max: Math.max(0, IMG_MM, cardinalZExtent?.max ?? -Infinity, movementViewportExtent?.z.max ?? -Infinity),
+      min: Math.min(0, IMG_MM, foldedZExtent?.min ?? Infinity, movementViewportExtent?.z.min ?? Infinity),
+      max: Math.max(0, IMG_MM, foldedZExtent?.max ?? -Infinity, movementViewportExtent?.z.max ?? -Infinity),
     };
-  }, [cardinalZExtent, movementViewportExtent, IMG_MM]);
+  }, [foldedZExtent, movementViewportExtent, IMG_MM]);
 
   /* ── Coordinate transforms (optical mm → SVG pixels) ── */
   const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = useMemo(
@@ -253,6 +252,7 @@ export default function useLensComputation({
             scaleRatio,
             zExtent: coordinateZExtent,
             yExtent: movementViewportExtent?.y,
+            imageSurface: L.isFoldedOptics ? null : L.imageSurface,
           })
         : {
             sx: (_z: number) => 0,

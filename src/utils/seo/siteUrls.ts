@@ -63,3 +63,14 @@ export function normalizeSitePageUrl(url: string): string {
   if (!url.startsWith(`${SITE_URL}/`)) return url;
   return `${SITE_URL}${canonicalPagePath(url.slice(SITE_URL.length))}`;
 }
+
+/** The element id a location hash points at: the fragment without `#`, percent-decoded when the escapes are valid. */
+export function hashFragmentId(hash: string): string {
+  const fragment = hash.startsWith("#") ? hash.slice(1) : hash;
+  try {
+    return decodeURIComponent(fragment);
+  } catch {
+    // A malformed escape can still be part of a literal element id.
+    return fragment;
+  }
+}

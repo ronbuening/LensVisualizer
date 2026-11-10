@@ -6,6 +6,16 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "CF5",
+    vendor: "Hoya",
+    polynomial: [2.2805282, -0.0082883965, 0.013972658, 0.00014315318, 2.1493375e-5, -4.4079002e-7],
+    nd: 1.5231,
+    vd: 50.951831,
+    PgF: 0.557,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, CF5 NM/CD row; vendor formula-1 polynomial; code 523-510 omitted so bare-code annotations keep their existing row. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-11-03).",
+  },
+  {
     name: "BAFD14",
     vendor: "Hoya",
     polynomial: [2.8034419, -0.0098101664, 0.027600636, 0.0011151895, -4.2256185e-5, 8.1312173e-6],
@@ -260,6 +270,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [2.8789799, -0.008729237, 0.024425656, 0.000045491773, 0.000042802928, -0.00000072834306],
     nd: 1.717,
     vd: 47.98,
+    PgF: 0.5557,
     code6: "717480",
     source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for LAF3.",
   },
@@ -435,6 +446,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [3.3114745, -0.019402447, 0.051621829, 0.0058556024, -0.00053287332, 0.000073197844],
     nd: 1.86966,
     vd: 20.02,
+    PgF: 0.6435,
     code6: "870200",
     source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for FDS20-W.",
   },
@@ -834,6 +846,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [3.6715088, -0.014402693, 0.046652775, 0.0019167306, -0.000063043119, 0.000013004923],
     nd: 1.95375,
     vd: 32.32,
+    PgF: 0.59,
     code6: "954323",
     source: "Hoya Zemax catalog 2026-07-07; TAFD45L row (formula 3 polynomial, d-code 954323).",
   },
@@ -1143,6 +1156,17 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5612,
     code6: "786439",
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; NBFD11 page (formula 3 polynomial).",
+  },
+  {
+    name: "NBFD1",
+    vendor: "Hoya",
+    polynomial: [3.1163806, -0.013242646, 0.028648452, 0.0006823535, -7.2522372e-6, 2.7432993e-6],
+    nd: 1.789004,
+    vd: 42.757634,
+    PgF: 0.5641,
+    code6: "789428",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 including obsolete glasses, NBFD1 NM/CD row; vendor formula-1 polynomial. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf (accessed 2026-11-06).",
   },
   {
     name: "TAFD25",
@@ -1576,6 +1600,7 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [2.9160432, -0.010435647, 0.033907872, 0.0022728802, -0.00013563213, 0.000016527592],
     nd: 1.739999,
     vd: 28.245048,
+    PgF: 0.6017,
     code6: "740282",
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",

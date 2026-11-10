@@ -1,0 +1,1 @@
+Improved element outline rendering, added a 10% boundary-gap clearance margin, and audited production semi-diameters

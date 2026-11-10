@@ -15,6 +15,7 @@ import CollapseButton from "../controls/CollapseButton.js";
 import { formatChromaticZone, formatSpreadUmFromMm } from "./analysis/chromaticChartUtils.js";
 import type { RuntimeLens, ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import { describeImageSurface } from "./imageSurfaceText.js";
 import type { OffAxisMode } from "../../types/state.js";
 import type { CSSProperties } from "react";
 
@@ -164,10 +165,21 @@ export default function DiagramLegend({
             <div style={{ width: 3, height: 11, background: t.stop, borderRadius: 1 }} />
             <span style={{ color: t.legendText }}>Stop</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-            <div style={{ width: 11, height: 1, background: t.imgLine }} />
-            <span style={{ color: t.legendText }}>Image plane (fixed)</span>
-          </div>
+          {L.imageSurface ? (
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              <svg width="11" height="11" viewBox="0 0 11 11">
+                <path d="M7,0.5 Q2,5.5 7,10.5" fill="none" stroke={t.imgLine} strokeWidth="1" />
+              </svg>
+              <span
+                style={{ color: t.legendText }}
+              >{`Image surface (fixed, ${describeImageSurface(L.imageSurface)})`}</span>
+            </div>
+          ) : (
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              <div style={{ width: 11, height: 1, background: t.imgLine }} />
+              <span style={{ color: t.legendText }}>Image plane (fixed)</span>
+            </div>
+          )}
           {showOnAxis && (
             <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <svg width="14" height="10" viewBox="0 0 14 10">

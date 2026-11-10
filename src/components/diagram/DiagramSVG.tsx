@@ -22,7 +22,9 @@ import type { RuntimeLens, ElementShape, ChromaticRayFanSpread } from "../../typ
 import type { DispersionQuality } from "../../optics/chromatic.js";
 import type { LensMovementTransform } from "../../optics/perspective.js";
 import type { CardinalElements } from "../../optics/analysis.js";
+import { diagramViewHeight } from "./cardinalDimensionBand.js";
 import type { Theme } from "../../types/theme.js";
+import type { ImageSectionControl } from "./ImageSectionBadge.js";
 import type { ChromaticRaySegment, RaySegment } from "./diagramSvgTypes.js";
 import type { OffAxisMode } from "../../types/state.js";
 
@@ -79,6 +81,8 @@ interface DiagramSVGProps {
   flashFading: boolean;
   onLocaInsetClick?: () => void;
   onPetzvalBadgeClick?: () => void;
+  /** Viewed section of a cylindrical image surface; the chip shows only when this is given. */
+  imageSection?: ImageSectionControl;
   /** Override the default viewBox for zoom/pan mode */
   viewBoxOverride?: string;
   /** When true, disable element hover/click and show grab cursor */
@@ -148,6 +152,7 @@ const DiagramSVG = memo(function DiagramSVG({
   flashFading,
   onLocaInsetClick,
   onPetzvalBadgeClick,
+  imageSection,
   viewBoxOverride,
   zoomPanActive,
   onSvgWheel,
@@ -164,6 +169,14 @@ const DiagramSVG = memo(function DiagramSVG({
     [L, zPos, sx, sy, movementTransform],
   );
   const zoomCursor = zoomPanActive ? (isPanning ? "grabbing" : "grab") : undefined;
+  const viewHeight = diagramViewHeight(L.svgH, cardinalElements != null, {
+    showCardinalDimensions,
+    showCardinalEfl,
+    showCardinalBfd,
+    showCardinalFfd,
+    showCardinalHiatus,
+    showCardinalTotalTrack,
+  });
   const reducedMotion = usePrefersReducedMotion();
 
   /* ── Accessible name/description for the primary diagram ── */
@@ -190,7 +203,7 @@ const DiagramSVG = memo(function DiagramSVG({
     <svg
       role="img"
       aria-label={ariaLabel}
-      viewBox={viewBoxOverride ?? `0 0 ${L.svgW} ${L.svgH}`}
+      viewBox={viewBoxOverride ?? `0 0 ${L.svgW} ${viewHeight}`}
       width="100%"
       style={{
         display: "block",
@@ -257,6 +270,7 @@ const DiagramSVG = memo(function DiagramSVG({
       />
       <DiagramOverlayLayer
         lens={L}
+        viewHeight={viewHeight}
         theme={t}
         dark={dark}
         sx={sx}
@@ -292,6 +306,7 @@ const DiagramSVG = memo(function DiagramSVG({
         flashFading={flashFading}
         onLocaInsetClick={onLocaInsetClick}
         onPetzvalBadgeClick={onPetzvalBadgeClick}
+        imageSection={imageSection}
       />
     </svg>
   );

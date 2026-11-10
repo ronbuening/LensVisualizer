@@ -1,0 +1,1 @@
+Fixed missing tinted backgrounds behind changelog, article, and series badges

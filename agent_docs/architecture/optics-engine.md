@@ -1277,7 +1277,8 @@ Folded systems opt into the generalized exact tracer through lens data, not thro
 - `LensData.opticalPath.mode: "auto"` uses nearest-valid-surface selection with self-hit tolerance, passive same-index
   refractive-surface skipping, image-plane termination, and `maxInteractions` protection.
 - `LensData.opticalPath.imagePlane` supplies arbitrary meridional image planes. `doLayout()` reports `imgZ` from this
-  plane for folded systems, and ray traces terminate at the plane rather than assuming the final right-hand BFD.
+  plane for folded systems, and ray traces terminate at the plane rather than assuming the final right-hand BFD. An
+  `imageSurface` curves it about that vertex and normal ([Image Surface](#image-surface)).
 
 `traceRay*` remains the public caller surface for diagram rays. Focused optics tests can import
 `trace/rayAdapters.ts` (`traceEngineRay`) or geometry traversal to inspect generalized-path details such as hit labels, terminal direction, final medium,
@@ -1288,6 +1289,55 @@ use generalized image-plane intersections where valid, folded visible off-axis g
 solves, and axial folded reflective systems can report first-order cardinal overlays. Complex tabs that still need a
 settled folded interpretation, such as coma, distortion, vignetting, and field curvature, remain guarded in the UI until
 each tab has fixture-backed validation.
+
+## Image Surface
+
+`LensData.imageSurface` (authoring: `LENS_DATA_SPEC.md`, Image Surface) is a shape only; its vertex sits where a flat
+image would. `createImageSurfaceShape()` (`geometry/imageSurface.ts`) compiles it to an `ImageSurfaceShape` on
+`CompiledLens`, `RuntimeLens` and `TraceGeometry`. A flat image is `null`, never a shape. The shape lives in a local
+frame: vertex at the origin, local z along the image-plane normal (+z on every sequential lens), local x along global
+x. Spheres, aspheres and a cylinder viewed along a frame edge are mirror-symmetric in x and in y, so pupil and field
+mirroring stay exact; a cylinder turned toward the frame corner is not (`xSymmetric`).
+
+- **Landing.** `landImageSurfaceLine()` lands on the sheet through the vertex. A signed transfer takes the root nearest
+  the vertex, so a ray reported at the last vertex can land behind it; a forward ray (the generalized tracer, the MTF
+  landings) passes `minT` and takes its first crossing past it. A polynomial asphere refines its base conic's root and
+  falls back to the lens surfaces' bracketed solver (`intersectSurfaceProfile`) when the conic misses or Newton fails.
+  The sequential tracer is unchanged: it reports x/y at the last vertex and every caller lands from there. Skew rays use `skewImagePlaneIntercept(…, imageSurface)` in
+  `trace/rayAdapters.ts`, which returns `z` only when curved; meridional rays use `landImageSurfaceMeridional()`. The
+  generalized tracer ends on the surface through `intersectImagePlane` (`pathPlanner.ts`), in the plane's local frame.
+- **Flat stays bit-identical.** Every branch is `shape === null ? <old expression> : <landing>`, each caller keeps its
+  own image-vertex z, and a new result field (`imageSurfaceSagMm`, an intercept's `z`, a bundle's `imageSurface`) is
+  absent on a flat image.
+- **Heights and shifts.** Reported image coordinates come from `shape.toImageCoordinates()`: the lateral position of
+  the landing on a sphere or asphere (owner's decision), the position on the unrolled film on a cylinder, which is
+  developable. `skewImagePlaneIntercept`, `meridionalImageHeight()` and the MTF landings return them; the diagram, sag,
+  the reference sphere and the Petzval comparison use the lateral point (`fromImageCoordinates()` inverts).
+  Field-curvature and astigmatic shifts are z-measured from the surface at the chief ray's landing, keeping the "positive
+  aft" sign; the Petzval shift is the Petzval sag less the surface's there. Focus locators (`bestFocusPlane`,
+  `bestRelativeFocusPlane`) stay planar: they locate where a bundle converges, which the sensor does not change.
+- **Defocus.** Moving the image by δ translates the whole surface: spherical spread at a plane, the SA blur
+  character, bokeh `sensorZ` and the MTF best-focus search re-land each ray on the translated surface without
+  retracing.
+- **MTF and illumination.** The MTF lands on the surface, takes the chief landing as its wavefront reference, and adds a
+  limitation note (frequencies in image coordinates). Its diffraction estimates measure pupil cosines along the image
+  axes at the reference (`imageTangentsAt()`), so their frequencies are in the same coordinates as the spots. Relative illumination centres the Rimmer reference
+  sphere on the chief landing and refers cosines to the surface's local tangent frame, so it is irradiance on the
+  curved sensor.
+- **Unchanged.** Paraxial and axial quantities (`paraxialInFocusVergence`, `realK`, cardinals, BFD, total track to the
+  vertex, f-numbers, conjugates, LoCA axial focus, pupils, breathing) read the vertex plane, where sag(0) = 0.
+- **Cylinders.** A cylinder is not azimuthally equivalent, so its 1-D y-field results follow one frame direction. The
+  data names the side it curves along (`curvedAlong`) and needs `imageFormat`; `withImageSurfaceSection()`
+  (`prescription/imageSurfaceSection.ts`) picks the long edge, short edge or corner before `buildLens()`, the way a
+  converter is attached. The compiled shape turns the cylinder by `cylinderAngle` so that direction lies in the drawn
+  meridian (toward the film's own corner: a curved side of arc length s spans R·sin(s/R) laterally), and
+  `fieldExtentMm` (the frame's half-length along it on the film) replaces the image-circle radius as the sweep limit
+  in the analysis field, the distortion corner and the MTF reference height. `drawnExtentMm` is the same length as a
+  lateral height, where the diagram ends the section. Validation checks clearance against the least sag over the
+  film at each radius, which on a cylinder bending away from the lens is its straight direction. A corner view is not x-symmetric:
+  `imageMirrorSymmetricAboutMeridian()` (`trace/symmetry.ts`) turns MTF and vignetting mirroring off for it.
+- **Scope.** Validation rejects `imageSurface` with `perspectiveControl`. Folded paths trace and draw the surface; their
+  guarded analysis tabs stay guarded.
 
 ## Field-Launch Convention
 

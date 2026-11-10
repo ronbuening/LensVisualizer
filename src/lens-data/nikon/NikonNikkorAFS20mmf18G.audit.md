@@ -80,3 +80,12 @@ S2 retains its 17.7 mm clear cap and gains a land to 21.8 mm (adopted q=.81193, 
 All 17 modeled media pairs (16 elements/layers plus the rear plate) were checked directly. Fourteen compatible catalog curves remain unchanged; the thin 1.5138/53 medium and two 1.514/42.8 cement layers remain intentional unresolved fallbacks. The source prints the thin layer's coordinates and thickness but does not identify its chemistry or curing process: the former UV-cure label is removed and the resin interpretation is qualified. Source R/d/aspheres, every material pair, focus and stop controls, rear-plate gaps and tolerances are unchanged. Public aspheric figures now use S26A's adopted 13 mm cap: departure +2.2487 mm, slope 18.4992°; unchanged S5A/S25A figures are retained.
 
 Surface, image-circle, nominal aperture and full-field checks pass. The inferred-cut guard used grid41, .5° field spacing and 21 focus samples: 1,036,605 rays, refined S7 reach 13.9526 mm against cap 17.944063 minus .0538 mm margin; zero clipped rays, margin failures or unlaunchable samples. All nine actual SVG states were inspected: finite continuous outlines, zero hidden trim and no detached compound wing. The shared glass suites pass 2 files/93 tests; source/curve consistency and duplicate-key checks pass.
+
+## 2026-11-08 — Cement layers no longer join the doublet tags
+
+The two printed 0.01 mm cement layers C1 (element 6, between L14 and L15) and C2 (element 12, between L23 and L24)
+carried the `cemented` tags "LS" and "D2" of the pairs they bond, so the inspector counted three members and badged
+each pair as a triplet. Both tags are removed from the cement elements only; they stay drawn `Cement Layer` elements
+with nd 1.514 and νd 42.8, so every medium keeps a dispersion and the colour analyses stay on. On the dev server
+`?el=6` and `?el=12` show no cemented badge and an FL of "—", while L14/L15 read DOUBLET LS and L23/L24 read
+DOUBLET D2. Prescription, rims and analysis text are unchanged.

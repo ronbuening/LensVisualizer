@@ -1,0 +1,1 @@
+Fixed LoCA inset values when chromatic color channels are toggled

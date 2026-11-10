@@ -24,3 +24,7 @@ The table follows the lenses' introduction chronology, newest first.
 | HD PENTAX-D FA 150–450mmF4.5–5.6ED DC AW | [PENTAX STORY: Engineers Interview](https://www.ricoh-imaging.co.jp/english/products/lens/pentax-story/150-450/interview/) | [D FA 150–450mmF4.5–5.6](/lens/hd-pentax-d-fa-150-450-f45-56-ed-dc-aw) |
 
 The Surface & Stop DA★ 16–50mm is the earlier SDM design, not the PLM lens discussed in Ricoh's article, so it is deliberately not cross-linked.
+
+## Optical Design and the Limited Series
+
+Ricoh's K-1 _Challengers_ interview [Lens development for the full-frame system](https://www.ricoh-imaging.co.jp/english/products/k-1/special/challengers/challengers06.html) covers the team's approach to residual aberrations, the larger full-frame image circle, and manufacturing tolerances. Its [DA Limited design feature](https://www.ricoh-imaging.co.jp/english/products/lens_cmp2/page02.html) explains the role of astigmatism control and handling in the series and profiles the [HD PENTAX-DA 20–40mm f/2.8–4 Limited](/lens/pentax-hd-da-20-40-f28-4-limited).

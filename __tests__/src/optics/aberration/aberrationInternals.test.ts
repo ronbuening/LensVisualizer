@@ -1,3 +1,4 @@
+import { createImageSurfaceShape } from "../../../../src/optics/geometry/imageSurface.js";
 import { describe, expect, it } from "vitest";
 import {
   axialIntercept,
@@ -45,8 +46,8 @@ describe("aberration shared helpers", () => {
     ];
 
     expect(bestFocusPlane(hits, 0)).toBeCloseTo(2, 6);
-    expect(rmsAtPlane(hits, 0, 2)).toBeCloseTo(0, 6);
-    expect(peakAtPlane(hits, 0, 2)).toBeCloseTo(0, 6);
+    expect(rmsAtPlane(hits, 0, 2, null)).toBeCloseTo(0, 6);
+    expect(peakAtPlane(hits, 0, 2, null)).toBeCloseTo(0, 6);
   });
 
   it("solves best focus from generic transverse coordinate and slope pairs", () => {
@@ -58,8 +59,18 @@ describe("aberration shared helpers", () => {
     ];
 
     expect(bestFocusPlane(hits, 10)).toBeCloseTo(13, 6);
-    expect(transverseCoordinateAtPlane(hits[0], 10, 13)).toBeCloseTo(0, 6);
-    expect(rmsAtPlane(hits, 10, 13)).toBeCloseTo(0, 6);
+    expect(transverseCoordinateAtPlane(hits[0], 10, 13, null)).toBeCloseTo(0, 6);
+    expect(rmsAtPlane(hits, 10, 13, null)).toBeCloseTo(0, 6);
+  });
+
+  it("lands transverse coordinates on a curved image surface moved to the plane", () => {
+    const sphere = createImageSurfaceShape({ R: -50, sd: 20 });
+    const hit: TransverseFocusHit = { coordinate: 4, slope: 0.2, referenceZ: 0 };
+    const y = transverseCoordinateAtPlane(hit, 0, 10, sphere);
+    /* The surface bends toward the ray source, so it meets the rising ray before the vertex plane does. */
+    expect(y).toBeLessThan(transverseCoordinateAtPlane(hit, 0, 10, null));
+    expect(10 + sphere.sagAt(0, y) - (y - 4) / 0.2).toBeCloseTo(0, 9);
+    expect(rmsAtPlane([hit], 0, 10, sphere)).toBeCloseTo(Math.abs(y), 12);
   });
 
   it("solves relative focus from generic transverse hits", () => {

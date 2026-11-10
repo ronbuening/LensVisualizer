@@ -25,6 +25,7 @@ const PH = VB_H - MT - MB;
 
 export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMeanPlotProps) {
   const usableFields = result.fields.filter((field) => field.usable);
+  const curved = usableFields.some((field) => field.imageSurfaceSagMm !== undefined);
   const meanShiftHalfRange = Math.max(...usableFields.map((field) => Math.abs(field.petzvalShiftMm)), 0);
   const imageCircleRadiusMm = Math.max(...usableFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
   const uncappedHalfRange = Math.max(0.05, meanShiftHalfRange * 1.15);
@@ -61,7 +62,7 @@ export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMean
 
       <line x1={ML} y1={zeroY} x2={ML + PW} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
       <text x={ML + PW - 4} y={zeroY - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Current image plane
+        {curved ? "Image surface" : "Current image plane"}
       </text>
 
       {tickValues.map((tick) => {
@@ -120,7 +121,9 @@ export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMean
       ))}
 
       <text x={ML + 6} y={VB_H - 2} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-        Petzval reference relative to the current image plane.
+        {curved
+          ? "Petzval reference relative to the image surface."
+          : "Petzval reference relative to the current image plane."}
       </text>
       {scaleCapped ? (
         <text x={ML + PW} y={VB_H - 2} textAnchor="end" fill={t.muted} fontSize={7.5} fontFamily="inherit">

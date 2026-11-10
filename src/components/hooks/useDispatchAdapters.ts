@@ -22,9 +22,11 @@ import {
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
   SET_GROUP_MOVEMENT,
+  SET_IMAGE_SECTION,
 } from "../../utils/state/lensReducer.js";
 import type { AnalysisTabId, OffAxisMode, RayDensity } from "../../types/state.js";
 import type { GroupMovementMode } from "../../types/groupMovement.js";
+import type { ImageSurfaceSection } from "../../types/optics.js";
 
 export interface DispatchAdapters {
   onFocusChange: (v: number) => void;
@@ -75,6 +77,7 @@ export interface DispatchAdapters {
   onGlassMapOpenChange: (v: boolean) => void;
   onChromaticOverlayChange: (v: boolean) => void;
   onPetzvalOverlayChange: (v: boolean) => void;
+  onImageSectionChange: (section: ImageSurfaceSection) => void;
 }
 
 export default function useDispatchAdapters(): DispatchAdapters {
@@ -150,6 +153,7 @@ export default function useDispatchAdapters(): DispatchAdapters {
         dispatch({ type: SET_PANEL_EXPANDED, panel: "chromaticOverlayOpen", expanded: v }),
       onPetzvalOverlayChange: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "petzvalOverlayOpen", expanded: v }),
+      onImageSectionChange: (section: ImageSurfaceSection) => dispatch({ type: SET_IMAGE_SECTION, section }),
     }),
     [dispatch, updateURLWithSliders],
   );

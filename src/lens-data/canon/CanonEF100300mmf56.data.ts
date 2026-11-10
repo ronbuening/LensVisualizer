@@ -189,7 +189,7 @@ const LENS_DATA = {
       vd: 50.8,
       indexReference: "d",
       focalLengthMm: 46.504837,
-      glass: "Unmatched (1.52301/50.8 outside the exact d-line window; KF5 and N-KF9 are near candidates)",
+      glass: "CF5 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       cemented: "C3",
     },

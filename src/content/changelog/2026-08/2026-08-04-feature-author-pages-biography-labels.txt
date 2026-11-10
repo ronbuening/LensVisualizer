@@ -1,0 +1,1 @@
+Expanded author pages with biography labels, saved sorting, and assignee filters

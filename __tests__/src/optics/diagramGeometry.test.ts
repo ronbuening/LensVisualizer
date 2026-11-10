@@ -13,6 +13,7 @@ import nikonPf500Data from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56E
 import { catalogLensData } from "./testLensFixtures.js";
 import { doLayoutForRuntimeLens as doLayout } from "../../../src/optics/state/runtimeAdapters.js";
 import { SVG_PATH_SUBDIVISIONS } from "../../../src/optics/diagram/surfaceOutline.js";
+import { stopSideRimLands } from "../../../src/optics/diagram/runtimeSurface.js";
 import type { RuntimeLens, AsphericCoefficients, ElementSpan, SurfaceData } from "../../../src/types/optics.js";
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -399,6 +400,35 @@ describe("computeElementShapes", () => {
     expect(shape.asphPaths[0].pathD).not.toMatch(/NaN|Infinity/);
     const moved = pathCoords(computeElementShapes(L, [0, 10], sx, sy, (z, y) => [z + 2, y - 3])[0].d);
     expect(moved).toEqual(pathCoords(shape.d).map(([z, y]) => [z + 2, y - 3]));
+  });
+
+  it("locates rim-extension lands only on the faces bordering the stop", () => {
+    const stopLens = (extensionIdx: number) =>
+      hydrateDiagramLens({
+        S: [
+          { label: "1", R: 40, d: 4, nd: 1.5, sd: 10 },
+          { label: "2", R: -30, d: 2, nd: 1, sd: 8 },
+          { label: "STO", R: 1e15, d: 3, nd: 1, sd: 6 },
+          { label: "3", R: 30, d: 4, nd: 1.5, sd: 8 },
+          { label: "4", R: -40, d: 40, nd: 1, sd: 10 },
+        ].map((surface, i) => (i === extensionIdx ? { ...surface, rimExtensionSd: 12 } : surface)),
+        ES: [
+          [1, 0, 1],
+          [2, 3, 4],
+        ],
+        stopIdx: 2,
+      });
+    const zPos = [0, 4, 6, 9, 13];
+    const edgeSag = 30 - Math.sqrt(30 ** 2 - 8 ** 2);
+    const before = stopSideRimLands(stopLens(1), zPos);
+    const after = stopSideRimLands(stopLens(3), zPos);
+    expect(before).toHaveLength(1);
+    expect(after).toHaveLength(1);
+    expect(before[0].outerSD).toBe(12);
+    expect(before[0].z).toBeCloseTo(4 - edgeSag, 10);
+    expect(after[0].z).toBeCloseTo(9 + edgeSag, 10);
+    expect(stopSideRimLands(stopLens(0), zPos)).toEqual([]);
+    expect(stopSideRimLands(stopLens(-1), zPos)).toEqual([]);
   });
 
   it("path contains expected number of line segments", () => {

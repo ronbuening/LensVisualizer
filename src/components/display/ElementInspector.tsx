@@ -19,6 +19,7 @@ import {
 import { getAsphericEntriesForElement } from "./asphericElementUtils.js";
 import { withAlpha } from "../../utils/style/styles.js";
 import { textRun } from "../../utils/text.js";
+import { describeImageSurface } from "./imageSurfaceText.js";
 
 interface ElementInspectorProps {
   info: ElementData;
@@ -295,6 +296,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
                   fmtMm(imagePlane.y),
                   " normal ",
                   fmtNormal(imagePlane.normal),
+                  L.imageSurface ? `, ${describeImageSurface(L.imageSurface)}` : null,
                 )}
               </span>
             </div>

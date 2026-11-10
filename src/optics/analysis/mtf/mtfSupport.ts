@@ -226,6 +226,14 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
       "Numerical convergence does not establish the accuracy of the source prescription.",
     ],
   };
+  const shape = lens.imageSurface;
+  if (shape !== null) {
+    support.limitations.push(
+      shape.kind === "cylindrical"
+        ? `Cylindrical image surface (R = ${shape.radius} mm): field heights and frequencies are measured on the unrolled film, along the viewed frame direction.`
+        : `Curved image surface (R = ${shape.radius} mm): field heights are lateral heights and frequencies are measured in the image's x/y projection.`,
+    );
+  }
   const reject = (reason: MtfUnavailableReason, message: string): MtfSupport => ({
     ...support,
     available: false,

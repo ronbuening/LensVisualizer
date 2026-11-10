@@ -34,3 +34,7 @@ The last two stories are the thinnest optically. "Angénieux & Hollywood" is lar
 The [history timeline](https://www.angenieux.com/about-us/history/history-timeline/) is a dated list of Angénieux firsts that links back into the six stories. It records the 35mm f/2.5 Retrofocus of 1950, the 4× 17–68mm of 1957, the 10× 12–120mm and the Franscope anamorphic of 1961, the 10× 25–250mm of 1962, the 18× 27.5–500mm of 1967, the 2× 49–90mm for Leicaflex of 1968 and the later Optimo series.
 
 The catalog's [DEM 180mm f/2.3 APO](/lens/angenieux-dem-180mm-f23-apo) is not the subject of any of the six stories and is therefore not cross-linked above.
+
+## Optimo Prime Iris Design
+
+[The Angénieux Oval Iris](https://www.angenieux.com/the-angenieux-oval-iris-shaping-anamorphic-style-bokeh-from-within/) explains how an interchangeable 16-blade iris gives the spherical Optimo primes oval out-of-focus highlights and retains that shape as the iris stops down.
