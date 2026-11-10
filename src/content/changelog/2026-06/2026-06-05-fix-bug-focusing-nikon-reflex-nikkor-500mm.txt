@@ -1,0 +1,1 @@
+Fixed a bug in focusing Nikon Reflex-Nikkor 500mm f/8 (New)

@@ -1,0 +1,1 @@
+The MTF now samples the real aperture stop evenly, as lens-design software does with ray aiming, and refines slow-converging fields to 256 samples by default; rays a lens totally reflects before the stop count as vignetted in every analysis

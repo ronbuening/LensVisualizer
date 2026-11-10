@@ -1,0 +1,1 @@
+Added a lens-group motion chart for focus and zoom movement

@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router";
+import { hashFragmentId } from "../utils/seo/siteUrls.js";
 
 export default function RouteLayout() {
   const { pathname, hash } = useLocation();
@@ -12,12 +13,7 @@ export default function RouteLayout() {
       return;
     }
 
-    let id = hash.slice(1);
-    try {
-      id = decodeURIComponent(id);
-    } catch {
-      // A malformed escape can still be part of a literal element id.
-    }
+    const id = hashFragmentId(hash);
     const frame = requestAnimationFrame(() => {
       document.getElementById(id)?.scrollIntoView();
     });

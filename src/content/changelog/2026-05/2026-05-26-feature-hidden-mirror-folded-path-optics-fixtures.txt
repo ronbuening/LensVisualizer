@@ -1,0 +1,1 @@
+Added hidden mirror and folded-path optics fixtures with accurate folded ray tracing

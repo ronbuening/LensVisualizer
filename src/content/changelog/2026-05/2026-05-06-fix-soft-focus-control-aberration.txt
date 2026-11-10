@@ -1,0 +1,1 @@
+Fixed soft-focus control in aberration, bokeh, pupil, and LoCA views

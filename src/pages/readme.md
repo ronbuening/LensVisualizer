@@ -10,21 +10,21 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 flowchart LR
   subgraph n_src_pages["src/pages"]
     n_src_pages_src_pages_lensIndex["lensIndex/"]
-    n_src_pages_React_components["React components (23)"]
+    n_src_pages_React_components["React components (24)"]
     n_src_pages_TypeScript_modules["TypeScript modules (1)"]
   end
   n_external_src_utils_catalog["src/utils/catalog"]
   n_external_src_components_content["src/components/content"]
-  n_external_src_components_layout["src/components/layout"]
   n_external_src_utils_seo["src/utils/seo"]
+  n_external_src_components_layout["src/components/layout"]
   n_external_src_components_SEOHead_tsx["src/components/SEOHead.tsx"]
   n_external_src_utils_style["src/utils/style"]
   n_external_pkg_react_router["pkg:react-router"]
-  n_external_src_components_relationshipMap["src/components/relationshipMap"]
   n_external_src_utils_text_ts["src/utils/text.ts"]
+  n_external_src_components_relationshipMap["src/components/relationshipMap"]
   n_external_pkg_react["pkg:react"]
-  n_external_src_utils_state["src/utils/state"]
   n_external_src_utils_content["src/utils/content"]
+  n_external_src_utils_state["src/utils/state"]
   n_external_src_components_homepage["src/components/homepage"]
   n_external_src_lensBuilder["src/lensBuilder"]
   n_external_src_components_ClientOnly_tsx["src/components/ClientOnly.tsx"]
@@ -43,18 +43,18 @@ flowchart LR
   n_external_src_utils_errorBeacon_ts["src/utils/errorBeacon.ts"]
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
   n_src_pages_React_components --> |67| n_external_src_utils_catalog
-  n_src_pages_React_components --> |34| n_external_src_components_content
-  n_src_pages_React_components --> |24| n_external_src_components_layout
-  n_src_pages_React_components --> |24| n_external_src_utils_seo
-  n_src_pages_React_components --> |23| n_external_src_components_SEOHead_tsx
-  n_src_pages_React_components --> |23| n_external_src_utils_style
+  n_src_pages_React_components --> |35| n_external_src_components_content
+  n_src_pages_React_components --> |26| n_external_src_utils_seo
+  n_src_pages_React_components --> |25| n_external_src_components_layout
+  n_src_pages_React_components --> |24| n_external_src_components_SEOHead_tsx
+  n_src_pages_React_components --> |24| n_external_src_utils_style
   n_src_pages_React_components --> |21| n_external_pkg_react_router
   n_src_pages_React_components --> |20| n_src_pages_src_pages_lensIndex
+  n_src_pages_React_components --> |19| n_external_src_utils_text_ts
   n_src_pages_React_components --> |18| n_external_src_components_relationshipMap
-  n_src_pages_React_components --> |17| n_external_src_utils_text_ts
   n_src_pages_React_components --> |13| n_external_pkg_react
+  n_src_pages_React_components --> |9| n_external_src_utils_content
   n_src_pages_React_components --> |8| n_external_src_utils_state
-  n_src_pages_React_components --> |7| n_external_src_utils_content
   n_src_pages_React_components --> |6| n_external_src_components_homepage
   n_src_pages_React_components --> |5| n_external_src_lensBuilder
   n_src_pages_TypeScript_modules --> |5| n_external_src_utils_catalog
@@ -79,9 +79,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 24
+- Direct source files: 25
 - Direct subfolders: 1
-- Main outbound areas: src/utils/catalog (72), src/components/content (34), src/components/layout (24), src/utils/seo (24), src/components/SEOHead.tsx (23), src/utils/style (23), package:react-router (21), src/pages/lensIndex (21), +23 more
+- Main outbound areas: src/utils/catalog (72), src/components/content (35), src/utils/seo (26), src/components/layout (25), src/components/SEOHead.tsx (24), src/utils/style (24), package:react-router (21), src/pages/lensIndex (21), +23 more
 - External consumers: src/routes
 
 ## Subfolders
@@ -117,4 +117,5 @@ flowchart LR
 | `TeleconverterPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/content (3), src/utils/seo (2), package:react-router, src/components/layout, +4 more | src/routes | default, TeleconverterPage |
 | `TeleconvertersIndexPage.tsx` | Route-level React page | src/utils/catalog (3), src/components/content (2), src/utils/style (2), package:react, package:react-router, +5 more | src/routes | default, TeleconvertersIndexPage |
 | `UniversalRelationshipMapPage.tsx` | Route-level React page | src/components/relationshipMap (11), src/utils/catalog (3), src/utils/seo (2), src/utils/style (2), package:react, +8 more | src/routes | default, UniversalRelationshipMapPage |
-| `UpdatesPage.tsx` | Route-level React page | src/utils/catalog (2), src/utils/content (2), package:react, package:react-router, src/components/content, +4 more | src/routes | default, UpdatesPage |
+| `UpdatesMonthPage.tsx` | Route-level React page | src/utils/content (2), src/utils/seo (2), package:react, package:react-router, src/components/content, +5 more | src/routes | default, UpdatesMonthPage |
+| `UpdatesPage.tsx` | Route-level React page | src/utils/content (2), src/components/content, src/components/layout, src/components/SEOHead.tsx, src/utils/catalog, +3 more | src/routes | default, UpdatesPage |

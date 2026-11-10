@@ -1,0 +1,1 @@
+Fixed four Canon and Sony telephoto lenses tracing slower than their stated aperture

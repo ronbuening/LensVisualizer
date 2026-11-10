@@ -1,0 +1,1 @@
+Improved slider performance — analysis tabs and bokeh now update only after dragging stops

@@ -1,11 +1,20 @@
 // @vitest-environment jsdom
 
+/**
+ * The /updates hub and its /updates/YYYY-MM/ archive pages. RSS items and shared links point at
+ * `/updates/#changelog-…`; an entry that has left the hub must move to its archive page with the same anchor
+ * (RouteLayout.test.tsx covers the scroll itself).
+ */
+
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { act, cleanup, fireEvent, screen } from "@testing-library/react";
-import { Route, Routes, useNavigate } from "react-router";
+import { cleanup, screen } from "@testing-library/react";
+import { Route, Routes, useLocation } from "react-router";
+import UpdatesMonthPage from "../../../src/pages/UpdatesMonthPage.js";
 import UpdatesPage from "../../../src/pages/UpdatesPage.js";
 import { CHANGELOG } from "../../../src/utils/content/changelogData.js";
 import { changelogEntryId } from "../../../src/utils/content/changelogHelpers.js";
+import { formatUpdateMonth } from "../../../src/utils/content/updateMonths.js";
+import { RECENT_UPDATE_MONTHS, UPDATE_MONTHS } from "../../../src/utils/content/updatesArchive.js";
 import { clearBrowserState, installMatchMediaMock, renderPage } from "../../testUtils.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
@@ -14,16 +23,12 @@ vi.mock("../../../src/components/SEOHead.js", () => ({
   },
 }));
 
-function HashNavButton({ hash }: { hash: string }) {
-  const navigate = useNavigate();
-  return (
-    <button type="button" onClick={() => void navigate({ hash })}>
-      navigate-hash
-    </button>
-  );
+function LocationEcho() {
+  const location = useLocation();
+  return <output data-testid="location">{`${location.pathname}${location.hash}`}</output>;
 }
 
-function renderUpdatesPage(initialEntry: string, navHash?: string) {
+function renderUpdates(initialEntry: string) {
   return renderPage(
     <Routes>
       <Route
@@ -31,7 +36,16 @@ function renderUpdatesPage(initialEntry: string, navHash?: string) {
         element={
           <>
             <UpdatesPage />
-            {navHash != null && <HashNavButton hash={navHash} />}
+            <LocationEcho />
+          </>
+        }
+      />
+      <Route
+        path="/updates/:month"
+        element={
+          <>
+            <UpdatesMonthPage />
+            <LocationEcho />
           </>
         }
       />
@@ -40,38 +54,17 @@ function renderUpdatesPage(initialEntry: string, navHash?: string) {
   );
 }
 
-describe("UpdatesPage hash deep links", () => {
-  const entryIdA = changelogEntryId(CHANGELOG[0]);
-  const entryIdB = changelogEntryId(CHANGELOG[1]);
-  const scrollTo = vi.fn();
-  const scrolledIntoViewIds: string[] = [];
-  let rafCallbacks: FrameRequestCallback[] = [];
+const oldestMonth = UPDATE_MONTHS[UPDATE_MONTHS.length - 1].month;
+const archivedEntry = CHANGELOG.find((entry) => entry.date.startsWith(`${oldestMonth}-`))!;
+const archivedId = changelogEntryId(archivedEntry);
+const recentEntry = CHANGELOG[0];
+const recentId = changelogEntryId(recentEntry);
+const recentMonth = recentEntry.date.slice(0, 7);
 
-  function flushAnimationFrames() {
-    act(() => {
-      while (rafCallbacks.length > 0) {
-        const pending = rafCallbacks;
-        rafCallbacks = [];
-        pending.forEach((cb) => cb(0));
-      }
-    });
-  }
-
+describe("Updates archive", () => {
   beforeEach(() => {
     clearBrowserState();
     installMatchMediaMock(false);
-    Object.defineProperty(window, "scrollTo", { writable: true, value: scrollTo });
-    scrollTo.mockClear();
-    scrolledIntoViewIds.length = 0;
-    Element.prototype.scrollIntoView = vi.fn(function (this: Element) {
-      scrolledIntoViewIds.push(this.id);
-    });
-    rafCallbacks = [];
-    vi.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {
-      rafCallbacks.push(cb);
-      return rafCallbacks.length;
-    });
-    vi.spyOn(window, "cancelAnimationFrame").mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -79,44 +72,58 @@ describe("UpdatesPage hash deep links", () => {
     vi.restoreAllMocks();
   });
 
-  it("scrolls to top when no hash is present", () => {
-    renderUpdatesPage("/updates");
-    flushAnimationFrames();
-
-    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0 });
-    expect(scrolledIntoViewIds).toEqual([]);
+  it("has archived months beyond the hub's recent ones", () => {
+    expect(RECENT_UPDATE_MONTHS).toContain(recentMonth);
+    expect(RECENT_UPDATE_MONTHS).not.toContain(oldestMonth);
+    expect(archivedEntry).toBeDefined();
   });
 
-  it("scrolls the matching entry into view on a cold feed-link load", () => {
-    renderUpdatesPage(`/updates#${entryIdA}`);
-    flushAnimationFrames();
+  it("lists only the recent months on the hub and links every month", () => {
+    renderUpdates("/updates");
 
-    expect(scrolledIntoViewIds).toContain(entryIdA);
-    expect(scrollTo).not.toHaveBeenCalled();
+    expect(document.getElementById(recentId)).not.toBeNull();
+    expect(document.getElementById(archivedId)).toBeNull();
+    const archiveNav = screen.getByRole("navigation", { name: "Monthly archive" });
+    for (const { month } of UPDATE_MONTHS) {
+      expect(archiveNav.querySelector(`a[href="/updates/${month}/"]`), month).not.toBeNull();
+    }
   });
 
-  it("scrolls to a second entry on same-page hash navigation", () => {
-    renderUpdatesPage(`/updates#${entryIdA}`, `#${entryIdB}`);
-    flushAnimationFrames();
-    expect(scrolledIntoViewIds).toContain(entryIdA);
+  it("moves an archived entry's hub anchor to its month page, keeping the anchor", async () => {
+    renderUpdates(`/updates#${archivedId}`);
 
-    fireEvent.click(screen.getByRole("button", { name: "navigate-hash" }));
-    flushAnimationFrames();
-
-    expect(scrolledIntoViewIds).toContain(entryIdB);
+    expect(await screen.findByText(`/updates/${oldestMonth}/#${archivedId}`)).toBeTruthy();
+    expect(document.getElementById(archivedId)).not.toBeNull();
   });
 
-  it("decodes percent-encoded fragments before matching", () => {
-    renderUpdatesPage(`/updates#${entryIdA.replace(/-/g, "%2D")}`);
-    flushAnimationFrames();
+  it("keeps a recent entry's anchor and a malformed fragment on the hub", () => {
+    renderUpdates(`/updates#${recentId}`);
+    expect(screen.getByTestId("location").textContent).toBe(`/updates#${recentId}`);
+    cleanup();
 
-    expect(scrolledIntoViewIds).toContain(entryIdA);
+    renderUpdates("/updates#%E0%A4%A");
+    expect(screen.getByTestId("location").textContent).toBe("/updates#%E0%A4%A");
   });
 
-  it("survives malformed percent-encoding without crashing", () => {
-    renderUpdatesPage("/updates#%E0%A4%A");
-    flushAnimationFrames();
+  it("shows one month on its archive page and marks it current", () => {
+    renderUpdates(`/updates/${oldestMonth}/`);
 
-    expect(scrolledIntoViewIds).toEqual([]);
+    expect(screen.getByRole("heading", { level: 1, name: `${formatUpdateMonth(oldestMonth)} Updates` })).toBeTruthy();
+    expect(document.getElementById(archivedId)).not.toBeNull();
+    expect(document.getElementById(recentId)).toBeNull();
+    const current = screen.getByRole("navigation", { name: "Monthly archive" }).querySelector('[aria-current="page"]');
+    expect(current?.textContent).toContain(formatUpdateMonth(oldestMonth));
+  });
+
+  it("moves an anchor from the wrong month page to its own", async () => {
+    renderUpdates(`/updates/${oldestMonth}/#${recentId}`);
+
+    expect(await screen.findByText(`/updates/${recentMonth}/#${recentId}`)).toBeTruthy();
+  });
+
+  it.each(["/updates/2099-01/", "/updates/latest/"])("sends unknown month %s back to the hub", async (path) => {
+    renderUpdates(path);
+
+    expect(await screen.findByText("/updates/")).toBeTruthy();
   });
 });

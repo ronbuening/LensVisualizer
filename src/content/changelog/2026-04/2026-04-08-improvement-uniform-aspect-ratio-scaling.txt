@@ -1,0 +1,1 @@
+Implemented uniform aspect ratio scaling — eliminates lens shape distortion from independent horizontal/vertical zoom
