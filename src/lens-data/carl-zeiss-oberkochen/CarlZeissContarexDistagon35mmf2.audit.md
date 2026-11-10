@@ -75,7 +75,7 @@ paraxial BFD 36.9943 mm, total track 105.700 mm. `audit:surface` OK; `audit:aper
 
 Open: semi-diameters against Fig. 1 for the rim pass (L5, surfaces 9–10, drawn larger in the figure; front caps
 unchecked) (closed: semi-diameter pass below). `catalog.focalLengthMm.design` carries the traced 35.00106523898182
-rather than the stated 35 (not changed in this pass).
+rather than the stated 35 (not changed in this pass). (Closed: `design` is 35.)
 
 ## 2026-11-10 — Semi-diameter pass against the patent figure
 
@@ -121,3 +121,83 @@ axial clip or blocked chief ray (the baseline flagged surfaces 9 and 10 at f/1.8
 Open: the drawn edges and chamfers are not modeled (straight rim joins); L1, L2, L3 and the cemented pair stay larger
 than drawn because the drawn rims would cost corner light. Overlay of the final rims on the figure:
 scratch `sd/distagon35/overlay.png` (not in the repo).
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared the live page as shot at infinity (diagram, the inspector for all nine elements, the focus-movement overlay)
+with Fig. 1 on PDF p. 20, the larger rendering, at 300 dpi, and checked each reading on p. 21. Scale on p. 20: axial
+22.75 px/mm from the r5 and r17 vertices (852 px over 37.4535 mm); transverse 22.52 px/mm, the p. 21 arc-fit scale
+(15.65) times the p. 20/p. 21 axial ratio (1.439); the axis tilts 0.85°, and rims were read from it on both sides.
+
+Readings on p. 20 (first-pass reading in brackets): LIII 14.7 square-cut (14.85); LIV 13.45 / 12.8 (13.3 / 12.8); LV
+face ends 11.35 / 11.1 under a 12.2 mm edge (11.45 / 11.2); the pair 10.9 / 11.5 / 11.5 (11.0 / 11.6 / 10.85); LVIII
+12.1 / 12.8 (12.4 / 12.6); LIX 13.75 top and 13.6 bottom, square-cut (13.8). Only the pair's rear face differs in
+shape: on p. 20 both sides and on p. 21's left side, r13 runs straight into the common edge, so LVII is drawn
+square-cut and only LVI's front face is chamfered (0.6 mm, all four sides); p. 21's right side alone shows a chamfer on
+r13.
+
+Changes (before → after, mm):
+
+| Surface | Before | Figure | After | Reason |
+|---|---:|---:|---:|---|
+| 2 (LI rear) | 20 | 16.0 (edge 18.3) | 18.7 | toward the drawn face end at no light cost; 18.7 is the lowest value that keeps the engine half-field (18.5 gives 34.87°) |
+| 3 / 4 (LII) | 16.2 / 14.9 | 12.7 / 11.4 | 15.7 / 14.4 | LII's front face rendered 0.5 above LIII, which Fig. 1 draws 2.15 mm taller; now equal to LIII and within the budget |
+| 11 / 12 / 13 (LVI–LVII) | 12.1 / 12.7 / 12.0 | 10.9 / 11.5 / 11.5 | 11.6 / 12.2 / 12.2 | LVII square-cut as drawn, LVI's 0.6 mm step kept; the whole pair then sits 0.5 mm lower within the budget |
+| 16 / 17 (LIX) | 13 / 13 | 13.7 square-cut | 13.7 / 13.7 | LVIII and LIX rendered at one height where Fig. 1 draws LIX 0.9–1.6 mm taller |
+
+Against the final set, LII at 15.67 / 14.37 costs 3.04 points and the pair at 11.5 / 12.1 / 12.1 costs 3.04 (11.55 /
+12.15 / 12.15 passes at 2.79, 0.05 mm under the value kept). LIII, LIV, LV, LVIII and LI's front face are unchanged:
+LIII at 15.6 would pass (2.85) but would put LII above it again, LI's drawn front edge costs 10–11 points beyond 26°,
+and the rest are within 9 % of the figure.
+
+Lands and cuts: no `rimExtensionSd`, `rimCutDepthMm` or `gapSagFrac`. Cuts against the pre-pass rims, with what
+restoring each wins back (full-pupil lattice, wide open, infinity):
+
+| Cut | Baseline | Final | Figure | Restore wins | Verdict |
+|---|---:|---:|---:|---:|---|
+| 2 (LI rear) | 20 | 18.7 | 16.0 | 0.0 | keep: no cost |
+| 3 / 4 (LII) | 17 / 17 | 15.7 / 14.4 | 12.7 / 11.4 | 3.7 at 23.3° | partly raised |
+| 5 / 6 (LIII) | 17 / 17 | 15.7 / 15.7 | 14.85 | 0.2 at 17.5° | partly raised |
+| 11 / 12 / 13 (pair) | 13 / 13 / 13 | 11.6 / 12.2 / 12.2 | 10.9 / 11.5 / 11.5 | 0.4 at 14.6° | partly raised |
+
+Worst loss against the baseline rims: 2.8 points at 20.4° (92.4 → 89.6 %); the first pass's set lost 2.7 at the same
+field. Per field, baseline → final: 14.6° 96.8 → 99.3, 17.5° 95.5 → 95.8, 23.3° 83.4 → 81.0, 26.2° 68.9 → 71.4, 29.2°
+51.5 → 56.8, corner 32.1° 33.1 → 39.0. At 31°: 39.8 → 45.5 % at f/1.8 and 47.0 → 53.6 % at f/2; at 15.5°: 96.9 → 98.2 %
+and 100 → 100 %. At the drawn rims of LII, LIII and the pair the model would lose up to 29 points at 20.4°.
+
+Engine before and after (identical): EFL 35.0011 mm, FOPEN 1.8, halfField 35.015° (limited by surface 1), stop
+semi-diameter 11.3653 mm, total track 105.700 mm. `audit:surface` OK; `audit:aperture` no rim limit;
+`audit:image-circle` 0 undersized; `audit:field-coverage` 100 % to the 21.65 mm corner; `clearap` at f/1.8 (Y 21.03 mm)
+and f/2 (Y 21.63 mm) flags no axial clip or blocked chief ray.
+
+Stop: drawn in d8 between LIV and LV, as in Fig. 1. The drawn housing is the smaller of LIV's rear and LV's front
+rims, 11.6 mm; Fig. 1's iris reaches 12.1 mm, LV's drawn edge height. Fig. 1 places the iris 3.6 mm behind r8 (55 % of
+d8 on p. 20, 54 % on p. 21) where the model splits d8 at the midpoint (3.27 mm).
+
+Labels and tags. Element names L1–L9 → LI–LIX, the patent's own designations (Table I, p. 2: "by LI — LIX the
+lenses"; Fig. 1); labels stay "Element n" and the diagram keeps the element numbers 1–9, since Roman labels would crowd
+the LVI–LIX cluster. `focalLengthMm` added to all nine (the inspector showed "FL = —"): −75.1, −172.7, +33.8, +151.0,
+−30.5, −38.2, +31.9, +73.9 and +132.8 mm, thick-lens values in air (the pair together +139.1 mm). Every `type` agrees
+with the signs of R. Roles checked against the specification (p. 1): LIV is the meniscus concave toward the image that
+corrects lateral spherical aberration and coma at 0.22 of LIII's power (limit 0.4); LV has the highest negative power
+(−30.5 mm). The C1 bracket spans surfaces 11–13. The patent names a "front portion" and a "main portion" but gives them
+no designation, so no group bracket is drawn. No `apd`: the patent names no special glass and the nine glasses are
+normal crowns and flints.
+
+Movement: static. The focus-movement overlay reports no modelled focus or zoom group movement, the focus slider shows
+"Not modeled", and `focus.description` says infinity only.
+
+Glass and colour. Labels moved to the corpus form, each resolving to the same Schott row as before: LI "SK14 (Schott;
+now N-SK14)" → "N-SK14 (Schott catalog equivalent; production supplier unspecified)" (Δnd 4e-7, Δνd −0.08); LII, LIV,
+LVII, LVIII, LIX "SK16 (…)" → "N-SK16 (…)" (Δνd +0.03); LIII "LaK9 (…)" → "N-LAK9 (…)" (Δνd −0.09; "LaK9" itself does
+not resolve); LV "LF5 (Schott)" → "LF5 (Schott catalog equivalent; …)" (+0.05); LVI "SF4 (Schott)" → "SF4 (Schott
+catalog equivalent; …)" (+0.05). Schott is kept as the plausible vendor for a 1963 Zeiss design; Ohara S-BSM16
+(60.29) and CDGM H-ZF6 / Hoya E-FD4 (27.53) match νd exactly but are later catalogs. No element is unmatched, no medium
+is nd-only, and the patent prints no partial dispersions, line indices or aberration curves (the three drawing sheets
+show sections only), so there is no colour comparison to make. Assignee "Carl-Zeiss-Stiftung" matches the front page
+and the corpus spelling.
+
+Open: Fig. 1 draws the iris at 55 % of d8 rather than the midpoint; the split is a gap value, not changed here.
+Open: the drawn edges and chamfers are not modelled (straight rim joins); LI's front face, LII, LIII and the pair stay
+above their drawn rims for corner light. Overlay of the final rims on the figure: scratch `rv/distagon35/overlay.png`
+(not in the repo).

@@ -11,14 +11,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Image plane: at the printed back focus s' = 1.0569f (36.9915 mm); the paraxial back focus is 36.994 mm.
  * Stop: Fig. 1 draws the iris in the air space d8 but no position is printed; it sits at the midpoint of d8, and the
  * two halves sum to the printed d8.
+ * Elements are named LI–LIX as in Table I and Fig. 1.
  * Semi-diameters are not printed. They are estimated from Fig. 1 (sheet 1, PDF pp. 19–21; scale from the vertex span
- * and three arc fits) and checked against the light budget: L2, L3 and the cemented L6–L7 sit above their drawn
- * rims only as far as needed to keep corner illumination within 3 points of the earlier estimates, and L1 keeps
- * 20 mm (the drawn 18.3 mm costs 11 points at 26°). L5 follows the figure (11.6 / 11.2 mm); surface 9 also clears
- * the real-ray f/1.8 axial beam. L4, L8 and L9 agree with the figure within 9 % and are unchanged.
- * Glass: nd and νd are printed d-line values; each pair matches a Schott catalog glass (SK14, SK16, LaK9, LF5, SF4).
+ * and three arc fits) and checked against the light budget: LII, LIII and the cemented LVI–LVII sit above their drawn
+ * rims only as far as needed to keep corner illumination within 3 points of the earlier estimates, with LII's front
+ * face no taller than LIII (Fig. 1 draws LIII 2 mm taller; a lower LII costs more light). LI's front face keeps 20 mm
+ * (the drawn 18.3 mm costs 10–11 points beyond 26°); its rear face sits at 18.7 mm, toward the drawn 16.0 mm but no
+ * lower, since below it the engine half-field shrinks. LV follows the figure (11.6 / 11.2 mm); surface 9 also clears
+ * the real-ray f/1.8 axial beam. LVII is square-cut at the cement's 12.2 mm and LVI keeps the drawn step below it at
+ * its front face; LIX is square-cut at the drawn 13.7 mm, taller than LVIII as drawn. LIV and LVIII are within 9 % of
+ * the figure.
+ * Glass: nd and νd are printed d-line values; each pair matches a Schott catalog glass (SK14, SK16, LaK9, LF5, SF4),
+ * modelled with the current N-SK14, N-SK16 and N-LAK9 rows where the old glass has been replaced.
  * Source inconsistency: the claims repeat Table I with r2 = 0.06827f; the main table's 0.6827f is used (source.errata).
- * This is the patented design, not a factory prescription: Marco Cavina reports a thicker L3 in production.
+ * This is the patented design, not a factory prescription: Marco Cavina reports a thicker LIII in production.
  * Focus: infinity prescription only.
  */
 const LENS_DATA = {
@@ -70,103 +76,112 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "LI",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.60311,
       vd: 60.68,
+      focalLengthMm: -75.1,
       indexReference: "d",
-      glass: "SK14 (Schott; now N-SK14)",
+      glass: "N-SK14 (Schott catalog equivalent; production supplier unspecified)",
       role: "Outer negative meniscus of the front portion",
     },
     {
       id: 2,
-      name: "L2",
+      name: "LII",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.62041,
       vd: 60.29,
+      focalLengthMm: -172.7,
       indexReference: "d",
-      glass: "SK16 (Schott; now N-SK16)",
+      glass: "N-SK16 (Schott catalog equivalent; production supplier unspecified)",
       role: "Inner negative meniscus of the front portion",
     },
     {
       id: 3,
-      name: "L3",
+      name: "LIII",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.691,
       vd: 54.8,
+      focalLengthMm: 33.8,
       indexReference: "d",
-      glass: "LaK9 (Schott; now N-LAK9)",
+      glass: "N-LAK9 (Schott catalog equivalent; production supplier unspecified)",
       role: "Thick positive collector; first element of the main portion",
     },
     {
       id: 4,
-      name: "L4",
+      name: "LIV",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.62041,
       vd: 60.29,
+      focalLengthMm: 151,
       indexReference: "d",
-      glass: "SK16 (Schott; now N-SK16)",
+      glass: "N-SK16 (Schott catalog equivalent; production supplier unspecified)",
       role: "Weak positive meniscus ahead of the iris; corrects lateral spherical aberration and coma",
     },
     {
       id: 5,
-      name: "L5",
+      name: "LV",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.58144,
       vd: 40.8,
+      focalLengthMm: -30.5,
       indexReference: "d",
-      glass: "LF5 (Schott)",
+      glass: "LF5 (Schott catalog equivalent; production supplier unspecified)",
       role: "Strongest negative element in the lens, just behind the iris",
     },
     {
       id: 6,
-      name: "L6",
+      name: "LVI",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.53,
+      focalLengthMm: -38.2,
       indexReference: "d",
-      glass: "SF4 (Schott)",
+      glass: "SF4 (Schott catalog equivalent; production supplier unspecified)",
       role: "Negative flint of the cemented meniscus component",
       cemented: "C1",
     },
     {
       id: 7,
-      name: "L7",
+      name: "LVII",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.62041,
       vd: 60.29,
+      focalLengthMm: 31.9,
       indexReference: "d",
-      glass: "SK16 (Schott; now N-SK16)",
+      glass: "N-SK16 (Schott catalog equivalent; production supplier unspecified)",
       role: "Positive crown of the cemented meniscus component",
       cemented: "C1",
     },
     {
       id: 8,
-      name: "L8",
+      name: "LVIII",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.62041,
       vd: 60.29,
+      focalLengthMm: 73.9,
       indexReference: "d",
-      glass: "SK16 (Schott; now N-SK16)",
+      glass: "N-SK16 (Schott catalog equivalent; production supplier unspecified)",
       role: "Rear positive element, nearly plano-convex",
     },
     {
       id: 9,
-      name: "L9",
+      name: "LIX",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.62041,
       vd: 60.29,
+      focalLengthMm: 132.8,
       indexReference: "d",
-      glass: "SK16 (Schott; now N-SK16)",
+      glass: "N-SK16 (Schott catalog equivalent; production supplier unspecified)",
       role: "Last positive element ahead of the long back focus",
     },
   ],
@@ -182,20 +197,20 @@ const LENS_DATA = {
       label: "2",
       R: 23.8945,
       d: 13.0165,
-      sd: 20,
+      sd: 18.7,
     },
     {
       label: "3",
       R: 29.1655,
       d: 2.8875,
-      sd: 16.2,
+      sd: 15.7,
       medium: 2,
     },
     {
       label: "4",
       R: 22.057,
       d: 12.943,
-      sd: 14.9,
+      sd: 14.4,
     },
     {
       label: "5",
@@ -245,21 +260,21 @@ const LENS_DATA = {
       label: "11",
       R: -61.873,
       d: 1.3475,
-      sd: 12.1,
+      sd: 11.6,
       medium: 6,
     },
     {
       label: "12",
       R: 54.5825,
       d: 5.005,
-      sd: 12.7,
+      sd: 12.2,
       medium: 7,
     },
     {
       label: "13",
       R: -29.9005,
       d: 0.098,
-      sd: 12,
+      sd: 12.2,
     },
     {
       label: "14",
@@ -278,14 +293,14 @@ const LENS_DATA = {
       label: "16",
       R: 179.55,
       d: 3.3705,
-      sd: 13,
+      sd: 13.7,
       medium: 9,
     },
     {
       label: "17",
       R: -151.102,
       d: 36.9915,
-      sd: 13,
+      sd: 13.7,
     },
   ],
   focus: {
