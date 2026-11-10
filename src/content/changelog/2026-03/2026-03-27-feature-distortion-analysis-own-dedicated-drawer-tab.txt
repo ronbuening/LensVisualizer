@@ -1,0 +1,1 @@
+Separated distortion analysis into its own dedicated drawer tab

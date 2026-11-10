@@ -1,0 +1,1 @@
+Improved vignetting and distortion accuracy for extreme wide-angle lenses (>40° half-field)

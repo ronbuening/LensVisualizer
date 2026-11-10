@@ -33,10 +33,20 @@ build metadata.
 | `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB` with SEO fallback content plus client-only `LensViewer`. |
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
-| `UpdatesPage.tsx` | `src/pages/` | Recently added lens/update page. |
+| `UpdatesPage.tsx` | `src/pages/` | Updates hub at `/updates`: the newest two months of changelog entries and added lenses, plus the monthly archive links (see below). |
+| `UpdatesMonthPage.tsx` | `src/pages/` | Monthly archive at `/updates/:month` (`YYYY-MM`); unknown months redirect to `/updates/`. |
 | `RelationshipMapPage.tsx` | `src/pages/` | Patent relationship map at `/relationships`; the focus inventor/assignee lives in a `#focus=<role>:<slug>` fragment (see below). |
 | `UniversalRelationshipMapPage.tsx` | `src/pages/` | Catalog-wide patent and corporate-lineage network at `/relationships/universal`, with shareable `#node=…` selection; linked from the relationship-map index. |
 | `NotFoundPage.tsx` | `src/pages/` | Catch-all 404. |
+
+The Updates pages share `src/components/content/UpdatesView.tsx`. A month exists when it has a changelog entry or a
+published lens (`buildUpdateMonths` in the import-free `src/utils/content/updateMonths.ts`, which the metadata generator
+also calls to emit one `/updates/<month>` route per month, so routes and pages cannot disagree). `updatesArchive.ts`
+binds it to the compiled changelog and lens publication dates without reading the clock. The hub shows the newest
+`RECENT_UPDATE_MONTH_COUNT` months; every month keeps its archive page. Changelog anchors are permanent: when a
+`#changelog-YYYY-MM-DD-…` fragment's entry is not on the current page, `UpdatesView` replaces the URL with the same
+fragment on the entry's month page (the month is read from the id), and `RouteLayout` scrolls to it after commit.
+`scripts/seo-audit.mjs` (`auditUpdatesArchive`) checks this contract on the built pages.
 
 `RelationshipMapPage` is one static route whose content is driven by a fragment rather than a path param: with no
 `focus` it renders the intro + entity picker + "most-connected" link columns (this is the prerendered SEO state), and with
@@ -117,13 +127,18 @@ The app uses React Router 8 with client-side routing plus static prerendering fo
   lens publication ordering, article display fields, maker slugs, authors, and assignees. Its projection preserves
   collection order and excludes Git hashes, precise timestamps, and build-only route inventories. Build tooling keeps
   using the full metadata artifact; browser modules must import the client projection.
+- The generator also validates the changelog entry files under `src/content/changelog/` with
+  `scripts/changelog-lib.mjs`, early in the run, and writes them newest first to `src/generated/changelog.json` for
+  `src/utils/content/changelogData.ts`, the RSS feed, and the SEO audit. It records the archive months as build-only
+  `updateMonths` and dates each `/updates/<month>` route from that month's entry dates and lens publication dates
+  (entry dates capped at today, so a scheduled entry never yields a future lastmod).
 - `scripts/prerender.mjs` reads that concrete route list, builds the SSR entry, validates it against
   `manifestPaths` exported from `entry-server.tsx`, and writes each route plus `404.html` into `dist/`.
 - `/compare/:slugA/:slugB` is routeable and SSR-capable, but it is intentionally excluded from the generated concrete
   route list and prerender coverage check because arbitrary comparison pairs are noindex client/deep-link pages.
 - `scripts/generate-sitemap.mjs` consumes the same route list and route freshness map from
   `src/generated/build-metadata.json`, then omits any prerendered route whose robots metadata contains `noindex`.
-- `scripts/generate-rss-feeds.mjs` consumes the build metadata, generated lens summaries, and curated changelog. It
+- `scripts/generate-rss-feeds.mjs` consumes the build metadata, generated lens summaries, and compiled changelog. It
   writes the 50 newest entries to `dist/feeds/lenses.xml`, `dist/feeds/articles.xml`, and
   `dist/feeds/changelog.xml`.
 - `scripts/seo-audit.mjs` audits the built/prerendered output.
@@ -179,10 +194,11 @@ timestamp takes over after commit. RSS `pubDate` uses the exact timestamp. Repla
 `publishedAt` as described in `src/lens-data/LENS_DATA_SPEC.md`; that timestamp replaces inherited publication history
 consistently across cards, feeds, and SEO.
 
-Changelog items come from `src/utils/content/changelogData.ts` in its curated newest-first order. Their permanent GUIDs
-and links use deterministic fragment IDs shared with `ChangelogList`, so each item opens the matching entry on
-`/updates/`. All feeds use summary-only descriptions and a 50-item limit. Page item links use the same trailing-slash URLs
-as the sitemap and HTML canonical tags. Article series members appear as individual items; hidden lenses are excluded.
+Changelog items come from `src/generated/changelog.json`, which `scripts/changelog-lib.mjs` compiles newest first from
+the entry files under `src/content/changelog/` (`agent_docs/changelog.md`). Their permanent GUIDs and links use
+deterministic fragment IDs shared with `ChangelogList`, so each item opens the matching entry on `/updates/`. All feeds
+use summary-only descriptions and a 50-item limit. Page item links use the same trailing-slash URLs as the sitemap and
+HTML canonical tags. Article series members appear as individual items; hidden lenses are excluded.
 
 The shared HTML template advertises all three feeds with absolute RSS autodiscovery links. Visible subscription links
 live on the homepage and the corresponding Lens Library, Updates, and Articles pages. The feed URLs stay out of the route

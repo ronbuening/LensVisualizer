@@ -1,0 +1,1 @@
+Fixed Canon RF 24-105mm f/4 L close-focus behavior

@@ -1,0 +1,1 @@
+Rays now step back to a stop or lens surface set inside the curve before it, as in OpticStudio, instead of being dropped, which made lenses such as the Leica Elmarit 90mm trace slower than stated

@@ -1,0 +1,1 @@
+Added Canon EF-S as a distinct lens-library mount filter

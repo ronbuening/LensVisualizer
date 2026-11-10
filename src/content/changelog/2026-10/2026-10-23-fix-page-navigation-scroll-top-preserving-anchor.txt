@@ -1,0 +1,1 @@
+Fixed page navigation to scroll to the top while preserving anchor destinations
