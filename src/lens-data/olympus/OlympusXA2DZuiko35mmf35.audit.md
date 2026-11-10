@@ -66,7 +66,7 @@ OK; audit:aperture within 3 % of the stated f-number with no rim limit.
 Open: L4 rims (s7/s8 sd 5) are drawn smaller than the patent's Fig. 2 and the repair-manual diagram, where L4 is
 nearly as tall as L1; about 6.2/6.6 passes audit:surface and removes the 9 % side clip at s8 (closed in the
 semi-diameter pass below). Stop position: Fig. 3 distortion at 31.5° (about +2.2 %) fits a stop near 0.4 of d6 better
-than the midpoint (+2.6 %). Field coverage is 80 % (chief ray clear to about 25.7°): L1 rear and L2 front meet at
+than the midpoint (+2.6 %) (closed in the second review below: 0.30 of d6). Field coverage is 80 % (chief ray clear to about 25.7°): L1 rear and L2 front meet at
 r ≈ 5.7 mm, which caps L2 at 5 mm, the same pattern as the Olympus XA entry (closed below: 92 % with L2 at 5.6 mm).
 
 ## 2026-11-10 — Semi-diameter pass against the patent figure
@@ -107,4 +107,76 @@ tracing.
 
 Open: Fig. 2 belongs to Embodiment 2, and no Embodiment 1 section exists. The repair-manual drawing carries the
 production proportions but is schematic in the L1–L2 spacing. The stop position (Fig. 3 distortion suggests about 0.4
-of d6) is unchanged.
+of d6) is unchanged (closed in the second review below: stop moved to 0.30 of d6 from Fig. 3).
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared the live page at infinity and the four element inspectors with the repair-manual composition drawing (p. A-16,
+600 dpi, 44.4 px/mm) and with the patent's Fig. 2 and Fig. 3.
+
+Rims. Readings of the repair-manual drawing at that scale: L1 7.0; L2 6.2–6.3 (square top); L3 4.4 above and 5.1
+below the axis (the drawing is skewed; mean 4.7); L4 outer rim 6.4 with the front cap ending at 5.2. Every rim set in the
+semi-diameter pass is within the reading error or held by a check, and the drawn height order L1 > L4 > L2 > L3 is kept
+(7.0 / 6.6 / 5.6 / 4.7). No rim changed. `checks.gapSagFrac` 0.96 is still the smallest value that admits L2 at 5.6: 0.95
+is refused for the s2→s3 gap (0.89 mm sag against 0.881 mm allowed), with or without the L4 land.
+
+Lands and cuts, against the rims before the semi-diameter pass on the final geometry (stop at 0.30 of d6, below), wide open
+at infinity on the full-pupil lattice: the whole lens gains at every field sample (worst loss 0.0 points, gains up to 30.7
+at 31.2°). L3's cut from 6.0 to 4.7, the height both drawings give, costs at most 0.9 points against the same set with L3
+restored (at 8.5°; 2.5 points at 8.6° with the old midpoint stop): keep, slight. The L4 front-face land
+(`rimExtensionSd` 6.6) costs nothing and both drawings draw it: keep.
+
+Labels and brackets. Added `groups` FRONT (+) over surfaces 1–6 and REAR (−) over 7–8. The patent (col. 2) names a
+convergent front lens group of the first three components ahead of the stop and a divergent rear lens group of the fourth;
+the sibling Olympus XA entry uses the same FRONT/REAR form. Found correct: names L1–L4 (the patent numbers components and
+uses no element designations); types against the signs of R; inspector lines (FL +19.84 / −15.5 / +17.24 / −33.55 mm,
+OHARA labels); the stop between L3 and L4. No aspheres, doublets or `apd` tags; the patent names no special glass.
+
+Movement. Infinity only, `gaps` empty, and `focus.description` says so and describes the production zone focus. Nothing
+to order.
+
+Stop position (moved on the coordinator's decision; the midpoint was a package hypothesis). The 95-page repair manual
+gives no measurable blade position: p. A-2 describes the programmed sector blades that serve as shutter and stop, p. A-16
+draws the lens with only the d6 dimension, p. D-12 sets d6 with a jig seated in the shutter-blade casing, and the exploded
+diagrams carry no axial dimensions. The stop therefore follows Fig. 3, which was re-read at native scan resolution
+(distortion 47 px per %, astigmatism and spherical aberration 94 px per unit at f = 100, field axis 930 px for 31.5°).
+Printed at 31.5°: distortion +2.17 %, Δs about +1.1, Δm about −1.5. Traced against the stop's place in d6, measured from
+r6 (rms over 13 astigmatism and 10 distortion points; ranges cover the field axis read as linear in angle or in image
+height):
+
+| Stop in d6 | Distortion at 31.5° | Δm at 31.5° | Δm rms | Δs rms | Distortion rms |
+| --- | --- | --- | --- | --- | --- |
+| 0.20 | 1.96 % | −1.45 | 0.14–0.18 | 0.13–0.18 | 0.11–0.18 |
+| 0.25 | 1.99 % | −1.94 | 0.13–0.14 | 0.15–0.22 | 0.10–0.17 |
+| 0.30 (final) | 2.04 % | −2.68 | 0.33–0.38 | 0.18–0.26 | 0.08–0.16 |
+| 0.35 | 2.11 % | −3.74 | 0.68–0.78 | 0.21–0.30 | 0.07–0.15 |
+| 0.40 | 2.21 % | −5.24 | 1.18–1.33 | 0.24–0.33 | 0.08–0.15 |
+| 0.50 (before) | 2.59 % | −10.2 | 2.8–3.1 | 0.29–0.39 | 0.22–0.24 |
+
+The distortion end value fits 0.35–0.40 and the meridional curve 0.20–0.25; the midpoint fits worst on all three curves.
+Applied: d6 split at 0.30 from L3's rear vertex, between the two fits: s6 `d` 2.88575 → 1.73145 and STO `d` 2.88575 →
+4.04005 mm (total 5.7715 unchanged; stop 12.525 mm behind the first surface, was 13.680). The 31.5° chief ray now lands
+at 21.891 mm (+2.04 %, was 22.007 mm, +2.59 %); the frame corner (21.65 mm) is reached at 31.21° (was 31.09°).
+
+Colour (Fig. 3, on axis, f = 100 units from the d paraxial focus, printed / traced): d marginal −0.89 / −0.87; d at the
+0.707 zone −0.78 / −0.76; g paraxial +0.10 / +0.14; g at the 0.707 zone −0.46 / −0.40; g marginal −0.32 / −0.15. The d
+line and the paraxial g focus agree within the reading. The traced g marginal focus sits 0.17 (0.06 mm at 35 mm) nearer
+the d paraxial plane than printed. A 0.001 change in ng on any one element moves the g-line spherical aberration by only
+0.04–0.05, and the tied HOYA rows (LAC10, FD110, BAFD7) differ from the OHARA rows by about 1e-4 in ng, so no relabel
+explains it.
+
+Glass and source. All four labels resolve exactly (|Δnd| ≤ 5e-6, |Δνd| ≤ 0.14); no unmatched element, no constant-index
+medium; the patent prints no partial dispersion or extra line index. The assignee "Olympus Optical Co., Ltd." matches the
+front page and the corpus spelling.
+
+Text. The analysis said both drawings draw L4 tallest; the repair manual draws L1 tallest (7.0 against 6.4), and the
+sentence now says so. Fig. 3's full-aperture spherical aberration is about −0.31 mm after scaling (deepest −0.34 just
+inside the rim), not −0.35. The stop paragraph, the corner-light and coverage sentence and the header's stop, corner and
+coverage notes now describe the stop at 0.30 of d6.
+
+Engine before and after the stop move: EFL 35.0079 and F/3.5 unchanged (aperture check within 3 %, no rim limit); stop
+radius 3.0448 → 3.3068 mm; half-field 21.78° → 25.54°; field coverage 92 % (chief ray clear to 29.1°, clipped at s3,
+which needed 5.95 mm) → 100 % (corner 31.2° clear; s3 needs 4.71 mm); geometric transmission wide open 65.7 % at 20.3° →
+80.6 % at 19.9°, and 41.3 % at 29.1° → 62.3 % at 28.4° and 56.3 % at the 31.2° corner. clearap at the corner flags nothing.
+audit:surface OK and audit:image-circle 0 undersized. The re-shot page shows the stop between L3 and L4 nearer L3, and FRONT
+(+) and REAR (−) under the element numbers without collisions.

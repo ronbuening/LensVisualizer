@@ -8,16 +8,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * production supplier is not published.
  * The patent gives no image distance: the image plane is the derived paraxial back focus (16.943 mm), with no
  * best-focus shift, and it is soft at full aperture. The patent's half field is 31.5° (Fig. 3); the 135-format
- * corner is 31.09°.
- * The patent puts the stop between L3 and L4 without a position or diameter; the model splits d6 at its midpoint.
+ * corner is 31.21°.
+ * The patent puts the stop between L3 and L4 without a position or diameter, and the repair manual shows the sector
+ * blades (shutter and stop in one) without a measurable place in d6. The stop is placed from Fig. 3: its distortion
+ * fits 0.35–0.4 of d6 and its meridional field 0.2–0.25, so d6 is split at 0.30 from L3's rear vertex
+ * (1.73145 + 4.04005 mm, total unchanged).
  * Semi-diameters are estimated, not maker dimensions. The patent's only section, Fig. 2, follows Embodiment 2's
  * spacing (15.9 px per unit at f = 100); Olympus's XA2 repair-manual drawing (p. A-16, 44.4 px/mm at 600 dpi from the
  * vertex span) shows the production lens. L1 (7.0) follows the repair-manual drawing; Fig. 2 draws it at about 5.3 mm,
  * which would vignette far more. L3 (4.7) is the height both drawings give. L4's rear face (6.6) and the land on its
  * front face (rimExtensionSd 6.6; curved cap 5.0) follow both drawings (6.4–6.8). L2 is drawn 5.1–6.2 mm; its front
  * face meets L1's rear face 5.74 mm from the axis, so it stops at 5.6, and checks.gapSagFrac 0.96 admits that
- * L1-rear / L2-front pair. The corner chief ray needs 5.95 mm at L2's front face, so the outer corners vignette
- * strongly.
+ * L1-rear / L2-front pair. The corner chief ray needs 4.71 mm at L2's front face, so the whole frame is covered;
+ * the corners still vignette (about 56 % geometric transmission wide open).
  * Infinity focus only; no variable gaps. focus.closeFocusM 1e15 is a placeholder for that.
  */
 const LENS_DATA = {
@@ -146,13 +149,13 @@ const LENS_DATA = {
     {
       label: "6",
       R: -27.2587,
-      d: 2.8857499999999994,
+      d: 1.73145,
       sd: 4.7,
     },
     {
       label: "STO",
       R: "flat",
-      d: 2.8857499999999994,
+      d: 4.04005,
     },
     {
       label: "7",
@@ -179,6 +182,10 @@ const LENS_DATA = {
     nominalFNumber: 3.5,
     fStops: [3.5, 4, 5.6, 8, 11, 16],
   },
+  groups: [
+    { text: "FRONT (+)", fromSurface: "1", toSurface: "6" },
+    { text: "REAR (−)", fromSurface: "7", toSurface: "8" },
+  ],
   checks: {
     gapSagFrac: 0.96,
   },
