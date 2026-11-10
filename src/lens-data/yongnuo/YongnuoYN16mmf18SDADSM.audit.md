@@ -62,4 +62,47 @@ Open: model the Table 3 focus range (gaps after surfaces 13 and 15; X20 640.38 m
 surface, 721.2 mm and 171.9 mm object to image). `lensMounts` lists Sony E only; Yongnuo's catalog column shows Z/E for
 this model, so a Nikon Z entry needs a maker source naming the Z version. Rims: S7/S9 are at the minimum for the
 paraxial f/1.78 stop; a real-ray bundle at the patent's 4.605 mm pupil radius (Figure 2) would need about 9.5–9.7 mm
-at S7–S9; review against Figure 1 in the rim pass.
+at S7–S9; review against Figure 1 in the rim pass (closed in the semi-diameter pass below: S7–S9 kept).
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: CN 214795390 U, Figure 1 (page 9), the sole embodiment at infinity; raster 150 ppi, measured at 300 dpi. Scale:
+17 vertex crossings beside the axis (S1 through S19, with S2/S3 merged) fit 19.137 px/mm, with residuals within
+±12 px (±0.6 mm), so the drawing is close to scale but hand-finished. The vertical scale checks on two features: G1's
+rim reads 17.05 mm against the authored 17, and the stop ticks' inner ends read 8.9 mm against the engine stop of
+8.73 mm. Each rim is the centre of the drawn rim line, averaged over the upper and lower halves (they agree within
+0.2 mm); flats outside a curve's end (G2's and G3's rear annuli) are treated as mounts.
+
+| Surface | Before (mm) | Figure (mm) | After (mm) | Evidence |
+| --- | --- | --- | --- | --- |
+| 1 / 2 | 17 / 17 | 17.05 | kept | square-cut G1 agrees |
+| 3 / 4 | 14 / 10 | 14.1 / 10.35 | kept | 1 % and 3.5 %, noise |
+| 5 / 6 | 10 / 8.5 | 10.3 / 8.8 | kept | 3 % and 3.5 % |
+| 7 / 8 / 9 | 9.11 / 9 / 9.19 | 9.34 (square-cut) | kept | 1.6–3.8 %; see below |
+| 11 / 12 / 13 | 8.5 / 8.5 / 8.0 | 8.74 / ≈8.5 / 8.4 | kept | 3–5 %, step order agrees |
+| 14A / 15A | 8.5 / 9 | 9.59 (square-cut) | 9.5 / 9.5 | 13 % and 7 % under the drawing; L8 drawn square |
+| 16 / 17 | 10 / 10 | 10.24 | kept | 2.4 % |
+| 18 / 19 | 11 / 11 | 10.7 | kept | 3 % over, noise |
+
+L8 is the only element outside noise: Figure 1 draws it square-cut at 9.6 mm (9.64 upper, 9.54 lower), both faces
+ending on one flat, while the file had a stepped 8.5/9.0 rim. Both faces go to 9.5 mm. The `--scan` of 14A and 15A
+shows no turnover to 10.5 mm; at 9.5 mm the front face departs −1.90 mm from its base sphere (rim angle 54°) and the rear face −0.33 mm (44°). The rim
+gap to S13 stays open and the validator passes.
+
+S7–S9 stay. The figure (9.34 mm, square-cut) is within 4 % of the file. A real-ray beam at the patent's 4.605 mm pupil
+radius (Figure 2) would meet S7, S8 and S9 at 9.70, 9.46 and 9.62 mm, but it would also pass the stop at 9.10 mm; the
+model's stop is the paraxial 8.73 mm, which the axial beam clears at S7 and S9 by 0.01 mm, so a raise would change
+nothing on axis and the figure does not ask for it.
+
+Clearance and light: `audit:surface` OK; `audit:aperture` 1 station within 3 % of the stated f-number, no rim limit;
+`audit:image-circle` 0 undersized; `audit:field-coverage` 98 %, stopped by the declared 41.5° (corner 42.1° clear),
+unchanged. Engine EFL 16.3505 mm, FOPEN 1.78, halfField 41.5°, tracingHalfField 35.98° and stop 8.727 mm are identical
+before and after. Wide-open illumination (engine, infinity) before → after: 23.7° 86.2 → 86.7 %, 29.6° 78.3 → 82.1 %,
+35.6° 67.5 → 72.7 %, 38.5° 53.5 → 56.5 %, 41.5° corner 29.2 → 30.2 %; no field loses light (largest gain 5.3 points).
+The maker-diagram comparison stands as recorded in the deployment-validation section (10 elements in 8 groups; the
+low-dispersion, extra-low-dispersion, high-index and aspherical legend fits L3, L5, L4/L6 and L8); no maker image was
+viewed in this pass.
+
+Open: the engine's tracingHalfField (35.98°) is set by its approximate chief ray meeting S4's 10 mm rim; an exact
+stop-centred trace puts the 41.5° chief ray at 9.09 mm on S4, so the rim is not the cause and stays. Figure 1 draws the
+filter plate GL smaller than the traced plate, which is not drawn on the site.

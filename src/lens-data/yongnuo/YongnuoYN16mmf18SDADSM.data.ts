@@ -3,8 +3,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // CN 214795390 U (Yongnuo), sole embodiment: Table 1 (prescription), Table 2 (aspheres), Table 3 (focus gaps), Figure 1.
 // Patent millimetres, unscaled, at the Table 3 infinity (INF) state. The 2 mm plate (surfaces 20–21) is a rear plate.
 // Aspheres: K = 0 on both surfaces; the patent prints no sag formula, and its C4–C10 map to A4–A10.
-// All semi-diameters are inferred (the patent prints none). S7 = 9.11 mm and S9 = 9.19 mm are the smallest values that
-// pass the full-aperture axial bundle at the stop.
+// All semi-diameters are inferred (the patent prints none), estimated from Figure 1 (about 19.1 px/mm at 300 dpi) and
+// floor-checked by real-ray trace. S7 = 9.11 mm and S9 = 9.19 mm are the smallest values that pass the full-aperture
+// axial bundle at the stop; Figure 1 draws that doublet about 9.3 mm. L8 (14A/15A) is 9.5 mm, square-cut as drawn.
 // The abstract and prose disagree with the tables on group powers, stop position and focus direction; the model
 // follows Tables 1–3 and Figure 1. Table 3's X20 (640.38 mm) and MOD (91.094 mm) states are not modelled.
 const LENS_DATA = {
@@ -263,7 +264,7 @@ const LENS_DATA = {
       label: "14A",
       R: -45.7953,
       d: 7.95,
-      sd: 8.5,
+      sd: 9.5,
       medium: 8,
       asphere: {
         K: 0,
@@ -277,7 +278,7 @@ const LENS_DATA = {
       label: "15A",
       R: -15.5613,
       d: 2.26,
-      sd: 9,
+      sd: 9.5,
       asphere: {
         K: 0,
         A4: -1.8175e-5,

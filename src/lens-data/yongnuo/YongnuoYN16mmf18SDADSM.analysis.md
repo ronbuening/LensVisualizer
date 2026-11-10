@@ -104,7 +104,7 @@ The patent keeps every element of GR1 and GR3 spherical, so the moving lens carr
 
 The model is the Table 1 infinity state at the patent's scale: EFL 16.351 mm against the printed 16.34 mm, f/1.78, and 80.78 mm from the first surface to the image. Paraxial focus falls 1.063 mm behind the plate, against the printed 1.06 mm. Table 4's Bf of 17.56 mm is the physical distance including the plate; its air-equivalent length is 16.88 mm.
 
-The patent prints no clear apertures, so all semi-diameters are inferred. S7 (9.11 mm) and S9 (9.19 mm) are just large enough to pass the full axial bundle at the model's f/1.78 stop, which is set from the paraxial entrance pupil. Off axis the lens vignettes strongly: about 89% of the axial bundle reaches 20.75° and about 29% reaches the 41.5° field edge. The 41.5° chief ray lands at 13.87 mm (−4.1% distortion), about 98% of the 14.18 mm APS-C half-diagonal the site uses.
+The patent prints no clear apertures, so all semi-diameters are inferred from Figure 1, which is drawn close to scale. S7 (9.11 mm) and S9 (9.19 mm) are just large enough to pass the full axial bundle at the model's f/1.78 stop, which is set from the paraxial entrance pupil; Figure 1 draws that doublet at about 9.3 mm. Off axis the lens vignettes strongly: about 89% of the axial bundle reaches 20.75° and about 30% reaches the 41.5° field edge. The 41.5° chief ray lands at 13.87 mm (−4.1% distortion), about 98% of the 14.18 mm APS-C half-diagonal the site uses.
 
 L4, L5, L7, L8 and L10 carry only the patent's nd/νd. L5's partial dispersion, the one that matters most for colour correction, is unknown.
 
