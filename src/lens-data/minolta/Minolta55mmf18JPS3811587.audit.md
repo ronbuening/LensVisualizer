@@ -81,4 +81,38 @@ Open:
 - Rims, compared with Fig. 1 at 300 dpi (0.0544 mm per pixel over the 37.235 mm vertex span): the drawn lower
   half-heights give about 18.2, 15.1, 15.1, 10.9 and 12.4 mm for L1, L2, L3, L4–L5 and L6, within 0.1 mm of the
   modeled 18.3 / 15.2 / 15.2 / 11.0 / 12.5 mm. The S7 clear radius of 9.4 mm leaves 0.18 mm over the f/1.8 axial
-  beam (9.22 mm); no change proposed.
+  beam (9.22 mm); no change proposed. (Closed 2026-11-10: confirmed in the semi-diameter pass below.)
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: JP S38-11587 B, Fig. 1 on p. 4 of the scan (the only section; the sole example), measured at the native
+352 dpi. The axis is horizontal (row 1295.3). Scale: the near-axis vertex crossings of S1 and S11 are 800 px apart
+over 37.235 mm, giving 21.485 px/mm. S4, S5, S7, S8 and S9/S10 fall within 2 px of the scaled prescription, and S2
+and S6 within about 4 and 7 px. Five points on the S1 arc between 9.5 and 17.9 mm from the axis agree with R1 = 40.854 mm to
+within 2–8 px, which checks the vertical scale. Heights were read on the lower side, inside the subsystem braces,
+from the outer ink of each rim stroke, less half the 4 px stroke width.
+
+| Surface | Model sd | Fig. 1 | Ratio | Evidence |
+| --- | --- | --- | --- | --- |
+| 1, 2 (L1) | 18.3 | 18.3 | 1.00 | flat square-cut bottom edge, 395.5 px |
+| 3, 4 (L2) | 15.2 | 15.15 | 1.00 | flat bottom edge, 327.5 px |
+| 5 (L3 front) | 15.2 | 15.1 | 0.99 | flat bottom edge, 326.5 px |
+| 6 (L3 rear cap) | 10.2 | ≈ 9.7 | 0.95 | r6 arc follows R6 to 9.5 mm and leaves it by 10.0 mm |
+| 6 (extension) | 15.2 | 15.1 | 0.99 | slanted chamfer from the cap end to the L3 rim |
+| 7 (L4 front cap) | 9.4 | ≈ 9.2 | 0.98 | r7 arc follows R7 to 9.1 mm (lower) and 9.1 mm (upper) |
+| 7 (extension), 8, 9 | 11.0 | 11.1 | 1.01 | common flat bottom edge of L4–L5, 240 px |
+| 10, 11 (L6) | 12.5 | 12.6 | 1.01 | bottom edge, 272 px |
+
+No value changes: every outer rim agrees with Fig. 1 within 0.1 mm (1 %), and both cap ends within 5 %, inside
+measurement noise. The S6 cap could not go down to the figure's 9.7 mm without clipping the f/1.8 axial beam (9.73 mm
+there). Fig. 1 draws the S6 and S7 chamfers slanted; the flat rim extensions place those lands square to the axis at
+the cap ends, so the model's L3 and L4 rims are up to about 2 mm thicker than the figure's. The repo has no
+slanted-land form, and a rim cut on S6 would cut into the axial beam. The extensions do not change the trace.
+
+Clearance and light (unchanged): `audit:surface` reports no errors; `audit:aperture` reports f/1.800 within 3 % and
+no rim limit; the image circle is not undersized. The engine half-field is 23° at F/1.800 with a stop radius of
+9.4469 mm. Wide-open geometric transmission at infinity is 100 / 98.8 / 90.3 / 71.3 / 41.1 % at 0 / 5.4 / 10.8 /
+16.2 / 21.5°, identical to the baseline. The 21.5° point is the 24 × 36 mm corner at 55 mm. The real-ray margins are
+0.47 mm at S6 and 0.18 mm at S7.
+
+Open: none for the rims.

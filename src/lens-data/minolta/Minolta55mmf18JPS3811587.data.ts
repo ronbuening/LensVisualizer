@@ -16,8 +16,9 @@
  *
  * Image distance: the last d is the derived paraxial infinity back focus (32.5700 mm); the patent does not print it.
  *
- * Semi-diameters: estimated from the proportions of Fig. 1, not published dimensions. The flat rim extensions on
- * S6 and S7 stand in for the chamfered edges drawn there.
+ * Semi-diameters: measured on Fig. 1 (21.49 px/mm at 352 dpi from the vertex spacing; outer rims within 0.1 mm
+ * of the drawing, the S6 and S7 cap ends within 0.5 mm), not published dimensions, and floor-checked by real-ray trace at f/1.8. The flat rim extensions on
+ * S6 and S7 stand in for the slanted chamfers drawn there.
  *
  * Field: the model uses the patent's 2ω = 46°; Minolta lists 43° for the Auto Rokkor 55mm f/1.8.
  *
