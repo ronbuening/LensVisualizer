@@ -74,5 +74,50 @@ Engine before and after (identical): EFL 35.0011 mm, FOPEN 1.8, halfField 35.015
 paraxial BFD 36.9943 mm, total track 105.700 mm. `audit:surface` OK; `audit:aperture` reports no rim limit.
 
 Open: semi-diameters against Fig. 1 for the rim pass (L5, surfaces 9–10, drawn larger in the figure; front caps
-unchecked). `catalog.focalLengthMm.design` carries the traced 35.00106523898182 rather than the stated 35 (not
-changed in this pass).
+unchecked) (closed: semi-diameter pass below). `catalog.focalLengthMm.design` carries the traced 35.00106523898182
+rather than the stated 35 (not changed in this pass).
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: GB 1,066,527 A, Fig. 1 (drawing sheet 1). The PDF holds the sheet twice: reduced on PDF p. 21 (axis vertical,
+object at the bottom, axis tilted 0.9°) and larger across PDF pp. 19–20 (axis horizontal). Both are 300 dpi native
+scans. Rims were measured on p. 21 as the half-width between the left and right outline at each element's rim, which
+cancels the axis position, and checked on pp. 19–20: the half-heights of LIII, LIV, LV, the cemented pair, LVIII and LIX
+stand in one ratio (1.432–1.445) between the two renderings, and LI's and LII's cap-end/edge ratios agree (0.87 and
+0.90 on both).
+
+Scale (p. 21): axial 15.81 px/mm from the first vertex (y 2503.8, arc fit) to the last (y 1417.5) over 68.7085 mm,
+with intermediate vertices within 0.8 %. Transverse 15.65 px/mm from circle fits to r1, r2 and r5 (817.8, 368 and
+583.8 px against 52.48, 23.89 and 37.96 mm; 15.72, 15.62, 15.61). The drawn iris reaches about 12.2 mm, close to the
+real-ray f/1.8 stop radius (12.26 mm), not the paraxial one (11.37 mm).
+
+The figure draws most elements with a short cylindrical edge and 45° chamfers. `sd` follows each curved face's end:
+the edge where a face runs into it, and the chamfer's inner end where the face stops short.
+
+| Surface | Before | Figure | After | Evidence |
+|---|---:|---:|---:|---|
+| 1 / 2 (L1) | 20 / 20 | 18.3 / 16.0 | 20 / 20 | kept: the drawn rims cost 11.3 points at 26.2°, and surface 2 under 18.7 shortens the engine half-field (35.0° → 31.1° at 16.0) |
+| 3 / 4 (L2) | 17 / 17 | 12.7 / 11.4 | 16.2 / 14.9 | figure, raised to the light budget (the drawn rims cost 28.4 points at 23.3°) |
+| 5 / 6 (L3) | 17 / 17 | 14.85 square-cut | 15.7 / 15.7 | figure, raised to the light budget (7.6 points at 20.4° at the drawn rim) |
+| 7 / 8 (L4) | 14 / 14 | 13.3 / 12.8 | 14 / 14 | kept: within 9 % |
+| 9 / 10 (L5) | 10.75 / 10.5 | 11.45 / 11.2 | 11.6 / 11.2 | figure; surface 9 at the real-ray f/1.8 axial height (11.60) so `clearap` at f/1.8 shows no clip |
+| 11 / 12 / 13 (L6–L7) | 13 / 13 / 13 | 11.0 / 11.6 / 10.85 | 12.1 / 12.7 / 12.0 | figure, raised to the light budget (10.9 points at 17.5°); surface 13 needs 10.9 for the axial beam |
+| 14 / 15 (L8) | 13 / 13 | 12.4 / 12.6 | 13 / 13 | kept: within 5 % |
+| 16 / 17 (L9) | 13 / 13 | 13.8 square-cut | 13 / 13 | kept: within 6 % |
+
+The light-budget values come from a greedy raise of the figure set toward the baseline rims until the worst loss at
+any field was under 3 points (L2 and L3 alternately, then the cemented chain; L2 keeps the figure's 1.3 mm front/rear
+step). No lands or cuts were added; `checks.gapSagFrac` is unchanged.
+
+Engine before and after: EFL 35.0011 mm, FOPEN 1.8, halfField 35.015° (limited by surface 1), stop semi-diameter
+11.3653 mm, all unchanged; only the drawn stop housing follows surface 9 (11.37 → 11.6 mm). Wide-open transmission
+(full-pupil lattice, base → final): 0° 100 → 100, 8.7° 98.8 → 100, 14.6° 96.8 → 98.0, 20.4° 92.4 → 89.7 (worst,
+−2.7), 26.2° 68.9 → 68.4, 29.2° 51.5 → 51.4, corner 32.1° 33.1 → 33.1. At 31°: 39.9 → 39.8 % at f/1.8 and 47.0 → 47.0
+% at f/2; at 15.5°: 96.4 → 96.9 % and 100 → 100 %. Restoring each element from the final set wins back at most 1.7
+points (cemented pair at 14.6°). `audit:surface` OK; `audit:aperture` no rim limit; `audit:image-circle` 0 undersized;
+`audit:field-coverage` 100 % to the 21.65 mm corner; `clearap` at f/1.8 (Y 21.03 mm) and f/2 (Y 21.63 mm) flags no
+axial clip or blocked chief ray (the baseline flagged surfaces 9 and 10 at f/1.8).
+
+Open: the drawn edges and chamfers are not modeled (straight rim joins); L1, L2, L3 and the cemented pair stay larger
+than drawn because the drawn rims would cost corner light. Overlay of the final rims on the figure:
+scratch `sd/distagon35/overlay.png` (not in the repo).

@@ -11,8 +11,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Image plane: at the printed back focus s' = 1.0569f (36.9915 mm); the paraxial back focus is 36.994 mm.
  * Stop: Fig. 1 draws the iris in the air space d8 but no position is printed; it sits at the midpoint of d8, and the
  * two halves sum to the printed d8.
- * Semi-diameters are not printed. They are set to clear the axial and off-axis beams (surface 9 just clears the
- * iris-limited axial beam) and do not reproduce Fig. 1; L5 is drawn smaller than in the figure.
+ * Semi-diameters are not printed. They are estimated from Fig. 1 (sheet 1, PDF pp. 19–21; scale from the vertex span
+ * and three arc fits) and checked against the light budget: L2, L3 and the cemented L6–L7 sit above their drawn
+ * rims only as far as needed to keep corner illumination within 3 points of the earlier estimates, and L1 keeps
+ * 20 mm (the drawn 18.3 mm costs 11 points at 26°). L5 follows the figure (11.6 / 11.2 mm); surface 9 also clears
+ * the real-ray f/1.8 axial beam. L4, L8 and L9 agree with the figure within 9 % and are unchanged.
  * Glass: nd and νd are printed d-line values; each pair matches a Schott catalog glass (SK14, SK16, LaK9, LF5, SF4).
  * Source inconsistency: the claims repeat Table I with r2 = 0.06827f; the main table's 0.6827f is used (source.errata).
  * This is the patented design, not a factory prescription: Marco Cavina reports a thicker L3 in production.
@@ -185,27 +188,27 @@ const LENS_DATA = {
       label: "3",
       R: 29.1655,
       d: 2.8875,
-      sd: 17,
+      sd: 16.2,
       medium: 2,
     },
     {
       label: "4",
       R: 22.057,
       d: 12.943,
-      sd: 17,
+      sd: 14.9,
     },
     {
       label: "5",
       R: 37.9575,
       d: 8.6625,
-      sd: 17,
+      sd: 15.7,
       medium: 3,
     },
     {
       label: "6",
       R: -55.1985,
       d: 0.098,
-      sd: 17,
+      sd: 15.7,
     },
     {
       label: "7",
@@ -229,34 +232,34 @@ const LENS_DATA = {
       label: "9",
       R: -48.0235,
       d: 1.4455,
-      sd: 10.75,
+      sd: 11.6,
       medium: 5,
     },
     {
       label: "10",
       R: 28.4095,
       d: 3.948,
-      sd: 10.5,
+      sd: 11.2,
     },
     {
       label: "11",
       R: -61.873,
       d: 1.3475,
-      sd: 13,
+      sd: 12.1,
       medium: 6,
     },
     {
       label: "12",
       R: 54.5825,
       d: 5.005,
-      sd: 13,
+      sd: 12.7,
       medium: 7,
     },
     {
       label: "13",
       R: -29.9005,
       d: 0.098,
-      sd: 13,
+      sd: 12,
     },
     {
       label: "14",

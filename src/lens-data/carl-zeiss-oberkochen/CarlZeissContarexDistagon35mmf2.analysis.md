@@ -69,11 +69,11 @@ The patent prints only the infinity prescription, so focus travel is not modeled
 
 ## Model Scope and Limitations
 
-The patent prints no iris position; Fig. 1 draws the iris in the air space d8, and the model places it at the midpoint, 46.66 mm behind the first vertex (d8 spans 43.39–49.93 mm). Semi-diameters are not printed either. They are chosen to pass the axial and off-axis beams: L5 is limited by its clearance to the cemented component behind it, and surface 9 just clears the beam the iris admits at f/1.8. They do not reproduce Fig. 1, where L5 is drawn larger.
+The patent prints no iris position; Fig. 1 draws the iris in the air space d8, and the model places it at the midpoint, 46.66 mm behind the first vertex (d8 spans 43.39–49.93 mm). Semi-diameters are not printed either; they are estimated from Fig. 1. L5 follows the figure, and its front face also passes the real-ray f/1.8 axial beam. L2, L3 and the cemented pair are drawn 6–24 % smaller than the model carries them, and L1 is drawn at 18.3 mm against the model's 20 mm; at the drawn rims the model would lose up to 28 points of off-axis light.
 
 The image plane is at the printed back focus, 105.70 mm behind the first vertex; the paraxial focus lies 0.003 mm further back, and the best axial focus at f/1.8 about 0.13 mm closer to the lens. The f-number follows the paraxial convention (entrance-pupil diameter = f/N). Because the strongly negative front portion bends the marginal rays, the real beam the iris admits at the f/1.8 setting corresponds to about f/1.92.
 
-Vignetting at the edge of the patent's field is strong with these semi-diameters: at 31° about 40 % of the full-aperture beam passes at f/1.8 and 47 % at f/2, against 96 % and 100 % at 15.5°. These are sampled pupil fractions, not measured illumination. All MTF and chromatic figures come from the d-line prescription and catalog glass curves, not from production tolerances or coatings.
+Vignetting at the edge of the patent's field is strong with these semi-diameters: at 31° about 40 % of the full-aperture beam passes at f/1.8 and 47 % at f/2, against 97 % and 100 % at 15.5°. These are sampled pupil fractions, not measured illumination. All MTF and chromatic figures come from the d-line prescription and catalog glass curves, not from production tolerances or coatings.
 
 ## Sources
 
