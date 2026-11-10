@@ -26,7 +26,7 @@ const LENS_DATA = {
   schema: 2,
   key: "leica-summarex-85mm-f15",
   maker: "Leica",
-  name: "LEICA SUMMAREX 85mm f/1.5",
+  name: "LEITZ SUMMAREX 85mm f/1.5",
   subtitle:
     "DE L 12741 (Leitz application, laid open 1953), sole example — inferred Summarex correlation; not manufacturer-confirmed",
   visible: true,
