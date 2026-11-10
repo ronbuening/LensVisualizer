@@ -128,3 +128,72 @@ the surface audit is clean, the aperture audit reports no rim-limited station, f
 stop radius (7.1644 mm) are unchanged.
 
 Open: none for the rims. The live page check of the surface 11 land and the L4 step is left to the coordinator.
+(Closed 2026-11-10 in the second review: the surface 11 land renders as drawn; L4 renders as a straight bevel from
+9.3 to 7.9 mm where Fig. 1 draws a stepped flange, the closest the renderer's straight rim join allows.)
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared: the live page (coordinator shots and fresh shots after the edits: infinity, 1:1, the focus overlay and the
+element inspectors) against Fig. 1 on drawing sheet 1 (PDF p. 2), measured at its native 300 dpi. That sheet draws the
+example 1.48 times larger than the front-page copy used in the semi-diameter pass. Scale: the line-centre vertex
+crossings beside the axis put surface 2 to surface 19 at 1036 px for 38.669 mm (26.8 px/mm), and every other vertex
+lands within 2 px of its prescription position; the stop tick's inner end reads 7.0–7.2 mm on the two sides against
+the engine's 7.164 mm, which proves the scale across the axis. Rims are read to the line centre on both silhouettes
+(they differ by 2–5 px, an axis offset) and averaged. The
+overlay of the final rims on the figure is `rv/tamron45/overlay.png` in the session scratch folder.
+
+Fig. 1 draws L1, L2, L8 and L9 square-cut; the live page showed all four bevelled (L1 from 12 down to 10.179 mm, L2
+from 10.179 up to 11, L8 and L9 rising from 12.318 to 13). Fig. 1 draws L1's rear face ending at its contact with
+surface 4 (about 10.7–10.9 mm), with a vertical land up to the element's flat edge, and L8's rear face ending at
+about 11.6 mm under a short land; L9's faces both reach its flat edge.
+
+| Surface | Before | Fig. 1 (sheet 1) | After | Verdict and light |
+|---|---|---|---|---|
+| 3 (L1 rear) | 10.179 | cap to the contact, land to the 11.6 edge | 10.179, `rimExtensionSd` 12 | new land as drawn, squares L1 at surface 2's 12.0; costs 0.0 points |
+| 4 (L2 front) | 10.179 | 11.4 / 11.3 (top / bottom) | 11 | raised to surface 5's 11.0, squares L2; figure-supported; light 0.0 |
+| 16 (L8 front) | 13 | 12.5 / 12.3, flat edge | 12.318 | cut to surface 17's height, squares L8; costs 0.0 points |
+| 19 (L9 rear) | 13 | 12.5 / 12.3, flat edge | 12.318 | cut to surface 18's height, squares L9; costs 1.2–1.3 points at 26.0°; kept (slight) |
+
+Surfaces 17 and 18 stay at 12.318, the most their 1.8 mm gap admits under the default `gapSagFrac` (0.89 of the gap);
+12.4 would need 0.91. Other readings on this sheet agree with the semi-diameter pass inside its noise band: L1 front
+11.6 (12), L2 rear 11.4 (11), L3 8.6 (9.3, light rule), L4 front 8.6 and its flange 7.7–7.9 (9.3 / 7.9), the surface 11
+cap 7.6 and land 8.6 (7.6 / 9.3), L5–L6 9.8–10.0 (10.5), L7 10.7 (11.5). Nothing else changed.
+
+Lands and cuts (app lattice, wide open, against the light-rule baseline): infinity fields 0 / 11.6 / 14.5 / 20.2 /
+26.0°: 100 / 98.1 / 94.7 / 81.2 / 58.2 % (baseline 100 / 100 / 97.0 / 81.8 / 59.5); worst loss 2.3 points at 14.5°
+(the L3 cut, unchanged), 1.3 points at 26.0°. At 1:1 (finite-conjugate geometry) 100 / 99.0 / 96.3 / 92.7 % at 0 /
+10.6 / 13.2 / 15.8°, unchanged; worst loss 2.3 points at 13.2°. Every cut and land stays: L3 and surface 8 (2.3 points,
+slight), surface 9 (0.0), the surface 11 cap and land (0.7, slight), the new surface 3 land (0.0), surfaces 16 and 19
+(0.0 and 1.2, slight). The 1:1 axial marginal ray from the 60.806 mm object reaches 7.20 / 7.06 / 6.98 / 6.83 mm at
+surfaces 16–19; at infinity the F/2.8 marginal ray reaches 8.39 / 7.76 mm at surfaces 16 / 19 and the corner chief ray
+6.41 / 7.70 mm, so no clip or chief-ray block. The surface audit is clean, the aperture audit reports no rim-limited
+station, field coverage stays 100 % to 21.63 mm and the image circle none undersized.
+
+Engine: EFL 45.300, F/2.8 and stop radius 7.1644 mm unchanged. The engine half-field falls from 35.866° to 34.893°,
+because the chief-ray bisection now ends on the squared rim of surface 19 (any rim below 12.94 mm lowers it). That
+bound lies beyond the format: the 21.633 mm corner is at 26.02°, and the analysis field still reaches it (field
+coverage 100 %).
+
+Labels: group brackets FRONT / REAR → G1 (FRONT) / G2 (REAR), the patent's "first lens group 110" (its fore group) and
+"second lens group 120" (its back group), bracketing surfaces 2–15 with the stop and 16–19. Element names L1–L9 follow
+the patent's "first lens 111" through "ninth lens 122"; types agree with the signs of R; roles agree with the text;
+C1 brackets the cemented L5–L6 (surfaces 11–13); the stop sits between L4 and L5; no surface is aspheric and none is
+labelled so; no `apd` tag, since the patent names no special glass. `focalLengthMm` added to every element (thick-lens
+values, matching the analysis; the inspector read "FL = —").
+
+Glass: every label is an exact HOYA row (Δνd ≤ 0.04); the labels now use the corpus form "(HOYA catalog equivalent;
+production supplier unspecified)" and resolve to the same rows. Colour, against Fig. 2 (infinity; d and g plotted):
+the model's d-line spherical aberration (−0.138 mm at 0.7 pupil, +0.03 at the rim) matches the plot (−0.137 at 0.72,
+−0.03 near the rim); distortion −2.17 % at 21.633 mm against −2.15 %; g-line lateral colour +0.0125 mm at the corner
+and −0.005 at mid-field against +0.0105 and −0.0056. The g-line paraxial focus is +0.054 mm from the d-line focus in
+the model and +0.017 mm in the plot (dash-dot curve at the axis, reading ±0.005). All-OHARA exact rows give +0.040;
+single swaps move it by up to 0.02 mm, the largest at L5. No catalog medium is nd-only. Assignee "Tamron Co., Ltd."
+matches the front page and the corpus spelling.
+
+Movement: keyframe 0 is infinity (D15 0.669, BF 42.605) and keyframe 1 is 1:1 (D15 21.832, BF 63.767), the printed
+order. With the image fixed, G2 moves 21.162 mm and G1 with the stop 42.325 mm toward the object, as the patent states
+("both the first and second lens groups move towards the object"); the focus overlay shows both groups objectward
+with a 42.33 mm maximum travel, and the slider's far end reads 18 cm (the calculated 0.184 m object-to-image).
+
+Open: the model's g-line paraxial focus sits about 0.037 mm farther from the lens than Fig. 2 shows; the patent prints
+no line indices, so the catalog curves stand.

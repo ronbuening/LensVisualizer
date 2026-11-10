@@ -32,7 +32,7 @@ The positive object-side radius and smaller positive image-side radius form the 
 
 nd = 1.75520, νd = 27.5, HOYA E-FD4 (exact catalog match). f = +88.51 mm.
 
-This positive element follows the negative front element. The patent describes their combination as compensating distortion changes at close range. Fig. 1 shows surfaces 3 and 4 touching at their edges; the model keeps the printed 2.0 mm axial gap, and its estimated rims stop just short of the contact.
+This positive element follows the negative front element. The patent describes their combination as compensating distortion changes at close range. Fig. 1 shows surfaces 3 and 4 touching at their edges, with L1's edge carried on a flat land behind the contact. The model keeps the printed 2.0 mm axial gap: L1's rear face ends at 10.2 mm, just short of the contact, and a flat land carries L1's edge out to 12 mm as drawn.
 
 ### L3: Biconvex positive
 
@@ -87,6 +87,8 @@ The patent prints nd and νd only, read at the d-line (587.56 nm, application ¶
 
 No anomalous-dispersion glass is used, and the patent prints no partial dispersion; the model traces dispersion on the catalog curves.
 
+Fig. 2 plots the infinity aberrations in the d- and g-lines. The model reproduces the d-line spherical aberration (about −0.14 mm at 0.7 of the pupil), the distortion (−2.2 % at the 21.633 mm image height) and the g-line lateral colour (about +0.01 mm at the edge of the field). Its g-line paraxial focus lies about 0.05 mm behind the d-line focus, where the plot shows about 0.02 mm. No single maker's exact catalog rows close that gap (OHARA's give about 0.04 mm), so the patent's g-line data rest on partial dispersions that the catalog curves do not reproduce.
+
 ## Focus Mechanism
 
 Floating focus with two moving groups. The patent prints two states, infinity and equal magnification (1:1):
@@ -116,7 +118,7 @@ The example reproduces the printed focal length, back focus and 1:1 state, so th
 
 The model's infinity EFL is 45.300 mm. Its paraxial focus lies 0.0004 mm behind the printed image plane; no radius, thickness or index has been adjusted to remove the difference.
 
-The patent prints no rim or iris diameters. All semi-diameters are estimated from Fig. 1 and clear the F2.8 axial beam at infinity and at 1:1; they are not measured rims, and the stop radius follows from F2.8. L3 is kept about 0.6 mm larger than drawn, since the drawn rim would cut noticeably more off-axis light. Fig. 1 draws L5's concave front face ending at about 7.6 mm, inside a flat land beside the stop, and the model draws the same land. At infinity the iris, not a rim, sets the F2.8 beam. At the 21.633 mm image height, a calculated 26.0° field angle (the patent prints none), the corner bundle is partly vignetted by the estimated rims. F2.8 is the infinity aperture; the patent prints no effective f-number for the 1:1 state.
+The patent prints no rim or iris diameters. All semi-diameters are estimated from Fig. 1 and clear the F2.8 axial beam at infinity and at 1:1; they are not measured rims, and the stop radius follows from F2.8. L3 is kept about 0.7 mm larger than drawn, since the drawn rim would cut noticeably more off-axis light. Fig. 1 draws L5's concave front face ending at about 7.6 mm, inside a flat land beside the stop, and L1's rear face ending inside a flat land at its edge; the model draws both lands. L1, L2, L8 and L9 are square-edged as drawn. At infinity the iris, not a rim, sets the F2.8 beam. At the 21.633 mm image height, a calculated 26.0° field angle (the patent prints none), the corner bundle is partly vignetted by the estimated rims. F2.8 is the infinity aperture; the patent prints no effective f-number for the 1:1 state.
 
 Finite-distance MTF is not offered at the 1:1 state, because the patent prints a magnification rather than an object distance.
 

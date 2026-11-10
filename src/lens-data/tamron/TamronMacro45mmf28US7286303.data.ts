@@ -15,11 +15,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Glass: printed nd/νd. The catalog labels are exact HOYA rows, whose νd rounds to every printed value; the
  * production supplier is not known.
- * Semi-diameters are not printed: they are estimated from Fig. 1 (to scale, 18.1 px/mm at 300 dpi from the vertex
- * spacing), not measured rims, and floor-checked by real-ray trace at infinity and 1:1. Surface 9 (L4's rear) and the
- * cap of surface 11 follow the drawing; surface 11 carries the drawn flat land beside the stop as rimExtensionSd. L3 is drawn
- * at 8.7 mm but kept at 9.3 mm, because a smaller rim would cut more than 3 points of off-axis illumination; surface 8
- * and the surface 11 land match it, as the drawing shows those three heights equal. The stop radius follows from F/2.8.
+ * Semi-diameters are not printed: they are estimated from Fig. 1 (drawing sheet 1, to scale, 26.8 px/mm at 300 dpi
+ * from the vertex spacing), not measured rims, and floor-checked by real-ray trace at infinity and 1:1. Surface 9 (L4's
+ * rear) and the cap of surface 11 follow the drawing; surface 11 carries the drawn flat land beside the stop as
+ * rimExtensionSd. L3 is drawn at about 8.6 mm but kept at 9.3 mm, because a smaller rim would cut more than 3 points of
+ * off-axis illumination; surface 8 and the surface 11 land match it, as the drawing shows those three heights equal.
+ * L1, L2, L8 and L9 are drawn square-cut: surface 3 stops at the cross-gap limit with surface 4 and carries L1's drawn
+ * edge land out to 12 mm, L2's faces share 11 mm, and L8 and L9 share 12.318 mm (drawn 12.4 mm), the most that
+ * surfaces 17 and 18 allow across their 1.8 mm gap. The stop radius follows from F/2.8.
  *
  * Source inconsistencies, none affecting the table: claim 1 of the grant calls the first element's object-side face
  * concave (the table, description, Fig. 1 and the application's claim give convex); the grant prints the
@@ -64,7 +67,8 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       indexReference: "d",
-      glass: "LAC14 (Hoya)",
+      focalLengthMm: -57.1,
+      glass: "LAC14 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative front meniscus; diverges the beam to secure the long back focus.",
     },
     {
@@ -75,7 +79,8 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.5,
       indexReference: "d",
-      glass: "E-FD4 (Hoya)",
+      focalLengthMm: 88.51,
+      glass: "E-FD4 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive meniscus; with L1, limits the change in distortion at close range.",
     },
     {
@@ -86,7 +91,8 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.3,
       indexReference: "d",
-      glass: "LAC10 (Hoya)",
+      focalLengthMm: 26.7,
+      glass: "LAC10 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive element making the group near-symmetric about the stop, which aids coma correction.",
     },
     {
@@ -97,7 +103,8 @@ const LENS_DATA = {
       nd: 1.62004,
       vd: 36.3,
       indexReference: "d",
-      glass: "E-F2 (Hoya)",
+      focalLengthMm: -29.38,
+      glass: "E-F2 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative meniscus with a strongly concave rear face toward the stop.",
     },
     {
@@ -108,7 +115,8 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.5,
       indexReference: "d",
-      glass: "E-FD1L (Hoya)",
+      focalLengthMm: -19.16,
+      glass: "E-FD1L (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative front half of the cemented doublet; strongly concave face toward the stop.",
       cemented: "C1",
     },
@@ -120,7 +128,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      glass: "TAF1 (Hoya)",
+      focalLengthMm: 24.06,
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive rear half of the cemented doublet, strongly convex toward the image.",
       cemented: "C1",
     },
@@ -132,7 +141,8 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.3,
       indexReference: "d",
-      glass: "LAC10 (Hoya)",
+      focalLengthMm: 42.83,
+      glass: "LAC10 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive element closing the front group, ahead of the floating gap D15.",
     },
     {
@@ -143,7 +153,8 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.3,
       indexReference: "d",
-      glass: "LAC10 (Hoya)",
+      focalLengthMm: -129.99,
+      glass: "LAC10 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Weak negative meniscus leading the rear floating group.",
     },
     {
@@ -154,7 +165,8 @@ const LENS_DATA = {
       nd: 1.54072,
       vd: 47.2,
       indexReference: "d",
-      glass: "E-FEL2 (Hoya)",
+      focalLengthMm: 151.47,
+      glass: "E-FEL2 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive element closing the rear floating group.",
     },
   ],
@@ -171,12 +183,13 @@ const LENS_DATA = {
       R: 17.3927,
       d: 2,
       sd: 10.179,
+      rimExtensionSd: 12,
     },
     {
       label: "4",
       R: 35.0333,
       d: 3,
-      sd: 10.179,
+      sd: 11,
       medium: 2,
     },
     {
@@ -253,7 +266,7 @@ const LENS_DATA = {
       label: "16",
       R: 61.6658,
       d: 1,
-      sd: 13,
+      sd: 12.318,
       medium: 8,
     },
     {
@@ -272,7 +285,7 @@ const LENS_DATA = {
     {
       label: "19",
       R: -182.6472,
-      sd: 13,
+      sd: 12.318,
     },
   ],
   focus: {
@@ -297,12 +310,12 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "FRONT",
+      text: "G1 (FRONT)",
       fromSurface: "2",
       toSurface: "15",
     },
     {
-      text: "REAR",
+      text: "G2 (REAR)",
       fromSurface: "16",
       toSurface: "19",
     },
