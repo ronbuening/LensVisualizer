@@ -1,18 +1,24 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** QUALIFIED REPRESENTATIVE. Native reference diagnostics and integration evidence accompany the package.
- * Literal whole embodiment; assumed d reference; unmatched glasses.
- * Source-derived plane is soft and strongly vignetted; numerical convergence is not good performance.
- * Source31.5deg differs from catalog corner31.086275deg. No diagnostic focus shift is authored.
- * Midpoint stop and engineered rims are hypotheses, not recovered factory dimensions.
- * No variable gaps. 1e9 m focus scalar is only a schema sentinel, not a finite-focus claim.
+/**
+ * Olympus XA2 D.Zuiko 35mm f/3.5: 4 elements / 4 groups, all spherical.
+ * Source: US 4,303,313 A, Embodiment 1, transcribed whole. The patent tabulates the design at f = 100; every R and d
+ * is scaled ×0.35 to the 35 mm production focal length. nd/νd are as printed and read as d-line values (the patent's
+ * aberration plots use the d and g lines). Glasses are the current OHARA rows that match the printed pairs; the
+ * production supplier is not published.
+ * The patent gives no image distance: the image plane is the derived paraxial back focus (16.943 mm), with no
+ * best-focus shift, and it is soft at full aperture. The patent's half field is 31.5° (Fig. 3); the 135-format
+ * corner is 31.09°.
+ * The patent puts the stop between L3 and L4 without a position or diameter; the model splits d6 at its midpoint.
+ * Semi-diameters are estimates, not maker dimensions, and vignette the corner strongly.
+ * Infinity focus only; no variable gaps. focus.closeFocusM 1e15 is a placeholder for that.
  */
 const LENS_DATA = {
   schema: 2,
   key: "olympus-xa2-d-zuiko-35-f35",
   maker: "Olympus",
   name: "OLYMPUS D.ZUIKO 35mm f/3.5 (Olympus XA2)",
-  subtitle: "US 4,303,313 A EMBODIMENT 1 — REPRESENTATIVE SOURCE DESIGN",
+  subtitle: "US 4,303,313 A, Embodiment 1 — XA2 production correlation",
   visible: true,
   layout: {
     yScFill: 0.35,
@@ -22,15 +28,15 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "4 ELEMENTS / 4 GROUPS",
-      "STATIC INFINITY REPRESENTATIVE",
-      "ASSUMED D REFERENCE",
-      "SOURCE HALF FIELD 31.5°; QUALIFIED REFERENCE ONLY",
+      "DESIGN f = 35.0 mm",
+      "DESIGN F/3.5",
+      "ALL SPHERICAL",
     ],
     elementCount: 4,
     groupCount: 4,
     focalLengthMm: {
       marketing: 35,
-      design: 35.007882081401284,
+      design: 35.0,
     },
     fNumber: {
       marketing: 3.5,
@@ -59,9 +65,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.25,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed helium-d convention; source n/v definitions do not establish numerical reference wavelength.",
-      glass: "Unmatched (literal source n/v; no named catalog glass)",
+      glass: "S-LAL10 (OHARA)",
       focalLengthMm: 19.839785679205562,
     },
     {
@@ -72,9 +76,7 @@ const LENS_DATA = {
       nd: 1.78472,
       vd: 25.71,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed helium-d convention; source n/v definitions do not establish numerical reference wavelength.",
-      glass: "Unmatched (literal source n/v; no named catalog glass)",
+      glass: "S-TIH11 (OHARA)",
       focalLengthMm: -15.49777259610344,
     },
     {
@@ -85,9 +87,7 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.1,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed helium-d convention; source n/v definitions do not establish numerical reference wavelength.",
-      glass: "Unmatched (literal source n/v; no named catalog glass)",
+      glass: "S-BAH27 (OHARA)",
       focalLengthMm: 17.2366927469433,
     },
     {
@@ -98,9 +98,7 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 44.18,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed helium-d convention; source n/v definitions do not establish numerical reference wavelength.",
-      glass: "Unmatched (literal source n/v; no named catalog glass)",
+      glass: "S-LAH51 (OHARA)",
       focalLengthMm: -33.5548413997538,
     },
   ],
@@ -164,9 +162,9 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000.0,
+    closeFocusM: 1e15,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: static infinity-only source. Required 1e9 m schema sentinel is NOT a validated close endpoint. Generic slider/fallback labels can appear but do not represent recovered optical conjugates. No finite movement law.",
+      "Infinity focus only; the patent tabulates no finite-distance state. The production XA2 focuses by turning the front lens through three zones (marks at 1.2 m, 2.7 m and infinity), down to a 1 m minimum distance.",
   },
   gaps: {},
   aperture: {

@@ -1,82 +1,85 @@
 ## Patent Reference and Design Identification
 
 **Patent:** US 4,303,313 A
+**Title:** Photographic Lens System
+**Filed:** 1979-11-27 (Appl. No. 97,664; priority JP 53-146001, 1978-11-28)
 **Granted:** 1981-12-01
 **Inventors:** Toshihiro Imai, Hiroshi Takase
 **Assignee:** Olympus Optical Co., Ltd.
-**Example details:** Whole Embodiment 1; physical PDF 7; scale 0.35.
+**Example details:** Embodiment 1 table (col. 4, repeated as claim 2), Fig. 2 section, Fig. 3 aberrations; patent f = 100, all lengths scaled ×0.35 to f = 35 mm
 
-The service section supports a probable XA2 family association, not unique factory identity of E1. The 0.35 scaling is conditional. Service d6=5.754 mm at the 2.7 m selector station differs from the unchanged scaled patent d6=5.7715 mm at an unspecified source state. Neither is corrected to match the other.
+The patent claims a four-element, four-group telephoto-type lens for compact 35 mm cameras, covering more than 60° at F/3.5. Embodiment 1 is attributed to the Olympus XA2 (1980) on convergent evidence:
 
-This is a qualified representative research model, not a recovered factory prescription. Native aperture and reference-MTF calculations are numerically validated, but the unchanged source-derived plane is soft and the inferred rims vignette strongly. Convergence does not imply good optical performance; the standalone package records the exact local integration gates.
+1. Olympus's XA2 repair manual (p. A-16) lists the D.Zuiko 35 mm 1:3.5 as 4 elements in 4 groups. Its composition diagram shows the patent's sequence: a positive meniscus convex to the object, a biconcave negative, a biconvex positive, then a negative meniscus convex to the image.
+2. The manual sets the gap between the third and fourth elements to d6 = 5.754 mm at the 2.7 m focus setting. Embodiment 1 scaled to 35 mm gives 5.7715 mm, the closest of the five embodiments (Embodiments 2–5 give 6.566, 5.957, 5.604 and 4.925 mm).
+3. Focal length, aperture and field agree: 35 mm, f/3.5 and a 63° design field (31.5° half field in Fig. 3).
+4. Timing and authorship: the Japanese priority filing (November 1978) precedes the XA2's 1980 release, and Toshihiro Imai is also the inventor of the original XA's lens (US 4,235,521).
+
+The attribution is a correlation, not a published factory prescription: no Olympus document cites the patent, and the 0.3 % difference in d6 is left uncorrected.
 
 ## Optical Architecture
 
-The prescription has 4 separated spherical elements in 4 groups. No cemented interfaces, aspheres, rear cover plates, or extra optical components are introduced. Physical table order and all literal radii, thicknesses, refractive indices and Abbe numbers are retained without row mixing.
+The design is a compact telephoto: a positive front group of three separated elements (L1–L3, f123 = 22.0 mm) ahead of the stop and a single negative meniscus (L4, f = −33.6 mm) behind it. All four elements are spherical and air-spaced; there are no cemented surfaces. The first-surface-to-image length is 0.995 f, against about 1.1 f for the rear-stop Tessar compacts the patent cites as prior art. The long air space d6 between the groups (0.165 f) and the strong rear negative element are what shorten the lens.
 
 ## Element-by-Element Analysis
 
-### L1: Positive Meniscus
+### L1: Positive Meniscus, convex to object
 
-nd = 1.72, νd = 50.25. Glass: Unmatched (literal source pair; assumed d reference). Isolated thick-element paraxial f = 19.839786 mm, calculated at the declared scale.
+nd = 1.72000, νd = 50.25. Glass: S-LAL10 (OHARA) equivalent. f = +19.8 mm.
 
-The element classification follows the literal spherical curvature pair. No named catalog material or factory composition is established. Individual aberration contributions have not been verified by native ray analysis.
+The collecting front element. With L3 it supplies the positive power of the front group, which condition (1) caps at f/f123 < 1.8 because the positive elements set the Petzval sum and with it the field curvature.
 
 ### L2: Biconcave Negative
 
-nd = 1.78472, νd = 25.71. Glass: Unmatched (literal source pair; assumed d reference). Isolated thick-element paraxial f = -15.497773 mm, calculated at the declared scale.
+nd = 1.78472, νd = 25.71. Glass: S-TIH11 (OHARA) equivalent, an SF11-class dense flint. f = −15.5 mm.
 
-The element classification follows the literal spherical curvature pair. No named catalog material or factory composition is established. Individual aberration contributions have not been verified by native ray analysis.
+The only dense flint in the lens. Placed between the two positive elements, it corrects the front group's longitudinal colour and offsets part of its Petzval sum.
 
 ### L3: Biconvex Positive
 
-nd = 1.70154, νd = 41.1. Glass: Unmatched (literal source pair; assumed d reference). Isolated thick-element paraxial f = 17.236693 mm, calculated at the declared scale.
+nd = 1.70154, νd = 41.10. Glass: S-BAH27 (OHARA) equivalent. f = +17.2 mm.
 
-The element classification follows the literal spherical curvature pair. No named catalog material or factory composition is established. Individual aberration contributions have not been verified by native ray analysis.
+The thick last element of the front group (d5 = 3.70 mm, 0.106 f), just ahead of the stop. Condition (3) bounds that thickness: below 0.05 f the astigmatic difference grows, above 0.13 f the lens lengthens and the field edge loses light.
 
-### L4: Negative Meniscus
+### L4: Negative Meniscus, convex to image
 
-nd = 1.7859, νd = 44.18. Glass: Unmatched (literal source pair; assumed d reference). Isolated thick-element paraxial f = -33.554841 mm, calculated at the declared scale.
+nd = 1.78590, νd = 44.18. Glass: S-LAH51 (OHARA) equivalent. f = −33.6 mm.
 
-The element classification follows the literal spherical curvature pair. No named catalog material or factory composition is established. Individual aberration contributions have not been verified by native ray analysis.
+The whole rear group. Condition (2) keeps its power strong (f/f4 = −1.043) for the short overall length. The deep concave front surface stays above |r7| = 0.15 f (here 0.200 f), because a tighter radius bulges the axial spherical aberration and enlarges the astigmatic difference.
 
 ## Glass Identification and Selection
 
-The source n/v definition does not specify a numerical reference wavelength. Helium d is an explicit modeling assumption. Surrogate dispersion based on the listed pair is not a source-certified full dispersion curve. No nearest catalog match is asserted.
+The patent's aberration plots use the d and g lines, so the printed indices are read as d-line values. All four printed nd/νd pairs match current OHARA rows within 0.0001 in nd and 0.15 in νd: S-LAL10 (L1), S-TIH11 (L2), S-BAH27 (L3) and S-LAH51 (L4). The HOYA rows LAC10, FD110 and BAFD7 match the first three equally well, but no HOYA row matches L4 within that tolerance, so the OHARA set is used throughout. These are catalog equivalents; the 1978 production supplier is not published.
+
+The palette is all high-index (nd 1.70–1.79), which keeps the curvatures moderate in a lens this short. L2 (νd 25.7) is the achromatizing flint against L1 and L3 (νd 50.3 and 41.1).
 
 ## Focus Mechanism
 
-The instructions manual PDF 11 / printed 10 recommends close-zone coverage of 1–1.5 m. The 1 m catalog value means minimum recommended subject distance in that edition, not a recovered optical state. Service PDF 29 / A16 identifies selector stations 1.2 m, 2.7 m and infinity. The 1.2 m station is not minimum usable distance. Front-lens rotation is described, but no numerical finite motion law is recovered.
+The patent publishes infinity focus only. The XA2 focuses by turning the front lens through three zones; the repair manual (p. A-16) gives marks at 1.2 m, 2.7 m and infinity. The instruction manual recommends the close zone for subjects at 1–1.5 m, which gives the 1 m (3.3 ft) marketed minimum distance. No focus movement is published, so the model has no variable gaps and stays at infinity.
 
-The authored geometry is fixed: no variable gaps and no published finite conjugates. The required focus.closeFocusM scalar is 1e9 m, following the baseline infinity-only Tele-Dynar precedent. It is a schema sentinel, not an actual close-focus row or performance endpoint. Generic slider and fallback labels may still appear; they do not establish a finite conjugate.
+## Conditional Expressions
 
-## Image Plane and Source Alternatives
+| Condition | Range: description (claim 1) | Embodiment 1 |
+|---|---|---|
+| (1) f/f123 | 1.4 – 1.8 (1.5 – 1.7) | 1.590 |
+| (2) f/f4 | −1.4 – −0.8 (−1.3 – −1.0) | −1.043 |
+| (3) d5/f | 0.05 – 0.13 (0.07 – 0.11) | 0.106 |
+| (4) d6/f | 0.13 – 0.24 (0.14 – 0.19) | 0.165 |
+| \|r7\|/f | > 0.15 (text) | 0.200 |
 
-No source numerical image distance exists. A collimated interpretation is supported by Fig. 1; the literal matrix gives BFL 16.9432532438685 mm and image coordinate 34.8457532438685 mm at conditional scale 0.35. These are derived, not measured retail dimensions.
+The broader ranges come from the description and the narrower ones from claim 1. The transcribed prescription reproduces the printed values; the traced f/f123 is 1.589.
 
-## Stop and Clear Aperture Hypotheses
+## Model Scope and Limitations
 
-The exact stop coordinate and diameter are not numerically specified. The model places a zero-power stop at the midpoint of the unchanged intercomponent gap, z=13.67975000 mm within the source-supported axial bounds 10.79400000–16.56550000 mm. Splitting the gap preserves its total distance.
+The traced focal length is 35.008 mm (100.02 at patent scale) at f/3.5. The patent gives no image distance; Fig. 1 shows collimated input. The image plane is therefore the paraxial back focus, 16.943 mm behind the last surface, for a total length of 34.846 mm. Residual spherical aberration of −0.30 mm at full aperture (d line; Fig. 3 shows about −0.35 mm after scaling) leaves that plane soft wide open: the best axial focus lies about 0.3 mm closer to the lens. No focus shift is applied.
 
-The surface semi-diameters [7, 7, 5, 5, 6, 6, 5, 5] mm are engineered static hypotheses, not extracted factory rims. Initial caps failed cross-gap geometry; reduced caps avoid any gap-sag override. The native aperture census confirms an iris-limited f/3.5 axial beam. A 16-cell field diagnostic transmits 100%, 68.3%, 46.2% and 23.1% at 0°, 15.75°, 23.625° and 31.5°, respectively, with no failed or unaimed samples. These inferred rims are strongly vignetted, not measured factory clear apertures.
+The patent places the stop between L3 and L4 but gives neither its position nor its diameter. The model splits d6 at its midpoint, 13.680 mm behind the first surface (d6 spans 10.794–16.566 mm). With the stop there, the 31.5° chief ray lands at 22.01 mm, a distortion of +2.6 %. Fig. 3 shows about +2.2 %, which a stop nearer 0.4 of d6 would reproduce. That image height lies just outside the 21.63 mm corner of the 24 × 36 mm frame, whose corner field is 31.09°.
 
-## Verification Status
-
-Independent literal roundtrip and collimated first-order calculation are provided separately. Static spherical-domain, nonintersection and 80% air-gap intrusion checks passed for the selected caps. Bounded native buildLens, iris clearance, zero-trim rendering and official aperture checks now pass. Source-half-field sampled throughput is only 23.1% at 31.5°, so full-field performance is not certified. Reference geometric and diffraction MTF are completed with the limitations below. The standalone validation record identifies the exact corpus tests and local build. Local visible registration is not publication.
-
-## Reference Optical-Quality Diagnostics
-
-Reference-only geometric and diffraction MTF converged through 40 lp/mm at 0, 15.75 and 31.499947 degrees, for both the unchanged derived image plane and a separate best-axial diagnostic. Grids reached 128. The assumed reference wavelength is 587.5618 nm; this is not source-certified broadband or measured retail performance. Numerical convergence is not proof of prescription accuracy.
-
-At the authored derived plane, diffraction sagittal/tangential MTF at 30 lp/mm is 0.19860/0.19860 on axis, 0.00273/0.15141 at 15.75 degrees, and 0.00551/0.10294 at the source edge. The best-axial diagnostic applies -0.2958726867 mm only in the analysis; it improves the axial 30 lp/mm value to 0.63035 but leaves poor edge sagittal contrast. This shift is NOT authored into the lens.
-
-The source 31.5-degree chief lands at radius 22.00744 mm, beyond the authored full-frame radius 21.65 mm. The source-angle calculation therefore uses an analysis-only 44.1 mm image-circle normalization; no authored catalog value, stop, optical dimension or glass changes. The original fraction>1 mapping failure is retained. Separately, the unmodified catalog corner is 31.086275 degrees; geometric and diffraction MTF there both converge through 40 lp/mm at grid 128. It is not mislabeled as the 31.5-degree source field.
-
-The standalone validation record describes local integration separately from these optical diagnostics.
+The semi-diameters (7, 7, 5, 5, 6, 6, 5, 5 mm for surfaces 1–8) are estimates, not maker dimensions. L1's rear surface and L2's front surface meet about 5.7 mm from the axis, which caps L2 at 5 mm. That rim stops the chief ray beyond about 26° (17.2 mm image height, about 80 % of the half-diagonal), so the corners vignette strongly. The Olympus diagram and the patent's Fig. 2 both draw L2 and L4 nearly as tall as L1.
 
 ## Sources
 
-- [Primary patent](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4303313).
-- [Primary manufacturer instructions scan](https://www.cameramanuals.org/olympus_pdf/olympus_xa2.pdf).
-
-- [Manufacturer service manual scan](https://ia601506.us.archive.org/10/items/olympus-xa-2-service/Olympus-XA2-Service.pdf).
+- [US 4,303,313 A (USPTO)](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4303313).
+- [Olympus XA2 instruction manual (scan)](https://www.cameramanuals.org/olympus_pdf/olympus_xa2.pdf) (focus zones).
+- Olympus XA2 repair manual, p. A-16 (lens data, composition diagram and d6 setting).
+- [Mike Eckman, "Olympus XA2 (1980)"](https://mikeeckman.com/?p=6967) (specifications: 4-element D.Zuiko, focus 3.3 ft to infinity).
