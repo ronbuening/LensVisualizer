@@ -6,126 +6,112 @@
 **Inventors:** Yuanhua Ye; Yongsheng Zhuang; Jiannan Zhuang
 **Applicant:** Shenzhen Yongnuo Photographic Equipment Co., Ltd. (深圳市永诺摄影器材股份有限公司)
 **Title:** A lens and an imaging device
-**Example details:** Original PDF page 9, paragraphs 0104–0108, Figure 1; literal unscaled infinity prescription.
+**Example details:** Example 1 (¶0099–0109, Fig. 1; prescription on page 9), f = 35.02 mm, F/2.00, 2ω = 62.2°; modelled at the printed scale for infinity focus.
 
-This is a source-preserving infinity model with native geometry, aperture and reference-line MTF checks completed; catalog integration gates have passed. It is not a measured factory prescription. The probable association is the YONGNUO YN 35mm f/2 S DF DSM family. The maker catalog and patent converge on 35 mm focal length, nine elements in eight groups, a low-dispersion fourth element, an eighth element with two aspherical faces, and the sixth/seventh cemented pair. The source plot filename contains 35F2E. The maker's 0.35 m minimum focus agrees with the patent's near-focus heading. None of these proves production numerical identity, and the model does not assert equivalence to every Z-mount variant.
+The patent example is identified with the Yongnuo YN35mm F2S DF DSM, a full-frame Sony E autofocus prime announced in October 2020. Yongnuo's catalog and the patent agree on a 35 mm focal length, nine elements in eight groups, one ED element in the fourth position, high-index second and fifth elements, an aspherical eighth element and a cemented sixth/seventh pair; the maker's 0.35 m minimum focus and 0.13× magnification match the patent's 0.35 m focus state (0.123× paraxial). The aberration plots carry the design-file name "35F2…". These agreements are construction-level; Yongnuo does not publish a prescription. The later YN35mm F2Z DF DSM for Nikon Z lists the same nine-element, eight-group construction and is not modelled separately.
 
-The applicant is retained as the original photographic-equipment entity. No equivalence to an electric-appliance entity is asserted.
-
-Only whole Example 1 supplies the prescription. Its main-table first radius is 375.10 mm; the later condition summary's 375.0100 mm is not substituted. The main focal table says 35 mm and the condition summary says 35.0200 mm. These discrepancies remain unresolved. The 2025 CN 113126266 B grant repeats the main table and discrepancy and corroborates, rather than replaces, the A source.
+One printed value contradicts the rest of the document: the main table gives L7 nd = 1.668, the parameter list (¶0120) 1.6668. With 1.6668 the table traces to f = 35.03 mm (stated 35.02 mm) and matches the focus offsets of Figs. 2–4; with 1.668 it traces to 35.14 mm and its axial focus misses the plots by about 0.1 mm. Example 2 reaches its stated 34.91 mm only with 1.6668, so the model carries 1.6668 as a recorded source correction. The parameter list's first radius of 375.0100 mm (table: 375.10 mm) changes f by under 0.001 mm; the table value is kept. The 2025 CN 113126266 B grant reprints both tables unchanged.
 
 ## Optical Architecture
 
-The source divides the nine-element/eight-group lens into positive GR1, positive GR2 and negative GR3 (paragraph 0100). GR1 comprises L1–L5 and the stop between L4 and L5. GR2 contains the L6/L7 cemented pair and L8, not just L8. GR3 is the fixed negative rear element L9. This is a source-defined three-group mirrorless prime; no historical design-family identity is imposed.
+The patent divides the nine-element, eight-group lens into a positive first group GR1, a positive second group GR2 and a negative third group GR3 (¶0100). GR1 holds L1–L5 with the stop between L4 and L5 (¶0068); GR2 is the L6/L7 achromatic doublet followed by the aspherical L8; GR3 is the single negative meniscus L9. The group focal lengths are F1 = +44.60 mm and F3 = −34.42 mm, giving F1/F = 1.27 and F3/F = −0.98 (conditions 1 and 7, ¶0120).
 
-The physical stop is source row 9 at z = 25.470 mm, with 1.700 mm from S8 to the stop and 0.484 mm from the stop to S10. Original numbering omits S15. The implementation preserves that omission and maps original S16 and S17 to 16A and 17A.
+The stop sits 1.70 mm behind L4 and 0.484 mm ahead of L5, 25.47 mm behind the front vertex. The patent's surface numbering skips 15; the model keeps that numbering and labels the aspherical surfaces 16A and 17A.
 
-The camera-side GL plate follows the last lens vertex at z = 62.534 mm: 14.080 mm air, 2.500 mm glass, then 1.000 mm air. Paragraph 0101 identifies a sensor-protecting/filter-coated plane-parallel plate. It is represented as an undrawn rear plate, not a tenth lens or a reduced air gap. Its literal image plane is z = 80.114 mm.
+Behind L9 the patent lists 14.08 mm of air, a 2.5 mm plane-parallel plate GL (nd 1.51633), and 1.00 mm of air to the image, 80.11 mm from the front vertex. ¶0101 describes GL as a filter-coated plate protecting the sensor. The back focus from L9 to the image is 17.58 mm, Bf/F = 0.502 (condition 8).
 
 ## Element-by-Element Analysis
 
 ### L1 (G11) — Negative Meniscus
 
-nd = 1.6398, νd = 34.4697. Glass: Unmatched (literal patent pair, manufacturer and melt unknown). f = -33.6764 mm.
+nd = 1.6398, νd = 34.47. Glass: S-TIM27 (OHARA). f = −33.68 mm.
 
-Front negative meniscus. Isolated-air focal length is not in-system group power.
+A meniscus convex to the object, with a shape factor (R1 + R2)/(R1 − R2) = 1.115 inside the patent's condition (2) range of 0.5–3 (¶0063). ¶0065–0067 give its job: enough negative power to offset the positive members of GR1 and limit colour, without lengthening the lens or raising lateral colour.
 
 ### L2 (G12) — Biconvex Positive
 
-nd = 1.9014, νd = 31.6382. Glass: Unmatched (literal patent pair, manufacturer and melt unknown). f = +44.8188 mm.
+nd = 1.9014, νd = 31.64. Glass: Unmatched (patent nd 1.9014, νd 31.64). f = +44.82 mm.
 
-Front positive collector. Isolated-air focal length is not in-system group power.
+The first collecting element, close behind L1. Its high index keeps the surface curvatures moderate for its power; Yongnuo's diagram marks it as a high-refractive-index element.
 
 ### L3 (G13) — Biconcave Negative
 
-nd = 1.74, νd = 28.245. Glass: Unmatched (literal patent pair, manufacturer and melt unknown). f = -48.5901 mm.
+nd = 1.74000, νd = 28.25. Glass: FD3 (HOYA). f = −48.59 mm.
 
-Negative front-group component. Isolated-air focal length is not in-system group power.
+A nearly plano-concave flint whose strongly curved front surface faces the object across the 9.69 mm air space behind L2. With L1 it supplies the negative power and high dispersion that balance the crowns of GR1.
 
 ### L4 (G14) — Positive Meniscus
 
-nd = 1.525, νd = 70.361. Glass: Unmatched (literal patent pair, manufacturer and melt unknown). f = +113.6899 mm.
+nd = 1.525, νd = 70.36. Glass: Unmatched (patent nd 1.525, νd 70.36) — ED (maker). f = +113.69 mm.
 
-Low-dispersion positive element; source ED association, no supplier identity. Isolated-air focal length is not in-system group power.
+The weakest element, a meniscus convex to the object just ahead of the stop. Condition (3) requires 60 ≤ νd4 ≤ 90 because this element sets the correction of axial and lateral colour in GR1; the upper limit avoids the cost of glasses above νd 90 (¶0069–0073). Yongnuo's diagram marks it as the lens's ED element. No catalog row matches the printed index pair, so its partial dispersion is unknown.
 
 ### L5 (G15) — Biconvex Positive
 
-nd = 1.910826, νd = 35.2557. Glass: Unmatched (literal patent pair, manufacturer and melt unknown). f = +32.4586 mm.
+nd = 1.91082, νd = 35.26. Glass: TAFD35 (HOYA). f = +32.46 mm.
 
-Positive element immediately after the stop. Isolated-air focal length is not in-system group power.
+The strongest element of GR1, directly behind the stop. Condition (4) holds its index between 1.8 and 2.0: a higher index pushes lateral colour positive, a lower one leaves barrel distortion under-corrected (¶0075–0078). Yongnuo's diagram marks it as a high-refractive-index element.
 
 ### L6 (Gj1) — Biconvex Positive
 
-nd = 1.6031, νd = 60.6411. Glass: Unmatched (literal patent pair, manufacturer and melt unknown). f = +22.9531 mm.
+nd = 1.60311, νd = 60.64. Glass: S-BSM14 (OHARA). f = +22.95 mm.
 
-Positive member of GR2 cemented pair. Isolated-air focal length is not in-system group power.
+The crown of the achromatic doublet G21 that leads the focusing group. Condition (5) pairs it with the flint L7 so that ndj1 ≤ ndj2 and νdj1 ≥ νdj2; ¶0082 credits the pair with reducing spherical aberration as well as colour.
 
 ### L7 (Gj2) — Biconcave Negative
 
-nd = 1.668, νd = 33.0468. Glass: Unmatched (literal patent pair, manufacturer and melt unknown). f = -22.5051 mm.
+nd = 1.66680, νd = 33.05. Glass: PBM39 (OHARA). f = −22.55 mm.
 
-Negative member of GR2 cemented pair. Isolated-air focal length is not in-system group power.
+The flint of doublet G21, cemented to L6. The pair is nearly afocal (f = +245 mm), so GR2's positive power comes mainly from L8 while the doublet corrects colour across the focus travel. The main table prints this element's index as 1.668; the model uses 1.6668 from ¶0120 (see Patent Reference).
 
 ### L8 (G22) — Positive Meniscus
 
-nd = 1.79, νd = 45. Glass: Unmatched (literal patent pair, manufacturer and melt unknown). f = +42.3828 mm.
+nd = 1.79, νd = 45.0. Glass: Unmatched (patent nd 1.79, νd 45.0). f = +42.38 mm.
 
-Two-asphere positive member of GR2. Isolated-air focal length is not in-system group power.
+The power of the focusing group, a meniscus concave to the object with both surfaces aspherical. Condition (6) keeps 1.70 ≤ nd8 ≤ 1.90 and 40 ≤ νd8 ≤ 70: lower values leave spherical aberration uncorrected, higher-index glass is soft and hard to form (¶0083–0086).
 
 ### L9 (G31) — Negative Meniscus
 
-nd = 1.7552, νd = 27.5462. Glass: Unmatched (literal patent pair, manufacturer and melt unknown). f = -34.4243 mm.
+nd = 1.75520, νd = 27.53. Glass: E-FD4 (HOYA). f = −34.42 mm.
 
-Fixed negative rear element. Isolated-air focal length is not in-system group power.
+The fixed rear group, a nearly plano-concave meniscus facing the object. Condition (7), −1.5 ≤ F3/F ≤ −0.7, balances the negative spherical aberration it introduces against the positive groups ahead (¶0087–0090); here F3/F = −0.98.
 
 ## Glass Identification and Selection
 
-Paragraph 0074 explicitly defines nd at 587.56 nm, nF at 486.13 nm, nC at 656.27 nm and νd = (nd − 1)/(nF − nC). These are published d-line coordinates, not a wavelength assumption. All nine elements and the plate retain the printed nd/νd without catalog substitutions or invented individual line indices.
+¶0074 defines nd at 587.56 nm and νd = (nd − 1)/(nF − nC) with nF at 486.13 nm and nC at 656.27 nm. The patent prints Abbe numbers to four decimals, and several reproduce catalog values exactly: S-BSM14 (OHARA, νd 60.6411), the discontinued OHARA PBM39 (33.0468) and the obsolete HOYA FD3 (28.2450). The design evidently used OHARA and HOYA catalogs that still listed obsolete glasses; Yongnuo names no production suppliers. L1, L5 and L9 match S-TIM27, TAFD35 and E-FD4 within 0.02 in νd, and the plate GL matches S-BSL7. The PBM39 match also supports the corrected L7 index of 1.6668.
 
-The fourth element's νd = 70.361 is the source's low-dispersion choice. The L6/L7 doublet combines νd = 60.6411 and 33.0468. No glass chemistry, supplier, melt, anomalous partial dispersion or apochromatic performance is inferred. The authored values support a reference d-line calculation and approximate Abbe-based C/d/F dispersion, but native support blocks C/d/F and photopic MTF because the low-dispersion fourth element lacks partial-dispersion data. Reference d-line MTF is available and tested. Approximate dispersion is not independently verified production dispersion or a measured chromatic curve.
+L2 (1.9014/31.64), L4 (1.525/70.36) and L8 (1.79/45.0) match no catalog row and trace with Abbe-number dispersion. L4's low-dispersion role is stated by the patent and Yongnuo, but its partial dispersion is unpublished.
 
 ## Focus Mechanism
 
-Paragraph 0100 and Figure 1 move all of GR2 (L6, L7 and L8) while GR1 and GR3 remain fixed relative to the image. The source near table lists f = 31.563 mm, object distance 269.495 mm, d11 = 0.780 mm and d17 = 4.110 mm, under the MOD (0.35 m) heading. Infinity has d11 = 3.170 mm and d17 = 1.710 mm.
+Focusing moves all of GR2 (L6, L7 and L8) toward the object while GR1 and GR3 stay fixed relative to the image (¶0006, ¶0100, Fig. 1). The patent's focus table (¶0108) gives d11 = 3.17 mm and d17 = 1.71 mm at infinity, and d11 = 0.78 mm and d17 = 4.1 mm at its 0.35 m state, where the object lies 269.495 mm ahead of the first surface. Both gap pairs sum to 4.88 mm, so GR2 travels 2.39 mm as a unit. The object distance plus the 80.11 mm lens-to-image length gives 349.6 mm, the 0.35 m minimum focus measured from the image plane, with a paraxial magnification of 0.123× (Yongnuo: 0.13×).
 
-The two gap sums differ by 0.010 mm: 4.880 mm at infinity and 4.890 mm near. Neither gap is altered to enforce a constant track, and the object-distance reference has not been certified. This candidate contains only the infinity state. The original finite table is preserved in evidence, without a finite conjugate, movement interpolation or validated close-focus result. The required focus.closeFocusM field carries the published MOD heading 0.35 m with an explicit warning: fixed geometry does not validate that endpoint, and fallback focus labels may still display a finite distance. Native focus-control endpoints have identical geometry. The separate catalog value is marketing metadata.
+Moving only three elements, two of them in one cemented unit, is the patent's stated aim: a lighter focusing group for electric focus drive than the multi-element groups of double-Gauss designs (¶0003–0004). The model is infinity-only; the printed 0.35 m state is not modelled.
 
 ## Aspherical Surfaces
 
-L8 carries original S16 and S17. Their K and C4 through C12 coefficients are copied verbatim. Cn is mapped to the engine's An with no scale factor. The candidate uses the standard even-asphere interpretation, with the conic denominator containing 1 + K; the publication's coefficient table alone is not an explicit printed equation, so this convention remains an implementation qualification rather than a separately recovered formula.
+For both L8 surfaces (patent 16 and 17) the patent prints K and C4–C12 without stating the sag equation. The model uses the standard even-asphere form, z = cr²/(1 + √(1 − (1 + K)c²r²)) + C4r⁴ + … + C12r¹², with the coefficients as printed. With this form and the corrected L7 index, the traced d-line spherical aberration follows Fig. 2: about +0.08 mm at 0.5 and +0.11 mm at 0.7 of the pupil, then −0.08 mm at the rim, relative to the paraxial focus. Reading the printed K as 1 + K instead puts the rim ray 0.18 mm behind the paraxial focus, which the plot does not show.
 
 | Surface | K       | A4          | A6          | A8           | A10          | A12          |
 | ------- | ------- | ----------- | ----------- | ------------ | ------------ | ------------ |
 | 16A     | +6.7832 | −4.15649e−5 | −8.81464e−8 | −1.67464e−9  | +9.87821e−12 | −5.43236e−14 |
 | 17A     | +3.0519 | −2.59112e−6 | −7.40221e−8 | −3.90992e−10 | +2.15026e−12 | −1.5344e−14  |
 
-The negative low-order terms and alternating higher terms modify the rear group's radial profile; no isolated coefficient is claimed to quantify a specific system aberration. Manufacturing method is not assigned. Native geometry and bounded rays pass for the qualified H1 inferred caps; this does not independently establish the unprinted asphere equation or production numerical identity.
+Both surfaces carry large positive conic constants (+6.78 and +3.05) and negative C4 terms. The patent ties L8's index and Abbe range to spherical-aberration correction (¶0086) but assigns no specific aberration to the aspherical terms and does not say how the element is made.
 
-## Aperture and Mechanical Qualifications
+## Model Scope and Limitations
 
-Neither the numerical E1 table nor the recovered pages publish mechanical clear semi-diameters or physical iris radius. The plotted PUPIL RADIUS is 8.7555 mm. Conditional on this being entrance-pupil radius, the literal first-order EFL gives f/2.006885088680859. That conditional value, rather than a forced f/2, is the candidate's design aperture; f/2 remains retail metadata.
+The patent prints no clear apertures or iris diameter. Its aberration plots use an entrance-pupil radius of 8.7555 mm, which at f = 35.02 mm is F/2.00. The model sizes the stop for F/2.00 at the paraxial entrance pupil, giving a stop radius of 11.33 mm. The front group has strong pupil spherical aberration: a real ray entering at the plotted 8.76 mm radius crosses the stop at 12.27 mm. With the paraxial stop, the real axial bundle is therefore about f/2.14.
 
-The repository's ordinary-prime stop convention derives paraxial entrance-pupil diameter as EFL/N, then maps it to the physical stop. The independent first-order iris hypothesis is 11.323344944 mm at source S9. It is not a source-measured radius. Native iris-in-air checks pass with minimum front/rear clearances of 1.327137 and 0.484000 mm. The official aperture census gives f/2.006885086963, with STO limiting the admitted beam. An exact nonlinear entrance-ray diameter, when later measured, is a separate diagnostic and must not redefine the prescribed f-number.
+All semi-diameters are inferred, not factory dimensions. L2 is held to 12.35 mm so that its convex front surface stays clear of L1's deeply curved rear surface across the 2.83 mm air space. Surface 8 (the rear of L4) is opened to 11.10 mm so that it passes the whole axial beam the stop admits. The field reaches the 21.6 mm full-frame semi-diagonal at the plotted 31.1° (Fig. 3), with strong vignetting at the corners.
 
-All clear caps are inferred, not source dimensions. Initial H0 failed the S2/S3 air-gap check. Reducing the square L2 caps from 12.50 mm in 0.05 mm steps preserved failures at 12.45 and 12.40 mm; 12.35 mm passed the unchanged default 90% gap-sag allowance. Native admitted-beam tracing then identified S8 clipping and required 11.091694 mm there. H1 raises only S8 from 11.00 to 11.10 mm. No other cap changes, rim cuts, hidden trim, source-gap changes or gap-sag override were used. H1 has zero rendered trim. All failures remain in evidence.
-
-The nonlinear iris-admitted entrance radius is 8.186333835 mm and the clear radius agrees within numerical tolerance. Dividing EFL by this exact nonlinear diameter gives 2.14641654, a separate diagnostic, not a failed f-number hold or reason to resize the standard paraxial iris.
-
-## Verification Scope and Reference-Line MTF
-
-Deterministic reverse reconstruction exactly reproduces all 20 source rows, including the absent S15 numbering and blank plate-exit label, and both complete asphere coefficient sets. Independent first-order calculation gives EFL 35.142564788 mm and paraxial image z = 80.124563843 mm, 0.010563843 mm behind the unchanged literal image plane. The independent calculation is a source-table diagnostic; native H1 independently reproduces its EFL and literal image plane. No source focus fitting has been applied.
-
-Native geometry, iris, standard aperture, bounded rays, zero render trim and reference-line MTF have run. Metadata, typecheck, formatting, lint, focused tests, build, SEO and guarded standalone installation checks have passed. The candidate is registered visibly in the local build; this is validation, not publication or factory certification.
-
-Geometric and diffraction MTF were evaluated at the native d reference, 587.5618 nm, at 0/10/20/30/40 lp/mm. Fields represent axial, half and full catalog-derived full-frame angle, not a source-published coverage measurement: actual source-plane angles 0°, 15.550957° and 31.101847°, with image heights 0, 9.789266 and 21.649937 mm. The solver uses image-height fractions 0, 0.452160084 and approximately 1 to obtain those angles; the middle field is half-angle, not half-image-height.
-
-All three source-plane fields converged through 40 lp/mm for both methods, using grids 64/64/128. Diffraction maximum deltas were 0.007270, 0.009249 and 0.004097 MTF. Valid/blocked pupil counts were 3228/0, 3160/68 and 4908/7984, with no failed, unaimed or unresolved in-beam rays. Strong edge vignetting is retained. Source-plane axial diffraction MTF at 20 lp/mm is approximately 0.04136.
-
-A separately labeled best-axial diagnostic shifts its evaluation plane by +0.133962038 mm and raises axial diffraction MTF at 20 lp/mm to approximately 0.90961. All its fields also converge through 40 lp/mm. This diagnostic plane is not authored into the prescription; the literal image plane remains 80.114 mm. The +0.010563843 mm Gaussian residual is a different diagnostic from the best-axial shift. Neither result is a factory chart, broadband performance claim or permission to refit the source. A bounded alias and numerical fingerprint scan of the baseline found no match; separate source research checked bounded private delivery/archive listings. This is not exhaustive hidden-custody clearance.
+The image plane stays at the printed distance. The paraxial focus lies 0.095 mm ahead of it, as in Figs. 2 and 3, where the designer placed the image at the best focus for the lens's residual spherical aberration. Partial dispersions of L2, L4 and L8 are unpublished; their colour behaviour rests on Abbe-number estimates.
 
 ## Sources
 
 - [CN 113126266 A](https://patents.google.com/patent/CN113126266A/en), original publication and Example 1.
-- [Original A PDF](https://patentimages.storage.googleapis.com/a8/3f/4c/a28ebe404eb97f/CN113126266A.pdf), pages 7, 9 and 13.
-- [CN 113126266 B](https://patents.google.com/patent/CN113126266B/zh), 2025-06-10 grant corroboration.
-- [Yongnuo official lens catalog, 202203](https://www.szyongnuo.com/upload/image/202402/YONGNUO-Lens-202203.pdf), production-family association only.
+- [CN 113126266 A, PDF](https://patentimages.storage.googleapis.com/a8/3f/4c/a28ebe404eb97f/CN113126266A.pdf): tables on page 9, conditions on page 11, Figs. 1–5 on pages 13–16.
+- [CN 113126266 B](https://patents.google.com/patent/CN113126266B/zh): 2025-06-10 grant; tables unchanged.
+- [Yongnuo lens catalog, 2022-03](https://www.szyongnuo.com/upload/image/202402/YONGNUO-Lens-202203.pdf): YN35mm F2S DF DSM, with construction, minimum focus, magnification and an optical diagram marking the ED, HRI and aspherical elements.
+- [Yongnuo (HK) product page, YN35mm F2S DF DSM](https://www.th.hkyongnuo.com/products/yn35mm-f2s-df-dsm): 9 elements in 8 groups, 0.35 m, 0.13×, 61.3° diagonal angle of view.
+- [PhotoRumors, 2020-10-23](https://photorumors.com/2020/10/23/new-yongnuo-yn35mm-f-2s-df-dsm-lens-for-sony-e-mount/): announcement and specifications.

@@ -1,16 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-// Qualified infinity model; native H1 geometry/aperture/reference MTF verified. Integration gates verified; no publication.
-// Literal source optics and image plane unchanged; caps inferred, not factory dimensions.
-// Standard asphere convention inferred; broadband MTF unavailable.
-// Required focus scalar can affect fallback labels; no finite geometry or endpoint is validated.
-// Erratum: L7 nd is 1.6668 (the main table prints 1.668); see source.errata.
+// CN 113126266 A, Example 1, at the printed scale (f = 35.02 mm) and infinity focus. Radii, thicknesses, indices,
+// Abbe numbers, asphere terms and the image distance are as printed, except L7 nd: the main table prints 1.668 and
+// the parameter list ([0120]) gives 1.6668 (see source.errata).
+// The patent prints the asphere coefficients without the sag equation; the standard even-asphere form (conic 1 + K)
+// reproduces its spherical-aberration plot (Fig. 2).
+// The camera-side plate GL (2.5 mm, 14.08 mm air before it, 1.00 mm to the image) is the patent's own rear train.
+// Semi-diameters are inferred (the patent prints none), not factory dimensions; the stop is sized for F/2.00 at the
+// paraxial entrance pupil. L2, L4 and L8 match no catalog glass and use Abbe-number dispersion.
+// Infinity focus only: the patent's 0.35 m state (GR2 moved) is not modelled.
 const LENS_DATA = {
   schema: 2,
   key: "yongnuo-yn35mm-f2s-df-dsm",
   maker: "Yongnuo",
   name: "YONGNUO YN 35mm f/2 S DF DSM",
-  subtitle: "CN 113126266 A Example 1; probable retail association, literal unscaled prescription",
+  subtitle: "CN 113126266 A, Example 1 — construction-based production correlation",
   visible: true,
   catalog: {
     lensMounts: ["sony-fe"],
@@ -25,7 +29,7 @@ const LENS_DATA = {
       marketing: 2,
       design: 2,
     },
-    specs: ["9 ELEMENTS / 8 GROUPS", "2 ASPHERICAL SURFACES", "SOURCE-PRESERVING INFINITY MODEL"],
+    specs: ["9 ELEMENTS / 8 GROUPS", "DESIGN f = 35.02 mm", "DESIGN F/2.00", "2 ASPHERICAL SURFACES / 1 ELEMENT"],
     closeFocusM: {
       marketing: 0.35,
     },
@@ -62,8 +66,8 @@ const LENS_DATA = {
       vd: 34.4697,
       indexReference: "d",
       focalLengthMm: -33.676427512809724,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Front negative meniscus. Isolated-air focal length is not in-system group power.",
+      glass: "S-TIM27 (OHARA)",
+      role: "Front negative meniscus, convex to the object; opens the fixed first group GR1.",
     },
     {
       id: 2,
@@ -75,8 +79,8 @@ const LENS_DATA = {
       vd: 31.6382,
       indexReference: "d",
       focalLengthMm: 44.81880664977029,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Front positive collector. Isolated-air focal length is not in-system group power.",
+      glass: "Unmatched (patent nd 1.9014, νd 31.64)",
+      role: "High-index positive collector behind the front meniscus in GR1.",
     },
     {
       id: 3,
@@ -88,8 +92,8 @@ const LENS_DATA = {
       vd: 28.245,
       indexReference: "d",
       focalLengthMm: -48.59006347776002,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Negative front-group component. Isolated-air focal length is not in-system group power.",
+      glass: "FD3 (HOYA)",
+      role: "Nearly plano-concave flint negative in GR1, ahead of the stop.",
     },
     {
       id: 4,
@@ -101,8 +105,11 @@ const LENS_DATA = {
       vd: 70.361,
       indexReference: "d",
       focalLengthMm: 113.68994513060825,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Low-dispersion positive element; source ED association, no supplier identity. Isolated-air focal length is not in-system group power.",
+      glass: "Unmatched (patent nd 1.525, νd 70.36)",
+      apd: "inferred",
+      apdNote:
+        "Yongnuo marks this element as its ED glass; the patent requires 60 ≤ νd ≤ 90 here for axial and lateral colour but names no glass, and no catalog row matches, so its partial dispersion is unpublished.",
+      role: "Low-dispersion positive meniscus just ahead of the stop; the colour-correcting crown of GR1.",
     },
     {
       id: 5,
@@ -114,8 +121,8 @@ const LENS_DATA = {
       vd: 35.2557,
       indexReference: "d",
       focalLengthMm: 32.45858478954771,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Positive element immediately after the stop. Isolated-air focal length is not in-system group power.",
+      glass: "TAFD35 (HOYA)",
+      role: "High-index biconvex element just behind the stop; closes the fixed first group GR1.",
     },
     {
       id: 6,
@@ -127,9 +134,9 @@ const LENS_DATA = {
       vd: 60.6411,
       indexReference: "d",
       focalLengthMm: 22.953117165279846,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Positive member of GR2 cemented pair. Isolated-air focal length is not in-system group power.",
-      cemented: "D1",
+      glass: "S-BSM14 (OHARA)",
+      role: "Positive crown of the achromatic doublet that leads the focusing group GR2.",
+      cemented: "C1",
     },
     {
       id: 7,
@@ -141,9 +148,9 @@ const LENS_DATA = {
       vd: 33.0468,
       indexReference: "d",
       focalLengthMm: -22.54630165284914,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Negative member of GR2 cemented pair. Isolated-air focal length is not in-system group power.",
-      cemented: "D1",
+      glass: "PBM39 (OHARA)",
+      role: "Negative flint of the GR2 achromatic doublet; its index is the corrected source erratum.",
+      cemented: "C1",
     },
     {
       id: 8,
@@ -155,8 +162,8 @@ const LENS_DATA = {
       vd: 45,
       indexReference: "d",
       focalLengthMm: 42.3828037070102,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Two-asphere positive member of GR2. Isolated-air focal length is not in-system group power.",
+      glass: "Unmatched (patent nd 1.79, νd 45.0)",
+      role: "Positive meniscus with both surfaces aspherical; rear element of the focusing group GR2.",
     },
     {
       id: 9,
@@ -168,8 +175,8 @@ const LENS_DATA = {
       vd: 27.5462,
       indexReference: "d",
       focalLengthMm: -34.42433227079262,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Fixed negative rear element. Isolated-air focal length is not in-system group power.",
+      glass: "E-FD4 (HOYA)",
+      role: "Fixed negative meniscus forming the rear group GR3.",
     },
   ],
   surfaces: [
@@ -308,13 +315,14 @@ const LENS_DATA = {
   ],
   rearPlates: [
     {
-      label: "GL (S20 and blank exit)",
+      label: "GL",
       thicknessMm: 2.5,
       nd: 1.51633,
       vd: 64.1501,
+      glass: "S-BSL7 (OHARA)",
       indexReference: "d",
       gapAfterMm: 1,
-      source: "CN 113126266 A E1 original PDF page 9; physical rear train unchanged",
+      source: "CN 113126266 A, Example 1 table, surface 20: filter-coated plate protecting the sensor ([0101]), 1.00 mm before the image",
     },
   ],
   aperture: {
@@ -340,7 +348,7 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "12",
       toSurface: "14",
     },
@@ -349,9 +357,9 @@ const LENS_DATA = {
     yScFill: 0.4,
   },
   focus: {
-    closeFocusM: 0.35,
+    closeFocusM: 1e15,
     description:
-      "Infinity-only fixed prescription. 0.35 m is the published MOD heading, not a validated endpoint for this fixed geometry. No finite gaps or conjugates are modeled. Required schema scalar may affect fallback focus labels; finite performance must not be inferred.",
+      "Infinity focus only. The lens focuses by moving GR2 (the cemented doublet and the aspherical meniscus) toward the object while GR1 and GR3 stay fixed; the patent prints a 0.35 m state (d11 3.17 → 0.78 mm, d17 1.71 → 4.10 mm) that is not modelled here. Yongnuo specifies 0.35 m minimum focus and 0.13× maximum magnification.",
   },
 } satisfies LensDataV2Input;
 
