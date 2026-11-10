@@ -116,3 +116,53 @@ Open:
   mid-field illumination.
 - Surface 7 stays at 5.79 mm. The engine's paraxial f/2.8 beam needs 5.81 mm there; the validator accepts 5.81, but
   that rim would sit 0.021 mm behind the iris plane, so the 1 % on-axis loss in the engine is kept.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared the local page (1400×900, infinity, element inspectors 1–6) with US 2,793,565 A page 1, Fig. 1 (First
+embodiment), re-measured at the native 300 dpi from per-column ink runs, axis at page row 1265. Scale re-checked on
+the r2 arc of element I (R2 = 64.09 units): fits at 115, 165 and 225 px heights give 5.4–5.6 px per unit, consistent
+with the semi-diameter pass's 16.0 px per model mm.
+
+Element designations. The patent numbers the lenses I–VI in Fig. 1 and in its glass table, and the analysis already
+quoted the claim as n_IV − n_III. Elements 1–6: `name` L1…L6 → I…VI, `label` "Element 1…6" → "Element I…VI",
+`diagramLabel` I…VI added (the Biotar, Biometar and MC Pancolar files in this folder carry the patent numerals the same
+way). The cemented member had `cemented: "L4"` on element III only, so element III's inspector read "CEMENTED L4" and
+element IV's showed nothing, and no doublet bracket was drawn: both now carry `cemented: "C1"` and
+`doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }]` is added; both inspectors read "DOUBLET C1". Element IV
+glass "BaSF2-class barium flint (catalog row J-BASF2, Hikari)" → "BaSF2-class dense barium flint (…)": BaSF is the
+dense barium flint family; the label still resolves to J-BASF2 (Δnd −4×10⁻⁵, Δνd −0.03). Header notes and analysis
+prose follow the numerals.
+
+Rims: no change. Fig. 1 readings (line centres, mm at model scale) against the file: surface 1 17.0 / 17; surface 2
+bevel end 14.9–15.5 / 15.8 (15.7 drops the engine half-field to 29.58°, 15.5 to 29.27°); element II 8.8 square / 9.7;
+cemented III–IV 7.3 square / 7.7 with r7 ending at a bevel about 5.5 / 5.79; element V outer edge 6.2, r9 cap about
+5.5–5.9 behind a drawn bevel / 6.4 square (the f/2.8 axial ray needs 6.17 at r9); element VI 6.7–6.9 / 7.0. Step order
+I > II > III–IV > VI > V holds on the page. Element II remains the largest departure, light-limited as recorded above.
+The page draws element I's top and IV's rear edge as single slants where the figure draws a flat top and a short bevel;
+a land would need a new `rimExtensionSd` (on IV it would sit on the iris plane), so neither is added.
+
+Lands and cuts: no `rimExtensionSd` or `rimCutDepthMm`. Cuts against the light-rule baseline (surface 2 17 → 15.8,
+II 10 → 9.7, surface 5 7.8 → 7.7, V 7 → 6.4; surface 6 raised 7.5 → 7.7 to square the block): the full-pupil
+corner-light sweep gives a worst loss of 2.91 points at 23.4° (74.72 → 71.81 %), within the 3-point rule; restoring
+element II alone wins back 2.6 points, the cemented pair 0.9, surface 2 and element V nothing. Keep: slight.
+
+Re-checked and found correct: `type` strings against the signs of R (I and IV negative menisci convex to the object,
+II convexo-plano, III positive meniscus, V negative and VI positive menisci concave to the object); roles; inspector
+focal lengths −87.4, +43.9, +19.3, −13.4, −41.3, +23.6 mm; the stop between IV and V at the printed b1/b2 split; no
+aspheric labels (none in the patent); no `apd` tags (no special-dispersion glass in the patent or the 1957 catalogue).
+Movement: static infinity model, `gaps: {}`, `focus.description` says so and the slider reads "Not modeled"; the patent
+gives no focus travel. Engine half-field 29.7097° and f/2.8 (stop radius 5.8035 mm) unchanged; surface validator OK,
+aperture check no rim limit, image circle and field coverage clean, no axial clip or blocked chief ray at the 32.2°
+corner. Assignee "VEB Carl Zeiss Jena" matches the front page and the folder's other seven files.
+
+Glass and colour. The patent prints d-line n and ν only (page 2, "Type of glass"): no glass names, other lines or
+partial dispersions. All five unmatched pairs recur in the Second embodiment (lenses I–V identical), so they are stock
+glasses, not fitted values. Exact-window candidates: element IV also matches vendor AGF rows not in the repo catalog
+(Sumita BASF2 1.66446 / 35.90, Hoya BAFD2 1.66446 / 35.89, Ohara BAH22 1.66446 / 35.81); J-BASF2 stays, the only exact
+row in the catalog. I/VI 1.6224 / 60.3, II 1.6051 / 42.2, III 1.6583 / 51.0 and V 1.7588 / 26.7 have no catalog or AGF row
+inside 1×10⁻⁴ / 0.15 (nearest SK16 1.62041, BAM25 1.60323, SSK5 1.65844 / 50.88, SF14 1.76182). No constant-index medium.
+The patent prints no aberration curves, so there is no colour comparison to make.
+
+The semi-diameter pass's two `Open:` lines stand (element II, here 9.7 against a drawn 8.8 mm, with the cemented pair
+now read about 5 % over; surface 7 at 5.79 mm), as do the cleanup pass's f/22 and 0.36 m lines.

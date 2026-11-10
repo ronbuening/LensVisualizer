@@ -4,7 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * LENS DATA — CARL ZEISS JENA FLEKTOGON 35mm f/2.8
  * Data source: US 2,793,565 A (Harry Zöllner and Rudolf Solisch, VEB Carl Zeiss Jena), First embodiment (Fig. 1).
  * DD 10604 and DE 953 471 print the same two numerical examples.
- * 6 elements / 5 groups, all spherical; the rear face of element 2 is plane.
+ * 6 elements / 5 groups, all spherical; the rear face of element II is plane. Elements carry the patent's
+ * lens numerals I–VI; III and IV form the cemented member C1.
  * The model is the patent design of the Flektogon 2.8/35, not the factory prescription: the production
  * glasses differ from the patent's.
  *
@@ -20,18 +21,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * SEMI-DIAMETERS: not published. Estimated from Fig. 1 (≈5.6 px per patent unit at 300 dpi, from the r1
  * arc and the r1–r11 span; the rear group is drawn axially stretched), floor-checked by real-ray trace and
- * held to the modelled corner light. Element 1's front rim is as drawn (17 mm); its rear face ends at a bevel
+ * held to the modelled corner light. Element I's front rim is as drawn (17 mm); its rear face ends at a bevel
  * the figure draws at about 15 mm, kept at 15.8 mm, the smallest rim that leaves the engine's 29.7° field
- * estimate unchanged (the corner chief ray crosses it at 14.7 mm). Element 2 and the cemented pair are drawn
+ * estimate unchanged (the corner chief ray crosses it at 14.7 mm). Element II and the cemented pair are drawn
  * square-cut at about 8.7 and 7.1 mm; they keep 9.7 and 7.7 mm, the smallest values that cost no more than
- * 3 points of illumination at any field. Element 5 is square at 6.4 mm, just above the axial f/2.8 beam
- * (the figure draws 6.0 mm); surface 7 and element 6 are kept. Not measured factory rims. Default geometry
+ * 3 points of illumination at any field. Element V is square at 6.4 mm, just above the axial f/2.8 beam
+ * (the figure draws 6.0 mm); surface 7 and element VI are kept. Not measured factory rims. Default geometry
  * checks (no gap-sag or rim-angle override).
  *
  * BACK FOCUS: not printed. The last gap is the computed paraxial back focus, 34.559 mm, slightly shorter
  * than the focal length; the 1957 catalogue describes the production lens's back focus as slightly longer.
  *
- * GLASS: the patent prints d-line nd and ν only. Element 4 matches the BaSF2-class row J-BASF2 (Hikari);
+ * GLASS: the patent prints d-line nd and ν only. Element IV matches the BaSF2-class row J-BASF2 (Hikari);
  * the other elements have no exact catalog row and keep the printed values (Abbe-only dispersion).
  *
  * FOCUS: one infinity prescription; the patent gives no focus movement. The production lens focuses to
@@ -75,8 +76,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Negative Meniscus",
       role: "Front diverging meniscus set far ahead of the Gauss-type rear part; lengthens the back focus.",
       nd: 1.6224,
@@ -88,8 +90,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Plano-convex Positive",
       role: "Flint collective lens at the front of the rear part.",
       nd: 1.6051,
@@ -101,8 +104,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Positive Meniscus",
       role: "Positive front component of the cemented meniscus ahead of the stop.",
       nd: 1.6583,
@@ -111,25 +115,28 @@ const LENS_DATA = {
       indexReferenceNote: "The patent states d-line indices.",
       glass: "Unmatched (dense crown; patent nd = 1.6583, νd = 51.0)",
       focalLengthMm: 19.277144634498597,
-      cemented: "L4",
+      cemented: "C1",
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "Element IV",
+      diagramLabel: "IV",
       type: "Negative Meniscus",
       role: "Negative rear component of the cemented meniscus; its concave rear face meets the stop.",
       nd: 1.6645,
       vd: 35.9,
       indexReference: "d",
       indexReferenceNote: "The patent states d-line indices.",
-      glass: "BaSF2-class barium flint (catalog row J-BASF2, Hikari)",
+      glass: "BaSF2-class dense barium flint (catalog row J-BASF2, Hikari)",
       focalLengthMm: -13.401263761907405,
+      cemented: "C1",
     },
     {
       id: 5,
-      name: "L5",
-      label: "Element 5",
+      name: "V",
+      label: "Element V",
+      diagramLabel: "V",
       type: "Negative Meniscus",
       role: "High-index negative meniscus behind the stop, concave toward it.",
       nd: 1.7588,
@@ -141,8 +148,9 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
-      label: "Element 6",
+      name: "VI",
+      label: "Element VI",
+      diagramLabel: "VI",
       type: "Positive Meniscus",
       role: "Rear collective meniscus closing the Gauss-type rear part.",
       nd: 1.6224,
@@ -243,6 +251,7 @@ const LENS_DATA = {
     fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
   },
+  doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }],
   layout: {
     yScFill: 0.35,
   },

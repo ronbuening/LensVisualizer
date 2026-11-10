@@ -44,16 +44,16 @@ focus belongs to the later redesign.
 The lens is a retrofocus design: a Gauss-type collective rear part (zeissikonveb.de describes it as a Biometar 2.8/35
 base) with a single negative crown meniscus placed far in front. The patent places the rear principal point near the
 last surface of the rear part, which gives the long back focus a reflex camera's mirror requires. Six elements form five
-groups: L1, L2, the cemented L3–L4 meniscus, then the stop, L5 and L6. All eleven surfaces are spherical; the rear face
-of L2 (r4) is plane.
+groups, numbered I to VI as in the patent: I, II, the cemented III–IV meniscus (C1 on the diagram), then the stop, V
+and VI. All eleven surfaces are spherical; the rear face of II (r4) is plane.
 
 The claim fixes the form through a set of conditions, all met by the First embodiment:
 
-- front meniscus a single crown lens with 55 < ν < 65 (L1: 60.3);
-- foremost collective lens of flint with 40 < ν < 50 (L2: 42.2);
+- front meniscus a single crown lens with 55 < ν < 65 (I: 60.3);
+- foremost collective lens of flint with 40 < ν < 50 (II: 42.2);
 - 0 < n_IV − n_III < 0.2 for the cemented pair (0.0062);
-- n > 1.7 for the negative meniscus behind the diaphragm (L5: 1.7588);
-- 1.6 < n < 1.7 for the rear collective meniscus (L6: 1.6224);
+- n > 1.7 for the negative meniscus behind the diaphragm (V: 1.7588);
+- 1.6 < n < 1.7 for the rear collective meniscus (VI: 1.6224);
 - 0.2f < |r7|, |r8| < 0.3f for the concave faces either side of the diaphragm (21.91 and 25.40 at f = 100);
 - 0.45L < l1 < 0.6L for the front air space (72.83 = 0.54L, with L = 134.46).
 
@@ -64,22 +64,22 @@ f/2.8. At infinity the scaled prescription gives EFL 34.965 mm (99.90 at patent 
 
 ## Element-by-Element Analysis
 
-### L1: Negative Meniscus
+### Element I: Negative Meniscus
 
 nd = 1.6224, νd = 60.3. Glass: Unmatched (crown; printed values). f = −87.4 mm.
 
 The patent's dispersive front part: a single crown meniscus convex to the object, set 25.49 mm (72.83 at patent scale)
-ahead of L2. Its negative power is weak, about −2.5 times the system focal length, but at that distance it is enough to
+ahead of element II. Its negative power is weak, about −2.5 times the system focal length, but at that distance it is enough to
 push the back focus out to about the focal length.
 
-### L2: Plano-convex Positive
+### Element II: Plano-convex Positive
 
 nd = 1.6051, νd = 42.2. Glass: Unmatched (flint; printed values). f = +43.9 mm.
 
 The foremost collective lens of the rear part, convex to the object with a plane rear face. The claim requires flint
 glass here (40 < ν < 50).
 
-### L3: Positive Meniscus
+### Element III: Positive Meniscus
 
 nd = 1.6583, νd = 51.0. Glass: Unmatched (dense crown; printed values). f = +19.3 mm.
 
@@ -87,36 +87,37 @@ Positive front component of the cemented meniscus ahead of the stop. The DE and 
 chromatic correction. The two indices differ by only 0.0062, so the cemented interface (r6 = +167.09 at patent scale)
 works almost entirely through the dispersion difference (ν 51.0 against 35.9).
 
-### L4: Negative Meniscus
+### Element IV: Negative Meniscus
 
-nd = 1.6645, νd = 35.9. Glass: BaSF2-class barium flint (catalog row J-BASF2, Hikari). f = −13.4 mm.
+nd = 1.6645, νd = 35.9. Glass: BaSF2-class dense barium flint (catalog row J-BASF2, Hikari). f = −13.4 mm.
 
 Negative rear component of the cemented meniscus. Its strongly concave rear face r7 (+21.91 at patent scale, 0.22f)
-faces the stop and, with r8 of L5, forms the pair of concave surfaces the claim confines to 0.2f–0.3f. The cemented
-L3–L4 pair is a weak negative meniscus overall (f = −97.6 mm).
+faces the stop and, with r8 of element V, forms the pair of concave surfaces the claim confines to 0.2f–0.3f. The
+cemented III–IV pair is a weak negative meniscus overall (f = −97.6 mm).
 
-### L5: Negative Meniscus
+### Element V: Negative Meniscus
 
 nd = 1.7588, νd = 26.7. Glass: Unmatched (dense flint; printed values). f = −41.3 mm.
 
 The single negative meniscus behind the stop, concave toward it (r8 = −25.40 at patent scale, 0.25f). The claim requires
 an index above 1.7 for this lens.
 
-### L6: Positive Meniscus
+### Element VI: Positive Meniscus
 
 nd = 1.6224, νd = 60.3. Glass: Unmatched (crown; printed values). f = +23.6 mm.
 
-The rear collective meniscus, convex toward the image, with the same printed glass coordinates as L1. The claim allows
+The rear collective meniscus, convex toward the image, with the same printed glass coordinates as element I. The claim allows
 one or two lenses here with indices between 1.6 and 1.7; the Second embodiment uses a cemented pair.
 
 ## Glass Identification and Selection
 
 The patent prints each refractive index "for the d-line of the spectrum" with its dispersion ν, and names no glasses.
-L4's coordinates (1.6645 / 35.9) match the BaSF2-class row J-BASF2 (Hikari, 1.66446 / 35.87), whose dispersion curve the
-model uses, anchored to the printed nd. The other elements have no catalog row within 1×10⁻⁴ in nd and 0.15 in νd: the
-nearest rows are SK16-class glasses for L1 and L6 (1.62041 / 60.3, about 0.002 lower in index) and SSK5-class glasses
-for L3 (1.65844 / 50.88). These keep the printed values with Abbe-only dispersion, so partial dispersion is not
-modelled. The zeissikonveb.de history notes that production used different glasses from those the patent lists.
+Glasses I to V of the First embodiment recur unchanged in the Second, which points to stock glasses of the period
+rather than values fitted to one design. Element IV's coordinates (1.6645 / 35.9) match the BaSF2-class row J-BASF2 (Hikari,
+1.66446 / 35.87), whose dispersion curve the model uses, anchored to the printed nd. The other elements have no catalog
+row within 1×10⁻⁴ in nd and 0.15 in νd: the nearest rows are SK16-class glasses for I and VI (1.62041 / 60.3, about
+0.002 lower in index) and SSK5-class glasses for III (1.65844 / 50.88). These keep the printed values with Abbe-only
+dispersion, so partial dispersion is not modelled. The zeissikonveb.de history notes that production used different glasses from those the patent lists.
 
 ## Focus Mechanism
 
@@ -131,9 +132,9 @@ None. All surfaces are spherical; r4 is plane.
 
 Semi-diameters are not published. They are estimated from Figure 1, which draws the front meniscus to scale but
 stretches the rear group axially, and held above the f/2.8 axial beam, the corner chief ray and the modelled corner
-illumination; they are not measured factory rims. L1's rear face ends at the bevel the figure draws inside its 17 mm
-front rim. L2 and the cemented pair are drawn square-cut a little smaller than modelled, and L5 square-cut just inside
-the axial beam it must pass. The rear face of L4 is deeply concave and the printed b1 leaves little room between its rim and
+illumination; they are not measured factory rims. Element I's rear face ends at the bevel the figure draws inside its
+17 mm front rim. Element II and the cemented pair are drawn square-cut a little smaller than modelled, and element V
+square-cut just inside the axial beam it must pass. The rear face of element IV is deeply concave and the printed b1 leaves little room between its rim and
 the iris: with a 5.79 mm clear radius on r7, the iris plane sits 0.002 mm behind the glass edge. A rim of 5.803 mm,
 enough for the full paraxially sized f/2.8 beam, would cross the iris plane about 0.013 mm inside the glass, so r7 trims
 the axial beam slightly, to a traced equivalent of f/2.807 (0.26 %).
