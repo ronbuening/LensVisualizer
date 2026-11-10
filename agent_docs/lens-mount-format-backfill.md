@@ -9,8 +9,8 @@ the fields unset and add a note here until a source check resolves it.
 
 - Total lens data files: **1109**
 - Files with both `lensMounts` and `imageFormat`: **1062**
-- Files missing `lensMounts`: **38** (25 public lenses and 13 hidden reference fixtures)
-- Files missing `imageFormat`: **35** (23 public lenses and 12 hidden reference fixtures)
+- Files missing `lensMounts`: **38** (26 public lenses and 12 hidden reference fixtures)
+- Files missing `imageFormat`: **35** (24 public lenses and 11 hidden reference fixtures)
 - Files missing both fields: **26**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
   `1-2.7-inch-type`, `1-inch-type`, `1.25-inch-tube`, `1.5-inch-type`, `110`, `135-full-frame`,
@@ -45,6 +45,7 @@ with remaining compatibility questions explained in the lens analysis.
 | Minor Photographic Objective 65mm f/2 | US 1,360,667 Figure 2 establishes no production manufacturer, mount, camera format, or image circle. The approximately 65° field and ambiguous focal distance do not establish a format. |
 | Russar-21; Russar-22 | Experimental prescription sources lack a manufacturer-issued standardized production fitting. |
 | KMZ Industar ITMO Variant 2; Voigtländer Dynar | Teaching/normalized patent models lack a selected commercial installation; leave mount and format unset. |
+| Carl Zeiss Jena PI-Flektogon 30mm f/2.8 | The 1975 factory sheet names no fitting. Its archive host ties only a *similar* SO-4 2,8/30 to the Stasi HFK camera, which was screw-mounted but whose thread no source names. |
 | Zeiss S-Biogon 40mm f/5.6 | Microfilm reduction lens installed in the Zeiss Mikrobox recorder. The sources give only an M50 × 0.75 rear thread, an industrial thread with no canonical mount id; do not assign a camera mount from the Biogon family name. |
 | Voigtländer Cine-Tele-Anastigmat 100mm f/4.5 | No manufacturer or period source names this product. Voigtländer’s catalogue Nr. 1709.7.25 and its price list of about 1930 offer only the Tele-Dynar f/6.3 as a telephoto, so no camera fitting can be tied to the research-correlated name. |
 | Voigtländer Tele-Dynar 100mm f/6.3 | The same two lists sell the Tele-Dynar only at 14–32 cm, as cells for the shutters of Voigtländer cameras or in Compur, shutterless and helical mountings. No 100 mm production variant exists to select, and none of those fittings is a canonical mount. |
@@ -72,6 +73,7 @@ patent scaling, angular field, or circular image into an unsupported rectangular
 | Fujinar 210mm | The manufacturer history and museum record establish the large-format family and 21 cm product, but no specific frame or image-circle class for this example. Do not substitute Fujinon/SC specifications. |
 | Agfa Color-Magnolar II 100mm; Kodak Enlarging Ektar 100mm | Finite-conjugate enlarger objectives: Kodak’s cited brochure describes a negative up to 2¼ × 3¼ inches, not the modeled image-plane frame. A catalog format needs an explicit object/image-side convention; no arbitrary output-print format is assigned. |
 | Voigtländer Dynar; symmetric Heliar; second asymmetric Heliar | Normalized patent examples are not tied to a uniquely chosen production focal length/frame combination. |
+| Carl Zeiss Jena PI-Flektogon 30mm f/2.8 | The sheet gives a 29.5 mm image circle and 54° field. The related HFK camera exposed 24 × 24 mm (33.9 mm diagonal, larger than the circle), no canonical id exists for it, and its "Halbformat" name is not evidence for 18 × 24. Keep `imageCircleMm`. |
 | Zeiss S-Biogon 40mm f/5.6 | The only frame figure, 32 × 45 mm on 35 mm microfilm at 1:30, is a Zeiss staff forum post, not a Zeiss publication, and Cavina describes the Mikrobox output as microfiche. No canonical microfilm format id exists; do not substitute `135-full-frame`. |
 | Voigtländer Cine-Tele-Anastigmat 100mm f/4.5 | No source ties the research-correlated name to a film gauge or gate. Do not infer a cinema format from the “Cine” name or the patent’s 100 mm f/4.5 scale. |
 | Voigtländer Tele-Dynar 100mm f/6.3 | No 100 mm production variant exists in the period lists, and their 14–32 cm sizes are matched to the focal length of each camera’s lens, not specified for a recording format. |

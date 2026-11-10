@@ -32,6 +32,8 @@ export interface LensSummary {
   patentAuthors?: string[];
   patentAssignees?: string[];
   patentYear?: number;
+  /** The organization that issued a non-patent manufacturer source. */
+  sourceIssuer?: string;
   lensMounts?: LensMountId[];
   imageFormat?: ImageFormatId;
   opticalConfiguration?: OpticalConfigurationData;

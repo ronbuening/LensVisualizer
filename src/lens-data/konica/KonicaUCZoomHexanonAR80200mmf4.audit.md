@@ -134,3 +134,9 @@ Retained all station labels, marketing values, prescription geometry and image d
 The approved proposal independently reproduced infinity EFLs of 80.87930415610688 / 199.74908322312632 mm; those traced results remain documented separately. Both endpoint comparisons in the historical zoom-metadata check now have zero difference. This is a metadata correction, not a source-prescription correction.
 
 The existing unresolved `source.errata` entry and Section G investigation are retained unchanged; metadata agreement does not resolve the source contradiction.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 4` from JP S51-37247 A printed p. 303 (PDF sheet 5), right column, the example table
+  heading "f = 79.925 ~ 196.158 F4" (no text layer; read from a 110 dpi render). It is a constant-aperture zoom, and
+  the scalar `aperture.nominalFNumber` 4 matches it. No optical value changed.

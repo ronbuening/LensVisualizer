@@ -134,3 +134,9 @@ Off-axis rays were not checked in the headless view.
   stepped L1/L2/L8 rims as slanted edges, not as the flat steps in the figure.
 - The 2026-08-11 entry above says "Example 1 on rendered PDF page 3". The L1 value it quotes is the same in
   Examples 1 and 2.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 4.5` from US 2,721,499 p. 3, col. 3, the Example 2 heading "[Focal length f=100 mm.
+  Relative aperture 1:4.5]"; col. 2, ll. 42–43 says the same of the Fig. 2 example. The stop's `nominalFNumber` 4.5
+  matches it. No optical value changed.

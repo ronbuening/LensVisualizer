@@ -60,3 +60,8 @@
 - Glass: all twelve labels resolve to exact catalog rows. Table 2 prints only nd and νd, with no glass names, extra line indices or partial dispersion.
 - Engine before and after: EFL 82.446 mm, F1.45, half-field 14.84°, iris 15.46 mm; vignetting at infinity 100.0/96.1/84.6/71.1/55.7/39.0/22.8 % at 0–14.84°, unchanged. The surface validator, image-circle check (0 undersized) and field coverage (100 %) pass.
 - Text: the header's L2 note and the analysis now give L2's real reason, the close-focus axial beam and near-axis light, where they had said corner light. The analysis also gains the ΔPgF contrast between the five marked glasses and the C/g agreement with Fig. 2.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.marketing: 1.4` from the product name, so the wide-open readout names the marked f/1.4 beside
+  the design f/1.45. No optical value changed.

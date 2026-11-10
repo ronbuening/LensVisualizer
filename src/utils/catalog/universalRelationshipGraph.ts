@@ -238,8 +238,19 @@ export function buildUniversalRelationshipGraph(
     }
   }
 
+  const organizationNodeId = (name: string): string => {
+    const catalogAssignee = getAssigneeByName(name);
+    if (catalogAssignee) return `assignee:${catalogAssignee.slug}`;
+
+    const id = namedCorporateId("organization", name);
+    if (!nodesById.has(id)) nodesById.set(id, { id, kind: "organization", name });
+    return id;
+  };
+
   // Book-derived models have lens identity and catalog maker grouping, not
-  // fabricated patent publications or patent-party attribution.
+  // fabricated patent publications or patent-party attribution. A manufacturer
+  // document's issuer is the dated legal entity, so it groups the model there
+  // in place of the undated catalog maker hub.
   for (const key of SUMMARY_KEYS) {
     const summary = LENS_SUMMARIES[key];
     if (summary.patentNumber?.trim()) continue;
@@ -250,21 +261,17 @@ export function buildUniversalRelationshipGraph(
       name: summary.name,
       lens: { key, name: summary.name, specs: summary.specs },
     });
+    const issuer = summary.sourceIssuer?.trim();
+    if (issuer) {
+      addEdge({ from: id, to: organizationNodeId(issuer), kind: "catalog-maker" });
+      continue;
+    }
     if (!summary.maker) continue;
     const maker = deriveMaker(summary.name, summary.maker);
     const makerId = `maker:${maker.slug}`;
     nodesById.set(makerId, { id: makerId, kind: "maker", name: maker.display, slug: maker.slug });
     addEdge({ from: id, to: makerId, kind: "catalog-maker" });
   }
-
-  const organizationNodeId = (name: string): string => {
-    const catalogAssignee = getAssigneeByName(name);
-    if (catalogAssignee) return `assignee:${catalogAssignee.slug}`;
-
-    const id = namedCorporateId("organization", name);
-    if (!nodesById.has(id)) nodesById.set(id, { id, kind: "organization", name });
-    return id;
-  };
 
   const familyNodeId = (name: string): string => {
     const id = namedCorporateId("family", name);

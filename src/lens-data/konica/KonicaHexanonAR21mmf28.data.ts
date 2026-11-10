@@ -51,7 +51,7 @@ const LENS_DATA = {
     elementCount: 9,
     groupCount: 8,
     focalLengthMm: { marketing: 21, design: 20.997276268926072 },
-    fNumber: { marketing: 2.8 },
+    fNumber: { marketing: 2.8, design: 2.8 },
   },
 
   source: {

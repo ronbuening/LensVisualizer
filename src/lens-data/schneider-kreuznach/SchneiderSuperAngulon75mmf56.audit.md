@@ -68,3 +68,9 @@ no render trim or gap overlap appears. The image-circle floor still lists surfac
 through its wide-angle exit-pupil proxy (floors 15.81, 27.72 and 31.94 mm); the exact chief ray to the same corner
 clears all three, so 10 and 11 are unchanged. Surface 2 now has the lens's largest rim angle (62.8°). The analysis
 quotes none of these rims and is unchanged.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 5.6: US 3,376,091, PDF p. 3, col. 3, ll. 10–15: "Table I and Table II, each of
+  these tables defining an objective system having an aperture ratio of 1:5.6". The stop's `nominalFNumber` 5.6
+  matches it.
