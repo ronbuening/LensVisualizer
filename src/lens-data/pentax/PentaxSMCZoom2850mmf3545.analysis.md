@@ -57,9 +57,9 @@ Both groups move during zooming, and only two spacings change: the group separat
 
 From wide to tele the rear group moves 13.54 mm toward the object and the front group 8.38 mm toward the image, so the
 lens is longest at 28 mm, as the catalogue's barrel lengths show. The front group is almost stationary near the long
-end. As in any zoom of two rigid groups, d8 varies as a hyperbola in focal length (about
--26.96 + 1535.2/f mm) and the back focus as a straight line (about 18.64 + 0.6735 f mm, the slope being the ratio of the
-rear and front group focal lengths).
+end: it comes closest to the image near 47.7 mm and moves back about 0.02 mm toward the object by 48.9 mm. As in any
+zoom of two rigid groups, d8 varies as a hyperbola in focal length (about -26.96 + 1535.2/f mm) and the back focus as
+a straight line (about 18.63 + 0.6739 f mm, the slope being the ratio of the rear and front group focal lengths).
 
 The patent's argument is about size: a strong negative front group lets the rear group travel farther for a given zoom
 ratio, which shrinks the front diameter, but raises spherical aberration and coma at the long end. The six conditions
@@ -83,7 +83,7 @@ L1 lets negative distortion grow at the wide end.
 
 ### L2 — Negative Meniscus
 
-nd = 1.80610, νd = 40.9. Glass: S-LAH53 (OHARA) equivalent, lanthanum flint. f = -24.9 mm.
+nd = 1.80610, νd = 40.9. Glass: LAH53 (OHARA) equivalent, lanthanum flint. f = -24.9 mm.
 
 The front group's main negative element, convex to the object, with a deep rear face (r4 = 18.000). That face alone has
 a focal length of -22.330 mm (printed f4), which condition (3) holds between 0.35 and 0.6 of Fa (0.468 here) to balance
@@ -99,7 +99,7 @@ need not carry all of it. FIG. 6 draws it square-cut.
 
 ### L4 — Positive Meniscus
 
-nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA) equivalent, dense flint (SF6 type). f = +51.9 mm.
+nd = 1.80518, νd = 25.4. Glass: PBH6 (OHARA) equivalent, lead dense flint (SF6 type). f = +51.9 mm.
 
 The front group's achromatizing positive element, convex to the object. Its front face (r7 = 25.294) stands 0.10 mm
 behind L3's rear face (r6 = 53.700). The two faces form the air lens of condition (4): their combined focal length,
@@ -128,7 +128,7 @@ adding power and closes the space ahead of the iris.
 
 ### L8 — Biconcave Negative
 
-nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA) equivalent, dense flint. f = -17.9 mm.
+nd = 1.80518, νd = 25.4. Glass: PBH6 (OHARA) equivalent, lead dense flint. f = -17.9 mm.
 
 The negative element of the rear group, just behind the stop. Condition (5) fixes its position: the distance from L5's
 front vertex to L8's front vertex is b = 8.16 mm against a rear-group length a = 17.97 mm, so b/a = 0.454 (0.35-0.55).
@@ -149,14 +149,20 @@ A weak meniscus concave to the object, 0.10 mm behind L9, that completes the rea
 ## Glass Identification
 
 The patent prints nd and νd only. Every pair matches a catalog row within 0.0001 in nd and 0.1 in νd; the labels name
-that row as an equivalent, not as the glass Asahi bought.
+that row as an equivalent, not as the glass Asahi bought. For L2, L4 and L8 the labels use OHARA's rows of the period,
+LAH53 and the lead flint PBH6, rather than their later lead-free successors. FIG. 10 plots one dashed colour curve
+beside the d-line spherical aberration; it is not labelled, but only the g line matches its sign and the way it shrinks
+from wide to tele. With PBH6 the model's paraxial g-line focus sits 0.117, 0.085 and 0.050 mm short of the d-line focus
+at 28.8, 40 and 48.9 mm, against about 0.122, 0.077 and 0.054 mm read from the plots; the lead-free S-TIH6 row would
+miss by up to 0.027 mm. The model also reproduces the printed distortion: -4.6 % at 38° at the wide end, about -1 % at
+29° at 40 mm and close to zero at 48.9 mm.
 
 | Glass (equivalent) | nd | νd | Elements | Role |
 | --- | --- | --- | --- | --- |
 | S-BAL35 (OHARA) | 1.58913 | 61.1 | L1 | Front positive crown |
-| S-LAH53 (OHARA) | 1.80610 | 40.9 | L2 | High-index negative meniscus |
+| LAH53 (OHARA) | 1.80610 | 40.9 | L2 | High-index negative meniscus |
 | S-BSM18 (OHARA) | 1.63854 | 55.4 | L3 | Negative crown meniscus |
-| S-TIH6 (OHARA) | 1.80518 | 25.4 | L4, L8 | Dense flint: front-group achromat, rear negative element |
+| PBH6 (OHARA) | 1.80518 | 25.4 | L4, L8 | Lead dense flint: front-group achromat, rear negative element |
 | TAF1 (HOYA) | 1.77250 | 49.7 | L5, L6 | Rear-group positive lanthanum crown |
 | S-BSL7 (OHARA) | 1.51633 | 64.1 | L7, L10 | Low-power crown menisci |
 | FEL3 (HOYA) | 1.56013 | 47.0 | L9 | Rear positive light flint |

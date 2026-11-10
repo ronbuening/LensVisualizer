@@ -16,7 +16,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the object and the front group 8.38 mm toward the image. The three printed rows are stations at 28.8, 40 and 48.9 mm.
  * The five stations at 31, 33.5, 36.5, 43 and 46 mm are solved paraxially: d8 for the station focal length, then the
  * back focus as the paraxial back focus at that d8. In this two-group zoom d8 follows a hyperbola in f (about
- * -26.96 + 1535.2/f mm) and the back focus a straight line (about 18.64 + 0.6735 f mm), so linear interpolation between
+ * -26.96 + 1535.2/f mm) and the back focus a straight line (about 18.63 + 0.6739 f mm), so linear interpolation between
  * the printed rows alone would defocus the image by up to 0.62 mm near 34 mm; with the solved stations the largest
  * defocus along the zoom is 0.054 mm (near 38 mm).
  * Stop: neither printed nor drawn. The text places the stop in the rear group; the iris is set midway in the 1.87 mm
@@ -24,7 +24,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * printed F/3.5 / 4 / 4.5 within 1.4 %, so the iris is modelled as fixed. The printed stations keep the printed
  * f-numbers; the solved stations carry the f-numbers that radius gives.
  * Glass: every nd/νd pair matches a catalog row within 0.0001 / 0.1; the labels name that row (OHARA or HOYA) as an
- * equivalent, not as the production supplier.
+ * equivalent, not as the production supplier. L2 and the two SF6-type flints L4 and L8 carry the period OHARA rows
+ * LAH53 and PBH6 (lead flint). FIG. 10 plots one unlabelled dashed colour curve; only the g line fits its sign and its
+ * fall along the zoom. With PBH6 the paraxial g-line focus lies within 0.008 mm of that curve's foot at all three
+ * printed rows (-0.117 / -0.085 / -0.050 mm against about -0.122 / -0.077 / -0.054 mm read from the plots); the
+ * lead-free S-TIH6 row missed by up to 0.027 mm.
  * Semi-diameters are inferred; none is printed. They are read from FIG. 6 (drawn at the 28.8 mm setting) at 9.05 px/mm
  * on the 300 dpi sheet (front group vertex span 16.10 mm, rear group 17.97 mm; arc fits of r4 and r8 give 8.97 and
  * 8.85 px/mm across the axis), then floor-checked by real-ray trace. Every rim is within 4 % of the figure's mean of its
@@ -90,7 +94,7 @@ const LENS_DATA = {
       vd: 40.9,
       indexReference: "d",
       focalLengthMm: -24.945,
-      glass: "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Strong negative meniscus whose deep rear face carries most of the front group's power.",
     },
     {
@@ -114,7 +118,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: 51.893,
-      glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "PBH6 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Dense-flint positive meniscus that achromatizes the front group.",
     },
     {
@@ -162,7 +166,7 @@ const LENS_DATA = {
       vd: 25.4,
       indexReference: "d",
       focalLengthMm: -17.934,
-      glass: "S-TIH6 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "PBH6 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Dense-flint biconcave element behind the stop, the negative member of the rear group.",
     },
     {
@@ -260,8 +264,8 @@ const LENS_DATA = {
     },
   },
   groups: [
-    { text: "G1 (−)", fromSurface: "1", toSurface: "8" },
-    { text: "G2 (+)", fromSurface: "9", toSurface: "20" },
+    { text: "FRONT (−)", fromSurface: "1", toSurface: "8" },
+    { text: "REAR (+)", fromSurface: "9", toSurface: "20" },
   ],
   aperture: {
     fStops: [3.5, 4, 4.5, 5.6, 8, 11, 16, 22],

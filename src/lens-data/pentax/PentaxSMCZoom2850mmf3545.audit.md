@@ -163,3 +163,70 @@ clears all of them (s4 13.05 mm of 13.4; s7 12.28 of 12.6). This is a property o
 rim was widened.
 
 Open: none for the rims.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+**Compared.** The live page (28.8, 40 and 48.9 mm, both movement overlays, the inspector for all ten elements) with
+FIG. 6 (PDF p. 6) at 300 and 600 dpi and the Asahi catalogue drawing; the zoom table with the Example 3 rows (PDF
+p. 13); the model's colour and distortion with FIG. 10(a)-(c) (PDF p. 9). The model outline at 9.05 px/mm laid over the
+whole FIG. 6 crop, L9 and L10 included, follows every drawn outline.
+
+**Rims: no change.** Re-read at 600 dpi: L2's flange top 17.2 mm and the end of its r4 face at the bevel 13.6 mm (file
+17.1 / 13.4); L5 7.45, L8 6.85, L9 8.05, L10 9.05 mm (file 7.6, 6.9, 8.3, 9.4), all inside the reading band. L3 and L8
+are drawn square-cut and are square in the file. FIG. 6 draws L2's flange as a 3.0 mm flat top followed by a
+4.1 × 3.6 mm bevel; a vertical `rimExtensionSd` land at s4 would draw a square corner where the figure has the bevel,
+so the straight rim join stays.
+
+**Lands and cuts.** None: every rim equals its `base1117sd` value and no face has a land. `rimcost.mjs` against that
+baseline loses 0.0 points at every field sample, at the eight stations (`--every 1`) and at the zoom eighths.
+
+**Movement.** The stations ascend 28.8 → 48.9 mm; d8 falls 26.35 → 22.563 → 18.867 → 15.100 → 11.42 → 8.742 → 6.414 →
+4.43 mm and the back focus rises 38.035 → 51.579 mm in the same order, matching the printed rows. The rear group moves
+13.544 mm toward the object (printed ΔfB = 13.544). The front vertex moves from 98.455 to 90.079 mm ahead of the image,
+8.376 mm toward the image, falling at every station. Paraxially the front group comes closest to the image at
+f = 47.7 mm (track 90.065 mm) and returns 0.019 mm toward the object by 48.9 mm; at 45.7 mm the track is still falling
+(90.126 mm). The 46 and 48.9 mm stations do not resolve that turn: the model's front group is 0.026 mm off at 47.7 mm,
+far below drawing resolution. The zoom overlay shows the front group 8.4 mm to the right and the rear group 13.54 mm to
+the left. Focus is infinity only, as printed, and the focus description says so.
+
+**Field.** The engine half-field is 32.51° at 28.8 mm and 33.9° at 31 mm, set by the paraxial two-ray estimate at s4;
+the real chief ray reaches the 21.65 mm corner at 38.2° and 35.9° (field coverage 100 % at all eight stations). s4 reads
+13.4-13.6 mm on the figure, so this is not a rim error. A rectilinear `projection.maxTraceFieldDeg` is one number for
+every station, so it cannot carry 38° at the wide end without overstating the tele field. The earlier `Open:` line on
+the half-field stands.
+
+**Labels.** Group brackets `G1 (−)` / `G2 (+)` → `FRONT (−)` / `REAR (+)`, the wording of FIG. 6 and of the Example 3
+table ("Front Lens Group", "Rear Lens Group"); the spans (1-8, 9-20) are unchanged. L1-L10 follow the patent's
+n1-n10 numbering; every `type` agrees with the signs of R; the thick-lens focal lengths recompute to the stored values
+(135.798 … 166.224 mm); no cemented pair, no asphere, no `apd` tag (the patent names no special glass); the inferred
+stop sits between L7 and L8 in the rear group, as the text requires. Gap labels d8 and BF.
+
+**Glass and colour.** FIG. 10 plots one unlabelled dashed curve beside the d-line spherical aberration. Its foot, read
+at 458 px/mm, sits -0.122 / -0.077 / -0.054 mm from the d line at 28.8 / 40 / 48.9 mm. The model's C line is +0.10 mm
+(wrong sign) and its F line -0.122 / -0.115 / -0.103 mm (right only at 28.8 mm), so the curve is the g line. With the S-TIH6 labels
+the g line fell at -0.100 / -0.065 / -0.027 mm; S-TIH6 is OHARA's lead-free successor (θgF 0.6161), while the period
+lead flint PBH6 (θgF 0.6100) is an exact row. Relabels:
+
+| Element | Before | After | Δnd / Δνd | Reason |
+| --- | --- | --- | --- | --- |
+| L4, L8 | S-TIH6 (OHARA) | PBH6 (OHARA) | -3.1e-6 / +0.04 | g-line foot -0.117 / -0.085 / -0.050 mm, within 0.008 mm of the plot |
+| L2 | S-LAH53 (OHARA) | LAH53 (OHARA) | -2.4e-6 / +0.05 | period row of the same glass; g line moves ≤ 0.003 mm |
+
+The other labels stay: S-BAL35, S-BSM18 and S-BSL7 (OHARA) and TAF1 and FEL3 (HOYA) are exact. OHARA's period rows
+BAL35 (1.58913 / 61.18), BSM18 (1.63854 / 55.38) and BSL7 (1.51633 / 64.15) are in `OHARA_260701.AGF` but not in the
+repo catalog; they would change nothing visible. No element uses a constant or nd-only medium; the patent prints no
+θgF, ΔPgF or other line index. Distortion matches the plots: model -4.58 % at 38° (plot -4.6 %), -1.10 % at 29° (about
+-1.0 %) and -0.06 % at 24° (zero).
+
+**Assignee.** `Asahi Kogaku Kogyo Co., Ltd.` is the corpus's canonical form; the front page prints Asahi Kogaku Kogyo
+Kabushiki Kaisha (see "Canonical historical assignee display" above).
+
+**Text.** The back-focus line in the header and analysis was 18.64 + 0.6735 f; the slope is the group focal-length
+ratio 32.164 / 47.730 = 0.6739, so it now reads 18.63 + 0.6739 f. The analysis names the new glass rows, gives the g-line
+and distortion comparison, and describes the front group's turn near 47.7 mm.
+
+**Checks.** audit:surface OK; audit:aperture: 8 stations within 3 %, no rim, trace or iris limit; audit:image-circle 0
+undersized; audit:field-coverage 100 % at all 8 stations; `built.mjs`: EFL 28.798 mm, f/3.50 and half-field 32.51°,
+as before.
+
+Open: none new.
