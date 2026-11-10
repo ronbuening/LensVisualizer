@@ -54,7 +54,8 @@ specification table), `imageFormat` "135-full-frame" and `closeFocusM.marketing`
 
 Open: inferred rims are 20–35 % under the patent figure, which limits shift to about 0.9 mm; widen to the figure,
 then declare `perspectiveControl` (±11 mm) and the 65 mm image circle. "Unmatched" glass labels on exact HOYA codes;
-key, name, subtitle, specs and prose wording (closed in the cleanup and wording pass below; rims and shift stay open).
+key, name, subtitle, specs and prose wording (closed in the cleanup and wording pass below; rims and shift closed in
+the semi-diameter pass below).
 
 ## 2026-11-10 — Cleanup and wording pass
 
@@ -107,8 +108,81 @@ Open:
   L17 ≈ 12.4 mm, 20–35 % above the inferred rims; the Venus Optics diagram has the same proportions. A scratch copy
   with rims near the figure reached 29.2 mm (±11 mm shift corner), 31.3 mm (patent Ymax, at 63.9°) and 32.4 of 32.5
   mm (65 mm circle), but needed `checks.maxRimAngleDeg` about 73° for S2 and relief on the 2→3 and 6→7 gap-sag checks
-  (or rim lands).
+  (or rim lands). (Closed in the semi-diameter pass below.)
 - Shift. After the rim pass, declare `perspectiveControl` { shiftRangeMm: [-11, 11], tiltRangeDeg: [0, 0] } from the
   Venus Optics specification and `imageCircleMm` 65; with the current rims the model supports only about 0.9 mm.
+  (Closed in the semi-diameter pass below.)
 - L15's printed νd 28.00 matches no glass at nd 1.90366 (TAFD25 is νd 31.3); possibly a misprint, kept as printed.
 - The marketed 0.2 m minimum focus is not modelled; only the printed 0.01× state is.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: `patents/CN110955036B.pdf`, PDF page 10 (drawing sheet 1/5), Fig. 1, the section of Example 1 at infinity. The
+sheet is a 727 × 402 px JPEG at 150 ppi; measurements were made on 300 dpi renders (2 px per native pixel, about
+0.21 mm per native pixel).
+
+Scale. Ink crossings 1 mm off the axis give all 29 vertices; S1 at x = 575 px and S29 at x = 1463.5 px span 94.0949 mm,
+so 9.443 px/mm, and every intermediate vertex falls within 1.5 px of its prescription position. The vertical scale
+agrees: the S1 arc fits at three heights within the line width, S4's sag at 17.1 mm (7.81 mm) lands on the drawn rear
+flat of L2, S29's sag at 12.4 mm lands on the drawn rim, the S26/S27 intersection (11.75 mm) is the drawn knife edge
+of L16, and S1 meets the plane of L1's rear flat at 28.60 mm, where the figure draws L1's corner. The figure is an
+accurate CAD section.
+
+| Surface | Before | After | Fig. 1 | Evidence |
+| --- | --- | --- | --- | --- |
+| 1 | 23 | 28.4 | 28.6 (knife edge on L1's rear flat) | Figure; 28.4 keeps a 0.4 mm edge and the default 64.2° slope |
+| 2 | 19 | 20.7 | 20.8–21.1 (cap end) | Figure; the chief ray to 32.5 mm needs ≥ 20.65 (20.6 clips it by 0.01 mm) |
+| 3 | 16 | 21.2, land to 22.2 | 21.2 cap, chamfer to a 22.2 flat top | Figure |
+| 4 | 16 | 17.1, land to 22.2 | 17.1 cap, rear flat to 22.2 | Figure |
+| 5 | 11 | 16.9 | 16.9 (L3 flat top) | Figure |
+| 6 | 11 | 11.2, land to 16.9 | 11.2 cap, rear flat to 16.9 | Figure |
+| 7 | 8.5 | 10.7 | ≈ 11.2 (meets L3's rear flat) | Figure; S6 and S7 cross near 11.15 mm, and 10.7 is the largest value the 6→7 gap admits at 0.9 |
+| 8 | 8.5 | 12.0 | 12.0 (C1 flat top) | Figure |
+| 9 | 8.5 | 8.5, land to 12.0 | 8.5–8.7 cap, rear flat to 12.0 | Figure; cap kept, S9 and S10 meet near 8.6 mm |
+| 10 | 8 | 8 (kept) | ≈ 8.5 | Within noise; the 0.2986 mm 9→10 gap governs |
+| 11, 12 | 8 | 9.7 | 9.7 (C2 square top) | Figure |
+| 13, 14 | 7 | 8.1 | 8.1 (L8 square) | Figure |
+| 16–19 | 6.5 | 6.5 (kept) | 6.9 | Within noise (+6 %) |
+| 20–22 | 7 | 10.0 | 10.0 (C4 square top) | Figure |
+| 23, 24 | 8.5 | 11.3 | 11.3 (L14, about 0.7 mm edge) | Figure |
+| 25–27 | 9 | 11.4 | 11.75 (L15 top, L16 knife edge) | Figure; 11.4 leaves L16 a 0.53 mm edge |
+| 28 | 9 | 11.3, land to 12.4 | 11.3 cap, front flat to 12.4 | Figure |
+| 29 | 9 | 12.4 | 12.4 | Figure |
+
+The stop keeps its derived radius (5.7276 mm). All lands are `rimExtensionSd` on faces bordering air, none on a
+cemented junction, each at least 1 mm tall. There are no rim cuts and no rim below its baseline value.
+
+Checks. S2 at 20.7 mm has a 74.0° rim slope, so `checks.maxRimAngleDeg` is 74. The S2/S3 rim intrusion is 9.19 mm of
+the 9.8966 mm gap, so `checks.gapSagFrac` is 0.93, the smallest two-decimal value that admits it. The faces stay
+0.71 mm apart at the rim, and Fig. 1 draws L1 and L2 touching there. The scans show no slope sign change on S3 (to 22.5
+mm; its slope peaks near 19 mm), S4 (to 18 mm), S28 (to 12.6 mm; the K > 0 limit is 12.98 mm) or S29 (to 13.5 mm).
+
+Clearance and coverage. `audit:surface` OK; `audit:aperture` reports no rim limit; `audit:image-circle` none undersized.
+`audit:field-coverage` traces the chief ray to 32.50 of 32.50 mm at 64.8°, the edge of the 65 mm image circle. Before
+this pass it reached the 21.65 mm full-frame corner at 54.3°, and with a 62.6 mm circle only 22.12 mm (clipped at S3).
+A scratch check with a 58.4 mm circle confirms the ±11 mm shifted corner (29.2 mm from the lens axis) at 62.2°.
+`clearap` cannot launch chief rays past about 45° on this lens. At 45° it flags no axial clip or chief-ray block, and
+the triplet C3 vignettes 3–16 % of one side of the bundle.
+
+Engine numbers. EFL 15.490484956 mm, FOPEN 4.6, stop radius 5.7276 mm and BFD 51.7624 / 51.9214 mm are unchanged.
+halfField moves from 42.733° to 45.186°.
+
+Illumination (wide open, infinity, engine vignetting lattice). No field loses light against the baseline. At the
+36 × 24 mm corner (54.9°) transmission goes from 12.6 % to 70.1 %, and at 46.2° from 68.6 % to 90.8 %. On the 65 mm
+circle it is 44.1 % at 61.8° and 30.7 % at 64.8°.
+
+Metadata added in this pass: `catalog.imageCircleMm` 65 and `perspectiveControl` (shift ±11 mm, tilt [0, 0], 0.1 mm
+step) from Venus Optics' specification, now that the rims pass the shifted corner. The data-file header and the
+analysis's architecture and model-scope notes were updated to match.
+
+An overlay of the model section on the Fig. 1 render at 9.443 px/mm shows vertices, arcs and rim heights coinciding;
+the sketch joins rims straight, so the drawn lands appear only in the app. The maker-diagram comparison stands as
+recorded in the deployment validation above: 17 elements in 11 groups, aspherical L2 and L17, ED L3, L14 and L16. The
+Venus Optics section has the same proportions as Fig. 1.
+
+Open:
+
+- The live page was not viewed; the section with its lands still needs a look in the app.
+- S7 (10.7 mm) stays 0.5 mm under the drawing, held by the 6→7 gap; C3 (6.5 mm) and S10 (8.0 mm) stay within noise of
+  the drawing.
+- The ±8 mm medium-format shift is not modelled.

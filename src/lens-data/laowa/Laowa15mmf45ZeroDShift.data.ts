@@ -3,12 +3,17 @@
 // z = (y²/r)/(1 + √(1 − (1+K)(y/r)²)) + A4y⁴ + … + A12y¹², so K is the printed value.
 // Both printed spacing states (infinity and 0.01×) are kept; the moving gaps' sum differs by 0.0073 mm between them.
 // No cover plate is printed; D29 is the image distance.
-// Semi-diameters are inferred, not printed. S1 is 23 mm so the chief ray reaches the 36 × 24 mm corner (21.63 mm);
-// default rim-slope and gap-sag checks. The stop radius is derived from the printed F/4.6.
+// Semi-diameters are not printed; they are estimated from Fig. 1, which is drawn to scale (9.443 px/mm at 300 dpi from
+// the S1–S29 vertex span), and floor-checked by real-ray trace. Lands drawn in Fig. 1 are rimExtensionSd: L2 square at
+// 22.2 mm, L3's rear flat from 11.2 to 16.9 mm, L5's rear flat to 12 mm and L17's front flat to 12.4 mm. S1 is
+// 28.4 mm, just inside the figure's 28.6 mm knife edge. S2 at 20.7 mm runs to a 74° rim (maxRimAngleDeg 74), and the
+// S2/S3 rim intrusion is 92.9 % of the 9.8966 mm gap (gapSagFrac 0.93); Fig. 1 draws both. These rims pass the chief
+// ray to 32.5 mm image height (the 65 mm image circle) and to the 29.2 mm corner of the frame at ±11 mm shift.
+// The stop radius is derived from the printed F/4.6.
 // Glass labels name exact HOYA (and one SUMITA moulding-glass) catalog coordinates; the production supplier is not
 // published. L1/L5 (1.90000/43.00), L15 (1.90366/28.00) and L17 (1.80781/40.97) match no catalog row.
-// No perspectiveControl or imageCircleMm: the inferred rims trace the unshifted full-frame corner but not the
-// patent's 31.3 mm image height, so the marketed ±11 mm shift is not modelled.
+// Shift ±11 mm on full frame (no tilt) and the Ø65 mm image circle are Venus Optics' published specification
+// (venuslens.net product page); the patent claims at least 10 mm of shift and a field of at least 62 mm (¶0042).
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
@@ -44,6 +49,7 @@ const LENS_DATA = {
       "hasselblad-xcd",
     ],
     imageFormat: "135-full-frame",
+    imageCircleMm: 65,
     specs: [
       "17 ELEMENTS / 11 GROUPS",
       "DESIGN f = 15.49 mm",
@@ -293,20 +299,21 @@ const LENS_DATA = {
       label: "1",
       R: 31.7281,
       d: 2,
-      sd: 23,
+      sd: 28.4,
       medium: 1,
     },
     {
       label: "2",
       R: 21.5362,
       d: 9.8966,
-      sd: 19,
+      sd: 20.7,
     },
     {
       label: "3",
       R: 70.6663,
       d: 2.5,
-      sd: 16,
+      sd: 21.2,
+      rimExtensionSd: 22.2,
       medium: 2,
       asphere: {
         K: 0.7661,
@@ -320,7 +327,8 @@ const LENS_DATA = {
     {
       label: "4",
       R: 16.9081,
-      sd: 16,
+      sd: 17.1,
+      rimExtensionSd: 22.2,
       asphere: {
         K: -0.5783,
         A4: 2.36603e-5,
@@ -334,27 +342,28 @@ const LENS_DATA = {
       label: "5",
       R: 111.438,
       d: 1.5,
-      sd: 11,
+      sd: 16.9,
       medium: 3,
     },
     {
       label: "6",
       R: 13.8152,
       d: 3.7286,
-      sd: 11,
+      sd: 11.2,
+      rimExtensionSd: 16.9,
     },
     {
       label: "7",
       R: 32.8081,
       d: 5.9138,
-      sd: 8.5,
+      sd: 10.7,
       medium: 4,
     },
     {
       label: "8",
       R: -26.054,
       d: 2.6307,
-      sd: 8.5,
+      sd: 12,
       medium: 5,
     },
     {
@@ -362,6 +371,7 @@ const LENS_DATA = {
       R: 22.4073,
       d: 0.2986,
       sd: 8.5,
+      rimExtensionSd: 12,
     },
     {
       label: "10",
@@ -374,26 +384,26 @@ const LENS_DATA = {
       label: "11",
       R: -25.1557,
       d: 5,
-      sd: 8,
+      sd: 9.7,
       medium: 7,
     },
     {
       label: "12",
       R: 926.2038,
       d: 0.15,
-      sd: 8,
+      sd: 9.7,
     },
     {
       label: "13",
       R: 38.558,
       d: 10,
-      sd: 7,
+      sd: 8.1,
       medium: 8,
     },
     {
       label: "14",
       R: -72.8402,
-      sd: 7,
+      sd: 8.1,
     },
     {
       label: "STO",
@@ -431,60 +441,61 @@ const LENS_DATA = {
       label: "20",
       R: 291.7843,
       d: 3.9513,
-      sd: 7,
+      sd: 10,
       medium: 12,
     },
     {
       label: "21",
       R: -17.6835,
       d: 0.8,
-      sd: 7,
+      sd: 10,
       medium: 13,
     },
     {
       label: "22",
       R: -120.2623,
       d: 0.15,
-      sd: 7,
+      sd: 10,
     },
     {
       label: "23",
       R: 30.3732,
       d: 6.0221,
-      sd: 8.5,
+      sd: 11.3,
       medium: 14,
     },
     {
       label: "24",
       R: -21.9863,
       d: 0.15,
-      sd: 8.5,
+      sd: 11.3,
     },
     {
       label: "25",
       R: -152.5492,
       d: 0.8,
-      sd: 9,
+      sd: 11.4,
       medium: 15,
     },
     {
       label: "26",
       R: 20.0299,
       d: 7.947,
-      sd: 9,
+      sd: 11.4,
       medium: 16,
     },
     {
       label: "27",
       R: -18.7676,
       d: 0.15,
-      sd: 9,
+      sd: 11.4,
     },
     {
       label: "28",
       R: -15.9569,
       d: 1.7,
-      sd: 9,
+      sd: 11.3,
+      rimExtensionSd: 12.4,
       medium: 17,
       asphere: {
         K: 0.4514,
@@ -498,7 +509,7 @@ const LENS_DATA = {
     {
       label: "29",
       R: -23.9985,
-      sd: 9,
+      sd: 12.4,
       asphere: {
         K: -11.3986,
         A4: 3.6758e-5,
@@ -536,6 +547,11 @@ const LENS_DATA = {
     fStops: [4.6, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
   },
+  perspectiveControl: {
+    shiftRangeMm: [-11, 11],
+    tiltRangeDeg: [0, 0],
+    shiftStepMm: 0.1,
+  },
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "4" },
     { text: "G2", fromSurface: "5", toSurface: "14" },
@@ -552,6 +568,7 @@ const LENS_DATA = {
     scFill: 0.6,
     yScFill: 0.4,
   },
+  checks: { gapSagFrac: 0.93, maxRimAngleDeg: 74 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

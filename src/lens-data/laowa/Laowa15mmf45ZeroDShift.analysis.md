@@ -60,8 +60,9 @@ striking the mount or being shaded by it. The four conditional expressions and t
 | (3) \|BF/F\| | 3.2–3.7 | 3.342 | 3.342 |
 | (4) \|F2/F\| | 3.5–8 | 6.842 | 6.842 |
 
-Shift is a movement of the whole optical unit across the camera frame. The model does not declare it (see Model Scope
-and Limitations).
+Shift moves the whole optical unit across the camera frame. Venus Optics specifies ±11 mm on full frame and no tilt,
+and the model declares that range. Because the lens is rotationally symmetric, an 11 mm shift along the 24 mm side
+puts the far frame corner 29.2 mm from the lens axis, inside the patent's 31.3 mm maximum image height.
 
 ## Element-by-Element Analysis
 
@@ -226,11 +227,14 @@ match is a moulding glass.
   paraxial EFL is 15.4905 mm (printed 15.4908 mm) and its back focal distance 51.762 mm (printed D29 51.7633 mm); the
   image plane stays at the printed D29.
 - **Apertures.** The patent prints no semi-diameters or stop diameter. The stop radius is derived from the printed
-  F/4.6. The element rims are inferred; the front element is set so that the chief ray reaches the 36 × 24 mm corner
-  (21.63 mm image height, about 54.2° from the axis). The inferred rims are smaller than those drawn in Figure 1, and
-  the modelled field ends at about 22 mm image height.
-- **Shift.** Because of those rims the model does not trace the patent's 31.3 mm image height, and the marketed ±11 mm
-  shift is not declared. The unshifted full-frame field is modelled; shifted use is not.
+  F/4.6. The element rims are estimated from Figure 1, which is drawn to scale, and the flat rims it draws on L2, L3, L5
+  and L17 are shown as lands. The nearly hemispherical rear face of L1 runs to a 74° rim slope, and L1 and L2 nearly
+  meet at their rims, as the figure draws them.
+- **Coverage and shift.** The chief ray reaches the edge of the 65 mm image circle (32.5 mm image height, about 64.8°),
+  beyond the patent's 31.3 mm, and so covers the frame corner at the full ±11 mm shift. Wide open, the modelled
+  geometric transmission is about 70 % at the unshifted frame corner and about 43 % at the shifted corner. These
+  figures follow from the estimated rims, not from a published measurement. The ±8 mm medium-format shift is not
+  modelled.
 - **Close focus.** Only the printed 0.01× state is modelled; the marketed 0.2 m minimum focus distance is not.
 - **Glass.** Thirteen of the seventeen elements resolve to catalog glasses; L1, L5, L15 and L17 trace with dispersion
   estimated from their printed nd and νd.
