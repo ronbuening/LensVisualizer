@@ -21,7 +21,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-11-09",
     type: "lens",
-    summary: "Added the Minor Photographic Objective (US 1,360,667, 1920) with its sodium D-line glass data",
+    summary: "Added an EBC Fujinon W 24mm f/2.8 M42 patent representative with native sodium D-line glass data",
   },
   {
     date: "2026-11-09",
