@@ -154,3 +154,81 @@ Corner illumination, wide open at infinity (engine vignetting curve), before →
 Open: L13 stays about 2.5 mm under the drawn height and below L12, because Fig. 1 draws the L12/L13 pair overlapping,
 which the printed radii and gap rule out. A production lens would need a land or a different edge profile there, but the
 patent does not show one.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+A fresh look at the live page (the coordinator's shots, a new shot from the worktree's dev server, and the inspector for
+all 13 elements). It was compared with Fig. 1 (PDF p. 7, native 200 dpi), the Example 1 table (PDF p. 4), ¶0019, the
+PAJ front page, and the Sigma 2008 catalogue drawing rendered in the cleanup pass. No change was needed. The data and
+analysis files are unchanged.
+
+Rims. Each element was re-read on both sides of the local axis line, less 1 px for line width. The scan is rotated by
+about 0.4°: the axis runs from y 1329.5 at x 405 to y 1334.5 at x 1100. At 0.25 mm/px the readings are:
+
+| Element | Figure | Model | Model / figure |
+|---|---|---|---|
+| L1 | 32.0 | 32 | 1.00 |
+| L2 | 30.6 | 31 | 1.01 |
+| C1 | 26.0 | 26 | 1.00 |
+| L5 | 22.3 | 23 | 1.03 |
+| L6 | 19.1 | 20 | 1.05 |
+| C2 | 16.8 | 18 | 1.07 |
+| L9, C3 | 19.5 | 20 | 1.03 |
+| FS21 | 16.3 | 16.5 | 1.01 |
+| L12 | 16.9 | 18 | 1.07 |
+| L13 | 17.5 | 15 | 0.86 |
+
+These agree with the semi-diameter pass to 0.3 mm. The arcs cannot tighten the vertical scale. S1 is drawn with about
+half its true sag, and fits on S6 give 0.226–0.250 mm/px depending on height. At the isotropic 0.257 mm/px every figure
+value rises 3 %, and no element crosses the 10 % line. Every element the figure draws square-cut (L1, L2, C1, L5, L6, C2,
+L9, C3, L12, L13) is square in the model. The drawn height order holds everywhere except L12/L13.
+
+L13 and `gapSagFrac`. At 15.0 mm, S23 and S24 sag 0.628 and 1.862 mm into their 2.5415 mm gap, 0.9795 of it. The
+surface audit refuses 15.0 mm at 0.97 (2.49 mm against 2.465 mm allowed) and refuses 15.05 mm at 0.98. So 15.0 mm and
+0.98 are the largest rim and the smallest fraction that go together. Fig. 1 itself draws the two rims overlapping by
+2–3 px, which is where the printed radii put them at the drawn 17–17.5 mm. A rim extension on S24 buys no light and would
+meet S23 just past 15 mm, so none is added. The Open line above stands.
+
+FS21. Row 21 (固定絞り) sits at D 15.1580, fixed relative to G4. Its drawn line (x 990–991, y 1267 to about 1399, where
+a leader joins it) spans about 65 px each side: 16.3 mm at 0.25 mm/px, 16.7 mm at 0.257. The 16.5 mm radius stays. The
+real-ray trace at Y 21.63 mm shows FS21 trimming 19 % of one side of the corner bundle and clearing the axial beam
+(marginal ray 12.24 mm).
+
+Lands and cuts. `rimcost.mjs --loo` against the rims before the semi-diameter pass puts the one cut, FS21 (20 → 16.5), at 1.7 points at
+5.7°, inside the 3-point budget, so it is kept as slight. With L13 raised, the whole lens loses 0.0 points against
+baseline at every field, and gains 5.9 points at 5.7° and 11.3 at 6.9°. There are no lands.
+
+The page draws no line for FS21, because the diagram draws flat air surfaces only for the STO. The trace still uses it.
+
+Labels and tags:
+
+- Element types agree with the radius signs for all 13 elements, the roles are true, and every inspector shows a focal
+  length.
+- Groups G1 (S1–S9), G2 (S10–S14), G3 (S16–S20) and G4 (S22–S25) bracket the same surfaces as the patent's L1–L4 brackets
+  under Fig. 1. The G names avoid a clash with the element names L1–L13, as the header says.
+- Doublets C1–C3 match the three cemented interfaces. The STO sits between G2 and G3 (¶0019). There are no aspheres, and
+  none is marked.
+- `apd: "inferred"` on L2 and L4 is right. The patent text designates no glass. The Sigma drawing shades the second
+  element and the rear element of the first cemented pair. Both inspectors show APD (INFERRED) and FCD1 equivalent
+  (HOYA).
+
+Movement. The model is static, `focus.description` says so, and the slider reads "Not modeled". The description's
+directions and amounts match the Example 1 table:
+
+- D9 9.9681 → 41.1292: G2 moves 31.16 mm toward the image.
+- D15 23.1829 → 7.1902 and D20 5.5193 → 21.5611: G3 moves 15.99 mm toward the object.
+- G1 and G4 stay fixed.
+
+The infinity and closest-focus group brackets under Fig. 1 show the same shifts.
+
+Glass and colour. All 13 labels resolve to exact HOYA rows (|Δnd| ≤ 3.2e-6, |Δνd| ≤ 0.05). There are no unmatched
+glasses and no nd-only media. Figs. 2–4 plot spherical aberration with a single line, plus astigmatism and distortion,
+so no per-line colour comparison is possible. The patent prints no line indices or partial dispersions.
+
+Front page and assignee. The PAJ front page gives SIGMA CORP and inventors Ogawa Shinji and Koyama Takehisa. The
+application is 11-202390, filed 16 July 1999 and published 9 February 2001. All of this matches the file, and "Sigma
+Corporation" is the spelling the other Sigma files use.
+
+The engine numbers are unchanged: EFL 178.654 mm, F 3.6069, half-field 8.598° and stop radius 14.669 mm. The surface
+audit is OK, the aperture audit finds no rim limit, the image-circle audit finds 0 undersized, and field coverage is
+100 %.
