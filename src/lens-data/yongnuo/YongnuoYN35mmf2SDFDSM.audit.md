@@ -62,5 +62,48 @@ mm, BFD 0.9055 mm (image plane 0.0945 mm behind paraxial focus). Surface audit O
 Open: the printed 0.35 m state (d11 0.78 mm, d17 4.1 mm, object 269.495 mm from surface 1) can be modelled as a
 focus keyframe with a first-surface conjugate. Rims are not yet checked against Fig. 1. The real-ray clearance check
 at full aperture flags S7, S8, S10 and S11 for the plotted 8.76 mm entrance radius, which the paraxial stop does not
-admit. The F2Z (Nikon Z) version shares the published construction; `nikon-z` is not added without a maker statement
-that the optics are the same.
+admit. (Both rim items closed in the semi-diameter pass below.) The F2Z (Nikon Z) version shares the published
+construction; `nikon-z` is not added without a maker statement that the optics are the same.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: CN 113126266 A, Fig. 1 (page 13), the Example 1 section at infinity focus. The figure is a 943 × 532 raster at
+150 ppi, measured at 300 dpi. Scale: the first vertex to the image line spans 1674 px for 80.114 mm (20.90 px/mm); the
+first to last lens vertex gives 20.92 px/mm and the front group S1–S4 21.0 px/mm. The middle spacings are drawn
+loosely (L3 sits about 2.5 mm forward), but heights are to scale. Vertically, L1's rear arc (R 20.355 mm) has 87.5 px
+of sag at 263.5 px, which fits 20.9–21.5 px/mm. Heights are the outer ink on both sides of the axis, averaged, less a
+3 px half-stroke.
+
+| Surface | Before (mm) | Fig. 1 (mm) | After (mm) | Evidence |
+| --- | --- | --- | --- | --- |
+| 1 | 13.0 | 14.26 (square blank) | 14.3 | the flat front face reaches the box edge; the beam passed by the other rims needs about 14.2 |
+| 2 | 13.0 | cap end 12.4, land to 14.26 | 13.0, land to 14.3 | the cap is within noise (−5 %); the figure draws a vertical land out to the blank edge |
+| 3 / 4 | 12.35 / 12.35 | 12.49 | kept | +1 % |
+| 5 / 6 | 11.0 / 11.0 | 11.22 | kept | +2 % |
+| 7 / 8 | 11.0 / 11.1 | 11.91 (square rim) | 12.1 / 12.1 | +8 to +10 %; the real F/2.00 marginal ray of Fig. 2 (8.7555 mm pupil) reaches 11.70 / 12.03 mm |
+| 10 / 11 | 12.0 / 12.0 | 13.23 | 13.2 / 13.2 | +10 %; the same ray reaches 12.56 / 12.59 mm |
+| 12 / 13 / 14 | 12.0 | 12.0 (L6), 11.63 (L7) | kept | 0 % and −3 % |
+| 16A / 17A | 12.0 / 12.0 | 12.54 | kept | +4.5 %, within noise; raising it would add 7 points at the corner, so it is left |
+| 18 / 19 | 12.5 / 12.5 | 13.61 (square-cut) | 13.6 / 13.6 | +9 %; the corner beam reaches about 13.2 mm at L9 |
+| STO | engine 11.33 | dashed opening about 12.3 | not changed | the figure's opening equals the real F/2.00 marginal height (12.27 mm); the stop stays paraxial |
+
+The figure-driven heights for L4 and L5 coincide with the patent's own real marginal ray, and the figure's L1 front
+and L9 heights coincide with the extent of the beam the other rims pass. The figure therefore reads as the
+design's clear-aperture layout. L1's front face and L9 move by 9–10 %. L4 and L5 move by 8–10 %, which the figure
+and the ray agree on. Everything else lies within 5 % and is kept. No face is cut below its earlier value. The
+asphere scans for 16A and 17A show no turnover to 14 mm. The doublet and L8 are unchanged.
+
+Clearance and light: the surface validator, aperture audit (no rim limit), image-circle floor (none undersized) and
+corner field coverage (100 %) pass. The real-ray check at the plotted F/2.00 pupil no longer flags S7, S8, S10 or
+S11, and nothing blocks the chief ray at 21.63 mm. Engine half-field grows from 31.88° to 32.26°; FOPEN stays 2.000
+and the engine stop radius stays 11.33 mm. Geometric corner transmission rises from 38.4 % to 58.4 % at 31.1° and
+from 63.3 % to 74.0 % at 28.3°, with no field losing light. The rim-cost check against the package file finds no loss
+at any field. Of the gain, S1 contributes about 8 points and L9 about 12. L4 and L5 change nothing, since the
+paraxial iris limits the axial beam first.
+
+Maker diagram: the earlier deployment-validation entry above records the construction comparison: 9 elements in 8
+groups, with ED at L4, high-index glass at L2 and L5, and the asphere at L8. Its small catalog drawing is too coarse
+for rim proportions. The model sketch was overlaid on Fig. 1 at the matched scale.
+
+Open: L8 reads 12.5 mm on the figure against 12.0 mm in the file and is left within noise. The stop housing now
+draws at 12.1 mm beside the 11.33 mm paraxial iris.

@@ -6,8 +6,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // The patent prints the asphere coefficients without the sag equation; the standard even-asphere form (conic 1 + K)
 // reproduces its spherical-aberration plot (Fig. 2).
 // The camera-side plate GL (2.5 mm, 14.08 mm air before it, 1.00 mm to the image) is the patent's own rear train.
-// Semi-diameters are inferred (the patent prints none), not factory dimensions; the stop is sized for F/2.00 at the
-// paraxial entrance pupil. L2, L4 and L8 match no catalog glass and use Abbe-number dispersion.
+// Semi-diameters are inferred (the patent prints none), not factory dimensions: estimated from Fig. 1 (20.9 px/mm at
+// 300 dpi from the vertex span) and floor-checked by real-ray trace. L1 is drawn as a square blank, so its concave
+// rear cap ends at 13.0 mm with a land out to 14.3 mm (rimExtensionSd). L4 and L5 also clear the real F/2.00
+// marginal ray of Fig. 2. The stop is sized for F/2.00 at the paraxial entrance pupil. L2, L4 and L8 match no
+// catalog glass and use Abbe-number dispersion.
 // Infinity focus only: the patent's 0.35 m state (GR2 moved) is not modelled.
 const LENS_DATA = {
   schema: 2,
@@ -184,7 +187,7 @@ const LENS_DATA = {
       label: "1",
       R: 375.1,
       d: 0.98,
-      sd: 13,
+      sd: 14.3,
       medium: 1,
     },
     {
@@ -192,6 +195,7 @@ const LENS_DATA = {
       R: 20.355,
       d: 2.83,
       sd: 13,
+      rimExtensionSd: 14.3,
     },
     {
       label: "3",
@@ -223,14 +227,14 @@ const LENS_DATA = {
       label: "7",
       R: 44.272,
       d: 4.51,
-      sd: 11,
+      sd: 12.1,
       medium: 4,
     },
     {
       label: "8",
       R: 165.408,
       d: 1.7,
-      sd: 11.1,
+      sd: 12.1,
     },
     {
       label: "STO",
@@ -241,14 +245,14 @@ const LENS_DATA = {
       label: "10",
       R: 77.368,
       d: 4.62,
-      sd: 12,
+      sd: 13.2,
       medium: 5,
     },
     {
       label: "11",
       R: -46.486,
       d: 3.17,
-      sd: 12,
+      sd: 13.2,
     },
     {
       label: "12",
@@ -303,14 +307,14 @@ const LENS_DATA = {
       label: "18",
       R: -25.374,
       d: 1,
-      sd: 12.5,
+      sd: 13.6,
       medium: 9,
     },
     {
       label: "19",
       R: -1076.348,
       d: 14.08,
-      sd: 12.5,
+      sd: 13.6,
     },
   ],
   rearPlates: [
