@@ -20,7 +20,7 @@ No camera-side plate is prescribed or added. Model surface labels append A to th
 
 ### L1: Negative Meniscus
 
-nd = 1.83481, νd = 42.7. Glass: unmatched source medium. Isolated air-surrounded paraxial f = -103.59 mm (calculated, not a patent value).
+nd = 1.83481, νd = 42.7. Glass: TAFD5G (HOYA) catalog equivalent. Isolated air-surrounded paraxial f = -103.59 mm (calculated, not a patent value).
 
 Glass substrate of the front hybrid negative element. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
@@ -32,67 +32,67 @@ Bonded resin layer, 0.200 mm thick at the axis, ending at aspherical S3. It is n
 
 ### L3: Biconvex Positive
 
-nd = 1.72916, νd = 54.7. Glass: unmatched source medium. Isolated air-surrounded paraxial f = +132.09 mm (calculated, not a patent value).
+nd = 1.72916, νd = 54.7. Glass: TAC8 (HOYA) catalog equivalent. Isolated air-surrounded paraxial f = +132.09 mm (calculated, not a patent value).
 
 Positive biconvex member of G1. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
 ### L4: Positive Meniscus
 
-nd = 1.60311, νd = 60.7. Glass: unmatched source medium. Isolated air-surrounded paraxial f = +117.46 mm (calculated, not a patent value).
+nd = 1.60311, νd = 60.7. Glass: BACD14 (HOYA) catalog equivalent. Isolated air-surrounded paraxial f = +117.46 mm (calculated, not a patent value).
 
 Positive rear meniscus of G1. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
 ### L5: Negative Meniscus
 
-nd = 1.56384, νd = 60.8. Glass: unmatched source medium. Isolated air-surrounded paraxial f = -74.74 mm (calculated, not a patent value).
+nd = 1.56384, νd = 60.8. Glass: N-SK11 (SCHOTT) catalog equivalent. Isolated air-surrounded paraxial f = -74.74 mm (calculated, not a patent value).
 
 Negative front meniscus of moving G2. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
 ### L6: Biconcave Negative
 
-nd = 1.70154, νd = 41.2. Glass: unmatched source medium. Isolated air-surrounded paraxial f = -32.83 mm (calculated, not a patent value).
+nd = 1.70154, νd = 41.2. Glass: BAFD7 (HOYA) catalog equivalent. Isolated air-surrounded paraxial f = -32.83 mm (calculated, not a patent value).
 
 Negative member of the G2 cemented pair. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
 ### L7: Biconvex Positive
 
-nd = 1.83481, νd = 42.7. Glass: unmatched source medium. Isolated air-surrounded paraxial f = +29.98 mm (calculated, not a patent value).
+nd = 1.83481, νd = 42.7. Glass: TAFD5G (HOYA) catalog equivalent. Isolated air-surrounded paraxial f = +29.98 mm (calculated, not a patent value).
 
 Positive member of that pair. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
 ### L8: Biconvex Positive
 
-nd = 1.497, νd = 81.6. Glass: unmatched source medium. Isolated air-surrounded paraxial f = +107.31 mm (calculated, not a patent value).
+nd = 1.497, νd = 81.6. Glass: FCD1 (HOYA) catalog equivalent. Isolated air-surrounded paraxial f = +107.31 mm (calculated, not a patent value).
 
 Positive front component of moving G3. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
 ### L9: Biconvex Positive
 
-nd = 1.58913, νd = 61.2. Glass: unmatched source medium. Isolated air-surrounded paraxial f = +59.79 mm (calculated, not a patent value).
+nd = 1.58913, νd = 61.2. Glass: BACD5 (HOYA) catalog equivalent. Isolated air-surrounded paraxial f = +59.79 mm (calculated, not a patent value).
 
 Positive member of the G3 cemented pair. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
 ### L10: Negative Meniscus
 
-nd = 1.84666, νd = 23.8. Glass: unmatched source medium. Isolated air-surrounded paraxial f = -85.95 mm (calculated, not a patent value).
+nd = 1.84666, νd = 23.8. Glass: FDS90 (HOYA) catalog equivalent. Isolated air-surrounded paraxial f = -85.95 mm (calculated, not a patent value).
 
 Negative member of that pair. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
 ### L11: Negative Meniscus
 
-nd = 1.72342, νd = 38. Glass: unmatched source medium. Isolated air-surrounded paraxial f = -79.69 mm (calculated, not a patent value).
+nd = 1.72342, νd = 38. Glass: BAFD8 (HOYA) catalog equivalent. Isolated air-surrounded paraxial f = -79.69 mm (calculated, not a patent value).
 
 First negative meniscus of fixed G4. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
 ### L12: Negative Meniscus
 
-nd = 1.60311, νd = 60.7. Glass: unmatched source medium. Isolated air-surrounded paraxial f = -131.34 mm (calculated, not a patent value).
+nd = 1.60311, νd = 60.7. Glass: BACD14 (HOYA) catalog equivalent. Isolated air-surrounded paraxial f = -131.34 mm (calculated, not a patent value).
 
 Second negative meniscus of fixed G4. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
 ### L13: Positive Meniscus
 
-nd = 1.80518, νd = 25.5. Glass: unmatched source medium. Isolated air-surrounded paraxial f = +97.98 mm (calculated, not a patent value).
+nd = 1.80518, νd = 25.5. Glass: FD60 (HOYA) catalog equivalent. Isolated air-surrounded paraxial f = +97.98 mm (calculated, not a patent value).
 
 Positive rear meniscus completing G4. This shape/group assignment follows the source description and table. The isolated focal value is only a shape diagnostic; cemented surroundings change the in-system contribution. No individual aberration correction or glass-catalog identity is established from n/V alone.
 
