@@ -1,28 +1,30 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-// Qualified source reconstruction; infinity only; peripheral MTF limits disclosed.
-// Whole DE939956B sole example, uniformly scaled x0.5 as retail-50mm hypothesis.
-// R/d/nd/v unchanged apart from uniform lengths; r7 remains positive.
-// STO midpoint is inferred; total central air gap is preserved exactly.
-// SDs are inferred static geometry candidates, not measured factory clear apertures.
-// BFL is paraxially derived, not printed. No finite-focus or floating law is asserted.
-// Patent prints lowercase nd and v, but no numerical wavelength or Abbe formula.
+// DE 939956 B (Ernst Leitz GmbH; Zimmermann and Kleineberg), sole example: the page 2 table, repeated in
+// claim 1, printed at f = 100 and 1:2. All lengths are scaled uniformly ×0.5 to the marketed 50 mm; nd and ν
+// are the printed values. r7 = +145.08 is printed positive in both tables; no erratum is applied.
+// The patent heads its glass columns nd and ν without stating a wavelength; the model reads them as d-line values.
+// Stop: not printed. Placed at the midpoint of the 9.08 mm central air space; the total gap is unchanged.
+// Semi-diameters: not printed. Estimated from the f/2 axial beam and the narrow L3–L4 air space; they are not
+// measured factory clear apertures.
+// Back focus: derived paraxially (30.74 mm), not printed. Infinity focus only: the patent publishes no
+// focusing movement.
 const LENS_DATA = {
   schema: 2,
   key: "leica-summicron-50mm-f2-rigid-dual-range",
   maker: "Leica",
   name: "LEICA SUMMICRON 50mm f/2 Rigid / Dual Range",
-  subtitle: "DE 939956 B sole example, scaled \u00d70.5; probable family, not factory prescription",
+  subtitle: "DE 939956 B, sole example \u2014 probable production correlation, scaled \u00d70.5",
   visible: true,
   catalog: {
     lensMounts: ["leica-m"],
     imageFormat: "135-full-frame",
-    specs: ["7 ELEMENTS / 6 GROUPS", "50.0266 mm DESIGN EFL", "INFINITY-ONLY QUALIFIED HYPOTHESIS"],
+    specs: ["7 ELEMENTS / 6 GROUPS", "DESIGN f = 100 mm (SCALED 0.5× TO 50 mm)", "DESIGN F/2", "ALL SPHERICAL"],
     elementCount: 7,
     groupCount: 6,
     focalLengthMm: {
       marketing: 50,
-      design: 50.02660182975827,
+      design: 50,
     },
     fNumber: {
       marketing: 2,
@@ -52,8 +54,8 @@ const LENS_DATA = {
       vd: 54.9,
       indexReference: "d",
       focalLengthMm: 50.52274434281679,
-      glass: "Unmatched (patent nd / v only; no factory glass identification)",
-      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+      glass: "J-LAK9 (Hikari catalog equivalent; production supplier unspecified)",
+      role: "Biconvex front collector; with L2 it forms the air-spaced front positive member.",
     },
     {
       id: 2,
@@ -64,8 +66,8 @@ const LENS_DATA = {
       vd: 36.1,
       indexReference: "d",
       focalLengthMm: -106.25971873834973,
-      glass: "Unmatched (patent nd / v only; no factory glass identification)",
-      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+      glass: "Unmatched (patent nd 1.62237, ν 36.1; no exact catalog row)",
+      role: "Weak negative flint completing the front positive member; opposes the collector's colour.",
     },
     {
       id: 3,
@@ -76,8 +78,8 @@ const LENS_DATA = {
       vd: 54.9,
       indexReference: "d",
       focalLengthMm: 33.641446637422135,
-      glass: "Unmatched (patent nd / v only; no factory glass identification)",
-      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+      glass: "J-LAK9 (Hikari catalog equivalent; production supplier unspecified)",
+      role: "Positive outer half of the front meniscus pair, 0.26 mm of air ahead of L4.",
     },
     {
       id: 4,
@@ -88,8 +90,8 @@ const LENS_DATA = {
       vd: 38.3,
       indexReference: "d",
       focalLengthMm: -25.140017540891535,
-      glass: "Unmatched (patent nd / v only; no factory glass identification)",
-      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+      glass: "Unmatched (patent nd 1.60140, ν 38.3; no exact catalog row)",
+      role: "Negative flint meniscus before the stop; its deep concave rear surface gives the front pair its negative power.",
     },
     {
       id: 5,
@@ -100,9 +102,9 @@ const LENS_DATA = {
       vd: 40.8,
       indexReference: "d",
       focalLengthMm: -24.222374717654407,
-      glass: "Unmatched (patent nd / v only; no factory glass identification)",
-      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
-      cemented: "D1",
+      glass: "LF5 (Schott catalog equivalent; production supplier unspecified)",
+      role: "Biconcave light flint at the front of the rear cemented meniscus, concave to the stop.",
+      cemented: "C1",
     },
     {
       id: 6,
@@ -113,9 +115,9 @@ const LENS_DATA = {
       vd: 54.9,
       indexReference: "d",
       focalLengthMm: 28.411541513395857,
-      glass: "Unmatched (patent nd / v only; no factory glass identification)",
-      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
-      cemented: "D1",
+      glass: "J-LAK9 (Hikari catalog equivalent; production supplier unspecified)",
+      role: "Biconvex lanthanum crown completing the rear cemented meniscus.",
+      cemented: "C1",
     },
     {
       id: 7,
@@ -126,8 +128,8 @@ const LENS_DATA = {
       vd: 54.9,
       indexReference: "d",
       focalLengthMm: 51.7706555403093,
-      glass: "Unmatched (patent nd / v only; no factory glass identification)",
-      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+      glass: "J-LAK9 (Hikari catalog equivalent; production supplier unspecified)",
+      role: "Biconvex rear positive member.",
     },
   ],
   surfaces: [
@@ -223,9 +225,9 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1,
+    closeFocusM: 1e15,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: infinity-only fixed prescription. The required 1m close-focus label is maker normal-range context, not a modeled conjugate or movement law.",
+      "Infinity focus only; the patent publishes no focusing movement. The rigid lens focuses to 1 m, and the Dual Range version adds a near range of 0.88–0.48 m used with a viewfinder attachment.",
   },
   aperture: {
     nominalFNumber: 2,
@@ -245,7 +247,7 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "9",
       toSurface: "11",
     },

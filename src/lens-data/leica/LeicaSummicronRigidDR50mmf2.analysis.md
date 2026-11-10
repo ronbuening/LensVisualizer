@@ -6,113 +6,110 @@
 **Inventors:** Otto Zimmermann; Gustav Kleineberg
 **Assignee:** Ernst Leitz GmbH
 **Title:** Photographisches Objektiv
-**Example details:** Sole unnumbered table on original page 2, repeated in claim 1. All lengths are uniformly scaled ×0.5.
+**Example details:** Sole unnumbered table on page 2 (f = 100, 1:2), repeated in claim 1. All lengths are uniformly scaled ×0.5.
 
-This is a qualified reconstruction of the complete patent example, associated with the rigid and Dual-Range Summicron 50mm f/2 family. It is not an exact manufactured prescription. The two retail variants count as one optical family.
+The data file models the patent's only example. It is associated with the rigid and Dual Range Summicron 50mm f/2, which share one optical formula; it is the patent design, not a Leitz factory prescription.
 
-The association rests on three independent kinds of correspondence:
+The association rests on four points:
 
-1. The patent is a seven-element, six-group Gaussian lens with a split front collector and a rear cemented meniscus pair.
-2. The 1960 Leitz List 11-34/Engl. names Summicron f/2 50mm and shows the matching architecture, seven elements and a 45° angle of view.
-3. October 1961 dealer pages B7/B8 explicitly give seven elements and six components for both rigid and Dual-Range variants.
+1. The patent is a seven-element, six-group Gauss lens with a split front positive member and a cemented rear meniscus.
+2. The 1960 Leitz List 11-34/Engl. gives the Summicron f/2 50mm seven elements and a 45° angle of view.
+3. October 1961 dealer pages B7/B8 give seven elements and six components for both the rigid and Dual Range variants.
+4. The patent, filed in August 1954, sets out to hold image quality from infinity down to objects closer than about 1 m. That aim and date fit the 1956 rigid lens, a new design rather than the 1953 collapsible formula (Merklinger), and its Dual Range near range of 0.88–0.48 m.
 
-The maker brochure identifies SOSIC, SOMNI and SOSTA variants. The selected catalog mount describes the rigid/DR Leica M use, not a claim that all related screw-mount variants are identical.
+The 1960 list names three versions: SOSIC (Leica M), SOMNI (Leica M, with the close-up range and viewfinder attachment) and SOSTA (screw thread). The catalog entry lists the Leica M mount only.
 
-The patent does not name Summicron or give a 50mm prescription. Its printed focal length is 100 without an explicit physical unit. Assigning a half-scale model in millimetres is a stated hypothesis, not a normalization to exact 50mm. The independently calculated EFL is 50.02660183mm.
+The patent does not name the Summicron. It prints the example at f = 100 without a unit; the model scales it ×0.5 to the marketed 50 mm rather than to a measured production focal length. The paraxial EFL is 50.03 mm.
 
-The 1961 dealer source is a later authorized Hove facsimile. Its original October 1961 page headers and permission page are retained in the evidence packet. Its facsimile production date is not established.
+The 1961 dealer pages survive as a later authorized Hove facsimile whose production date is not established.
 
 ## Optical Architecture
 
-The complete system has seven spherical glass elements and six air-spaced groups. Thirteen refracting interfaces become fourteen authored surfaces when the inferred flat iris is inserted.
+The system is an all-spherical Gauss type with seven elements in six groups. The thirteen refracting surfaces and a flat iris make fourteen model surfaces.
 
-The front half contains four separated elements. The rear half comprises a cemented pair and a final positive singlet. The large central gap contains the diaphragm.
+The front half holds four air-separated elements. The biconvex L1 and the weak biconcave L2 form the split front positive member. The positive meniscus L3 and the negative meniscus L4 form the front negative meniscus, which the patent's Gauss type describes as cemented but the example separates with a 0.2575 mm air space. Behind the central gap that holds the diaphragm, the cemented L5–L6 meniscus and the biconvex L7 form the rear half.
 
-The prescription maintains the very narrow air spaces around the front menisci and before the final singlet. They must not be merged into cemented boundaries or enlarged to avoid geometry problems.
+The very narrow air spaces are kept as printed: 0.096 mm between L2 and L3, 0.2575 mm between L3 and L4, and 0.096 mm before L7.
 
-The positive sign of source r7 = +145.08 is confirmed in both the body table and the repeated claim table. It is not an inferred correction.
+r7 = +145.08 is printed positive in both the body table and the claim table; no erratum is applied.
 
 ## Element-by-Element Analysis
 
-The isolated-air focal lengths in the data describe individual thick elements. In particular, these are not an allocation of in-system power to the members of the cemented pair.
+Focal lengths are for each element alone in air at the 50 mm scale; for the cemented pair they do not divide the pair's power between its members.
 
 ### L1: Front Biconvex Collector
 
-nd = 1.69100, νd = 54.9. Glass: Unmatched patent coordinates.
+nd = 1.69100, νd = 54.9. Glass: J-LAK9 (Hikari) equivalent, LaK9-type lanthanum crown. f = +50.5 mm.
 
-The strongly convex front surface and weakly convex rear surface supply positive power. The physical thickness is 5.20mm in the half-scale model.
+The strongly convex front surface and weakly convex rear surface supply positive power. The element is 5.20 mm thick at the 50 mm scale.
 
 ### L2: Biconcave Negative Element
 
-nd = 1.62237, νd = 36.1. Glass: Unmatched patent coordinates.
+nd = 1.62237, νd = 36.1. Glass: Unmatched (no exact catalog row). f = −106.3 mm.
 
-The split collector includes this air-separated negative component. Its higher dispersion provides an opposite-sign chromatic contribution. A 0.096mm axial air gap separates it from L3.
+This weak flint, 1.45 mm behind L1, completes the split front positive member; its higher dispersion opposes L1's colour. A 0.096 mm axial air space separates it from L3.
 
 ### L3: Positive Meniscus
 
-nd = 1.69100, νd = 54.9. Glass: Unmatched patent coordinates.
+nd = 1.69100, νd = 54.9. Glass: J-LAK9 (Hikari) equivalent. f = +33.6 mm.
 
-Its front radius is much shorter than its rear radius, producing positive power. A 0.2575mm gap follows it. The curved boundaries make this small gap an important static geometry constraint.
+Its front radius is much shorter than its rear radius, producing positive power. A 0.2575 mm air space follows it. The L3 rear and L4 front surfaces converge toward the rim and meet at about 10.6 mm radius, which bounds the clear aperture of both faces.
 
 ### L4: Negative Meniscus Before the Iris
 
-nd = 1.60140, νd = 38.3. Glass: Unmatched patent coordinates.
+nd = 1.60140, νd = 38.3. Glass: Unmatched (no exact catalog row). f = −25.1 mm.
 
-Both radii are positive. The shorter rear radius produces negative power. The rear surface is deeply curved, making stop placement and admitted pupil clearance necessary native checks.
+Both radii are positive. The deeply curved rear surface, facing the stop, produces the negative power.
 
 ### L5 and L6: Rear Cemented Pair
 
-L5: nd = 1.58144, νd = 40.8. Glass: Unmatched patent coordinates.
+L5: nd = 1.58144, νd = 40.8. Glass: LF5 (Schott) equivalent. f = −24.2 mm.
 
-L6: nd = 1.69100, νd = 54.9. Glass: Unmatched patent coordinates.
+L6: nd = 1.69100, νd = 54.9. Glass: J-LAK9 (Hikari) equivalent. f = +28.4 mm.
 
-L5 is biconcave when considered alone in air; L6 is biconvex. They share the source r10 interface. No artificial air gap is inserted at the bond. Their combined negative meniscus role follows the patent's Gaussian layout; the isolated-element powers are not the cemented-group power.
+L5 is biconcave and L6 biconvex; they share the r10 interface. Together they form the rear negative meniscus of the Gauss layout, concave to the stop, with a combined focal length of about −450 mm.
 
 ### L7: Final Positive Singlet
 
-nd = 1.69100, νd = 54.9. Glass: Unmatched patent coordinates.
+nd = 1.69100, νd = 54.9. Glass: J-LAK9 (Hikari) equivalent. f = +51.8 mm.
 
-The weakly convex front surface and stronger convex rear surface supply positive power. A 0.096mm air space separates this singlet from the cemented pair.
+The weakly convex front surface and stronger convex rear surface supply positive power. A 0.096 mm air space separates this singlet from the cemented pair.
 
 ## Glass Identification and Selection
 
-The same 1.69100 / 54.9 coordinates recur in L1, L3, L6 and L7. The other three glasses have lower indices and higher dispersion.
+The 1.69100 / 54.9 glass recurs in L1, L3, L6 and L7. It is a LaK9-type lanthanum crown: Hikari J-LAK9 (νd 54.93) and Ohara S-LAL9 (54.82) match it, while Schott's current N-LAK9 is lower at 54.71. L5's 1.58144 / 40.8 is Schott's light flint LF5 (40.85). The other two flints, 1.62237 / 36.1 (L2) and 1.60140 / 38.3 (L4), have no exact catalog row and trace with Abbe-estimated dispersion. The catalog names are dispersion equivalents; Leitz's own melts are not identified.
 
-The original heading explicitly uses lowercase nd and v. It does not independently state a numerical wavelength or an Abbe-number formula. The model uses the supported d convention without silently substituting sodium-D or mercury-e indices.
+The patent heads its columns nd and ν without stating a wavelength; the model reads them as d-line values.
 
-No catalog glass name, historical supplier, melt identity or modern Sellmeier fit is claimed. Abbe-based dispersion can support a qualified simulation, not proof of exact secondary spectrum or apochromatic behavior.
+Without published partial dispersions the model supports an ordinary achromat only; it makes no secondary-spectrum claim.
 
 ## Focus Mechanism
 
-Only the infinity prescription is modeled. All published internal thicknesses and air spaces remain fixed.
+Only the infinity prescription is modeled; all thicknesses and air spaces are fixed.
 
-The patent discusses image quality for infinity and close objects below one metre. It does not publish a numerical movement schedule, conjugate table or continuous floating law.
+The patent discusses image quality from infinity to objects closer than about 1 m but publishes no focusing movement, close-range spacing or floating group.
 
-The maker brochure describes the retail normal and near ranges, including the Dual-Range finder attachment. Those descriptions do not supply the missing optical movement law. The finder accessory is not inserted as an additional main-lens element, and no 48cm simulation is claimed.
+The rigid lens focuses to 1 m. The Dual Range version adds a near range of 0.88–0.48 m, used with a viewfinder attachment for the rangefinder. The attachment is not part of the lens, and the near range is not modeled.
 
 ## Stop, Clear Apertures and Image Plane
 
-The source constrains the stop to the gap between the menisci but supplies neither an exact axial coordinate nor a diameter. The current midpoint hypothesis places it at z = 21.2485mm, within the half-scale permitted region 16.7085–25.7885mm. The split gaps sum exactly to 9.08mm.
+The patent places the stop between the two menisci but gives neither its axial position nor its diameter. The model puts it at the midpoint of the 9.08 mm central air space, 4.54 mm behind L4 and 21.25 mm behind the first vertex; the total gap is unchanged.
 
-Clear semi-diameters are construction hypotheses, not patent measurements. Initial generous caps were reduced only at the narrow L3–L4 gap to pass an independent 90% gap-sag static calculation. All rejected first guesses remain in the external static report.
+Clear semi-diameters are estimates; the patent prints none. They follow the f/2 axial beam and, at the faces beside the narrow L3–L4 air space, the room that space leaves at the rim (about 10.07 mm).
 
-The paraxial entrance-pupil convention is EPD = EFL / N. At f/2 the midpoint hypothesis gives an inferred paraxial stop radius of approximately 8.14086mm. This is not a measured iris radius.
+At f/2 the paraxial entrance pupil is EFL / 2 = 25.01 mm across, which needs an iris radius of 8.14 mm at the midpoint position. This is a model value, not a measured iris.
 
-The BFL is derived as 30.73780956mm, and the resulting image-plane coordinate is 66.02730956mm. Neither is printed in the patent. The final zero interval in the literal transcription is an endpoint marker, not a source BFL.
+The paraxial back focus of 30.74 mm and the 66.03 mm distance from the first vertex to the image plane are derived; the patent prints neither.
 
-The maker's full 45° field is supporting product context, not a literal patent field or a verified full-aperture coverage result.
+The patent states no field angle. Leitz quotes 45°; at 50.03 mm the corner of the 135 frame lies at 23.4° half-field.
 
-## Verification Status
+## Model Scope and Limitations
 
-This qualified source reconstruction has completed standalone integration with explicit numerical limitations (QUALIFIED_SOURCE_RECONSTRUCTION_STANDALONE_INTEGRATION_COMPLETE). The preserved final-visible gates, 23-file/1,609-test focused regression, build, SEO audit, exact data/analysis readback, raw rebuild verification and guarded three-file installer checks passed; the entire repository test suite was not run. These receipts describe the original standalone files, not validation of this later documentation correction or a combined package. All thirteen radii, twelve physical intervals and seven glass coordinate pairs round-trip to the literal source after reversing the uniform scale and recombining the stop gap.
+All thirteen radii, twelve axial spacings and seven glass pairs reproduce the patent table at ×0.5. The stop position, clear apertures and back focus are model choices. The paraxial EFL is 50.03 mm (100.05 at patent scale against the printed f = 100) at f/2.
 
-Independent paraxial matrix calculations reproduce the recovered EFL/BFL. Independent spherical edge, rim and air-gap calculations pass for the current caps at the unchanged default 90% gap-sag allowance.
+The faces either side of the L3–L4 air space sit just outside the f/2 axial beam, so the iris rather than a lens rim sets the on-axis aperture. Off-axis vignetting depends on the estimated rims and is not a measured property of the production lens.
 
-The first native pilot found slight real clipping at inferred faces6/7. Those caps were raised only from10.05/10.05mm to10.075/10.060mm, retaining the source prescription and the default90% gap-sag limit. The refined native build passes with zero hidden trim, iris clearance and an iris-limited exact on-axis aperture boundary at f/2 and f/2.8. All first failures remain in checkpoint evidence.
-
-Reference-wavelength587.5618nm MTF was evaluated at f/2 with a64-grid cap. The actual fields were0°,11.2499997° and22.4999993°, the latter two derived from the maker45° full-field hypothesis. All axial geometric/diffraction curves converge. A subsequent 128-grid source-plane refinement converges at the midpoint through 40 lp/mm. The edge remains unconverged overall, with continuous convergence through 20 lp/mm. Geometric sagittal 30/40 lp/mm and diffraction sagittal 30 lp/mm exceed the unchanged 0.01 tolerance; all tangential samples pass. A separately labeled best-axial diagnostic applies−0.134990722mm to the evaluation plane only: its diffraction midpoint converges, but the edge remains unconverged. No failed rays were recorded. The authored paraxial image plane is unchanged; these are not measured production-lens curves.
-
-Photopic calculation is technically supported only with estimated normal-line dispersion for all seven nd/νd glasses; it was not run. No exact factory broadband or secondary-spectrum accuracy is claimed. Integration scope is recorded separately in the delivery gate report. Required focus metadata carries a1m normal-range label with an explicit unmodeled-conjugate disclaimer; no focus movement was added.
+The model traces with catalog-equivalent or Abbe-estimated dispersion. It does not represent Leitz's production melts, factory clear apertures, the focusing movement or the Dual Range near range.
 
 ## Sources
 
@@ -120,3 +117,4 @@ Photopic calculation is technically supported only with estimated normal-line di
 - [DPMA bibliographic record](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=bibdat&docid=DE000000939956B)
 - [Leitz 1960 List 11-34/Engl.](https://www.pacificrimcamera.com/rl/00372/00372.pdf), page 4 and imprint.
 - [Dealer catalog facsimile](https://www.pacificrimcamera.com/rl/03496/03496.pdf), permission page and October 1961 B7/B8.
+- [Harold M. Merklinger, "The Summicron 50mm Lens", Shutterbug, June 1994 (reprint)](https://photographic-experience.blogspot.com/2018/03/the-summicron-50mm-lens-by-harold-m.html)

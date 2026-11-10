@@ -1,4 +1,8 @@
-## Current status: staging documentation correction v2, 2026-11-09
+# Audit Log — LEICA SUMMICRON 50mm f/2 Rigid / Dual Range
+
+Patent: DE 939956 B, sole example — scaled ×0.5; probable production correlation, not a factory prescription
+
+## Package status at delivery, 2026-11-09 (superseded by the 2026-11-10 sections below)
 
 The original standalone has status QUALIFIED_SOURCE_RECONSTRUCTION_STANDALONE_INTEGRATION_COMPLETE in its preserved GATE_SUMMARY.json. Final-visible metadata, typecheck, format and lint, the 23-file/1,609-test focused regression, build, SEO audit, exact data/analysis readback, raw rebuild verification and guarded three-file installer checks passed. This was not the entire repository test suite; the historical lint failure and subsequent passing recheck remain preserved. These receipts apply to the original standalone files, not a new combined integration or validation of this documentation correction.
 
@@ -10,37 +14,37 @@ Supporting original members: GATE_SUMMARY.json and evidence/summicron-dr/source-
 
 The remaining text is historical checkpoint evidence. Its UNFINISHED/NOT RUN statements and older 64-grid conclusions describe those earlier stages, not the current standalone status. Every historical failure and limitation is retained.
 
-# DE939956B / rigid–DR Summicron source/static audit
+## DE939956B / rigid–DR Summicron source/static audit
 
-2026-11-09. UNFINISHED. No native or integration gate has run.
+2026-11-09. UNFINISHED. No native or integration gate has run. (Closed: native checks followed the same day; integrated 2026-11-10.)
 
 - Whole sole example, 13 refracting interfaces, seven elements/six groups. Original accepted PDF SHA256: 8cd6559ab06f1ffae7b08ea059ccf1ba5b2f02bdc58aa3b3ff7f1d807afcaf08.
 - Table pixels inspected directly: lowercase nd and positive r7 in body and claim. No source erratum is applied.
 - Model scales every source length ×0.5, never fits to exact marketed EFL. Glass nd/v remain literal. No fabricated aspheres, cover plates, finder optics or focus motion.
 - Initial caps: 15,15,14,14,13,11,11,10,10,12,14,14,14mm. L3–L4 thin air-gap intrusion failed default static allowance. Only faces 6/7 were reduced in 0.05mm steps to 10.05mm; every unsuccessful candidate is preserved in static_report.json.
-- Current caps are hypotheses awaiting exact admission and rendering checks. The gap-sag allowance stays at 0.9. No override, rim cut or extension was introduced.
+- Current caps are hypotheses awaiting exact admission and rendering checks. (Closed: checked in the pilot below.) The gap-sag allowance stays at 0.9. No override, rim cut or extension was introduced.
 - Stop midpoint at 21.2485mm is inferred; original central 9.08mm total air gap is unchanged. Source BFL absent: computed 30.73780955627864mm.
 - Source roundtrip and independent static spherical edge/gap/rim calculations completed. Exact rays, native iris-in-air, zero trim, aperture census and MTF NOT RUN.
-- Next bounded pilot: use verified native loader; build only this lens, assess native geometry/trim/iris and the standard aperture census before field/MTF work. Distinguish paraxial F/N convention from nonlinear admitted-diameter diagnostic. Never declare pass from a coarse pupil grid.
+- (Closed: done in the pilot below.) Next bounded pilot: use verified native loader; build only this lens, assess native geometry/trim/iris and the standard aperture census before field/MTF work. Distinguish paraxial F/N convention from nonlinear admitted-diameter diagnostic. Never declare pass from a coarse pupil grid.
 - Native findings may justify changes to inferred caps/stop only, retaining source R/d/glass and all total air gaps. Keep failed hypotheses. Do not invent factory accuracy.
 - Baseline: 9d121be76e14bc5098256ee78cd0a7545a1acf11, 2253 commits. Bounded prior alias/numerical dedup found no matching family; separate existing R50/SL50/V5 files are not this family.
 
 ## Bounded native pilot addendum
 
-UNFINISHED NATIVE PILOT, 2026-11-09. No MTF or integration gates run.
+UNFINISHED NATIVE PILOT, 2026-11-09. No MTF or integration gates run. (Closed: superseded by the refinement below.)
 First native build refused missing required focus metadata; failure retained. Added required closeFocusM=1 normal retail range label with explicit NO_INTERNAL_RECONSTRUCTION description. No surface/plane/gap changed and no finite-focus model is asserted.
 Native build now passes. EFL 50.02660182975827mm; image plane 66.02730955627865mm; stop radius 8.140863387830885mm; zero hidden trim.
 Iris clearance f2: front1.486882829mm, rear2.601102422mm, pass.
 Official aperture census is within3%: stated2, traced2.0039714364, limiter6, diagnosis ok. This is a tolerance pass, NOT proof of an unclipped iris beam.
-Exact ghost-ray boundary: iris-admitted entrance radius12.440408912mm; fully clear radius12.415754722mm. Face6 needs10.072609344mm and face7 needs10.058579421mm versus current10.05mm each. Preserve these slight real clipping failures; next suggested minimum rounded caps10.072610/10.058580mm remain below default0.9 gap-sag allowance. No modification yet, native recheck required.
+Exact ghost-ray boundary: iris-admitted entrance radius12.440408912mm; fully clear radius12.415754722mm. Face6 needs10.072609344mm and face7 needs10.058579421mm versus current10.05mm each. Preserve these slight real clipping failures; next suggested minimum rounded caps10.072610/10.058580mm remain below default0.9 gap-sag allowance. No modification yet, native recheck required. (Closed: caps raised to 10.075/10.060 mm in the refinement below.)
 Separate nonlinear iris-only EFL/(2\*admitted entrance radius)=2.0106494161; not the repository paraxial F/N definition.
 F2.8 is iris limited with iris-relative f-number2.7999999972.
 Bounded12-grid unvignetted fractions at angles0,11.25,18,22.5deg: f2=1,.928571,.803571,.625; f2.8=1,1,.964286,.785714. No failed samples. Not a precise throughput convergence result or aperture proof. Full45deg is a retail-field hypothesis, not printed patent field.
-Pilot compute ended. Await next native release. Source R/d/nd/v and total gaps preserved. No fitting or gap-sag override.
+Pilot compute ended. Await next native release. (Closed.) Source R/d/nd/v and total gaps preserved. No fitting or gap-sag override.
 
 ## Native refinement and bounded reference MTF
 
-UNFINISHED NATIVE REFINEMENT / REFERENCE MTF CHECKPOINT v3. Integration NOT RUN.
+UNFINISHED NATIVE REFINEMENT / REFERENCE MTF CHECKPOINT v3. Integration NOT RUN. (Closed: integrated 2026-11-10.)
 Original source drawing and generated native silhouette reviewed. Caps remain inferred mechanics; figure does not dimension them. Retained first-cap failure showed actual clipping at faces6/7. Only those caps increased from10.05/10.05 to10.075/10.060mm, a2.39/1.42micrometre margin above measured full-iris boundary. No other caps, sourceR/d/nd/v, stop position, stop rule, image plane, or total air gaps changed. Shared gap-sag remains below unchanged0.9 allowance. No rim cuts/extensions.
 Native build passes; zero hidden trim; f2 iris clearance front1.486882829/rear2.601102422mm. Exact standard boundary now iris-limited at f2 and f2.8: f2 iris-relative f-number1.999999998. Official census passes. Separate nonlinear iris-only diameter ratio remains approximately2.010649; not source/standard aperture mismatch.
 Bounded12-grid field throughput is diagnostic only; actual maker-hypothesis fields0/11.25/18/22.5deg. No failed rays. Source has no numerical field.
@@ -61,4 +65,41 @@ patent (US 2,622,478). `audit:aperture` passes.
 Deployment change: `catalog.closeFocusM.marketing` 1 (standard rigid range).
 
 Open: inferred rims at surfaces 5 and 10–13 exceed the patent figure (L7's edge is 0.53 mm at sd 14); focus text,
-subtitle, specs, element prose and glass wording.
+subtitle, specs, element prose and glass wording. (Wording items closed in the cleanup pass below; rims stay open.)
+
+## 2026-11-10 — Cleanup and wording pass
+
+Data file. The header comment is rewritten in plain terms with every fact kept: source table and claim, ×0.5 scale,
+r7 sign, d-line reading of nd/ν, midpoint stop, estimated rims, derived back focus, infinity only.
+
+- `subtitle`: "DE 939956 B sole example, scaled ×0.5; probable family, not factory prescription" → "DE 939956 B, sole
+  example — probable production correlation, scaled ×0.5".
+- `specs`: "7 ELEMENTS / 6 GROUPS", "50.0266 mm DESIGN EFL", "INFINITY-ONLY QUALIFIED HYPOTHESIS" → "7 ELEMENTS / 6
+  GROUPS", "DESIGN f = 100 mm (SCALED 0.5× TO 50 mm)", "DESIGN F/2", "ALL SPHERICAL".
+- `catalog.focalLengthMm.design` 50.0266 → 50 (printed f = 100 × 0.5).
+- `focus.closeFocusM` 1 → 1e15 placeholder; `catalog.closeFocusM.marketing` stays 1. `focus.description` is plain
+  text naming the 1 m rigid range and the 0.88–0.48 m Dual Range near range (Leitz 1960 list, p. 4).
+- Seven identical `role` strings replaced with per-element roles; cemented id D1 → C1 on L5, L6 and the doublet.
+- Glass: L1, L3, L6, L7 → J-LAK9 (Hikari), Δnd 1e-8, Δνd +0.03 (Ohara S-LAL9 also fits at −0.08; Schott N-LAK9 is
+  −0.19 off in νd). L5 → LF5 (Schott), Δnd 4e-7, Δνd +0.05. L2 (1.62237 / 36.1) and L4 (1.60140 / 38.3) keep
+  `Unmatched` labels that state the printed values; the nearest rows (TIM11, F5) are 1.4e-3 and 2.0e-3 off in nd. No
+  catalog-copied nC/nF/ng to drop. No `apd` tags: the maker publishes no special-dispersion element.
+
+Analysis. The "Verification Status" section (gate names, test counts, MTF grids, cap history) is replaced by "Model
+Scope and Limitations". Evidence-packet wording and run-together numbers are gone. Glass lines carry the catalog
+equivalents and element focal lengths. The identification list gains the 1954 date and close-range aim, with
+Merklinger (Shutterbug, June 1994) cited for the rigid lens being a new design. The 1960 list is no longer said to
+show the matching architecture; it shows a pictogram only.
+
+Engine before and after (built.mjs, probe.mjs): EFL 50.02660182975827, FOPEN 2, halfField 30.628971215637616, stop
+radius 8.140863387830885, BFD 30.7378, TL 66.0273, identical; only `closeFocusM` moved (1 → 1e15). `audit:surface`
+OK; `audit:aperture` within 3 % of the stated f-number, no rim limit.
+
+Open:
+
+- Rims: surfaces 5 (13 mm) and 10–13 (12 / 14 / 14 / 14 mm) are larger than both the patent figure and the published
+  rigid-lens scheme (allphotolenses, about 11 / 10 / 10 / 11 / 11 mm); L7's edge is 0.53 mm at sd 14. Left for the
+  rim pass.
+- `lensMounts`: the 1960 list names a screw-thread version (SOSTA) but does not show it carries the rigid optical
+  cell; `leica-ltm` left out.
+- Patent kind code: DEPATISnet lists DE 939956 B, Google Patents DE939956C; the file keeps "DE 939956 B".
