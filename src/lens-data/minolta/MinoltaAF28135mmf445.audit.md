@@ -22,7 +22,8 @@ Open: hidden as delivered — fit to show after the wording pass (closed: visibl
 fixed group FII by up to 1.47 mm (patent: FII stationary) — re-solve them with S21-to-image fixed at 80.549 mm (closed:
 re-solved in the cleanup pass); at wide 1.5 m the corner chief ray just touches S23/S25 (≈8.6 / 14.1 would clear, still
 inside Fig. 12; closed: raised to 8.6 / 14.1 in the semi-diameter pass, which measured Fig. 12 at 8.1 / 13.5); all 16 glasses are standard catalogue pairs labelled `Unmatched` (closed: 15 relabelled);
-stop at mid-d13 moves Δx/2 during focus (still open).
+stop at mid-d13 moves Δx/2 during focus (closed: moved 1.0 mm in front of L8, travelling with F, in the second
+review).
 
 ## 2026-11-10 — Cleanup and wording pass
 
@@ -78,7 +79,7 @@ rests on the patent and on public specifications (mhohner.de, allphotolenses.com
 Open: S21–S23 (8.2) and S24–S25 (13.7) rims. At wide 1.5 m the corner chief ray to Y′ 21.63 mm needs about 8.3–8.6
 and 14.0, inside the Fig. 12 reading of about 8.5 and 14.0. (Closed in the semi-diameter pass. The 300 dpi reading of
 Fig. 12 is 8.1 and 13.5, so 8.6 / 14.1 sit 4–6 % above the drawing, set by the ray.) The stop is placed at mid-d13 and moves Δx/2 during
-focusing; its position is not printed. The package author's note on front and rear profile differences against a
+focusing; its position is not printed (closed in the second review: 1.0 mm in front of L8, moving with F). The package author's note on front and rear profile differences against a
 Minolta service drawing was not checked (no maker drawing was staged). The allphotolenses diagram is the public
 comparison to make.
 
@@ -130,5 +131,98 @@ reports 0 undersized. Field coverage is 100 % at all 25 stations, and audit:aper
 No maker drawing was viewed. The deployment-validation section above records Minolta's 16/13 construction and
 internal focusing. The design is all-spherical, and no special-dispersion element is listed for it.
 
-Open: the stop position (mid-d13) is not printed. Fig. 12 draws L4's rear rim meeting L5's front edge at about
+Open: the stop position (mid-d13) is not printed (closed in the second review: 1.0 mm in front of L8). Fig. 12 draws L4's rear rim meeting L5's front edge at about
 13.0 mm; the model keeps both at 12.5 mm, a 0.7 mm air gap at the rim, because d7 closes at 13.05 mm.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared: the live page at 28.8, 60 and 131.5 mm, at infinity and at 1.5 m, both movement overlays (focus also at
+131.5 mm), the inspector text of L1, L3, L13 and L14, and Fig. 12 at its native 300 dpi (PDF p. 7). One data
+change: the iris moved to 1.0 mm in front of L8 (see Iris below). Rims, labels and every total gap are unchanged.
+
+Figure re-read. The scan is rotated by about 0.46°: the axis line runs from page row 2112 at x 780 to row 2104 at
+x 1775. Readings were taken on both halves about that local axis, and their mean is half the drawn diameter, which
+removes the tilt. The 25 vertex crossings fall within 2–4 px of the prescription at 9.50 px/mm.
+
+| Faces | Model sd | Top | Bottom | Mean | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| S1–S3 (C1) | 32.7 / 30.4 / 30.3 | 33.0 | 32.5 | 32.75 | agrees |
+| S4–S5 (L3) | 26.9 | 27.9 | 26.4 | 27.15 | agrees |
+| S6 (L4) | 17.5 | 17.7 | 17.3 | 17.5 | agrees |
+| S7 / S8 (L4 rear, L5 edge) | 12.5 / 12.5 | 13.5 | 13.2 | 13.3 | 6 % low; step order right, kept |
+| S9 cap end (L5) | 11.9 | 12.2 | 11.8 | 12.0 | agrees |
+| S10–S11 (L6) | 11.1 / 10.8 | 11.5 | 11.0 | 11.25 | agrees |
+| S12–S13 (L7) | 10.7 | 11.2 | 10.5 | 10.85 | agrees |
+| S14–S15 (L8) | 10.1 | 10.2 | 10.0 | 10.1 | agrees |
+| S16–S18 (C2) | 10.35 | 10.45 | 10.15 | 10.3 | agrees |
+| S19–S20 (L11) | 10.5 | 10.4 | 10.2 | 10.3 | 2 % above, kept |
+| S21–S23 (C3) | 8.6 | 8.4 | 8.2 | 8.3 | 3.6 % above, kept |
+| S24–S25 (L14) | 14.1 | 13.8 | 13.8 | 13.8 | 2 % above, kept |
+| S26–S29 (L15, L16) | 15.3 | 15.55 | 15.3 | 15.45 | agrees |
+
+The semi-diameter pass read C3 and L14 at 8.1 and 13.5 mm against a fixed axis row. About the local axis they read
+8.3 and 13.8 mm, so the 8.6 and 14.1 mm set for the close-focus corner ray sit 2–4 % above the drawing, within
+its reading error (after the iris move below, the ray no longer needs them). The C1 front element is drawn with a
+flat rim and a short bevel down to S3. The model draws one slanted edge from S1 to S2, because S2 meets S3 at
+30.8 mm, so L2 cannot be squared. The drawn heights and their order between neighbours all match the live page.
+
+Lands and cuts: there is no land and one cut, S9 at 11.9 mm against 13.2 mm at baseline. `rimcost.mjs --loo`
+gives a worst loss of 0.0 points against the baseline rims, both at every zoom node and at the zoom eighths.
+Restoring S9 wins back 0.0 points. Verdict: keep, as drawn (Fig. 12 ends the cap at a chamfer at about 12.0 mm).
+Correction to the semi-diameter pass, which recorded the infinity curve as unchanged: the engine vignetting curve
+(full-pupil lattice) shows the C3/L14 raises adding light at infinity. The corner rises from 39.3 to 42.6 % at
+28.8 mm, from 52.0 to 56.1 % at 60 mm and from 47.1 to 51.4 % at 131.5 mm, and the largest gain is 4.5 points.
+
+Labels and tags, checked and found correct: group brackets A I, A II, F I, F II and F III bracket the same elements
+as Fig. 12, with no parent A / F brackets. Cemented brackets C1 (S1–S3), C2 (S16–S18) and C3 (S21–S23) match the
+table. All 16 types agree with the signs of R, the roles are true, and the inspector lines read as the data. No
+aspheres and no `apd` tags; the patent names no special glass. Zoom labels sit on Wide and Tele only.
+
+Movement, from the 25 stations at infinity, with distances from the image to each group's front vertex. A I moves
+34.00 mm toward the object (147.51 → 181.51 mm). A II moves 4.47 mm toward the image (133.29 → 128.82 mm). F I and
+F III each move 13.74 mm toward the object (95.39 → 109.12 and 61.21 → 74.95 mm). F II holds at 80.548–80.550 mm.
+Every track is monotonic, and stations ascend from wide to tele. The live zoom overlay agrees and reports a maximum
+travel of 34.00 mm. For focus, keyframe 0 is infinity and keyframe 13 is 1.5 m. F moves as a unit toward the image
+by 1.175, 1.111 and 2.100 mm at 28.8, 60 and 131.5 mm (live overlay 1.18 and 2.10 mm). A I and A II stay fixed. The
+slider ends read ∞ and 1.50 m. The 1.5 m shift at the inferred stations dips to 0.998 mm near 40 mm, between the
+printed 1.175 and 1.111 mm; each is the paraxial solve for that station.
+
+Glass: the 15 labelled elements resolve within the window. TAF1 sits at its edge (Δνd −0.14), and no catalogue row
+is closer. L3 (1.67000 / 57.07) stays `Unmatched`. Its nd recurs as N3 of Embodiment 6 (Table 13, PDF p. 23), but
+there with νd 57.7, and the nearest rows (LACL7 57.31, S-LAL52 57.33) are 0.24 off. Not in the repo catalogue: Hoya
+LAC9 (1.69100 / 54.70, `HOYA20260707.agf`), an era match for L2, L8 and L15 that is 0.05 from the printed νd against
+0.07 for S-LAL9. Colour: Figs. 13a–15a (PDF p. 8) print only d-line spherical aberration and the sine condition, so
+there are no line foci to compare. There is no nd-only medium, and no printed dPgF or line index. The assignee,
+Minolta Camera Co., Ltd., is the corpus spelling and matches the front page.
+
+Iris. The patent does not locate the stop, and the package put it at mid-d13. The aberration plots on PDF p. 8 do not
+fit that position. At Y′ 21.63 mm the distortion reads −3.5 %, +2.1 % and +2.5 % (Figs. 13c–15c). At 28.8 mm,
+Fig. 13b reads −0.36, −0.52, −0.65, −0.59 and −0.1 mm meridional and −0.16, −0.21, −0.24, −0.20 and −0.05 mm
+sagittal, at 0.56, 0.68, 0.81, 0.89 and 1.0 of Y′. On the coordinator's decision the stop gap (STO to S14) is now
+1.0 mm at every zoom station and focus keyframe, so the iris travels with F, and gap 13 holds the printed or
+interpolated d13 less 1.0 mm (plus Δx). All 350 totals of the two gaps are bit-identical to before.
+
+| Engine value | Iris at mid-d13 | Iris 1.0 mm before L8 |
+| --- | --- | --- |
+| Distortion at Y′ 21.63 mm (28.8 / 60 / 131.5 mm) | −2.34 / +2.00 / +2.08 % | −3.46 / +1.94 / +2.08 % |
+| Tangential field at 0.50 / 0.63 / 0.75 / 0.81 / 0.88 of Y′, 28.8 mm | −0.31 / +0.10 / +1.50 / +2.88 / +4.70 mm | −0.34 / −0.45 / −0.46 / −0.35 / −0.10 mm |
+| Sagittal field at the same fields, 28.8 mm | −0.20 / −0.19 / 0.00 / +0.23 / +0.59 mm | −0.16 / −0.22 / −0.25 / −0.23 / −0.18 mm |
+| Tangential field at the edge, 60 mm (Fig. 14b about −0.13) | +1.46 mm | +0.18 mm |
+| Field angle reaching Y′ 21.63 mm, 28.8 mm | 37.56° | 37.88° |
+| Corner light, wide open at infinity (28.8 / 60 / 131.5 mm) | 42.6 / 56.1 / 51.4 % | 49.8 / 60.2 / 51.4 % |
+| Wide-open stop radius (28.8 / 60 / 131.5 mm) | 6.456 / 7.334 / 9.054 mm | 8.021 / 8.193 / 9.054 mm |
+| Engine half-field, 28.8 mm | 33.13° | 33.41° |
+
+At 131.5 mm nothing changes, because the iris already sat 1.0 mm ahead of L8 there; the 131.5 mm distortion offset
+(+2.08 against +2.5 %) does not depend on the iris. The engine half-field rises at the 19 widest stations (for
+example 30.95 → 33.08° at 30.3 mm) and falls by up to 0.34° at five inferred stations from 87 to 127 mm (15.51 →
+15.17° at 96.4 mm). Every one stays above the angle that reaches the image corner (13.2° at 96.4 mm), and field
+coverage is 100 % at all 25 stations. The iris stays in air over its whole stroke at every station and keyframe.
+The closest face is L7's concave rear face at the tele end, at infinity and wide open: 0.08 mm in front of the
+plane. L8's convex front face curves away from it. audit:surface reports no errors. audit:aperture gives 25 of 25
+stations within 3 % of the stated f-number, with no rim limit. audit:image-circle reports 0 undersized, and
+clearap flags nothing at any station for focus rows 0, 1, 7 and 13. A finite-object trace at 28.8, 60 and 131.5 mm
+covers the 13 printed distances. Its smallest axial margin is 0.36 mm at S18 (tele, 50 m), against 0.05 mm before.
+Its smallest corner chief-ray margin is 0.56 mm at S7 (wide, 1.5 m), against 0.01 mm at S23 before. The C3 and L14
+rims are therefore no longer set by the ray; they stay at 8.6 and 14.1 mm, 2–4 % above the figure. `rimcost.mjs
+--loo` against the baseline rims still gives a worst loss of 0.0 points at every zoom node and at the eighths.
