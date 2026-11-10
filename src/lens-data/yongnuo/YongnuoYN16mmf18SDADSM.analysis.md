@@ -6,9 +6,8 @@
 **Inventors:** Jiannan Zhuang (庄建南), Yuanhua Ye (叶远华)
 **Assignee:** Shenzhen Yongnuo Photographic Equipment Co., Ltd. (深圳市永诺摄影器材股份有限公司)
 **Title:** An ultra-wide-angle imaging lens and imaging equipment
-**Example:** Sole embodiment; Tables 1–4 (pages 7–8), Figure 1 (page 9). Patent millimeters, unscaled.
 
-The design is identified with the YN16mm F1.8S DA DSM, Yongnuo's APS-C wide-angle prime for Sony E. The patent is Yongnuo's own and matches the lens in its 10 elements in 8 groups, a single moving double-aspheric focus element, and 16.34 mm, f/1.78 and 2ω = 83° (¶0062) against the marketed 16 mm, f/1.8 and 82.62°. The closest tabulated focus state lies 0.17 m from the image at 0.15× magnification, the lens's published minimum focus distance and maximum magnification, and the patent's aberration plots carry the design-file name "16F1.8E APS-C". Yongnuo has not published a factory prescription; the model is the patent's, at the patent's scale.
+The design is identified with the YN16mm F1.8S DA DSM, Yongnuo's APS-C wide-angle prime for Sony E. The patent is Yongnuo's own and matches the lens in its 10 elements in 8 groups, a single moving double-aspheric focus element, and 16.34 mm, f/1.78 and 2ω = 83° (¶0062) against the marketed 16 mm, f/1.8 and 82.62°. The closest tabulated focus state lies 0.17 m from the image at 0.15× magnification, the lens's published minimum focus distance and maximum magnification, and the patent's aberration plots carry the design-file name "16F1.8E APS-C". Yongnuo has not published a factory prescription; the model is the patent's sole embodiment (Tables 1–4, pages 7–8; Figure 1, page 9), in the patent's millimetres, unscaled.
 
 ## Optical Architecture
 
