@@ -6,115 +6,111 @@
 **Inventors:** Jiannan Zhuang (庄建南), Yuanhua Ye (叶远华)
 **Assignee:** Shenzhen Yongnuo Photographic Equipment Co., Ltd. (深圳市永诺摄影器材股份有限公司)
 **Title:** An ultra-wide-angle imaging lens and imaging equipment
-**Example details:** Tables 1–4, PDF page 7–8; Figure 1, PDF page 9. Native millimeters, without scaling.
+**Example:** Sole embodiment; Tables 1–4 (pages 7–8), Figure 1 (page 9). Patent millimeters, unscaled.
 
-This is a representative patent model, not a verified factory prescription. The probable association with the YN 16mm f/1.8 S DA DSM rests on the maker's patent ownership, 10 elements in 8 groups, one moving double-sided aspheric element, and the correspondence of the patent's 16.34 mm, f/1.78 and 83° field to the retail 16 mm, f/1.8 and 82.62°. The official catalog section is topologically compatible. The prescription is not rescaled to retail specifications.
+The design is identified with the YN16mm F1.8S DA DSM, Yongnuo's APS-C wide-angle prime for Sony E. The patent is Yongnuo's own and matches the lens in its 10 elements in 8 groups, a single moving double-aspheric focus element, and 16.34 mm, f/1.78 and 2ω = 83° (¶0062) against the marketed 16 mm, f/1.8 and 82.62°. The closest tabulated focus state lies 0.17 m from the image at 0.15× magnification, the lens's published minimum focus distance and maximum magnification, and the patent's aberration plots carry the design-file name "16F1.8E APS-C". Yongnuo has not published a factory prescription; the model is the patent's, at the patent's scale.
 
 ## Optical Architecture
 
-Ten refractive elements form eight air-separated groups. The front three menisci feed two cemented doublets around the stop. A positive aspheric meniscus is the sole moving focus element, followed by a fixed negative/positive rear pair. The stop is the literal STO row between the doublets, 34.9 mm behind the first vertex. A source-listed 2 mm plane-parallel plate follows the final powered surface; it is modeled as an undrawn rear plate, not an eleventh lens element.
+Ten elements form eight air-separated groups. Three front menisci (L1–L3) feed two cemented doublets, C1 (L4–L5) and C2 (L6–L7), with the stop between them 34.9 mm behind the first vertex (claim 4). A positive double-aspheric meniscus (L8) is the only moving element, followed by a fixed negative/positive rear pair (L9–L10). A 2 mm plane-parallel plate (GL) between the last lens and the image is traced as a rear plate and not drawn.
 
-The abstract, claims and prose disagree about group signs, stop location and focus direction. This model follows the complete numerical table and Figure 1. No radii or spacings have been changed to reconcile the adjectives.
+Paraxially GR1 (L1–L7) is positive (+25.9 mm), GR2 (L8) positive (+29.2 mm) and GR3 (L9–L10) weakly negative (−141 mm), as claim 1 and ¶0042 state; the abstract's positive–negative–positive order is wrong. ¶0042 also places the stop between GR2 and GR3 and moves GR2 toward the image, while Tables 1 and 3 and Figure 1 put the stop between the doublets and move L8 toward the object. The model follows the tables and Figure 1.
 
 ## Element-by-Element Analysis
 
-The focal lengths below are isolated-in-air thick-lens diagnostics, not allocations of in-system power. Cemented surfaces couple the doublet components. All glass identities are unmatched; the literal nd and νd values are retained.
+Focal lengths are for each element alone in air.
 
 ### L1: Positive Meniscus
 
-nd = 1.730766, νd = 40.501. Glass: unmatched patent material. f = +150.8985 mm.
+nd = 1.730766, νd = 40.501. Glass: M-LAF81 (HOYA). f = +150.9 mm.
 
-Front positive meniscus, ahead of the diverging pair. Detailed aberration contributions have not been isolated by native simulation.
+Weak positive front meniscus. Table 4 gives F11 = 150 mm, inside the 80–400 mm range of condition (1), which the patent links to compactness and to lateral-colour control in the front group (¶0046). Claim 3 defines F11 as this element's focal length; ¶0046 calls it the focal length of GR1, which Table 4 does not support.
 
 ### L2: Negative Meniscus
 
-nd = 1.72916, νd = 54.49924. Glass: unmatched patent material. f = -32.3563 mm.
+nd = 1.72916, νd = 54.49924. Glass: TAC8P (HOYA). f = −32.4 mm.
 
-Negative meniscus in the wide-angle front group. Detailed aberration contributions have not been isolated by native simulation.
+First of two strong negative menisci, concave to the image, that give the retrofocus front its divergence. With L1 and L3 it forms the F13 sub-group: Table 4 gives F13 = −17.0292 mm for condition (2) (¶0047–0049); the prescription gives −17.09 mm.
 
 ### L3: Negative Meniscus
 
-nd = 1.496999, νd = 81.61466. Glass: unmatched patent material. f = -30.7425 mm.
+nd = 1.496999, νd = 81.61466. Glass: H-FK61 (CDGM) — low-dispersion fluor crown. f = −30.7 mm.
 
-Negative meniscus with low dispersion. Detailed aberration contributions have not been isolated by native simulation.
+Second negative meniscus. Its low dispersion limits the lateral colour of the strongly diverging front group. It is one of the two special-dispersion elements Yongnuo lists; the position is inferred from the glass.
 
 ### L4: Negative Meniscus
 
-nd = 1.900696, νd = 37.05356. Glass: unmatched patent material. f = -69.0481 mm.
+nd = 1.900696, νd = 37.05356. Glass: Unmatched (patent nd 1.900696 / νd 37.05). f = −69.0 mm.
 
-High-index negative member of the first cemented doublet. Detailed aberration contributions have not been isolated by native simulation.
+High-index negative meniscus at the front of C1. The patent describes C1 as an achromatic pair added to correct lateral colour, which is hard to control at this field angle (¶0050–0052). C1 as a whole is positive (f ≈ +25.8 mm).
 
 ### L5: Biconvex Positive
 
-nd = 1.437, νd = 90.70237. Glass: unmatched patent material. f = +18.5230 mm.
+nd = 1.437, νd = 90.70237. Glass: Unmatched (patent nd 1.437 / νd 90.70) — fluorophosphate extra-low-dispersion class. f = +18.5 mm.
 
-Low-index, high-Abbe positive member of the first cemented doublet. Detailed aberration contributions have not been isolated by native simulation.
+Positive half of C1. Condition (3) requires νd > 85 for this element; below that, the patent says, the front group's lateral colour becomes too large (¶0051–0052). Its nd/νd place it in the fluorophosphate class, but no catalog row matches both values.
 
 ### L6: Biconvex Positive
 
-nd = 1.910822, νd = 35.25001. Glass: unmatched patent material. f = +16.0649 mm.
+nd = 1.910822, νd = 35.25001. Glass: TAFD35 (HOYA). f = +16.1 mm.
 
-High-index positive member of the second cemented doublet. Detailed aberration contributions have not been isolated by native simulation.
+High-index front half of C2, just behind the stop.
 
 ### L7: Biconcave Negative
 
-nd = 1.71852, νd = 33.45655. Glass: unmatched patent material. f = -16.9943 mm.
+nd = 1.71852, νd = 33.45655. Glass: Unmatched (patent nd 1.71852 / νd 33.46). f = −17.0 mm.
 
-Negative member of the second cemented doublet. Detailed aberration contributions have not been isolated by native simulation.
+Rear half of C2. The pair is weakly positive (f ≈ +103 mm) and closes GR1.
 
 ### L8: Positive Meniscus
 
-nd = 1.726, νd = 54. Glass: unmatched patent material. f = +29.2332 mm.
+nd = 1.726, νd = 54. Glass: Unmatched (patent nd 1.726 / νd 54). f = +29.2 mm.
 
-Positive aspheric meniscus; both surfaces move together during focusing. Detailed aberration contributions have not been isolated by native simulation.
+The whole focus group GR2: one positive meniscus, concave to the object, aspheric on both faces and 7.95 mm thick. Condition (4) holds its centre thickness between 6 and 9 mm: thinner leaves the spherical aberration of the fixed groups under-corrected, thicker makes the element too heavy for fast focusing (¶0053–0055). The patent text calls it an aspheric negative lens; its radii make it positive.
 
 ### L9: Biconcave Negative
 
-nd = 1.761819, νd = 26.55365. Glass: unmatched patent material. f = -18.4961 mm.
+nd = 1.761819, νd = 26.55365. Glass: S-TIH14 (OHARA). f = −18.5 mm.
 
-Fixed biconcave negative element behind the focus group. Detailed aberration contributions have not been isolated by native simulation.
+Dense-flint negative element of the fixed rear group GR3. Condition (5) requires the rear element's νd to exceed this one's (56.42 > 26.55). The patent says GR3 corrects its own colour and that its negative spherical aberration offsets the positive spherical aberration of GR1 and GR2 (¶0056–0058).
 
 ### L10: Biconvex Positive
 
-nd = 1.696732, νd = 56.42017. Glass: unmatched patent material. f = +24.5677 mm.
+nd = 1.696732, νd = 56.42017. Glass: Unmatched (patent nd 1.696732 / νd 56.42). f = +24.6 mm.
 
-Fixed biconvex positive rear element before the explicit plate. Detailed aberration contributions have not been isolated by native simulation.
+Last element. Its rear vertex sits 17.56 mm from the image including the 2 mm plate, inside the 13–19 mm range of condition (6) set for mirrorless mounts (¶0059–0061).
 
 ## Glass Identification and Selection
 
-The source provides d-line nd/νd pairs, not manufacturer glass names or partial-dispersion measurements. L3 (νd 81.61466) and L5 (νd 90.70237) provide low-dispersion components; their surrounding high-index elements create chromatic-correction degrees of freedom. No catalog substitution or inferred anomalous-dispersion value is authored. The explicit rear plate retains nd 1.516330 and νd 64.15015.
+The patent prints d-line nd/νd only, with no glass names. Five glasses match catalog rows within 1 × 10⁻⁴ in nd and 0.15 in νd: M-LAF81 (L1) and TAFD35 (L6) reproduce the printed values to the last digit, and TAC8P (L2), H-FK61 (L3) and S-TIH14 (L9) lie within 0.04 in νd. L4, L5, L7, L8 and L10 have no exact row and keep the patent values. The plate keeps nd 1.516330 and νd 64.15015.
 
-Native support assessment confirms reference d-line MTF is available and was evaluated. C/d/F and photopic MTF are blocked because a low-dispersion glass (νd 81.6) lacks partial-dispersion data. Source-plane reference results and convergence limits are described below.
+Yongnuo's catalog legend marks low-dispersion, extra-low-dispersion, high-index and aspherical elements. L3 (νd 81.6) and L5 (νd 90.7) are the only low-dispersion glasses in the prescription, both in the front group that the patent makes responsible for lateral colour (¶0052); L4 and L6 (nd 1.90 and 1.91) are the high-index elements.
 
 ## Focus Mechanism
 
-Only L8, source surfaces 14 and 15, moves. Table 3 names three configurations INF, X20 and MOD. X20 is retained as a literal label, not interpreted as magnification. The d13/d15 gaps are 5.51/2.26 mm, 5.17/2.60 mm and 3.62/4.15 mm respectively. Their sum remains 7.77 mm. The table therefore moves L8 objectward by 0.34 and 1.89 mm, despite the prose's contrary direction.
+Only L8 (surfaces 14 and 15) moves; GR1 and GR3 stay fixed (¶0032, ¶0042). Table 3 prints three states: INF, X20 (object at 640.38 mm) and MOD (91.094 mm, the closest; ¶0069). The gaps d13/d15 are 5.51/2.26, 5.17/2.60 and 3.62/4.15 mm, always summing to 7.77 mm, so L8 travels 0.34 mm and 1.89 mm toward the object. ¶0042 says the group moves toward the image; the table and the arrow in Figure 1 show the opposite.
 
-The printed finite object distances are 640.38 and 91.094 mm. Their reference is not yet certified. The runtime candidate is infinity-only; separate evidence retains complete literal finite mechanical variants. No source-certified finite conjugate, interpolation law, or close-focus performance is asserted. Assuming the distances are measured from the first vertex gives independent ABCD source-plane residuals of approximately −0.016821 and +0.017917 mm; these are conditional diagnostics, not native finite validation.
+The patent does not say where the object distances are measured from. Measured from the first surface, both states focus within 0.02 mm of the printed image plane, and MOD lies 171.9 mm from the image at a paraxial magnification of −0.151, matching Yongnuo's 0.17 m and 0.15×. Table 3's focal lengths (16.207 and 15.677 mm) differ slightly from the prescription's 16.220 and 15.641 mm. Figure 3 is captioned as the infinity state (¶0075) but labelled configuration 3 of 3, and its distortion (about −7% at 42.6°) matches the MOD state rather than infinity (−4.2%). The model shows the infinity state only.
 
 ## Aspherical Surfaces
 
-Source surfaces 14 and 15 use conic sag plus an even radial polynomial, with K = 0 and coefficients on h⁴, h⁶, h⁸ and h¹⁰ in native millimeters. The source C4–C10 map directly to runtime A4–A10.
+Surfaces 14 and 15 use conic sag plus an even polynomial in h⁴, h⁶, h⁸ and h¹⁰ (millimeters), with K = 0. The patent prints no sag formula; its C4–C10 map directly to A4–A10.
 
 - Surface 14: C4 = −1.18330e−4, C6 = −7.26147e−7, C8 = −2.56514e−10, C10 = −6.45424e−11.
 - Surface 15: C4 = −1.81750e−5, C6 = −2.43417e−7, C8 = +7.78733e−10, C10 = −8.46798e−12.
 
-These terms modify the outer profile of the moving lens. No manufacturing process is inferred from the coefficients alone.
+The patent keeps every element of GR1 and GR3 spherical, so the moving lens carries all of the asphericity (¶0055).
 
-## Verification and Remaining Limits
+## Model Scope and Limitations
 
-Independent source-table paraxial calculation gives an infinity EFL of 16.3505340821 mm. The literal image plane is z = 80.78 mm, 1.06 mm after the source plate exit; the paraxial intercept is 1.062635623 mm after that exit. The 17.56 mm printed rear track is physical, while its air-equivalent reduced track is 16.878974102 mm. Neither replaces the other.
+The model is the Table 1 infinity state at the patent's scale: EFL 16.351 mm against the printed 16.34 mm, f/1.78, and 80.78 mm from the first surface to the image. Paraxial focus falls 1.063 mm behind the plate, against the printed 1.06 mm. Table 4's Bf of 17.56 mm is the physical distance including the plate; its air-equivalent length is 16.88 mm.
 
-The source does not publish optical clear apertures. Native geometry, zero render trim and iris clearance pass with inferred caps. Initial caps clipped1.69% of the iris-admitted axial radius. A rejected S9-only change left S7 clipping. The minimum0.01mm-grid pair S7=9.11mm/S9=9.19mm now admits the actual iris boundary, with the stop limiting. No published optics, other caps, rim cuts or gap allowances changed. The source f/1.78 is retained under the repository's paraxial EPD=EFL/N convention; the distinct nonlinear diameter ratio is not a source-aperture failure.
+The patent prints no clear apertures, so all semi-diameters are inferred. S7 (9.11 mm) and S9 (9.19 mm) are just large enough to pass the full axial bundle at the model's f/1.78 stop, which is set from the paraxial entrance pupil. Off axis the lens vignettes strongly: about 89% of the axial bundle reaches 20.75° and about 29% reaches the 41.5° field edge. The 41.5° chief ray lands at 13.87 mm (−4.1% distortion), about 98% of the 14.18 mm APS-C half-diagonal the site uses.
 
-Coarse52-sample stop-lattice throughput at0/20.75/41.5degrees is100%/84.62%/34.62%. At128-grid, midfield/edge admission is11440/12892 and3796/12892. Strong real edge vignetting remains. Actual peripheral chiefs at20.749724/41.499998degrees land at6.108615/13.871722mm. The engine APS-C reference radius14.175mm only encodes these source-field target heights, not a source-measured sensor size or135-format corner.
-
-Source-plane d-line geometric and diffraction MTF converge at sampled0/10/20/30/40lp/mm with up to128-grid. Historical64-grid peripheral failures and separate best-axial diagnostic are preserved. The+0.006034794mm best-axial shift is not authored. C/d/F and photopic modes are unavailable because low-dispersion glasses lack partial-dispersion data; no glass curves are invented.
-
-The fixed runtime carries verified maker0.17m MFD as catalog context only, without continuous focusing law or certified finite conjugates. Separate literal X20/MOD snapshots build with zero trim. Under the unprinted first-vertex distance hypothesis, native near-axis residuals−0.016821187/+0.017917117mm agree with independent ABCD; EFL16.219544511/15.641355382mm differs from printed16.207/15.677. No finite retuning or finite-field certification is claimed.
+L4, L5, L7, L8 and L10 carry only the patent's nd/νd. L5's partial dispersion, the one that matters most for colour correction, is unknown.
 
 ## Sources
 
-- [CN 214795390 U, complete patent](https://patents.google.com/patent/CN214795390U/zh), Tables 1–4 and Figures 1–2.
-- [Yongnuo official catalog](https://www.szyongnuo.com/upload/file/202403/2026-03.pdf), product identity and optical topology.
-- [Maker manual, B&H-hosted](https://www.bhphotovideo.com/lit_files/1129807.pdf), production context only.
+- [CN 214795390 U, complete patent](https://patents.google.com/patent/CN214795390U/zh), Tables 1–4 and Figures 1–3.
+- [Yongnuo product catalog, 2026-03](https://www.szyongnuo.com/upload/file/202403/2026-03.pdf): construction (8 groups, 10 elements), special-element legend, minimum focus 0.17 m, maximum magnification 0.15×, mounts.
+- [YN16mm F1.8S DA DSM user manual (B&H-hosted)](https://www.bhphotovideo.com/lit_files/1129807.pdf): specifications (10 elements in 8 groups, 82.62° diagonal angle of view, Sony E, APS-C, 0.17 m, 0.15×, f/16 minimum aperture).

@@ -1,14 +1,18 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-// Source-preserving infinity model; native geometry/aperture/reference MTF verified; see audit for limits.
-// Literal unscaled INF; all SDs inferred, never factory dimensions.
-// Finite source rows retained in evidence, not asserted as certified conjugates.
+// CN 214795390 U (Yongnuo), sole embodiment: Table 1 (prescription), Table 2 (aspheres), Table 3 (focus gaps), Figure 1.
+// Patent millimetres, unscaled, at the Table 3 infinity (INF) state. The 2 mm plate (surfaces 20–21) is a rear plate.
+// Aspheres: K = 0 on both surfaces; the patent prints no sag formula, and its C4–C10 map to A4–A10.
+// All semi-diameters are inferred (the patent prints none). S7 = 9.11 mm and S9 = 9.19 mm are the smallest values that
+// pass the full-aperture axial bundle at the stop.
+// The abstract and prose disagree with the tables on group powers, stop position and focus direction; the model
+// follows Tables 1–3 and Figure 1. Table 3's X20 (640.38 mm) and MOD (91.094 mm) states are not modelled.
 const LENS_DATA = {
   schema: 2,
   key: "yongnuo-yn16mm-f18s-da-dsm",
   maker: "Yongnuo",
   name: "YONGNUO YN 16mm f/1.8 S DA DSM",
-  subtitle: "CN 214795390 U sole example; probable retail association, literal unscaled prescription",
+  subtitle: "CN 214795390 U, sole embodiment — strong production correlation",
   visible: true,
   catalog: {
     lensMounts: ["sony-fe"],
@@ -23,7 +27,7 @@ const LENS_DATA = {
       marketing: 1.8,
       design: 1.78,
     },
-    specs: ["10 ELEMENTS / 8 GROUPS", "2 ASPHERICAL SURFACES", "SOURCE-PRESERVING INFINITY MODEL"],
+    specs: ["10 ELEMENTS / 8 GROUPS", "DESIGN f = 16.34 mm", "DESIGN F/1.78", "2 ASPHERICAL SURFACES / 1 ELEMENT"],
     closeFocusM: {
       marketing: 0.17,
     },
@@ -48,8 +52,8 @@ const LENS_DATA = {
       vd: 40.501,
       indexReference: "d",
       focalLengthMm: 150.89847205958606,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Source-preserved component; isolated-air focal length does not allocate in-system power.",
+      glass: "M-LAF81 (HOYA)",
+      role: "Weak positive front meniscus of the fixed front group.",
     },
     {
       id: 2,
@@ -60,8 +64,8 @@ const LENS_DATA = {
       vd: 54.49924,
       indexReference: "d",
       focalLengthMm: -32.356294593434235,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Source-preserved component; isolated-air focal length does not allocate in-system power.",
+      glass: "TAC8P (HOYA)",
+      role: "First of two negative menisci that widen the field ahead of the stop.",
     },
     {
       id: 3,
@@ -72,8 +76,11 @@ const LENS_DATA = {
       vd: 81.61466,
       indexReference: "d",
       focalLengthMm: -30.742492858613126,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Source-preserved component; isolated-air focal length does not allocate in-system power.",
+      glass: "H-FK61 (CDGM)",
+      role: "Second negative meniscus of the front group, in low-dispersion fluor crown.",
+      apd: "inferred",
+      apdNote:
+        "Yongnuo lists a low-dispersion and an extra-low-dispersion element; this element's patent nd/νd (1.496999/81.61) equal CDGM H-FK61, a fluor crown.",
     },
     {
       id: 4,
@@ -84,9 +91,9 @@ const LENS_DATA = {
       vd: 37.05356,
       indexReference: "d",
       focalLengthMm: -69.0481044947057,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Source-preserved component; isolated-air focal length does not allocate in-system power.",
-      cemented: "D1",
+      glass: "Unmatched (patent nd 1.900696 / νd 37.05; no exact catalog row)",
+      role: "High-index negative meniscus of the achromatic doublet ahead of the stop.",
+      cemented: "C1",
     },
     {
       id: 5,
@@ -97,9 +104,12 @@ const LENS_DATA = {
       vd: 90.70237,
       indexReference: "d",
       focalLengthMm: 18.522976857523016,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Source-preserved component; isolated-air focal length does not allocate in-system power.",
-      cemented: "D1",
+      glass: "Unmatched (patent nd 1.437 / νd 90.70; no exact catalog row)",
+      role: "Very-low-dispersion positive element of the doublet ahead of the stop; corrects lateral colour.",
+      apd: "inferred",
+      apdNote:
+        "Yongnuo lists a low-dispersion and an extra-low-dispersion element; this element's patent nd/νd (1.437/90.70) fit a fluorophosphate extra-low-dispersion glass.",
+      cemented: "C1",
     },
     {
       id: 6,
@@ -110,9 +120,9 @@ const LENS_DATA = {
       vd: 35.25001,
       indexReference: "d",
       focalLengthMm: 16.0649472962592,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Source-preserved component; isolated-air focal length does not allocate in-system power.",
-      cemented: "D2",
+      glass: "TAFD35 (HOYA)",
+      role: "High-index positive element of the doublet behind the stop.",
+      cemented: "C2",
     },
     {
       id: 7,
@@ -123,9 +133,9 @@ const LENS_DATA = {
       vd: 33.45655,
       indexReference: "d",
       focalLengthMm: -16.994349013154025,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Source-preserved component; isolated-air focal length does not allocate in-system power.",
-      cemented: "D2",
+      glass: "Unmatched (patent nd 1.71852 / νd 33.46; no exact catalog row)",
+      role: "Negative element of the doublet behind the stop.",
+      cemented: "C2",
     },
     {
       id: 8,
@@ -136,8 +146,8 @@ const LENS_DATA = {
       vd: 54,
       indexReference: "d",
       focalLengthMm: 29.233153567013208,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Source-preserved component; isolated-air focal length does not allocate in-system power.",
+      glass: "Unmatched (patent nd 1.726 / νd 54; no exact catalog row)",
+      role: "Double-aspheric positive meniscus; the only element that moves to focus.",
     },
     {
       id: 9,
@@ -148,8 +158,8 @@ const LENS_DATA = {
       vd: 26.55365,
       indexReference: "d",
       focalLengthMm: -18.49612937581444,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Source-preserved component; isolated-air focal length does not allocate in-system power.",
+      glass: "S-TIH14 (OHARA)",
+      role: "Dense-flint negative element of the fixed rear group.",
     },
     {
       id: 10,
@@ -160,8 +170,8 @@ const LENS_DATA = {
       vd: 56.42017,
       indexReference: "d",
       focalLengthMm: 24.567741765479997,
-      glass: "Unmatched (literal patent nd / vd; no catalog identity)",
-      role: "Source-preserved component; isolated-air focal length does not allocate in-system power.",
+      glass: "Unmatched (patent nd 1.696732 / νd 56.42; no exact catalog row)",
+      role: "Positive rear element of the fixed rear group, ahead of the sensor cover plate.",
     },
   ],
   surfaces: [
@@ -311,7 +321,7 @@ const LENS_DATA = {
       vd: 64.15015,
       indexReference: "d",
       gapAfterMm: 1.06,
-      source: "CN 214795390 U Table 1, S20–21; physical gaps unchanged",
+      source: "CN 214795390 U Table 1, surfaces 20–21 (filter plate GL), printed gaps",
     },
   ],
   aperture: {
@@ -330,7 +340,7 @@ const LENS_DATA = {
       toSurface: "13",
     },
     {
-      text: "GR2 FOCUS",
+      text: "GR2 (FOCUS)",
       fromSurface: "14A",
       toSurface: "15A",
     },
@@ -342,12 +352,12 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "7",
       toSurface: "9",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "11",
       toSurface: "13",
     },
@@ -356,9 +366,9 @@ const LENS_DATA = {
     yScFill: 0.4,
   },
   focus: {
-    closeFocusM: 0.17,
+    closeFocusM: 1e15,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: infinity-only fixed prescription. Required 0.17 m close-focus label is maker catalog metadata (official 2026-03 catalog pp. 7-8), not a modeled or certified finite conjugate. Literal finite mechanics remain separately preserved.",
+      "Infinity focus only. In the patent, focusing moves only L8, the double-aspheric meniscus, toward the object (1.89 mm at the closest tabulated state) while the front and rear groups stay fixed. Table 3 prints the gaps for objects at 640.38 mm and 91.094 mm; read from the first surface, the latter is 0.17 m object to image, Yongnuo's minimum focus distance. Those states are not modelled.",
   },
 } satisfies LensDataV2Input;
 

@@ -10,7 +10,7 @@ Source-plane d-line geometric and diffraction MTF converge at sampled0/10/20/30/
 
 The fixed runtime carries verified maker0.17m MFD as catalog context only, without continuous focusing law or certified finite conjugates. Separate literal X20/MOD snapshots build with zero trim. Under the unprinted first-vertex distance hypothesis, native near-axis residuals−0.016821187/+0.017917117mm agree with independent ABCD; EFL16.219544511/15.641355382mm differs from printed16.207/15.677. No finite retuning or finite-field certification is claimed.
 
-Original/rejected cap hypotheses,64-grid convergence limits, best-axial and conditional finite results remain in evidence. Local visible registration is for isolated tests/prerender only, not publication. Metadata, typecheck, formatting, lint, 23 focused regression files / 1,609 tests, local build and SEO passed. Specific built page/data/analysis equality and official aperture census passed. Guarded installer checks passed. The complete repository test suite was not run; gate logs govern the exact scope.
+Original/rejected cap hypotheses,64-grid convergence limits, best-axial and conditional finite results remain in evidence. Local visible registration is for isolated tests/prerender only, not publication (closed 2026-11-10: cleared for deployment after validation). Metadata, typecheck, formatting, lint, 23 focused regression files / 1,609 tests, local build and SEO passed. Specific built page/data/analysis equality and official aperture census passed. Guarded installer checks passed. The complete repository test suite was not run; gate logs govern the exact scope.
 
 ## 2026-11-10 — Deployment validation
 
@@ -24,4 +24,42 @@ high-index and aspherical positions in Yongnuo's legend fit L3, L5, L4/L6 and L8
 Deployment change: none.
 
 Open: Table 3 supports a modelled focus range (gaps after surfaces 13 and 15); subtitle, specs, focus text, element
-prose and analysis wording.
+prose and analysis wording (wording items closed in the cleanup pass below; the focus range stays open).
+
+## 2026-11-10 — Cleanup and wording pass
+
+Fields changed in the data file: header comment rewritten in plain terms (same facts: tables used, unscaled INF state,
+rear plate, K = 0 and C4–C10 → A4–A10, inferred semi-diameters with the S7/S9 minimum, prose-versus-table conflicts,
+unmodelled X20/MOD states). `subtitle` "CN 214795390 U sole example; probable retail association, literal unscaled
+prescription" → "CN 214795390 U, sole embodiment — strong production correlation". `specs` → "10 ELEMENTS / 8 GROUPS",
+"DESIGN f = 16.34 mm", "DESIGN F/1.78", "2 ASPHERICAL SURFACES / 1 ELEMENT" (dropped "2 ASPHERICAL SURFACES" and
+"SOURCE-PRESERVING INFINITY MODEL"). `focus.closeFocusM` 0.17 → 1e15 placeholder (Yongnuo's 0.17 m stays in
+`catalog.closeFocusM.marketing`); `focus.description` rewritten as plain text (infinity only; L8 moves 1.89 mm toward the
+object; Table 3 states not modelled). Ten identical element roles replaced with specific ones. Cemented ids and doublet
+labels D1/D2 → C1/C2; group label "GR2 FOCUS" → "GR2 (FOCUS)"; rear-plate `source` reworded. `apd: "inferred"` with
+`apdNote` on L3 and L5 (Yongnuo's legend lists one low-dispersion and one extra-low-dispersion element; these are the
+only glasses with νd above 60).
+
+Glass relabels (catalog Sellmeier nd/νd against the printed values): L1 → M-LAF81 (HOYA), Δnd −3 × 10⁻⁷, Δνd 0.000;
+L2 → TAC8P (HOYA), Δnd −9 × 10⁻⁷, Δνd +0.038; L3 → H-FK61 (CDGM), Δnd +1 × 10⁻⁶, Δνd −0.002 (FCD1 −0.006 and S-FPL51
+−0.069 also fit; H-FK61 is closest); L6 → TAFD35 (HOYA), Δnd +4 × 10⁻⁷, Δνd 0.000; L9 → S-TIH14 (OHARA), Δnd
++2 × 10⁻⁶, Δνd −0.036 (J-SF14 +0.031 and FD140 +0.055 also fit). No exact row for L4 (1.900696/37.05), L5 (1.437/90.70),
+L7 (1.71852/33.46), L8 (1.726/54) or L10 (1.696732/56.42); they keep `Unmatched (…)` labels stating the printed values.
+No `nC`/`nF`/`ng` were present.
+
+Analysis: process text removed (cap-grid history, sample-lattice and MTF-convergence runs, test and build counts,
+"native"/"literal"/"runtime" vocabulary, run-together numbers); "Verification and Remaining Limits" renamed "Model Scope
+and Limitations" and reduced to model properties; element sections rewritten with the catalog glasses and patent
+paragraph citations; group powers (+25.9 / +29.2 / −141 mm) stated against the abstract's wrong order; focus section
+now states the first-surface reading of Table 3 (171.9 mm object to image, m −0.151, matching Yongnuo's 0.17 m and
+0.15×) and that Figure 3 shows the MOD state; sources annotated.
+
+Engine numbers, identical before and after: EFL 16.350534 mm, FOPEN 1.78, halfField 41.5°, tracingHalfField 35.978°,
+stop semi-diameter 8.726954 mm, BFD 1.0626 mm, total track 80.78 mm. `audit:surface` OK; `audit:aperture` 1 station
+within 3 % of the stated f-number, no rim limit.
+
+Open: model the Table 3 focus range (gaps after surfaces 13 and 15; X20 640.38 mm and MOD 91.094 mm from the first
+surface, 721.2 mm and 171.9 mm object to image). `lensMounts` lists Sony E only; Yongnuo's catalog column shows Z/E for
+this model, so a Nikon Z entry needs a maker source naming the Z version. Rims: S7/S9 are at the minimum for the
+paraxial f/1.78 stop; a real-ray bundle at the patent's 4.605 mm pupil radius (Figure 2) would need about 9.5–9.7 mm
+at S7–S9; review against Figure 1 in the rim pass.
