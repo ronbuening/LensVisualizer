@@ -70,7 +70,7 @@ const LENS_DATA = {
   /* ── Elements ── one entry per physical glass/mirror element, front to rear; each id a unique positive integer and
    *    the medium of at least one surface. See LENS_DATA_SPEC.md § Elements and Media and § Glass Identification.
    *    REQUIRED: id, name, label, type, nd.   Recommended: vd, focalLengthMm, glass (inspector display).
-   *    Optional: indexReference ("d"|"e"), apd/apdNote/dPgF, nC/nF/ng, diagramLabel, role, cemented,
+   *    Optional: indexReference ("d"|"D"|"e"), apd/apdNote/dPgF, nC/nF/ng, diagramLabel, role, cemented,
    *              span (embedded-stop and folded-mirror elements only). */
   elements: [
     {

@@ -15,6 +15,7 @@ import {
   type MtfChartFrequency,
   type MtfChartView,
 } from "../../../utils/state/mtfPreferences.js";
+import { mtfValueVisible } from "./mtf/mtfPresentation.js";
 import { SvgChartFrame } from "./charts/SvgChartFrame.js";
 import { createPlotArea, gapPath, linearScale, niceTicks, type ChartPoint } from "./charts/chartMath.js";
 
@@ -29,6 +30,8 @@ interface MtfChartProps {
   /** Second result drawn with thin lines in the same color slots, e.g. the lens stopped down to f/8. */
   comparison?: MtfResult | null;
   comparisonLabel?: string;
+  /** Explicitly requested numerical estimates; never implied by a plotted line. */
+  diagnostic?: boolean;
 }
 
 type MarkerShape = "circle" | "square" | "triangle" | "diamond" | "cross";
@@ -66,6 +69,7 @@ export default function MtfChart({
   stale = false,
   comparison = null,
   comparisonLabel = "Comparison",
+  diagnostic = false,
 }: MtfChartProps) {
   // useId output contains characters that are not valid in url(#…) references.
   const patternId = `mtf-hatch-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
@@ -85,8 +89,8 @@ export default function MtfChart({
   const yScale = linearScale(0, 1, plotBottom, plotTop);
   const buildSeries = (source: MtfResult) =>
     view === "frequency"
-      ? frequencySeries(sortedFields(source), source, t)
-      : fieldSeries(sortedFields(source), source, frequencies, t);
+      ? frequencySeries(sortedFields(source), source, t, diagnostic)
+      : fieldSeries(sortedFields(source), source, frequencies, t, diagnostic);
   const series = buildSeries(result);
   const compared = comparison ? buildSeries(comparison) : [];
   // x of every sample the crosshair can visit, aligned with the series value arrays.
@@ -265,7 +269,7 @@ export default function MtfChart({
               {series.flatMap((s) =>
                 (["sagittal", "tangential"] as const).map((axis) => {
                   const value = s[axis][active!];
-                  return value !== null ? (
+                  return typeof value === "number" ? (
                     <circle
                       key={`${s.key}-${axis}`}
                       cx={xScale(activeX)}
@@ -284,7 +288,17 @@ export default function MtfChart({
       </div>
       <div aria-live="polite" style={{ minHeight: 16, color: t.value, fontSize: 11, margin: "2px 0 4px" }}>
         {active !== null
-          ? readout(view, samples[active], active, series, compared, comparisonLabel, fields[active])
+          ? readout(
+              view,
+              samples[active],
+              active,
+              series,
+              compared,
+              comparisonLabel,
+              fields[active],
+              view === "field" && comparison ? fieldHeight(sortedFields(comparison)[active]) : null,
+              diagnostic,
+            )
           : null}
       </div>
       <figcaption style={{ color: t.muted, fontSize: 11, display: "flex", flexWrap: "wrap", gap: "4px 12px" }}>
@@ -295,8 +309,12 @@ export default function MtfChart({
         <LegendItem t={t} color={t.value} dash={TANGENTIAL_DASH} label="Tangential (meridional)" />
         {comparison ? <LegendItem t={t} color={t.value} thin label={`${comparisonLabel} (thin lines)`} /> : null}
         {hatched ? <LegendItem t={t} color={t.muted} hatch label="Outside model" /> : null}
-        {view === "frequency" ? <span>Faded: beyond the converged frequency band.</span> : null}
-        <span>Gaps mark unavailable fields.</span>
+        {view === "frequency" && diagnostic ? <span>Faded: beyond the converged frequency band.</span> : null}
+        <span>
+          {diagnostic
+            ? "Diagnostic estimates include unconverged values; they are not reliable performance measurements."
+            : "Gaps mark unavailable or unconverged values."}
+        </span>
       </figcaption>
     </figure>
   );
@@ -306,14 +324,18 @@ function sortedFields(result: MtfResult): MtfFieldResult[] {
   return [...result.fields].sort((a, b) => a.fieldFraction - b.fieldFraction);
 }
 
-function fieldHeight(field: MtfFieldResult): number | null {
-  return field.imageHeightMm ?? field.targetImageHeightMm;
+function fieldHeight(field: MtfFieldResult | undefined): number | null {
+  return field?.imageHeightMm ?? field?.targetImageHeightMm ?? null;
 }
 
-function curveValue(field: MtfFieldResult, values: readonly number[], index: number): number | null {
-  return (field.status === "converged" || field.status === "unconverged") && index >= 0
-    ? (values[index] ?? null)
-    : null;
+function curveValue(
+  field: MtfFieldResult,
+  values: readonly number[],
+  index: number,
+  frequency: number,
+  diagnostic: boolean,
+): number | null {
+  return mtfValueVisible(field, frequency, diagnostic) && index >= 0 ? (values[index] ?? null) : null;
 }
 
 /** One series per selected frequency across image height, in fixed color slots. */
@@ -322,12 +344,15 @@ function fieldSeries(
   result: MtfResult,
   frequencies: readonly MtfChartFrequency[],
   t: Theme,
+  diagnostic: boolean,
 ): Series[] {
   return MTF_CHART_FREQUENCIES.flatMap((frequency, slot) => {
     const j = result.frequenciesPerMm.indexOf(frequency);
     if (!frequencies.includes(frequency) || j < 0) return [];
-    const values = (axis: "sagittal" | "tangential") => fields.map((field) => curveValue(field, field[axis], j));
-    const points = (axis: "sagittal" | "tangential") => fields.map((field) => fieldPoint(field, field[axis][j]));
+    const values = (axis: "sagittal" | "tangential") =>
+      fields.map((field) => curveValue(field, field[axis], j, frequency, diagnostic));
+    const points = (axis: "sagittal" | "tangential") =>
+      fields.map((field) => fieldPoint(field, curveValue(field, field[axis], j, frequency, diagnostic) ?? undefined));
     return [
       {
         key: `f${frequency}`,
@@ -351,7 +376,12 @@ function fieldPoint(field: MtfFieldResult, value: number | undefined): ChartPoin
 }
 
 /** Center, half height and outermost available field against frequency. */
-function frequencySeries(fields: readonly MtfFieldResult[], result: MtfResult, t: Theme): Series[] {
+function frequencySeries(
+  fields: readonly MtfFieldResult[],
+  result: MtfResult,
+  t: Theme,
+  diagnostic: boolean,
+): Series[] {
   const available = fields.filter((f) => f.status === "converged" || f.status === "unconverged");
   const outermost = available.at(-1);
   const chosen: Array<[string, MtfFieldResult | undefined]> = [
@@ -361,13 +391,13 @@ function frequencySeries(fields: readonly MtfFieldResult[], result: MtfResult, t
   ];
   return chosen.flatMap(([name, field], slot) => {
     if (!field) return [];
-    const through = field.convergedThroughLpMm ?? Infinity;
+    const through = field.convergedThroughLpMm ?? -Infinity;
     const split = (axis: "sagittal" | "tangential", dim: boolean) =>
       result.frequenciesPerMm.map((x, i) => {
         const inBand = x <= through;
         // Adjacent segments share the boundary point so the curve stays continuous.
-        const keep = dim ? !inBand || result.frequenciesPerMm[i + 1] > through : inBand;
-        return keep ? { x, y: field[axis][i] } : null;
+        const keep = dim ? diagnostic && (!inBand || result.frequenciesPerMm[i + 1] > through) : inBand;
+        return keep && mtfValueVisible(field, x, diagnostic) ? { x, y: field[axis][i] } : null;
       });
     const height = field.imageHeightMm !== null ? ` · ${field.imageHeightMm.toFixed(1)} mm` : "";
     return [
@@ -375,8 +405,12 @@ function frequencySeries(fields: readonly MtfFieldResult[], result: MtfResult, t
         key: name,
         label: `${name}${height}`,
         color: t.chartSeries[slot],
-        sagittal: [...field.sagittal],
-        tangential: [...field.tangential],
+        sagittal: field.sagittal.map((v, i) =>
+          mtfValueVisible(field, result.frequenciesPerMm[i], diagnostic) ? v : null,
+        ),
+        tangential: field.tangential.map((v, i) =>
+          mtfValueVisible(field, result.frequenciesPerMm[i], diagnostic) ? v : null,
+        ),
         sagittalPoints: split("sagittal", false),
         tangentialPoints: split("tangential", false),
         sagittalDim: split("sagittal", true),
@@ -389,27 +423,33 @@ function frequencySeries(fields: readonly MtfFieldResult[], result: MtfResult, t
 /** Crosshair text: every series' sagittal and tangential values at one sample. */
 function readout(
   view: MtfChartView,
-  x: number | null,
+  x: number | null | undefined,
   index: number,
   series: readonly Series[],
   compared: readonly Series[],
   comparisonLabel: string,
   field: MtfFieldResult | undefined,
+  comparisonHeight: number | null,
+  diagnostic: boolean,
 ): string {
-  if (x === null) return "";
+  if (typeof x !== "number" || !Number.isFinite(x)) return "";
   const at = view === "frequency" ? `${x} lp/mm` : `${x.toFixed(2)} mm`;
   if (view === "field" && field && field.status !== "converged" && field.status !== "unconverged")
     return `${at}: ${field.status === "pending" ? "still calculating" : field.message}`;
   const format = (s: Series) => {
     const sagittal = s.sagittal[index];
     const tangential = s.tangential[index];
-    return sagittal === null || tangential === null
+    return typeof sagittal !== "number" || typeof tangential !== "number"
       ? `${s.label} —`
       : `${s.label} S ${sagittal.toFixed(3)} T ${tangential.toFixed(3)}`;
   };
   const main = series.map(format).join(" · ");
-  const extra = compared.length ? ` · ${comparisonLabel}: ${compared.map(format).join(" · ")}` : "";
-  return `${at} — ${main}${extra}`;
+  const comparisonPosition =
+    view === "field" ? ` at ${comparisonHeight === null ? "unknown height" : `${comparisonHeight.toFixed(2)} mm`}` : "";
+  const extra = compared.length
+    ? ` · ${comparisonLabel}${comparisonPosition}: ${compared.map(format).join(" · ")}`
+    : "";
+  return `${at}${view === "field" && field?.status === "unconverged" ? " (unconverged)" : ""}${diagnostic ? " — diagnostic estimates" : ""} — ${main}${extra}`;
 }
 
 /** Frequency labels at the end of each sagittal curve, nudged apart so they never overlap. */

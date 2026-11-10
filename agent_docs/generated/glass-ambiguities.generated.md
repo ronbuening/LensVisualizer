@@ -1,7 +1,7 @@
 # Coordinate-Compatible Glass Ambiguities (auto-generated)
 
 Lens elements whose annotation produces two or more catalog candidates inside the runtime compatibility guard.
-All candidates agree with the authored d- or e-line coordinates within Δn ±0.003 and Δν ±2;
+All candidates agree with the authored d-, D- or e-line coordinates within Δn ±0.003 and Δν ±2;
 the selected row follows the same ordering used by `resolveCompatibleGlass`.
 
 Resolver priority is: direct name before alias before six-digit code; matching vendor context;
@@ -12,8 +12,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1106** lenses scanned
-- **12558** glass elements examined
+- **1108** lenses scanned
+- **12571** glass elements examined
 - **2699** elements have multiple coordinate-compatible candidates
 - **492** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row

@@ -10,6 +10,8 @@ export const LINE_NM = {
   CPrime: 643.8469,
   /** Helium d line - reference for nd, vd. */
   d: 587.5618,
+  /** Sodium D doublet center (SCHOTT Optical Glass 2025, Table 10.1); distinct from helium d. */
+  D: 589.2938,
   /** Mercury e line - reference for ne, ve. */
   e: 546.074,
   /** Hydrogen F line. */

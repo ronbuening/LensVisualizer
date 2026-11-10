@@ -1,5 +1,5 @@
 /** MTF stays outside render-time optics; requests execute only in the mounted tab's worker. */
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { MtfAxialVignetting, MtfMethod, MtfRequestOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
 import { createAnalysisRequest } from "../../../optics/analysis.js";
@@ -91,9 +91,22 @@ export default function MtfTab({
       fieldFractions: mtfFieldFractions(preferences.fieldStepPercent),
       movementActive,
     }),
-    [preferences, spectrum.spectrum, movementActive],
+    [
+      preferences.method,
+      preferences.focus,
+      preferences.maxGridSize,
+      preferences.fieldStepPercent,
+      spectrum.spectrum,
+      movementActive,
+    ],
   );
   const support = useMemo(() => assessMtfSupport(request, options), [request, options]);
+  // Disclosure belongs to these controls, not to a later lens, aperture or spectrum.
+  const [presentation, setPresentation] = useState({ request, options, diagnostic: false });
+  if (presentation.request !== request || presentation.options !== options) {
+    setPresentation({ request, options, diagnostic: false });
+  }
+  const diagnostic = presentation.request === request && presentation.options === options && presentation.diagnostic;
   const job = support.available ? request : null;
   const { result, stale, running, error } = useMtfComputation(L, job, options);
   const shown = support.available ? result : null;
@@ -124,7 +137,7 @@ export default function MtfTab({
     });
   }, [job, compareF8Available, preferences.compareF8, L]);
   const comparison = useMtfComputation(L, comparisonJob, options);
-  const comparisonShown = comparisonJob && !comparison.stale ? comparison.result : null;
+  const comparisonShown = comparisonJob && !comparison.stale && !stale ? comparison.result : null;
   // A result kept from an earlier request says nothing about the label on screen.
   const vignettingOf = (result: MtfResult | null, superseded: boolean) =>
     superseded ? null : (result?.axialVignetting ?? null);
@@ -166,6 +179,31 @@ export default function MtfTab({
               Calculating f/8 comparison…
             </p>
           ) : null}
+          {!stale ? (
+            <div role="note" aria-label="MTF numerical limits" style={{ margin: "8px 0", color: t.value }}>
+              <p>
+                {textRun(
+                  "Normal view shows converged fields within their stable frequency band.",
+                  shown.fields.some((field) => field.status === "unconverged")
+                    ? ` Main result: ${shown.fields.filter((field) => field.status === "unconverged").length} unconverged fields.`
+                    : "",
+                  comparisonShown?.fields.some((field) => field.status === "unconverged")
+                    ? ` f/8 comparison: ${comparisonShown.fields.filter((field) => field.status === "unconverged").length} unconverged fields.`
+                    : "",
+                  " Sampling has not demonstrated stability within 0.01 MTF for unconverged fields; this does not establish physical invalidity. Stopping down may improve convergence.",
+                )}
+              </p>
+              <label style={{ cursor: "pointer" }}>
+                <input
+                  type="checkbox"
+                  checked={diagnostic}
+                  onChange={(event) => setPresentation({ request, options, diagnostic: event.target.checked })}
+                />
+                Show diagnostic estimates (unconverged or unverified frequencies)
+              </label>
+            </div>
+          ) : null}
+          {stale ? <p role="status">Previous settings are shown while the current calculation updates.</p> : null}
           <MtfDataWarning
             limitations={dataLimitations}
             acknowledged={warningAcknowledged}
@@ -180,8 +218,15 @@ export default function MtfTab({
               stale={stale}
               comparison={comparisonShown}
               comparisonLabel={comparisonLabel}
+              diagnostic={diagnostic}
             />
-            <MtfFieldSummary result={shown} frequencies={preferences.frequencies} t={t} />
+            <MtfFieldSummary
+              result={shown}
+              frequencies={preferences.frequencies}
+              t={t}
+              diagnostic={diagnostic}
+              stale={stale}
+            />
           </MtfDataWarning>
         </>
       )}
@@ -212,8 +257,9 @@ export default function MtfTab({
           ))}
         </ul>
         <p>
-          Field positions are fractions of the format-corner image height, or of the modeled edge when the lens declares
-          no format.
+          Best axial focus is an estimated common image plane; it is not a numerically verified physical optimum. Field
+          positions are fractions of the format-corner image height, or of the modeled edge when the lens declares no
+          format.
         </p>
       </details>
     </section>
@@ -242,7 +288,9 @@ function headerLine(
   const bestAxial = focus ? focus.mode === "best-axial" : options.focus === "best-axial";
   const shift = focus?.appliedShiftMm ?? 0;
   parts.push(
-    bestAxial ? `Best axial focus (${shift >= 0 ? "+" : "−"}${Math.abs(shift).toFixed(3)} mm)` : "Design image plane",
+    bestAxial
+      ? `Best axial focus estimate (${shift >= 0 ? "+" : "−"}${Math.abs(shift).toFixed(3)} mm)`
+      : "Design image plane",
   );
   return parts.join(" · ");
 }
