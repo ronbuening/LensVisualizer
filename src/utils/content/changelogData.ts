@@ -25,6 +25,12 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the Pentax M 200mm f/4, M* 300mm f/4 and A 28mm f/2.8, Meike AF 85mm f/1.8 FF STM and Sigma DP1 Merrill",
   },
   {
+    date: "2026-11-10",
+    type: "lens",
+    summary:
+      "Added the Fujifilm XF 150-600mm f/5.6-8, Konica Hexanon AR 57mm f/1.2, Nikon EL-Nikkor 50mm f/2.8, Pentax FA* 300mm f/2.8, Schneider-Kreuznach 28mm LS f/4.5 and Sigma 20mm f/1.4 DG DN Art",
+  },
+  {
     date: "2026-11-09",
     type: "fix",
     summary:

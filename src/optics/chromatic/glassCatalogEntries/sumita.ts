@@ -102,6 +102,7 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [2.5692173, -0.010022582, 0.016067095, 0.00039868115, -0.000015698671, 0.0000011774033],
     nd: 1.6172,
     vd: 54,
+    PgF: 0.5488,
     code6: "617540",
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K-SSK1.",
@@ -626,9 +627,21 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     polynomial: [2.351324, -0.008234544, 0.01618468, 0.0003389461, 0.000007331352, 0.0000008692234],
     nd: 1.54869,
     vd: 45.4,
+    PgF: 0.5659,
     code6: "549454",
     source:
       "SUMITA all-glass Zemax catalog (header 2026-08-21), https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf; accessed 2026-10-03. Vendor formula-1 polynomial for discontinued LLF7.",
+  },
+  {
+    name: "LASKN3",
+    vendor: "Sumita",
+    polynomial: [3.079479, -0.01492942, 0.02341923, 0.0006649639, -0.0000352842, 0.000002627321],
+    nd: 1.774,
+    vd: 50.5,
+    PgF: 0.549,
+    code6: "774505",
+    source:
+      "SUMITA all-glass Zemax catalog (header 2026-08-21), https://www.sumita-opt.co.jp/download_files/en/data/zemax.agf; accessed 2026-11-06. Vendor formula-1 polynomial for discontinued LASKN3.",
   },
   {
     name: "LAKN12",
