@@ -1,0 +1,255 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+// Qualified source reconstruction; infinity only; peripheral MTF limits disclosed.
+// Whole DE939956B sole example, uniformly scaled x0.5 as retail-50mm hypothesis.
+// R/d/nd/v unchanged apart from uniform lengths; r7 remains positive.
+// STO midpoint is inferred; total central air gap is preserved exactly.
+// SDs are inferred static geometry candidates, not measured factory clear apertures.
+// BFL is paraxially derived, not printed. No finite-focus or floating law is asserted.
+// Patent prints lowercase nd and v, but no numerical wavelength or Abbe formula.
+const LENS_DATA = {
+  schema: 2,
+  key: "leica-summicron-rigid-dr-50mm-f2",
+  maker: "Leica",
+  name: "LEICA SUMMICRON Rigid / DR 50mm f/2",
+  subtitle: "DE 939956 B sole example, scaled \u00d70.5; probable family, not factory prescription",
+  visible: true,
+  catalog: {
+    lensMounts: ["leica-m"],
+    imageFormat: "135-full-frame",
+    specs: ["7 ELEMENTS / 6 GROUPS", "50.0266 mm DESIGN EFL", "INFINITY-ONLY QUALIFIED HYPOTHESIS"],
+    elementCount: 7,
+    groupCount: 6,
+    focalLengthMm: {
+      marketing: 50,
+      design: 50.02660182975827,
+    },
+    fNumber: {
+      marketing: 2,
+      design: 2,
+    },
+  },
+  source: {
+    patentNumber: "DE 939956 B",
+    example: {
+      label: "Sole example",
+      id: null,
+    },
+    patentYear: 1956,
+    authors: ["Otto Zimmermann", "Gustav Kleineberg"],
+    assignees: ["Ernst Leitz GmbH"],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      nd: 1.691,
+      vd: 54.9,
+      indexReference: "d",
+      focalLengthMm: 50.52274434281679,
+      glass: "Unmatched (patent nd / v only; no factory glass identification)",
+      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      nd: 1.62237,
+      vd: 36.1,
+      indexReference: "d",
+      focalLengthMm: -106.25971873834973,
+      glass: "Unmatched (patent nd / v only; no factory glass identification)",
+      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Positive Meniscus",
+      nd: 1.691,
+      vd: 54.9,
+      indexReference: "d",
+      focalLengthMm: 33.641446637422135,
+      glass: "Unmatched (patent nd / v only; no factory glass identification)",
+      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Negative Meniscus",
+      nd: 1.6014,
+      vd: 38.3,
+      indexReference: "d",
+      focalLengthMm: -25.140017540891535,
+      glass: "Unmatched (patent nd / v only; no factory glass identification)",
+      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconcave Negative",
+      nd: 1.58144,
+      vd: 40.8,
+      indexReference: "d",
+      focalLengthMm: -24.222374717654407,
+      glass: "Unmatched (patent nd / v only; no factory glass identification)",
+      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+      cemented: "D1",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      nd: 1.691,
+      vd: 54.9,
+      indexReference: "d",
+      focalLengthMm: 28.411541513395857,
+      glass: "Unmatched (patent nd / v only; no factory glass identification)",
+      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+      cemented: "D1",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Element 7",
+      type: "Biconvex Positive",
+      nd: 1.691,
+      vd: 54.9,
+      indexReference: "d",
+      focalLengthMm: 51.7706555403093,
+      glass: "Unmatched (patent nd / v only; no factory glass identification)",
+      role: "Source-preserved spherical component; isolated-air power is descriptive, not an in-system allocation.",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 41.08,
+      d: 5.2,
+      sd: 15,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: -220.46,
+      d: 1.45,
+      sd: 15,
+    },
+    {
+      label: "3",
+      R: -182.23,
+      d: 3.435,
+      sd: 14,
+      medium: 2,
+    },
+    {
+      label: "4",
+      R: 104.555,
+      d: 0.096,
+      sd: 14,
+    },
+    {
+      label: "5",
+      R: 16.84,
+      d: 4.24,
+      sd: 13,
+      medium: 3,
+    },
+    {
+      label: "6",
+      R: 54.82,
+      d: 0.2575,
+      sd: 10.075,
+    },
+    {
+      label: "7",
+      R: 72.54,
+      d: 2.03,
+      sd: 10.06,
+      medium: 4,
+    },
+    {
+      label: "8",
+      R: 12.38,
+      d: 4.54,
+      sd: 10,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 4.54,
+    },
+    {
+      label: "9",
+      R: -18.06,
+      d: 1.885,
+      sd: 10,
+      medium: 5,
+    },
+    {
+      label: "10",
+      R: 66.425,
+      d: 4.05,
+      sd: 12,
+      medium: 6,
+    },
+    {
+      label: "11",
+      R: -27.175,
+      d: 0.096,
+      sd: 14,
+    },
+    {
+      label: "12",
+      R: 372.355,
+      d: 3.47,
+      sd: 14,
+      medium: 7,
+    },
+    {
+      label: "13",
+      R: -39.425,
+      d: 30.73780955627864,
+      sd: 14,
+    },
+  ],
+  focus: {
+    closeFocusM: 1,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: infinity-only fixed prescription. The required 1m close-focus label is maker normal-range context, not a modeled conjugate or movement law.",
+  },
+  aperture: {
+    nominalFNumber: 2,
+    fStops: [2, 2.8, 4, 5.6, 8, 11, 16],
+  },
+  groups: [
+    {
+      text: "FRONT",
+      fromSurface: "1",
+      toSurface: "8",
+    },
+    {
+      text: "REAR",
+      fromSurface: "9",
+      toSurface: "13",
+    },
+  ],
+  doublets: [
+    {
+      text: "D1",
+      fromSurface: "9",
+      toSurface: "11",
+    },
+  ],
+  layout: {
+    yScFill: 0.42,
+  },
+} satisfies LensDataV2Input;
+
+export default LENS_DATA;
