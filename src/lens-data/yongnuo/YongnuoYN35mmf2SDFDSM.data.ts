@@ -26,7 +26,7 @@ const LENS_DATA = {
     groupCount: 8,
     focalLengthMm: {
       marketing: 35,
-      design: 35,
+      design: 35.02,
     },
     fNumber: {
       marketing: 2,
@@ -108,7 +108,7 @@ const LENS_DATA = {
       vd: 70.361,
       indexReference: "d",
       focalLengthMm: 113.68994513060825,
-      glass: "Unmatched (patent nd 1.525, νd 70.36)",
+      glass: "K-PMK30 (SUMITA catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "Yongnuo marks this element as its ED glass; the patent requires 60 ≤ νd ≤ 90 here for axial and lateral colour but names no glass, and no catalog row matches, so its partial dispersion is unpublished.",

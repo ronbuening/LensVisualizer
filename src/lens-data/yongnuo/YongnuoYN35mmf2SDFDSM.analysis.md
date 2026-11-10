@@ -42,7 +42,7 @@ A nearly plano-concave flint whose strongly curved front surface faces the objec
 
 ### L4 (G14) — Positive Meniscus
 
-nd = 1.525, νd = 70.36. Glass: Unmatched (patent nd 1.525, νd 70.36) — ED (maker). f = +113.69 mm.
+nd = 1.525, νd = 70.36. Glass: K-PMK30 (Sumita) catalog equivalent — ED (maker). f = +113.69 mm.
 
 The weakest element, a meniscus convex to the object just ahead of the stop. Condition (3) requires 60 ≤ νd4 ≤ 90 because this element sets the correction of axial and lateral colour in GR1; the upper limit avoids the cost of glasses above νd 90 (¶0069–0073). Yongnuo's diagram marks it as the lens's ED element. No catalog row matches the printed index pair, so its partial dispersion is unknown.
 
@@ -80,7 +80,7 @@ The fixed rear group, a nearly plano-concave meniscus facing the object. Conditi
 
 ¶0074 defines nd at 587.56 nm and νd = (nd − 1)/(nF − nC) with nF at 486.13 nm and nC at 656.27 nm. The patent prints Abbe numbers to four decimals, and several reproduce catalog values exactly: S-BSM14 (OHARA, νd 60.6411), the discontinued OHARA PBM39 (33.0468) and the obsolete HOYA FD3 (28.2450). The design evidently used OHARA and HOYA catalogs that still listed obsolete glasses; Yongnuo names no production suppliers. L1, L5 and L9 match S-TIM27, TAFD35 and E-FD4 within 0.02 in νd, and the plate GL matches S-BSL7. The PBM39 match also supports the corrected L7 index of 1.6668.
 
-L2 (1.9014/31.64), L4 (1.525/70.36) and L8 (1.79/45.0) match no catalog row and trace with Abbe-number dispersion. L4's low-dispersion role is stated by the patent and Yongnuo, but its partial dispersion is unpublished.
+L2 (1.9014/31.64) and L8 (1.79/45.0) match no catalog row and trace with Abbe-number dispersion. L4 (1.525/70.36) matches Sumita K-PMK30 (1.52500/70.4), a low-dispersion crown, which fits the ED role the patent and Yongnuo give it; Yongnuo does not name the glass.
 
 ## Focus Mechanism
 

@@ -107,3 +107,9 @@ for rim proportions. The model sketch was overlaid on Fig. 1 at the matched scal
 
 Open: L8 reads 12.5 mm on the figure against 12.0 mm in the file and is left within noise. The stop housing now
 draws at 12.1 mm beside the 11.33 mm paraxial iris.
+
+## 2026-11-10 — Glass label and design focal length
+
+L4 relabelled from Unmatched to K-PMK30 (Sumita): the vendor catalog prints 1.52500 / 70.4 against the patent's
+1.525 / 70.361 (Δnd 0, Δνd 0.04); the row was added to the glass catalog for this lens. `catalog.focalLengthMm.design`
+set to the patent's stated 35.02 mm to match the specs line.
