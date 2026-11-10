@@ -95,4 +95,60 @@ Open:
 - Rims against Fig. 2 (wide end, scaled by the 149.37 mm track): the figure reads about 32 / 30 mm for Gr1, 18 / 15 mm
   for Gr2, 12–13 mm for Gr3 and 11–12 mm for Gr4, against the inferred 34 / 34, 22 / 22, 15–18 and 13.5–16 mm. The
   inferred Gr2–Gr4 rims are 20–40 % larger than the figure; Gr3's axial beam needs up to 12.4 mm. Left for a rim pass.
+  (Closed 2026-11-10 by the semi-diameter pass below: L6/L7 at the figure; Gr3R, Gr4 and L5 reduced as far as the
+  corner-light rule allows; Gr1 and L4 kept.)
 - JP H08-086962 A Example 3 is cited as the same prescription on the package's word; that publication was not re-read.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: Fig. 2 (Example 2, wide end, infinity), US 5,633,759 A drawing sheet 2 (PDF page 3, native 300 dpi raster; the
+same drawing as Fig. 2 on page 10 of JP H08-086961 A, cleaner copy). The optical axis is vertical with the object at
+the bottom; rims were read on the right-hand side inside the group brackets with the figure profiler.
+
+Scale: the curve crossings of the axis were located on both sides of the axis line. r1 at y 2965.5 px and r25 at
+605.5 px span the 149.367 mm of the printed wide-end thicknesses: 15.80 px/mm. The two long air gaps agree (d9 56.870 mm
+= 891.5 px, 15.68 px/mm; d20 25.573 mm = 400.5 px, 15.66 px/mm); 15.75 px/mm was used. The radial direction was checked
+on drawn edge thicknesses, which depend on rim height: L4 (biconcave) is drawn about 4.4 mm thick at its rim, which the
+prescription gives at h ≈ 15 mm (7.6 mm at the old 22 mm); L6 about 3.5 mm (prescription 3.58 mm at 11.7, 6.24 mm at
+18); L12 about 3.4 mm (3.40 mm at 11.7, 5.02 mm at 16); the r24 arc sag at the Gr4 rim (about 3.7 mm) also fits a rim
+near 12 mm. An overlay of the model sketch on the figure at 6 px/mm lines up at every vertex.
+
+Rule applied: a face below its baseline `sd` stays only if corner illumination drops by at most 3 points at every
+field of every zoom node (all 33 stations, wide open, infinity, and the 2 m state), or spacing needs it. With every
+rim at the figure, the 102.5 mm corner fell from 96.7 % to 41.0 % (Gr2 alone cost 42.8 points, Gr3 11.6, Gr4 9.5;
+Gr1 6.8 at 390.1 mm), so the figure could not be followed everywhere. `rimbudget.mjs` (every second node, 0.2 mm
+steps) raised elements from the figure set back toward the baseline until the worst loss fell to 2.85 points; the
+same set came out with L13–L14 held at its baseline 13.5 mm, which keeps the engine half-field. L8 and L9–L10 were
+then raised to L11's 14.4 mm and L12 to L13–L14's 13.5 mm, so the drawn equal heights inside Gr3R and Gr4 are kept
+(raises only gain light).
+
+| Surfaces | Element | Figure px → mm | Before | After | Evidence and reason |
+| --- | --- | --- | --- | --- | --- |
+| 1–3 | L1–L2 | 495.5 / 487.5 → 31.5 / 31.0 | 34 | 34 | figure smaller; a trim to 33 / 32.5 meets the infinity rule but costs 6.1 points on axis at 346 mm at 2 m |
+| 4–5 | L3 | 475 → 30.2 | 34 | 34 | as L1–L2 (paraxial 2 m marginal at s5 is 31.0 mm at 390.1 mm) |
+| 6–7 | L4 | 240 → 15.2 | 22 | 22 | figure much smaller (edge thickness agrees), but Gr2 needs ≥ ~21 mm for the 102.5 mm corner |
+| 8–9 | L5 | 230 → 14.6 | 22 | 21.2 | greedy minimum; keeps the drawn L4 > L5 step |
+| 10–11 | L6 | 183.5 → 11.65 | 18 | 11.7 | figure (radial reading and edge thickness); costs no light |
+| 12–13 | L7 | 195 → 12.4 | 17 | 12.4 | figure; restoring it wins back 0.4 point |
+| 14–15 | L8 | 201.5 → 12.8 | 16 | 14.4 | greedy 13.4, raised to L11's height |
+| 16–18 | L9–L10 | 203 → 12.9 | 15 | 14.4 | greedy 14.1, raised to L11's height |
+| 19–20 | L11 | 201.5 → 12.8 | 15 | 14.4 | greedy minimum |
+| 21–22 | L12 | 184 → 11.7 | 16 | 13.5 | figure 11.7 costs 0.3 point; raised to L13–L14 as the figure draws them equal |
+| 23–25 | L13–L14 | 184 → 11.7 | 13.5 | 13.5 | kept: below 13.5 the surface-25 limit shrinks the engine half-field (17.12° → 15.92° at 12.5) |
+
+Clearance: no rim clips the axial beam at any zoom or focus state (`clearap` at infinity, middle and 2 m focus: no
+CLIPS-AXIAL or BLOCKS-CHIEF; Gr3F axial heights 10.92–11.72 mm against 11.7 / 12.4 mm rims). `audit:surface` OK;
+`audit:aperture` 33/33 stations within 3 % of the stated f-number with no rim limit; `audit:field-coverage` 33/33
+stations reach the 21.6 mm corner; `audit:image-circle` no undersized surface. EFL 102.546440, FOPEN 4.6, half-field
+17.117° and stop radius 10.762183 are unchanged, and `probe.mjs` output is identical. `gapSagFrac` untouched.
+
+Corner illumination (geometric transmission, full-pupil lattice, wide open, infinity, baseline → final, corner field
+of each station): 102.5 mm 96.7 → 94.1 %; 107.2 mm 97.9 → 95.5 %; 112.0 mm 98.5 → 96.2 %; 117.0 mm 99.0 → 96.7 %;
+122.2 mm 99.4 → 97.5 %; 127.5 mm 99.8 → 98.1 %; 133.1 mm 100 → 98.6 %; 138.8 mm 100 → 99.2 %; 144.7 mm 100 → 99.5 %;
+150.9 mm 100 → 99.9 %; 157.2–390.1 mm unchanged (100 % to 218.7 mm, then 99.5, 98.5, 97.1, 95.4, 93.6, 91.9, 89.9, 88.0,
+86.1, 83.9, 82.1, 79.9, 77.9 and 75.6 % at 390.1 mm). Worst loss at any field of any node: 2.6 points (102.5 mm, 12°).
+At 2 m (approximate check: the vignetting analysis at focus 1 with the infinity pupil and focal length), the worst
+loss is also 2.6 points at 102.5 mm (96.5 → 93.9 % at the corner) and none from 144.7 mm on.
+
+Open: L4 / L5 stay about 45 % larger than Fig. 2 and Gr3R / Gr4 about 12–15 % larger, because the drawn rims cost
+corner light under the rule; Gr1 is 8–13 % larger than the figure for the same reason at 2 m.

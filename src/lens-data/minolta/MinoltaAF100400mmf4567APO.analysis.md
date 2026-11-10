@@ -19,7 +19,7 @@ The identification rests on converging evidence:
 4. Focus and size: the production lens focuses with its front group (the filter rotates while focusing) to 2.0 m at 0.25×; front-group focus of this prescription reaches 0.24× at 2 m at the long end. At the wide end the model's front vertex is 142.6 mm ahead of the A-mount flange against a 149 mm barrel, and the 59 mm entrance pupil at 390 mm fits inside the 72 mm filter thread.
 5. Timing: the application was filed in September 1994 and the lens appeared in 1995.
 
-The prescription is not a manufacturer-confirmed production drawing. The stop position and clear apertures are not printed and are modeling choices, separate from the product identification.
+The prescription is not a manufacturer-confirmed production drawing. The stop position and clear apertures are not printed and are modeling choices, checked against the patent figure; both are separate from the product identification.
 
 ## Optical Architecture
 
@@ -163,7 +163,7 @@ The model uses **front-group focus**, a reconstruction based on the production l
 
 The stop is **assumed**; the patent figures draw no iris. It is placed 2.000 mm before surface 10 and moves with Gr3, so the printed d9 is split into d9 − 2.000 and 2.000 mm without changing the optical separation. The iris radius is derived from the printed f-number at each printed state; f-numbers at the interpolated stations are interpolated, not published, and no iris size is a published physical diameter.
 
-All clear semi-diameters are inferred and fixed across zoom and focus. The radii are 34, 34, 22, 22, 18, 17, 16, 15, 15, 16 and 13.5 mm for the eleven groups, front to rear, with one radius per cemented group. They pass the full axial beam at every station and are not measured barrel or clear-aperture dimensions. There are no rim cuts or rim extensions.
+The clear semi-diameters are not printed and are fixed across zoom and focus. They are compared with the wide-end Fig. 2, read on the 300 dpi US copy at 15.75 px/mm (scale from the 149.37 mm vertex span, confirmed by the d9 and d20 spacings and by the drawn edge thicknesses of L4, L6 and L12). The negative front subunit of Gr3 follows the figure: 11.7 mm for L6 and 12.4 mm for L7. Elsewhere the drawn rims are smaller than the model's: the figure gives about 31 mm for Gr1, 15.2 / 14.6 mm for L4 / L5, 12.8–12.9 mm for Gr3R and 11.7 mm for Gr4, and with all of them the 102.5 mm corner would pass only 41 % of the beam. The model uses 34 mm for Gr1, 22 / 21.2 mm for L4 / L5, 14.4 mm for Gr3R and 13.5 mm for Gr4: the Gr2–Gr4 values are the smallest that keep the 102.5 mm corner at 94 % of the beam, and a smaller front group would cut light at the long end, where at 2 m the axial beam comes within about 1.5 mm of its rim. Every rim passes the full axial beam at every zoom and focus state. There are no rim cuts or rim extensions.
 
 The image-side interval is absent from the prescription table. At each printed infinity state it is derived paraxially (d-line) from the unchanged prescription:
 
@@ -178,7 +178,7 @@ Table 1 (¶0030) prints a wide back focus of 37.697 mm, 0.053 mm shorter than th
 ## Model Scope and Limitations
 
 - The stop position, the clear apertures, the 30 interpolated zoom stations and every finite focus state are modeling choices; only the prescription and the three infinity states are printed.
-- At the full 21.6 mm image height, the inferred rims clip part of the off-axis beam at the longer focal lengths, as in an ordinary telephoto zoom; the apertures were not enlarged to remove it.
+- Wide open at infinity, the rims pass 94 % of the beam at the 12° corner at 102.5 mm and the full beam from about 157 mm to 219 mm; toward the long end the front group limits the corner, to 76 % at 390.1 mm.
 - L2 and L3 trace with normal partial dispersion because the patent publishes none for the AD glass, so the model's secondary spectrum is indicative only and likely larger than the production lens's.
 - The model is a reconstruction of one published example, not Minolta's production drawing.
 

@@ -12,7 +12,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * printed variable gaps d5, d9 and d20. Gr3's front (L6–L7) and rear (L8–L11) subgroups move together.
  * Stop: not printed. Placed 2 mm in front of surface 10 and moving with Gr3, so d9 is split into
  * (d9 − 2) + 2 mm; its radius follows the printed f-number at each station.
- * Semi-diameters: inferred, not printed.
+ * Semi-diameters: not printed; compared with the wide-end Fig. 2 (US 5,633,759 copy, 15.75 px/mm at 300 dpi). L6 and
+ * L7 follow the figure (11.7 / 12.4 mm). Gr3R and Gr4 are reduced only as far as corner light allows (14.4 / 13.5 mm
+ * against a drawn 12.8 / 11.7 mm), and Gr1 and Gr2 keep their inferred 34 / 22 / 21.2 mm (drawn 30.2–31.5 /
+ * 15.2 / 14.6 mm): the drawn rims would cut the 102.5 mm corner from 97 % to 41 % of the beam, and a smaller Gr1
+ * cuts light at the long end at 2 m. The axial beam clears every rim at every zoom and focus state.
  * Back focus: not printed per state; derived paraxially (d-line) at every station. The patent's
  * wide back focus 37.697 mm is 0.053 mm shorter than the derived 37.750 mm (see source.errata).
  * Zoom: the 30 stations between the printed ones are interpolated. Gr1, Gr2 and Gr4 positions
@@ -294,13 +298,13 @@ const LENS_DATA = {
       label: "8",
       R: 104.848,
       d: 3.092,
-      sd: 22,
+      sd: 21.2,
       medium: 5,
     },
     {
       label: "9",
       R: -486.232,
-      sd: 22,
+      sd: 21.2,
     },
     {
       label: "STO",
@@ -311,85 +315,85 @@ const LENS_DATA = {
       label: "10",
       R: -93.851,
       d: 1.7,
-      sd: 18,
+      sd: 11.7,
       medium: 6,
     },
     {
       label: "11",
       R: 60.019,
       d: 1.982,
-      sd: 18,
+      sd: 11.7,
     },
     {
       label: "12",
       R: 63.072,
       d: 2.988,
-      sd: 17,
+      sd: 12.4,
       medium: 7,
     },
     {
       label: "13",
       R: 113.513,
       d: 2.683,
-      sd: 17,
+      sd: 12.4,
     },
     {
       label: "14",
       R: 250.35,
       d: 3.188,
-      sd: 16,
+      sd: 14.4,
       medium: 8,
     },
     {
       label: "15",
       R: -58.125,
       d: 0.2,
-      sd: 16,
+      sd: 14.4,
     },
     {
       label: "16",
       R: 69.535,
       d: 1.7,
-      sd: 15,
+      sd: 14.4,
       medium: 9,
     },
     {
       label: "17",
       R: 36.86,
       d: 4.791,
-      sd: 15,
+      sd: 14.4,
       medium: 10,
     },
     {
       label: "18",
       R: -96.135,
       d: 0.2,
-      sd: 15,
+      sd: 14.4,
     },
     {
       label: "19",
       R: 44.043,
       d: 3.692,
-      sd: 15,
+      sd: 14.4,
       medium: 11,
     },
     {
       label: "20",
       R: -150.605,
-      sd: 15,
+      sd: 14.4,
     },
     {
       label: "21",
       R: 142.369,
       d: 1.7,
-      sd: 16,
+      sd: 13.5,
       medium: 12,
     },
     {
       label: "22",
       R: 32.415,
       d: 4.278,
-      sd: 16,
+      sd: 13.5,
     },
     {
       label: "23",
