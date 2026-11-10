@@ -1,0 +1,1 @@
+Added optical summary and bokeh tabs to the analysis drawer

@@ -1,6 +1,6 @@
 # src/content
 
-This folder auto-discovered markdown articles and static site content.
+This folder auto-discovered markdown articles, static site content, and one-file-per-entry changelog text.
 
 Generated `readme.md` and `improvementsuggestions.md` files are intentionally omitted from the per-file inventory so this document stays focused on source relationships.
 

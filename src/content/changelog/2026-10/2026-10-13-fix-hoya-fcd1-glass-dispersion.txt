@@ -1,0 +1,1 @@
+Corrected HOYA FCD1 glass dispersion, slightly shifting violet focus in the lenses that use it

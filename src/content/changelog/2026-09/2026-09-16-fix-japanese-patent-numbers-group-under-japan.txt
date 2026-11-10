@@ -1,0 +1,1 @@
+Normalized 24 Japanese patent numbers so they group under Japan on the patents index

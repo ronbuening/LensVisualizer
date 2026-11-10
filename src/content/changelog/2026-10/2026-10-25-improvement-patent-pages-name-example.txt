@@ -1,0 +1,1 @@
+The patents, inventor and relationship map pages now name the example each lens is taken from and list a patent's lenses in example order

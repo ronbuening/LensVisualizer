@@ -1,0 +1,1 @@
+Corrected Sigma semi-diameter geometry and Voigtlander Heliar stop placement

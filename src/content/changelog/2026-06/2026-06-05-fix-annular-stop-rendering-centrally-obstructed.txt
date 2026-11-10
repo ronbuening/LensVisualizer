@@ -1,0 +1,1 @@
+Fixed annular stop rendering for centrally obstructed reflex lenses
