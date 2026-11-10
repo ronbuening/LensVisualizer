@@ -41,3 +41,7 @@ cemented ids D5/D7/D8 clash with gap label D8; name, subtitle, specs, glass and 
 
 Hidden at deployment (`visible: false`): no production lens corresponds to this design, so the file stays in the
 repository without a catalog page.
+
+## 2026-11-10 — Glass labels
+
+All eleven glass labels changed from "Unmatched patent nd/Vd" to exact catalog rows (Δnd ≤ 4e-6, |Δνd| ≤ 0.04): S-LAH97, J-LASF09A, S-LAL7Q, E-F2, S-TIH10, J-LAK14, S-LAM3, S-TIH53 (L8, L11) and S-LAH65V (L9, L10). Each element now traces on its catalog Sellmeier curve.

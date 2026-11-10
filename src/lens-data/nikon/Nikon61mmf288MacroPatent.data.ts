@@ -40,7 +40,7 @@ const LENS_DATA = {
       nd: 1.755,
       vd: 52.29,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "S-LAH97 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 2,
@@ -50,7 +50,7 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.63,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "J-LASF09A (HIKARI catalog equivalent; production supplier unspecified)",
     },
     {
       id: 3,
@@ -60,7 +60,7 @@ const LENS_DATA = {
       nd: 1.6516,
       vd: 58.54,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "S-LAL7Q (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 4,
@@ -70,7 +70,7 @@ const LENS_DATA = {
       nd: 1.62004,
       vd: 36.3,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "E-F2 (HOYA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 5,
@@ -80,7 +80,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.46,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "S-TIH10 (OHARA catalog equivalent; production supplier unspecified)",
       cemented: "D5",
     },
     {
@@ -91,7 +91,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.52,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "J-LAK14 (HIKARI catalog equivalent; production supplier unspecified)",
       cemented: "D5",
     },
     {
@@ -102,7 +102,7 @@ const LENS_DATA = {
       nd: 1.717,
       vd: 47.93,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "S-LAM3 (OHARA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 8,
@@ -112,7 +112,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       cemented: "D7",
     },
     {
@@ -123,7 +123,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.58,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
       cemented: "D7",
     },
     {
@@ -134,7 +134,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.58,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "S-LAH65V (OHARA catalog equivalent; production supplier unspecified)",
       cemented: "D8",
     },
     {
@@ -145,7 +145,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "S-TIH53 (OHARA catalog equivalent; production supplier unspecified)",
       cemented: "D8",
     },
   ],

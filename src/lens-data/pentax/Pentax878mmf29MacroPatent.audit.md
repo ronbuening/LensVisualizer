@@ -41,3 +41,7 @@ Open: inferred rims depart from Fig. 1 (rear group drawn about 17 mm, file up to
 
 Hidden at deployment (`visible: false`): no production lens corresponds to this design, so the file stays in the
 repository without a catalog page.
+
+## 2026-11-10 — Glass labels
+
+Twelve glass labels changed from "Unmatched patent nd/Vd" to exact catalog rows (Δnd ≤ 3.2e-6, |Δνd| ≤ 0.05), HOYA where HOYA has the row: TAFD5G (L1, L7), TAC8, BACD14 (L4, L12), N-SK11, BAFD7, FCD1, BACD5, FDS90, BAFD8 and FD60. The 0.200 mm resin layer (L2) stays unmatched.

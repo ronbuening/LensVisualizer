@@ -40,7 +40,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "TAFD5G (HOYA catalog equivalent; production supplier unspecified)",
       cemented: "D1",
     },
     {
@@ -51,7 +51,7 @@ const LENS_DATA = {
       nd: 1.52972,
       vd: 42.7,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "Unmatched (patent resin layer; nd=1.52972, νd=42.7)",
       cemented: "D1",
     },
     {
@@ -62,7 +62,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "TAC8 (HOYA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 4,
@@ -72,7 +72,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "BACD14 (HOYA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 5,
@@ -82,7 +82,7 @@ const LENS_DATA = {
       nd: 1.56384,
       vd: 60.8,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "N-SK11 (SCHOTT catalog equivalent; production supplier unspecified)",
     },
     {
       id: 6,
@@ -92,7 +92,7 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.2,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "BAFD7 (HOYA catalog equivalent; production supplier unspecified)",
       cemented: "D5",
     },
     {
@@ -103,7 +103,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "TAFD5G (HOYA catalog equivalent; production supplier unspecified)",
       cemented: "D5",
     },
     {
@@ -114,7 +114,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 9,
@@ -124,7 +124,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.2,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "BACD5 (HOYA catalog equivalent; production supplier unspecified)",
       cemented: "D7",
     },
     {
@@ -135,7 +135,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.8,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       cemented: "D7",
     },
     {
@@ -146,7 +146,7 @@ const LENS_DATA = {
       nd: 1.72342,
       vd: 38,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "BAFD8 (HOYA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 12,
@@ -156,7 +156,7 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.7,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "BACD14 (HOYA catalog equivalent; production supplier unspecified)",
     },
     {
       id: 13,
@@ -166,7 +166,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.5,
       indexReference: "d",
-      glass: "Unmatched patent nd/Vd; exact dispersion unknown",
+      glass: "FD60 (HOYA catalog equivalent; production supplier unspecified)",
     },
   ],
   surfaces: [
