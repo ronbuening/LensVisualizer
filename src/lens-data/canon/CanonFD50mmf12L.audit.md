@@ -30,3 +30,9 @@ Patent: US 4,364,644, Example 1
 ## 2026-07-29 - Catalog expansion follow-up
 
 - Corrected L3 from `S-TIM27` to OHARA `S-TIM6`, the exact 1.63636 / 35.39 row.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 1.2` from US 4,364,644 PDF p. 13, col. 5, the Example 1 table heading "Focal Length f = 100
+  F-number F = 1:1.2 Image Angle 2ω = 46°" (about line 32). The stop's `nominalFNumber` 1.2 matches it. No optical
+  value changed.

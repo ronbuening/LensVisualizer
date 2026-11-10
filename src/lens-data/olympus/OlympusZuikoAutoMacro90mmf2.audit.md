@@ -64,3 +64,7 @@ Patent: US 4,792,219, Embodiment 3
 - OHARA S-LAM2 (`1.743997 / 44.79`) reproduces the index and differs by only `+0.06` in Abbe number.
 - Relabeled L5 as the coefficient-backed S-LAM2 optical equivalent while leaving the production supplier
   unspecified. No prescription, focus, aperture, APD, or semi-diameter values changed.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.focalLengthMm.design` = 90: `patents/US4792219.pdf` PDF p16, col. 9, line ~41, Embodiment 3 footer "f = 100, F/2.06, 2ω = 27°", multiplied by the documented ×0.9 scale (r₁ 58.7838 → 52.9054 confirms it). Removed the now-stale "focalLengthDesign omitted" comment beside the field. `catalog.fNumber.design` 2.06 was already present and matches the same footer.

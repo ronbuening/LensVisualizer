@@ -37,3 +37,12 @@ Catalog version: local working tree, 2026-06-25
 
 - Why the old value differed: derived unit-focus travel; 1 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 1 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 3.5` from CH 314381 p. 2, right column, lines 54–56: the Rechenbeispiele, Example 1
+  included, are "für ein Öffnungsverhältnis von 1:3,5 berechnet" (no text layer; read from a 110 dpi render). The
+  stop's `nominalFNumber` 3.5 matches it.
+- `catalog.focalLengthMm.design: 50` from the same passage, lines 58–60: the radii and spacings "gelten für eine
+  Brennweite von etwa 100 mm". Times the ×0.500005 scale in the data header this is 50.0005; it is recorded as 50
+  because the source states the focal length only approximately. No optical value changed.

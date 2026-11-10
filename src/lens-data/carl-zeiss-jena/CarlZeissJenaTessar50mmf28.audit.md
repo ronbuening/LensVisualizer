@@ -38,3 +38,12 @@ Patent: FR 1.066.698, Example 1
   `-0.000709 / +0.086108` of the patent coordinate.
 - Relabeled L3 as a supplier-neutral FL1 optical equivalent and synchronized the analysis. This does not identify
   the historical Jena melt; no prescription geometry or semi-diameter values changed.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.focalLengthMm.design: 50.0568` from FR 1.066.698 p. 1, right column, the Exemple 1 heading "f = 100",
+  times the file's documented scale factor ×0.500568 (header "NOTE ON SCALING"; R1 39.31 → 19.677). The stale
+  `// focalLengthDesign omitted` comment beside the field was removed with it.
+- `catalog.fNumber.design` stays unset. The patent prints no f-number or aperture ratio for Exemple 1 (or Exemple 2):
+  pp. 1–2 mention only that earlier Tessars reached f/3.5 (p. 1, left column), and the résumé (p. 2) and the single
+  plate (p. 3) give none. The file's f/2.8 is the production identification. No optical value changed.

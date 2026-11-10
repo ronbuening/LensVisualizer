@@ -64,3 +64,9 @@ Figure / SD check:
   patent's native e-line coordinate inside the project's compatibility window.
 - Relabeled L5 as an S-LAL52 catalog equivalent while leaving the production supplier unspecified. No geometry or
   focus model changed.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 3.2` from US 2002/0075570 A1 p. 4 (PDF p. 15), left column, the middle portion of
+  Table 1-continued (Embodiment 1): "Fno. = 3.2 ω = 13.1°". The stop's `nominalFNumber` 3.2 matches it. No optical
+  value changed.
