@@ -1,0 +1,1 @@
+Fixed focus readouts to show where each lens focuses, naming the marketed minimum alongside

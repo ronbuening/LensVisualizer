@@ -1,0 +1,1 @@
+Fixed Espacenet links for US application publications and pre-2000 Japanese patent numbers, and added kind codes to 21 Japanese patents

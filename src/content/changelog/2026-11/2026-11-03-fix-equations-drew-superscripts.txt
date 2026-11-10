@@ -1,0 +1,1 @@
+Fixed equations that drew superscripts, subscripts and fraction terms at full size

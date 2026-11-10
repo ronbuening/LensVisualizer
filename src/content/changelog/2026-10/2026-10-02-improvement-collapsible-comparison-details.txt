@@ -1,0 +1,1 @@
+Added collapsible comparison details, a compact desktop toolbar, and scrolling that preserves diagram space

@@ -146,4 +146,4 @@ Then confirm:
 
 ## Changelog
 
-User-visible article launches warrant a `type: "article"` entry in `src/utils/content/changelogData.ts`. See `agent_docs/changelog.md` for format and rules.
+User-visible article launches warrant an `article` entry file under `src/content/changelog/`. See `agent_docs/changelog.md` for format and rules.

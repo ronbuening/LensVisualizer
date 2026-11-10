@@ -1,0 +1,1 @@
+Introduced analysis drawer — slide-out panel for optical aberration analysis

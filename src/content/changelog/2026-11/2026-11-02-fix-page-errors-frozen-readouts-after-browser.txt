@@ -1,0 +1,1 @@
+Fixed page errors and frozen readouts after a browser translated the page, such as Chrome's built-in Translate

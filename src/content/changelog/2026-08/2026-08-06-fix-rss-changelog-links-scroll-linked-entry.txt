@@ -1,0 +1,1 @@
+Fixed RSS changelog links so they scroll to the linked entry on the Updates page
