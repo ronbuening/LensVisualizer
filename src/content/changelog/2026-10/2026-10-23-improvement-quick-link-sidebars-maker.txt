@@ -1,0 +1,1 @@
+Added quick-link sidebars to maker, mount, format and teleconverter indexes

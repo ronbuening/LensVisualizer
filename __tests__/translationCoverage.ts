@@ -23,6 +23,7 @@ export const TRANSLATION_ROUTES = [
   { pattern: "/articles", url: "/articles" },
   { pattern: "/articles/:slug", index: "/articles" },
   { pattern: "/updates", url: "/updates" },
+  { pattern: "/updates/:month", index: "/updates" },
   { pattern: "/relationships", url: "/relationships" },
   { pattern: "/relationships/universal", url: "/relationships/universal" },
   { pattern: "*", url: "/translation-regression-missing-page" },

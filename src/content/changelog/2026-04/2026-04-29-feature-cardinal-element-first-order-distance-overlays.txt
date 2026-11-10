@@ -1,0 +1,1 @@
+Added cardinal element and first-order distance overlays to lens diagrams

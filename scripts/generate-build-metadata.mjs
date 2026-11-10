@@ -10,14 +10,16 @@
  *   - teleconverterKeys: sorted array of published teleconverter keys (hidden test models excluded)
  *   - authors: inventor names, stable slugs, and related lens/patent counts
  *   - assignees: names, stable slugs, lens/patent counts, and dated corporate history
+ *   - updateMonths: months with a changelog entry or published lens (one /updates/<month> archive page each)
  *   - routes: flat array of all concrete URL paths to pre-render
  *
  * This is the single source of truth for route enumeration. Downstream scripts
  * (prerender, sitemap, seo-audit) read this JSON instead of scanning the
  * filesystem independently.
  *
- * Also emits client-metadata.json, a public display projection without build-only Git details, and
- * teleconverter-summaries.json, which pairs each teleconverter with the visible lenses it can mount on.
+ * Also emits client-metadata.json, a public display projection without build-only Git details,
+ * teleconverter-summaries.json, which pairs each teleconverter with the visible lenses it can mount on, and
+ * changelog.json, the validated changelog compiled from the entry files under src/content/changelog/.
  *
  * Run before `vite build` so the generated file is available to the bundler.
  */
@@ -34,9 +36,11 @@ import {
   gitHistory,
   projectClientMetadata,
 } from "./build-metadata-lib.mjs";
+import { collectChangelog } from "./changelog-lib.mjs";
 import { assertV2Catalog, collectLensDataAsync } from "./lens-data-lib.mjs";
 import { lensSummary, teleconverterSummary, canonicalPrescription } from "./lens-summaries.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
+import { buildUpdateMonths } from "../src/utils/content/updateMonths.ts";
 import { buildAuthorMetadata, buildAssigneeMetadata } from "./author-metadata.mjs";
 import { assertPatentAssigneeValidity } from "./patent-assignee-validity.mjs";
 
@@ -44,6 +48,7 @@ const ROOT = join(import.meta.dirname, "..");
 const README_FILE = join(ROOT, "README.md");
 const LENS_DATA_DIR = join(ROOT, "src", "lens-data");
 const CONTENT_DIR = join(ROOT, "src", "content");
+const CHANGELOG_DIR = join(CONTENT_DIR, "changelog");
 const OUT_DIR = join(ROOT, "src", "generated");
 const OUT_FILE = join(OUT_DIR, "build-metadata.json");
 const CLIENT_FILE = join(OUT_DIR, "client-metadata.json");
@@ -52,6 +57,7 @@ const MAKER_DETAILS_FILE = join(ROOT, "src", "utils", "catalog", "makerDetails.t
 const ASSIGNEE_CORPORATE_HISTORY_FILE = join(ROOT, "src", "utils", "catalog", "assigneeCorporateHistory.ts");
 const LENS_SUMMARIES_FILE = join(OUT_DIR, "lens-summaries.json");
 const TELECONVERTER_SUMMARIES_FILE = join(OUT_DIR, "teleconverter-summaries.json");
+const CHANGELOG_FILE = join(OUT_DIR, "changelog.json");
 /* The fit predicate is import-free TypeScript, so plain Node's type stripping loads the same code the viewer runs. */
 const TELECONVERTER_COMPATIBILITY_FILE = join(ROOT, "src", "optics", "prescription", "teleconverterCompatibility.ts");
 
@@ -131,7 +137,7 @@ async function collectTeleconverters(lensModules, history, fallbackDate) {
 /* ── Route collection ────────────────────────────────────────────────── */
 
 /** Build the flat array of all concrete routes to pre-render. */
-function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, authors, teleconverterKeys) {
+function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, authors, teleconverterKeys, updateMonths) {
   return [
     "/",
     "/search",
@@ -145,6 +151,7 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, author
     ...(teleconverterKeys.length > 0 ? ["/teleconverters"] : []),
     "/articles",
     "/updates",
+    ...updateMonths.map(({ month }) => `/updates/${month}`),
     "/relationships",
     "/relationships/universal",
     ...articles.map((a) => `/articles/${a.slug}`),
@@ -161,6 +168,8 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, author
 
 async function main() {
   await assertV2Catalog(LENS_DATA_DIR);
+  /* Validated first: a malformed entry file fails the run before the slower lens and git work. */
+  const changelog = collectChangelog({ changelogDir: CHANGELOG_DIR });
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
   assertFullGitHistory({ cwd: ROOT });
   /* Every dated file is looked up in this one read of the history, made after any unshallowing above. */
@@ -168,6 +177,8 @@ async function main() {
   const fallbackDate = new Date().toISOString().slice(0, 10);
 
   writeFileSync(MAKER_PREFIXES_FILE, JSON.stringify(MAKER_PREFIXES, null, 2) + "\n", "utf-8");
+  writeFileSync(CHANGELOG_FILE, JSON.stringify(changelog) + "\n", "utf-8");
+  console.log(`Changelog written to ${CHANGELOG_FILE} (${changelog.length} entries)`);
 
   const [
     allLenses,
@@ -205,7 +216,20 @@ async function main() {
   const teleconverters = await collectTeleconverters(lensModules, history, fallbackDate);
   const publishedTeleconverters = teleconverters.filter((teleconverter) => teleconverter.summary.visible);
   const teleconverterKeys = publishedTeleconverters.map((teleconverter) => teleconverter.key).sort();
-  const routes = collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, authors, teleconverterKeys);
+  const updateMonths = buildUpdateMonths(
+    changelog.map((entry) => entry.date),
+    lenses.map((lens) => lens.freshness.publishedOn),
+  );
+  const routes = collectRoutes(
+    lenses,
+    articles,
+    makerSlugs,
+    mountIds,
+    formatIds,
+    authors,
+    teleconverterKeys,
+    updateMonths,
+  );
   const routeFreshness = buildRouteFreshness({
     lenses,
     articles,
@@ -218,6 +242,8 @@ async function main() {
       freshness,
       compatibleLensKeys: summary.compatibleLensKeys,
     })),
+    changelog,
+    updateMonths,
     makerDetailsFreshness,
     assigneeCorporateHistoryFreshness,
     fallbackDate,
@@ -240,6 +266,7 @@ async function main() {
     teleconverterKeys,
     authors,
     assignees,
+    updateMonths,
     routes,
     routeFreshness,
   };

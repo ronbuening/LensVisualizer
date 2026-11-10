@@ -1,0 +1,1 @@
+Corrected the 200-500mm optical aperture range

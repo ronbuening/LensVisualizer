@@ -1,0 +1,1 @@
+Extended the analysis tabs to the sensor corner on wide lenses that used to stop short

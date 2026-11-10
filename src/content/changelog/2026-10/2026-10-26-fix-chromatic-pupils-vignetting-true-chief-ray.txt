@@ -1,0 +1,1 @@
+Fixed Chromatic, Pupils and Vignetting tab results to use true chief rays, full beams and the patent's glass indices

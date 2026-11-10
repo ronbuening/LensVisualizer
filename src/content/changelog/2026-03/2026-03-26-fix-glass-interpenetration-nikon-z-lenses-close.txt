@@ -1,0 +1,1 @@
+Fixed glass interpenetration in Nikon Z lenses at close-focus distances

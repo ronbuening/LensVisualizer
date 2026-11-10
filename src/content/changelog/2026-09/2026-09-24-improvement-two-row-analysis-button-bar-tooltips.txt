@@ -1,0 +1,1 @@
+Added a two-row analysis button bar with tooltips under the desktop lens diagram
