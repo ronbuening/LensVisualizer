@@ -1,0 +1,1 @@
+Fixed false color-focus error on lenses with e-line glass data, mostly Leica and Rodenstock

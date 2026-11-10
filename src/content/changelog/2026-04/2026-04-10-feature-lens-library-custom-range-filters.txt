@@ -1,0 +1,1 @@
+Added lens library custom filters with typeable min/max ranges and maker selection

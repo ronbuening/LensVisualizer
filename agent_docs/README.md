@@ -15,7 +15,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [policy] [`workflow.md`](workflow.md) — commit style, the full npm script inventory, CI, deployment
 - [policy] [`code_conventions.md`](code_conventions.md) — naming, TypeScript, the optics public seam, formatting, architecture constraints
 - [policy] [`commenting_guide.md`](commenting_guide.md) — comment the why, not the what
-- [policy] [`changelog.md`](changelog.md) — `/updates` entry rules for `src/utils/content/changelogData.ts`
+- [policy] [`changelog.md`](changelog.md) — `/updates` entry rules for the one-file-per-entry `src/content/changelog/`
 - [policy] [`article_formatting.md`](article_formatting.md) — markdown polish expectations for articles
 - [policy] [`gotchas.md`](gotchas.md) — non-obvious constraints and failure modes, with pointers
 

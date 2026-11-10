@@ -1,0 +1,1 @@
+Limited field-based analysis views to each lens image-format diagonal

@@ -1,0 +1,1 @@
+Fixed the controls dropping below the diagram when a converter is switched with an analysis tab open

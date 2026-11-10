@@ -14,8 +14,10 @@
 
 import { readFileSync, existsSync } from "node:fs";
 import { basename, join } from "node:path";
+import { changelogEntryId } from "../src/utils/content/changelogHelpers.ts";
 import { ARTICLE_FEED_PATH, CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../src/utils/content/feedMetadata.ts";
-import { buildChangelogFeedItems } from "./generate-rss-feeds.mjs";
+import { RECENT_UPDATE_MONTH_COUNT, updateMonthOf } from "../src/utils/content/updateMonths.ts";
+import { CHANGELOG_PATH, buildChangelogFeedItems } from "./generate-rss-feeds.mjs";
 import { SITE_URL, canonicalPagePath, canonicalPageUrl } from "./site-url.mjs";
 import { htmlHasNoindexDirective } from "./sitemap-lib.mjs";
 
@@ -159,9 +161,9 @@ function compareStrings(a, b) {
   return 0;
 }
 
-function expectedFeedUrls(buildMeta, feedName) {
+function expectedFeedUrls(buildMeta, changelogEntries, feedName) {
   if (feedName === "changelog") {
-    return buildChangelogFeedItems(undefined, FEED_LIMIT).map((entry) => entry.url);
+    return buildChangelogFeedItems(changelogEntries, FEED_LIMIT).map((entry) => entry.url);
   }
 
   const entries =
@@ -190,7 +192,7 @@ function expectedFeedUrls(buildMeta, feedName) {
     .map((entry) => entry.url);
 }
 
-function auditRssFeeds(buildMeta) {
+function auditRssFeeds(buildMeta, changelogEntries) {
   console.log("\n[RSS feeds]");
 
   for (const feed of FEEDS) {
@@ -214,7 +216,7 @@ function auditRssFeeds(buildMeta) {
     const itemBlocks = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((match) => match[1]);
     const itemUrls = itemBlocks.map((block) => block.match(/<link>(.*?)<\/link>/)?.[1] ?? "");
     const guidUrls = itemBlocks.map((block) => block.match(/<guid isPermaLink="true">(.*?)<\/guid>/)?.[1] ?? "");
-    const expectedUrls = expectedFeedUrls(buildMeta, feed.name);
+    const expectedUrls = expectedFeedUrls(buildMeta, changelogEntries, feed.name);
 
     if (JSON.stringify(itemUrls) !== JSON.stringify(expectedUrls)) {
       error(`${feed.file} items do not match the expected newest ${expectedUrls.length} canonical URLs`);
@@ -556,6 +558,55 @@ function auditInternalLinks(
   }
 }
 
+/**
+ * The /updates archive keeps every changelog anchor resolvable: the hub links every month, each entry sits on its
+ * month's page, the hub holds only its recent months, and every RSS item's fragment is on the hub or its month page
+ * (the hub redirects an older anchor there).
+ */
+function auditUpdatesArchive(updateMonths, changelogEntries) {
+  console.log("\n[Updates archive]");
+
+  const hubPath = routeToFile("/updates");
+  if (!existsSync(hubPath)) {
+    error("Missing /updates/index.html");
+    return;
+  }
+  const hubHtml = readFileSync(hubPath, "utf-8");
+  const recentMonths = new Set(updateMonths.slice(0, RECENT_UPDATE_MONTH_COUNT).map(({ month }) => month));
+  const monthHtml = new Map();
+  for (const { month } of updateMonths) {
+    const pagePath = routeToFile(`/updates/${month}`);
+    if (!hubHtml.includes(`href="/updates/${month}/"`)) error(`/updates page missing link to /updates/${month}/`);
+    if (existsSync(pagePath)) monthHtml.set(month, readFileSync(pagePath, "utf-8"));
+    else error(`Missing /updates/${month}/index.html`);
+  }
+
+  let onMonthPages = 0;
+  for (const entry of changelogEntries) {
+    const id = changelogEntryId(entry);
+    const month = updateMonthOf(entry.date);
+    if (monthHtml.get(month)?.includes(`id="${id}"`)) onMonthPages++;
+    else error(`/updates/${month}/ is missing changelog entry ${id}`);
+    const onHub = hubHtml.includes(`id="${id}"`);
+    if (onHub !== recentMonths.has(month)) {
+      error(`/updates ${onHub ? "lists" : "is missing"} ${month} changelog entry ${id}`);
+    }
+  }
+
+  let feedAnchors = 0;
+  for (const item of buildChangelogFeedItems(changelogEntries, FEED_LIMIT)) {
+    const id = item.url.slice(item.url.indexOf("#") + 1);
+    const month = updateMonthOf(item.publishedOn);
+    if (hubHtml.includes(`id="${id}"`) || monthHtml.get(month)?.includes(`id="${id}"`)) feedAnchors++;
+    else error(`RSS changelog item ${id} resolves on neither /updates nor /updates/${month}/`);
+  }
+
+  ok(
+    `/updates links ${updateMonths.length} monthly archive pages; ${onMonthPages}/${changelogEntries.length} entries ` +
+      `on their month page; ${feedAnchors} RSS anchors resolve`,
+  );
+}
+
 function audit404() {
   console.log("\n[404.html]");
   const path = join(DIST_DIR, "404.html");
@@ -588,12 +639,13 @@ if (!existsSync(DIST_DIR)) {
   console.error("dist/ not found. Run `npm run build` first.");
   process.exit(1);
 }
-if (!existsSync(META_PATH)) {
-  console.error("build-metadata.json not found. Run generate-build-metadata.mjs first.");
+if (!existsSync(META_PATH) || !existsSync(CHANGELOG_PATH)) {
+  console.error("build-metadata.json or changelog.json not found. Run generate-build-metadata.mjs first.");
   process.exit(1);
 }
 
 const buildMeta = JSON.parse(readFileSync(META_PATH, "utf-8"));
+const changelogEntries = JSON.parse(readFileSync(CHANGELOG_PATH, "utf-8"));
 const { routes, lensKeys, makerSlugs, mountIds = [], formatIds = [], authors = [], teleconverterKeys = [] } = buildMeta;
 const articleSlugs = buildMeta.articles.map((a) => a.slug);
 
@@ -603,12 +655,13 @@ console.log(
 
 auditRobotsTxt();
 auditSitemap(routes);
-auditRssFeeds(buildMeta);
+auditRssFeeds(buildMeta, changelogEntries);
 auditFeedDiscovery();
 auditAllPrerenderedPages(routes);
 auditCanonicalInternalLinks(routes);
 auditLensPages(lensKeys);
 auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds, formatIds, authors, teleconverterKeys);
+auditUpdatesArchive(buildMeta.updateMonths ?? [], changelogEntries);
 audit404();
 
 console.log("\n============================");

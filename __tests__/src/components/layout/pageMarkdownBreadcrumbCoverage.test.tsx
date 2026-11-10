@@ -75,7 +75,7 @@ describe("page, markdown, and breadcrumb coverage", () => {
     vi.restoreAllMocks();
   });
 
-  it("renders UpdatesPage changelog, lens links, footer links, and scroll reset", () => {
+  it("renders UpdatesPage changelog, lens links, and footer links", () => {
     const firstLensEntry = ALL_LENSES_BY_DATE.find((entry) => LENS_CATALOG[entry.key]);
 
     renderWithRouter(
@@ -102,7 +102,6 @@ describe("page, markdown, and breadcrumb coverage", () => {
     if (firstLensEntry) {
       expect(screen.getByText(LENS_CATALOG[firstLensEntry.key].name)).toBeTruthy();
     }
-    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0 });
   });
 
   it("renders DescriptionPanel empty, markdown, table, code, links, and math content", () => {

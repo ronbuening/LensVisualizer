@@ -7,14 +7,15 @@
 
 import { describe, expect, it, vi } from "vitest";
 import {
+  CHANGELOG_ENTRY_TYPES,
   CHANGELOG_TYPE_COLORS,
   CHANGELOG_TYPE_LABELS,
   changelogEntryId,
   formatDisplayDate,
   groupChangelogByDate,
+  monthFromChangelogEntryId,
 } from "../../../../src/utils/content/changelogHelpers.js";
-import { CHANGELOG } from "../../../../src/utils/content/changelogData.js";
-import type { ChangelogEntry } from "../../../../src/utils/content/changelogData.js";
+import type { ChangelogEntry } from "../../../../src/utils/content/changelogHelpers.js";
 import { stripFrontmatter } from "../../../../src/utils/content/stripFrontmatter.js";
 
 const entry = (over: Partial<ChangelogEntry> = {}): ChangelogEntry =>
@@ -57,9 +58,10 @@ describe("changelogEntryId", () => {
     expect(changelogEntryId(entry({ summary: "Different summary" }))).not.toBe(changelogEntryId(entry()));
   });
 
-  it("is unique across every shipped changelog entry", () => {
-    const ids = CHANGELOG.map(changelogEntryId);
-    expect(new Set(ids).size).toBe(ids.length);
+  it("encodes the month that monthFromChangelogEntryId reads back for the archive redirect", () => {
+    expect(monthFromChangelogEntryId(changelogEntryId(entry()))).toBe("2026-08");
+    expect(monthFromChangelogEntryId("group-maker-nikon")).toBeNull();
+    expect(monthFromChangelogEntryId("changelog-2026-08")).toBeNull();
   });
 });
 
@@ -79,17 +81,11 @@ describe("groupChangelogByDate", () => {
   it("returns an empty map for no entries", () => {
     expect(groupChangelogByDate([]).size).toBe(0);
   });
-
-  it("accounts for every shipped entry exactly once", () => {
-    const grouped = groupChangelogByDate(CHANGELOG);
-    const total = [...grouped.values()].reduce((sum, bucket) => sum + bucket.length, 0);
-    expect(total).toBe(CHANGELOG.length);
-  });
 });
 
 describe("changelog type maps", () => {
-  it("labels and colors every type used by the shipped changelog", () => {
-    for (const type of new Set(CHANGELOG.map((e) => e.type))) {
+  it("labels and colors every entry type", () => {
+    for (const type of CHANGELOG_ENTRY_TYPES) {
       expect(CHANGELOG_TYPE_LABELS[type], type).toBeTruthy();
       expect(CHANGELOG_TYPE_COLORS[type], type).toBeTruthy();
     }

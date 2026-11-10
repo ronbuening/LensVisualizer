@@ -51,7 +51,7 @@ flowchart LR
 - Direct subfolders: 10
 - Main outbound areas: package:react-router (4), src/routes (4), src/components/errors (3), package:react-dom (2), package:react-helmet-async (2), src/components/HolidayFavicon.tsx, src/components/PrerenderedHeadCleanup.tsx, src/router.tsx, +3 more
 - External consumers: none
-- Skipped documentation subtrees: `src/generated/` (build output), `src/lens-data/`, `src/mounts/`
+- Skipped documentation subtrees: `src/generated/` (build output), `src/content/changelog/`, `src/lens-data/`, `src/mounts/`
 
 ## Subfolders
 
@@ -60,7 +60,7 @@ flowchart LR
 | [benchmarks/](benchmarks/readme.md) | optics/rendering benchmark helpers that exercise runtime viewer paths outside normal app rendering |
 | [comparison/](comparison/readme.md) | comparison-mode state, shared sliders, URL metadata, and two-lens layout composition |
 | [components/](components/readme.md) | React UI component root for page chrome, controls, SVG diagrams, analysis display, markdown, hooks, mount diagrams, and error boundaries |
-| [content/](content/readme.md) | auto-discovered markdown articles and static site content |
+| [content/](content/readme.md) | auto-discovered markdown articles, static site content, and one-file-per-entry changelog text |
 | [lensBuilder/](lensBuilder/readme.md) | src/lensBuilder source folder |
 | [optics/](optics/readme.md) | pure optical engine, runtime-lens construction, tracing, analysis, projection, glass, mount rendering, and diagram geometry |
 | [pages/](pages/readme.md) | route-level React pages and page-specific lens-index feature module |

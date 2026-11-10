@@ -1,0 +1,1 @@
+Made vignetting, pupil and lens-group movement chart colors easier to tell apart, especially in light mode

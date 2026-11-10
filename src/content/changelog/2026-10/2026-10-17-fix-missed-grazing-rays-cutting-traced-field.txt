@@ -1,0 +1,1 @@
+Fixed missed grazing rays that could cut off a lens’s traced field
