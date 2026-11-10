@@ -20,9 +20,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
-  key: "minolta-patent-s38-11587-55mm-f18-h0",
+  key: "minolta-55mm-f18-jp-s38-11587",
   maker: "Minolta",
-  name: "MINOLTA PATENT 55mm f/1.8 (S38-11587, hypothetical scale)",
+  name: "MINOLTA 55mm f/1.8 (JP S38-11587 Design)",
   subtitle: "JP S38-11587 B sole example; probable SR-109 Auto Rokkor family, not factory-exact; hidden unvalidated H0",
   visible: false,
   catalog: {

@@ -9,11 +9,11 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
-  key: "minolta-af-17-35mm-f35-g-e1-zoom",
+  key: "minolta-af-17-35mm-f35-g",
   maker: "Minolta",
-  name: "MINOLTA AF ZOOM 17-35mm f/3.5 G (E1, source-complete zoom)",
+  name: "MINOLTA AF 17-35mm f/3.5 G",
   subtitle: "JP H10-82954 A Example 1; probable AF17–35 G family; all three published zoom positions",
-  visible: false,
+  visible: true,
   catalog: {
     lensMounts: ["sony-a"],
     imageFormat: "135-full-frame",

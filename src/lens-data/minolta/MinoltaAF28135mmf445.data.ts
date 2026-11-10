@@ -11,11 +11,11 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
-  key: "minolta-af-28-135mm-f4-45-e5-zoom",
+  key: "minolta-af-28-135mm-f4-4-5",
   maker: "Minolta",
-  name: "MINOLTA AF ZOOM 28-135mm f/4-4.5 (E5, source-complete zoom)",
+  name: "MINOLTA AF 28-135mm f/4-4.5",
   subtitle: "US 4,844,600 A Embodiment 5; probable AF28–135 family; complete Tables 9 and 11",
-  visible: false,
+  visible: true,
   catalog: {
     lensMounts: ["sony-a"],
     imageFormat: "135-full-frame",

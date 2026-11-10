@@ -15,11 +15,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
-  key: "fujinon-mkx-50-135-t29",
+  key: "fujifilm-fujinon-mkx50-135mm-t29",
   maker: "Fujifilm",
-  name: "FUJINON MKX 50-135mm T2.9",
+  name: "FUJIFILM FUJINON MKX50-135mm T2.9",
   subtitle: "US 10,274,698 B2 Example 1; qualified MKX schematic association",
-  visible: false,
+  visible: true,
   catalog: {
     lensMounts: ["fujifilm-x"],
     imageFormat: "aps-c",
