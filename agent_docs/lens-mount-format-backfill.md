@@ -8,8 +8,8 @@ the fields unset and add a note here until a source check resolves it.
 ## Current Coverage
 
 - Total lens data files: **1109**
-- Files with both `lensMounts` and `imageFormat`: **1061**
-- Files missing `lensMounts`: **39** (25 public lenses and 14 hidden lenses)
+- Files with both `lensMounts` and `imageFormat`: **1062**
+- Files missing `lensMounts`: **38** (25 public lenses and 13 hidden lenses)
 - Files missing `imageFormat`: **35** (23 public lenses and 12 hidden lenses)
 - Files missing both fields: **26**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,

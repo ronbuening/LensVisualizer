@@ -42,7 +42,7 @@ Applied: patent PDF filed as `JPS3811587B.pdf`; `catalog.imageFormat` 135-full-f
 Open: choose the scale (50 vs 55 mm) and a house-style patent-design name/key before showing it; drop the errata entry
 (a claims-inequality typo, not a prescription defect) to the analysis; replace private-archive links in the analysis;
 rewrite this log and the public wording. (Name/key set at integration; errata, links, log and wording closed in the
-cleanup pass below; the scale stays open.)
+cleanup pass below; the scale stays open.) (Scale closed 2026-11-10: rescaled to 50 mm, see the last section.)
 
 ## 2026-11-10 — Cleanup and wording pass
 
@@ -77,7 +77,8 @@ Engine numbers before and after (identical): EFL 55.0065 mm, F/1.800, half-field
 Open:
 
 - Scale: 55 mm (Auto Rokkor-PF) or 50 mm (Super Rokkor 5cm f/1.8) must be decided before the entry is shown;
-  `lensMounts` and `catalog.closeFocusM.marketing` (0.5 m or 1 m) follow that choice.
+  `lensMounts` and `catalog.closeFocusM.marketing` (0.5 m or 1 m) follow that choice. (Closed 2026-11-10: 50 mm,
+  Super Rokkor 5cm f/1.8, Leica thread mount, 1 m; see the last section.)
 - Rims, compared with Fig. 1 at 300 dpi (0.0544 mm per pixel over the 37.235 mm vertex span): the drawn lower
   half-heights give about 18.2, 15.1, 15.1, 10.9 and 12.4 mm for L1, L2, L3, L4–L5 and L6, within 0.1 mm of the
   modeled 18.3 / 15.2 / 15.2 / 11.0 / 12.5 mm. The S7 clear radius of 9.4 mm leaves 0.18 mm over the f/1.8 axial
@@ -116,3 +117,36 @@ no rim limit; the image circle is not undersized. The engine half-field is 23° 
 0.47 mm at S6 and 0.18 mm at S7.
 
 Open: none for the rims.
+
+## 2026-11-10 — Rescaled to 50 mm and attributed to the Super Rokkor 5cm f/1.8
+
+Decision (Ron, 2026-11-10): publish the example as the Super Rokkor 5cm f/1.8 at 50 mm. The coordinator set the key,
+name, `visible: true`, `lensMounts` leica-ltm, `fNumber.marketing` 1.8, `catalog.closeFocusM.marketing` 1, f-stops to
+22 and 10 blades.
+
+Evidence: the Super Rokkor 5cm f/1.8 (May 1958, Minolta 35 Model IIB; Leica thread mount and an optically identical
+Super A version) is six elements in five groups at f/1.8 with a 1 m close focus, ten blades and a 46 mm filter
+(minolta.su). The patent's 2ω = 46° is the 24 × 36 mm diagonal at f ≈ 51 mm. The back focus, 0.5922 F, is 29.61 mm
+at 50 mm, 0.8 mm beyond the 28.8 mm thread-mount flange; at 55 mm it would sit 10.9 mm inside the 43.5 mm SR flange.
+The match stays probable: no source names a designer or patent for the product, the minolta.su drawing ("Lens QA
+Works") cites no source and may derive from this patent, and the 6/5 Gauss layout is common. The Auto Rokkor-PF
+55mm f/1.8 is named in the analysis as the SLR sibling with the same layout.
+
+Scale: every R and d is the printed value ×50, written exactly; the stop split is 5.298898 + 4.786102 mm (the scaled
+paraxial pupil image, summing to 10.085 mm) and the last gap the paraxial back focus, 29.609079 mm. Rims scaled ×50/55
+and rounded to 0.1 mm: 18.3 → 16.6, 15.2 → 13.8, 10.2 → 9.3 (S6 cap; extension 15.2 → 13.8), 9.4 → 8.5 (S7 cap;
+extension 11.0 → 10.0), 11.0 → 10.0, 12.5 → 11.4. Element focal lengths scaled with them. `focalLengthMm` gains
+`marketing: 50`; `design` is the rounded traced EFL, 50.0059. Projection unchanged (2ω = 46°).
+
+Engine numbers, 55 mm → 50 mm: EFL 55.0065 → 50.0059 mm; F/1.800 both; half-field 23° both (tracing limit 25.81° →
+25.85°); stop radius 9.4469 → 8.5881 mm (exactly ×50/55); BFD 32.5700 → 29.6091 mm; track 37.235 → 33.850 mm;
+Petzval radius 211.2 mm at 50 mm. Wide-open transmission at matching angles is unchanged within 0.3 points (from
+the 55 mm curve interpolated: 98.4 / 95.2 / 88.1 / 78.3 / 65.6 / 49.8 % at 5.8 / 8.6 / 11.5 / 14.4 / 17.3 / 20.1°;
+at 50 mm: 98.5 / 94.9 / 88.0 / 78.1 / 65.9 / 50.1 %); at the 23° field edge it is 31.5 %. Real-ray margins over the
+f/1.8 axial beam: 0.45 mm at S6 (8.85 mm) and 0.12 mm at S7 (8.38 mm). `audit:surface` reports no errors,
+`audit:aperture` no rim limit, `audit:image-circle` nothing undersized. Field coverage of the 24 × 36 mm frame is
+98 %: the declared 23° reaches 21.12 mm of 21.65 mm, and the 23.5° corner is clear of every rim (the 55 mm model
+reached 100 % because the corner was at 21.5°).
+
+Open: the 23° half-field leaves the outer 0.5 mm of the 24 × 36 mm corner untraced; raising
+`projection.maxTraceFieldDeg` to 23.5 would trace it (the patent's 2ω = 46° kept per the decision).
