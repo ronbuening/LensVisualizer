@@ -56,6 +56,7 @@ npm run format:check            # npm run format to fix
 npm run generate:reports        # Refresh every agent_docs/generated/ report (not part of npm test)
 npm run generate:glass-reports  # Refresh agent_docs/generated/ glass reports after glass-data changes
 npm run generate:mount-svgs     # Refresh mount SVG specifications after src/mounts/ changes
+npm run where-used -- <file>[#<symbol>]  # Importers of a file, or every use of an export through barrels
 ```
 
 Full script inventory (audits, benchmarks, feeds, branding, SEO): `agent_docs/workflow.md` § Commands.

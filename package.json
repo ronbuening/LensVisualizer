@@ -44,6 +44,7 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"reports/**/*.ts\" \"scripts/**/*.mjs\" \"*.config.js\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"reports/**/*.ts\" \"scripts/**/*.mjs\" \"*.config.js\"",
     "seo:audit": "node scripts/seo-audit.mjs",
+    "where-used": "node scripts/where-used.mjs",
     "test:browser": "playwright test"
   },
   "dependencies": {

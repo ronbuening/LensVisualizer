@@ -31,7 +31,7 @@ npm run convert:lens-data -- --input <file|dir> # Convert lens files between V1 
 npm run preview
 npm run test
 npm run test:coverage
-npm run test:tooling               # Benchmark-harness and audit-script tests excluded from npm test
+npm run test:tooling               # Benchmark-harness, audit-script and where-used tests excluded from npm test
 npm run test:browser               # Chromium translation DOM-replacement route and interaction coverage
 npm run generate:reports           # Every report generator in reports/ (rewrites agent_docs/generated/)
 npm run generate:glass-reports
@@ -49,6 +49,7 @@ npm run audit:patent-figure         # measure a patent cross-section against a l
 npm run audit:surface               # aspheric domain scan + validator with trial semi-diameters
 npm run audit:rim-cut-probe         # dense grid check of a lens's inferred rim cuts against its beams
 npm run benchmark:optics-rendering  # On-demand optics/render benchmark; --heavy and --memory select focused runs (not part of build or test)
+npm run where-used -- <file>[#<symbol>] # importers of a file, or every use of one export through barrels, across src, tests, reports and scripts
 npm run typecheck
 npm run lint
 npm run lint:fix
