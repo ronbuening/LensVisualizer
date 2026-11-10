@@ -56,7 +56,7 @@ const LENS_DATA = {
     groupCount: 4,
     /* ── Explicit metadata fields ── */
     focalLengthMm: { marketing: 200, design: 200.3 },
-    fNumber: { marketing: 4 },
+    fNumber: { marketing: 4, design: 4.0 },
   },
 
   // lensMounts omitted: the Visoflex mount (M39 thread at 91.3 mm register) has no taxonomy id.

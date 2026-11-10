@@ -178,3 +178,7 @@ All mandatory chat checks and exact-byte targeted project checks pass after the 
 ### Portable packaging revision
 
 Execution-local locations were removed from reference metadata, probe reports and replay records. All four embedded runtime/typecheck probes now accept projectRoot explicitly, with TypeScript resolved from that project. Original probe hashes remain recorded alongside their portable replacements. Optical source values, final data and analysis bytes, all ray/geometry results and raw discrepancies are unchanged. The final package has a separately documented portable rendering fingerprint; the original standalone Pass A baseline remains unmodified.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 6.3: `patents/US_4126378_A.pdf` PDF p. 10 (col. 10), Table 5 (Embodiment 3) heading "f = 100  F No.: 6.3  2ω = 4° 13′", read from a render. The stop's `nominalFNumber` 6.3 passes the 0.5% guard.

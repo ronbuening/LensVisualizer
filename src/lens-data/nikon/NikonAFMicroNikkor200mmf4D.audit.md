@@ -265,3 +265,7 @@ Re-read the original local `patents/US5402268.pdf`: Fig.1 on PDF p2 and Table1/d
 Freshly checked all 13 media against Table1: every stored nd/νd pair and the d-line convention agrees. The source supplies neither named supplier glass nor C/F/g or partial-dispersion measurements. All13 current labels resolve to compatible coefficient-backed spectral proxies; no production supplier, melt, or anomalous-partial-dispersion identity is established. Preserved all coordinates and existing qualified labels.
 
 Surface, image-circle and infinity aperture checks pass; the full nominal f/4 axial beam remains clear. Actual renderer paths at nine sampled control states are finite with zero hidden trimming. Source radii, thicknesses, focus tables, inferred stop and check tolerances are unchanged.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 4.0: `patents/US5402268.pdf` PDF p7, col. 8, Table 1 (First Embodiment) header "f = 200.0 mm, f-number: 4.0, 2ω = 12.33°". Stop `nominalFNumber` 4.0 is not faster.

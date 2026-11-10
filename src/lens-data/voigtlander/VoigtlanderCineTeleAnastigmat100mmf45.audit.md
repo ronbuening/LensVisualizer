@@ -19,3 +19,10 @@ Rechecked local diagram against exact Abb. 2; retained front 12.3 mm and rear 11
 Focus correctly stays disabled at infinity; no authored travel or zoom. Mount/format remain unset. Backfilled informative crown, flint and light-flint labels consistent with the source coordinates, while keeping every material explicitly unresolved and leaving the sodium-D/ν spectral limitation visible in the inspector. No supported curve or APD designation follows.
 
 Batch assignees are already consolidated as Carl-Zeiss-Stiftung, Voigtländer & Sohn AG, Cosina Co., Ltd. and Sony Corporation. Reviewed the catalog assignee registry: later Carl Zeiss AG, Voigtländer AG and Sony Group Corporation, and the historical Schneider legal styles remain distinct with their sourced lineage links; they are not spelling duplicates. No additional release entry was added.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 4.5: DE 444150 C, PDF p. 2, right column, Beispiel 2 header "Brennweite 100 mm:
+  Lichtstärke 1:4,5" (decimal comma). The stop's `nominalFNumber` 4.5 matches it.
+- `catalog.fNumber.marketing` stays unset: the commercial correlation is unconfirmed, and this pass fills design
+  values only.

@@ -21,3 +21,11 @@ Compared local diagram with exact Fig. 2: retained the SDs because the figure co
 The reconstructed whole-unit travel is correctly ordered: BF 14.0108 mm → 15.3441 mm toward the 1:30 conjugate. No zoom. The M50 × 0.75 microfilm mounting thread and uncertain reduction format have no established canonical ids; fields remain unset. All eight glass elements resolve; no supported additional catalog row or APD tag was identified.
 
 Batch assignees are already consolidated as Carl-Zeiss-Stiftung, Voigtländer & Sohn AG, Cosina Co., Ltd. and Sony Corporation. Reviewed the catalog assignee registry: later Carl Zeiss AG, Voigtländer AG and Sony Group Corporation, and the historical Schneider legal styles remain distinct with their sourced lineage links; they are not spelling duplicates. No additional release entry was added.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 5.6` from US 3,997,247 col. 11, ll. 1–3 (PDF p. 13), the Example 11 (FIG. 2) heading
+  "F = 1.00000 f/5.6 2ω₀ = 63° s′∞ = +0.35027 F" (no text layer; read from a 110 dpi render). The stop's
+  `nominalFNumber` 5.6 matches it.
+- `catalog.focalLengthMm.design: 40` from the same heading, F = 1.00000, times the 40 mm/F scale in the data header.
+  No optical value changed.

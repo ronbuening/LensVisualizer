@@ -54,3 +54,8 @@ Patent: US 5,267,086, Example 1
   now resolve to a curve 4.7e-4 high in nd.
 - Relabeled L5 from `BSC7 (HOYA)` to `S-BSL7 (OHARA) / BSC7 (HOYA) class`; it keeps resolving to the exact S-BSL7
   curve (1.51633/64.14). Stored nd and νd are unchanged; the analysis element line and glass table follow.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 2.8: US 5,267,086, PDF p. 9, col. 3, ll. 35–37, Example 1 table header
+  "F_NO = 1:2.8". The stop's `nominalFNumber` 2.8 matches it.

@@ -15,3 +15,9 @@ Patent: US 2001/0050819 A1
 - Rendered and reviewed the patent drawing. The current SD taper matches the six-element Gaussian proportions: the largest clear apertures are in L1/L2, the stop-side negative elements narrow toward the aperture, and the rear positive elements expand moderately toward the image side. No SD edits were made.
 - Synced the analysis markdown to the already-corrected glass labels `S-TIM5`, `S-TIH10`, and `S-LAM60`.
 - Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.focalLengthMm.design: 80` from US 2001/0050819 A1 p. 6 (PDF p. 12), left column, the middle row of
+  Table 3 (Embodiment 3): "f = 100.000 mm Bf = 76.090 mm FNO = 2.9 2ω = 46.7°", times the ×0.80 scale in the data
+  header. `catalog.fNumber.design` was already 2.9 and is unchanged. No optical value changed.

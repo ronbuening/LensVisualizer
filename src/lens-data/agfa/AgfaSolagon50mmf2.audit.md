@@ -18,3 +18,9 @@ Patent: US 2,745,315, Example 1
 - Added the official legacy HOYA F7 row (`1.625363 / 35.583498`, code `625356`) and used it as the
   coefficient-backed optical equivalent for both elements.
 - The production supplier remains unspecified. No prescription geometry, aperture, or semi-diameter values changed.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2` from US 2,745,315 p. 2, col. 2, lines 49–51 ("equivalent focal length f=100 mm. and a
+  relative aperture F:2", the sentence introducing Example 1). The stop's `nominalFNumber` 2 matches it. No optical
+  value changed.

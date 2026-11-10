@@ -583,3 +583,7 @@ render diagnostics/hidden-trim, runtime glass resolution of the e-line labels (`
 `K10 (Schott)`, `Unmatched (...)`) and the production build — remain NOT_RUN, `requiredAt: integration`.
 Repository-only questions from §11 remain open. Clean-extraction replay of the final archive is recorded in the manifest.
 Earned gate: `READY_FOR_BATCH`. `integrationStatus: INTEGRATION_PENDING`.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 4.0: `patents/DE_1096057_B.pdf` PDF p. 1, col. 2, heading of the sole example table "Brennweite f = 1,00; Öffnungsverhältnis 1:4,0; Bildwinkel 12°" (image-only page, read from a render); claim 4 (PDF p. 2, col. 4) repeats 1:4,0. The stop's `nominalFNumber` 4 passes the 0.5% guard.

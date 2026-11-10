@@ -39,3 +39,8 @@ Patent: US 4,289,385, Example 1
 
 - Why the old value differed: derived unit-focus travel; focus description gives the 0.9 m MFD.
 - `catalog.closeFocusM.marketing` 0.9 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 2.8: US 4,289,385, PDF p. 8, col. 5, Appendix I, Example 1 (FIG. 1) table header
+  "F_NO 1:2.8". The stop's `nominalFNumber` 2.8 matches it.

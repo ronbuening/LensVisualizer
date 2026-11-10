@@ -35,3 +35,8 @@ L2 and L5 remain non-APD N-BALF5 barium light flints. The patent's environmental
 `focus.closeFocusM` 0.5 → 0.628 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 25.5 % from that row. No gap, keyframe, published flag or other optical value changed.
 
 - Why the old value differed: view-camera bellows focus; the endpoint is not a maker MFD.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 5.6: US 6,028,720, PDF p. 5, col. 5, ll. 1–5, the second-embodiment table header
+  "F-number 1:5.6" (f' = 101.2); Claim 5 repeats it (PDF p. 6, col. 8). The stop's `nominalFNumber` 5.6 matches it.

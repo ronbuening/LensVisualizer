@@ -109,6 +109,7 @@ const LENS_FIELDS: Readonly<Record<keyof LensDataInput, true>> = {
   patentAssignees: true,
   patentYear: true,
   sourceErrata: true,
+  sourceIssuer: true,
   elementCount: true,
   groupCount: true,
   visible: true,
@@ -1017,7 +1018,13 @@ const V1_NAMES = {
   focalLengthMm: { marketing: "focalLengthMarketing", design: "focalLengthDesign" },
   fNumber: { marketing: "apertureMarketing", design: "apertureDesign" },
   closeFocusM: { marketing: "closeFocusMarketing" },
-  source: { example: "patentExample", authors: "patentAuthors", assignees: "patentAssignees", errata: "sourceErrata" },
+  source: {
+    example: "patentExample",
+    authors: "patentAuthors",
+    assignees: "patentAssignees",
+    errata: "sourceErrata",
+    issuer: "sourceIssuer",
+  },
   focus: { closeFocusM: "closeFocusM", description: "focusDescription" },
   aperture: {
     nominalFNumber: "nominalFno",
@@ -1067,7 +1074,7 @@ function recordLensReads(sources: SourcePaths, lens: Untyped): void {
 
 /** Record the members a V1 file keeps at its top level, where the prescription's `source` holds them. */
 function recordSourceReads(sources: SourcePaths, source: Untyped): void {
-  const fields = ["patentNumber", "example", "patentYear", "authors", "assignees", "errata"];
+  const fields = ["patentNumber", "example", "patentYear", "authors", "assignees", "errata", "issuer"];
   recordReads(sources, "source", "", source, fields, V1_NAMES.source);
 }
 
@@ -1079,6 +1086,7 @@ function ingestSource(data: Untyped): Untyped {
   put(source, "authors", data.patentAuthors);
   put(source, "assignees", data.patentAssignees);
   put(source, "errata", data.sourceErrata);
+  put(source, "issuer", data.sourceIssuer);
   return source;
 }
 
