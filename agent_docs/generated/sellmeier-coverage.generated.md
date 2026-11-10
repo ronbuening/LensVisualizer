@@ -1435,7 +1435,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 333 | [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
 | 334 | [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | constant: 7 |
 | 335 | [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 336 | [LEICA SUMMAREX 85mm f/1.5](../../src/lens-data/leica/LeicaSummarex85mmf15.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 336 | [LEITZ SUMMAREX 85mm f/1.5](../../src/lens-data/leica/LeicaSummarex85mmf15.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 | 337 | [SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 | 338 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 | 339 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
@@ -3842,7 +3842,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 8 | Element 6 | abbe | `Unmatched (658512 — SSK-class dense crown, near N-SSK5; supplier unconfirmed)` | Explicit unmatched/proprietary annotation |
 | 9 | Element 7 | abbe | `Unmatched (589612 — crown class, near SK5; supplier unconfirmed)` | Explicit unmatched/proprietary annotation |
 
-### [LEICA SUMMAREX 85mm f/1.5](../../src/lens-data/leica/LeicaSummarex85mmf15.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7)
+### [LEITZ SUMMAREX 85mm f/1.5](../../src/lens-data/leica/LeicaSummarex85mmf15.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7)
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
