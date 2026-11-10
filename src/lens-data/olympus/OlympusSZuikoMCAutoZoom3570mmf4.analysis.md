@@ -65,7 +65,7 @@ A flint meniscus, convex to the object, that closes G1. Its low Abbe number agai
 
 ### L4 — Biconvex Positive
 
-nd = 1.65160, νd = 58.7. Glass: unmatched (652587, a lanthanum crown near LaK7). f = +51.95 mm.
+nd = 1.65160, νd = 58.7. Glass: J-LAK7R (Hikari) catalog equivalent, a lanthanum crown of the LaK7 type. f = +51.95 mm.
 
 The first element behind the zoom air space. With L5 it forms G2's front positive member; the patent asks that the two share that power about equally (condition (9), f5/f4 = 0.851) and that its front radius stay well above L5's (condition (8), r7/r9 = 1.675) to limit the change of astigmatism during zooming.
 
@@ -89,7 +89,7 @@ The last element, with almost all its power on the strong rear face (r14 = −30
 
 ## Glass Identification
 
-Five of the six distinct glasses match a catalog row to the printed digits; L4's 1.65160 / 58.7 matches no catalog glass in the repo (the LaK7 family has νd 58.5–58.6), so the model uses the printed pair. The table gives n and ν without naming a spectral line, but the aberration curves are drawn for the d and g lines, so the indices are taken as d-line.
+Five of the six distinct glasses match a catalog row to the printed digits; L4's 1.65160 / 58.7 is closest to Hikari J-LAK7R (νd 58.62), the nearest of the LaK7-type rows (νd 58.5–58.6). The table gives n and ν without naming a spectral line, but the aberration curves are drawn for the d and g lines, so the indices are taken as d-line.
 
 | Glass | nd | νd | Elements | Role |
 |---|---:|---:|---|---|

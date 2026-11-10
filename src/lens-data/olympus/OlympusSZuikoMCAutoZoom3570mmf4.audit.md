@@ -81,3 +81,7 @@ vertex at 68.5 mm sits 67.0 mm ahead of the 46 mm OM flange. No special-dispersi
 
 Open: which of the six embodiments went into production is not established; all share the construction. L4's glass
 has no exact catalog row.
+
+L4 glass relabelled from the Abbe fallback to J-LAK7R (Hikari 1.65160 / 58.62; Δnd 0, Δνd −0.08 against the printed
+1.6516 / 58.7), the closest exact catalog row (S-LAL7 is Δνd −0.15, N-LAK7 −0.18). The other six labels and all eight
+Pentax 28–50 labels resolve to rows within Δnd 3e-6 and Δνd 0.08.
