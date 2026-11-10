@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1103** lenses scanned
-- **12523** glass elements examined
-- **2699** elements have multiple coordinate-compatible candidates
-- **492** lens files are affected
+- **1109** lenses scanned
+- **12619** glass elements examined
+- **2703** elements have multiple coordinate-compatible candidates
+- **493** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1570 |
-| Evidence-source priority | 835 |
+| Evidence-source priority | 839 |
 | Vendor context | 280 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -733,6 +733,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `SSK2 (Schott) class (622532 — historical D-line SSK coordinate; catalog equivalent, supplier unresolved)` | 1.62230 / 53.20 (d) | SSK2 — direct name evidence outranks six-digit code evidence. | S-BSM22 (Ohara, code, vendor ✗, preferred code row) | 2 | [MEYER OPTIK GÖRLITZ DOUBLE-PLASMAT 135mm f/4.5 (patent model)](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz135mmf45DoublePlasmat.data.ts) L1′ |
 | `658509 — dense crown; N-SSK5 compatible spectral proxy (historical supplier/melt unresolved)` | 1.65844 / 50.80 (d) | N-SSK5 — direct name evidence outranks six-digit code evidence. | S-BSM25 (Ohara, code, alternate code row)<br>BACED5 (Hoya, code, alternate code row) | 1 | [MEYER OPTIK GÖRLITZ ORESTEGOR 500mm f/5.6](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz500mmf56Orestegor.data.ts) L4 |
 | `699301 class (supplier unconfirmed)` | 1.69895 / 30.10 (d) | E-FD15 — smallest d-line \|Δn\| (2.0e-7 vs 3.2e-6) | S-TIM35 (Ohara, code, preferred code row) | 2 | [MEYER OPTIK GÖRLITZ ORESTOR 135mm f/2.8](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz135mmf28Orestor.data.ts) L3 |
+| `LAC12 (HOYA catalog equivalent; patent 678555; production supplier unspecified)` | 1.67790 / 55.50 (d) | LAC12 — direct name evidence outranks six-digit code evidence. | K-LaK12 (Sumita, code, vendor ✗, alternate code row) | 2 | [MINOLTA 55mm f/1.8 (JP S38-11587 Design)](../../src/lens-data/minolta/Minolta55mmf18JPS3811587.data.ts) L1 |
+| `SF15 (Sumita catalog equivalent; patent 699301; production supplier unspecified)` | 1.69900 / 30.10 (d) | SF15 — direct name evidence outranks six-digit code evidence. | E-FD15 (Hoya, code, vendor ✗, alternate code row)<br>S-TIM35 (Ohara, code, vendor ✗, preferred code row) | 1 | [MINOLTA 55mm f/1.8 (JP S38-11587 Design)](../../src/lens-data/minolta/Minolta55mmf18JPS3811587.data.ts) L3 |
+| `BAF10 (HOYA catalog equivalent; patent 670472; production supplier unspecified)` | 1.67000 / 47.20 (d) | BAF10 — direct name evidence outranks six-digit code evidence. | H-ZBaF52 (CDGM, code, vendor ✗, preferred code row) | 1 | [MINOLTA 55mm f/1.8 (JP S38-11587 Design)](../../src/lens-data/minolta/Minolta55mmf18JPS3811587.data.ts) L6 |
 | `713539 — optical-glass coordinate class (vendor unresolved)` | 1.71300 / 53.93 (d) | LAC8 — smallest d-line \|Δn\| (1.8e-7 vs 3.0e-4) | MP-LAC8-30 (Hoya, code, alternate code row) | 1 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) L1 |
 | `720503 — optical-glass coordinate class (vendor unresolved)` | 1.72000 / 50.31 (d) | LAC10 — smallest d-line \|Δn\| (1.7e-6 vs 1.0e-5) | J-LAK10 (Hikari, code, preferred code row) | 1 | [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) L7 |
 | `S-NSL3-class crown (OHARA 518590; inferred)` | 1.51823 / 58.96 (d) | S-NSL3 — direct name evidence outranks six-digit code evidence. | E-C3 (Hoya, code, vendor ✗, alternate code row) | 1 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) L1 |
