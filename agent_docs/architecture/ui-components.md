@@ -1,9 +1,9 @@
 # UI Components Architecture
 
 Read this for the non-obvious behavior and cross-component rules of shared controls, display components, content
-components, markdown rendering, analysis drawer tabs, charts, and homepage UI. Per-folder inventories live in the
-generated `src/components/**/readme.md` files; viewer orchestration and the SVG diagram layers are covered by
-[`viewer-and-diagram.md`](viewer-and-diagram.md).
+components, markdown rendering, analysis drawer tabs, charts, and homepage UI. For per-folder inventories, run
+`npm run generate:readmes` and read `src/components/**/readme.md`; viewer orchestration and the SVG diagram layers are
+covered by [`viewer-and-diagram.md`](viewer-and-diagram.md).
 
 > Mount interface diagram components are in `src/components/mount/` (`MountDiagram`, `MountDiagramPanel`); the maker
 > and mount pages cross-link via `src/components/content/LinkListSidebar.tsx` (also used, with `#anchor` items, for
@@ -176,7 +176,8 @@ on-screen size at every zoom, no overlaps (the overview panel and network captio
 for the selection, the hovered node, the selection's neighbors, then hubs, so hub names read at Fit all. Nodes, edges
 and labels outside the viewport are culled except the selection and its highlighted edges. Arrow keys move a roving
 tab stop to the nearest node in that direction; Enter or Space selects it. Non-patent catalog models use distinct
-`lens` and `maker` nodes with `catalog-maker` edges derived only from an explicit lens `maker` field; these edges do not count as patents,
+`lens` and `maker` nodes with `catalog-maker` edges derived only from an explicit lens `maker` field, except that a model
+with `source.issuer` joins that organization's assignee or organization node instead; these edges do not count as patents,
 corporate history, or corporate affinity. Maker hubs center their models, and details link to the model and maker pages.
 
 `UniversalMapSearch` searches only graph nodes and uses the shared portal dropdown with combobox keyboard semantics.

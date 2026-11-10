@@ -39,3 +39,8 @@ Patent: US 4,182,550
 
 - Why the old value differed: derived unit-focus travel; 0.45 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.45 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.focalLengthMm.design` = 50: `patents/US4182550.pdf` PDF p. 7 (col. 5), Table 2 (Embodiment 2) heading "f = 100  1 : 1.4  2ω = 46°", read from a render; printed f = 100 × the header's documented ×0.5 scale.
+- `catalog.fNumber.design` = 1.4: same Table 2 heading, "1 : 1.4". The stop's `nominalFNumber` 1.4 passes the 0.5% guard.

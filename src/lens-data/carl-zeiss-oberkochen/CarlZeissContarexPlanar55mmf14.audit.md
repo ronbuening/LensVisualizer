@@ -26,3 +26,11 @@ Catalog version: local working tree, 2026-06-25
 
 - Rechecked DE 1,170,157 B's LF7 coordinate and assigned Hikari J-LF7 as a supplier-neutral spectral proxy for L3.
 - The patent coordinate and historical LF7 class remain authoritative; no Zeiss production supplier is inferred.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.focalLengthMm.design: 55` from DE 1,170,157 B p. 1, col. 2, lines 15–17 ("Die Zahlenwerte für dieses
+  Objektiv sind für eine Brennweite f = 1,00 aus der nachstehenden Tabelle zu entnehmen"), times the file's
+  documented ×55 scale (header "NOTE ON SCALING"; r1 0,8466 → 46.563).
+- `catalog.fNumber.design: 1.4` from the same column, lines 25–26: "Das angegebene Objektiv hat eine Öffnung von
+  f:1,4". The stop's `nominalFNumber` 1.4 matches it. No optical value changed.

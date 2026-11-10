@@ -50,6 +50,7 @@ const LENS_DATA = {
       "design": 51.84
     },
     "fNumber": {
+      "marketing": 1.8,
       "design": 1.86
     }
   },

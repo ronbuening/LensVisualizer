@@ -138,7 +138,24 @@ export function validatePatentExample(example: unknown, patentNumber: unknown, e
   }
 }
 
+/** A non-patent source's issuing organization: one canonical name, and never beside a patent. */
+function validateSourceIssuer(data: UntrustedLensData, errors: string[]): void {
+  const issuer: unknown = data.sourceIssuer;
+  if (issuer === undefined) return;
+  if (typeof issuer !== "string" || !issuer.trim() || issuer.trim() !== issuer) {
+    errors.push('"sourceIssuer" must be a non-empty, trimmed string');
+    return;
+  }
+  if (data.patentNumber !== undefined) {
+    errors.push('"sourceIssuer" names a non-patent source; a patent\'s organizations go in "patentAssignees"');
+  }
+  if (issuer.normalize("NFKC") !== issuer) errors.push('"sourceIssuer" must use normalized Unicode (NFKC)');
+  if (/[()]/.test(issuer)) errors.push('"sourceIssuer" must omit parenthetical source annotations');
+  if (/^[^\p{Ll}]*\p{Lu}[^\p{Ll}]*$/u.test(issuer)) errors.push('"sourceIssuer" must use conventional capitalization');
+}
+
 export function validatePatentMetadata(data: UntrustedLensData, errors: string[]): void {
+  validateSourceIssuer(data, errors);
   validatePatentExample(data.patentExample, data.patentNumber, errors);
   // A year alone also dates synthetic fixtures. Empty party lists can describe a non-patent source.
   if (

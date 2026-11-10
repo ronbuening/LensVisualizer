@@ -22,8 +22,10 @@ enforces the rules marked *(guarded)*.
 - Verification transcripts, pass counts, command output, or timing logs.
 - Completed checklist rows, "done" sections, phase-by-phase histories, or landed-PR narratives.
 - Anything `git log`, the PR, or the changelog already records.
-- Regenerable content: `agent_docs/generated/` and `src/**/readme.md` are rewritten by scripts — regenerate, never hand-edit
-  (the only hand-written file there is the reviewed Sellmeier sidecar named in `agent_docs/README.md`).
+- Regenerable content: `agent_docs/generated/` is rewritten by scripts — regenerate, never hand-edit (the only
+  hand-written file there is the reviewed Sellmeier sidecar named in `agent_docs/README.md`). The `src/**/readme.md`
+  folder maps are gitignored and written on demand by `npm run generate:readmes`: never commit one, and never cite one
+  by its exact path in a guarded doc, because fresh checkouts do not have them.
 - The same rule in two places. One doc owns a rule; every other doc points to it with a single line.
 
 ## Retention triggers

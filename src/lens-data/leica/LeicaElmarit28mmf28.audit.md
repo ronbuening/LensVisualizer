@@ -290,3 +290,7 @@ Open.
   this repo). No row with code 724381 is in the repo catalog or in the local Hoya, Ohara and Sumita files.
 - L2 5–6% taller and the rear group 4–7% lower than drawn, as listed above.
 - The focusing mechanism is still unsourced.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2.8: `patents/US3591257.pdf` PDF p. 11 (col. 3, top), Example 3 table heading "Focal length=100; Field angle=±37°; Relative opening=f:2.8"; the claim 4 restatement (PDF p. 12) prints the same f:2.8. The stop's `nominalFNumber` 2.8 passes the 0.5% guard.

@@ -76,3 +76,11 @@ Verification: focused surface/inferred-beam and image-circle audits; aperture ce
 `focus.closeFocusM` stays 0.12 m. Source gives the nominal 0.12 m endpoint; at 14 mm, gap rounding moves the paraxial distance by several percent; Viltrox markets 0.13 m. The close row's modeled label reads within -7.3 % of it, so the close-endpoint corpus guard lists this lens as an exemption.
 
 - `catalog.closeFocusM.marketing` 0.13 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` stays unset. The only f-number CN 121091494 A prints for Example 1 is ¶0135 (PDF p. 14,
+  description p. 11/16): the spherical-aberration plots are drawn at "光圈数为1.47" (F-number 1.47). The same paragraph
+  gives a 14.02° half field that Fig. 3 (PDF p. 21, field axis to 56.2°) contradicts, Tables 1–3 (PDF pp. 12–14) and
+  Figs. 2–5 print no F-number, and the analysis traces that f/1.47 cannot pass the Example 1 surfaces (on-axis limit
+  about f/2.295). The value is treated as boilerplate, as the data file's aperture note already records.

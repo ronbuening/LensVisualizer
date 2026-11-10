@@ -21,3 +21,9 @@ Re-inspected the exact 600-dpi optical figure against the local rendered diagram
 Unit-focus ordering is infinity BF 15.7821 mm → close BF 17.223 mm; the optical unit moves objectward relative to the fixed image. Contax RF / 135-full-frame metadata retained. All seven elements use compatible spectral proxies; no source supports an APD tag.
 
 Batch assignees are already consolidated as Carl-Zeiss-Stiftung, Voigtländer & Sohn AG, Cosina Co., Ltd. and Sony Corporation. Reviewed the catalog assignee registry: later Carl Zeiss AG, Voigtländer AG and Sony Group Corporation, and the historical Schneider legal styles remain distinct with their sourced lineage links; they are not spelling duplicates. No additional release entry was added.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2.8` from JP S30-4837 B p. (2), left column, the line under the numerical table:
+  "開き比は1:2.8であつて像角は62°に達する" (aperture ratio 1:2.8, field angle 62°; no text layer, read from a 110 dpi
+  render). The stop's `nominalFNumber` 2.8 matches it. No optical value changed.

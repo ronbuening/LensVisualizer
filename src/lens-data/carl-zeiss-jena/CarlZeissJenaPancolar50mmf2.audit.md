@@ -52,3 +52,9 @@ Catalog version: local working tree, 2026-05-19
 
 - Why the old value differed: derived unit-focus travel; 0.5 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.5 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2` from GB 850,117 p. 2 (scanned, no text layer): the "1:2" in the heading row of the
+  numerical table at the top of the page ("f = 100 1:2 S′ = 72.4"), repeated in Claim 2, right column, lines 57–60
+  ("a relative aperture of 1:2"). The stop's `nominalFNumber` 2.0 matches it. No optical value changed.

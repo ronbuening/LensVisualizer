@@ -32,6 +32,10 @@ const LENS_DATA = {
     fNumber: { marketing: 2.8, design: 2.831614089284163 },
   },
 
+  source: {
+    issuer: "VEB Carl Zeiss Jena",
+  },
+
   elements: [
     {
       id: 1,

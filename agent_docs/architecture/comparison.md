@@ -7,7 +7,8 @@ All comparison-mode files live in `src/comparison/`, a peer module alongside `sr
 
 ## Modules
 
-The full inventory is in `src/comparison/readme.md`; these are the modules with cross-module contracts.
+`npm run generate:readmes` writes the full inventory into the folder's gitignored `readme.md`; these are the modules
+with cross-module contracts.
 
 | Module | Purpose |
 | --- | --- |

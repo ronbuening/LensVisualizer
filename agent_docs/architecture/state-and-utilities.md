@@ -1,8 +1,8 @@
 # State And Utilities Architecture
 
 Read this for reducer state, preferences, URL sync, contexts, theme tokens, metadata utilities, and general shared
-helpers. Per-folder inventories live in the generated `src/utils/**/readme.md` files; this document keeps the behavior
-that is not visible from a module's exports.
+helpers. For per-folder inventories, run `npm run generate:readmes` and read `src/utils/**/readme.md`; this document
+keeps the behavior that is not visible from a module's exports.
 
 ## State Shape
 
