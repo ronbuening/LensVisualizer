@@ -9,9 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // Patent prints lowercase nd and v, but no numerical wavelength or Abbe formula.
 const LENS_DATA = {
   schema: 2,
-  key: "leica-summicron-rigid-dr-50mm-f2",
+  key: "leica-summicron-50mm-f2-rigid-dual-range",
   maker: "Leica",
-  name: "LEICA SUMMICRON Rigid / DR 50mm f/2",
+  name: "LEICA SUMMICRON 50mm f/2 Rigid / Dual Range",
   subtitle: "DE 939956 B sole example, scaled \u00d70.5; probable family, not factory prescription",
   visible: true,
   catalog: {

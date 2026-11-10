@@ -5,7 +5,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // Finite source rows retained in evidence, not asserted as certified conjugates.
 const LENS_DATA = {
   schema: 2,
-  key: "yongnuo-yn16mm-f18-cn214795390u",
+  key: "yongnuo-yn16mm-f18s-da-dsm",
   maker: "Yongnuo",
   name: "YONGNUO YN 16mm f/1.8 S DA DSM",
   subtitle: "CN 214795390 U sole example; probable retail association, literal unscaled prescription",

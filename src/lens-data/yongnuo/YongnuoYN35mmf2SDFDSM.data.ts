@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // Erratum: L7 nd is 1.6668 (the main table prints 1.668); see source.errata.
 const LENS_DATA = {
   schema: 2,
-  key: "yongnuo-yn35mm-f2s-df-dsm-cn113126266a",
+  key: "yongnuo-yn35mm-f2s-df-dsm",
   maker: "Yongnuo",
   name: "YONGNUO YN 35mm f/2 S DF DSM",
   subtitle: "CN 113126266 A Example 1; probable retail association, literal unscaled prescription",

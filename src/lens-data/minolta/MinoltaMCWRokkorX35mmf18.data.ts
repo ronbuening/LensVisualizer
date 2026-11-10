@@ -12,7 +12,7 @@ const LENS_DATA = {
   schema: 2,
   key: "minolta-mc-w-rokkor-x-35f18",
   maker: "Minolta",
-  name: "MINOLTA MC W ROKKOR-X 35mm f/1.8",
+  name: "MINOLTA MC W.ROKKOR-X 35mm f/1.8",
   subtitle: "JP 1970-039874 B EXAMPLE 3 — REPRESENTATIVE SOURCE DESIGN",
   visible: true,
   catalog: {
