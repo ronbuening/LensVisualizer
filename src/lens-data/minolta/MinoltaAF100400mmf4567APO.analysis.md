@@ -1,40 +1,40 @@
 ## Patent Reference and Design Identification
 
-**Patent:** [JP H08-86961 A](https://patents.google.com/patent/JPH0886961A/en)
+**Patent:** [JP H08-086961 A](https://patents.google.com/patent/JPH0886961A/en)
+**Application Number:** JP H06-224455
 **Filed:** 1994-09-20
 **Published:** 1996-04-02
 **Inventors:** Hideki Nagata, Soh Ohzawa, Hiroyuki Matsumoto, Masakuni Tai
 **Applicant:** Minolta Co., Ltd.
 **Title:** High-magnification zoom lens (高変倍ズームレンズ)
-**Example details:** 実施例2; original PDF pages 3–4, Figure 2 on PDF page 10, Table 1 on PDF page 9. No scaling.
+**Example details:** 実施例2 (¶0009), publication pages 3–4; Fig. 2; Table 1 (¶0030) group powers and wide-end back focus. Unscaled.
 
-This is a **probable production-family correlation** to the MINOLTA AF 100–400mm f/4.5–6.7 APO, not an established factory prescription. The prescription matches JPH0886962A Example 3 and US5633759A Example 2/Table 2 numerically. The Japanese publication is the transcription source. Published English-family names establish the inventors' Latin spellings.
+The example is identified with the **MINOLTA AF APO TELE ZOOM 100-400mm F4.5-6.7**, released in 1995. The same prescription is printed as US 5,633,759 A Example 2 (Table 2), whose cover claims both Japanese applications, and as Example 3 of the companion JP H08-086962 A. The Japanese publication is the transcription source; the US family gives the inventors' Latin spellings.
 
-The association rests on converging evidence:
+The identification rests on converging evidence:
 
-1. Minolta provenance and a 1994 filing precede the named product documentation.
-2. The candidate has 14 elements in 11 air-separated components, matching the named product. The four mechanical units contain 3 + 2 + 6 + 3 elements.
-3. Two front elements have n_d = 1.49310 and νd = 83.58. The maker describes two AD elements. This is supporting evidence, not proof that the source glasses have the maker's anomalous partial dispersion.
-4. The 102.5–390.1 mm, F4.60–6.62 program and 21.6 mm plotted image height fit the named 100–400 mm full-frame product family.
-5. The manufacturer-derived book's named section supports the broad front/middle/rear topology. The section is too small to identify every interface or an iris, and its zoom/focus state is unknown.
-6. The retained comparison of 29 nearby example records leaves this 14/11 program as the local finalist. Other 100–400 candidates differ in topology; the original and later 75–300 programs are distinct.
+1. Construction: Example 2 has 14 elements in 11 groups, the production lens's published count, and it is the only one of the publication's five examples with that count (Example 1 cements L6–L7 for 14/10, Example 3 is 13/11, Examples 4 and 5 are 12/10).
+2. Special glass: the two front-group positives L2 and L3 use nd 1.49310 / νd 83.58, the 493836 fluorophosphate crown found in other Minolta APO designs, and Minolta lists two AD (anomalous dispersion) elements. The patent itself prints no partial-dispersion data.
+3. Focal-length and aperture program: 102.5–390.1 mm at F4.60–6.62, with aberration plots drawn to a 21.6 mm image height, against the marketed 100–400 mm f/4.5–6.7 for 35 mm film.
+4. Focus and size: the production lens focuses with its front group (the filter rotates while focusing) to 2.0 m at 0.25×; front-group focus of this prescription reaches 0.24× at 2 m at the long end. At the wide end the model's front vertex is 142.6 mm ahead of the A-mount flange against a 149 mm barrel, and the 59 mm entrance pupil at 390 mm fits inside the 72 mm filter thread.
+5. Timing: the application was filed in September 1994 and the lens appeared in 1995.
 
-The evidence does not prove exact production identity. Neither the stop coordinate nor physical clear apertures is published for this prescription. Their assumptions remain separate from the product association.
+The prescription is not a manufacturer-confirmed production drawing. The stop position and clear apertures are not printed and are modeling choices, separate from the product identification.
 
 ## Optical Architecture
 
-The source is a four-unit **positive–negative–positive–negative** telephoto zoom with 14 glass elements, 11 air-separated components and 25 refracting surfaces. All refracting surfaces are spherical. The modeled air stop adds one non-refracting surface.
+The design is a four-group **positive–negative–positive–negative** telephoto zoom with 14 elements in 11 groups and 25 refracting surfaces, all spherical. The modeled stop adds one non-refracting surface.
 
-| Mechanical unit | Elements | Source surfaces | Role and motion |
+| Group | Elements | Surfaces | Role and motion |
 | --- | --- | --- | --- |
 | Gr1, positive | L1–L3 | 1–5 | Front collecting unit; objectward through the zoom range |
 | Gr2, negative | L4–L5 | 6–9 | Negative variator; imageward through the zoom range |
 | Gr3, positive | L6–L11 | 10–20 | Compound compensating unit; objectward through the zoom range |
 | Gr4, negative | L12–L14 | 21–25 | Rear telephoto unit; objectward through the zoom range |
 
-The source divides Gr3 optically into a negative front subunit and a positive rear subunit. These are not independent movers: every internal Gr3 spacing remains fixed in this model. Only the four complete mechanical units receive movement brackets.
+The patent divides Gr3 optically into a negative front subunit (Gr3F, L6–L7) and a positive rear subunit (Gr3R, L8–L11). They do not move independently: every internal Gr3 spacing is fixed, and only the four groups are drawn as moving units.
 
-Three printed infinity stations are preserved:
+The three printed infinity states are kept unchanged:
 
 | Printed focal length, mm | F-number | d5, mm | d9, mm | d20, mm |
 | --- | --- | --- | --- | --- |
@@ -42,79 +42,79 @@ Three printed infinity stations are preserved:
 | 200.0 | 6.30 | 42.578 | 28.353 | 15.355 |
 | 390.1 | 6.62 | 80.664 | 4.600 | 0.999 |
 
-The table does not publish a continuous cam. For the continuous slider, image-anchored positions of Gr1, Gr2 and Gr4 are interpolated separately within wide–middle and middle–tele. Gr3 is solved to retain paraxial infinity focus while preserving its internal prescription. This constrained reconstruction preserves the source's movement directions. It is not a recovered factory cam.
+The patent does not publish a continuous cam. Between the printed states, the positions of Gr1, Gr2 and Gr4 measured from the image plane are interpolated separately within wide–middle and middle–tele, and Gr3 is solved to hold paraxial infinity focus. This reconstruction keeps the patent's movement directions (Gr2 toward the image, the other three groups toward the object); it is not Minolta's cam.
 
-There are 33 controls in one zoom model: the three source rows are explicitly published and the 30 added controls explicitly unpublished. The tested 3/5/9/17/33-control refinement selected 33 to keep sampled between-control axial defocus below 0.06 mm. With only the source rows, linear gap interpolation produces a 7.33 mm maximum focus error. The final 129-position native check bounds that residual at 0.04965 mm. Labels at inferred controls are calculated effective focal lengths, not additional patent values.
+The model carries 33 zoom stations: the three printed states and 30 interpolated ones, labelled with their calculated focal lengths. Between stations the interpolated spacings stay within 0.05 mm of paraxial focus; linear interpolation between the three printed states alone would leave up to 7.33 mm of defocus.
 
 ## Element-by-Element Analysis
 
-The focal lengths below are calculated isolated thick-lens values in air. For a cemented element they describe its individual shape and index, not its actual in-system interface power. All glass labels are deliberately unmatched.
+The focal lengths below are calculated isolated thick-lens values in air. For a cemented element they describe its individual shape and index, not its actual in-system interface power. Glass names are catalog rows that match the printed nd/νd exactly; the patent names no glasses.
 
 ### L1 — Negative Meniscus
 
-nd = 1.74950, νd = 35.04. Glass: Unmatched (nd 1.74950, νd 35.04). f = -277.2827 mm.
+nd = 1.74950, νd = 35.04. Glass: E-LAF7 (HOYA). f = -277.2827 mm.
 
 The negative meniscus is cemented to L2. Its relatively high index and lower Abbe number oppose the positive, low-dispersion partner in the front unit.
 
 ### L2 — Biconvex Positive
 
-nd = 1.49310, νd = 83.58. Glass: Unmatched (nd 1.49310, νd 83.58). f = +140.2152 mm.
+nd = 1.49310, νd = 83.58. Glass: Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row) — AD, inferred. f = +140.2152 mm.
 
-The positive component of the front cemented pair provides collecting power with the first of the two very high-Abbe source glasses.
+The positive component of the front cemented pair provides collecting power with the first of the two very high-Abbe glasses, taken as one of Minolta's two AD elements.
 
 ### L3 — Positive Meniscus
 
-nd = 1.49310, νd = 83.58. Glass: Unmatched (nd 1.49310, νd 83.58). f = +281.3607 mm.
+nd = 1.49310, νd = 83.58. Glass: Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row) — AD, inferred. f = +281.3607 mm.
 
-This air-separated positive meniscus completes Gr1 and repeats the high-Abbe material of L2. Its convex side faces the object.
+This air-separated positive meniscus completes Gr1 and repeats the high-Abbe material of L2, the second AD element. Its convex side faces the object.
 
 ### L4 — Biconcave Negative
 
-nd = 1.71300, νd = 53.93. Glass: Unmatched (nd 1.71300, νd 53.93). f = -59.4921 mm.
+nd = 1.71300, νd = 53.93. Glass: LAC8 (HOYA). f = -59.4921 mm.
 
 The biconcave element supplies the main negative contribution of Gr2. Its large changes in separation from Gr1 and Gr3 provide zoom leverage.
 
 ### L5 — Biconvex Positive
 
-nd = 1.75520, νd = 27.51. Glass: Unmatched (nd 1.75520, νd 27.51). f = +114.4653 mm.
+nd = 1.75520, νd = 27.51. Glass: S-TIH4 (OHARA). f = +114.4653 mm.
 
 The positive Gr2 partner balances the preceding negative element. It is air-separated, not cemented to L4.
 
 ### L6 — Biconcave Negative
 
-nd = 1.71300, νd = 53.93. Glass: Unmatched (nd 1.71300, νd 53.93). f = -51.1083 mm.
+nd = 1.71300, νd = 53.93. Glass: LAC8 (HOYA). f = -51.1083 mm.
 
 This biconcave element begins Gr3F. The assumed stop is placed 2 mm before its front vertex, in air.
 
 ### L7 — Positive Meniscus
 
-nd = 1.61293, νd = 36.96. Glass: Unmatched (nd 1.61293, νd 36.96). f = +226.4747 mm.
+nd = 1.61293, νd = 36.96. Glass: E-F3 (HOYA). f = +226.4747 mm.
 
 The positive meniscus follows L6 across the printed 1.982 mm air space. Together they form the negative front subunit of Gr3.
 
 ### L8 — Biconvex Positive
 
-nd = 1.48749, νd = 70.44. Glass: Unmatched (nd 1.48749, νd 70.44). f = +97.0953 mm.
+nd = 1.48749, νd = 70.44. Glass: FC5 (HOYA). f = +97.0953 mm.
 
 This biconvex high-Abbe element begins Gr3R and supplies positive relay power.
 
 ### L9 — Negative Meniscus
 
-nd = 1.84666, νd = 23.82. Glass: Unmatched (nd 1.84666, νd 23.82). f = -94.9116 mm.
+nd = 1.84666, νd = 23.82. Glass: FDS90 (HOYA). f = -94.9116 mm.
 
 The dense, low-Abbe negative meniscus is cemented to L10. Their common interface is source surface 17.
 
 ### L10 — Biconvex Positive
 
-nd = 1.51680, νd = 64.20. Glass: Unmatched (nd 1.51680, νd 64.20). f = +52.1966 mm.
+nd = 1.51680, νd = 64.20. Glass: BSC7 (HOYA). f = +52.1966 mm.
 
-The Japanese source paragraph 0016 and signed radii identify a biconvex positive element. The English-family prose calling it biconcave is not followed.
+The Japanese text (¶0016) and the signed radii identify a biconvex positive element; the US counterpart's prose calls it biconcave, which the radii contradict.
 
 ### L11 — Biconvex Positive
 
-nd = 1.48749, νd = 70.44. Glass: Unmatched (nd 1.48749, νd 70.44). f = +70.3410 mm.
+nd = 1.48749, νd = 70.44. Glass: FC5 (HOYA). f = +70.3410 mm.
 
-This biconvex element completes Gr3 and uses the same high-Abbe glass pair as L8.
+This biconvex element completes Gr3 and uses the same glass as L8.
 
 ### L12 — Negative Meniscus
 
@@ -130,74 +130,63 @@ The positive meniscus is cemented to L14. Its stronger convex surface faces the 
 
 ### L14 — Biconcave Negative
 
-nd = 1.71300, νd = 53.93. Glass: Unmatched (nd 1.71300, νd 53.93). f = -27.7203 mm.
+nd = 1.71300, νd = 53.93. Glass: LAC8 (HOYA). f = -27.7203 mm.
 
 The final biconcave element supplies the negative partner of the rear cemented pair. The image interval after it is derived, not tabulated.
 
 ## Glass Identification and Selection
 
-All 14 source index/Abbe pairs are retained at the d line. The Japanese definition in paragraph 0007 expressly identifies that reference; the English counterpart agrees. There is no catalog-glass substitution and no authored partial-dispersion value or spectral line index.
+All 14 index/Abbe pairs are kept at the d line, the reference the Japanese text states in ¶0007; the English counterpart agrees. The patent names no glasses. Ten elements match a catalog row to the printed precision and trace on that row's dispersion curve; E-LAF7 and E-F3 are HOYA's lead-free rows for these two types, standing in for whichever melt Minolta used in 1994. L2, L3, L12 and L13 have no matching public row and use Abbe-number dispersion.
 
-| Elements | nd | νd | Interpretation |
-| --- | --- | --- | --- |
-| L1 | 1.74950 | 35.04 | High-index, lower-Abbe front negative partner |
-| L2, L3 | 1.49310 | 83.58 | Very high-Abbe front positive elements |
-| L4, L6, L14 | 1.71300 | 53.93 | Moderate-dispersion negative elements |
-| L5 | 1.75520 | 27.51 | High-dispersion positive variator partner |
-| L7 | 1.61293 | 36.96 | Lower-Abbe Gr3F positive element |
-| L8, L11 | 1.48749 | 70.44 | High-Abbe Gr3R positive elements |
-| L9 | 1.84666 | 23.82 | Dense, high-dispersion negative cemented partner |
-| L10 | 1.51680 | 64.20 | Crown-like positive cemented partner |
-| L12 | 1.75450 | 51.57 | Rear negative meniscus |
-| L13 | 1.67339 | 29.25 | Lower-Abbe rear positive partner |
+| Elements | nd | νd | Glass | Role |
+| --- | --- | --- | --- | --- |
+| L1 | 1.74950 | 35.04 | E-LAF7 (HOYA) | High-index flint partner of the front doublet |
+| L2, L3 | 1.49310 | 83.58 | Unmatched (493836 Minolta AD fluorophosphate) | Front-group AD crowns (inferred) |
+| L4, L6, L14 | 1.71300 | 53.93 | LAC8 (HOYA) | Lanthanum-crown negative elements |
+| L5 | 1.75520 | 27.51 | S-TIH4 (OHARA) | High-dispersion positive variator partner |
+| L7 | 1.61293 | 36.96 | E-F3 (HOYA) | Flint positive element of Gr3F |
+| L8, L11 | 1.48749 | 70.44 | FC5 (HOYA) | Fluor-crown positive elements of Gr3R |
+| L9 | 1.84666 | 23.82 | FDS90 (HOYA) | Dense-flint negative of the Gr3 doublet |
+| L10 | 1.51680 | 64.20 | BSC7 (HOYA) | Borosilicate-crown positive of the Gr3 doublet |
+| L12 | 1.75450 | 51.57 | Unmatched | Rear negative meniscus |
+| L13 | 1.67339 | 29.25 | Unmatched | Flint positive of the rear doublet |
 
-The relative dispersion pairing supports a chromatic-correction interpretation. Neither a high Abbe number nor the product's APO suffix certifies secondary-spectrum performance. No assertion of fluorite, exact AD material identity, or measured apochromatism is made from these pairs.
+Minolta lists two AD elements for the production lens, and the two νd 83.58 elements of the front group are the only candidates; they are tagged as inferred AD elements. The patent gives no partial-dispersion data for them, so no ΔPgF is modeled, and neither the Abbe number nor the product's APO suffix establishes secondary-spectrum performance in the model.
 
 ## Focus Mechanism
 
-The source tabulates only infinity-focus zoom configurations. There are no published finite spacings or certified finite conjugates in the model.
+The patent tabulates infinity-focus zoom states only; it prints no finite-distance spacings and does not describe the focusing method.
 
-The optional focus slider is an **inferred front-unit reconstruction**. Gr1 alone moves objectward; d5 increases while every rear unit and the image plane retain their zoom-specific positions. A paraxial scalar solve places the object 2.0 m before the image plane. The resulting Gr1 travel is 12.27884 mm at wide, 12.48586 mm at middle and 12.78226 mm at tele. Each zoom control has nine focus controls: infinity, 16, 8, 16/3, 4, 3.2, 8/3, 16/7 and 2 m. All eight finite controls are unpublished. This is a refinement of the illustrative focus path, not additional source evidence.
-
-The maker's 2 m minimum focus and 0.25× maximum magnification are product context. They do not establish the reconstructed motion or certify its magnification. The model makes no finite-focus MTF certification: no conjugate or published-focus flag is authored. Between-control focus remains illustrative. Across a 129 × 17 zoom/focus grid, the maximum sampled finite-focus interpolation defocus is 0.12012 mm and the maximum distance-label discrepancy is 1.4721%; the 2 m endpoint differs by at most 0.00100 m. A two-control focus path produced 5.30 mm intermediate defocus; 5 and 9 controls reduced the source-station check to 0.454 and 0.120 mm. Nine was retained as a compact refinement, without certifying any finite state.
+The model uses **front-group focus**, a reconstruction based on the production lens, which focuses with its front group (its filter rotates while focusing) down to 2.0 m at 0.25×. Gr1 alone moves toward the object, so d5 grows while the rear groups and the image plane keep their zoom positions. The travel is solved paraxially for a 2.0 m object-to-image distance: 12.28 mm at 102.5 mm, 12.49 mm at 200 mm and 12.78 mm at 390.1 mm. The model then reaches 0.24× at the long end, close to the published 0.25×. Each zoom station carries focus positions solved for infinity and 16, 8, 16/3, 4, 3.2, 8/3, 16/7 and 2 m; between them the interpolated spacings stay within 0.12 mm of paraxial focus. None of these finite states is printed in the patent.
 
 ## Stop, Clear Apertures and Image Reference
 
-The stop is **assumed**, not measured from a source diagram. It is placed 2.000 mm before surface 10 and moves with Gr3. The published d9 is split into d9 − 2.000 and 2.000 mm without changing the optical separation. The iris radius is derived independently from each source f-number; interpolated f-numbers at added controls are not published aperture data. No iris size is represented as a published physical diameter.
+The stop is **assumed**; the patent figures draw no iris. It is placed 2.000 mm before surface 10 and moves with Gr3, so the printed d9 is split into d9 − 2.000 and 2.000 mm without changing the optical separation. The iris radius is derived from the printed f-number at each printed state; f-numbers at the interpolated stations are interpolated, not published, and no iris size is a published physical diameter.
 
-All clear semi-diameters are inferred and remain fixed across zoom and focus. The air-separated component radii are 34, 34, 22, 22, 18, 17, 16, 15, 15, 16 and 13.5 mm, front to rear. Shared cemented interfaces use one radius. These are geometrically valid model apertures checked against the native axial and off-axis traces, not measured retail barrel or clear-aperture dimensions. There are no hidden geometry-check overrides, rim cuts or rim extensions.
+All clear semi-diameters are inferred and fixed across zoom and focus. The radii are 34, 34, 22, 22, 18, 17, 16, 15, 15, 16 and 13.5 mm for the eleven groups, front to rear, with one radius per cemented group. They pass the full axial beam at every station and are not measured barrel or clear-aperture dimensions. There are no rim cuts or rim extensions.
 
-The terminal image interval is absent from the prescription table. At each printed infinity state it is derived from the unchanged d-line paraxial matrix:
+The image-side interval is absent from the prescription table. At each printed infinity state it is derived paraxially (d-line) from the unchanged prescription:
 
-| Station | Traced EFL, mm | Derived BF, mm | Sum of displayed physical intervals, mm |
+| Station | Traced EFL, mm | Derived BF, mm | Sum of printed thicknesses, mm |
 | --- | --- | --- | --- |
 | Wide | 102.546440074 | 37.749942357 | 149.367 |
 | Middle | 200.040306775 | 65.120431301 | 149.347 |
 | Tele | 390.079970802 | 102.746702534 | 149.324 |
 
-Table 1 prints a wide BF of 37.697 mm, 0.052942357 mm shorter than the derived value. It also prints summed tracks of 149.369 / 149.348 / 149.326 mm, differing by 0.001–0.002 mm from the sum of displayed intervals. These remain explicit unresolved source discrepancies. No radius, glass, thickness or source zoom spacing is adjusted to remove them. The modeled image plane is the stated paraxial interpretation, not a claim that the patent printed that plane.
+Table 1 (¶0030) prints a wide back focus of 37.697 mm, 0.053 mm shorter than the derived value, and the example's Σd line gives 149.369 / 149.348 / 149.326 mm, 0.001–0.002 mm more than the printed thicknesses add up to. The same back-focus column departs from the paraxial value of Example 1 by −1.59 mm and of Example 3 by −0.02 mm, and Table 1's Example 2 row repeats Example 1's φ3 = 0.02225 where Example 2's own prescription gives 0.02217. No single misprinted radius, thickness, index or gap reproduces 37.697 mm while keeping the printed focal lengths and Σd, so the column is not treated as a paraxial back focus. No radius, glass, thickness or zoom spacing is adjusted; the image plane is the paraxial one.
 
-## Verification Summary
+## Model Scope and Limitations
 
-Checks were bounded to this model against the retained 420b475 engine. No whole-catalog suite, publication or deployment is claimed.
-
-- Canonical V2 ingest and geometry validation pass without relaxation.
-- All 25 signed radii, 14 material pairs and every printed zoom spacing are preserved; the stop split sums exactly to source d9 at each published row.
-- Native axial-aperture checks pass at all 33 controls within the check's 3% tolerance, with no rim-, trace- or iris-limited failures.
-- A 129-position zoom grid at 17 focus coordinates has zero hidden render trim. The minimum sampled iris-to-glass clearance through the stroke is 1.38089 mm.
-- Native spherical-aberration and exact field bundles were checked at 12 positions, including three positions halfway between authored controls. At every tested position a converged chief ray reaches the source's 21.6 mm image height.
-- The 25-sample on-axis and half-field bundles pass at all 12 positions. At the full image-height field, 18–25 samples pass: normal edge clipping remains at the longer focal lengths. No clear apertures were enlarged to force full-field transmission.
-- At wide/middle/tele, modeled current-plane axial RMS transverse errors are 21.314 / 1.549 / 10.976 µm. Least-squares best-focus shifts are −0.2986 / −0.0071 / −0.2213 mm. These describe the assumed-stop model at its declared image plane, not measured production performance or retuned source values.
-- A separate exact finite-object trace at 16 reconstructed zoom/focus states passes all 25 axial pupil samples at each state. It uses the actual paraxial object point and is not a patent-certified finite configuration.
-- Native rendered silhouettes were inspected across zoom. Gr1, Gr3 and Gr4 move objectward; Gr2 moves imageward. Gr3's front/rear optical subunits remain one mover.
-
-The absent source stop, inferred rims, reconstructed cam/focus motion and probable product correlation limit any performance interpretation. The model is a source-traceable reconstruction of one whole published zoom, not an exact retail optical drawing.
+- The stop position, the clear apertures, the 30 interpolated zoom stations and every finite focus state are modeling choices; only the prescription and the three infinity states are printed.
+- At the full 21.6 mm image height, the inferred rims clip part of the off-axis beam at the longer focal lengths, as in an ordinary telephoto zoom; the apertures were not enlarged to remove it.
+- L2 and L3 trace with normal partial dispersion because the patent publishes none for the AD glass, so the model's secondary spectrum is indicative only and likely larger than the production lens's.
+- The model is a reconstruction of one published example, not Minolta's production drawing.
 
 ## Sources
 
-1. [JPH0886961A](https://patents.google.com/patent/JPH0886961A/en), complete original: numerical Example 2, PDF pages 3–4; definitions paragraph 0007; morphology paragraph 0016; Figure 2, PDF page 10; Table 1, PDF page 9.
-2. [JPH0886962A](https://patents.google.com/patent/JPH0886962A/en), Example 3, the numerical counterpart.
-3. [US5633759A](https://patents.google.com/patent/US5633759A/en), Example 2/Table 2, English-family witness and Latin inventor names. Its cover identifies both Japanese applications.
-4. Konica Minolta AF Lenses brochure, 2004, PDF page 11 / printed pages 18–19: named AF APO TELE ZOOM 100–400, two AD elements, 2.0 m and 0.25×. Retained maker-original custody: [brochure source archive](https://drive.google.com/file/d/1a68PhcZc59aeVZ_jOrTntvEsEDhGNBXZ/view).
-5. Manufacturer-derived Minolta book, printed page 111 / PDF page 113: named 100–400 APO, 14/11 and broad optical section. Retained [page-witness archive](https://drive.google.com/file/d/18ER-pg_HI4f2kQhnWK6ugxfLvvBfYzeS/view). The unknown section state is not treated as measured wide-end geometry.
-6. Retained [complete-source candidate comparison](https://drive.google.com/file/d/13DctGB3uKfmTIwfRTwstwgNxK9eQB7yy/view) and [research archive](https://drive.google.com/file/d/1dTeviUcD_EtXPmihX33HQZMc1YeVgQBR/view): nearby-program exclusions and shared-table identity.
+1. [JP H08-086961 A](https://patents.google.com/patent/JPH0886961A/en): Example 2 (¶0009, pages 3–4); d-line definition ¶0007; element shapes ¶0016; Fig. 2; Table 1 (¶0030).
+2. [JP H08-086962 A](https://patents.google.com/patent/JPH0886962A/en), Example 3, the same prescription.
+3. [US 5,633,759 A](https://patents.google.com/patent/US5633759A/en), Example 2 / Table 2 and Table 7: English-language counterpart and inventors' Latin names; its cover claims both Japanese applications.
+4. Konica Minolta, AF Lenses brochure (2004), pp. 18–19: AF APO TELE ZOOM 100-400mm, two AD elements, 2.0 m minimum focus, 0.25×.
+5. Imaging Resource, [Konica Minolta 100-400mm f/4.5-6.7 APO AF specifications](https://old.imaging-resource.com/lenses/konica-minolta/100-400mm-f4.5-6.7-apo-af/specifications): 14 elements / 11 groups including 2 AD elements, 2.0 m, 0.25×, 72 mm filter, 149 mm length.
+6. M. Hohner, [Lens tech data for Minolta AF 100-400/4.5-6.7 APO](https://www.mhohner.de/sony-minolta/onelens/af100-400f45apo?lg=e): released 1995, 14/11, front-group focusing with rotating filter, 1:4 maximum magnification.

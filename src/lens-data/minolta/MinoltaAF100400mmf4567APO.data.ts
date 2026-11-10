@@ -1,38 +1,42 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
- * JPH0886961A Example 2, whole zoom: all 25 signed radii, glass/thickness values,
- * and all three published infinity positions are retained without scaling or repair.
- * Numerical counterparts: JPH0886962A Example 3 and US5633759A Example 2/Table 2.
- * Probable production-family correlation only; not an established factory prescription.
- * Gr1 + (3 elements), Gr2 − (2), Gr3 + (6), Gr4 − (3) are the mechanical zoom units.
- * D5, D9 and D20 are the printed variable gaps. Gr3F/Gr3R are NOT separate movers.
- * STOP ASSUMPTION: 2 mm before surface 10, moving with Gr3; no source iris coordinate.
- * D9 is split exactly into D9−2 and 2 mm. Radius follows source station f-numbers.
- * RIMS: inferred clear radii, not source measurements. No glass substitution/dispersion claims.
- * IMAGE REFERENCE: unprinted BF derived from the literal d-line prescription at every
- * control point. Printed wide BF 37.697 differs by +0.052942357 mm; not source-repaired.
- * CONTINUOUS ZOOM: image-anchored Gr1/Gr2/Gr4 positions are interpolated within
- * W–M and M–T; Gr3 is solved to preserve paraxial focus. Thirty unpublished controls
- * sample this constrained compensation path. No factory cam claim. All source rows remain literal.
- * FOCUS: inferred front-unit-only motion at nine focus controls per zoom station,
- * solved for infinity and 16, 8, 16/3, 4, 3.2, 8/3, 16/7, 2 m. All finite rows unpublished.
- * Only infinity rows at 102.5/200/390.1 mm are published; no finite conjugates certified.
+ * JP H08-086961 A (Minolta), Example 2: four-group (+ − + −) telephoto zoom, f = 102.5–390.1 mm,
+ * F4.60–6.62, 14 elements in 11 groups, all spherical. The same prescription is US 5,633,759 A
+ * Example 2 (Table 2) and Example 3 of the companion JP H08-086962 A. All 25 radii, thicknesses,
+ * d-line indices and Abbe numbers and the three printed infinity states (102.5 / 200.0 / 390.1 mm)
+ * are transcribed unscaled and unchanged.
+ * Production lens: MINOLTA AF APO TELE ZOOM 100-400mm F4.5-6.7 (14 elements / 11 groups, two AD
+ * elements). Example 2 is the patent's only 14/11 example; its two νd 83.58 elements (L2, L3) are
+ * taken as the AD elements. Not a manufacturer-confirmed prescription.
+ * Groups: Gr1 + (L1–L3), Gr2 − (L4–L5), Gr3 + (L6–L11), Gr4 − (L12–L14); all four move, on the
+ * printed variable gaps d5, d9 and d20. Gr3's front (L6–L7) and rear (L8–L11) subgroups move together.
+ * Stop: not printed. Placed 2 mm in front of surface 10 and moving with Gr3, so d9 is split into
+ * (d9 − 2) + 2 mm; its radius follows the printed f-number at each station.
+ * Semi-diameters: inferred, not printed.
+ * Back focus: not printed per state; derived paraxially (d-line) at every station. The patent's
+ * wide back focus 37.697 mm is 0.053 mm shorter than the derived 37.750 mm (see source.errata).
+ * Zoom: the 30 stations between the printed ones are interpolated. Gr1, Gr2 and Gr4 positions
+ * (measured from the image) are interpolated within W–M and M–T, and Gr3 is solved for paraxial
+ * focus; this is not Minolta's cam.
+ * Focus: reconstructed front-group focus. Gr1 moves objectward, solved paraxially at each station
+ * for 16, 8, 16/3, 4, 3.2, 8/3, 16/7 and 2 m object-to-image distance. The patent prints infinity
+ * states only.
  */
 const LENS_DATA = {
   schema: 2,
   key: "minolta-af-100-400mm-f45-67-apo",
   maker: "Minolta",
   name: "MINOLTA AF 100-400mm f/4.5-6.7 APO",
-  subtitle: "JPH08-86961 A Example 2; probable AF 100–400 APO family correlation, not factory-exact",
+  subtitle: "JP H08-086961 A, Example 2 — strong production correlation",
   catalog: {
     lensMounts: ["sony-a"],
     imageFormat: "135-full-frame",
     specs: [
       "14 ELEMENTS / 11 GROUPS",
-      "4 ZOOM UNITS (+ − + −)",
-      "SOURCE 102.5 / 200 / 390.1 mm",
-      "SOURCE F4.60 / 6.30 / 6.62",
-      "PROBABLE PRODUCT CORRELATION",
+      "DESIGN f = 102.5–390.1 mm",
+      "DESIGN F/4.60–6.62",
+      "ALL SPHERICAL",
+      "2 AD ELEMENTS",
     ],
     elementCount: 14,
     groupCount: 11,
@@ -60,7 +64,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "The displayed source prescription traces to wide BF 37.749942357 mm versus printed 37.697 mm. Displayed thickness sums are 149.367 / 149.347 / 149.324 mm versus printed 149.369 / 149.348 / 149.326 mm. The surface prescription is unchanged; the unprinted image interval is paraxially derived.",
+        note: "The printed prescription traces to a wide back focus of 37.750 mm; the patent's Table 1 gives 37.697 mm. That column also departs from the paraxial back focus of Examples 1 and 3 (by −1.59 and −0.02 mm), and no single misprint reproduces it, so the back focus here is derived from the prescription. The thicknesses sum to 149.367 / 149.347 / 149.324 mm against the printed Σd 149.369 / 149.348 / 149.326 mm. The surface prescription is unchanged.",
       },
     ],
   },
@@ -74,7 +78,8 @@ const LENS_DATA = {
       vd: 35.04,
       indexReference: "d",
       focalLengthMm: -277.2827,
-      glass: "Unmatched (nd 1.74950, νd 35.04)",
+      glass: "E-LAF7 (HOYA)",
+      role: "Flint negative meniscus of the front cemented doublet; colour partner to the AD crown L2.",
     },
     {
       id: 2,
@@ -85,7 +90,11 @@ const LENS_DATA = {
       vd: 83.58,
       indexReference: "d",
       focalLengthMm: 140.2152,
-      glass: "Unmatched (nd 1.49310, νd 83.58)",
+      glass: "Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)",
+      apd: "inferred",
+      apdNote:
+        "One of the two AD elements Minolta lists for this lens; the patent prints only nd and νd, so no dPgF is assigned.",
+      role: "Biconvex AD crown of the front cemented doublet; main collecting power of the front group.",
     },
     {
       id: 3,
@@ -96,7 +105,11 @@ const LENS_DATA = {
       vd: 83.58,
       indexReference: "d",
       focalLengthMm: 281.3607,
-      glass: "Unmatched (nd 1.49310, νd 83.58)",
+      glass: "Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)",
+      apd: "inferred",
+      apdNote:
+        "The second of the two AD elements Minolta lists; the patent prints only nd and νd, so no dPgF is assigned.",
+      role: "AD positive meniscus completing the front group, convex to the object.",
     },
     {
       id: 4,
@@ -107,7 +120,8 @@ const LENS_DATA = {
       vd: 53.93,
       indexReference: "d",
       focalLengthMm: -59.4921,
-      glass: "Unmatched (nd 1.71300, νd 53.93)",
+      glass: "LAC8 (HOYA)",
+      role: "Main negative element of the variator group Gr2.",
     },
     {
       id: 5,
@@ -118,7 +132,8 @@ const LENS_DATA = {
       vd: 27.51,
       indexReference: "d",
       focalLengthMm: 114.4653,
-      glass: "Unmatched (nd 1.75520, νd 27.51)",
+      glass: "S-TIH4 (OHARA)",
+      role: "High-dispersion positive element that achromatizes the variator group.",
     },
     {
       id: 6,
@@ -129,7 +144,8 @@ const LENS_DATA = {
       vd: 53.93,
       indexReference: "d",
       focalLengthMm: -51.1083,
-      glass: "Unmatched (nd 1.71300, νd 53.93)",
+      glass: "LAC8 (HOYA)",
+      role: "Negative element of Gr3's negative front subgroup, just behind the stop.",
     },
     {
       id: 7,
@@ -140,7 +156,8 @@ const LENS_DATA = {
       vd: 36.96,
       indexReference: "d",
       focalLengthMm: 226.4747,
-      glass: "Unmatched (nd 1.61293, νd 36.96)",
+      glass: "E-F3 (HOYA)",
+      role: "Flint positive meniscus paired with L6 to correct lateral colour within Gr3's front subgroup.",
     },
     {
       id: 8,
@@ -151,7 +168,8 @@ const LENS_DATA = {
       vd: 70.44,
       indexReference: "d",
       focalLengthMm: 97.0953,
-      glass: "Unmatched (nd 1.48749, νd 70.44)",
+      glass: "FC5 (HOYA)",
+      role: "Crown positive element opening Gr3's positive rear subgroup.",
     },
     {
       id: 9,
@@ -162,7 +180,8 @@ const LENS_DATA = {
       vd: 23.82,
       indexReference: "d",
       focalLengthMm: -94.9116,
-      glass: "Unmatched (nd 1.84666, νd 23.82)",
+      glass: "FDS90 (HOYA)",
+      role: "Dense-flint negative meniscus of the Gr3 cemented doublet.",
     },
     {
       id: 10,
@@ -173,7 +192,8 @@ const LENS_DATA = {
       vd: 64.2,
       indexReference: "d",
       focalLengthMm: 52.1966,
-      glass: "Unmatched (nd 1.51680, νd 64.20)",
+      glass: "BSC7 (HOYA)",
+      role: "Biconvex crown of the Gr3 cemented doublet.",
     },
     {
       id: 11,
@@ -184,7 +204,8 @@ const LENS_DATA = {
       vd: 70.44,
       indexReference: "d",
       focalLengthMm: 70.341,
-      glass: "Unmatched (nd 1.48749, νd 70.44)",
+      glass: "FC5 (HOYA)",
+      role: "Crown positive element closing the third group.",
     },
     {
       id: 12,
@@ -196,6 +217,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -56.0,
       glass: "Unmatched (nd 1.75450, νd 51.57)",
+      role: "Negative meniscus opening the negative rear group Gr4, concave to the image.",
     },
     {
       id: 13,
@@ -207,6 +229,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 36.1997,
       glass: "Unmatched (nd 1.67339, νd 29.25)",
+      role: "Flint positive meniscus of the rear cemented doublet, convex to the image.",
     },
     {
       id: 14,
@@ -217,7 +240,8 @@ const LENS_DATA = {
       vd: 53.93,
       indexReference: "d",
       focalLengthMm: -27.7203,
-      glass: "Unmatched (nd 1.71300, νd 53.93)",
+      glass: "LAC8 (HOYA)",
+      role: "Biconcave last element; with L12 supplies the rear group's negative telephoto power.",
     },
   ],
   surfaces: [
@@ -560,7 +584,7 @@ const LENS_DATA = {
     closeFocusM: 2,
     keyframes: [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0],
     description:
-      "Inferred front-unit focus: Gr1 (L1–L3, surfaces 1–5) moves objectward by a paraxially solved 12.28–12.78 mm for 2 m object-to-image distance. Eight finite controls per zoom station are unpublished paraxial reconstructions, not patent-certified states. The source prints infinity zoom rows only.",
+      "Front-group focus: Gr1 (L1–L3) moves toward the object, 12.28 mm at 102.5 mm, 12.49 mm at 200 mm and 12.78 mm at 390.1 mm, to focus at 2 m object-to-image distance (0.24× at the long end). The patent prints infinity states only; the travel is a paraxial reconstruction that follows the production lens's front-group focusing, 2.0 m minimum focus and 0.25× maximum magnification.",
   },
   gaps: {
     "5": {
@@ -701,7 +725,7 @@ const LENS_DATA = {
       ],
     },
     "9": {
-      label: "D9 − 2: Gr2–STO",
+      label: "D9 − 2 mm: Gr2–stop",
       values: [
         [54.87, 54.87, 54.87, 54.87, 54.87, 54.87, 54.87, 54.87, 54.87],
         [
@@ -1091,7 +1115,7 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Gr1 + / front focus",
+      text: "Gr1 + / focus",
       fromSurface: "1",
       toSurface: "5",
     },
