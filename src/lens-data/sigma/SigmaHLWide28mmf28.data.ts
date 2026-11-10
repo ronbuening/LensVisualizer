@@ -13,7 +13,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 15.73 px/mm at the 347 dpi scan, set by the vertex spacing, and checked by real-ray trace. Surfaces 4 and 5 stop at
  * 12.3 mm, where L2 and L3 nearly meet as drawn; surface 6 ends at its drawn 10.9 mm with a flat land out to 12.3 mm.
  * The cemented doublet is drawn square at 10.0 mm, and surface 12 ends at 9.5 mm where L6 meets L7; that needs
- * checks.gapSagFrac 0.95, since the 12/13 faces close 0.943 of their 2.11 mm gap there without crossing.
+ * checks.gapSagFrac 0.95, since the 12/13 faces close 0.943 of their 2.11 mm gap there without crossing (the 4/5
+ * faces close 0.925 of their 4.56 mm gap at 12.3 mm). Fig. 1 also draws L6 with an outer flange (11.5–12.1 mm)
+ * beyond both optical faces; it is not drawn here, because a land on surface 12 would cross L7's front face.
  * Glass labels are HOYA catalog rows that reproduce the printed nd/νd; Sigma's supplier is not known.
  * Infinity focus only; Sigma's 0.22 m minimum focus distance is catalog data, not modeled focus travel.
  */
@@ -69,7 +71,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      glass: "TAF1 (HOYA)",
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Weak positive front meniscus of the negative front group.",
       focalLengthMm: 152.42563673541665,
     },
@@ -81,7 +83,7 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.2,
       indexReference: "d",
-      glass: "E-CF6 (HOYA)",
+      glass: "E-CF6 (HOYA catalog equivalent; production supplier unspecified)",
       role: "First negative meniscus of the front group; carries most of its divergence.",
       focalLengthMm: -38.61884993475504,
     },
@@ -93,7 +95,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       indexReference: "d",
-      glass: "BSC7 (HOYA)",
+      glass: "BSC7 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Second negative meniscus of the front group, splitting its strong concave power.",
       focalLengthMm: -83.54098907887646,
     },
@@ -105,7 +107,7 @@ const LENS_DATA = {
       nd: 1.78472,
       vd: 25.7,
       indexReference: "d",
-      glass: "FD110 (HOYA)",
+      glass: "FD110 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Thick positive flint just ahead of the stop; first member of the positive rear group.",
       focalLengthMm: 44.73367285921399,
     },
@@ -117,7 +119,7 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 43.9,
       indexReference: "d",
-      glass: "NBFD11 (HOYA)",
+      glass: "NBFD11 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive front element of the cemented negative doublet behind the stop.",
       focalLengthMm: 17.32689832637268,
       cemented: "C1",
@@ -130,7 +132,7 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.6,
       indexReference: "d",
-      glass: "FD140 (HOYA)",
+      glass: "FD140 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative flint rear element of the cemented doublet.",
       focalLengthMm: -13.740499325842865,
       cemented: "C1",
@@ -143,7 +145,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      glass: "TAF1 (HOYA)",
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive meniscus, concave to the object, in the rear group.",
       focalLengthMm: 46.90541087700522,
     },
@@ -155,7 +157,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      glass: "TAF1 (HOYA)",
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Biconvex last element of the rear group.",
       focalLengthMm: 61.49868645674048,
     },
@@ -272,6 +274,11 @@ const LENS_DATA = {
       "Infinity focus only; the patent prints no close-focus spacings, so no focus movement is modeled. Sigma's 0.22 m minimum focus distance (1:4.5) is catalog data.",
   },
   gaps: {},
+  groups: [
+    { text: "FRONT (−)", fromSurface: "1", toSurface: "6" },
+    { text: "REAR (+)", fromSurface: "7", toSurface: "16" },
+  ],
+  doublets: [{ text: "C1", fromSurface: "10", toSurface: "12" }],
   checks: {
     gapSagFrac: 0.95,
   },

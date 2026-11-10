@@ -140,3 +140,77 @@ scale: `overlay.png` in the pass's scratch folder (not in the repo).
 
 Open: Fig. 1's strongly curved faces and drawn contacts are not geometrically exact, so the L2/L3 and L6/L7 rims
 follow the prescription's contact limits rather than the drawn pixel heights.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared: the live page at infinity (section, the eight element inspectors, the focus-movement overlay and the
+`focus=1` view) with Fig. 1 of JP S60-181715 A at native 347 ppi (printed page 76). The drawing description on printed
+page 75 confirms that Fig. 1 is Example 1. Rims were re-read on both sides of the axis at the pass's 15.73 px/mm,
+with the axis at x = 882 px:
+
+| Feature | Right side | Left side | Model | Reading |
+|---|---|---|---|---|
+| L5 square edge (surfaces 10, 11) | 10.0 | 9.5 | 10.0 | agrees |
+| S12/S13 drawn contact | 10.5 | 9.5 | 9.5 (faces meet at 9.75) | agrees; capped by the prescription |
+| L6 outer flange | 12.1 | 11.5 | not drawn | see below |
+| L7 rim (surfaces 13, 14) | 11.5 | 10.7 | 11.0 | agrees |
+| Surface 6 cap end | 11.1 | — | 10.9 | agrees |
+| L3 front rim / L2 contact | 13.2–13.3 | — | 12.3 (faces cross at 12.55) | capped by the prescription |
+
+No value is off by 10 % or more, and the drawn step order between neighbours holds (L1 > L2 > L3 > L4 < L5;
+L5/L6 faces < L7 < L8), apart from L6's flange. No rim changed.
+
+L6's drawn outer edge is a flange outside both of its optical faces. The validator refuses a rim extension on
+surface 11 ("a rim extension needs a glass/air boundary"). On surface 12 it refuses one at 11.8 mm (combined sag 2.23
+mm against 2.004 mm allowed across gap 12→13) and even at 10.2 mm (2.10 mm against 2.004 mm). The flange therefore
+stays undrawn, and the header now says why.
+
+`checks.gapSagFrac` 0.95 is the smallest two-decimal value that passes. At 0.94 the validator refuses gap 12→13 (1.99
+mm against 1.983 mm allowed at surface 12's 9.5 mm rim), and at 0.92 it also refuses gap 4→5 (4.22 mm against 4.195 mm
+at 12.3 mm). The L2/L3 rims depend on it as well, which the header now states.
+
+Lands and cuts, against the rims before today's semi-diameter pass (`rimcost --loo`, full-pupil lattice, wide open at
+infinity):
+
+| Item | Baseline | Final | Light | Verdict |
+|---|---|---|---|---|
+| Surface 6 cut | 12.5 | 10.9 | restoring 12.5 wins back 0.0 points at every field | keep: no light lost; Fig. 1 draws the cap ending there |
+| Surface 6 land (`rimExtensionSd`) | — | 12.3 | an extension never clips | keep: Fig. 1 draws L3's flat top |
+
+Worst loss against the baseline: 0.0 points. Corner transmission at 37.8° is 88.4 % (baseline 68.5 %).
+
+Changes:
+
+- `doublets`: none → C1 over surfaces 10–12. The cemented pair had no bracket; C1 matches the elements' `cemented` id.
+- `groups`: none → "FRONT (−)" (surfaces 1–6) and "REAR (+)" (7–16). These follow the claim's front negative lens
+  group (L1–L3) and rear positive lens group (patent L4–L7) on printed page 73.
+- Glass labels are now in the corpus form "NAME (HOYA catalog equivalent; production supplier unspecified)", since
+  Sigma's supplier is unknown: L1, L7 and L8 TAF1; L2 E-CF6; L3 BSC7; L4 FD110; L5 NBFD11; L6 FD140. The resolved
+  rows are unchanged (|Δnd| ≤ 3.1e-6, |Δνd| ≤ 0.05).
+- The header semi-diameter note now covers the gap 4→5 fraction and the undrawn L6 flange. The analysis notes that
+  Fig. 1 labels the elements G1–G8 in the same order as L1–L8.
+
+Labels, tags and movement re-checked. Every element type agrees with the signs of its radii, roles are true, and all
+eight focal lengths are present (+152.4, −38.6, −83.5, +44.7, +17.3, −13.7, +46.9, +61.5 mm). The stop sits at row 9
+between L4 and L5, and there are no aspheres. No `apd` tags are present, which is correct: the patent text names no
+special glass and the Sigma booklet marks none. The lens is static (`gaps` empty). The focus slider reads "Not
+modeled", the movement overlay reports no group movement, and `focus.description` states infinity only. Element
+designations stay L1–L8: the patent's text numbers seven components L1–L7 (doublet = L5), and Fig. 1's G1–G8 would
+read as groups on this site.
+
+Glass and colour: every label resolves exactly, and HOYA stays the single palette, with NBFD11 the only exact row for
+L5. E-CF6 is HOYA's later lead-free row: the catalog has no legacy CF6, and the other exact row (Hikari J-KF6, Δνd
+0.00) is no older. 1.51742/52.2, 1.51680/64.2 and 1.77250/49.6 recur in all three examples; 1.78472/25.7,
+1.78590/43.9 and 1.76182/26.6 are Example 1's own (Examples 2 and 3 use 1.80518/25.5 and 1.74077/27.8). The patent
+prints no partial dispersions or line indices, and Fig. 2 plots d-line spherical aberration, astigmatism and
+distortion only, so there is no C/F/g curve to compare. No medium is nd-only. No catalog row is proposed.
+
+Assignee "Sigma Corporation" matches the front page (株式会社シグマ) and the corpus spelling.
+
+Correction to the semi-diameter pass: surface 4 still limits the engine half-field estimate. It moved from 38.3° to
+40.2° because surface 4's rim rose from 11.5 to 12.3 mm. Engine numbers are unchanged by this review: EFL 28.3377 mm,
+f/2.8, stop radius 6.8958 mm, half-field 40.22°. Surface audit OK; the aperture audit is within 3 % of F2.8 with no rim
+limit; image circle 0 undersized; field coverage at least 99 %.
+
+Open: Fig. 1's L6 outer flange (11.5–12.1 mm) cannot be drawn. A land on surface 12 crosses L7's front face, and the
+cemented surface 11 cannot carry one.
