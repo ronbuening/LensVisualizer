@@ -471,6 +471,8 @@ export interface LensData {
   patentAuthors?: string[];
   /** Organizational assignees or applicants named by the source patent; empty when no organization is named. */
   patentAssignees?: string[];
+  /** The organization that issued a non-patent manufacturer source; never beside `patentNumber`. */
+  sourceIssuer?: string;
   patentYear?: number;
   /** Departures from, and unresolved contradictions in, the source's printed values; see LENS_DATA_SPEC.md. */
   sourceErrata?: SourceErratum[];

@@ -24,3 +24,7 @@ dropped. The lens key is unchanged.
 
 - Why the old value differed: derived travel; 0.25 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.25 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2.0: `patents/US3830559.pdf` PDF p14, col. 6, Example 1 table header "f = 100  F/2.0  Picture angle 84°". Stop `nominalFNumber` 2.0 is not faster.

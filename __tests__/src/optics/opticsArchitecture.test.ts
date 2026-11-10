@@ -357,8 +357,6 @@ const repoRoot = fileURLToPath(new URL("../../..", import.meta.url));
 const OPTICS_ROOT = "src/optics";
 const MOUNT_PREFIX = "src/optics/mount/";
 const IMPORTER_ROOTS = ["src", "scripts", "reports"];
-/** Names optics files to keep them out of large-file warnings; it never loads them. */
-const PATH_MENTION_ONLY_SCRIPTS = ["scripts/generate-src-readmes.mjs"];
 
 interface ModuleReference {
   specifier: string;
@@ -559,7 +557,7 @@ const outsideImporters = once(() => {
     // Every path into src/optics/ spells the folder name, so most files need no further scan.
     if (!text.includes("optics")) continue;
     const targets = moduleReferences(text).map((reference) => resolveOpticsModule(file, reference.specifier));
-    if (file.startsWith("scripts/") && !PATH_MENTION_ONLY_SCRIPTS.includes(file)) {
+    if (file.startsWith("scripts/")) {
       targets.push(...pathLoadedOpticsModules(text));
     }
     for (const target of targets) {

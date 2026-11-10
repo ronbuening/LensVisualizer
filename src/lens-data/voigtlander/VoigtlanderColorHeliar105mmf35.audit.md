@@ -15,3 +15,9 @@ automated crop was affected by drawing annotations; the final decision came from
 
 `npm run audit:surface -- src/lens-data/voigtlander/VoigtlanderColorHeliar105mmf35.data.ts --sd 4=15.3 5=15.3 6=15.5 7=15.5 8=15.5` passed the surface-domain, edge-thickness, rim-slope, and shared-gap checks.
 `npm run audit:image-circle -- src/lens-data/voigtlander/VoigtlanderColorHeliar105mmf35.data.ts` reported no floor failures.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 3.5: US 2,645,156 A, PDF p. 4, col. 5, the sole example's table header
+  "[F=1.0000 1:3.5 p0'=0.8203]"; col. 5, ll. 14–17 states "a relative aperture of 1:3.5". The stop's
+  `nominalFNumber` 3.5 matches it.

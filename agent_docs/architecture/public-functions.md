@@ -2,8 +2,9 @@
 
 This project is an application, not a published library. "Public functions" here means the stable project-internal
 import surface that app code, tests, scripts, and future agents should prefer over deep imports into implementation
-details. The symbols themselves are documented by their TypeScript exports and the generated `src/**/readme.md` files;
-this document only records where to import from and the contracts that are not visible in a signature.
+details. The symbols themselves are documented by their TypeScript exports and the on-demand `src/**/readme.md` folder
+maps (`npm run generate:readmes`); this document only records where to import from and the contracts that are not
+visible in a signature.
 
 ## Import Boundaries
 

@@ -50,3 +50,8 @@ Patent: US 4,099,843, Example 6
 
 - Why the old value differed: derived unit-focus travel; 0.45 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.45 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 1.2: `patents/US4099843.pdf` PDF p10, col. 7, line ~10, Embodiment 6 header "f = 100, F 1.2, f_B = 74.62". Stop `nominalFNumber` 1.2 is not faster.
+- `catalog.focalLengthMm.design` = 50: the same header states f = 100, multiplied by the documented ×0.500 scale (r₁ 82.171 → 41.086 confirms it).

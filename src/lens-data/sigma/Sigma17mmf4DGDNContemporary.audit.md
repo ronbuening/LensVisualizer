@@ -80,3 +80,8 @@ Colour and field: Fig. 8 read at the 0.02, 0.5, 0.7, 0.85 and 1.0 pupil zones gi
 Text: the analysis called the 73 % corner figure relative illumination; it is the geometric share of the beam, and the engine's relative illumination at 51.8° is 24 %. The analysis now says so, gives the 126 mm corner, quotes the S2 curve end as about 11.2 mm and states the colour and field-curvature agreement. The 73 % in the deployment-validation section above is the same geometric figure.
 
 Open limitations: L1, L2, L3 and L8 remain about 4–5 % taller than Fig. 6 draws them; cutting them to the figure would cost no light. The S2 and S4 rims stay 0.3 and 0.2 mm above the drawn curve ends, which puts their lands about 0.25 and 0.3 mm behind the drawn positions axially.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.marketing: 4` from the product name, so the wide-open readout names the marked f/4 beside
+  the design f/4.09. No optical value changed.

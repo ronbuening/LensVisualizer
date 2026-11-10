@@ -42,8 +42,7 @@ const LENS_DATA = {
     elementCount: 9,
     groupCount: 9,
     /* ── Explicit metadata fields ── */
-    focalLengthMm: { marketing: 90 },
-    // focalLengthDesign omitted — computed EFL ≈ 89.98, essentially identical to marketing
+    focalLengthMm: { marketing: 90, design: 90 },
     fNumber: { marketing: 2, design: 2.06 },
   },
 

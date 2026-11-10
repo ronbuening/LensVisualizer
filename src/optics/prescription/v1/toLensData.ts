@@ -79,6 +79,7 @@ export const V1_PRINT_ORDER = {
     "patentAssignees",
     "patentYear",
     "sourceErrata",
+    "sourceIssuer",
     "elementCount",
     "groupCount",
     "visible",
@@ -504,6 +505,7 @@ function buildLensView(
   put(out, "patentAssignees", source.assignees);
   put(out, "patentYear", source.patentYear);
   put(out, "sourceErrata", source.errata);
+  put(out, "sourceIssuer", source.issuer);
   put(out, "elementCount", catalog.elementCount);
   put(out, "groupCount", catalog.groupCount);
   putDefaulted(out, lensRow("visible"), "", lens.visible, view);

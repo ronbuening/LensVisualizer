@@ -127,10 +127,13 @@ describe("buildUniversalRelationshipGraph", () => {
       expect(node).toMatchObject({ kind: "lens", name: summary.name, lens: { key } });
       expect(graph.patents.some((patent) => patent.lenses.some((lens) => lens.key === key))).toBe(false);
       const edges = graph.edges.filter((edge) => edge.from === node!.id || edge.to === node!.id);
-      expect(edges).toHaveLength(summary.maker ? 1 : 0);
+      expect(edges).toHaveLength(summary.sourceIssuer || summary.maker ? 1 : 0);
       for (const edge of edges) {
         expect(edge.kind).toBe("catalog-maker");
-        expect(graph.nodes.find((entry) => entry.id === edge.to)?.kind).toBe("maker");
+        const target = graph.nodes.find((entry) => entry.id === edge.to);
+        // A manufacturer document's issuer replaces the catalog maker hub.
+        if (summary.sourceIssuer) expect(target?.name).toBe(summary.sourceIssuer);
+        else expect(target?.kind).toBe("maker");
       }
     }
     expect(graph.stats.patents).toBe(graph.nodes.filter((node) => node.kind === "patent").length);

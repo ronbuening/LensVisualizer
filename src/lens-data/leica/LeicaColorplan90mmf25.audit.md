@@ -1036,3 +1036,7 @@ Stage 2 tasks:
 type-check, Prettier on the data file, `buildLens()` / `validateLensData()`, render diagnostics and runtime glass
 resolution. No data file exists at Stage 1. Taxonomy gaps to raise at integration: a slide-projector barrel mount id, and
 the canonical Ernst Leitz assignee spelling and maker slug.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2.5: `patents/US3076383.pdf` PDF p. 2 (col. 2), Table 1 heading (Example 1) "Focal length f=1.00. Angle of image: 27°. Relative aperture 1:2.5"; claim 1 (PDF p. 3, col. 3) repeats 1:2.5. The stop's `nominalFNumber` 2.5 passes the 0.5% guard.

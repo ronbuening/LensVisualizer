@@ -56,3 +56,7 @@ unchanged.
 
 - Why the old value differed: derived unit-focus travel; 0.2 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.2 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 3.5: `patents/US3850509.pdf` PDF p5, col. 3, Table 1-continued footer "f = 1.0 … F 1 : 3.5". Stop `nominalFNumber` 3.5 is not faster.

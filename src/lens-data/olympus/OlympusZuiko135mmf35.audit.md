@@ -25,3 +25,7 @@ Patent: US 3,838,911, Example 1
 - Visually rechecked local `patents/US3838911.pdf`, PDF page 4. Example 1 prints L2 at `nd = 1.48749`, `νd = 69.8`.
 - The current OHARA S-FSL5 coefficient row evaluates to `1.487490 / 70.236`, within `Δnd = 0.000000` and `Δνd = +0.436` of the patent row.
 - Relabeled L2 as an S-FSL5 catalog-equivalent curve while retaining code `487698` and leaving the production supplier unspecified. Geometry and APD metadata are unchanged.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 3.5: `patents/US3838911.pdf` PDF p4, col. 2, line ~51, Embodiment 1 footer "F 1 : 3.5" (a stray print mark follows the 5); claim 1 restates "F 1 : 3.5" at PDF p5, col. 4, line ~8. Stop `nominalFNumber` 3.5 is not faster.
