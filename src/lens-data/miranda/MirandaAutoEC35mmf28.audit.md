@@ -38,3 +38,6 @@ All six catalog curves remain compatible. Ordinary glass colors remain appropria
 ## 2026-11-10 — Metadata fill
 
 - `catalog.fNumber.design` = 2.8: `patents/JPA 1976053823-000000.pdf` PDF p. 4 (gazette p. 150), 第3図, which the text on the same page names as the Example 1 aberration diagram (第3図は第1実施例の収差図). Its spherical-aberration axis is labelled 1:2.8 at the top, then 1:3.4, 1:4 and 1:5.6 (read from a 300 dpi render). The Example 1 table heading (PDF p. 3) prints only f = 100, back focus 109.50 and overall length 208.18; the description (PDF p. 2) gives 口径比 "2.8前後" for the invention generally. The stop's `nominalFNumber` 2.8 passes the 0.5% guard.
+- Reconciled: a 330 dpi crop of 第3図 shows both spherical-aberration curves reaching the top line labelled 1:2.8,
+  so Example 1 is plotted wide open at 1:2.8. The page 2 description assumes the same aperture (口径比が2.8前後).
+  Example 1's table names no f-number, so the aberration figure is the example-level source.

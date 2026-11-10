@@ -121,3 +121,6 @@ No rim of this lens was raised. Every rim stands at least 1 % above the on-axis 
 ## 2026-11-10 — Metadata fill
 
 - `catalog.fNumber.design` = 2.8: `patents/US2995980.pdf` PDF p. 2, col. 1 ll. 57–66. The sole example's FIG. 2 correction curves are plotted against height of incidence, and "a height of incidence of 17.9 would be the equivalent of an aperture ratio of 1:2.8 of a focal length of 100 millimeters"; col. 1 ll. 33–35 frames the problem the example solves as correcting the system "to f:2.8". The table itself prints no f-number. The stop's `nominalFNumber` 2.8 passes the 0.5% guard.
+- Reconciled: a 400 dpi crop of FIG. 2 (PDF p. 1) shows the C, e, F and g curves running just past the top 17.5 tick,
+  to about 18 mm, so the sole example is plotted to the 17.9 height that the text equates with 1:2.8 at f = 100. That
+  makes 1:2.8 the example's wide-open aperture, as the analysis's 17.88 mm entrance-pupil semi-diameter also shows.
