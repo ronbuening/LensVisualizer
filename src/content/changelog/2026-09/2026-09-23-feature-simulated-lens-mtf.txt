@@ -1,0 +1,1 @@
+Added simulated lens MTF: diffraction-corrected photopic curves at 10–50 lp/mm out to the format corner

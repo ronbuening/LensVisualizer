@@ -1,0 +1,1 @@
+Fixed optical surface overlap in Canon RF lenses

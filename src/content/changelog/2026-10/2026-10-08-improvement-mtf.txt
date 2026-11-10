@@ -1,0 +1,1 @@
+Improved MTF: diffraction from traced rays, clipped corners charted, traced f-number shown

@@ -15,7 +15,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { basename, join } from "node:path";
 import { ARTICLE_FEED_PATH, CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../src/utils/content/feedMetadata.ts";
-import { buildChangelogFeedItems } from "./generate-rss-feeds.mjs";
+import { CHANGELOG_PATH, buildChangelogFeedItems } from "./generate-rss-feeds.mjs";
 import { SITE_URL, canonicalPagePath, canonicalPageUrl } from "./site-url.mjs";
 import { htmlHasNoindexDirective } from "./sitemap-lib.mjs";
 
@@ -159,9 +159,9 @@ function compareStrings(a, b) {
   return 0;
 }
 
-function expectedFeedUrls(buildMeta, feedName) {
+function expectedFeedUrls(buildMeta, changelogEntries, feedName) {
   if (feedName === "changelog") {
-    return buildChangelogFeedItems(undefined, FEED_LIMIT).map((entry) => entry.url);
+    return buildChangelogFeedItems(changelogEntries, FEED_LIMIT).map((entry) => entry.url);
   }
 
   const entries =
@@ -190,7 +190,7 @@ function expectedFeedUrls(buildMeta, feedName) {
     .map((entry) => entry.url);
 }
 
-function auditRssFeeds(buildMeta) {
+function auditRssFeeds(buildMeta, changelogEntries) {
   console.log("\n[RSS feeds]");
 
   for (const feed of FEEDS) {
@@ -214,7 +214,7 @@ function auditRssFeeds(buildMeta) {
     const itemBlocks = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((match) => match[1]);
     const itemUrls = itemBlocks.map((block) => block.match(/<link>(.*?)<\/link>/)?.[1] ?? "");
     const guidUrls = itemBlocks.map((block) => block.match(/<guid isPermaLink="true">(.*?)<\/guid>/)?.[1] ?? "");
-    const expectedUrls = expectedFeedUrls(buildMeta, feed.name);
+    const expectedUrls = expectedFeedUrls(buildMeta, changelogEntries, feed.name);
 
     if (JSON.stringify(itemUrls) !== JSON.stringify(expectedUrls)) {
       error(`${feed.file} items do not match the expected newest ${expectedUrls.length} canonical URLs`);
@@ -588,12 +588,13 @@ if (!existsSync(DIST_DIR)) {
   console.error("dist/ not found. Run `npm run build` first.");
   process.exit(1);
 }
-if (!existsSync(META_PATH)) {
-  console.error("build-metadata.json not found. Run generate-build-metadata.mjs first.");
+if (!existsSync(META_PATH) || !existsSync(CHANGELOG_PATH)) {
+  console.error("build-metadata.json or changelog.json not found. Run generate-build-metadata.mjs first.");
   process.exit(1);
 }
 
 const buildMeta = JSON.parse(readFileSync(META_PATH, "utf-8"));
+const changelogEntries = JSON.parse(readFileSync(CHANGELOG_PATH, "utf-8"));
 const { routes, lensKeys, makerSlugs, mountIds = [], formatIds = [], authors = [], teleconverterKeys = [] } = buildMeta;
 const articleSlugs = buildMeta.articles.map((a) => a.slug);
 
@@ -603,7 +604,7 @@ console.log(
 
 auditRobotsTxt();
 auditSitemap(routes);
-auditRssFeeds(buildMeta);
+auditRssFeeds(buildMeta, changelogEntries);
 auditFeedDiscovery();
 auditAllPrerenderedPages(routes);
 auditCanonicalInternalLinks(routes);

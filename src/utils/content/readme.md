@@ -19,9 +19,10 @@ flowchart LR
   n_external_src_generated["src/generated"]
   n_external_src_utils_seo["src/utils/seo"]
   n_src_utils_content_src_utils_content_homepageContent_ts --> n_external_glob_______content______md
+  n_src_utils_content_src_utils_content_changelogData_ts --> n_external_src_generated
   n_src_utils_content_src_utils_content_homepageContent_ts --> n_external_src_generated
   n_src_utils_content_src_utils_content_homepageContent_ts --> n_external_src_utils_seo
-  n_src_utils_content_src_utils_content_changelogHelpers_ts --> n_src_utils_content_src_utils_content_changelogData_ts
+  n_src_utils_content_src_utils_content_changelogData_ts --> n_src_utils_content_src_utils_content_changelogHelpers_ts
   n_src_utils_content_src_utils_content_homepageContent_ts --> n_src_utils_content_src_utils_content_stripFrontmatter_ts
 ```
 
@@ -29,15 +30,15 @@ flowchart LR
 
 - Direct source files: 5
 - Direct subfolders: 0
-- Main outbound areas: same folder (2), glob:../../content/**/*.md, src/generated, src/utils/seo
+- Main outbound areas: same folder (2), src/generated (2), glob:../../content/**/*.md, src/utils/seo
 - External consumers: src/components/content, src/components/homepage, src/components/layout, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/HomePage.tsx, src/pages/LensIndexPage.tsx, src/pages/UpdatesPage.tsx
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `changelogData.ts` | Changelog Data helper module | none | same folder, src/components/content | ChangelogEntryType, ChangelogEntry, CHANGELOG |
-| `changelogHelpers.ts` | Changelog Helpers helper module | same folder | src/components/content (3), src/components/homepage, src/pages/UpdatesPage.tsx | CHANGELOG_TYPE_COLORS, CHANGELOG_TYPE_LABELS, formatDisplayDate, changelogEntryId, groupChangelogByDate |
+| `changelogData.ts` | Changelog Data helper module | same folder, src/generated | src/components/content | CHANGELOG |
+| `changelogHelpers.ts` | Changelog Helpers helper module | none | src/components/content (3), same folder, src/components/homepage, src/pages/UpdatesPage.tsx | CHANGELOG_ENTRY_TYPES, ChangelogEntryType, ChangelogEntry, CHANGELOG_TYPE_COLORS, CHANGELOG_TYPE_LABELS, formatDisplayDate, changelogEntryId, groupChangelogByDate |
 | `feedMetadata.ts` | Feed Metadata helper module | none | src/components/homepage, src/pages/ArticlesPage.tsx, src/pages/LensIndexPage.tsx, src/pages/UpdatesPage.tsx | LENS_FEED_PATH, ARTICLE_FEED_PATH, CHANGELOG_FEED_PATH |
 | `homepageContent.ts` | Homepage Content helper module | glob:../../content/**/*.md, same folder, src/generated, src/utils/seo | src/components/content (3), src/components/homepage, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/HomePage.tsx | HomepageArticle, ArticleContentEntry, SeriesSummary, HOMEPAGE_ARTICLE_LIMIT, ARTICLES, ARTICLE_SERIES, HOMEPAGE_ARTICLES, ARTICLE_CONTENT |
 | `stripFrontmatter.ts` | Strip Frontmatter helper module | none | same folder, src/components/layout | stripFrontmatter |

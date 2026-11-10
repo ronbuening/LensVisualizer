@@ -117,13 +117,16 @@ The app uses React Router 8 with client-side routing plus static prerendering fo
   lens publication ordering, article display fields, maker slugs, authors, and assignees. Its projection preserves
   collection order and excludes Git hashes, precise timestamps, and build-only route inventories. Build tooling keeps
   using the full metadata artifact; browser modules must import the client projection.
+- The generator also validates the changelog entry files under `src/content/changelog/` with
+  `scripts/changelog-lib.mjs`, early in the run, and writes them newest first to `src/generated/changelog.json` for
+  `src/utils/content/changelogData.ts`, the RSS feed, and the SEO audit.
 - `scripts/prerender.mjs` reads that concrete route list, builds the SSR entry, validates it against
   `manifestPaths` exported from `entry-server.tsx`, and writes each route plus `404.html` into `dist/`.
 - `/compare/:slugA/:slugB` is routeable and SSR-capable, but it is intentionally excluded from the generated concrete
   route list and prerender coverage check because arbitrary comparison pairs are noindex client/deep-link pages.
 - `scripts/generate-sitemap.mjs` consumes the same route list and route freshness map from
   `src/generated/build-metadata.json`, then omits any prerendered route whose robots metadata contains `noindex`.
-- `scripts/generate-rss-feeds.mjs` consumes the build metadata, generated lens summaries, and curated changelog. It
+- `scripts/generate-rss-feeds.mjs` consumes the build metadata, generated lens summaries, and compiled changelog. It
   writes the 50 newest entries to `dist/feeds/lenses.xml`, `dist/feeds/articles.xml`, and
   `dist/feeds/changelog.xml`.
 - `scripts/seo-audit.mjs` audits the built/prerendered output.
@@ -179,10 +182,11 @@ timestamp takes over after commit. RSS `pubDate` uses the exact timestamp. Repla
 `publishedAt` as described in `src/lens-data/LENS_DATA_SPEC.md`; that timestamp replaces inherited publication history
 consistently across cards, feeds, and SEO.
 
-Changelog items come from `src/utils/content/changelogData.ts` in its curated newest-first order. Their permanent GUIDs
-and links use deterministic fragment IDs shared with `ChangelogList`, so each item opens the matching entry on
-`/updates/`. All feeds use summary-only descriptions and a 50-item limit. Page item links use the same trailing-slash URLs
-as the sitemap and HTML canonical tags. Article series members appear as individual items; hidden lenses are excluded.
+Changelog items come from `src/generated/changelog.json`, which `scripts/changelog-lib.mjs` compiles newest first from
+the entry files under `src/content/changelog/` (`agent_docs/changelog.md`). Their permanent GUIDs and links use
+deterministic fragment IDs shared with `ChangelogList`, so each item opens the matching entry on `/updates/`. All feeds
+use summary-only descriptions and a 50-item limit. Page item links use the same trailing-slash URLs as the sitemap and
+HTML canonical tags. Article series members appear as individual items; hidden lenses are excluded.
 
 The shared HTML template advertises all three feeds with absolute RSS autodiscovery links. Visible subscription links
 live on the homepage and the corresponding Lens Library, Updates, and Articles pages. The feed URLs stay out of the route

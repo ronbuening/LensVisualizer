@@ -1,0 +1,1 @@
+Added zoom and pan controls for infinite-resolution diagram inspection

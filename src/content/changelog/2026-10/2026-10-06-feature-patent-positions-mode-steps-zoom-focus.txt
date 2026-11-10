@@ -1,0 +1,1 @@
+Added a patent positions mode that steps zoom and focus through source-tabulated states

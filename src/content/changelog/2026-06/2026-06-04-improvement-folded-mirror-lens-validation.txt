@@ -1,0 +1,1 @@
+Improved folded mirror-lens validation, ray sampling, and annular mirror rendering

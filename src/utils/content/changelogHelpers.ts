@@ -1,4 +1,24 @@
-import type { ChangelogEntry, ChangelogEntryType } from "./changelogData.js";
+/**
+ * Changelog entry contract and display helpers.
+ *
+ * This module stays import-free at runtime so plain-Node scripts (the changelog compiler, RSS feeds, SEO audit) load
+ * the same type list and anchor ids the site renders. Entries live one per file under `src/content/changelog/`; see
+ * agent_docs/changelog.md.
+ */
+
+/** Valid entry types, in the order they sort within one day (alphabetical, matching the entry file names). */
+export const CHANGELOG_ENTRY_TYPES = ["article", "feature", "fix", "improvement", "lens"] as const;
+
+export type ChangelogEntryType = (typeof CHANGELOG_ENTRY_TYPES)[number];
+
+export interface ChangelogEntry {
+  /** ISO date string (YYYY-MM-DD): the merge or scheduled publication date, taken from the entry file name */
+  date: string;
+  /** Category tag for badge display, taken from the entry file name */
+  type: ChangelogEntryType;
+  /** User-facing one-liner in past tense, e.g. "Added X" or "Fixed Y": the entry file's text */
+  summary: string;
+}
 
 export const CHANGELOG_TYPE_COLORS: Record<ChangelogEntryType, string> = {
   feature: "#5588cc",

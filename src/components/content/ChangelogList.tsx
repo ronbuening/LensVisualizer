@@ -8,7 +8,7 @@ import {
   formatDisplayDate,
   groupChangelogByDate,
 } from "../../utils/content/changelogHelpers.js";
-import type { ChangelogEntry } from "../../utils/content/changelogData.js";
+import type { ChangelogEntry } from "../../utils/content/changelogHelpers.js";
 
 interface ChangelogListProps {
   theme: Theme;

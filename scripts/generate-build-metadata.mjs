@@ -16,8 +16,9 @@
  * (prerender, sitemap, seo-audit) read this JSON instead of scanning the
  * filesystem independently.
  *
- * Also emits client-metadata.json, a public display projection without build-only Git details, and
- * teleconverter-summaries.json, which pairs each teleconverter with the visible lenses it can mount on.
+ * Also emits client-metadata.json, a public display projection without build-only Git details,
+ * teleconverter-summaries.json, which pairs each teleconverter with the visible lenses it can mount on, and
+ * changelog.json, the validated changelog compiled from the entry files under src/content/changelog/.
  *
  * Run before `vite build` so the generated file is available to the bundler.
  */
@@ -34,6 +35,7 @@ import {
   gitHistory,
   projectClientMetadata,
 } from "./build-metadata-lib.mjs";
+import { collectChangelog } from "./changelog-lib.mjs";
 import { assertV2Catalog, collectLensDataAsync } from "./lens-data-lib.mjs";
 import { lensSummary, teleconverterSummary, canonicalPrescription } from "./lens-summaries.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
@@ -44,6 +46,7 @@ const ROOT = join(import.meta.dirname, "..");
 const README_FILE = join(ROOT, "README.md");
 const LENS_DATA_DIR = join(ROOT, "src", "lens-data");
 const CONTENT_DIR = join(ROOT, "src", "content");
+const CHANGELOG_DIR = join(CONTENT_DIR, "changelog");
 const OUT_DIR = join(ROOT, "src", "generated");
 const OUT_FILE = join(OUT_DIR, "build-metadata.json");
 const CLIENT_FILE = join(OUT_DIR, "client-metadata.json");
@@ -52,6 +55,7 @@ const MAKER_DETAILS_FILE = join(ROOT, "src", "utils", "catalog", "makerDetails.t
 const ASSIGNEE_CORPORATE_HISTORY_FILE = join(ROOT, "src", "utils", "catalog", "assigneeCorporateHistory.ts");
 const LENS_SUMMARIES_FILE = join(OUT_DIR, "lens-summaries.json");
 const TELECONVERTER_SUMMARIES_FILE = join(OUT_DIR, "teleconverter-summaries.json");
+const CHANGELOG_FILE = join(OUT_DIR, "changelog.json");
 /* The fit predicate is import-free TypeScript, so plain Node's type stripping loads the same code the viewer runs. */
 const TELECONVERTER_COMPATIBILITY_FILE = join(ROOT, "src", "optics", "prescription", "teleconverterCompatibility.ts");
 
@@ -161,6 +165,8 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, author
 
 async function main() {
   await assertV2Catalog(LENS_DATA_DIR);
+  /* Validated first: a malformed entry file fails the run before the slower lens and git work. */
+  const changelog = collectChangelog({ changelogDir: CHANGELOG_DIR });
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
   assertFullGitHistory({ cwd: ROOT });
   /* Every dated file is looked up in this one read of the history, made after any unshallowing above. */
@@ -168,6 +174,8 @@ async function main() {
   const fallbackDate = new Date().toISOString().slice(0, 10);
 
   writeFileSync(MAKER_PREFIXES_FILE, JSON.stringify(MAKER_PREFIXES, null, 2) + "\n", "utf-8");
+  writeFileSync(CHANGELOG_FILE, JSON.stringify(changelog) + "\n", "utf-8");
+  console.log(`Changelog written to ${CHANGELOG_FILE} (${changelog.length} entries)`);
 
   const [
     allLenses,

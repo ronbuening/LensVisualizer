@@ -2,13 +2,13 @@
 
 ## Overview
 
-The site changelog is a manually curated list of user-facing changes displayed
-on `/updates`. The data lives in `src/utils/content/changelogData.ts` as a flat array of
-`ChangelogEntry` objects.
+The site changelog is a curated list of user-facing changes shown on `/updates` and published as
+`/feeds/changelog.xml`. Each entry is one small text file under `src/content/changelog/`, so pull requests that are open
+at the same time add separate files instead of editing one shared list.
 
-`src/pages/UpdatesPage.tsx` groups entries by date automatically and renders
-them with color-coded type badges. No other file needs to be updated when adding
-entries.
+`scripts/changelog-lib.mjs` validates the files and `npm run generate:metadata` (also run by `dev`, `build`, `test` and
+`typecheck`) compiles them, newest first, into `src/generated/changelog.json`. The Updates page, RSS feed and SEO audit
+all read that file. No other file needs to change when you add an entry.
 
 ---
 
@@ -28,6 +28,50 @@ Add an entry when merging a PR that does any of the following:
 - Build tooling updates (Vite config, scripts, CI)
 - Dependency bumps (unless they fix a user-visible issue)
 - Documentation-only PRs
+
+---
+
+## Entry Files
+
+```text
+src/content/changelog/<YYYY-MM>/<YYYY-MM-DD>-<type>-<subject>.txt
+```
+
+The path carries the metadata and the file carries the text:
+
+- **Month folder:** the entry's year and month. A folder holds about a month of entries.
+- **Date:** the merge date, or a package's scheduled publication date (UTC calendar day). Future dates are allowed.
+- **Type:** one of the types below.
+- **Subject:** what changed, in 2–6 lowercase ASCII words joined by hyphens, at most 48 characters. Name the thing, not
+  the action; the type already says whether it was added or fixed. It is for people browsing the folder and appears on
+  no public page.
+- **Text:** the summary exactly as the page shows it, on one line, followed by a newline.
+
+Examples:
+
+```text
+src/content/changelog/2026-11/2026-11-06-feature-curved-image-surfaces.txt
+src/content/changelog/2026-11/2026-11-07-article-om-system.txt
+src/content/changelog/2026-11/2026-11-08-fix-sto-label-overlapping-flat-rim-element.txt
+src/content/changelog/2026-11/2026-11-08-lens-canon-pentax-sigma-vivitar.txt
+src/content/changelog/2026-09/2026-09-07-lens-canon-ef-70-200mm.txt
+```
+
+For a lens entry, the subject lists the makers in alphabetical order, using the maker folder names under
+`src/lens-data/` reduced to ASCII kebab-case (`carl-zeiss-jena`, `p-angenieux`). If the entry covers only one maker,
+name the models instead. When the makers do not fit in 48 characters, keep as many as fit and end with `-and-more`.
+
+A file named `2026-11-08-fix-sto-label-overlapping-flat-rim-element.txt` contains:
+
+```text
+Fixed the STO label overlapping the flat rim of an element beside the aperture stop
+```
+
+The folder listing reads in page order: dates sort oldest to newest on disk and newest first on the page, and within a
+day entries keep file-name order (`article`, `feature`, `fix`, `improvement`, `lens`, then subject).
+
+`scripts/changelog-lib.mjs` owns the format rules and fails `generate:metadata` with the path of every invalid file. Run
+`npm run generate:metadata` to see a new entry while `npm run dev` is already running.
 
 ---
 
@@ -56,25 +100,14 @@ Add an entry when merging a PR that does any of the following:
 
 ---
 
-## Adding an Entry
+## Changing an Entry
 
-Open `src/utils/content/changelogData.ts` and **prepend** a new object to the top of
-the `CHANGELOG` array (before the first existing entry):
+Before it ships, change anything. Re-dating or re-typing an entry is a rename (`git mv`); move it to the matching month
+folder if the month changes.
 
-```ts
-{
-  date: "2026-04-10",         // ISO merge date (YYYY-MM-DD)
-  type: "feature",            // see table above
-  summary: "Added chromatic aberration chart to analysis drawer",
-},
-```
-
-The array must remain sorted **newest-first**. `UpdatesPage.tsx` handles
-grouping by date, so no other code needs updating.
-
-Shipped entries are **append-only**: editing an entry's date, type, or summary
-changes its public `/updates#…` anchor and RSS GUID (`changelogEntryId` hashes
-`date|type|summary`), breaking existing feed links.
+Once an entry has shipped, its date, type and text are permanent: `changelogEntryId` hashes `date|type|summary` into the
+public `/updates#…` anchor and the RSS GUID, so changing any of them breaks existing feed links. Never edit the text,
+re-date, re-type or delete a shipped file. The subject is not part of the anchor, so renaming only the subject is safe.
 
 ---
 
@@ -88,12 +121,3 @@ describing the combined outcome rather than one per PR.
 
 When two PRs implement the same feature in stages (initial engine + UI), write
 one entry describing what the user can now do.
-
----
-
-## Pruning Old Entries
-
-The changelog renders in a scrollable `/updates` column and does not paginate.
-There is no hard expiry policy, but entries older than ~60 days can be removed
-if the list grows unwieldy. Prune from the **bottom** of the array (oldest
-entries first).

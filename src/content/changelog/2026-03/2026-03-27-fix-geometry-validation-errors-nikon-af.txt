@@ -1,0 +1,1 @@
+Fixed geometry validation errors in Nikon AF-S 105mm f/2.8G
