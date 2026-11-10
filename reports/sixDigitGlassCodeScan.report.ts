@@ -1,3 +1,4 @@
+import { isDLineReference } from "../src/optics/glassCatalog.js";
 /**
  * Six-digit glass-code scanner.
  *
@@ -103,7 +104,8 @@ function qualitySummary(row: CodeOnlyElement): string {
 function catalogStatus(row: CodeOnlyElement): string {
   if (row.catalogName === null) return "No catalog entry";
   if (row.hasSellmeier) return `${row.catalogName} (trusted Sellmeier)`;
-  if (row.indexReference === "e") return `${row.catalogName} context only (e-line prescription)`;
+  if (!isDLineReference(row.indexReference))
+    return `${row.catalogName} context only (${row.indexReference}-line prescription)`;
   return `${row.catalogName} rejected (Δnd=${formatNdDiff(row.ndDiff)})`;
 }
 

@@ -82,10 +82,21 @@ interface ChromaticChannelText {
 
 function channelText(channel: ChromaticChannel, reference: RefractiveIndexReferenceLine): ChromaticChannelText {
   const metadata = CHROMATIC_CHANNEL_METADATA[channel];
+  if (reference === "D" && channel === "G") {
+    return {
+      spectralLine: "D",
+      wavelengthNm: LINE_NM.D,
+      wavelengthLabel: "D-line 589.3 nm",
+      description: "sodium D-line",
+    };
+  }
   return reference === "e" ? metadata.eLine : metadata;
 }
 
-function channelWavelengths(reference: RefractiveIndexReferenceLine): Readonly<Record<ChromaticChannel, number>> {
+/** Physical wavelengths of the four channels in the authored reference convention. */
+export function channelWavelengths(
+  reference: RefractiveIndexReferenceLine,
+): Readonly<Record<ChromaticChannel, number>> {
   return Object.freeze(
     Object.fromEntries(
       CHROMATIC_CHANNEL_ORDER.map((channel) => [channel, channelText(channel, reference).wavelengthNm]),
@@ -97,17 +108,20 @@ function channelWavelengths(reference: RefractiveIndexReferenceLine): Readonly<R
 export const CHROMATIC_CHANNEL_WAVELENGTH_NM = channelWavelengths("d");
 /** Native e-line material resolution uses C′/e/F′/g, preserving its authored reference index. */
 export const E_LINE_CHANNEL_WAVELENGTH_NM = channelWavelengths("e");
+/** Historical sodium-reference elements use C/D/F/g. */
+export const D_LINE_CHANNEL_WAVELENGTH_NM = channelWavelengths("D");
 
 /**
  * Reference line a lens's chromatic channels are traced at.
  *
  * @param elements - the lens's glass elements
- * @returns "e" only when every element is e-referenced; a lens that mixes references keeps the d-line labels
+ * @returns the shared reference, or d-line labels for a lens that mixes references
  */
 export function lensChromaticReference(
   elements: readonly { indexReference?: RefractiveIndexReferenceLine }[],
 ): RefractiveIndexReferenceLine {
-  return elements.length > 0 && elements.every((element) => element.indexReference === "e") ? "e" : "d";
+  const reference = elements[0]?.indexReference ?? "d";
+  return elements.every((element) => (element.indexReference ?? "d") === reference) ? reference : "d";
 }
 
 export function chromaticChannelWavelengthLabel(

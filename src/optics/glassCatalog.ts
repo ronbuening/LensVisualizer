@@ -14,6 +14,7 @@ export {
   evaluateSellmeier,
   explainCompatibleGlassResolution,
   glassTokens,
+  isDLineReference,
   resolveCompatibleGlass,
   resolveGlass,
   resolveGlassCandidates,
