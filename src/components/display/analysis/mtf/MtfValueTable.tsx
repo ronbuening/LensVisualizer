@@ -2,24 +2,29 @@
 import type { MtfResult } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
 import type { MtfChartFrequency } from "../../../../utils/state/mtfPreferences.js";
+import { mtfValueVisible } from "./mtfPresentation.js";
 import { textRun } from "../../../../utils/text.js";
 
 interface MtfValueTableProps {
   result: MtfResult;
   frequencies: readonly MtfChartFrequency[];
   t: Theme;
+  diagnostic?: boolean;
 }
 
 const STATUS_TEXT = { converged: "", unconverged: "unconverged", unavailable: "—", pending: "…" } as const;
 
-export default function MtfValueTable({ result, frequencies, t }: MtfValueTableProps) {
+export default function MtfValueTable({ result, frequencies, t, diagnostic = false }: MtfValueTableProps) {
   const columns = frequencies.filter((f) => result.frequenciesPerMm.includes(f));
   const cell = { padding: "2px 6px", textAlign: "right" as const, fontVariantNumeric: "tabular-nums" as const };
   return (
     <div style={{ overflowX: "auto", marginTop: 6 }}>
       <table style={{ borderCollapse: "collapse", color: t.value, fontSize: 10.5 }}>
         <caption style={{ textAlign: "left", color: t.muted, paddingBottom: 4 }}>
-          MTF by image height, sagittal / tangential
+          {textRun(
+            "MTF by image height, sagittal / tangential",
+            diagnostic ? " — diagnostic estimates included" : " — converged values only",
+          )}
         </caption>
         <thead style={{ color: t.muted }}>
           <tr>
@@ -52,7 +57,9 @@ export default function MtfValueTable({ result, frequencies, t }: MtfValueTableP
                   const j = result.frequenciesPerMm.indexOf(f);
                   return (
                     <td key={f} style={cell}>
-                      {shown ? `${field.sagittal[j].toFixed(3)} / ${field.tangential[j].toFixed(3)}` : "—"}
+                      {mtfValueVisible(field, f, diagnostic)
+                        ? `${field.sagittal[j].toFixed(3)} / ${field.tangential[j].toFixed(3)}`
+                        : "—"}
                     </td>
                   );
                 })}

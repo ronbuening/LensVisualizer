@@ -589,6 +589,9 @@ export default function DiagramControls({
                   " mm",
                 )}
               </div>
+              <p style={{ margin: "4px 0", fontSize: 9, color: t.desc, lineHeight: 1.5 }}>
+                Marked f-number sets the iris. Glass apertures may limit the transmitted beam; see Summary.
+              </p>
               {/* The shortcuts would leave the held wide-open aperture. */}
               {!patentPositions && (
                 <div

@@ -2,7 +2,7 @@
  * AbbeDiagram — Abbe glass map for a single lens.
  *
  * Plots each glass element as a point on an Abbe diagram using its authored
- * d- or e-line reference:
+ * d-, D- or e-line reference:
  *   X-axis: Abbe number Vd/Ve (reversed — low dispersion on left, high on right)
  *   Y-axis: Refractive index Nd/Ne
  *
@@ -63,8 +63,8 @@ export default function AbbeDiagram({ L, t, showGlassType, onToggleGlassType }: 
   const missingCount = allElements.length - plotElements.length;
   const referenceLines = new Set(plotElements.map((element) => element.indexReference ?? "d"));
   const soleReferenceLine = referenceLines.size === 1 ? [...referenceLines][0] : null;
-  const abbeAxisLabel = soleReferenceLine ? `Abbe number V${soleReferenceLine} \u2192` : "Abbe number V (d/e) \u2192";
-  const indexAxisLabel = soleReferenceLine ? `Refractive index N${soleReferenceLine}` : "Refractive index N (d/e)";
+  const abbeAxisLabel = soleReferenceLine ? `Abbe number V${soleReferenceLine} \u2192` : "Abbe number V (d/D/e) \u2192";
+  const indexAxisLabel = soleReferenceLine ? `Refractive index N${soleReferenceLine}` : "Refractive index N (d/D/e)";
 
   /* Vd grid tick positions every 10 */
   const vdTicks: number[] = [];

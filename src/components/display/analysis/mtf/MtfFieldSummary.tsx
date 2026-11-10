@@ -10,13 +10,22 @@ interface MtfFieldSummaryProps {
   result: MtfResult;
   frequencies: readonly MtfChartFrequency[];
   t: Theme;
+  diagnostic?: boolean;
+  stale?: boolean;
 }
 
-export default function MtfFieldSummary({ result, frequencies, t }: MtfFieldSummaryProps) {
+export default function MtfFieldSummary({
+  result,
+  frequencies,
+  t,
+  diagnostic = false,
+  stale = false,
+}: MtfFieldSummaryProps) {
   const [copyStatus, setCopyStatus] = useState<string | null>(null);
   const copy = async () => {
+    if (stale) return;
     try {
-      await navigator.clipboard.writeText(mtfCsv(result, frequencies));
+      await navigator.clipboard.writeText(mtfCsv(result, frequencies, diagnostic));
       setCopyStatus("Copied");
     } catch {
       setCopyStatus("Copy unavailable in this browser");
@@ -39,10 +48,12 @@ export default function MtfFieldSummary({ result, frequencies, t }: MtfFieldSumm
           .map(([n, label]) => `${n} ${label}`)
           .join(" · ")}
       </summary>
-      <MtfValueTable result={result} frequencies={frequencies} t={t} />
+      {stale ? <p>Previous settings: values are updating. CSV export is disabled.</p> : null}
+      <MtfValueTable result={result} frequencies={frequencies} t={t} diagnostic={diagnostic} />
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 6 }}>
         <button
           type="button"
+          disabled={stale}
           onClick={() => void copy()}
           style={{
             background: "none",

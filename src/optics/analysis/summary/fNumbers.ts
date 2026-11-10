@@ -19,7 +19,7 @@ import { lensChromaticReference } from "../../chromatic/channels.js";
 
 /** Real working f-number, or why the marginal ray gives none. */
 export type WorkingFNumberResult =
-  /** `indexLine`: the line of the authored indices, "e" only when every element is given at it. */
+  /** `indexLine`: the line of the authored indices, d, D or e when shared by every element; d for mixed references. */
   | { status: "traced"; value: number; indexLine: RefractiveIndexReferenceLine }
   /** A clear aperture stops the marginal ray: before the stop (`blocked`, the aim's outcome) or after it. */
   | { status: "vignetted"; surfaceLabel: string; beforeStop: boolean }
@@ -69,7 +69,7 @@ export function computeWorkingFNumber(request: AnalysisRequest): WorkingFNumberR
  * Line of the authored indices, by the chromatic tab's rule: the lens's elements, synthetic rear plates left out.
  *
  * @param state - prepared geometry
- * @returns "e" only when every element is given at the e line, "d" otherwise
+ * @returns the common d, D or e reference, or d for mixed references
  */
 function authoredIndexLine(state: PreparedGeometry): RefractiveIndexReferenceLine {
   return lensChromaticReference(

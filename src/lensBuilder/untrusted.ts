@@ -206,7 +206,7 @@ const element = object(
     // V2 element `label` is the element's description ("Front crown"), not a short tag.
     label: string("name"),
     type: text,
-    indexReference: literal("d", "e"),
+    indexReference: literal("d", "D", "e"),
     indexReferenceNote: freeText,
     glass: string("glass"),
     apd: literal("patent", "inferred", false),
@@ -408,7 +408,7 @@ const schema = object(
           label,
           ...numericFields("thicknessMm", "nd", "vd", "dPgF", "nC", "nF", "ng", "gapAfterMm", "sd"),
           glass: string("glass"),
-          indexReference: literal("d", "e"),
+          indexReference: literal("d", "D", "e"),
           source: freeText,
         },
         ["thicknessMm", "nd", "vd", "gapAfterMm"],

@@ -162,7 +162,7 @@ describe("glass ambiguity scan", () => {
       "Lens elements whose annotation produces two or more catalog candidates inside the runtime compatibility guard.",
     );
     lines.push(
-      `All candidates agree with the authored d- or e-line coordinates within Δn ±${GLASS_ND_TOLERANCE} and Δν ±${GLASS_VD_TOLERANCE};`,
+      `All candidates agree with the authored d-, D- or e-line coordinates within Δn ±${GLASS_ND_TOLERANCE} and Δν ±${GLASS_VD_TOLERANCE};`,
     );
     lines.push("the selected row follows the same ordering used by `resolveCompatibleGlass`.");
     lines.push("");
