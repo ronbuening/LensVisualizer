@@ -155,6 +155,10 @@ export function buildRouteFreshness(options: {
   formatIds?: string[];
   authors?: AuthorRouteInput[];
   teleconverters?: TeleconverterRouteInput[];
+  /** Compiled changelog entries; each is dated by its own (today-capped) date. */
+  changelog?: { date: string }[];
+  /** Archive months, one `/updates/<month>` route each. */
+  updateMonths?: { month: string }[];
   makerDetailsFreshness: FreshnessEntry | null;
   assigneeCorporateHistoryFreshness?: FreshnessEntry | null;
   fallbackDate: string;

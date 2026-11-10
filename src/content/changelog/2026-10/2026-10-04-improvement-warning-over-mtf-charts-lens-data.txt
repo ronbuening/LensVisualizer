@@ -1,0 +1,1 @@
+Added a warning over MTF charts when the lens data is incomplete, listing each gap

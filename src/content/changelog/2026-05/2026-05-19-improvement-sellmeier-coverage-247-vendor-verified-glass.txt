@@ -1,0 +1,1 @@
+Expanded Sellmeier coverage to 247 vendor-verified glass entries

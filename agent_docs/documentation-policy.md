@@ -14,7 +14,7 @@ enforces the rules marked *(guarded)*.
 | hit a non-obvious failure mode                            | `agent_docs/gotchas.md` — one bullet plus a pointer, never a restated procedure |
 | open follow-up work                                       | the matching `[queue]` doc, or `FEATURE_ADDITION_PLAN.md`                     |
 | audit a lens against its patent                           | the lens's `*.audit.md` sidecar, per `agent_docs/lens-patent-audit.md`        |
-| ship a user-visible change                                | `src/utils/content/changelogData.ts`, per `agent_docs/changelog.md`           |
+| ship a user-visible change                                | a new file under `src/content/changelog/`, per `agent_docs/changelog.md`      |
 | finish a branch                                           | the PR description — not a file under `agent_docs/records/`                   |
 
 ## What is not documented
