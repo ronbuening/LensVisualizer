@@ -179,7 +179,7 @@ export const ELEMENT_SCHEMA_DEFAULTS: readonly SchemaDefault[] = [
     value: "d",
     v1Applied: "engine",
     reader:
-      'src/optics/chromatic/materialResolver.ts makeSurfaceDispersion and src/optics/chromatic/*: indexReference === "e"; ' +
+      "src/optics/chromatic/materialResolver.ts makeSurfaceDispersion and src/optics/chromatic/*: indexReference selects d/D/e channels; " +
       'src/components/display/ElementInspector.tsx and src/optics/analysis/mtf/mtfSupport.ts: indexReference ?? "d"',
   },
   {

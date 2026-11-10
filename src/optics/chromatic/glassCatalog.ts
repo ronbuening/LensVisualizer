@@ -30,7 +30,7 @@ import type { RefractiveIndexReferenceLine } from "../../types/optics.js";
 export type { GlassEntry } from "./glassCatalogTypes.js";
 export { LINE_NM } from "./spectralLines.js";
 
-/** Maximum accepted d- or e-line index delta between authored lens data and a catalog entry. */
+/** Maximum accepted d-, D- or e-line index delta between authored lens data and a catalog entry. */
 export const GLASS_ND_TOLERANCE = 3e-3;
 
 /** Maximum accepted catalog d-line round-trip error. */
@@ -51,7 +51,7 @@ export const GLASS_VD_TOLERANCE = 2;
 export interface CatalogGlassCompatibility {
   readonly compatible: boolean;
   readonly referenceLine: RefractiveIndexReferenceLine;
-  /** Catalog index evaluated at the authored d or e reference line. */
+  /** Catalog index evaluated at the authored d, D or e reference line. */
   readonly catalogIndex: number;
   /** Catalog index minus the authored reference index. */
   readonly indexDiff: number;
@@ -127,10 +127,11 @@ interface ReferenceCoordinateWavelengths {
 const REFERENCE_COORDINATE_WAVELENGTHS: Readonly<Record<RefractiveIndexReferenceLine, ReferenceCoordinateWavelengths>> =
   {
     d: { reference: LINE_NM.d, red: LINE_NM.C, blue: LINE_NM.F },
+    D: { reference: LINE_NM.D, red: LINE_NM.C, blue: LINE_NM.F },
     e: { reference: LINE_NM.e, red: LINE_NM.CPrime, blue: LINE_NM.FPrime },
   };
 
-/** Compute vd or ve directly from an entry's published dispersion coefficients. */
+/** Compute νd, νD or νe directly from an entry's published dispersion coefficients. */
 export function evaluateCatalogAbbeNumber(
   entry: GlassEntry,
   referenceLine: RefractiveIndexReferenceLine = "d",
@@ -147,7 +148,7 @@ export function evaluateCatalogAbbeNumber(
  *
  * Catalog entries store d-line summary coordinates, but their published
  * coefficients can also reproduce native e-line coordinates. Compatibility
- * therefore compares nd/vd at C/d/F or ne/ve at C′/e/F′ as authored.
+ * therefore compares nd/vd at C/d/F, nD/νD at C/D/F, or ne/ve at C′/e/F′ as authored.
  *
  * A reference index alone is not enough to identify a dispersion curve: different glass
  * families can share nearly the same d-line index while having very different
@@ -162,7 +163,7 @@ export function assessCatalogGlassCompatibility(
 ): CatalogGlassCompatibility {
   const wavelengths = REFERENCE_COORDINATE_WAVELENGTHS[referenceLine];
   const catalogIndex = evaluateSellmeier(entry, wavelengths.reference);
-  const catalogAbbe = referenceLine === "d" ? entry.vd : evaluateCatalogAbbeNumber(entry, "e");
+  const catalogAbbe = isDLineReference(referenceLine) ? entry.vd : evaluateCatalogAbbeNumber(entry, referenceLine);
   const indexDiff = catalogIndex - storedNd;
   const abbeDiff = storedVd === undefined ? null : catalogAbbe - storedVd;
   return {
@@ -460,7 +461,7 @@ function compatibleCandidateMatches(
   referenceLine: RefractiveIndexReferenceLine,
 ): RankedCompatibleGlassCandidate[] {
   return candidateMatches(glassString)
-    .filter((match) => referenceLine === "d" || match.source !== "code")
+    .filter((match) => isDLineReference(referenceLine) || match.source !== "code")
     .map((match) => ({
       ...match,
       compatibility: assessCatalogGlassCompatibility(match.entry, storedNd, storedVd, referenceLine),
@@ -512,7 +513,9 @@ function candidateSelectionReason(candidates: readonly RankedCompatibleGlassCand
     return {
       criterion: "index-residual",
       reason:
-        (referenceLine === "d" ? "Smallest d-line residual " : `Smallest ${referenceLine}-line index residual `) +
+        (isDLineReference(referenceLine)
+          ? "Smallest d-line residual "
+          : `Smallest ${referenceLine}-line index residual `) +
         `(${selectedIndexResidual.toFixed(9)} vs ${runnerUpIndexResidual.toFixed(9)}).`,
     };
   }
@@ -575,11 +578,16 @@ export function explainCompatibleGlassResolution(
   };
 }
 
+/** Whether authored coordinates use the catalog's default d-line convention. */
+export function isDLineReference(reference: RefractiveIndexReferenceLine | undefined): boolean {
+  return (reference ?? "d") === "d";
+}
+
 /**
- * Resolve the best catalog row that is compatible with the authored d- or e-line coordinates.
+ * Resolve the best catalog row that is compatible with the authored d-, D- or e-line coordinates.
  *
  * Unlike `resolveGlass`, this checks every explicit name, alias, and duplicate
- * six-digit-code candidate for d-line prescriptions. E-line prescriptions use
+ * six-digit-code candidate for d-line prescriptions. D- and e-line prescriptions use
  * only explicit names and aliases because catalog six-digit codes encode d-line
  * coordinates. The resolver therefore avoids discarding a valid later token
  * merely because an earlier equivalent or class label is incompatible.

@@ -7,11 +7,11 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **1107**
-- Files with both `lensMounts` and `imageFormat`: **1058**
-- Files missing `lensMounts`: **40** (26 public lenses, 12 hidden reference fixtures and 2 hidden patent designs)
-- Files missing `imageFormat`: **34** (23 public lenses and 11 hidden reference fixtures)
-- Files missing both fields: **25**
+- Total lens data files: **1109**
+- Files with both `lensMounts` and `imageFormat`: **1059**
+- Files missing `lensMounts`: **41** (26 public lenses, 12 hidden reference fixtures and 3 hidden patent designs)
+- Files missing `imageFormat`: **35** (23 public lenses, 11 hidden reference fixtures and 1 hidden patent design)
+- Files missing both fields: **26**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
   `1-2.7-inch-type`, `1-inch-type`, `1.25-inch-tube`, `1.5-inch-type`, `110`, `135-full-frame`,
   `16mm-cinema`, `2-3-inch-type`, `35mm-cinema`, `44x33`, `4x5`, `5x7`, `645`, `6x6`, `6x7`, `6x9`, `8x10`,
@@ -42,6 +42,7 @@ with remaining compatibility questions explained in the lens analysis.
 | Vivitar Series 1 450mm f/4.5 | Secondary material describes T-mount, but the source set lacks a manufacturer mechanical specification for this rare production correlation. |
 | Nikon Ultra-Micro-Nikkor 29.5mm | Photolithography installation; its optical back focus and reduction ratio do not identify a consumer camera mount. |
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Historical barrel/specimen evidence and normalized patent scaling do not select a standard factory camera mount. |
+| Minor Photographic Objective 65mm f/2 | US 1,360,667 Figure 2 establishes no production manufacturer, mount, camera format, or image circle. The approximately 65° field and ambiguous focal distance do not establish a format. |
 | Russar-21; Russar-22 | Experimental prescription sources lack a manufacturer-issued standardized production fitting. |
 | KMZ Industar ITMO Variant 2; Voigtländer Dynar | Teaching/normalized patent models lack a selected commercial installation; leave mount and format unset. |
 | Zeiss S-Biogon 40mm f/5.6 | Microfilm reduction lens installed in the Zeiss Mikrobox recorder. The sources give only an M50 × 0.75 rear thread, an industrial thread with no canonical mount id; do not assign a camera mount from the Biogon family name. |
