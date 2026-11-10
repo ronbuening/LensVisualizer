@@ -7,9 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // Grant wording/wavelength conflicts are retained in source.errata and the audit.
 const LENS_DATA = {
   schema: 2,
-  key: "tamron-macro-45-3mm-f2-8-patent",
+  key: "tamron-45mm-f28-macro-us7286303",
   maker: "Tamron",
-  name: "TAMRON MACRO 45.3mm f/2.8 PATENT DESIGN",
+  name: "TAMRON 45.3mm f/2.8 MACRO (US 7,286,303 Design)",
   subtitle: "US7286303B2; no identified retail lens",
   catalog: {
     specs: [

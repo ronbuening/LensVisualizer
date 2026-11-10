@@ -9,9 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "olympus-xa2-35mm-f35",
+  key: "olympus-xa2-d-zuiko-35-f35",
   maker: "Olympus",
-  name: "OLYMPUS XA2 35mm f/3.5",
+  name: "OLYMPUS D.ZUIKO 35mm f/3.5 (Olympus XA2)",
   subtitle: "US 4,303,313 A EMBODIMENT 1 — REPRESENTATIVE SOURCE DESIGN",
   visible: true,
   layout: {

@@ -6,9 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "sigma-apo-macro-180mm-f35-e1-representative",
+  key: "sigma-apo-macro-180mm-f35-ex-dg-hsm",
   maker: "Sigma",
-  name: "Sigma APO Macro 180mm F3.5 (E1 representative)",
+  name: "SIGMA APO MACRO 180mm f/3.5 EX DG HSM",
   subtitle: "JP2001033704A WHOLE EXAMPLE 1 — QUALIFIED SOURCE REPRESENTATIVE",
   visible: true,
   layout: {

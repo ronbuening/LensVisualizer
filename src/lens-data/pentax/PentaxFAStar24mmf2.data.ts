@@ -6,9 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "pentax-fa-star-24mm-f2-e4-representative",
+  key: "pentax-fa-star-24mm-f2-al-if",
   maker: "Pentax",
-  name: "smc PENTAX-FA★ 24mm F2 (E4 representative)",
+  name: "PENTAX SMC FA* 24mm f/2 AL [IF]",
   subtitle: "US4934797A WHOLE EXAMPLE 4 — QUALIFIED SOURCE REPRESENTATIVE",
   visible: true,
   layout: {
