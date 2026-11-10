@@ -45,6 +45,7 @@ flowchart LR
   n_src_components_lensBuilder_src_components_lensBuilder_OpticalTrain_tsx --> n_external_src_lensBuilder
   n_src_components_lensBuilder_src_components_lensBuilder_trainShared_ts --> n_external_src_lensBuilder
   n_src_components_lensBuilder_src_components_lensBuilder_GlassMap_tsx --> n_external_src_optics_glassCatalog_ts
+  n_src_components_lensBuilder_src_components_lensBuilder_GroupCard_tsx --> n_external_src_optics_glassCatalog_ts
   n_src_components_lensBuilder_src_components_lensBuilder_MaterialPicker_tsx --> n_external_src_optics_glassCatalog_ts
   n_src_components_lensBuilder_src_components_lensBuilder_BuilderEditor_tsx --> n_external_src_optics_validation_ts
   n_src_components_lensBuilder_src_components_lensBuilder_BuilderErrorBoundary_tsx --> n_external_src_types
@@ -62,7 +63,6 @@ flowchart LR
   n_src_components_lensBuilder_src_components_lensBuilder_GroupCard_tsx --> n_external_src_utils_text_ts
   n_src_components_lensBuilder_src_components_lensBuilder_MaterialPicker_tsx --> n_external_src_utils_text_ts
   n_src_components_lensBuilder_src_components_lensBuilder_BuilderEditor_tsx --> n_src_components_lensBuilder_src_components_lensBuilder_CommitInput_tsx
-  n_src_components_lensBuilder_src_components_lensBuilder_BuilderErrorBoundary_tsx --> n_src_components_lensBuilder_src_components_lensBuilder_CommitInput_tsx
   n_src_components_lensBuilder_truncated["additional relationships omitted"]
 ```
 
@@ -70,7 +70,7 @@ flowchart LR
 
 - Direct source files: 8
 - Direct subfolders: 0
-- Main outbound areas: same folder (13), src/lensBuilder (10), src/types (10), package:react (8), src/utils/style (4), src/utils/text.ts (3), src/optics/glassCatalog.ts (2), src/components/layout, +2 more
+- Main outbound areas: same folder (13), src/lensBuilder (10), src/types (10), package:react (8), src/utils/style (4), src/optics/glassCatalog.ts (3), src/utils/text.ts (3), src/components/layout, +2 more
 - External consumers: src/pages/LensBuilderPage.tsx
 
 ## Files
@@ -81,7 +81,7 @@ flowchart LR
 | `BuilderErrorBoundary.tsx` | React component module | package:react, same folder, src/types | src/pages/LensBuilderPage.tsx | default, BuilderErrorBoundary |
 | `CommitInput.tsx` | React component module | package:react, src/lensBuilder, src/types, src/utils/style | same folder (6), src/pages/LensBuilderPage.tsx | BuilderTouchContext, builderButtonStyle, builderInputStyle, builderCaptionStyle, sectionTitle, default, CommitInput |
 | `GlassMap.tsx` | React component module | package:react, same folder, src/optics/glassCatalog.ts, src/types, src/utils/text.ts | same folder | default, GlassMap |
-| `GroupCard.tsx` | React component module | same folder (3), package:react, src/lensBuilder, src/types, src/utils/text.ts | same folder | default, GroupCard |
+| `GroupCard.tsx` | React component module | same folder (3), package:react, src/lensBuilder, src/optics/glassCatalog.ts, src/types, +1 more | same folder | default, GroupCard |
 | `MaterialPicker.tsx` | React component module | same folder (3), src/lensBuilder (3), package:react, src/components/layout, src/optics/glassCatalog.ts, +3 more | same folder | glassLine, default, MaterialPicker |
 | `OpticalTrain.tsx` | React component module | same folder (3), src/types (2), package:react, src/lensBuilder | same folder | deriveElementModel, default, OpticalTrain |
 | `trainShared.ts` | Train Shared helper module | package:react, src/lensBuilder, src/types, src/utils/style | same folder (3) | SurfaceField, TrainCtx, formatMm, formatCoefficient, formatFocal, sentenceCase, shapeOf, outlinedButton, +3 more |

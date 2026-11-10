@@ -1774,14 +1774,20 @@ describe("validateLensData", () => {
     expect(errors.some((e) => e.includes("elemId 999"))).toBe(true);
   });
 
-  it("accepts d/e element index references and rejects unknown spectral lines", () => {
+  it("accepts d/D/e element index references and rejects unknown spectral lines", () => {
     const eLine = makeValid();
     (eLine.elements as Array<Record<string, unknown>>)[0].indexReference = "e";
     expect(validateLensData(eLine)).toEqual([]);
 
+    const sodium = makeValid();
+    (sodium.elements as Array<Record<string, unknown>>)[0].indexReference = "D";
+    expect(validateLensData(sodium)).toEqual([]);
+
     const invalid = makeValid();
     (invalid.elements as Array<Record<string, unknown>>)[0].indexReference = "C";
-    expect(validateLensData(invalid).some((error) => error.includes('indexReference must be "d" or "e"'))).toBe(true);
+    expect(validateLensData(invalid).some((error) => error.includes('indexReference must be "d", "D" or "e"'))).toBe(
+      true,
+    );
   });
 
   it("catches non-positive surface sd", () => {
@@ -2769,5 +2775,13 @@ describe("stop semi-diameter", () => {
     expect(sdErrors(embedded)).toContain('surfaces[1] ("STO"): missing or invalid sd');
     const folded = stopFirst({}, { opticalPath: { mode: "auto", imagePlane: { z: 57 } } });
     expect(sdErrors(folded)).toContain('surfaces[0] ("STO"): missing or invalid sd');
+  });
+});
+
+describe("partial measured line span", () => {
+  it.each([1.51, 1.5, Number.NaN])("rejects unsupported nF %s before chromatic tracing", (nF) => {
+    const data = makeValid();
+    Object.assign((data.elements as Record<string, unknown>[])[0], { nC: 1.51, nF, vd: undefined });
+    expect(validateLensData(data).join(" ")).toContain("partial line indices require finite nF > nC when ng is absent");
   });
 });

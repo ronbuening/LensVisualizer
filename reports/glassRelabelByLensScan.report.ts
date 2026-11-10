@@ -1,3 +1,4 @@
+import { isDLineReference } from "../src/optics/glassCatalog.js";
 /**
  * Per-lens glass-relabel work queue.
  *
@@ -154,13 +155,13 @@ describe("glass relabel by lens scan", () => {
           storedDPgF: element.dPgF,
           catalogNd,
           catalogDiff,
-          embeddedCode: element.indexReference === "e" ? null : embeddedCode,
+          embeddedCode: !isDLineReference(element.indexReference) ? null : embeddedCode,
           candidates: findCandidates(
             entries,
             surface.nd,
             element.vd,
             element.dPgF,
-            element.indexReference === "e" ? null : embeddedCode,
+            !isDLineReference(element.indexReference) ? null : embeddedCode,
             element.indexReference ?? "d",
           ),
         });

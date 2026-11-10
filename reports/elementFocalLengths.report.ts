@@ -290,9 +290,9 @@ describe("element focal lengths report", () => {
     lines.push("- $R_2$ is the rear surface radius of curvature in mm;");
     lines.push("- $d$ is the axial centre thickness in mm;");
     lines.push(
-      "- $n$ is the refractive index of the element medium in air at the reference line (helium d line, 587.56 nm, or",
+      "- $n$ is the refractive index of the element medium in air at the reference line (helium d, 587.56 nm; sodium D, 589.29 nm; or",
     );
-    lines.push("  mercury e line, 546.07 nm).");
+    lines.push("  mercury e, 546.07 nm).");
     lines.push("");
     lines.push("Key rules:");
     lines.push(
@@ -312,7 +312,7 @@ describe("element focal lengths report", () => {
     lines.push(
       "- **Refractive index**: use the front surface's authored `nd` (`L.S[s1].nd`), matching monochromatic tracing",
     );
-    lines.push('  at the reference line (helium d, or mercury e when the element\'s `indexReference` is `"e"`).');
+    lines.push("  at the authored reference line (helium d, sodium D, or mercury e, selected by `indexReference`).");
     lines.push("");
     lines.push("**Regenerate this file** by running `npm run generate:reports -- elementFocalLengths`.");
     lines.push("");

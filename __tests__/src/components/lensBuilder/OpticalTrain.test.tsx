@@ -15,9 +15,11 @@ const onHighlight = vi.fn();
 function Harness({
   initial,
   selectedElementId = null,
+  issues,
 }: {
   initial: LensDataV2Input;
   selectedElementId?: number | null;
+  issues?: string[];
 }) {
   const [draft, setDraft] = useState(initial);
   const validation = useMemo(() => validateDraft(draft), [draft]);
@@ -26,7 +28,7 @@ function Harness({
     <BuilderEditor
       draft={draft}
       theme={themes.light}
-      validation={validation}
+      validation={issues ? { ok: false, issues } : validation}
       pending={false}
       onChange={setDraft}
       onReplace={() => true}
@@ -224,5 +226,31 @@ describe("lens builder optical train", () => {
     fireEvent.change(screen.getByLabelText("Advanced JSON"), { target: { value: JSON.stringify(plain) } });
     fireEvent.click(screen.getByRole("button", { name: "Apply JSON" }));
     expect(screen.getByRole("button", { name: "L1 material" })).toBeTruthy();
+  });
+});
+
+describe("native sodium D", () => {
+  it("keeps sodium source coordinates out of the d-line material picker", () => {
+    const initial = createTemplate();
+    initial.elements[0].indexReference = "D";
+    render(<Harness initial={initial} />);
+    const material = screen.getByRole("group", { name: "L1 sodium D material" });
+    expect(within(material).getByText(/nD 1.5168 · νD 64.17/)).toBeTruthy();
+    expect(within(material).getByText("Sodium D · edit in Advanced JSON")).toBeTruthy();
+    edit("L1 thickness", "4.1");
+    expect(latest.elements[0]).toMatchObject({ indexReference: "D", nd: 1.5168, vd: 64.17 });
+  });
+});
+
+describe("invalid native material", () => {
+  it("marks a sodium readout with the same invalid border as a material picker", () => {
+    const initial = createTemplate();
+    initial.elements[0].indexReference = "D";
+    render(<Harness initial={initial} issues={["elements[0].vd is invalid"]} />);
+    const material = screen.getByRole("group", { name: "L1 sodium D material" });
+    expect(material.getAttribute("aria-invalid")).toBe("true");
+    const expected = document.createElement("div");
+    expected.style.borderColor = themes.light.error;
+    expect(material.style.borderColor).toBe(expected.style.borderColor);
   });
 });

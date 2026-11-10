@@ -23,6 +23,7 @@
  *
  * Runs only via `npm run generate:reports`, never in `npm test`; its job is to surface the data.
  */
+import type { RefractiveIndexReferenceLine } from "../src/types/optics.js";
 import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { describe, it, expect } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -47,7 +48,7 @@ interface Mismatch {
   surfaceIdx: number;
   glassString: string;
   catalogName: string;
-  referenceLine: "d" | "e";
+  referenceLine: RefractiveIndexReferenceLine;
   storedNd: number;
   storedVd: number | undefined;
   catalogNd: number;

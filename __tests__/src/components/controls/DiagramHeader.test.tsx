@@ -351,3 +351,24 @@ describe("DiagramHeader", () => {
     expect(onHeaderInfoExpandedChange).toHaveBeenCalledWith(true);
   });
 });
+
+it("keeps source prescription notes reachable with compact details closed", () => {
+  const L = lens();
+  const noted = {
+    ...L,
+    source: {
+      ...L.source,
+      source: {
+        ...L.source.source,
+        errata: [
+          { status: "unresolved" as const, note: "The source rating is not reproduced by the literal prescription." },
+        ],
+      },
+    },
+  };
+  renderHeader({ L: noted, compact: true, isWide: false, headerInfoExpanded: false });
+  const disclosure = screen.getByText("Source prescription notes (1)");
+  expect(disclosure.closest("details")).toBeTruthy();
+  fireEvent.click(disclosure);
+  expect(screen.getByText(/source rating is not reproduced/)).toBeTruthy();
+});
