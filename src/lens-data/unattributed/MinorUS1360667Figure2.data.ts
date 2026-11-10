@@ -29,6 +29,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   key: "minor-us1360667-figure-2",
+  visible: false, // Retain the original sodium-D integration example as a hidden source-backed fixture.
   maker: null, // Inventor known; no manufacturer or production lens is established.
   name: "MINOR PHOTOGRAPHIC OBJECTIVE (Figure 2 patent reconstruction)",
   subtitle: "US 1,360,667 Figure 2 (1920)",
