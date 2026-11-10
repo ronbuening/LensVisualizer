@@ -1,12 +1,28 @@
 /**
- * Version3: one source-complete zoom with a compact inferred movement table.
- * 25 zoom controls:3 source +22 inferred;14 original source focus rows. All39 finite shifts are literal.
- * Extra zoom controls are solved/interpolated compensation, not published focus positions.
- * D5/D20/D23 describe zoom only. D13 includes rear-F focus travel; image gap is BF∞−Δx.
- * F moves byΔx and the assumed midpoint iris byΔx/2.
- * Unprinted caps onS14–S20 have minimal grouped increases for the finite-object axial rim.
- * Every printed radius, thickness, material, asphere and focus shift remains unchanged.
- * No measured factory cam, exact production prescription or finished release is claimed.
+ * Minolta AF Zoom 28-135mm f/4-4.5
+ *
+ * Source: US 4,844,600 A (Minolta Camera Kabushiki Kaisha), Embodiment 5: Table 9 prescription, Table 11 focus
+ * shifts, Fig. 12 section. Patent scale, f = 28.8-60.0-131.5 mm, F3.6-4.2-4.63, image height Y' = 21.63 mm.
+ * All radii, thicknesses, indices and Abbe numbers are as printed; the design is all-spherical.
+ *
+ * Zoom: 25 stations. Wide, Middle and Tele are the three printed states (d5, d13, d20, d23). The 22 stations
+ * between them are inferred: d5, d13 and d20 are interpolated between the printed values, and d23 and the back
+ * focus are solved so that sub-group F II stays fixed relative to the image (S21 to image 80.549 mm, as the
+ * patent states for this embodiment) while the paraxial image stays on the image plane.
+ *
+ * Back focus: not printed; the infinity value at each station is the paraxial back focus.
+ *
+ * Focus: the rear assembly F (S14-S29) moves toward the image as a unit by the Table 11 shift Δx, so d13 grows
+ * by Δx and the back focus shrinks by Δx. Table 11 distances are measured to the image plane. The 39 printed
+ * shifts are used unchanged at the printed stations; at inferred stations Δx is the paraxial shift for the same
+ * distance plus the interpolated difference between printed and paraxial shifts (at most 0.0008 mm).
+ *
+ * Stop: the patent does not locate the iris. It is placed at the midpoint of d13, so it moves Δx/2 during
+ * focusing. Its radius follows the printed F-numbers at the printed stations, interpolated in between.
+ *
+ * Semi-diameters are inferred from the Fig. 12 proportions. S14-S20 are set slightly wider (10.1, 10.35 and
+ * 10.5 mm) so that the full axial cone clears at the tele end at 1.5 m. No factory zoom cam or production
+ * prescription is claimed.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
@@ -14,17 +30,18 @@ const LENS_DATA = {
   key: "minolta-af-28-135mm-f4-4-5",
   maker: "Minolta",
   name: "MINOLTA AF 28-135mm f/4-4.5",
-  subtitle: "US 4,844,600 A Embodiment 5; probable AF28–135 family; complete Tables 9 and 11",
+  subtitle: "US 4,844,600 A, Embodiment 5 — matches Minolta's 16/13 construction and 1.5 m close focus",
   visible: true,
   catalog: {
     lensMounts: ["sony-a"],
     imageFormat: "135-full-frame",
     imageCircleMm: 43.26,
     specs: [
-      "PROBABLE AF28–135 FAMILY",
-      "ALL 42 SOURCE CONFIGURATIONS",
-      "22 INFERRED ZOOM CONTROLS",
-      "14 SOURCE FOCUS STATES",
+      "16 ELEMENTS / 13 GROUPS",
+      "DESIGN f = 28.8–131.5 mm",
+      "DESIGN F/3.6–4.63",
+      "ALL SPHERICAL",
+      "REAR-GROUP INTERNAL FOCUSING",
     ],
     elementCount: 16,
     groupCount: 13,
@@ -59,11 +76,11 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.88,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "PBH53 (OHARA)",
       focalLengthMm: -171.30253165553086,
-      role: "Negative meniscus front member of the first cemented doublet, in A_I. Its dense low-Abbe glass contrasts with L2; the patent does not identify the supplier.",
+      role: "Dense-flint negative meniscus at the front of sub-group A I, cemented to L2.",
       diagramLabel: "L1",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 2,
@@ -73,11 +90,11 @@ const LENS_DATA = {
       nd: 1.691,
       vd: 54.75,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "S-LAL9 (OHARA)",
       focalLengthMm: 92.2618126256307,
-      role: "Positive meniscus rear member of the first doublet. S2 is a glass/glass transition, not an air gap or an inferred cement film.",
+      role: "Lanthanum-crown positive meniscus cemented behind L1, completing the front achromatic doublet.",
       diagramLabel: "L2",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 3,
@@ -87,9 +104,9 @@ const LENS_DATA = {
       nd: 1.67,
       vd: 57.07,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "Unmatched (patent nd 1.67000, νd 57.07)",
       focalLengthMm: 189.9751010190108,
-      role: "Positive meniscus completing A_I after the literal 0.120 mm gap. The A_I/A_II separation d5 is variable in the printed zoom states and encoded at every published zoom station.",
+      role: "Positive meniscus closing sub-group A I; the gap d5 behind it opens from 0.6 to 39.1 mm toward tele.",
       diagramLabel: "L3",
     },
     {
@@ -100,9 +117,9 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.77,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "TAF1 (HOYA)",
       focalLengthMm: -31.123496466810792,
-      role: "Negative meniscus at the front of A_II, with the strong literal rear radius 15.985 mm. Unequal illustrated face caps are inherited from the H1 optical-cap hypothesis.",
+      role: "Front negative meniscus of the diverging sub-group A II, with a strongly curved rear face (R 15.985 mm).",
       diagramLabel: "L4",
     },
     {
@@ -113,9 +130,9 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.77,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "TAF1 (HOYA)",
       focalLengthMm: -38.155201445242795,
-      role: "Biconcave negative lens in A_II. The weak front radius -332.034 mm and stronger rear radius 32.393 mm are literal.",
+      role: "Biconcave negative element of A II, nearly flat on its front face.",
       diagramLabel: "L5",
     },
     {
@@ -126,9 +143,9 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.43,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "PBH6 (OHARA)",
       focalLengthMm: 28.04402897465482,
-      role: "Biconvex positive lens in A_II, using the source 1.80518/25.43 pair. It balances negative members within the front assembly; no individual aberration contribution is claimed.",
+      role: "Biconvex dense-flint positive element of A II, offsetting the colour of the three negative elements around it.",
       diagramLabel: "L6",
     },
     {
@@ -139,9 +156,9 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.77,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "TAF1 (HOYA)",
       focalLengthMm: -31.288855236239566,
-      role: "Biconcave negative lens closing A_II. The large following d13 is split only to insert the unprinted H0 stop.",
+      role: "Rear biconcave negative element of A II, ahead of the variable gap d13 that holds the iris.",
       diagramLabel: "L7",
     },
     {
@@ -152,9 +169,9 @@ const LENS_DATA = {
       nd: 1.691,
       vd: 54.75,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "S-LAL9 (OHARA)",
       focalLengthMm: 96.78320095684711,
-      role: "Positive meniscus opening F_I beyond the stop hypothesis. It is separated from the following doublet by literal d15=0.120 mm.",
+      role: "Positive meniscus at the front of sub-group F I, the first element of the focusing assembly.",
       diagramLabel: "L8",
     },
     {
@@ -165,11 +182,11 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.88,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "PBH53 (OHARA)",
       focalLengthMm: -38.28724060393355,
-      role: "Negative meniscus front member of the second cemented doublet. S17 opens into L10, preserving the source material change.",
+      role: "Dense-flint negative meniscus cemented to L10 in sub-group F I.",
       diagramLabel: "L9",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 10,
@@ -179,11 +196,11 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.11,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "S-BAL35 (OHARA)",
       focalLengthMm: 25.521544060648218,
-      role: "Biconvex positive rear member of the second doublet, using the lower-index 1.58913/61.11 source pair.",
+      role: "Biconvex barium-crown positive element cemented behind L9; the strongest positive element of F I.",
       diagramLabel: "L10",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 11,
@@ -193,9 +210,9 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.11,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "S-BAL35 (OHARA)",
       focalLengthMm: 47.28373867287445,
-      role: "Biconvex positive lens closing F_I; its glass coordinates repeat L10 without asserting the same melt or factory material.",
+      role: "Biconvex positive element closing sub-group F I, in the same glass as L10.",
       diagramLabel: "L11",
     },
     {
@@ -206,11 +223,11 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.43,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "PBH6 (OHARA)",
       focalLengthMm: 29.148180026960862,
-      role: "Positive meniscus front member of the F_II doublet. It shares S22 with L13 and must not receive a fictitious air gap there.",
+      role: "Dense-flint positive meniscus cemented to L13 in sub-group F II, which keeps a fixed distance from the image during zooming.",
       diagramLabel: "L12",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 13,
@@ -220,11 +237,11 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.77,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "TAF1 (HOYA)",
       focalLengthMm: -17.11992311620338,
-      role: "Biconcave negative rear member of the F_II doublet. Together these two elements form the compact negative middle rear component.",
+      role: "Biconcave negative element cemented behind L12; the doublet gives F II its negative power.",
       diagramLabel: "L13",
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 14,
@@ -234,9 +251,9 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.12,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "BSC7 (HOYA)",
       focalLengthMm: 91.5185368173315,
-      role: "Positive meniscus at the entrance of F_III. The 1.51680/64.12 pair is retained without assigning a catalog identity.",
+      role: "Weak crown positive meniscus at the front of sub-group F III.",
       diagramLabel: "L14",
     },
     {
@@ -247,9 +264,9 @@ const LENS_DATA = {
       nd: 1.691,
       vd: 54.75,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "S-LAL9 (OHARA)",
       focalLengthMm: 31.570154147280586,
-      role: "Biconvex positive lens in F_III; its strong rear curvature -24.092 mm and 6.500 mm axial thickness are literal.",
+      role: "Thick biconvex positive element, the strongest positive member of F III.",
       diagramLabel: "L15",
     },
     {
@@ -260,9 +277,9 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.43,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
+      glass: "PBH6 (OHARA)",
       focalLengthMm: -38.51617982529406,
-      role: "Negative meniscus rear lens of F_III. Its exit S29 is followed by the derived infinity image gap, reduced by the rigid rear-assembly focus shift at finite conjugates, not a printed d29.",
+      role: "Dense-flint negative meniscus closing F III and the lens, 1.42 mm behind L15.",
       diagramLabel: "L16",
     },
   ],
@@ -463,7 +480,7 @@ const LENS_DATA = {
       0, 0.03, 0.05, 0.075, 0.1, 0.15, 0.21428571428571427, 0.3, 0.375, 0.5, 0.6, 0.75, 0.8823529411764706, 1,
     ],
     description:
-      "All three Table9 zoom rows and39 Table11 finite shifts are preserved among25 zoom controls and the original14 focus keyframes. The22 added zoom controls are unpublished mathematical zoom-compensation samples. Rear assembly F=S14–S29 translates byΔx for finite focus: totalD13 grows byΔx and image gap BF∞−Δx shrinks equally. Its internal gaps remain fixed during focusing. The assumed midpoint iris moves byΔx/2. Added zoom controls solve the paraxial conjugate and retain the interpolated source-versus-paraxial shift residual. No extra finite-focus keys or factory mechanical-cam claim is made.",
+      "PUBLISHED rear/internal focus: the rear assembly F (L8–L16) moves toward the image as a unit while its internal spacings stay fixed; the front assembly A does not move. Table 11 prints the shift for 13 distances from 50 m to 1.5 m, measured to the image plane, at 28.8, 60.0 and 131.5 mm; at 1.5 m it is 1.175, 1.111 and 2.100 mm. d13 grows and the back focus shrinks by the same amount. Zoom stations between the printed ones use the paraxial shift for the same distances. The iris position is not printed; it is placed at the middle of d13 and moves by half the shift. 1.5 m is also Minolta's minimum focus distance; the macro setting is not modelled.",
     conjugates: [
       {
         zoomStation: 0,
@@ -471,7 +488,7 @@ const LENS_DATA = {
         objectDistanceMm: 50000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -479,7 +496,7 @@ const LENS_DATA = {
         objectDistanceMm: 30000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -487,7 +504,7 @@ const LENS_DATA = {
         objectDistanceMm: 20000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -495,7 +512,7 @@ const LENS_DATA = {
         objectDistanceMm: 15000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -503,7 +520,7 @@ const LENS_DATA = {
         objectDistanceMm: 10000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -511,7 +528,7 @@ const LENS_DATA = {
         objectDistanceMm: 7000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -519,7 +536,7 @@ const LENS_DATA = {
         objectDistanceMm: 5000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -527,7 +544,7 @@ const LENS_DATA = {
         objectDistanceMm: 4000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -535,7 +552,7 @@ const LENS_DATA = {
         objectDistanceMm: 3000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -543,7 +560,7 @@ const LENS_DATA = {
         objectDistanceMm: 2500,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -551,7 +568,7 @@ const LENS_DATA = {
         objectDistanceMm: 2000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -559,7 +576,7 @@ const LENS_DATA = {
         objectDistanceMm: 1700,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 0,
@@ -567,7 +584,7 @@ const LENS_DATA = {
         objectDistanceMm: 1500,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -575,7 +592,7 @@ const LENS_DATA = {
         objectDistanceMm: 50000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -583,7 +600,7 @@ const LENS_DATA = {
         objectDistanceMm: 30000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -591,7 +608,7 @@ const LENS_DATA = {
         objectDistanceMm: 20000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -599,7 +616,7 @@ const LENS_DATA = {
         objectDistanceMm: 15000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -607,7 +624,7 @@ const LENS_DATA = {
         objectDistanceMm: 10000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -615,7 +632,7 @@ const LENS_DATA = {
         objectDistanceMm: 7000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -623,7 +640,7 @@ const LENS_DATA = {
         objectDistanceMm: 5000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -631,7 +648,7 @@ const LENS_DATA = {
         objectDistanceMm: 4000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -639,7 +656,7 @@ const LENS_DATA = {
         objectDistanceMm: 3000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -647,7 +664,7 @@ const LENS_DATA = {
         objectDistanceMm: 2500,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -655,7 +672,7 @@ const LENS_DATA = {
         objectDistanceMm: 2000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -663,7 +680,7 @@ const LENS_DATA = {
         objectDistanceMm: 1700,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 14,
@@ -671,7 +688,7 @@ const LENS_DATA = {
         objectDistanceMm: 1500,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -679,7 +696,7 @@ const LENS_DATA = {
         objectDistanceMm: 50000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -687,7 +704,7 @@ const LENS_DATA = {
         objectDistanceMm: 30000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -695,7 +712,7 @@ const LENS_DATA = {
         objectDistanceMm: 20000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -703,7 +720,7 @@ const LENS_DATA = {
         objectDistanceMm: 15000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -711,7 +728,7 @@ const LENS_DATA = {
         objectDistanceMm: 10000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -719,7 +736,7 @@ const LENS_DATA = {
         objectDistanceMm: 7000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -727,7 +744,7 @@ const LENS_DATA = {
         objectDistanceMm: 5000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -735,7 +752,7 @@ const LENS_DATA = {
         objectDistanceMm: 4000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -743,7 +760,7 @@ const LENS_DATA = {
         objectDistanceMm: 3000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -751,7 +768,7 @@ const LENS_DATA = {
         objectDistanceMm: 2500,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -759,7 +776,7 @@ const LENS_DATA = {
         objectDistanceMm: 2000,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -767,7 +784,7 @@ const LENS_DATA = {
         objectDistanceMm: 1700,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
       {
         zoomStation: 24,
@@ -775,7 +792,7 @@ const LENS_DATA = {
         objectDistanceMm: 1500,
         distanceReference: "image-plane",
         source:
-          "US4844600A Table 11 (PDF22), E5 Table9; photographing D to image plane (PDF13, printed col6), F moves imageward in a body (PDF21, printed col22). Rounded source shift retained; terminal infinity BF derived.",
+          "US 4,844,600 A, Table 11 (col. 24): printed shift of focusing assembly F for this photographing distance, which the patent measures to the image plane (col. 6); F moves toward the image as a unit (col. 22). Infinity back focus derived paraxially.",
       },
     ],
   },
@@ -812,17 +829,17 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "16",
       toSurface: "18",
     },
     {
-      text: "D3",
+      text: "C3",
       fromSurface: "21",
       toSurface: "23",
     },
@@ -841,163 +858,140 @@ const LENS_DATA = {
         publishedFocus: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
       },
       {
-        focalLengthMm: 30.317877429314763,
+        focalLengthMm: 30.320232381743914,
         nominalFNumber: 3.6487426757808,
-        label: "Inferred zoom 1",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 31.95463592477118,
+        focalLengthMm: 31.957843764544606,
         nominalFNumber: 3.6975378988308,
-        label: "Inferred zoom 2",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 33.71355390720314,
+        focalLengthMm: 33.71551559511909,
         nominalFNumber: 3.7460927768628003,
-        label: "Inferred zoom 3",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 35.599107361452454,
+        focalLengthMm: 35.597293238423184,
         nominalFNumber: 3.794215142988,
-        label: "Inferred zoom 4",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 37.61760198662891,
+        focalLengthMm: 37.60930228493444,
         nominalFNumber: 3.84178043949,
-        label: "Inferred zoom 5",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 39.776727855960395,
+        focalLengthMm: 39.75939828309161,
         nominalFNumber: 3.8887060212612,
-        label: "Inferred zoom 6",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 42.08561854725978,
+        focalLengthMm: 42.05733473103696,
         nominalFNumber: 3.9349422210456,
-        label: "Inferred zoom 7",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 44.554566940183136,
+        focalLengthMm: 44.514609090936794,
         nominalFNumber: 3.9804585821964,
-        label: "Inferred zoom 8",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 47.195744286954785,
+        focalLengthMm: 47.14533416067915,
         nominalFNumber: 4.0252505789232,
-        label: "Inferred zoom 9",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 50.022591139700026,
+        focalLengthMm: 49.9658235938338,
         nominalFNumber: 4.0693219050888,
-        label: "Inferred zoom 10",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 53.05095047353627,
+        focalLengthMm: 52.99596285526491,
         nominalFNumber: 4.1126971583628,
-        label: "Inferred zoom 11",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 56.299063582506996,
+        focalLengthMm: 56.259519714212885,
         nominalFNumber: 4.1554134199584,
-        label: "Inferred zoom 12",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 59.78850559434028,
+        focalLengthMm: 59.785497184269666,
         nominalFNumber: 4.1975249331936,
-        label: "Inferred zoom 13",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 60,
         nominalFNumber: 4.2,
-        label: "Middle",
         published: true,
         publishedFocus: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
       },
       {
-        focalLengthMm: 64.23818946490346,
+        focalLengthMm: 64.21525297011745,
         nominalFNumber: 4.24151977539084,
-        label: "Inferred zoom 15",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 68.93391819104,
+        focalLengthMm: 68.89106648585083,
         nominalFNumber: 4.28335774879938,
-        label: "Inferred zoom 16",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 74.20667199629872,
+        focalLengthMm: 74.14995412795379,
         nominalFNumber: 4.32593694377834,
-        label: "Inferred zoom 17",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 80.24008554673557,
+        focalLengthMm: 80.180059822422,
         nominalFNumber: 4.36993459334702,
-        label: "Inferred zoom 18",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 87.37323110652957,
+        focalLengthMm: 87.3269585216681,
         nominalFNumber: 4.41665319125518,
-        label: "Inferred zoom 19",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 96.37530386956581,
+        focalLengthMm: 96.36907388604126,
         nominalFNumber: 4.46910442084618,
-        label: "Inferred zoom 20",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 110.25223917202403,
+        focalLengthMm: 110.32190028578991,
         nominalFNumber: 4.53930719620486,
-        label: "Inferred zoom 21",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 119.50126312388443,
+        focalLengthMm: 119.58934506484621,
         nominalFNumber: 4.58077601576236,
-        label: "Inferred zoom 22",
         published: false,
         publishedFocus: [],
       },
       {
-        focalLengthMm: 127.43839170387422,
+        focalLengthMm: 127.48753078896766,
         nominalFNumber: 4.61381908733478,
-        label: "Inferred zoom 23",
         published: false,
         publishedFocus: [],
       },
@@ -1013,746 +1007,182 @@ const LENS_DATA = {
   },
   gaps: {
     "5": {
-      label: "D5 (zoom spacing)",
+      label: "D5 (A I – A II)",
       values: [
         [0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6],
-        [
-          2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988,
-          2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988,
-          2.28852752683988, 2.28852752683988,
-        ],
-        [
-          3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363,
-          3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363,
-          3.97887537866363, 3.97887537866363,
-        ],
-        [
-          5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883,
-          5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883,
-          5.66089727848883, 5.66089727848883,
-        ],
-        [
-          7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299,
-          7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299,
-          7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299,
-        ],
-        [
-          8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275,
-          8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275,
-          8.97567739133275, 8.97567739133275,
-        ],
-        [
-          10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069,
-          10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069,
-          10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069,
-        ],
-        [
-          12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659,
-          12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659,
-          12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659,
-        ],
-        [
-          13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029,
-          13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029,
-          13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029,
-        ],
-        [
-          15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519,
-          15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519,
-          15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519,
-        ],
-        [
-          16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118,
-          16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118,
-          16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118,
-        ],
-        [
-          18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332,
-          18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332,
-          18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332,
-        ],
-        [
-          19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224,
-          19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224,
-          19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224,
-        ],
-        [
-          21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496,
-          21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496,
-          21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496,
-        ],
-        [
-          21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385,
-          21.385,
-        ],
-        [
-          23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406,
-          23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406,
-          23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406,
-        ],
-        [
-          24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175,
-          24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175,
-          24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175,
-        ],
-        [
-          26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156,
-          26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156,
-          26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156,
-        ],
-        [
-          28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966,
-          28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966,
-          28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966,
-        ],
-        [
-          30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616,
-          30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616,
-          30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616,
-        ],
-        [
-          32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326,
-          32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326,
-          32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326,
-        ],
-        [
-          35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764,
-          35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764,
-          35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764,
-        ],
-        [
-          37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351,
-          37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351,
-          37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351,
-        ],
-        [
-          38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916,
-          38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916,
-          38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916,
-        ],
-        [
-          39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068,
-          39.068,
-        ],
+        [2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988, 2.28852752683988],
+        [3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363, 3.97887537866363],
+        [5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883, 5.66089727848883],
+        [7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299, 7.327936245009299],
+        [8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275, 8.97567739133275],
+        [10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069, 10.601257753190069],
+        [12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659, 12.202956774054659],
+        [13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029, 13.77971938492029],
+        [15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519, 15.331388804864519],
+        [16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118, 16.85809299545118],
+        [18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332, 18.360684060951332],
+        [19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224, 19.84044655639224],
+        [21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496, 21.29925956071496],
+        [21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385, 21.385],
+        [23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406, 23.092428344735406],
+        [24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175, 24.812942027952175],
+        [26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156, 26.563937155424156],
+        [28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966, 28.37326375384966],
+        [30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616, 30.29448460689616],
+        [32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326, 32.45144993912326],
+        [35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764, 35.338416629047764],
+        [37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351, 37.04374950401351],
+        [38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916, 38.402588189164916],
+        [39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068, 39.068],
       ],
     },
     "13": {
-      label: "D13/2 (zoom + focus)",
+      label: "D13 (A II – stop)",
       values: [
-        [
-          10.101, 10.1165, 10.127, 10.140500000000001, 10.153500000000001, 10.180000000000001, 10.215000000000002,
-          10.262, 10.304, 10.376000000000001, 10.435500000000001, 10.527000000000001, 10.611, 10.688500000000001,
-        ],
-        [
-          9.685549926761649, 9.700393075575146, 9.710423139319149, 9.723330025140099, 9.735730458572291,
-          9.761052029644251, 9.794403454758115, 9.839143566956169, 9.87904498798065, 9.947227689511388,
-          10.003448296866702, 10.089569927622446, 10.168317213340224, 10.240670486174912,
-        ],
-        [
-          9.269651975632149, 9.284037709031479, 9.293732906371321, 9.306217983384286, 9.31819296040122,
-          9.342693058889452, 9.374872580702098, 9.41802173343714, 9.456443584976657, 9.521917825583431,
-          9.575823507983515, 9.65816159472269, 9.733234336153668, 9.802001388352087,
-        ],
-        [
-          8.85580256520607, 8.869888457963935, 8.879355373330718, 8.891553481970758, 8.90323966768789,
-          8.927197056558576, 8.958575032340542, 9.000648289806795, 9.038062850036388, 9.101664847834355,
-          9.153972638060472, 9.233693223854845, 9.306222575950256, 9.372501237255307,
-        ],
-        [
-          8.445639597932281, 8.459553050037364, 8.468877797135502, 8.48089765747734, 8.492404991295139,
-          8.516042942271612, 8.54691488402434, 8.588320205373131, 8.625098842654667, 8.68748024690319,
-          8.738742663452427, 8.816732708316453, 8.887566050749255, 8.952167228158912,
-        ],
-        [
-          8.0402247207469, 8.054071457943136, 8.063325473262548, 8.075257117216205, 8.086676462644148,
-          8.110178792715136, 8.140787270003571, 8.181857423169975, 8.218301234733783, 8.279986508098764,
-          8.330644089756587, 8.407603330973705, 8.47740091025207, 8.540949324535168,
-        ],
-        [
-          7.640262345450372, 7.654132560001573, 7.663376772179077, 7.675296869405442, 7.68670547015772,
-          7.710227893818385, 7.740777885321812, 7.781792503106737, 7.8181531827811925, 7.879577974535114,
-          7.929993695760238, 8.006493437984934, 8.07578860900511, 8.138784111981494,
-        ],
-        [
-          7.2461758026213365, 7.2601486141477505, 7.269436460724195, 7.281412160128613, 7.292877561829628,
-          7.31655581070924, 7.347225591426099, 7.38842665250758, 7.4249209726847525, 7.486458368265271,
-          7.53694081380726, 7.613462813760308, 7.682701086342344, 7.745557684235024,
-        ],
-        [
-          6.858224684412685, 6.872371440304284, 6.881751096112302, 6.893842855961564, 6.905425786918067,
-          6.929381544004682, 6.960330598738668, 7.001933580752127, 7.038753733139343, 7.100732791982141,
-          7.151552314487225, 7.228515504467407, 7.298080944238421, 7.361152800684684,
-        ],
-        [
-          6.476447565644593, 6.490834402416915, 6.500350498139897, 6.512614263444657, 6.524370845108115,
-          6.548716289405956, 6.580091314779488, 6.622293590460764, 6.659614895110777, 6.722334292684661,
-          6.77373475555095, 6.85151438775936, 6.921748230992932, 6.985347739928232,
-        ],
-        [
-          6.100812962293128, 6.115502794001391, 6.125197753571426, 6.137686646617315, 6.149670105393291,
-          6.1745114080221795, 6.206450925475935, 6.249438163006857, 6.287424907998733, 6.351163199309952,
-          6.403370723064052, 6.482312478257611, 6.553526685616532, 6.617937494883577,
-        ],
-        [
-          5.731111220221068, 5.746165473837994, 5.7560806707423255, 5.768846449109886, 5.7811085886950435,
-          5.806548919148817, 5.839187190274293, 5.883138746025982, 5.921949052762033, 5.986973091039507,
-          6.040203130080979, 6.1206343509533685, 6.193122211504126, 6.2586092507701006,
-        ],
-        [
-          5.367026283887904, 5.38250642141074, 5.39268319326962, 5.405777525854419, 5.418370012107015,
-          5.444512145766909, 5.477982556976062, 5.523076095826429, 5.5628660543568635, 5.629438080592976,
-          5.68390131194967, 5.766140231384627, 5.840184948838471, 5.90700244904497,
-        ],
-        [
-          5.0080958194132155, 5.024064848107461, 5.03454549785894, 5.048021220858697, 5.060996842929588,
-          5.087945713660513, 5.122384058510911, 5.168799997433247, 5.209727601956637, 5.278111897261097,
-          5.33401966785441, 5.418383804915443, 5.4942661649902504, 5.562664698768041,
-        ],
-        [
-          4.987, 5.003, 5.0135000000000005, 5.027, 5.04, 5.067, 5.1015, 5.148, 5.189, 5.2575, 5.3135, 5.398, 5.474,
-          5.5425,
-        ],
-        [
-          4.602024780271444, 4.618715087805316, 4.6297105814911905, 4.6437610127694, 4.657363583552806,
-          4.685531991164826, 4.7215015694792815, 4.769984054594896, 4.812664618347016, 4.884008131634546,
-          4.9422143045128415, 5.029988034979892, 5.108787905429466, 5.179698702471792,
-        ],
-        [
-          4.214099198922958, 4.2315988700332685, 4.243169296301598, 4.257868701618147, 4.272172532677621,
-          4.301705686808411, 4.339395542994779, 4.39019235730911, 4.434841000562808, 4.5095025126259705,
-          4.570289407709187, 4.661890948304034, 4.743971524441464, 4.817714193406392,
-        ],
-        [
-          3.819300942222694, 3.8377574096340563, 3.850001382086336, 3.8654714547490627, 3.880598789000786,
-          3.911739375960261, 3.9514587113294684, 4.004978613931746, 4.051948361365645, 4.130509398171647,
-          4.1943341786053505, 4.290437298607937, 4.376380260951741, 4.45346168211908,
-        ],
-        [
-          3.4113506426172826, 3.43095846035703, 3.4440064226996547, 3.4604073397200428, 3.4765195549372008,
-          3.5095873343588178, 3.551742743612895, 3.608522688051394, 3.658275945484945, 3.741497090456229,
-          3.8089555159397794, 3.91043545032679, 4.000993003044672, 4.082065833546714,
-        ],
-        [
-          2.978171456896738, 2.9992145766027987, 3.0132573880316085, 3.0308223575903863, 3.048155137088575,
-          3.083616245968736, 3.128799386895467, 3.1896201222132605, 3.242827489509531, 3.331810590016552,
-          3.403762973161701, 3.511880273045476, 3.6081315762879136, 3.6941286915137876,
-        ],
-        [
-          2.4918387769448387, 2.5148086073381055, 2.530177324725142, 2.5493090533871423, 2.5682705311316476,
-          2.6069308617895497, 2.656163011238587, 2.722371368029327, 2.780187010573418, 2.876826861633152,
-          2.9547485738892525, 3.071660265424784, 3.175445946132049, 3.2679535375488324,
-        ],
-        [
-          1.840912113328426, 1.867127220473824, 1.8847118645672543, 1.906488791612969, 1.928174584255666,
-          1.9721943708072736, 2.0282091834371276, 2.103408044871075, 2.168913124722284, 2.278264191394607,
-          2.366081339051039, 2.4975166437851897, 2.6137119509603326, 2.716920364200233,
-        ],
-        [
-          1.4564093608266764, 1.4850033122301198, 1.504202352032655, 1.52792085371384, 1.551591907883759,
-          1.59952045382275, 1.6604793187517628, 1.7422083738421297, 1.8132944211519073, 1.9318277901212864,
-          2.026778342711008, 2.1686422356809025, 2.293719362158188, 2.404566176583444,
-        ],
-        [
-          1.150030927433098, 1.180831952695807, 1.2015232051032196, 1.2270439780527373, 1.252549791180983,
-          1.304091725552938, 1.3696180351894576, 1.4573646178977335, 1.5335887904326562, 1.660547498836157,
-          1.7620311529461647, 1.9134170898071472, 2.046582001894348, 2.1643685485920514,
-        ],
+        [10.101, 10.1165, 10.127, 10.140500000000001, 10.153500000000001, 10.180000000000001, 10.215000000000002, 10.262, 10.304, 10.376000000000001, 10.435500000000001, 10.527000000000001, 10.611, 10.688500000000001],
+        [9.685549926761649, 9.70038933943247, 9.710416912536333, 9.723320684106044, 9.73571800105449, 9.761033327166675, 9.794376684094637, 9.839105927959269, 9.878997685157037, 9.947163808547787, 10.003370560874282, 10.089470002501443, 10.168195786369871, 10.24052790809921],
+        [9.269651975632149, 9.28403368131954, 9.293726246489165, 9.306208092347138, 9.31817990323434, 9.342673861775953, 9.374845857758288, 9.417985596492224, 9.456399762422704, 9.521862241882902, 9.575759347912173, 9.658085668960895, 9.733148751284137, 9.801907401098067],
+        [8.85580256520607, 8.869886540469611, 8.879352303654438, 8.891549114486136, 8.903234161139917, 8.92718975016026, 8.958566354015264, 9.000639442300741, 9.0380554203241, 9.101663044746166, 9.153978277591365, 9.233714905671597, 9.306263205033373, 9.372562378328965],
+        [8.445639597932281, 8.459554784425713, 8.468880889899138, 8.480902677148611, 8.492412193864695, 8.516055285522889, 8.546935373692952, 8.588354293738226, 8.625147444947494, 8.687558590950411, 8.738849915862716, 8.816892085304403, 8.887780377960889, 8.952437620387082],
+        [8.0402247207469, 8.054077654552973, 8.06333607170203, 8.075273524982249, 8.086699023434962, 8.110214701621418, 8.140842412578559, 8.181941913104756, 8.218414956811571, 8.280156539974397, 8.330866211449452, 8.407915772039898, 8.477805649920956, 8.54144641325418],
+        [7.640262345450372, 7.654143384233513, 7.663395138235712, 7.675325032192337, 7.68674384338265, 7.710287942918052, 7.74086830050993, 7.781927874306432, 7.818332184578842, 7.87983888515143, 7.930328682287803, 8.006954381799057, 8.07637611001942, 8.139496776275532],
+        [7.2461758026213365, 7.260163642436349, 7.269461870202561, 7.2814509571432025, 7.292930206685069, 7.316637547670801, 7.347347511280124, 7.388607122206429, 7.425157453855033, 7.486798437907865, 7.5373732799502955, 7.614050428080783, 7.683442809402892, 7.746450555184529],
+        [6.858224684412685, 6.872389693347569, 6.8817818949662435, 6.893889764836494, 6.9054892847640446, 6.9294796725043435, 6.960476142383294, 7.0021475145338625, 7.039032476469736, 7.101130184875708, 7.15205451887388, 7.229192108669467, 7.29892929249098, 7.3621685031385296],
+        [6.476447565644593, 6.490854362646271, 6.500384131981589, 6.512665405248057, 6.52443996049143, 6.548822763763172, 6.580248629496111, 6.622523711255732, 6.659913540888829, 6.722757453518106, 6.774267107615457, 6.8522271482210915, 6.922637435828058, 6.986407967553766],
+        [6.100812962293128, 6.115522408755523, 6.1252307730584175, 6.137736794121762, 6.1497377973331675, 6.1746154509492435, 6.206604213680009, 6.249661592157382, 6.28771400926248, 6.351570936448456, 6.4038818929229, 6.482993566132355, 6.554373015157123, 6.618943270676917],
+        [5.731111220221068, 5.746182147234078, 5.75610871794601, 5.768889006193526, 5.781165983023004, 5.8066369797086175, 5.839316648531509, 5.883326916404629, 5.922191965303681, 5.987314427434454, 6.040629867981821, 6.121200714711831, 6.193823702520602, 6.259440623713575],
+        [5.367026283887904, 5.3825169936044865, 5.392700966896983, 5.405804474942207, 5.418406330874817, 5.444567791979794, 5.478064219919851, 5.523194528592271, 5.56301865277976, 5.629651865095817, 5.684167972962186, 5.766492987618017, 5.840620676164005, 5.907517653538825],
+        [5.0080958194132155, 5.024065560071818, 5.034546694218747, 5.048023033756312, 5.060999284710674, 5.087949450569949, 5.122389534679367, 5.168807924566554, 5.209737799851695, 5.278126148089653, 5.334037408990062, 5.418407208694113, 5.494295005600411, 5.562698731256218],
+        [4.987, 5.003, 5.0135000000000005, 5.027, 5.04, 5.067, 5.1015, 5.148, 5.189, 5.2575, 5.3135, 5.398, 5.474, 5.5425],
+        [4.602024780271444, 4.6187198869813875, 4.629718645619198, 4.643773232216573, 4.657380041144617, 4.685557175507672, 4.72153847010783, 4.7700374592145485, 4.812733306093392, 4.884104078341128, 4.942333705964635, 5.0301454486854285, 5.108981768207502, 5.179927329187763],
+        [4.214099198922958, 4.23160687576995, 4.243182747836853, 4.257889083279031, 4.272199981679515, 4.301747685094711, 4.3394570679324795, 4.3902813742784055, 4.434955460768558, 4.509662316264015, 4.570488188195005, 4.662152821462407, 4.744293808848444, 4.818094018494472],
+        [3.819300942222694, 3.8377668881330176, 3.850017306954357, 3.8654955815427274, 3.8806312783824817, 3.9117890755327918, 3.9515314968571573, 4.005083879417671, 4.052083662011989, 4.130698168316006, 4.1945688528689145, 4.290746168577993, 4.376760049673051, 4.453908911385775],
+        [3.4113506426172826, 3.430967439602833, 3.444021507209905, 3.4604301903259804, 3.47655032164906, 3.509634385678847, 3.5518116251178284, 3.6086222554369853, 3.658403860934391, 3.741675406677063, 3.8091770367890425, 3.9107266814222887, 4.001350730058625, 4.082486677666569],
+        [2.978171456896738, 2.9992207649900977, 3.013267782816963, 3.0308381015556316, 3.0481763318336266, 3.0836486483053984, 3.1288468019493108, 3.1896886179725525, 3.242915437290336, 3.331933069585708, 3.403915002137705, 3.5120798823661197, 3.6083764646496164, 3.694416465468335],
+        [2.4918387769448387, 2.514809348361857, 2.5301785692651584, 2.5493109380303522, 2.5682730677964294, 2.6069347383417165, 2.6561686809730247, 2.7223795526143664, 2.7801975125052745, 2.8768414699223115, 2.9547666886412234, 3.0716840123736135, 3.1754750375371357, 3.2679876776793275],
+        [1.840912113328426, 1.867119998749461, 1.8846997378711277, 1.9064704319011356, 1.9281498784145914, 1.9721566333602416, 2.0281540262005917, 2.1033284976544624, 2.168811145301956, 2.2781225618712946, 2.3659059522566994, 2.497287224738395, 2.613431470525901, 2.7165918298179266],
+        [1.4564093608266764, 1.484994768228193, 1.5041880061475825, 1.5278991365118382, 1.5515626873430577, 1.5994758312194413, 1.6604141207104433, 1.7421143941130866, 1.8131739987248539, 1.9316606983809603, 2.0265715888747047, 2.1683721349409697, 2.293389550609769, 2.4041803044166836],
+        [1.150030927433098, 1.1808273837088774, 1.2015155338680834, 1.2270323658748763, 1.252534168075012, 1.3040678713250435, 1.3695831899741553, 1.4573144084995107, 1.533524477065779, 1.6604583220170017, 1.7619208760414085, 1.9132731714893658, 2.04640643978443, 2.1641633354948286],
         [1, 1.032, 1.0535, 1.08, 1.1065, 1.16, 1.228, 1.319, 1.3980000000000001, 1.5295, 1.6345, 1.791, 1.9285, 2.05],
       ],
     },
     "20": {
-      label: "D20 (zoom spacing)",
+      label: "D20 (F I – F II)",
       values: [
         [1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2],
-        [
-          1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824,
-          1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824,
-          1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824,
-        ],
-        [
-          2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074,
-          2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074,
-          2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074,
-        ],
-        [
-          2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034,
-          2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034,
-          2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034,
-        ],
-        [
-          3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614,
-          3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614,
-          3.28554694378614, 3.28554694378614,
-        ],
-        [
-          3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498,
-          3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498,
-          3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498,
-        ],
-        [
-          4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185,
-          4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185,
-          4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185,
-        ],
-        [
-          4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667,
-          4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667,
-          4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667,
-        ],
-        [
-          5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342,
-          5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342,
-          5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342,
-        ],
-        [
-          5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295,
-          5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295,
-          5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295,
-        ],
-        [
-          6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564,
-          6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564,
-          6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564,
-        ],
-        [
-          6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534,
-          6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534,
-          6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534,
-        ],
-        [
-          7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516,
-          7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516,
-          7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516,
-        ],
-        [
-          7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608,
-          7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608,
-          7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608,
-        ],
+        [1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824, 1.723415100092824],
+        [2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074, 2.247394470278074],
+        [2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034, 2.768792935545034],
+        [3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614, 3.28554694378614],
+        [3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498, 3.7963189527234498],
+        [4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185, 4.300221491643185],
+        [4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667, 4.796721216994667],
+        [5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342, 5.285491075152342],
+        [5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295, 5.766482466670295],
+        [6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564, 6.239735057478564],
+        [6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534, 6.705512985552534],
+        [7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516, 7.1642144413199516],
+        [7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608, 7.616421907610608],
         [7.643, 7.643, 7.643, 7.643, 7.643, 7.643, 7.643, 7.643, 7.643, 7.643, 7.643, 7.643, 7.643, 7.643],
-        [
-          8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708,
-          8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708,
-          8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708,
-        ],
-        [
-          9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905,
-          9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905,
-          9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905,
-        ],
-        [
-          9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459,
-          9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459,
-          9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459,
-        ],
-        [
-          10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774,
-          10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774,
-          10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774,
-        ],
-        [
-          11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366,
-          11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366,
-          11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366,
-        ],
-        [
-          12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066,
-          12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066,
-          12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066,
-        ],
-        [
-          13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381,
-          13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381,
-          13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381,
-        ],
-        [
-          14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713,
-          14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713,
-          14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713,
-        ],
-        [
-          14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886,
-          14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886,
-          14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886,
-        ],
-        [
-          14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934,
-          14.934,
-        ],
+        [8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708, 8.347001586917708],
+        [9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905, 9.056398480223905],
+        [9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459, 9.778363388576459],
+        [10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774, 10.524379349053774],
+        [11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366, 11.316531203352366],
+        [12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066, 12.205884493929066],
+        [13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381, 13.396229691929381],
+        [14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713, 14.09936728121713],
+        [14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886, 14.659639455250886],
+        [14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934, 14.934],
       ],
     },
     "23": {
-      label: "D23 (zoom spacing)",
+      label: "D23 (F II – F III)",
       values: [
-        [
-          15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234,
-          15.234,
-        ],
-        [
-          14.710584899907175, 14.710584899907175, 14.710584899907175, 14.710584899907175, 14.710584899907175,
-          14.710584899907175, 14.710584899907175, 14.710584899907175, 14.710584899907175, 14.710584899907175,
-          14.710584899907175, 14.710584899907175, 14.710584899907175, 14.710584899907175,
-        ],
-        [
-          14.186605529721927, 14.186605529721927, 14.186605529721927, 14.186605529721927, 14.186605529721927,
-          14.186605529721927, 14.186605529721927, 14.186605529721927, 14.186605529721927, 14.186605529721927,
-          14.186605529721927, 14.186605529721927, 14.186605529721927, 14.186605529721927,
-        ],
-        [
-          13.665207064454966, 13.665207064454966, 13.665207064454966, 13.665207064454966, 13.665207064454966,
-          13.665207064454966, 13.665207064454966, 13.665207064454966, 13.665207064454966, 13.665207064454966,
-          13.665207064454966, 13.665207064454966, 13.665207064454966, 13.665207064454966,
-        ],
-        [
-          13.14845305621386, 13.14845305621386, 13.14845305621386, 13.14845305621386, 13.14845305621386,
-          13.14845305621386, 13.14845305621386, 13.14845305621386, 13.14845305621386, 13.14845305621386,
-          13.14845305621386, 13.14845305621386, 13.14845305621386, 13.14845305621386,
-        ],
-        [
-          12.63768104727655, 12.63768104727655, 12.63768104727655, 12.63768104727655, 12.63768104727655,
-          12.63768104727655, 12.63768104727655, 12.63768104727655, 12.63768104727655, 12.63768104727655,
-          12.63768104727655, 12.63768104727655, 12.63768104727655, 12.63768104727655,
-        ],
-        [
-          12.133778508356814, 12.133778508356814, 12.133778508356814, 12.133778508356814, 12.133778508356814,
-          12.133778508356814, 12.133778508356814, 12.133778508356814, 12.133778508356814, 12.133778508356814,
-          12.133778508356814, 12.133778508356814, 12.133778508356814, 12.133778508356814,
-        ],
-        [
-          11.637278783005332, 11.637278783005332, 11.637278783005332, 11.637278783005332, 11.637278783005332,
-          11.637278783005332, 11.637278783005332, 11.637278783005332, 11.637278783005332, 11.637278783005332,
-          11.637278783005332, 11.637278783005332, 11.637278783005332, 11.637278783005332,
-        ],
-        [
-          11.148508924847658, 11.148508924847658, 11.148508924847658, 11.148508924847658, 11.148508924847658,
-          11.148508924847658, 11.148508924847658, 11.148508924847658, 11.148508924847658, 11.148508924847658,
-          11.148508924847658, 11.148508924847658, 11.148508924847658, 11.148508924847658,
-        ],
-        [
-          10.667517533329704, 10.667517533329704, 10.667517533329704, 10.667517533329704, 10.667517533329704,
-          10.667517533329704, 10.667517533329704, 10.667517533329704, 10.667517533329704, 10.667517533329704,
-          10.667517533329704, 10.667517533329704, 10.667517533329704, 10.667517533329704,
-        ],
-        [
-          10.194264942521436, 10.194264942521436, 10.194264942521436, 10.194264942521436, 10.194264942521436,
-          10.194264942521436, 10.194264942521436, 10.194264942521436, 10.194264942521436, 10.194264942521436,
-          10.194264942521436, 10.194264942521436, 10.194264942521436, 10.194264942521436,
-        ],
-        [
-          9.728487014447467, 9.728487014447467, 9.728487014447467, 9.728487014447467, 9.728487014447467,
-          9.728487014447467, 9.728487014447467, 9.728487014447467, 9.728487014447467, 9.728487014447467,
-          9.728487014447467, 9.728487014447467, 9.728487014447467, 9.728487014447467,
-        ],
-        [
-          9.269785558680049, 9.269785558680049, 9.269785558680049, 9.269785558680049, 9.269785558680049,
-          9.269785558680049, 9.269785558680049, 9.269785558680049, 9.269785558680049, 9.269785558680049,
-          9.269785558680049, 9.269785558680049, 9.269785558680049, 9.269785558680049,
-        ],
-        [
-          8.817578092389393, 8.817578092389393, 8.817578092389393, 8.817578092389393, 8.817578092389393,
-          8.817578092389393, 8.817578092389393, 8.817578092389393, 8.817578092389393, 8.817578092389393,
-          8.817578092389393, 8.817578092389393, 8.817578092389393, 8.817578092389393,
-        ],
+        [15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234, 15.234],
+        [15.108801621784739, 15.108801621784739, 15.108801621784739, 15.108801621784739, 15.108801621784739, 15.108801621784739, 15.108801621784739, 15.108801621784739, 15.108801621784739, 15.108801621784739, 15.108801621784739, 15.108801621784739, 15.108801621784739, 15.108801621784739],
+        [14.926593536198833, 14.926593536198833, 14.926593536198833, 14.926593536198833, 14.926593536198833, 14.926593536198833, 14.926593536198833, 14.926593536198833, 14.926593536198833, 14.926593536198833, 14.926593536198833, 14.926593536198833, 14.926593536198833, 14.926593536198833],
+        [14.68536528966143, 14.68536528966143, 14.68536528966143, 14.68536528966143, 14.68536528966143, 14.68536528966143, 14.68536528966143, 14.68536528966143, 14.68536528966143, 14.68536528966143, 14.68536528966143, 14.68536528966143, 14.68536528966143, 14.68536528966143],
+        [14.383766619359083, 14.383766619359083, 14.383766619359083, 14.383766619359083, 14.383766619359083, 14.383766619359083, 14.383766619359083, 14.383766619359083, 14.383766619359083, 14.383766619359083, 14.383766619359083, 14.383766619359083, 14.383766619359083, 14.383766619359083],
+        [14.020868650951588, 14.020868650951588, 14.020868650951588, 14.020868650951588, 14.020868650951588, 14.020868650951588, 14.020868650951588, 14.020868650951588, 14.020868650951588, 14.020868650951588, 14.020868650951588, 14.020868650951588, 14.020868650951588, 14.020868650951588],
+        [13.596041665788785, 13.596041665788785, 13.596041665788785, 13.596041665788785, 13.596041665788785, 13.596041665788785, 13.596041665788785, 13.596041665788785, 13.596041665788785, 13.596041665788785, 13.596041665788785, 13.596041665788785, 13.596041665788785, 13.596041665788785],
+        [13.108811182532957, 13.108811182532957, 13.108811182532957, 13.108811182532957, 13.108811182532957, 13.108811182532957, 13.108811182532957, 13.108811182532957, 13.108811182532957, 13.108811182532957, 13.108811182532957, 13.108811182532957, 13.108811182532957, 13.108811182532957],
+        [12.558820216201479, 12.558820216201479, 12.558820216201479, 12.558820216201479, 12.558820216201479, 12.558820216201479, 12.558820216201479, 12.558820216201479, 12.558820216201479, 12.558820216201479, 12.558820216201479, 12.558820216201479, 12.558820216201479, 12.558820216201479],
+        [11.94559809485082, 11.94559809485082, 11.94559809485082, 11.94559809485082, 11.94559809485082, 11.94559809485082, 11.94559809485082, 11.94559809485082, 11.94559809485082, 11.94559809485082, 11.94559809485082, 11.94559809485082, 11.94559809485082, 11.94559809485082],
+        [11.268639399627677, 11.268639399627677, 11.268639399627677, 11.268639399627677, 11.268639399627677, 11.268639399627677, 11.268639399627677, 11.268639399627677, 11.268639399627677, 11.268639399627677, 11.268639399627677, 11.268639399627677, 11.268639399627677, 11.268639399627677],
+        [10.527100674814843, 10.527100674814843, 10.527100674814843, 10.527100674814843, 10.527100674814843, 10.527100674814843, 10.527100674814843, 10.527100674814843, 10.527100674814843, 10.527100674814843, 10.527100674814843, 10.527100674814843, 10.527100674814843, 10.527100674814843],
+        [9.7197707928762, 9.7197707928762, 9.7197707928762, 9.7197707928762, 9.7197707928762, 9.7197707928762, 9.7197707928762, 9.7197707928762, 9.7197707928762, 9.7197707928762, 9.7197707928762, 9.7197707928762, 9.7197707928762, 9.7197707928762],
+        [8.844836067491752, 8.844836067491752, 8.844836067491752, 8.844836067491752, 8.844836067491752, 8.844836067491752, 8.844836067491752, 8.844836067491752, 8.844836067491752, 8.844836067491752, 8.844836067491752, 8.844836067491752, 8.844836067491752, 8.844836067491752],
         [8.791, 8.791, 8.791, 8.791, 8.791, 8.791, 8.791, 8.791, 8.791, 8.791, 8.791, 8.791, 8.791, 8.791],
-        [
-          8.086998413082291, 8.086998413082291, 8.086998413082291, 8.086998413082291, 8.086998413082291,
-          8.086998413082291, 8.086998413082291, 8.086998413082291, 8.086998413082291, 8.086998413082291,
-          8.086998413082291, 8.086998413082291, 8.086998413082291, 8.086998413082291,
-        ],
-        [
-          7.377601519776095, 7.377601519776095, 7.377601519776095, 7.377601519776095, 7.377601519776095,
-          7.377601519776095, 7.377601519776095, 7.377601519776095, 7.377601519776095, 7.377601519776095,
-          7.377601519776095, 7.377601519776095, 7.377601519776095, 7.377601519776095,
-        ],
-        [
-          6.6556366114235415, 6.6556366114235415, 6.6556366114235415, 6.6556366114235415, 6.6556366114235415,
-          6.6556366114235415, 6.6556366114235415, 6.6556366114235415, 6.6556366114235415, 6.6556366114235415,
-          6.6556366114235415, 6.6556366114235415, 6.6556366114235415, 6.6556366114235415,
-        ],
-        [
-          5.909620650946227, 5.909620650946227, 5.909620650946227, 5.909620650946227, 5.909620650946227,
-          5.909620650946227, 5.909620650946227, 5.909620650946227, 5.909620650946227, 5.909620650946227,
-          5.909620650946227, 5.909620650946227, 5.909620650946227, 5.909620650946227,
-        ],
-        [
-          5.117468796647634, 5.117468796647634, 5.117468796647634, 5.117468796647634, 5.117468796647634,
-          5.117468796647634, 5.117468796647634, 5.117468796647634, 5.117468796647634, 5.117468796647634,
-          5.117468796647634, 5.117468796647634, 5.117468796647634, 5.117468796647634,
-        ],
-        [
-          4.228115506070935, 4.228115506070935, 4.228115506070935, 4.228115506070935, 4.228115506070935,
-          4.228115506070935, 4.228115506070935, 4.228115506070935, 4.228115506070935, 4.228115506070935,
-          4.228115506070935, 4.228115506070935, 4.228115506070935, 4.228115506070935,
-        ],
-        [
-          3.037770308070618, 3.037770308070618, 3.037770308070618, 3.037770308070618, 3.037770308070618,
-          3.037770308070618, 3.037770308070618, 3.037770308070618, 3.037770308070618, 3.037770308070618,
-          3.037770308070618, 3.037770308070618, 3.037770308070618, 3.037770308070618,
-        ],
-        [
-          2.334632718782869, 2.334632718782869, 2.334632718782869, 2.334632718782869, 2.334632718782869,
-          2.334632718782869, 2.334632718782869, 2.334632718782869, 2.334632718782869, 2.334632718782869,
-          2.334632718782869, 2.334632718782869, 2.334632718782869, 2.334632718782869,
-        ],
-        [
-          1.774360544749114, 1.774360544749114, 1.774360544749114, 1.774360544749114, 1.774360544749114,
-          1.774360544749114, 1.774360544749114, 1.774360544749114, 1.774360544749114, 1.774360544749114,
-          1.774360544749114, 1.774360544749114, 1.774360544749114, 1.774360544749114,
-        ],
+        [8.262392069020816, 8.262392069020816, 8.262392069020816, 8.262392069020816, 8.262392069020816, 8.262392069020816, 8.262392069020816, 8.262392069020816, 8.262392069020816, 8.262392069020816, 8.262392069020816, 8.262392069020816, 8.262392069020816, 8.262392069020816],
+        [7.65595489779211, 7.65595489779211, 7.65595489779211, 7.65595489779211, 7.65595489779211, 7.65595489779211, 7.65595489779211, 7.65595489779211, 7.65595489779211, 7.65595489779211, 7.65595489779211, 7.65595489779211, 7.65595489779211, 7.65595489779211],
+        [6.966616334978372, 6.966616334978372, 6.966616334978372, 6.966616334978372, 6.966616334978372, 6.966616334978372, 6.966616334978372, 6.966616334978372, 6.966616334978372, 6.966616334978372, 6.966616334978372, 6.966616334978372, 6.966616334978372, 6.966616334978372],
+        [6.185435391050127, 6.185435391050127, 6.185435391050127, 6.185435391050127, 6.185435391050127, 6.185435391050127, 6.185435391050127, 6.185435391050127, 6.185435391050127, 6.185435391050127, 6.185435391050127, 6.185435391050127, 6.185435391050127, 6.185435391050127],
+        [5.29384458064774, 5.29384458064774, 5.29384458064774, 5.29384458064774, 5.29384458064774, 5.29384458064774, 5.29384458064774, 5.29384458064774, 5.29384458064774, 5.29384458064774, 5.29384458064774, 5.29384458064774, 5.29384458064774, 5.29384458064774],
+        [4.247449367201387, 4.247449367201387, 4.247449367201387, 4.247449367201387, 4.247449367201387, 4.247449367201387, 4.247449367201387, 4.247449367201387, 4.247449367201387, 4.247449367201387, 4.247449367201387, 4.247449367201387, 4.247449367201387, 4.247449367201387],
+        [2.8711399004064013, 2.8711399004064013, 2.8711399004064013, 2.8711399004064013, 2.8711399004064013, 2.8711399004064013, 2.8711399004064013, 2.8711399004064013, 2.8711399004064013, 2.8711399004064013, 2.8711399004064013, 2.8711399004064013, 2.8711399004064013, 2.8711399004064013],
+        [2.151562542357066, 2.151562542357066, 2.151562542357066, 2.151562542357066, 2.151562542357066, 2.151562542357066, 2.151562542357066, 2.151562542357066, 2.151562542357066, 2.151562542357066, 2.151562542357066, 2.151562542357066, 2.151562542357066, 2.151562542357066],
+        [1.682094552016185, 1.682094552016185, 1.682094552016185, 1.682094552016185, 1.682094552016185, 1.682094552016185, 1.682094552016185, 1.682094552016185, 1.682094552016185, 1.682094552016185, 1.682094552016185, 1.682094552016185, 1.682094552016185, 1.682094552016185],
         [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5],
       ],
     },
     "29": {
-      label: "Image gap (BF∞ − Δx)",
+      label: "BF",
       values: [
-        [
-          48.270361481324464, 48.239361481324465, 48.218361481324465, 48.19136148132446, 48.16536148132447,
-          48.11236148132446, 48.04236148132446, 47.94836148132446, 47.864361481324465, 47.72036148132447,
-          47.60136148132447, 47.41836148132447, 47.25036148132446, 47.09536148132447,
-        ],
-        [
-          48.395734427258894, 48.3660481296319, 48.3459880021439, 48.32017423050199, 48.29537336363761,
-          48.24473022149369, 48.17802737126596, 48.08854714686985, 48.00874430482089, 47.87237890175941,
-          47.75993768704878, 47.5876944255373, 47.430199854101744, 47.28549330843237,
-        ],
-        [
-          48.578065868160685, 48.549294401362026, 48.529904006682344, 48.504933852656414, 48.48098389862254,
-          48.431983701646075, 48.36762465802079, 48.2813263525507, 48.204482649471665, 48.07353416825812,
-          47.96572280345795, 47.8010466299796, 47.650901147117644, 47.51336704272081,
-        ],
-        [
-          48.819390560891684, 48.79121877537595, 48.77228494464239, 48.74788872736231, 48.72451635592804,
-          48.67660157818667, 48.61384562662274, 48.52969911169023, 48.45486999123104, 48.32766599563511,
-          48.22305041518288, 48.063609243594136, 47.91855053940331, 47.78599321679321,
-        ],
-        [
-          49.121113558047625, 49.09328665383746, 49.074637159641185, 49.05059743895751, 49.02758277132191,
-          48.98030686936897, 48.91856298586351, 48.83575234316592, 48.76219506860285, 48.63743226010581,
-          48.53490742700733, 48.37892733727928, 48.23726065241368, 48.10805829759436,
-        ],
-        [
-          49.48424119301538, 49.45654771862291, 49.43803968798409, 49.41417640007677, 49.391337709220885,
-          49.34433304907891, 49.283116094502034, 49.20097578816923, 49.12808816504161, 49.00471761831165,
-          48.903402454996005, 48.74948397256177, 48.60988881400504, 48.482791985438844,
-        ],
-        [
-          49.90948682501494, 49.881746395912536, 49.86325797155753, 49.8394177771048, 49.81660057560024,
-          49.76955572827891, 49.70845574527206, 49.626426509702206, 49.553705150353295, 49.43085556684545,
-          49.3300241243952, 49.17702463994581, 49.03843429790546, 48.91244329195269,
-        ],
-        [
-          50.39738956008881, 50.36944393703598, 50.3508682438831, 50.32691684507426, 50.30398604167223, 50.256629543913,
-          50.19528998247929, 50.11288786031632, 50.03989921996198, 49.91682442880094, 49.81585953771697,
-          49.662815537810864, 49.5243389926468, 49.39862579686144,
-        ],
-        [
-          50.94831801726335, 50.92002450548015, 50.90126519386411, 50.87708167416559, 50.85391581225258,
-          50.80600429807935, 50.744106188611376, 50.660900224584466, 50.58725991981003, 50.463301802124434,
-          50.36166275711427, 50.2077363771539, 50.06860549761187, 49.94246178471935,
-        ],
-        [
-          51.56265903232949, 51.53388535878484, 51.514853167338885, 51.49032563672936, 51.46681247340245,
-          51.41812158480677, 51.3553715340597, 51.270966982697146, 51.196324373397125, 51.07088557824935,
-          50.96808465251678, 50.81252538809996, 50.67205770163281, 50.544858683762214,
-        ],
-        [
-          52.24068661674888, 52.211306953332354, 52.19191703419229, 52.166939248100505, 52.14297233054855,
-          52.09328972529078, 52.029410690383266, 51.94343621532143, 51.867462725337674, 51.73998614271523,
-          51.635571095207034, 51.47768758481992, 51.33525917010208, 51.20643755156798,
-        ],
-        [
-          52.98280340250493, 52.95269489527107, 52.93286450146241, 52.907332944727294, 52.88280866555698,
-          52.83192800464943, 52.76665146239848, 52.6787483508951, 52.601127737423, 52.47107966086805, 52.36461958278511,
-          52.20375714104033, 52.05878141993881, 51.92780734140686,
-        ],
-        [
-          53.78949539001103, 53.758535114965355, 53.738181571247594, 53.711992906077995, 53.6868079335728,
-          53.63452366625302, 53.567582843834714, 53.47739576613398, 53.39781584907311, 53.26467179660088,
-          53.155745333887495, 52.99126749501758, 52.84317806010989, 52.7095430596969,
-        ],
-        [
-          54.66147535136188, 54.62953729397339, 54.60857599447043, 54.58162454847091, 54.55567330432913,
-          54.50177556286729, 54.43289887316649, 54.34006699532182, 54.258211786275034, 54.12144319566612,
-          54.009627654479495, 53.84089938035743, 53.689134660207806, 53.55233759265223,
-        ],
-        [
-          54.71515432980145, 54.683154329801454, 54.66215432980145, 54.63515432980145, 54.60915432980145,
-          54.555154329801454, 54.48615432980145, 54.39315432980145, 54.31115432980145, 54.17415432980145,
-          54.06215432980145, 53.89315432980145, 53.741154329801454, 53.60415432980145,
-        ],
-        [
-          55.24592321316327, 55.21254259809553, 55.19055161072378, 55.16245074816736, 55.13524560660055,
-          55.07890879137651, 55.0069696347476, 54.91000466451637, 54.82464353701213, 54.68195651043707,
-          54.565544164680475, 54.38999670374638, 54.232396962847226, 54.09057536876258,
-        ],
-        [
-          55.85432144631439, 55.819322104093764, 55.79618125155711, 55.76678244092401, 55.73817477880506,
-          55.67910847054348, 55.603728758170746, 55.50213512954208, 55.41283784303469, 55.26351481890836,
-          55.14194102874193, 54.95873794755224, 54.79457679527738, 54.64709145734752,
-        ],
-        [
-          56.545095652584116, 56.50818271776139, 56.48369477285683, 56.45275462753138, 56.42249995902793,
-          56.360218785108984, 56.280780114370565, 56.173740309166014, 56.07980081429821, 55.92267874068621,
-          55.795029179818805, 55.60282293981363, 55.43093701512602, 55.27677417279134,
-        ],
-        [
-          57.32666744800904, 57.28745181252955, 57.261355887844296, 57.22855405380352, 57.1963296233692,
-          57.130194064525966, 57.045883246017816, 56.93232335714082, 56.832816842273715, 56.66637455233115,
-          56.53145770136405, 56.328497832590024, 56.14738272715426, 55.98523706615018,
-        ],
-        [
-          58.21683812141786, 58.17475188200574, 58.14666625914812, 58.11153632003056, 58.076870761034186,
-          58.00594854327386, 57.9155822614204, 57.793940790784816, 57.687526056192276, 57.50955985517823,
-          57.365655088887934, 57.14942048912038, 56.95691788263551, 56.78492365218376,
-        ],
-        [
-          59.258941571630984, 59.213001910844454, 59.18226447607038, 59.14400101874638, 59.106078063257364,
-          59.02875740194156, 58.93029310304349, 58.797876389462004, 58.68224510437383, 58.48896540225436,
-          58.33312197774216, 58.09929859467109, 57.89172723325656, 57.706712050423,
-        ],
-        [
-          60.62716642776403, 60.57473621347324, 60.53956692528637, 60.496013071194945, 60.45264148590955,
-          60.364601912806336, 60.25257228754663, 60.102174564678734, 59.971164404976314, 59.75246227163167,
-          59.5768279763188, 59.3139573668505, 59.081566752500216, 58.87514992602042,
-        ],
-        [
-          61.34491930236323, 61.28773139955634, 61.249333319951276, 61.2018963165889, 61.15455420824907,
-          61.058697116371086, 60.93677938651306, 60.773321276332325, 60.63114918171277, 60.39408244377401,
-          60.204181338594566, 59.92045355265478, 59.670299299700204, 59.448605670849695,
-        ],
-        [
-          61.8184745839035, 61.756872533378086, 61.71549002856326, 61.66444848266422, 61.61343685640773,
-          61.51035298766382, 61.37930036839078, 61.20380720297423, 61.05135885790438, 60.797441441097384,
-          60.594474132877366, 60.2917022591554, 60.025372434981, 59.78979934158559,
-        ],
-        [
-          62.00544280220304, 61.94144280220304, 61.89844280220304, 61.845442802203046, 61.79244280220304,
-          61.68544280220304, 61.54944280220304, 61.367442802203044, 61.20944280220304, 60.946442802203045,
-          60.736442802203044, 60.42344280220304, 60.14844280220304, 59.90544280220304,
-        ],
+        [48.270361481324464, 48.239361481324465, 48.218361481324465, 48.19136148132446, 48.16536148132447, 48.11236148132446, 48.04236148132446, 47.94836148132446, 47.864361481324465, 47.72036148132447, 47.60136148132447, 47.41836148132447, 47.25036148132446, 47.09536148132447],
+        [48.39568792014522, 48.36600909480358, 48.34595394859585, 48.32014640545643, 48.29535177155954, 48.24472111933517, 48.178034405479245, 48.08857591774998, 48.00879240335445, 47.87246015657294, 47.76004665191995, 47.58784776866563, 47.430396200928776, 47.2857319574701],
+        [48.57802406633663, 48.54926065496185, 48.5298755246226, 48.50491183290666, 48.48096821113225, 48.431980294049026, 48.36763630208435, 48.28135682461648, 48.20452849275552, 48.073603533835126, 47.96580932177658, 47.80115667967914, 47.65103051503266, 47.5135132154048],
+        [48.819380373479525, 48.79121242295244, 48.772280896582785, 48.74788727491939, 48.72451718161183, 48.676606003571145, 48.613852795861135, 48.52970661929018, 48.45487466324346, 48.327659414399335, 48.22302894870893, 48.06355569254847, 47.91845909382492, 47.785860747233734],
+        [49.121107104387356, 49.09327673140049, 49.07462452045364, 49.05058094595469, 49.02756191252253, 48.98027572920614, 48.91851555286601, 48.835677712775464, 48.76209141035693, 48.6372691183511, 48.53468646852649, 48.37860212964311, 48.236825544330145, 48.10751105947776],
+        [49.484133133400356, 49.45642726578821, 49.437910431490096, 49.41403552492966, 49.39118452802423, 49.34415317165132, 49.28289774973704, 49.200698748684644, 49.12775266127102, 49.00426949494536, 48.90285015199525, 48.74875103081436, 48.60897127505224, 48.4816897483858],
+        [49.90908817916866, 49.88132610160238, 49.86282259359798, 49.83896280568473, 49.81612518330411, 49.7690369842333, 49.70787626904955, 49.625757121456544, 49.552948500911725, 49.429935099766546, 49.3289555054938, 49.175704106471294, 49.03686065003057, 48.91061931751834],
+        [50.396446723029996, 50.36847104339997, 50.349874587867546, 50.325896413986264, 50.30293791490253, 50.25552323293107, 50.19410330571242, 50.11158408385981, 50.0384834205626, 49.91520145245694, 49.81405176837208, 49.6606974721111, 49.52191270946689, 49.39589721790361],
+        [50.94656574996698, 50.91823573209721, 50.89945132885986, 50.875235589119356, 50.852036549264255, 50.80405577378366, 50.74206283402576, 50.658720089724625, 50.584950165852874, 50.46075474904093, 50.35890608104459, 50.20463090145341, 50.06515653381039, 49.93867811251529],
+        [51.55991593192313, 51.531102337919776, 51.51204279924914, 51.4874802527162, 51.463931142229455, 51.41516553568597, 51.35231380422009, 51.26776364070085, 51.19298398143466, 51.0672961561761, 50.9642768479814, 50.80835676677013, 50.667536191556195, 50.539995128104785],
+        [52.23700268775178, 52.207583794826995, 52.188167066221204, 52.163155024094515, 52.1391530176717, 52.089397710439556, 52.02542018497802, 51.939305428023275, 51.863200593813076, 51.73548673944113, 51.63086482649224, 51.47264148007333, 51.32988258202379, 51.200742070984205],
+        [52.9786694731701, 52.94852761914408, 52.928674477720214, 52.90311390122518, 52.87855994756623, 52.827617954195006, 52.76225861654922, 52.67423808080298, 52.59650798300488, 52.46626305874333, 52.35963217764859, 52.198490484188575, 52.053244508571034, 51.92201066618509],
+        [53.78612741571425, 53.75514599628109, 53.73477804969609, 53.708571033605644, 53.68336732174042, 53.63104439953047, 53.56405154365035, 53.47379092630551, 53.39414267793054, 53.26087625329842, 53.15184403756568, 52.98719400825402, 52.838938631162044, 52.7051446764124],
+        [54.661190201704194, 54.62925072038699, 54.608288452093134, 54.581335773018, 54.55538327110928, 54.501482939390726, 54.432602771171894, 54.33976599139751, 54.25790624082724, 54.12112954435132, 54.0093070225505, 53.8405674231424, 53.6887918293298, 53.55198437801819],
+        [54.71515432980145, 54.683154329801454, 54.66215432980145, 54.63515432980145, 54.60915432980145, 54.555154329801454, 54.48615432980145, 54.39315432980145, 54.31115432980145, 54.17415432980145, 54.06215432980145, 53.89315432980145, 53.741154329801454, 53.60415432980145],
+        [55.24369110802079, 55.210300894600906, 55.18830337732528, 55.16019420413053, 55.13298058627444, 55.07662631754833, 55.00466372834802, 54.90766575013458, 54.8222740563769, 54.67953251188142, 54.56307325663441, 54.38744977119282, 54.229777132148676, 54.08788601018815],
+        [55.850057126489645, 55.81504177279566, 55.791890028661854, 55.7624773577775, 55.73385556097653, 55.67476015414614, 55.599341388470606, 55.49769277577875, 55.408344602798444, 55.25893089180753, 55.13727914794555, 54.95394988141075, 54.78966790663867, 54.642067487346615],
+        [56.53932453654356, 56.50239264472291, 56.47789180708023, 56.44693525790349, 56.416663864223985, 56.35434826992336, 56.27486342727463, 56.1677586621536, 56.07375909696497, 55.916530084356936, 55.788788715251115, 55.59643408383296, 55.42440632164285, 55.2701085982174],
+        [57.32043432771194, 57.281200733740846, 57.2550925985267, 57.22227523229455, 57.19003496964839, 57.123866841588814, 57.03951236271085, 56.92589110207254, 56.826327891077725, 56.65978479959238, 56.524781539368426, 56.32168225010193, 56.14043415282926, 55.97816225761337],
+        [58.21195398535449, 58.16985536916777, 58.14176133351404, 58.1066206960367, 58.071944235480714, 58.00099960253717, 57.910603295249345, 57.78891966320286, 57.6824660245673, 57.50443075997655, 57.36046689487256, 57.14413713441573, 56.951543969848736, 56.779463968211296],
+        [59.258278046041006, 59.21233690320697, 59.18159846140037, 59.14333372386998, 59.105409464337825, 59.02808612324725, 58.929618237984634, 58.79719649470195, 58.681560574920134, 58.48827266008606, 58.33242222264823, 58.09858757518346, 57.89100552485641, 57.70598024457203],
+        [60.634516360076155, 60.58210058923409, 60.54694111099075, 60.50339972293074, 60.460040829903825, 60.37202732001252, 60.26003253433183, 60.10968359142408, 59.978718296129095, 59.76009546299042, 59.584528682219606, 59.32176613725622, 59.08947764568121, 58.883156927097154],
+        [61.354022565365646, 61.29685175056261, 61.25846527472383, 61.21104301399532, 61.16371591233288, 61.06788962458012, 60.946013045598114, 60.78261249879283, 60.64049328956929, 60.40351989025708, 60.213698109269586, 59.93009701713706, 59.680062185799464, 59.45848067818563],
+        [61.82341940294668, 61.76182649039512, 61.72045019007671, 61.669416526063124, 61.61841292166285, 61.51534551516279, 61.38431487786457, 61.20885244081386, 61.05643230368132, 60.80256461377888, 60.59963950573006, 60.29693491483415, 60.030668378244016, 59.79515458682322],
+        [62.00544280220304, 61.94144280220304, 61.89844280220304, 61.845442802203046, 61.79244280220304, 61.68544280220304, 61.54944280220304, 61.367442802203044, 61.20944280220304, 60.946442802203045, 60.736442802203044, 60.42344280220304, 60.14844280220304, 59.90544280220304],
       ],
     },
     STO: {
-      label: "D13/2 (assumed iris)",
+      label: "D13 (stop – F I)",
       values: [
-        [
-          10.101, 10.1165, 10.127, 10.140500000000001, 10.153500000000001, 10.180000000000001, 10.215000000000002,
-          10.262, 10.304, 10.376000000000001, 10.435500000000001, 10.527000000000001, 10.611, 10.688500000000001,
-        ],
-        [
-          9.685549926761649, 9.700393075575146, 9.710423139319149, 9.723330025140099, 9.735730458572291,
-          9.761052029644251, 9.794403454758115, 9.839143566956169, 9.87904498798065, 9.947227689511388,
-          10.003448296866702, 10.089569927622446, 10.168317213340224, 10.240670486174912,
-        ],
-        [
-          9.269651975632149, 9.284037709031479, 9.293732906371321, 9.306217983384286, 9.31819296040122,
-          9.342693058889452, 9.374872580702098, 9.41802173343714, 9.456443584976657, 9.521917825583431,
-          9.575823507983515, 9.65816159472269, 9.733234336153668, 9.802001388352087,
-        ],
-        [
-          8.85580256520607, 8.869888457963935, 8.879355373330718, 8.891553481970758, 8.90323966768789,
-          8.927197056558576, 8.958575032340542, 9.000648289806795, 9.038062850036388, 9.101664847834355,
-          9.153972638060472, 9.233693223854845, 9.306222575950256, 9.372501237255307,
-        ],
-        [
-          8.445639597932281, 8.459553050037364, 8.468877797135502, 8.48089765747734, 8.492404991295139,
-          8.516042942271612, 8.54691488402434, 8.588320205373131, 8.625098842654667, 8.68748024690319,
-          8.738742663452427, 8.816732708316453, 8.887566050749255, 8.952167228158912,
-        ],
-        [
-          8.0402247207469, 8.054071457943136, 8.063325473262548, 8.075257117216205, 8.086676462644148,
-          8.110178792715136, 8.140787270003571, 8.181857423169975, 8.218301234733783, 8.279986508098764,
-          8.330644089756587, 8.407603330973705, 8.47740091025207, 8.540949324535168,
-        ],
-        [
-          7.640262345450372, 7.654132560001573, 7.663376772179077, 7.675296869405442, 7.68670547015772,
-          7.710227893818385, 7.740777885321812, 7.781792503106737, 7.8181531827811925, 7.879577974535114,
-          7.929993695760238, 8.006493437984934, 8.07578860900511, 8.138784111981494,
-        ],
-        [
-          7.2461758026213365, 7.2601486141477505, 7.269436460724195, 7.281412160128613, 7.292877561829628,
-          7.31655581070924, 7.347225591426099, 7.38842665250758, 7.4249209726847525, 7.486458368265271,
-          7.53694081380726, 7.613462813760308, 7.682701086342344, 7.745557684235024,
-        ],
-        [
-          6.858224684412685, 6.872371440304284, 6.881751096112302, 6.893842855961564, 6.905425786918067,
-          6.929381544004682, 6.960330598738668, 7.001933580752127, 7.038753733139343, 7.100732791982141,
-          7.151552314487225, 7.228515504467407, 7.298080944238421, 7.361152800684684,
-        ],
-        [
-          6.476447565644593, 6.490834402416915, 6.500350498139897, 6.512614263444657, 6.524370845108115,
-          6.548716289405956, 6.580091314779488, 6.622293590460764, 6.659614895110777, 6.722334292684661,
-          6.77373475555095, 6.85151438775936, 6.921748230992932, 6.985347739928232,
-        ],
-        [
-          6.100812962293128, 6.115502794001391, 6.125197753571426, 6.137686646617315, 6.149670105393291,
-          6.1745114080221795, 6.206450925475935, 6.249438163006857, 6.287424907998733, 6.351163199309952,
-          6.403370723064052, 6.482312478257611, 6.553526685616532, 6.617937494883577,
-        ],
-        [
-          5.731111220221068, 5.746165473837994, 5.7560806707423255, 5.768846449109886, 5.7811085886950435,
-          5.806548919148817, 5.839187190274293, 5.883138746025982, 5.921949052762033, 5.986973091039507,
-          6.040203130080979, 6.1206343509533685, 6.193122211504126, 6.2586092507701006,
-        ],
-        [
-          5.367026283887904, 5.38250642141074, 5.39268319326962, 5.405777525854419, 5.418370012107015,
-          5.444512145766909, 5.477982556976062, 5.523076095826429, 5.5628660543568635, 5.629438080592976,
-          5.68390131194967, 5.766140231384627, 5.840184948838471, 5.90700244904497,
-        ],
-        [
-          5.0080958194132155, 5.024064848107461, 5.03454549785894, 5.048021220858697, 5.060996842929588,
-          5.087945713660513, 5.122384058510911, 5.168799997433247, 5.209727601956637, 5.278111897261097,
-          5.33401966785441, 5.418383804915443, 5.4942661649902504, 5.562664698768041,
-        ],
-        [
-          4.987, 5.003, 5.0135000000000005, 5.027, 5.04, 5.067, 5.1015, 5.148, 5.189, 5.2575, 5.3135, 5.398, 5.474,
-          5.5425,
-        ],
-        [
-          4.602024780271444, 4.618715087805316, 4.6297105814911905, 4.6437610127694, 4.657363583552806,
-          4.685531991164826, 4.7215015694792815, 4.769984054594896, 4.812664618347016, 4.884008131634546,
-          4.9422143045128415, 5.029988034979892, 5.108787905429466, 5.179698702471792,
-        ],
-        [
-          4.214099198922958, 4.2315988700332685, 4.243169296301598, 4.257868701618147, 4.272172532677621,
-          4.301705686808411, 4.339395542994779, 4.39019235730911, 4.434841000562808, 4.5095025126259705,
-          4.570289407709187, 4.661890948304034, 4.743971524441464, 4.817714193406392,
-        ],
-        [
-          3.819300942222694, 3.8377574096340563, 3.850001382086336, 3.8654714547490627, 3.880598789000786,
-          3.911739375960261, 3.9514587113294684, 4.004978613931746, 4.051948361365645, 4.130509398171647,
-          4.1943341786053505, 4.290437298607937, 4.376380260951741, 4.45346168211908,
-        ],
-        [
-          3.4113506426172826, 3.43095846035703, 3.4440064226996547, 3.4604073397200428, 3.4765195549372008,
-          3.5095873343588178, 3.551742743612895, 3.608522688051394, 3.658275945484945, 3.741497090456229,
-          3.8089555159397794, 3.91043545032679, 4.000993003044672, 4.082065833546714,
-        ],
-        [
-          2.978171456896738, 2.9992145766027987, 3.0132573880316085, 3.0308223575903863, 3.048155137088575,
-          3.083616245968736, 3.128799386895467, 3.1896201222132605, 3.242827489509531, 3.331810590016552,
-          3.403762973161701, 3.511880273045476, 3.6081315762879136, 3.6941286915137876,
-        ],
-        [
-          2.4918387769448387, 2.5148086073381055, 2.530177324725142, 2.5493090533871423, 2.5682705311316476,
-          2.6069308617895497, 2.656163011238587, 2.722371368029327, 2.780187010573418, 2.876826861633152,
-          2.9547485738892525, 3.071660265424784, 3.175445946132049, 3.2679535375488324,
-        ],
-        [
-          1.840912113328426, 1.867127220473824, 1.8847118645672543, 1.906488791612969, 1.928174584255666,
-          1.9721943708072736, 2.0282091834371276, 2.103408044871075, 2.168913124722284, 2.278264191394607,
-          2.366081339051039, 2.4975166437851897, 2.6137119509603326, 2.716920364200233,
-        ],
-        [
-          1.4564093608266764, 1.4850033122301198, 1.504202352032655, 1.52792085371384, 1.551591907883759,
-          1.59952045382275, 1.6604793187517628, 1.7422083738421297, 1.8132944211519073, 1.9318277901212864,
-          2.026778342711008, 2.1686422356809025, 2.293719362158188, 2.404566176583444,
-        ],
-        [
-          1.150030927433098, 1.180831952695807, 1.2015232051032196, 1.2270439780527373, 1.252549791180983,
-          1.304091725552938, 1.3696180351894576, 1.4573646178977335, 1.5335887904326562, 1.660547498836157,
-          1.7620311529461647, 1.9134170898071472, 2.046582001894348, 2.1643685485920514,
-        ],
+        [10.101, 10.1165, 10.127, 10.140500000000001, 10.153500000000001, 10.180000000000001, 10.215000000000002, 10.262, 10.304, 10.376000000000001, 10.435500000000001, 10.527000000000001, 10.611, 10.688500000000001],
+        [9.685549926761649, 9.70038933943247, 9.710416912536333, 9.723320684106044, 9.73571800105449, 9.761033327166675, 9.794376684094637, 9.839105927959269, 9.878997685157037, 9.947163808547787, 10.003370560874282, 10.089470002501443, 10.168195786369871, 10.24052790809921],
+        [9.269651975632149, 9.28403368131954, 9.293726246489165, 9.306208092347138, 9.31817990323434, 9.342673861775953, 9.374845857758288, 9.417985596492224, 9.456399762422704, 9.521862241882902, 9.575759347912173, 9.658085668960895, 9.733148751284137, 9.801907401098067],
+        [8.85580256520607, 8.869886540469611, 8.879352303654438, 8.891549114486136, 8.903234161139917, 8.92718975016026, 8.958566354015264, 9.000639442300741, 9.0380554203241, 9.101663044746166, 9.153978277591365, 9.233714905671597, 9.306263205033373, 9.372562378328965],
+        [8.445639597932281, 8.459554784425713, 8.468880889899138, 8.480902677148611, 8.492412193864695, 8.516055285522889, 8.546935373692952, 8.588354293738226, 8.625147444947494, 8.687558590950411, 8.738849915862716, 8.816892085304403, 8.887780377960889, 8.952437620387082],
+        [8.0402247207469, 8.054077654552973, 8.06333607170203, 8.075273524982249, 8.086699023434962, 8.110214701621418, 8.140842412578559, 8.181941913104756, 8.218414956811571, 8.280156539974397, 8.330866211449452, 8.407915772039898, 8.477805649920956, 8.54144641325418],
+        [7.640262345450372, 7.654143384233513, 7.663395138235712, 7.675325032192337, 7.68674384338265, 7.710287942918052, 7.74086830050993, 7.781927874306432, 7.818332184578842, 7.87983888515143, 7.930328682287803, 8.006954381799057, 8.07637611001942, 8.139496776275532],
+        [7.2461758026213365, 7.260163642436349, 7.269461870202561, 7.2814509571432025, 7.292930206685069, 7.316637547670801, 7.347347511280124, 7.388607122206429, 7.425157453855033, 7.486798437907865, 7.5373732799502955, 7.614050428080783, 7.683442809402892, 7.746450555184529],
+        [6.858224684412685, 6.872389693347569, 6.8817818949662435, 6.893889764836494, 6.9054892847640446, 6.9294796725043435, 6.960476142383294, 7.0021475145338625, 7.039032476469736, 7.101130184875708, 7.15205451887388, 7.229192108669467, 7.29892929249098, 7.3621685031385296],
+        [6.476447565644593, 6.490854362646271, 6.500384131981589, 6.512665405248057, 6.52443996049143, 6.548822763763172, 6.580248629496111, 6.622523711255732, 6.659913540888829, 6.722757453518106, 6.774267107615457, 6.8522271482210915, 6.922637435828058, 6.986407967553766],
+        [6.100812962293128, 6.115522408755523, 6.1252307730584175, 6.137736794121762, 6.1497377973331675, 6.1746154509492435, 6.206604213680009, 6.249661592157382, 6.28771400926248, 6.351570936448456, 6.4038818929229, 6.482993566132355, 6.554373015157123, 6.618943270676917],
+        [5.731111220221068, 5.746182147234078, 5.75610871794601, 5.768889006193526, 5.781165983023004, 5.8066369797086175, 5.839316648531509, 5.883326916404629, 5.922191965303681, 5.987314427434454, 6.040629867981821, 6.121200714711831, 6.193823702520602, 6.259440623713575],
+        [5.367026283887904, 5.3825169936044865, 5.392700966896983, 5.405804474942207, 5.418406330874817, 5.444567791979794, 5.478064219919851, 5.523194528592271, 5.56301865277976, 5.629651865095817, 5.684167972962186, 5.766492987618017, 5.840620676164005, 5.907517653538825],
+        [5.0080958194132155, 5.024065560071818, 5.034546694218747, 5.048023033756312, 5.060999284710674, 5.087949450569949, 5.122389534679367, 5.168807924566554, 5.209737799851695, 5.278126148089653, 5.334037408990062, 5.418407208694113, 5.494295005600411, 5.562698731256218],
+        [4.987, 5.003, 5.0135000000000005, 5.027, 5.04, 5.067, 5.1015, 5.148, 5.189, 5.2575, 5.3135, 5.398, 5.474, 5.5425],
+        [4.602024780271444, 4.6187198869813875, 4.629718645619198, 4.643773232216573, 4.657380041144617, 4.685557175507672, 4.72153847010783, 4.7700374592145485, 4.812733306093392, 4.884104078341128, 4.942333705964635, 5.0301454486854285, 5.108981768207502, 5.179927329187763],
+        [4.214099198922958, 4.23160687576995, 4.243182747836853, 4.257889083279031, 4.272199981679515, 4.301747685094711, 4.3394570679324795, 4.3902813742784055, 4.434955460768558, 4.509662316264015, 4.570488188195005, 4.662152821462407, 4.744293808848444, 4.818094018494472],
+        [3.819300942222694, 3.8377668881330176, 3.850017306954357, 3.8654955815427274, 3.8806312783824817, 3.9117890755327918, 3.9515314968571573, 4.005083879417671, 4.052083662011989, 4.130698168316006, 4.1945688528689145, 4.290746168577993, 4.376760049673051, 4.453908911385775],
+        [3.4113506426172826, 3.430967439602833, 3.444021507209905, 3.4604301903259804, 3.47655032164906, 3.509634385678847, 3.5518116251178284, 3.6086222554369853, 3.658403860934391, 3.741675406677063, 3.8091770367890425, 3.9107266814222887, 4.001350730058625, 4.082486677666569],
+        [2.978171456896738, 2.9992207649900977, 3.013267782816963, 3.0308381015556316, 3.0481763318336266, 3.0836486483053984, 3.1288468019493108, 3.1896886179725525, 3.242915437290336, 3.331933069585708, 3.403915002137705, 3.5120798823661197, 3.6083764646496164, 3.694416465468335],
+        [2.4918387769448387, 2.514809348361857, 2.5301785692651584, 2.5493109380303522, 2.5682730677964294, 2.6069347383417165, 2.6561686809730247, 2.7223795526143664, 2.7801975125052745, 2.8768414699223115, 2.9547666886412234, 3.0716840123736135, 3.1754750375371357, 3.2679876776793275],
+        [1.840912113328426, 1.867119998749461, 1.8846997378711277, 1.9064704319011356, 1.9281498784145914, 1.9721566333602416, 2.0281540262005917, 2.1033284976544624, 2.168811145301956, 2.2781225618712946, 2.3659059522566994, 2.497287224738395, 2.613431470525901, 2.7165918298179266],
+        [1.4564093608266764, 1.484994768228193, 1.5041880061475825, 1.5278991365118382, 1.5515626873430577, 1.5994758312194413, 1.6604141207104433, 1.7421143941130866, 1.8131739987248539, 1.9316606983809603, 2.0265715888747047, 2.1683721349409697, 2.293389550609769, 2.4041803044166836],
+        [1.150030927433098, 1.1808273837088774, 1.2015155338680834, 1.2270323658748763, 1.252534168075012, 1.3040678713250435, 1.3695831899741553, 1.4573144084995107, 1.533524477065779, 1.6604583220170017, 1.7619208760414085, 1.9132731714893658, 2.04640643978443, 2.1641633354948286],
         [1, 1.032, 1.0535, 1.08, 1.1065, 1.16, 1.228, 1.319, 1.3980000000000001, 1.5295, 1.6345, 1.791, 1.9285, 2.05],
       ],
     },
