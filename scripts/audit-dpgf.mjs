@@ -25,7 +25,7 @@ const ROOT = join(import.meta.dirname, "..");
 const LENS_DIR = join(ROOT, "src", "lens-data");
 const load = async (path) => import(pathToFileURL(join(ROOT, path)).href);
 
-const { resolveCompatibleGlass, evaluateSellmeier } = await load("src/optics/glassCatalog.ts");
+const { resolveCompatibleGlass, evaluateSellmeier, isDLineReference } = await load("src/optics/glassCatalog.ts");
 const { normalLinePgF } = await load("src/optics/chromatic.ts");
 
 const args = process.argv.slice(2);
@@ -52,7 +52,7 @@ function lensFiles(dir) {
 /** One row per element that carries `dPgF` and resolves to a d-line catalog glass. */
 function readElement(element) {
   if (typeof element.dPgF !== "number" || typeof element.vd !== "number") return null;
-  if (element.indexReference === "e" || !element.glass) return null;
+  if (!isDLineReference(element.indexReference) || !element.glass) return null;
   const entry = resolveCompatibleGlass(element.glass, element.nd, element.vd, element.indexReference);
   if (!entry) return null;
   const nC = evaluateSellmeier(entry, LINE_NM.C);
