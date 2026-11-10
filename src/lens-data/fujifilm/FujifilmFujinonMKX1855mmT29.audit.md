@@ -124,3 +124,64 @@ any printed station. Corner illumination, wide open at infinity, before → afte
 nodes no field loses light; the largest gain is 17.4 points.
 
 Open: C2 and L21 sit about 5–8 % inside their drawn outlines.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared: the live page (infinity, 0.85 m, the three printed stations, both movement overlays and all 22 inspector
+panels) against the Fig. 6 wide panel (PDF p. 7) read at 300, 600 and 1200 dpi on the semi-diameter pass's scale
+(5.719 px/mm at 300 dpi). An outline overlay of the final rims on the figure lines up at every vertex from S1 to S40.
+Rim heights are line centres of the drawn top and bottom edges; both sides agree within 0.2 mm.
+
+| Surface(s) | Before | After | Fig. 6 | Verdict |
+| --- | --- | --- | --- | --- |
+| 2 (L11 rear) | 23.8, no land | 23.8, `rimExtensionSd` 27.8 | cap ends at 24.2–24.3; vertical land out to the 28.8 edge | Land added: the site drew L11 as a pointed bevel from S1 (27.8) to S2 (23.8), the figure draws a square block. The land sits outside the clear aperture and costs no light; it stops at the S1 height, which stays the least raise for the printed field |
+| 3, 4 (L12) | 25.5 | 24.5 | 24.35 top, 24.57 bottom | Step order: the site drew L12 1.5 mm taller than L13 and L14, Fig. 6 draws it 0.8 mm lower. A cut of 1.0 against baseline; restoring it wins back 0.0 points |
+| 5, 6 (L13) | 24.0 | 25.3 | 25.22 top, 25.31 bottom | Same step; raised to the drawn height (edge 1.27 mm, as drawn) |
+| 7, 8 (L14) | 24.0 | 25.3 | 25.22 top, 25.44 bottom | Same step; L13 and L14 drawn at one height. D8 at 0.85 m (1.25 mm) still clears C1 by 6.4 mm at the rim |
+| 23 (L41 front) | 13.0, no land | 13.0, `rimExtensionSd` 14.5 | arc ends at about 13.0–13.5, steep land to the 14.5 edge | Land added: the site drew a slanted top from S23 (13.0) to S24 (14.5), the figure a square block |
+
+Not applied: Fig. 6 also draws L31 square (S16 at 15.8 with a land on S17's rim). A `rimExtensionSd` of 15.8 on S17 is
+refused at `gapSagFrac` 0.96 (the land intrudes 6.579 mm into the 6.718 mm gap 17→18, allowed 6.449 mm) and would need
+0.98; no ray needs it, so the slanted L31 top stays. Kept on re-measurement: S1 27.8 (28.8 drawn, 3.5 %), C1 24.0 (24.8
+front, 24.1 rear), L21 19.0 (20.0), C2 13.0 (14.1 front, 13.3 rear); the step order of each against its neighbours is as
+drawn.
+
+Lands and cuts against `.lens-work/base1120sd`: the C5 cut (36–38 at 12.0 against 13.5) and the L12 cut each win back
+0.0 points when restored; the S2 and S23 lands cost 0.0. Worst loss against the baseline rims is 0.0 points at every
+one of the 33 zoom nodes and at the zoom eighths; the largest gain is 19.3 points. Wide-open corner transmission at
+infinity, before this review → after: wide 38.4° 54.9 → 55.7 %, middle 20.2° 54.7 → 54.7 %, tele 13.9° 55.1 → 55.1 %.
+A finite-object trace at 0.85 m (full pupil, wide to tele) shows the corner unchanged or slightly better (wide +1.4
+points). The real-ray clearance trace at the 14.18 mm corner shows no axial clip and no blocked chief ray at any
+station (largest chief height at S3/S4 22.6/22.2 mm, axial marginal 12.3 mm). The surface validator reports no errors,
+the aperture audit has all 33 stations within 3 % with no rim limit, the image-circle audit finds nothing undersized and
+field coverage is 100 % at all 33 stations. Engine EFL 18.5916 mm, F/2.75, half-field 32.9557° and stop radius
+12.4747 mm are unchanged; one interpolated station's half-field (33.88 mm) moved 26.408° → 26.428°.
+
+Labels and tags found correct: element names L11–L59 are the patent's (¶0100–0101); every `type` agrees with the signs
+of R (L32 flat on its image side, L33 on its object side); every element has a focal length in the inspector; the stop
+sits between L41 and L51; no aspheres, none marked. Groups G1a 1–6, G1b 7–8 (focus), G1c 9–13, G2 14–15, G3 16–22, G4
+23–24 and G5 STO–40 match ¶0101 and the Fig. 6 movement brackets (G1b, G2, G3, G4); doublets C1–C5 bracket the cemented
+surfaces 10, 21, 29, 34 and 37. `apd: "inferred"` sits on the six νd 94.66 elements (L14, L21, L33, L41, L52, L57) and on
+L16 and L32, the eight Super ED / ED positions recorded in the deployment validation; the patent text names no special
+glass.
+
+Movement found correct. Zoom stations ascend 18.592 → 55.217 mm and every gap lists them in that order. Wide → tele, G2
+moves 19.13 mm toward the image (D13 1.726 → 20.857, monotonic), G3 36.41 mm (D13 + D15) and G4 24.21 mm (D24 25.173 →
+0.967, monotonic); G1 and G5 stay fixed, as Table 18 and the `mv=zoom` overlay show. Focus keyframe 0 is infinity and
+keyframe 1 focuses at 849.9–850.2 mm object to image at every station; only L14 moves, 5.35 mm toward the image (D6
+7.691 → 13.04, D8 6.601 → 1.25). The slider ends read 18.59 / 55.22 mm and ∞ / 85 cm.
+
+Glass: all 22 labels resolve to exact catalog rows (largest offsets Δnd −9.2e-6 on FD60, Δνd 0.01); none is unmatched,
+the patent prints nd and νd only, and no catalog-copied line indices are present. Colour against Fig. 18 (PDF p. 19,
+spherical-aberration panels read at 600 dpi, about 1.5 µm per pixel): C, d and F agree within the reading error at all
+three stations (wide full aperture C −117, d −114, F −102 µm against curves at −121 to −100 µm). The g line is short:
+at full aperture −178 µm wide and −109 µm middle, where the figure's curves reach no further than −121 and −51 µm;
+paraxially −22 and −75 µm against about −9 and −50 µm. At the tele end g agrees (−48 µm against about −59 µm). The
+exact-tie alternatives move g by at most 27 µm and none closes the gap at both ends (L13/L34 FD225, L53/L55 TAFD45, L51
+FDS90, L54 S-TIH6 or H-ZF7LA); only the lead flint PBH6 on L54 helps much, which does not fit a 2017 design. Labels
+kept. Distortion matches Fig. 18: −4.8 % at the wide corner, +3.6 % middle, +3.4 % tele. Assignee "Fujifilm
+Corporation" is the corpus spelling and matches the front page.
+
+Open: Fig. 6 draws L31 square; the S17 land needs `checks.gapSagFrac` 0.98 and is not applied.
+Open: the model's g-line focus at full aperture is 57–90 µm shorter than Fig. 18 at the wide and middle stations (C, d
+and F agree); probably the partial dispersions of the catalog rows rather than one label.

@@ -18,9 +18,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * T2.9 is the product's transmission rating.
  * Semi-diameters: measured from the wide panel of Fig. 6 (5.72 px/mm at 300 dpi, scale checked on vertex spacing
  * and surface arcs) and kept within edge-thickness and air-gap limits; not factory dimensions. S1 (27.8 mm) is set
- * so the wide-end chief ray to the printed 78.6° field clears it (Fig. 6 draws L11 to about 28.9 mm). L32 takes
- * its drawn 14.5 mm on both faces; its concave front face nests in L31's concave rear face across the 6.718 mm
- * gap 17→18 (0.32 mm apart at 14 mm, no crossing), which needs `checks.gapSagFrac` 0.96.
+ * so the wide-end chief ray to the printed 78.6° field clears it (Fig. 6 draws L11 to about 28.9 mm). Fig. 6 draws
+ * L11 and L41 square-edged: the S2 and S23 caps end at their `sd` and flat lands (`rimExtensionSd`) carry them out to
+ * the S1 and S24 rims. L12 (24.5 mm) is drawn lower than L13 and L14 (25.3 mm). L32 takes its drawn 14.5 mm on both
+ * faces; its concave front face nests in L31's concave rear face across the 6.718 mm gap 17→18 (0.32 mm apart at
+ * 14 mm, no crossing), which needs `checks.gapSagFrac` 0.96.
  * Glass names are catalog rows matching the printed nd/νd; they do not establish Fujifilm's supplier.
  */
 
@@ -347,43 +349,44 @@ const LENS_DATA = {
       R: 32.04995,
       d: 14.013,
       sd: 23.8,
+      rimExtensionSd: 27.8,
     },
     {
       label: "3",
       R: -169.85281,
       d: 1.7,
-      sd: 25.5,
+      sd: 24.5,
       medium: 2,
     },
     {
       label: "4",
       R: 98.50747,
       d: 10.073,
-      sd: 25.5,
+      sd: 24.5,
     },
     {
       label: "5",
       R: 64.5013,
       d: 3.696,
-      sd: 24.0,
+      sd: 25.3,
       medium: 3,
     },
     {
       label: "6",
       R: 117.95395,
-      sd: 24.0,
+      sd: 25.3,
     },
     {
       label: "7",
       R: -403.81604,
       d: 5.0,
-      sd: 24.0,
+      sd: 25.3,
       medium: 4,
     },
     {
       label: "8",
       R: -97.82956,
-      sd: 24.0,
+      sd: 25.3,
     },
     {
       label: "9",
@@ -479,6 +482,7 @@ const LENS_DATA = {
       R: -25.69507,
       d: 1.1,
       sd: 13.0,
+      rimExtensionSd: 14.5,
       medium: 13,
     },
     {
