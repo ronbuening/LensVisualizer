@@ -33,7 +33,7 @@ Focal lengths are thick-lens values for each element alone in air at the ×35 sc
 
 ### L1: Biconvex Positive
 
-nd = 1.72000, νd = 50.3. Glass: LAC10 (HOYA, legacy). f = +66.16 mm.
+nd = 1.72000, νd = 50.3. Glass: LAC10 (HOYA catalog equivalent; production supplier unspecified). f = +66.16 mm.
 
 The front element of the cemented doublet A. Its front surface is nearly flat; the cemented interface (rA2) is convex to the image and, with the small index step to L2, converging. The patent credits the converging cemented surface in Examples 3 and 4 with cancelling part of the distortion generated in A, which lets I_B's rear surface be less strongly curved and eases coma, spherical aberration and astigmatism at the larger aperture.
 
@@ -57,7 +57,7 @@ II_B, a weak meniscus convex to the object, the last element ahead of the stop. 
 
 ### L5: Biconcave Negative
 
-nd = 1.64770, νd = 33.9. Glass: SF2 (Schott). f = −28.45 mm.
+nd = 1.64770, νd = 33.9. Glass: SF2 (SCHOTT catalog equivalent; production supplier unspecified). f = −28.45 mm.
 
 III_B, the flint just behind the stop and the rear component's strongest negative element. It counters the Petzval contribution of the positive elements; because V_B is cemented, the patent notes that III_B need not use a very low Abbe number.
 
@@ -81,9 +81,9 @@ The positive rear element of V_B and the last element before the image. It share
 
 ## Glass Identification and Selection
 
-The table gives plain N and V without naming the line. The model treats them as nd and νd: the patent's aberration curves use the d line as reference with the g line beside it, and two of the six glass coordinates match d-line catalog rows exactly. L1 (1.7200 / 50.3) is the lanthanum crown LAC10 (HOYA, legacy; also Ohara S-LAL10 and Sumita K-LaK10), and L5 (1.6477 / 33.9) is the dense flint SF2 (Schott; also Ohara PBM22 and Hoya E-FD2). The production supplier is not known; the labels identify the catalog curves used for dispersion.
+The table gives plain N and V without naming the line. The model treats them as nd and νd: the patent's aberration curves use the d line as reference with the g line beside it, and two of the six glass coordinates match d-line catalog rows exactly. L1 (1.7200 / 50.3) is the lanthanum crown LAC10 (HOYA; also Ohara S-LAL10 and Sumita K-LaK10), and L5 (1.6477 / 33.9) is the dense flint SF2 (Schott; also Ohara PBM22 and Hoya E-FD2). The production supplier is not known; the labels identify the catalog curves used for dispersion.
 
-The other four coordinates have no exact catalog row. L3 and L4 (1.6775 / 55.4) sit 0.0004 below the LaK12-class 1.6779 / 55.3–55.5 rows, and L7 (1.7557 / 27.2) is near but not on the SF4-class 1.7552 / 27.5 rows; L2 (1.6176 / 52.7) and L6/L8 (1.7080 / 53.3) have no near neighbour. These elements keep `Unmatched` labels and use the engine's Abbe-number dispersion model, so the patent's g-line curves cannot be reproduced exactly. All glasses are conventional crowns and flints; the design makes no apochromatic claim.
+The other four coordinates have no exact catalog row. L3 and L4 (1.6775 / 55.4) sit 0.0004 below the LaK12-class 1.6779 / 55.3–55.5 rows, and L7 (1.7557 / 27.2) is near but not on the SF4-class 1.7552 / 27.5 rows; L2 (1.6176 / 52.7) and L6/L8 (1.7080 / 53.3) have no near neighbour. Three of the four recur in the patent's other examples (1.6775 / 55.4 in Example 1, 1.7080 / 53.3 and 1.7557 / 27.2 in Example 4), so they are probably real glasses of the period rather than fitted values; 1.6176 / 52.7 appears only in Example 3. These elements keep `Unmatched` labels and use the engine's Abbe-number dispersion model, so the patent's g-line curves cannot be reproduced exactly. Fig. 7 puts the paraxial g-line focus about 0.05 mm (0.0014f) in front of the d-line focus; the model puts it 0.083 mm in front. The catalog lanthanum crowns near these coordinates have lower g-line partial dispersion than the normal line the model assumes; with the nearest catalog curves on all six unmatched elements the figure would be 0.058 mm. All glasses are conventional crowns and flints; the design makes no apochromatic claim.
 
 ## Focus Mechanism
 

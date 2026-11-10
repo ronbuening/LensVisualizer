@@ -102,3 +102,71 @@ same order as Example 3. It shows no special-glass or aspherical elements. No ma
 
 Open: the land drawing is square, while Fig. 3 chamfers the L2 and L5 flanges. I_B is drawn 0.8 mm taller than
 Fig. 3 because of the light rule.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared the live page (infinity, the eight element inspectors, the group-movement overlay) with Fig. 3 (PDF page 8)
+re-rendered at its native 347 dpi and with the XG-7 brochure section. Heights are stroke centres measured from the
+local dash-dot axis, fitted through six points (it drops 26 px over 1560 px), at the 20.33 px/mm scale proved
+above; each reading is top / bottom, then the mean. Front doublet edge 20.14 / 19.95 (20.0); surface 3 cap end
+14.58 / 14.49 (14.5); I_B flat 15.18 / 15.13 (15.2); II_B flat tip 14.13 / 13.87 (14.0); III_B flange 14.18 / 13.77
+(14.0); IV_B 11.83 / 11.44 (11.6); V_B 11.83 / 11.39 (11.6).
+
+| Surface | Before (mm) | Fig. 3 (mm) | After (mm) | Evidence |
+|---|---|---|---|---|
+| 6, 7 (L4, II_B) | 15.0 | 14.0, flat tip | 14.2 | Fig. 3 draws II_B's tip level with III_B's flange; the live page showed L4 0.9 mm above L5's flange. The brochure section, scaled to the front doublet, also puts II_B near 13.7 mm, well below I_B. The f/1.8 marginal ray reaches 14.10 mm on surface 6, so 14.2 is the least move that keeps it. |
+
+Readings that change nothing: the surface 3 cap end reads 14.5 mm here, against the 15.2 mm recorded above; 15.2 is
+5 % above it, and lowering it would cost light, so it stays. L3 at 15.9 mm would sit
+exactly on the 3-point budget (3.0 points at 17.5°); 0.1 mm is inside the reading error, so 16.0 stays. The front
+doublet, the L5 flange land, the S8 / S9 caps (set by the marginal ray, above the drawn 11.7 mm) and IV_B / V_B
+(12 against 11.6, 3 %) agree.
+
+Lands and cuts, by `rimcost.mjs` (full-pupil lattice, wide open, infinity) against the rims before the semi-diameter
+pass:
+
+| Item | Baseline (mm) | Final (mm) | Fig. 3 | Points of light | Verdict |
+|---|---|---|---|---|---|
+| Surface 3 cap, land to 20.1 | 18 | 15.2 + 20.1 | cap 14.5, chamfered flange to 20.0 | a 16 mm cap would win 1.6 at 26.3°, where the lens is 7.2 above baseline; land 0.0 | keep: slight; land drawn |
+| Surfaces 4, 5 (I_B) | 17 | 16.0 | 15.2 | 2.4 at 17.5° | keep: slight |
+| Surfaces 6, 7 (II_B) | 15 | 14.2 | 14.0 | 0.0 at every field | keep: slight |
+| Surfaces 8, 9 lands to 14.1 | none | 12.6 / 11.4 + 14.1 | flange 14.0 | 0.0 | keep: drawn |
+
+The worst loss is still 2.4 points at 17.5°; transmission at 0 / 14.6 / 17.5 / 20.4 / 23.4 / 26.3 / 29.2 / 32.1° is
+100 / 97.5 / 92.9 / 87.1 / 80.4 / 70.3 / 58.4 / 44.1 %, unchanged by this review. EFL 35.0002 mm, F/1.8, stop
+semi-diameter 11.962 mm and engine half-field 35.499° (surface 3 limits it) are unchanged. `audit:surface` is OK;
+`audit:aperture` finds the axial beam within 3 % of F/1.8 with no rim limit; image circle 0 undersized; field
+coverage at least 99 %; the real-ray trace at 21.63 mm shows no axial clip or blocked chief ray.
+
+Labels and tags: the element types agree with the signs of R. The patent names components (A, I_B to V_B), not
+elements, so the names stay L1 to L8 and the roles carry the component names. C1 (surfaces 1 to 3) is component A
+and C2 (12 to 14) is V_B, the two cemented components of Example 3. No `apd` tags: the patent names no special glass
+and the brochure marks none. No aspheres. The stop sits between L4 and L5 at the Seidel-derived plane. No `groups`:
+the lens is static, the corpus's other static lenses author none, and the movement overlay then counts the six
+air-spaced groups. Every inspector showed "FL = —"; `focalLengthMm` now carries the thick-lens values the analysis
+quotes (+66.16, −25.31, +38.45, +88.08, −28.45, +60.28, −59.91, +33.78 mm).
+
+Movement: none is modeled, and none is printed. The patent tabulates only the infinity state; `focus.description`
+says so, the slider reads "Not modeled" and the overlay reports no focus or zoom movement.
+
+Glass: L1 "LAC10 (HOYA, legacy)" → "LAC10 (HOYA catalog equivalent; production supplier unspecified)", the same row
+(Δnd −0.0000017, Δνd +0.04); L5 "SF2 (Schott)" → "SF2 (SCHOTT catalog equivalent; production supplier
+unspecified)", the same row (Δnd −0.000011, Δνd −0.05). Both now use the corpus label form, since the patent names
+no supplier. Other rows inside the window (K-LaK10, J-LAK10, S-LAL10; E-FD2, PBM22, S-TIM22) are no more plausible
+for a 1967 Minolta design, so both keep their rows. The table (p. 4) prints
+only N and V: no line indices, glass names or partial dispersions. 1.6775 / 55.4 recurs in Example 1 (NA1 and NB2,
+pp. 2–3), 1.7080 / 53.3 and 1.7557 / 27.2 in Example 4 (NB5 / NB6 and NB4, p. 5); 1.6176 / 52.7 appears only in
+Example 3. Neither the repo catalog nor the Hoya (with obsolete), Ohara and Sumita AGF files has a row inside the
+window: the nearest are BACED1 1.61720 / 53.95, S-LAL12 / LAL12 1.67790 / 55.34, LAL8 1.71300 / 53.85 and K-SFLD4 /
+SF4 1.75520 / 27.50. No catalog-row proposal. No medium is constant or nd-only.
+
+Colour: Fig. 7 (p. 10) prints d and g spherical-aberration curves. At zero aperture the g curve sits 34 px left of
+d at 694 dpi (251 px per 0.01), −0.00135f or −0.047 mm at ×35. The model's paraxial g focus is −0.083 mm (C +0.071,
+F −0.087 mm). Giving the six unmatched elements the partial dispersions of their nearest catalog glasses (S-LAL12,
+S-LAL8, SF4, BACED1) gives −0.058 mm, so most of the excess comes from the normal-line partial dispersion the
+Abbe-number model assigns.
+
+Assignee: "Minolta Camera Co., Ltd." matches the front page (ミノルタカメラ株式会社) and the corpus spelling.
+
+Open: the model's paraxial g-line focus lies 0.036 mm short of Fig. 7's, from the Abbe-number dispersion of the four
+uncatalogued coordinates.

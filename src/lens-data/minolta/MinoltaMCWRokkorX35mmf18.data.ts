@@ -12,8 +12,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * surface 1 to 14 vertex span), and floor-checked by real-ray trace. The front doublet's faces reach the
  * drawn 20.1 mm edge; surface 3's concave cap ends at 15.2 mm and a land draws L2's chamfered flange to
  * 20.1 mm. L3 sits at 16.0 mm (Fig. 3: 15.2 mm) to keep mid-field illumination within 3 points of the
- * earlier rims. Surfaces 8 and 9 (12.6 / 11.4 mm) pass the real f/1.8 marginal ray the patent's spherical
- * aberration plot reaches; lands draw the biconcave L5's flange at Fig. 3's 14.1 mm.
+ * earlier rims. L4 sits at 14.2 mm, level with L5's flange as Fig. 3 draws it (14.0 mm) and just above the
+ * 14.10 mm the f/1.8 marginal ray reaches on surface 6. Surfaces 8 and 9 (12.6 / 11.4 mm) pass the real f/1.8
+ * marginal ray the patent's spherical aberration plot reaches; lands draw the biconcave L5's flange at Fig. 3's
+ * 14.1 mm.
  * The last gap is the printed back focus (1.05 × 35 = 36.75 mm), kept as printed rather than fitted to
  * the paraxial back focus (36.7524 mm). Infinity focus only; the correlation with the production lens
  * is at design-family level, not a factory prescription.
@@ -63,7 +65,8 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.3,
       indexReference: "d",
-      glass: "LAC10 (HOYA, legacy)",
+      focalLengthMm: 66.16,
+      glass: "LAC10 (HOYA catalog equivalent; production supplier unspecified)",
       cemented: "C1",
     },
     {
@@ -75,6 +78,7 @@ const LENS_DATA = {
       nd: 1.6176,
       vd: 52.7,
       indexReference: "d",
+      focalLengthMm: -25.31,
       glass: "Unmatched (nd 1.6176, νd 52.7 as printed; no exact catalog row)",
       cemented: "C1",
     },
@@ -87,6 +91,7 @@ const LENS_DATA = {
       nd: 1.6775,
       vd: 55.4,
       indexReference: "d",
+      focalLengthMm: 38.45,
       glass: "Unmatched (nd 1.6775, νd 55.4 as printed; no exact catalog row)",
     },
     {
@@ -98,6 +103,7 @@ const LENS_DATA = {
       nd: 1.6775,
       vd: 55.4,
       indexReference: "d",
+      focalLengthMm: 88.08,
       glass: "Unmatched (nd 1.6775, νd 55.4 as printed; no exact catalog row)",
     },
     {
@@ -109,7 +115,8 @@ const LENS_DATA = {
       nd: 1.6477,
       vd: 33.9,
       indexReference: "d",
-      glass: "SF2 (Schott)",
+      focalLengthMm: -28.45,
+      glass: "SF2 (SCHOTT catalog equivalent; production supplier unspecified)",
     },
     {
       id: 6,
@@ -120,6 +127,7 @@ const LENS_DATA = {
       nd: 1.708,
       vd: 53.3,
       indexReference: "d",
+      focalLengthMm: 60.28,
       glass: "Unmatched (nd 1.7080, νd 53.3 as printed; no exact catalog row)",
     },
     {
@@ -131,6 +139,7 @@ const LENS_DATA = {
       nd: 1.7557,
       vd: 27.2,
       indexReference: "d",
+      focalLengthMm: -59.91,
       glass: "Unmatched (nd 1.7557, νd 27.2 as printed; no exact catalog row)",
       cemented: "C2",
     },
@@ -143,6 +152,7 @@ const LENS_DATA = {
       nd: 1.708,
       vd: 53.3,
       indexReference: "d",
+      focalLengthMm: 33.78,
       glass: "Unmatched (nd 1.7080, νd 53.3 as printed; no exact catalog row)",
       cemented: "C2",
     },
@@ -186,14 +196,14 @@ const LENS_DATA = {
       label: "6",
       R: 27.0235,
       d: 2.9295,
-      sd: 15,
+      sd: 14.2,
       medium: 4,
     },
     {
       label: "7",
       R: 47.2255,
       d: 4.0033,
-      sd: 15,
+      sd: 14.2,
     },
     {
       label: "STO",
