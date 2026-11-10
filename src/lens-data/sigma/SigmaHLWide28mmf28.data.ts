@@ -9,7 +9,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * back focus or object distance is printed: the lengths are read as millimetres at infinity, where the table traces
  * to f = 28.34 mm. The last gap, 38.851 mm, is the paraxial back focus of the printed table, not a printed value.
  * Row 9 (r = ∞, 2.00 mm on either side) is the aperture stop, 28.60 mm behind surface 1; the engine sets its radius
- * from F2.8. Semi-diameters are not printed: they are estimates sized to the Figure 1 envelope.
+ * from F2.8. Semi-diameters are not printed. They are read from Fig. 1 (printed page 76) at its axial scale of
+ * 15.73 px/mm at the 347 dpi scan, set by the vertex spacing, and checked by real-ray trace. Surfaces 4 and 5 stop at
+ * 12.3 mm, where L2 and L3 nearly meet as drawn; surface 6 ends at its drawn 10.9 mm with a flat land out to 12.3 mm.
+ * The cemented doublet is drawn square at 10.0 mm, and surface 12 ends at 9.5 mm where L6 meets L7; that needs
+ * checks.gapSagFrac 0.95, since the 12/13 faces close 0.943 of their 2.11 mm gap there without crossing.
  * Glass labels are HOYA catalog rows that reproduce the printed nd/νd; Sigma's supplier is not known.
  * Infinity focus only; Sigma's 0.22 m minimum focus distance is catalog data, not modeled focus travel.
  */
@@ -181,20 +185,21 @@ const LENS_DATA = {
       label: "4",
       R: 14,
       d: 4.56,
-      sd: 11.5,
+      sd: 12.3,
     },
     {
       label: "5",
       R: 26,
       d: 1.07,
-      sd: 11.5,
+      sd: 12.3,
       medium: 3,
     },
     {
       label: "6",
       R: 16,
       d: 9.22,
-      sd: 12.5,
+      sd: 10.9,
+      rimExtensionSd: 12.3,
     },
     {
       label: "7",
@@ -218,21 +223,21 @@ const LENS_DATA = {
       label: "10",
       R: 94.78,
       d: 7.61,
-      sd: 8.5,
+      sd: 10,
       medium: 5,
     },
     {
       label: "11",
       R: -15.34,
       d: 2.5,
-      sd: 8.5,
+      sd: 10,
       medium: 6,
     },
     {
       label: "12",
       R: 35.28,
       d: 2.11,
-      sd: 8.5,
+      sd: 9.5,
     },
     {
       label: "13",
@@ -267,6 +272,9 @@ const LENS_DATA = {
       "Infinity focus only; the patent prints no close-focus spacings, so no focus movement is modeled. Sigma's 0.22 m minimum focus distance (1:4.5) is catalog data.",
   },
   gaps: {},
+  checks: {
+    gapSagFrac: 0.95,
+  },
   aperture: {
     nominalFNumber: 2.8,
     fStops: [2.8, 4, 5.6, 8, 11, 16, 22],

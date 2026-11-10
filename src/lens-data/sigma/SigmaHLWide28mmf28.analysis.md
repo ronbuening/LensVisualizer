@@ -75,7 +75,7 @@ The patent tabulates the infinity state only and describes no focusing method, s
 
 ## Model Scope and Limitations
 
-Semi-diameters and the diaphragm diameter are not printed. Figure 1 shows a broad L1, the two front menisci meeting near their rims, a narrower stop region and a widening rear group; the model's semi-diameters are estimates sized to that envelope and kept clear of the air gaps. The stop radius (6.90 mm) follows from F2.8. Fig. 1 draws the cemented doublet somewhat larger than its modeled 8.5 mm semi-diameter, so the model may clip oblique light at the doublet that the patent design passes. The corner illumination shown by the model is therefore not a measurement of the patent's 95 % aperture efficiency.
+Semi-diameters and the diaphragm diameter are not printed. The model's semi-diameters are read from Fig. 1 at its axial scale and checked by real-ray trace: L2 and L3 nearly meet at a 12.3 mm rim as drawn, L3's rear face ends at 10.9 mm with a flat land out to that rim, the cemented doublet is square at 10.0 mm, and L6's rear face ends at 9.5 mm where it meets L7. L6's wider drawn flange is not modeled. Fig. 1 draws the strongly curved faces flatter than their printed radii, so where its rim contacts would make the faces cross, the model follows the prescription. The stop radius (6.90 mm) follows from F2.8. Through these rims the model passes about 88 % of the axial geometric transmission at the 37.8° format corner; that is a ray count through estimated rims, not a reproduction of the patent's 95 % aperture-efficiency figure.
 
 ## Sources
 

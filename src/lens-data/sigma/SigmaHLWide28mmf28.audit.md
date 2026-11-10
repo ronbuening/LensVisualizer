@@ -51,7 +51,8 @@ Deployment change: `fStops` extended to f/22 (booklet minimum aperture).
 
 Open: `lensMounts` (the booklet lists mounts for the whole line, not per lens); the cemented pair is drawn about
 9.8–11.8 mm in Fig. 1 against 8.5 in the file; key, name, subtitle, specs, focus text and prose wording (key and
-name closed at integration; the wording items are closed in the cleanup pass below).
+name closed at integration; the wording items are closed in the cleanup pass below; the cemented-pair rim is closed
+in the semi-diameter pass below).
 
 ## 2026-11-10 — Cleanup and wording pass
 
@@ -90,4 +91,52 @@ cemented doublet at about 9.8 mm (front) to 11.8 mm (L6 outer) against 8.5 mm in
 37.6° shows side clipping at surfaces 11 (11 %) and 12 (32 %); surface 12 can open only to about 9.1 mm before
 reaching the 90 % gap budget against surface 13 (the two surfaces meet at about 9.75 mm). G2/G3 rims (11.5 mm)
 are conservative against the figure's contact near 12.5 mm. At 37.6° the lower rim ray cannot pass R4 even with
-unlimited rims, so part of the corner vignetting is intrinsic to the printed design.
+unlimited rims, so part of the corner vignetting is intrinsic to the printed design. (Rim pass closed in the
+semi-diameter pass below; `lensMounts` stays open.)
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: JP S60-181715 A, Fig. 1 (Example 1), printed page 76 (PDF page 4), a 347 ppi CCITT scan measured at native
+resolution. The optical axis runs vertically on the page at x = 882 px, object at the bottom. Silhouettes were read on
+the right-hand (G-label) side, where only short horizontal leaders touch the rims; the left side carries the curved
+Y-label leaders. Axial scale: the drawn vertices sit at y = 1449 (surface 1), 1407 (2), 1388 (4), 1317 (5), 1299
+(6), 1153 (7), 1028 (8), 965 (10), 848 (11), 805 (12), 771 (13), 730 (14), 723 (15) and 685 px (16). Surface 1 to
+surface 7 gives 295 px / 18.75 mm and surface 7 to surface 16 gives 469 px / 29.82 mm, both 15.73 px/mm; every vertex
+lies within 5 px (0.3 mm) of that line. Laterally, the weakly curved faces confirm the same scale: S16's curve meets G8's edge
+at 202 px, z = 1.53 mm from its vertex, where R = −54.91 mm gives 12.86 mm (202 px / 15.73 = 12.84 mm), and S1 agrees
+likewise. The strongly curved faces (R4, R5, R6, R11, R12, R13, R14) are drawn flatter than their printed radii: arc
+fits through them give 16.5–18 px/mm, so their drawn contact points sit about 8 % farther out than the prescription
+allows. Rim heights below are therefore read at 15.73 px/mm, and where a drawn contact would make the faces cross,
+the value is capped at the prescription's geometry.
+
+| Surface | Before | After | Figure (15.73 px/mm) | Evidence |
+|---|---|---|---|---|
+| 1, 2 (L1) | 20 | 20 | 20.5 | within noise, kept |
+| 3 (L2 front) | 17 | 17 | 17.3 (outer flat) | within noise, kept |
+| 4 (L2 rear) | 11.5 | 12.3 | drawn meeting L3 at 13.2 | the faces cross at 12.55 mm; 12.3 is the largest rim under the cross-gap limit (S4/S5 close 0.925 of their 4.56 mm gap) |
+| 5 (L3 front) | 11.5 | 12.3 | drawn meeting L2 at 13.2 | as surface 4 |
+| 6 (L3 rear) | 12.5 | 10.9, `rimExtensionSd` 12.3 | curve ends at 171 px = 10.9 mm, flat top out to the edge | the old 12.5 mm rim ran 2.4 mm deeper toward the stop than the drawn element; the land keeps L3 square at 12.3 mm |
+| 7, 8 (L4) | 9 | 9 | 9.35 | within noise, kept |
+| 10, 11 (L5) | 8.5 | 10.0 | square outer edge 158 px = 10.0 mm | +18 %; the junction meets L5's edge there |
+| 12 (L6 rear) | 8.5 | 9.5 | meets L7 at 167 px; prescription contact at 9.75 mm, at the drawn z = 42.1 mm | needs `checks.gapSagFrac` 0.95 (the 12/13 faces close 0.943 of their 2.11 mm gap at 9.5 mm without crossing) |
+| 13, 14 (L7) | 11 | 11 | 11.3 | within noise, kept |
+| 15, 16 (L8) | 13 | 13 | 12.9 | within noise, kept |
+
+L6's drawn outer flange (about 12.2 mm, with bevels) lies outside both of its optical faces. It is not modeled: a
+land on the cemented face is not allowed, and one on surface 12 would run into L7's front face.
+
+Clearance and light, wide open at infinity. `clearap` at Y = 21.63 mm (ω = 37.74°) shows no CLIPS-AXIAL or
+BLOCKS-CHIEF; surface 12 still trims 17 % of one side of the full-field bundle (33 % before), set by the L6/L7 contact.
+The engine's geometric transmission at the 37.8° format corner rises from 68.5 % to 88.4 % (34.9°: 81.3 → 94.7 %;
+32.0°: 90.5 → 98.6 %), and no field loses light. The surface-6 cut costs nothing: restoring 12.5 mm wins back
+0.0 points at every field (`rimcost --loo`). Engine EFL 28.3377 mm, f/2.8 and stop radius 6.8958 mm are unchanged;
+the engine half-field estimate grows from 38.33° to 40.22° because surface 4 no longer limits it. Surface audit OK,
+aperture audit within 3 % of F2.8 with no rim limit, image-circle 0 undersized, field coverage 100 % (37.8° to
+21.65 mm), as before.
+
+Maker diagram: none is public (the deployment validation found no Sigma construction diagram; the booklet gives
+8 elements in 7 groups and no special-glass elements). Fig. 1 governs. Overlay of the model on the figure at matched
+scale: `overlay.png` in the pass's scratch folder (not in the repo).
+
+Open: Fig. 1's strongly curved faces and drawn contacts are not geometrically exact, so the L2/L3 and L6/L7 rims
+follow the prescription's contact limits rather than the drawn pixel heights.
