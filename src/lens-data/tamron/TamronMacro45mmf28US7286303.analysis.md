@@ -116,7 +116,7 @@ The example reproduces the printed focal length, back focus and 1:1 state, so th
 
 The model's infinity EFL is 45.300 mm. Its paraxial focus lies 0.0004 mm behind the printed image plane; no radius, thickness or index has been adjusted to remove the difference.
 
-The patent prints no rim or iris diameters. All semi-diameters are estimates, not measured rims, and the stop radius follows from F2.8. At infinity the iris, not a rim, sets the F2.8 beam. At the 21.633 mm image height, a calculated 26.0° field angle (the patent prints none), the corner bundle is partly vignetted by the estimated rims. F2.8 is the infinity aperture; the patent prints no effective f-number for the 1:1 state.
+The patent prints no rim or iris diameters. All semi-diameters are estimated from Fig. 1 and clear the F2.8 axial beam at infinity and at 1:1; they are not measured rims, and the stop radius follows from F2.8. L3 is kept about 0.6 mm larger than drawn, since the drawn rim would cut noticeably more off-axis light. Fig. 1 draws L5's concave front face ending at about 7.6 mm, inside a flat land beside the stop, and the model draws the same land. At infinity the iris, not a rim, sets the F2.8 beam. At the 21.633 mm image height, a calculated 26.0° field angle (the patent prints none), the corner bundle is partly vignetted by the estimated rims. F2.8 is the infinity aperture; the patent prints no effective f-number for the 1:1 state.
 
 Finite-distance MTF is not offered at the 1:1 state, because the patent prints a magnification rather than an object distance.
 

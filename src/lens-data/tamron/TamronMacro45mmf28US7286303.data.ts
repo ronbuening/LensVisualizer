@@ -15,7 +15,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Glass: printed nd/νd. The catalog labels are exact HOYA rows, whose νd rounds to every printed value; the
  * production supplier is not known.
- * Semi-diameters are not printed: they are estimated, not measured rims. The stop radius follows from F/2.8.
+ * Semi-diameters are not printed: they are estimated from Fig. 1 (to scale, 18.1 px/mm at 300 dpi from the vertex
+ * spacing), not measured rims, and floor-checked by real-ray trace at infinity and 1:1. Surface 9 (L4's rear) and the
+ * cap of surface 11 follow the drawing; surface 11 carries the drawn flat land beside the stop as rimExtensionSd. L3 is drawn
+ * at 8.7 mm but kept at 9.3 mm, because a smaller rim would cut more than 3 points of off-axis illumination; surface 8
+ * and the surface 11 land match it, as the drawing shows those three heights equal. The stop radius follows from F/2.8.
  *
  * Source inconsistencies, none affecting the table: claim 1 of the grant calls the first element's object-side face
  * concave (the table, description, Fig. 1 and the application's claim give convex); the grant prints the
@@ -185,27 +189,27 @@ const LENS_DATA = {
       label: "6",
       R: 20.4157,
       d: 3.5,
-      sd: 10.5,
+      sd: 9.3,
       medium: 3,
     },
     {
       label: "7",
       R: -304.9499,
       d: 1,
-      sd: 10.5,
+      sd: 9.3,
     },
     {
       label: "8",
       R: 200,
       d: 1.5,
-      sd: 9.5,
+      sd: 9.3,
       medium: 4,
     },
     {
       label: "9",
       R: 16.6496,
       d: 4,
-      sd: 9.5,
+      sd: 7.9,
     },
     {
       label: "STO",
@@ -216,7 +220,8 @@ const LENS_DATA = {
       label: "11",
       R: -14.6537,
       d: 2,
-      sd: 9.5,
+      sd: 7.6,
+      rimExtensionSd: 9.3,
       medium: 5,
     },
     {

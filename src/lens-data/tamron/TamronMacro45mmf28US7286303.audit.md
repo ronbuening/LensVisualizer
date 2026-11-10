@@ -45,7 +45,7 @@ PC-E 45 and others rejected on focal length, layout or focusing), so it stays a 
 
 Applied: none.
 
-Open: rims at S6–S8, S9 and S11 are 1–2 mm larger than Fig. 1 (≈8.6 / 7.9 / 7.6 still pass the f/2.8 beam); all seven glass
+Open: rims at S6–S8, S9 and S11 are 1–2 mm larger than Fig. 1 (≈8.6 / 7.9 / 7.6 still pass the f/2.8 beam) (rims closed 2026-11-10 in the semi-diameter pass); all seven glass
 pairs match catalog rows exactly but are labelled `Unmatched`; the patent's own conditions (2) and (3) are not met by its
 example (patent inconsistency, not a transcription error); public wording and package-process prose need a cleanup pass.
 
@@ -82,7 +82,49 @@ BFD 42.6054 at infinity; close keyframe EFL 44.3085, magnification −1.0000, ob
 aperture audit reports no rim-limited station.
 
 Open: rims at S6–S8 (10.5 / 10.5 / 9.5 mm against ≈ 8.6 mm in Fig. 1), S9 (9.5 against ≈ 7.9) and S11 (9.5 against
-≈ 7.6); the drawn values still pass the f/2.8 axial beam but add corner vignetting, for the rim pass. No mount or
+≈ 7.6); the drawn values still pass the f/2.8 axial beam but add corner vignetting, for the rim pass (closed 2026-11-10 in
+the semi-diameter pass below). No mount or
 marketed close-focus value, since no retail lens is identified; the default 135 full-frame format matches the printed
 21.633 mm image height. The 1:1 state could carry a `focus.conjugates` entry (its object distance follows from the
 printed magnification), which would enable finite-distance MTF; not added in this pass.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: `patents/US7286303B2.pdf`, page 1, Fig. 1 (the sole example, infinity state), measured at its native 300 dpi.
+Scale from the vertex crossings on the axis: surface 2 to surface 19 is 700 px for 38.669 mm (18.10 px/mm), and
+surface 2 to the image-plane mark is 1470 px for 81.274 mm (18.09 px/mm). Surfaces 6, 9, 11, 13 and 16 land within
+2 px of their prescription positions. The vertical scale was checked against the drawn edge sags of surfaces 2 and 16
+(within 3 px) and the stop tick, whose inner end reads 7.07 mm against the engine's 7.16 mm. Rims are the mean of the
+upper and lower silhouettes (they differ by 3–4 px, an axis offset), and optical extents are read where each curve
+meets its flat or step.
+
+| Surface | Before | Fig. 1 | After | Evidence |
+|---|---|---|---|---|
+| 2 / 3 / 4 / 5 | 12 / 10.179 / 10.179 / 11 | 11.7 / contact ≈ 10.6 / contact / 11.4 | unchanged | within 5 %; 3 and 4 meet at the rim in the drawing and sit at the cross-gap limit |
+| 6 / 7 (L3) | 10.5 / 10.5 | 8.7 / 8.7, square | 9.3 / 9.3 | figure 8.7; raised to 9.3 by the light rule (below) |
+| 8 (L4 front) | 9.5 | 8.7 | 9.3 | drawn level with L3; follows L3's light-driven height |
+| 9 (L4 rear) | 9.5 | 7.9 (curve ends at the stepped flange) | 7.9 | figure |
+| 11 (L5 front) | 9.5 | cap 7.6, flat land to 8.7 | 7.6, `rimExtensionSd` 9.3 | figure cap; land level with L3/L4 as drawn |
+| 12 / 13 (L5–L6) | 10.5 / 10.5 | 10.1 / 10.0 | unchanged | within 5 % |
+| 14 / 15 (L7) | 11.5 / 11.5 | 10.8 | unchanged | 6 %, inside noise |
+| 16 / 17 (L8) | 13 / 12.318 | 12.5 / ≈ 11.5 with a land | unchanged | 4 % / 7 %, inside noise; 17 sits at the cross-gap limit with 18 |
+| 18 / 19 (L9) | 12.318 / 13 | 12.5 / 12.5 | unchanged | within 4 % |
+
+Light (app vignetting lattice, wide open, against the rims before this pass): the full figure set (L3 and L4 at
+8.7, surface 9 at 7.9, surface 11 at 7.6) cost 8.1 points at 14.5° at infinity, almost all of it from L3 (7.4 points
+won back by restoring it; L4 0.0, surface 11 0.7). L3 at 9.2 still cost 3.2 points; 9.3 costs 2.3. Final set,
+infinity, fields 0 / 11.6 / 14.5 / 20.2 / 26.0°: 100 / 98.1 / 94.7 / 81.2 / 59.4 % (before 100 / 100 / 97.0 / 81.8 /
+59.5); worst loss 2.3 points at 14.5°. At 1:1 (focus keyframe 1, the app's finite-conjugate pupil and field geometry),
+fields 0 / 10.6 / 13.2 / 15.8°: 100 / 99.0 / 96.3 / 92.7 % (before 100 / 100 / 98.6 / 94.4); worst loss 2.3 points at
+13.2°. Restoring surfaces 8/9 wins back 0.0 points and the surface 11 cap 0.7 (infinity) / 0.4 (1:1).
+
+Clearance: the F/2.8 axial marginal ray at infinity reaches 8.20 / 7.98 / 7.66 / 7.15 / 7.19 mm at surfaces 6 / 7 / 8 /
+9 / 11, and from the 1:1 object (60.806 mm ahead of surface 2, exact trace to the 7.164 mm stop rim) 7.39 / 7.26 /
+7.10 / 6.83 / 7.42 mm, so surface 11 keeps 0.18 mm at 1:1. Behind the doublet the 1:1 beam is wider than at infinity
+(9.46 / 9.82 / 9.93 mm at surfaces 13 / 14 / 15, against rims of 10.5 / 11.5 / 11.5). Chief rays to the 21.633 mm
+image height stay below 4.8 mm on every changed surface at both states. No clip or chief-ray block at either state;
+the surface audit is clean, the aperture audit reports no rim-limited station, field coverage stays 100 % (26.0° to
+21.63 mm, clear), the image circle reports none undersized, and the engine half-field (35.866°), f-number (2.8) and
+stop radius (7.1644 mm) are unchanged.
+
+Open: none for the rims. The live page check of the surface 11 land and the L4 step is left to the coordinator.
