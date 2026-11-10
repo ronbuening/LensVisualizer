@@ -1,15 +1,31 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** QUALIFIED SOURCE REPRESENTATIVE; integration evidence is supplied separately.
- * Whole source rows, no source optical retuning. Rims are figure-guided hypotheses.
- * Primary iris row15 and fixed aperture row21 retained. Fixed-aperture radius inferred.
+/**
+ * SIGMA APO MACRO 180mm f/3.5 EX DG HSM: JP 2001-033704 A, Example 1 (実施例1).
+ * Numerical table on PDF p. 4 (printed p. 3); Fig. 1 section on PDF p. 7.
+ * Thirteen elements in ten groups, in four lens groups (positive, negative, positive, negative);
+ * all spherical; no camera-side plate. The patent's L1-L4 are its lens groups, shown here as
+ * G1-G4; element names L1-L13 are sequential model labels. C1-C3 are the cemented pairs
+ * (S5-S7, S12-S14, S18-S20).
+ * Every source row is kept as printed and unscaled (f = 178.6538 mm, F 3.6069, BF 54.1414 mm);
+ * no value is re-optimized.
+ * Source row 15 (開口絞り, aperture stop) is the iris, STO; its radius is derived from the design
+ * F 3.6069. Row 21 (固定絞り, fixed stop) is kept at its printed position as the flat FS21; its
+ * 20 mm radius is inferred and does not limit the in-format beam.
+ * Semi-diameters are inferred from Fig. 1 and checked for edge thickness and gap clearance; the
+ * patent prints no clear apertures.
+ * nd/νd are the patent's ND/Vd (¶0019, d-line). Glass labels name the HOYA rows that match them
+ * exactly; they do not assert the production supplier.
+ * Infinity focus only. The patent also prints 0.5× and 1:1 spacings (D9, D14, D15, D20), which are
+ * not modelled. As printed, their paraxial images lie 0.419 and 0.409 mm behind the printed BF,
+ * and the vertex track grows by 0.0165 and 0.1151 mm.
  */
 const LENS_DATA = {
   schema: 2,
   key: "sigma-apo-macro-180mm-f35-ex-dg-hsm",
   maker: "Sigma",
   name: "SIGMA APO MACRO 180mm f/3.5 EX DG HSM",
-  subtitle: "JP2001033704A WHOLE EXAMPLE 1 — QUALIFIED SOURCE REPRESENTATIVE",
+  subtitle: "JP 2001-033704 A, Example 1 — construction-based production correlation",
   visible: true,
   layout: {
     yScFill: 0.35,
@@ -19,10 +35,10 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     elementCount: 13,
     groupCount: 10,
-    specs: ["13 ELEMENTS / 10 GROUPS", "INFINITY-ONLY SOURCE MODEL", "FACTORY IDENTITY NOT ESTABLISHED"],
+    specs: ["13 ELEMENTS / 10 GROUPS", "DESIGN f = 178.65 mm", "DESIGN F/3.61", "ALL SPHERICAL"],
     focalLengthMm: {
       marketing: 180,
-      design: 178.65381528674706,
+      design: 178.6538,
     },
     fNumber: {
       marketing: 3.5,
@@ -46,177 +62,170 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Glass element 1",
+      label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.4,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "FC5 equivalent (HOYA)",
       focalLengthMm: 323.91282815323757,
+      role: "Weak positive front element of the fixed first group G1.",
     },
     {
       id: 2,
       name: "L2",
-      label: "Glass element 2",
+      label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.6,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "FCD1 equivalent (HOYA)",
       focalLengthMm: 180.21328163828932,
+      apd: "inferred",
+      apdNote:
+        "The patent's 1.49700 / 81.6 coordinates correspond to an FCD1-class extra-low-dispersion glass, and Sigma's catalogue drawing marks this element as SLD; the patent does not designate it.",
+      role: "Low-dispersion positive meniscus of the fixed first group G1.",
     },
     {
       id: 3,
       name: "L3",
-      label: "Glass element 3",
+      label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.834,
       vd: 37.3,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "NBFD10 equivalent (HOYA)",
       focalLengthMm: -80.4039706755076,
-      cemented: "D1",
+      role: "Negative front element of the cemented doublet C1 in the fixed first group G1.",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "Glass element 4",
+      label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.6,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "FCD1 equivalent (HOYA)",
       focalLengthMm: 85.29359532300012,
-      cemented: "D1",
+      apd: "inferred",
+      apdNote:
+        "The patent's 1.49700 / 81.6 coordinates correspond to an FCD1-class extra-low-dispersion glass, and Sigma's catalogue drawing marks this element as SLD; the patent does not designate it.",
+      role: "Low-dispersion positive rear element of the cemented doublet C1 in the fixed first group G1.",
+      cemented: "C1",
     },
     {
       id: 5,
       name: "L5",
-      label: "Glass element 5",
+      label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.4,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "FC5 equivalent (HOYA)",
       focalLengthMm: 207.15004616098673,
+      role: "Positive rear meniscus of the fixed first group G1.",
     },
     {
       id: 6,
       name: "L6",
-      label: "Glass element 6",
+      label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "TAF1 equivalent (HOYA)",
       focalLengthMm: -63.65395946135009,
+      role: "Negative front element of the focusing group G2, which moves toward the image for close focus.",
     },
     {
       id: 7,
       name: "L7",
-      label: "Glass element 7",
+      label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "TAF1 equivalent (HOYA)",
       focalLengthMm: -53.60186906559163,
-      cemented: "D2",
+      role: "Negative front element of the cemented doublet C2 in the focusing group G2.",
+      cemented: "C2",
     },
     {
       id: 8,
       name: "L8",
-      label: "Glass element 8",
+      label: "Element 8",
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.8,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "FDS90 equivalent (HOYA)",
       focalLengthMm: 65.57100250081558,
-      cemented: "D2",
+      role: "Dense-flint positive rear element of the cemented doublet C2; achromatizes the focusing group G2.",
+      cemented: "C2",
     },
     {
       id: 9,
       name: "L9",
-      label: "Glass element 9",
+      label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.60311,
       vd: 60.7,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "BACD14 equivalent (HOYA)",
       focalLengthMm: 84.3235574664103,
+      role: "Positive front element of the focusing group G3, which moves toward the object for close focus.",
     },
     {
       id: 10,
       name: "L10",
-      label: "Glass element 10",
+      label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.60311,
       vd: 60.7,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "BACD14 equivalent (HOYA)",
       focalLengthMm: 69.13856872957774,
-      cemented: "D3",
+      role: "Positive front element of the cemented doublet C3 in the focusing group G3.",
+      cemented: "C3",
     },
     {
       id: 11,
       name: "L11",
-      label: "Glass element 11",
+      label: "Element 11",
       type: "Negative Meniscus",
       nd: 1.72825,
       vd: 28.3,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "E-FD10 equivalent (HOYA)",
       focalLengthMm: -104.39965748798552,
-      cemented: "D3",
+      role: "Flint negative rear element of the cemented doublet C3; achromatizes the focusing group G3.",
+      cemented: "C3",
     },
     {
       id: 12,
       name: "L12",
-      label: "Glass element 12",
+      label: "Element 12",
       type: "Biconcave Negative",
       nd: 1.5168,
       vd: 64.2,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "BSC7 equivalent (HOYA)",
       focalLengthMm: -145.12062316219308,
+      role: "Negative front element of the fixed rear group G4.",
     },
     {
       id: 13,
       name: "L13",
-      label: "Glass element 13",
+      label: "Element 13",
       type: "Negative Meniscus",
       nd: 1.5168,
       vd: 64.2,
       indexReference: "d",
-      indexReferenceNote:
-        "Assumed d convention for literal ND/Vd; numerical reference wavelength not established by primary source.",
-      glass: "Unmatched (literal source n/v; catalog identity unproved)",
+      glass: "BSC7 equivalent (HOYA)",
       focalLengthMm: -153.2566129225573,
+      role: "Negative rear meniscus of the fixed rear group G4.",
     },
   ],
   surfaces: [
@@ -384,15 +393,28 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000.0,
+    closeFocusM: 1e15,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: infinity-only representative. The required 1e9 m scalar is an unvalidated infinity sentinel, not a finite endpoint. Slider/fallback labels do not describe recovered conjugates. Literal discrete finite states remain separate and are not interpolated.",
+      "Infinity focus only; the model carries the patent's infinity spacings. The patent focuses internally: G1 and G4 stay fixed while, from infinity to 1:1, G2 moves about 31.2 mm toward the image and G3 about 16.0 mm toward the object. The patent's 0.5× and 1:1 spacings are printed but not modelled; its 1:1 state places the object about 0.46 m from the image, matching Sigma's 0.46 m minimum focus distance.",
   },
   gaps: {},
   aperture: {
     nominalFNumber: 3.6069,
-    fStops: [3.6069, 4, 5.6, 8, 11, 16],
+    fStops: [3.6069, 4, 5.6, 8, 11, 16, 22, 32],
+    maxFNumber: 32,
+    blades: 9,
   },
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "9" },
+    { text: "G2", fromSurface: "10", toSurface: "14" },
+    { text: "G3", fromSurface: "16", toSurface: "20" },
+    { text: "G4", fromSurface: "22", toSurface: "25" },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "5", toSurface: "7" },
+    { text: "C2", fromSurface: "12", toSurface: "14" },
+    { text: "C3", fromSurface: "18", toSurface: "20" },
+  ],
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;
