@@ -25,6 +25,18 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Added the P. Angénieux Type M1 25mm f/0.95, Konica AiBORG 35-105mm zoom, KMZ Zenitar 35mm f/1 and 50mm f/0.95, and Nikon AF-S NIKKOR 50mm f/1.4 G",
   },
   {
+    date: "2026-11-10",
+    type: "lens",
+    summary:
+      "Added the Fujifilm XF 150-600mm f/5.6-8, Konica Hexanon AR 57mm f/1.2, Nikon EL-Nikkor 50mm f/2.8, Pentax FA* 300mm f/2.8, Schneider-Kreuznach 28mm LS f/4.5 and Sigma 20mm f/1.4 DG DN Art",
+  },
+  {
+    date: "2026-11-09",
+    type: "fix",
+    summary:
+      "Fixed cardinal points and dimensions shrinking long telephoto diagrams and dimension labels covering the element numbers; spans now sit in a band below the lens, and anything beyond the view is marked at its edge",
+  },
+  {
     date: "2026-11-09",
     type: "lens",
     summary:

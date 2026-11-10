@@ -934,12 +934,13 @@ describe("DiagramSVG", () => {
       },
     };
 
-    render(
+    const { container } = render(
       <DiagramSVG
         {...baseDiagramSvgProps({
           filterId: "diagram-cardinals",
           showCardinals: true,
           showCardinalDimensions: true,
+          showCardinalFfd: false,
           cardinalElements,
           onHover,
           onSelect,
@@ -947,6 +948,8 @@ describe("DiagramSVG", () => {
       />,
     );
 
+    // Four visible spans extend the viewBox below the 600-unit drawing by the dimension band.
+    expect(container.querySelector("svg")?.getAttribute("viewBox")).toBe("0 0 1200 672");
     expect(screen.getByTestId("cardinal-overlay")).toBeTruthy();
     expect(mockCardinalElementsOverlay).toHaveBeenCalledTimes(1);
     expect(mockCardinalElementsOverlay).toHaveBeenCalledWith(
