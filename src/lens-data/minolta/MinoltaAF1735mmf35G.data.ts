@@ -1,10 +1,13 @@
 /**
- * Version3: one source-complete zoom with a compact inferred movement table.
- * 23 zoom controls:3 source +20 inferred; no modeled finite focus.
- * Extra zoom controls are solved/interpolated compensation, not published focus positions.
- * Image gap is derived at infinity; internal variable gaps describe zoom travel.
- * Every printed radius, thickness, material, asphere and focus shift remains unchanged.
- * No measured factory cam, exact production prescription or finished release is claimed.
+ * Minolta AF Zoom 17-35mm f/3.5 G from JP H10-082954 A (Minolta; Kudo, Tai), Example 1, at the patent's own scale.
+ * Negative–positive–negative–positive zoom, f = 17.4–24.4–34.1 mm, F/3.58, 2ω = 102.3°–64.7°.
+ * Every printed radius, thickness, nd/νd and asphere term is transcribed unchanged (r3 on a 0.065 mm bonded layer,
+ * r27 on a plane base; the patent's ε = 1 is K = 0).
+ * The three printed zoom rows (Wide, Middle, Tele) are stations. 20 further stations are inferred: the internal gaps
+ * interpolate the printed rows and the image gap is solved paraxially, so the cam between rows is not Minolta's.
+ * The back focus at every station is derived; the patent does not print it.
+ * The stop moves with Gr3 (d14 + d20 constant), as the patent states; its radius follows F/3.58 at each station.
+ * Semi-diameters are inferred. Infinity focus only: the patent prints no focusing data.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
@@ -12,23 +15,24 @@ const LENS_DATA = {
   key: "minolta-af-17-35mm-f35-g",
   maker: "Minolta",
   name: "MINOLTA AF 17-35mm f/3.5 G",
-  subtitle: "JP H10-82954 A Example 1; probable AF17–35 G family; all three published zoom positions",
+  subtitle: "JP H10-082954 A, Example 1 — strong production correlation",
   visible: true,
   catalog: {
     lensMounts: ["sony-a"],
     imageFormat: "135-full-frame",
     imageCircleMm: 43.2,
     specs: [
-      "PROBABLE AF17–35 G FAMILY",
-      "ALL 3 SOURCE ZOOM POSITIONS",
-      "20 INFERRED ZOOM CONTROLS",
-      "FINITE FOCUS NOT MODELED",
+      "15 ELEMENTS / 12 GROUPS",
+      "DESIGN f = 17.4–34.1 mm",
+      "DESIGN F/3.58",
+      "2 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "2 AD GLASS ELEMENTS",
     ],
     elementCount: 15,
     groupCount: 12,
     focalLengthMm: {
       marketing: [17, 35],
-      design: [17.4, 34.1],
+      design: [17.42, 34.13],
     },
     fNumber: {
       marketing: 3.5,
@@ -57,23 +61,23 @@ const LENS_DATA = {
       nd: 1.85,
       vd: 40.04,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Front negative meniscus of Gr1, ahead of the aspheric bonded component.",
+      glass: "Unmatched (nd 1.85000, νd 40.04)",
+      role: "Front negative meniscus of the first group (Gr1).",
       diagramLabel: "L1",
       focalLengthMm: -75.02715466258316,
     },
     {
       id: 2,
       name: "J1",
-      label: "Auxiliary optical layer J1 (count interpretation)",
-      type: "Bonded Optical Layer (Asph)",
+      label: "Element 2 aspheric layer",
+      type: "Bonded Aspheric Resin Layer",
       nd: 1.5249,
       vd: 49.06,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Explicit 0.065 mm optical layer at S3–S4. It is modeled as auxiliary J1 to preserve its separate nd and νd. Interpreting it as a bonded aspheric layer rather than a separately counted retail glass lens is an inference, not a manufacturing identification.",
+      glass: "Unmatched (aspheric layer, nd 1.52490, νd 49.06)",
+      role: "Thin aspheric layer (r3) on the front of Element 2, 0.065 mm thick at the center; its index and thickness suggest a bonded resin. Not counted in Minolta's 15 elements.",
       diagramLabel: "J1",
-      cemented: "J1 + L2 bonded component",
+      cemented: "H1",
     },
     {
       id: 3,
@@ -83,11 +87,11 @@ const LENS_DATA = {
       nd: 1.7545,
       vd: 51.57,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Negative meniscus substrate behind the explicit J1 layer; source S4 remains the material boundary. The shared cap does not merge the materials or remove S3.",
+      glass: "Unmatched (nd 1.75450, νd 51.57)",
+      role: "Negative meniscus of Gr1 carrying the aspheric layer on its front face.",
       diagramLabel: "L2",
       focalLengthMm: -64.94884261646101,
-      cemented: "J1 + L2 bonded component",
+      cemented: "H1",
     },
     {
       id: 4,
@@ -97,8 +101,8 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 56.47,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Biconcave negative lens in Gr1, separated from the bonded component by literal d5=11.050 mm.",
+      glass: "Unmatched (nd 1.69680, νd 56.47)",
+      role: "Biconcave negative lens of Gr1, 11.05 mm behind Element 2.",
       diagramLabel: "L3",
       focalLengthMm: -38.059747388115746,
     },
@@ -110,8 +114,8 @@ const LENS_DATA = {
       nd: 1.80741,
       vd: 31.59,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Plano-convex positive lens in net-negative Gr1; its rear S9 is a genuine plane.",
+      glass: "Unmatched (nd 1.80741, νd 31.59)",
+      role: "Plano-convex positive lens of Gr1 with a flat rear face.",
       diagramLabel: "L4",
       focalLengthMm: 47.21393096444186,
     },
@@ -123,8 +127,8 @@ const LENS_DATA = {
       nd: 1.691,
       vd: 54.75,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Negative meniscus preceding the final positive member of Gr1.",
+      glass: "K-LaK9 (SUMITA)",
+      role: "Weak negative meniscus of Gr1, ahead of its closing positive meniscus.",
       diagramLabel: "L5",
       focalLengthMm: -187.30775310807815,
     },
@@ -136,8 +140,8 @@ const LENS_DATA = {
       nd: 1.80741,
       vd: 31.59,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Positive meniscus closing Gr1 before the source-variable gap to the stop.",
+      glass: "Unmatched (nd 1.80741, νd 31.59)",
+      role: "Positive meniscus closing Gr1, ahead of the variable gap to the stop.",
       diagramLabel: "L6",
       focalLengthMm: 118.05903835382632,
     },
@@ -149,11 +153,11 @@ const LENS_DATA = {
       nd: 1.78831,
       vd: 47.32,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Negative first member of the first Gr2 doublet, ahead of a lower-index positive partner.",
+      glass: "K-LaSFn16 (SUMITA)",
+      role: "Negative meniscus at the front of the second group (Gr2), cemented to Element 8.",
       diagramLabel: "L7",
       focalLengthMm: -59.16506968313583,
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 9,
@@ -163,11 +167,11 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.15,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Positive rear member of the first Gr2 doublet. The S16 material transition is retained.",
+      glass: "E-CF6 (HOYA)",
+      role: "Biconvex positive rear member of the first Gr2 doublet.",
       diagramLabel: "L8",
       focalLengthMm: 30.366828509983403,
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 10,
@@ -177,11 +181,11 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.74,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Biconvex positive first member of the second Gr2 doublet.",
+      glass: "BACD14 (HOYA)",
+      role: "Biconvex positive front member of the second Gr2 doublet, the strongest positive element in the lens.",
       diagramLabel: "L9",
       focalLengthMm: 26.6663225584459,
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 11,
@@ -191,11 +195,11 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.43,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Negative meniscus rear member of the second Gr2 doublet; the negative S20 radius is literal.",
+      glass: "S-TIH6 (OHARA)",
+      role: "Dense-flint negative meniscus completing the second Gr2 doublet.",
       diagramLabel: "L10",
       focalLengthMm: -58.02427620697061,
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 12,
@@ -205,11 +209,11 @@ const LENS_DATA = {
       nd: 1.8335,
       vd: 21,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Positive meniscus first member of the net-negative Gr3 doublet, with the lowest source νd, 21.00.",
+      glass: "Unmatched (nd 1.83350, νd 21.00)",
+      role: "Positive meniscus at the front of the third group (Gr3); the most dispersive glass in the lens.",
       diagramLabel: "L11",
       focalLengthMm: 66.8048471318049,
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 13,
@@ -219,11 +223,11 @@ const LENS_DATA = {
       nd: 1.805,
       vd: 40.97,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Biconcave negative rear member of Gr3, completing the source moving negative group.",
+      glass: "Unmatched (nd 1.80500, νd 40.97)",
+      role: "Biconcave negative rear member of the Gr3 doublet, which gives the group its negative power.",
       diagramLabel: "L12",
       focalLengthMm: -30.912016612009168,
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 14,
@@ -233,8 +237,11 @@ const LENS_DATA = {
       nd: 1.4931,
       vd: 83.58,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Plano-convex positive first lens of Gr4; source νd83.58 is retained without inferring a particular vendor glass.",
+      glass: "Unmatched (nd 1.49310, νd 83.58)",
+      apd: "inferred",
+      apdNote:
+        "Konica Minolta lists AD glass in this lens and this fluor crown is the only fitting material; no catalog row matches, so it traces with normal dispersion.",
+      role: "Plano-convex positive lens at the front of the fourth group (Gr4).",
       diagramLabel: "L13",
       focalLengthMm: 37.53194078280267,
     },
@@ -246,8 +253,8 @@ const LENS_DATA = {
       nd: 1.65151,
       vd: 33.6,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Plano-concave negative lens of Gr4 with the plane-base polynomial asphere on rear S27. Plane base does not mean zero optical departure.",
+      glass: "Unmatched (nd 1.65151, νd 33.60)",
+      role: "Plano-concave negative lens of Gr4; its flat rear face carries the r27 asphere.",
       diagramLabel: "L14",
       focalLengthMm: -33.28575156175653,
     },
@@ -259,8 +266,11 @@ const LENS_DATA = {
       nd: 1.4931,
       vd: 83.58,
       indexReference: "d",
-      glass: "Unmatched (literal patent Nd / vd; vendor and dispersion curve unspecified)",
-      role: "Positive meniscus final lens of Gr4, retaining d28=4.230 mm and S29=-22.084 mm.",
+      glass: "Unmatched (nd 1.49310, νd 83.58)",
+      apd: "inferred",
+      apdNote:
+        "Konica Minolta lists AD glass in this lens and this fluor crown is the only fitting material; no catalog row matches, so it traces with normal dispersion.",
+      role: "Positive meniscus, convex to the image, closing Gr4.",
       diagramLabel: "L15",
       focalLengthMm: 53.903883615250926,
     },
@@ -466,10 +476,10 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1,
+    closeFocusM: 1e15,
     keyframes: [0, 1],
     description:
-      "All three printed zoom rows are preserved among23 controls. The20 added controls are unpublished inferred zoom-compensation samples: source-variable internal spacings interpolate, and the image gap is paraxially solved. No finite-focus mechanism is numerically published; the two required schema focus slots are identical and inactive. No factory cam or finite endpoint is claimed.",
+      "Infinity focus only; JP H10-082954 A prints its three zoom positions at infinity and no focusing data. The production lens focuses to 0.3 m. The companion JP H10-082955 A focuses by moving the front part of the first group (Elements 1–4) toward the object; that state is not modeled.",
   },
   aperture: {
     nominalFNumber: 3.58,
@@ -503,22 +513,22 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "J1 + L2",
+      text: "H1",
       fromSurface: "3A",
       toSurface: "5",
     },
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "15",
       toSurface: "17",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "18",
       toSurface: "20",
     },
     {
-      text: "D3",
+      text: "C3",
       fromSurface: "21",
       toSurface: "23",
     },
@@ -537,127 +547,106 @@ const LENS_DATA = {
       },
       {
         focalLengthMm: 18.07433973180115,
-        label: "Inferred zoom 1",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 18.743523303250544,
-        label: "Inferred zoom 2",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 19.427587755287036,
-        label: "Inferred zoom 3",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 20.12654303505814,
-        label: "Inferred zoom 4",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 20.840264494648846,
-        label: "Inferred zoom 5",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 21.56863142540788,
-        label: "Inferred zoom 6",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 22.31164584783074,
-        label: "Inferred zoom 7",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 23.069215491329505,
-        label: "Inferred zoom 8",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 23.84127618336542,
-        label: "Inferred zoom 9",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 24.4,
-        label: "Middle",
         published: true,
         publishedFocus: [],
       },
       {
         focalLengthMm: 25.161521925529975,
-        label: "Inferred zoom 11",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 25.95653545052893,
-        label: "Inferred zoom 12",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 26.76815283940154,
-        label: "Inferred zoom 13",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 27.59631090724216,
-        label: "Inferred zoom 14",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 28.440893803283576,
-        label: "Inferred zoom 15",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 29.30181842603554,
-        label: "Inferred zoom 16",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 30.179023606950835,
-        label: "Inferred zoom 17",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 31.072429095035705,
-        label: "Inferred zoom 18",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 31.982001119252025,
-        label: "Inferred zoom 19",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 32.907622564845965,
-        label: "Inferred zoom 20",
         published: false,
         publishedFocus: [],
       },
       {
         focalLengthMm: 33.849263232705674,
-        label: "Inferred zoom 21",
         published: false,
         publishedFocus: [],
       },
@@ -672,7 +661,7 @@ const LENS_DATA = {
   },
   gaps: {
     "13": {
-      label: "D13 (zoom spacing)",
+      label: "D13",
       values: [
         [23.628, 23.628],
         [21.88374462891725, 21.88374462891725],
@@ -700,7 +689,7 @@ const LENS_DATA = {
       ],
     },
     "20": {
-      label: "D20 (zoom spacing)",
+      label: "D20",
       values: [
         [0.9, 0.9],
         [1.24019165038848, 1.24019165038848],
@@ -728,7 +717,7 @@ const LENS_DATA = {
       ],
     },
     "23": {
-      label: "D23 (zoom spacing)",
+      label: "D23",
       values: [
         [7.492, 7.492],
         [7.15180834961152, 7.15180834961152],
@@ -756,7 +745,7 @@ const LENS_DATA = {
       ],
     },
     "29": {
-      label: "Image gap (solved zoom)",
+      label: "BF",
       values: [
         [36.647753236956426, 36.647753236956426],
         [37.11624066581746, 37.11624066581746],
@@ -784,7 +773,7 @@ const LENS_DATA = {
       ],
     },
     STO: {
-      label: "D14 (zoom spacing)",
+      label: "D14",
       values: [
         [7.279, 7.279],
         [6.93880834961152, 6.93880834961152],

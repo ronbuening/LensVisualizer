@@ -1,186 +1,231 @@
 ## Patent Reference and Design Identification
 
-**Patent:** [JP H10-82954 A](https://patents.google.com/patent/JPH1082954A/en)
+**Patent:** [JP H10-082954 A](https://patents.google.com/patent/JPH1082954A/en)
 **Application Number:** JP H8-236024
 **Filed:** 1996-09-06
 **Published:** 1998-03-31
 **Inventors:** Yoshinobu Kudo; Masakuni Tai
 **Applicant:** Minolta Co., Ltd.
 **Title:** Wide-angle zoom lens (広角ズームレンズ)
-**Example details:** Whole Example 1, ¶0030–¶0032, PDF page 5; Figure 1 and the associated Figure 2 plots, PDF page 7. Source definitions and the asphere equation appear in ¶0026–¶0029, PDF page 4. Native millimetres, scale 1.
+**Example details:** 実施例1, ¶0030–¶0032 (p. 5); Fig. 1 (construction) and Fig. 2 (aberrations), p. 7; asphere equation ¶0027–¶0029. Patent scale.
 
-This versioned correction encodes every tabulated zoom position in one hidden model. Production-family association remains probable, not a uniquely identified factory prescription. Prior fixed-wide optical checks do not establish validation of the added positions.
+The patent describes a four-group negative–positive–negative–positive wide-angle zoom and gives two numerical examples.
+Example 1 is the first embodiment and the one drawn on the front page. Its link to the Minolta AF Zoom 17-35mm f/3.5 G
+(1997) rests on several converging points:
 
-The family association rests on several converging but non-exclusive observations:
+1. The patent states its own target: a wide-angle zoom of "focal length 17–35 mm, F-number 3.5 class" (¶0037).
+   Example 1 gives f = 17.4–24.4–34.1 mm at a constant F/3.58, 2ω = 102.3°–83.1°–64.7°.
+2. Published specifications give 15 elements in 12 groups, 104°–63°, 0.3 m minimum focus and a 77 mm filter
+   ([Lenstip](https://www.lenstip.com/234-Konica_Minolta_AF_17-35_mm_f_3.5_G-lens_specifications.html);
+   [mhohner.de](https://www.mhohner.de/sony-minolta/onelens/af17-35f35g?lg=e), which also gives 1997). Example 1 has 15
+   glass elements in 12 groups plus a 0.065 mm aspheric layer bonded to the second element, which Minolta's count does
+   not include.
+3. Konica Minolta's literature, as quoted by
+   [Imaging Resource](https://imaging-resource.com/lenses/konica-minolta/17-35mm-f3.5-g-af/review), credits the lens with
+   aspherical lenses and AD (anomalous dispersion) glass. Example 1 has two aspheres and two elements of the same
+   nd 1.49310 / νd 83.58 fluor crown.
+4. The specified 104° field matches the design. The patent's 2ω corresponds to an ideal image height of 21.6 mm; with the
+   printed −3.9 % distortion at the wide end, the real 21.6 mm corner of the 35 mm frame needs about 104°.
+5. The companion publication JP H10-082955 A (same inventors, same filing date) reprints Example 1 and adds its focusing:
+   the front part of the first group moves toward the object, reaching 0.3 m, the production lens's minimum focus.
 
-1. The source publishes focal-length stations 17.4 / 24.4 / 34.1 mm and F3.58 at all three stations, with full fields 102.3° / 83.1° / 64.7°. These are compatible in scale with a retail 17–35 mm family, but source F3.58 is deliberately distinct from marketed F3.5.
-2. The retained Konica Minolta 2004 catalogue, PDF page 13 / printed pages 22–23, lists AF 17-35/3.5 G as 15 elements in 12 groups, 104°–63°, 0.3 m minimum focus, 77 mm filter, and 600 g. The adjacent AF 17-35/2.8-4 (D) is a different 14/11 product; its narrative and optical claims are not substituted here.
-3. E1 has 16 explicitly indexed material intervals, including a 0.065 mm layer with nd1.52490 and νd49.06. Treating that interval as an auxiliary bonded optical layer yields a plausible 15-glass / 12-air-group interpretation. This count reconciliation does not establish the layer's chemistry, manufacturing process or factory identity.
-4. The four-power-group section and two aspheric surfaces are compatible context. The small AF ZOOM 17–35mm F3.5 G sketch in the retained book strip supports the broad association, but the book has not been established as a primary maker publication, and its sketch does not uniquely resolve the bonded topology.
-
-Example 2 and the adjacent publication JPH1082955A remain alternatives in the earlier dossier. E1 is chosen as one complete, internally reproducible representative, not because those alternatives have been disproven. No second retail family, new discovery, exhaustive private novelty result, or exact factory match is claimed.
+Example 2 (f = 17.4–20.0–34.1 mm) has the same element and group count, and the only public construction drawing found
+(a small cutaway on [allphotolenses.com](https://allphotolenses.com/lenses/item/c_225.html)) cannot separate the two.
+Example 1 is used because it is the patent's first embodiment and the one the companion publication carries forward.
+The later AF 17-35mm F2.8-4 (D) is a different design.
 
 ## Optical Architecture
 
-The negative–positive–negative–positive zoom has 29 source rows, including stop S14, and 16 material intervals interpreted as 15 glass bodies plus the explicit 0.065 mm bonded layer J1. This single model encodes source focal lengths 17.4, 24.4 and 34.1 mm at F3.58. Source gaps d13, d14, d20 and d23 vary; every other internal gap remains literal. The stop moves with the tabulated d13/d14 partition, without guessing its source station. Its physical radius remains derived from F/N.
+A negative-lead four-group zoom: Gr1 (−, f1 = −27.2 mm), Gr2 (+, f2 = +28.4 mm), Gr3 (−, f3 = −57.7 mm) and Gr4
+(+, f4 = +64.2 mm), with the stop between Gr1 and Gr2. Gr1 has six elements (one carrying the bonded aspheric layer),
+Gr2 two cemented doublets, Gr3 one cemented doublet and Gr4 three single elements: 15 elements in 12 groups.
 
-The published full fields are 102.3°, 83.1° and 64.7°, with Y′21.6 mm. The current rectilinear schema cannot store a per-station angular array. This correction retains those facts in its source-state record and analysis, carries image diameter43.2 mm, and uses native per-station runtime field derivation. The former scalar51.15° half-field is not carried through to tele. Direct source-angle validation remains required at each station.
+From wide to tele the Gr1–Gr2 spacing (d13 + d14) closes, d20 opens and d23 closes (¶0010). The stop is linked to Gr3
+(¶0011, claim 5), so d14 + d20 stays at 8.179 mm; d20 + d23 also stays constant (8.392 mm), so Gr2 and Gr4 move as one.
+The patent's aim is a short tele-end length with weak Gr3 and Gr4 powers (¶0015); the derived length from the first
+vertex to the image is 132.65 mm at wide and 119.15 mm at tele.
+
+The patent's full fields are 102.3°, 83.1° and 64.7° at Y′ = 21.6 mm. The traced chief ray at those angles lands at
+20.75, 21.17 and 21.60 mm, a distortion of −3.9 %, −2.0 % and 0.0 % that matches Fig. 2.
 
 ## Element-by-Element Analysis
 
-The following isolated-material focal lengths use each interval's two vertex curvatures and thickness with air on both sides. They are descriptive paraxial values, not the in-situ power of a cemented member and not an allocation of aberration correction. Higher-order aspheric coefficients do not change vertex paraxial power.
+Focal lengths are for each element alone in air, from its vertex radii and thickness; the aspheric terms do not change
+them.
 
 ### L1 — Negative Meniscus
 
-nd = 1.85000, νd = 40.04. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = -75.027155 mm.
+nd = 1.85000, νd = 40.04. Glass: Unmatched (no exact catalog row). f = −75.0 mm.
 
-Front negative meniscus of Gr1, ahead of the aspheric bonded component.
+Front negative meniscus of Gr1, concave to the image, and the largest element in the lens.
 
-### J1 — Bonded Optical Layer (Asph)
+### J1 / L2 — Negative Meniscus with Bonded Aspheric Layer (Asph)
 
-nd = 1.52490, νd = 49.06. Glass: Unmatched, literal patent coordinates; vendor unspecified.
+- J1: nd = 1.52490, νd = 49.06. Glass: Unmatched (aspheric layer). 0.065 mm thick at the center.
+- L2: nd = 1.75450, νd = 51.57. Glass: Unmatched (no exact catalog row). f = −64.9 mm.
 
-Explicit 0.065 mm optical layer at S3–S4. It is modeled as auxiliary J1 to preserve its separate nd and νd. Interpreting it as a bonded aspheric layer rather than a separately counted retail glass lens is an inference, not a manufacturing identification.
-
-### L2 — Negative Meniscus
-
-nd = 1.75450, νd = 51.57. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = -64.948843 mm.
-
-Negative meniscus substrate behind the explicit J1 layer; source S4 remains the material boundary. The shared cap does not merge the materials or remove S3.
+The patent lists this as a cemented lens of two negative menisci concave to the image (¶0012), with r3 aspheric. The
+first "lens" is only 0.065 mm thick at the center and thickens toward the rim, the shape of a moulded resin layer on a
+glass substrate; the patent does not name the material, so "resin" is an inference from its index and thickness.
+Minolta's 15-element count leaves it out. The r3 asphere weakens the negative power toward the rim and corrects the
+wide-end distortion (¶0024).
 
 ### L3 — Biconcave Negative
 
-nd = 1.69680, νd = 56.47. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = -38.059747 mm.
+nd = 1.69680, νd = 56.47. Glass: Unmatched (no exact catalog row). f = −38.1 mm.
 
-Biconcave negative lens in Gr1, separated from the bonded component by literal d5=11.050 mm.
+The strongest negative element of Gr1, 11.05 mm behind L2.
 
 ### L4 — Plano-convex Positive
 
-nd = 1.80741, νd = 31.59. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = +47.213931 mm.
+nd = 1.80741, νd = 31.59. Glass: Unmatched (no exact catalog row). f = +47.2 mm.
 
-Plano-convex positive lens in net-negative Gr1; its rear S9 is a genuine plane.
+Plano-convex positive lens with a flat rear face. It is the last element of the front sub-group that the companion
+JP H10-082955 A moves for focusing.
 
 ### L5 — Negative Meniscus
 
-nd = 1.69100, νd = 54.75. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = -187.307753 mm.
+nd = 1.69100, νd = 54.75. Glass: K-LaK9 (Sumita). f = −187.3 mm.
 
-Negative meniscus preceding the final positive member of Gr1.
+Weak negative meniscus concave to the image.
 
 ### L6 — Positive Meniscus
 
-nd = 1.80741, νd = 31.59. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = +118.059038 mm.
+nd = 1.80741, νd = 31.59. Glass: Unmatched (no exact catalog row). f = +118.1 mm.
 
-Positive meniscus closing Gr1 before the large wide-state gap to the stop.
+Positive meniscus convex to the object, closing Gr1 ahead of the variable gap to the stop. L5 and L6 form the rear
+sub-group that stays fixed within Gr1 during focusing in the companion publication.
 
-### L7 — Negative Meniscus
+### L7 / L8 — First Gr2 Doublet (C1)
 
-nd = 1.78831, νd = 47.32. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = -59.165070 mm.
+- L7: nd = 1.78831, νd = 47.32. Glass: K-LaSFn16 (Sumita). f = −59.2 mm. Negative meniscus concave to the image.
+- L8: nd = 1.51742, νd = 52.15. Glass: E-CF6 (Hoya). f = +30.4 mm. Biconvex positive.
 
-Negative first member of the first Gr2 doublet, ahead of a lower-index positive partner.
+A high-index negative lens cemented to a low-index positive one, at the front of the positive Gr2.
 
-### L8 — Biconvex Positive
+### L9 / L10 — Second Gr2 Doublet (C2)
 
-nd = 1.51742, νd = 52.15. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = +30.366829 mm.
+- L9: nd = 1.60311, νd = 60.74. Glass: BACD14 (Hoya). f = +26.7 mm. Biconvex positive.
+- L10: nd = 1.80518, νd = 25.43. Glass: S-TIH6 (Ohara). f = −58.0 mm. Negative meniscus concave to the object.
 
-Positive rear member of the first Gr2 doublet. The S16 material transition is retained.
+L9 is the strongest positive element in the lens; the dense flint L10 achromatizes it.
 
-### L9 — Biconvex Positive
+### L11 / L12 — Gr3 Doublet (C3)
 
-nd = 1.60311, νd = 60.74. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = +26.666323 mm.
+- L11: nd = 1.83350, νd = 21.00. Glass: Unmatched (no exact catalog row). f = +66.8 mm. Positive meniscus convex to
+  the image.
+- L12: nd = 1.80500, νd = 40.97. Glass: Unmatched (no exact catalog row). f = −30.9 mm. Biconcave negative.
 
-Biconvex positive first member of the second Gr2 doublet.
-
-### L10 — Negative Meniscus
-
-nd = 1.80518, νd = 25.43. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = -58.024276 mm.
-
-Negative meniscus rear member of the second Gr2 doublet; the negative S20 radius is literal.
-
-### L11 — Positive Meniscus
-
-nd = 1.83350, νd = 21.00. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = +66.804847 mm.
-
-Positive meniscus first member of the net-negative Gr3 doublet, with the lowest source νd, 21.00.
-
-### L12 — Biconcave Negative
-
-nd = 1.80500, νd = 40.97. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = -30.912017 mm.
-
-Biconcave negative rear member of Gr3, completing the source moving negative group.
+The whole of the negative Gr3 (f3 = −57.7 mm). Its weak power, set by condition (1), is one of the patent's two
+means of shortening the lens at the tele end (¶0015–¶0016). L11 is the most dispersive glass in the design.
 
 ### L13 — Plano-convex Positive
 
-nd = 1.49310, νd = 83.58. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = +37.531941 mm.
+nd = 1.49310, νd = 83.58. Glass: Unmatched (no exact catalog row; Minolta AD glass, inferred). f = +37.5 mm.
 
-Plano-convex positive first lens of Gr4; source νd83.58 is retained without inferring a particular vendor glass.
+Plano-convex positive lens at the front of Gr4, flat face toward the object.
 
 ### L14 — Plano-concave Negative (Asph)
 
-nd = 1.65151, νd = 33.60. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = -33.285752 mm.
+nd = 1.65151, νd = 33.60. Glass: Unmatched (no exact catalog row). f = −33.3 mm.
 
-Plano-concave negative lens of Gr4 with the plane-base polynomial asphere on rear S27. Plane base does not mean zero optical departure.
+Plano-concave lens, concave to the object. Its flat rear face carries the r27 asphere, whose negative power grows toward
+the rim; the patent uses it to correct tele-end spherical aberration and sagittal flare (¶0024).
 
 ### L15 — Positive Meniscus
 
-nd = 1.49310, νd = 83.58. Glass: Unmatched, literal patent coordinates; vendor unspecified. Isolated-material f = +53.903884 mm.
+nd = 1.49310, νd = 83.58. Glass: Unmatched (no exact catalog row; Minolta AD glass, inferred). f = +53.9 mm.
 
-Positive meniscus final lens of Gr4, retaining d28=4.230 mm and S29=-22.084 mm.
+Positive meniscus convex to the image, closing Gr4.
 
 ## Glass Identification and Selection
 
-Every source material interval, Nd and νd pair remains unchanged. Glass identities are unmatched; no vendor substitution, line-index invention, or partial-dispersion claim is made. Table d-line conventions are retained. Earlier caps are inferred optical domains, not maker dimensions.
+The patent prints nd and νd only. Five glasses match a catalog row within 0.0001 in nd and 0.15 in νd and carry that
+name; the rest keep their printed values as Unmatched.
 
-## Focus Mechanism and Published Positions
+| Glass | nd | νd | Elements | Role |
+| --- | --- | --- | --- | --- |
+| Unmatched | 1.85000 | 40.04 | L1 | High-index front meniscus |
+| Unmatched (aspheric layer) | 1.52490 | 49.06 | J1 | Bonded aspheric layer |
+| Unmatched | 1.75450 | 51.57 | L2 | Lanthanum crown substrate |
+| Unmatched | 1.69680 | 56.47 | L3 | Lanthanum crown |
+| Unmatched | 1.80741 | 31.59 | L4, L6 | Dense lanthanum flint positives of Gr1 |
+| K-LaK9 (Sumita) | 1.69100 | 54.75 | L5 | Lanthanum crown |
+| K-LaSFn16 (Sumita) | 1.78831 | 47.32 | L7 | Lanthanum flint, C1 negative |
+| E-CF6 (Hoya) | 1.51742 | 52.15 | L8 | Crown flint, C1 positive |
+| BACD14 (Hoya) | 1.60311 | 60.74 | L9 | Dense barium crown, C2 positive |
+| S-TIH6 (Ohara) | 1.80518 | 25.43 | L10 | Dense flint, C2 negative |
+| Unmatched | 1.83350 | 21.00 | L11 | Very dense flint, Gr3 positive |
+| Unmatched | 1.80500 | 40.97 | L12 | Lanthanum flint, Gr3 negative |
+| Unmatched (AD, inferred) | 1.49310 | 83.58 | L13, L15 | Fluor crown positives of Gr4 |
+| Unmatched | 1.65151 | 33.60 | L14 | Flint, aspheric negative |
 
-All three source zoom columns are published stations in one model. The schema has two focus slots, both holding the same source row, because this patent example supplies no numerical finite-focus prescription. They do not create or certify a near-focus state. Source infinity conjugacy is not explicitly stated; the model uses the disclosed collimated-input convention and derives each BF without ray/MTF fitting. The retail0.3 m specification is not a numerical focus law.
+The two νd 83.58 positives in Gr4 are the only low-dispersion material in the design, so they are taken to be the AD
+glass that Konica Minolta's literature mentions. No catalog row matches 1.49310 / 83.58, so they trace with normal
+dispersion and the model does not show their anomalous partial dispersion.
 
-| f mm | d13 mm | d14 mm | d20 mm | d23 mm | Derived BF mm |
-| ---- | ------ | ------ | ------ | ------ | ------------- |
-| 17.4 | 23.628 | 7.279  | 0.9    | 7.492  | 36.647753237  |
-| 24.4 | 10.092 | 4.639  | 3.54   | 4.852  | 42.667944729  |
-| 34.1 | 2.7    | 0.8    | 7.379  | 1.013  | 50.548562139  |
+## Focus Mechanism
 
-Version3 inserts unpublished controls using the explicitly inferred mathematical continuation described below. Only the original source rows are marked published.
+The model is infinity-only. JP H10-082954 A prints its three zoom positions at infinity and gives no focusing data.
+
+| Station | f (mm) | d13 (mm) | d14 (mm) | d20 (mm) | d23 (mm) | BF, derived (mm) |
+| --- | --- | --- | --- | --- | --- | --- |
+| Wide | 17.4 | 23.628 | 7.279 | 0.900 | 7.492 | 36.648 |
+| Middle | 24.4 | 10.092 | 4.639 | 3.540 | 4.852 | 42.668 |
+| Tele | 34.1 | 2.700 | 0.800 | 7.379 | 1.013 | 50.549 |
+
+The companion JP H10-082955 A reprints Example 1 and describes the focusing: Gr1 splits into a negative front sub-group
+GrA (r1–r9, L1–L4, fa = −24.06 mm) and a positive rear sub-group GrB (r10–r13, L5–L6), and only GrA moves toward the
+object. It prints d9 = 0.500 mm at infinity and 3.481 mm at D = 0.3 m. Traced paraxially with the image plane fixed,
+that d9 focuses at 300.0 mm object-to-image at the wide end (290 and 287 mm at the middle and tele positions), matching
+the production lens's 0.3 m minimum focus. This close state is not modeled.
 
 ## Aspherical Surfaces
 
-S3A and plane-base S27A retain the complete source polynomials. Source ε=1 maps to K=0, with spherical base sag included exactly once. S3A A4=1.2347e−5, A6=1.0122e−8, A8=−2.6560e−11, A10=7.2027e−14; S27A A4=3.2586e−5, A6=3.0613e−8, A8=−3.7156e−11, A10=9.8955e−15. Units are mm^(1−p) for Ap. Plane base does not remove S27A's higher-order optical power. J1 remains a distinct material at nd1.52490/νd49.06; no homogenization is performed.
+The patent's equation (AS) is X = Y²/[r + r·√(1 − ε·Y²/r²)] + Σ Ai·Yⁱ, so ε = 1 is a spherical base (K = 0).
 
-## Verification Scope and Inferences
+- r3 (front of J1), r = 49.300 mm, ε = 1: A4 = 1.2347×10⁻⁵, A6 = 1.0122×10⁻⁸, A8 = −2.6560×10⁻¹¹,
+  A10 = 7.2027×10⁻¹⁴.
+- r27 (rear of L14), plane base, ε = 1: A4 = 3.2586×10⁻⁵, A6 = 3.0613×10⁻⁸, A8 = −3.7156×10⁻¹¹,
+  A10 = 9.8955×10⁻¹⁵.
 
-This correction retains the H2 inferred caps and every literal optical value. The new source-state encoding is not covered by prior fixed-wide ray/MTF results. Complete station geometry, stop, source-angle rays, MTF, rendered silhouette and final corpus checks remain required. The missing finite-focus prescription is a source limitation, not permission to invent a published close point.
+r3 is the hybrid aspheric layer of the front group; its positive A4 on a surface convex to the object weakens the
+negative power toward the rim, correcting wide-end barrel distortion (¶0024). r27 is an asphere on the flat rear face of
+L14 whose departure adds negative power toward the rim, for tele-end spherical aberration and sagittal flare (¶0024).
 
-The numerical prescription is unchanged. Production-family association remains qualified; neither matching focal range nor element count proves a unique factory embodiment. The file remains hidden until the corrected complete model passes required checks.
+## Conditional Expressions
+
+| Condition | Range | Example 1 (printed) |
+| --- | --- | --- |
+| (1) −f3/fw | 2.9 – 6.0 | 3.31 |
+| (2) f4/fw | 2.5 – 6.0 | 3.69 |
+| (3) t(1,2)w/fw | 1.45 – 2.0 | 1.77 |
+| (4) Σdw(2-4)/Σdw | 0.25 – 0.42 | 0.35 |
+
+The model reproduces f3 = −57.73 mm and f4 = 64.23 mm. Condition (4) computes to 0.357 from the table, which the
+patent prints as 0.35; every condition is met either way.
+
+## Model Scope and Limitations
+
+- Every printed radius, thickness, nd/νd, asphere term and variable gap is transcribed at the patent's scale. The traced
+  focal lengths are 17.42, 24.38 and 34.13 mm against the printed 17.4, 24.4 and 34.1 mm.
+- The back focus is not printed; it is solved paraxially at each station.
+- Between the three printed rows, 20 further zoom stations are inferred: the internal gaps follow straight lines between
+  the printed values (keeping both patent links) and the back focus is solved at each. The intermediate cam is
+  therefore not Minolta's. Between stations the image stays within 8.3 µm of focus.
+- The stop opens with zoom to hold F/3.58, from 6.41 mm radius at wide to 8.90 mm at tele.
+- Semi-diameters are inferred; the patent prints none. At the wide end the J1/L2 rim limits the traced field to about
+  20.9 mm image height, which covers the patent's own 102.3° field but stops just short of the 21.6 mm corner.
+- Focus is infinity-only (see Focus Mechanism).
 
 ## Sources
 
-- [JP H10-82954 A](https://patents.google.com/patent/JPH1082954A/en), full selected example and cited original pages.
-- Retained original maker catalogue/service evidence identified in the design-identification section; prior sources and fixed-wide checkpoint bytes are preserved.
-
-## Compact Inferred Movement Table (Version3)
-
-23 zoom controls (3 source +20 inferred), with two identical inactive focus slots. There is no finite-focus prescription to add. Only the source zoom rows are marked published. Added controls are called inferred zoom-compensation samples, not additional source positions or a recovered factory mechanical cam. The denser81-control reference remains preserved as diagnostic evidence.
-
-Within source zoom intervals the internal variable gaps interpolate the printed values. At each inferred control, the image gap is independently derived from the source-fixed paraxial matrix (BF∞=−A/C). This changes no fixed optical thickness or surface. The source parameter is sampled nonuniformly to concentrate controls where interpolation error is largest; the native slider still uses uniform authored-index coordinates. Source middle positions are therefore not necessarily at slider0.5.
-
-The finite-focus control is inactive and the viewer identifies it as infinity / “Not modeled.” The terminal interval is labeled solved zoom compensation. Source optical caps and all aspheres remain unchanged.
-
-### Sampling tradeoff and validation scope
-
-The prior2µm extra-defocus target was unnecessarily restrictive for an interpolated explanatory model. This version uses a disclosed engineering budget: added longitudinal interpolation defocus no greater than1.22λdN², equivalent to a paraxial blur diameter no greater than half the d-line Airy-disk diameter. This is a sampling sensitivity scale, not measured image quality, a manufacturing tolerance, or a substitute for ray/MTF checks. Source-versus-paraxial residuals are tracked separately and never removed.
-
-Greedy interval placement with a10% design margin, then8 zoom subdivisions and9 subdivisions of every source focus interval, gives maximum added defocus8.2684µm and total nominal defocus8.2684µm on those bounded samples. The grid is practical and verified, not claimed globally minimal. A smaller uniform17-point grid would leave26.1µm added defocus; the compact nonuniform table avoids that tradeoff.
-
-All source points, every control and between-control states must pass the native construction, EFL/f-number/conjugacy, positive geometry/iris, field and exact finite-object pupil checks. Full MTF, browser and frozen-six integration checks remain separate release gates. Existing Patent positions mode exposes only the original source subset; it does not enforce a per-model continuous-mode lock.
-
-## Completed Bounded Checks
-
-On the retained main420b475 reference with its existing shared-v2 patch, strict focused TypeScript and native construction pass. All source states and fixed source optics are unchanged; only the disclosed unprinted caps differ on the 28–135. Independent mathematical review and exact source mapping are retained with the reproducibility evidence. This is not a fresh remote-main assertion.
-
-Every authored control and midpoint of every adjacent zoom/focus interval was checked in a cross product: 135 states for this model. Minimum surface separation is 0.065000000 mm; minimum iris clearance is 0.841289267 mm; hidden render trim is zero. Native and independent matrices agree within 3.55e-14, variable gaps land exactly within numerical tolerance, and the native field/chief checks are finite. EFL, physical/working f-numbers and conjugacy remain positive and coherent; modeled finite-focus distance decreases monotonically.
-
-Control placement used nominal f-number as a sensitivity proxy. The additional-defocus budget was also checked using the actual native image-side working f-number at all these sampled states: the maximum ratio to 1.22 λd Nworking² is 0.900000, below one. This is a bounded sampled result, not an analytic guarantee throughout the continuous domain. Total nominal defocus reaches 8.2684 µm; source-versus-paraxial residuals remain part of that value.
-
-The exact pupil screen covers 5 source and selected inferred states, 30 field/aperture cases, and 208 disk rays per case. Finite states use one physical finite object point, with source image-plane distances at published configurations and disclosed paraxial diagnostic distances elsewhere. Additional 16-ray full axial-rim checks were made at each aperture. All axial rays transmit; all rays classify without unknown outcomes. Minimum sampled off-axis pupil transmission is 17.31%, a vignetting result rather than a claim of uniform illumination. The original invalid parallel-launch finite check is preserved and superseded; it was not used to justify the final cap changes.
-
-Full MTF, browser/viewer review, final integration lint/format/build and the single frozen-six corpus suite remain release gates. These bounded passes do not identify a unique factory prescription or establish measured production performance.
+- [JP H10-082954 A](https://patents.google.com/patent/JPH1082954A/en): Example 1 prescription, conditions, figures.
+- [JP H10-082955 A](https://patents.google.com/patent/JPH1082955A/en): companion publication with the focusing data.
+- [Lenstip specifications](https://www.lenstip.com/234-Konica_Minolta_AF_17-35_mm_f_3.5_G-lens_specifications.html):
+  15/12 construction, 104°–63°, 0.3 m, 77 mm filter.
+- [mhohner.de lens data](https://www.mhohner.de/sony-minolta/onelens/af17-35f35g?lg=e): 1997 introduction,
+  dimensions, maximum magnification 1:5.88.
+- [Imaging Resource review](https://imaging-resource.com/lenses/konica-minolta/17-35mm-f3.5-g-af/review): Konica
+  Minolta's description of aspherical lenses and AD glass.
+- [allphotolenses.com](https://allphotolenses.com/lenses/item/c_225.html): Minolta cutaway drawing.
