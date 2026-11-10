@@ -30,7 +30,8 @@ Applied: PDF filed as `US10274698B2.pdf`. No data change.
 
 Open: hidden as delivered — fit to show after the wording pass; per-station `nominalFNumber` on a constant-aperture zoom
 (use `aperture.nominalFNumber` 2.75); inferred station labels; `gapSagFrac` 0.915 is a model allowance (≈0.38 mm edge
-clearance at D15), not a patent value; G2–G4 rims sit ≈10 % inside the figure outline; glass labels `Unmatched`.
+clearance at D15), not a patent value; G2–G4 rims sit ≈10 % inside the figure outline (closed 2026-11-10 by the
+semi-diameter pass below); glass labels `Unmatched`.
 (Visibility, f-number, station labels and glass labels closed in the cleanup pass below; the rim item stays open.)
 
 ## 2026-11-10 — Cleanup and wording pass
@@ -73,5 +74,49 @@ entrance-pupil radius 24.497 → 24.533 mm; `maxFstop` 16 → 22. audit:surface 
 3 % of the stated f-number, no rim, trace or iris limit.
 
 Open: G2–G4 rims sit about 10 % inside the Fig. 1 outline and the long-end corner bundles are strongly vignetted (the
-G2/G3 rims sit just outside the axial beam); a rim pass against the figure is still due. Example 1 vs Example 3 rests
-on the patent's lead example; Fujifilm's construction drawing has not been compared element by element.
+G2/G3 rims sit just outside the axial beam); a rim pass against the figure is still due (closed 2026-11-10 by the
+semi-diameter pass below). Example 1 vs Example 3 rests on the patent's lead example; Fujifilm's construction drawing
+has not been compared element by element.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: `US10274698B2.pdf`, PDF page 2, Fig. 1 (Example 1, wide-angle end panel, infinity focus), native 300 dpi
+raster; outlines read at 600 dpi as line centres from the axis on both sides. Scale: S1 vertex at x = 708 px and the
+image plane at 2007 px (300 dpi) give 1299 px / 214.692 mm = 6.05 px/mm; the vertex crossings of S13 (55.6 mm against
+55.667) and S40 (177.1 against 177.034) confirm it. Vertical scale: the drawn on-axis marginal ray enters at ±9.34 mm
+(entrance-pupil radius 9.364) and runs at ≈13.99 mm between G3 and G4 (stop radius 13.94).
+
+Readings (figure semi-diameter, mm; above/below axis) and changes, before → after:
+
+- L11 S1–S2: 28.1 / 28.2; kept 28.0. L12 S3–S4: 27.3; kept 28.0 (2.5 %).
+- L13 S5–S6: 25.9 / 25.95, a square-cut biconcave outline; 28.0 → 26.0.
+- L14 S7–S8: 26.0; kept 27.0 (4 %). L15/L16 S9–S11: 26.65 / 26.7; kept 26.0. L17 S12–S13: 25.7; kept 25.0.
+- L21 S14: outline 13.0 / 13.35; 12.35 → 13.2. S15 kept 11.93 and L22 S16 kept 11.96: Fig. 1 draws these facing
+  faces meeting at ≈12.4–12.9 mm, and the printed curvatures cross at 12.45 mm, so the current rims (0.39 mm edge
+  clearance) already sit at the drawn junction within 4 %; `gapSagFrac` stays 0.915.
+- L22 S17: outline 13.55 / 13.9; 12.71 → 13.6.
+- L23/L24 S18–S20: 14.5 / 14.8, square doublet; 13.01 / 13.16 / 13.41 → 14.6 / 14.6 / 14.6.
+- L31 S21–S22: 14.8 / 15.1; 13.66 / 13.78 → 15.0 / 15.0.
+- L32/L33 S23–S25: 15.1 / 15.4; 13.85 / 13.85 / 13.95 → 15.2 / 15.2 / 15.2.
+- L41 S27–S28: 15.1 / 15.4; kept 14.5 (5 %). L42/L43 S29–S31: 14.2 / 14.4; kept 14.5.
+- L44 S32–S33: 14.7 / 14.8; 13.0 → 14.7.
+- L45/L46 S34–S36: 13.8 / 14.1; 13.0 → 13.9 (7 %, also restores the drawn L45/L46-above-L47 step).
+- L47 S37: 13.0 / 13.35; 12.0 → 13.2. S38 kept 11.8 and L48 S39 kept 12.0: drawn meeting L48's front face, and the
+  printed curvatures cross at ≈12.3 mm.
+- L48 S40: the face reaches the drawn top line at 12.6–13.0; 12.0 → 12.9.
+
+Every change follows a clean outline reading (≈±0.2 mm); the faces that meet a neighbour stay below the crossing, and
+the stop is untouched. Clearance: real-ray trace to the patent's image height (14.55 mm at 2ω = 32.2° / 12.0°) at the
+engine's stop radius, all 35 zoom stations, infinity and 1.2 m focus: no clipped axial beam and no blocked chief ray.
+audit:surface OK; audit:aperture: no rim, trace or iris limit; field coverage 35 of 35 stations at ≥99 %; image circle
+0 undersized. Engine half-field (16.4548° wide, 8.0078° tele) and f-number 2.75 unchanged.
+
+Corner light (geometric transmission at the edge of the traced field, wide open, infinity): wide 47.8 → 53.3 %, tele
+44.0 → 48.0 %. Against the package baseline no field at any of the 35 zoom nodes loses light (largest gain 12.9
+points). The L13 trim alone costs at most 2.4 points (6.5° at 81.4 mm) against the raised set, so it stays inside the
+3-point allowance and the lens still gains everywhere against the baseline.
+
+Maker diagram: not viewed in this pass; the deployment-validation section above records Fujifilm's 22 elements in
+17 groups with 2 ED + 2 Super ED matching L14/L22 and L16/L42.
+
+Open: the live page check is left to the coordinator.

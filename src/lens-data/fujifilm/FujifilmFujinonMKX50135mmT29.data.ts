@@ -12,8 +12,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * infinity rows only; the 1.2 m travel is solved from the prescription, not a factory cam. Macro is not modeled.
  * Camera-side plate PP (surfaces 41–42: 2.000 mm, nd 1.51633, νd 64.14; 5.000 mm before, 30.658 mm after) is in
  * `rearPlates`; the printed Bf 36.976 mm is the air-equivalent back focus.
- * Clear semi-diameters are inferred from the figure's group outlines and edge/gap limits. `gapSagFrac` 0.915: the
- * D15 air gap (4.440 mm) needs a 91.3 % sag allowance at the 11.93 mm G2 rim; edge clearance stays ≈0.39 mm.
+ * Clear semi-diameters are estimated from FIG. 1 (wide end; 6.05 px/mm at 300 dpi from S1-to-image 214.692 mm,
+ * vertical scale confirmed by the drawn marginal rays) and floor-checked by real-ray trace. Where facing faces meet
+ * (S15/S16, S38/S39) the rims stop short of the crossing that FIG. 1 also draws. `gapSagFrac` 0.915: the D15 air
+ * gap (4.440 mm) needs a 91.3 % sag allowance at the 11.93 mm G2 rim; edge clearance stays ≈0.39 mm.
  * Iris radius is derived from the design F-number 2.75 (constant over zoom), not a measured aperture or the T-stop.
  * Glass labels are exact catalog rows for the printed nd/νd; the patent names no glasses.
  * Source radii, nd/νd, printed axial intervals and rounding residuals are not retuned.
@@ -352,13 +354,13 @@ const LENS_DATA = {
       label: "5",
       R: -183.2674,
       d: 2.0,
-      sd: 28.0,
+      sd: 26.0,
       medium: 3,
     },
     {
       label: "6",
       R: 145.81689,
-      sd: 28.0,
+      sd: 26.0,
     },
     {
       label: "7",
@@ -408,7 +410,7 @@ const LENS_DATA = {
       label: "14",
       R: -334.18732,
       d: 1.201,
-      sd: 12.35,
+      sd: 13.2,
       medium: 8,
     },
     {
@@ -428,58 +430,58 @@ const LENS_DATA = {
       label: "17",
       R: 59.68418,
       d: 0.7,
-      sd: 12.71,
+      sd: 13.6,
     },
     {
       label: "18",
       R: 59.05649,
       d: 4.82,
-      sd: 13.01,
+      sd: 14.6,
       medium: 10,
     },
     {
       label: "19",
       R: -59.05649,
       d: 1.2,
-      sd: 13.16,
+      sd: 14.6,
       medium: 11,
     },
     {
       label: "20",
       R: 259.91618,
-      sd: 13.41,
+      sd: 14.6,
     },
     {
       label: "21",
       R: 383.97122,
       d: 2.538,
-      sd: 13.66,
+      sd: 15.0,
       medium: 12,
     },
     {
       label: "22",
       R: -102.36294,
       d: 0.2,
-      sd: 13.78,
+      sd: 15.0,
     },
     {
       label: "23",
       R: 214.98722,
       d: 4.862,
-      sd: 13.85,
+      sd: 15.2,
       medium: 13,
     },
     {
       label: "24",
       R: -36.73949,
       d: 1.2,
-      sd: 13.85,
+      sd: 15.2,
       medium: 14,
     },
     {
       label: "25",
       R: -198.1162,
-      sd: 13.95,
+      sd: 15.2,
     },
     {
       label: "STO",
@@ -523,40 +525,40 @@ const LENS_DATA = {
       label: "32",
       R: 146.12182,
       d: 4.807,
-      sd: 13.0,
+      sd: 14.7,
       medium: 18,
     },
     {
       label: "33",
       R: -42.10362,
       d: 0.4,
-      sd: 13.0,
+      sd: 14.7,
     },
     {
       label: "34",
       R: 39.90271,
       d: 4.318,
-      sd: 13.0,
+      sd: 13.9,
       medium: 19,
     },
     {
       label: "35",
       R: -240.42306,
       d: 1.2,
-      sd: 13.0,
+      sd: 13.9,
       medium: 20,
     },
     {
       label: "36",
       R: 26.81888,
       d: 6.525,
-      sd: 13.0,
+      sd: 13.9,
     },
     {
       label: "37",
       R: 36.79585,
       d: 3.0,
-      sd: 12.0,
+      sd: 13.2,
       medium: 21,
     },
     {
@@ -576,7 +578,7 @@ const LENS_DATA = {
       label: "40",
       R: -39.43088,
       d: 5.0,
-      sd: 12.0,
+      sd: 12.9,
     },
   ],
   zoom: {
