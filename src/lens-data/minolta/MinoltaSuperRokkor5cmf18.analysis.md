@@ -122,6 +122,7 @@ The patent prints third-order (Seidel) coefficients for every surface — spheri
 - At full aperture the geometric transmission falls to about 50 % at 20° and 31 % at the 23° edge of the patent's field.
 - The stop position is derived from the printed entrance pupil, the back focus from the paraxial trace, and the clear apertures from Fig. 1.
 - The model uses catalog dispersion curves for five elements and an Abbe-number estimate for L4; polychromatic results are approximations.
+- Traced at the f = 100 mm scale of Fig. 2, the d- and g-line spherical aberration matches the printed curves, and the astigmatism and distortion match them through about 19°. Toward the 23° edge the printed curves are milder than the trace: at 23° the printed distortion is about −0.15 % and the traced −0.48 %.
 - Only infinity focus is modeled.
 
 ## Sources

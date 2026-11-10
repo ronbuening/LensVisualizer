@@ -1,4 +1,4 @@
-# JP S38-11587 B, sole example (scaled to 55 mm): audit
+# JP S38-11587 B, sole example (Super Rokkor 5cm f/1.8, scaled to 50 mm): audit
 
 ## 2026-11-10 — Initial transcription (package delivery)
 
@@ -150,3 +150,55 @@ reached 100 % because the corner was at 21.5°).
 
 Open: the 23° half-field leaves the outer 0.5 mm of the 24 × 36 mm corner untraced; raising
 `projection.maxTraceFieldDeg` to 23.5 would trace it (the patent's 2ω = 46° kept per the decision).
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared: the live page and the six element inspectors with Fig. 1 of JP S38-11587 B (p. 4, native 352 dpi), the
+Fig. 2 aberration curves (p. 4), the prescription table (p. 2) and the front page. No change to the data file; this log's
+title now names the 50 mm scale.
+
+Rims, re-measured: the S1 and S11 vertex crossings are 799 px apart, 23.60 px per mm at the 50 mm scale. Lower outer
+edges less half the 4 px stroke: L1 393 px (16.6 mm), L2 324.5 px (13.7 mm), L3 323.5 px (13.7 mm), L4–L5 237.5 px
+(10.05 mm), L6 268.5 px (11.4 mm), S7 cap end 197 px (8.3 mm). Every outer rim is within 1 % of the model. The S6 and S7
+cap ends (figure about 8.8 and 8.3 mm) lie on the f/1.8 axial beam (8.85 and 8.38 mm), so 9.3 and 8.5 stay. An overlay
+at 23.63 px per mm follows Fig. 1's outline everywhere except the two chamfers. The drawn height order L1 > L2 = L3 > L6
+> L4–L5 holds on the page, and L1 is square-cut as drawn.
+
+Lands: the S6 (13.8 mm) and S7 (10.0 mm) extensions cost no light (`rimcost.mjs --loo`, full-pupil lattice: 0.0 points
+won back at every field by removing either), and the validator accepts the file without them. Fig. 1 draws a land at
+both faces, slanted rather than square. The square land keeps the flat tops of L3 and L4; removing it or lowering it to
+mid-chamfer trades one outline error for another of similar size (about 4 mm² either way on L3, 1.5 against 1.8 mm² on
+L4). Verdict: both kept (light cost 0.0 points; worst loss against the baseline 0.0 points).
+
+Labels and tags: L1–L6 follow Fig. 1's L₁–L₆ and surfaces 1–11 its r₁–r₁₁; every `type` agrees with the signs of R;
+the inspector focal lengths (+70.95 mm for L1, −23.70 mm for L3, −20.47 mm for L4) recompute by the thick-lens formula;
+the roles are true. There are no aspheric surfaces and no `apd` tags (the patent names no special glass). The stop sits
+in t6 between L3 and L4. One cemented bracket, C1 (S7–S9). `groups: []` stays: Fig. 1's braces I–IV mark the patent's
+optical subsystems, which are surface sets (I = r1–r3, II = r4–r6, III = r7–r8, IV = r9–r11) that split L2 and L5
+between brackets, and the spec reserves `groups` for mechanical groups.
+
+Movement: none. The lens is static at infinity, `focus.description` says so, and the page's focus slider reads "Not
+modeled".
+
+Glass: L1 and L2 LAC12 (Hoya, Δνd +0.02), L3 SF15 (Sumita, catalog νd 30.0, Δνd −0.10), L5 BAF11 (Sumita, 0.00) and L6
+BAF10 (Hoya, −0.01) resolve inside the exact window. S-TIM35 (Ohara, 699301, Δνd +0.03) is closer for L3 but is a
+lead-free modern type; SF15 stays as the period dense flint. L4 (1.5749/39.2): the patent prints only nd and νd (p. 2)
+and has no other example; the nearest rows (QF3, S-TIL27, J-LF7, Sumita LF7, Ohara PBL27, Hoya FL7) all sit at νd
+41.3–41.5, outside the window, so there is no catalog proposal. No nd-only medium; no printed partial dispersion.
+
+Colour: Fig. 2(a) plots d- and g-line spherical aberration at f = 100 mm. Traced at that scale, the g paraxial focus
+lies 0.07 mm short of d (plot 0.07–0.10 mm); at 27.1 mm pupil height d is −0.14 and g −0.05 mm (plot −0.15 and −0.06);
+at 23.8 mm d is −0.26 and g −0.21 mm (plot −0.26 and −0.20). L4's Abbe-number estimate fits the printed g curve.
+
+Field: Fig. 2(b) and (c) agree with the trace through about 19°. The solid curve matches the traced sagittal field
+(−0.37 mm at 14°, zero near 20.6°), the dashed one the meridional (−0.25 mm at 18°), and the distortion is +0.11 % at
+14°, each within 0.03 mm or 0.03 %. Beyond 20° the printed curves are milder: at 22.6° the sagittal field is +0.20 mm
+printed against +0.42 mm traced and the meridional −0.48 against −0.36 mm; at 22.9° the distortion is −0.14 % against
+−0.47 %. Moving the stop 2 mm either way within t6 changes the traced 23° distortion only between −0.46 and −0.52 %, and
+the Seidel table confirms the prescription, so the edge difference is recorded as a source inconsistency.
+
+Assignee: the front-page applicant ミノルタカメラ株式会社 is "Minolta Camera Co., Ltd.", the corpus's canonical form.
+
+Engine numbers unchanged: EFL 50.0059 mm, F/1.800, half-field 23°, stop radius 8.5881 mm. `audit:surface` reports no
+errors, `audit:aperture` no rim limit, `audit:image-circle` nothing undersized, and field coverage is 98 % (declared
+23°, corner clear). The open item on `projection.maxTraceFieldDeg` above stands.
