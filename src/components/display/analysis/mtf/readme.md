@@ -13,6 +13,7 @@ flowchart LR
     n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfCsv_ts["mtfCsv.ts"]
     n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfDataWarning_tsx["MtfDataWarning.tsx"]
     n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx["MtfFieldSummary.tsx"]
+    n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfPresentation_ts["mtfPresentation.ts"]
     n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfValueTable_tsx["MtfValueTable.tsx"]
   end
   n_external_src_components_controls["src/components/controls"]
@@ -31,6 +32,7 @@ flowchart LR
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfDataWarning_tsx --> n_external_pkg_react
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx --> n_external_pkg_react
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfCsv_ts --> n_external_src_types
+  n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfPresentation_ts --> n_external_src_types
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> n_external_src_utils_state
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx --> n_external_src_utils_state
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfValueTable_tsx --> n_external_src_utils_state
@@ -39,14 +41,16 @@ flowchart LR
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfValueTable_tsx --> n_external_src_utils_text_ts
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfControls_tsx --> n_external_src_utils_useMediaQuery_ts
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx --> n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfCsv_ts
+  n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfCsv_ts --> n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfPresentation_ts
+  n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfValueTable_tsx --> n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_mtfPresentation_ts
   n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfFieldSummary_tsx --> n_src_components_display_analysis_mtf_src_components_display_analysis_mtf_MtfValueTable_tsx
 ```
 
 ## Directory Overview
 
-- Direct source files: 5
+- Direct source files: 6
 - Direct subfolders: 0
-- Main outbound areas: src/types (9), package:react (3), src/utils/state (3), src/components/controls (2), src/components/display (2), src/utils/text.ts (2), src/utils/style, src/utils/useMediaQuery.ts
+- Main outbound areas: src/types (10), src/components/display (4), package:react (3), src/utils/state (3), src/components/controls (2), src/utils/text.ts (2), src/utils/style, src/utils/useMediaQuery.ts
 - External consumers: src/components/display
 
 ## Files
@@ -54,7 +58,8 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `MtfControls.tsx` | React component module | src/components/controls (2), src/types (2), package:react, src/utils/state, src/utils/style, +1 more | src/components/display | default, MtfControls |
-| `mtfCsv.ts` | Mtf Csv helper module | src/types | src/components/display | mtfCsv |
+| `mtfCsv.ts` | Mtf Csv helper module | src/components/display, src/types | src/components/display | mtfCsv |
 | `MtfDataWarning.tsx` | React component module | src/types (2), package:react, src/utils/text.ts | src/components/display | default, MtfDataWarning |
 | `MtfFieldSummary.tsx` | React component module | src/components/display (2), src/types (2), package:react, src/utils/state | src/components/display | default, MtfFieldSummary |
-| `MtfValueTable.tsx` | React component module | src/types (2), src/utils/state, src/utils/text.ts | src/components/display | default, MtfValueTable |
+| `mtfPresentation.ts` | Mtf Presentation helper module | src/types | src/components/display (3) | mtfValueVisible |
+| `MtfValueTable.tsx` | React component module | src/types (2), src/components/display, src/utils/state, src/utils/text.ts | src/components/display | default, MtfValueTable |

@@ -18,6 +18,8 @@
  * present and extrapolates from `dPgF` otherwise; the Abbe path places C and F
  * with the catalog-fitted P_d,C normal line and estimates `ng` from the Schott
  * P_g,F normal line plus `dPgF`.
+ * Native sodium D elements use C/D/F/g with G at the authored nD. Their νD
+ * defines the F−C span; absent C/F/g values remain normal-line estimates.
  * Native e-line elements (`indexReference: "e"`) carry R = C′ (643.8 nm),
  * G = authored `ne` (546.1 nm), B = F′ (480.0 nm) and V = g on every tier, so
  * a lens whose glasses are only partly catalog-resolved still traces each
@@ -35,6 +37,7 @@ import type { SurfaceDispersion, SurfaceIndexFn } from "../../types/dispersion.j
 import {
   CHROMATIC_CHANNEL_WAVELENGTH_NM as CHANNEL_NM,
   E_LINE_CHANNEL_WAVELENGTH_NM as E_LINE_CHANNEL_NM,
+  D_LINE_CHANNEL_WAVELENGTH_NM as D_LINE_CHANNEL_NM,
 } from "./channels.js";
 
 /**
@@ -70,6 +73,25 @@ export function normalLinePdC(vd: number): number {
 }
 
 /**
+ * Sodium P_D,C against νD, fitted to the catalog curves at C/D/F (716 glasses).
+ * Median partial-dispersion residual 0.0013, maximum 0.014. This is an estimate,
+ * never a replacement for a source's measured C/F indices.
+ */
+export function normalLinePDC(vD: number): number {
+  return 0.2697931 + 0.0004190718 * vD;
+}
+
+/** Convert only the normal-line estimate's coordinate; authored νD is never rewritten. */
+function estimatedVdFromVD(vD: number): number {
+  // Fit of (nd − nD)/(nF − nC) to νD over the same catalog; maximum residual 0.00022.
+  return vD + 0.0084907 + 0.0000068874 * vD;
+}
+
+function sodiumPgF(vD: number, dPgF = 0): number {
+  return normalLinePgF(estimatedVdFromVD(vD), dPgF);
+}
+
+/**
  * e-line counterpart of `normalLinePdC`: P_e,C′ = (ne − nC′) / (nF′ − nC′) against νe, fitted over the same catalog
  * (median residual 0.0015, range ≈0.46–0.50). Native e-referenced elements store ne/νe, whose span is F′−C′.
  */
@@ -89,6 +111,25 @@ export function normalLinePgFPrime(ve: number, dPgF = 0): number {
   return 0.5675 - 0.001438 * ve + dPgF;
 }
 
+/** Normal-line g partial dispersion in the authored reference coordinate. */
+export function referencePgF(reference: RefractiveIndexReferenceLine, v: number, dPgF = 0): number {
+  return reference === "e"
+    ? normalLinePgFPrime(v, dPgF)
+    : reference === "D"
+      ? sodiumPgF(v, dPgF)
+      : normalLinePgF(v, dPgF);
+}
+
+/** Reference-to-red partial dispersion in the authored reference coordinate. */
+export function referencePdC(reference: RefractiveIndexReferenceLine, v: number): number {
+  return reference === "e" ? normalLinePeC(v) : reference === "D" ? normalLinePDC(v) : normalLinePdC(v);
+}
+
+/** Abbe coordinate constrained by the authored reference index and measured red/blue span. */
+export function measuredLineAbbe(nReference: number, nC: number, nF: number): number {
+  return (nReference - 1) / (nF - nC);
+}
+
 /**
  * Estimate C, F and g line indices from (nd, vd) alone.
  *
@@ -97,7 +138,7 @@ export function normalLinePgFPrime(ve: number, dPgF = 0): number {
  * For native e-line elements the pair is (ne, νe), the red and blue channels carry C′ and F′, and g is reached from
  * F′ with `normalLinePgFPrime`.
  *
- * @param nd - reference-line refractive index (nd, or ne for e-referenced elements)
+ * @param nd - authored reference-line index (nd, nD or ne)
  * @param vd - Abbe number at the same reference line
  * @param dPgF - authored deviation from the P_g,F normal line
  * @param reference - reference line of `nd` / `vd`
@@ -110,14 +151,9 @@ export function abbeLineIndices(
   reference: RefractiveIndexReferenceLine = "d",
 ): { nC: number; nF: number; ng: number } {
   const span = (nd - 1) / vd;
-  if (reference === "e") {
-    const nC = nd - normalLinePeC(vd) * span;
-    const nF = nC + span;
-    return { nC, nF, ng: nF + normalLinePgFPrime(vd, dPgF) * span };
-  }
-  const nC = nd - normalLinePdC(vd) * span;
+  const nC = nd - referencePdC(reference, vd) * span;
   const nF = nC + span;
-  return { nC, nF, ng: nF + normalLinePgF(vd, dPgF) * span };
+  return { nC, nF, ng: nF + referencePgF(reference, vd, dPgF) * span };
 }
 
 function makeLineIndicesDispersion(
@@ -129,18 +165,16 @@ function makeLineIndicesDispersion(
   const nC = spectral.nC!;
   const nF = spectral.nF!;
   const ngMeasured = spectral.ng;
-  // Resolve V channel: prefer measured ng, otherwise extend from (nC, nF)
-  // using the dPgF-corrected partial dispersion. Fall back to nF (zero
-  // secondary spectrum) when no dPgF info is present.
-  let nVfallback: number;
-  if (ngMeasured !== undefined) {
-    nVfallback = ngMeasured;
-  } else if (element?.vd !== undefined) {
-    const PgF = normalLinePgF(element.vd, element.dPgF ?? 0);
-    nVfallback = nF + PgF * (nF - nC);
-  } else {
-    nVfallback = nF;
-  }
+  // Measured C/F and the authored reference constrain the estimate even when
+  // the source's printed Abbe value is absent or rounded inconsistently.
+  const measuredV = measuredLineAbbe(nd, nC, nF);
+  // A zero/reversed span cannot constrain a normal-line extrapolation. Keep
+  // diagnostic channels finite; spectral MTF rejects this unsupported span.
+  const estimatedG =
+    Number.isFinite(measuredV) && measuredV > 0
+      ? nF + referencePgF(element?.indexReference ?? "d", measuredV, element?.dPgF ?? 0) * (nF - nC)
+      : nF;
+  const nVfallback = ngMeasured ?? estimatedG;
   const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nC : ch === "B" ? nF : ch === "V" ? nVfallback : nd);
   return { fn, quality: "lineIndices" };
 }
@@ -162,7 +196,13 @@ export function makeSurfaceDispersion(
   // 1) Complete measured line indices — exact at every traced chromatic line.
   //    These are usually patent- or source-specific values for the actual
   //    authored prescription, so prefer them over generic catalog equivalents.
-  if (spectral?.nC !== undefined && spectral?.nF !== undefined && spectral?.ng !== undefined) {
+  //    Historical D tables also retain partial C/F measurements ahead of a proxy;
+  //    an absent g index remains an explicit normal-line estimate.
+  if (
+    spectral?.nC !== undefined &&
+    spectral?.nF !== undefined &&
+    (spectral?.ng !== undefined || element?.indexReference === "D")
+  ) {
     return makeLineIndicesDispersion(surface, element, spectral);
   }
 
@@ -200,9 +240,10 @@ export function makeSurfaceDispersion(
       // refraction event contradicted this module's no-repeated-overhead
       // contract for the hot trace loop.
       const nd = surface.nd;
-      const anchor = nd - evaluateSellmeier(entry, CHANNEL_NM.G);
-      const nR = evaluateSellmeier(entry, CHANNEL_NM.R) + anchor;
-      const nB = evaluateSellmeier(entry, CHANNEL_NM.B) + anchor;
+      const wavelengths = element.indexReference === "D" ? D_LINE_CHANNEL_NM : CHANNEL_NM;
+      const anchor = nd - evaluateSellmeier(entry, wavelengths.G);
+      const nR = evaluateSellmeier(entry, wavelengths.R) + anchor;
+      const nB = evaluateSellmeier(entry, wavelengths.B) + anchor;
       // Patent partial-dispersion evidence describes the authored glass melt
       // more directly than a catalog-equivalent curve. Preserve the catalog's
       // C/d/F shape, but reconstruct g from the authored dPgF whenever it is
@@ -210,8 +251,8 @@ export function makeSurfaceDispersion(
       // silently changing the violet channel.
       const nV =
         element.vd !== undefined && element.dPgF !== undefined
-          ? nB + normalLinePgF(element.vd, element.dPgF) * (nB - nR)
-          : evaluateSellmeier(entry, CHANNEL_NM.V) + anchor;
+          ? nB + referencePgF(element.indexReference ?? "d", element.vd, element.dPgF) * (nB - nR)
+          : evaluateSellmeier(entry, wavelengths.V) + anchor;
       const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nR : ch === "B" ? nB : ch === "V" ? nV : nd);
       return { fn, quality: "sellmeier", glassEntry: entry };
     }

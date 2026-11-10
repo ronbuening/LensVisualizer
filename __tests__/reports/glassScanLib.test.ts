@@ -10,6 +10,7 @@ import { buildSimplePositiveElementLens } from "../src/optics/testLensFixtures.j
 import { describe, expect, it } from "vitest";
 import {
   walkLensSurfaces,
+  findCandidates,
   classifyMissingMaterial,
   activeGlassAnnotation,
   extractSixDigitCodes,
@@ -20,6 +21,21 @@ import {
   patentSearchTokens,
   reviewRecordStatus,
 } from "../../reports/glassScanLib.js";
+
+import { evaluateCatalogAbbeNumber, evaluateSellmeier, resolveGlass } from "../../src/optics/glassCatalog.js";
+import { LINE_NM } from "../../src/optics/chromatic.js";
+
+describe("native sodium D", () => {
+  it("reports native sodium candidates at D and does not rank them by d-line codes", () => {
+    const glass = resolveGlass("N-BK7")!;
+    const nD = evaluateSellmeier(glass, LINE_NM.D);
+    const vD = evaluateCatalogAbbeNumber(glass, "D");
+    const [candidate] = findCandidates([glass], nD, vD, undefined, { raw: "517642", nd: 1.517, vd: 64.2 }, "D");
+    expect(candidate.nd).toBe(nD);
+    expect(candidate.vd).toBe(vD);
+    expect(candidate.codeDistance).toBeNull();
+  });
+});
 
 describe("patent-number matching", () => {
   it("prefers explicit patent metadata when a subtitle uses Japanese-era notation", () => {

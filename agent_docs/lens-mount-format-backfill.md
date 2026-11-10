@@ -42,6 +42,7 @@ with remaining compatibility questions explained in the lens analysis.
 | Vivitar Series 1 450mm f/4.5 | Secondary material describes T-mount, but the source set lacks a manufacturer mechanical specification for this rare production correlation. |
 | Nikon Ultra-Micro-Nikkor 29.5mm | Photolithography installation; its optical back focus and reduction ratio do not identify a consumer camera mount. |
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Historical barrel/specimen evidence and normalized patent scaling do not select a standard factory camera mount. |
+| Minor Photographic Objective 65mm f/2 | US 1,360,667 Figure 2 establishes no production manufacturer, mount, camera format, or image circle. The approximately 65° field and ambiguous focal distance do not establish a format. |
 | Russar-21; Russar-22 | Experimental prescription sources lack a manufacturer-issued standardized production fitting. |
 | KMZ Industar ITMO Variant 2; Voigtländer Dynar | Teaching/normalized patent models lack a selected commercial installation; leave mount and format unset. |
 | Zeiss S-Biogon 40mm f/5.6 | Microfilm reduction lens installed in the Zeiss Mikrobox recorder. The sources give only an M50 × 0.75 rear thread, an industrial thread with no canonical mount id; do not assign a camera mount from the Biogon family name. |

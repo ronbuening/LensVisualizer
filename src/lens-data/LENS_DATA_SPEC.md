@@ -184,6 +184,10 @@ views. Keep it normalized even when the product's official styling varies by sou
 - For fixed-lens cameras, put the camera body name, with its maker, in parentheses after the lens name and leave the
   camera name in normal product-title case, e.g. `FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)`.
 
+For a historical numerical reconstruction whose focal/aperture ratings remain unresolved, identify the patent
+example in the title instead of a focal length and f-number the example does not reproduce. Keep the literal source
+ratings and computed behavior explicitly distinguished in the specs and source notes.
+
 ### Catalog (`catalog`)
 
 Everything the catalog, header and index read about the product, as opposed to the prescription.
@@ -198,7 +202,7 @@ Everything the catalog, header and index read about the product, as opposed to t
 | `groupCount` | `number` | Air-separated groups. |
 | `acceptsTeleconverters` | `boolean` | `true` when the lens takes dedicated rear teleconverters made for one of its `lensMounts`. Universal converters ignore it. See [TELECONVERTER_DATA_SPEC.md](TELECONVERTER_DATA_SPEC.md). |
 | `opticalConfiguration` | `object` | Links complete prescriptions that are switchable optical states of one catalog lens. See below. |
-| `focalLengthMm` | `{ marketing?, design? }` | Each a number for a prime or `[wide, tele]` for a zoom. `marketing` is the marketed focal length; `design` the source's stated design focal length at the file's scale, which may differ. A sequential rectilinear lens's traced EFL must lie within 0.8 to 1.25 times `design` (its first value on a zoom), or `buildLens()` refuses it ([Validation Rules](#validation-rules)). A folded system takes its EFL from `design` ([Folded Paths](#folded-paths)). |
+| `focalLengthMm` | `{ marketing?, design? }` | Each a number for a prime or `[wide, tele]` for a zoom. `marketing` is the marketed focal length; `design` the prescription focal length at the file's scale, which may differ: normally the source's stated design value; for a historical reconstruction it may be an explicitly identified computed paraxial EFL when the source does not establish one. Identify that computation in specs/source notes; do not populate `marketing` from an ambiguous historical focal-distance statement. A sequential rectilinear lens's traced EFL must lie within 0.8 to 1.25 times `design` (its first value on a zoom), or `buildLens()` refuses it ([Validation Rules](#validation-rules)). A folded system takes its EFL from `design` ([Folded Paths](#folded-paths)). |
 | `fNumber` | `{ marketing?, design? }` | `marketing` is the marketed maximum f-number (`1.8` for an "f/1.8" lens), shown beside the wide-open readout when it differs from the design value. `design` is the source's stated design maximum f-number (`1.85`). |
 | `closeFocusM` | `{ marketing? }` | `marketing` is the maker's minimum focus distance in metres, a number or `[wide, tele]` on a zoom. The focus readout names it beside the close-focus label when they differ by more than 2 % (a pair at its own zoom end; between the ends, only when the label leaves the range). It never moves the optics: `focus.closeFocusM` stays where the close row focuses. |
 
@@ -404,7 +408,7 @@ document their stable model order.
   type: "Biconvex Positive", // REQUIRED: optical shape/type description
   nd: 1.90525, // REQUIRED: index at indexReference (d-line by default)
   vd: 35.04, // recommended: Abbe number at indexReference
-  indexReference: "d", // optional: "d" (default) or "e" for retained patent ne / νe values
+  indexReference: "d", // optional: "d" (default), "D" for sodium nD / νD, "e" for ne / νe
   focalLengthMm: 119.3, // recommended: element focal length, shown in the inspector
   glass: "S-LAH58 (OHARA)", // recommended: catalog glass; see Glass Identification
   apd: false, // optional: false (default) | "patent" | "inferred"
@@ -441,7 +445,7 @@ document their stable model order.
 `spectral` wrapper. The chromatic trace uses data in this order of preference: air → complete explicit
 `nC`/`nF`/`ng` → catalog Sellmeier resolved from a coordinate-compatible `glass` name → partial explicit `nC`/`nF` →
 `dPgF`-corrected Abbe → plain Abbe (`nd` + `vd`), then a constant index when `vd` is unavailable. Each level falls back
-to the next. For apochromatic designs where the source publishes partial dispersion or line indices, transcribe them.
+to the next. Partial measured tables without `ng` require finite `nF > nC`; the missing g estimate derives its Abbe coordinate from that measured span and the authored reference index, not a conflicting printed Abbe value. Degenerate or reversed partial spans are rejected before tracing. For apochromatic designs where the source publishes partial dispersion or line indices, transcribe them.
 
 **Index reference.** `indexReference` says what `nd` / `vd` hold. Leave it out (or write `"d"`) for ordinary d-line
 data. Use `"e"` only when the stored values keep a source's native `ne` / `νe` coordinates. Native e-line elements can
@@ -452,9 +456,28 @@ E-line color channels are traced at C′/e/F′/g on every dispersion tier, so n
 is safe; do not add d-line `nC` / `nF` to an e-line element. Writing `indexReference: "d"` or `apd: false` explicitly
 records that the author checked; both may also be left out.
 
+Use `"D"` when the source explicitly retains historical sodium `nD` / `νD`, with νD = (nD − 1)/(nF − nC).
+The engine uses **589.2938 nm**, the sodium doublet center in [SCHOTT Optical Glass 2025, Table 10.1](https://media.schott.com/api/public/content/ff189abcb12f498aa221f54fd0b2055c?download=true&v=6f322b4f).
+This is distinct from helium d (587.5618 nm), not an alias or a D-to-d conversion. Record a source that specifies a
+particular doublet component or another wavelength as unresolved rather than silently applying this center convention.
+Native D elements trace C/D/F/g; `nC` / `nF` / `ng` retain their ordinary physical wavelengths.
+Published D-reference C/F values take precedence over a catalog proxy even when g is absent. Named catalog curves
+must reproduce nD / νD at C/D/F, and remain spectral proxies; a six-digit d-line code alone cannot establish a D glass.
+The builder shows D materials as native nD / νD readouts; reconcile glass or spectral edits in Advanced JSON.
+The reference index always stays authored. Missing C/F values use the catalog-fitted P_D,C normal-line estimate;
+missing g uses the estimated d-coordinate image of the Schott normal line. These runtime estimates are not measured
+source data and must never be copied into authored fields. `dPgF` remains a deviation from the **d-coordinate** normal
+line, not a newly defined D-line deviation.
+
+If printed νD disagrees with published C/D/F indices, retain the literal indices and printed νD separately from the
+derived (nD − 1)/(nF − nC) result in the lens notes/audit. Do not change either to force agreement. Published C/F
+indices control their channels; g remains an estimate unless published too. The support does not resolve a source's
+focal-distance or aperture ambiguities. The inspector separates measured C/D/F from estimated g, and spectral MTF
+qualifies incomplete D-line spectral data with its estimated-dispersion warning.
+
 For a historical source whose spectral line is unspecified and fails the coordinate test below, keep an explicit
 `Unmatched (...)` glass disposition and add `indexReferenceNote` explaining the uncertainty and the approximate tracing
-reference. The inspector then labels the values `n (source)` / `ν (source)` instead of asserting d/e identity. The note
+reference. The inspector then labels the values `n (source)` / `ν (source)` instead of asserting d/D/e identity. The note
 does not change the tracing convention or enable catalog resolution.
 
 A source that names no line can still establish one numerically. Treat a table as d-line when at least 80% of its pairs
@@ -1693,8 +1716,8 @@ stored prescription is not resolved, and the element falls through to a lower-qu
 ### Round-trip verification
 
 When the dispersion engine resolves a `glass` string against a Sellmeier catalog, it rejects the resolution if the
-catalog coordinates disagree with the element's stored reference pair by more than Δn ±0.003 or Δν ±2. D-line rows are
-compared at C/d/F; native e-line rows at C′/e/F′, and they need an explicit name or alias. This catches accidental
+catalog coordinates disagree with the element's stored reference pair by more than Δn ±0.003 or Δν ±2. Helium d-line rows are
+compared at C/d/F; native sodium D rows at C/D/F and e rows at C′/e/F′. D/e rows need an explicit name or alias. This catches accidental
 relabels, but it does not replace the author's own check.
 
 Before committing a `glass` change, verify:
@@ -1706,7 +1729,7 @@ Before committing a `glass` change, verify:
    is not exact.
 3. The source reference is identified correctly. If the prescription keeps `ne` / `νe`, set `indexReference: "e"` and
    use only an explicit name or alias that round-trips at C′/e/F′. Do not rely on a six-digit d-line code for an
-   e-line row.
+   D- or e-line row. For retained nD / νD, use `indexReference: "D"` and check the named curve at C/D/F.
 
 When these do not hold, prefer the `Unmatched` form to a speculative match.
 

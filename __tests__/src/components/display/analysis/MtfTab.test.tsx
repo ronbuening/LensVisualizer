@@ -5,6 +5,8 @@ import { mtfInputs } from "../../../optics/testLensFixtures.js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
+import { mtfCsv } from "../../../../../src/components/display/analysis/mtf/mtfCsv.js";
+import MtfFieldSummary from "../../../../../src/components/display/analysis/mtf/MtfFieldSummary.js";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
 import { installMatchMediaMock, mockTheme } from "../../../../testUtils.js";
 import {
@@ -145,7 +147,7 @@ describe("MTF tab", () => {
     // The iris limits the axial beam, so the marked f-number stands alone, however far the 1 mm iris is from f/2.8.
     const header = screen.getByText(/^f\/2\.8 · 49\.2 mm · Diffraction-corrected · /);
     expect(header.textContent).toContain("photopic spectrum");
-    expect(header.textContent).toContain("Best axial focus (");
+    expect(header.textContent).toContain("Best axial focus estimate (");
     // The fixture glass has only nd and νd, so its dispersion is estimated and the tab says so.
     expect(screen.getByText("Dispersion of one glass is estimated from nd and νd.")).toBeTruthy();
     expect(screen.queryByText(/own prescription's paraxial focus/)).toBeNull();
@@ -237,7 +239,7 @@ describe("MTF tab", () => {
     stubWorker();
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
     expect(await screen.findByRole("figure", { name: /image height/ })).toBeTruthy();
-    expect(screen.getByText(/· Best axial focus \(/)).toBeTruthy();
+    expect(screen.getByText(/· Best axial focus estimate \(/)).toBeTruthy();
     const note = screen.getByText(/own prescription's paraxial focus/).closest("p")!.textContent!;
     expect(note).toContain(`${Math.abs(offsetMm).toFixed(2)} mm behind`);
     expect(note).toContain("These curves use best axial focus");
@@ -254,7 +256,7 @@ describe("MTF tab", () => {
     expect(warning.textContent).toContain("Every glass is known only by nd and νd");
     expect(chart.closest<HTMLElement>("[inert]")!.style.filter).toContain("blur");
     fireEvent.click(within(warning).getByRole("button", { name: "Show chart anyway" }));
-    expect(screen.queryByRole("note")).toBeNull();
+    expect(screen.queryByRole("note", { name: "Limited data for this chart" })).toBeNull();
     expect(screen.getByRole("figure", { name: /image height/ })).toBe(chart);
     expect(chart.closest("[inert]")).toBeNull();
     // The gaps stay one click away, and the dismissal survives the tab closing and reopening.
@@ -262,7 +264,7 @@ describe("MTF tab", () => {
     unmount();
     render(tab);
     await screen.findByRole("figure", { name: /image height/ });
-    expect(screen.queryByRole("note")).toBeNull();
+    expect(screen.queryByRole("note", { name: "Limited data for this chart" })).toBeNull();
     // A single-wavelength chart the reader asks for has no gap to report.
     fireEvent.change(screen.getByRole("combobox", { name: "MTF spectrum" }), { target: { value: "reference" } });
     await vi.waitFor(() => expect(screen.queryByText(/Limited data for this chart/)).toBeNull());
@@ -277,7 +279,7 @@ describe("MTF tab", () => {
     stubWorker({ target: notedState });
     render(<MtfTab L={noted} t={mockTheme} preparedState={notedState} currentEPSD={1} currentPhysStopSD={1} />);
     const chart = await screen.findByRole("figure", { name: /image height/ });
-    expect(screen.queryByRole("note")).toBeNull();
+    expect(screen.queryByRole("note", { name: "Limited data for this chart" })).toBeNull();
     expect(chart.closest("[inert]")).toBeNull();
     expect(screen.getByText(/Notes on this lens's data \(1\)/)).toBeTruthy();
     expect(screen.getByText(/these curves describe the printed table: The table traces/)).toBeTruthy();
@@ -330,7 +332,7 @@ describe("MTF tab", () => {
 });
 
 describe("MTF chart", () => {
-  const result = computeMtf(
+  const computed = computeMtf(
     ...mtfInputs(state, {
       method: "geometric",
       spectrum: "reference",
@@ -341,6 +343,87 @@ describe("MTF chart", () => {
       maxGridSize: 32,
     }),
   );
+  const result: MtfResult = {
+    ...computed,
+    fields: computed.fields.map((field) => ({ ...field, status: "converged", convergedThroughLpMm: 100 })),
+  };
+  it("withholds unconverged frequency readouts and values beyond the converged band", () => {
+    const uncertain: MtfResult = {
+      ...result,
+      fields: result.fields.map((field, i) => ({
+        ...field,
+        status: i === 0 ? "unconverged" : "converged",
+        convergedThroughLpMm: i === 0 ? null : 20,
+      })),
+    };
+    const { rerender, container } = render(
+      <MtfChart result={uncertain} view="frequency" frequencies={[10, 30]} t={mockTheme} />,
+    );
+    const chart = screen.getByRole("group", { name: /MTF chart values/ });
+    fireEvent.keyDown(chart, { key: "Home" });
+    expect(screen.getByText(/^0 lp\/mm —/).textContent).not.toContain("(unconverged)");
+    fireEvent.keyDown(chart, { key: "ArrowRight" });
+    expect(screen.getByText(/^2 lp\/mm —/).textContent).not.toContain("(unconverged)");
+    fireEvent.keyDown(chart, { key: "End" });
+    const readout = screen.getByText(/^100 lp\/mm —/);
+    expect(readout.textContent).not.toMatch(/S [0-9]/);
+    expect(container.innerHTML).not.toContain("NaN");
+    rerender(<MtfChart result={uncertain} view="frequency" frequencies={[10, 30]} t={mockTheme} diagnostic />);
+    expect(screen.getByText(/^100 lp\/mm —/).textContent).toMatch(/S [0-9]/);
+    expect(screen.getByText(/Diagnostic estimates include unconverged values/)).toBeTruthy();
+    // The active frequency index exceeds the number of field samples after changing views.
+    rerender(<MtfChart result={uncertain} view="field" frequencies={[10, 30]} t={mockTheme} diagnostic />);
+    expect(container.innerHTML).not.toContain("NaN");
+  });
+  it("identifies comparison values at their own physical image height", () => {
+    const comparison: MtfResult = {
+      ...result,
+      fields: result.fields.map((field) => ({
+        ...field,
+        imageHeightMm: field.imageHeightMm! + 3,
+      })),
+    };
+    const { rerender, container } = render(
+      <MtfChart
+        result={result}
+        comparison={comparison}
+        comparisonLabel="f/8"
+        view="field"
+        frequencies={[10]}
+        t={mockTheme}
+      />,
+    );
+    fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "End" });
+    expect(screen.getByText(/lp\/mm S/).textContent).toContain(
+      `f/8 at ${comparison.fields[2].imageHeightMm!.toFixed(2)} mm:`,
+    );
+    rerender(<MtfChart result={result} comparison={comparison} view="frequency" frequencies={[10]} t={mockTheme} />);
+    fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "End" });
+    rerender(<MtfChart result={result} comparison={comparison} view="field" frequencies={[10]} t={mockTheme} />);
+    expect(container.innerHTML).not.toContain("NaN");
+  });
+  it("keeps nonconverged status rows in normal exports and qualifies diagnostic values", () => {
+    const uncertain: MtfResult = {
+      ...result,
+      fields: [{ ...result.fields[0], status: "unconverged", convergedThroughLpMm: null }],
+    };
+    const normal = mtfCsv(uncertain, [10, 30]).split("\n")[1].split(",");
+    expect(normal.slice(2, 6)).toEqual(["", "", "", ""]);
+    expect(normal[6]).toBe("unconverged");
+    const diagnostic = mtfCsv(uncertain, [10, 30], true);
+    expect(diagnostic).toContain("diagnostic estimates included");
+    expect(diagnostic).toContain(uncertain.fields[0].sagittal[uncertain.frequenciesPerMm.indexOf(10)].toFixed(4));
+  });
+  it("prevents stale exports from being mistaken for the current settings", () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    render(<MtfFieldSummary result={result} frequencies={[10, 30]} t={mockTheme} stale />);
+    const copy = screen.getByRole("button", { name: "Copy CSV" });
+    expect((copy as HTMLButtonElement).disabled).toBe(true);
+    fireEvent.click(copy);
+    expect(writeText).not.toHaveBeenCalled();
+    expect(screen.getByText(/Previous settings: values are updating/)).toBeTruthy();
+  });
   it("breaks curves at unavailable fields without NaN coordinates", () => {
     const gapped: MtfResult = {
       ...result,
@@ -378,6 +461,27 @@ describe("MTF chart", () => {
 });
 
 describe("MTF export and aperture comparison", () => {
+  it("keeps diagnostic disclosure across chart views and resets it for numerical changes", async () => {
+    const { calls } = stubWorker();
+    render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
+    await screen.findByRole("figure", { name: /image height/ });
+    const toggle = screen.getByRole("checkbox", { name: /Show diagnostic estimates/ });
+    fireEvent.click(toggle);
+    const computations = calls.compute;
+    fireEvent.click(
+      within(screen.getByRole("group", { name: "MTF chart" })).getByRole("button", { name: "Frequency" }),
+    );
+    expect((screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }) as HTMLInputElement).checked).toBe(
+      true,
+    );
+    expect(calls.compute).toBe(computations);
+    fireEvent.change(screen.getByLabelText("MTF spectrum"), { target: { value: "reference" } });
+    await vi.waitFor(() =>
+      expect((screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }) as HTMLInputElement).checked).toBe(
+        false,
+      ),
+    );
+  });
   it("copies the displayed table as CSV", async () => {
     stubWorker();
     const writeText = vi.fn().mockResolvedValue(undefined);
@@ -388,7 +492,7 @@ describe("MTF export and aperture comparison", () => {
     expect(await screen.findByText("Copied")).toBeTruthy();
     const [header, first] = (writeText.mock.calls[0][0] as string).split("\n");
     expect(header).toBe(
-      "Image height (mm),Field (%),10 lp/mm sagittal,10 lp/mm tangential,30 lp/mm sagittal,30 lp/mm tangential,Status",
+      "Image height (mm),Field (%),10 lp/mm sagittal,10 lp/mm tangential,30 lp/mm sagittal,30 lp/mm tangential,Status,Values,Stable through (lp/mm)",
     );
     expect(first.startsWith("0.000,0,")).toBe(true);
   });
