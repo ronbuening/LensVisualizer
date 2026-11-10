@@ -1,120 +1,122 @@
 ## Patent Reference and Design Identification
 
-**Patent:** JP 1970-039874 B (JPS45-39874)
-**Application Number:** 42-46505
+**Patent:** JP S45-39874 B
+**Application Number:** S42-46505
 **Filed:** 1967-07-19
 **Published:** 1970-12-15
 **Inventor:** Toshinobu Ogura
 **Applicant:** Minolta Camera Co., Ltd.
-**Example details:** Entire numerical table on original PDF page 4, printed column 7; lengths multiplied by exactly 35.
+**Title:** 大口径比広角写真レンズ (large-aperture wide-angle photographic lens)
+**Example details:** 実施例3; table on p. 4 (columns 7–8), section Fig. 3, Seidel coefficients p. 6, aberration curves Fig. 7. Printed at f = 1; every length in the data file is the printed value × 35.
 
-This is an qualified representative optical model with explicitly inferred mechanical apertures. It does not establish the production prescription of every MC W Rokkor-HH or Rokkor-X revision.
+The patent describes retrofocus wide-angles for single-lens reflex cameras at F/1.9 or faster and 64° field. Examples 1 and 2 are seven-element F/1.9 designs; Examples 3 and 4 add an element to reach F/1.8. Example 3 is the only one with eight elements in six groups, and the model reproduces its whole table. The data file represents the design family of the production lens, not a factory prescription for any particular production batch.
 
-The probable MC W Rokkor-X family association rests on converging evidence:
+The association with the Minolta 35mm f/1.8 rests on converging evidence:
 
-1. The manufacturer XG-7 accessories brochure, PDF page 18 / printed page 30, specifies 35 mm, f/1.8, 64° and eight elements in six groups.
-2. The section has a front cemented doublet, four single elements and a rear cemented doublet, agreeing with the selected example.
-3. The normalized patent station is f = 1, f/1.8, full field 64°, with back focus 1.05. The maker focal length supplies the disclosed 35× scale, not a patent-printed 35 mm dimension.
+1. The maker's XG-7 accessories brochure (printed page 30) lists the 35mm f/1.8 MC W Rokkor-X as eight elements in six groups, 64° angle of view, 0.3 m minimum focus, 55 mm filter and f/1.8–f/16. Its section shows a cemented front doublet, a thick biconvex element, a positive meniscus, a biconcave element, a meniscus and a cemented rear doublet, the order of Example 3.
+2. Example 3 is printed at F/1.8 and 2ω = 64°, the marketed aperture and angle of view. Example 4 is also F/1.8 but air-spaces its front pair and cements IV_B instead of V_B, giving eight elements in seven groups.
+3. Minolta filed the application in July 1967; the first version of the lens, the MC W.Rokkor-HH 35mm f/1.8, appeared in 1968.
 
-The patent's full table controls the model. US 3,606,524 belongs to a different invention and supplies no missing values here. Earlier source-only notes held the material reference unresolved; the present model explicitly assumes the d-reference as a modeling convention, without upgrading that assumption to source evidence.
+The ×35 scale is a modeling choice that sets the patent's f = 1 to the marketed focal length; the patent prints no 35 mm dimension. US 3,606,524, by the same inventor, describes a different, slower 76° retrofocus and supplies no values here.
 
 ## Optical Architecture
 
-The eight-element, six-group design is a retrofocus wide-angle system. The normalized back focus exceeds its focal length. The front doublet has opposing element powers, followed by a thick positive lens, positive meniscus, central negative lens, positive meniscus and rear doublet.
+The eight-element, six-group design is a retrofocus (inverted telephoto) wide-angle: a negative front component A (cemented doublet, f = −42.30 mm) separated by a long air space dB0 from a positive rear component B of five groups. The printed back focus, 1.05f (36.75 mm), exceeds the focal length and clears an SLR mirror. Component B runs I_B biconvex, II_B positive meniscus convex to the object, III_B biconcave, IV_B positive meniscus concave to the object, and V_B a positive cemented doublet (f = +76.35 mm).
 
-The four-element rear section surrounds an inferred stop region. The actual stop coordinate and diameter are not published. This candidate places the stop halfway through the unchanged air interval dB4 between source surfaces 7 and 8. It is a hypothesis to test, not a measured feature of Figure 3.
+The patent prints no stop position or diameter, but its third-order coefficients fix the chief ray. The printed coma, astigmatism and distortion coefficients for Example 3 are reproduced surface by surface when the chief ray crosses the axis 0.6295 of the way through dB4, the air space between II_B and III_B. The model places the stop there: 4.0033 mm behind surface 7 and 2.3562 mm ahead of surface 8. The stop diameter follows from the F/1.8 entrance pupil.
 
-Every refracting face is spherical. The fourteen physical surface radii, thirteen internal intervals and eight N/V pairs are transcribed without adjustment. Two cemented interfaces reduce the number of groups from eight to six.
+Every refracting surface is spherical. The fourteen radii, thirteen axial spacings and eight N/V pairs are transcribed without adjustment; a third-order calculation from them reproduces each printed per-surface coefficient to within 0.0006 (printed sums at f = 1: spherical 0.4399, coma 0.0021, astigmatism −0.0180, Petzval 0.1552, distortion 0.1793).
 
 ## Element-by-Element Analysis
 
+Focal lengths are thick-lens values for each element alone in air at the ×35 scale, not in-system contributions.
+
 ### L1: Biconvex Positive
 
-Assumed nd = 1.72000, νd = 50.3. Glass: Unmatched (published N/V; d-reference assumed). Isolated thick-element f = +66.157 mm.
+nd = 1.72000, νd = 50.3. Glass: LAC10 (HOYA, legacy). f = +66.16 mm.
 
-The first component of the front doublet has positive isolated power. Its weak front face and strongly curved cemented rear interface distribute power across the paired glasses. The isolated focal length is calculated in air for interpretation, not the element's in-system contribution.
+The front element of the cemented doublet A. Its front surface is nearly flat; the cemented interface (rA2) is convex to the image and, with the small index step to L2, converging. The patent credits the converging cemented surface in Examples 3 and 4 with cancelling part of the distortion generated in A, which lets I_B's rear surface be less strongly curved and eases coma, spherical aberration and astigmatism at the larger aperture.
 
 ### L2: Biconcave Negative
 
-Assumed nd = 1.61760, νd = 52.7. Glass: Unmatched (published N/V; d-reference assumed). Isolated thick-element f = -25.309 mm.
+nd = 1.61760, νd = 52.7. Glass: Unmatched (nd 1.6176, νd 52.7 as printed). f = −25.31 mm.
 
-The negative component closes the front doublet. Its strongly curved rear face contributes to the divergent front assembly appropriate to retrofocus clearance. The isolated focal length is calculated in air for interpretation, not the element's in-system contribution.
+The rear element of A. Its deep concave rear surface (rA3 = rAL, 21.33 mm) carries most of the doublet's negative power and, across the long air space dB0, produces the back focus longer than the focal length. Condition (ロ) bounds this radius against I_B's front surface.
 
 ### L3: Biconvex Positive
 
-Assumed nd = 1.67750, νd = 55.4. Glass: Unmatched (published N/V; d-reference assumed). Isolated thick-element f = +38.454 mm.
+nd = 1.67750, νd = 55.4. Glass: Unmatched (nd 1.6775, νd 55.4 as printed). f = +38.45 mm.
 
-The thick positive single follows the large front airspace. It supplies converging power; the thickness is a literal source dimension, not a layout correction. The isolated focal length is calculated in air for interpretation, not the element's in-system contribution.
+I_B, the 17.0 mm thick collector at the front of component B. The patent assigns it the cancellation of the negative distortion and inward coma generated by the front component; condition (ハ) sets the shape of the air lens between I_B and II_B.
 
 ### L4: Positive Meniscus
 
-Assumed nd = 1.67750, νd = 55.4. Glass: Unmatched (published N/V; d-reference assumed). Isolated thick-element f = +88.084 mm.
+nd = 1.67750, νd = 55.4. Glass: Unmatched (nd 1.6775, νd 55.4 as printed). f = +88.08 mm.
 
-This positive meniscus follows the narrow dB2 gap. Its edge thickness limits admissible caps; a visual or nominal aperture guess alone is insufficient. The isolated focal length is calculated in air for interpretation, not the element's in-system contribution.
+II_B, a weak meniscus convex to the object, the last element ahead of the stop. The patent controls coma by placing two positive groups on each side of the biconcave III_B: I_B and II_B in front, governed by condition (ハ), and IV_B and V_B behind, governed by condition (ニ).
 
 ### L5: Biconcave Negative
 
-Assumed nd = 1.64770, νd = 33.9. Glass: Unmatched (published N/V; d-reference assumed). Isolated thick-element f = -28.445 mm.
+nd = 1.64770, νd = 33.9. Glass: SF2 (Schott). f = −28.45 mm.
 
-The central biconcave component provides negative power. Mechanical shoulders visible in the maker section do not establish exact optical caps and are not invented in the model. The isolated focal length is calculated in air for interpretation, not the element's in-system contribution.
+III_B, the flint just behind the stop and the rear component's strongest negative element. It counters the Petzval contribution of the positive elements; because V_B is cemented, the patent notes that III_B need not use a very low Abbe number.
 
 ### L6: Positive Meniscus
 
-Assumed nd = 1.70800, νd = 53.3. Glass: Unmatched (published N/V; d-reference assumed). Isolated thick-element f = +60.283 mm.
+nd = 1.70800, νd = 53.3. Glass: Unmatched (nd 1.7080, νd 53.3 as printed). f = +60.28 mm.
 
-The rear positive meniscus supplies converging power. Its concave surfaces and small following airgap require independent edge and clearance checks. The isolated focal length is calculated in air for interpretation, not the element's in-system contribution.
+IV_B, a meniscus concave to the object. Its image-side radius rIV is the subject of condition (ニ), which the patent ties to the correction of coma without leaving spherical aberration undercorrected.
 
 ### L7: Negative Meniscus
 
-Assumed nd = 1.75570, νd = 27.2. Glass: Unmatched (published N/V; d-reference assumed). Isolated thick-element f = -59.911 mm.
+nd = 1.75570, νd = 27.2. Glass: Unmatched (nd 1.7557, νd 27.2 as printed). f = −59.91 mm.
 
-The first component of the rear cemented doublet has negative isolated power. Its high index and lower Abbe number contrast with the following positive component. The isolated focal length is calculated in air for interpretation, not the element's in-system contribution.
+The dense-flint front element of the cemented rear doublet V_B. The patent corrects lateral colour mainly by cementing one of the last two groups rather than by placing a low-Abbe positive element in the front component.
 
 ### L8: Biconvex Positive
 
-Assumed nd = 1.70800, νd = 53.3. Glass: Unmatched (published N/V; d-reference assumed). Isolated thick-element f = +33.782 mm.
+nd = 1.70800, νd = 53.3. Glass: Unmatched (nd 1.7080, νd 53.3 as printed). f = +33.78 mm.
 
-The positive final component closes the rear doublet. The published final back focus is retained as a separate source-derived image interval. The isolated focal length is calculated in air for interpretation, not the element's in-system contribution.
+The positive rear element of V_B and the last element before the image. It shares its glass coordinates with L6.
 
 ## Glass Identification and Selection
 
-The source table uses plain N and V. Neither the inspected original nor a verified counterpart supplies an explicit wavelength definition. The patent's d/g aberration curves establish plotted lines, not N = nd or V = νd. Each element therefore explicitly uses the assumed d-reference; no catalog glass name or dispersion coefficients have been fitted.
+The table gives plain N and V without naming the line. The model treats them as nd and νd: the patent's aberration curves use the d line as reference with the g line beside it, and two of the six glass coordinates match d-line catalog rows exactly. L1 (1.7200 / 50.3) is the lanthanum crown LAC10 (HOYA, legacy; also Ohara S-LAL10 and Sumita K-LaK10), and L5 (1.6477 / 33.9) is the dense flint SF2 (Schott; also Ohara PBM22 and Hoya E-FD2). The production supplier is not known; the labels identify the catalog curves used for dispersion.
 
-Published pairs are retained exactly. Higher-dispersion members in the negative central and rear components offer an interpretation of the chromatic balancing architecture, but neither apochromatism nor a specific partial-dispersion performance is established. Later C/d/F calculations would be conditional on the assumed reference and the engine's supported index/Abbe dispersion approximation. The patent g-line curve cannot be reproduced faithfully from these two scalar glass values alone.
+The other four coordinates have no exact catalog row. L3 and L4 (1.6775 / 55.4) sit 0.0004 below the LaK12-class 1.6779 / 55.3–55.5 rows, and L7 (1.7557 / 27.2) is near but not on the SF4-class 1.7552 / 27.5 rows; L2 (1.6176 / 52.7) and L6/L8 (1.7080 / 53.3) have no near neighbour. These elements keep `Unmatched` labels and use the engine's Abbe-number dispersion model, so the patent's g-line curves cannot be reproduced exactly. All glasses are conventional crowns and flints; the design makes no apochromatic claim.
 
 ## Focus Mechanism
 
-The patent discusses infinity and near objects but supplies no complete finite-distance motion law for this station. The maker's 0.3 m close-focus rating is a product specification, not a patent conjugate. The model has no variable gaps or fitted focusing movement. Its required runtime 1000 m value is an unvalidated schema placeholder, not a solved finite conjugate. The no-moving-gap focus adapter returns null and the UI may retain fallback slider labels; such labels do not validate finite performance. The independently verified 0.3 m maker rating appears only as catalog marketing metadata.
+The patent tabulates only the infinity state, and the model has no focusing movement. The maker lists a 0.3 m minimum focus distance, which appears as catalog metadata only.
 
-The source image plane is (1.9838 + 1.05) × 35 = 106.183 mm from the first vertex. The literal paraxial calculation gives EFL 35.000249716 mm and back focus 36.752442037 mm, placing calculated infinity focus about 0.002442 mm beyond the retained plane. No gap is changed to eliminate that rounding difference.
+The last gap is the printed back focus, 1.05 × 35 = 36.75 mm, placing the image plane 106.183 mm behind the first vertex. The paraxial calculation gives EFL 35.0002 mm and back focus 36.7524 mm, so paraxial focus lies 0.0024 mm beyond the printed plane, a rounding difference that is left in place.
 
 ## Aspherical Surfaces
 
-None are specified. No aspherical, conic, rear-plate or mechanical correction has been introduced.
+None. Every surface in the patent and in the model is spherical.
 
-## Aperture Hypotheses and Validation Limits
+## Conditional Expressions
 
-All clear semi-diameters are inferred. The patent's general front-diameter guidance of approximately 1.0–1.1f supports the order of magnitude of a 36 mm front diameter at the nominal scale, but it is not a per-face aperture table. The 55 mm filter thread is not used as an optical clear diameter.
+The patent claims four conditions for a back focus between 0.9f and 1.5f. Example 3 (back focus 1.05f) satisfies all of them:
 
-The initial caps and their failed checks are preserved in static_report.json. Their surface-9 airgap and rear-element overlap failures motivated smaller caps, leaving every R, d and N/V unchanged. The revised static candidate passes sampled adjacent-face separation, an independent 80% static criterion for airgap intrusion (stricter than the unchanged runtime default of 90%), and preliminary spherical rim checks. No gap-sag override is used.
+| Condition | Example 3 value |
+|---|---|
+| (イ) dB0 > 0.3f | 0.5437 |
+| (ロ) 1.2 rAL < rB1 | 0.7314 < 1.3240 |
+| (ハ) −0.7 < (rB3 + rB2) / (rB3 − rB2) < +0.2 | −0.304 |
+| (ニ) −0.4 < rIV / rB7 < +0.6 | 0.242 |
 
-The H0 native candidate passed geometry and zero trim but clipped the admitted axial beam at S8, giving census f/1.86737. H1 increases only the inferred S8 cap from 11 to 11.50796 mm; S9 remains 11 mm. The original Figure 3 shows shouldered/chamfered central-element edges, supporting a plausible independent clear rim, but not a numerical asymmetry. The increase rounds the traced admitted height upward by 0.000001296 mm; this is numerical clearance, not a manufacturing tolerance.
+## Model Scope and Limitations
 
-H1 passes native build, zero trim for all eight elements, and iris clearances of 1.56768 and 2.08379 mm. The official aperture census is iris-limited at f/1.799999998. The repository convention is paraxial entrance pupil diameter F/N and its iris-admitted/full-beam census; a nonlinear EFL/entrance-ray-diameter ratio is a separate diagnostic. Bounded 16-cell throughput at source angles 0°, 16°, 24° and 32° is 100%, 94.23%, 72.12% and 32.69%, with no failed or unaimed samples. Edge vignetting remains part of the inferred model, not a source-certified measurement.
+The patent gives no clear apertures, so every semi-diameter is inferred. The front doublet's 36 mm clear diameter agrees with the patent's statement that the front diameter stays within 1.0f to 1.1f; the 55 mm filter thread is not used as an optical diameter. The rear rims are sized so that adjacent surfaces do not intrude into the air gaps and the F/1.8 axial beam is limited by the iris rather than a lens rim. At the full 64° field the inferred rear rims vignette the off-axis beam substantially; that vignetting belongs to the model, not to a published measurement.
 
-## Reference MTF and Numerical Limits
+## Design Heritage and Context
 
-The corrected native reference run targets source angles 0°, 16° and 32° by converting native chief-ray heights to format-radius fractions. Returned angles are 0°, 15.99990194° and 31.99999889°. It uses the assumed d-line reference at 587.5618 nm, source image plane 106.183 mm, and sampled frequencies 0, 10, 20, 30 and 40 lp/mm, refining to grid 128.
-
-At the authored source plane, geometric and diffraction estimates converge through sampled 40 lp/mm on axis and at half-field, but only through 30 lp/mm at the full source field. The 40 lp/mm edge samples remain unconverged and must not be presented as qualified values. There are no failed or unaimed rays or unresolved flux in the returned field records.
-
-The separately labeled best-axial diagnostic shifts the analysis plane by -0.12512807 mm without changing the authored prescription. Its geometric edge converges through 30 lp/mm and its diffraction edge through 10 lp/mm; center and half-field converge through 40. A best-focus calculation is not permission to replace the printed back focus.
-
-Earlier image-height-fraction diagnostics sampled actual angles 0°, 17.30827638° and 32.11122666°, rather than exact source angles. Those results remain separately retained: source-plane geometric edge through 30 and diffraction edge through 40; best-axial geometric edge through 20 and diffraction edge through 10. They do not supersede the corrected source-angle limits.
-
-Native support permits C/d/F and photopic estimates using normal-line estimated dispersion for all eight glasses, but neither has been computed here. Their availability does not establish factory-accurate dispersion or resolve the source's unspecified N/V reference. All results describe an inferred representative model, not measured production MTF. Metadata, type, formatting and lint checks passed, as did the unchanged one-worker focused regression of 23 files and 1,609 tests. Local build, SEO audit and guarded installation smoke checks passed. This is focused-suite coverage, not a whole-repository test-suite pass.
+The first version of the production lens, the MC W.Rokkor-HH 35mm f/1.8 with an all-metal focusing ring, appeared in 1968, a year after Minolta filed this application. The MC-II revision followed in 1970 and a later MC-X version with a rubber focusing grip; lenses for North America were named MC W.Rokkor-X, and reviewers report the same eight-element optics across these versions. The MD 35mm f/1.8 of 1978 is a smaller lens of different optical design.
 
 ## References
 
-- [Original J-PlatPat publication](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S45-039874/12/ja), whole Example 3, PDF page 4; original source retained with this checkpoint.
-- [Minolta XG-7 accessories brochure](https://cameramanuals.org/minolta_pdf/minolta_xg-7-accessories.pdf), PDF page 18 / printed page 30.
+- [JP S45-39874 B on J-PlatPat](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S45-039874/12/ja): Example 3 table p. 4, Fig. 3, Seidel coefficients p. 6, Fig. 7.
+- [Minolta XG-7 accessories brochure](https://cameramanuals.org/minolta_pdf/minolta_xg-7-accessories.pdf), printed page 30: 35mm f/1.8 MC W Rokkor-X specifications and section.
+- [Phillip Reeve, Quick-Review: Minolta MC Rokkor 35mm 1:1.8](https://phillipreeve.net/blog/review-minolta-mc-rokkor-35mm-11-8/): version history (1968 MC-I, 1970 MC-II, MC-X, 1978 MD).
+- [minolta.su, Minolta MC Rokkor HH 35mm 1:1.8 W (MC II) review](https://minolta.su/minolta-mc-rokkor-hh-35mm-f1-8-mc2/): eight elements in six groups, 0.3 m, 55 mm filter.

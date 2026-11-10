@@ -1,30 +1,28 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** H1 NATIVE-QUALIFIED REPRESENTATIVE MODEL; full integration pending.
- * Whole JPS45-39874 Example 3; exactly 35 times every source length.
- * Source N/V are modeled with explicitly ASSUMED d-reference, not a source fact.
- * Stop sits 0.6295 of the way through unchanged dB4 (4.0033 / 2.3562 mm), where the printed
- * Seidel coma, astigmatism and distortion sums place the chief ray's axis crossing; caps are inferred.
- * Published back focus 1.05 is retained, not fitted to calculated focus.
- * No factory or finite-focus claim; bounded native MTF limits documented in analysis.
+/** JP S45-39874 B, Example 3 (Minolta Camera; inventor Toshinobu Ogura), the whole printed table.
+ * The patent prints the example at f = 1 (F/1.8, 2ω = 64°, back focus 1.05); every length here is the
+ * printed value × 35, a uniform scale to the 35 mm production focal length. All surfaces are spherical.
+ * The table gives plain N / V without naming the line; they are modeled as nd / νd (d-line), which the
+ * patent's d-line aberration plots and exact d-line catalog matches for L1 and L5 support.
+ * The patent prints no stop position. Its printed Seidel coma, astigmatism and distortion coefficients
+ * place the chief ray's axis crossing 0.6295 of the way through dB4, so the stop sits 4.0033 mm behind
+ * surface 7 and 2.3562 mm ahead of surface 8 (dB4 itself unchanged). All semi-diameters are inferred.
+ * The last gap is the printed back focus (1.05 × 35 = 36.75 mm), kept as printed rather than fitted to
+ * the paraxial back focus (36.7524 mm). Infinity focus only; the correlation with the production lens
+ * is at design-family level, not a factory prescription.
  */
 const LENS_DATA = {
   schema: 2,
   key: "minolta-mc-w-rokkor-x-35f18",
   maker: "Minolta",
   name: "MINOLTA MC W.ROKKOR-X 35mm f/1.8",
-  subtitle: "JP 1970-039874 B EXAMPLE 3 — REPRESENTATIVE SOURCE DESIGN",
+  subtitle: "JP S45-39874 B, Example 3 — scaled ×35; production correlation",
   visible: true,
   catalog: {
     lensMounts: ["minolta-sr"],
     imageFormat: "135-full-frame",
-    specs: [
-      "8 ELEMENTS / 6 GROUPS",
-      "35× NORMALIZED SOURCE",
-      "SOURCE F/1.8; FULL FIELD 64°",
-      "ASSUMED D-REFERENCE",
-      "ALL SPHERICAL",
-    ],
+    specs: ["8 ELEMENTS / 6 GROUPS", "DESIGN f = 35.00 mm", "DESIGN F/1.8", "ALL SPHERICAL"],
     elementCount: 8,
     groupCount: 6,
     closeFocusM: {
@@ -55,84 +53,92 @@ const LENS_DATA = {
       name: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
+      role: "Positive front element of the cemented front doublet (negative group A)",
       nd: 1.72,
       vd: 50.3,
       indexReference: "d",
-      glass: "Unmatched (source N/V; assumed d-reference, catalog identity unverified)",
-      cemented: "D1",
+      glass: "LAC10 (HOYA, legacy)",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
       label: "Element 2",
       type: "Biconcave Negative",
+      role: "Negative rear element of the front doublet; its deep rear surface carries most of group A's power",
       nd: 1.6176,
       vd: 52.7,
       indexReference: "d",
-      glass: "Unmatched (source N/V; assumed d-reference, catalog identity unverified)",
-      cemented: "D1",
+      glass: "Unmatched (nd 1.6176, νd 52.7 as printed; no exact catalog row)",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
       label: "Element 3",
       type: "Biconvex Positive",
+      role: "Thick biconvex collector (I_B) opening the positive rear group",
       nd: 1.6775,
       vd: 55.4,
       indexReference: "d",
-      glass: "Unmatched (source N/V; assumed d-reference, catalog identity unverified)",
+      glass: "Unmatched (nd 1.6775, νd 55.4 as printed; no exact catalog row)",
     },
     {
       id: 4,
       name: "L4",
       label: "Element 4",
       type: "Positive Meniscus",
+      role: "Positive meniscus (II_B), convex to the object, just ahead of the stop",
       nd: 1.6775,
       vd: 55.4,
       indexReference: "d",
-      glass: "Unmatched (source N/V; assumed d-reference, catalog identity unverified)",
+      glass: "Unmatched (nd 1.6775, νd 55.4 as printed; no exact catalog row)",
     },
     {
       id: 5,
       name: "L5",
       label: "Element 5",
       type: "Biconcave Negative",
+      role: "Biconcave flint (III_B) just behind the stop, the rear group's main negative element",
       nd: 1.6477,
       vd: 33.9,
       indexReference: "d",
-      glass: "Unmatched (source N/V; assumed d-reference, catalog identity unverified)",
+      glass: "SF2 (Schott)",
     },
     {
       id: 6,
       name: "L6",
       label: "Element 6",
       type: "Positive Meniscus",
+      role: "Positive meniscus (IV_B), concave to the object",
       nd: 1.708,
       vd: 53.3,
       indexReference: "d",
-      glass: "Unmatched (source N/V; assumed d-reference, catalog identity unverified)",
+      glass: "Unmatched (nd 1.7080, νd 53.3 as printed; no exact catalog row)",
     },
     {
       id: 7,
       name: "L7",
       label: "Element 7",
       type: "Negative Meniscus",
+      role: "Dense-flint negative front element of the rear cemented doublet (V_B)",
       nd: 1.7557,
       vd: 27.2,
       indexReference: "d",
-      glass: "Unmatched (source N/V; assumed d-reference, catalog identity unverified)",
-      cemented: "D2",
+      glass: "Unmatched (nd 1.7557, νd 27.2 as printed; no exact catalog row)",
+      cemented: "C2",
     },
     {
       id: 8,
       name: "L8",
       label: "Element 8",
       type: "Biconvex Positive",
+      role: "Biconvex positive rear element of the rear doublet, last element before the image",
       nd: 1.708,
       vd: 53.3,
       indexReference: "d",
-      glass: "Unmatched (source N/V; assumed d-reference, catalog identity unverified)",
-      cemented: "D2",
+      glass: "Unmatched (nd 1.7080, νd 53.3 as printed; no exact catalog row)",
+      cemented: "C2",
     },
   ],
   surfaces: [
@@ -238,9 +244,9 @@ const LENS_DATA = {
     yScFill: 0.3,
   },
   focus: {
-    closeFocusM: 1000,
+    closeFocusM: 1e15,
     description:
-      "Infinity-only source station. The 1000 m software control bound is a placeholder, not the maker 0.3 m close-focus specification. No finite-focus law is supplied.",
+      "Infinity focus only; the patent tabulates only the infinity state, so the model has no focusing movement. The marketed minimum focus distance is 0.3 m.",
   },
   gaps: {},
   aperture: {
@@ -249,12 +255,12 @@ const LENS_DATA = {
   },
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "D2",
+      text: "C2",
       fromSurface: "12",
       toSurface: "14",
     },
