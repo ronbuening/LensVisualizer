@@ -63,7 +63,6 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) — patent line-index backfill for proprietary glasses
 - [queue] [`dispersion-estimate-exploration.md`](dispersion-estimate-exploration.md) — paused proposal: narrow the MTF warning's estimated-dispersion blur and refit the nd/νd estimate; findings and the audit script
 - [queue] [`seo-optimization-plan.md`](seo-optimization-plan.md) — SEO rollout and Search Console triage, blocked on user-supplied inputs
-- [queue] [`generated-folder-docs-proposal.md`](generated-folder-docs-proposal.md) — proposal awaiting a decision: stop generated `src/**/readme.md` and `improvementsuggestions.md` merge conflicts; evidence and options
 
 ## Records
 
