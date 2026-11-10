@@ -20,9 +20,13 @@
  * Stop: the patent does not locate the iris. It is placed at the midpoint of d13, so it moves Δx/2 during
  * focusing. Its radius follows the printed F-numbers at the printed stations, interpolated in between.
  *
- * Semi-diameters are inferred from the Fig. 12 proportions. S14-S20 are set slightly wider (10.1, 10.35 and
- * 10.5 mm) so that the full axial cone clears at the tele end at 1.5 m. No factory zoom cam or production
- * prescription is claimed.
+ * Semi-diameters are estimated from Fig. 12 (wide, infinity; 9.50 px/mm at 300 dpi from the S1-S29 vertex span)
+ * and floor-checked by real-ray trace. L5's rear face (S9, 11.9 mm) ends inside its square front edge, as drawn.
+ * Three groups sit slightly above the figure reading where a ray needs it:
+ * - S14-S20 (10.1, 10.35 and 10.5 mm) pass the full axial cone at the tele end at 1.5 m.
+ * - The F II doublet (8.6 mm) and L14 (14.1 mm) pass the chief ray to the Y' = 21.63 mm corner at the wide end
+ *   for the printed distances of 5 m and closer.
+ * No factory zoom cam or production prescription is claimed.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
@@ -340,7 +344,7 @@ const LENS_DATA = {
       label: "9",
       R: 32.393,
       d: 2,
-      sd: 13.2,
+      sd: 11.9,
     },
     {
       label: "10",
@@ -420,33 +424,33 @@ const LENS_DATA = {
       label: "21",
       R: -52.263,
       d: 3,
-      sd: 8.2,
+      sd: 8.6,
       medium: 12,
     },
     {
       label: "22",
       R: -16.611,
       d: 1.1,
-      sd: 8.2,
+      sd: 8.6,
       medium: 13,
     },
     {
       label: "23",
       R: 66.755,
-      sd: 8.2,
+      sd: 8.6,
     },
     {
       label: "24",
       R: -206.857,
       d: 3.5,
-      sd: 13.7,
+      sd: 14.1,
       medium: 14,
     },
     {
       label: "25",
       R: -38.717,
       d: 0.12,
-      sd: 13.7,
+      sd: 14.1,
     },
     {
       label: "26",

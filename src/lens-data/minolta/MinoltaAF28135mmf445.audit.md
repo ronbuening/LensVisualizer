@@ -21,7 +21,7 @@ Applied: PDF filed as `US4844600A.pdf`. No data change.
 Open: hidden as delivered — fit to show after the wording pass (closed: visible); the 22 inferred zoom stations move the
 fixed group FII by up to 1.47 mm (patent: FII stationary) — re-solve them with S21-to-image fixed at 80.549 mm (closed:
 re-solved in the cleanup pass); at wide 1.5 m the corner chief ray just touches S23/S25 (≈8.6 / 14.1 would clear, still
-inside Fig. 12; still open); all 16 glasses are standard catalogue pairs labelled `Unmatched` (closed: 15 relabelled);
+inside Fig. 12; closed: raised to 8.6 / 14.1 in the semi-diameter pass, which measured Fig. 12 at 8.1 / 13.5); all 16 glasses are standard catalogue pairs labelled `Unmatched` (closed: 15 relabelled);
 stop at mid-d13 moves Δx/2 during focus (still open).
 
 ## 2026-11-10 — Cleanup and wording pass
@@ -76,7 +76,59 @@ rests on the patent and on public specifications (mhohner.de, allphotolenses.com
 "Verification Scope" material became "Model Scope and Limitations". The SHA line was deleted.
 
 Open: S21–S23 (8.2) and S24–S25 (13.7) rims. At wide 1.5 m the corner chief ray to Y′ 21.63 mm needs about 8.3–8.6
-and 14.0, inside the Fig. 12 reading of about 8.5 and 14.0. The stop is placed at mid-d13 and moves Δx/2 during
+and 14.0, inside the Fig. 12 reading of about 8.5 and 14.0. (Closed in the semi-diameter pass. The 300 dpi reading of
+Fig. 12 is 8.1 and 13.5, so 8.6 / 14.1 sit 4–6 % above the drawing, set by the ray.) The stop is placed at mid-d13 and moves Δx/2 during
 focusing; its position is not printed. The package author's note on front and rear profile differences against a
 Minolta service drawing was not checked (no maker drawing was staged). The allphotolenses diagram is the public
 comparison to make.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: `US4844600A.pdf`, PDF page 7 (sheet 6 of 9), Fig. 12, the Embodiment 5 section at the wide end and infinity.
+The page is a 300 dpi CCITT scan, measured at native resolution. Readings come from the lower half, which carries no
+brackets or labels. The optical axis is at page row 2108.
+
+The vertex crossings near the axis give x = 775 for S1 and x = 1718 for S29. That is 943 px for the 99.240 mm printed
+Σd at wide, or 9.50 px/mm. Two checks: S1–S14 gives 9.46 px/mm and S14–S29 gives 9.55 px/mm. Heights use 9.50 px/mm;
+the L1 edge (311.5 px against 32.7 mm) implies 9.53.
+
+| Surface | Before | Figure | After | Evidence |
+| --- | --- | --- | --- | --- |
+| S1 / S2 / S3 | 32.7 / 30.4 / 30.3 | 32.9 / ≈30.5 / 30.6 | kept | within 1 % |
+| S4–S5 (L3) | 26.9 | 26.7 | kept | within 1 % |
+| S6 (L4) | 17.5 | 17.5 | kept | — |
+| S7 (L4 rear) | 12.5 | ≈13.0 | kept | drawn meeting L5; d7 closes at 13.05 mm |
+| S8 (L5 front) | 12.5 | 13.2 | kept | +5 % noise; a raise would stand proud of L4's rim |
+| S9 (L5 rear) | 13.2 | 11.9 | 11.9 | the concave face ends at a chamfer, 112–115 px; fixes the reversed step |
+| S10 / S11 (L6) | 11.1 / 10.8 | 10.8 | kept | 3 % |
+| S12–S13 (L7) | 10.7 | 10.45 | kept | 2 % |
+| S14–S15 (L8) | 10.1 | 10.05 | kept | — |
+| S16–S18 (C2) | 10.35 | 10.1 | kept | axial floor 10.27–10.30 at tele 1.5 m |
+| S19–S20 (L11) | 10.5 | 10.1 | kept | axial floor 10.41 / 10.34 at tele 1.5 m |
+| S21–S23 (C3) | 8.2 | 8.1 | 8.6 | corner chief floor 8.59 at wide 1.5 m; square doublet, one height |
+| S24–S25 (L14) | 13.7 | 13.5 | 14.1 | corner chief floor 14.02 at wide 1.5 m; square edge, one height |
+| S26–S29 (L15, L16) | 15.3 | 15.0–15.05 | kept | 2 % |
+
+Clearance at the printed stations (28.8, 60.0 and 131.5 mm) and all 13 printed focus rows was traced from the finite
+object. The axial ray reaches the engine stop rim everywhere. The smallest margins are 0.05 mm at S18 and 0.08 mm at
+S15 / S16, all at tele 1.5 m. The corner chief ray to Y′ 21.63 mm was blocked from 5 m inward at the wide end: S23
+needed 8.26 mm at 5 m and 8.59 mm at 1.5 m, and S25 needed 13.72 and 14.02 mm. clearap now flags nothing at any focus
+row and any of the 25 stations.
+
+Corner light: the engine vignetting at infinity, wide open, is unchanged at every station. The values are 39.3 % at
+37.6° (28.8 mm), 52.0 % at 19.5° (60 mm) and 47.1 % at 9.2° (131.5 mm). The S9 reduction costs 0.0 points at every
+field of every station; the raises add nothing at infinity. At the wide-end corner the meridional-fan transmission
+rises from 39.3 to 42.3 % at 1.5 m and from 47.3 to 49.8 % at 5 m. The close-focus corner stays heavily vignetted, as
+real vignetting.
+
+Engine: wide half-field 32.27° before, 33.13° after; the engine's slope-launch estimate is limited by S25 (L14 rear)
+in both states. FOPEN 3.6
+and all stop radii are unchanged. audit:surface reports no errors, with `gapSagFrac` unchanged. audit:image-circle
+reports 0 undersized. Field coverage is 100 % at all 25 stations, and audit:aperture keeps 25 of 25 stations within
+3 % with no rim limit. Overlay of the model on Fig. 12 at matched scale: the session scratch `sd/af28135/overlay.png`.
+
+No maker drawing was viewed. The deployment-validation section above records Minolta's 16/13 construction and
+internal focusing. The design is all-spherical, and no special-dispersion element is listed for it.
+
+Open: the stop position (mid-d13) is not printed. Fig. 12 draws L4's rear rim meeting L5's front edge at about
+13.0 mm; the model keeps both at 12.5 mm, a 0.7 mm air gap at the rim, because d7 closes at 13.05 mm.
