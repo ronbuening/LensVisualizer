@@ -10,7 +10,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * best-focus shift, and it is soft at full aperture. The patent's half field is 31.5° (Fig. 3); the 135-format
  * corner is 31.09°.
  * The patent puts the stop between L3 and L4 without a position or diameter; the model splits d6 at its midpoint.
- * Semi-diameters are estimates, not maker dimensions, and vignette the corner strongly.
+ * Semi-diameters are estimated, not maker dimensions. The patent's only section, Fig. 2, follows Embodiment 2's
+ * spacing (15.9 px per unit at f = 100); Olympus's XA2 repair-manual drawing (p. A-16, 44.4 px/mm at 600 dpi from the
+ * vertex span) shows the production lens. L1 (7.0) follows the repair-manual drawing; Fig. 2 draws it at about 5.3 mm,
+ * which would vignette far more. L3 (4.7) is the height both drawings give. L4's rear face (6.6) and the land on its
+ * front face (rimExtensionSd 6.6; curved cap 5.0) follow both drawings (6.4–6.8). L2 is drawn 5.1–6.2 mm; its front
+ * face meets L1's rear face 5.74 mm from the axis, so it stops at 5.6, and checks.gapSagFrac 0.96 admits that
+ * L1-rear / L2-front pair. The corner chief ray needs 5.95 mm at L2's front face, so the outer corners vignette
+ * strongly.
  * Infinity focus only; no variable gaps. focus.closeFocusM 1e15 is a placeholder for that.
  */
 const LENS_DATA = {
@@ -120,27 +127,27 @@ const LENS_DATA = {
       label: "3",
       R: -51.5333,
       d: 1.029,
-      sd: 5,
+      sd: 5.6,
       medium: 2,
     },
     {
       label: "4",
       R: 16.05765,
       d: 1.9495,
-      sd: 5,
+      sd: 5.6,
     },
     {
       label: "5",
       R: 20.5184,
       d: 3.6959999999999997,
-      sd: 6,
+      sd: 4.7,
       medium: 3,
     },
     {
       label: "6",
       R: -27.2587,
       d: 2.8857499999999994,
-      sd: 6,
+      sd: 4.7,
     },
     {
       label: "STO",
@@ -152,13 +159,14 @@ const LENS_DATA = {
       R: -7.0062999999999995,
       d: 1.337,
       sd: 5,
+      rimExtensionSd: 6.6,
       medium: 4,
     },
     {
       label: "8",
       R: -10.3425,
       d: 16.943253243868504,
-      sd: 5,
+      sd: 6.6,
     },
   ],
   focus: {
@@ -170,6 +178,9 @@ const LENS_DATA = {
   aperture: {
     nominalFNumber: 3.5,
     fStops: [3.5, 4, 5.6, 8, 11, 16],
+  },
+  checks: {
+    gapSagFrac: 0.96,
   },
 } satisfies LensDataV2Input;
 

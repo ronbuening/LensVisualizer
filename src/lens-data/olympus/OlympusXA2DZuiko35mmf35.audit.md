@@ -33,7 +33,8 @@ Open: L4 rims (s7/s8 sd 5) are drawn smaller than in the patent figure and the s
 `audit:surface`); field coverage 80 % because L1 rear / L2 front cross at r ≈ 5.7 mm (as on the live Olympus XA entry); all
 four glasses match catalog rows exactly (S-LAL10, S-TIH11, S-BAH27, S-LAH51) but are labelled `Unmatched`; public wording
 (subtitle, specs, `focus.description`) and the package-process prose in this log and the analysis need a cleanup pass.
-Glasses and wording: closed in the cleanup pass below; rims and field coverage stay open.
+Glasses and wording: closed in the cleanup pass below; rims and field coverage: closed in the semi-diameter pass below
+(coverage 92 %, limited by geometry).
 
 ## 2026-11-10 — Cleanup and wording pass
 
@@ -63,7 +64,47 @@ radius 3.044751011096371, BFD 16.9433, TL 34.8458. Only the reported closeFocusM
 OK; audit:aperture within 3 % of the stated f-number with no rim limit.
 
 Open: L4 rims (s7/s8 sd 5) are drawn smaller than the patent's Fig. 2 and the repair-manual diagram, where L4 is
-nearly as tall as L1; about 6.2/6.6 passes audit:surface and removes the 9 % side clip at s8. Stop position: Fig. 3
-distortion at 31.5° (about +2.2 %) fits a stop near 0.4 of d6 better than the midpoint (+2.6 %). Field coverage is 80 %
-(chief ray clear to about 25.7°): L1 rear and L2 front meet at r ≈ 5.7 mm, which caps L2 at 5 mm, the same pattern as
-the Olympus XA entry.
+nearly as tall as L1; about 6.2/6.6 passes audit:surface and removes the 9 % side clip at s8 (closed in the
+semi-diameter pass below). Stop position: Fig. 3 distortion at 31.5° (about +2.2 %) fits a stop near 0.4 of d6 better
+than the midpoint (+2.6 %). Field coverage is 80 % (chief ray clear to about 25.7°): L1 rear and L2 front meet at
+r ≈ 5.7 mm, which caps L2 at 5 mm, the same pattern as the Olympus XA entry (closed below: 92 % with L2 at 5.6 mm).
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Sources. The patent (`US4303313A.pdf`) has one cross-section, Fig. 2 on sheet 1 (PDF p. 2; the front page repeats it).
+Fig. 1 is the thin-lens principle sketch. Fig. 2 is not Embodiment 1. Its vertex crossings at native resolution
+(72 dpi render = scan pixels; r1…r8 at x = 811.5, 903, 938, 985, 1056.5, 1219, 1518.5, 1581.5) give spans of
+91.5 / 35 / 47 / 71.5 / 162.5 / 299.5 / 63 px. Against Embodiment 2 (d = 5.97 / 1.91 / 2.94 / 4.71 / 10.38 / 18.76 /
+3.82) every span reads 15.2–18.3 px per unit, 15.88 overall. Against Embodiment 1 they spread over 10.0–18.2, with
+d1 at 10.0. Arc checks with Embodiment 2's radii confirm it: r8 (−26.841) reaches the 307 px top within 5 px, and r7's
+cap end within 4 px. Heights convert at 15.88 px per unit and ×0.35 to the model's focal length. The second source is
+the composition drawing on p. A-16 of Olympus's XA2 repair manual (staged scan, PDF p. 29, 600 dpi). It shows the
+production lens, with d6 set to 5.754 mm. Its r1–r8 span (795 px) and its r6–r7 span (255 px) both give 44.4 px/mm
+against Embodiment 1. Its L1/L2 spacing is schematic: d2 is drawn 2.1 mm against 0.93.
+
+Readings (Fig. 2 / repair manual, mm): L1 5.3 / 6.95; L2 5.1 / 6.2 (square top); L3 4.7 / 4.7 (square top); L4
+front-face cap 5.4 / 5.2, then a vertical land to the outer rim; L4 outer rim and rear face 6.8 / 6.4.
+
+| Surface | Before | After | Evidence |
+|---|---|---|---|
+| 1, 2 (L1) | 7.0 | 7.0 | Repair manual 6.95. Fig. 2's 5.3 would shrink the traced field to about 20° and cost 10–24 points: kept. |
+| 3, 4 (L2) | 5.0 | 5.6 | Repair manual 6.2; corner chief ray needs 5.95 at s3 and 5.01 at s4. L1 rear and L2 front cross at 5.74 mm, so 5.6 is the largest 0.1 mm step; `checks.gapSagFrac` 0.96 is the smallest two-decimal value that admits it (0.95 refused: 0.89 mm sag against 0.881 allowed in the 0.927 mm gap). Square, one value. |
+| 5, 6 (L3) | 6.0 | 4.7 | Both drawings 4.7 (28 % under the old value). Square, one value. |
+| 7 (L4 front) | 5.0 | 5.0 + `rimExtensionSd` 6.6 | Cap end 5.2–5.4 in the drawings, within noise of 5.0: kept. Both drawings draw the land out to the outer rim. |
+| 8 (L4 rear) | 5.0 | 6.6 | Drawings 6.4 / 6.8; removes the 9 % side clip at the corner. |
+
+Clearance and light, wide open at infinity. audit:surface OK; audit:aperture within 3 % of F/3.5 with no rim limit;
+audit:image-circle 0 undersized. Field coverage 80 % → 92 %: the chief ray clears to 29.1° (19.94 mm of 21.65 mm),
+stopped at s3, where the corner needs 5.95 against the 5.74 mm geometric limit. clearap at Y = 21.63 still flags
+BLOCKS-CHIEF at s3 only (s4 cleared). Engine half-field 21.37° → 21.78°; FOPEN 3.5, stop radius 3.0448, EFL 35.0079
+and BFD 16.9433 unchanged.
+
+Geometric transmission by field, baseline → final: 5.7° 95.5 → 98.5, 8.6° 88.2 → 93.9, 11.4° 80.4 → 88.6, 14.3°
+72.4 → 81.9, 17.1° 64.2 → 74.5, 20.0° 56.1 → 66.7, 22.8° 48.1 → 58.3, 25.7° 40.1 → 50.4 %. The new field end, 29.1°,
+transmits 41.3 %. L3's reduction (a cut under the lands rule) costs at most 2.5 points against the same set with L3 at
+6.0 (at 8.6°), within the 3-point allowance. Every field gains against the baseline. The L4 land changes no
+tracing.
+
+Open: Fig. 2 belongs to Embodiment 2, and no Embodiment 1 section exists. The repair-manual drawing carries the
+production proportions but is schematic in the L1–L2 spacing. The stop position (Fig. 3 distortion suggests about 0.4
+of d6) is unchanged.

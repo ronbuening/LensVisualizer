@@ -6,7 +6,7 @@
 **Granted:** 1981-12-01
 **Inventors:** Toshihiro Imai, Hiroshi Takase
 **Assignee:** Olympus Optical Co., Ltd.
-**Example details:** Embodiment 1 table (col. 4, repeated as claim 2), Fig. 2 section, Fig. 3 aberrations; patent f = 100, all lengths scaled ×0.35 to f = 35 mm
+**Example details:** Embodiment 1 table (col. 4, repeated as claim 2), Fig. 3 aberrations (the patent's only section, Fig. 2, is drawn to Embodiment 2's spacing); patent f = 100, all lengths scaled ×0.35 to f = 35 mm
 
 The patent claims a four-element, four-group telephoto-type lens for compact 35 mm cameras, covering more than 60° at F/3.5. Embodiment 1 is attributed to the Olympus XA2 (1980) on convergent evidence:
 
@@ -75,7 +75,7 @@ The traced focal length is 35.008 mm (100.02 at patent scale) at f/3.5. The pate
 
 The patent places the stop between L3 and L4 but gives neither its position nor its diameter. The model splits d6 at its midpoint, 13.680 mm behind the first surface (d6 spans 10.794–16.566 mm). With the stop there, the 31.5° chief ray lands at 22.01 mm, a distortion of +2.6 %. Fig. 3 shows about +2.2 %, which a stop nearer 0.4 of d6 would reproduce. That image height lies just outside the 21.63 mm corner of the 24 × 36 mm frame, whose corner field is 31.09°.
 
-The semi-diameters (7, 7, 5, 5, 6, 6, 5, 5 mm for surfaces 1–8) are estimates, not maker dimensions. L1's rear surface and L2's front surface meet about 5.7 mm from the axis, which caps L2 at 5 mm. That rim stops the chief ray beyond about 26° (17.2 mm image height, about 80 % of the half-diagonal), so the corners vignette strongly. The Olympus diagram and the patent's Fig. 2 both draw L2 and L4 nearly as tall as L1.
+The semi-diameters (7.0, 7.0, 5.6, 5.6, 4.7, 4.7, 5.0 and 6.6 mm for surfaces 1–8, with a flat land on L4's front face out to 6.6 mm) are estimates, not maker dimensions. They are taken from two drawings: the patent's only section, Fig. 2, which is drawn to Embodiment 2's spacing, and the composition drawing in Olympus's repair manual. Both draw L3 as the smallest element and L4 as the tallest; L1 follows the repair-manual drawing. L1's rear surface and L2's front surface meet 5.74 mm from the axis, which holds L2 at 5.6 mm, short of the 5.95 mm the corner chief ray needs there. The chief ray therefore clears to about 29° (19.9 mm image height, 92 % of the half-diagonal), where geometric transmission is about 41 % (66 % at 20°).
 
 ## Sources
 
