@@ -5,9 +5,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // Aspheres: K = 0 on both surfaces; the patent prints no sag formula, and its C4–C10 map to A4–A10.
 // All semi-diameters are inferred (the patent prints none), estimated from Figure 1 (about 19.1 px/mm at 300 dpi) and
 // floor-checked by real-ray trace. S7 = 9.11 mm and S9 = 9.19 mm are the smallest values that pass the full-aperture
-// axial bundle at the stop; Figure 1 draws that doublet about 9.3 mm. L8 (14A/15A) is 9.5 mm, square-cut as drawn.
-// The abstract and prose disagree with the tables on group powers, stop position and focus direction; the model
-// follows Tables 1–3 and Figure 1. Table 3's X20 (640.38 mm) and MOD (91.094 mm) states are not modelled.
+// axial bundle at the stop; Figure 1 draws that doublet about 9.3 mm. Figure 1 draws G2, G3 and G8 as square blanks
+// whose shorter face ends in a vertical land: S4's cap ends at 10 mm with a land to 14 mm, S6's at 8.5 mm with a land to
+// 10 mm, and S14's aspheric cap at 7.5 mm with a land to 9.5 mm, the height of S15 (rimExtensionSd).
+// Element names follow the patent (G1–G10, cemented GJ1/GJ2). The abstract and prose disagree with the tables on
+// group powers, stop position and focus direction; the model follows Tables 1–3 and Figure 1. Table 3's X20
+// (640.38 mm) and MOD (91.094 mm) states are not modelled.
 const LENS_DATA = {
   schema: 2,
   key: "yongnuo-yn16mm-f18s-da-dsm",
@@ -46,8 +49,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "G1",
       label: "Element 1",
+      diagramLabel: "G1",
       type: "Positive Meniscus",
       nd: 1.730766,
       vd: 40.501,
@@ -58,8 +62,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "G2",
       label: "Element 2",
+      diagramLabel: "G2",
       type: "Negative Meniscus",
       nd: 1.72916,
       vd: 54.49924,
@@ -70,8 +75,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "G3",
       label: "Element 3",
+      diagramLabel: "G3",
       type: "Negative Meniscus",
       nd: 1.496999,
       vd: 81.61466,
@@ -85,8 +91,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "G4",
       label: "Element 4",
+      diagramLabel: "G4",
       type: "Negative Meniscus",
       nd: 1.900696,
       vd: 37.05356,
@@ -94,12 +101,13 @@ const LENS_DATA = {
       focalLengthMm: -69.0481044947057,
       glass: "Unmatched (patent nd 1.900696 / νd 37.05; no exact catalog row)",
       role: "High-index negative meniscus of the achromatic doublet ahead of the stop.",
-      cemented: "C1",
+      cemented: "GJ1",
     },
     {
       id: 5,
-      name: "L5",
+      name: "G5",
       label: "Element 5",
+      diagramLabel: "G5",
       type: "Biconvex Positive",
       nd: 1.437,
       vd: 90.70237,
@@ -109,13 +117,14 @@ const LENS_DATA = {
       role: "Very-low-dispersion positive element of the doublet ahead of the stop; corrects lateral colour.",
       apd: "inferred",
       apdNote:
-        "Yongnuo lists a low-dispersion and an extra-low-dispersion element; this element's patent nd/νd (1.437/90.70) fit a fluorophosphate extra-low-dispersion glass.",
-      cemented: "C1",
+        "Yongnuo lists a low-dispersion and an extra-low-dispersion element; this element's patent nd/νd (1.437/90.70) fit a fluorophosphate extra-low-dispersion glass, and the patent's condition (3) requires νd > 85 here (¶0050–0052).",
+      cemented: "GJ1",
     },
     {
       id: 6,
-      name: "L6",
+      name: "G6",
       label: "Element 6",
+      diagramLabel: "G6",
       type: "Biconvex Positive",
       nd: 1.910822,
       vd: 35.25001,
@@ -123,12 +132,13 @@ const LENS_DATA = {
       focalLengthMm: 16.0649472962592,
       glass: "TAFD35 (HOYA)",
       role: "High-index positive element of the doublet behind the stop.",
-      cemented: "C2",
+      cemented: "GJ2",
     },
     {
       id: 7,
-      name: "L7",
+      name: "G7",
       label: "Element 7",
+      diagramLabel: "G7",
       type: "Biconcave Negative",
       nd: 1.71852,
       vd: 33.45655,
@@ -136,13 +146,14 @@ const LENS_DATA = {
       focalLengthMm: -16.994349013154025,
       glass: "ADF455 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative element of the doublet behind the stop.",
-      cemented: "C2",
+      cemented: "GJ2",
     },
     {
       id: 8,
-      name: "L8",
+      name: "G8",
       label: "Element 8",
-      type: "Positive Meniscus",
+      diagramLabel: "G8",
+      type: "Positive Meniscus (2× Asph)",
       nd: 1.726,
       vd: 54,
       indexReference: "d",
@@ -152,8 +163,9 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "G9",
       label: "Element 9",
+      diagramLabel: "G9",
       type: "Biconcave Negative",
       nd: 1.761819,
       vd: 26.55365,
@@ -164,8 +176,9 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "G10",
       label: "Element 10",
+      diagramLabel: "G10",
       type: "Biconvex Positive",
       nd: 1.696732,
       vd: 56.42017,
@@ -201,6 +214,7 @@ const LENS_DATA = {
       R: 11.27555,
       d: 5.5,
       sd: 10,
+      rimExtensionSd: 14,
     },
     {
       label: "5",
@@ -214,6 +228,7 @@ const LENS_DATA = {
       R: 10.15882,
       d: 11.35,
       sd: 8.5,
+      rimExtensionSd: 10,
     },
     {
       label: "7",
@@ -264,7 +279,8 @@ const LENS_DATA = {
       label: "14A",
       R: -45.7953,
       d: 7.95,
-      sd: 9.5,
+      sd: 7.5,
+      rimExtensionSd: 9.5,
       medium: 8,
       asphere: {
         K: 0,
@@ -353,12 +369,12 @@ const LENS_DATA = {
   ],
   doublets: [
     {
-      text: "C1",
+      text: "GJ1",
       fromSurface: "7",
       toSurface: "9",
     },
     {
-      text: "C2",
+      text: "GJ2",
       fromSurface: "11",
       toSurface: "13",
     },
@@ -369,7 +385,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity focus only. In the patent, focusing moves only L8, the double-aspheric meniscus, toward the object (1.89 mm at the closest tabulated state) while the front and rear groups stay fixed. Table 3 prints the gaps for objects at 640.38 mm and 91.094 mm; read from the first surface, the latter is 0.17 m object to image, Yongnuo's minimum focus distance. Those states are not modelled.",
+      "Infinity focus only. In the patent, focusing moves only G8, the double-aspheric meniscus, toward the object (1.89 mm at the closest tabulated state) while the front and rear groups stay fixed. Table 3 prints the gaps for objects at 640.38 mm and 91.094 mm; read from the first surface, the latter is 0.17 m object to image, Yongnuo's minimum focus distance. Those states are not modelled.",
   },
 } satisfies LensDataV2Input;
 
