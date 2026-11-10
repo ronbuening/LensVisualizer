@@ -66,7 +66,7 @@ const LENS_DATA = {
       vd: 63.3,
       indexReference: "d",
       indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
-      glass: "Unmatched (printed n 1.5523, ν 63.3; no exact catalog row)",
+      glass: "Unmatched (printed n 1.5523, ν 63.3; Hoya PCD3 coordinates if read at d)",
       focalLengthMm: 102.27639634940671,
     },
     {
@@ -81,7 +81,7 @@ const LENS_DATA = {
       indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
       glass: "Unmatched (printed n 1.6202, ν 60.4; no exact catalog row)",
       focalLengthMm: 92.60860467222062,
-      cemented: "L3",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -95,6 +95,7 @@ const LENS_DATA = {
       indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
       glass: "Unmatched (printed n 1.6727, ν 32.2; SF5 coordinates if read at d)",
       focalLengthMm: -56.027022346930934,
+      cemented: "D1",
     },
     {
       id: 4,
@@ -108,7 +109,7 @@ const LENS_DATA = {
       indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
       glass: "Unmatched (printed n 1.5891, ν 61.4; SK5 coordinates if read at d)",
       focalLengthMm: 86.9057753037547,
-      cemented: "L5",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -122,6 +123,7 @@ const LENS_DATA = {
       indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
       glass: "Unmatched (printed n 1.5317, ν 48.9; LLF6 coordinates if read at d)",
       focalLengthMm: -32.24275025028088,
+      cemented: "D2",
     },
     {
       id: 6,
@@ -133,7 +135,7 @@ const LENS_DATA = {
       vd: 63.3,
       indexReference: "d",
       indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
-      glass: "Unmatched (printed n 1.5523, ν 63.3; no exact catalog row)",
+      glass: "Unmatched (printed n 1.5523, ν 63.3; Hoya PCD3 coordinates if read at d)",
       focalLengthMm: 67.19355422777475,
     },
     {
@@ -247,6 +249,10 @@ const LENS_DATA = {
     fStops: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16],
     maxFNumber: 16,
   },
+  doublets: [
+    { text: "D1", fromSurface: "3", toSurface: "5" },
+    { text: "D2", fromSurface: "6", toSurface: "8" },
+  ],
   layout: {
     yScFill: 0.35,
   },

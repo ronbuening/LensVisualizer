@@ -35,18 +35,18 @@ Focal lengths are for each element alone in air.
 
 ### L1: Positive Meniscus
 
-nd = 1.5523, νd = 63.3. Glass: Unmatched (no exact catalog row). f = +102.3 mm.
+nd = 1.5523, νd = 63.3. Glass: Unmatched (Hoya PCD3 coordinates if read at d). f = +102.3 mm.
 
 The front collector. Its rear face (r2 = +322.5 mm) is nearly flat.
 
-### L2–L3: Front Cemented Meniscus
+### L2–L3: Front Cemented Meniscus (D1)
 
 - **L2, Positive Meniscus:** nd = 1.6202, νd = 60.4. Glass: Unmatched (no exact catalog row). f = +92.6 mm.
 - **L3, Negative Meniscus:** nd = 1.6727, νd = 32.2. Glass: Unmatched (SF5 coordinates if read at d). f = −56.0 mm.
 
 Together a weak negative meniscus (f = −234.3 mm) whose deep rear surface (r5 = +21.92 mm) faces the stop. The cemented surface r4 is converging; the parent application asks that this front cemented surface contribute almost nothing to the spherical correction.
 
-### L4–L5: Rear Cemented Meniscus
+### L4–L5: Rear Cemented Meniscus (D2)
 
 - **L4, Positive Meniscus:** nd = 1.5891, νd = 61.4. Glass: Unmatched (SK5 coordinates if read at d). f = +86.9 mm.
 - **L5, Biconcave Negative:** nd = 1.5317, νd = 48.9. Glass: Unmatched (LLF6 coordinates if read at d). f = −32.2 mm.
@@ -55,7 +55,7 @@ Together a negative meniscus (f = −45.2 mm) concave to the stop. Its cemented 
 
 ### L6: Plano-convex Positive
 
-nd = 1.5523, νd = 63.3. Glass: Unmatched (no exact catalog row). f = +67.2 mm.
+nd = 1.5523, νd = 63.3. Glass: Unmatched (Hoya PCD3 coordinates if read at d). f = +67.2 mm.
 
 The first of the two rear collectors, flat on its front face.
 
@@ -67,7 +67,7 @@ The last collector; with L6 it shares the rear positive power that a plain Gauss
 
 ## Glass Identification and Selection
 
-The table gives n/Nü without naming a spectral line, and the model traces the values as d-line indices. Three of the five glasses reproduce catalog rows at the helium d line: 1.6727/32.2 (SF5, 1.67270/32.21), 1.5891/61.4 (SK5, 1.58913/61.27) and 1.5317/48.9 (LLF6, 1.53172/48.87). At the sodium D line the same glasses read 1.6725, 1.5890 and 1.5316, so the printed indices fit d. The other two, 1.5523/63.3 (L1, L6) and 1.6202/60.4 (L2, L7), match no catalog row at the printed precision; the nearest, N-PSK3 and N-SK16, differ by 0.16 in νd and 0.0002 in nd. Three matches out of five pairs do not establish the reference line, so every label stays Unmatched and the dispersion is traced from nd and νd alone, without partial-dispersion data.
+The table gives n/Nü without naming a spectral line, and the model traces the values as d-line indices. Three of the five glasses reproduce catalog rows at the helium d line: 1.6727/32.2 (SF5, 1.67270/32.21), 1.5891/61.4 (SK5, 1.58913/61.27) and 1.5317/48.9 (LLF6, 1.53172/48.87). At the sodium D line the same glasses read 1.6725, 1.5890 and 1.5316, so the printed indices fit d. 1.5523/63.3 (L1, L6) matches Hoya's discontinued PSK3-type crown PCD3 (1.55232/63.42), which the site's glass catalog does not carry; Schott N-PSK3 differs by 0.16 in νd. 1.6202/60.4 (L2, L7) matches no catalog row: the SK16 family sits at 1.62041, 0.0002 higher. Parent application L 753 prints the same glass types rounded to three decimals (1.620/60 three times, 1.673/32, 1.533/49), which cannot settle the fourth digit. Five of the seven printed pairs match at d, short of the 80 % the reference-line test requires, so every label stays Unmatched and the dispersion is traced from nd and νd alone, without partial-dispersion data.
 
 The palette is conventional for its period: crowns of νd 60–63 in every positive element, a dense flint (L3) in the front cemented pair and a light flint (L5) in the rear one.
 
@@ -77,7 +77,7 @@ The application gives the infinity state only and no focusing data, so the model
 
 ## Model Scope and Limitations
 
-The source prints no clear diameters and has no drawing, so all semi-diameters are inferred. Their proportions follow the Summarex section in the 1953 Leitz brochure, checked against the to-scale drawing of parent application L 753, which shows a different example. Surfaces 7 and 8 are sized to pass the f/1.5 axial beam (16.874 and 18.410 mm needed; rims 16.9 and 18.42 mm). That gives the steep cemented surface 7 a 66.7° rim angle and leaves the 0.6715 mm space between surfaces 8 and 9 only 0.024 mm wide at the rim, so the file raises the rim-angle limit to 67° and the gap-sag limit to 0.965; no other geometry check is relaxed.
+The source prints no clear diameters and has no drawing, so all semi-diameters are inferred. Their proportions follow the Summarex section in the 1953 Leitz brochure, checked against the to-scale drawing of parent application L 753, which shows a different example. Surfaces 7 and 8 are sized to pass the f/1.5 axial beam (16.874 and 18.410 mm needed; rims 16.9 and 18.42 mm). That gives the steep cemented surface 7 a 66.7° rim angle and leaves the 0.6715 mm space between surfaces 8 and 9 only 0.024 mm wide at the rim, so the file raises the rim-angle limit to 67° and the gap-sag limit to 0.965; no other geometry check is relaxed. Both drawings give L5 a flat top as tall as its rear face, but r7 (R = −18.40 mm) cannot reach the 18.41 mm that r8 needs for the f/1.5 beam, so L5 is drawn with a sloping top. L1's 30 mm semi-diameter keeps the brochure's proportion to the front cemented pair, which the f/1.5 beam holds at 24.4 mm; a 60 mm front element is slightly larger than the 59.8 mm front barrel would hold, so the corner illumination of the model is an upper bound.
 
 Neither application gives a field angle. On the 24 × 36 mm format the corner lies at 14.28°, matching the maker's 28° and 28.5° full-field figures.
 

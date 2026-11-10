@@ -108,4 +108,69 @@ the file needs.
 
 Open: L1 stays wider than both drawings and the 59.8 mm barrel allow; narrowing it to about 28.2–29 mm costs 3.6–6.4
 corner points, so it needs a decision on the light rule. The rear doublet's drawn flat top (18.5–22.5 mm) cannot be
-modelled without a land on the cemented junction.
+modelled without a land on the cemented junction. (Both closed in the second review below: L1 stays at 30; the flat
+top cannot be modelled.)
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared the live page (infinity, the only state) and the inspector for all seven elements with the Summarex section of
+the 1953 Leitz brochure (No. 1356-D, printed p. 11) and the parent DE L 753 drawing (p. 9), re-measured on the brochure
+scan column by column.
+
+Brochure readings in pixels from the axis row (top / bottom): L1 70.5 / 69.5; front pair flat top 56.5 / 57.5; r5 rim
+41.5 / 47.5; stop opening 39.5 / 39.5; r6 rim 43.5 / 44.5; rear pair flat top 52.5 / 52.5; L6 47.5 / 48.5; L7 48 / 49.
+Vertex crossings near the axis give 158.5 px for the 64.35 mm first-to-last span (2.46 px/mm), but 2.58 px/mm over r6 to
+r12 and 2.8 px/mm across L1, so the axial scale is schematic. As ratios with L1 = 30 the brochure gives front pair 24.4,
+r5 19.1, r6 18.9, rear pair flat top 22.5, L6 20.6 and L7 20.8 (file: 24.4, 18.5, 18.0, 18.42, 20, 21).
+
+Rims: no change. L1 at 30 is supported by the brochure's own proportions. Holding the front pair to its f/1.5 floor
+(24.10 mm) puts the vertical scale at no more than 2.365 px/mm and L1 at no less than 29.6 mm; the drawn stop opening at
+the 17.50 mm engine stop gives 31.0 mm. Only the schematic axial scale (28.4 mm) and the parent's different example
+(26.7 mm) read lower. The light rule also caps any cut: against the 1119 baseline rims a cut of both L1 faces to 29.5,
+29.3, 29.2, 29.0 and 28.2 mm costs 1.8, 2.5, 2.9, 3.6 and 6.4 points at 14.3°, so 29.2 is the deepest cut the
+3-point budget allows. That is within 3 % of 30 and would bring the L1-to-front-pair ratio to 1.20 against 1.23 in the
+brochure and 1.25 in the parent drawing, so the earlier decision stands. The 60 mm front element against the 59.8 mm
+front barrel is recorded in the analysis as a limitation.
+
+The rear pair's drawn flat top cannot be modelled. r8 needs 18.41 mm for the f/1.5 beam, which is above |R7| = 18.40 mm,
+and L4's edge closes to 0.18 mm by 17.5 mm on r7, so L5 cannot be square. The spec does not allow `rimExtensionSd` on a
+cemented interface. A land on r8 would sit 0.024 mm from L6's plane face and only steepen L5's sloping top, so none was
+added. The parent's flat top (18.3–18.5 mm) matches r8 at 18.42; the brochure's taller top (22.5) also puts the rear
+pair above L6 and L7, which the model cannot show. The front pair, r5, r6, L6 and L7 agree with the brochure within 5 %.
+
+Light, wide open at infinity (`rimcost.mjs`, copied and pointed at this worktree, against
+`.lens-work/base1119sd`): base 97.3, 93.4, 89.3, 83.0, 76.2, 67.9 % at 2.4–14.3°, file 97.6, 93.7, 89.5, 83.1, 76.2, 67.9;
+worst loss 0.0 points. The only cut-and-land change since baseline is L2 squared at 24.4 (r4 raised 23 → 24.4, r3 cut 26
+→ 24.4), which costs nothing at any field. Real-ray floors at the 17.497 mm engine stop: s1 28.13, s2 27.77, s3 24.10, s4
+22.77, s5 17.87, s6 16.69, s7 16.87, s8 18.41, s9 18.42, s10 18.61, s11 17.82, s12 17.34; no rim clips.
+
+| Change | Before | After | Evidence |
+| --- | --- | --- | --- |
+| L2 `cemented` | `"L3"` | `"D1"` | The field names the cemented group; with `"L3"` on L2 only, the inspector showed "CEMENTED L3" on L2 and nothing on L3. |
+| L3 `cemented` | none | `"D1"` | Same group; the inspector now shows "DOUBLET D1" on both. |
+| L4 / L5 `cemented` | `"L5"` / none | `"D2"` / `"D2"` | Same fault on the rear pair; now "DOUBLET D2" on both. |
+| `doublets` | none | D1 = 3–5, D2 = 6–8 | One bracket per cemented component, as in 37 of the 39 Leica files. The lens has no gaps, so D labels name no spacing. |
+| L1 / L6 `glass` | "…; no exact catalog row" | "…; Hoya PCD3 coordinates if read at d" | Hoya AGF (obsolete file) PCD3 1.55232 / 63.42 is within 2e-5 / 0.12 of 1.5523 / 63.3; not in the site catalog. |
+
+Checked and found correct: element names L1–L7 equal the parent drawing's designations, and the diagram's 1–7 follow
+them; each `type` agrees with the signs of R; each `role` is true (r7, n 1.5891 to 1.5317 with R < 0, converges);
+the stop sits between L3 and L4 at the A2/A3 junction, where the parent drawing puts the Blende; no surface is aspheric
+and none is marked; no `apd` tag, and neither application names a special glass; `groupCount` 5 matches the air-separated
+runs. No `groups` were added: neither application names groups and nothing moves. Movement: the lens is static,
+`gaps` is empty, the focus slider reads "Not modeled", and the description says the application publishes no focusing
+data. Engine numbers before and after are identical (EFL 84.9975 mm, FOPEN 1.5, halfField 22.924°, stop radius 17.497 mm,
+BFD 46.546 mm). The surface audit prints OK; the aperture audit puts f/1.5 within 3 % with no rim limit; the
+image-circle audit finds nothing undersized; field coverage is 100 % with the 14.3° corner clear.
+
+Glass. Under the reference-line test five of the seven printed pairs match a d-line row only when Hoya PCD3 is counted
+(L1, L3, L4, L5, L6), and three of seven with the site catalog alone; both are short of 80 %, and no pair matches an ne
+/ νe row. At the sodium D line three of seven match (N-PSK3 for L1 and L6 at the window edge, N-SK5 for L4). All seven
+labels stay Unmatched with `indexReferenceNote`. 1.6202 / 60.4 (L2, L7) is printed twice, clearly, on p. 5; every SK16
+row sits at 1.62041. Parent L 753 prints the same types rounded to three decimals (1.564/61, 1.620/60 three times,
+1.673/32, 1.592/58, 1.533/49) and no glass names, line indices or partial dispersions. Neither application prints
+aberration curves, so there is no colour comparison. No constant or nd-only medium. Assignee "Ernst Leitz GmbH" is the
+corpus spelling (19 files) and matches the parent drawing's "Ernst Leitz G.m.b.H. Wetzlar".
+
+Open: counting the five distinct glass types instead of the seven printed rows, 4 of 5 (80 %) match at d once PCD3 is
+counted. Under the corpus convention (printed rows, as in the Canon EF reviews) the test fails. Adding PCD3 (Hoya,
+`HOYA20260707_include_obsolete.agf`, nd 1.55232, νd 63.42) to the catalog would not by itself change these labels.
