@@ -38,3 +38,6 @@ Deployment change: `catalog.imageFormat` "645" (image circle 69.7 mm).
 
 Open: inferred rims depart from Fig. 1 (rear group drawn about 17 mm, file up to 24.7 mm; front group drawn about
 25.6 mm, file 22.8); "Unmatched" labels on eleven d-line catalog glasses; name, subtitle, specs and prose wording.
+
+Hidden at deployment (`visible: false`): no production lens corresponds to this design, so the file stays in the
+repository without a catalog page.

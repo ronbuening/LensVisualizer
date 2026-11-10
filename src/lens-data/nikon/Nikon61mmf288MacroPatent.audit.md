@@ -38,3 +38,6 @@ Deployment change: `catalog.imageFormat` "135-full-frame" (patent image height 2
 
 Open: inferred rims depart from Fig. 1 (G2 drawn about 10.4 mm, file 13.8–15; L1 drawn about 12.7, file 14.5);
 cemented ids D5/D7/D8 clash with gap label D8; name, subtitle, specs, glass and prose wording.
+
+Hidden at deployment (`visible: false`): no production lens corresponds to this design, so the file stays in the
+repository without a catalog page.

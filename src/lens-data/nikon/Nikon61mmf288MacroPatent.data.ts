@@ -7,7 +7,7 @@ const LENS_DATA = {
   maker: "Nikon",
   name: "NIKON 61mm f/2.88 MACRO PATENT DESIGN",
   subtitle: "US7777974B2 whole E1; no retail association",
-  visible: true,
+  visible: false,
   catalog: {
     elementCount: 11,
     groupCount: 8,

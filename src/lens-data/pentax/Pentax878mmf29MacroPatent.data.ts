@@ -7,7 +7,7 @@ const LENS_DATA = {
   maker: "Pentax",
   name: "PENTAX 87.8mm f/2.9 MACRO PATENT DESIGN",
   subtitle: "US8363333B2 whole E1; no retail association",
-  visible: true,
+  visible: false,
   catalog: {
     elementCount: 12,
     groupCount: 10,
