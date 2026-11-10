@@ -652,3 +652,10 @@ The patent names no spectral line for its index and Abbe columns, and the 2026-1
 | Element 7 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
 | Element 8 | 1.8061 / 41 | LAH53 | -0.000002 | -0.051 |
 | Element 9 | 1.7725 / 49.6 | LAH66 | -0.000001 | +0.001 |
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.focalLengthMm.design: 85.0` from JP H05-157964 A p. 3 (publication page (3)), right column, the heading line
+  of 【0024】(数値実施例1): "F =85.0". The file is at the patent's own scale, so no factor applies.
+- `catalog.fNumber.design: 1.8` from the same heading line: "FNO =1:1.8". The stop's `nominalFNumber` 1.8 matches it.
+  No optical value changed.

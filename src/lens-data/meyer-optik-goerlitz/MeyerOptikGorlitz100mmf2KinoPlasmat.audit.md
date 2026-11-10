@@ -11,3 +11,7 @@ The source provides historical D/G′ coordinates, not modern d-line Abbe number
 Live localhost review against Abb. 3 confirms the six-element silhouette and source element order; published diameters support retaining all SDs. Focus is disabled and there is no zoom. No APD tags are inferred from the unavailable Abbe numbers. Rechecking candidate curves against the source sodium D and G-prime lines does not establish all required modern d-line coordinates: the historical glasses remain unresolved rather than assigning a supplier or fabricating dispersion.
 
 Three sampled static states report zero hidden surface trimming. Numerical finite-focus prescriptions remain unavailable.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2: `patents/DE_401630_C.pdf` PDF p. 3, right column ll. 57–58, Beispiel III "Das Objektiv (Abb. 3) hat eine Öffnung von 1 : 2" (image-only page, read from a render). Added as a new `fNumber: { design: 2 }` block after `focalLengthMm`; `marketing` was not in scope and stays unset. The stop's `nominalFNumber` 2 passes the 0.5% guard.

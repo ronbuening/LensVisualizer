@@ -83,3 +83,10 @@ Retain the missing-asphere qualification and the RI localization refusal. A sour
 `focus.closeFocusM` 0.7 → 0.642 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to -8.3 % from that row. No gap, keyframe, published flag or other optical value changed.
 
 - Why the old value differed: view-camera bellows focus; the endpoint is not a maker MFD.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 5.6: US 5,870,234, PDF p. 4, col. 3, ll. 24–27, the second embodiment "with a
+  maximum aperture angle of at least 1: 5.6"; the Claim 3 table header (col. 4, l. 40) prints "maximum aperture ratio
+  at least 1:5.6". The "at least" wording is the patent's; 1:5.6 is the only aperture it states for the example. The
+  stop's `nominalFNumber` 5.6 matches it.

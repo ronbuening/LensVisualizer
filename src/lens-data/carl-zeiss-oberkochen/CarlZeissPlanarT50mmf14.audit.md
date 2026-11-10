@@ -42,3 +42,11 @@ Catalog version: local working tree, 2026-06-25
   supplier remains unspecified.
 - This supersedes the 2026-06-25 no-relabel disposition because the required coefficient-backed entries were not
   yet available then. No prescription value or geometry changed.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.focalLengthMm.design: 50` from US 3,874,771 PDF p. 6, col. 7, the foot of Table 5 (Example 5):
+  "F = 1.00000" (also PDF p. 5, col. 5, lines 41–43: "In all examples, the equivalent focal length of the total
+  objective is F = 1.0000"), times the file's documented ×50 scale (header "NOTE ON SCALING"; R1 0.88904 → 44.452).
+- `catalog.fNumber.design: 1.4` from PDF p. 5, col. 5, lines 31–36: examples 4 and 5 "have a relative aperture of
+  f/1.4". The stop's `nominalFNumber` 1.4 matches it. No optical value changed.

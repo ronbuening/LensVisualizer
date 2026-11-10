@@ -37,3 +37,10 @@ Catalog version: local working tree, 2026-06-25
 
 - Why the old value differed: derived unit-focus travel; 0.2 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.2 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 8` from DE 1,241,637 B col. 5, ll. 32–36, the summary block under the example table:
+  "Öffnungsverhältnis … 1:8,0" (no text layer; read from a 110 dpi render). The stop's `nominalFNumber` 8 matches it.
+- `catalog.focalLengthMm.design: 15` from the same block, "Brennweite f … 1,0000", times the ×15 scale in the data
+  header. No optical value changed.

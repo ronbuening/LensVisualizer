@@ -53,7 +53,8 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 ## Project Map
 
 Full directory tree; `__tests__/docDrift.test.ts` fails when a `src/` or `src/components/` directory is missing here.
-The generated `src/**/readme.md` files carry per-folder import graphs and file inventories.
+Per-folder import graphs and file inventories are generated on demand: `npm run generate:readmes` writes a gitignored
+`src/**/readme.md` into each source folder.
 
 ```text
 src/main.tsx              - React entry point

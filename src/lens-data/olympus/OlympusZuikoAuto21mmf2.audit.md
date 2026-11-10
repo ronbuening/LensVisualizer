@@ -70,3 +70,7 @@ Patent: US 4,210,388, Example 1
 
 - Why the old value differed: derived unit-focus travel; 0.2 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.2 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2: `patents/US4210388.pdf` PDF p8, col. 3, line ~31, sole example header "f = 100 / Aperture ratio: 1:2 / Field angle: 92°" (claim restates "Aperture ratio; 1:2" at PDF p9). Stop `nominalFNumber` 2.0 is not faster.

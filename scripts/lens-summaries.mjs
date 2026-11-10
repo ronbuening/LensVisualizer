@@ -35,6 +35,7 @@ export const SUMMARY_FIELDS = [
   "patentAuthors",
   "patentAssignees",
   "patentYear",
+  "sourceIssuer",
   "lensMounts",
   "imageFormat",
   "opticalConfiguration",
@@ -100,6 +101,7 @@ export function lensSummary(data) {
       patentAuthors: data.source.authors,
       patentAssignees: data.source.assignees,
       patentYear: data.source.patentYear,
+      sourceIssuer: data.source.issuer,
     },
     SUMMARY_FIELDS,
   );

@@ -26,3 +26,8 @@ Patent: US 4,277,149, Table 7
 
 - Why the old value differed: derived unit-focus travel; 0.6 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.6 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.focalLengthMm.design` = 45: `patents/US4277149.pdf` PDF p. 9 (col. 7), Table 7 (Embodiment 7) heading "f = 1.0 F/2.0 2ω = 51.4° Back Focal Distance S′ = 0.8014", read from a 300 dpi render; printed f = 1.0 × the header's documented ×45.0 scale.
+- `catalog.fNumber.design` = 2.0: same Table 7 heading, "F/2.0". The text layer garbles this as "F/2.02" (it runs the "2" of "2ω" into the f-number); the render shows F/2.0. The stop's `nominalFNumber` 2 passes the 0.5% guard.

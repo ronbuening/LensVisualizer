@@ -92,7 +92,8 @@ export const HOMEPAGE_ARTICLE_LIMIT = 5;
 
 /* ── Auto-discovered markdown content ──────────────────────────────── */
 
-const _mdModules = import.meta.glob<string>("../../content/**/*.md", {
+/* Folder maps from `npm run generate:readmes` can sit beside the articles; an eager glob would ship them. */
+const _mdModules = import.meta.glob<string>(["../../content/**/*.md", "!**/readme.md"], {
   eager: true,
   query: "?raw",
   import: "default",

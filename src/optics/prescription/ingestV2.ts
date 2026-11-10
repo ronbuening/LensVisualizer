@@ -173,6 +173,7 @@ const SOURCE_FIELDS: Fields<SourceV2Input> = {
   authors: true,
   assignees: true,
   errata: true,
+  issuer: true,
 };
 
 /** A converter's source: V1 holds no errata for one. */

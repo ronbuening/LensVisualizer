@@ -673,3 +673,9 @@ reads 90 cm. The header, focus description and analysis call the extension a mod
 
 Open: the figure's L4 flat land followed by a chamfer cannot be drawn by the renderer's single rim edge, so the site shows
 one bevel from R5 to R6.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 1.5` from US 2,186,621 PDF p. 2 (printed p. 1), col. 2, lines 27–29, the sentence
+  introducing the Fig. 1 table: "A lens system of this type having a relative aperture of 1:1,5 and a focal length
+  f=100 mm." The stop's `nominalFNumber` 1.5 matches it. No optical value changed.
