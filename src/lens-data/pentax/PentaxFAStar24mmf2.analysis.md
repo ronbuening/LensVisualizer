@@ -22,9 +22,9 @@ Only Examples 3 and 4 use the 1.618/63.4 rear glass (Examples 1 and 2 print 1.69
 
 ## Optical Architecture
 
-The retrofocus layout has a weakly divergent fixed front group G1 (L1–L3, S1–S6; f ≈ −96.0 mm at this scale) and a convergent rear group G2 (L4–L11, S7–S21; f ≈ +29.2 mm) that moves to focus. Eleven glass elements form nine groups: G1 holds three singlets; G2 holds a negative meniscus, a thick biconvex positive, the iris, a cemented negative–positive pair (C1), the hybrid aspheric negative (H1), a second cemented negative–positive pair (C2) and a positive meniscus convex to the image. The example meets the patent's conditions (1) 1.1 < hR/hF < 1.3 and (2) −0.5 < f/fF < 0.0 with the printed values 1.200 and −0.250, which the model reproduces (1.2004 and −0.2500).
+The retrofocus layout has a weakly divergent fixed front group (L1–L3, S1–S6; f ≈ −96.0 mm at this scale) and a convergent rear group (L4–L11, S7–S21; f ≈ +29.2 mm) that moves to focus; the diagram brackets them as Front and Rear, the patent's own names (subscripts F and R in its conditions). Eleven glass elements form nine groups: the front group holds three singlets; the rear group holds a negative meniscus, a thick biconvex positive, the iris, a cemented negative–positive pair (C1), the hybrid aspheric negative (H1), a second cemented negative–positive pair (C2) and a positive meniscus convex to the image. The example meets the patent's conditions (1) 1.1 < hR/hF < 1.3 and (2) −0.5 < f/fF < 0.0 with the printed values 1.200 and −0.250, which the model reproduces (1.2004 and −0.2500).
 
-The hybrid asphere's resin layer occupies S14–S15, 1.22 thick at f = 100 or 0.2928 mm here, with the distinct printed radii −114.137 and −88.794 (f = 100). It is drawn as a separate medium bonded to L8 and is not counted as an element.
+The hybrid asphere's resin layer occupies S14–S15, 1.22 thick at f = 100 or 0.2928 mm here, with the distinct printed radii −114.137 and −88.794 (f = 100). It is drawn as a separate medium bonded to L8, labelled L8r, and is not counted as an element. The patent numbers no elements; the labels L1–L11 follow the element order.
 
 ## Element-by-Element Analysis
 
@@ -34,31 +34,31 @@ Focal lengths below are for each element alone in air at the 24 mm scale.
 
 nd = 1.72916, νd = 54.7. Glass: S-LAL18 (OHARA catalog equivalent). f = +394.782 mm.
 
-Weak positive front element of G1, nearly plano-convex. It adds little power; the front group as a whole is held near afocal, as condition (2) requires.
+Weak positive first element of the front group, nearly plano-convex. It adds little power; the front group as a whole is held near afocal, as condition (2) requires.
 
 ### L2: Negative Meniscus
 
 nd = 1.83400, νd = 37.2. Glass: S-LAH60 (OHARA catalog equivalent). f = −41.241 mm.
 
-The main negative element of G1, convex to the object, and the source of the retrofocus back focus. It raises the paraxial ray height at the rear group by the factor that condition (1) bounds.
+The main negative element of the front group, convex to the object, and the source of the retrofocus back focus. It raises the paraxial ray height at the rear group by the factor that condition (1) bounds.
 
 ### L3: Biconvex Positive
 
 nd = 1.76180, νd = 27.1. Glass: PBH25 (OHARA catalog equivalent). f = +104.013 mm.
 
-Biconvex positive closing G1. The patent pairs it with L2 so that the front group stays nearly afocal; the paraxial ray height at the rear group then changes little as G2 moves to focus, which keeps spherical aberration stable.
+Biconvex positive closing the front group. The patent pairs it with L2 so that the front group stays nearly afocal; the paraxial ray height at the rear group then changes little as that group moves to focus, which keeps spherical aberration stable.
 
 ### L4: Negative Meniscus
 
 nd = 1.72916, νd = 54.7. Glass: S-LAL18 (OHARA catalog equivalent). f = −37.751 mm.
 
-Negative meniscus, convex to the object, at the front of the focusing group G2, as the patent's description of the rear group specifies.
+Negative meniscus, convex to the object, at the front of the focusing rear group, as the patent's description of the rear group specifies.
 
 ### L5: Biconvex Positive
 
 nd = 1.80518, νd = 25.4. Glass: PBH6 (OHARA catalog equivalent). f = +30.772 mm.
 
-Thick biconvex positive just ahead of the iris; it supplies most of G2's positive power before the stop.
+Thick biconvex positive just ahead of the iris; it supplies most of the rear group's positive power before the stop.
 
 ### L6: Biconcave Negative
 
@@ -70,9 +70,9 @@ Front element of the cemented pair C1 behind the iris. The patent allows either 
 
 nd = 1.80440, νd = 39.6. Glass: S-LAH63 (OHARA catalog equivalent). f = +13.948 mm.
 
-Rear element of C1 and the strongest positive element in G2.
+Rear element of C1 and the strongest positive element in the rear group.
 
-### Resin: Bonded Aspheric Resin Layer
+### L8r: Bonded Aspheric Resin Layer
 
 nd = 1.52010, νd = 50.8. Glass: Unmatched (aspheric resin layer). f = +181.544 mm.
 
@@ -117,20 +117,20 @@ The patent prints d-line nd and νd only and names no glass. Each label is a cat
 | S-TIH11 (OHARA)            | 1.78472 / 25.7 | L8     | Dense flint, asphere substrate                           |
 | LAH66 (OHARA)              | 1.77250 / 49.6 | L10    | Lanthanum flint                                          |
 | PCD4 (HOYA)                | 1.61800 / 63.4 | L11    | Phosphate crown; anomalous dispersion per Ricoh           |
-| Unmatched resin            | 1.52010 / 50.8 | Resin  | Aspheric layer on L8                                      |
+| Unmatched resin            | 1.52010 / 50.8 | L8r    | Aspheric layer on L8                                      |
 
 The glass labels resolve to catalog dispersion formulas, so color is traced on the catalog curves; the resin layer uses an Abbe-number estimate. Without printed partial dispersions the data cannot establish secondary-spectrum performance.
 
 ## Focus Mechanism
 
-The patent focuses by moving only the rear group G2 toward the object while G1 stays fixed; the arrow in Fig. 10 shows the direction. Example 4 prints one near state, at 1/10 magnification:
+The patent focuses by moving only the rear group toward the object while the front group stays fixed; the arrow in Fig. 10 shows the direction. Example 4 prints one near state, at 1/10 magnification:
 
 | Spacing           | Infinity | 1/10     |
 | ----------------- | -------- | -------- |
-| d6 (G1–G2), ×0.24 | 3.81 mm  | 1.19 mm  |
+| d6 (front–rear), ×0.24 | 3.81 mm  | 1.19 mm  |
 | Back focus, ×0.24 | 36.75 mm | 39.37 mm |
 
-At f = 100 these are d6 15.87 → 4.95 and fB 153.12 → 164.04. The track (441.09 at f = 100, 105.86 mm here) stays constant, so G2 travels 2.62 mm. A paraxial calculation from the printed values gives magnification −0.0999, with the object about 0.34 m from the image. This is not the marketed close-focus state: Pentax specifies a 0.3 m minimum focus distance and 0.13× maximum magnification. The model covers infinity focus only; the printed near state is not modeled.
+At f = 100 these are d6 15.87 → 4.95 and fB 153.12 → 164.04. The track (441.09 at f = 100, 105.86 mm here) stays constant, so the rear group travels 2.62 mm. A paraxial calculation from the printed values gives magnification −0.0999, with the object about 0.34 m from the image. This is not the marketed close-focus state: Pentax specifies a 0.3 m minimum focus distance and 0.13× maximum magnification. The model covers infinity focus only; the printed near state is not modeled.
 
 ## Aspherical Surfaces
 

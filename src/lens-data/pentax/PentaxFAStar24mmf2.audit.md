@@ -140,4 +140,66 @@ reaches them and the aperture audit finds no rim limit, so nothing is raised.
 
 Open: L3 reads about 6.5 % larger in the figure (16.3 mm against 15.3 mm); left as noise. The model sketch joins rim
 ends straight and does not draw lands; the overlay adds them by hand, so the live page should be checked for the two
-lands.
+lands. (Lands closed: the live page draws both where the figure does; see the second review below.)
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared the local page (2× screenshot) with FIG. 10 (`patents/US4934797A.pdf`, PDF page 5, native 300 dpi) and with
+Ricoh's construction diagram (green aspherical element behind the cemented pair that follows the iris, yellow
+anomalous low-dispersion rear element, 11 elements). Rims were re-measured independently with the figure profiler on
+the upper half (axis row 1954, 13.50 px/mm): L1 339 px (25.1 mm), L2 277 (20.5), L3 220 (16.3), L4 169 (12.5), L5 138
+(10.2), C1 135 (10.0), H1 122 (9.0), C2 159–160 (11.8), L11 180 (13.3). The two drawn lands are vertical strokes:
+S4 at columns 992–994, rows 1677–1729 (cap end 225 px, 16.7 mm), S8 at columns 1140–1142, rows 1785–1812 (cap end
+142 px, 10.5 mm). Every reading repeats the semi-diameter pass's to within 2 px, and every stored rim is within 4 % of
+it except L3 (6.5 % under, inside the noise band; L3 still sits just below L2's cap end, as drawn). No rim changed.
+
+Lands and cuts against `.lens-work/base1119sd` (corner-light tool, full-pupil lattice, wide open at infinity):
+
+| Face | Baseline | Final | Land        | Figure     | Light cost                       | Verdict                   |
+| ---- | -------- | ----- | ----------- | ---------- | -------------------------------- | ------------------------- |
+| S4   | 20       | 16.7  | to 20       | cap 16.7   | 0.0 points                       | keep: drawn, costs nothing |
+| S8   | 12       | 10.5  | to 12       | cap 10.5   | 1.7 points at 37.0° (60.8 → 59.1 %) | keep: slight             |
+
+Each land on its own costs 0.0 points. Worst loss for the lens: 1.7 points at 37.0°; corner (42.7°) 36.2 % before and
+after.
+
+S9–S11 real-ray margin: a real f/2 marginal ray from the 6.000 mm paraxial entrance radius meets S9 / S10 / S11 at
+10.22 / 10.22 / 10.03 mm and the stop at 10.09 mm, but the engine's derived iris is 9.46 mm, so no admitted ray reaches
+the 10 mm rims; the aperture census traces f/2.000 with the iris as limiter. The figure draws L5 at 10.2 mm and C1 at
+10.0 mm, inside the reading error of the stored 10 mm. Kept.
+
+Labels changed:
+
+| Field                          | Before                                   | After                                         | Evidence |
+| ------------------------------ | ---------------------------------------- | --------------------------------------------- | -------- |
+| `diagramLabel`, all 12 elements | none: the diagram drew element ids 1–12, so the resin showed as 8 and L8–L11 as 9–12 | L1–L7, L8r, L8–L11, matching `name` and the inspector | Live page; the FA* 28-70 sibling labels the same way (L1r) |
+| Resin `name`                   | Resin                                    | L8r                                           | Agrees with its diagram label |
+| `groups` text                  | G1 (−), fixed / G2 (+), focusing          | Front (−), fixed / Rear (+), focusing         | The patent names only a "front lens group" and a "rear lens group" (subscripts F and R in conditions (1)–(2)) |
+| Seven `role` strings           | G1 / G2                                  | front group / rear group                      | Same; the analysis prose follows |
+
+Checked and found correct: element types against the signs of R (L1 and L2 and L4 menisci convex to the object, L3, L5
+and L7 biconvex, L6 and L8 biconcave, L9 negative and L10 and L11 positive menisci convex to the image); one aspheric
+face, S14A, the patent's 14th surface and the position Ricoh colours green; the stop between L5 and C1, as the patent's
+element order and Ricoh's iris line place it; cemented brackets C1 S11–S13, H1 S14A–S16, C2 S17–S19; the resin
+inspector line (Bonded Aspheric Resin Layer, FL +181.54 mm, plausible for a 0.29 mm layer with radii −27.39 and
+−21.31 mm); `apd: "inferred"` on L11, the element Ricoh colours yellow, while the patent text names no special glass.
+
+Movement: the file is infinity only and says so. The patent moves only the rear group, toward the object, as the
+Fig. 10 arrow and the 1/10 state show (d6 15.87 → 4.95 and fB 153.12 → 164.04 at f = 100, 2.62 mm at this scale);
+the front group is fixed. The focus overlay shows no modeled movement and the slider reads "Not modeled".
+
+Glass: all eleven glass labels resolve exactly (largest |Δνd| 0.04). The resin is unmatched by design and uses the
+Abbe fallback; the patent prints only nd/νd for it, the same 1.52010 / 50.8 in Examples 3–5 (1.5200 / 50.8 in
+Examples 1–2), so it is a real resin, with no name, line index or partial dispersion anywhere. No catalog row lies in
+the exact window (nearest KF5 / CF5 1.5231 / 50.9). No constant or nd-only medium.
+
+Colour: Fig. 11 chromatic panel read at 600 dpi (123 px per unit at f = 100): at the pupil rim d −0.14, g −0.35,
+C +0.20; paraxial C +0.27, g −0.06. The model, rescaled to f = 100, gives rim d −0.15, g −0.31, C +0.25 and paraxial
+C +0.26, g −0.01, inside the reading error.
+
+Assignee "Asahi Kogaku Kogyo Co., Ltd." is the corpus's canonical form (33 files). Engine numbers are unchanged:
+EFL 23.9996 mm, f/2.000, half-field 43.18°, stop radius 9.4619 mm. Surface audit OK, aperture census no rim limit,
+image circle not undersized, field coverage 100 % to the 21.65 mm corner.
+
+Open: the printed 1/10 near state and the S9–S11 real-ray margin above stay as recorded; L3 stays 6.5 % under the
+figure.
