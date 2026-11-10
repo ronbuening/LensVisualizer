@@ -1,29 +1,41 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** FROZEN SOURCE STAGING: whole-source probable-family hypothesis. Literal rows are unchanged.
- * Engineering rims, retail scale and operating envelope are explicit assumptions.
- * No factory glass, finite-focus law, or source clear-aperture claim.
- * DE L12741 MAZ: Max Berek, Ernst Leitz GmbH, 1953 laid-open archival application, not an established grant.
- * Authentic MAZ kind code is unsupported by the structured source field; full attribution remains in the analysis.
- * Separate checked exceptions: gapSagFrac 0.965 and maxRimAngleDeg 67. No geometry check is disabled.
- * Native evidence is complete; combined integration is required separately.
+/**
+ * DE L 12741 (Ernst Leitz GmbH; inventor Max Berek), the Leitz application "Photographisches Objektiv",
+ * an addition to application L 753. It was announced and laid open for opposition on 6 August 1953
+ * (DEPATISnet DE000L0012741MAZ); no later grant was found. Its claim prints one table, normalized to
+ * f = 1 at 1:1.5. Every R, d and A is transcribed unchanged and scaled ×85; the scale follows the
+ * marketed 85 mm and is not fitted (traced EFL 84.998 mm).
+ * The table lists two air spaces between r5 and r6 (A2 = 0.125, A3 = 0.109) with no surface between
+ * them; the stop sits at their junction, where the drawing of parent application L 753 shows the
+ * diaphragm (between A2 and A3).
+ * Indices and Abbe numbers are printed as n/Nü without a spectral line and are traced as d-line values;
+ * all glass labels stay Unmatched (see the analysis). No catalog glass is substituted.
+ * The source prints no field angle, back focus or clear diameters. Back focus is the derived paraxial
+ * value; the model is the infinity state only.
+ * Semi-diameters are inferred. Surfaces 7 and 8 are sized to pass the f/1.5 axial beam (16.874 and
+ * 18.410 mm needed); the steep cemented surface 7 then reaches a 66.7° rim angle (checks.maxRimAngleDeg
+ * 67), and the 0.6715 mm air space between surfaces 8 and 9 narrows to 0.024 mm at the rim
+ * (checks.gapSagFrac 0.965). No geometry check is disabled.
+ * The Summarex attribution is inferred: no document names the lens; the evidence is in the analysis.
  */
 const LENS_DATA = {
   schema: 2,
   key: "leica-summarex-85mm-f15",
   maker: "Leica",
   name: "LEICA SUMMAREX 85mm f/1.5",
-  subtitle: "DE L12741 MAZ — PROBABLE FAMILY, WHOLE SOURCE EXAMPLE",
+  subtitle:
+    "DE L 12741 (Leitz application, laid open 1953), sole example — inferred Summarex correlation; not manufacturer-confirmed",
   visible: true,
   catalog: {
     lensMounts: ["leica-ltm"],
     imageFormat: "135-full-frame",
-    specs: ["7 ELEMENTS / 5 GROUPS", "INFINITY-ONLY SOURCE HYPOTHESIS", "NO FACTORY PRESCRIPTION CLAIM"],
+    specs: ["7 ELEMENTS / 5 GROUPS", "DESIGN f = 85 mm", "DESIGN F/1.5", "ALL SPHERICAL"],
     elementCount: 7,
     groupCount: 5,
     focalLengthMm: {
       marketing: 85,
-      design: 84.99753170523812,
+      design: 85,
     },
     fNumber: {
       marketing: 1.5,
@@ -46,11 +58,12 @@ const LENS_DATA = {
       name: "L1",
       label: "Element 1",
       type: "Positive Meniscus",
+      role: "Positive front meniscus, nearly flat on its rear face.",
       nd: 1.5523,
       vd: 63.3,
       indexReference: "d",
-      indexReferenceNote: "Assumed helium-d convention only; the source n/Nu wavelength is unestablished.",
-      glass: "Unmatched (literal source index and Abbe value)",
+      indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
+      glass: "Unmatched (printed n 1.5523, ν 63.3; no exact catalog row)",
       focalLengthMm: 102.27639634940671,
     },
     {
@@ -58,11 +71,12 @@ const LENS_DATA = {
       name: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
+      role: "Positive front member of the front cemented meniscus.",
       nd: 1.6202,
       vd: 60.4,
       indexReference: "d",
-      indexReferenceNote: "Assumed helium-d convention only; the source n/Nu wavelength is unestablished.",
-      glass: "Unmatched (literal source index and Abbe value)",
+      indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
+      glass: "Unmatched (printed n 1.6202, ν 60.4; no exact catalog row)",
       focalLengthMm: 92.60860467222062,
       cemented: "L3",
     },
@@ -71,11 +85,12 @@ const LENS_DATA = {
       name: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
+      role: "Negative flint rear member of the front cemented meniscus; its strong rear surface faces the stop.",
       nd: 1.6727,
       vd: 32.2,
       indexReference: "d",
-      indexReferenceNote: "Assumed helium-d convention only; the source n/Nu wavelength is unestablished.",
-      glass: "Unmatched (literal source index and Abbe value)",
+      indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
+      glass: "Unmatched (printed n 1.6727, ν 32.2; SF5 coordinates if read at d)",
       focalLengthMm: -56.027022346930934,
     },
     {
@@ -83,11 +98,12 @@ const LENS_DATA = {
       name: "L4",
       label: "Element 4",
       type: "Positive Meniscus",
+      role: "Positive front member of the rear cemented meniscus, concave to the stop; its denser glass makes the cemented surface converging.",
       nd: 1.5891,
       vd: 61.4,
       indexReference: "d",
-      indexReferenceNote: "Assumed helium-d convention only; the source n/Nu wavelength is unestablished.",
-      glass: "Unmatched (literal source index and Abbe value)",
+      indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
+      glass: "Unmatched (printed n 1.5891, ν 61.4; SK5 coordinates if read at d)",
       focalLengthMm: 86.9057753037547,
       cemented: "L5",
     },
@@ -96,11 +112,12 @@ const LENS_DATA = {
       name: "L5",
       label: "Element 5",
       type: "Biconcave Negative",
+      role: "Negative light-flint rear member of the rear cemented meniscus; its nearly flat rear face sits 0.67 mm ahead of L6.",
       nd: 1.5317,
       vd: 48.9,
       indexReference: "d",
-      indexReferenceNote: "Assumed helium-d convention only; the source n/Nu wavelength is unestablished.",
-      glass: "Unmatched (literal source index and Abbe value)",
+      indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
+      glass: "Unmatched (printed n 1.5317, ν 48.9; LLF6 coordinates if read at d)",
       focalLengthMm: -32.24275025028088,
     },
     {
@@ -108,11 +125,12 @@ const LENS_DATA = {
       name: "L6",
       label: "Element 6",
       type: "Plano-convex Positive",
+      role: "Flat-fronted positive element, the first of the two rear collectors.",
       nd: 1.5523,
       vd: 63.3,
       indexReference: "d",
-      indexReferenceNote: "Assumed helium-d convention only; the source n/Nu wavelength is unestablished.",
-      glass: "Unmatched (literal source index and Abbe value)",
+      indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
+      glass: "Unmatched (printed n 1.5523, ν 63.3; no exact catalog row)",
       focalLengthMm: 67.19355422777475,
     },
     {
@@ -120,11 +138,12 @@ const LENS_DATA = {
       name: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
+      role: "Biconvex rear collector.",
       nd: 1.6202,
       vd: 60.4,
       indexReference: "d",
-      indexReferenceNote: "Assumed helium-d convention only; the source n/Nu wavelength is unestablished.",
-      glass: "Unmatched (literal source index and Abbe value)",
+      indexReferenceNote: "The source prints n/Nü without a spectral line; traced as d-line values.",
+      glass: "Unmatched (printed n 1.6202, ν 60.4; no exact catalog row)",
       focalLengthMm: 81.54774270905529,
     },
   ],
@@ -215,9 +234,9 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000.0,
+    closeFocusM: 1e15,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: static infinity only. The required 1e9 m schema sentinel is not a validated finite conjugate. Generic slider/fallback labels do not establish recovered focus motion. Maker minimum focus is separate metadata.",
+      "Infinity prescription only. The application publishes no focusing data, so no focus movement is modelled; the production lens focuses to 5 ft (1.5 m).",
   },
   gaps: {},
   aperture: {
