@@ -90,5 +90,54 @@ Open:
   clears.
 - Rims against Fig. 10 (300 dpi render, read by eye, about ±3 %), scaled by the S1–S21 vertex span: L1 25.4 (sd 25),
   L2 20.8 (20), L3 16.5 (15.3), L4 12.5 (12), L5 10.3 (10), C1 10.1 (10), H1 9.0 (9), C2 11.8 (12), L11 13.3 (13); all
-  within about 4 % except L3, about 8 % under the drawing. Not changed in this pass.
+  within about 4 % except L3, about 8 % under the drawing. Not changed in this pass. (Closed: see the semi-diameter pass
+  below.)
 - `indexReferenceNote` "Source explicitly defines d-line indices." repeats on all twelve elements; true, left unchanged.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: `patents/US4934797A.pdf`, PDF page 5 (sheet 4), FIG. 10, which the text assigns to Example 4. Native raster
+300 dpi; measured at 300 dpi on the upper half (the group brackets and focus arrow are below the axis). The axis is
+row 1954. Vertex crossings at the axis run from column 833 (S1) to 1766 (S21), 933 px for the 69.113 mm S1–S21 span:
+13.50 px/mm. Two sub-spans agree (S1–S13 13.54, S5–S16 13.46 px/mm). The vertical scale was checked on L2's front face,
+whose drawn sag at its 277 px rim (43 px, 3.19 mm) matches the prescription's 3.26 mm at 20.5 mm. The rear group from
+S17 on is drawn up to 12 px behind its prescribed stations and L11 thinner than printed, so rear readings use rim
+heights only.
+
+Figure readings (outermost rim ink, px → mm) against the stored values:
+
+| Element / surface | Figure       | Stored before | After                      | Evidence and decision                                           |
+| ----------------- | ------------ | ------------- | -------------------------- | --------------------------------------------------------------- |
+| L1 S1–S2          | 339 → 25.1   | 25 / 25       | kept                       | Agrees.                                                         |
+| L2 S3             | 277 → 20.5   | 20            | kept                       | 2.5 %, noise.                                                   |
+| L2 S4             | cap 225 → 16.7, land to 277 | 20 | 16.7, `rimExtensionSd` 20 | Figure: concave cap ends at a vertical stroke (columns 992–995, rows 1677–1729). |
+| L3 S5–S6          | 220 → 16.3   | 15.3 / 15.3   | kept                       | 6.5 %, inside the noise band; no light depends on it.           |
+| L4 S7             | 169 → 12.5   | 12            | kept                       | 4 %, noise.                                                     |
+| L4 S8             | cap 142 → 10.5, land to 169 | 12 | 10.5, `rimExtensionSd` 12 | Figure: vertical stroke at columns 1140–1142, rows 1785–1812.   |
+| L5 S9–S10         | 138 → 10.2   | 10 / 10       | kept                       | 2 %, noise.                                                     |
+| C1 S11–S13        | 135 → 10.0   | 10            | kept                       | Agrees.                                                         |
+| H1 S14A–S16       | 122 → 9.0    | 9             | kept                       | Agrees; drawn S14 sag 2.0 mm against 1.9 mm modeled.            |
+| C2 S17–S19        | 158–160 → 11.7–11.9 | 12     | kept                       | Agrees.                                                         |
+| L11 S20–S21       | 179–180 → 13.3 | 13          | kept                       | 2 %, noise.                                                     |
+
+The two lands sit where the figure draws them: S4's at z = 12.35 mm from S1 (figure 11.89 mm), S8's at 22.99 mm (figure
+22.81 mm). Baseline S4 at 20 mm drew L2's rear rim back to z = 17.3 mm, over L3; the figure ends L2 at about 11.9 mm.
+
+Proportional readings (cap end as a share of the drawn edge times the model edge) gave 16.2 and 10.1 mm. S4 at 16.2
+lowered the engine half-field from 43.18° to 42.34° (S4 became the field limiter); 16.7 keeps 43.18° and is the
+direct reading. S8 at 10.1 cost 4.8 points at 37°; at 10.5 the worst loss is 1.7 points (37.0°: 60.8 → 59.1 %), inside
+the 3-point allowance, and the land costs nothing at the corner.
+
+Results with the new rims: engine EFL 23.999618 mm, f/2.000, half-field 43.1776° and stop radius 9.4619 mm, all
+unchanged. Corner illumination at 42.7° is 36.2 % before and after; the curve is unchanged to 31.3° and drops by at most
+1.7 points between 34° and 40°. The surface audit prints OK, the aperture audit reports no rim limit, the image-circle
+audit finds nothing undersized, and field coverage stays 100 % (42.7° to the 21.65 mm corner, clear). Real-ray
+clearance at the full-frame corner is unchanged: S4 carries 13.13 mm and S8 7.22 mm of beam, inside the new caps.
+
+Kept: S9–S11 at 10 mm. The figure draws L5 and C1 at 10.2 and 10.0 mm; the real f/2 marginal ray from the paraxial
+entrance radius needs 10.22 / 10.22 / 10.03 mm there, but the engine's paraxial iris (9.46 mm) admits no ray that
+reaches them and the aperture audit finds no rim limit, so nothing is raised.
+
+Open: L3 reads about 6.5 % larger in the figure (16.3 mm against 15.3 mm); left as noise. The model sketch joins rim
+ends straight and does not draw lands; the overlay adds them by hand, so the live page should be checked for the two
+lands.

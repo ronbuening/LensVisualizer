@@ -11,8 +11,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * distinct printed radii. nd/νd are d-line values; the patent names no glasses.
  * The patent prints no stop row. Its text places the diaphragm between L5 and the cemented
  * L6/L7 pair, so the iris sits at the midpoint of d10 (inferred).
- * Semi-diameters are estimated from Fig. 10 and adjusted only for edge thickness and gap
- * clearance; they are not maker values.
+ * Semi-diameters are estimated from Fig. 10 (300 dpi, 13.5 px/mm from the S1–S21 vertex span,
+ * confirmed by L2's front sag) and floor-checked by real-ray trace; they are not maker values.
+ * The figure ends the deep concave rear faces of L2 and L4 short of the element edge with a
+ * vertical land: S4's cap ends at 16.7 mm and S8's at 10.5 mm (the figure's readings), with
+ * lands out to the 20 mm and 12 mm edges (rimExtensionSd). Other rims agree with the figure
+ * within about 6 % (L3 draws 16.3 mm against 15.3 mm).
  * A real ray at the full f/2 entrance radius meets the stop at 10.1 mm, above the engine's
  * paraxial iris (9.46 mm), and would clip S9–S11 (sd 10) slightly. Kept as a limitation.
  * Infinity focus only; the printed 1/10 near state is not modeled.
@@ -253,7 +257,8 @@ const LENS_DATA = {
       label: "4",
       R: 22.26768,
       d: 7.0344,
-      sd: 20,
+      sd: 16.7,
+      rimExtensionSd: 20,
     },
     {
       label: "5",
@@ -279,7 +284,8 @@ const LENS_DATA = {
       label: "8",
       R: 19.99656,
       d: 9.0768,
-      sd: 12,
+      sd: 10.5,
+      rimExtensionSd: 12,
     },
     {
       label: "9",
@@ -389,6 +395,7 @@ const LENS_DATA = {
   aperture: {
     nominalFNumber: 2.0,
     fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
   },
   groups: [
     { text: "G1 (−), fixed", fromSurface: "1", toSurface: "6" },
