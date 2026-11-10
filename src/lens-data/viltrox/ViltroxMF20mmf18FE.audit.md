@@ -304,3 +304,10 @@ Added source-resolved opaque lands while preserving every optical `sd`: S2 **22�
 All twelve media retain the seven printed d-line nd/νd pairs. Their rounded coordinates remain unmatched Abbe models, with no forced catalog identities or synthetic nC/nF/ng/dPgF. Existing inferred low-dispersion badges are not measured anomaly claims. No supplier, resin or fluorite identity is established.
 
 `audit:surface` and `audit:image-circle` passed. Nine prepared-state SVG probes were generated, rasterized and viewed, all twelve paths finite with zero renderer trim. The unsupported focus/zoom schedules remain inactive and these repeat the base state. Scoped catalog/resolver checks and shared dispersion/resolver/partial-dispersion tests passed (3 files/94 tests).
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 1.8: CN 209606699 U ¶0108 (PDF p. 14, description p. 9/9), the closing summary of
+  the embodiments' design: "光圈可以做到F1.8" (the aperture reaches F1.8). Example 1 (¶¶0090–0098, PDF pp. 12–13)
+  prints no example-specific f-number; this is the only one the source states. The stop's `nominalFNumber` 1.8
+  matches it.

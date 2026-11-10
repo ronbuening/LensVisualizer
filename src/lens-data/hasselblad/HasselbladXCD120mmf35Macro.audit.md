@@ -51,3 +51,11 @@ Patent: US 2020/0192060 A1, Example 2
   (OHARA S-BSL7, exact 1.51633 / 64.14 row, matching the file's OHARA element labels) and gapAfter 0.10 mm.
 - Paraxial check against the previous data: EFL identical; defocus changes by 0.00026 mm at all three focus keyframes
   (rounding in the old 32.54309 versus 32.54283). Physical track grows by 0.613 mm, to 154.02 mm front vertex to image.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 3.5` from US 2020/0192060 A1 FIG. 7 (Sheet 5 of 12, PDF p. 6), INFINITY column:
+  "F NUMBER 3.5000". The stop's `nominalFNumber` 3.5 matches it.
+- `catalog.focalLengthMm.design: 120` from the same FIG. 7 column, "FOCAL LENGTH (mm) 120.0000"; ¶[0063] (p. 5)
+  repeats "Focal length (infinity): 120 mm". The file is unscaled (surface 1 R 265.465 as printed in FIG. 6). No
+  optical value changed.

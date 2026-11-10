@@ -15,3 +15,9 @@ as the element labels: FRONT (L1–L4), REAR (L5–L8), and cemented L6 (L6a+L6b
 member badges identify L6. The spaced `JP 1980-017129 A` publication identifier restores the
 header hyperlink and Japan jurisdiction assignment. All nine glasses remain coefficient-backed,
 and the patent supports no anomalous-dispersion tag. No focus or zoom movement is reconstructed.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2.8` from JP S55-17129 A printed p. 182 (PDF p. 4), lower left, the 第1実施例 (Example 1)
+  heading "f = 1 F2.8 2W = 92° fB = 1.6446" (no text layer; read from a 110 dpi render). The stop's
+  `nominalFNumber` 2.8 matches it. No optical value changed.

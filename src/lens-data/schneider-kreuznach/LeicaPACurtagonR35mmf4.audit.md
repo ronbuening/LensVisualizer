@@ -854,3 +854,10 @@ The construction claim map (Stages 2–3) is retained and still passes, except A
   - Full test suite and corpus sweeps under Node ≥ 24.15.
   - Glass-coverage reports.
   - Build and prerender.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 4: US 3,410,632, PDF p. 5, col. 4, ll. 39–44, the text introducing Table II: the
+  FIG. 2 system defines "an objective of an aperture ratio of 1:4". Table II itself prints no f-number. The stop's
+  `nominalFNumber` 4 matches it. The `marketing` line's comment said the design value was omitted; it now carries the
+  source location on the `design` line instead.

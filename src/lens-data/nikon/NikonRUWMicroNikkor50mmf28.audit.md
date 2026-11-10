@@ -54,3 +54,7 @@ prescription or semi-diameter changed.
 
 - Why the old value differed: printed close row states no distance; 0.167 m is the old value.
 - `catalog.closeFocusM.marketing` 0.167 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` stays unset: `patents/US5257137.pdf` Table 1 (First Embodiment, PDF p7 col. 8 to p8 col. 9) prints f = 51.6000 and β values but no F-number, and the patent has no aberration figures. The only aperture statement is the collective prose "F number of the order of 2.8" for the first to third embodiments (PDF p7, col. 7, lines 12–14), an approximate class value rather than the example's stated design f-number.

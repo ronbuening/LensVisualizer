@@ -151,3 +151,11 @@ Against the earlier model at the same slider position and object: added defocus 
 The far-focus label error is the infinity defocus expressed as a distance: near the 0.003 focus cutoff a few micrometres of image-side defocus move the in-focus distance by tens or hundreds of metres. Close-focus labels at kept keyframes are unchanged.
 
 Text sync: header: 61 → 30 interpolated stations; analysis: 65 geometric stations → 34 (every second geometric point plus the four published states), interpolation defocus 0.002 → 0.009 mm.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.focalLengthMm.design` stays unset. The only printed focal lengths for Numerical Example 1 are
+  17.33 / 23.76 / 38.46 in the 各種データ block (p. 13, line 50), and they belong to the master zoom with the
+  attachment lens Lat (group 5, surfaces 25–30) fitted, which this file does not model. Fig. 6 (p. 24), the
+  bare-master aberration plots, prints only Fno = 4.1 and ω = 51° / 40° / 29.1°, no focal length. The bare-master
+  17.49–38.83 mm values are computed, not printed, so they are not used. No optical value changed.

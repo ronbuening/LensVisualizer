@@ -37,3 +37,8 @@ cross-check only.
 The validator accepts the new values (the surface 2→3 air space now reaches 82% sag intrusion, inside the 90% limit),
 the traced field reaches the corner with every rim clear, and the image-circle floor still reports nothing undersized.
 The analysis note quotes none of these semi-diameters, so it is unchanged.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2.8` from US 3,748,021 PDF p. 7, col. 4, lines 30–32, the Embodiment 2 heading
+  "f = 1 F. number = 2.8 2ω = 84°". The stop's `nominalFNumber` 2.8 matches it. No optical value changed.

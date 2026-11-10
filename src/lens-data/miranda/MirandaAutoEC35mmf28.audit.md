@@ -34,3 +34,7 @@ Surface geometry and image-circle floors pass with no undersized or skipped entr
 At the same 39.1 µm/px scale, direct top/bottom readings in Fig. 1 place L3/L5/L6 near 7.3–7.8 mm. Leader curves inflated the automated envelope readings. The live diagram showed the rear positive lenses standing above L2, unlike the figure. S5/S6/S10/S11/S12 change from 9.5/8.2/9.1/9.65/9.65 to 8.0/8.0/8.0/8.0/8.0 mm; the modest allowance preserves the format-corner chief ray. Other rims remain unchanged. Labels now read L1–L6, matching the source element names.
 
 All six catalog curves remain compatible. Ordinary glass colors remain appropriate; there is no new source-backed APD classification. The focus control correctly reads “Not modeled”: the static patent does not establish travel direction or endpoints. There is no zoom control. The source applicant remains consolidated under Miranda Camera Co., Ltd.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2.8: `patents/JPA 1976053823-000000.pdf` PDF p. 4 (gazette p. 150), 第3図, which the text on the same page names as the Example 1 aberration diagram (第3図は第1実施例の収差図). Its spherical-aberration axis is labelled 1:2.8 at the top, then 1:3.4, 1:4 and 1:5.6 (read from a 300 dpi render). The Example 1 table heading (PDF p. 3) prints only f = 100, back focus 109.50 and overall length 208.18; the description (PDF p. 2) gives 口径比 "2.8前後" for the invention generally. The stop's `nominalFNumber` 2.8 passes the 0.5% guard.
