@@ -12,7 +12,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1109** lenses scanned
-- **1089** visible lenses scanned
+- **1090** visible lenses scanned
 - **757** lenses fully covered by trusted chromatic data
 - **752** visible lenses fully covered by trusted chromatic data
 - **749** lenses fully covered by strict Sellmeier data
@@ -1244,8 +1244,8 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 158 | [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) | 84.6% | 84.6% | 11/13 | 11/13 | 2 | abbe: 1, constant: 1 |
 | 159 | [CARL ZEISS JENA MC PANCOLAR 50mm f/1.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaMCPancolar50mmf18.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
 | 160 | [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
-| 161 | [MINOLTA 55mm f/1.8 (JP S38-11587 Design)](../../src/lens-data/minolta/Minolta55mmf18JPS3811587.data.ts) *(hidden)* | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
-| 162 | [MINOLTA MD 50mm f/1.7](../../src/lens-data/minolta/Minolta50mmf17MD.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
+| 161 | [MINOLTA MD 50mm f/1.7](../../src/lens-data/minolta/Minolta50mmf17MD.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
+| 162 | [MINOLTA SUPER ROKKOR 5cm f/1.8](../../src/lens-data/minolta/MinoltaSuperRokkor5cmf18.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
 | 163 | [PENTAX SMC TAKUMAR 6x7 600mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7600mmf4.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
 | 164 | [RUSSAR-21 60mm f/18](../../src/lens-data/unattributed/Russar21.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
 | 165 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
@@ -2454,6 +2454,12 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
 | 10 | Element 6 | abbe | `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)` | Explicit unmatched/proprietary annotation |
+
+### [MINOLTA SUPER ROKKOR 5cm f/1.8](../../src/lens-data/minolta/MinoltaSuperRokkor5cmf18.data.ts) - 83.3% trusted (5/6); 83.3% Sellmeier (5/6) - JP S38-11587 B
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 7 | Element 4 | abbe | `Unmatched (patent nd 1.5749, νd 39.2; no exact catalog row; supplier unspecified)` | Explicit unmatched/proprietary annotation |
 
 ### [PENTAX SMC TAKUMAR 6x7 600mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7600mmf4.data.ts) - 83.3% trusted (5/6); 83.3% Sellmeier (5/6) - US 3,502,393
 

@@ -9,7 +9,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1109** lenses scanned (**1089** visible)
+- **1109** lenses scanned (**1090** visible)
 - **11756 / 12625** non-air surfaces use strict catalog Sellmeier data (93.1%)
 - **11774 / 12625** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
@@ -118,6 +118,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [CARL ZEISS JENA MC PANCOLAR 50mm f/1.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaMCPancolar50mmf18.data.ts) |  | No patent number parsed from lens metadata | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element III: `Unmatched (patent nd=1.5995, νd=35.2; no catalog row at these coordinates)`) | abbe: 1 |
 | [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) | JP 1978-066222 A | Missing from untracked local patents/ references (JP1978066222A, JP1978066222, 1978066222, JPA1978066222000000) | 83.3% (5/6) | 83.3% (5/6) | 1 | 3 [glass] (Element 2: `Unmatched (nd=1.69480, νd=55.5; nearest public 697555 lanthanum-crown family)`) | abbe: 1 |
 | [MINOLTA MD 50mm f/1.7](../../src/lens-data/minolta/Minolta50mmf17MD.data.ts) | JP S60-111215 A | [PDF](../../patents/JPS60111215A.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 10 [glass] (Element 6: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
+| [MINOLTA SUPER ROKKOR 5cm f/1.8](../../src/lens-data/minolta/MinoltaSuperRokkor5cmf18.data.ts) | JP S38-11587 B | [PDF](../../patents/JPS3811587B.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 7 [glass] (Element 4: `Unmatched (patent nd 1.5749, νd 39.2; no exact catalog row; supplier unspecified)`) | abbe: 1 |
 | [PENTAX SMC TAKUMAR 6x7 600mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7600mmf4.data.ts) | US 3,502,393 | [PDF](../../patents/US3502393.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 5 [glass] (Element 3: `Unmatched (512598 crown; no public catalog row)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | US 6,028,720 | [PDF](../../patents/US6028720.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (phosphate crown class, ne=1.5223, ve=69.5; no public catalog match — possible special melt or discontinued glass)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | US 5,870,234 | [PDF](../../patents/US5870234.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Schott KF9; patent e-line ne=1.52583, ve=51.25 stored as nd/vd)`) | abbe: 1 |
