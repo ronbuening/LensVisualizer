@@ -1,16 +1,22 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * US 10,274,698 B2 Example 1; Tables 1–3, PDF page 27; Figures 1 and 11.
- * Qualified production schematic association with MKX, not factory-exact identity or MK equivalence.
- * ALL 2 published infinity zoom stations remain literal in this ONE model.
- * Zoom gaps: D13, D20, D25; focus reconstruction only D6/D8, L14.
- * Internal focus by G1b/L14 (surfaces 7–8), moving imageward toward reconstructed near focus at 1.2 m, and objectward toward infinity. D6 grows and D8 shrinks; D6+D8 and glass thickness stay fixed. Other groups, stop and image plane remain fixed at a given zoom setting. Patent publishes infinity zoom rows only. Numeric focus travel is a reconstruction, not a factory cam; macro is not modeled.
- * Clear semi-diameters inferred from schematic group outlines and native geometry constraints.
- * Added zoom samples are an inferred paraxial cam, explicitly unpublished; source rows remain literal.
- * Iris radius derived from source design FNo, not a measured physical aperture or T-stop.
- * Source radii, glass nd/vd, published axial intervals and rounding residuals are not retuned.
- * Work-in-progress: native geometry, exact rays and continuous slider gates must pass before release.
+ * US 10,274,698 B2 Example 1 (application US 2018/0217360 A1); Tables 1–3, PDF page 27; Figures 1 and 11.
+ * Production correlation: FUJINON MKX50-135mm T2.9 (22 elements / 17 groups, 2 ED + 2 Super ED, front inner focus).
+ * The design matches the MK/MKX 50-135 family; numeric identity with the production lens, or between the E-mount MK
+ * and X-mount MKX versions, is not established.
+ * Zoom: the patent's wide (f = 51.501) and tele (f = 134.933) infinity rows are printed values; zoom gaps D13, D20,
+ * D25. The 33 stations between them are an inferred paraxial cam (unpublished) that holds the image plane.
+ * Focus: L14 (subgroup G1b, surfaces 7–8) moves toward the image for close focus; D6 grows and D8 shrinks with
+ * D6 + D8 fixed. Other groups, the stop and the image plane stay fixed at a given zoom setting. The patent prints
+ * infinity rows only; the 1.2 m travel is solved from the prescription, not a factory cam. Macro is not modeled.
+ * Camera-side plate PP (surfaces 41–42: 2.000 mm, nd 1.51633, νd 64.14; 5.000 mm before, 30.658 mm after) is in
+ * `rearPlates`; the printed Bf 36.976 mm is the air-equivalent back focus.
+ * Clear semi-diameters are inferred from the figure's group outlines and edge/gap limits. `gapSagFrac` 0.915: the
+ * D15 air gap (4.440 mm) needs a 91.3 % sag allowance at the 11.93 mm G2 rim; edge clearance stays ≈0.39 mm.
+ * Iris radius is derived from the design F-number 2.75 (constant over zoom), not a measured aperture or the T-stop.
+ * Glass labels are exact catalog rows for the printed nd/νd; the patent names no glasses.
+ * Source radii, nd/νd, printed axial intervals and rounding residuals are not retuned.
  */
 
 const LENS_DATA = {
@@ -18,12 +24,18 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-mkx50-135mm-t29",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON MKX50-135mm T2.9",
-  subtitle: "US 10,274,698 B2 Example 1; qualified MKX schematic association",
+  subtitle: "US 10,274,698 B2, Example 1 — production correlation; 1.2 m focus reconstructed",
   visible: true,
   catalog: {
     lensMounts: ["fujifilm-x"],
     imageFormat: "aps-c",
-    specs: ["22 ELEMENTS / 17 GROUPS", "ALL PUBLISHED ZOOM STATIONS", "INFERRED RIMS AND FOCUS"],
+    specs: [
+      "22 ELEMENTS / 17 GROUPS",
+      "2 SUPER ED + 2 ED ELEMENTS",
+      "DESIGN f = 51.50–134.93 mm",
+      "DESIGN F/2.75 (MARKETED T2.9)",
+      "ALL SPHERICAL",
+    ],
     elementCount: 22,
     groupCount: 17,
     focalLengthMm: {
@@ -55,8 +67,8 @@ const LENS_DATA = {
       type: "Meniscus Negative",
       nd: 1.48749,
       vd: 70.24,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L11, bounded by surfaces 1 and 2.",
+      glass: "S-FSL5 (OHARA)",
+      role: "Negative front meniscus of the fixed G1a subgroup, convex to the object.",
       focalLengthMm: -160.52607,
     },
     {
@@ -66,8 +78,8 @@ const LENS_DATA = {
       type: "Meniscus Positive",
       nd: 1.84667,
       vd: 23.79,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L12, bounded by surfaces 3 and 4.",
+      glass: "S-TIH53 (OHARA)",
+      role: "Positive dense-flint meniscus of G1a, convex to the object.",
       focalLengthMm: 153.663585,
     },
     {
@@ -77,8 +89,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8515,
       vd: 40.78,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L13, bounded by surfaces 5 and 6.",
+      glass: "S-LAH89 (OHARA)",
+      role: "Biconcave negative element closing the fixed G1a subgroup.",
       focalLengthMm: -95.101876,
     },
     {
@@ -88,8 +100,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.54,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L14, bounded by surfaces 7 and 8. G1b internal-focus lens; inferred imageward translation toward near focus.",
+      glass: "S-FPL51 (OHARA)",
+      role: "Focusing lens: the whole G1b subgroup; moves toward the image for close focus.",
+      apd: "inferred",
+      apdNote: "Fujifilm lists two ED elements; this 1.49700/81.54 position fits an S-FPL51-type ED glass.",
       focalLengthMm: 126.439204,
     },
     {
@@ -99,10 +113,10 @@ const LENS_DATA = {
       type: "Meniscus Negative",
       nd: 1.84667,
       vd: 23.79,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L15, bounded by surfaces 9 and 10.",
+      glass: "S-TIH53 (OHARA)",
+      role: "Negative dense-flint meniscus at the front of the fixed G1c cemented doublet.",
       focalLengthMm: -150.891536,
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 6,
@@ -111,10 +125,12 @@ const LENS_DATA = {
       type: "Plano-Convex Positive",
       nd: 1.43875,
       vd: 94.66,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L16, bounded by surfaces 10 and 11.",
+      glass: "S-FPL55 (OHARA)",
+      role: "Positive Super ED member of the G1c cemented doublet, flat rear face.",
+      apd: "inferred",
+      apdNote: "Fujifilm lists two Super ED elements; this 1.43875/94.66 position fits an S-FPL55-type glass.",
       focalLengthMm: 105.303863,
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 7,
@@ -123,8 +139,8 @@ const LENS_DATA = {
       type: "Meniscus Positive",
       nd: 1.72916,
       vd: 54.68,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L17, bounded by surfaces 12 and 13.",
+      glass: "S-LAL18 (OHARA)",
+      role: "Positive meniscus at the rear of the fixed first group.",
       focalLengthMm: 103.518331,
     },
     {
@@ -134,8 +150,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.90043,
       vd: 37.37,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L21, bounded by surfaces 14 and 15.",
+      glass: "TAFD37 (HOYA)",
+      role: "Strong biconcave front element of the moving negative zoom group G2.",
       focalLengthMm: -37.823508,
     },
     {
@@ -145,8 +161,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.497,
       vd: 81.54,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L22, bounded by surfaces 16 and 17.",
+      glass: "S-FPL51 (OHARA)",
+      role: "Biconcave ED negative element of G2.",
+      apd: "inferred",
+      apdNote: "Fujifilm lists two ED elements; this 1.49700/81.54 position fits an S-FPL51-type ED glass.",
       focalLengthMm: -43.768325,
     },
     {
@@ -156,10 +174,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84667,
       vd: 23.79,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L23, bounded by surfaces 18 and 19.",
+      glass: "S-TIH53 (OHARA)",
+      role: "Positive dense-flint member of the G2 cemented doublet.",
       focalLengthMm: 35.54071,
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 11,
@@ -168,10 +186,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.8515,
       vd: 40.78,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L24, bounded by surfaces 19 and 20.",
+      glass: "S-LAH89 (OHARA)",
+      role: "Negative rear member of the G2 cemented doublet.",
       focalLengthMm: -56.41727,
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 12,
@@ -180,8 +198,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.90366,
       vd: 31.31,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L31, bounded by surfaces 21 and 22.",
+      glass: "TAFD25 (HOYA)",
+      role: "Biconvex front element of the moving positive zoom group G3.",
       focalLengthMm: 89.655882,
     },
     {
@@ -191,10 +209,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.603,
       vd: 65.44,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L32, bounded by surfaces 23 and 24.",
+      glass: "S-PHM53 (OHARA)",
+      role: "Positive member of the G3 cemented doublet.",
       focalLengthMm: 52.416265,
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 14,
@@ -203,10 +221,10 @@ const LENS_DATA = {
       type: "Meniscus Negative",
       nd: 1.71736,
       vd: 29.51,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L33, bounded by surfaces 24 and 25.",
+      glass: "S-TIH1 (OHARA)",
+      role: "Negative meniscus closing the G3 cemented doublet, the last element ahead of the stop.",
       focalLengthMm: -63.070484,
-      cemented: "D3",
+      cemented: "C3",
     },
     {
       id: 15,
@@ -215,8 +233,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.56883,
       vd: 56.04,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L41, bounded by surfaces 27 and 28.",
+      glass: "BAC4 (HOYA)",
+      role: "Biconvex first element of the fixed rear group G4, behind the stop.",
       focalLengthMm: 67.535137,
     },
     {
@@ -226,10 +244,12 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.43875,
       vd: 94.66,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L42, bounded by surfaces 29 and 30.",
+      glass: "S-FPL55 (OHARA)",
+      role: "Positive Super ED member of the first G4 cemented doublet.",
+      apd: "inferred",
+      apdNote: "Fujifilm lists two Super ED elements; this 1.43875/94.66 position fits an S-FPL55-type glass.",
       focalLengthMm: 46.044487,
-      cemented: "D4",
+      cemented: "C4",
     },
     {
       id: 17,
@@ -238,10 +258,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.85025,
       vd: 30.05,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L43, bounded by surfaces 30 and 31.",
+      glass: "S-NBH57 (OHARA)",
+      role: "Negative member of the first G4 cemented doublet.",
       focalLengthMm: -25.34465,
-      cemented: "D4",
+      cemented: "C4",
     },
     {
       id: 18,
@@ -250,8 +270,8 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.84667,
       vd: 23.79,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L44, bounded by surfaces 32 and 33.",
+      glass: "S-TIH53 (OHARA)",
+      role: "Biconvex dense-flint positive element in the middle of G4.",
       focalLengthMm: 39.062244,
     },
     {
@@ -261,10 +281,10 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.603,
       vd: 65.44,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L45, bounded by surfaces 34 and 35.",
+      glass: "S-PHM53 (OHARA)",
+      role: "Positive member of the second G4 cemented doublet.",
       focalLengthMm: 57.084992,
-      cemented: "D5",
+      cemented: "C5",
     },
     {
       id: 20,
@@ -273,10 +293,10 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.95375,
       vd: 32.32,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L46, bounded by surfaces 35 and 36.",
+      glass: "S-LAH98 (OHARA)",
+      role: "High-index negative member of the second G4 cemented doublet.",
       focalLengthMm: -25.242168,
-      cemented: "D5",
+      cemented: "C5",
     },
     {
       id: 21,
@@ -285,8 +305,8 @@ const LENS_DATA = {
       type: "Meniscus Positive",
       nd: 1.90366,
       vd: 31.31,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L47, bounded by surfaces 37 and 38.",
+      glass: "TAFD25 (HOYA)",
+      role: "Positive meniscus near the rear of G4, convex to the object.",
       focalLengthMm: 84.880643,
     },
     {
@@ -296,8 +316,8 @@ const LENS_DATA = {
       type: "Meniscus Negative",
       nd: 1.51633,
       vd: 64.14,
-      glass: "Unmatched (patent nd/vd; catalog formulation unspecified)",
-      role: "Source L48, bounded by surfaces 39 and 40.",
+      glass: "S-BSL7 (OHARA)",
+      role: "Negative rear meniscus of G4, concave to the object.",
       focalLengthMm: -129.839978,
     },
   ],
@@ -566,245 +586,177 @@ const LENS_DATA = {
         label: "Wide",
         published: true,
         publishedFocus: [],
-        nominalFNumber: 2.75,
       },
       {
         focalLengthMm: 53.40712745069546,
-        label: "Inferred T=0.022846479",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.750091385916708,
       },
       {
         focalLengthMm: 55.34819353147461,
-        label: "Inferred T=0.046111726",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.7501844469043757,
       },
       {
         focalLengthMm: 57.32423087576305,
-        label: "Inferred T=0.069796132",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.7502791845275563,
       },
       {
         focalLengthMm: 59.335218268722116,
-        label: "Inferred T=0.093899442",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.75037559776914,
       },
       {
         focalLengthMm: 61.381173734917674,
-        label: "Inferred T=0.118421873",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.750473687493284,
       },
       {
         focalLengthMm: 63.462101429013,
-        label: "Inferred T=0.143363475",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.750573453899176,
       },
       {
         focalLengthMm: 65.57802007982349,
-        label: "Inferred T=0.168724471",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.750674897884736,
       },
       {
         focalLengthMm: 67.72892346023492,
-        label: "Inferred T=0.194504788",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.750778019151416,
       },
       {
         focalLengthMm: 69.91699945480583,
-        label: "Inferred T=0.220730648",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.75088292259348,
       },
       {
         focalLengthMm: 72.1401560973274,
-        label: "Inferred T=0.247376979",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.7509895079153,
       },
       {
         focalLengthMm: 74.39839378518622,
-        label: "Inferred T=0.274443784",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.751097775135928,
       },
       {
         focalLengthMm: 76.69171548839464,
-        label: "Inferred T=0.301931099",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.751207724397756,
       },
       {
         focalLengthMm: 79.02012881052798,
-        label: "Inferred T=0.329839016",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.751319356065324,
       },
       {
         focalLengthMm: 81.3836427926115,
-        label: "Inferred T=0.358167643",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.751432670572088,
       },
       {
         focalLengthMm: 83.78226052179605,
-        label: "Inferred T=0.386917017",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.751547668066056,
       },
       {
         focalLengthMm: 86.21600070211767,
-        label: "Inferred T=0.416087361",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.75166434944396,
       },
       {
         focalLengthMm: 88.68485828126819,
-        label: "Inferred T=0.445678616",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.751782714463576,
       },
       {
         focalLengthMm: 91.18885817037419,
-        label: "Inferred T=0.475691080",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.751902764319224,
       },
       {
         focalLengthMm: 93.72799339418671,
-        label: "Inferred T=0.506124669",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.752024498676488,
       },
       {
         focalLengthMm: 96.30227478293023,
-        label: "Inferred T=0.536979514",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.752147918054604,
       },
       {
         focalLengthMm: 98.91172284335605,
-        label: "Inferred T=0.568255859",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.7522730234367323,
       },
       {
         focalLengthMm: 101.55632943925897,
-        label: "Inferred T=0.599953608",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.752399814432796,
       },
       {
         focalLengthMm: 104.23611312875245,
-        label: "Inferred T=0.632072983",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.7525282919325322,
       },
       {
         focalLengthMm: 106.95108306048904,
-        label: "Inferred T=0.664614094",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.752658456374556,
       },
       {
         focalLengthMm: 109.70124461332978,
-        label: "Inferred T=0.697577004",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.752790308016748,
       },
       {
         focalLengthMm: 112.48660685424726,
-        label: "Inferred T=0.730961823",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.7529238472938085,
       },
       {
         focalLengthMm: 115.30718186769923,
-        label: "Inferred T=0.764768696",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.753059074785104,
       },
       {
         focalLengthMm: 118.16297595755731,
-        label: "Inferred T=0.798997698",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.7531959907928636,
       },
       {
         focalLengthMm: 121.05399612067932,
-        label: "Inferred T=0.833648913",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.75333459565254,
       },
       {
         focalLengthMm: 123.98025835148024,
-        label: "Inferred T=0.868722533",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.753474890130956,
       },
       {
         focalLengthMm: 126.94176792386367,
-        label: "Inferred T=0.904218620",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.75361687448096,
       },
       {
         focalLengthMm: 129.93853520492306,
-        label: "Inferred T=0.940137300",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.753760549199584,
       },
       {
         focalLengthMm: 132.9705700434723,
-        label: "Inferred T=0.976478690",
         published: false,
         publishedFocus: [],
-        nominalFNumber: 2.753905914759012,
       },
       {
         focalLengthMm: 134.933,
         label: "Tele",
         published: true,
         publishedFocus: [],
-        nominalFNumber: 2.754,
       },
     ],
   },
@@ -812,7 +764,7 @@ const LENS_DATA = {
     closeFocusM: 1.2,
     keyframes: [0, 1],
     description:
-      "Internal focus by G1b/L14 (surfaces 7–8), moving imageward toward reconstructed near focus at 1.2 m, and objectward toward infinity. D6 grows and D8 shrinks; D6+D8 and glass thickness stay fixed. Other groups, stop and image plane remain fixed at a given zoom setting. Patent publishes infinity zoom rows only. Numeric focus travel is a reconstruction, not a factory cam; macro is not modeled.",
+      "Front inner focus: L14, the single-element subgroup G1b inside the fixed first group, moves toward the image by about 9.19 mm from infinity to 1.2 m; D6 grows and D8 shrinks by the same amount. All other groups, the stop and the image plane stay fixed at a given zoom setting. The patent prints infinity rows only; the 1.2 m travel is solved from the prescription for Fujifilm's minimum focus distance, not a published cam. The 0.85 m wide-end macro setting is not modeled.",
   },
   gaps: {
     "13": {
@@ -1017,8 +969,9 @@ const LENS_DATA = {
     },
   },
   aperture: {
-    fStops: [2.75, 2.8, 4, 5.6, 8, 11, 16],
-    maxFNumber: 16,
+    nominalFNumber: 2.75,
+    fStops: [2.75, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
     blades: 9,
   },
   layout: {
@@ -1036,6 +989,21 @@ const LENS_DATA = {
       gapAfterMm: 30.658,
       source: "US 10,274,698 B2 Example 1 Table 1, surfaces 41–42",
     },
+  ],
+  groups: [
+    { text: "G1a (−)", fromSurface: "1", toSurface: "6" },
+    { text: "G1b (+)", fromSurface: "7", toSurface: "8" },
+    { text: "G1c (+)", fromSurface: "9", toSurface: "13" },
+    { text: "G2 (−)", fromSurface: "14", toSurface: "20" },
+    { text: "G3 (+)", fromSurface: "21", toSurface: "25" },
+    { text: "G4 (+)", fromSurface: "27", toSurface: "40" },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "9", toSurface: "11" },
+    { text: "C2", fromSurface: "18", toSurface: "20" },
+    { text: "C3", fromSurface: "23", toSurface: "25" },
+    { text: "C4", fromSurface: "29", toSurface: "31" },
+    { text: "C5", fromSurface: "34", toSurface: "36" },
   ],
 } satisfies LensDataV2Input;
 
