@@ -151,4 +151,78 @@ At 2 m (approximate check: the vignetting analysis at focus 1 with the infinity 
 loss is also 2.6 points at 102.5 mm (96.5 → 93.9 % at the corner) and none from 144.7 mm on.
 
 Open: L4 / L5 stay about 45 % larger than Fig. 2 and Gr3R / Gr4 about 12–15 % larger, because the drawn rims cost
-corner light under the rule; Gr1 is 8–13 % larger than the figure for the same reason at 2 m.
+corner light under the rule; Gr1 is 8–13 % larger than the figure for the same reason at 2 m. (Second review: Gr1's
+reason is long-end corner light at infinity and at 2 m and its proportion to Gr3R and Gr4, not the axial beam; see
+below.)
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared: the local page at 102.5, 200 and 390.1 mm, at infinity and 2 m, both movement overlays and all 14 element
+inspectors, against Fig. 2 of US 5,633,759 A (PDF page 3, 300 dpi, rims read on both sides of the axis) and the
+Example 2 aberration plots, Figs. 10–12 (PDF pages 9–10).
+
+Changes:
+
+| Item | Before | After | Evidence |
+| --- | --- | --- | --- |
+| Gr1 bracket text | "Gr1 + / focus" | "Gr1 +" | At 102.5 mm the label ran into "Gr2 −" ("Gr1 + / focusGr2 −"); "Gr1 + focus" still left under one character between them. Focus is described in the focus panel. |
+| Header rim note and analysis rim paragraph | Gr4 drawn 11.7 mm; Gr1 kept for the 2 m axial beam | Gr4 drawn 11.3–11.4 mm with a 12.4 mm L14 flange; Gr1 kept for long-end corner light | Readings and real-object trace below. |
+| Analysis limitation on L2 / L3 | secondary spectrum "likely larger" | numbers against Fig. 12, plus distortion agreement | Colour check below. |
+
+Rims: no change. Fig. 2 re-read with the figure profiler at 15.75 px/mm (both sides where no leader lines cross):
+Gr1 31.6 / 30.9 / 30.3 mm, L4 15.3, L5 14.7, L6 11.5–11.6, L7 12.1–12.4 and Gr3R 12.8–12.9, all within 0.2 mm of the
+semi-diameter pass; in Gr4, L12 11.3, L13 11.4 and an L14 flange of 12.4 mm (r24–r25 drawn about 1 mm taller than
+L13; the earlier reading of 11.7 mm for the whole group missed the flange). Gr4 stays square at 13.5 mm: L13–L14 cannot go lower without narrowing the traced field, L12
+matches L13's front face as drawn, and showing the flange step would need a bevelled L13 and the rest of the light
+budget. Gr1 stays at 34 mm: with a real object point at 2 m the axial beam peaks at 31.56 mm on surface 1 and
+30.13 mm on surface 5 (390.1 mm), so the earlier "6.1 points on axis at 2 m" came from the parallel-beam near-state
+approximation, but a 33 / 32.5 mm trim costs 2.9 points at the long-end corner at infinity (full-pupil lattice,
+360.5 mm) and 2.7–2.9 points at 2 m with a real object, and Gr1 would then shrink against Gr3R and Gr4, which sit
+1.09–1.19× above the figure as Gr1 does (1.08–1.12×).
+
+Lands and cuts: no lands. The cuts (L5, L6, L7, Gr3R, L12) keep their verdicts: worst loss 2.6 points (102.5 mm, 12°,
+96.7 → 94.1 %) over all 33 nodes and over the zoom fractions 0, 1/16, 1/8, 3/16, 1/4 … 1. Restoring one element wins
+back 1.5 points (L11), 0.4 (L7) and nothing for the others. An independent full-pupil trace with real object points
+over all 33 stations gives a worst corner loss of 2.9 points at infinity (102.5 mm, 96.5 → 93.7 %), 2.95 at 4 m and
+2.8 at 2 m (102.5 mm, 96.6 → 93.8 %; 390.1 mm unchanged at 74.0 %). Engine half-field 17.117°, f-number 4.6, EFL
+102.546440 and stop radius 10.762183 are unchanged; the surface validator reports no errors, the aperture audit 33/33
+stations with no rim limit, field coverage 33/33 at the 21.6 mm corner and no undersized surface.
+
+Labels and tags re-checked: every element type agrees with the signs of R; names L1–L14 with a focal length in every
+inspector; no aspheres (none printed); stop between L5 and L6; cemented brackets on surfaces 1–3, 16–18 and 23–25
+match the printed cemented faces 2, 17 and 24; group brackets Gr1–Gr4 match Fig. 2 (Gr3F / Gr3R drawn inside Gr3 and
+not bracketed separately); L6–L7 role matches the patent's Gr3F achromatism condition. `apd: "inferred"` on L2 and L3
+is right: Minolta lists two AD elements, the two νd 83.58 elements are the only candidates, and the patent says
+nothing about anomalous dispersion; the inspectors show "APD (INFERRED)" and the Unmatched 493836 label.
+
+Movement, positions from the image plane (wide → middle → tele): Gr1 169.54 → 196.89 → 234.49 mm (+64.95, toward the
+object), Gr2 155.58 → 144.22 → 143.73 (−11.85, toward the image), Gr3 75.59 → 92.74 → 116.01 (+40.42, toward the
+object), Gr4 37.75 → 65.12 → 102.75 (+65.00, toward the object). Every group is monotonic over all 33 ascending
+stations (Gr2 −0.71 mm per step to 200 mm, −0.03 mm per step after), as the Fig. 2 arrows m1–m4 show. Focus: keyframe 0
+is infinity and keyframe 8 the 2 m state; only d5 changes, rising monotonically (Gr1 toward the object by 12.28 /
+12.49 / 12.78 mm at the printed stations); the overlay moves Gr1 alone by 12.28 mm and the slider ends at 2.00 m.
+
+Glass: the ten resolved labels match the printed nd / νd within 3.2e-6 / 0.04. L2 / L3 (1.49310 / 83.58), L12
+(1.75450 / 51.57) and L13 (1.67339 / 29.25) stay Unmatched: the patent prints only N and ν (no glass names, other
+lines or partial dispersions), and each pair recurs in other examples of US 5,633,759 (1.75450 / 51.57 in Tables 1–4,
+the other two in Tables 1, 3, 4 and 5), so they are real glasses. The nearest rows fall outside the exact window
+(TAC6 / S-LAH97 1.75500 / 52.32; E-FD5 / S-TIM25 1.67270 / 32.1; FCD1 / FPL51 1.497 / 81.6). No constant medium and no
+printed line index the file lacks.
+
+Colour: Figs. 10A–12A plot d, g and c spherical aberration. The d line agrees (390.1 mm: zone −0.31 mm against about
+−0.28 read, margin −0.03 against about 0; 102.5 mm margin −0.38 against about −0.39). C and g are close at 102.5 mm
+(paraxial +0.12 / +0.21 mm against curves starting at 0 and +0.15 mm) but not toward the long end: +0.18 / +0.41 mm at 200 mm against curves within +0.1 mm, and
++0.40 / +1.22 mm at 390.1 mm against about +0.03 / +0.16 mm. The likely cause is L2 / L3, which carry normal-line
+partial dispersions (P_d,C 0.3137, Schott P_g,F) for a fluorophosphate AD glass; a scratch trial with partials like
+FPL51's (P_d,C 0.3054, ΔP_g,F +0.031) moves 390.1 mm to +0.25 / +0.47 mm. Distortion at the 21.6 mm corner agrees
+(−0.6 / +2.3 / +2.3 % against about −0.7 / +2.5 / +2.6 % read), which supports the assumed stop position.
+
+Assignee: the JP publication's inventor addresses read ミノルタ株式会社, so "Minolta Co., Ltd." is right (the corpus
+uses it for six other mid-1990s files; the US counterpart prints the earlier "Minolta Camera Co., Ltd.").
+
+Open: long-end colour stays larger than the patent's until L2 / L3 carry anomalous partial dispersion (`dPgF` or line
+indices for the 493836 AD glass), which the patent does not print.
+
+Open: at 2 m the site's vignetting analysis launches parallel beams with the infinity pupil and shows 70.8 % on axis
+at 390.1 mm with the current rims, where a real object point passes the whole axial beam; an engine approximation, not
+a rim limit.

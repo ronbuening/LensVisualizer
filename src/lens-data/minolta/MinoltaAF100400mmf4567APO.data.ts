@@ -13,10 +13,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: not printed. Placed 2 mm in front of surface 10 and moving with Gr3, so d9 is split into
  * (d9 − 2) + 2 mm; its radius follows the printed f-number at each station.
  * Semi-diameters: not printed; compared with the wide-end Fig. 2 (US 5,633,759 copy, 15.75 px/mm at 300 dpi). L6 and
- * L7 follow the figure (11.7 / 12.4 mm). Gr3R and Gr4 are reduced only as far as corner light allows (14.4 / 13.5 mm
- * against a drawn 12.8 / 11.7 mm), and Gr1 and Gr2 keep their inferred 34 / 22 / 21.2 mm (drawn 30.2–31.5 /
- * 15.2 / 14.6 mm): the drawn rims would cut the 102.5 mm corner from 97 % to 41 % of the beam, and a smaller Gr1
- * cuts light at the long end at 2 m. The axial beam clears every rim at every zoom and focus state.
+ * L7 follow the figure (11.7 / 12.4 mm). Gr3R and Gr4 are reduced only as far as corner light and the traced field
+ * allow (14.4 / 13.5 mm against a drawn 12.8 / 11.3–12.4 mm), Gr1 and L4 keep their inferred 34 / 22 mm and L5 is
+ * 21.2 mm (drawn 30.2–31.4 / 15.2 / 14.6 mm): the drawn rims would cut the 102.5 mm corner from 97 % to 41 % of the
+ * beam, and a smaller Gr1 costs corner light at the long end. The axial beam clears every rim at every zoom and focus
+ * state.
  * Back focus: not printed per state; derived paraxially (d-line) at every station. The patent's
  * wide back focus 37.697 mm is 0.053 mm shorter than the derived 37.750 mm (see source.errata).
  * Zoom: the 30 stations between the printed ones are interpolated. Gr1, Gr2 and Gr4 positions
@@ -1119,7 +1120,7 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Gr1 + / focus",
+      text: "Gr1 +",
       fromSurface: "1",
       toSurface: "5",
     },
