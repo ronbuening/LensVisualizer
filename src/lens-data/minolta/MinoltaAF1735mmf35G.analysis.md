@@ -214,8 +214,12 @@ patent prints as 0.35; every condition is met either way.
   the printed values (keeping both patent links) and the back focus is solved at each. The intermediate cam is
   therefore not Minolta's. Between stations the image stays within 8.3 µm of focus.
 - The stop opens with zoom to hold F/3.58, from 6.41 mm radius at wide to 8.90 mm at tele.
-- Semi-diameters are inferred; the patent prints none. At the wide end the J1/L2 rim limits the traced field to about
-  20.9 mm image height, which covers the patent's own 102.3° field but stops just short of the 21.6 mm corner.
+- Semi-diameters are estimated from Fig. 1 and checked by real-ray trace; the patent prints none. L1's rear face ends
+  at 22.3 mm and the J1/L2 front at 19.5 mm, where the bonded layer thins toward zero thickness; Fig. 1 draws the
+  outer rims of both elements larger. The traced field reaches the 21.6 mm corner at every zoom station, with about
+  48 % of the axial illumination at the wide-end corner and 73–74 % at the middle and tele corners.
+- L3 is drawn slightly larger than L4 in Fig. 1 but is modeled smaller (15.5 against 16.8 mm): a larger L3 would run
+  into the deep rear face of L2 across the 11.05 mm gap, which the figure itself draws touching L3's corner.
 - Focus is infinity-only (see Focus Mechanism).
 
 ## Sources

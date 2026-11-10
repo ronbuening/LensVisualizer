@@ -7,7 +7,10 @@
  * interpolate the printed rows and the image gap is solved paraxially, so the cam between rows is not Minolta's.
  * The back focus at every station is derived; the patent does not print it.
  * The stop moves with Gr3 (d14 + d20 constant), as the patent states; its radius follows F/3.58 at each station.
- * Semi-diameters are inferred. Infinity focus only: the patent prints no focusing data.
+ * Semi-diameters are estimated from Fig. 1 (wide end) and checked by real-ray trace at every station; the patent prints
+ * none. L1's rear face (22.3) and Element 2's front (19.5, where the bonded layer thins toward zero) end inside the
+ * drawn outer rims; L3 stays at 15.5 because a larger rim would cross Element 2's deep rear face.
+ * Infinity focus only: the patent prints no focusing data.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
@@ -287,13 +290,13 @@ const LENS_DATA = {
       label: "2",
       R: 32.804,
       d: 3.3,
-      sd: 26.3,
+      sd: 22.3,
     },
     {
       label: "3A",
       R: 49.3,
       d: 0.065,
-      sd: 17.4,
+      sd: 19.5,
       medium: 2,
       asphere: {
         K: 0,
@@ -307,7 +310,7 @@ const LENS_DATA = {
       label: "4",
       R: 32.6,
       d: 2.5,
-      sd: 17.4,
+      sd: 19.5,
       medium: 3,
     },
     {
