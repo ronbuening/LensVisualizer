@@ -11,3 +11,17 @@ Source-plane d-line geometric and diffraction MTF converge at sampled0/10/20/30/
 The fixed runtime carries verified maker0.17m MFD as catalog context only, without continuous focusing law or certified finite conjugates. Separate literal X20/MOD snapshots build with zero trim. Under the unprinted first-vertex distance hypothesis, native near-axis residuals−0.016821187/+0.017917117mm agree with independent ABCD; EFL16.219544511/15.641355382mm differs from printed16.207/15.677. No finite retuning or finite-field certification is claimed.
 
 Original/rejected cap hypotheses,64-grid convergence limits, best-axial and conditional finite results remain in evidence. Local visible registration is for isolated tests/prerender only, not publication. Metadata, typecheck, formatting, lint, 23 focused regression files / 1,609 tests, local build and SEO passed. Specific built page/data/analysis equality and official aperture census passed. Guarded installer checks passed. The complete repository test suite was not run; gate logs govern the exact scope.
+
+## 2026-11-10 — Deployment validation
+
+Independent check against CN 214795390 U, sole example (Table 1, page-7 image): 21 rows (R, d, nd, νd including the
+plate and the stop), two aspheres (K, A4–A10) and the Table 3 gaps at three states agree. Engine EFL 16.351 (printed
+16.34), F/1.78, BF and TL 80.78 reproduce, half-field 41.5°. The printed MOD state gives 171.9 mm object to image at
+m −0.151, matching Yongnuo's 0.17 m and 0.15×. Front page: 深圳市永诺摄影器材股份有限公司 (Shenzhen Yongnuo Photographic
+Equipment Co., Ltd.), inventors 庄建南 and 叶远华. Attribution strong: 10 elements in 8 groups; the ED, low-dispersion,
+high-index and aspherical positions in Yongnuo's legend fit L3, L5, L4/L6 and L8. `audit:aperture` passes.
+
+Deployment change: none.
+
+Open: Table 3 supports a modelled focus range (gaps after surfaces 13 and 15); subtitle, specs, focus text, element
+prose and analysis wording.

@@ -4,6 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // Literal source optics and image plane unchanged; caps inferred, not factory dimensions.
 // Standard asphere convention inferred; broadband MTF unavailable.
 // Required focus scalar can affect fallback labels; no finite geometry or endpoint is validated.
+// Erratum: L7 nd is 1.6668 (the main table prints 1.668); see source.errata.
 const LENS_DATA = {
   schema: 2,
   key: "yongnuo-yn35mm-f2s-df-dsm-cn113126266a",
@@ -22,7 +23,7 @@ const LENS_DATA = {
     },
     fNumber: {
       marketing: 2,
-      design: 2.006885088680859,
+      design: 2,
     },
     specs: ["9 ELEMENTS / 8 GROUPS", "2 ASPHERICAL SURFACES", "SOURCE-PRESERVING INFINITY MODEL"],
     closeFocusM: {
@@ -38,6 +39,17 @@ const LENS_DATA = {
     patentYear: 2021,
     authors: ["Yuanhua Ye", "Yongsheng Zhuang", "Jiannan Zhuang"],
     assignees: ["Shenzhen Yongnuo Photographic Equipment Co., Ltd."],
+    errata: [
+      {
+        status: "corrected",
+        surface: "13",
+        field: "nd",
+        printed: 1.668,
+        applied: 1.6668,
+        evidence: ["source-summary", "aberration-figure", "sibling-example"],
+        note: "The main table prints L7 nd = 1.668; the description's parameter list ([0120]) gives 1.6668. With 1.6668 the table traces to f = 35.03 mm (stated 35.02) at F/2.00, and the paraxial focus shift (-0.095 mm) and spherical aberration match Figs. 2-4; with 1.668 it traces to 35.14 mm and the axial image misses the plotted focus by 0.1 mm. Example 2 carries the same printed 1.668 and reaches its stated 34.91 mm only with 1.6668. The B grant reprints both tables unchanged.",
+      },
+    ],
   },
   elements: [
     {
@@ -125,10 +137,10 @@ const LENS_DATA = {
       label: "Element 7",
       diagramLabel: "Gj2",
       type: "Biconcave Negative",
-      nd: 1.668,
+      nd: 1.6668,
       vd: 33.0468,
       indexReference: "d",
-      focalLengthMm: -22.505095737075504,
+      focalLengthMm: -22.54630165284914,
       glass: "Unmatched (literal patent nd / vd; no catalog identity)",
       role: "Negative member of GR2 cemented pair. Isolated-air focal length is not in-system group power.",
       cemented: "D1",
@@ -306,8 +318,8 @@ const LENS_DATA = {
     },
   ],
   aperture: {
-    nominalFNumber: 2.006885088680859,
-    fStops: [2.006885088680859, 2.8, 4, 5.6, 8, 11, 16],
+    nominalFNumber: 2,
+    fStops: [2, 2.8, 4, 5.6, 8, 11, 16],
   },
   groups: [
     {

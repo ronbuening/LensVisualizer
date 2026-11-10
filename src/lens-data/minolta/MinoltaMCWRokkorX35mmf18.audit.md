@@ -13,3 +13,22 @@
 - Maker PDF18 pixels verify0.3m marketing close focus. Runtime1000m is an unvalidated schema placeholder with empty gaps, not a solved finite row; fallback labels are not finite-performance validation.
 - First MTF launch failed because /usr/bin/time was absent; retained log. Shell-timed reference and corrected reference passes completed; all results/masks retained.
 - Metadata/type/format/lint, unchanged one-worker focused regression (23 files/1609 tests), local build/SEO and guarded installer smoke/readback/refusal: PASS. No test timeout changes. Visible registration is local; no publication. Final gate logs are retained in the package.
+
+## 2026-11-10 — Deployment validation
+
+Independent check against JP S45-39874 B Example 3 (p. 4, 300-dpi renders) at ×35: 14 radii, 13 thicknesses, the
+back focus, 8 N/V pairs and two cemented interfaces agree; a third-order trace reproduces all 70 printed Seidel
+coefficients for Example 3 (p. 6) and the Petzval sum 0.1552. Engine EFL 35.000, back focus 36.752 (printed 1.05 ×
+35 = 36.75), F/1.8. Front page: Minolta Camera Co., Ltd., inventor 小倉敏布 (Toshinobu Ogura). Attribution strong at
+design-family level: 8 elements in 6 groups, the patent's only 8/6 example, matching the MC W.Rokkor-HH (1968) and
+its MC-X successor.
+
+The patent prints no stop position, but its Seidel coma, astigmatism and distortion sums fix the chief ray: it
+crosses the axis 0.6295 of the way through dB4. The delivered midpoint stop gave ΣII 0.0090 against the printed
+0.0021.
+
+Deployment change: `patentNumber` to the corpus form "JP S45-39874 B"; stop moved from the dB4 midpoint (3.180 / 3.180
+mm) to 4.0033 / 2.3562 mm. `audit:aperture` passes.
+
+Open: analysis text still calls the stop position unpublished; S8/S9 rims (the figure draws the biconcave member
+larger); name, subtitle, specs, header and glass wording.

@@ -30,3 +30,17 @@ One 1536 MiB worker ran reference-mtf.mjs --run-mtf with explicit release. Both 
 ## Standalone integration
 
 Metadata, TypeScript, repository format and lint checks pass. Focused corpus regression passes 23 files and 1609 tests in 200.70 s using one worker, a 3 GiB heap cap, cache disabled and unchanged timeouts. Production build prerenders 1875 routes and the SEO audit has zero errors/warnings; final documentation is rebuilt and checked separately. Exact source/native semantic equality passes after formatting. Guarded installer checks cover real pinned history, exact three-file overlay, idempotence, conflicting content, symlinks and missing history. No complete-suite claim, commit, push, deployment or optical retune is made. See packaged GATE_SUMMARY.json and final logs for final-byte verification.
+
+## 2026-11-10 — Deployment validation
+
+Independent check against US 7,843,651 B2 Embodiment 1 (PDF p. 21 page image): 15 surfaces (R, d, nd, νd), the
+printed resin layer (S2: d 0.18, nd 1.52972, νd 42.7), the stop 3.13 mm before S11 and the S3 asphere (K = −1, A4–A8)
+agree. Engine EFL 15.449 (printed 15.45), F/4.1, fB 37.490 (printed 37.49); the 42.96° chief ray lands at 14.237 mm
+(printed Y 14.24); the Table 9 conditions reproduce. Front page: Hoya Corporation, inventor Yasuo Kanazashi.
+Attribution strong: Ricoh's 2009 release gives 8 elements in 6 groups with one hybrid asphere and one ED element,
+0.18 m and 0.15×; the printed near state (d10 4.57, fB 39.83) gives m −0.142 at about 0.18 m. `audit:aperture`
+passes.
+
+Deployment change: `catalog.closeFocusM.marketing` 0.18.
+
+Open: subtitle, specs, element role and glass prose; exact catalog glasses exist for all eight glass elements.

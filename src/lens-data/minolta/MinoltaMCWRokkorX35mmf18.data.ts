@@ -3,7 +3,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** H1 NATIVE-QUALIFIED REPRESENTATIVE MODEL; full integration pending.
  * Whole JPS45-39874 Example 3; exactly 35 times every source length.
  * Source N/V are modeled with explicitly ASSUMED d-reference, not a source fact.
- * Stop is midpoint of unchanged dB4; all caps are inferred hypotheses.
+ * Stop sits 0.6295 of the way through unchanged dB4 (4.0033 / 2.3562 mm), where the printed
+ * Seidel coma, astigmatism and distortion sums place the chief ray's axis crossing; caps are inferred.
  * Published back focus 1.05 is retained, not fitted to calculated focus.
  * No factory or finite-focus claim; bounded native MTF limits documented in analysis.
  */
@@ -39,7 +40,7 @@ const LENS_DATA = {
     },
   },
   source: {
-    patentNumber: "JP 1970-039874 B",
+    patentNumber: "JP S45-39874 B",
     example: {
       label: "Example 3",
       id: "3",
@@ -178,13 +179,13 @@ const LENS_DATA = {
     {
       label: "7",
       R: 47.2255,
-      d: 3.17975,
+      d: 4.0033,
       sd: 15,
     },
     {
       label: "STO",
       R: "flat",
-      d: 3.17975,
+      d: 2.3562,
     },
     {
       label: "8",

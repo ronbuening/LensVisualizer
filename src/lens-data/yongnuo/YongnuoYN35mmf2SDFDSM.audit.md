@@ -13,3 +13,21 @@
 - Source-plane axial diffraction20lp/mm0.04136; best-axial0.90961 at diagnostic+0.133962038mm shift. Source image plane unchanged. C/d/F and photopic MTF blocked by vd70.361 without partial dispersion; no invented spectrum or glass curves.
 - Prior baseline alias/numeric and private custody checks bounded, not exhaustive hidden-custody clearance.
 - Integration gates passed: metadata/type/format/lint, 23 focused test files and 1609 tests, build of 1878 routes, SEO, and guarded installation checks. Initial lint at 1536 MiB exhausted its heap; a 3072 MiB run was interrupted by executor recovery, and the subsequent unchanged 3072 MiB run passed. All earlier logs remain as historical evidence. Original v1/v2 checkpoints and all failures retained. Native scripts/results remain in evidence/yongnuo35f2.
+
+## 2026-11-10 — Deployment validation
+
+Independent check against CN 113126266 A Example 1 (page-9 image): 20 rows (R, d, nd, νd), the S16/S17 aspheres
+(K, C4–C12), both variable gaps at both states and the plate agree with the print. The B grant reprints the same
+tables. Front page: Shenzhen Yongnuo Photographic Equipment Co., Ltd., inventors 叶远华, 庄永盛 and 庄建南. Attribution
+strong: Sony E full frame, 9 elements in 8 groups, one asphere, one ED element, 0.35 m and 0.13×.
+
+The main table's L7 index (surface 13) is a source misprint: it prints nd 1.668, the description's parameter list
+([0120]) gives 1.6668. With 1.668 the table traces to 35.14 mm and F/2.007 and its axial focus misses Figs. 2–4 by
+about 0.1 mm; with 1.6668 it traces to 35.03 mm (stated 35.02) at F/2.000, and the focus shift, spherical aberration
+and close-focus plot match. Example 2 shows the same misprint.
+
+Deployment change: L7 nd 1.668 → 1.6668 with a `source.errata` entry; `fNumber.design`, `nominalFNumber` and the first
+f-stop 2.006885 → 2; L7 element focal length recomputed. `audit:aperture` passes.
+
+Open: `focus.closeFocusM` 0.35 on a fixed infinity geometry; key, subtitle, specs, element prose and analysis wording
+(including the close-gap remark).

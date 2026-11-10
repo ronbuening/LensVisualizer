@@ -48,3 +48,17 @@ Reference587.5618nm f2 MTF, geometric and diffraction, maxGrid64, frequencies0/1
 Authored paraxial image plane remains66.0273095563mm. Best-axial diagnostic shifts evaluation plane by-0.1349907220mm; this is NOT written into the prescription. Default engine format-corner half-angle23.1755179712deg is distinct from the requested maker22.5deg hypothesis, and was not claimed tested here.
 Engine photopic capability check available only with all7 glasses using estimated normal-line nd/v dispersion. Broadband not executed; exact factory broadband/secondary spectrum unsupported. Reference MTF available and executed as above.
 Compute stopped at this boundary. No integration, installer, MTF128 or full-suite checks. Priorv2 retains immutable originalv1 and exact initial failures. No commits/push/publication.
+
+## 2026-11-10 — Deployment validation
+
+Independent check against DE 939 956 B (page 2 body table and claim table, 300/400-dpi renders) at ×0.5: 13 radii,
+12 thicknesses and 7 nd/ν pairs agree; the two tables agree with each other and r7 = +145.08 is printed positive in
+both. Engine EFL 50.027 (patent scale 100.05 against the printed f = 100), F/2. Front page: Ernst Leitz GmbH,
+inventors Otto Zimmermann and Gustav Kleineberg. Attribution moderate to strong: 7 elements in 6 groups, a 1954
+filing aimed at quality below 1 m, ahead of the 1956 rigid and Dual-Range lenses; the collapsible lens is a different
+patent (US 2,622,478). `audit:aperture` passes.
+
+Deployment change: `catalog.closeFocusM.marketing` 1 (standard rigid range).
+
+Open: inferred rims at surfaces 5 and 10–13 exceed the patent figure (L7's edge is 0.53 mm at sd 14); focus text,
+subtitle, specs, element prose and glass wording.

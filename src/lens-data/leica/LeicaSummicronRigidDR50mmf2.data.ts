@@ -28,6 +28,9 @@ const LENS_DATA = {
       marketing: 2,
       design: 2,
     },
+    closeFocusM: {
+      marketing: 1,
+    },
   },
   source: {
     patentNumber: "DE 939956 B",

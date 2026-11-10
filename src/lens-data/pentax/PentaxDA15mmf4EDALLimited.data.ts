@@ -38,6 +38,9 @@ const LENS_DATA = {
       marketing: 15,
       design: 15.45,
     },
+    closeFocusM: {
+      marketing: 0.18,
+    },
     fNumber: {
       marketing: 4,
       design: 4.1,

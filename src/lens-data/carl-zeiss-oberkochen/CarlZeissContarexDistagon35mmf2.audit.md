@@ -31,3 +31,18 @@ Source-plane-only reference587.5618nm geometric/diffraction peripheral cases now
 The guarded installer writes only this lens's three data/analysis/audit files. Clean pinned history, exact overlay bytes, idempotence, conflicting-file preservation, symlink refusal and missing-history refusal were checked. The standalone package retains all 2,253 real commits in its pinned baseline bundle. No commits, pushes, publication, old delivered-model edits or optical retuning occurred. The package gate summary and receipts control final verification status; earlier checkpoint entries above describe their historical scope.
 
 The product association, source-native f/1.8 versus retail f/2, inferred caps/stop, source-plane versus diagnostic focus, single reference wavelength, substantial off-axis vignetting and unrefined best-focus peripheral MTF qualifications remain unchanged by integration success.
+
+## 2026-11-10 — Deployment validation
+
+Independent check against GB 1,066,527 Table I (PDF p. 2 page image) at ×35: 17 radii, 16 thicknesses plus back
+focus, 9 nd/νd pairs and the L6/L7 cement agree; the Δn/r column recomputes for all 17 surfaces. The claims' repeat of
+Table I prints r2 = 0.06827f, a misprint: the claims' own Δn/r and the DE 1,447,288 A1 family member give 0.6827f,
+which the file uses. Engine EFL 35.001, back focus 36.994 (printed 1.0569f = 36.992), F/1.8 (patent; marketed f/2).
+Applicant Carl-Zeiss-Stiftung (GB prints no inventor; the DE family member names Erhard Glatzel). Attribution strong:
+9 elements in 8 groups, Glatzel's 1963 filing, f/1.8 marketed as f/2 (Marco Cavina's history of the lens).
+`audit:aperture` passes.
+
+Deployment change: none.
+
+Open: `catalog.closeFocusM.marketing` (sources give 0.22 m and 9 in from the film plane); glass labels (Schott d-line
+matches exist for all nine); subtitle, specs, focus text and prose wording.
