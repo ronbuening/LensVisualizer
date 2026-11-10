@@ -26,6 +26,7 @@ const LENS_DATA = {
   subtitle: "JP S38-11587 B sole example; probable SR-109 Auto Rokkor family, not factory-exact; hidden unvalidated H0",
   visible: false,
   catalog: {
+    imageFormat: "135-full-frame",
     specs: [
       "6 ELEMENTS / 5 GROUPS",
       "HYPOTHETICAL 55x SOURCE SCALE",

@@ -19,3 +19,17 @@ Focus direction labels are verified at every authored knot: only G1b/L14 (surfac
 Focused two-file TypeScript, Prettier and ESLint checks pass on these final files. The repository-wide suite/build has not run and no application route is claimed verified.
 
 Remaining qualifications: source-to-product correlation is strong schematic association, not numeric factory identity or MK/MKX equivalence. Iris/rims and continuous zoom/focus cams remain disclosed inferences. No invented finite certification, named glass or factory aberration claim. Both files remain visible:false pending the corrected six-model package gates. No commit, PR, deployment, upload or delivery.
+
+## Deployment validation (2026-11-10)
+
+Independent check against Example 1 (PDF p. 27): 42 surfaces including the PP plate, the stop, five cemented interfaces and
+DD13/20/25 at both stations; no mismatches. EFL 51.501 / 134.929, Bf 36.976 and FNo 2.750 / 2.754 reproduce; conditions (3)
+and (5) match, (2) and (4) carry the patent's own f1 convention offset (Example 2 shows the same). Fujifilm's 22/17 with
+2 ED + 2 Super ED matches the patent's 1.497/81.54 and 1.43875/94.66 positions; Example 3 has the same counts with a
+different G2 order and no public construction drawing was found to separate them.
+
+Applied: PDF filed as `US10274698B2.pdf`. No data change.
+
+Open: hidden as delivered — fit to show after the wording pass; per-station `nominalFNumber` on a constant-aperture zoom
+(use `aperture.nominalFNumber` 2.75); inferred station labels; `gapSagFrac` 0.915 is a model allowance (≈0.38 mm edge
+clearance at D15), not a patent value; G2–G4 rims sit ≈10 % inside the figure outline; glass labels `Unmatched`.

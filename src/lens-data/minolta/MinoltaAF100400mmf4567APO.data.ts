@@ -49,7 +49,7 @@ const LENS_DATA = {
     },
   },
   source: {
-    patentNumber: "JP H08-86961 A",
+    patentNumber: "JP H08-086961 A",
     example: {
       label: "Example 2",
       id: "2",

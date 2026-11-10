@@ -19,3 +19,16 @@ Focus direction labels are verified at every authored knot: only G1b/L14 (surfac
 Focused two-file TypeScript, Prettier and ESLint checks pass on these final files. The repository-wide suite/build has not run and no application route is claimed verified.
 
 Remaining qualifications: source-to-product correlation is strong schematic association, not numeric factory identity or MK/MKX equivalence. Iris/rims and continuous zoom/focus cams remain disclosed inferences. No invented finite certification, named glass or factory aberration claim. Both files remain visible:false pending the corrected six-model package gates. No commit, PR, deployment, upload or delivery.
+
+## Deployment validation (2026-11-10)
+
+Independent check against Tables 16–18 (PDF p. 35): 40 surfaces, 22 nd/νd pairs, the stop, 5 cemented interfaces, 12 zoom
+gaps and BF 24.783; no mismatches. EFL 18.592 / 37.183 / 55.217, F2.75 and all seven Table 37 Example 6 conditional values
+reproduce. Fujifilm's MKX18-55 diagram puts Super ED exactly at the six 1.43875/94.66 positions and ED at the two others
+(22/17); no other example fits; association strong at MK/MKX family level. Granted as US 10,444,479 B2.
+
+Applied: PDF filed as `US20180188508A1.pdf`. No data change.
+
+Open: hidden as delivered — fit to show after the wording pass (subtitle, specs, header "Work-in-progress"); no `groups`
+/ `doublets` declared (G1a–G5 and five doublets); S1 sd 27.0 clips the wide corner chief ray (≈27.8, inside Fig. 6);
+22 glasses labelled `Unmatched` though each is an exact catalogue code.

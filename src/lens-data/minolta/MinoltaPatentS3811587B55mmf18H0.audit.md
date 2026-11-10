@@ -24,3 +24,19 @@ Status: UNFINISHED STATIC H0. No native geometry, exact rays, pupils, MTF, broad
 4. Focus-only infinity behavior, targeted type/format/lint plus full corpus tests/build and visual source-section comparison. Static ingest is not a buildLens pass.
 
 H0 remains preserved. No geometry override is applied.
+
+## Deployment validation (2026-11-10)
+
+Independent check against the J-PlatPat scan (p. 2): 11 R, 10 t, 6 nd/νd pairs and the stop interval t6 equal the f = 1
+example ×55; no mismatches. The printed Seidel table recomputes (53 of 55 entries within 0.0006; the two outliers are both
+surface-7 misprints in the patent's Seidel table, I7 and the sign of II7, not in the prescription). EFL 55.0065, F/1.8,
+2ω 46°. Same designer (Yoshiya Matsui) and 6/5 layout as the 1958 Auto Rokkor-PF 55mm f/1.8 (SR-109 brochure), but also as
+the 1958 Super Rokkor 5cm f/1.8; 2ω = 46° fits f ≈ 51 mm on 24×36, and at 55 mm the derived back focus (32.6 mm) would put
+the rear vertex well behind the SR flange. The Auto Rokkor 55 attribution is therefore unproven; the entry stays a hidden
+patent design.
+
+Applied: patent PDF filed as `JPS3811587B.pdf`; `catalog.imageFormat` 135-full-frame.
+
+Open: choose the scale (50 vs 55 mm) and a house-style patent-design name/key before showing it; drop the errata entry
+(a claims-inequality typo, not a prescription defect) to the analysis; replace private-archive links in the analysis;
+rewrite this log and the public wording.

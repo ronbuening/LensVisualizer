@@ -36,3 +36,17 @@ Source discrepancies remain unresolved: printed wide BF 37.697 versus scalar/nat
 ## Evidence artifacts
 
 The accompanying local validation folder retains control_points.json, authored_model.json, native_check.json/log, aperture_final.json/log, native_silhouettes.svg/png, the derivation script and bounded native check scripts. Source custody remains with the original recovery package. These are review artifacts, not extra catalog models.
+
+## Deployment validation (2026-11-10)
+
+Independent check against the JP scan (pp. 3–4) and US 5,633,759 Table 2 (p. 21): 25 R, 21 fixed d, 3 variable gaps × 3
+states, 14 nd/νd pairs and three cemented pairs; no mismatches, and the two tables agree. EFL 102.55 / 200.04 / 390.08,
+F 4.60 / 6.30 / 6.62 and Σd reproduce; slider defocus ≤ 0.050 mm. The wide BF difference (derived 37.750 vs printed LB
+37.697) survives a single-slip search; the LB column is not a strict paraxial value in this patent (Examples 1 and 3 differ
+by −1.59 and −0.019), so the derived BF stays. Example 2 is the only 14/11 example; its two νd 83.58 elements match
+Minolta's two AD elements; association strong.
+
+Applied: patent number to house form `JP H08-086961 A`; PDFs filed as `JPH08086961A.pdf` and `US5633759A.pdf`.
+
+Open: public wording (subtitle "probable … family correlation", specs, header), private-archive links and engine-hash
+text in the analysis; optional maker minimum aperture f/32.
