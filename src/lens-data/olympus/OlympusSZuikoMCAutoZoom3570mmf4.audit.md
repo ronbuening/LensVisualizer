@@ -80,7 +80,8 @@ matching Fig. 1 and the model; its rim proportions put L1 near 21 mm and L4/L5 n
 vertex at 68.5 mm sits 67.0 mm ahead of the 46 mm OM flange. No special-dispersion or aspherical element is claimed.
 
 Open: which of the six embodiments went into production is not established; all share the construction. L4's glass
-has no exact catalog row.
+has no exact catalog row. (L4 part closed 2026-11-10: J-LAK7R and S-LAL7 both resolve inside the exact window; the
+second review below labels it S-LAL7.)
 
 L4 glass relabelled from the Abbe fallback to J-LAK7R (Hikari 1.65160 / 58.62; Δnd 0, Δνd −0.08 against the printed
 1.6516 / 58.7), the closest exact catalog row (S-LAL7 is Δνd −0.15, N-LAK7 −0.18). The other six labels and all eight
@@ -138,3 +139,78 @@ f/4 at every station unchanged. Real-ray trace at Y = 21.63 mm: no axial clip an
 
 Open: the patent's fans show a vignetting limit of about 8.4 mm at L7's rear face that Fig. 1 does not draw, so the
 model's corners are brighter than the patent's. Open: the drawn L1/L2 rims (above) wait on the half-field decision.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+**Compared.** The live pages at 36, 52 and 68.5 mm, the zoom-motion overlay and the seven element inspectors against
+Fig. 1 (front page), the Embodiment 1 table (page 22, column 4), Figs. 2A–2C (pages 3–5) and the Olympus data sheet's
+section, drawn at 70 mm. The text (column 4) describes Fig. 1 as the composition of "the zoom lens system according to
+the present invention", not as a numbered embodiment; all six share the construction, so it remains the governing
+figure.
+
+**Rims: no change.** Fig. 1 re-measured at 72 dpi, 23.4 px/mm, half the distance between the top and bottom stroke
+centres: L6 9.8 mm (229 px), L7 10.85 mm (253.5 px). The model's 10.0 mm on both is 9 % under the figure at L7, inside
+the 10 % band. The figure draws L7 about 1 mm taller than L6, the fans want about 8.4 mm at S14, and the data sheet's
+70 mm section draws L6 and L7 at about the same height; L7 stays at 10.0 mm. At L1/L2, L1's rear face crosses the
+plane of L2's front face at 18.07 mm, so S3 cannot pass about 18 mm while S2's cap is at 19.4 mm; the drawn set (S2 cap
+18.07 mm) takes the engine half-field at 36 mm to 29.31°, below the patent's 31°, so the 19.4 / 17.9 mm set stays.
+`gapSagFrac` 0.98 is the smallest two-decimal value: at 0.97 the validator refuses gap 2→3 at S3 = 17.9 mm (combined
+sag 7.91 mm against 7.857 mm allowed). Every other element keeps the figure's step order (L1 > L2 > L3; L4 > L5 >
+L6 and L7) and square rims where Fig. 1 draws them (L4, L5, L6, L7).
+
+**Lands and cuts.** One cut and two lands, all drawn in Fig. 1; verdicts unchanged.
+
+| Item | Baseline | Final | Fig. 1 | Light cost | Verdict |
+| --- | ---: | ---: | --- | ---: | --- |
+| S2 cut | 20.5 | 19.4 | cap 18.1 | 0.0 points | keep (slight) |
+| S2 land | — | to 20.5 | flat land to 21.0 | 0.0 points | keep (drawn, costs nothing) |
+| S4 land | — | to 17.9 | flat land to 19.3 | 0.0 points | keep (drawn, costs nothing) |
+
+Worst loss against baseline from `rimcost.mjs`: 0.0 points at every field of all 11 stations and at every eighth of
+the zoom range; worst gain 8.3 points (36 mm, 29.2°). Removing both lands changes nothing at any station.
+
+**Labels and tags.** Types agree with the radius signs: L1 (+42.39 / +23.51) and L2 (+442.2 / +34.77) negative
+menisci, L3 (+32.29 / +73.66) and L5 (+24.51 / +146.5) positive menisci, L4 (+41.07 / −186.36) and L7 (+246.83 /
+−30.41) biconvex, L6 (−86.54 / +20.76) biconcave. Inspector focal lengths −86.38, −59.21, +80.07, +51.95, +44.21,
+−20.44 and +42.52 mm match the printed f1–f7 (f6 not printed). L7's rear face carries 89 % of its surface power, as
+its role says. No cemented surfaces, no aspheres, no `apd` tag: the patent names no special glass and the data sheet
+claims none. The stop sits mid-d10 between L5 and L6. G1 (−) brackets surfaces 1–6 and G2 (+) 7–14, the patent's front
+(fM) and rear (fU) groups. Zoom labels Wide / Tele, gap labels d6 / BF, and the focus slider reads ∞ / Not modeled.
+
+**Movement.** The patent (abstract; column 1) says only that zooming varies the air space between the two groups; Fig. 1
+has no arrows and the text names no moving group. With the image plane fixed both groups move. The 11 stations ascend
+36 → 68.5 mm; d6 falls monotonically 36.741 → 0.550 mm in the printed order and BF rises 45.998 → 67.290 mm. G2 moves
+21.29 mm toward the object, monotonically. G1 moves toward the image, first vertex 127.93 → 112.89 mm from the image
+at 65 mm (least at f = |fM| = 64.74 mm, where G2 works at unit magnification), and returns 0.14 mm to 113.03 mm at
+68.5 mm. The motion overlay agrees. There is no focus movement.
+
+**Glass.** All seven labels resolve inside the exact window. L4 relabelled from J-LAK7R (HIKARI; Δnd 0, Δνd −0.08) to
+S-LAL7 (OHARA; Δnd −3e-6, Δνd −0.149). Both are exact; OHARA supplies L1–L3, L6 and L7 here and 332 of the
+vendor-named labels in the Olympus files (HIKARI 13), and S-LAL7 brings the g-line curve closer to the plots (below).
+The other labels: S-BSM18 L1/L2 (Δνd −0.02), S-TIM28 L3 (−0.02), K-LaK11 L5 (−0.01), S-TIH6 L6 (+0.03), S-TIM27 L7
+(−0.03), all Δnd ≤ 2e-6. The patent prints no glass names, line indices, θgF or ΔPgF; no nd-only medium. L5: OHARA S-LAL11 (1.658296 / 57.332589, `OHARA_260701.AGF` line 11580, status
+obsolete) is also exact (Δνd +0.03) and would put every element on one maker; it is not in the repo catalog, so
+K-LaK11 stays (proposed to the coordinator).
+
+**Colour.** d- and g-line curves read from Figs. 2A–2C at 72 dpi (472–475 px/mm from the ±0.2 mm brackets; pupil
+linear from the axis to the 1:4 tick; Fig. 2B taken as 52 mm), against real-ray traces from the d-line paraxial focus,
+in mm at pupil 0 / 0.5 / 0.7 / 0.85 / 1.0:
+
+| Setting | Line | Patent | Model, J-LAK7R | Model, S-LAL7 |
+| --- | --- | --- | --- | --- |
+| 36 mm | d | 0 / −0.095 / −0.161 / −0.186 / −0.164 | 0 / −0.096 / −0.158 / −0.186 / −0.169 | same |
+| 36 mm | g | −0.05 / −0.092 / −0.111 / −0.088 / 0.00 | −0.038 / −0.087 / −0.100 / −0.074 / +0.015 | −0.043 / −0.092 / −0.105 / −0.080 / +0.010 |
+| 52 mm | d | 0 / −0.120 / −0.173 / −0.140 / 0 to +0.03 | 0 / −0.119 / −0.168 / −0.136 / +0.039 | same |
+| 52 mm | g | −0.07 / −0.111 / −0.063 / +0.064 / +0.37 | −0.053 / −0.093 / −0.054 / +0.078 / +0.395 | −0.060 / −0.100 / −0.061 / +0.070 / +0.387 |
+| 68.5 mm | d | 0 / −0.084 / −0.128 / −0.134 / −0.092 | 0 / −0.083 / −0.129 / −0.136 / −0.094 | same |
+| 68.5 mm | g | −0.09 / −0.058 / +0.004 / +0.106 / +0.30 | −0.079 / −0.060 / +0.007 / +0.123 / +0.329 | −0.088 / −0.070 / −0.003 / +0.113 / +0.318 |
+
+The d line matches within 0.005 mm except the steep 52 mm rim zone; the mean g-line residual falls from 0.013 to
+0.008 mm with S-LAL7. Distortion: −3.93 % (plot) against −3.91 % (model) at 31° and −1.96 against −2.16 % at 22.8°
+(36 mm); +0.59 against +0.61 % at 17.5° and +0.30 against +0.27 % at 12.4° (68.5 mm). Astigmatism was not compared.
+
+**Other.** Assignee "Olympus Optical Co., Ltd." matches the front page and the corpus form (34 files). Engine
+half-field 31.09° (36 mm) to 36.19° (68.5 mm) and f/4 at all 11 stations, unchanged. Surface validator: OK.
+
+Open: the two `Open:` lines of the semi-diameter pass stand (L7's fan limit; the drawn L1/L2 rims and the half-field).
+Open: OHARA S-LAL11 for L5 waits on a catalog row.

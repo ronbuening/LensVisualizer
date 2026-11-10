@@ -121,7 +121,7 @@ const LENS_DATA = {
       vd: 58.7,
       indexReference: "d",
       focalLengthMm: 51.95,
-      glass: "J-LAK7R (HIKARI catalog equivalent; production supplier unspecified)",
+      glass: "S-LAL7 (OHARA catalog equivalent; production supplier unspecified)",
       role: "First positive element of the rear group, behind the zoom air space.",
     },
     {

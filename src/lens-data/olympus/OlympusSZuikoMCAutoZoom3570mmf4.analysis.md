@@ -65,7 +65,7 @@ A flint meniscus, convex to the object, that closes G1. Its low Abbe number agai
 
 ### L4 — Biconvex Positive
 
-nd = 1.65160, νd = 58.7. Glass: J-LAK7R (Hikari) catalog equivalent, a lanthanum crown of the LaK7 type. f = +51.95 mm.
+nd = 1.65160, νd = 58.7. Glass: S-LAL7 (OHARA catalog equivalent), a lanthanum crown of the LaK7 type. f = +51.95 mm.
 
 The first element behind the zoom air space. With L5 it forms G2's front positive member; the patent asks that the two share that power about equally (condition (9), f5/f4 = 0.851) and that its front radius stay well above L5's (condition (8), r7/r9 = 1.675) to limit the change of astigmatism during zooming.
 
@@ -89,13 +89,15 @@ The last element, with almost all its power on the strong rear face (r14 = −30
 
 ## Glass Identification
 
-Five of the six distinct glasses match a catalog row to the printed digits; L4's 1.65160 / 58.7 is closest to Hikari J-LAK7R (νd 58.62), the nearest of the LaK7-type rows (νd 58.5–58.6). The table gives n and ν without naming a spectral line, but the aberration curves are drawn for the d and g lines, so the indices are taken as d-line.
+Five of the six distinct glasses match a catalog row to the printed digits. No catalog row prints L4's 1.65160 / 58.7; the LaK7-type rows sit at νd 58.5–58.6, and the label is OHARA S-LAL7 (νd 58.55), from the maker of four of the other five glasses. The table gives n and ν without naming a spectral line, but the aberration curves are drawn for the d and g lines, so the indices are taken as d-line.
+
+With these glasses the model follows the patent's spherical-aberration curves (Figs. 2A–2C): the d-line curve within about 0.01 mm at the wide, intermediate and tele settings, and the g-line curve within about 0.01 mm at the axis, its paraxial focus 0.04, 0.06 and 0.09 mm nearer the lens than the d-line focus against about 0.05, 0.07 and 0.09 mm in the plots. Its distortion is −3.9 % at 31° at 36 mm and +0.6 % at 17.5° at 68.5 mm, as plotted.
 
 | Glass | nd | νd | Elements | Role |
 |---|---:|---:|---|---|
 | S-BSM18 (OHARA) | 1.63854 | 55.4 | L1, L2 | Front negative crowns |
 | S-TIM28 (OHARA) | 1.68893 | 31.1 | L3 | Achromatizing flint of G1 |
-| 652587 (unmatched) | 1.65160 | 58.7 | L4 | G2 positive crown |
+| S-LAL7 (OHARA) | 1.65160 | 58.7 | L4 | G2 positive crown |
 | K-LaK11 (SUMITA) | 1.65830 | 57.3 | L5 | G2 positive crown |
 | S-TIH6 (OHARA) | 1.80518 | 25.4 | L6 | G2 negative dense flint |
 | S-TIM27 (OHARA) | 1.63980 | 34.5 | L7 | Rear positive flint |
