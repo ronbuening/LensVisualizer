@@ -22,16 +22,16 @@ Typical stage breakdown:
 ```bash
 npm install
 npm run dev                # Generate metadata, then start Vite on http://localhost:5173
-npm run build              # Organize lens data, generate metadata + folder readmes, build, prerender, sitemap, RSS feeds
-npm run generate:metadata  # Organize lens data, refresh src/generated/build-metadata.json, rewrite src/**/readme.md
-npm run generate:readmes   # Rewrite the src/**/readme.md folder docs alone (also runs inside generate:metadata)
+npm run build              # Organize lens data, generate metadata, build, prerender, sitemap, RSS feeds
+npm run generate:metadata  # Organize lens data, refresh src/generated/build-metadata.json
+npm run generate:readmes   # Write the gitignored src/**/readme.md folder maps on demand; never committed
 npm run generate:feeds     # Rebuild dist/feeds/ RSS from metadata, lens summaries, changelog
 npm run organize:lens-data # Convert archived V1 files and file root-level lenses/converters under their makers
 npm run convert:lens-data -- --input <file|dir> # Convert lens files between V1 and V2; dry run unless --write
 npm run preview
 npm run test
 npm run test:coverage
-npm run test:tooling               # Benchmark-harness and audit-script tests excluded from npm test
+npm run test:tooling               # Benchmark-harness, audit-script and where-used tests excluded from npm test
 npm run test:browser               # Chromium translation DOM-replacement route and interaction coverage
 npm run generate:reports           # Every report generator in reports/ (rewrites agent_docs/generated/)
 npm run generate:glass-reports
@@ -49,6 +49,7 @@ npm run audit:patent-figure         # measure a patent cross-section against a l
 npm run audit:surface               # aspheric domain scan + validator with trial semi-diameters
 npm run audit:rim-cut-probe         # dense grid check of a lens's inferred rim cuts against its beams
 npm run benchmark:optics-rendering  # On-demand optics/render benchmark; --heavy and --memory select focused runs (not part of build or test)
+npm run where-used -- <file>[#<symbol>] # importers of a file, or every use of one export through barrels, across src, tests, reports and scripts
 npm run typecheck
 npm run lint
 npm run lint:fix

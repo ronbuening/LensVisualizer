@@ -432,11 +432,12 @@ export function assertFreshnessDiversity({
 /* ── Article frontmatter and collection ───────────────────────────────── */
 
 /**
- * Folder documentation written by scripts/generate-src-readmes.mjs. It lives
- * next to article markdown under src/content/ but is never publishable, so it
- * is the one legitimate reason for a content file to carry no frontmatter.
+ * Folder maps written on demand by scripts/generate-src-readmes.mjs. They are
+ * gitignored, but a local checkout can hold them next to article markdown under
+ * src/content/; they are never publishable, so they are the one legitimate
+ * reason for a content file to carry no frontmatter.
  */
-const GENERATED_DOC_NAMES = new Set(["readme.md", "improvementsuggestions.md"]);
+const GENERATED_DOC_NAMES = new Set(["readme.md"]);
 
 /** Parse simple YAML frontmatter from markdown content. */
 export function parseFrontmatterContent(content) {
