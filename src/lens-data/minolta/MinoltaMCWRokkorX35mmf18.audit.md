@@ -57,4 +57,48 @@ beam within 3 % of F/1.8 with no rim limit.
 
 Open: S8 / S9 rims (11.508 / 11 mm) against Fig. 3, which draws the biconcave III_B larger than IV_B and V_B; a
 real-ray f/1.8 axial beam reaches 12.59 / 11.38 mm there, so about 12.6 / 11.4 mm would clear it without gap
-intrusion. The patent tabulates no near-focus state; the 0.3 m marketed minimum focus is not modeled.
+intrusion. (Rims closed in the semi-diameter pass below.) The patent tabulates no near-focus state; the 0.3 m
+marketed minimum focus is not modeled.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: JP S45-39874 B, Fig. 3 (PDF page 8), the section of Example 3, rendered at its native 347 dpi. The dash-dot
+axis tilts 0.94° across the sheet, so heights were read from the local axis. Scale from vertex crossings: surface 1
+to 14 spans 1413.5 px for 69.433 mm (20.36 px/mm), surface 4 to 14 gives 20.29 px/mm; 20.33 px/mm was used.
+Vertical arc fits agree: the surface-3 cap end (296 px below the axis) and I_B's rear face at 245 / 290 px fall on
+the printed spheres within 2 px. Each height below is the mean of the top and bottom readings.
+
+| Surface | Before (mm) | Fig. 3 (mm) | After (mm) | Evidence |
+|---|---|---|---|---|
+| 1, 2 | 18 | 20.1 (flat edge 411 / 405 px) | 20.1 | Both faces run to the drawn edge; the 27° fan end agrees (below). |
+| 3 | 18 | cap 15.2 (324 / 296 px), flange 20.1 | 15.2, land to 20.1 | Concave cap ends at a chamfered flange; `rimExtensionSd` draws it. |
+| 4, 5 | 17 | 15.2 (square rim, 309 px) | 16.0 | Lowest value that keeps every field within 3 points of the old rims. |
+| 6, 7 | 15 | 14.1 | 15 (kept) | 6 % difference; within reading noise. |
+| 8 | 11.508 | cap 11.7, flange 14.1 | 12.6, land to 14.1 | Real f/1.8 marginal ray reaches 12.59 mm. |
+| 9 | 11 | cap 11.3, flange 14.1 | 11.4, land to 14.1 | Real f/1.8 marginal ray reaches 11.38 mm. |
+| 10–14 | 12 | 11.7 | 12 (kept) | 2–3 % difference. |
+
+Before raising surfaces 8 and 9, a ghost-trace spherical-aberration check (+0.098 / −0.095 / −0.152 / −0.116 mm at
+pupil 1 / 0.85 / 0.7 / 0.5) matched the shape of the Fig. 7 curve. That rules out a misprint, so the plotted F/1.8
+marginal ray is real and must pass both faces. With the old rims, both faces trimmed the engine's axial beam
+(99.5 % on axis); now it is 100 %.
+
+Fan ends: Fig. 9 (Example 3) shows the 27° fan ending at 0.81 and 0.80 of the 19° fan's extent on its two sides. A
+meridional trace of the old rims gave 0.56 (front-doublet limited) and 0.88. The new set gives 0.81 and 0.88, and
+the 19° fan becomes nearly symmetric (−0.90 / +0.88 of the paraxial pupil), as Fig. 9 draws it.
+
+Illumination (engine geometric transmission, wide open, old → new rims): 99.5 → 100 % on axis, 97.2 → 97.5 % at
+14.6°, 95.4 → 92.9 % at 17.5°, 89.1 → 87.1 % at 20.4°, 77.1 → 80.4 % at 23.4°, 63.1 → 70.3 % at 26.3°,
+48.3 → 58.4 % at 29.2° and 32.7 → 44.1 % at the 32.1° corner. The worst loss is 2.4 points at 17.5°; restoring
+I_B to 17 mm would win back up to 4.4 points against the new set, but the 3-point rule against the old rims is met.
+EFL 35.0002 mm and F/1.8 are unchanged, and the engine half-field rose from 34.909° to 35.499°. `audit:surface` is
+OK; `audit:aperture` finds the axial beam within 3 % of F/1.8 with no rim limit; image-circle reports 0 undersized;
+field coverage is 100 % (32.1° → 21.65 mm). The real-ray clearance trace at 21.63 mm shows no axial clip or blocked
+chief ray.
+
+Maker diagram: the deployment validation above records the XG-7 brochure section, which shows 8 elements in 6
+groups (cemented front doublet, thick biconvex, positive meniscus, biconcave, meniscus, cemented rear doublet), the
+same order as Example 3. It shows no special-glass or aspherical elements. No maker image was viewed in this pass.
+
+Open: the land drawing is square, while Fig. 3 chamfers the L2 and L5 flanges. I_B is drawn 0.8 mm taller than
+Fig. 3 because of the light rule.

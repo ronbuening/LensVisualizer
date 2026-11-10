@@ -108,7 +108,7 @@ The patent claims four conditions for a back focus between 0.9f and 1.5f. Exampl
 
 ## Model Scope and Limitations
 
-The patent gives no clear apertures, so every semi-diameter is inferred. The front doublet's 36 mm clear diameter agrees with the patent's statement that the front diameter stays within 1.0f to 1.1f; the 55 mm filter thread is not used as an optical diameter. The rear rims are sized so that adjacent surfaces do not intrude into the air gaps and the F/1.8 axial beam is limited by the iris rather than a lens rim. At the full 64° field the inferred rear rims vignette the off-axis beam substantially; that vignetting belongs to the model, not to a published measurement.
+The patent gives no clear apertures, so every semi-diameter is inferred from Fig. 3, which is drawn to the prescription's scale. The front doublet is drawn 40.2 mm across (1.15f), slightly more than the 1.0f–1.1f front diameter the patent calls sufficient; the model follows the drawing. Fig. 3 also draws L2 and L5 with chamfered flanges outside their curved faces; the model draws them as flat lands outside the clear apertures. The 55 mm filter thread is not used as an optical diameter. L5's faces pass the real F/1.8 marginal ray that the patent's spherical-aberration plot reaches, and the axial beam is limited by the iris rather than a lens rim. At the full 64° field the front doublet and the rear rims vignette the oblique beam to about 44% of the axial transmission. The patent's transverse-aberration fans (Fig. 9) end at about 0.8 of their 19° width at 27° on both sides, a similar truncation. The vignetting is modeled, not a published measurement.
 
 ## Design Heritage and Context
 

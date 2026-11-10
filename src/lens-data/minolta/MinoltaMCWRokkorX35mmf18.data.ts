@@ -7,7 +7,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * patent's d-line aberration plots and exact d-line catalog matches for L1 and L5 support.
  * The patent prints no stop position. Its printed Seidel coma, astigmatism and distortion coefficients
  * place the chief ray's axis crossing 0.6295 of the way through dB4, so the stop sits 4.0033 mm behind
- * surface 7 and 2.3562 mm ahead of surface 8 (dB4 itself unchanged). All semi-diameters are inferred.
+ * surface 7 and 2.3562 mm ahead of surface 8 (dB4 itself unchanged).
+ * Semi-diameters are estimated from Fig. 3, which is drawn to scale (20.33 px/mm at 347 dpi, from the
+ * surface 1 to 14 vertex span), and floor-checked by real-ray trace. The front doublet's faces reach the
+ * drawn 20.1 mm edge; surface 3's concave cap ends at 15.2 mm and a land draws L2's chamfered flange to
+ * 20.1 mm. L3 sits at 16.0 mm (Fig. 3: 15.2 mm) to keep mid-field illumination within 3 points of the
+ * earlier rims. Surfaces 8 and 9 (12.6 / 11.4 mm) pass the real f/1.8 marginal ray the patent's spherical
+ * aberration plot reaches; lands draw the biconcave L5's flange at Fig. 3's 14.1 mm.
  * The last gap is the printed back focus (1.05 × 35 = 36.75 mm), kept as printed rather than fitted to
  * the paraxial back focus (36.7524 mm). Infinity focus only; the correlation with the production lens
  * is at design-family level, not a factory prescription.
@@ -146,34 +152,35 @@ const LENS_DATA = {
       label: "1",
       R: 225.19,
       d: 5.775,
-      sd: 18,
+      sd: 20.1,
       medium: 1,
     },
     {
       label: "2",
       R: -59.7625,
       d: 1.225,
-      sd: 18,
+      sd: 20.1,
       medium: 2,
     },
     {
       label: "3",
       R: 21.3325,
       d: 19.0295,
-      sd: 18,
+      sd: 15.2,
+      rimExtensionSd: 20.1,
     },
     {
       label: "4",
       R: 46.34,
       d: 17.0205,
-      sd: 17,
+      sd: 16,
       medium: 3,
     },
     {
       label: "5",
       R: -50.68,
       d: 0.1715,
-      sd: 17,
+      sd: 16,
     },
     {
       label: "6",
@@ -197,14 +204,16 @@ const LENS_DATA = {
       label: "8",
       R: -60.9665,
       d: 5.558,
-      sd: 11.50796,
+      sd: 12.6,
+      rimExtensionSd: 14.1,
       medium: 5,
     },
     {
       label: "9",
       R: 27.349,
       d: 3.64,
-      sd: 11,
+      sd: 11.4,
+      rimExtensionSd: 14.1,
     },
     {
       label: "10",
