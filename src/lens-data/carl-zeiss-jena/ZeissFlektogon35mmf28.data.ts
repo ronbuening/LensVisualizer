@@ -1,0 +1,213 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/** FROZEN SOURCE STAGING: whole-source probable-family hypothesis. Literal rows are unchanged.
+ * Engineering rims, retail scale and operating envelope are explicit assumptions.
+ * No factory glass, finite-focus law, or source clear-aperture claim.
+ * Exact source stop; explicit f/2.807153 axial rim penalty, not exactly iris-limited. Default geometry checks.
+ * Native evidence is complete; combined integration is required separately.
+ */
+const LENS_DATA = {
+  schema: 2,
+  key: "zeiss-flektogon-35mm-f28",
+  maker: "Carl Zeiss Jena",
+  name: "CARL ZEISS JENA FLEKTOGON 35mm f/2.8",
+  subtitle: "US 2,793,565 A — PROBABLE FAMILY, WHOLE SOURCE EXAMPLE",
+  visible: true,
+  catalog: {
+    lensMounts: ["exakta"],
+    imageFormat: "135-full-frame",
+    specs: ["6 ELEMENTS / 5 GROUPS", "INFINITY-ONLY SOURCE HYPOTHESIS", "NO FACTORY PRESCRIPTION CLAIM"],
+    elementCount: 6,
+    groupCount: 5,
+    focalLengthMm: {
+      marketing: 35,
+      design: 34.96536471396447,
+    },
+    fNumber: {
+      marketing: 2.8,
+      design: 2.8,
+    },
+    closeFocusM: {
+      marketing: 0.36,
+    },
+  },
+  source: {
+    patentNumber: "US 2,793,565 A",
+    example: {
+      label: "Embodiment 1",
+      id: "1",
+    },
+    patentYear: 1957,
+    authors: ["Harry Zöllner", "Rudolf Solisch"],
+    assignees: ["VEB Carl Zeiss Jena"],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.6224,
+      vd: 60.3,
+      indexReference: "d",
+      indexReferenceNote: "Explicit source d-line.",
+      glass: "Unmatched (literal source index and Abbe value)",
+      focalLengthMm: -87.44789295299776,
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Plano-convex Positive",
+      nd: 1.6051,
+      vd: 42.2,
+      indexReference: "d",
+      indexReferenceNote: "Explicit source d-line.",
+      glass: "Unmatched (literal source index and Abbe value)",
+      focalLengthMm: 43.861345232193024,
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Positive Meniscus",
+      nd: 1.6583,
+      vd: 51,
+      indexReference: "d",
+      indexReferenceNote: "Explicit source d-line.",
+      glass: "Unmatched (literal source index and Abbe value)",
+      focalLengthMm: 19.277144634498597,
+      cemented: "L4",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Negative Meniscus",
+      nd: 1.6645,
+      vd: 35.9,
+      indexReference: "d",
+      indexReferenceNote: "Explicit source d-line.",
+      glass: "Unmatched (literal source index and Abbe value)",
+      focalLengthMm: -13.401263761907405,
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Negative Meniscus",
+      nd: 1.7588,
+      vd: 26.7,
+      indexReference: "d",
+      indexReferenceNote: "Explicit source d-line.",
+      glass: "Unmatched (literal source index and Abbe value)",
+      focalLengthMm: -41.30076998957303,
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Positive Meniscus",
+      nd: 1.6224,
+      vd: 60.3,
+      indexReference: "d",
+      indexReferenceNote: "Explicit source d-line.",
+      glass: "Unmatched (literal source index and Abbe value)",
+      focalLengthMm: 23.552103188320075,
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 39.696999999999996,
+      d: 2.359,
+      sd: 17,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 22.4315,
+      d: 25.490499999999997,
+      sd: 17,
+    },
+    {
+      label: "3",
+      R: 26.540499999999998,
+      d: 2.8314999999999997,
+      sd: 10,
+      medium: 2,
+    },
+    {
+      label: "4",
+      R: "flat",
+      d: 1.8864999999999998,
+      sd: 10,
+    },
+    {
+      label: "5",
+      R: 10.668,
+      d: 3.3985000000000003,
+      sd: 7.8,
+      medium: 3,
+    },
+    {
+      label: "6",
+      R: 58.4815,
+      d: 1.134,
+      sd: 7.5,
+      medium: 4,
+    },
+    {
+      label: "7",
+      R: 7.6685,
+      d: 2.6424999999999996,
+      sd: 5.79,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 2.8315000000000006,
+    },
+    {
+      label: "8",
+      R: -8.889999999999999,
+      d: 1.134,
+      sd: 7,
+      medium: 5,
+    },
+    {
+      label: "9",
+      R: -13.093499999999999,
+      d: 0.0945,
+      sd: 7,
+    },
+    {
+      label: "10",
+      R: -83.139,
+      d: 3.2585,
+      sd: 7,
+      medium: 6,
+    },
+    {
+      label: "11",
+      R: -12.649,
+      d: 34.55906720080986,
+      sd: 7,
+    },
+  ],
+  focus: {
+    closeFocusM: 1000000000.0,
+    description:
+      "NO_INTERNAL_RECONSTRUCTION: static infinity only. The required 1e9 m schema sentinel is not a validated finite conjugate. Generic slider/fallback labels do not establish recovered focus motion. Maker minimum focus is separate metadata.",
+  },
+  gaps: {},
+  aperture: {
+    nominalFNumber: 2.8,
+    fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+  },
+  layout: {
+    yScFill: 0.35,
+  },
+} satisfies LensDataV2Input;
+export default LENS_DATA;
