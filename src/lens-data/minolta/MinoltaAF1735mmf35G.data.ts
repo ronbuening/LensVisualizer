@@ -9,7 +9,9 @@
  * The stop moves with Gr3 (d14 + d20 constant), as the patent states; its radius follows F/3.58 at each station.
  * Semi-diameters are estimated from Fig. 1 (wide end) and checked by real-ray trace at every station; the patent prints
  * none. L1's rear face (22.3) and Element 2's front (19.5, where the bonded layer thins toward zero) end inside the
- * drawn outer rims; L3 stays at 15.5 because a larger rim would cross Element 2's deep rear face.
+ * drawn outer rims. Fig. 1 draws L3 about 0.7 mm taller than L4, with its front corner touching Element 2's deep rear
+ * face; L3 is set to 16.0, 0.33 mm clear of that face (r5 and r6 cross at 16.18), which needs `checks.gapSagFrac`
+ * 0.97, and L4 to 15.4 to keep the drawn step.
  * Infinity focus only: the patent prints no focusing data.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
@@ -80,6 +82,7 @@ const LENS_DATA = {
       glass: "Unmatched (aspheric layer, nd 1.52490, νd 49.06)",
       role: "Thin aspheric layer (r3) on the front of Element 2, 0.065 mm thick at the center; its index and thickness suggest a bonded resin. Not counted in Minolta's 15 elements.",
       diagramLabel: "J1",
+      focalLengthMm: -183.59198723368164,
       cemented: "H1",
     },
     {
@@ -323,27 +326,27 @@ const LENS_DATA = {
       label: "6",
       R: -68.175,
       d: 1.2,
-      sd: 15.5,
+      sd: 16,
       medium: 4,
     },
     {
       label: "7",
       R: 43.718,
       d: 0.8,
-      sd: 15.5,
+      sd: 16,
     },
     {
       label: "8",
       R: 38.121,
       d: 4.38,
-      sd: 16.8,
+      sd: 15.4,
       medium: 5,
     },
     {
       label: "9",
       R: "flat",
       d: 0.5,
-      sd: 16.8,
+      sd: 15.4,
     },
     {
       label: "10",
@@ -494,22 +497,22 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Gr1 (−)",
+      text: "Gr1",
       fromSurface: "1",
       toSurface: "13",
     },
     {
-      text: "Gr2 (+)",
+      text: "Gr2",
       fromSurface: "15",
       toSurface: "20",
     },
     {
-      text: "Gr3 (−)",
+      text: "Gr3",
       fromSurface: "21",
       toSurface: "23",
     },
     {
-      text: "Gr4 (+)",
+      text: "Gr4",
       fromSurface: "24",
       toSurface: "29",
     },
@@ -803,6 +806,9 @@ const LENS_DATA = {
         [0.8, 0.8],
       ],
     },
+  },
+  checks: {
+    gapSagFrac: 0.97,
   },
 } satisfies LensDataV2Input;
 export default LENS_DATA;

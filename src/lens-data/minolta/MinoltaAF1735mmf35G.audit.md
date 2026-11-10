@@ -110,5 +110,49 @@ Corner illumination (app vignetting curve, wide open, at each station's field en
 unchanged. `rimcost.mjs --loo --every 1` against the cleanup baseline finds no loss above 0.2 points at any field of
 any of the 23 stations; the S2 reduction costs nothing.
 
-Open: L3's step order against L4 (above). The J1/L2 front stays 1.3 mm inside Fig. 1's drawn outer rim because of
-the bonded layer.
+Open: L3's step order against L4 (above) (closed: L3 16.0 and L4 15.4 in the second review below). The J1/L2 front
+stays 1.3 mm inside Fig. 1's drawn outer rim because of the bonded layer.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared the live page (wide, middle, tele, both movement overlays, the J1, L2, L13 and L14 inspectors) with
+`patents/JPH10082954A.pdf` p. 7 Fig. 1 rendered at 600 dpi from its 200 ppi raster (one raster pixel is about 0.21 mm
+of model). Scale: r1 → r13 spans 440 px (14.27 px/mm), within 1 % of the 14.15 px/mm used before; the raster is placed
+at 200 × 203 ppi, so heights may read up to 1.5 % low, which does not change the step order below. Heights are the mean
+of top and bottom readings from the axis row (y 2981).
+
+| Surfaces | Before | Figure | After | Evidence and verdict |
+| --- | --- | --- | --- | --- |
+| 6, 7 (L3) | 15.5 | 16.9 | 16.0 | Fig. 1 draws L3 as a square block 0.7 mm taller than L4 (top 236 / bottom 241.7 px against 227 / 232 px); its 6.5–6.8 mm drawn top edge gives 16.6–17.0 from the prescription's edge thickness. r5 and r6 cross at 16.18; 16.0 leaves 0.33 mm between them, which the cross-gap check admits at `checks.gapSagFrac` 0.97 (combined sag 10.717 mm of 11.05; the default 0.90 stops at 15.5, 16.1 would need 0.99). Figure-driven raise, no light change. |
+| 8, 9 (L4) | 16.8 | 16.2 | 15.4 | Lowered to keep the drawn L3 > L4 step (model step 0.6 mm, figure 0.7 mm); 5 % under the figure, inside the reading error. The drawn edge (about 0.7–0.9 mm) gives 15.9–16.3. A cut below the 16.8 baseline that costs 0.0 points at every station: kept. |
+| 2 (L1 rear) | 22.3 | 22.0 / 22.5 | 22.3 | Re-read; agrees. Cut below the 26.3 baseline, costs 0.0 points: kept. |
+
+`checks.gapSagFrac` 0.97 is new. Final `rimcost.mjs` worst loss against the base rims is 0.2 points at 42.7° wide, with
+both `--every 1` and the `--ts` eighths, from the S3A/S4 raise; restoring L3 or L4 to the baseline wins back 0.0. The
+engine curve is identical at zoom fractions 0, 0.5 and 1 (wide corner 47.6 % at 52.2°). `audit:surface` OK,
+`audit:aperture` no rim limit at 23 stations, `audit:image-circle` none undersized, `audit:field-coverage` 23 of 23
+stations at 100 %; real-ray clearance shows no axial clip or blocked chief ray. Engine half-field 46.37°, f-number
+3.58, stop radius 6.409 mm and EFL 17.420 mm unchanged.
+
+Labels. Group brackets "Gr1 (−)" … "Gr4 (+)" → "Gr1" … "Gr4", the patent's own notation: the suffixed labels ran
+into each other (Gr2/Gr3 at wide, Gr3/Gr4 at tele). J1 gains `focalLengthMm` −183.59 (its inspector showed FL = —).
+Checked and correct: every element type against the signs of R; `3A` and `27A` are the patent's r3* and r27* and the
+only aspheres; H1 and C1–C3 cover the four cemented joins; the stop sits at r14 between L6 and L7; group ranges match
+Fig. 1's brackets; `apd: "inferred"` only on L13/L15.
+
+Movement. Fig. 1 draws m1 curving toward the image and mS, m2, m3, m4 straight toward the object, with mS and m3 joined
+by a "link" bracket. Wide → tele with the image fixed, the model moves Gr1 13.51 mm toward the image (printed rows:
+−10.16 mm to the middle, −3.35 mm to tele), Gr2 and Gr4 13.90 mm toward the object, and Gr3 with the stop 7.42 mm
+toward the object; stations ascend 17.4 → 34.1 mm and every gap lists them in that order; labels are on the first and
+last stations only. Between the printed rows the inferred cam takes Gr1 to its image-most point near 32–33 mm and back
+0.10 mm by 34.1 mm; the printed rows alone are monotonic, and Fig. 1's m1 ends near vertical.
+
+Glass and colour. The five catalog labels are exact (largest |Δνd| 0.10, K-LaSFn16). No repo row or vendor AGF row lies
+inside the exact window for any unmatched pair; the closest misses are H-LaK12 (CDGM) 1.69680/56.18 for L3 (Δνd
+−0.29), S-LAH53 / J-LASF03 1.80610/40.93–40.98 for L12 (Δnd +0.0011) and Q-LASFH58S 1.85108/40.12 for L1 (Δnd +0.0011). The patent
+prints N and ν only (p. 5–6). 1.85000/40.04, 1.75450/51.57, 1.69680/56.47, 1.80741/31.59 and 1.49310/83.58 recur
+unchanged in Example 2 (p. 6); the layer (1.52490/49.06), L11 (1.83350/21.00), L12 (1.80500/40.97) and L14
+(1.65151/33.60) appear in Example 1 only. Fig. 2 prints the d line and the sine condition only, so no colour comparison
+is possible. No nd-only medium. Assignee "Minolta Co., Ltd." matches the 1996 applicant and the corpus form.
+
+Open: Gr1's 0.10 mm return near tele comes from the inferred stations; a gap-value question, not changed here.

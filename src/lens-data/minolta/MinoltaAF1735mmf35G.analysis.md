@@ -61,7 +61,7 @@ Front negative meniscus of Gr1, concave to the image, and the largest element in
 
 ### J1 / L2 — Negative Meniscus with Bonded Aspheric Layer (Asph)
 
-- J1: nd = 1.52490, νd = 49.06. Glass: Unmatched (aspheric layer). 0.065 mm thick at the center.
+- J1: nd = 1.52490, νd = 49.06. Glass: Unmatched (aspheric layer). f = −183.6 mm. 0.065 mm thick at the center.
 - L2: nd = 1.75450, νd = 51.57. Glass: Unmatched (no exact catalog row). f = −64.9 mm.
 
 The patent lists this as a cemented lens of two negative menisci concave to the image (¶0012), with r3 aspheric. The
@@ -141,7 +141,8 @@ Positive meniscus convex to the image, closing Gr4.
 ## Glass Identification and Selection
 
 The patent prints nd and νd only. Five glasses match a catalog row within 0.0001 in nd and 0.15 in νd and carry that
-name; the rest keep their printed values as Unmatched.
+name; the rest keep their printed values as Unmatched. Five of the unmatched pairs (L1, L2, L3, L4/L6 and L13/L15)
+recur unchanged in the patent's Example 2; the layer, L11, L12 and L14 values appear in Example 1 only.
 
 | Glass | nd | νd | Elements | Role |
 | --- | --- | --- | --- | --- |
@@ -218,8 +219,9 @@ patent prints as 0.35; every condition is met either way.
   at 22.3 mm and the J1/L2 front at 19.5 mm, where the bonded layer thins toward zero thickness; Fig. 1 draws the
   outer rims of both elements larger. The traced field reaches the 21.6 mm corner at every zoom station, with about
   48 % of the axial illumination at the wide-end corner and 73–74 % at the middle and tele corners.
-- L3 is drawn slightly larger than L4 in Fig. 1 but is modeled smaller (15.5 against 16.8 mm): a larger L3 would run
-  into the deep rear face of L2 across the 11.05 mm gap, which the figure itself draws touching L3's corner.
+- Fig. 1 draws L3 about 0.7 mm taller than L4, with L3's front corner touching the deep rear face of L2 across the
+  11.05 mm gap. L3 is modeled at 16.0 mm, 0.33 mm clear of that face (the two surfaces would cross at 16.18 mm), and
+  L4 at 15.4 mm, so the drawn step between them is kept with both elements slightly smaller than drawn.
 - Focus is infinity-only (see Focus Mechanism).
 
 ## Sources
