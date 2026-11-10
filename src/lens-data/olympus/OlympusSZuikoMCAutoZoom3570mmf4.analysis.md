@@ -1,83 +1,120 @@
 ## Patent Reference and Design Identification
 
-**Patent:** [US4452512A](https://patents.google.com/patent/US4452512A/en)
+**Patent:** US 4,452,512
+**Application Number:** 505,891
 **Title:** Wide angle zoom lens system
-**Filed:** 1983-06-20
-**Granted:** 1984-06-05
 **Inventor:** Hiroshi Takase
 **Assignee:** Olympus Optical Co., Ltd.
-**Example details:** Whole Example 1, description PDF22–23, claim witness PDF24–25. Native fixed 36 mm endpoint, d6=36.741 mm.
+**Priority:** 18 September 1979 (Japan 54-119830)
+**Filed:** 20 June 1983, as a continuation of Ser. No. 187,448 (filed 15 September 1980, abandoned)
+**Granted:** 5 June 1984
+**Example details:** Embodiment 1, columns 4–5, with its focal lengths and conditional values; aberration curves in Figs. 2A–2C (wide, intermediate and tele); the same numerical data is recited in claim 1. Native patent scale.
 
-This is one of TWO discrete fixed hypotheses for ONE S Zuiko 35–70mm F4 family, not a separate lens or a recovered zoom cam. The Olympus original leaflet shows seven singlets with front-three/rear-four architecture, supporting probable family association. Six patent examples remain possible; E1 is a clean representative, not uniquely proven factory data. Native 36/68.5 mm endpoints are not rescaled to retail 35/70 mm. Hidden and unfinished, not delivery qualified.
+The patent describes a two-group wide-angle zoom of seven singlets for 35 mm still cameras, with a field of 62° to 35° and a zoom ratio of about 1.9, built from glasses of "relatively low refractive indices" that are cheap and easy to work. It gives six numerical examples. Embodiment 1 is the one transcribed, and the model is associated with the Olympus S Zuiko MC Auto-Zoom 35-70mm f/4 for the OM system. The patent does not name a product, so the identification rests on construction and specification:
+
+1. Olympus's data sheet gives seven elements in seven groups, the patent's seven components of seven lens elements.
+2. The data sheet's section drawing shows three elements ahead of the zoom air space and four behind it, with the diaphragm between the fifth and sixth elements: the layout of Fig. 1.
+3. The example covers f = 36.0–68.5 mm at a constant F/4, with half-fields of 31° and 17.5° in Figs. 2A and 2C. The data sheet gives 35–70 mm, F4–22 and an angle of view of 63° to 34°. At the 21.63 mm corner of the 35 mm frame the model covers 64.2° to 34.8°.
+4. The assignee is Olympus Optical, and the September 1979 priority precedes the data sheet, whose imprint reads 0381.
+5. At 68.5 mm, near its shortest setting, the model's first vertex lies 67.0 mm ahead of the OM mount flange (46 mm flange distance); the data sheet gives a length of 71 mm at the 70 mm setting.
+
+All six examples share the same construction and nearly the same focal range (36–68.5 mm, or 36–68 mm in Embodiments 4 and 5), and nothing in the data sheet singles one out. Embodiment 1 is the first example and the one the claim recites; it stands for the family, not for a confirmed factory prescription. The data sheet also lists a 0.75 m minimum focus, a 55 mm filter thread and a weight of 380 g. This lens is distinct from the earlier Zuiko MC Auto-Zoom 35-70mm f/3.6, a ten-element design from a different Olympus patent (US 4,153,338).
 
 ## Optical Architecture
 
-Seven spherical singlets in seven groups, front negative assembly and rear positive assembly. Only d6 differs between the two independent endpoint hypotheses. No zoom object or variable gap table exists, so the station interpolation engine cannot generate an intermediate cam. No plate or asphere is invented. The image plane is the independently derived infinity paraxial plane: BF 45.99754510670848 mm, first-vertex image 127.92654510670849 mm. These are not printed image distances or optimization corrections. No common fixed sensor or compensating motion is claimed.
+Seven spherical singlets form a negative-leading two-group zoom. The front group G1 (L1–L3) has a printed focal length of fM = −64.742 mm and the rear group G2 (L4–L7) fU = +42.415 mm; the table reproduces both (−64.742 and +42.415 mm). G1 is two negative menisci followed by a positive flint meniscus. G2 is in triplet form: the patent treats L4 and L5 together as its front positive member (printed f45 = 24.238 mm), followed by the negative L6 and the positive L7.
+
+Zooming changes only the air space d6 between the groups, printed as 36.741 mm at 36 mm and 0.550 mm at 68.5 mm. G2 is the variator: its magnification, f / fM, runs from −0.556 to −1.058, and it moves 21.29 mm toward the object as the focal length rises. G1 is the compensator that holds the image plane: it moves 15.03 mm toward the image up to 64.7 mm, where G2 works at unit magnification and the lens is shortest, and then returns 0.14 mm. The first vertex lies 127.93 mm from the image at 36 mm, 112.89 mm at 64.7 mm and 113.03 mm at 68.5 mm.
+
+The patent prints neither the back focus nor any setting between the ends. The model adds nine solved stations between the two printed rows, paraxial and in the d-line. At each station d6 is set for the station's focal length, which for two fixed groups gives d6 = −39.538 + 2746.03 / f mm, and the back focus places the paraxial image on the fixed plane, which gives BF = 45.998 + 0.65514 (f − 36) mm. The solved stations are first-order states, not Olympus's cam.
+
+| f (mm) | d6 | BF | Source |
+|---:|---:|---:|---|
+| 36 | 36.741 | 45.998 | d6 printed, BF solved |
+| 42 | 25.844 | 49.928 | solved |
+| 48 | 17.671 | 53.859 | solved |
+| 54.5 | 10.848 | 58.117 | solved |
+| 61.5 | 5.113 | 62.703 | solved |
+| 68.5 | 0.550 | 67.290 | d6 printed, BF solved |
+
+Between neighbouring stations the gaps are interpolated linearly, which leaves at most 0.039 mm of defocus (near 37.5 mm). Interpolating between the two printed rows alone would defocus the image by up to 3.40 mm, because d6 varies with 1/f while the back focus varies with f.
+
+The patent shows no stop. The model places the iris in the middle of d10, between L5 and L6, where the data sheet's section draws the diaphragm, so it travels with G2. The patent plots F/4 at the wide, intermediate and tele settings; the model therefore sizes the iris for F/4 at every station, from 6.75 mm radius at 36 mm to 9.10 mm at 68.5 mm. One fixed iris radius would give F/4 at one end only: about F/5.4 at 68.5 mm if set for F/4 at 36 mm.
 
 ## Element-by-Element Analysis
 
-### L1: Meniscus Negative
+Focal lengths are for each element alone in air; they match the patent's printed f1–f7.
 
-nd = 1.63854, νd = 55.4. Glass: unmatched, vendor unspecified. Isolated-air f = -86.381579 mm.
+### L1 — Negative Meniscus
 
-S1–S2 is an air-separated spherical singlet, center thickness 2.09 mm. Front three-element assembly. Element power is descriptive; individual aberration contributions have not been tested.
+nd = 1.63854, νd = 55.4. Glass: S-BSM18 (OHARA catalog equivalent). f = −86.38 mm.
 
-### L2: Meniscus Negative
+The front element, convex to the object, with a deep concave rear face (r2 = 23.51 mm). It bends the wide-angle chief rays toward the axis and carries the weaker share of G1's negative power. Conditions (1) and (12) bound its power against fM (|f1/fM| = 1.334) and its front radius against the wide-end focal length (r1/fw = 1.178).
 
-nd = 1.63854, νd = 55.4. Glass: unmatched, vendor unspecified. Isolated-air f = -59.206875 mm.
+### L2 — Negative Meniscus
 
-S3–S4 is an air-separated spherical singlet, center thickness 1.99 mm. Front three-element assembly. Element power is descriptive; individual aberration contributions have not been tested.
+nd = 1.63854, νd = 55.4. Glass: S-BSM18 (OHARA catalog equivalent). f = −59.21 mm.
 
-### L3: Meniscus Positive
+The strongest element of G1: nearly flat in front (r3 = 442.2 mm) and deeply concave at the rear (r4 = 34.77 mm). The patent ties r4 to the balance between spherical aberration and off-axis aberration (condition (13), r4/fw = 0.966) and the air space behind it to the same balance (condition (15), d4/fw = 0.124).
 
-nd = 1.68893, νd = 31.1. Glass: unmatched, vendor unspecified. Isolated-air f = 80.074089 mm.
+### L3 — Positive Meniscus
 
-S5–S6 is an air-separated spherical singlet, center thickness 4.28 mm. Front three-element assembly. Element power is descriptive; individual aberration contributions have not been tested.
+nd = 1.68893, νd = 31.1. Glass: S-TIM28 (OHARA catalog equivalent). f = +80.07 mm.
 
-### L4: Biconvex Positive
+A flint meniscus, convex to the object, that closes G1. Its low Abbe number against the two crown negatives achromatizes the front group. Its front radius controls spherical aberration (condition (14), r5/fw = 0.897; the patent prints this ratio as "s/fw").
 
-nd = 1.6516, νd = 58.7. Glass: unmatched, vendor unspecified. Isolated-air f = 51.948443 mm.
+### L4 — Biconvex Positive
 
-S7–S8 is an air-separated spherical singlet, center thickness 3.38 mm. Rear four-element assembly. Element power is descriptive; individual aberration contributions have not been tested.
+nd = 1.65160, νd = 58.7. Glass: unmatched (652587, a lanthanum crown near LaK7). f = +51.95 mm.
 
-### L5: Meniscus Positive
+The first element behind the zoom air space. With L5 it forms G2's front positive member; the patent asks that the two share that power about equally (condition (9), f5/f4 = 0.851) and that its front radius stay well above L5's (condition (8), r7/r9 = 1.675) to limit the change of astigmatism during zooming.
 
-nd = 1.6583, νd = 57.3. Glass: unmatched, vendor unspecified. Isolated-air f = 44.206540 mm.
+### L5 — Positive Meniscus
 
-S9–S10 is an air-separated spherical singlet, center thickness 3.59 mm. Rear four-element assembly. Element power is descriptive; individual aberration contributions have not been tested.
+nd = 1.65830, νd = 57.3. Glass: K-LaK11 (SUMITA catalog equivalent). f = +44.21 mm.
 
-### L6: Biconcave Negative
+A meniscus convex to the object, just ahead of the iris. Its strong front face (r9 = 24.51 mm, condition (6), r9/fw = 0.681) is the main positive surface of G2's front member.
 
-nd = 1.80518, νd = 25.4. Glass: unmatched, vendor unspecified. Isolated-air f = -20.444470 mm.
+### L6 — Biconcave Negative
 
-S11–S12 is an air-separated spherical singlet, center thickness 4.147 mm. Rear four-element assembly. Element power is descriptive; individual aberration contributions have not been tested.
+nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA catalog equivalent). f = −20.44 mm.
 
-### L7: Biconvex Positive
+The only dense-flint element and the negative member of G2's triplet form, behind the iris. Its strong rear face (r12 = 20.76 mm, condition (7), r12/fw = 0.578 printed, 0.577 from the table) controls spherical aberration; the air spaces on either side, d10 and d12, are held to 0.265 fw by condition (16) to limit flare from coma while keeping the lens short.
 
-nd = 1.6398, νd = 34.5. Glass: unmatched, vendor unspecified. Isolated-air f = 42.523728 mm.
+### L7 — Biconvex Positive
 
-S13–S14 is an air-separated spherical singlet, center thickness 3.443 mm. Rear four-element assembly. Element power is descriptive; individual aberration contributions have not been tested.
+nd = 1.63980, νd = 34.5. Glass: S-TIM27 (OHARA catalog equivalent). f = +42.52 mm.
+
+The last element, with almost all its power on the strong rear face (r14 = −30.41 mm). Its focal length nearly equals G2's (condition (11), f7/fU = 1.003), and the front member L4–L5 has 0.570 of its focal length (condition (10)).
 
 ## Glass Identification
 
-All seven literal n/v pairs are retained. The numerical reference wavelength is not explicit; d-line interpretation and engine spectral interpolation are assumptions. No named vendor glass, melt identity or measured broadband performance is asserted.
+Five of the six distinct glasses match a catalog row to the printed digits; L4's 1.65160 / 58.7 matches no catalog glass in the repo (the LaK7 family has νd 58.5–58.6), so the model uses the printed pair. The table gives n and ν without naming a spectral line, but the aberration curves are drawn for the d and g lines, so the indices are taken as d-line.
+
+| Glass | nd | νd | Elements | Role |
+|---|---:|---:|---|---|
+| S-BSM18 (OHARA) | 1.63854 | 55.4 | L1, L2 | Front negative crowns |
+| S-TIM28 (OHARA) | 1.68893 | 31.1 | L3 | Achromatizing flint of G1 |
+| 652587 (unmatched) | 1.65160 | 58.7 | L4 | G2 positive crown |
+| K-LaK11 (SUMITA) | 1.65830 | 57.3 | L5 | G2 positive crown |
+| S-TIH6 (OHARA) | 1.80518 | 25.4 | L6 | G2 negative dense flint |
+| S-TIM27 (OHARA) | 1.63980 | 34.5 | L7 | Rear positive flint |
+
+Conditions (4) and (5) keep the indices low: n1 and n2 below 1.65 (1.63854) and n4 and n5 below 1.7 (1.65160 and 1.65830). The patent links these limits to field curvature and to the aim of using inexpensive, easily machined glass. Only L6 exceeds 1.7.
 
 ## Focus Mechanism
 
-Infinity-only fixed geometry. No finite-focus law, internal travel or conjugate is recovered. The schema-required 1e9 m scalar is a sentinel only; generic UI focus labels must not be read as validation. The leaflet's 0.75 m marketing minimum and rotating helicoid do not supply a numerical prescription.
+The patent prints the infinity state only and names no focusing group, so the model holds infinity focus at every zoom setting. Olympus's data sheet lists focusing by rotating helicoid to 0.75 m but does not say which group moves; that focusing is not modeled.
 
-## Aperture and Geometry Assumptions
+## Conditional Expressions
 
-F4 is printed in Figure2A/2C. The leaflet diaphragm is qualitatively between L5 and L6; its modeled position is the unmeasured midpoint of d10, not recovered metrology. Endpoint-specific nominal-F4 iris radii are inferred. The final common surface caps are20.5,20.5,17.3,17.3,16,16,10.4,10.4,10.1,10.1,10,10,10,10mm. They are engineering hypotheses informed by native clipping footprints and source section, not factory measurements. Both endpoints pass native default geometry, positive iris clearances, zero render trim and official iris-limitedF4 census. Max rim60.6922133953deg; no validation overrides, rim cuts or overlap.
+Embodiment 1's printed values satisfy all sixteen conditions: (1) |f1/fM| = 1.334, (2) |f2/fM| = 0.914 and (3) |f3/fM| = 1.237 against limits of 1–1.5, 0.8–1.2 and 1–1.5; (4) and (5) as above; (6) r9/fw = 0.681 (0.6–0.8); (7) r12/fw = 0.578 (0.5–0.8); (8) r7/r9 = 1.675 (1.4–2.4); (9) f5/f4 = 0.851 (0.75–1.25); (10) f45/f7 = 0.570 (0.5–0.7); (11) f7/fU = 1.003 (0.9–1.2); (12) r1/fw = 1.178 (1.0–1.4); (13) r4/fw = 0.966 (0.8–1.5); (14) r5/fw = 0.897 (0.8–1.1); (15) d4/fw = 0.124 (0.1–0.14); and (16) (d10 + d12)/fw = 0.265 (0.15–0.35). The table reproduces each value to the printed digits except (7), 0.577.
 
-## Current Scoped Validation
+## Model Scope and Limitations
 
-The exact current H3 cap prescription has a complete reference-spectrum geometric/diffraction matrix at axis, published intermediate field, published edge and actual36×24 physical corner. All sixteen records across both endpoints converge through40lp/mm with max grid128 at the unchanged derived design planes. Seven existing exact-H3 records were reused and nine missing exact-H3 records newly run. No earlier-cap result was inherited as a current pass. Convergence does not imply high MTF or uniform illumination; residual edge vignetting remains.
-
-Physical-corner target21.633307652784mm differs from rounded catalog21.65mm. Source fields are22.8/31deg wide and12.4/17.5deg tele. The tele source edge requires a temporary44mm analysis-axis diameter only, never a final model image-circle retag. Actual returned angles/heights differ by native root tolerance and are recorded in the complete matrix. Assumed-d/unmatched glass/missing partial dispersion remain; no broadband qualification, finite-focus law, continuous cam or unique factory identity. Independent review, corpus/build/install and integration remain pending; not ready or delivered.
+The printed rows trace to f = 35.9999 and 68.5004 mm. The back focus, the nine intermediate stations, the stop position and every semi-diameter are model choices; none is printed. The semi-diameters were checked against Fig. 1, which is drawn at an intermediate zoom setting, and by real-ray trace. L4 and L5 are set just large enough to pass a real F/4 ray at 68.5 mm (11.1 and 10.8 mm); Fig. 1 and the data sheet draw them larger. Fig. 1 also draws L1's rear face ending inside a flat land at about 17.9 mm and L2 and L3 slightly larger than the model. The model keeps the wider L1 rear face because a smaller one would narrow the traced wide-angle field.
 
 ## Sources
 
-- US4452512A original PDF, PDF1 metadata, PDF22–25 whole E1, PDF3 Figure 2A.
-- Olympus original 35-70mmf4.pdf leaflet p1, hosted by [Zuikography](https://zuikography.com/olympus-om-archive/), third-party custody of manufacturer document.
-- Verified source addendum: https://drive.google.com/file/d/1rKP5hOLlPzVFJsq1alKQHfn7v4OZK6ZG/view
+- US 4,452,512, *Wide angle zoom lens system*, Hiroshi Takase, Olympus Optical Co., Ltd., granted 5 June 1984.
+- Olympus, *S Zuiko MC Auto-Zoom 1:4 f=35~70mm* data sheet (two pages, imprint 0381), from the Olympus OM document archive at [Zuikography](https://zuikography.com/olympus-om-archive/).
