@@ -36,7 +36,11 @@ theme toggles or the URL query state.
 
 The CARDINALS / DIMENSIONS overlay controls are feature-flagged by `ENABLE_CARDINAL_ELEMENTS`. Desktop renders them to
 the left of the existing ray controls; mobile uses left/right arrow buttons to page between the existing controls and
-the cardinal control set.
+the cardinal control set. The overlays never widen the diagram's z-extent: a telephoto's H/H′ can sit metres away, so
+cardinal points beyond the viewport collapse into one edge label per side (one row above the pupils' `EP →` hints), and
+dimension spans are cut at the edge with a chevron or, when wholly off view, become an edge label with their value.
+Dimension spans sit level in a band below the drawing, clear of the surface numbers and group labels;
+`cardinalDimensionBand.ts` sizes it, and `DiagramSVG` and the zoom hook both take the extended viewBox height from it.
 
 Lens-specific aberration controls are declared by `LensData.aberrationControl`. `DiagramControls` renders them only when
 present, using the data-provided label, endpoint labels, optional center label, step, and readout labels. Controls with

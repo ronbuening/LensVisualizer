@@ -11,7 +11,7 @@ flowchart LR
   subgraph n_src_components_diagram["src/components/diagram"]
     n_src_components_diagram_src_components_diagram_sphericalAberration["sphericalAberration/"]
     n_src_components_diagram_React_components["React components (25)"]
-    n_src_components_diagram_TypeScript_modules["TypeScript modules (1)"]
+    n_src_components_diagram_TypeScript_modules["TypeScript modules (2)"]
   end
   n_external_src_types["src/types"]
   n_external_pkg_react["pkg:react"]
@@ -29,10 +29,10 @@ flowchart LR
   n_src_components_diagram_React_components --> |25| n_external_pkg_react
   n_src_components_diagram_React_components --> |10| n_external_src_optics_chromatic_ts
   n_src_components_diagram_React_components --> |5| n_external_src_optics_analysis_ts
+  n_src_components_diagram_React_components --> |5| n_src_components_diagram_TypeScript_modules
   n_src_components_diagram_React_components --> |4| n_external_src_optics_diagramGeometry_ts
   n_src_components_diagram_React_components --> |4| n_external_src_optics_optics_ts
   n_src_components_diagram_React_components --> |3| n_external_src_components_display
-  n_src_components_diagram_React_components --> |3| n_src_components_diagram_TypeScript_modules
   n_src_components_diagram_React_components --> |2| n_external_src_utils_featureFlags_ts
   n_src_components_diagram_React_components --> |2| n_external_src_utils_usePrefersReducedMotion_ts
   n_src_components_diagram_React_components --> n_external_src_optics_perspective_ts
@@ -43,9 +43,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 26
+- Direct source files: 27
 - Direct subfolders: 1
-- Main outbound areas: src/types (35), package:react (25), same folder (22), src/optics/chromatic.ts (10), src/optics/analysis.ts (5), src/optics/diagramGeometry.ts (4), src/optics/optics.ts (4), src/components/display (3), +5 more
+- Main outbound areas: src/types (35), package:react (25), same folder (24), src/optics/chromatic.ts (10), src/optics/analysis.ts (5), src/optics/diagramGeometry.ts (4), src/optics/optics.ts (4), src/components/display (3), +5 more
 - External consumers: src/benchmarks, src/components/layout, src/components/markdown
 
 ## Subfolders
@@ -59,7 +59,8 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `ApertureStop.tsx` | React component module | package:react, src/optics/diagramGeometry.ts, src/types | same folder | default |
-| `CardinalElementsOverlay.tsx` | React component module | src/types (2), package:react, src/optics/analysis.ts | same folder | default |
+| `cardinalDimensionBand.ts` | Cardinal Dimension Band helper module | none | same folder (2), src/components/layout | CardinalDimensionId, CardinalDimensionVisibility, visibleCardinalDimensions, cardinalDimensionLaneY, cardinalDimensionBandHeight, diagramViewHeight |
+| `CardinalElementsOverlay.tsx` | React component module | src/types (2), package:react, same folder, src/optics/analysis.ts | same folder | default |
 | `ChromaticFanSpreadWidget.tsx` | React component module | src/optics/chromatic.ts (2), src/types (2), package:react, same folder, src/components/display, +1 more | same folder | default |
 | `ChromaticOverlayContent.tsx` | React component module | package:react (2), same folder (2), src/optics/chromatic.ts (2), src/types (2), src/components/display, +1 more | src/components/layout | default |
 | `ChromaticQualityBadge.tsx` | React component module | src/optics/chromatic.ts, src/types | same folder (2) | CHROMATIC_QUALITY_BADGE_LABEL, chromaticQualityBadgeLabel, ChromaticQualityBadge |
@@ -68,7 +69,7 @@ flowchart LR
 | `DiagramGridAxisLayer.tsx` | React component module | src/types (2), package:react | same folder | default |
 | `DiagramOverlayLayer.tsx` | React component module | same folder (8), src/optics/optics.ts (2), src/types (2), package:react, src/optics/analysis.ts, +3 more | same folder | default |
 | `DiagramRayLayers.tsx` | React component module | src/types (3), same folder (2), package:react | same folder | default |
-| `DiagramSVG.tsx` | React component module | same folder (7), src/types (3), package:react, src/optics/analysis.ts, src/optics/chromatic.ts, +3 more | src/benchmarks, src/components/layout | default |
+| `DiagramSVG.tsx` | React component module | same folder (8), src/types (3), package:react, src/optics/analysis.ts, src/optics/chromatic.ts, +3 more | src/benchmarks, src/components/layout | default |
 | `diagramSvgTypes.ts` | Diagram Svg Types helper module | src/types | same folder (3) | RaySegment, ChromaticRaySegment |
 | `ElementAnnotations.tsx` | React component module | src/types (2), package:react, src/optics/teleconverter.ts | same folder | default |
 | `EntrancePupilDiagram.tsx` | React component module | package:react | src/components/markdown | default |
