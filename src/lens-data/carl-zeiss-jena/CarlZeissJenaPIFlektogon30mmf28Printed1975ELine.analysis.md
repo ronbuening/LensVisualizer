@@ -3,7 +3,7 @@
 ## Source Reference and Design Identification
 
 **Source:** Carl Zeiss Jena, *Optik-Daten*, PI-Flektogon 2.8/30.
-**Manufacturer:** Carl Zeiss Jena, as identified on the original sheet.
+**Manufacturer:** VEB Carl Zeiss Jena, the Jena works' legal entity at the sheet's date; the sheet names Carl Zeiss Jena.
 **Source dated:** 23 September 1975.
 **Calculation dated:** 4 August 1975, “Rechnung vom 4.8.1975”.
 **Prescription analyzed:** Printed geometry, Flächen-Nr. 1–12, with source n_e values.

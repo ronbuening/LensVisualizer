@@ -176,7 +176,8 @@ on-screen size at every zoom, no overlaps (the overview panel and network captio
 for the selection, the hovered node, the selection's neighbors, then hubs, so hub names read at Fit all. Nodes, edges
 and labels outside the viewport are culled except the selection and its highlighted edges. Arrow keys move a roving
 tab stop to the nearest node in that direction; Enter or Space selects it. Non-patent catalog models use distinct
-`lens` and `maker` nodes with `catalog-maker` edges derived only from an explicit lens `maker` field; these edges do not count as patents,
+`lens` and `maker` nodes with `catalog-maker` edges derived only from an explicit lens `maker` field, except that a model
+with `source.issuer` joins that organization's assignee or organization node instead; these edges do not count as patents,
 corporate history, or corporate affinity. Maker hubs center their models, and details link to the model and maker pages.
 
 `UniversalMapSearch` searches only graph nodes and uses the shared portal dropdown with combobox keyboard semantics.

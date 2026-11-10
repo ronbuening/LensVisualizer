@@ -275,3 +275,11 @@ Second-pass final local gates: typecheck, format check, lint, 5,131 tests across
 eight glass-report suites (9 checks), and production build (1,687 prerendered routes)
 passed. Source limitations above remain qualified; no heuristic failure was relabeled
 as a pass. Existing UTC changelog entries are unchanged. No patent or scratch file is staged.
+
+## 2026-11-10 — Source issuer
+
+- `source.issuer: "VEB Carl Zeiss Jena"` records who issued the factory sheet. Carl Zeiss Jena was the state-owned
+  VEB Carl Zeiss Jena from 1948, so the 1975 sheet is that entity's document. The catalog already uses this name for
+  the works' patents.
+- Effect: the universal relationship map groups the model under VEB Carl Zeiss Jena instead of a separate
+  "Carl Zeiss Jena" catalog-maker hub. `maker` stays "Carl Zeiss Jena" for the maker page. No patent metadata is added.

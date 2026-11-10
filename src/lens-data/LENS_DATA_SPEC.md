@@ -269,9 +269,13 @@ catalog: {
 | `authors` | `string[]` | Inventors named by the source, in source order, one complete personal name per entry. `[]` means the source names no individual inventor. |
 | `assignees` | `string[]` | Organizational assignees, or organizational applicants where the jurisdiction publishes applicants. One canonical display name per historical legal entity. `[]` means no organizational attribution is supported. |
 | `errata` | `SourceErratum[]` | See [Source errata](#source-errata-sourceerrata). |
+| `issuer` | `string` | Non-patent manufacturer sources only (a factory optical data sheet, a maker's drawing): the organization that issued the document, as the historical legal entity at its date, in the catalog's canonical assignee form (`"VEB Carl Zeiss Jena"` for a 1958 Jena sheet). Never beside `patentNumber`. |
 
 Patent-backed lens files declare `patentNumber`, `authors` and `assignees` together. Synthetic, reference or
-independently measured prescriptions with no patent source leave all three out. These structured fields supplement
+independently measured prescriptions with no patent source leave all three out. A prescription transcribed from a
+manufacturer's own document records its issuer in `issuer`; the universal relationship map groups the model under that
+organization instead of an undated catalog-maker hub. Take the issuer from the document and its date, not from the
+lens maker alone. These structured fields supplement
 `subtitle`: keep design-correlation prose in `subtitle`, and the example in `source.example`, not in `patentNumber`.
 The UI displays `patentNumber`, then the example, then the names in `authors` (`US 10,095,009 B2, Example 6 — Hideki
 Sakai`); it uses `subtitle` only when the structured fields are unavailable.
@@ -1636,7 +1640,7 @@ Code: `src/optics/prescription/validate/`.
 | Labels unique and not reserved; `R`, `d`, `sd` present; `sd` positive; `innerSd` non-negative and below `sd`; `rimCutDepthMm` positive, and not on the stop, an annular or diffractive surface, one with an `interaction` or a folded lens; `rimCutDepthSource` a non-empty string beside a `rimCutDepthMm`; `interaction` enums and normals; `diffractive` only on refracting surfaces; `stopPlacement` only on `STO`; exactly one `STO` | `validateSurfaces` (`schema.ts`) |
 | Element ids unique; `maxSdRatio` ≥ 1; `indexReference`, `apd` and `absorptionCoefficientPerMm` valid; no absorption on folded paths | `validateElements` (`schema.ts`) |
 | Every surface medium names an element, and every element is some surface's medium; asphere terms finite and known | `validateReferences` (`references.ts`) |
-| Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
+| Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it; `source.issuer` is a trimmed, conventionally capitalized name and never stands beside a patent number | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
 | `source.errata` entries | `validateSourceErrata` (`references.ts`) |
 | Element spans: both ends, in order; internal surfaces only an embedded stop or the folded exceptions | `validateSpans` (`references.ts`) |
 | `groups` and `doublets` name existing surfaces | `validateAnnotations` (`references.ts`) |
@@ -2121,7 +2125,7 @@ the map below gives each of its fields' V2 paths.
 | `focalLengthMarketing`, `focalLengthDesign` | `catalog.focalLengthMm.marketing`, `.design` |
 | `apertureMarketing`, `apertureDesign` | `catalog.fNumber.marketing`, `.design` |
 | `closeFocusMarketing` | `catalog.closeFocusM.marketing` |
-| `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata` | `source.patentNumber`, `.patentYear`, `.authors`, `.assignees`, `.errata` |
+| `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata`, `sourceIssuer` | `source.patentNumber`, `.patentYear`, `.authors`, `.assignees`, `.errata`, `.issuer` |
 | `surfaces[].nd` + `surfaces[].elemId` | `surfaces[].medium`: the element id, a `media` id, or left out for air (`elemId: 0`, `nd: 1`) |
 | an air surface with `nd ≠ 1` | an entry in `media` |
 | `elements[].fromSurface` / `toSurface` | `elements[].span: [from, to]` |
