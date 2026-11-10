@@ -1,0 +1,1 @@
+Added double-click zoom on the universal relationship map overview to magnify and center on a chosen spot

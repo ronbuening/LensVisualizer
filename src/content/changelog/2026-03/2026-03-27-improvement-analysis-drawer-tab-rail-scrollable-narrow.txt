@@ -1,0 +1,1 @@
+Made analysis drawer tab rail scrollable on narrow screens

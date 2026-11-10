@@ -1,0 +1,1 @@
+The universal relationship map now reads clearly at every zoom and works well on phones, with a Neighborhoods summary, lens-name search and better inventor grouping

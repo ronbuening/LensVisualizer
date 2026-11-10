@@ -1,0 +1,1 @@
+Chromatic readouts now compare every selected color channel, or name the one a rim vignettes

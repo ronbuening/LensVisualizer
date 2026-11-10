@@ -1,0 +1,1 @@
+Fixed cardinal points and dimensions shrinking long telephoto diagrams and dimension labels covering the element numbers; spans now sit in a band below the lens, and anything beyond the view is marked at its edge

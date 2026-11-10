@@ -1,0 +1,1 @@
+Expanded Sellmeier glass catalog from 65 to 92 entries, covering all Ohara and Schott glasses with 2+ element occurrences — more lenses now use full Sellmeier chromatic dispersion

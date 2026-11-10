@@ -1,0 +1,1 @@
+Fixed article navigation so pages open at the top instead of preserving prior scroll

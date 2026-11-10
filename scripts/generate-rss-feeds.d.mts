@@ -1,3 +1,4 @@
+import type { ChangelogEntry } from "../src/utils/content/changelogHelpers.js";
 import type { FreshnessEntry } from "./build-metadata-lib.mjs";
 
 export interface FeedFreshness extends FreshnessEntry {
@@ -28,11 +29,7 @@ export interface FeedLensSummary {
   visible: boolean;
 }
 
-export interface FeedChangelogEntry {
-  date: string;
-  type: "feature" | "fix" | "lens" | "improvement" | "article";
-  summary: string;
-}
+export type FeedChangelogEntry = ChangelogEntry;
 
 export interface RssFeedItem extends FeedFreshness {
   title: string;
@@ -41,6 +38,7 @@ export interface RssFeedItem extends FeedFreshness {
   category?: string;
 }
 
+export const CHANGELOG_PATH: string;
 export const DEFAULT_FEED_LIMIT: number;
 export const SITE_URL: string;
 export const FEED_DEFINITIONS: Record<
@@ -56,7 +54,7 @@ export function buildLensFeedItems(
   limit?: number,
 ): RssFeedItem[];
 export function buildArticleFeedItems(buildMeta: FeedBuildMetadata, limit?: number): RssFeedItem[];
-export function buildChangelogFeedItems(entries?: FeedChangelogEntry[], limit?: number): RssFeedItem[];
+export function buildChangelogFeedItems(entries: readonly FeedChangelogEntry[], limit?: number): RssFeedItem[];
 export function renderRssFeed(options: {
   title: string;
   description: string;
@@ -67,6 +65,11 @@ export function renderRssFeed(options: {
 export function generateRssFeeds(
   buildMeta: FeedBuildMetadata,
   lensSummaries: FeedLensSummary[],
-  options?: { limit?: number; changelogEntries?: FeedChangelogEntry[] },
+  options: { limit?: number; changelogEntries: readonly FeedChangelogEntry[] },
 ): { lenses: string; articles: string; changelog: string };
-export function writeRssFeeds(options?: { distDir?: string; metadataPath?: string; lensSummariesPath?: string }): void;
+export function writeRssFeeds(options?: {
+  distDir?: string;
+  metadataPath?: string;
+  lensSummariesPath?: string;
+  changelogPath?: string;
+}): void;

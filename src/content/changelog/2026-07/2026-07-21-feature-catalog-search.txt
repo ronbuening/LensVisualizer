@@ -1,0 +1,1 @@
+Added catalog search, inventor pages, and a browsable patent author index

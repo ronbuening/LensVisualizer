@@ -589,12 +589,29 @@ export function buildRouteFreshness({
   formatIds = [],
   authors = [],
   teleconverters = [],
+  changelog = [],
+  updateMonths = [],
   makerDetailsFreshness,
   assigneeCorporateHistoryFreshness,
   fallbackDate,
 }) {
   const routeFreshness = {};
   const allLensFreshness = lenses.map((lens) => lens.freshness);
+  /* A changelog entry is dated, not committed: its date is its freshness, capped at today so an entry scheduled for
+     a later day never gives a page a future modified date. */
+  const changelogFreshness = (entry) => {
+    const day = fallbackDate && entry.date > fallbackDate ? fallbackDate : entry.date;
+    const at = `${day}T00:00:00.000Z`;
+    return { publishedOn: day, publishedAt: at, lastModified: day, lastModifiedAt: at };
+  };
+  /* Archive pages list a lens by name, so only its publication dates it; later prescription edits do not. */
+  const lensPublicationFreshness = (lens) => ({
+    publishedOn: lens.freshness.publishedOn,
+    ...(lens.freshness.publishedAt ? { publishedAt: lens.freshness.publishedAt } : {}),
+    lastModified: lens.freshness.publishedOn,
+    ...(lens.freshness.publishedAt ? { lastModifiedAt: lens.freshness.publishedAt } : {}),
+  });
+  const allChangelogFreshness = changelog.map(changelogFreshness);
   const articleFreshness = (article) => ({
     publishedOn: article.publishedOn,
     ...(article.publishedAt ? { publishedAt: article.publishedAt } : {}),
@@ -624,7 +641,16 @@ export function buildRouteFreshness({
     );
   }
   routeFreshness["/articles"] = combineFreshnessEntries(allArticleFreshness, fallbackDate);
-  routeFreshness["/updates"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
+  routeFreshness["/updates"] = combineFreshnessEntries([...allLensFreshness, ...allChangelogFreshness], fallbackDate);
+  for (const { month } of updateMonths) {
+    routeFreshness[`/updates/${month}`] = combineFreshnessEntries(
+      [
+        ...lenses.filter((lens) => lens.freshness?.publishedOn?.startsWith(`${month}-`)).map(lensPublicationFreshness),
+        ...changelog.filter((entry) => entry.date.startsWith(`${month}-`)).map(changelogFreshness),
+      ],
+      fallbackDate,
+    );
+  }
   routeFreshness["/relationships"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/relationships/universal"] = combineFreshnessEntries(
     assigneeCorporateHistoryFreshness ? [...allLensFreshness, assigneeCorporateHistoryFreshness] : allLensFreshness,

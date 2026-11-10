@@ -1,0 +1,1 @@
+Added compact-camera, tube and cinema formats and filled missing lens assignments

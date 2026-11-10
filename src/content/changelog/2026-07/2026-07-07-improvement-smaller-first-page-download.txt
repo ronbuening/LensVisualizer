@@ -1,0 +1,1 @@
+Cut first-page download from 4.3 MB to under 1 MB by loading lens data and prose on demand

@@ -1,0 +1,1 @@
+Modeled Minolta STF apodization in bokeh and relative illumination with Beer–Lambert ray weighting

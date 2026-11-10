@@ -1,0 +1,1 @@
+Fixed blank off-axis MTF curves for wide lenses focused close

@@ -1,0 +1,1 @@
+Corrected chromatic focus and lateral color for 256 lenses whose glasses have only an index and Abbe number

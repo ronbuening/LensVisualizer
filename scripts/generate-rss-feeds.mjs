@@ -2,13 +2,12 @@
  * Build-time RSS 2.0 feed generator.
  *
  * Reads the git-derived publication metadata, lightweight lens summaries, and
- * curated changelog, then writes deterministic feeds into dist/feeds/.
+ * compiled changelog (all from src/generated/), then writes deterministic feeds into dist/feeds/.
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
-import { CHANGELOG } from "../src/utils/content/changelogData.ts";
 import { changelogEntryId } from "../src/utils/content/changelogHelpers.ts";
 import { ARTICLE_FEED_PATH, CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../src/utils/content/feedMetadata.ts";
 import { comparePublicationEntries } from "./build-metadata-lib.mjs";
@@ -19,6 +18,7 @@ const DEFAULT_FEED_LIMIT = 50;
 const ROOT = join(import.meta.dirname, "..");
 const META_PATH = join(ROOT, "src", "generated", "build-metadata.json");
 const LENS_SUMMARIES_PATH = join(ROOT, "src", "generated", "lens-summaries.json");
+const CHANGELOG_PATH = join(ROOT, "src", "generated", "changelog.json");
 const DIST_DIR = join(ROOT, "dist");
 
 const FEED_DEFINITIONS = {
@@ -195,7 +195,7 @@ function buildArticleFeedItems(buildMeta, limit = DEFAULT_FEED_LIMIT) {
     .slice(0, boundedLimit);
 }
 
-function buildChangelogFeedItems(entries = CHANGELOG, limit = DEFAULT_FEED_LIMIT) {
+function buildChangelogFeedItems(entries, limit = DEFAULT_FEED_LIMIT) {
   const boundedLimit = normalizeLimit(limit);
   if (!Array.isArray(entries)) {
     throw new Error("Changelog RSS source must contain an array.");
@@ -278,7 +278,7 @@ function renderRssFeed({ title, description, feedUrl, homeUrl, items }) {
   ].join("\n");
 }
 
-function generateRssFeeds(buildMeta, lensSummaries, { limit = DEFAULT_FEED_LIMIT, changelogEntries = CHANGELOG } = {}) {
+function generateRssFeeds(buildMeta, lensSummaries, { limit = DEFAULT_FEED_LIMIT, changelogEntries } = {}) {
   const lensDefinition = FEED_DEFINITIONS.lenses;
   const articleDefinition = FEED_DEFINITIONS.articles;
   const changelogDefinition = FEED_DEFINITIONS.changelog;
@@ -311,14 +311,21 @@ function generateRssFeeds(buildMeta, lensSummaries, { limit = DEFAULT_FEED_LIMIT
   };
 }
 
-function writeRssFeeds({ distDir = DIST_DIR, metadataPath = META_PATH, lensSummariesPath = LENS_SUMMARIES_PATH } = {}) {
+function writeRssFeeds({
+  distDir = DIST_DIR,
+  metadataPath = META_PATH,
+  lensSummariesPath = LENS_SUMMARIES_PATH,
+  changelogPath = CHANGELOG_PATH,
+} = {}) {
   if (!existsSync(distDir)) throw new Error("dist/ directory not found. Run `vite build` first.");
   if (!existsSync(metadataPath)) throw new Error("build-metadata.json not found. Run generate:metadata first.");
   if (!existsSync(lensSummariesPath)) throw new Error("lens-summaries.json not found. Run generate:metadata first.");
+  if (!existsSync(changelogPath)) throw new Error("changelog.json not found. Run generate:metadata first.");
 
   const buildMeta = JSON.parse(readFileSync(metadataPath, "utf-8"));
   const lensSummaries = JSON.parse(readFileSync(lensSummariesPath, "utf-8"));
-  const feeds = generateRssFeeds(buildMeta, lensSummaries);
+  const changelogEntries = JSON.parse(readFileSync(changelogPath, "utf-8"));
+  const feeds = generateRssFeeds(buildMeta, lensSummaries, { changelogEntries });
   const feedsDir = join(distDir, "feeds");
   mkdirSync(feedsDir, { recursive: true });
   writeFileSync(join(feedsDir, basename(FEED_DEFINITIONS.lenses.feedPath)), feeds.lenses, "utf-8");
@@ -331,6 +338,7 @@ const isDirectExecution = process.argv[1] && import.meta.url === pathToFileURL(r
 if (isDirectExecution) writeRssFeeds();
 
 export {
+  CHANGELOG_PATH,
   DEFAULT_FEED_LIMIT,
   FEED_DEFINITIONS,
   SITE_URL,

@@ -1,0 +1,1 @@
+Enabled contained pinch-to-zoom in both patent relationship maps
