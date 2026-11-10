@@ -17,7 +17,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (S15/S16, S38/S39) the rims stop short of the crossing that FIG. 1 also draws. `gapSagFrac` 0.915: the D15 air
  * gap (4.440 mm) needs a 91.3 % sag allowance at the 11.93 mm G2 rim; edge clearance stays ≈0.39 mm.
  * Iris radius is derived from the design F-number 2.75 (constant over zoom), not a measured aperture or the T-stop.
- * Glass labels are exact catalog rows for the printed nd/νd; the patent names no glasses.
+ * Glass labels are exact catalog rows for the printed nd/νd; the patent names no glasses. The four 1.84667/23.79
+ * positions use HOYA FDS90 rather than the equal OHARA S-TIH53 row: with it the model's on-axis g-line focus sits
+ * nearer the FIG. 11 g-line curves at both zoom ends.
  * Source radii, nd/νd, printed axial intervals and rounding residuals are not retuned.
  */
 
@@ -65,6 +67,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
+      diagramLabel: "L11",
       label: "Element 1",
       type: "Meniscus Negative",
       nd: 1.48749,
@@ -76,17 +79,19 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
+      diagramLabel: "L12",
       label: "Element 2",
       type: "Meniscus Positive",
       nd: 1.84667,
       vd: 23.79,
-      glass: "S-TIH53 (OHARA)",
+      glass: "FDS90 (HOYA)",
       role: "Positive dense-flint meniscus of G1a, convex to the object.",
       focalLengthMm: 153.663585,
     },
     {
       id: 3,
       name: "L13",
+      diagramLabel: "L13",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.8515,
@@ -98,6 +103,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L14",
+      diagramLabel: "L14",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -111,11 +117,12 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L15",
+      diagramLabel: "L15",
       label: "Element 5",
       type: "Meniscus Negative",
       nd: 1.84667,
       vd: 23.79,
-      glass: "S-TIH53 (OHARA)",
+      glass: "FDS90 (HOYA)",
       role: "Negative dense-flint meniscus at the front of the fixed G1c cemented doublet.",
       focalLengthMm: -150.891536,
       cemented: "C1",
@@ -123,6 +130,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L16",
+      diagramLabel: "L16",
       label: "Element 6",
       type: "Plano-Convex Positive",
       nd: 1.43875,
@@ -137,6 +145,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L17",
+      diagramLabel: "L17",
       label: "Element 7",
       type: "Meniscus Positive",
       nd: 1.72916,
@@ -148,6 +157,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L21",
+      diagramLabel: "L21",
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.90043,
@@ -159,6 +169,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L22",
+      diagramLabel: "L22",
       label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.497,
@@ -172,11 +183,12 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L23",
+      diagramLabel: "L23",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.84667,
       vd: 23.79,
-      glass: "S-TIH53 (OHARA)",
+      glass: "FDS90 (HOYA)",
       role: "Positive dense-flint member of the G2 cemented doublet.",
       focalLengthMm: 35.54071,
       cemented: "C2",
@@ -184,6 +196,7 @@ const LENS_DATA = {
     {
       id: 11,
       name: "L24",
+      diagramLabel: "L24",
       label: "Element 11",
       type: "Biconcave Negative",
       nd: 1.8515,
@@ -196,6 +209,7 @@ const LENS_DATA = {
     {
       id: 12,
       name: "L31",
+      diagramLabel: "L31",
       label: "Element 12",
       type: "Biconvex Positive",
       nd: 1.90366,
@@ -207,6 +221,7 @@ const LENS_DATA = {
     {
       id: 13,
       name: "L32",
+      diagramLabel: "L32",
       label: "Element 13",
       type: "Biconvex Positive",
       nd: 1.603,
@@ -219,6 +234,7 @@ const LENS_DATA = {
     {
       id: 14,
       name: "L33",
+      diagramLabel: "L33",
       label: "Element 14",
       type: "Meniscus Negative",
       nd: 1.71736,
@@ -231,6 +247,7 @@ const LENS_DATA = {
     {
       id: 15,
       name: "L41",
+      diagramLabel: "L41",
       label: "Element 15",
       type: "Biconvex Positive",
       nd: 1.56883,
@@ -242,6 +259,7 @@ const LENS_DATA = {
     {
       id: 16,
       name: "L42",
+      diagramLabel: "L42",
       label: "Element 16",
       type: "Biconvex Positive",
       nd: 1.43875,
@@ -256,6 +274,7 @@ const LENS_DATA = {
     {
       id: 17,
       name: "L43",
+      diagramLabel: "L43",
       label: "Element 17",
       type: "Biconcave Negative",
       nd: 1.85025,
@@ -268,17 +287,19 @@ const LENS_DATA = {
     {
       id: 18,
       name: "L44",
+      diagramLabel: "L44",
       label: "Element 18",
       type: "Biconvex Positive",
       nd: 1.84667,
       vd: 23.79,
-      glass: "S-TIH53 (OHARA)",
+      glass: "FDS90 (HOYA)",
       role: "Biconvex dense-flint positive element in the middle of G4.",
       focalLengthMm: 39.062244,
     },
     {
       id: 19,
       name: "L45",
+      diagramLabel: "L45",
       label: "Element 19",
       type: "Biconvex Positive",
       nd: 1.603,
@@ -291,6 +312,7 @@ const LENS_DATA = {
     {
       id: 20,
       name: "L46",
+      diagramLabel: "L46",
       label: "Element 20",
       type: "Biconcave Negative",
       nd: 1.95375,
@@ -303,6 +325,7 @@ const LENS_DATA = {
     {
       id: 21,
       name: "L47",
+      diagramLabel: "L47",
       label: "Element 21",
       type: "Meniscus Positive",
       nd: 1.90366,
@@ -314,6 +337,7 @@ const LENS_DATA = {
     {
       id: 22,
       name: "L48",
+      diagramLabel: "L48",
       label: "Element 22",
       type: "Meniscus Negative",
       nd: 1.51633,
@@ -366,33 +390,33 @@ const LENS_DATA = {
       label: "7",
       R: 167.9109,
       d: 6.768,
-      sd: 27.0,
+      sd: 26.0,
       medium: 4,
     },
     {
       label: "8",
       R: -99.07974,
-      sd: 27.0,
+      sd: 26.0,
     },
     {
       label: "9",
       R: 73.95686,
       d: 2.2,
-      sd: 26.0,
+      sd: 26.7,
       medium: 5,
     },
     {
       label: "10",
       R: 46.20207,
       d: 9.433,
-      sd: 26.0,
+      sd: 26.7,
       medium: 6,
     },
     {
       label: "11",
       R: "flat",
       d: 0.2,
-      sd: 26.0,
+      sd: 26.7,
     },
     {
       label: "12",
@@ -492,14 +516,14 @@ const LENS_DATA = {
       label: "27",
       R: 42.08259,
       d: 5.227,
-      sd: 14.5,
+      sd: 15.2,
       medium: 15,
     },
     {
       label: "28",
       R: -421.05708,
       d: 0.393,
-      sd: 14.5,
+      sd: 15.2,
     },
     {
       label: "29",
@@ -993,9 +1017,9 @@ const LENS_DATA = {
     },
   ],
   groups: [
-    { text: "G1a (−)", fromSurface: "1", toSurface: "6" },
-    { text: "G1b (+)", fromSurface: "7", toSurface: "8" },
-    { text: "G1c (+)", fromSurface: "9", toSurface: "13" },
+    { text: "G1a", fromSurface: "1", toSurface: "6" },
+    { text: "G1b", fromSurface: "7", toSurface: "8" },
+    { text: "G1c", fromSurface: "9", toSurface: "13" },
     { text: "G2 (−)", fromSurface: "14", toSurface: "20" },
     { text: "G3 (+)", fromSurface: "21", toSurface: "25" },
     { text: "G4 (+)", fromSurface: "27", toSurface: "40" },

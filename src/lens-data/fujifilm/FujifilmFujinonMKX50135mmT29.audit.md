@@ -119,4 +119,57 @@ points). The L13 trim alone costs at most 2.4 points (6.5° at 81.4 mm) against 
 Maker diagram: not viewed in this pass; the deployment-validation section above records Fujifilm's 22 elements in
 17 groups with 2 ED + 2 Super ED matching L14/L22 and L16/L42.
 
-Open: the live page check is left to the coordinator.
+Open: the live page check is left to the coordinator (closed 2026-11-10 by the second review below).
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared: the live page (1400×900 at 1× and 2×: infinity, 1.2 m, 88.7 mm, tele, tele at 1.2 m, both movement
+overlays, inspector for L12 and L14) against Fig. 1 (PDF p. 2, 300 dpi raster read at 600 dpi, 12.1 px/mm, half-heights
+taken between the line centres above and below the axis), Fig. 11 (PDF p. 12) and Tables 1–3 (PDF p. 27).
+
+| Surfaces | Element | Before | After | Fig. 1 (this pass; SD pass) | Reason |
+| --- | --- | --- | --- | --- | --- |
+| S7–S8 | L14 | 27.0 | 26.0 | 25.95; 26.0 | rendered 1 mm above L13 and C1; drawn level with L13 and 0.75 mm below C1 |
+| S9–S11 | L15/L16 (C1) | 26.0 | 26.7 | 26.7; 26.65/26.7 | restores the drawn step of C1 above L13 and L14 |
+| S27–S28 | L41 | 14.5 | 15.2 | 15.25; 15.1/15.4 | rendered level with C4 and 0.7 mm below C3; drawn level with C3, 0.85 mm above C4 |
+
+Lands and cuts: L14 is a new cut against the 27.0 baseline; the L13 cut (28.0 → 26.0) stays; no lands. Full-pupil
+rimcost against the baseline rims: worst loss 0.0 points at every one of the 35 nodes and at the zoom eighths (the lens
+gains everywhere, up to 12.9 points). Against the rims before this review the L14 cut costs at most 1.6 points (5.5° at
+96.3 mm); restoring L14 to 27.0 wins back 1.7 points (4.7° at 112.5 mm), restoring L13 now wins nothing. Corner light at
+the traced field edge: wide 53.3 → 53.3 %, tele 48.0 → 47.1 %. Near state traced with a real object point (1.2 m object
+to image, meridional fan, 14.55 mm corner, engine stop): wide 56.3 → 56.3 %, 88.7 mm 49.0 → 49.0 %, tele 65.7 → 64.7 %
+(baseline 55.0, 42.3, 64.3 %); the on-axis 1.2 m beam clears every rim at all three. Validator OK; aperture audit: 35
+stations within 3 % of F/2.75, no rim, trace or iris limit; image circle 0 undersized; field coverage 35 of 35 at
+≥ 99 %; engine half-field 16.4548° wide and 8.0078° tele, F/2.75 and stop radius 13.9408 mm unchanged.
+
+Kept: L12 at 28.0 (Fig. 1 reads 27.0 here and 27.3 in the SD pass, a spread wider than the 0.15 mm a step-order
+change needs). S15/S16 and S38/S39: Fig. 1 draws L21/L22 and L47/L48 meeting under a common top line (about 13.5 and
+13.0 mm), but the printed curvatures cross at 12.45 and about 12.3 mm, so the faces stay just short of the crossing
+with `gapSagFrac` 0.915; the figure draws no land there and none is added.
+
+Labels: `diagramLabel` L11–L48 added (Fig. 1's designations; the diagram showed 1–22). Group text "G1a (−)", "G1b (+)",
+"G1c (+)" → "G1a", "G1b", "G1c": on the page "G1a (−)" and "G1b (+)" ran together; "G2 (−)", "G3 (+)", "G4 (+)" kept.
+Brackets G1a 1–6, G1b 7–8, G1c 9–13, G2 14–20, G3 21–25, G4 27–40 and C1–C5 (9–11, 18–20, 23–25, 29–31, 34–36) match
+Fig. 1 and Table 1. All 22 `type` strings agree with the signs of R; the stop sits between L33 and L41; no aspheres.
+`apd: "inferred"` on L14/L22 (1.49700/81.54) and L16/L42 (1.43875/94.66): the patent names no special glass, and these
+are the only νd > 80 positions, matching Fujifilm's 2 ED + 2 Super ED; the inspector shows "APD (INFERRED)" for L14.
+Assignee "Fujifilm Corporation" matches the front page and the corpus spelling.
+
+Movement: stations ascend 51.501 → 134.933 mm and every gap lists them in that order; the printed ends match Table 3
+(D13 14.039 → 44.630, D20 22.245 → 1.243, D25 13.006 → 3.417). G1 and G4 stay fixed; G2 moves toward the image by
+30.59 mm, monotonic; G3 moves toward the image by 11.79 mm to about 101.6 mm (D25 minimum 1.219) and returns 2.20 mm by
+the tele end, as Fig. 1's straight G2 arrow and curved G3 arrow show. Focus keyframe 0 is infinity and keyframe 1 is
+1.2 m (object to image 1200.3 mm); only L14 moves, toward the image by 9.186 mm (wide) and 9.188 mm (tele), with
+D6 + D8 = 12.344 mm; the slider's far end reads 1.20 m.
+
+Glass and colour: all 22 labels resolve to exact rows. Fig. 11 spherical-aberration curve bases read at 1200 dpi
+(1.40 px/µm, about ±4 µm), relative to d: wide C +21, F +9, g +50 µm; tele C +20, g about −10 µm. Model before: wide
+C +21.7, F +10.7, g +31.4; tele C +21.1, F −2.5, g −41.0. L12, L15, L23, L44 relabelled S-TIH53 (OHARA) → FDS90
+(HOYA) (Δnd −1e-5, Δνd −0.01 against the printed pair, both rows): wide F +12.6, g +43.3; tele F +0.1, g −23.9.
+Every other exact tie moves g by 4 µm or less (Hikari J-PSK03 for S-PHM53: +4 µm at both ends, inside the reading
+error, not applied); PBH1 for S-TIH1 moves g 20 µm the wrong way. No nd-only medium; the patent prints no partial
+dispersions.
+
+Open: the tele g-line focus still sits about 14 µm in front of the Fig. 11 reading after the FDS90 relabel.
+Open: L12 renders level with L11 where Fig. 1 draws it about 1 mm lower (two readings 0.3 mm apart).

@@ -37,7 +37,7 @@ Negative front meniscus of G1a, convex to the object. Its light, low-dispersion 
 
 ### L12: Meniscus Positive
 
-nd = 1.84667, νd = 23.79. Glass: S-TIH53 (OHARA). f = +153.7 mm.
+nd = 1.84667, νd = 23.79. Glass: FDS90 (HOYA). f = +153.7 mm.
 
 Positive dense-flint meniscus of G1a, convex to the object; it offsets the colour of the two negative G1a elements.
 
@@ -55,7 +55,7 @@ The whole G1b subgroup and the focusing lens. One of the two ED positions Fujifi
 
 ### L15: Meniscus Negative
 
-nd = 1.84667, νd = 23.79. Glass: S-TIH53 (OHARA). f = −150.9 mm.
+nd = 1.84667, νd = 23.79. Glass: FDS90 (HOYA). f = −150.9 mm.
 
 Negative dense-flint meniscus at the front of the G1c cemented doublet.
 
@@ -85,7 +85,7 @@ Second negative element of G2 and the other ED position; it limits the change of
 
 ### L23: Biconvex Positive
 
-nd = 1.84667, νd = 23.79. Glass: S-TIH53 (OHARA). f = +35.5 mm.
+nd = 1.84667, νd = 23.79. Glass: FDS90 (HOYA). f = +35.5 mm.
 
 Equi-convex dense-flint member of the G2 cemented doublet.
 
@@ -133,7 +133,7 @@ Negative flint member of the first G4 doublet.
 
 ### L44: Biconvex Positive
 
-nd = 1.84667, νd = 23.79. Glass: S-TIH53 (OHARA). f = +39.1 mm.
+nd = 1.84667, νd = 23.79. Glass: FDS90 (HOYA). f = +39.1 mm.
 
 Biconvex dense-flint singlet in the middle of G4.
 
@@ -163,7 +163,7 @@ Negative rear meniscus, concave to the object, the last lens before the camera-s
 
 ## Glass Identification
 
-The patent prints d-line indices and Abbe numbers only, with no glass names or partial dispersions. Every pair matches a current catalog row at the printed precision. The labels use OHARA rows, except TAFD37 and BAC4 (HOYA), which have no exact OHARA counterpart, and TAFD25 (HOYA), the closer of two exact rows for 1.90366/31.31. Where OHARA and another maker tie exactly (S-TIH53 and HOYA FDS90, S-LAH98 and HOYA TAFD45, S-PHM53 and Hikari J-PSK03), the OHARA row is used; the actual suppliers are not known. Fujifilm lists two Super ED and two ED elements. The νd 94.66 positions (L16, L42) fit S-FPL55-type glass and the νd 81.54 positions (L14, L22) S-FPL51-type ED glass; these four are tagged as inferred anomalous-dispersion elements. The model takes every element's C, F and g indices from the labelled catalog rows, not from measured melts.
+The patent prints d-line indices and Abbe numbers only, with no glass names or partial dispersions. Every pair matches a current catalog row at the printed precision. The labels use OHARA rows, except TAFD37 and BAC4 (HOYA), which have no exact OHARA counterpart, TAFD25 (HOYA), the closer of two exact rows for 1.90366/31.31, and FDS90 (HOYA) for the four 1.84667/23.79 dense flints (L12, L15, L23, L44). OHARA S-TIH53 matches those four equally in nd and νd, but its higher g-line partial dispersion puts the model's paraxial g-line focus about 31 µm behind the d-line focus at the wide end and 41 µm in front of it at the tele end; with FDS90 these become about +43 and −24 µm, nearer the g-line curves of Fig. 11 (roughly +50 and −10 µm). Where OHARA and another maker otherwise tie exactly (S-LAH98 and HOYA TAFD45, S-PHM53 and Hikari J-PSK03), the OHARA row is used; the actual suppliers are not known. Fujifilm lists two Super ED and two ED elements. The νd 94.66 positions (L16, L42) fit S-FPL55-type glass and the νd 81.54 positions (L14, L22) S-FPL51-type ED glass; these four are tagged as inferred anomalous-dispersion elements. The model takes every element's C, F and g indices from the labelled catalog rows, not from measured melts.
 
 ## Focus Mechanism
 
@@ -176,7 +176,7 @@ These spacings are a reconstruction, not a published cam. The 0.85 m wide-end ma
 
 ## Aperture and Rim Inference
 
-The patent places the stop on the axis and states that the drawn stop does not indicate its size or shape. The model sizes the iris from the design F-number 2.75 at every zoom position; the printed tele value, F/2.754, differs by 0.15 %. Clear semi-diameters are measured from the element outlines of Fig. 1 (wide end) and checked against the full-aperture axial beam and the corner chief ray at every zoom station and at close focus; they are not factory dimensions. Fig. 1 draws the facing surfaces of L21 and L22, and of L47 and L48, meeting at the rim; those four faces stop just short of where the printed curvatures would cross. The rear face of L21 and the front face of L22 (about 11.9 mm, just outside the tele axial beam) use 91.3 % of their 4.440 mm air gap (about 0.39 mm edge clearance remains), so the drawing allowance for rim sag in a gap is raised from the default 90 % to 91.5 %. These two faces set most of the light fall-off near the axis at the long end. Wide open at infinity, geometric transmission at the edge of the traced field is about 53 % at the wide end and 48 % at the tele end. Nine blades follow Fujifilm's specification.
+The patent places the stop on the axis and states that the drawn stop does not indicate its size or shape. The model sizes the iris from the design F-number 2.75 at every zoom position; the printed tele value, F/2.754, differs by 0.15 %. Clear semi-diameters are measured from the element outlines of Fig. 1 (wide end) and checked against the full-aperture axial beam and the corner chief ray at every zoom station and at close focus; they are not factory dimensions. Fig. 1 draws the facing surfaces of L21 and L22, and of L47 and L48, meeting at the rim; those four faces stop just short of where the printed curvatures would cross. The rear face of L21 and the front face of L22 (about 11.9 mm, just outside the tele axial beam) use 91.3 % of their 4.440 mm air gap (about 0.39 mm edge clearance remains), so the drawing allowance for rim sag in a gap is raised from the default 90 % to 91.5 %. These two faces set most of the light fall-off near the axis at the long end. Wide open at infinity, geometric transmission at the edge of the traced field is about 53 % at the wide end and 47 % at the tele end. Nine blades follow Fujifilm's specification.
 
 ## Model Scope and Limitations
 
