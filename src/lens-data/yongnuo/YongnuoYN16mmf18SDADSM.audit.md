@@ -106,3 +106,8 @@ viewed in this pass.
 Open: the engine's tracingHalfField (35.98°) is set by its approximate chief ray meeting S4's 10 mm rim; an exact
 stop-centred trace puts the 41.5° chief ray at 9.09 mm on S4, so the rim is not the cause and stays. Figure 1 draws the
 filter plate GL smaller than the traced plate, which is not drawn on the site.
+
+## 2026-11-10 — Glass label
+
+L7 relabelled from Unmatched to ADF455 (HOYA, discontinued): HOYA's obsolete-glass catalog prints 1.718520 / 33.456548
+against the patent's 1.71852 / 33.45655 (Δnd 0, Δνd 0.000). The row was added to the glass catalog for this lens.

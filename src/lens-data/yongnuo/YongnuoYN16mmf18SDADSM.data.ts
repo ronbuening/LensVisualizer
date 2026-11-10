@@ -134,7 +134,7 @@ const LENS_DATA = {
       vd: 33.45655,
       indexReference: "d",
       focalLengthMm: -16.994349013154025,
-      glass: "Unmatched (patent nd 1.71852 / νd 33.46; no exact catalog row)",
+      glass: "ADF455 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative element of the doublet behind the stop.",
       cemented: "C2",
     },

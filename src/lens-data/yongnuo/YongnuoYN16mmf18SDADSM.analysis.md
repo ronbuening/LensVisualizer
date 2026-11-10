@@ -57,7 +57,7 @@ High-index front half of C2, just behind the stop.
 
 ### L7: Biconcave Negative
 
-nd = 1.71852, νd = 33.45655. Glass: Unmatched (patent nd 1.71852 / νd 33.46). f = −17.0 mm.
+nd = 1.71852, νd = 33.45655. Glass: ADF455 (HOYA) catalog equivalent. f = −17.0 mm.
 
 Rear half of C2. The pair is weakly positive (f ≈ +103 mm) and closes GR1.
 
@@ -81,7 +81,7 @@ Last element. Its rear vertex sits 17.56 mm from the image including the 2 mm pl
 
 ## Glass Identification and Selection
 
-The patent prints d-line nd/νd only, with no glass names. Five glasses match catalog rows within 1 × 10⁻⁴ in nd and 0.15 in νd: M-LAF81 (L1) and TAFD35 (L6) reproduce the printed values to the last digit, and TAC8P (L2), H-FK61 (L3) and S-TIH14 (L9) lie within 0.04 in νd. L4, L5, L7, L8 and L10 have no exact row and keep the patent values. The plate keeps nd 1.516330 and νd 64.15015.
+The patent prints d-line nd/νd only, with no glass names. Six glasses match catalog rows within 1 × 10⁻⁴ in nd and 0.15 in νd: M-LAF81 (L1), TAFD35 (L6) and HOYA's discontinued ADF455 (L7) reproduce the printed values to the last digit, and TAC8P (L2), H-FK61 (L3) and S-TIH14 (L9) lie within 0.04 in νd. L4, L5, L8 and L10 have no exact row and keep the patent values. The plate keeps nd 1.516330 and νd 64.15015.
 
 Yongnuo's catalog legend marks low-dispersion, extra-low-dispersion, high-index and aspherical elements. L3 (νd 81.6) and L5 (νd 90.7) are the only low-dispersion glasses in the prescription, both in the front group that the patent makes responsible for lateral colour (¶0052); L4 and L6 (nd 1.90 and 1.91) are the high-index elements.
 
@@ -106,7 +106,7 @@ The model is the Table 1 infinity state at the patent's scale: EFL 16.351 mm aga
 
 The patent prints no clear apertures, so all semi-diameters are inferred from Figure 1, which is drawn close to scale. S7 (9.11 mm) and S9 (9.19 mm) are just large enough to pass the full axial bundle at the model's f/1.78 stop, which is set from the paraxial entrance pupil; Figure 1 draws that doublet at about 9.3 mm. Off axis the lens vignettes strongly: about 89% of the axial bundle reaches 20.75° and about 30% reaches the 41.5° field edge. The 41.5° chief ray lands at 13.87 mm (−4.1% distortion), about 98% of the 14.18 mm APS-C half-diagonal the site uses.
 
-L4, L5, L7, L8 and L10 carry only the patent's nd/νd. L5's partial dispersion, the one that matters most for colour correction, is unknown.
+L4, L5, L8 and L10 carry only the patent's nd/νd. L5's partial dispersion, the one that matters most for colour correction, is unknown.
 
 ## Sources
 
