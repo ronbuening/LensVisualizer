@@ -58,7 +58,7 @@ inventor in source order and use the same normalized personal and legal-entity n
 For a non-patent prescription, use `**Source:**`, `**Manufacturer:**` (or a supported designer/author), and
 `**Source dated:**` instead of inventing patent parties or publication events. Identify any proposed patent
 association separately as unverified. The data file omits the entire patent metadata tuple, as specified in
-`LENS_DATA_SPEC.md`.
+`LENS_DATA_SPEC.md`; when it records the document's `source.issuer`, the `**Manufacturer:**` row names that entity.
 
 A reader who knows the lens but not the patent should be able to verify the identification from this section alone.
 

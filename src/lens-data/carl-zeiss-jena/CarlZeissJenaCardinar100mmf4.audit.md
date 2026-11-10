@@ -134,3 +134,11 @@ With the current rows, including BACD13 on L2, the paraxial A' focus sits +0.291
 ### Exit pupil
 
 A real f/4 axial ray leaves S9 at 4.815 mm and crosses the axis 38.24 mm behind it. That beam measures Ø12.33 mm at the model's 8° pupil plane, 10.65 mm ahead of S9, and Ø12.34 mm at the printed 10.7. Against the printed 12.37 mm that is 0.2 to 0.3 %, where the paraxial 12.21 mm misses by 1.3 %.
+
+## 2026-11-10 — Source issuer
+
+- `source.issuer: "VEB Carl Zeiss Jena"` records who issued the factory sheet. Carl Zeiss Jena was the state-owned
+  VEB Carl Zeiss Jena from 1948, so the 1958 sheet is that entity's document. The catalog already uses this name for
+  the works' patents.
+- Effect: the universal relationship map groups the model under VEB Carl Zeiss Jena instead of a separate
+  "Carl Zeiss Jena" catalog-maker hub. `maker` stays "Carl Zeiss Jena" for the maker page. No patent metadata is added.

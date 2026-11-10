@@ -99,3 +99,9 @@ The largest sampled relative difference between a positive Gaussian object-to-im
 
 The S3 land stays and S3 stays at 6.81 mm. Opening it would pass 3.2 more points of light, but that radius is half the patent's
 printed effective-ray diameter. The printed aperture sets the loss, and the land outside it adds none. The S7 land costs nothing.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2.8` from US 8,970,966 B2 PDF p. 13, col. 13, lines 60–65, the Numerical Example 2
+  "various data" table: "Fno 2.80" beside focal length 39.00. The stop's `nominalFNumber` 2.8 matches it. No optical
+  value changed.

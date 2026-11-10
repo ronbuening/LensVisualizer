@@ -59,7 +59,7 @@ const LENS_DATA = {
     groupCount: 8, // 7 optical groups + 1 filter group (filter excluded from prescription)
     /* ── Explicit metadata ── */
     focalLengthMm: { marketing: 16, design: 16.0 },
-    fNumber: { marketing: 3.5 },
+    fNumber: { marketing: 3.5, design: 3.5 },
     closeFocusM: { marketing: 0.2 },
   },
 

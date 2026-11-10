@@ -15,3 +15,8 @@ Patent: JP 2003-270529 A, Example 1 / Table 1 / Figure 1.
 - Baseline 23 mm front caps clip the stated F4 beam by 6.5%. The beam diagnostic requires S1/S2 ≥24.5, S3/S4 ≥23.1 and S6 ≥20.1 mm. Figure 1's native first-to-last vertex span is about 334 pixels over the literal 69.98 mm track, giving 4.77 px/mm. Front-body half-heights around 129/121/111 pixels imply about 27.0/25.3/23.3 mm, with roughly 0.3–0.5 mm drawing uncertainty. Adopt conservative continuous paired caps S1/S2 =25, S3/S4 =24 and S5/S6 =23 mm, preserving all literal sphere and gap constraints. These source-model dimensions cannot be certified as clearance through the retail lens's 49 mm filter.
 - Other heights remain. Short compound-end steps lack reliable native endpoint evidence for numeric cuts; no opaque internal land or resin wing is added. Canonical surface and full inferred-cut checks pass. Nine actual focus/zoom SVG views were inspected: connected compounds, finite paths and zero hidden trim. Native F4 is now iris-limited; image-circle finds zero undersized surfaces and the centered format chief clears.
 - Matched 16-point stop-lattice samples retain 6,720 transmitted rays, lose 0 and gain 1,020. These are finite sample counts, not flux or a continuum guarantee. All R/d, nd/νd, references, stop, focus, aperture and tolerances are invariant. Source/retail correlation, inferred rims/iris/focus and historical spectrum remain qualified.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 4: JP 2003-270529 A ¶0012 (PDF p. 3, left column), the Example 1 specification
+  "f = 197mm, F_no = 4, ω = 6.2°". The stop's `nominalFNumber` 4 matches it.

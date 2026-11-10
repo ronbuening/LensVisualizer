@@ -61,3 +61,9 @@ Independent trace: EFL 65.015871503 versus printed 65.02 mm, air BFL 22.13937352
 **Cause/action:** source image-plane inconsistency; retain all prescription/plate values, document the residual. Offset **+0.232471 → +0.232471 mm**; Section E row deleted. No changelog entry because numerical behavior is unchanged.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2.8` from US 2020/0319427 A1 FIG. 3 (Sheet 2 of 40, PDF p. 3), INFINITY column:
+  "F No. 2.80"; ¶[0104] (p. 8) repeats "an F number of 2.80" for Example 1. The stop's `nominalFNumber` 2.8 matches
+  it. No optical value changed.

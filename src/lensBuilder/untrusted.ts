@@ -308,6 +308,7 @@ const schema = object(
       authors: array(text, 40),
       assignees: array(text, 40),
       errata: array(erratum, 250),
+      issuer: text,
     }),
     elements: array(element, 100),
     media: array(object({ id: text, name: string("name"), nd: number }, ["id", "nd"]), 20),

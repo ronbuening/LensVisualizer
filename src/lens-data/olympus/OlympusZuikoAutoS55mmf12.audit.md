@@ -38,3 +38,7 @@ Patent: US 3,743,387
 - Visually rechecked local `patents/US3743387.pdf`; the third element remains `1.7618 / 27.1`, code 762271.
 - OHARA's 2026-07-01 discontinued catalog row PBH25 is `1.761797 / 27.107724` and carries the same 762271 code.
 - Relabeled L3 as a PBH25 catalog equivalent while leaving Olympus's production supplier unspecified. No geometry changed.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 1.2: `patents/US3743387.pdf` PDF p4, col. 3, lines 12–15, "the relative aperture F is 1:1.2" for the sole example (f = 1). Stop `nominalFNumber` 1.2 is not faster.

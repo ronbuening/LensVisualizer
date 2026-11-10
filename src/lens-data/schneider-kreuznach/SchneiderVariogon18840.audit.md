@@ -55,3 +55,9 @@ Small-offset best-focus check: reference-index axial geometric MTF (32 grid, 812
 **Cause/action:** source first-order/image-distance discrepancy with uncertain rounding/design origin; retain printed BF. Offset **+0.062519 → +0.062519 mm**; Section E row deleted, no numerical change/changelog.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 1.8: US 3,442,573, PDF p. 4, col. 3, ll. 19–25: Table I is given "for a system of
+  relative aperture 1:1.8 ... with an overall focal length ranging from f_min = 8 to f_max = 40". One aperture for the
+  whole range, so the constant-aperture scalar applies. The stop's `nominalFNumber` 1.8 matches it.

@@ -628,7 +628,8 @@ describe("build metadata helpers", () => {
 
   it("exempts only the generated per-folder documentation", () => {
     expect(isGeneratedContentDoc("readme.md")).toBe(true);
-    expect(isGeneratedContentDoc("pupils/improvementsuggestions.md")).toBe(true);
+    expect(isGeneratedContentDoc("pupils/readme.md")).toBe(true);
+    expect(isGeneratedContentDoc("pupils/improvementsuggestions.md")).toBe(false);
     expect(isGeneratedContentDoc("pupils/entrance-pupil.md")).toBe(false);
   });
 

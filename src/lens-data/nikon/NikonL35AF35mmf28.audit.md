@@ -105,3 +105,7 @@ patent's general optical-path figure, but its vertex spacings reproduce the Embo
 - The viewer's 30.1° paraxial half-field is about 1° short of the patent's 31.15°. A rectilinear `projection`
   override is reserved for ultrawides and was not used.
 - L2/L4 nd 1.77279 has no exact catalog row; the S-LAH66 dispersion is an approximation (Δnd 2.9 × 10⁻⁴).
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2.8: `patents/US4457596.pdf` PDF p8, col. 4, line ~45, Embodiment 1 header "f = 100  F 2.8  2ω = 62.3°". Stop `nominalFNumber` 2.8 is not faster.
