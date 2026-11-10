@@ -1,37 +1,51 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** QUALIFIED SOURCE MODEL: inferred mechanics and bounded MTF documented.
- * Whole GB main Table I, all lengths multiplied by exactly 35 (not EFL normalized).
- * Stop is an explicit midpoint hypothesis within unchanged d8; caps are inferred.
- * Source F/1.8 and 62 degrees are not retuned to retail F/2 and 63 degrees.
- * Source image plane preserved. No dispersion identity, factory accuracy or finite-focus claim.
+/**
+ * CARL ZEISS CONTAREX DISTAGON 35mm f/2 — GB 1,066,527 A, Table I (Carl-Zeiss-Stiftung; Erhard Glatzel, named as
+ * inventor on the DE 1,447,288 family member). Nine elements in eight groups, all spherical.
+ *
+ * Scaling: Table I is printed at f = 1. Every radius, thickness and the back focus are multiplied by exactly 35; the
+ * paraxial EFL at this scale is 35.001 mm. Nothing is refitted to the marketed lens.
+ * Aperture and field: the patent states 1:1.8 and ±31°; the lens was sold as f/2 with a 63° field. The model keeps
+ * the patent's f/1.8 (catalog.fNumber.marketing carries f/2).
+ * Image plane: at the printed back focus s' = 1.0569f (36.9915 mm); the paraxial back focus is 36.994 mm.
+ * Stop: Fig. 1 draws the iris in the air space d8 but no position is printed; it sits at the midpoint of d8, and the
+ * two halves sum to the printed d8.
+ * Semi-diameters are not printed. They are set to clear the axial and off-axis beams (surface 9 just clears the
+ * iris-limited axial beam) and do not reproduce Fig. 1; L5 is drawn smaller than in the figure.
+ * Glass: nd and νd are printed d-line values; each pair matches a Schott catalog glass (SK14, SK16, LaK9, LF5, SF4).
+ * Source inconsistency: the claims repeat Table I with r2 = 0.06827f; the main table's 0.6827f is used (source.errata).
+ * This is the patented design, not a factory prescription: Marco Cavina reports a thicker L3 in production.
+ * Focus: infinity prescription only.
  */
 const LENS_DATA = {
   schema: 2,
   key: "carl-zeiss-contarex-distagon-35f2",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS CONTAREX DISTAGON 35mm f/2",
-  subtitle: "GB 1,066,527 A TABLE I — QUALIFIED F/1.8 SOURCE DESIGN",
+  subtitle: "GB 1,066,527 A, Table I — strong production correlation; patented at f/1.8",
   visible: true,
   catalog: {
     lensMounts: ["zeiss-contarex"],
     imageFormat: "135-full-frame",
     specs: [
       "9 ELEMENTS / 8 GROUPS",
-      "35× NORMALIZED SOURCE",
-      "SOURCE F/1.8; RETAIL F/2",
-      "SOURCE FULL FIELD 62°",
+      "DESIGN f = 35.00 mm",
+      "DESIGN F/1.8",
       "ALL SPHERICAL",
     ],
     elementCount: 9,
     groupCount: 8,
     focalLengthMm: {
       marketing: 35,
-      design: 35.00106523898182,
+      design: 35,
     },
     fNumber: {
       marketing: 2,
       design: 1.8,
+    },
+    closeFocusM: {
+      marketing: 0.23,
     },
   },
   source: {
@@ -46,7 +60,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "GB main Table I R2=+0.6827f controls the entire transcription. Repeated claim Table I prints +0.06827f; the DE main table supports +0.6827f. No mixing of tables or optical retuning.",
+        note: "The claims repeat Table I with r2 = 0.06827f; the main table prints 0.6827f, which this file uses. Both tables' Δn/r entry for r2 (−0.88338/f), the printed back focus and the DE 1,447,288 family member agree with 0.6827f; 0.06827f would give f = 0.37.",
       },
     ],
   },
@@ -59,7 +73,8 @@ const LENS_DATA = {
       nd: 1.60311,
       vd: 60.68,
       indexReference: "d",
-      glass: "Unmatched (patent nd/vd; catalog identity unverified)",
+      glass: "SK14 (Schott; now N-SK14)",
+      role: "Outer negative meniscus of the front portion",
     },
     {
       id: 2,
@@ -69,7 +84,8 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.29,
       indexReference: "d",
-      glass: "Unmatched (patent nd/vd; catalog identity unverified)",
+      glass: "SK16 (Schott; now N-SK16)",
+      role: "Inner negative meniscus of the front portion",
     },
     {
       id: 3,
@@ -79,7 +95,8 @@ const LENS_DATA = {
       nd: 1.691,
       vd: 54.8,
       indexReference: "d",
-      glass: "Unmatched (patent nd/vd; catalog identity unverified)",
+      glass: "LaK9 (Schott; now N-LAK9)",
+      role: "Thick positive collector; first element of the main portion",
     },
     {
       id: 4,
@@ -89,7 +106,8 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.29,
       indexReference: "d",
-      glass: "Unmatched (patent nd/vd; catalog identity unverified)",
+      glass: "SK16 (Schott; now N-SK16)",
+      role: "Weak positive meniscus ahead of the iris; corrects lateral spherical aberration and coma",
     },
     {
       id: 5,
@@ -99,7 +117,8 @@ const LENS_DATA = {
       nd: 1.58144,
       vd: 40.8,
       indexReference: "d",
-      glass: "Unmatched (patent nd/vd; catalog identity unverified)",
+      glass: "LF5 (Schott)",
+      role: "Strongest negative element in the lens, just behind the iris",
     },
     {
       id: 6,
@@ -109,8 +128,9 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.53,
       indexReference: "d",
-      glass: "Unmatched (patent nd/vd; catalog identity unverified)",
-      cemented: "D1",
+      glass: "SF4 (Schott)",
+      role: "Negative flint of the cemented meniscus component",
+      cemented: "C1",
     },
     {
       id: 7,
@@ -120,8 +140,9 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.29,
       indexReference: "d",
-      glass: "Unmatched (patent nd/vd; catalog identity unverified)",
-      cemented: "D1",
+      glass: "SK16 (Schott; now N-SK16)",
+      role: "Positive crown of the cemented meniscus component",
+      cemented: "C1",
     },
     {
       id: 8,
@@ -131,7 +152,8 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.29,
       indexReference: "d",
-      glass: "Unmatched (patent nd/vd; catalog identity unverified)",
+      glass: "SK16 (Schott; now N-SK16)",
+      role: "Rear positive element, nearly plano-convex",
     },
     {
       id: 9,
@@ -141,7 +163,8 @@ const LENS_DATA = {
       nd: 1.62041,
       vd: 60.29,
       indexReference: "d",
-      glass: "Unmatched (patent nd/vd; catalog identity unverified)",
+      glass: "SK16 (Schott; now N-SK16)",
+      role: "Last positive element ahead of the long back focus",
     },
   ],
   surfaces: [
@@ -263,9 +286,9 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000,
+    closeFocusM: 1e15,
     description:
-      "Infinity prescription only. No variable gaps or finite-focus law. The required 1000 m control bound is a software placeholder, not a published close-focus distance.",
+      "Infinity focus only. The patent prints only the infinity prescription, so focus travel is not modeled. Zeiss Ikon gives a closest focus of 9 in (0.23 m) from the film plane.",
   },
   gaps: {},
   aperture: {
@@ -274,7 +297,7 @@ const LENS_DATA = {
   },
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "11",
       toSurface: "13",
     },

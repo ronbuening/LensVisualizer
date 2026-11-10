@@ -1,86 +1,84 @@
 ## Patent Reference and Design Identification
 
 **Patent:** GB 1,066,527 A
-**Filed:** 29 May 1964
+**Title:** Photographic Wide-Angle and Semi-Wide-Angle Objective of extremely High Light-Gathering Power
+**Filed:** 29 May 1964 (priority: German application Z 10151, 31 May 1963)
 **Published:** 26 April 1967
-**Inventor:** Erhard Glatzel, identified by the linked German priority counterpart DE 1,447,288; the GB bibliographic inventor field is empty.
+**Inventor:** Erhard Glatzel (named on the German family member DE 1,447,288; the GB specification names no inventor)
 **Applicant:** Carl-Zeiss-Stiftung, trading as Carl Zeiss
-**Example details:** Whole main Table I, PDF page 2, using exactly 35× length scaling.
+**Example details:** Table I (printed page 2) and Fig. 1; printed at f = 1 and scaled ×35
 
-This qualified research model preserves a recovered primary prescription. It is a probable historical Contarex Distagon 35mm f/2 association, not a factory prescription or exact production-version identification. The original maker booklet's named Contarex section shows the corresponding nine-element/eight-group architecture: two negative front menisci, a thick positive element, a thin meniscus, and the rear cemented pair. Other patent examples differ. The brochure is undated; no production year is inferred from it.
+The patent gives six examples. Table I is the f/1.8, ±31° nine-element version. Its identification with the Contarex Distagon 35mm f/2 rests on four points:
 
-The source is natively f/1.8 with ±31° field. The retail lens is f/2 with 63° full field. Exactly 35× scaling gives a computed paraxial focal length of 35.001065 mm, not exactly 35 mm. No radii, material indices, total gaps, or source image plane were retuned to retail specifications. R5 = +1.0845f is directly legible. Main Table I prints R2 = +0.6827f, whereas the repeated claim table prints +0.06827f. This model consistently transcribes the complete main table; it does not combine selected rows from conflicting copies.
+1. Construction: nine elements in eight groups, with two negative front menisci, a thick positive element, a thin positive meniscus, the iris, a biconcave negative element, a cemented meniscus pair and two positive singlets. The section drawing in Zeiss Ikon's (undated) Contarex booklet shows the same arrangement, and Marco Cavina gives nine elements in eight groups. Pacific Rim Camera's table lists ten elements in nine groups.
+2. Designer and timing: Cavina attributes the lens to Glatzel and dates his German filing to 31 May 1963, the priority date of this patent; the lens was marketed from 1965.
+3. Aperture and field: Cavina reports that the computed f/1.8 was rounded to f/2 for sale; the marketed 63° field is close to the patent's ±31°.
+4. Glass: L3 is the LaK9 lanthanum crown that Cavina names for the production lens.
+
+The other examples fit less well: Tables II and III are f/1.9 and f/2 versions with different glass arrangements, Tables IV and V have eight elements, and Table VI is an f/1.4 design for ±28°. Cavina also notes that production used a thicker L3, with the two following elements shifted, so the model is the patented design rather than the factory prescription.
+
+Every length is multiplied by exactly 35, which gives a paraxial focal length of 35.001 mm; nothing is refitted to the marketed f/2. The claims (page 8) repeat Table I but print r2 = 0.06827f. The main table's 0.6827f is used: the Δn/r column of both tables (−0.88338/f) and the printed back focus agree with it, and 0.06827f would give a focal length of 0.37f.
 
 ## Optical Architecture
 
-Nine elements in eight air-separated groups form an all-spherical retrofocus design. The separated front negative menisci provide wide-angle ray expansion and increased rear clearance. Positive power is distributed through the thick third element and rear assembly. L6 and L7 share the only cemented interface. The normalized paraxial back focal distance is 1.056978935f, close to the printed 1.0569f.
+Nine elements in eight air-separated groups form an all-spherical retrofocus design. The patent divides it into a front portion of negative menisci, concave toward the image, and a positive main portion at least 0.1f behind it (d4 = 0.3698f here). In the main portion a two-element positive group (L3, L4) precedes the element of highest negative power (L5), which is followed by three positive components: the cemented L6–L7 meniscus, L8 and L9. The separated negative front portion yields the printed back focus of 1.0569f (paraxially 1.0570f); the patent asks for at least 0.8f so the lens suits single-lens reflex cameras. L6 and L7 share the only cemented interface.
+
+Table I meets each design rule the specification states: L3 is 0.2475f thick (preferred range 0.2f–0.8f, for a flatter sagittal field); L4 has 0.22 times the power of L3 (limit 0.4); the front surface of L5 supplies 37 % of that element's negative power (at least a quarter); and the air space between L5 and the cemented component is 0.1128f (under 0.25f, for residual distortion).
 
 ## Element-by-Element Analysis
 
 ### L1: Negative Meniscus
 
-nd = 1.60311, νd = 60.68. Glass: unmatched patent material; manufacturer and catalog identity unverified. The first meniscus supplies negative power in front of the main converging system.
+nd = 1.60311, νd = 60.68 (SK14, Schott), f = −75.1 mm. The outer front meniscus, concave toward the image, begins the retrofocus expansion of the beam.
 
 ### L2: Negative Meniscus
 
-nd = 1.62041, νd = 60.29. Glass: unmatched patent material. A second negative meniscus spreads the front negative power over separated surfaces.
+nd = 1.62041, νd = 60.29 (SK16, Schott), f = −172.7 mm. A weaker second meniscus shares the front portion's negative power. The 12.9 mm air space behind it separates the front and main portions.
 
 ### L3: Biconvex Positive
 
-nd = 1.69100, νd = 54.80. Glass: unmatched patent material. This thick positive element supplies substantial convergence after the two negative front elements. Its printed thickness is retained.
+nd = 1.69100, νd = 54.80 (LaK9, Schott), f = +33.8 mm. The thick collector (8.66 mm) carries most of the positive power ahead of the iris; its thickness is the patent's lever on the sagittal field.
 
 ### L4: Positive Meniscus
 
-nd = 1.62041, νd = 60.29. Glass: unmatched patent material. The positive meniscus precedes the source-constrained stop gap. No precise iris station is tabulated.
+nd = 1.62041, νd = 60.29 (SK16, Schott), f = +151.0 mm. A weak meniscus, concave toward the image, which the patent uses mainly to correct lateral spherical aberration and coma. The iris follows in the 6.5 mm air space behind it.
 
 ### L5: Biconcave Negative
 
-nd = 1.58144, νd = 40.80. Glass: unmatched patent material. This thin negative element lies after the iris region and before the rear cemented group. Its inferred caps are constrained by clearance across the following air gap, not by a sourced mechanical diameter.
+nd = 1.58144, νd = 40.80 (LF5, Schott), f = −30.5 mm. The thin biconcave element just behind the iris has the highest negative power in the lens. The patent limits the power of its front surface for the zonal part of the spherical aberration.
 
 ### L6–L7: Cemented Negative–Positive Pair
 
-L6: nd = 1.75520, νd = 27.53. L7: nd = 1.62041, νd = 60.29. Both glasses are unmatched patent materials. The higher-dispersion negative element and lower-dispersion positive element share surface 12. Their opposing power and dispersion support chromatic balancing, but do not establish apochromatic correction or actual melt identities.
+L6: nd = 1.75520, νd = 27.53 (SF4, Schott), f = −38.2 mm. L7: nd = 1.62041, νd = 60.29 (SK16, Schott), f = +31.9 mm. Together, f = +139.1 mm. The pair is a meniscus convex toward the image, the first of the three positive components that follow L5. The SF4 flint cemented to the SK16 crown at surface 12 corrects colour behind the iris, together with the LF5 flint of L5.
 
 ### L8: Biconvex Positive
 
-nd = 1.62041, νd = 60.29. Glass: unmatched patent material. The weakly curved front and stronger rear surface provide a separated positive contribution in the rear assembly.
+nd = 1.62041, νd = 60.29 (SK16, Schott), f = +73.9 mm. Nearly plano-convex (r14 = 14.87f); the strongest of the two rear singlets.
 
 ### L9: Biconvex Positive
 
-nd = 1.62041, νd = 60.29. Glass: unmatched patent material. The final positive element precedes the long source back focal distance. There is no source-listed sensor cover or rear filter plate.
+nd = 1.62041, νd = 60.29 (SK16, Schott), f = +132.8 mm. The last positive element ahead of the 37.0 mm back focus. The patent lists no filter or cover plate.
 
 ## Glass Identification and Selection
 
-All nine nd/νd pairs are explicitly d-line quantities. No catalog matches or extra spectral lines have been invented. An nd/νd dispersion approximation may support qualified later polychromatic diagnostics, but it cannot establish factory spectral performance or secondary spectrum. Bounded monochromatic reference-line MTF is described below; no measured-glass, coating, polychromatic or transmission claim is made.
+Table I prints nd and νd at the d line. Every pair matches a Schott catalog glass exactly in nd and within 0.1 in νd: SK14 (L1), SK16 (L2, L4, L7, L8, L9), LaK9 (L3), LF5 (L5) and SF4 (L6). The design predates Schott's lead-free glasses; the dispersion model uses N-SK14, N-SK16 and N-LAK9, which have the same nd. Five of the nine elements share the SK16 crown, and the only flints are LF5 in L5 and SF4 in L6. No anomalous-dispersion glass is used.
 
 ## Focus Mechanism
 
-Only the source infinity prescription is modeled. There are no variable gaps, finite-conjugate rows, or inferred movement law. The schema's required close-focus value is a 1000 m software control placeholder, not a retail minimum focus distance or tested finite-focus condition.
+The patent prints only the infinity prescription, so focus travel is not modeled and the model stays at infinity. Zeiss Ikon's Contarex booklet gives a closest focus of 9 in (0.23 m) from the film plane; Cavina gives 0.22 m.
 
-## Modeling Assumptions and Validation Status
+## Model Scope and Limitations
 
-The iris is provisionally at the midpoint of source d8: z = 46.6585 mm at 35× scale. The source constrains only the whole interval z = 43.386–49.931 mm. The two authored subintervals sum exactly to the printed d8. Clear semi-diameters are explicitly inferred static candidates, not measured caps. Native infinity checks support iris-limited axial operation at nominal f/1.8 and f/2, and bounded off-axis sampling is reported below with substantial vignetting; these checks do not validate measured mechanical apertures, unsampled operating conditions, or any finite-focus state.
+The patent prints no iris position; Fig. 1 draws the iris in the air space d8, and the model places it at the midpoint, 46.66 mm behind the first vertex (d8 spans 43.39–49.93 mm). Semi-diameters are not printed either. They are chosen to pass the axial and off-axis beams: L5 is limited by its clearance to the cemented component behind it, and surface 9 just clears the beam the iris admits at f/1.8. They do not reproduce Fig. 1, where L5 is drawn larger.
 
-The printed back focus places the source image plane at z = 105.700000 mm. Independent paraxial calculation gives z = 105.702763 mm; that diagnostic does not move the source plane. Any future best-focus scan must remain a separate diagnostic.
+The image plane is at the printed back focus, 105.70 mm behind the first vertex; the paraxial focus lies 0.003 mm further back, and the best axial focus at f/1.8 about 0.13 mm closer to the lens. The f-number follows the paraxial convention (entrance-pupil diameter = f/N). Because the strongly negative front portion bends the marginal rays, the real beam the iris admits at the f/1.8 setting corresponds to about f/1.92.
 
-Static roundtrip checks preserve all radii, thicknesses, gaps, indices and Abbe numbers. Sampled spherical geometry checks pass positive glass thickness, nonintersecting air gaps and ordinary rim-slope limits without geometry overrides. A preliminary 13 mm L5 cap intersected the following gap and was rejected; the current 10.5 mm cap is a geometry-only hypothesis, not a proven full-aperture solution. Initial native testing found surface 9 clipped the full iris-admitted axial beam. Only its inferred cap was raised from 10.5 to 10.75 mm; surface 10 remains 10.5 mm. Native build, iris clearance and zero render trim pass. The official aperture census reports f/1.799999998, iris-limited, using the repository convention of paraxial EPD = F/N. The distinct diagnostic EFL divided by exact nonlinear admitted entrance-ray diameter is 1.918277 at nominal f/1.8, and 2.103178 at nominal f/2; these are not the repository working-f-number definition and were not fitted by enlarging the iris. The original cap failure is retained in evidence. Standalone validation scope is recorded in the accompanying gate report.
+Vignetting at the edge of the patent's field is strong with these semi-diameters: at 31° about 40 % of the full-aperture beam passes at f/1.8 and 47 % at f/2, against 96 % and 100 % at 15.5°. These are sampled pupil fractions, not measured illumination. All MTF and chromatic figures come from the d-line prescription and catalog glass curves, not from production tolerances or coatings.
 
 ## Sources
 
-- [Official complete GB patent](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=GB000001066527A&xxxfull=1): controlling whole main Table I, PDF page 2.
-- [Contarex maker booklet](https://www.cameramanuals.org/zeiss_ikon/zeiss_ikon_contarex_booklet.pdf): named Contarex section, original PDF page 15, printed page 14.
-- [Preserved accepted GB recovery addendum](https://drive.google.com/file/d/16EkgemYmApLvcYNgififq-5805GhoBvA/view): primary custody and conflicting-table audit.
-
-## Bounded Native MTF Qualification
-
-Reference wavelength is the source d line, 587.5618 nm. All nine glasses lack established full spectral identities, so no polychromatic factory-performance claim is made. Geometric and diffraction-corrected calculations used native 32/64-grid refinement with a maximum grid of 64, frequencies 0/10/20/30/40 lp/mm, and separate nominal f/1.8 and f/2 operating cases. All axial cases converged, but every 31° edge result remained unconverged at the bounded grid cap; several intermediate-field results also remained unconverged. No tolerance was relaxed or further convergence assumed.
-
-MTF field fractions mean image-height fractions. Source-plane chief heights 9.651675 and 20.752023 mm, divided by the engine reference height 21.65 mm, select angles 15.499916° and 30.999999°. An earlier default-format run selected 17.297621° and 32.068282°; it is preserved separately as a format-corner diagnostic, not mislabelled source coverage. The retail 63° full field is not substituted for the patent's 62°.
-
-Source-plane calculations apply zero focus shift. Separate best-axial diagnostics shift by −0.131119 mm at nominal f/1.8 and −0.135776 mm at nominal f/2. The authored source plane stays at 105.7 mm. Native silhouette inspection supports the nine-element architecture, but the candidate caps, including a shorter L5 than the source schematic suggests, are mechanical hypotheses rather than measured figure reproduction. The accompanying gate report records metadata, type, format, lint, regression, build, SEO and standalone-install verification; those checks do not establish factory accuracy.
-
-### Source-plane refinement addendum
-
-A single later source-plane-only refinement, capped at grid128 with unchanged0.01 MTF tolerance, converged at all requested0/10/20/30/40lp/mm frequency samples for both peripheral source fields and both nominal apertures, using geometric and reference-line diffraction methods. The nominal f/1.8 geometric15.5° case had already converged at64 and did not require128. The other seven method/field cases reached128. Worst sampled delta was0.008586 at40lp/mm, nominal f/2 geometric31°. This supersedes only the earlier source-plane peripheral64-cap convergence limit, not the separate best-focus results.
-
-Vignetting remains substantial:31° transmitted5170/12892 samples(40.1024%) at nominal f/1.8 and6102/12892(47.3317%) at nominal f/2; failed and unaimed counts were zero. At15.5°, transmitted fraction was about96.46% at nominal f/1.8 and100% at nominal f/2. These are sampled stop-pupil fractions, not measured relative illumination. No source, iris, cap, image-plane or threshold bytes changed during refinement.
+- [GB 1,066,527 A, complete specification (DEPATISnet)](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=GB000001066527A&xxxfull=1): Table I on printed page 2, the claims' copy of Table I on page 8, Fig. 1 on drawing sheet 1.
+- [DE 1,447,288 A1 (Google Patents)](https://patents.google.com/patent/DE1447288A1/de): German family member naming Erhard Glatzel as inventor.
+- [Zeiss Ikon Contarex booklet](https://www.cameramanuals.org/zeiss_ikon/zeiss_ikon_contarex_booklet.pdf): wide-angle lens page (printed page 14), section drawing and closest focus of the Distagon f/2, 35 mm.
+- [Marco Cavina, "Carl Zeiss Distagon 35mm 1:2 per Contarex" (NOC Sensei, 2023)](https://www.nocsensei.com/camera/tecnica/marco-cavina/marcocavina/carl-zeiss-distagon-35mm-12-per-contarex/): designer, patent history, construction, production changes and close focus.
+- [Pacific Rim Camera, "35/2 Zeiss Distagon for Contarex"](https://www.pacificrimcamera.com/pp/zicontr35f2.htm): production years 1965–1973 and Zeiss code 11.2414.
