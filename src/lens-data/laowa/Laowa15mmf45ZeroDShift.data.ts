@@ -5,9 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
-  key: "laowa-15mm-f45-shift-cn110955036b-e1-provisional",
+  key: "laowa-15mm-f45-zero-d-shift",
   maker: "Laowa",
-  name: "LAOWA 15mm f/4.5 ZERO-D SHIFT (probable E1 family)",
+  name: "LAOWA 15mm f/4.5 Zero-D Shift",
   subtitle: "UNFINISHED: unshifted infinity reference checks; source-field/shift coverage held",
   visible: true,
   catalog: {

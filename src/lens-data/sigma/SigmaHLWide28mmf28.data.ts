@@ -7,9 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "sigma-hl-wide-28mm-f28-e1-hypothesis",
+  key: "sigma-hl-wide-28mm-f28",
   maker: "Sigma",
-  name: "SIGMA H.L. WIDE 28mm f/2.8 (E1 hypothesis)",
+  name: "SIGMA H.L. WIDE 28mm f/2.8",
   subtitle: "JPS60181715A EXAMPLE 1 — PROBABLE NON VIGNETTING FAMILY, NOT VERIFIED FACTORY E1",
   visible: true,
   layout: {
