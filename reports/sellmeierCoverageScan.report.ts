@@ -4,7 +4,7 @@
  * Walks every lens in the catalog and reports how completely each lens is
  * backed by strict catalog Sellmeier data. This uses the same safety net as
  * src/optics/chromatic/materialResolver.ts: a glass annotation must resolve to a catalog entry
- * and the catalog coordinates must agree with the authored d- or e-line pair.
+ * and the catalog coordinates must agree with the authored d-, D- or e-line pair.
  *
  * Runs only via `npm run generate:reports`, never in `npm test`; its job is to emit an authoring report.
  *
@@ -85,6 +85,8 @@ function formatQualityCounts(missingSurfaces: readonly MissingSurface[]): string
 }
 
 function describeMissingSurface(surfaceNd: number, element: ElementData | undefined): string {
+  if (element?.nC !== undefined && element.nF !== undefined && element.ng === undefined)
+    return "Measured red/blue indices; g is estimated, not measured";
   if (!element?.glass) return "No glass annotation";
 
   const compatibleEntry = resolveCompatibleGlass(element.glass, surfaceNd, element.vd, element.indexReference);
@@ -143,6 +145,8 @@ describe("Sellmeier coverage scan", () => {
     const rows: CoverageRow[] = [];
     const eLineMatches: ELineCatalogMatch[] = [];
     let eLineSurfaces = 0;
+    let sodiumSurfaces = 0;
+    let sodiumSellmeierSurfaces = 0;
     let eLineSellmeierSurfaces = 0;
 
     walkLensSurfaces(modules, ({ filePath, data, L }) => {
@@ -161,13 +165,15 @@ describe("Sellmeier coverage scan", () => {
 
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
         if (element?.indexReference === "e") eLineSurfaces++;
+        if (element?.indexReference === "D") sodiumSurfaces++;
         const catalogEntry = resolveCompatibleGlass(element?.glass, surface.nd, element?.vd, element?.indexReference);
         const sellmeierEligible = catalogEntry !== null;
         const quality = L.indexByIdx?.[i]?.quality ?? "missing";
-        const trustedChromatic = sellmeierEligible || quality === "lineIndices";
+        const trustedChromatic = sellmeierEligible || (quality === "lineIndices" && element?.ng !== undefined);
 
         if (sellmeierEligible) {
           sellmeierSurfaces++;
+          if (element?.indexReference === "D") sodiumSellmeierSurfaces++;
           if (element?.indexReference === "e" && catalogEntry) {
             eLineSellmeierSurfaces++;
             const compatibility = assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd, "e");
@@ -235,7 +241,7 @@ describe("Sellmeier coverage scan", () => {
           elementSurfaces.every(({ surface, index }) => {
             const sellmeierEligible =
               resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference) !== null;
-            return sellmeierEligible || L.indexByIdx?.[index]?.quality === "lineIndices";
+            return sellmeierEligible || (L.indexByIdx?.[index]?.quality === "lineIndices" && element.ng !== undefined);
           })
         );
       }).length;
@@ -284,9 +290,11 @@ describe("Sellmeier coverage scan", () => {
       `and its catalog coordinates agree with the authored prescription within Δn ±${GLASS_ND_TOLERANCE} and Δν ±${GLASS_VD_TOLERANCE}.`,
     );
     lines.push(
-      "D-line rows compare C/d/F coordinates; native e-line rows compare C′/e/F′ and require an explicit name or alias.",
+      "Default d-line rows compare C/d/F; historical D rows compare C/D/F; native e-line rows compare C′/e/F′. D/e rows require an explicit name or alias.",
     );
-    lines.push("Trusted chromatic coverage additionally counts measured C/F/g line-index surfaces.");
+    lines.push(
+      "Trusted chromatic coverage additionally counts complete measured native-reference line tables, including measured g. Partial C/F tables with estimated g are not complete coverage.",
+    );
     lines.push("");
     lines.push("**Regenerate this file** by running `npm run generate:reports -- sellmeierCoverageScan`.");
     lines.push("Regenerate the full glass report set with `npm run generate:glass-reports`.");
@@ -314,6 +322,9 @@ describe("Sellmeier coverage scan", () => {
     );
     lines.push(
       `- **${formatPercent(totalTrustedChromaticSurfaces, totalNonAirSurfaces)}** trusted chromatic coverage overall`,
+    );
+    lines.push(
+      `- **${sodiumSellmeierSurfaces} / ${sodiumSurfaces}** historical sodium D surfaces use name-verified catalog dispersion data`,
     );
     lines.push(
       `- **${eLineSellmeierSurfaces} / ${eLineSurfaces}** native e-line surfaces use name-verified catalog Sellmeier data`,

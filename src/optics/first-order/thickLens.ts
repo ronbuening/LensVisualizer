@@ -41,7 +41,7 @@ export function thickLensFocalLength(r1: number | "flat", r2: number | "flat", d
  * Resolves the element's bounding surfaces from `L.ES`, accumulates axial centre
  * thickness across intermediate surfaces (e.g. embedded stops), and uses the front
  * surface's authored `nd`, matching monochromatic tracing at the reference line
- * (helium d, or mercury e when the element's `indexReference` is `"e"`).
+ * (helium d, historical sodium D, or mercury e as authored by `indexReference`).
  *
  * @param element - element metadata record
  * @param L - runtime lens containing surfaces and element spans

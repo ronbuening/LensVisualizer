@@ -82,7 +82,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 0
-- Main outbound areas: src/types (22), same folder (13), package:react (11), src/utils/style (11), src/optics/optics.ts (5), src/utils/catalog (3), src/components/content (2), src/optics/chromatic.ts (2), +11 more
+- Main outbound areas: src/types (22), same folder (13), package:react (11), src/utils/style (11), src/optics/optics.ts (5), src/utils/catalog (3), src/utils/text.ts (3), src/components/content (2), +11 more
 - External consumers: src/comparison, src/components/display, src/components/layout, src/components/relationshipMap, src/pages/AuthorsIndexPage.tsx
 
 ## Files
@@ -93,7 +93,7 @@ flowchart LR
 | `ChromaticControls.tsx` | React component module | src/types (2), src/optics/chromatic.ts, src/utils/style | same folder | default, ChromaticControls |
 | `CollapseButton.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2), src/components/display (2), src/components/relationshipMap | default, CollapseButton |
 | `DiagramControls.tsx` | React component module | same folder (4), src/optics/optics.ts (3), src/types (3), package:react, src/components/hooks, +6 more | src/components/layout | default, DiagramControls |
-| `DiagramHeader.tsx` | React component module | same folder (5), src/types (3), src/components/content (2), package:react, src/optics/chromatic.ts, +5 more | src/components/layout | default |
+| `DiagramHeader.tsx` | React component module | same folder (5), src/types (3), src/components/content (2), package:react, src/optics/chromatic.ts, +6 more | src/components/layout | default |
 | `HelpTooltipButton.tsx` | React component module | package:react, same folder, src/types | src/components/display (3) | default, HelpTooltipButton |
 | `LensSelector.tsx` | React component module | package:react, src/components/layout, src/types, src/utils/style | same folder, src/components/layout, src/pages/AuthorsIndexPage.tsx | default, LensSelector |
 | `LensTaxonomyBadges.tsx` | React component module | package:react, package:react-router, src/types, src/utils/catalog, src/utils/seo | same folder | default, LensTaxonomyBadges |

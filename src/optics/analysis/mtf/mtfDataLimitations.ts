@@ -9,7 +9,13 @@
  */
 import type { MtfDataLimitation, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
 import type { PreparedGeometry } from "../../types.js";
-import { assessMtfSpectralData, MTF_SPECTRUM_LABELS, mtfPrescriptionScale, mtfScaleNeedsNote } from "./mtfSupport.js";
+import {
+  assessMtfSpectralData,
+  mtfReferenceCoordinates,
+  MTF_SPECTRUM_LABELS,
+  mtfPrescriptionScale,
+  mtfScaleNeedsNote,
+} from "./mtfSupport.js";
 
 export interface MtfDataLimitationInput {
   /** Spectrum the reader asked for. */
@@ -78,14 +84,18 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
               .filter(Boolean)
               .join("; ");
       const count = estimated.length;
+      const partialCount = estimated.filter((element) => spectral.partialLineElementIds.includes(element.id)).length;
+      const coordinates = mtfReferenceCoordinates(state);
       if (count > 0)
         limitations.push({
           kind: "estimated-dispersion",
           blocking: true,
           text:
-            (count === glasses.length
-              ? "Every glass is known only by nd and νd, so all dispersion is estimated."
-              : `${count} of ${glasses.length} glasses (${names}) ${count === 1 ? "is" : "are"} known only by nd and νd, so ${count === 1 ? "its" : "their"} dispersion is estimated.`) +
+            (partialCount > 0
+              ? `${partialCount} of ${glasses.length} glasses ${partialCount === 1 ? "has" : "have"} measured red/blue indices but no measured g index; g is estimated.${count > partialCount ? ` Another ${count - partialCount === 1 ? "glass is" : `${count - partialCount} glasses are`} known only by ${coordinates}, so ${count - partialCount === 1 ? "its" : "their"} dispersion is estimated.` : ""} Estimated: ${names}.`
+              : count === glasses.length
+                ? `Every glass is known only by ${coordinates}, so all dispersion is estimated.`
+                : `${count} of ${glasses.length} glasses (${names}) ${count === 1 ? "is" : "are"} known only by ${coordinates}, so ${count === 1 ? "its" : "their"} dispersion is estimated.`) +
             ` Primary color stays exact; secondary spectrum in these ${label === "Photopic" ? "photopic" : label} curves is approximate.`,
         });
     }

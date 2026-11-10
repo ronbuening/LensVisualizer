@@ -330,6 +330,10 @@ The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 - `chromatic/channels.ts` owns channel metadata and order for engine and UI, including native e-line text and
   wavelengths. The wavelength exports in `chromatic/indexResolver.ts` alias its d-line lookup;
   Cauchy interpolation nodes and full-channel traversals derive from the same metadata and order.
+- Native sodium D (`indexReference: "D"`) uses C/D/F/g with D at 589.2938 nm. Named catalog curves are checked at
+  C/D/F and anchored to nD; code-only d-line matches are refused. The Abbe tier estimates P_D,C against νD without
+  rewriting authored values, and arbitrary-wavelength Cauchy interpolation uses the D node. Uniform D-reference MTF
+  uses D; explicit C/d/F MTF still samples physical helium d. Mixed-reference MTF keeps the catalog-data guard.
 - Channel lines are set per element by `indexReference`, and every tier must return them, with G equal to the
   authored index. A d-line element traces R/G/B/V at C/d/F/g; its Sellmeier tier is the authored `nd` plus the
   catalog's index difference from the d line. A native e-line element traces C′/e/F′/g: its Sellmeier tier
@@ -1979,7 +1983,7 @@ Raw numeric-column validators remain available for structural probes, without an
 `paths.ts` keeps V1 messages unchanged and maps V2 nested fields and gap indices back to their authored paths.
 Malformed inputs retain guarded raw checks so ingest cannot hide their aggregate diagnostics. Folded reachability
 compiles only lower-level probe surfaces, never a full lens or material table. The concern modules check required
-fields, references, STO presence, the d/e `indexReference` enum, diffractive
+fields, references, STO presence, the d/D/e `indexReference` enum, diffractive
 phase-polynomial bounds/canonical ordering, element edge thickness, SD consistency, rim slope, boundary-surface
 cross-gap overlap, conic limits, and zoom field consistency. Authored element `span` pairs and stops marked
 `stopPlacement: "inside-element"` follow [Stop and Aperture](../../src/lens-data/LENS_DATA_SPEC.md#stop-and-aperture)
