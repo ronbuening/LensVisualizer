@@ -6,6 +6,9 @@
 # Generated build metadata
 src/generated/
 
+# On-demand folder maps from `npm run generate:readmes` (agent_docs/decisions.md, 2026-11-10)
+/src/**/readme.md
+
 # Local patent PDF/source archive
 patents/*
 !patents/.gitkeep

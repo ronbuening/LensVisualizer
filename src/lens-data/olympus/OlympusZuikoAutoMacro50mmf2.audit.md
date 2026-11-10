@@ -58,3 +58,8 @@ Patent: US 4,708,445, Embodiment 6
 - HOYA's obsolete BAF22 row (`1.682496 / 44.671672`) is the exact coefficient-backed catalog equivalent. The
   production supplier remains unspecified.
 - Strict and trusted catalog coverage are now complete at `9/9`; no geometry changed.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2.0: `patents/US4708445.pdf` PDF p31, col. 8, lines 1–8, Embodiment 6 (continued) footer "f = 1, F/2.0, ω = 22.8°". Stop `nominalFNumber` 2.0 is not faster.
+- `catalog.focalLengthMm.design` = 50.016: the same footer states f = 1, multiplied by the ×50.016 scale the data header documents (r₁ 1.2060 → 60.319 confirms it).

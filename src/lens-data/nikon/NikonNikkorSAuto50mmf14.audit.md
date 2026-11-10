@@ -27,3 +27,8 @@ Surface, image-circle, nominal f/1.4 aperture and direct field checks pass (≥9
 
 - Why the old value differed: derived unit-focus travel; 0.6 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.6 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 1.4: `patents/US3560079.pdf` PDF p3, col. 3, Example 1 header "[f=1; F=1.4]" (claim 1, col. 4 line ~21, repeats "f=1.00; F:1.4"). Stop `nominalFNumber` 1.4 is not faster.
+- `catalog.focalLengthMm.design` = 49.99: the same Example 1 header states f = 1, multiplied by the ×49.99 scale the data header and analysis document. (The stored radii divide out to ×49.9885, within 0.003 % of the documented factor.)

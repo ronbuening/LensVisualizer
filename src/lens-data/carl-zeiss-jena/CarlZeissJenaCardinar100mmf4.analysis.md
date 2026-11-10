@@ -3,7 +3,7 @@
 ## Source Reference and Design Identification
 
 **Source:** Carl Zeiss Jena, *Optik-Daten* für Sach-Nr. 550513A (Opt.), Cardinar 4/100.  
-**Manufacturer:** Carl Zeiss Jena, as identified on the original sheet.  
+**Manufacturer:** VEB Carl Zeiss Jena, the Jena works' legal entity at the sheet's date; the sheet names Carl Zeiss Jena.  
 **Source dated:** 25 August 1958 (department mark "WOPho 25.8.58").  
 **Calculation dated:** 14 June 1958 ("für Rechnung vom 14.6.58"); the sheet also records "ausgehend vom V 237".  
 **Use:** Format 24 x 36, "Wechselobjektiv Werra".  

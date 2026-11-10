@@ -38,3 +38,10 @@ figure's 0.870 ± 0.004; the beam rule outranks the figure reading.
 Worst loss against lands open: full loss of the outer fields before, 1.1 points at 26.8° and 36 mm now. At 36 mm the light at
 23.6° goes from 41.3 to 63.1 % and the chief ray reaches 29.5°, where 39.2 % passes. 83 mm is unchanged at 47.8 %. Engine half-field
 21.73° → 26.19°, still set by S9 at the wide end.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 2.8: US 3,975,089, PDF p. 4, col. 2, ll. 51–54: "The lens of FIG. 1 as scaled to a
+  36-83mm focal length ... and a relative aperture of f/2.8 may be further defined by the data of Table I"; PDF p. 5,
+  col. 3, l. 50 repeats "a relative aperture of f/2.8" for the 36–83 mm range. One aperture for the whole range, so the
+  constant-aperture scalar applies. The stop's `nominalFNumber` 2.8 matches it.

@@ -112,3 +112,9 @@ the FIG. 4 / 4a configuration), p. 12 (Example 8 table), p. 13 (Table I) and p. 
 - Front-group rims remain estimates. The 36.5 mm production focal length, 0.3 m MFD and 32.5 mm entrance-pupil figure
   come from earlier datasheet notes that this audit did not re-verify.
 - The L5/L6 rims are modeled in near contact (0.016 mm) at the f/1.4 marginal height.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 1.4` from US 3,915,558 col. 12, ll. 26–28 (PDF p. 12), the Example 8 heading
+  "F = 1.0000 f/1.4 s′ = +0.98567 F"; col. 8, ll. 30–32 also calls Example 8 a lens "with a relative aperture of
+  f/1.4". The stop's `nominalFNumber` 1.4 matches it. No optical value changed.
