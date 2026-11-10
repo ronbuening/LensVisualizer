@@ -16,8 +16,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * this travel is reconstructed from the prescription. The 0.38 m wide-end macro mode is not modeled.
  * Stop: surface 25. Its radius is derived from the design F2.75 at each station; the patent gives no diameter, and
  * T2.9 is the product's transmission rating.
- * Semi-diameters: inferred from the Fig. 6 element outlines within edge-thickness and air-gap limits; not factory
- * dimensions.
+ * Semi-diameters: measured from the wide panel of Fig. 6 (5.72 px/mm at 300 dpi, scale checked on vertex spacing
+ * and surface arcs) and kept within edge-thickness and air-gap limits; not factory dimensions. S1 (27.8 mm) is set
+ * so the wide-end chief ray to the printed 78.6° field clears it (Fig. 6 draws L11 to about 28.9 mm). L32 takes
+ * its drawn 14.5 mm on both faces; its concave front face nests in L31's concave rear face across the 6.718 mm
+ * gap 17→18 (0.32 mm apart at 14 mm, no crossing), which needs `checks.gapSagFrac` 0.96.
  * Glass names are catalog rows matching the printed nd/νd; they do not establish Fujifilm's supplier.
  */
 
@@ -336,7 +339,7 @@ const LENS_DATA = {
       label: "1",
       R: 71.81199,
       d: 1.985,
-      sd: 27.0,
+      sd: 27.8,
       medium: 1,
     },
     {
@@ -430,7 +433,7 @@ const LENS_DATA = {
       label: "16",
       R: 60.59836,
       d: 1.1,
-      sd: 14.0,
+      sd: 15.8,
       medium: 9,
     },
     {
@@ -443,14 +446,14 @@ const LENS_DATA = {
       label: "18",
       R: -41.83532,
       d: 1.1,
-      sd: 13.0,
+      sd: 14.5,
       medium: 10,
     },
     {
       label: "19",
       R: "flat",
       d: 1.3,
-      sd: 13.0,
+      sd: 14.5,
     },
     {
       label: "20",
@@ -481,7 +484,7 @@ const LENS_DATA = {
     {
       label: "24",
       R: -97.61823,
-      sd: 13.0,
+      sd: 14.5,
     },
     {
       label: "STO",
@@ -505,74 +508,74 @@ const LENS_DATA = {
       label: "28",
       R: 24.9385,
       d: 8.887,
-      sd: 13.5,
+      sd: 14.5,
       medium: 15,
     },
     {
       label: "29",
       R: -36.507,
       d: 1.1,
-      sd: 13.5,
+      sd: 14.5,
       medium: 16,
     },
     {
       label: "30",
       R: 144.41888,
       d: 7.038,
-      sd: 13.5,
+      sd: 14.5,
     },
     {
       label: "31",
       R: 202.67016,
       d: 4.161,
-      sd: 13.0,
+      sd: 14.5,
       medium: 17,
     },
     {
       label: "32",
       R: -45.0517,
       d: 3.087,
-      sd: 13.0,
+      sd: 14.5,
     },
     {
       label: "33",
       R: 30.9607,
       d: 1.1,
-      sd: 12.0,
+      sd: 13.8,
       medium: 18,
     },
     {
       label: "34",
       R: 16.393,
       d: 7.709,
-      sd: 12.0,
+      sd: 13.8,
       medium: 19,
     },
     {
       label: "35",
       R: 124.08371,
       d: 0.249,
-      sd: 12.0,
+      sd: 13.5,
     },
     {
       label: "36",
       R: 119.2749,
       d: 6.41,
-      sd: 13.5,
+      sd: 12.0,
       medium: 20,
     },
     {
       label: "37",
       R: -19.731,
       d: 1.1,
-      sd: 13.5,
+      sd: 12.0,
       medium: 21,
     },
     {
       label: "38",
       R: 41.19779,
       d: 13.499,
-      sd: 13.5,
+      sd: 12.0,
     },
     {
       label: "39",
@@ -1019,6 +1022,9 @@ const LENS_DATA = {
   ],
   layout: {
     yScFill: 0.65,
+  },
+  checks: {
+    gapSagFrac: 0.96,
   },
 } satisfies LensDataV2Input;
 

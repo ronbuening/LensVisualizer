@@ -140,7 +140,7 @@ Here pr1 is the distance from the last surface of G1 to its image-side principal
 
 - **All spherical.** Example 6 has no aspherical surfaces.
 - **Stop and iris.** The patent places the stop at surface 25 but gives no diameter. The iris radius is derived from the design F2.75 at each zoom position; T2.9 is the product's transmission rating, not a geometric aperture. The nine blades and the F22 smallest stop are product data.
-- **Clear apertures.** Semi-diameters are inferred from the Fig. 6 element outlines within edge-thickness and air-gap limits, not from factory dimensions.
+- **Clear apertures.** Semi-diameters are measured from the Fig. 6 element outlines within edge-thickness and air-gap limits, not taken from factory dimensions. The front surface is sized so the wide-end chief ray to the printed 78.6° field passes. As in the figure, the concave front face of L32 nests closely inside the concave rear face of L31 at the rim.
 - **Zoom and focus control.** Only the three tabulated infinity stations come from the patent; the intermediate zoom points and the focus travel are solved from the prescription.
 
 ## Sources

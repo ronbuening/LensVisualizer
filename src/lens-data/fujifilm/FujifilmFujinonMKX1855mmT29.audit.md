@@ -32,7 +32,7 @@ Applied: PDF filed as `US20180188508A1.pdf`. No data change.
 Open: hidden as delivered — fit to show after the wording pass (subtitle, specs, header "Work-in-progress"); no `groups`
 / `doublets` declared (G1a–G5 and five doublets); S1 sd 27.0 clips the wide corner chief ray (≈27.8, inside Fig. 6);
 22 glasses labelled `Unmatched` though each is an exact catalogue code. (Closed 2026-11-10 in the pass below, except the
-S1 rim, which stays open.)
+S1 rim, which stays open.) (S1 rim closed 2026-11-10 in the semi-diameter pass below.)
 
 ## 2026-11-10 — Cleanup and wording pass
 
@@ -77,4 +77,50 @@ audit reports all 33 stations within 3 % of the stated f-number, with no rim, tr
 
 Open: S1 rim 27.0 mm clips the wide-corner chief ray (needs 27.23 mm for the 14.18 mm APS-C corner, about 27.8 mm for
 the patent's 2ω = 78.6°); Fig. 6 draws L11 at about 28.5–29 mm. Other rims sit at or below the Fig. 6 outlines (L21
-19 vs about 21 mm; G3, G4 13–14 vs about 15 mm). The 0.38 m wide-end macro mode is not modeled.
+19 vs about 21 mm; G3, G4 13–14 vs about 15 mm). The 0.38 m wide-end macro mode is not modeled. (Rim items closed
+2026-11-10 in the semi-diameter pass below; the macro mode stays open.)
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: `US20180188508A1.pdf`, PDF p. 7, Fig. 6 (Example 6), wide-angle panel, a 300 ppi CCITT scan. The optical
+axis is row 1481 at 300 dpi; the S1 vertex is at column 685 and the image line Sim at 1953, so 1268 px span the
+221.716 mm wide-state track: 5.719 px/mm (0.1749 mm/px). Second span: the S39 and S40 vertices fall at 1795.5 and
+1809.5 against 1794 and 1811 predicted, and the S26/S27 vertices at 1468/1482.5 against 1466/1482. The vertical scale
+was fitted independently from the drawn arcs of S2, S10, S29, S34 and S37 at 600 dpi (line centres, rms under 1.1 px):
+vertical/horizontal 0.99–1.00, so the drawing is isotropic. Rims were read as line centres of each element's top and
+bottom edges at 600 dpi, both sides of the axis (the lower side clear of leaders, the upper side clear of the G2–G4
+travel brackets); readings agree within 0.2 mm side to side.
+
+| Surface(s) | Before | After | Fig. 6 | Evidence |
+| --- | --- | --- | --- | --- |
+| 1 (L11 front) | 27.0 | 27.8 | 28.9 | Wide corner chief ray clipped (needs 27.23 for the 14.18 mm format corner, 27.76 for the printed 2ω = 78.6°); least raise that clears the printed field |
+| 16 (L31 front) | 14.0 | 15.8 | 15.8 | Figure 11 % larger; L31 drawn stepped, rear face kept at 14.0 |
+| 18, 19 (L32) | 13.0 | 14.5 | 14.5 | Figure 10 % larger, drawn square; admitted with `checks.gapSagFrac` 0.96 (see below) |
+| 24 (L41 rear) | 13.0 | 14.5 | 14.5 | Figure 10 % larger; front face S23 drawn to about 13.5 (kept 13.0, within noise), flat annulus out to 14.5 |
+| 28, 29, 30 (C3) | 13.5 | 14.5 | 14.5 | 7 % on its own; raised with L54 because Fig. 6 draws C3 and L54 at one height |
+| 31, 32 (L54) | 13.0 | 14.5 | 14.5 | Figure 10 % larger |
+| 33, 34 (C4 front, interface) | 12.0 | 13.8 | 13.8 | Figure 13 % larger; the S34 arc ends at about 13.8 |
+| 35 (C4 rear) | 12.0 | 13.5 | 13.5 | Figure 11 % larger; L56 edge 0.9 mm at these values |
+| 36, 37, 38 (C5) | 13.5 | 12.0 | 12.0 | File 12 % larger than drawn and out of step order (C4 now larger than C5, as drawn); the cut costs no light at any field or zoom node |
+
+Kept (within about 8 % of the figure): S2 23.8 (S2 arc ends at 24.8), L12 25.5 (24.5), L13 and L14 24.0 (25.3, 25.4),
+C1 24.0 (24.85 front, 24.3 rear), L17 23.0 (22.7), L21 19.0 (20.0), S17 14.0 (L31's rear face meets L32's front face
+at about 14.3 mm), C2 13.0 (14.1 front, 13.45 rear), S23 13.0 (13.5), L51 13.5 (14.25), L59 14.5 (14.5).
+L32 (S18/S19) first stayed at 13.0: at the drawn 14.5 its front face nests in L31's rear face across the 6.718 mm
+gap 17→18, and the cross-gap check refused it (combined sag 6.40 mm against 6.046 mm at gapSagFrac 0.90, and 6.382 mm
+at 0.95). The faces do not cross (0.32 mm apart at 14 mm), though no ray needs the raise (the full corner bundle
+reaches about 11.4 mm there). On the coordinator's decision L32 now takes the drawn 14.5 on both faces with
+`checks.gapSagFrac` 0.96, the smallest two-decimal value that admits it; the header names the pair.
+
+Clearance and light. The surface validator reports no errors; the aperture audit reports all 33 stations within
+3 % of the stated f-number with no rim, trace or iris limit; the image-circle audit finds nothing undersized; field
+coverage is 100 % at all 33 stations (wide 14.17 of 14.18 mm, corner chief ray clear, where it was 99 % and clipped
+at S1 before). Engine EFL 18.5916 mm, F/2.75, half-field 32.9557°, stop radius 12.4747 mm and B are unchanged; only
+maxSD (27.0 → 27.8), gapSagFrac (0.90 → 0.96) and the derived layout offsets moved. The paraxial LSA check shows no
+misprint (−0.11 to +0.04 mm at full pupil over all stations). The real-ray clearance trace at the printed half-fields
+(39.3°, 20.6°, 14.2°; chief rays land at 14.49, 14.51 and 14.47 mm) shows no axial clip and no blocked chief ray at
+any printed station. Corner illumination, wide open at infinity, before → after: wide 18.592 mm at 38.4°, 37.5 % →
+54.9 %; middle 37.183 mm at 20.2°, 46.3 % → 54.7 %; tele 55.217 mm at 13.9°, 46.9 % → 55.1 %. Across all 33 zoom
+nodes no field loses light; the largest gain is 17.4 points.
+
+Open: C2 and L21 sit about 5–8 % inside their drawn outlines.
