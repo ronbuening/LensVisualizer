@@ -26,9 +26,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Glass: every nd/νd pair matches a catalog row within 0.0001 / 0.1; the labels name that row (OHARA or HOYA) as an
  * equivalent, not as the production supplier.
  * Semi-diameters are inferred; none is printed. They are read from FIG. 6 (drawn at the 28.8 mm setting) at 9.05 px/mm
- * on the 300 dpi sheet (front group vertex span 16.10 mm, rear group 17.97 mm), then floor-checked by real-ray trace.
- * L2 is drawn with a flat-faced flange: its convex front runs to 17.1 mm and its deep concave rear ends at 13.4 mm
- * where the bevel meets L3. L3 is drawn square-cut.
+ * on the 300 dpi sheet (front group vertex span 16.10 mm, rear group 17.97 mm; arc fits of r4 and r8 give 8.97 and
+ * 8.85 px/mm across the axis), then floor-checked by real-ray trace. Every rim is within 4 % of the figure's mean of its
+ * upper and lower outlines, and the Asahi catalogue drawing shows the same proportions (L2 flange largest after L1, L8
+ * smallest, L10 larger than L9). L2 is drawn with a flat-faced flange: its convex front runs to 17.1 mm and its deep
+ * concave rear ends at 13.4 mm where the bevel meets L3. L3 is drawn square-cut.
  * Focus: the patent prints the infinity state only and names no focusing method.
  */
 const LENS_DATA = {

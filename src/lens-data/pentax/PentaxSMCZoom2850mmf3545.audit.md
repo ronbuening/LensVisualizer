@@ -101,6 +101,65 @@ SPHERICAL; patentNumber `US 4142779 A` → `US 4,142,779`; example 2 → 3; foca
 glass equivalents replace the "unmatched" labels; element roles added. Analysis rewritten for Example 3.
 
 Open: the engine's paraxial half-field estimate at 28.8 and 31 mm (32.5° and 33.9°) stays below the corner angle,
-although the real chief ray reaches the corner; it comes from L2's 13.4 mm rear rim, which the figure sets. The
+although the real chief ray reaches the corner; it comes from L2's 13.4 mm rear rim, which the figure sets. (Re-examined
+in the semi-diameter pass below: not a rim error.) The
 statement that the SMC PENTAX-M ZOOM 28-50mm f/3.5-4.5 shares these optics rests on secondary sources (Cine Lens Wiki,
 Pentax Forums database), not on Asahi literature.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+**Source and scale.** US 4,142,779 FIG. 6 (PDF p. 6, sheet 5; native 300 dpi CCITT scan), the Example 3 section, drawn
+at the 28.8 mm setting (the drawn group gap is 240 px = 26.5 mm against the printed d8 = 26.35 mm). Along the axis the
+vertex spans give 9.04 px/mm (front group, 16.10 mm = 145.5 px) and 9.07 px/mm (rear group, 17.97 mm = 163 px). Across
+the axis, circle fits to the drawn arcs give 8.97 px/mm (r4, R = 18.000 mm, nine points, rms 0.3 px) and 8.85 px/mm
+(r8, R = 60.500 mm, twelve points, rms 0.4 px); r6 and r7 fit at 8.1 and 11.4 px/mm (curvature drawn off scale), so
+they are not used. Scale used: 9.05 px/mm both ways. The automatic figure screen (`audit:patent-figure`) is unusable
+here: the r and d leader lines and labels sit inside every element's column, so its readings (ratios 0.99-2.91) were
+replaced by column-by-column ink runs read on both sides of the axis.
+
+**Figure readings (mm; upper / lower outline, mean) against the file.**
+
+| Element | Surfaces | Figure | File | File / figure |
+| --- | --- | --- | --- | --- |
+| L1 | 1, 2 | 19.7 / 20.0, 19.8 | 19.8 | 1.00 |
+| L2 front (flange) | 3 | 17.0 / 17.2, 17.1 | 17.1 | 1.00 |
+| L2 rear (concave face end at the bevel) | 4 | 13.4 / 13.5, 13.4 | 13.4 | 1.00 |
+| L3 (square-cut) | 5, 6 | 13.3 / 12.9, 13.1 | 13.2 | 1.01 |
+| L4 | 7, 8 | 12.6 / 12.6, 12.6 | 12.6 | 1.00 |
+| L5 | 9, 10 | 7.6 / 7.3, 7.45 | 7.6 | 1.02 |
+| L6 | 11, 12 | 7.5 / 7.2, 7.35 | 7.5 | 1.02 |
+| L7 | 13, 14 | 7.8 / 7.1, 7.45 | 7.2 | 0.97 |
+| L8 | 15, 16 | 7.2 / 6.5, 6.85 | 6.9 | 1.01 |
+| L9 | 17, 18 | 8.4 / 8.0, 8.2 | 8.3 | 1.01 |
+| L10 | 19, 20 | 9.5 / 9.0, 9.25 | 9.4 | 1.02 |
+
+Every rim is within 4 % of the figure, inside reading noise, so no `sd` changed. L7's upper and lower outlines differ by
+0.7 mm, so its reading cannot settle the L6/L7 step (file 7.5 → 7.2; figure 7.35 vs 7.45); it stays. A model sketch of
+the file at 9.05 px/mm laid over the FIG. 6 crop at the S1 vertex and the axis matches every outline; the straight
+rim join drawn for L2 runs inside the figure's flat flange top and bevel, which carry no optical surface (a vertical
+`rimExtensionSd` land would not draw the bevel either, so none was added).
+
+**Asahi catalogue drawing** (pentax-manuals.com `lenses_mid_m.pdf`, printed p. 24), drawn near the 50 mm setting. Its
+two groups do not share one scale (front 4.63 px/mm, rear 5.09 px/mm from vertex spans), so it is a proportion check
+only: half-heights L1 92 px, L2 flange about 78, L3 61, L4 59-60, L5 38.5, L6 32-36, L7 about 36, L8 34, L9 37, L10 45.
+At the front-group scale these give 19.9, 16.8, 13.2, 12.8 mm for L1-L4; at the rear-group scale 7.6, 6.6-7.1, 7.1,
+6.7, 7.3, 8.8 mm for L5-L10. Both drawings agree with the file within about 8 %, with the same ordering: L8 smallest
+in the rear group, L10 larger than L9, L5 at least as large as L6.
+
+**Clearance and light (unchanged).** audit:surface OK; audit:aperture: 8 stations within 3 %, no rim, trace or iris
+limit; audit:field-coverage 100 % at all 8 stations; audit:image-circle 0 undersized; clearap at Y = 21.63 mm: no
+CLIPS-AXIAL or BLOCKS-CHIEF at any station. Corner illumination (app vignetting lattice, wide open, infinity), the same
+before and after at every node: 50.5 % at 28.8 mm (38.2°), 71.1 % at 31 mm, 84.0 % at 33.5 mm, 86.0 % at 36.5 mm,
+87.1 % at 40 mm, 88.2 % at 43 mm, 89.1 % at 46 mm and 90.1 % at 48.9 mm. FIG. 10(a)-(c) plot the field to 38°, 29°
+and 24°, which the model's corner angles (38.2°, 28.7°, 23.9°) match. The patent prints no lateral ray fans, so no
+independent rim radii were available.
+
+**Wide-end field limit.** The engine's half-field at 28.8 and 31 mm (32.5° and 33.9°) is its paraxial two-ray estimate,
+kept because a real chief ray at that angle passes. Ranked by that estimate, the limiting rims at 28.8 mm are s4
+(32.5°), s7 (34.1°), s5 (34.8°), s6 (35.3°) and s8 (36.1°); raising L2's rear rim alone would move the estimate only
+to L4's 34.1°, and bringing it to the 36.9° corner angle would need s4, s7, s5, s6 and s8 raised 18, 11, 8, 6 and 3 %
+above the figure. The real chief ray to the corner
+clears all of them (s4 13.05 mm of 13.4; s7 12.28 of 12.6). This is a property of the estimate, not of the rims, so no
+rim was widened.
+
+Open: none for the rims.
