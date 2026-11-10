@@ -13,6 +13,9 @@ stop still opens to the marketed f-number. Section I holds stations whose stated
 
 Status values: `todo` · `in progress` · `blocked (reason)` · `partial (what remains)`.
 
+Census totals come from the audit command each section names; do not copy them here
+([documentation-policy.md](documentation-policy.md#what-is-not-documented)).
+
 ## Section A — surfaces below the image-circle floor
 
 Regenerate this table at any time:
@@ -35,15 +38,16 @@ instead of here.
 | RODENSTOCK GRANDAGON-N 65mm f/4.5       | `rodenstock/RodenstockGrandagonN65mmf45.data.ts`    | DE 2444954 A1      | yes           | 11 (14.40 < 21.64), 12 (18.00 < 25.09) | 7.24 mm | the 4×5 corner chief ray (51.7°) clips at 1 (22.82 > 18), 2 (14.58 > 14.4), 3 (12.77 > 12.7) and 12 (18.06 > 18) | todo — **wide**                                       |
 | RODENSTOCK GRANDAGON-N 75mm f/4.5       | `rodenstock/RodenstockGrandagonN75mmf45.data.ts`    | DE 2444954 A1      | yes           | 11 (16.80 < 21.57), 12 (21.00 < 25.04) | 4.77 mm | 11 and 12 clear; the 4×5 corner chief ray (47.5°) clips at 1 (23.72 > 21)                                        | todo — **wide**                                       |
 
-The three Grandagon-N f/4.5 rows read 100% in `audit:field-coverage` because their declared 105° field is not
+The Grandagon-N f/4.5 rows read 100% in `audit:field-coverage` because their declared 105° field is not
 clip-checked; the corner chief ray still clips at the front rims listed, so the traced floor is surface 1, not 11/12.
 
 ### Not covered by the check
 
-`npm run audit:image-circle` skips 37 lenses: six folded designs (the axial gap to the image plane is not the distance
-the ray travels) and 31 files with no usable `imageFormat`, nine of them `reference/` mirror fixtures. Filling in
-`imageFormat` where the format is unambiguous — see [lens-mount-format-backfill.md](lens-mount-format-backfill.md) —
-brings those into scope for free.
+`npm run audit:image-circle` skips folded designs (the axial gap to the image plane is not the distance the ray
+travels) and files with no usable `imageFormat`, including the `reference/` mirror fixtures. Run it without
+`--markdown` for the current count and each skipped file with its reason. Filling in `imageFormat` where the format is
+unambiguous — see [lens-mount-format-backfill.md](lens-mount-format-backfill.md) — brings the files without one into
+scope for free.
 
 ## Section B — figure-vs-data shape deviations (odd-asphere set)
 
@@ -77,9 +81,9 @@ under-counts chief-ray height near the image. Fixing it lens-by-lens off drawing
 re-deriving these from a real full-field chief-ray trace would settle the whole section at once and is probably the
 better investment.
 
-The 2026-09-24 field-coverage pass raised rims on six of these lenses to the traced format corner (XF 23mm f/2, XF 18mm
-f/2, GF 20-35mm, GFX100RF 35mm f/4, X100V 23mm f/2 and XF 16-55mm f/2.8 II; see their `*.audit.md` sidecars), so their
-ratios above are stale: re-measure before acting on those rows.
+The 2026-09-24 field-coverage pass raised rims to the traced format corner on XF 23mm f/2, XF 18mm f/2, GF 20-35mm,
+GFX100RF 35mm f/4, X100V 23mm f/2 and XF 16-55mm f/2.8 II (see their `*.audit.md` sidecars), so their ratios above are
+stale: re-measure before acting on those rows.
 
 ## Section C — source blockers
 
@@ -148,6 +152,9 @@ Regenerate the list at any time:
 ```bash
 npm run audit:field-coverage -- --markdown
 ```
+
+Run it without `--markdown` for the current census: stations per coverage band, the stations below 90% by diagnosis,
+and each skipped file with its reason.
 
 The analysis half-field follows the real chief ray to the format corner and ends at the first clear aperture that clips
 it ([architecture/optics-engine.md](architecture/optics-engine.md)). Stations whose patent prints a smaller image height
@@ -289,7 +296,7 @@ when a lens joins or leaves it, so delete the key there with the row here.
 | TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004)          | `tamron/TamronSP90mmf28Di.data.ts`              | 2.8              |           2.89 | The header says the stop was calibrated to a value that is not the design stop; reconcile the two from the source                                               | todo   |
 
 Also check, without a row each, files whose `nominalFno` is slower than `apertureDesign` by more than 0.5 %
-(three mirror lenses, where the central obstruction separates the two; `PanasonicLumixG8mmf35`, `OlympusMZuiko17mmf18`,
+(mirror lenses, where the central obstruction separates the two; `PanasonicLumixG8mmf35`, `OlympusMZuiko17mmf18`,
 `Pentax645FA120mmf4` and others), where one of the two fields is likely mislabelled.
 
 The test compares only the wide entry of `nominalFno`, and only in files that set `apertureDesign`. These
@@ -314,11 +321,10 @@ EPD = F/N by the stop rule) is clipped by a rim or cannot be traced. The apertur
 npm run audit:aperture -- --markdown
 ```
 
-4,676 of 5,062 stations are within 3 % (2026-10-28, after the paraxial stop rule, the step backwards, the asphere
-audit, the stop-plane moves and the Nokton 50mm f/1 rim cut). Of the other 386, a rim clips the beam at 368 stations on 83 lenses (`rim`), and the diagnoses below cover 2
-stations on 2 lenses (`trace`) and 16 on 3 lenses (`iris`). Work the largest `rim` differences first. For each row,
-read whether the limiting semi-diameter is printed in the source or was inferred from a drawing, then follow
-[patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
+Its closing line (on stderr) gives the current census: the stations within 3 %, and the stations and lenses under each
+diagnosis. A station is `rim` when a clear aperture clips the stated beam. Work the largest `rim` differences first.
+For each row, read whether the limiting semi-diameter is printed in the source or was inferred from a drawing, then
+follow [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
 f-number may be defined on a vignetted beam, and the row is then recorded in [decisions.md](decisions.md). An inferred
 rim rises only to the height the stated on-axis ray needs, on the surfaces that clip, and an element the figure draws
 with a square rim keeps both faces at one height (the procedure's "clipped stated beam" case;
@@ -328,11 +334,11 @@ are corrected with the row.
 
 The other diagnoses are not rim problems:
 
-- `trace`, two lenses: no rim clips, but the next ray cannot be continued. On the Kinoptik Tegea 5.7mm f/1.8 and the
+- `trace`: no rim clips, but the next ray cannot be continued. On the Kinoptik Tegea 5.7mm f/1.8 and the
   AF-S Nikkor 14-24mm f/2.8 at 23.8 mm the ray toward the iris rim cannot be traced to the stop, so the audit compares
   the beam with the stated pupil instead. A stop plane inside the sag of the surface before it is no trace failure:
   the sequential trace steps back to it.
-- `iris`, two lenses: the iris itself is not the stated one. An embedded glass stop keeping its authored radius
+- `iris`: the iris itself is not the stated one. An embedded glass stop keeping its authored radius
   (Zeiss Hologon 15mm f/8), and the published schedule of
   the Sigma 24-70mm f/2.8 DG OS HSM Art, which opens to f/2.80–2.84 against the stated f/2.93 from 39 to 68 mm.
 
@@ -379,8 +385,8 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 
 ## In-progress diagram sweep
 
-The oldest-200 hosted-diagram audit (patent and live-view review of each lens, semi-diameters included) is paused at
-lens 40 of 200. Its frozen queue, resume instructions and open follow-ups live in
+The oldest-200 hosted-diagram audit (patent and live-view review of each lens, semi-diameters included) is paused.
+Its resume point, frozen queue and open follow-ups live in
 [records/lens-shape-audit-first-200-2026-09-08.md](records/lens-shape-audit-first-200-2026-09-08.md); resume there,
 not here. When that sweep reaches a lens that also sits in Sections A–C, work it from this queue's row and then delete
 the row.
