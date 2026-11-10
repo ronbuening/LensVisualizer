@@ -235,6 +235,22 @@ describe("validateLensData", () => {
       }
     });
 
+    it("accepts a non-patent source issuer and refuses one beside a patent or out of canonical form", () => {
+      const data = makeValid({ sourceIssuer: "Fixture Optical Works" });
+      expect(validateLensData(data)).toEqual([]);
+      expect(validateCanonicalLens(ingestLens(data as LensDataInput))).toEqual([]);
+      for (const [fields, error] of [
+        [{ ...metadata, sourceIssuer: "Fixture Optical Works" }, "names a non-patent source"],
+        [{ sourceIssuer: " Fixture Optical Works" }, "must be a non-empty, trimmed string"],
+        [{ sourceIssuer: "FIXTURE OPTICAL WORKS" }, "must use conventional capitalization"],
+        [{ sourceIssuer: "Fixture Optical Works (sheet)" }, "must omit parenthetical source annotations"],
+      ] as const) {
+        const errors = validateLensData(makeValid(fields));
+        expect(errors, error).toHaveLength(1);
+        expect(errors[0]).toContain(error);
+      }
+    });
+
     it("accepts an example whose id its label gives, and refuses one without a patent number", () => {
       for (const [label, id] of [
         ["Example 6", "6"],

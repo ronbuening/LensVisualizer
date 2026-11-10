@@ -134,3 +134,8 @@ Movement: keyframe 0 is infinity at BF 15.879 mm and the last is ZD0 240.11 mm a
 Silhouette after the pass, against Fig. 1: the step order is L1, L2/L3, L7, L6, L4, L5, as drawn. L1, L6 and L7 stay 1.07, 0.51 and 0.40 mm above the figure under the light budget, so their edges read a little thinner than drawn. The S4 and S12 collars are not modeled. Overlay of the final outline on Fig. 1: `overlay.png` under `r2/nokton35` in the session scratch folder, not kept in the repo.
 
 Open limitations: the plate's thickness and index are not printed. `focus.conjugates` stays as recorded above.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.marketing: 1.2` from the product name, so the wide-open readout names the marked f/1.2 beside
+  the design f/1.23. No optical value changed.

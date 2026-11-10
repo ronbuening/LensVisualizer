@@ -70,3 +70,8 @@ Independent native trace gives EFL 0.999672803206 and BFL 0.459008318086; scaled
 **Cause/action:** scaling precision loss/transcription; restore full scaled source dimensions. Offset **−0.204236 → −0.082281 mm**; Section E row deleted. Changelog records the user-visible focus correction.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 4.0` from US 6,445,511 B1 col. 6, l. 41 (PDF p. 10), the middle portion of Table 3
+  (Embodiment 3): "f = 1.0 FNO = 4.0 ω = 9.5°". The stop's `nominalFNumber` 4.0 matches it. No optical value changed.

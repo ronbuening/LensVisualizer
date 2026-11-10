@@ -47,8 +47,9 @@ agent_docs/           - Focused agent docs; start at agent_docs/README.md
 ```bash
 npm install
 npm run dev                     # Generate metadata, then start Vite on http://localhost:5173
-npm run build                   # Organize lens data, generate metadata + readmes, build, prerender, sitemap, RSS feeds
-npm run generate:metadata       # Organize lens data, refresh src/generated/, rewrite src/**/readme.md
+npm run build                   # Organize lens data, generate metadata, build, prerender, sitemap, RSS feeds
+npm run generate:metadata       # Organize lens data, refresh src/generated/
+npm run generate:readmes        # Write gitignored per-folder import maps (src/**/readme.md) on demand
 npm run test                    # Vitest; pretest regenerates src/generated/
 npm run typecheck
 npm run lint                    # npm run lint:fix to auto-fix
@@ -56,6 +57,7 @@ npm run format:check            # npm run format to fix
 npm run generate:reports        # Refresh every agent_docs/generated/ report (not part of npm test)
 npm run generate:glass-reports  # Refresh agent_docs/generated/ glass reports after glass-data changes
 npm run generate:mount-svgs     # Refresh mount SVG specifications after src/mounts/ changes
+npm run where-used -- <file>[#<symbol>]  # Importers of a file, or every use of an export through barrels
 ```
 
 Full script inventory (audits, benchmarks, feeds, branding, SEO): `agent_docs/workflow.md` § Commands.
@@ -136,10 +138,9 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
 
 `typecheck` and `test` regenerate `src/generated/` through their `pre*` hooks, so they work on a fresh clone. Run
-`npm run generate:metadata` first only when running lint alone or when stray root-level lens files need organizing; it
-also rewrites `src/**/readme.md`, so commit those diffs with the change that caused them. Run `npm run build` for route,
-metadata, lens-data organization, SEO, article, or sitemap changes. Production deploys through Cloudflare Pages with a
-GitHub Pages mirror; see `agent_docs/workflow.md`.
+`npm run generate:metadata` first only when running lint alone or when stray root-level lens files need organizing.
+Run `npm run build` for route, metadata, lens-data organization, SEO, article, or sitemap changes. Production deploys
+through Cloudflare Pages with a GitHub Pages mirror; see `agent_docs/workflow.md`.
 
 ## Compaction Instructions
 

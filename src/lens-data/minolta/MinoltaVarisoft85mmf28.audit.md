@@ -85,3 +85,7 @@ Patent: US 4,124,276A, Embodiment 3
 
 - Why the old value differed: printed close row states no distance; 0.8 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.8 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2.8: `patents/US4124276.pdf` PDF p. 23 (col. 8), Table 6 (Embodiment 3) heading "f = 100.0  FNo. = 2.8  2ω = 28°  Back Focal Distance s′ = 66.90", read from a render. The stop's `nominalFNumber` 2.8 passes the 0.5% guard.

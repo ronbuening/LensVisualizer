@@ -191,3 +191,8 @@ Unit focus is right in order, direction and amount. `gaps["11"]` lists 36.883734
 ### Limits
 
 The renderer's land is vertical, so the chamfers on L3 and L4 stay square corners, about 1.1–1.9 mm on L3 and 0.8–1.5 mm on L4 in the figure. L5's flat top remains a slanted edge, 0.4 mm of rise over 1.9 mm, because S8 is cemented. S7 stays 1–4 % above its curve-end reading at the baseline 10.8 mm. A trial at 10.5 mm costs no light and passes the validator, but the gap is inside the measurement noise, so no new cut was added.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.marketing: 1.7` from the product name, so the wide-open readout names the marked f/1.7 beside
+  the design f/1.73. No optical value changed.

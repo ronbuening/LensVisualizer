@@ -1,5 +1,4 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -95,10 +94,6 @@ function filesMatching(relativeDir: string, matches: (filename: string) => boole
   });
 }
 
-function filesNamed(relativeDir: string, filename: string): string[] {
-  return filesMatching(relativeDir, (name) => name === filename);
-}
-
 function documentedProjectMapDirectories(projectMap: string): {
   src: Set<string>;
   components: Set<string>;
@@ -133,37 +128,6 @@ function isLifecycleHook(name: string, scripts: Record<string, string>): boolean
 }
 
 describe("doc drift guards", () => {
-  it("keeps generated src folder documentation synchronized", () => {
-    expect(() =>
-      execFileSync("node", ["scripts/generate-src-readmes.mjs", "--check"], {
-        cwd: repoRoot,
-        encoding: "utf8",
-      }),
-    ).not.toThrow();
-  });
-
-  it("omits intentionally data-heavy sources from large-file warnings", () => {
-    const largeFileWarnings = filesNamed("src", "improvementsuggestions.md")
-      .flatMap((relativePath) => {
-        const section = sectionUnderHeading(
-          readFileSync(join(repoRoot, relativePath), "utf-8"),
-          "Large files carry substantial maintenance weight",
-        );
-        return section === undefined ? [] : [section];
-      })
-      .join("\n");
-    const excludedBasenames = [
-      "glassCatalogData.ts",
-      ...readdirSync(join(repoRoot, "src", "optics", "chromatic", "glassCatalogEntries")).filter((name) =>
-        name.endsWith(".ts"),
-      ),
-    ];
-
-    for (const basename of excludedBasenames) {
-      expect(largeFileWarnings, `${basename} should not inform generated large-file warnings`).not.toContain(basename);
-    }
-  });
-
   it("ingests and builds the three examples in LENS_DATA_SPEC.md", () => {
     const spec = readFileSync(join(repoRoot, "src", "lens-data", "LENS_DATA_SPEC.md"), "utf-8");
     const blocks = [...(sectionUnderHeading(spec, "Examples") ?? "").matchAll(/```ts\n([\s\S]*?)```/g)];

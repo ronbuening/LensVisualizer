@@ -43,3 +43,9 @@ As a diagnostic, the reference-index axial geometric MTF calculation (32 pupil g
 **Cause/action:** small source image-distance discrepancy of unresolved design/rounding origin; preserve the printed prescription and document the limit of attribution. Offset **+0.099782 → +0.099782 mm**; Section E row deleted. No numerical change/changelog.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2.8` from DE 1,268,404 p. 1, col. 2, lines 38–40: "Die Objektive gemäß Fig. 1 und 2
+  haben die Öffnung f:2,8" (Tabelle II is the Fig. 2 example). The stop's `nominalFNumber` 2.8 matches it. No optical
+  value changed.

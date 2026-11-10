@@ -222,10 +222,15 @@ export interface SourceV2Input {
   authors?: string[];
   assignees?: string[];
   errata?: SourceErratum[];
+  /**
+   * The organization that issued a non-patent manufacturer source, such as a factory optical data sheet, named as
+   * its historical legal entity at the source date. Never set beside `patentNumber`.
+   */
+  issuer?: string;
 }
 
-/** A teleconverter's source: as a lens's, without errata, which V1 holds for a lens alone. */
-export type TeleconverterSourceV2Input = Omit<SourceV2Input, "errata">;
+/** A teleconverter's source: as a lens's, without errata or a non-patent issuer, which V1 holds for a lens alone. */
+export type TeleconverterSourceV2Input = Omit<SourceV2Input, "errata" | "issuer">;
 
 /** Diagram layout. Every member but `yScFill` has a schema default. */
 export interface LayoutV2Input {

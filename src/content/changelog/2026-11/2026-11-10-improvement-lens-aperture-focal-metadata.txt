@@ -1,0 +1,1 @@
+Filled missing f-number and focal-length metadata on 79 lenses: marked f-numbers from product names, and design values from the f-numbers and focal lengths their patents print

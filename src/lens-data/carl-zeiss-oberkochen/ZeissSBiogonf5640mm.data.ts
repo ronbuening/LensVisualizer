@@ -56,8 +56,8 @@ const LENS_DATA = {
     elementCount: 8,
     groupCount: 5,
     /* ── Explicit metadata fields ── */
-    focalLengthMm: { marketing: 40 },
-    fNumber: { marketing: 5.6 },
+    focalLengthMm: { marketing: 40, design: 40 },
+    fNumber: { marketing: 5.6, design: 5.6 },
   },
 
   // lensMounts / imageFormat intentionally unset: industrial M50 × 0.75 microfilm thread and microfilm

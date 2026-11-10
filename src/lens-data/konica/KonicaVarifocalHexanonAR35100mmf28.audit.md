@@ -50,3 +50,9 @@ annotations were checked; no aspheric or APD evidence was invented. Polynomial c
 receive an accurate inspector label. The assignee remains the canonical Konishiroku Photo Industry
 Co., Ltd.; merging it into the later Konica or Konica Minolta entities would lose historical identity.
 No additional changelog entry was made.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2.8` from US 3,584,935 col. 6, l. 37 (PDF p. 9), the table heading
+  "[f=35.99~100.00 mm. F1:2.8]". It is a constant-aperture zoom, and the scalar `aperture.nominalFNumber` 2.8 matches
+  it. No optical value changed.

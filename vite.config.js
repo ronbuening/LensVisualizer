@@ -1,14 +1,15 @@
 import react from "@vitejs/plugin-react";
 import { configDefaults, defineConfig } from "vitest/config";
 
-/* Tests of manual-only dev tooling (the benchmark harness and its drivers, and the
- * audit-script npm entries). `npm test` skips them; `npm run test:tooling` (vitest.tooling.config.js) runs them. */
+/* Tests of manual-only dev tooling (the benchmark harness and its drivers, the audit-script npm
+ * entries, and where-used). `npm test` skips them; `npm run test:tooling` (vitest.tooling.config.js) runs them. */
 export const TOOLING_TESTS = [
   "__tests__/src/benchmarks/**/*.test.ts",
   "__tests__/scripts/auditImageCircle.test.ts",
   "__tests__/scripts/benchmarkMtfScript.test.ts",
   "__tests__/scripts/benchmarkOpticsRenderingScript.test.ts",
   "__tests__/scripts/convertLensDataCorpus.test.ts",
+  "__tests__/scripts/whereUsed.test.ts",
 ];
 
 const RIM_CUT_TEST = "__tests__/src/optics/rimCutBeams.test.ts";

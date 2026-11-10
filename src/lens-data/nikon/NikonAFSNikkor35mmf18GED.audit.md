@@ -115,3 +115,8 @@ Sagittal curves agree within 0.03 mm for d and 0.04 mm for g over the field. The
 Resin L27r, nd 1.5361, νd 41.21: the patent calls it a thin aspherical plastic resin layer (¶0074, p. 12) and gives no name, supplier, extra line index or partial dispersion anywhere. `Unmatched` stands.
 
 Validator clean, image-circle floor clean, field coverage 100 %, `audit:aperture` finds no rim, trace or iris limit, no `CLIPS-AXIAL` or `BLOCKS-CHIEF`. Engine half-field 32.68°, `tracingHalfField` 34.64°, F/1.86 and stop radius 10.519 mm are unchanged. No `Open:` line remains.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.marketing: 1.8` from the product name, so the wide-open readout names the marked f/1.8 beside
+  the design f/1.86. No optical value changed.
