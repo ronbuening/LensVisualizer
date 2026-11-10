@@ -1,9 +1,9 @@
 # UI Components Architecture
 
 Read this for the non-obvious behavior and cross-component rules of shared controls, display components, content
-components, markdown rendering, analysis drawer tabs, charts, and homepage UI. Per-folder inventories live in the
-generated `src/components/**/readme.md` files; viewer orchestration and the SVG diagram layers are covered by
-[`viewer-and-diagram.md`](viewer-and-diagram.md).
+components, markdown rendering, analysis drawer tabs, charts, and homepage UI. For per-folder inventories, run
+`npm run generate:readmes` and read `src/components/**/readme.md`; viewer orchestration and the SVG diagram layers are
+covered by [`viewer-and-diagram.md`](viewer-and-diagram.md).
 
 > Mount interface diagram components are in `src/components/mount/` (`MountDiagram`, `MountDiagramPanel`); the maker
 > and mount pages cross-link via `src/components/content/LinkListSidebar.tsx` (also used, with `#anchor` items, for
@@ -23,6 +23,9 @@ generated `src/components/**/readme.md` files; viewer orchestration and the SVG 
   events), so a tap's compatibility `mouseenter` cannot open it before the tap's click toggles it.
 
 ## Controls
+
+Source-prescription errata remain reachable from the diagram header's Source prescription notes disclosure even
+when compact specifications are closed or the companion-description feature is disabled.
 
 Companion `*.analysis.md` content and its desktop/mobile view controls are gated by `ENABLE_ANALYSIS_VIEW`. When the
 flag is disabled, individual lens pages remain diagram-only and do not load or advertise the companion markdown.
@@ -173,7 +176,8 @@ on-screen size at every zoom, no overlaps (the overview panel and network captio
 for the selection, the hovered node, the selection's neighbors, then hubs, so hub names read at Fit all. Nodes, edges
 and labels outside the viewport are culled except the selection and its highlighted edges. Arrow keys move a roving
 tab stop to the nearest node in that direction; Enter or Space selects it. Non-patent catalog models use distinct
-`lens` and `maker` nodes with `catalog-maker` edges derived only from an explicit lens `maker` field; these edges do not count as patents,
+`lens` and `maker` nodes with `catalog-maker` edges derived only from an explicit lens `maker` field, except that a model
+with `source.issuer` joins that organization's assignee or organization node instead; these edges do not count as patents,
 corporate history, or corporate affinity. Maker hubs center their models, and details link to the model and maker pages.
 
 `UniversalMapSearch` searches only graph nodes and uses the shared portal dropdown with combobox keyboard semantics.
@@ -330,3 +334,12 @@ type import, header, `const LENS_DATA = { ... } satisfies LensDataV2Input` and d
 order. It retains authored values, not original source comments; it does not import conversion-only optics code. The
 built-in triplet is a synthetic teaching design with catalog N-BK7/N-F2 glasses, approximately 49 mm EFL at f/2.8,
 declared 135 full frame so field-dependent analyses chart to a real format corner.
+
+## MTF numerical presentation
+
+Normal charts, crosshairs, tables and CSV show only converged fields within their reported stable frequency band.
+Rows and status counts remain visible for omitted estimates. The explicit diagnostic disclosure includes unconverged
+and unverified-frequency values, and labels exports accordingly. It resets when numerical request settings change,
+while chart view/frequency selections retain the disclosure without starting another worker computation.
+Stale results identify their previous settings and cannot be exported. The production sampler, cap and convergence
+criterion remain owned by the optics engine; presentation never upgrades an unconverged result.

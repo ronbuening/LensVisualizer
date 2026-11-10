@@ -13,6 +13,9 @@ stop still opens to the marketed f-number. Section I holds stations whose stated
 
 Status values: `todo` · `in progress` · `blocked (reason)` · `partial (what remains)`.
 
+Census totals come from the audit command each section names; do not copy them here
+([documentation-policy.md](documentation-policy.md#what-is-not-documented)).
+
 ## Section A — surfaces below the image-circle floor
 
 Regenerate this table at any time:
@@ -35,15 +38,16 @@ instead of here.
 | RODENSTOCK GRANDAGON-N 65mm f/4.5       | `rodenstock/RodenstockGrandagonN65mmf45.data.ts`    | DE 2444954 A1      | yes           | 11 (14.40 < 21.64), 12 (18.00 < 25.09) | 7.24 mm | the 4×5 corner chief ray (51.7°) clips at 1 (22.82 > 18), 2 (14.58 > 14.4), 3 (12.77 > 12.7) and 12 (18.06 > 18) | todo — **wide**                                       |
 | RODENSTOCK GRANDAGON-N 75mm f/4.5       | `rodenstock/RodenstockGrandagonN75mmf45.data.ts`    | DE 2444954 A1      | yes           | 11 (16.80 < 21.57), 12 (21.00 < 25.04) | 4.77 mm | 11 and 12 clear; the 4×5 corner chief ray (47.5°) clips at 1 (23.72 > 21)                                        | todo — **wide**                                       |
 
-The three Grandagon-N f/4.5 rows read 100% in `audit:field-coverage` because their declared 105° field is not
+The Grandagon-N f/4.5 rows read 100% in `audit:field-coverage` because their declared 105° field is not
 clip-checked; the corner chief ray still clips at the front rims listed, so the traced floor is surface 1, not 11/12.
 
 ### Not covered by the check
 
-`npm run audit:image-circle` skips 37 lenses: six folded designs (the axial gap to the image plane is not the distance
-the ray travels) and 31 files with no usable `imageFormat`, nine of them `reference/` mirror fixtures. Filling in
-`imageFormat` where the format is unambiguous — see [lens-mount-format-backfill.md](lens-mount-format-backfill.md) —
-brings those into scope for free.
+`npm run audit:image-circle` skips folded designs (the axial gap to the image plane is not the distance the ray
+travels) and files with no usable `imageFormat`, including the `reference/` mirror fixtures. Run it without
+`--markdown` for the current count and each skipped file with its reason. Filling in `imageFormat` where the format is
+unambiguous — see [lens-mount-format-backfill.md](lens-mount-format-backfill.md) — brings the files without one into
+scope for free.
 
 ## Section B — figure-vs-data shape deviations (odd-asphere set)
 
@@ -77,9 +81,9 @@ under-counts chief-ray height near the image. Fixing it lens-by-lens off drawing
 re-deriving these from a real full-field chief-ray trace would settle the whole section at once and is probably the
 better investment.
 
-The 2026-09-24 field-coverage pass raised rims on six of these lenses to the traced format corner (XF 23mm f/2, XF 18mm
-f/2, GF 20-35mm, GFX100RF 35mm f/4, X100V 23mm f/2 and XF 16-55mm f/2.8 II; see their `*.audit.md` sidecars), so their
-ratios above are stale: re-measure before acting on those rows.
+The 2026-09-24 field-coverage pass raised rims to the traced format corner on XF 23mm f/2, XF 18mm f/2, GF 20-35mm,
+GFX100RF 35mm f/4, X100V 23mm f/2 and XF 16-55mm f/2.8 II (see their `*.audit.md` sidecars), so their ratios above are
+stale: re-measure before acting on those rows.
 
 ## Section C — source blockers
 
@@ -153,6 +157,9 @@ Regenerate the list at any time:
 npm run audit:field-coverage -- --markdown
 ```
 
+Run it without `--markdown` for the current census: stations per coverage band, the stations below 90% by diagnosis,
+and each skipped file with its reason.
+
 The analysis half-field follows the real chief ray to the format corner and ends at the first clear aperture that clips
 it ([architecture/optics-engine.md](architecture/optics-engine.md)). Stations whose patent prints a smaller image height
 (distortion-corrected wide ends) or declares a narrower field are correct as modeled; they are recorded under "Checked
@@ -192,6 +199,7 @@ standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata).
 
 | Lens                                                                                                | Finding                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Fix                                                                                                                                                                                                                                                                                                                                                                                       |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Minor US 1,360,667 Figure 2](../src/lens-data/unattributed/MinorUS1360667Figure2.audit.md) | Literal native-D prescription gives EFL 85.9066 mm and BFD 63.8407 mm; source says “focal distance 65 mm” without defining it. | Retain source numbers and publish only as an explicitly qualified numerical reconstruction; a corrected rating needs primary evidence. |
 | [Sigma 12mm f/1.4 DC Contemporary](../src/lens-data/sigma/Sigma12mmf14DCContemporary.audit.md)      | Reused original review complete by 2026-10-05 (exact review date unrecorded). V1 source-targeted explicit iris 10.125084795 mm was normalized by V2 ingestion to current derived 9.461105364 mm at nominal1.46. Current exact working values1.547950/1.546492 differ from historical1.459857/1.458278; static source-coordinate equality does not establish historical runtime-iris parity.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Preserve current data and nominal source target. Establish the source f-number convention or a measured physical iris before any numerical change. Keep the prior source/glass review date bound and current runtime qualification separate; do not restore or fit an iris from old runtime output alone.                                                                                 |
 | [Samyang AF 14mm f/2.8 EF](../src/lens-data/samyang/SamyangAF14mmf28EF.audit.md)                    | Controlling KR 10-1918210 B1 Example3, Equation6 on p. 12 is blank (the corresponding A original is also blank). The existing disclosed interpretation uses a separately authorized sibling standard-conic equation; this is not recovery of the controlling original formula or a uniquely proved source correction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Retain the four published asphere coefficient sets and the previously qualified interpretation, without silent publication substitution or new fitting. Direct current shape/glass evidence is from controlling Tables7–9/Fig7; preserve the original source discrepancies and image-reference limitation in the audit.                                                                   |
 | [Canon RF 28–70mm f/2 L USM](../src/lens-data/canon/CanonRF2870mmf2L.audit.md)                      | JP 2020-118807 A, Example A, native Equation 1 (p. 16, paragraphs 0094–0096) prints base numerator 1/R without H² and adds A2H², while the five selected asphere tables on pp. 17–18 list only K/A4–A12. Literal 1/R is dimensionally and vertex-inconsistent with the stated displacement.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Retain the existing standard H²/R interpretation and absent A2=0 as qualified modeling, supported separately by dimensions/vertex definition and source group powers. Preserve every source R/d/K/coefficient; do not claim literal equation parity or fit coefficients to the drawing.                                                                                                   |
@@ -294,7 +302,7 @@ when a lens joins or leaves it, so delete the key there with the row here.
 | TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004)          | `tamron/TamronSP90mmf28Di.data.ts`              | 2.8              |           2.89 | The header says the stop was calibrated to a value that is not the design stop; reconcile the two from the source                                               | todo   |
 
 Also check, without a row each, files whose `nominalFno` is slower than `apertureDesign` by more than 0.5 %
-(three mirror lenses, where the central obstruction separates the two; `PanasonicLumixG8mmf35`, `OlympusMZuiko17mmf18`,
+(mirror lenses, where the central obstruction separates the two; `PanasonicLumixG8mmf35`, `OlympusMZuiko17mmf18`,
 `Pentax645FA120mmf4` and others), where one of the two fields is likely mislabelled.
 
 The test compares only the wide entry of `nominalFno`, and only in files that set `apertureDesign`. These
@@ -319,11 +327,10 @@ EPD = F/N by the stop rule) is clipped by a rim or cannot be traced. The apertur
 npm run audit:aperture -- --markdown
 ```
 
-4,676 of 5,062 stations are within 3 % (2026-10-28, after the paraxial stop rule, the step backwards, the asphere
-audit, the stop-plane moves and the Nokton 50mm f/1 rim cut). Of the other 386, a rim clips the beam at 368 stations on 83 lenses (`rim`), and the diagnoses below cover 2
-stations on 2 lenses (`trace`) and 16 on 3 lenses (`iris`). Work the largest `rim` differences first. For each row,
-read whether the limiting semi-diameter is printed in the source or was inferred from a drawing, then follow
-[patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
+Its closing line (on stderr) gives the current census: the stations within 3 %, and the stations and lenses under each
+diagnosis. A station is `rim` when a clear aperture clips the stated beam. Work the largest `rim` differences first.
+For each row, read whether the limiting semi-diameter is printed in the source or was inferred from a drawing, then
+follow [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md). A printed rim stays: the source's
 f-number may be defined on a vignetted beam, and the row is then recorded in [decisions.md](decisions.md). An inferred
 rim rises only to the height the stated on-axis ray needs, on the surfaces that clip, and an element the figure draws
 with a square rim keeps both faces at one height (the procedure's "clipped stated beam" case;
@@ -333,11 +340,11 @@ are corrected with the row.
 
 The other diagnoses are not rim problems:
 
-- `trace`, two lenses: no rim clips, but the next ray cannot be continued. On the Kinoptik Tegea 5.7mm f/1.8 and the
+- `trace`: no rim clips, but the next ray cannot be continued. On the Kinoptik Tegea 5.7mm f/1.8 and the
   AF-S Nikkor 14-24mm f/2.8 at 23.8 mm the ray toward the iris rim cannot be traced to the stop, so the audit compares
   the beam with the stated pupil instead. A stop plane inside the sag of the surface before it is no trace failure:
   the sequential trace steps back to it.
-- `iris`, two lenses: the iris itself is not the stated one. An embedded glass stop keeping its authored radius
+- `iris`: the iris itself is not the stated one. An embedded glass stop keeping its authored radius
   (Zeiss Hologon 15mm f/8), and the published schedule of
   the Sigma 24-70mm f/2.8 DG OS HSM Art, which opens to f/2.80–2.84 against the stated f/2.93 from 39 to 68 mm.
 
@@ -349,6 +356,7 @@ fails when a lens joins or leaves it, so delete the key there with the row here.
 
 | Lens                             | File                                      | Station: face, glass from, wide-open iris                                                                                                                                                                                                                                                                                                                                                                                                                                 | Status                                                                                             |
 | -------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| MINOR PHOTOGRAPHIC OBJECTIVE Figure 2 | `unattributed/MinorUS1360667Figure2.data.ts` | f/2 setting traces approximately f/2.316, limited at r3. Literal EFL requires a 42.9533 mm pupil for f/2, exceeding the source maximum glass diameter 38 mm. | unresolved source rating — inferred rims retained; f/2 is a nominal iris setting, not reproduced performance |
 | CANON EF 70–200mm f/4 L USM      | `canon/CanonEF70200mmf4LUSM.data.ts`      | Current fixed-iris aperture census at tele is f/4.324 (+5.46%), S5-limited. R4/R5's required22.3mm caps and edge-contact22.1mm trial fail the unchanged0.90 guard; full stated beam also exceeds physical contact. Source-supported front27/27mm caps improve peripheral samples, but axial/tele restriction remains; see the [audit](../src/lens-data/canon/CanonEF70200mmf4LUSM.audit.md).                                                                              | partial — reviewed; source-gap and finite/interpolated beam constraints retained                   |
 | CANON EF 600mm f/4 L IS II       | `canon/CanonEF600mmf4LISIIUSM.data.ts`    | The selected source publishes a 21.555 mm physical iris radius, while ordinary-prime runtime authority derives 21.114025 mm from its f-number. The published iris gives real-beam f/4.119247 and source entrance-ray height 70.98 mm; the current derived iris gives f/4.202033. No per-lens workaround or source-stop fitting is applied. Inferred finite full-iris boundary clips also remain; see the [audit](../src/lens-data/canon/CanonEF600mmf4LISIIUSM.audit.md). | partial — reviewed; generic published-prime-iris representation and finite full-iris limits remain |
 | CANON EF 28mm f/2.8              | `canon/CanonEF28mmf28.data.ts`            | Source f/2.8 remains S7-limited (aperture census equivalent f/2.97, +6.2%). The required 6.5 mm cap fails the unchanged S7/S8 0.280 mm source-gap guard. Original-PDF shape/glass review retains source R/d, zero D9 and iris rule; see the [audit](../src/lens-data/canon/CanonEF28mmf28.audit.md).                                                                                                                                                                      | partial — reviewed; complete beam needs independent source-gap precision evidence                  |
@@ -383,8 +391,8 @@ fourteen further lenses ([records/fixed-iris-patent-audit-2026-10.md](records/fi
 
 ## In-progress diagram sweep
 
-The oldest-200 hosted-diagram audit (patent and live-view review of each lens, semi-diameters included) is paused at
-lens 40 of 200. Its frozen queue, resume instructions and open follow-ups live in
+The oldest-200 hosted-diagram audit (patent and live-view review of each lens, semi-diameters included) is paused.
+Its resume point, frozen queue and open follow-ups live in
 [records/lens-shape-audit-first-200-2026-09-08.md](records/lens-shape-audit-first-200-2026-09-08.md); resume there,
 not here. When that sweep reaches a lens that also sits in Sections A–C, work it from this queue's row and then delete
 the row.

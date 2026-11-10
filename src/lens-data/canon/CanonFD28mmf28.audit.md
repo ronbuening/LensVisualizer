@@ -21,3 +21,8 @@ Patent: US 4,046,459, Example 2 / Fig. 5 / Table 3
 - HOYA's obsolete BAF5 row (`1.607292 / 49.336899`) is the exact coefficient-backed catalog equivalent. The
   production supplier remains unspecified.
 - Strict and trusted catalog coverage are now complete at `7/7`; no geometry changed.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2.8` from US 4,046,459 PDF p. 7, col. 5, the Table 3 (for Fig. 5) heading "f = 1 F 2.8
+  ω = 38°" at the top of the column. The stop's `nominalFNumber` 2.8 matches it. No optical value changed.

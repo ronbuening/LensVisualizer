@@ -96,3 +96,9 @@ agree with one another.
 
 Follow-ups: the near rows' printed distances sit 1.3 % (400 mm) and 0.14 % (2400 mm) from where the printed d12
 values focus on the placed plane; the re-solve absorbs that, and no erratum is recorded.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2.8` from US 2020/0319427 A1 FIG. 3 (Sheet 2 of 40, PDF p. 3), INFINITY column:
+  "F No. 2.80"; ¶[0104] (p. 8) repeats "an F number of 2.80" for Example 1. The stop's `nominalFNumber` 2.8 matches
+  it. No optical value changed.

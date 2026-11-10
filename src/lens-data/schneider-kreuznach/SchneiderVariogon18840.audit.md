@@ -75,3 +75,9 @@ rule the plane is kept: the real-ray axial best focus lies within 10 depths of i
 - No travel, EFL or close-focus change; `focus.closeFocusM` stays 0.9144 (Bauer C2 manual, 3 ft).
 
 Follow-ups: none.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 1.8: US 3,442,573, PDF p. 4, col. 3, ll. 19–25: Table I is given "for a system of
+  relative aperture 1:1.8 ... with an overall focal length ranging from f_min = 8 to f_max = 40". One aperture for the
+  whole range, so the constant-aperture scalar applies. The stop's `nominalFNumber` 1.8 matches it.

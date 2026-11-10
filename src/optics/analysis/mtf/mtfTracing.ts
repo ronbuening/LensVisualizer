@@ -164,7 +164,7 @@ const indexTablesByState = new WeakMap<PreparedGeometry, Map<number, Float64Arra
 /**
  * Surface-index callback for one MTF wavelength.
  *
- * Reference-wavelength runs keep the authored indices unless mixed d/e references need a
+ * Reference-wavelength runs keep the authored indices unless mixed d/D/e references need a
  * physical conversion. Resolved runs use indices anchored to each authored reference, so the
  * design's focus at its reference line is unchanged.
  *

@@ -20,3 +20,7 @@ Patent: US 4,235,521, Embodiment 1 / FIG. 2
 ### Phase 4 - Analysis sync
 
 - Updated `OlympusXAZuiko35mmf28.analysis.md` to mention the Fig. 2 rear-group SD adjustment and current rim-slope/sag validation language.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` = 2.8: `patents/US4235521.pdf` PDF p7, col. 4, line ~61, Embodiment 1 footer "f = 100  f_B = 38.85  F 2.8". Stop `nominalFNumber` 2.8 is not faster.

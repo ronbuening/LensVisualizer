@@ -375,3 +375,21 @@ describe("ElementInspector — aspheric comparison link", () => {
     expect(onOpen).toHaveBeenCalledWith(basicElement.id);
   });
 });
+
+describe("native sodium D", () => {
+  it.each(["d", "D"] as const)("distinguishes measured C/%s/F from its estimated g channel", (reference) => {
+    const info = { ...basicElement, indexReference: reference, nC: 1.514, nF: 1.523 };
+    const L = {
+      ...mockLens,
+      S: [{ label: "1", R: 100, d: 5, nd: info.nd, sd: 10, elemId: 1 }],
+      indexByIdx: {
+        0: { quality: "lineIndices", fn: (ch: ChromaticChannel) => ({ R: 1.514, G: info.nd, B: 1.523, V: 1.528 })[ch] },
+      },
+    } as unknown as RuntimeLens;
+    render(<ElementInspector info={info} L={L} t={mockTheme} showChromatic={true} />);
+    expect(screen.getByText(`Measured C/${reference}/F; g estimated`)).toBeTruthy();
+    expect(screen.getByText("1.51800").getAttribute("title")).toBe(
+      reference === "D" ? "D-line 589.3 nm" : "d-line 587.6 nm",
+    );
+  });
+});

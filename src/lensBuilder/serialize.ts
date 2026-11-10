@@ -46,7 +46,7 @@ const ORDERS: Record<string, string[]> = {
     "fNumber",
     "closeFocusM",
   ],
-  source: ["patentNumber", "example", "patentYear", "authors", "assignees", "errata"],
+  source: ["patentNumber", "example", "patentYear", "authors", "assignees", "errata", "issuer"],
   elements: [
     "id",
     "name",

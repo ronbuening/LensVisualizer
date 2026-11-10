@@ -63,3 +63,9 @@ No optical value changed; only the data-file header gains the best-focus note.
   guard. Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
 
 Follow-ups: none.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design: 2.8` from DE 1,268,404 p. 1, col. 2, lines 38–40: "Die Objektive gemäß Fig. 1 und 2
+  haben die Öffnung f:2,8" (Tabelle II is the Fig. 2 example). The stop's `nominalFNumber` 2.8 matches it. No optical
+  value changed.

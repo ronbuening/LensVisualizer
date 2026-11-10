@@ -107,3 +107,11 @@ row, and G2 is then moved so the close row focuses at the source's 0.12 m.
   Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
 
 Follow-ups: none for the image plane. The f/1.47 aperture contradiction stays as recorded above.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` stays unset. The only f-number CN 121091494 A prints for Example 1 is ¶0135 (PDF p. 14,
+  description p. 11/16): the spherical-aberration plots are drawn at "光圈数为1.47" (F-number 1.47). The same paragraph
+  gives a 14.02° half field that Fig. 3 (PDF p. 21, field axis to 56.2°) contradicts, Tables 1–3 (PDF pp. 12–14) and
+  Figs. 2–5 print no F-number, and the analysis traces that f/1.47 cannot pass the Example 1 surfaces (on-axis limit
+  about f/2.295). The value is treated as boilerplate, as the data file's aperture note already records.

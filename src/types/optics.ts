@@ -227,7 +227,7 @@ export interface FoldedPathTraceDiagnostics {
 export type { AsphericCoefficients } from "./asphericSchema.js";
 
 /** Spectral reference used by an element's authored refractive index and Abbe number. */
-export type RefractiveIndexReferenceLine = "d" | "e";
+export type RefractiveIndexReferenceLine = "d" | "D" | "e";
 
 export interface ElementData {
   id: number;
@@ -242,10 +242,10 @@ export interface ElementData {
   vd?: number;
   /**
    * Spectral reference for the authored `nd` / `vd` fields. Defaults to the
-   * helium d line; use `"e"` when those schema slots preserve patent ne / νe.
+   * helium d line; use `"D"` for historical sodium nD / νD, or `"e"` for ne / νe.
    */
   indexReference?: RefractiveIndexReferenceLine;
-  /** Historical source-line uncertainty; displays source coordinates without claiming d/e identity. Does not alter tracing. */
+  /** Historical source-line uncertainty; displays source coordinates without claiming d/D/e identity. Does not alter tracing. */
   indexReferenceNote?: string;
   fl?: number;
   glass?: string;
@@ -471,6 +471,8 @@ export interface LensData {
   patentAuthors?: string[];
   /** Organizational assignees or applicants named by the source patent; empty when no organization is named. */
   patentAssignees?: string[];
+  /** The organization that issued a non-patent manufacturer source; never beside `patentNumber`. */
+  sourceIssuer?: string;
   patentYear?: number;
   /** Departures from, and unresolved contradictions in, the source's printed values; see LENS_DATA_SPEC.md. */
   sourceErrata?: SourceErratum[];
