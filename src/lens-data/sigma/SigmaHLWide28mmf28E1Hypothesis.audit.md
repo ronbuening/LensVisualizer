@@ -35,3 +35,18 @@ Field-label correction: the repository taxonomy diagonal is rounded to43.3 mm, s
 ## Exact Physical Format Corner: Additive v3
 
 The distinct exact 36×24 mm physical corner radius 21.633307652784 mm maps to 37.741276019°; the actual sampled angle is 37.741275892°. At the unchanged derived plane and inferred rims, geometric reference MTF at grid128 converges through30 lp/mm but remains unconverged at40 (maximum delta0.0124233121). Diffraction reference MTF at grid128 converges through40 lp/mm (maximum delta0.0031091969). Frequencies were0/10/20/30/40 lp/mm, with the same criteria as the prior declared-format check. This is a distinct previously unrun field, not a retry of the failed declared-corner40 result. No source, rim, plane or criterion was changed. Hidden visibility is retained. Full tests/build/broadband and installation validation remain pending.
+
+## 2026-11-10 — Deployment validation
+
+Independent check against JP S60-181715 A Example 1 (page 3, printed 75, 300-dpi render): all 16 rows (R, d, nd,
+νd), the stop row and the cemented pair agree; the four printed condition values reproduce (1.103/1.10, 5.379/5.38,
+1.670/1.67, 3.481/3.48). Front page: 株式会社シグマ, inventor 小山武久 (Takehisa Koyama). Attribution at design-family
+level: Sigma's booklet lists the H.L. Wide 28mm F2.8 as 8 elements in 7 groups, 75°, F22, 0.22 m, and Sigma's own
+history page records its 1985 launch as the Non Vignetting 28mm F2.8, matching the patent's aim of at least 95 %
+aperture efficiency; Examples 1 and 3 fit equally and no source names the production example. `audit:aperture`
+passes.
+
+Deployment change: `fStops` extended to f/22 (booklet minimum aperture).
+
+Open: `lensMounts` (the booklet lists mounts for the whole line, not per lens); the cemented pair is drawn about
+9.8–11.8 mm in Fig. 1 against 8.5 in the file; key, name, subtitle, specs, focus text and prose wording.

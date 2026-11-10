@@ -21,6 +21,21 @@ const LENS_DATA = {
       marketing: 4.5,
       design: 4.6,
     },
+    closeFocusM: {
+      marketing: 0.2,
+    },
+    lensMounts: [
+      "canon-ef",
+      "canon-rf",
+      "nikon-f",
+      "nikon-z",
+      "sony-fe",
+      "l-mount",
+      "pentax-k",
+      "fujifilm-g",
+      "hasselblad-xcd",
+    ],
+    imageFormat: "135-full-frame",
     specs: ["UNFINISHED STATIC HYPOTHESIS", "17 ELEMENTS / 11 GROUPS", "PROBABLE FAMILY, NOT FACTORY PRESCRIPTION"],
   },
   source: {
@@ -31,7 +46,7 @@ const LENS_DATA = {
     },
     patentYear: 2024,
     authors: ["Dayong Li"],
-    assignees: ["安徽长庚光学科技有限公司"],
+    assignees: ["Anhui Changgeng Optics Technology Co., Ltd."],
   },
   elements: [
     {

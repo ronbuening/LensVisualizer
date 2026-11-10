@@ -17,6 +17,7 @@ const LENS_DATA = {
     fNumber: {
       design: 2.88,
     },
+    imageFormat: "135-full-frame",
     imageCircleMm: 43.2,
     specs: ["11 ELEMENTS / 8 GROUPS", "UNFINISHED PATENT DESIGN; NOT QUALIFIED"],
   },

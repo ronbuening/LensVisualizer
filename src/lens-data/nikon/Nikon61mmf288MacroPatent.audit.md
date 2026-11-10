@@ -24,3 +24,17 @@ No optical data changes followed the metadata correction.
 Printed image planes and original first-order residuals are retained, as detailed in the analysis. Derived near distances are not printed or certified endpoints. Finite MTF remains unavailable, and finite aperture performance is not qualified. Exact spectral dispersion is unknown; broadband was not run. No measured production or retail performance is claimed.
 
 Full type/lint/corpus/build integration, independent review and normal installation remain pending. No commit, push, PR, deployment or readiness claim is included. Earlier checkpoints retain historical status labels; this audit describes the current scoped evidence.
+
+## 2026-11-10 — Deployment validation
+
+Independent check against US 7,777,974 B2 Example 1 (Table 1, PDF pp. 23–24 page images): 20 surfaces (R, d, nd,
+νd), the stop, three cemented pairs, the S17 asphere (κ = 1 → K = 0) and D8/D14/Bf at both states agree. Engine EFL
+60.986 (printed 61.00), F/2.88, Bf 39.99 paraxial (printed 40.00), β −1.0001 at the close state (printed −1.00); the
+printed conditional values reproduce. Front page: Nikon Corporation, inventor Hiroshi Yamamoto. No retail product
+matches (the AF-S Micro 60mm f/2.8G is 12/9 with ED and two aspheres); the entry stays a patent design.
+`audit:aperture` passes.
+
+Deployment change: `catalog.imageFormat` "135-full-frame" (patent image height 21.6 mm).
+
+Open: inferred rims depart from Fig. 1 (G2 drawn about 10.4 mm, file 13.8–15; L1 drawn about 12.7, file 14.5);
+cemented ids D5/D7/D8 clash with gap label D8; name, subtitle, specs, glass and prose wording.

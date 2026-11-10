@@ -260,7 +260,7 @@ const LENS_DATA = {
   gaps: {},
   aperture: {
     nominalFNumber: 2.8,
-    fStops: [2.8, 4, 5.6, 8, 11, 16],
+    fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
   },
 } satisfies LensDataV2Input;
 

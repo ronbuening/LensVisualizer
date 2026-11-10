@@ -39,3 +39,19 @@ Native vignetting/Rimmer simulation at128grid: axis1/1, half-frame pupil-transmi
 The updated model's API edge is23.596359mm at56.622013°, with chief edge22.130861mm at54.875675°. It does NOT establish source31.3mm or shift coverage. Source63.66° still lacks a standard chief/pupil solve. Additional nonauthored cap probes show sequential limitations: S3 radius16.4421mm exceeds16mm at56°; at58° S2 requires19.31435mm, S5 requires11.56352mm and S7 requires8.59642mm. A diagnostic S2=19.38mm (still default-slope-valid), S1=28mm/S3=19mm probe lets unchecked rays/root searches reach59°/25.799054mm and60°/26.807235mm, but those rays need S2 radii19.537866/19.750650mm exceeding that cap and the default spherical rim limit of approximately19.38258mm. The standard chief solve and intersection accessibility depend on cap search bounds; an API failure is not proof of an impossible optical source. No S2 rim-angle exception has enough dimensional evidence here. These broader cap probes were NOT adopted. Source-field and shifted-use qualifications remain HOLD.
 
 Diagnostic image-circle normalization (62.6mm for source targets,43.266615mm for actual-frame targets) was confined to in-memory copies. No image-circle, shift mechanism or format-coverage metadata has been added merely from normalization. The model stays hidden. A future explicitly unshifted infinity/full-frame qualification may be useful after independent review and aggregate gates. Broadband remains blocked by missing partial dispersion forVd81.61; native finite performance/conjugate certification, retail20cm, retailF4.5, factory-prescription identity and shift mechanics are not established. No full suite/build/typecheck executed. No ready-count increase. Exclusive native slot released after the bounded follow-up.
+
+## 2026-11-10 — Deployment validation
+
+Independent check against CN 110955036 B Embodiment 1 (PDF pp. 5–7 page images): 29 surfaces (R, d, nd, νd), the
+stop, five cemented interfaces, four aspheres (K, A4–A12) and three variable gaps at both states agree. Engine EFL
+15.4905 (printed 15.4908), F/4.6, BF 51.762 (printed 51.763); conditions (1)–(4) reproduce. Front page: 安徽长庚光学科技
+有限公司 (Anhui Changgeng Optics Technology Co., Ltd.), inventor 李大勇 (Dayong Li). Attribution strong: 17 elements in 11
+groups, aspheres on L2 and L17 and νd 81.6 glass on L3/L14/L16 match Venus Optics' published construction (two
+aspherical, three ED elements). `audit:aperture` passes.
+
+Deployment change: assignee in the corpus's English form; `catalog.lensMounts` (the nine mounts on the Venus Optics
+specification table), `imageFormat` "135-full-frame" and `closeFocusM.marketing` 0.2 added.
+
+Open: inferred rims are 20–35 % under the patent figure, which limits shift to about 0.9 mm; widen to the figure,
+then declare `perspectiveControl` (±11 mm) and the 65 mm image circle. "Unmatched" glass labels on exact HOYA codes;
+key, name, subtitle, specs and prose wording.

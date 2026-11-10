@@ -24,3 +24,17 @@ The first aperture census was rim-limited at S12, f/3.14402 versus f/2.9. The on
 Printed image planes and original first-order residuals are retained, as detailed in the analysis. Derived near distances are not printed or certified endpoints. Finite MTF remains unavailable, and finite aperture performance is not qualified. Exact spectral dispersion is unknown; broadband was not run. No measured production or retail performance is claimed.
 
 Full type/lint/corpus/build integration, independent review and normal installation remain pending. No commit, push, PR, deployment or readiness claim is included. Earlier checkpoints retain historical status labels; this audit describes the current scoped evidence.
+
+## 2026-11-10 — Deployment validation
+
+Independent check against US 8,363,333 B2 Numerical Embodiment 1 (PDF p. 43 page image): 24 surfaces (R, d, N(d),
+νd), the stop, three cemented interfaces including the 0.200 mm resin layer, the S3 asphere and four variable gaps
+at both states agree. Engine EFL 87.799 (printed 87.80), F/2.9, BFD 67.93, TL 205.94; close state f 58.799, β
+−1.0000. Front page: Pentax Ricoh Imaging Company, Ltd., inventor Tatsuyuki Onozaki. No Pentax product matches (the
+HD D FA645 Macro 90mm is a different design, already in the catalog from US 2013/0222925 A1); the entry stays a
+patent design. `audit:aperture` passes.
+
+Deployment change: `catalog.imageFormat` "645" (image circle 69.7 mm).
+
+Open: inferred rims depart from Fig. 1 (rear group drawn about 17 mm, file up to 24.7 mm; front group drawn about
+25.6 mm, file 22.8); "Unmatched" labels on eleven d-line catalog glasses; name, subtitle, specs and prose wording.
