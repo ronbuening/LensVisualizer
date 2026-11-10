@@ -182,3 +182,8 @@ limit, which would raise tracingHalfField only to 36.25°.
 
 Open: catalog rows OHARA FPL51, PBH14 and BSL7 (discontinued, `OHARA_260701.AGF`) would let G3, G9 and the plate carry
 the digit-exact design glasses.
+
+Rear plate GL labelled S-BSL7 (OHARA; Δnd 0, Δνd −0.008), so it traces on a catalog curve. The printed 1.51633 / 64.15015 equals
+discontinued OHARA BSL7 to every digit, and G9's printed νd 26.553651 likewise equals discontinued PBH14; neither row was
+added to the catalog, because both would change how other lenses' labels resolve (Mamiya Sekor AF 55, Fujifilm XF 23,
+Olympus Zuiko 85-250, Panasonic Leica DG 15). The current exact rows S-BSL7, S-TIH14 and H-FK61 stand.

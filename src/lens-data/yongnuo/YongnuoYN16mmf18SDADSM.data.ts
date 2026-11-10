@@ -337,6 +337,7 @@ const LENS_DATA = {
       nd: 1.51633,
       vd: 64.15015,
       indexReference: "d",
+      glass: "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       gapAfterMm: 1.06,
       source: "CN 214795390 U Table 1, surfaces 20–21 (filter plate GL), printed gaps",
     },
