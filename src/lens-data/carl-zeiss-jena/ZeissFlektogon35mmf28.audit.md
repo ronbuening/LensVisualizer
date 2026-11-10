@@ -15,3 +15,17 @@ At the actual full-frame corner both methods and both focus modes converge throu
 The final JSON interval zero is a computational endpoint, not a source BFL. The last authored gap is the independently calculated collimated BFL. The image plane is not optimized.
 
 Original source handoff: flektogon35_recovery/RECOVERED_SOURCE_HANDOFF.txt. All source identity and archival limitations are retained.
+
+## Deployment validation (2026-11-10)
+
+Independent check against the US 2,793,565 page images: 11 R, 11 thicknesses/spacings (including the printed stop split
+b1 7.55 / b2 8.09), 6 nd and 6 ν equal the First embodiment ×0.35; no mismatches. r11 reads −36.14 (DE 953471 prints the
+same; −30.14 would give f = 74.6). EFL 34.965 (99.90 at patent scale), construction length exact. The 1957 Zeiss Jena
+catalogue shows the 6/5 Flektogon 2.8/35 with this architecture; zeissikonveb.de notes the production glasses differ from the
+patent's, so the model is the patent design of the lens, not the factory prescription.
+
+Applied: `catalog.lensMounts` m42 / exakta / praktina (1957 catalogue).
+
+Open: the header does not state the ×0.35 scale; `focalLengthMm.design` holds the traced 34.965; R/d values carry float
+noise; the audit cap list above (5.5/5.5/5.5) is stale against the data (7.8/7.5/5.79); the analysis's "ASB Exakta" wording
+(the catalogue gives Exakta as SB); public wording needs a cleanup pass.

@@ -14,7 +14,7 @@ const LENS_DATA = {
   subtitle: "US 2,793,565 A — PROBABLE FAMILY, WHOLE SOURCE EXAMPLE",
   visible: true,
   catalog: {
-    lensMounts: ["exakta"],
+    lensMounts: ["m42", "exakta", "praktina"],
     imageFormat: "135-full-frame",
     specs: ["6 ELEMENTS / 5 GROUPS", "INFINITY-ONLY SOURCE HYPOTHESIS", "NO FACTORY PRESCRIPTION CLAIM"],
     elementCount: 6,

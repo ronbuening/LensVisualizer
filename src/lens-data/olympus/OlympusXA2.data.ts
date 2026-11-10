@@ -18,6 +18,7 @@ const LENS_DATA = {
     yScFill: 0.35,
   },
   catalog: {
+    lensMounts: ["fixed-lens-camera"],
     imageFormat: "135-full-frame",
     specs: [
       "4 ELEMENTS / 4 GROUPS",

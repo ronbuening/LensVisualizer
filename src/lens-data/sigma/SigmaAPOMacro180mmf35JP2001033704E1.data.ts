@@ -15,6 +15,7 @@ const LENS_DATA = {
     yScFill: 0.35,
   },
   catalog: {
+    lensMounts: ["canon-ef", "nikon-f", "pentax-k", "sony-a", "sigma-sa"],
     imageFormat: "135-full-frame",
     elementCount: 13,
     groupCount: 10,
@@ -27,9 +28,12 @@ const LENS_DATA = {
       marketing: 3.5,
       design: 3.6069,
     },
+    closeFocusM: {
+      marketing: 0.46,
+    },
   },
   source: {
-    patentNumber: "JP 2001033704 A",
+    patentNumber: "JP 2001-033704 A",
     example: {
       label: "Example 1",
       id: "1",

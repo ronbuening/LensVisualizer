@@ -15,3 +15,18 @@ At the actual full-frame corner, unchanged-plane geometric MTF converges only th
 The final JSON interval zero is a computational endpoint, not a source BFL. The last authored gap is the independently calculated collimated BFL. The image plane is not optimized.
 
 Original source handoff: summarex_recovery/RECOVERED_SOURCE_HANDOFF.txt. All source identity and archival limitations are retained.
+
+## Deployment validation (2026-11-10)
+
+The source is the Leitz application L 12741 IXa/42h (inventor Max Berek, Ernst Leitz GmbH), an addition to L 753, laid
+open for opposition on 6 August 1953 (DEPATISnet DE000L0012741MAZ); no later grant was found. Independent check of its p. 5
+table: 12 R, 12 thicknesses/gaps (including the stop split) and 7 n/ν pairs equal the f = 1 example ×85; no mismatches.
+EFL 84.998, f/1.5. Leitz's 7/5 construction, f/1.5, 1.5 m close focus and the published section drawings agree; the parent
+L 753 (filed 1936) matches the 1936 dating of Berek's Summarex design.
+
+Applied: `source` block (`DE L 12741`, sole example, 1953, Max Berek, Ernst Leitz GmbH) so the lens page cites the
+application; the PDFs are filed as `DEL12741.pdf` / `DEL753.pdf`.
+
+Open: no document names the Summarex, so the attribution is circumstantial (strong); the header does not state the ×85
+scale; `focalLengthMm.design` holds the traced value; the analysis calls the 59.8 mm front-barrel size a "flange diameter";
+public wording and package-process prose need a cleanup pass.

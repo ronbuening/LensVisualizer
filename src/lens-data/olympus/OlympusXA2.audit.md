@@ -19,3 +19,17 @@ Initial static-only checkpoint v1 omitted required layout.yScFill, caught by nat
 ## Integration status
 
 The standalone validation record lists the exact regression/build gates and outcomes. Local visible registration is not publication. No commit, push, deployment or public sharing performed. Guarded installer must refuse wrong baseline, shallow/2253-history mismatch, dirty target and collisions; no overwrite or deletion of existing files.
+
+## Deployment validation (2026-11-10)
+
+Independent check against the patent scan (no text layer; Embodiment 1 on p. 7, claim 2 on p. 8): all 8 R, 7 d and
+4 nd/νd values equal the printed values ×0.35; no mismatches. EFL 35.008 (patent f = 100 → 100.02 at patent scale), F/3.5,
+conditional values reproduce (f/f123 1.589 vs printed 1.590). Olympus's XA2 service manual (D.Zuiko 35 mm 1:3.5, 4/4, front-cell
+focus) supports the attribution; E1's scaled d6 (5.77 mm) is the closest of the five embodiments to the manual's 5.754 mm.
+
+Applied: `catalog.lensMounts: ["fixed-lens-camera"]` (missing).
+
+Open: L4 rims (s7/s8 sd 5) are drawn smaller than in the patent figure and the service diagram (≈6.2/6.6 passes
+`audit:surface`); field coverage 80 % because L1 rear / L2 front cross at r ≈ 5.7 mm (as on the live Olympus XA entry); all
+four glasses match catalog rows exactly (S-LAL10, S-TIH11, S-BAH27, S-LAH51) but are labelled `Unmatched`; public wording
+(subtitle, specs, `focus.description`) and the package-process prose in this log and the analysis need a cleanup pass.

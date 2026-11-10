@@ -35,3 +35,16 @@ Full typecheck/lint/test/build and guarded installation/readback will be perform
 The model is catalog-visible by the schema default; no retail mount, marketing focal length, or invented camera format is assigned. The source-derived image circle is twice the printed 21.633 mm height. Only this data/analysis/audit triad is a catalog addition. No shared engine, registry, taxonomy, test or configuration additions are required. Native scripts and source packets remain evidence, not catalog files.
 
 Existing unfinished native checkpoint was uploaded to the private Checkpoints folder and fully downloaded again: 43,069 bytes, SHA256 5f5fcd314110cf6e406dcb76f34d219be6744b7f297c3892a70f55361fea75ce; all 26 archive members (25 payloads plus manifest), CRC and payload hashes match. Upload and ancestor permission reads show owner-only access. Frozen staging formatting and this custody note postdate that preserved checkpoint; final triad hashes are in FROZEN_HANDOFF.json.
+
+## Deployment validation (2026-11-10)
+
+Independent check against the grant (pp. 7–8) and application (p. 8) tables, which are identical: 17 radii, the stop, 17
+thicknesses, 9 nd/νd pairs, the S12 cemented face and D15/D19 at both states; no mismatches. EFL 45.300, F/2.8, BF 42.605,
+1:1 state m −1.0000 at 184.40 mm object-to-image. No retail lens matches (Pentax DA 35 Macro, Tokina AT-X M35, Nikon
+PC-E 45 and others rejected on focal length, layout or focusing), so it stays a named patent design.
+
+Applied: none.
+
+Open: rims at S6–S8, S9 and S11 are 1–2 mm larger than Fig. 1 (≈8.6 / 7.9 / 7.6 still pass the f/2.8 beam); all seven glass
+pairs match catalog rows exactly but are labelled `Unmatched`; the patent's own conditions (2) and (3) are not met by its
+example (patent inconsistency, not a transcription error); public wording and package-process prose need a cleanup pass.

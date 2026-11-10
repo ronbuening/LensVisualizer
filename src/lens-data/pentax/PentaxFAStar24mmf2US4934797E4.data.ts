@@ -28,6 +28,9 @@ const LENS_DATA = {
       design: 2.0,
     },
     lensMounts: ["pentax-k"],
+    closeFocusM: {
+      marketing: 0.3,
+    },
   },
   source: {
     patentNumber: "US 4,934,797 A",
@@ -351,7 +354,7 @@ const LENS_DATA = {
   gaps: {},
   aperture: {
     nominalFNumber: 2.0,
-    fStops: [2, 2.8, 4, 5.6, 8, 11, 16],
+    fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
   },
 } satisfies LensDataV2Input;
 

@@ -33,6 +33,13 @@ const LENS_DATA = {
       marketing: 1.524,
     },
   },
+  source: {
+    patentNumber: "DE L 12741",
+    example: { label: "Sole example", id: null },
+    patentYear: 1953,
+    authors: ["Max Berek"],
+    assignees: ["Ernst Leitz GmbH"],
+  },
   elements: [
     {
       id: 1,
