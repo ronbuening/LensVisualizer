@@ -1,13 +1,19 @@
+/**
+ * Folder maps for src/ — writes a readme.md into each source folder with its import diagram, file inventory, and
+ * cross-folder consumers, for agents and contributors orienting in an unfamiliar area.
+ *
+ * The output is gitignored and generated on demand (`npm run generate:readmes`). Committing it put regenerated docs
+ * into most code PRs, and their count-bearing summary lines made concurrent PRs conflict; see the 2026-11-10 entry in
+ * agent_docs/decisions.md. Because nothing keeps local copies fresh, every readme says so in its first lines.
+ */
 import fs from "node:fs/promises";
 import path from "node:path";
 import * as ts from "typescript";
 
 const repoRoot = process.cwd();
 const srcRoot = path.join(repoRoot, "src");
-const generatedDocNames = new Set(["readme.md", "improvementsuggestions.md"]);
+const generatedDocName = "readme.md";
 const skippedDocSubtrees = new Set(["src/content/changelog", "src/generated", "src/lens-data", "src/mounts"]);
-const largeFileWarningExcludedFiles = new Set(["src/optics/chromatic/glassCatalogData.ts"]);
-const largeFileWarningExcludedSubtrees = new Set(["src/optics/chromatic/glassCatalogEntries"]);
 const sourceExtensions = new Set([".ts", ".tsx", ".json", ".md", ".template"]);
 const codeExtensions = new Set([".ts", ".tsx"]);
 const moduleExtensions = [".ts", ".tsx", ".d.ts", ".json", ".md"];
@@ -16,10 +22,8 @@ const maxExportItems = 8;
 const maxDiagramChildren = 24;
 const maxDiagramEdges = 36;
 const args = process.argv.slice(2);
-const unknownArgs = args.filter((arg) => arg !== "--check");
-if (unknownArgs.length > 0) throw new Error(`Unknown argument(s): ${unknownArgs.join(", ")}`);
-const checkMode = args.includes("--check");
-const staleGeneratedDocs = [];
+// `--check` was the committed-docs freshness gate; reject it loudly rather than silently rewriting files.
+if (args.length > 0) throw new Error(`Unknown argument(s): ${args.join(", ")}`);
 
 const folderRoleOverrides = new Map([
   [
@@ -173,14 +177,10 @@ const humanizeSlug = (slug) =>
 
 const mermaidId = (value) => `n_${value.replace(/[^A-Za-z0-9_]/g, "_")}`;
 
-const hasGeneratedDocName = (absolutePath) => generatedDocNames.has(path.basename(absolutePath).toLowerCase());
+const hasGeneratedDocName = (absolutePath) => path.basename(absolutePath).toLowerCase() === generatedDocName;
 
 const isSkippedDocSubtree = (dirRel) =>
   [...skippedDocSubtrees].some((skipped) => dirRel === skipped || dirRel.startsWith(`${skipped}/`));
-
-const isLargeFileWarningExcluded = (fileRel) =>
-  largeFileWarningExcludedFiles.has(fileRel) ||
-  [...largeFileWarningExcludedSubtrees].some((subtree) => fileRel.startsWith(`${subtree}/`));
 
 const readDirRecursive = async (dir) => {
   const dirRel = fromSrcRel(dir);
@@ -418,7 +418,6 @@ const analyzeFile = async (fileRel) => {
     role: roleForFile(fileRel, content, uniqueExports),
     imports,
     exports: uniqueExports,
-    lineCount: content.split(/\r?\n/).length,
   };
 };
 
@@ -487,39 +486,33 @@ const folderRole = (dirRel) => {
 
 const filesInDir = (dirRel) => (childrenByDir.get(dirRel) ?? []).sort((a, b) => a.localeCompare(b));
 
-const syncGeneratedDoc = async (target, expectedContent) => {
-  const relativeTarget = toPosix(path.relative(repoRoot, target));
-
-  if (checkMode) {
-    try {
-      const actualContent = await fs.readFile(target, "utf8");
-      if (expectedContent === null) staleGeneratedDocs.push(`${relativeTarget} (unexpected file)`);
-      else if (actualContent !== expectedContent) staleGeneratedDocs.push(`${relativeTarget} (stale)`);
-    } catch (error) {
-      if (error.code !== "ENOENT") throw error;
-      if (expectedContent !== null) staleGeneratedDocs.push(`${relativeTarget} (missing)`);
-    }
-    return;
-  }
-
-  if (expectedContent === null) {
-    try {
-      await fs.unlink(target);
-    } catch (error) {
-      if (error.code !== "ENOENT") throw error;
-    }
-    return;
-  }
-
-  await fs.writeFile(target, expectedContent);
-};
-
 const subdirsInDir = (dirRel) => {
   const prefix = `${dirRel}/`;
   return [...dirs]
     .filter((candidate) => candidate.startsWith(prefix))
     .filter((candidate) => !candidate.slice(prefix.length).includes("/"))
     .sort((a, b) => a.localeCompare(b));
+};
+
+/**
+ * Git does not delete an ignored file, so a folder removed upstream survives a pull as a lone readme.md and would
+ * keep appearing as a subfolder. Drop every folder with no source file beneath it, its readme, and the folder itself
+ * once empty. Deepest first, so a parent empties after its children.
+ */
+const pruneSourcelessDirs = async () => {
+  const hasSource = (dirRel) => filesInDir(dirRel).length > 0 || subdirsInDir(dirRel).some(hasSource);
+  const sourceless = [...dirs].filter((dirRel) => !hasSource(dirRel)).sort((a, b) => b.length - a.length);
+  for (const dirRel of sourceless) dirs.delete(dirRel);
+  for (const dirRel of sourceless) {
+    const dirAbs = path.join(repoRoot, dirRel);
+    await fs.rm(path.join(dirAbs, generatedDocName), { force: true });
+    try {
+      await fs.rmdir(dirAbs);
+    } catch (error) {
+      if (error.code !== "ENOTEMPTY" && error.code !== "ENOENT") throw error;
+    }
+  }
+  return sourceless.length;
 };
 
 const inboundMap = new Map();
@@ -658,7 +651,7 @@ const outboundAreasForDir = (dirRel) => {
   return summarizeTargets(targets, dirRel);
 };
 
-const syncReadme = async (dirRel) => {
+const writeReadme = async (dirRel) => {
   const directFiles = filesInDir(dirRel);
   const directSubdirs = subdirsInDir(dirRel);
   const role = folderRole(dirRel);
@@ -671,7 +664,7 @@ const syncReadme = async (dirRel) => {
   lines.push(`This folder ${role}.`);
   lines.push("");
   lines.push(
-    "Generated `readme.md` and `improvementsuggestions.md` files are intentionally omitted from the per-file inventory so this document stays focused on source relationships.",
+    "> Generated by `npm run generate:readmes` and not committed, so it may be stale: regenerate it before relying on it.",
   );
   lines.push("");
   lines.push("## Relationship Diagram");
@@ -724,178 +717,19 @@ const syncReadme = async (dirRel) => {
   }
   lines.push("");
 
-  await syncGeneratedDoc(path.join(repoRoot, dirRel, "readme.md"), `${lines.join("\n").trimEnd()}\n`);
-};
-
-const findCycleSuggestions = () => {
-  const graph = new Map();
-  for (const info of fileInfos.values()) {
-    graph.set(
-      info.rel,
-      info.imports
-        .filter((imp) => !imp.typeOnly && imp.kind === "internal" && fileInfos.has(imp.target))
-        .map((imp) => imp.target),
-    );
-  }
-  const visited = new Set();
-  const stack = [];
-  const stackSet = new Set();
-  const cycles = [];
-  const visit = (node) => {
-    visited.add(node);
-    stack.push(node);
-    stackSet.add(node);
-    for (const next of graph.get(node) ?? []) {
-      if (!visited.has(next)) visit(next);
-      else if (stackSet.has(next)) {
-        const cycle = stack.slice(stack.indexOf(next));
-        if (cycle.length > 1) cycles.push(cycle);
-      }
-    }
-    stack.pop();
-    stackSet.delete(node);
-  };
-  for (const node of graph.keys()) {
-    if (!visited.has(node)) visit(node);
-  }
-  const unique = new Map();
-  for (const cycle of cycles) {
-    const key = [...cycle].sort().join("|");
-    if (!unique.has(key)) unique.set(key, cycle);
-  }
-  return [...unique.values()];
-};
-
-const suggestForDir = (dirRel, cycles) => {
-  if (dirRel === "src/generated") return [];
-  const directFiles = filesInDir(dirRel);
-  const suggestions = [];
-  const lineHeavy = directFiles
-    .filter((file) => !isLargeFileWarningExcluded(file))
-    .map((file) => fileInfos.get(file))
-    .filter(Boolean)
-    .filter((info) => codeExtensions.has(path.extname(info.rel)) || info.rel.endsWith(".d.ts"))
-    .filter((info) => info.lineCount >= 650)
-    .sort((a, b) => b.lineCount - a.lineCount);
-  if (lineHeavy.length > 0 && !dirRel.startsWith("src/lens-data/")) {
-    suggestions.push({
-      title: "Large files carry substantial maintenance weight",
-      evidence: lineHeavy
-        .slice(0, 5)
-        .map((info) => `${path.basename(info.rel)} (${info.lineCount} lines)`)
-        .join(", "),
-      implementation:
-        "For code-heavy modules, extract pure calculations or formatting helpers into adjacent files. For data/catalog-heavy modules, split records into focused shards behind the existing index or public export surface.",
-      upstream:
-        "Tests and call sites that import the current module path should keep working if the original file re-exports or delegates to the extracted helpers.",
-      downstream:
-        "Moving exported names directly can break imports in pages, components, tests, and scripts; perform the split in stages and run typecheck plus focused tests.",
-    });
-  }
-
-  const folderCycles = cycles.filter((cycle) => cycle.some((file) => path.dirname(file) === dirRel));
-  if (folderCycles.length > 0) {
-    suggestions.push({
-      title: "Import cycles make this area harder to reason about",
-      evidence: folderCycles
-        .slice(0, 4)
-        .map((cycle) => cycle.join(" -> "))
-        .join("; "),
-      implementation:
-        "Move shared constants/types into a lower-level helper, invert UI-to-domain dependencies through function arguments, or introduce a narrow adapter module so each cycle has a clear direction.",
-      upstream:
-        "Breaking cycles can change initialization order, so preserve exported values and avoid moving side-effectful code without a regression check.",
-      downstream:
-        "Consumers may rely on barrel exports that currently hide the cycle; keep those barrels stable until imports have migrated.",
-    });
-  }
-
-  const relativeEscapes = directFiles
-    .map((file) => fileInfos.get(file))
-    .filter(Boolean)
-    .map((info) => ({
-      info,
-      count: info.imports.filter((imp) => imp.raw.startsWith("../../..")).length,
-    }))
-    .filter((entry) => entry.count > 0)
-    .sort((a, b) => b.count - a.count);
-  if (relativeEscapes.length >= 4) {
-    suggestions.push({
-      title: "Several files use deep relative imports",
-      evidence: relativeEscapes
-        .slice(0, 6)
-        .map((entry) => `${path.basename(entry.info.rel)} (${entry.count})`)
-        .join(", "),
-      implementation:
-        "Prefer a local index module or existing public surface for repeated cross-folder imports. Where a domain already has a stable barrel, migrate callers to that surface instead of reaching through multiple parent directories.",
-      upstream:
-        "Adding barrels can increase accidental public API area; document intended exports and avoid exposing internal helpers.",
-      downstream:
-        "Changing import paths is mechanically simple but can mask circular dependencies, so re-run lint/typecheck and inspect bundle warnings if new barrels are introduced.",
-    });
-  }
-
-  if (dirRel === "src/components/display/analysis") {
-    suggestions.push({
-      title: "Analysis tab wiring spans display components and optics analysis adapters",
-      evidence:
-        "The folder has many tab, chart, and hook modules that import prepared analysis state plus specialized optics analysis helpers.",
-      implementation:
-        "Keep new analysis features behind one folder-local hook or adapter per tab, then expose only chart-ready data to presentational components.",
-      upstream:
-        "Moving computation too far into UI components can duplicate prepared-state work and slow slider interactions.",
-      downstream:
-        "Moving display formatting into optics helpers would make the pure engine depend on UI concerns; keep that boundary intact.",
-    });
-  }
-
-  return suggestions;
-};
-
-const syncSuggestions = async (dirRel, suggestions) => {
-  const target = path.join(repoRoot, dirRel, "improvementsuggestions.md");
-  if (suggestions.length === 0) {
-    await syncGeneratedDoc(target, null);
-    return;
-  }
-  const lines = [`# Improvement Suggestions for ${dirRel}`, ""];
-  lines.push("These notes were created while mapping imports, exports, and file relationships for this folder.");
-  lines.push("");
-  for (const suggestion of suggestions) {
-    lines.push(`## ${suggestion.title}`);
-    lines.push("");
-    lines.push(`- Evidence: ${suggestion.evidence}`);
-    lines.push(`- Implementation overview: ${suggestion.implementation}`);
-    lines.push(`- Upstream considerations: ${suggestion.upstream}`);
-    lines.push(`- Downstream considerations: ${suggestion.downstream}`);
-    lines.push("");
-  }
-  await syncGeneratedDoc(target, `${lines.join("\n").trimEnd()}\n`);
+  await fs.writeFile(path.join(repoRoot, dirRel, generatedDocName), `${lines.join("\n").trimEnd()}\n`);
 };
 
 await readDirRecursive(srcRoot);
+const pruned = await pruneSourcelessDirs();
 for (const fileRel of [...childrenByDir.values()].flat()) {
   fileInfos.set(fileRel, await analyzeFile(fileRel));
 }
 buildInboundMap();
-const cycles = findCycleSuggestions();
 
 for (const dirRel of [...dirs].sort((a, b) => a.localeCompare(b))) {
-  await syncReadme(dirRel);
+  await writeReadme(dirRel);
 }
 
-for (const dirRel of [...dirs].sort((a, b) => a.localeCompare(b))) {
-  await syncSuggestions(dirRel, suggestForDir(dirRel, cycles));
-}
-
-if (checkMode) {
-  if (staleGeneratedDocs.length > 0) {
-    console.error(`Generated src folder documentation is out of date:\n${staleGeneratedDocs.join("\n")}`);
-    process.exitCode = 1;
-  } else {
-    console.log(`Checked generated folder documentation under src/ (${dirs.size} directories).`);
-  }
-} else {
-  console.log(`Wrote ${dirs.size} readme.md files under src/.`);
-}
-console.log(`Detected ${cycles.length} unique internal import cycles for suggestion generation.`);
+console.log(`Wrote ${dirs.size} readme.md files under src/ (gitignored).`);
+if (pruned > 0) console.log(`Removed ${pruned} orphaned readme.md file(s) from folders with no source files.`);
