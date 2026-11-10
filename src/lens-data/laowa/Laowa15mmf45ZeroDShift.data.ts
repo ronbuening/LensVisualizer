@@ -7,11 +7,14 @@
 // the S1–S29 vertex span), and floor-checked by real-ray trace. Lands drawn in Fig. 1 are rimExtensionSd: L2 square at
 // 22.2 mm, L3's rear flat from 11.2 to 16.9 mm, L5's rear flat to 12 mm and L17's front flat to 12.4 mm. S1 is
 // 28.4 mm, just inside the figure's 28.6 mm knife edge. S2 at 20.7 mm runs to a 74° rim (maxRimAngleDeg 74), and the
-// S2/S3 rim intrusion is 92.9 % of the 9.8966 mm gap (gapSagFrac 0.93); Fig. 1 draws both. These rims pass the chief
-// ray to 32.5 mm image height (the 65 mm image circle) and to the 29.2 mm corner of the frame at ±11 mm shift.
+// S2/S3 rim intrusion is 92.9 % of the 9.8966 mm gap. S10 runs to C2's square 9.7 mm top as drawn; S9 and S10 nearly
+// touch at 8.5 mm, so L5's rear flat intrudes 95.8 % of the 0.2986 mm gap (gapSagFrac 0.96). Fig. 1 draws all three.
+// These rims pass the chief ray to 32.5 mm image height (the 65 mm image circle) and to the 29.2 mm corner of the frame
+// at ±11 mm shift.
 // The stop radius is derived from the printed F/4.6.
 // Glass labels name exact HOYA (and one SUMITA moulding-glass) catalog coordinates; the production supplier is not
-// published. L1/L5 (1.90000/43.00), L15 (1.90366/28.00) and L17 (1.80781/40.97) match no catalog row.
+// published. L1/L5 (1.90000/43.00), L15 (1.90366/28.00) and L17 (1.80781/40.97) match no catalog row; Example 2
+// prints the same three pairs, and Fig. 2's C and g curves are reproduced with L15 at νd 28.00, not at TAFD25's 31.3.
 // Shift ±11 mm on full frame (no tilt) and the Ø65 mm image circle are Venus Optics' published specification
 // (venuslens.net product page); the patent claims at least 10 mm of shift and a field of at least 62 mm (¶0042).
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
@@ -90,7 +93,7 @@ const LENS_DATA = {
       vd: 59.16,
       indexReference: "d",
       focalLengthMm: -38.693403373,
-      glass: "K-CSK120-M (SUMITA, coordinate equivalent; supplier unconfirmed)",
+      glass: "K-CSK120-M (SUMITA catalog equivalent; production supplier unspecified)",
       role: "Second negative meniscus of G1 with both faces aspheric; controls distortion across the wide field.",
     },
     {
@@ -102,7 +105,7 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       focalLengthMm: -31.893629251,
-      glass: "FCD1 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; Venus Optics marks an ED element at this position. The patent publishes no partial-dispersion data.",
@@ -117,7 +120,7 @@ const LENS_DATA = {
       vd: 38.01,
       indexReference: "d",
       focalLengthMm: 25.011461162,
-      glass: "E-F5 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "E-F5 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive front element of cemented pair C1 in G2.",
       cemented: "C1",
     },
@@ -143,7 +146,7 @@ const LENS_DATA = {
       vd: 28.32,
       indexReference: "d",
       focalLengthMm: 18.48581487,
-      glass: "E-FD10 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "E-FD10 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive front element of cemented pair C2 in G2.",
       cemented: "C2",
     },
@@ -156,7 +159,7 @@ const LENS_DATA = {
       vd: 20.88,
       indexReference: "d",
       focalLengthMm: -26.470881233,
-      glass: "E-FDS1 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "E-FDS1 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Dense-flint negative rear element of C2 (νd 20.9); the pair is weakly positive.",
       cemented: "C2",
     },
@@ -169,7 +172,7 @@ const LENS_DATA = {
       vd: 31.16,
       indexReference: "d",
       focalLengthMm: 37.986866927,
-      glass: "E-FD8 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "E-FD8 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Thick (10 mm) biconvex element closing G2 just ahead of the stop.",
     },
     {
@@ -181,7 +184,7 @@ const LENS_DATA = {
       vd: 38.01,
       indexReference: "d",
       focalLengthMm: 21.198379947,
-      glass: "E-F5 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "E-F5 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive front element of cemented triplet C3, the first element of G3 behind the stop.",
       cemented: "C3",
     },
@@ -194,7 +197,7 @@ const LENS_DATA = {
       vd: 40.8,
       indexReference: "d",
       focalLengthMm: -9.792505389,
-      glass: "TAFD30 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Thin biconcave centre element of triplet C3; balances the positive outer elements to near-zero net power.",
       cemented: "C3",
     },
@@ -207,7 +210,7 @@ const LENS_DATA = {
       vd: 42.84,
       indexReference: "d",
       focalLengthMm: 19.450662067,
-      glass: "E-FL6 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "E-FL6 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive rear element of triplet C3.",
       cemented: "C3",
     },
@@ -220,7 +223,7 @@ const LENS_DATA = {
       vd: 23.78,
       indexReference: "d",
       focalLengthMm: 19.80867524,
-      glass: "FDS90 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Positive front element of cemented pair C4 in G3.",
       cemented: "C4",
     },
@@ -233,7 +236,7 @@ const LENS_DATA = {
       vd: 35.25,
       indexReference: "d",
       focalLengthMm: -22.846781904,
-      glass: "TAFD35 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "TAFD35 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Negative meniscus rear element of C4, concave to the object.",
       cemented: "C4",
     },
@@ -246,7 +249,7 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       focalLengthMm: 26.680812236,
-      glass: "FCD1 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; Venus Optics marks an ED element at this position. The patent publishes no partial-dispersion data.",
@@ -274,7 +277,7 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       focalLengthMm: 20.917670211,
-      glass: "FCD1 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote:
         "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; Venus Optics marks an ED element at this position. The patent publishes no partial-dispersion data.",
@@ -377,7 +380,7 @@ const LENS_DATA = {
       label: "10",
       R: 26.7147,
       d: 4.6305,
-      sd: 8,
+      sd: 9.7,
       medium: 6,
     },
     {
@@ -555,7 +558,7 @@ const LENS_DATA = {
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "4" },
     { text: "G2", fromSurface: "5", toSurface: "14" },
-    { text: "G3", fromSurface: "16", toSurface: "29" },
+    { text: "G3", fromSurface: "STO", toSurface: "29" },
   ],
   doublets: [
     { text: "C1", fromSurface: "7", toSurface: "9" },
@@ -568,7 +571,7 @@ const LENS_DATA = {
     scFill: 0.6,
     yScFill: 0.4,
   },
-  checks: { gapSagFrac: 0.93, maxRimAngleDeg: 74 },
+  checks: { gapSagFrac: 0.96, maxRimAngleDeg: 74 },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

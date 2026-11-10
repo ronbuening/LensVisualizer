@@ -173,7 +173,11 @@ equivalents; L2 matches only the Sumita moulding glass K-CSK120-M. The productio
 | Unmatched | 1.80781 | 40.97 | L17 | Rear double-aspheric element |
 
 L15's nd of 1.90366 is the index of HOYA TAFD25, whose νd is about 31.3; no catalog glass has νd 28.00 at that index,
-and the data file keeps the printed value. The round 1.90000/43.00 of L1 and L5 also matches no catalog row.
+and the data file keeps the printed value. The printed value is consistent with the rest of the patent: Example 2
+prints the same 1.90366/28.00 for its L15, and with νd 28.00 the model reproduces the axial C and g curves of
+Figure 2, while TAFD25's dispersion would move the C focus about 0.16 mm and the g focus about 0.77 mm away from them.
+The round 1.90000/43.00 of L1 and L5 also matches no catalog row; Example 2 repeats it (for its L5) and the
+1.80781/40.97 of L17.
 
 The catalog curves give FCD1 a positive anomalous partial dispersion. The patent prints no partial-dispersion data, so
 the secondary-spectrum behaviour of the ED elements is catalog-derived.
@@ -189,9 +193,10 @@ and G3 toward the object. The patent prints the infinity state and a 0.01× stat
 | D14 (G2–stop) | 4.7930 | 4.4451 | −0.3479 |
 | D29 (back focus) | 51.7633 | 52.0821 | +0.3188 |
 
-G2 moves 0.022 mm and G3 about 0.32 mm. The three changes do not sum to zero: the moving gaps' total is 0.0073 mm
-shorter in the close state, so the printed close state places the image 0.0073 mm nearer the front element than a
-fixed-track move would. The model keeps the printed spacings unchanged.
+G2 moves 0.022 mm and G3 about 0.32 mm. The stop keeps its printed 1.5 mm spacing to L9 in both states, so it travels
+with G3; Figure 1's G3 bracket also starts at the stop. The three changes do not sum to zero: the moving gaps' total
+is 0.0073 mm shorter in the close state, so the printed close state places the image 0.0073 mm nearer the front
+element than a fixed-track move would. The model keeps the printed spacings unchanged.
 
 The patent does not print the object distance of the 0.01× state. From the printed spacings the paraxial object lies
 1491.4 mm ahead of S1, 1.637 m from the image, at β = −0.0103; the data file's close-focus distance is that calculated
@@ -232,12 +237,14 @@ match is a moulding glass.
   meet at their rims, as the figure draws them.
 - **Coverage and shift.** The chief ray reaches the edge of the 65 mm image circle (32.5 mm image height, about 64.8°),
   beyond the patent's 31.3 mm, and so covers the frame corner at the full ±11 mm shift. Wide open, the modelled
-  geometric transmission is about 70 % at the unshifted frame corner and about 43 % at the shifted corner. These
+  geometric transmission is about 78 % at the unshifted frame corner and about 48 % at the shifted corner. These
   figures follow from the estimated rims, not from a published measurement. The ±8 mm medium-format shift is not
   modelled.
 - **Close focus.** Only the printed 0.01× state is modelled; the marketed 0.2 m minimum focus distance is not.
 - **Glass.** Thirteen of the seventeen elements resolve to catalog glasses; L1, L5, L15 and L17 trace with dispersion
-  estimated from their printed nd and νd.
+  estimated from their printed nd and νd. On axis the model's d and C curves agree with Figure 2; its g focus lies about
+  0.03 mm nearer the lens than the plotted one, the size of shift a slightly higher partial dispersion in L15 (the most
+  sensitive of the estimated glasses) would remove.
 
 ## Sources
 

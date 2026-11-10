@@ -113,6 +113,7 @@ Open:
   Venus Optics specification and `imageCircleMm` 65; with the current rims the model supports only about 0.9 mm.
   (Closed in the semi-diameter pass below.)
 - L15's printed νd 28.00 matches no glass at nd 1.90366 (TAFD25 is νd 31.3); possibly a misprint, kept as printed.
+  (Closed in the second review below: Example 2 prints the same pair and Fig. 2 confirms 28.00; not a misprint.)
 - The marketed 0.2 m minimum focus is not modelled; only the printed 0.01× state is.
 
 ## 2026-11-10 — Semi-diameter pass against the patent figure
@@ -182,7 +183,76 @@ Venus Optics section has the same proportions as Fig. 1.
 
 Open:
 
-- The live page was not viewed; the section with its lands still needs a look in the app.
+- The live page was not viewed; the section with its lands still needs a look in the app. (Closed in the second review
+  below.)
 - S7 (10.7 mm) stays 0.5 mm under the drawing, held by the 6→7 gap; C3 (6.5 mm) and S10 (8.0 mm) stay within noise of
-  the drawing.
+  the drawing. (S10 closed in the second review below: raised to 9.7 mm.)
 - The ±8 mm medium-format shift is not modelled.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared the coordinator's shots of the live page (infinity, the 0.01× state, the focus-movement overlay, +11 mm shift
+and the inspector of all 17 elements) with Fig. 1 (PDF page 10, 300 dpi render; axis row 614.5 px, S1 vertex x = 575
+px, 9.443 px/mm as established in the semi-diameter pass), and drew a new overlay of the final model on the figure at
+that scale.
+
+| Item | Before | After | Evidence | Verdict |
+| --- | --- | --- | --- | --- |
+| S10 `sd` | 8.0 | 9.7 | Fig. 1: L6's front curve leaves L5's rear flat at 8.5 mm (x = 932 px) and runs 1–2 px right of the flat to C2's top at 9.74 mm near x = 935 px; S10 at 9.7 mm sits at 936 px. The live page drew L6 pointed, with a 1.5 mm bevel from S10 at 8.0 mm to S11 at 9.7 mm, where the figure draws C2 square. Stored rim 18 % under the reading | Figure-driven raise; C2 square as drawn |
+| `checks.gapSagFrac` | 0.93 | 0.96 | S9 and S10 are 0.012 mm apart at 8.5 mm (they cross at 8.65 mm), so L5's rear flat intrudes 0.286 mm into the 0.2986 mm 9→10 gap (95.8 %); 0.95 refuses (allowed 0.284 mm). Fig. 1 draws L5 and L6 touching there | Smallest two-decimal value |
+| G3 bracket | S16–S29 | STO–S29 | Fig. 1's G3 bracket starts at x = 643 px, ahead of the stop at 651 px; the stop keeps its 1.5 mm spacing to S16 in both printed states, so it moves with G3 | The patent's mechanical group |
+| Glass label wording, 13 elements | `NAME (VENDOR, coordinate equivalent; supplier unconfirmed)` | `NAME (VENDOR catalog equivalent; production supplier unspecified)` | Corpus label form; every label resolves to the same catalog row as before | Wording only |
+
+Lands and cuts. No face is below its pre-pass value, so there are no cuts. Removing all five lands (S3, S4, S6, S9,
+S28) changes no field's transmission; Fig. 1 draws all five, so they stay. `rimcost` against the pre-pass rims: worst
+loss 0.0 points at every field to 54.9°. The S10 raise adds light where the old rim clipped the outer field: 77.3 %
+against 70.1 % at the 54.9° frame corner, 84.8 % against 79.2 % at 52.0°, and 48.0 % against 42.6 % at the 62.2°
+corner of the frame at full shift. Engine EFL 15.4905 mm, FOPEN 4.6, stop radius 5.7276 mm and halfField 45.186° are
+unchanged; `audit:surface` OK, `audit:aperture` no rim limit, `audit:image-circle` none undersized, and
+`audit:field-coverage` traces 32.50 of 32.50 mm.
+
+Re-checked and found correct. Element types agree with the signs of R for all 17 elements; the patent names no
+elements, so L1–L17 stay; every element carries a focal length; the A markers sit on S3, S4, S28 and S29 only (the
+starred surfaces); the stop is drawn between L8 and L9; C1–C5 bracket the five cemented components; G1 and G2 match
+the figure's brackets. `apd: "inferred"` stays on L3, L14 and L16: the patent text names no special glass, and the
+three νd 81.61 positions are the maker's ED elements as the deployment validation records. S7 (10.7 mm against about
+11.2 mm in the figure) stays: S6 and S7 cross at 11.15 mm, and a land on S7 up to C1's 12.0 mm top would cut into L3.
+C3 (6.5 against 6.75 mm) and S2 (20.7 against 21.0 mm) stay within the reading error. The shift view at +11 mm
+draws the whole unit displaced with its rays reaching the image.
+
+Movement. Keyframe 0 is infinity and keyframe 1 the printed 0.01× state. G1 stays fixed; G2 moves 0.0218 mm toward
+the image (D4 7.9482 → 7.9700); G3 with the stop moves toward the object, 0.3261 mm relative to G1 (D14 4.7930 →
+4.4451) and 0.3188 mm relative to the image (D29 51.7633 → 52.0821), as claim 1 and ¶0042 state. The overlay shows
+a 0.32 mm maximum travel and the slider's far end reads 1.64 m. The near state is launched with parallel beams; at
+β = −0.0103 a real object point was not traced.
+
+Glass and colour. The thirteen catalog labels match the printed values within Δnd 4e-6 and Δνd 0.04 (L2 K-CSK120-M
+Δνd −0.04, L10 TAFD30 +0.02, all others 0.00). HOYA is kept throughout: E-F5 (38.01) and E-FL6 (42.84) match HOYA
+to the printed digits, where Ohara's S-TIM5 and S-TIL26 differ by 0.02 in νd. The patent prints d-line nd and νd only
+(no glass names, line indices or partial dispersions). Example 2 (PDF page 8) repeats 1.90000/43.00 (its L5),
+1.90366/28.00 (L15) and 1.80781/40.97 (L17). No catalog or vendor AGF row falls inside the exact window for any of
+the four unmatched pairs (nearest: TAFD37A 1.90043/37.37; TAFD25, S-LAH95 and J-LASFH13 at 1.90366/31.3; D-ZLaF81-25
+1.80757/40.97 and MC-NBFD135 1.80834/40.92), so no row is proposed. No element uses an nd-only medium.
+
+On-axis colour against Fig. 2 (PDF page 11; 259 px/mm, reading error about ±0.006 mm), focus relative to the d-line
+paraxial focus:
+
+| Line | Model paraxial | Fig. 2 paraxial | Model, 0.6 pupil | Fig. 2, 0.6 pupil | Model, full pupil | Fig. 2, full pupil |
+| --- | --- | --- | --- | --- | --- | --- |
+| d | 0 | 0 | +0.075 | +0.077 | +0.024 | +0.027 |
+| C | −0.014 | −0.012 | +0.055 | +0.066 | −0.004 | +0.006 |
+| g | −0.130 | −0.100 | −0.060 | −0.031 | −0.134 | −0.098 |
+
+With L15 at TAFD25's νd 31.32 the same trace gives C +0.147, F −0.407 and g −0.867 mm paraxial, far from the
+plot. Together with Example 2, the plot confirms the printed νd 28.00: no erratum. The g line sits 0.03 mm short of
+the plot at every pupil height. Raising one estimated glass's partial dispersion by 0.01 moves the g focus +0.053 mm
+for L15, +0.018 for L5, +0.010 for L17 and +0.001 for L1, so L15 (dPgF about +0.006 would close it) is the likely
+source; the patent gives nothing to set it from.
+
+Assignee and inventor: the front page's 安徽长庚光学科技有限公司 and 李大勇 match the corpus's "Anhui Changgeng Optics
+Technology Co., Ltd." and "Dayong Li".
+
+Open:
+
+- The model's g-line focus lies 0.03 mm nearer the lens than Fig. 2, most likely from L15's estimated partial
+  dispersion.
