@@ -24,15 +24,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and L6, where the Olympus section draws the diaphragm, and it moves with the rear group. The patent states F/4 at
  * both ends and in between (Figs. 2A-2C), so the iris radius follows the zoom: 6.75 mm at 36 mm to 9.10 mm at
  * 68.5 mm.
- * Semi-diameters are inferred; none is printed. They are checked against Fig. 1, the patent's only section (drawn at
- * an intermediate zoom setting; 22.8 and 23.4 px/mm at 72 dpi from the front- and rear-group vertex spans), and by
- * real-ray trace. L1 keeps 20.5 mm on both faces; its front face carries the 36 mm corner chief ray (32.1° to
- * 21.63 mm) at 18.4 mm.
- * Fig. 1 ends L1's concave rear face at about 17.9 mm inside a flat land, but cutting S2 below about 19.4 mm narrows
- * the traced wide-angle field, so the land is not modeled. L2 (17.3 mm) and L3 (16 mm) stay below Fig. 1's 19.8 and
- * 17.9 mm: widening them would change the silhouette without any ray needing it. L4 and L5 rise from 10.4 and 10.1 mm
- * to 11.1 and 10.8 mm, the least that passes a real F/4 marginal ray at 68.5 mm (11.02 and 10.71 mm); Fig. 1 draws
- * them at 12.3 and 11.3 mm and the Olympus section larger again. L6 and L7 keep 10 mm (Fig. 1: 9.9 and 11.0 mm).
+ * Semi-diameters are inferred; none is printed. They follow Fig. 1, the patent's only section (drawn at an
+ * intermediate zoom setting, d6 about 10.7 mm), checked against the ends of the meridional ray fans in Figs. 2A-2C and
+ * by real-ray trace. Fig. 1 scale at 72 dpi: 22.8 and 23.4 px/mm along the axis from the front- and rear-group vertex
+ * spans, and 23.2 px/mm across it from the point where L1's rear face meets L2's front face (18.07 mm by the
+ * prescription). L1 is 20.5 mm in front (Fig. 1: 21.0 mm), where it carries the 36 mm corner chief ray (32.1° to
+ * 21.63 mm) at 18.4 mm. Its rear face ends at 19.4 mm in a flat land out to 20.5 mm; Fig. 1 ends it at 18.1 mm, where
+ * it meets L2, but a cap below 19.4 mm narrows the engine's half-field at the wide end. L2's front face is 17.9 mm, the
+ * most that face can take beside L1's rear face (gapSagFrac 0.98 for the S2-S3 gap: the faces are 0.19 mm apart at that
+ * height); its rear face ends at 17.3 mm in a land out to 17.9 mm (Fig. 1: 19.3 mm front, rear cap 17.6 mm). L3 is
+ * 17.4 mm (Fig. 1: 17.4 mm). L4 is 11.8 mm (Fig. 1: 12.2 mm); with it the fans close at 0.90 of the pupil at 17.5° and
+ * 0.95 at 12.4° (68.5 mm) and stay open at 22.6° (intermediate), as the patent plots them. L5 is 10.8 mm (Fig. 1:
+ * 11.2 mm), above the real F/4 marginal ray at 68.5 mm (10.71 mm). L6 and L7 are 10 mm (Fig. 1: 9.8 and 10.9 mm). On
+ * their other side the fans close (0.57 at 17.5°, 0.59 at 22.6°, 0.60-0.65 at 31°) as if L7's rear face were 8.4 mm,
+ * which Fig. 1 does not draw, so L7 is not changed.
  * Focus: the patent prints the infinity state only and names no focusing group, so no gap varies with focus.
  */
 const LENS_DATA = {
@@ -168,13 +173,14 @@ const LENS_DATA = {
       label: "2",
       R: 23.5091,
       d: 8.1,
-      sd: 20.5,
+      sd: 19.4,
+      rimExtensionSd: 20.5,
     },
     {
       label: "3",
       R: 442.1958,
       d: 1.99,
-      sd: 17.3,
+      sd: 17.9,
       medium: 2,
     },
     {
@@ -182,31 +188,32 @@ const LENS_DATA = {
       R: 34.7672,
       d: 4.479,
       sd: 17.3,
+      rimExtensionSd: 17.9,
     },
     {
       label: "5",
       R: 32.291,
       d: 4.28,
-      sd: 16,
+      sd: 17.4,
       medium: 3,
     },
     {
       label: "6",
       R: 73.6646,
-      sd: 16,
+      sd: 17.4,
     },
     {
       label: "7",
       R: 41.0666,
       d: 3.38,
-      sd: 11.1,
+      sd: 11.8,
       medium: 4,
     },
     {
       label: "8",
       R: -186.3587,
       d: 0.15,
-      sd: 11.1,
+      sd: 11.8,
     },
     {
       label: "9",
@@ -316,6 +323,7 @@ const LENS_DATA = {
     { text: "G1 (−)", fromSurface: "1", toSurface: "6" },
     { text: "G2 (+)", fromSurface: "7", toSurface: "14" },
   ],
+  checks: { gapSagFrac: 0.98 },
   layout: {
     yScFill: 0.35,
   },

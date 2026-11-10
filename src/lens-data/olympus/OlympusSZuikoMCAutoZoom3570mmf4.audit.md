@@ -85,3 +85,56 @@ has no exact catalog row.
 L4 glass relabelled from the Abbe fallback to J-LAK7R (Hikari 1.65160 / 58.62; Δnd 0, Δνd −0.08 against the printed
 1.6516 / 58.7), the closest exact catalog row (S-LAL7 is Δνd −0.15, N-LAK7 −0.18). The other six labels and all eight
 Pentax 28–50 labels resolve to rows within Δnd 3e-6 and Δνd 0.08.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+**Source.** US 4,452,512, front page, Fig. 1 (the patent's only section; the sheet-1 copy is the same drawing), page
+image at its native 72 dpi. It is drawn with d6 about 10.7 mm, an intermediate setting. The optical axis is tilted
+1.82° on the scan, so heights were read from the tilted axis as half the top-to-bottom distance between stroke centres.
+Ray-fan ends were read from the coma plots of Figs. 2A–2C (36 mm: 31° and 22.8°; intermediate: 22.6° and 16.2°;
+68.5 mm: 17.5° and 12.4°).
+
+**Scale.** Along the axis: 22.8 px/mm from the front-group vertex span (r1–r6, 478 px for 20.939 mm) and 23.4 px/mm
+from the rear-group span (r7–r14, 567.5 px for 24.249 mm). Across it: 23.2 px/mm from the point where L1's rear face
+meets L2's front face, 419 px off the axis in the figure and 18.07 mm by the prescription. Circle fits to the drawn
+arcs give 24.0 (r2), 22.3 (r12) and 24.9 px/mm (r14), with no aspect stretch the fits can detect (best aspect
+1.00–1.05). Front-group heights use 23.2 px/mm and rear-group heights 23.4 px/mm; the readings carry about ±3 %.
+
+**Fan ends against the model.** Fan extent as a fraction of the real F/4 pupil at the stop (patent / baseline / final):
+31° {0.60, 0.65} / {1.00, 0.54 at S5} / {1.00, 0.63 at S1}; 22.8° {0.94, 1.0} / {1.0, 1.0} / {1.0, 1.0}; 22.6°
+{0.59, 1.0} / {0.88 at S14, 0.93 at S7} / {0.88, 1.0}; 16.2° {0.80, 1.0} / {1.0, 1.0} / {1.0, 1.0}; 17.5° {0.57, 0.90}
+/ {0.79 at S14, 0.83 at S7} / {0.79, 0.90 at S7}; 12.4° {0.70, 0.94} / {0.92, 0.89} / {0.92, 0.95}. One side of every
+patent fan is reproduced by S1 = 20.5 and S7 = 11.8 mm. The other side closes at 0.57–0.94 (0.57–0.65 at each setting's corner); a rim of
+about 8.4 mm at S14 reproduces all six of those ends within 0.04 (0.64, 0.90, 0.60, 0.78, 0.56, 0.69), but Fig. 1 draws
+L7 at 10.9 mm, so figure and fans disagree there and L7 is not changed.
+
+| Surface | Baseline | Fig. 1 | Final | Evidence |
+| --- | ---: | ---: | ---: | --- |
+| S1 | 20.5 | 21.0 | 20.5 | within noise; S1 sets the patent's 31° fan end (0.63 against 0.60/0.65) |
+| S2 | 20.5 | cap 18.1, land to 21.0 | 19.4, land to 20.5 | cap as low as the 36 mm half-field allows; land as drawn |
+| S3 | 17.3 | 19.3 | 17.9 | most allowed beside S2 (gapSagFrac 0.98, faces 0.19 mm apart) |
+| S4 | 17.3 | cap 17.6, land to 19.3 | 17.3, land to 17.9 | cap within noise; land squares L2's edge as drawn |
+| S5, S6 | 16.0 | 17.4 | 17.4 | figure; fans need at least 16.4 for the 31° end |
+| S7, S8 | 11.1 | 12.2 | 11.8 | fans close at 0.90 (17.5°) and 0.95 (12.4°) at 68.5 mm and stay open at 22.6°; figure within 3 % |
+| S9, S10 | 10.8 | 11.2 | 10.8 | within noise; above the real F/4 marginal ray (10.71 / 10.34) |
+| S11, S12 | 10.0 | 9.8 | 10.0 | within noise |
+| S13, S14 | 10.0 | 10.9 | 10.0 | figure (larger) and fans (about 8.4) disagree |
+
+**L1 and L2.** As drawn, L1's rear cap ends at 18.1 mm on L2's front face and L2's front face runs to 19.3 mm. That
+set (S2 18.0 with a land to 20.5, S3 19.3, S4 17.3 with a land to 19.3, gapSagFrac 1.00) validates and costs no light,
+but the engine's paraxial half-field drops from 31.09°, 32.38°, 33.68°, 35.00°, 36.32°, 37.64° and 39.20° to 29.31°,
+30.61°, 31.93°, 33.26°, 34.61°, 35.98° and 37.60° at 36–54.5 mm (the real chief ray meets S2 at only 16.05 mm, and
+field coverage still reaches the corner). A half-field shrink is not allowed in this pass, so S2 stops at 19.4 mm,
+the lowest cap that keeps every station's half-field, and S3 at 17.9 mm, the most the S2–S3 gap then admits. Ron's
+call whether the drawn set is worth the shorter traced field at the wide end.
+
+**Clearance and light.** Surface validator: OK. Aperture census: 11 of 11 stations at f/4.00, no rim limit. Field
+coverage: corner reached at all 11 stations. Image circle: 0 undersized. Engine half-field (31.09° to 36.19°) and
+f/4 at every station unchanged. Real-ray trace at Y = 21.63 mm: no axial clip and no blocked chief ray. The S2 cut costs
+0.0 points at every field of every station; all other changes are raises. Corner illumination, baseline → final:
+36 mm 75.7 → 78.9 %, 39 mm 92.5 → 98.2 %, 42–48 mm unchanged (99.4, 99.0, 98.6 %), 51 mm 97.6 → 98.1 %, 54.5 mm 96.4 →
+97.3 %, 58 mm 94.7 → 96.7 %, 61.5 mm 92.9 → 95.8 %, 65 mm 90.9 → 94.5 %, 68.5 mm 88.4 → 92.9 %; largest gain 8.3 points
+(36 mm, 29.2°).
+
+Open: the patent's fans show a vignetting limit of about 8.4 mm at L7's rear face that Fig. 1 does not draw, so the
+model's corners are brighter than the patent's. Open: the drawn L1/L2 rims (above) wait on the half-field decision.
