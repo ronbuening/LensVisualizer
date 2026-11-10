@@ -55,7 +55,7 @@ const LENS_DATA = {
         printed: 1.668,
         applied: 1.6668,
         evidence: ["source-summary", "aberration-figure", "sibling-example"],
-        note: "The main table prints L7 nd = 1.668; the description's parameter list ([0120]) gives 1.6668. With 1.6668 the table traces to f = 35.03 mm (stated 35.02) at F/2.00, and the paraxial focus shift (-0.095 mm) and spherical aberration match Figs. 2-4; with 1.668 it traces to 35.14 mm and the axial image misses the plotted focus by 0.1 mm. Example 2 carries the same printed 1.668 and reaches its stated 34.91 mm only with 1.6668. The B grant reprints both tables unchanged.",
+        note: "The main table prints Gj2 (element 7) nd = 1.668; the description's parameter list ([0120]) gives 1.6668. With 1.6668 the table traces to f = 35.03 mm (stated 35.02) at F/2.00, and the paraxial focus sits 0.095 mm ahead of the image plane, close to the about 0.105 mm plotted in Figs. 2 and 3, with spherical aberration matching their shape; with 1.668 it traces to 35.14 mm and the axial focus falls behind the plotted one. Example 2 carries the same printed 1.668 and reaches its stated 34.91 mm only with 1.6668. The B grant reprints both tables unchanged.",
       },
     ],
   },

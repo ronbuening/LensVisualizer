@@ -170,3 +170,6 @@ Open: the `source.errata` note still calls the corrected element L7 (now Gj2) an
 matching Figs. 2–4, which plot about −0.105 mm; `source` is outside this pass.
 Open: the camera-side plate could take the exact OHARA BSL7 row instead of S-BSL7 (Δνd 0.008); `rearPlates` is outside
 this pass.
+
+Erratum note reworded for the patent's element designation (Gj2) and the plotted focus (about 0.105 mm ahead of the
+image plane in Figs. 2 and 3, against the model's 0.095 mm); the Open line raised in the second review is closed by this.
