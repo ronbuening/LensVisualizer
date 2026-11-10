@@ -255,3 +255,8 @@ There is no zoom. The patent's text layer has no word on focus, so the descripti
 lists 37.856 then 45.60 mm, infinity first. The focus overlay moves all four groups 7.74 mm toward the object with the image plane
 fixed, with nothing moving relative to anything else. The probe gives 449.99 mm object to image and 0.1494×. The slider's far label
 reads 45 cm, BF reads 37.86 and 45.60, and the aperture ticks run f/1.86, 2.8, 4, 5.6, 8, 11, 16.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.marketing: 1.8` from the product name, so the wide-open readout names the marked f/1.8 beside
+  the design f/1.86. No optical value changed.

@@ -45,7 +45,7 @@ const LENS_DATA = {
     groupCount: 4,
     /* ── Explicit metadata fields ── */
     focalLengthMm: { marketing: 75, design: 75.1 },
-    fNumber: { marketing: 5.6 },
+    fNumber: { marketing: 5.6, design: 5.6 },
   },
 
   // audit:image-circle flags rear surfaces 10–12 at this circle through its wide-angle exit-pupil proxy; the exact

@@ -50,3 +50,8 @@ Patent: US 6,560,042 B2, Example 3
 - Compared the coordinate with expanded current and discontinued-inclusive first-party OHARA, HOYA, Hikari, and SUMITA coefficient data plus the existing Schott, CDGM, and NHG catalog rows.
 - No coefficient-backed row falls inside both runtime guards. The closest reviewed rows, HOYA M-LAF81 and OHARA L-LAM69 (`1.73077 / 40.50`), miss the patent index by `+0.00327`, outside the `±0.003` d-line limit.
 - Marked L8 as explicit `Unmatched (728403 ...)`, corrected the analysis's obsolete NBFD13 comparison, and left the patent prescription and Abbe fallback unchanged.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 1.8: US 6,560,042 B2, PDF p. 13, col. 9, Table 3 (third embodiment) header
+  "F_NO = 1:1.8" (with f = 31.80). The stop's `nominalFNumber` 1.8 matches it.

@@ -37,3 +37,8 @@ Patent: US 4,223,982, Example 2
 
 - APD status remains `false`; the patent lists only nd/vd and does not identify anomalous partial dispersion for this element.
 - No patent clear-aperture table was found. Existing SDs remain unchanged because the drawing supports the small rear body-aperture geometry already modeled.
+
+## 2026-11-10 — Metadata fill
+
+- `catalog.fNumber.design` set to 2.8: US 4,223,982, PDF p. 6, col. 4, Example 2 table header "APERTURE RATIO 1:2.8".
+  The stop's `nominalFNumber` 2.8 matches it.

@@ -300,6 +300,7 @@ export interface CanonicalSource {
   authors?: string[];
   assignees?: string[];
   errata?: SourceErratum[];
+  issuer?: string;
 }
 
 export interface CanonicalLayout {

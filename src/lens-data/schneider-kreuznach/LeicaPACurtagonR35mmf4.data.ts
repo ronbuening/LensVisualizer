@@ -71,7 +71,8 @@ const LENS_DATA = {
       design: 35.2, // Schneider-Kreuznach effective focal length; equals the scaled model EFL
     },
     fNumber: {
-      marketing: 4, // model stop is calibrated to f/4, so apertureDesign is omitted (identical by construction)
+      marketing: 4,
+      design: 4, // US 3,410,632 col. 4, ll. 40–42: the Table II system has "an aperture ratio of 1:4"
     },
   },
 
