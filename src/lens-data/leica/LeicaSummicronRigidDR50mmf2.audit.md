@@ -147,3 +147,68 @@ or special-dispersion elements, and a rear group drawn smaller than the front, a
 
 Open: the doublet and L7 remain larger than both drawings because of the corner-light and field rules; a later
 decision to accept the light loss would set them to about 10.1 and 11.0 mm.
+
+## 2026-11-10 — Second review: diagram, labels and movement
+
+Compared: the coordinator's shots of the live page (infinity, the seven element inspectors, the movement overlay)
+against page 3 of `patents/DE939956B.pdf` at its native 300 dpi, and the semi-diameter pass's overlay, whose model
+outline uses the current rims. Light is from `rimcost.mjs` against the rims before the semi-diameter pass (full-pupil
+lattice, f/2, infinity).
+
+Rims: no change. Independent readings at 24.3 px per model mm, centre of the drawn rim line top to bottom: L1 16.19
+mm (787 px), the doublet's flat rim 10.07 mm (489.5 px), L7 10.97 mm (533 px). Each is within 0.1 mm of the
+semi-diameter pass. L1 stays at 15 (−7 %). Its drawn edge is 42 px (1.73 mm) wide. The model's edge reaches that width
+near 15.3 mm, so at L1 the drawing does not agree with its own scale.
+
+The doublet and L7 sit above the drawing because of light, and no other split of the 3-point budget is closer to the
+figure:
+
+| Trial | Worst loss | Engine half-field | Note |
+|---|---:|---:|---|
+| Current (face 9 8.8, doublet 11.6, L7 14) | 2.9 at 23.2° | 30.63° | |
+| L7 13.5 | 3.1 at 23.2° | 30.20° | over budget |
+| L7 13.7 | 2.9 at 23.2° | 30.37° | a 2 % move, inside the reading noise |
+| Doublet back to 10 / 12 / 14, L7 13 | 6.2 at 23.2° | 29.73° | over budget |
+| Face 9 10, doublet 12, L7 13.5 | 2.7 at 23.2° | 30.20° | doublet +19 % and face 9 +28 % over the figure |
+| Figure doublet 7.8 / 10.1 / 10.1 | 16.9 at 23.2° | 29.46° | over budget |
+| Figure L7 11.0 | 23.0 at 23.2° | 27.52° | over budget |
+
+Lands and cuts: no lands. Faces 5 and 8 are free cuts. Faces 9–11 cost the whole 2.9 points at 23.2°
+(58.6 → 55.7 %), within the budget, so they stay. Worst loss 2.9 points at 23.2°.
+
+Step order: the figure runs L1 > L2 > L3 ≈ L4 > L7 > doublet. The model keeps L1 > L2 > L3 ≈ L4 and L7 above
+the doublet. The light-held rear rims bring the doublet level with L4 (11.6 against 11.5; drawn 10.1 against 11.5)
+and L7 level with L2 (14 and 14; drawn 11.0 and 14.5). Across the stop gap, L4's rear corner (8.5 mm) sits 0.3 mm
+below L5's front face (8.8 mm), where the figure draws 8.5 over 7.8. The two flips across the stop are 0.1 and
+0.3 mm, 1 to 3 px on the page. Both come from the rims the light rule holds, so they stay.
+
+Labels and tags, checked and correct: every `type` agrees with the signs of R. The stored focal lengths match the
+paraxial probe (+50.52, −106.26, +33.64, −25.14, −24.22, +28.41 and +51.77 mm; the cemented pair −450 mm). The C1
+bracket spans 9–11 and L5 and L6 carry `cemented: "C1"`. FRONT 1–8 and REAR 9–13 bracket the four members that the
+patent describes in words: a split front positive member, two negative menisci around the stop and a rear positive
+member. The patent numbers none of them. No asphere is printed and none is modelled. No `apd` tag is set, because the
+patent names no glass and the maker marks none. The stop sits between L4 and L5; the figure draws none. The patent
+labels the thicknesses d1–d7 and the air spaces L1–L5, and it names no lenses. L1–L7 stay as the lens names, and the
+analysis now says the patent's L-labels are spacings.
+
+Text: the header comment and the analysis no longer say that the doublet's front face follows the figure. It sits at
+8.8 mm against the drawn 7.8.
+
+Movement: the lens is static. The overlay reports no modelled movement, the slider's far end reads "Not modeled", and
+`focus.description` says the patent publishes no focusing movement.
+
+Glass and colour: J-LAK9 is exact for L1, L3, L6 and L7 (Δνd +0.03). The other rows in the window, S-LAL9 (−0.08)
+and K-LaK9 (−0.14), are no better, and N-LAK9 is 0.19 off. LF5 (Schott) is exact for L5 (Δνd +0.05) and is the most
+plausible vendor for a German 1954 lens. L2 1.62237 / 36.1 and L4 1.60140 / 38.3 have no row inside |Δnd| ≤ 1e-4 in
+the repo catalog or the vendor AGF files. The nearest are Hoya F11 (obsolete) and Ohara TIM11, 1.4e-3 off, and F5,
+2.0e-3 off. The patent prints only nd and ν (page 2): no line indices, no partial dispersion and no aberration
+curves, so there is nothing to compare for colour. 1.60140 / 38.3 also appears in Zeiss US 2,720,140 (the Sonnar
+150 mm file), so it is a real period glass and not an optimizer value. 1.62237 / 36.1 recurs nowhere in the corpus.
+No medium is constant or nd-only, and there is no catalog row to propose.
+
+Assignee: the front page prints "Ernst Leitz G. m. b. H., Wetzlar"; the file's "Ernst Leitz GmbH" is the corpus
+spelling. Engine before and after: half-field 30.63°, f/2.000, EFL 50.0266 mm, unchanged. The surface validator
+passes, the aperture audit reports no rim limit, and field coverage is 100 % at the 23.2° corner.
+
+The semi-diameter pass's open line on the doublet and L7 stays open. Setting them to the figure would cost 16.9
+points for the doublet (with face 9 at 7.8) and 23.0 points for L7 at 23.2°.

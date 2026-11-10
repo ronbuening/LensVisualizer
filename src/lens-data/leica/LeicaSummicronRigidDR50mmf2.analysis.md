@@ -25,7 +25,7 @@ The 1961 dealer pages survive as a later authorized Hove facsimile whose product
 
 ## Optical Architecture
 
-The system is an all-spherical Gauss type with seven elements in six groups. The thirteen refracting surfaces and a flat iris make fourteen model surfaces.
+The system is an all-spherical Gauss type with seven elements in six groups. The thirteen refracting surfaces and a flat iris make fourteen model surfaces. The patent names no lenses: it labels the thicknesses d1–d7 and the air spaces L1–L5. Here L1–L7 are the seven lenses in order from the object side.
 
 The front half holds four air-separated elements. The biconvex L1 and the weak biconcave L2 form the split front positive member. The positive meniscus L3 and the negative meniscus L4 form the front negative meniscus, which the patent's Gauss type describes as cemented but the example separates with a 0.2575 mm air space. Behind the central gap that holds the diaphragm, the cemented L5–L6 meniscus and the biconvex L7 form the rear half.
 
@@ -95,7 +95,7 @@ The rigid lens focuses to 1 m. The Dual Range version adds a near range of 0.88�
 
 The patent places the stop between the two menisci but gives neither its axial position nor its diameter. The model puts it at the midpoint of the 9.08 mm central air space, 4.54 mm behind L4 and 21.25 mm behind the first vertex; the total gap is unchanged.
 
-Clear semi-diameters are estimates; the patent prints none. The rims of L3, L4 and the front face of the cemented pair follow the patent figure, including L4's chamfer down to an 8.5 mm rear face. L3's rear face stops at about 10.1 mm, where the air space to L4 runs out. The cemented pair (11.6 mm) and L7 (14 mm) are larger than the figure draws them, about 10.1 and 11.0 mm; at those sizes the rear group would darken the frame corner further and narrow the traced field.
+Clear semi-diameters are estimates; the patent prints none. The rims of L3 and L4 follow the patent figure, including L4's chamfer down to an 8.5 mm rear face. L3's rear face stops at about 10.1 mm, where the air space to L4 runs out. The cemented pair's front face (8.8 mm) and flat rim (11.6 mm) and L7 (14 mm) are larger than the figure draws them, about 7.8, 10.1 and 11.0 mm; at those sizes the rear group would darken the frame corner further and narrow the traced field.
 
 At f/2 the paraxial entrance pupil is EFL / 2 = 25.01 mm across, which needs an iris radius of 8.14 mm at the midpoint position. This is a model value, not a measured iris.
 

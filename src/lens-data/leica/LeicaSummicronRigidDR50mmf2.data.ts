@@ -5,12 +5,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // are the printed values. r7 = +145.08 is printed positive in both tables; no erratum is applied.
 // The patent heads its glass columns nd and ν without stating a wavelength; the model reads them as d-line values.
 // Stop: not printed. Placed at the midpoint of the 9.08 mm central air space; the total gap is unchanged.
-// Semi-diameters: not printed; estimated, not measured factory clear apertures. L3, L4 and the doublet's front face
-// follow the patent figure (scale from the drawn radii and element thicknesses). L3's rear face stops at 10.075 mm
+// Semi-diameters: not printed; estimated, not measured factory clear apertures. L3 and L4 follow the patent figure
+// (scale from the drawn radii and element thicknesses). L3's rear face stops at 10.075 mm
 // because the 0.2575 mm air space to L4 closes near 10.6 mm; L4's front face runs on to its drawn flat rim.
 // L1 and L2 agree with the figure within measurement noise.
-// The doublet's flat rim (11.6 mm) and L7 (14 mm) stay larger than the figure's 10.1 and 11.0 mm: smaller rims cost
-// more than 3 points of corner illumination and narrow the traced field.
+// The doublet's front face (8.8 mm), its flat rim (11.6 mm) and L7 (14 mm) stay larger than the figure's 7.8, 10.1
+// and 11.0 mm: smaller rims cost more than 3 points of corner illumination and narrow the traced field.
 // Back focus: derived paraxially (30.74 mm), not printed. Infinity focus only: the patent publishes no
 // focusing movement.
 const LENS_DATA = {
