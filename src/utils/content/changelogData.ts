@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-11-10",
     type: "lens",
+    summary: "Added the Fujifilm EBC Fujinon W 24mm f/2.8 for M42, from Fuji's 1976 retrofocus patent",
+  },
+  {
+    date: "2026-11-10",
+    type: "lens",
     summary:
       "Added the Fujifilm XF 150-600mm f/5.6-8, Konica Hexanon AR 57mm f/1.2, Nikon EL-Nikkor 50mm f/2.8, Pentax FA* 300mm f/2.8, Schneider-Kreuznach 28mm LS f/4.5 and Sigma 20mm f/1.4 DG DN Art",
   },
@@ -29,11 +34,6 @@ export const CHANGELOG: ChangelogEntry[] = [
     type: "fix",
     summary:
       "Fixed cardinal points and dimensions shrinking long telephoto diagrams and dimension labels covering the element numbers; spans now sit in a band below the lens, and anything beyond the view is marked at its edge",
-  },
-  {
-    date: "2026-11-09",
-    type: "lens",
-    summary: "Added an EBC Fujinon W 24mm f/2.8 M42 patent representative with native sodium D-line glass data",
   },
   {
     date: "2026-11-09",

@@ -13,17 +13,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1103** lenses scanned
 - **1084** visible lenses scanned
-- **754** lenses fully covered by trusted chromatic data
-- **749** visible lenses fully covered by trusted chromatic data
-- **746** lenses fully covered by strict Sellmeier data
-- **741** visible lenses fully covered by strict Sellmeier data
+- **755** lenses fully covered by trusted chromatic data
+- **750** visible lenses fully covered by trusted chromatic data
+- **747** lenses fully covered by strict Sellmeier data
+- **742** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **11668 / 12529** non-air surfaces use strict catalog Sellmeier data
-- **93.1%** strict Sellmeier surface coverage overall
-- **11682 / 12529** non-air surfaces use trusted chromatic data
-- **93.2%** trusted chromatic coverage overall
-- **0 / 13** historical sodium D surfaces use name-verified catalog dispersion data
+- **11677 / 12529** non-air surfaces use strict catalog Sellmeier data
+- **93.2%** strict Sellmeier surface coverage overall
+- **11691 / 12529** non-air surfaces use trusted chromatic data
+- **93.3%** trusted chromatic coverage overall
+- **0 / 4** historical sodium D surfaces use name-verified catalog dispersion data
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -740,6 +740,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CANON RF 16mm f/2.8 STM](../../src/lens-data/canon/CanonRF16mmf28STM.data.ts) | 9/9 | 9 | 9/9 |
 | [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) | 9/9 | 9 | 9/9 |
 | [CARL ZEISS DISTAGON T* 35mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) | 9/9 | 9 | 9/9 |
+| [FUJIFILM EBC FUJINON W 24mm f/2.8](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | 9/9 | 9 | 9/9 |
 | [FUJIFILM EBC X-FUJINON W 24mm f/2.8 DM](../../src/lens-data/fujifilm/FujifilmXFujinonSW24mmf28DMEBC.data.ts) | 9/9 | 9 | 9/9 |
 | [FUJIFILM FUJINON GF 50mm f/3.5 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonGf50mmf35RLMWR.data.ts) | 9/9 | 9 | 9/9 |
 | [FUJIFILM FUJINON XF 35mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmFujinonXf35mmf2RWR.data.ts) | 9/9 | 9 | 9/9 |
@@ -1433,10 +1434,9 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 335 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 | 336 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 337 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
-| 338 | [FUJIFILM EBC FUJINON W 24mm f/2.8 (M42 patent representative)](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | 0.0% | 0.0% | 0/9 | 0/9 | 9 | abbe: 9 |
-| 339 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 340 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
-| 341 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
+| 338 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 339 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
+| 340 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
 
 ## Missing Surface Details
 
@@ -3869,20 +3869,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 10 | Element 6 | abbe | `Unmatched (native nd=1.88000, vd=39.22; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
 | 12 | Element 7 | abbe | `Unmatched (native nd=1.65000, vd=33.89; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
 | 14 | Element 8 | abbe | `Unmatched (native nd=1.88000, vd=39.22; no tight six-vendor coordinate match)` | Explicit unmatched/proprietary annotation |
-
-### [FUJIFILM EBC FUJINON W 24mm f/2.8 (M42 patent representative)](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) - 0.0% trusted (0/9); 0.0% Sellmeier (0/9) - US 3,958,865 A
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1 | Front positive meniscus | abbe | `Unmatched (patent sodium-D / Abbe; supplier unknown)` | Explicit unmatched/proprietary annotation |
-| 3 | First negative meniscus | abbe | `Unmatched (patent sodium-D / Abbe; supplier unknown)` | Explicit unmatched/proprietary annotation |
-| 5 | Second negative meniscus | abbe | `Unmatched (patent sodium-D / Abbe; supplier unknown)` | Explicit unmatched/proprietary annotation |
-| 7 | Rear-convex positive meniscus | abbe | `Unmatched (patent sodium-D / Abbe; supplier unknown)` | Explicit unmatched/proprietary annotation |
-| 9 | Positive lens before the stop | abbe | `Unmatched (patent sodium-D / Abbe; supplier unknown)` | Explicit unmatched/proprietary annotation |
-| 11 | Negative member of the cemented doublet | abbe | `Unmatched (patent sodium-D / Abbe; supplier unknown)` | Explicit unmatched/proprietary annotation |
-| 12 | Positive member of the cemented doublet | abbe | `Unmatched (patent sodium-D / Abbe; supplier unknown)` | Explicit unmatched/proprietary annotation |
-| 14 | Rear-convex positive meniscus | abbe | `Unmatched (patent sodium-D / Abbe; supplier unknown)` | Explicit unmatched/proprietary annotation |
-| ... | ... | ... | ... | 1 more missing surface |
 
 ### [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) - 0.0% trusted (0/10); 0.0% Sellmeier (0/10) - US 2025/0271647 A1
 
