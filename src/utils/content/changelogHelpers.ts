@@ -53,6 +53,11 @@ export function changelogEntryId(entry: ChangelogEntry): string {
   return `changelog-${entry.date.trim()}-${entry.type.trim()}-${(hash >>> 0).toString(36)}`;
 }
 
+/** The `YYYY-MM` month encoded in a `changelogEntryId`, or `null` when the id is not a changelog anchor. */
+export function monthFromChangelogEntryId(id: string): string | null {
+  return /^changelog-(\d{4}-\d{2})-\d{2}-/.exec(id)?.[1] ?? null;
+}
+
 export function groupChangelogByDate(entries: readonly ChangelogEntry[]): Map<string, ChangelogEntry[]> {
   const grouped = new Map<string, ChangelogEntry[]>();
   for (const entry of entries) {

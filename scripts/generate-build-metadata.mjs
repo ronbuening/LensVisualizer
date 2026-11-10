@@ -10,6 +10,7 @@
  *   - teleconverterKeys: sorted array of published teleconverter keys (hidden test models excluded)
  *   - authors: inventor names, stable slugs, and related lens/patent counts
  *   - assignees: names, stable slugs, lens/patent counts, and dated corporate history
+ *   - updateMonths: months with a changelog entry or published lens (one /updates/<month> archive page each)
  *   - routes: flat array of all concrete URL paths to pre-render
  *
  * This is the single source of truth for route enumeration. Downstream scripts
@@ -39,6 +40,7 @@ import { collectChangelog } from "./changelog-lib.mjs";
 import { assertV2Catalog, collectLensDataAsync } from "./lens-data-lib.mjs";
 import { lensSummary, teleconverterSummary, canonicalPrescription } from "./lens-summaries.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
+import { buildUpdateMonths } from "../src/utils/content/updateMonths.ts";
 import { buildAuthorMetadata, buildAssigneeMetadata } from "./author-metadata.mjs";
 import { assertPatentAssigneeValidity } from "./patent-assignee-validity.mjs";
 
@@ -135,7 +137,7 @@ async function collectTeleconverters(lensModules, history, fallbackDate) {
 /* ── Route collection ────────────────────────────────────────────────── */
 
 /** Build the flat array of all concrete routes to pre-render. */
-function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, authors, teleconverterKeys) {
+function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, authors, teleconverterKeys, updateMonths) {
   return [
     "/",
     "/search",
@@ -149,6 +151,7 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, author
     ...(teleconverterKeys.length > 0 ? ["/teleconverters"] : []),
     "/articles",
     "/updates",
+    ...updateMonths.map(({ month }) => `/updates/${month}`),
     "/relationships",
     "/relationships/universal",
     ...articles.map((a) => `/articles/${a.slug}`),
@@ -213,7 +216,20 @@ async function main() {
   const teleconverters = await collectTeleconverters(lensModules, history, fallbackDate);
   const publishedTeleconverters = teleconverters.filter((teleconverter) => teleconverter.summary.visible);
   const teleconverterKeys = publishedTeleconverters.map((teleconverter) => teleconverter.key).sort();
-  const routes = collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, authors, teleconverterKeys);
+  const updateMonths = buildUpdateMonths(
+    changelog.map((entry) => entry.date),
+    lenses.map((lens) => lens.freshness.publishedOn),
+  );
+  const routes = collectRoutes(
+    lenses,
+    articles,
+    makerSlugs,
+    mountIds,
+    formatIds,
+    authors,
+    teleconverterKeys,
+    updateMonths,
+  );
   const routeFreshness = buildRouteFreshness({
     lenses,
     articles,
@@ -226,6 +242,8 @@ async function main() {
       freshness,
       compatibleLensKeys: summary.compatibleLensKeys,
     })),
+    changelog,
+    updateMonths,
     makerDetailsFreshness,
     assigneeCorporateHistoryFreshness,
     fallbackDate,
@@ -248,6 +266,7 @@ async function main() {
     teleconverterKeys,
     authors,
     assignees,
+    updateMonths,
     routes,
     routeFreshness,
   };

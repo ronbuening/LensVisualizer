@@ -33,10 +33,20 @@ build metadata.
 | `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB` with SEO fallback content plus client-only `LensViewer`. |
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
-| `UpdatesPage.tsx` | `src/pages/` | Recently added lens/update page. |
+| `UpdatesPage.tsx` | `src/pages/` | Updates hub at `/updates`: the newest two months of changelog entries and added lenses, plus the monthly archive links (see below). |
+| `UpdatesMonthPage.tsx` | `src/pages/` | Monthly archive at `/updates/:month` (`YYYY-MM`); unknown months redirect to `/updates/`. |
 | `RelationshipMapPage.tsx` | `src/pages/` | Patent relationship map at `/relationships`; the focus inventor/assignee lives in a `#focus=<role>:<slug>` fragment (see below). |
 | `UniversalRelationshipMapPage.tsx` | `src/pages/` | Catalog-wide patent and corporate-lineage network at `/relationships/universal`, with shareable `#node=…` selection; linked from the relationship-map index. |
 | `NotFoundPage.tsx` | `src/pages/` | Catch-all 404. |
+
+The Updates pages share `src/components/content/UpdatesView.tsx`. A month exists when it has a changelog entry or a
+published lens (`buildUpdateMonths` in the import-free `src/utils/content/updateMonths.ts`, which the metadata generator
+also calls to emit one `/updates/<month>` route per month, so routes and pages cannot disagree). `updatesArchive.ts`
+binds it to the compiled changelog and lens publication dates without reading the clock. The hub shows the newest
+`RECENT_UPDATE_MONTH_COUNT` months; every month keeps its archive page. Changelog anchors are permanent: when a
+`#changelog-YYYY-MM-DD-…` fragment's entry is not on the current page, `UpdatesView` replaces the URL with the same
+fragment on the entry's month page (the month is read from the id), and `RouteLayout` scrolls to it after commit.
+`scripts/seo-audit.mjs` (`auditUpdatesArchive`) checks this contract on the built pages.
 
 `RelationshipMapPage` is one static route whose content is driven by a fragment rather than a path param: with no
 `focus` it renders the intro + entity picker + "most-connected" link columns (this is the prerendered SEO state), and with
@@ -119,7 +129,9 @@ The app uses React Router 8 with client-side routing plus static prerendering fo
   using the full metadata artifact; browser modules must import the client projection.
 - The generator also validates the changelog entry files under `src/content/changelog/` with
   `scripts/changelog-lib.mjs`, early in the run, and writes them newest first to `src/generated/changelog.json` for
-  `src/utils/content/changelogData.ts`, the RSS feed, and the SEO audit.
+  `src/utils/content/changelogData.ts`, the RSS feed, and the SEO audit. It records the archive months as build-only
+  `updateMonths` and dates each `/updates/<month>` route from that month's entry dates and lens publication dates
+  (entry dates capped at today, so a scheduled entry never yields a future lastmod).
 - `scripts/prerender.mjs` reads that concrete route list, builds the SSR entry, validates it against
   `manifestPaths` exported from `entry-server.tsx`, and writes each route plus `404.html` into `dist/`.
 - `/compare/:slugA/:slugB` is routeable and SSR-capable, but it is intentionally excluded from the generated concrete

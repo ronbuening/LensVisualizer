@@ -7,8 +7,12 @@ The site changelog is a curated list of user-facing changes shown on `/updates` 
 at the same time add separate files instead of editing one shared list.
 
 `scripts/changelog-lib.mjs` validates the files and `npm run generate:metadata` (also run by `dev`, `build`, `test` and
-`typecheck`) compiles them, newest first, into `src/generated/changelog.json`. The Updates page, RSS feed and SEO audit
+`typecheck`) compiles them, newest first, into `src/generated/changelog.json`. The Updates pages, RSS feed and SEO audit
 all read that file. No other file needs to change when you add an entry.
+
+An entry is listed on `/updates` while its month is one of the two newest, and permanently on its month's archive page,
+`/updates/YYYY-MM/`. Its `/updates/#…` anchor keeps working after it leaves the hub: the page redirects to the archive
+page. Nothing is ever pruned.
 
 ---
 

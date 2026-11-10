@@ -1,5 +1,4 @@
 import type { Theme } from "../../types/theme.js";
-import { CHANGELOG } from "../../utils/content/changelogData.js";
 import { withAlpha } from "../../utils/style/styles.js";
 import {
   CHANGELOG_TYPE_COLORS,
@@ -12,11 +11,11 @@ import type { ChangelogEntry } from "../../utils/content/changelogHelpers.js";
 
 interface ChangelogListProps {
   theme: Theme;
-  entries?: readonly ChangelogEntry[];
+  entries: readonly ChangelogEntry[];
   maxHeight?: string;
 }
 
-export default function ChangelogList({ theme: t, entries = CHANGELOG, maxHeight = "28rem" }: ChangelogListProps) {
+export default function ChangelogList({ theme: t, entries, maxHeight = "28rem" }: ChangelogListProps) {
   const grouped = groupChangelogByDate(entries);
 
   return (

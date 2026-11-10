@@ -13,6 +13,7 @@ import {
   changelogEntryId,
   formatDisplayDate,
   groupChangelogByDate,
+  monthFromChangelogEntryId,
 } from "../../../../src/utils/content/changelogHelpers.js";
 import type { ChangelogEntry } from "../../../../src/utils/content/changelogHelpers.js";
 import { stripFrontmatter } from "../../../../src/utils/content/stripFrontmatter.js";
@@ -55,6 +56,12 @@ describe("changelogEntryId", () => {
     // Documented consequence: editing a shipped summary moves its public anchor
     // and RSS GUID. See agent_docs/changelog.md.
     expect(changelogEntryId(entry({ summary: "Different summary" }))).not.toBe(changelogEntryId(entry()));
+  });
+
+  it("encodes the month that monthFromChangelogEntryId reads back for the archive redirect", () => {
+    expect(monthFromChangelogEntryId(changelogEntryId(entry()))).toBe("2026-08");
+    expect(monthFromChangelogEntryId("group-maker-nikon")).toBeNull();
+    expect(monthFromChangelogEntryId("changelog-2026-08")).toBeNull();
   });
 });
 
