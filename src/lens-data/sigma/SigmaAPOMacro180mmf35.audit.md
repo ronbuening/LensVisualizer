@@ -28,7 +28,8 @@ SA); `catalog.closeFocusM.marketing` 0.46.
 Open: the patent prints β −0.505 and −1.002 states (D9, D14, D15, D20) that the model omits; with the image plane fixed the
 1:1 row focuses at 460.8 mm object-to-image (matches 0.46 m); L13 (sd 13.5) cuts 39–43 % of the corner bundle, but a wider
 L13 needs a land on S23/S24; every glass pair matches a HOYA row exactly yet is labelled `Unmatched`; public wording and
-package-process prose need a cleanup pass. (Glass labels and wording closed 2026-11-10 in the cleanup pass below.)
+package-process prose need a cleanup pass. (Glass labels and wording closed 2026-11-10 in the cleanup pass below; the L13
+item closed 2026-11-10 in the semi-diameter pass below.)
 
 ## 2026-11-10 — Cleanup and wording pass
 
@@ -85,4 +86,71 @@ Open:
   passed the surface audit in a scratch build.
 - L13 (sd 13.5) clips 39–43 % of one side of the full-aperture corner bundle at S24/S25, against the 16.6–16.9 mm it
   needs. Fig. 1 and Sigma's drawing show L12 and L13 at similar heights, but S23 and S24 meet near a 15.1 mm radius
-  across the 2.54 mm gap, so a wider L13 needs a land on S23 or S24.
+  across the 2.54 mm gap, so a wider L13 needs a land on S23 or S24. (Closed 2026-11-10: L13 raised to 15.0 mm in the
+  semi-diameter pass below; a land cannot gain light here.)
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: JP 2001-033704 A, Fig. 1 (Example 1, infinity), PDF p. 7, a 1-bit CCITT raster at native 200 dpi.
+
+Scale. Along the axis, the vertex crossings put S1 at x = 423.5 px and S25 at x = 1071.5 px: 648 px for 166.5209 mm, or
+0.2570 mm/px. Two more spans agree within 0.2 %: S1–S22 gives 0.2572 and S4–S20 gives 0.2574. Across the axis, which
+sits at y = 1332, the evidence is weaker:
+
+- Arc fits of the drawn S11 (R 55.6) give 0.245–0.250 mm/px.
+- The stop line (±59 px) against the engine stop radius 14.67 mm gives 0.249.
+- S13 and S19 give 0.23, but those interfaces are drawn flatter than their radii.
+
+The rims below therefore use 0.25 mm/px, with a ±5 % band (0.24–0.257). Each element is read on both sides of the axis,
+less 1 px for line width.
+
+| Element / surface | Model sd before | Figure (0.25 mm/px) | Before / figure | After |
+|---|---|---|---|---|
+| L1, S1–S2 | 32 | 32.0 | 1.00 | 32 |
+| L2, S3–S4 | 31 | 30.6 | 1.01 | 31 |
+| C1, S5–S7 | 26 | 26.3 | 0.99 | 26 |
+| L5, S8–S9 | 23 | 22.3 | 1.03 | 23 |
+| L6, S10–S11 | 20 | 19.1 | 1.05 | 20 |
+| C2, S12–S14 | 18 | 16.8 | 1.07 | 18 |
+| L9 and C3, S16–S20 | 20 | 19.5 | 1.03 | 20 |
+| FS21 (fixed stop line, x 990–991, −65 to +67 px) | 20 | 16.5 | 1.21 | 16.5 |
+| L12, S22–S23 | 18 | 16.9 | 1.07 | 18 |
+| L13, S24–S25 | 13.5 | 17.5 | 0.77 | 15 |
+
+L1–L12 are kept: each lies within the 5–8 % noise band, and within 5 % at the 0.257 horizontal scale.
+
+FS21 drops to the drawn half-height. It does not touch the axial beam (marginal 12.24 mm there). Leave-one-out against
+the package rims: restoring 20 mm would win back 1.7 points at 5.7° and 0.2 at 6.9°, under the 3-point limit, so the
+cut stays.
+
+L13 is drawn square-cut at about 17.5 mm, and taller than L12 by 2–3 px on both sides. The corner bundle needs 16.6 mm
+at S24 and 16.9 mm at S25. But S23 (R +179.48) and S24 (R −61.36) bend toward each other across a 2.5415 mm gap: their
+sags sum to 2.49 mm at 15.0 mm and to the full gap near 15.15 mm. A cut or land cannot help, for these reasons:
+
+- An inferred cut on S24 or S23 must clear every traced beam, so it cannot sit inside the beam it would have to admit.
+- A `rimExtensionSd` on S24 would run into S23 above about 15.6 mm, and the gap rule stops it at 15.0 mm.
+- Cutting L12 instead would cost more light than it gains.
+
+Both faces of L13 therefore rise together to 15.0 mm. At the default `gapSagFrac` 0.90 the limit is 14.3 mm, and 0.98 is
+the smallest two-decimal value that admits 15.0; the faces keep 0.05 mm of clearance there. The drawn step order (L13
+taller than L12) cannot be reproduced without cutting L12 below its beam, so it stays reversed in the model.
+
+Clearance after the change:
+
+- The surface audit is OK. The aperture audit reports no rim limit.
+- The image-circle audit shows 0 undersized, and field coverage is 100 % (6.9° to 21.65 mm, clear).
+- The real-ray trace at Y = 21.63 mm shows no axial clip or chief-ray block. Side vignetting of the full corner bundle
+  is 19 % at FS21, 20 % at S24 and 24 % at S25, where S24/S25 had 39–43 % before.
+- Engine half-field 8.598°, F 3.6069 and stop radius 14.669 mm are unchanged.
+
+Corner illumination, wide open at infinity (engine vignetting curve), before → after:
+
+| Field | Before | After |
+|---|---|---|
+| 0–4.6° | unchanged | unchanged |
+| 5.7° | 61.0 % | 66.9 % |
+| 6.9° | 37.4 % | 48.7 % |
+
+Open: L13 stays about 2.5 mm under the drawn height and below L12, because Fig. 1 draws the L12/L13 pair overlapping,
+which the printed radii and gap rule out. A production lens would need a land or a different edge profile there, but the
+patent does not show one.

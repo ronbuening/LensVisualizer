@@ -11,9 +11,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * no value is re-optimized.
  * Source row 15 (開口絞り, aperture stop) is the iris, STO; its radius is derived from the design
  * F 3.6069. Row 21 (固定絞り, fixed stop) is kept at its printed position as the flat FS21; its
- * 20 mm radius is inferred and does not limit the in-format beam.
- * Semi-diameters are inferred from Fig. 1 and checked for edge thickness and gap clearance; the
- * patent prints no clear apertures.
+ * 16.5 mm radius is the drawn half-height of the fixed-stop line in Fig. 1. It clips only the
+ * outer field (19 % of the 6.9° corner bundle on one side) and leaves the axial beam clear.
+ * NOTE ON SEMI-DIAMETERS: the patent prints no clear apertures. Rims are estimated from Fig. 1
+ * (PDF p. 7, native 200 dpi; S1-S25 = 166.52 mm spans 648 px, 0.257 mm/px along the axis; arc
+ * fits on S11 and the stop line give about 0.25 mm/px across it) and checked by real-ray trace.
+ * L1-L12 lie within 8 % of the drawing. Fig. 1 draws L13 square-cut at about 17.5 mm, but S23
+ * and S24 meet near a 15.1 mm radius across their 2.54 mm gap, so L13 stops at 15.0 mm on both
+ * faces. The S23/S24 pair sets `checks.gapSagFrac` 0.98, the smallest value that admits it.
  * nd/νd are the patent's ND/Vd (¶0019, d-line). Glass labels name the HOYA rows that match them
  * exactly; they do not assert the production supplier.
  * Infinity focus only. The patent also prints 0.5× and 1:1 spacings (D9, D14, D15, D20), which are
@@ -363,7 +368,7 @@ const LENS_DATA = {
       label: "FS21",
       R: "flat",
       d: 15.158,
-      sd: 20,
+      sd: 16.5,
     },
     {
       label: "22",
@@ -382,14 +387,14 @@ const LENS_DATA = {
       label: "24",
       R: -61.3636,
       d: 1.5,
-      sd: 13.5,
+      sd: 15,
       medium: 13,
     },
     {
       label: "25",
       R: -274.7097,
       d: 54.1414,
-      sd: 13.5,
+      sd: 15,
     },
   ],
   focus: {
@@ -415,6 +420,9 @@ const LENS_DATA = {
     { text: "C2", fromSurface: "12", toSurface: "14" },
     { text: "C3", fromSurface: "18", toSurface: "20" },
   ],
+  checks: {
+    gapSagFrac: 0.98,
+  },
 } satisfies LensDataV2Input;
 
 export default LENS_DATA;

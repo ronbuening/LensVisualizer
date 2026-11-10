@@ -203,11 +203,13 @@ the object, so the barrel must widen to keep corner illumination.
   The aperture scale runs to f/32, Sigma's minimum aperture. [2]
 - Focus is infinity only. The printed −0.5× and 1:1 spacings above are not modelled.
 - At the 21.63 mm full-frame corner the model's half-field is 6.86° (13.7° total), matching Sigma's 13.7° angle of view.
-- The patent prints no clear apertures. Semi-diameters are inferred from Fig. 1. The stop radius is derived from F3.6069.
-  The fixed stop's 20 mm radius is inferred and does not limit the in-format beam.
-- L13's 13.5 mm rim is set by the 2.54 mm air gap to L12, where the facing surfaces S23 and S24 would meet near a
-  15.1 mm radius. Fig. 1 and Sigma's drawing show L12 and L13 at similar heights. The full-aperture corner beam needs
-  16.6–16.9 mm at S24–S25, so the model probably vignettes the corner more than the production lens.
+- The patent prints no clear apertures. Semi-diameters are estimated from Fig. 1. The stop radius is derived from
+  F3.6069. The fixed stop's 16.5 mm radius is its drawn height in Fig. 1; it leaves the axial beam clear and trims
+  only the outer field.
+- Fig. 1 and Sigma's drawing show L12 and L13 at similar heights, about 17.5 mm. L13 stops at 15.0 mm, because the
+  facing surfaces S23 and S24 would meet near a 15.1 mm radius across their 2.54 mm air gap. The full-aperture corner
+  beam needs 16.6–16.9 mm at S24–S25, so the model vignettes the corner at L13. Wide open, the model passes about
+  49 % of the light at the 6.9° full-frame corner and 67 % at 5.7°.
 - Chromatic results use the HOYA catalog curves named above, which are equivalents rather than confirmed melts.
 
 ## Sources
