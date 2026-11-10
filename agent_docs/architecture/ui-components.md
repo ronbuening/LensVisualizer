@@ -1,9 +1,9 @@
 # UI Components Architecture
 
 Read this for the non-obvious behavior and cross-component rules of shared controls, display components, content
-components, markdown rendering, analysis drawer tabs, charts, and homepage UI. Per-folder inventories live in the
-generated `src/components/**/readme.md` files; viewer orchestration and the SVG diagram layers are covered by
-[`viewer-and-diagram.md`](viewer-and-diagram.md).
+components, markdown rendering, analysis drawer tabs, charts, and homepage UI. For per-folder inventories, run
+`npm run generate:readmes` and read `src/components/**/readme.md`; viewer orchestration and the SVG diagram layers are
+covered by [`viewer-and-diagram.md`](viewer-and-diagram.md).
 
 > Mount interface diagram components are in `src/components/mount/` (`MountDiagram`, `MountDiagramPanel`); the maker
 > and mount pages cross-link via `src/components/content/LinkListSidebar.tsx` (also used, with `#anchor` items, for
