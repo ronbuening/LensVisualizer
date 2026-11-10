@@ -79,7 +79,7 @@ A meniscus convex to the object, just ahead of the iris. Its strong front face (
 
 nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA catalog equivalent). f = −20.44 mm.
 
-The only dense-flint element and the negative member of G2's triplet form, behind the iris. Its strong rear face (r12 = 20.76 mm, condition (7), r12/fw = 0.578 printed, 0.577 from the table) controls spherical aberration; the air spaces on either side, d10 and d12, are held to 0.265 fw by condition (16) to limit flare from coma while keeping the lens short.
+The only dense-flint element and the negative member of G2's triplet form, behind the iris. Its strong rear face (r12 = 20.76 mm, condition (7), r12/fw = 0.578 printed, 0.577 from the table) controls spherical aberration; the air spaces on either side, d10 and d12, sum to 0.265 fw, inside condition (16)'s 0.15–0.35 range, to limit flare from coma while keeping the lens short.
 
 ### L7 — Biconvex Positive
 

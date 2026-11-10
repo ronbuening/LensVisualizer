@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "olympus-s-zuiko-mc-auto-zoom-35-70mm-f4",
   maker: "Olympus",
   name: "OLYMPUS S ZUIKO MC AUTO-ZOOM 35-70mm f/4",
-  subtitle: "US 4,452,512, Example 1 — probable production correlation",
+  subtitle: "US 4,452,512, Embodiment 1 — probable production correlation",
   visible: true,
   catalog: {
     lensMounts: ["olympus-om"],
@@ -129,7 +129,7 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 44.21,
       glass: "K-LaK11 (SUMITA catalog equivalent; production supplier unspecified)",
-      role: "Positive meniscus ahead of the iris; with L4 it forms the rear group's front positive member (24.24 mm).",
+      role: "Positive meniscus ahead of the iris; with L4 it forms the rear group's front positive member (f = 24.24 mm).",
     },
     {
       id: 6,
