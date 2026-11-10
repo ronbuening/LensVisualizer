@@ -1,0 +1,1 @@
+Added decade filters to the lens library, mount and format links to lens headers and a telephoto ratio to the Summary tab

@@ -1,0 +1,1 @@
+Improved lens search for focal lengths and f-numbers, including equivalent notation and zoom endpoints

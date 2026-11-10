@@ -1,0 +1,1 @@
+Improved ray-heavy lens diagram rendering and interaction performance

@@ -5,11 +5,8 @@ import * as ts from "typescript";
 const repoRoot = process.cwd();
 const srcRoot = path.join(repoRoot, "src");
 const generatedDocNames = new Set(["readme.md", "improvementsuggestions.md"]);
-const skippedDocSubtrees = new Set(["src/generated", "src/lens-data", "src/mounts"]);
-const largeFileWarningExcludedFiles = new Set([
-  "src/optics/chromatic/glassCatalogData.ts",
-  "src/utils/content/changelogData.ts",
-]);
+const skippedDocSubtrees = new Set(["src/content/changelog", "src/generated", "src/lens-data", "src/mounts"]);
+const largeFileWarningExcludedFiles = new Set(["src/optics/chromatic/glassCatalogData.ts"]);
 const largeFileWarningExcludedSubtrees = new Set(["src/optics/chromatic/glassCatalogEntries"]);
 const sourceExtensions = new Set([".ts", ".tsx", ".json", ".md", ".template"]);
 const codeExtensions = new Set([".ts", ".tsx"]);
@@ -66,7 +63,7 @@ const folderRoleOverrides = new Map([
   ["src/components/layout/lensViewer", "LensViewer chrome, content routing, and overlay composition"],
   ["src/components/markdown", "shared markdown rendering and heading extraction for articles and lens notes"],
   ["src/components/mount", "React mount-diagram rendering panels backed by the pure mount optics renderer"],
-  ["src/content", "auto-discovered markdown articles and static site content"],
+  ["src/content", "auto-discovered markdown articles, static site content, and one-file-per-entry changelog text"],
   ["src/content/focusing-architecture", "article series content about focusing architecture patterns"],
   ["src/content/pupils", "article series content about aperture stops, pupils, telecentricity, and illumination"],
   [
@@ -688,7 +685,9 @@ const syncReadme = async (dirRel) => {
   lines.push(`- Main outbound areas: ${formatListCell(outbound, "none", 8)}`);
   lines.push(`- External consumers: ${formatListCell(consumers, "none", 8)}`);
   if (dirRel === "src") {
-    lines.push("- Skipped documentation subtrees: `src/generated/` (build output), `src/lens-data/`, `src/mounts/`");
+    lines.push(
+      "- Skipped documentation subtrees: `src/generated/` (build output), `src/content/changelog/`, `src/lens-data/`, `src/mounts/`",
+    );
   }
   lines.push("");
 

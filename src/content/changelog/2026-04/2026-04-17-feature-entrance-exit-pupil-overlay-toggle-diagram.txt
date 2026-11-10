@@ -1,0 +1,1 @@
+Added entrance and exit pupil overlay toggle to the diagram controls

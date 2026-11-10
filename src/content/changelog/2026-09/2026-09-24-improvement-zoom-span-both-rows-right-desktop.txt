@@ -1,0 +1,1 @@
+Made Zoom span both rows at the right of the desktop analysis buttons

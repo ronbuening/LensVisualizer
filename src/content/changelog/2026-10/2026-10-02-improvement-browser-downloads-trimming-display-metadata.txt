@@ -1,0 +1,1 @@
+Reduced browser downloads by trimming display metadata and separating viewer help from the article registry

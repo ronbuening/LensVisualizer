@@ -1,0 +1,1 @@
+Fixed tilt-shift diagrams and analyses to trace moved lenses against a fixed sensor

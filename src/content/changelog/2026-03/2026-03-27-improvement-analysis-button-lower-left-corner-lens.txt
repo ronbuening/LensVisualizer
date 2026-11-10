@@ -1,0 +1,1 @@
+Relocated analysis button to lower-left corner of lens diagram

@@ -1,0 +1,1 @@
+Improved distortion and spherical aberration accuracy near the edges of the image circle
