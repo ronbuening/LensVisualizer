@@ -3652,11 +3652,11 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (crown; patent nd = 1.6224, νd = 60.3)` | Explicit unmatched/proprietary annotation |
-| 3 | Element 2 | abbe | `Unmatched (flint; patent nd = 1.6051, νd = 42.2)` | Explicit unmatched/proprietary annotation |
-| 5 | Element 3 | abbe | `Unmatched (dense crown; patent nd = 1.6583, νd = 51.0)` | Explicit unmatched/proprietary annotation |
-| 8 | Element 5 | abbe | `Unmatched (dense flint; patent nd = 1.7588, νd = 26.7)` | Explicit unmatched/proprietary annotation |
-| 10 | Element 6 | abbe | `Unmatched (crown; patent nd = 1.6224, νd = 60.3)` | Explicit unmatched/proprietary annotation |
+| 1 | Element I | abbe | `Unmatched (crown; patent nd = 1.6224, νd = 60.3)` | Explicit unmatched/proprietary annotation |
+| 3 | Element II | abbe | `Unmatched (flint; patent nd = 1.6051, νd = 42.2)` | Explicit unmatched/proprietary annotation |
+| 5 | Element III | abbe | `Unmatched (dense crown; patent nd = 1.6583, νd = 51.0)` | Explicit unmatched/proprietary annotation |
+| 8 | Element V | abbe | `Unmatched (dense flint; patent nd = 1.7588, νd = 26.7)` | Explicit unmatched/proprietary annotation |
+| 10 | Element VI | abbe | `Unmatched (crown; patent nd = 1.6224, νd = 60.3)` | Explicit unmatched/proprietary annotation |
 
 ### [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) - 16.7% trusted (1/6); 16.7% Sellmeier (1/6) - US 2,983,193
 
@@ -3846,12 +3846,12 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (printed n 1.5523, ν 63.3; no exact catalog row)` | Explicit unmatched/proprietary annotation |
+| 1 | Element 1 | abbe | `Unmatched (printed n 1.5523, ν 63.3; Hoya PCD3 coordinates if read at d)` | Explicit unmatched/proprietary annotation |
 | 3 | Element 2 | abbe | `Unmatched (printed n 1.6202, ν 60.4; no exact catalog row)` | Explicit unmatched/proprietary annotation |
 | 4 | Element 3 | abbe | `Unmatched (printed n 1.6727, ν 32.2; SF5 coordinates if read at d)` | Explicit unmatched/proprietary annotation |
 | 6 | Element 4 | abbe | `Unmatched (printed n 1.5891, ν 61.4; SK5 coordinates if read at d)` | Explicit unmatched/proprietary annotation |
 | 7 | Element 5 | abbe | `Unmatched (printed n 1.5317, ν 48.9; LLF6 coordinates if read at d)` | Explicit unmatched/proprietary annotation |
-| 9 | Element 6 | abbe | `Unmatched (printed n 1.5523, ν 63.3; no exact catalog row)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 6 | abbe | `Unmatched (printed n 1.5523, ν 63.3; Hoya PCD3 coordinates if read at d)` | Explicit unmatched/proprietary annotation |
 | 11 | Element 7 | abbe | `Unmatched (printed n 1.6202, ν 60.4; no exact catalog row)` | Explicit unmatched/proprietary annotation |
 
 ### [SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7) - US 2021/0149156 A1
