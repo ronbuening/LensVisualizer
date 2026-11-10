@@ -1,6 +1,14 @@
-// UNFINISHED NATIVE CHECKPOINT. Hidden; unshifted infinity integration pending.
-// Literal whole E1, d-line and 1+K sag. Caps inferred; STO radius derived from literal source F4.6.
-// No perspectiveControl, image-circle coverage, rear plate, measured glass identity or gap-sag override.
+// CN 110955036 B Example 1 (实施例1) as printed: native millimetres, d-line indices, no scaling. Printed f = 15.4908 mm,
+// F/4.6, half-angle 63.66°, maximum image height 31.3 mm. Aspheres S3, S4, S28 and S29 use
+// z = (y²/r)/(1 + √(1 − (1+K)(y/r)²)) + A4y⁴ + … + A12y¹², so K is the printed value.
+// Both printed spacing states (infinity and 0.01×) are kept; the moving gaps' sum differs by 0.0073 mm between them.
+// No cover plate is printed; D29 is the image distance.
+// Semi-diameters are inferred, not printed. S1 is 23 mm so the chief ray reaches the 36 × 24 mm corner (21.63 mm);
+// default rim-slope and gap-sag checks. The stop radius is derived from the printed F/4.6.
+// Glass labels name exact HOYA (and one SUMITA moulding-glass) catalog coordinates; the production supplier is not
+// published. L1/L5 (1.90000/43.00), L15 (1.90366/28.00) and L17 (1.80781/40.97) match no catalog row.
+// No perspectiveControl or imageCircleMm: the inferred rims trace the unshifted full-frame corner but not the
+// patent's 31.3 mm image height, so the marketed ±11 mm shift is not modelled.
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
@@ -8,7 +16,7 @@ const LENS_DATA = {
   key: "laowa-15mm-f45-zero-d-shift",
   maker: "Laowa",
   name: "LAOWA 15mm f/4.5 Zero-D Shift",
-  subtitle: "UNFINISHED: unshifted infinity reference checks; source-field/shift coverage held",
+  subtitle: "CN 110955036 B, Example 1 — construction-based product association",
   visible: true,
   catalog: {
     elementCount: 17,
@@ -36,7 +44,13 @@ const LENS_DATA = {
       "hasselblad-xcd",
     ],
     imageFormat: "135-full-frame",
-    specs: ["UNFINISHED STATIC HYPOTHESIS", "17 ELEMENTS / 11 GROUPS", "PROBABLE FAMILY, NOT FACTORY PRESCRIPTION"],
+    specs: [
+      "17 ELEMENTS / 11 GROUPS",
+      "DESIGN f = 15.49 mm",
+      "DESIGN F/4.6",
+      "4 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "3 ED POSITIONS (MAKER DIAGRAM)",
+    ],
   },
   source: {
     patentNumber: "CN 110955036 B",
@@ -58,8 +72,8 @@ const LENS_DATA = {
       vd: 43,
       indexReference: "d",
       focalLengthMm: -82.126955137,
-      glass: "Unmatched (Nd 1.9, Vd 43; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
+      glass: "Unmatched (native nd=1.90000, vd=43.00; supplier unconfirmed)",
+      role: "Large front negative meniscus of the fixed group G1, convex to the object.",
     },
     {
       id: 2,
@@ -70,8 +84,8 @@ const LENS_DATA = {
       vd: 59.16,
       indexReference: "d",
       focalLengthMm: -38.693403373,
-      glass: "Unmatched (Nd 1.58444, Vd 59.16; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
+      glass: "K-CSK120-M (SUMITA, coordinate equivalent; supplier unconfirmed)",
+      role: "Second negative meniscus of G1 with both faces aspheric; controls distortion across the wide field.",
     },
     {
       id: 3,
@@ -82,8 +96,11 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       focalLengthMm: -31.893629251,
-      glass: "Unmatched (Nd 1.497, Vd 81.61; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
+      glass: "FCD1 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; Venus Optics marks an ED element at this position. The patent publishes no partial-dispersion data.",
+      role: "Negative meniscus leading the focusing group G2; low-dispersion glass limits lateral colour in the front group.",
     },
     {
       id: 4,
@@ -94,9 +111,9 @@ const LENS_DATA = {
       vd: 38.01,
       indexReference: "d",
       focalLengthMm: 25.011461162,
-      glass: "Unmatched (Nd 1.60342, Vd 38.01; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
-      cemented: "D1",
+      glass: "E-F5 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      role: "Positive front element of cemented pair C1 in G2.",
+      cemented: "C1",
     },
     {
       id: 5,
@@ -107,9 +124,9 @@ const LENS_DATA = {
       vd: 43,
       indexReference: "d",
       focalLengthMm: -13.049690052,
-      glass: "Unmatched (Nd 1.9, Vd 43; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
-      cemented: "D1",
+      glass: "Unmatched (native nd=1.90000, vd=43.00; supplier unconfirmed)",
+      role: "Strong negative rear element of C1; gives the pair its net negative power.",
+      cemented: "C1",
     },
     {
       id: 6,
@@ -120,9 +137,9 @@ const LENS_DATA = {
       vd: 28.32,
       indexReference: "d",
       focalLengthMm: 18.48581487,
-      glass: "Unmatched (Nd 1.72825, Vd 28.32; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
-      cemented: "D2",
+      glass: "E-FD10 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      role: "Positive front element of cemented pair C2 in G2.",
+      cemented: "C2",
     },
     {
       id: 7,
@@ -133,9 +150,9 @@ const LENS_DATA = {
       vd: 20.88,
       indexReference: "d",
       focalLengthMm: -26.470881233,
-      glass: "Unmatched (Nd 1.92286, Vd 20.88; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
-      cemented: "D2",
+      glass: "E-FDS1 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      role: "Dense-flint negative rear element of C2 (νd 20.9); the pair is weakly positive.",
+      cemented: "C2",
     },
     {
       id: 8,
@@ -146,8 +163,8 @@ const LENS_DATA = {
       vd: 31.16,
       indexReference: "d",
       focalLengthMm: 37.986866927,
-      glass: "Unmatched (Nd 1.68893, Vd 31.16; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
+      glass: "E-FD8 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      role: "Thick (10 mm) biconvex element closing G2 just ahead of the stop.",
     },
     {
       id: 9,
@@ -158,9 +175,9 @@ const LENS_DATA = {
       vd: 38.01,
       indexReference: "d",
       focalLengthMm: 21.198379947,
-      glass: "Unmatched (Nd 1.60342, Vd 38.01; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
-      cemented: "T1",
+      glass: "E-F5 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      role: "Positive front element of cemented triplet C3, the first element of G3 behind the stop.",
+      cemented: "C3",
     },
     {
       id: 10,
@@ -171,9 +188,9 @@ const LENS_DATA = {
       vd: 40.8,
       indexReference: "d",
       focalLengthMm: -9.792505389,
-      glass: "Unmatched (Nd 1.883, Vd 40.8; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
-      cemented: "T1",
+      glass: "TAFD30 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      role: "Thin biconcave centre element of triplet C3; balances the positive outer elements to near-zero net power.",
+      cemented: "C3",
     },
     {
       id: 11,
@@ -184,9 +201,9 @@ const LENS_DATA = {
       vd: 42.84,
       indexReference: "d",
       focalLengthMm: 19.450662067,
-      glass: "Unmatched (Nd 1.56732, Vd 42.84; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
-      cemented: "T1",
+      glass: "E-FL6 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      role: "Positive rear element of triplet C3.",
+      cemented: "C3",
     },
     {
       id: 12,
@@ -197,9 +214,9 @@ const LENS_DATA = {
       vd: 23.78,
       indexReference: "d",
       focalLengthMm: 19.80867524,
-      glass: "Unmatched (Nd 1.84666, Vd 23.78; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
-      cemented: "D3",
+      glass: "FDS90 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      role: "Positive front element of cemented pair C4 in G3.",
+      cemented: "C4",
     },
     {
       id: 13,
@@ -210,9 +227,9 @@ const LENS_DATA = {
       vd: 35.25,
       indexReference: "d",
       focalLengthMm: -22.846781904,
-      glass: "Unmatched (Nd 1.91082, Vd 35.25; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
-      cemented: "D3",
+      glass: "TAFD35 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      role: "Negative meniscus rear element of C4, concave to the object.",
+      cemented: "C4",
     },
     {
       id: 14,
@@ -223,8 +240,11 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       focalLengthMm: 26.680812236,
-      glass: "Unmatched (Nd 1.497, Vd 81.61; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
+      glass: "FCD1 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; Venus Optics marks an ED element at this position. The patent publishes no partial-dispersion data.",
+      role: "Biconvex positive singlet in G3; low-dispersion glass for colour correction in the rear group.",
     },
     {
       id: 15,
@@ -235,9 +255,9 @@ const LENS_DATA = {
       vd: 28,
       indexReference: "d",
       focalLengthMm: -19.549733896,
-      glass: "Unmatched (Nd 1.90366, Vd 28; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
-      cemented: "D4",
+      glass: "Unmatched (native nd=1.90366, vd=28.00; supplier unconfirmed)",
+      role: "High-index negative front element of cemented pair C5.",
+      cemented: "C5",
     },
     {
       id: 16,
@@ -248,9 +268,12 @@ const LENS_DATA = {
       vd: 81.61,
       indexReference: "d",
       focalLengthMm: 20.917670211,
-      glass: "Unmatched (Nd 1.497, Vd 81.61; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
-      cemented: "D4",
+      glass: "FCD1 (HOYA, coordinate equivalent; supplier unconfirmed)",
+      apd: "inferred",
+      apdNote:
+        "ED fluorophosphate class inferred from nd=1.49700 and νd=81.61; Venus Optics marks an ED element at this position. The patent publishes no partial-dispersion data.",
+      role: "Biconvex ED rear element of C5; the pair is an achromat in the rear group.",
+      cemented: "C5",
     },
     {
       id: 17,
@@ -261,8 +284,8 @@ const LENS_DATA = {
       vd: 40.97,
       indexReference: "d",
       focalLengthMm: -65.099079818,
-      glass: "Unmatched (Nd 1.80781, Vd 40.97; vendor unspecified)",
-      role: "Literal E1 element; isolated-air focal length is diagnostic, not the cemented in-situ contribution.",
+      glass: "Unmatched (native nd=1.80781, vd=40.97; supplier unconfirmed)",
+      role: "Rear negative meniscus of G3 with both faces aspheric, concave to the object; last element before the 51.8 mm back focus.",
     },
   ],
   surfaces: [
@@ -492,7 +515,7 @@ const LENS_DATA = {
     step: 1,
     published: [1],
     description:
-      "Only the two literal source gap states. closeFocusM is a diagnostic paraxial object-to-image distance inferred from the printed finite plane, not a source-certified conjugate or retail MFD. No continuous cam law or focus.conjugates claim.",
+      "PUBLISHED infinity and 0.01× states from CN 110955036 B Example 1 (D4 7.9482 → 7.9700 mm, D14 4.7930 → 4.4451 mm, D29 51.7633 → 52.0821 mm). G1 stays fixed, G2 moves 0.022 mm toward the image and G3 about 0.32 mm toward the object. The 1.64 m object-to-image distance of the 0.01× state is calculated from those spacings; the patent does not print it, and it is not the marketed 0.2 m minimum focus distance. The focus control steps between the two printed states only.",
   },
   gaps: {
     "4": {
@@ -513,6 +536,18 @@ const LENS_DATA = {
     fStops: [4.6, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
   },
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "4" },
+    { text: "G2", fromSurface: "5", toSurface: "14" },
+    { text: "G3", fromSurface: "16", toSurface: "29" },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "7", toSurface: "9" },
+    { text: "C2", fromSurface: "10", toSurface: "12" },
+    { text: "C3", fromSurface: "16", toSurface: "19" },
+    { text: "C4", fromSurface: "20", toSurface: "22" },
+    { text: "C5", fromSurface: "25", toSurface: "27" },
+  ],
   layout: {
     scFill: 0.6,
     yScFill: 0.4,

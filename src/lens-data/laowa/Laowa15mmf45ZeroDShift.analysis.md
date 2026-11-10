@@ -1,179 +1,249 @@
 ## Patent Reference and Design Identification
 
 **Patent:** [CN 110955036 B](https://patents.google.com/patent/CN110955036B/en)
+**Application Number:** CN 201911290460.1
 **Filed:** 2019-12-16
-**Published:** 2020-04-03 (A)
-**Granted:** 2024-10-18 (B)
+**Published:** 2020-04-03 (CN 110955036 A)
+**Granted:** 2024-10-18
 **Inventor:** Dayong Li (李大勇)
-**Assignee:** 安徽长庚光学科技有限公司
-**Example details:** Whole E1, physical pages 5–7, paragraphs 0040–0065; unscaled millimetres.
+**Assignee:** Anhui Changgeng Optics Technology Co., Ltd. (安徽长庚光学科技有限公司)
+**Title:** 一种超广角移轴镜头 (An ultra-wide-angle shift lens)
+**Example details:** 实施例1, ¶0040–¶0065, Fig. 1 (section), Fig. 2 (aberrations), Fig. 3 (shift field); native millimetres, no scaling.
 
-This hidden provisional model is not qualified for delivery. Probable correspondence to the Laowa 15mm f/4.5 Zero-D Shift family rests on 17 elements in 11 groups, aspheric second and last elements, and qualitative low-dispersion positions in the maker section. These facts do not select E1 uniquely over E2 or prove an exact factory prescription. The source is natively F4.6 and f15.4908, not the retail f/4.5 and 15mm.
+The patent describes an ultra-wide shift lens for full-frame (36 × 24 mm) SLR and mirrorless bodies. Its abstract
+claims a field of view above 100° unshifted and above 125° at the 10 mm shift limit. Example 1 prints f = 15.4908 mm
+(15.491 mm in ¶0051), F/4.6, half-angle ω = 63.66° and a maximum image height of 31.3 mm (¶0051–¶0054). The 31.3 mm
+height is the paraxial Ymax = F·tan ω of claim 1, the corner of the frame at full shift; ¶0042 states an image field of
+at least 62 mm and at least 10 mm of unvignetted shift up, down, left and right. Figure 3 draws the 36 × 24 mm frame
+inside a 61 mm circle with 10 mm shifts in each direction.
 
-**Current status (v3): hidden, centered infinity integration pending, not delivery-ready.** Native geometry and zero rendered trim pass at both printed gap states. At literal F4.6 and the printed infinity image plane, reference d-line geometric and diffraction MTF converge through 40 lp/mm at the axis, half-frame and actual 36×24 mm corner (21.6333 mm). The only adopted rim refinement is inferred S1 semi-diameter 20→23 mm. Modeled 128-grid relative illumination is 0.7912 at half-frame and 0.1174 at the corner; these are simulations for inferred apertures, not retail measurements. Source ymax 31.3 mm/63.66° and shifted-use coverage remain on HOLD. Broadband, finite-performance certification and aggregate integration gates remain pending. Earlier v1/v2 sections below are explicitly historical; their full-frame failures and unrun-native statements are superseded by v3. Failed 64/128-grid evidence remains retained.
+The Laowa 15mm f/4.5 Zero-D Shift is identified with this example on construction, not on a maker statement:
+
+1. **Construction.** Example 1 has 17 elements in 11 groups, the count Venus Optics publishes for the lens.
+2. **Aspheres.** The patent makes both faces of L2 and L17 aspheric; the maker's section diagram marks the second
+   and last elements as glass aspherical elements, and the maker lists two aspherical elements.
+3. **ED positions.** The three νd 81.61 elements (L3, L14, L16) fall exactly on the three elements the maker's diagram
+   marks as extra-low dispersion glass.
+4. **Section shape.** The maker's diagram reproduces Figure 1 element for element: the deep front meniscus, the
+   S-shaped asphere, the thick biconvex element ahead of the stop, the triplet behind it and the thin aspheric rear
+   meniscus.
+5. **Coverage and shift.** The patent's ≥ 62 mm field and ≥ 10 mm shift correspond to the marketed Ø65 mm image
+   circle and ±11 mm full-frame shift.
+6. **Applicant and timing.** Anhui Changgeng Optics Technology is the company behind Venus Optics (Laowa); the
+   application was filed in December 2019 and the lens was announced on 30 October 2020.
+
+The design values differ slightly from the marketed ones (15.49 mm against 15 mm, F/4.6 against f/4.5). Example 2 of the
+same patent has the same construction and nearly the same first-order values (f = 15.4971 mm, ω = 63.645°, 0.0154×
+close state); nothing in the public record selects one example over the other, and Example 1 is used as the first
+worked example. Neither example is confirmed by Venus Optics as the production prescription.
 
 ## Optical Architecture
 
-The patent describes negative G1, negative G2 and positive G3. The 17-element/11-group sequence includes doublets S7–9, S10–12, S20–22 and S25–27, and triplet S16–19. Stop S15 lies after D14 and before the 1.5000mm gap to S16. Printed image row30 follows D29; no camera plate is supplied or invented. Mechanical shift is not authored.
+The lens is a three-group retrofocus design, negative–negative–positive (¶0005). From the model's paraxial trace the
+group focal lengths are G1 −24.37 mm, G2 −105.98 mm and G3 +36.93 mm.
+
+- **G1 (L1–L2, fixed):** two negative menisci convex to the object. Claim 1 limits G1 to two consecutive negative
+  lenses; ¶0002 contrasts this with earlier wide shift lenses whose first group held four or five negative elements.
+- **G2 (L3–L8, focusing):** a negative meniscus, two cemented pairs (C1, C2) and a 10 mm thick biconvex element ahead
+  of the stop. Claim 1 fixes six lenses in G2.
+- **G3 (L9–L17, focusing):** behind the stop, a cemented triplet (C3), a cemented pair (C4), a biconvex singlet, a
+  second cemented pair (C5) and the aspheric rear meniscus. Claim 1 fixes nine lenses in G3.
+
+The long back focus is the governing requirement. At 51.76 mm (3.34 × f) it leaves room for the shift mechanism in
+front of the camera mount, and ¶0026–¶0028 explain the conditions in terms of keeping G3 small enough to move without
+striking the mount or being shaded by it. The four conditional expressions and the model's values:
+
+| Condition | Range | Patent, Example 1 | Model |
+| --- | --- | --- | --- |
+| (1) EX/Ymax | 0.5–0.85 | 0.712 | 0.712 (entrance pupil 22.28 mm behind S1) |
+| (2) \|F3/F\| | 1.8–2.8 | 2.384 | 2.384 |
+| (3) \|BF/F\| | 3.2–3.7 | 3.342 | 3.342 |
+| (4) \|F2/F\| | 3.5–8 | 6.842 | 6.842 |
+
+Shift is a movement of the whole optical unit across the camera frame. The model does not declare it (see Model Scope
+and Limitations).
 
 ## Element-by-Element Analysis
 
-### L1: Meniscus Negative
+### L1: Negative Meniscus, convex to object
 
-nd = 1.9, νd = 43. Glass: unspecified vendor, unmatched. Isolated-air f = -82.1270 mm.
+nd = 1.90000, νd = 43.00. Glass: Unmatched. f = −82.13 mm.
 
-Surfaces 1–2, center thickness 2 mm. Air-separated singlet. The isolated element power is descriptive; no individual aberration contribution has been measured.
+The large front element of G1. Its rear face (R = 21.54 mm) is nearly hemispherical, and Figure 1 draws it almost to
+its full radius: the element bends the oblique bundles of the wide field toward the axis.
 
-### L2: Meniscus Negative
+### L2: Negative Meniscus, both faces aspheric
 
-nd = 1.58444, νd = 59.16. Glass: unspecified vendor, unmatched. Isolated-air f = -38.6934 mm.
+nd = 1.58444, νd = 59.16. Glass: K-CSK120-M (Sumita) coordinate equivalent, a moulding glass. f = −38.69 mm.
 
-Surfaces 3–4, center thickness 2.5 mm. Air-separated singlet. Both bounding surfaces are aspheric. The isolated element power is descriptive; no individual aberration contribution has been measured.
+The second negative element of G1. Both faces are aspheric (S3, S4), and the combination thins the element's negative
+power toward the rim, giving the S-shaped rear face visible in Figure 1 and in the maker's diagram. In a lens sold on
+low distortion this is the main distortion-control element of the front group (author's interpretation).
 
-### L3: Meniscus Negative
+### L3: Negative Meniscus, convex to object
 
-nd = 1.497, νd = 81.61. Glass: unspecified vendor, unmatched. Isolated-air f = -31.8936 mm.
+nd = 1.49700, νd = 81.61. Glass: FCD1 (Hoya) coordinate equivalent — ED fluorophosphate class. f = −31.89 mm.
 
-Surfaces 5–6, center thickness 1.5 mm. Air-separated singlet. The isolated element power is descriptive; no individual aberration contribution has been measured.
+The first element of the focusing group G2 and the first ED position in the maker's diagram. Its deep concave rear
+face (R = 13.82 mm) continues the negative power of G1 with a low-dispersion glass, limiting the lateral colour the
+strongly negative front of a retrofocus design produces.
 
-### L4: Biconvex Positive
+### C1: L4 + L5 (cemented, net f = −34.2 mm)
 
-nd = 1.60342, νd = 38.01. Glass: unspecified vendor, unmatched. Isolated-air f = 25.0115 mm.
+- **L4, Biconvex Positive:** nd = 1.60342, νd = 38.01. Glass: E-F5 (Hoya) coordinate equivalent. f = +25.01 mm.
+- **L5, Biconcave Negative:** nd = 1.90000, νd = 43.00. Glass: Unmatched. f = −13.05 mm.
 
-Surfaces 7–8, center thickness 5.9138 mm. Shares the D1 cemented assembly. The isolated element power is descriptive; no individual aberration contribution has been measured.
+A negative cemented pair in G2. The strong negative L5 sets the net power; the flint-like L4 in front gives the pair
+its colour balance.
 
-### L5: Biconcave Negative
+### C2: L6 + L7 (cemented, net f = +52.0 mm)
 
-nd = 1.9, νd = 43. Glass: unspecified vendor, unmatched. Isolated-air f = -13.0497 mm.
+- **L6, Biconvex Positive:** nd = 1.72825, νd = 28.32. Glass: E-FD10 (Hoya) coordinate equivalent. f = +18.49 mm.
+- **L7, Biconcave Negative:** nd = 1.92286, νd = 20.88. Glass: E-FDS1 (Hoya) coordinate equivalent. f = −26.47 mm.
 
-Surfaces 8–9, center thickness 2.6307 mm. Shares the D1 cemented assembly. The isolated element power is descriptive; no individual aberration contribution has been measured.
-
-### L6: Biconvex Positive
-
-nd = 1.72825, νd = 28.32. Glass: unspecified vendor, unmatched. Isolated-air f = 18.4858 mm.
-
-Surfaces 10–11, center thickness 4.6305 mm. Shares the D2 cemented assembly. The isolated element power is descriptive; no individual aberration contribution has been measured.
-
-### L7: Biconcave Negative
-
-nd = 1.92286, νd = 20.88. Glass: unspecified vendor, unmatched. Isolated-air f = -26.4709 mm.
-
-Surfaces 11–12, center thickness 5 mm. Shares the D2 cemented assembly. The isolated element power is descriptive; no individual aberration contribution has been measured.
+A weakly positive pair of two dense flints; the very low νd of L7 against L6 corrects colour within G2.
 
 ### L8: Biconvex Positive
 
-nd = 1.68893, νd = 31.16. Glass: unspecified vendor, unmatched. Isolated-air f = 37.9869 mm.
+nd = 1.68893, νd = 31.16. Glass: E-FD8 (Hoya) coordinate equivalent. f = +37.99 mm.
 
-Surfaces 13–14, center thickness 10 mm. Air-separated singlet. The isolated element power is descriptive; no individual aberration contribution has been measured.
+A 10 mm thick element closing G2 just ahead of the stop. It is the main positive element of the otherwise negative
+focusing group.
 
-### L9: Biconvex Positive
+### C3: L9 + L10 + L11 (cemented triplet, net f ≈ +999 mm)
 
-nd = 1.60342, νd = 38.01. Glass: unspecified vendor, unmatched. Isolated-air f = 21.1984 mm.
+- **L9, Biconvex Positive:** nd = 1.60342, νd = 38.01. Glass: E-F5 (Hoya) coordinate equivalent. f = +21.20 mm.
+- **L10, Biconcave Negative:** nd = 1.88300, νd = 40.80. Glass: TAFD30 (Hoya) coordinate equivalent. f = −9.79 mm.
+- **L11, Biconvex Positive:** nd = 1.56732, νd = 42.84. Glass: E-FL6 (Hoya) coordinate equivalent. f = +19.45 mm.
 
-Surfaces 16–17, center thickness 3.225 mm. Shares the T1 cemented assembly. The isolated element power is descriptive; no individual aberration contribution has been measured.
+The first component behind the stop. Its net power is almost zero; the two strongly curved cemented interfaces act on
+spherical aberration and colour close to the stop without adding power.
 
-### L10: Biconcave Negative
+### C4: L12 + L13 (cemented, net f = +146.5 mm)
 
-nd = 1.883, νd = 40.8. Glass: unspecified vendor, unmatched. Isolated-air f = -9.7925 mm.
+- **L12, Biconvex Positive:** nd = 1.84666, νd = 23.78. Glass: FDS90 (Hoya) coordinate equivalent. f = +19.81 mm.
+- **L13, Negative Meniscus, concave to object:** nd = 1.91082, νd = 35.25. Glass: TAFD35 (Hoya) coordinate
+  equivalent. f = −22.85 mm.
 
-Surfaces 17–18, center thickness 0.8 mm. Shares the T1 cemented assembly. The isolated element power is descriptive; no individual aberration contribution has been measured.
-
-### L11: Biconvex Positive
-
-nd = 1.56732, νd = 42.84. Glass: unspecified vendor, unmatched. Isolated-air f = 19.4507 mm.
-
-Surfaces 18–19, center thickness 3.4825 mm. Shares the T1 cemented assembly. The isolated element power is descriptive; no individual aberration contribution has been measured.
-
-### L12: Biconvex Positive
-
-nd = 1.84666, νd = 23.78. Glass: unspecified vendor, unmatched. Isolated-air f = 19.8087 mm.
-
-Surfaces 20–21, center thickness 3.9513 mm. Shares the D3 cemented assembly. The isolated element power is descriptive; no individual aberration contribution has been measured.
-
-### L13: Meniscus Negative
-
-nd = 1.91082, νd = 35.25. Glass: unspecified vendor, unmatched. Isolated-air f = -22.8468 mm.
-
-Surfaces 21–22, center thickness 0.8 mm. Shares the D3 cemented assembly. The isolated element power is descriptive; no individual aberration contribution has been measured.
+A weakly positive pair with a strongly curved interface (R = −17.68 mm) concave to the stop.
 
 ### L14: Biconvex Positive
 
-nd = 1.497, νd = 81.61. Glass: unspecified vendor, unmatched. Isolated-air f = 26.6808 mm.
+nd = 1.49700, νd = 81.61. Glass: FCD1 (Hoya) coordinate equivalent — ED fluorophosphate class. f = +26.68 mm.
 
-Surfaces 23–24, center thickness 6.0221 mm. Air-separated singlet. The isolated element power is descriptive; no individual aberration contribution has been measured.
+The main positive singlet of G3 and the second ED position in the maker's diagram.
 
-### L15: Biconcave Negative
+### C5: L15 + L16 (cemented, net f = +252.2 mm)
 
-nd = 1.90366, νd = 28. Glass: unspecified vendor, unmatched. Isolated-air f = -19.5497 mm.
+- **L15, Biconcave Negative:** nd = 1.90366, νd = 28.00. Glass: Unmatched. f = −19.55 mm.
+- **L16, Biconvex Positive:** nd = 1.49700, νd = 81.61. Glass: FCD1 (Hoya) coordinate equivalent — ED fluorophosphate
+  class. f = +20.92 mm.
 
-Surfaces 25–26, center thickness 0.8 mm. Shares the D4 cemented assembly. The isolated element power is descriptive; no individual aberration contribution has been measured.
+An achromatic pair: a high-index flint against the third ED element, near the rear of the lens where the off-axis
+bundles are widely separated, which suits lateral-colour correction.
 
-### L16: Biconvex Positive
+### L17: Negative Meniscus, concave to object, both faces aspheric
 
-nd = 1.497, νd = 81.61. Glass: unspecified vendor, unmatched. Isolated-air f = 20.9177 mm.
+nd = 1.80781, νd = 40.97. Glass: Unmatched. f = −65.10 mm.
 
-Surfaces 26–27, center thickness 7.947 mm. Shares the D4 cemented assembly. The isolated element power is descriptive; no individual aberration contribution has been measured.
-
-### L17: Meniscus Negative
-
-nd = 1.80781, νd = 40.97. Glass: unspecified vendor, unmatched. Isolated-air f = -65.0991 mm.
-
-Surfaces 28–29, center thickness 1.7 mm. Air-separated singlet. Both bounding surfaces are aspheric. The isolated element power is descriptive; no individual aberration contribution has been measured.
+The last element, 51.76 mm ahead of the image. Both aspheric faces depart from their base spheres by nearly the same
+amount (see Aspherical Surfaces), so the asphere acts on the off-axis bundles near the image rather than on axial power.
 
 ## Glass Identification
 
-All Nd/Vd values are literal d-line values, with no vendor identity, melt data, measured line indices or partial dispersion. The Nd1.497/Vd81.61 elements L3, L14 and L16 agree qualitatively with the maker's low-dispersion placements; no anomalous-partial-dispersion claim is made. Any engine spectral fit from Nd/Vd is a model, not measured broadband performance. Exact glass matching and broadband qualification remain pending.
+The patent prints d-line nd and νd only. Apart from L2, every printed pair that matches a catalog row matches a HOYA
+row exactly (E-F5 at νd 38.01 and E-FL6 at νd 42.84 are HOYA-specific values), so the labels name HOYA coordinate
+equivalents; L2 matches only the Sumita moulding glass K-CSK120-M. The production supplier is not published.
+
+| Glass (coordinate equivalent) | nd | νd | Elements | Role |
+| --- | --- | --- | --- | --- |
+| FCD1 (Hoya) | 1.49700 | 81.61 | L3, L14, L16 | ED fluorophosphate; the maker's three ED positions |
+| K-CSK120-M (Sumita) | 1.58444 | 59.16 | L2 | Moulding glass for the front double asphere |
+| E-F5 (Hoya) | 1.60342 | 38.01 | L4, L9 | Light flint |
+| E-FL6 (Hoya) | 1.56732 | 42.84 | L11 | Light flint |
+| E-FD8 (Hoya) | 1.68893 | 31.16 | L8 | Dense flint |
+| E-FD10 (Hoya) | 1.72825 | 28.32 | L6 | Dense flint |
+| FDS90 (Hoya) | 1.84666 | 23.78 | L12 | Dense flint |
+| E-FDS1 (Hoya) | 1.92286 | 20.88 | L7 | Very dense flint |
+| TAFD30 (Hoya) | 1.88300 | 40.80 | L10 | Lanthanum dense flint |
+| TAFD35 (Hoya) | 1.91082 | 35.25 | L13 | Lanthanum dense flint |
+| Unmatched | 1.90000 | 43.00 | L1, L5 | High-index lanthanum type |
+| Unmatched | 1.90366 | 28.00 | L15 | High-index flint |
+| Unmatched | 1.80781 | 40.97 | L17 | Rear double-aspheric element |
+
+L15's nd of 1.90366 is the index of HOYA TAFD25, whose νd is about 31.3; no catalog glass has νd 28.00 at that index,
+and the data file keeps the printed value. The round 1.90000/43.00 of L1 and L5 also matches no catalog row.
+
+The catalog curves give FCD1 a positive anomalous partial dispersion. The patent prints no partial-dispersion data, so
+the secondary-spectrum behaviour of the ED elements is catalog-derived.
 
 ## Focus Mechanism
 
-The patent fixes G1, moves G2 imageward and G3 objectward toward the finite state. Only the two printed spacing states are retained: D4 7.9482/7.9700, D14 4.7930/4.4451, D29 51.7633/52.0821mm. The moving-gap sums differ by 0.0073mm; no constant-track correction is imposed. The finite column is labelled 0.01 times magnification, not object distance. Independent first-order inference yields object1491.384899mm before S1 and magnification−0.010314911 at the printed plane. The required UI close-focus scalar is the corresponding inferred object-to-image distance, clearly diagnostic, and no source-certified conjugate is authored. Endpoint slider step is1; interpolated software states, if accessed, are not a known cam law. Retail20cm MFD has not been validated.
+Focusing moves two groups in opposite directions while the front group stays fixed (¶0006): G2 moves toward the image
+and G3 toward the object. The patent prints the infinity state and a 0.01× state (¶0065):
+
+| Gap | Infinity | 0.01× | Change |
+| --- | --- | --- | --- |
+| D4 (G1–G2) | 7.9482 | 7.9700 | +0.0218 |
+| D14 (G2–stop) | 4.7930 | 4.4451 | −0.3479 |
+| D29 (back focus) | 51.7633 | 52.0821 | +0.3188 |
+
+G2 moves 0.022 mm and G3 about 0.32 mm. The three changes do not sum to zero: the moving gaps' total is 0.0073 mm
+shorter in the close state, so the printed close state places the image 0.0073 mm nearer the front element than a
+fixed-track move would. The model keeps the printed spacings unchanged.
+
+The patent does not print the object distance of the 0.01× state. From the printed spacings the paraxial object lies
+1491.4 mm ahead of S1, 1.637 m from the image, at β = −0.0103; the data file's close-focus distance is that calculated
+value. The marketed minimum focus distance of 0.2 m is far closer than the printed state and is not modelled. The focus
+control steps between the two printed states only.
 
 ## Aspherical Surfaces
 
-S3/S4 and S28/S29 use z=(y²/r)/(1+sqrt(1−(1+K)(y/r)²))+A4y⁴+A6y⁶+A8y⁸+A10y¹⁰+A12y¹². K is copied unchanged, not shifted by one. Coefficients are preserved without scaling:
+Four surfaces are aspheric: both faces of L2 (S3, S4) and both faces of L17 (S28, S29). The patent's sag equation
+(¶0064) is
 
-- S3: K/A4/A6/A8/A10/A12 = 0.7661, 5.07719e-05, -1.501e-07, 2.77602e-10, -2.74947e-13, 5.5603e-17
-- S4: K/A4/A6/A8/A10/A12 = -0.5783, 2.36603e-05, 1.41915e-08, -1.60806e-09, 4.65224e-12, -4.18024e-15
-- S28: K/A4/A6/A8/A10/A12 = 0.4514, 0.000161763, -3.69059e-07, 1.95986e-09, -1.00029e-11, 5.38629e-14
-- S29: K/A4/A6/A8/A10/A12 = -11.3986, 3.6758e-05, 3.62033e-07, -4.30505e-09, 2.02846e-11, -3.99374e-14
+z = (y²/r) / (1 + √(1 − (1 + K)(y/r)²)) + A4y⁴ + A6y⁶ + A8y⁸ + A10y¹⁰ + A12y¹²
 
-No manufacturing process or individual correction contribution has been inferred from coefficient signs alone.
+so K is the standard conic constant (K = 0 is a sphere) and is used as printed. Coefficients as printed (¶0056–¶0057):
 
-## Historical v1 Static Verification and Limits (superseded)
+| Surface | K | A4 | A6 | A8 | A10 | A12 |
+| --- | --- | --- | --- | --- | --- | --- |
+| S3 | 0.7661 | 5.07719E-05 | −1.50100E-07 | 2.77602E-10 | −2.74947E-13 | 5.56030E-17 |
+| S4 | −0.5783 | 2.36603E-05 | 1.41915E-08 | −1.60806E-09 | 4.65224E-12 | −4.18024E-15 |
+| S28 | 0.4514 | 1.61763E-04 | −3.69059E-07 | 1.95986E-09 | −1.00029E-11 | 5.38629E-14 |
+| S29 | −11.3986 | 3.67580E-05 | 3.62033E-07 | −4.30505E-09 | 2.02846E-11 | −3.99374E-14 |
 
-This section records the original static-only checkpoint, before native checks and the S1 refinement. It is not the current validation status. The current status is summarized above and detailed in the v3 section below.
+At a height of 16 mm S3 lies 1.73 mm behind its base sphere and S4 4.16 mm ahead of it: the convex front steepens and
+the concave rear flattens toward the rim, so L2's negative power falls off steeply with height. This is the S-shaped
+profile of the drawings and the usual means of holding distortion down in a retrofocus ultra-wide. On L17, S28 and S29
+both lie about 0.75–0.78 mm behind their base spheres at 9 mm, a near-parallel bending of the rim zone that changes the
+off-axis bundles with little effect on axial power. The patent does not say how the aspheres are made; L2's catalog
+match is a moulding glass.
 
-Independent paraxial EFL15.4904849564mm versus printed15.4908, BF51.7623661466mm versus printed51.7633. The residual−0.0009338534mm is retained; the image plane is not retuned. Inferred caps are a conservative drafting hypothesis checked over257 radial samples at both source gap states. They contain the infinity on-axis paraxial F4.6 bundle with at least8% margin. This does not establish exact wide-open transmission or off-axis coverage. Initial S2 cap20mm exceeded the rim-slope limit; its replacement19mm passes the lightweight sampled check. All other literal optical values remain unchanged. No gap-sag override: default90% retained.
+## Model Scope and Limitations
 
-Source half-angle63.66° and ymax31.3mm are distinct from the 36×24mm format corner21.6333mm and retail65mm image circle/±11mm shift/110° angle. Neither source field nor retail coverage is exact-ray validated. No image-format, image-circle, mount or perspective-control metadata is claimed by this unfinished model. At the v1 static-only stage, native pupil, buildLens, finite focus, field, rendering, chromatic, MTF and aggregate gates had not been run. Subsequent v2/v3 geometry, aperture, unshifted infinity field and reference MTF results supersede that historical statement; finite-performance certification, broadband and aggregate gates remain pending.
+- **Prescription.** All 29 surfaces, the stop, the four aspheres and both spacing states are as printed. The model's
+  paraxial EFL is 15.4905 mm (printed 15.4908 mm) and its back focal distance 51.762 mm (printed D29 51.7633 mm); the
+  image plane stays at the printed D29.
+- **Apertures.** The patent prints no semi-diameters or stop diameter. The stop radius is derived from the printed
+  F/4.6. The element rims are inferred; the front element is set so that the chief ray reaches the 36 × 24 mm corner
+  (21.63 mm image height, about 54.2° from the axis). The inferred rims are smaller than those drawn in Figure 1, and
+  the modelled field ends at about 22 mm image height.
+- **Shift.** Because of those rims the model does not trace the patent's 31.3 mm image height, and the marketed ±11 mm
+  shift is not declared. The unshifted full-frame field is modelled; shifted use is not.
+- **Close focus.** Only the printed 0.01× state is modelled; the marketed 0.2 m minimum focus distance is not.
+- **Glass.** Thirteen of the seventeen elements resolve to catalog glasses; L1, L5, L15 and L17 trace with dispersion
+  estimated from their printed nd and νd.
 
 ## Sources
 
-- [Patent original PDF](https://patentimages.storage.googleapis.com/29/3a/d4/2ae900392956e2/CN110955036B.pdf), physical pages5–7 visually checked against every literal row and all four asphere records.
-- [Manufacturer](https://www.venuslens.net/product/laowa-15mm-f-4-5-zero-d-shift-nf/) and [section](https://www.venuslens.net/wp-content/uploads/2020/10/Gstr-1.png), qualitative identity support only.
-
-## Historical v2 Native Checkpoint (full-frame HOLD superseded)
-
-This section records the earlier S1=20 mm hypothesis. Its full-frame coverage HOLD and unrun diffraction status are historical, superseded by the current S1=23 mm v3 results. Source 31.3 mm/63.66° and shifted-use coverage remain held.
-
-Native geometry passed using unchanged provisional caps and default90% gap-sag allowance. No rim-angle exception, cuts, extensions or hidden trim. Both printed endpoint layouts have zero rendered trim. Source plane z145.8582mm at infinity and145.8509mm finite retained. EFL15.490484956350366mm; derived stop radius5.727628424923961mm. The official aperture census at literalF4.6 returns4.599999995547843, limiter STO, diagnosis ok. Adjacent full-cap sampled iris-plane clearance remains positive: S14→STO4.7930/4.4451mm and STO→S16 at least1.5000mm.
-
-Bounded d-line geometric MTF, source infinity plane: axial converged through40lp/mm at32grid,812valid rays,0blocked/failed/unaimed. Axial MTF at10/20/30/40lp/mm is0.986822/0.947997/0.885604/0.802952. Best-axial diagnostic shifts0.044465385mm and gives0.998002/0.992029/0.982142/0.968441; this diagnostic does not move the authored plane. Source-plane residual remains−0.000933853425mm.
-
-Historical v2 coverage HOLD: the then-provisional caps' modeled edge is19.449022mm at51.282835°, with chief edge17.999200mm at49.095091°. Both the real36×24mm corner21.633308mm and source ymax31.3mm return outside-modeled-field. Exact source63.66° pupil probe returns unavailable. This is a limitation of the unfinished aperture hypothesis, not evidence disproving the source or retail lens. The in-memory62.6mm image-circle value used only to normalize diagnostic targets to source ymax was never authored into the model and is not coverage proof. Caps were not enlarged blindly; source/ray-backed rim reconstruction remains necessary.
-
-Broadband/CDF/photopic unavailable because Vd81.61 glasses lack partial-dispersion data. No fabricated glass identity or dispersion. At v2, diffraction MTF had not yet been validated; v3 subsequently establishes the stated centered infinity/reference results. Native finite-conjugate certification, retail20cm, shift mechanics and retail image circle remain unvalidated. No full suite/build/typecheck run. No qualification or ready-count increase. Only one native process at a time, Node heap cap1536MiB; all native work stopped after bounded findings.
-
-## Bounded unshifted infinity follow-up v3: integration pending
-
-The v2 field-edge HOLD was partly caused by provisional apertures, not a proof of the literal prescription's coverage. Native checked rays identify S1 as the first limiter: at51° the chief meets radius20.823566mm outside the original20mm cap. The only adopted geometry change is inferred S1 semi-diameter20→23mm. No radii, thicknesses, indices, Abbe values, aspheres, focus gaps, stop location/nominalF4.6, printed plane or common engine changed. This larger first face is qualitatively supported by original Figure1 (physical page10), whose front face is much taller than the following groups; the figure was not treated as a dimensioned mechanical drawing. Original failedS2=20mm rim-slope hypothesis remains retained. Default90% gap-sag and default rim angle remain unchanged.
-
-Both printed gap states pass native geometry with zero render trim. Official aperture census remains stated4.6/traced4.5999999955, limiterSTO. No cuts, extensions, iris override or re-tuned focus. Native measured chief heights at the printed infinity plane: half-frame10.816653377mm at34.877613926° and corner21.633214563mm at54.249665384°, versus requested actual36×24mm corner21.633307653mm. The height residual is0.00009309mm. Source half-angle63.66°, source ymax31.3mm and the actual full-frame corner are separate quantities.
-
-At axis/half/corner, reference d-line geometric and diffraction MTF converge through40lp/mm. Axis geometric/diffraction uses32grid; half geometric64 and diffraction32; corner both require256grid. Corner geometric maxDelta0.00169797 and diffraction0.00184596. Corner9600valid/41868blocked/0failed/0unaimed/0unresolved-in-beam rays. Failed/unconverged64 and128grid cases are retained. All results use the printed image plane, no authored best-focus shift. Earlier best-axial values remain diagnostic only.
-
-Native vignetting/Rimmer simulation at128grid: axis1/1, half-frame pupil-transmission0.868910953 and relative illumination0.791165553, corner pupil-transmission0.185851691 and relative illumination0.117370008. At64grid the corresponding half/corner relative illuminations are0.789498251/0.118997013; no failed or unaimed rays or Rimmer unavailable reason in either run. These are calculated values for inferred clear apertures, not measured retail irradiance, measured coatings or manufactured barrel vignetting. Strong modeled corner falloff is disclosed, not corrected by inventing source dimensions.
-
-The updated model's API edge is23.596359mm at56.622013°, with chief edge22.130861mm at54.875675°. It does NOT establish source31.3mm or shift coverage. Source63.66° still lacks a standard chief/pupil solve. Additional nonauthored cap probes show sequential limitations: S3 radius16.4421mm exceeds16mm at56°; at58° S2 requires19.31435mm, S5 requires11.56352mm and S7 requires8.59642mm. A diagnostic S2=19.38mm (still default-slope-valid), S1=28mm/S3=19mm probe lets unchecked rays/root searches reach59°/25.799054mm and60°/26.807235mm, but those rays need S2 radii19.537866/19.750650mm exceeding that cap and the default spherical rim limit of approximately19.38258mm. The standard chief solve and intersection accessibility depend on cap search bounds; an API failure is not proof of an impossible optical source. No S2 rim-angle exception has enough dimensional evidence here. These broader cap probes were NOT adopted. Source-field and shifted-use qualifications remain HOLD.
-
-Diagnostic image-circle normalization (62.6mm for source targets,43.266615mm for actual-frame targets) was confined to in-memory copies. No image-circle, shift mechanism or format-coverage metadata has been added merely from normalization. The model stays hidden. A future explicitly unshifted infinity/full-frame qualification may be useful after independent review and aggregate gates. Broadband remains blocked by missing partial dispersion forVd81.61; native finite performance/conjugate certification, retail20cm, retailF4.5, factory-prescription identity and shift mechanics are not established. No full suite/build/typecheck executed. No ready-count increase. Exclusive native slot released after the bounded follow-up.
+- CN 110955036 B, original publication: [patent PDF](https://patentimages.storage.googleapis.com/29/3a/d4/2ae900392956e2/CN110955036B.pdf),
+  ¶0040–¶0065 and Figures 1–3.
+- Venus Optics, [Laowa 15mm f/4.5 Zero-D Shift product page](https://www.venuslens.net/product/laowa-15mm-f-4-5-zero-d-shift-nf/):
+  17 elements in 11 groups, two aspherical elements, 110° angle of view, shift ±11 mm (full frame) and ±8 mm (medium
+  format), Ø65 mm image circle, 0.2 m minimum focus, and mounts Canon EF and RF, Nikon F and Z, Sony E, Pentax K,
+  L-Mount, Fujifilm G and Hasselblad XCD.
+- Venus Optics, [optical construction diagram](https://www.venuslens.net/wp-content/uploads/2020/10/Gstr-1.png):
+  aspherical and extra-low dispersion positions.
+- Newsshooter, [announcement of 30 October 2020](https://www.newsshooter.com/2020/10/30/laowa-15mm-f-4-5-zero-d-shift-lens/):
+  launch date, construction and specifications.
