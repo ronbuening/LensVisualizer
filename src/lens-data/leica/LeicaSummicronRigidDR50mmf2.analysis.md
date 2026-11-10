@@ -53,7 +53,7 @@ This weak flint, 1.45 mm behind L1, completes the split front positive member; i
 
 nd = 1.69100, νd = 54.9. Glass: J-LAK9 (Hikari) equivalent. f = +33.6 mm.
 
-Its front radius is much shorter than its rear radius, producing positive power. A 0.2575 mm air space follows it. The L3 rear and L4 front surfaces converge toward the rim and meet at about 10.6 mm radius, which bounds the clear aperture of both faces.
+Its front radius is much shorter than its rear radius, producing positive power. A 0.2575 mm air space follows it. The L3 rear and L4 front surfaces converge toward the rim and meet at about 10.6 mm radius, which bounds L3's rear face; L4's front face continues outside it to the flat rim the patent figure draws.
 
 ### L4: Negative Meniscus Before the Iris
 
@@ -95,19 +95,19 @@ The rigid lens focuses to 1 m. The Dual Range version adds a near range of 0.88�
 
 The patent places the stop between the two menisci but gives neither its axial position nor its diameter. The model puts it at the midpoint of the 9.08 mm central air space, 4.54 mm behind L4 and 21.25 mm behind the first vertex; the total gap is unchanged.
 
-Clear semi-diameters are estimates; the patent prints none. They follow the f/2 axial beam and, at the faces beside the narrow L3–L4 air space, the room that space leaves at the rim (about 10.07 mm).
+Clear semi-diameters are estimates; the patent prints none. The rims of L3, L4 and the front face of the cemented pair follow the patent figure, including L4's chamfer down to an 8.5 mm rear face. L3's rear face stops at about 10.1 mm, where the air space to L4 runs out. The cemented pair (11.6 mm) and L7 (14 mm) are larger than the figure draws them, about 10.1 and 11.0 mm; at those sizes the rear group would darken the frame corner further and narrow the traced field.
 
 At f/2 the paraxial entrance pupil is EFL / 2 = 25.01 mm across, which needs an iris radius of 8.14 mm at the midpoint position. This is a model value, not a measured iris.
 
 The paraxial back focus of 30.74 mm and the 66.03 mm distance from the first vertex to the image plane are derived; the patent prints neither.
 
-The patent states no field angle. Leitz quotes 45°; at 50.03 mm the corner of the 135 frame lies at 23.4° half-field.
+The patent states no field angle. Leitz quotes 45°; in the model the real chief ray reaches the corner of the 135 frame at 23.2° half-field.
 
 ## Model Scope and Limitations
 
 All thirteen radii, twelve axial spacings and seven glass pairs reproduce the patent table at ×0.5. The stop position, clear apertures and back focus are model choices. The paraxial EFL is 50.03 mm (100.05 at patent scale against the printed f = 100) at f/2.
 
-The faces either side of the L3–L4 air space sit just outside the f/2 axial beam, so the iris rather than a lens rim sets the on-axis aperture. Off-axis vignetting depends on the estimated rims and is not a measured property of the production lens.
+L3's rear face and L4's rear face sit just outside the f/2 axial beam, so the iris rather than a lens rim sets the on-axis aperture. At f/2 the model passes about 56 % of the axial light at the 23.2° frame corner; this off-axis vignetting depends on the estimated rims and is not a measured property of the production lens.
 
 The model traces with catalog-equivalent or Abbe-estimated dispersion. It does not represent Leitz's production melts, factory clear apertures, the focusing movement or the Dual Range near range.
 

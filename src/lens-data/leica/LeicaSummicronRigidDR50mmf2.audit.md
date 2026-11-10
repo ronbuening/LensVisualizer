@@ -65,7 +65,8 @@ patent (US 2,622,478). `audit:aperture` passes.
 Deployment change: `catalog.closeFocusM.marketing` 1 (standard rigid range).
 
 Open: inferred rims at surfaces 5 and 10–13 exceed the patent figure (L7's edge is 0.53 mm at sd 14); focus text,
-subtitle, specs, element prose and glass wording. (Wording items closed in the cleanup pass below; rims stay open.)
+subtitle, specs, element prose and glass wording. (Wording items closed in the cleanup pass below; rims closed in
+the semi-diameter pass below.)
 
 ## 2026-11-10 — Cleanup and wording pass
 
@@ -99,7 +100,50 @@ Open:
 
 - Rims: surfaces 5 (13 mm) and 10–13 (12 / 14 / 14 / 14 mm) are larger than both the patent figure and the published
   rigid-lens scheme (allphotolenses, about 11 / 10 / 10 / 11 / 11 mm); L7's edge is 0.53 mm at sd 14. Left for the
-  rim pass.
+  rim pass. (Closed in the semi-diameter pass below: surface 5 and the doublet reduced; L7 kept at 14 mm.)
 - `lensMounts`: the 1960 list names a screw-thread version (SOSTA) but does not show it carries the rigid optical
   cell; `leica-ltm` left out.
 - Patent kind code: DEPATISnet lists DE 939956 B, Google Patents DE939956C; the file keeps "DE 939956 B".
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: `patents/DE939956B.pdf`, page 3, the only figure (the sole example), a 300 ppi CCITT scan. The figure draws
+no optical axis and no stop; heights are half the distance between each element's top and bottom rim lines. The
+scan tilts by about 0.8° (rim midpoints drift from y 1541 to 1528 px across the section).
+
+Scale. The figure is not to scale along the axis: the three thin air spaces (0.192, 0.515, 0.192 at f = 100) are
+each drawn about 60 px wide. Element thicknesses plus the central gap give 12.32 px per patent unit at 300 dpi
+(822.5 px over 66.78 units). Circle fits to the strongly curved faces give 11.96 (r5), 11.83 (r8), 12.06 (r11) and
+12.13 (r13) px per unit, residuals under 5 px. Adopted 12.15 ± 0.2 px per unit, i.e. 24.3 px per model mm at ×0.5.
+An overlay of the model outlines on the figure at that scale, each element shifted to its drawn vertex, lines up
+the drawn curvatures of r1, r5, r8, r11 and r13.
+
+| Surface | Before | Figure | After | Evidence and reason |
+|---|---:|---:|---:|---|
+| 1, 2 (L1) | 15 / 15 | 16.2 | 15 / 15 | +8 %, within noise; the drawn 1.7 mm edge fits about 15.3 |
+| 3, 4 (L2) | 14 / 14 | 14.5 | 14 / 14 | +4 %, kept |
+| 5 (L3 front) | 13 | 11.6 | 11.6 | knife-edge tip at 280.8 px; costs no corner light |
+| 6 (L3 rear) | 10.075 | 10.7 | 10.075 | small chamfer below the tip; the air space to L4 closes near 10.6 mm |
+| 7 (L4 front) | 10.06 | 11.5 | 11.5 | flat rim at 280.5 px; validator OK, no light change |
+| 8 (L4 rear) | 10 | 8.5 | 8.5 | chamfer corners 207.5 px; axial marginal ray 8.3 mm; costs no light |
+| 9 (L5 front) | 10 | 7.8 | 8.8 | chamfer corners 190 px; 7.8 meets the axial marginal ray (7.84 mm) and costs 13 points at 20.3°; raised to meet the 3-point rule |
+| 10, 11 (L5/L6 flat rim) | 12 / 14 | 10.1 | 11.6 / 11.6 | flat rim at 245 px, square-cut; 10.1 costs 17 points at the corner |
+| 12, 13 (L7) | 14 / 14 | 11.0 | 14 / 14 | flat rim at 266.5 px; any cut of 13 narrows the engine half-field (13.5 gives 30.20° against 30.63°) |
+
+Light and field. Corner transmission at f/2, infinity, from the full-pupil lattice against the package rims: 23.2°
+58.6 → 55.7 %, 20.3° 71.8 → 69.2 %, 17.4° 80.4 → 79.3 %, 14.5° 86.6 → 86.5 %, unchanged below. Worst loss 2.9
+points at 23.2°. Restoring the doublet alone wins back 2.9 points; restoring L3 or L4 wins nothing. The figure's
+own rear rims (doublet 10.1, L7 11.0, surface 9 at 8.0) cost 23 points at the corner and the smallest raise
+within 3 points is the set above. Engine half-field 30.63° and f/2.000 unchanged; EFL, BFD and stop radius
+unchanged. The repo validator passes; the aperture audit reports no rim limit; image-circle and field-coverage are
+unchanged (100 % at the corner). The real-ray trace at the 21.63 mm corner shows no clipped chief ray. It still
+flags surface 6 at 10.13 mm under its real-ray pupil convention (stop 8.18 mm), as before; the engine's paraxial
+f/2 beam clears it by about 2 µm and the LSA trace (−0.06 mm at full pupil) shows no misprint. Raising surface 6
+is refused by the closing air space.
+
+Maker diagram: no maker image was viewed in this pass. The deployment validation above compared the public
+allphotolenses scheme for the rigid lens: 7 elements in 6 groups, one cemented pair behind the stop, no aspherical
+or special-dispersion elements, and a rear group drawn smaller than the front, as in the patent figure.
+
+Open: the doublet and L7 remain larger than both drawings because of the corner-light and field rules; a later
+decision to accept the light loss would set them to about 10.1 and 11.0 mm.

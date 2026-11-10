@@ -5,8 +5,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 // are the printed values. r7 = +145.08 is printed positive in both tables; no erratum is applied.
 // The patent heads its glass columns nd and ν without stating a wavelength; the model reads them as d-line values.
 // Stop: not printed. Placed at the midpoint of the 9.08 mm central air space; the total gap is unchanged.
-// Semi-diameters: not printed. Estimated from the f/2 axial beam and the narrow L3–L4 air space; they are not
-// measured factory clear apertures.
+// Semi-diameters: not printed; estimated, not measured factory clear apertures. L3, L4 and the doublet's front face
+// follow the patent figure (scale from the drawn radii and element thicknesses). L3's rear face stops at 10.075 mm
+// because the 0.2575 mm air space to L4 closes near 10.6 mm; L4's front face runs on to its drawn flat rim.
+// L1 and L2 agree with the figure within measurement noise.
+// The doublet's flat rim (11.6 mm) and L7 (14 mm) stay larger than the figure's 10.1 and 11.0 mm: smaller rims cost
+// more than 3 points of corner illumination and narrow the traced field.
 // Back focus: derived paraxially (30.74 mm), not printed. Infinity focus only: the patent publishes no
 // focusing movement.
 const LENS_DATA = {
@@ -163,7 +167,7 @@ const LENS_DATA = {
       label: "5",
       R: 16.84,
       d: 4.24,
-      sd: 13,
+      sd: 11.6,
       medium: 3,
     },
     {
@@ -176,14 +180,14 @@ const LENS_DATA = {
       label: "7",
       R: 72.54,
       d: 2.03,
-      sd: 10.06,
+      sd: 11.5,
       medium: 4,
     },
     {
       label: "8",
       R: 12.38,
       d: 4.54,
-      sd: 10,
+      sd: 8.5,
     },
     {
       label: "STO",
@@ -194,21 +198,21 @@ const LENS_DATA = {
       label: "9",
       R: -18.06,
       d: 1.885,
-      sd: 10,
+      sd: 8.8,
       medium: 5,
     },
     {
       label: "10",
       R: 66.425,
       d: 4.05,
-      sd: 12,
+      sd: 11.6,
       medium: 6,
     },
     {
       label: "11",
       R: -27.175,
       d: 0.096,
-      sd: 14,
+      sd: 11.6,
     },
     {
       label: "12",
