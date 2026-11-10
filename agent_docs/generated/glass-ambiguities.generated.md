@@ -12,10 +12,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1095** lenses scanned
-- **12432** glass elements examined
-- **2697** elements have multiple coordinate-compatible candidates
-- **491** lens files are affected
+- **1101** lenses scanned
+- **12510** glass elements examined
+- **2699** elements have multiple coordinate-compatible candidates
+- **492** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
@@ -23,7 +23,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---:|
 | Smallest reference-index residual | 1570 |
 | Evidence-source priority | 835 |
-| Vendor context | 278 |
+| Vendor context | 280 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -1401,7 +1401,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `N-SK5 / BACD5 class` | 1.58913 / 61.20 (d) | N-SK5 — smallest d-line \|Δn\| (1.2e-7 vs 1.3e-6) | BACD5 (Hoya, name) | 1 | [PENTAX SMC FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) E1 |
 | `N-SK16 / S-BSM16 class` | 1.62041 / 60.30 (d) | N-SK16 — smallest d-line \|Δn\| (3.5e-8 vs 9.1e-7) | S-BSM16 (Ohara, name) | 1 | [PENTAX SMC FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) E2 |
 | `S-LAH66 / N-LAF34 / TAF1 class` | 1.77250 / 49.60 (d) | TAF1 — smallest d-line \|Δn\| (2.9e-8 vs 6.4e-8) | N-LAF34 (Schott, name)<br>S-LAH66 (Ohara, name) | 2 | [PENTAX SMC FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) E3 |
-| `FCD1 (HOYA) / S-FPL51 class ED` | 1.49700 / 81.60 (d) | FCD1 — Annotation vendor context matches Hoya. | S-FPL51 (Ohara, name, vendor ✗) | 3 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) L1 |
+| `FCD1 (HOYA) / S-FPL51 class ED` | 1.49700 / 81.60 (d) | FCD1 — Annotation vendor context matches Hoya. | S-FPL51 (Ohara, name, vendor ✗) | 5 | [PENTAX SMC FA* 300mm f/2.8 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF28EDIF.data.ts) L1 +1 files |
 | `S-TIL25 (OHARA) / E-FL5 class` | 1.58144 / 40.70 (d) | S-TIL25 — Annotation vendor context matches Ohara. | E-FL5 (Hoya, name, vendor ✗) | 1 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) L5 |
 | `TAF1 (HOYA) / S-LAH66 class` | 1.77250 / 49.60 (d) | TAF1 — Annotation vendor context matches Hoya. | S-LAH66 (Ohara, name, vendor ✗) | 2 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) L6 |
 | `S-LAH60 (OHARA) / NBFD10 class` | 1.83400 / 37.20 (d) | S-LAH60 — Annotation vendor context matches Ohara. | NBFD10 (Hoya, name, vendor ✗) | 1 | [PENTAX SMC FA* 300mm f/4.5 ED [IF]](../../src/lens-data/pentax/PentaxFAStar300mmF45EDIF.data.ts) L7 |
