@@ -47,13 +47,13 @@ Focal lengths are for each element alone in air; they match the patent's printed
 
 ### L1 — Negative Meniscus
 
-nd = 1.63854, νd = 55.4. Glass: S-BSM18 (OHARA catalog equivalent). f = −86.38 mm.
+nd = 1.63854, νd = 55.4. Glass: BSM18 (OHARA catalog equivalent). f = −86.38 mm.
 
 The front element, convex to the object, with a deep concave rear face (r2 = 23.51 mm). It bends the wide-angle chief rays toward the axis and carries the weaker share of G1's negative power. Conditions (1) and (12) bound its power against fM (|f1/fM| = 1.334) and its front radius against the wide-end focal length (r1/fw = 1.178).
 
 ### L2 — Negative Meniscus
 
-nd = 1.63854, νd = 55.4. Glass: S-BSM18 (OHARA catalog equivalent). f = −59.21 mm.
+nd = 1.63854, νd = 55.4. Glass: BSM18 (OHARA catalog equivalent). f = −59.21 mm.
 
 The strongest element of G1: nearly flat in front (r3 = 442.2 mm) and deeply concave at the rear (r4 = 34.77 mm). The patent ties r4 to the balance between spherical aberration and off-axis aberration (condition (13), r4/fw = 0.966) and the air space behind it to the same balance (condition (15), d4/fw = 0.124).
 
@@ -71,7 +71,7 @@ The first element behind the zoom air space. With L5 it forms G2's front positiv
 
 ### L5 — Positive Meniscus
 
-nd = 1.65830, νd = 57.3. Glass: K-LaK11 (SUMITA catalog equivalent). f = +44.21 mm.
+nd = 1.65830, νd = 57.3. Glass: S-LAL11 (OHARA catalog equivalent). f = +44.21 mm.
 
 A meniscus convex to the object, just ahead of the iris. Its strong front face (r9 = 24.51 mm, condition (6), r9/fw = 0.681) is the main positive surface of G2's front member.
 
@@ -95,10 +95,10 @@ With these glasses the model follows the patent's spherical-aberration curves (F
 
 | Glass | nd | νd | Elements | Role |
 |---|---:|---:|---|---|
-| S-BSM18 (OHARA) | 1.63854 | 55.4 | L1, L2 | Front negative crowns |
+| BSM18 (OHARA) | 1.63854 | 55.4 | L1, L2 | Front negative crowns |
 | S-TIM28 (OHARA) | 1.68893 | 31.1 | L3 | Achromatizing flint of G1 |
 | S-LAL7 (OHARA) | 1.65160 | 58.7 | L4 | G2 positive crown |
-| K-LaK11 (SUMITA) | 1.65830 | 57.3 | L5 | G2 positive crown |
+| S-LAL11 (OHARA) | 1.65830 | 57.3 | L5 | G2 positive crown |
 | S-TIH6 (OHARA) | 1.80518 | 25.4 | L6 | G2 negative dense flint |
 | S-TIM27 (OHARA) | 1.63980 | 34.5 | L7 | Rear positive flint |
 

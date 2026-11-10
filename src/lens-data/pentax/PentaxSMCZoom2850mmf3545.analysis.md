@@ -92,7 +92,7 @@ to about 17 mm, the concave rear surface ends at about 13.4 mm where a bevel mee
 
 ### L3 — Negative Meniscus
 
-nd = 1.63854, νd = 55.4. Glass: S-BSM18 (OHARA) equivalent, dense crown. f = -107.9 mm.
+nd = 1.63854, νd = 55.4. Glass: BSM18 (OHARA) equivalent, dense crown. f = -107.9 mm.
 
 A weak meniscus, convex to the object (r5 = 245.958, r6 = 53.700), that shares the front group's negative power so L2
 need not carry all of it. FIG. 6 draws it square-cut.
@@ -161,7 +161,7 @@ miss by up to 0.027 mm. The model also reproduces the printed distortion: -4.6 %
 | --- | --- | --- | --- | --- |
 | S-BAL35 (OHARA) | 1.58913 | 61.1 | L1 | Front positive crown |
 | LAH53 (OHARA) | 1.80610 | 40.9 | L2 | High-index negative meniscus |
-| S-BSM18 (OHARA) | 1.63854 | 55.4 | L3 | Negative crown meniscus |
+| BSM18 (OHARA) | 1.63854 | 55.4 | L3 | Negative crown meniscus |
 | PBH6 (OHARA) | 1.80518 | 25.4 | L4, L8 | Lead dense flint: front-group achromat, rear negative element |
 | TAF1 (HOYA) | 1.77250 | 49.7 | L5, L6 | Rear-group positive lanthanum crown |
 | S-BSL7 (OHARA) | 1.51633 | 64.1 | L7, L10 | Low-power crown menisci |

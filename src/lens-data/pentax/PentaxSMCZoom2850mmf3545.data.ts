@@ -106,7 +106,7 @@ const LENS_DATA = {
       vd: 55.4,
       indexReference: "d",
       focalLengthMm: -107.916,
-      glass: "S-BSM18 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "BSM18 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Weak negative meniscus that shares the front group's negative power with L2.",
     },
     {

@@ -214,3 +214,7 @@ half-field 31.09° (36 mm) to 36.19° (68.5 mm) and f/4 at all 11 stations, unch
 
 Open: the two `Open:` lines of the semi-diameter pass stand (L7's fan limit; the drawn L1/L2 rims and the half-field).
 Open: OHARA S-LAL11 for L5 waits on a catalog row.
+
+## 2026-11-10 — Period glass rows
+
+L1 and L2 relabelled S-BSM18 → BSM18, and L5 K-LaK11 (Sumita) → S-LAL11 (OHARA), both discontinued OHARA rows added to the glass catalog (Δnd ≤ 2e-6, |Δνd| ≤ 0.03). With L3, L4, L6 and L7 already on OHARA rows, every element now uses the maker's usual supplier.

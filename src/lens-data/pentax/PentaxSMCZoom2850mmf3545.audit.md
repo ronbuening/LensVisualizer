@@ -230,3 +230,7 @@ undersized; audit:field-coverage 100 % at all 8 stations; `built.mjs`: EFL 28.79
 as before.
 
 Open: none new.
+
+## 2026-11-10 — Period glass rows
+
+L3 relabelled S-BSM18 → BSM18 (OHARA's discontinued period row, added to the glass catalog; Δnd −1e-6, Δνd −0.02), matching the period rows LAH53 and PBH6 chosen in the second review.

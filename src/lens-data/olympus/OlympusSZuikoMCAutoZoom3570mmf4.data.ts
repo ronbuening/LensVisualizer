@@ -85,7 +85,7 @@ const LENS_DATA = {
       vd: 55.4,
       indexReference: "d",
       focalLengthMm: -86.38,
-      glass: "S-BSM18 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "BSM18 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Front negative meniscus of the front group, convex toward the object.",
     },
     {
@@ -97,7 +97,7 @@ const LENS_DATA = {
       vd: 55.4,
       indexReference: "d",
       focalLengthMm: -59.21,
-      glass: "S-BSM18 (OHARA catalog equivalent; production supplier unspecified)",
+      glass: "BSM18 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Strongest negative element of the front group: nearly flat in front, deeply concave at the rear.",
     },
     {
@@ -133,7 +133,7 @@ const LENS_DATA = {
       vd: 57.3,
       indexReference: "d",
       focalLengthMm: 44.21,
-      glass: "K-LaK11 (SUMITA catalog equivalent; production supplier unspecified)",
+      glass: "S-LAL11 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Positive meniscus ahead of the iris; with L4 it forms the rear group's front positive member (f = 24.24 mm).",
     },
     {
