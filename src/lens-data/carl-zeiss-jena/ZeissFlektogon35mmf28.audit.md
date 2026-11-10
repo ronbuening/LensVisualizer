@@ -69,8 +69,50 @@ stop radius (5.8035 mm) meets the iris plane 0.0134 mm inside the glass; the 5.7
 Open:
 
 - Rims were not compared with the patent figure in this pass (sd unchanged). At the full-frame corner the chief ray
-  crosses surface 1 at 16.98 mm against sd 17.
+  crosses surface 1 at 16.98 mm against sd 17. (Closed 2026-11-10 by the semi-diameter pass below.)
 - `aperture.fStops` / `maxFNumber` end at f/22; secondary sources give f/16 as the smallest aperture of the 1950s lens.
   Left until a maker source confirms it.
 - The 0.36 m close focus rests on lens-db (Type 1) and a Kadlubek catalogue figure; the 1957 catalogue gives none.
-- The 0.0021 mm surface-7 iris clearance is tight; a rim pass should keep the printed stop split.
+- The 0.0021 mm surface-7 iris clearance is tight; a rim pass should keep the printed stop split. (The semi-diameter
+  pass below keeps surface 7 at 5.79 mm and the stop split as printed.)
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: US 2,793,565 A (patents/US2793565A.pdf), page 1, Fig. 1 (First embodiment, the modeled example), a 300 dpi
+bilevel scan. Scale: the r1 arc fits R1 = 113.42 at 620–650 px and the r1–r11 vertex span is 758 px for 134.46, so
+the figure runs at about 5.6 px per patent unit, 16.0 px per model mm at ×0.35. Element I's r2 arc agrees (96 px sag at
+241 px height against 92 px predicted). The internal axial spacings are not to scale (l1 about 5.0, element II about
+6.7 and stop-to-r11 about 7.6 px per unit), so only heights were read: line centres (outer ink less 4 px), top and
+bottom averaged (they differ by up to 7 % on the cemented block). Element V's drawn edge thickness (≈2.3 mm) matches the
+model's 2.0 mm at the drawn height, a further check on the height scale.
+
+| Surface | Before (mm) | Fig. 1 (mm) | After (mm) | Evidence |
+| --- | --- | --- | --- | --- |
+| 1 | 17 | 17.1 | 17 | agrees |
+| 2 | 17 | ≈15 (end of the drawn bevel) | 15.8 | figure; 15.8 is the smallest rim that keeps the engine half-field at 29.71° (15.0 gave 28.47°) |
+| 3, 4 | 10 / 10 | ≈8.7, square-cut | 9.7 / 9.7 | figure; light-limited (9.6 alone costs 3.6 points at 23.4°) |
+| 5, 6 | 7.8 / 7.5 | ≈7.1, square-cut block | 7.7 / 7.7 | square as drawn; light-limited (7.5 costs 4.1 points at 14.6°; 7.6 with L2 at 9.7 exceeds 3) |
+| 7 | 5.79 | ≈5.4 (bevel) | 5.79 | kept: axial floor (real-ray f/2.8 5.70 mm, engine paraxial beam 5.80 mm) and iris clearance |
+| 8, 9 | 7 / 7 | ≈6.0, square-cut | 6.4 / 6.4 | figure; floor: 6.2 clips the axis (96.4 %), 6.3 costs 0.8 points at 2.9°, 6.4 costs nothing |
+| 10, 11 | 7 / 7 | ≈6.7 | 7 / 7 | within noise (4 %) |
+
+Clearance at the full-frame corner (Y 21.63 mm, ω 32.18°): no axial clip or blocked chief ray; margins are surface 2
+chief 14.70 against 15.8, surface 3 axial 8.07 against 9.7, surface 5 7.39 against 7.7, surface 9 6.17 against 6.4.
+Engine values unchanged: half-field 29.7097°, f/2.8, stop radius 5.8035 mm. The surface validator passes, the aperture
+check reports no rim limit (surface 7 stays 0.3 % under the paraxial f/2.8 beam, as before), the image-circle check
+finds nothing undersized and the field coverage is 100 % with the 32.2° corner clear.
+
+Engine illumination wide open at infinity, before → after, at 0 / 8.8 / 14.6 / 17.6 / 20.5 / 23.4 / 26.4 / 29.3 /
+32.2°: 99.0 / 96.3 / 90.6 / 86.9 / 81.3 / 74.7 / 62.1 / 42.4 / 22.1 % → 99.0 / 95.6 / 89.3 / 84.9 / 78.6 / 71.8 /
+61.0 / 42.4 / 22.1 %. Worst loss 2.9 points at 23.4°; the corner is unchanged. Restoring each element alone wins back
+2.6 points (L2), 0.9 (L3–L4) and nothing for surface 2 or L5.
+
+The 1957 catalogue section (p. 32, viewed in the deployment validation) is a small schematic; it agrees on 6 elements
+in 5 groups and the order of element sizes but gives no rim scale.
+
+Open:
+
+- L2 and the cemented L3–L4 block stay about 10 % larger than drawn; further cuts cost more than 3 points of
+  mid-field illumination.
+- Surface 7 stays at 5.79 mm. The engine's paraxial f/2.8 beam needs 5.81 mm there; the validator accepts 5.81, but
+  that rim would sit 0.021 mm behind the iris plane, so the 1 % on-axis loss in the engine is kept.

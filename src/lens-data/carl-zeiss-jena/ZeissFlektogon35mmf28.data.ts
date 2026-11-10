@@ -18,8 +18,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * derived from f/2.8. The iris plane sits 0.002 mm behind the rim of the deeply concave surface 7, whose
  * 5.79 mm clear radius trims the paraxially sized f/2.8 beam slightly (traced equivalent f/2.807).
  *
- * SEMI-DIAMETERS: not published; inferred from the ray envelope and edge and air-gap clearances, not
- * measured factory rims. Default geometry checks (no gap-sag or rim-angle override).
+ * SEMI-DIAMETERS: not published. Estimated from Fig. 1 (≈5.6 px per patent unit at 300 dpi, from the r1
+ * arc and the r1–r11 span; the rear group is drawn axially stretched), floor-checked by real-ray trace and
+ * held to the modelled corner light. Element 1's front rim is as drawn (17 mm); its rear face ends at a bevel
+ * the figure draws at about 15 mm, kept at 15.8 mm, the smallest rim that leaves the engine's 29.7° field
+ * estimate unchanged (the corner chief ray crosses it at 14.7 mm). Element 2 and the cemented pair are drawn
+ * square-cut at about 8.7 and 7.1 mm; they keep 9.7 and 7.7 mm, the smallest values that cost no more than
+ * 3 points of illumination at any field. Element 5 is square at 6.4 mm, just above the axial f/2.8 beam
+ * (the figure draws 6.0 mm); surface 7 and element 6 are kept. Not measured factory rims. Default geometry
+ * checks (no gap-sag or rim-angle override).
  *
  * BACK FOCUS: not printed. The last gap is the computed paraxial back focus, 34.559 mm, slightly shorter
  * than the focal length; the 1957 catalogue describes the production lens's back focus as slightly longer.
@@ -158,33 +165,33 @@ const LENS_DATA = {
       label: "2",
       R: 22.4315,
       d: 25.4905,
-      sd: 17,
+      sd: 15.8,
     },
     {
       label: "3",
       R: 26.5405,
       d: 2.8315,
-      sd: 10,
+      sd: 9.7,
       medium: 2,
     },
     {
       label: "4",
       R: "flat",
       d: 1.8865,
-      sd: 10,
+      sd: 9.7,
     },
     {
       label: "5",
       R: 10.668,
       d: 3.3985,
-      sd: 7.8,
+      sd: 7.7,
       medium: 3,
     },
     {
       label: "6",
       R: 58.4815,
       d: 1.134,
-      sd: 7.5,
+      sd: 7.7,
       medium: 4,
     },
     {
@@ -202,14 +209,14 @@ const LENS_DATA = {
       label: "8",
       R: -8.89,
       d: 1.134,
-      sd: 7,
+      sd: 6.4,
       medium: 5,
     },
     {
       label: "9",
       R: -13.0935,
       d: 0.0945,
-      sd: 7,
+      sd: 6.4,
     },
     {
       label: "10",

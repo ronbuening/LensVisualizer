@@ -129,8 +129,11 @@ None. All surfaces are spherical; r4 is plane.
 
 ## Model Scope and Limitations
 
-Semi-diameters are not published. They are inferred from the ray envelope and from edge and air-gap clearances, not
-measured factory rims. The rear face of L4 is deeply concave and the printed b1 leaves little room between its rim and
+Semi-diameters are not published. They are estimated from Figure 1, which draws the front meniscus to scale but
+stretches the rear group axially, and held above the f/2.8 axial beam, the corner chief ray and the modelled corner
+illumination; they are not measured factory rims. L1's rear face ends at the bevel the figure draws inside its 17 mm
+front rim. L2 and the cemented pair are drawn square-cut a little smaller than modelled, and L5 square-cut just inside
+the axial beam it must pass. The rear face of L4 is deeply concave and the printed b1 leaves little room between its rim and
 the iris: with a 5.79 mm clear radius on r7, the iris plane sits 0.002 mm behind the glass edge. A rim of 5.803 mm,
 enough for the full paraxially sized f/2.8 beam, would cross the iris plane about 0.013 mm inside the glass, so r7 trims
 the axial beam slightly, to a traced equivalent of f/2.807 (0.26 %).
