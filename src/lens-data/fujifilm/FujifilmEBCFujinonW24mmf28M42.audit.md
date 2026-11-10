@@ -53,5 +53,14 @@ The figure places the stop about 27% into d10; the model's 30% split is kept.
 **Identity and metadata.** Fuji's Fujica AZ-1 instruction manual (“Changing the Lens”, manual page 39) lists the
 EBC FUJINON W 1:2.8 24mm as 8 components / 9 elements, 84°, f/16, 0.3 m, 49 mm filter. The title became
 `FUJIFILM EBC FUJINON W 24mm f/2.8` (Fuji's designation; lens-db's “SW” disagrees with the manual).
-`catalog.closeFocusM.marketing` and `focus.closeFocusM` are 0.3 m; no focus motion is modeled. Groups follow the
+`catalog.closeFocusM.marketing` and `focus.closeFocusM` are 0.3 m (focus motion: see below). Groups follow the
 patent's front negative (L1–L3) and rear positive (L4–L9) components.
+
+## 2026-11-10 — Unit-focus approximation to the maker's minimum focus
+
+The focus slider was disabled although the maker's 0.3 m minimum focus is known. Following the spec's allowance for a
+clearly labelled approximation from manufacturer MFD data, the last gap (after surface 17) now varies with focus:
+37.44 mm at infinity (the retained source plane) and 39.974 mm at the close end. A paraxial solve puts that close row's
+object-to-image distance at 300.0 mm (object 221.63 mm ahead of the first vertex; extension 2.53 mm; about 0.11×).
+No internal spacing moves. The patent gives no focus data, so a floating correction in the production lens, if any,
+is not modeled.

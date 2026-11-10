@@ -97,7 +97,7 @@ L1's HOYA row sits 0.16 from the printed Abbe number, just outside the test wind
 
 ## Focus Mechanism
 
-Only the infinity state is modeled. The patent gives no finite-conjugate spacing, floating group or focus travel, so none is invented. The maker's 0.3 m minimum focus, from the Fujica AZ-1 manual, is recorded as catalog metadata and does not move the optics.
+The patent gives no finite-conjugate spacing, floating group or focus travel. The focus control is therefore a labelled **unit-focus approximation** to Fuji's 0.3 m minimum focus from the Fujica AZ-1 manual: the whole optical block moves forward and only the back gap changes, from the retained 37.44 mm source plane at infinity to **39.974 mm** at the close end. That gap puts the paraxial object-to-image distance at exactly 300 mm, a 2.53 mm extension and a magnification of about 0.11×. Unit focusing by helicoid is the usual mechanism for a lens of this period, but the source does not confirm it, and any floating or close-range correction in the production lens is not modeled. Close-range aberrations are those of the infinity design refocused as a whole.
 
 ## Clear Apertures and Verification Limits
 

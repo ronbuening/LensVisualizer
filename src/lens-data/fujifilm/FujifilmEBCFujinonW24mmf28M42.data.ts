@@ -38,8 +38,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * matching this design's construction, field and aperture. The correlation is
  * probable, not an established factory prescription. US 4,158,482 is the later
  * EBC X-FUJINON W 24mm f/2.8 DM, a separate design.
- * FOCUS: NO_INTERNAL_RECONSTRUCTION. The patent gives no finite-conjugate
- * spacing; the 0.3 m maker MFD is recorded but no focus motion is invented.
+ * FOCUS: unit-focus approximation to Fuji's 0.3 m minimum focus (AZ-1 manual).
+ * The patent gives no finite-conjugate spacing, so the whole lens moves and only
+ * the back gap changes: 37.44 mm at infinity (retained source plane) to
+ * 39.974 mm, where the paraxial object-to-image distance is 300 mm (2.53 mm
+ * extension, about 0.11×). Any floating correction in the production lens is
+ * not modeled.
  */
 const LENS_DATA = {
   schema: 2,
@@ -199,13 +203,17 @@ const LENS_DATA = {
     { label: "14", R: -46.08552, d: 2.4, sd: 6.6, medium: 8 },
     { label: "15", R: -15.69144, d: 0.24, sd: 6.6 },
     { label: "16", R: 199.61568, d: 3.36, sd: 8.5, medium: 9 },
-    { label: "17", R: -19.37592, d: 37.44, sd: 8.5 },
+    { label: "17", R: -19.37592, sd: 8.5 }, // d from gaps (unit focus)
   ],
 
   focus: {
     closeFocusM: 0.3,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: infinity prescription only; maker MFD is 0.3 m (Fujica AZ-1 manual), but the patent gives no focus spacing.",
+      "Unit focus (approximation): the whole lens moves out to Fuji's 0.3 m minimum focus. The patent gives no focus data.",
+  },
+
+  gaps: {
+    "17": { label: "BF", values: [[37.44, 39.974]] }, // [infinity, 0.3 m object-to-image]
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16] },
