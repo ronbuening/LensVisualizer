@@ -29,6 +29,7 @@ const LENS_DATA = {
   name: "TAMRON 45.3mm f/2.8 MACRO (US 7,286,303 Design)",
   subtitle: "US 7,286,303 B2 — floating-focus macro design; no retail lens identified",
   catalog: {
+    imageFormat: "135-full-frame",
     specs: ["9 ELEMENTS / 8 GROUPS", "DESIGN f = 45.3 mm", "DESIGN F/2.8", "ALL SPHERICAL", "FLOATING FOCUS TO 1:1"],
     elementCount: 9,
     groupCount: 8,
