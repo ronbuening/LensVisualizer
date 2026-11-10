@@ -1,16 +1,24 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
-/** Hidden, unfinished E1 whole-source representative. No factory identity claim.
- * mm and infinity are modeling assumptions; terminal BFL is derived, not printed.
- * Rims are Figure 1 informed engineering hypotheses. STO radius is not authored.
- * Source nd/vd are d-line; full dispersion and physical diaphragm remain unknown.
+/**
+ * JP S60-181715 A (Sigma; inventor Takehisa Koyama), Example 1, correlated with the Sigma NON VIGNETTING 28mm F2.8
+ * of 1985, later sold as the H.L. WIDE 28mm F2.8. The correlation rests on maker, date, the 8-element / 7-group
+ * layout, F2.8, a field of at least 75° and the patent's stated aim of at least 95 % aperture efficiency at every
+ * field angle. Sigma published no optical section, and Examples 1 and 3 fit the catalog data equally well.
+ * The table (printed page 75) gives r, d, n and ν only; n and ν are d-line (printed page 74). No focal length, units,
+ * back focus or object distance is printed: the lengths are read as millimetres at infinity, where the table traces
+ * to f = 28.34 mm. The last gap, 38.851 mm, is the paraxial back focus of the printed table, not a printed value.
+ * Row 9 (r = ∞, 2.00 mm on either side) is the aperture stop, 28.60 mm behind surface 1; the engine sets its radius
+ * from F2.8. Semi-diameters are not printed: they are estimates sized to the Figure 1 envelope.
+ * Glass labels are HOYA catalog rows that reproduce the printed nd/νd; Sigma's supplier is not known.
+ * Infinity focus only; Sigma's 0.22 m minimum focus distance is catalog data, not modeled focus travel.
  */
 const LENS_DATA = {
   schema: 2,
   key: "sigma-hl-wide-28mm-f28",
   maker: "Sigma",
   name: "SIGMA H.L. WIDE 28mm f/2.8",
-  subtitle: "JPS60181715A EXAMPLE 1 — PROBABLE NON VIGNETTING FAMILY, NOT VERIFIED FACTORY E1",
+  subtitle: "JP S60-181715 A, Example 1 — design-goal and construction correlation",
   visible: true,
   layout: {
     yScFill: 0.35,
@@ -19,9 +27,10 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "8 ELEMENTS / 7 GROUPS",
-      "PROBABLE FAMILY; WHOLE E1 REPRESENTATIVE",
-      "SOURCE FULL FIELD 75.2°; RETAIL 75°",
-      "STATIC INFINITY HYPOTHESIS",
+      "f = 28.34 mm (MODELED)",
+      "DESIGN F/2.8",
+      "ALL SPHERICAL",
+      "2ω = 75.2°",
     ],
     elementCount: 8,
     groupCount: 7,
@@ -56,8 +65,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      indexReferenceNote: "Patent PDF2/printed74 explicitly defines n and nu at the d line.",
-      glass: "Unmatched (source nd/vd only; no verified full dispersion curve)",
+      glass: "TAF1 (HOYA)",
+      role: "Weak positive front meniscus of the negative front group.",
       focalLengthMm: 152.42563673541665,
     },
     {
@@ -68,8 +77,8 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.2,
       indexReference: "d",
-      indexReferenceNote: "Patent PDF2/printed74 explicitly defines n and nu at the d line.",
-      glass: "Unmatched (source nd/vd only; no verified full dispersion curve)",
+      glass: "E-CF6 (HOYA)",
+      role: "First negative meniscus of the front group; carries most of its divergence.",
       focalLengthMm: -38.61884993475504,
     },
     {
@@ -80,8 +89,8 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.2,
       indexReference: "d",
-      indexReferenceNote: "Patent PDF2/printed74 explicitly defines n and nu at the d line.",
-      glass: "Unmatched (source nd/vd only; no verified full dispersion curve)",
+      glass: "BSC7 (HOYA)",
+      role: "Second negative meniscus of the front group, splitting its strong concave power.",
       focalLengthMm: -83.54098907887646,
     },
     {
@@ -92,8 +101,8 @@ const LENS_DATA = {
       nd: 1.78472,
       vd: 25.7,
       indexReference: "d",
-      indexReferenceNote: "Patent PDF2/printed74 explicitly defines n and nu at the d line.",
-      glass: "Unmatched (source nd/vd only; no verified full dispersion curve)",
+      glass: "FD110 (HOYA)",
+      role: "Thick positive flint just ahead of the stop; first member of the positive rear group.",
       focalLengthMm: 44.73367285921399,
     },
     {
@@ -104,10 +113,10 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 43.9,
       indexReference: "d",
-      indexReferenceNote: "Patent PDF2/printed74 explicitly defines n and nu at the d line.",
-      glass: "Unmatched (source nd/vd only; no verified full dispersion curve)",
+      glass: "NBFD11 (HOYA)",
+      role: "Positive front element of the cemented negative doublet behind the stop.",
       focalLengthMm: 17.32689832637268,
-      cemented: "L5-L6",
+      cemented: "C1",
     },
     {
       id: 6,
@@ -117,10 +126,10 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.6,
       indexReference: "d",
-      indexReferenceNote: "Patent PDF2/printed74 explicitly defines n and nu at the d line.",
-      glass: "Unmatched (source nd/vd only; no verified full dispersion curve)",
+      glass: "FD140 (HOYA)",
+      role: "Negative flint rear element of the cemented doublet.",
       focalLengthMm: -13.740499325842865,
-      cemented: "L5-L6",
+      cemented: "C1",
     },
     {
       id: 7,
@@ -130,8 +139,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      indexReferenceNote: "Patent PDF2/printed74 explicitly defines n and nu at the d line.",
-      glass: "Unmatched (source nd/vd only; no verified full dispersion curve)",
+      glass: "TAF1 (HOYA)",
+      role: "Positive meniscus, concave to the object, in the rear group.",
       focalLengthMm: 46.90541087700522,
     },
     {
@@ -142,8 +151,8 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       indexReference: "d",
-      indexReferenceNote: "Patent PDF2/printed74 explicitly defines n and nu at the d line.",
-      glass: "Unmatched (source nd/vd only; no verified full dispersion curve)",
+      glass: "TAF1 (HOYA)",
+      role: "Biconvex last element of the rear group.",
       focalLengthMm: 61.49868645674048,
     },
   ],
@@ -253,14 +262,15 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000.0,
+    closeFocusM: 1e15,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: static collimated infinity interpretation only. The required 1e9 m scalar is a schema sentinel, not a recovered finite station. No motion law is inferred from the retail 22 cm MFD.",
+      "Infinity focus only; the patent prints no close-focus spacings, so no focus movement is modeled. Sigma's 0.22 m minimum focus distance (1:4.5) is catalog data.",
   },
   gaps: {},
   aperture: {
     nominalFNumber: 2.8,
     fStops: [2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
   },
 } satisfies LensDataV2Input;
 
