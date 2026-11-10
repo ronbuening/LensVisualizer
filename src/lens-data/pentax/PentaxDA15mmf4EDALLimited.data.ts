@@ -8,7 +8,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * S11 = −42.598 and S15 = −17.739 as printed (an earlier transcription had −12.598 and −7.739).
  * S3 asphere: K = −1 in the patent's (1+K) conic form; A4, A6, A8 as printed.
  * Stop 3.13 mm ahead of S11 (patent text), splitting the printed d10 = 5.19 mm into 2.06 + 3.13.
- * The patent lists no clear apertures: semi-diameters are rounded readings of Fig. 1.
+ * The patent lists no clear apertures: semi-diameters are estimated from Fig. 1 (300 dpi native scan,
+ * 23.94 px/mm from the S1–S15 vertex span, checked on every vertex and the S1 arc) and rounded to 0.1 mm;
+ * every rim agrees with the figure within about 3 % except S7, whose concave cap the figure ends at 4.9 mm
+ * with a flat land out to the element edge (sd 4.9, rimExtensionSd 5.7). L1's flat rear flange behind the
+ * resin layer is not drawn: a land cannot sit on the cemented glass/resin junction.
  * The table leaves d15 blank; the last gap is the paraxial air back focus, 37.490 mm (printed fB 37.49).
  * The patent's fB definition mentions a cover glass, but none is tabulated or drawn, so no plate is modeled.
  * Infinity focus only. Embodiment 1 is one of eight close variants; the production prescription is not
@@ -226,7 +230,8 @@ const LENS_DATA = {
     {
       label: "7",
       R: 8.694,
-      sd: 5.7,
+      sd: 4.9,
+      rimExtensionSd: 5.7,
       d: 2.78,
     },
     {

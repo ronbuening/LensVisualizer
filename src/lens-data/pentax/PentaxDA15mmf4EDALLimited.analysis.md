@@ -48,7 +48,7 @@ The positive meniscus, convex to the object, closes the negative first group. In
 
 nd = 1.83481, νd = 42.7. Glass: TAFD5F (HOYA) catalog equivalent — dense lanthanum flint. f = −14.1 mm.
 
-This high-index negative meniscus, convex to the object, opens the second group and carries the rest of the front negative power. The patent pairs it with the following cemented doublet so that the second group as a whole stays weak (f2/f = −10.14).
+This high-index negative meniscus, convex to the object, opens the second group and carries the rest of the front negative power. The patent pairs it with the following cemented doublet so that the second group as a whole stays weak (f2/f = −10.14). Fig. 1 ends the deep concave rear face at about 4.9 mm and carries a flat land out to the 5.7 mm edge; the model draws the same land.
 
 ### L4/L5 — Cemented Positive/Negative Doublet
 
@@ -112,7 +112,7 @@ SF uses the paraxial radius of the aspherical surface, as the patent specifies. 
 ## Model Scope and Limitations
 
 - Infinity focus only; the patent's near state is described under Focus Mechanism but not modeled.
-- The semi-diameters are rounded readings of Fig. 1, and the stop radius follows from F/4.1; the patent lists neither. With these rims the full-field beam is strongly vignetted at the corners, which may not match the production lens.
+- The semi-diameters are rounded readings of Fig. 1, and the stop radius follows from F/4.1; the patent lists neither. With these rims the full-field beam is strongly vignetted at the corners (about 28 % geometric transmission at 42.8°, 56 % at 40°), which may not match the production lens.
 - The full-field chief ray at 42.96° lands at 14.237 mm, matching the printed image height of 14.24 mm.
 - At full aperture the real axial beam is slightly narrower than the paraxial pupil (entrance radius 1.817 mm against 1.884 mm). The model keeps the printed F/4.1 as its nominal aperture.
 - The eight glass elements trace on catalog dispersion curves of the equivalents listed above. The resin layer uses an Abbe-number model from its printed nd and νd.

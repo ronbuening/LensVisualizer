@@ -87,5 +87,51 @@ Open:
 
 - Near focus: the patent prints d10 5.19 → 4.57 mm and fB 37.49 → 39.83 mm at β −0.142 (about 0.18 m object to
   image). Modeling it would make the 2.06 mm pre-stop gap and the back focus variable.
-- Rims: semi-diameters remain the package's rounded Fig. 1 readings; compare with the figure in the rim pass.
+- Rims: semi-diameters remain the package's rounded Fig. 1 readings; compare with the figure in the rim pass (closed:
+  semi-diameter pass below).
 - `aperture.blades: 7` is published by Ricoh but not added in this pass.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Source: `patents/US7843651B2.pdf`, page 2 (sheet 1), Fig. 1, which is Embodiment 1 at infinity focus. The page is a
+300 dpi CCITT scan. The optical axis is at page row 1204, and the top side of the figure is clean apart from the "S"
+and r15 labels.
+
+Scale: the S1 vertex is at page column 753 and the S15 vertex at 1754. That is 1001 px for 41.82 mm, so 23.94 px/mm.
+Every intermediate vertex lands within 0.1 mm of the prescription (S4 9.13/9.14, S6 18.38/18.43, S9 27.40/27.49,
+S11 34.29/34.31, S14 39.89/39.89 mm). The stop tick sits at 31.12 mm, against 31.18 mm printed. The vertical scale was checked by
+fitting the S1 arc: the drawn sag at the rim is 68 px against 71 px computed for R 32.044.
+
+Rims were read with `figprofile.mjs` on both sides and with 600 dpi zooms of the L1 and L3 rim corners. Figure values
+are in mm, given as top / bottom side:
+
+| Surface | Stored | Figure | Ratio | Decision |
+|---|---|---|---|---|
+| 1 | 13.5 | 13.49 / 13.37 | 0.99 | kept |
+| 2 | 11 | 10.9 (cap end at the rear flat) | 0.99 | kept |
+| 3A | 11 | 10.4 (cap end at the rear flat) | 0.95 | kept: inside the noise band, and trimming to 10.4 would cost 0.8 points at 42.8° |
+| 4, 5 | 9.3 | 9.48 / 9.40 | 1.02 | kept |
+| 6 | 5.7 | 5.85 / 5.81 | 1.02 | kept |
+| 7 | 5.7 | cap ends at 4.93, flat land to 5.85 | 0.86 | sd 4.9, `rimExtensionSd` 5.7 |
+| 8–10 | 4.9 | 4.85 / 4.91 (square doublet) | 1.00 | kept |
+| 11–13 | 5.0 | 5.10 / 5.18 (square doublet) | 1.03 | kept |
+| 14, 15 | 5.5 | 5.47 / 5.56 | 1.00 | kept |
+
+One native pixel is 0.042 mm, so the S7 cap end reads 4.93 ± 0.04 mm. The land keeps L3's outer edge equal to S6, at
+5.7 mm, which matches the square top edge the figure draws.
+
+L1's glass has a flat rear flange from the end of the S2 cap (10.9 mm) out to its 13.4 mm edge, at about 7.35 mm behind
+S1. The model cannot draw it: the flange sits behind the cemented glass/resin junction, and `rimExtensionSd` is not
+allowed on a cemented interface. The figure gives no lateral-aberration ray fans, so there is no independent rim
+evidence.
+
+Clearance and light: `audit:surface` OK; `audit:aperture` within 3 % with no rim limit; `audit:image-circle` 0
+undersized; `audit:field-coverage` 100 % (14.17 of 14.18 mm at 42.8°, clear). Engine EFL 15.4489, F/4.1, half-field
+42.96° (tracing 40.53°) and stop radius 3.8181 mm are unchanged. Corner illumination against the package rims, by
+`rimcost.mjs --loo`: 27.8 → 27.8 % at 42.8°, 55.6 → 55.6 % at 40.0°, 73.3 → 73.2 % at 37.1°. The worst loss is
+0.1 points, so the S7 land stays under the lands rule.
+
+The model-against-figure overlay at matched scale is in the session scratch area. Every surface curve lies on the
+drawn curve.
+
+Open: the S2/S3 resin rims and the L1 flange, as above.
