@@ -31,10 +31,10 @@ The patent defines fB from the rear of the most image-side cover glass, but Tabl
 
 ## Element-by-Element Analysis
 
-### L1 and Resin — Hybrid Negative Front Meniscus
+### L1 and L1r — Hybrid Negative Front Meniscus
 
 L1: nd = 1.80400, νd = 46.6. Glass: S-LAH65V (OHARA) catalog equivalent — lanthanum flint. f = −29.8 mm.
-Resin: nd = 1.52972, νd = 42.7. Unmatched optical resin. f = −96.2 mm. L1 with its resin layer: f = −22.8 mm.
+L1r (resin layer): nd = 1.52972, νd = 42.7. Unmatched optical resin. f = −96.2 mm. L1 with its resin layer: f = −22.8 mm.
 
 The glass substrate occupies S1–S2 and the resin S2–S3, 0.18 mm thick on axis. The resin's image-side face carries the aspherical profile; the patent describes the meniscus as a hybrid element made aspherical by a resin layer on its image side. This strong negative meniscus takes part of the retrofocus front's negative power, and the patent relies on the positive element behind it to correct the off-axis aberrations it introduces. No resin chemistry or supplier is given.
 
@@ -75,7 +75,7 @@ Biconvex, with the stronger convex face toward the image that the patent's claim
 | Element | nd / νd | Catalog equivalent | Role |
 |---|---|---|---|
 | L1, L5 | 1.80400 / 46.6 | S-LAH65V (OHARA) | Lanthanum flint; front meniscus and doublet negative |
-| Resin | 1.52972 / 42.7 | Unmatched | Aspherical layer on L1 |
+| L1r | 1.52972 / 42.7 | Unmatched resin | Aspherical layer on L1 |
 | L2 | 1.62004 / 36.3 | E-F2 (HOYA) | Flint; first-group positive |
 | L3 | 1.83481 / 42.7 | TAFD5F (HOYA) | Dense lanthanum flint; second-group negative |
 | L4 | 1.69895 / 30.1 | E-FD15 (HOYA) | Dense flint; doublet positive |
@@ -112,10 +112,10 @@ SF uses the paraxial radius of the aspherical surface, as the patent specifies. 
 ## Model Scope and Limitations
 
 - Infinity focus only; the patent's near state is described under Focus Mechanism but not modeled.
-- The semi-diameters are rounded readings of Fig. 1, and the stop radius follows from F/4.1; the patent lists neither. With these rims the full-field beam is strongly vignetted at the corners (about 28 % geometric transmission at 42.8°, 56 % at 40°), which may not match the production lens.
+- The semi-diameters are rounded readings of Fig. 1, and the stop radius follows from F/4.1; the patent lists neither. The resin's aspherical face is the one exception: Fig. 1 ends it at about 10.4 mm, while the model keeps 11.0 mm, since the drawn value would narrow the traced field from 40.5° to 39.2°. With these rims the full-field beam is strongly vignetted at the corners (about 28 % geometric transmission at 42.8°, 56 % at 40°), which may not match the production lens.
 - The full-field chief ray at 42.96° lands at 14.237 mm, matching the printed image height of 14.24 mm.
 - At full aperture the real axial beam is slightly narrower than the paraxial pupil (entrance radius 1.817 mm against 1.884 mm). The model keeps the printed F/4.1 as its nominal aperture.
-- The eight glass elements trace on catalog dispersion curves of the equivalents listed above. The resin layer uses an Abbe-number model from its printed nd and νd.
+- The eight glass elements trace on catalog dispersion curves of the equivalents listed above. The resin layer uses an Abbe-number model from its printed nd and νd. On axis the d and C lines follow the patent's Fig. 2B within about 0.01 mm; the g line focuses about 0.03 mm shorter than plotted, more than any choice among the catalog equivalents can shift it.
 
 ## Sources
 

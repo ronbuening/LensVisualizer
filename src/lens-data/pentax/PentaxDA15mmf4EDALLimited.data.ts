@@ -10,9 +10,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop 3.13 mm ahead of S11 (patent text), splitting the printed d10 = 5.19 mm into 2.06 + 3.13.
  * The patent lists no clear apertures: semi-diameters are estimated from Fig. 1 (300 dpi native scan,
  * 23.94 px/mm from the S1–S15 vertex span, checked on every vertex and the S1 arc) and rounded to 0.1 mm;
- * every rim agrees with the figure within about 3 % except S7, whose concave cap the figure ends at 4.9 mm
- * with a flat land out to the element edge (sd 4.9, rimExtensionSd 5.7). L1's flat rear flange behind the
- * resin layer is not drawn: a land cannot sit on the cemented glass/resin junction.
+ * every rim agrees with the figure within about 3 % except two. S7's concave cap ends at 4.9 mm in the figure,
+ * with a flat land out to the element edge (sd 4.9, rimExtensionSd 5.7). The resin's aspherical S3 ends at about
+ * 10.4 mm in the figure but keeps 11.0 mm, because 10.4 would narrow the traced field from 40.5° to 39.2°.
+ * L1's flat rear flange behind the resin layer is not drawn: a land cannot sit on the cemented glass/resin junction.
  * The table leaves d15 blank; the last gap is the paraxial air back focus, 37.490 mm (printed fB 37.49).
  * The patent's fB definition mentions a cover glass, but none is tabulated or drawn, so no plate is modeled.
  * Infinity focus only. Embodiment 1 is one of eight close variants; the production prescription is not
@@ -77,7 +78,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "Resin",
+      name: "L1r",
       label: "Element 1 resin layer",
       type: "Aspheric Resin Layer",
       nd: 1.52972,
