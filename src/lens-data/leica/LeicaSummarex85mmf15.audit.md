@@ -64,6 +64,48 @@ DEPATISnet ids, the 1953 brochure, US 2,019,985 and two secondary references.
 
 Open: surfaces 1 and 2 (sd 30, 60 mm diameter) are wider than the 59.8 mm slip-on front barrel and 58 mm filter
 allow, while the f/1.5 axial beam needs 28.1 mm at surface 1; compare with the brochure section drawing in the rim
-pass. Surfaces 7 and 8 sit 0.03 and 0.01 mm outside the f/1.5 axial beam, so any rim cut there clips f/1.5. The
+pass (done in the rim pass below: kept at 30 for corner light). Surfaces 7 and 8 sit 0.03 and 0.01 mm outside the f/1.5 axial beam, so any rim cut there clips f/1.5. The
 Summarex attribution stays circumstantial. `catalog.closeFocusM.marketing` keeps 1.524 m (5 ft, US directory); a
 metric Leitz figure was not checked.
+
+## 2026-11-10 — Semi-diameter pass against the patent figure
+
+Sources. DE L 12741 (`DEL12741.pdf`) has no drawing (its cover lists "Z. —"). Two shape references were used:
+
+- Parent DE L 753 (`DEL753.pdf`), p. 9, "Lichtstarkes Objektiv", a 300 dpi scan. Its vertex crossings on the axis row
+  fit the parent's claim-5 prescription at 1650 px per f to within 2 % from s1 to s12 (1163 px for 0.704), so the
+  drawing is to scale: 19.41 px/mm at ×85. It shows the parent example, not this one (A3 0.066 against 0.109, r5 0.218
+  against 0.2579, r9 −12.3 against ∞), and draws L7 out to its knife edge.
+- The Summarex section in the 1953 Leitz brochure (No. 1356-D, printed p. 11; staged `Leitz1953-p12.png`), which
+  shows the production lens. Its first-to-last vertex span gives 2.48 px/mm (158.5 px for 64.35 mm), but the axial
+  spacing is schematic (L1 is drawn about 20 % too thick), so its rims are compared as ratios to L1. The other staged
+  pages (`Leitz1953-p16.png`, a usage table; `p81.png`, the 1956 lens data table) carry no drawing.
+
+Readings (half heights). Parent drawing at ×85: L1 26.7; front doublet flat top 21.3, bevelled to 15.8 at r5; r6 16.1;
+rear doublet flat top 18.5; L6 18.8; L7 25.8. Brochure as a ratio to L1, in mm with L1 = 30: front doublet 0.81 (24.4),
+r5 0.67 (20.1), r6 0.63 (18.9), rear doublet 0.75 (22.5), L6 0.68–0.71 (20.4–21.2), L7 0.69 (20.6). Both drawings draw
+the front doublet with a flat top shared by L2 and L3 and a bevel down to r5.
+
+| Surface | Before | After | Evidence |
+| --- | --- | --- | --- |
+| 1, 2 | 30 | 30 | Kept. Brochure 28.2 (absolute scale), parent 26.7 and the 59.8 mm front barrel point to ≈28.2–29, but 29.0 already costs 3.1–3.6 points at 9.5–14.3° and 28.2 costs 6.4 at the corner. f/1.5 floor 28.13 / 27.77. |
+| 3 | 26 | 24.4 | Flat-topped front doublet in both drawings, so L2 takes one height; brochure ratio 0.81 × L1 = 24.4; f/1.5 floor 24.10. |
+| 4 | 23 | 24.4 | Same square L2 rim. |
+| 5 | 18.5 | 18.5 | Brochure 20.1, parent 15.8 (with a steeper r5); the readings conflict, so the value is kept. |
+| 6 | 18 | 18 | Brochure 18.9, parent 16.1; f/1.5 floor 16.69. |
+| 7 | 16.9 | 16.9 | f/1.5 floor 16.87. R = −18.40 and the 67° rim-angle limit cap it, so the cemented surface cannot reach the drawn flat top. |
+| 8 | 18.42 | 18.42 | f/1.5 floor 18.41. Above about 18.77 mm its sag crosses L6's plane front across the 0.6715 mm gap; the larger drawn flat top is mount. |
+| 9, 10 | 20 | 20 | Brochure 20.4–21.2, parent 18.8: within noise. |
+| 11, 12 | 21 | 21 | Brochure 20.6 agrees; the parent's 25.8 is its own L7's knife-edge outline. |
+
+Clearance and light. The surface audit prints OK; the aperture audit puts f/1.5 within 3 % with no rim limit; the
+image-circle audit finds nothing undersized; field coverage stays 100 % with the 14.3° corner clear. The real-ray
+trace at the engine stop shows no clip; surface 3 clears the f/1.5 marginal ray by 0.30 mm. Engine numbers are
+unchanged (EFL 84.9975 mm, FOPEN 1.5, halfField 22.924°, stop radius 17.497 mm). Geometric illumination, baseline to
+final: 2.4° 97.3 to 97.6, 4.8° 93.4 to 93.7, 7.1° 89.3 to 89.5, 9.5° 83.0 to 83.1, 11.9° 76.2 to 76.2, corner 14.3°
+67.9 to 67.9. Surfaces 7–9 are unchanged, so `gapSagFrac` 0.965 and `maxRimAngleDeg` 67 are still the smallest values
+the file needs.
+
+Open: L1 stays wider than both drawings and the 59.8 mm barrel allow; narrowing it to about 28.2–29 mm costs 3.6–6.4
+corner points, so it needs a decision on the light rule. The rear doublet's drawn flat top (18.5–22.5 mm) cannot be
+modelled without a land on the cemented junction.

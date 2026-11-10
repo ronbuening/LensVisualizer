@@ -77,7 +77,7 @@ The application gives the infinity state only and no focusing data, so the model
 
 ## Model Scope and Limitations
 
-The source prints no clear diameters, so all semi-diameters are inferred. Surfaces 7 and 8 are sized to pass the f/1.5 axial beam (16.874 and 18.410 mm needed; rims 16.9 and 18.42 mm). That gives the steep cemented surface 7 a 66.7° rim angle and leaves the 0.6715 mm space between surfaces 8 and 9 only 0.024 mm wide at the rim, so the file raises the rim-angle limit to 67° and the gap-sag limit to 0.965; no other geometry check is relaxed.
+The source prints no clear diameters and has no drawing, so all semi-diameters are inferred. Their proportions follow the Summarex section in the 1953 Leitz brochure, checked against the to-scale drawing of parent application L 753, which shows a different example. Surfaces 7 and 8 are sized to pass the f/1.5 axial beam (16.874 and 18.410 mm needed; rims 16.9 and 18.42 mm). That gives the steep cemented surface 7 a 66.7° rim angle and leaves the 0.6715 mm space between surfaces 8 and 9 only 0.024 mm wide at the rim, so the file raises the rim-angle limit to 67° and the gap-sag limit to 0.965; no other geometry check is relaxed.
 
 Neither application gives a field angle. On the 24 × 36 mm format the corner lies at 14.28°, matching the maker's 28° and 28.5° full-field figures.
 

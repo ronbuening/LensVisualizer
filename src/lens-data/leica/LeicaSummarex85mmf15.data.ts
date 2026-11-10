@@ -13,7 +13,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * all glass labels stay Unmatched (see the analysis). No catalog glass is substituted.
  * The source prints no field angle, back focus or clear diameters. Back focus is the derived paraxial
  * value; the model is the infinity state only.
- * Semi-diameters are inferred. Surfaces 7 and 8 are sized to pass the f/1.5 axial beam (16.874 and
+ * Semi-diameters are inferred; L 12741 has no drawing. Proportions follow the Summarex section in the
+ * 1953 Leitz brochure, cross-checked against the to-scale drawing of parent L 753 (a different example).
+ * L2 carries one height on both faces (24.4 mm), as both drawings show a flat-topped front doublet.
+ * Surfaces 7 and 8 are sized to pass the f/1.5 axial beam (16.874 and
  * 18.410 mm needed); the steep cemented surface 7 then reaches a 66.7° rim angle (checks.maxRimAngleDeg
  * 67), and the 0.6715 mm air space between surfaces 8 and 9 narrows to 0.024 mm at the rim
  * (checks.gapSagFrac 0.965). No geometry check is disabled.
@@ -165,14 +168,14 @@ const LENS_DATA = {
       label: "3",
       R: 30.073,
       d: 9.282,
-      sd: 26,
+      sd: 24.4,
       medium: 2,
     },
     {
       label: "4",
       R: 55.666500000000006,
       d: 3.4,
-      sd: 23,
+      sd: 24.4,
       medium: 3,
     },
     {
