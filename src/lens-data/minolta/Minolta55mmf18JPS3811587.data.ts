@@ -1,20 +1,33 @@
 /**
- * JP S38-11587 B, SOLE UNNUMBERED EXAMPLE; hidden STATIC H0, not a ready model.
- * Source F=1.0 is normalized. All R and internal d use hypothetical55mm/source-unit
- * scaling, NOT source millimetres or an exact-EFL fit. EFL55.006509819821mm is derived.
- * Probable SR-109 pictured Auto Rokkor55/1.8 family; rival50/1.8 identities remain.
- * Six literal nd/νd pairs, explicit d-line, no vendor-glass or full-dispersion claims.
- * Eleven original spherical interfaces plus inserted STO. t6=.2017 source unit is
- * split by inferred pupil conjugacy using printed P1=.5419 imageward from V1.
- * P1 is NOT the physical iris coordinate. Stop z=.408577964883395 source unit.
- * Iris radius is derived from source F1.8; no authored sd overrides the stop.
- * Last d is independent d-line infinity BFL; no finite focus/zoom law or mount claim.
- * H0 clear caps and rim extensions are rough Figure1 construction hypotheses,
- * not published factory dimensions. Opaque flat lands approximate drawn chamfers.
- * Source46deg full field stays distinct from maker43deg. No image circle is invented.
- * Source inequalities conflict; all printed variants are retained without repair.
- * No native geometry, finite-aperture rays, pupils, MTF, build or browser pass.
- * All default checks are retained; no gap-sag override or shared-engine edits.
+ * JP S38-11587 B (Minolta Camera Co., Ltd.; inventor Yoshiya Matsui; filed 1956-07-31, published 1963-07-08),
+ * sole numerical example: a six-element, five-group all-spherical Gauss objective, F = 1.0, 1:1.8, 2ω = 46°.
+ *
+ * Scale: the patent normalizes the focal length to F = 1.0. Every R and d here is the printed value ×55, a chosen
+ * uniform scale (not printed in millimetres and not fitted to the traced EFL), which traces to EFL 55.0065 mm.
+ * The patent's Fig. 2 plots its aberrations for f = 100 mm.
+ *
+ * Glass: the patent prints nd and νd (d line) for each element. Five elements carry exact catalog equivalents
+ * (production supplier unspecified); L4 (nd 1.5749, νd 39.2) has no exact catalog row and keeps its printed values.
+ *
+ * Stop: the patent puts the diaphragm in the air space t6 (0.2017 F) without a split and prints the entrance pupil
+ * at P1 = 0.5419 F behind the first surface. The stop sits at the paraxial image of that pupil through S1–S6:
+ * 5.8288 mm behind S6 and 5.2647 mm ahead of S7, which together equal the scaled t6. The patent's Seidel coefficient table
+ * recomputes with this pupil. The stop radius is derived from F/1.8.
+ *
+ * Image distance: the last d is the derived paraxial infinity back focus (32.5700 mm); the patent does not print it.
+ *
+ * Semi-diameters: estimated from the proportions of Fig. 1, not published dimensions. The flat rim extensions on
+ * S6 and S7 stand in for the chamfered edges drawn there.
+ *
+ * Field: the model uses the patent's 2ω = 46°; Minolta lists 43° for the Auto Rokkor 55mm f/1.8.
+ *
+ * Identity: same 6/5 layout as Minolta's 1958 Auto Rokkor-PF 55mm f/1.8 (SR mount) and Super Rokkor 5cm f/1.8
+ * (rangefinder). The 46° field and the short back focus fit a 50 mm lens better than a 55 mm SLR lens, so no
+ * production lens is assigned and the entry stays hidden.
+ *
+ * Source inconsistencies: the index condition is printed three ways (n5 − n4 > 0.0065 on p. 1, n5 − n4 > 0.065 on
+ * p. 2, n5 − n5 > 0.065 in the claim); the example's n5 − n4 = 0.0918 meets both numerical forms. The Seidel table
+ * misprints surface 7 (I and the sign of II); the prescription itself is consistent. Infinity focus only.
  */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
@@ -23,20 +36,16 @@ const LENS_DATA = {
   key: "minolta-55mm-f18-jp-s38-11587",
   maker: "Minolta",
   name: "MINOLTA 55mm f/1.8 (JP S38-11587 Design)",
-  subtitle: "JP S38-11587 B sole example; probable SR-109 Auto Rokkor family, not factory-exact; hidden unvalidated H0",
+  subtitle:
+    "JP S38-11587 B, sole example — same 6/5 layout as the 1958 Auto Rokkor-PF 55mm f/1.8 and Super Rokkor 5cm f/1.8",
   visible: false,
   catalog: {
     imageFormat: "135-full-frame",
-    specs: [
-      "6 ELEMENTS / 5 GROUPS",
-      "HYPOTHETICAL 55x SOURCE SCALE",
-      "SOURCE F/1.8 AND 46° FULL FIELD",
-      "INFINITY ONLY; UNVALIDATED H0",
-    ],
+    specs: ["6 ELEMENTS / 5 GROUPS", "DESIGN f = 1.0 (SCALED TO 55 mm)", "DESIGN F/1.8", "2ω = 46°", "ALL SPHERICAL"],
     elementCount: 6,
     groupCount: 5,
     focalLengthMm: {
-      design: 55.00650981982096,
+      design: 55.0065,
     },
     fNumber: {
       design: 1.8,
@@ -51,12 +60,6 @@ const LENS_DATA = {
     patentYear: 1963,
     authors: ["Yoshiya Matsui"],
     assignees: ["Minolta Camera Co., Ltd."],
-    errata: [
-      {
-        status: "unresolved",
-        note: "Printed condition differs: page1 n5−n4>.0065, page2 n5−n4>.065, page3 n5−n5>.065. Literal example preserved; no emendation.",
-      },
-    ],
   },
   elements: [
     {
@@ -67,9 +70,9 @@ const LENS_DATA = {
       nd: 1.6779,
       vd: 55.5,
       indexReference: "d",
-      glass: "Unmatched (literal patent nd / νd; vendor and full dispersion unspecified)",
+      glass: "LAC12 (HOYA catalog equivalent; patent 678555; production supplier unspecified)",
       focalLengthMm: 78.04691431299393,
-      role: "Front positive meniscus. It shares the source nd/νd pair with L2, while its curvatures and thickness are distinct.",
+      role: "Front positive meniscus, convex to the object; with L2 it forms the converging front of the Gauss.",
     },
     {
       id: 2,
@@ -79,9 +82,9 @@ const LENS_DATA = {
       nd: 1.6779,
       vd: 55.5,
       indexReference: "d",
-      glass: "Unmatched (literal patent nd / νd; vendor and full dispersion unspecified)",
+      glass: "LAC12 (HOYA catalog equivalent; patent 678555; production supplier unspecified)",
       focalLengthMm: 48.88722805194922,
-      role: "Second positive meniscus, air-spaced from L1 by t2=.00300 source unit. Together L1 and L2 form the front positive subsystem.",
+      role: "Thick positive meniscus, convex to the object, 0.165 mm behind L1; the stronger of the two front collectors.",
     },
     {
       id: 3,
@@ -91,9 +94,9 @@ const LENS_DATA = {
       nd: 1.699,
       vd: 30.1,
       indexReference: "d",
-      glass: "Unmatched (literal patent nd / νd; vendor and full dispersion unspecified)",
+      glass: "SF15 (Sumita catalog equivalent; patent 699301; production supplier unspecified)",
       focalLengthMm: -26.066103467089356,
-      role: "Negative meniscus ahead of the stop gap. The source t4=.0360 separates it from L2; its strongly curved rear face bounds the central air space.",
+      role: "Separate negative meniscus ahead of the stop; with the diverging air space in front of it, it takes over part of the correction usually left to the rear cemented surface.",
     },
     {
       id: 4,
@@ -103,9 +106,9 @@ const LENS_DATA = {
       nd: 1.5749,
       vd: 39.2,
       indexReference: "d",
-      glass: "Unmatched (literal patent nd / νd; vendor and full dispersion unspecified)",
+      glass: "Unmatched (patent nd 1.5749, νd 39.2; no exact catalog row; supplier unspecified)",
       focalLengthMm: -22.519187483639865,
-      role: "Biconcave negative front member of the sole cemented pair, with the source lowest index nd1.5749. Its rear boundary is the shared r8 surface.",
+      role: "Biconcave negative front element of the cemented doublet behind the stop; the lowest-index glass in the lens.",
       cemented: "C1",
     },
     {
@@ -116,9 +119,9 @@ const LENS_DATA = {
       nd: 1.6667,
       vd: 48.4,
       indexReference: "d",
-      glass: "Unmatched (literal patent nd / νd; vendor and full dispersion unspecified)",
+      glass: "BAF11 (Sumita catalog equivalent; patent 667484; production supplier unspecified)",
       focalLengthMm: 24.679387999999545,
-      role: "Biconvex positive rear member of the cemented pair. The literal n5−n4=.0918 is retained, and no correction of the inconsistent textual thresholds is applied.",
+      role: "Biconvex positive rear element of the cemented doublet; the index step of 0.0918 from L4 across the cemented surface is the patent's index condition.",
       cemented: "C1",
     },
     {
@@ -129,9 +132,9 @@ const LENS_DATA = {
       nd: 1.67,
       vd: 47.2,
       indexReference: "d",
-      glass: "Unmatched (literal patent nd / νd; vendor and full dispersion unspecified)",
+      glass: "BAF10 (HOYA catalog equivalent; patent 670472; production supplier unspecified)",
       focalLengthMm: 53.69262056523374,
-      role: "Rear biconvex positive singlet, separated from L5 by t9=.0030. It ends the source train; the following image distance is calculated, not tabulated.",
+      role: "Rear biconvex positive element, weakly curved in front, 0.165 mm behind the doublet; it closes the converging rear of the Gauss.",
     },
   ],
   surfaces: [
@@ -216,9 +219,9 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1,
+    closeFocusM: 1e15,
     description:
-      "Fixed infinity source construction. closeFocusM=1 is an inactive schema placeholder; no variable gaps or finite-conjugate law are authored. Manufacturer 0.5m is context only.",
+      "Infinity focus only. The patent prints the prescription for an object at infinity and gives no focusing data, so no near state is modeled.",
   },
   aperture: {
     nominalFNumber: 1.8,
@@ -230,13 +233,7 @@ const LENS_DATA = {
     fullFieldDeg: 46,
     maxTraceFieldDeg: 23,
   },
-  groups: [
-    {
-      text: "Fixed infinity assembly",
-      fromSurface: "1",
-      toSurface: "11",
-    },
-  ],
+  groups: [],
   doublets: [
     {
       text: "C1",

@@ -1,29 +1,31 @@
-# JP S38-11587 B, hypothetical 55× sole example: static H0 audit
+# JP S38-11587 B, sole example (scaled to 55 mm): audit
 
-## 2026-11-10: recovered source to hidden construction
+## 2026-11-10 — Initial transcription (package delivery)
 
-Status: UNFINISHED STATIC H0. No native geometry, exact rays, pupils, MTF, broad repository test/build or browser run. No shared-engine patch.
+- Source: the four-page JP S38-11587 B scan. The table on p. 2 was transcribed: eleven radii, ten spacings, six
+  nd/νd pairs, F = 1.0, 1:1.8, 2ω = 46°, with S₁ = ∞ and P₁ = 0.5419 from the Seidel table header; Fig. 1 (p. 4)
+  was compared for layout. Minolta's SR-109 brochure (printed p. 13) shows the Auto Rokkor F1.8/55mm as six
+  components in five groups with a 1 + 1 + 1 + 2 + 1 section.
+- Example label "Sole example" (`id: null`). Inventor romanized as Yoshiya Matsui; applicant Minolta Camera Co., Ltd.
+- All R and d are the printed values ×55; the EFL is not fitted to 55 mm and the maker's 43° is not substituted for
+  the patent's 46°.
+- Not printed in the source: the stop split, clear apertures and rim extensions, the scale, and the infinity back
+  focus. The stop is the paraxial image of the printed entrance pupil (P₁ read imageward from S1; the opposite sign
+  puts the stop outside t6); its radius is derived from F/1.8.
+- No duplicate prescription was found in the catalog.
+- The three printed forms of the n5 − n4 condition (0.0065 / 0.065 / n5 − n5) were recorded as an unresolved
+  erratum. (Closed 2026-11-10: moved to the analysis; it does not affect the prescription.)
 
-- Baseline: genuine 9d121be76e14bc5098256ee78cd0a7545a1acf11, 2,253 commits, nonshallow. Only the same-stem .data.ts/.analysis.md/.audit.md triad is added to an isolated checkout.
-- Source: exact national-office JPS3811587B original, 240,776 bytes, SHA256 7a910ce53043f4ee54bdb68fa7a3cfc05ae8df8d1a0fa00fedda6cc24a0bf34c. The original 28,485,352-byte intake archive retains all originals; its SHA256 is 365a69a396cc796b7b4a0bcee51745f1066856ec3d10b03589a9eca6525ab4ac. All 104 members / 103 payloads and CRC were checked. Originals are not reuploaded.
-- Source literal JSON SHA256 ad5476b7fa7311be27c5c8ea55295b96bf049281d848ad5593c05d3a406de1b1. The table was visually reread for eleven radii, ten intervals, six nd/νd pairs, F1 normalization, 1:1.8, full field46°, S1=∞ and P1=.5419. Page4 Figure1 was also viewed. Maker PDF12/printed13 confirms the version-specific 6/5 and detailed 1+1+1+2+1 section.
-- Exact original matrix/scalar replay: four retained output files reproduce byte-for-byte. A separate Decimal construction repeats EFL/BFL and front-group pupil inference without importing the native optics engine.
-- Corrected pinned tracked-corpus dedup: NUL-safe Git enumeration establishes 1,095 tracked .data.ts files. The historical 1,092-model AST pass omitted three Git-quoted Unicode paths. Independent three-file supplemental evaluation closes identity, radius and ordered-glass coverage under the same criteria (2% positive least-squares radius comparison, nd .000011 / vd .011 glass tolerances), with no hits or parser errors. Coverage is 1,092 + 3 in two bounded passes, not a newly repeated whole-corpus scan. The earlier 1,092 completeness claim is superseded; its original report remains preserved. No exhaustive private/untracked or arbitrary row-omission/reordering absence claim is made.
-- Exact example identity is “Sole example”, id:null. Inventor normalized as Yoshiya Matsui; Japanese literal retained in analysis. Applicant is the source-period Minolta Camera Co., Ltd., not its later successor.
-- All original R/d/nd/νd remain unchanged modulo explicit uniform55× dimensional scaling. H0 does not fit EFL to55mm or reconcile maker43° to source46°. Model identity is patent-first; marketing, mount, format and image-circle assertions are omitted. Rival50/1.8 identities remain open.
-- Only non-source construction inputs are inferred stop split, clear caps, rim extensions, selected physical scale, derived infinity BFL, layout, and inactive focus-schema placeholder. Source mapping and immutable hypothesis JSON accompany the checkpoint. No finite focus law or factory rims are claimed.
-- Printed P1 is treated as an entrance-pupil coordinate, not iris placement. Positive imageward convention gives an in-gap pupil-derived split; negative-sign sensitivity fails the stated gap and is preserved. Derived aperture is left to the engine, with no authored STO sd. NominalF1 and calculated-EFL iris estimates are kept distinct.
-- Source condition conflict is recorded without repair: .0065 / .065 / n5−n5 self-difference. No geometry relaxation is authored. Baseline default checks remain in force.
-- Static checks validate canonical ingest, source row/media replay, source field46°, hidden visibility, source metadata, all-spherical structure, stop insertion and unchanged central-gap sum, document skeleton and deterministic triad reconstruction.
+## Initial open items (closed 2026-11-10)
 
-## Pending qualification gates
-
-1. Native H0 geometry/domain, rim slope, thickness, cross-gap, rim-extension and hidden-trim diagnostics. Preserve every failure before any H1.
-2. Native derived-F1.8 iris, finite-aperture entrance/exit pupils, iris-in-air over aperture stroke, on-axis clearance and source23° half-field reachability.
-3. Exact source-field chief-ray heights, distortion and vignetting, diffraction/MTF with only qualified Abbe-derived spectral behavior. Do not substitute maker43° or 36×24 coverage to force a pass.
-4. Focus-only infinity behavior, targeted type/format/lint plus full corpus tests/build and visual source-section comparison. Static ingest is not a buildLens pass.
-
-H0 remains preserved. No geometry override is applied.
+1. Geometry checks (rim slope, thickness, gap intrusion, rim extensions). Closed: `audit:surface` reports no errors.
+2. Iris from F/1.8, pupils, on-axis clearance and the 23° half-field. Closed: the engine derives a 9.447 mm stop
+   radius at f/1.800; axial rays clear every surface and the 23° chief ray traces.
+3. Field chief-ray heights, distortion, vignetting and MTF. Partly closed: the image circle covers the 24 × 36 mm
+   frame (21.65 mm half-diagonal) and edge-field vignetting is that of an f/1.8 Gauss with the Fig. 1 rims;
+   distortion and MTF were not assessed separately.
+4. Infinity focus behavior and visual comparison with the patent section. Closed: infinity only; the layout matches
+   Fig. 1.
 
 ## Deployment validation (2026-11-10)
 
@@ -39,4 +41,44 @@ Applied: patent PDF filed as `JPS3811587B.pdf`; `catalog.imageFormat` 135-full-f
 
 Open: choose the scale (50 vs 55 mm) and a house-style patent-design name/key before showing it; drop the errata entry
 (a claims-inequality typo, not a prescription defect) to the analysis; replace private-archive links in the analysis;
-rewrite this log and the public wording.
+rewrite this log and the public wording. (Name/key set at integration; errata, links, log and wording closed in the
+cleanup pass below; the scale stays open.)
+
+## 2026-11-10 — Cleanup and wording pass
+
+Fields changed in the data file: header comment rewritten in plain terms (same facts; the scale is stated once);
+`subtitle` → "JP S38-11587 B, sole example — same 6/5 layout as the 1958 Auto Rokkor-PF 55mm f/1.8 and Super Rokkor
+5cm f/1.8"; `specs` → 6 ELEMENTS / 5 GROUPS, DESIGN f = 1.0 (SCALED TO 55 mm), DESIGN F/1.8, 2ω = 46°, ALL
+SPHERICAL; `catalog.focalLengthMm.design` 55.00650981982096 → 55.0065 (rounded traced EFL, the convention of the
+Minolta primes in this folder); `focus.closeFocusM` 1 → 1e15 (infinity-only placeholder) with a plain description;
+the `source.errata` entry for the n5 − n4 condition removed (the analysis now carries it under Conditional
+Expressions); element roles rewritten; the single "Fixed infinity assembly" group bracket removed (`groups: []`; the
+patent's subsystems I–IV are built around air spaces and do not map onto elements); `visible` stays false.
+
+Glass labels (patent nd/νd → catalog row, Δnd / Δνd): L1 and L2 1.6779/55.5 → LAC12 (Hoya), 0.00000 / +0.02;
+L3 1.6990/30.1 → SF15 (Sumita), −0.00005 / −0.10 (chosen over the lead-free E-FD15 and S-TIM35 rows as the
+period glass type); L5 1.6667/48.4 → BAF11 (Sumita), +0.00002 / 0.00; L6 1.6700/47.2 → BAF10 (Hoya), +0.00003 /
+−0.01. L4 1.5749/39.2 has no row within tolerance (nearest 1.5750/41.3) and stays Unmatched. No `nC`/`nF`/`ng`
+were present; no `apd` tags (no special-dispersion glass).
+
+Analysis: process sections removed (construction-hypothesis status, decimal-replay digits, raster pixel
+measurements, corpus-scan counts, qualification status, private Drive links); the identification now gives both
+1958 candidates and the 50 mm versus 55 mm evidence (2ω = 46° is the 24 × 36 diagonal at f ≈ 51 mm; the 32.6 mm
+back focus at 55 mm would sit 10.9 mm behind the SR flange, against 36.0–36.9 mm for the catalog's SR-mount
+standard lenses); new Conditional Expressions and Aberration Coefficients sections record the condition table and
+the Seidel-table recomputation; the patent is cited on J-PlatPat. The earlier "same designer" wording in the
+deployment-validation note is not supported: the designers of the production lenses are not documented, so the
+public text says "same 6/5 layout" only.
+
+Engine numbers before and after (identical): EFL 55.0065 mm, F/1.800, half-field 23°, stop radius 9.4469 mm, BFD
+32.5700 mm, track 37.235 mm; `closeFocusM` reads 1e15 instead of 1. `audit:surface` reports no errors;
+`audit:aperture` reports no rim limit.
+
+Open:
+
+- Scale: 55 mm (Auto Rokkor-PF) or 50 mm (Super Rokkor 5cm f/1.8) must be decided before the entry is shown;
+  `lensMounts` and `catalog.closeFocusM.marketing` (0.5 m or 1 m) follow that choice.
+- Rims, compared with Fig. 1 at 300 dpi (0.0544 mm per pixel over the 37.235 mm vertex span): the drawn lower
+  half-heights give about 18.2, 15.1, 15.1, 10.9 and 12.4 mm for L1, L2, L3, L4–L5 and L6, within 0.1 mm of the
+  modeled 18.3 / 15.2 / 15.2 / 11.0 / 12.5 mm. The S7 clear radius of 9.4 mm leaves 0.18 mm over the f/1.8 axial
+  beam (9.22 mm); no change proposed.

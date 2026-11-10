@@ -7,146 +7,124 @@
 **Inventor:** Yoshiya Matsui (松居 吉哉)
 **Applicant:** Minolta Camera Co., Ltd. (ミノルタカメラ株式会社)
 **Title:** Gauss-type photographic objective lens (ガウス型写真対物レンズ)
-**Example details:** Unnumbered numerical prescription on PDF page 2, Figure 1 on page 4; source F = 1.0 / f = 1.000; hypothetical 55 mm per source unit.
+**Example details:** Sole, unnumbered numerical example (p. 2: F = 1.0, 1:1.8, 2ω = 46°), Seidel coefficient table for f = 1.000, S₁ = ∞, P₁ = 0.5419 (pp. 2–3), Fig. 1 section and Fig. 2 aberration curves for f = 100 mm (p. 4).
 
-This hidden model is a source-faithful, fixed-infinity **construction hypothesis H0**, not a qualified factory reconstruction. The patent supplies one unnumbered numerical example. The recovered administrative label “example1” is not used as a printed example number.
+The patent describes a six-element Gauss objective in which the usual cemented front doublet is split: a separate negative meniscus L3 stands behind the two positive menisci, and only the rear pair L4–L5 is cemented. Its one numerical example is normalized to F = 1.0. The data file multiplies every radius and spacing by 55, a chosen uniform scale that is neither printed in millimetres nor fitted to the traced focal length; the traced EFL is 55.0065 mm (1.000118 F).
 
-A probable association with the **Auto Rokkor F1.8/55mm pictured in Minolta brochure SR-109 for the SR-1** is supported by:
+The layout is shared by two Minolta lenses introduced in 1958, both six elements in five groups at f/1.8:
 
-1. The manufacturer brochure's PDF page 12 / printed page 13 places the product name, SR-1 role, six elements in five groups, and its optical section together.
-2. The section shows the detailed 1 + 1 + 1 + 2 + 1 topology: two front positive menisci, a separate central-front negative element, one rear cemented pair, and a final positive singlet. This corresponds to the patent, rather than relying on count alone.
-3. The brochure's f/1.8 agrees with the source 1:1.8. The source is explicitly at infinity, with S₁ = ∞.
-4. The literal prescription has a normalized d-line paraxial EFL of approximately 1.000118360360, consistent with the printed normalization without adjusting any radius, spacing, or glass index.
+1. The **Auto Rokkor-PF 55mm f/1.8**, the first standard lens for the SR mount (SR-2, 1958). Minolta's SR-7/SR-1 brochure (SR-109) shows it as "six lens components in five groups" with a 1 + 1 + 1 + 2 + 1 section, a 50 cm minimum distance, a 43° angle of view and a 55 mm filter thread.
+2. The **Super Rokkor 5cm f/1.8**, introduced in May 1958 with the Minolta-35 Model IIB rangefinder (Leica thread mount; an optically identical version was made for the Minolta Super A), also six elements in five groups.
 
-The **55× conversion is selected**, not printed in millimetres. It scales every source radius and axial interval uniformly. It does not divide by the calculated EFL to force exactly 55 mm. The image plane and pupil-derived stop split are computed in source units and scaled by the same factor. There are no aspheric coefficients to rescale.
+Two of the patent's own numbers point to the 50 mm lens rather than the 55 mm SLR lens. The printed 2ω = 46° is the 24 × 36 mm diagonal field of a 51 mm lens; at 55 mm the same diagonal subtends 42.9°, matching the 43° Minolta prints for the Auto Rokkor. The back focus is 0.592 F, or 32.6 mm at 55 mm, which would put the rear vertex 10.9 mm behind the 43.5 mm SR flange; the SR-mount Minolta standard lenses in this catalog have back focal distances of 36.0–36.9 mm. At 50 mm the back focus is 29.6 mm, placing the rear vertex 0.8 mm ahead of the 28.8 mm Leica thread-mount flange. Neither observation is conclusive (a production lens may differ from the patent example), so the entry names no production lens and stays at the 55 mm scale pending that decision.
 
-The Minolta Super A 50/1.8 and Super Rokkor 5cm f/1.8 rangefinder associations remain unresolved rivals. Neither chronology nor back focal distance uniquely distinguishes them. The model's name therefore begins with MINOLTA PATENT and explicitly says hypothetical scale. No claim covers all Auto Rokkor 55mm generations or a uniquely identified serial production prescription.
-
-The manufacturer lists 43° field and 50 cm minimum focus. The patent lists **46° full field**. These are distinct source facts, not numerical targets to reconcile. The model uses the patent's 46° / 23° half-field only. Marketing focal length, mount, format, image circle, and close-focus catalog fields are omitted rather than binding the uncertain identity to one camera system. No sensor stack is added.
+The model uses the patent's 46° field (23° half-field) rather than Minolta's 43°.
 
 ## Optical Architecture
 
-The design is an all-spherical modified Gauss objective with **six elements, five air-separated groups, and eleven refracting interfaces**. L4 and L5 alone are cemented, at source surface r8. The additional flat STO row is a construction interface inserted into air, not a twelfth published refracting surface or an extra glass element.
+The design is an all-spherical modified Gauss objective with **six elements in five air-separated groups and eleven refracting surfaces**. Only L4 and L5 are cemented, at r8. The two positive menisci L1 and L2 form the converging front; the separate negative meniscus L3 follows behind a thin diverging air space (t4); the large central air space t6 holds the stop; the cemented negative–positive pair L4–L5 and the biconvex L6 complete the rear.
 
-The front positive pair L1–L2 precedes the separate negative meniscus L3. The large t6 air interval separates L3 from the rear negative-positive cemented pair L4–L5; L6 is the final positive singlet. The patent's four optical subsystems are not four air-separated groups and do not establish four independently moving mechanisms. The model's single bracket denotes the fixed assembly only.
+The patent divides the system into four optical subsystems built around air spaces rather than elements: I (L1 with the converging air space t2), II (the diverging air space t4 with L3), III (the front surface r7 of L4 and the cemented surface r8) and IV (the converging air space t9 with L6). I and IV converge, II and III diverge. The patent attributes the flare of older Gauss objectives at intermediate field angles to an over-strong subsystem III; the usual remedy of moving part of its divergence to II had, in earlier lenses, been overdone, worsening astigmatism and the chromatic variation of spherical aberration. This design keeps the shift moderate: limits on t4, r4 and r5 stop the astigmatism of subsystem II from growing, and the index step n5 − n4 at the cemented surface lets subsystem III share the spherical-aberration and coma correction. These subsystems are optical, not mechanical groups.
 
-All eleven source radii, all ten internal intervals, and all six glass-coordinate pairs are preserved. Source positive radius means the centre of curvature lies toward the image, with the first vertex at z = 0 and positive z running toward the image. The span from first to last vertex is 0.6770 source unit, or **37.235 mm** under the hypothetical scale.
+The span from the first to the last vertex is Σt = 0.6770 F, or **37.235 mm** in the model; the derived paraxial back focus is 0.5922 F (**32.570 mm**), so the infinity image plane lies 69.805 mm behind the first vertex. The patent prints neither the back focus nor a total length.
 
-A 50-digit Decimal matrix calculation, independently cross-checked by scalar propagation, gives:
+### Stop position
 
-- EFL: **55.006509819821 mm**.
-- BFL from the last vertex: **32.569986785317 mm**.
-- Infinity image plane from the first vertex: **69.804986785317 mm**.
+The patent calls t6 = 0.2017 F the stop interval but gives no split, and it prints the entrance pupil at **P₁ = 0.5419 F** behind the first surface with its Seidel table. The model places the stop at the paraxial image of that pupil formed by S1–S6: 5.8288 mm behind S6 and 5.2647 mm ahead of S7, which sum to the scaled t6 of 11.0935 mm. Reading P₁ the other way (in front of the first surface) would put the stop outside t6 altogether. The pupil-dependent Seidel coefficients (II, III, V) recompute with this stop position (see below), which confirms the reading. The stop radius, 9.45 mm (an 18.9 mm iris), is derived from the patent's F/1.8.
 
-These arithmetic digits make the reconstruction reproducible; they are not precision claims about a rounded historical prescription. BFL is not a mount flange distance. The patent gives no last-vertex-to-mount geometry, so a direct BFL-versus-SLR-register comparison cannot reject the proposed product association.
+### Clear apertures
 
-### Stop and pupil construction
-
-The source identifies **t6 = 0.2017** as the stop interval but publishes neither its numerical split nor an iris diameter. It defines **P1 = 0.5419** as the entrance pupil's distance from the first surface. P1 is not a physical iris coordinate.
-
-H0 interprets P1 as an imageward signed coordinate. If the front-six-surface reduced-angle matrix is [A B; C D], followed by air translation x, pupil conjugacy gives:
-
-x = (P1 A − B) / (D − P1 C).
-
-This yields x = 0.105977964883395 source unit after S6 and a stop coordinate z = 0.408577964883395, inside the literal central gap (0.3026, 0.5043). Under 55× scaling, STO is at **22.471788068587 mm**, splitting the original 11.0935 mm interval into **5.828788068587 + 5.264711931413 mm**. Their sum is unchanged.
-
-The opposite-sign reading P1 = −0.5419 produces a stop outside that gap, z approximately −0.161386 source unit. Both results are preserved as a convention sensitivity check. Agreement with the stated gap favours the selected sign but does not turn the inferred coordinate into a printed manufacturing dimension.
-
-For source nominal EFL = 1, the paraxial iris diameter is **18.891590994658 mm**. Using the literal-table EFL instead gives **18.893827010176 mm**. The model authors neither diameter as STO sd: the source F1.8 is supplied, leaving the native engine to derive its stop radius. Native entrance-pupil, finite-aperture f-number, iris-in-air and clearance checks remain pending.
-
-### H0 clear caps and outlines
-
-No numerical clear rims are published. H0 uses rough Figure 1 proportions, not a fit to the maker's field or to performance data. At the retained 120-dpi page render, approximate V1/V11 x coordinates 344/618 and 37.235 mm track give 0.135894 mm/pixel if isotropic. Outer half-heights roughly 135/112/112/81/92 pixels suggest the selected element-outline radii 18.3/15.2/15.2/11.0/12.5 mm. Raster scaling and line thickness make these only construction estimates.
-
-Source S1–S11 clear caps in millimetres are **18.3, 18.3, 15.2, 15.2, 15.2, 10.2, 9.4, 11.0, 11.0, 12.5, 12.5**. The smaller central caps S6 and S7 follow the inward edge ends. Flat opaque extensions at S6 to 15.2 mm and S7 to 11.0 mm approximate the drawn chamfered outer outlines. Those lands are not measured chamfers or optical glass surfaces. Source surface numbers remain unchanged around the inserted STO.
-
-H0 was frozen before native optical evaluation. It has not passed spherical-domain, rim-slope, thickness, cross-gap, hidden-trim, iris-clearance, or ray checks. Baseline geometry thresholds remain intact and no gap-sag allowance override is authored. A future change must preserve the H0 file and its failure evidence before recording a separate hypothesis.
+The patent prints no clear apertures. The semi-diameters follow the element outlines of Fig. 1 scaled to the 37.235 mm vertex span: 18.3 mm for L1, 15.2 mm for L2 and L3, 11.0 mm for the cemented pair and 12.5 mm for L6, with smaller clear radii of 10.2 mm on the deeply curved rear face of L3 (S6) and 9.4 mm on the front face of L4 (S7). Flat rim extensions on S6 and S7 stand in for the chamfered edges drawn there. These are estimates from the figure, not published dimensions.
 
 ## Element-by-Element Analysis
 
-The focal lengths below are calculated for each isolated thick element in air at the selected scale. In particular, the isolated values for L4 and L5 do not describe their actual powers as cemented partners.
+Focal lengths are for each element alone in air at the 55 mm scale; the values for L4 and L5 do not describe their combined power as a cemented pair.
 
-### L1 — Positive Meniscus
+### L1 — Positive Meniscus, convex to object
 
-nd = 1.67790, νd = 55.5. Glass: Unmatched (literal patent coordinates; vendor unspecified). Isolated-in-air f = +78.046914 mm.
+nd = 1.67790, νd = 55.5. Glass: LAC12 (Hoya) catalog equivalent; supplier unspecified. f = +78.05 mm.
 
-Front positive meniscus. It shares the source nd/νd pair with L2, while its curvatures and thickness are distinct.
+The front collector, nearly plano-convex (r2 = 3.083 F). Its high index meets the patent's condition n1 > 1.65, which the patent gives as necessary for removing spherical aberration while keeping the Petzval sum low.
 
-### L2 — Positive Meniscus
+### L2 — Positive Meniscus, convex to object
 
-nd = 1.67790, νd = 55.5. Glass: Unmatched (literal patent coordinates; vendor unspecified). Isolated-in-air f = +48.887228 mm.
+nd = 1.67790, νd = 55.5. Glass: LAC12 (Hoya) catalog equivalent; supplier unspecified. f = +48.89 mm.
 
-Second positive meniscus, air-spaced from L1 by t2=.00300 source unit. Together L1 and L2 form the front positive subsystem.
+The thick second collector, 0.165 mm behind L1 and of the same glass. Its rear radius r4 = 1.1123 F lies inside the patent's range 0.8 F < r4 < 1.5 F, which sets how strongly the off-axis beam is refracted at the air space t4.
 
-### L3 — Negative Meniscus
+### L3 — Negative Meniscus, convex to object
 
-nd = 1.69900, νd = 30.1. Glass: Unmatched (literal patent coordinates; vendor unspecified). Isolated-in-air f = -26.066103 mm.
+nd = 1.69900, νd = 30.1. Glass: SF15 (Sumita) catalog equivalent; supplier unspecified. f = −26.07 mm.
 
-Negative meniscus ahead of the stop gap. The source t4=.0360 separates it from L2; its strongly curved rear face bounds the central air space.
+The separate negative element that distinguishes this layout from the four-group Gauss. With the diverging air space t4 = 0.036 F in front of it (0.02 F < t4 < 0.05 F) it forms subsystem II; its front radius r5 = 1.7096 F satisfies r4 < r5 < 2.2 r4. Its strongly curved rear face (r6 = 0.2755 F) faces the stop; it is the only flint ahead of the stop.
 
 ### L4 — Biconcave Negative
 
-nd = 1.57490, νd = 39.2. Glass: Unmatched (literal patent coordinates; vendor unspecified). Isolated-in-air f = -22.519187 mm.
+nd = 1.57490, νd = 39.2. Glass: Unmatched (no exact catalog row; supplier unspecified). f = −22.52 mm.
 
-Biconcave negative front member of the sole cemented pair, with the source lowest index nd1.5749. Its rear boundary is the shared r8 surface.
+The front element of the cemented doublet and the lowest-index glass in the lens. Its front radius r7 = −0.3374 F lies inside −0.4 F < r7 < −0.28 F.
 
 ### L5 — Biconvex Positive
 
-nd = 1.66670, νd = 48.4. Glass: Unmatched (literal patent coordinates; vendor unspecified). Isolated-in-air f = +24.679388 mm.
+nd = 1.66670, νd = 48.4. Glass: BAF11 (Sumita) catalog equivalent; supplier unspecified. f = +24.68 mm.
 
-Biconvex positive rear member of the cemented pair. The literal n5−n4=.0918 is retained, and no correction of the inconsistent textual thresholds is applied.
+The rear element of the cemented doublet. The cemented surface r8 = 0.7920 F (0.6 F < r8 < 1.2 F) separates indices that differ by n5 − n4 = 0.0918; this step lets subsystem III share the spherical-aberration and coma correction, reduces its negative astigmatism and the Petzval sum, and lowers flare from the upper part of the off-axis beam.
 
 ### L6 — Biconvex Positive
 
-nd = 1.67000, νd = 47.2. Glass: Unmatched (literal patent coordinates; vendor unspecified). Isolated-in-air f = +53.692621 mm.
+nd = 1.67000, νd = 47.2. Glass: BAF10 (Hoya) catalog equivalent; supplier unspecified. f = +53.69 mm.
 
-Rear biconvex positive singlet, separated from L5 by t9=.0030. It ends the source train; the following image distance is calculated, not tabulated.
+The rear collector, weakly curved in front (r10 = 2.133 F) and 0.165 mm behind the doublet. With the converging air space t9 it forms subsystem IV.
 
 ## Glass Identification
 
-| Element | nd | νd |
-| --- | --- | --- |
-| L1 | 1.67790 | 55.5 |
-| L2 | 1.67790 | 55.5 |
-| L3 | 1.69900 | 30.1 |
-| L4 | 1.57490 | 39.2 |
-| L5 | 1.66670 | 48.4 |
-| L6 | 1.67000 | 47.2 |
+| Element | nd | νd | Catalog equivalent | Δnd / Δνd |
+| --- | --- | --- | --- | --- |
+| L1, L2 | 1.6779 | 55.5 | LAC12 (Hoya) | 0.0000 / +0.02 |
+| L3 | 1.6990 | 30.1 | SF15 (Sumita) | −0.00005 / −0.10 |
+| L4 | 1.5749 | 39.2 | Unmatched | — |
+| L5 | 1.6667 | 48.4 | BAF11 (Sumita) | +0.00002 / 0.00 |
+| L6 | 1.6700 | 47.2 | BAF10 (Hoya) | +0.00003 / −0.01 |
 
-The patent table explicitly marks lowercase d for the refractive indices and Abbe numbers. The model therefore uses **indexReference: d**, rather than silently assuming the e-line. The d-line convention is 587.6 nm, with νd conventionally based on F and C. No individual nF, nC, ng, partial dispersion, Sellmeier curve, vendor glass, or supplier is published here or inferred from a coordinate match.
-
-L1 and L2 share nd 1.6779 / νd 55.5; this does not establish shared procurement or a modern catalog equivalent. L3 carries the lowest Abbe number, 30.1. The cemented pair retains nd 1.5749 / νd 39.2 and nd 1.6667 / νd 48.4 across its real interface. A generic Abbe-based dispersion fallback may be used by the engine, but any later polychromatic result must be qualified as a model approximation. No APO or measured colour-correction claim follows from these inputs.
+The patent prints nd and νd (d line, 587.6 nm) for each element and names no glass or supplier. The catalog equivalents match the printed values within rounding and give the model a dispersion curve; they are not identifications of the 1956 melts. The 575/392 glass of L4 has no exact catalog row and keeps its printed values. Five of the six elements exceed nd 1.65 (the patent requires it of L1, L2, L5 and L6); only L4 is lower. L3 is the only dense flint (νd 30.1), and the cemented pair joins the 575/392 flint to a 667/484 barium flint. No partial-dispersion data are printed, so no secondary-spectrum claim follows.
 
 ## Focus Mechanism
 
-Only the source **infinity condition** is modeled. The patent does not publish a finite-focus spacing law, cam, helicoid travel, or measured finite conjugate for this prescription. Manufacturer 50 cm minimum focus belongs to the probable product association, not the source optical table.
+Only infinity focus is modeled. The patent prints the example for an object at infinity (S₁ = ∞) and gives no focusing data. The Auto Rokkor-PF 55mm f/1.8 focuses to 0.5 m and the Super Rokkor 5cm f/1.8 to 1 m; neither near state is modeled.
 
-There are no variable gaps, zoom stations, finite conjugates, or moving-group laws. The required focus.closeFocusM value of 1 m is an inactive schema placeholder and is identified as such in the data. It must not be reported as a modeled MFD. A qualified finite model would require additional mechanism and conjugate evidence.
+## Conditional Expressions
 
-## Source Conditions and Unresolved Wording
+The patent states the following conditions (p. 1 and the claim; its table writes the radii as π, Fig. 1 as r); the example meets all of them:
 
-The source has three different printed forms of one index condition:
+| Condition | Example |
+| --- | --- |
+| n1, n2, n5, n6 > 1.65 | 1.6779, 1.6779, 1.6667, 1.6700 |
+| n5 − n4 > 0.065 (see below) | 0.0918 |
+| 0.6 F < Σt < 0.75 F | 0.6770 F |
+| 0.02 F < t4 < 0.05 F | 0.0360 F |
+| 0.18 F < t6 < 0.24 F | 0.2017 F |
+| 0.8 F < r4 < 1.5 F | 1.1123 F |
+| r4 < r5 < 2.2 r4 | 1.7096 F (2.2 r4 = 2.447 F) |
+| −0.4 F < r7 < −0.28 F | −0.3374 F |
+| 0.6 F < r8 < 1.2 F | 0.7920 F |
 
-- Page 1: n5 − n4 > 0.0065.
-- Page 2: n5 − n4 > 0.065.
-- Page 3 claim: n5 − n5 > 0.065.
+The index condition is printed three ways: n5 − n4 > 0.0065 on p. 1, n5 − n4 > 0.065 on p. 2 and n5 − n5 > 0.065 in the claim. The example's 0.0918 satisfies both numerical forms, and the claim's n5 − n5 is evidently a misprint for n5 − n4. None of the variants affects the prescription.
 
-The literal example gives n5 − n4 = 0.0918 and meets either numerical threshold, whereas the claim's self-difference is impossible. The contradiction is recorded as unresolved source errata. Neither wording nor the prescription is emended.
+## Aberration Coefficients
 
-The example also has Σt = 0.6770 F and t6 = 0.2017 F, within the page-2 ranges 0.6 F < Σt < 0.75 F and 0.18 F < t6 < 0.24 F. These scalar checks do not validate aperture geometry or optical performance.
+The patent prints third-order (Seidel) coefficients for every surface — spherical aberration I, coma II, astigmatism III, Petzval p and distortion V — for f = 1.000, S₁ = ∞ and P₁ = 0.5419. Recomputed from the printed prescription with the entrance pupil 0.5419 F behind the first surface, 53 of the 55 surface entries agree within 0.0006 and the Petzval column within 0.0002, which confirms the radii, the indices and the pupil position used for the stop. The two exceptions are both on surface 7: I7 is printed −1.4771 where the prescription gives −1.6763, and II7 is printed −0.9146 where it gives +0.9146. The printed column sums (ΣI = 0.2403, ΣII = −0.0066) agree with the recomputed values, not with the printed entries, so both are misprints in the coefficient table. The sums show a small residual spherical aberration (ΣI = 0.24), near-zero coma, slightly negative astigmatism and distortion (ΣIII = −0.035, ΣV = −0.084) and a Petzval sum of 0.237.
 
-## Qualification Status
+## Model Scope and Limitations
 
-This triad is hidden and unfinished. The static checks cover source bytes, literal mapping, scalar replay, canonical ingest, metadata, and analysis structure. They do not substitute for native buildLens geometry, exact rays, pupils, source-field reachability, distortion, diffraction or MTF, full repository gates, or visual review. No release, production deployment, factory identity, or completed native model is claimed.
+- The 55 mm scale is a choice; the patent example is normalized, and the evidence above leaves 50 mm as plausible.
+- The stop position is derived from the printed entrance pupil, the back focus from the paraxial trace, and the clear apertures from Fig. 1.
+- The model uses catalog dispersion curves for five elements and an Abbe-number estimate for L4; polychromatic results are approximations.
+- Only infinity focus is modeled.
 
 ## Sources
 
-- [JP S38-11587 B original national-office scan](https://drive.google.com/file/d/1iv2dYlwuotYKmF0yc5BJwr0mZ8ffweH2/view), four PDF pages. The preserved original and its source-table raster are authoritative.
-- [Original intake archive](https://drive.google.com/file/d/1JWly3fINlRCgPJJU8-N6-dTdsS7-ZkkR/view), complete source and research provenance.
-- [Minolta SR-1 / SR-7 optical literature, SR-109](https://vintagecameradigest.com/wp-content/uploads/2022/09/sr1-sr7-opt.pdf), PDF page 12 / printed 13 for the pictured standard lens and section, PDF page 24 / printed 27 for 43° and the filter specification. Filter thread diameter is not used as a clear-aperture measurement.
-- [Recovery addendum](https://drive.google.com/file/d/1_sV2b_1KkEJRbYB-On_yeJ3b7dvQKHiU/view), source-only qualification and original scalar replay.
-- [National Diet Library romanized optical-author bibliography](https://ndlsearch.ndl.go.jp/books/R100000136-I1970023484900524197), supporting the reading Yoshiya Matsui for 松居吉哉. No biography or birth date is imported from authority records; this is name-normalization evidence only, not a new patent-family identification.
-
-## Pinned prescription comparison
-
-The pinned corpus contains 1,095 tracked models. The original 1,092-file scan and a same-criterion three-file Unicode-path supplement found no identity, eleven-radius shape or ordered six-glass match. This is bounded two-pass coverage, not universal novelty or a newly repeated whole-corpus scan. Source values and H0 geometry are unchanged.
+- [JP S38-11587 B on J-PlatPat](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-S38-011587/12/ja), four pages: text, prescription and Seidel table (pp. 1–3), Figs. 1 and 2 (p. 4).
+- [Minolta SR-7 / SR-1 brochure (SR-109)](https://vintagecameradigest.com/wp-content/uploads/2022/09/sr1-sr7-opt.pdf), printed p. 13 (Auto Rokkor F1.8/55mm, six components in five groups, section, 50 cm minimum distance) and p. 27 (interchangeable-lens table: 43°, 55 mm filter).
+- [minolta.su: Auto Rokkor PF 55mm 1:1.8 (AR I)](https://minolta.su/minolta-auto-rokkor-pf-55mm-f1-8/), introduction with the SR-2 in 1958, 6/5 construction, 0.5 m.
+- [minolta.su: Chiyoda Kogaku 50mm 1:1.8 (Super Rokkor)](https://minolta.su/chiyoda-kogaku-50mm-f1-8/), May 1958 introduction, Leica thread and Super A mounts, 6/5 construction, 1 m.
+- [National Diet Library bibliography](https://ndlsearch.ndl.go.jp/books/R100000136-I1970023484900524197), for the romanization Yoshiya Matsui of 松居吉哉.
