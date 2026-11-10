@@ -22,6 +22,7 @@ import {
   type BuilderMaterial,
   type BuilderSurface,
 } from "../../lensBuilder/elementModel.js";
+import { isDLineReference } from "../../optics/glassCatalog.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../types/asphericSchema.js";
 import CommitInput, { builderCaptionStyle } from "./CommitInput.js";
 import MaterialPicker from "./MaterialPicker.js";
@@ -55,7 +56,7 @@ const ODD_TERMS = ASPHERIC_COEFFICIENT_SCHEMA.filter((d) => d.parity === "odd");
 /** Native spectral data describes the authored glass; replacing nd/νd alone would leave it inconsistent. */
 function hasNativeSpectra(e: BuilderElement): boolean {
   const x = e.extra;
-  return !!x && (x.indexReference === "e" || [x.nC, x.nF, x.ng, x.dPgF].some((v) => v !== undefined));
+  return !!x && (!isDLineReference(x.indexReference) || [x.nC, x.nF, x.ng, x.dPgF].some((v) => v !== undefined));
 }
 
 function LinkIcon() {
@@ -113,7 +114,7 @@ export default function GroupCard({ ctx, group, index, count, selected }: GroupC
       const e = group.elements[j];
       if (hasNativeSpectra(e))
         throw new BuilderEditError(
-          `${e.name} has native spectral data (an e-line index or partial dispersions). Reconcile it in Advanced JSON before choosing another glass.`,
+          `${e.name} has native spectral data (a D/e-line index or partial dispersions). Reconcile it in Advanced JSON before choosing another glass.`,
         );
       return updateElement(m, index, j, { material });
     });
@@ -389,14 +390,40 @@ export default function GroupCard({ ctx, group, index, count, selected }: GroupC
     const front = group.surfaces[j];
     return (
       <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) auto", gap: 6, alignItems: "center" }}>
-        <MaterialPicker
-          elementName={e.name}
-          material={e.material}
-          theme={t}
-          touch={touch}
-          invalid={ctx.elementInvalid(e.id)}
-          onPick={(material) => setMaterial(j, material)}
-        />
+        {e.extra?.indexReference === "D" ? (
+          <div
+            role="group"
+            aria-label={`${e.name} sodium D material`}
+            aria-invalid={ctx.elementInvalid(e.id) || undefined}
+            title="Sodium D source data. Reconcile spectral changes in Advanced JSON."
+            style={{
+              border: `1px solid ${ctx.elementInvalid(e.id) ? t.error : t.panelBorder}`,
+              borderRadius: 4,
+              padding: "4px 6px",
+              fontSize: 10.5,
+            }}
+          >
+            <span>
+              {textRun(
+                e.material.glass ? `${e.material.glass} · ` : "",
+                "nD ",
+                e.material.nd,
+                " · νD ",
+                e.material.vd ?? "—",
+              )}
+            </span>
+            <span style={{ display: "block", color: t.muted, fontSize: 9 }}>Sodium D · edit in Advanced JSON</span>
+          </div>
+        ) : (
+          <MaterialPicker
+            elementName={e.name}
+            material={e.material}
+            theme={t}
+            touch={touch}
+            invalid={ctx.elementInvalid(e.id)}
+            onPick={(material) => setMaterial(j, material)}
+          />
+        )}
         <div style={{ width: touch ? 118 : 96 }}>
           <CommitInput
             label={`${e.name} thickness`}

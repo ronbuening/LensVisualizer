@@ -10,6 +10,7 @@
  * height measurement and alignment in comparison mode.
  */
 
+import { textRun } from "../../utils/text.js";
 import { forwardRef, memo } from "react";
 import InventorLinks from "../content/InventorLinks.js";
 import PatentNumberLink from "../content/PatentNumberLink.js";
@@ -312,6 +313,18 @@ const DiagramHeader = memo(
                 ))}
               </div>
             )}
+            {L.source.source.errata?.length ? (
+              <details style={{ marginTop: 6, fontSize: compact ? 9 : 10.5, color: t.subtitle }}>
+                <summary style={{ cursor: "pointer" }}>
+                  {textRun("Source prescription notes (", L.source.source.errata.length, ")")}
+                </summary>
+                <ul style={{ margin: "6px 0", paddingLeft: 18, lineHeight: 1.5 }}>
+                  {L.source.source.errata.map((entry, index) => (
+                    <li key={index}>{entry.note}</li>
+                  ))}
+                </ul>
+              </details>
+            ) : null}
             {/* Comparison details include specifications and current optical readouts. */}
             {compact && detailsExpanded && (
               <div
