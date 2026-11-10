@@ -736,6 +736,8 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "D-ZK3A-25",
   "D-ZLAF67",
   "CF5",
+  "NBFD1",
+  "LASKN3",
   "N-BK10",
   "BSL22",
   "PBM18Y",
