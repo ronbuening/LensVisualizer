@@ -99,6 +99,7 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.51821,
       "vd": 65.18,
+      "focalLengthMm": -88.26,
       "glass": "PC2 (Hoya)",
       "role": "Front negative meniscus of the diverging front component; starts the retrofocus layout"
     },
@@ -109,6 +110,7 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.51821,
       "vd": 65.18,
+      "focalLengthMm": -95.54,
       "glass": "PC2 (Hoya)",
       "role": "Second negative meniscus of the front component, shares its divergence with L1"
     },
@@ -119,6 +121,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.58921,
       "vd": 40.97,
+      "focalLengthMm": 69.09,
       "glass": "LF2 (Sumita)",
       "role": "First positive element of the main group, behind the long front air gap"
     },
@@ -129,6 +132,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.6228,
       "vd": 56.88,
+      "focalLengthMm": 70,
       "glass": "SK10 (Schott)",
       "role": "Second positive element ahead of the stop"
     },
@@ -139,6 +143,7 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.52249,
       "vd": 59.64,
+      "focalLengthMm": 142.91,
       "glass": "K5 (Sumita)",
       "role": "Weak positive meniscus just ahead of the stop"
     },
@@ -149,6 +154,7 @@ const LENS_DATA = {
       "type": "Plano-Concave Negative",
       "nd": 1.78472,
       "vd": 25.71,
+      "focalLengthMm": -31.67,
       "glass": "SF11 (Schott)",
       "role": "Strong negative element behind the stop, with a plane front face"
     },
@@ -159,6 +165,7 @@ const LENS_DATA = {
       "type": "Plano-Concave Negative",
       "nd": 1.78472,
       "vd": 25.71,
+      "focalLengthMm": -82.51,
       "glass": "SF11 (Schott)",
       "role": "Negative flint half of the cemented rear meniscus",
       "cemented": "C1"
@@ -170,6 +177,7 @@ const LENS_DATA = {
       "type": "Plano-Convex Positive",
       "nd": 1.691,
       "vd": 54.8,
+      "focalLengthMm": 45.08,
       "glass": "N-LAK9 (Schott)",
       "role": "Positive lanthanum-crown half of the cemented rear meniscus",
       "cemented": "C1"
@@ -181,6 +189,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.691,
       "vd": 54.8,
+      "focalLengthMm": 51.35,
       "glass": "N-LAK9 (Schott)",
       "role": "Rear positive element; shares the high-index glass of L8"
     }
@@ -329,6 +338,18 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.7
   },
+  "groups": [
+    {
+      "text": "F",
+      "fromSurface": "1",
+      "toSurface": "4"
+    },
+    {
+      "text": "H",
+      "fromSurface": "5",
+      "toSurface": "17"
+    }
+  ],
   "doublets": [
     {
       "text": "C1",

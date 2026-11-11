@@ -112,3 +112,55 @@ Patent: US 3,036,499 A, sole example (Table 1)
 - `catalog.specs` angle line changed from "2ω ≈ 63.4°" to "2ω ≈ 64°" so it agrees with `projection.fullFieldDeg` 64.
 - Open: no maker or reputable reference states the minimum focus distance or blade count (a retailer listing gives 9
   blades); both stay unset.
+
+## 2026-11-11 — Second review: diagram, labels and movement
+
+- Compared the local page (infinity view and the nine element inspectors) with the sole drawing on page 1 of
+  `patents/US3036499A.pdf`, re-measured at 300 dpi on the clean left side with the element labels excluded, and on the
+  right side where the R leaders allow. The first pass's scale (0.04011 mm per px) reproduces every rim below to within
+  4 %.
+
+  | Surface | Figure, this review (mm) | File | Ratio | Verdict |
+  |---|---:|---:|---:|---|
+  | 1 | 19.4 (483–484 px, convex face to the outer edge) | 19.5 | 0.99 | keep |
+  | 2 | 17.3 (431 px, at the 45° bevel) | 17.4 | 0.99 | keep |
+  | 3 | 14.6–14.7 (364–367 px, outer edge) | 14.6 | 1.00 | keep |
+  | 4 | 13.5–13.6 (337–340 px, at the bevel) | 13.5 | 1.00 | keep |
+  | 5–8 | 12.7–12.9 (316–323 px, square edges) | 12.6 | 1.01–1.02 | keep |
+  | 9 | 12.0–12.3 (300 / 306 px, convex face to the edge) | 11.8 | 1.03 | keep, inside noise |
+  | 10 | 11.7 (291 px, at the 45° bevel) | 11.8 | 0.99 | keep |
+  | 11 | 9.4 (235 px, plane face at its bevel) | 9.7 | 0.97 | keep |
+  | 12 | 10.1 (251–252 px, concave face to the edge) | 9.7 | 1.04 | keep, inside noise |
+  | 13 | 11.3 (281 px, at the bevel) | 11.1 | 1.02 | keep |
+  | 14, 15 | 12.3 (307–308 px, common edge of L7/L8) | 12.4 | 0.99 | keep |
+  | 16, 17 | 14.8–15.0 (368 / 373 px) | 14.7 | 1.01–1.02 | keep |
+
+- Rims: no change. The drawn height order L1 > L9 ≥ L2 > L3 = L4 > L7/L8 > L5 > L6 holds on the page; the first
+  pass's front-larger steps on L1, L2 and the cemented pair match the drawing. Lands and cuts: none (no face
+  below its `.lens-work/base1121sd` value, no `rimExtensionSd` or `rimCutDepthMm`); the light-rule trace shows a worst
+  loss of 0.0 points against the baseline rims and a gain of 21.1 points at 32°.
+- Element focal lengths: the inspector showed "FL = —" for all nine elements. Added `focalLengthMm`, thick-lens values
+  in air at the d-line from the prescription, the same as the analysis quotes: L1 −88.26, L2 −95.54, L3 +69.09,
+  L4 +70.00, L5 +142.91, L6 −31.67, L7 −82.51, L8 +45.08, L9 +51.35 mm.
+- Group brackets: none → F (surfaces 1–4) and H (5–17). The patent names the negative front part F and the positive
+  main part H in the text (col. 1, lines 44–46) and brackets them in the drawing; the sibling Ultra-Lithagon
+  28mm f/3.5 uses the same letters.
+- Checked and found correct: names L1–L9 follow the patent text ("L1, L2, etc."; the drawing writes LI–LIX); every
+  `type` agrees with the signs of R; roles are true; the stop sits between L5 and L6, and the drawn tick lies 61 % of
+  the drawn l5 behind R10 (model 61.5 %); C1 brackets surfaces 13–15 (L7/L8 on the plane R14); no aspheric surfaces
+  and no `apd` tags, as the patent names no special glass. Movement: static, no `gaps` block, `closeFocusM` 1e15 as an
+  infinity placeholder; no source states the production focusing method, so `focus.description` does not name one.
+- Engine before and after: EFL 35.0011 mm, FOPEN 2, half-field 32°, stop radius 9.755 mm, tracing half-field 34.73°,
+  all unchanged. Surface audit OK; aperture within 3 % of the stated f-number with no rim limit; image circle clear;
+  traced field coverage 100 %.
+- Glass: all nine labels resolve within the exact window (largest |Δνd| 0.10, L4 SK10 through its N-SK10 alias). The
+  patent prints only nd and νd for its single example: no glass names, line indices or partial dispersions. Neither
+  the repository catalog nor the local Hoya, Ohara, Sumita and Hikari AGF files hold a Schott PK2, LF2 or K5 row, so
+  the Hoya PC2 and Sumita LF2 and K5 labels stay. The only other in-window rows are the obsolete Ohara BSL22
+  (1.51821/65.04) and PBL22 (1.58921/41.08), both further from the printed νd than the current labels. No nd-only
+  medium.
+- Colour: the patent prints no aberration curves, so no per-line focus comparison is possible.
+- Assignee: "Enna-Werk Optische Anstalt Dr. Appelt K.G." matches the patent's heading (page 2) and the corpus
+  spelling.
+- Open: the bevels on L1, L2, L5 and L7 render as straight joins from rim to rim; the drawn L5 front (R9) and L6
+  rear (R12) stay 3–4 % above the file, inside the reading noise.
