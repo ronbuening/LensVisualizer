@@ -205,7 +205,7 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1e15,
     "description": "Infinity focus only; the patent prints no close-focus spacing. The production Summar focuses to 1 m on a helicoid; that movement is not modeled."
   },
   "aperture": {

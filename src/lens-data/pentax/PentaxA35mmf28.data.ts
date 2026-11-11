@@ -236,7 +236,7 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1e15,
     "description": "Infinity focus only. The patent prints the infinity state and no focusing data, so no element moves. The image plane sits at the computed paraxial back focus, 37.47 mm. The maker's 0.3 m minimum focus is not modeled."
   },
   "aperture": {

@@ -199,7 +199,7 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1e15,
     "description": "Infinity focus only. The patent focuses by moving the whole lens (unit focusing) and prints only the infinity state; the production lens focuses to 0.85 m. No finite-focus state is modeled."
   },
   "aperture": {

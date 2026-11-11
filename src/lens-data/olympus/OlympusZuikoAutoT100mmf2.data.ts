@@ -255,7 +255,7 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1e15,
     "description": "Infinity focus only. The patent tabulates the infinity state alone and gives no focusing motion. The production lens focuses to 0.7 m; a secondary source describes a floating rear group, which Olympus literature does not confirm, so no close-range state is modelled."
   },
   "aperture": {
