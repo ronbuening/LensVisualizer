@@ -1,15 +1,27 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** REVIEW DRAFT — NOT VALIDATED FOR DELIVERY. Root-level integration import.
- * RU2611106C1 sole numerical prescription; original R/d/nD/VD retained without scaling.
- * Qualified modern MC Zenitar85/1.4 family association, NOT exact factory identity.
- * All clear semi-diameters INFERRED: diagram-outline starting points with bounded
- * axial-F1.4 ray-envelope adjustments. R7 optical cap18.4mm is not its drawing rim.
- * Source stop position5.5mm before L5; radius derived from nominalF1.4, not published.
- * Final image gap38.2mm unchanged. Infinity-only; no invented finite focus motion.
- * Explicit sodium-D materials; normal-line Abbe spectral estimates, no catalog substitution.
- * Off-axis clipping retained and disclosed. No reproduced source MTF claim.
- * Aperture control range F1.4–22 follows maker booklet, not patent range.
- * visible:false until downstream full validation/qualification is completed.
+/**
+ * ZENIT MC ZENITAR 85mm f/1.4 — RU 2611106 C1 (KMZ, 2017), sole example: Table 1 (p. 7), Fig. 1 (p. 9).
+ * Radii, thicknesses, indices and Abbe numbers are transcribed as printed, without scaling.
+ * Printed: f' = 84.23 mm, 1:1.4, 2ω = 28.5°, 2Y' = 43.26 mm, back focal distance 38.2 mm.
+ *
+ * Index line: the table heads its columns nD / νD, but every value equals the helium d-line index of the
+ * named glass (TK14 and LF5 match catalog nd; TK21, TF5 and STK3 sit 1.0–2.3e-4 above the GOST sodium-D
+ * column), so the file uses indexReference "d". TF5 and LF5 trace on the SF4 (Schott) and QF3 (CDGM)
+ * catalog curves; TK14, TK21 and STK3 have no exact catalog row and use Abbe-number dispersion estimates.
+ *
+ * Paraxial d-line trace: EFL 84.264 mm, BFD 38.259 mm. GOST e-line indices give 84.236 / 38.221 mm, so the
+ * printed f' and back focus are e-line values. The printed 38.2 mm image gap is kept; no refocus.
+ *
+ * Stop: printed 5.5 mm in front of lens 5 (p. 6), so the 14.6 mm air gap is split 9.1 + 5.5 mm. Its radius
+ * is derived from f/1.4; the patent prints none.
+ * Semi-diameters are not published: estimated from Fig. 1 and widened where the f/1.4 axial beam needs it.
+ * R7 carries a rim cut 9.1 mm deep, ending at the stop plane, for the flat land Fig. 1 draws on L4's rear
+ * face. Off-axis vignetting from these rims is kept.
+ *
+ * Infinity focus only: the patent focuses by moving the whole lens; the maker's minimum focus is 0.85 m.
+ * The f/1.4–22 aperture scale follows the maker's booklet; the patent states f/1.4 only.
+ * Production association (maker: 7 elements / 5 groups, 85 mm f/1.4, 28° field) is probable, not a
+ * confirmed factory prescription.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -21,71 +33,82 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Source spherical glass",
+      "type": "Positive Meniscus",
       "nd": 1.613094,
       "vd": 60.6066,
-      "glass": "Unmatched (source TK14; literal sodium-D only)",
-      "indexReference": "d"
+      "glass": "Unmatched (TK14, nd 1.613094 / νd 60.6066)",
+      "indexReference": "d",
+      "role": "Front positive meniscus of the first component; starts converging the f/1.4 beam"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Source spherical glass",
+      "type": "Positive Meniscus",
       "nd": 1.613094,
       "vd": 60.6066,
-      "glass": "Unmatched (source TK14; literal sodium-D only)",
-      "indexReference": "d"
+      "glass": "Unmatched (TK14, nd 1.613094 / νd 60.6066)",
+      "indexReference": "d",
+      "role": "Second front positive meniscus; shares the front convergence with L1"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Source spherical glass",
+      "type": "Positive Meniscus",
       "nd": 1.656908,
       "vd": 51.1549,
-      "glass": "Unmatched (source TK21; literal sodium-D only)",
-      "indexReference": "d"
+      "glass": "Unmatched (TK21, nd 1.656908 / νd 51.1549)",
+      "indexReference": "d",
+      "role": "Thick positive meniscus, crown half of the front cemented doublet",
+      "cemented": "C1"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Source spherical glass",
+      "type": "Negative Meniscus",
       "nd": 1.755234,
       "vd": 27.5228,
-      "glass": "Unmatched (source TF5; literal sodium-D only)",
-      "indexReference": "d"
+      "glass": "SF4 (Schott catalog equivalent of TF5)",
+      "indexReference": "d",
+      "role": "Dense-flint negative meniscus; its deep concave rear surface faces the stop",
+      "cemented": "C1"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Source spherical glass",
+      "type": "Biconcave Negative",
       "nd": 1.57502,
       "vd": 41.2951,
-      "glass": "Unmatched (source LF5; literal sodium-D only)",
-      "indexReference": "d"
+      "glass": "QF3 (CDGM catalog equivalent of LF5)",
+      "indexReference": "d",
+      "role": "Light-flint biconcave element behind the stop, front half of the rear cemented meniscus",
+      "cemented": "C2"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Source spherical glass",
+      "type": "Biconvex Positive",
       "nd": 1.659499,
       "vd": 57.352,
-      "glass": "Unmatched (source STK3; literal sodium-D only)",
-      "indexReference": "d"
+      "glass": "Unmatched (STK3, nd 1.659499 / νd 57.3520)",
+      "indexReference": "d",
+      "role": "Equal-radius biconvex crown completing the rear cemented meniscus",
+      "cemented": "C2"
     },
     {
       "id": 7,
       "name": "L7",
       "label": "Element 7",
-      "type": "Source spherical glass",
+      "type": "Plano-Convex Positive",
       "nd": 1.755234,
       "vd": 27.5228,
-      "glass": "Unmatched (source TF5; literal sodium-D only)",
-      "indexReference": "d"
+      "glass": "SF4 (Schott catalog equivalent of TF5)",
+      "indexReference": "d",
+      "role": "Rear positive element, flat face toward the image"
     }
   ],
   "surfaces": [
@@ -177,7 +200,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION — infinity-only literal patent state; static sentinel, no finite-focus spacings or motion modeled. Production MFD0.85m is catalog-only."
+    "description": "Infinity focus only. The patent focuses by moving the whole lens (unit focusing) and prints only the infinity state; the production lens focuses to 0.85 m. No finite-focus state is modeled."
   },
   "aperture": {
     "nominalFNumber": 1.4,
@@ -199,10 +222,22 @@ const LENS_DATA = {
     "fullFieldDeg": 28.5,
     "maxTraceFieldDeg": 14.25
   },
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "5",
+      "toSurface": "7"
+    },
+    {
+      "text": "C2",
+      "fromSurface": "8",
+      "toSurface": "10"
+    }
+  ],
   "layout": {
     "yScFill": 0.5
   },
-  "subtitle": "RU 2611106 C1 — qualified modern production-family correlation; literal sodium-D patent prescription",
+  "subtitle": "RU 2611106 C1, sole example — probable production design",
   "catalog": {
     "lensMounts": [
       "canon-ef",
@@ -224,10 +259,9 @@ const LENS_DATA = {
     },
     "specs": [
       "7 ELEMENTS / 5 GROUPS",
-      "SOURCE f = 84.23 mm",
-      "F/1.4",
-      "SOURCE FULL FIELD 28.5°",
-      "INFINITY-ONLY PATENT MODEL"
+      "DESIGN f = 84.23 mm",
+      "DESIGN F/1.4",
+      "ALL SPHERICAL"
     ]
   },
   "source": {
