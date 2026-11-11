@@ -63,8 +63,47 @@ Open:
 - Rims at S7–S10. At the engine iris the axial beam clears S10 by 0.02 mm and S7 by 0.05 mm. A real-ray f/2.8 cone
   (stop radius 7.20 mm) needs S7 7.00, S8 6.82 and S10 7.23 mm against 6.8, 6.8 and 7.0. Fig. 1 read at 600 dpi gives
   L4 about 6.9–7.6 mm and L5 about 7.1–7.9 mm (lower and upper extents), so S7/S8 at 7.05 and S9/S10 at 7.25 mm would
-  stay inside the figure. Left for the rim pass.
+  stay inside the figure. Left for the rim pass. (Closed in the semi-diameter pass below: S7/S8 7.1, S9/S10 7.3.)
 - The other rims sit 0.1–0.3 mm under Fig. 1's lower-edge extents (L1 about 13.7, L2 9.5, L3 8.4, L6 8.9 mm).
+  (Closed in the semi-diameter pass below: kept, within measurement noise.)
 - Field: the declared 63° (31.5° half-field) lands at 21.24 of 21.65 mm; the corner needs 32.0°, the patent's plotted
   edge. `maxTraceFieldDeg` 32 would trace to the corner.
 - Diaphragm blade count is not in the A-series manual and is left unset.
+
+## 2026-11-11 — Semi-diameter pass against the patent figure
+
+Source: JP S50-138824 A, Fig. 1 on printed p. 117 (PDF p. 3), a 1-bit scan at 347 ppi, rendered at 600 dpi. Scale:
+the vertex crossings beside the axis put S1 at 80 px and S12 at 1285 px, 1205 px for the 119.72-unit track, so 10.065 px
+per patent unit (28.76 px/mm at ×0.35); the spans S1–S8 and S3–S10 give 10.05 and 10.10. The L1 rear arc (R2 = 44.46)
+fitted with the horizontal scale gives the vertical scale within 2 %. The drawn elements sit 3–8 px above the drawn
+axis line, so each half-height is half the distance between the centres of the element's upper and lower edge lines.
+
+| Surface | Baseline sd | Fig. 1 (mm) | Baseline / figure | New sd | Evidence                                              |
+| ------- | ----------- | ----------- | ----------------- | ------ | ----------------------------------------------------- |
+| 1       | 13.5        | 13.6        | 0.99              | 13.5   | kept, within noise                                    |
+| 2       | 10.8        | 11.0        | 0.98              | 10.8   | kept; Fig. 1 arc meets the bevel at 11.0              |
+| 3       | 9.2         | 9.6         | 0.95              | 9.2    | kept, within noise                                    |
+| 4       | 9.2         | about 9.0   | 1.02              | 9.2    | kept; the rear face ends at a drawn chamfer           |
+| 5, 6    | 8.3         | 8.5         | 0.97              | 8.3    | kept, within noise                                    |
+| 7, 8    | 6.8         | 7.2         | 0.94              | 7.1    | real-ray f/2.8 marginal 7.00 (S7) and 6.82 (S8)       |
+| 9, 10   | 7.0         | 7.5         | 0.94              | 7.3    | S10 clipped the axial beam; real-ray f/2.8 needs 7.23 |
+| 11, 12  | 8.8         | 9.1         | 0.97              | 8.8    | kept, within noise                                    |
+
+Every baseline rim was inside the drawing by 1–7 %, within measurement noise, so the figure alone moved nothing. The
+change is a clearance fix that also brings L4 and L5 closer to the drawing. The paraxial spherical-aberration check
+(+0.113, −0.096, −0.136 and −0.097 mm at pupil 1, 0.85, 0.7 and 0.5) shows no prescription misprint behind the clip.
+Before the pass, S10 cut the engine's own axial beam (99.5 % on axis; the aperture audit's raise asked 7.1 for S9/S10
+as a square rim), and the real-ray f/2.8 cone, whose marginal ray reaches 7.20 mm at the stop plane, exceeded S7, S8
+and S10. Each element keeps one height on both faces, as Fig. 1 draws them square-cut. After the pass the real-ray
+cone clears every rim: S10 by 0.07 mm, S7 by 0.10 mm, S8 by 0.28 mm and S9 by 0.41 mm. No face sits below its baseline,
+so there are no cuts or lands to justify.
+
+Geometric transmission against the baseline: 0° 99.5 → 100.0 %, 14.3° 83.5 → 87.8 %, 22.9° 66.4 → 71.0 % and 31.5°
+44.4 → 48.1 %. Engine EFL, FOPEN 2.8, half-field 31.5° and stop radius 6.98287 mm are unchanged; only the drawn stop
+housing follows the larger neighbouring rim (7.1 mm). The surface validator prints OK, the aperture audit reports no
+rim limit, the image-circle check reports nothing undersized and field coverage is unchanged at 98 % (declared 31.5°
+field; corner at 32.0°, clear). A model sketch at 14.38 px/mm laid over Fig. 1 at 300 dpi matches the axial positions
+and the new L4 and L5 heights. The maker comparison is in the Deployment validation section above.
+
+Open: L2 and L6 sit 3–5 % inside the drawing and stay as noise. The 2 % vertical-scale uncertainty applies to every
+reading. The 31.5° field item above is unchanged.

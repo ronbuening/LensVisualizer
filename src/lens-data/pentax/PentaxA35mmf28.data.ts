@@ -26,8 +26,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and L4, so STO sits at the midpoint of d6 (4.37 + 4.37 at F = 100, 1.5295 + 1.5295 mm here). Its radius follows
  * from the paraxial entrance pupil at f/2.8.
  *
- * sd: the patent prints none. Each sits at or just under the smaller of the element's upper and lower extents in
- * Fig. 1 at the figure's own scale, and L1's rear face excludes its bevel. They are inferred, not factory apertures.
+ * sd: the patent prints none. They are estimated from Fig. 1 at its own scale (10.07 px per patent unit at 600 dpi,
+ * from the vertex spacing) and floor-checked by real-ray trace; they are inferred, not factory apertures. Fig. 1 draws
+ * half-heights of about 13.6, 9.6, 8.5, 7.2, 7.5 and 9.1 mm for L1–L6, and L1's rear face ends at its bevel near
+ * 11.0 mm. L1–L3 and L6 sit 1–5 % under those readings. L4 (7.1 mm) and L5 (7.3 mm) clear the real-ray f/2.8
+ * marginal ray, which reaches 7.00 mm at surface 7 and 7.23 mm at surface 10, and stay inside the drawing.
  *
  * Focus: the patent prints the infinity state only, so no element moves. closeFocusM is a placeholder; the maker's
  * 0.3 m minimum focus is in catalog.closeFocusM.
@@ -199,27 +202,27 @@ const LENS_DATA = {
       "label": "7",
       "R": -28.608999999999995,
       "d": 2.8805,
-      "sd": 6.8,
+      "sd": 7.1,
       "medium": 4
     },
     {
       "label": "8",
       "R": 30.94,
       "d": 2.079,
-      "sd": 6.8
+      "sd": 7.1
     },
     {
       "label": "9",
       "R": -34.1075,
       "d": 3.1814999999999998,
-      "sd": 7.0,
+      "sd": 7.3,
       "medium": 5
     },
     {
       "label": "10",
       "R": -16.9015,
       "d": 0.19949999999999998,
-      "sd": 7.0
+      "sd": 7.3
     },
     {
       "label": "11",

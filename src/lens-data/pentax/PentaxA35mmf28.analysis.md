@@ -30,7 +30,7 @@ At ×0.35 the computed EFL is 35.084 mm (100.24 at F = 100), the vertex track is
 
 The patent neither tabulates nor draws a stop. The maker's section places the diaphragm between L3 and L4, and the model puts it at the midpoint of d6 (8.74 at F = 100, 1.5295 + 1.5295 mm here); the exact station is inferred. A real-ray trace supports the region: with the stop at mid-gap the 32° sagittal and meridional field curves are +0.35 and −1.20 at F = 100, against Fig. 2 readings of about +0.3 and −1.05, and the meridional reading falls between the values for stops at 50 % and 75 % of the gap.
 
-The patent prints no clear apertures. The semi-diameters are read from Fig. 1 at its own scale, at or just under the smaller of each element's upper and lower extents, and they are inferred, not factory apertures. Fig. 1 is drawn to the JP spacings: every vertex lies within about 0.3 units (F = 100) of its tabulated position, including those set by the negative R7 and R9.
+The patent prints no clear apertures. The semi-diameters are estimated from Fig. 1 at its own scale and checked against the real f/2.8 marginal ray, and they are inferred, not factory apertures. Fig. 1 draws half-heights of about 13.6, 9.6, 8.5, 7.2, 7.5 and 9.1 mm for L1–L6 at ×0.35; the model's rims sit up to 5 % inside them, with L4 at 7.1 mm and L5 at 7.3 mm set to pass the f/2.8 marginal ray. Fig. 1 is drawn to the JP spacings: every vertex lies within about 0.3 units (F = 100) of its tabulated position, including those set by the negative R7 and R9.
 
 ## Element-by-Element Analysis
 
@@ -92,9 +92,9 @@ A trace of the JP data at infinity reproduces Fig. 2 on the patent's F = 100 sca
 
 ## Model Scope and Limitations
 
-The iris follows the paraxial f-number rule: at f/2.8 its radius is 6.98 mm for an entrance-pupil radius of 6.27 mm, and the real marginal ray through it corresponds to about f/2.88. At that iris the axial beam clears the inferred rims of surfaces 10 and 7 by only 0.02 and 0.05 mm; a real-ray f/2.8 cone would exceed the rims of surfaces 7, 8 and 10 by up to 0.23 mm.
+The iris follows the paraxial f-number rule: at f/2.8 its radius is 6.98 mm for an entrance-pupil radius of 6.27 mm, and the real marginal ray through it corresponds to about f/2.88. No lens surface clips the axial beam. A real-ray f/2.8 cone, whose marginal ray reaches 7.20 mm at the stop plane, also passes every rim; the closest are surface 10 (7.23 mm against 7.3) and surface 7 (7.00 mm against 7.1).
 
-The declared 63° field (31.5° half-field) lands at 21.24 mm. The 21.63 mm corner of the 24 × 36 mm frame is reached at 32.0°, the patent's plotted field edge. Corner vignetting follows from the inferred rims and is not a factory figure.
+The declared 63° field (31.5° half-field) lands at 21.24 mm. The 21.63 mm corner of the 24 × 36 mm frame is reached at 32.0°, the patent's plotted field edge. Geometric transmission at 31.5° is about 48 % of the axial value; it follows from the inferred rims and is not a factory figure.
 
 Close focus, coatings and any production revision are not modeled.
 
