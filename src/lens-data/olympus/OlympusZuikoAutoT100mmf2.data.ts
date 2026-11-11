@@ -286,6 +286,18 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.7
   },
+  "groups": [
+    {
+      "text": "FRONT",
+      "fromSurface": "1",
+      "toSurface": "8"
+    },
+    {
+      "text": "REAR",
+      "fromSurface": "9",
+      "toSurface": "13"
+    }
+  ],
   "doublets": [
     {
       "text": "C1",

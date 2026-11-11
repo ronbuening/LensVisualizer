@@ -103,3 +103,54 @@ CLIPS-AXIAL or BLOCKS-CHIEF. The engine values are unchanged: EFL 99.99457, F/2.
 
 Open: corner side-vignetting at S1 (53 % of the unvignetted 12° bundle) comes from the figure-matched front rims and is
 kept.
+
+## 2026-11-11 — Second review: diagram, labels and movement
+
+Compared the live page (1400×900, infinity) with Fig. 1 of `patents/US4435049A.pdf` (page 2, 300 ppi native raster) and
+with Fig. 6, the Embodiment 5 aberration plots (page 5, read at 600 dpi).
+
+Rims. Re-measured from stroke centres (axis row 1523.5; r1 to r13 vertex crossings 935.5 to 1635.5 px, 9.847 px/mm on
+the 71.09 mm track): L1 253.5 px (25.7 mm), L2 232.3 (23.6), L3 213.5 (21.7), L4 168.8 (17.1), L5/L6 163.8 (16.6), L7
+183.5 (18.6), each 1–2 % above the file. A least-squares fit of all thirteen vertices gives rms 3.1 px for Embodiment 3,
+3.8 for 4, 5.4 for 5 and 6.7–7.6 for 1–2; at Embodiment 3's 9.62 px/mm every edge reads 3–4 % above the file. Both
+readings sit inside the reading error, and the step order (L1 > L2 > L3 > L7 > L4 > L5/L6) and the square-cut edges
+match, so no rim changed. Arc fits show no vertical stretch: R1 draws about 7 % deeper than predicted, R5, R6 and R8
+6–18 % shallower.
+
+Lands and cuts. Fig. 1 draws all three lands. Cap ends re-read at stroke centres: S6 q 0.87 (upper), S8 q 0.82 (upper),
+S9 q 0.85–0.86 upper and 0.86–0.87 lower against 0.877 in the file (14.30 of 16.3 mm), a difference under 2 native px;
+the beam floor at S9 is 13.86 mm (q 0.850). The full-pupil lattice gives 100/96.3/91.2/85.7/77.9/66.3/53.5 % at 0–12°
+with and without the three cuts: verdict keep, figure-drawn at 0.0 points. No face sits below the `base1121sd` rims, so
+there are no cuts to price; the worst loss against that baseline is 0.0 points.
+
+Change: group brackets. The patent names a front group (condition 1 relates "to the focal length f1234 of the front
+group") and a rear group (condition 6 is satisfied "for the rear group" by the cemented component). The file had no
+`groups`. Added FRONT (S1–S8, L1–L4) and REAR (S9–S13, L5–L7), split at the 20.70 mm central gap in the corpus
+FRONT/REAR form. The live page shows both labels under the element numbers without collisions. `.analysis.md` names
+the split, its L4 sentence follows condition 7 (L4 corrects the spherical aberration of the three positive menisci),
+and its glass section notes the g-line agreement below.
+
+Labels, tags and movement. Types agree with the signs of R (L1–L3 positive menisci, L4 negative meniscus, L5 biconcave,
+L6 and L7 biconvex); roles agree with conditions 2, 3 and 5–8; every inspector shows a focal length. C1 brackets S9–S11
+and L5/L6 carry `cemented: "C1"`. L2 `apd: "patent"` stands: the patent puts the anomalous-dispersion glass on the
+second lens component (condition 3, ν2 > 60). No aspheres and no `A` labels. The stop sits in d8 between L4 and L5.
+Static prime: no `gaps` block and no stray variable gap; `focus.description` states infinity only, the 0.7 m production
+minimum and the unconfirmed floating group, as the sources do.
+
+Glass and colour. All seven labels resolve in the exact window (largest |Δnd| 3.9e-5 for PBL25, |Δνd| ≤ 0.05); no
+unmatched glass, no nd-only medium, and the patent prints no line indices or θgF. Fig. 6 plots d and g spherical
+aberration: the d curve reads −0.013 mm at full aperture and −0.06 mm at the 0.75 zone (model −0.013 and −0.059 at
+0.7); the g curve sits +0.089 mm behind d near the axis and +0.097 mm at full aperture (engine paraxial V channel +0.087,
+marginal +0.100). Astigmatism (Coddington, stop at mid-d8): Δm/Δs +0.117/+0.022 mm at 12° and +0.095/−0.022 mm at 10°
+against +0.128/+0.026 and +0.103/−0.023 read from the plot. Distortion at 12°: model +0.50 %, plot +0.56 %. The model
+reproduces Fig. 6 within the reading error, which also supports the mid-gap stop.
+
+Assignee "Olympus Optical Co., Ltd." matches the front page and the corpus spelling (36 files).
+
+Engine values are unchanged: EFL 99.99457 mm, F/2.000, half-field 12°, stop radius 13.043 mm. audit:surface OK;
+audit:aperture within 3 % with no rim limit; audit:image-circle 0 undersized; field coverage declared 12° (corner 12.2°);
+clearap at Y 21.63 shows no CLIPS-AXIAL or BLOCKS-CHIEF.
+
+Open: Fig. 1 spacing fits Embodiment 3 (rms 3.1 px) better than the modelled Embodiment 5 (5.4 px), and its thin L7 edge
+matches the d12 = 0.0417 of Embodiments 3–4 rather than Embodiment 5's 0.0582. This bears on the embodiment choice
+above, not on the rims.
