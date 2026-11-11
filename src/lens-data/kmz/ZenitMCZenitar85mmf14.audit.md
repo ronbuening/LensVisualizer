@@ -68,7 +68,46 @@ Open:
 
 - R7 rim: Fig. 1 draws the R7 clear area to about 15.4 mm, with a flat land out to about 20.0 mm roughly 7.2 mm behind
   the vertex (1.9 mm ahead of the stop). The file has `sd` 18.4 with the cut at 9.1 mm depth (cap radius 17.04 mm).
-  The f/1.4 axial beam needs 15.96 mm at R7, so a figure-exact land would clip it slightly.
+  The f/1.4 axial beam needs 15.96 mm at R7, so a figure-exact land would clip it slightly. (Closed in the
+  semi-diameter pass below: `sd` 20.91, cut at 7.7 mm.)
 - Front rims run about 0.5–0.9 mm above Fig. 1 (L1 29.6 vs about 29.0, L4 front 20.9 vs about 20.0 mm), set at the
-  f/1.4 axial beam height.
+  f/1.4 axial beam height. (Closed in the semi-diameter pass below: within 3–4 % of the figure, kept.)
 - Unit focusing to 0.85 m is printed as a mechanism only; no finite state is modeled.
+
+## 2026-11-11 — Semi-diameter pass against the patent figure
+
+Source: RU 2611106 C1 (`patents/RU2611106C1.pdf`), Fig. 1 on p. 9, a 300 ppi bilevel scan, native scale (no scaling
+in the model). The axis lies on row 1332 at 300 dpi; the twelve vertex crossings sit at x = 815.5, 896.5, 901.5, 982,
+988.5, 1170.5, 1207, 1384, 1418, 1528, 1534.5 and 1581 px. S1→S12 gives 765.5 px over 62.9 mm, 12.17 px/mm; the spans
+S1→S7 (12.20), S5→S6 (12.13) and S8→S12 (12.16) agree, the stop tick falls at x = 1316.5 against 1316.9 predicted, and
+the drawn R7 arc matches R = 20.51 mm in height (136 px at 3.29 mm sag, 135.6 predicted), so both axes share the scale.
+Rims were read on the lower half, which carries no leader lines.
+
+| Surface | Stored before | Fig. 1 | Ratio | After | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| 1 / 2 (L1, square rim) | 29.6 / 29.6 | 28.76 (350 px) | 0.97 | kept | within noise |
+| 3 / 4 (L2, square rim) | 27.91 / 27.91 | 27.03 (329 px) | 0.97 | kept | within noise |
+| 5 (L3 front) | 24.61 | 23.83 (290 px) | 0.97 | kept | within noise |
+| 6 (L3/L4 junction, L4 edge) | 20.91 | 20.05 (244 px) | 0.96 | kept | within noise |
+| 7 (L4 rear) | 18.40, cut 9.1 mm (cap 17.04) | edge 20.05, cap end 15.32 (186.5 px) | 1.09 | 20.91, cut 7.70 mm (cap 16.02) | figure square rim and land |
+| 8 (L5 front) | 15.29 | 15.28 (186 px) | 1.00 | kept | agrees |
+| 9 / 10 (L5/L6) | 15.89 / 15.99 | 15.3–15.4 (186–187 px) | 0.96 | kept | within noise |
+| 11 / 12 (L7) | 14.88 / 14.52 | 14.63 (178 px) | 0.98 / 1.01 | kept | agrees |
+
+R7: Fig. 1 draws L4 square-edged (both faces end at 244 px) and ends the R7 cap on a flat land at q = 186.5 / 244 =
+0.764 of the edge radius; one native pixel at each end gives q 0.757–0.771. R7 therefore takes R6's `sd`
+(20.91031686675028) so L4 stays square. q × `sd` puts the cut radius at 15.98 mm (depth 7.65 mm), but the wide-open
+f/1.4 beam reaches 15.961 mm at R7 and an inferred cut needs 0.05 mm clearance, so the cut moved out to 7.70 mm depth
+(cut radius 16.018 mm, q = 0.766, inside the measured range). The land now sits 7.70 mm behind the R7 vertex, 1.40 mm
+ahead of the stop plane; Fig. 1 draws it at 7.19 mm (88 px). The surface validator accepts 7.70 and refuses 7.65.
+
+Lands rule: the cut and land cost no light. Geometric transmission at 0 / 2.4 / 4.8 / 7.1 / 9.5 / 11.9 / 14.3° is
+100.0 / 92.3 / 83.0 / 73.1 / 62.6 / 50.9 / 39.2 % before and after; restoring the baseline R7 rim wins back 0.0 points.
+
+Engine numbers before and after: EFL 84.264 mm, f/1.4, stop radius 15.667 mm, half-field 14.25°, BFD 38.259 mm. The
+surface audit is clean, the aperture audit finds no rim limit, the image-circle check finds nothing undersized, and
+field coverage reaches 21.57 of 21.65 mm at the corner (unchanged). A render of the worktree page shows L4 square with
+its land just ahead of the iris, as in Fig. 1.
+
+Open: the renderer joins L3's front rim (24.61) to the cemented junction (20.91) with a sloped edge, where Fig. 1
+draws L3 square at 23.8 mm with a step down to L4; a land is not allowed on a cemented junction, so this stays.

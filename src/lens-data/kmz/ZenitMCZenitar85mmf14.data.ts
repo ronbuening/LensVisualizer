@@ -14,9 +14,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Stop: printed 5.5 mm in front of lens 5 (p. 6), so the 14.6 mm air gap is split 9.1 + 5.5 mm. Its radius
  * is derived from f/1.4; the patent prints none.
- * Semi-diameters are not published: estimated from Fig. 1 and widened where the f/1.4 axial beam needs it.
- * R7 carries a rim cut 9.1 mm deep, ending at the stop plane, for the flat land Fig. 1 draws on L4's rear
- * face. Off-axis vignetting from these rims is kept.
+ * Semi-diameters are not published: estimated from Fig. 1 (12.17 px/mm at 300 dpi) and floor-checked by
+ * real-ray trace; the drawn rims sit within about 4 % of the stored values. L4 is drawn square, so R7 takes
+ * R6's rim. Fig. 1 ends the R7 cap on a flat land at q = 0.764 of the edge radius; the inferred cut sits at
+ * 7.7 mm depth (cut radius 16.02 mm, q = 0.766), just clearing the f/1.4 axial beam (15.96 mm) and 1.4 mm
+ * ahead of the stop plane. Off-axis vignetting from these rims is kept.
  *
  * Infinity focus only: the patent focuses by moving the whole lens; the maker's minimum focus is 0.85 m.
  * The f/1.4–22 aperture scale follows the maker's booklet; the patent states f/1.4 only.
@@ -156,8 +158,8 @@ const LENS_DATA = {
       "label": "7",
       "R": 20.51,
       "d": 9.1,
-      "sd": 18.4,
-      "rimCutDepthMm": 9.1
+      "sd": 20.91031686675028,
+      "rimCutDepthMm": 7.7
     },
     {
       "label": "STO",
