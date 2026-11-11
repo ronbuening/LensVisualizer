@@ -111,6 +111,7 @@ its land just ahead of the iris, as in Fig. 1.
 
 Open: the renderer joins L3's front rim (24.61) to the cemented junction (20.91) with a sloped edge, where Fig. 1
 draws L3 square at 23.8 mm with a step down to L4; a land is not allowed on a cemented junction, so this stays.
+(Carried forward to the second review below.)
 
 ## 2026-11-11 — Glass coverage pass
 
@@ -121,3 +122,53 @@ draws L3 square at 23.8 mm with a step down to L4; a land is not allowed on a ce
   catalog curves.
 - Metadata: `aperture.blades` 8 from the maker's product page (zenit.photo, "МС Зенитар 1,4/85": 8 blades, f/1.4–22,
   0.85 m, 28°, Canon EF / Nikon F). The display name already follows the maker's "MC Zenitar" designation.
+
+## 2026-11-11 — Second review: diagram, labels and movement
+
+Compared the local page (infinity, element inspectors, movement overlay) with RU 2611106 C1 Fig. 1 (p. 9, re-read at 300
+and 600 dpi; axis row 1332, 12.17 px/mm as proved in the semi-diameter pass), Table 1 (p. 7) and the description (pp. 6–7).
+
+A stop-aimed real-ray trace puts every stored rim 0.01 mm outside the f/1.4 axial beam (S1 29.59, S3 27.90, S5 24.60, S6
+20.90, S8 15.28, S9 15.88, S10 15.98, S11 14.87 mm); Fig. 1 draws every element 2–5 % below that beam, so no rim can come
+down to the drawing. Fig. 1 draws all seven elements square-edged: L5 and L6 share one flat top (184.5–185.5 px at 600 dpi
+halved, 15.2 mm) and L7 is square (14.4–14.6 mm). The page showed L5 rising from 15.29 to 15.89 mm across its edge, L6
+from 15.89 to 15.99 and L7 falling from 14.88 to 14.52, and put L5's front rim below the iris radius (15.67 mm) where
+Fig. 1 draws it level with or just above the stop tick (15.16 vs 15.04 mm).
+
+| Surface | Before | Fig. 1 | After | Evidence |
+| --- | --- | --- | --- | --- |
+| 8 (L5 front) | 15.29 | 15.2–15.3, square with L5/L6 | 15.99 (R10's rim) | square-cut pair; S9/S10 axial floor 15.88/15.98 bars lowering the rest |
+| 9 (L5/L6 junction) | 15.89 | 15.2–15.3 | 15.99 (R10's rim) | same |
+| 12 (L7 rear, flat) | 14.52 | 14.4–14.6, square | 14.88 (R11's rim) | square-cut L7; S11 axial floor 14.87 |
+
+The C2 pair now sits 4–5 % and L7 2–3 % above the figure, in line with L1–L4 (3–5 %). These are raises; they cost no
+light and were made for the drawn shape, not for the numbers. Lands and cuts: the R7 land (cut 7.70 mm) is the only one;
+it is needed for spacing (R7's `sd` 20.91 exceeds |R| 20.51) and `rimcost.mjs` against the 1121 baseline gives a worst
+loss of 0.0 points, so it stays. Full-pupil transmission at 0 / 2.4 / 4.8 / 7.1 / 9.5 / 11.9 / 14.3° goes from 100.0 / 92.3
+/ 83.0 / 73.1 / 62.6 / 50.9 / 39.2 % to 100.0 / 92.3 / 83.4 / 73.8 / 63.8 / 52.5 / 40.9 %. Engine numbers unchanged: EFL
+84.264 mm, f/1.4, stop radius 15.667 mm, half-field 14.25°, BFD 38.259 mm; field coverage 21.57 of 21.65 mm; the surface,
+aperture and image-circle audits are clean.
+
+Labels: added `groups` I (S1–S7) and II (S8–S12), the two optical components the description names and Fig. 1 braces;
+they render under the element numbers and do not touch the C1/C2 cemented brackets. Added `focalLengthMm` to every element
+(thick-lens d-line values +176.4, +203.6, +67.5, −33.7, −32.4, +33.3, +111.9 mm), which the inspector had shown as "FL = —".
+Element names L1–L7 follow the patent's lens numbers 1–7; types agree with the signs of R; roles are true; the stop sits
+9.1 mm behind R7 and 5.5 mm before lens 5 as printed; no aspheres and no `apd` tags, as neither the patent nor the maker
+names a special glass. The patent's text calls the L5/L6 pair a negative meniscus; the printed prescription gives +360.0
+mm at the d line, so roles avoid a power sign.
+
+Movement: static infinity-only prime with no `gaps`; `focus.description` states the patent's unit focusing (p. 7, "by
+moving the whole optical system") and the 0.85 m production minimum; the movement overlay reports no modeled movement.
+
+Glass: all seven labels resolve within the exact window (TK14 Δnd −5e-7, TK21 +4e-6, STK3 +7e-7; SF4 −3.3e-5 / +0.06; QF3
++6e-6 / 0.00). The patent prints only nD/νD and Table 2 spectral weights (435–656 nm): no line indices, no partial
+dispersion and no chromatic aberration curves, so there is no colour comparison to make. Hoya E-FD4/FD4 and Ohara PBH4
+(TF5) and Sumita LF7 (LF5) are equally exact alternatives; the current labels stand. The `.analysis.md` limitations
+paragraph still described three unmatched glasses on Abbe estimates; it now matches the catalog state.
+
+Assignee and inventor match the front page (ПАО "Красногорский завод им. С.А. Зверева"; Богданков Владимир Александрович);
+the spelling is the corpus's only KMZ assignee entry.
+
+Open: L3 still renders with a sloped edge from 24.61 mm to the 20.91 mm cemented junction, where Fig. 1 draws it square at
+23.8 mm with a step down to L4; `rimExtensionSd` is not allowed on a cemented interface, and S5 cannot drop below its
+24.60 mm axial floor.

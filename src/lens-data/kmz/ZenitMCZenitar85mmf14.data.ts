@@ -15,8 +15,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Stop: printed 5.5 mm in front of lens 5 (p. 6), so the 14.6 mm air gap is split 9.1 + 5.5 mm. Its radius
  * is derived from f/1.4; the patent prints none.
  * Semi-diameters are not published: estimated from Fig. 1 (12.17 px/mm at 300 dpi) and floor-checked by
- * real-ray trace; the drawn rims sit within about 4 % of the stored values. L4 is drawn square, so R7 takes
- * R6's rim. Fig. 1 ends the R7 cap on a flat land at q = 0.764 of the edge radius; the inferred cut sits at
+ * real-ray trace; every rim sits just outside the f/1.4 axial beam, 2–5 % above its drawn height. Fig. 1 draws
+ * each element square-edged, so L4 (R7 takes R6's rim), the cemented L5/L6 pair (R8 and R9 take R10's rim) and
+ * L7 (R12 takes R11's rim) keep one height each; L3 cannot, as its drawn step down to L4 falls on the cemented
+ * junction. Fig. 1 ends the R7 cap on a flat land at q = 0.764 of the edge radius; the inferred cut sits at
  * 7.7 mm depth (cut radius 16.02 mm, q = 0.766), just clearing the f/1.4 axial beam (15.96 mm) and 1.4 mm
  * ahead of the stop plane. Off-axis vignetting from these rims is kept.
  *
@@ -38,6 +40,7 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.613094,
       "vd": 60.6066,
+      "focalLengthMm": 176.4,
       "glass": "TK14 (LZOS)",
       "indexReference": "d",
       "role": "Front positive meniscus of the first component; starts converging the f/1.4 beam"
@@ -49,6 +52,7 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.613094,
       "vd": 60.6066,
+      "focalLengthMm": 203.6,
       "glass": "TK14 (LZOS)",
       "indexReference": "d",
       "role": "Second front positive meniscus; shares the front convergence with L1"
@@ -60,6 +64,7 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.656908,
       "vd": 51.1549,
+      "focalLengthMm": 67.5,
       "glass": "TK21 (LZOS)",
       "indexReference": "d",
       "role": "Thick positive meniscus, crown half of the front cemented doublet",
@@ -72,6 +77,7 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.755234,
       "vd": 27.5228,
+      "focalLengthMm": -33.7,
       "glass": "SF4 (Schott catalog equivalent of TF5)",
       "indexReference": "d",
       "role": "Dense-flint negative meniscus; its deep concave rear surface faces the stop",
@@ -84,6 +90,7 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.57502,
       "vd": 41.2951,
+      "focalLengthMm": -32.4,
       "glass": "QF3 (CDGM catalog equivalent of LF5)",
       "indexReference": "d",
       "role": "Light-flint biconcave element behind the stop, front half of the rear cemented meniscus",
@@ -96,6 +103,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.659499,
       "vd": 57.352,
+      "focalLengthMm": 33.3,
       "glass": "STK3 (LZOS)",
       "indexReference": "d",
       "role": "Equal-radius biconvex crown completing the rear cemented meniscus",
@@ -108,6 +116,7 @@ const LENS_DATA = {
       "type": "Plano-Convex Positive",
       "nd": 1.755234,
       "vd": 27.5228,
+      "focalLengthMm": 111.9,
       "glass": "SF4 (Schott catalog equivalent of TF5)",
       "indexReference": "d",
       "role": "Rear positive element, flat face toward the image"
@@ -170,14 +179,14 @@ const LENS_DATA = {
       "label": "8",
       "R": -34.36,
       "d": 2.8,
-      "sd": 15.293159131074624,
+      "sd": 15.991396632955041,
       "medium": 5
     },
     {
       "label": "9",
       "R": 41.98,
       "d": 9.1,
-      "sd": 15.885131712904142,
+      "sd": 15.991396632955041,
       "medium": 6
     },
     {
@@ -197,7 +206,7 @@ const LENS_DATA = {
       "label": "12",
       "R": "flat",
       "d": 38.2,
-      "sd": 14.515540870172526
+      "sd": 14.87653564676422
     }
   ],
   "focus": {
@@ -225,6 +234,18 @@ const LENS_DATA = {
     "fullFieldDeg": 28.5,
     "maxTraceFieldDeg": 14.25
   },
+  "groups": [
+    {
+      "text": "I",
+      "fromSurface": "1",
+      "toSurface": "7"
+    },
+    {
+      "text": "II",
+      "fromSurface": "8",
+      "toSurface": "12"
+    }
+  ],
   "doublets": [
     {
       "text": "C1",

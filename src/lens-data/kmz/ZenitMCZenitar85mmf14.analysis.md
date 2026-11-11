@@ -20,7 +20,7 @@ This does not establish that the production lens uses this exact prescription. F
 
 ## Optical Architecture
 
-Seven spherical elements form five groups in two components, with cemented pairs L3/L4 and L5/L6. The first component holds three positive menisci and one negative meniscus, all convex to the object; the second holds a cemented meniscus convex to the image (biconcave L5 plus biconvex L6 with equal-magnitude radii) and a plano-convex L7. Four elements precede the diaphragm and three follow it, a Gauss-type arrangement with an added front meniscus (an interpretation; the patent names no type). The stop lies 5.5 mm in front of L5 (p. 6), splitting the printed 14.6 mm air gap into 9.1 and 5.5 mm. The model has no filter or cover plate. The f/1.4–22 aperture scale follows the manufacturer's booklet; the patent states only 1:1.4.
+Seven spherical elements form five groups in two components (I and II in Fig. 1), with cemented pairs L3/L4 and L5/L6. The first component holds three positive menisci and one negative meniscus, all convex to the object; the second holds a cemented meniscus convex to the image (biconcave L5 plus biconvex L6 with equal-magnitude radii) and a plano-convex L7. Four elements precede the diaphragm and three follow it, a Gauss-type arrangement with an added front meniscus (an interpretation; the patent names no type). The stop lies 5.5 mm in front of L5 (p. 6), splitting the printed 14.6 mm air gap into 9.1 and 5.5 mm. The model has no filter or cover plate. The f/1.4–22 aperture scale follows the manufacturer's booklet; the patent states only 1:1.4.
 
 ## Element-by-Element Analysis
 
@@ -32,7 +32,7 @@ Seven spherical elements form five groups in two components, with cemented pairs
 - **L6 (Biconvex Positive):** nd = 1.659499, νd = 57.35. Glass: STK3 (LZOS). f = +33.3 mm; the L5/L6 meniscus is +360.0 mm.
 - **L7 (Plano-Convex Positive):** nd = 1.755234, νd = 27.52. Glass: SF4 (Schott) equivalent of TF5. f = +111.9 mm. Flat rear face; the printed 38.2 mm back focal distance follows it.
 
-Radii and thicknesses are as printed. Clear apertures are not published: the semi-diameters are estimates from Fig. 1, widened where the f/1.4 axial beam needs it. They are not factory dimensions.
+Radii and thicknesses are as printed. Clear apertures are not published: the semi-diameters are estimates from Fig. 1, set just outside the f/1.4 axial beam, which runs 2–5 % above the drawn heights. Fig. 1 draws every element square-edged, and each keeps one rim height except L3, whose drawn step down to L4 falls on the cemented junction and shows as a sloped edge. They are not factory dimensions.
 
 ## Glass Identification and Selection
 
@@ -52,4 +52,4 @@ None are published or modeled. Every refracting surface is spherical except the 
 
 ## Model Scope and Limitations
 
-The full f/1.4 axial beam passes every surface. Off axis, the estimated front and rear rims vignette the beam strongly toward the corner; the production lens's real vignetting is not published, and the rims were not widened to remove it. The stop radius comes from f/1.4, not from a printed diaphragm diameter. Dispersion for the three unmatched glasses uses Abbe-number estimates, so colour analyses are approximate, and the model is not expected to reproduce the patent's Fig. 2 MTF exactly.
+The full f/1.4 axial beam passes every surface. Off axis, the estimated front and rear rims vignette the beam strongly toward the corner; the production lens's real vignetting is not published, and the rims were not widened to remove it. The stop radius comes from f/1.4, not from a printed diaphragm diameter. TF5 and LF5 trace on non-Russian catalog equivalents, and the patent prints no chromatic aberration curves to check the colour analyses against; the model is not expected to reproduce the patent's Fig. 2 MTF exactly.
