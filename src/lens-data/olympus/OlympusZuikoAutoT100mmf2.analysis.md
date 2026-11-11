@@ -7,62 +7,50 @@
 **Inventors:** Yoshiaki Horikawa; Toshihiro Imai  
 **Assignee:** Olympus Optical Co., Ltd.  
 **Title:** Telephoto lens system  
-**Example details:** Embodiment 5, repeated in claim 8; normalized f=1, explicit uniform 100× modeling scale.
+**Example details:** Embodiment 5, repeated in claim 8; normalized to f = 1 and scaled uniformly ×100.
 
-This hidden draft is a qualified representative of the Olympus Zuiko Auto-T 100mm f/2, not an exact factory prescription. The [complete patent](https://patentimages.storage.googleapis.com/d1/16/b1/339ccd5461a332/US4435049.pdf) supplies the literal radii, spacings and seven n/ν pairs.
+The model is a patent design associated with the Olympus Zuiko Auto-T 100mm f/2, not a confirmed factory prescription. The [complete patent](https://patentimages.storage.googleapis.com/d1/16/b1/339ccd5461a332/US4435049.pdf) supplies the radii, spacings and seven n/ν pairs.
 
-1. The [Olympus OM-4 brochure](https://esif.world-traveller.org/om-sif/bodygroup/manuals/om_4_brochure.pdf), PDF39/printed38, confirms 100mm f/2, seven elements/six groups and 24° full field.
-2. Olympus is the patent assignee and the disclosed F2 architecture agrees with these construction and aperture specifications.
-3. A secondary Photons to Photos association identifies Embodiment 5. It is supporting identification evidence, not primary proof of a unique factory prescription. The inspected maker page contains no optical section.
+1. The lens table of the [Olympus OM-4 brochure](https://esif.world-traveller.org/om-sif/bodygroup/manuals/om_4_brochure.pdf) (printed page 38) lists the 100mm F2 with seven elements in six groups, a 24° angle of view, F2–22, 0.7 m minimum focus, 520 g and a 55 mm filter.
+2. Olympus is the patent assignee, and the patent's F/2 seven-element, six-group telephoto matches that construction. The [MIR Zuiko 100mm page](http://www.mir.com.my/rb/photography/hardwares/classics/olympusom1n2/shared/zuiko/htmls/100mm.htm) reproduces a sectional drawing with the same sequence: three positive menisci, a negative meniscus, a long central gap, a cemented biconcave–biconvex pair and a biconvex singlet. MIR places the lens in the high-end Zuiko series introduced in 1982–84, after the patent's 1980 priority.
+3. The match holds at the level of the patent family. All five embodiments are seven-element, six-group designs with similar track and back focus. Embodiment 5 follows a secondary Photons to Photos association; no Olympus source names an embodiment, so the choice is unconfirmed.
 
-The maker's 0.7m closest focus and physical specifications identify the commercial lens but do not supply a numerical focus law. The separate older 100mm f/2.8 model and its patent are not this lens.
+The older five-element 100mm f/2.8 is a separate design.
 
 ## Optical Architecture
 
-The system contains three positive front meniscus singlets, a negative meniscus, a rear cemented pair and a final positive singlet. Seven elements form six groups; source surface 10 is the cemented interface. The complete thirteen radii and twelve physical intervals are retained at 100× normalized scale. Computed EFL is 99.9945705375mm, not forcibly reset to 100mm. Powered track is 71.09mm. Computed paraxial image gap is 44.9089774108mm and is frozen before ray tests; it is not a printed source backfocus. Total image-plane coordinate is 115.9989774108mm.
+The system contains three positive front menisci, a negative meniscus, a rear cemented pair and a final positive singlet: seven elements in six groups, with patent surface 10 as the cemented interface. The computed EFL is 99.995 mm and is not rescaled to 100 mm. The track from the first to the last surface is 71.09 mm. The patent prints no back focus; the paraxial image gap of 44.909 mm puts the image plane 115.999 mm behind the first surface, a telephoto ratio of 1.16.
 
-Figure 1 is a common architectural drawing rather than a demonstrated exact Embodiment-5 engineering drawing. Its first/last vertex span, x=450 to784 pixels, is mapped to 71.09mm. The smaller top/bottom rim extents are rounded down to0.1mm for cap estimates. Approximately three pixels correspond to0.64mm, in addition to unknown schematic distortion. Glass outlines are not measured optical clear apertures.
+Fig. 1 is a single drawing for all five embodiments, not a scale drawing of Embodiment 5. The semi-diameters are read from it with its first-to-last vertex span set to the 71.09 mm track, taking the smaller of the upper and lower extents and rounding down to 0.1 mm. The outlines are schematic glass edges, not measured clear apertures.
 
-No explicit iris is located in that drawing: the d8 leader denotes a gap, not an iris. A midpoint stop within the20.7mm central gap is an explicit authoring hypothesis, split10.35+10.35mm without changing the total. Iris size is derived by the native engine for F2. No rim or stop choice was fitted to ray outcomes.
+The drawing marks no iris; the leader at d8 labels the gap. The stop is placed at the midpoint of the 20.70 mm central gap (10.35 + 10.35 mm), and its radius is set by F/2. Neither the rims nor the stop were adjusted to ray-trace results.
 
 ## Element-by-Element Analysis
 
-|Element|Source n|Source ν|Form|
-|---|---:|---:|---|
-|L1|1.6170|62.8|Positive front meniscus|
-|L2|1.4970|81.6|Positive low-dispersion meniscus|
-|L3|1.6425|58.4|Positive meniscus|
-|L4|1.7618|26.5|Negative meniscus before the central gap|
-|L5|1.5814|40.8|Negative component of the rear cemented pair|
-|L6|1.7200|42.0|Positive partner of the rear cemented pair|
-|L7|1.6968|55.5|Final positive singlet|
+|Element|nd|νd|Shape|Glass (catalog equivalent)|f (mm)|
+|---|---:|---:|---|---|---:|
+|L1|1.6170|62.8|Positive Meniscus|S-PHM51 (OHARA)|+126.7|
+|L2|1.4970|81.6|Positive Meniscus|FCD1 (HOYA)|+188.9|
+|L3|1.6425|58.4|Positive Meniscus|S-BSM36 (OHARA)|+263.6|
+|L4|1.7618|26.5|Negative Meniscus|S-TIH14 (OHARA)|−46.2|
+|L5|1.5814|40.8|Biconcave Negative|PBL25 (OHARA)|−37.9|
+|L6|1.7200|42.0|Biconvex Positive|S-LAM58 (OHARA)|+40.4|
+|L7|1.6968|55.5|Biconvex Positive|S-LAL14 (OHARA)|+98.8|
 
-The patent distributes correction among the front positive components, the negative fourth component and the rear components. Isolated element powers below are paraxial computations in air, not the powers of the cemented elements in situ or a measured aberration budget.
+Focal lengths are paraxial values for each element alone in air; L5 and L6 together form a weak positive doublet (f ≈ 946 mm, f56/f = 9.46).
 
-|Element|Computed isolated-air focal length (mm)|
-|---|---:|
-|L1|126.655|
-|L2|188.933|
-|L3|263.592|
-|L4|-46.152|
-|L5|-37.883|
-|L6|40.387|
-|L7|98.812|
+The patent spreads the front power over three menisci. High-index L1 and L3 (condition 2) keep their curvatures shallow, and the anomalous-dispersion L2 (condition 3) corrects colour from the middle position, where it adds the least spherical aberration and coma. The thick, weak L3 (d5 = 0.117f, f3/f = 2.64; conditions 5 and 8) controls spherical aberration, astigmatic difference and sagittal coma flare. The dense-flint L4 (condition 7) corrects the front group's spherical aberration, and the thick L5–L6 pair (condition 6) balances upper and lower coma.
 
 ## Glass Identification
 
-The source table identifies n and ν without an explicit reference wavelength. This draft uses a conventional helium d-line interpretation as a disclosed inference, not a published spectral fact. No catalog glass or actual factory melt is identified. Source n/ν values are retained exactly.
+The patent prints n and ν without naming a spectral line. All seven pairs match catalog rows at the d line (within 0.0001 in nd and 0.05 in νd), so they are read as d-line values. The labels are catalog equivalents, not confirmed production glasses; the older lead-glass PBL25 is used for L5, where it ties with S-TIL25.
 
-The patent discusses anomalous dispersion and its chromatic benefit. Abbe numbers alone cannot reproduce that anomalous partial dispersion: the draft lacks source partial-dispersion coefficients and cannot claim faithful chromatic performance. Engine dispersion estimates must remain qualified; no unprovided dispersion value is invented.
+The patent names the second component an anomalous-dispersion glass; its 1.497/81.6 is the FCD1 / FK01 fluorophosphate class. No partial-dispersion data are printed, so L2 traces on the FCD1 catalog curve. MIR reports ED glass in the front of the production lens; Olympus's tables do not mark it.
 
 ## Focus Mechanism
 
-This is an infinity-only static reconstruction using the supported sentinel. It does not borrow floating-focus movement from another patent embodiment or fabricate travel from the retail0.7m specification. The single computed image gap is unchanged after tracing.
-
-A small focused diagnostic uses25 pupil-grid samples plus a separate chief ray, duplicating the center: at0°,26 reach; at6°,23 reach and3 clip; at9°,19 reach,2 clip and5 are blocked during launch; at12°,16 reach,3 clip and7 are blocked during launch. All tested chief rays aim and reach. Launch blockage is distinguished from downstream clipping and is not labeled an aiming convergence failure. Counts are not illumination percentages or a full optical-performance validation.
-
-Strict isolated TypeScript and native construction/geometry checks pass without overrides. Peripheral loss, stop-location uncertainty, inferred rims and incomplete anomalous dispersion remain material qualifications. Full integration, rendered-viewer and comprehensive optical acceptance gates are pending; this hidden draft is not a finished delivery.
+The model is fixed at infinity. The patent tabulates only the infinity state and describes no focusing motion. Olympus lists a 0.7 m minimum focus; MIR gives 1:5 at that distance and describes floating rear elements for close-range correction. The OM-4 brochure's lens table marks its automatic close-distance correction on several lenses but not on the 100mm F2, so floating focus is unverified and no close-range state is modelled. The stop position and rims are inferred, and at full aperture the rims vignette the 12° field corners.
 
 ## Aspherical Surfaces
 
-All supplied surfaces are spherical. No asphere is supplied, inferred or fitted.
+All surfaces are spherical.

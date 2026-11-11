@@ -1,11 +1,37 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Hidden representative E5; exact100x R/d, literaln/V. Conventionald inferred, anomalousdispersion unknown. Stop centralgap midpoint hypothesis, figurecaps, computedimagegap; no repair/override/rayfit. Infinityonly. */
+
+/**
+ * OLYMPUS ZUIKO AUTO-T 100mm f/2
+ *
+ * Source: US 4,435,049 A (Horikawa, Imai; Olympus Optical Co., Ltd.), Embodiment 5, repeated in claim 8. This is a
+ * patent design associated with the production lens, not a confirmed factory prescription. All five embodiments share
+ * the production 7-element / 6-group layout, and no Olympus source names an embodiment.
+ *
+ * Scale: the patent is normalized to f = 1.0. Every R and d is multiplied by exactly 100 with no retuning, so the
+ * computed EFL is 99.995 mm. n and ν are the printed values. The patent names no spectral line; all seven pairs match
+ * catalog nd/νd, so they are read at the d line.
+ *
+ * Derived, not printed: the back focus. The last gap is the paraxial infinity value, 44.909 mm, which puts the image
+ * plane 115.999 mm from S1.
+ *
+ * Stop: the patent draws no iris. It is placed at the midpoint of the 20.70 mm central gap (d8 split 10.35 + 10.35 mm),
+ * and its radius follows from the paraxial entrance pupil at F/2.
+ *
+ * Semi-diameters: none are printed. They are read from Fig. 1, a drawing common to all five embodiments, scaled so its
+ * first-to-last vertex span equals the 71.09 mm track; the smaller of the upper and lower extents is rounded down to
+ * 0.1 mm and shared by both faces of each element. Neither the rims nor the stop were adjusted to ray-trace results.
+ *
+ * Glass: the patent specifies an anomalous-dispersion glass for L2 but prints no partial-dispersion data; L2 traces on
+ * the FCD1 catalog curve.
+ *
+ * Focus: static at infinity. The patent gives no focus motion or close state; 0.7 m is Olympus's catalog figure.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "olympus-zuiko-auto-t-100mm-f2",
   "maker": "Olympus",
   "name": "OLYMPUS ZUIKO AUTO-T 100mm f/2",
-  "subtitle": "US4435049 Embodiment5 qualified representative; inferred stop, caps and spectral reference",
+  "subtitle": "US 4,435,049 A, Embodiment 5 — seven-element F/2 telephoto associated with the production lens",
   "catalog": {
     "imageFormat": "135-full-frame",
     "lensMounts": [
@@ -22,9 +48,10 @@ const LENS_DATA = {
       "design": 2
     },
     "specs": [
-      "Literal100x normalized scale; computedEFL99.9945705",
-      "Infinity-only; no copied floating-focus law",
-      "Estimated dispersion; anomalous partial dispersion unavailable"
+      "7 ELEMENTS / 6 GROUPS",
+      "DESIGN f = 100 mm",
+      "DESIGN F/2",
+      "ALL SPHERICAL"
     ],
     "closeFocusM": {
       "marketing": 0.7
@@ -50,71 +77,89 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Patent spherical element",
+      "type": "Positive Meniscus",
       "nd": 1.617,
       "vd": 62.8,
       "indexReference": "d",
-      "glass": "Source n/nu; conventional d-reference inferred, melt/partial dispersion unverified"
+      "focalLengthMm": 126.655,
+      "glass": "S-PHM51 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Front positive meniscus of the three-element collector, in high-index crown (condition 2)."
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Patent spherical element",
+      "type": "Positive Meniscus",
       "nd": 1.497,
       "vd": 81.6,
       "indexReference": "d",
-      "glass": "Source n/nu; conventional d-reference inferred, melt/partial dispersion unverified"
+      "focalLengthMm": 188.933,
+      "glass": "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      "apd": "patent",
+      "apdNote": "The patent specifies anomalous-dispersion glass for this element but prints no θgF; it traces on the FCD1 catalog curve.",
+      "role": "Middle positive meniscus of the collector; its low-dispersion glass carries the front group's colour correction."
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Patent spherical element",
+      "type": "Positive Meniscus",
       "nd": 1.6425,
       "vd": 58.4,
       "indexReference": "d",
-      "glass": "Source n/nu; conventional d-reference inferred, melt/partial dispersion unverified"
+      "focalLengthMm": 263.592,
+      "glass": "S-BSM36 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Thick, weak positive meniscus (d5 = 0.117f); controls spherical aberration and astigmatic difference."
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Patent spherical element",
+      "type": "Negative Meniscus",
       "nd": 1.7618,
       "vd": 26.5,
       "indexReference": "d",
-      "glass": "Source n/nu; conventional d-reference inferred, melt/partial dispersion unverified"
+      "focalLengthMm": -46.152,
+      "glass": "S-TIH14 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Dense-flint negative meniscus ahead of the central gap; offsets the collector's spherical aberration."
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Patent spherical element",
+      "type": "Biconcave Negative",
       "nd": 1.5814,
       "vd": 40.8,
       "indexReference": "d",
-      "glass": "Source n/nu; conventional d-reference inferred, melt/partial dispersion unverified"
+      "focalLengthMm": -37.883,
+      "glass": "PBL25 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Negative front half of the weak rear cemented doublet; its concave face looks toward the stop.",
+      "cemented": "C1"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Patent spherical element",
+      "type": "Biconvex Positive",
       "nd": 1.72,
       "vd": 42,
       "indexReference": "d",
-      "glass": "Source n/nu; conventional d-reference inferred, melt/partial dispersion unverified"
+      "focalLengthMm": 40.387,
+      "glass": "S-LAM58 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Positive rear half of the cemented doublet; the pair's thickness balances upper and lower coma (condition 6).",
+      "cemented": "C1"
     },
     {
       "id": 7,
       "name": "L7",
       "label": "Element 7",
-      "type": "Patent spherical element",
+      "type": "Biconvex Positive",
       "nd": 1.6968,
       "vd": 55.5,
       "indexReference": "d",
-      "glass": "Source n/nu; conventional d-reference inferred, melt/partial dispersion unverified"
+      "focalLengthMm": 98.812,
+      "glass": "S-LAL14 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Rear positive singlet in lanthanum crown; carries most of the rear group's positive power."
     }
   ],
   "surfaces": [
@@ -211,7 +256,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: static infinity-only sentinel. Retail.7m not a motion law."
+    "description": "Infinity focus only. The patent tabulates the infinity state alone and gives no focusing motion. The production lens focuses to 0.7 m; a secondary source describes a floating rear group, which Olympus literature does not confirm, so no close-range state is modelled."
   },
   "aperture": {
     "nominalFNumber": 2,
@@ -234,6 +279,13 @@ const LENS_DATA = {
   },
   "layout": {
     "yScFill": 0.7
-  }
+  },
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "9",
+      "toSurface": "11"
+    }
+  ]
 } satisfies LensDataV2Input;
 export default LENS_DATA;
