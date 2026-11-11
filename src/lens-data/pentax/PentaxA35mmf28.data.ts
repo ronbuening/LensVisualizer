@@ -1,11 +1,47 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Hidden whole JP soleexample representative: literal.35R/d/nV, no USsignrepair. JPd interpretedheliumd, USsodium wordingconflicts. SourceF1 ancillarycontradiction retained. Figurecaps/hypothesizedstop andcomputedimagegap, no rayfit/override. */
+
+/**
+ * PENTAX SMC A 35mm f/2.8, from JP S50-138824 A (Yasuo Takahashi, Asahi Kogaku Kogyo), sole example (実施例) on
+ * printed p. 116, with Fig. 1 on p. 117. US 3,963,325 A is the US family member. Six air-spaced spherical singlets
+ * in a retrofocus arrangement.
+ *
+ * Scale: the patent is normalized to F = 100. Every R and d is multiplied by exactly 0.35, which gives a paraxial
+ * EFL of 35.084 mm (100.24 at F = 100). R4 keeps its printed 14544.54 (5090.59 mm here) and is not replaced by a plane.
+ *
+ * Printed: R, d, n and ν; F = 100; F1 = −100.46 = F/−0.922; F1·2·3 = 64.31 = F/1.555; F/2.8 and a 32° half-field in
+ * the Fig. 2 plots. The model gives F1·2·3 = 64.32 and F1 = −108.43 = F/−0.922 at F = 100, so the printed −100.46 is
+ * a misprint for −108.46.
+ *
+ * Index line: the JP text gives n at the d-line, and the printed values equal the helium-d (587.6 nm) catalog values
+ * of the labelled glasses, so indexReference is "d". The "sodium d-line" of the US text is a translation slip.
+ *
+ * Signs: the JP table, Fig. 1 and the text (L4 biconcave, L5 a positive meniscus convex to the image) agree on
+ * R7 = −81.74 and R9 = −97.45, as does the claim table of US 3,963,325 A. Its description Table 1 prints both radii
+ * positive, which gives an EFL of 27.0 at F = 100; that table is a misprint and is not used.
+ *
+ * Derived: the patent prints no back focus. The last gap is the computed paraxial back focus, 37.471 mm, which puts
+ * the image plane 79.373 mm behind surface 1.
+ *
+ * Stop: neither printed nor drawn in the patent. The maker's SMC PENTAX-A lens manual draws the diaphragm between L3
+ * and L4, so STO sits at the midpoint of d6 (4.37 + 4.37 at F = 100, 1.5295 + 1.5295 mm here). Its radius follows
+ * from the paraxial entrance pupil at f/2.8.
+ *
+ * sd: the patent prints none. Each sits at or just under the smaller of the element's upper and lower extents in
+ * Fig. 1 at the figure's own scale, and L1's rear face excludes its bevel. They are inferred, not factory apertures.
+ *
+ * Focus: the patent prints the infinity state only, so no element moves. closeFocusM is a placeholder; the maker's
+ * 0.3 m minimum focus is in catalog.closeFocusM.
+ *
+ * The patent names no product. The association rests on construction (6 elements / 6 groups), aperture, field and
+ * the maker's A-series section, which matches Fig. 1 element for element. Secondary sources report the same optics
+ * in the 1977 SMC Pentax-M 35mm f/2.8.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "pentax-a-35mm-f28",
   "maker": "Pentax",
   "name": "PENTAX SMC A 35mm f/2.8",
-  "subtitle": "Whole JPS50138824 sole example; qualified representative, explicit spectral-convention conflict",
+  "subtitle": "JP S50-138824 A, sole example — probable match; optics shared with the 1977 SMC Pentax-M 35mm f/2.8",
   "catalog": {
     "imageFormat": "135-full-frame",
     "lensMounts": [
@@ -22,9 +58,11 @@ const LENS_DATA = {
       "design": 2.8
     },
     "specs": [
-      "Literal.35scale; computedEFL35.0838986 notforced35",
-      "JP negativeR7/R9; US conflicting signs notused",
-      "Infinity-only; d-line choice versus USsodium wording qualified"
+      "6 ELEMENTS / 6 GROUPS",
+      "DESIGN f = 35 mm",
+      "DESIGN F/2.8",
+      "ALL SPHERICAL",
+      "PATENT f = 100 SCALED × 0.35"
     ],
     "closeFocusM": {
       "marketing": 0.3
@@ -49,61 +87,67 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Patent spherical singlet",
+      "type": "Negative Meniscus",
       "nd": 1.51633,
       "vd": 64.1,
       "indexReference": "d",
-      "glass": "Literal JP d-line n/V; helium-d interpretation explicit, US sodium wording conflicts"
+      "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Negative front meniscus, convex to the object; the diverging element that gives the retrofocus its long back focus."
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Patent spherical singlet",
+      "type": "Positive Meniscus",
       "nd": 1.8061,
       "vd": 40.8,
       "indexReference": "d",
-      "glass": "Literal JP d-line n/V; helium-d interpretation explicit, US sodium wording conflicts"
+      "glass": "NBFD13 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "High-index positive element with a nearly flat rear face; first of the two positives ahead of the stop."
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Patent spherical singlet",
+      "type": "Biconvex Positive",
       "nd": 1.757,
       "vd": 47.9,
       "indexReference": "d",
-      "glass": "Literal JP d-line n/V; helium-d interpretation explicit, US sodium wording conflicts"
+      "glass": "S-LAM54 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Strongest positive element, just ahead of the stop; completes the front group."
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Patent spherical singlet",
+      "type": "Biconcave Negative",
       "nd": 1.80518,
       "vd": 25.4,
       "indexReference": "d",
-      "glass": "Literal JP d-line n/V; helium-d interpretation explicit, US sodium wording conflicts"
+      "glass": "FD60 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Dense-flint biconcave negative just behind the stop; the system's only dense flint and its main color corrector."
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Patent spherical singlet",
+      "type": "Positive Meniscus",
       "nd": 1.757,
       "vd": 47.9,
       "indexReference": "d",
-      "glass": "Literal JP d-line n/V; helium-d interpretation explicit, US sodium wording conflicts"
+      "glass": "S-LAM54 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Positive meniscus, concave to the object; its front face and L4's rear face bound a biconvex air lens."
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Patent spherical singlet",
+      "type": "Biconvex Positive",
       "nd": 1.7432,
       "vd": 49.4,
       "indexReference": "d",
-      "glass": "Literal JP d-line n/V; helium-d interpretation explicit, US sodium wording conflicts"
+      "glass": "S-LAM60 (OHARA catalog equivalent; production supplier unspecified)",
+      "role": "Weak rear positive with a nearly flat front face, 0.2 mm behind L5."
     }
   ],
   "surfaces": [
@@ -193,7 +237,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: static infinity-only, no finite-focus law"
+    "description": "Infinity focus only. The patent prints the infinity state and no focusing data, so no element moves. The image plane sits at the computed paraxial back focus, 37.47 mm. The maker's 0.3 m minimum focus is not modeled."
   },
   "aperture": {
     "nominalFNumber": 2.8,
