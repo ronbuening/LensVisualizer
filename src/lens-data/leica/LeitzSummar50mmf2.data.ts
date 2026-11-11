@@ -13,10 +13,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The stop is not printed. It sits at the midpoint of the central air space A2 (3.93 + 3.93 mm), an inference from
  * the symmetric Leitz sectional drawing. Semi-diameters are not printed; they are read from the patent drawing
  * (about 11.94 px/mm native at 300 dpi, set by the first-to-last vertex span and confirmed on the R5 arc and the R5/R6 rim corners) and
- * are not measured clear apertures. The cemented members share one rim height, as drawn (11.7 mm). R5, R6 and the
- * front cemented member are raised to the real-ray f/2 axial beam the engine iris admits, rounded up to 0.1 mm
- * (R5 8.9 mm against a drawn 9.0 mm; R6 8.7 mm against a drawn 9.0 mm); R5's rim then reaches 0.08 mm past the
- * midpoint stop plane.
+ * are not measured clear apertures. The cemented members share one rim height, as drawn (11.7 mm). R5 and the front
+ * cemented member are raised to the real-ray f/2 axial beam the engine iris admits, rounded up to 0.1 mm (R5 8.9 mm
+ * against a drawn 8.9 mm); R6 follows the drawing at 9.0 mm, just above R5 as drawn. R5's rim reaches 0.08 mm past
+ * the midpoint stop plane.
  * Infinity focus only; focus.closeFocusM = 1e15 is a placeholder, not the lens's minimum focus distance.
  */
 const LENS_DATA = {
@@ -72,6 +72,7 @@ const LENS_DATA = {
       "nd": 1.6202,
       "vd": 60.4,
       "indexReference": "D",
+      "focalLengthMm": 76.69,
       "glass": "Unmatched (nD 1.6202 / νD 60.4; SK16-type dense crown)",
       "role": "Weak front collective singlet, convex to the object"
     },
@@ -83,6 +84,7 @@ const LENS_DATA = {
       "nd": 1.6202,
       "vd": 60.4,
       "indexReference": "D",
+      "focalLengthMm": 33.58,
       "glass": "Unmatched (nD 1.6202 / νD 60.4; SK16-type dense crown)",
       "role": "Thick positive front member of the front cemented meniscus",
       "cemented": "C1"
@@ -95,6 +97,7 @@ const LENS_DATA = {
       "nd": 1.5814,
       "vd": 40.8,
       "indexReference": "D",
+      "focalLengthMm": -24.5,
       "glass": "LF5 (Schott)",
       "role": "Thin light-flint rear member of the front cemented meniscus; its deep concave face meets the central air space",
       "cemented": "C1"
@@ -107,6 +110,7 @@ const LENS_DATA = {
       "nd": 1.5673,
       "vd": 42.8,
       "indexReference": "D",
+      "focalLengthMm": -19.77,
       "glass": "S-TIL26 (Ohara; LF6-type equivalent)",
       "role": "Thin light-flint front member of the rear cemented meniscus; its concave front face meets the central air space",
       "cemented": "C2"
@@ -119,6 +123,7 @@ const LENS_DATA = {
       "nd": 1.6202,
       "vd": 60.4,
       "indexReference": "D",
+      "focalLengthMm": 23.8,
       "glass": "Unmatched (nD 1.6202 / νD 60.4; SK16-type dense crown)",
       "role": "Thick positive rear member of the rear cemented meniscus",
       "cemented": "C2"
@@ -131,6 +136,7 @@ const LENS_DATA = {
       "nd": 1.6202,
       "vd": 60.4,
       "indexReference": "D",
+      "focalLengthMm": 58.89,
       "glass": "Unmatched (nD 1.6202 / νD 60.4; SK16-type dense crown)",
       "role": "Rear collective singlet, plane face toward the object"
     }
@@ -178,7 +184,7 @@ const LENS_DATA = {
       "label": "6",
       "R": -16.555,
       "d": 1.655,
-      "sd": 8.7,
+      "sd": 9.0,
       "medium": 4
     },
     {

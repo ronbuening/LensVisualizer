@@ -124,3 +124,65 @@ Open:
   in front of the stop plane.
 - The drawing puts L4–L5's lower edge 0.2 mm farther from the axis than its upper edge (11.85 vs 11.64 mm); the model
   keeps one value, 11.7 mm.
+
+## 2026-11-11 — Second review: diagram, labels and movement
+
+Compared: the local page (infinity, `mv=focus`, `focus=1` and every element inspector) with the drawing sheet of
+`patents/GB423468A.pdf` (page 4) read at the scan's native 300 dpi, the patent text (pages 1–2), and the validator's
+saved copy of the Leitz sectional. Scale: R1 to R10 vertex crossings on the axis row (x 850.5 and 1569.5) give 719 px
+for 30.125 mm, 23.87 px per model mm. The radial scale holds on the R10 arc: 300 px above and below the axis the drawn
+face sits at x 1516 and 1518 against 1516.3 predicted. Rims were read where each outline meets its flat top or its
+chamfer, above and below the axis.
+
+| Surface | Drawn (top / bottom) | Before | After | Verdict |
+|---|---:|---:|---:|---|
+| 1, 2 | 13.32 / 13.28 | 13.0 | 13.0 | 2 % under, inside the noise; kept square |
+| 3, 4 | 11.66 / 11.75 | 11.7 | 11.7 | agrees; kept |
+| 5 | 8.90 / 8.94 | 8.9 | 8.9 | agrees; kept |
+| 6 | 9.02 / 9.07 | 8.7 | 9.0 | raised: the figure draws R6 0.13 mm above R5, the page drew it 0.2 mm below |
+| 7, 8 | 11.66 / 11.85 | 11.7 | 11.7 | agrees; kept |
+| 9, 10 | 12.79 / 12.67 | 12.4 | 12.4 | 2.6 % under, inside the noise; kept square |
+
+The R6 raise passes the surface validator. The meridional clearance trace at Y = 21.63 mm shows no axial clip or
+chief-ray block, and R6's side vignetting there falls from 12 % to 8 %. The engine curve goes from 100.0 / 91.4 / 81.4
+/ 63.2 / 51.1 % to 100.0 / 93.1 / 82.8 / 63.4 / 51.1 % at 0° / 8.7° / 14.5° / 20.4° / 23.3°. Engine values are
+unchanged: EFL 49.975 mm, FOPEN 2.000, half-field 24°, stop semi-diameter 8.822 mm, traced half-field 31.95°. The
+aperture census stays within 3 % of f/2 with no rim limit, the image-circle check finds none undersized, and corner
+coverage stays 100 %. The page now draws L4's rim corner just above L3's, as the figure does.
+
+Lands and cuts: none. No face sits below its light-rule baseline. The full-pupil lattice gains 0.1 to 4.1 points over
+baseline rims at every field, and one-at-a-time restores win back nothing.
+
+Element focal lengths were missing (the inspector showed "FL = —"). Each element now carries its thick-lens focal
+length in air at the D line: L1 +76.69, L2 +33.58, L3 −24.50, L4 −19.77, L5 +23.80, L6 +58.89 mm, the values the
+analysis already quotes.
+
+Found correct: `name` L1–L6 are the patent's own designations (page 1, lines 86–88; page 2, lines 37–42); every `type`
+agrees with the signs of R; `role` lines are true; C1 brackets surfaces 3–5 and C2 surfaces 6–8; no group bracket is
+needed (the patent names members, not groups); the stop sits in A2 between L3 and L4; the design is all spherical, with
+no `A` label; no `apd` tag (the patent names no special glass). The lens is static: no variable gap, the movement
+overlay reports no modeled movement, the focus slider reads "Not modeled", and `focus.description` states the
+production unit helicoid focusing to 1 m plainly. `source.assignees` "Ernst Leitz GmbH" matches the front page and the
+corpus spelling.
+
+Glass: the patent prints only nD and ν (page 2, lines 37–42). L3's LF5 (Schott) is exact at D (Δ −0.85e-4, +0.04);
+L4's S-TIL26 is exact (Δ −0.95e-4, +0.01; Hoya E-FL6 also fits, and Sumita's obsolete LF6 row, 1.56732 / 42.80 at d,
+is in the vendor files but is not a Schott row). The crown 1.6202 / 60.4 recurs on four elements of the one example,
+so it is a real glass. The nearest rows at D, N-SK16, BACD16, S-BSM16 and J-SK16, sit at nD 1.62032 (Δ +1.2e-4), outside
+the window, and no vendor file has a closer row; the label stays `Unmatched`. Colour agrees with the patent's D and G
+rows (page 2, isoplanasy table, at the printed scale): paraxial focus D 68.20 / g 68.24 mm against 68.3 / 68.3,
+f/2 marginal D 68.23 / g 68.41 against 68.2 / 68.4, and focal length D 99.95 / g 100.04 against 100.0 / 100.1. The
+model's g line (435.8 nm) stands in for the patent's G.
+
+Stop split (report only; a gap change): moving the stop to 4.6 / 3.26 mm, as the Leitz sectional draws it, puts R5's
+rim (sag 4.011 mm at 8.9 mm) 0.59 mm in front of the stop plane instead of 0.08 mm past it, and R6's rim 0.60 mm
+behind it (now 1.27 mm). The stop semi-diameter becomes 8.725 mm, f/2 and the 24° half-field are unchanged, and the
+axial need at R5 and R6 stays 8.75 and 8.52 mm. Full-pupil light changes from 100.0 / 93.1 / 89.0 / 82.8 / 63.4 /
+51.1 % to 100.0 / 92.1 / 87.9 / 82.3 / 63.2 / 51.2 % at 0° / 8.7° / 11.6° / 14.5° / 20.4° / 23.3°: with the present
+rims the move no longer reduces off-axis vignetting; it costs up to 1.1 points at mid-field.
+
+Open:
+- Both the drawing and the Leitz sectional square each cemented member at 11.7 mm across the crown and part of the
+  flint, then chamfer down to the concave rim at about 9.0 mm. The renderer joins L3's and L4's rims with one straight
+  edge, so their outer edges show as a single slant, about 1.4 mm inside the drawn outline at mid-edge. No allowed
+  field draws a chamfer, and a vertical land at R5 or R6 would draw glass the figure leaves out.
