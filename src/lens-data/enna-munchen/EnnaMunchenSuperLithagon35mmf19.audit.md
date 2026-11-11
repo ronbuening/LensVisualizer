@@ -106,3 +106,9 @@ Patent: US 3,036,499 A, sole example (Table 1)
   straight lines, so the drawn 45° bevels on L1, L2 and L7 appear as one diagonal from rear rim to front rim.
 - Open: the drawn L6 sits about 0.45 mm larger at R12 (10.15 mm) and L5 about 0.5 mm larger at R9, both inside noise
   and left unchanged.
+
+## 2026-11-11 — Metadata check
+
+- `catalog.specs` angle line changed from "2ω ≈ 63.4°" to "2ω ≈ 64°" so it agrees with `projection.fullFieldDeg` 64.
+- Open: no maker or reputable reference states the minimum focus distance or blade count (a retailer listing gives 9
+  blades); both stay unset.

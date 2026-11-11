@@ -73,7 +73,7 @@ const LENS_DATA = {
       "9 elements / 8 groups",
       "f ≈ 35.0 mm",
       "f/1.9 (patent f/2.0)",
-      "2ω ≈ 63.4°",
+      "2ω ≈ 64°",
       "all-spherical"
     ]
   },

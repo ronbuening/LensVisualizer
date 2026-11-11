@@ -217,7 +217,8 @@ const LENS_DATA = {
       16,
       22
     ],
-    "maxFNumber": 22
+    "maxFNumber": 22,
+    "blades": 8
   },
   "projection": {
     "kind": "rectilinear",

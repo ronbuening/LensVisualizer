@@ -119,3 +119,5 @@ draws L3 square at 23.8 mm with a step down to L4; a land is not allowed on a ce
 - Relabels (catalogue minus printed): L1, L2 Unmatched (TK14) → TK14 (LZOS), Δnd −3e-6, Δνd −0.03; L3 Unmatched (TK21)
   → TK21 (LZOS), +6e-6 / −0.03; L6 Unmatched (STK3) → STK3 (LZOS), +3e-6 / 0.00. All seven elements now trace on
   catalog curves.
+- Metadata: `aperture.blades` 8 from the maker's product page (zenit.photo, "МС Зенитар 1,4/85": 8 blades, f/1.4–22,
+  0.85 m, 28°, Canon EF / Nikon F). The display name already follows the maker's "MC Zenitar" designation.
