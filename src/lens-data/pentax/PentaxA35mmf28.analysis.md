@@ -82,7 +82,7 @@ The JP text defines n as the refractive index at the d-line (p. 116), and Fig. 2
 | FD60 (HOYA)                | 1.80518 | 25.4 | L4       | Dense-flint negative    |
 | S-LAM60 (OHARA)            | 1.74320 | 49.4 | L6       | Lanthanum rear positive |
 
-The patent names no glass and the production supplier is not established; the labels are catalog equivalents at the printed coordinates. Several dense flints match L4. With FD60 the paraxial g-line focus falls 0.21 in front of the d-line focus at F = 100 (0.07 mm at this scale), where Fig. 2 reads about 0.20; SF6-type rows such as PBH6 (OHARA) give 0.24.
+The patent names no glass and the production supplier is not established; the labels are catalog equivalents at the printed coordinates. Several dense flints match L4. With FD60 the paraxial g-line focus falls 0.21 in front of the d-line focus at F = 100 (0.07 mm at this scale), where Fig. 2 reads about 0.20; SF6-type rows such as PBH6 (OHARA) give 0.24. Across the pupil the model's d-line curve follows Fig. 2 within about 0.04, but its g-line curve bends further toward overcorrection: it reaches +0.42 at 90 % of the pupil and +1.20 at full aperture, where the plot reads about +0.07 and +0.6. No catalog glass within the printed nd and νd moves the full-aperture value by more than 0.06, so the glass labels do not account for the difference.
 
 ## Focus Mechanism
 

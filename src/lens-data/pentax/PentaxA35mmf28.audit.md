@@ -107,3 +107,50 @@ and the new L4 and L5 heights. The maker comparison is in the Deployment validat
 
 Open: L2 and L6 sit 3–5 % inside the drawing and stay as noise. The 2 % vertical-scale uncertainty applies to every
 reading. The 31.5° field item above is unchanged.
+
+## 2026-11-11 — Second review: diagram, labels and movement
+
+Compared: the local page (infinity, element inspectors 1–6, the focus movement overlay) with Fig. 1 on printed p. 117,
+re-measured from the native 347 ppi raster. Vertex crossings put S1 at 171 px and S12 at 867.5 px, 5.818 px per patent
+unit (16.62 px/mm at ×0.35); every vertex from S3 to S10 falls within 2.2 px of the tabulated spacing. The drawn axis line tilts
+8.5 px over 1090 px, so heights were taken from that local line. Fitting the L1 rear arc (R2 = 44.46) with its upper
+and lower halves averaged gives a vertical scale 1.01 times the horizontal.
+
+| Element | Fig. 1 half-height (mm) | sd (mm)    | sd / figure | Verdict                                    |
+| ------- | ----------------------- | ---------- | ----------- | ------------------------------------------ |
+| L1      | 13.67; rear arc 11.1    | 13.5, 10.8 | 0.99, 0.97  | kept; the rear face ends at a 45° chamfer  |
+| L2      | 9.66 front; 9.0 rear    | 9.2, 9.2   | 0.95, 1.02  | kept; Fig. 1 chamfers the rear corner only |
+| L3      | 8.54                    | 8.3        | 0.97        | kept                                       |
+| L4      | 7.27                    | 7.1        | 0.98        | kept                                       |
+| L5      | 7.51                    | 7.3        | 0.97        | kept                                       |
+| L6      | 9.14                    | 8.8        | 0.96        | kept                                       |
+
+Every reading agrees with the semi-diameter pass within 0.1 mm, and the drawn height order (L1 > L2 > L6 > L3 > L5 >
+L4) holds on the page, so no rim moved. The page draws L1's top as a slanted bevel from 13.5 to 10.8 mm where Fig. 1
+draws a flat top and a short 45° chamfer; a `rimExtensionSd` land would square the corner that Fig. 1 chamfers, so
+none was added. The file has no cuts or lands: the worst loss against the light-rule baseline is −0.5 points (a gain
+at every field), with S7–S10 above baseline. The real-ray f/2.8 cone (stop radius 7.20 mm) clears every rim, closest at
+S5 (8.28 against 8.3), S10 (7.23 against 7.3) and S7 (7.00 against 7.1).
+
+Change: each element gained `focalLengthMm` (−37.95, +56.146, +26.523, −18.071, +40.993 and +78.92 mm, thick-lens
+values), so the inspector shows FL where it showed a dash. Engine EFL 35.084 mm, FOPEN 2.8, half-field 31.5° and stop
+radius 6.983 mm are unchanged; the surface validator prints OK.
+
+Checked and correct: names L1–L6 are the patent's own; each `type` follows the signs of R; roles are true (L4 at
+f −18.07 mm is the strongest element); no aspheres, no cemented pairs and no groups named in the patent, so no brackets;
+STO is drawn between L3 and L4 as the maker's section places the diaphragm; no `apd` tag, and none is supported. The
+lens is static: there is no `gaps` block, the movement overlay reports no modeled motion and `focus.description` says
+so. The production focusing method is not stated in the patent or the sources cited, so the description names none.
+The six labels resolve within the exact window; the assignee matches the corpus's single form, "Asahi Kogaku Kogyo
+Co., Ltd." (34 occurrences, no variant).
+
+Colour: Fig. 2 prints d and g curves on the axis. The model's d-line curve matches the plot within about 0.04 at every
+zone (−0.39 against −0.40 at 70 % of the pupil, +0.31 against +0.27 at full aperture, F = 100). The paraxial g offset
+reads −0.193 to −0.198 against −0.206 with FD60 and −0.187 with S-TIH6, a tie within one pixel, so FD60 stays. The
+g-line zones differ: the model gives −0.20, +0.42 and +1.20 at 70 %, 90 % and full aperture against plot readings of
+about −0.28, +0.07 and +0.6. Substituting every exact-window alternative (L-BSL7, K-BK7; M-NBFD130, P-LASF47, S-LAH53,
+LAH53; J-LAF04; K-SFLD6, S-TIH6, SF6, PBH6, N-SF6; N-LAF35, M-NBF1) moves the full-aperture g value by at most 0.06,
+so the glass labels do not explain the gap.
+
+Open: the declared 31.5° half-field (`projection.maxTraceFieldDeg`) stops 0.5° short of the 32.0° corner that Fig. 2
+plots; that field is outside this pass. The g-line zonal mismatch above is unresolved.

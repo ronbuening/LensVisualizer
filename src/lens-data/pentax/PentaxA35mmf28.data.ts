@@ -94,6 +94,7 @@ const LENS_DATA = {
       "nd": 1.51633,
       "vd": 64.1,
       "indexReference": "d",
+      "focalLengthMm": -37.95,
       "glass": "S-BSL7 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Negative front meniscus, convex to the object; the diverging element that gives the retrofocus its long back focus."
     },
@@ -105,6 +106,7 @@ const LENS_DATA = {
       "nd": 1.8061,
       "vd": 40.8,
       "indexReference": "d",
+      "focalLengthMm": 56.146,
       "glass": "NBFD13 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "High-index positive element with a nearly flat rear face; first of the two positives ahead of the stop."
     },
@@ -116,6 +118,7 @@ const LENS_DATA = {
       "nd": 1.757,
       "vd": 47.9,
       "indexReference": "d",
+      "focalLengthMm": 26.523,
       "glass": "S-LAM54 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Strongest positive element, just ahead of the stop; completes the front group."
     },
@@ -127,6 +130,7 @@ const LENS_DATA = {
       "nd": 1.80518,
       "vd": 25.4,
       "indexReference": "d",
+      "focalLengthMm": -18.071,
       "glass": "FD60 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Dense-flint biconcave negative just behind the stop; the system's only dense flint and its main color corrector."
     },
@@ -138,6 +142,7 @@ const LENS_DATA = {
       "nd": 1.757,
       "vd": 47.9,
       "indexReference": "d",
+      "focalLengthMm": 40.993,
       "glass": "S-LAM54 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Positive meniscus, concave to the object; its front face and L4's rear face bound a biconvex air lens."
     },
@@ -149,6 +154,7 @@ const LENS_DATA = {
       "nd": 1.7432,
       "vd": 49.4,
       "indexReference": "d",
+      "focalLengthMm": 78.92,
       "glass": "S-LAM60 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Weak rear positive with a nearly flat front face, 0.2 mm behind L5."
     }
