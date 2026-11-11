@@ -146,5 +146,5 @@ illumination at 30.8° stays 28.8 %.
 
 Open: the diagram's stop housing ends at 2.5 mm because the renderer takes it from the S10 `sd` and ignores the land;
 Fig. 1 draws the ticks to 3.69 mm.
-Open: the aspheric surfaces are labelled 12, 13 and 14; the spec form is 12A, 13A and 14A, with C3 ending at 12A and GR
-at 14A. Surface labels are outside this review's edit list.
+Closed (coordinator, same day): the aspheric surfaces are now labelled 12A, 13A and 14A, with C3 ending at 12A and GR
+at 14A; engine numbers unchanged.

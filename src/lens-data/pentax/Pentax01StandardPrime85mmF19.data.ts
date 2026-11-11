@@ -256,7 +256,7 @@ const LENS_DATA = {
       "medium": 7
     },
     {
-      "label": "12",
+      "label": "12A",
       "R": -11.214,
       "d": 1.232,
       "sd": 3.32,
@@ -268,7 +268,7 @@ const LENS_DATA = {
       }
     },
     {
-      "label": "13",
+      "label": "13A",
       "R": 14.507,
       "d": 2.818,
       "sd": 4.93,
@@ -281,7 +281,7 @@ const LENS_DATA = {
       }
     },
     {
-      "label": "14",
+      "label": "14A",
       "R": -21.008,
       "d": 4.194,
       "sd": 4.93,
@@ -336,12 +336,12 @@ const LENS_DATA = {
   ],
   "groups": [
     { "text": "GF (+)", "fromSurface": "1", "toSurface": "8" },
-    { "text": "GR (+)", "fromSurface": "10", "toSurface": "14" }
+    { "text": "GR (+)", "fromSurface": "10", "toSurface": "14A" }
   ],
   "doublets": [
     { "text": "C1", "fromSurface": "3", "toSurface": "5" },
     { "text": "C2", "fromSurface": "6", "toSurface": "8" },
-    { "text": "C3", "fromSurface": "10", "toSurface": "12" }
+    { "text": "C3", "fromSurface": "10", "toSurface": "12A" }
   ]
 } satisfies LensDataV2Input;
 export default LENS_DATA;
