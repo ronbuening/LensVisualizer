@@ -84,7 +84,7 @@ The design is all spherical; R9 is plane.
 
 The patent prints the central air space A2 (15.72 mm, 7.86 mm scaled) but not the diaphragm position. The model places the stop at its midpoint, 3.93 mm behind R5, following the broadly symmetric Leitz sectional; that drawing actually shows the iris slightly behind the midpoint, at roughly 59 % of the gap. The iris diameter is set by the engine from f/2. The aperture scale, f/2 to f/12.5 without click stops, follows the production lens.
 
-Semi-diameters are not printed. They are estimates from the patent drawing, taken from the outline of each face and rounded down, not measured clear apertures, and they were not fitted to rays. The concave faces R5 and R6 use 8.7 and 8.6 mm. At R5 the f/2 axial cone needs 8.75 mm, so its outermost rays graze that rim by about 0.05 mm, too little to change the working f-number noticeably.
+Semi-diameters are not printed. They follow the patent drawing, which is close to full size at the printed f = 100 mm, and are not measured clear apertures. Both cemented members carry one rim height, 11.7 mm, as drawn; the outer singlets sit just inside the drawn outline (13.0 and 12.4 mm against about 13.3 and 12.7 mm). The concave faces R5 and R6 (8.9 and 8.7 mm; both drawn at about 9.0 mm) are set to pass the full f/2 axial beam. With the stop at the midpoint of A2, the rim of R5 then reaches 0.08 mm past the stop plane, consistent with the Leitz sectional's slightly rearward iris.
 
 Off axis, the rear elements clip the oblique bundles increasingly toward the 24° half-field; the amount depends on the estimated rims.
 

@@ -11,8 +11,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The back gap is the patent's printed near-axis image distance, 68.3 × 0.5 = 34.15 mm. It is kept as printed rather
  * than set to the computed paraxial back focus (34.099 mm); the 0.051 mm difference is the patent's own.
  * The stop is not printed. It sits at the midpoint of the central air space A2 (3.93 + 3.93 mm), an inference from
- * the symmetric Leitz sectional drawing. Semi-diameters are estimates from the patent drawing, not measured clear
- * apertures, and were not fitted to rays.
+ * the symmetric Leitz sectional drawing. Semi-diameters are not printed; they are read from the patent drawing
+ * (about 11.94 px/mm native at 300 dpi, set by the first-to-last vertex span and confirmed on the R5 arc and the R5/R6 rim corners) and
+ * are not measured clear apertures. The cemented members share one rim height, as drawn (11.7 mm). R5, R6 and the
+ * front cemented member are raised to the real-ray f/2 axial beam the engine iris admits, rounded up to 0.1 mm
+ * (R5 8.9 mm against a drawn 9.0 mm; R6 8.7 mm against a drawn 9.0 mm); R5's rim then reaches 0.08 mm past the
+ * midpoint stop plane.
  * Infinity focus only; focus.closeFocusM = 1e15 is a placeholder, not the lens's minimum focus distance.
  */
 const LENS_DATA = {
@@ -149,21 +153,21 @@ const LENS_DATA = {
       "label": "3",
       "R": 16.76,
       "d": 5.38,
-      "sd": 11.6,
+      "sd": 11.7,
       "medium": 2
     },
     {
       "label": "4",
       "R": 75.3,
       "d": 1.655,
-      "sd": 11.6,
+      "sd": 11.7,
       "medium": 3
     },
     {
       "label": "5",
       "R": 11.88,
       "d": 3.93,
-      "sd": 8.7
+      "sd": 8.9
     },
     {
       "label": "STO",
@@ -174,21 +178,21 @@ const LENS_DATA = {
       "label": "6",
       "R": -16.555,
       "d": 1.655,
-      "sd": 8.6,
+      "sd": 8.7,
       "medium": 4
     },
     {
       "label": "7",
       "R": 36.005,
       "d": 5.38,
-      "sd": 11.5,
+      "sd": 11.7,
       "medium": 5
     },
     {
       "label": "8",
       "R": -23.59,
       "d": 0.165,
-      "sd": 11.5
+      "sd": 11.7
     },
     {
       "label": "9",

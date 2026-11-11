@@ -77,7 +77,50 @@ Open:
 - `projection.fullFieldDeg` 48: no Leitz figure found; the patent states about 52° and the 24 × 36 mm diagonal at
   50 mm gives 46.8°.
 - Surface 5 rim: `sd` 8.70 is 0.05 mm under the f/2 axial marginal ray (8.75 mm). With the midpoint stop, R5's sag
-  limits `sd` to about 8.8 mm.
+  limits `sd` to about 8.8 mm. (Closed 2026-11-11: raised to 8.9 mm in the semi-diameter pass below.)
 - Stop position: the Leitz sectional puts the iris at about 59 % of A2 behind R5 (about 4.6 / 3.26 mm scaled) rather
   than the midpoint; a 4.6 / 3.26 split with R5 `sd` 9.0 clears the axial graze and reduces off-axis vignetting.
 - Close focus 1 m (`catalog.closeFocusM.marketing`): supported by dealer listings only; no Leitz source located.
+
+## 2026-11-11 — Semi-diameter pass against the patent figure
+
+Source: `patents/GB423468A.pdf`, page 4, the single drawing sheet ("This Drawing is a full-size reproduction of the
+Original"), measured at the scan's native 300 dpi with the optical axis horizontal. The drawing has no axis line; the
+axis (page y ≈ 1643.5 px) is the midpoint of the top and bottom edges of all four components, which agree within
+±2 px. Scale: vertex crossings on the axis row put R1 at x 850.5 and R10 at x 1570, 719.5 px for the printed 60.25 mm
+vertex length, so 11.94 px/mm at the printed f = 100 mm (23.88 px per model mm). The drawing is about 1 % over full
+size, and its spacings are not all proportional (L1 and L6 are drawn about 20 % thin, A2 about 8 % wide). The radial
+scale was confirmed on the R5 arc: at 22.5 px and 42.5 px behind its vertex, the drawn arc sits 110 and 149 px off the
+axis, as R5 = 23.76 mm predicts at 11.94 px/mm. The rim corners of R5 and R6 also land where their sags predict
+(x 1195 vs 1195.5, x 1240 vs 1237).
+
+| Surface | Baseline `sd` | Figure (scaled ×0.5) | Ray need (f/2, engine iris) | New `sd` | Evidence |
+|---|---:|---:|---:|---:|---|
+| 1, 2 | 13.0 | 13.3 (square tip, top edge) | 12.49 | 13.0 | within 2.5 %, kept |
+| 3, 4 | 11.6 | 11.6 (flat top 11.62, bottom 11.58) | 11.61 at 3 | 11.7 | on-axis clip at 3 by 0.01 mm; square rim, both faces |
+| 5 | 8.7 | 9.0 (bevel corner, 214.5 px) | 8.82 | 8.9 | on-axis clip by 0.12 mm; least raise, within the drawn 9.0 |
+| 6 | 8.6 | 9.0 (bevel corner, 216 px) | 8.61 | 8.7 | on-axis clip by 0.01 mm; least raise |
+| 7, 8 | 11.5 | 11.75 (flat top 11.64, bottom 11.85) | 9.44 | 11.7 | drawn at the same height as L2–L3; restores that equality; no light change |
+| 9, 10 | 12.4 | 12.7 (top 12.79, bottom 12.54) | 9.26 | 12.4 | within 2 %, kept |
+
+The "ray need" column is the height at which the on-axis ray the engine iris admits (entering slightly above the
+12.494 mm paraxial pupil, because of pupil aberration) meets each face; three faces were below it. The lens's spherical
+aberration was checked first (longitudinal +0.017 mm at the full pupil, −0.114 mm at 0.7), so the clip is not from a
+prescription error. R5's new rim lies 4.01 mm behind its vertex, 0.08 mm past the midpoint stop plane (3.93 mm); the
+f/2 beam itself meets R5 at 8.82 mm, at the stop plane's depth, so any R5 rim that passes the beam reaches the stop
+plane. The surface validator accepts it. R6 was not raised to the drawn 9.0 mm: that would add 1–3 points of
+mid-field light beyond what the axial beam needs, inside the figure's noise.
+
+Engine values are unchanged: EFL 49.975 mm, FOPEN 2.000, half-field 24°, stop semi-diameter 8.822 mm. The surface
+validator reports no errors. The aperture census is within 3 % of f/2 with no rim limit, and no surface is now below
+the stated on-axis ray (before: 3, 5 and 6). The image-circle check finds none undersized; corner coverage stays 100 %.
+The meridional clearance trace at Y = 21.63 mm flags no axial clip and no chief-ray block. Geometric transmission
+(engine curve, wide open) changes from 95.9 / 89.5 / 79.9 / 63.0 / 51.0 % to 100.0 / 91.4 / 81.4 / 63.2 / 51.1 % at
+0° / 8.7° / 14.5° / 20.4° / 23.3°. No face is below its baseline, so there are no cuts to price; one-at-a-time restores
+win back nothing.
+
+Open:
+- Stop position (repeated from the cleanup pass): a rearward iris, as the Leitz sectional draws it, would keep R5's rim
+  in front of the stop plane.
+- The drawing puts L4–L5's lower edge 0.2 mm farther from the axis than its upper edge (11.85 vs 11.64 mm); the model
+  keeps one value, 11.7 mm.
