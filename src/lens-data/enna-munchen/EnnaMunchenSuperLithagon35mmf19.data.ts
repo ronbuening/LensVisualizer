@@ -27,10 +27,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    The patent does not tabulate the stop. Its drawing places it 11.1   ║
  * ║    units into the 18.0-unit gap l5 after the R10 vertex, so the gap is ║
  * ║    split 3.885 / 2.415 mm. The stop radius follows from f/2.0. Element ║
- * ║    semi-diameters are read from the inner rims of the patent drawing   ║
- * ║    (scale from the 191-unit vertex span), taking the smaller side and  ║
- * ║    excluding bevels; the cemented pair shares one rim. They are not    ║
- * ║    maker clear apertures.                                              ║
+ * ║    semi-diameters follow the patent drawing face by face (scale from   ║
+ * ║    the 191-unit vertex span, confirmed by arc fits) and agree with it  ║
+ * ║    within about 5 %. The convex fronts of L1 and L2 reach the drawn    ║
+ * ║    outer edge (19.5, 14.6 mm) and their concave rears end at the bevel ║
+ * ║    (17.4, 13.5 mm); L7's front ends at its bevel (11.1 mm) while the   ║
+ * ║    cemented face and L8's rear reach the edge (12.4 mm). These are     ║
+ * ║    drawing readings, not maker clear apertures. The f/2.0 axial beam   ║
+ * ║    and the 32° corner chief ray clear every rim.                       ║
  * ║                                                                        ║
  * ║  NOTE ON BACK FOCUS:                                                   ║
  * ║    The patent prints no back focal distance. The image gap is the      ║
@@ -186,7 +190,7 @@ const LENS_DATA = {
       "label": "1",
       "R": 87.5,
       "d": 2.4499999999999997,
-      "sd": 17.4,
+      "sd": 19.5,
       "medium": 1
     },
     {
@@ -199,7 +203,7 @@ const LENS_DATA = {
       "label": "3",
       "R": 94.5,
       "d": 2.4499999999999997,
-      "sd": 13.5,
+      "sd": 14.6,
       "medium": 2
     },
     {
@@ -276,14 +280,14 @@ const LENS_DATA = {
       "label": "14",
       "R": "flat",
       "d": 3.8499999999999996,
-      "sd": 11.1,
+      "sd": 12.4,
       "medium": 8
     },
     {
       "label": "15",
       "R": -31.15,
       "d": 0.35,
-      "sd": 11.1
+      "sd": 12.4
     },
     {
       "label": "16",

@@ -110,9 +110,9 @@ The patent gives only the infinity prescription, and the model has no focus trav
 
 The patent does not tabulate the stop. Its drawing places the diaphragm 11.1 units into the 18.0-unit air gap l5 behind the R10 vertex (about 61.5 % of the gap), which gives 3.885 mm and 2.415 mm at the 35 mm scale. The stop radius follows from f/2.0.
 
-Semi-diameters are read from the inner rims of the patent drawing, using the 191-unit first-to-last vertex span as the scale. The smaller of the left and right rims is used, bevels are excluded, and the cemented pair shares one rim: 17.4, 13.5, 12.6, 12.6, 11.8, 9.7, 11.1 and 14.7 mm for L1–L6, L7/L8 and L9. The reading uncertainty is about 0.2 mm; these are drawing estimates, not maker clear apertures, and the mount may restrict the beam further.
+Semi-diameters follow the patent drawing face by face, using the 191-unit first-to-last vertex span as the scale (arc fits of the drawn surfaces confirm it in the transverse direction). The drawing gives the front menisci a convex face that runs out to the element edge and a concave face that ends at a 45° bevel, so L1 and L2 have 19.5 / 17.4 mm and 14.6 / 13.5 mm on their front and rear faces. L3 and L4 are 12.6 mm, L5 11.8 mm and L6 9.7 mm. In the cemented pair L7's front face ends at its bevel (11.1 mm), while the cemented face and L8's rear face reach the edge (12.4 mm); L9 is 14.7 mm. The reading uncertainty is about 0.2 mm; these are drawing estimates, not maker clear apertures, and the mount may restrict the beam further.
 
-With these rims the chief ray reaches the corner of the 24 × 36 mm frame (32°), but the oblique bundle there is heavily vignetted, mainly at the front element and at the cemented L7/L8 pair.
+With these rims the chief ray reaches the corner of the 24 × 36 mm frame (32°), where about a third of the axial illumination remains (33 % geometric transmission); the front menisci and the rear elements both trim the oblique bundle.
 
 ## Sources
 

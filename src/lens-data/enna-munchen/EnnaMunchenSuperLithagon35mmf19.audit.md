@@ -61,3 +61,48 @@ Patent: US 3,036,499 A, sole example (Table 1)
 - Open: R1 is drawn near 19.5 mm in the patent figure against `sd` 17.4 (the R2 rim); corner vignetting at 32° is
   heavy (front surface and cemented L7/L8 pair); maker minimum focus distance not confirmed (the Enna brochure scan
   at ihagee.org was unreachable during this pass, so its focus distances and 64° figure were not re-read).
+  (R1 rim and corner vignetting closed 2026-11-11 by the semi-diameter pass below; the minimum focus distance stays open.)
+
+## 2026-11-11 — Semi-diameter pass against the patent figure
+
+- Source: `patents/US3036499A.pdf`, page 1, the single drawing (axis vertical, object at the bottom), native 300 ppi
+  CCITT raster, measured at 300 dpi.
+- Scale: R1 vertex at y = 2503 px and R17 vertex at y = 836.5 px span the 191-unit vertex length, so 8.725 px per
+  patent unit, 0.04011 mm per px at the 0.35 scale. Intermediate vertices (R2 2445, R4 2126, R9 1633, R13 1121, R15
+  972) fall within 1–2 units of their prescription stations. Transverse check by arc fits (rim height from the
+  drawn sag and the printed radius): R2 8.60, R4 8.49, R9 8.88, R10 8.42 px per unit; drawn sags of R3, R7, R12 and
+  R13 match the printed radii at the measured rims. The stop tick sits 11.1 units into l5, as modeled.
+- Readings (outermost ink on the clean left side, checked against the right side where leader lines allow; mean of
+  both where clean), in mm at the 0.35 scale, against the baseline `sd`:
+
+  | Surface | Figure | Baseline | Ratio | Evidence | New |
+  |---|---:|---:|---:|---|---:|
+  | 1 | 19.4–19.6 (outer edge) | 17.4 | 1.12 | convex front runs to the drawn edge on both sides (483 / 488 px) | 19.5 |
+  | 2 | 17.2–17.5 (bevel) | 17.4 | 1.00 | concave rear ends at a 45° bevel (429 / 436 px) | 17.4 |
+  | 3 | 14.6 (outer edge) | 13.5 | 1.08 | same pattern as L1 (363–366 px); restores the drawn front/rear step | 14.6 |
+  | 4 | 13.6–13.8 (bevel) | 13.5 | 1.01 | 338 / 343 px | 13.5 |
+  | 5, 6 | 12.7 | 12.6 | 1.01 | square edge, 316–317 px | 12.6 |
+  | 7, 8 | 12.7 | 12.6 | 1.01 | square edge, 317–318 px | 12.6 |
+  | 9 | 12.3 | 11.8 | 1.04 | 307 px | 11.8 |
+  | 10 | 11.75 | 11.8 | 1.00 | 293 px at the chord | 11.8 |
+  | 11 | 9.5–9.7 (flat face, bevel) | 9.7 | 1.00 | 237–241 px | 9.7 |
+  | 12 | 10.15 | 9.7 | 1.05 | 253–254 px | 9.7 |
+  | 13 | 11.1–11.4 (bevel) | 11.1 | 1.01 | 277 / 284 px | 11.1 |
+  | 14 | 12.2–12.5 (edge) | 11.1 | 1.11 | cemented face runs to the edge (305 / 311 px) | 12.4 |
+  | 15 | 12.2–12.5 (edge) | 11.1 | 1.11 | L8 rear meets the edge (305 / 311 px) | 12.4 |
+  | 16, 17 | 14.7–15.1 | 14.7 | 1.01–1.03 | 366 / 376 px | 14.7 |
+
+- Kept within noise (under about 5 %): surfaces 2, 4–13, 16, 17. Changed: R1 and the cemented R14/R15 depart by
+  11–12 %; R3 departs by 8 % and is raised with them because the drawing gives L2 the same convex-edge / concave-bevel
+  step as L1, which the square 13.5 / 13.5 rim hid. No face moved below its baseline value, so no cut or land is
+  involved; the corner gains light.
+- Clearance: surface audit OK; aperture audit within 3 % of the stated f-number with no rim limit; image-circle
+  floor clear; traced field coverage 100 % (32.0° to 21.61 of 21.65 mm). The real-ray f/2.0 cone traced at the
+  nominal entrance pupil reaches 9.78 mm at surface 11 (`sd` 9.7), as before; the engine's f-number stop (9.755 mm)
+  trims that cone first, so no rim limits the axial beam in the model.
+- Engine: EFL 35.0011 mm, FOPEN 2, halfField 32°, stop radius 9.755 mm unchanged; tracing half-field 32.83° → 34.73°.
+  Geometric transmission at 32°: 11.8 % → 32.9 % (26.2°: 43.9 → 61.6 %; 20.4°: 68.9 → 80.8 %).
+- Model sketch against the drawing at matched scale (12 px/mm) agrees for every element; the sketch joins rims with
+  straight lines, so the drawn 45° bevels on L1, L2 and L7 appear as one diagonal from rear rim to front rim.
+- Open: the drawn L6 sits about 0.45 mm larger at R12 (10.15 mm) and L5 about 0.5 mm larger at R9, both inside noise
+  and left unchanged.
