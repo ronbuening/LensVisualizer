@@ -3,108 +3,96 @@
 **Patent:** GB 423,468 A
 **Application Number:** 5397/34
 **Filed:** February 19, 1934
-**Accepted:** February 1, 1935
+**Published:** February 1, 1935 (complete specification accepted)
 **Priority:** March 9, 1933, Germany
 **Assignee:** Ernst Leitz GmbH
 **Title:** Improvements in or relating to Lens Systems for Rapid Objectives
-**Example details:** Sole numerical prescription, physical page2 and drawing page4; native100mm/F2 scaled uniformly by0.5.
+**Example details:** Sole numerical example, page 2 (prescription and ray-intersection tables) and the single drawing sheet; printed at f = 100 mm, f/2, and scaled uniformly by 0.5 in the data file.
 
-The retained document is the **amended specification reprint**, explicitly referring to the Assistant Comptroller’s decision dated February24,1936. The acceptance year1935 in the data is not the amendment date. These dates, title and applicant were freshly inspected on originalGBpage1. The source names the corporate applicant but no individual inventor is assigned here; the structured authors list remains empty.
+The copy transcribed is the **amended specification**, reprinted in 1936 after a decision of the Assistant Comptroller dated February 24, 1936; the 1935 year in the data file is the acceptance year. The specification names the company as applicant and no individual inventor, so the data file lists no authors. The Austrian counterpart, AT 141 288 B, shares the priority, applicant and numerical example.
 
-The selected **Sole example** corresponds to AT141288B through the matching priority, assignee and numerical prescription. The product identification is a probable family association rather than a factory-exact reconstruction:
-1. Contemporary Leitz1933/1934 catalogs identify the Summar50mm f/2. Rigid and collapsible mounts are not counted as distinct optical designs.
-2. The original-maker foldout labeled “THE SUMMAR” shows six elements in four groups: two outer singlets and two inner cemented pairs, matching the patent topology. This section was freshly inspected during bounded authoring.
-3. The native100mm patent prescription is uniformly scaled to50mm. That documented representative scaling does not establish factory radii or glass identities.
-4. Patent field52° and manufacturer field48° remain separate. This draft’s configured field is48° and its diagnostic edge is24° off-axis.
+The association with the Leitz Summar 5 cm f/2 is a production correlation, not a manufacturer-confirmed prescription:
+1. The E. Leitz, Inc. price list that introduced the Leica Model F (1933) offers the Summar 50 mm f/2 in rigid and collapsible mounts, in the year of the patent's German priority. The two mounts share one optical design. About 127,950 were made through 1939, all in screw mount.
+2. The Leitz sectional drawing "THE SUMMAR" shows six elements in four groups: two outer singlets around two inner cemented pairs. Every element shape matches the patent, including both cemented interfaces convex toward the object and the plane front face of the last element.
+3. The patent states an angle of view of about 52° at full aperture. The data file uses 48°; the 24 × 36 mm diagonal at 50 mm subtends 46.8°.
 
-This is Summar, not the adjacent Summitar or Summicron diagrams, and not Summarex.
+The Summitar and Summicron sections printed beside it on the same Leitz sheet are later designs, and the Summarex is a different lens.
 
 ## Optical Architecture
 
-The six-element/four-group architecture is a double-Gauss form with two positive outer singlets and two inner compound dispersing menisci concave toward one another. GBpage1 describes the curved cemented interfaces as collective and convex toward incident light; page2 specifies the numeric example. These are source descriptions, not proof that every aberration is corrected in the present inferred-aperture model.
+The six-element, four-group layout is a double-Gauss form: two positive outer singlets (L1, L6) and two inner cemented "dispersing" menisci (L2–L3, L4–L5) concave toward one another. The patent's claim is that both curved cemented interfaces exert a collective action for all colours, are less curved than the air-exposed faces of their members, and are convex toward the incident light (page 1 and claim 1). That orientation makes the design asymmetric: the front cemented member is a positive meniscus cemented to a negative meniscus, while the rear one is a biconcave element cemented to a biconvex one.
 
-All ten radii and nine physical intervals are scaled by0.5; refractive indices and Abbe numbers are unchanged. The scaled glass-to-glass track is30.125mm. The source’s68.3mm near-axis image intersection becomes a **fixed34.15mm terminal image gap**. It is not refocused to the calculated34.098727mm BFL. The approximately0.051273mm difference is retained and disclosed, not repaired.
+All ten radii, the nine thicknesses and air spaces, and the back gap are scaled by 0.5 from the printed f = 100 mm example; indices and Abbe numbers are unchanged. The scaled vertex length is 30.125 mm. The back gap is the patent's printed near-axis image distance, 68.3 mm, scaled to 34.15 mm; the computed paraxial back focus of the transcribed prescription is 34.099 mm, and the 0.051 mm difference is kept rather than refocused. The traced focal length is 49.97 mm (patent: 100.0 mm before scaling).
+
+The patent's second page also tabulates the image distance at each surface for a near-axis ray, and image distances at 1:2.7 and 1:2. The transcribed prescription reproduces the per-surface values within 0.6 mm at the printed scale and the real-ray values at 1:2.7 and 1:2 (67.97 and 68.23 mm against the printed 68.0 and 68.2 mm).
 
 ## Element-by-Element Analysis
 
-Each quoted focal length is a computed isolated thick-element estimate in air at native sodium D, not a patent-published focal length or in-system cemented-group power. Actual cemented interfaces encounter neighboring glass rather than air. nD and νD below are the source’s historical sodium-D coordinates, not helium d.
+Focal lengths are thick-lens values for each element alone in air at the D line, computed from the scaled prescription; the patent prints none. The cemented pairs have much weaker combined powers: about −222 mm for L2–L3 and −378 mm for L4–L5.
 
-### L1: Positive meniscus outer singlet
+### L1: Positive Meniscus, convex to object
 
-nD = 1.6202, νD = 60.4. Glass: Unmatched source sodium-D glass; vendor unknown. f = +76.69 mm, computed isolated estimate.
+nD = 1.6202, νD = 60.4. Glass: Unmatched (SK16-type dense crown). f = +76.7 mm.
 
-L1 is the front simple collecting lens described on GBpage1. Its glass matches L2, L5 and L6 in the source table. No distinct focus-group motion is established.
+L1 is the front collective singlet, a weak meniscus (R1 = +39.32 mm, R2 = +219.1 mm). Its glass is shared by L2, L5 and L6.
 
-### L2: Positive meniscus, front cemented pair
+### L2: Positive Meniscus, convex to object
 
-nD = 1.6202, νD = 60.4. Glass: Unmatched source sodium-D glass; vendor unknown. f = +33.58 mm, computed isolated estimate.
+nD = 1.6202, νD = 60.4. Glass: Unmatched (SK16-type dense crown). f = +33.6 mm.
 
-L2 is the first member of the front compound dispersing meniscus, cemented to L3 at R4. Its isolated positive power does not imply positive power for the whole compound group.
+L2 is the thick front member of the front cemented meniscus, cemented to L3 at R4 (+75.3 mm), the first of the two collective interfaces the patent claims.
 
-### L3: Negative meniscus, front cemented pair
+### L3: Negative Meniscus, convex to object
 
-nD = 1.5814, νD = 40.8. Glass: Unmatched source sodium-D glass; vendor unknown. f = -24.50 mm, computed isolated estimate.
+nD = 1.5814, νD = 40.8. Glass: LF5 (Schott). f = −24.5 mm.
 
-L3 supplies the lower-index, lower-Abbe partner of L2. R5 faces the central air gap. The patent’s correction discussion concerns the compound member and its collective cemented interface; a separate optimized aberration contribution is not claimed.
+L3 is the thin light-flint partner of L2. Its strongly curved rear face (R5 = +11.88 mm) borders the central air space. The patent notes that R4 still converges the near-axis ray although L3's index is lower than L2's.
 
-### L4: Negative meniscus, rear cemented pair
+### L4: Biconcave Negative
 
-nD = 1.5673, νD = 42.8. Glass: Unmatched source sodium-D glass; vendor unknown. f = -19.77 mm, computed isolated estimate.
+nD = 1.5673, νD = 42.8. Glass: S-TIL26 (Ohara; LF6-type equivalent). f = −19.8 mm.
 
-L4 begins the rear compound dispersing meniscus; R6 faces the central gap. It uses a different nD/νD pair from L3, so the design is not numerically symmetric despite its broadly symmetric architecture.
+L4 is the thin light-flint front member of the rear cemented meniscus. Its front face (R6 = −16.555 mm) is concave to the central air space and its cemented rear face (R7 = +36.005 mm) is weakly convex toward the object, so the element is biconcave rather than a meniscus. Its glass differs from L3's, so the two flint members are not identical.
 
-### L5: Positive meniscus, rear cemented pair
+### L5: Biconvex Positive
 
-nD = 1.6202, νD = 60.4. Glass: Unmatched source sodium-D glass; vendor unknown. f = +23.80 mm, computed isolated estimate.
+nD = 1.6202, νD = 60.4. Glass: Unmatched (SK16-type dense crown). f = +23.8 mm.
 
-L5 is cemented to L4 at R7. The patent explicitly discusses the collective action at this interface in its page2 refraction table. No catalog glass substitution is made.
+L5 is the thick crown member cemented to L4 at R7, the second collective interface. With R7 convex toward the object and R8 = −23.59 mm, it is biconvex.
 
-### L6: Plano-convex positive outer singlet
+### L6: Plano-Convex Positive
 
-nD = 1.6202, νD = 60.4. Glass: Unmatched source sodium-D glass; vendor unknown. f = +58.89 mm, computed isolated estimate.
+nD = 1.6202, νD = 60.4. Glass: Unmatched (SK16-type dense crown). f = +58.9 mm.
 
-L6 is the rear collecting singlet, with plane R9 and curved R10. It terminates at the original source-derived fixed image gap; no corrective focus shift is introduced.
+L6 is the rear collective singlet, with a plane front face (R9) and a convex rear face (R10 = −36.525 mm). The Leitz sectional drawing shows the same plano-convex form.
 
 ## Glass Identification and Selection
 
-L1, L2, L5 and L6 use nD1.6202/νD60.4; L3 uses1.5814/40.8 and L4 uses1.5673/42.8. These are literal published pairs, not catalog identifications. The contrasting Abbe values in the cemented members are consistent with their source-described dispersing role, but do not establish apochromatic performance.
+The patent prints three glasses: nD = 1.6202 / νD = 60.4 for L1, L2, L5 and L6; 1.5814 / 40.8 for L3; and 1.5673 / 42.8 for L4. The patent states its indices for the D line, and its isoplanasy table is computed for the D and G lines, so the data file keeps the values at the sodium D line (589.29 nm) without conversion to the helium d line (587.56 nm).
 
-The current engine supports native sodiumD589.2938nm, distinct from helium d587.5618nm. Every element explicitly uses indexReference D. No D-to-d conversion is performed. Normal-line chromatic estimates based on nD/νD are inferred spectral behavior, not measured melt data or supplied partial-dispersion measurements.
+At the D line, Schott LF5 matches L3 to within 0.0001 in index and 0.05 in Abbe number, and Ohara S-TIL26 (an LF6-type light flint) matches L4 to within 0.0001 and 0.01; both are catalog equivalents, and the 1933 melts are not documented. The crown of L1, L2, L5 and L6 lies 0.00012 below SK16-type rows at the D line, outside the match tolerance, so it stays unmatched and its dispersion is modeled from nD and νD alone. The pairing of a dense crown with lower-index light flints in each cemented member gives the interfaces their collective, colour-correcting role; nothing in the patent indicates anomalous partial dispersion.
 
 ## Focus Mechanism
 
-Only the source’s infinity prescription is modeled. No finite-focus group motion or travel is derived. The1e15 close-focus sentinel is a supported static numerical convention, not a physical minimum focus distance or mechanical law. The terminal image gap remains34.15mm at every diagnostic field.
+The patent gives only the infinity prescription, and the model is infinity-only. The production Summar focuses on a helicoid to 1 m; that movement is not modeled, and the close-focus value in the data file is a placeholder rather than the lens's minimum focus distance.
 
 ## Aspherical Surfaces
 
-The source contains no aspheric coefficients. All finite-radius surfaces are spherical; R9 is plane. No conic, polynomial term or source-radius repair was introduced.
+The design is all spherical; R9 is plane.
 
-## Inferred Stop and Surface Rims
+## Model Scope and Limitations
 
-The patent’s central interval15.72mm is a total air gap, not a printed stop coordinate. The maker’s broadly symmetric sectional iris depiction supports an **approximate midpoint** choice:7.86+7.86native,3.93+3.93mm scaled. This is an author inference, not publication precision. Iris radius is derived by the engine from f/2. The conventional f-stop menu is a diagnostic control and not evidence of the maker’s engraved range.
+The patent prints the central air space A2 (15.72 mm, 7.86 mm scaled) but not the diaphragm position. The model places the stop at its midpoint, 3.93 mm behind R5, following the broadly symmetric Leitz sectional; that drawing actually shows the iris slightly behind the midpoint, at roughly 59 % of the gap. The iris diameter is set by the engine from f/2. The aperture scale, f/2 to f/12.5 without click stops, follows the production lens.
 
-Current v2 surface caps were determined from the original patent figure independently of failed-ray heights. At1500pixel page height, the axis is approximatelyy703 and the first/last verticesx365/672, a307pixel span corresponding to60.25native millimeters. Smaller top/bottom radial extent is used and rounded down0.1mm. R3/R4 use11.6mm; R7/R8 use11.5mm, based on their full-height faces. Concave R5/R6 retain8.7/8.6mm; all other caps remain unchanged. Different surface caps within a compound group reflect the drawing’s bevel/face boundaries, not separate glass diameters inferred from rays.
+Semi-diameters are not printed. They are estimates from the patent drawing, taken from the outline of each face and rounded down, not measured clear apertures, and they were not fitted to rays. The concave faces R5 and R6 use 8.7 and 8.6 mm. At R5 the f/2 axial cone needs 8.75 mm, so its outermost rays graze that rim by about 0.05 mm, too little to change the working f-number noticeably.
 
-These are inferred drawing proportions, not measured optical clear apertures. Endpoint uncertainty is approximately2pixels (0.2mm scaled), with additional unquantified schematic distortion. No cap was fitted to force a ray pass. Earlier common-minimum-cap interpretation is retained in the audit history, not used as the current model description.
-
-## Verification Summary
-
-Current v2 native geometry passes without overrides. All tested chief rays aim and reach the image. A25point circular pupil plus a separately traced chief gives26traces, with the center duplicated:
-
-| Off-axis field | Successful | Clipped | Launch-blocked |
-|---|---:|---:|---:|
-| 0° | 26 | 0 | 0 |
-| 12° | 25 | 1 | 0 |
-| 18° | 21 | 5 | 0 |
-| 24° | 14 | 11 | 1 |
-
-These sparse unweighted counts are **not illumination or transmission percentages**. Edge clipping remains; no claim of complete full-field or MTF qualification is made. The current26/26axial result replaces the historical v1 cap-limited result. Literal source plane, nativeD coordinates and all optical prescription values remain unchanged.
-
-The draft remains hidden (visible:false), not ready for delivery. Required full corpus/type/test/build/rendered-viewer and optical validation gates remain pending. Geometry construction alone does not establish physical lens performance.
+Off axis, the rear elements clip the oblique bundles increasingly toward the 24° half-field; the amount depends on the estimated rims.
 
 ## Sources
 
-- [GB423468A](https://patents.google.com/patent/GB423468A/en): retained amended specification; page1 metadata and architecture, page2 prescription and source image intersection, page4 drawing.
-- [AT141288B](https://patents.google.com/patent/AT141288B/en): retained counterpart prescription and drawing. Its metadata does not replace the primaryGB amended-version identity.
-- [Leitz1933 catalog](https://www.pacificrimcamera.com/rl/00305/00305.pdf), Summar listing, and [Leitz1934 catalog](https://www.pacificrimcamera.com/rl/01320/01320.pdf), named lens/specifications.
-- [Original-maker Summar/Summitar/Summicron sectional foldout, mirrored scan](https://zeissikonveb.de/onewebmedia/Marco/Summar-Summitar-Summicron%20englisch.jpg). Commercial sectional evidence, not an engineering prescription sheet.
+- [GB 423,468 A](https://patents.google.com/patent/GB423468A/en): amended specification; page 1 description, page 2 prescription, ray-intersection tables and claims, one drawing sheet.
+- [AT 141 288 B](https://patents.google.com/patent/AT141288B/en): Austrian counterpart with the same example and drawing.
+- [E. Leitz, Inc. price list, 1933](https://www.pacificrimcamera.com/rl/00305/00305.pdf) (Summar in rigid and collapsible mounts) and [Leitz catalog, 1934](https://www.pacificrimcamera.com/rl/01320/01320.pdf).
+- [Leitz sectional drawings "The Summar", "The Summitar", "The Summicron"](https://zeissikonveb.de/onewebmedia/Marco/Summar-Summitar-Summicron%20englisch.jpg): maker brochure scan; schematic sections, not engineering drawings.
+- [Leica Society International, "Rare and Uncommon 50 mm Lenses"](https://leicasocietyinternational.org/blog/rare-and-uncommon-50-mm-lenses): 6 elements / 4 groups, production 1933–1939.
+- [Ken Rockwell, Leica 50mm f/2 Summar](https://kenrockwell.com/leica/50mm-f2-summar.htm): aperture scale f/2–12.5 without click stops.
