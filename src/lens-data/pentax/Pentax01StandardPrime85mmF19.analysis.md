@@ -43,12 +43,12 @@ Focal lengths are for each element alone in air; the cemented pairs are C1 f = +
 | L4 | 1.77250 | 49.6 | TAF1 (Hoya) | +8.8 | Thick biconvex positive of C2 |
 | L5 | 1.58144 | 40.9 | E-FL5 (Hoya) | −15.1 | Biconcave negative of C2, concave toward the stop |
 | L6 | 1.76182 | 26.6 | FD140 (Hoya) | −4.7 | Biconcave negative of C3; generates negative spherical aberration with little effect off axis (¶0061) |
-| L7 | 1.75501 | 51.2 | Unmatched | +6.5 | Biconvex positive of C3 with an aspheric rear face; suppresses spherical aberration and coma (¶0061–¶0062) |
+| L7 | 1.75501 | 51.2 | M-TAC60 (HOYA) | +6.5 | Biconvex positive of C3 with an aspheric rear face; suppresses spherical aberration and coma (¶0061–¶0062) |
 | L8 | 1.80610 | 40.7 | M-NBFD130 (Hoya) | +11.0 | Biconvex positive with two aspheric faces; the focusing element (¶0055) |
 
 ## Glass Identification
 
-The patent prints helium d-line indices and Abbe numbers (¶0085). Seven of the eight pairs match Hoya catalog rows at the printed precision: BSC7, E-F8, TAFD30, TAF1, E-FL5, FD140 and M-NBFD130. Pentax belonged to Hoya when the design was filed in Japan, but the production melts are not documented; Ohara's S-TIM8, S-LAH58, S-LAH66 and S-TIH14 also match four of the pairs within that precision. The moldable M-NBFD130 row is used for the double-aspheric L8 on the inference that it is a glass-molded asphere; NBFD13 has the same coordinates. L7 (1.75501 / 51.2) has no exact catalog row and traces on its printed Abbe number. The two camera plates use the BSC7 row. No partial-dispersion data are printed.
+The patent prints helium d-line indices and Abbe numbers (¶0085). All eight pairs match Hoya catalog rows at the printed precision: BSC7, E-F8, TAFD30, TAF1, E-FL5, FD140, M-TAC60 and M-NBFD130. Pentax belonged to Hoya when the design was filed in Japan, but the production melts are not documented; Ohara's S-TIM8, S-LAH58, S-LAH66 and S-TIH14 also match four of the pairs within that precision. The moldable M-NBFD130 row is used for the double-aspheric L8 on the inference that it is a glass-molded asphere; NBFD13 has the same coordinates. L7 (1.75501 / 51.2), whose rear face is aspheric, matches only HOYA's moldable M-TAC60 (1.75501 / 51.16), a glass since discontinued. The two camera plates use the BSC7 row. No partial-dispersion data are printed.
 
 The chromatic correction is set by two conditions. Condition (3), |νd6 − νd7| > 20, pairs the dense flint L6 (νd 26.6) with L7 (νd 51.2) in C3 to remove color the front group leaves (¶0072); the difference is 24.6. Condition (4), νd8 > 40, keeps the focusing element's dispersion low so that axial and lateral color change little through focus (¶0079); L8 has νd 40.7.
 

@@ -29,7 +29,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * finite-focus spacing; `closeFocusM` 1e15 is the infinity placeholder and Ricoh's 0.2 m minimum focus distance is
  * in `catalog.closeFocusM`.
  *
- * Glass: Hoya catalog rows that match the printed nd / νd; L7 has no exact catalog row.
+ * Glass: Hoya catalog rows that match the printed nd / νd (L7 and L8 on moldable-glass rows).
  */
 const LENS_DATA = {
   "schema": 2,
@@ -156,7 +156,7 @@ const LENS_DATA = {
       "nd": 1.75501,
       "vd": 51.2,
       "indexReference": "d",
-      "glass": "Unmatched (nd=1.75501, vd=51.2)",
+      "glass": "M-TAC60 (HOYA)",
       "role": "Positive element of C3; its aspheric rear face controls spherical aberration and coma",
       "cemented": "C3"
     },
@@ -298,7 +298,8 @@ const LENS_DATA = {
       5.6,
       8
     ],
-    "maxFNumber": 8
+    "maxFNumber": 8,
+    "blades": 5
   },
   "layout": {
     "yScFill": 0.7

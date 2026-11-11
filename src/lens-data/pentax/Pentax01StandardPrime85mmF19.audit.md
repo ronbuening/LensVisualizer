@@ -95,3 +95,10 @@ and on L8) also shows L1's concave rear face ending in a wide flange and a stepp
 production drawing, so its proportions were not used.
 
 Open: none for the rims.
+
+## 2026-11-11 — Glass coverage and metadata
+
+- Added HOYA M-TAC60 (vendor AGF formula-1 row, HOYA20260707 catalogue including discontinued glasses) to the catalog.
+  L7: `Unmatched (nd=1.75501, vd=51.2)` → `M-TAC60 (HOYA)`, Δnd 0, Δνd −0.04. L7 carries the aspheric surface 12, which
+  fits a moulding glass. All eight elements and both plates now trace on catalog curves.
+- `aperture.blades` 5, from Ricoh's product page for the 01 Standard Prime.
