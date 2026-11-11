@@ -29,7 +29,7 @@ L1 gives the back focus a mirrorless body needs, so that dust on L8 stays out of
 
 The camera body's optical filter OP (0.55 mm) and cover glass CG (0.50 mm), both nd 1.51680 / νd 64.2, sit behind L8. They are traced as rear plates with their printed gaps (4.194 mm to OP, 2.02 mm between the plates, 0.53 mm to the image), and they are neither drawn nor counted as lens elements. The printed dB = 0.53 mm is the gap after the cover glass: the d values plus dB sum to 31.298 mm, the printed L = 31.30 mm, although ¶0057 defines back focus from the last lens surface. L8's rear vertex is 7.794 mm from the image through the plates. The model's EFL is 8.5007 mm and its paraxial back focus behind the cover glass is 0.5299 mm, so no refocusing is applied.
 
-Semi-diameters are not printed. They were read from Fig. 1, scaled on the drawn 30.768 mm from the first surface to the rear face of the cover glass, and rounded down to 0.01 mm (reading uncertainty about ±0.09 mm). The iris radius follows from F1.9. Neither was adjusted to ray-trace results. With these rims the beam at the 1/1.7-inch corner is strongly vignetted at full aperture.
+Semi-diameters are not printed. They were estimated from Fig. 1, scaled on the drawn 30.768 mm from the first surface to the rear face of the cover glass, and checked against the real-ray beam. As in the figure, the concave rear face of L1 and the concave front face of L6 end short of their element edges in flat lands; the L6 cap, drawn at about 2.4 mm, is modelled at 2.5 mm, where it trims the oblique beams only slightly. The iris radius follows from F1.9. With these rims the beam at the 1/1.7-inch corner is strongly vignetted at full aperture: about 29 % of the axial light reaches it.
 
 ## Element-by-Element Analysis
 

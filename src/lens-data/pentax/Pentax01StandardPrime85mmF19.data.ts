@@ -15,8 +15,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 31.298 mm, the printed L = 31.30.
  *
  * Stop: patent surface 9; its diameter is not printed. The iris radius is derived from the tabulated F1.9 (the
- * aberration plots print F1.93). Semi-diameters are not printed: they were read from Fig. 1 and rounded down, and
- * neither they nor the iris were adjusted to ray-trace results.
+ * aberration plots print F1.93). Semi-diameters are not printed: they are estimated from Fig. 1 (74.1 px/mm axial,
+ * 73.3 px/mm lateral at 300 dpi) and floor-checked by real-ray trace. Element edges sit 1–3 % inside the drawing and
+ * were kept. Fig. 1 ends two concave caps short of their element edges with flat lands, drawn by `rimExtensionSd`:
+ * L1's rear face (cap 4.03 mm, land to 5.01 mm) and L6's front face S10 (land to 3.32 mm). The S10 cap is drawn at
+ * about 2.36 mm; it is set to 2.5 mm, the smallest value that keeps the off-axis light within 3 points of the
+ * full-height rim.
  *
  * Field: the patent gives W = 30.8° at Y = 4.65 mm, the 1/1.7-inch half-diagonal of the later Q7 and Q-S1; a real
  * chief ray at 30.8° lands at 4.649 mm. Ricoh quotes 58° on the Q7 and 49.5° on the 1/2.3-inch Q and Q10.
@@ -180,7 +184,8 @@ const LENS_DATA = {
       "label": "2",
       "R": 5.896,
       "d": 2.461,
-      "sd": 4.03
+      "sd": 4.03,
+      "rimExtensionSd": 5.01
     },
     {
       "label": "3",
@@ -231,7 +236,8 @@ const LENS_DATA = {
       "label": "10",
       "R": -6.986,
       "d": 1.0,
-      "sd": 3.32,
+      "sd": 2.5,
+      "rimExtensionSd": 3.32,
       "medium": 6
     },
     {

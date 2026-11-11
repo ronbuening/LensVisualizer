@@ -53,5 +53,45 @@ mm, BFD 0.5299, total track 31.298 mm. Surface audit OK; aperture audit reports 
 Open:
 - Table 3 prints F1.9 while the aberration plots are labelled F1.93; the model uses F1.9.
 - Semi-diameters are read from Fig. 1 and leave the 1/1.7-inch corner beam strongly vignetted at f/1.9 (lower rim ray
-  lost at 30.8°); a rim pass against Fig. 1 and the Impress drawing is still due.
+  lost at 30.8°); a rim pass against Fig. 1 and the Impress drawing is still due. (Closed: semi-diameter pass below;
+  the rims follow the figure and the corner vignetting stays.)
 - Near focus to Ricoh's 0.2 m is not modelled; the patent prints no finite-focus spacing.
+
+## 2026-11-11 — Semi-diameter pass against the patent figure
+
+Source: `patents/US20120268834A1.pdf`, page 2 (Sheet 1), Fig. 1, Numerical Embodiment 1 at infinity, a 300 dpi CCITT
+raster measured at native resolution. The axis is vertical on the sheet (object at the bottom) and leans about 4.5 px
+over the lens; each element was centred on its own left and right edges. Axial scale: the vertex crossings S1 (y 2814)
+to S18 (y 533.5) span 2280.5 px for 30.768 mm, 74.12 px/mm, and S1 to S14 gives 74.11 px/mm; every gap from S1 to S18
+matches the prescription within 1 px. Lateral scale: circle fits to the S2 cap (R 5.896, both sides, rms 0.6 px) and
+the C1 junction S4 (R 7.534, left side) give 73.1–73.5 px/mm; 73.3 px/mm is used. The S10 cap's sag at its end
+(30.5 px) also returns its measured end height through R.
+
+| Surface | Before sd | Figure | After | Evidence |
+| --- | ---: | ---: | ---: | --- |
+| 1 (L1 front) | 5.01 | edge 5.12 | 5.01 | edge 375.5 px; +2.3 %, noise |
+| 2 (L1 rear) | 4.03 | cap 4.15, land to 5.12 | 4.03, `rimExtensionSd` 5.01 | cap ends 304/305 px each side (+3.1 %), flat flange to the edge; land costs no light |
+| 3–5 (C1) | 4.03 | edge 4.13, square | 4.03 | 302.5 px; +2.4 %, noise |
+| 6–8 (C2) | 3.41 | edge 3.49, square | 3.41 | 255.75 px; +2.3 %, noise |
+| 10 (L6 front) | 3.32 | cap 2.38, land to 3.41 | 2.5, `rimExtensionSd` 3.32 | cap ends 173.5/175.5 px about the local axis; set to 2.5 by the light rule (below) |
+| 11–12 (C3) | 3.32 | edge 3.41, square | 3.32 | 250.25 px; +2.8 %, noise |
+| 13–14 (L8) | 4.93 | edge 5.02, square | 4.93 | 368 px; +1.8 %, noise |
+
+All element edges read 1.8–2.8 % above the stored values, in the same order (L1 > L8 > C1 > C2 > C3), so they were kept.
+The figure's S10 cap end (2.36–2.38 mm) is 28–29 % under the stored rim. Cutting S10 to 2.4 mm costs 2.9 points at 14.0°
+on the app's twelve-field vignetting curve and 3.2 points at 15.4° on a 45-field curve, past the 3-point limit; 2.5 mm
+costs at most 0.6 points (14.0°: 87.5 → 86.9 %), so the cap is 2.5 mm with a flat land to the C3 edge (3.32 mm). The
+axial marginal ray at f/1.9 crosses S10 at 2.18 mm. Corner illumination at 30.8° stays 28.8 %, and every other field
+is unchanged within 0.1 point. The rear plates carry no `sd` and were left alone; the stop is engine-derived.
+
+Engine and audits after the change: EFL 8.500681, FOPEN 1.900, halfField 32.388° and stop radius 2.43577 mm, all as
+before. Surface audit OK; aperture audit reports no rim limit; image circle no undersized surface; field coverage 100 %
+to 30.8° (4.65 mm). Real-ray clearance at Y 4.65 and 3.835 mm shows no axial clip or blocked chief ray; at 30.8° the
+lower rim ray is still lost, as before. The diagram's derived stop housing now follows the 2.5 mm S10 cap (it was
+3.32 mm); Fig. 1 draws the stop ticks from about 2.45 to 3.5 mm.
+
+The Impress construction drawing recorded in the deployment validation (8 elements / 5 groups; AL on the rear of L7
+and on L8) also shows L1's concave rear face ending in a wide flange and a stepped rim on L6's front; it is a
+production drawing, so its proportions were not used.
+
+Open: none for the rims.
