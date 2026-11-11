@@ -20,6 +20,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters: none are printed. They are read from Fig. 1, a drawing common to all five embodiments, scaled so its
  * first-to-last vertex span equals the 71.09 mm track; the smaller of the upper and lower extents is rounded down to
  * 0.1 mm and shared by both faces of each element. Neither the rims nor the stop were adjusted to ray-trace results.
+ * Fig. 1 ends three concave caps short of their element edges with flat lands; these are rim cuts at the drawn share
+ * of `sd` (9.85 px per mm): S6 at 0.85 (depth 3.96 mm, cut radius 18.2 mm), S8 at 0.85 (5.07 mm, 14.5 mm) and S9 at
+ * 0.88 (2.97 mm, 14.3 mm). Each clears the traced wide-open beams, so the vignetting is unchanged.
  *
  * Glass: the patent specifies an anomalous-dispersion glass for L2 but prints no partial-dispersion data; L2 traces on
  * the FCD1 catalog curve.
@@ -200,7 +203,8 @@ const LENS_DATA = {
       "label": "6",
       "R": 43.85,
       "d": 3.93,
-      "sd": 21.4
+      "sd": 21.4,
+      "rimCutDepthMm": 3.96
     },
     {
       "label": "7",
@@ -213,7 +217,8 @@ const LENS_DATA = {
       "label": "8",
       "R": 23.26,
       "d": 10.35,
-      "sd": 17.0
+      "sd": 17.0,
+      "rimCutDepthMm": 5.07
     },
     {
       "label": "STO",
@@ -225,6 +230,7 @@ const LENS_DATA = {
       "R": -35.92,
       "d": 4.55,
       "sd": 16.3,
+      "rimCutDepthMm": 2.97,
       "medium": 5
     },
     {

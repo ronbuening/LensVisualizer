@@ -21,7 +21,7 @@ The older five-element 100mm f/2.8 is a separate design.
 
 The system contains three positive front menisci, a negative meniscus, a rear cemented pair and a final positive singlet: seven elements in six groups, with patent surface 10 as the cemented interface. The computed EFL is 99.995 mm and is not rescaled to 100 mm. The track from the first to the last surface is 71.09 mm. The patent prints no back focus; the paraxial image gap of 44.909 mm puts the image plane 115.999 mm behind the first surface, a telephoto ratio of 1.16.
 
-Fig. 1 is a single drawing for all five embodiments, not a scale drawing of Embodiment 5. The semi-diameters are read from it with its first-to-last vertex span set to the 71.09 mm track, taking the smaller of the upper and lower extents and rounding down to 0.1 mm. The outlines are schematic glass edges, not measured clear apertures.
+Fig. 1 is a single drawing for all five embodiments, not a scale drawing of Embodiment 5. The semi-diameters are read from it with its first-to-last vertex span set to the 71.09 mm track, taking the smaller of the upper and lower extents and rounding down to 0.1 mm. The outlines are schematic glass edges, not measured clear apertures. Fig. 1 ends the concave rear faces of L3 and L4 and the concave front face of L5 short of their element edges with flat lands, and the model draws them at the same share of the edge; they lie outside the traced wide-open beams.
 
 The drawing marks no iris; the leader at d8 labels the gap. The stop is placed at the midpoint of the 20.70 mm central gap (10.35 + 10.35 mm), and its radius is set by F/2. Neither the rims nor the stop were adjusted to ray-trace results.
 
