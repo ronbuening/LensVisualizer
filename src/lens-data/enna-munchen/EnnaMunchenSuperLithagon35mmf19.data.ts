@@ -1,18 +1,54 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** HIDDEN UNVALIDATED representative. Source100mm/F2 scaled uniformly .35.
- * Marketing35mm/f1.9 is not a factory prescription claim. Literal17R/d/nV unchanged.
- * Stop inferred from Fig1 vertices at61.5% of18-unit gap:11.1+6.9native.
- * This corrects withdrawn v1 quarter-gap interpretation; not a published station.
- * sd independently inferred from conservative inner drawing rims/191-unit axial span.
- * Not measured optical clear apertures; mounts/vignetting unknown. No ray fitting.
- * Computed paraxial image gap; static infinity-only sentinel. No overrides.
+
+/**
+ * ╔════════════════════════════════════════════════════════════════════════╗
+ * ║           LENS DATA — ENNA MÜNCHEN SUPER-LITHAGON 35mm f/1.9           ║
+ * ╠════════════════════════════════════════════════════════════════════════╣
+ * ║  Data source: US 3,036,499 A, sole example (Table 1), Johann           ║
+ * ║  Lautenbacher / Enna-Werk.                                             ║
+ * ║  Retrofocus wide-angle: two negative front menisci, then a positive    ║
+ * ║  main group L3–L9 with a cemented L7/L8 meniscus.                      ║
+ * ║  9 elements / 8 groups, all spherical.                                 ║
+ * ║  Focus: infinity only; the patent gives no close-focus data.           ║
+ * ║                                                                        ║
+ * ║  NOTE ON SCALING:                                                      ║
+ * ║    The patent prescription is stated at f = 100 mm, f/2.0. All radii,  ║
+ * ║    thicknesses, the inferred stop station and the semi-diameters are   ║
+ * ║    uniformly scaled by 0.35 to the 35 mm production focal length.      ║
+ * ║    Refractive indices and Abbe numbers are the printed d-line values.  ║
+ * ║    The model keeps the patent's f/2.0; f/1.9 is the marketed aperture. ║
+ * ║                                                                        ║
+ * ║  NOTE ON SOURCE SIGNS:                                                 ║
+ * ║    OCR text of the scan drops the "+" signs. Radii follow the page     ║
+ * ║    image and the claim table (R1 = +250.0, R3 = +270.0), which trace   ║
+ * ║    to f = 100.003.                                                     ║
+ * ║                                                                        ║
+ * ║  NOTE ON STOP AND SEMI-DIAMETERS:                                      ║
+ * ║    The patent does not tabulate the stop. Its drawing places it 11.1   ║
+ * ║    units into the 18.0-unit gap l5 after the R10 vertex, so the gap is ║
+ * ║    split 3.885 / 2.415 mm. The stop radius follows from f/2.0. Element ║
+ * ║    semi-diameters are read from the inner rims of the patent drawing   ║
+ * ║    (scale from the 191-unit vertex span), taking the smaller side and  ║
+ * ║    excluding bevels; the cemented pair shares one rim. They are not    ║
+ * ║    maker clear apertures.                                              ║
+ * ║                                                                        ║
+ * ║  NOTE ON BACK FOCUS:                                                   ║
+ * ║    The patent prints no back focal distance. The image gap is the      ║
+ * ║    paraxial value, 36.583 mm (104.52 at patent scale).                 ║
+ * ║                                                                        ║
+ * ║  IMPORTANT: This file describes ONLY the optical design:               ║
+ * ║    ✓ Glass elements and surfaces from front element to image plane     ║
+ * ║    ✓ Aperture stop at the figure-read station                          ║
+ * ║    ✗ No focus travel: closeFocusM 1e15 is an infinity placeholder      ║
+ * ║    ✗ No filters, mount, barrel, or mechanics                           ║
+ * ╚════════════════════════════════════════════════════════════════════════╝
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "enna-munchen-super-lithagon-35mm-f19",
   "maker": "Enna München",
   "name": "ENNA MÜNCHEN SUPER-LITHAGON 35mm f/1.9",
-  "subtitle": "US3036499A sole example — qualified scaled representative; source f/2",
+  "subtitle": "US 3,036,499 A, sole example — Lautenbacher / Enna-Werk, matching the 9/8 production layout",
   "catalog": {
     "imageFormat": "135-full-frame",
     "lensMounts": [
@@ -23,7 +59,7 @@ const LENS_DATA = {
     "groupCount": 8,
     "focalLengthMm": {
       "marketing": 35,
-      "design": 35
+      "design": 35.0011
     },
     "fNumber": {
       "marketing": 1.9,
@@ -31,8 +67,10 @@ const LENS_DATA = {
     },
     "specs": [
       "9 elements / 8 groups",
-      "Source 100mm f/2 uniformly scaled by 0.35",
-      "Infinity-only; figure-inferred stop and apertures; unvalidated"
+      "f ≈ 35.0 mm",
+      "f/1.9 (patent f/2.0)",
+      "2ω ≈ 63.4°",
+      "all-spherical"
     ]
   },
   "source": {
@@ -57,8 +95,8 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.51821,
       "vd": 65.18,
-      "glass": "Unmatched (source d-line nd=1.51821, vd=65.18)",
-      "role": "Literal patent glass; no melt identity claim"
+      "glass": "PC2 (Hoya)",
+      "role": "Front negative meniscus of the diverging front component; starts the retrofocus layout"
     },
     {
       "id": 2,
@@ -67,8 +105,8 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.51821,
       "vd": 65.18,
-      "glass": "Unmatched (source d-line nd=1.51821, vd=65.18)",
-      "role": "Literal patent glass; no melt identity claim"
+      "glass": "PC2 (Hoya)",
+      "role": "Second negative meniscus of the front component, shares its divergence with L1"
     },
     {
       "id": 3,
@@ -77,8 +115,8 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.58921,
       "vd": 40.97,
-      "glass": "Unmatched (source d-line nd=1.58921, vd=40.97)",
-      "role": "Literal patent glass; no melt identity claim"
+      "glass": "LF2 (Sumita)",
+      "role": "First positive element of the main group, behind the long front air gap"
     },
     {
       "id": 4,
@@ -87,8 +125,8 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.6228,
       "vd": 56.88,
-      "glass": "Unmatched (source d-line nd=1.6228, vd=56.88)",
-      "role": "Literal patent glass; no melt identity claim"
+      "glass": "SK10 (Schott)",
+      "role": "Second positive element ahead of the stop"
     },
     {
       "id": 5,
@@ -97,38 +135,40 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.52249,
       "vd": 59.64,
-      "glass": "Unmatched (source d-line nd=1.52249, vd=59.64)",
-      "role": "Literal patent glass; no melt identity claim"
+      "glass": "K5 (Sumita)",
+      "role": "Weak positive meniscus just ahead of the stop"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Plano-concave Negative",
+      "type": "Plano-Concave Negative",
       "nd": 1.78472,
       "vd": 25.71,
-      "glass": "Unmatched (source d-line nd=1.78472, vd=25.71)",
-      "role": "Literal patent glass; no melt identity claim"
+      "glass": "SF11 (Schott)",
+      "role": "Strong negative element behind the stop, with a plane front face"
     },
     {
       "id": 7,
       "name": "L7",
       "label": "Element 7",
-      "type": "Plano-concave Negative",
+      "type": "Plano-Concave Negative",
       "nd": 1.78472,
       "vd": 25.71,
-      "glass": "Unmatched (source d-line nd=1.78472, vd=25.71)",
-      "role": "Literal patent glass; no melt identity claim"
+      "glass": "SF11 (Schott)",
+      "role": "Negative flint half of the cemented rear meniscus",
+      "cemented": "C1"
     },
     {
       "id": 8,
       "name": "L8",
       "label": "Element 8",
-      "type": "Plano-convex Positive",
+      "type": "Plano-Convex Positive",
       "nd": 1.691,
       "vd": 54.8,
-      "glass": "Unmatched (source d-line nd=1.691, vd=54.8)",
-      "role": "Literal patent glass; no melt identity claim"
+      "glass": "N-LAK9 (Schott)",
+      "role": "Positive lanthanum-crown half of the cemented rear meniscus",
+      "cemented": "C1"
     },
     {
       "id": 9,
@@ -137,8 +177,8 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.691,
       "vd": 54.8,
-      "glass": "Unmatched (source d-line nd=1.691, vd=54.8)",
-      "role": "Literal patent glass; no melt identity claim"
+      "glass": "N-LAK9 (Schott)",
+      "role": "Rear positive element; shares the high-index glass of L8"
     }
   ],
   "surfaces": [
@@ -261,7 +301,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: static infinity-only geometry; 1e15 is a numerical sentinel, not a published MFD or finite focus mechanism."
+    "description": "Infinity focus only; the patent gives no close-focus data, so no focus travel is modeled."
   },
   "aperture": {
     "nominalFNumber": 2,
@@ -284,6 +324,13 @@ const LENS_DATA = {
   },
   "layout": {
     "yScFill": 0.7
-  }
+  },
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "13",
+      "toSurface": "15"
+    }
+  ]
 } satisfies LensDataV2Input;
 export default LENS_DATA;

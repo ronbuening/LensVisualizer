@@ -1,138 +1,123 @@
 ## Patent Reference and Design Identification
 
 **Patent:** US 3,036,499 A
-**Filed:** December 30, 1958
+**Filed:** December 30, 1958 (Ser. No. 783,895)
 **Granted:** May 29, 1962
 **Priority:** September 12, 1958, Germany
 **Inventor:** Johann Lautenbacher
 **Assignee:** Enna-Werk Optische Anstalt Dr. Appelt K.G.
 **Title:** Photographic Wide-Angle Objective of Extremely High Light Intensity
-**Example details:** Table 1 and the single drawing; native 100 mm, f/2; all dimensional prescription values uniformly scaled by 0.35.
+**Example details:** Table 1 (repeated in the claim) and the single drawing; f = 100 mm, 1:2.0
 
-The data transcribes the **Sole example**, as recorded in its structured source. Metadata and dates above were freshly checked against the retained original US patent text page (physical page2). DE1102435B supplies the matching prescription and drawing; counterpart identification rests on the same inventor, assignee, priority and numerical prescription.
+US 3,036,499 A describes a wide-angle objective for single-lens reflex cameras with a picture angle above 60°, a relative aperture of at least 1:2.0, an image-side intercept at least equal to the focal length, and an overall length no greater than three times the focal length. Table 1 is its only numerical example. The data file scales every radius and spacing of that example uniformly by 0.35, from the patent's f = 100 mm to the 35 mm production focal length; indices and Abbe numbers are unchanged.
 
-The production association is probable, not factory-exact:
-1. The ENNA-branded brochure names the Super-Lithagon 35mm f/1.9 and supplies a nine-element optical section matching the patent’s gross nine-element/eight-group architecture.
-2. The patent names ENNA and describes a wide-angle retrofocus system, whereas the brochure states a 64° picture angle.
-3. Uniform scaling of the stated100mm prescription to35mm is an explicit representative-model choice, not evidence that the factory used identical radii.
-4. Source f/2 and marketed f/1.9 remain distinct. The authored nominal aperture is f/2; it is not opened to1.9.
+The German priority application was published as DE 1,102,435 B (March 16, 1961), with the same inventor, applicant, priority date and prescription. Its machine-read text prints R1 = −250.0 and R3 = −270.0; these are lost "+" signs. With either sign flipped the prescription traces to f = 89.4 or 101.6, while the signs on the US page image and in the US claim table (R1 = +250.0, R3 = +270.0) trace to f = 100.003.
 
-The brochure is a primary commercial document retained through a historical scan. Its archive capture date is not its publication date. Gross section agreement does not establish every surface curvature, glass melt or dimension.
+The following evidence links the example to the Super-Lithagon 35mm f/1.9:
+
+1. The M42 Lens Database lists the Super-Lithagon 35mm f/1.9 (f/1.9–22) as 9 elements in 8 groups, the patent's count: two separate front menisci and a main group with one cemented pair.
+2. Enna introduced the lens in 1958, first for its interchangeable Sockel mount and later in Exakta and M42 versions; the patent's German priority date is September 12, 1958.
+3. An Enna brochure for the Super-Lithagon 35mm f/1.9 shows a nine-element section of the same arrangement and gives a 64° picture angle; 35 mm on the 24 × 36 mm format covers 63.4°.
+4. The patent claims an aperture of at least 1:2.0; the production lens is marketed at f/1.9. The data file keeps the patent's f/2.0 as the design aperture and records f/1.9 as the marketed value.
+5. The assignee, Enna-Werk, made the Lithagon series; Lautenbacher patents for Enna also underlie the Lithagon 35mm f/3.5 (US 2,821,112) and the Ultra-Lithagon 28mm f/3.5 (US 2,959,100).
+
+The association is probable rather than factory-confirmed: the brochure section matches the arrangement, but it does not establish every curvature, glass or dimension of the production lens.
 
 ## Optical Architecture
 
-Nine elements form eight groups: two separate negative menisci constitute the front component F, followed by the main component H containing positive L3–L5, negative L6, a cemented L7/L8 pair, and positive L9. This negative-front, positive-main distribution is a retrofocus architecture providing rear clearance; the patent’s power descriptions are not newly measured performance claims.
+Nine elements form eight groups: two separate negative menisci make up the front component F, followed by the main component H with positive L3–L5, the stop, negative L6, a cemented L7/L8 meniscus and positive L9. This negative-front, positive-main distribution is a retrofocus (inverted telephoto) layout that gives a back focus longer than the focal length for reflex-mirror clearance. All surfaces are spherical; R11 and R14 are plane.
 
-The scaled first-to-last vertex length is66.85mm. Calculated paraxial EFL is35.0010981223mm and BFL36.5832924940mm. The image distance is computed from the literal prescription, not printed by the source. The model contains no zoom or finite-focus movement.
+At the 35 mm scale the first-to-last vertex length is 66.85 mm. The paraxial EFL is 35.001 mm and the back focal distance 36.583 mm (104.52 at patent scale); the patent does not print a back focus, so the image distance is computed from the prescription. The example meets the patent's own limits: the intercept is 1.045 f (at least f), the front-to-main separation l2 is 0.30 f (at least 0.1 f), and the overall length including back focus is 2.96 f (at most 3 f).
 
 ## Element-by-Element Analysis
 
-The focal lengths below are computed **isolated thick-element air-surrounded estimates** at the source d-line, not patent-published element focal lengths or in-system group powers. The cemented L7/L8 estimates deliberately use the same isolated convention and must not be mistaken for their actual cemented-interface contributions. Radii and thicknesses use the authored0.35scale.
+Element focal lengths are thick-lens values in air at the d-line and at the 35 mm scale, not in-system group powers; for L7 and L8 they are the two halves of the cemented pair taken separately (the cemented pair together is +90.97 mm).
 
 ### L1: Negative meniscus, convex toward object
 
-nd = 1.51821, νd = 65.18. Glass: Unmatched source glass; vendor unknown. f = -88.26 mm, computed isolated estimate.
+nd = 1.51821, νd = 65.18. Glass: PC2 (Hoya) equivalent. f = −88.26 mm.
 
-The first negative meniscus forms the front negative component F with L2. This is the source-defined retrofocus arrangement, not a separately established focusing group.
+The first negative meniscus forms the diverging front component F with L2 and starts the retrofocus layout.
 
 ### L2: Negative meniscus, convex toward object
 
-nd = 1.51821, νd = 65.18. Glass: Unmatched source glass; vendor unknown. f = -95.54 mm, computed isolated estimate.
+nd = 1.51821, νd = 65.18. Glass: PC2 (Hoya) equivalent. f = −95.54 mm.
 
-The second negative meniscus completes component F. Its repeated glass pair is source fact; no special melt identity is known.
+The second negative meniscus completes component F in the same glass as L1. Splitting the front divergence over two menisci keeps each one's bending moderate.
 
 ### L3: Biconvex positive
 
-nd = 1.58921, νd = 40.97. Glass: Unmatched source glass; vendor unknown. f = +69.09 mm, computed isolated estimate.
+nd = 1.58921, νd = 40.97. Glass: LF2 (Sumita) equivalent. f = +69.09 mm.
 
-L3 begins the positive subgroup of the main component H. The patent places L3, L4 and L5 before the strong negative lens L6 (US column1, lines43–51).
+L3 begins the positive subgroup of the main component H, after the 30-unit air gap l2. The patent places at least three positive lenses, L3, L4 and L5, between component F and the strong negative lens L6 (US col. 1, lines 44–51).
 
 ### L4: Biconvex positive
 
-nd = 1.62280, νd = 56.88. Glass: Unmatched source glass; vendor unknown. f = +70.00 mm, computed isolated estimate.
+nd = 1.62280, νd = 56.88. Glass: SK10 (Schott) equivalent. f = +70.00 mm.
 
-L4 is the second member of that positive subgroup. Attribution of an individual aberration correction beyond the patent’s group-level discussion would require further analysis.
+L4 is the second member of that positive subgroup, nearly equal in power to L3.
 
 ### L5: Positive meniscus
 
-nd = 1.52249, νd = 59.64. Glass: Unmatched source glass; vendor unknown. f = +142.91 mm, computed isolated estimate.
+nd = 1.52249, νd = 59.64. Glass: K5 (Sumita) equivalent. f = +142.91 mm.
 
-L5 is the weaker positive meniscus nearest L6. The patent describes distributing positive power here and behind L6 to aid spherical and extra-axial correction (US column1, lines43–64). This draft does not claim measured correction performance.
+L5 is the weak positive meniscus nearest L6, just ahead of the stop. The patent limits its power to at most 0.4 times that of the two preceding positive lenses; against their combined power the ratio here is 0.24. Together with the meniscus behind L6, this distributes the positive power to aid spherical and oblique correction (US col. 1, lines 48–64).
 
 ### L6: Plano-concave negative
 
-nd = 1.78472, νd = 25.71. Glass: Unmatched source glass; vendor unknown. f = -31.67 mm, computed isolated estimate.
+nd = 1.78472, νd = 25.71. Glass: SF11 (Schott) equivalent. f = −31.67 mm.
 
-L6 is the strong negative element identified by the patent. Its object-facing surface R11 is plane and is retained literally, despite ambiguous curvature in a commercial schematic.
+L6 is the strong negative element the patent identifies, just behind the stop. Its object-facing surface R11 is plane, meeting the patent's preference that this surface carry at most a quarter of the element's negative power. The brochure section is ambiguous about the curvature of this face; the patent prints it plane.
 
 ### L7: Plano-concave negative, cemented partner
 
-nd = 1.78472, νd = 25.71. Glass: Unmatched source glass; vendor unknown. f = -82.51 mm, computed isolated estimate.
+nd = 1.78472, νd = 25.71. Glass: SF11 (Schott) equivalent. f = −82.51 mm.
 
-L7 is the negative portion of the cemented rear meniscus. The patent recommends a lower Abbe value for this negative partner than for positive L8 (US column2, lines5–13).
+L7 is the negative half of the cemented rear meniscus. The patent asks for an Abbe number for this negative partner of at most 0.7 times that of the positive L8 (US col. 2, lines 5–13); here the ratio is 0.47.
 
 ### L8: Plano-convex positive, cemented partner
 
-nd = 1.69100, νd = 54.80. Glass: Unmatched source glass; vendor unknown. f = +45.08 mm, computed isolated estimate.
+nd = 1.69100, νd = 54.80. Glass: N-LAK9 (Schott) equivalent. f = +45.08 mm.
 
-L8 is the positive part cemented to L7 at plane R14. Their contrasting Abbe numbers support the source’s chromatic pairing rationale; no apochromatic performance is established.
+L8 is the positive half cemented to L7 at the plane surface R14. The flint/lanthanum-crown pairing achromatizes the meniscus, which the patent introduces because chromatic correction is difficult in so wide a cone of rays.
 
 ### L9: Biconvex positive
 
-nd = 1.69100, νd = 54.80. Glass: Unmatched source glass; vendor unknown. f = +51.35 mm, computed isolated estimate.
+nd = 1.69100, νd = 54.80. Glass: N-LAK9 (Schott) equivalent. f = +51.35 mm.
 
-L9 supplies a further positive rear element. The patent discusses the mean refractive indices of rear positives L8/L9 versus preceding positives L3/L4/L5 (US column2, lines14–24); no independent per-element optimization is claimed.
+L9 is the final positive element. The patent asks for the mean d-line index of the positive lenses behind L6 (L8, L9) to exceed that of L3–L5 by at least 0.05 (US col. 2, lines 14–24), which lowers spherical aberration and helps the oblique pencils; here 1.69100 against 1.57817, a difference of 0.113.
 
 ## Glass Identification and Selection
 
-The published n/ν pairs are retained exactly; US column2 expressly identifies the d-line reference in its refractive-index discussion. No catalog equivalence has been assigned and no anomalous partial-dispersion measurements are supplied. Bare n/ν estimates do not support an APO claim.
+The patent references its indices to the d-line (US col. 2, line 16). The printed values for L6/L7, L8/L9 and L4 match the Schott SF11, N-LAK9 and N-SK10 indices at 587.6 nm to within 0.00002 but sit 0.0001–0.00026 above their values at the sodium D line, which confirms the helium d-line. Each element resolves to a catalog row matching the printed nd/νd; these are optical equivalents, and the production supplier is not documented.
 
-| Element | nd | νd | Identification |
-|---|---:|---:|---|
-| L1 | 1.51821 | 65.18 | Unmatched; no vendor or melt assigned |
-| L2 | 1.51821 | 65.18 | Unmatched; no vendor or melt assigned |
-| L3 | 1.58921 | 40.97 | Unmatched; no vendor or melt assigned |
-| L4 | 1.62280 | 56.88 | Unmatched; no vendor or melt assigned |
-| L5 | 1.52249 | 59.64 | Unmatched; no vendor or melt assigned |
-| L6 | 1.78472 | 25.71 | Unmatched; no vendor or melt assigned |
-| L7 | 1.78472 | 25.71 | Unmatched; no vendor or melt assigned |
-| L8 | 1.69100 | 54.80 | Unmatched; no vendor or melt assigned |
-| L9 | 1.69100 | 54.80 | Unmatched; no vendor or melt assigned |
+| Element | nd | νd | Catalog equivalent | Catalog nd / νd | Role |
+|---|---:|---:|---|---|---|
+| L1, L2 | 1.51821 | 65.18 | PC2 (Hoya) | 1.51821 / 65.16 | Front negative menisci |
+| L3 | 1.58921 | 40.97 | LF2 (Sumita) | 1.58921 / 40.97 | Positive, main group |
+| L4 | 1.62280 | 56.88 | N-SK10 (Schott) | 1.62278 / 56.98 | Positive, main group |
+| L5 | 1.52249 | 59.64 | K5 (Sumita) | 1.52249 / 59.65 | Weak positive meniscus |
+| L6, L7 | 1.78472 | 25.71 | SF11 (Schott) | 1.78472 / 25.76 | Strong negative; cemented flint |
+| L8, L9 | 1.69100 | 54.80 | N-LAK9 (Schott) | 1.69100 / 54.71 | Cemented crown; rear positive |
 
-The cemented pair uses L7 νd25.71 and L8 νd54.80. This is consistent with the patent’s stated low-Abbe negative/high-Abbe positive pairing. It does not establish realized secondary-spectrum performance for this inferred-aperture model.
+The cemented pair sets SF11 (νd 25.71) against N-LAK9 (νd 54.80). None of these glasses has a notable anomalous partial dispersion, so the design is an achromat; no secondary-spectrum correction is claimed.
 
 ## Focus Mechanism
 
-Only a static infinity prescription is modeled. The1e15 close-focus value is a documented numerical sentinel, not a physical minimum object distance. No group travel, floating law, mechanical drive or finite-focus spacing is claimed.
+The patent gives only the infinity prescription, and the model has no focus travel; its close-focus value of 1e15 m is an infinity placeholder. The Enna brochure lists different closest-focus distances for the Sockel and standard-mount versions; neither figure is recorded in the data file.
 
-The brochure lists differing closest-focus distances for socket and standard versions; these commercial distances alone do not define a movement law. Neither is silently inserted into this static representative.
+## Model Scope and Limitations
 
-## Aspherical Surfaces
+The patent does not tabulate the stop. Its drawing places the diaphragm 11.1 units into the 18.0-unit air gap l5 behind the R10 vertex (about 61.5 % of the gap), which gives 3.885 mm and 2.415 mm at the 35 mm scale. The stop radius follows from f/2.0.
 
-No aspherical coefficients are present in the transcribed source. All non-plane surfaces are spherical; R11 and R14 are plane. No aspheric terms or corrective surface edits were added.
+Semi-diameters are read from the inner rims of the patent drawing, using the 191-unit first-to-last vertex span as the scale. The smaller of the left and right rims is used, bevels are excluded, and the cemented pair shares one rim: 17.4, 13.5, 12.6, 12.6, 11.8, 9.7, 11.1 and 14.7 mm for L1–L6, L7/L8 and L9. The reading uncertainty is about 0.2 mm; these are drawing estimates, not maker clear apertures, and the mount may restrict the beam further.
 
-## Inferred Apertures and Verification Limits
-
-### Iris and rims
-
-V1's quarter-gap stop interpretation is withdrawn, not deleted. Correct use of the curved R10 vertex gives approximately 61.5% through the 18-unit gap: native11.1+6.9, scaled3.885+2.415mm. These are drawing-derived estimates, not published stations. Iris radius remains engine-derived from f/2.
-
-Caps were independently measured BEFORE this diagnostic from the patent's glass outline using total axial vertex span991pixels=191native units, scaled0.35. Optical axis x469. Smaller left/right inner-rim distance was chosen, omitting visible bevels and rounding down0.1mm; cemented pair uses common conservative rim. Element semi-diameters:17.4,13.5,12.6,12.6,11.8,9.7,11.1,11.1,14.7mm. FIGURE_CAP_DERIVATION.json records coordinates and method. No rays were used to select cap sizes.
-
-A patent outline is not a measured clear aperture. Mounts may further restrict throughput. Reading uncertainty approximately3pixels/0.20mm, plus unquantified schematic error. These are explicitly inferred caps, not factory dimensions. No aperture growth was performed after the diagnostic.
-
-### Bounded result
-
-Native buildLens construction/geometry passes without overrides. All tested chiefs aim and reach the image. Circular pupil grid25samples plus separately traced chief (26 traces, duplicated center) yields:0deg26ok;16deg24ok/2clipped;24deg14ok/12clipped;32deg2ok/19clipped/5launch-blocked. These are unweighted diagnostic samples, NOT transmission or illumination percentages.
-
-At32deg:8 traces clip front surface(index0),7 at index13,2 at index14,2 at index15;5 launches blocked at index0. No unaimed rays. Index numbering is engine zero-based and includes added iris index10; consult data for literal labels. The prior null-bundle failure disappears because chief rays now clear the independently inferred front rim. Strong edge-pupil loss remains. Do not call this full-field qualification or enlarge caps to force a pass.
-
-Static infinity-only sentinel1e15; no finite-focus model. Computed paraxial terminal image gap, not a source-published back spacing. Unmatched source d-line glass n/V retained; no catalog/melt equivalence claimed. visible:false; no package or delivery.
+With these rims the chief ray reaches the corner of the 24 × 36 mm frame (32°), but the oblique bundle there is heavily vignetted, mainly at the front element and at the cemented L7/L8 pair.
 
 ## Sources
 
-- [US3036499A](https://patents.google.com/patent/US3036499A/en), original retained three-page patent: physicalpage2 metadata, columns1–2 and Table1; drawing physicalpage1.
-- [DE1102435B](https://patents.google.com/patent/DE1102435B/en), matching original prescription and drawing; original retained privately.
-- [ENNA-branded brochure, archived scan](https://web.archive.org/web/20250508011135id_/http://ihagee.org/Lenzen/ODI3-EnnaLenzen.pdf), both pages inspected previously; source-host [original location](https://ihagee.org/Lenzen/ODI3-EnnaLenzen.pdf).
-
-This document supplies source-grounded architecture and explicit inferences, not a claim that unfinished validation gates have passed.
+- [US 3,036,499 A](https://patents.google.com/patent/US3036499A/en), J. Lautenbacher / Enna-Werk: claims and Table 1 (page 2), claim table (page 3), drawing (page 1).
+- [DE 1,102,435 B](https://patents.google.com/patent/DE1102435B/en), German priority publication with the same prescription and drawing.
+- Enna brochure for the Super-Lithagon 35mm f/1.9, scan hosted at [ihagee.org](https://ihagee.org/Lenzen/ODI3-EnnaLenzen.pdf): nine-element section, 64° picture angle, closest-focus distances.
+- [M42 Lens Database, Enna Munchen Super-Lithagon 35mm f/1.9-22](https://m42lens.com/m42-lens-database/820-enna-munchen-super-lithagon-35mm-f-1-9-22-zebra): 9 elements / 8 groups, f/1.9–22, 52 mm filter.
+- [JAPB, Company Profile: Enna München](https://japb.net/business/company-profiles/enna/): 1958 introduction, first for the Enna Sockel and later for Exakta and M42.
