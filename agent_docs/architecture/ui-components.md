@@ -163,8 +163,9 @@ its camera. Opening another view directly avoids computing a hidden map layout.
 
 The catalog-wide `/relationships/universal` route uses `src/utils/catalog/universalRelationshipGraph.ts` and the pure
 `universalLayout.ts` engine. Connected components are partitioned into corporate-family hubs and standalone assignees
-regardless of patent count (families still require eight assignment edges; networks without assignees fall back to
-the highest-degree node); shared inventors never absorb a small assignee into an unrelated hub. Each node joins its nearest
+regardless of patent count (a family needs eight assignment edges or two patent-holding names not already held by a
+stronger family, and a family whose names are all held elsewhere joins that neighborhood instead of forming its own;
+networks without assignees fall back to the highest-degree node); shared inventors never absorb a small assignee into an unrelated hub. Each node joins its nearest
 deterministic hub in capacity-limited local rings, except that an inventor joins the hub holding most of their
 assigned patents (newest patents break ties) and an unassigned patent follows its inventors; the neighborhoods are contracted into a hierarchical-affinity hub
 graph. Center, orbit, and angular-neighbor selection use lexicographic priority: corporate-history edge count, then
