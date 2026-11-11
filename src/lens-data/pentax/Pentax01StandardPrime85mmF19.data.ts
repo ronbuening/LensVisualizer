@@ -1,11 +1,38 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Hidden representative E1, not factory exact. All literal R/d/nd/V/aspheres and two plates retained. Source .53 imagegap; figure-only caps, engine-derived iris. Source61.6deg distinct retail49.5; no repair or override. */
+/**
+ * PENTAX-01 STANDARD PRIME 8.5mm f/1.9 (Pentax Q mount)
+ *
+ * Source: US 2012/0268834 A1 (Yoichi Nomura, Pentax Ricoh Imaging), Numerical Embodiment 1, Tables 1–3 and Fig. 1;
+ * granted as US 8,970,968 B2 with the same tables. Production correlation, not a factory prescription. No scaling:
+ * the patent's f = 8.5 mm is the production focal length.
+ *
+ * Prescription: every R, d, nd and νd and the K / A4 / A6 / A8 terms of aspheric surfaces 12, 13 and 14 are as
+ * printed, with no corrections. The patent's conic K is the standard K (all zero).
+ *
+ * Rear plates: the camera-body optical filter OP (surfaces 15–16, 0.55 mm) and cover glass CG (surfaces 17–18,
+ * 0.50 mm), both nd 1.51680 / νd 64.2, are traced in `rearPlates` and not drawn. Surface 14 keeps d = 4.194 to OP;
+ * OP is followed by 2.02 mm of air, then CG and the printed dB = 0.53 mm to the image. The d values plus dB sum to
+ * 31.298 mm, the printed L = 31.30.
+ *
+ * Stop: patent surface 9; its diameter is not printed. The iris radius is derived from the tabulated F1.9 (the
+ * aberration plots print F1.93). Semi-diameters are not printed: they were read from Fig. 1 and rounded down, and
+ * neither they nor the iris were adjusted to ray-trace results.
+ *
+ * Field: the patent gives W = 30.8° at Y = 4.65 mm, the 1/1.7-inch half-diagonal of the later Q7 and Q-S1; a real
+ * chief ray at 30.8° lands at 4.649 mm. Ricoh quotes 58° on the Q7 and 49.5° on the 1/2.3-inch Q and Q10.
+ *
+ * Focus: infinity only. The patent advances the rear element L8 toward the object for near focus but prints no
+ * finite-focus spacing; `closeFocusM` 1e15 is the infinity placeholder and Ricoh's 0.2 m minimum focus distance is
+ * in `catalog.closeFocusM`.
+ *
+ * Glass: Hoya catalog rows that match the printed nd / νd; L7 has no exact catalog row.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "pentax-01-standard-prime-8p5-f19",
   "maker": "Pentax",
   "name": "PENTAX-01 STANDARD PRIME 8.5mm f/1.9",
-  "subtitle": "US20120268834A1 Numerical Embodiment1 qualified representative with original camera plates",
+  "subtitle": "US 2012/0268834 A1, Numerical Embodiment 1 — production correlation",
   "catalog": {
     "imageFormat": "1-1.7-inch-type",
     "lensMounts": [
@@ -22,9 +49,10 @@ const LENS_DATA = {
       "design": 1.9
     },
     "specs": [
-      "Two additional physical camera plates retained",
-      "Original Q retail49.5deg; patent61.6deg distinct",
-      "Infinity-only; inferred figure rims"
+      "8 ELEMENTS / 5 GROUPS",
+      "MARKETED 8.5mm f/1.9",
+      "DESIGN f = 8.5 mm; FNO = 1.9",
+      "3 ASPHERICAL SURFACES / 2 ELEMENTS"
     ],
     "closeFocusM": {
       "marketing": 0.2
@@ -49,81 +77,95 @@ const LENS_DATA = {
       "id": 1,
       "label": "Element 1",
       "name": "L1",
-      "type": "Patent optical element",
+      "type": "Negative Meniscus",
       "nd": 1.5168,
       "vd": 64.2,
       "indexReference": "d",
-      "glass": "Literal patent nd/vd; no identified melt"
+      "glass": "BSC7 (HOYA)",
+      "role": "Weak negative front element that secures the back focus (patent condition 2)"
     },
     {
       "id": 2,
       "label": "Element 2",
       "name": "L2",
-      "type": "Patent optical element",
+      "type": "Biconcave Negative",
       "nd": 1.59551,
       "vd": 39.2,
       "indexReference": "d",
-      "glass": "Literal patent nd/vd; no identified melt"
+      "glass": "E-F8 (HOYA)",
+      "role": "Negative element of cemented pair C1; its concave front face corrects astigmatism",
+      "cemented": "C1"
     },
     {
       "id": 3,
       "label": "Element 3",
       "name": "L3",
-      "type": "Patent optical element",
+      "type": "Biconvex Positive",
       "nd": 1.883,
       "vd": 40.8,
       "indexReference": "d",
-      "glass": "Literal patent nd/vd; no identified melt"
+      "glass": "TAFD30 (HOYA)",
+      "role": "Thick positive element of C1; corrects spherical aberration, coma and the barrel distortion of L1",
+      "cemented": "C1"
     },
     {
       "id": 4,
       "label": "Element 4",
       "name": "L4",
-      "type": "Patent optical element",
+      "type": "Biconvex Positive",
       "nd": 1.7725,
       "vd": 49.6,
       "indexReference": "d",
-      "glass": "Literal patent nd/vd; no identified melt"
+      "glass": "TAF1 (HOYA)",
+      "role": "Thick positive element of cemented pair C2; shares the distortion correction with L3",
+      "cemented": "C2"
     },
     {
       "id": 5,
       "label": "Element 5",
       "name": "L5",
-      "type": "Patent optical element",
+      "type": "Biconcave Negative",
       "nd": 1.58144,
       "vd": 40.9,
       "indexReference": "d",
-      "glass": "Literal patent nd/vd; no identified melt"
+      "glass": "E-FL5 (HOYA)",
+      "role": "Negative element of C2, its concave rear face toward the stop",
+      "cemented": "C2"
     },
     {
       "id": 6,
       "label": "Element 6",
       "name": "L6",
-      "type": "Patent optical element",
+      "type": "Biconcave Negative",
       "nd": 1.76182,
       "vd": 26.6,
       "indexReference": "d",
-      "glass": "Literal patent nd/vd; no identified melt"
+      "glass": "FD140 (HOYA)",
+      "role": "Negative flint of rear cemented pair C3; adds negative spherical aberration",
+      "cemented": "C3"
     },
     {
       "id": 7,
       "label": "Element 7",
       "name": "L7",
-      "type": "Patent optical element",
+      "type": "Biconvex Positive (1× Asph)",
       "nd": 1.75501,
       "vd": 51.2,
       "indexReference": "d",
-      "glass": "Literal patent nd/vd; no identified melt"
+      "glass": "Unmatched (nd=1.75501, vd=51.2)",
+      "role": "Positive element of C3; its aspheric rear face controls spherical aberration and coma",
+      "cemented": "C3"
     },
     {
       "id": 8,
       "label": "Element 8",
       "name": "L8",
-      "type": "Patent optical element",
+      "type": "Biconvex Positive (2× Asph)",
       "nd": 1.8061,
       "vd": 40.7,
       "indexReference": "d",
-      "glass": "Literal patent nd/vd; no identified melt"
+      "glass": "M-NBFD130 (HOYA)",
+      "role": "Double-aspheric rear element; the patent's focusing element"
     }
   ],
   "surfaces": [
@@ -238,8 +280,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity-only static sentinel; no finite-focus law"
+    "closeFocusM": 1e15,
+    "description": "Infinity focus only. The patent focuses by moving the rear element L8 alone toward the object, but prints no finite-focus spacing, so no focus travel is modelled. Ricoh gives a 0.2 m minimum focus distance."
   },
   "aperture": {
     "nominalFNumber": 1.9,
@@ -262,6 +304,7 @@ const LENS_DATA = {
       "nd": 1.5168,
       "vd": 64.2,
       "indexReference": "d",
+      "glass": "BSC7 (HOYA)",
       "gapAfterMm": 2.02,
       "source": "US 2012/0268834 A1, Numerical Embodiment 1 Table 1 surfaces 15–16"
     },
@@ -271,9 +314,19 @@ const LENS_DATA = {
       "nd": 1.5168,
       "vd": 64.2,
       "indexReference": "d",
+      "glass": "BSC7 (HOYA)",
       "gapAfterMm": 0.53,
       "source": "US 2012/0268834 A1, Numerical Embodiment 1 Table 1 surfaces 17–18; Table 3 dB = 0.53"
     }
+  ],
+  "groups": [
+    { "text": "GF (+)", "fromSurface": "1", "toSurface": "8" },
+    { "text": "GR (+)", "fromSurface": "10", "toSurface": "14" }
+  ],
+  "doublets": [
+    { "text": "C1", "fromSurface": "3", "toSurface": "5" },
+    { "text": "C2", "fromSurface": "6", "toSurface": "8" },
+    { "text": "C3", "fromSurface": "10", "toSurface": "12" }
   ]
 } satisfies LensDataV2Input;
 export default LENS_DATA;
