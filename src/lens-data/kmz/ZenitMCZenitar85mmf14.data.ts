@@ -14,7 +14,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   "schema": 2,
   "key": "zenit-mc-zenitar-85mm-f14",
-  "maker": "Zenit",
+  "maker": "KMZ",
   "name": "ZENIT MC ZENITAR 85mm f/1.4",
   "elements": [
     {
@@ -25,7 +25,7 @@ const LENS_DATA = {
       "nd": 1.613094,
       "vd": 60.6066,
       "glass": "Unmatched (source TK14; literal sodium-D only)",
-      "indexReference": "D"
+      "indexReference": "d"
     },
     {
       "id": 2,
@@ -35,7 +35,7 @@ const LENS_DATA = {
       "nd": 1.613094,
       "vd": 60.6066,
       "glass": "Unmatched (source TK14; literal sodium-D only)",
-      "indexReference": "D"
+      "indexReference": "d"
     },
     {
       "id": 3,
@@ -45,7 +45,7 @@ const LENS_DATA = {
       "nd": 1.656908,
       "vd": 51.1549,
       "glass": "Unmatched (source TK21; literal sodium-D only)",
-      "indexReference": "D"
+      "indexReference": "d"
     },
     {
       "id": 4,
@@ -55,7 +55,7 @@ const LENS_DATA = {
       "nd": 1.755234,
       "vd": 27.5228,
       "glass": "Unmatched (source TF5; literal sodium-D only)",
-      "indexReference": "D"
+      "indexReference": "d"
     },
     {
       "id": 5,
@@ -65,7 +65,7 @@ const LENS_DATA = {
       "nd": 1.57502,
       "vd": 41.2951,
       "glass": "Unmatched (source LF5; literal sodium-D only)",
-      "indexReference": "D"
+      "indexReference": "d"
     },
     {
       "id": 6,
@@ -75,7 +75,7 @@ const LENS_DATA = {
       "nd": 1.659499,
       "vd": 57.352,
       "glass": "Unmatched (source STK3; literal sodium-D only)",
-      "indexReference": "D"
+      "indexReference": "d"
     },
     {
       "id": 7,
@@ -85,7 +85,7 @@ const LENS_DATA = {
       "nd": 1.755234,
       "vd": 27.5228,
       "glass": "Unmatched (source TF5; literal sodium-D only)",
-      "indexReference": "D"
+      "indexReference": "d"
     }
   ],
   "surfaces": [
@@ -133,7 +133,8 @@ const LENS_DATA = {
       "label": "7",
       "R": 20.51,
       "d": 9.1,
-      "sd": 18.4
+      "sd": 18.4,
+      "rimCutDepthMm": 9.1
     },
     {
       "label": "STO",
@@ -176,7 +177,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION \u2014 infinity-only literal patent state; static sentinel, no finite-focus spacings or motion modeled. Production MFD0.85m is catalog-only."
+    "description": "NO_INTERNAL_RECONSTRUCTION — infinity-only literal patent state; static sentinel, no finite-focus spacings or motion modeled. Production MFD0.85m is catalog-only."
   },
   "aperture": {
     "nominalFNumber": 1.4,
@@ -201,7 +202,7 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.5
   },
-  "subtitle": "RU 2611106 C1 \u2014 qualified modern production-family correlation; literal sodium-D patent prescription",
+  "subtitle": "RU 2611106 C1 — qualified modern production-family correlation; literal sodium-D patent prescription",
   "visible": false,
   "catalog": {
     "lensMounts": [
@@ -226,7 +227,7 @@ const LENS_DATA = {
       "7 ELEMENTS / 5 GROUPS",
       "SOURCE f = 84.23 mm",
       "F/1.4",
-      "SOURCE FULL FIELD 28.5\u00b0",
+      "SOURCE FULL FIELD 28.5°",
       "INFINITY-ONLY PATENT MODEL"
     ]
   },
@@ -238,24 +239,10 @@ const LENS_DATA = {
     },
     "patentYear": 2017,
     "authors": [
-      "Vladimir Alexandrovich Bogdankov"
+      "Vladimir Aleksandrovich Bogdankov"
     ],
     "assignees": [
       "Public Joint-Stock Company Krasnogorsk Plant named after S. A. Zverev"
-    ],
-    "errata": [
-      {
-        "status": "unresolved",
-        "note": "Literal sodium-D prescription computes EFL84.26434158 mm versus printed84.23 and BFL38.25904088 versus printed38.2. Printed spacings/image gap preserved, no refocus."
-      },
-      {
-        "status": "unresolved",
-        "note": "Source explicitly labels nD/VD; current LZOS catalog helium-d values nearly coincide but do not authorize relabeling or substitution. Native indexReference D retained; other spectral indices are Abbe estimates."
-      },
-      {
-        "status": "unresolved",
-        "note": "Prose full field28.5deg, Fig2 plotted half field13.5deg and maker full field28deg are distinct; none silently reconciled."
-      }
     ]
   }
 } satisfies LensDataV2Input;

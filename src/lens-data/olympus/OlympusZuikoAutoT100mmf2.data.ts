@@ -9,6 +9,9 @@ const LENS_DATA = {
   "subtitle": "US4435049 Embodiment5 qualified representative; inferred stop, caps and spectral reference",
   "catalog": {
     "imageFormat": "135-full-frame",
+    "lensMounts": [
+      "olympus-om"
+    ],
     "elementCount": 7,
     "groupCount": 6,
     "focalLengthMm": {
@@ -23,7 +26,10 @@ const LENS_DATA = {
       "Literal100x normalized scale; computedEFL99.9945705",
       "Infinity-only; no copied floating-focus law",
       "Estimated dispersion; anomalous partial dispersion unavailable"
-    ]
+    ],
+    "closeFocusM": {
+      "marketing": 0.7
+    }
   },
   "source": {
     "patentNumber": "US 4,435,049 A",

@@ -13,3 +13,21 @@ Inferences: all clear radii, optical versus mechanical rim interpretation, nomin
 Fresh evidence: native_D_feasibility_20261111 diagnostics, including DENSER_FIXED_CAPS_REVIEW_INVARIANTS.json. Earlier invalid mutable-input and blocked-entry retrace attempts remain retained and explicitly excluded from physical-failure conclusions. Primary Fig2 is source evidence only. Current draft requires independent source/metadata review, full type/corpus/integration/viewer validation and verified private archive before delivery.
 
 Source stop citation: RU2611106C1 description at https://patents.google.com/patent/RU2611106C1/en, paragraph describing Fig. 1 (retained source.html line491), explicitly «на расстоянии 5,5 мм от двояковогнутой линзы 5» (5.5 mm from biconcave lens5). Stop position is published; derived iris radius remains inferred.
+
+## Deployment validation (2026-11-11)
+
+- Source: RU 2611106 C1, full Espacenet scan (9 pp.; Google's PDF is the claims page only), kept as
+  `patents/RU2611106C1.pdf`. Table 1: 12 R, 11 d, 7 nD/νD pairs exact; the stop 5.5 mm before lens 5 is printed (p. 6).
+- First order: EFL 84.264 vs printed 84.23, back focus 38.259 vs 38.2. e-line indices give 84.236 / 38.221, so the
+  printed values are e-line figures, not a misprint.
+- Integration fixes:
+  - Maker "KMZ" (folder `kmz/`).
+  - `indexReference` D → d: TK14 and LF5 equal catalog nd, and TK21/TF5/STK3 sit 1.0–2.3e-4 above the GOST nD column.
+  - The three errata (EFL residual, nD label, field wording) were removed; none is a source error.
+  - R7: the cap at `sd` 18.4 reached 11.45 mm behind its vertex, 2.35 mm past the printed stop plane. Added
+    `rimCutDepthMm` 9.1 (the stop-plane distance, per LENS_DATA_SPEC Rim cuts); cut radius 17.04 mm against a 16.4 mm
+    beam need, so no light is lost.
+  - Author transliteration "Vladimir Aleksandrovich Bogdankov".
+- Product: maker page 7 elements / 5 groups, 85 mm f/1.4–22, 0.85 m, Canon EF and Nikon F. No maker construction
+  diagram exists; patent Fig. 1 is the best drawing. The older Zenitar-1K is 7/6 and a different design.
+- Open for the cleanup pass: public wording; glass labels still say "literal sodium-D only".

@@ -9,6 +9,9 @@ const LENS_DATA = {
   "subtitle": "Whole JPS50138824 sole example; qualified representative, explicit spectral-convention conflict",
   "catalog": {
     "imageFormat": "135-full-frame",
+    "lensMounts": [
+      "pentax-k"
+    ],
     "elementCount": 6,
     "groupCount": 6,
     "focalLengthMm": {
@@ -23,7 +26,10 @@ const LENS_DATA = {
       "Literal.35scale; computedEFL35.0838986 notforced35",
       "JP negativeR7/R9; US conflicting signs notused",
       "Infinity-only; d-line choice versus USsodium wording qualified"
-    ]
+    ],
+    "closeFocusM": {
+      "marketing": 0.3
+    }
   },
   "source": {
     "patentNumber": "JP S50-138824 A",
@@ -36,7 +42,7 @@ const LENS_DATA = {
       "Yasuo Takahashi"
     ],
     "assignees": [
-      "Asahi Optical Co., Ltd."
+      "Asahi Kogaku Kogyo Co., Ltd."
     ]
   },
   "elements": [

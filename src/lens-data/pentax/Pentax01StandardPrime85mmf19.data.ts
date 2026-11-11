@@ -8,7 +8,10 @@ const LENS_DATA = {
   "visible": false,
   "subtitle": "US20120268834A1 Numerical Embodiment1 qualified representative with original camera plates",
   "catalog": {
-    "imageFormat": "1-2.3-inch-type",
+    "imageFormat": "1-1.7-inch-type",
+    "lensMounts": [
+      "pentax-q"
+    ],
     "elementCount": 8,
     "groupCount": 5,
     "focalLengthMm": {
@@ -23,7 +26,10 @@ const LENS_DATA = {
       "Two additional physical camera plates retained",
       "Original Q retail49.5deg; patent61.6deg distinct",
       "Infinity-only; inferred figure rims"
-    ]
+    ],
+    "closeFocusM": {
+      "marketing": 0.2
+    }
   },
   "source": {
     "patentNumber": "US 2012/0268834 A1",
@@ -117,26 +123,6 @@ const LENS_DATA = {
       "type": "Patent optical element",
       "nd": 1.8061,
       "vd": 40.7,
-      "indexReference": "d",
-      "glass": "Literal patent nd/vd; no identified melt"
-    },
-    {
-      "id": 9,
-      "label": "Camera plate 1",
-      "name": "Plate1",
-      "type": "Camera plate",
-      "nd": 1.5168,
-      "vd": 64.2,
-      "indexReference": "d",
-      "glass": "Literal patent nd/vd; no identified melt"
-    },
-    {
-      "id": 10,
-      "label": "Camera plate 2",
-      "name": "Plate2",
-      "type": "Camera plate",
-      "nd": 1.5168,
-      "vd": 64.2,
       "indexReference": "d",
       "glass": "Literal patent nd/vd; no identified melt"
     }
@@ -250,32 +236,6 @@ const LENS_DATA = {
         "A6": -3.647e-06,
         "A8": 1.262e-07
       }
-    },
-    {
-      "label": "15",
-      "R": "flat",
-      "d": 0.55,
-      "sd": 4.87,
-      "medium": 9
-    },
-    {
-      "label": "16",
-      "R": "flat",
-      "d": 2.02,
-      "sd": 4.87
-    },
-    {
-      "label": "17",
-      "R": "flat",
-      "d": 0.5,
-      "sd": 4.84,
-      "medium": 10
-    },
-    {
-      "label": "18",
-      "R": "flat",
-      "d": 0.53,
-      "sd": 4.84
     }
   ],
   "focus": {
@@ -293,13 +253,28 @@ const LENS_DATA = {
     ],
     "maxFNumber": 8
   },
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 49.5,
-    "maxTraceFieldDeg": 24.75
-  },
   "layout": {
     "yScFill": 0.7
-  }
+  },
+  "rearPlates": [
+    {
+      "label": "OP",
+      "thicknessMm": 0.55,
+      "nd": 1.5168,
+      "vd": 64.2,
+      "indexReference": "d",
+      "gapAfterMm": 2.02,
+      "source": "US 2012/0268834 A1, Numerical Embodiment 1 Table 1 surfaces 15–16"
+    },
+    {
+      "label": "CG",
+      "thicknessMm": 0.5,
+      "nd": 1.5168,
+      "vd": 64.2,
+      "indexReference": "d",
+      "gapAfterMm": 0.53,
+      "source": "US 2012/0268834 A1, Numerical Embodiment 1 Table 1 surfaces 17–18; Table 3 dB = 0.53"
+    }
+  ]
 } satisfies LensDataV2Input;
 export default LENS_DATA;

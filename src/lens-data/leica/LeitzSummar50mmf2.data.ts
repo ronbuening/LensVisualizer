@@ -8,12 +8,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   "schema": 2,
   "key": "leitz-summar-50mm-f2",
-  "maker": "Leitz",
+  "maker": "Leica",
   "name": "Leitz Summar 50mm f/2",
   "visible": false,
   "subtitle": "GB423468A amended specification; qualified scaled representative, native sodium D",
   "catalog": {
     "imageFormat": "135-full-frame",
+    "lensMounts": [
+      "leica-ltm"
+    ],
     "elementCount": 6,
     "groupCount": 4,
     "focalLengthMm": {
@@ -28,7 +31,10 @@ const LENS_DATA = {
       "Representative source100mm scaled0.5, not factory exact",
       "Source52deg vs maker48deg field",
       "Infinity only; source image plane retained"
-    ]
+    ],
+    "closeFocusM": {
+      "marketing": 1
+    }
   },
   "source": {
     "patentNumber": "GB 423,468 A",
@@ -191,14 +197,14 @@ const LENS_DATA = {
     "nominalFNumber": 2,
     "fStops": [
       2,
-      2.8,
-      4,
-      5.6,
-      8,
-      11,
-      16
+      2.2,
+      3.2,
+      4.5,
+      6.3,
+      9,
+      12.5
     ],
-    "maxFNumber": 16
+    "maxFNumber": 12.5
   },
   "projection": {
     "kind": "rectilinear",

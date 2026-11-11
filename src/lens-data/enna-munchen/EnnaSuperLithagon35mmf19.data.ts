@@ -10,12 +10,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   "schema": 2,
   "key": "enna-munchen-super-lithagon-35mm-f19",
-  "maker": "Enna M\u00fcnchen",
-  "name": "ENNA M\u00dcNCHEN SUPER-LITHAGON 35mm f/1.9",
+  "maker": "Enna München",
+  "name": "ENNA MÜNCHEN SUPER-LITHAGON 35mm f/1.9",
   "visible": false,
-  "subtitle": "US3036499A sole example \u2014 qualified scaled representative; source f/2",
+  "subtitle": "US3036499A sole example — qualified scaled representative; source f/2",
   "catalog": {
     "imageFormat": "135-full-frame",
+    "lensMounts": [
+      "exakta",
+      "m42"
+    ],
     "elementCount": 9,
     "groupCount": 8,
     "focalLengthMm": {
