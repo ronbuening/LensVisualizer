@@ -6,8 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Index line: the table heads its columns nD / νD, but every value equals the helium d-line index of the
  * named glass (TK14 and LF5 match catalog nd; TK21, TF5 and STK3 sit 1.0–2.3e-4 above the GOST sodium-D
- * column), so the file uses indexReference "d". TF5 and LF5 trace on the SF4 (Schott) and QF3 (CDGM)
- * catalog curves; TK14, TK21 and STK3 have no exact catalog row and use Abbe-number dispersion estimates.
+ * column), so the file uses indexReference "d". TK14, TK21 and STK3 trace on LZOS catalogue curves (fitted to
+ * the LZOS index tables); TF5 and LF5 trace on the SF4 (Schott) and QF3 (CDGM) catalog curves.
  *
  * Paraxial d-line trace: EFL 84.264 mm, BFD 38.259 mm. GOST e-line indices give 84.236 / 38.221 mm, so the
  * printed f' and back focus are e-line values. The printed 38.2 mm image gap is kept; no refocus.
@@ -38,7 +38,7 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.613094,
       "vd": 60.6066,
-      "glass": "Unmatched (TK14, nd 1.613094 / νd 60.6066)",
+      "glass": "TK14 (LZOS)",
       "indexReference": "d",
       "role": "Front positive meniscus of the first component; starts converging the f/1.4 beam"
     },
@@ -49,7 +49,7 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.613094,
       "vd": 60.6066,
-      "glass": "Unmatched (TK14, nd 1.613094 / νd 60.6066)",
+      "glass": "TK14 (LZOS)",
       "indexReference": "d",
       "role": "Second front positive meniscus; shares the front convergence with L1"
     },
@@ -60,7 +60,7 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.656908,
       "vd": 51.1549,
-      "glass": "Unmatched (TK21, nd 1.656908 / νd 51.1549)",
+      "glass": "TK21 (LZOS)",
       "indexReference": "d",
       "role": "Thick positive meniscus, crown half of the front cemented doublet",
       "cemented": "C1"
@@ -96,7 +96,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.659499,
       "vd": 57.352,
-      "glass": "Unmatched (STK3, nd 1.659499 / νd 57.3520)",
+      "glass": "STK3 (LZOS)",
       "indexReference": "d",
       "role": "Equal-radius biconvex crown completing the rear cemented meniscus",
       "cemented": "C2"

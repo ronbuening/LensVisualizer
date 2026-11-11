@@ -111,3 +111,11 @@ its land just ahead of the iris, as in Fig. 1.
 
 Open: the renderer joins L3's front rim (24.61) to the cemented junction (20.91) with a sloped edge, where Fig. 1
 draws L3 square at 23.8 mm with a step down to L4; a land is not allowed on a cemented junction, so this stays.
+
+## 2026-11-11 — Glass coverage pass
+
+- Added an LZOS shard to the glass catalog (`glassCatalogEntries/lzos.ts`): TK14, TK21 and STK3, each a formula-3 fit to
+  the LZOS clear-glass catalogue index table over 365–1014 nm (max index error 4.9e-6 / 9.4e-6 / 5.8e-6).
+- Relabels (catalogue minus printed): L1, L2 Unmatched (TK14) → TK14 (LZOS), Δnd −3e-6, Δνd −0.03; L3 Unmatched (TK21)
+  → TK21 (LZOS), +6e-6 / −0.03; L6 Unmatched (STK3) → STK3 (LZOS), +3e-6 / 0.00. All seven elements now trace on
+  catalog curves.

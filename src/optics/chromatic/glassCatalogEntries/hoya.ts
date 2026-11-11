@@ -2002,6 +2002,16 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published E-FD15L formula-1 row; product code 699-301 omitted so bare-code annotations keep their existing row.",
   },
   {
+    name: "M-TAC60",
+    vendor: "Hoya",
+    polynomial: [3.017866, -0.015790934, 0.021144702, 0.00093137389, -0.000069379914, 0.00000402762],
+    nd: 1.75501,
+    vd: 51.16,
+    code6: "755512",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published M-TAC60 formula-1 row (discontinued moulding glass).",
+  },
+  {
     name: "M-NBFD130",
     vendor: "Hoya",
     polynomial: [3.173794, -0.01498658, 0.02906741, 0.001204829, -0.00005355158, 0.00000527135],

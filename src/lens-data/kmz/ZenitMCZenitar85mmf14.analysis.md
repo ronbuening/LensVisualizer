@@ -24,12 +24,12 @@ Seven spherical elements form five groups in two components, with cemented pairs
 
 ## Element-by-Element Analysis
 
-- **L1 (Positive Meniscus):** nd = 1.613094, νd = 60.61. Glass: Unmatched (TK14). f = +176.4 mm. Front collector.
-- **L2 (Positive Meniscus):** nd = 1.613094, νd = 60.61. Glass: Unmatched (TK14). f = +203.6 mm. Shares the front convergence with L1.
-- **L3 (Positive Meniscus):** nd = 1.656908, νd = 51.15. Glass: Unmatched (TK21). f = +67.5 mm. The thickest element (15.0 mm), cemented to L4.
+- **L1 (Positive Meniscus):** nd = 1.613094, νd = 60.61. Glass: TK14 (LZOS). f = +176.4 mm. Front collector.
+- **L2 (Positive Meniscus):** nd = 1.613094, νd = 60.61. Glass: TK14 (LZOS). f = +203.6 mm. Shares the front convergence with L1.
+- **L3 (Positive Meniscus):** nd = 1.656908, νd = 51.15. Glass: TK21 (LZOS). f = +67.5 mm. The thickest element (15.0 mm), cemented to L4.
 - **L4 (Negative Meniscus):** nd = 1.755234, νd = 27.52. Glass: SF4 (Schott) equivalent of TF5. f = −33.7 mm; the L3/L4 doublet is −116.2 mm. Its steep rear surface R7 (20.51 mm) is concave toward the stop. Fig. 1 draws L4 square-edged, with the R7 cap ending on a flat land just ahead of the diaphragm; the model cuts the cap 7.7 mm behind the vertex (radius 16.0 mm, just outside the f/1.4 axial beam), 1.4 mm ahead of the stop plane, so the glass stays clear of the iris.
 - **L5 (Biconcave Negative):** nd = 1.575020, νd = 41.30. Glass: QF3 (CDGM) equivalent of LF5. f = −32.4 mm. Follows the stop, cemented to L6.
-- **L6 (Biconvex Positive):** nd = 1.659499, νd = 57.35. Glass: Unmatched (STK3). f = +33.3 mm; the L5/L6 meniscus is +360.0 mm.
+- **L6 (Biconvex Positive):** nd = 1.659499, νd = 57.35. Glass: STK3 (LZOS). f = +33.3 mm; the L5/L6 meniscus is +360.0 mm.
 - **L7 (Plano-Convex Positive):** nd = 1.755234, νd = 27.52. Glass: SF4 (Schott) equivalent of TF5. f = +111.9 mm. Flat rear face; the printed 38.2 mm back focal distance follows it.
 
 Radii and thicknesses are as printed. Clear apertures are not published: the semi-diameters are estimates from Fig. 1, widened where the f/1.4 axial beam needs it. They are not factory dimensions.
@@ -38,7 +38,7 @@ Radii and thicknesses are as printed. Clear apertures are not published: the sem
 
 Table 1 names five Soviet glass grades (TK14, TK21, TF5, LF5, STK3) and heads its index columns nD and νD. The values are nevertheless helium d-line (587.6 nm) indices: TK14 (1.613094) and LF5 (1.575020) equal the Lytkarino catalog nd, and TK21, TF5 and STK3 sit 1.0–2.3 × 10⁻⁴ above the sodium-D column of [GOST 13659-78](https://dnaop.com/html/70852/doc-%D0%93%D0%9E%D0%A1%D0%A2_13659-78), the d−D offset for their dispersions. The [LZOS catalog](https://ww.lzos.ru/upload/iblock/818/818322c0e82195aba7b3c9b1441649b9.pdf) lists the same grades. The model therefore stores the printed values as d-line indices.
 
-TF5 and LF5 trace on catalog equivalents: SF4 (Schott), a lead dense flint like TF5, and QF3 (CDGM), whose nd/νd match within 4 × 10⁻⁵ and 0.06. TK14, TK21 and STK3 have no catalog row that close and stay Unmatched, with Abbe-number dispersion estimates. Crowns of νd 51–61 form L1–L3 and L6; the TF5 dense flint forms L4 and the positive L7, and the LF5 light flint forms L5. Table 2 weights seven wavelengths from 435 to 656 nm, peaking at 550 nm.
+TK14, TK21 and STK3 trace on LZOS catalogue curves: polynomial fits to the LZOS index tables over 365–1014 nm, whose d-line indices match the printed values within 6 × 10⁻⁶ and whose Abbe numbers match within 0.03. TF5 and LF5 trace on catalog equivalents: SF4 (Schott), a lead dense flint like TF5, and QF3 (CDGM), whose nd/νd match within 4 × 10⁻⁵ and 0.06. Crowns of νd 51–61 form L1–L3 and L6; the TF5 dense flint forms L4 and the positive L7, and the LF5 light flint forms L5. Table 2 weights seven wavelengths from 435 to 656 nm, peaking at 550 nm.
 
 ## Focus Mechanism
 
