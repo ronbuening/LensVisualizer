@@ -19,8 +19,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 73.3 px/mm lateral at 300 dpi) and floor-checked by real-ray trace. Element edges sit 1–3 % inside the drawing and
  * were kept. Fig. 1 ends two concave caps short of their element edges with flat lands, drawn by `rimExtensionSd`:
  * L1's rear face (cap 4.03 mm, land to 5.01 mm) and L6's front face S10 (land to 3.32 mm). The S10 cap is drawn at
- * about 2.36 mm; it is set to 2.5 mm, the smallest value that keeps the off-axis light within 3 points of the
- * full-height rim.
+ * about 2.4 mm; it is set to 2.5 mm, within the figure reading, where it costs at most 0.6 points of off-axis light
+ * against the full-height rim.
  *
  * Field: the patent gives W = 30.8° at Y = 4.65 mm, the 1/1.7-inch half-diagonal of the later Q7 and Q-S1; a real
  * chief ray at 30.8° lands at 4.649 mm. Ricoh quotes 58° on the Q7 and 49.5° on the 1/2.3-inch Q and Q10.
@@ -85,8 +85,9 @@ const LENS_DATA = {
       "nd": 1.5168,
       "vd": 64.2,
       "indexReference": "d",
+      "focalLengthMm": -11.47,
       "glass": "BSC7 (HOYA)",
-      "role": "Weak negative front element that secures the back focus (patent condition 2)"
+      "role": "Negative front element that secures the back focus (patent condition 2)"
     },
     {
       "id": 2,
@@ -96,6 +97,7 @@ const LENS_DATA = {
       "nd": 1.59551,
       "vd": 39.2,
       "indexReference": "d",
+      "focalLengthMm": -8.96,
       "glass": "E-F8 (HOYA)",
       "role": "Negative element of cemented pair C1; its concave front face corrects astigmatism",
       "cemented": "C1"
@@ -108,6 +110,7 @@ const LENS_DATA = {
       "nd": 1.883,
       "vd": 40.8,
       "indexReference": "d",
+      "focalLengthMm": 6.67,
       "glass": "TAFD30 (HOYA)",
       "role": "Thick positive element of C1; corrects spherical aberration, coma and the barrel distortion of L1",
       "cemented": "C1"
@@ -120,6 +123,7 @@ const LENS_DATA = {
       "nd": 1.7725,
       "vd": 49.6,
       "indexReference": "d",
+      "focalLengthMm": 8.84,
       "glass": "TAF1 (HOYA)",
       "role": "Thick positive element of cemented pair C2; shares the distortion correction with L3",
       "cemented": "C2"
@@ -132,6 +136,7 @@ const LENS_DATA = {
       "nd": 1.58144,
       "vd": 40.9,
       "indexReference": "d",
+      "focalLengthMm": -15.12,
       "glass": "E-FL5 (HOYA)",
       "role": "Negative element of C2, its concave rear face toward the stop",
       "cemented": "C2"
@@ -144,6 +149,7 @@ const LENS_DATA = {
       "nd": 1.76182,
       "vd": 26.6,
       "indexReference": "d",
+      "focalLengthMm": -4.69,
       "glass": "FD140 (HOYA)",
       "role": "Negative flint of rear cemented pair C3; adds negative spherical aberration",
       "cemented": "C3"
@@ -156,6 +162,7 @@ const LENS_DATA = {
       "nd": 1.75501,
       "vd": 51.2,
       "indexReference": "d",
+      "focalLengthMm": 6.49,
       "glass": "M-TAC60 (HOYA)",
       "role": "Positive element of C3; its aspheric rear face controls spherical aberration and coma",
       "cemented": "C3"
@@ -168,6 +175,7 @@ const LENS_DATA = {
       "nd": 1.8061,
       "vd": 40.7,
       "indexReference": "d",
+      "focalLengthMm": 11.04,
       "glass": "M-NBFD130 (HOYA)",
       "role": "Double-aspheric rear element; the patent's focusing element"
     }

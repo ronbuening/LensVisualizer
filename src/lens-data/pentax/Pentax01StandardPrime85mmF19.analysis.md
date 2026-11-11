@@ -23,7 +23,7 @@ The printed half-field W = 30.8° belongs to Y = 4.65 mm: a real chief ray trace
 
 ## Optical Architecture
 
-The design is a compact positive–positive lens with a central stop. The front group GF (f = 15.96 mm) holds a weak negative meniscus L1 and two positive cemented pairs, C1 (L2 + L3) and C2 (L4 + L5). The rear group GR (f = 11.12 mm) holds the negative cemented pair C3 (L6 + L7) and the biconvex aspheric singlet L8. The stop sits 13.457 mm behind the first vertex, between C2 and C3. Eight elements form five air-separated groups.
+The design is a compact positive–positive lens with a central stop. The front group GF (f = 15.96 mm) holds a negative meniscus L1 and two positive cemented pairs, C1 (L2 + L3) and C2 (L4 + L5). The rear group GR (f = 11.12 mm) holds the negative cemented pair C3 (L6 + L7) and the biconvex aspheric singlet L8. The stop sits 13.457 mm behind the first vertex, between C2 and C3. Eight elements form five air-separated groups.
 
 L1 gives the back focus a mirrorless body needs, so that dust on L8 stays out of focus (¶0069). The relatively thick positive elements L3 and L4 correct the barrel distortion that L1 introduces (¶0059). Focusing with L8 alone keeps the moving group small and light (¶0074).
 
@@ -43,7 +43,7 @@ Focal lengths are for each element alone in air; the cemented pairs are C1 f = +
 | L4 | 1.77250 | 49.6 | TAF1 (Hoya) | +8.8 | Thick biconvex positive of C2 |
 | L5 | 1.58144 | 40.9 | E-FL5 (Hoya) | −15.1 | Biconcave negative of C2, concave toward the stop |
 | L6 | 1.76182 | 26.6 | FD140 (Hoya) | −4.7 | Biconcave negative of C3; generates negative spherical aberration with little effect off axis (¶0061) |
-| L7 | 1.75501 | 51.2 | M-TAC60 (HOYA) | +6.5 | Biconvex positive of C3 with an aspheric rear face; suppresses spherical aberration and coma (¶0061–¶0062) |
+| L7 | 1.75501 | 51.2 | M-TAC60 (Hoya) | +6.5 | Biconvex positive of C3 with an aspheric rear face; suppresses spherical aberration and coma (¶0061–¶0062) |
 | L8 | 1.80610 | 40.7 | M-NBFD130 (Hoya) | +11.0 | Biconvex positive with two aspheric faces; the focusing element (¶0055) |
 
 ## Glass Identification

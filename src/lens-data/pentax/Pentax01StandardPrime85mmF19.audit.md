@@ -102,3 +102,49 @@ Open: none for the rims.
   L7: `Unmatched (nd=1.75501, vd=51.2)` → `M-TAC60 (HOYA)`, Δnd 0, Δνd −0.04. L7 carries the aspheric surface 12, which
   fits a moulding glass. All eight elements and both plates now trace on catalog curves.
 - `aperture.blades` 5, from Ricoh's product page for the 01 Standard Prime.
+
+## 2026-11-11 — Second review: diagram, labels and movement
+
+Compared the local page (infinity, `?el=1`–`8`, `?mv=focus`, `?focus=1`) with Fig. 1 (page 2, 300 dpi native raster) and the
+patent text ¶0048–¶0081. The figure readings of the semi-diameter pass were re-checked on the S10 cap and the stop ticks
+about the local axis (column 1472.5, 73.3 px/mm): the S10 cap meets its land at 2.38–2.45 mm (circle fit to the cap,
+R 6.986, rms 0.55 px; the two sides differ by the axis lean), and the stop ticks run from 2.41 to 3.69 mm, 164 px
+(2.21 mm) in front of the S10 vertex against the printed 2.205 mm.
+
+Changes in the data file:
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| `focalLengthMm`, L1–L8 | missing (inspector "FL = —") | −11.47, −8.96, 6.67, 8.84, −15.12, −4.69, 6.49, 11.04 | each element alone in air, paraxial; matches the analysis table |
+| L1 `role` | "Weak negative front element …" | "Negative front element …" | f −11.47 mm is stronger than either cemented pair in GF (C1 +20.0, C2 +18.0 mm); fL1/f −1.35 |
+| Header S10 note | "drawn at about 2.36 mm … 2.5 mm, the smallest value that keeps the off-axis light within 3 points" | "drawn at about 2.4 mm … 2.5 mm, within the figure reading, where it costs at most 0.6 points" | 2.41 mm also passes (2.7 points on the app's twelve-field curve, 2.9 on 45 fields), so 2.5 is not the smallest value |
+
+The analysis no longer calls L1 weak, and its glass table spells L7 "M-TAC60 (Hoya)" like the other rows. No rim changed.
+
+Lands and cuts: the S2 land (cap 4.03, land 5.01) and the S10 land (land 3.32) cost nothing (`--noext` leaves every field
+unchanged); the S10 cap at 2.5 mm costs 0.6 points at 14.0° against the baseline full-height rim, the worst loss on both
+the twelve- and 45-field curves. Both lands stay as drawn. S10 stays at 2.5 mm: it is within about 4 % of the figure's
+cap end, and a cap at the iris radius or below would shorten the drawn stop housing further.
+
+Labels and tags found correct: GF (+) surfaces 1–8 and GR (+) 10–14 bracket elements 1–5 and 6–8 as Fig. 1 does; C1
+3–5, C2 6–8 and C3 10–12 are the figure's C1–C3. Element types agree with the signs of R. The stop sits between C2 and C3.
+The A markers sit on surfaces 12, 13 and 14 only, the three aspheric surfaces of Table 2. No `apd` tags: the patent names
+no special-dispersion glass. All eight glass labels resolve exactly (largest |Δνd| 0.04, L7 M-TAC60).
+
+Movement: the lens is static (no gaps), and the focus overlay reports no modelled movement. `focus.description` says
+correctly that the patent focuses with L8 alone toward the object (¶0055) and prints no near spacing.
+
+Colour: on Fig. 2A the paraxial C and g foci sit about +16.4 and −4.6 µm from d; the model gives +17.4 and −4.7 µm. At the
+F1.93 rim the plot reads about −6 µm (d), −22 µm (g) and −2 µm (C); the model traces −15.3, −14.4 and +3.2 µm. The rim
+difference is in the d-line spherical aberration and the spherochromatism, not the paraxial colour, so no glass label is
+implicated. Fig. 2D reads about −9.2 % distortion at 30.8°; the model gives −8.3 % (a real chief ray at 30.8° lands at
+4.649 mm, the printed Y).
+
+Engine after the edits: EFL 8.500681 mm, FOPEN 1.900, halfField 32.388°, stop radius 2.43577 mm, as before. Surface audit
+OK; aperture audit reports no rim limit; image circle no undersized surface; field coverage 100 % to 30.8°. Corner
+illumination at 30.8° stays 28.8 %.
+
+Open: the diagram's stop housing ends at 2.5 mm because the renderer takes it from the S10 `sd` and ignores the land;
+Fig. 1 draws the ticks to 3.69 mm.
+Open: the aspheric surfaces are labelled 12, 13 and 14; the spec form is 12A, 13A and 14A, with C3 ending at 12A and GR
+at 14A. Surface labels are outside this review's edit list.
