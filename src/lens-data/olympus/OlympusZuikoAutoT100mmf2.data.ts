@@ -2,10 +2,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Hidden representative E5; exact100x R/d, literaln/V. Conventionald inferred, anomalousdispersion unknown. Stop centralgap midpoint hypothesis, figurecaps, computedimagegap; no repair/override/rayfit. Infinityonly. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "olympus-zuiko-auto-t-100mm-f2-representative",
+  "key": "olympus-zuiko-auto-t-100mm-f2",
   "maker": "Olympus",
-  "name": "Olympus Zuiko Auto-T 100mm f/2",
-  "visible": false,
+  "name": "OLYMPUS ZUIKO AUTO-T 100mm f/2",
   "subtitle": "US4435049 Embodiment5 qualified representative; inferred stop, caps and spectral reference",
   "catalog": {
     "imageFormat": "135-full-frame",

@@ -12,7 +12,6 @@ const LENS_DATA = {
   "key": "enna-munchen-super-lithagon-35mm-f19",
   "maker": "Enna München",
   "name": "ENNA MÜNCHEN SUPER-LITHAGON 35mm f/1.9",
-  "visible": false,
   "subtitle": "US3036499A sole example — qualified scaled representative; source f/2",
   "catalog": {
     "imageFormat": "135-full-frame",

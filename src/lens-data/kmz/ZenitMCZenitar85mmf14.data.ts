@@ -203,7 +203,6 @@ const LENS_DATA = {
     "yScFill": 0.5
   },
   "subtitle": "RU 2611106 C1 — qualified modern production-family correlation; literal sodium-D patent prescription",
-  "visible": false,
   "catalog": {
     "lensMounts": [
       "canon-ef",

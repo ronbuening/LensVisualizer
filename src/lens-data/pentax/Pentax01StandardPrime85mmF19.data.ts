@@ -2,10 +2,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Hidden representative E1, not factory exact. All literal R/d/nd/V/aspheres and two plates retained. Source .53 imagegap; figure-only caps, engine-derived iris. Source61.6deg distinct retail49.5; no repair or override. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "pentax-01-standard-prime-85mm-f19-representative",
+  "key": "pentax-01-standard-prime-8p5-f19",
   "maker": "Pentax",
-  "name": "PENTAX 01 Standard Prime 8.5mm f/1.9",
-  "visible": false,
+  "name": "PENTAX-01 STANDARD PRIME 8.5mm f/1.9",
   "subtitle": "US20120268834A1 Numerical Embodiment1 qualified representative with original camera plates",
   "catalog": {
     "imageFormat": "1-1.7-inch-type",

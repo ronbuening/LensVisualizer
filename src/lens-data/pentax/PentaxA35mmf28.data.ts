@@ -2,10 +2,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Hidden whole JP soleexample representative: literal.35R/d/nV, no USsignrepair. JPd interpretedheliumd, USsodium wordingconflicts. SourceF1 ancillarycontradiction retained. Figurecaps/hypothesizedstop andcomputedimagegap, no rayfit/override. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "pentax-a-35mm-f28-jp-representative",
+  "key": "pentax-a-35mm-f28",
   "maker": "Pentax",
-  "name": "SMC Pentax-A 35mm f/2.8",
-  "visible": false,
+  "name": "PENTAX SMC A 35mm f/2.8",
   "subtitle": "Whole JPS50138824 sole example; qualified representative, explicit spectral-convention conflict",
   "catalog": {
     "imageFormat": "135-full-frame",

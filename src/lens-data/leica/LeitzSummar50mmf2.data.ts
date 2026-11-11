@@ -7,10 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Static infinity-only sentinel, not factoryexact. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "leitz-summar-50mm-f2",
+  "key": "leica-summar-50mm-f2",
   "maker": "Leica",
-  "name": "Leitz Summar 50mm f/2",
-  "visible": false,
+  "name": "LEITZ SUMMAR 50mm f/2",
   "subtitle": "GB423468A amended specification; qualified scaled representative, native sodium D",
   "catalog": {
     "imageFormat": "135-full-frame",
