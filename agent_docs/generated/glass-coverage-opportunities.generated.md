@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1115** lenses scanned (**1096** visible)
-- **11782 / 12652** non-air surfaces use strict catalog Sellmeier data (93.1%)
-- **11800 / 12652** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
+- **11789 / 12652** non-air surfaces use strict catalog Sellmeier data (93.2%)
+- **11807 / 12652** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **288** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **155** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -98,7 +98,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [MAMIYA SEKOR AF 150mm f/2.8 IF D](../../src/lens-data/mamiya/MamiyaSekorDAF150mmf28IF.data.ts) | JP 2001-183581 A | [PDF](../../patents/JP_2001183581_A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `Unmatched (nd=1.806098, νd=40.34; no exact current catalog identity)`) | abbe: 1 |
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | US 4,764,000 | [PDF](../../patents/US4764000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`) | abbe: 1 |
 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) | JP 1999-231209 A | [PDF](../../patents/JPA 1999231209-000000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`) | abbe: 1 |
-| [PENTAX-01 STANDARD PRIME 8.5mm f/1.9](../../src/lens-data/pentax/Pentax01StandardPrime85mmF19.data.ts) | US 2012/0268834 A1 | [PDF](../../patents/US20120268834A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 11 [glass] (Element 7: `Unmatched (nd=1.75501, vd=51.2)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | US 4,773,745 | [PDF](../../patents/US4773745.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 8: `Unmatched (479/587 low-index crown; vendor unspecified)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 18-135mm f/3.5-5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmFujinonXf18135mmf3556RLMOISWR.data.ts) | US 9,651,761 B2 | [PDF](../../patents/US9651761.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 12A [glass] (L31: `Unmatched (798453; nd=1.79839, νd=45.28)`)<br>14A [glass] (L41: `Unmatched (569585; nd=1.56867, νd=58.50)`) | abbe: 2 |
 | [NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSDXNikkor1024mmf3545GED.data.ts) | US 8,169,718 B2 | [PDF](../../patents/US8169718.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 4 [glass] (Gr1B thin composite layer: `Unmatched (thin composite-asphere layer coordinate 536412; no public catalog identity established)`)<br>24A [glass] (Rear thin composite layer: `Unmatched (thin composite-asphere layer coordinate 515500; no public catalog identity established)`) | abbe: 2 |
