@@ -12,6 +12,7 @@ export const MAKER_PREFIXES = [
   { prefix: "FUJIFILM", display: "Fujifilm", slug: "fujifilm" },
   { prefix: "FUJINON", display: "Fujifilm", slug: "fujifilm" },
   { prefix: "HASSELBLAD", display: "Hasselblad", slug: "hasselblad" },
+  { prefix: "ISCO", display: "ISCO", slug: "isco" },
   { prefix: "KONICA", display: "Konica", slug: "konica" },
   { prefix: "KINOPTIK", display: "Kinoptik", slug: "kinoptik" },
   { prefix: "KMZ", display: "KMZ", slug: "kmz" },
@@ -57,5 +58,6 @@ export const MAKER_PREFIXES = [
   { prefix: "VILTROX", display: "Viltrox", slug: "viltrox" },
   { prefix: "VIVITAR", display: "Vivitar", slug: "vivitar" },
   { prefix: "YASHICA", display: "Yashica", slug: "yashica" },
+  { prefix: "YONGNUO", display: "Yongnuo", slug: "yongnuo" },
   { prefix: "YASHINON", display: "Yashica", slug: "yashica" },
 ];
