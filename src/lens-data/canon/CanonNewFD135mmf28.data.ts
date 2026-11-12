@@ -1,5 +1,5 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Whole Table1 x1.35, helium d-line (catalog line test), fixed sourceplane119.1645. Figure-inferred caps/iris frozen before traces; no factoryclaim or overrides. */
+/** US 4,206,976 A, Table 1, uniformly scaled ×1.35 from f = 100 to 135 mm. Helium d-line coordinates agree with catalog glasses despite the patent's sodium wording. The printed total length fixes the image plane at 119.1645 mm. Rims are estimated from Figure 1, including R7's optical endpoint before the bevel; the iris is inferred from the MIR section at 32% of the long air gap. These estimates precede ray tracing; the prescription and image plane are unadjusted, with no geometry overrides. The production association and glass equivalents do not establish a factory prescription. */
 const LENS_DATA = {
   "schema": 2,
   "key": "canon-new-fd-135mm-f28",
@@ -13,9 +13,10 @@ const LENS_DATA = {
       "nd": 1.60311,
       "vd": 60.7,
       "indexReference": "d",
-      "glass": "Literal d-line index and Abbe pair; no melt identity",
+      "glass": "BACD14 (Hoya catalog equivalent; production supplier unspecified)",
       "label": "Element 1",
-      "type": "Patent spherical glass"
+      "type": "Biconvex Positive",
+      "role": "Main positive front element"
     },
     {
       "id": 2,
@@ -23,9 +24,10 @@ const LENS_DATA = {
       "nd": 1.60311,
       "vd": 60.7,
       "indexReference": "d",
-      "glass": "Literal d-line index and Abbe pair; no melt identity",
+      "glass": "BACD14 (Hoya catalog equivalent; production supplier unspecified)",
       "label": "Element 2",
-      "type": "Patent spherical glass"
+      "type": "Positive Meniscus",
+      "role": "Air-spaced second positive element"
     },
     {
       "id": 3,
@@ -33,9 +35,11 @@ const LENS_DATA = {
       "nd": 1.80518,
       "vd": 25.4,
       "indexReference": "d",
-      "glass": "Literal d-line index and Abbe pair; no melt identity",
+      "glass": "PBH6 (Ohara catalog equivalent; production supplier unspecified)",
       "label": "Element 3",
-      "type": "Patent spherical glass"
+      "type": "Positive Meniscus",
+      "cemented": "C1",
+      "role": "Positive front member of the negative cemented doublet"
     },
     {
       "id": 4,
@@ -43,9 +47,11 @@ const LENS_DATA = {
       "nd": 1.74,
       "vd": 28.3,
       "indexReference": "d",
-      "glass": "Literal d-line index and Abbe pair; no melt identity",
+      "glass": "FD3 (Hoya catalog equivalent; production supplier unspecified)",
       "label": "Element 4",
-      "type": "Patent spherical glass"
+      "type": "Biconcave Negative",
+      "cemented": "C1",
+      "role": "Negative rear member of the cemented doublet"
     },
     {
       "id": 5,
@@ -53,9 +59,10 @@ const LENS_DATA = {
       "nd": 1.60311,
       "vd": 60.7,
       "indexReference": "d",
-      "glass": "Literal d-line index and Abbe pair; no melt identity",
+      "glass": "BACD14 (Hoya catalog equivalent; production supplier unspecified)",
       "label": "Element 5",
-      "type": "Patent spherical glass"
+      "type": "Negative Meniscus",
+      "role": "Negative front member of the air-spaced rear pair"
     },
     {
       "id": 6,
@@ -63,9 +70,10 @@ const LENS_DATA = {
       "nd": 1.72342,
       "vd": 38.0,
       "indexReference": "d",
-      "glass": "Literal d-line index and Abbe pair; no melt identity",
+      "glass": "BAFD8 (Hoya catalog equivalent; production supplier unspecified)",
       "label": "Element 6",
-      "type": "Patent spherical glass"
+      "type": "Biconvex Positive",
+      "role": "Positive rear element completing the rear pair"
     }
   ],
   "surfaces": [
@@ -149,13 +157,15 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1e15,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity-only sentinel; no published finite travel law."
+    "description": "Infinity focus only; the production lens uses helicoid focusing to 1.3 m. The patent provides no finite-focus travel."
   },
   "aperture": {
     "nominalFNumber": 2.8,
     "fStops": [
-      2.8
-    ]
+      2.8, 4, 5.6, 8, 11, 16, 22, 32
+    ],
+    "maxFNumber": 32,
+    "blades": 8
   },
   "projection": {
     "kind": "rectilinear",
@@ -165,7 +175,10 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.7
   },
-  "subtitle": "US4206976 Table1 x1.35; d-line, fixed printed plane; probable family not factory exact",
+  "doublets": [
+    { "text": "C1", "fromSurface": "5", "toSurface": "7" }
+  ],
+  "subtitle": "US 4,206,976 A, Table 1 — probable match to the New FD 135mm f/2.8",
   "catalog": {
     "imageFormat": "135-full-frame",
     "lensMounts": [
@@ -178,16 +191,18 @@ const LENS_DATA = {
     "groupCount": 5,
     "focalLengthMm": {
       "marketing": 135,
-      "design": 135.00806953544293
+      "design": 135
     },
     "fNumber": {
       "marketing": 2.8,
       "design": 2.8
     },
     "specs": [
-      "First primary embodiment representative; not factory prescription",
-      "Helium d-line; fixed printed source plane119.1645mm",
-      "Inferred figure rims and secondary-section iris; infinity only"
+      "6 ELEMENTS / 5 GROUPS",
+      "ALL SPHERICAL",
+      "f/2.8–32",
+      "8 BLADES",
+      "CLOSE FOCUS 1.3 m"
     ]
   },
   "source": {
