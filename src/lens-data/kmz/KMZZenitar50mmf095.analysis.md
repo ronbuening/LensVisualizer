@@ -52,7 +52,7 @@ The first collector of component I. Its rear face (R = −288.4 mm) is weak, and
 
 ### Element 3 — Positive Meniscus
 
-nd = 1.6595, νd = 57.35. Glass: K-LaK11 (Sumita), the nearest catalog row; the pair is the d-line value of the Russian extra-dense crown STK3 (inferred). f = +148.12 mm.
+nd = 1.6595, νd = 57.35. Glass: STK3 (LZOS); the pair is the d-line value of the Russian extra-dense crown STK3 (inferred). f = +148.12 mm.
 
 The positive meniscus, convex to the object, closes component I. Its rear face is 14.9 mm ahead of the stop. L8 repeats this glass (claim 2: n3 = n8).
 
@@ -64,7 +64,7 @@ The first element behind the stop, 11.3 mm from it, presents a strongly curved c
 
 ### Element 5 — Positive Meniscus
 
-nd = 1.6131, νd = 60.61. Glass: Unmatched; the pair is the d-line value of the Russian dense crown TK14 (inferred), which the glass catalog does not carry. f = +81.88 mm.
+nd = 1.6131, νd = 60.61. Glass: TK14 (LZOS); the pair is the d-line value of the Russian dense crown TK14 (inferred). f = +81.88 mm.
 
 At 19.5 mm, L5 is the thickest element. It is cemented to L4 on a nearly flat junction (R = −361.4 mm), and the pair has a net in-air focal length of −213.15 mm, the negative two-element meniscus of the claims. The pair joins a dense flint to a crown about 33 Abbe units apart. The patent states that the axial colour introduced by the plano-concave lens of component III is corrected by this single cemented group near the stop.
 
@@ -82,7 +82,7 @@ Convex toward the object (R = 70.79 mm) with a plane rear face, L7 opens compone
 
 ### Element 8 — Positive Meniscus
 
-nd = 1.6595, νd = 57.35. Glass: K-LaK11 (Sumita), as L3. f = +72.43 mm.
+nd = 1.6595, νd = 57.35. Glass: STK3 (LZOS), as L3. f = +72.43 mm.
 
 The meniscus, convex to the object, is the strongest positive element in the lens. The patent attributes the correction of the aberrations of narrow oblique beams, that is astigmatism and field curvature, to replacing the earlier design's two cemented groups with the three singlets L7–L9.
 
@@ -98,14 +98,14 @@ The last element is plane toward the object, with a concave rear face of R = 25.
 | ---: | ---: | --- | --- | --- | --- |
 | 1.5750 | 41.29 | L1 | LF5 | QF3 (CDGM) equivalent | light flint |
 | 1.7441 | 50.42 | L2, L6, L7 | STK19 | Unmatched | extra-dense lanthanum crown |
-| 1.6595 | 57.35 | L3, L8 | STK3 | K-LaK11 (Sumita), nearest row | extra-dense lanthanum crown |
+| 1.6595 | 57.35 | L3, L8 | STK3 | STK3 (LZOS) | extra-dense lanthanum crown |
 | 1.7552 | 27.52 | L4 | TF5 | H-ZF6 (CDGM) equivalent | dense flint |
-| 1.6131 | 60.61 | L5 | TK14 | Unmatched | dense crown |
+| 1.6131 | 60.61 | L5 | TK14 | TK14 (LZOS) | dense crown |
 | 1.6895 | 31.13 | L9 | TF8 | PBM28 (OHARA), nearest row | dense flint |
 
 Table 1 heads its columns n and ν without naming a spectral line, and the patent names no glass types or supplier. Every printed pair is the d-line value of a Russian GOST optical glass as GOST 13659-78 tabulates it: each nd agrees to the printed four decimals and each νd within 0.03. At the e line those glasses read 0.0024–0.0065 higher, and no pair matches any catalog glass there, so the values are traced as nd and νd. The identification rests on that agreement alone and says nothing about the production melts.
 
-The site's glass catalog carries no GOST rows. QF3 and H-ZF6 equal LF5 and TF5 at the d line. K-LaK11 (0.0012 lower in nd, 0.05 lower in νd than STK3) and PBM28 (0.0006 lower in nd, 0.05 lower in νd than TF8) lend their dispersion curves while the trace keeps the printed indices. STK19 and TK14 are traced with Abbe-number dispersion. The STK3 crown also appears in the Zenitar 35mm f/1 patent. Every element satisfies the index and dispersion ranges of claim 2.
+L3, L5 and L8 trace on the glass catalog's LZOS STK3 and TK14 rows, fits to the LZOS catalogue's own index tables. QF3 and H-ZF6 equal LF5 and TF5 at the d line. PBM28 (0.0006 lower in nd, 0.05 lower in νd than TF8) lends its dispersion curve while the trace keeps the printed index. STK19 is traced with Abbe-number dispersion. The STK3 crown also appears in the Zenitar 35mm f/1 patent. Every element satisfies the index and dispersion ranges of claim 2.
 
 Only six glasses serve nine elements. The three positive elements L2, L6 and L7 share one lanthanum glass, and L3 and L8 share another. The two dense flints sit where the negative power is concentrated: L4 next to the stop and L9 in front of the image.
 
