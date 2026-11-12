@@ -22,7 +22,7 @@ The prescription at F = 100 is uniformly multiplied by 0.3 to give a stated desi
 
 Seven air-spaced singlets form a retrofocus wide-angle lens. The positive first meniscus precedes two negative menisci; a positive middle element and a negative element are followed by two positive rear menisci. The extended back focus is part of the patent's stated architecture, not an added mechanical gap.
 
-The prescription gives no numerical clear apertures or unambiguous iris coordinate. The model uses rim estimates from Figure 3 and an inferred iris at the midpoint of the L3–L4 air gap, 3.1335 mm from either end. Neither drawing fixes that iris position. Schematic rim uncertainty is approximately 0.35 mm from a three-pixel reading, with additional unquantified drawing distortion; it is not a factory tolerance. The rear semi-diameters were widened during integration from 8.3 to 8.6 mm at R11/R12 and from 10.2 to 10.4 mm at R13/R14 so the 36° corner chief ray passes.
+The prescription gives no numerical clear apertures or unambiguous iris coordinate. The model uses rim estimates from Figure 3 and an inferred iris at the midpoint of the L3–L4 air gap, 3.1335 mm from either end. Neither drawing fixes that iris position. Schematic rim uncertainty is approximately ±0.35 mm, with additional unquantified drawing distortion; it is not a factory tolerance. The rear semi-diameters were widened during integration from 8.3 to 8.6 mm at R11/R12 and from 10.2 to 10.4 mm at R13/R14 so the 36° corner chief ray passes.
 
 ## Element-by-Element Commentary
 
@@ -50,7 +50,7 @@ Only the infinity prescription is modeled; the patent prints no finite-focus spa
 
 All surfaces are spherical. Table 2 supplies all 14 radii, 13 thicknesses and gaps, and seven index/Abbe pairs; it supplies no aspheric coefficients or variable gaps. Clear apertures, iris position and factory glass identity remain uncertain.
 
-Figure 3 distinguishes the R4 curved optical face from L2's 15 mm mechanical shoulder at R3. Its bevel endpoints near pixels (466, 344) and (465, 535), about axis 437, give a smaller extent of 93 pixels. At 0.11691495 mm/pixel this is 10.8731 mm, rounded down to the modeled 10.8 mm R4 semi-diameter. The outline is schematic and does not establish a factory clear aperture. Peripheral vignetting remains possible even with the corner chief ray transmitted.
+Figure 3 distinguishes the R4 curved optical face from L2's 15 mm mechanical shoulder at R3. The optical face ends at about 10.87 mm, rounded down to the modeled 10.8 mm R4 semi-diameter. The outline is schematic and does not establish a factory clear aperture. Peripheral vignetting remains possible even with the corner chief ray transmitted.
 
 ## Sources
 
