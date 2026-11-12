@@ -2,8 +2,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * Table A, with all lengths scaled by ×1.35 from f = 100 to 135 mm.
  * The printed back focus is retained at 57.78 mm, without numerical refocusing.
- * Surface semi-diameters and the iris position are inferred from Figure 1;
- * the iris split preserves the printed air gap. Production dimensions are unconfirmed.
+ * Surface semi-diameters are estimated from Figure 1 and floor-checked by real rays;
+ * R5 follows the optical endpoint, excluding the bevel and construction stroke.
+ * The inferred iris split preserves the printed air gap. Production dimensions are unconfirmed.
  * Infinity focus only; closeFocusM = 1e15 is a placeholder, not a measured distance.
  */
 const LENS_DATA = {

@@ -88,3 +88,67 @@ when the dev server is available. Optics and rims were not edited.
 Coordinator follow-up (same day): L1 relabelled `Unmatched (nd = 1.58913, νd = 61.2)` → `SK5 (Schott)`. The label resolves
 to the catalogue's SK5 row (nd 1.58913, νd 61.2; Δnd = 0, Δνd = 0), the classic Schott composition that the corpus
 already labels this way; it gives L1 a catalogue dispersion curve instead of the Abbe fallback. L2 and L3 stay Unmatched.
+
+## 2026-11-12 — Semi-diameter pass against the patent figure
+
+Source: local `patents/US2972285A.pdf`, PDF page 1, Figure 1, corresponding to Table A on PDF page 2.
+The native scan is 300 dpi; a 600 dpi crop confirmed the optical endpoints without adding source resolution.
+All source lengths scale by ×1.35. The local optical axis is approximately y = 1284 native pixels.
+R1 and R7 vertices at x ≈ 855.5 and 1327.5 span 472 pixels for 79.920 mm, giving 5.906 px/model mm
+(0.16932 mm/px). Independently, R1 to the cemented R4 vertex at x ≈ 1069.5 spans 214 pixels for
+36.450 mm, giving 5.871 px/mm, a 0.6% difference. Spherical-arc fits to R1 and R5, with this axial scale
+fixed, give vertical scales of approximately 5.995 and 5.975 px/mm, within 1.6%. The source is schematic:
+short individual axial spacings vary more, so neither subpixel precision nor exact factory dimensions follow.
+The stop stroke near x = 1229 is consistent with the inferred iris position to approximately 1.5 mm;
+the iris split and engine-derived stop radius were retained.
+
+Top/bottom optical endpoints were read on the local axis, excluding hatching, leaders, brackets, the R5 bevel
+and its straight construction stroke. Approximate figure values below use the track scale; the inherited
+±0.8 patent-unit uncertainty is ±1.08 mm at model scale. Ratios are figure/stored. No optical rim departed
+by the ≳10% change threshold; all agree within the 5–8% measurement-noise band.
+
+| Surface | Before sd (mm) | Figure sd (mm, approx.) | Ratio | After sd (mm) | Evidence / decision |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 1 | 25.785 | 25.3 | 0.982 | 25.785 | Front component optical rim; retain square paired height. |
+| 2 | 25.785 | 25.3 | 0.982 | 25.785 | Same front component; retain. |
+| 3 | 23.625 | 23.5 | 0.996 | 23.625 | Flat outer edge of cemented component; retain. |
+| 4 | 23.625 | 23.5 | 0.996 | 23.625 | Cemented junction at the same outer height; retain without a land. |
+| 5 | 18.630 | 18.5 | 0.991 | 18.630 | Curved optical endpoint before the bevel; retain. |
+| 6 | 18.900 | 18.5 | 0.977 | 18.900 | Rear singlet; retain square paired height. |
+| 7 | 18.900 | 18.5 | 0.977 | 18.900 | Rear plane face; retain. |
+
+No sd, innerSd, cut, extension or check override changed. A vertical rim extension would replace the source's
+diagonal bevel with a square land; the model instead retains its simple optical-edge join. No inferred aperture
+reduction was made and no existing land required removal. The complete rim-cost comparison against
+`.lens-work/base1122sd/IscoTeleIscaron135mmf28.data.ts`, including leave-one-element-out mode, gives zero loss
+at every sampled field. Fields 0.0, 1.5, 3.0, 4.5, 6.0, 7.6 and 9.1° have geometric pupil transmissions
+100.0, 96.7, 89.8, 82.9, 75.6, 68.3 and 60.7%, identical before and after. Corner illumination is therefore
+60.7% → 60.7%; coating transmission and radiometric falloff are not included. This prime has one published
+infinity state, with no finite-focus prescription or zoom nodes. The patent supplies no lateral-aberration fans
+to independently establish wider apertures.
+
+Exact meridional clearance at Y = 21.6333 mm solves ω = 9.07°. Axial marginal / absolute corner-chief
+heights (mm), surfaces 1–7, are 24.11/18.30, 23.85/17.64, 23.07/16.72, 16.64/8.64, 13.01/5.36,
+11.03/3.21 and 10.49/4.22. There are no axial clips or blocked chief rays. The tightest axial margin is
+approximately 0.55 mm at surface 3; real peripheral vignetting at the first component remains.
+The surface audit reports OK, no validation errors; the aperture audit reports one station within 3% of f/2.8,
+zero rim/trace/iris limits and zero failures. The image-circle audit reports zero undersized surfaces;
+field coverage reaches ≥99% of the full-frame corner at the one station, with no unsolved state.
+Engine EFL is 134.989336 mm → 134.989336 mm, half-field 9.1° → 9.1°, tracing half-field
+12.299301° → 12.299301°, FOPEN 2.8 → 2.8, and stop radius 11.736582 mm → 11.736582 mm.
+
+The matched-scale patent/model side-by-side was rendered and visually inspected at
+`/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/iscaron135/overlay.png`.
+It confirms the component-height ordering and R5 optical endpoint; the mechanical bevel is not reproduced.
+No live browser check was permitted in this pass; the coordinator retains the rendered page review.
+The existing maker image `v-iscaron135/diagrams/teleiscaron135-schnitt.jpg` was also viewed: four elements,
+three groups, cemented L2–L3 and curvature signs agree. It omits the iris and draws L1 thinner relative to the
+middle component; it has no quantitative scale or identified special-glass/asphere positions. All four modeled
+elements are spherical or plane. This image supports topology, not a factory-exact prescription.
+
+The patent's bibliographic front matter on PDF page 2 names Rudolf Solisch, Göttingen, assignor to Isco Optische
+Werke G.m.b.H., Göttingen-Weende; US 2,972,285, patented February 21, 1961, filed November 13, 1958.
+No new name or source-metadata mismatch was found. Outside this pass's remit, the analysis glass-selection
+paragraph still says L1–L3 remain unmatched, although the data and coordinator follow-up now give L1 SK5
+(Schott); this wording was left to the coordinator. The unsupported patent ±14° field remains an open model
+limitation, as do production/version identity and finite-focus mechanics. No sandbox or approval refusal occurred.
