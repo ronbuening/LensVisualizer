@@ -58,7 +58,8 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "10",
+      "diagramLabel": "10",
       "label": "Element 1",
       "type": "Biconvex Positive",
       "role": "Positive front member of the first cemented doublet",
@@ -66,11 +67,13 @@ const LENS_DATA = {
       "nd": 1.80099,
       "vd": 34.97,
       "indexReference": "d",
+      "focalLengthMm": 33.052,
       "glass": "S-LAM66 (OHARA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "20",
+      "diagramLabel": "20",
       "label": "Element 2",
       "type": "Biconcave Negative",
       "role": "Negative rear member of the first cemented doublet",
@@ -78,22 +81,26 @@ const LENS_DATA = {
       "nd": 1.603423,
       "vd": 38.01,
       "indexReference": "d",
+      "focalLengthMm": -20.847,
       "glass": "E-F5 (HOYA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "30",
+      "diagramLabel": "30",
       "label": "Element 3",
       "type": "Positive Meniscus",
       "role": "Positive meniscus between the front doublet and the iris",
       "nd": 1.883004,
       "vd": 40.81,
       "indexReference": "d",
+      "focalLengthMm": 37.699,
       "glass": "TAFD30 (HOYA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "40",
+      "diagramLabel": "40",
       "label": "Element 4",
       "type": "Biconcave Negative",
       "role": "Negative front member of the second cemented doublet, behind the iris",
@@ -101,11 +108,13 @@ const LENS_DATA = {
       "nd": 1.755,
       "vd": 27.53,
       "indexReference": "d",
+      "focalLengthMm": -12.960,
       "glass": "E-FD4 (HOYA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "50",
+      "diagramLabel": "50",
       "label": "Element 5",
       "type": "Biconvex Positive",
       "role": "Positive rear member of the second cemented doublet",
@@ -113,17 +122,20 @@ const LENS_DATA = {
       "nd": 1.835,
       "vd": 42.74,
       "indexReference": "d",
+      "focalLengthMm": 18.641,
       "glass": "S-LAH55VS (OHARA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "60",
+      "diagramLabel": "60",
       "label": "Element 6",
       "type": "Positive Meniscus",
       "role": "Rear positive meniscus with two aspherical surfaces",
       "nd": 1.829,
       "vd": 37.1,
       "indexReference": "d",
+      "focalLengthMm": 31.239,
       "glass": "Unmatched (nd 1.829, νd 37.1; supplier and partial dispersion unknown)"
     }
   ],
@@ -249,6 +261,10 @@ const LENS_DATA = {
       "gapAfterMm": 1.8214,
       "source": "CN 207216120 U, Embodiment 2, Table 1, surfaces 12/13. The derived 1.8214 mm plate-to-image gap places the image at paraxial infinity focus; the printed 1 mm gap leaves 0.821 mm of defocus. No single-row misprint has been established. The clear plate diameter is unprinted; its aperture is assumed nonclipping."
     }
+  ],
+  "groups": [
+    { "text": "GR1", "fromSurface": "1", "toSurface": "5" },
+    { "text": "GR2", "fromSurface": "7", "toSurface": "11A" }
   ],
   "doublets": [
     { "text": "C1", "fromSurface": "1", "toSurface": "3" },
