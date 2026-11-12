@@ -79,7 +79,7 @@ const LENS_DATA = {
       "nd": 1.54869,
       "vd": 45.6,
       "indexReference": "d",
-      "glass": "Unmatched (nd = 1.54869, νd = 45.6)",
+      "glass": "PBL7 (OHARA catalog equivalent; production supplier unspecified)",
       "role": "Positive front meniscus of the retrofocus assembly"
     },
     {

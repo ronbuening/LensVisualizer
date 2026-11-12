@@ -164,3 +164,7 @@ Final checks reproduced the surface, aperture, image-circle, field-coverage, eng
 The complete parsed data object equals the committed cleanup baseline; the data-file edit is confined to its rim
 header comment. Targeted Prettier write/check commands completed, but the repository ignore rules exclude both
 `src/lens-data/` and Markdown, so those commands did not reformat these files. The scoped whitespace diff check passed.
+
+## 2026-11-12 — Glass coverage pass
+
+L1 `Unmatched (nd = 1.54869, νd = 45.6)` → `PBL7 (OHARA catalog equivalent; …)` (Δnd = −0.000001, Δνd = −0.04), using the discontinued Ohara PBL7 row added to the catalogue from the 2026-07-01 Ohara Zemax file. Every element now traces on a catalogue curve.

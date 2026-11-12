@@ -40,7 +40,7 @@ These forms and power signs follow the prescription; individual aberration contr
 
 The source calls its index reference the **sodium d-line**. Catalog comparisons instead support the helium d-line used in this model: S-FSL5 gives 1.48748993 at helium d versus 1.48742765 at sodium D, and K-BK7 gives 1.51632992 versus 1.51625776. The seven printed index/Abbe pairs remain 1.54869/45.6, 1.51633/64.1, 1.48749/70.1, 1.80610/40.8, 1.80518/25.4, 1.65160/58.6, and 1.65160/58.6.
 
-Compatible catalog curves are K-BK7 (Sumita) for L2, S-FSL5 (Ohara) for L3, NBFD13 (Hoya) for L4, SF6 (Schott) for L5, and LAL7 (Ohara) for L6–L7. Each differs from the printed pair by at most 0.0001 in nd and 0.15 in νd. L1 remains Unmatched: the nearest LLF7 row misses the Abbe tolerance. These curves are spectral equivalents, not evidence of the historical supplier or melt. Partial dispersion and coating data are absent from the patent, so calculated chromatic behaviour is not measured factory performance. No maker-published special-dispersion positions support anomalous-dispersion tags.
+Compatible catalog curves are PBL7 (Ohara) for L1, K-BK7 (Sumita) for L2, S-FSL5 (Ohara) for L3, NBFD13 (Hoya) for L4, SF6 (Schott) for L5, and LAL7 (Ohara) for L6–L7. Each differs from the printed pair by at most 0.0001 in nd and 0.15 in νd. These curves are spectral equivalents, not evidence of the historical supplier or melt. Partial dispersion and coating data are absent from the patent, so calculated chromatic behaviour is not measured factory performance. No maker-published special-dispersion positions support anomalous-dispersion tags.
 
 ## Focus Mechanism and Operating States
 
