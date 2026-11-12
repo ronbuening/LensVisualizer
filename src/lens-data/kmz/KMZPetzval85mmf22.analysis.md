@@ -6,39 +6,45 @@
 **Inventors:** Vladimir Alexandrovich Bogdankov; Artem Andreevich Timirev; Sergey Ivanovich Shcheglov
 **Assignee:** OJSC Krasnogorsky Zavod im. S. A. Zvereva (now PJSC Krasnogorsky Zavod named after S. A. Zverev)
 **Title:** Four-element objective (Четырёхлинзовый объектив)
-**Example details:** whole Table 1, original publication page 5.
+**Example details:** Table 1, original publication page 5; the patent contains one numerical example.
 
-The [original publication copy](https://patenton.ru/patent/RU2549915C1.pdf) is hosted by a third party, not downloaded from the patent office. Its table was visually verified. The [maker's Petzval 2.2/85 archive](https://www.zenitcamera.com/archive/lenses/petzval-2-2-85.html) explicitly cites RU2549915 in its Sources section as plain text, not a patent hyperlink. This supports a named production-family association, not a factory-exact prescription.
+The [original publication](https://patents.google.com/patent/RU2549915C1/en) is available through Google Patents. The [KMZ Petzval 2.2/85 archive](https://www.zenitcamera.com/archive/lenses/petzval-2-2-85.html) explicitly cites RU 2549915 in its Sources section. KMZ manufactures the Lomography × Zenit New Petzval 85; its [optical section](https://www.zenitcamera.com/archive/lenses/petzval-2-2-85-lens.gif) agrees with the patent's four-element, three-group arrangement. The citation and section support a production-family association rather than an identical factory prescription.
 
-The maker lists actual focal length 84.74 mm, back focus 46.04 mm and vertex track 56.2 mm. The patent prints 84.01 mm, 43.22 mm and a table track totaling 58.2 mm. These differences remain explicit; the prescription is neither rescaled nor fitted to retail dimensions. Native first-order EFL is 84.07698069 mm and matrix BFL is 43.29029048 mm, residuals +0.06698069 and +0.07029048 mm relative to the printed patent values. These exceed half the last printed digit and are not dismissed as rounding. The image remains at the printed source position, z101.42 mm.
+The maker lists actual focal length 84.74 mm, back focus 46.04 mm and vertex track 56.2 mm. The patent prints 84.01 mm, 43.22 mm and a table track totaling 58.2 mm. All prescription dimensions are unscaled. Calculated first-order EFL is 84.07698069 mm and matrix back focus is 43.29029048 mm, residuals +0.06698069 and +0.07029048 mm relative to the printed patent values. These exceed half the last printed digit. The image remains at the printed position, z = 101.42 mm, 0.07029048 mm ahead of paraxial focus.
 
 ## Optical Architecture
 
-Four spherical glasses in three groups: front cemented positive/negative pair, separated negative singlet and positive rear singlet. Radii, thicknesses and materials are literal, unscaled Table 1. Source optical clear diameters are 37.5, 35.2, 33.2, 23.1, 21.5, 22.4 and 22.4 mm; corresponding model semidiameters are exactly half. They are published light diameters, not inferred mechanical shoulders or performance-fitted rims.
+Four spherical elements in three groups: a front cemented positive/negative pair, a separated negative singlet and a positive rear singlet. Radii, thicknesses and material coordinates follow Table 1. Printed optical clear diameters are 37.5, 35.2, 33.2, 23.1, 21.5, 22.4 and 22.4 mm; corresponding model semidiameters are exactly half. These define the light-transmitting surfaces rather than mechanical shoulders.
 
-The patent explicitly places the aperture 3 mm before lens 3. Its vertex coordinate is z35 mm, splitting the 21 mm air gap into 18 + 3 mm without changing the prescription. Physical stop semidiameter 11.41240538 mm is engine-derived from nominal f/2.2, not separately printed by the patent. No aperture diameter or geometry override was used. Native entrance-pupil semidiameter is 19.10840470 mm; effective f-number is 2.2, not a silently clamped value.
+The patent places the aperture 3 mm before lens 3. Its vertex coordinate is z = 35 mm, splitting the 21 mm air gap into 18 + 3 mm. Physical stop semidiameter 11.41240538 mm is derived from nominal f/2.2; the patent prints no stop diameter. Nominal entrance-pupil semidiameter is 19.10840470 mm. The printed front clear diameters trim the axial beam to about f/2.24 despite the nominal f/2.2 stop setting.
 
 ## Element-by-Element Analysis
 
-- L1: positive biconvex TK21, R43.05/-66.53, thickness13 mm, nD1.6568/VD51.11.
-- L2: negative concave-plane TF5 cemented to L1, R-66.53/flat, thickness4 mm, nD1.755/VD27.52.
-- L3: negative biconcave LF5, R-45.29/26.3, thickness8 mm, nD1.5749/VD41.3.
-- L4: positive symmetric biconvex TK21, R42.17/-42.17, thickness8.8 mm, nD1.6568/VD51.11.
+- L1: Biconvex Positive, TK21; nD = 1.6568, νD = 51.11. Radii 43.05/−66.53 mm, thickness 13 mm. Positive front member of cemented doublet C1.
+- L2: Plano-Concave Negative, TF5; nD = 1.755, νD = 27.52. Radii −66.53 mm/flat, thickness 4 mm. Negative rear member of C1, with a flat exit face.
+- L3: Biconcave Negative, LF5; nD = 1.5749, νD = 41.3. Radii −45.29/26.3 mm, thickness 8 mm. Negative singlet immediately behind the stop.
+- L4: Biconvex Positive, TK21; nD = 1.6568, νD = 51.11. Radii 42.17/−42.17 mm, thickness 8.8 mm. Symmetric positive rear singlet.
 
-These describe geometrical power signs and material assignments, not measured isolated aberration contributions. The publication's aberration table is a source claim, not reproduced performance evidence for this draft.
+These roles describe geometrical power signs and positions. The patent's aberration table reports the inventor's calculated performance; its results have not been reproduced by this model.
 
 ## Glass and Dispersion
 
-The original explicitly names spectral D and labels nD/VD. Each material retains `indexReference: D`; no helium-d relabeling, LZOS catalog replacement or fitted index conversion is used. Named glass families do not establish factory melt data. Native Abbe-based dispersion is approximate; full wavelength-dependent indices and anomalous partial dispersion are not supplied. Monochromatic diagnostic success does not validate chromatic performance or the patent's 435–656 nm correction claim.
+The patent explicitly names sodium D and labels nD/νD. The printed values remain unchanged at that reference line. L1/L4 use the LZOS TK21 catalog curve; TF5 in L2 uses Schott SF4 as a catalog equivalent, and LF5 in L3 uses CDGM QF3. Each curve agrees with the printed D-line index within 0.0001 and νD within 0.15. These catalog curves describe dispersion without identifying production suppliers or factory melts. The patent supplies no full wavelength-dependent indices or anomalous partial dispersion data, so its 435–656 nm correction claim remains unconfirmed.
 
 ## Focus and Operating Limits
 
-Static infinity-only model. The maker's rack-and-pinion focusing mechanism does not supply a prescription travel law here; the infinity sentinel is not a claim of reconstructed close focus. Source full field is 32 degrees, implemented explicitly as 16-degree maximum semi-field. Only the source f/2.2 state is exposed; additional retail aperture inserts have not been modeled.
+Infinity focus only; no close-focus spacings are printed. [Lomography's specifications](https://www.lomography.com/magazine/312485-lomopedia-new-petzval-lens-85) give rack-and-pinion focusing to 1 m, Canon EF and Nikon F mounts, and Waterhouse stops from f/2.2 through f/16. The model's aperture range records these endpoints with circular openings; decorative insert shapes are omitted.
 
-Fresh bounded native construction and geometry checks pass at the unchanged source dimensions. A 25-sample circular pupil plus separately traced chief (center counted twice) gives: axis26 successful; 8 degrees14 successful/12 clipped; 12 degrees12 successful/14 clipped; 16 degrees4 successful/17 clipped/5 blocked. Chiefs pass and field bundles exist at every sampled field. Counts are sparse diagnostic samples, not throughput or relative-illumination estimates. Strong peripheral losses and blocked edge launches remain; no rims were enlarged to remove them.
+The patent's full field is 32°, modeled as a 16° maximum semi-field. At 16°, the calculated chief ray reaches image height 24.690 mm; the printed 21.63 mm height occurs near 14.12°. Heavy peripheral vignetting contributes to the Petzval look. The published clear diameters are retained, including their slight axial clipping; edge losses are not a measured relative-illumination curve.
 
-This hidden draft is for qualified downstream review, not a finished acceptance claim. Strict TypeScript, isolated native import and sparse rays are focused checks only. Full corpus integration, production build, rendered viewer comparison, dense pupil analysis and MTF/aberration reproduction remain unrun. Source-v-retail dimensional differences remain unresolved.
+The differences between patent and retail dimensions, the field/image-height discrepancy and the absence of close-focus spacings limit direct comparison with production-lens performance.
 
 ## Aspherical Surfaces and Special Components
 
-No aspheric coefficients, cover plates or filters are added: Table 1 contains only spherical/plane optical surfaces and intervening air. The flat cemented-pair exit is literal, not a guessed sensor plate. The maker's interchangeable decorative aperture inserts are not reproduced; the diagnostic uses the source circular nominal aperture. The patent's source image plane and published optical boundaries are retained without refocusing or compensating hidden surfaces.
+Table 1 contains spherical and plane surfaces with intervening air, and no aspheric coefficients, cover plates or filters. The flat surface is the exit of the front cemented doublet. The printed image plane and clear diameters are retained.
+
+## Sources
+
+- [RU 2549915 C1, Table 1 and optical section](https://patents.google.com/patent/RU2549915C1/en).
+- [KMZ Petzval 2.2/85 archive and production dimensions](https://www.zenitcamera.com/archive/lenses/petzval-2-2-85.html).
+- [Lomography New Petzval 85 specifications](https://www.lomography.com/magazine/312485-lomopedia-new-petzval-lens-85).

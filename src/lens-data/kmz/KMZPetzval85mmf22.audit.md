@@ -1,4 +1,4 @@
-# Qualified hidden draft audit
+# Qualified hidden draft audit (historical; hidden status closed 2026-11-12)
 
 Scope: RU2549915C1 whole Table1, directly cited by the maker's named Petzval2.2/85 page; representative production-family association only. No factory-exact assertion, rescale, image refocus, cap tuning, geometry override, publication or delivery.
 
@@ -31,3 +31,67 @@ Independent authored-triad review is recorded in INDEPENDENT_REVIEW.json and IND
     the patent prints the OJSC name); patent number → `RU 2549915 C1`.
   - Added `lensMounts` canon-ef / nikon-f and `catalog.closeFocusM` 1 m; focus sentinel 1e15.
 - The printed clear diameters are kept: they trim the axial beam to about f/2.24, within the audit's 3 %.
+
+## 2026-11-12 — Cleanup and wording pass
+
+The Table 1 page and patent figure in the preceding deployment review were re-read: seven optical radii, six
+spacings, four nD/νD pairs, seven clear diameters and the printed 43.22 mm back focus agree with the data. There
+are no aspheric coefficients or variable gaps. The stop remains 3 mm before L3, splitting the 21 mm gap into
+18 + 3 mm; its radius is derived rather than printed. The KMZ archive section agrees with the front cemented
+doublet, negative rear singlet and symmetric positive rear singlet. The patent dimensions are unscaled.
+
+Public fields now describe the patent and production-family association in plain language. The subtitle is
+"RU 2549915 C1, sole example — Lomography × Zenit New Petzval 85 family". Specs give 4 elements / 3 groups,
+all-spherical construction, f/2.2–16 Waterhouse stops, rack-and-pinion focus and 1 m close focus, following
+[Lomography's published specifications](https://www.lomography.com/magazine/312485-lomopedia-new-petzval-lens-85).
+The aperture list now records endpoints 2.2 and 16; decorative shapes are not modeled. The focus description
+states infinity-only scope and the production mechanism; closeFocusM remains the 1e15 placeholder, with catalog
+minimum focus still 1 m. Existing Canon EF/Nikon F mounts, counts, name, key and visibility are retained.
+Catalog design focal length remains the patent's stated 84.01 mm, consistent with the stated-design convention
+in the neighbouring Zenitar files. The example label changes from "Whole Table 1" to "Sole example", with null
+id as required for an unnumbered example. Element types follow the surface signs; roles describe position and
+power. L1 and L2 both carry cemented C1, and doublets includes C1 from surfaces 1 to 3. No apd tags are added:
+the cited maker sources publish no special-dispersion positions.
+
+Glass relabels retain all printed coordinates and sodium-D references. Each new label resolves with trylabel;
+the differences below are catalog minus patent, evaluated at sodium D rather than helium d:
+
+- L1/L4: "TK21 literal patent nD/vD; no catalog substitution" → "TK21 (LZOS)";
+  ΔnD = −0.000002108, ΔνD = +0.012628.
+- L2: "TF5 literal patent nD/vD; no catalog substitution" → "SF4 (Schott; patent TF5)";
+  ΔnD = −0.000035930, ΔνD = +0.050839. The historical Schott SF4 row meets the exact-row thresholds.
+- L3: "LF5 literal patent nD/vD; no catalog substitution" → "QF3 (CDGM; patent LF5)";
+  ΔnD = +0.000003685, ΔνD = −0.011868. The catalog's Schott LF5 row does not match this Soviet LF5.
+
+The catalog curves are dispersion equivalents, not evidence of production suppliers or melts. No copied
+nC/nF/ng fields were present. The analysis now cites Google Patents rather than the former third-party PDF,
+identifies KMZ manufacture and Lomography × Zenit branding, corrects the aperture/dispersion descriptions,
+and replaces process, hidden-draft and sparse-ray passages with optical limits. The historical log and dated
+deployment section above are retained; hidden status is closed in the title.
+
+Before/after engine values are identical: EFL 84.07698068633528 mm; FOPEN 2.2; halfField 16°; stop radius
+11.41240538402449 mm; BFD 43.2903 mm (probe precision); first-to-last vertex track 58.2 mm; printed-image
+total track 101.42 mm. Both probe endpoints are unchanged: t = 0 last gap 43.2200 mm and total track 101.4200 mm;
+t = 1 last gap 43.2903 mm and total track 101.4903 mm, object at infinity. No finite-focus state is introduced.
+The patent EFL/BF are 84.01/43.22 mm; residuals remain +0.06698069/+0.07029048 mm. Surface audit is OK;
+aperture audit reports one station within 3 %, zero rim/trace/iris failures; field coverage reaches ≥99 % with
+zero unsolved stations. The separate clear-aperture probe still flags axial clipping at surfaces 1–3 and
+strong peripheral losses; its real marginal construction gives a different stop radius from the engine's
+paraxial stop, so it is not an alternative authored stop size. Prettier is skipped per the addendum.
+
+Open:
+
+- Retail EFL/BF/vertex track 84.74/46.04/56.2 mm differ from patent 84.01/43.22/58.2 mm; factory identity remains
+  unproven despite the maker's explicit patent citation.
+- Printed clear diameters limit the axial beam to about f/2.24 and cause heavy peripheral vignetting. Rims are
+  unchanged; no throughput or measured relative-illumination claim is made.
+- At 16° the chief reaches 24.690 mm rather than the printed 21.63 mm image height, which occurs near 14.12°.
+- No close-focus spacings or travel law are printed; the production 1 m state is not modeled. Decorative
+  Waterhouse insert shapes are omitted.
+- Factory melt dispersion and the patent's 435–656 nm correction and aberration claims remain unconfirmed.
+- Rendered page review could not be completed: shot.sh produced no screenshot, and localhost:5173 refused the
+  subsequent connection check. No server was started or stopped.
+
+Denial: an attempted baseline copy mistakenly targeted the main checkout and was refused with "Operation not
+permitted". That copy operation was stopped without retry or workaround; before-edit engine outputs were
+already recorded. No state-changing git commands or prohibited full-suite commands were run.

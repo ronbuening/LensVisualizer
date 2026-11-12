@@ -1,5 +1,13 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Hidden literal patent embodiment; published caps/stop, native sodium-D, no scale or focus fit. */
+/**
+ * RU 2549915 C1, sole example in Table 1: four spherical elements in three groups.
+ * Unscaled prescription at sodium D; printed clear diameters set the surface semidiameters.
+ * The stop lies 3 mm before L3, dividing the printed 21 mm gap into 18 + 3 mm.
+ * Its radius is derived from nominal f/2.2; the printed clear diameters limit the beam to about f/2.24.
+ * Infinity focus only, with closeFocusM = 1e15 as a placeholder; no close-focus travel is supplied.
+ * The KMZ-made Lomography × Zenit New Petzval 85 belongs to this patent family,
+ * but its published focal length, back focus and vertex track differ from the patent values.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "kmz-petzval-85mm-f22",
@@ -13,9 +21,11 @@ const LENS_DATA = {
       "nd": 1.6568,
       "vd": 51.11,
       "indexReference": "D",
-      "glass": "TK21 literal patent nD/vD; no catalog substitution",
+      "glass": "TK21 (LZOS)",
       "label": "Element 1",
-      "type": "Patent spherical glass"
+      "type": "Biconvex Positive",
+      "role": "Positive front member of the cemented doublet",
+      "cemented": "C1"
     },
     {
       "id": 2,
@@ -23,9 +33,11 @@ const LENS_DATA = {
       "nd": 1.755,
       "vd": 27.52,
       "indexReference": "D",
-      "glass": "TF5 literal patent nD/vD; no catalog substitution",
+      "glass": "SF4 (Schott catalog equivalent of TF5)",
       "label": "Element 2",
-      "type": "Patent spherical glass"
+      "type": "Plano-Concave Negative",
+      "role": "Negative rear member of the front cemented doublet, with a flat exit face",
+      "cemented": "C1"
     },
     {
       "id": 3,
@@ -33,9 +45,10 @@ const LENS_DATA = {
       "nd": 1.5749,
       "vd": 41.3,
       "indexReference": "D",
-      "glass": "LF5 literal patent nD/vD; no catalog substitution",
+      "glass": "QF3 (CDGM catalog equivalent of LF5)",
       "label": "Element 3",
-      "type": "Patent spherical glass"
+      "type": "Biconcave Negative",
+      "role": "Negative singlet immediately behind the aperture stop"
     },
     {
       "id": 4,
@@ -43,9 +56,10 @@ const LENS_DATA = {
       "nd": 1.6568,
       "vd": 51.11,
       "indexReference": "D",
-      "glass": "TK21 literal patent nD/vD; no catalog substitution",
+      "glass": "TK21 (LZOS)",
       "label": "Element 4",
-      "type": "Patent spherical glass"
+      "type": "Biconvex Positive",
+      "role": "Symmetric positive rear singlet"
     }
   ],
   "surfaces": [
@@ -103,12 +117,13 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1e15,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity-only sentinel; retail rack-and-pinion focus travel is not reconstructed."
+    "description": "Infinity focus only; the production lens uses rack-and-pinion focusing to 1 m, but the patent supplies no close-focus spacings."
   },
   "aperture": {
     "nominalFNumber": 2.2,
     "fStops": [
-      2.2
+      2.2,
+      16
     ]
   },
   "projection": {
@@ -119,7 +134,7 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.7
   },
-  "subtitle": "RU2549915 whole prescription; published clear diameters and stop, qualified retail association",
+  "subtitle": "RU 2549915 C1, sole example — Lomography × Zenit New Petzval 85 family",
   "catalog": {
     "imageFormat": "135-full-frame",
     "lensMounts": [
@@ -140,17 +155,19 @@ const LENS_DATA = {
       "design": 2.2
     },
     "specs": [
-      "Original patent embodiment, not factory-exact retail prescription",
-      "Published clear diameters and source stop; fixed printed image plane",
-      "Infinity-only; peripheral clipping and approximate Abbe dispersion"
+      "4 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "f/2.2–16 · WATERHOUSE STOPS",
+      "RACK-AND-PINION FOCUS",
+      "1 m CLOSE FOCUS"
     ]
   },
   "source": {
     "patentNumber": "RU 2549915 C1",
     "patentYear": 2015,
     "example": {
-      "label": "Whole Table 1",
-      "id": "1"
+      "label": "Sole example",
+      "id": null
     },
     "authors": [
       "Vladimir Alexandrovich Bogdankov",
@@ -160,6 +177,13 @@ const LENS_DATA = {
     "assignees": [
       "PJSC Krasnogorsky Zavod named after S. A. Zverev"
     ]
-  }
+  },
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "1",
+      "toSurface": "3"
+    }
+  ]
 } satisfies LensDataV2Input;
 export default LENS_DATA;
