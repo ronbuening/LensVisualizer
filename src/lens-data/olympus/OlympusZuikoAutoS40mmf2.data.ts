@@ -126,7 +126,7 @@ const LENS_DATA = {
       "vd": 53.56,
       "indexReference": "d",
       "indexReferenceNote": "Assumed helium-d convention; source n/v definitions do not establish numerical reference wavelength.",
-      "glass": "Unmatched (nd = 1.726, νd = 53.56)",
+      "glass": "LAL60 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 27.83198457974555
     },
     {

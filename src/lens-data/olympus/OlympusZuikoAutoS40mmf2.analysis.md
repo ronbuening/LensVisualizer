@@ -32,7 +32,7 @@ nd = 1.76182, νd = 26.55. Glass: FD140 (HOYA catalog equivalent). Isolated thic
 
 ### L5: Positive Meniscus
 
-nd = 1.726, νd = 53.56. Glass: Unmatched (nd = 1.726, νd = 53.56). Isolated thick-element paraxial f = +27.831985 mm. This positive meniscus is air-separated from L4; the pair is not cemented.
+nd = 1.726, νd = 53.56. Glass: LAL60 (OHARA catalog equivalent). Isolated thick-element paraxial f = +27.831985 mm. This positive meniscus is air-separated from L4; the pair is not cemented.
 
 ### L6: Biconvex Positive
 
@@ -40,7 +40,7 @@ nd = 1.757, νd = 47.87. Glass: S-LAM54 (OHARA catalog equivalent). Isolated thi
 
 ## Glass and Dispersion
 
-The patent's n/v definitions do not state a numerical reference wavelength. The d/F plot labels and catalog comparisons support treating the printed pairs as helium-d values. LAC10, BAF5, BAF22, FD140 and S-LAM54 provide catalog dispersion curves within 0.0001 in nd and 0.15 in νd of the printed pairs. These are spectral equivalents, not identifications of the historical supplier or melt. L5 has no matching catalog row and retains its printed pair. No element is identified as extra-low dispersion or anomalous partial dispersion by the maker or patent.
+The patent's n/v definitions do not state a numerical reference wavelength. The d/F plot labels and catalog comparisons support treating the printed pairs as helium-d values. LAC10, BAF5, BAF22, FD140, LAL60 and S-LAM54 provide catalog dispersion curves within 0.0001 in nd and 0.15 in νd of the printed pairs. These are spectral equivalents, not identifications of the historical supplier or melt. No element is identified as extra-low dispersion or anomalous partial dispersion by the maker or patent.
 
 ## Focus and Operating Limits
 

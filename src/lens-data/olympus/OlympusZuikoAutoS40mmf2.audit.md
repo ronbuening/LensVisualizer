@@ -173,3 +173,7 @@ Formatter write/check commands completed; the repository's `.prettierignore` exc
 they did not reformat them. The scoped whitespace check is clean. A structural comparison with the committed
 baseline finds exactly the five listed `sd` changes and no other data-object differences.
 No sandbox or approval refusal occurred.
+
+## 2026-11-12 — Glass coverage pass
+
+L5 `Unmatched (nd = 1.726, νd = 53.56)` → `LAL60 (OHARA catalog equivalent; …)` (Δnd = −0.000001, Δνd = +0.006), using the discontinued Ohara LAL60 row added to the catalogue from the 2026-07-01 Ohara Zemax file (the later S-LAL60 shares its coefficients). Every element now traces on a catalogue curve.
