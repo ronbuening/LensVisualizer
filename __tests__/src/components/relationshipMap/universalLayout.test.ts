@@ -271,6 +271,49 @@ describe("layoutUniversalRelationshipGraph", () => {
     expect(layout.nodeById[modern.id].clusterId).toBe(layout.clusters[0].id);
   });
 
+  it("keeps a small family's patent-holding names in one neighborhood", () => {
+    const family = corporateNode("family:small", "Small lineage");
+    const early = partyNode("assignee:early", "Early Optics", "assignee");
+    const modern = partyNode("assignee:modern", "Modern Optics", "assignee");
+    const earlyPatent = patentNode(1, "EA");
+    const modernPatent = patentNode(2, "MA");
+    const graph = makeGraph(
+      [family, early, modern, earlyPatent, modernPatent],
+      [
+        [early.id, family.id],
+        [modern.id, family.id],
+        [earlyPatent.id, early.id],
+        [modernPatent.id, modern.id],
+      ],
+    );
+
+    const layout = layoutUniversalRelationshipGraph(graph);
+    expect(layout.clusters.map((cluster) => cluster.anchorId)).toEqual([family.id]);
+    expect(layout.nodeById[early.id].clusterId).toBe(`cluster:${family.id}`);
+    expect(layout.nodeById[modern.id].clusterId).toBe(`cluster:${family.id}`);
+  });
+
+  it("folds a family whose names a stronger family already holds into that neighborhood", () => {
+    const lineage = corporateNode("family:lineage", "Example lineage");
+    const owner = corporateNode("family:owner", "Example owner");
+    const early = partyNode("assignee:early", "Early Optics", "assignee");
+    const modern = partyNode("assignee:modern", "Modern Optics", "assignee");
+    const patents = Array.from({ length: 12 }, (_, index) => patentNode(index + 1));
+    const graph = makeGraph(
+      [lineage, owner, early, modern, ...patents],
+      [
+        [early.id, lineage.id],
+        [modern.id, lineage.id],
+        [modern.id, owner.id],
+        ...patents.map((patent, index) => [patent.id, index < 4 ? early.id : modern.id] satisfies [string, string]),
+      ],
+    );
+
+    const layout = layoutUniversalRelationshipGraph(graph);
+    expect(layout.clusters.map((cluster) => cluster.anchorId)).toEqual([lineage.id]);
+    expect(layout.nodeById[owner.id].clusterId).toBe(`cluster:${lineage.id}`);
+  });
+
   it("places the most interconnected hub at the center of a shared constellation", () => {
     const alpha = partyNode("assignee:alpha", "Alpha Optics", "assignee");
     const beta = partyNode("assignee:beta", "Beta Optics", "assignee");
