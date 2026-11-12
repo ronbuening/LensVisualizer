@@ -28,6 +28,8 @@ const SOURCES = {
   fujinonRename: "https://www.itmedia.co.jp/news/article/0407/01/1040701077/",
   hoyaHistory: "https://www.hoya.com/en/company/history/",
   hoyaPentaxMerger: "https://www.hoya.com/en/news/20111001/",
+  iscoMerger:
+    "https://www.pressebox.com/pressrelease/jos-schneider-optische-werke-gmbh/ISK-Optics-merges-with-parent-company-Jos-Schneider-Optische-Werke/boxid/698220",
   jenoptikHistory: "https://de.wikipedia.org/wiki/Jenoptik",
   kmzHistory: "https://bigenc.ru/c/krasnogorskii-zavod-imeni-s-a-zvereva-dfb513",
   kenkoTokinaHistory: "https://kenkoglobal.com/company/history/",
@@ -315,6 +317,20 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         sourceUrl: SOURCES.hoyaHistory,
         note: "Covers the PENTAX imaging business while HOYA owned it after the March 2008 merger; patents from this window name HOYA as assignee.",
       },
+    ],
+  },
+  "Isco Optische Werke GmbH": {
+    subsidiaryOf: [
+      {
+        organization: "Jos. Schneider & Co., Optische Werke",
+        effectiveFrom: "1936",
+        effectiveTo: "2014",
+        sourceUrl: SOURCES.iscoMerger,
+        note: "Schneider Kreuznach's Göttingen works, founded in 1936 (some references give 1939). US 2,972,285 prints Isco Optische Werke G.m.b.H., Göttingen-Weende. As ISK Optics GmbH it merged into its parent, Jos. Schneider Optische Werke GmbH, in 2014.",
+      },
+    ],
+    corporateFamily: [
+      { family: "Schneider-Kreuznach", effectiveFrom: "1936", effectiveTo: "2014", sourceUrl: SOURCES.iscoMerger },
     ],
   },
   "Jenoptik Jena GmbH": {
