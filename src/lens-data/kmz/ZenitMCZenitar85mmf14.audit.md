@@ -172,3 +172,9 @@ the spelling is the corpus's only KMZ assignee entry.
 Open: L3 still renders with a sloped edge from 24.61 mm to the 20.91 mm cemented junction, where Fig. 1 draws it square at
 23.8 mm with a step down to L4; `rimExtensionSd` is not allowed on a cemented interface, and S5 cannot drop below its
 24.60 mm axial floor.
+
+## 2026-11-12 — Assignee consolidation
+
+`source.assignees` changed from "Public Joint-Stock Company Krasnogorsk Plant named after S. A. Zverev" to "PJSC
+Krasnogorsky Zavod named after S. A. Zverev", the form the KMZ Zenitar 35mm f/1 and 50mm f/0.95 on main use for the
+same patent holder, so the three patents share one assignee page and one node on the relationship map.

@@ -299,7 +299,7 @@ const LENS_DATA = {
       "Vladimir Aleksandrovich Bogdankov"
     ],
     "assignees": [
-      "Public Joint-Stock Company Krasnogorsk Plant named after S. A. Zverev"
+      "PJSC Krasnogorsky Zavod named after S. A. Zverev"
     ]
   }
 } satisfies LensDataV2Input;

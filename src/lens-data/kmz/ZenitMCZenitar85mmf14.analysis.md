@@ -4,7 +4,7 @@
 **Filed:** October 27, 2015
 **Published:** February 21, 2017
 **Inventor:** Vladimir Aleksandrovich Bogdankov
-**Assignee:** Public Joint-Stock Company Krasnogorsk Plant named after S. A. Zverev
+**Assignee:** PJSC Krasnogorsky Zavod named after S. A. Zverev
 **Title:** High-aperture lens (Светосильный объектив)
 **Example details:** Table 1 (p. 7), Table 2 spectral weights (p. 8), Fig. 1 optical scheme and Fig. 2 MTF (p. 9); no scaling.
 
