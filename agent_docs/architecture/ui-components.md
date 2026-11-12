@@ -179,7 +179,8 @@ and labels outside the viewport are culled except the selection and its highligh
 tab stop to the nearest node in that direction; Enter or Space selects it. Non-patent catalog models use distinct
 `lens` and `maker` nodes with `catalog-maker` edges derived only from an explicit lens `maker` field, except that a model
 with `source.issuer` joins that organization's assignee or organization node instead; these edges do not count as patents,
-corporate history, or corporate affinity. Maker hubs center their models, and details link to the model and maker pages.
+corporate history, or corporate affinity. A maker hub listed in `makerCorporateFamilies.ts` also takes a sourced `family`
+edge to the corporate family its patent assignees share (KMZ), so its models sit in that network. Maker hubs center their models, and details link to the model and maker pages.
 
 `UniversalMapSearch` searches only graph nodes and uses the shared portal dropdown with combobox keyboard semantics.
 `src/utils/catalog/universalRelationshipSearch.ts` normalizes names and compact patent numbers, ranking exact matches,
