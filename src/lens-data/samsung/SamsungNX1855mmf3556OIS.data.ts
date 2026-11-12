@@ -1,131 +1,160 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Qualified representative, not exact factory prescription. Literal US8385002 Embodiment1 R/d/nd/vd/asphere and three published zoom states. Fourteen intermediate G3 translations are inferred illustrative cam nodes, not source/factory motion; baseline and interpolation defocus retained. Infinity only; published finite-conjugate inconsistency unresolved. Source-figure semi-diameters, S5 curved-face endpoint plus opaque modeled peripheral extension, inferred marketing F-number schedule. Smallest .001-step gap-sag allowance .951 used; no source optics repair. */
+/**
+ * US 8,385,002 B2, Embodiment 1, Tables 1–4 and Figure 2; scale 1, millimetres.
+ * The radii, thicknesses, helium-d indices, Abbe numbers, asphere and three printed zoom states are unchanged.
+ * The construction supports an association with the original Samsung S1855SB family; the factory prescription
+ * and later OIS II/III versions are not established. Fourteen intermediate G3 positions are calculated rather
+ * than published cam data; the printed-state and interpolation defocus are retained.
+ * Infinity focus only: the printed finite-focus movements do not reproduce the stated 450 mm object distance.
+ * Semi-diameters are estimated from the figure. S5 has a curved-face endpoint and a peripheral extension treated
+ * as opaque, although the patent does not specify its opacity. The stop remains at S12; its radius follows an
+ * inferred schedule between the marketed f/3.5 and f/5.6 endpoints. The gap-sag allowance is 0.951, the smallest
+ * 0.001 increment covering the calculated intrusion; no source radius or spacing has been adjusted.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "samsung-nx-18-55mm-f35-56-ois",
   "maker": "Samsung",
   "name": "SAMSUNG 18-55mm f/3.5-5.6 OIS",
   "visible": true,
-  "subtitle": "US8385002 Embodiment 1 representative; original S1855SB family, infinity-only illustrative cam",
+  "subtitle": "US 8,385,002 B2, Embodiment 1 — probable match to the original S1855SB family",
   "elements": [
     {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Literal source glass",
+      "type": "Negative Meniscus",
       "nd": 1.84666,
       "vd": 23.78,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Negative front member of the first cemented doublet.",
+      "cemented": "C1",
       "indexReference": "d"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Literal source glass",
+      "type": "Positive Meniscus",
       "nd": 1.6968,
       "vd": 55.46,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "LAC14 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Positive rear member of the first cemented doublet.",
+      "cemented": "C1",
       "indexReference": "d"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Literal source glass",
+      "type": "Negative Meniscus",
       "nd": 1.713,
       "vd": 53.94,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "LAC8 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Negative meniscus at the front of the second zoom group.",
       "indexReference": "d"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Literal source glass",
+      "type": "Biconcave Negative",
       "nd": 1.6968,
       "vd": 55.46,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "LAC14 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Biconcave negative singlet in the second zoom group.",
       "indexReference": "d"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Literal source glass",
+      "type": "Positive Meniscus",
       "nd": 1.80518,
       "vd": 25.46,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "FD60 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Positive rear singlet of the second zoom group.",
       "indexReference": "d"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Literal source glass",
+      "type": "Biconvex Positive",
       "nd": 1.60311,
       "vd": 60.69,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "BACD14 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Positive focusing singlet immediately ahead of the iris.",
       "indexReference": "d"
     },
     {
       "id": 7,
       "name": "L7",
       "label": "Element 7",
-      "type": "Literal source glass",
+      "type": "Biconvex Positive",
       "nd": 1.48749,
       "vd": 70.44,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "FC5 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Low-dispersion positive member of the first post-stop doublet.",
+      "cemented": "C2",
       "indexReference": "d"
     },
     {
       "id": 8,
       "name": "L8",
       "label": "Element 8",
-      "type": "Literal source glass",
+      "type": "Biconcave Negative",
       "nd": 1.84666,
       "vd": 23.78,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Negative member of the first post-stop doublet.",
+      "cemented": "C2",
       "indexReference": "d"
     },
     {
       "id": 9,
       "name": "L9",
       "label": "Element 9",
-      "type": "Literal source glass",
+      "type": "Positive Meniscus",
       "nd": 1.70154,
       "vd": 41.15,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "BAFD7 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Positive member of the doublet that shifts laterally for image stabilization.",
+      "cemented": "C3",
       "indexReference": "d"
     },
     {
       "id": 10,
       "name": "L10",
       "label": "Element 10",
-      "type": "Literal source glass",
+      "type": "Biconcave Negative",
       "nd": 1.63854,
       "vd": 55.45,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "K-SK18 (Sumita catalog equivalent; production supplier unspecified)",
+      "role": "Negative member of the doublet that shifts laterally for image stabilization.",
+      "cemented": "C3",
       "indexReference": "d"
     },
     {
       "id": 11,
       "name": "L11",
       "label": "Element 11",
-      "type": "Literal source glass",
+      "type": "Biconvex Positive (1× Asph)",
       "nd": 1.58313,
       "vd": 59.46,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "M-BACD12 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Positive rear singlet with an aspherical image-side face.",
       "indexReference": "d"
     },
     {
       "id": 12,
       "name": "L12",
       "label": "Element 12",
-      "type": "Literal source glass",
+      "type": "Negative Meniscus",
       "nd": 1.80611,
       "vd": 40.73,
-      "glass": "Unmatched (literal patent nd/vd; supplier and melt unknown)",
+      "glass": "NBFD13 (HOYA catalog equivalent; production supplier unspecified)",
+      "role": "Final negative meniscus ahead of the camera-side low-pass plate.",
       "indexReference": "d"
     }
   ],
@@ -649,6 +678,7 @@ const LENS_DATA = {
       {
         "focalLengthMm": 18.55,
         "nominalFNumber": 3.5,
+        "label": "Wide",
         "published": true
       },
       {
@@ -729,13 +759,14 @@ const LENS_DATA = {
       {
         "focalLengthMm": 53.4,
         "nominalFNumber": 5.6,
+        "label": "Tele",
         "published": true
       }
     ]
   },
   "focus": {
     "closeFocusM": 1e15,
-    "description": "Infinity only; finite source movements not implemented because published conjugate conflicts"
+    "description": "Infinity focus only; the patent focuses by moving G3, the single positive element ahead of the iris, toward the image. Its printed movements do not reproduce the stated 450 mm object distance. Samsung lists a production minimum focus distance of 0.28 m."
   },
   "rearPlates": [
     {
@@ -743,8 +774,9 @@ const LENS_DATA = {
       "thicknessMm": 2.24,
       "nd": 1.51633,
       "vd": 64.14,
+      "glass": "S-BSL7 (Ohara catalog equivalent; production supplier unspecified)",
       "gapAfterMm": 0.1,
-      "source": "US8385002 E1 S23/S24"
+      "source": "US 8,385,002 B2, Embodiment 1, Table 1, surfaces 23–24."
     }
   ],
   "aperture": {
@@ -754,12 +786,30 @@ const LENS_DATA = {
       5.6,
       8,
       11,
-      16
+      16,
+      22
     ]
   },
   "projection": {
     "kind": "rectilinear"
   },
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "1",
+      "toSurface": "3"
+    },
+    {
+      "text": "C2",
+      "fromSurface": "13",
+      "toSurface": "15"
+    },
+    {
+      "text": "C3",
+      "fromSurface": "16",
+      "toSurface": "18"
+    }
+  ],
   "layout": {
     "yScFill": 0.7
   },
@@ -767,14 +817,11 @@ const LENS_DATA = {
     "elementCount": 12,
     "groupCount": 9,
     "specs": [
-      "NX100 23.4x15.6mm format boundary from maker camera manual; format target not certified image-circle coverage",
-      "Aperture inferred from marketing endpoints, middle linearly interpolated, not patentcertified",
-      "Source S5 peripheral straight extension represented as opaque modeled land; opacity inferred",
-      "Published image gaps unchanged; no refocus correction",
-      "Three literal source stations with fourteen inferred illustrative infinity cam stations; continuous focus not certified",
-      "Unpublished focal labels use computed paraxial EFL; source focal labels retained at three published rows",
-      "Canonical APS-C format is23.6x15.7mm; source NX100 sensor23.4x15.6mm used for separate physical-format test; no published circular image diameter",
-      "Marketed aperture range f/3.5\u20135.6; endpoints represented in zoom station aperture schedule"
+      "12 ELEMENTS / 9 GROUPS",
+      "1 ASPHERICAL SURFACE / 1 ELEMENT",
+      "F/3.5–5.6",
+      "OPTICAL IMAGE STABILIZATION",
+      "CLOSE FOCUS 0.28 m"
     ],
     "imageFormat": "aps-c",
     "lensMounts": [

@@ -7,111 +7,133 @@
 **Inventor:** Makoto Misaka
 **Assignee:** Samsung Electronics Co., Ltd.
 **Title:** Zoom Lens and Photographing Apparatus
-**Example details:** Tables1–4, Figure2; millimetres, no scaling.
+**Example details:** Tables 1–4, Figure 2; scale 1, millimetres.
 
-This is a qualified representative of the original Samsung S1855SB family, not a certified factory prescription and not an identification of OISIII. Evidence converges through (1) the maker-authored2010NX100 brochure identifying original S1855SB and its ordered optical section, (2)12elements/9groups with one rear aspheric face and matching ordered cemented pairs, and (3) the relevant Samsung zoom patent. The specialist index labels the association OISIII, but that label is not adopted: later-generation equivalence is unproved. Numerical identity, production tolerances, coatings and supplier glass are not established.
+Embodiment 1 is a probable match to the original Samsung S1855SB family. Samsung's 2010 NX100 brochure identifies that model as a 12-element, 9-group zoom with one aspherical element, optical image stabilization and a 0.28 m minimum focus distance. The patent has the same element/group count, one rear aspherical face and three cemented pairs. These construction details support a family association, but do not establish a unique embodiment or an exact factory prescription. The specialist index calls the lens OIS III; equivalence to that later version remains unproved. Production tolerances, coatings and glass suppliers are unknown.
 
 ## Optical Architecture
 
-Twelve taking elements form nine physical groups; three cemented doublets account for the group reduction. A camera-side2.24mm low-pass plate is modeled separately, not counted as a taking element. The first cemented pair is followed by three separate front-group pieces, a focusing singlet before the iris, two rear cemented pairs, an aspheric positive singlet and a final meniscus. Five variable air spaces reproduce the three source zoom states. Source stop plane is retained as S12; its aperture radius follows the explicitly inferred marketing aperture schedule.
+Twelve taking elements form nine physical groups; three cemented doublets account for the group reduction. A camera-side 2.24 mm low-pass plate is modeled separately. The five moving zoom groups have positive–negative–positive–negative–positive power: G1 is the front cemented pair, G2 contains three singlets, G3 is the focusing singlet, G4 contains two cemented pairs, and G5 contains the aspherical positive singlet and final negative meniscus. All five groups move toward the object from wide to tele, while the stop moves with G4. Five variable air spaces reproduce the three printed zoom states. The iris remains at S12; its radius follows an inferred aperture schedule between the marketed endpoints.
 
 ## Element-by-Element Analysis
 
 ### L1 — Negative meniscus, cemented
 
-nd = 1.84666, νd = 23.78. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = -135.40 mm (derived, not the in-system power of cemented members).
+nd = 1.84666, νd = 23.78. Glass: FDS90 (HOYA catalog equivalent). Isolated-in-air paraxial f = -135.40 mm.
 
-Front cemented negative meniscus partner; its lower Abbe number contrasts with L2. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Negative front member of cemented pair C1; its lower Abbe number contrasts with L2.
 
 ### L2 — Positive meniscus, cemented
 
-nd = 1.6968, νd = 55.46. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = +56.64 mm (derived, not the in-system power of cemented members).
+nd = 1.6968, νd = 55.46. Glass: LAC14 (HOYA catalog equivalent). Isolated-in-air paraxial f = +56.64 mm.
 
-Front cemented positive partner; combines with L1 rather than acting as an isolated singlet. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Positive rear member of C1, cemented to L1.
 
 ### L3 — Negative meniscus
 
-nd = 1.713, νd = 53.94. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = -17.95 mm (derived, not the in-system power of cemented members).
+nd = 1.713, νd = 53.94. Glass: LAC8 (HOYA catalog equivalent). Isolated-in-air paraxial f = -17.95 mm.
 
-Negative meniscus in the front varying-gap section; S5 curved face and peripheral extension retain the source outline. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Negative meniscus at the front of G2; the curved face and peripheral extension at S5 follow the figure's outline.
 
 ### L4 — Biconcave negative
 
-nd = 1.6968, νd = 55.46. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = -24.43 mm (derived, not the in-system power of cemented members).
+nd = 1.6968, νd = 55.46. Glass: LAC14 (HOYA catalog equivalent). Isolated-in-air paraxial f = -24.43 mm.
 
-Biconcave negative singlet in the front section. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Biconcave negative singlet in G2.
 
 ### L5 — Positive meniscus
 
-nd = 1.80518, νd = 25.46. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = +30.11 mm (derived, not the in-system power of cemented members).
+nd = 1.80518, νd = 25.46. Glass: FD60 (HOYA catalog equivalent). Isolated-in-air paraxial f = +30.11 mm.
 
-Positive meniscus after L4 and before the moving focusing singlet. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Positive meniscus at the rear of G2, ahead of the focusing singlet.
 
 ### L6 — Biconvex focusing singlet
 
-nd = 1.60311, νd = 60.69. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = +34.64 mm (derived, not the in-system power of cemented members).
+nd = 1.60311, νd = 60.69. Glass: BACD14 (HOYA catalog equivalent). Isolated-in-air paraxial f = +34.64 mm.
 
-Biconvex focusing singlet immediately ahead of the iris; only infinity positions are represented. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Biconvex focusing singlet G3, immediately ahead of the iris; only infinity positions are modeled.
 
 ### L7 — Biconvex positive, cemented
 
-nd = 1.48749, νd = 70.44. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = +20.88 mm (derived, not the in-system power of cemented members).
+nd = 1.48749, νd = 70.44. Glass: FC5 (HOYA catalog equivalent). Isolated-in-air paraxial f = +20.88 mm.
 
-Biconvex positive crown member of the first post-stop cemented pair. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Biconvex positive crown member of post-stop pair C2.
 
 ### L8 — Biconcave negative, cemented
 
-nd = 1.84666, νd = 23.78. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = -31.98 mm (derived, not the in-system power of cemented members).
+nd = 1.84666, νd = 23.78. Glass: FDS90 (HOYA catalog equivalent). Isolated-in-air paraxial f = -31.98 mm.
 
-Biconcave lower-Abbe negative partner cemented to L7. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Biconcave negative member of C2, cemented to L7; its lower Abbe number complements L7's crown glass.
 
 ### L9 — Positive meniscus, cemented
 
-nd = 1.70154, νd = 41.15. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = +27.48 mm (derived, not the in-system power of cemented members).
+nd = 1.70154, νd = 41.15. Glass: BAFD7 (HOYA catalog equivalent). Isolated-in-air paraxial f = +27.48 mm.
 
-Positive meniscus member of the second post-stop cemented pair. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Positive meniscus member of C3, the image-stabilizing doublet.
 
 ### L10 — Biconcave negative, cemented
 
-nd = 1.63854, νd = 55.45. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = -19.27 mm (derived, not the in-system power of cemented members).
+nd = 1.63854, νd = 55.45. Glass: K-SK18 (Sumita catalog equivalent). Isolated-in-air paraxial f = -19.27 mm.
 
-Biconcave negative member cemented to L9. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Biconcave negative member of C3, cemented to L9.
 
 ### L11 — Biconvex aspheric singlet
 
-nd = 1.58313, νd = 59.46. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = +25.56 mm (derived, not the in-system power of cemented members).
+nd = 1.58313, νd = 59.46. Glass: M-BACD12 (HOYA catalog equivalent). Isolated-in-air paraxial f = +25.56 mm.
 
-Biconvex rear singlet with the image-side aspheric face S20. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Biconvex rear singlet with the image-side aspherical face S20.
 
 ### L12 — Negative meniscus
 
-nd = 1.80611, νd = 40.73. Glass: unmatched literal source values; vendor and exact melt unknown. Isolated-in-air paraxial f = -40.18 mm (derived, not the in-system power of cemented members).
+nd = 1.80611, νd = 40.73. Glass: NBFD13 (HOYA catalog equivalent). Isolated-in-air paraxial f = -40.18 mm.
 
-Final negative meniscus ahead of the separate camera-side low-pass plate. Shape and sign are derived from Table1 surfaces, not a certified factory aberration allocation. No individual correction performance is inferred solely from glass type.
+Final negative meniscus ahead of the separate camera-side low-pass plate.
 
 ## Glass Identification and Selection
 
-All12 nd/vd pairs are literal d-line inputs. No glass name, melt, anomalous dispersion or APO claim is inferred from matching two numbers. The source prose/plot588nm versus546.0740nm dashed-curve inconsistency concerns the plotted series, not the explicitly designated nd/vd reference. Reconstructed dispersion is not measured factory dispersion.
+All twelve elements retain the patent's helium-d indices and Abbe numbers. The listed focal lengths are calculated for each element in air, rather than its contribution within a cemented group. Shapes follow the signed radii in Table 1; a glass match alone does not establish an element's aberration correction.
+
+| Elements | Catalog equivalent | Patent nd / νd |
+| --- | --- | --- |
+| L1, L8 | HOYA FDS90 | 1.84666 / 23.78 |
+| L2, L4 | HOYA LAC14 | 1.6968 / 55.46 |
+| L3 | HOYA LAC8 | 1.713 / 53.94 |
+| L5 | HOYA FD60 | 1.80518 / 25.46 |
+| L6 | HOYA BACD14 | 1.60311 / 60.69 |
+| L7 | HOYA FC5 | 1.48749 / 70.44 |
+| L9 | HOYA BAFD7 | 1.70154 / 41.15 |
+| L10 | Sumita K-SK18 | 1.63854 / 55.45 |
+| L11 | HOYA M-BACD12 | 1.58313 / 59.46 |
+| L12 | HOYA NBFD13 | 1.80611 / 40.73 |
+| LPF | Ohara S-BSL7 | 1.51633 / 64.14 |
+
+These rows supply dispersion curves compatible with the printed values; they do not identify the production supplier or melt. Samsung does not designate ED elements for this lens, and no anomalous-dispersion or APO claim follows from these matches. The patent's prose describes a dashed curve near 588 nm, while its plot labels 546.0740 nm; that discrepancy concerns the plotted series rather than the explicitly designated nd/νd inputs. Catalog dispersion is not measured factory dispersion.
 
 ## Focus Mechanism and Zoom Motion
 
-Infinity-only modeling is intentional. The patent's three finite G3 movements produce approximately285/283/281mm object-to-image conjugates in two independent matrix calculations, not the stated450mm. Neither source spacings nor image-plane gaps are repaired; no450mm or retail near-focus capability is implemented.
+Only infinity focus is modeled. The patent focuses by moving G3 toward the image; Table 3 gives travel of 1.810 / 2.109 / 3.149 mm at wide / middle / tele. Those movements produce approximately 285 / 283 / 281 mm object-to-image distances, rather than the stated 450 mm. The printed spacings and image gaps remain unchanged. The production lens's 0.28 m minimum focus distance is a separate Samsung specification.
 
-The model contains17 uniformly spaced stations: only rows0/8/16 are published. Fourteen intervening G3 translations are constrained, illustrative calculations preserving all three published gap sets, not factory cam data. Other intermediate gaps are linear interpolations. A dense101-sample-per-segment paraxial check finds at most0.026424mm additional interpolation defocus above the retained source-plane residual0.0328–0.0387mm. This is disclosure, not a claim of continuously maintained focus or a newly invented tolerance. Unpublished focal labels use calculated paraxial EFL; published18.55/28/53.4mm labels remain literal.
+The model contains 17 zoom stations: three printed states and fourteen calculated states, with eight equal interpolation steps between each printed pair. D1, D4, D5 and D2 + D3 are interpolated; G3 translation is solved to retain the interpolated defocus of the printed states. Residual defocus is −0.033 to −0.039 mm. Between stored stations, interpolation adds at most 0.026424 mm of defocus, so continuous parfocality is not established. Intermediate focal-length labels use calculated paraxial EFL; the three printed labels remain 18.55 / 28 / 53.4 mm. These positions are not published production cam data.
 
 ## Aspheric Surfaces
 
-S20 retains the Table4 even asphere: R−27.831mm, K0, A4=7.44814e−5mm⁻³ and A6=4.32792e−7mm⁻⁵; higher listed terms zero. No aspheric coefficient or source radius was tuned to improve traces.
+S20, the rear face of L11, is the sole aspherical surface. Formula 20 uses the standard 1 + K convention. Table 4 gives R = −27.831 mm, K = 0, A4 = 7.44814 × 10⁻⁵ mm⁻³ and A6 = 4.32792 × 10⁻⁷ mm⁻⁵; A8 and A10 are zero.
 
-## Aperture, Geometry and Qualification
+## Aperture, Geometry and Model Scope
 
-F3.5/F5.6 endpoints come from retail specifications, not a printed patent iris schedule; middle and intermediate apertures are explicitly inferred. Semi-diameters are measured schematic estimates. Figure2 S5 ends its curved face near9.75mm and extends peripherally to13.93mm; the schema's opaque rim extension models that drawing, but source opacity/material is not specified. Gap-sag allowance95.1% is the smallest0.1percentage-point step covering computed95.0676%, below Ron's97% limit. No additional relaxation was used.
+The f/3.5 and f/5.6 endpoints come from Samsung's brochure; the patent prints no iris schedule, so intermediate apertures are inferred. Samsung lists minimum apertures of f/22 at wide and f/36 at tele. The stored f-stop list ends at f/22; it does not reproduce that zoom-dependent minimum.
 
-NX100's source sensor is23.4×15.6mm. Three source stations and eight off-grid states were checked at five field fractions to the actual corner; all chiefs pass, while peripheral vignetting remains. Ray counts are diagnostic samples, not area-weighted illumination. Canonical APS-C is slightly larger23.6×15.7mm; bounded tracing of that bound passes all55chief rays over11zoom states, with peripheral vignetting; fuller validation status is in the audit. This draft is hidden pending integration review.
+Semi-diameters are estimated from the schematic. At S5, Figure 2 ends the curved face near 9.75 mm radius and extends peripherally to 13.93 mm. The model treats that extension as opaque, although the patent does not specify its material or opacity. The allowed gap-sag intrusion is 95.1%, the smallest 0.1 percentage-point increment covering the calculated 95.0676%; the remaining clearance is 0.35020 mm.
+
+The NX100 sensor measures 23.4 × 15.6 mm; the model uses the slightly larger 23.6 × 15.7 mm APS-C format. The earlier projection cap has been removed, allowing the engine to solve the APS-C corner at every stored station. Peripheral vignetting remains, and the patent supplies no circular image diameter.
+
+## Image Stabilization
+
+The L9–L10 doublet C3 shifts perpendicular to the optical axis to correct image shake, as described with Figure 1. Samsung's brochure identifies a lens-shift optical stabilizer. The centered prescription does not model stabilization travel or decentering.
 
 ## Sources
 
 - [Original grant PDF](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8385002)
-- [Maker-authored2010 NX100 brochure, mirrored](https://allphotolenses.com/public/files/pdfs/53fb5541d5800d45c579aceb26f5c862.pdf), PDF5/printed11
-- [NX100 maker manual, mirrored](https://nxfiles.nx.tc/files/NX100/Manual/NX100_English.pdf), PDF126/printed125
+- [Samsung 2010 NX100 lens brochure, mirrored](https://allphotolenses.com/public/files/pdfs/53fb5541d5800d45c579aceb26f5c862.pdf#page=5), PDF page 5 / printed page 11; S1855SB construction, OIS, aperture and minimum focus specifications
+- [NX100 maker manual, mirrored](https://nxfiles.nx.tc/files/NX100/Manual/NX100_English.pdf), PDF page 126 / printed page 125
 - [Specialist patent index, secondary](https://photonstophotos.net/GeneralTopics/Lenses/OpticalBench/OpticalBenchHub.htm)
