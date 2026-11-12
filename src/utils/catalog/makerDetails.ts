@@ -46,6 +46,14 @@ export interface MakerDetails {
 }
 
 export const MAKER_DETAILS: Record<string, MakerDetails> = {
+  // Company history: https://www.hkyongnuo.com/gsjj
+  // Shenzhen assignee: https://patents.google.com/patent/CN110146970B/en
+  yongnuo: {
+    headquarters: "Shenzhen, China",
+    summary: "Chinese photographic-equipment manufacturer producing autofocus lenses and flash equipment.",
+    history:
+      "Yongnuo's company history records its first flash in 2009 and its first autofocus lens in 2014. Its lens patents include CN 110146970 B and CN 220171327 U, the sources of the YN 85mm and YN 56mm entries in this catalog.",
+  },
   // Corporate and camera history: company announcements, archived specifications and museum records.
   // https://www.apple.com/sg/newsroom/2026/03/apple-to-celebrate-50-years-of-thinking-different/
   // https://computerhistory.org/apple-timeline/
@@ -97,6 +105,18 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     history:
       "Georges Grosset and Georges Perthuis founded Kinoptik in Paris in 1932. The company developed optics for cinema and specialized imaging, including an aerial-photography objective in 1939. Edgard Hugues's large-angular-field patent, assigned to Les Appareils de Precision Kinoptik, describes the three-system designs represented by the Tegea and Super-Tegea models in this catalog. Their production associations remain qualified in the individual lens analyses.",
     notableDesigns: "Tegea 5.7mm f/1.8, Tegea 9.8mm f/1.8, Super-Tegea 1.9mm f/1.9",
+  },
+  // https://cinelenswiki.com/mfg:isco (1936 founding, Tronnier); https://www.filmkorn.org/super8data/database/manufacturers_list/i_/isco.htm (gives 1939)
+  // https://www.pressebox.com/pressrelease/jos-schneider-optische-werke-gmbh/ISK-Optics-merges-with-parent-company-Jos-Schneider-Optische-Werke/boxid/698220
+  // https://schneiderkreuznach.com/application/files/5116/8552/3858/Press_Release_Schneider-Kreuznach_introduces_ISCO_Family.pdf
+  isco: {
+    founded: 1936,
+    headquarters: "Göttingen, Germany",
+    summary:
+      "Göttingen optical works of the Schneider Kreuznach group, known for Iscaron camera lenses, cine and projection optics, and Iscorama anamorphic attachments.",
+    history:
+      "ISCO began in Göttingen in 1936 as a Schneider Kreuznach subsidiary, registered as Jos. Schneider & Co., Optische Werke, Göttingen, with Albrecht Wilhelm Tronnier as its first chief designer; some references date the company to 1939. After the war it made camera lenses such as the Exakta-mount Tele-Iscaron 135mm f/2.8, along with cine and projection lenses, and in the 1960s the Iscorama anamorphic attachments. The Göttingen operation later became Schneider Kreuznach's ISCO Division and, as ISK Optics GmbH, merged into Jos. Schneider Optische Werke GmbH in 2014. US 2,972,285, by Rudolf Solisch for Isco Optische Werke, is the source of the Tele-Iscaron entry in this catalog.",
+    notableDesigns: "Tele-Iscaron 135mm f/2.8; Iscorama anamorphic attachments",
   },
   unattributed: {
     headquarters: "Not established",
