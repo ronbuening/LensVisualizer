@@ -12,10 +12,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * printed pairs are the d-line values of Russian GOST optical glasses as GOST 13659-78 tabulates them (inferred from
  * that agreement; the patent names no glass): 1.5750 / 41.30 LF5, 1.7552 / 27.52 TF5, 1.6920 / 55.05 STK12 and
  * 1.6595 / 57.35 STK3, every nd to the printed four decimals and every νd within 0.04. No pair matches any catalog
- * glass at the e line. The glass catalog carries no GOST rows. QF3 and H-ZF6 equal LF5 and TF5 at the d line;
- * J-LAK9 (nd 0.0010 and νd 0.12 below the printed pair) and K-LaK11 (nd 0.0012 and νd 0.05 below) lend their
- * dispersion curves, which follow STK12 and STK3 within 2e-5 at the C, F and g lines, and the trace keeps the
- * printed nd.
+ * glass at the e line. STK3 traces on the LZOS catalogue row (nd 1.659502, νd 57.35). QF3 and H-ZF6 equal LF5 and
+ * TF5 at the d line; the catalog carries no STK12 row, so J-LAK9 (nd 0.0010 and νd 0.12 below the printed pair) lends
+ * its dispersion curve, which follows STK12 within 2e-5 at the C, F and g lines, and the trace keeps the printed nd.
  *
  * STOP: Table 1 places the aperture diaphragm (АД) 7.85 mm behind R11 and 1.3 mm ahead of R12. The stop takes its
  * own row, so model labels 13–18 carry the patent's R12–R17. The printed iris diameter, 30.8 mm, works out to
@@ -148,7 +147,7 @@ const lens = {
       "vd": 57.35,
       "indexReferenceNote": "Table 1 names no spectral line for n and ν; they are traced as nd and νd, because every printed pair is the d-line value of a GOST 13659-78 glass (LF5, TF5, STK12, STK3).",
       "focalLengthMm": 39.62,
-      "glass": "K-LaK11 (SUMITA; spectral proxy for GOST STK3, nearest catalog row; supplier unconfirmed)",
+      "glass": "STK3 (LZOS)",
       "role": "Positive crown front member of the cemented negative meniscus D1, which closes component II ahead of the stop.",
       "cemented": "D1"
     },
