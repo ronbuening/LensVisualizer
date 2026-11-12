@@ -95,3 +95,79 @@ Open:
 Denial: an attempted baseline copy mistakenly targeted the main checkout and was refused with "Operation not
 permitted". That copy operation was stopped without retry or workaround; before-edit engine outputs were
 already recorded. No state-changing git commands or prohibited full-suite commands were run.
+
+## 2026-11-12 — Semi-diameter pass against the patent figure
+
+Source: local `patents/RU2549915C1.pdf`, Table 1 on PDF page 5 and the sole, unnumbered optical section on
+PDF page 2. All seven clear diameters were visually re-read on page 5. Native prescription scale is 1;
+these are printed optical diameters, not inferred mechanical blank sizes. Every stored semi-diameter equals
+the corresponding printed diameter divided by two, so no rim changes, cuts, lands or tolerance changes are
+justified. The stop is derived and is not included in the seven printed diameters.
+
+| Surface | Printed clear diameter, mm | Before sd, mm | After sd, mm | Evidence |
+| --- | ---: | ---: | ---: | --- |
+| 1 | 37.5 | 18.75 | 18.75 | Table 1, diameter / 2 |
+| 2 | 35.2 | 17.6 | 17.6 | Table 1, diameter / 2 |
+| 3 | 33.2 | 16.6 | 16.6 | Table 1, diameter / 2 |
+| 4 | 23.1 | 11.55 | 11.55 | Table 1, diameter / 2 |
+| 5 | 21.5 | 10.75 | 10.75 | Table 1, diameter / 2 |
+| 6 | 22.4 | 11.2 | 11.2 | Table 1, diameter / 2 |
+| 7 | 22.4 | 11.2 | 11.2 | Table 1, diameter / 2 |
+
+At 600 dpi the optical axis is near page y = 967 px. Near-axis ink-run centres for surfaces 1, 3 and 7
+are approximately x = 1776.5, 2065.5 and 2784.5 px. The full vertex span gives 1008 / 58.2 = 17.3196 px/mm;
+independent front and rear spans give 289 / 17 = 17.0000 and 719 / 41.2 = 17.4515 px/mm. Radial ink heights
+are approximately 337–338 px for the front doublet and 220–221 px for the rear singlets. At the full-span
+scale these correspond to about 19.5 and 12.7–12.8 mm. The section draws common heights within the front
+doublet and across the rear singlets, whereas Table 1 explicitly prints unequal clear diameters. Thus the
+figure is a topology and misreading check, not a reason to replace the authoritative printed apertures.
+Leader lines, hatch marks and stop housing were excluded from the rim readings.
+
+The current and saved baseline surface arrays are identical. Before/after engine values are EFL
+84.07698068633528 / 84.07698068633528 mm, half-field 16 / 16 degrees, nominal FOPEN 2.2 / 2.2 and physical
+stop radius 11.41240538402449 / 11.41240538402449 mm. The engine's format-corner field is 14.1332393 degrees;
+the corner chief is clear, with modeled height 21.6499396 mm against the 21.65 mm format corner
+(99.99972% coverage). Image-circle audit finds zero undersized surfaces. Surface audit reports
+“OK — no validation errors”. Aperture audit is within its standard 3% tolerance, with zero flagged rim,
+trace or iris stations. With zero reporting threshold, its traced value is f/2.2031774, +0.14443%, limited
+by surface 1; this is not a failed nominal-aperture check.
+
+The independent clear-aperture probe at printed Y = 21.63 mm solves 14.12 degrees. It reports axial
+heights 19.108, 17.951 and 16.901 mm at surfaces 1–3, exceeding their printed rims by approximately
+0.358, 0.351 and 0.301 mm. That probe solves a real marginal stop radius of 11.623 mm rather than the
+engine's paraxial-derived 11.412405 mm; its flags must not be interpreted as permission to enlarge
+published apertures. The simple EFL / 37.5 mm front-clear-diameter ratio is approximately f/2.242,
+distinct from the engine aperture audit's stop-relative result above. No surface blocks the corner chief.
+At the stated 16-degree semi-field, the probe still reaches 24.690 mm and reports no chief-ray block.
+Its upper unvignetted marginal bundle has no solution; heavy peripheral clipping remains a limitation.
+
+Full-pupil rim-cost comparison with the saved starting rims, including leave-one-out evaluation, gives
+identical baseline/current/final curves. At sampled fields 0.0, 2.4, 4.7, 7.1, 9.4, 11.8 and 14.1 degrees,
+geometric illumination is respectively 99.5, 93.6, 82.1, 68.4, 53.8, 38.7 and 23.8%. Thus full-frame-corner
+illumination is 23.8% before and 23.8% after, with zero-point loss at every sampled field. This is simulated
+geometric pupil transmission, not measured radiometric illumination. There are no changed rims to restore.
+
+The matched-scale model/patent comparison was rendered and viewed at
+`/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/petzval85/overlay.png`.
+Black current outlines coincide with the blue baseline. The front cemented pair, separated biconcave L3
+and positive symmetric L4 agree with the patent topology; source-table apertures account for the sloping
+front-doublet and L3 edge joins instead of the schematic square joins. This is an infinity-state model
+sketch, not a live-page check; the coordinator retains the page review. No finite-focus or zoom states
+are supplied by this prescription.
+
+The existing local maker image `v-petzval85/diagrams/petzval-2-2-85-lens.gif` was also viewed. It agrees
+on four elements in three groups, the front L1/L2 cemented pair and separated L3/L4. Its square-ended
+schematic groups do not establish individual clear diameters or exact production proportions. No
+aspherical or special-dispersion positions are identified; all four modeled elements are spherical.
+
+Page 1 names Vladimir Alexandrovich Bogdankov, Artem Andreevich Timirev and Sergey Ivanovich Shcheglov;
+the holder is OJSC Krasnogorsky Zavod im. S. A. Zvereva, publication RU 2549915 C1, 10 May 2015
+(application 18 December 2013). The data's PJSC assignee is the existing canonical registry form;
+the historical OJSC attribution is already retained in the analysis. No new name or metadata issue was
+found. Retail/patent dimensional differences, the printed field/image-height discrepancy, unavailable
+close-focus spacings and qualified dispersion/production identity remain open as recorded above.
+
+Only the data header's semi-diameter source note and this audit record needed edits; the analysis already
+describes the retained printed rims. No sandbox refusal occurred during this semi-diameter pass; the
+earlier cleanup copy refusal recorded above is historical. No browser, server, full-suite command or
+state-changing git operation was used.

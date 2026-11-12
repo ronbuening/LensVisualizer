@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * RU 2549915 C1, sole example in Table 1: four spherical elements in three groups.
- * Unscaled prescription at sodium D; printed clear diameters set the surface semidiameters.
+ * Unscaled prescription at sodium D; Table 1 (PDF p. 5) clear diameters / 2 set all seven surface semidiameters.
  * The stop lies 3 mm before L3, dividing the printed 21 mm gap into 18 + 3 mm.
  * Its radius is derived from nominal f/2.2; the printed clear diameters limit the beam to about f/2.24.
  * Infinity focus only, with closeFocusM = 1e15 as a placeholder; no close-focus travel is supplied.
