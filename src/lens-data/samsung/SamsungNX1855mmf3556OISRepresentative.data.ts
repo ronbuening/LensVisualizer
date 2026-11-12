@@ -758,9 +758,7 @@ const LENS_DATA = {
     ]
   },
   "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 80,
-    "maxTraceFieldDeg": 40
+    "kind": "rectilinear"
   },
   "layout": {
     "yScFill": 0.7

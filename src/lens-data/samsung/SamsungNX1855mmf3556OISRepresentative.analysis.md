@@ -107,7 +107,7 @@ S20 retains the Table4 even asphere: R−27.831mm, K0, A4=7.44814e−5mm⁻³ an
 
 F3.5/F5.6 endpoints come from retail specifications, not a printed patent iris schedule; middle and intermediate apertures are explicitly inferred. Semi-diameters are measured schematic estimates. Figure2 S5 ends its curved face near9.75mm and extends peripherally to13.93mm; the schema's opaque rim extension models that drawing, but source opacity/material is not specified. Gap-sag allowance95.1% is the smallest0.1percentage-point step covering computed95.0676%, below Ron's97% limit. No additional relaxation was used.
 
-NX100's source sensor is23.4×15.6mm. Three source stations and eight off-grid states were checked at five field fractions to the actual corner; all chiefs pass, while peripheral vignetting remains. Ray counts are diagnostic samples, not area-weighted illumination. Canonical APS-C is slightly larger23.6×15.7mm; bounded tracing of that bound passes all55chief rays over11zoom states, with peripheral vignetting; fuller validation status is in the audit. The80°/40° projection metadata is an upper angle bound, not a factory field claim. This draft is hidden pending integration review.
+NX100's source sensor is23.4×15.6mm. Three source stations and eight off-grid states were checked at five field fractions to the actual corner; all chiefs pass, while peripheral vignetting remains. Ray counts are diagnostic samples, not area-weighted illumination. Canonical APS-C is slightly larger23.6×15.7mm; bounded tracing of that bound passes all55chief rays over11zoom states, with peripheral vignetting; fuller validation status is in the audit. This draft is hidden pending integration review.
 
 ## Sources
 

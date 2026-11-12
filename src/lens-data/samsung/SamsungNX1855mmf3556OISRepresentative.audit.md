@@ -26,4 +26,8 @@ Exit137 remains cause-unestablished: host report showed~1.4GiB available,no swap
 - Product: Samsung's NX100 brochure confirms the original S1855SB: 12 elements / 9 groups, one asphere, OIS, NX mount,
   0.28 m. Family match; the later OIS II (iFn) and III (metal mount)
   versions are not separately checked.
-- Integration fixes: added `catalog.closeFocusM` 0.28 m; focus sentinel 1e15.
+- Integration fixes:
+  - Removed `projection.fullFieldDeg` 80 / `maxTraceFieldDeg` 40. With the cap, the 25.45 mm station's field edge
+    fell back to a 40° ray that misses the rim of surface 13, so the app kept 40° as that station's half-field.
+    Without it the engine solves the APS-C corner at all 17 stations (28.94° at 25.45 mm); field coverage 17/17.
+  - Added `catalog.closeFocusM` 0.28 m; focus sentinel 1e15.
