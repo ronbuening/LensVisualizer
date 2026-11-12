@@ -78,13 +78,13 @@ The patent's prose reverses the radial and sag variable names relative to its di
 
 ## Apertures and Source Geometry
 
-Clear semi-diameters are read from Fig. 2. They are schematic estimates with approximately ±0.3 mm observational uncertainty, not factory tolerances. S3 has a 7.45 mm curved-face radius and an 8.83 mm outer rim; S7 has a 6.60 mm face radius and a 7.87 mm outer rim. The straight extensions beyond those curved faces are treated as opaque, an assumption not specified by the patent.
+Clear semi-diameters are read from Fig. 2 at approximately 33.3 native scan pixels per millimeter, consistent with the axial vertex spans and iris ticks. They are schematic estimates with approximately ±0.3 mm observational uncertainty, not factory tolerances. S3 has a 7.45 mm curved-face radius and an 8.83 mm outer rim; S7 has a 6.60 mm face radius and a 7.87 mm outer rim. The straight extensions beyond those curved faces are treated as opaque, an assumption not specified by the patent. These extensions add no measured geometric transmission loss. Both rear aspherical faces have 8.86 mm clear radii, below the first detected S10 turnover between 11.9 and 12.6 mm; S11 has no detected turnover through 14 mm.
 
 The f/2.8–22 aperture range follows the 2017 launch specifications. The iris radius derived from f/2.8 is 6.37510 mm, consistent with the drawing estimate of 6.3654 ± 0.3 mm. The drawing does not publish a dimensional stop schedule. The rear plate's clear diameter is unspecified and its aperture is assumed nonclipping.
 
 ## Model Scope and Limitations
 
-The 30° half-field is an assumed projection limit; the patent prints no field angle. The inferred 36 × 24 mm format corner reaches about 29.34°, and its chief ray clears the modeled rims. Peripheral pupil clipping remains and is not an area-weighted illumination measurement. The derived image-plane correction resolves paraxial infinity defocus but does not establish the source of the printed-spacing discrepancy or exact production image quality.
+The 30° half-field is an assumed projection limit; the patent prints no field angle. The inferred 36 × 24 mm format corner's chief ray clears the modeled rims. At the engine's 28.975° format-corner field, the wide-open pupil lattice gives 51.61% geometric transmission and 35.95% relative illumination, normalized to the axis. These are simulated quantities; geometric transmission alone is not relative illumination. Peripheral pupil clipping remains. The derived image-plane correction resolves paraxial infinity defocus but does not establish the source of the printed-spacing discrepancy or exact production image quality.
 
 ## Sources
 

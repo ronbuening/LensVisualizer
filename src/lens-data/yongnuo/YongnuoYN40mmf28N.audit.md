@@ -75,3 +75,75 @@ extensions and their opacity are inferred, with no published rear-plate aperture
 The product association lacks exact-prescription proof and a recovered maker-hosted diagram. Browser visual review,
 full-application compatibility and dense MTF work remain outside this completed cleanup check. No optics or rims
 were changed to address these items.
+
+## 2026-11-12 — Semi-diameter pass against the patent figure
+
+Source: local `patents/CN207216120U.pdf`, PDF page 10, Fig. 2, Embodiment 2; native prescription scale.
+The embedded page scan is 2481 × 3509 pixels at 300 dpi; Poppler's 300 dpi page is 2480 × 3509 pixels.
+The first and last taking vertices are near x = 627 and 1394 at local axis y = 2258: 767 pixels / 23.01 mm
+= 33.333 px/mm. An independent first-group span S1–S5 is approximately 208 pixels / 6.22 mm = 33.44 px/mm;
+S7–S11 is approximately 262 pixels / 7.90 mm = 33.16 px/mm. The iris half-height is about 212 pixels, giving
+33.25 px/mm with the derived 6.37510 mm radius. Radial checks agree: S2's approximately 20-pixel sag at its
+295-pixel rim agrees with the spherical prescription's 0.5915 mm sag (19.7 pixels); S11's approximately
+71–73-pixel edge sag agrees with its aspheric profile. Scan speckle, endpoint ambiguity and schematic drawing
+accuracy dominate one-pixel precision. Approximately ±0.3 mm is retained as observational uncertainty.
+
+No rim fields changed. The measured outline agrees within noise; rounding existing two-decimal estimates
+would not improve it. The optical endpoints, rather than the outside of the straight lands or the group
+brackets, govern S3/S7. Surface 7's cap endpoint is less distinct in the scan than its outer rim.
+
+| Surface | Before → after sd (mm) | Approximate figure sd (mm) | Decision |
+| --- | --- | --- | --- |
+| 1 | 9.19 → 9.19 | 9.2 | Retained; front outline agrees. |
+| 2 | 8.83 → 8.83 | 8.8 | Retained; cemented junction agrees. |
+| 3 | 7.45 → 7.45 | 7.5 | Retained; curved endpoint before the land. |
+| 4 | 7.45 → 7.45 | 7.5 | Retained; square-cut meniscus. |
+| 5 | 7.45 → 7.45 | 7.5 | Retained with S4. |
+| 7 | 6.60 → 6.60 | 6.3 ± 0.3 | Retained; indistinct cap-to-land transition, within noise. |
+| 8 | 7.87 → 7.87 | 7.9 | Retained; cemented junction agrees. |
+| 9 | 8.27 → 8.27 | 8.3 | Retained; rear doublet outline agrees. |
+| 10A | 8.86 → 8.86 | 8.9 | Retained; square-cut rear element. |
+| 11A | 8.86 → 8.86 | 8.9 | Retained with S10A. |
+| 3 outer extension | 8.83 → 8.83 | 8.8 | Retained; land agrees and costs no light. |
+| 7 outer extension | 7.87 → 7.87 | 7.9 | Retained; land agrees and costs no light. |
+
+The stop has no authored sd and remains derived from f/2.8. Rear-plate clearance remains the unspecified,
+nonclipping assumption. S10A's scan first flags turnover at 12.6 mm, bracketed by 11.9–12.6 mm; S11A has no
+detected turnover through 14 mm. Both 8.86 mm rims remain below those bounds; no aspheric aperture or
+coefficient changed. A first attempt to extend these scans used a main-checkout relative data path and failed
+with module-not-found; rerunning from the prescribed worktree succeeded. This was not a sandbox refusal.
+
+Starting and final narrow audits are identical: surface audit OK, no validation errors; image-circle audit zero
+undersized; field coverage one station at ≥99%, zero unsolved; aperture audit within 3% of f/2.8, zero rim,
+trace or iris limits. Exact meridional clearance at image semi-height 21.6333 mm finds no axial or chief blocks.
+The largest axial height among taking surfaces is 7.31 mm at S11A against sd = 8.86 mm; the smallest axial
+clearance is approximately 0.42 mm at S7 (6.18 versus 6.60 mm). The closest chief clearance is approximately
+2.87 mm at S11A (5.99 versus 8.86 mm). Peripheral full bundles still exceed several rims; their one-sided
+clipping estimates are not illumination percentages.
+
+Before and after: engine half-field 30°, FOPEN 2.8, physical stop radius 6.3750986313 mm,
+EFL 40.260410835 mm and total track 62.5814 mm. The engine's format-corner field is 28.975046153°.
+At that field, geometric transmission is 51.6109% → 51.6109%; relative illumination is
+35.9540% → 35.9540%, normalized to the on-axis result. The 64-cell-across lattice contains 3228 samples,
+1666 transmitted, with zero unaimed/failed samples. The final `rimcost --loo` comparison has 0.0-point loss
+at every sampled field; removing S3 or S7's extension individually recovers 0.0 points. Both lands therefore
+meet the lands-and-cuts rule without changing the optical caps. Infinity is the only supplied optical state;
+there are no zoom stations or finite-focus prescriptions to sweep.
+
+Matched-scale side-by-side: scratch `sd/yn40/overlay.png`, derived from the supplied sketch at 33.333 px/mm
+and the native Fig. 2 crop. The supplied sketch omits lands, so the comparison adds their exact authored
+vertical extensions and correct connecting edges; red marks the lands. Baseline and final outlines coincide.
+Viewed result: the square rims, front/rear step order and both cap-to-land transitions agree with the source
+within the stated uncertainty. The sketch excludes neither the caps nor their opacity assumptions from this
+assessment. No live browser check was available; the coordinator retains the page check.
+
+The existing `v-yn40/diagrams/retail-section.jpg` was viewed: six taking elements in four groups, L1/L2 and
+L4/L5 cemented, with the sole aspherical element at L6, agree with Fig. 2. The small reproduced section supports
+grouping and broad proportions, not submillimeter rims; it shows no independently identified special-dispersion
+positions and does not identify which faces of L6 are aspheric. The patent supplies both L6 aspheric faces.
+
+Front page viewed: CN 207216120 U, publication/grant date 2018-04-10; inventor 庄永肖 (Yongxiao Zhuang),
+applicant 深圳市永诺摄影器材股份有限公司 (Shenzhen Yongnuo Photographic Equipment Co., Ltd.). No new name or
+metadata mismatch was found. The derived plate gap, unspecified field/apertures, L6 dispersion, finite focusing
+and probable product correlation remain qualified as above. The requested worktree-local addendum was absent;
+the main-checkout copy supplied the instructions. No sandbox or approval-policy refusal occurred.

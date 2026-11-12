@@ -1,8 +1,9 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** CN 207216120 U, Embodiment 2, with helium d-line indices (587.6 nm); no scale conversion.
  * Probable association with the YN 40mm f/2.8N from secondary product sources, not an exact factory prescription.
- * Clear apertures are estimated from Fig. 2. The straight rim extensions beyond the curved faces of S3/S7
- * are inferred and treated as opaque; the rear plate has an unspecified, nonclipping aperture.
+ * Clear apertures are estimated from Fig. 2 and floor-checked by real rays.
+ * The inferred opaque S3/S7 rim extensions agree with the drawing and add no measured vignetting loss.
+ * The rear plate has an unspecified, nonclipping aperture.
  * The iris radius is derived from f/2.8. The printed 1 mm plate-to-image gap leaves +0.821424 mm of paraxial
  * defocus; the model uses a derived 1.8214 mm gap for infinity focus. No single prescription misprint has
  * been established. Infinity focus only; exact production performance is not established.
