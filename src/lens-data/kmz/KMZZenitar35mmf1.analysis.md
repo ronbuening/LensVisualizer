@@ -69,7 +69,7 @@ L4 is 12.3 mm thick and, at 50.2 mm, has the largest clear diameter behind L1. I
 
 ### D1: L5 + L6 — Cemented Negative Meniscus
 
-- **L5 (Biconvex Positive):** nd = 1.6595, νd = 57.35. Glass: K-LaK11 (Sumita), the nearest catalog row; the pair is the d-line value of the Russian extra-dense crown STK3 (inferred). f = +39.6 mm.
+- **L5 (Biconvex Positive):** nd = 1.6595, νd = 57.35. Glass: STK3 (LZOS); the pair is the d-line value of the Russian extra-dense crown STK3 (inferred). f = +39.6 mm.
 - **L6 (Biconcave Negative):** nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM), as L2. f = −23.5 mm.
 
 Together the pair is a negative meniscus convex to the object, f = −106.3 mm, as claim 1 describes it. L5 is the thickest element, 12.7 mm. The cemented interface (R10 = −91.83 mm) joins a crown of νd 57.35 to the dense flint, the lens's only cemented crown–flint contact. L6's rear face, R11 = 22.34 mm, is the most strongly curved surface in the lens and is concave toward the stop, which lies 7.85 mm behind it. [1, Table 1; claim 1]
@@ -101,11 +101,11 @@ Table 1 heads its columns nᵢ (refractive index) and νᵢ (dispersion) without
 | 1.5750 / 41.30 | L1             | LF5                      | 1.575022 / ≈41.3 | QF3 (CDGM) equivalent         | light flint                 |
 | 1.7552 / 27.52 | L2, L6, L9     | TF5                      | 1.755234 / 27.53 | H-ZF6 (CDGM) equivalent       | dense flint                 |
 | 1.6920 / 55.05 | L3, L4, L7, L8 | STK12                    | 1.692012 / 55.01 | J-LAK9 (Hikari), nearest row  | extra-dense lanthanum crown |
-| 1.6595 / 57.35 | L5             | STK3                     | 1.659502 / 57.35 | K-LaK11 (Sumita), nearest row | extra-dense lanthanum crown |
+| 1.6595 / 57.35 | L5             | STK3                     | 1.659502 / 57.35 | STK3 (LZOS) | extra-dense lanthanum crown |
 
 Every printed pair is the d-line value of a Russian GOST optical glass as GOST 13659-78 tabulates it: each nd agrees to the printed four decimals and each νd within 0.04. At the e line those glasses read 0.0027–0.0065 higher, and no pair matches any catalog glass there, so the values are traced as nd and νd. The identification rests on that agreement alone and says nothing about the production melts. [1, Table 1; 5]
 
-The site's glass catalog carries no GOST rows. QF3 and H-ZF6 equal LF5 and TF5 at the d line and give L1, L2, L6 and L9 their dispersion curves. J-LAK9 (0.0010 lower in nd and 0.12 lower in νd than the printed pair) and K-LaK11 (0.0012 and 0.05 lower) lend theirs to the two crowns while the trace keeps the printed index; relative to nd, their C, F and g indices lie within 2 × 10⁻⁵ of STK12 and STK3. The catalog names are equivalents and do not identify KMZ's glass supplier. LF5, TF5 and STK3 also appear in the Zenitar 50mm f/0.95 patent.
+L5 traces on the glass catalog's LZOS STK3 row, a fit to the LZOS catalogue's own index table. QF3 and H-ZF6 equal LF5 and TF5 at the d line and give L1, L2, L6 and L9 their dispersion curves. The catalog carries no STK12 row, so J-LAK9 (0.0010 lower in nd and 0.12 lower in νd than the printed pair) lends its curve to L3, L4, L7 and L8 while the trace keeps the printed index; relative to nd, its C, F and g indices lie within 2 × 10⁻⁵ of STK12. The catalog names are equivalents and do not identify KMZ's glass supplier. LF5, TF5 and STK3 also appear in the Zenitar 50mm f/0.95 patent.
 
 The positive power sits mainly in the νd 55–57 crowns of L4, L5, L7 and L8, and the dense flint appears in the negative L6 and L9 and in the positive L2. Claim 3 fixes the four glasses as ranges with the equalities n2 = n6 = n9 and n3 = n4 = n7 = n8. No extra-low-dispersion or anomalous partial-dispersion glass is claimed, and none is implied by the printed values. [1, claim 3]
 
