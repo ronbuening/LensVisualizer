@@ -1,51 +1,51 @@
 ## Patent Reference / Design Identification
 
-**Patent:** [US 2,972,285](https://patents.google.com/patent/US2972285A/en)
+**Patent:** [US 2,972,285 A](https://patents.google.com/patent/US2972285A/en)
 **Filed:** November 13, 1958
 **Granted:** February 21, 1961
 **Inventor:** Rudolf Solisch
 **Assignee:** Isco Optische Werke GmbH
 **Title:** Photographic or cinematographic high-speed tele-objective
-**Example details:** Whole Table A, Figure 1; literal nominal scale 1.35 from source f = 100 to the 135 mm product-family hypothesis.
+**Example details:** Table A, Figure 1; all lengths scaled by ×1.35 from the stated f = 100 to 135 mm.
 
-The [dealer catalog, PDF page 9](https://www.pacificrimcamera.com/rl/03283/03283.pdf) names automatic and preset Tele-Iscaron 135 mm f/2.8 products, both with four elements and an 18.2° full field. Its optical section supports a probable family association, not an exact factory prescription. The catalog does not assign Table A or B to either retail mechanism. Table A is selected by an explicit first-embodiment convention, not because its computed back focus agrees more closely with the printed value. Table B remains a distinct four-air-spaced-element prescription, not a second retail lens or a source of replacement values.
+Rudolf Solisch designed the patent for ISCO Göttingen, the Schneider subsidiary. The [period catalogue](https://www.pacificrimcamera.com/rl/01544/01544.pdf) lists a 135 mm f/2.8 Tele-Iscaron with four elements and an 18.2° full field; a [second dealer catalogue, PDF page 9](https://www.pacificrimcamera.com/rl/03283/03283.pdf) lists preset and automatic versions. The [published construction section](https://photobutmore.de/exakta/isco/teleiscaron135-schnitt.jpg) agrees with Table A's four elements in three groups, cemented L2–L3 and curvature signs; it omits the iris. This supports a probable production-family association, while the exact factory prescription and assignment to either version remain unknown. Table B has four air-spaced groups and fits the published section less closely. Table A is the first patent embodiment; its selection does not depend on which table has the smaller computed back-focus discrepancy.
 
 ## Optical Architecture
 
-Table A has four spherical glass elements in three groups: a front positive meniscus, a thick cemented middle pair and a separated rear positive plano-convex element. The complete seven-radius prescription, six internal spacings and four index/Abbe pairs are preserved. Scaling by 1.35 is a representative nominal mapping, not measured factory dimensions or EFL renormalization. Native computed EFL is 134.9893 mm. The printed back focus becomes 57.78 mm and fixes the image plane at 137.7 mm from the first vertex; computed paraxial back focus of approximately 57.8282 mm is a diagnostic residual, not a replacement image gap.
+Table A has four spherical or plane glass elements in three groups: a positive front meniscus, a thick negative cemented middle pair and a positive rear plano-convex singlet. The seven refracting surfaces, six internal spacings and four index/Abbe pairs follow the patent. Computed EFL is 134.9893 mm; the catalogue design value records the stated 135 mm. The printed back focus of 57.78 mm fixes the image plane at 137.7 mm from the first vertex. Computed paraxial back focus is 57.8282 mm, leaving a −0.0482 mm image-plane offset. These dimensions describe the patent design, without establishing factory dimensions.
 
-Figure 1 draws an iris within the long gap before the last element. On the retained 2200-pixel-high rendering, its x-coordinate is approximately 795, versus axial vertices 731 and 832. The inferred native split is 12.2 + 7.05 = 19.25, scaled without changing the total gap. Approximate rim half-heights 98, 90 and 72 pixels, calibrated against the 59.2-unit axial track spanning approximately 304 pixels, motivate native component semi-diameters 19.1, 17.5 and 14.0. These are schematic boundary hypotheses with approximately ±0.8 native-unit measurement/model uncertainty, not published clear apertures. They were frozen before ray tracing and are not fitted to make the field pass. In additive v2, independent Figure 1 review distinguishes R5’s optical face from its beveled outer rim: its endpoint half-height is approximately 70–72 pixels, motivating a separately frozen 13.8-native-unit semi-diameter (18.63 mm scaled), rather than the component rim’s 17.5 units. Only R5’s cap changed. This remains a schematic inference with the same uncertainty, not factory dimensional evidence; the v1 source and results are retained.
+Figure 1 places the iris in the long gap before the last element. In a 2200-pixel-high rendering, its x-coordinate is approximately 795 between axial vertices 731 and 832. This gives a split of 12.2 + 7.05 = 19.25 in patent units, preserving the total gap. Rim half-heights of approximately 98, 90 and 72 pixels, calibrated against the 59.2-unit axial track spanning approximately 304 pixels, give component semi-diameters of 19.1, 17.5 and 14.0 patent units. R5's optical endpoint, distinct from the bevel, is approximately 70–72 pixels high: its semi-diameter is 13.8 patent units, or 18.63 mm in the model. These drawing-derived boundaries have an estimated uncertainty of ±0.8 patent units and are not published clear apertures.
 
-Dealer coverage is 18.2° full field; the patent describes 28° full field. The model projection uses the dealer field, with an attempted 14° half-field diagnostic for the patent claim (unavailable under this retail projection). The mismatch is retained, not silently converted into equivalent coverage.
+The model uses the catalogue's 18.2° full field (±9.1°). The patent describes ±14°, or 28° full field. At the wider patent angle, chief-ray heights of approximately 28.19, 27.70 and 24.80 mm exceed the inferred first-three-surface radii of 25.785, 25.785 and 23.625 mm. The inferred boundaries therefore do not support the wider field. The retail field has no axial or chief-ray obstruction, although peripheral rays are vignetted.
 
 ## Element-by-Element Analysis
 
-### L1: Positive meniscus
-nd = 1.58913, νd = 61.2. Glass: Unmatched published pair; no vendor or melt identity. Isolated-element focal length is not asserted.
+### L1: Positive Meniscus
+nd = 1.58913, νd = 61.2. Glass: SK5 (Schott), exact at the printed nd/νd. Isolated-element f = +196.90 mm.
 The first weakly curved rear face and positive front curvature form the front positive component. The catalog topology agrees qualitatively; no independent measured factory radii are available.
 
-### L2: Positive middle element
-nd = 1.58900, νd = 48.6. Glass: Unmatched published pair; no vendor or melt identity. Isolated-element focal length is not asserted.
-This thick element shares its rear surface with L3 in Table A. Its cemented interface is preserved exactly, rather than borrowing Table B's intervening air space.
+### L2: Biconvex Positive
+nd = 1.58900, νd = 48.6. Glass: Unmatched (nd = 1.58900, νd = 48.6). Isolated-element f = +66.87 mm.
+This thick element is the positive front member of cemented pair C1. It shares its rear surface with L3; Table B instead separates the corresponding elements by air.
 
-### L3: Negative cemented member
-nd = 1.74077, νd = 27.7. Glass: Unmatched published pair; no vendor or melt identity. Isolated-element focal length is not asserted.
-The higher-index, lower-Abbe member supplies the negative part of the middle combination. Detailed aberration allocation is not established by the sparse diagnostic; no unsupported performance attribution is assigned.
+### L3: Biconcave Negative
+nd = 1.74077, νd = 27.7. Glass: Unmatched (nd = 1.74077, νd = 27.7). Isolated-element f = −34.49 mm.
+The higher-index, lower-Abbe rear member supplies the negative power in C1, whose combined focal length is −201.75 mm. Detailed aberration contributions have not been established.
 
-### L4: Positive plano-convex rear element
-nd = 1.67270, νd = 32.2. Glass: Unmatched published pair; no vendor or melt identity. Isolated-element focal length is not asserted.
-The final plane surface is literal. The long preceding air gap contains the inferred iris station. Neither the final curvature nor the printed image gap has been adjusted for computed focus.
+### L4: Plano-Convex Positive
+nd = 1.67270, νd = 32.2. Glass: SF5 (Schott), a compatible catalogue curve. Isolated-element f = +114.59 mm.
+The positive rear singlet follows the iris and ends in the patent's plane surface. Its curvature and printed image gap are retained.
 
 ## Glass Identification / Selection
 
-The source prints lower-case nd and describes yellow-light indices. This model explicitly adopts the conventional helium d-line interpretation at 587.6 nm, rather than claiming independently verified wavelength metrology or performing a sodium-to-helium conversion. All four numerical index/Abbe pairs are literal. Real melt identities, partial dispersion and factory substitutions remain unknown; normal-dispersion modeling cannot establish a production MTF match.
+The source prints lower-case nd and describes yellow-light indices. The model adopts the conventional helium d-line interpretation at 587.6 nm without a sodium-to-helium conversion. All four printed index/Abbe pairs are retained. Schott SF5 matches L4 with Δnd = 0 and Δνd = +0.01; it supplies a dispersion curve without identifying the production supplier or melt. L1–L3 remain unmatched because suitable period Schott rows have not been established. Modern N-SK5 and BAFN6 rows do not establish the corresponding 1950s materials. No maker-published special-dispersion positions are known, and no anomalous-dispersion tags are assigned. Factory substitutions and the unmatched glasses' partial dispersion remain unknown.
 
 ## Focus Mechanism
 
-This is an infinity-only representative. The catalog's finite near-focus distance is not a published movement law and is not synthesized into an arbitrary translation. The supported static sentinel documents that limitation. The image plane remains the scaled printed source plane, without numerical refocusing. No auto/preset mechanism assignment is made.
+The model describes infinity focus only. The patent publishes no finite-focus spacings or focusing travel, so no group movement is modeled. The image plane remains at the printed back focus without numerical refocusing; the 1e15 m close-focus value is a placeholder.
 
-## Aspherical Surfaces
+The [historical Exakta reference](https://photobutmore.de/exakta/isco/) dates the preset version to 1957 and the automatic-diaphragm version to 1959. Both have an f/2.8–22 aperture range and Exakta mount. Their minimum focus distances differ: 1.35 m for the preset version and 1.5 m for the automatic version. No single marketed minimum focus distance is assigned because Table A has not been tied to either version. The diaphragm mechanisms do not establish the optical focusing motion.
 
-All seven refracting surfaces are spherical or plane. No aspherical coefficients, floating correction, additional plate or hidden source repair has been introduced. Validation results and remaining integration gates are recorded below and in the audit; hidden status does not imply a finished or delivery-ready lens.
+## Model Scope and Limitations
 
-Fresh bounded diagnostics pass native construction and strict TypeScript, not full integration. A 25-point pupil grid plus separately counted chief ray gives 26/26 transmitted at 0°, 21 transmitted and 5 clipped at 4.55°, and 15 transmitted, 6 clipped and 5 blocked launches at the 9.1° retail edge. These sparse counts are not throughput percentages or MTF validation. The attempted 14° patent-field diagnostic is unavailable because it lies outside the configured retail projection; no trace success or physical failure is inferred there. Boundary uncertainty and substantial off-axis loss remain explicit review holds. The source-grounded R5-only reduction was frozen before the v2 rerun; the sparse counts were unchanged. No cap was enlarged, no stop coordinate changed and no value was tuned to ray performance.
+All seven refracting surfaces are spherical or plane; no floating correction or additional plate is described. The inferred iris and boundaries limit conclusions about peripheral illumination, especially beyond the retail field. The exact production prescription, focusing motion and polychromatic performance remain unconfirmed.

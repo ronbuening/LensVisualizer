@@ -1,5 +1,11 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal whole Table A x1.35; fixed printed BF57.78. Inferred figure boundaries, not factory exact; infinity only, no overrides. */
+/**
+ * Table A, with all lengths scaled by ×1.35 from f = 100 to 135 mm.
+ * The printed back focus is retained at 57.78 mm, without numerical refocusing.
+ * Surface semi-diameters and the iris position are inferred from Figure 1;
+ * the iris split preserves the printed air gap. Production dimensions are unconfirmed.
+ * Infinity focus only; closeFocusM = 1e15 is a placeholder, not a measured distance.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "isco-tele-iscaron-135mm-f28",
@@ -13,9 +19,10 @@ const LENS_DATA = {
       "nd": 1.58913,
       "vd": 61.2,
       "indexReference": "d",
-      "glass": "Literal patent n/Abbe pair; conventional helium-d interpretation, no melt identity",
+      "glass": "SK5 (Schott)",
       "label": "Element 1",
-      "type": "Patent spherical glass"
+      "type": "Positive Meniscus",
+      "role": "Positive front singlet before the cemented middle pair"
     },
     {
       "id": 2,
@@ -23,9 +30,11 @@ const LENS_DATA = {
       "nd": 1.589,
       "vd": 48.6,
       "indexReference": "d",
-      "glass": "Literal patent n/Abbe pair; conventional helium-d interpretation, no melt identity",
+      "glass": "Unmatched (nd = 1.58900, νd = 48.6)",
       "label": "Element 2",
-      "type": "Patent spherical glass"
+      "type": "Biconvex Positive",
+      "role": "Positive front member of the cemented middle pair",
+      "cemented": "C1"
     },
     {
       "id": 3,
@@ -33,9 +42,11 @@ const LENS_DATA = {
       "nd": 1.74077,
       "vd": 27.7,
       "indexReference": "d",
-      "glass": "Literal patent n/Abbe pair; conventional helium-d interpretation, no melt identity",
+      "glass": "Unmatched (nd = 1.74077, νd = 27.7)",
       "label": "Element 3",
-      "type": "Patent spherical glass"
+      "type": "Biconcave Negative",
+      "role": "Negative rear member of the cemented middle pair",
+      "cemented": "C1"
     },
     {
       "id": 4,
@@ -43,9 +54,10 @@ const LENS_DATA = {
       "nd": 1.6727,
       "vd": 32.2,
       "indexReference": "d",
-      "glass": "Literal patent n/Abbe pair; conventional helium-d interpretation, no melt identity",
+      "glass": "SF5 (Schott)",
       "label": "Element 4",
-      "type": "Patent spherical glass"
+      "type": "Plano-Convex Positive",
+      "role": "Positive rear singlet behind the iris"
     }
   ],
   "surfaces": [
@@ -103,12 +115,18 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1e15,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity-only sentinel; no published finite travel law."
+      "description": "Infinity focus only; the patent gives no finite-focus spacings or focusing travel."
   },
   "aperture": {
     "nominalFNumber": 2.8,
     "fStops": [
-      2.8
+      2.8,
+      4,
+      5.6,
+      8,
+      11,
+      16,
+      22
     ]
   },
   "projection": {
@@ -119,7 +137,14 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.7
   },
-  "subtitle": "US2972285 Table A x1.35; probable family, no auto/preset assignment; inferred boundaries",
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "3",
+      "toSurface": "5"
+    }
+  ],
+  "subtitle": "US 2,972,285 A, Table A — probable match to the Tele-Iscaron family",
   "catalog": {
     "imageFormat": "135-full-frame",
     "lensMounts": [
@@ -129,16 +154,18 @@ const LENS_DATA = {
     "groupCount": 3,
     "focalLengthMm": {
       "marketing": 135,
-      "design": 134.98933622256
+      "design": 135
     },
     "fNumber": {
       "marketing": 2.8,
       "design": 2.8
     },
     "specs": [
-      "Table A first-embodiment representative, not factory auto/preset mapping",
-      "Fixed published image plane137.7mm; no refocus",
-      "Dealer18.2degree field differs from patent28degree full field"
+      "4 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "f/2.8–22",
+      "EXAKTA",
+      "PRESET 1957 / AUTOMATIC 1959"
     ]
   },
   "source": {
