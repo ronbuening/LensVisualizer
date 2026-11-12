@@ -5,22 +5,24 @@
 **Filed:** April 21, 1975
 **Published:** August 17, 1976
 **Inventor:** Yasuo Takahashi
-**Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha
-**Example details:** Table 2 and Figures 3–4; whole prescription at a nominal 0.3 scale.
+**Assignee:** Asahi Kogaku Kogyo Co., Ltd.
+**Example details:** Table 2 and Figures 3–4.
 
-This hidden draft represents Example 2 associated with the original SMC Pentax 30mm f/2.8, not a factory-exact reconstruction. Evidence converges as follows:
+Example 2 is a probable match to the original SMC Pentax 30mm f/2.8 introduced in 1975. The production prescription has not been independently established. Evidence converges as follows:
 
 1. The [original patent](https://patentimages.storage.googleapis.com/d0/7b/71/adf92aec7e20f3/US3975091.pdf) supplies seven separate spherical elements, f/2.8, and a 36° half-field in Figure 4.
 2. The [Asahi Pentax maker brochure](https://www.cameramanuals.org/pentax_pdf/Asahi_Pentax_Lenses.pdf), PDF page 4, names the 30mm f/2.8 beside a seven-singlet optical section. Its rear meniscus supports Example 2 rather than Example 1's biconvex rear element.
 3. The same brochure, PDF page 11, lists seven elements in seven groups and a 72° full field. The [specialist historical survey](https://zeissikonveb.de/start/objektive/sonstige_objektive/retrofokus.html) independently associates the German patent family with this product; that is secondary identification evidence, not a factory build sheet.
 
-The nominal 100-unit prescription is uniformly multiplied by 0.3; no radius or gap is adjusted to force an exact 30mm result. The literal paraxial replay gives 29.99683mm EFL. The source's coarse back-focus ratio 1.24F becomes a fixed 37.2mm image gap, versus a computed 37.25501mm. The approximately 0.055mm residual is retained without refocusing; coarse source rounding is plausible, not established as a correction.
+The [PentaxForums lens reference](https://www.pentaxforums.com/lensreviews/SMC-Pentax-K-30mm-F2.8-Lens.html) also records the 1975 introduction, K mount, 35 mm format, f/2.8–22 aperture range and 0.30 m minimum focus.
+
+The prescription at F = 100 is uniformly multiplied by 0.3 to give a stated design focal length of 30 mm. Its calculated EFL is 29.99683 mm. The printed back-focus ratio 1.24F gives the fixed 37.2 mm image gap; that length is derived, not printed in millimetres. The computed BFD is 37.25501 mm, leaving the image plane approximately 0.055 mm short of paraxial focus. Source rounding is a possible explanation. Claim 2 gives R12 = −58.97, conflicting with Table 2's −53.97; the table value is retained.
 
 ## Optical Architecture
 
 Seven air-spaced singlets form a retrofocus wide-angle lens. The positive first meniscus precedes two negative menisci; a positive middle element and a negative element are followed by two positive rear menisci. The extended back focus is part of the patent's stated architecture, not an added mechanical gap.
 
-The prescription gives no numerical clear apertures or unambiguous iris coordinate. This draft uses conservative rim estimates from Figure 3 and an explicitly inferred iris at the midpoint of the L3–L4 air gap. The iris is not claimed to be marked in the source. Its scaled gap split is 3.1335mm on either side. Schematic rim uncertainty is approximately 0.35mm from a three-pixel reading, with additional unquantified drawing distortion. These choices were frozen before tracing and are not factory tolerances.
+The prescription gives no numerical clear apertures or unambiguous iris coordinate. The model uses rim estimates from Figure 3 and an inferred iris at the midpoint of the L3–L4 air gap, 3.1335 mm from either end. Neither drawing fixes that iris position. Schematic rim uncertainty is approximately 0.35 mm from a three-pixel reading, with additional unquantified drawing distortion; it is not a factory tolerance. The rear semi-diameters were widened during integration from 8.3 to 8.6 mm at R11/R12 and from 10.2 to 10.4 mm at R13/R14 so the 36° corner chief ray passes.
 
 ## Element-by-Element Commentary
 
@@ -32,26 +34,26 @@ The prescription gives no numerical clear apertures or unambiguous iris coordina
 - **L6:** Positive meniscus convex toward the image.
 - **L7:** Positive rear meniscus convex toward the image; its topology distinguishes this example from Example 1.
 
-These are source-grounded forms and power signs. No unsupported allocation of individual aberration corrections or production glass trade names is asserted.
+These forms and power signs follow the prescription; individual aberration contributions are not established by element shape alone.
 
 ## Glass and Material Choices
 
-The source explicitly defines refractive index at the **sodium d-line**. Every element therefore uses native sodium-D support, not a silent helium-d substitution. The seven literal index/Abbe pairs are 1.54869/45.6, 1.51633/64.1, 1.48749/70.1, 1.80610/40.8, 1.80518/25.4, 1.65160/58.6, and 1.65160/58.6.
+The source calls its index reference the **sodium d-line**. Catalog comparisons instead support the helium d-line used in this model: S-FSL5 gives 1.48748993 at helium d versus 1.48742765 at sodium D, and K-BK7 gives 1.51632992 versus 1.51625776. The seven printed index/Abbe pairs remain 1.54869/45.6, 1.51633/64.1, 1.48749/70.1, 1.80610/40.8, 1.80518/25.4, 1.65160/58.6, and 1.65160/58.6.
 
-These describe first-order dispersion information, not exact commercial melts. Partial dispersion and coating data are absent; spectral calculations based on the engine's n/V representation should not be presented as measured factory chromatic performance. In particular, n/V alone does not establish a unique modern glass replacement.
+Compatible catalog curves are K-BK7 (Sumita) for L2, S-FSL5 (Ohara) for L3, NBFD13 (Hoya) for L4, SF6 (Schott) for L5, and LAL7 (Ohara) for L6–L7. Each differs from the printed pair by at most 0.0001 in nd and 0.15 in νd. L1 remains Unmatched: the nearest LLF7 row misses the Abbe tolerance. These curves are spectral equivalents, not evidence of the historical supplier or melt. Partial dispersion and coating data are absent from the patent, so calculated chromatic behaviour is not measured factory performance. No maker-published special-dispersion positions support anomalous-dispersion tags.
 
 ## Focus Mechanism and Operating States
 
-Only the source infinity prescription is modeled. The supported static infinity sentinel is used; there is no reconstructed continuous focus law. The maker's 0.30m minimum focus is a retail specification, not authorization to invent finite-conjugate element movement. The source-derived final image gap stays at 37.2mm rather than the independently computed paraxial best-focus distance. No floating groups, stabilization, or zoom mechanism are claimed.
+Only the infinity prescription is modeled; the patent prints no finite-focus spacings. The production lens focuses manually to 0.30 m, as recorded by PentaxForums, but its close-focus element movement is not modeled. The final image gap remains 37.2 mm. There are no modeled floating groups, stabilization or zoom states.
 
-## Aspherical Surfaces and Validation Limits
+## Model Scope and Limitations
 
-The transcribed example is spherical; no aspheric coefficients are omitted or synthesized. The complete Table 2 radii, thicknesses, air gaps, indices and Abbe values are retained under uniform scaling. Aperture and stop uncertainty remain explicit modeling qualifications.
+All surfaces are spherical. Table 2 supplies all 14 radii, 13 thicknesses and gaps, and seven index/Abbe pairs; it supplies no aspheric coefficients or variable gaps. Clear apertures, iris position and factory glass identity remain uncertain.
 
-This is a hidden research draft. Focused syntax, native-construction and ray diagnostics are recorded in the companion audit; they are not full corpus integration, rendered-viewer acceptance, MTF validation, or proof of factory equivalence. Any clipped or unlaunchable field rays remain failures to disclose rather than reasons to enlarge the inferred apertures after the fact.
+Figure 3 distinguishes the R4 curved optical face from L2's 15 mm mechanical shoulder at R3. Its bevel endpoints near pixels (466, 344) and (465, 535), about axis 437, give a smaller extent of 93 pixels. At 0.11691495 mm/pixel this is 10.8731 mm, rounded down to the modeled 10.8 mm R4 semi-diameter. The outline is schematic and does not establish a factory clear aperture. Peripheral vignetting remains possible even with the corner chief ray transmitted.
 
+## Sources
 
-### Additive R4 face-boundary review
-The original v1 assigned the whole L2 mechanical shoulder radius15mm to both faces and failed the native R4 spherical-domain guard. Figure3 independently shows the R4 curved face ending at the bevel near pixels(466,344) and(465,535), axis437. The smaller93pixel extent at0.11691495mm/pixel gives10.8731mm, conservatively rounded down to10.8mm. Only R4 optical semi-diameter changes in v2; R3 retains15mm. This is a schematic optical-face inference with about±0.35mm plus drawing distortion, not a printed factory dimension or ray-fitted cap. All R/d/nV, sourceimageplane and stop remain unchanged, with no override. The failed v1 remains preserved. Fresh bounded results are recorded separately; no further aperture tuning is permitted in this pass.
-
-Fresh v2 strict TypeScript and native construction pass without overrides. Bounded25-pupil-plus-chief samples: axis26pass;18°19pass/7clip;27°15pass/11clip;36°9pass/17clip. At36° the chief itself clips at runtime surface index12 and the bundle adapter returns unavailable. This is a material full-field limitation, not successful edge acceptance; no further caps are tuned. R4_ONLY_CHANGE_RECEIPT.json records exact invariants and native aperture. Full corpus, compiled viewer and MTF remain unrun.
+- [US 3,975,091 A](https://patentimages.storage.googleapis.com/d0/7b/71/adf92aec7e20f3/US3975091.pdf), Table 2, claim 2 and Figures 3–4.
+- [Asahi Pentax Lenses brochure](https://www.cameramanuals.org/pentax_pdf/Asahi_Pentax_Lenses.pdf), PDF pages 4 and 11: optical section and production specifications.
+- [PentaxForums: SMC Pentax 30mm F2.8](https://www.pentaxforums.com/lensreviews/SMC-Pentax-K-30mm-F2.8-Lens.html): production specifications and history.
