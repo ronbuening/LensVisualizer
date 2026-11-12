@@ -1,4 +1,4 @@
-# Yongnuo YN 40mm f/2.8 N: qualified patent representative
+# YONGNUO YN 40mm f/2.8N: patent design and production association
 
 ## Patent Reference and Design Identification
 
@@ -9,87 +9,87 @@
 **Inventor:** Yongxiao Zhuang (庄永肖; romanized here)  
 **Applicant:** Shenzhen Yongnuo Photographic Equipment Co., Ltd. (深圳市永诺摄影器材股份有限公司)  
 **Title:** Imaging Lens and Imaging Device (成像镜头及成像装置)  
-**Example details:** Instance 2 (实例2), ¶0072 onward, Tables1/2 on physical PDF8, Fig2 on PDF10. Whole literal example, no scale conversion.
+**Example details:** Embodiment 2 (实施例2), ¶0072 onward, Tables 1/2 on PDF page 8, Fig. 2 on PDF page 10. No scale conversion.
 
-The primary patent states 40mm f/2.8 and six taking elements. The named product association comes from the secondary OpticalBench bibliography and a secondary review reproducing what it calls the official YN40 diagram. The ordered six-element/four-group structure agrees with Fig2, including two cemented pairs and a final double-asphere. This supports a qualified probable family, not exact factory glass, prescription or production embodiment selection. The secondary bibliography's Example01P numbering does not override the original Instance2. This association existed in an earlier bibliography and is not a new discovery.
+The patent states 40 mm f/2.8 and six taking elements. The 2017 launch specifications give six elements in four groups, an aspherical element, Nikon F mount, f/2.8–22 and a minimum focus distance of about 0.3 m. A secondary review reproduces a section attributed to Yongnuo; its ordered structure agrees with Fig. 2, including two cemented pairs and a final element with two aspherical faces. Together with the OpticalBench bibliography, this supports a probable production association without establishing the factory glass or exact prescription. Embodiment 2 is the patent's sole numerical embodiment; the secondary bibliography's different numbering does not change that identification. The 2017 product introduction predates the 2018 patent publication.
 
 ## Optical Architecture
 
-Two positive groups flank the iris. The source quotes group focal lengths104mm and47mm; the taking train is six elements in four groups. A source camera-side plane plate90 is represented separately through rearPlates and excluded from the taking-element count. Source optics and all axial distances are preserved. The literal matrix gives EFL40.2604108mm and image plane61.76mm from the first vertex. Paraxial best focus lies0.821424mm beyond that source plane, independently confirmed. The file does not move the image plane to hide this discrepancy.
+Two positive optical groups flank the iris. Their published focal lengths are 104 mm and 47 mm; the prescription gives 105.002 mm and 47.858 mm. The six taking elements form four physical groups. Camera-side plane plate 90 is represented separately and excluded from the taking-element count. The calculated EFL is 40.2604108 mm, 0.651% above the stated 40 mm.
+
+The printed spacings place the image 61.76 mm behind the first vertex, with a 38.75 mm distance from the last taking surface. Paraxial infinity focus lies 0.821424 mm farther back. The model retains the taking prescription and 2 mm plate but changes the printed 1 mm plate-to-image gap to a derived 1.8214 mm, giving a total track of 62.5814 mm and 39.5714 mm behind the last taking surface. No single prescription misprint has been established.
 
 ## Element-by-Element Analysis
 
 ### L1: Positive biconvex front member, cemented to L2
 
-nd = 1.80099, νd = 34.97. Glass: Unmatched (literal source d-line index/Abbe). Isolated-in-air thick-lens focal length = +33.052 mm, derived, not the in-system power of a cemented member.
+nd = 1.80099, νd = 34.97. Glass: S-LAM66 (Ohara catalog equivalent). Isolated-in-air thick-lens focal length = +33.052 mm, derived, not the in-system power of a cemented member.
 
-The shape and position are literal; detailed aberration allocation is not established from the published prescription alone.
+The positive front member shares its rear surface with L2 in cemented doublet C1.
 
 ### L2: Negative biconcave rear member of front doublet
 
-nd = 1.603423, νd = 38.01. Glass: Unmatched (literal source d-line index/Abbe). Isolated-in-air thick-lens focal length = -20.847 mm, derived, not the in-system power of a cemented member.
+nd = 1.603423, νd = 38.01. Glass: E-F5 (Hoya catalog equivalent). Isolated-in-air thick-lens focal length = -20.847 mm, derived, not the in-system power of a cemented member.
 
-The shape and position are literal; detailed aberration allocation is not established from the published prescription alone.
+The negative rear member completes C1; its concave rear face borders the short air gap to L3.
 
 ### L3: Positive meniscus between front doublet and iris
 
-nd = 1.883004, νd = 40.81. Glass: Unmatched (literal source d-line index/Abbe). Isolated-in-air thick-lens focal length = +37.699 mm, derived, not the in-system power of a cemented member.
+nd = 1.883004, νd = 40.81. Glass: TAFD30 (Hoya catalog equivalent). Isolated-in-air thick-lens focal length = +37.699 mm, derived, not the in-system power of a cemented member.
 
-The shape and position are literal; detailed aberration allocation is not established from the published prescription alone.
+This high-index positive meniscus lies between C1 and the iris and completes the positive front optical group.
 
 ### L4: Negative biconcave front member of rear doublet
 
-nd = 1.755, νd = 27.53. Glass: Unmatched (literal source d-line index/Abbe). Isolated-in-air thick-lens focal length = -12.960 mm, derived, not the in-system power of a cemented member.
+nd = 1.755, νd = 27.53. Glass: E-FD4 (Hoya catalog equivalent at the printed index precision). Isolated-in-air thick-lens focal length = -12.960 mm, derived, not the in-system power of a cemented member.
 
-The shape and position are literal; detailed aberration allocation is not established from the published prescription alone.
+The negative member directly behind the iris shares its rear surface with L5 in cemented doublet C2.
 
 ### L5: Positive biconvex rear member of rear doublet
 
-nd = 1.835, νd = 42.74. Glass: Unmatched (literal source d-line index/Abbe). Isolated-in-air thick-lens focal length = +18.641 mm, derived, not the in-system power of a cemented member.
+nd = 1.835, νd = 42.74. Glass: S-LAH55VS (Ohara catalog equivalent at the printed index precision). Isolated-in-air thick-lens focal length = +18.641 mm, derived, not the in-system power of a cemented member.
 
-The shape and position are literal; detailed aberration allocation is not established from the published prescription alone.
+The positive member completes C2 and is followed by a 0.12 mm air gap to L6.
 
 ### L6: Positive meniscus with two aspheric faces
 
-nd = 1.829, νd = 37.1. Glass: Unmatched (literal source d-line index/Abbe). Isolated-in-air thick-lens focal length = +31.239 mm, derived, not the in-system power of a cemented member.
+nd = 1.829, νd = 37.1. Glass: Unmatched (printed d-line index and Abbe number). Isolated-in-air thick-lens focal length = +31.239 mm, derived, not the in-system power of a cemented member.
 
-The shape and position are literal; detailed aberration allocation is not established from the published prescription alone.
+The rear positive meniscus carries both aspherical surfaces. Detailed aberration contributions of individual elements are not established by the prescription alone.
 
 ## Glass Identification and Selection
 
-The source explicitly gives the d-line reference587.6nm (¶0078). All six nd/νd pairs and plate1.5168/64.2 are copied literally. No catalog melt, supplier or partial-dispersion identity is established. The runtime's Abbe-based dispersion model is not evidence of exact chromatic factory behavior. The plate is2mm thick followed by1mm air; the last taking surface's35.75mm gap is before the plate, not total back focus.
+The source explicitly gives the helium d-line reference at 587.6 nm (¶0078). All six nd/νd pairs and the plate's 1.5168/64.2 are retained. Five taking glasses have matching catalog equivalents; L4 and L5 match at the patent's three-decimal index precision. The rear plate matches H-K9L (CDGM). L6 remains unmatched and uses Abbe-based dispersion. Catalog equivalents supply spectral curves without identifying the production supplier or melt. No maker-published special-dispersion positions support anomalous-dispersion tags. The last taking surface's 35.75 mm gap precedes the plate and is not the total back focus.
 
 ## Focus Mechanism
 
-Only the static source infinity configuration is authored. The supported large-distance sentinel does not represent a reconstructed near-focus mechanism. The source-plane defocus remains a material limitation even at infinity; no finite focus or best-focus MTF claim is made.
+Only infinity focus is modeled, with the derived image-plane spacing described above. The 2017 launch specifications state DC-motor autofocus, manual focus and a minimum focus distance of about 0.3 m. The patent supplies no close-focus prescription or focusing-group travel, so the model does not reproduce finite-distance focusing.
 
 ## Aspherical Surfaces
 
-Both faces of L6 are aspherical. Literal standard conic constants and even coefficients (mm units):
+Both faces of L6 are aspherical. The patent uses the standard conic constant K and even polynomial coefficients (mm units):
 
 | Surface | K | A4 | A6 | A8 | A10 |
 | --- | --- | --- | --- | --- | --- |
 | S10 | -21.3807 | -2.231688e-5 | 1.1154082e-7 | -1.6802243e-9 | 1.1278013e-11 |
 | S11 | 0.70151 | 1.530636e-5 | 1.8595495e-7 | -1.8656923e-9 | 1.3794272e-11 |
 
-The prose reverses the radial/sag variable names relative to its displayed equation; this is documented, not treated as permission to change the coefficients or conic convention. Manufacturing method is not independently established. No spherical replacement or coefficient refit is used.
+The patent's prose reverses the radial and sag variable names relative to its displayed equation; the coefficients and conic convention follow that equation. The manufacturing method is not independently established.
 
 ## Apertures and Source Geometry
 
-Independent Fig2 measurement uses11 internal axial landmarks, scale15.23863px/mm with maximum fit residual0.765px; rear propagation is visibly compressed and excluded from scale calibration. Clear semi-diameters are schematic estimates with approximately±0.3mm observational uncertainty, not factory tolerances. S3 has a7.45mm curved face and8.83mm outer straight land; S7 has6.60mm face and7.87mm land. Opaque lands are an explicit modeling assumption, not a published opacity specification. No ray fitting was used to choose these endpoints.
+Clear semi-diameters are read from Fig. 2. They are schematic estimates with approximately ±0.3 mm observational uncertainty, not factory tolerances. S3 has a 7.45 mm curved-face radius and an 8.83 mm outer rim; S7 has a 6.60 mm face radius and a 7.87 mm outer rim. The straight extensions beyond those curved faces are treated as opaque, an assumption not specified by the patent.
 
-The f-stop UI sequence through f/16 is an authored control range, not a source-verified retail minimum-aperture specification. The F2.8-derived physical iris6.37510mm agrees with independently measured drawing6.3654±0.3mm. The drawing is not a published dimensional stop schedule. Rear plate clear diameter is unspecified: the rearPlates schema's nonclipping default is retained, not a claim of a measured full-frame plate aperture. Native construction uses default gapSag90%, with no override.
+The f/2.8–22 aperture range follows the 2017 launch specifications. The iris radius derived from f/2.8 is 6.37510 mm, consistent with the drawing estimate of 6.3654 ± 0.3 mm. The drawing does not publish a dimensional stop schedule. The rear plate's clear diameter is unspecified and its aperture is assumed nonclipping.
 
-## Validation Scope and Qualifications
+## Model Scope and Limitations
 
-Bounded native construction passes; EFL40.2604108mm and source plane61.76mm match the independent matrix. Sparse nominal and actual chief-bracketed36×24mm full-frame tests cover five field fractions0,.5,.7,.85,1, each25pupil samples plus chief. All five chiefs reach the source image plane; counts including chief are26/26,26/26,23/26,18/26,14/26. These are sparse ray counts, not area-weighted illumination, dense field coverage or image-quality acceptance. The0.821424mm source-plane defocus and peripheral clipping are unrepaired and prominent limitations.
-
-The three earlier isolated strict TypeScript attempts terminated137 without diagnostics; their cause remains unestablished. After workspace recovery, the unchanged model body passed isolated strict TypeScript against main4caca439fdd7186caf6cf458b1c56e6e114b752b (TypeScript5.9.3, ES2022, no ambient package types). Fresh native import/construction also passed with unchanged optical results. These scoped checks are not full-corpus compatibility or application validation. Full current-main compatibility, browser/compiled-viewer QA, dense MTF and full application validation are explicitly deferred to integration, not claimed passed. Hidden visibility is retained. This qualified representative is not a publication or deployment approval.
+The 30° half-field is an assumed projection limit; the patent prints no field angle. The inferred 36 × 24 mm format corner reaches about 29.34°, and its chief ray clears the modeled rims. Peripheral pupil clipping remains and is not an area-weighted illumination measurement. The derived image-plane correction resolves paraxial infinity defocus but does not establish the source of the printed-spacing discrepancy or exact production image quality.
 
 ## Sources
 
-- [Original CN207216120U PDF](https://patentimages.storage.googleapis.com/8f/80/cc/231dd010a52b21/CN207216120U.pdf), SHA2566190475e5438b616754b7245e0f530eb8d5908815a8c8986102b5aa1588a2e29.
+- [Original CN 207216120 U PDF](https://patentimages.storage.googleapis.com/8f/80/cc/231dd010a52b21/CN207216120U.pdf).
 - [Patent record](https://patents.google.com/patent/CN207216120U/zh).
 - [OpticalBench bibliography](https://photonstophotos.net/GeneralTopics/Lenses/OpticalBench/OpticalBenchHub.htm), secondary association.
 - [Named retail review](https://www.smzdm.com/zy/detail/avdjz3g/) and [reproduced section](https://am.zdmimg.com/201709/10/59b5157a57c1d3786.jpg_e600.jpg), secondary and not verified maker-hosted.
-- [Corrected source, independent literal review and1233-body dedup checkpoint](https://drive.google.com/file/d/1WCbrvlsOSvb-RPYeQJhytMpfIf5V02EX/view).
+- [2017 launch specifications and product features](https://nikonrumors.com/2017/08/01/new-yongnuo-yn-40mm-f2-8n-and-100mm-f2n-full-frame-dslr-lenses-for-nikon-f-mount.aspx/), including the reproduced Yongnuo specifications for Nikon F mount, f/2.8–22, autofocus and about 0.3 m minimum focus.

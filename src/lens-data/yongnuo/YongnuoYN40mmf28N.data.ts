@@ -1,12 +1,19 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Whole CN207216120U Instance 2, literal d-line optics; image plane at paraxial infinity focus. Secondary product association only. Source-figure apertures and opaque S3/S7 rim extensions are inferred; rear plate aperture unspecified/nonclipping. The printed plate-to-image gap (1mm) left +0.821424mm of paraxial defocus; the gap is set to 1.8214mm at integration. Infinity only; not exact factory performance. */
+/** CN 207216120 U, Embodiment 2, with helium d-line indices (587.6 nm); no scale conversion.
+ * Probable association with the YN 40mm f/2.8N from secondary product sources, not an exact factory prescription.
+ * Clear apertures are estimated from Fig. 2. The straight rim extensions beyond the curved faces of S3/S7
+ * are inferred and treated as opaque; the rear plate has an unspecified, nonclipping aperture.
+ * The iris radius is derived from f/2.8. The printed 1 mm plate-to-image gap leaves +0.821424 mm of paraxial
+ * defocus; the model uses a derived 1.8214 mm gap for infinity focus. No single prescription misprint has
+ * been established. Infinity focus only; exact production performance is not established.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "yongnuo-yn-40mm-f28n",
   "maker": "Yongnuo",
   "name": "YONGNUO YN 40mm f/2.8N",
   "visible": true,
-  "subtitle": "CN207216120U Instance 2; secondary product association, image plane at paraxial focus",
+  "subtitle": "CN 207216120 U, Embodiment 2 — probable production match",
   "catalog": {
     "imageFormat": "135-full-frame",
     "lensMounts": [
@@ -26,16 +33,18 @@ const LENS_DATA = {
       "design": 2.8
     },
     "specs": [
-      "Whole Instance2; probable family, not factory exact",
-      "Image plane at paraxial infinity focus (printed gap leaves 0.82mm defocus)",
-      "Source-figure caps, modeled opaque rim lands; infinity only"
+      "6 ELEMENTS / 4 GROUPS",
+      "DESIGN f = 40 mm",
+      "DESIGN F/2.8",
+      "2 ASPHERICAL SURFACES / 1 ELEMENT",
+      "NIKON F; AF; f/2.8–22; 0.3 m CLOSE FOCUS"
     ]
   },
   "source": {
     "patentNumber": "CN 207216120 U",
     "patentYear": 2018,
     "example": {
-      "label": "Instance 2",
+      "label": "Embodiment 2",
       "id": "2"
     },
     "authors": [
@@ -50,61 +59,71 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Literal patent spherical glass",
+      "type": "Biconvex Positive",
+      "role": "Positive front member of the first cemented doublet",
+      "cemented": "C1",
       "nd": 1.80099,
       "vd": 34.97,
       "indexReference": "d",
-      "glass": "Literal d-line nd/vd; exact melt and partial dispersion unknown"
+      "glass": "S-LAM66 (OHARA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Literal patent spherical glass",
+      "type": "Biconcave Negative",
+      "role": "Negative rear member of the first cemented doublet",
+      "cemented": "C1",
       "nd": 1.603423,
       "vd": 38.01,
       "indexReference": "d",
-      "glass": "Literal d-line nd/vd; exact melt and partial dispersion unknown"
+      "glass": "E-F5 (HOYA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Literal patent spherical glass",
+      "type": "Positive Meniscus",
+      "role": "Positive meniscus between the front doublet and the iris",
       "nd": 1.883004,
       "vd": 40.81,
       "indexReference": "d",
-      "glass": "Literal d-line nd/vd; exact melt and partial dispersion unknown"
+      "glass": "TAFD30 (HOYA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Literal patent spherical glass",
+      "type": "Biconcave Negative",
+      "role": "Negative front member of the second cemented doublet, behind the iris",
+      "cemented": "C2",
       "nd": 1.755,
       "vd": 27.53,
       "indexReference": "d",
-      "glass": "Literal d-line nd/vd; exact melt and partial dispersion unknown"
+      "glass": "E-FD4 (HOYA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Literal patent spherical glass",
+      "type": "Biconvex Positive",
+      "role": "Positive rear member of the second cemented doublet",
+      "cemented": "C2",
       "nd": 1.835,
       "vd": 42.74,
       "indexReference": "d",
-      "glass": "Literal d-line nd/vd; exact melt and partial dispersion unknown"
+      "glass": "S-LAH55VS (OHARA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Literal patent glass; double asphere",
+      "type": "Positive Meniscus",
+      "role": "Rear positive meniscus with two aspherical surfaces",
       "nd": 1.829,
       "vd": 37.1,
       "indexReference": "d",
-      "glass": "Literal d-line nd/vd; exact melt and partial dispersion unknown"
+      "glass": "Unmatched (nd 1.829, νd 37.1; supplier and partial dispersion unknown)"
     }
   ],
   "surfaces": [
@@ -198,7 +217,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1e15,
-    "description": "NO_INTERNAL_RECONSTRUCTION: static infinity-only sentinel. No retail near-focus law reconstructed."
+    "description": "Infinity focus only; the production lens supports DC-motor autofocus and manual focus to about 0.3 m. The patent supplies no close-focus prescription."
   },
   "aperture": {
     "nominalFNumber": 2.8,
@@ -224,10 +243,15 @@ const LENS_DATA = {
       "thicknessMm": 2,
       "nd": 1.5168,
       "vd": 64.2,
+      "glass": "H-K9L (CDGM catalog equivalent; production supplier unspecified)",
       "indexReference": "d",
       "gapAfterMm": 1.8214,
-      "source": "CN207216120U Instance2 Table1 surfaces12/13. Plate-to-image gap 1.8214mm is the paraxial infinity focus; the printed d13 = 1 leaves 0.821mm of defocus (no single-row misprint explains it). No published clear plate diameter; schema nonclipping default, not factory aperture claim."
+      "source": "CN 207216120 U, Embodiment 2, Table 1, surfaces 12/13. The derived 1.8214 mm plate-to-image gap places the image at paraxial infinity focus; the printed 1 mm gap leaves 0.821 mm of defocus. No single-row misprint has been established. The clear plate diameter is unprinted; its aperture is assumed nonclipping."
     }
+  ],
+  "doublets": [
+    { "text": "C1", "fromSurface": "1", "toSurface": "3" },
+    { "text": "C2", "fromSurface": "7", "toSurface": "9" }
   ],
   "layout": {
     "yScFill": 0.7
