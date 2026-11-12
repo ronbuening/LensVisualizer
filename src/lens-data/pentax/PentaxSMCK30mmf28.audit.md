@@ -16,8 +16,8 @@ The manuscript source-plane discrepancy remains independent: BFL 37.2 mm derived
 
 Primary full-source provenance, source/production qualification, and fresh current-main/open-PR/room screening are in the adjacent source-screen checkpoint. Those checks do not imply complete global archive content dedup. Full integration, compiled viewer, mesh/render comparisons, and detailed field/MTF validation have not run. No factory-identity or final-readiness claim.
 
-
 ## Additive R4 face-boundary review
+
 The original v1 assigned the whole L2 mechanical shoulder radius15mm to both faces and failed the native R4 spherical-domain guard. Figure3 independently shows the R4 curved face ending at the bevel near pixels(466,344) and(465,535), axis437. The smaller93pixel extent at0.11691495mm/pixel gives10.8731mm, conservatively rounded down to10.8mm. Only R4 optical semi-diameter changes in v2; R3 retains15mm. This is a schematic optical-face inference with about±0.35mm plus drawing distortion, not a printed factory dimension or ray-fitted cap. All R/d/nV, sourceimageplane and stop remain unchanged, with no override. The failed v1 remains preserved. Fresh bounded results are recorded separately; no further aperture tuning is permitted in this pass.
 
 Fresh v2 strict TypeScript and native construction pass without overrides. Bounded25-pupil-plus-chief samples: axis26pass;18°19pass/7clip;27°15pass/11clip;36°9pass/17clip. At36° the chief itself clips at runtime surface index12 and the bundle adapter returns unavailable. This historical corner-chief failure was closed by the rear-rim changes in Deployment validation below; the sample counts describe the earlier rims. R4_ONLY_CHANGE_RECEIPT.json records exact invariants and native aperture. Full corpus, compiled viewer and MTF had not run at this historical stage.
@@ -85,10 +85,10 @@ was explicitly refused by the sandbox or approval policy.
 Open:
 
 - Neither drawing fixes the midpoint iris; the clear apertures and the previously widened rear rims remain inferred.
-- L1 has no exact catalog match; supplier/melt identity and the exact production prescription remain unproven.
+- Closed by the Glass coverage pass below: L1 now resolves to PBL7. Supplier/melt identity and the exact production prescription remain unproven.
 - Finite-focus spacings are absent; the 0.30 m production minimum is not modeled.
 - The derived 37.2 mm image gap remains about 0.055 mm short of paraxial focus; source rounding is only a possible cause.
-- The direct maker-diagram image and final rendered-page review remain unverified; the screenshot helper produced no PNG.
+- The direct maker-diagram provenance remains unverified. The rendered-page review was subsequently completed from coordinator screenshots in the Second review below; the earlier screenshot helper produced no PNG.
 
 ## 2026-11-12 — Semi-diameter pass against the patent figure
 
@@ -109,16 +109,16 @@ independent stop scale; the inferred midpoint iris is not treated as figure evid
 below use both edges to reduce axis skew, exclude leaders and hatching, and retain approximately ±0.35 mm reading
 uncertainty plus the systematic drawing distortion.
 
-| Surface labels | Before → after sd (mm) | Figure estimate at 15.06 px/mm (mm) | Figure / stored | Decision |
-| --- | --- | --- | --- | --- |
-| 1, 2 | 17.7 → 17.7 each | 18.06 | 1.020 | 544-pixel rim span; within noise. |
-| 3 | 15.0 → 15.0 | 15.34 | 1.023 | 462-pixel shoulder span; retain its relation to R4. |
-| 4 | 10.8 → 10.8 | ≈10.9 optical endpoint | ≈1.01 | Curved face ends before the L2 shoulder; do not extend the sphere to 15 mm. |
-| 5, 6 | 9.7 → 9.7 each | 9.84 | 1.015 | Approximately 296.5-pixel span; square rims retained. |
-| 7, 8 | 6.7 → 6.7 each | 7.14 | 1.065 | 215-pixel span; difference is within schematic scale uncertainty. |
-| 9, 10 | 6.4 → 6.4 each | 6.99 | 1.092 | 210.5-pixel span; borderline apparent difference is below 10% and scale-dependent. L5 remains slightly smaller than L4. |
-| 11, 12 | 8.6 → 8.6 each | 8.93 | 1.039 | 269-pixel span; retain the integration chief-ray floor. |
-| 13, 14 | 10.4 → 10.4 each | 10.79 | 1.037 | 325-pixel span; retain the integration chief-ray floor. |
+| Surface labels | Before → after sd (mm) | Figure estimate at 15.06 px/mm (mm) | Figure / stored | Decision                                                                                                                |
+| -------------- | ---------------------- | ----------------------------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| 1, 2           | 17.7 → 17.7 each       | 18.06                               | 1.020           | 544-pixel rim span; within noise.                                                                                       |
+| 3              | 15.0 → 15.0            | 15.34                               | 1.023           | 462-pixel shoulder span; retain its relation to R4.                                                                     |
+| 4              | 10.8 → 10.8            | ≈10.9 optical endpoint              | ≈1.01           | Curved face ends before the L2 shoulder; do not extend the sphere to 15 mm.                                             |
+| 5, 6           | 9.7 → 9.7 each         | 9.84                                | 1.015           | Approximately 296.5-pixel span; square rims retained.                                                                   |
+| 7, 8           | 6.7 → 6.7 each         | 7.14                                | 1.065           | 215-pixel span; difference is within schematic scale uncertainty.                                                       |
+| 9, 10          | 6.4 → 6.4 each         | 6.99                                | 1.092           | 210.5-pixel span; borderline apparent difference is below 10% and scale-dependent. L5 remains slightly smaller than L4. |
+| 11, 12         | 8.6 → 8.6 each         | 8.93                                | 1.039           | 269-pixel span; retain the integration chief-ray floor.                                                                 |
+| 13, 14         | 10.4 → 10.4 each       | 10.79                               | 1.037           | 325-pixel span; retain the integration chief-ray floor.                                                                 |
 
 The comparison sketch was rendered and viewed at 15.06 px/mm, with the first vertex and optical axis aligned
 beside the patent crop. Relative element heights, the smaller R4 optical face, square middle elements and paired
@@ -168,3 +168,60 @@ header comment. Targeted Prettier write/check commands completed, but the reposi
 ## 2026-11-12 — Glass coverage pass
 
 L1 `Unmatched (nd = 1.54869, νd = 45.6)` → `PBL7 (OHARA catalog equivalent; …)` (Δnd = −0.000001, Δνd = −0.04), using the discontinued Ohara PBL7 row added to the catalogue from the 2026-07-01 Ohara Zemax file. Every element now traces on a catalogue curve.
+
+## 2026-11-12 — Second review: diagram, labels and movement
+
+Compared the coordinator's current `shots/smc30/page.png` and all seven inspector screenshots with local US3975091A.pdf, Figure 3 / Example 2 on PDF page 3 and Table 2 on PDF page 5. Re-read the complete prior audit and analysis. No new maker diagram was downloaded or viewed: the preceding semi-diameter pass records seven separate singlets/seven groups, the same rear-meniscus topology, no marked special-glass or asphere positions, and unverified direct manufacturer provenance.
+
+**Rims retained.** Independently sampled the saved 250 dpi patent raster, using ink threshold 100. Near-axis vertex bands locate R1 at x = 621–623, R7 at 966–968, and R14 at 1303–1308. The first-to-last span is approximately 683.5 px / 45.363 mm = 15.067 px/mm; the first-to-R7 and R7-to-last spans independently give approximately 14.97 and 15.17 px/mm. These confirm the previous 15.06 axial scale within about 1%. The previous spherical-arc cross-check's unequal axial/transverse scales and ±0.35 mm schematic uncertainty still prevent a more precise rim claim.
+
+| Faces | Retained sd (mm) | Independent figure estimate (mm at 15.06 px/mm)      | Verdict                                                                                       |
+| ----- | ---------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| 1/2   | 17.7/17.7        | 18.07                                                | Tallest element; square rim retained.                                                         |
+| 3/4   | 15.0/10.8        | 15.34 shoulder / approximately 10.9 optical endpoint | R4 ends before the mechanical shoulder; extending it to 15 would exceed its 12.939 mm radius. |
+| 5/6   | 9.7/9.7          | 9.83                                                 | Square optical rims; retain.                                                                  |
+| 7/8   | 6.7/6.7          | 7.11                                                 | Within schematic uncertainty.                                                                 |
+| 9/10  | 6.4/6.4          | 6.96                                                 | About 9% above stored, within distorted-drawing uncertainty; correctly below L4.              |
+| 11/12 | 8.6/8.6          | 8.92                                                 | Preserve corner-chief floor and paired rims.                                                  |
+| 13/14 | 10.4/10.4        | 10.79                                                | Preserve corner-chief floor and paired rims.                                                  |
+
+The supplied live-page silhouette has the correct relative heights, square middle rims, paired rear menisci and R4 taper, without visible element overlap. The model's straight joins simplify the patent's drawn bevels; no stronger optical-rim evidence supports changing them. Re-checked the matched-scale side-by-side `scratchpad/sd/smc30/overlay.png`. The post-edit model sketch `scratchpad/sd/smc30/rv-final.png` confirms that the outline and baseline coincide.
+
+**Change made:** populated every missing inspector focal length. Each is the isolated thick-singlet EFL in air, calculated from Table 2's nd and scaled R1/R2/thickness, using power = (n−1)[1/R1−1/R2+(n−1)t/(n R1 R2)]. This also independently confirms every element's power sign.
+
+| Element | Before focalLengthMm | After (mm) |
+| ------- | -------------------- | ---------- |
+| L1      | absent / FL = —      | +93.55     |
+| L2      | absent / FL = —      | −37.84     |
+| L3      | absent / FL = —      | −67.66     |
+| L4      | absent / FL = —      | +20.46     |
+| L5      | absent / FL = —      | −17.88     |
+| L6      | absent / FL = —      | +31.49     |
+| L7      | absent / FL = —      | +52.30     |
+
+L1–L3 have +/+ radii and the named positive/negative meniscus powers; L4 is +/− biconvex; L5 is −/+ biconcave; L6/L7 are −/− positive menisci convex toward the image. Names L1–L7 match the patent. Seven separate singlets need no cemented bracket; the source names elements, not additional compound groups, so no group brackets were added. All surfaces are spherical, with no A suffixes, asphere entries, APD tags or false cementing. The iris is between L3 and L4, but its exact midpoint coordinate is inferred, not source-established. The inspector cards display the correct seven type/glass/role combinations; all showed FL = — before this edit. A refreshed browser screenshot remains the coordinator's step; no browser was launched.
+
+**Lands and cuts:** against `.lens-work/base1122sd/PentaxSMCK30mmf28.data.ts`, no rim reductions, peripheral extensions or cuts exist. Full-pupil `rimcost.mjs --loo` reports worst loss **0.0 points**, with identical transmission at every 3° field sample: 100.0% on axis, 71.9% at 18°, 51.0% at 30°, 39.6% at 36°. These are geometric pupil-transmission fractions, without coatings or cosine-fourth falloff. No clearance allowance was added.
+
+**Movement:** this is one infinity-only prime, with no zoom stations, variable gaps or authored focus keyframes. L1–L7 each move **0.000 mm** between focus controls 0 and 1; every vertex and every gap is identical, including the 37.2 mm image gap. The midpoint split remains 3.1335 + 3.1335 mm. The supplied page shows infinity and “Not modeled”; its text correctly states manual production focusing to 0.30 m and absent finite-focus spacings. No production element-travel mechanism or near prescription was invented. No station-order correction is applicable.
+
+**Glass and colour:** branch-aware glasscheck and trylabel resolve all seven labels inside |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15. Signed catalog-row differences: L1 PBL7 −0.000001/−0.044254; L2 K-BK7 0/0; L3 S-FSL5 0/+0.1363; L4 NBFD13 0/−0.07; L5 SF6 0/+0.03; L6/L7 LAL7 −0.000003/−0.080567. The curve-derived diagnostic can show slightly different Abbe values than the catalog row; these do not change the printed nd/νd. No label needs replacement, no unmatched or constant-index element remains, and no new catalog row is proposed. Table 2 and the patent's material description give no glass names, additional line indices or partial dispersion to backfill. Catalog labels remain supplier-neutral spectral proxies.
+
+Compared the Figure 4 plots on PDF page 3 using each local axis and tick spacing, with axial distances scaled by 0.3. Ghost-traced on-axis focus shifts relative to paraxial d at pupil fractions near-zero / 0.5 / 0.7 / 0.85 / 1 are:
+
+| Line | Model shifts (mm)                          |
+| ---- | ------------------------------------------ |
+| C    | +0.068 / −0.081 / −0.144 / −0.095 / +0.183 |
+| d    | 0 / −0.143 / −0.199 / −0.139 / +0.156      |
+| F    | −0.078 / −0.202 / −0.233 / −0.141 / +0.207 |
+| g    | −0.060 / −0.164 / −0.168 / −0.044 / +0.359 |
+
+Figure 4b prints d and g, not C/F curves. The d curve reads approximately −0.15 at half pupil, −0.17 near 0.7, −0.10 near 0.85 and +0.21 to +0.23 at full pupil (approximately ±0.02 mm reading error). The d marginal and upper-pupil differences exceed that error. The g paraxial/full-pupil readings are approximately −0.04/+0.38 mm, close to the model at this precision. No single element is implicated by these data: all printed radii/indices match, and the d-line mismatch cannot be assigned to a borrowed partial-dispersion curve. Unprinted dispersion prevents a unique g-line prescription reconstruction.
+
+At 36°, model distortion −1.54% agrees with Figure 4c's approximately −1.5% (about ±0.1 percentage-point reading error). The parabasal sagittal/meridional focus shifts relative to axial focus are −0.283/−0.277 mm at 27° and +0.654/+1.617 mm at 36°. Figure 4d instead reads approximately −0.25/−0.15 mm at 27° and +0.2/−0.5 mm at 36° (roughly ±0.05 mm). Edge astigmatism therefore disagrees substantially. The inferred iris coordinate is a material limitation for off-axis comparisons, but a unique cause is unproven; no geometry was fitted to those plots. The 36° full-fan focus diagnostic is unavailable because the surviving fan is one-sided; the quoted model values are parabasal, not full-aperture best focus.
+
+Surface audit reports OK, no validation errors; aperture audit has one passing station with zero rim/trace/iris/failure stations; image-circle audit has zero undersized/skipped; field coverage has one station ≥99% and zero unsolved/skipped. Both clearance solvers at 36° find no axial/chief clip; R12/R14 chief heights are 8.51/10.29 mm against rims 8.6/10.4. The lower full-field marginal launch remains unsolved. Engine before → after: half-field **36 → 36°**, FOPEN **2.8 → 2.8**, EFL **29.996829966 → 29.996829966 mm**, tracing-half-field estimate **29.991808 → 29.991808°**, stop radius **5.681782440 → 5.681782440 mm**. The reduced estimate is distinct from successful 36° chief coverage.
+
+PDF page 1 confirms Yasuo Takahashi; Asahi Kogaku Kogyo Kabushiki Kaisha; US 3,975,091 A; August 17, 1976; filed April 21, 1975. The model's “Asahi Kogaku Kogyo Co., Ltd.” agrees with existing Pentax corpus canonical spellings; no consolidation is needed for this row. No assignee field or changelog was changed. No command was refused by the sandbox or approval policy.
+
+Open: clear apertures and iris position remain inferred; finite-focus spacings, production supplier/melt and exact factory identity remain unproven. The derived source image gap remains 0.055 mm short of paraxial focus (Table 2, PDF page 5); claim 2's R12 −58.97 conflicts with Table 2 −53.97 (PDF pages 6/5). Marginal d-line and edge astigmatism plot differences above remain unresolved. The duplicated PENTAX display-name prefix is report-only. Direct manufacturer-diagram provenance and the coordinator's post-edit inspector re-shoot remain pending.
