@@ -24,7 +24,7 @@ The all-spherical telephoto comprises fixed positive group A, stationary negativ
 
 The Figure 1 iris estimate, z = 194.921425 mm, leaves 3.841425 mm behind the rear vertex at the printed finite endpoint. Neither the exact coordinate nor complete production travel is established.
 
-Semi-diameters are 45.7/45.7, 44.6/44.6, 43.4/43.4, 20.9/20.9 and 18.5/18.5/18.1 mm. Smaller upper/lower figure extents were scaled by vertex distance and rounded down to 0.1 mm. Rear values grew from 20.5 and 17.6 mm to pass the f/4.5 axial beam. Reading uncertainty is about ±1.8 mm before schematic distortion; production clear apertures remain unknown. Iris radius derives from f/4.5.
+Semi-diameters are 45.7/45.7, 44.6/44.6, 43.4/43.4, 20.9/20.9 and 18.5/18.5/18.1 mm, estimated from Figure 1 and bounded by the f/4.5 axial beam. The figure's local scale varies by about 5%; its optical endpoints agree within roughly 5–8%. Production clear apertures remain unknown. The engine-derived 13.90143 mm iris admits an axial ray that clears surfaces 7 and 9 by 0.077 and 0.083 mm. Geometric pupil transmission at the 3.0833° field edge is 57.1%; this excludes coating losses and radiometric falloff.
 
 The model's 6°10′ full field comes from the successor FD 400mm f/4.5 in [Canon catalog PDF5/SG2-A5](https://www.pacificrimcamera.com/rl/01152/01152.pdf), without establishing the original S.S.C. field. Patent chart Y = 21.6 is not interpreted as normalized semiheight at f = 100 mm.
 

@@ -3,8 +3,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 4,045,128 A, Table 1: lengths scaled uniformly ×4 from f = 100 mm to nominal
  * 400 mm, with the image plane fixed at the resulting 320.04 mm distance.
  * R4 follows Table 1 (-258.3399 before scaling), rather than claim 1 (-258.3899).
- * Semi-diameters and stop position are inferred from Figure 1; the rear rims were
- * enlarged to pass the f/4.5 axial beam. Stop radius is derived from f/4.5.
+ * Semi-diameters are estimated from Figure 1, with rear rims bounded by the
+ * f/4.5 axial beam; figure differences remain within scan/schematic uncertainty.
+ * Exact rays through the engine iris clear every rim. Stop position is inferred
+ * from Figure 1; stop radius is derived from f/4.5.
  * Printed glass coordinates are treated as helium d on catalog evidence, despite
  * the patent's sodium wording; catalog equivalents do not identify production melts.
  * Infinity focus only: closeFocusM = 1e15 is a placeholder, not a finite focus distance.
