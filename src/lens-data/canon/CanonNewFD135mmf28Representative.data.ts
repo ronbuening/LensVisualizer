@@ -1,6 +1,6 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Whole Table1 x1.35, helium d-line (catalog line test), fixed sourceplane119.1645. Figure-inferred caps/iris frozen before traces; no factoryclaim or overrides. */
-export default {
+const LENS_DATA = {
   "schema": 2,
   "key": "canon-new-fd-135mm-f28-representative",
   "maker": "Canon",
@@ -205,3 +205,4 @@ export default {
     ]
   }
 } satisfies LensDataV2Input;
+export default LENS_DATA;

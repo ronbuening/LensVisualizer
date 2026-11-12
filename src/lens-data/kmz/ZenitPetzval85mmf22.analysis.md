@@ -1,6 +1,12 @@
 ## Patent Reference and Design Identification
 
-**Patent:** RU 2,549,915 C1, “Четырёхлинзовый объектив” (Four-element objective). Filed December 18, 2013; published May 10, 2015. **Inventors:** Vladimir Alexandrovich Bogdankov, Artem Andreevich Timirev, Sergey Ivanovich Shcheglov. **Assignee:** OJSC Krasnogorsky Zavod im. S. A. Zvereva. **Prescription:** whole Table 1, original publication page 5.
+**Patent:** [RU 2549915 C1](https://patents.google.com/patent/RU2549915C1/en)
+**Filed:** December 18, 2013
+**Published:** May 10, 2015
+**Inventors:** Vladimir Alexandrovich Bogdankov; Artem Andreevich Timirev; Sergey Ivanovich Shcheglov
+**Assignee:** OJSC Krasnogorsky Zavod im. S. A. Zvereva (now PJSC Krasnogorsky Zavod named after S. A. Zverev)
+**Title:** Four-element objective (Четырёхлинзовый объектив)
+**Example details:** whole Table 1, original publication page 5.
 
 The [original publication copy](https://patenton.ru/patent/RU2549915C1.pdf) is hosted by a third party, not downloaded from the patent office. Its table was visually verified. The [maker's Petzval 2.2/85 archive](https://www.zenitcamera.com/archive/lenses/petzval-2-2-85.html) explicitly cites RU2549915 in its Sources section as plain text, not a patent hyperlink. This supports a named production-family association, not a factory-exact prescription.
 

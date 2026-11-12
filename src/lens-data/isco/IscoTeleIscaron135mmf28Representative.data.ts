@@ -1,6 +1,6 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Literal whole Table A x1.35; fixed printed BF57.78. Inferred figure boundaries, not factory exact; infinity only, no overrides. */
-export default {
+const LENS_DATA = {
   "schema": 2,
   "key": "isco-tele-iscaron-135mm-f28-representative",
   "maker": "ISCO",
@@ -156,3 +156,4 @@ export default {
     ]
   }
 } satisfies LensDataV2Input;
+export default LENS_DATA;
