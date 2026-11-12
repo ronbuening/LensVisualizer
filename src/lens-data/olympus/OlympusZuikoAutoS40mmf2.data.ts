@@ -1,11 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Hidden qualified E1 hypothesis; source optics and inherited engineered caps unchanged. Not factory exact. */
+/**
+ * US 4,396,255 A, Embodiment 1; a probable match to the Zuiko Auto-S 40mm f/2.
+ * Embodiments 1 and 2 both fit the maker's section; neither is established as the factory prescription.
+ * All printed lengths are scaled ×40 from f = 1 to 40 mm. Radii, thicknesses, glass pairs and BF are printed;
+ * helium-d is the assumed spectral reference. All surfaces are spherical, with no cemented interfaces.
+ * The stop is inferred at the midpoint of the central gap, z = 14.18 mm; its radius is derived for f/2.
+ * Semi-diameters are inferred, not factory measurements; the rear rims were widened to pass the f/2 beam.
+ * The printed-BF image coordinate is 65.48 mm; the paraxial image coordinate is 65.412061 mm.
+ * Infinity focus only; 1e15 m is a placeholder, not the production lens's 0.3 m close-focus distance.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "olympus-zuiko-auto-s-40mm-f2",
   "maker": "Olympus",
   "name": "OLYMPUS ZUIKO AUTO-S 40mm f/2",
-  "subtitle": "US 4,396,255 A EMBODIMENT 1 \u2014 REPRESENTATIVE SOURCE DESIGN",
+  "subtitle": "US 4,396,255 A, Embodiment 1 — probable production match",
   "visible": true,
   "layout": {
     "yScFill": 0.35
@@ -17,16 +26,16 @@ const LENS_DATA = {
     "imageFormat": "135-full-frame",
     "specs": [
       "6 ELEMENTS / 6 GROUPS",
-      "STATIC INFINITY REPRESENTATIVE",
-      "Assumed helium-d spectral reference; not sodium D",
-      "Inherited engineered apertures, not measured factory rims",
-      "Source and maker full field56deg; bounded clipping retained"
+      "DESIGN f = 40 mm",
+      "ALL SPHERICAL",
+      "f/2–16",
+      "0.3 m CLOSE FOCUS"
     ],
     "elementCount": 6,
     "groupCount": 6,
     "focalLengthMm": {
       "marketing": 40,
-      "design": 40.00067387129505
+      "design": 40
     },
     "fNumber": {
       "marketing": 2,
@@ -58,72 +67,78 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
+      "role": "Positive front element",
       "type": "Positive Meniscus",
       "nd": 1.72,
       "vd": 50.25,
       "indexReference": "d",
       "indexReferenceNote": "Assumed helium-d convention; source n/v definitions do not establish numerical reference wavelength.",
-      "glass": "Unmatched (literal source n/v; no named catalog glass)",
+      "glass": "LAC10 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 74.9443503139604
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
+      "role": "Negative element between the front positive menisci",
       "type": "Negative Meniscus",
       "nd": 1.60729,
       "vd": 49.29,
       "indexReference": "d",
       "indexReferenceNote": "Assumed helium-d convention; source n/v definitions do not establish numerical reference wavelength.",
-      "glass": "Unmatched (literal source n/v; no named catalog glass)",
+      "glass": "BAF5 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -53.31075145322826
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
+      "role": "Positive meniscus immediately before the stop",
       "type": "Positive Meniscus",
       "nd": 1.6825,
       "vd": 44.65,
       "indexReference": "d",
       "indexReferenceNote": "Assumed helium-d convention; source n/v definitions do not establish numerical reference wavelength.",
-      "glass": "Unmatched (literal source n/v; no named catalog glass)",
+      "glass": "BAF22 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 83.25382431728805
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
+      "role": "Negative meniscus immediately behind the stop",
       "type": "Negative Meniscus",
       "nd": 1.76182,
       "vd": 26.55,
       "indexReference": "d",
       "indexReferenceNote": "Assumed helium-d convention; source n/v definitions do not establish numerical reference wavelength.",
-      "glass": "Unmatched (literal source n/v; no named catalog glass)",
+      "glass": "FD140 (HOYA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -19.817297049460652
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
+      "role": "Positive rear meniscus separated from Element 4 by a narrow air gap",
       "type": "Positive Meniscus",
       "nd": 1.726,
       "vd": 53.56,
       "indexReference": "d",
       "indexReferenceNote": "Assumed helium-d convention; source n/v definitions do not establish numerical reference wavelength.",
-      "glass": "Unmatched (literal source n/v; no named catalog glass)",
+      "glass": "Unmatched (nd = 1.726, νd = 53.56)",
       "focalLengthMm": 27.83198457974555
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
+      "role": "Final positive element",
       "type": "Biconvex Positive",
       "nd": 1.757,
       "vd": 47.87,
       "indexReference": "d",
       "indexReferenceNote": "Assumed helium-d convention; source n/v definitions do not establish numerical reference wavelength.",
-      "glass": "Unmatched (literal source n/v; no named catalog glass)",
+      "glass": "S-LAM54 (OHARA catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 37.703909506822335
     }
   ],
@@ -214,7 +229,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1e15,
-    "description": "NO_INTERNAL_RECONSTRUCTION: static infinity-only source. Required 1e15 m schema sentinel is NOT a validated close endpoint. Generic slider/fallback labels can appear but do not represent recovered optical conjugates. No finite movement law."
+    "description": "Infinity focus only; the patent supplies no finite-focus prescription. The production lens uses a straight helicoid and focuses to 0.3 m, as documented in the Olympus handbook."
   },
   "gaps": {},
   "aperture": {

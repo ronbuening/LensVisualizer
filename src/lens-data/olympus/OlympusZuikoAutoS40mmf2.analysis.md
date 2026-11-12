@@ -4,75 +4,68 @@
 **Granted:** 1983-08-02
 **Inventor:** Toshihiro Imai
 **Assignee:** Olympus Optical Co., Ltd.
-**Example details:** Whole Embodiment 1; physical PDF 6 right column and scalar continuation on PDF 7; conditional 40× normalization.
+**Example details:** Embodiment 1; PDF page 6, right column, continuing on page 7. All printed lengths are scaled ×40 from f = 1 to 40 mm.
 
-This is a separate, hidden, representative E1 hypothesis. It is not a replacement or repair of the held E2 model. No primary source selects E1 over E2 as the unique factory prescription. The maker's six-element/six-group section supports the probable family association only. Static success does not demonstrate that E2's clipping problem is solved.
+The design is a probable match to the Olympus Zuiko Auto-S 40mm f/2. The [maker's section](https://esif.world-traveller.org/om-sif/lensgroup/images/40mmf2_diagram.jpg) and the [MIR section](https://www.mir.com.my/rb/photography/hardwares/classics/olympusom1n2/shared/zuiko/images/40mmoptic.gif) show six separate elements and a central iris, consistent with both Embodiments 1 and 2. Neither source uniquely identifies the production prescription. Embodiments 3 and 4 have a cemented pair and fit less well.
 
 ## Optical Architecture
 
-Six separate spherical elements form six air-separated groups. The separate d7-prime gap and r8-prime face are preserved. No cemented interface, asphere, extra plate or E2 Seidel coefficient is introduced. Every radius, thickness and glass pair comes from the whole E1 table.
+Six separate spherical elements form six air-separated groups, with a positive–negative–positive front section and a negative–positive–positive rear section. The central stop separates L3 from L4. The narrow d7-prime air gap between L4 and L5 preserves the separate r8-prime face. Every radius, thickness and glass pair comes from Embodiment 1.
 
 ## Element-by-Element Analysis
 
 ### L1: Positive Meniscus
 
-nd = 1.72, νd = 50.25. Glass: Unmatched (literal source pair; assumed d reference). Isolated thick-element paraxial f = 74.944350 mm at conditional 40× scale. The curvature classification and focal power are calculations, not measured retail data. No native aberration analysis has been performed.
+nd = 1.72, νd = 50.25. Glass: LAC10 (HOYA catalog equivalent). Isolated thick-element paraxial f = +74.944350 mm. The front positive meniscus begins the converging section; its focal power is calculated from the prescription, not measured on the production lens.
 
 ### L2: Negative Meniscus
 
-nd = 1.60729, νd = 49.29. Glass: Unmatched (literal source pair; assumed d reference). Isolated thick-element paraxial f = -53.310751 mm at conditional 40× scale. The curvature classification and focal power are calculations, not measured retail data. No native aberration analysis has been performed.
+nd = 1.60729, νd = 49.29. Glass: BAF5 (HOYA catalog equivalent). Isolated thick-element paraxial f = −53.310751 mm. This negative meniscus lies between the front positive elements.
 
 ### L3: Positive Meniscus
 
-nd = 1.6825, νd = 44.65. Glass: Unmatched (literal source pair; assumed d reference). Isolated thick-element paraxial f = 83.253824 mm at conditional 40× scale. The curvature classification and focal power are calculations, not measured retail data. No native aberration analysis has been performed.
+nd = 1.6825, νd = 44.65. Glass: BAF22 (HOYA catalog equivalent). Isolated thick-element paraxial f = +83.253824 mm. This positive meniscus completes the front section immediately before the stop.
 
 ### L4: Negative Meniscus
 
-nd = 1.76182, νd = 26.55. Glass: Unmatched (literal source pair; assumed d reference). Isolated thick-element paraxial f = -19.817297 mm at conditional 40× scale. The curvature classification and focal power are calculations, not measured retail data. No native aberration analysis has been performed.
+nd = 1.76182, νd = 26.55. Glass: FD140 (HOYA catalog equivalent). Isolated thick-element paraxial f = −19.817297 mm. The strongest negative element lies immediately behind the stop, facing L5 across a narrow air gap.
 
 ### L5: Positive Meniscus
 
-nd = 1.726, νd = 53.56. Glass: Unmatched (literal source pair; assumed d reference). Isolated thick-element paraxial f = 27.831985 mm at conditional 40× scale. The curvature classification and focal power are calculations, not measured retail data. No native aberration analysis has been performed.
+nd = 1.726, νd = 53.56. Glass: Unmatched (nd = 1.726, νd = 53.56). Isolated thick-element paraxial f = +27.831985 mm. This positive meniscus is air-separated from L4; the pair is not cemented.
 
 ### L6: Biconvex Positive
 
-nd = 1.757, νd = 47.87. Glass: Unmatched (literal source pair; assumed d reference). Isolated thick-element paraxial f = 37.703910 mm at conditional 40× scale. The curvature classification and focal power are calculations, not measured retail data. No native aberration analysis has been performed.
+nd = 1.757, νd = 47.87. Glass: S-LAM54 (OHARA catalog equivalent). Isolated thick-element paraxial f = +37.703910 mm. The final biconvex element supplies positive rear power.
 
 ## Glass and Dispersion
 
-The n/v definitions do not state a numerical reference wavelength. The d/F plot labels support a disclosed assumed-helium-d convention, not source certification. Named glasses and full dispersion remain unknown. No catalog glass match is asserted.
+The patent's n/v definitions do not state a numerical reference wavelength. The d/F plot labels and catalog comparisons support treating the printed pairs as helium-d values. LAC10, BAF5, BAF22, FD140 and S-LAM54 provide catalog dispersion curves within 0.0001 in nd and 0.15 in νd of the printed pairs. These are spectral equivalents, not identifications of the historical supplier or melt. L5 has no matching catalog row and retains its printed pair. No element is identified as extra-low dispersion or anomalous partial dispersion by the maker or patent.
 
 ## Focus and Operating Limits
 
-The maker's straight helicoid and 0.3 m minimum focus are catalog context, not a patent finite state or calibrated optical motion law. The hypothesis is fixed at infinity with no variable gaps. The required 1e9 m focus scalar is a schema sentinel, not a physical or validated endpoint; generic fallback labels may still appear.
+The [Olympus handbook mirror](https://esif.world-traveller.org/om-sif/lensgroup/40mmf2.htm) documents a straight helicoid, 0.30 m minimum focus and an f/2–16 aperture range. The model is fixed at infinity with no variable gaps; the patent supplies no finite-focus prescription. The 1e15 m focus value is an infinity-only placeholder, not a physical close-focus endpoint.
 
-### Whole-E1 Differences and Image Plane
+### Embodiment Differences and Image Plane
 
-Compared with E2, E1 has L2 thickness 0.033 instead of 0.040, d4 of 0.043 instead of 0.035, L3 thickness 0.089 instead of 0.061, central d6 of 0.235 instead of 0.234, and rear split d7-prime of 0.008 instead of 0.013. Multiple radii and three glass pairs also differ. These changes are retained together, never selected piecemeal to improve clearance.
+Compared with Embodiment 2, Embodiment 1 has normalized L2 thickness 0.033 instead of 0.040, d4 of 0.043 instead of 0.035, L3 thickness 0.089 instead of 0.061, central d6 of 0.235 instead of 0.234, and rear d7-prime of 0.008 instead of 0.013. Multiple radii and three glass pairs also differ. The model follows Embodiment 1 throughout.
 
-The selected image plane retains printed BF: 40 × (0.719 + 0.918) = 65.48 mm. Source L = 1.64 gives 65.6 mm at this scale. The apparent difference is consistent with source rounding: 1.637 rounds to 1.64. Likewise E2's 1.614 rounds to its printed 1.61; these are not necessarily contradictory totals. Independent first-order calculation gives EFL 40.0006738713 mm, BFL 36.6520614099 mm and image coordinate 65.4120614099 mm. Its -0.0679385901 mm BF residual is distinct from the L rounding issue. No source value or image plane is tuned.
+The stored image plane retains printed BF: 36.72 mm, giving an image coordinate of 65.48 mm. The printed L = 1.64 corresponds to 65.6 mm; the difference is consistent with rounding because the sum of normalized thicknesses and BF is 1.637. Likewise Embodiment 2's 1.614 rounds to its printed 1.61. Independent first-order calculation gives EFL 40.0006738713 mm, BFL 36.6520614099 mm and image coordinate 65.4120614099 mm. The calculated BF is 0.0679385901 mm shorter than the printed BF, a separate issue from L rounding.
 
-### Stop and Rim Hypotheses
+### Stop, Rims and Field Limits
 
-The stop is an inferred midpoint at z = 14.18 mm inside the source-supported central gap 9.48–18.88 mm. Its exact coordinate and diameter are not supplied. Clear apertures are also absent. The hypothesized surface caps are [12,12,10,10,9.5,9.5,8.1,8.1,9.4,9.4,12,12] mm. These are independent modeling assumptions, not recovered factory rim measurements.
+The stop is inferred at z = 14.18 mm, the midpoint of the central gap from 9.48 to 18.88 mm. Its exact coordinate and diameter are not printed. The model's f/2 stop radius is 8.090841 mm. Clear apertures are also absent from the patent. The modeled semi-diameters are [12, 12, 10, 10, 9.5, 9.5, 9, 9, 9.7, 9.7, 12, 12] mm. The L4 rims were widened from 8.1 to 9.0 mm and the L5 rims from 9.4 to 9.7 mm during integration to pass the f/2 beam. These dimensions are modeling assumptions, not factory measurements.
 
-Spherical-domain, positive separation and conservative 80% air-gap intrusion checks pass; maximum air-gap intrusion is 76.45% at d7-prime, below the unchanged native default 90%. The largest rim angle is below the default limit. Independent first-order nominal-f/2 heights fit these caps, and a disk at the paraxial stop radius clears the neighboring spherical faces statically. These historical static checks alone did not establish ray passage. Fresh bounded native results below are separate evidence, not factory-aperture certification.
+L4 and L5 nearly touch at their outer edges across the 0.32 mm axial air gap, consistent with the maker's section. The patent's Figure 1 supports the topology and relative outlines, but does not supply calibrated rim dimensions. The maker's 25 mm barrel length is not the optical vertex track.
 
-### Focused Validation Status
-
-Fresh strict TypeScript semantic and native construction checks pass against frozen e3434b. Whole-table parity passes all12 radii,11 internal gaps and6 n/V pairs. Image plane65.48mm is unchanged. Native nominalF2 uses entrance-pupil radius10.00016847mm and inferred physical iris radius8.09084123mm; it is not aperture-clamped in this diagnostic.
-
-A modest25-sample two-dimensional pupil grid plus separate chief (center counted twice) gives axis26pass;14°20pass/6clip;21°14pass/12clip;28°10pass/11clip/5launch-blocked. All chiefs reached image. These are coverage diagnostics, not throughput fractions, MTF reproduction or factory performance. Launch failure is distinguished from traced clipping. The initial test unintentionally inherited a33.8637° default half-field; that result remains archived separately, and the corrected test targeted14/21/28° explicitly. This v2 declares56° full field from both source and maker.
-
-Inherited caps are engineering assumptions, not dimensions recoverable from Fig1. Historical config records smaller initial L3/L4/L5 caps subsequently changed before native testing. No cap was changed in this resumed pass. Figure1 supports topology and relative shoulder envelopes only; it is shared by E1/E2 and uncalibrated. Maker barrel25mm is not the optical vertex track and is not used to calibrate caps. Clear-rim provenance remains qualified. No independent physical-dimension or factory-aperture certification follows from axial passage.
-
-Full corpus integration, compiled-viewer checks, MTF and full acceptance remain outstanding. E2 failures are unchanged; selecting whole E1 does not repair E2 or uniquely identify the retail prescription.
+The patent and maker both state a 56° full field. At the declared 28° half-field, the modeled image height is about 20.87 mm against the 21.65 mm full-frame corner, or 96.4% radial coverage. The corner chief is reachable near 28.9°, corresponding to a 57.8° full field, beyond the declared field limit. This difference reflects the field declaration rather than rim clipping. Off-axis throughput has not been established as a percentage.
 
 ## Aspherical Surfaces and Special Components
 
-All12 interfaces are spherical. No aspheric coefficient, cemented interface or camera plate is prescribed; none is added. The separate r8-prime and d7-prime airspace remains literal. No finite-focus cam, stabilization group or factory spectral melt is supplied.
+All 12 interfaces are spherical. No cemented interface, camera plate or stabilization group is prescribed. The separate r8-prime face and d7-prime airspace are retained. The historical glass melts and finite-focus motion remain unknown.
 
 ### Sources
 
 - [Original patent](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/4396255).
-- Original maker leaflet and patent custody remain in the existing archive identified by SOURCE_HANDOFF.txt. No original source was downloaded or uploaded again.
+- [Olympus handbook mirror: Zuiko 40mm/F2 specifications](https://esif.world-traveller.org/om-sif/lensgroup/40mmf2.htm) and [optical section](https://esif.world-traveller.org/om-sif/lensgroup/images/40mmf2_diagram.jpg).
+- [MIR: Zuiko AUTO-S 40mm f/2.0 specifications and section](https://www.mir.com.my/rb/photography/hardwares/classics/olympusom1n2/shared/zuiko/htmls/40mm.htm).
