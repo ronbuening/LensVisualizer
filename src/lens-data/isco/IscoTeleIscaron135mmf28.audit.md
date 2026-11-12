@@ -229,3 +229,9 @@ historical suppliers and measured polychromatic performance remain unconfirmed. 
 ends at f/16 and the built engine reports maxFstop = 16 despite authored fStops/specs extending to f/22; this
 UI/default-aperture limitation is outside the permitted numeric-aperture edits. Post-edit page/inspector
 re-shoot remains with the coordinator.
+
+## 2026-11-12 — Coordinator follow-up to the second review
+
+The page was re-shot after the review: the I–III component brackets, L1–L4 labels and inspector focal lengths render cleanly.
+The aperture slider stopped at f/16 because `aperture.maxFNumber` was missing and defaults to 16. It is now 22, the f/2.8–22
+range the cited Exakta reference gives for both versions.

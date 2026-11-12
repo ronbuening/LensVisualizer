@@ -307,3 +307,10 @@ astigmatism-curve parity remain unresolved. Exact glass labels alone do not esta
 Open: the seven lower-corner marginal solver failures, inferred iris schedule and S5 opacity,
 disabled finite-focus source inconsistency (PDF p. 34), calculated cam limitations, Table 17 ratio issue,
 production identity, decentered OIS and broader application checks retain their earlier qualifications.
+
+## 2026-11-12 — Coordinator follow-up to the second review
+
+The second review's open items are closed. The page was re-shot after the review: the L1–L5 brackets, `C3 OIS`, the element
+numerals 1–12 and the inspector focal lengths render without collisions (numerals 8 and 10 step down a row). The aperture
+slider stopped at f/16 because `aperture.maxFNumber` was missing and defaults to 16. It is now 22, the wide-end minimum aperture
+in Samsung's brochure, so the slider reaches the stored f/22. The telephoto f/36 minimum stays unmodelled.

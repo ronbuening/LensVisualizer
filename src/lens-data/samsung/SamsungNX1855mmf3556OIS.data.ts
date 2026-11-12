@@ -813,7 +813,8 @@ const LENS_DATA = {
       11,
       16,
       22
-    ]
+    ],
+    "maxFNumber": 22
   },
   "projection": {
     "kind": "rectilinear"
