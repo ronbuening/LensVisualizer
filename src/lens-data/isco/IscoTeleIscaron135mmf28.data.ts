@@ -17,10 +17,12 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "diagramLabel": "L1",
       "nd": 1.58913,
       "vd": 61.2,
       "indexReference": "d",
-      "glass": "SK5 (Schott)",
+      "glass": "SK5 (Sumita catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 196.90,
       "label": "Element 1",
       "type": "Positive Meniscus",
       "role": "Positive front singlet before the cemented middle pair"
@@ -28,10 +30,12 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L2",
+      "diagramLabel": "L2",
       "nd": 1.589,
       "vd": 48.6,
       "indexReference": "d",
       "glass": "BAF6 (Hoya catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 66.87,
       "label": "Element 2",
       "type": "Biconvex Positive",
       "role": "Positive front member of the cemented middle pair",
@@ -40,10 +44,12 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L3",
+      "diagramLabel": "L3",
       "nd": 1.74077,
       "vd": 27.7,
       "indexReference": "d",
       "glass": "E-FD13 (Hoya catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -34.49,
       "label": "Element 3",
       "type": "Biconcave Negative",
       "role": "Negative rear member of the cemented middle pair",
@@ -52,10 +58,12 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
+      "diagramLabel": "L4",
       "nd": 1.6727,
       "vd": 32.2,
       "indexReference": "d",
       "glass": "SF5 (Schott)",
+      "focalLengthMm": 114.59,
       "label": "Element 4",
       "type": "Plano-Convex Positive",
       "role": "Positive rear singlet behind the iris"
@@ -138,6 +146,23 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.7
   },
+  "groups": [
+    {
+      "text": "I",
+      "fromSurface": "1",
+      "toSurface": "2"
+    },
+    {
+      "text": "II",
+      "fromSurface": "3",
+      "toSurface": "5"
+    },
+    {
+      "text": "III",
+      "fromSurface": "6",
+      "toSurface": "7"
+    }
+  ],
   "doublets": [
     {
       "text": "C1",

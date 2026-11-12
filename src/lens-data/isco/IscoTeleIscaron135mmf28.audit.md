@@ -11,6 +11,7 @@ Literal Table A is chosen as first embodiment, not by lower BFL error. B remains
 Not run: full current corpus/integration validation, application build, compiled viewer/rendered comparison, dense pupil/field sweeps, polychromatic MTF, factory-mechanical reconstruction, finite focus. Sparse transmission is not full optical acceptance. Independent boundary review identified the R5 concern addressed below. No full-field acceptance follows from that correction. Private archive readback has not been performed in this authoring step.
 
 ## Additive v2 independent boundary correction
+
 R5 only: inferred optical semi-diameter23.625→18.63mm, from originalFigure1 optical endpoint rather than bevelled componentrim. PRETRACE_R5_CORRECTION.json was frozen before native execution. All literal prescription/material/stop/plane values unchanged. Actualmodule/JSON parity, native construction and strictsemanticTS pass freshly. Sparse counts unchanged:26okaxis;21ok5cliphalf;15ok6clip5blockedretail9.1deg.14deg remains outside retailprojection/untraced. No other optical edits or override. V1 PRETRACE_INFERENCE and originalfigure remain in adjacentv1 folder; not duplicated here. No fullacceptance claim.
 
 ## Deployment validation (2026-11-12)
@@ -79,11 +80,11 @@ its citation and facts are retained from the supplied validation report. No down
 formatter or git state change was performed. No sandbox or approval denial occurred.
 
 Open: exact production prescription and assignment to preset (1957, 1.35 m) or automatic (1959, 1.5 m) version;
-production focusing motion/travel and finite-focus spacings; unresolved period glass rows for L1–L3 and actual
-supplier/melt identities; drawing-derived iris/rim dimensions (approximately ±0.8 patent-unit uncertainty), with
+production focusing motion/travel and finite-focus spacings; actual historical glass suppliers/melt identities;
+drawing-derived iris/rim dimensions (approximately ±0.8 patent-unit uncertainty), with
 the inferred front rims insufficient for ±14° despite clear retail-field axial/chief rays and peripheral
-vignetting; unconfirmed production polychromatic performance; final rendered title/specs/focus-panel review
-when the dev server is available. Optics and rims were not edited.
+vignetting; unconfirmed production polychromatic performance. Catalogue-curve coverage and the supplied rendered
+title/specs/focus-panel review are closed by the glass pass and second review below. Optics and rims were not edited.
 
 Coordinator follow-up (same day): L1 relabelled `Unmatched (nd = 1.58913, νd = 61.2)` → `SK5 (Schott)`. The label resolves
 to the catalogue's SK5 row (nd 1.58913, νd 61.2; Δnd = 0, Δνd = 0), the classic Schott composition that the corpus
@@ -107,15 +108,15 @@ and its straight construction stroke. Approximate figure values below use the tr
 ±0.8 patent-unit uncertainty is ±1.08 mm at model scale. Ratios are figure/stored. No optical rim departed
 by the ≳10% change threshold; all agree within the 5–8% measurement-noise band.
 
-| Surface | Before sd (mm) | Figure sd (mm, approx.) | Ratio | After sd (mm) | Evidence / decision |
-| --- | ---: | ---: | ---: | ---: | --- |
-| 1 | 25.785 | 25.3 | 0.982 | 25.785 | Front component optical rim; retain square paired height. |
-| 2 | 25.785 | 25.3 | 0.982 | 25.785 | Same front component; retain. |
-| 3 | 23.625 | 23.5 | 0.996 | 23.625 | Flat outer edge of cemented component; retain. |
-| 4 | 23.625 | 23.5 | 0.996 | 23.625 | Cemented junction at the same outer height; retain without a land. |
-| 5 | 18.630 | 18.5 | 0.991 | 18.630 | Curved optical endpoint before the bevel; retain. |
-| 6 | 18.900 | 18.5 | 0.977 | 18.900 | Rear singlet; retain square paired height. |
-| 7 | 18.900 | 18.5 | 0.977 | 18.900 | Rear plane face; retain. |
+| Surface | Before sd (mm) | Figure sd (mm, approx.) | Ratio | After sd (mm) | Evidence / decision                                                |
+| ------- | -------------: | ----------------------: | ----: | ------------: | ------------------------------------------------------------------ |
+| 1       |         25.785 |                    25.3 | 0.982 |        25.785 | Front component optical rim; retain square paired height.          |
+| 2       |         25.785 |                    25.3 | 0.982 |        25.785 | Same front component; retain.                                      |
+| 3       |         23.625 |                    23.5 | 0.996 |        23.625 | Flat outer edge of cemented component; retain.                     |
+| 4       |         23.625 |                    23.5 | 0.996 |        23.625 | Cemented junction at the same outer height; retain without a land. |
+| 5       |         18.630 |                    18.5 | 0.991 |        18.630 | Curved optical endpoint before the bevel; retain.                  |
+| 6       |         18.900 |                    18.5 | 0.977 |        18.900 | Rear singlet; retain square paired height.                         |
+| 7       |         18.900 |                    18.5 | 0.977 |        18.900 | Rear plane face; retain.                                           |
 
 No sd, innerSd, cut, extension or check override changed. A vertical rim extension would replace the source's
 diagonal bevel with a square land; the model instead retains its simple optical-edge join. No inferred aperture
@@ -148,11 +149,83 @@ elements are spherical or plane. This image supports topology, not a factory-exa
 
 The patent's bibliographic front matter on PDF page 2 names Rudolf Solisch, Göttingen, assignor to Isco Optische
 Werke G.m.b.H., Göttingen-Weende; US 2,972,285, patented February 21, 1961, filed November 13, 1958.
-No new name or source-metadata mismatch was found. Outside this pass's remit, the analysis glass-selection
-paragraph still says L1–L3 remain unmatched, although the data and coordinator follow-up now give L1 SK5
-(Schott); this wording was left to the coordinator. The unsupported patent ±14° field remains an open model
+No new name or source-metadata mismatch was found. The analysis glass-selection wording about unmatched L1–L3
+was subsequently closed by the coordinator's glass coverage pass; the second review below corrects L1's
+catalogue-vendor attribution. The unsupported patent ±14° field remains an open model
 limitation, as do production/version identity and finite-focus mechanics. No sandbox or approval refusal occurred.
 
 ## 2026-11-12 — Glass coverage pass
 
 L2 `Unmatched (nd = 1.58900, νd = 48.6)` → `BAF6 (Hoya catalog equivalent; …)` (Δnd = +0.000003, Δνd = −0.06) and L3 `Unmatched (nd = 1.74077, νd = 27.7)` → `E-FD13 (Hoya catalog equivalent; …)` (Δnd = 0, Δνd = +0.06). Both rows were already in the catalogue; every element of the lens now traces on a catalogue curve.
+
+## 2026-11-12 — Second review: diagram, labels and movement
+
+Compared the coordinator's current `shots/iscaron135/page.png` and all four element-inspector shots against local
+`US2972285A.pdf`, PDF page 1 Figure 1 and page 2 Table A and accompanying component descriptions. Read PDF page 3
+for Table B, claims and possible additional glass/colour data. Re-inspected the SD pass's matched-scale
+`sd/iscaron135/overlay.png` and native-resolution figure crop. Its two axial calibrations, 5.906 and 5.871 px/model mm,
+agree within 0.6%; the previous orthogonal arc checks agree within 1.6%. No new figure mismatch exceeds reading
+uncertainty. The front component remains taller than the middle component, which remains taller than the rear.
+R5's curved optical endpoint remains 18.63 mm (figure approximately 18.5 mm), excluding the bevel and straight
+construction stroke. The middle component's mechanical bevel is not modeled as an opaque land.
+
+The earlier deployment/SD record, rather than a freshly viewed maker image, supplies the maker comparison:
+four elements/three groups, cemented L2–L3, matching curvature signs, no identified special-glass or aspheric
+positions. It reports a relatively thinner L1 and no drawn iris, so only topology is corroborated.
+
+| Item                         | Before → after                                                                      | Evidence and verdict                                                                                                                                                                 |
+| ---------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Optical rims, surfaces 1–7   | 25.785 / 25.785 / 23.625 / 23.625 / 18.63 / 18.9 / 18.9 mm, unchanged               | Figure 1 agreement within the previous reading uncertainty; retain the square paired rims and R5 optical endpoint.                                                                   |
+| Component annotations        | None → I: 1–2; II: 3–5; III: 6–7                                                    | Table A and page 2 name singlet I, doublet II and rear component III. No parent front-group annotation is added.                                                                     |
+| Element diagram designations | Runtime numbers 1–4 → L1–L4                                                         | Patent page 2 uses L1–L4; names already agree.                                                                                                                                       |
+| Inspector focal lengths      | All absent → +196.90, +66.87, −34.49, +114.59 mm                                    | Paraxial thick-lens-in-air calculation from the literal radii, thicknesses and indices; the existing analysis already quotes these values. C1's combined focal length is −201.75 mm. |
+| L1 glass label               | `SK5 (Schott)` → `SK5 (Sumita catalog equivalent; production supplier unspecified)` | The resolving SK5 row is Sumita, not Schott. Nominal row Δnd = 0 and Δνd = 0; evaluated polynomial Δnd ≈ +0.0000017 and Δνd ≈ +0.06. The curve itself does not change.               |
+
+Lands/cuts: no surface is below the specified pre-SD baseline; there are no `rimExtensionSd`, `rimCutDepthMm`
+or policy overrides. The final full-pupil `rimcost.mjs --loo` comparison gives worst loss **0.0 points** against
+`.lens-work/base1122sd/IscoTeleIscaron135mmf28.data.ts`. Transmission at 0.0/1.5/3.0/4.5/6.0/7.6/9.1° remains
+100.0/96.7/89.8/82.9/75.6/68.3/60.7%; corner 60.7% → 60.7%. No finite-conjugate state exists to compare.
+
+Movement: I (vertices 0–5.3325 mm), II (6.1425–48.1275 mm) and III (74.115–79.920 mm) all have zero modeled
+travel. There are no variable gaps, zoom stations or focus keyframes to reorder. The inferred iris is at
+64.5975 mm, between L3 and L4: 16.47 + 9.5175 = 25.9875 mm, exactly the printed 19.25-unit gap scaled ×1.35
+and split 12.2 + 7.05 units. Its radius remains engine-derived, 11.736582 mm. Production focusing mechanics
+are not established by the cited sources; the static infinity description and disabled infinity/Not modeled
+slider correctly avoid inventing travel. Probe's fallback second endpoint is an infinity image-plane offset,
+not a published finite-focus state. C1 still spans surfaces 3–5 and tags both L2 and L3. All shape types agree
+with the radius signs; no aspheres or APD claims appear in the patent or the model.
+
+Every glass label resolves within |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15. Retained L2 BAF6 has nominal deltas
++0.000003/−0.056016, L3 E-FD13 0/+0.06, and L4 SF5 0/+0.01. N-SK5 (Schott) is an available modern alternative
+for L1 at 0/+0.07, but is less exact in nominal Abbe number and does not establish the historical supplier.
+No unresolved element or missing-catalogue-row proposal remains. Page 2 Table A and page 3 Table B supply
+only index/Abbe pairs: L1, L2 and L4 recur; Table B's L3 instead gives 1.72825/28.3. No glass names,
+additional spectral indices, partial dispersions, C/d/F/g aberration curves, astigmatism plots or distortion
+plots are printed. There is no constant-index/nd-only medium or copied spectral index disabling or bypassing
+catalogue dispersion. All four curves are qualified proxies, without historical melt or supplier identification.
+
+Assignee: page 2 prints Isco Optische Werke G.m.b.H., Göttingen-Weende. `Isco Optische Werke GmbH` is a
+punctuation-normalized equivalent. A worktree corpus search found this sole ISCO assignee row and no competing
+variant to consolidate; source metadata was not edited.
+
+Before → after: EFL 134.989336 → 134.989336 mm; engine half-field 9.1 → 9.1°; tracing half-field
+12.299301 → 12.299301°; FOPEN 2.8 → 2.8; paraxial BFD 57.8282 → 57.8282 mm. Surface audit: OK, no validation
+errors. Aperture: one station within 3%, zero rim/trace/iris limits and zero failures. Image-circle: zero
+undersized surfaces. Field coverage: one station ≥99%, zero unsolved. Exact meridional clearance at 9.1°
+has no axial clip or blocked chief ray; tightest axial margin is about 0.55 mm at surface 3. The engine builds
+without throwing and the stored inspector focal lengths agree with the recomputed values.
+
+The supplied page shows the correct title/specs, 4/3 silhouette, C1, stop between L3/L4 and disabled static
+focus. All four inspector types/glass lines were read; their missing focal lengths and L1 attribution are
+corrected above. A post-edit model sketch was rendered and viewed at
+`/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/iscaron135/rv-model.png`;
+it confirms unchanged optical geometry but does not render the new annotation text. The re-checked matched-scale
+side-by-side remains `sd/iscaron135/overlay.png`. No browser was run; the coordinator must re-shoot annotations
+and inspectors after these edits. No changelog entry or other lens was edited. No sandbox refusal occurred.
+
+Open: the patent's ±14° field on PDF page 2 remains unsupported by the inferred front rims; modeled retail
+field is ±9.1°. Exact production/version identity, production focusing mechanism/travel, factory rims/iris,
+historical suppliers and measured polychromatic performance remain unconfirmed. The supplied aperture slider
+ends at f/16 and the built engine reports maxFstop = 16 despite authored fStops/specs extending to f/22; this
+UI/default-aperture limitation is outside the permitted numeric-aperture edits. Post-edit page/inspector
+re-shoot remains with the coordinator.
