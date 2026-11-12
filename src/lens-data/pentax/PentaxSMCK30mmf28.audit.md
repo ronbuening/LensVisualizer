@@ -89,3 +89,78 @@ Open:
 - Finite-focus spacings are absent; the 0.30 m production minimum is not modeled.
 - The derived 37.2 mm image gap remains about 0.055 mm short of paraxial focus; source rounding is only a possible cause.
 - The direct maker-diagram image and final rendered-page review remain unverified; the screenshot helper produced no PNG.
+
+## 2026-11-12 — Semi-diameter pass against the patent figure
+
+**Result: no rim change needed.** All 14 refracting semi-diameters, the inferred iris and all geometry allowances
+are retained. The header and analysis now describe the final rim limits and geometric corner transmission.
+
+Source: the local `patents/US3975091A.pdf`, PDF page 3, Figure 3, Example 2 / Table 2, with every prescription
+length multiplied by 0.3 from F = 100. The existing 250 dpi crop starts at page coordinates (580, 350).
+The local optical axis lies near page y = 776–778. First-to-last vertices near x = 622 and 1305 span
+683 pixels / 45.363 mm = 15.056 px/mm. The independent R7–R14 span, about 338 pixels / 22.317 mm,
+gives 15.145 px/mm; R1–R7 gives about 14.97 px/mm. These axial spans agree to approximately 1%.
+
+A spherical-sag cross-check of the clean R1 arc against its scaled radius 30.918 mm does not give an isotropic
+scale: with 15.06 axial px/mm, upper/lower samples imply roughly 16.3–16.8 vertical px/mm. For example, at
+page rows 590 and 960 the front arc crosses x ≈ 656 and 651.5, against vertex x ≈ 621.8 and arc centre y ≈ 779.5.
+Thus a single precise figure-to-glass scale is unsupported. There is no unambiguous source iris tick to add an
+independent stop scale; the inferred midpoint iris is not treated as figure evidence. The half-span rim readings
+below use both edges to reduce axis skew, exclude leaders and hatching, and retain approximately ±0.35 mm reading
+uncertainty plus the systematic drawing distortion.
+
+| Surface labels | Before → after sd (mm) | Figure estimate at 15.06 px/mm (mm) | Figure / stored | Decision |
+| --- | --- | --- | --- | --- |
+| 1, 2 | 17.7 → 17.7 each | 18.06 | 1.020 | 544-pixel rim span; within noise. |
+| 3 | 15.0 → 15.0 | 15.34 | 1.023 | 462-pixel shoulder span; retain its relation to R4. |
+| 4 | 10.8 → 10.8 | ≈10.9 optical endpoint | ≈1.01 | Curved face ends before the L2 shoulder; do not extend the sphere to 15 mm. |
+| 5, 6 | 9.7 → 9.7 each | 9.84 | 1.015 | Approximately 296.5-pixel span; square rims retained. |
+| 7, 8 | 6.7 → 6.7 each | 7.14 | 1.065 | 215-pixel span; difference is within schematic scale uncertainty. |
+| 9, 10 | 6.4 → 6.4 each | 6.99 | 1.092 | 210.5-pixel span; borderline apparent difference is below 10% and scale-dependent. L5 remains slightly smaller than L4. |
+| 11, 12 | 8.6 → 8.6 each | 8.93 | 1.039 | 269-pixel span; retain the integration chief-ray floor. |
+| 13, 14 | 10.4 → 10.4 each | 10.79 | 1.037 | 325-pixel span; retain the integration chief-ray floor. |
+
+The comparison sketch was rendered and viewed at 15.06 px/mm, with the first vertex and optical axis aligned
+beside the patent crop. Relative element heights, the smaller R4 optical face, square middle elements and paired
+rear menisci agree within schematic uncertainty. The straight model joins do not reproduce the patent's drawn
+bevels. No cut, peripheral extension or gap allowance was introduced. Baseline and final outlines coincide.
+The saved matched-scale comparison is
+`/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/smc30/overlay.png`.
+
+Surface audit: OK, no validation errors. Image-circle audit: zero undersized surfaces. Aperture audit: one station
+within 3% of f/2.8, zero rim, trace, iris or failed stations. Field coverage: one station at ≥99%, zero unsolved
+or skipped stations. Both meridional clearance solvers at 36° find no axial or chief-ray clipping. The largest
+axial height is 6.97 mm at R12, versus sd 8.6 mm; tight middle axial clearances include R7/R8 heights 6.34 mm
+versus sd 6.7 mm and R10 height 6.23 mm versus sd 6.4 mm. Chief heights at R12/R14 are approximately
+8.51/10.29 mm versus 8.6/10.4 mm, respectively. One lower full-field marginal launch remains unsolved in both
+diagnostics; the surviving off-axis bundle is vignetted, not asserted fully clear. Longitudinal spherical
+aberration at pupil fractions 1/0.85/0.7/0.5 is +0.156/−0.139/−0.199/−0.143 mm, consistent with the previous
+prescription result; no rim was raised from this diagnostic.
+
+Engine before → after: EFL 29.996829966 → 29.996829966 mm; FOPEN 2.8 → 2.8; halfField 36° → 36°;
+tracingHalfField estimate 29.991808° → 29.991808°; stop radius 5.681782440 → 5.681782440 mm.
+The engine's reduced tracing-field estimate is distinct from the successful 36° chief-ray coverage check.
+The final `rimcost.mjs --loo` comparison against the committed cleanup baseline finds zero changes and zero
+illumination loss at every sampled field. Wide-open geometric transmission before → after is 100.0 → 100.0%
+on axis, 71.9 → 71.9% at 18°, 51.0 → 51.0% at 30°, and **39.6 → 39.6% at 36°**. These are pupil-transmission
+fractions, not photometric illumination including cosine-fourth falloff or coatings. There are no finite-focus
+prescriptions or zoom stations to add.
+
+The previously saved production construction raster `v-smc30/diagrams/pentax30-optics.jpg` was viewed locally.
+It shows seven separate singlets / seven groups and the same rear-meniscus topology. Its middle elements are
+similar in height and its L2 shoulder is more rectangular than the patent/model diagonal join. It provides no
+special-glass or asphere markings at any front-to-rear element position; no new material identification follows.
+Its direct manufacturer provenance remains unverified. The earlier brochure comparison in Deployment validation
+remains the basis of the production association. No browser or live page check ran; the coordinator retains that
+step. The matched-scale model sketch is complete.
+
+PDF page 1 was viewed: inventor Takahashi, Yasuo; assignee Asahi Kogaku Kogyo Kabushiki Kaisha; publication
+US 3,975,091 A, August 17, 1976; filed April 21, 1975. The model uses the established canonical English assignee.
+The existing Table 2 / claim 2 R12 discrepancy and derived-image-gap caveat remain open source limitations.
+Name review for the coordinator: the display name contains both an initial “PENTAX” and “SMC PENTAX”; no name
+or metadata field was edited. No command was refused by the sandbox or approval policy.
+
+Final checks reproduced the surface, aperture, image-circle, field-coverage, engine and illumination results above.
+The complete parsed data object equals the committed cleanup baseline; the data-file edit is confined to its rim
+header comment. Targeted Prettier write/check commands completed, but the repository ignore rules exclude both
+`src/lens-data/` and Markdown, so those commands did not reformat these files. The scoped whitespace diff check passed.

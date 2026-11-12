@@ -15,7 +15,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * of the L3–L4 gap, 3.1335 mm from either end; its radius follows from f/2.8. Rims are estimated
  * from Figure 3 with about ±0.35 mm reading uncertainty plus drawing distortion. The R4 optical
  * face is 10.8 mm rather than the 15 mm shoulder at R3. Rear semi-diameters at R11/R12 and
- * R13/R14 were widened to 8.6 and 10.4 mm to pass the 36° corner chief ray.
+ * R13/R14 are 8.6 and 10.4 mm to pass the 36° corner chief ray. A matched-scale Figure 3
+ * comparison retains all 14 rims: apparent differences remain below about 10%, with axial
+ * and arc-based scales disagreeing because the drawing is schematic. Real-ray checks find
+ * no axial or corner-chief clipping; geometric pupil transmission at 36° is about 39.6%.
  *
  * Infinity focus only: no finite-focus spacings are printed. focus.closeFocusM = 1e15 is a
  * placeholder; catalog.closeFocusM.marketing records the production lens's 0.30 m minimum.
