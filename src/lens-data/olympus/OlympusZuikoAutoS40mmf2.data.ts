@@ -5,7 +5,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * All printed lengths are scaled ×40 from f = 1 to 40 mm. Radii, thicknesses, glass pairs and BF are printed;
  * helium-d is the assumed spectral reference. All surfaces are spherical, with no cemented interfaces.
  * The stop is inferred at the midpoint of the central gap, z = 14.18 mm; its radius is derived for f/2.
- * Semi-diameters are inferred, not factory measurements; the rear rims were widened to pass the f/2 beam.
+ * Semi-diameters are estimated from Fig. 1 after ×40 scaling, and ray-floor checked.
+ * Bevels are excluded from optical caps; the near-touching L4/L5 retain their engine f/2 floors and 0.95 gap budget.
  * The printed-BF image coordinate is 65.48 mm; the paraxial image coordinate is 65.412061 mm.
  * Infinity focus only; 1e15 m is a placeholder, not the production lens's 0.3 m close-focus distance.
  */
@@ -147,20 +148,20 @@ const LENS_DATA = {
       "label": "1",
       "R": 42.88,
       "d": 2.8000000000000003,
-      "sd": 12,
+      "sd": 13.5,
       "medium": 1
     },
     {
       "label": "2",
       "R": 203.12,
       "d": 0.08,
-      "sd": 12
+      "sd": 13.5
     },
     {
       "label": "3",
       "R": 18.560000000000002,
       "d": 1.32,
-      "sd": 10,
+      "sd": 11.2,
       "medium": 2
     },
     {
@@ -217,14 +218,14 @@ const LENS_DATA = {
       "label": "11",
       "R": 199.04,
       "d": 3.88,
-      "sd": 12,
+      "sd": 13.5,
       "medium": 6
     },
     {
       "label": "12",
       "R": -33.04,
       "d": 36.72,
-      "sd": 12
+      "sd": 13.5
     }
   ],
   "focus": {

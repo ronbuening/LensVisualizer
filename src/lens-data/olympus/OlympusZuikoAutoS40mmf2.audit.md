@@ -77,6 +77,99 @@ rim/trace/iris limits or failures. The field audit remains in the 90–99% cover
 Open: the maker/patent 56° field reaches about 96.4% of the format corner; the approximately 57.8° full-frame corner
 remains beyond the declared field. Embodiment 1 versus 2 production identity remains unresolved. Stop position and
 clear rims remain inferred; L5 glass, historical glass suppliers/melts, and finite-focus motion remain unknown.
-Off-axis throughput has not been established as a percentage. The requested rendered-page review could not be
+Closed: off-axis throughput is quantified in the semi-diameter pass below. The requested rendered-page review could not be
 completed: the screenshot helper produced no PNG, and localhost:5173 did not accept a connection. No server was
 started. No command was refused by the sandbox or approval policy. Prettier was skipped as directed by the addendum.
+
+## 2026-11-12 — Semi-diameter pass against the patent figure
+
+Source: local `patents/US4396255A.pdf`, PDF page 2, Fig. 1, the shared sectional drawing of Embodiments 1 and 2.
+Embodiment 1 remains the prescription, with all lengths scaled ×40. The scan is natively 300 dpi (2320 × 3408 px);
+a 600 dpi crop was inspected for optical endpoints and bevels, with measurements made on the native scan.
+The local axis runs from about y = 985 at the front to 982 at the rear; labels, leaders and the bevel beyond each
+optical cap were excluded.
+
+The first-to-last vertex span is about 531 px / 28.76 mm = 18.5 px/mm. Independent front and rear vertex spans
+give approximately 17.8 and 19.1 px/mm. Axis-constrained spherical arc fits give a transverse scale of about
+18.3 px/mm from S1, 19.3 from S12 and 20.1 from S7 when the common axial scale is fixed at 18.5 px/mm.
+These checks identify a schematic shared drawing, rather than a metrically exact E1 section; individual cap
+heights have roughly 5–8% drawing uncertainty. The matched-scale sketch confirms the roughly 12% outer-rim
+shortfall and L2 front-cap shortfall. No iris tick is drawn, so the inferred iris cannot supply an independent
+figure scale.
+
+| Surface | Before sd (mm) | After sd (mm) | Native cap height / figure estimate | Basis |
+| --- | ---: | ---: | --- | --- |
+| 1 | 12.0 | 13.5 | about 249 px / 13.5 mm | L1 optical outline; square rim retained |
+| 2 | 12.0 | 13.5 | about 249 px / 13.5 mm | Same square-cut L1 edge |
+| 3 | 10.0 | 11.2 | about 208 px / 11.2 mm | L2 front curve ends above the rear optical cap |
+| 11 | 12.0 | 13.5 | about 247–253 px / 13.4–13.7 mm | L6 optical outline; square rim retained |
+| 12 | 12.0 | 13.5 | about 247–253 px / 13.4–13.7 mm | Same square-cut L6 edge |
+
+Retained values and limits:
+
+| Surfaces | Retained sd (mm) | Figure estimate (mm) | Reason |
+| --- | ---: | ---: | --- |
+| 4 | 10.0 | about 9.7 | Optical curve endpoint before L2's bevel; within drawing uncertainty |
+| 5 / 6 | 9.5 / 9.5 | about 10.0 / 9.0 | Small deviations; retain existing caps rather than add uncertain cuts |
+| 7 | 9.0 | about 9.0 | Optical endpoint before the bevel; actual axial beam floor retained |
+| 8 | 9.0 | rear outline about 10.4 | Larger literal cap conflicts with the E1 L4/L5 airspace; retain the admitted beam floor |
+| 9 / 10 | 9.7 / 9.7 | about 10.4 / 10.4 | Approximately 7% difference; retain the square rim and existing beam floor |
+
+No land, rim cut, inner aperture or check tolerance changed. At the common 9.0 mm height, the S8/S9 airspace
+is 0.017291 mm (94.596% of the 0.32 mm axial gap intruded), within the existing `gapSagFrac: 0.95`.
+At 9.3 mm the spherical faces cross by 0.003482 mm; increasing both to the drawn rear height is not admissible.
+The drawing's bevels are approximated by direct cap-end joins; no unsupported vertical land was substituted for
+an oblique bevel. All interfaces are spherical, so no aspheric departure text needs recomputation.
+
+The full trial set passed the surface audit before editing. Final surface construction is OK; image-circle audit
+finds 0 undersized and 0 skipped. The aperture audit reports 1/1 station within 3% of f/2, with zero rim, trace,
+iris or failed diagnoses at its default threshold. The limiter is the unchanged STO, and traced f-number is
+1.999999998 both before and after. Engine half-field stays 28 → 28°, FOPEN 2 → 2, EFL 40.0006738713 →
+40.0006738713 mm and physical stop radius 8.0908412305 → 8.0908412305 mm. The raw tracing half-field estimate
+increases from 33.863748° to 35.411845°; the declared 28° limit stays in force. Both focus-keyframe prescriptions
+retain their 28.76 mm vertex track and 36.7200 / 36.6521 mm final gaps; the lens is infinity-only.
+
+The nominal-pupil `clearap` probe at f/2 constructs an 8.175 mm iris, larger than the app's 8.090841 mm iris,
+and flags S8/S10 at 9.106/9.751 mm. These are not rays admitted by the actual iris. A native engine ghost trace
+solved to the actual iris gives launch height 9.904337909 mm, S8 height 8.986048661 mm (0.013951339 mm
+clearance), and S10 height 9.646336292 mm (0.053663708 mm clearance), with no failed hit. Using the corresponding
+pupil-height f-number 2.019351230 in `clearap` gives no axial/chief flags; the engine's nominal f-number remains 2.
+At the 21.65 mm corner, the largest chief height is S1 at 8.38 mm; all chief rays clear. Its upper/lower full-bundle
+root solves remain unavailable in this meridional helper, so throughput is taken from the native pupil lattice.
+LSA at nominal pupil fractions 1 / 0.85 / 0.7 / 0.5 is +0.009 / −0.027 / −0.126 / −0.115 mm.
+
+Field coverage remains 96.4102%: 28° reaches 20.872800 mm of the 21.65 mm corner. The limiting declaration is
+the unchanged 56° full field, not a rim; the chief reaches the corner at 28.898449°, clear of every rim.
+
+The native 64-cell-across pupil lattice (3228 samples) and `rimcost.mjs --loo` give:
+
+| Half-field angle | Geometric transmission before → after | Relative illumination before → after |
+| --- | --- | --- |
+| 0° | 100.0% → 100.0% | 100.0% → 100.0% |
+| 28°, declared edge | 38.29% → 50.81% | 29.54% → 39.36% |
+| 28.898449°, full-frame corner diagnostic | 33.95% → 46.96% | 25.68% → 35.66% |
+
+The corner diagnostic explicitly supplies that angle to the native analysis field geometry; it does not change the
+file's declared field. Both edge/corner calculations report zero unaimed and failed samples and no illumination
+unavailability reason. No sampled field from 0° through 28° loses light against the committed cleanup baseline.
+Element-at-a-time restores all build; each restore only removes some improvement and creates no field with more
+light than the final set. There are no cuts or lands requiring a loss-budget exception. These percentages are
+simulated geometric transmission and relative illumination, not measured production performance.
+
+Visual review used the prescribed model sketch, not a live page. The matched-scale figure/model comparison is
+`/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/zuiko40/overlay.png`.
+Outer L1/L6 heights and the front of L2 follow Fig. 1 more closely; the L4/L5 rear outline and oblique bevels
+remain qualified. A live browser check belongs to the coordinator.
+
+The existing local maker section `v-zuiko40/diagrams/40mmf2_diagram.jpg` was viewed: six air-separated elements,
+central stop, and near-touching L4/L5 agree; the drawing is smaller and includes mechanical housing, so no precise
+maker rim calibration is claimed. Neither it nor the existing maker comparison identifies special-glass positions;
+all six elements are spherical. No new image was downloaded.
+
+The front page was inspected: inventor Toshihiro Imai; assignee Olympus Optical Co., Ltd., Tokyo; US 4,396,255,
+August 2, 1983. Existing patent metadata agrees. No new name/metadata discrepancy was found. Production E1/E2
+identity, inferred stop/rims, finite-focus motion and the declared-field/corner difference remain unresolved.
+Formatter write/check commands completed; the repository's `.prettierignore` excludes these lens-data files, so
+they did not reformat them. The scoped whitespace check is clean. A structural comparison with the committed
+baseline finds exactly the five listed `sd` changes and no other data-object differences.
+No sandbox or approval refusal occurred.
