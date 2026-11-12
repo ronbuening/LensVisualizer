@@ -42,6 +42,8 @@ nd = 1.757, νd = 47.87. Glass: S-LAM54 (OHARA catalog equivalent). Isolated thi
 
 The patent's n/v definitions do not state a numerical reference wavelength. The d/F plot labels and catalog comparisons support treating the printed pairs as helium-d values. LAC10, BAF5, BAF22, FD140, LAL60 and S-LAM54 provide catalog dispersion curves within 0.0001 in nd and 0.15 in νd of the printed pairs. These are spectral equivalents, not identifications of the historical supplier or melt. No element is identified as extra-low dispersion or anomalous partial dispersion by the maker or patent.
 
+The catalog curves predict an F-minus-d paraxial focus separation of −0.0762 mm, consistent with approximately −0.08 mm in Figure 3 after ×40 scaling. At the actual d-line iris edge, the d/F longitudinal focus shifts relative to paraxial d focus are +0.0337 / +0.0916 mm; the scanned plot suggests roughly +0.07 / +0.13 mm, with about ±0.02–0.03 mm reading uncertainty. The marginal separation agrees, but a shared offset of about 0.04 mm remains. The inferred stop and schematic plot do not support identifying a single glass as its cause or retuning the prescription. The patent supplies no named glasses, individual spectral-line indices or partial-dispersion values.
+
 ## Focus and Operating Limits
 
 The [Olympus handbook mirror](https://esif.world-traveller.org/om-sif/lensgroup/40mmf2.htm) documents a straight helicoid, 0.30 m minimum focus and an f/2–16 aperture range. The model is fixed at infinity with no variable gaps; the patent supplies no finite-focus prescription. The 1e15 m focus value is an infinity-only placeholder, not a physical close-focus endpoint.

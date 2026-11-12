@@ -76,7 +76,8 @@ rim/trace/iris limits or failures. The field audit remains in the 90–99% cover
 
 Open: the maker/patent 56° field reaches about 96.4% of the format corner; the approximately 57.8° full-frame corner
 remains beyond the declared field. Embodiment 1 versus 2 production identity remains unresolved. Stop position and
-clear rims remain inferred; L5 glass, historical glass suppliers/melts, and finite-focus motion remain unknown.
+clear rims remain inferred; historical glass suppliers/melts and finite-focus motion remain unknown. Closed: the
+L5 catalog-coverage gap was resolved by the LAL60 glass coverage pass below; this does not identify its historical melt.
 Closed: off-axis throughput is quantified in the semi-diameter pass below. The requested rendered-page review could not be
 completed: the screenshot helper produced no PNG, and localhost:5173 did not accept a connection. No server was
 started. No command was refused by the sandbox or approval policy. Prettier was skipped as directed by the addendum.
@@ -177,3 +178,90 @@ No sandbox or approval refusal occurred.
 ## 2026-11-12 — Glass coverage pass
 
 L5 `Unmatched (nd = 1.726, νd = 53.56)` → `LAL60 (OHARA catalog equivalent; …)` (Δnd = −0.000001, Δνd = +0.006), using the discontinued Ohara LAL60 row added to the catalogue from the 2026-07-01 Ohara Zemax file (the later S-LAL60 shares its coefficients). Every element now traces on a catalogue curve.
+
+## 2026-11-12 — Second review: diagram, labels and movement
+
+Compared the coordinator's current `shots/zuiko40/page.png` and all six element-inspector PNGs with local
+US4396255A PDF page 2, Fig. 1, and re-read the front page, Embodiment 1 table and Fig. 3 aberration plots.
+The prior maker-diagram record reports six separate spherical elements, central stop and near-touching L4/L5,
+with no established special-glass positions. That record was used; no maker image was downloaded or independently
+claimed as viewed in this review.
+
+No data change is needed. The native scan's first and last vertex centres near x = 989 and 1521 give
+532 px / 28.76 mm = 18.50 px/mm. Fresh endpoint strips place L1/L6's upper ink near y = 733–741 / 732–740,
+against the local y = 985–982 axis, consistent with 13.5 mm after stroke-width allowance. L2's front endpoint
+near y = 777 gives about 11.2 mm. The previously checked transverse arc scales and shared-E1/E2 schematic
+qualification remain applicable. L3/L4/L5 differences remain within the recorded reading uncertainty or the
+documented near-contact constraint; there is no new ≥10% error, reversed height ordering or square-rim defect.
+The page shows square L1/L6 rims, L2's sloping cap join and the L4/L5 near contact without a crossing.
+The cap joins approximate the patent's bevels; no unsupported land was added.
+
+Rims retained: S1/S2/S11/S12 = 13.5 mm, S3 = 11.2 mm; S4 = 10, S5/S6 = 9.5, S7/S8 = 9.0 and S9/S10 =
+9.7 mm. There are no cuts below the package baseline and no lands. The native full-pupil `rimcost.mjs --loo`
+comparison finds a worst loss of 0.0 percentage points at every sampled field from 0° to 28°; each element restore
+builds and wins back no light. Declared-edge geometric transmission is 38.29% package → 50.81% current, with
+relative illumination 29.54% → 39.36%. At the diagnostic 28.898449° full-frame corner, transmission is 33.95% →
+46.96%, illumination 25.68% → 35.66%. This review changes neither result. All four native lattice cases use
+3228 samples, with zero unaimed or failed samples.
+
+The 0.95 gap budget is still necessary and is the smallest two-decimal passing value. With current rims, deleting
+it (default 0.90) gives `Air gap "8"→"9": combined surface sag (0.30 mm) exceeds allowed gap intrusion
+(0.288 mm of 0.320 mm) at sd=9.0`; 0.94 likewise refuses 0.301 mm allowed intrusion. At 0.95 the model builds.
+Exact spherical sag gives 0.302709 mm intrusion (94.5965%) and 0.017291 mm remaining separation, so this is a
+policy refusal below 0.95, not an actual surface crossing. No tolerance change was made.
+
+Surface construction is OK; aperture audit has 1/1 station within 3% of f/2 and zero rim/trace/iris/failure counts;
+image-circle audit has zero undersized/skipped; field coverage is unchanged at 96.4102%, limited by the declared
+28° field rather than a rim. The native d-line iris-edge launch is 9.904337909 mm: S8 = 8.986048661 mm and
+S10 = 9.646336292 mm, both clear. The meridional helper, supplied the equivalent launch f-number 2.019351230
+and the 28.898449° corner, reports no axial/chief clipping; its upper/lower full-bundle roots remain unavailable.
+This helper input corrects its nominal-pupil overdrive and does not alter the engine f-number. Engine half-field
+28 → 28°, f-number 2 → 2, EFL 40.0006738713 → 40.0006738713 mm and stop radius 8.0908412305 →
+8.0908412305 mm; native construction does not throw.
+
+All inspector names L1–L6, meniscus/biconvex types, signed focal lengths (+74.94, −53.31, +83.25, −19.82,
++27.83, +37.70 mm) and short roles agree with the prescription. The stop is between L3 and L4. There are no
+aspheres, APD tags, cemented interfaces or doublets. Fig. 1 supplies radii/spacing labels rather than named
+group brackets; the patent's fourth component consists of the two air-separated elements L4/L5, not a cemented
+pair. The six separate optical groups and absence of invented brackets remain appropriate.
+
+Movement: all six groups are static in this infinity-only model. `gaps` is empty, no focus keyframes or zoom
+stations exist, and z positions at focus controls 0 and 1 are identical: first vertex 0, stop 14.18 and last
+vertex 28.76 mm. No ordering/direction error exists; near-state and zoom travel checks are inapplicable.
+The page disables finite focus and states the production straight helicoid and 0.3 m minimum plainly.
+Earlier references in this log to two focus keyframes are stale; the current file has no such keyframes or
+authored finite-focus motion law.
+
+Worktree-catalog `glasscheck.mjs --near 3` and `trylabel.mjs` resolve every element within the exact window.
+Catalog-row minus printed-pair deltas are L1 LAC10: 0 / +0.100000; L2 BAF5: +0.000002 / +0.046899;
+L3 BAF22: −0.000004 / +0.021672; L4 FD140: 0 / +0.060000; L5 LAL60: −0.000001 / +0.005698;
+L6 S-LAM54: −0.000002 / −0.046830. No relabel or missing-row proposal is needed. Older HOYA rows and
+discontinued OHARA LAL60 retain their source-qualified equivalents; S-LAM54 remains a modern spectral proxy,
+not a production-supplier assertion. There is no unresolved or constant/nd-only medium, no catalog-copied line
+index, and no missing printed C/F/g index or partial dispersion. The patent tables (PDF pages 6–9) give only n/v
+pairs, not glass names or further spectral identification.
+
+Fig. 3 (PDF page 3) prints d/F spherical-aberration curves, not C/g curves. Native worktree traces give paraxial
+C/d/F/g image coordinates 65.481187 / 65.412061 / 65.335897 / 65.357915 mm. F minus d = −0.076164 mm agrees
+with the local-axis scan reading of about −0.08 ± 0.02 mm after ×40 scaling. At the actual d-line iris-edge launch,
+d/F shifts relative to paraxial d are +0.033686 / +0.091565 mm; the plot suggests approximately +0.07 / +0.13 mm,
+with ±0.02–0.03 mm reading uncertainty. Their separation agrees, but the roughly +0.04 mm shared plot offset
+remains open. A glass mismatch is not established: the reference d-line trace uses the printed indices, and an
+inferred stop or plotted ordinate/rounding affects both marginal curves. No individual glass can be identified
+as the culprit from these data. At 28°, tangential/sagittal parabasal focus shifts relative to centre are
+−0.380808 / +0.112533 mm, consistent with roughly −0.38 / +0.11 mm in Fig. 3; distortion −1.9801% agrees
+with the plotted approximately −2.0% (about ±0.1% reading error).
+
+The front page confirms Toshihiro Imai, Olympus Optical Co., Ltd., US 4,396,255, August 2, 1983. The assignee
+matches both the source and canonical contemporary Olympus rows; no consolidation variant was found for this lens.
+Closed: the earlier unavailable rendered-page check is satisfied by the supplied current page and six inspector
+shots. No data was edited, so these remain representative; the coordinator owns any subsequent re-shoot.
+
+Open: E1/E2 production identity, historical supplier/melt, inferred stop/caps, unmodeled finite focus, the declared
+field/corner distinction, approximate bevel rendering and the shared marginal-curve offset remain qualified.
+No new prescription or metadata error outside the edit list was established. No sandbox or approval refusal occurred.
+Prettier's check returned success, but its repository ignore rules exclude Markdown and lens-data files, so it did
+not inspect their formatting. The scoped diff whitespace check is clean. No changelog entry was added.
+
+Re-inspected side-by-side:
+`/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/zuiko40/overlay.png`.
