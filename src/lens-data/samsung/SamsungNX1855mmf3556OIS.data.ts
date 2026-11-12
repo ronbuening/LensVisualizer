@@ -2,10 +2,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Qualified representative, not exact factory prescription. Literal US8385002 Embodiment1 R/d/nd/vd/asphere and three published zoom states. Fourteen intermediate G3 translations are inferred illustrative cam nodes, not source/factory motion; baseline and interpolation defocus retained. Infinity only; published finite-conjugate inconsistency unresolved. Source-figure semi-diameters, S5 curved-face endpoint plus opaque modeled peripheral extension, inferred marketing F-number schedule. Smallest .001-step gap-sag allowance .951 used; no source optics repair. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "samsung-nx-18-55mm-f35-56-ois-representative",
+  "key": "samsung-nx-18-55mm-f35-56-ois",
   "maker": "Samsung",
-  "name": "SAMSUNG NX 18-55mm f/3.5-5.6 OIS",
-  "visible": false,
+  "name": "SAMSUNG 18-55mm f/3.5-5.6 OIS",
+  "visible": true,
   "subtitle": "US8385002 Embodiment 1 representative; original S1855SB family, infinity-only illustrative cam",
   "elements": [
     {

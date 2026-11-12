@@ -2,11 +2,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Hidden qualified E1 hypothesis; source optics and inherited engineered caps unchanged. Not factory exact. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "olympus-zuiko-40mm-f2-e1-hypothesis",
+  "key": "olympus-zuiko-auto-s-40mm-f2",
   "maker": "Olympus",
-  "name": "OLYMPUS ZUIKO 40mm f/2 (E1 hypothesis)",
+  "name": "OLYMPUS ZUIKO AUTO-S 40mm f/2",
   "subtitle": "US 4,396,255 A EMBODIMENT 1 \u2014 REPRESENTATIVE SOURCE DESIGN",
-  "visible": false,
+  "visible": true,
   "layout": {
     "yScFill": 0.35
   },

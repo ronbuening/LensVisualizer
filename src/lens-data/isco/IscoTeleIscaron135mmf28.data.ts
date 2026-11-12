@@ -2,10 +2,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Literal whole Table A x1.35; fixed printed BF57.78. Inferred figure boundaries, not factory exact; infinity only, no overrides. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "isco-tele-iscaron-135mm-f28-representative",
+  "key": "isco-tele-iscaron-135mm-f28",
   "maker": "ISCO",
-  "name": "ISCO Tele-Iscaron 135mm f/2.8 (patent-family representative)",
-  "visible": false,
+  "name": "ISCO TELE-ISCARON 135mm f/2.8",
+  "visible": true,
   "elements": [
     {
       "id": 1,

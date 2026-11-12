@@ -2,10 +2,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Whole CN207216120U Instance 2, literal d-line optics; image plane at paraxial infinity focus. Secondary product association only. Source-figure apertures and opaque S3/S7 rim extensions are inferred; rear plate aperture unspecified/nonclipping. The printed plate-to-image gap (1mm) left +0.821424mm of paraxial defocus; the gap is set to 1.8214mm at integration. Infinity only; not exact factory performance. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "yongnuo-yn-40mm-f28-n-representative",
+  "key": "yongnuo-yn-40mm-f28n",
   "maker": "Yongnuo",
-  "name": "Yongnuo YN 40mm f/2.8 N",
-  "visible": false,
+  "name": "YONGNUO YN 40mm f/2.8N",
+  "visible": true,
   "subtitle": "CN207216120U Instance 2; secondary product association, image plane at paraxial focus",
   "catalog": {
     "imageFormat": "135-full-frame",

@@ -2,10 +2,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Hidden whole Table1, helium d-line (catalog line test), literal4x scaling; fixed source imageplane. Figure-derived rims/stop, no fit/override. Retail filter omitted as unprescribed; mechanical correspondence qualified. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "canon-fd-400mm-f45-ssc-representative",
+  "key": "canon-fd-400mm-f45-ssc",
   "maker": "Canon",
-  "name": "Canon FD 400mm f/4.5 S.S.C.",
-  "visible": false,
+  "name": "CANON FD 400mm f/4.5 S.S.C.",
+  "visible": true,
   "subtitle": "US4045128 Table1 representative; patent stop topology, omitted unprescribed retail filter",
   "catalog": {
     "imageFormat": "135-full-frame",

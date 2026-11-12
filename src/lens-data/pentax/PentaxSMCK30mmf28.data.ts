@@ -1,10 +1,10 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   "schema": 2,
-  "key": "pentax-smc-30mm-f28-representative",
+  "key": "pentax-smc-30mm-f28",
   "maker": "Pentax",
-  "name": "SMC Pentax 30mm f/2.8",
-  "visible": false,
+  "name": "PENTAX SMC PENTAX 30mm f/2.8",
+  "visible": true,
   "subtitle": "US3975091 Example 2 representative; inferred iris/rims, fixed published back-focus ratio",
   "catalog": {
     "imageFormat": "135-full-frame",

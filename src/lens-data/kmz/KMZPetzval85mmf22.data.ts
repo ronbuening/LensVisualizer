@@ -2,10 +2,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Hidden literal patent embodiment; published caps/stop, native sodium-D, no scale or focus fit. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "zenit-petzval-85mm-f22-representative",
+  "key": "kmz-petzval-85mm-f22",
   "maker": "KMZ",
-  "name": "Zenit Petzval 85mm f/2.2",
-  "visible": false,
+  "name": "KMZ PETZVAL 85mm f/2.2",
+  "visible": true,
   "elements": [
     {
       "id": 1,
