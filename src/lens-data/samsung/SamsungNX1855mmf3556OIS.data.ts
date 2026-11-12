@@ -3,14 +3,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 8,385,002 B2, Embodiment 1, Tables 1–4 and Figure 2; scale 1, millimetres.
  * The radii, thicknesses, helium-d indices, Abbe numbers, asphere and three printed zoom states are unchanged.
  * The construction supports an association with the original Samsung S1855SB family; the factory prescription
- * and later OIS II/III versions are not established. Fourteen intermediate G3 positions are calculated rather
+ * and later OIS II/III versions are not established. Fourteen intermediate L3 positions are calculated rather
  * than published cam data; the printed-state and interpolation defocus are retained.
  * Infinity focus only: the printed finite-focus movements do not reproduce the stated 450 mm object distance.
  * Semi-diameters are estimated from Figure 2 (PDF p. 3), with axial and
  * APS-C corner-chief clearance checked at all 17 zoom stations. S5 has a curved-face endpoint and an extension treated
  * as opaque, although the patent does not specify its opacity. The stop remains at S12; its radius follows an
- * inferred schedule between the marketed f/3.5 and f/5.6 endpoints. The gap-sag allowance is 0.951, the smallest
- * 0.001 increment covering the calculated intrusion; no source radius or spacing has been adjusted.
+ * inferred schedule between the marketed f/3.5 and f/5.6 endpoints. The gap-sag allowance is 0.96, the smallest
+ * two-decimal value covering the calculated intrusion; no source radius or spacing has been adjusted.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -22,139 +22,163 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "1",
+      "diagramLabel": "1",
       "label": "Element 1",
       "type": "Negative Meniscus",
       "nd": 1.84666,
       "vd": 23.78,
       "glass": "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -135.40,
       "role": "Negative front member of the first cemented doublet.",
       "cemented": "C1",
       "indexReference": "d"
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "2",
+      "diagramLabel": "2",
       "label": "Element 2",
       "type": "Positive Meniscus",
       "nd": 1.6968,
       "vd": 55.46,
       "glass": "LAC14 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 56.64,
       "role": "Positive rear member of the first cemented doublet.",
       "cemented": "C1",
       "indexReference": "d"
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "3",
+      "diagramLabel": "3",
       "label": "Element 3",
       "type": "Negative Meniscus",
       "nd": 1.713,
       "vd": 53.94,
       "glass": "LAC8 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -17.95,
       "role": "Negative meniscus at the front of the second zoom group.",
       "indexReference": "d"
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "4",
+      "diagramLabel": "4",
       "label": "Element 4",
       "type": "Biconcave Negative",
       "nd": 1.6968,
       "vd": 55.46,
       "glass": "LAC14 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -24.43,
       "role": "Biconcave negative singlet in the second zoom group.",
       "indexReference": "d"
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "5",
+      "diagramLabel": "5",
       "label": "Element 5",
       "type": "Positive Meniscus",
       "nd": 1.80518,
       "vd": 25.46,
       "glass": "FD60 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 30.11,
       "role": "Positive rear singlet of the second zoom group.",
       "indexReference": "d"
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "6",
+      "diagramLabel": "6",
       "label": "Element 6",
       "type": "Biconvex Positive",
       "nd": 1.60311,
       "vd": 60.69,
       "glass": "BACD14 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 34.64,
       "role": "Positive focusing singlet immediately ahead of the iris.",
       "indexReference": "d"
     },
     {
       "id": 7,
-      "name": "L7",
+      "name": "7",
+      "diagramLabel": "7",
       "label": "Element 7",
       "type": "Biconvex Positive",
       "nd": 1.48749,
       "vd": 70.44,
       "glass": "FC5 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 20.88,
       "role": "Low-dispersion positive member of the first post-stop doublet.",
       "cemented": "C2",
       "indexReference": "d"
     },
     {
       "id": 8,
-      "name": "L8",
+      "name": "8",
+      "diagramLabel": "8",
       "label": "Element 8",
       "type": "Biconcave Negative",
       "nd": 1.84666,
       "vd": 23.78,
       "glass": "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -31.98,
       "role": "Negative member of the first post-stop doublet.",
       "cemented": "C2",
       "indexReference": "d"
     },
     {
       "id": 9,
-      "name": "L9",
+      "name": "9",
+      "diagramLabel": "9",
       "label": "Element 9",
       "type": "Positive Meniscus",
       "nd": 1.70154,
       "vd": 41.15,
       "glass": "BAFD7 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 27.48,
       "role": "Positive member of the doublet that shifts laterally for image stabilization.",
       "cemented": "C3",
       "indexReference": "d"
     },
     {
       "id": 10,
-      "name": "L10",
+      "name": "10",
+      "diagramLabel": "10",
       "label": "Element 10",
       "type": "Biconcave Negative",
       "nd": 1.63854,
       "vd": 55.45,
       "glass": "K-SK18 (Sumita catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -19.27,
       "role": "Negative member of the doublet that shifts laterally for image stabilization.",
       "cemented": "C3",
       "indexReference": "d"
     },
     {
       "id": 11,
-      "name": "L11",
+      "name": "11",
+      "diagramLabel": "11",
       "label": "Element 11",
       "type": "Biconvex Positive (1× Asph)",
       "nd": 1.58313,
       "vd": 59.46,
       "glass": "M-BACD12 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 25.56,
       "role": "Positive rear singlet with an aspherical image-side face.",
       "indexReference": "d"
     },
     {
       "id": 12,
-      "name": "L12",
+      "name": "12",
+      "diagramLabel": "12",
       "label": "Element 12",
       "type": "Negative Meniscus",
       "nd": 1.80611,
       "vd": 40.73,
       "glass": "NBFD13 (HOYA catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -40.18,
       "role": "Final negative meniscus ahead of the camera-side low-pass plate.",
       "indexReference": "d"
     }
@@ -767,7 +791,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 1e15,
-    "description": "Infinity focus only; the patent focuses by moving G3, the single positive element ahead of the iris, toward the image. Its printed movements do not reproduce the stated 450 mm object distance. Samsung lists a production minimum focus distance of 0.28 m."
+    "description": "Infinity focus only; the patent focuses by moving group L3 (element 6), the single positive element ahead of the iris, toward the image. Its printed movements do not reproduce the stated 450 mm object distance. Samsung lists a production minimum focus distance of 0.28 m."
   },
   "rearPlates": [
     {
@@ -794,6 +818,33 @@ const LENS_DATA = {
   "projection": {
     "kind": "rectilinear"
   },
+  "groups": [
+    {
+      "text": "L1 (+)",
+      "fromSurface": "1",
+      "toSurface": "3"
+    },
+    {
+      "text": "L2 (−)",
+      "fromSurface": "4",
+      "toSurface": "9"
+    },
+    {
+      "text": "L3 (+)",
+      "fromSurface": "10",
+      "toSurface": "11"
+    },
+    {
+      "text": "L4 (−)",
+      "fromSurface": "13",
+      "toSurface": "18"
+    },
+    {
+      "text": "L5 (+)",
+      "fromSurface": "19",
+      "toSurface": "22"
+    }
+  ],
   "doublets": [
     {
       "text": "C1",
@@ -806,7 +857,7 @@ const LENS_DATA = {
       "toSurface": "15"
     },
     {
-      "text": "C3",
+      "text": "C3 OIS",
       "fromSurface": "16",
       "toSurface": "18"
     }
@@ -846,7 +897,7 @@ const LENS_DATA = {
     }
   },
   "checks": {
-    "gapSagFrac": 0.951
+    "gapSagFrac": 0.96
   },
   "source": {
     "patentNumber": "US 8,385,002 B2",
