@@ -62,7 +62,8 @@ always `/relationships/`. Assignee slugs come from the build-generated `assignee
 graph: `relationshipGraph.ts` continues to derive its nodes and edges only from patent attribution.
 
 `/relationships/universal` is a separate, client-rendered clustered SVG that combines every visible patent-party edge
-with those corporate-history records. Shared corporate families become hub nodes, uncataloged parents/predecessors
+with those corporate-history records. Shared corporate families become hub nodes (a catalog-maker hub joins the family
+its maker belongs to, from `src/utils/catalog/makerCorporateFamilies.ts`), uncataloged parents/predecessors
 become external-organization nodes, and disconnected components are packed into separate outlined networks. Selecting
 a patent opens the shared patent detail card; selecting any other entity exposes its dated corporate records and links
 catalog parties back to the ordinary focused map. No homepage or global navigation link points directly to this route;

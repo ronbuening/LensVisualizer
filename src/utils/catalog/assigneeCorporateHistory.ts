@@ -29,6 +29,7 @@ const SOURCES = {
   hoyaHistory: "https://www.hoya.com/en/company/history/",
   hoyaPentaxMerger: "https://www.hoya.com/en/news/20111001/",
   jenoptikHistory: "https://de.wikipedia.org/wiki/Jenoptik",
+  kmzHistory: "https://bigenc.ru/c/krasnogorskii-zavod-imeni-s-a-zvereva-dfb513",
   kenkoTokinaHistory: "https://kenkoglobal.com/company/history/",
   konicaMinoltaAnnual2013:
     "https://www.konicaminolta.com/global-en/investors/ir_library/ar/ar2013/Konica_Minolta_AR2013_E.pdf",
@@ -800,6 +801,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
         effectiveTo: "2013-08-01",
         sourceUrl: SOURCES.ricohHistory2010s,
         note: "Carries the PENTAX imaging business acquired from HOYA; PENTAX-brand patents from this window name this company as assignee.",
+      },
+    ],
+  },
+  "PJSC Krasnogorsky Zavod named after S. A. Zverev": {
+    corporateFamily: [
+      {
+        family: "KMZ",
+        effectiveFrom: "1942",
+        sourceUrl: SOURCES.kmzHistory,
+        note: "State optical plant No. 393, organized in Krasnogorsk in 1942 and later the Krasnogorsk Mechanical Plant (KMZ); this is the patent rendering of its present joint-stock company.",
       },
     ],
   },
