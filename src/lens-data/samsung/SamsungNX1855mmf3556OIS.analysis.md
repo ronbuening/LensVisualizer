@@ -123,9 +123,9 @@ S20, the rear face of L11, is the sole aspherical surface. Formula 20 uses the s
 
 The f/3.5 and f/5.6 endpoints come from Samsung's brochure; the patent prints no iris schedule, so intermediate apertures are inferred. Samsung lists minimum apertures of f/22 at wide and f/36 at tele. The stored f-stop list ends at f/22; it does not reproduce that zoom-dependent minimum.
 
-Semi-diameters are estimated from the schematic. At S5, Figure 2 ends the curved face near 9.75 mm radius and extends peripherally to 13.93 mm. The model treats that extension as opaque, although the patent does not specify its material or opacity. The allowed gap-sag intrusion is 95.1%, the smallest 0.1 percentage-point increment covering the calculated 95.0676%; the remaining clearance is 0.35020 mm.
+Semi-diameters are estimated from Figure 2, PDF page 3, at approximately 9.50 native pixels/mm. At S5, the curved face ends near 9.75 mm radius and extends peripherally to 13.93 mm. The model treats that extension as opaque, although the patent does not specify its material or opacity. The extension adds no geometric light loss. The allowed gap-sag intrusion is 95.1%, the smallest 0.1 percentage-point increment covering the calculated 95.0676%; the remaining clearance is 0.35020 mm.
 
-The NX100 sensor measures 23.4 × 15.6 mm; the model uses the slightly larger 23.6 × 15.7 mm APS-C format. The earlier projection cap has been removed, allowing the engine to solve the APS-C corner at every stored station. Peripheral vignetting remains, and the patent supplies no circular image diameter.
+The NX100 sensor measures 23.4 × 15.6 mm; the model uses the slightly larger 23.6 × 15.7 mm APS-C format. The earlier projection cap has been removed, allowing the engine to solve the APS-C corner at every stored station. Geometric pupil transmission at the corner is approximately 69.0% / 73.3% / 85.0% at wide / middle / tele, with a 68.9–85.0% range over all 17 stations. These are modeled pupil-area fractions rather than measured photometric illumination. Axial and corner-chief rays clear every stored rim; the separate meridional clearance solver does not find the lower corner marginal ray at the first seven stations, so complete corner-bundle clearance is not established. The patent supplies no circular image diameter.
 
 ## Image Stabilization
 

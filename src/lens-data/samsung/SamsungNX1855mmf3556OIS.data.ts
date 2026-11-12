@@ -6,7 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and later OIS II/III versions are not established. Fourteen intermediate G3 positions are calculated rather
  * than published cam data; the printed-state and interpolation defocus are retained.
  * Infinity focus only: the printed finite-focus movements do not reproduce the stated 450 mm object distance.
- * Semi-diameters are estimated from the figure. S5 has a curved-face endpoint and a peripheral extension treated
+ * Semi-diameters are estimated from Figure 2 (PDF p. 3), with axial and
+ * APS-C corner-chief clearance checked at all 17 zoom stations. S5 has a curved-face endpoint and an extension treated
  * as opaque, although the patent does not specify its opacity. The stop remains at S12; its radius follows an
  * inferred schedule between the marketed f/3.5 and f/5.6 endpoints. The gap-sag allowance is 0.951, the smallest
  * 0.001 increment covering the calculated intrusion; no source radius or spacing has been adjusted.
