@@ -89,8 +89,8 @@ Open:
 - No close-focus spacings or travel law are printed; the production 1 m state is not modeled. Decorative
   Waterhouse insert shapes are omitted.
 - Factory melt dispersion and the patent's 435–656 nm correction and aberration claims remain unconfirmed.
-- Rendered page review could not be completed: shot.sh produced no screenshot, and localhost:5173 refused the
-  subsequent connection check. No server was started or stopped.
+- Closed 2026-11-12: the second review inspected the coordinator's current page and all four inspector shots.
+  The earlier shot.sh failure and localhost:5173 refusal did not prevent that review; no server was started or stopped.
 
 Denial: an attempted baseline copy mistakenly targeted the main checkout and was refused with "Operation not
 permitted". That copy operation was stopped without retry or workaround; before-edit engine outputs were
@@ -104,15 +104,15 @@ these are printed optical diameters, not inferred mechanical blank sizes. Every 
 the corresponding printed diameter divided by two, so no rim changes, cuts, lands or tolerance changes are
 justified. The stop is derived and is not included in the seven printed diameters.
 
-| Surface | Printed clear diameter, mm | Before sd, mm | After sd, mm | Evidence |
-| --- | ---: | ---: | ---: | --- |
-| 1 | 37.5 | 18.75 | 18.75 | Table 1, diameter / 2 |
-| 2 | 35.2 | 17.6 | 17.6 | Table 1, diameter / 2 |
-| 3 | 33.2 | 16.6 | 16.6 | Table 1, diameter / 2 |
-| 4 | 23.1 | 11.55 | 11.55 | Table 1, diameter / 2 |
-| 5 | 21.5 | 10.75 | 10.75 | Table 1, diameter / 2 |
-| 6 | 22.4 | 11.2 | 11.2 | Table 1, diameter / 2 |
-| 7 | 22.4 | 11.2 | 11.2 | Table 1, diameter / 2 |
+| Surface | Printed clear diameter, mm | Before sd, mm | After sd, mm | Evidence              |
+| ------- | -------------------------: | ------------: | -----------: | --------------------- |
+| 1       |                       37.5 |         18.75 |        18.75 | Table 1, diameter / 2 |
+| 2       |                       35.2 |          17.6 |         17.6 | Table 1, diameter / 2 |
+| 3       |                       33.2 |          16.6 |         16.6 | Table 1, diameter / 2 |
+| 4       |                       23.1 |         11.55 |        11.55 | Table 1, diameter / 2 |
+| 5       |                       21.5 |         10.75 |        10.75 | Table 1, diameter / 2 |
+| 6       |                       22.4 |          11.2 |         11.2 | Table 1, diameter / 2 |
+| 7       |                       22.4 |          11.2 |         11.2 | Table 1, diameter / 2 |
 
 At 600 dpi the optical axis is near page y = 967 px. Near-axis ink-run centres for surfaces 1, 3 and 7
 are approximately x = 1776.5, 2065.5 and 2784.5 px. The full vertex span gives 1008 / 58.2 = 17.3196 px/mm;
@@ -171,3 +171,110 @@ Only the data header's semi-diameter source note and this audit record needed ed
 describes the retained printed rims. No sandbox refusal occurred during this semi-diameter pass; the
 earlier cleanup copy refusal recorded above is historical. No browser, server, full-suite command or
 state-changing git operation was used.
+
+## 2026-11-12 — Second review: diagram, labels and movement
+
+Compared the coordinator's current `shots/petzval85/page.png` and `el-1.png` through `el-4.png` with the local
+RU 2549915 C1 publication: page 2 optical section, page 5 Table 1, page 1 bibliography and page 6 aberration
+table. Re-viewed the SD pass's matched-scale `sd/petzval85/overlay.png`. The earlier maker-diagram comparison
+is the evidence for four elements in three groups, the front cemented doublet and no identified special-glass
+or aspherical positions; no maker image was downloaded or viewed in this review.
+
+No rim change is warranted. Independently re-read page 5 clear diameters 37.5/35.2/33.2/23.1/21.5/22.4/22.4 mm:
+all seven stored values are exactly half. The page 2 schematic uses square common outer heights, while the
+printed optical diameters vary. The current page consequently shows sloping front-doublet/L3 edge joins;
+those are not transcription errors and do not justify enlarging the printed optical apertures. The complete
+surface array equals the pre-SD package baseline. There are no cuts, lands or policy overrides. Full-pupil
+rimcost with leave-one-out gives 0.0-point worst loss against that baseline at every sample; the format-corner
+geometric transmission remains 23.8% before and after (on-axis 99.5%). These are simulated pupil-transmission
+values, not measured radiometric illumination.
+
+| Field                   | Before                                 | After                                                            | Evidence and verdict                                                                                       |
+| ----------------------- | -------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| L1 element focal length | absent (`FL = —`)                      | +41.76 mm                                                        | Isolated thick-lens calculation in air at printed nD, R1/R2 and 13 mm thickness                            |
+| L2 element focal length | absent (`FL = —`)                      | −88.12 mm                                                        | Same calculation, R2/flat and 4 mm thickness                                                               |
+| L3 element focal length | absent (`FL = —`)                      | −27.81 mm                                                        | Same calculation, R4/R5 and 8 mm thickness                                                                 |
+| L4 element focal length | absent (`FL = —`)                      | +33.49 mm                                                        | Same calculation, R6/R7 and 8.8 mm thickness                                                               |
+| L2 glass wording        | SF4 (Schott catalog equivalent of TF5) | SF4 (Schott catalog equivalent; production supplier unspecified) | Exact same catalog row; standard supplier-qualified wording. Patent TF5 remains identified in the analysis |
+| L3 glass wording        | QF3 (CDGM catalog equivalent of LF5)   | QF3 (CDGM catalog equivalent; production supplier unspecified)   | Exact same catalog row; standard supplier-qualified wording. Patent LF5 remains identified in the analysis |
+
+Element focal lengths use the isolated thick-lens relation, not the individual powers in the cemented assembly.
+Unrounded results are 41.75870448, −88.11920530, −27.80669519 and 33.48777388 mm. The runtime element records
+contain the four rounded values above. The analysis now explains the convention. R/d/nD/νD, aperture and stop
+fields are unchanged.
+
+Labels, shapes and roles are correct: patent lenses 1–4 correspond to model L1–L4 and page IDs 1–4; the R signs
+give biconvex, concave/flat, biconcave and symmetric biconvex respectively. C1 brackets surfaces 1–3, and only
+L1/L2 are cemented. The stop at z = 35 mm is 3 mm before L3, with the 21 mm gap split 18 + 3 mm. The patent
+describes two components but assigns no group letters; no invented group brackets were added. All surfaces
+are spherical or plane; no A suffixes, asphere coefficients or APD tags are justified. The current shots show
+the bracket, stop and all inspector roles without overlap or a false triplet.
+
+Movement verdict: C1 (L1/L2), L3 and L4 each have 0 mm authored zoom travel and 0 mm authored focus travel.
+There is no zoom, no variable gap and no focus keyframe table to reverse. The fixed vertex positions are
+0/13/17/35 (stop)/38/46/49.4/58.2 mm. The infinity-only sentinel remains 1e15 m and the current focus control
+is disabled at infinity, labeled "Not modeled". The probe's synthetic t = 1 endpoint changes only its image
+offset from 43.2200 to 43.2903 mm; it is not authored lens motion or a finite-focus state. The cited
+[Lomography specifications](https://www.lomography.com/magazine/312485-lomopedia-new-petzval-lens-85), re-read
+online, explicitly give "Gear rack focusing" and closest focus 1 m. Thus the existing rack-and-pinion wording
+is supported; no focusing-group motion or travel law is asserted.
+
+Glasscheck and trylabel resolve every element. Their displayed d-line summaries must not be mistaken for
+the patent's sodium-D coordinates. Direct coefficient evaluation at D gives the following catalog-minus-source
+residuals; all satisfy |ΔnD| ≤ 0.0001 and |ΔνD| ≤ 0.15:
+
+| Elements | Catalog row  |          ΔnD |       ΔνD |
+| -------- | ------------ | -----------: | --------: |
+| L1/L4    | TK21 (LZOS)  | −0.000002108 | +0.012628 |
+| L2       | SF4 (Schott) | −0.000035930 | +0.050839 |
+| L3       | QF3 (CDGM)   | +0.000003685 | −0.011868 |
+
+TK21 and QF3 are the only existing rows inside that D-coordinate window for their pairs. L2 also admits
+S-TIH4, E-FD4, H-ZF6 and E-FD4L; these do not establish Soviet production identity or a better source match
+than the retained legacy SF4 proxy. No unresolved element or missing catalog-row proposal remains. Page 5
+names TK21/TF5/LF5/TK21 and provides only nD/νD, not extra line indices or partial dispersion. There is one
+numerical example; only TK21 recurs within it. Runtime dispersion is `sellmeier` for every glass and `air`
+for the other media, with no constant-index medium. No copied line indices are present. The patent prints
+no C/d/F/g focus plots; page 6 contains a single-wavelength (546.07 nm) aberration table, not chromatic curves.
+The claimed 435–656 nm correction and the aberration table remain unreproduced; catalog completeness is not
+confirmation of production colour correction.
+
+Page 1 names Bogdankov, Timirev and Shcheglov, application 18 December 2013 and publication 10 May 2015.
+Its holder is OJSC Krasnogorsky Zavod im. S. A. Zvereva. The authored PJSC Krasnogorsky Zavod named after
+S. A. Zverev exactly matches the two other KMZ data files' canonical assignee. The analysis already preserves
+the historical OJSC name; no consolidation or source-field edit is proposed.
+
+Final surface audit reports "OK — no validation errors"; aperture audit has one station within 3% and zero
+rim/trace/iris failures; image-circle audit has zero undersized/skipped; field coverage reaches the clear
+21.65 mm corner at 14.1 degrees. Engine values remain EFL 84.07698068633528 mm, half-field 16 degrees,
+nominal FOPEN 2.2 and stop radius 11.41240538402449 mm, before and after. The separate clearap probe needs
+an explicit `--scan 75`: its default range includes the un-authored STO sd and otherwise becomes NaN.
+With that supported option it solves Y = 21.63 mm at 14.12 degrees; no corner chief is blocked. Its real
+marginal stop radius 11.623 mm still yields the known S1–S3 axial flags, unlike the engine's paraxial-derived
+stop; the printed apertures remain authoritative. At 16 degrees it reaches 24.690 mm. The upper unvignetted
+bundle has no solution, consistent with the existing peripheral-vignetting limitation.
+
+The final outline was rendered and viewed at
+`/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/petzval85/rv-final.png`;
+current and baseline outlines coincide. The re-checked patent/model side-by-side is
+`/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/petzval85/overlay.png`.
+The supplied browser shots precede the text/focal-length edits; post-edit browser inspection remains for the
+coordinator's re-shoot. No browser, server, full-suite command, changelog edit or git mutation was used, and
+no sandbox refusal occurred in this review. The earlier cleanup refusal above is historical.
+
+Open: factory identity remains unproven because retail EFL/BF/track differ from the patent. Page 5's printed
+84.01/43.22 mm values retain the known +0.06698/+0.07029 mm paraxial residuals. The 16-degree/21.63 mm
+field discrepancy, printed-aperture axial clipping, peripheral vignetting, absent near-focus spacings,
+decorative Waterhouse shapes and unconfirmed factory dispersion remain as qualified in the analysis.
+
+## 2026-11-12 — Coordinator follow-up to the second review
+
+The patent names the L2 glass as GOST TF5. A catalog row for it was added: LZOS TF5, a formula-3 least-squares fit to the
+LZOS index table mirrored by refractiveindex.info (`specs/lzos/optical/TF5.yml`), 23 wavelengths over 365–1014 nm, maximum
+index error 5.9e-6. The fit gives nD 1.754998 and νD 27.52 against the printed 1.755/27.52. L2 changed from
+`SF4 (Schott catalog equivalent; production supplier unspecified)` to `TF5 (LZOS)`, the form L1/L4 use for TK21. L3's
+patent glass, GOST LF5, matches the LZOS table at nD 1.574900 / νD 41.30. It cannot get its own row because the catalog's `LF5`
+name belongs to the different Schott glass (1.58144/40.85). L3 therefore keeps CDGM QF3, now labelled
+`QF3 (CDGM catalog equivalent of GOST LF5; supplier unconfirmed)`, the form the Zenitars use. The other `TF5` mentions in the
+corpus (Zenitar 35 and 50 labels naming `H-ZF6` first) still resolve to H-ZF6.
+

@@ -27,9 +27,11 @@ The patent places the aperture 3 mm before lens 3. Its vertex coordinate is z = 
 
 These roles describe geometrical power signs and positions. The patent's aberration table reports the inventor's calculated performance; its results have not been reproduced by this model.
 
+The inspector's element focal lengths are calculated for each isolated thick lens in air at the printed sodium-D index: L1 +41.76 mm, L2 −88.12 mm, L3 −27.81 mm and L4 +33.49 mm. The individual L1/L2 values do not describe their powers within the cemented assembly.
+
 ## Glass and Dispersion
 
-The patent explicitly names sodium D and labels nD/νD. The printed values remain unchanged at that reference line. L1/L4 use the LZOS TK21 catalog curve; TF5 in L2 uses Schott SF4 as a catalog equivalent, and LF5 in L3 uses CDGM QF3. Each curve agrees with the printed D-line index within 0.0001 and νD within 0.15. These catalog curves describe dispersion without identifying production suppliers or factory melts. The patent supplies no full wavelength-dependent indices or anomalous partial dispersion data, so its 435–656 nm correction claim remains unconfirmed.
+The patent explicitly names sodium D and labels nD/νD. The printed values remain unchanged at that reference line. L1/L4 use the LZOS TK21 catalog curve and L2 the LZOS TF5 curve, both the grades the patent names; LF5 in L3 uses CDGM QF3 as a catalog equivalent, because the catalog's LF5 name belongs to the different Schott glass. Each curve agrees with the printed D-line index within 0.0001 and νD within 0.15. The LZOS curves are fits to that maker's published index tables; none of the curves identifies a factory melt. The patent supplies no full wavelength-dependent indices or anomalous partial dispersion data, so its 435–656 nm correction claim remains unconfirmed.
 
 ## Focus and Operating Limits
 
