@@ -831,6 +831,9 @@ const LENS_DATA = {
     "closeFocusM": {
       "marketing": 0.28
     },
+    "fNumber": {
+      "marketing": 3.5
+    },
     "focalLengthMm": {
       "marketing": [
         18,
