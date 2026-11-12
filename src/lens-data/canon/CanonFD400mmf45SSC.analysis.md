@@ -39,6 +39,8 @@ The model's 6°10′ full field comes from the successor FD 400mm f/4.5 in [Cano
 
 The patent balances spherical aberration, coma, astigmatism and chromatic focus variation. Power signs alone do not establish individual aberration contributions or production performance.
 
+Inspector focal lengths are isolated thick-element values in air, calculated from the scaled radii, thickness and printed nd. For L1–L6 they are +184.25, −156.60, +195.72, −1151.57, +287.10 and −130.01 mm; the two cemented components are considered separately for these values.
+
 ## Glass and Dispersion
 
 Despite the patent's sodium wording, catalog coordinates support helium d: S-FSL5 gives 1.487490 at d versus 1.487427 at D; N-SK5 gives 1.589130 versus 1.589044. Printed nd/νd remain unchanged.

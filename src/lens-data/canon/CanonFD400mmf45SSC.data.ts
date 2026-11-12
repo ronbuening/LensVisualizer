@@ -12,6 +12,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Infinity focus only: closeFocusM = 1e15 is a placeholder, not a finite focus distance.
  * The production lens's 34 mm filter is omitted because Table 1 supplies no plate
  * prescription. The production association is probable; stop placement remains uncertain.
+ * Element focal lengths are isolated thick-lens values in air at the model scale.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -67,6 +68,7 @@ const LENS_DATA = {
       "label": "Element 1",
       "type": "Biconvex Positive",
       "role": "Front collector of the fixed positive group",
+      "focalLengthMm": 184.25,
       "nd": 1.48749,
       "vd": 70.1,
       "indexReference": "d",
@@ -78,6 +80,7 @@ const LENS_DATA = {
       "label": "Element 2",
       "type": "Negative Meniscus",
       "role": "Negative element within the fixed front positive group",
+      "focalLengthMm": -156.60,
       "nd": 1.8061,
       "vd": 40.9,
       "indexReference": "d",
@@ -89,6 +92,7 @@ const LENS_DATA = {
       "label": "Element 3",
       "type": "Biconvex Positive",
       "role": "Rear positive element of the fixed front group",
+      "focalLengthMm": 195.72,
       "nd": 1.48749,
       "vd": 70.1,
       "indexReference": "d",
@@ -100,6 +104,7 @@ const LENS_DATA = {
       "label": "Element 4",
       "type": "Negative Meniscus",
       "role": "Fixed negative member ahead of the rear focusing doublet",
+      "focalLengthMm": -1151.57,
       "nd": 1.58913,
       "vd": 61.1,
       "indexReference": "d",
@@ -111,6 +116,7 @@ const LENS_DATA = {
       "label": "Element 5",
       "type": "Positive Meniscus",
       "role": "Positive component of the rear focusing doublet",
+      "focalLengthMm": 287.10,
       "cemented": "C1",
       "nd": 1.7552,
       "vd": 27.5,
@@ -123,6 +129,7 @@ const LENS_DATA = {
       "label": "Element 6",
       "type": "Negative Meniscus",
       "role": "Negative component of the rear focusing doublet",
+      "focalLengthMm": -130.01,
       "cemented": "C1",
       "nd": 1.713,
       "vd": 53.9,
@@ -231,9 +238,9 @@ const LENS_DATA = {
     "maxTraceFieldDeg": 3.0833333333333335
   },
   "groups": [
-    { "text": "Fixed front positive group", "fromSurface": "1", "toSurface": "6" },
-    { "text": "Fixed rear negative member", "fromSurface": "7", "toSurface": "8" },
-    { "text": "Rear focusing doublet", "fromSurface": "9", "toSurface": "11" }
+    { "text": "A (fixed positive)", "fromSurface": "1", "toSurface": "6" },
+    { "text": "B (fixed negative)", "fromSurface": "7", "toSurface": "8" },
+    { "text": "C (rear focusing)", "fromSurface": "9", "toSurface": "11" }
   ],
   "doublets": [
     { "text": "C1", "fromSurface": "9", "toSurface": "11" }

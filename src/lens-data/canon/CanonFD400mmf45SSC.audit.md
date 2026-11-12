@@ -92,7 +92,7 @@ Open:
   apertures. No rims changed in this pass.
 - The 6°10′ field comes from a successor catalog rather than a confirmed original S.S.C. field specification.
 - Helium-d interpretation and catalog equivalents do not establish historical glass identities or partial dispersion.
-- Rendered page review remains incomplete because the screenshot helper produced no image.
+- Closed in the second review below: the coordinator supplied the current page and all six element-inspector images; their visible content was inspected.
 
 ## 2026-11-12 — Semi-diameter pass against the patent figure
 
@@ -192,3 +192,133 @@ PDF page 1 confirms inventor Kikuo Momiyama, assignee Canon Kabushiki Kaisha, pu
 August 30, 1977, filed April 22, 1975. No new name or bibliographic mismatch was found. Existing production-name
 qualification remains material: omitted required 34 mm filter, uncertain stop placement, unmodeled finite focus
 and successor-derived field angle remain outside this rim pass. No sandbox or approval refusal occurred.
+
+## 2026-11-12 — Second review: diagram, labels and movement
+
+Compared the coordinator's current 1400×900 page and all six inspector shots with local US4045128A.pdf,
+Figure 1 on PDF page 2, Table 1 on pages 10–11, and the matched-scale SD side-by-side. The supplied page
+shows the correct six spherical elements, rear cemented pair, C1 label, stop behind C and disabled infinity-only
+focus control. The front singlets retain their descending heights; no new square-rim or step-order defect is
+visible. The previous maker comparison is retained as recorded under Deployment validation: Canon Museum
+matches six elements/five groups and rear cementing, adds the required filter and identifies no special-glass
+or aspheric positions. No maker image was newly viewed in this review.
+
+### Rims and light
+
+No rim change. A fresh scan profile locates the front axis at x ≈1495–1497 and the first vertex at
+y ≈4691 at 600 dpi. The rear vertex is around y ≈3172: approximately 1519 pixels / 161.456 mm =
+9.408 px/mm, consistent with the side-by-side's 9.4143 px/mm. The front-group span of about 414 pixels /
+41.936 mm gives 9.872 px/mm, confirming the previously documented local scale variation. Clean front
+rim runs are about 430–452 pixels from the local axis; the rear pair has approximately 183–185-pixel
+optical endpoints before labels interfere. These independent samples support the earlier reading ranges
+and do not justify repainting values within the schematic uncertainty.
+
+All front rims remain 45.7/44.6/43.4 mm; S7/8 remain 20.9, S9/10 18.5 and S11 18.1 mm.
+The rear values retain their admitted f/4.5 ray floors. There are no lands, cuts against the package
+baseline, or policy overrides. The full-pupil rim-cost comparison with leave-one-out reports worst loss
+0.0 points at every sampled field; edge transmission is 57.1% before and after. Its complete baseline
+and final curves at 0/0.5/1.0/1.5/2.0/2.6/3.1° are 100.0/94.7/87.5/80.2/72.4/64.8/57.1%.
+
+### Label and inspector changes
+
+The patent calls the fixed positive front group A, fixed negative member B and focusing doublet C
+(Figure 1 and PDF page 10, printed columns 3–4). Their spans were already correct. Short labels restore
+that notation and avoid the long adjacent captions seen on the supplied page.
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| Group, surfaces 1–6 | Fixed front positive group | A (fixed positive) | Figure 1, fixed front group A. |
+| Group, surfaces 7–8 | Fixed rear negative member | B (fixed negative) | Figure 1, stationary member B. |
+| Group, surfaces 9–11 | Rear focusing doublet | C (rear focusing) | Figure 1, movable member C. |
+| L1 focal length | Missing; FL = — | +184.25 mm | Isolated thick-lens calculation. |
+| L2 focal length | Missing; FL = — | −156.60 mm | Isolated thick-lens calculation. |
+| L3 focal length | Missing; FL = — | +195.72 mm | Isolated thick-lens calculation. |
+| L4 focal length | Missing; FL = — | −1151.57 mm | Isolated thick-lens calculation. |
+| L5 focal length | Missing; FL = — | +287.10 mm | Isolated thick-lens calculation in air. |
+| L6 focal length | Missing; FL = — | −130.01 mm | Isolated thick-lens calculation in air. |
+
+The focal-length calculation uses 1/f = (n−1)[1/Rfront−1/Rrear+(n−1)t/(n Rfront Rrear)],
+the scaled prescription and printed nd. The cemented components' individual values describe each element
+in air; they are not the combined C doublet's approximately −244.34 mm EFL. The analysis and header explain
+this convention. Types agree with radius signs and powers: L1/L3 biconvex positive, L2/L4/L6 negative
+menisci, L5 positive meniscus. L1–L6 are neutral sequential names because the patent names groups rather
+than individual elements. C1 spans surfaces 9–11 and both cemented elements carry C1; no false triplet.
+There are no aspheric markers or APD tags, and none is supported by the source.
+
+### Movement
+
+No zoom or focus ordering change is required. A and B are fixed. In the patent, C moves imageward from
+the solid infinity position to the dashed near position; d8 increases 2.250 → 9.656 mm, a displacement
+7.406 mm native or 29.624 mm at ×4. The file has no variable gap, focus keyframe or zoom table:
+all three groups are static in the model. Its existing description correctly states production rear focusing
+to 4 m and the patent's imageward C motion while explicitly withholding modeled close focus. The helper's
+synthetic focusKey[1] output is not an authored finite-focus state.
+
+### Glass and colour
+
+All six labels resolve; no label or tag changed. The exact catalog-coordinate differences are:
+L1/L3 S-FSL5 Δnd = 0, Δνd = +0.1363; L2 LAH53 −0.000002/+0.048508;
+L4 BACD5 0/+0.15; L5 SF4 0/+0.08; L6 LAC8 0/+0.04. Every row meets the allowed exact window;
+the 0.15 boundary for BACD5 is retained. Catalog equivalents remain supplier-neutral. No medium is
+constant-index or nd-only, and no copied line-index fields bypass the resolver. Table 1 gives only
+nd/νd, no named glass, C/F/g indices or partial dispersion. Table 3 repeats the L1/L3, L2, L5 and L6
+pairs; L4's 1.58913/61.1 pair is absent there. There are no unresolved elements requiring backfill.
+
+One older exact-coordinate row is available outside the repo catalog: Ohara FSL5, discontinued,
+nd = 1.487490, νd = 70.210260, Δnd = 0, Δνd = +0.110260, in
+the main checkout's tmp/pdfs/ohara-260701/OHARA_260701.AGF, lines 3194–3201.
+NM marks formula 1, status 2; the CD coefficients are
+[2.189801, −0.0098715424, 0.0081379561, 0.00042431698, −0.000043722026, 0.0000023005833],
+with wavelength range 0.334–2.325 µm. Evaluating that n² polynomial gives nd = 1.487489581,
+νd = 70.2102603 and PgF = 0.5296786. This is a catalog-row proposal for the coordinator,
+not a production-glass identification or an applied relabel.
+
+PDF page 3, Figure 3a prints C/d/g curves, but no separate F curve. With the d paraxial focus as zero,
+the model's paraxial → full nominal entrance-pupil focus shifts are C +0.363 → +0.404 mm,
+d 0 → −0.041 mm, F −0.134 → −0.281 mm, g +0.253 → +0.076 mm.
+These are unclipped prescription traces, not illumination measurements. Reading from the local sloping
+plot axis and interpreting longitudinal values at the prescription's ×4 scale, C is approximately
++0.32–0.36 → +0.36–0.44 mm, while g is approximately +0.28–0.32 → +0.16–0.22 mm.
+The g marginal discrepancy exceeds the approximately 0.02–0.04 mm reading uncertainty. That scale
+interpretation remains qualified because the chart labels Y = 21.6 without stating its focal-length scale.
+The source is not evidence for fitting a replacement dispersion curve.
+
+A +0.00001 scratch-only g-index perturbation changes marginal focus by −0.0190 mm in L1,
+−0.0170 in L3 and +0.0123 in L2, versus at most 0.0028 mm in any rear element.
+Thus L1/L3's borrowed fluor-crown dispersion is the first candidate to investigate, with L2 also
+material; it does not isolate a wrong historical glass. A scratch-only FSL5 curve substitution for L1/L3
+gives g +0.243 → +0.064 mm and does not close the discrepancy. Nothing was copied into the data file.
+
+Figure 3c's roughly +0.9% pincushion at Y = 21.6 agrees with the engine's +0.932% at 21.650 mm.
+Figure 3b bends both astigmatism curves objectward at the edge; the engine's parabasal tangential/sagittal
+shifts are +0.239/+0.008 mm, while its finite-pupil diagnostic fits are −0.068/+0.042 mm.
+The source and model therefore do not demonstrate an astigmatism match. The uncertain inferred stop,
+field/plot normalization and differing focus definitions remain relevant; no radius, spacing, stop or field
+was changed to fit these plots.
+
+### Final checks and remaining limits
+
+Before → after EFL is 400.0032373 → 400.0032373 mm, engine half-field
+3.0833333 → 3.0833333°, FOPEN 4.5 → 4.5, stop radius 13.9014303 → 13.9014303 mm
+and track 320.04 → 320.04 mm. Surface audit reports OK, no validation errors;
+aperture audit has zero rim/trace/iris limitations, image-circle has zero undersized/skipped,
+and field coverage has one clear ≥99% station with zero unsolved/skipped. The engine builds normally.
+The two Markdown files pass the requested Prettier check, and the three-file diff has no whitespace errors.
+The original matched-scale side-by-side was re-inspected at
+/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/fd400/overlay.png.
+A fresh post-edit geometry sketch is rv-current.png in the same directory; its black and blue profiles
+coincide. The coordinator must re-shoot the final A/B/C captions and populated inspector FL fields;
+the supplied pre-edit screenshots establish the earlier visible state only.
+
+The front page prints Canon Kabushiki Kaisha; Canon Inc. is already the consistent canonical spelling
+across the Canon corpus. No assignee edit or consolidation is needed for this row. Inventor Kikuo Momiyama,
+US 4,045,128 A and August 30, 1977 agree. No changelog entry was added.
+No sandbox or approval denial occurred.
+
+Open: required 34 mm filter remains omitted without a source plate prescription; the patent describes a
+filter holder/optical-path plate on PDF page 12, but Table 1 gives no thickness or glass.
+Open: stop coordinate/production diaphragm relation, probable retail association, successor-derived field
+and unmodeled finite focus remain qualified as above.
+Open: Figure 3a g-line and Figure 3b astigmatism agreement remain unestablished; FSL5 is a catalog proposal
+only and does not cure the g-line discrepancy.
+Open: final live-page re-shoot belongs to the coordinator.
