@@ -16,6 +16,7 @@ const LENS_DATA = {
       "glass": "BACD14 (Hoya catalog equivalent; production supplier unspecified)",
       "label": "Element 1",
       "type": "Biconvex Positive",
+      "focalLengthMm": 71.21,
       "role": "Main positive front element"
     },
     {
@@ -27,6 +28,7 @@ const LENS_DATA = {
       "glass": "BACD14 (Hoya catalog equivalent; production supplier unspecified)",
       "label": "Element 2",
       "type": "Positive Meniscus",
+      "focalLengthMm": 145.37,
       "role": "Air-spaced second positive element"
     },
     {
@@ -39,6 +41,7 @@ const LENS_DATA = {
       "label": "Element 3",
       "type": "Positive Meniscus",
       "cemented": "C1",
+      "focalLengthMm": 102.60,
       "role": "Positive front member of the negative cemented doublet"
     },
     {
@@ -51,6 +54,7 @@ const LENS_DATA = {
       "label": "Element 4",
       "type": "Biconcave Negative",
       "cemented": "C1",
+      "focalLengthMm": -34.56,
       "role": "Negative rear member of the cemented doublet"
     },
     {
@@ -62,6 +66,7 @@ const LENS_DATA = {
       "glass": "BACD14 (Hoya catalog equivalent; production supplier unspecified)",
       "label": "Element 5",
       "type": "Negative Meniscus",
+      "focalLengthMm": -66.98,
       "role": "Negative front member of the air-spaced rear pair"
     },
     {
@@ -73,6 +78,7 @@ const LENS_DATA = {
       "glass": "BAFD8 (Hoya catalog equivalent; production supplier unspecified)",
       "label": "Element 6",
       "type": "Biconvex Positive",
+      "focalLengthMm": 69.02,
       "role": "Positive rear element completing the rear pair"
     }
   ],
@@ -177,6 +183,10 @@ const LENS_DATA = {
   },
   "doublets": [
     { "text": "C1", "fromSurface": "5", "toSurface": "7" }
+  ],
+  "groups": [
+    { "text": "Front group", "fromSurface": "1", "toSurface": "7" },
+    { "text": "Rear group", "fromSurface": "8", "toSurface": "11" }
   ],
   "subtitle": "US 4,206,976 A, Table 1 — probable match to the New FD 135mm f/2.8",
   "catalog": {

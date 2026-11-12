@@ -87,7 +87,7 @@ Open:
   bundle vignetting remains. Production clear apertures and glass supplier/melt identities are unconfirmed.
 - No finite-focus spacings or travel law are printed; the model remains infinity-only.
 - A maker-hosted optical section remains unverified; the optical-section comparison relies on MIR.
-- Rendered-page review remains incomplete because the capture command produced no image.
+- Closed by the second review below: the coordinator's current page and six inspector captures were reviewed; refreshed captures of the new annotations remain with the coordinator.
 
 ## 2026-11-12 — Semi-diameter pass against the patent figure
 
@@ -146,3 +146,91 @@ Kaisha, US 4,206,976, June 10, 1980; the current canonical `Canon Inc.` attribut
 existing deployment record. Table 1/2 production ambiguity, the inferred iris and uncertified production clear
 apertures remain open. No sandbox or approval refusal occurred. The render queue initially rejected relative
 path arguments as invalid input; the documented absolute paths succeeded.
+
+## 2026-11-12 — Second review: diagram, labels and movement
+
+Compared the coordinator's current `page.png` and all six `el-<id>.png` captures with local US4206976A.pdf,
+PDF page 2 Fig. 1 / Figs. 2A–2C, PDF page 7 Table 1 and columns 3–4, and the front page. Re-checked the
+existing matched-scale `sd/nfd135/overlay.png`. The deployment/SD record supplies the secondary MIR comparison:
+six elements/five components, L3/L4 cemented, no marked aspherical or special-dispersion positions. No maker
+image was downloaded or independently viewed in this review.
+
+Independent paired readings from the 300-dpi figure give half-heights approximately 280, 246.5, 222, 158
+and 169 px for L1, L2, the doublet outer rim, L5 and L6. The re-checked 899 px / 78.61725 mm axial span
+gives 11.435 px/model-mm: approximately 24.5, 21.6, 19.4, 13.8 and 14.8 mm. Paired readings remove local
+axis tilt; the preceding R1 circular-fit transverse calibration agrees. R7 remains about 16.5–17.0 mm at
+the optical endpoint before the bevel. Differences stay within reading uncertainty, and the captured page
+preserves neighbouring size order and square singlets. R7's sloping join excludes the mechanical bevel.
+No rim change is justified.
+
+Lands/cuts: none; all faces equal the package baseline, without `rimExtensionSd` or `rimCutDepthMm`.
+The full-pupil `rimcost.mjs --loo` worst loss is 0.0 points at every sampled field; outer 9.0° illumination
+remains 56.0% → 56.0%. The separate meridional curve is 100.0, 99.9, 96.7, 92.6, 87.9, 74.3 and 56.0%
+from 0° to 9° at 1.5° intervals. Real peripheral vignetting remains.
+
+| Field | Before → after | Evidence and verdict |
+| --- | --- | --- |
+| Front bracket | Absent → “Front group”, surfaces 1–7 | PDF page 7, column 4, about lines 15–20 explicitly names the front group of the first three components. |
+| Rear bracket | Absent → “Rear group”, surfaces 8–11 | PDF page 7, column 3, about lines 48–50 names the rear group of the fourth/fifth components. |
+| L1 focal length in air | Missing → +71.21 mm | Unchanged Table 1 radii, thickness and index; thick-lens formula. |
+| L2 focal length in air | Missing → +145.37 mm | Same calculation. |
+| L3 focal length in air | Missing → +102.60 mm | Isolated cemented member in air. |
+| L4 focal length in air | Missing → −34.56 mm | Isolated cemented member in air. |
+| L5 focal length in air | Missing → −66.98 mm | Same calculation. |
+| L6 focal length in air | Missing → +69.02 mm | Same calculation. |
+
+The calculation is Φ = (n−1)[1/Rfront − 1/Rrear + (n−1)t/(n Rfront Rrear)]. Values agree with the analysis;
+added prose distinguishes the component brackets from C1 and explains the in-air convention. C1 correctly
+spans surfaces 5–7 and both cemented members. Sequential L1–L6 names are appropriate: the patent gives
+component ordinals and surface labels, not conflicting element designations. Type/role signs agree with
+the radii and calculated powers. No aspheres, A markers, APD tags or rear plate are warranted. The iris stays
+between L4/L5, 14.745456 mm behind R7 and 31.334094 mm before R8; its position remains inferred.
+
+Front and rear groups are fixed: all surfaces have 0 mm displacement between focus controls 0 and 1.
+No variable gaps, focus keyframes or zoom stations exist; there is no movement-order defect. The page's
+infinity-only text and disabled near endpoint correctly distinguish the static model from the cited
+production helicoid/1.3 m specification. The patent supplies no finite-focus direction or travel amount.
+
+Glasscheck and trylabel resolve every element in the worktree catalog: L1/L2/L5 BACD14 have Δnd
++0.000000816 / Δνd −0.005370; L3 PBH6 −0.000003052 / +0.035012; L4 FD3 −0.000000953 / −0.054952;
+L6 BAFD8 −0.000003208 / −0.005897. All meet the 0.0001 / 0.15 limits. Older Hoya/Ohara rows are plausible
+counterparts without identifying the production supplier. No relabel or missing catalog row is proposed.
+No unresolved, constant-index or nd-only element is present. PDF pages 7–8 provide index/Abbe pairs only:
+no glass names, further line indices or partial dispersion can be backfilled. The 1.60311/60.7 and
+1.72342/38.0 pairs recur throughout the examples; 1.74000/28.3 recurs in Tables 3/4.
+
+Exact C/d/F/g axial paraxial/marginal focus relative to the stored image plane, in model mm, is
+C +0.1661/+0.1048; d +0.0128/−0.0222; F −0.0999/−0.0417; g +0.0313/+0.1921.
+Fig. 2A prints d/g only. Read against the local tilted zero line, d agrees within about 0.03 mm at model
+scale; marginal g appears about +0.13 ±0.03 mm, leaving about 0.06 mm more positive residual in the model.
+This is a spectral-proxy limitation, not proof of a prescription misprint. Non-mutating L3 PBH6 → S-TIH6
+sensitivity reduces marginal g by 0.0355 mm; L4 FD3 → S-TIH3 increases it by 0.0497 mm. L3/L4 flint
+dispersion is therefore the leading uncertainty; the trials do not establish a supplier or justify tuning labels.
+Fig. 2B's S-before-M ordering agrees: model corner S/T shifts are −0.0430/+0.0689 mm at 9.024°; the figure
+suggests about −0.04/+0.04 mm with roughly 0.02 mm reading uncertainty. A small meridional discrepancy
+also remains, with the iris inferred. Fig. 2C gives positive pincushion near +1.0% at 9.1°, consistent with
+model +0.988% at 9.024° within about 0.1 point. No C/F curves are printed.
+
+Front page: Nozomu Kitagishi; Canon Kabushiki Kaisha; US 4,206,976; June 10, 1980. `Canon Inc.` matches
+the corpus canonical spelling and deployment mapping; no further consolidation is needed. The source's
+condition-(4) conflict on PDF page 7 remains: 1.80518 − 1.74000 = 0.06518 exceeds 0.06. The other-example
+Table 4 back-focus conflict is on PDF page 8; neither numerical prescription was changed.
+
+The surface audit reports “OK — no validation errors”; aperture has one passing station and no rim,
+trace or iris failures; image-circle has zero undersized/zero skipped; field coverage reaches 100% with
+a clear corner. At 9.1° the nominal-f/2.8 clear-aperture trace has no CLIPS-AXIAL/BLOCKS-CHIEF flags;
+R5 retains about 0.22 mm axial margin. Build succeeds. Before → after: EFL 135.0080695 → 135.0080695 mm;
+engine half-field 9.1° → 9.1°; tracing half-field 11.771927° → 11.771927°; f-number 2.8 → 2.8;
+stop radius 13.2801467 → 13.2801467 mm. All numerical optical inputs remain unchanged.
+
+The current page/six inspectors show correct shapes, glass labels, C1 membership and focus wording,
+but show “FL = —” before these edits. The post-edit matched-scale model sketch preserves the silhouette;
+it does not render the new brackets or inspector values. Comparison artifact:
+`/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/nfd135/overlay.png`.
+Post-edit silhouette: `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/nfd135/rv-model.png`.
+No sandbox or approval refusal occurred. No changelog or git state was changed.
+
+Open: refreshed page/inspector review of the new brackets and focal lengths belongs to the coordinator.
+Open: marginal g and small meridional-focus differences are not resolved by published glass data.
+Open: inferred iris, Table 1/2 production ambiguity, condition-(4)/Table 4 source conflicts, uncertified
+production apertures/suppliers, absent finite-focus law and unverified maker-hosted section remain qualified above.

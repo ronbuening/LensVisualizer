@@ -16,6 +16,8 @@ Table 1 supplies the complete modeled prescription. Tables 1 and 2 both fit the 
 
 The six spherical elements form five components: a broad positive front singlet, a positive meniscus, a cemented positive/negative pair, a long air space, a rear negative meniscus and a final positive singlet. This sequence, rather than the element count alone, is the basis of the optical-section association. The patent discusses compact Ernostar-type construction and an intermediate focal length extending to 135 mm.
 
+The patent calls the first three components the front group (L1–L4, surfaces 1–7) and the last two components the rear group (L5–L6, surfaces 8–11). These two brackets are separate from the C1 cemented-doublet bracket over surfaces 5–7. Element focal lengths shown in the inspector are calculated in air; the two cemented members' individual values do not describe their powers within C1.
+
 All eleven radii, ten internal thicknesses/spacings and six index/Abbe pairs follow Table 1. The scale corresponds to the nominal production focal length; computed EFL is approximately 135.0081 mm. The printed total length fixes the image plane at 119.1645 mm and the final image gap at 40.54725 mm, versus paraxial back focus 40.56008 mm. Before scaling, these back-focus values are 30.035 and 30.04450 mm. The image plane remains at the printed position. The patent's full field is 18.2°, compared with the production lens's rounded 18° specification.
 
 Approximate optical rims are read from Figure 1, scaled against the 58.235 mm unscaled track: unscaled semi-diameters of about 18.2, 16.2, 14.3, 10.1 and 10.9 mm. R7 ends before the middle component's bevel at about 12.4 mm unscaled (16.74 mm in the model). The cemented interface retains the wider component estimate. These schematic dimensions carry approximately ±0.6 mm uncertainty before scaling and do not specify certified clear apertures. The modeled rims clear the stated f/2.8 axial beam and full-frame corner chief ray. Wide-open geometric pupil transmission is about 56.0% at the engine curve's outer 9.0° sample; this excludes radiometric falloff and coating losses.
@@ -51,6 +53,8 @@ The nearly flat front and more strongly curved rear complete the system. The fin
 ## Glass Identification / Selection
 
 The patent calls the spectral line sodium, but its printed coordinates agree with helium d catalog values: BACD14 calculates 1.603111 at d versus 1.603022 at D; N-SF6 calculates 1.805180 versus 1.804906. The model therefore interprets the unchanged printed indices at helium d. BACD14 supplies a compatible dispersion curve for L1, L2 and L5; PBH6 for L3, FD3 for L4 and BAFD8 for L6. All meet |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15. These catalog equivalents do not identify production suppliers, melts or anomalous partial dispersion, and do not establish factory MTF equivalence.
+
+The source supplies no additional spectral indices or partial-dispersion data. Relative to the fixed image plane, the model's paraxial/marginal d-line focus is +0.0128/−0.0222 mm and its g-line focus is +0.0313/+0.1921 mm. The d-line agrees with Figure 2A at the scan's reading precision, while the marginal g-line is roughly 0.06 mm farther imageward than the scaled plot suggests, with about 0.03 mm reading uncertainty. The doublet's catalog dispersion remains a significant uncertainty despite the close index/Abbe matches.
 
 ## Focus Mechanism
 
