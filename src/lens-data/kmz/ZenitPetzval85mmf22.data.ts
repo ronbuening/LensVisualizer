@@ -3,7 +3,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   "schema": 2,
   "key": "zenit-petzval-85mm-f22-representative",
-  "maker": "Zenit",
+  "maker": "KMZ",
   "name": "Zenit Petzval 85mm f/2.2",
   "visible": false,
   "elements": [
@@ -102,7 +102,7 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1e15,
     "description": "NO_INTERNAL_RECONSTRUCTION: infinity-only sentinel; retail rack-and-pinion focus travel is not reconstructed."
   },
   "aperture": {
@@ -122,6 +122,13 @@ const LENS_DATA = {
   "subtitle": "RU2549915 whole prescription; published clear diameters and stop, qualified retail association",
   "catalog": {
     "imageFormat": "135-full-frame",
+    "lensMounts": [
+      "canon-ef",
+      "nikon-f"
+    ],
+    "closeFocusM": {
+      "marketing": 1
+    },
     "elementCount": 4,
     "groupCount": 3,
     "focalLengthMm": {
@@ -139,7 +146,7 @@ const LENS_DATA = {
     ]
   },
   "source": {
-    "patentNumber": "RU 2,549,915 C1",
+    "patentNumber": "RU 2549915 C1",
     "patentYear": 2015,
     "example": {
       "label": "Whole Table 1",
@@ -151,7 +158,7 @@ const LENS_DATA = {
       "Sergey Ivanovich Shcheglov"
     ],
     "assignees": [
-      "Open Joint Stock Company Krasnogorsky Zavod im. S. A. Zvereva"
+      "PJSC Krasnogorsky Zavod named after S. A. Zverev"
     ]
   }
 } satisfies LensDataV2Input;

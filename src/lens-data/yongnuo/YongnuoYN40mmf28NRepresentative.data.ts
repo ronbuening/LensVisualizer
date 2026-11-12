@@ -1,14 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Whole CN207216120U Instance 2, literal d-line optics and fixed source image plane. Secondary product association only. Source-figure apertures and opaque S3/S7 rim extensions are inferred; rear plate aperture unspecified/nonclipping. +0.821424mm paraxial source-plane defocus retained, not repaired. Infinity only; not exact factory performance. */
+/** Whole CN207216120U Instance 2, literal d-line optics; image plane at paraxial infinity focus. Secondary product association only. Source-figure apertures and opaque S3/S7 rim extensions are inferred; rear plate aperture unspecified/nonclipping. The printed plate-to-image gap (1mm) left +0.821424mm of paraxial defocus; the gap is set to 1.8214mm at integration. Infinity only; not exact factory performance. */
 const LENS_DATA = {
   "schema": 2,
   "key": "yongnuo-yn-40mm-f28-n-representative",
   "maker": "Yongnuo",
   "name": "Yongnuo YN 40mm f/2.8 N",
   "visible": false,
-  "subtitle": "CN207216120U Instance 2; secondary product association, fixed source plane",
+  "subtitle": "CN207216120U Instance 2; secondary product association, image plane at paraxial focus",
   "catalog": {
     "imageFormat": "135-full-frame",
+    "lensMounts": [
+      "nikon-f"
+    ],
+    "closeFocusM": {
+      "marketing": 0.3
+    },
     "elementCount": 6,
     "groupCount": 4,
     "focalLengthMm": {
@@ -21,7 +27,7 @@ const LENS_DATA = {
     },
     "specs": [
       "Whole Instance2; probable family, not factory exact",
-      "Literal source image plane; +0.8214mm paraxial residual retained",
+      "Image plane at paraxial infinity focus (printed gap leaves 0.82mm defocus)",
       "Source-figure caps, modeled opaque rim lands; infinity only"
     ]
   },
@@ -191,7 +197,7 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1e15,
     "description": "NO_INTERNAL_RECONSTRUCTION: static infinity-only sentinel. No retail near-focus law reconstructed."
   },
   "aperture": {
@@ -202,9 +208,10 @@ const LENS_DATA = {
       5.6,
       8,
       11,
-      16
+      16,
+      22
     ],
-    "maxFNumber": 16
+    "maxFNumber": 22
   },
   "projection": {
     "kind": "rectilinear",
@@ -218,8 +225,8 @@ const LENS_DATA = {
       "nd": 1.5168,
       "vd": 64.2,
       "indexReference": "d",
-      "gapAfterMm": 1,
-      "source": "CN207216120U Instance2 Table1 surfaces12/13. No published clear plate diameter; schema nonclipping default, not factory aperture claim."
+      "gapAfterMm": 1.8214,
+      "source": "CN207216120U Instance2 Table1 surfaces12/13. Plate-to-image gap 1.8214mm is the paraxial infinity focus; the printed d13 = 1 leaves 0.821mm of defocus (no single-row misprint explains it). No published clear plate diameter; schema nonclipping default, not factory aperture claim."
     }
   ],
   "layout": {

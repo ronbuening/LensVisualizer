@@ -1,5 +1,5 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Hidden whole Table1, native sodium D, literal4x scaling; fixed source imageplane. Figure-derived rims/stop, no fit/override. Retail filter omitted as unprescribed; mechanical correspondence qualified. */
+/** Hidden whole Table1, helium d-line (catalog line test), literal4x scaling; fixed source imageplane. Figure-derived rims/stop, no fit/override. Retail filter omitted as unprescribed; mechanical correspondence qualified. */
 const LENS_DATA = {
   "schema": 2,
   "key": "canon-fd-400mm-f45-ssc-representative",
@@ -9,6 +9,12 @@ const LENS_DATA = {
   "subtitle": "US4045128 Table1 representative; patent stop topology, omitted unprescribed retail filter",
   "catalog": {
     "imageFormat": "135-full-frame",
+    "lensMounts": [
+      "canon-fd"
+    ],
+    "closeFocusM": {
+      "marketing": 4
+    },
     "elementCount": 6,
     "groupCount": 5,
     "focalLengthMm": {
@@ -47,8 +53,8 @@ const LENS_DATA = {
       "type": "Patent spherical element",
       "nd": 1.48749,
       "vd": 70.1,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no verified melt or partial dispersion"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
     },
     {
       "id": 2,
@@ -57,8 +63,8 @@ const LENS_DATA = {
       "type": "Patent spherical element",
       "nd": 1.8061,
       "vd": 40.9,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no verified melt or partial dispersion"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
     },
     {
       "id": 3,
@@ -67,8 +73,8 @@ const LENS_DATA = {
       "type": "Patent spherical element",
       "nd": 1.48749,
       "vd": 70.1,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no verified melt or partial dispersion"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
     },
     {
       "id": 4,
@@ -77,8 +83,8 @@ const LENS_DATA = {
       "type": "Patent spherical element",
       "nd": 1.58913,
       "vd": 61.1,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no verified melt or partial dispersion"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
     },
     {
       "id": 5,
@@ -87,8 +93,8 @@ const LENS_DATA = {
       "type": "Patent spherical element",
       "nd": 1.7552,
       "vd": 27.5,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no verified melt or partial dispersion"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
     },
     {
       "id": 6,
@@ -97,8 +103,8 @@ const LENS_DATA = {
       "type": "Patent spherical element",
       "nd": 1.713,
       "vd": 53.9,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no verified melt or partial dispersion"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
     }
   ],
   "surfaces": [
@@ -145,34 +151,34 @@ const LENS_DATA = {
       "label": "7",
       "R": 34.1476,
       "d": 5.0,
-      "sd": 20.5,
+      "sd": 20.9,
       "medium": 4
     },
     {
       "label": "8",
       "R": 30.7464,
       "d": 9.0,
-      "sd": 20.5
+      "sd": 20.9
     },
     {
       "label": "9",
       "R": 145.2136,
       "d": 3.0,
-      "sd": 17.6,
+      "sd": 18.5,
       "medium": 5
     },
     {
       "label": "10",
       "R": 435.794,
       "d": 2.5,
-      "sd": 17.6,
+      "sd": 18.5,
       "medium": 6
     },
     {
       "label": "11",
       "R": 76.2564,
       "d": 33.46542545454545,
-      "sd": 17.6
+      "sd": 18.1
     },
     {
       "label": "STO",
@@ -181,7 +187,7 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1e15,
     "description": "NO_INTERNAL_RECONSTRUCTION: static infinity-only sentinel; published finite endpoint retained in audit, no continuous cam claimed."
   },
   "aperture": {

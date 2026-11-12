@@ -102,7 +102,7 @@ export default {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1e15,
     "description": "NO_INTERNAL_RECONSTRUCTION: infinity-only sentinel; no published finite travel law."
   },
   "aperture": {
@@ -121,6 +121,10 @@ export default {
   },
   "subtitle": "US2972285 Table A x1.35; probable family, no auto/preset assignment; inferred boundaries",
   "catalog": {
+    "imageFormat": "135-full-frame",
+    "lensMounts": [
+      "exakta"
+    ],
     "elementCount": 4,
     "groupCount": 3,
     "focalLengthMm": {
@@ -138,7 +142,7 @@ export default {
     ]
   },
   "source": {
-    "patentNumber": "US 2,972,285",
+    "patentNumber": "US 2,972,285 A",
     "patentYear": 1961,
     "example": {
       "label": "Table A",

@@ -734,7 +734,7 @@ const LENS_DATA = {
     ]
   },
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1e15,
     "description": "Infinity only; finite source movements not implemented because published conjugate conflicts"
   },
   "rearPlates": [
@@ -782,6 +782,9 @@ const LENS_DATA = {
     "lensMounts": [
       "samsung-nx"
     ],
+    "closeFocusM": {
+      "marketing": 0.28
+    },
     "focalLengthMm": {
       "marketing": [
         18,

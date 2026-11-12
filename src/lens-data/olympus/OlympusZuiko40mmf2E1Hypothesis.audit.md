@@ -11,3 +11,20 @@ Native and integration work NOT RUN. Paraxial cap clearance is not exact full-ap
 
 ## Additive v2 review (2026-11-11)
 Original audit above retained as historical static record. Current v2 changes only explicit rectilinear56deg field, maker maximum aperture16 and explanatory metadata. Source R/d/nV, assumed helium-d, inherited caps, midpointstop and printed-BF plane65.48 remain unchanged. See RIM_REVIEW.json and current focused receipts. No full acceptance; E2hold unchanged.
+
+## Deployment validation (2026-11-12)
+
+- Source: US 4,396,255 A (Google Patents PDF, `patents/US4396255A.pdf`), Embodiment 1. 12 R, 11 d, BF and 6 nd/νd
+  match pages 6–8; every length is the normalized value × 40. EFL 40.001, BF 36.652 vs printed 36.72; the stored
+  65.48 mm plane is 40 × (0.719 + 0.918). Helium d confirmed (S-TIH14 1.761821 at d vs 1.761572 at D).
+- Product: the maker's handbook section (`https://esif.world-traveller.org/om-sif/lensgroup/images/40mmf2_diagram.jpg`)
+  shows six separate elements with a central stop and L4/L5 almost touching, as in the patent's Fig. 1 (Embodiments
+  1 and 2). Both embodiments fit; neither is established as the factory one.
+- Integration fixes:
+  - Rims raised to pass the f/2 axial bundle (`audit:aperture --raise`): surfaces 7/8 8.1 → 9.0, 9/10 9.4 → 9.7.
+    Before, rims clipped the beam to about f/2.16.
+  - `checks.gapSagFrac` 0.95: at 9.0 mm the L4 rear and L5 front faces of the 0.32 mm gap come within 0.02 mm, as the
+    patent figure and the maker section both draw them.
+  - Static focus sentinel 1e9 → 1e15 (house form).
+- Open: name and subtitle wording ("E1 hypothesis") for the cleanup pass. Field coverage stops at the maker's 56°
+  (96 % of the corner), which is the declared angle of view, not clipping.

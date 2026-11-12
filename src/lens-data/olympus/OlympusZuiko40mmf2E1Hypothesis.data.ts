@@ -10,6 +10,9 @@ const LENS_DATA = {
   "layout": {
     "yScFill": 0.35
   },
+  "checks": {
+    "gapSagFrac": 0.95
+  },
   "catalog": {
     "imageFormat": "135-full-frame",
     "specs": [
@@ -173,27 +176,27 @@ const LENS_DATA = {
       "label": "7",
       "R": -13.08,
       "d": 0.96,
-      "sd": 8.1,
+      "sd": 9,
       "medium": 4
     },
     {
       "label": "8",
       "R": -101,
       "d": 0.32,
-      "sd": 8.1
+      "sd": 9
     },
     {
       "label": "9",
       "R": -57.839999999999996,
       "d": 4.640000000000001,
-      "sd": 9.4,
+      "sd": 9.7,
       "medium": 5
     },
     {
       "label": "10",
       "R": -15.48,
       "d": 0.08,
-      "sd": 9.4
+      "sd": 9.7
     },
     {
       "label": "11",
@@ -210,8 +213,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000,
-    "description": "NO_INTERNAL_RECONSTRUCTION: static infinity-only source. Required 1e9 m schema sentinel is NOT a validated close endpoint. Generic slider/fallback labels can appear but do not represent recovered optical conjugates. No finite movement law."
+    "closeFocusM": 1e15,
+    "description": "NO_INTERNAL_RECONSTRUCTION: static infinity-only source. Required 1e15 m schema sentinel is NOT a validated close endpoint. Generic slider/fallback labels can appear but do not represent recovered optical conjugates. No finite movement law."
   },
   "gaps": {},
   "aperture": {

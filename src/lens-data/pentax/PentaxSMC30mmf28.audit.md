@@ -21,3 +21,17 @@ Primary full-source provenance, source/production qualification, and fresh curre
 The original v1 assigned the whole L2 mechanical shoulder radius15mm to both faces and failed the native R4 spherical-domain guard. Figure3 independently shows the R4 curved face ending at the bevel near pixels(466,344) and(465,535), axis437. The smaller93pixel extent at0.11691495mm/pixel gives10.8731mm, conservatively rounded down to10.8mm. Only R4 optical semi-diameter changes in v2; R3 retains15mm. This is a schematic optical-face inference with about±0.35mm plus drawing distortion, not a printed factory dimension or ray-fitted cap. All R/d/nV, sourceimageplane and stop remain unchanged, with no override. The failed v1 remains preserved. Fresh bounded results are recorded separately; no further aperture tuning is permitted in this pass.
 
 Fresh v2 strict TypeScript and native construction pass without overrides. Bounded25-pupil-plus-chief samples: axis26pass;18°19pass/7clip;27°15pass/11clip;36°9pass/17clip. At36° the chief itself clips at runtime surface index12 and the bundle adapter returns unavailable. This is a material full-field limitation, not successful edge acceptance; no further caps are tuned. R4_ONLY_CHANGE_RECEIPT.json records exact invariants and native aperture. Full corpus, compiled viewer and MTF remain unrun.
+
+## Deployment validation (2026-11-12)
+
+- Source: US 3,975,091 A (Google Patents PDF, `patents/US3975091A.pdf`), Example 2. 14 R, 13 d and 7 nd/νd match the
+  page 5 images; every length is the patent value × 0.3. EFL 29.997, F/2.8; back focus 37.255 paraxial vs 37.2 from the
+  printed 1.24F. Claim 2's R12 = −58.97 conflicts with the table (it gives EFL 34.1); the table's −53.97 is kept.
+- Product: the Asahi brochure and PentaxForums confirm 7 elements / 7 groups, 72°, 0.30 m, K mount, 1975; the
+  published section's rear meniscus favours Example 2 over Example 1.
+- Integration fixes:
+  - Rear rims raised so the 36° corner chief ray passes (it was blocked at surfaces 12 and 14): 11/12 8.3 → 8.6,
+    13/14 10.2 → 10.4 (chief heights 8.55 and 10.35 mm). Field coverage now ≥99 %, no axial clipping.
+  - `indexReference` D → d on all seven glasses (S-FSL5 1.48748993 at d vs 1.48742765 at D).
+  - Assignee "Asahi Kogaku Kogyo Kabushiki Kaisha" → "Asahi Kogaku Kogyo Co., Ltd." (registry form).
+  - Added `lensMounts` pentax-k and `catalog.closeFocusM` 0.3 m; focus sentinel 1e15.

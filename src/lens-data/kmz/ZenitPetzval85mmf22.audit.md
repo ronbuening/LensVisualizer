@@ -15,3 +15,19 @@ Execution after cloud restart used persistent baseline747785dfd26aa191996d602382
 Strict semantic TS: zero diagnostics. Actual data imports equal diagnostic input; native construction passes. Sparse 25pupil+separatechief test at0/8/12/16degrees is rerun from authored draft input. Rays are not integration or MTF acceptance. Edge clipping/blocked samples remain in FIELD_DIAGNOSIS.json; source imageplane retained. Full corpus/build/viewer/MTF remain unrun. Original schema-only diagnostic omission is retained in prior diagnostic checkpoint, corrected by adding display layout and a single fStop, not optics.
 
 Independent authored-triad review is recorded in INDEPENDENT_REVIEW.json and INDEPENDENT_STRUCTURAL_CHECK.json: scoped pass for the hidden qualified draft, not final acceptance. Source, first-order, dedup and native diagnostic predecessor receipts are retained separately, not overwritten. No private archive links are embedded in the public-facing analysis.
+
+## Deployment validation (2026-11-12)
+
+- Source: RU 2549915 C1 (Google Patents PDF, full 6-page publication, `patents/RU2549915C1.pdf`). Seven R, six d,
+  four nD/νD pairs, seven printed clear diameters and the printed BF match page 5; scale 1. EFL 84.077 vs printed 84.01,
+  BF 43.290 vs 43.22.
+- Sodium D kept: LZOS TK21 is 1.656798 at D vs 1.656912 at d against the printed 1.6568.
+- Product: the KMZ archive page cites this patent for the Petzval 85 f/2.2 (sold as the Lomography × Zenit New
+  Petzval 85; 4 elements / 3 groups, 1 m MFD, Canon EF and Nikon F). The maker section
+  (`https://www.zenitcamera.com/archive/lenses/petzval-2-2-85-lens.gif`) matches the topology. Retail EFL/BF/track
+  (84.74 / 46.04 / 56.2 mm) differ from the patent example: family match, not the factory prescription.
+- Integration fixes:
+  - Maker "Zenit" → "KMZ" (folder `kmz/`); assignee → "PJSC Krasnogorsky Zavod named after S. A. Zverev" (registry form;
+    the patent prints the OJSC name); patent number → `RU 2549915 C1`.
+  - Added `lensMounts` canon-ef / nikon-f and `catalog.closeFocusM` 1 m; focus sentinel 1e15.
+- The printed clear diameters are kept: they trim the axial beam to about f/2.24, within the audit's 3 %.

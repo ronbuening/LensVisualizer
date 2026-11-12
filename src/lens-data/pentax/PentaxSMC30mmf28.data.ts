@@ -8,6 +8,12 @@ const LENS_DATA = {
   "subtitle": "US3975091 Example 2 representative; inferred iris/rims, fixed published back-focus ratio",
   "catalog": {
     "imageFormat": "135-full-frame",
+    "lensMounts": [
+      "pentax-k"
+    ],
+    "closeFocusM": {
+      "marketing": 0.3
+    },
     "elementCount": 7,
     "groupCount": 7,
     "focalLengthMm": {
@@ -20,7 +26,7 @@ const LENS_DATA = {
     },
     "specs": [
       "Whole Table2 at nominal0.3scale, not factory exact",
-      "Native sodium-D, fixed source back focal gap37.2mm",
+      "Helium d-line; back focus 37.2mm from the printed 1.24F",
       "Inferred central-gap iris/rims; infinity-only"
     ]
   },
@@ -35,7 +41,7 @@ const LENS_DATA = {
       "Yasuo Takahashi"
     ],
     "assignees": [
-      "Asahi Kogaku Kogyo Kabushiki Kaisha"
+      "Asahi Kogaku Kogyo Co., Ltd."
     ]
   },
   "elements": [
@@ -46,8 +52,8 @@ const LENS_DATA = {
       "type": "Patent spherical singlet",
       "nd": 1.54869,
       "vd": 45.6,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no exact melt or partial dispersion supplied"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no exact melt or partial dispersion supplied"
     },
     {
       "id": 2,
@@ -56,8 +62,8 @@ const LENS_DATA = {
       "type": "Patent spherical singlet",
       "nd": 1.51633,
       "vd": 64.1,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no exact melt or partial dispersion supplied"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no exact melt or partial dispersion supplied"
     },
     {
       "id": 3,
@@ -66,8 +72,8 @@ const LENS_DATA = {
       "type": "Patent spherical singlet",
       "nd": 1.48749,
       "vd": 70.1,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no exact melt or partial dispersion supplied"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no exact melt or partial dispersion supplied"
     },
     {
       "id": 4,
@@ -76,8 +82,8 @@ const LENS_DATA = {
       "type": "Patent spherical singlet",
       "nd": 1.8061,
       "vd": 40.8,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no exact melt or partial dispersion supplied"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no exact melt or partial dispersion supplied"
     },
     {
       "id": 5,
@@ -86,8 +92,8 @@ const LENS_DATA = {
       "type": "Patent spherical singlet",
       "nd": 1.80518,
       "vd": 25.4,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no exact melt or partial dispersion supplied"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no exact melt or partial dispersion supplied"
     },
     {
       "id": 6,
@@ -96,8 +102,8 @@ const LENS_DATA = {
       "type": "Patent spherical singlet",
       "nd": 1.6516,
       "vd": 58.6,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no exact melt or partial dispersion supplied"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no exact melt or partial dispersion supplied"
     },
     {
       "id": 7,
@@ -106,8 +112,8 @@ const LENS_DATA = {
       "type": "Patent spherical singlet",
       "nd": 1.6516,
       "vd": 58.6,
-      "indexReference": "D",
-      "glass": "Literal sodium-D n and Abbe; no exact melt or partial dispersion supplied"
+      "indexReference": "d",
+      "glass": "Literal d-line n and Abbe; no exact melt or partial dispersion supplied"
     }
   ],
   "surfaces": [
@@ -185,31 +191,31 @@ const LENS_DATA = {
       "label": "11",
       "R": -66.96,
       "d": 5.238,
-      "sd": 8.3,
+      "sd": 8.6,
       "medium": 6
     },
     {
       "label": "12",
       "R": -16.191,
       "d": 0.099,
-      "sd": 8.3
+      "sd": 8.6
     },
     {
       "label": "13",
       "R": -101.94,
       "d": 3.6869999999999994,
-      "sd": 10.2,
+      "sd": 10.4,
       "medium": 7
     },
     {
       "label": "14",
       "R": -25.904999999999998,
       "d": 37.2,
-      "sd": 10.2
+      "sd": 10.4
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1e15,
     "description": "NO_INTERNAL_RECONSTRUCTION: static infinity-only sentinel; retail0.30m is not a reconstructed focus law."
   },
   "aperture": {

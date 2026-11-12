@@ -1,5 +1,5 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Whole Table1 x1.35, native sodiumD, fixed sourceplane119.1645. Figure-inferred caps/iris frozen before traces; no factoryclaim or overrides. */
+/** Whole Table1 x1.35, helium d-line (catalog line test), fixed sourceplane119.1645. Figure-inferred caps/iris frozen before traces; no factoryclaim or overrides. */
 export default {
   "schema": 2,
   "key": "canon-new-fd-135mm-f28-representative",
@@ -12,8 +12,8 @@ export default {
       "name": "L1",
       "nd": 1.60311,
       "vd": 60.7,
-      "indexReference": "D",
-      "glass": "Literal sodium-D index and Abbe pair; no melt identity",
+      "indexReference": "d",
+      "glass": "Literal d-line index and Abbe pair; no melt identity",
       "label": "Element 1",
       "type": "Patent spherical glass"
     },
@@ -22,8 +22,8 @@ export default {
       "name": "L2",
       "nd": 1.60311,
       "vd": 60.7,
-      "indexReference": "D",
-      "glass": "Literal sodium-D index and Abbe pair; no melt identity",
+      "indexReference": "d",
+      "glass": "Literal d-line index and Abbe pair; no melt identity",
       "label": "Element 2",
       "type": "Patent spherical glass"
     },
@@ -32,8 +32,8 @@ export default {
       "name": "L3",
       "nd": 1.80518,
       "vd": 25.4,
-      "indexReference": "D",
-      "glass": "Literal sodium-D index and Abbe pair; no melt identity",
+      "indexReference": "d",
+      "glass": "Literal d-line index and Abbe pair; no melt identity",
       "label": "Element 3",
       "type": "Patent spherical glass"
     },
@@ -42,8 +42,8 @@ export default {
       "name": "L4",
       "nd": 1.74,
       "vd": 28.3,
-      "indexReference": "D",
-      "glass": "Literal sodium-D index and Abbe pair; no melt identity",
+      "indexReference": "d",
+      "glass": "Literal d-line index and Abbe pair; no melt identity",
       "label": "Element 4",
       "type": "Patent spherical glass"
     },
@@ -52,8 +52,8 @@ export default {
       "name": "L5",
       "nd": 1.60311,
       "vd": 60.7,
-      "indexReference": "D",
-      "glass": "Literal sodium-D index and Abbe pair; no melt identity",
+      "indexReference": "d",
+      "glass": "Literal d-line index and Abbe pair; no melt identity",
       "label": "Element 5",
       "type": "Patent spherical glass"
     },
@@ -62,8 +62,8 @@ export default {
       "name": "L6",
       "nd": 1.72342,
       "vd": 38.0,
-      "indexReference": "D",
-      "glass": "Literal sodium-D index and Abbe pair; no melt identity",
+      "indexReference": "d",
+      "glass": "Literal d-line index and Abbe pair; no melt identity",
       "label": "Element 6",
       "type": "Patent spherical glass"
     }
@@ -148,7 +148,7 @@ export default {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1e15,
     "description": "NO_INTERNAL_RECONSTRUCTION: infinity-only sentinel; no published finite travel law."
   },
   "aperture": {
@@ -165,8 +165,15 @@ export default {
   "layout": {
     "yScFill": 0.7
   },
-  "subtitle": "US4206976 Table1 x1.35; sodiumD, fixed printed plane; probable family not factory exact",
+  "subtitle": "US4206976 Table1 x1.35; d-line, fixed printed plane; probable family not factory exact",
   "catalog": {
+    "imageFormat": "135-full-frame",
+    "lensMounts": [
+      "canon-fd"
+    ],
+    "closeFocusM": {
+      "marketing": 1.3
+    },
     "elementCount": 6,
     "groupCount": 5,
     "focalLengthMm": {
@@ -179,12 +186,12 @@ export default {
     },
     "specs": [
       "First primary embodiment representative; not factory prescription",
-      "Literal sodium D; fixed printed source plane119.1645mm",
+      "Helium d-line; fixed printed source plane119.1645mm",
       "Inferred figure rims and secondary-section iris; infinity only"
     ]
   },
   "source": {
-    "patentNumber": "US 4,206,976",
+    "patentNumber": "US 4,206,976 A",
     "patentYear": 1980,
     "example": {
       "label": "Table 1",
@@ -194,7 +201,7 @@ export default {
       "Nozomu Kitagishi"
     ],
     "assignees": [
-      "Canon Kabushiki Kaisha"
+      "Canon Inc."
     ]
   }
 } satisfies LensDataV2Input;

@@ -15,3 +15,15 @@ Canonical APS-C23.6x15.7 corner tests completed11zoom positions (3published,8off
 Element prose now names literal shape/position and isolated-in-air thick-lens powers explicitly not in-system powers of cemented members. Finite audit confirms source contradiction; no finite-focus pass.
 
 Exit137 remains cause-unestablished: host report showed~1.4GiB available,no swap; cgroup counters inaccessible. Serial96MiB bounded runs succeeded. Full app catalog integration, compiled viewer, fullrepo tests, dense MTF and quantitative illumination not run. This is a qualified source-station/illustrative-cam draft, not a blanket acceptance or deployment claim.
+
+## Deployment validation (2026-11-12)
+
+- Source: US 8,385,002 B2 (Google Patents PDF, `patents/US8385002B2.pdf`), Embodiment 1. All 24 rows, 13 nd/νd pairs,
+  the asphere (K and four coefficients; formula uses 1 + K) and 15 printed zoom gaps match Tables 1–4 (p. 34); scale 1.
+  EFL 18.575 / 28.033 / 53.432 vs 18.55 / 28 / 53.4 (max 0.13 %). Helium d confirmed (FK5).
+- Fourteen interpolated stations solve the G3 position against the interpolated source defocus; residuals stay within
+  −0.033 to −0.039 mm at every station.
+- Product: Samsung's NX100 brochure confirms the original S1855SB: 12 elements / 9 groups, one asphere, OIS, NX mount,
+  0.28 m. Family match; the later OIS II (iFn) and III (metal mount)
+  versions are not separately checked.
+- Integration fixes: added `catalog.closeFocusM` 0.28 m; focus sentinel 1e15.
