@@ -1,5 +1,5 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** US 4,206,976 A, Table 1, uniformly scaled ×1.35 from f = 100 to 135 mm. Helium d-line coordinates agree with catalog glasses despite the patent's sodium wording. The printed total length fixes the image plane at 119.1645 mm. Rims are estimated from Figure 1, including R7's optical endpoint before the bevel; the iris is inferred from the MIR section at 32% of the long air gap. These estimates precede ray tracing; the prescription and image plane are unadjusted, with no geometry overrides. The production association and glass equivalents do not establish a factory prescription. */
+/** US 4,206,976 A, Table 1, uniformly scaled ×1.35 from f = 100 to 135 mm. Helium d-line coordinates agree with catalog glasses despite the patent's sodium wording. The printed total length fixes the image plane at 119.1645 mm. Rims are estimated from Figure 1, including R7's optical endpoint before the bevel, and floor-checked by real-ray trace; the iris is inferred from the MIR section at 32% of the long air gap. The prescription and image plane are unadjusted, with no geometry overrides. The production association and glass equivalents do not establish a factory prescription. */
 const LENS_DATA = {
   "schema": 2,
   "key": "canon-new-fd-135mm-f28",

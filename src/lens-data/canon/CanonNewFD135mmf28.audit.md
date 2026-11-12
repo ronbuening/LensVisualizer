@@ -88,3 +88,61 @@ Open:
 - No finite-focus spacings or travel law are printed; the model remains infinity-only.
 - A maker-hosted optical section remains unverified; the optical-section comparison relies on MIR.
 - Rendered-page review remains incomplete because the capture command produced no image.
+
+## 2026-11-12 — Semi-diameter pass against the patent figure
+
+Source: local `patents/US4206976A.pdf`, PDF page 2, Fig. 1 (Table 1), rendered at 300 dpi. The model scales all
+lengths ×1.35. The baseline is `.lens-work/base1122sd/CanonNewFD135mmf28.data.ts`, after the cleanup pass.
+No numerical rim change is warranted: the clean optical endpoints agree within approximately 2%, below the
+5–8% measurement-noise band. No cut, land, rim extension, stop change or geometry override was introduced.
+
+The first/last vertices are approximately x=768/1667 px: 899 px / 78.61725 mm = 11.435 px/model-mm.
+A second span, R1–R7, is approximately 303 px / 26.6382 mm = 11.375 px/model-mm; the long R7–R8 gap gives
+530 px / 46.07955 mm = 11.502 px/model-mm. The local axis slopes from approximately y=1111 at x=770 to
+y=1100 at x=1700; paired top/bottom rim readings avoid using a fixed horizontal axis. An independent circular
+fit to clean portions of R1, y=900–1000 and 1210–1280, yields a 508.21 px radius. Against R1=44.6094 mm,
+this gives 11.392 px/mm, within 0.4% of the full-track scale and supporting the transverse scale. The figure
+does not print an iris tick, so no stop-based calibration is claimed.
+
+All values below are model millimetres; figure readings exclude lettering, leaders and the R7 bevel.
+
+| Surfaces | Before → after sd | Fig. 1 optical estimate | Figure / stored | Decision |
+| --- | --- | --- | --- | --- |
+| 1, 2 | 24.57 → 24.57 each | ≈24.4 | ≈0.993 | Keep the square front rim; half-height ≈279 px. |
+| 3, 4 | 21.87 → 21.87 each | ≈21.4 | ≈0.979 | Keep the square meniscus rim; half-height ≈245 px. |
+| 5, 6 | 19.305 → 19.305 each | ≈19.3 | ≈1.000 | Keep the common doublet/component rim; half-height ≈221 px. |
+| 7 | 16.74 → 16.74 | ≈16.5–17.0 | ≈0.99–1.02 | Optical arc ends before the mechanical bevel; do not extend to the component's outer edge. |
+| 8, 9 | 13.635 → 13.635 each | ≈13.7 | ≈1.005 | Keep the square rear-meniscus rim; half-height ≈157 px. |
+| 10, 11 | 14.715 → 14.715 each | ≈14.8 | ≈1.006 | Keep the slightly larger final singlet; half-height ≈170 px. |
+
+The surface audit returns “OK — no validation errors.” The image-circle audit checks one lens with zero
+undersized surfaces and zero skips. Full-frame field coverage solves one station with ≥99% coverage and no
+unsolved station. The aperture audit has one station within 3% of stated f/2.8, with zero rim, trace, iris or
+failed stations. The `clearap.mjs --Y 21.6333` trace reaches the corner at ω≈9.02° without CLIPS-AXIAL or
+BLOCKS-CHIEF flags. Its closest axial-rim margin is at R5: 19.305 − 19.09 ≈0.22 mm; R7 has ≈0.62 mm.
+The tightest chief-ray margin is R9: 13.635 − 9.68 ≈3.96 mm. This nominal-beam diagnostic solves a 13.764 mm
+stop radius, whereas the app uses 13.28015 mm; the engine aperture/coverage audits separately pass with its
+actual stop. Meridional side-extent losses remain approximately 20–62%; these are not pupil-area illumination.
+
+The engine remains EFL 135.0080695 → 135.0080695 mm, FOPEN 2.8 → 2.8, half-field 9.1° → 9.1°,
+tracing half-field 11.771927° → 11.771927°, and stop radius 13.2801467 → 13.2801467 mm. The
+`rimcost.mjs --loo` baseline/file/trial curves coincide: 100.0, 99.9, 96.7, 92.6, 87.9, 74.3 and 56.0%
+at the displayed fields 0.0°, 1.5°, 3.0°, 4.5°, 6.0°, 7.5° and 9.0°. Corner-sample illumination is
+56.0% → 56.0%; maximum loss is 0.0 percentage points. There are no reduced faces or lands to restore.
+The model has only the fixed infinity state; no finite-focus law or zoom stations are supplied.
+
+The matched-scale sketch was rendered and viewed alongside Fig. 1 at 11.435 px/model-mm. It preserves the
+front-to-rear size order, cemented L3/L4 boundary and larger final singlet. Straight joins at R7 omit the drawn
+mechanical bevel, as intended. The retained MIR optical section was also viewed: six elements/five groups,
+L3/L4 cemented pair, long gap and rear pair agree; its shorter-looking gap and mechanical outlines do not
+supply clear-aperture measurements. It marks no aspherical or special-dispersion element positions; the patent
+embodiment is all spherical. This is a secondary construction image, not a maker-hosted optical diagram.
+
+Comparison artifact:
+`/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-JJvsUM/5d6b978d-236f-4b6b-95b4-43ea08b0f623/scratchpad/sd/nfd135/overlay.png`.
+The live-page check is reserved for the coordinator; the sketch does not settle that earlier open item.
+No new name/metadata defect was found. The front page (PDF page 1) reads Nozomu Kitagishi, Canon Kabushiki
+Kaisha, US 4,206,976, June 10, 1980; the current canonical `Canon Inc.` attribution is consistent with the
+existing deployment record. Table 1/2 production ambiguity, the inferred iris and uncertified production clear
+apertures remain open. No sandbox or approval refusal occurred. The render queue initially rejected relative
+path arguments as invalid input; the documented absolute paths succeeded.
