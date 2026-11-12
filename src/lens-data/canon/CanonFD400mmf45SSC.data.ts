@@ -1,12 +1,23 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Hidden whole Table1, helium d-line (catalog line test), literal4x scaling; fixed source imageplane. Figure-derived rims/stop, no fit/override. Retail filter omitted as unprescribed; mechanical correspondence qualified. */
+/**
+ * US 4,045,128 A, Table 1: lengths scaled uniformly ×4 from f = 100 mm to nominal
+ * 400 mm, with the image plane fixed at the resulting 320.04 mm distance.
+ * R4 follows Table 1 (-258.3399 before scaling), rather than claim 1 (-258.3899).
+ * Semi-diameters and stop position are inferred from Figure 1; the rear rims were
+ * enlarged to pass the f/4.5 axial beam. Stop radius is derived from f/4.5.
+ * Printed glass coordinates are treated as helium d on catalog evidence, despite
+ * the patent's sodium wording; catalog equivalents do not identify production melts.
+ * Infinity focus only: closeFocusM = 1e15 is a placeholder, not a finite focus distance.
+ * The production lens's 34 mm filter is omitted because Table 1 supplies no plate
+ * prescription. The production association is probable; stop placement remains uncertain.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "canon-fd-400mm-f45-ssc",
   "maker": "Canon",
   "name": "CANON FD 400mm f/4.5 S.S.C.",
   "visible": true,
-  "subtitle": "US4045128 Table1 representative; patent stop topology, omitted unprescribed retail filter",
+  "subtitle": "US 4,045,128 A, Table 1 — probable match to the 1975 production lens",
   "catalog": {
     "imageFormat": "135-full-frame",
     "lensMounts": [
@@ -26,9 +37,11 @@ const LENS_DATA = {
       "design": 4.5
     },
     "specs": [
-      "Literal4x nominal scale, not factory prescription",
-      "Fixed source imageplane320.04; no refocus",
-      "Inferred figure caps and iris; infinity-only"
+      "6 ELEMENTS / 5 GROUPS",
+      "ALL SPHERICAL",
+      "f/4.5–22",
+      "REAR FOCUSING",
+      "4 m CLOSE FOCUS"
     ]
   },
   "source": {
@@ -50,61 +63,69 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Patent spherical element",
+      "type": "Biconvex Positive",
+      "role": "Front collector of the fixed positive group",
       "nd": 1.48749,
       "vd": 70.1,
       "indexReference": "d",
-      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
+      "glass": "S-FSL5 (Ohara catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Patent spherical element",
+      "type": "Negative Meniscus",
+      "role": "Negative element within the fixed front positive group",
       "nd": 1.8061,
       "vd": 40.9,
       "indexReference": "d",
-      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
+      "glass": "LAH53 (Ohara catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Patent spherical element",
+      "type": "Biconvex Positive",
+      "role": "Rear positive element of the fixed front group",
       "nd": 1.48749,
       "vd": 70.1,
       "indexReference": "d",
-      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
+      "glass": "S-FSL5 (Ohara catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Patent spherical element",
+      "type": "Negative Meniscus",
+      "role": "Fixed negative member ahead of the rear focusing doublet",
       "nd": 1.58913,
       "vd": 61.1,
       "indexReference": "d",
-      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
+      "glass": "BACD5 (Hoya catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Patent spherical element",
+      "type": "Positive Meniscus",
+      "role": "Positive component of the rear focusing doublet",
+      "cemented": "C1",
       "nd": 1.7552,
       "vd": 27.5,
       "indexReference": "d",
-      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
+      "glass": "SF4 (Schott catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Patent spherical element",
+      "type": "Negative Meniscus",
+      "role": "Negative component of the rear focusing doublet",
+      "cemented": "C1",
       "nd": 1.713,
       "vd": 53.9,
       "indexReference": "d",
-      "glass": "Literal d-line n and Abbe; no verified melt or partial dispersion"
+      "glass": "LAC8 (Hoya catalog equivalent; production supplier unspecified)"
     }
   ],
   "surfaces": [
@@ -188,7 +209,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1e15,
-    "description": "NO_INTERNAL_RECONSTRUCTION: static infinity-only sentinel; published finite endpoint retained in audit, no continuous cam claimed."
+    "description": "Infinity focus only; the production lens uses rear focusing to 4 m according to Canon. The patent moves the rear cemented doublet toward the image for close focus, but that movement is not modeled."
   },
   "aperture": {
     "nominalFNumber": 4.5,
@@ -207,6 +228,14 @@ const LENS_DATA = {
     "fullFieldDeg": 6.166666666666667,
     "maxTraceFieldDeg": 3.0833333333333335
   },
+  "groups": [
+    { "text": "Fixed front positive group", "fromSurface": "1", "toSurface": "6" },
+    { "text": "Fixed rear negative member", "fromSurface": "7", "toSurface": "8" },
+    { "text": "Rear focusing doublet", "fromSurface": "9", "toSurface": "11" }
+  ],
+  "doublets": [
+    { "text": "C1", "fromSurface": "9", "toSurface": "11" }
+  ],
   "layout": {
     "yScFill": 0.7
   }
