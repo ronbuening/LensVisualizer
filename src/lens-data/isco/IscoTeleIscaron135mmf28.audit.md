@@ -152,3 +152,7 @@ No new name or source-metadata mismatch was found. Outside this pass's remit, th
 paragraph still says L1–L3 remain unmatched, although the data and coordinator follow-up now give L1 SK5
 (Schott); this wording was left to the coordinator. The unsupported patent ±14° field remains an open model
 limitation, as do production/version identity and finite-focus mechanics. No sandbox or approval refusal occurred.
+
+## 2026-11-12 — Glass coverage pass
+
+L2 `Unmatched (nd = 1.58900, νd = 48.6)` → `BAF6 (Hoya catalog equivalent; …)` (Δnd = +0.000003, Δνd = −0.06) and L3 `Unmatched (nd = 1.74077, νd = 27.7)` → `E-FD13 (Hoya catalog equivalent; …)` (Δnd = 0, Δνd = +0.06). Both rows were already in the catalogue; every element of the lens now traces on a catalogue curve.

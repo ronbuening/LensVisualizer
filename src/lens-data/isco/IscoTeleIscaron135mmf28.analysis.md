@@ -25,11 +25,11 @@ nd = 1.58913, νd = 61.2. Glass: SK5 (Schott), exact at the printed nd/νd. Isol
 The first weakly curved rear face and positive front curvature form the front positive component. The catalog topology agrees qualitatively; no independent measured factory radii are available.
 
 ### L2: Biconvex Positive
-nd = 1.58900, νd = 48.6. Glass: Unmatched (nd = 1.58900, νd = 48.6). Isolated-element f = +66.87 mm.
+nd = 1.58900, νd = 48.6. Glass: BAF6 (Hoya), a compatible catalogue curve. Isolated-element f = +66.87 mm.
 This thick element is the positive front member of cemented pair C1. It shares its rear surface with L3; Table B instead separates the corresponding elements by air.
 
 ### L3: Biconcave Negative
-nd = 1.74077, νd = 27.7. Glass: Unmatched (nd = 1.74077, νd = 27.7). Isolated-element f = −34.49 mm.
+nd = 1.74077, νd = 27.7. Glass: E-FD13 (Hoya), a compatible catalogue curve of the SF13 type. Isolated-element f = −34.49 mm.
 The higher-index, lower-Abbe rear member supplies the negative power in C1, whose combined focal length is −201.75 mm. Detailed aberration contributions have not been established.
 
 ### L4: Plano-Convex Positive
@@ -38,7 +38,7 @@ The positive rear singlet follows the iris and ends in the patent's plane surfac
 
 ## Glass Identification / Selection
 
-The source prints lower-case nd and describes yellow-light indices. The model adopts the conventional helium d-line interpretation at 587.6 nm without a sodium-to-helium conversion. All four printed index/Abbe pairs are retained. Schott SF5 matches L4 with Δnd = 0 and Δνd = +0.01; it supplies a dispersion curve without identifying the production supplier or melt. L1–L3 remain unmatched because suitable period Schott rows have not been established. Modern N-SK5 and BAFN6 rows do not establish the corresponding 1950s materials. No maker-published special-dispersion positions are known, and no anomalous-dispersion tags are assigned. Factory substitutions and the unmatched glasses' partial dispersion remain unknown.
+The source prints lower-case nd and describes yellow-light indices. The model adopts the conventional helium d-line interpretation at 587.6 nm without a sodium-to-helium conversion. All four printed index/Abbe pairs are retained. Catalogue rows supply dispersion curves for all four elements without identifying the production supplier or melt: SK5 for L1 (Δnd = 0, Δνd = 0), Hoya BAF6 for L2 (Δnd = +0.000003, Δνd = −0.06), Hoya E-FD13 for L3 (Δnd = 0, Δνd = +0.06; the classic SF13 position) and Schott SF5 for L4 (Δnd = 0, Δνd = +0.01). No maker-published special-dispersion positions are known, and no anomalous-dispersion tags are assigned. Factory substitutions and the historical glasses' partial dispersion remain unknown.
 
 ## Focus Mechanism
 
