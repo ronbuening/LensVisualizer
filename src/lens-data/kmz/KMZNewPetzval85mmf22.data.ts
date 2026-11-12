@@ -10,9 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "kmz-petzval-85mm-f22",
+  "key": "kmz-new-petzval-85mm-f22",
   "maker": "KMZ",
-  "name": "KMZ PETZVAL 85mm f/2.2",
+  "name": "KMZ NEW PETZVAL 85mm f/2.2",
   "visible": true,
   "elements": [
     {
