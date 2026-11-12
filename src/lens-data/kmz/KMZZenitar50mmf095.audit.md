@@ -234,3 +234,10 @@ Assignee: `source.assignees` now reads "PJSC Krasnogorsky Zavod named after S. A
 of the patent holder printed on the front page (PAO "Krasnogorskij zavod im. S.A. Zvereva", PAO KMZ). The earlier
 "Krasnogorsk Mechanical Plant" is the plant's Soviet-era name (1941–1993), a different historical entity under
 LENS_DATA_SPEC's assignee rule. Both KMZ files carry the same spelling.
+
+## 2026-11-12 — LZOS glass rows
+
+The glass catalog gained an LZOS shard (TK14, TK21, STK3), each a formula-3 fit to the LZOS clear-glass catalogue's
+index table over 365–1014 nm (max index error under 1e-5). L3 and L8 change from the K-LaK11 spectral proxy to
+`STK3 (LZOS)` (nd 1.659502 / νd 57.35 against the printed 1.6595 / 57.35), and L5 from `Unmatched` to `TK14 (LZOS)`
+(nd 1.613091 / νd 60.58 against 1.6131 / 60.61). STK19 has no LZOS row in the source table and stays Unmatched.

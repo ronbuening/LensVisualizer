@@ -21,6 +21,7 @@ import { CDGM_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEn
 import { HIKARI_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/hikari.js";
 import { HOYA_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/hoya.js";
 import { NHG_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/nhg.js";
+import { LZOS_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/lzos.js";
 import { OHARA_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/ohara.js";
 import { SCHOTT_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/schott.js";
 import { SPECIAL_GLASS_ENTRIES } from "../../../src/optics/chromatic/glassCatalogEntries/special.js";
@@ -287,6 +288,7 @@ describe("glass catalog", () => {
       ...SUMITA_GLASS_ENTRIES,
       ...CDGM_GLASS_ENTRIES,
       ...NHG_GLASS_ENTRIES,
+      ...LZOS_GLASS_ENTRIES,
       ...SPECIAL_GLASS_ENTRIES,
     ];
     const shardNames = shardEntries.map((entry) => entry.name);
